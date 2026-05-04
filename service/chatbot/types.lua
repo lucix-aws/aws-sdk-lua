@@ -117,7 +117,7 @@ M.ChimeWebhookConfiguration = {
         },
         SnsTopicArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -130,7 +130,7 @@ M.ChimeWebhookConfiguration = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         State = {
             type = "string",
@@ -205,7 +205,7 @@ M.CreateChimeWebhookConfigurationInput = {
         },
         SnsTopicArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -227,7 +227,7 @@ M.CreateChimeWebhookConfigurationInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -235,9 +235,7 @@ M.CreateChimeWebhookConfigurationInput = {
 M.CreateChimeWebhookConfigurationOutput = {
     type = "structure",
     members = {
-        WebhookConfiguration = {
-            type = "structure",
-        },
+        WebhookConfiguration = M.ChimeWebhookConfiguration,
     },
 }
 
@@ -298,12 +296,12 @@ M.CustomActionAttachment = {
         },
         Criteria = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomActionAttachmentCriteria,
         },
         Variables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -323,22 +321,19 @@ M.CustomActionDefinition = {
 M.CreateCustomActionInput = {
     type = "structure",
     members = {
-        Definition = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Definition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CustomActionDefinition }),
         AliasName = {
             type = "string",
         },
         Attachments = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomActionAttachment,
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ClientToken = {
             type = "string",
@@ -393,7 +388,7 @@ M.CreateMicrosoftTeamsChannelConfigurationInput = {
         },
         SnsTopicArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IamRoleArn = {
             type = "string",
@@ -412,14 +407,14 @@ M.CreateMicrosoftTeamsChannelConfigurationInput = {
         },
         GuardrailPolicyArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         UserAuthorizationRequired = {
             type = "boolean",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -465,7 +460,7 @@ M.TeamsChannelConfiguration = {
         },
         SnsTopicArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -478,14 +473,14 @@ M.TeamsChannelConfiguration = {
         },
         GuardrailPolicyArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         UserAuthorizationRequired = {
             type = "boolean",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         State = {
             type = "string",
@@ -499,9 +494,7 @@ M.TeamsChannelConfiguration = {
 M.CreateMicrosoftTeamsChannelConfigurationOutput = {
     type = "structure",
     members = {
-        ChannelConfiguration = {
-            type = "structure",
-        },
+        ChannelConfiguration = M.TeamsChannelConfiguration,
     },
 }
 
@@ -545,7 +538,7 @@ M.CreateSlackChannelConfigurationInput = {
         },
         SnsTopicArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IamRoleArn = {
             type = "string",
@@ -564,14 +557,14 @@ M.CreateSlackChannelConfigurationInput = {
         },
         GuardrailPolicyArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         UserAuthorizationRequired = {
             type = "boolean",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -617,7 +610,7 @@ M.SlackChannelConfiguration = {
         },
         SnsTopicArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -630,14 +623,14 @@ M.SlackChannelConfiguration = {
         },
         GuardrailPolicyArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         UserAuthorizationRequired = {
             type = "boolean",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         State = {
             type = "string",
@@ -651,9 +644,7 @@ M.SlackChannelConfiguration = {
 M.CreateSlackChannelConfigurationOutput = {
     type = "structure",
     members = {
-        ChannelConfiguration = {
-            type = "structure",
-        },
+        ChannelConfiguration = M.SlackChannelConfiguration,
     },
 }
 
@@ -666,18 +657,15 @@ M.CustomAction = {
                 required = true,
             },
         },
-        Definition = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Definition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CustomActionDefinition }),
         AliasName = {
             type = "string",
         },
         Attachments = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomActionAttachment,
         },
         ActionName = {
             type = "string",
@@ -726,9 +714,7 @@ M.GetCustomActionInput = {
 M.GetCustomActionOutput = {
     type = "structure",
     members = {
-        CustomAction = {
-            type = "structure",
-        },
+        CustomAction = M.CustomAction,
     },
 }
 
@@ -736,7 +722,7 @@ M.ListCustomActionsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -749,7 +735,7 @@ M.ListCustomActionsOutput = {
     members = {
         CustomActions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -769,18 +755,15 @@ M.UpdateCustomActionInput = {
                 required = true,
             },
         },
-        Definition = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Definition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CustomActionDefinition }),
         AliasName = {
             type = "string",
         },
         Attachments = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomActionAttachment,
         },
     },
 }
@@ -1011,7 +994,7 @@ M.DescribeChimeWebhookConfigurationsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1030,7 +1013,7 @@ M.DescribeChimeWebhookConfigurationsOutput = {
         },
         WebhookConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.ChimeWebhookConfiguration,
         },
     },
 }
@@ -1049,7 +1032,7 @@ M.DescribeSlackChannelConfigurationsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1068,7 +1051,7 @@ M.DescribeSlackChannelConfigurationsOutput = {
         },
         SlackChannelConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.SlackChannelConfiguration,
         },
     },
 }
@@ -1093,7 +1076,7 @@ M.DescribeSlackUserIdentitiesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1136,7 +1119,7 @@ M.DescribeSlackUserIdentitiesOutput = {
     members = {
         SlackUserIdentities = {
             type = "list",
-            member_type = "structure",
+            member = M.SlackUserIdentity,
         },
         NextToken = {
             type = "string",
@@ -1158,7 +1141,7 @@ M.DescribeSlackWorkspacesInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1195,7 +1178,7 @@ M.DescribeSlackWorkspacesOutput = {
     members = {
         SlackWorkspaces = {
             type = "list",
-            member_type = "structure",
+            member = M.SlackWorkspace,
         },
         NextToken = {
             type = "string",
@@ -1242,9 +1225,7 @@ M.GetAccountPreferencesInput = {
 M.GetAccountPreferencesOutput = {
     type = "structure",
     members = {
-        AccountPreferences = {
-            type = "structure",
-        },
+        AccountPreferences = M.AccountPreferences,
     },
 }
 
@@ -1263,9 +1244,7 @@ M.GetMicrosoftTeamsChannelConfigurationInput = {
 M.GetMicrosoftTeamsChannelConfigurationOutput = {
     type = "structure",
     members = {
-        ChannelConfiguration = {
-            type = "structure",
-        },
+        ChannelConfiguration = M.TeamsChannelConfiguration,
     },
 }
 
@@ -1289,7 +1268,7 @@ M.ListAssociationsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1302,7 +1281,7 @@ M.ListAssociationsOutput = {
     members = {
         Associations = {
             type = "list",
-            member_type = "structure",
+            member = M.AssociationListing,
             traits = {
                 required = true,
             },
@@ -1317,7 +1296,7 @@ M.ListMicrosoftTeamsChannelConfigurationsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1336,7 +1315,7 @@ M.ListMicrosoftTeamsChannelConfigurationsOutput = {
         },
         TeamChannelConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.TeamsChannelConfiguration,
         },
     },
 }
@@ -1365,7 +1344,7 @@ M.ListMicrosoftTeamsConfiguredTeamsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1378,7 +1357,7 @@ M.ListMicrosoftTeamsConfiguredTeamsOutput = {
     members = {
         ConfiguredTeams = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfiguredTeam,
         },
         NextToken = {
             type = "string",
@@ -1406,7 +1385,7 @@ M.ListMicrosoftTeamsUserIdentitiesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1452,7 +1431,7 @@ M.ListMicrosoftTeamsUserIdentitiesOutput = {
     members = {
         TeamsUserIdentities = {
             type = "list",
-            member_type = "structure",
+            member = M.TeamsUserIdentity,
         },
         NextToken = {
             type = "string",
@@ -1477,7 +1456,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1503,7 +1482,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -1536,7 +1515,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1573,9 +1552,7 @@ M.UpdateAccountPreferencesInput = {
 M.UpdateAccountPreferencesOutput = {
     type = "structure",
     members = {
-        AccountPreferences = {
-            type = "structure",
-        },
+        AccountPreferences = M.AccountPreferences,
     },
 }
 
@@ -1606,7 +1583,7 @@ M.UpdateChimeWebhookConfigurationInput = {
         },
         SnsTopicArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IamRoleArn = {
             type = "string",
@@ -1620,9 +1597,7 @@ M.UpdateChimeWebhookConfigurationInput = {
 M.UpdateChimeWebhookConfigurationOutput = {
     type = "structure",
     members = {
-        WebhookConfiguration = {
-            type = "structure",
-        },
+        WebhookConfiguration = M.ChimeWebhookConfiguration,
     },
 }
 
@@ -1646,7 +1621,7 @@ M.UpdateMicrosoftTeamsChannelConfigurationInput = {
         },
         SnsTopicArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IamRoleArn = {
             type = "string",
@@ -1656,7 +1631,7 @@ M.UpdateMicrosoftTeamsChannelConfigurationInput = {
         },
         GuardrailPolicyArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         UserAuthorizationRequired = {
             type = "boolean",
@@ -1667,9 +1642,7 @@ M.UpdateMicrosoftTeamsChannelConfigurationInput = {
 M.UpdateMicrosoftTeamsChannelConfigurationOutput = {
     type = "structure",
     members = {
-        ChannelConfiguration = {
-            type = "structure",
-        },
+        ChannelConfiguration = M.TeamsChannelConfiguration,
     },
 }
 
@@ -1713,7 +1686,7 @@ M.UpdateSlackChannelConfigurationInput = {
         },
         SnsTopicArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IamRoleArn = {
             type = "string",
@@ -1723,7 +1696,7 @@ M.UpdateSlackChannelConfigurationInput = {
         },
         GuardrailPolicyArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         UserAuthorizationRequired = {
             type = "boolean",
@@ -1734,9 +1707,7 @@ M.UpdateSlackChannelConfigurationInput = {
 M.UpdateSlackChannelConfigurationOutput = {
     type = "structure",
     members = {
-        ChannelConfiguration = {
-            type = "structure",
-        },
+        ChannelConfiguration = M.SlackChannelConfiguration,
     },
 }
 

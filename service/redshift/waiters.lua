@@ -1,0 +1,147 @@
+local waiter = require("waiter")
+
+local M = {}
+
+--- Wait until ClusterAvailable.
+function M.wait_until_cluster_available(client, input, options)
+    return waiter.wait(client, "describeClusters", input, {
+        min_delay = 60,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "Clusters[].ClusterStatus",
+                        expected = "available",
+                        comparator = "allStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Clusters[].ClusterStatus",
+                        expected = "deleting",
+                        comparator = "anyStringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "ClusterNotFound",
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until ClusterDeleted.
+function M.wait_until_cluster_deleted(client, input, options)
+    return waiter.wait(client, "describeClusters", input, {
+        min_delay = 60,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    errorType = "ClusterNotFound",
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Clusters[].ClusterStatus",
+                        expected = "creating",
+                        comparator = "anyStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Clusters[].ClusterStatus",
+                        expected = "modifying",
+                        comparator = "anyStringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until ClusterRestored.
+function M.wait_until_cluster_restored(client, input, options)
+    return waiter.wait(client, "describeClusters", input, {
+        min_delay = 60,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "Clusters[].RestoreStatus.Status",
+                        expected = "completed",
+                        comparator = "allStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Clusters[].ClusterStatus",
+                        expected = "deleting",
+                        comparator = "anyStringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until SnapshotAvailable.
+function M.wait_until_snapshot_available(client, input, options)
+    return waiter.wait(client, "describeClusterSnapshots", input, {
+        min_delay = 15,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "Snapshots[].Status",
+                        expected = "available",
+                        comparator = "allStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Snapshots[].Status",
+                        expected = "failed",
+                        comparator = "anyStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Snapshots[].Status",
+                        expected = "deleted",
+                        comparator = "anyStringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+return M

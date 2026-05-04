@@ -14,13 +14,13 @@ M.AvailabilityMeasurement = {
     type = "structure",
     members = {
         ExperienceScore = {
-            type = "number",
+            type = "double",
         },
         PercentOfTotalTrafficImpacted = {
-            type = "number",
+            type = "double",
         },
         PercentOfClientLocationImpacted = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -45,7 +45,7 @@ M.ClientLocation = {
             },
         },
         ASNumber = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -69,13 +69,13 @@ M.ClientLocation = {
             },
         },
         Latitude = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
         Longitude = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -105,10 +105,16 @@ M.LocalHealthEventsConfig = {
             type = "string",
         },
         HealthScoreThreshold = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         MinTrafficImpact = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -117,17 +123,19 @@ M.HealthEventsConfig = {
     type = "structure",
     members = {
         AvailabilityScoreThreshold = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         PerformanceScoreThreshold = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
-        AvailabilityLocalHealthEventsConfig = {
-            type = "structure",
-        },
-        PerformanceLocalHealthEventsConfig = {
-            type = "structure",
-        },
+        AvailabilityLocalHealthEventsConfig = M.LocalHealthEventsConfig,
+        PerformanceLocalHealthEventsConfig = M.LocalHealthEventsConfig,
     },
 }
 
@@ -154,9 +162,7 @@ M.S3Config = {
 M.InternetMeasurementsLogDelivery = {
     type = "structure",
     members = {
-        S3Config = {
-            type = "structure",
-        },
+        S3Config = M.S3Config,
     },
 }
 
@@ -171,28 +177,24 @@ M.CreateMonitorInput = {
         },
         Resources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ClientToken = {
             type = "string",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         MaxCityNetworksToMonitor = {
-            type = "number",
+            type = "integer",
         },
-        InternetMeasurementsLogDelivery = {
-            type = "structure",
-        },
+        InternetMeasurementsLogDelivery = M.InternetMeasurementsLogDelivery,
         TrafficPercentageToMonitor = {
-            type = "number",
+            type = "integer",
         },
-        HealthEventsConfig = {
-            type = "structure",
-        },
+        HealthEventsConfig = M.HealthEventsConfig,
     },
 }
 
@@ -294,7 +296,7 @@ M.FilterParameter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -335,7 +337,7 @@ M.Network = {
             },
         },
         ASNumber = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -353,14 +355,14 @@ M.NetworkImpairment = {
     members = {
         Networks = {
             type = "list",
-            member_type = "structure",
+            member = M.Network,
             traits = {
                 required = true,
             },
         },
         AsPath = {
             type = "list",
-            member_type = "structure",
+            member = M.Network,
             traits = {
                 required = true,
             },
@@ -378,13 +380,13 @@ M.RoundTripTime = {
     type = "structure",
     members = {
         P50 = {
-            type = "number",
+            type = "double",
         },
         P90 = {
-            type = "number",
+            type = "double",
         },
         P95 = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -393,29 +395,23 @@ M.PerformanceMeasurement = {
     type = "structure",
     members = {
         ExperienceScore = {
-            type = "number",
+            type = "double",
         },
         PercentOfTotalTrafficImpacted = {
-            type = "number",
+            type = "double",
         },
         PercentOfClientLocationImpacted = {
-            type = "number",
+            type = "double",
         },
-        RoundTripTime = {
-            type = "structure",
-        },
+        RoundTripTime = M.RoundTripTime,
     },
 }
 
 M.InternetHealth = {
     type = "structure",
     members = {
-        Availability = {
-            type = "structure",
-        },
-        Performance = {
-            type = "structure",
-        },
+        Availability = M.AvailabilityMeasurement,
+        Performance = M.PerformanceMeasurement,
     },
 }
 
@@ -434,7 +430,7 @@ M.ImpactedLocation = {
             },
         },
         ASNumber = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -455,10 +451,10 @@ M.ImpactedLocation = {
             type = "string",
         },
         Latitude = {
-            type = "number",
+            type = "double",
         },
         Longitude = {
-            type = "number",
+            type = "double",
         },
         CountryCode = {
             type = "string",
@@ -475,15 +471,11 @@ M.ImpactedLocation = {
                 required = true,
             },
         },
-        CausedBy = {
-            type = "structure",
-        },
-        InternetHealth = {
-            type = "structure",
-        },
+        CausedBy = M.NetworkImpairment,
+        InternetHealth = M.InternetHealth,
         Ipv4Prefixes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -538,7 +530,7 @@ M.GetHealthEventOutput = {
         },
         ImpactedLocations = {
             type = "list",
-            member_type = "structure",
+            member = M.ImpactedLocation,
             traits = {
                 required = true,
             },
@@ -550,7 +542,7 @@ M.GetHealthEventOutput = {
             },
         },
         PercentOfTotalTrafficImpacted = {
-            type = "number",
+            type = "double",
         },
         ImpactType = {
             type = "string",
@@ -559,7 +551,10 @@ M.GetHealthEventOutput = {
             },
         },
         HealthScoreThreshold = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -615,12 +610,9 @@ M.GetInternetEventOutput = {
                 timestamp_format = "date-time",
             },
         },
-        ClientLocation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ClientLocation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ClientLocation }),
         EventType = {
             type = "string",
             traits = {
@@ -681,7 +673,7 @@ M.GetMonitorOutput = {
         },
         Resources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -714,21 +706,17 @@ M.GetMonitorOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         MaxCityNetworksToMonitor = {
-            type = "number",
+            type = "integer",
         },
-        InternetMeasurementsLogDelivery = {
-            type = "structure",
-        },
+        InternetMeasurementsLogDelivery = M.InternetMeasurementsLogDelivery,
         TrafficPercentageToMonitor = {
-            type = "number",
+            type = "integer",
         },
-        HealthEventsConfig = {
-            type = "structure",
-        },
+        HealthEventsConfig = M.HealthEventsConfig,
     },
 }
 
@@ -756,7 +744,7 @@ M.GetQueryResultsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -781,14 +769,14 @@ M.GetQueryResultsOutput = {
     members = {
         Fields = {
             type = "list",
-            member_type = "structure",
+            member = M.QueryField,
             traits = {
                 required = true,
             },
         },
         Data = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
             traits = {
                 required = true,
             },
@@ -882,7 +870,7 @@ M.HealthEvent = {
         },
         ImpactedLocations = {
             type = "list",
-            member_type = "structure",
+            member = M.ImpactedLocation,
             traits = {
                 required = true,
             },
@@ -894,7 +882,7 @@ M.HealthEvent = {
             },
         },
         PercentOfTotalTrafficImpacted = {
-            type = "number",
+            type = "double",
         },
         ImpactType = {
             type = "string",
@@ -903,7 +891,10 @@ M.HealthEvent = {
             },
         },
         HealthScoreThreshold = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -939,7 +930,7 @@ M.ListHealthEventsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -964,7 +955,7 @@ M.ListHealthEventsOutput = {
     members = {
         HealthEvents = {
             type = "list",
-            member_type = "structure",
+            member = M.HealthEvent,
             traits = {
                 required = true,
             },
@@ -995,7 +986,7 @@ M.ListInternetEventsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "InternetEventMaxResults",
             },
@@ -1057,12 +1048,9 @@ M.InternetEventSummary = {
                 timestamp_format = "date-time",
             },
         },
-        ClientLocation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ClientLocation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ClientLocation }),
         EventType = {
             type = "string",
             traits = {
@@ -1083,7 +1071,7 @@ M.ListInternetEventsOutput = {
     members = {
         InternetEvents = {
             type = "list",
-            member_type = "structure",
+            member = M.InternetEventSummary,
             traits = {
                 required = true,
             },
@@ -1112,8 +1100,8 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1148,7 +1136,7 @@ M.ListMonitorsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -1200,7 +1188,7 @@ M.ListMonitorsOutput = {
     members = {
         Monitors = {
             type = "list",
-            member_type = "structure",
+            member = M.Monitor,
             traits = {
                 required = true,
             },
@@ -1252,7 +1240,7 @@ M.StartQueryInput = {
         },
         FilterParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.FilterParameter,
         },
         LinkedAccountId = {
             type = "string",
@@ -1318,11 +1306,11 @@ M.UpdateMonitorInput = {
         },
         ResourcesToAdd = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ResourcesToRemove = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Status = {
             type = "string",
@@ -1331,17 +1319,13 @@ M.UpdateMonitorInput = {
             type = "string",
         },
         MaxCityNetworksToMonitor = {
-            type = "number",
+            type = "integer",
         },
-        InternetMeasurementsLogDelivery = {
-            type = "structure",
-        },
+        InternetMeasurementsLogDelivery = M.InternetMeasurementsLogDelivery,
         TrafficPercentageToMonitor = {
-            type = "number",
+            type = "integer",
         },
-        HealthEventsConfig = {
-            type = "structure",
-        },
+        HealthEventsConfig = M.HealthEventsConfig,
     },
 }
 
@@ -1375,8 +1359,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1400,7 +1384,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,

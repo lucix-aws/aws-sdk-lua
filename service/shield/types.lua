@@ -31,12 +31,8 @@ M.CountAction = {
 M.ResponseAction = {
     type = "structure",
     members = {
-        Block = {
-            type = "structure",
-        },
-        Count = {
-            type = "structure",
-        },
+        Block = M.BlockAction,
+        Count = M.CountAction,
     },
 }
 
@@ -54,12 +50,9 @@ M.ApplicationLayerAutomaticResponseConfiguration = {
                 required = true,
             },
         },
-        Action = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Action = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResponseAction }),
     },
 }
 
@@ -134,7 +127,7 @@ M.InvalidParameterException = {
         },
         fields = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -150,7 +143,10 @@ M.LimitsExceededException = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -259,7 +255,7 @@ M.AssociateProactiveEngagementDetailsInput = {
     members = {
         EmergencyContactList = {
             type = "list",
-            member_type = "structure",
+            member = M.EmergencyContact,
             traits = {
                 required = true,
             },
@@ -278,16 +274,28 @@ M.SummarizedCounter = {
             type = "string",
         },
         Max = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         Average = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         Sum = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         N = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         Unit = {
             type = "string",
@@ -318,7 +326,10 @@ M.Contributor = {
             type = "string",
         },
         Value = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -341,13 +352,16 @@ M.AttackProperty = {
         },
         TopContributors = {
             type = "list",
-            member_type = "structure",
+            member = M.Contributor,
         },
         Unit = {
             type = "string",
         },
         Total = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -372,7 +386,7 @@ M.SummarizedAttackVector = {
         },
         VectorCounters = {
             type = "list",
-            member_type = "structure",
+            member = M.SummarizedCounter,
         },
     },
 }
@@ -393,11 +407,11 @@ M.SubResourceSummary = {
         },
         AttackVectors = {
             type = "list",
-            member_type = "structure",
+            member = M.SummarizedAttackVector,
         },
         Counters = {
             type = "list",
-            member_type = "structure",
+            member = M.SummarizedCounter,
         },
     },
 }
@@ -413,7 +427,7 @@ M.AttackDetail = {
         },
         SubResources = {
             type = "list",
-            member_type = "structure",
+            member = M.SubResourceSummary,
         },
         StartTime = {
             type = "timestamp",
@@ -423,15 +437,15 @@ M.AttackDetail = {
         },
         AttackCounters = {
             type = "list",
-            member_type = "structure",
+            member = M.SummarizedCounter,
         },
         AttackProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.AttackProperty,
         },
         Mitigations = {
             type = "list",
-            member_type = "structure",
+            member = M.Mitigation,
         },
     },
 }
@@ -440,8 +454,9 @@ M.AttackVolumeStatistics = {
     type = "structure",
     members = {
         Max = {
-            type = "number",
+            type = "double",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -451,27 +466,20 @@ M.AttackVolumeStatistics = {
 M.AttackVolume = {
     type = "structure",
     members = {
-        BitsPerSecond = {
-            type = "structure",
-        },
-        PacketsPerSecond = {
-            type = "structure",
-        },
-        RequestsPerSecond = {
-            type = "structure",
-        },
+        BitsPerSecond = M.AttackVolumeStatistics,
+        PacketsPerSecond = M.AttackVolumeStatistics,
+        RequestsPerSecond = M.AttackVolumeStatistics,
     },
 }
 
 M.AttackStatisticsDataItem = {
     type = "structure",
     members = {
-        AttackVolume = {
-            type = "structure",
-        },
+        AttackVolume = M.AttackVolume,
         AttackCount = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -507,7 +515,7 @@ M.AttackSummary = {
         },
         AttackVectors = {
             type = "list",
-            member_type = "structure",
+            member = M.AttackVectorDescription,
         },
     },
 }
@@ -546,7 +554,7 @@ M.CreateProtectionInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -620,11 +628,11 @@ M.CreateProtectionGroupInput = {
         },
         Members = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -706,9 +714,7 @@ M.DescribeAttackInput = {
 M.DescribeAttackOutput = {
     type = "structure",
     members = {
-        Attack = {
-            type = "structure",
-        },
+        Attack = M.AttackDetail,
     },
 }
 
@@ -731,15 +737,12 @@ M.TimeRange = {
 M.DescribeAttackStatisticsOutput = {
     type = "structure",
     members = {
-        TimeRange = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TimeRange = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TimeRange }),
         DataItems = {
             type = "list",
-            member_type = "structure",
+            member = M.AttackStatisticsDataItem,
             traits = {
                 required = true,
             },
@@ -759,7 +762,7 @@ M.DescribeDRTAccessOutput = {
         },
         LogBucketList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -773,7 +776,7 @@ M.DescribeEmergencyContactSettingsOutput = {
     members = {
         EmergencyContactList = {
             type = "list",
-            member_type = "structure",
+            member = M.EmergencyContact,
         },
     },
 }
@@ -804,23 +807,19 @@ M.Protection = {
         },
         HealthCheckIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ProtectionArn = {
             type = "string",
         },
-        ApplicationLayerAutomaticResponseConfiguration = {
-            type = "structure",
-        },
+        ApplicationLayerAutomaticResponseConfiguration = M.ApplicationLayerAutomaticResponseConfiguration,
     },
 }
 
 M.DescribeProtectionOutput = {
     type = "structure",
     members = {
-        Protection = {
-            type = "structure",
-        },
+        Protection = M.Protection,
     },
 }
 
@@ -862,7 +861,7 @@ M.ProtectionGroup = {
         },
         Members = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -876,12 +875,9 @@ M.ProtectionGroup = {
 M.DescribeProtectionGroupOutput = {
     type = "structure",
     members = {
-        ProtectionGroup = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ProtectionGroup = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProtectionGroup }),
     },
 }
 
@@ -896,7 +892,10 @@ M.Limit = {
             type = "string",
         },
         Max = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -911,8 +910,9 @@ M.ProtectionGroupArbitraryPatternLimits = {
     type = "structure",
     members = {
         MaxMembers = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -922,12 +922,9 @@ M.ProtectionGroupArbitraryPatternLimits = {
 M.ProtectionGroupPatternTypeLimits = {
     type = "structure",
     members = {
-        ArbitraryPatternLimits = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ArbitraryPatternLimits = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProtectionGroupArbitraryPatternLimits }),
     },
 }
 
@@ -935,17 +932,15 @@ M.ProtectionGroupLimits = {
     type = "structure",
     members = {
         MaxProtectionGroups = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
-        PatternTypeLimits = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        PatternTypeLimits = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProtectionGroupPatternTypeLimits }),
     },
 }
 
@@ -954,7 +949,7 @@ M.ProtectionLimits = {
     members = {
         ProtectedResourceTypeLimits = {
             type = "list",
-            member_type = "structure",
+            member = M.Limit,
             traits = {
                 required = true,
             },
@@ -965,18 +960,12 @@ M.ProtectionLimits = {
 M.SubscriptionLimits = {
     type = "structure",
     members = {
-        ProtectionLimits = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ProtectionGroupLimits = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ProtectionLimits = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProtectionLimits }),
+        ProtectionGroupLimits = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProtectionGroupLimits }),
     },
 }
 
@@ -990,24 +979,24 @@ M.Subscription = {
             type = "timestamp",
         },
         TimeCommitmentInSeconds = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         AutoRenew = {
             type = "string",
         },
         Limits = {
             type = "list",
-            member_type = "structure",
+            member = M.Limit,
         },
         ProactiveEngagementStatus = {
             type = "string",
         },
-        SubscriptionLimits = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SubscriptionLimits = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SubscriptionLimits }),
         SubscriptionArn = {
             type = "string",
         },
@@ -1017,9 +1006,7 @@ M.Subscription = {
 M.DescribeSubscriptionOutput = {
     type = "structure",
     members = {
-        Subscription = {
-            type = "structure",
-        },
+        Subscription = M.Subscription,
     },
 }
 
@@ -1102,12 +1089,9 @@ M.EnableApplicationLayerAutomaticResponseInput = {
                 required = true,
             },
         },
-        Action = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Action = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResponseAction }),
     },
 }
 
@@ -1149,19 +1133,15 @@ M.ListAttacksInput = {
     members = {
         ResourceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        StartTime = {
-            type = "structure",
-        },
-        EndTime = {
-            type = "structure",
-        },
+        StartTime = M.TimeRange,
+        EndTime = M.TimeRange,
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1171,7 +1151,7 @@ M.ListAttacksOutput = {
     members = {
         AttackSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.AttackSummary,
         },
         NextToken = {
             type = "string",
@@ -1194,19 +1174,19 @@ M.InclusionProtectionGroupFilters = {
     members = {
         ProtectionGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Patterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ResourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Aggregations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1218,11 +1198,9 @@ M.ListProtectionGroupsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
-        InclusionFilters = {
-            type = "structure",
-        },
+        InclusionFilters = M.InclusionProtectionGroupFilters,
     },
 }
 
@@ -1231,7 +1209,7 @@ M.ListProtectionGroupsOutput = {
     members = {
         ProtectionGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.ProtectionGroup,
             traits = {
                 required = true,
             },
@@ -1247,15 +1225,15 @@ M.InclusionProtectionFilters = {
     members = {
         ResourceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ProtectionNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ResourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1267,11 +1245,9 @@ M.ListProtectionsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
-        InclusionFilters = {
-            type = "structure",
-        },
+        InclusionFilters = M.InclusionProtectionFilters,
     },
 }
 
@@ -1280,7 +1256,7 @@ M.ListProtectionsOutput = {
     members = {
         Protections = {
             type = "list",
-            member_type = "structure",
+            member = M.Protection,
         },
         NextToken = {
             type = "string",
@@ -1301,7 +1277,7 @@ M.ListResourcesInProtectionGroupInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1311,7 +1287,7 @@ M.ListResourcesInProtectionGroupOutput = {
     members = {
         ResourceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1339,7 +1315,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1355,7 +1331,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -1378,7 +1354,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1399,12 +1375,9 @@ M.UpdateApplicationLayerAutomaticResponseInput = {
                 required = true,
             },
         },
-        Action = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Action = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResponseAction }),
     },
 }
 
@@ -1417,7 +1390,7 @@ M.UpdateEmergencyContactSettingsInput = {
     members = {
         EmergencyContactList = {
             type = "list",
-            member_type = "structure",
+            member = M.EmergencyContact,
         },
     },
 }
@@ -1452,7 +1425,7 @@ M.UpdateProtectionGroupInput = {
         },
         Members = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }

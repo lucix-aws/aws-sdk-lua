@@ -1,0 +1,41 @@
+local waiter = require("waiter")
+
+local M = {}
+
+--- Wait until SuccessfulSigningJob.
+function M.wait_until_successful_signing_job(client, input, options)
+    return waiter.wait(client, "describeSigningJob", input, {
+        min_delay = 20,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "status",
+                        expected = "Succeeded",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "status",
+                        expected = "Failed",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    errorType = "ResourceNotFoundException",
+                },
+            },
+        },
+    }, options)
+end
+
+return M

@@ -18,13 +18,13 @@ M.AggregatedLogOddsMetric = {
     members = {
         variableNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         aggregatedVariablesImportance = {
-            type = "number",
+            type = "float",
             traits = {
                 required = true,
             },
@@ -37,13 +37,13 @@ M.AggregatedVariablesImpactExplanation = {
     members = {
         eventVariableNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         relativeImpact = {
             type = "string",
         },
         logOddsImpact = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -53,7 +53,7 @@ M.AggregatedVariablesImportanceMetrics = {
     members = {
         logOddsMetrics = {
             type = "list",
-            member_type = "structure",
+            member = M.AggregatedLogOddsMetric,
         },
     },
 }
@@ -98,16 +98,16 @@ M.ATIMetricDataPoint = {
     type = "structure",
     members = {
         cr = {
-            type = "number",
+            type = "float",
         },
         adr = {
-            type = "number",
+            type = "float",
         },
         threshold = {
-            type = "number",
+            type = "float",
         },
         atodr = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -116,7 +116,7 @@ M.ATIModelPerformance = {
     type = "structure",
     members = {
         asi = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -126,11 +126,9 @@ M.ATITrainingMetricsValue = {
     members = {
         metricDataPoints = {
             type = "list",
-            member_type = "structure",
+            member = M.ATIMetricDataPoint,
         },
-        modelPerformance = {
-            type = "structure",
-        },
+        modelPerformance = M.ATIModelPerformance,
     },
 }
 
@@ -181,14 +179,14 @@ M.BatchCreateVariableInput = {
     members = {
         variableEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.VariableEntry,
             traits = {
                 required = true,
             },
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -200,7 +198,10 @@ M.BatchCreateVariableError = {
             type = "string",
         },
         code = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         message = {
             type = "string",
@@ -213,7 +214,7 @@ M.BatchCreateVariableOutput = {
     members = {
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchCreateVariableError,
         },
     },
 }
@@ -262,7 +263,7 @@ M.BatchGetVariableInput = {
     members = {
         names = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -277,7 +278,10 @@ M.BatchGetVariableError = {
             type = "string",
         },
         code = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         message = {
             type = "string",
@@ -337,11 +341,11 @@ M.BatchGetVariableOutput = {
     members = {
         variables = {
             type = "list",
-            member_type = "structure",
+            member = M.Variable,
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetVariableError,
         },
     },
 }
@@ -426,7 +430,7 @@ M.CreateBatchImportJobInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -479,7 +483,7 @@ M.CreateBatchPredictionJobInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -564,25 +568,25 @@ M.CreateDetectorVersionInput = {
         },
         externalModelEndpoints = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         rules = {
             type = "list",
-            member_type = "structure",
+            member = M.Rule,
             traits = {
                 required = true,
             },
         },
         modelVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.ModelVersion,
         },
         ruleExecutionMode = {
             type = "string",
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -619,7 +623,7 @@ M.CreateListInput = {
         },
         elements = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         variableType = {
             type = "string",
@@ -629,7 +633,7 @@ M.CreateListInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -664,7 +668,7 @@ M.CreateModelInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -712,12 +716,9 @@ M.IngestedEventsTimeWindow = {
 M.IngestedEventsDetail = {
     type = "structure",
     members = {
-        ingestedEventsTimeWindow = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ingestedEventsTimeWindow = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IngestedEventsTimeWindow }),
     },
 }
 
@@ -733,8 +734,8 @@ M.LabelSchema = {
     members = {
         labelMapper = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         unlabeledEventsTreatment = {
             type = "string",
@@ -747,14 +748,12 @@ M.TrainingDataSchema = {
     members = {
         modelVariables = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        labelSchema = {
-            type = "structure",
-        },
+        labelSchema = M.LabelSchema,
     },
 }
 
@@ -784,21 +783,14 @@ M.CreateModelVersionInput = {
                 required = true,
             },
         },
-        trainingDataSchema = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        externalEventsDetail = {
-            type = "structure",
-        },
-        ingestedEventsDetail = {
-            type = "structure",
-        },
+        trainingDataSchema = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TrainingDataSchema }),
+        externalEventsDetail = M.ExternalEventsDetail,
+        ingestedEventsDetail = M.IngestedEventsDetail,
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -857,14 +849,14 @@ M.CreateRuleInput = {
         },
         outcomes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -872,9 +864,7 @@ M.CreateRuleInput = {
 M.CreateRuleOutput = {
     type = "structure",
     members = {
-        rule = {
-            type = "structure",
-        },
+        rule = M.Rule,
     },
 }
 
@@ -913,7 +903,7 @@ M.CreateVariableInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1203,12 +1193,9 @@ M.DeleteOutcomeOutput = {
 M.DeleteRuleInput = {
     type = "structure",
     members = {
-        rule = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        rule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Rule }),
     },
 }
 
@@ -1245,7 +1232,7 @@ M.DescribeDetectorInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1276,7 +1263,7 @@ M.DescribeDetectorOutput = {
         },
         detectorVersionSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.DetectorVersionSummary,
         },
         nextToken = {
             type = "string",
@@ -1303,7 +1290,7 @@ M.DescribeModelVersionsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1349,11 +1336,11 @@ M.DataValidationMetrics = {
     members = {
         fileLevelMessages = {
             type = "list",
-            member_type = "structure",
+            member = M.FileValidationMessage,
         },
         fieldLevelMessages = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldValidationMessage,
         },
     },
 }
@@ -1362,16 +1349,16 @@ M.MetricDataPoint = {
     type = "structure",
     members = {
         fpr = {
-            type = "number",
+            type = "float",
         },
         precision = {
-            type = "number",
+            type = "float",
         },
         tpr = {
-            type = "number",
+            type = "float",
         },
         threshold = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -1380,11 +1367,11 @@ M.TrainingMetrics = {
     type = "structure",
     members = {
         auc = {
-            type = "number",
+            type = "float",
         },
         metricDataPoints = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricDataPoint,
         },
     },
 }
@@ -1405,7 +1392,7 @@ M.LogOddsMetric = {
             },
         },
         variableImportance = {
-            type = "number",
+            type = "float",
             traits = {
                 required = true,
             },
@@ -1418,7 +1405,7 @@ M.VariableImportanceMetrics = {
     members = {
         logOddsMetrics = {
             type = "list",
-            member_type = "structure",
+            member = M.LogOddsMetric,
         },
     },
 }
@@ -1426,15 +1413,9 @@ M.VariableImportanceMetrics = {
 M.TrainingResult = {
     type = "structure",
     members = {
-        dataValidationMetrics = {
-            type = "structure",
-        },
-        trainingMetrics = {
-            type = "structure",
-        },
-        variableImportanceMetrics = {
-            type = "structure",
-        },
+        dataValidationMetrics = M.DataValidationMetrics,
+        trainingMetrics = M.TrainingMetrics,
+        variableImportanceMetrics = M.VariableImportanceMetrics,
     },
 }
 
@@ -1442,16 +1423,16 @@ M.OFIMetricDataPoint = {
     type = "structure",
     members = {
         fpr = {
-            type = "number",
+            type = "float",
         },
         precision = {
-            type = "number",
+            type = "float",
         },
         tpr = {
-            type = "number",
+            type = "float",
         },
         threshold = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -1460,13 +1441,13 @@ M.UncertaintyRange = {
     type = "structure",
     members = {
         lowerBoundValue = {
-            type = "number",
+            type = "float",
             traits = {
                 required = true,
             },
         },
         upperBoundValue = {
-            type = "number",
+            type = "float",
             traits = {
                 required = true,
             },
@@ -1478,11 +1459,9 @@ M.OFIModelPerformance = {
     type = "structure",
     members = {
         auc = {
-            type = "number",
+            type = "float",
         },
-        uncertaintyRange = {
-            type = "structure",
-        },
+        uncertaintyRange = M.UncertaintyRange,
     },
 }
 
@@ -1491,11 +1470,9 @@ M.OFITrainingMetricsValue = {
     members = {
         metricDataPoints = {
             type = "list",
-            member_type = "structure",
+            member = M.OFIMetricDataPoint,
         },
-        modelPerformance = {
-            type = "structure",
-        },
+        modelPerformance = M.OFIModelPerformance,
     },
 }
 
@@ -1503,16 +1480,16 @@ M.TFIMetricDataPoint = {
     type = "structure",
     members = {
         fpr = {
-            type = "number",
+            type = "float",
         },
         precision = {
-            type = "number",
+            type = "float",
         },
         tpr = {
-            type = "number",
+            type = "float",
         },
         threshold = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -1521,11 +1498,9 @@ M.TFIModelPerformance = {
     type = "structure",
     members = {
         auc = {
-            type = "number",
+            type = "float",
         },
-        uncertaintyRange = {
-            type = "structure",
-        },
+        uncertaintyRange = M.UncertaintyRange,
     },
 }
 
@@ -1534,44 +1509,28 @@ M.TFITrainingMetricsValue = {
     members = {
         metricDataPoints = {
             type = "list",
-            member_type = "structure",
+            member = M.TFIMetricDataPoint,
         },
-        modelPerformance = {
-            type = "structure",
-        },
+        modelPerformance = M.TFIModelPerformance,
     },
 }
 
 M.TrainingMetricsV2 = {
     type = "structure",
     members = {
-        ofi = {
-            type = "structure",
-        },
-        tfi = {
-            type = "structure",
-        },
-        ati = {
-            type = "structure",
-        },
+        ofi = M.OFITrainingMetricsValue,
+        tfi = M.TFITrainingMetricsValue,
+        ati = M.ATITrainingMetricsValue,
     },
 }
 
 M.TrainingResultV2 = {
     type = "structure",
     members = {
-        dataValidationMetrics = {
-            type = "structure",
-        },
-        trainingMetricsV2 = {
-            type = "structure",
-        },
-        variableImportanceMetrics = {
-            type = "structure",
-        },
-        aggregatedVariablesImportanceMetrics = {
-            type = "structure",
-        },
+        dataValidationMetrics = M.DataValidationMetrics,
+        trainingMetricsV2 = M.TrainingMetricsV2,
+        variableImportanceMetrics = M.VariableImportanceMetrics,
+        aggregatedVariablesImportanceMetrics = M.AggregatedVariablesImportanceMetrics,
     },
 }
 
@@ -1593,18 +1552,10 @@ M.ModelVersionDetail = {
         trainingDataSource = {
             type = "string",
         },
-        trainingDataSchema = {
-            type = "structure",
-        },
-        externalEventsDetail = {
-            type = "structure",
-        },
-        ingestedEventsDetail = {
-            type = "structure",
-        },
-        trainingResult = {
-            type = "structure",
-        },
+        trainingDataSchema = M.TrainingDataSchema,
+        externalEventsDetail = M.ExternalEventsDetail,
+        ingestedEventsDetail = M.IngestedEventsDetail,
+        trainingResult = M.TrainingResult,
         lastUpdatedTime = {
             type = "string",
         },
@@ -1614,9 +1565,7 @@ M.ModelVersionDetail = {
         arn = {
             type = "string",
         },
-        trainingResultV2 = {
-            type = "structure",
-        },
+        trainingResultV2 = M.TrainingResultV2,
     },
 }
 
@@ -1625,7 +1574,7 @@ M.DescribeModelVersionsOutput = {
     members = {
         modelVersionDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.ModelVersionDetail,
         },
         nextToken = {
             type = "string",
@@ -1640,7 +1589,7 @@ M.GetBatchImportJobsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -1682,13 +1631,13 @@ M.BatchImport = {
             type = "string",
         },
         processedRecordsCount = {
-            type = "number",
+            type = "integer",
         },
         failedRecordsCount = {
-            type = "number",
+            type = "integer",
         },
         totalRecordsCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1698,7 +1647,7 @@ M.GetBatchImportJobsOutput = {
     members = {
         batchImports = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchImport,
         },
         nextToken = {
             type = "string",
@@ -1713,7 +1662,7 @@ M.GetBatchPredictionJobsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -1764,10 +1713,10 @@ M.BatchPrediction = {
             type = "string",
         },
         processedRecordsCount = {
-            type = "number",
+            type = "integer",
         },
         totalRecordsCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1777,7 +1726,7 @@ M.GetBatchPredictionJobsOutput = {
     members = {
         batchPredictions = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchPrediction,
         },
         nextToken = {
             type = "string",
@@ -1819,7 +1768,7 @@ M.GetDetectorsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1853,7 +1802,7 @@ M.GetDetectorsOutput = {
     members = {
         detectors = {
             type = "list",
-            member_type = "structure",
+            member = M.Detector,
         },
         nextToken = {
             type = "string",
@@ -1893,15 +1842,15 @@ M.GetDetectorVersionOutput = {
         },
         externalModelEndpoints = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         modelVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.ModelVersion,
         },
         rules = {
             type = "list",
-            member_type = "structure",
+            member = M.Rule,
         },
         status = {
             type = "string",
@@ -1931,7 +1880,7 @@ M.GetEntityTypesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1962,7 +1911,7 @@ M.GetEntityTypesOutput = {
     members = {
         entityTypes = {
             type = "list",
-            member_type = "structure",
+            member = M.EntityType,
         },
         nextToken = {
             type = "string",
@@ -2020,8 +1969,8 @@ M.Event = {
         },
         eventVariables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         currentLabel = {
             type = "string",
@@ -2031,7 +1980,7 @@ M.Event = {
         },
         entities = {
             type = "list",
-            member_type = "structure",
+            member = M.Entity,
         },
     },
 }
@@ -2039,9 +1988,7 @@ M.Event = {
 M.GetEventOutput = {
     type = "structure",
     members = {
-        event = {
-            type = "structure",
-        },
+        event = M.Event,
     },
 }
 
@@ -2083,7 +2030,7 @@ M.GetEventPredictionInput = {
         },
         entities = {
             type = "list",
-            member_type = "structure",
+            member = M.Entity,
             traits = {
                 required = true,
             },
@@ -2096,16 +2043,16 @@ M.GetEventPredictionInput = {
         },
         eventVariables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
         },
         externalModelEndpointDataBlobs = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ModelEndpointDataBlob,
         },
     },
 }
@@ -2129,13 +2076,11 @@ M.ExternalModelSummary = {
 M.ExternalModelOutputs = {
     type = "structure",
     members = {
-        externalModel = {
-            type = "structure",
-        },
+        externalModel = M.ExternalModelSummary,
         outputs = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2143,13 +2088,11 @@ M.ExternalModelOutputs = {
 M.ModelScores = {
     type = "structure",
     members = {
-        modelVersion = {
-            type = "structure",
-        },
+        modelVersion = M.ModelVersion,
         scores = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "float" },
         },
     },
 }
@@ -2162,7 +2105,7 @@ M.RuleResult = {
         },
         outcomes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2172,15 +2115,15 @@ M.GetEventPredictionOutput = {
     members = {
         modelScores = {
             type = "list",
-            member_type = "structure",
+            member = M.ModelScores,
         },
         ruleResults = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleResult,
         },
         externalModelOutputs = {
             type = "list",
-            member_type = "structure",
+            member = M.ExternalModelOutputs,
         },
     },
 }
@@ -2242,13 +2185,13 @@ M.EvaluatedExternalModel = {
         },
         inputVariables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         outputVariables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2263,7 +2206,7 @@ M.VariableImpactExplanation = {
             type = "string",
         },
         logOddsImpact = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -2273,11 +2216,11 @@ M.PredictionExplanations = {
     members = {
         variableImpactExplanations = {
             type = "list",
-            member_type = "structure",
+            member = M.VariableImpactExplanation,
         },
         aggregatedVariablesImpactExplanations = {
             type = "list",
-            member_type = "structure",
+            member = M.AggregatedVariablesImpactExplanation,
         },
     },
 }
@@ -2291,9 +2234,7 @@ M.ModelVersionEvaluation = {
         evaluationScore = {
             type = "string",
         },
-        predictionExplanations = {
-            type = "structure",
-        },
+        predictionExplanations = M.PredictionExplanations,
     },
 }
 
@@ -2311,7 +2252,7 @@ M.EvaluatedModelVersion = {
         },
         evaluations = {
             type = "list",
-            member_type = "structure",
+            member = M.ModelVersionEvaluation,
         },
     },
 }
@@ -2348,7 +2289,7 @@ M.EvaluatedRule = {
         },
         outcomes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         evaluated = {
             type = "boolean",
@@ -2388,26 +2329,26 @@ M.GetEventPredictionMetadataOutput = {
         },
         eventVariables = {
             type = "list",
-            member_type = "structure",
+            member = M.EventVariableSummary,
         },
         rules = {
             type = "list",
-            member_type = "structure",
+            member = M.EvaluatedRule,
         },
         ruleExecutionMode = {
             type = "string",
         },
         outcomes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         evaluatedModelVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.EvaluatedModelVersion,
         },
         evaluatedExternalModels = {
             type = "list",
-            member_type = "structure",
+            member = M.EvaluatedExternalModel,
         },
         predictionTimestamp = {
             type = "string",
@@ -2425,7 +2366,7 @@ M.GetEventTypesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2451,10 +2392,10 @@ M.IngestedEventStatistics = {
     type = "structure",
     members = {
         numberOfEvents = {
-            type = "number",
+            type = "long",
         },
         eventDataSizeInBytes = {
-            type = "number",
+            type = "long",
         },
         leastRecentEvent = {
             type = "string",
@@ -2479,22 +2420,20 @@ M.EventType = {
         },
         eventVariables = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         labels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         entityTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         eventIngestion = {
             type = "string",
         },
-        ingestedEventStatistics = {
-            type = "structure",
-        },
+        ingestedEventStatistics = M.IngestedEventStatistics,
         lastUpdatedTime = {
             type = "string",
         },
@@ -2504,9 +2443,7 @@ M.EventType = {
         arn = {
             type = "string",
         },
-        eventOrchestration = {
-            type = "structure",
-        },
+        eventOrchestration = M.EventOrchestration,
     },
 }
 
@@ -2515,7 +2452,7 @@ M.GetEventTypesOutput = {
     members = {
         eventTypes = {
             type = "list",
-            member_type = "structure",
+            member = M.EventType,
         },
         nextToken = {
             type = "string",
@@ -2533,7 +2470,7 @@ M.GetExternalModelsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2588,13 +2525,13 @@ M.ModelOutputConfiguration = {
         },
         jsonKeyToVariableMap = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         csvIndexToVariableMap = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2611,12 +2548,8 @@ M.ExternalModel = {
         invokeModelEndpointRoleArn = {
             type = "string",
         },
-        inputConfiguration = {
-            type = "structure",
-        },
-        outputConfiguration = {
-            type = "structure",
-        },
+        inputConfiguration = M.ModelInputConfiguration,
+        outputConfiguration = M.ModelOutputConfiguration,
         modelEndpointStatus = {
             type = "string",
         },
@@ -2637,7 +2570,7 @@ M.GetExternalModelsOutput = {
     members = {
         externalModels = {
             type = "list",
-            member_type = "structure",
+            member = M.ExternalModel,
         },
         nextToken = {
             type = "string",
@@ -2661,9 +2594,7 @@ M.KMSKey = {
 M.GetKMSEncryptionKeyOutput = {
     type = "structure",
     members = {
-        kmsKey = {
-            type = "structure",
-        },
+        kmsKey = M.KMSKey,
     },
 }
 
@@ -2677,7 +2608,7 @@ M.GetLabelsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2708,7 +2639,7 @@ M.GetLabelsOutput = {
     members = {
         labels = {
             type = "list",
-            member_type = "structure",
+            member = M.Label,
         },
         nextToken = {
             type = "string",
@@ -2729,7 +2660,7 @@ M.GetListElementsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2739,7 +2670,7 @@ M.GetListElementsOutput = {
     members = {
         elements = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -2757,7 +2688,7 @@ M.GetListsMetadataInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2767,7 +2698,7 @@ M.GetListsMetadataOutput = {
     members = {
         lists = {
             type = "list",
-            member_type = "structure",
+            member = M.AllowDenyList,
         },
         nextToken = {
             type = "string",
@@ -2788,7 +2719,7 @@ M.GetModelsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2828,7 +2759,7 @@ M.GetModelsOutput = {
         },
         models = {
             type = "list",
-            member_type = "structure",
+            member = M.Model,
         },
     },
 }
@@ -2872,15 +2803,9 @@ M.GetModelVersionOutput = {
         trainingDataSource = {
             type = "string",
         },
-        trainingDataSchema = {
-            type = "structure",
-        },
-        externalEventsDetail = {
-            type = "structure",
-        },
-        ingestedEventsDetail = {
-            type = "structure",
-        },
+        trainingDataSchema = M.TrainingDataSchema,
+        externalEventsDetail = M.ExternalEventsDetail,
+        ingestedEventsDetail = M.IngestedEventsDetail,
         status = {
             type = "string",
         },
@@ -2900,7 +2825,7 @@ M.GetOutcomesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2931,7 +2856,7 @@ M.GetOutcomesOutput = {
     members = {
         outcomes = {
             type = "list",
-            member_type = "structure",
+            member = M.Outcome,
         },
         nextToken = {
             type = "string",
@@ -2958,7 +2883,7 @@ M.GetRulesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2986,7 +2911,7 @@ M.RuleDetail = {
         },
         outcomes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         lastUpdatedTime = {
             type = "string",
@@ -3005,7 +2930,7 @@ M.GetRulesOutput = {
     members = {
         ruleDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleDetail,
         },
         nextToken = {
             type = "string",
@@ -3023,7 +2948,7 @@ M.GetVariablesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3033,7 +2958,7 @@ M.GetVariablesOutput = {
     members = {
         variables = {
             type = "list",
-            member_type = "structure",
+            member = M.Variable,
         },
         nextToken = {
             type = "string",
@@ -3071,26 +2996,16 @@ M.PredictionTimeRange = {
 M.ListEventPredictionsInput = {
     type = "structure",
     members = {
-        eventId = {
-            type = "structure",
-        },
-        eventType = {
-            type = "structure",
-        },
-        detectorId = {
-            type = "structure",
-        },
-        detectorVersionId = {
-            type = "structure",
-        },
-        predictionTimeRange = {
-            type = "structure",
-        },
+        eventId = M.FilterCondition,
+        eventType = M.FilterCondition,
+        detectorId = M.FilterCondition,
+        detectorVersionId = M.FilterCondition,
+        predictionTimeRange = M.PredictionTimeRange,
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3124,7 +3039,7 @@ M.ListEventPredictionsOutput = {
     members = {
         eventPredictionSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.EventPredictionSummary,
         },
         nextToken = {
             type = "string",
@@ -3145,7 +3060,7 @@ M.ListTagsForResourceInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3155,7 +3070,7 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         nextToken = {
             type = "string",
@@ -3183,7 +3098,7 @@ M.PutDetectorInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3206,7 +3121,7 @@ M.PutEntityTypeInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3229,18 +3144,18 @@ M.PutEventTypeInput = {
         },
         eventVariables = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         labels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         entityTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3250,11 +3165,9 @@ M.PutEventTypeInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        eventOrchestration = {
-            type = "structure",
-        },
+        eventOrchestration = M.EventOrchestration,
     },
 }
 
@@ -3283,18 +3196,12 @@ M.PutExternalModelInput = {
                 required = true,
             },
         },
-        inputConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        outputConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        inputConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ModelInputConfiguration }),
+        outputConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ModelOutputConfiguration }),
         modelEndpointStatus = {
             type = "string",
             traits = {
@@ -3303,7 +3210,7 @@ M.PutExternalModelInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3342,7 +3249,7 @@ M.PutLabelInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3365,7 +3272,7 @@ M.PutOutcomeInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3397,8 +3304,8 @@ M.SendEventInput = {
         },
         eventVariables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3411,7 +3318,7 @@ M.SendEventInput = {
         },
         entities = {
             type = "list",
-            member_type = "structure",
+            member = M.Entity,
             traits = {
                 required = true,
             },
@@ -3434,7 +3341,7 @@ M.TagResourceInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -3457,7 +3364,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3486,14 +3393,14 @@ M.UpdateDetectorVersionInput = {
         },
         externalModelEndpoints = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         rules = {
             type = "list",
-            member_type = "structure",
+            member = M.Rule,
             traits = {
                 required = true,
             },
@@ -3503,7 +3410,7 @@ M.UpdateDetectorVersionInput = {
         },
         modelVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.ModelVersion,
         },
         ruleExecutionMode = {
             type = "string",
@@ -3622,7 +3529,7 @@ M.UpdateListInput = {
         },
         elements = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         description = {
             type = "string",
@@ -3686,15 +3593,11 @@ M.UpdateModelVersionInput = {
                 required = true,
             },
         },
-        externalEventsDetail = {
-            type = "structure",
-        },
-        ingestedEventsDetail = {
-            type = "structure",
-        },
+        externalEventsDetail = M.ExternalEventsDetail,
+        ingestedEventsDetail = M.IngestedEventsDetail,
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3760,12 +3663,9 @@ M.UpdateModelVersionStatusOutput = {
 M.UpdateRuleMetadataInput = {
     type = "structure",
     members = {
-        rule = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        rule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Rule }),
         description = {
             type = "string",
             traits = {
@@ -3782,12 +3682,9 @@ M.UpdateRuleMetadataOutput = {
 M.UpdateRuleVersionInput = {
     type = "structure",
     members = {
-        rule = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        rule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Rule }),
         description = {
             type = "string",
         },
@@ -3805,14 +3702,14 @@ M.UpdateRuleVersionInput = {
         },
         outcomes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3820,9 +3717,7 @@ M.UpdateRuleVersionInput = {
 M.UpdateRuleVersionOutput = {
     type = "structure",
     members = {
-        rule = {
-            type = "structure",
-        },
+        rule = M.Rule,
     },
 }
 

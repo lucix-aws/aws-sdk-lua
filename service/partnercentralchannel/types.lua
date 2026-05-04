@@ -44,9 +44,7 @@ M.AcceptChannelHandshakeDetail = {
 M.AcceptChannelHandshakeOutput = {
     type = "structure",
     members = {
-        channelHandshakeDetail = {
-            type = "structure",
-        },
+        channelHandshakeDetail = M.AcceptChannelHandshakeDetail,
     },
 }
 
@@ -164,7 +162,7 @@ M.ValidationException = {
         },
         fieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -211,9 +209,7 @@ M.CancelChannelHandshakeDetail = {
 M.CancelChannelHandshakeOutput = {
     type = "structure",
     members = {
-        channelHandshakeDetail = {
-            type = "structure",
-        },
+        channelHandshakeDetail = M.CancelChannelHandshakeDetail,
     },
 }
 
@@ -267,12 +263,8 @@ M.StartServicePeriodPayload = {
 M.ChannelHandshakePayload = {
     type = "union",
     members = {
-        startServicePeriodPayload = {
-            type = "structure",
-        },
-        revokeServicePeriodPayload = {
-            type = "structure",
-        },
+        startServicePeriodPayload = M.StartServicePeriodPayload,
+        revokeServicePeriodPayload = M.RevokeServicePeriodPayload,
     },
 }
 
@@ -346,15 +338,13 @@ M.CreateChannelHandshakeInput = {
                 required = true,
             },
         },
-        payload = {
-            type = "union",
-        },
+        payload = M.ChannelHandshakePayload,
         clientToken = {
             type = "string",
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -374,9 +364,7 @@ M.CreateChannelHandshakeDetail = {
 M.CreateChannelHandshakeOutput = {
     type = "structure",
     members = {
-        channelHandshakeDetail = {
-            type = "structure",
-        },
+        channelHandshakeDetail = M.CreateChannelHandshakeDetail,
     },
 }
 
@@ -422,7 +410,7 @@ M.ProgramManagementAccountTypeFilters = {
     members = {
         programs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -432,7 +420,7 @@ M.RevokeServicePeriodTypeFilters = {
     members = {
         servicePeriodTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -442,7 +430,7 @@ M.StartServicePeriodTypeFilters = {
     members = {
         servicePeriodTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -450,15 +438,9 @@ M.StartServicePeriodTypeFilters = {
 M.ListChannelHandshakesTypeFilters = {
     type = "union",
     members = {
-        startServicePeriodTypeFilters = {
-            type = "structure",
-        },
-        revokeServicePeriodTypeFilters = {
-            type = "structure",
-        },
-        programManagementAccountTypeFilters = {
-            type = "structure",
-        },
+        startServicePeriodTypeFilters = M.StartServicePeriodTypeFilters,
+        revokeServicePeriodTypeFilters = M.RevokeServicePeriodTypeFilters,
+        programManagementAccountTypeFilters = M.ProgramManagementAccountTypeFilters,
     },
 }
 
@@ -536,15 +518,9 @@ M.StartServicePeriodTypeSort = {
 M.ListChannelHandshakesTypeSort = {
     type = "union",
     members = {
-        startServicePeriodTypeSort = {
-            type = "structure",
-        },
-        revokeServicePeriodTypeSort = {
-            type = "structure",
-        },
-        programManagementAccountTypeSort = {
-            type = "structure",
-        },
+        startServicePeriodTypeSort = M.StartServicePeriodTypeSort,
+        revokeServicePeriodTypeSort = M.RevokeServicePeriodTypeSort,
+        programManagementAccountTypeSort = M.ProgramManagementAccountTypeSort,
     },
 }
 
@@ -575,22 +551,21 @@ M.ListChannelHandshakesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 20,
+            },
         },
         statuses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         associatedResourceIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        handshakeTypeFilters = {
-            type = "union",
-        },
-        handshakeTypeSort = {
-            type = "union",
-        },
+        handshakeTypeFilters = M.ListChannelHandshakesTypeFilters,
+        handshakeTypeSort = M.ListChannelHandshakesTypeSort,
         nextToken = {
             type = "string",
         },
@@ -651,15 +626,9 @@ M.StartServicePeriodHandshakeDetail = {
 M.HandshakeDetail = {
     type = "union",
     members = {
-        startServicePeriodHandshakeDetail = {
-            type = "structure",
-        },
-        revokeServicePeriodHandshakeDetail = {
-            type = "structure",
-        },
-        programManagementAccountHandshakeDetail = {
-            type = "structure",
-        },
+        startServicePeriodHandshakeDetail = M.StartServicePeriodHandshakeDetail,
+        revokeServicePeriodHandshakeDetail = M.RevokeServicePeriodHandshakeDetail,
+        programManagementAccountHandshakeDetail = M.ProgramManagementAccountHandshakeDetail,
     },
 }
 
@@ -693,9 +662,7 @@ M.ChannelHandshakeSummary = {
         associatedResourceId = {
             type = "string",
         },
-        detail = {
-            type = "union",
-        },
+        detail = M.HandshakeDetail,
         createdAt = {
             type = "timestamp",
         },
@@ -713,7 +680,7 @@ M.ListChannelHandshakesOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.ChannelHandshakeSummary,
         },
         nextToken = {
             type = "string",
@@ -757,9 +724,7 @@ M.RejectChannelHandshakeDetail = {
 M.RejectChannelHandshakeOutput = {
     type = "structure",
     members = {
-        channelHandshakeDetail = {
-            type = "structure",
-        },
+        channelHandshakeDetail = M.RejectChannelHandshakeDetail,
     },
 }
 
@@ -800,7 +765,7 @@ M.CreateProgramManagementAccountInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -820,9 +785,7 @@ M.CreateProgramManagementAccountDetail = {
 M.CreateProgramManagementAccountOutput = {
     type = "structure",
     members = {
-        programManagementAccountDetail = {
-            type = "structure",
-        },
+        programManagementAccountDetail = M.CreateProgramManagementAccountDetail,
     },
 }
 
@@ -897,15 +860,9 @@ M.ResoldUnifiedOperations = {
 M.SupportPlan = {
     type = "union",
     members = {
-        resoldEnterprise = {
-            type = "structure",
-        },
-        partnerLedSupport = {
-            type = "structure",
-        },
-        resoldUnifiedOperations = {
-            type = "structure",
-        },
+        resoldEnterprise = M.ResoldEnterprise,
+        partnerLedSupport = M.PartnerLedSupport,
+        resoldUnifiedOperations = M.ResoldUnifiedOperations,
     },
 }
 
@@ -968,11 +925,9 @@ M.CreateRelationshipInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        requestedSupportPlan = {
-            type = "union",
-        },
+        requestedSupportPlan = M.SupportPlan,
     },
 }
 
@@ -991,9 +946,7 @@ M.CreateRelationshipDetail = {
 M.CreateRelationshipOutput = {
     type = "structure",
     members = {
-        relationshipDetail = {
-            type = "structure",
-        },
+        relationshipDetail = M.CreateRelationshipDetail,
     },
 }
 
@@ -1125,9 +1078,7 @@ M.RelationshipDetail = {
 M.GetRelationshipOutput = {
     type = "structure",
     members = {
-        relationshipDetail = {
-            type = "structure",
-        },
+        relationshipDetail = M.RelationshipDetail,
     },
 }
 
@@ -1169,27 +1120,28 @@ M.ListProgramManagementAccountsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 20,
+            },
         },
         displayNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         programs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         accountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         statuses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        sort = {
-            type = "structure",
-        },
+        sort = M.ListProgramManagementAccountsSortBase,
         nextToken = {
             type = "string",
         },
@@ -1240,7 +1192,7 @@ M.ListProgramManagementAccountsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.ProgramManagementAccountSummary,
         },
         nextToken = {
             type = "string",
@@ -1280,27 +1232,28 @@ M.ListRelationshipsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 20,
+            },
         },
         associatedAccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         associationTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         displayNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         programManagementAccountIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        sort = {
-            type = "structure",
-        },
+        sort = M.ListRelationshipsSortBase,
         nextToken = {
             type = "string",
         },
@@ -1354,7 +1307,7 @@ M.ListRelationshipsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.RelationshipSummary,
         },
         nextToken = {
             type = "string",
@@ -1379,7 +1332,7 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1429,9 +1382,7 @@ M.UpdateProgramManagementAccountDetail = {
 M.UpdateProgramManagementAccountOutput = {
     type = "structure",
     members = {
-        programManagementAccountDetail = {
-            type = "structure",
-        },
+        programManagementAccountDetail = M.UpdateProgramManagementAccountDetail,
     },
 }
 
@@ -1462,9 +1413,7 @@ M.UpdateRelationshipInput = {
         displayName = {
             type = "string",
         },
-        requestedSupportPlan = {
-            type = "union",
-        },
+        requestedSupportPlan = M.SupportPlan,
     },
 }
 
@@ -1489,9 +1438,7 @@ M.UpdateRelationshipDetail = {
 M.UpdateRelationshipOutput = {
     type = "structure",
     members = {
-        relationshipDetail = {
-            type = "structure",
-        },
+        relationshipDetail = M.UpdateRelationshipDetail,
     },
 }
 
@@ -1506,7 +1453,7 @@ M.TagResourceInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -1529,7 +1476,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },

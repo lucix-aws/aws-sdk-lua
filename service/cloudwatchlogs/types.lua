@@ -32,7 +32,7 @@ M.AccountPolicy = {
             type = "string",
         },
         lastUpdatedTime = {
-            type = "number",
+            type = "long",
         },
         policyType = {
             type = "string",
@@ -73,6 +73,9 @@ M.AddKeyEntry = {
         },
         overwriteIfExists = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -82,7 +85,7 @@ M.AddKeys = {
     members = {
         entries = {
             type = "list",
-            member_type = "structure",
+            member = M.AddKeyEntry,
             traits = {
                 required = true,
             },
@@ -106,11 +109,11 @@ M.AggregateLogGroupSummary = {
     type = "structure",
     members = {
         logGroupCount = {
-            type = "number",
+            type = "integer",
         },
         groupingIdentifiers = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupingIdentifier,
         },
     },
 }
@@ -131,7 +134,7 @@ M.LogEvent = {
     type = "structure",
     members = {
         timestamp = {
-            type = "number",
+            type = "long",
         },
         message = {
             type = "string",
@@ -143,7 +146,10 @@ M.PatternToken = {
     type = "structure",
     members = {
         dynamicTokenPosition = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         isDynamic = {
             type = "boolean",
@@ -153,8 +159,8 @@ M.PatternToken = {
         },
         enumerations = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "long" },
         },
         inferredTokenName = {
             type = "string",
@@ -202,14 +208,16 @@ M.Anomaly = {
             type = "string",
         },
         firstSeen = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         lastSeen = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -233,29 +241,29 @@ M.Anomaly = {
         },
         histogram = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "long" },
             traits = {
                 required = true,
             },
         },
         logSamples = {
             type = "list",
-            member_type = "structure",
+            member = M.LogEvent,
             traits = {
                 required = true,
             },
         },
         patternTokens = {
             type = "list",
-            member_type = "structure",
+            member = M.PatternToken,
             traits = {
                 required = true,
             },
         },
         logGroupArnList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -264,10 +272,16 @@ M.Anomaly = {
             type = "boolean",
         },
         suppressedDate = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         suppressedUntil = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         isPatternLevelSuppression = {
             type = "boolean",
@@ -304,7 +318,7 @@ M.AnomalyDetector = {
         },
         logGroupArnList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         evaluationFrequency = {
             type = "string",
@@ -319,13 +333,19 @@ M.AnomalyDetector = {
             type = "string",
         },
         creationTimeStamp = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         lastModifiedTimeStamp = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         anomalyVisibilityTime = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -416,12 +436,9 @@ M.AssociateSourceToS3TableIntegrationInput = {
                 required = true,
             },
         },
-        dataSource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        dataSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataSource }),
     },
 }
 
@@ -506,7 +523,7 @@ M.ImportStatistics = {
     type = "structure",
     members = {
         bytesImported = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -524,17 +541,15 @@ M.CancelImportTaskOutput = {
         importId = {
             type = "string",
         },
-        importStatistics = {
-            type = "structure",
-        },
+        importStatistics = M.ImportStatistics,
         importStatus = {
             type = "string",
         },
         creationTime = {
-            type = "number",
+            type = "long",
         },
         lastUpdatedTime = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -564,14 +579,12 @@ M.ConfigurationTemplateDeliveryConfigValues = {
     members = {
         recordFields = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         fieldDelimiter = {
             type = "string",
         },
-        s3DeliveryConfiguration = {
-            type = "structure",
-        },
+        s3DeliveryConfiguration = M.S3DeliveryConfiguration,
     },
 }
 
@@ -597,27 +610,25 @@ M.ConfigurationTemplate = {
         deliveryDestinationType = {
             type = "string",
         },
-        defaultDeliveryConfigValues = {
-            type = "structure",
-        },
+        defaultDeliveryConfigValues = M.ConfigurationTemplateDeliveryConfigValues,
         allowedFields = {
             type = "list",
-            member_type = "structure",
+            member = M.RecordField,
         },
         allowedOutputFormats = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         allowedActionForAllowVendedLogsDeliveryForResource = {
             type = "string",
         },
         allowedFieldDelimiters = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         allowedSuffixPathFields = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -649,6 +660,9 @@ M.CopyValueEntry = {
         },
         overwriteIfExists = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -658,7 +672,7 @@ M.CopyValue = {
     members = {
         entries = {
             type = "list",
-            member_type = "structure",
+            member = M.CopyValueEntry,
             traits = {
                 required = true,
             },
@@ -683,18 +697,16 @@ M.CreateDeliveryInput = {
         },
         recordFields = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         fieldDelimiter = {
             type = "string",
         },
-        s3DeliveryConfiguration = {
-            type = "structure",
-        },
+        s3DeliveryConfiguration = M.S3DeliveryConfiguration,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -719,18 +731,16 @@ M.Delivery = {
         },
         recordFields = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         fieldDelimiter = {
             type = "string",
         },
-        s3DeliveryConfiguration = {
-            type = "structure",
-        },
+        s3DeliveryConfiguration = M.S3DeliveryConfiguration,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -738,9 +748,7 @@ M.Delivery = {
 M.CreateDeliveryOutput = {
     type = "structure",
     members = {
-        delivery = {
-            type = "structure",
-        },
+        delivery = M.Delivery,
     },
 }
 
@@ -770,13 +778,13 @@ M.CreateExportTaskInput = {
             type = "string",
         },
         from = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         to = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -826,10 +834,10 @@ M.ImportFilter = {
     type = "structure",
     members = {
         startEventTime = {
-            type = "number",
+            type = "long",
         },
         endEventTime = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -849,9 +857,7 @@ M.CreateImportTaskInput = {
                 required = true,
             },
         },
-        importFilter = {
-            type = "structure",
-        },
+        importFilter = M.ImportFilter,
     },
 }
 
@@ -865,7 +871,7 @@ M.CreateImportTaskOutput = {
             type = "string",
         },
         creationTime = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -875,7 +881,7 @@ M.CreateLogAnomalyDetectorInput = {
     members = {
         logGroupArnList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -893,12 +899,12 @@ M.CreateLogAnomalyDetectorInput = {
             type = "string",
         },
         anomalyVisibilityTime = {
-            type = "number",
+            type = "long",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -932,8 +938,8 @@ M.CreateLogGroupInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         logGroupClass = {
             type = "string",
@@ -993,8 +999,8 @@ M.CreateLookupTableInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1006,7 +1012,7 @@ M.CreateLookupTableOutput = {
             type = "string",
         },
         createdAt = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1038,12 +1044,9 @@ M.S3Configuration = {
 M.DestinationConfiguration = {
     type = "structure",
     members = {
-        s3Configuration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        s3Configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3Configuration }),
     },
 }
 
@@ -1084,7 +1087,7 @@ M.CreateScheduledQueryInput = {
         },
         logGroupIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         scheduleExpression = {
             type = "string",
@@ -1096,16 +1099,14 @@ M.CreateScheduledQueryInput = {
             type = "string",
         },
         startTimeOffset = {
-            type = "number",
+            type = "long",
         },
-        destinationConfiguration = {
-            type = "structure",
-        },
+        destinationConfiguration = M.DestinationConfiguration,
         scheduleStartTime = {
-            type = "number",
+            type = "long",
         },
         scheduleEndTime = {
-            type = "number",
+            type = "long",
         },
         executionRoleArn = {
             type = "string",
@@ -1118,8 +1119,8 @@ M.CreateScheduledQueryInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1147,7 +1148,7 @@ M.CSV = {
         },
         columns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         source = {
             type = "string",
@@ -1213,7 +1214,7 @@ M.DateTimeConverter = {
         },
         matchPatterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1375,6 +1376,9 @@ M.DeleteIntegrationInput = {
         },
         force = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1388,7 +1392,7 @@ M.DeleteKeys = {
     members = {
         withKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1505,6 +1509,9 @@ M.DeleteQueryDefinitionOutput = {
     members = {
         success = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1625,13 +1632,11 @@ M.DeliveryDestination = {
         outputFormat = {
             type = "string",
         },
-        deliveryDestinationConfiguration = {
-            type = "structure",
-        },
+        deliveryDestinationConfiguration = M.DeliveryDestinationConfiguration,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1647,7 +1652,7 @@ M.DeliverySource = {
         },
         resourceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         service = {
             type = "string",
@@ -1657,8 +1662,8 @@ M.DeliverySource = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1677,7 +1682,7 @@ M.DescribeAccountPoliciesInput = {
         },
         accountIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -1690,7 +1695,7 @@ M.DescribeAccountPoliciesOutput = {
     members = {
         accountPolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.AccountPolicy,
         },
         nextToken = {
             type = "string",
@@ -1706,21 +1711,21 @@ M.DescribeConfigurationTemplatesInput = {
         },
         logTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         resourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         deliveryDestinationTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
         },
         limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1730,7 +1735,7 @@ M.DescribeConfigurationTemplatesOutput = {
     members = {
         configurationTemplates = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigurationTemplate,
         },
         nextToken = {
             type = "string",
@@ -1745,7 +1750,7 @@ M.DescribeDeliveriesInput = {
             type = "string",
         },
         limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1755,7 +1760,7 @@ M.DescribeDeliveriesOutput = {
     members = {
         deliveries = {
             type = "list",
-            member_type = "structure",
+            member = M.Delivery,
         },
         nextToken = {
             type = "string",
@@ -1770,7 +1775,7 @@ M.DescribeDeliveryDestinationsInput = {
             type = "string",
         },
         limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1780,7 +1785,7 @@ M.DescribeDeliveryDestinationsOutput = {
     members = {
         deliveryDestinations = {
             type = "list",
-            member_type = "structure",
+            member = M.DeliveryDestination,
         },
         nextToken = {
             type = "string",
@@ -1795,7 +1800,7 @@ M.DescribeDeliverySourcesInput = {
             type = "string",
         },
         limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1805,7 +1810,7 @@ M.DescribeDeliverySourcesOutput = {
     members = {
         deliverySources = {
             type = "list",
-            member_type = "structure",
+            member = M.DeliverySource,
         },
         nextToken = {
             type = "string",
@@ -1823,7 +1828,7 @@ M.DescribeDestinationsInput = {
             type = "string",
         },
         limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1847,7 +1852,7 @@ M.Destination = {
             type = "string",
         },
         creationTime = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1857,7 +1862,7 @@ M.DescribeDestinationsOutput = {
     members = {
         destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.Destination,
         },
         nextToken = {
             type = "string",
@@ -1887,7 +1892,7 @@ M.DescribeExportTasksInput = {
             type = "string",
         },
         limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1896,10 +1901,10 @@ M.ExportTaskExecutionInfo = {
     type = "structure",
     members = {
         creationTime = {
-            type = "number",
+            type = "long",
         },
         completionTime = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1929,10 +1934,10 @@ M.ExportTask = {
             type = "string",
         },
         from = {
-            type = "number",
+            type = "long",
         },
         to = {
-            type = "number",
+            type = "long",
         },
         destination = {
             type = "string",
@@ -1940,12 +1945,8 @@ M.ExportTask = {
         destinationPrefix = {
             type = "string",
         },
-        status = {
-            type = "structure",
-        },
-        executionInfo = {
-            type = "structure",
-        },
+        status = M.ExportTaskStatus,
+        executionInfo = M.ExportTaskExecutionInfo,
     },
 }
 
@@ -1954,7 +1955,7 @@ M.DescribeExportTasksOutput = {
     members = {
         exportTasks = {
             type = "list",
-            member_type = "structure",
+            member = M.ExportTask,
         },
         nextToken = {
             type = "string",
@@ -1967,7 +1968,7 @@ M.DescribeFieldIndexesInput = {
     members = {
         logGroupIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1993,13 +1994,13 @@ M.FieldIndex = {
             type = "string",
         },
         lastScanTime = {
-            type = "number",
+            type = "long",
         },
         firstEventTime = {
-            type = "number",
+            type = "long",
         },
         lastEventTime = {
-            type = "number",
+            type = "long",
         },
         type = {
             type = "string",
@@ -2012,7 +2013,7 @@ M.DescribeFieldIndexesOutput = {
     members = {
         fieldIndexes = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldIndex,
         },
         nextToken = {
             type = "string",
@@ -2031,10 +2032,10 @@ M.DescribeImportTaskBatchesInput = {
         },
         batchImportStatus = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         limit = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -2074,7 +2075,7 @@ M.DescribeImportTaskBatchesOutput = {
         },
         importBatches = {
             type = "list",
-            member_type = "structure",
+            member = M.ImportBatch,
         },
         nextToken = {
             type = "string",
@@ -2095,7 +2096,7 @@ M.DescribeImportTasksInput = {
             type = "string",
         },
         limit = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -2118,17 +2119,13 @@ M.Import = {
         importDestinationArn = {
             type = "string",
         },
-        importStatistics = {
-            type = "structure",
-        },
-        importFilter = {
-            type = "structure",
-        },
+        importStatistics = M.ImportStatistics,
+        importFilter = M.ImportFilter,
         creationTime = {
-            type = "number",
+            type = "long",
         },
         lastUpdatedTime = {
-            type = "number",
+            type = "long",
         },
         errorMessage = {
             type = "string",
@@ -2141,7 +2138,7 @@ M.DescribeImportTasksOutput = {
     members = {
         imports = {
             type = "list",
-            member_type = "structure",
+            member = M.Import,
         },
         nextToken = {
             type = "string",
@@ -2154,7 +2151,7 @@ M.DescribeIndexPoliciesInput = {
     members = {
         logGroupIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2177,7 +2174,7 @@ M.IndexPolicy = {
             type = "string",
         },
         lastUpdateTime = {
-            type = "number",
+            type = "long",
         },
         policyDocument = {
             type = "string",
@@ -2196,7 +2193,7 @@ M.DescribeIndexPoliciesOutput = {
     members = {
         indexPolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.IndexPolicy,
         },
         nextToken = {
             type = "string",
@@ -2209,7 +2206,7 @@ M.DescribeLogGroupsInput = {
     members = {
         accountIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         logGroupNamePrefix = {
             type = "string",
@@ -2221,7 +2218,7 @@ M.DescribeLogGroupsInput = {
             type = "string",
         },
         limit = {
-            type = "number",
+            type = "integer",
         },
         includeLinkedAccounts = {
             type = "boolean",
@@ -2231,7 +2228,7 @@ M.DescribeLogGroupsInput = {
         },
         logGroupIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2247,19 +2244,19 @@ M.LogGroup = {
             type = "string",
         },
         creationTime = {
-            type = "number",
+            type = "long",
         },
         retentionInDays = {
-            type = "number",
+            type = "integer",
         },
         metricFilterCount = {
-            type = "number",
+            type = "integer",
         },
         arn = {
             type = "string",
         },
         storedBytes = {
-            type = "number",
+            type = "long",
         },
         kmsKeyId = {
             type = "string",
@@ -2269,7 +2266,7 @@ M.LogGroup = {
         },
         inheritedProperties = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         logGroupClass = {
             type = "string",
@@ -2291,7 +2288,7 @@ M.DescribeLogGroupsOutput = {
     members = {
         logGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.LogGroup,
         },
         nextToken = {
             type = "string",
@@ -2326,7 +2323,7 @@ M.DescribeLogStreamsInput = {
             type = "string",
         },
         limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2338,16 +2335,16 @@ M.LogStream = {
             type = "string",
         },
         creationTime = {
-            type = "number",
+            type = "long",
         },
         firstEventTimestamp = {
-            type = "number",
+            type = "long",
         },
         lastEventTimestamp = {
-            type = "number",
+            type = "long",
         },
         lastIngestionTime = {
-            type = "number",
+            type = "long",
         },
         uploadSequenceToken = {
             type = "string",
@@ -2356,7 +2353,7 @@ M.LogStream = {
             type = "string",
         },
         storedBytes = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -2366,7 +2363,7 @@ M.DescribeLogStreamsOutput = {
     members = {
         logStreams = {
             type = "list",
-            member_type = "structure",
+            member = M.LogStream,
         },
         nextToken = {
             type = "string",
@@ -2381,7 +2378,10 @@ M.DescribeLookupTablesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         nextToken = {
             type = "string",
@@ -2403,16 +2403,16 @@ M.LookupTable = {
         },
         tableFields = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         recordsCount = {
-            type = "number",
+            type = "long",
         },
         sizeBytes = {
-            type = "number",
+            type = "long",
         },
         lastUpdatedTime = {
-            type = "number",
+            type = "long",
         },
         kmsKeyId = {
             type = "string",
@@ -2425,7 +2425,7 @@ M.DescribeLookupTablesOutput = {
     members = {
         lookupTables = {
             type = "list",
-            member_type = "structure",
+            member = M.LookupTable,
         },
         nextToken = {
             type = "string",
@@ -2446,7 +2446,7 @@ M.DescribeMetricFiltersInput = {
             type = "string",
         },
         limit = {
-            type = "number",
+            type = "integer",
         },
         metricName = {
             type = "string",
@@ -2509,12 +2509,12 @@ M.MetricTransformation = {
             },
         },
         defaultValue = {
-            type = "number",
+            type = "double",
         },
         dimensions = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         unit = {
             type = "string",
@@ -2533,23 +2533,26 @@ M.MetricFilter = {
         },
         metricTransformations = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricTransformation,
         },
         creationTime = {
-            type = "number",
+            type = "long",
         },
         logGroupName = {
             type = "string",
         },
         applyOnTransformedLogs = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         fieldSelectionCriteria = {
             type = "string",
         },
         emitSystemFieldDimensions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2559,7 +2562,7 @@ M.DescribeMetricFiltersOutput = {
     members = {
         metricFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricFilter,
         },
         nextToken = {
             type = "string",
@@ -2587,7 +2590,7 @@ M.DescribeQueriesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -2614,16 +2617,16 @@ M.QueryInfo = {
             type = "string",
         },
         createTime = {
-            type = "number",
+            type = "long",
         },
         logGroupName = {
             type = "string",
         },
         queryDuration = {
-            type = "number",
+            type = "long",
         },
         bytesScanned = {
-            type = "number",
+            type = "double",
         },
         userIdentity = {
             type = "string",
@@ -2636,7 +2639,7 @@ M.DescribeQueriesOutput = {
     members = {
         queries = {
             type = "list",
-            member_type = "structure",
+            member = M.QueryInfo,
         },
         nextToken = {
             type = "string",
@@ -2654,7 +2657,7 @@ M.DescribeQueryDefinitionsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -2696,15 +2699,15 @@ M.QueryDefinition = {
             type = "string",
         },
         lastModified = {
-            type = "number",
+            type = "long",
         },
         logGroupNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.QueryParameter,
         },
     },
 }
@@ -2714,7 +2717,7 @@ M.DescribeQueryDefinitionsOutput = {
     members = {
         queryDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.QueryDefinition,
         },
         nextToken = {
             type = "string",
@@ -2734,7 +2737,7 @@ M.DescribeResourcePoliciesInput = {
             type = "string",
         },
         limit = {
-            type = "number",
+            type = "integer",
         },
         resourceArn = {
             type = "string",
@@ -2755,7 +2758,7 @@ M.ResourcePolicy = {
             type = "string",
         },
         lastUpdatedTime = {
-            type = "number",
+            type = "long",
         },
         policyScope = {
             type = "string",
@@ -2774,7 +2777,7 @@ M.DescribeResourcePoliciesOutput = {
     members = {
         resourcePolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePolicy,
         },
         nextToken = {
             type = "string",
@@ -2798,7 +2801,7 @@ M.DescribeSubscriptionFiltersInput = {
             type = "string",
         },
         limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2831,16 +2834,19 @@ M.SubscriptionFilter = {
         },
         applyOnTransformedLogs = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         creationTime = {
-            type = "number",
+            type = "long",
         },
         fieldSelectionCriteria = {
             type = "string",
         },
         emitSystemFields = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2850,7 +2856,7 @@ M.DescribeSubscriptionFiltersOutput = {
     members = {
         subscriptionFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.SubscriptionFilter,
         },
         nextToken = {
             type = "string",
@@ -2900,13 +2906,13 @@ M.Entity = {
     members = {
         keyAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2953,13 +2959,13 @@ M.FilteredLogEvent = {
             type = "string",
         },
         timestamp = {
-            type = "number",
+            type = "long",
         },
         message = {
             type = "string",
         },
         ingestionTime = {
-            type = "number",
+            type = "long",
         },
         eventId = {
             type = "string",
@@ -2978,16 +2984,16 @@ M.FilterLogEventsInput = {
         },
         logStreamNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         logStreamNamePrefix = {
             type = "string",
         },
         startTime = {
-            type = "number",
+            type = "long",
         },
         endTime = {
-            type = "number",
+            type = "long",
         },
         filterPattern = {
             type = "string",
@@ -2996,13 +3002,16 @@ M.FilterLogEventsInput = {
             type = "string",
         },
         limit = {
-            type = "number",
+            type = "integer",
         },
         interleaved = {
             type = "boolean",
         },
         unmask = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -3024,11 +3033,11 @@ M.FilterLogEventsOutput = {
     members = {
         events = {
             type = "list",
-            member_type = "structure",
+            member = M.FilteredLogEvent,
         },
         searchedLogStreams = {
             type = "list",
-            member_type = "structure",
+            member = M.SearchedLogStream,
         },
         nextToken = {
             type = "string",
@@ -3063,7 +3072,7 @@ M.GetDataProtectionPolicyOutput = {
             type = "string",
         },
         lastUpdatedTime = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -3083,9 +3092,7 @@ M.GetDeliveryInput = {
 M.GetDeliveryOutput = {
     type = "structure",
     members = {
-        delivery = {
-            type = "structure",
-        },
+        delivery = M.Delivery,
     },
 }
 
@@ -3104,9 +3111,7 @@ M.GetDeliveryDestinationInput = {
 M.GetDeliveryDestinationOutput = {
     type = "structure",
     members = {
-        deliveryDestination = {
-            type = "structure",
-        },
+        deliveryDestination = M.DeliveryDestination,
     },
 }
 
@@ -3134,9 +3139,7 @@ M.Policy = {
 M.GetDeliveryDestinationPolicyOutput = {
     type = "structure",
     members = {
-        policy = {
-            type = "structure",
-        },
+        policy = M.Policy,
     },
 }
 
@@ -3155,9 +3158,7 @@ M.GetDeliverySourceInput = {
 M.GetDeliverySourceOutput = {
     type = "structure",
     members = {
-        deliverySource = {
-            type = "structure",
-        },
+        deliverySource = M.DeliverySource,
     },
 }
 
@@ -3197,9 +3198,7 @@ M.OpenSearchDataAccessPolicy = {
         policyName = {
             type = "string",
         },
-        status = {
-            type = "structure",
-        },
+        status = M.OpenSearchResourceStatus,
     },
 }
 
@@ -3215,9 +3214,7 @@ M.OpenSearchApplication = {
         applicationId = {
             type = "string",
         },
-        status = {
-            type = "structure",
-        },
+        status = M.OpenSearchResourceStatus,
     },
 }
 
@@ -3230,9 +3227,7 @@ M.OpenSearchCollection = {
         collectionArn = {
             type = "string",
         },
-        status = {
-            type = "structure",
-        },
+        status = M.OpenSearchResourceStatus,
     },
 }
 
@@ -3242,9 +3237,7 @@ M.OpenSearchDataSource = {
         dataSourceName = {
             type = "string",
         },
-        status = {
-            type = "structure",
-        },
+        status = M.OpenSearchResourceStatus,
     },
 }
 
@@ -3254,9 +3247,7 @@ M.OpenSearchEncryptionPolicy = {
         policyName = {
             type = "string",
         },
-        status = {
-            type = "structure",
-        },
+        status = M.OpenSearchResourceStatus,
     },
 }
 
@@ -3266,9 +3257,7 @@ M.OpenSearchLifecyclePolicy = {
         policyName = {
             type = "string",
         },
-        status = {
-            type = "structure",
-        },
+        status = M.OpenSearchResourceStatus,
     },
 }
 
@@ -3278,9 +3267,7 @@ M.OpenSearchNetworkPolicy = {
         policyName = {
             type = "string",
         },
-        status = {
-            type = "structure",
-        },
+        status = M.OpenSearchResourceStatus,
     },
 }
 
@@ -3290,48 +3277,28 @@ M.OpenSearchWorkspace = {
         workspaceId = {
             type = "string",
         },
-        status = {
-            type = "structure",
-        },
+        status = M.OpenSearchResourceStatus,
     },
 }
 
 M.OpenSearchIntegrationDetails = {
     type = "structure",
     members = {
-        dataSource = {
-            type = "structure",
-        },
-        application = {
-            type = "structure",
-        },
-        collection = {
-            type = "structure",
-        },
-        workspace = {
-            type = "structure",
-        },
-        encryptionPolicy = {
-            type = "structure",
-        },
-        networkPolicy = {
-            type = "structure",
-        },
-        accessPolicy = {
-            type = "structure",
-        },
-        lifecyclePolicy = {
-            type = "structure",
-        },
+        dataSource = M.OpenSearchDataSource,
+        application = M.OpenSearchApplication,
+        collection = M.OpenSearchCollection,
+        workspace = M.OpenSearchWorkspace,
+        encryptionPolicy = M.OpenSearchEncryptionPolicy,
+        networkPolicy = M.OpenSearchNetworkPolicy,
+        accessPolicy = M.OpenSearchDataAccessPolicy,
+        lifecyclePolicy = M.OpenSearchLifecyclePolicy,
     },
 }
 
 M.IntegrationDetails = {
     type = "union",
     members = {
-        openSearchIntegrationDetails = {
-            type = "structure",
-        },
+        openSearchIntegrationDetails = M.OpenSearchIntegrationDetails,
     },
 }
 
@@ -3357,9 +3324,7 @@ M.GetIntegrationOutput = {
         integrationStatus = {
             type = "string",
         },
-        integrationDetails = {
-            type = "union",
-        },
+        integrationDetails = M.IntegrationDetails,
     },
 }
 
@@ -3383,7 +3348,7 @@ M.GetLogAnomalyDetectorOutput = {
         },
         logGroupArnList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         evaluationFrequency = {
             type = "string",
@@ -3398,13 +3363,19 @@ M.GetLogAnomalyDetectorOutput = {
             type = "string",
         },
         creationTimeStamp = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         lastModifiedTimeStamp = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         anomalyVisibilityTime = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -3425,22 +3396,25 @@ M.GetLogEventsInput = {
             },
         },
         startTime = {
-            type = "number",
+            type = "long",
         },
         endTime = {
-            type = "number",
+            type = "long",
         },
         nextToken = {
             type = "string",
         },
         limit = {
-            type = "number",
+            type = "integer",
         },
         startFromHead = {
             type = "boolean",
         },
         unmask = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -3449,13 +3423,13 @@ M.OutputLogEvent = {
     type = "structure",
     members = {
         timestamp = {
-            type = "number",
+            type = "long",
         },
         message = {
             type = "string",
         },
         ingestionTime = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -3465,7 +3439,7 @@ M.GetLogEventsOutput = {
     members = {
         events = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputLogEvent,
         },
         nextForwardToken = {
             type = "string",
@@ -3501,7 +3475,7 @@ M.GetLogGroupFieldsInput = {
             type = "string",
         },
         time = {
-            type = "number",
+            type = "long",
         },
         logGroupIdentifier = {
             type = "string",
@@ -3516,7 +3490,10 @@ M.LogGroupField = {
             type = "string",
         },
         percent = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -3526,7 +3503,7 @@ M.GetLogGroupFieldsOutput = {
     members = {
         logGroupFields = {
             type = "list",
-            member_type = "structure",
+            member = M.LogGroupField,
         },
     },
 }
@@ -3536,6 +3513,9 @@ M.GetLogObjectInput = {
     members = {
         unmask = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         logObjectPointer = {
             type = "string",
@@ -3559,21 +3539,15 @@ M.InternalStreamingException = {
 M.GetLogObjectResponseStream = {
     type = "union",
     members = {
-        fields = {
-            type = "structure",
-        },
-        InternalStreamingException = {
-            type = "structure",
-        },
+        fields = M.FieldsData,
+        InternalStreamingException = M.InternalStreamingException,
     },
 }
 
 M.GetLogObjectOutput = {
     type = "structure",
     members = {
-        fieldStream = {
-            type = "union",
-        },
+        fieldStream = M.GetLogObjectResponseStream,
     },
 }
 
@@ -3588,6 +3562,9 @@ M.GetLogRecordInput = {
         },
         unmask = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -3597,8 +3574,8 @@ M.GetLogRecordOutput = {
     members = {
         logRecord = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3631,10 +3608,10 @@ M.GetLookupTableOutput = {
             type = "string",
         },
         sizeBytes = {
-            type = "number",
+            type = "long",
         },
         lastUpdatedTime = {
-            type = "number",
+            type = "long",
         },
         kmsKeyId = {
             type = "string",
@@ -3655,7 +3632,7 @@ M.GetQueryResultsInput = {
             type = "string",
         },
         maxItems = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3676,22 +3653,40 @@ M.QueryStatistics = {
     type = "structure",
     members = {
         recordsMatched = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         recordsScanned = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         estimatedRecordsSkipped = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         bytesScanned = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         estimatedBytesSkipped = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         logGroupsScanned = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -3704,11 +3699,9 @@ M.GetQueryResultsOutput = {
         },
         results = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
         },
-        statistics = {
-            type = "structure",
-        },
+        statistics = M.QueryStatistics,
         status = {
             type = "string",
         },
@@ -3753,7 +3746,7 @@ M.GetScheduledQueryOutput = {
         },
         logGroupIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         scheduleExpression = {
             type = "string",
@@ -3762,34 +3755,32 @@ M.GetScheduledQueryOutput = {
             type = "string",
         },
         startTimeOffset = {
-            type = "number",
+            type = "long",
         },
-        destinationConfiguration = {
-            type = "structure",
-        },
+        destinationConfiguration = M.DestinationConfiguration,
         state = {
             type = "string",
         },
         lastTriggeredTime = {
-            type = "number",
+            type = "long",
         },
         lastExecutionStatus = {
             type = "string",
         },
         scheduleStartTime = {
-            type = "number",
+            type = "long",
         },
         scheduleEndTime = {
-            type = "number",
+            type = "long",
         },
         executionRoleArn = {
             type = "string",
         },
         creationTime = {
-            type = "number",
+            type = "long",
         },
         lastUpdatedTime = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -3804,23 +3795,23 @@ M.GetScheduledQueryHistoryInput = {
             },
         },
         startTime = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         endTime = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         executionStatuses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -3863,14 +3854,14 @@ M.TriggerHistoryRecord = {
             type = "string",
         },
         triggeredTimestamp = {
-            type = "number",
+            type = "long",
         },
         errorMessage = {
             type = "string",
         },
         destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.ScheduledQueryDestination,
         },
     },
 }
@@ -3886,7 +3877,7 @@ M.GetScheduledQueryHistoryOutput = {
         },
         triggerHistory = {
             type = "list",
-            member_type = "structure",
+            member = M.TriggerHistoryRecord,
         },
         nextToken = {
             type = "string",
@@ -3944,6 +3935,9 @@ M.ListToMap = {
         },
         flatten = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         flattenedElement = {
             type = "string",
@@ -3956,7 +3950,7 @@ M.LowerCaseString = {
     members = {
         withKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3981,6 +3975,9 @@ M.MoveKeyEntry = {
         },
         overwriteIfExists = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -3990,7 +3987,7 @@ M.MoveKeys = {
     members = {
         entries = {
             type = "list",
-            member_type = "structure",
+            member = M.MoveKeyEntry,
             traits = {
                 required = true,
             },
@@ -4042,6 +4039,9 @@ M.ParseKeyValue = {
         },
         overwriteIfExists = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -4128,6 +4128,9 @@ M.RenameKeyEntry = {
         },
         overwriteIfExists = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -4137,7 +4140,7 @@ M.RenameKeys = {
     members = {
         entries = {
             type = "list",
-            member_type = "structure",
+            member = M.RenameKeyEntry,
             traits = {
                 required = true,
             },
@@ -4168,7 +4171,7 @@ M.SplitString = {
     members = {
         entries = {
             type = "list",
-            member_type = "structure",
+            member = M.SplitStringEntry,
             traits = {
                 required = true,
             },
@@ -4205,7 +4208,7 @@ M.SubstituteString = {
     members = {
         entries = {
             type = "list",
-            member_type = "structure",
+            member = M.SubstituteStringEntry,
             traits = {
                 required = true,
             },
@@ -4218,7 +4221,7 @@ M.TrimString = {
     members = {
         withKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4256,7 +4259,7 @@ M.TypeConverter = {
     members = {
         entries = {
             type = "list",
-            member_type = "structure",
+            member = M.TypeConverterEntry,
             traits = {
                 required = true,
             },
@@ -4269,7 +4272,7 @@ M.UpperCaseString = {
     members = {
         withKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4280,75 +4283,29 @@ M.UpperCaseString = {
 M.Processor = {
     type = "structure",
     members = {
-        addKeys = {
-            type = "structure",
-        },
-        copyValue = {
-            type = "structure",
-        },
-        csv = {
-            type = "structure",
-        },
-        dateTimeConverter = {
-            type = "structure",
-        },
-        deleteKeys = {
-            type = "structure",
-        },
-        grok = {
-            type = "structure",
-        },
-        listToMap = {
-            type = "structure",
-        },
-        lowerCaseString = {
-            type = "structure",
-        },
-        moveKeys = {
-            type = "structure",
-        },
-        parseCloudfront = {
-            type = "structure",
-        },
-        parseJSON = {
-            type = "structure",
-        },
-        parseKeyValue = {
-            type = "structure",
-        },
-        parseRoute53 = {
-            type = "structure",
-        },
-        parseToOCSF = {
-            type = "structure",
-        },
-        parsePostgres = {
-            type = "structure",
-        },
-        parseVPC = {
-            type = "structure",
-        },
-        parseWAF = {
-            type = "structure",
-        },
-        renameKeys = {
-            type = "structure",
-        },
-        splitString = {
-            type = "structure",
-        },
-        substituteString = {
-            type = "structure",
-        },
-        trimString = {
-            type = "structure",
-        },
-        typeConverter = {
-            type = "structure",
-        },
-        upperCaseString = {
-            type = "structure",
-        },
+        addKeys = M.AddKeys,
+        copyValue = M.CopyValue,
+        csv = M.CSV,
+        dateTimeConverter = M.DateTimeConverter,
+        deleteKeys = M.DeleteKeys,
+        grok = M.Grok,
+        listToMap = M.ListToMap,
+        lowerCaseString = M.LowerCaseString,
+        moveKeys = M.MoveKeys,
+        parseCloudfront = M.ParseCloudfront,
+        parseJSON = M.ParseJSON,
+        parseKeyValue = M.ParseKeyValue,
+        parseRoute53 = M.ParseRoute53,
+        parseToOCSF = M.ParseToOCSF,
+        parsePostgres = M.ParsePostgres,
+        parseVPC = M.ParseVPC,
+        parseWAF = M.ParseWAF,
+        renameKeys = M.RenameKeys,
+        splitString = M.SplitString,
+        substituteString = M.SubstituteString,
+        trimString = M.TrimString,
+        typeConverter = M.TypeConverter,
+        upperCaseString = M.UpperCaseString,
     },
 }
 
@@ -4359,14 +4316,14 @@ M.GetTransformerOutput = {
             type = "string",
         },
         creationTime = {
-            type = "number",
+            type = "long",
         },
         lastModifiedTime = {
-            type = "number",
+            type = "long",
         },
         transformerConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.Processor,
         },
     },
 }
@@ -4375,7 +4332,7 @@ M.InputLogEvent = {
     type = "structure",
     members = {
         timestamp = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -4427,7 +4384,7 @@ M.ListAggregateLogGroupSummariesInput = {
     members = {
         accountIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         includeLinkedAccounts = {
             type = "boolean",
@@ -4440,7 +4397,7 @@ M.ListAggregateLogGroupSummariesInput = {
         },
         dataSources = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceFilter,
         },
         groupBy = {
             type = "string",
@@ -4452,7 +4409,7 @@ M.ListAggregateLogGroupSummariesInput = {
             type = "string",
         },
         limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4462,7 +4419,7 @@ M.ListAggregateLogGroupSummariesOutput = {
     members = {
         aggregateLogGroupSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.AggregateLogGroupSummary,
         },
         nextToken = {
             type = "string",
@@ -4485,7 +4442,7 @@ M.ListAnomaliesInput = {
             type = "string",
         },
         limit = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -4498,7 +4455,7 @@ M.ListAnomaliesOutput = {
     members = {
         anomalies = {
             type = "list",
-            member_type = "structure",
+            member = M.Anomaly,
         },
         nextToken = {
             type = "string",
@@ -4526,7 +4483,7 @@ M.ListIntegrationsOutput = {
     members = {
         integrationSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.IntegrationSummary,
         },
     },
 }
@@ -4538,7 +4495,7 @@ M.ListLogAnomalyDetectorsInput = {
             type = "string",
         },
         limit = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -4551,7 +4508,7 @@ M.ListLogAnomalyDetectorsOutput = {
     members = {
         anomalyDetectors = {
             type = "list",
-            member_type = "structure",
+            member = M.AnomalyDetector,
         },
         nextToken = {
             type = "string",
@@ -4570,7 +4527,7 @@ M.TagFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4589,25 +4546,25 @@ M.ListLogGroupsInput = {
         },
         accountIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
         },
         limit = {
-            type = "number",
+            type = "integer",
         },
         dataSources = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceFilter,
         },
         fieldIndexNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         logGroupTags = {
             type = "list",
-            member_type = "structure",
+            member = M.TagFilter,
         },
     },
 }
@@ -4632,7 +4589,7 @@ M.ListLogGroupsOutput = {
     members = {
         logGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.LogGroupSummary,
         },
         nextToken = {
             type = "string",
@@ -4653,7 +4610,7 @@ M.ListLogGroupsForQueryInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4663,7 +4620,7 @@ M.ListLogGroupsForQueryOutput = {
     members = {
         logGroupIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -4675,7 +4632,7 @@ M.ListScheduledQueriesInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -4699,7 +4656,7 @@ M.ScheduledQuerySummary = {
             type = "string",
         },
         lastTriggeredTime = {
-            type = "number",
+            type = "long",
         },
         lastExecutionStatus = {
             type = "string",
@@ -4710,14 +4667,12 @@ M.ScheduledQuerySummary = {
         timezone = {
             type = "string",
         },
-        destinationConfiguration = {
-            type = "structure",
-        },
+        destinationConfiguration = M.DestinationConfiguration,
         creationTime = {
-            type = "number",
+            type = "long",
         },
         lastUpdatedTime = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -4730,7 +4685,7 @@ M.ListScheduledQueriesOutput = {
         },
         scheduledQueries = {
             type = "list",
-            member_type = "structure",
+            member = M.ScheduledQuerySummary,
         },
     },
 }
@@ -4745,7 +4700,7 @@ M.ListSourcesForS3TableIntegrationInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -4766,9 +4721,7 @@ M.S3TableIntegrationSource = {
         identifier = {
             type = "string",
         },
-        dataSource = {
-            type = "structure",
-        },
+        dataSource = M.DataSource,
         status = {
             type = "string",
         },
@@ -4776,7 +4729,7 @@ M.S3TableIntegrationSource = {
             type = "string",
         },
         createdTimeStamp = {
-            type = "number",
+            type = "long",
         },
         parentSourceIdentifier = {
             type = "string",
@@ -4789,7 +4742,7 @@ M.ListSourcesForS3TableIntegrationOutput = {
     members = {
         sources = {
             type = "list",
-            member_type = "structure",
+            member = M.S3TableIntegrationSource,
         },
         nextToken = {
             type = "string",
@@ -4814,8 +4767,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -4837,8 +4790,8 @@ M.ListTagsLogGroupOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -4856,10 +4809,10 @@ M.LiveTailSessionLogEvent = {
             type = "string",
         },
         timestamp = {
-            type = "number",
+            type = "long",
         },
         ingestionTime = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -4869,6 +4822,9 @@ M.LiveTailSessionMetadata = {
     members = {
         sampled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -4884,15 +4840,15 @@ M.LiveTailSessionStart = {
         },
         logGroupIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         logStreamNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         logStreamNamePrefixes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         logEventFilterPattern = {
             type = "string",
@@ -4903,12 +4859,10 @@ M.LiveTailSessionStart = {
 M.LiveTailSessionUpdate = {
     type = "structure",
     members = {
-        sessionMetadata = {
-            type = "structure",
-        },
+        sessionMetadata = M.LiveTailSessionMetadata,
         sessionResults = {
             type = "list",
-            member_type = "structure",
+            member = M.LiveTailSessionLogEvent,
         },
     },
 }
@@ -4946,9 +4900,7 @@ M.PutAccountPolicyInput = {
 M.PutAccountPolicyOutput = {
     type = "structure",
     members = {
-        accountPolicy = {
-            type = "structure",
-        },
+        accountPolicy = M.AccountPolicy,
     },
 }
 
@@ -5002,7 +4954,7 @@ M.PutDataProtectionPolicyOutput = {
             type = "string",
         },
         lastUpdatedTime = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -5019,16 +4971,14 @@ M.PutDeliveryDestinationInput = {
         outputFormat = {
             type = "string",
         },
-        deliveryDestinationConfiguration = {
-            type = "structure",
-        },
+        deliveryDestinationConfiguration = M.DeliveryDestinationConfiguration,
         deliveryDestinationType = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -5036,9 +4986,7 @@ M.PutDeliveryDestinationInput = {
 M.PutDeliveryDestinationOutput = {
     type = "structure",
     members = {
-        deliveryDestination = {
-            type = "structure",
-        },
+        deliveryDestination = M.DeliveryDestination,
     },
 }
 
@@ -5063,9 +5011,7 @@ M.PutDeliveryDestinationPolicyInput = {
 M.PutDeliveryDestinationPolicyOutput = {
     type = "structure",
     members = {
-        policy = {
-            type = "structure",
-        },
+        policy = M.Policy,
     },
 }
 
@@ -5092,8 +5038,8 @@ M.PutDeliverySourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -5101,9 +5047,7 @@ M.PutDeliverySourceInput = {
 M.PutDeliverySourceOutput = {
     type = "structure",
     members = {
-        deliverySource = {
-            type = "structure",
-        },
+        deliverySource = M.DeliverySource,
     },
 }
 
@@ -5130,8 +5074,8 @@ M.PutDestinationInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -5139,9 +5083,7 @@ M.PutDestinationInput = {
 M.PutDestinationOutput = {
     type = "structure",
     members = {
-        destination = {
-            type = "structure",
-        },
+        destination = M.Destination,
     },
 }
 
@@ -5191,9 +5133,7 @@ M.PutIndexPolicyInput = {
 M.PutIndexPolicyOutput = {
     type = "structure",
     members = {
-        indexPolicy = {
-            type = "structure",
-        },
+        indexPolicy = M.IndexPolicy,
     },
 }
 
@@ -5211,7 +5151,7 @@ M.OpenSearchResourceConfig = {
         },
         dashboardViewerPrincipals = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -5220,7 +5160,7 @@ M.OpenSearchResourceConfig = {
             type = "string",
         },
         retentionDays = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -5231,9 +5171,7 @@ M.OpenSearchResourceConfig = {
 M.ResourceConfig = {
     type = "union",
     members = {
-        openSearchResourceConfig = {
-            type = "structure",
-        },
+        openSearchResourceConfig = M.OpenSearchResourceConfig,
     },
 }
 
@@ -5246,12 +5184,9 @@ M.PutIntegrationInput = {
                 required = true,
             },
         },
-        resourceConfig = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        resourceConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResourceConfig }),
         integrationType = {
             type = "string",
             traits = {
@@ -5290,7 +5225,7 @@ M.PutLogEventsInput = {
         },
         logEvents = {
             type = "list",
-            member_type = "structure",
+            member = M.InputLogEvent,
             traits = {
                 required = true,
             },
@@ -5298,9 +5233,7 @@ M.PutLogEventsInput = {
         sequenceToken = {
             type = "string",
         },
-        entity = {
-            type = "structure",
-        },
+        entity = M.Entity,
     },
 }
 
@@ -5320,13 +5253,13 @@ M.RejectedLogEventsInfo = {
     type = "structure",
     members = {
         tooNewLogEventStartIndex = {
-            type = "number",
+            type = "integer",
         },
         tooOldLogEventEndIndex = {
-            type = "number",
+            type = "integer",
         },
         expiredLogEventEndIndex = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5337,12 +5270,8 @@ M.PutLogEventsOutput = {
         nextSequenceToken = {
             type = "string",
         },
-        rejectedLogEventsInfo = {
-            type = "structure",
-        },
-        rejectedEntityInfo = {
-            type = "structure",
-        },
+        rejectedLogEventsInfo = M.RejectedLogEventsInfo,
+        rejectedEntityInfo = M.RejectedEntityInfo,
     },
 }
 
@@ -5401,20 +5330,23 @@ M.PutMetricFilterInput = {
         },
         metricTransformations = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricTransformation,
             traits = {
                 required = true,
             },
         },
         applyOnTransformedLogs = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         fieldSelectionCriteria = {
             type = "string",
         },
         emitSystemFieldDimensions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -5440,7 +5372,7 @@ M.PutQueryDefinitionInput = {
         },
         logGroupNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         queryString = {
             type = "string",
@@ -5453,7 +5385,7 @@ M.PutQueryDefinitionInput = {
         },
         parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.QueryParameter,
         },
     },
 }
@@ -5488,9 +5420,7 @@ M.PutResourcePolicyInput = {
 M.PutResourcePolicyOutput = {
     type = "structure",
     members = {
-        resourcePolicy = {
-            type = "structure",
-        },
+        resourcePolicy = M.ResourcePolicy,
         revisionId = {
             type = "string",
         },
@@ -5507,7 +5437,7 @@ M.PutRetentionPolicyInput = {
             },
         },
         retentionInDays = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -5554,13 +5484,16 @@ M.PutSubscriptionFilterInput = {
         },
         applyOnTransformedLogs = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         fieldSelectionCriteria = {
             type = "string",
         },
         emitSystemFields = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -5580,7 +5513,7 @@ M.PutTransformerInput = {
         },
         transformerConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.Processor,
             traits = {
                 required = true,
             },
@@ -5597,18 +5530,18 @@ M.StartLiveTailInput = {
     members = {
         logGroupIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         logStreamNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         logStreamNamePrefixes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         logEventFilterPattern = {
             type = "string",
@@ -5639,27 +5572,17 @@ M.SessionTimeoutException = {
 M.StartLiveTailResponseStream = {
     type = "union",
     members = {
-        sessionStart = {
-            type = "structure",
-        },
-        sessionUpdate = {
-            type = "structure",
-        },
-        SessionTimeoutException = {
-            type = "structure",
-        },
-        SessionStreamingException = {
-            type = "structure",
-        },
+        sessionStart = M.LiveTailSessionStart,
+        sessionUpdate = M.LiveTailSessionUpdate,
+        SessionTimeoutException = M.SessionTimeoutException,
+        SessionStreamingException = M.SessionStreamingException,
     },
 }
 
 M.StartLiveTailOutput = {
     type = "structure",
     members = {
-        responseStream = {
-            type = "union",
-        },
+        responseStream = M.StartLiveTailResponseStream,
     },
 }
 
@@ -5667,10 +5590,10 @@ M.QueryCompileErrorLocation = {
     type = "structure",
     members = {
         startCharOffset = {
-            type = "number",
+            type = "integer",
         },
         endCharOffset = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5678,9 +5601,7 @@ M.QueryCompileErrorLocation = {
 M.QueryCompileError = {
     type = "structure",
     members = {
-        location = {
-            type = "structure",
-        },
+        location = M.QueryCompileErrorLocation,
         message = {
             type = "string",
         },
@@ -5691,9 +5612,7 @@ M.MalformedQueryException = {
     type = "structure",
     error = "client",
     members = {
-        queryCompileError = {
-            type = "structure",
-        },
+        queryCompileError = M.QueryCompileError,
         message = {
             type = "string",
         },
@@ -5711,20 +5630,20 @@ M.StartQueryInput = {
         },
         logGroupNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         logGroupIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         startTime = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         endTime = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -5736,7 +5655,7 @@ M.StartQueryInput = {
             },
         },
         limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5767,6 +5686,9 @@ M.StopQueryOutput = {
     members = {
         success = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -5782,8 +5704,8 @@ M.TagLogGroupInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -5806,8 +5728,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -5843,7 +5765,7 @@ M.TestMetricFilterInput = {
         },
         logEventMessages = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -5855,15 +5777,18 @@ M.MetricFilterMatchRecord = {
     type = "structure",
     members = {
         eventNumber = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         eventMessage = {
             type = "string",
         },
         extractedValues = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -5873,7 +5798,7 @@ M.TestMetricFilterOutput = {
     members = {
         matches = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricFilterMatchRecord,
         },
     },
 }
@@ -5883,14 +5808,14 @@ M.TestTransformerInput = {
     members = {
         transformerConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.Processor,
             traits = {
                 required = true,
             },
         },
         logEventMessages = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -5902,7 +5827,10 @@ M.TransformedLogRecord = {
     type = "structure",
     members = {
         eventNumber = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         eventMessage = {
             type = "string",
@@ -5918,7 +5846,7 @@ M.TestTransformerOutput = {
     members = {
         transformedLogs = {
             type = "list",
-            member_type = "structure",
+            member = M.TransformedLogRecord,
         },
     },
 }
@@ -5934,7 +5862,7 @@ M.UntagLogGroupInput = {
         },
         tags = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -5957,7 +5885,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -5979,7 +5907,10 @@ M.SuppressionPeriod = {
     type = "structure",
     members = {
         value = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         suppressionUnit = {
             type = "string",
@@ -6010,9 +5941,7 @@ M.UpdateAnomalyInput = {
         suppressionType = {
             type = "string",
         },
-        suppressionPeriod = {
-            type = "structure",
-        },
+        suppressionPeriod = M.SuppressionPeriod,
         baseline = {
             type = "boolean",
         },
@@ -6034,14 +5963,12 @@ M.UpdateDeliveryConfigurationInput = {
         },
         recordFields = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         fieldDelimiter = {
             type = "string",
         },
-        s3DeliveryConfiguration = {
-            type = "structure",
-        },
+        s3DeliveryConfiguration = M.S3DeliveryConfiguration,
     },
 }
 
@@ -6065,7 +5992,7 @@ M.UpdateLogAnomalyDetectorInput = {
             type = "string",
         },
         anomalyVisibilityTime = {
-            type = "number",
+            type = "long",
         },
         enabled = {
             type = "boolean",
@@ -6111,7 +6038,7 @@ M.UpdateLookupTableOutput = {
             type = "string",
         },
         lastUpdatedTime = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -6142,7 +6069,7 @@ M.UpdateScheduledQueryInput = {
         },
         logGroupIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         scheduleExpression = {
             type = "string",
@@ -6154,16 +6081,14 @@ M.UpdateScheduledQueryInput = {
             type = "string",
         },
         startTimeOffset = {
-            type = "number",
+            type = "long",
         },
-        destinationConfiguration = {
-            type = "structure",
-        },
+        destinationConfiguration = M.DestinationConfiguration,
         scheduleStartTime = {
-            type = "number",
+            type = "long",
         },
         scheduleEndTime = {
-            type = "number",
+            type = "long",
         },
         executionRoleArn = {
             type = "string",
@@ -6197,7 +6122,7 @@ M.UpdateScheduledQueryOutput = {
         },
         logGroupIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         scheduleExpression = {
             type = "string",
@@ -6206,34 +6131,32 @@ M.UpdateScheduledQueryOutput = {
             type = "string",
         },
         startTimeOffset = {
-            type = "number",
+            type = "long",
         },
-        destinationConfiguration = {
-            type = "structure",
-        },
+        destinationConfiguration = M.DestinationConfiguration,
         state = {
             type = "string",
         },
         lastTriggeredTime = {
-            type = "number",
+            type = "long",
         },
         lastExecutionStatus = {
             type = "string",
         },
         scheduleStartTime = {
-            type = "number",
+            type = "long",
         },
         scheduleEndTime = {
-            type = "number",
+            type = "long",
         },
         executionRoleArn = {
             type = "string",
         },
         creationTime = {
-            type = "number",
+            type = "long",
         },
         lastUpdatedTime = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -6244,12 +6167,10 @@ M.LogFieldType = {
         type = {
             type = "string",
         },
-        element = {
-            type = "structure",
-        },
+        element = M.LogFieldType,
         fields = {
             type = "list",
-            member_type = "structure",
+            member = M.LogFieldsListItem,
         },
     },
 }
@@ -6260,9 +6181,7 @@ M.LogFieldsListItem = {
         logFieldName = {
             type = "string",
         },
-        logFieldType = {
-            type = "structure",
-        },
+        logFieldType = M.LogFieldType,
     },
 }
 
@@ -6271,7 +6190,7 @@ M.GetLogFieldsOutput = {
     members = {
         logFields = {
             type = "list",
-            member_type = "structure",
+            member = M.LogFieldsListItem,
         },
     },
 }

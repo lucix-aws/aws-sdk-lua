@@ -22,14 +22,11 @@ M.AddApplicationCloudWatchLoggingOptionInput = {
             },
         },
         CurrentApplicationVersionId = {
-            type = "number",
+            type = "long",
         },
-        CloudWatchLoggingOption = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        CloudWatchLoggingOption = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CloudWatchLoggingOption }),
         ConditionalToken = {
             type = "string",
         },
@@ -61,11 +58,11 @@ M.AddApplicationCloudWatchLoggingOptionOutput = {
             type = "string",
         },
         ApplicationVersionId = {
-            type = "number",
+            type = "long",
         },
         CloudWatchLoggingOptionDescriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.CloudWatchLoggingOptionDescription,
         },
         OperationId = {
             type = "string",
@@ -137,7 +134,7 @@ M.InputParallelism = {
     type = "structure",
     members = {
         Count = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -157,12 +154,9 @@ M.InputLambdaProcessor = {
 M.InputProcessingConfiguration = {
     type = "structure",
     members = {
-        InputLambdaProcessor = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InputLambdaProcessor = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InputLambdaProcessor }),
     },
 }
 
@@ -220,12 +214,8 @@ M.JSONMappingParameters = {
 M.MappingParameters = {
     type = "structure",
     members = {
-        JSONMappingParameters = {
-            type = "structure",
-        },
-        CSVMappingParameters = {
-            type = "structure",
-        },
+        JSONMappingParameters = M.JSONMappingParameters,
+        CSVMappingParameters = M.CSVMappingParameters,
     },
 }
 
@@ -243,27 +233,22 @@ M.RecordFormat = {
                 required = true,
             },
         },
-        MappingParameters = {
-            type = "structure",
-        },
+        MappingParameters = M.MappingParameters,
     },
 }
 
 M.SourceSchema = {
     type = "structure",
     members = {
-        RecordFormat = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RecordFormat = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RecordFormat }),
         RecordEncoding = {
             type = "string",
         },
         RecordColumns = {
             type = "list",
-            member_type = "structure",
+            member = M.RecordColumn,
             traits = {
                 required = true,
             },
@@ -304,24 +289,13 @@ M.Input = {
                 required = true,
             },
         },
-        InputProcessingConfiguration = {
-            type = "structure",
-        },
-        KinesisStreamsInput = {
-            type = "structure",
-        },
-        KinesisFirehoseInput = {
-            type = "structure",
-        },
-        InputParallelism = {
-            type = "structure",
-        },
-        InputSchema = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InputProcessingConfiguration = M.InputProcessingConfiguration,
+        KinesisStreamsInput = M.KinesisStreamsInput,
+        KinesisFirehoseInput = M.KinesisFirehoseInput,
+        InputParallelism = M.InputParallelism,
+        InputSchema = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SourceSchema }),
     },
 }
 
@@ -335,17 +309,14 @@ M.AddApplicationInputInput = {
             },
         },
         CurrentApplicationVersionId = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
-        Input = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Input = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Input }),
     },
 }
 
@@ -367,9 +338,7 @@ M.InputLambdaProcessorDescription = {
 M.InputProcessingConfigurationDescription = {
     type = "structure",
     members = {
-        InputLambdaProcessorDescription = {
-            type = "structure",
-        },
+        InputLambdaProcessorDescription = M.InputLambdaProcessorDescription,
     },
 }
 
@@ -429,26 +398,14 @@ M.InputDescription = {
         },
         InAppStreamNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        InputProcessingConfigurationDescription = {
-            type = "structure",
-        },
-        KinesisStreamsInputDescription = {
-            type = "structure",
-        },
-        KinesisFirehoseInputDescription = {
-            type = "structure",
-        },
-        InputSchema = {
-            type = "structure",
-        },
-        InputParallelism = {
-            type = "structure",
-        },
-        InputStartingPositionConfiguration = {
-            type = "structure",
-        },
+        InputProcessingConfigurationDescription = M.InputProcessingConfigurationDescription,
+        KinesisStreamsInputDescription = M.KinesisStreamsInputDescription,
+        KinesisFirehoseInputDescription = M.KinesisFirehoseInputDescription,
+        InputSchema = M.SourceSchema,
+        InputParallelism = M.InputParallelism,
+        InputStartingPositionConfiguration = M.InputStartingPositionConfiguration,
     },
 }
 
@@ -459,11 +416,11 @@ M.AddApplicationInputOutput = {
             type = "string",
         },
         ApplicationVersionId = {
-            type = "number",
+            type = "long",
         },
         InputDescriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.InputDescription,
         },
     },
 }
@@ -488,7 +445,7 @@ M.AddApplicationInputProcessingConfigurationInput = {
             },
         },
         CurrentApplicationVersionId = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -499,12 +456,9 @@ M.AddApplicationInputProcessingConfigurationInput = {
                 required = true,
             },
         },
-        InputProcessingConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InputProcessingConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InputProcessingConfiguration }),
     },
 }
 
@@ -515,14 +469,12 @@ M.AddApplicationInputProcessingConfigurationOutput = {
             type = "string",
         },
         ApplicationVersionId = {
-            type = "number",
+            type = "long",
         },
         InputId = {
             type = "string",
         },
-        InputProcessingConfigurationDescription = {
-            type = "structure",
-        },
+        InputProcessingConfigurationDescription = M.InputProcessingConfigurationDescription,
     },
 }
 
@@ -583,21 +535,12 @@ M.Output = {
                 required = true,
             },
         },
-        KinesisStreamsOutput = {
-            type = "structure",
-        },
-        KinesisFirehoseOutput = {
-            type = "structure",
-        },
-        LambdaOutput = {
-            type = "structure",
-        },
-        DestinationSchema = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        KinesisStreamsOutput = M.KinesisStreamsOutput,
+        KinesisFirehoseOutput = M.KinesisFirehoseOutput,
+        LambdaOutput = M.LambdaOutput,
+        DestinationSchema = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DestinationSchema }),
     },
 }
 
@@ -611,17 +554,14 @@ M.AddApplicationOutputInput = {
             },
         },
         CurrentApplicationVersionId = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
-        Output = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Output = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Output }),
     },
 }
 
@@ -679,18 +619,10 @@ M.OutputDescription = {
         Name = {
             type = "string",
         },
-        KinesisStreamsOutputDescription = {
-            type = "structure",
-        },
-        KinesisFirehoseOutputDescription = {
-            type = "structure",
-        },
-        LambdaOutputDescription = {
-            type = "structure",
-        },
-        DestinationSchema = {
-            type = "structure",
-        },
+        KinesisStreamsOutputDescription = M.KinesisStreamsOutputDescription,
+        KinesisFirehoseOutputDescription = M.KinesisFirehoseOutputDescription,
+        LambdaOutputDescription = M.LambdaOutputDescription,
+        DestinationSchema = M.DestinationSchema,
     },
 }
 
@@ -701,11 +633,11 @@ M.AddApplicationOutputOutput = {
             type = "string",
         },
         ApplicationVersionId = {
-            type = "number",
+            type = "long",
         },
         OutputDescriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputDescription,
         },
     },
 }
@@ -731,15 +663,10 @@ M.ReferenceDataSource = {
                 required = true,
             },
         },
-        S3ReferenceDataSource = {
-            type = "structure",
-        },
-        ReferenceSchema = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        S3ReferenceDataSource = M.S3ReferenceDataSource,
+        ReferenceSchema = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SourceSchema }),
     },
 }
 
@@ -753,17 +680,14 @@ M.AddApplicationReferenceDataSourceInput = {
             },
         },
         CurrentApplicationVersionId = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
-        ReferenceDataSource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ReferenceDataSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ReferenceDataSource }),
     },
 }
 
@@ -803,15 +727,10 @@ M.ReferenceDataSourceDescription = {
                 required = true,
             },
         },
-        S3ReferenceDataSourceDescription = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ReferenceSchema = {
-            type = "structure",
-        },
+        S3ReferenceDataSourceDescription = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3ReferenceDataSourceDescription }),
+        ReferenceSchema = M.SourceSchema,
     },
 }
 
@@ -822,11 +741,11 @@ M.AddApplicationReferenceDataSourceOutput = {
             type = "string",
         },
         ApplicationVersionId = {
-            type = "number",
+            type = "long",
         },
         ReferenceDataSourceDescriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.ReferenceDataSourceDescription,
         },
     },
 }
@@ -836,14 +755,14 @@ M.VpcConfiguration = {
     members = {
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -861,14 +780,11 @@ M.AddApplicationVpcConfigurationInput = {
             },
         },
         CurrentApplicationVersionId = {
-            type = "number",
+            type = "long",
         },
-        VpcConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        VpcConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VpcConfiguration }),
         ConditionalToken = {
             type = "string",
         },
@@ -892,14 +808,14 @@ M.VpcConfigurationDescription = {
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -914,11 +830,9 @@ M.AddApplicationVpcConfigurationOutput = {
             type = "string",
         },
         ApplicationVersionId = {
-            type = "number",
+            type = "long",
         },
-        VpcConfigurationDescription = {
-            type = "structure",
-        },
+        VpcConfigurationDescription = M.VpcConfigurationDescription,
         OperationId = {
             type = "string",
         },
@@ -955,9 +869,7 @@ M.CodeContent = {
         ZipFileContent = {
             type = "blob",
         },
-        S3ContentLocation = {
-            type = "structure",
-        },
+        S3ContentLocation = M.S3ContentLocation,
     },
 }
 
@@ -969,9 +881,7 @@ M.CodeContentType = {
 M.ApplicationCodeConfiguration = {
     type = "structure",
     members = {
-        CodeContent = {
-            type = "structure",
-        },
+        CodeContent = M.CodeContent,
         CodeContentType = {
             type = "string",
             traits = {
@@ -1012,11 +922,9 @@ M.CodeContentDescription = {
             type = "string",
         },
         CodeSize = {
-            type = "number",
+            type = "long",
         },
-        S3ApplicationCodeLocationDescription = {
-            type = "structure",
-        },
+        S3ApplicationCodeLocationDescription = M.S3ApplicationCodeLocationDescription,
     },
 }
 
@@ -1029,9 +937,7 @@ M.ApplicationCodeConfigurationDescription = {
                 required = true,
             },
         },
-        CodeContentDescription = {
-            type = "structure",
-        },
+        CodeContentDescription = M.CodeContentDescription,
     },
 }
 
@@ -1059,9 +965,7 @@ M.CodeContentUpdate = {
         ZipFileContentUpdate = {
             type = "blob",
         },
-        S3ContentLocationUpdate = {
-            type = "structure",
-        },
+        S3ContentLocationUpdate = M.S3ContentLocationUpdate,
     },
 }
 
@@ -1071,9 +975,7 @@ M.ApplicationCodeConfigurationUpdate = {
         CodeContentTypeUpdate = {
             type = "string",
         },
-        CodeContentUpdate = {
-            type = "structure",
-        },
+        CodeContentUpdate = M.CodeContentUpdate,
     },
 }
 
@@ -1132,8 +1034,8 @@ M.PropertyGroup = {
         },
         PropertyMap = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1146,7 +1048,7 @@ M.EnvironmentProperties = {
     members = {
         PropertyGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.PropertyGroup,
             traits = {
                 required = true,
             },
@@ -1172,10 +1074,10 @@ M.CheckpointConfiguration = {
             type = "boolean",
         },
         CheckpointInterval = {
-            type = "number",
+            type = "long",
         },
         MinPauseBetweenCheckpoints = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1222,10 +1124,10 @@ M.ParallelismConfiguration = {
             },
         },
         Parallelism = {
-            type = "number",
+            type = "integer",
         },
         ParallelismPerKPU = {
-            type = "number",
+            type = "integer",
         },
         AutoScalingEnabled = {
             type = "boolean",
@@ -1236,15 +1138,9 @@ M.ParallelismConfiguration = {
 M.FlinkApplicationConfiguration = {
     type = "structure",
     members = {
-        CheckpointConfiguration = {
-            type = "structure",
-        },
-        MonitoringConfiguration = {
-            type = "structure",
-        },
-        ParallelismConfiguration = {
-            type = "structure",
-        },
+        CheckpointConfiguration = M.CheckpointConfiguration,
+        MonitoringConfiguration = M.MonitoringConfiguration,
+        ParallelismConfiguration = M.ParallelismConfiguration,
     },
 }
 
@@ -1253,15 +1149,15 @@ M.SqlApplicationConfiguration = {
     members = {
         Inputs = {
             type = "list",
-            member_type = "structure",
+            member = M.Input,
         },
         Outputs = {
             type = "list",
-            member_type = "structure",
+            member = M.Output,
         },
         ReferenceDataSources = {
             type = "list",
-            member_type = "structure",
+            member = M.ReferenceDataSource,
         },
     },
 }
@@ -1281,12 +1177,9 @@ M.GlueDataCatalogConfiguration = {
 M.CatalogConfiguration = {
     type = "structure",
     members = {
-        GlueDataCatalogConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        GlueDataCatalogConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.GlueDataCatalogConfiguration }),
     },
 }
 
@@ -1328,12 +1221,8 @@ M.CustomArtifactConfiguration = {
                 required = true,
             },
         },
-        S3ContentLocation = {
-            type = "structure",
-        },
-        MavenReference = {
-            type = "structure",
-        },
+        S3ContentLocation = M.S3ContentLocation,
+        MavenReference = M.MavenReference,
     },
 }
 
@@ -1355,12 +1244,9 @@ M.S3ContentBaseLocation = {
 M.DeployAsApplicationConfiguration = {
     type = "structure",
     members = {
-        S3ContentLocation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        S3ContentLocation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3ContentBaseLocation }),
     },
 }
 
@@ -1379,18 +1265,12 @@ M.ZeppelinMonitoringConfiguration = {
 M.ZeppelinApplicationConfiguration = {
     type = "structure",
     members = {
-        MonitoringConfiguration = {
-            type = "structure",
-        },
-        CatalogConfiguration = {
-            type = "structure",
-        },
-        DeployAsApplicationConfiguration = {
-            type = "structure",
-        },
+        MonitoringConfiguration = M.ZeppelinMonitoringConfiguration,
+        CatalogConfiguration = M.CatalogConfiguration,
+        DeployAsApplicationConfiguration = M.DeployAsApplicationConfiguration,
         CustomArtifactsConfiguration = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomArtifactConfiguration,
         },
     },
 }
@@ -1398,34 +1278,18 @@ M.ZeppelinApplicationConfiguration = {
 M.ApplicationConfiguration = {
     type = "structure",
     members = {
-        SqlApplicationConfiguration = {
-            type = "structure",
-        },
-        FlinkApplicationConfiguration = {
-            type = "structure",
-        },
-        EnvironmentProperties = {
-            type = "structure",
-        },
-        ApplicationCodeConfiguration = {
-            type = "structure",
-        },
-        ApplicationSnapshotConfiguration = {
-            type = "structure",
-        },
-        ApplicationSystemRollbackConfiguration = {
-            type = "structure",
-        },
+        SqlApplicationConfiguration = M.SqlApplicationConfiguration,
+        FlinkApplicationConfiguration = M.FlinkApplicationConfiguration,
+        EnvironmentProperties = M.EnvironmentProperties,
+        ApplicationCodeConfiguration = M.ApplicationCodeConfiguration,
+        ApplicationSnapshotConfiguration = M.ApplicationSnapshotConfiguration,
+        ApplicationSystemRollbackConfiguration = M.ApplicationSystemRollbackConfiguration,
         VpcConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcConfiguration,
         },
-        ZeppelinApplicationConfiguration = {
-            type = "structure",
-        },
-        ApplicationEncryptionConfiguration = {
-            type = "structure",
-        },
+        ZeppelinApplicationConfiguration = M.ZeppelinApplicationConfiguration,
+        ApplicationEncryptionConfiguration = M.ApplicationEncryptionConfiguration,
     },
 }
 
@@ -1473,7 +1337,7 @@ M.EnvironmentPropertyDescriptions = {
     members = {
         PropertyGroupDescriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.PropertyGroup,
         },
     },
 }
@@ -1488,10 +1352,10 @@ M.CheckpointConfigurationDescription = {
             type = "boolean",
         },
         CheckpointInterval = {
-            type = "number",
+            type = "long",
         },
         MinPauseBetweenCheckpoints = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1518,13 +1382,13 @@ M.ParallelismConfigurationDescription = {
             type = "string",
         },
         Parallelism = {
-            type = "number",
+            type = "integer",
         },
         ParallelismPerKPU = {
-            type = "number",
+            type = "integer",
         },
         CurrentParallelism = {
-            type = "number",
+            type = "integer",
         },
         AutoScalingEnabled = {
             type = "boolean",
@@ -1535,15 +1399,9 @@ M.ParallelismConfigurationDescription = {
 M.FlinkApplicationConfigurationDescription = {
     type = "structure",
     members = {
-        CheckpointConfigurationDescription = {
-            type = "structure",
-        },
-        MonitoringConfigurationDescription = {
-            type = "structure",
-        },
-        ParallelismConfigurationDescription = {
-            type = "structure",
-        },
+        CheckpointConfigurationDescription = M.CheckpointConfigurationDescription,
+        MonitoringConfigurationDescription = M.MonitoringConfigurationDescription,
+        ParallelismConfigurationDescription = M.ParallelismConfigurationDescription,
         JobPlanDescription = {
             type = "string",
         },
@@ -1583,12 +1441,8 @@ M.FlinkRunConfiguration = {
 M.RunConfigurationDescription = {
     type = "structure",
     members = {
-        ApplicationRestoreConfigurationDescription = {
-            type = "structure",
-        },
-        FlinkRunConfigurationDescription = {
-            type = "structure",
-        },
+        ApplicationRestoreConfigurationDescription = M.ApplicationRestoreConfiguration,
+        FlinkRunConfigurationDescription = M.FlinkRunConfiguration,
     },
 }
 
@@ -1597,15 +1451,15 @@ M.SqlApplicationConfigurationDescription = {
     members = {
         InputDescriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.InputDescription,
         },
         OutputDescriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputDescription,
         },
         ReferenceDataSourceDescriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.ReferenceDataSourceDescription,
         },
     },
 }
@@ -1625,12 +1479,9 @@ M.GlueDataCatalogConfigurationDescription = {
 M.CatalogConfigurationDescription = {
     type = "structure",
     members = {
-        GlueDataCatalogConfigurationDescription = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        GlueDataCatalogConfigurationDescription = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.GlueDataCatalogConfigurationDescription }),
     },
 }
 
@@ -1640,12 +1491,8 @@ M.CustomArtifactConfigurationDescription = {
         ArtifactType = {
             type = "string",
         },
-        S3ContentLocationDescription = {
-            type = "structure",
-        },
-        MavenReferenceDescription = {
-            type = "structure",
-        },
+        S3ContentLocationDescription = M.S3ContentLocation,
+        MavenReferenceDescription = M.MavenReference,
     },
 }
 
@@ -1667,12 +1514,9 @@ M.S3ContentBaseLocationDescription = {
 M.DeployAsApplicationConfigurationDescription = {
     type = "structure",
     members = {
-        S3ContentLocationDescription = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        S3ContentLocationDescription = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3ContentBaseLocationDescription }),
     },
 }
 
@@ -1688,21 +1532,14 @@ M.ZeppelinMonitoringConfigurationDescription = {
 M.ZeppelinApplicationConfigurationDescription = {
     type = "structure",
     members = {
-        MonitoringConfigurationDescription = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        CatalogConfigurationDescription = {
-            type = "structure",
-        },
-        DeployAsApplicationConfigurationDescription = {
-            type = "structure",
-        },
+        MonitoringConfigurationDescription = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ZeppelinMonitoringConfigurationDescription }),
+        CatalogConfigurationDescription = M.CatalogConfigurationDescription,
+        DeployAsApplicationConfigurationDescription = M.DeployAsApplicationConfigurationDescription,
         CustomArtifactsConfigurationDescription = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomArtifactConfigurationDescription,
         },
     },
 }
@@ -1710,37 +1547,19 @@ M.ZeppelinApplicationConfigurationDescription = {
 M.ApplicationConfigurationDescription = {
     type = "structure",
     members = {
-        SqlApplicationConfigurationDescription = {
-            type = "structure",
-        },
-        ApplicationCodeConfigurationDescription = {
-            type = "structure",
-        },
-        RunConfigurationDescription = {
-            type = "structure",
-        },
-        FlinkApplicationConfigurationDescription = {
-            type = "structure",
-        },
-        EnvironmentPropertyDescriptions = {
-            type = "structure",
-        },
-        ApplicationSnapshotConfigurationDescription = {
-            type = "structure",
-        },
-        ApplicationSystemRollbackConfigurationDescription = {
-            type = "structure",
-        },
+        SqlApplicationConfigurationDescription = M.SqlApplicationConfigurationDescription,
+        ApplicationCodeConfigurationDescription = M.ApplicationCodeConfigurationDescription,
+        RunConfigurationDescription = M.RunConfigurationDescription,
+        FlinkApplicationConfigurationDescription = M.FlinkApplicationConfigurationDescription,
+        EnvironmentPropertyDescriptions = M.EnvironmentPropertyDescriptions,
+        ApplicationSnapshotConfigurationDescription = M.ApplicationSnapshotConfigurationDescription,
+        ApplicationSystemRollbackConfigurationDescription = M.ApplicationSystemRollbackConfigurationDescription,
         VpcConfigurationDescriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcConfigurationDescription,
         },
-        ZeppelinApplicationConfigurationDescription = {
-            type = "structure",
-        },
-        ApplicationEncryptionConfigurationDescription = {
-            type = "structure",
-        },
+        ZeppelinApplicationConfigurationDescription = M.ZeppelinApplicationConfigurationDescription,
+        ApplicationEncryptionConfigurationDescription = M.ApplicationEncryptionConfigurationDescription,
     },
 }
 
@@ -1788,7 +1607,7 @@ M.EnvironmentPropertyUpdates = {
     members = {
         PropertyGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.PropertyGroup,
             traits = {
                 required = true,
             },
@@ -1806,10 +1625,10 @@ M.CheckpointConfigurationUpdate = {
             type = "boolean",
         },
         CheckpointIntervalUpdate = {
-            type = "number",
+            type = "long",
         },
         MinPauseBetweenCheckpointsUpdate = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1836,10 +1655,10 @@ M.ParallelismConfigurationUpdate = {
             type = "string",
         },
         ParallelismUpdate = {
-            type = "number",
+            type = "integer",
         },
         ParallelismPerKPUUpdate = {
-            type = "number",
+            type = "integer",
         },
         AutoScalingEnabledUpdate = {
             type = "boolean",
@@ -1850,15 +1669,9 @@ M.ParallelismConfigurationUpdate = {
 M.FlinkApplicationConfigurationUpdate = {
     type = "structure",
     members = {
-        CheckpointConfigurationUpdate = {
-            type = "structure",
-        },
-        MonitoringConfigurationUpdate = {
-            type = "structure",
-        },
-        ParallelismConfigurationUpdate = {
-            type = "structure",
-        },
+        CheckpointConfigurationUpdate = M.CheckpointConfigurationUpdate,
+        MonitoringConfigurationUpdate = M.MonitoringConfigurationUpdate,
+        ParallelismConfigurationUpdate = M.ParallelismConfigurationUpdate,
     },
 }
 
@@ -1866,7 +1679,7 @@ M.InputParallelismUpdate = {
     type = "structure",
     members = {
         CountUpdate = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1889,27 +1702,22 @@ M.InputLambdaProcessorUpdate = {
 M.InputProcessingConfigurationUpdate = {
     type = "structure",
     members = {
-        InputLambdaProcessorUpdate = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InputLambdaProcessorUpdate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InputLambdaProcessorUpdate }),
     },
 }
 
 M.InputSchemaUpdate = {
     type = "structure",
     members = {
-        RecordFormatUpdate = {
-            type = "structure",
-        },
+        RecordFormatUpdate = M.RecordFormat,
         RecordEncodingUpdate = {
             type = "string",
         },
         RecordColumnUpdates = {
             type = "list",
-            member_type = "structure",
+            member = M.RecordColumn,
         },
     },
 }
@@ -1950,21 +1758,11 @@ M.InputUpdate = {
         NamePrefixUpdate = {
             type = "string",
         },
-        InputProcessingConfigurationUpdate = {
-            type = "structure",
-        },
-        KinesisStreamsInputUpdate = {
-            type = "structure",
-        },
-        KinesisFirehoseInputUpdate = {
-            type = "structure",
-        },
-        InputSchemaUpdate = {
-            type = "structure",
-        },
-        InputParallelismUpdate = {
-            type = "structure",
-        },
+        InputProcessingConfigurationUpdate = M.InputProcessingConfigurationUpdate,
+        KinesisStreamsInputUpdate = M.KinesisStreamsInputUpdate,
+        KinesisFirehoseInputUpdate = M.KinesisFirehoseInputUpdate,
+        InputSchemaUpdate = M.InputSchemaUpdate,
+        InputParallelismUpdate = M.InputParallelismUpdate,
     },
 }
 
@@ -2016,18 +1814,10 @@ M.OutputUpdate = {
         NameUpdate = {
             type = "string",
         },
-        KinesisStreamsOutputUpdate = {
-            type = "structure",
-        },
-        KinesisFirehoseOutputUpdate = {
-            type = "structure",
-        },
-        LambdaOutputUpdate = {
-            type = "structure",
-        },
-        DestinationSchemaUpdate = {
-            type = "structure",
-        },
+        KinesisStreamsOutputUpdate = M.KinesisStreamsOutputUpdate,
+        KinesisFirehoseOutputUpdate = M.KinesisFirehoseOutputUpdate,
+        LambdaOutputUpdate = M.LambdaOutputUpdate,
+        DestinationSchemaUpdate = M.DestinationSchema,
     },
 }
 
@@ -2055,12 +1845,8 @@ M.ReferenceDataSourceUpdate = {
         TableNameUpdate = {
             type = "string",
         },
-        S3ReferenceDataSourceUpdate = {
-            type = "structure",
-        },
-        ReferenceSchemaUpdate = {
-            type = "structure",
-        },
+        S3ReferenceDataSourceUpdate = M.S3ReferenceDataSourceUpdate,
+        ReferenceSchemaUpdate = M.SourceSchema,
     },
 }
 
@@ -2069,15 +1855,15 @@ M.SqlApplicationConfigurationUpdate = {
     members = {
         InputUpdates = {
             type = "list",
-            member_type = "structure",
+            member = M.InputUpdate,
         },
         OutputUpdates = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputUpdate,
         },
         ReferenceDataSourceUpdates = {
             type = "list",
-            member_type = "structure",
+            member = M.ReferenceDataSourceUpdate,
         },
     },
 }
@@ -2093,11 +1879,11 @@ M.VpcConfigurationUpdate = {
         },
         SubnetIdUpdates = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SecurityGroupIdUpdates = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2117,12 +1903,9 @@ M.GlueDataCatalogConfigurationUpdate = {
 M.CatalogConfigurationUpdate = {
     type = "structure",
     members = {
-        GlueDataCatalogConfigurationUpdate = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        GlueDataCatalogConfigurationUpdate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.GlueDataCatalogConfigurationUpdate }),
     },
 }
 
@@ -2141,9 +1924,7 @@ M.S3ContentBaseLocationUpdate = {
 M.DeployAsApplicationConfigurationUpdate = {
     type = "structure",
     members = {
-        S3ContentLocationUpdate = {
-            type = "structure",
-        },
+        S3ContentLocationUpdate = M.S3ContentBaseLocationUpdate,
     },
 }
 
@@ -2162,18 +1943,12 @@ M.ZeppelinMonitoringConfigurationUpdate = {
 M.ZeppelinApplicationConfigurationUpdate = {
     type = "structure",
     members = {
-        MonitoringConfigurationUpdate = {
-            type = "structure",
-        },
-        CatalogConfigurationUpdate = {
-            type = "structure",
-        },
-        DeployAsApplicationConfigurationUpdate = {
-            type = "structure",
-        },
+        MonitoringConfigurationUpdate = M.ZeppelinMonitoringConfigurationUpdate,
+        CatalogConfigurationUpdate = M.CatalogConfigurationUpdate,
+        DeployAsApplicationConfigurationUpdate = M.DeployAsApplicationConfigurationUpdate,
         CustomArtifactsConfigurationUpdate = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomArtifactConfiguration,
         },
     },
 }
@@ -2181,34 +1956,18 @@ M.ZeppelinApplicationConfigurationUpdate = {
 M.ApplicationConfigurationUpdate = {
     type = "structure",
     members = {
-        SqlApplicationConfigurationUpdate = {
-            type = "structure",
-        },
-        ApplicationCodeConfigurationUpdate = {
-            type = "structure",
-        },
-        FlinkApplicationConfigurationUpdate = {
-            type = "structure",
-        },
-        EnvironmentPropertyUpdates = {
-            type = "structure",
-        },
-        ApplicationSnapshotConfigurationUpdate = {
-            type = "structure",
-        },
-        ApplicationSystemRollbackConfigurationUpdate = {
-            type = "structure",
-        },
+        SqlApplicationConfigurationUpdate = M.SqlApplicationConfigurationUpdate,
+        ApplicationCodeConfigurationUpdate = M.ApplicationCodeConfigurationUpdate,
+        FlinkApplicationConfigurationUpdate = M.FlinkApplicationConfigurationUpdate,
+        EnvironmentPropertyUpdates = M.EnvironmentPropertyUpdates,
+        ApplicationSnapshotConfigurationUpdate = M.ApplicationSnapshotConfigurationUpdate,
+        ApplicationSystemRollbackConfigurationUpdate = M.ApplicationSystemRollbackConfigurationUpdate,
         VpcConfigurationUpdates = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcConfigurationUpdate,
         },
-        ZeppelinApplicationConfigurationUpdate = {
-            type = "structure",
-        },
-        ApplicationEncryptionConfigurationUpdate = {
-            type = "structure",
-        },
+        ZeppelinApplicationConfigurationUpdate = M.ZeppelinApplicationConfigurationUpdate,
+        ApplicationEncryptionConfigurationUpdate = M.ApplicationEncryptionConfigurationUpdate,
     },
 }
 
@@ -2299,7 +2058,7 @@ M.ApplicationDetail = {
             },
         },
         ApplicationVersionId = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -2310,21 +2069,17 @@ M.ApplicationDetail = {
         LastUpdateTimestamp = {
             type = "timestamp",
         },
-        ApplicationConfigurationDescription = {
-            type = "structure",
-        },
+        ApplicationConfigurationDescription = M.ApplicationConfigurationDescription,
         CloudWatchLoggingOptionDescriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.CloudWatchLoggingOptionDescription,
         },
-        ApplicationMaintenanceConfigurationDescription = {
-            type = "structure",
-        },
+        ApplicationMaintenanceConfigurationDescription = M.ApplicationMaintenanceConfigurationDescription,
         ApplicationVersionUpdatedFrom = {
-            type = "number",
+            type = "long",
         },
         ApplicationVersionRolledBackFrom = {
-            type = "number",
+            type = "long",
         },
         ApplicationVersionCreateTimestamp = {
             type = "timestamp",
@@ -2333,7 +2088,7 @@ M.ApplicationDetail = {
             type = "string",
         },
         ApplicationVersionRolledBackTo = {
-            type = "number",
+            type = "long",
         },
         ApplicationMode = {
             type = "string",
@@ -2385,13 +2140,13 @@ M.ApplicationVersionChangeDetails = {
     type = "structure",
     members = {
         ApplicationVersionUpdatedFrom = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         ApplicationVersionUpdatedTo = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -2414,9 +2169,7 @@ M.OperationFailureDetails = {
         RollbackOperationId = {
             type = "string",
         },
-        ErrorInfo = {
-            type = "structure",
-        },
+        ErrorInfo = M.ErrorInfo,
     },
 }
 
@@ -2447,12 +2200,8 @@ M.ApplicationOperationInfoDetails = {
                 required = true,
             },
         },
-        ApplicationVersionChangeDetails = {
-            type = "structure",
-        },
-        OperationFailureDetails = {
-            type = "structure",
-        },
+        ApplicationVersionChangeDetails = M.ApplicationVersionChangeDetails,
+        OperationFailureDetails = M.OperationFailureDetails,
     },
 }
 
@@ -2478,7 +2227,7 @@ M.ApplicationSummary = {
             },
         },
         ApplicationVersionId = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -2499,7 +2248,7 @@ M.ApplicationVersionSummary = {
     type = "structure",
     members = {
         ApplicationVersionId = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -2567,16 +2316,14 @@ M.CreateApplicationInput = {
                 required = true,
             },
         },
-        ApplicationConfiguration = {
-            type = "structure",
-        },
+        ApplicationConfiguration = M.ApplicationConfiguration,
         CloudWatchLoggingOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.CloudWatchLoggingOption,
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ApplicationMode = {
             type = "string",
@@ -2587,12 +2334,9 @@ M.CreateApplicationInput = {
 M.CreateApplicationOutput = {
     type = "structure",
     members = {
-        ApplicationDetail = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ApplicationDetail = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ApplicationDetail }),
     },
 }
 
@@ -2647,7 +2391,7 @@ M.CreateApplicationPresignedUrlInput = {
             },
         },
         SessionExpirationDurationInSeconds = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -2715,7 +2459,7 @@ M.DeleteApplicationCloudWatchLoggingOptionInput = {
             },
         },
         CurrentApplicationVersionId = {
-            type = "number",
+            type = "long",
         },
         CloudWatchLoggingOptionId = {
             type = "string",
@@ -2736,11 +2480,11 @@ M.DeleteApplicationCloudWatchLoggingOptionOutput = {
             type = "string",
         },
         ApplicationVersionId = {
-            type = "number",
+            type = "long",
         },
         CloudWatchLoggingOptionDescriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.CloudWatchLoggingOptionDescription,
         },
         OperationId = {
             type = "string",
@@ -2758,7 +2502,7 @@ M.DeleteApplicationInputProcessingConfigurationInput = {
             },
         },
         CurrentApplicationVersionId = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -2779,7 +2523,7 @@ M.DeleteApplicationInputProcessingConfigurationOutput = {
             type = "string",
         },
         ApplicationVersionId = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -2794,7 +2538,7 @@ M.DeleteApplicationOutputInput = {
             },
         },
         CurrentApplicationVersionId = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -2815,7 +2559,7 @@ M.DeleteApplicationOutputOutput = {
             type = "string",
         },
         ApplicationVersionId = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -2830,7 +2574,7 @@ M.DeleteApplicationReferenceDataSourceInput = {
             },
         },
         CurrentApplicationVersionId = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -2851,7 +2595,7 @@ M.DeleteApplicationReferenceDataSourceOutput = {
             type = "string",
         },
         ApplicationVersionId = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -2894,7 +2638,7 @@ M.DeleteApplicationVpcConfigurationInput = {
             },
         },
         CurrentApplicationVersionId = {
-            type = "number",
+            type = "long",
         },
         VpcConfigurationId = {
             type = "string",
@@ -2915,7 +2659,7 @@ M.DeleteApplicationVpcConfigurationOutput = {
             type = "string",
         },
         ApplicationVersionId = {
-            type = "number",
+            type = "long",
         },
         OperationId = {
             type = "string",
@@ -2941,12 +2685,9 @@ M.DescribeApplicationInput = {
 M.DescribeApplicationOutput = {
     type = "structure",
     members = {
-        ApplicationDetail = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ApplicationDetail = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ApplicationDetail }),
     },
 }
 
@@ -2971,9 +2712,7 @@ M.DescribeApplicationOperationInput = {
 M.DescribeApplicationOperationOutput = {
     type = "structure",
     members = {
-        ApplicationOperationInfoDetails = {
-            type = "structure",
-        },
+        ApplicationOperationInfoDetails = M.ApplicationOperationInfoDetails,
     },
 }
 
@@ -3018,7 +2757,7 @@ M.SnapshotDetails = {
             },
         },
         ApplicationVersionId = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -3029,21 +2768,16 @@ M.SnapshotDetails = {
         RuntimeEnvironment = {
             type = "string",
         },
-        ApplicationEncryptionConfigurationDescription = {
-            type = "structure",
-        },
+        ApplicationEncryptionConfigurationDescription = M.ApplicationEncryptionConfigurationDescription,
     },
 }
 
 M.DescribeApplicationSnapshotOutput = {
     type = "structure",
     members = {
-        SnapshotDetails = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SnapshotDetails = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SnapshotDetails }),
     },
 }
 
@@ -3057,7 +2791,7 @@ M.DescribeApplicationVersionInput = {
             },
         },
         ApplicationVersionId = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -3068,9 +2802,7 @@ M.DescribeApplicationVersionInput = {
 M.DescribeApplicationVersionOutput = {
     type = "structure",
     members = {
-        ApplicationVersionDetail = {
-            type = "structure",
-        },
+        ApplicationVersionDetail = M.ApplicationDetail,
     },
 }
 
@@ -3104,35 +2836,27 @@ M.DiscoverInputSchemaInput = {
                 required = true,
             },
         },
-        InputStartingPositionConfiguration = {
-            type = "structure",
-        },
-        S3Configuration = {
-            type = "structure",
-        },
-        InputProcessingConfiguration = {
-            type = "structure",
-        },
+        InputStartingPositionConfiguration = M.InputStartingPositionConfiguration,
+        S3Configuration = M.S3Configuration,
+        InputProcessingConfiguration = M.InputProcessingConfiguration,
     },
 }
 
 M.DiscoverInputSchemaOutput = {
     type = "structure",
     members = {
-        InputSchema = {
-            type = "structure",
-        },
+        InputSchema = M.SourceSchema,
         ParsedInputRecords = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
         },
         ProcessedInputRecords = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RawInputRecords = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3166,11 +2890,11 @@ M.UnableToDetectSchemaException = {
         },
         RawInputRecords = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ProcessedInputRecords = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3185,7 +2909,7 @@ M.ListApplicationOperationsInput = {
             },
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3204,7 +2928,7 @@ M.ListApplicationOperationsOutput = {
     members = {
         ApplicationOperationInfoList = {
             type = "list",
-            member_type = "structure",
+            member = M.ApplicationOperationInfo,
         },
         NextToken = {
             type = "string",
@@ -3216,7 +2940,7 @@ M.ListApplicationsInput = {
     type = "structure",
     members = {
         Limit = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3229,7 +2953,7 @@ M.ListApplicationsOutput = {
     members = {
         ApplicationSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ApplicationSummary,
             traits = {
                 required = true,
             },
@@ -3250,7 +2974,7 @@ M.ListApplicationSnapshotsInput = {
             },
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3263,7 +2987,7 @@ M.ListApplicationSnapshotsOutput = {
     members = {
         SnapshotSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.SnapshotDetails,
         },
         NextToken = {
             type = "string",
@@ -3281,7 +3005,7 @@ M.ListApplicationVersionsInput = {
             },
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3294,7 +3018,7 @@ M.ListApplicationVersionsOutput = {
     members = {
         ApplicationVersionSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ApplicationVersionSummary,
         },
         NextToken = {
             type = "string",
@@ -3319,7 +3043,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3334,7 +3058,7 @@ M.RollbackApplicationInput = {
             },
         },
         CurrentApplicationVersionId = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -3345,12 +3069,9 @@ M.RollbackApplicationInput = {
 M.RollbackApplicationOutput = {
     type = "structure",
     members = {
-        ApplicationDetail = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ApplicationDetail = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ApplicationDetail }),
         OperationId = {
             type = "string",
         },
@@ -3366,28 +3087,21 @@ M.SqlRunConfiguration = {
                 required = true,
             },
         },
-        InputStartingPositionConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InputStartingPositionConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InputStartingPositionConfiguration }),
     },
 }
 
 M.RunConfiguration = {
     type = "structure",
     members = {
-        FlinkRunConfiguration = {
-            type = "structure",
-        },
+        FlinkRunConfiguration = M.FlinkRunConfiguration,
         SqlRunConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.SqlRunConfiguration,
         },
-        ApplicationRestoreConfiguration = {
-            type = "structure",
-        },
+        ApplicationRestoreConfiguration = M.ApplicationRestoreConfiguration,
     },
 }
 
@@ -3400,9 +3114,7 @@ M.StartApplicationInput = {
                 required = true,
             },
         },
-        RunConfiguration = {
-            type = "structure",
-        },
+        RunConfiguration = M.RunConfiguration,
     },
 }
 
@@ -3450,7 +3162,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -3473,7 +3185,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3488,12 +3200,8 @@ M.UntagResourceOutput = {
 M.RunConfigurationUpdate = {
     type = "structure",
     members = {
-        FlinkRunConfiguration = {
-            type = "structure",
-        },
-        ApplicationRestoreConfiguration = {
-            type = "structure",
-        },
+        FlinkRunConfiguration = M.FlinkRunConfiguration,
+        ApplicationRestoreConfiguration = M.ApplicationRestoreConfiguration,
     },
 }
 
@@ -3507,20 +3215,16 @@ M.UpdateApplicationInput = {
             },
         },
         CurrentApplicationVersionId = {
-            type = "number",
+            type = "long",
         },
-        ApplicationConfigurationUpdate = {
-            type = "structure",
-        },
+        ApplicationConfigurationUpdate = M.ApplicationConfigurationUpdate,
         ServiceExecutionRoleUpdate = {
             type = "string",
         },
-        RunConfigurationUpdate = {
-            type = "structure",
-        },
+        RunConfigurationUpdate = M.RunConfigurationUpdate,
         CloudWatchLoggingOptionUpdates = {
             type = "list",
-            member_type = "structure",
+            member = M.CloudWatchLoggingOptionUpdate,
         },
         ConditionalToken = {
             type = "string",
@@ -3534,12 +3238,9 @@ M.UpdateApplicationInput = {
 M.UpdateApplicationOutput = {
     type = "structure",
     members = {
-        ApplicationDetail = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ApplicationDetail = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ApplicationDetail }),
         OperationId = {
             type = "string",
         },
@@ -3555,12 +3256,9 @@ M.UpdateApplicationMaintenanceConfigurationInput = {
                 required = true,
             },
         },
-        ApplicationMaintenanceConfigurationUpdate = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ApplicationMaintenanceConfigurationUpdate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ApplicationMaintenanceConfigurationUpdate }),
     },
 }
 
@@ -3570,9 +3268,7 @@ M.UpdateApplicationMaintenanceConfigurationOutput = {
         ApplicationARN = {
             type = "string",
         },
-        ApplicationMaintenanceConfigurationDescription = {
-            type = "structure",
-        },
+        ApplicationMaintenanceConfigurationDescription = M.ApplicationMaintenanceConfigurationDescription,
     },
 }
 

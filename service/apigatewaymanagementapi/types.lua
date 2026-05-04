@@ -74,12 +74,9 @@ M.GetConnectionOutput = {
                 json_name = "connectedAt",
             },
         },
-        Identity = {
-            type = "structure",
-            traits = {
-                json_name = "identity",
-            },
-        },
+        Identity = setmetatable({ traits = {
+            json_name = "identity",
+        } }, { __index = M.Identity }),
         LastActiveAt = {
             type = "timestamp",
             traits = {

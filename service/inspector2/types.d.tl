@@ -2489,6 +2489,22 @@ local record ValidationException
     fields: {ValidationExceptionField}
 end
 
+local type CisScanResultDetailsSortBy = "CHECK_ID" | "STATUS"
+
+local type IntegrationType = "GITLAB_SELF_MANAGED" | "GITHUB"
+
+local type CisScanConfigurationsSortBy = "SCAN_NAME" | "SCAN_CONFIGURATION_ARN"
+
+local type CisScanResultsAggregatedByTargetResourceSortBy = "RESOURCE_ID" | "FAILED_COUNTS" | "ACCOUNT_ID" | "PLATFORM" | "TARGET_STATUS" | "TARGET_STATUS_REASON"
+
+local type ListCisScansDetailLevel = "ORGANIZATION" | "MEMBER"
+
+local type CisSortOrder = "ASC" | "DESC"
+
+local type CisScanResultsAggregatedByChecksSortBy = "CHECK_ID" | "TITLE" | "PLATFORM" | "FAILED_COUNTS" | "SECURITY_LEVEL"
+
+local type ListCisScansSortBy = "STATUS" | "SCHEDULED_BY" | "SCAN_START_DATE" | "FAILED_CHECKS"
+
 local type CodeScanStatus = "IN_PROGRESS" | "SUCCESSFUL" | "FAILED" | "SKIPPED"
 
 local type CisReportStatus = "SUCCEEDED" | "FAILED" | "IN_PROGRESS"
@@ -2497,25 +2513,9 @@ local type CisReportFormat = "PDF" | "CSV"
 
 local type IntegrationStatus = "PENDING" | "IN_PROGRESS" | "ACTIVE" | "INACTIVE" | "DISABLING"
 
-local type CisSecurityLevel = "LEVEL_1" | "LEVEL_2"
-
 local type ConfigurationLevel = "ORGANIZATION" | "ACCOUNT"
 
-local type CisScanResultDetailsSortBy = "CHECK_ID" | "STATUS"
-
-local type CisScanConfigurationsSortBy = "SCAN_NAME" | "SCAN_CONFIGURATION_ARN"
-
-local type CisScanResultsAggregatedByTargetResourceSortBy = "RESOURCE_ID" | "FAILED_COUNTS" | "ACCOUNT_ID" | "PLATFORM" | "TARGET_STATUS" | "TARGET_STATUS_REASON"
-
-local type IntegrationType = "GITLAB_SELF_MANAGED" | "GITHUB"
-
-local type ListCisScansDetailLevel = "ORGANIZATION" | "MEMBER"
-
-local type CisScanResultsAggregatedByChecksSortBy = "CHECK_ID" | "TITLE" | "PLATFORM" | "FAILED_COUNTS" | "SECURITY_LEVEL"
-
-local type ListCisScansSortBy = "STATUS" | "SCHEDULED_BY" | "SCAN_START_DATE" | "FAILED_CHECKS"
-
-local type CisSortOrder = "ASC" | "DESC"
+local type CisSecurityLevel = "LEVEL_1" | "LEVEL_2"
 
 local record M
     AssociateMemberInput: AssociateMemberInput

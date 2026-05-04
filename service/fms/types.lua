@@ -13,13 +13,19 @@ M.AccountScope = {
     members = {
         Accounts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AllAccountsEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         ExcludeSpecifiedAccounts = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -51,6 +57,9 @@ M.AdminAccountSummary = {
         },
         DefaultAdmin = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Status = {
             type = "string",
@@ -63,13 +72,19 @@ M.OrganizationalUnitScope = {
     members = {
         OrganizationalUnits = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AllOrganizationalUnitsEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         ExcludeSpecifiedOrganizationalUnits = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -93,10 +108,13 @@ M.PolicyTypeScope = {
     members = {
         PolicyTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AllPolicyTypesEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -106,10 +124,13 @@ M.RegionScope = {
     members = {
         Regions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AllRegionsEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -117,18 +138,10 @@ M.RegionScope = {
 M.AdminScope = {
     type = "structure",
     members = {
-        AccountScope = {
-            type = "structure",
-        },
-        OrganizationalUnitScope = {
-            type = "structure",
-        },
-        RegionScope = {
-            type = "structure",
-        },
-        PolicyTypeScope = {
-            type = "structure",
-        },
+        AccountScope = M.AccountScope,
+        OrganizationalUnitScope = M.OrganizationalUnitScope,
+        RegionScope = M.RegionScope,
+        PolicyTypeScope = M.PolicyTypeScope,
     },
 }
 
@@ -148,7 +161,7 @@ M.App = {
             },
         },
         Port = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -179,15 +192,15 @@ M.AppsListData = {
         },
         AppsList = {
             type = "list",
-            member_type = "structure",
+            member = M.App,
             traits = {
                 required = true,
             },
         },
         PreviousAppsList = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
     },
 }
@@ -206,7 +219,7 @@ M.AppsListDataSummary = {
         },
         AppsList = {
             type = "list",
-            member_type = "structure",
+            member = M.App,
         },
     },
 }
@@ -319,7 +332,7 @@ M.AwsEc2NetworkInterfaceViolation = {
         },
         ViolatingSecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -332,7 +345,7 @@ M.AwsEc2InstanceViolation = {
         },
         AwsEc2NetworkInterfaceViolations = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEc2NetworkInterfaceViolation,
         },
     },
 }
@@ -348,7 +361,7 @@ M.BatchAssociateResourceInput = {
         },
         Items = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -388,7 +401,7 @@ M.BatchAssociateResourceOutput = {
         },
         FailedItems = {
             type = "list",
-            member_type = "structure",
+            member = M.FailedItem,
             traits = {
                 required = true,
             },
@@ -407,7 +420,7 @@ M.BatchDisassociateResourceInput = {
         },
         Items = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -426,7 +439,7 @@ M.BatchDisassociateResourceOutput = {
         },
         FailedItems = {
             type = "list",
-            member_type = "structure",
+            member = M.FailedItem,
             traits = {
                 required = true,
             },
@@ -469,6 +482,9 @@ M.DeletePolicyInput = {
         },
         DeleteAllPolicyResources = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -569,9 +585,7 @@ M.GetAdminScopeInput = {
 M.GetAdminScopeOutput = {
     type = "structure",
     members = {
-        AdminScope = {
-            type = "structure",
-        },
+        AdminScope = M.AdminScope,
         Status = {
             type = "string",
         },
@@ -589,6 +603,9 @@ M.GetAppsListInput = {
         },
         DefaultList = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -596,9 +613,7 @@ M.GetAppsListInput = {
 M.GetAppsListOutput = {
     type = "structure",
     members = {
-        AppsList = {
-            type = "structure",
-        },
+        AppsList = M.AppsListData,
         AppsListArn = {
             type = "string",
         },
@@ -677,8 +692,8 @@ M.ComplianceViolator = {
         },
         Metadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -697,18 +712,21 @@ M.PolicyComplianceDetail = {
         },
         Violators = {
             type = "list",
-            member_type = "structure",
+            member = M.ComplianceViolator,
         },
         EvaluationLimitExceeded = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         ExpiredAt = {
             type = "timestamp",
         },
         IssueInfoMap = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -716,9 +734,7 @@ M.PolicyComplianceDetail = {
 M.GetComplianceDetailOutput = {
     type = "structure",
     members = {
-        PolicyComplianceDetail = {
-            type = "structure",
-        },
+        PolicyComplianceDetail = M.PolicyComplianceDetail,
     },
 }
 
@@ -784,10 +800,10 @@ M.NetworkAclIcmpTypeCode = {
     type = "structure",
     members = {
         Code = {
-            type = "number",
+            type = "integer",
         },
         Type = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -796,10 +812,10 @@ M.NetworkAclPortRange = {
     type = "structure",
     members = {
         From = {
-            type = "number",
+            type = "integer",
         },
         To = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -812,18 +828,14 @@ M.NetworkAclRuleAction = {
 M.NetworkAclEntry = {
     type = "structure",
     members = {
-        IcmpTypeCode = {
-            type = "structure",
-        },
+        IcmpTypeCode = M.NetworkAclIcmpTypeCode,
         Protocol = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        PortRange = {
-            type = "structure",
-        },
+        PortRange = M.NetworkAclPortRange,
         CidrBlock = {
             type = "string",
         },
@@ -850,7 +862,7 @@ M.NetworkAclEntrySet = {
     members = {
         FirstEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkAclEntry,
         },
         ForceRemediateForFirstEntries = {
             type = "boolean",
@@ -860,7 +872,7 @@ M.NetworkAclEntrySet = {
         },
         LastEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkAclEntry,
         },
         ForceRemediateForLastEntries = {
             type = "boolean",
@@ -874,12 +886,9 @@ M.NetworkAclEntrySet = {
 M.NetworkAclCommonPolicy = {
     type = "structure",
     members = {
-        NetworkAclEntrySet = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        NetworkAclEntrySet = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.NetworkAclEntrySet }),
     },
 }
 
@@ -909,15 +918,9 @@ M.ThirdPartyFirewallPolicy = {
 M.PolicyOption = {
     type = "structure",
     members = {
-        NetworkFirewallPolicy = {
-            type = "structure",
-        },
-        ThirdPartyFirewallPolicy = {
-            type = "structure",
-        },
-        NetworkAclCommonPolicy = {
-            type = "structure",
-        },
+        NetworkFirewallPolicy = M.NetworkFirewallPolicy,
+        ThirdPartyFirewallPolicy = M.ThirdPartyFirewallPolicy,
+        NetworkAclCommonPolicy = M.NetworkAclCommonPolicy,
     },
 }
 
@@ -933,9 +936,7 @@ M.SecurityServicePolicyData = {
         ManagedServiceData = {
             type = "string",
         },
-        PolicyOption = {
-            type = "structure",
-        },
+        PolicyOption = M.PolicyOption,
     },
 }
 
@@ -954,12 +955,9 @@ M.Policy = {
         PolicyUpdateToken = {
             type = "string",
         },
-        SecurityServicePolicyData = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SecurityServicePolicyData = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SecurityServicePolicyData }),
         ResourceType = {
             type = "string",
             traits = {
@@ -968,40 +966,45 @@ M.Policy = {
         },
         ResourceTypeList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
         },
         ExcludeResourceTags = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
         RemediationEnabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
         DeleteUnusedFMManagedResources = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         IncludeMap = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         ExcludeMap = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         ResourceSetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         PolicyDescription = {
             type = "string",
@@ -1018,9 +1021,7 @@ M.Policy = {
 M.GetPolicyOutput = {
     type = "structure",
     members = {
-        Policy = {
-            type = "structure",
-        },
+        Policy = M.Policy,
         PolicyArn = {
             type = "string",
         },
@@ -1059,7 +1060,7 @@ M.GetProtectionStatusInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1093,6 +1094,9 @@ M.GetProtocolsListInput = {
         },
         DefaultList = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1120,15 +1124,15 @@ M.ProtocolsListData = {
         },
         ProtocolsList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         PreviousProtocolsList = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
     },
 }
@@ -1136,9 +1140,7 @@ M.ProtocolsListData = {
 M.GetProtocolsListOutput = {
     type = "structure",
     members = {
-        ProtocolsList = {
-            type = "structure",
-        },
+        ProtocolsList = M.ProtocolsListData,
         ProtocolsListArn = {
             type = "string",
         },
@@ -1182,7 +1184,7 @@ M.ResourceSet = {
         },
         ResourceTypeList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1199,12 +1201,9 @@ M.ResourceSet = {
 M.GetResourceSetOutput = {
     type = "structure",
     members = {
-        ResourceSet = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ResourceSet = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResourceSet }),
         ResourceSetArn = {
             type = "string",
             traits = {
@@ -1300,7 +1299,7 @@ M.PartialMatch = {
         },
         TargetViolationReasons = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1326,10 +1325,10 @@ M.SecurityGroupRuleDescription = {
             type = "string",
         },
         FromPort = {
-            type = "number",
+            type = "long",
         },
         ToPort = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1343,11 +1342,12 @@ M.SecurityGroupRemediationAction = {
         Description = {
             type = "string",
         },
-        RemediationResult = {
-            type = "structure",
-        },
+        RemediationResult = M.SecurityGroupRuleDescription,
         IsDefaultAction = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1363,11 +1363,11 @@ M.AwsVPCSecurityGroupViolation = {
         },
         PartialMatches = {
             type = "list",
-            member_type = "structure",
+            member = M.PartialMatch,
         },
         PossibleSecurityGroupRemediationActions = {
             type = "list",
-            member_type = "structure",
+            member = M.SecurityGroupRemediationAction,
         },
     },
 }
@@ -1394,7 +1394,10 @@ M.DnsRuleGroupLimitExceededViolation = {
             type = "string",
         },
         NumberOfRuleGroupsAlreadyAssociated = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1409,14 +1412,17 @@ M.DnsRuleGroupPriorityConflictViolation = {
             type = "string",
         },
         ConflictingPriority = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         ConflictingPolicyId = {
             type = "string",
         },
         UnavailablePriorities = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
         },
     },
 }
@@ -1469,11 +1475,12 @@ M.EntryType = {
 M.EntryDescription = {
     type = "structure",
     members = {
-        EntryDetail = {
-            type = "structure",
-        },
+        EntryDetail = M.NetworkAclEntry,
         EntryRuleNumber = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         EntryType = {
             type = "string",
@@ -1490,25 +1497,21 @@ M.EntryViolationReason = {
 M.EntryViolation = {
     type = "structure",
     members = {
-        ExpectedEntry = {
-            type = "structure",
-        },
+        ExpectedEntry = M.EntryDescription,
         ExpectedEvaluationOrder = {
             type = "string",
         },
         ActualEvaluationOrder = {
             type = "string",
         },
-        EntryAtExpectedEvaluationOrder = {
-            type = "structure",
-        },
+        EntryAtExpectedEvaluationOrder = M.EntryDescription,
         EntriesWithConflicts = {
             type = "list",
-            member_type = "structure",
+            member = M.EntryDescription,
         },
         EntryViolationReasons = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1530,7 +1533,7 @@ M.InvalidNetworkAclEntriesViolation = {
         },
         EntryViolations = {
             type = "list",
-            member_type = "structure",
+            member = M.EntryViolation,
         },
     },
 }
@@ -1586,7 +1589,7 @@ M.NetworkFirewallBlackHoleRouteDetectedViolation = {
         },
         ViolatingRoutes = {
             type = "list",
-            member_type = "structure",
+            member = M.Route,
         },
     },
 }
@@ -1605,11 +1608,11 @@ M.ExpectedRoute = {
         },
         ContributingSubnets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AllowedTargets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RouteTableId = {
             type = "string",
@@ -1631,10 +1634,13 @@ M.NetworkFirewallInternetTrafficNotInspectedViolation = {
         },
         ViolatingRoutes = {
             type = "list",
-            member_type = "structure",
+            member = M.Route,
         },
         IsRouteTableUsedInDifferentAZ = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         CurrentFirewallSubnetRouteTable = {
             type = "string",
@@ -1647,11 +1653,11 @@ M.NetworkFirewallInternetTrafficNotInspectedViolation = {
         },
         ExpectedFirewallSubnetRoutes = {
             type = "list",
-            member_type = "structure",
+            member = M.ExpectedRoute,
         },
         ActualFirewallSubnetRoutes = {
             type = "list",
-            member_type = "structure",
+            member = M.Route,
         },
         InternetGatewayId = {
             type = "string",
@@ -1661,11 +1667,11 @@ M.NetworkFirewallInternetTrafficNotInspectedViolation = {
         },
         ExpectedInternetGatewayRoutes = {
             type = "list",
-            member_type = "structure",
+            member = M.ExpectedRoute,
         },
         ActualInternetGatewayRoutes = {
             type = "list",
-            member_type = "structure",
+            member = M.Route,
         },
         VpcId = {
             type = "string",
@@ -1678,17 +1684,18 @@ M.NetworkFirewallInvalidRouteConfigurationViolation = {
     members = {
         AffectedSubnets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RouteTableId = {
             type = "string",
         },
         IsRouteTableUsedInDifferentAZ = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        ViolatingRoute = {
-            type = "structure",
-        },
+        ViolatingRoute = M.Route,
         CurrentFirewallSubnetRouteTable = {
             type = "string",
         },
@@ -1706,11 +1713,11 @@ M.NetworkFirewallInvalidRouteConfigurationViolation = {
         },
         ExpectedFirewallSubnetRoutes = {
             type = "list",
-            member_type = "structure",
+            member = M.ExpectedRoute,
         },
         ActualFirewallSubnetRoutes = {
             type = "list",
-            member_type = "structure",
+            member = M.Route,
         },
         InternetGatewayId = {
             type = "string",
@@ -1720,11 +1727,11 @@ M.NetworkFirewallInvalidRouteConfigurationViolation = {
         },
         ExpectedInternetGatewayRoutes = {
             type = "list",
-            member_type = "structure",
+            member = M.ExpectedRoute,
         },
         ActualInternetGatewayRoutes = {
             type = "list",
-            member_type = "structure",
+            member = M.Route,
         },
         VpcId = {
             type = "string",
@@ -1740,7 +1747,7 @@ M.NetworkFirewallMissingExpectedRoutesViolation = {
         },
         ExpectedRoutes = {
             type = "list",
-            member_type = "structure",
+            member = M.ExpectedRoute,
         },
         VpcId = {
             type = "string",
@@ -1852,11 +1859,9 @@ M.StatefulRuleGroup = {
             type = "string",
         },
         Priority = {
-            type = "number",
+            type = "integer",
         },
-        Override = {
-            type = "structure",
-        },
+        Override = M.NetworkFirewallStatefulRuleGroupOverride,
     },
 }
 
@@ -1870,7 +1875,7 @@ M.StatelessRuleGroup = {
             type = "string",
         },
         Priority = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1880,31 +1885,29 @@ M.NetworkFirewallPolicyDescription = {
     members = {
         StatelessRuleGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.StatelessRuleGroup,
         },
         StatelessDefaultActions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         StatelessFragmentDefaultActions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         StatelessCustomActions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         StatefulRuleGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.StatefulRuleGroup,
         },
         StatefulDefaultActions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        StatefulEngineOptions = {
-            type = "structure",
-        },
+        StatefulEngineOptions = M.StatefulEngineOptions,
     },
 }
 
@@ -1914,12 +1917,8 @@ M.NetworkFirewallPolicyModifiedViolation = {
         ViolationTarget = {
             type = "string",
         },
-        CurrentPolicyDescription = {
-            type = "structure",
-        },
-        ExpectedPolicyDescription = {
-            type = "structure",
-        },
+        CurrentPolicyDescription = M.NetworkFirewallPolicyDescription,
+        ExpectedPolicyDescription = M.NetworkFirewallPolicyDescription,
     },
 }
 
@@ -1931,7 +1930,7 @@ M.NetworkFirewallUnexpectedFirewallRoutesViolation = {
         },
         ViolatingRoutes = {
             type = "list",
-            member_type = "structure",
+            member = M.Route,
         },
         RouteTableId = {
             type = "string",
@@ -1953,7 +1952,7 @@ M.NetworkFirewallUnexpectedGatewayRoutesViolation = {
         },
         ViolatingRoutes = {
             type = "list",
-            member_type = "structure",
+            member = M.Route,
         },
         RouteTableId = {
             type = "string",
@@ -1970,11 +1969,12 @@ M.CreateNetworkAclAction = {
         Description = {
             type = "string",
         },
-        Vpc = {
-            type = "structure",
-        },
+        Vpc = M.ActionTarget,
         FMSCanRemediate = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1985,15 +1985,16 @@ M.CreateNetworkAclEntriesAction = {
         Description = {
             type = "string",
         },
-        NetworkAclId = {
-            type = "structure",
-        },
+        NetworkAclId = M.ActionTarget,
         NetworkAclEntriesToBeCreated = {
             type = "list",
-            member_type = "structure",
+            member = M.EntryDescription,
         },
         FMSCanRemediate = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -2004,15 +2005,16 @@ M.DeleteNetworkAclEntriesAction = {
         Description = {
             type = "string",
         },
-        NetworkAclId = {
-            type = "structure",
-        },
+        NetworkAclId = M.ActionTarget,
         NetworkAclEntriesToBeDeleted = {
             type = "list",
-            member_type = "structure",
+            member = M.EntryDescription,
         },
         FMSCanRemediate = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -2023,18 +2025,11 @@ M.EC2AssociateRouteTableAction = {
         Description = {
             type = "string",
         },
-        RouteTableId = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        SubnetId = {
-            type = "structure",
-        },
-        GatewayId = {
-            type = "structure",
-        },
+        RouteTableId = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActionTarget }),
+        SubnetId = M.ActionTarget,
+        GatewayId = M.ActionTarget,
     },
 }
 
@@ -2044,18 +2039,12 @@ M.EC2CopyRouteTableAction = {
         Description = {
             type = "string",
         },
-        VpcId = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        RouteTableId = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        VpcId = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActionTarget }),
+        RouteTableId = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActionTarget }),
     },
 }
 
@@ -2074,18 +2063,11 @@ M.EC2CreateRouteAction = {
         DestinationIpv6CidrBlock = {
             type = "string",
         },
-        VpcEndpointId = {
-            type = "structure",
-        },
-        GatewayId = {
-            type = "structure",
-        },
-        RouteTableId = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        VpcEndpointId = M.ActionTarget,
+        GatewayId = M.ActionTarget,
+        RouteTableId = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActionTarget }),
     },
 }
 
@@ -2095,12 +2077,9 @@ M.EC2CreateRouteTableAction = {
         Description = {
             type = "string",
         },
-        VpcId = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        VpcId = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActionTarget }),
     },
 }
 
@@ -2119,12 +2098,9 @@ M.EC2DeleteRouteAction = {
         DestinationIpv6CidrBlock = {
             type = "string",
         },
-        RouteTableId = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RouteTableId = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActionTarget }),
     },
 }
 
@@ -2143,15 +2119,10 @@ M.EC2ReplaceRouteAction = {
         DestinationIpv6CidrBlock = {
             type = "string",
         },
-        GatewayId = {
-            type = "structure",
-        },
-        RouteTableId = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        GatewayId = M.ActionTarget,
+        RouteTableId = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActionTarget }),
     },
 }
 
@@ -2161,18 +2132,12 @@ M.EC2ReplaceRouteTableAssociationAction = {
         Description = {
             type = "string",
         },
-        AssociationId = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        RouteTableId = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AssociationId = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActionTarget }),
+        RouteTableId = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActionTarget }),
     },
 }
 
@@ -2194,14 +2159,13 @@ M.ReplaceNetworkAclAssociationAction = {
         Description = {
             type = "string",
         },
-        AssociationId = {
-            type = "structure",
-        },
-        NetworkAclId = {
-            type = "structure",
-        },
+        AssociationId = M.ActionTarget,
+        NetworkAclId = M.ActionTarget,
         FMSCanRemediate = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -2212,53 +2176,30 @@ M.RemediationAction = {
         Description = {
             type = "string",
         },
-        EC2CreateRouteAction = {
-            type = "structure",
-        },
-        EC2ReplaceRouteAction = {
-            type = "structure",
-        },
-        EC2DeleteRouteAction = {
-            type = "structure",
-        },
-        EC2CopyRouteTableAction = {
-            type = "structure",
-        },
-        EC2ReplaceRouteTableAssociationAction = {
-            type = "structure",
-        },
-        EC2AssociateRouteTableAction = {
-            type = "structure",
-        },
-        EC2CreateRouteTableAction = {
-            type = "structure",
-        },
-        FMSPolicyUpdateFirewallCreationConfigAction = {
-            type = "structure",
-        },
-        CreateNetworkAclAction = {
-            type = "structure",
-        },
-        ReplaceNetworkAclAssociationAction = {
-            type = "structure",
-        },
-        CreateNetworkAclEntriesAction = {
-            type = "structure",
-        },
-        DeleteNetworkAclEntriesAction = {
-            type = "structure",
-        },
+        EC2CreateRouteAction = M.EC2CreateRouteAction,
+        EC2ReplaceRouteAction = M.EC2ReplaceRouteAction,
+        EC2DeleteRouteAction = M.EC2DeleteRouteAction,
+        EC2CopyRouteTableAction = M.EC2CopyRouteTableAction,
+        EC2ReplaceRouteTableAssociationAction = M.EC2ReplaceRouteTableAssociationAction,
+        EC2AssociateRouteTableAction = M.EC2AssociateRouteTableAction,
+        EC2CreateRouteTableAction = M.EC2CreateRouteTableAction,
+        FMSPolicyUpdateFirewallCreationConfigAction = M.FMSPolicyUpdateFirewallCreationConfigAction,
+        CreateNetworkAclAction = M.CreateNetworkAclAction,
+        ReplaceNetworkAclAssociationAction = M.ReplaceNetworkAclAssociationAction,
+        CreateNetworkAclEntriesAction = M.CreateNetworkAclEntriesAction,
+        DeleteNetworkAclEntriesAction = M.DeleteNetworkAclEntriesAction,
     },
 }
 
 M.RemediationActionWithOrder = {
     type = "structure",
     members = {
-        RemediationAction = {
-            type = "structure",
-        },
+        RemediationAction = M.RemediationAction,
         Order = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2271,13 +2212,16 @@ M.PossibleRemediationAction = {
         },
         OrderedRemediationActions = {
             type = "list",
-            member_type = "structure",
+            member = M.RemediationActionWithOrder,
             traits = {
                 required = true,
             },
         },
         IsDefaultAction = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -2290,7 +2234,7 @@ M.PossibleRemediationActions = {
         },
         Actions = {
             type = "list",
-            member_type = "structure",
+            member = M.PossibleRemediationAction,
         },
     },
 }
@@ -2309,7 +2253,7 @@ M.RouteHasOutOfScopeEndpointViolation = {
         },
         ViolatingRoutes = {
             type = "list",
-            member_type = "structure",
+            member = M.Route,
         },
         SubnetAvailabilityZone = {
             type = "string",
@@ -2325,7 +2269,7 @@ M.RouteHasOutOfScopeEndpointViolation = {
         },
         FirewallSubnetRoutes = {
             type = "list",
-            member_type = "structure",
+            member = M.Route,
         },
         InternetGatewayId = {
             type = "string",
@@ -2335,7 +2279,7 @@ M.RouteHasOutOfScopeEndpointViolation = {
         },
         InternetGatewayRoutes = {
             type = "list",
-            member_type = "structure",
+            member = M.Route,
         },
     },
 }
@@ -2417,7 +2361,7 @@ M.WebACLHasOutOfScopeResourcesViolation = {
         },
         OutOfScopeResourceList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2425,84 +2369,32 @@ M.WebACLHasOutOfScopeResourcesViolation = {
 M.ResourceViolation = {
     type = "structure",
     members = {
-        AwsVPCSecurityGroupViolation = {
-            type = "structure",
-        },
-        AwsEc2NetworkInterfaceViolation = {
-            type = "structure",
-        },
-        AwsEc2InstanceViolation = {
-            type = "structure",
-        },
-        NetworkFirewallMissingFirewallViolation = {
-            type = "structure",
-        },
-        NetworkFirewallMissingSubnetViolation = {
-            type = "structure",
-        },
-        NetworkFirewallMissingExpectedRTViolation = {
-            type = "structure",
-        },
-        NetworkFirewallPolicyModifiedViolation = {
-            type = "structure",
-        },
-        NetworkFirewallInternetTrafficNotInspectedViolation = {
-            type = "structure",
-        },
-        NetworkFirewallInvalidRouteConfigurationViolation = {
-            type = "structure",
-        },
-        NetworkFirewallBlackHoleRouteDetectedViolation = {
-            type = "structure",
-        },
-        NetworkFirewallUnexpectedFirewallRoutesViolation = {
-            type = "structure",
-        },
-        NetworkFirewallUnexpectedGatewayRoutesViolation = {
-            type = "structure",
-        },
-        NetworkFirewallMissingExpectedRoutesViolation = {
-            type = "structure",
-        },
-        DnsRuleGroupPriorityConflictViolation = {
-            type = "structure",
-        },
-        DnsDuplicateRuleGroupViolation = {
-            type = "structure",
-        },
-        DnsRuleGroupLimitExceededViolation = {
-            type = "structure",
-        },
-        FirewallSubnetIsOutOfScopeViolation = {
-            type = "structure",
-        },
-        RouteHasOutOfScopeEndpointViolation = {
-            type = "structure",
-        },
-        ThirdPartyFirewallMissingFirewallViolation = {
-            type = "structure",
-        },
-        ThirdPartyFirewallMissingSubnetViolation = {
-            type = "structure",
-        },
-        ThirdPartyFirewallMissingExpectedRouteTableViolation = {
-            type = "structure",
-        },
-        FirewallSubnetMissingVPCEndpointViolation = {
-            type = "structure",
-        },
-        InvalidNetworkAclEntriesViolation = {
-            type = "structure",
-        },
-        PossibleRemediationActions = {
-            type = "structure",
-        },
-        WebACLHasIncompatibleConfigurationViolation = {
-            type = "structure",
-        },
-        WebACLHasOutOfScopeResourcesViolation = {
-            type = "structure",
-        },
+        AwsVPCSecurityGroupViolation = M.AwsVPCSecurityGroupViolation,
+        AwsEc2NetworkInterfaceViolation = M.AwsEc2NetworkInterfaceViolation,
+        AwsEc2InstanceViolation = M.AwsEc2InstanceViolation,
+        NetworkFirewallMissingFirewallViolation = M.NetworkFirewallMissingFirewallViolation,
+        NetworkFirewallMissingSubnetViolation = M.NetworkFirewallMissingSubnetViolation,
+        NetworkFirewallMissingExpectedRTViolation = M.NetworkFirewallMissingExpectedRTViolation,
+        NetworkFirewallPolicyModifiedViolation = M.NetworkFirewallPolicyModifiedViolation,
+        NetworkFirewallInternetTrafficNotInspectedViolation = M.NetworkFirewallInternetTrafficNotInspectedViolation,
+        NetworkFirewallInvalidRouteConfigurationViolation = M.NetworkFirewallInvalidRouteConfigurationViolation,
+        NetworkFirewallBlackHoleRouteDetectedViolation = M.NetworkFirewallBlackHoleRouteDetectedViolation,
+        NetworkFirewallUnexpectedFirewallRoutesViolation = M.NetworkFirewallUnexpectedFirewallRoutesViolation,
+        NetworkFirewallUnexpectedGatewayRoutesViolation = M.NetworkFirewallUnexpectedGatewayRoutesViolation,
+        NetworkFirewallMissingExpectedRoutesViolation = M.NetworkFirewallMissingExpectedRoutesViolation,
+        DnsRuleGroupPriorityConflictViolation = M.DnsRuleGroupPriorityConflictViolation,
+        DnsDuplicateRuleGroupViolation = M.DnsDuplicateRuleGroupViolation,
+        DnsRuleGroupLimitExceededViolation = M.DnsRuleGroupLimitExceededViolation,
+        FirewallSubnetIsOutOfScopeViolation = M.FirewallSubnetIsOutOfScopeViolation,
+        RouteHasOutOfScopeEndpointViolation = M.RouteHasOutOfScopeEndpointViolation,
+        ThirdPartyFirewallMissingFirewallViolation = M.ThirdPartyFirewallMissingFirewallViolation,
+        ThirdPartyFirewallMissingSubnetViolation = M.ThirdPartyFirewallMissingSubnetViolation,
+        ThirdPartyFirewallMissingExpectedRouteTableViolation = M.ThirdPartyFirewallMissingExpectedRouteTableViolation,
+        FirewallSubnetMissingVPCEndpointViolation = M.FirewallSubnetMissingVPCEndpointViolation,
+        InvalidNetworkAclEntriesViolation = M.InvalidNetworkAclEntriesViolation,
+        PossibleRemediationActions = M.PossibleRemediationActions,
+        WebACLHasIncompatibleConfigurationViolation = M.WebACLHasIncompatibleConfigurationViolation,
+        WebACLHasOutOfScopeResourcesViolation = M.WebACLHasOutOfScopeResourcesViolation,
     },
 }
 
@@ -2535,14 +2427,14 @@ M.ViolationDetail = {
         },
         ResourceViolations = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceViolation,
             traits = {
                 required = true,
             },
         },
         ResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ResourceDescription = {
             type = "string",
@@ -2553,9 +2445,7 @@ M.ViolationDetail = {
 M.GetViolationDetailsOutput = {
     type = "structure",
     members = {
-        ViolationDetail = {
-            type = "structure",
-        },
+        ViolationDetail = M.ViolationDetail,
     },
 }
 
@@ -2566,7 +2456,7 @@ M.ListAdminAccountsForOrganizationInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2576,7 +2466,7 @@ M.ListAdminAccountsForOrganizationOutput = {
     members = {
         AdminAccounts = {
             type = "list",
-            member_type = "structure",
+            member = M.AdminAccountSummary,
         },
         NextToken = {
             type = "string",
@@ -2591,7 +2481,7 @@ M.ListAdminsManagingAccountInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2601,7 +2491,7 @@ M.ListAdminsManagingAccountOutput = {
     members = {
         AdminAccounts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -2614,12 +2504,15 @@ M.ListAppsListsInput = {
     members = {
         DefaultLists = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -2632,7 +2525,7 @@ M.ListAppsListsOutput = {
     members = {
         AppsLists = {
             type = "list",
-            member_type = "structure",
+            member = M.AppsListDataSummary,
         },
         NextToken = {
             type = "string",
@@ -2653,7 +2546,7 @@ M.ListComplianceStatusInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2670,10 +2563,16 @@ M.EvaluationResult = {
             type = "string",
         },
         ViolatorCount = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         EvaluationLimitExceeded = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -2695,15 +2594,15 @@ M.PolicyComplianceStatus = {
         },
         EvaluationResults = {
             type = "list",
-            member_type = "structure",
+            member = M.EvaluationResult,
         },
         LastUpdated = {
             type = "timestamp",
         },
         IssueInfoMap = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2713,7 +2612,7 @@ M.ListComplianceStatusOutput = {
     members = {
         PolicyComplianceStatusList = {
             type = "list",
-            member_type = "structure",
+            member = M.PolicyComplianceStatus,
         },
         NextToken = {
             type = "string",
@@ -2726,7 +2625,7 @@ M.ListDiscoveredResourcesInput = {
     members = {
         MemberAccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2738,7 +2637,7 @@ M.ListDiscoveredResourcesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2769,7 +2668,7 @@ M.ListDiscoveredResourcesOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.DiscoveredResource,
         },
         NextToken = {
             type = "string",
@@ -2784,7 +2683,7 @@ M.ListMemberAccountsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2794,7 +2693,7 @@ M.ListMemberAccountsOutput = {
     members = {
         MemberAccounts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -2809,7 +2708,7 @@ M.ListPoliciesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2834,9 +2733,15 @@ M.PolicySummary = {
         },
         RemediationEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         DeleteUnusedFMManagedResources = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         PolicyStatus = {
             type = "string",
@@ -2849,7 +2754,7 @@ M.ListPoliciesOutput = {
     members = {
         PolicyList = {
             type = "list",
-            member_type = "structure",
+            member = M.PolicySummary,
         },
         NextToken = {
             type = "string",
@@ -2862,12 +2767,15 @@ M.ListProtocolsListsInput = {
     members = {
         DefaultLists = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -2889,7 +2797,7 @@ M.ProtocolsListDataSummary = {
         },
         ProtocolsList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2899,7 +2807,7 @@ M.ListProtocolsListsOutput = {
     members = {
         ProtocolsLists = {
             type = "list",
-            member_type = "structure",
+            member = M.ProtocolsListDataSummary,
         },
         NextToken = {
             type = "string",
@@ -2917,7 +2825,7 @@ M.ListResourceSetResourcesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2945,7 +2853,7 @@ M.ListResourceSetResourcesOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.Resource,
             traits = {
                 required = true,
             },
@@ -2963,7 +2871,7 @@ M.ListResourceSetsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2994,7 +2902,7 @@ M.ListResourceSetsOutput = {
     members = {
         ResourceSets = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceSetSummary,
         },
         NextToken = {
             type = "string",
@@ -3019,7 +2927,7 @@ M.ListTagsForResourceOutput = {
     members = {
         TagList = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3037,7 +2945,7 @@ M.ListThirdPartyFirewallFirewallPoliciesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -3062,7 +2970,7 @@ M.ListThirdPartyFirewallFirewallPoliciesOutput = {
     members = {
         ThirdPartyFirewallFirewallPolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.ThirdPartyFirewallFirewallPolicy,
         },
         NextToken = {
             type = "string",
@@ -3079,9 +2987,7 @@ M.PutAdminAccountInput = {
                 required = true,
             },
         },
-        AdminScope = {
-            type = "structure",
-        },
+        AdminScope = M.AdminScope,
     },
 }
 
@@ -3092,15 +2998,12 @@ M.PutAdminAccountOutput = {
 M.PutAppsListInput = {
     type = "structure",
     members = {
-        AppsList = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AppsList = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AppsListData }),
         TagList = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3108,9 +3011,7 @@ M.PutAppsListInput = {
 M.PutAppsListOutput = {
     type = "structure",
     members = {
-        AppsList = {
-            type = "structure",
-        },
+        AppsList = M.AppsListData,
         AppsListArn = {
             type = "string",
         },
@@ -3142,15 +3043,12 @@ M.PutNotificationChannelOutput = {
 M.PutPolicyInput = {
     type = "structure",
     members = {
-        Policy = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Policy = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Policy }),
         TagList = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3158,9 +3056,7 @@ M.PutPolicyInput = {
 M.PutPolicyOutput = {
     type = "structure",
     members = {
-        Policy = {
-            type = "structure",
-        },
+        Policy = M.Policy,
         PolicyArn = {
             type = "string",
         },
@@ -3170,15 +3066,12 @@ M.PutPolicyOutput = {
 M.PutProtocolsListInput = {
     type = "structure",
     members = {
-        ProtocolsList = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ProtocolsList = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProtocolsListData }),
         TagList = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3186,9 +3079,7 @@ M.PutProtocolsListInput = {
 M.PutProtocolsListOutput = {
     type = "structure",
     members = {
-        ProtocolsList = {
-            type = "structure",
-        },
+        ProtocolsList = M.ProtocolsListData,
         ProtocolsListArn = {
             type = "string",
         },
@@ -3198,15 +3089,12 @@ M.PutProtocolsListOutput = {
 M.PutResourceSetInput = {
     type = "structure",
     members = {
-        ResourceSet = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ResourceSet = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResourceSet }),
         TagList = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3214,12 +3102,9 @@ M.PutResourceSetInput = {
 M.PutResourceSetOutput = {
     type = "structure",
     members = {
-        ResourceSet = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ResourceSet = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResourceSet }),
         ResourceSetArn = {
             type = "string",
             traits = {
@@ -3240,7 +3125,7 @@ M.TagResourceInput = {
         },
         TagList = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -3263,7 +3148,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },

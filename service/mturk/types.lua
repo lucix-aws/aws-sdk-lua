@@ -10,7 +10,7 @@ M.AcceptQualificationRequestInput = {
             },
         },
         IntegerValue = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -131,7 +131,7 @@ M.AssociateQualificationWithWorkerInput = {
             },
         },
         IntegerValue = {
-            type = "number",
+            type = "integer",
         },
         SendNotification = {
             type = "boolean",
@@ -187,7 +187,7 @@ M.CreateAdditionalAssignmentsForHITInput = {
             },
         },
         NumberOfAdditionalAssignments = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -210,7 +210,7 @@ M.ParameterMapEntry = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -223,11 +223,11 @@ M.PolicyParameter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MapEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.ParameterMapEntry,
         },
     },
 }
@@ -243,7 +243,7 @@ M.ReviewPolicy = {
         },
         Parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.PolicyParameter,
         },
     },
 }
@@ -304,11 +304,11 @@ M.QualificationRequirement = {
         },
         IntegerValues = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
         },
         LocaleValues = {
             type = "list",
-            member_type = "structure",
+            member = M.Locale,
         },
         RequiredToPreview = {
             type = "boolean",
@@ -323,19 +323,19 @@ M.CreateHITInput = {
     type = "structure",
     members = {
         MaxAssignments = {
-            type = "number",
+            type = "integer",
         },
         AutoApprovalDelayInSeconds = {
-            type = "number",
+            type = "long",
         },
         LifetimeInSeconds = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         AssignmentDurationInSeconds = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -369,23 +369,19 @@ M.CreateHITInput = {
         },
         QualificationRequirements = {
             type = "list",
-            member_type = "structure",
+            member = M.QualificationRequirement,
         },
         UniqueRequestToken = {
             type = "string",
         },
-        AssignmentReviewPolicy = {
-            type = "structure",
-        },
-        HITReviewPolicy = {
-            type = "structure",
-        },
+        AssignmentReviewPolicy = M.ReviewPolicy,
+        HITReviewPolicy = M.ReviewPolicy,
         HITLayoutId = {
             type = "string",
         },
         HITLayoutParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.HITLayoutParameter,
         },
     },
 }
@@ -439,38 +435,38 @@ M.HIT = {
             type = "string",
         },
         MaxAssignments = {
-            type = "number",
+            type = "integer",
         },
         Reward = {
             type = "string",
         },
         AutoApprovalDelayInSeconds = {
-            type = "number",
+            type = "long",
         },
         Expiration = {
             type = "timestamp",
         },
         AssignmentDurationInSeconds = {
-            type = "number",
+            type = "long",
         },
         RequesterAnnotation = {
             type = "string",
         },
         QualificationRequirements = {
             type = "list",
-            member_type = "structure",
+            member = M.QualificationRequirement,
         },
         HITReviewStatus = {
             type = "string",
         },
         NumberOfAssignmentsPending = {
-            type = "number",
+            type = "integer",
         },
         NumberOfAssignmentsAvailable = {
-            type = "number",
+            type = "integer",
         },
         NumberOfAssignmentsCompleted = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -478,9 +474,7 @@ M.HIT = {
 M.CreateHITOutput = {
     type = "structure",
     members = {
-        HIT = {
-            type = "structure",
-        },
+        HIT = M.HIT,
     },
 }
 
@@ -488,10 +482,10 @@ M.CreateHITTypeInput = {
     type = "structure",
     members = {
         AutoApprovalDelayInSeconds = {
-            type = "number",
+            type = "long",
         },
         AssignmentDurationInSeconds = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -519,7 +513,7 @@ M.CreateHITTypeInput = {
         },
         QualificationRequirements = {
             type = "list",
-            member_type = "structure",
+            member = M.QualificationRequirement,
         },
     },
 }
@@ -543,10 +537,10 @@ M.CreateHITWithHITTypeInput = {
             },
         },
         MaxAssignments = {
-            type = "number",
+            type = "integer",
         },
         LifetimeInSeconds = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -560,18 +554,14 @@ M.CreateHITWithHITTypeInput = {
         UniqueRequestToken = {
             type = "string",
         },
-        AssignmentReviewPolicy = {
-            type = "structure",
-        },
-        HITReviewPolicy = {
-            type = "structure",
-        },
+        AssignmentReviewPolicy = M.ReviewPolicy,
+        HITReviewPolicy = M.ReviewPolicy,
         HITLayoutId = {
             type = "string",
         },
         HITLayoutParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.HITLayoutParameter,
         },
     },
 }
@@ -579,9 +569,7 @@ M.CreateHITWithHITTypeInput = {
 M.CreateHITWithHITTypeOutput = {
     type = "structure",
     members = {
-        HIT = {
-            type = "structure",
-        },
+        HIT = M.HIT,
     },
 }
 
@@ -615,7 +603,7 @@ M.CreateQualificationTypeInput = {
             },
         },
         RetryDelayInSeconds = {
-            type = "number",
+            type = "long",
         },
         Test = {
             type = "string",
@@ -624,13 +612,13 @@ M.CreateQualificationTypeInput = {
             type = "string",
         },
         TestDurationInSeconds = {
-            type = "number",
+            type = "long",
         },
         AutoGranted = {
             type = "boolean",
         },
         AutoGrantedValue = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -660,13 +648,13 @@ M.QualificationType = {
             type = "string",
         },
         TestDurationInSeconds = {
-            type = "number",
+            type = "long",
         },
         AnswerKey = {
             type = "string",
         },
         RetryDelayInSeconds = {
-            type = "number",
+            type = "long",
         },
         IsRequestable = {
             type = "boolean",
@@ -675,7 +663,7 @@ M.QualificationType = {
             type = "boolean",
         },
         AutoGrantedValue = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -683,9 +671,7 @@ M.QualificationType = {
 M.CreateQualificationTypeOutput = {
     type = "structure",
     members = {
-        QualificationType = {
-            type = "structure",
-        },
+        QualificationType = M.QualificationType,
     },
 }
 
@@ -833,12 +819,8 @@ M.GetAssignmentInput = {
 M.GetAssignmentOutput = {
     type = "structure",
     members = {
-        Assignment = {
-            type = "structure",
-        },
-        HIT = {
-            type = "structure",
-        },
+        Assignment = M.Assignment,
+        HIT = M.HIT,
     },
 }
 
@@ -884,9 +866,7 @@ M.GetHITInput = {
 M.GetHITOutput = {
     type = "structure",
     members = {
-        HIT = {
-            type = "structure",
-        },
+        HIT = M.HIT,
     },
 }
 
@@ -926,11 +906,9 @@ M.Qualification = {
             type = "timestamp",
         },
         IntegerValue = {
-            type = "number",
+            type = "integer",
         },
-        LocaleValue = {
-            type = "structure",
-        },
+        LocaleValue = M.Locale,
         Status = {
             type = "string",
         },
@@ -940,9 +918,7 @@ M.Qualification = {
 M.GetQualificationScoreOutput = {
     type = "structure",
     members = {
-        Qualification = {
-            type = "structure",
-        },
+        Qualification = M.Qualification,
     },
 }
 
@@ -961,9 +937,7 @@ M.GetQualificationTypeInput = {
 M.GetQualificationTypeOutput = {
     type = "structure",
     members = {
-        QualificationType = {
-            type = "structure",
-        },
+        QualificationType = M.QualificationType,
     },
 }
 
@@ -980,11 +954,11 @@ M.ListAssignmentsForHITInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         AssignmentStatuses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -996,11 +970,11 @@ M.ListAssignmentsForHITOutput = {
             type = "string",
         },
         NumResults = {
-            type = "number",
+            type = "integer",
         },
         Assignments = {
             type = "list",
-            member_type = "structure",
+            member = M.Assignment,
         },
     },
 }
@@ -1018,7 +992,7 @@ M.ListBonusPaymentsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1027,14 +1001,14 @@ M.ListBonusPaymentsOutput = {
     type = "structure",
     members = {
         NumResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         BonusPayments = {
             type = "list",
-            member_type = "structure",
+            member = M.BonusPayment,
         },
     },
 }
@@ -1046,7 +1020,7 @@ M.ListHITsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1058,11 +1032,11 @@ M.ListHITsOutput = {
             type = "string",
         },
         NumResults = {
-            type = "number",
+            type = "integer",
         },
         HITs = {
             type = "list",
-            member_type = "structure",
+            member = M.HIT,
         },
     },
 }
@@ -1080,7 +1054,7 @@ M.ListHITsForQualificationTypeInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1092,11 +1066,11 @@ M.ListHITsForQualificationTypeOutput = {
             type = "string",
         },
         NumResults = {
-            type = "number",
+            type = "integer",
         },
         HITs = {
             type = "list",
-            member_type = "structure",
+            member = M.HIT,
         },
     },
 }
@@ -1111,7 +1085,7 @@ M.ListQualificationRequestsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1144,14 +1118,14 @@ M.ListQualificationRequestsOutput = {
     type = "structure",
     members = {
         NumResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         QualificationRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.QualificationRequest,
         },
     },
 }
@@ -1175,7 +1149,7 @@ M.ListQualificationTypesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1184,14 +1158,14 @@ M.ListQualificationTypesOutput = {
     type = "structure",
     members = {
         NumResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         QualificationTypes = {
             type = "list",
-            member_type = "structure",
+            member = M.QualificationType,
         },
     },
 }
@@ -1214,7 +1188,7 @@ M.ListReviewableHITsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1226,11 +1200,11 @@ M.ListReviewableHITsOutput = {
             type = "string",
         },
         NumResults = {
-            type = "number",
+            type = "integer",
         },
         HITs = {
             type = "list",
-            member_type = "structure",
+            member = M.HIT,
         },
     },
 }
@@ -1251,7 +1225,7 @@ M.ListReviewPolicyResultsForHITInput = {
         },
         PolicyLevels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RetrieveActions = {
             type = "boolean",
@@ -1263,7 +1237,7 @@ M.ListReviewPolicyResultsForHITInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1334,11 +1308,11 @@ M.ReviewReport = {
     members = {
         ReviewResults = {
             type = "list",
-            member_type = "structure",
+            member = M.ReviewResultDetail,
         },
         ReviewActions = {
             type = "list",
-            member_type = "structure",
+            member = M.ReviewActionDetail,
         },
     },
 }
@@ -1349,18 +1323,10 @@ M.ListReviewPolicyResultsForHITOutput = {
         HITId = {
             type = "string",
         },
-        AssignmentReviewPolicy = {
-            type = "structure",
-        },
-        HITReviewPolicy = {
-            type = "structure",
-        },
-        AssignmentReviewReport = {
-            type = "structure",
-        },
-        HITReviewReport = {
-            type = "structure",
-        },
+        AssignmentReviewPolicy = M.ReviewPolicy,
+        HITReviewPolicy = M.ReviewPolicy,
+        AssignmentReviewReport = M.ReviewReport,
+        HITReviewReport = M.ReviewReport,
         NextToken = {
             type = "string",
         },
@@ -1374,7 +1340,7 @@ M.ListWorkerBlocksInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1398,11 +1364,11 @@ M.ListWorkerBlocksOutput = {
             type = "string",
         },
         NumResults = {
-            type = "number",
+            type = "integer",
         },
         WorkerBlocks = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkerBlock,
         },
     },
 }
@@ -1423,7 +1389,7 @@ M.ListWorkersWithQualificationTypeInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1435,11 +1401,11 @@ M.ListWorkersWithQualificationTypeOutput = {
             type = "string",
         },
         NumResults = {
-            type = "number",
+            type = "integer",
         },
         Qualifications = {
             type = "list",
-            member_type = "structure",
+            member = M.Qualification,
         },
     },
 }
@@ -1461,7 +1427,7 @@ M.NotifyWorkersInput = {
         },
         WorkerIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1494,7 +1460,7 @@ M.NotifyWorkersOutput = {
     members = {
         NotifyWorkersFailureStatuses = {
             type = "list",
-            member_type = "structure",
+            member = M.NotifyWorkersFailureStatus,
         },
     },
 }
@@ -1606,7 +1572,7 @@ M.NotificationSpecification = {
         },
         EventTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1617,12 +1583,9 @@ M.NotificationSpecification = {
 M.SendTestEventNotificationInput = {
     type = "structure",
     members = {
-        Notification = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Notification = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.NotificationSpecification }),
         TestEventType = {
             type = "string",
             traits = {
@@ -1708,9 +1671,7 @@ M.UpdateNotificationSettingsInput = {
                 required = true,
             },
         },
-        Notification = {
-            type = "structure",
-        },
+        Notification = M.NotificationSpecification,
         Active = {
             type = "boolean",
         },
@@ -1743,16 +1704,16 @@ M.UpdateQualificationTypeInput = {
             type = "string",
         },
         TestDurationInSeconds = {
-            type = "number",
+            type = "long",
         },
         RetryDelayInSeconds = {
-            type = "number",
+            type = "long",
         },
         AutoGranted = {
             type = "boolean",
         },
         AutoGrantedValue = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1760,9 +1721,7 @@ M.UpdateQualificationTypeInput = {
 M.UpdateQualificationTypeOutput = {
     type = "structure",
     members = {
-        QualificationType = {
-            type = "structure",
-        },
+        QualificationType = M.QualificationType,
     },
 }
 

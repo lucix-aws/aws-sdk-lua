@@ -48,9 +48,7 @@ M.Definition = {
         S3Url = {
             type = "string",
         },
-        Checksum = {
-            type = "structure",
-        },
+        Checksum = M.Checksum,
         State = {
             type = "string",
         },
@@ -80,7 +78,7 @@ M.EdgeDeployment = {
         },
         Definitions = {
             type = "list",
-            member_type = "structure",
+            member = M.Definition,
         },
     },
 }
@@ -90,7 +88,7 @@ M.GetDeploymentsOutput = {
     members = {
         Deployments = {
             type = "list",
-            member_type = "structure",
+            member = M.EdgeDeployment,
         },
     },
 }
@@ -145,7 +143,7 @@ M.EdgeMetric = {
             type = "string",
         },
         Value = {
-            type = "number",
+            type = "double",
         },
         Timestamp = {
             type = "timestamp",
@@ -208,7 +206,7 @@ M.DeploymentResult = {
         },
         DeploymentModels = {
             type = "list",
-            member_type = "structure",
+            member = M.DeploymentModel,
         },
     },
 }
@@ -230,7 +228,7 @@ M.Model = {
         },
         ModelMetrics = {
             type = "list",
-            member_type = "structure",
+            member = M.EdgeMetric,
         },
     },
 }
@@ -240,11 +238,11 @@ M.SendHeartbeatInput = {
     members = {
         AgentMetrics = {
             type = "list",
-            member_type = "structure",
+            member = M.EdgeMetric,
         },
         Models = {
             type = "list",
-            member_type = "structure",
+            member = M.Model,
         },
         AgentVersion = {
             type = "string",
@@ -264,9 +262,7 @@ M.SendHeartbeatInput = {
                 required = true,
             },
         },
-        DeploymentResult = {
-            type = "structure",
-        },
+        DeploymentResult = M.DeploymentResult,
     },
 }
 

@@ -1537,9 +1537,9 @@ local type UpdateAgentLogLevel = "NONE" | "TRACE" | "DEBUG" | "VERBOSE" | "INFO"
 
 local type BulkDeploymentStatus = "Initializing" | "Running" | "Completed" | "Stopping" | "Stopped" | "Failed"
 
-local type UpdateTargetsOperatingSystem = "ubuntu" | "raspbian" | "amazon_linux" | "openwrt"
-
 local type UpdateTargetsArchitecture = "armv6l" | "armv7l" | "x86_64" | "aarch64"
+
+local type UpdateTargetsOperatingSystem = "ubuntu" | "raspbian" | "amazon_linux" | "openwrt"
 
 local type SoftwareToUpdate = "core" | "ota_agent"
 

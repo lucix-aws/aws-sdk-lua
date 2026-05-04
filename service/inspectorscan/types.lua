@@ -35,7 +35,7 @@ M.InternalServerException = {
             },
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -84,7 +84,7 @@ M.ThrottlingException = {
             },
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -136,7 +136,7 @@ M.ValidationException = {
         },
         fields = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }

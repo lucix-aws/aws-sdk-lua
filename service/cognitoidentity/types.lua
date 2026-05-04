@@ -16,6 +16,9 @@ M.CognitoIdentityProvider = {
         },
         ServerSideTokenCheck = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -32,6 +35,7 @@ M.CreateIdentityPoolInput = {
         AllowUnauthenticatedIdentities = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -40,28 +44,28 @@ M.CreateIdentityPoolInput = {
         },
         SupportedLoginProviders = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         DeveloperProviderName = {
             type = "string",
         },
         OpenIdConnectProviderARNs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CognitoIdentityProviders = {
             type = "list",
-            member_type = "structure",
+            member = M.CognitoIdentityProvider,
         },
         SamlProviderARNs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IdentityPoolTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -84,6 +88,7 @@ M.CreateIdentityPoolOutput = {
         AllowUnauthenticatedIdentities = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -92,28 +97,28 @@ M.CreateIdentityPoolOutput = {
         },
         SupportedLoginProviders = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         DeveloperProviderName = {
             type = "string",
         },
         OpenIdConnectProviderARNs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CognitoIdentityProviders = {
             type = "list",
-            member_type = "structure",
+            member = M.CognitoIdentityProvider,
         },
         SamlProviderARNs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IdentityPoolTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -183,7 +188,7 @@ M.DeleteIdentitiesInput = {
     members = {
         IdentityIdsToDelete = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -213,7 +218,7 @@ M.DeleteIdentitiesOutput = {
     members = {
         UnprocessedIdentityIds = {
             type = "list",
-            member_type = "structure",
+            member = M.UnprocessedIdentityId,
         },
     },
 }
@@ -264,7 +269,7 @@ M.DescribeIdentityOutput = {
         },
         Logins = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CreationDate = {
             type = "timestamp",
@@ -305,6 +310,7 @@ M.DescribeIdentityPoolOutput = {
         AllowUnauthenticatedIdentities = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -313,28 +319,28 @@ M.DescribeIdentityPoolOutput = {
         },
         SupportedLoginProviders = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         DeveloperProviderName = {
             type = "string",
         },
         OpenIdConnectProviderARNs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CognitoIdentityProviders = {
             type = "list",
-            member_type = "structure",
+            member = M.CognitoIdentityProvider,
         },
         SamlProviderARNs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IdentityPoolTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -360,8 +366,8 @@ M.GetCredentialsForIdentityInput = {
         },
         Logins = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         CustomRoleArn = {
             type = "string",
@@ -393,9 +399,7 @@ M.GetCredentialsForIdentityOutput = {
         IdentityId = {
             type = "string",
         },
-        Credentials = {
-            type = "structure",
-        },
+        Credentials = M.Credentials,
     },
 }
 
@@ -423,8 +427,8 @@ M.GetIdInput = {
         },
         Logins = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -492,7 +496,7 @@ M.RulesConfigurationType = {
     members = {
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.MappingRule,
             traits = {
                 required = true,
             },
@@ -517,9 +521,7 @@ M.RoleMapping = {
         AmbiguousRoleResolution = {
             type = "string",
         },
-        RulesConfiguration = {
-            type = "structure",
-        },
+        RulesConfiguration = M.RulesConfigurationType,
     },
 }
 
@@ -531,13 +533,13 @@ M.GetIdentityPoolRolesOutput = {
         },
         Roles = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         RoleMappings = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.RoleMapping,
         },
     },
 }
@@ -553,8 +555,8 @@ M.GetOpenIdTokenInput = {
         },
         Logins = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -595,19 +597,19 @@ M.GetOpenIdTokenForDeveloperIdentityInput = {
         },
         Logins = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
         },
         PrincipalTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         TokenDuration = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -656,8 +658,8 @@ M.GetPrincipalTagAttributeMapOutput = {
         },
         PrincipalTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -672,7 +674,7 @@ M.ListIdentitiesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -682,6 +684,9 @@ M.ListIdentitiesInput = {
         },
         HideDisabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -694,7 +699,7 @@ M.IdentityDescription = {
         },
         Logins = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CreationDate = {
             type = "timestamp",
@@ -713,7 +718,7 @@ M.ListIdentitiesOutput = {
         },
         Identities = {
             type = "list",
-            member_type = "structure",
+            member = M.IdentityDescription,
         },
         NextToken = {
             type = "string",
@@ -725,7 +730,7 @@ M.ListIdentityPoolsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -753,7 +758,7 @@ M.ListIdentityPoolsOutput = {
     members = {
         IdentityPools = {
             type = "list",
-            member_type = "structure",
+            member = M.IdentityPoolShortDescription,
         },
         NextToken = {
             type = "string",
@@ -778,8 +783,8 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -800,7 +805,7 @@ M.LookupDeveloperIdentityInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -816,7 +821,7 @@ M.LookupDeveloperIdentityOutput = {
         },
         DeveloperUserIdentifierList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -884,16 +889,16 @@ M.SetIdentityPoolRolesInput = {
         },
         Roles = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
         },
         RoleMappings = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.RoleMapping,
         },
     },
 }
@@ -922,8 +927,8 @@ M.SetPrincipalTagAttributeMapInput = {
         },
         PrincipalTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -942,8 +947,8 @@ M.SetPrincipalTagAttributeMapOutput = {
         },
         PrincipalTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -959,8 +964,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1017,15 +1022,15 @@ M.UnlinkIdentityInput = {
         },
         Logins = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
         },
         LoginsToRemove = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1048,7 +1053,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1078,6 +1083,7 @@ M.UpdateIdentityPoolInput = {
         AllowUnauthenticatedIdentities = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -1086,28 +1092,28 @@ M.UpdateIdentityPoolInput = {
         },
         SupportedLoginProviders = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         DeveloperProviderName = {
             type = "string",
         },
         OpenIdConnectProviderARNs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CognitoIdentityProviders = {
             type = "list",
-            member_type = "structure",
+            member = M.CognitoIdentityProvider,
         },
         SamlProviderARNs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IdentityPoolTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1130,6 +1136,7 @@ M.UpdateIdentityPoolOutput = {
         AllowUnauthenticatedIdentities = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -1138,28 +1145,28 @@ M.UpdateIdentityPoolOutput = {
         },
         SupportedLoginProviders = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         DeveloperProviderName = {
             type = "string",
         },
         OpenIdConnectProviderARNs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CognitoIdentityProviders = {
             type = "list",
-            member_type = "structure",
+            member = M.CognitoIdentityProvider,
         },
         SamlProviderARNs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IdentityPoolTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }

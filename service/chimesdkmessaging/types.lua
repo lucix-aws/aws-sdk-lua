@@ -193,15 +193,13 @@ M.Identity = {
 M.BatchChannelMemberships = {
     type = "structure",
     members = {
-        InvitedBy = {
-            type = "structure",
-        },
+        InvitedBy = M.Identity,
         Type = {
             type = "string",
         },
         Members = {
             type = "list",
-            member_type = "structure",
+            member = M.Identity,
         },
         ChannelArn = {
             type = "string",
@@ -227,7 +225,7 @@ M.BatchCreateChannelMembershipInput = {
         },
         MemberArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -263,12 +261,10 @@ M.BatchCreateChannelMembershipError = {
 M.BatchCreateChannelMembershipOutput = {
     type = "structure",
     members = {
-        BatchChannelMemberships = {
-            type = "structure",
-        },
+        BatchChannelMemberships = M.BatchChannelMemberships,
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchCreateChannelMembershipError,
         },
     },
 }
@@ -290,19 +286,19 @@ M.ElasticChannelConfiguration = {
     type = "structure",
     members = {
         MaximumSubChannels = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         TargetMembershipsPerSubChannel = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         MinimumMembershipPercentage = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -319,7 +315,7 @@ M.ExpirationSettings = {
     type = "structure",
     members = {
         ExpirationDays = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -361,9 +357,7 @@ M.Channel = {
         Metadata = {
             type = "string",
         },
-        CreatedBy = {
-            type = "structure",
-        },
+        CreatedBy = M.Identity,
         CreatedTimestamp = {
             type = "timestamp",
         },
@@ -376,12 +370,8 @@ M.Channel = {
         ChannelFlowArn = {
             type = "string",
         },
-        ElasticChannelConfiguration = {
-            type = "structure",
-        },
-        ExpirationSettings = {
-            type = "structure",
-        },
+        ElasticChannelConfiguration = M.ElasticChannelConfiguration,
+        ExpirationSettings = M.ExpirationSettings,
     },
 }
 
@@ -409,27 +399,21 @@ M.ChannelAssociatedWithFlowSummary = {
 M.ChannelBan = {
     type = "structure",
     members = {
-        Member = {
-            type = "structure",
-        },
+        Member = M.Identity,
         ChannelArn = {
             type = "string",
         },
         CreatedTimestamp = {
             type = "timestamp",
         },
-        CreatedBy = {
-            type = "structure",
-        },
+        CreatedBy = M.Identity,
     },
 }
 
 M.ChannelBanSummary = {
     type = "structure",
     members = {
-        Member = {
-            type = "structure",
-        },
+        Member = M.Identity,
     },
 }
 
@@ -458,12 +442,9 @@ M.LambdaConfiguration = {
 M.ProcessorConfiguration = {
     type = "structure",
     members = {
-        Lambda = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Lambda = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LambdaConfiguration }),
     },
 }
 
@@ -481,14 +462,11 @@ M.Processor = {
                 required = true,
             },
         },
-        Configuration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProcessorConfiguration }),
         ExecutionOrder = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -510,7 +488,7 @@ M.ChannelFlow = {
         },
         Processors = {
             type = "list",
-            member_type = "structure",
+            member = M.Processor,
         },
         Name = {
             type = "string",
@@ -529,7 +507,7 @@ M.MessageAttributeValue = {
     members = {
         StringValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -569,13 +547,11 @@ M.ChannelMessageCallback = {
         Metadata = {
             type = "string",
         },
-        PushNotification = {
-            type = "structure",
-        },
+        PushNotification = M.PushNotificationConfiguration,
         MessageAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.MessageAttributeValue,
         },
         SubChannelId = {
             type = "string",
@@ -604,13 +580,13 @@ M.ChannelFlowCallbackInput = {
         },
         DeleteResource = {
             type = "boolean",
-        },
-        ChannelMessage = {
-            type = "structure",
             traits = {
-                required = true,
+                default = false,
             },
         },
+        ChannelMessage = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ChannelMessageCallback }),
     },
 }
 
@@ -637,7 +613,7 @@ M.ChannelFlowSummary = {
         },
         Processors = {
             type = "list",
-            member_type = "structure",
+            member = M.Processor,
         },
     },
 }
@@ -645,15 +621,11 @@ M.ChannelFlowSummary = {
 M.ChannelMembership = {
     type = "structure",
     members = {
-        InvitedBy = {
-            type = "structure",
-        },
+        InvitedBy = M.Identity,
         Type = {
             type = "string",
         },
-        Member = {
-            type = "structure",
-        },
+        Member = M.Identity,
         ChannelArn = {
             type = "string",
         },
@@ -696,12 +668,8 @@ M.ChannelSummary = {
 M.ChannelMembershipForAppInstanceUserSummary = {
     type = "structure",
     members = {
-        ChannelSummary = {
-            type = "structure",
-        },
-        AppInstanceUserMembershipSummary = {
-            type = "structure",
-        },
+        ChannelSummary = M.ChannelSummary,
+        AppInstanceUserMembershipSummary = M.AppInstanceUserMembershipSummary,
     },
 }
 
@@ -723,18 +691,14 @@ M.PushNotificationPreferences = {
 M.ChannelMembershipPreferences = {
     type = "structure",
     members = {
-        PushNotifications = {
-            type = "structure",
-        },
+        PushNotifications = M.PushNotificationPreferences,
     },
 }
 
 M.ChannelMembershipSummary = {
     type = "structure",
     members = {
-        Member = {
-            type = "structure",
-        },
+        Member = M.Identity,
     },
 }
 
@@ -803,22 +767,21 @@ M.ChannelMessage = {
         LastUpdatedTimestamp = {
             type = "timestamp",
         },
-        Sender = {
-            type = "structure",
-        },
+        Sender = M.Identity,
         Redacted = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Persistence = {
             type = "string",
         },
-        Status = {
-            type = "structure",
-        },
+        Status = M.ChannelMessageStatusStructure,
         MessageAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.MessageAttributeValue,
         },
         SubChannelId = {
             type = "string",
@@ -828,7 +791,7 @@ M.ChannelMessage = {
         },
         Target = {
             type = "list",
-            member_type = "structure",
+            member = M.Target,
         },
     },
 }
@@ -857,26 +820,25 @@ M.ChannelMessageSummary = {
         LastEditedTimestamp = {
             type = "timestamp",
         },
-        Sender = {
-            type = "structure",
-        },
+        Sender = M.Identity,
         Redacted = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        Status = {
-            type = "structure",
-        },
+        Status = M.ChannelMessageStatusStructure,
         MessageAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.MessageAttributeValue,
         },
         ContentType = {
             type = "string",
         },
         Target = {
             type = "list",
-            member_type = "structure",
+            member = M.Target,
         },
     },
 }
@@ -884,36 +846,28 @@ M.ChannelMessageSummary = {
 M.ChannelModeratedByAppInstanceUserSummary = {
     type = "structure",
     members = {
-        ChannelSummary = {
-            type = "structure",
-        },
+        ChannelSummary = M.ChannelSummary,
     },
 }
 
 M.ChannelModerator = {
     type = "structure",
     members = {
-        Moderator = {
-            type = "structure",
-        },
+        Moderator = M.Identity,
         ChannelArn = {
             type = "string",
         },
         CreatedTimestamp = {
             type = "timestamp",
         },
-        CreatedBy = {
-            type = "structure",
-        },
+        CreatedBy = M.Identity,
     },
 }
 
 M.ChannelModeratorSummary = {
     type = "structure",
     members = {
-        Moderator = {
-            type = "structure",
-        },
+        Moderator = M.Identity,
     },
 }
 
@@ -967,7 +921,7 @@ M.CreateChannelInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ChimeBearer = {
             type = "string",
@@ -981,18 +935,14 @@ M.CreateChannelInput = {
         },
         MemberArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ModeratorArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        ElasticChannelConfiguration = {
-            type = "structure",
-        },
-        ExpirationSettings = {
-            type = "structure",
-        },
+        ElasticChannelConfiguration = M.ElasticChannelConfiguration,
+        ExpirationSettings = M.ExpirationSettings,
     },
 }
 
@@ -1037,9 +987,7 @@ M.CreateChannelBanOutput = {
         ChannelArn = {
             type = "string",
         },
-        Member = {
-            type = "structure",
-        },
+        Member = M.Identity,
     },
 }
 
@@ -1054,7 +1002,7 @@ M.CreateChannelFlowInput = {
         },
         Processors = {
             type = "list",
-            member_type = "structure",
+            member = M.Processor,
             traits = {
                 required = true,
             },
@@ -1067,7 +1015,7 @@ M.CreateChannelFlowInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ClientRequestToken = {
             type = "string",
@@ -1128,9 +1076,7 @@ M.CreateChannelMembershipOutput = {
         ChannelArn = {
             type = "string",
         },
-        Member = {
-            type = "structure",
-        },
+        Member = M.Identity,
         SubChannelId = {
             type = "string",
         },
@@ -1169,9 +1115,7 @@ M.CreateChannelModeratorOutput = {
         ChannelArn = {
             type = "string",
         },
-        ChannelModerator = {
-            type = "structure",
-        },
+        ChannelModerator = M.Identity,
     },
 }
 
@@ -1392,9 +1336,7 @@ M.DescribeChannelInput = {
 M.DescribeChannelOutput = {
     type = "structure",
     members = {
-        Channel = {
-            type = "structure",
-        },
+        Channel = M.Channel,
     },
 }
 
@@ -1428,9 +1370,7 @@ M.DescribeChannelBanInput = {
 M.DescribeChannelBanOutput = {
     type = "structure",
     members = {
-        ChannelBan = {
-            type = "structure",
-        },
+        ChannelBan = M.ChannelBan,
     },
 }
 
@@ -1450,9 +1390,7 @@ M.DescribeChannelFlowInput = {
 M.DescribeChannelFlowOutput = {
     type = "structure",
     members = {
-        ChannelFlow = {
-            type = "structure",
-        },
+        ChannelFlow = M.ChannelFlow,
     },
 }
 
@@ -1492,9 +1430,7 @@ M.DescribeChannelMembershipInput = {
 M.DescribeChannelMembershipOutput = {
     type = "structure",
     members = {
-        ChannelMembership = {
-            type = "structure",
-        },
+        ChannelMembership = M.ChannelMembership,
     },
 }
 
@@ -1528,9 +1464,7 @@ M.DescribeChannelMembershipForAppInstanceUserInput = {
 M.DescribeChannelMembershipForAppInstanceUserOutput = {
     type = "structure",
     members = {
-        ChannelMembership = {
-            type = "structure",
-        },
+        ChannelMembership = M.ChannelMembershipForAppInstanceUserSummary,
     },
 }
 
@@ -1564,9 +1498,7 @@ M.DescribeChannelModeratedByAppInstanceUserInput = {
 M.DescribeChannelModeratedByAppInstanceUserOutput = {
     type = "structure",
     members = {
-        Channel = {
-            type = "structure",
-        },
+        Channel = M.ChannelModeratedByAppInstanceUserSummary,
     },
 }
 
@@ -1600,9 +1532,7 @@ M.DescribeChannelModeratorInput = {
 M.DescribeChannelModeratorOutput = {
     type = "structure",
     members = {
-        ChannelModerator = {
-            type = "structure",
-        },
+        ChannelModerator = M.ChannelModerator,
     },
 }
 
@@ -1670,12 +1600,8 @@ M.GetChannelMembershipPreferencesOutput = {
         ChannelArn = {
             type = "string",
         },
-        Member = {
-            type = "structure",
-        },
-        Preferences = {
-            type = "structure",
-        },
+        Member = M.Identity,
+        Preferences = M.ChannelMembershipPreferences,
     },
 }
 
@@ -1715,9 +1641,7 @@ M.GetChannelMessageInput = {
 M.GetChannelMessageOutput = {
     type = "structure",
     members = {
-        ChannelMessage = {
-            type = "structure",
-        },
+        ChannelMessage = M.ChannelMessage,
     },
 }
 
@@ -1757,9 +1681,7 @@ M.GetChannelMessageStatusInput = {
 M.GetChannelMessageStatusOutput = {
     type = "structure",
     members = {
-        Status = {
-            type = "structure",
-        },
+        Status = M.ChannelMessageStatusStructure,
     },
 }
 
@@ -1792,9 +1714,7 @@ M.MessagingSessionEndpoint = {
 M.GetMessagingSessionEndpointOutput = {
     type = "structure",
     members = {
-        Endpoint = {
-            type = "structure",
-        },
+        Endpoint = M.MessagingSessionEndpoint,
     },
 }
 
@@ -1839,7 +1759,7 @@ M.GetMessagingStreamingConfigurationsOutput = {
     members = {
         StreamingConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.StreamingConfiguration,
         },
     },
 }
@@ -1855,7 +1775,7 @@ M.ListChannelBansInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -1887,7 +1807,7 @@ M.ListChannelBansOutput = {
         },
         ChannelBans = {
             type = "list",
-            member_type = "structure",
+            member = M.ChannelBanSummary,
         },
     },
 }
@@ -1903,7 +1823,7 @@ M.ListChannelFlowsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -1922,7 +1842,7 @@ M.ListChannelFlowsOutput = {
     members = {
         ChannelFlows = {
             type = "list",
-            member_type = "structure",
+            member = M.ChannelFlowSummary,
         },
         NextToken = {
             type = "string",
@@ -1947,7 +1867,7 @@ M.ListChannelMembershipsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -1982,7 +1902,7 @@ M.ListChannelMembershipsOutput = {
         },
         ChannelMemberships = {
             type = "list",
-            member_type = "structure",
+            member = M.ChannelMembershipSummary,
         },
         NextToken = {
             type = "string",
@@ -2000,7 +1920,7 @@ M.ListChannelMembershipsForAppInstanceUserInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -2026,7 +1946,7 @@ M.ListChannelMembershipsForAppInstanceUserOutput = {
     members = {
         ChannelMemberships = {
             type = "list",
-            member_type = "structure",
+            member = M.ChannelMembershipForAppInstanceUserSummary,
         },
         NextToken = {
             type = "string",
@@ -2068,7 +1988,7 @@ M.ListChannelMessagesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -2106,7 +2026,7 @@ M.ListChannelMessagesOutput = {
         },
         ChannelMessages = {
             type = "list",
-            member_type = "structure",
+            member = M.ChannelMessageSummary,
         },
         SubChannelId = {
             type = "string",
@@ -2125,7 +2045,7 @@ M.ListChannelModeratorsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -2157,7 +2077,7 @@ M.ListChannelModeratorsOutput = {
         },
         ChannelModerators = {
             type = "list",
-            member_type = "structure",
+            member = M.ChannelModeratorSummary,
         },
     },
 }
@@ -2179,7 +2099,7 @@ M.ListChannelsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -2205,7 +2125,7 @@ M.ListChannelsOutput = {
     members = {
         Channels = {
             type = "list",
-            member_type = "structure",
+            member = M.ChannelSummary,
         },
         NextToken = {
             type = "string",
@@ -2224,7 +2144,7 @@ M.ListChannelsAssociatedWithChannelFlowInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -2243,7 +2163,7 @@ M.ListChannelsAssociatedWithChannelFlowOutput = {
     members = {
         Channels = {
             type = "list",
-            member_type = "structure",
+            member = M.ChannelAssociatedWithFlowSummary,
         },
         NextToken = {
             type = "string",
@@ -2261,7 +2181,7 @@ M.ListChannelsModeratedByAppInstanceUserInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -2287,7 +2207,7 @@ M.ListChannelsModeratedByAppInstanceUserOutput = {
     members = {
         Channels = {
             type = "list",
-            member_type = "structure",
+            member = M.ChannelModeratedByAppInstanceUserSummary,
         },
         NextToken = {
             type = "string",
@@ -2313,7 +2233,7 @@ M.ListSubChannelsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -2334,7 +2254,7 @@ M.SubChannelSummary = {
             type = "string",
         },
         MembershipCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2347,7 +2267,7 @@ M.ListSubChannelsOutput = {
         },
         SubChannels = {
             type = "list",
-            member_type = "structure",
+            member = M.SubChannelSummary,
         },
         NextToken = {
             type = "string",
@@ -2373,7 +2293,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2394,9 +2314,7 @@ M.PutChannelExpirationSettingsInput = {
                 http_header = "x-amz-chime-bearer",
             },
         },
-        ExpirationSettings = {
-            type = "structure",
-        },
+        ExpirationSettings = M.ExpirationSettings,
     },
 }
 
@@ -2406,9 +2324,7 @@ M.PutChannelExpirationSettingsOutput = {
         ChannelArn = {
             type = "string",
         },
-        ExpirationSettings = {
-            type = "structure",
-        },
+        ExpirationSettings = M.ExpirationSettings,
     },
 }
 
@@ -2436,12 +2352,9 @@ M.PutChannelMembershipPreferencesInput = {
                 required = true,
             },
         },
-        Preferences = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Preferences = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ChannelMembershipPreferences }),
     },
 }
 
@@ -2451,12 +2364,8 @@ M.PutChannelMembershipPreferencesOutput = {
         ChannelArn = {
             type = "string",
         },
-        Member = {
-            type = "structure",
-        },
-        Preferences = {
-            type = "structure",
-        },
+        Member = M.Identity,
+        Preferences = M.ChannelMembershipPreferences,
     },
 }
 
@@ -2472,7 +2381,7 @@ M.PutMessagingStreamingConfigurationsInput = {
         },
         StreamingConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.StreamingConfiguration,
             traits = {
                 required = true,
             },
@@ -2485,7 +2394,7 @@ M.PutMessagingStreamingConfigurationsOutput = {
     members = {
         StreamingConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.StreamingConfiguration,
         },
     },
 }
@@ -2555,7 +2464,7 @@ M.SearchField = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2580,13 +2489,13 @@ M.SearchChannelsInput = {
         },
         Fields = {
             type = "list",
-            member_type = "structure",
+            member = M.SearchField,
             traits = {
                 required = true,
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -2605,7 +2514,7 @@ M.SearchChannelsOutput = {
     members = {
         Channels = {
             type = "list",
-            member_type = "structure",
+            member = M.ChannelSummary,
         },
         NextToken = {
             type = "string",
@@ -2657,13 +2566,11 @@ M.SendChannelMessageInput = {
                 required = true,
             },
         },
-        PushNotification = {
-            type = "structure",
-        },
+        PushNotification = M.PushNotificationConfiguration,
         MessageAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.MessageAttributeValue,
         },
         SubChannelId = {
             type = "string",
@@ -2673,7 +2580,7 @@ M.SendChannelMessageInput = {
         },
         Target = {
             type = "list",
-            member_type = "structure",
+            member = M.Target,
         },
     },
 }
@@ -2687,9 +2594,7 @@ M.SendChannelMessageOutput = {
         MessageId = {
             type = "string",
         },
-        Status = {
-            type = "structure",
-        },
+        Status = M.ChannelMessageStatusStructure,
         SubChannelId = {
             type = "string",
         },
@@ -2707,7 +2612,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -2730,7 +2635,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2792,7 +2697,7 @@ M.UpdateChannelFlowInput = {
         },
         Processors = {
             type = "list",
-            member_type = "structure",
+            member = M.Processor,
             traits = {
                 required = true,
             },
@@ -2866,9 +2771,7 @@ M.UpdateChannelMessageOutput = {
         MessageId = {
             type = "string",
         },
-        Status = {
-            type = "structure",
-        },
+        Status = M.ChannelMessageStatusStructure,
         SubChannelId = {
             type = "string",
         },

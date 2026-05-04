@@ -114,7 +114,7 @@ M.GroupConfigurationParameter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -130,7 +130,7 @@ M.GroupConfigurationItem = {
         },
         Parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupConfigurationParameter,
         },
     },
 }
@@ -170,20 +170,18 @@ M.CreateGroupInput = {
         Description = {
             type = "string",
         },
-        ResourceQuery = {
-            type = "structure",
-        },
+        ResourceQuery = M.ResourceQuery,
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Configuration = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupConfigurationItem,
         },
         Criticality = {
-            type = "number",
+            type = "integer",
         },
         Owner = {
             type = "string",
@@ -213,7 +211,7 @@ M.Group = {
             type = "string",
         },
         Criticality = {
-            type = "number",
+            type = "integer",
         },
         Owner = {
             type = "string",
@@ -223,8 +221,8 @@ M.Group = {
         },
         ApplicationTag = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -240,11 +238,11 @@ M.GroupConfiguration = {
     members = {
         Configuration = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupConfigurationItem,
         },
         ProposedConfiguration = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupConfigurationItem,
         },
         Status = {
             type = "string",
@@ -258,20 +256,14 @@ M.GroupConfiguration = {
 M.CreateGroupOutput = {
     type = "structure",
     members = {
-        Group = {
-            type = "structure",
-        },
-        ResourceQuery = {
-            type = "structure",
-        },
+        Group = M.Group,
+        ResourceQuery = M.ResourceQuery,
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        GroupConfiguration = {
-            type = "structure",
-        },
+        GroupConfiguration = M.GroupConfiguration,
     },
 }
 
@@ -290,9 +282,7 @@ M.DeleteGroupInput = {
 M.DeleteGroupOutput = {
     type = "structure",
     members = {
-        Group = {
-            type = "structure",
-        },
+        Group = M.Group,
     },
 }
 
@@ -313,9 +303,7 @@ M.GetAccountSettingsInput = {
 M.GetAccountSettingsOutput = {
     type = "structure",
     members = {
-        AccountSettings = {
-            type = "structure",
-        },
+        AccountSettings = M.AccountSettings,
     },
 }
 
@@ -334,9 +322,7 @@ M.GetGroupInput = {
 M.GetGroupOutput = {
     type = "structure",
     members = {
-        Group = {
-            type = "structure",
-        },
+        Group = M.Group,
     },
 }
 
@@ -352,9 +338,7 @@ M.GetGroupConfigurationInput = {
 M.GetGroupConfigurationOutput = {
     type = "structure",
     members = {
-        GroupConfiguration = {
-            type = "structure",
-        },
+        GroupConfiguration = M.GroupConfiguration,
     },
 }
 
@@ -379,21 +363,16 @@ M.GroupQuery = {
                 required = true,
             },
         },
-        ResourceQuery = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ResourceQuery = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResourceQuery }),
     },
 }
 
 M.GetGroupQueryOutput = {
     type = "structure",
     members = {
-        GroupQuery = {
-            type = "structure",
-        },
+        GroupQuery = M.GroupQuery,
     },
 }
 
@@ -418,8 +397,8 @@ M.GetTagsOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -459,9 +438,7 @@ M.GetTagSyncTaskOutput = {
         TagValue = {
             type = "string",
         },
-        ResourceQuery = {
-            type = "structure",
-        },
+        ResourceQuery = M.ResourceQuery,
         RoleArn = {
             type = "string",
         },
@@ -488,7 +465,7 @@ M.GroupResourcesInput = {
         },
         ResourceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -525,15 +502,15 @@ M.GroupResourcesOutput = {
     members = {
         Succeeded = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Failed = {
             type = "list",
-            member_type = "structure",
+            member = M.FailedResource,
         },
         Pending = {
             type = "list",
-            member_type = "structure",
+            member = M.PendingResource,
         },
     },
 }
@@ -554,7 +531,7 @@ M.ListGroupingStatusesFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -572,11 +549,11 @@ M.ListGroupingStatusesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.ListGroupingStatusesFilter,
         },
         NextToken = {
             type = "string",
@@ -628,7 +605,7 @@ M.ListGroupingStatusesOutput = {
         },
         GroupingStatuses = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupingStatusesItem,
         },
         NextToken = {
             type = "string",
@@ -651,7 +628,7 @@ M.ResourceFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -670,10 +647,10 @@ M.ListGroupResourcesInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceFilter,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -728,12 +705,8 @@ M.ResourceStatus = {
 M.ListGroupResourcesItem = {
     type = "structure",
     members = {
-        Identifier = {
-            type = "structure",
-        },
-        Status = {
-            type = "structure",
-        },
+        Identifier = M.ResourceIdentifier,
+        Status = M.ResourceStatus,
     },
 }
 
@@ -742,18 +715,18 @@ M.ListGroupResourcesOutput = {
     members = {
         Resources = {
             type = "list",
-            member_type = "structure",
+            member = M.ListGroupResourcesItem,
         },
         ResourceIdentifiers = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceIdentifier,
         },
         NextToken = {
             type = "string",
         },
         QueryErrors = {
             type = "list",
-            member_type = "structure",
+            member = M.QueryError,
         },
     },
 }
@@ -777,7 +750,7 @@ M.GroupFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -790,10 +763,10 @@ M.ListGroupsInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupFilter,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -820,7 +793,7 @@ M.GroupIdentifier = {
             type = "string",
         },
         Criticality = {
-            type = "number",
+            type = "integer",
         },
         Owner = {
             type = "string",
@@ -836,11 +809,11 @@ M.ListGroupsOutput = {
     members = {
         GroupIdentifiers = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupIdentifier,
         },
         Groups = {
             type = "list",
-            member_type = "structure",
+            member = M.Group,
         },
         NextToken = {
             type = "string",
@@ -865,10 +838,10 @@ M.ListTagSyncTasksInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.ListTagSyncTasksFilter,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -894,9 +867,7 @@ M.TagSyncTaskItem = {
         TagValue = {
             type = "string",
         },
-        ResourceQuery = {
-            type = "structure",
-        },
+        ResourceQuery = M.ResourceQuery,
         RoleArn = {
             type = "string",
         },
@@ -917,7 +888,7 @@ M.ListTagSyncTasksOutput = {
     members = {
         TagSyncTasks = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSyncTaskItem,
         },
         NextToken = {
             type = "string",
@@ -933,7 +904,7 @@ M.PutGroupConfigurationInput = {
         },
         Configuration = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupConfigurationItem,
         },
     },
 }
@@ -945,14 +916,11 @@ M.PutGroupConfigurationOutput = {
 M.SearchResourcesInput = {
     type = "structure",
     members = {
-        ResourceQuery = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ResourceQuery = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResourceQuery }),
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -965,14 +933,14 @@ M.SearchResourcesOutput = {
     members = {
         ResourceIdentifiers = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceIdentifier,
         },
         NextToken = {
             type = "string",
         },
         QueryErrors = {
             type = "list",
-            member_type = "structure",
+            member = M.QueryError,
         },
     },
 }
@@ -992,9 +960,7 @@ M.StartTagSyncTaskInput = {
         TagValue = {
             type = "string",
         },
-        ResourceQuery = {
-            type = "structure",
-        },
+        ResourceQuery = M.ResourceQuery,
         RoleArn = {
             type = "string",
             traits = {
@@ -1022,9 +988,7 @@ M.StartTagSyncTaskOutput = {
         TagValue = {
             type = "string",
         },
-        ResourceQuery = {
-            type = "structure",
-        },
+        ResourceQuery = M.ResourceQuery,
         RoleArn = {
             type = "string",
         },
@@ -1043,8 +1007,8 @@ M.TagInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1060,8 +1024,8 @@ M.TagOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1077,7 +1041,7 @@ M.UngroupResourcesInput = {
         },
         ResourceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1090,15 +1054,15 @@ M.UngroupResourcesOutput = {
     members = {
         Succeeded = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Failed = {
             type = "list",
-            member_type = "structure",
+            member = M.FailedResource,
         },
         Pending = {
             type = "list",
-            member_type = "structure",
+            member = M.PendingResource,
         },
     },
 }
@@ -1115,7 +1079,7 @@ M.UntagInput = {
         },
         Keys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1131,7 +1095,7 @@ M.UntagOutput = {
         },
         Keys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1148,9 +1112,7 @@ M.UpdateAccountSettingsInput = {
 M.UpdateAccountSettingsOutput = {
     type = "structure",
     members = {
-        AccountSettings = {
-            type = "structure",
-        },
+        AccountSettings = M.AccountSettings,
     },
 }
 
@@ -1167,7 +1129,7 @@ M.UpdateGroupInput = {
             type = "string",
         },
         Criticality = {
-            type = "number",
+            type = "integer",
         },
         Owner = {
             type = "string",
@@ -1181,9 +1143,7 @@ M.UpdateGroupInput = {
 M.UpdateGroupOutput = {
     type = "structure",
     members = {
-        Group = {
-            type = "structure",
-        },
+        Group = M.Group,
     },
 }
 
@@ -1196,21 +1156,16 @@ M.UpdateGroupQueryInput = {
         Group = {
             type = "string",
         },
-        ResourceQuery = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ResourceQuery = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResourceQuery }),
     },
 }
 
 M.UpdateGroupQueryOutput = {
     type = "structure",
     members = {
-        GroupQuery = {
-            type = "structure",
-        },
+        GroupQuery = M.GroupQuery,
     },
 }
 

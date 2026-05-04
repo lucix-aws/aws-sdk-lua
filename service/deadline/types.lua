@@ -4,13 +4,13 @@ M.AcceleratorCountRange = {
     type = "structure",
     members = {
         min = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         max = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -34,6 +34,9 @@ M.AcceleratorSelection = {
         },
         runtime = {
             type = "string",
+            traits = {
+                default = "latest",
+            },
         },
     },
 }
@@ -43,14 +46,12 @@ M.AcceleratorCapabilities = {
     members = {
         selections = {
             type = "list",
-            member_type = "structure",
+            member = M.AcceleratorSelection,
             traits = {
                 required = true,
             },
         },
-        count = {
-            type = "structure",
-        },
+        count = M.AcceleratorCountRange,
     },
 }
 
@@ -58,13 +59,13 @@ M.AcceleratorTotalMemoryMiBRange = {
     type = "structure",
     members = {
         min = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         max = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -85,8 +86,8 @@ M.AccessDeniedException = {
         },
         context = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -101,7 +102,7 @@ M.AcquiredLimit = {
             },
         },
         count = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -144,13 +145,13 @@ M.LogConfiguration = {
         },
         options = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         error = {
             type = "string",
@@ -202,8 +203,8 @@ M.AssignedTaskRunSessionActionDefinition = {
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.TaskParameterValue,
             traits = {
                 required = true,
             },
@@ -214,18 +215,10 @@ M.AssignedTaskRunSessionActionDefinition = {
 M.AssignedSessionActionDefinition = {
     type = "union",
     members = {
-        envEnter = {
-            type = "structure",
-        },
-        envExit = {
-            type = "structure",
-        },
-        taskRun = {
-            type = "structure",
-        },
-        syncInputJobAttachments = {
-            type = "structure",
-        },
+        envEnter = M.AssignedEnvironmentEnterSessionActionDefinition,
+        envExit = M.AssignedEnvironmentExitSessionActionDefinition,
+        taskRun = M.AssignedTaskRunSessionActionDefinition,
+        syncInputJobAttachments = M.AssignedSyncInputJobAttachmentsSessionActionDefinition,
     },
 }
 
@@ -238,12 +231,9 @@ M.AssignedSessionAction = {
                 required = true,
             },
         },
-        definition = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        definition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AssignedSessionActionDefinition }),
     },
 }
 
@@ -264,17 +254,14 @@ M.AssignedSession = {
         },
         sessionActions = {
             type = "list",
-            member_type = "structure",
+            member = M.AssignedSessionAction,
             traits = {
                 required = true,
             },
         },
-        logConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        logConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LogConfiguration }),
     },
 }
 
@@ -343,7 +330,7 @@ M.InternalServerErrorException = {
             },
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -375,8 +362,8 @@ M.ResourceNotFoundException = {
         },
         context = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -426,8 +413,8 @@ M.ServiceQuotaExceededException = {
         },
         context = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -449,15 +436,15 @@ M.ThrottlingException = {
             type = "string",
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
         },
         context = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -505,12 +492,12 @@ M.ValidationException = {
         },
         fieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
         context = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -723,12 +710,9 @@ M.AwsCredentials = {
 M.AssumeFleetRoleForReadOutput = {
     type = "structure",
     members = {
-        credentials = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        credentials = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AwsCredentials }),
     },
 }
 
@@ -762,12 +746,9 @@ M.AssumeFleetRoleForWorkerInput = {
 M.AssumeFleetRoleForWorkerOutput = {
     type = "structure",
     members = {
-        credentials = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        credentials = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AwsCredentials }),
     },
 }
 
@@ -809,8 +790,8 @@ M.ConflictException = {
         },
         context = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -838,12 +819,9 @@ M.AssumeQueueRoleForReadInput = {
 M.AssumeQueueRoleForReadOutput = {
     type = "structure",
     members = {
-        credentials = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        credentials = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AwsCredentials }),
     },
 }
 
@@ -870,12 +848,9 @@ M.AssumeQueueRoleForUserInput = {
 M.AssumeQueueRoleForUserOutput = {
     type = "structure",
     members = {
-        credentials = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        credentials = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AwsCredentials }),
     },
 }
 
@@ -916,9 +891,7 @@ M.AssumeQueueRoleForWorkerInput = {
 M.AssumeQueueRoleForWorkerOutput = {
     type = "structure",
     members = {
-        credentials = {
-            type = "structure",
-        },
+        credentials = M.AwsCredentials,
     },
 }
 
@@ -952,7 +925,7 @@ M.ManifestProperties = {
         },
         outputRelativeDirectories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         inputManifestPath = {
             type = "string",
@@ -968,13 +941,16 @@ M.Attachments = {
     members = {
         manifests = {
             type = "list",
-            member_type = "structure",
+            member = M.ManifestProperties,
             traits = {
                 required = true,
             },
         },
         fileSystem = {
             type = "string",
+            traits = {
+                default = "COPIED",
+            },
         },
     },
 }
@@ -1019,7 +995,7 @@ M.BatchGetJobInput = {
     members = {
         identifiers = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetJobIdentifier,
             traits = {
                 required = true,
             },
@@ -1165,7 +1141,7 @@ M.BatchGetJobItem = {
             },
         },
         priority = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1202,34 +1178,32 @@ M.BatchGetJobItem = {
         },
         taskRunStatusCounts = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
         },
         taskFailureRetryCount = {
-            type = "number",
+            type = "integer",
         },
         storageProfileId = {
             type = "string",
         },
         maxFailedTasksCount = {
-            type = "number",
+            type = "integer",
         },
         maxRetriesPerTask = {
-            type = "number",
+            type = "integer",
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.JobParameter,
         },
-        attachments = {
-            type = "structure",
-        },
+        attachments = M.Attachments,
         description = {
             type = "string",
         },
         maxWorkerCount = {
-            type = "number",
+            type = "integer",
         },
         sourceJobId = {
             type = "string",
@@ -1242,14 +1216,14 @@ M.BatchGetJobOutput = {
     members = {
         jobs = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetJobItem,
             traits = {
                 required = true,
             },
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetJobError,
             traits = {
                 required = true,
             },
@@ -1320,18 +1294,10 @@ M.StepDetailsIdentifiers = {
 M.JobEntityIdentifiersUnion = {
     type = "union",
     members = {
-        jobDetails = {
-            type = "structure",
-        },
-        jobAttachmentDetails = {
-            type = "structure",
-        },
-        stepDetails = {
-            type = "structure",
-        },
-        environmentDetails = {
-            type = "structure",
-        },
+        jobDetails = M.JobDetailsIdentifiers,
+        jobAttachmentDetails = M.JobAttachmentDetailsIdentifiers,
+        stepDetails = M.StepDetailsIdentifiers,
+        environmentDetails = M.EnvironmentDetailsIdentifiers,
     },
 }
 
@@ -1361,7 +1327,7 @@ M.BatchGetJobEntityInput = {
         },
         identifiers = {
             type = "list",
-            member_type = "union",
+            member = M.JobEntityIdentifiersUnion,
             traits = {
                 required = true,
             },
@@ -1408,12 +1374,9 @@ M.JobAttachmentDetailsEntity = {
                 required = true,
             },
         },
-        attachments = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        attachments = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Attachments }),
     },
 }
 
@@ -1479,12 +1442,8 @@ M.WindowsUser = {
 M.JobRunAsUser = {
     type = "structure",
     members = {
-        posix = {
-            type = "structure",
-        },
-        windows = {
-            type = "structure",
-        },
+        posix = M.PosixUser,
+        windows = M.WindowsUser,
         runAs = {
             type = "string",
             traits = {
@@ -1527,12 +1486,8 @@ M.JobDetailsEntity = {
                 required = true,
             },
         },
-        jobAttachmentSettings = {
-            type = "structure",
-        },
-        jobRunAsUser = {
-            type = "structure",
-        },
+        jobAttachmentSettings = M.JobAttachmentSettings,
+        jobRunAsUser = M.JobRunAsUser,
         logGroupName = {
             type = "string",
             traits = {
@@ -1544,8 +1499,8 @@ M.JobDetailsEntity = {
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.JobParameter,
         },
         schemaVersion = {
             type = "string",
@@ -1555,7 +1510,7 @@ M.JobDetailsEntity = {
         },
         pathMappingRules = {
             type = "list",
-            member_type = "structure",
+            member = M.PathMappingRule,
         },
     },
 }
@@ -1589,7 +1544,7 @@ M.StepDetailsEntity = {
         },
         dependencies = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1600,18 +1555,10 @@ M.StepDetailsEntity = {
 M.JobEntity = {
     type = "union",
     members = {
-        jobDetails = {
-            type = "structure",
-        },
-        jobAttachmentDetails = {
-            type = "structure",
-        },
-        stepDetails = {
-            type = "structure",
-        },
-        environmentDetails = {
-            type = "structure",
-        },
+        jobDetails = M.JobDetailsEntity,
+        jobAttachmentDetails = M.JobAttachmentDetailsEntity,
+        stepDetails = M.StepDetailsEntity,
+        environmentDetails = M.EnvironmentDetailsEntity,
     },
 }
 
@@ -1735,18 +1682,10 @@ M.StepDetailsError = {
 M.GetJobEntityError = {
     type = "union",
     members = {
-        jobDetails = {
-            type = "structure",
-        },
-        jobAttachmentDetails = {
-            type = "structure",
-        },
-        stepDetails = {
-            type = "structure",
-        },
-        environmentDetails = {
-            type = "structure",
-        },
+        jobDetails = M.JobDetailsError,
+        jobAttachmentDetails = M.JobAttachmentDetailsError,
+        stepDetails = M.StepDetailsError,
+        environmentDetails = M.EnvironmentDetailsError,
     },
 }
 
@@ -1755,14 +1694,14 @@ M.BatchGetJobEntityOutput = {
     members = {
         entities = {
             type = "list",
-            member_type = "union",
+            member = M.JobEntity,
             traits = {
                 required = true,
             },
         },
         errors = {
             type = "list",
-            member_type = "union",
+            member = M.GetJobEntityError,
             traits = {
                 required = true,
             },
@@ -1805,7 +1744,7 @@ M.BatchGetSessionInput = {
     members = {
         identifiers = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetSessionIdentifier,
             traits = {
                 required = true,
             },
@@ -1866,11 +1805,11 @@ M.IpAddresses = {
     members = {
         ipV4Addresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ipV6Addresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1878,9 +1817,7 @@ M.IpAddresses = {
 M.HostPropertiesResponse = {
     type = "structure",
     members = {
-        ipAddresses = {
-            type = "structure",
-        },
+        ipAddresses = M.IpAddresses,
         hostName = {
             type = "string",
         },
@@ -1968,18 +1905,11 @@ M.BatchGetSessionItem = {
         updatedBy = {
             type = "string",
         },
-        log = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        hostProperties = {
-            type = "structure",
-        },
-        workerLog = {
-            type = "structure",
-        },
+        log = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LogConfiguration }),
+        hostProperties = M.HostPropertiesResponse,
+        workerLog = M.LogConfiguration,
     },
 }
 
@@ -1988,14 +1918,14 @@ M.BatchGetSessionOutput = {
     members = {
         sessions = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetSessionItem,
             traits = {
                 required = true,
             },
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetSessionError,
             traits = {
                 required = true,
             },
@@ -2038,7 +1968,7 @@ M.BatchGetSessionActionInput = {
     members = {
         identifiers = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetSessionActionIdentifier,
             traits = {
                 required = true,
             },
@@ -2141,8 +2071,8 @@ M.TaskRunSessionActionDefinition = {
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.TaskParameterValue,
             traits = {
                 required = true,
             },
@@ -2153,18 +2083,10 @@ M.TaskRunSessionActionDefinition = {
 M.SessionActionDefinition = {
     type = "union",
     members = {
-        envEnter = {
-            type = "structure",
-        },
-        envExit = {
-            type = "structure",
-        },
-        taskRun = {
-            type = "structure",
-        },
-        syncInputJobAttachments = {
-            type = "structure",
-        },
+        envEnter = M.EnvironmentEnterSessionActionDefinition,
+        envExit = M.EnvironmentExitSessionActionDefinition,
+        taskRun = M.TaskRunSessionActionDefinition,
+        syncInputJobAttachments = M.SyncInputJobAttachmentsSessionActionDefinition,
     },
 }
 
@@ -2237,11 +2159,11 @@ M.BatchGetSessionActionItem = {
             type = "timestamp",
         },
         progressPercent = {
-            type = "number",
+            type = "float",
         },
         manifests = {
             type = "list",
-            member_type = "structure",
+            member = M.TaskRunManifestPropertiesResponse,
         },
         sessionId = {
             type = "string",
@@ -2250,21 +2172,18 @@ M.BatchGetSessionActionItem = {
             },
         },
         processExitCode = {
-            type = "number",
+            type = "integer",
         },
         progressMessage = {
             type = "string",
         },
         acquiredLimits = {
             type = "list",
-            member_type = "structure",
+            member = M.AcquiredLimit,
         },
-        definition = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        definition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SessionActionDefinition }),
     },
 }
 
@@ -2273,14 +2192,14 @@ M.BatchGetSessionActionOutput = {
     members = {
         sessionActions = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetSessionActionItem,
             traits = {
                 required = true,
             },
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetSessionActionError,
             traits = {
                 required = true,
             },
@@ -2323,7 +2242,7 @@ M.BatchGetStepInput = {
     members = {
         identifiers = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetStepIdentifier,
             traits = {
                 required = true,
             },
@@ -2385,25 +2304,25 @@ M.DependencyCounts = {
     type = "structure",
     members = {
         dependenciesResolved = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         dependenciesUnresolved = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         consumersResolved = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         consumersUnresolved = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -2427,13 +2346,13 @@ M.StepParameterChunks = {
     type = "structure",
     members = {
         defaultTaskCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         targetRuntimeSeconds = {
-            type = "number",
+            type = "integer",
         },
         rangeConstraint = {
             type = "string",
@@ -2467,9 +2386,7 @@ M.StepParameter = {
                 required = true,
             },
         },
-        chunks = {
-            type = "structure",
-        },
+        chunks = M.StepParameterChunks,
     },
 }
 
@@ -2478,7 +2395,7 @@ M.ParameterSpace = {
     members = {
         parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.StepParameter,
             traits = {
                 required = true,
             },
@@ -2499,13 +2416,13 @@ M.StepAmountCapability = {
             },
         },
         min = {
-            type = "number",
+            type = "double",
         },
         max = {
-            type = "number",
+            type = "double",
         },
         value = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -2521,11 +2438,11 @@ M.StepAttributeCapability = {
         },
         anyOf = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         allOf = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2535,14 +2452,14 @@ M.StepRequiredCapabilities = {
     members = {
         attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.StepAttributeCapability,
             traits = {
                 required = true,
             },
         },
         amounts = {
             type = "list",
-            member_type = "structure",
+            member = M.StepAmountCapability,
             traits = {
                 required = true,
             },
@@ -2609,14 +2526,14 @@ M.BatchGetStepItem = {
         },
         taskRunStatusCounts = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
             traits = {
                 required = true,
             },
         },
         taskFailureRetryCount = {
-            type = "number",
+            type = "integer",
         },
         targetTaskRunStatus = {
             type = "string",
@@ -2645,15 +2562,9 @@ M.BatchGetStepItem = {
         endedAt = {
             type = "timestamp",
         },
-        dependencyCounts = {
-            type = "structure",
-        },
-        requiredCapabilities = {
-            type = "structure",
-        },
-        parameterSpace = {
-            type = "structure",
-        },
+        dependencyCounts = M.DependencyCounts,
+        requiredCapabilities = M.StepRequiredCapabilities,
+        parameterSpace = M.ParameterSpace,
         description = {
             type = "string",
         },
@@ -2665,14 +2576,14 @@ M.BatchGetStepOutput = {
     members = {
         steps = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetStepItem,
             traits = {
                 required = true,
             },
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetStepError,
             traits = {
                 required = true,
             },
@@ -2721,7 +2632,7 @@ M.BatchGetTaskInput = {
     members = {
         identifiers = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetTaskIdentifier,
             traits = {
                 required = true,
             },
@@ -2849,7 +2760,7 @@ M.BatchGetTaskItem = {
             type = "string",
         },
         failureRetryCount = {
-            type = "number",
+            type = "integer",
         },
         startedAt = {
             type = "timestamp",
@@ -2868,8 +2779,8 @@ M.BatchGetTaskItem = {
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.TaskParameterValue,
         },
     },
 }
@@ -2879,14 +2790,14 @@ M.BatchGetTaskOutput = {
     members = {
         tasks = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetTaskItem,
             traits = {
                 required = true,
             },
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetTaskError,
             traits = {
                 required = true,
             },
@@ -2923,7 +2834,7 @@ M.BatchGetWorkerInput = {
     members = {
         identifiers = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetWorkerIdentifier,
             traits = {
                 required = true,
             },
@@ -3005,18 +2916,14 @@ M.BatchGetWorkerItem = {
                 required = true,
             },
         },
-        hostProperties = {
-            type = "structure",
-        },
+        hostProperties = M.HostPropertiesResponse,
         status = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        log = {
-            type = "structure",
-        },
+        log = M.LogConfiguration,
         createdAt = {
             type = "timestamp",
             traits = {
@@ -3043,14 +2950,14 @@ M.BatchGetWorkerOutput = {
     members = {
         workers = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetWorkerItem,
             traits = {
                 required = true,
             },
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetWorkerError,
             traits = {
                 required = true,
             },
@@ -3087,19 +2994,19 @@ M.BatchUpdateJobItem = {
             type = "string",
         },
         priority = {
-            type = "number",
+            type = "integer",
         },
         maxFailedTasksCount = {
-            type = "number",
+            type = "integer",
         },
         maxRetriesPerTask = {
-            type = "number",
+            type = "integer",
         },
         lifecycleStatus = {
             type = "string",
         },
         maxWorkerCount = {
-            type = "number",
+            type = "integer",
         },
         name = {
             type = "string",
@@ -3121,7 +3028,7 @@ M.BatchUpdateJobInput = {
         },
         jobs = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchUpdateJobItem,
             traits = {
                 required = true,
             },
@@ -3179,7 +3086,7 @@ M.BatchUpdateJobOutput = {
     members = {
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchUpdateJobError,
             traits = {
                 required = true,
             },
@@ -3240,7 +3147,7 @@ M.BatchUpdateTaskInput = {
         },
         tasks = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchUpdateTaskItem,
             traits = {
                 required = true,
             },
@@ -3310,7 +3217,7 @@ M.BatchUpdateTaskOutput = {
     members = {
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchUpdateTaskError,
             traits = {
                 required = true,
             },
@@ -3333,7 +3240,7 @@ M.BudgetActionToAdd = {
             },
         },
         thresholdPercentage = {
-            type = "number",
+            type = "float",
             traits = {
                 required = true,
             },
@@ -3354,7 +3261,7 @@ M.BudgetActionToRemove = {
             },
         },
         thresholdPercentage = {
-            type = "number",
+            type = "float",
             traits = {
                 required = true,
             },
@@ -3383,9 +3290,7 @@ M.FixedBudgetSchedule = {
 M.BudgetSchedule = {
     type = "union",
     members = {
-        fixed = {
-            type = "structure",
-        },
+        fixed = M.FixedBudgetSchedule,
     },
 }
 
@@ -3416,6 +3321,9 @@ M.CreateBudgetInput = {
         },
         description = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
         clientToken = {
             type = "string",
@@ -3423,35 +3331,29 @@ M.CreateBudgetInput = {
                 http_header = "X-Amz-Client-Token",
             },
         },
-        usageTrackingResource = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        usageTrackingResource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.UsageTrackingResource }),
         approximateDollarLimit = {
-            type = "number",
+            type = "float",
             traits = {
                 required = true,
             },
         },
         actions = {
             type = "list",
-            member_type = "structure",
+            member = M.BudgetActionToAdd,
             traits = {
                 required = true,
             },
         },
-        schedule = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        schedule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BudgetSchedule }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3522,7 +3424,7 @@ M.ResponseBudgetAction = {
             },
         },
         thresholdPercentage = {
-            type = "number",
+            type = "float",
             traits = {
                 required = true,
             },
@@ -3542,7 +3444,7 @@ M.ConsumedUsages = {
     type = "structure",
     members = {
         approximateDollarUsage = {
-            type = "number",
+            type = "float",
             traits = {
                 required = true,
             },
@@ -3559,12 +3461,9 @@ M.GetBudgetOutput = {
                 required = true,
             },
         },
-        usageTrackingResource = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        usageTrackingResource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.UsageTrackingResource }),
         status = {
             type = "string",
             traits = {
@@ -3578,17 +3477,14 @@ M.GetBudgetOutput = {
             },
         },
         approximateDollarLimit = {
-            type = "number",
+            type = "float",
             traits = {
                 required = true,
             },
         },
-        usages = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        usages = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConsumedUsages }),
         createdBy = {
             type = "string",
             traits = {
@@ -3612,17 +3508,14 @@ M.GetBudgetOutput = {
         },
         actions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResponseBudgetAction,
             traits = {
                 required = true,
             },
         },
-        schedule = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        schedule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BudgetSchedule }),
         queueStoppedAt = {
             type = "timestamp",
         },
@@ -3646,8 +3539,9 @@ M.ListBudgetsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 100,
                 http_query = "maxResults",
             },
         },
@@ -3669,12 +3563,9 @@ M.BudgetSummary = {
                 required = true,
             },
         },
-        usageTrackingResource = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        usageTrackingResource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.UsageTrackingResource }),
         status = {
             type = "string",
             traits = {
@@ -3688,17 +3579,14 @@ M.BudgetSummary = {
             },
         },
         approximateDollarLimit = {
-            type = "number",
+            type = "float",
             traits = {
                 required = true,
             },
         },
-        usages = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        usages = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConsumedUsages }),
         createdBy = {
             type = "string",
             traits = {
@@ -3728,7 +3616,7 @@ M.ListBudgetsOutput = {
     members = {
         budgets = {
             type = "list",
-            member_type = "structure",
+            member = M.BudgetSummary,
             traits = {
                 required = true,
             },
@@ -3772,19 +3660,17 @@ M.UpdateBudgetInput = {
             type = "string",
         },
         approximateDollarLimit = {
-            type = "number",
+            type = "float",
         },
         actionsToAdd = {
             type = "list",
-            member_type = "structure",
+            member = M.BudgetActionToAdd,
         },
         actionsToRemove = {
             type = "list",
-            member_type = "structure",
+            member = M.BudgetActionToRemove,
         },
-        schedule = {
-            type = "union",
-        },
+        schedule = M.BudgetSchedule,
     },
 }
 
@@ -3853,12 +3739,9 @@ M.CopyJobTemplateInput = {
                 required = true,
             },
         },
-        targetS3Location = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        targetS3Location = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3Location }),
     },
 }
 
@@ -3901,17 +3784,23 @@ M.CreateFarmInput = {
         },
         description = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
         kmsKeyArn = {
             type = "string",
         },
         costScaleFactor = {
-            type = "number",
+            type = "float",
+            traits = {
+                default = 1,
+            },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3932,13 +3821,16 @@ M.CustomerManagedAutoScalingConfiguration = {
     type = "structure",
     members = {
         standbyWorkerCount = {
-            type = "number",
+            type = "integer",
         },
         workerIdleDurationSeconds = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 300,
+            },
         },
         scaleOutWorkersPerMinute = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3958,13 +3850,13 @@ M.FleetAmountCapability = {
             },
         },
         min = {
-            type = "number",
+            type = "float",
             traits = {
                 required = true,
             },
         },
         max = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -3980,7 +3872,7 @@ M.FleetAttributeCapability = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3992,13 +3884,13 @@ M.MemoryMiBRange = {
     type = "structure",
     members = {
         min = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         max = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4013,13 +3905,13 @@ M.VCpuCountRange = {
     type = "structure",
     members = {
         min = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         max = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4027,28 +3919,18 @@ M.VCpuCountRange = {
 M.CustomerManagedWorkerCapabilities = {
     type = "structure",
     members = {
-        vCpuCount = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        memoryMiB = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        vCpuCount = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VCpuCountRange }),
+        memoryMiB = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MemoryMiBRange }),
         acceleratorTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        acceleratorCount = {
-            type = "structure",
-        },
-        acceleratorTotalMemoryMiB = {
-            type = "structure",
-        },
+        acceleratorCount = M.AcceleratorCountRange,
+        acceleratorTotalMemoryMiB = M.AcceleratorTotalMemoryMiBRange,
         osFamily = {
             type = "string",
             traits = {
@@ -4063,11 +3945,11 @@ M.CustomerManagedWorkerCapabilities = {
         },
         customAmounts = {
             type = "list",
-            member_type = "structure",
+            member = M.FleetAmountCapability,
         },
         customAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.FleetAttributeCapability,
         },
     },
 }
@@ -4081,15 +3963,10 @@ M.CustomerManagedFleetConfiguration = {
                 required = true,
             },
         },
-        autoScalingConfiguration = {
-            type = "structure",
-        },
-        workerCapabilities = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        autoScalingConfiguration = M.CustomerManagedAutoScalingConfiguration,
+        workerCapabilities = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CustomerManagedWorkerCapabilities }),
         storageProfileId = {
             type = "string",
         },
@@ -4103,13 +3980,16 @@ M.ServiceManagedEc2AutoScalingConfiguration = {
     type = "structure",
     members = {
         standbyWorkerCount = {
-            type = "number",
+            type = "integer",
         },
         workerIdleDurationSeconds = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 300,
+            },
         },
         scaleOutWorkersPerMinute = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4123,13 +4003,22 @@ M.Ec2EbsVolume = {
     type = "structure",
     members = {
         sizeGiB = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 250,
+            },
         },
         iops = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 3000,
+            },
         },
         throughputMiB = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 125,
+            },
         },
     },
 }
@@ -4137,18 +4026,12 @@ M.Ec2EbsVolume = {
 M.ServiceManagedEc2InstanceCapabilities = {
     type = "structure",
     members = {
-        vCpuCount = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        memoryMiB = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        vCpuCount = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VCpuCountRange }),
+        memoryMiB = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MemoryMiBRange }),
         osFamily = {
             type = "string",
             traits = {
@@ -4161,27 +4044,23 @@ M.ServiceManagedEc2InstanceCapabilities = {
                 required = true,
             },
         },
-        rootEbsVolume = {
-            type = "structure",
-        },
-        acceleratorCapabilities = {
-            type = "structure",
-        },
+        rootEbsVolume = M.Ec2EbsVolume,
+        acceleratorCapabilities = M.AcceleratorCapabilities,
         allowedInstanceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         excludedInstanceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         customAmounts = {
             type = "list",
-            member_type = "structure",
+            member = M.FleetAmountCapability,
         },
         customAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.FleetAttributeCapability,
         },
     },
 }
@@ -4209,7 +4088,7 @@ M.VpcConfiguration = {
     members = {
         resourceConfigurationArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4217,39 +4096,25 @@ M.VpcConfiguration = {
 M.ServiceManagedEc2FleetConfiguration = {
     type = "structure",
     members = {
-        instanceCapabilities = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        instanceMarketOptions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        vpcConfiguration = {
-            type = "structure",
-        },
+        instanceCapabilities = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ServiceManagedEc2InstanceCapabilities }),
+        instanceMarketOptions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ServiceManagedEc2InstanceMarketOptions }),
+        vpcConfiguration = M.VpcConfiguration,
         storageProfileId = {
             type = "string",
         },
-        autoScalingConfiguration = {
-            type = "structure",
-        },
+        autoScalingConfiguration = M.ServiceManagedEc2AutoScalingConfiguration,
     },
 }
 
 M.FleetConfiguration = {
     type = "union",
     members = {
-        customerManaged = {
-            type = "structure",
-        },
-        serviceManagedEc2 = {
-            type = "structure",
-        },
+        customerManaged = M.CustomerManagedFleetConfiguration,
+        serviceManagedEc2 = M.ServiceManagedEc2FleetConfiguration,
     },
 }
 
@@ -4263,7 +4128,10 @@ M.HostConfiguration = {
             },
         },
         scriptTimeoutSeconds = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 300,
+            },
         },
     },
 }
@@ -4292,6 +4160,9 @@ M.CreateFleetInput = {
         },
         description = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
         roleArn = {
             type = "string",
@@ -4300,28 +4171,26 @@ M.CreateFleetInput = {
             },
         },
         minWorkerCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         maxWorkerCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
-        configuration = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FleetConfiguration }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        hostConfiguration = {
-            type = "structure",
-        },
+        hostConfiguration = M.HostConfiguration,
     },
 }
 
@@ -4372,33 +4241,40 @@ M.CreateJobInput = {
             type = "string",
         },
         priority = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.JobParameter,
         },
-        attachments = {
-            type = "structure",
-        },
+        attachments = M.Attachments,
         storageProfileId = {
             type = "string",
         },
         targetTaskRunStatus = {
             type = "string",
+            traits = {
+                default = "READY",
+            },
         },
         maxFailedTasksCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 20,
+            },
         },
         maxRetriesPerTask = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 5,
+            },
         },
         maxWorkerCount = {
-            type = "number",
+            type = "integer",
         },
         sourceJobId = {
             type = "string",
@@ -4411,8 +4287,8 @@ M.CreateJobInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -4446,22 +4322,22 @@ M.CreateLicenseEndpointInput = {
         },
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -4507,13 +4383,16 @@ M.CreateLimitInput = {
             },
         },
         maxCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         description = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
     },
 }
@@ -4568,8 +4447,8 @@ M.CreateMonitorInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -4602,7 +4481,10 @@ M.PriorityBalancedSchedulingConfiguration = {
     type = "structure",
     members = {
         renderingTaskBuffer = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 1,
+            },
         },
     },
 }
@@ -4618,9 +4500,7 @@ M.SchedulingMaxPriorityOverrideAlwaysScheduleFirst = {
 M.SchedulingMaxPriorityOverride = {
     type = "union",
     members = {
-        alwaysScheduleFirst = {
-            type = "structure",
-        },
+        alwaysScheduleFirst = M.SchedulingMaxPriorityOverrideAlwaysScheduleFirst,
     },
 }
 
@@ -4631,9 +4511,7 @@ M.SchedulingMinPriorityOverrideAlwaysScheduleLast = {
 M.SchedulingMinPriorityOverride = {
     type = "union",
     members = {
-        alwaysScheduleLast = {
-            type = "structure",
-        },
+        alwaysScheduleLast = M.SchedulingMinPriorityOverrideAlwaysScheduleLast,
     },
 }
 
@@ -4641,41 +4519,46 @@ M.WeightedBalancedSchedulingConfiguration = {
     type = "structure",
     members = {
         priorityWeight = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 100,
+            },
         },
         errorWeight = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = -10,
+            },
         },
         submissionTimeWeight = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 3,
+            },
         },
         renderingTaskWeight = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = -100,
+            },
         },
         renderingTaskBuffer = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 1,
+            },
         },
-        maxPriorityOverride = {
-            type = "union",
-        },
-        minPriorityOverride = {
-            type = "union",
-        },
+        maxPriorityOverride = M.SchedulingMaxPriorityOverride,
+        minPriorityOverride = M.SchedulingMinPriorityOverride,
     },
 }
 
 M.SchedulingConfiguration = {
     type = "union",
     members = {
-        priorityFifo = {
-            type = "structure",
-        },
-        priorityBalanced = {
-            type = "structure",
-        },
-        weightedBalanced = {
-            type = "structure",
-        },
+        priorityFifo = M.PriorityFifoSchedulingConfiguration,
+        priorityBalanced = M.PriorityBalancedSchedulingConfiguration,
+        weightedBalanced = M.WeightedBalancedSchedulingConfiguration,
     },
 }
 
@@ -4703,35 +4586,35 @@ M.CreateQueueInput = {
         },
         description = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
         defaultBudgetAction = {
             type = "string",
+            traits = {
+                default = "NONE",
+            },
         },
-        jobAttachmentSettings = {
-            type = "structure",
-        },
+        jobAttachmentSettings = M.JobAttachmentSettings,
         roleArn = {
             type = "string",
         },
-        jobRunAsUser = {
-            type = "structure",
-        },
+        jobRunAsUser = M.JobRunAsUser,
         requiredFileSystemLocationNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         allowedStorageProfileIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        schedulingConfiguration = {
-            type = "union",
-        },
+        schedulingConfiguration = M.SchedulingConfiguration,
     },
 }
 
@@ -4776,7 +4659,7 @@ M.CreateQueueEnvironmentInput = {
             },
         },
         priority = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -4931,7 +4814,7 @@ M.CreateStorageProfileInput = {
         },
         fileSystemLocations = {
             type = "list",
-            member_type = "structure",
+            member = M.FileSystemLocation,
         },
     },
 }
@@ -4951,9 +4834,7 @@ M.CreateStorageProfileOutput = {
 M.HostPropertiesRequest = {
     type = "structure",
     members = {
-        ipAddresses = {
-            type = "structure",
-        },
+        ipAddresses = M.IpAddresses,
         hostName = {
             type = "string",
         },
@@ -4977,9 +4858,7 @@ M.CreateWorkerInput = {
                 required = true,
             },
         },
-        hostProperties = {
-            type = "structure",
-        },
+        hostProperties = M.HostPropertiesRequest,
         clientToken = {
             type = "string",
             traits = {
@@ -4988,8 +4867,8 @@ M.CreateWorkerInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -5268,11 +5147,11 @@ M.FleetCapabilities = {
     members = {
         amounts = {
             type = "list",
-            member_type = "structure",
+            member = M.FleetAmountCapability,
         },
         attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.FleetAttributeCapability,
         },
     },
 }
@@ -5320,32 +5199,29 @@ M.GetFleetOutput = {
             type = "string",
         },
         targetWorkerCount = {
-            type = "number",
+            type = "integer",
         },
         workerCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         minWorkerCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         maxWorkerCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
-        configuration = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FleetConfiguration }),
         createdAt = {
             type = "timestamp",
             traits = {
@@ -5367,12 +5243,8 @@ M.GetFleetOutput = {
         description = {
             type = "string",
         },
-        hostConfiguration = {
-            type = "structure",
-        },
-        capabilities = {
-            type = "structure",
-        },
+        hostConfiguration = M.HostConfiguration,
+        capabilities = M.FleetCapabilities,
         roleArn = {
             type = "string",
             traits = {
@@ -5406,8 +5278,9 @@ M.ListFleetMembersInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 100,
                 http_query = "maxResults",
             },
         },
@@ -5461,7 +5334,7 @@ M.ListFleetMembersOutput = {
     members = {
         members = {
             type = "list",
-            member_type = "structure",
+            member = M.FleetMember,
             traits = {
                 required = true,
             },
@@ -5489,8 +5362,9 @@ M.ListFleetsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 100,
                 http_query = "maxResults",
             },
         },
@@ -5549,32 +5423,29 @@ M.FleetSummary = {
             type = "string",
         },
         targetWorkerCount = {
-            type = "number",
+            type = "integer",
         },
         workerCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         minWorkerCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         maxWorkerCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
-        configuration = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FleetConfiguration }),
         createdAt = {
             type = "timestamp",
             traits = {
@@ -5601,7 +5472,7 @@ M.ListFleetsOutput = {
     members = {
         fleets = {
             type = "list",
-            member_type = "structure",
+            member = M.FleetSummary,
             traits = {
                 required = true,
             },
@@ -5645,17 +5516,13 @@ M.UpdateFleetInput = {
             type = "string",
         },
         minWorkerCount = {
-            type = "number",
+            type = "integer",
         },
         maxWorkerCount = {
-            type = "number",
+            type = "integer",
         },
-        configuration = {
-            type = "union",
-        },
-        hostConfiguration = {
-            type = "structure",
-        },
+        configuration = M.FleetConfiguration,
+        hostConfiguration = M.HostConfiguration,
     },
 }
 
@@ -5742,18 +5609,14 @@ M.GetWorkerOutput = {
                 required = true,
             },
         },
-        hostProperties = {
-            type = "structure",
-        },
+        hostProperties = M.HostPropertiesResponse,
         status = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        log = {
-            type = "structure",
-        },
+        log = M.LogConfiguration,
         createdAt = {
             type = "timestamp",
             traits = {
@@ -5806,8 +5669,9 @@ M.ListSessionsForWorkerInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 100,
                 http_query = "maxResults",
             },
         },
@@ -5861,7 +5725,7 @@ M.ListSessionsForWorkerOutput = {
     members = {
         sessions = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkerSessionSummary,
             traits = {
                 required = true,
             },
@@ -5896,8 +5760,9 @@ M.ListWorkersInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 100,
                 http_query = "maxResults",
             },
         },
@@ -5925,18 +5790,14 @@ M.WorkerSummary = {
                 required = true,
             },
         },
-        hostProperties = {
-            type = "structure",
-        },
+        hostProperties = M.HostPropertiesResponse,
         status = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        log = {
-            type = "structure",
-        },
+        log = M.LogConfiguration,
         createdAt = {
             type = "timestamp",
             traits = {
@@ -5963,7 +5824,7 @@ M.ListWorkersOutput = {
     members = {
         workers = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkerSummary,
             traits = {
                 required = true,
             },
@@ -5984,7 +5845,7 @@ M.WorkerAmountCapability = {
             },
         },
         value = {
-            type = "number",
+            type = "float",
             traits = {
                 required = true,
             },
@@ -6003,7 +5864,7 @@ M.WorkerAttributeCapability = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -6016,14 +5877,14 @@ M.WorkerCapabilities = {
     members = {
         amounts = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkerAmountCapability,
             traits = {
                 required = true,
             },
         },
         attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkerAttributeCapability,
             traits = {
                 required = true,
             },
@@ -6064,24 +5925,16 @@ M.UpdateWorkerInput = {
         status = {
             type = "string",
         },
-        capabilities = {
-            type = "structure",
-        },
-        hostProperties = {
-            type = "structure",
-        },
+        capabilities = M.WorkerCapabilities,
+        hostProperties = M.HostPropertiesRequest,
     },
 }
 
 M.UpdateWorkerOutput = {
     type = "structure",
     members = {
-        log = {
-            type = "structure",
-        },
-        hostConfiguration = {
-            type = "structure",
-        },
+        log = M.LogConfiguration,
+        hostConfiguration = M.HostConfiguration,
     },
 }
 
@@ -6104,7 +5957,7 @@ M.UpdatedSessionActionInfo = {
             type = "string",
         },
         processExitCode = {
-            type = "number",
+            type = "integer",
         },
         progressMessage = {
             type = "string",
@@ -6128,11 +5981,11 @@ M.UpdatedSessionActionInfo = {
             },
         },
         progressPercent = {
-            type = "number",
+            type = "float",
         },
         manifests = {
             type = "list",
-            member_type = "structure",
+            member = M.TaskRunManifestPropertiesRequest,
         },
     },
 }
@@ -6163,8 +6016,8 @@ M.UpdateWorkerScheduleInput = {
         },
         updatedSessionActions = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.UpdatedSessionActionInfo,
         },
     },
 }
@@ -6178,16 +6031,16 @@ M.UpdateWorkerScheduleOutput = {
     members = {
         assignedSessions = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.AssignedSession,
             traits = {
                 required = true,
             },
         },
         cancelSessionActions = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
             traits = {
                 required = true,
             },
@@ -6196,7 +6049,7 @@ M.UpdateWorkerScheduleOutput = {
             type = "string",
         },
         updateIntervalSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -6257,8 +6110,9 @@ M.GetFarmOutput = {
             type = "string",
         },
         costScaleFactor = {
-            type = "number",
+            type = "float",
             traits = {
+                default = 1,
                 required = true,
             },
         },
@@ -6301,7 +6155,7 @@ M.GetLimitOutput = {
             },
         },
         currentCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -6337,7 +6191,7 @@ M.GetLimitOutput = {
             },
         },
         maxCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -6409,7 +6263,7 @@ M.GetStorageProfileOutput = {
         },
         fileSystemLocations = {
             type = "list",
-            member_type = "structure",
+            member = M.FileSystemLocation,
         },
     },
 }
@@ -6431,8 +6285,9 @@ M.ListFarmMembersInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 100,
                 http_query = "maxResults",
             },
         },
@@ -6480,7 +6335,7 @@ M.ListFarmMembersOutput = {
     members = {
         members = {
             type = "list",
-            member_type = "structure",
+            member = M.FarmMember,
             traits = {
                 required = true,
             },
@@ -6501,8 +6356,9 @@ M.ListFarmsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 100,
                 http_query = "maxResults",
             },
         },
@@ -6559,7 +6415,7 @@ M.ListFarmsOutput = {
     members = {
         farms = {
             type = "list",
-            member_type = "structure",
+            member = M.FarmSummary,
             traits = {
                 required = true,
             },
@@ -6587,8 +6443,9 @@ M.ListLimitsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 100,
                 http_query = "maxResults",
             },
         },
@@ -6611,7 +6468,7 @@ M.LimitSummary = {
             },
         },
         currentCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -6647,7 +6504,7 @@ M.LimitSummary = {
             },
         },
         maxCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -6660,7 +6517,7 @@ M.ListLimitsOutput = {
     members = {
         limits = {
             type = "list",
-            member_type = "structure",
+            member = M.LimitSummary,
             traits = {
                 required = true,
             },
@@ -6688,8 +6545,9 @@ M.ListStorageProfilesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 100,
                 http_query = "maxResults",
             },
         },
@@ -6725,7 +6583,7 @@ M.ListStorageProfilesOutput = {
     members = {
         storageProfiles = {
             type = "list",
-            member_type = "structure",
+            member = M.StorageProfileSummary,
             traits = {
                 required = true,
             },
@@ -6910,26 +6768,20 @@ M.GetQueueOutput = {
         description = {
             type = "string",
         },
-        jobAttachmentSettings = {
-            type = "structure",
-        },
+        jobAttachmentSettings = M.JobAttachmentSettings,
         roleArn = {
             type = "string",
         },
         requiredFileSystemLocationNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         allowedStorageProfileIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        jobRunAsUser = {
-            type = "structure",
-        },
-        schedulingConfiguration = {
-            type = "union",
-        },
+        jobRunAsUser = M.JobRunAsUser,
+        schedulingConfiguration = M.SchedulingConfiguration,
     },
 }
 
@@ -6976,7 +6828,7 @@ M.GetQueueEnvironmentOutput = {
             },
         },
         priority = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -7064,7 +6916,7 @@ M.GetStorageProfileForQueueOutput = {
         },
         fileSystemLocations = {
             type = "list",
-            member_type = "structure",
+            member = M.FileSystemLocation,
         },
     },
 }
@@ -7162,7 +7014,7 @@ M.GetJobOutput = {
             },
         },
         priority = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -7199,34 +7051,32 @@ M.GetJobOutput = {
         },
         taskRunStatusCounts = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
         },
         taskFailureRetryCount = {
-            type = "number",
+            type = "integer",
         },
         storageProfileId = {
             type = "string",
         },
         maxFailedTasksCount = {
-            type = "number",
+            type = "integer",
         },
         maxRetriesPerTask = {
-            type = "number",
+            type = "integer",
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.JobParameter,
         },
-        attachments = {
-            type = "structure",
-        },
+        attachments = M.Attachments,
         description = {
             type = "string",
         },
         maxWorkerCount = {
-            type = "number",
+            type = "integer",
         },
         sourceJobId = {
             type = "string",
@@ -7313,18 +7163,11 @@ M.GetSessionOutput = {
         updatedBy = {
             type = "string",
         },
-        log = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        hostProperties = {
-            type = "structure",
-        },
-        workerLog = {
-            type = "structure",
-        },
+        log = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LogConfiguration }),
+        hostProperties = M.HostPropertiesResponse,
+        workerLog = M.LogConfiguration,
     },
 }
 
@@ -7387,11 +7230,11 @@ M.GetSessionActionOutput = {
             type = "timestamp",
         },
         progressPercent = {
-            type = "number",
+            type = "float",
         },
         manifests = {
             type = "list",
-            member_type = "structure",
+            member = M.TaskRunManifestPropertiesResponse,
         },
         sessionId = {
             type = "string",
@@ -7400,21 +7243,18 @@ M.GetSessionActionOutput = {
             },
         },
         processExitCode = {
-            type = "number",
+            type = "integer",
         },
         progressMessage = {
             type = "string",
         },
         acquiredLimits = {
             type = "list",
-            member_type = "structure",
+            member = M.AcquiredLimit,
         },
-        definition = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        definition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SessionActionDefinition }),
     },
 }
 
@@ -7484,14 +7324,14 @@ M.GetStepOutput = {
         },
         taskRunStatusCounts = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
             traits = {
                 required = true,
             },
         },
         taskFailureRetryCount = {
-            type = "number",
+            type = "integer",
         },
         targetTaskRunStatus = {
             type = "string",
@@ -7520,15 +7360,9 @@ M.GetStepOutput = {
         endedAt = {
             type = "timestamp",
         },
-        dependencyCounts = {
-            type = "structure",
-        },
-        requiredCapabilities = {
-            type = "structure",
-        },
-        parameterSpace = {
-            type = "structure",
-        },
+        dependencyCounts = M.DependencyCounts,
+        requiredCapabilities = M.StepRequiredCapabilities,
+        parameterSpace = M.ParameterSpace,
         description = {
             type = "string",
         },
@@ -7607,7 +7441,7 @@ M.GetTaskOutput = {
             type = "string",
         },
         failureRetryCount = {
-            type = "number",
+            type = "integer",
         },
         startedAt = {
             type = "timestamp",
@@ -7626,8 +7460,8 @@ M.GetTaskOutput = {
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.TaskParameterValue,
         },
     },
 }
@@ -7663,8 +7497,9 @@ M.ListJobMembersInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 100,
                 http_query = "maxResults",
             },
         },
@@ -7724,7 +7559,7 @@ M.ListJobMembersOutput = {
     members = {
         members = {
             type = "list",
-            member_type = "structure",
+            member = M.JobMember,
             traits = {
                 required = true,
             },
@@ -7766,8 +7601,9 @@ M.ListJobParameterDefinitionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 100,
                 http_query = "maxResults",
             },
         },
@@ -7779,7 +7615,7 @@ M.ListJobParameterDefinitionsOutput = {
     members = {
         jobParameterDefinitions = {
             type = "list",
-            member_type = "document",
+            member = { type = "document" },
             traits = {
                 required = true,
             },
@@ -7814,8 +7650,9 @@ M.ListJobsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 100,
                 http_query = "maxResults",
             },
         },
@@ -7856,7 +7693,7 @@ M.JobSummary = {
             },
         },
         priority = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -7893,20 +7730,20 @@ M.JobSummary = {
         },
         taskRunStatusCounts = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
         },
         taskFailureRetryCount = {
-            type = "number",
+            type = "integer",
         },
         maxFailedTasksCount = {
-            type = "number",
+            type = "integer",
         },
         maxRetriesPerTask = {
-            type = "number",
+            type = "integer",
         },
         maxWorkerCount = {
-            type = "number",
+            type = "integer",
         },
         sourceJobId = {
             type = "string",
@@ -7919,7 +7756,7 @@ M.ListJobsOutput = {
     members = {
         jobs = {
             type = "list",
-            member_type = "structure",
+            member = M.JobSummary,
             traits = {
                 required = true,
             },
@@ -7961,8 +7798,9 @@ M.ListSessionActionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 100,
                 http_query = "maxResults",
             },
         },
@@ -8028,8 +7866,8 @@ M.TaskRunSessionActionDefinitionSummary = {
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.TaskParameterValue,
         },
     },
 }
@@ -8037,18 +7875,10 @@ M.TaskRunSessionActionDefinitionSummary = {
 M.SessionActionDefinitionSummary = {
     type = "union",
     members = {
-        envEnter = {
-            type = "structure",
-        },
-        envExit = {
-            type = "structure",
-        },
-        taskRun = {
-            type = "structure",
-        },
-        syncInputJobAttachments = {
-            type = "structure",
-        },
+        envEnter = M.EnvironmentEnterSessionActionDefinitionSummary,
+        envExit = M.EnvironmentExitSessionActionDefinitionSummary,
+        taskRun = M.TaskRunSessionActionDefinitionSummary,
+        syncInputJobAttachments = M.SyncInputJobAttachmentsSessionActionDefinitionSummary,
     },
 }
 
@@ -8077,18 +7907,15 @@ M.SessionActionSummary = {
             type = "timestamp",
         },
         progressPercent = {
-            type = "number",
+            type = "float",
         },
         manifests = {
             type = "list",
-            member_type = "structure",
+            member = M.TaskRunManifestPropertiesResponse,
         },
-        definition = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        definition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SessionActionDefinitionSummary }),
     },
 }
 
@@ -8097,7 +7924,7 @@ M.ListSessionActionsOutput = {
     members = {
         sessionActions = {
             type = "list",
-            member_type = "structure",
+            member = M.SessionActionSummary,
             traits = {
                 required = true,
             },
@@ -8139,8 +7966,9 @@ M.ListSessionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 100,
                 http_query = "maxResults",
             },
         },
@@ -8200,7 +8028,7 @@ M.ListSessionsOutput = {
     members = {
         sessions = {
             type = "list",
-            member_type = "structure",
+            member = M.SessionSummary,
             traits = {
                 required = true,
             },
@@ -8249,8 +8077,9 @@ M.ListStepConsumersInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 100,
                 http_query = "maxResults",
             },
         },
@@ -8285,7 +8114,7 @@ M.ListStepConsumersOutput = {
     members = {
         consumers = {
             type = "list",
-            member_type = "structure",
+            member = M.StepConsumer,
             traits = {
                 required = true,
             },
@@ -8334,8 +8163,9 @@ M.ListStepDependenciesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 100,
                 http_query = "maxResults",
             },
         },
@@ -8365,7 +8195,7 @@ M.ListStepDependenciesOutput = {
     members = {
         dependencies = {
             type = "list",
-            member_type = "structure",
+            member = M.StepDependency,
             traits = {
                 required = true,
             },
@@ -8407,8 +8237,9 @@ M.ListStepsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 100,
                 http_query = "maxResults",
             },
         },
@@ -8447,14 +8278,14 @@ M.StepSummary = {
         },
         taskRunStatusCounts = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
             traits = {
                 required = true,
             },
         },
         taskFailureRetryCount = {
-            type = "number",
+            type = "integer",
         },
         targetTaskRunStatus = {
             type = "string",
@@ -8483,9 +8314,7 @@ M.StepSummary = {
         endedAt = {
             type = "timestamp",
         },
-        dependencyCounts = {
-            type = "structure",
-        },
+        dependencyCounts = M.DependencyCounts,
     },
 }
 
@@ -8494,7 +8323,7 @@ M.ListStepsOutput = {
     members = {
         steps = {
             type = "list",
-            member_type = "structure",
+            member = M.StepSummary,
             traits = {
                 required = true,
             },
@@ -8543,8 +8372,9 @@ M.ListTasksInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 100,
                 http_query = "maxResults",
             },
         },
@@ -8582,7 +8412,7 @@ M.TaskSummary = {
             type = "string",
         },
         failureRetryCount = {
-            type = "number",
+            type = "integer",
         },
         startedAt = {
             type = "timestamp",
@@ -8601,8 +8431,8 @@ M.TaskSummary = {
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.TaskParameterValue,
         },
     },
 }
@@ -8612,7 +8442,7 @@ M.ListTasksOutput = {
     members = {
         tasks = {
             type = "list",
-            member_type = "structure",
+            member = M.TaskSummary,
             traits = {
                 required = true,
             },
@@ -8657,19 +8487,19 @@ M.UpdateJobInput = {
             type = "string",
         },
         priority = {
-            type = "number",
+            type = "integer",
         },
         maxFailedTasksCount = {
-            type = "number",
+            type = "integer",
         },
         maxRetriesPerTask = {
-            type = "number",
+            type = "integer",
         },
         lifecycleStatus = {
             type = "string",
         },
         maxWorkerCount = {
-            type = "number",
+            type = "integer",
         },
         name = {
             type = "string",
@@ -8865,8 +8695,9 @@ M.ListQueueEnvironmentsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 100,
                 http_query = "maxResults",
             },
         },
@@ -8889,7 +8720,7 @@ M.QueueEnvironmentSummary = {
             },
         },
         priority = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -8902,7 +8733,7 @@ M.ListQueueEnvironmentsOutput = {
     members = {
         environments = {
             type = "list",
-            member_type = "structure",
+            member = M.QueueEnvironmentSummary,
             traits = {
                 required = true,
             },
@@ -8937,8 +8768,9 @@ M.ListQueueMembersInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 100,
                 http_query = "maxResults",
             },
         },
@@ -8992,7 +8824,7 @@ M.ListQueueMembersOutput = {
     members = {
         members = {
             type = "list",
-            member_type = "structure",
+            member = M.QueueMember,
             traits = {
                 required = true,
             },
@@ -9020,8 +8852,9 @@ M.ListQueuesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 100,
                 http_query = "maxResults",
             },
         },
@@ -9102,7 +8935,7 @@ M.ListQueuesOutput = {
     members = {
         queues = {
             type = "list",
-            member_type = "structure",
+            member = M.QueueSummary,
             traits = {
                 required = true,
             },
@@ -9137,8 +8970,9 @@ M.ListStorageProfilesForQueueInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 100,
                 http_query = "maxResults",
             },
         },
@@ -9150,7 +8984,7 @@ M.ListStorageProfilesForQueueOutput = {
     members = {
         storageProfiles = {
             type = "list",
-            member_type = "structure",
+            member = M.StorageProfileSummary,
             traits = {
                 required = true,
             },
@@ -9193,34 +9027,28 @@ M.UpdateQueueInput = {
         defaultBudgetAction = {
             type = "string",
         },
-        jobAttachmentSettings = {
-            type = "structure",
-        },
+        jobAttachmentSettings = M.JobAttachmentSettings,
         roleArn = {
             type = "string",
         },
-        jobRunAsUser = {
-            type = "structure",
-        },
+        jobRunAsUser = M.JobRunAsUser,
         requiredFileSystemLocationNamesToAdd = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         requiredFileSystemLocationNamesToRemove = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         allowedStorageProfileIdsToAdd = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         allowedStorageProfileIdsToRemove = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        schedulingConfiguration = {
-            type = "union",
-        },
+        schedulingConfiguration = M.SchedulingConfiguration,
     },
 }
 
@@ -9259,7 +9087,7 @@ M.UpdateQueueEnvironmentInput = {
             },
         },
         priority = {
-            type = "number",
+            type = "integer",
         },
         templateType = {
             type = "string",
@@ -9291,7 +9119,7 @@ M.UpdateFarmInput = {
             type = "string",
         },
         costScaleFactor = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -9324,7 +9152,7 @@ M.UpdateLimitInput = {
             type = "string",
         },
         maxCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -9364,11 +9192,11 @@ M.UpdateStorageProfileInput = {
         },
         fileSystemLocationsToAdd = {
             type = "list",
-            member_type = "structure",
+            member = M.FileSystemLocation,
         },
         fileSystemLocationsToRemove = {
             type = "list",
-            member_type = "structure",
+            member = M.FileSystemLocation,
         },
     },
 }
@@ -9546,8 +9374,9 @@ M.GetSessionsStatisticsAggregationInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 100,
                 http_query = "maxResults",
             },
         },
@@ -9565,16 +9394,16 @@ M.Stats = {
     type = "structure",
     members = {
         min = {
-            type = "number",
+            type = "double",
         },
         max = {
-            type = "number",
+            type = "double",
         },
         avg = {
-            type = "number",
+            type = "double",
         },
         sum = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -9612,23 +9441,17 @@ M.Statistics = {
             type = "string",
         },
         count = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
-        costInUsd = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        runtimeInSeconds = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        costInUsd = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Stats }),
+        runtimeInSeconds = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Stats }),
         aggregationStartTime = {
             type = "timestamp",
             traits = {
@@ -9656,7 +9479,7 @@ M.GetSessionsStatisticsAggregationOutput = {
     members = {
         statistics = {
             type = "list",
-            member_type = "structure",
+            member = M.Statistics,
         },
         status = {
             type = "string",
@@ -9763,11 +9586,11 @@ M.GetLicenseEndpointOutput = {
         },
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -9782,8 +9605,9 @@ M.ListLicenseEndpointsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 100,
                 http_query = "maxResults",
             },
         },
@@ -9813,7 +9637,7 @@ M.ListLicenseEndpointsOutput = {
     members = {
         licenseEndpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.LicenseEndpointSummary,
             traits = {
                 required = true,
             },
@@ -9841,8 +9665,9 @@ M.ListMeteredProductsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 100,
                 http_query = "maxResults",
             },
         },
@@ -9871,7 +9696,7 @@ M.MeteredProductSummary = {
             },
         },
         port = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -9884,7 +9709,7 @@ M.ListMeteredProductsOutput = {
     members = {
         meteredProducts = {
             type = "list",
-            member_type = "structure",
+            member = M.MeteredProductSummary,
             traits = {
                 required = true,
             },
@@ -9929,8 +9754,9 @@ M.ListAvailableMeteredProductsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 100,
                 http_query = "maxResults",
             },
         },
@@ -9942,7 +9768,7 @@ M.ListAvailableMeteredProductsOutput = {
     members = {
         meteredProducts = {
             type = "list",
-            member_type = "structure",
+            member = M.MeteredProductSummary,
             traits = {
                 required = true,
             },
@@ -9970,8 +9796,9 @@ M.ListQueueFleetAssociationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 100,
                 http_query = "maxResults",
             },
         },
@@ -10037,7 +9864,7 @@ M.ListQueueFleetAssociationsOutput = {
     members = {
         queueFleetAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.QueueFleetAssociationSummary,
             traits = {
                 required = true,
             },
@@ -10065,8 +9892,9 @@ M.ListQueueLimitAssociationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 100,
                 http_query = "maxResults",
             },
         },
@@ -10132,7 +9960,7 @@ M.ListQueueLimitAssociationsOutput = {
     members = {
         queueLimitAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.QueueLimitAssociationSummary,
             traits = {
                 required = true,
             },
@@ -10161,8 +9989,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -10284,8 +10112,8 @@ M.GetMonitorSettingsOutput = {
     members = {
         settings = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -10303,8 +10131,9 @@ M.ListMonitorsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 100,
                 http_query = "maxResults",
             },
         },
@@ -10385,7 +10214,7 @@ M.ListMonitorsOutput = {
     members = {
         monitors = {
             type = "list",
-            member_type = "structure",
+            member = M.MonitorSummary,
             traits = {
                 required = true,
             },
@@ -10434,8 +10263,8 @@ M.UpdateMonitorSettingsInput = {
         },
         settings = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -10487,6 +10316,9 @@ M.SearchTermFilterExpression = {
         },
         matchType = {
             type = "string",
+            traits = {
+                default = "FUZZY_MATCH",
+            },
         },
     },
 }
@@ -10532,7 +10364,7 @@ M.StringListFilterExpression = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -10601,15 +10433,9 @@ M.UserJobsFirst = {
 M.SearchSortExpression = {
     type = "union",
     members = {
-        userJobsFirst = {
-            type = "structure",
-        },
-        fieldSort = {
-            type = "structure",
-        },
-        parameterSort = {
-            type = "structure",
-        },
+        userJobsFirst = M.UserJobsFirst,
+        fieldSort = M.FieldSortExpression,
+        parameterSort = M.ParameterSortExpression,
     },
 }
 
@@ -10639,20 +10465,20 @@ M.JobSearchSummary = {
         },
         taskRunStatusCounts = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
         },
         taskFailureRetryCount = {
-            type = "number",
+            type = "integer",
         },
         priority = {
-            type = "number",
+            type = "integer",
         },
         maxFailedTasksCount = {
-            type = "number",
+            type = "integer",
         },
         maxRetriesPerTask = {
-            type = "number",
+            type = "integer",
         },
         createdBy = {
             type = "string",
@@ -10674,11 +10500,11 @@ M.JobSearchSummary = {
         },
         jobParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.JobParameter,
         },
         maxWorkerCount = {
-            type = "number",
+            type = "integer",
         },
         sourceJobId = {
             type = "string",
@@ -10691,16 +10517,16 @@ M.SearchJobsOutput = {
     members = {
         jobs = {
             type = "list",
-            member_type = "structure",
+            member = M.JobSearchSummary,
             traits = {
                 required = true,
             },
         },
         nextItemOffset = {
-            type = "number",
+            type = "integer",
         },
         totalResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -10737,11 +10563,11 @@ M.StepSearchSummary = {
         },
         taskRunStatusCounts = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
         },
         taskFailureRetryCount = {
-            type = "number",
+            type = "integer",
         },
         createdAt = {
             type = "timestamp",
@@ -10761,9 +10587,7 @@ M.StepSearchSummary = {
         updatedBy = {
             type = "string",
         },
-        parameterSpace = {
-            type = "structure",
-        },
+        parameterSpace = M.ParameterSpace,
     },
 }
 
@@ -10772,16 +10596,16 @@ M.SearchStepsOutput = {
     members = {
         steps = {
             type = "list",
-            member_type = "structure",
+            member = M.StepSearchSummary,
             traits = {
                 required = true,
             },
         },
         nextItemOffset = {
-            type = "number",
+            type = "integer",
         },
         totalResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -10812,11 +10636,11 @@ M.TaskSearchSummary = {
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.TaskParameterValue,
         },
         failureRetryCount = {
-            type = "number",
+            type = "integer",
         },
         startedAt = {
             type = "timestamp",
@@ -10841,16 +10665,16 @@ M.SearchTasksOutput = {
     members = {
         tasks = {
             type = "list",
-            member_type = "structure",
+            member = M.TaskSearchSummary,
             traits = {
                 required = true,
             },
         },
         nextItemOffset = {
-            type = "number",
+            type = "integer",
         },
         totalResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -10870,9 +10694,7 @@ M.WorkerSearchSummary = {
         status = {
             type = "string",
         },
-        hostProperties = {
-            type = "structure",
-        },
+        hostProperties = M.HostPropertiesResponse,
         createdBy = {
             type = "string",
         },
@@ -10893,16 +10715,16 @@ M.SearchWorkersOutput = {
     members = {
         workers = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkerSearchSummary,
             traits = {
                 required = true,
             },
         },
         nextItemOffset = {
-            type = "number",
+            type = "integer",
         },
         totalResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -10932,11 +10754,11 @@ M.SessionsStatisticsResources = {
     members = {
         queueIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         fleetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -10958,12 +10780,9 @@ M.StartSessionsStatisticsAggregationInput = {
                 required = true,
             },
         },
-        resourceIds = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        resourceIds = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SessionsStatisticsResources }),
         startTime = {
             type = "timestamp",
             traits = {
@@ -10986,14 +10805,14 @@ M.StartSessionsStatisticsAggregationInput = {
         },
         groupBy = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         statistics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -11025,8 +10844,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -11047,7 +10866,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -11149,24 +10968,12 @@ M.UpdateQueueLimitAssociationOutput = {
 M.SearchFilterExpression = {
     type = "union",
     members = {
-        dateTimeFilter = {
-            type = "structure",
-        },
-        parameterFilter = {
-            type = "structure",
-        },
-        searchTermFilter = {
-            type = "structure",
-        },
-        stringFilter = {
-            type = "structure",
-        },
-        stringListFilter = {
-            type = "structure",
-        },
-        groupFilter = {
-            type = "structure",
-        },
+        dateTimeFilter = M.DateTimeFilterExpression,
+        parameterFilter = M.ParameterFilterExpression,
+        searchTermFilter = M.SearchTermFilterExpression,
+        stringFilter = M.StringFilterExpression,
+        stringListFilter = M.StringListFilterExpression,
+        groupFilter = M.SearchGroupedFilterExpressions,
     },
 }
 
@@ -11175,7 +10982,7 @@ M.SearchGroupedFilterExpressions = {
     members = {
         filters = {
             type = "list",
-            member_type = "union",
+            member = M.SearchFilterExpression,
             traits = {
                 required = true,
             },
@@ -11199,25 +11006,26 @@ M.SearchJobsInput = {
                 required = true,
             },
         },
-        filterExpressions = {
-            type = "structure",
-        },
+        filterExpressions = M.SearchGroupedFilterExpressions,
         sortExpressions = {
             type = "list",
-            member_type = "union",
+            member = M.SearchSortExpression,
         },
         itemOffset = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         pageSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 100,
+            },
         },
         queueIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -11235,25 +11043,26 @@ M.SearchStepsInput = {
                 required = true,
             },
         },
-        filterExpressions = {
-            type = "structure",
-        },
+        filterExpressions = M.SearchGroupedFilterExpressions,
         sortExpressions = {
             type = "list",
-            member_type = "union",
+            member = M.SearchSortExpression,
         },
         itemOffset = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         pageSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 100,
+            },
         },
         queueIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -11274,25 +11083,26 @@ M.SearchTasksInput = {
                 required = true,
             },
         },
-        filterExpressions = {
-            type = "structure",
-        },
+        filterExpressions = M.SearchGroupedFilterExpressions,
         sortExpressions = {
             type = "list",
-            member_type = "union",
+            member = M.SearchSortExpression,
         },
         itemOffset = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         pageSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 100,
+            },
         },
         queueIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -11313,25 +11123,26 @@ M.SearchWorkersInput = {
                 required = true,
             },
         },
-        filterExpressions = {
-            type = "structure",
-        },
+        filterExpressions = M.SearchGroupedFilterExpressions,
         sortExpressions = {
             type = "list",
-            member_type = "union",
+            member = M.SearchSortExpression,
         },
         itemOffset = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         pageSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 100,
+            },
         },
         fleetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },

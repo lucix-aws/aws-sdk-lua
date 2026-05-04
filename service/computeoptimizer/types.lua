@@ -54,13 +54,22 @@ M.AutoScalingGroupConfiguration = {
     type = "structure",
     members = {
         desiredCapacity = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         minSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         maxSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         instanceType = {
             type = "string",
@@ -69,14 +78,14 @@ M.AutoScalingGroupConfiguration = {
             type = "string",
         },
         estimatedInstanceHourReductionPercentage = {
-            type = "number",
+            type = "double",
         },
         type = {
             type = "string",
         },
         mixedInstanceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -93,7 +102,10 @@ M.AutoScalingGroupEstimatedMonthlySavings = {
             type = "string",
         },
         value = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -102,10 +114,16 @@ M.Gpu = {
     type = "structure",
     members = {
         gpuCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         gpuMemorySizeInMiB = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -115,7 +133,7 @@ M.GpuInfo = {
     members = {
         gpus = {
             type = "list",
-            member_type = "structure",
+            member = M.Gpu,
         },
     },
 }
@@ -176,15 +194,15 @@ M.EffectivePreferredResource = {
         },
         includeList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         effectiveIncludeList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         excludeList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -240,9 +258,7 @@ M.UtilizationPreference = {
         metricName = {
             type = "string",
         },
-        metricParameters = {
-            type = "structure",
-        },
+        metricParameters = M.CustomizableMetricParameters,
     },
 }
 
@@ -251,7 +267,7 @@ M.EffectiveRecommendationPreferences = {
     members = {
         cpuVendorArchitectures = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         enhancedInfrastructureMetrics = {
             type = "string",
@@ -259,23 +275,19 @@ M.EffectiveRecommendationPreferences = {
         inferredWorkloadTypes = {
             type = "string",
         },
-        externalMetricsPreference = {
-            type = "structure",
-        },
+        externalMetricsPreference = M.ExternalMetricsPreference,
         lookBackPeriod = {
             type = "string",
         },
         utilizationPreferences = {
             type = "list",
-            member_type = "structure",
+            member = M.UtilizationPreference,
         },
         preferredResources = {
             type = "list",
-            member_type = "structure",
+            member = M.EffectivePreferredResource,
         },
-        savingsEstimationMode = {
-            type = "structure",
-        },
+        savingsEstimationMode = M.InstanceSavingsEstimationMode,
     },
 }
 
@@ -339,7 +351,10 @@ M.UtilizationMetric = {
             type = "string",
         },
         value = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -351,7 +366,10 @@ M.EstimatedMonthlySavings = {
             type = "string",
         },
         value = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -360,11 +378,12 @@ M.SavingsOpportunity = {
     type = "structure",
     members = {
         savingsOpportunityPercentage = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
-        estimatedMonthlySavings = {
-            type = "structure",
-        },
+        estimatedMonthlySavings = M.EstimatedMonthlySavings,
     },
 }
 
@@ -372,39 +391,38 @@ M.AutoScalingGroupSavingsOpportunityAfterDiscounts = {
     type = "structure",
     members = {
         savingsOpportunityPercentage = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
-        estimatedMonthlySavings = {
-            type = "structure",
-        },
+        estimatedMonthlySavings = M.AutoScalingGroupEstimatedMonthlySavings,
     },
 }
 
 M.AutoScalingGroupRecommendationOption = {
     type = "structure",
     members = {
-        configuration = {
-            type = "structure",
-        },
-        instanceGpuInfo = {
-            type = "structure",
-        },
+        configuration = M.AutoScalingGroupConfiguration,
+        instanceGpuInfo = M.GpuInfo,
         projectedUtilizationMetrics = {
             type = "list",
-            member_type = "structure",
+            member = M.UtilizationMetric,
         },
         performanceRisk = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         rank = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
-        savingsOpportunity = {
-            type = "structure",
-        },
-        savingsOpportunityAfterDiscounts = {
-            type = "structure",
-        },
+        savingsOpportunity = M.SavingsOpportunity,
+        savingsOpportunityAfterDiscounts = M.AutoScalingGroupSavingsOpportunityAfterDiscounts,
         migrationEffort = {
             type = "string",
         },
@@ -428,20 +446,19 @@ M.AutoScalingGroupRecommendation = {
         },
         utilizationMetrics = {
             type = "list",
-            member_type = "structure",
+            member = M.UtilizationMetric,
         },
         lookBackPeriodInDays = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
-        currentConfiguration = {
-            type = "structure",
-        },
-        currentInstanceGpuInfo = {
-            type = "structure",
-        },
+        currentConfiguration = M.AutoScalingGroupConfiguration,
+        currentInstanceGpuInfo = M.GpuInfo,
         recommendationOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.AutoScalingGroupRecommendationOption,
         },
         lastRefreshTimestamp = {
             type = "timestamp",
@@ -449,12 +466,10 @@ M.AutoScalingGroupRecommendation = {
         currentPerformanceRisk = {
             type = "string",
         },
-        effectiveRecommendationPreferences = {
-            type = "structure",
-        },
+        effectiveRecommendationPreferences = M.EffectiveRecommendationPreferences,
         inferredWorkloadTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -508,12 +523,10 @@ M.DeleteRecommendationPreferencesInput = {
                 required = true,
             },
         },
-        scope = {
-            type = "structure",
-        },
+        scope = M.Scope,
         recommendationPreferenceNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -611,7 +624,7 @@ M.JobFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -621,17 +634,17 @@ M.DescribeRecommendationExportJobsInput = {
     members = {
         jobIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.JobFilter,
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -654,9 +667,7 @@ M.S3Destination = {
 M.ExportDestination = {
     type = "structure",
     members = {
-        s3 = {
-            type = "structure",
-        },
+        s3 = M.S3Destination,
     },
 }
 
@@ -673,9 +684,7 @@ M.RecommendationExportJob = {
         jobId = {
             type = "string",
         },
-        destination = {
-            type = "structure",
-        },
+        destination = M.ExportDestination,
         resourceType = {
             type = "string",
         },
@@ -699,7 +708,7 @@ M.DescribeRecommendationExportJobsOutput = {
     members = {
         recommendationExportJobs = {
             type = "list",
-            member_type = "structure",
+            member = M.RecommendationExportJob,
         },
         nextToken = {
             type = "string",
@@ -802,7 +811,7 @@ M.Filter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -812,7 +821,7 @@ M.RecommendationPreferences = {
     members = {
         cpuVendorArchitectures = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -834,31 +843,29 @@ M.ExportAutoScalingGroupRecommendationsInput = {
     members = {
         accountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         fieldsToExport = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        s3DestinationConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        s3DestinationConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3DestinationConfig }),
         fileFormat = {
             type = "string",
         },
         includeMemberAccounts = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        recommendationPreferences = {
-            type = "structure",
-        },
+        recommendationPreferences = M.RecommendationPreferences,
     },
 }
 
@@ -868,9 +875,7 @@ M.ExportAutoScalingGroupRecommendationsOutput = {
         jobId = {
             type = "string",
         },
-        s3Destination = {
-            type = "structure",
-        },
+        s3Destination = M.S3Destination,
     },
 }
 
@@ -934,7 +939,7 @@ M.EBSFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -944,27 +949,27 @@ M.ExportEBSVolumeRecommendationsInput = {
     members = {
         accountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.EBSFilter,
         },
         fieldsToExport = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        s3DestinationConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        s3DestinationConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3DestinationConfig }),
         fileFormat = {
             type = "string",
         },
         includeMemberAccounts = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -975,9 +980,7 @@ M.ExportEBSVolumeRecommendationsOutput = {
         jobId = {
             type = "string",
         },
-        s3Destination = {
-            type = "structure",
-        },
+        s3Destination = M.S3Destination,
     },
 }
 
@@ -1060,31 +1063,29 @@ M.ExportEC2InstanceRecommendationsInput = {
     members = {
         accountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         fieldsToExport = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        s3DestinationConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        s3DestinationConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3DestinationConfig }),
         fileFormat = {
             type = "string",
         },
         includeMemberAccounts = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        recommendationPreferences = {
-            type = "structure",
-        },
+        recommendationPreferences = M.RecommendationPreferences,
     },
 }
 
@@ -1094,9 +1095,7 @@ M.ExportEC2InstanceRecommendationsOutput = {
         jobId = {
             type = "string",
         },
-        s3Destination = {
-            type = "structure",
-        },
+        s3Destination = M.S3Destination,
     },
 }
 
@@ -1144,7 +1143,7 @@ M.ECSServiceRecommendationFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1154,27 +1153,27 @@ M.ExportECSServiceRecommendationsInput = {
     members = {
         accountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.ECSServiceRecommendationFilter,
         },
         fieldsToExport = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        s3DestinationConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        s3DestinationConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3DestinationConfig }),
         fileFormat = {
             type = "string",
         },
         includeMemberAccounts = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1185,9 +1184,7 @@ M.ExportECSServiceRecommendationsOutput = {
         jobId = {
             type = "string",
         },
-        s3Destination = {
-            type = "structure",
-        },
+        s3Destination = M.S3Destination,
     },
 }
 
@@ -1230,7 +1227,7 @@ M.IdleRecommendationFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1240,27 +1237,27 @@ M.ExportIdleRecommendationsInput = {
     members = {
         accountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.IdleRecommendationFilter,
         },
         fieldsToExport = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        s3DestinationConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        s3DestinationConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3DestinationConfig }),
         fileFormat = {
             type = "string",
         },
         includeMemberAccounts = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1271,9 +1268,7 @@ M.ExportIdleRecommendationsOutput = {
         jobId = {
             type = "string",
         },
-        s3Destination = {
-            type = "structure",
-        },
+        s3Destination = M.S3Destination,
     },
 }
 
@@ -1324,7 +1319,7 @@ M.LambdaFunctionRecommendationFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1334,27 +1329,27 @@ M.ExportLambdaFunctionRecommendationsInput = {
     members = {
         accountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.LambdaFunctionRecommendationFilter,
         },
         fieldsToExport = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        s3DestinationConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        s3DestinationConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3DestinationConfig }),
         fileFormat = {
             type = "string",
         },
         includeMemberAccounts = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1365,9 +1360,7 @@ M.ExportLambdaFunctionRecommendationsOutput = {
         jobId = {
             type = "string",
         },
-        s3Destination = {
-            type = "structure",
-        },
+        s3Destination = M.S3Destination,
     },
 }
 
@@ -1409,7 +1402,7 @@ M.LicenseRecommendationFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1419,27 +1412,27 @@ M.ExportLicenseRecommendationsInput = {
     members = {
         accountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.LicenseRecommendationFilter,
         },
         fieldsToExport = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        s3DestinationConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        s3DestinationConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3DestinationConfig }),
         fileFormat = {
             type = "string",
         },
         includeMemberAccounts = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1450,9 +1443,7 @@ M.ExportLicenseRecommendationsOutput = {
         jobId = {
             type = "string",
         },
-        s3Destination = {
-            type = "structure",
-        },
+        s3Destination = M.S3Destination,
     },
 }
 
@@ -1557,7 +1548,7 @@ M.RDSDBRecommendationFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1567,31 +1558,29 @@ M.ExportRDSDatabaseRecommendationsInput = {
     members = {
         accountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.RDSDBRecommendationFilter,
         },
         fieldsToExport = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        s3DestinationConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        s3DestinationConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3DestinationConfig }),
         fileFormat = {
             type = "string",
         },
         includeMemberAccounts = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        recommendationPreferences = {
-            type = "structure",
-        },
+        recommendationPreferences = M.RecommendationPreferences,
     },
 }
 
@@ -1601,9 +1590,7 @@ M.ExportRDSDatabaseRecommendationsOutput = {
         jobId = {
             type = "string",
         },
-        s3Destination = {
-            type = "structure",
-        },
+        s3Destination = M.S3Destination,
     },
 }
 
@@ -1612,25 +1599,23 @@ M.GetAutoScalingGroupRecommendationsInput = {
     members = {
         accountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         autoScalingGroupArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
-        recommendationPreferences = {
-            type = "structure",
-        },
+        recommendationPreferences = M.RecommendationPreferences,
     },
 }
 
@@ -1657,11 +1642,11 @@ M.GetAutoScalingGroupRecommendationsOutput = {
         },
         autoScalingGroupRecommendations = {
             type = "list",
-            member_type = "structure",
+            member = M.AutoScalingGroupRecommendation,
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.GetRecommendationError,
         },
     },
 }
@@ -1671,21 +1656,21 @@ M.GetEBSVolumeRecommendationsInput = {
     members = {
         volumeArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.EBSFilter,
         },
         accountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1697,19 +1682,34 @@ M.VolumeConfiguration = {
             type = "string",
         },
         volumeSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         volumeBaselineIOPS = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         volumeBurstIOPS = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         volumeBaselineThroughput = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         volumeBurstThroughput = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         rootVolume = {
             type = "boolean",
@@ -1735,9 +1735,7 @@ M.EBSSavingsEstimationMode = {
 M.EBSEffectiveRecommendationPreferences = {
     type = "structure",
     members = {
-        savingsEstimationMode = {
-            type = "structure",
-        },
+        savingsEstimationMode = M.EBSSavingsEstimationMode,
     },
 }
 
@@ -1775,7 +1773,10 @@ M.EBSUtilizationMetric = {
             type = "string",
         },
         value = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1787,7 +1788,10 @@ M.EBSEstimatedMonthlySavings = {
             type = "string",
         },
         value = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1796,32 +1800,33 @@ M.EBSSavingsOpportunityAfterDiscounts = {
     type = "structure",
     members = {
         savingsOpportunityPercentage = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
-        estimatedMonthlySavings = {
-            type = "structure",
-        },
+        estimatedMonthlySavings = M.EBSEstimatedMonthlySavings,
     },
 }
 
 M.VolumeRecommendationOption = {
     type = "structure",
     members = {
-        configuration = {
-            type = "structure",
-        },
+        configuration = M.VolumeConfiguration,
         performanceRisk = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         rank = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
-        savingsOpportunity = {
-            type = "structure",
-        },
-        savingsOpportunityAfterDiscounts = {
-            type = "structure",
-        },
+        savingsOpportunity = M.SavingsOpportunity,
+        savingsOpportunityAfterDiscounts = M.EBSSavingsOpportunityAfterDiscounts,
     },
 }
 
@@ -1834,22 +1839,23 @@ M.VolumeRecommendation = {
         accountId = {
             type = "string",
         },
-        currentConfiguration = {
-            type = "structure",
-        },
+        currentConfiguration = M.VolumeConfiguration,
         finding = {
             type = "string",
         },
         utilizationMetrics = {
             type = "list",
-            member_type = "structure",
+            member = M.EBSUtilizationMetric,
         },
         lookBackPeriodInDays = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         volumeRecommendationOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.VolumeRecommendationOption,
         },
         lastRefreshTimestamp = {
             type = "timestamp",
@@ -1857,12 +1863,10 @@ M.VolumeRecommendation = {
         currentPerformanceRisk = {
             type = "string",
         },
-        effectiveRecommendationPreferences = {
-            type = "structure",
-        },
+        effectiveRecommendationPreferences = M.EBSEffectiveRecommendationPreferences,
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1875,11 +1879,11 @@ M.GetEBSVolumeRecommendationsOutput = {
         },
         volumeRecommendations = {
             type = "list",
-            member_type = "structure",
+            member = M.VolumeRecommendation,
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.GetRecommendationError,
         },
     },
 }
@@ -1889,25 +1893,23 @@ M.GetEC2InstanceRecommendationsInput = {
     members = {
         instanceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         accountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        recommendationPreferences = {
-            type = "structure",
-        },
+        recommendationPreferences = M.RecommendationPreferences,
     },
 }
 
@@ -1989,7 +1991,10 @@ M.InstanceEstimatedMonthlySavings = {
             type = "string",
         },
         value = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1998,11 +2003,12 @@ M.InstanceSavingsOpportunityAfterDiscounts = {
     type = "structure",
     members = {
         savingsOpportunityPercentage = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
-        estimatedMonthlySavings = {
-            type = "structure",
-        },
+        estimatedMonthlySavings = M.InstanceEstimatedMonthlySavings,
     },
 }
 
@@ -2012,29 +2018,29 @@ M.InstanceRecommendationOption = {
         instanceType = {
             type = "string",
         },
-        instanceGpuInfo = {
-            type = "structure",
-        },
+        instanceGpuInfo = M.GpuInfo,
         projectedUtilizationMetrics = {
             type = "list",
-            member_type = "structure",
+            member = M.UtilizationMetric,
         },
         platformDifferences = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         performanceRisk = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         rank = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
-        savingsOpportunity = {
-            type = "structure",
-        },
-        savingsOpportunityAfterDiscounts = {
-            type = "structure",
-        },
+        savingsOpportunity = M.SavingsOpportunity,
+        savingsOpportunityAfterDiscounts = M.InstanceSavingsOpportunityAfterDiscounts,
         migrationEffort = {
             type = "string",
         },
@@ -2086,22 +2092,25 @@ M.InstanceRecommendation = {
         },
         findingReasonCodes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         utilizationMetrics = {
             type = "list",
-            member_type = "structure",
+            member = M.UtilizationMetric,
         },
         lookBackPeriodInDays = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         recommendationOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceRecommendationOption,
         },
         recommendationSources = {
             type = "list",
-            member_type = "structure",
+            member = M.RecommendationSource,
         },
         lastRefreshTimestamp = {
             type = "timestamp",
@@ -2109,26 +2118,20 @@ M.InstanceRecommendation = {
         currentPerformanceRisk = {
             type = "string",
         },
-        effectiveRecommendationPreferences = {
-            type = "structure",
-        },
+        effectiveRecommendationPreferences = M.EffectiveRecommendationPreferences,
         inferredWorkloadTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         instanceState = {
             type = "string",
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        externalMetricStatus = {
-            type = "structure",
-        },
-        currentInstanceGpuInfo = {
-            type = "structure",
-        },
+        externalMetricStatus = M.ExternalMetricStatus,
+        currentInstanceGpuInfo = M.GpuInfo,
         idle = {
             type = "string",
         },
@@ -2143,11 +2146,11 @@ M.GetEC2InstanceRecommendationsOutput = {
         },
         instanceRecommendations = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceRecommendation,
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.GetRecommendationError,
         },
     },
 }
@@ -2168,8 +2171,9 @@ M.GetEC2RecommendationProjectedMetricsInput = {
             },
         },
         period = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -2185,9 +2189,7 @@ M.GetEC2RecommendationProjectedMetricsInput = {
                 required = true,
             },
         },
-        recommendationPreferences = {
-            type = "structure",
-        },
+        recommendationPreferences = M.RecommendationPreferences,
     },
 }
 
@@ -2199,11 +2201,11 @@ M.ProjectedMetric = {
         },
         timestamps = {
             type = "list",
-            member_type = "timestamp",
+            member = { type = "timestamp" },
         },
         values = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
     },
 }
@@ -2215,11 +2217,14 @@ M.RecommendedOptionProjectedMetric = {
             type = "string",
         },
         rank = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         projectedMetrics = {
             type = "list",
-            member_type = "structure",
+            member = M.ProjectedMetric,
         },
     },
 }
@@ -2229,7 +2234,7 @@ M.GetEC2RecommendationProjectedMetricsOutput = {
     members = {
         recommendedOptionProjectedMetrics = {
             type = "list",
-            member_type = "structure",
+            member = M.RecommendedOptionProjectedMetric,
         },
     },
 }
@@ -2250,8 +2255,9 @@ M.GetECSServiceRecommendationProjectedMetricsInput = {
             },
         },
         period = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -2283,15 +2289,15 @@ M.ECSServiceProjectedMetric = {
         },
         timestamps = {
             type = "list",
-            member_type = "timestamp",
+            member = { type = "timestamp" },
         },
         upperBoundValues = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
         lowerBoundValues = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
     },
 }
@@ -2300,14 +2306,20 @@ M.ECSServiceRecommendedOptionProjectedMetric = {
     type = "structure",
     members = {
         recommendedCpuUnits = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         recommendedMemorySize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         projectedMetrics = {
             type = "list",
-            member_type = "structure",
+            member = M.ECSServiceProjectedMetric,
         },
     },
 }
@@ -2317,7 +2329,7 @@ M.GetECSServiceRecommendationProjectedMetricsOutput = {
     members = {
         recommendedOptionProjectedMetrics = {
             type = "list",
-            member_type = "structure",
+            member = M.ECSServiceRecommendedOptionProjectedMetric,
         },
     },
 }
@@ -2327,21 +2339,21 @@ M.GetECSServiceRecommendationsInput = {
     members = {
         serviceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.ECSServiceRecommendationFilter,
         },
         accountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2350,10 +2362,10 @@ M.MemorySizeConfiguration = {
     type = "structure",
     members = {
         memory = {
-            type = "number",
+            type = "integer",
         },
         memoryReservation = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2364,11 +2376,9 @@ M.ContainerConfiguration = {
         containerName = {
             type = "string",
         },
-        memorySizeConfiguration = {
-            type = "structure",
-        },
+        memorySizeConfiguration = M.MemorySizeConfiguration,
         cpu = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2377,14 +2387,14 @@ M.ServiceConfiguration = {
     type = "structure",
     members = {
         memory = {
-            type = "number",
+            type = "integer",
         },
         cpu = {
-            type = "number",
+            type = "integer",
         },
         containerConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.ContainerConfiguration,
         },
         autoScalingConfiguration = {
             type = "string",
@@ -2413,9 +2423,7 @@ M.ECSSavingsEstimationMode = {
 M.ECSEffectiveRecommendationPreferences = {
     type = "structure",
     members = {
-        savingsEstimationMode = {
-            type = "structure",
-        },
+        savingsEstimationMode = M.ECSSavingsEstimationMode,
     },
 }
 
@@ -2443,11 +2451,9 @@ M.ContainerRecommendation = {
         containerName = {
             type = "string",
         },
-        memorySizeConfiguration = {
-            type = "structure",
-        },
+        memorySizeConfiguration = M.MemorySizeConfiguration,
         cpu = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2467,10 +2473,16 @@ M.ECSServiceProjectedUtilizationMetric = {
             type = "string",
         },
         lowerBoundValue = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         upperBoundValue = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2482,7 +2494,10 @@ M.ECSEstimatedMonthlySavings = {
             type = "string",
         },
         value = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2491,11 +2506,12 @@ M.ECSSavingsOpportunityAfterDiscounts = {
     type = "structure",
     members = {
         savingsOpportunityPercentage = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
-        estimatedMonthlySavings = {
-            type = "structure",
-        },
+        estimatedMonthlySavings = M.ECSEstimatedMonthlySavings,
     },
 }
 
@@ -2503,24 +2519,20 @@ M.ECSServiceRecommendationOption = {
     type = "structure",
     members = {
         memory = {
-            type = "number",
+            type = "integer",
         },
         cpu = {
-            type = "number",
+            type = "integer",
         },
-        savingsOpportunity = {
-            type = "structure",
-        },
-        savingsOpportunityAfterDiscounts = {
-            type = "structure",
-        },
+        savingsOpportunity = M.SavingsOpportunity,
+        savingsOpportunityAfterDiscounts = M.ECSSavingsOpportunityAfterDiscounts,
         projectedUtilizationMetrics = {
             type = "list",
-            member_type = "structure",
+            member = M.ECSServiceProjectedUtilizationMetric,
         },
         containerRecommendations = {
             type = "list",
-            member_type = "structure",
+            member = M.ContainerRecommendation,
         },
     },
 }
@@ -2535,7 +2547,10 @@ M.ECSServiceUtilizationMetric = {
             type = "string",
         },
         value = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2549,15 +2564,16 @@ M.ECSServiceRecommendation = {
         accountId = {
             type = "string",
         },
-        currentServiceConfiguration = {
-            type = "structure",
-        },
+        currentServiceConfiguration = M.ServiceConfiguration,
         utilizationMetrics = {
             type = "list",
-            member_type = "structure",
+            member = M.ECSServiceUtilizationMetric,
         },
         lookbackPeriodInDays = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         launchType = {
             type = "string",
@@ -2570,21 +2586,19 @@ M.ECSServiceRecommendation = {
         },
         findingReasonCodes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         serviceRecommendationOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.ECSServiceRecommendationOption,
         },
         currentPerformanceRisk = {
             type = "string",
         },
-        effectiveRecommendationPreferences = {
-            type = "structure",
-        },
+        effectiveRecommendationPreferences = M.ECSEffectiveRecommendationPreferences,
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2597,11 +2611,11 @@ M.GetECSServiceRecommendationsOutput = {
         },
         ecsServiceRecommendations = {
             type = "list",
-            member_type = "structure",
+            member = M.ECSServiceRecommendation,
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.GetRecommendationError,
         },
     },
 }
@@ -2624,19 +2638,17 @@ M.GetEffectiveRecommendationPreferencesOutput = {
         enhancedInfrastructureMetrics = {
             type = "string",
         },
-        externalMetricsPreference = {
-            type = "structure",
-        },
+        externalMetricsPreference = M.ExternalMetricsPreference,
         lookBackPeriod = {
             type = "string",
         },
         utilizationPreferences = {
             type = "list",
-            member_type = "structure",
+            member = M.UtilizationPreference,
         },
         preferredResources = {
             type = "list",
-            member_type = "structure",
+            member = M.EffectivePreferredResource,
         },
     },
 }
@@ -2656,12 +2668,15 @@ M.GetEnrollmentStatusOutput = {
         },
         memberAccountsEnrolled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         lastUpdatedTimestamp = {
             type = "timestamp",
         },
         numberOfMemberAccountsOptedIn = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2678,7 +2693,7 @@ M.EnrollmentFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2688,13 +2703,13 @@ M.GetEnrollmentStatusesForOrganizationInput = {
     members = {
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.EnrollmentFilter,
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2704,7 +2719,7 @@ M.GetEnrollmentStatusesForOrganizationOutput = {
     members = {
         accountEnrollmentStatuses = {
             type = "list",
-            member_type = "structure",
+            member = M.AccountEnrollmentStatus,
         },
         nextToken = {
             type = "string",
@@ -2739,25 +2754,23 @@ M.GetIdleRecommendationsInput = {
     members = {
         resourceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.IdleRecommendationFilter,
         },
         accountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        orderBy = {
-            type = "structure",
-        },
+        orderBy = M.OrderBy,
     },
 }
 
@@ -2801,7 +2814,10 @@ M.IdleEstimatedMonthlySavings = {
             type = "string",
         },
         value = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2810,11 +2826,12 @@ M.IdleSavingsOpportunity = {
     type = "structure",
     members = {
         savingsOpportunityPercentage = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
-        estimatedMonthlySavings = {
-            type = "structure",
-        },
+        estimatedMonthlySavings = M.IdleEstimatedMonthlySavings,
     },
 }
 
@@ -2822,11 +2839,12 @@ M.IdleSavingsOpportunityAfterDiscounts = {
     type = "structure",
     members = {
         savingsOpportunityPercentage = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
-        estimatedMonthlySavings = {
-            type = "structure",
-        },
+        estimatedMonthlySavings = M.IdleEstimatedMonthlySavings,
     },
 }
 
@@ -2855,7 +2873,10 @@ M.IdleUtilizationMetric = {
             type = "string",
         },
         value = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2881,25 +2902,24 @@ M.IdleRecommendation = {
         findingDescription = {
             type = "string",
         },
-        savingsOpportunity = {
-            type = "structure",
-        },
-        savingsOpportunityAfterDiscounts = {
-            type = "structure",
-        },
+        savingsOpportunity = M.IdleSavingsOpportunity,
+        savingsOpportunityAfterDiscounts = M.IdleSavingsOpportunityAfterDiscounts,
         utilizationMetrics = {
             type = "list",
-            member_type = "structure",
+            member = M.IdleUtilizationMetric,
         },
         lookBackPeriodInDays = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         lastRefreshTimestamp = {
             type = "timestamp",
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2912,11 +2932,11 @@ M.GetIdleRecommendationsOutput = {
         },
         idleRecommendations = {
             type = "list",
-            member_type = "structure",
+            member = M.IdleRecommendation,
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.IdleRecommendationError,
         },
     },
 }
@@ -2926,21 +2946,21 @@ M.GetLambdaFunctionRecommendationsInput = {
     members = {
         functionArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         accountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.LambdaFunctionRecommendationFilter,
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2963,9 +2983,7 @@ M.LambdaSavingsEstimationMode = {
 M.LambdaEffectiveRecommendationPreferences = {
     type = "structure",
     members = {
-        savingsEstimationMode = {
-            type = "structure",
-        },
+        savingsEstimationMode = M.LambdaSavingsEstimationMode,
     },
 }
 
@@ -3002,7 +3020,10 @@ M.LambdaFunctionMemoryProjectedMetric = {
             type = "string",
         },
         value = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -3014,7 +3035,10 @@ M.LambdaEstimatedMonthlySavings = {
             type = "string",
         },
         value = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -3023,11 +3047,12 @@ M.LambdaSavingsOpportunityAfterDiscounts = {
     type = "structure",
     members = {
         savingsOpportunityPercentage = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
-        estimatedMonthlySavings = {
-            type = "structure",
-        },
+        estimatedMonthlySavings = M.LambdaEstimatedMonthlySavings,
     },
 }
 
@@ -3035,21 +3060,23 @@ M.LambdaFunctionMemoryRecommendationOption = {
     type = "structure",
     members = {
         rank = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         memorySize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         projectedUtilizationMetrics = {
             type = "list",
-            member_type = "structure",
+            member = M.LambdaFunctionMemoryProjectedMetric,
         },
-        savingsOpportunity = {
-            type = "structure",
-        },
-        savingsOpportunityAfterDiscounts = {
-            type = "structure",
-        },
+        savingsOpportunity = M.SavingsOpportunity,
+        savingsOpportunityAfterDiscounts = M.LambdaSavingsOpportunityAfterDiscounts,
     },
 }
 
@@ -3073,7 +3100,10 @@ M.LambdaFunctionUtilizationMetric = {
             type = "string",
         },
         value = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -3091,17 +3121,26 @@ M.LambdaFunctionRecommendation = {
             type = "string",
         },
         currentMemorySize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         numberOfInvocations = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         utilizationMetrics = {
             type = "list",
-            member_type = "structure",
+            member = M.LambdaFunctionUtilizationMetric,
         },
         lookbackPeriodInDays = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         lastRefreshTimestamp = {
             type = "timestamp",
@@ -3111,21 +3150,19 @@ M.LambdaFunctionRecommendation = {
         },
         findingReasonCodes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         memorySizeRecommendationOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.LambdaFunctionMemoryRecommendationOption,
         },
         currentPerformanceRisk = {
             type = "string",
         },
-        effectiveRecommendationPreferences = {
-            type = "structure",
-        },
+        effectiveRecommendationPreferences = M.LambdaEffectiveRecommendationPreferences,
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3138,7 +3175,7 @@ M.GetLambdaFunctionRecommendationsOutput = {
         },
         lambdaFunctionRecommendations = {
             type = "list",
-            member_type = "structure",
+            member = M.LambdaFunctionRecommendation,
         },
     },
 }
@@ -3148,21 +3185,21 @@ M.GetLicenseRecommendationsInput = {
     members = {
         resourceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.LicenseRecommendationFilter,
         },
         accountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3203,7 +3240,10 @@ M.LicenseConfiguration = {
     type = "structure",
     members = {
         numberOfCores = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         instanceType = {
             type = "string",
@@ -3225,7 +3265,7 @@ M.LicenseConfiguration = {
         },
         metricsSource = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricSource,
         },
     },
 }
@@ -3247,7 +3287,10 @@ M.LicenseRecommendationOption = {
     type = "structure",
     members = {
         rank = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         operatingSystem = {
             type = "string",
@@ -3258,9 +3301,7 @@ M.LicenseRecommendationOption = {
         licenseModel = {
             type = "string",
         },
-        savingsOpportunity = {
-            type = "structure",
-        },
+        savingsOpportunity = M.SavingsOpportunity,
     },
 }
 
@@ -3273,11 +3314,12 @@ M.LicenseRecommendation = {
         accountId = {
             type = "string",
         },
-        currentLicenseConfiguration = {
-            type = "structure",
-        },
+        currentLicenseConfiguration = M.LicenseConfiguration,
         lookbackPeriodInDays = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         lastRefreshTimestamp = {
             type = "timestamp",
@@ -3287,15 +3329,15 @@ M.LicenseRecommendation = {
         },
         findingReasonCodes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         licenseRecommendationOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.LicenseRecommendationOption,
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3308,11 +3350,11 @@ M.GetLicenseRecommendationsOutput = {
         },
         licenseRecommendations = {
             type = "list",
-            member_type = "structure",
+            member = M.LicenseRecommendation,
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.GetRecommendationError,
         },
     },
 }
@@ -3333,8 +3375,9 @@ M.GetRDSDatabaseRecommendationProjectedMetricsInput = {
             },
         },
         period = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -3350,9 +3393,7 @@ M.GetRDSDatabaseRecommendationProjectedMetricsInput = {
                 required = true,
             },
         },
-        recommendationPreferences = {
-            type = "structure",
-        },
+        recommendationPreferences = M.RecommendationPreferences,
     },
 }
 
@@ -3388,11 +3429,11 @@ M.RDSDatabaseProjectedMetric = {
         },
         timestamps = {
             type = "list",
-            member_type = "timestamp",
+            member = { type = "timestamp" },
         },
         values = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
     },
 }
@@ -3404,11 +3445,14 @@ M.RDSDatabaseRecommendedOptionProjectedMetric = {
             type = "string",
         },
         rank = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         projectedMetrics = {
             type = "list",
-            member_type = "structure",
+            member = M.RDSDatabaseProjectedMetric,
         },
     },
 }
@@ -3418,7 +3462,7 @@ M.GetRDSDatabaseRecommendationProjectedMetricsOutput = {
     members = {
         recommendedOptionProjectedMetrics = {
             type = "list",
-            member_type = "structure",
+            member = M.RDSDatabaseRecommendedOptionProjectedMetric,
         },
     },
 }
@@ -3428,25 +3472,23 @@ M.GetRDSDatabaseRecommendationsInput = {
     members = {
         resourceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.RDSDBRecommendationFilter,
         },
         accountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        recommendationPreferences = {
-            type = "structure",
-        },
+        recommendationPreferences = M.RecommendationPreferences,
     },
 }
 
@@ -3464,16 +3506,19 @@ M.DBStorageConfiguration = {
             type = "string",
         },
         allocatedStorage = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         iops = {
-            type = "number",
+            type = "integer",
         },
         maxAllocatedStorage = {
-            type = "number",
+            type = "integer",
         },
         storageThroughput = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3505,7 +3550,7 @@ M.RDSEffectiveRecommendationPreferences = {
     members = {
         cpuVendorArchitectures = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         enhancedInfrastructureMetrics = {
             type = "string",
@@ -3513,9 +3558,7 @@ M.RDSEffectiveRecommendationPreferences = {
         lookBackPeriod = {
             type = "string",
         },
-        savingsEstimationMode = {
-            type = "structure",
-        },
+        savingsEstimationMode = M.RDSSavingsEstimationMode,
     },
 }
 
@@ -3563,7 +3606,10 @@ M.RDSDBUtilizationMetric = {
             type = "string",
         },
         value = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -3575,7 +3621,10 @@ M.RDSInstanceEstimatedMonthlySavings = {
             type = "string",
         },
         value = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -3584,11 +3633,12 @@ M.RDSInstanceSavingsOpportunityAfterDiscounts = {
     type = "structure",
     members = {
         savingsOpportunityPercentage = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
-        estimatedMonthlySavings = {
-            type = "structure",
-        },
+        estimatedMonthlySavings = M.RDSInstanceEstimatedMonthlySavings,
     },
 }
 
@@ -3600,20 +3650,22 @@ M.RDSDBInstanceRecommendationOption = {
         },
         projectedUtilizationMetrics = {
             type = "list",
-            member_type = "structure",
+            member = M.RDSDBUtilizationMetric,
         },
         performanceRisk = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         rank = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
-        savingsOpportunity = {
-            type = "structure",
-        },
-        savingsOpportunityAfterDiscounts = {
-            type = "structure",
-        },
+        savingsOpportunity = M.SavingsOpportunity,
+        savingsOpportunityAfterDiscounts = M.RDSInstanceSavingsOpportunityAfterDiscounts,
     },
 }
 
@@ -3641,7 +3693,10 @@ M.RDSStorageEstimatedMonthlySavings = {
             type = "string",
         },
         value = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -3650,29 +3705,27 @@ M.RDSStorageSavingsOpportunityAfterDiscounts = {
     type = "structure",
     members = {
         savingsOpportunityPercentage = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
-        estimatedMonthlySavings = {
-            type = "structure",
-        },
+        estimatedMonthlySavings = M.RDSStorageEstimatedMonthlySavings,
     },
 }
 
 M.RDSDBStorageRecommendationOption = {
     type = "structure",
     members = {
-        storageConfiguration = {
-            type = "structure",
-        },
+        storageConfiguration = M.DBStorageConfiguration,
         rank = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
-        savingsOpportunity = {
-            type = "structure",
-        },
-        savingsOpportunityAfterDiscounts = {
-            type = "structure",
-        },
+        savingsOpportunity = M.SavingsOpportunity,
+        savingsOpportunityAfterDiscounts = M.RDSStorageSavingsOpportunityAfterDiscounts,
         estimatedMonthlyVolumeIOPsCostVariation = {
             type = "string",
         },
@@ -3695,14 +3748,12 @@ M.RDSDBRecommendation = {
             type = "string",
         },
         promotionTier = {
-            type = "number",
+            type = "integer",
         },
         currentDBInstanceClass = {
             type = "string",
         },
-        currentStorageConfiguration = {
-            type = "structure",
-        },
+        currentStorageConfiguration = M.DBStorageConfiguration,
         dbClusterIdentifier = {
             type = "string",
         },
@@ -3717,7 +3768,7 @@ M.RDSDBRecommendation = {
         },
         instanceFindingReasonCodes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         currentInstancePerformanceRisk = {
             type = "string",
@@ -3727,32 +3778,33 @@ M.RDSDBRecommendation = {
         },
         storageFindingReasonCodes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         instanceRecommendationOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.RDSDBInstanceRecommendationOption,
         },
         storageRecommendationOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.RDSDBStorageRecommendationOption,
         },
         utilizationMetrics = {
             type = "list",
-            member_type = "structure",
+            member = M.RDSDBUtilizationMetric,
         },
-        effectiveRecommendationPreferences = {
-            type = "structure",
-        },
+        effectiveRecommendationPreferences = M.RDSEffectiveRecommendationPreferences,
         lookbackPeriodInDays = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         lastRefreshTimestamp = {
             type = "timestamp",
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3765,11 +3817,11 @@ M.GetRDSDatabaseRecommendationsOutput = {
         },
         rdsDBRecommendations = {
             type = "list",
-            member_type = "structure",
+            member = M.RDSDBRecommendation,
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.GetRecommendationError,
         },
     },
 }
@@ -3783,14 +3835,12 @@ M.GetRecommendationPreferencesInput = {
                 required = true,
             },
         },
-        scope = {
-            type = "structure",
-        },
+        scope = M.Scope,
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3803,9 +3853,7 @@ M.SavingsEstimationMode = {
 M.RecommendationPreferencesDetail = {
     type = "structure",
     members = {
-        scope = {
-            type = "structure",
-        },
+        scope = M.Scope,
         resourceType = {
             type = "string",
         },
@@ -3815,19 +3863,17 @@ M.RecommendationPreferencesDetail = {
         inferredWorkloadTypes = {
             type = "string",
         },
-        externalMetricsPreference = {
-            type = "structure",
-        },
+        externalMetricsPreference = M.ExternalMetricsPreference,
         lookBackPeriod = {
             type = "string",
         },
         utilizationPreferences = {
             type = "list",
-            member_type = "structure",
+            member = M.UtilizationPreference,
         },
         preferredResources = {
             type = "list",
-            member_type = "structure",
+            member = M.EffectivePreferredResource,
         },
         savingsEstimationMode = {
             type = "string",
@@ -3843,7 +3889,7 @@ M.GetRecommendationPreferencesOutput = {
         },
         recommendationPreferencesDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.RecommendationPreferencesDetail,
         },
     },
 }
@@ -3853,13 +3899,13 @@ M.GetRecommendationSummariesInput = {
     members = {
         accountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3868,16 +3914,28 @@ M.CurrentPerformanceRiskRatings = {
     type = "structure",
     members = {
         high = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         medium = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         low = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         veryLow = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -3889,7 +3947,10 @@ M.IdleSummary = {
             type = "string",
         },
         value = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -3899,11 +3960,9 @@ M.InferredWorkloadSaving = {
     members = {
         inferredWorkloadTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        estimatedMonthlySavings = {
-            type = "structure",
-        },
+        estimatedMonthlySavings = M.EstimatedMonthlySavings,
     },
 }
 
@@ -3919,7 +3978,10 @@ M.ReasonCodeSummary = {
             type = "string",
         },
         value = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -3931,11 +3993,14 @@ M.Summary = {
             type = "string",
         },
         value = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         reasonCodeSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ReasonCodeSummary,
         },
     },
 }
@@ -3945,11 +4010,11 @@ M.RecommendationSummary = {
     members = {
         summaries = {
             type = "list",
-            member_type = "structure",
+            member = M.Summary,
         },
         idleSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.IdleSummary,
         },
         recommendationResourceType = {
             type = "string",
@@ -3957,21 +4022,13 @@ M.RecommendationSummary = {
         accountId = {
             type = "string",
         },
-        savingsOpportunity = {
-            type = "structure",
-        },
-        idleSavingsOpportunity = {
-            type = "structure",
-        },
-        aggregatedSavingsOpportunity = {
-            type = "structure",
-        },
-        currentPerformanceRiskRatings = {
-            type = "structure",
-        },
+        savingsOpportunity = M.SavingsOpportunity,
+        idleSavingsOpportunity = M.SavingsOpportunity,
+        aggregatedSavingsOpportunity = M.SavingsOpportunity,
+        currentPerformanceRiskRatings = M.CurrentPerformanceRiskRatings,
         inferredWorkloadSavings = {
             type = "list",
-            member_type = "structure",
+            member = M.InferredWorkloadSaving,
         },
     },
 }
@@ -3984,7 +4041,7 @@ M.GetRecommendationSummariesOutput = {
         },
         recommendationSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.RecommendationSummary,
         },
     },
 }
@@ -3997,11 +4054,11 @@ M.PreferredResource = {
         },
         includeList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         excludeList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4015,28 +4072,24 @@ M.PutRecommendationPreferencesInput = {
                 required = true,
             },
         },
-        scope = {
-            type = "structure",
-        },
+        scope = M.Scope,
         enhancedInfrastructureMetrics = {
             type = "string",
         },
         inferredWorkloadTypes = {
             type = "string",
         },
-        externalMetricsPreference = {
-            type = "structure",
-        },
+        externalMetricsPreference = M.ExternalMetricsPreference,
         lookBackPeriod = {
             type = "string",
         },
         utilizationPreferences = {
             type = "list",
-            member_type = "structure",
+            member = M.UtilizationPreference,
         },
         preferredResources = {
             type = "list",
-            member_type = "structure",
+            member = M.PreferredResource,
         },
         savingsEstimationMode = {
             type = "string",
@@ -4059,6 +4112,9 @@ M.UpdateEnrollmentStatusInput = {
         },
         includeMemberAccounts = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }

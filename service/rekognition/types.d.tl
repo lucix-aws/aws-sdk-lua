@@ -4365,9 +4365,29 @@ local record ThrottlingException
     Logref: string
 end
 
-local type ProjectStatus = "CREATING" | "CREATED" | "DELETING"
+local type StreamProcessorStatus = "STOPPED" | "STARTING" | "RUNNING" | "FAILED" | "STOPPING" | "UPDATING"
 
-local type DatasetType = "TRAIN" | "TEST"
+local type UserStatus = "ACTIVE" | "UPDATING" | "CREATING" | "CREATED"
+
+local type ContentModerationSortBy = "NAME" | "TIMESTAMP"
+
+local type CelebrityRecognitionSortBy = "ID" | "TIMESTAMP"
+
+local type QualityFilter = "NONE" | "AUTO" | "LOW" | "MEDIUM" | "HIGH"
+
+local type ContentModerationAggregateBy = "TIMESTAMPS" | "SEGMENTS"
+
+local type LivenessSessionStatus = "CREATED" | "IN_PROGRESS" | "SUCCEEDED" | "FAILED" | "EXPIRED"
+
+local type LabelDetectionSortBy = "NAME" | "TIMESTAMP"
+
+local type ProjectAutoUpdate = "ENABLED" | "DISABLED"
+
+local type PersonTrackingSortBy = "INDEX" | "TIMESTAMP"
+
+local type LabelDetectionAggregateBy = "TIMESTAMPS" | "SEGMENTS"
+
+local type ProjectStatus = "CREATING" | "CREATED" | "DELETING"
 
 local type ProjectVersionStatus = "TRAINING_IN_PROGRESS" | "TRAINING_COMPLETED" | "TRAINING_FAILED" | "STARTING" | "RUNNING" | "FAILED" | "STOPPING" | "STOPPED" | "DELETING" | "COPYING_IN_PROGRESS" | "COPYING_COMPLETED" | "COPYING_FAILED" | "DEPRECATED" | "EXPIRED"
 
@@ -4377,33 +4397,13 @@ local type FaceAttributes = "DEFAULT" | "ALL"
 
 local type CustomizationFeature = "CONTENT_MODERATION" | "CUSTOM_LABELS"
 
-local type VideoJobStatus = "IN_PROGRESS" | "SUCCEEDED" | "FAILED"
+local type DatasetType = "TRAIN" | "TEST"
 
 local type FaceSearchSortBy = "INDEX" | "TIMESTAMP"
 
+local type VideoJobStatus = "IN_PROGRESS" | "SUCCEEDED" | "FAILED"
+
 local type MediaAnalysisJobStatus = "CREATED" | "QUEUED" | "IN_PROGRESS" | "SUCCEEDED" | "FAILED"
-
-local type UserStatus = "ACTIVE" | "UPDATING" | "CREATING" | "CREATED"
-
-local type QualityFilter = "NONE" | "AUTO" | "LOW" | "MEDIUM" | "HIGH"
-
-local type PersonTrackingSortBy = "INDEX" | "TIMESTAMP"
-
-local type ContentModerationSortBy = "NAME" | "TIMESTAMP"
-
-local type StreamProcessorStatus = "STOPPED" | "STARTING" | "RUNNING" | "FAILED" | "STOPPING" | "UPDATING"
-
-local type CelebrityRecognitionSortBy = "ID" | "TIMESTAMP"
-
-local type ContentModerationAggregateBy = "TIMESTAMPS" | "SEGMENTS"
-
-local type LabelDetectionSortBy = "NAME" | "TIMESTAMP"
-
-local type ProjectAutoUpdate = "ENABLED" | "DISABLED"
-
-local type LivenessSessionStatus = "CREATED" | "IN_PROGRESS" | "SUCCEEDED" | "FAILED" | "EXPIRED"
-
-local type LabelDetectionAggregateBy = "TIMESTAMPS" | "SEGMENTS"
 
 local record M
     AssociateFacesInput: AssociateFacesInput

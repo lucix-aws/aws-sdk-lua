@@ -16,7 +16,7 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AWS242AppRegistry"
-    cfg.signing_name = "aws242appregistry"
+    cfg.signing_name = "servicecatalog"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end

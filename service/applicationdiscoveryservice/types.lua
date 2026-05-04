@@ -8,6 +8,9 @@ M.AgentConfigurationStatus = {
         },
         operationSucceeded = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         description = {
             type = "string",
@@ -47,7 +50,7 @@ M.AgentInfo = {
         },
         agentNetworkInfoList = {
             type = "list",
-            member_type = "structure",
+            member = M.AgentNetworkInfo,
         },
         connectorId = {
             type = "string",
@@ -84,7 +87,7 @@ M.AssociateConfigurationItemsToApplicationInput = {
         },
         configurationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -157,6 +160,9 @@ M.DeleteAgent = {
         },
         force = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -166,7 +172,7 @@ M.BatchDeleteAgentsInput = {
     members = {
         deleteAgents = {
             type = "list",
-            member_type = "structure",
+            member = M.DeleteAgent,
             traits = {
                 required = true,
             },
@@ -209,7 +215,7 @@ M.BatchDeleteAgentsOutput = {
     members = {
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchDeleteAgentError,
         },
     },
 }
@@ -219,13 +225,16 @@ M.BatchDeleteImportDataInput = {
     members = {
         importTaskIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         deleteHistory = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -256,7 +265,7 @@ M.BatchDeleteImportDataOutput = {
     members = {
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchDeleteImportDataError,
         },
     },
 }
@@ -311,14 +320,14 @@ M.CreateTagsInput = {
     members = {
         configurationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -345,7 +354,7 @@ M.DeleteApplicationsInput = {
     members = {
         configurationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -362,14 +371,14 @@ M.DeleteTagsInput = {
     members = {
         configurationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -389,7 +398,7 @@ M.Filter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -408,14 +417,17 @@ M.DescribeAgentsInput = {
     members = {
         agentIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         nextToken = {
             type = "string",
@@ -428,7 +440,7 @@ M.DescribeAgentsOutput = {
     members = {
         agentsInfo = {
             type = "list",
-            member_type = "structure",
+            member = M.AgentInfo,
         },
         nextToken = {
             type = "string",
@@ -459,7 +471,10 @@ M.DeletionWarning = {
             type = "string",
         },
         warningCode = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         warningText = {
             type = "string",
@@ -474,7 +489,10 @@ M.FailedConfiguration = {
             type = "string",
         },
         errorStatusCode = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         errorMessage = {
             type = "string",
@@ -510,19 +528,19 @@ M.BatchDeleteConfigurationTask = {
         },
         requestedConfigurations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         deletedConfigurations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         failedConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.FailedConfiguration,
         },
         deletionWarnings = {
             type = "list",
-            member_type = "structure",
+            member = M.DeletionWarning,
         },
     },
 }
@@ -530,9 +548,7 @@ M.BatchDeleteConfigurationTask = {
 M.DescribeBatchDeleteConfigurationTaskOutput = {
     type = "structure",
     members = {
-        task = {
-            type = "structure",
-        },
+        task = M.BatchDeleteConfigurationTask,
     },
 }
 
@@ -541,7 +557,7 @@ M.DescribeConfigurationsInput = {
     members = {
         configurationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -554,7 +570,7 @@ M.DescribeConfigurationsOutput = {
     members = {
         configurations = {
             type = "list",
-            member_type = "map",
+            member = { type = "map" },
         },
     },
 }
@@ -564,10 +580,10 @@ M.DescribeContinuousExportsInput = {
     members = {
         exportIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -615,8 +631,8 @@ M.ContinuousExportDescription = {
         },
         schemaStorageConfig = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -626,7 +642,7 @@ M.DescribeContinuousExportsOutput = {
     members = {
         descriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.ContinuousExportDescription,
         },
         nextToken = {
             type = "string",
@@ -649,10 +665,13 @@ M.DescribeExportConfigurationsInput = {
     members = {
         exportIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         nextToken = {
             type = "string",
@@ -698,6 +717,9 @@ M.ExportInfo = {
         },
         isTruncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         requestedStartTime = {
             type = "timestamp",
@@ -713,7 +735,7 @@ M.DescribeExportConfigurationsOutput = {
     members = {
         exportsInfo = {
             type = "list",
-            member_type = "structure",
+            member = M.ExportInfo,
         },
         nextToken = {
             type = "string",
@@ -732,7 +754,7 @@ M.ExportFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -751,14 +773,17 @@ M.DescribeExportTasksInput = {
     members = {
         exportIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.ExportFilter,
         },
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         nextToken = {
             type = "string",
@@ -771,7 +796,7 @@ M.DescribeExportTasksOutput = {
     members = {
         exportsInfo = {
             type = "list",
-            member_type = "structure",
+            member = M.ExportInfo,
         },
         nextToken = {
             type = "string",
@@ -794,7 +819,7 @@ M.ImportTaskFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -804,10 +829,10 @@ M.DescribeImportTasksInput = {
     members = {
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.ImportTaskFilter,
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -868,16 +893,28 @@ M.ImportTask = {
             type = "string",
         },
         serverImportSuccess = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         serverImportFailure = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         applicationImportSuccess = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         applicationImportFailure = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         errorsAndFailedEntriesZip = {
             type = "string",
@@ -893,7 +930,7 @@ M.DescribeImportTasksOutput = {
         },
         tasks = {
             type = "list",
-            member_type = "structure",
+            member = M.ImportTask,
         },
     },
 }
@@ -909,7 +946,7 @@ M.TagFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -922,10 +959,13 @@ M.DescribeTagsInput = {
     members = {
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.TagFilter,
         },
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         nextToken = {
             type = "string",
@@ -966,7 +1006,7 @@ M.DescribeTagsOutput = {
     members = {
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigurationTag,
         },
         nextToken = {
             type = "string",
@@ -985,7 +1025,7 @@ M.DisassociateConfigurationItemsFromApplicationInput = {
         },
         configurationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1018,44 +1058,51 @@ M.CustomerAgentlessCollectorInfo = {
     type = "structure",
     members = {
         activeAgentlessCollectors = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         healthyAgentlessCollectors = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         denyListedAgentlessCollectors = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         shutdownAgentlessCollectors = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         unhealthyAgentlessCollectors = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         totalAgentlessCollectors = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         unknownAgentlessCollectors = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -1066,44 +1113,51 @@ M.CustomerAgentInfo = {
     type = "structure",
     members = {
         activeAgents = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         healthyAgents = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         blackListedAgents = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         shutdownAgents = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         unhealthyAgents = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         totalAgents = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         unknownAgents = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -1114,44 +1168,51 @@ M.CustomerConnectorInfo = {
     type = "structure",
     members = {
         activeConnectors = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         healthyConnectors = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         blackListedConnectors = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         shutdownConnectors = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         unhealthyConnectors = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         totalConnectors = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         unknownConnectors = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -1162,44 +1223,51 @@ M.CustomerMeCollectorInfo = {
     type = "structure",
     members = {
         activeMeCollectors = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         healthyMeCollectors = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         denyListedMeCollectors = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         shutdownMeCollectors = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         unhealthyMeCollectors = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         totalMeCollectors = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         unknownMeCollectors = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -1210,29 +1278,33 @@ M.GetDiscoverySummaryOutput = {
     type = "structure",
     members = {
         servers = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         applications = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         serversMappedToApplications = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         serversMappedtoTags = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
-        agentSummary = {
-            type = "structure",
-        },
-        connectorSummary = {
-            type = "structure",
-        },
-        meCollectorSummary = {
-            type = "structure",
-        },
-        agentlessCollectorSummary = {
-            type = "structure",
-        },
+        agentSummary = M.CustomerAgentInfo,
+        connectorSummary = M.CustomerConnectorInfo,
+        meCollectorSummary = M.CustomerMeCollectorInfo,
+        agentlessCollectorSummary = M.CustomerAgentlessCollectorInfo,
     },
 }
 
@@ -1267,17 +1339,20 @@ M.ListConfigurationsInput = {
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         nextToken = {
             type = "string",
         },
         orderBy = {
             type = "list",
-            member_type = "structure",
+            member = M.OrderByElement,
         },
     },
 }
@@ -1287,7 +1362,7 @@ M.ListConfigurationsOutput = {
     members = {
         configurations = {
             type = "list",
-            member_type = "map",
+            member = { type = "map" },
         },
         nextToken = {
             type = "string",
@@ -1306,13 +1381,19 @@ M.ListServerNeighborsInput = {
         },
         portInformationNeeded = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         neighborConfigurationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         nextToken = {
             type = "string",
@@ -1336,14 +1417,15 @@ M.NeighborConnectionDetail = {
             },
         },
         destinationPort = {
-            type = "number",
+            type = "integer",
         },
         transportProtocol = {
             type = "string",
         },
         connectionsCount = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -1355,7 +1437,7 @@ M.ListServerNeighborsOutput = {
     members = {
         neighbors = {
             type = "list",
-            member_type = "structure",
+            member = M.NeighborConnectionDetail,
             traits = {
                 required = true,
             },
@@ -1364,7 +1446,10 @@ M.ListServerNeighborsOutput = {
             type = "string",
         },
         knownDependencyCount = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1390,7 +1475,7 @@ M.StartBatchDeleteConfigurationTaskInput = {
         },
         configurationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1448,8 +1533,8 @@ M.StartContinuousExportOutput = {
         },
         schemaStorageConfig = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1459,7 +1544,7 @@ M.StartDataCollectionByAgentIdsInput = {
     members = {
         agentIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1472,7 +1557,7 @@ M.StartDataCollectionByAgentIdsOutput = {
     members = {
         agentsConfigurationStatus = {
             type = "list",
-            member_type = "structure",
+            member = M.AgentConfigurationStatus,
         },
     },
 }
@@ -1488,7 +1573,7 @@ M.UsageMetricBasis = {
             type = "string",
         },
         percentageAdjust = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -1543,35 +1628,30 @@ M.Ec2RecommendationsExportPreferences = {
     members = {
         enabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        cpuPerformanceMetricBasis = {
-            type = "structure",
-        },
-        ramPerformanceMetricBasis = {
-            type = "structure",
-        },
+        cpuPerformanceMetricBasis = M.UsageMetricBasis,
+        ramPerformanceMetricBasis = M.UsageMetricBasis,
         tenancy = {
             type = "string",
         },
         excludedInstanceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         preferredRegion = {
             type = "string",
         },
-        reservedInstanceOptions = {
-            type = "structure",
-        },
+        reservedInstanceOptions = M.ReservedInstanceOptions,
     },
 }
 
 M.ExportPreferences = {
     type = "union",
     members = {
-        ec2RecommendationsPreferences = {
-            type = "structure",
-        },
+        ec2RecommendationsPreferences = M.Ec2RecommendationsExportPreferences,
     },
 }
 
@@ -1580,11 +1660,11 @@ M.StartExportTaskInput = {
     members = {
         exportDataFormat = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.ExportFilter,
         },
         startTime = {
             type = "timestamp",
@@ -1592,9 +1672,7 @@ M.StartExportTaskInput = {
         endTime = {
             type = "timestamp",
         },
-        preferences = {
-            type = "union",
-        },
+        preferences = M.ExportPreferences,
     },
 }
 
@@ -1631,9 +1709,7 @@ M.StartImportTaskInput = {
 M.StartImportTaskOutput = {
     type = "structure",
     members = {
-        task = {
-            type = "structure",
-        },
+        task = M.ImportTask,
     },
 }
 
@@ -1666,7 +1742,7 @@ M.StopDataCollectionByAgentIdsInput = {
     members = {
         agentIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1679,7 +1755,7 @@ M.StopDataCollectionByAgentIdsOutput = {
     members = {
         agentsConfigurationStatus = {
             type = "list",
-            member_type = "structure",
+            member = M.AgentConfigurationStatus,
         },
     },
 }

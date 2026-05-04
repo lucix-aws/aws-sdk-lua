@@ -1,0 +1,41 @@
+local waiter = require("waiter")
+
+local M = {}
+
+--- Wait until StreamExists.
+function M.wait_until_stream_exists(client, input, options)
+    return waiter.wait(client, "describeStream", input, {
+        min_delay = 10,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "StreamDescription.StreamStatus",
+                        expected = "ACTIVE",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until StreamNotExists.
+function M.wait_until_stream_not_exists(client, input, options)
+    return waiter.wait(client, "describeStream", input, {
+        min_delay = 10,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    errorType = "ResourceNotFoundException",
+                },
+            },
+        },
+    }, options)
+end
+
+return M

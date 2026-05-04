@@ -31,7 +31,7 @@ M.GetBuyerDashboardInput = {
         },
         embeddingDomains = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -56,7 +56,7 @@ M.GetBuyerDashboardOutput = {
         },
         embeddingDomains = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },

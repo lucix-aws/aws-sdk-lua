@@ -15,7 +15,7 @@ M.AllowedStatistics = {
     members = {
         Statistics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -40,7 +40,7 @@ M.BatchDeleteRecipeVersionInput = {
         },
         RecipeVersions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -74,7 +74,7 @@ M.BatchDeleteRecipeVersionOutput = {
         },
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.RecipeVersionErrorDetail,
         },
     },
 }
@@ -134,11 +134,11 @@ M.ExcelOptions = {
     members = {
         SheetNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SheetIndexes = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
         },
         HeaderRow = {
             type = "boolean",
@@ -151,6 +151,9 @@ M.JsonOptions = {
     members = {
         MultiLine = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -158,15 +161,9 @@ M.JsonOptions = {
 M.FormatOptions = {
     type = "structure",
     members = {
-        Json = {
-            type = "structure",
-        },
-        Excel = {
-            type = "structure",
-        },
-        Csv = {
-            type = "structure",
-        },
+        Json = M.JsonOptions,
+        Excel = M.ExcelOptions,
+        Csv = M.CsvOptions,
     },
 }
 
@@ -200,9 +197,7 @@ M.DatabaseInputDefinition = {
         DatabaseTableName = {
             type = "string",
         },
-        TempDirectory = {
-            type = "structure",
-        },
+        TempDirectory = M.S3Location,
         QueryString = {
             type = "string",
         },
@@ -227,9 +222,7 @@ M.DataCatalogInputDefinition = {
                 required = true,
             },
         },
-        TempDirectory = {
-            type = "structure",
-        },
+        TempDirectory = M.S3Location,
     },
 }
 
@@ -245,18 +238,10 @@ M.Metadata = {
 M.Input = {
     type = "structure",
     members = {
-        S3InputDefinition = {
-            type = "structure",
-        },
-        DataCatalogInputDefinition = {
-            type = "structure",
-        },
-        DatabaseInputDefinition = {
-            type = "structure",
-        },
-        Metadata = {
-            type = "structure",
-        },
+        S3InputDefinition = M.S3Location,
+        DataCatalogInputDefinition = M.DataCatalogInputDefinition,
+        DatabaseInputDefinition = M.DatabaseInputDefinition,
+        Metadata = M.Metadata,
     },
 }
 
@@ -273,7 +258,7 @@ M.FilesLimit = {
     type = "structure",
     members = {
         MaxFiles = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -298,8 +283,8 @@ M.FilterExpression = {
         },
         ValuesMap = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -346,31 +331,26 @@ M.DatasetParameter = {
                 required = true,
             },
         },
-        DatetimeOptions = {
-            type = "structure",
-        },
+        DatetimeOptions = M.DatetimeOptions,
         CreateColumn = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.FilterExpression,
     },
 }
 
 M.PathOptions = {
     type = "structure",
     members = {
-        LastModifiedDateCondition = {
-            type = "structure",
-        },
-        FilesLimit = {
-            type = "structure",
-        },
+        LastModifiedDateCondition = M.FilterExpression,
+        FilesLimit = M.FilesLimit,
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.DatasetParameter,
         },
     },
 }
@@ -387,22 +367,15 @@ M.CreateDatasetInput = {
         Format = {
             type = "string",
         },
-        FormatOptions = {
-            type = "structure",
-        },
-        Input = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        PathOptions = {
-            type = "structure",
-        },
+        FormatOptions = M.FormatOptions,
+        Input = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Input }),
+        PathOptions = M.PathOptions,
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -452,8 +425,8 @@ M.StatisticOverride = {
         },
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -466,11 +439,11 @@ M.StatisticsConfiguration = {
     members = {
         IncludedStatistics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Overrides = {
             type = "list",
-            member_type = "structure",
+            member = M.StatisticOverride,
         },
     },
 }
@@ -480,14 +453,11 @@ M.ColumnStatisticsConfiguration = {
     members = {
         Selectors = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnSelector,
         },
-        Statistics = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Statistics = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.StatisticsConfiguration }),
     },
 }
 
@@ -496,14 +466,14 @@ M.EntityDetectorConfiguration = {
     members = {
         EntityTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         AllowedStatistics = {
             type = "list",
-            member_type = "structure",
+            member = M.AllowedStatistics,
         },
     },
 }
@@ -511,20 +481,16 @@ M.EntityDetectorConfiguration = {
 M.ProfileConfiguration = {
     type = "structure",
     members = {
-        DatasetStatisticsConfiguration = {
-            type = "structure",
-        },
+        DatasetStatisticsConfiguration = M.StatisticsConfiguration,
         ProfileColumns = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnSelector,
         },
         ColumnStatisticsConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnStatisticsConfiguration,
         },
-        EntityDetectorConfiguration = {
-            type = "structure",
-        },
+        EntityDetectorConfiguration = M.EntityDetectorConfiguration,
     },
 }
 
@@ -545,7 +511,7 @@ M.JobSample = {
             type = "string",
         },
         Size = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -599,23 +565,24 @@ M.CreateProfileJobInput = {
             type = "string",
         },
         MaxCapacity = {
-            type = "number",
-        },
-        MaxRetries = {
-            type = "number",
-        },
-        OutputLocation = {
-            type = "structure",
+            type = "integer",
             traits = {
-                required = true,
+                default = 0,
             },
         },
-        Configuration = {
-            type = "structure",
+        MaxRetries = {
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
+        OutputLocation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3Location }),
+        Configuration = M.ProfileConfiguration,
         ValidationConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationConfiguration,
         },
         RoleArn = {
             type = "string",
@@ -625,15 +592,16 @@ M.CreateProfileJobInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Timeout = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
-        JobSample = {
-            type = "structure",
-        },
+        JobSample = M.JobSample,
     },
 }
 
@@ -659,7 +627,7 @@ M.Sample = {
     type = "structure",
     members = {
         Size = {
-            type = "number",
+            type = "integer",
         },
         Type = {
             type = "string",
@@ -691,9 +659,7 @@ M.CreateProjectInput = {
                 required = true,
             },
         },
-        Sample = {
-            type = "structure",
-        },
+        Sample = M.Sample,
         RoleArn = {
             type = "string",
             traits = {
@@ -702,8 +668,8 @@ M.CreateProjectInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -741,8 +707,8 @@ M.RecipeAction = {
         },
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -771,15 +737,12 @@ M.ConditionExpression = {
 M.RecipeStep = {
     type = "structure",
     members = {
-        Action = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Action = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RecipeAction }),
         ConditionExpressions = {
             type = "list",
-            member_type = "structure",
+            member = M.ConditionExpression,
         },
     },
 }
@@ -798,15 +761,15 @@ M.CreateRecipeInput = {
         },
         Steps = {
             type = "list",
-            member_type = "structure",
+            member = M.RecipeStep,
             traits = {
                 required = true,
             },
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -826,9 +789,7 @@ M.CreateRecipeOutput = {
 M.DatabaseTableOutputOptions = {
     type = "structure",
     members = {
-        TempDirectory = {
-            type = "structure",
-        },
+        TempDirectory = M.S3Location,
         TableName = {
             type = "string",
             traits = {
@@ -851,12 +812,9 @@ M.DatabaseOutput = {
                 required = true,
             },
         },
-        DatabaseOptions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DatabaseOptions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DatabaseTableOutputOptions }),
         DatabaseOutputMode = {
             type = "string",
         },
@@ -866,12 +824,9 @@ M.DatabaseOutput = {
 M.S3TableOutputOptions = {
     type = "structure",
     members = {
-        Location = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Location = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3Location }),
     },
 }
 
@@ -893,14 +848,13 @@ M.DataCatalogOutput = {
                 required = true,
             },
         },
-        S3Options = {
-            type = "structure",
-        },
-        DatabaseOptions = {
-            type = "structure",
-        },
+        S3Options = M.S3TableOutputOptions,
+        DatabaseOptions = M.DatabaseTableOutputOptions,
         Overwrite = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -940,9 +894,7 @@ M.CsvOutputOptions = {
 M.OutputFormatOptions = {
     type = "structure",
     members = {
-        Csv = {
-            type = "structure",
-        },
+        Csv = M.CsvOutputOptions,
     },
 }
 
@@ -957,22 +909,20 @@ M.Output = {
         },
         PartitionColumns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        Location = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Location = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3Location }),
         Overwrite = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        FormatOptions = {
-            type = "structure",
-        },
+        FormatOptions = M.OutputFormatOptions,
         MaxOutputFiles = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1014,29 +964,33 @@ M.CreateRecipeJobInput = {
             type = "string",
         },
         MaxCapacity = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         MaxRetries = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         Outputs = {
             type = "list",
-            member_type = "structure",
+            member = M.Output,
         },
         DataCatalogOutputs = {
             type = "list",
-            member_type = "structure",
+            member = M.DataCatalogOutput,
         },
         DatabaseOutputs = {
             type = "list",
-            member_type = "structure",
+            member = M.DatabaseOutput,
         },
         ProjectName = {
             type = "string",
         },
-        RecipeReference = {
-            type = "structure",
-        },
+        RecipeReference = M.RecipeReference,
         RoleArn = {
             type = "string",
             traits = {
@@ -1045,11 +999,14 @@ M.CreateRecipeJobInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Timeout = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1082,8 +1039,9 @@ M.Threshold = {
     type = "structure",
     members = {
         Value = {
-            type = "number",
+            type = "double",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -1107,6 +1065,9 @@ M.Rule = {
         },
         Disabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         CheckExpression = {
             type = "string",
@@ -1116,15 +1077,13 @@ M.Rule = {
         },
         SubstitutionMap = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        Threshold = {
-            type = "structure",
-        },
+        Threshold = M.Threshold,
         ColumnSelectors = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnSelector,
         },
     },
 }
@@ -1149,15 +1108,15 @@ M.CreateRulesetInput = {
         },
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.Rule,
             traits = {
                 required = true,
             },
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1179,7 +1138,7 @@ M.CreateScheduleInput = {
     members = {
         JobNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CronExpression = {
             type = "string",
@@ -1189,8 +1148,8 @@ M.CreateScheduleInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Name = {
             type = "string",
@@ -1413,15 +1372,10 @@ M.DescribeDatasetOutput = {
         Format = {
             type = "string",
         },
-        FormatOptions = {
-            type = "structure",
-        },
-        Input = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        FormatOptions = M.FormatOptions,
+        Input = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Input }),
         LastModifiedDate = {
             type = "timestamp",
         },
@@ -1431,13 +1385,11 @@ M.DescribeDatasetOutput = {
         Source = {
             type = "string",
         },
-        PathOptions = {
-            type = "structure",
-        },
+        PathOptions = M.PathOptions,
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ResourceArn = {
             type = "string",
@@ -1500,36 +1452,38 @@ M.DescribeJobOutput = {
             type = "string",
         },
         MaxCapacity = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         MaxRetries = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         Outputs = {
             type = "list",
-            member_type = "structure",
+            member = M.Output,
         },
         DataCatalogOutputs = {
             type = "list",
-            member_type = "structure",
+            member = M.DataCatalogOutput,
         },
         DatabaseOutputs = {
             type = "list",
-            member_type = "structure",
+            member = M.DatabaseOutput,
         },
         ProjectName = {
             type = "string",
         },
-        ProfileConfiguration = {
-            type = "structure",
-        },
+        ProfileConfiguration = M.ProfileConfiguration,
         ValidationConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationConfiguration,
         },
-        RecipeReference = {
-            type = "structure",
-        },
+        RecipeReference = M.RecipeReference,
         ResourceArn = {
             type = "string",
         },
@@ -1538,15 +1492,16 @@ M.DescribeJobOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Timeout = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
-        JobSample = {
-            type = "structure",
-        },
+        JobSample = M.JobSample,
     },
 }
 
@@ -1584,7 +1539,10 @@ M.DescribeJobRunOutput = {
     type = "structure",
     members = {
         Attempt = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         CompletedOn = {
             type = "timestamp",
@@ -1596,7 +1554,10 @@ M.DescribeJobRunOutput = {
             type = "string",
         },
         ExecutionTime = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         JobName = {
             type = "string",
@@ -1604,12 +1565,10 @@ M.DescribeJobRunOutput = {
                 required = true,
             },
         },
-        ProfileConfiguration = {
-            type = "structure",
-        },
+        ProfileConfiguration = M.ProfileConfiguration,
         ValidationConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationConfiguration,
         },
         RunId = {
             type = "string",
@@ -1625,28 +1584,24 @@ M.DescribeJobRunOutput = {
         },
         Outputs = {
             type = "list",
-            member_type = "structure",
+            member = M.Output,
         },
         DataCatalogOutputs = {
             type = "list",
-            member_type = "structure",
+            member = M.DataCatalogOutput,
         },
         DatabaseOutputs = {
             type = "list",
-            member_type = "structure",
+            member = M.DatabaseOutput,
         },
-        RecipeReference = {
-            type = "structure",
-        },
+        RecipeReference = M.RecipeReference,
         StartedBy = {
             type = "string",
         },
         StartedOn = {
             type = "timestamp",
         },
-        JobSample = {
-            type = "structure",
-        },
+        JobSample = M.JobSample,
     },
 }
 
@@ -1706,16 +1661,14 @@ M.DescribeProjectOutput = {
         ResourceArn = {
             type = "string",
         },
-        Sample = {
-            type = "structure",
-        },
+        Sample = M.Sample,
         RoleArn = {
             type = "string",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         SessionStatus = {
             type = "string",
@@ -1783,12 +1736,12 @@ M.DescribeRecipeOutput = {
         },
         Steps = {
             type = "list",
-            member_type = "structure",
+            member = M.RecipeStep,
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ResourceArn = {
             type = "string",
@@ -1829,7 +1782,7 @@ M.DescribeRulesetOutput = {
         },
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.Rule,
         },
         CreateDate = {
             type = "timestamp",
@@ -1848,8 +1801,8 @@ M.DescribeRulesetOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1878,7 +1831,7 @@ M.DescribeScheduleOutput = {
         },
         JobNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         LastModifiedBy = {
             type = "string",
@@ -1894,8 +1847,8 @@ M.DescribeScheduleOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Name = {
             type = "string",
@@ -1910,7 +1863,7 @@ M.ListDatasetsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1945,15 +1898,10 @@ M.Dataset = {
         Format = {
             type = "string",
         },
-        FormatOptions = {
-            type = "structure",
-        },
-        Input = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        FormatOptions = M.FormatOptions,
+        Input = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Input }),
         LastModifiedDate = {
             type = "timestamp",
         },
@@ -1963,13 +1911,11 @@ M.Dataset = {
         Source = {
             type = "string",
         },
-        PathOptions = {
-            type = "structure",
-        },
+        PathOptions = M.PathOptions,
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ResourceArn = {
             type = "string",
@@ -1982,7 +1928,7 @@ M.ListDatasetsOutput = {
     members = {
         Datasets = {
             type = "list",
-            member_type = "structure",
+            member = M.Dataset,
             traits = {
                 required = true,
             },
@@ -2004,7 +1950,7 @@ M.ListJobRunsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2022,7 +1968,10 @@ M.JobRun = {
     type = "structure",
     members = {
         Attempt = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         CompletedOn = {
             type = "timestamp",
@@ -2034,7 +1983,10 @@ M.JobRun = {
             type = "string",
         },
         ExecutionTime = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         JobName = {
             type = "string",
@@ -2053,31 +2005,27 @@ M.JobRun = {
         },
         Outputs = {
             type = "list",
-            member_type = "structure",
+            member = M.Output,
         },
         DataCatalogOutputs = {
             type = "list",
-            member_type = "structure",
+            member = M.DataCatalogOutput,
         },
         DatabaseOutputs = {
             type = "list",
-            member_type = "structure",
+            member = M.DatabaseOutput,
         },
-        RecipeReference = {
-            type = "structure",
-        },
+        RecipeReference = M.RecipeReference,
         StartedBy = {
             type = "string",
         },
         StartedOn = {
             type = "timestamp",
         },
-        JobSample = {
-            type = "structure",
-        },
+        JobSample = M.JobSample,
         ValidationConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationConfiguration,
         },
     },
 }
@@ -2087,7 +2035,7 @@ M.ListJobRunsOutput = {
     members = {
         JobRuns = {
             type = "list",
-            member_type = "structure",
+            member = M.JobRun,
             traits = {
                 required = true,
             },
@@ -2108,7 +2056,7 @@ M.ListJobsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2168,29 +2116,33 @@ M.Job = {
             type = "string",
         },
         MaxCapacity = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         MaxRetries = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         Outputs = {
             type = "list",
-            member_type = "structure",
+            member = M.Output,
         },
         DataCatalogOutputs = {
             type = "list",
-            member_type = "structure",
+            member = M.DataCatalogOutput,
         },
         DatabaseOutputs = {
             type = "list",
-            member_type = "structure",
+            member = M.DatabaseOutput,
         },
         ProjectName = {
             type = "string",
         },
-        RecipeReference = {
-            type = "structure",
-        },
+        RecipeReference = M.RecipeReference,
         ResourceArn = {
             type = "string",
         },
@@ -2198,19 +2150,20 @@ M.Job = {
             type = "string",
         },
         Timeout = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        JobSample = {
-            type = "structure",
-        },
+        JobSample = M.JobSample,
         ValidationConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationConfiguration,
         },
     },
 }
@@ -2220,7 +2173,7 @@ M.ListJobsOutput = {
     members = {
         Jobs = {
             type = "list",
-            member_type = "structure",
+            member = M.Job,
             traits = {
                 required = true,
             },
@@ -2241,7 +2194,7 @@ M.ListProjectsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2285,13 +2238,11 @@ M.Project = {
         ResourceArn = {
             type = "string",
         },
-        Sample = {
-            type = "structure",
-        },
+        Sample = M.Sample,
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         RoleArn = {
             type = "string",
@@ -2310,7 +2261,7 @@ M.ListProjectsOutput = {
     members = {
         Projects = {
             type = "list",
-            member_type = "structure",
+            member = M.Project,
             traits = {
                 required = true,
             },
@@ -2325,7 +2276,7 @@ M.ListRecipesInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2383,12 +2334,12 @@ M.Recipe = {
         },
         Steps = {
             type = "list",
-            member_type = "structure",
+            member = M.RecipeStep,
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         RecipeVersion = {
             type = "string",
@@ -2401,7 +2352,7 @@ M.ListRecipesOutput = {
     members = {
         Recipes = {
             type = "list",
-            member_type = "structure",
+            member = M.Recipe,
             traits = {
                 required = true,
             },
@@ -2416,7 +2367,7 @@ M.ListRecipeVersionsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2445,7 +2396,7 @@ M.ListRecipeVersionsOutput = {
         },
         Recipes = {
             type = "list",
-            member_type = "structure",
+            member = M.Recipe,
             traits = {
                 required = true,
             },
@@ -2463,7 +2414,7 @@ M.ListRulesetsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2508,12 +2459,15 @@ M.RulesetItem = {
             type = "string",
         },
         RuleCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         TargetArn = {
             type = "string",
@@ -2529,7 +2483,7 @@ M.ListRulesetsOutput = {
     members = {
         Rulesets = {
             type = "list",
-            member_type = "structure",
+            member = M.RulesetItem,
             traits = {
                 required = true,
             },
@@ -2550,7 +2504,7 @@ M.ListSchedulesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2578,7 +2532,7 @@ M.Schedule = {
         },
         JobNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         LastModifiedBy = {
             type = "string",
@@ -2594,8 +2548,8 @@ M.Schedule = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Name = {
             type = "string",
@@ -2611,7 +2565,7 @@ M.ListSchedulesOutput = {
     members = {
         Schedules = {
             type = "list",
-            member_type = "structure",
+            member = M.Schedule,
             traits = {
                 required = true,
             },
@@ -2640,8 +2594,8 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2678,23 +2632,23 @@ M.ViewFrame = {
     type = "structure",
     members = {
         StartColumnIndex = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         ColumnRange = {
-            type = "number",
+            type = "integer",
         },
         HiddenColumns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         StartRowIndex = {
-            type = "number",
+            type = "integer",
         },
         RowRange = {
-            type = "number",
+            type = "integer",
         },
         Analytics = {
             type = "string",
@@ -2707,6 +2661,9 @@ M.SendProjectSessionActionInput = {
     members = {
         Preview = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Name = {
             type = "string",
@@ -2715,18 +2672,14 @@ M.SendProjectSessionActionInput = {
                 required = true,
             },
         },
-        RecipeStep = {
-            type = "structure",
-        },
+        RecipeStep = M.RecipeStep,
         StepIndex = {
-            type = "number",
+            type = "integer",
         },
         ClientSessionId = {
             type = "string",
         },
-        ViewFrame = {
-            type = "structure",
-        },
+        ViewFrame = M.ViewFrame,
     },
 }
 
@@ -2743,7 +2696,7 @@ M.SendProjectSessionActionOutput = {
             },
         },
         ActionId = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2785,6 +2738,9 @@ M.StartProjectSessionInput = {
         },
         AssumeControl = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -2848,8 +2804,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2873,7 +2829,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -2899,18 +2855,11 @@ M.UpdateDatasetInput = {
         Format = {
             type = "string",
         },
-        FormatOptions = {
-            type = "structure",
-        },
-        Input = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        PathOptions = {
-            type = "structure",
-        },
+        FormatOptions = M.FormatOptions,
+        Input = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Input }),
+        PathOptions = M.PathOptions,
     },
 }
 
@@ -2929,9 +2878,7 @@ M.UpdateDatasetOutput = {
 M.UpdateProfileJobInput = {
     type = "structure",
     members = {
-        Configuration = {
-            type = "structure",
-        },
+        Configuration = M.ProfileConfiguration,
         EncryptionKeyArn = {
             type = "string",
         },
@@ -2949,20 +2896,23 @@ M.UpdateProfileJobInput = {
             type = "string",
         },
         MaxCapacity = {
-            type = "number",
-        },
-        MaxRetries = {
-            type = "number",
-        },
-        OutputLocation = {
-            type = "structure",
+            type = "integer",
             traits = {
-                required = true,
+                default = 0,
             },
         },
+        MaxRetries = {
+            type = "integer",
+            traits = {
+                default = 0,
+            },
+        },
+        OutputLocation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3Location }),
         ValidationConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationConfiguration,
         },
         RoleArn = {
             type = "string",
@@ -2971,11 +2921,12 @@ M.UpdateProfileJobInput = {
             },
         },
         Timeout = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
-        JobSample = {
-            type = "structure",
-        },
+        JobSample = M.JobSample,
     },
 }
 
@@ -2994,9 +2945,7 @@ M.UpdateProfileJobOutput = {
 M.UpdateProjectInput = {
     type = "structure",
     members = {
-        Sample = {
-            type = "structure",
-        },
+        Sample = M.Sample,
         RoleArn = {
             type = "string",
             traits = {
@@ -3043,7 +2992,7 @@ M.UpdateRecipeInput = {
         },
         Steps = {
             type = "list",
-            member_type = "structure",
+            member = M.RecipeStep,
         },
     },
 }
@@ -3080,22 +3029,28 @@ M.UpdateRecipeJobInput = {
             type = "string",
         },
         MaxCapacity = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         MaxRetries = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         Outputs = {
             type = "list",
-            member_type = "structure",
+            member = M.Output,
         },
         DataCatalogOutputs = {
             type = "list",
-            member_type = "structure",
+            member = M.DataCatalogOutput,
         },
         DatabaseOutputs = {
             type = "list",
-            member_type = "structure",
+            member = M.DatabaseOutput,
         },
         RoleArn = {
             type = "string",
@@ -3104,7 +3059,10 @@ M.UpdateRecipeJobInput = {
             },
         },
         Timeout = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -3136,7 +3094,7 @@ M.UpdateRulesetInput = {
         },
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.Rule,
             traits = {
                 required = true,
             },
@@ -3161,7 +3119,7 @@ M.UpdateScheduleInput = {
     members = {
         JobNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CronExpression = {
             type = "string",

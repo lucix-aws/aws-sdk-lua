@@ -17,14 +17,14 @@ M.AddTagsToOnPremisesInstancesInput = {
     members = {
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
         },
         instanceNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -120,13 +120,19 @@ M.AlarmConfiguration = {
     members = {
         enabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         ignorePollAlarmFailure = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         alarms = {
             type = "list",
-            member_type = "structure",
+            member = M.Alarm,
         },
     },
 }
@@ -181,6 +187,9 @@ M.ApplicationInfo = {
         },
         linkedToGitHub = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         gitHubAccountName = {
             type = "string",
@@ -250,10 +259,13 @@ M.AutoRollbackConfiguration = {
     members = {
         enabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         events = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -339,18 +351,10 @@ M.RevisionLocation = {
         revisionType = {
             type = "string",
         },
-        s3Location = {
-            type = "structure",
-        },
-        gitHubLocation = {
-            type = "structure",
-        },
-        string = {
-            type = "structure",
-        },
-        appSpecContent = {
-            type = "structure",
-        },
+        s3Location = M.S3Location,
+        gitHubLocation = M.GitHubLocation,
+        string = M.RawString,
+        appSpecContent = M.AppSpecContent,
     },
 }
 
@@ -365,7 +369,7 @@ M.BatchGetApplicationRevisionsInput = {
         },
         revisions = {
             type = "list",
-            member_type = "structure",
+            member = M.RevisionLocation,
             traits = {
                 required = true,
             },
@@ -381,7 +385,7 @@ M.GenericRevisionInfo = {
         },
         deploymentGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         firstUsedTime = {
             type = "timestamp",
@@ -398,12 +402,8 @@ M.GenericRevisionInfo = {
 M.RevisionInfo = {
     type = "structure",
     members = {
-        revisionLocation = {
-            type = "structure",
-        },
-        genericRevisionInfo = {
-            type = "structure",
-        },
+        revisionLocation = M.RevisionLocation,
+        genericRevisionInfo = M.GenericRevisionInfo,
     },
 }
 
@@ -418,7 +418,7 @@ M.BatchGetApplicationRevisionsOutput = {
         },
         revisions = {
             type = "list",
-            member_type = "structure",
+            member = M.RevisionInfo,
         },
     },
 }
@@ -468,7 +468,7 @@ M.BatchGetApplicationsInput = {
     members = {
         applicationNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -481,7 +481,7 @@ M.BatchGetApplicationsOutput = {
     members = {
         applicationsInfo = {
             type = "list",
-            member_type = "structure",
+            member = M.ApplicationInfo,
         },
     },
 }
@@ -497,7 +497,7 @@ M.BatchGetDeploymentGroupsInput = {
         },
         deploymentGroupNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -517,7 +517,10 @@ M.DeploymentReadyOption = {
             type = "string",
         },
         waitTimeInMinutes = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -548,7 +551,10 @@ M.BlueInstanceTerminationOption = {
             type = "string",
         },
         terminationWaitTimeInMinutes = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -556,15 +562,9 @@ M.BlueInstanceTerminationOption = {
 M.BlueGreenDeploymentConfiguration = {
     type = "structure",
     members = {
-        terminateBlueInstancesOnDeploymentSuccess = {
-            type = "structure",
-        },
-        deploymentReadyOption = {
-            type = "structure",
-        },
-        greenFleetProvisioningOption = {
-            type = "structure",
-        },
+        terminateBlueInstancesOnDeploymentSuccess = M.BlueInstanceTerminationOption,
+        deploymentReadyOption = M.DeploymentReadyOption,
+        greenFleetProvisioningOption = M.GreenFleetProvisioningOption,
     },
 }
 
@@ -616,7 +616,7 @@ M.EC2TagSet = {
     members = {
         ec2TagSetList = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
         },
     },
 }
@@ -685,7 +685,7 @@ M.TrafficRoute = {
     members = {
         listenerArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -695,14 +695,10 @@ M.TargetGroupPairInfo = {
     members = {
         targetGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetGroupInfo,
         },
-        prodTrafficRoute = {
-            type = "structure",
-        },
-        testTrafficRoute = {
-            type = "structure",
-        },
+        prodTrafficRoute = M.TrafficRoute,
+        testTrafficRoute = M.TrafficRoute,
     },
 }
 
@@ -711,15 +707,15 @@ M.LoadBalancerInfo = {
     members = {
         elbInfoList = {
             type = "list",
-            member_type = "structure",
+            member = M.ELBInfo,
         },
         targetGroupInfoList = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetGroupInfo,
         },
         targetGroupPairInfoList = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetGroupPairInfo,
         },
     },
 }
@@ -750,7 +746,7 @@ M.OnPremisesTagSet = {
     members = {
         onPremisesTagSetList = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
         },
     },
 }
@@ -784,7 +780,7 @@ M.TriggerConfig = {
         },
         triggerEvents = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -806,65 +802,48 @@ M.DeploymentGroupInfo = {
         },
         ec2TagFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.EC2TagFilter,
         },
         onPremisesInstanceTagFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.TagFilter,
         },
         autoScalingGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.AutoScalingGroup,
         },
         serviceRoleArn = {
             type = "string",
         },
-        targetRevision = {
-            type = "structure",
-        },
+        targetRevision = M.RevisionLocation,
         triggerConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.TriggerConfig,
         },
-        alarmConfiguration = {
-            type = "structure",
-        },
-        autoRollbackConfiguration = {
-            type = "structure",
-        },
-        deploymentStyle = {
-            type = "structure",
-        },
+        alarmConfiguration = M.AlarmConfiguration,
+        autoRollbackConfiguration = M.AutoRollbackConfiguration,
+        deploymentStyle = M.DeploymentStyle,
         outdatedInstancesStrategy = {
             type = "string",
         },
-        blueGreenDeploymentConfiguration = {
-            type = "structure",
-        },
-        loadBalancerInfo = {
-            type = "structure",
-        },
-        lastSuccessfulDeployment = {
-            type = "structure",
-        },
-        lastAttemptedDeployment = {
-            type = "structure",
-        },
-        ec2TagSet = {
-            type = "structure",
-        },
-        onPremisesTagSet = {
-            type = "structure",
-        },
+        blueGreenDeploymentConfiguration = M.BlueGreenDeploymentConfiguration,
+        loadBalancerInfo = M.LoadBalancerInfo,
+        lastSuccessfulDeployment = M.LastDeploymentInfo,
+        lastAttemptedDeployment = M.LastDeploymentInfo,
+        ec2TagSet = M.EC2TagSet,
+        onPremisesTagSet = M.OnPremisesTagSet,
         computePlatform = {
             type = "string",
         },
         ecsServices = {
             type = "list",
-            member_type = "structure",
+            member = M.ECSService,
         },
         terminationHookEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -874,7 +853,7 @@ M.BatchGetDeploymentGroupsOutput = {
     members = {
         deploymentGroupsInfo = {
             type = "list",
-            member_type = "structure",
+            member = M.DeploymentGroupInfo,
         },
         errorMessage = {
             type = "string",
@@ -923,7 +902,7 @@ M.BatchGetDeploymentInstancesInput = {
         },
         instanceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -978,9 +957,7 @@ M.LifecycleEvent = {
         lifecycleEventName = {
             type = "string",
         },
-        diagnostics = {
-            type = "structure",
-        },
+        diagnostics = M.Diagnostics,
         startTime = {
             type = "timestamp",
         },
@@ -1020,7 +997,7 @@ M.InstanceSummary = {
         },
         lifecycleEvents = {
             type = "list",
-            member_type = "structure",
+            member = M.LifecycleEvent,
         },
         instanceType = {
             type = "string",
@@ -1033,7 +1010,7 @@ M.BatchGetDeploymentInstancesOutput = {
     members = {
         instancesSummary = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceSummary,
         },
         errorMessage = {
             type = "string",
@@ -1096,7 +1073,7 @@ M.BatchGetDeploymentsInput = {
     members = {
         deploymentIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1119,22 +1096,40 @@ M.DeploymentOverview = {
     type = "structure",
     members = {
         Pending = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         InProgress = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Succeeded = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Failed = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Skipped = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Ready = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1202,7 +1197,7 @@ M.RelatedDeployments = {
         },
         autoUpdateOutdatedInstancesDeploymentIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1227,15 +1222,13 @@ M.TargetInstances = {
     members = {
         tagFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.EC2TagFilter,
         },
         autoScalingGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        ec2TagSet = {
-            type = "structure",
-        },
+        ec2TagSet = M.EC2TagSet,
     },
 }
 
@@ -1254,18 +1247,12 @@ M.DeploymentInfo = {
         deploymentId = {
             type = "string",
         },
-        previousRevision = {
-            type = "structure",
-        },
-        revision = {
-            type = "structure",
-        },
+        previousRevision = M.RevisionLocation,
+        revision = M.RevisionLocation,
         status = {
             type = "string",
         },
-        errorInformation = {
-            type = "structure",
-        },
+        errorInformation = M.ErrorInformation,
         createTime = {
             type = "timestamp",
         },
@@ -1275,9 +1262,7 @@ M.DeploymentInfo = {
         completeTime = {
             type = "timestamp",
         },
-        deploymentOverview = {
-            type = "structure",
-        },
+        deploymentOverview = M.DeploymentOverview,
         description = {
             type = "string",
         },
@@ -1286,31 +1271,28 @@ M.DeploymentInfo = {
         },
         ignoreApplicationStopFailures = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        autoRollbackConfiguration = {
-            type = "structure",
-        },
+        autoRollbackConfiguration = M.AutoRollbackConfiguration,
         updateOutdatedInstancesOnly = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        rollbackInfo = {
-            type = "structure",
-        },
-        deploymentStyle = {
-            type = "structure",
-        },
-        targetInstances = {
-            type = "structure",
-        },
+        rollbackInfo = M.RollbackInfo,
+        deploymentStyle = M.DeploymentStyle,
+        targetInstances = M.TargetInstances,
         instanceTerminationWaitTimeStarted = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        blueGreenDeploymentConfiguration = {
-            type = "structure",
-        },
-        loadBalancerInfo = {
-            type = "structure",
-        },
+        blueGreenDeploymentConfiguration = M.BlueGreenDeploymentConfiguration,
+        loadBalancerInfo = M.LoadBalancerInfo,
         additionalDeploymentStatusInfo = {
             type = "string",
         },
@@ -1319,7 +1301,7 @@ M.DeploymentInfo = {
         },
         deploymentStatusMessages = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         computePlatform = {
             type = "string",
@@ -1327,12 +1309,8 @@ M.DeploymentInfo = {
         externalId = {
             type = "string",
         },
-        relatedDeployments = {
-            type = "structure",
-        },
-        overrideAlarmConfiguration = {
-            type = "structure",
-        },
+        relatedDeployments = M.RelatedDeployments,
+        overrideAlarmConfiguration = M.AlarmConfiguration,
     },
 }
 
@@ -1341,7 +1319,7 @@ M.BatchGetDeploymentsOutput = {
     members = {
         deploymentsInfo = {
             type = "list",
-            member_type = "structure",
+            member = M.DeploymentInfo,
         },
     },
 }
@@ -1357,7 +1335,7 @@ M.BatchGetDeploymentTargetsInput = {
         },
         targetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1389,7 +1367,7 @@ M.CloudFormationTarget = {
         },
         lifecycleEvents = {
             type = "list",
-            member_type = "structure",
+            member = M.LifecycleEvent,
         },
         status = {
             type = "string",
@@ -1398,7 +1376,10 @@ M.CloudFormationTarget = {
             type = "string",
         },
         targetVersionWeight = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1422,23 +1403,33 @@ M.ECSTaskSet = {
             type = "string",
         },
         desiredCount = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         pendingCount = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         runningCount = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         status = {
             type = "string",
         },
         trafficWeight = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
-        targetGroup = {
-            type = "structure",
-        },
+        targetGroup = M.TargetGroupInfo,
         taskSetLabel = {
             type = "string",
         },
@@ -1462,14 +1453,14 @@ M.ECSTarget = {
         },
         lifecycleEvents = {
             type = "list",
-            member_type = "structure",
+            member = M.LifecycleEvent,
         },
         status = {
             type = "string",
         },
         taskSetsInfo = {
             type = "list",
-            member_type = "structure",
+            member = M.ECSTaskSet,
         },
     },
 }
@@ -1494,7 +1485,7 @@ M.InstanceTarget = {
         },
         lifecycleEvents = {
             type = "list",
-            member_type = "structure",
+            member = M.LifecycleEvent,
         },
         instanceLabel = {
             type = "string",
@@ -1518,7 +1509,10 @@ M.LambdaFunctionInfo = {
             type = "string",
         },
         targetVersionWeight = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1543,11 +1537,9 @@ M.LambdaTarget = {
         },
         lifecycleEvents = {
             type = "list",
-            member_type = "structure",
+            member = M.LifecycleEvent,
         },
-        lambdaFunctionInfo = {
-            type = "structure",
-        },
+        lambdaFunctionInfo = M.LambdaFunctionInfo,
     },
 }
 
@@ -1557,18 +1549,10 @@ M.DeploymentTarget = {
         deploymentTargetType = {
             type = "string",
         },
-        instanceTarget = {
-            type = "structure",
-        },
-        lambdaTarget = {
-            type = "structure",
-        },
-        ecsTarget = {
-            type = "structure",
-        },
-        cloudFormationTarget = {
-            type = "structure",
-        },
+        instanceTarget = M.InstanceTarget,
+        lambdaTarget = M.LambdaTarget,
+        ecsTarget = M.ECSTarget,
+        cloudFormationTarget = M.CloudFormationTarget,
     },
 }
 
@@ -1577,7 +1561,7 @@ M.BatchGetDeploymentTargetsOutput = {
     members = {
         deploymentTargets = {
             type = "list",
-            member_type = "structure",
+            member = M.DeploymentTarget,
         },
     },
 }
@@ -1647,7 +1631,7 @@ M.BatchGetOnPremisesInstancesInput = {
     members = {
         instanceNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1678,7 +1662,7 @@ M.InstanceInfo = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1688,7 +1672,7 @@ M.BatchGetOnPremisesInstancesOutput = {
     members = {
         instanceInfos = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceInfo,
         },
     },
 }
@@ -1788,7 +1772,7 @@ M.CreateApplicationInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1824,9 +1808,7 @@ M.CreateDeploymentInput = {
         deploymentGroupName = {
             type = "string",
         },
-        revision = {
-            type = "structure",
-        },
+        revision = M.RevisionLocation,
         deploymentConfigName = {
             type = "string",
         },
@@ -1835,22 +1817,22 @@ M.CreateDeploymentInput = {
         },
         ignoreApplicationStopFailures = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        targetInstances = {
-            type = "structure",
-        },
-        autoRollbackConfiguration = {
-            type = "structure",
-        },
+        targetInstances = M.TargetInstances,
+        autoRollbackConfiguration = M.AutoRollbackConfiguration,
         updateOutdatedInstancesOnly = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         fileExistsBehavior = {
             type = "string",
         },
-        overrideAlarmConfiguration = {
-            type = "structure",
-        },
+        overrideAlarmConfiguration = M.AlarmConfiguration,
     },
 }
 
@@ -2045,7 +2027,10 @@ M.MinimumHealthyHosts = {
             type = "string",
         },
         value = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2054,10 +2039,16 @@ M.TimeBasedCanary = {
     type = "structure",
     members = {
         canaryPercentage = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         canaryInterval = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2066,10 +2057,16 @@ M.TimeBasedLinear = {
     type = "structure",
     members = {
         linearPercentage = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         linearInterval = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2086,12 +2083,8 @@ M.TrafficRoutingConfig = {
         type = {
             type = "string",
         },
-        timeBasedCanary = {
-            type = "structure",
-        },
-        timeBasedLinear = {
-            type = "structure",
-        },
+        timeBasedCanary = M.TimeBasedCanary,
+        timeBasedLinear = M.TimeBasedLinear,
     },
 }
 
@@ -2107,7 +2100,10 @@ M.MinimumHealthyHostsPerZone = {
             type = "string",
         },
         value = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2116,14 +2112,12 @@ M.ZonalConfig = {
     type = "structure",
     members = {
         firstZoneMonitorDurationInSeconds = {
-            type = "number",
+            type = "long",
         },
         monitorDurationInSeconds = {
-            type = "number",
+            type = "long",
         },
-        minimumHealthyHostsPerZone = {
-            type = "structure",
-        },
+        minimumHealthyHostsPerZone = M.MinimumHealthyHostsPerZone,
     },
 }
 
@@ -2136,18 +2130,12 @@ M.CreateDeploymentConfigInput = {
                 required = true,
             },
         },
-        minimumHealthyHosts = {
-            type = "structure",
-        },
-        trafficRoutingConfig = {
-            type = "structure",
-        },
+        minimumHealthyHosts = M.MinimumHealthyHosts,
+        trafficRoutingConfig = M.TrafficRoutingConfig,
         computePlatform = {
             type = "string",
         },
-        zonalConfig = {
-            type = "structure",
-        },
+        zonalConfig = M.ZonalConfig,
     },
 }
 
@@ -2230,15 +2218,15 @@ M.CreateDeploymentGroupInput = {
         },
         ec2TagFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.EC2TagFilter,
         },
         onPremisesInstanceTagFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.TagFilter,
         },
         autoScalingGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         serviceRoleArn = {
             type = "string",
@@ -2248,39 +2236,25 @@ M.CreateDeploymentGroupInput = {
         },
         triggerConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.TriggerConfig,
         },
-        alarmConfiguration = {
-            type = "structure",
-        },
-        autoRollbackConfiguration = {
-            type = "structure",
-        },
+        alarmConfiguration = M.AlarmConfiguration,
+        autoRollbackConfiguration = M.AutoRollbackConfiguration,
         outdatedInstancesStrategy = {
             type = "string",
         },
-        deploymentStyle = {
-            type = "structure",
-        },
-        blueGreenDeploymentConfiguration = {
-            type = "structure",
-        },
-        loadBalancerInfo = {
-            type = "structure",
-        },
-        ec2TagSet = {
-            type = "structure",
-        },
+        deploymentStyle = M.DeploymentStyle,
+        blueGreenDeploymentConfiguration = M.BlueGreenDeploymentConfiguration,
+        loadBalancerInfo = M.LoadBalancerInfo,
+        ec2TagSet = M.EC2TagSet,
         ecsServices = {
             type = "list",
-            member_type = "structure",
+            member = M.ECSService,
         },
-        onPremisesTagSet = {
-            type = "structure",
-        },
+        onPremisesTagSet = M.OnPremisesTagSet,
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         terminationHookEnabled = {
             type = "boolean",
@@ -2532,7 +2506,7 @@ M.DeleteDeploymentGroupOutput = {
     members = {
         hooksNotCleanedUp = {
             type = "list",
-            member_type = "structure",
+            member = M.AutoScalingGroup,
         },
     },
 }
@@ -2649,9 +2623,7 @@ M.GetApplicationInput = {
 M.GetApplicationOutput = {
     type = "structure",
     members = {
-        application = {
-            type = "structure",
-        },
+        application = M.ApplicationInfo,
     },
 }
 
@@ -2664,12 +2636,9 @@ M.GetApplicationRevisionInput = {
                 required = true,
             },
         },
-        revision = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        revision = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RevisionLocation }),
     },
 }
 
@@ -2679,12 +2648,8 @@ M.GetApplicationRevisionOutput = {
         applicationName = {
             type = "string",
         },
-        revision = {
-            type = "structure",
-        },
-        revisionInfo = {
-            type = "structure",
-        },
+        revision = M.RevisionLocation,
+        revisionInfo = M.GenericRevisionInfo,
     },
 }
 
@@ -2703,9 +2668,7 @@ M.GetDeploymentInput = {
 M.GetDeploymentOutput = {
     type = "structure",
     members = {
-        deploymentInfo = {
-            type = "structure",
-        },
+        deploymentInfo = M.DeploymentInfo,
     },
 }
 
@@ -2730,30 +2693,22 @@ M.DeploymentConfigInfo = {
         deploymentConfigName = {
             type = "string",
         },
-        minimumHealthyHosts = {
-            type = "structure",
-        },
+        minimumHealthyHosts = M.MinimumHealthyHosts,
         createTime = {
             type = "timestamp",
         },
         computePlatform = {
             type = "string",
         },
-        trafficRoutingConfig = {
-            type = "structure",
-        },
-        zonalConfig = {
-            type = "structure",
-        },
+        trafficRoutingConfig = M.TrafficRoutingConfig,
+        zonalConfig = M.ZonalConfig,
     },
 }
 
 M.GetDeploymentConfigOutput = {
     type = "structure",
     members = {
-        deploymentConfigInfo = {
-            type = "structure",
-        },
+        deploymentConfigInfo = M.DeploymentConfigInfo,
     },
 }
 
@@ -2778,9 +2733,7 @@ M.GetDeploymentGroupInput = {
 M.GetDeploymentGroupOutput = {
     type = "structure",
     members = {
-        deploymentGroupInfo = {
-            type = "structure",
-        },
+        deploymentGroupInfo = M.DeploymentGroupInfo,
     },
 }
 
@@ -2805,9 +2758,7 @@ M.GetDeploymentInstanceInput = {
 M.GetDeploymentInstanceOutput = {
     type = "structure",
     members = {
-        instanceSummary = {
-            type = "structure",
-        },
+        instanceSummary = M.InstanceSummary,
     },
 }
 
@@ -2832,9 +2783,7 @@ M.GetDeploymentTargetInput = {
 M.GetDeploymentTargetOutput = {
     type = "structure",
     members = {
-        deploymentTarget = {
-            type = "structure",
-        },
+        deploymentTarget = M.DeploymentTarget,
     },
 }
 
@@ -2853,9 +2802,7 @@ M.GetOnPremisesInstanceInput = {
 M.GetOnPremisesInstanceOutput = {
     type = "structure",
     members = {
-        instanceInfo = {
-            type = "structure",
-        },
+        instanceInfo = M.InstanceInfo,
     },
 }
 
@@ -2965,7 +2912,7 @@ M.ListApplicationRevisionsOutput = {
     members = {
         revisions = {
             type = "list",
-            member_type = "structure",
+            member = M.RevisionLocation,
         },
         nextToken = {
             type = "string",
@@ -2987,7 +2934,7 @@ M.ListApplicationsOutput = {
     members = {
         applications = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -3009,7 +2956,7 @@ M.ListDeploymentConfigsOutput = {
     members = {
         deploymentConfigsList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -3040,7 +2987,7 @@ M.ListDeploymentGroupsOutput = {
         },
         deploymentGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -3102,11 +3049,11 @@ M.ListDeploymentInstancesInput = {
         },
         instanceStatusFilter = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         instanceTypeFilter = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3116,7 +3063,7 @@ M.ListDeploymentInstancesOutput = {
     members = {
         instancesList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -3170,11 +3117,9 @@ M.ListDeploymentsInput = {
         },
         includeOnlyStatuses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        createTimeRange = {
-            type = "structure",
-        },
+        createTimeRange = M.TimeRange,
         nextToken = {
             type = "string",
         },
@@ -3186,7 +3131,7 @@ M.ListDeploymentsOutput = {
     members = {
         deployments = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -3213,8 +3158,8 @@ M.ListDeploymentTargetsInput = {
         },
         targetFilters = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
     },
 }
@@ -3224,7 +3169,7 @@ M.ListDeploymentTargetsOutput = {
     members = {
         targetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -3246,7 +3191,7 @@ M.ListGitHubAccountTokenNamesOutput = {
     members = {
         tokenNameList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -3287,7 +3232,7 @@ M.ListOnPremisesInstancesInput = {
         },
         tagFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.TagFilter,
         },
         nextToken = {
             type = "string",
@@ -3300,7 +3245,7 @@ M.ListOnPremisesInstancesOutput = {
     members = {
         instanceNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -3338,7 +3283,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         NextToken = {
             type = "string",
@@ -3422,12 +3367,9 @@ M.RegisterApplicationRevisionInput = {
         description = {
             type = "string",
         },
-        revision = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        revision = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RevisionLocation }),
     },
 }
 
@@ -3542,14 +3484,14 @@ M.RemoveTagsFromOnPremisesInstancesInput = {
     members = {
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
         },
         instanceNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3617,7 +3559,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -3640,7 +3582,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3691,51 +3633,37 @@ M.UpdateDeploymentGroupInput = {
         },
         ec2TagFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.EC2TagFilter,
         },
         onPremisesInstanceTagFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.TagFilter,
         },
         autoScalingGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         serviceRoleArn = {
             type = "string",
         },
         triggerConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.TriggerConfig,
         },
-        alarmConfiguration = {
-            type = "structure",
-        },
-        autoRollbackConfiguration = {
-            type = "structure",
-        },
+        alarmConfiguration = M.AlarmConfiguration,
+        autoRollbackConfiguration = M.AutoRollbackConfiguration,
         outdatedInstancesStrategy = {
             type = "string",
         },
-        deploymentStyle = {
-            type = "structure",
-        },
-        blueGreenDeploymentConfiguration = {
-            type = "structure",
-        },
-        loadBalancerInfo = {
-            type = "structure",
-        },
-        ec2TagSet = {
-            type = "structure",
-        },
+        deploymentStyle = M.DeploymentStyle,
+        blueGreenDeploymentConfiguration = M.BlueGreenDeploymentConfiguration,
+        loadBalancerInfo = M.LoadBalancerInfo,
+        ec2TagSet = M.EC2TagSet,
         ecsServices = {
             type = "list",
-            member_type = "structure",
+            member = M.ECSService,
         },
-        onPremisesTagSet = {
-            type = "structure",
-        },
+        onPremisesTagSet = M.OnPremisesTagSet,
         terminationHookEnabled = {
             type = "boolean",
         },
@@ -3747,7 +3675,7 @@ M.UpdateDeploymentGroupOutput = {
     members = {
         hooksNotCleanedUp = {
             type = "list",
-            member_type = "structure",
+            member = M.AutoScalingGroup,
         },
     },
 }

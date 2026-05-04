@@ -16,7 +16,7 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "MediaPackageVod"
-    cfg.signing_name = "mediapackagevod"
+    cfg.signing_name = "mediapackage-vod"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end

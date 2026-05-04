@@ -51,13 +51,13 @@ M.DeleteKeyOutput = {
     type = "structure",
     members = {
         ItemCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         TotalSizeInBytes = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -129,13 +129,13 @@ M.DescribeKeyValueStoreOutput = {
     type = "structure",
     members = {
         ItemCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         TotalSizeInBytes = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -207,13 +207,13 @@ M.GetKeyOutput = {
             },
         },
         ItemCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         TotalSizeInBytes = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -238,8 +238,9 @@ M.ListKeysInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 10,
                 http_query = "MaxResults",
             },
         },
@@ -272,7 +273,7 @@ M.ListKeysOutput = {
         },
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.ListKeysResponseListItem,
         },
     },
 }
@@ -314,13 +315,13 @@ M.PutKeyOutput = {
     type = "structure",
     members = {
         ItemCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         TotalSizeInBytes = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -384,11 +385,11 @@ M.UpdateKeysInput = {
         },
         Puts = {
             type = "list",
-            member_type = "structure",
+            member = M.PutKeyRequestListItem,
         },
         Deletes = {
             type = "list",
-            member_type = "structure",
+            member = M.DeleteKeyRequestListItem,
         },
     },
 }
@@ -397,13 +398,13 @@ M.UpdateKeysOutput = {
     type = "structure",
     members = {
         ItemCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         TotalSizeInBytes = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },

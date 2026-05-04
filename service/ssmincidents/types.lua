@@ -55,13 +55,13 @@ M.SsmAutomation = {
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         dynamicParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.DynamicSsmParameterValue,
         },
     },
 }
@@ -69,9 +69,7 @@ M.SsmAutomation = {
 M.Action = {
     type = "union",
     members = {
-        ssmAutomation = {
-            type = "structure",
-        },
+        ssmAutomation = M.SsmAutomation,
     },
 }
 
@@ -95,11 +93,11 @@ M.AttributeValueList = {
     members = {
         stringValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         integerValues = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
         },
     },
 }
@@ -124,7 +122,7 @@ M.BatchGetIncidentFindingsInput = {
         },
         findingIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -207,12 +205,8 @@ M.CodeDeployDeployment = {
 M.FindingDetails = {
     type = "union",
     members = {
-        codeDeployDeployment = {
-            type = "structure",
-        },
-        cloudFormationStackUpdate = {
-            type = "structure",
-        },
+        codeDeployDeployment = M.CodeDeployDeployment,
+        cloudFormationStackUpdate = M.CloudFormationStackUpdate,
     },
 }
 
@@ -237,9 +231,7 @@ M.Finding = {
                 required = true,
             },
         },
-        details = {
-            type = "union",
-        },
+        details = M.FindingDetails,
     },
 }
 
@@ -248,14 +240,14 @@ M.BatchGetIncidentFindingsOutput = {
     members = {
         findings = {
             type = "list",
-            member_type = "structure",
+            member = M.Finding,
             traits = {
                 required = true,
             },
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetIncidentFindingsError,
             traits = {
                 required = true,
             },
@@ -352,12 +344,10 @@ M.EmptyChatChannel = {
 M.ChatChannel = {
     type = "union",
     members = {
-        empty = {
-            type = "structure",
-        },
+        empty = M.EmptyChatChannel,
         chatbotSns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -371,9 +361,7 @@ M.Condition = {
         after = {
             type = "timestamp",
         },
-        equals = {
-            type = "union",
-        },
+        equals = M.AttributeValueList,
     },
 }
 
@@ -413,8 +401,8 @@ M.CreateReplicationSetInput = {
     members = {
         regions = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.RegionMapInputValue,
             traits = {
                 required = true,
             },
@@ -424,8 +412,8 @@ M.CreateReplicationSetInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -492,7 +480,7 @@ M.IncidentTemplate = {
             },
         },
         impact = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -505,12 +493,12 @@ M.IncidentTemplate = {
         },
         notificationTargets = {
             type = "list",
-            member_type = "union",
+            member = M.NotificationTargetItem,
         },
         incidentTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -542,21 +530,16 @@ M.PagerDutyConfiguration = {
                 required = true,
             },
         },
-        pagerDutyIncidentConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        pagerDutyIncidentConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PagerDutyIncidentConfiguration }),
     },
 }
 
 M.Integration = {
     type = "union",
     members = {
-        pagerDutyConfiguration = {
-            type = "structure",
-        },
+        pagerDutyConfiguration = M.PagerDutyConfiguration,
     },
 }
 
@@ -575,31 +558,26 @@ M.CreateResponsePlanInput = {
         displayName = {
             type = "string",
         },
-        incidentTemplate = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        chatChannel = {
-            type = "union",
-        },
+        incidentTemplate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IncidentTemplate }),
+        chatChannel = M.ChatChannel,
         engagements = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         actions = {
             type = "list",
-            member_type = "union",
+            member = M.Action,
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         integrations = {
             type = "list",
-            member_type = "union",
+            member = M.Integration,
         },
     },
 }
@@ -660,7 +638,7 @@ M.CreateTimelineEventInput = {
         },
         eventReferences = {
             type = "list",
-            member_type = "union",
+            member = M.EventReference,
         },
     },
 }
@@ -823,7 +801,7 @@ M.EventSummary = {
         },
         eventReferences = {
             type = "list",
-            member_type = "union",
+            member = M.EventReference,
         },
     },
 }
@@ -837,12 +815,9 @@ M.Filter = {
                 required = true,
             },
         },
-        condition = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        condition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Condition }),
     },
 }
 
@@ -931,7 +906,7 @@ M.IncidentRecord = {
             },
         },
         impact = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -959,26 +934,21 @@ M.IncidentRecord = {
         },
         automationExecutions = {
             type = "list",
-            member_type = "union",
+            member = M.AutomationExecution,
         },
-        incidentRecordSource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        incidentRecordSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IncidentRecordSource }),
         dedupeString = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        chatChannel = {
-            type = "union",
-        },
+        chatChannel = M.ChatChannel,
         notificationTargets = {
             type = "list",
-            member_type = "union",
+            member = M.NotificationTargetItem,
         },
     },
 }
@@ -986,12 +956,9 @@ M.IncidentRecord = {
 M.GetIncidentRecordOutput = {
     type = "structure",
     members = {
-        incidentRecord = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        incidentRecord = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IncidentRecord }),
     },
 }
 
@@ -1055,8 +1022,8 @@ M.ReplicationSet = {
         },
         regionMap = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.RegionInfo,
             traits = {
                 required = true,
             },
@@ -1103,12 +1070,9 @@ M.ReplicationSet = {
 M.GetReplicationSetOutput = {
     type = "structure",
     members = {
-        replicationSet = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        replicationSet = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ReplicationSet }),
     },
 }
 
@@ -1123,7 +1087,7 @@ M.GetResourcePoliciesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -1160,7 +1124,7 @@ M.GetResourcePoliciesOutput = {
     members = {
         resourcePolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePolicy,
             traits = {
                 required = true,
             },
@@ -1202,26 +1166,21 @@ M.GetResponsePlanOutput = {
         displayName = {
             type = "string",
         },
-        incidentTemplate = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        chatChannel = {
-            type = "union",
-        },
+        incidentTemplate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IncidentTemplate }),
+        chatChannel = M.ChatChannel,
         engagements = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         actions = {
             type = "list",
-            member_type = "union",
+            member = M.Action,
         },
         integrations = {
             type = "list",
-            member_type = "union",
+            member = M.Integration,
         },
     },
 }
@@ -1287,7 +1246,7 @@ M.TimelineEvent = {
         },
         eventReferences = {
             type = "list",
-            member_type = "union",
+            member = M.EventReference,
         },
     },
 }
@@ -1295,12 +1254,9 @@ M.TimelineEvent = {
 M.GetTimelineEventOutput = {
     type = "structure",
     members = {
-        event = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        event = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TimelineEvent }),
     },
 }
 
@@ -1326,7 +1282,7 @@ M.IncidentRecordSummary = {
             },
         },
         impact = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1340,12 +1296,9 @@ M.IncidentRecordSummary = {
         resolvedTime = {
             type = "timestamp",
         },
-        incidentRecordSource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        incidentRecordSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IncidentRecordSource }),
     },
 }
 
@@ -1391,21 +1344,16 @@ M.ItemValue = {
         metricDefinition = {
             type = "string",
         },
-        pagerDutyIncidentDetail = {
-            type = "structure",
-        },
+        pagerDutyIncidentDetail = M.PagerDutyIncidentDetail,
     },
 }
 
 M.ItemIdentifier = {
     type = "structure",
     members = {
-        value = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        value = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ItemValue }),
         type = {
             type = "string",
             traits = {
@@ -1425,7 +1373,7 @@ M.ListIncidentFindingsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -1438,7 +1386,7 @@ M.ListIncidentFindingsOutput = {
     members = {
         findings = {
             type = "list",
-            member_type = "structure",
+            member = M.FindingSummary,
             traits = {
                 required = true,
             },
@@ -1454,10 +1402,10 @@ M.ListIncidentRecordsInput = {
     members = {
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -1470,7 +1418,7 @@ M.ListIncidentRecordsOutput = {
     members = {
         incidentRecordSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.IncidentRecordSummary,
             traits = {
                 required = true,
             },
@@ -1491,7 +1439,7 @@ M.ListRelatedItemsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -1502,12 +1450,9 @@ M.ListRelatedItemsInput = {
 M.RelatedItem = {
     type = "structure",
     members = {
-        identifier = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        identifier = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ItemIdentifier }),
         title = {
             type = "string",
         },
@@ -1522,7 +1467,7 @@ M.ListRelatedItemsOutput = {
     members = {
         relatedItems = {
             type = "list",
-            member_type = "structure",
+            member = M.RelatedItem,
             traits = {
                 required = true,
             },
@@ -1537,7 +1482,7 @@ M.ListReplicationSetsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -1550,7 +1495,7 @@ M.ListReplicationSetsOutput = {
     members = {
         replicationSetArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1565,7 +1510,7 @@ M.ListResponsePlansInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -1599,7 +1544,7 @@ M.ListResponsePlansOutput = {
     members = {
         responsePlanSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ResponsePlanSummary,
             traits = {
                 required = true,
             },
@@ -1628,8 +1573,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1657,7 +1602,7 @@ M.ListTimelineEventsInput = {
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         sortBy = {
             type = "string",
@@ -1666,7 +1611,7 @@ M.ListTimelineEventsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -1679,7 +1624,7 @@ M.ListTimelineEventsOutput = {
     members = {
         eventSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.EventSummary,
             traits = {
                 required = true,
             },
@@ -1723,12 +1668,8 @@ M.PutResourcePolicyOutput = {
 M.RelatedItemsUpdate = {
     type = "union",
     members = {
-        itemToAdd = {
-            type = "structure",
-        },
-        itemToRemove = {
-            type = "structure",
-        },
+        itemToAdd = M.RelatedItem,
+        itemToRemove = M.ItemIdentifier,
     },
 }
 
@@ -1772,14 +1713,12 @@ M.StartIncidentInput = {
             type = "string",
         },
         impact = {
-            type = "number",
+            type = "integer",
         },
-        triggerDetails = {
-            type = "structure",
-        },
+        triggerDetails = M.TriggerDetails,
         relatedItems = {
             type = "list",
-            member_type = "structure",
+            member = M.RelatedItem,
         },
     },
 }
@@ -1808,8 +1747,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1833,7 +1772,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -1890,17 +1829,15 @@ M.UpdateIncidentRecordInput = {
             type = "string",
         },
         impact = {
-            type = "number",
+            type = "integer",
         },
         status = {
             type = "string",
         },
-        chatChannel = {
-            type = "union",
-        },
+        chatChannel = M.ChatChannel,
         notificationTargets = {
             type = "list",
-            member_type = "union",
+            member = M.NotificationTargetItem,
         },
     },
 }
@@ -1921,12 +1858,9 @@ M.UpdateRelatedItemsInput = {
                 required = true,
             },
         },
-        relatedItemsUpdate = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        relatedItemsUpdate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RelatedItemsUpdate }),
     },
 }
 
@@ -1937,12 +1871,8 @@ M.UpdateRelatedItemsOutput = {
 M.UpdateReplicationSetAction = {
     type = "union",
     members = {
-        addRegionAction = {
-            type = "structure",
-        },
-        deleteRegionAction = {
-            type = "structure",
-        },
+        addRegionAction = M.AddRegionAction,
+        deleteRegionAction = M.DeleteRegionAction,
     },
 }
 
@@ -1957,7 +1887,7 @@ M.UpdateReplicationSetInput = {
         },
         actions = {
             type = "list",
-            member_type = "union",
+            member = M.UpdateReplicationSetAction,
             traits = {
                 required = true,
             },
@@ -1991,7 +1921,7 @@ M.UpdateResponsePlanInput = {
             type = "string",
         },
         incidentTemplateImpact = {
-            type = "number",
+            type = "integer",
         },
         incidentTemplateSummary = {
             type = "string",
@@ -2001,27 +1931,25 @@ M.UpdateResponsePlanInput = {
         },
         incidentTemplateNotificationTargets = {
             type = "list",
-            member_type = "union",
+            member = M.NotificationTargetItem,
         },
-        chatChannel = {
-            type = "union",
-        },
+        chatChannel = M.ChatChannel,
         engagements = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         actions = {
             type = "list",
-            member_type = "union",
+            member = M.Action,
         },
         incidentTemplateTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         integrations = {
             type = "list",
-            member_type = "union",
+            member = M.Integration,
         },
     },
 }
@@ -2059,7 +1987,7 @@ M.UpdateTimelineEventInput = {
         },
         eventReferences = {
             type = "list",
-            member_type = "union",
+            member = M.EventReference,
         },
     },
 }

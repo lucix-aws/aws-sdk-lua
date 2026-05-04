@@ -59,9 +59,7 @@ M.AccessKey = {
         createdAt = {
             type = "timestamp",
         },
-        lastUsed = {
-            type = "structure",
-        },
+        lastUsed = M.AccessKeyLastUsed,
     },
 }
 
@@ -204,12 +202,8 @@ M.AddOnRequest = {
                 required = true,
             },
         },
-        autoSnapshotAddOnRequest = {
-            type = "structure",
-        },
-        stopInstanceOnIdleRequest = {
-            type = "structure",
-        },
+        autoSnapshotAddOnRequest = M.AutoSnapshotAddOnRequest,
+        stopInstanceOnIdleRequest = M.StopInstanceOnIdleRequest,
     },
 }
 
@@ -398,32 +392,28 @@ M.Alarm = {
         createdAt = {
             type = "timestamp",
         },
-        location = {
-            type = "structure",
-        },
+        location = M.ResourceLocation,
         resourceType = {
             type = "string",
         },
         supportCode = {
             type = "string",
         },
-        monitoredResourceInfo = {
-            type = "structure",
-        },
+        monitoredResourceInfo = M.MonitoredResourceInfo,
         comparisonOperator = {
             type = "string",
         },
         evaluationPeriods = {
-            type = "number",
+            type = "integer",
         },
         period = {
-            type = "number",
+            type = "integer",
         },
         threshold = {
-            type = "number",
+            type = "double",
         },
         datapointsToAlarm = {
-            type = "number",
+            type = "integer",
         },
         treatMissingData = {
             type = "string",
@@ -442,18 +432,18 @@ M.Alarm = {
         },
         contactProtocols = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         notificationTriggers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         notificationEnabled = {
             type = "boolean",
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -579,9 +569,7 @@ M.Operation = {
         createdAt = {
             type = "timestamp",
         },
-        location = {
-            type = "structure",
-        },
+        location = M.ResourceLocation,
         isTerminal = {
             type = "boolean",
         },
@@ -611,7 +599,7 @@ M.AllocateStaticIpOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -755,9 +743,7 @@ M.AttachCertificateToDistributionInput = {
 M.AttachCertificateToDistributionOutput = {
     type = "structure",
     members = {
-        operation = {
-            type = "structure",
-        },
+        operation = M.Operation,
     },
 }
 
@@ -793,7 +779,7 @@ M.AttachDiskOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -805,7 +791,7 @@ M.AttachedDisk = {
             type = "string",
         },
         sizeInGb = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -833,7 +819,7 @@ M.AttachInstancesToLoadBalancerInput = {
         },
         instanceNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -846,7 +832,7 @@ M.AttachInstancesToLoadBalancerOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -874,7 +860,7 @@ M.AttachLoadBalancerTlsCertificateOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -902,7 +888,7 @@ M.AttachStaticIpOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -935,7 +921,7 @@ M.AutoSnapshotDetails = {
         },
         fromAttachedDisks = {
             type = "list",
-            member_type = "structure",
+            member = M.AttachedDisk,
         },
     },
 }
@@ -989,7 +975,7 @@ M.Blueprint = {
             type = "boolean",
         },
         minPower = {
-            type = "number",
+            type = "integer",
         },
         version = {
             type = "string",
@@ -1038,28 +1024,28 @@ M.BucketCorsRule = {
         },
         allowedMethods = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         allowedOrigins = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         allowedHeaders = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         exposeHeaders = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         maxAgeSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1069,7 +1055,7 @@ M.BucketCorsConfig = {
     members = {
         rules = {
             type = "list",
-            member_type = "structure",
+            member = M.BucketCorsRule,
         },
     },
 }
@@ -1092,9 +1078,7 @@ M.Bucket = {
         resourceType = {
             type = "string",
         },
-        accessRules = {
-            type = "structure",
-        },
+        accessRules = M.AccessRules,
         arn = {
             type = "string",
         },
@@ -1107,9 +1091,7 @@ M.Bucket = {
         url = {
             type = "string",
         },
-        location = {
-            type = "structure",
-        },
+        location = M.ResourceLocation,
         name = {
             type = "string",
         },
@@ -1118,7 +1100,7 @@ M.Bucket = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         objectVersioning = {
             type = "string",
@@ -1128,21 +1110,15 @@ M.Bucket = {
         },
         readonlyAccessAccounts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         resourcesReceivingAccess = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceReceivingAccess,
         },
-        state = {
-            type = "structure",
-        },
-        accessLogConfig = {
-            type = "structure",
-        },
-        cors = {
-            type = "structure",
-        },
+        state = M.BucketState,
+        accessLogConfig = M.BucketAccessLogConfig,
+        cors = M.BucketCorsConfig,
     },
 }
 
@@ -1156,13 +1132,13 @@ M.BucketBundle = {
             type = "string",
         },
         price = {
-            type = "number",
+            type = "float",
         },
         storagePerMonthInGb = {
-            type = "number",
+            type = "integer",
         },
         transferPerMonthInGb = {
-            type = "number",
+            type = "integer",
         },
         isActive = {
             type = "boolean",
@@ -1179,13 +1155,13 @@ M.Bundle = {
     type = "structure",
     members = {
         price = {
-            type = "number",
+            type = "float",
         },
         cpuCount = {
-            type = "number",
+            type = "integer",
         },
         diskSizeInGb = {
-            type = "number",
+            type = "integer",
         },
         bundleId = {
             type = "string",
@@ -1200,24 +1176,24 @@ M.Bundle = {
             type = "string",
         },
         power = {
-            type = "number",
+            type = "integer",
         },
         ramSizeInGb = {
-            type = "number",
+            type = "float",
         },
         transferPerMonthInGb = {
-            type = "number",
+            type = "integer",
         },
         supportedPlatforms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         supportedAppCategories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         publicIpv4AddressCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1257,7 +1233,7 @@ M.CookieObject = {
         },
         cookiesAllowList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1288,7 +1264,7 @@ M.HeaderObject = {
         },
         headersAllowList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1301,7 +1277,7 @@ M.QueryStringObject = {
         },
         queryStringsAllowList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1310,13 +1286,13 @@ M.CacheSettings = {
     type = "structure",
     members = {
         defaultTTL = {
-            type = "number",
+            type = "long",
         },
         minimumTTL = {
-            type = "number",
+            type = "long",
         },
         maximumTTL = {
-            type = "number",
+            type = "long",
         },
         allowedHTTPMethods = {
             type = "string",
@@ -1324,15 +1300,9 @@ M.CacheSettings = {
         cachedHTTPMethods = {
             type = "string",
         },
-        forwardedCookies = {
-            type = "structure",
-        },
-        forwardedHeaders = {
-            type = "structure",
-        },
-        forwardedQueryStrings = {
-            type = "structure",
-        },
+        forwardedCookies = M.CookieObject,
+        forwardedHeaders = M.HeaderObject,
+        forwardedQueryStrings = M.QueryStringObject,
     },
 }
 
@@ -1381,12 +1351,8 @@ M.DomainValidationRecord = {
         domainName = {
             type = "string",
         },
-        resourceRecord = {
-            type = "structure",
-        },
-        dnsRecordCreationState = {
-            type = "structure",
-        },
+        resourceRecord = M.ResourceRecord,
+        dnsRecordCreationState = M.DnsRecordCreationState,
         validationStatus = {
             type = "string",
         },
@@ -1405,7 +1371,7 @@ M.RenewalSummary = {
     members = {
         domainValidationRecords = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainValidationRecord,
         },
         renewalStatus = {
             type = "string",
@@ -1449,17 +1415,20 @@ M.Certificate = {
         },
         subjectAlternativeNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         domainValidationRecords = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainValidationRecord,
         },
         requestFailureReason = {
             type = "string",
         },
         inUseResourceCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         keyAlgorithm = {
             type = "string",
@@ -1482,9 +1451,7 @@ M.Certificate = {
         eligibleToRenew = {
             type = "string",
         },
-        renewalSummary = {
-            type = "structure",
-        },
+        renewalSummary = M.RenewalSummary,
         revokedAt = {
             type = "timestamp",
         },
@@ -1493,7 +1460,7 @@ M.Certificate = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         supportCode = {
             type = "string",
@@ -1517,12 +1484,10 @@ M.CertificateSummary = {
         domainName = {
             type = "string",
         },
-        certificateDetail = {
-            type = "structure",
-        },
+        certificateDetail = M.Certificate,
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1539,25 +1504,31 @@ M.PortInfo = {
     type = "structure",
     members = {
         fromPort = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         toPort = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         protocol = {
             type = "string",
         },
         cidrs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ipv6Cidrs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         cidrListAliases = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1565,12 +1536,9 @@ M.PortInfo = {
 M.CloseInstancePublicPortsInput = {
     type = "structure",
     members = {
-        portInfo = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        portInfo = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PortInfo }),
         instanceName = {
             type = "string",
             traits = {
@@ -1583,9 +1551,7 @@ M.CloseInstancePublicPortsInput = {
 M.CloseInstancePublicPortsOutput = {
     type = "structure",
     members = {
-        operation = {
-            type = "structure",
-        },
+        operation = M.Operation,
     },
 }
 
@@ -1638,9 +1604,7 @@ M.CloudFormationStackRecord = {
         createdAt = {
             type = "timestamp",
         },
-        location = {
-            type = "structure",
-        },
+        location = M.ResourceLocation,
         resourceType = {
             type = "string",
         },
@@ -1649,11 +1613,9 @@ M.CloudFormationStackRecord = {
         },
         sourceInfo = {
             type = "list",
-            member_type = "structure",
+            member = M.CloudFormationStackRecordSourceInfo,
         },
-        destinationInfo = {
-            type = "structure",
-        },
+        destinationInfo = M.DestinationInfo,
     },
 }
 
@@ -1684,9 +1646,7 @@ M.ContactMethod = {
         createdAt = {
             type = "timestamp",
         },
-        location = {
-            type = "structure",
-        },
+        location = M.ResourceLocation,
         resourceType = {
             type = "string",
         },
@@ -1695,7 +1655,7 @@ M.ContactMethod = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1719,17 +1679,17 @@ M.Container = {
         },
         command = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         environment = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ports = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1753,16 +1713,16 @@ M.ContainerServiceHealthCheckConfig = {
     type = "structure",
     members = {
         healthyThreshold = {
-            type = "number",
+            type = "integer",
         },
         unhealthyThreshold = {
-            type = "number",
+            type = "integer",
         },
         timeoutSeconds = {
-            type = "number",
+            type = "integer",
         },
         intervalSeconds = {
-            type = "number",
+            type = "integer",
         },
         path = {
             type = "string",
@@ -1780,11 +1740,9 @@ M.ContainerServiceEndpoint = {
             type = "string",
         },
         containerPort = {
-            type = "number",
+            type = "integer",
         },
-        healthCheck = {
-            type = "structure",
-        },
+        healthCheck = M.ContainerServiceHealthCheckConfig,
     },
 }
 
@@ -1799,19 +1757,17 @@ M.ContainerServiceDeployment = {
     type = "structure",
     members = {
         version = {
-            type = "number",
+            type = "integer",
         },
         state = {
             type = "string",
         },
         containers = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.Container,
         },
-        publicEndpoint = {
-            type = "structure",
-        },
+        publicEndpoint = M.ContainerServiceEndpoint,
         createdAt = {
             type = "timestamp",
         },
@@ -1842,9 +1798,7 @@ M.ContainerServiceECRImagePullerRole = {
 M.PrivateRegistryAccess = {
     type = "structure",
     members = {
-        ecrImagePullerRole = {
-            type = "structure",
-        },
+        ecrImagePullerRole = M.ContainerServiceECRImagePullerRole,
     },
 }
 
@@ -1894,15 +1848,13 @@ M.ContainerService = {
         createdAt = {
             type = "timestamp",
         },
-        location = {
-            type = "structure",
-        },
+        location = M.ResourceLocation,
         resourceType = {
             type = "string",
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         power = {
             type = "string",
@@ -1913,18 +1865,12 @@ M.ContainerService = {
         state = {
             type = "string",
         },
-        stateDetail = {
-            type = "structure",
-        },
+        stateDetail = M.ContainerServiceStateDetail,
         scale = {
-            type = "number",
+            type = "integer",
         },
-        currentDeployment = {
-            type = "structure",
-        },
-        nextDeployment = {
-            type = "structure",
-        },
+        currentDeployment = M.ContainerServiceDeployment,
+        nextDeployment = M.ContainerServiceDeployment,
         isDisabled = {
             type = "boolean",
         },
@@ -1936,15 +1882,13 @@ M.ContainerService = {
         },
         publicDomainNames = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         url = {
             type = "string",
         },
-        privateRegistryAccess = {
-            type = "structure",
-        },
+        privateRegistryAccess = M.PrivateRegistryAccess,
     },
 }
 
@@ -1958,14 +1902,12 @@ M.EndpointRequest = {
             },
         },
         containerPort = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
-        healthCheck = {
-            type = "structure",
-        },
+        healthCheck = M.ContainerServiceHealthCheckConfig,
     },
 }
 
@@ -1974,12 +1916,10 @@ M.ContainerServiceDeploymentRequest = {
     members = {
         containers = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.Container,
         },
-        publicEndpoint = {
-            type = "structure",
-        },
+        publicEndpoint = M.EndpointRequest,
     },
 }
 
@@ -2016,13 +1956,13 @@ M.ContainerServicePower = {
             type = "string",
         },
         price = {
-            type = "number",
+            type = "float",
         },
         cpuCount = {
-            type = "number",
+            type = "float",
         },
         ramSizeInGb = {
-            type = "number",
+            type = "float",
         },
         name = {
             type = "string",
@@ -2086,7 +2026,7 @@ M.CopySnapshotOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -2119,20 +2059,18 @@ M.EstimateByTime = {
     type = "structure",
     members = {
         usageCost = {
-            type = "number",
+            type = "double",
         },
         pricingUnit = {
             type = "string",
         },
         unit = {
-            type = "number",
+            type = "double",
         },
         currency = {
             type = "string",
         },
-        timePeriod = {
-            type = "structure",
-        },
+        timePeriod = M.TimePeriod,
     },
 }
 
@@ -2144,7 +2082,7 @@ M.CostEstimate = {
         },
         resultsByTime = {
             type = "list",
-            member_type = "structure",
+            member = M.EstimateByTime,
         },
     },
 }
@@ -2166,7 +2104,7 @@ M.CreateBucketInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         enableObjectVersioning = {
             type = "boolean",
@@ -2177,12 +2115,10 @@ M.CreateBucketInput = {
 M.CreateBucketOutput = {
     type = "structure",
     members = {
-        bucket = {
-            type = "structure",
-        },
+        bucket = M.Bucket,
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -2202,12 +2138,10 @@ M.CreateBucketAccessKeyInput = {
 M.CreateBucketAccessKeyOutput = {
     type = "structure",
     members = {
-        accessKey = {
-            type = "structure",
-        },
+        accessKey = M.AccessKey,
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -2229,11 +2163,11 @@ M.CreateCertificateInput = {
         },
         subjectAlternativeNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2241,12 +2175,10 @@ M.CreateCertificateInput = {
 M.CreateCertificateOutput = {
     type = "structure",
     members = {
-        certificate = {
-            type = "structure",
-        },
+        certificate = M.CertificateSummary,
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -2296,7 +2228,7 @@ M.CreateCloudFormationStackInput = {
     members = {
         instances = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceEntry,
             traits = {
                 required = true,
             },
@@ -2309,7 +2241,7 @@ M.CreateCloudFormationStackOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -2331,7 +2263,7 @@ M.CreateContactMethodInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2341,7 +2273,7 @@ M.CreateContactMethodOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -2349,9 +2281,7 @@ M.CreateContactMethodOutput = {
 M.PrivateRegistryAccessRequest = {
     type = "structure",
     members = {
-        ecrImagePullerRole = {
-            type = "structure",
-        },
+        ecrImagePullerRole = M.ContainerServiceECRImagePullerRoleRequest,
     },
 }
 
@@ -2371,35 +2301,29 @@ M.CreateContainerServiceInput = {
             },
         },
         scale = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         publicDomainNames = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
-        deployment = {
-            type = "structure",
-        },
-        privateRegistryAccess = {
-            type = "structure",
-        },
+        deployment = M.ContainerServiceDeploymentRequest,
+        privateRegistryAccess = M.PrivateRegistryAccessRequest,
     },
 }
 
 M.CreateContainerServiceOutput = {
     type = "structure",
     members = {
-        containerService = {
-            type = "structure",
-        },
+        containerService = M.ContainerService,
     },
 }
 
@@ -2415,21 +2339,17 @@ M.CreateContainerServiceDeploymentInput = {
         },
         containers = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.Container,
         },
-        publicEndpoint = {
-            type = "structure",
-        },
+        publicEndpoint = M.EndpointRequest,
     },
 }
 
 M.CreateContainerServiceDeploymentOutput = {
     type = "structure",
     members = {
-        containerService = {
-            type = "structure",
-        },
+        containerService = M.ContainerService,
     },
 }
 
@@ -2440,9 +2360,7 @@ M.CreateContainerServiceRegistryLoginInput = {
 M.CreateContainerServiceRegistryLoginOutput = {
     type = "structure",
     members = {
-        registryLogin = {
-            type = "structure",
-        },
+        registryLogin = M.ContainerServiceRegistryLogin,
     },
 }
 
@@ -2462,18 +2380,18 @@ M.CreateDiskInput = {
             },
         },
         sizeInGb = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         addOns = {
             type = "list",
-            member_type = "structure",
+            member = M.AddOnRequest,
         },
     },
 }
@@ -2483,7 +2401,7 @@ M.CreateDiskOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -2507,18 +2425,18 @@ M.CreateDiskFromSnapshotInput = {
             },
         },
         sizeInGb = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         addOns = {
             type = "list",
-            member_type = "structure",
+            member = M.AddOnRequest,
         },
         sourceDiskName = {
             type = "string",
@@ -2537,7 +2455,7 @@ M.CreateDiskFromSnapshotOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -2559,7 +2477,7 @@ M.CreateDiskSnapshotInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2569,7 +2487,7 @@ M.CreateDiskSnapshotOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -2598,7 +2516,7 @@ M.InputOrigin = {
             type = "string",
         },
         responseTimeout = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2619,24 +2537,16 @@ M.CreateDistributionInput = {
                 required = true,
             },
         },
-        origin = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        defaultCacheBehavior = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        cacheBehaviorSettings = {
-            type = "structure",
-        },
+        origin = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InputOrigin }),
+        defaultCacheBehavior = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CacheBehavior }),
+        cacheBehaviorSettings = M.CacheSettings,
         cacheBehaviors = {
             type = "list",
-            member_type = "structure",
+            member = M.CacheBehaviorPerPath,
         },
         bundleId = {
             type = "string",
@@ -2649,7 +2559,7 @@ M.CreateDistributionInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         certificateName = {
             type = "string",
@@ -2676,7 +2586,7 @@ M.Origin = {
             type = "string",
         },
         responseTimeout = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2696,15 +2606,13 @@ M.LightsailDistribution = {
         createdAt = {
             type = "timestamp",
         },
-        location = {
-            type = "structure",
-        },
+        location = M.ResourceLocation,
         resourceType = {
             type = "string",
         },
         alternativeDomainNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         status = {
             type = "string",
@@ -2721,21 +2629,15 @@ M.LightsailDistribution = {
         certificateName = {
             type = "string",
         },
-        origin = {
-            type = "structure",
-        },
+        origin = M.Origin,
         originPublicDNS = {
             type = "string",
         },
-        defaultCacheBehavior = {
-            type = "structure",
-        },
-        cacheBehaviorSettings = {
-            type = "structure",
-        },
+        defaultCacheBehavior = M.CacheBehavior,
+        cacheBehaviorSettings = M.CacheSettings,
         cacheBehaviors = {
             type = "list",
-            member_type = "structure",
+            member = M.CacheBehaviorPerPath,
         },
         ableToUpdateBundle = {
             type = "boolean",
@@ -2745,7 +2647,7 @@ M.LightsailDistribution = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         viewerMinimumTlsProtocolVersion = {
             type = "string",
@@ -2756,12 +2658,8 @@ M.LightsailDistribution = {
 M.CreateDistributionOutput = {
     type = "structure",
     members = {
-        distribution = {
-            type = "structure",
-        },
-        operation = {
-            type = "structure",
-        },
+        distribution = M.LightsailDistribution,
+        operation = M.Operation,
     },
 }
 
@@ -2776,7 +2674,7 @@ M.CreateDomainInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2784,9 +2682,7 @@ M.CreateDomainInput = {
 M.CreateDomainOutput = {
     type = "structure",
     members = {
-        operation = {
-            type = "structure",
-        },
+        operation = M.Operation,
     },
 }
 
@@ -2810,8 +2706,8 @@ M.DomainEntry = {
         },
         options = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2825,21 +2721,16 @@ M.CreateDomainEntryInput = {
                 required = true,
             },
         },
-        domainEntry = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        domainEntry = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DomainEntry }),
     },
 }
 
 M.CreateDomainEntryOutput = {
     type = "structure",
     members = {
-        operation = {
-            type = "structure",
-        },
+        operation = M.Operation,
     },
 }
 
@@ -2893,14 +2784,14 @@ M.CreateGUISessionAccessDetailsOutput = {
             type = "string",
         },
         percentageComplete = {
-            type = "number",
+            type = "integer",
         },
         failureReason = {
             type = "string",
         },
         sessions = {
             type = "list",
-            member_type = "structure",
+            member = M.Session,
         },
     },
 }
@@ -2910,7 +2801,7 @@ M.CreateInstancesInput = {
     members = {
         instanceNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2944,11 +2835,11 @@ M.CreateInstancesInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         addOns = {
             type = "list",
-            member_type = "structure",
+            member = M.AddOnRequest,
         },
         ipAddressType = {
             type = "string",
@@ -2961,7 +2852,7 @@ M.CreateInstancesOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -2971,15 +2862,15 @@ M.CreateInstancesFromSnapshotInput = {
     members = {
         instanceNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         attachedDiskMapping = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         availabilityZone = {
             type = "string",
@@ -3004,11 +2895,11 @@ M.CreateInstancesFromSnapshotInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         addOns = {
             type = "list",
-            member_type = "structure",
+            member = M.AddOnRequest,
         },
         ipAddressType = {
             type = "string",
@@ -3030,7 +2921,7 @@ M.CreateInstancesFromSnapshotOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -3052,7 +2943,7 @@ M.CreateInstanceSnapshotInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3062,7 +2953,7 @@ M.CreateInstanceSnapshotOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -3078,7 +2969,7 @@ M.CreateKeyPairInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3098,15 +2989,13 @@ M.KeyPair = {
         createdAt = {
             type = "timestamp",
         },
-        location = {
-            type = "structure",
-        },
+        location = M.ResourceLocation,
         resourceType = {
             type = "string",
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         fingerprint = {
             type = "string",
@@ -3117,18 +3006,14 @@ M.KeyPair = {
 M.CreateKeyPairOutput = {
     type = "structure",
     members = {
-        keyPair = {
-            type = "structure",
-        },
+        keyPair = M.KeyPair,
         publicKeyBase64 = {
             type = "string",
         },
         privateKeyBase64 = {
             type = "string",
         },
-        operation = {
-            type = "structure",
-        },
+        operation = M.Operation,
     },
 }
 
@@ -3142,8 +3027,9 @@ M.CreateLoadBalancerInput = {
             },
         },
         instancePort = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -3158,11 +3044,11 @@ M.CreateLoadBalancerInput = {
         },
         certificateAlternativeNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ipAddressType = {
             type = "string",
@@ -3178,7 +3064,7 @@ M.CreateLoadBalancerOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -3206,11 +3092,11 @@ M.CreateLoadBalancerTlsCertificateInput = {
         },
         certificateAlternativeNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3220,7 +3106,7 @@ M.CreateLoadBalancerTlsCertificateOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -3275,7 +3161,7 @@ M.CreateRelationalDatabaseInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3285,7 +3171,7 @@ M.CreateRelationalDatabaseOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -3322,7 +3208,7 @@ M.CreateRelationalDatabaseFromSnapshotInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3332,7 +3218,7 @@ M.CreateRelationalDatabaseFromSnapshotOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -3354,7 +3240,7 @@ M.CreateRelationalDatabaseSnapshotInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3364,7 +3250,7 @@ M.CreateRelationalDatabaseSnapshotOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -3387,7 +3273,7 @@ M.DeleteAlarmOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -3415,7 +3301,7 @@ M.DeleteAutoSnapshotOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -3440,7 +3326,7 @@ M.DeleteBucketOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -3468,7 +3354,7 @@ M.DeleteBucketAccessKeyOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -3490,7 +3376,7 @@ M.DeleteCertificateOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -3512,7 +3398,7 @@ M.DeleteContactMethodOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -3578,7 +3464,7 @@ M.DeleteDiskOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -3600,7 +3486,7 @@ M.DeleteDiskSnapshotOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -3617,9 +3503,7 @@ M.DeleteDistributionInput = {
 M.DeleteDistributionOutput = {
     type = "structure",
     members = {
-        operation = {
-            type = "structure",
-        },
+        operation = M.Operation,
     },
 }
 
@@ -3638,9 +3522,7 @@ M.DeleteDomainInput = {
 M.DeleteDomainOutput = {
     type = "structure",
     members = {
-        operation = {
-            type = "structure",
-        },
+        operation = M.Operation,
     },
 }
 
@@ -3653,21 +3535,16 @@ M.DeleteDomainEntryInput = {
                 required = true,
             },
         },
-        domainEntry = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        domainEntry = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DomainEntry }),
     },
 }
 
 M.DeleteDomainEntryOutput = {
     type = "structure",
     members = {
-        operation = {
-            type = "structure",
-        },
+        operation = M.Operation,
     },
 }
 
@@ -3691,7 +3568,7 @@ M.DeleteInstanceOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -3713,7 +3590,7 @@ M.DeleteInstanceSnapshotOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -3736,9 +3613,7 @@ M.DeleteKeyPairInput = {
 M.DeleteKeyPairOutput = {
     type = "structure",
     members = {
-        operation = {
-            type = "structure",
-        },
+        operation = M.Operation,
     },
 }
 
@@ -3759,7 +3634,7 @@ M.DeleteKnownHostKeysOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -3781,7 +3656,7 @@ M.DeleteLoadBalancerOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -3812,7 +3687,7 @@ M.DeleteLoadBalancerTlsCertificateOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -3840,7 +3715,7 @@ M.DeleteRelationalDatabaseOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -3862,7 +3737,7 @@ M.DeleteRelationalDatabaseSnapshotOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -3882,9 +3757,7 @@ M.DetachCertificateFromDistributionInput = {
 M.DetachCertificateFromDistributionOutput = {
     type = "structure",
     members = {
-        operation = {
-            type = "structure",
-        },
+        operation = M.Operation,
     },
 }
 
@@ -3905,7 +3778,7 @@ M.DetachDiskOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -3921,7 +3794,7 @@ M.DetachInstancesFromLoadBalancerInput = {
         },
         instanceNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3934,7 +3807,7 @@ M.DetachInstancesFromLoadBalancerOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -3956,7 +3829,7 @@ M.DetachStaticIpOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -3984,7 +3857,7 @@ M.DisableAddOnOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -4012,28 +3885,26 @@ M.Disk = {
         createdAt = {
             type = "timestamp",
         },
-        location = {
-            type = "structure",
-        },
+        location = M.ResourceLocation,
         resourceType = {
             type = "string",
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         addOns = {
             type = "list",
-            member_type = "structure",
+            member = M.AddOn,
         },
         sizeInGb = {
-            type = "number",
+            type = "integer",
         },
         isSystemDisk = {
             type = "boolean",
         },
         iops = {
-            type = "number",
+            type = "integer",
         },
         path = {
             type = "string",
@@ -4051,7 +3922,7 @@ M.Disk = {
             type = "string",
         },
         gbInUse = {
-            type = "number",
+            type = "integer",
         },
         autoMountStatus = {
             type = "string",
@@ -4069,7 +3940,7 @@ M.DiskInfo = {
             type = "string",
         },
         sizeInGb = {
-            type = "number",
+            type = "integer",
         },
         isSystemDisk = {
             type = "boolean",
@@ -4099,18 +3970,16 @@ M.DiskSnapshot = {
         createdAt = {
             type = "timestamp",
         },
-        location = {
-            type = "structure",
-        },
+        location = M.ResourceLocation,
         resourceType = {
             type = "string",
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         sizeInGb = {
-            type = "number",
+            type = "integer",
         },
         state = {
             type = "string",
@@ -4140,7 +4009,7 @@ M.DiskSnapshotInfo = {
     type = "structure",
     members = {
         sizeInGb = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4155,10 +4024,10 @@ M.DistributionBundle = {
             type = "string",
         },
         price = {
-            type = "number",
+            type = "float",
         },
         transferPerMonthInGb = {
-            type = "number",
+            type = "integer",
         },
         isActive = {
             type = "boolean",
@@ -4216,12 +4085,8 @@ M.R53HostedZoneDeletionState = {
 M.RegisteredDomainDelegationInfo = {
     type = "structure",
     members = {
-        nameServersUpdateState = {
-            type = "structure",
-        },
-        r53HostedZoneDeletionState = {
-            type = "structure",
-        },
+        nameServersUpdateState = M.NameServersUpdateState,
+        r53HostedZoneDeletionState = M.R53HostedZoneDeletionState,
     },
 }
 
@@ -4240,23 +4105,19 @@ M.Domain = {
         createdAt = {
             type = "timestamp",
         },
-        location = {
-            type = "structure",
-        },
+        location = M.ResourceLocation,
         resourceType = {
             type = "string",
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         domainEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainEntry,
         },
-        registeredDomainDelegationInfo = {
-            type = "structure",
-        },
+        registeredDomainDelegationInfo = M.RegisteredDomainDelegationInfo,
     },
 }
 
@@ -4288,12 +4149,9 @@ M.EnableAddOnInput = {
                 required = true,
             },
         },
-        addOnRequest = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        addOnRequest = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AddOnRequest }),
     },
 }
 
@@ -4302,7 +4160,7 @@ M.EnableAddOnOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -4324,7 +4182,7 @@ M.ExportSnapshotOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -4340,7 +4198,7 @@ M.InstanceSnapshotInfo = {
         },
         fromDiskInfo = {
             type = "list",
-            member_type = "structure",
+            member = M.DiskInfo,
         },
     },
 }
@@ -4371,12 +4229,8 @@ M.ExportSnapshotRecordSourceInfo = {
         fromResourceArn = {
             type = "string",
         },
-        instanceSnapshotInfo = {
-            type = "structure",
-        },
-        diskSnapshotInfo = {
-            type = "structure",
-        },
+        instanceSnapshotInfo = M.InstanceSnapshotInfo,
+        diskSnapshotInfo = M.DiskSnapshotInfo,
     },
 }
 
@@ -4392,21 +4246,15 @@ M.ExportSnapshotRecord = {
         createdAt = {
             type = "timestamp",
         },
-        location = {
-            type = "structure",
-        },
+        location = M.ResourceLocation,
         resourceType = {
             type = "string",
         },
         state = {
             type = "string",
         },
-        sourceInfo = {
-            type = "structure",
-        },
-        destinationInfo = {
-            type = "structure",
-        },
+        sourceInfo = M.ExportSnapshotRecordSourceInfo,
+        destinationInfo = M.DestinationInfo,
     },
 }
 
@@ -4424,7 +4272,7 @@ M.GetActiveNamesOutput = {
     members = {
         activeNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextPageToken = {
             type = "string",
@@ -4461,7 +4309,7 @@ M.GetAlarmsOutput = {
     members = {
         alarms = {
             type = "list",
-            member_type = "structure",
+            member = M.Alarm,
         },
         nextPageToken = {
             type = "string",
@@ -4492,7 +4340,7 @@ M.GetAutoSnapshotsOutput = {
         },
         autoSnapshots = {
             type = "list",
-            member_type = "structure",
+            member = M.AutoSnapshotDetails,
         },
     },
 }
@@ -4517,7 +4365,7 @@ M.GetBlueprintsOutput = {
     members = {
         blueprints = {
             type = "list",
-            member_type = "structure",
+            member = M.Blueprint,
         },
         nextPageToken = {
             type = "string",
@@ -4542,7 +4390,7 @@ M.GetBucketAccessKeysOutput = {
     members = {
         accessKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessKey,
         },
     },
 }
@@ -4561,7 +4409,7 @@ M.GetBucketBundlesOutput = {
     members = {
         bundles = {
             type = "list",
-            member_type = "structure",
+            member = M.BucketBundle,
         },
     },
 }
@@ -4594,14 +4442,14 @@ M.GetBucketMetricDataInput = {
             },
         },
         period = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         statistics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4619,19 +4467,19 @@ M.MetricDatapoint = {
     type = "structure",
     members = {
         average = {
-            type = "number",
+            type = "double",
         },
         maximum = {
-            type = "number",
+            type = "double",
         },
         minimum = {
-            type = "number",
+            type = "double",
         },
         sampleCount = {
-            type = "number",
+            type = "double",
         },
         sum = {
-            type = "number",
+            type = "double",
         },
         timestamp = {
             type = "timestamp",
@@ -4650,7 +4498,7 @@ M.GetBucketMetricDataOutput = {
         },
         metricData = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricDatapoint,
         },
     },
 }
@@ -4678,14 +4526,12 @@ M.GetBucketsOutput = {
     members = {
         buckets = {
             type = "list",
-            member_type = "structure",
+            member = M.Bucket,
         },
         nextPageToken = {
             type = "string",
         },
-        accountLevelBpaSync = {
-            type = "structure",
-        },
+        accountLevelBpaSync = M.AccountLevelBpaSync,
     },
 }
 
@@ -4709,7 +4555,7 @@ M.GetBundlesOutput = {
     members = {
         bundles = {
             type = "list",
-            member_type = "structure",
+            member = M.Bundle,
         },
         nextPageToken = {
             type = "string",
@@ -4722,10 +4568,13 @@ M.GetCertificatesInput = {
     members = {
         certificateStatuses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         includeCertificateDetails = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         certificateName = {
             type = "string",
@@ -4741,7 +4590,7 @@ M.GetCertificatesOutput = {
     members = {
         certificates = {
             type = "list",
-            member_type = "structure",
+            member = M.CertificateSummary,
         },
         nextPageToken = {
             type = "string",
@@ -4763,7 +4612,7 @@ M.GetCloudFormationStackRecordsOutput = {
     members = {
         cloudFormationStackRecords = {
             type = "list",
-            member_type = "structure",
+            member = M.CloudFormationStackRecord,
         },
         nextPageToken = {
             type = "string",
@@ -4776,7 +4625,7 @@ M.GetContactMethodsInput = {
     members = {
         protocols = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "protocols",
             },
@@ -4789,7 +4638,7 @@ M.GetContactMethodsOutput = {
     members = {
         contactMethods = {
             type = "list",
-            member_type = "structure",
+            member = M.ContactMethod,
         },
     },
 }
@@ -4803,7 +4652,7 @@ M.GetContainerAPIMetadataOutput = {
     members = {
         metadata = {
             type = "list",
-            member_type = "map",
+            member = { type = "map" },
         },
     },
 }
@@ -4826,7 +4675,7 @@ M.GetContainerImagesOutput = {
     members = {
         containerImages = {
             type = "list",
-            member_type = "structure",
+            member = M.ContainerImage,
         },
     },
 }
@@ -4880,7 +4729,7 @@ M.GetContainerLogOutput = {
     members = {
         logEvents = {
             type = "list",
-            member_type = "structure",
+            member = M.ContainerServiceLogEvent,
         },
         nextPageToken = {
             type = "string",
@@ -4906,7 +4755,7 @@ M.GetContainerServiceDeploymentsOutput = {
     members = {
         deployments = {
             type = "list",
-            member_type = "structure",
+            member = M.ContainerServiceDeployment,
         },
     },
 }
@@ -4943,7 +4792,7 @@ M.GetContainerServiceMetricDataInput = {
             },
         },
         period = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "period",
                 required = true,
@@ -4951,7 +4800,7 @@ M.GetContainerServiceMetricDataInput = {
         },
         statistics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "statistics",
                 required = true,
@@ -4968,7 +4817,7 @@ M.GetContainerServiceMetricDataOutput = {
         },
         metricData = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricDatapoint,
         },
     },
 }
@@ -4982,7 +4831,7 @@ M.GetContainerServicePowersOutput = {
     members = {
         powers = {
             type = "list",
-            member_type = "structure",
+            member = M.ContainerServicePower,
         },
     },
 }
@@ -5004,7 +4853,7 @@ M.GetContainerServicesOutput = {
     members = {
         containerServices = {
             type = "list",
-            member_type = "structure",
+            member = M.ContainerService,
         },
     },
 }
@@ -5044,7 +4893,7 @@ M.ResourceBudgetEstimate = {
         },
         costEstimates = {
             type = "list",
-            member_type = "structure",
+            member = M.CostEstimate,
         },
         startTime = {
             type = "timestamp",
@@ -5060,7 +4909,7 @@ M.GetCostEstimateOutput = {
     members = {
         resourcesBudgetEstimate = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceBudgetEstimate,
         },
     },
 }
@@ -5080,9 +4929,7 @@ M.GetDiskInput = {
 M.GetDiskOutput = {
     type = "structure",
     members = {
-        disk = {
-            type = "structure",
-        },
+        disk = M.Disk,
     },
 }
 
@@ -5100,7 +4947,7 @@ M.GetDisksOutput = {
     members = {
         disks = {
             type = "list",
-            member_type = "structure",
+            member = M.Disk,
         },
         nextPageToken = {
             type = "string",
@@ -5123,9 +4970,7 @@ M.GetDiskSnapshotInput = {
 M.GetDiskSnapshotOutput = {
     type = "structure",
     members = {
-        diskSnapshot = {
-            type = "structure",
-        },
+        diskSnapshot = M.DiskSnapshot,
     },
 }
 
@@ -5143,7 +4988,7 @@ M.GetDiskSnapshotsOutput = {
     members = {
         diskSnapshots = {
             type = "list",
-            member_type = "structure",
+            member = M.DiskSnapshot,
         },
         nextPageToken = {
             type = "string",
@@ -5160,7 +5005,7 @@ M.GetDistributionBundlesOutput = {
     members = {
         bundles = {
             type = "list",
-            member_type = "structure",
+            member = M.DistributionBundle,
         },
     },
 }
@@ -5214,7 +5059,7 @@ M.GetDistributionMetricDataInput = {
             },
         },
         period = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -5227,7 +5072,7 @@ M.GetDistributionMetricDataInput = {
         },
         statistics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -5243,7 +5088,7 @@ M.GetDistributionMetricDataOutput = {
         },
         metricData = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricDatapoint,
         },
     },
 }
@@ -5265,7 +5110,7 @@ M.GetDistributionsOutput = {
     members = {
         distributions = {
             type = "list",
-            member_type = "structure",
+            member = M.LightsailDistribution,
         },
         nextPageToken = {
             type = "string",
@@ -5288,9 +5133,7 @@ M.GetDomainInput = {
 M.GetDomainOutput = {
     type = "structure",
     members = {
-        domain = {
-            type = "structure",
-        },
+        domain = M.Domain,
     },
 }
 
@@ -5308,7 +5151,7 @@ M.GetDomainsOutput = {
     members = {
         domains = {
             type = "list",
-            member_type = "structure",
+            member = M.Domain,
         },
         nextPageToken = {
             type = "string",
@@ -5330,7 +5173,7 @@ M.GetExportSnapshotRecordsOutput = {
     members = {
         exportSnapshotRecords = {
             type = "list",
-            member_type = "structure",
+            member = M.ExportSnapshotRecord,
         },
         nextPageToken = {
             type = "string",
@@ -5354,14 +5197,14 @@ M.InstanceHardware = {
     type = "structure",
     members = {
         cpuCount = {
-            type = "number",
+            type = "integer",
         },
         disks = {
             type = "list",
-            member_type = "structure",
+            member = M.Disk,
         },
         ramSizeInGb = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -5399,7 +5242,7 @@ M.InstanceMetadataOptions = {
             type = "string",
         },
         httpPutResponseHopLimit = {
-            type = "number",
+            type = "integer",
         },
         httpProtocolIpv6 = {
             type = "string",
@@ -5411,7 +5254,7 @@ M.MonthlyTransfer = {
     type = "structure",
     members = {
         gbPerMonthAllocated = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5425,10 +5268,16 @@ M.InstancePortInfo = {
     type = "structure",
     members = {
         fromPort = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         toPort = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         protocol = {
             type = "string",
@@ -5447,15 +5296,15 @@ M.InstancePortInfo = {
         },
         cidrs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ipv6Cidrs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         cidrListAliases = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -5463,12 +5312,10 @@ M.InstancePortInfo = {
 M.InstanceNetworking = {
     type = "structure",
     members = {
-        monthlyTransfer = {
-            type = "structure",
-        },
+        monthlyTransfer = M.MonthlyTransfer,
         ports = {
             type = "list",
-            member_type = "structure",
+            member = M.InstancePortInfo,
         },
     },
 }
@@ -5477,7 +5324,7 @@ M.InstanceState = {
     type = "structure",
     members = {
         code = {
-            type = "number",
+            type = "integer",
         },
         name = {
             type = "string",
@@ -5500,15 +5347,13 @@ M.Instance = {
         createdAt = {
             type = "timestamp",
         },
-        location = {
-            type = "structure",
-        },
+        location = M.ResourceLocation,
         resourceType = {
             type = "string",
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         blueprintId = {
             type = "string",
@@ -5521,7 +5366,7 @@ M.Instance = {
         },
         addOns = {
             type = "list",
-            member_type = "structure",
+            member = M.AddOn,
         },
         isStaticIp = {
             type = "boolean",
@@ -5534,38 +5379,28 @@ M.Instance = {
         },
         ipv6Addresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ipAddressType = {
             type = "string",
         },
-        hardware = {
-            type = "structure",
-        },
-        networking = {
-            type = "structure",
-        },
-        state = {
-            type = "structure",
-        },
+        hardware = M.InstanceHardware,
+        networking = M.InstanceNetworking,
+        state = M.InstanceState,
         username = {
             type = "string",
         },
         sshKeyName = {
             type = "string",
         },
-        metadataOptions = {
-            type = "structure",
-        },
+        metadataOptions = M.InstanceMetadataOptions,
     },
 }
 
 M.GetInstanceOutput = {
     type = "structure",
     members = {
-        instance = {
-            type = "structure",
-        },
+        instance = M.Instance,
     },
 }
 
@@ -5642,14 +5477,12 @@ M.InstanceAccessDetails = {
         },
         ipv6Addresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         password = {
             type = "string",
         },
-        passwordData = {
-            type = "structure",
-        },
+        passwordData = M.PasswordData,
         privateKey = {
             type = "string",
         },
@@ -5664,7 +5497,7 @@ M.InstanceAccessDetails = {
         },
         hostKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.HostKeyAttributes,
         },
     },
 }
@@ -5672,9 +5505,7 @@ M.InstanceAccessDetails = {
 M.GetInstanceAccessDetailsOutput = {
     type = "structure",
     members = {
-        accessDetails = {
-            type = "structure",
-        },
+        accessDetails = M.InstanceAccessDetails,
     },
 }
 
@@ -5706,7 +5537,7 @@ M.GetInstanceMetricDataInput = {
             },
         },
         period = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -5731,7 +5562,7 @@ M.GetInstanceMetricDataInput = {
         },
         statistics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -5747,7 +5578,7 @@ M.GetInstanceMetricDataOutput = {
         },
         metricData = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricDatapoint,
         },
     },
 }
@@ -5773,10 +5604,16 @@ M.InstancePortState = {
     type = "structure",
     members = {
         fromPort = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         toPort = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         protocol = {
             type = "string",
@@ -5786,15 +5623,15 @@ M.InstancePortState = {
         },
         cidrs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ipv6Cidrs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         cidrListAliases = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -5804,7 +5641,7 @@ M.GetInstancePortStatesOutput = {
     members = {
         portStates = {
             type = "list",
-            member_type = "structure",
+            member = M.InstancePortState,
         },
     },
 }
@@ -5823,7 +5660,7 @@ M.GetInstancesOutput = {
     members = {
         instances = {
             type = "list",
-            member_type = "structure",
+            member = M.Instance,
         },
         nextPageToken = {
             type = "string",
@@ -5864,15 +5701,13 @@ M.InstanceSnapshot = {
         createdAt = {
             type = "timestamp",
         },
-        location = {
-            type = "structure",
-        },
+        location = M.ResourceLocation,
         resourceType = {
             type = "string",
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         state = {
             type = "string",
@@ -5882,7 +5717,7 @@ M.InstanceSnapshot = {
         },
         fromAttachedDisks = {
             type = "list",
-            member_type = "structure",
+            member = M.Disk,
         },
         fromInstanceName = {
             type = "string",
@@ -5900,7 +5735,7 @@ M.InstanceSnapshot = {
             type = "boolean",
         },
         sizeInGb = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5908,9 +5743,7 @@ M.InstanceSnapshot = {
 M.GetInstanceSnapshotOutput = {
     type = "structure",
     members = {
-        instanceSnapshot = {
-            type = "structure",
-        },
+        instanceSnapshot = M.InstanceSnapshot,
     },
 }
 
@@ -5928,7 +5761,7 @@ M.GetInstanceSnapshotsOutput = {
     members = {
         instanceSnapshots = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceSnapshot,
         },
         nextPageToken = {
             type = "string",
@@ -5951,9 +5784,7 @@ M.GetInstanceStateInput = {
 M.GetInstanceStateOutput = {
     type = "structure",
     members = {
-        state = {
-            type = "structure",
-        },
+        state = M.InstanceState,
     },
 }
 
@@ -5972,9 +5803,7 @@ M.GetKeyPairInput = {
 M.GetKeyPairOutput = {
     type = "structure",
     members = {
-        keyPair = {
-            type = "structure",
-        },
+        keyPair = M.KeyPair,
     },
 }
 
@@ -5995,7 +5824,7 @@ M.GetKeyPairsOutput = {
     members = {
         keyPairs = {
             type = "list",
-            member_type = "structure",
+            member = M.KeyPair,
         },
         nextPageToken = {
             type = "string",
@@ -6101,15 +5930,13 @@ M.LoadBalancer = {
         createdAt = {
             type = "timestamp",
         },
-        location = {
-            type = "structure",
-        },
+        location = M.ResourceLocation,
         resourceType = {
             type = "string",
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         dnsName = {
             type = "string",
@@ -6122,26 +5949,26 @@ M.LoadBalancer = {
         },
         publicPorts = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
         },
         healthCheckPath = {
             type = "string",
         },
         instancePort = {
-            type = "number",
+            type = "integer",
         },
         instanceHealthSummary = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceHealthSummary,
         },
         tlsCertificateSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.LoadBalancerTlsCertificateSummary,
         },
         configurationOptions = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ipAddressType = {
             type = "string",
@@ -6158,9 +5985,7 @@ M.LoadBalancer = {
 M.GetLoadBalancerOutput = {
     type = "structure",
     members = {
-        loadBalancer = {
-            type = "structure",
-        },
+        loadBalancer = M.LoadBalancer,
     },
 }
 
@@ -6195,7 +6020,7 @@ M.GetLoadBalancerMetricDataInput = {
             },
         },
         period = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -6220,7 +6045,7 @@ M.GetLoadBalancerMetricDataInput = {
         },
         statistics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -6236,7 +6061,7 @@ M.GetLoadBalancerMetricDataOutput = {
         },
         metricData = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricDatapoint,
         },
     },
 }
@@ -6255,7 +6080,7 @@ M.GetLoadBalancersOutput = {
     members = {
         loadBalancers = {
             type = "list",
-            member_type = "structure",
+            member = M.LoadBalancer,
         },
         nextPageToken = {
             type = "string",
@@ -6317,9 +6142,7 @@ M.LoadBalancerTlsCertificateDomainValidationRecord = {
         domainName = {
             type = "string",
         },
-        dnsRecordCreationState = {
-            type = "structure",
-        },
+        dnsRecordCreationState = M.LoadBalancerTlsCertificateDnsRecordCreationState,
     },
 }
 
@@ -6358,7 +6181,7 @@ M.LoadBalancerTlsCertificateRenewalSummary = {
         },
         domainValidationOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.LoadBalancerTlsCertificateDomainValidationOption,
         },
     },
 }
@@ -6402,15 +6225,13 @@ M.LoadBalancerTlsCertificate = {
         createdAt = {
             type = "timestamp",
         },
-        location = {
-            type = "structure",
-        },
+        location = M.ResourceLocation,
         resourceType = {
             type = "string",
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         loadBalancerName = {
             type = "string",
@@ -6426,7 +6247,7 @@ M.LoadBalancerTlsCertificate = {
         },
         domainValidationRecords = {
             type = "list",
-            member_type = "structure",
+            member = M.LoadBalancerTlsCertificateDomainValidationRecord,
         },
         failureReason = {
             type = "string",
@@ -6446,9 +6267,7 @@ M.LoadBalancerTlsCertificate = {
         notBefore = {
             type = "timestamp",
         },
-        renewalSummary = {
-            type = "structure",
-        },
+        renewalSummary = M.LoadBalancerTlsCertificateRenewalSummary,
         revocationReason = {
             type = "string",
         },
@@ -6466,7 +6285,7 @@ M.LoadBalancerTlsCertificate = {
         },
         subjectAlternativeNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -6476,7 +6295,7 @@ M.GetLoadBalancerTlsCertificatesOutput = {
     members = {
         tlsCertificates = {
             type = "list",
-            member_type = "structure",
+            member = M.LoadBalancerTlsCertificate,
         },
     },
 }
@@ -6504,11 +6323,11 @@ M.LoadBalancerTlsPolicy = {
         },
         protocols = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ciphers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -6518,7 +6337,7 @@ M.GetLoadBalancerTlsPoliciesOutput = {
     members = {
         tlsPolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.LoadBalancerTlsPolicy,
         },
         nextPageToken = {
             type = "string",
@@ -6541,9 +6360,7 @@ M.GetOperationInput = {
 M.GetOperationOutput = {
     type = "structure",
     members = {
-        operation = {
-            type = "structure",
-        },
+        operation = M.Operation,
     },
 }
 
@@ -6561,7 +6378,7 @@ M.GetOperationsOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
         nextPageToken = {
             type = "string",
@@ -6589,7 +6406,7 @@ M.GetOperationsForResourceOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
         nextPageCount = {
             type = "string",
@@ -6629,11 +6446,11 @@ M.Region = {
         },
         availabilityZones = {
             type = "list",
-            member_type = "structure",
+            member = M.AvailabilityZone,
         },
         relationalDatabaseAvailabilityZones = {
             type = "list",
-            member_type = "structure",
+            member = M.AvailabilityZone,
         },
     },
 }
@@ -6643,7 +6460,7 @@ M.GetRegionsOutput = {
     members = {
         regions = {
             type = "list",
-            member_type = "structure",
+            member = M.Region,
         },
     },
 }
@@ -6664,13 +6481,13 @@ M.RelationalDatabaseHardware = {
     type = "structure",
     members = {
         cpuCount = {
-            type = "number",
+            type = "integer",
         },
         diskSizeInGb = {
-            type = "number",
+            type = "integer",
         },
         ramSizeInGb = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -6679,7 +6496,7 @@ M.RelationalDatabaseEndpoint = {
     type = "structure",
     members = {
         port = {
-            type = "number",
+            type = "integer",
         },
         address = {
             type = "string",
@@ -6732,15 +6549,13 @@ M.RelationalDatabase = {
         createdAt = {
             type = "timestamp",
         },
-        location = {
-            type = "structure",
-        },
+        location = M.ResourceLocation,
         resourceType = {
             type = "string",
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         relationalDatabaseBlueprintId = {
             type = "string",
@@ -6751,9 +6566,7 @@ M.RelationalDatabase = {
         masterDatabaseName = {
             type = "string",
         },
-        hardware = {
-            type = "structure",
-        },
+        hardware = M.RelationalDatabaseHardware,
         state = {
             type = "string",
         },
@@ -6763,9 +6576,7 @@ M.RelationalDatabase = {
         backupRetentionEnabled = {
             type = "boolean",
         },
-        pendingModifiedValues = {
-            type = "structure",
-        },
+        pendingModifiedValues = M.PendingModifiedRelationalDatabaseValues,
         engine = {
             type = "string",
         },
@@ -6790,12 +6601,10 @@ M.RelationalDatabase = {
         publiclyAccessible = {
             type = "boolean",
         },
-        masterEndpoint = {
-            type = "structure",
-        },
+        masterEndpoint = M.RelationalDatabaseEndpoint,
         pendingMaintenanceActions = {
             type = "list",
-            member_type = "structure",
+            member = M.PendingMaintenanceAction,
         },
         caCertificateIdentifier = {
             type = "string",
@@ -6806,9 +6615,7 @@ M.RelationalDatabase = {
 M.GetRelationalDatabaseOutput = {
     type = "structure",
     members = {
-        relationalDatabase = {
-            type = "structure",
-        },
+        relationalDatabase = M.RelationalDatabase,
     },
 }
 
@@ -6854,7 +6661,7 @@ M.GetRelationalDatabaseBlueprintsOutput = {
     members = {
         blueprints = {
             type = "list",
-            member_type = "structure",
+            member = M.RelationalDatabaseBlueprint,
         },
         nextPageToken = {
             type = "string",
@@ -6884,19 +6691,19 @@ M.RelationalDatabaseBundle = {
             type = "string",
         },
         price = {
-            type = "number",
+            type = "float",
         },
         ramSizeInGb = {
-            type = "number",
+            type = "float",
         },
         diskSizeInGb = {
-            type = "number",
+            type = "integer",
         },
         transferPerMonthInGb = {
-            type = "number",
+            type = "integer",
         },
         cpuCount = {
-            type = "number",
+            type = "integer",
         },
         isEncrypted = {
             type = "boolean",
@@ -6912,7 +6719,7 @@ M.GetRelationalDatabaseBundlesOutput = {
     members = {
         bundles = {
             type = "list",
-            member_type = "structure",
+            member = M.RelationalDatabaseBundle,
         },
         nextPageToken = {
             type = "string",
@@ -6930,7 +6737,7 @@ M.GetRelationalDatabaseEventsInput = {
             },
         },
         durationInMinutes = {
-            type = "number",
+            type = "integer",
         },
         pageToken = {
             type = "string",
@@ -6952,7 +6759,7 @@ M.RelationalDatabaseEvent = {
         },
         eventCategories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -6962,7 +6769,7 @@ M.GetRelationalDatabaseEventsOutput = {
     members = {
         relationalDatabaseEvents = {
             type = "list",
-            member_type = "structure",
+            member = M.RelationalDatabaseEvent,
         },
         nextPageToken = {
             type = "string",
@@ -7017,7 +6824,7 @@ M.GetRelationalDatabaseLogEventsOutput = {
     members = {
         resourceLogEvents = {
             type = "list",
-            member_type = "structure",
+            member = M.LogEvent,
         },
         nextBackwardToken = {
             type = "string",
@@ -7045,7 +6852,7 @@ M.GetRelationalDatabaseLogStreamsOutput = {
     members = {
         logStreams = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -7108,7 +6915,7 @@ M.GetRelationalDatabaseMetricDataInput = {
             },
         },
         period = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -7133,7 +6940,7 @@ M.GetRelationalDatabaseMetricDataInput = {
         },
         statistics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -7149,7 +6956,7 @@ M.GetRelationalDatabaseMetricDataOutput = {
         },
         metricData = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricDatapoint,
         },
     },
 }
@@ -7204,7 +7011,7 @@ M.GetRelationalDatabaseParametersOutput = {
     members = {
         parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.RelationalDatabaseParameter,
         },
         nextPageToken = {
             type = "string",
@@ -7226,7 +7033,7 @@ M.GetRelationalDatabasesOutput = {
     members = {
         relationalDatabases = {
             type = "list",
-            member_type = "structure",
+            member = M.RelationalDatabase,
         },
         nextPageToken = {
             type = "string",
@@ -7261,15 +7068,13 @@ M.RelationalDatabaseSnapshot = {
         createdAt = {
             type = "timestamp",
         },
-        location = {
-            type = "structure",
-        },
+        location = M.ResourceLocation,
         resourceType = {
             type = "string",
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         engine = {
             type = "string",
@@ -7278,7 +7083,7 @@ M.RelationalDatabaseSnapshot = {
             type = "string",
         },
         sizeInGb = {
-            type = "number",
+            type = "integer",
         },
         state = {
             type = "string",
@@ -7301,9 +7106,7 @@ M.RelationalDatabaseSnapshot = {
 M.GetRelationalDatabaseSnapshotOutput = {
     type = "structure",
     members = {
-        relationalDatabaseSnapshot = {
-            type = "structure",
-        },
+        relationalDatabaseSnapshot = M.RelationalDatabaseSnapshot,
     },
 }
 
@@ -7321,7 +7124,7 @@ M.GetRelationalDatabaseSnapshotsOutput = {
     members = {
         relationalDatabaseSnapshots = {
             type = "list",
-            member_type = "structure",
+            member = M.RelationalDatabaseSnapshot,
         },
         nextPageToken = {
             type = "string",
@@ -7385,7 +7188,7 @@ M.SetupRequest = {
         },
         domainNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         certificateProvider = {
             type = "string",
@@ -7405,9 +7208,7 @@ M.SetupHistoryResource = {
         createdAt = {
             type = "timestamp",
         },
-        location = {
-            type = "structure",
-        },
+        location = M.ResourceLocation,
         resourceType = {
             type = "string",
         },
@@ -7420,15 +7221,11 @@ M.SetupHistory = {
         operationId = {
             type = "string",
         },
-        request = {
-            type = "structure",
-        },
-        resource = {
-            type = "structure",
-        },
+        request = M.SetupRequest,
+        resource = M.SetupHistoryResource,
         executionDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.SetupExecutionDetails,
         },
         status = {
             type = "string",
@@ -7441,7 +7238,7 @@ M.GetSetupHistoryOutput = {
     members = {
         setupHistory = {
             type = "list",
-            member_type = "structure",
+            member = M.SetupHistory,
         },
         nextPageToken = {
             type = "string",
@@ -7476,9 +7273,7 @@ M.StaticIp = {
         createdAt = {
             type = "timestamp",
         },
-        location = {
-            type = "structure",
-        },
+        location = M.ResourceLocation,
         resourceType = {
             type = "string",
         },
@@ -7497,9 +7292,7 @@ M.StaticIp = {
 M.GetStaticIpOutput = {
     type = "structure",
     members = {
-        staticIp = {
-            type = "structure",
-        },
+        staticIp = M.StaticIp,
     },
 }
 
@@ -7517,7 +7310,7 @@ M.GetStaticIpsOutput = {
     members = {
         staticIps = {
             type = "list",
-            member_type = "structure",
+            member = M.StaticIp,
         },
         nextPageToken = {
             type = "string",
@@ -7546,9 +7339,7 @@ M.ImportKeyPairInput = {
 M.ImportKeyPairOutput = {
     type = "structure",
     members = {
-        operation = {
-            type = "structure",
-        },
+        operation = M.Operation,
     },
 }
 
@@ -7568,12 +7359,9 @@ M.IsVpcPeeredOutput = {
 M.OpenInstancePublicPortsInput = {
     type = "structure",
     members = {
-        portInfo = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        portInfo = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PortInfo }),
         instanceName = {
             type = "string",
             traits = {
@@ -7586,9 +7374,7 @@ M.OpenInstancePublicPortsInput = {
 M.OpenInstancePublicPortsOutput = {
     type = "structure",
     members = {
-        operation = {
-            type = "structure",
-        },
+        operation = M.Operation,
     },
 }
 
@@ -7599,9 +7385,7 @@ M.PeerVpcInput = {
 M.PeerVpcOutput = {
     type = "structure",
     members = {
-        operation = {
-            type = "structure",
-        },
+        operation = M.Operation,
     },
 }
 
@@ -7633,37 +7417,37 @@ M.PutAlarmInput = {
             },
         },
         threshold = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
         evaluationPeriods = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         datapointsToAlarm = {
-            type = "number",
+            type = "integer",
         },
         treatMissingData = {
             type = "string",
         },
         contactProtocols = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         notificationTriggers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         notificationEnabled = {
             type = "boolean",
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -7673,7 +7457,7 @@ M.PutAlarmOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -7683,7 +7467,7 @@ M.PutInstancePublicPortsInput = {
     members = {
         portInfos = {
             type = "list",
-            member_type = "structure",
+            member = M.PortInfo,
             traits = {
                 required = true,
             },
@@ -7700,9 +7484,7 @@ M.PutInstancePublicPortsInput = {
 M.PutInstancePublicPortsOutput = {
     type = "structure",
     members = {
-        operation = {
-            type = "structure",
-        },
+        operation = M.Operation,
     },
 }
 
@@ -7723,7 +7505,7 @@ M.RebootInstanceOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -7745,7 +7527,7 @@ M.RebootRelationalDatabaseOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -7778,9 +7560,7 @@ M.RegisterContainerImageInput = {
 M.RegisterContainerImageOutput = {
     type = "structure",
     members = {
-        containerImage = {
-            type = "structure",
-        },
+        containerImage = M.ContainerImage,
     },
 }
 
@@ -7801,7 +7581,7 @@ M.ReleaseStaticIpOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -7824,9 +7604,7 @@ M.ResetDistributionCacheOutput = {
         createTime = {
             type = "timestamp",
         },
-        operation = {
-            type = "structure",
-        },
+        operation = M.Operation,
     },
 }
 
@@ -7847,7 +7625,7 @@ M.SendContactMethodVerificationOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -7884,7 +7662,7 @@ M.SetIpAddressTypeOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -7923,7 +7701,7 @@ M.SetResourceAccessForBucketOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -7945,7 +7723,7 @@ M.SetupInstanceHttpsInput = {
         },
         domainNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -7964,7 +7742,7 @@ M.SetupInstanceHttpsOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -7986,7 +7764,7 @@ M.StartGUISessionOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -8008,7 +7786,7 @@ M.StartInstanceOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -8030,7 +7808,7 @@ M.StartRelationalDatabaseOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -8052,7 +7830,7 @@ M.StopGUISessionOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -8077,7 +7855,7 @@ M.StopInstanceOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -8102,7 +7880,7 @@ M.StopRelationalDatabaseOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -8121,7 +7899,7 @@ M.TagResourceInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -8134,7 +7912,7 @@ M.TagResourceOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -8164,7 +7942,7 @@ M.TestAlarmOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -8176,9 +7954,7 @@ M.UnpeerVpcInput = {
 M.UnpeerVpcOutput = {
     type = "structure",
     members = {
-        operation = {
-            type = "structure",
-        },
+        operation = M.Operation,
     },
 }
 
@@ -8196,7 +7972,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -8209,7 +7985,7 @@ M.UntagResourceOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -8223,34 +7999,26 @@ M.UpdateBucketInput = {
                 required = true,
             },
         },
-        accessRules = {
-            type = "structure",
-        },
+        accessRules = M.AccessRules,
         versioning = {
             type = "string",
         },
         readonlyAccessAccounts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        accessLogConfig = {
-            type = "structure",
-        },
-        cors = {
-            type = "structure",
-        },
+        accessLogConfig = M.BucketAccessLogConfig,
+        cors = M.BucketCorsConfig,
     },
 }
 
 M.UpdateBucketOutput = {
     type = "structure",
     members = {
-        bucket = {
-            type = "structure",
-        },
+        bucket = M.Bucket,
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -8278,7 +8046,7 @@ M.UpdateBucketBundleOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -8297,28 +8065,24 @@ M.UpdateContainerServiceInput = {
             type = "string",
         },
         scale = {
-            type = "number",
+            type = "integer",
         },
         isDisabled = {
             type = "boolean",
         },
         publicDomainNames = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
-        privateRegistryAccess = {
-            type = "structure",
-        },
+        privateRegistryAccess = M.PrivateRegistryAccessRequest,
     },
 }
 
 M.UpdateContainerServiceOutput = {
     type = "structure",
     members = {
-        containerService = {
-            type = "structure",
-        },
+        containerService = M.ContainerService,
     },
 }
 
@@ -8331,18 +8095,12 @@ M.UpdateDistributionInput = {
                 required = true,
             },
         },
-        origin = {
-            type = "structure",
-        },
-        defaultCacheBehavior = {
-            type = "structure",
-        },
-        cacheBehaviorSettings = {
-            type = "structure",
-        },
+        origin = M.InputOrigin,
+        defaultCacheBehavior = M.CacheBehavior,
+        cacheBehaviorSettings = M.CacheSettings,
         cacheBehaviors = {
             type = "list",
-            member_type = "structure",
+            member = M.CacheBehaviorPerPath,
         },
         isEnabled = {
             type = "boolean",
@@ -8362,9 +8120,7 @@ M.UpdateDistributionInput = {
 M.UpdateDistributionOutput = {
     type = "structure",
     members = {
-        operation = {
-            type = "structure",
-        },
+        operation = M.Operation,
     },
 }
 
@@ -8383,9 +8139,7 @@ M.UpdateDistributionBundleInput = {
 M.UpdateDistributionBundleOutput = {
     type = "structure",
     members = {
-        operation = {
-            type = "structure",
-        },
+        operation = M.Operation,
     },
 }
 
@@ -8398,12 +8152,9 @@ M.UpdateDomainEntryInput = {
                 required = true,
             },
         },
-        domainEntry = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        domainEntry = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DomainEntry }),
     },
 }
 
@@ -8412,7 +8163,7 @@ M.UpdateDomainEntryOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -8433,7 +8184,7 @@ M.UpdateInstanceMetadataOptionsInput = {
             type = "string",
         },
         httpPutResponseHopLimit = {
-            type = "number",
+            type = "integer",
         },
         httpProtocolIpv6 = {
             type = "string",
@@ -8444,9 +8195,7 @@ M.UpdateInstanceMetadataOptionsInput = {
 M.UpdateInstanceMetadataOptionsOutput = {
     type = "structure",
     members = {
-        operation = {
-            type = "structure",
-        },
+        operation = M.Operation,
     },
 }
 
@@ -8479,7 +8228,7 @@ M.UpdateLoadBalancerAttributeOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -8531,7 +8280,7 @@ M.UpdateRelationalDatabaseOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -8547,7 +8296,7 @@ M.UpdateRelationalDatabaseParametersInput = {
         },
         parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.RelationalDatabaseParameter,
             traits = {
                 required = true,
             },
@@ -8560,7 +8309,7 @@ M.UpdateRelationalDatabaseParametersOutput = {
     members = {
         operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }

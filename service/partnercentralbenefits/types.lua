@@ -75,7 +75,7 @@ M.AmendBenefitApplicationInput = {
         },
         Amendments = {
             type = "list",
-            member_type = "structure",
+            member = M.Amendment,
             traits = {
                 required = true,
             },
@@ -199,7 +199,7 @@ M.ValidationException = {
         },
         FieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -304,7 +304,7 @@ M.BenefitAllocationSummary = {
         },
         FulfillmentTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CreatedAt = {
             type = "timestamp",
@@ -314,7 +314,7 @@ M.BenefitAllocationSummary = {
         },
         ApplicableBenefitIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -348,11 +348,11 @@ M.BenefitApplicationSummary = {
         },
         Programs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         FulfillmentTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Status = {
             type = "string",
@@ -368,12 +368,12 @@ M.BenefitApplicationSummary = {
         },
         BenefitApplicationDetails = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         AssociatedResources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -403,11 +403,11 @@ M.BenefitSummary = {
         },
         Programs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         FulfillmentTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Status = {
             type = "string",
@@ -568,9 +568,7 @@ M.IssuanceDetail = {
         IssuanceId = {
             type = "string",
         },
-        IssuanceAmount = {
-            type = "structure",
-        },
+        IssuanceAmount = M.MonetaryValue,
         IssuedAt = {
             type = "timestamp",
         },
@@ -580,18 +578,10 @@ M.IssuanceDetail = {
 M.ConsumableDetails = {
     type = "structure",
     members = {
-        AllocatedAmount = {
-            type = "structure",
-        },
-        RemainingAmount = {
-            type = "structure",
-        },
-        UtilizedAmount = {
-            type = "structure",
-        },
-        IssuanceDetails = {
-            type = "structure",
-        },
+        AllocatedAmount = M.MonetaryValue,
+        RemainingAmount = M.MonetaryValue,
+        UtilizedAmount = M.MonetaryValue,
+        IssuanceDetails = M.IssuanceDetail,
     },
 }
 
@@ -678,26 +668,26 @@ M.CreateBenefitApplicationInput = {
         },
         FulfillmentTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         BenefitApplicationDetails = {
             type = "document",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         AssociatedResources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         PartnerContacts = {
             type = "list",
-            member_type = "structure",
+            member = M.Contact,
         },
         FileDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.FileInput,
         },
     },
 }
@@ -726,12 +716,9 @@ M.CreditCode = {
                 required = true,
             },
         },
-        Value = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Value = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MonetaryValue }),
         AwsCreditCode = {
             type = "string",
             traits = {
@@ -762,21 +749,15 @@ M.CreditCode = {
 M.CreditDetails = {
     type = "structure",
     members = {
-        AllocatedAmount = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        IssuedAmount = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AllocatedAmount = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MonetaryValue }),
+        IssuedAmount = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MonetaryValue }),
         Codes = {
             type = "list",
-            member_type = "structure",
+            member = M.CreditCode,
             traits = {
                 required = true,
             },
@@ -826,12 +807,8 @@ M.DisassociateBenefitApplicationResourceOutput = {
 M.DisbursementDetails = {
     type = "structure",
     members = {
-        DisbursedAmount = {
-            type = "structure",
-        },
-        IssuanceDetails = {
-            type = "structure",
-        },
+        DisbursedAmount = M.MonetaryValue,
+        IssuanceDetails = M.IssuanceDetail,
     },
 }
 
@@ -883,18 +860,10 @@ M.FileDetail = {
 M.FulfillmentDetails = {
     type = "union",
     members = {
-        DisbursementDetails = {
-            type = "structure",
-        },
-        ConsumableDetails = {
-            type = "structure",
-        },
-        CreditDetails = {
-            type = "structure",
-        },
-        AccessDetails = {
-            type = "structure",
-        },
+        DisbursementDetails = M.DisbursementDetails,
+        ConsumableDetails = M.ConsumableDetails,
+        CreditDetails = M.CreditDetails,
+        AccessDetails = M.AccessDetails,
     },
 }
 
@@ -936,11 +905,11 @@ M.GetBenefitOutput = {
         },
         Programs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         FulfillmentTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         BenefitRequestSchema = {
             type = "document",
@@ -1004,11 +973,9 @@ M.GetBenefitAllocationOutput = {
         },
         ApplicableBenefitIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        FulfillmentDetail = {
-            type = "union",
-        },
+        FulfillmentDetail = M.FulfillmentDetails,
         CreatedAt = {
             type = "timestamp",
         },
@@ -1065,14 +1032,14 @@ M.GetBenefitApplicationOutput = {
         },
         FulfillmentTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         BenefitApplicationDetails = {
             type = "document",
         },
         Programs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Status = {
             type = "string",
@@ -1088,7 +1055,7 @@ M.GetBenefitApplicationOutput = {
         },
         StatusReasonCodes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CreatedAt = {
             type = "timestamp",
@@ -1101,15 +1068,15 @@ M.GetBenefitApplicationOutput = {
         },
         AssociatedResources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         PartnerContacts = {
             type = "list",
-            member_type = "structure",
+            member = M.Contact,
         },
         FileDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.FileDetail,
         },
     },
 }
@@ -1125,22 +1092,22 @@ M.ListBenefitAllocationsInput = {
         },
         FulfillmentTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         BenefitIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         BenefitApplicationIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Status = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1153,7 +1120,7 @@ M.ListBenefitAllocationsOutput = {
     members = {
         BenefitAllocationSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.BenefitAllocationSummary,
         },
         NextToken = {
             type = "string",
@@ -1172,34 +1139,34 @@ M.ListBenefitApplicationsInput = {
         },
         Programs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         FulfillmentTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         BenefitIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Status = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Stages = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AssociatedResources = {
             type = "list",
-            member_type = "structure",
+            member = M.AssociatedResource,
         },
         AssociatedResourceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1212,7 +1179,7 @@ M.ListBenefitApplicationsOutput = {
     members = {
         BenefitApplicationSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.BenefitApplicationSummary,
         },
         NextToken = {
             type = "string",
@@ -1231,18 +1198,18 @@ M.ListBenefitsInput = {
         },
         Programs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         FulfillmentTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Status = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1255,7 +1222,7 @@ M.ListBenefitsOutput = {
     members = {
         BenefitSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.BenefitSummary,
         },
         NextToken = {
             type = "string",
@@ -1280,7 +1247,7 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1380,7 +1347,7 @@ M.TagResourceInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -1403,7 +1370,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1453,11 +1420,11 @@ M.UpdateBenefitApplicationInput = {
         },
         PartnerContacts = {
             type = "list",
-            member_type = "structure",
+            member = M.Contact,
         },
         FileDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.FileInput,
         },
     },
 }

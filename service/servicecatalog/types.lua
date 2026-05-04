@@ -301,7 +301,7 @@ M.BatchAssociateServiceActionWithProvisioningArtifactInput = {
     members = {
         ServiceActionAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceActionAssociation,
             traits = {
                 required = true,
             },
@@ -347,7 +347,7 @@ M.BatchAssociateServiceActionWithProvisioningArtifactOutput = {
     members = {
         FailedServiceActionAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.FailedServiceActionAssociation,
         },
     },
 }
@@ -357,7 +357,7 @@ M.BatchDisassociateServiceActionFromProvisioningArtifactInput = {
     members = {
         ServiceActionAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceActionAssociation,
             traits = {
                 required = true,
             },
@@ -373,7 +373,7 @@ M.BatchDisassociateServiceActionFromProvisioningArtifactOutput = {
     members = {
         FailedServiceActionAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.FailedServiceActionAssociation,
         },
     },
 }
@@ -406,11 +406,11 @@ M.CopyProductInput = {
         },
         SourceProvisioningArtifactIdentifiers = {
             type = "list",
-            member_type = "map",
+            member = { type = "map" },
         },
         CopyOptions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IdempotencyToken = {
             type = "string",
@@ -505,9 +505,7 @@ M.Status = {
 M.CreateConstraintOutput = {
     type = "structure",
     members = {
-        ConstraintDetail = {
-            type = "structure",
-        },
+        ConstraintDetail = M.ConstraintDetail,
         ConstraintParameters = {
             type = "string",
         },
@@ -540,7 +538,7 @@ M.CreatePortfolioInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         IdempotencyToken = {
             type = "string",
@@ -578,12 +576,10 @@ M.PortfolioDetail = {
 M.CreatePortfolioOutput = {
     type = "structure",
     members = {
-        PortfolioDetail = {
-            type = "structure",
-        },
+        PortfolioDetail = M.PortfolioDetail,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -621,14 +617,18 @@ M.CreatePortfolioShareInput = {
         AccountId = {
             type = "string",
         },
-        OrganizationNode = {
-            type = "structure",
-        },
+        OrganizationNode = M.OrganizationNode,
         ShareTagOptions = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         SharePrincipals = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -680,14 +680,17 @@ M.ProvisioningArtifactProperties = {
         },
         Info = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Type = {
             type = "string",
         },
         DisableTemplateValidation = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -725,9 +728,7 @@ M.CodeStarParameters = {
 M.SourceConnectionParameters = {
     type = "structure",
     members = {
-        CodeStar = {
-            type = "structure",
-        },
+        CodeStar = M.CodeStarParameters,
     },
 }
 
@@ -741,12 +742,9 @@ M.SourceConnection = {
         Type = {
             type = "string",
         },
-        ConnectionParameters = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ConnectionParameters = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SourceConnectionParameters }),
     },
 }
 
@@ -791,20 +789,16 @@ M.CreateProductInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        ProvisioningArtifactParameters = {
-            type = "structure",
-        },
+        ProvisioningArtifactParameters = M.ProvisioningArtifactProperties,
         IdempotencyToken = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        SourceConnection = {
-            type = "structure",
-        },
+        SourceConnection = M.SourceConnection,
     },
 }
 
@@ -834,6 +828,9 @@ M.ProductViewSummary = {
         },
         HasDefaultPath = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         SupportEmail = {
             type = "string",
@@ -879,21 +876,15 @@ M.SourceConnectionDetail = {
         Type = {
             type = "string",
         },
-        ConnectionParameters = {
-            type = "structure",
-        },
-        LastSync = {
-            type = "structure",
-        },
+        ConnectionParameters = M.SourceConnectionParameters,
+        LastSync = M.LastSync,
     },
 }
 
 M.ProductViewDetail = {
     type = "structure",
     members = {
-        ProductViewSummary = {
-            type = "structure",
-        },
+        ProductViewSummary = M.ProductViewSummary,
         Status = {
             type = "string",
         },
@@ -903,9 +894,7 @@ M.ProductViewDetail = {
         CreatedTime = {
             type = "timestamp",
         },
-        SourceConnection = {
-            type = "structure",
-        },
+        SourceConnection = M.SourceConnectionDetail,
     },
 }
 
@@ -947,15 +936,11 @@ M.ProvisioningArtifactDetail = {
 M.CreateProductOutput = {
     type = "structure",
     members = {
-        ProductViewDetail = {
-            type = "structure",
-        },
-        ProvisioningArtifactDetail = {
-            type = "structure",
-        },
+        ProductViewDetail = M.ProductViewDetail,
+        ProvisioningArtifactDetail = M.ProvisioningArtifactDetail,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -975,6 +960,9 @@ M.UpdateProvisioningParameter = {
         },
         UsePreviousValue = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -999,7 +987,7 @@ M.CreateProvisionedProductPlanInput = {
         },
         NotificationArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         PathId = {
             type = "string",
@@ -1024,7 +1012,7 @@ M.CreateProvisionedProductPlanInput = {
         },
         ProvisioningParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.UpdateProvisioningParameter,
         },
         IdempotencyToken = {
             type = "string",
@@ -1034,7 +1022,7 @@ M.CreateProvisionedProductPlanInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1072,12 +1060,9 @@ M.CreateProvisioningArtifactInput = {
                 required = true,
             },
         },
-        Parameters = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Parameters = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProvisioningArtifactProperties }),
         IdempotencyToken = {
             type = "string",
             traits = {
@@ -1090,13 +1075,11 @@ M.CreateProvisioningArtifactInput = {
 M.CreateProvisioningArtifactOutput = {
     type = "structure",
     members = {
-        ProvisioningArtifactDetail = {
-            type = "structure",
-        },
+        ProvisioningArtifactDetail = M.ProvisioningArtifactDetail,
         Info = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Status = {
             type = "string",
@@ -1132,8 +1115,8 @@ M.CreateServiceActionInput = {
         },
         Definition = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1174,13 +1157,11 @@ M.ServiceActionSummary = {
 M.ServiceActionDetail = {
     type = "structure",
     members = {
-        ServiceActionSummary = {
-            type = "structure",
-        },
+        ServiceActionSummary = M.ServiceActionSummary,
         Definition = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1188,9 +1169,7 @@ M.ServiceActionDetail = {
 M.CreateServiceActionOutput = {
     type = "structure",
     members = {
-        ServiceActionDetail = {
-            type = "structure",
-        },
+        ServiceActionDetail = M.ServiceActionDetail,
     },
 }
 
@@ -1236,9 +1215,7 @@ M.TagOptionDetail = {
 M.CreateTagOptionOutput = {
     type = "structure",
     members = {
-        TagOptionDetail = {
-            type = "structure",
-        },
+        TagOptionDetail = M.TagOptionDetail,
     },
 }
 
@@ -1305,9 +1282,7 @@ M.DeletePortfolioShareInput = {
         AccountId = {
             type = "string",
         },
-        OrganizationNode = {
-            type = "structure",
-        },
+        OrganizationNode = M.OrganizationNode,
     },
 }
 
@@ -1353,6 +1328,9 @@ M.DeleteProvisionedProductPlanInput = {
         },
         IgnoreErrors = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1443,9 +1421,7 @@ M.DescribeConstraintInput = {
 M.DescribeConstraintOutput = {
     type = "structure",
     members = {
-        ConstraintDetail = {
-            type = "structure",
-        },
+        ConstraintDetail = M.ConstraintDetail,
         ConstraintParameters = {
             type = "string",
         },
@@ -1518,20 +1494,18 @@ M.BudgetDetail = {
 M.DescribePortfolioOutput = {
     type = "structure",
     members = {
-        PortfolioDetail = {
-            type = "structure",
-        },
+        PortfolioDetail = M.PortfolioDetail,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         TagOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.TagOptionDetail,
         },
         Budgets = {
             type = "list",
-            member_type = "structure",
+            member = M.BudgetDetail,
         },
     },
 }
@@ -1562,7 +1536,10 @@ M.DescribePortfolioSharesInput = {
             type = "string",
         },
         PageSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1578,12 +1555,21 @@ M.PortfolioShareDetail = {
         },
         Accepted = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         ShareTagOptions = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         SharePrincipals = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1596,7 +1582,7 @@ M.DescribePortfolioSharesOutput = {
         },
         PortfolioShareDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.PortfolioShareDetail,
         },
     },
 }
@@ -1618,7 +1604,7 @@ M.ShareError = {
     members = {
         Accounts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Message = {
             type = "string",
@@ -1634,11 +1620,11 @@ M.ShareDetails = {
     members = {
         SuccessfulShares = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ShareErrors = {
             type = "list",
-            member_type = "structure",
+            member = M.ShareError,
         },
     },
 }
@@ -1666,9 +1652,7 @@ M.DescribePortfolioShareStatusOutput = {
         Status = {
             type = "string",
         },
-        ShareDetails = {
-            type = "structure",
-        },
+        ShareDetails = M.ShareDetails,
     },
 }
 
@@ -1723,20 +1707,18 @@ M.ProvisioningArtifact = {
 M.DescribeProductOutput = {
     type = "structure",
     members = {
-        ProductViewSummary = {
-            type = "structure",
-        },
+        ProductViewSummary = M.ProductViewSummary,
         ProvisioningArtifacts = {
             type = "list",
-            member_type = "structure",
+            member = M.ProvisioningArtifact,
         },
         Budgets = {
             type = "list",
-            member_type = "structure",
+            member = M.BudgetDetail,
         },
         LaunchPaths = {
             type = "list",
-            member_type = "structure",
+            member = M.LaunchPath,
         },
     },
 }
@@ -1776,8 +1758,8 @@ M.ProvisioningArtifactSummary = {
         },
         ProvisioningArtifactMetadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1785,24 +1767,22 @@ M.ProvisioningArtifactSummary = {
 M.DescribeProductAsAdminOutput = {
     type = "structure",
     members = {
-        ProductViewDetail = {
-            type = "structure",
-        },
+        ProductViewDetail = M.ProductViewDetail,
         ProvisioningArtifactSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ProvisioningArtifactSummary,
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         TagOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.TagOptionDetail,
         },
         Budgets = {
             type = "list",
-            member_type = "structure",
+            member = M.BudgetDetail,
         },
     },
 }
@@ -1825,12 +1805,10 @@ M.DescribeProductViewInput = {
 M.DescribeProductViewOutput = {
     type = "structure",
     members = {
-        ProductViewSummary = {
-            type = "structure",
-        },
+        ProductViewSummary = M.ProductViewSummary,
         ProvisioningArtifacts = {
             type = "list",
-            member_type = "structure",
+            member = M.ProvisioningArtifact,
         },
     },
 }
@@ -1918,12 +1896,10 @@ M.ProvisionedProductDetail = {
 M.DescribeProvisionedProductOutput = {
     type = "structure",
     members = {
-        ProvisionedProductDetail = {
-            type = "structure",
-        },
+        ProvisionedProductDetail = M.ProvisionedProductDetail,
         CloudWatchDashboards = {
             type = "list",
-            member_type = "structure",
+            member = M.CloudWatchDashboard,
         },
     },
 }
@@ -1941,7 +1917,10 @@ M.DescribeProvisionedProductPlanInput = {
             },
         },
         PageSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         PageToken = {
             type = "string",
@@ -1996,15 +1975,15 @@ M.ProvisionedProductPlanDetails = {
         },
         NotificationArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ProvisioningParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.UpdateProvisioningParameter,
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         StatusMessage = {
             type = "string",
@@ -2056,9 +2035,7 @@ M.ResourceTargetDefinition = {
 M.ResourceChangeDetail = {
     type = "structure",
     members = {
-        Target = {
-            type = "structure",
-        },
+        Target = M.ResourceTargetDefinition,
         Evaluation = {
             type = "string",
         },
@@ -2094,11 +2071,11 @@ M.ResourceChange = {
         },
         Scope = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Details = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceChangeDetail,
         },
     },
 }
@@ -2106,12 +2083,10 @@ M.ResourceChange = {
 M.DescribeProvisionedProductPlanOutput = {
     type = "structure",
     members = {
-        ProvisionedProductPlanDetails = {
-            type = "structure",
-        },
+        ProvisionedProductPlanDetails = M.ProvisionedProductPlanDetails,
         ResourceChanges = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceChange,
         },
         NextPageToken = {
             type = "string",
@@ -2139,9 +2114,15 @@ M.DescribeProvisioningArtifactInput = {
         },
         Verbose = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         IncludeProvisioningArtifactParameters = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -2151,7 +2132,7 @@ M.ParameterConstraints = {
     members = {
         AllowedValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AllowedPattern = {
             type = "string",
@@ -2188,33 +2169,32 @@ M.ProvisioningArtifactParameter = {
         },
         IsNoEcho = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Description = {
             type = "string",
         },
-        ParameterConstraints = {
-            type = "structure",
-        },
+        ParameterConstraints = M.ParameterConstraints,
     },
 }
 
 M.DescribeProvisioningArtifactOutput = {
     type = "structure",
     members = {
-        ProvisioningArtifactDetail = {
-            type = "structure",
-        },
+        ProvisioningArtifactDetail = M.ProvisioningArtifactDetail,
         Info = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Status = {
             type = "string",
         },
         ProvisioningArtifactParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.ProvisioningArtifactParameter,
         },
     },
 }
@@ -2275,11 +2255,11 @@ M.ProvisioningArtifactPreferences = {
     members = {
         StackSetAccounts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         StackSetRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2292,7 +2272,7 @@ M.TagOptionSummary = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2314,30 +2294,28 @@ M.DescribeProvisioningParametersOutput = {
     members = {
         ProvisioningArtifactParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.ProvisioningArtifactParameter,
         },
         ConstraintSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ConstraintSummary,
         },
         UsageInstructions = {
             type = "list",
-            member_type = "structure",
+            member = M.UsageInstruction,
         },
         TagOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.TagOptionSummary,
         },
-        ProvisioningArtifactPreferences = {
-            type = "structure",
-        },
+        ProvisioningArtifactPreferences = M.ProvisioningArtifactPreferences,
         ProvisioningArtifactOutputs = {
             type = "list",
-            member_type = "structure",
+            member = M.ProvisioningArtifactOutput,
         },
         ProvisioningArtifactOutputKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.ProvisioningArtifactOutput,
         },
     },
 }
@@ -2358,7 +2336,10 @@ M.DescribeRecordInput = {
             type = "string",
         },
         PageSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2433,11 +2414,11 @@ M.RecordDetail = {
         },
         RecordErrors = {
             type = "list",
-            member_type = "structure",
+            member = M.RecordError,
         },
         RecordTags = {
             type = "list",
-            member_type = "structure",
+            member = M.RecordTag,
         },
         LaunchRoleArn = {
             type = "string",
@@ -2463,12 +2444,10 @@ M.RecordOutput = {
 M.DescribeRecordOutput = {
     type = "structure",
     members = {
-        RecordDetail = {
-            type = "structure",
-        },
+        RecordDetail = M.RecordDetail,
         RecordOutputs = {
             type = "list",
-            member_type = "structure",
+            member = M.RecordOutput,
         },
         NextPageToken = {
             type = "string",
@@ -2494,9 +2473,7 @@ M.DescribeServiceActionInput = {
 M.DescribeServiceActionOutput = {
     type = "structure",
     members = {
-        ServiceActionDetail = {
-            type = "structure",
-        },
+        ServiceActionDetail = M.ServiceActionDetail,
     },
 }
 
@@ -2532,7 +2509,7 @@ M.ExecutionParameter = {
         },
         DefaultValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2542,7 +2519,7 @@ M.DescribeServiceActionExecutionParametersOutput = {
     members = {
         ServiceActionParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.ExecutionParameter,
         },
     },
 }
@@ -2563,9 +2540,7 @@ M.DescribeTagOptionInput = {
 M.DescribeTagOptionOutput = {
     type = "structure",
     members = {
-        TagOptionDetail = {
-            type = "structure",
-        },
+        TagOptionDetail = M.TagOptionDetail,
     },
 }
 
@@ -2742,9 +2717,7 @@ M.ExecuteProvisionedProductPlanInput = {
 M.ExecuteProvisionedProductPlanOutput = {
     type = "structure",
     members = {
-        RecordDetail = {
-            type = "structure",
-        },
+        RecordDetail = M.RecordDetail,
     },
 }
 
@@ -2774,8 +2747,8 @@ M.ExecuteProvisionedProductServiceActionInput = {
         },
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
     },
 }
@@ -2783,9 +2756,7 @@ M.ExecuteProvisionedProductServiceActionInput = {
 M.ExecuteProvisionedProductServiceActionOutput = {
     type = "structure",
     members = {
-        RecordDetail = {
-            type = "structure",
-        },
+        RecordDetail = M.RecordDetail,
     },
 }
 
@@ -2816,10 +2787,13 @@ M.GetProvisionedProductOutputsInput = {
         },
         OutputKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         PageSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         PageToken = {
             type = "string",
@@ -2832,7 +2806,7 @@ M.GetProvisionedProductOutputsOutput = {
     members = {
         Outputs = {
             type = "list",
-            member_type = "structure",
+            member = M.RecordOutput,
         },
         NextPageToken = {
             type = "string",
@@ -2882,9 +2856,7 @@ M.ImportAsProvisionedProductInput = {
 M.ImportAsProvisionedProductOutput = {
     type = "structure",
     members = {
-        RecordDetail = {
-            type = "structure",
-        },
+        RecordDetail = M.RecordDetail,
     },
 }
 
@@ -2898,7 +2870,10 @@ M.ListAcceptedPortfolioSharesInput = {
             type = "string",
         },
         PageSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         PortfolioShareType = {
             type = "string",
@@ -2911,7 +2886,7 @@ M.ListAcceptedPortfolioSharesOutput = {
     members = {
         PortfolioDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.PortfolioDetail,
         },
         NextPageToken = {
             type = "string",
@@ -2932,7 +2907,10 @@ M.ListBudgetsForResourceInput = {
             },
         },
         PageSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         PageToken = {
             type = "string",
@@ -2945,7 +2923,7 @@ M.ListBudgetsForResourceOutput = {
     members = {
         Budgets = {
             type = "list",
-            member_type = "structure",
+            member = M.BudgetDetail,
         },
         NextPageToken = {
             type = "string",
@@ -2969,7 +2947,10 @@ M.ListConstraintsForPortfolioInput = {
             type = "string",
         },
         PageSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         PageToken = {
             type = "string",
@@ -2982,7 +2963,7 @@ M.ListConstraintsForPortfolioOutput = {
     members = {
         ConstraintDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.ConstraintDetail,
         },
         NextPageToken = {
             type = "string",
@@ -3003,7 +2984,10 @@ M.ListLaunchPathsInput = {
             },
         },
         PageSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         PageToken = {
             type = "string",
@@ -3019,11 +3003,11 @@ M.LaunchPathSummary = {
         },
         ConstraintSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ConstraintSummary,
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         Name = {
             type = "string",
@@ -3036,7 +3020,7 @@ M.ListLaunchPathsOutput = {
     members = {
         LaunchPathSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.LaunchPathSummary,
         },
         NextPageToken = {
             type = "string",
@@ -3066,7 +3050,10 @@ M.ListOrganizationPortfolioAccessInput = {
             type = "string",
         },
         PageSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -3076,7 +3063,7 @@ M.ListOrganizationPortfolioAccessOutput = {
     members = {
         OrganizationNodes = {
             type = "list",
-            member_type = "structure",
+            member = M.OrganizationNode,
         },
         NextPageToken = {
             type = "string",
@@ -3103,7 +3090,10 @@ M.ListPortfolioAccessInput = {
             type = "string",
         },
         PageSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -3113,7 +3103,7 @@ M.ListPortfolioAccessOutput = {
     members = {
         AccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextPageToken = {
             type = "string",
@@ -3131,7 +3121,10 @@ M.ListPortfoliosInput = {
             type = "string",
         },
         PageSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -3141,7 +3134,7 @@ M.ListPortfoliosOutput = {
     members = {
         PortfolioDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.PortfolioDetail,
         },
         NextPageToken = {
             type = "string",
@@ -3165,7 +3158,10 @@ M.ListPortfoliosForProductInput = {
             type = "string",
         },
         PageSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -3175,7 +3171,7 @@ M.ListPortfoliosForProductOutput = {
     members = {
         PortfolioDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.PortfolioDetail,
         },
         NextPageToken = {
             type = "string",
@@ -3196,7 +3192,10 @@ M.ListPrincipalsForPortfolioInput = {
             },
         },
         PageSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         PageToken = {
             type = "string",
@@ -3221,7 +3220,7 @@ M.ListPrincipalsForPortfolioOutput = {
     members = {
         Principals = {
             type = "list",
-            member_type = "structure",
+            member = M.Principal,
         },
         NextPageToken = {
             type = "string",
@@ -3239,14 +3238,15 @@ M.ListProvisionedProductPlansInput = {
             type = "string",
         },
         PageSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         PageToken = {
             type = "string",
         },
-        AccessLevelFilter = {
-            type = "structure",
-        },
+        AccessLevelFilter = M.AccessLevelFilter,
     },
 }
 
@@ -3279,7 +3279,7 @@ M.ListProvisionedProductPlansOutput = {
     members = {
         ProvisionedProductPlans = {
             type = "list",
-            member_type = "structure",
+            member = M.ProvisionedProductPlanSummary,
         },
         NextPageToken = {
             type = "string",
@@ -3307,7 +3307,7 @@ M.ListProvisioningArtifactsOutput = {
     members = {
         ProvisioningArtifactDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.ProvisioningArtifactDetail,
         },
         NextPageToken = {
             type = "string",
@@ -3325,7 +3325,10 @@ M.ListProvisioningArtifactsForServiceActionInput = {
             },
         },
         PageSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         PageToken = {
             type = "string",
@@ -3339,12 +3342,8 @@ M.ListProvisioningArtifactsForServiceActionInput = {
 M.ProvisioningArtifactView = {
     type = "structure",
     members = {
-        ProductViewSummary = {
-            type = "structure",
-        },
-        ProvisioningArtifact = {
-            type = "structure",
-        },
+        ProductViewSummary = M.ProductViewSummary,
+        ProvisioningArtifact = M.ProvisioningArtifact,
     },
 }
 
@@ -3353,7 +3352,7 @@ M.ListProvisioningArtifactsForServiceActionOutput = {
     members = {
         ProvisioningArtifactViews = {
             type = "list",
-            member_type = "structure",
+            member = M.ProvisioningArtifactView,
         },
         NextPageToken = {
             type = "string",
@@ -3379,14 +3378,13 @@ M.ListRecordHistoryInput = {
         AcceptLanguage = {
             type = "string",
         },
-        AccessLevelFilter = {
-            type = "structure",
-        },
-        SearchFilter = {
-            type = "structure",
-        },
+        AccessLevelFilter = M.AccessLevelFilter,
+        SearchFilter = M.ListRecordHistorySearchFilter,
         PageSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         PageToken = {
             type = "string",
@@ -3399,7 +3397,7 @@ M.ListRecordHistoryOutput = {
     members = {
         RecordDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.RecordDetail,
         },
         NextPageToken = {
             type = "string",
@@ -3424,8 +3422,9 @@ M.ListResourcesForTagOptionInput = {
             },
         },
         PageSize = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "pageSize",
             },
         },
@@ -3464,7 +3463,7 @@ M.ListResourcesForTagOptionOutput = {
     members = {
         ResourceDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceDetail,
         },
         PageToken = {
             type = "string",
@@ -3479,7 +3478,10 @@ M.ListServiceActionsInput = {
             type = "string",
         },
         PageSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         PageToken = {
             type = "string",
@@ -3492,7 +3494,7 @@ M.ListServiceActionsOutput = {
     members = {
         ServiceActionSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceActionSummary,
         },
         NextPageToken = {
             type = "string",
@@ -3516,7 +3518,10 @@ M.ListServiceActionsForProvisioningArtifactInput = {
             },
         },
         PageSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         PageToken = {
             type = "string",
@@ -3532,7 +3537,7 @@ M.ListServiceActionsForProvisioningArtifactOutput = {
     members = {
         ServiceActionSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceActionSummary,
         },
         NextPageToken = {
             type = "string",
@@ -3556,7 +3561,10 @@ M.ListStackInstancesForProvisionedProductInput = {
             type = "string",
         },
         PageSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -3587,7 +3595,7 @@ M.ListStackInstancesForProvisionedProductOutput = {
     members = {
         StackInstances = {
             type = "list",
-            member_type = "structure",
+            member = M.StackInstance,
         },
         NextPageToken = {
             type = "string",
@@ -3613,11 +3621,12 @@ M.ListTagOptionsFilters = {
 M.ListTagOptionsInput = {
     type = "structure",
     members = {
-        Filters = {
-            type = "structure",
-        },
+        Filters = M.ListTagOptionsFilters,
         PageSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         PageToken = {
             type = "string",
@@ -3630,7 +3639,7 @@ M.ListTagOptionsOutput = {
     members = {
         TagOptionDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.TagOptionDetail,
         },
         PageToken = {
             type = "string",
@@ -3653,9 +3662,7 @@ M.UniqueTagResourceIdentifier = {
 M.EngineWorkflowResourceIdentifier = {
     type = "structure",
     members = {
-        UniqueTag = {
-            type = "structure",
-        },
+        UniqueTag = M.UniqueTagResourceIdentifier,
     },
 }
 
@@ -3688,12 +3695,10 @@ M.NotifyProvisionProductEngineWorkflowResultInput = {
         FailureReason = {
             type = "string",
         },
-        ResourceIdentifier = {
-            type = "structure",
-        },
+        ResourceIdentifier = M.EngineWorkflowResourceIdentifier,
         Outputs = {
             type = "list",
-            member_type = "structure",
+            member = M.RecordOutput,
         },
         IdempotencyToken = {
             type = "string",
@@ -3771,7 +3776,7 @@ M.NotifyUpdateProvisionedProductEngineWorkflowResultInput = {
         },
         Outputs = {
             type = "list",
-            member_type = "structure",
+            member = M.RecordOutput,
         },
         IdempotencyToken = {
             type = "string",
@@ -3803,23 +3808,23 @@ M.ProvisioningPreferences = {
     members = {
         StackSetAccounts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         StackSetRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         StackSetFailureToleranceCount = {
-            type = "number",
+            type = "integer",
         },
         StackSetFailureTolerancePercentage = {
-            type = "number",
+            type = "integer",
         },
         StackSetMaxConcurrencyCount = {
-            type = "number",
+            type = "integer",
         },
         StackSetMaxConcurrencyPercentage = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3856,18 +3861,16 @@ M.ProvisionProductInput = {
         },
         ProvisioningParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.ProvisioningParameter,
         },
-        ProvisioningPreferences = {
-            type = "structure",
-        },
+        ProvisioningPreferences = M.ProvisioningPreferences,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         NotificationArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ProvisionToken = {
             type = "string",
@@ -3881,9 +3884,7 @@ M.ProvisionProductInput = {
 M.ProvisionProductOutput = {
     type = "structure",
     members = {
-        RecordDetail = {
-            type = "structure",
-        },
+        RecordDetail = M.RecordDetail,
     },
 }
 
@@ -3915,11 +3916,12 @@ M.ScanProvisionedProductsInput = {
         AcceptLanguage = {
             type = "string",
         },
-        AccessLevelFilter = {
-            type = "structure",
-        },
+        AccessLevelFilter = M.AccessLevelFilter,
         PageSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         PageToken = {
             type = "string",
@@ -3932,7 +3934,7 @@ M.ScanProvisionedProductsOutput = {
     members = {
         ProvisionedProducts = {
             type = "list",
-            member_type = "structure",
+            member = M.ProvisionedProductDetail,
         },
         NextPageToken = {
             type = "string",
@@ -3966,11 +3968,14 @@ M.SearchProductsInput = {
         },
         Filters = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         PageSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         SortBy = {
             type = "string",
@@ -3991,7 +3996,10 @@ M.ProductViewAggregationValue = {
             type = "string",
         },
         ApproximateCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -4001,12 +4009,12 @@ M.SearchProductsOutput = {
     members = {
         ProductViewSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ProductViewSummary,
         },
         ProductViewAggregations = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         NextPageToken = {
             type = "string",
@@ -4029,8 +4037,8 @@ M.SearchProductsAsAdminInput = {
         },
         Filters = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         SortBy = {
             type = "string",
@@ -4042,7 +4050,10 @@ M.SearchProductsAsAdminInput = {
             type = "string",
         },
         PageSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         ProductSource = {
             type = "string",
@@ -4055,7 +4066,7 @@ M.SearchProductsAsAdminOutput = {
     members = {
         ProductViewDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.ProductViewDetail,
         },
         NextPageToken = {
             type = "string",
@@ -4073,13 +4084,11 @@ M.SearchProvisionedProductsInput = {
         AcceptLanguage = {
             type = "string",
         },
-        AccessLevelFilter = {
-            type = "structure",
-        },
+        AccessLevelFilter = M.AccessLevelFilter,
         Filters = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         SortBy = {
             type = "string",
@@ -4088,7 +4097,10 @@ M.SearchProvisionedProductsInput = {
             type = "string",
         },
         PageSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         PageToken = {
             type = "string",
@@ -4134,7 +4146,7 @@ M.ProvisionedProductAttribute = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         PhysicalId = {
             type = "string",
@@ -4165,10 +4177,13 @@ M.SearchProvisionedProductsOutput = {
     members = {
         ProvisionedProducts = {
             type = "list",
-            member_type = "structure",
+            member = M.ProvisionedProductAttribute,
         },
         TotalResultsCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         NextPageToken = {
             type = "string",
@@ -4193,12 +4208,18 @@ M.TerminateProvisionedProductInput = {
         },
         IgnoreErrors = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         AcceptLanguage = {
             type = "string",
         },
         RetainPhysicalResources = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -4206,9 +4227,7 @@ M.TerminateProvisionedProductInput = {
 M.TerminateProvisionedProductOutput = {
     type = "structure",
     members = {
-        RecordDetail = {
-            type = "structure",
-        },
+        RecordDetail = M.RecordDetail,
     },
 }
 
@@ -4236,9 +4255,7 @@ M.UpdateConstraintInput = {
 M.UpdateConstraintOutput = {
     type = "structure",
     members = {
-        ConstraintDetail = {
-            type = "structure",
-        },
+        ConstraintDetail = M.ConstraintDetail,
         ConstraintParameters = {
             type = "string",
         },
@@ -4271,11 +4288,11 @@ M.UpdatePortfolioInput = {
         },
         AddTags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         RemoveTags = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4283,12 +4300,10 @@ M.UpdatePortfolioInput = {
 M.UpdatePortfolioOutput = {
     type = "structure",
     members = {
-        PortfolioDetail = {
-            type = "structure",
-        },
+        PortfolioDetail = M.PortfolioDetail,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -4308,9 +4323,7 @@ M.UpdatePortfolioShareInput = {
         AccountId = {
             type = "string",
         },
-        OrganizationNode = {
-            type = "structure",
-        },
+        OrganizationNode = M.OrganizationNode,
         ShareTagOptions = {
             type = "boolean",
         },
@@ -4367,27 +4380,23 @@ M.UpdateProductInput = {
         },
         AddTags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         RemoveTags = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        SourceConnection = {
-            type = "structure",
-        },
+        SourceConnection = M.SourceConnection,
     },
 }
 
 M.UpdateProductOutput = {
     type = "structure",
     members = {
-        ProductViewDetail = {
-            type = "structure",
-        },
+        ProductViewDetail = M.ProductViewDetail,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -4403,23 +4412,23 @@ M.UpdateProvisioningPreferences = {
     members = {
         StackSetAccounts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         StackSetRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         StackSetFailureToleranceCount = {
-            type = "number",
+            type = "integer",
         },
         StackSetFailureTolerancePercentage = {
-            type = "number",
+            type = "integer",
         },
         StackSetMaxConcurrencyCount = {
-            type = "number",
+            type = "integer",
         },
         StackSetMaxConcurrencyPercentage = {
-            type = "number",
+            type = "integer",
         },
         StackSetOperationType = {
             type = "string",
@@ -4459,14 +4468,12 @@ M.UpdateProvisionedProductInput = {
         },
         ProvisioningParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.UpdateProvisioningParameter,
         },
-        ProvisioningPreferences = {
-            type = "structure",
-        },
+        ProvisioningPreferences = M.UpdateProvisioningPreferences,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         UpdateToken = {
             type = "string",
@@ -4480,9 +4487,7 @@ M.UpdateProvisionedProductInput = {
 M.UpdateProvisionedProductOutput = {
     type = "structure",
     members = {
-        RecordDetail = {
-            type = "structure",
-        },
+        RecordDetail = M.RecordDetail,
     },
 }
 
@@ -4505,8 +4510,8 @@ M.UpdateProvisionedProductPropertiesInput = {
         },
         ProvisionedProductProperties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4528,8 +4533,8 @@ M.UpdateProvisionedProductPropertiesOutput = {
         },
         ProvisionedProductProperties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         RecordId = {
             type = "string",
@@ -4576,13 +4581,11 @@ M.UpdateProvisioningArtifactInput = {
 M.UpdateProvisioningArtifactOutput = {
     type = "structure",
     members = {
-        ProvisioningArtifactDetail = {
-            type = "structure",
-        },
+        ProvisioningArtifactDetail = M.ProvisioningArtifactDetail,
         Info = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Status = {
             type = "string",
@@ -4604,8 +4607,8 @@ M.UpdateServiceActionInput = {
         },
         Definition = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Description = {
             type = "string",
@@ -4619,9 +4622,7 @@ M.UpdateServiceActionInput = {
 M.UpdateServiceActionOutput = {
     type = "structure",
     members = {
-        ServiceActionDetail = {
-            type = "structure",
-        },
+        ServiceActionDetail = M.ServiceActionDetail,
     },
 }
 
@@ -4646,9 +4647,7 @@ M.UpdateTagOptionInput = {
 M.UpdateTagOptionOutput = {
     type = "structure",
     members = {
-        TagOptionDetail = {
-            type = "structure",
-        },
+        TagOptionDetail = M.TagOptionDetail,
     },
 }
 

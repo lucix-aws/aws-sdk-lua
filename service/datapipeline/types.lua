@@ -29,7 +29,7 @@ M.ActivatePipelineInput = {
         },
         parameterValues = {
             type = "list",
-            member_type = "structure",
+            member = M.ParameterValue,
         },
         startTimestamp = {
             type = "timestamp",
@@ -110,7 +110,7 @@ M.AddTagsInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -142,7 +142,7 @@ M.CreatePipelineInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -205,13 +205,16 @@ M.DescribeObjectsInput = {
         },
         objectIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         evaluateExpressions = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         marker = {
             type = "string",
@@ -254,7 +257,7 @@ M.PipelineObject = {
         },
         fields = {
             type = "list",
-            member_type = "structure",
+            member = M.Field,
             traits = {
                 required = true,
             },
@@ -267,7 +270,7 @@ M.DescribeObjectsOutput = {
     members = {
         pipelineObjects = {
             type = "list",
-            member_type = "structure",
+            member = M.PipelineObject,
             traits = {
                 required = true,
             },
@@ -277,6 +280,9 @@ M.DescribeObjectsOutput = {
         },
         hasMoreResults = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -286,7 +292,7 @@ M.DescribePipelinesInput = {
     members = {
         pipelineIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -311,7 +317,7 @@ M.PipelineDescription = {
         },
         fields = {
             type = "list",
-            member_type = "structure",
+            member = M.Field,
             traits = {
                 required = true,
             },
@@ -321,7 +327,7 @@ M.PipelineDescription = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -331,7 +337,7 @@ M.DescribePipelinesOutput = {
     members = {
         pipelineDescriptionList = {
             type = "list",
-            member_type = "structure",
+            member = M.PipelineDescription,
             traits = {
                 required = true,
             },
@@ -429,7 +435,7 @@ M.ParameterObject = {
         },
         attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.ParameterAttribute,
             traits = {
                 required = true,
             },
@@ -442,15 +448,15 @@ M.GetPipelineDefinitionOutput = {
     members = {
         pipelineObjects = {
             type = "list",
-            member_type = "structure",
+            member = M.PipelineObject,
         },
         parameterObjects = {
             type = "list",
-            member_type = "structure",
+            member = M.ParameterObject,
         },
         parameterValues = {
             type = "list",
-            member_type = "structure",
+            member = M.ParameterValue,
         },
     },
 }
@@ -481,7 +487,7 @@ M.ListPipelinesOutput = {
     members = {
         pipelineIdList = {
             type = "list",
-            member_type = "structure",
+            member = M.PipelineIdName,
             traits = {
                 required = true,
             },
@@ -491,6 +497,9 @@ M.ListPipelinesOutput = {
         },
         hasMoreResults = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -519,9 +528,7 @@ M.PollForTaskInput = {
         hostname = {
             type = "string",
         },
-        instanceIdentity = {
-            type = "structure",
-        },
+        instanceIdentity = M.InstanceIdentity,
     },
 }
 
@@ -539,8 +546,8 @@ M.TaskObject = {
         },
         objects = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.PipelineObject,
         },
     },
 }
@@ -548,9 +555,7 @@ M.TaskObject = {
 M.PollForTaskOutput = {
     type = "structure",
     members = {
-        taskObject = {
-            type = "structure",
-        },
+        taskObject = M.TaskObject,
     },
 }
 
@@ -565,18 +570,18 @@ M.PutPipelineDefinitionInput = {
         },
         pipelineObjects = {
             type = "list",
-            member_type = "structure",
+            member = M.PipelineObject,
             traits = {
                 required = true,
             },
         },
         parameterObjects = {
             type = "list",
-            member_type = "structure",
+            member = M.ParameterObject,
         },
         parameterValues = {
             type = "list",
-            member_type = "structure",
+            member = M.ParameterValue,
         },
     },
 }
@@ -589,7 +594,7 @@ M.ValidationError = {
         },
         errors = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -602,7 +607,7 @@ M.ValidationWarning = {
         },
         warnings = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -612,15 +617,16 @@ M.PutPipelineDefinitionOutput = {
     members = {
         validationErrors = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationError,
         },
         validationWarnings = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationWarning,
         },
         errored = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -643,7 +649,7 @@ M.Operator = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -654,9 +660,7 @@ M.Selector = {
         fieldName = {
             type = "string",
         },
-        operator = {
-            type = "structure",
-        },
+        operator = M.Operator,
     },
 }
 
@@ -665,7 +669,7 @@ M.Query = {
     members = {
         selectors = {
             type = "list",
-            member_type = "structure",
+            member = M.Selector,
         },
     },
 }
@@ -679,9 +683,7 @@ M.QueryObjectsInput = {
                 required = true,
             },
         },
-        query = {
-            type = "structure",
-        },
+        query = M.Query,
         sphere = {
             type = "string",
             traits = {
@@ -692,7 +694,7 @@ M.QueryObjectsInput = {
             type = "string",
         },
         limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -702,13 +704,16 @@ M.QueryObjectsOutput = {
     members = {
         ids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         marker = {
             type = "string",
         },
         hasMoreResults = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -724,7 +729,7 @@ M.RemoveTagsInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -747,7 +752,7 @@ M.ReportTaskProgressInput = {
         },
         fields = {
             type = "list",
-            member_type = "structure",
+            member = M.Field,
         },
     },
 }
@@ -758,6 +763,7 @@ M.ReportTaskProgressOutput = {
         canceled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -788,6 +794,7 @@ M.ReportTaskRunnerHeartbeatOutput = {
         terminate = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -805,7 +812,7 @@ M.SetStatusInput = {
         },
         objectIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -871,18 +878,18 @@ M.ValidatePipelineDefinitionInput = {
         },
         pipelineObjects = {
             type = "list",
-            member_type = "structure",
+            member = M.PipelineObject,
             traits = {
                 required = true,
             },
         },
         parameterObjects = {
             type = "list",
-            member_type = "structure",
+            member = M.ParameterObject,
         },
         parameterValues = {
             type = "list",
-            member_type = "structure",
+            member = M.ParameterValue,
         },
     },
 }
@@ -892,15 +899,16 @@ M.ValidatePipelineDefinitionOutput = {
     members = {
         validationErrors = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationError,
         },
         validationWarnings = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationWarning,
         },
         errored = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },

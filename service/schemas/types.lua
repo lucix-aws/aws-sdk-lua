@@ -25,8 +25,8 @@ M.DiscovererSummary = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -45,8 +45,8 @@ M.RegistrySummary = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -68,14 +68,14 @@ M.SchemaSummary = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
         },
         VersionCount = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -132,7 +132,7 @@ M.SearchSchemaSummary = {
         },
         SchemaVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.SearchSchemaVersionSummary,
         },
     },
 }
@@ -198,8 +198,8 @@ M.CreateDiscovererInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -230,8 +230,8 @@ M.CreateDiscovererOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -330,8 +330,8 @@ M.CreateRegistryInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -353,8 +353,8 @@ M.CreateRegistryOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -390,8 +390,8 @@ M.CreateSchemaInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -425,8 +425,8 @@ M.CreateSchemaOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -670,8 +670,8 @@ M.DescribeDiscovererOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -706,8 +706,8 @@ M.DescribeRegistryOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -764,8 +764,8 @@ M.DescribeSchemaOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -883,7 +883,7 @@ M.GetDiscoveredSchemaInput = {
     members = {
         Events = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -959,7 +959,7 @@ M.ListDiscoverersInput = {
             },
         },
         Limit = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "limit",
             },
@@ -984,7 +984,7 @@ M.ListDiscoverersOutput = {
     members = {
         Discoverers = {
             type = "list",
-            member_type = "structure",
+            member = M.DiscovererSummary,
         },
         NextToken = {
             type = "string",
@@ -996,7 +996,7 @@ M.ListRegistriesInput = {
     type = "structure",
     members = {
         Limit = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "limit",
             },
@@ -1030,7 +1030,7 @@ M.ListRegistriesOutput = {
         },
         Registries = {
             type = "list",
-            member_type = "structure",
+            member = M.RegistrySummary,
         },
     },
 }
@@ -1039,7 +1039,7 @@ M.ListSchemasInput = {
     type = "structure",
     members = {
         Limit = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "limit",
             },
@@ -1074,7 +1074,7 @@ M.ListSchemasOutput = {
         },
         Schemas = {
             type = "list",
-            member_type = "structure",
+            member = M.SchemaSummary,
         },
     },
 }
@@ -1083,7 +1083,7 @@ M.ListSchemaVersionsInput = {
     type = "structure",
     members = {
         Limit = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "limit",
             },
@@ -1119,7 +1119,7 @@ M.ListSchemaVersionsOutput = {
         },
         SchemaVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.SchemaVersionSummary,
         },
     },
 }
@@ -1142,8 +1142,8 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -1265,7 +1265,7 @@ M.SearchSchemasInput = {
             },
         },
         Limit = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "limit",
             },
@@ -1294,7 +1294,7 @@ M.SearchSchemasOutput = {
         },
         Schemas = {
             type = "list",
-            member_type = "structure",
+            member = M.SearchSchemaSummary,
         },
     },
 }
@@ -1361,8 +1361,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
                 required = true,
@@ -1387,7 +1387,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -1442,8 +1442,8 @@ M.UpdateDiscovererOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -1481,8 +1481,8 @@ M.UpdateRegistryOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -1542,8 +1542,8 @@ M.UpdateSchemaOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },

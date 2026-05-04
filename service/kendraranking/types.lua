@@ -24,7 +24,7 @@ M.CapacityUnitsConfiguration = {
     type = "structure",
     members = {
         RescoreCapacityUnits = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -62,12 +62,10 @@ M.CreateRescoreExecutionPlanInput = {
         Description = {
             type = "string",
         },
-        CapacityUnits = {
-            type = "structure",
-        },
+        CapacityUnits = M.CapacityUnitsConfiguration,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ClientToken = {
             type = "string",
@@ -196,9 +194,7 @@ M.DescribeRescoreExecutionPlanOutput = {
         Description = {
             type = "string",
         },
-        CapacityUnits = {
-            type = "structure",
-        },
+        CapacityUnits = M.CapacityUnitsConfiguration,
         CreatedAt = {
             type = "timestamp",
         },
@@ -224,7 +220,7 @@ M.ListRescoreExecutionPlansInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -258,7 +254,7 @@ M.ListRescoreExecutionPlansOutput = {
     members = {
         SummaryItems = {
             type = "list",
-            member_type = "structure",
+            member = M.RescoreExecutionPlanSummary,
         },
         NextToken = {
             type = "string",
@@ -283,7 +279,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -318,14 +314,14 @@ M.Document = {
         },
         TokenizedTitle = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TokenizedBody = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         OriginalScore = {
-            type = "number",
+            type = "float",
             traits = {
                 required = true,
             },
@@ -351,7 +347,7 @@ M.RescoreInput = {
         },
         Documents = {
             type = "list",
-            member_type = "structure",
+            member = M.Document,
             traits = {
                 required = true,
             },
@@ -366,7 +362,7 @@ M.RescoreResultItem = {
             type = "string",
         },
         Score = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -379,7 +375,7 @@ M.RescoreOutput = {
         },
         ResultItems = {
             type = "list",
-            member_type = "structure",
+            member = M.RescoreResultItem,
         },
     },
 }
@@ -395,7 +391,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -418,7 +414,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -446,9 +442,7 @@ M.UpdateRescoreExecutionPlanInput = {
         Description = {
             type = "string",
         },
-        CapacityUnits = {
-            type = "structure",
-        },
+        CapacityUnits = M.CapacityUnitsConfiguration,
     },
 }
 

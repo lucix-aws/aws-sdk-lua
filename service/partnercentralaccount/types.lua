@@ -80,15 +80,9 @@ M.SellerProfileSummary = {
 M.Participant = {
     type = "union",
     members = {
-        PartnerProfile = {
-            type = "structure",
-        },
-        SellerProfile = {
-            type = "structure",
-        },
-        Account = {
-            type = "structure",
-        },
+        PartnerProfile = M.PartnerProfileSummary,
+        SellerProfile = M.SellerProfileSummary,
+        Account = M.AccountSummary,
     },
 }
 
@@ -130,12 +124,9 @@ M.ConnectionTypeDetail = {
         CanceledBy = {
             type = "string",
         },
-        OtherParticipant = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        OtherParticipant = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Participant }),
     },
 }
 
@@ -174,8 +165,8 @@ M.Connection = {
         },
         ConnectionTypes = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ConnectionTypeDetail,
             traits = {
                 required = true,
             },
@@ -186,12 +177,9 @@ M.Connection = {
 M.AcceptConnectionInvitationOutput = {
     type = "structure",
     members = {
-        Connection = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Connection = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Connection }),
     },
 }
 
@@ -408,12 +396,8 @@ M.FieldValidationError = {
 M.ValidationError = {
     type = "union",
     members = {
-        FieldValidationError = {
-            type = "structure",
-        },
-        BusinessValidationError = {
-            type = "structure",
-        },
+        FieldValidationError = M.FieldValidationError,
+        BusinessValidationError = M.BusinessValidationError,
     },
 }
 
@@ -440,7 +424,7 @@ M.ValidationException = {
         },
         ErrorDetails = {
             type = "list",
-            member_type = "union",
+            member = M.ValidationError,
         },
     },
 }
@@ -548,12 +532,9 @@ M.BusinessVerificationDetails = {
 M.BusinessVerificationResponse = {
     type = "structure",
     members = {
-        BusinessVerificationDetails = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        BusinessVerificationDetails = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BusinessVerificationDetails }),
         CompletionUrl = {
             type = "string",
         },
@@ -634,8 +615,8 @@ M.CancelConnectionOutput = {
         },
         ConnectionTypes = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ConnectionTypeDetail,
             traits = {
                 required = true,
             },
@@ -954,7 +935,7 @@ M.TaskDetails = {
         },
         IndustrySegments = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -967,7 +948,7 @@ M.TaskDetails = {
         },
         LocalizedContents = {
             type = "list",
-            member_type = "structure",
+            member = M.LocalizedContent,
         },
     },
 }
@@ -999,12 +980,9 @@ M.CancelProfileUpdateTaskOutput = {
                 required = true,
             },
         },
-        TaskDetails = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TaskDetails = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TaskDetails }),
         StartedAt = {
             type = "timestamp",
             traits = {
@@ -1022,7 +1000,7 @@ M.CancelProfileUpdateTaskOutput = {
         },
         ErrorDetailList = {
             type = "list",
-            member_type = "structure",
+            member = M.ErrorDetail,
         },
     },
 }
@@ -1277,11 +1255,14 @@ M.ListConnectionInvitationsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 20,
+            },
         },
         OtherParticipantIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ParticipantType = {
             type = "string",
@@ -1363,7 +1344,7 @@ M.ListConnectionInvitationsOutput = {
     members = {
         ConnectionInvitationSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ConnectionInvitationSummary,
             traits = {
                 required = true,
             },
@@ -1520,7 +1501,7 @@ M.GetConnectionPreferencesOutput = {
         },
         ExcludedParticipantIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         UpdatedAt = {
             type = "timestamp",
@@ -1529,7 +1510,7 @@ M.GetConnectionPreferencesOutput = {
             },
         },
         Revision = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -1547,7 +1528,7 @@ M.UpdateConnectionPreferencesInput = {
             },
         },
         Revision = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -1560,7 +1541,7 @@ M.UpdateConnectionPreferencesInput = {
         },
         ExcludedParticipantIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1588,7 +1569,7 @@ M.UpdateConnectionPreferencesOutput = {
         },
         ExcludedParticipantIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         UpdatedAt = {
             type = "timestamp",
@@ -1597,7 +1578,7 @@ M.UpdateConnectionPreferencesOutput = {
             },
         },
         Revision = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -1658,8 +1639,8 @@ M.GetConnectionOutput = {
         },
         ConnectionTypes = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ConnectionTypeDetail,
             traits = {
                 required = true,
             },
@@ -1683,11 +1664,14 @@ M.ListConnectionsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 20,
+            },
         },
         OtherParticipantIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1701,12 +1685,9 @@ M.ConnectionTypeSummary = {
                 required = true,
             },
         },
-        OtherParticipant = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        OtherParticipant = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Participant }),
     },
 }
 
@@ -1745,8 +1726,8 @@ M.ConnectionSummary = {
         },
         ConnectionTypes = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ConnectionTypeSummary,
             traits = {
                 required = true,
             },
@@ -1759,7 +1740,7 @@ M.ListConnectionsOutput = {
     members = {
         ConnectionSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ConnectionSummary,
             traits = {
                 required = true,
             },
@@ -1812,12 +1793,9 @@ M.CreatePartnerInput = {
                 required = true,
             },
         },
-        AllianceLeadContact = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AllianceLeadContact = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AllianceLeadContact }),
         EmailVerificationCode = {
             type = "string",
             traits = {
@@ -1826,7 +1804,7 @@ M.CreatePartnerInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1884,7 +1862,7 @@ M.PartnerProfile = {
         },
         IndustrySegments = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1897,7 +1875,7 @@ M.PartnerProfile = {
         },
         LocalizedContents = {
             type = "list",
-            member_type = "structure",
+            member = M.LocalizedContent,
         },
         ProfileId = {
             type = "string",
@@ -1938,22 +1916,16 @@ M.CreatePartnerOutput = {
                 required = true,
             },
         },
-        Profile = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Profile = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PartnerProfile }),
         AwsTrainingCertificationEmailDomains = {
             type = "list",
-            member_type = "structure",
+            member = M.PartnerDomain,
         },
-        AllianceLeadContact = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AllianceLeadContact = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AllianceLeadContact }),
     },
 }
 
@@ -2027,12 +1999,9 @@ M.GetAllianceLeadContactOutput = {
                 required = true,
             },
         },
-        AllianceLeadContact = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AllianceLeadContact = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AllianceLeadContact }),
     },
 }
 
@@ -2087,15 +2056,12 @@ M.GetPartnerOutput = {
                 required = true,
             },
         },
-        Profile = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Profile = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PartnerProfile }),
         AwsTrainingCertificationEmailDomains = {
             type = "list",
-            member_type = "structure",
+            member = M.PartnerDomain,
         },
     },
 }
@@ -2145,12 +2111,9 @@ M.GetProfileUpdateTaskOutput = {
                 required = true,
             },
         },
-        TaskDetails = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TaskDetails = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TaskDetails }),
         StartedAt = {
             type = "timestamp",
             traits = {
@@ -2168,7 +2131,7 @@ M.GetProfileUpdateTaskOutput = {
         },
         ErrorDetailList = {
             type = "list",
-            member_type = "structure",
+            member = M.ErrorDetail,
         },
     },
 }
@@ -2270,12 +2233,8 @@ M.RegistrantVerificationResponse = {
 M.VerificationResponseDetails = {
     type = "union",
     members = {
-        BusinessVerificationResponse = {
-            type = "structure",
-        },
-        RegistrantVerificationResponse = {
-            type = "structure",
-        },
+        BusinessVerificationResponse = M.BusinessVerificationResponse,
+        RegistrantVerificationResponse = M.RegistrantVerificationResponse,
     },
 }
 
@@ -2305,12 +2264,9 @@ M.GetVerificationOutput = {
         VerificationStatusReason = {
             type = "string",
         },
-        VerificationResponseDetails = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        VerificationResponseDetails = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VerificationResponseDetails }),
         StartedAt = {
             type = "timestamp",
             traits = {
@@ -2379,7 +2335,7 @@ M.ListPartnersOutput = {
     members = {
         PartnerSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.PartnerSummary,
             traits = {
                 required = true,
             },
@@ -2413,7 +2369,7 @@ M.ListTagsForResourceOutput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2433,12 +2389,9 @@ M.PutAllianceLeadContactInput = {
                 required = true,
             },
         },
-        AllianceLeadContact = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AllianceLeadContact = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AllianceLeadContact }),
         EmailVerificationCode = {
             type = "string",
         },
@@ -2466,12 +2419,9 @@ M.PutAllianceLeadContactOutput = {
                 required = true,
             },
         },
-        AllianceLeadContact = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AllianceLeadContact = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AllianceLeadContact }),
     },
 }
 
@@ -2553,12 +2503,9 @@ M.StartProfileUpdateTaskInput = {
         ClientToken = {
             type = "string",
         },
-        TaskDetails = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TaskDetails = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TaskDetails }),
     },
 }
 
@@ -2589,12 +2536,9 @@ M.StartProfileUpdateTaskOutput = {
                 required = true,
             },
         },
-        TaskDetails = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TaskDetails = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TaskDetails }),
         StartedAt = {
             type = "timestamp",
             traits = {
@@ -2612,7 +2556,7 @@ M.StartProfileUpdateTaskOutput = {
         },
         ErrorDetailList = {
             type = "list",
-            member_type = "structure",
+            member = M.ErrorDetail,
         },
     },
 }
@@ -2646,12 +2590,8 @@ M.RegistrantVerificationDetails = {
 M.VerificationDetails = {
     type = "union",
     members = {
-        BusinessVerificationDetails = {
-            type = "structure",
-        },
-        RegistrantVerificationDetails = {
-            type = "structure",
-        },
+        BusinessVerificationDetails = M.BusinessVerificationDetails,
+        RegistrantVerificationDetails = M.RegistrantVerificationDetails,
     },
 }
 
@@ -2661,9 +2601,7 @@ M.StartVerificationInput = {
         ClientToken = {
             type = "string",
         },
-        VerificationDetails = {
-            type = "union",
-        },
+        VerificationDetails = M.VerificationDetails,
     },
 }
 
@@ -2685,12 +2623,9 @@ M.StartVerificationOutput = {
         VerificationStatusReason = {
             type = "string",
         },
-        VerificationResponseDetails = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        VerificationResponseDetails = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VerificationResponseDetails }),
         StartedAt = {
             type = "timestamp",
             traits = {
@@ -2714,7 +2649,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -2737,7 +2672,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },

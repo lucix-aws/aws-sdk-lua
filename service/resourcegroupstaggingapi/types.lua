@@ -5,11 +5,11 @@ M.ComplianceDetails = {
     members = {
         NoncompliantKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         KeysWithNoncompliantValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ComplianceStatus = {
             type = "boolean",
@@ -98,7 +98,10 @@ M.FailureInfo = {
     type = "structure",
     members = {
         StatusCode = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         ErrorCode = {
             type = "string",
@@ -120,26 +123,26 @@ M.GetComplianceSummaryInput = {
     members = {
         TargetIdFilters = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RegionFilters = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ResourceTypeFilters = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TagKeyFilters = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         GroupBy = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         PaginationToken = {
             type = "string",
@@ -172,7 +175,10 @@ M.Summary = {
             type = "string",
         },
         NonCompliantResources = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -182,7 +188,7 @@ M.GetComplianceSummaryOutput = {
     members = {
         SummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.Summary,
         },
         PaginationToken = {
             type = "string",
@@ -198,7 +204,7 @@ M.TagFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -211,17 +217,17 @@ M.GetResourcesInput = {
         },
         TagFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.TagFilter,
         },
         ResourcesPerPage = {
-            type = "number",
+            type = "integer",
         },
         TagsPerPage = {
-            type = "number",
+            type = "integer",
         },
         ResourceTypeFilters = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IncludeComplianceDetails = {
             type = "boolean",
@@ -231,7 +237,7 @@ M.GetResourcesInput = {
         },
         ResourceARNList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -262,11 +268,9 @@ M.ResourceTagMapping = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        ComplianceDetails = {
-            type = "structure",
-        },
+        ComplianceDetails = M.ComplianceDetails,
     },
 }
 
@@ -278,7 +282,7 @@ M.GetResourcesOutput = {
         },
         ResourceTagMappingList = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTagMapping,
         },
     },
 }
@@ -310,7 +314,7 @@ M.GetTagKeysOutput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -338,7 +342,7 @@ M.GetTagValuesOutput = {
         },
         TagValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -350,7 +354,7 @@ M.ListRequiredTagsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -363,11 +367,11 @@ M.RequiredTag = {
         },
         CloudFormationResourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ReportingTagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -377,7 +381,7 @@ M.ListRequiredTagsOutput = {
     members = {
         RequiredTags = {
             type = "list",
-            member_type = "structure",
+            member = M.RequiredTag,
         },
         NextToken = {
             type = "string",
@@ -406,15 +410,15 @@ M.TagResourcesInput = {
     members = {
         ResourceARNList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -427,8 +431,8 @@ M.TagResourcesOutput = {
     members = {
         FailedResourcesMap = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.FailureInfo,
         },
     },
 }
@@ -438,14 +442,14 @@ M.UntagResourcesInput = {
     members = {
         ResourceARNList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -458,8 +462,8 @@ M.UntagResourcesOutput = {
     members = {
         FailedResourcesMap = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.FailureInfo,
         },
     },
 }

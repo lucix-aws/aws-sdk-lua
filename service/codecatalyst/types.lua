@@ -148,7 +148,7 @@ M.ListAccessTokensInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -185,7 +185,7 @@ M.ListAccessTokensOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessTokenSummary,
             traits = {
                 required = true,
             },
@@ -238,9 +238,7 @@ M.GetUserDetailsOutput = {
         displayName = {
             type = "string",
         },
-        primaryEmail = {
-            type = "structure",
-        },
+        primaryEmail = M.EmailAddress,
         version = {
             type = "string",
         },
@@ -306,7 +304,7 @@ M.ListEventLogsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -416,24 +414,15 @@ M.EventLogEntry = {
                 required = true,
             },
         },
-        userIdentity = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        projectInformation = {
-            type = "structure",
-        },
+        userIdentity = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.UserIdentity }),
+        projectInformation = M.ProjectInformation,
         requestId = {
             type = "string",
         },
-        requestPayload = {
-            type = "structure",
-        },
-        responsePayload = {
-            type = "structure",
-        },
+        requestPayload = M.EventPayload,
+        responsePayload = M.EventPayload,
         errorCode = {
             type = "string",
         },
@@ -454,7 +443,7 @@ M.ListEventLogsOutput = {
         },
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.EventLogEntry,
             traits = {
                 required = true,
             },
@@ -510,7 +499,7 @@ M.Filter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -536,13 +525,13 @@ M.ListDevEnvironmentsInput = {
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -570,7 +559,7 @@ M.PersistentStorage = {
     type = "structure",
     members = {
         sizeInGiB = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -643,7 +632,7 @@ M.DevEnvironmentSummary = {
         },
         repositories = {
             type = "list",
-            member_type = "structure",
+            member = M.DevEnvironmentRepositorySummary,
             traits = {
                 required = true,
             },
@@ -653,7 +642,7 @@ M.DevEnvironmentSummary = {
         },
         ides = {
             type = "list",
-            member_type = "structure",
+            member = M.Ide,
         },
         instanceType = {
             type = "string",
@@ -662,17 +651,15 @@ M.DevEnvironmentSummary = {
             },
         },
         inactivityTimeoutMinutes = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
-        persistentStorage = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        persistentStorage = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PersistentStorage }),
         vpcConnectionName = {
             type = "string",
         },
@@ -684,7 +671,7 @@ M.ListDevEnvironmentsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.DevEnvironmentSummary,
             traits = {
                 required = true,
             },
@@ -736,7 +723,7 @@ M.ListSpacesOutput = {
         },
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.SpaceSummary,
         },
     },
 }
@@ -841,7 +828,7 @@ M.PersistentStorageConfiguration = {
     type = "structure",
     members = {
         sizeInGiB = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -883,7 +870,7 @@ M.CreateDevEnvironmentInput = {
         },
         repositories = {
             type = "list",
-            member_type = "structure",
+            member = M.RepositoryInput,
         },
         clientToken = {
             type = "string",
@@ -893,7 +880,7 @@ M.CreateDevEnvironmentInput = {
         },
         ides = {
             type = "list",
-            member_type = "structure",
+            member = M.IdeConfiguration,
         },
         instanceType = {
             type = "string",
@@ -902,14 +889,14 @@ M.CreateDevEnvironmentInput = {
             },
         },
         inactivityTimeoutMinutes = {
-            type = "number",
-        },
-        persistentStorage = {
-            type = "structure",
+            type = "integer",
             traits = {
-                required = true,
+                default = 0,
             },
         },
+        persistentStorage = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PersistentStorageConfiguration }),
         vpcConnectionName = {
             type = "string",
         },
@@ -1066,7 +1053,7 @@ M.GetDevEnvironmentOutput = {
         },
         repositories = {
             type = "list",
-            member_type = "structure",
+            member = M.DevEnvironmentRepositorySummary,
             traits = {
                 required = true,
             },
@@ -1076,7 +1063,7 @@ M.GetDevEnvironmentOutput = {
         },
         ides = {
             type = "list",
-            member_type = "structure",
+            member = M.Ide,
         },
         instanceType = {
             type = "string",
@@ -1085,17 +1072,15 @@ M.GetDevEnvironmentOutput = {
             },
         },
         inactivityTimeoutMinutes = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
-        persistentStorage = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        persistentStorage = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PersistentStorage }),
         vpcConnectionName = {
             type = "string",
         },
@@ -1130,7 +1115,7 @@ M.ListDevEnvironmentSessionsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1177,7 +1162,7 @@ M.ListDevEnvironmentSessionsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.DevEnvironmentSessionSummary,
             traits = {
                 required = true,
             },
@@ -1214,13 +1199,16 @@ M.StartDevEnvironmentInput = {
         },
         ides = {
             type = "list",
-            member_type = "structure",
+            member = M.IdeConfiguration,
         },
         instanceType = {
             type = "string",
         },
         inactivityTimeoutMinutes = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1266,7 +1254,7 @@ M.ExecuteCommandSessionConfiguration = {
         },
         arguments = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1285,9 +1273,7 @@ M.DevEnvironmentSessionConfiguration = {
                 required = true,
             },
         },
-        executeCommandSessionConfiguration = {
-            type = "structure",
-        },
+        executeCommandSessionConfiguration = M.ExecuteCommandSessionConfiguration,
     },
 }
 
@@ -1315,12 +1301,9 @@ M.StartDevEnvironmentSessionInput = {
                 required = true,
             },
         },
-        sessionConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        sessionConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DevEnvironmentSessionConfiguration }),
     },
 }
 
@@ -1345,12 +1328,9 @@ M.DevEnvironmentAccessDetails = {
 M.StartDevEnvironmentSessionOutput = {
     type = "structure",
     members = {
-        accessDetails = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        accessDetails = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DevEnvironmentAccessDetails }),
         sessionId = {
             type = "string",
         },
@@ -1525,13 +1505,16 @@ M.UpdateDevEnvironmentInput = {
         },
         ides = {
             type = "list",
-            member_type = "structure",
+            member = M.IdeConfiguration,
         },
         instanceType = {
             type = "string",
         },
         inactivityTimeoutMinutes = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         clientToken = {
             type = "string",
@@ -1565,13 +1548,16 @@ M.UpdateDevEnvironmentOutput = {
         },
         ides = {
             type = "list",
-            member_type = "structure",
+            member = M.IdeConfiguration,
         },
         instanceType = {
             type = "string",
         },
         inactivityTimeoutMinutes = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         clientToken = {
             type = "string",
@@ -1645,7 +1631,7 @@ M.ProjectListFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1670,11 +1656,11 @@ M.ListProjectsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.ProjectListFilter,
         },
     },
 }
@@ -1705,7 +1691,7 @@ M.ListProjectsOutput = {
         },
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.ProjectSummary,
         },
     },
 }
@@ -1944,7 +1930,7 @@ M.ListSourceRepositoriesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1987,7 +1973,7 @@ M.ListSourceRepositoriesOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.ListSourceRepositoriesItem,
         },
         nextToken = {
             type = "string",
@@ -2081,7 +2067,7 @@ M.ListSourceRepositoryBranchesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2115,7 +2101,7 @@ M.ListSourceRepositoryBranchesOutput = {
         },
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.ListSourceRepositoryBranchesItem,
             traits = {
                 required = true,
             },
@@ -2247,12 +2233,9 @@ M.GetWorkflowOutput = {
         sourceBranchName = {
             type = "string",
         },
-        definition = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        definition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkflowDefinition }),
         createdTime = {
             type = "timestamp",
             traits = {
@@ -2310,14 +2293,14 @@ M.ListWorkflowsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
         },
         sortBy = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkflowSortCriteria,
         },
     },
 }
@@ -2361,12 +2344,9 @@ M.WorkflowSummary = {
                 required = true,
             },
         },
-        definition = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        definition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkflowDefinitionSummary }),
         createdTime = {
             type = "timestamp",
             traits = {
@@ -2404,7 +2384,7 @@ M.ListWorkflowsOutput = {
         },
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkflowSummary,
         },
     },
 }
@@ -2489,7 +2469,7 @@ M.GetWorkflowRunOutput = {
         },
         statusReasons = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkflowRunStatusReason,
         },
         startTime = {
             type = "timestamp",
@@ -2548,14 +2528,14 @@ M.ListWorkflowRunsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
         },
         sortBy = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkflowRunSortCriteria,
         },
     },
 }
@@ -2589,7 +2569,7 @@ M.WorkflowRunSummary = {
         },
         statusReasons = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkflowRunStatusReason,
         },
         startTime = {
             type = "timestamp",
@@ -2622,7 +2602,7 @@ M.ListWorkflowRunsOutput = {
         },
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkflowRunSummary,
         },
     },
 }

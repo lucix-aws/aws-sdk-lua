@@ -66,9 +66,7 @@ M.AmexAttributes = {
                 required = true,
             },
         },
-        CurrentPinAttributes = {
-            type = "structure",
-        },
+        CurrentPinAttributes = M.CurrentPinAttributes,
     },
 }
 
@@ -141,12 +139,8 @@ M.KekValidationResponse = {
 M.As2805KekValidationType = {
     type = "union",
     members = {
-        KekValidationRequest = {
-            type = "structure",
-        },
-        KekValidationResponse = {
-            type = "structure",
-        },
+        KekValidationRequest = M.KekValidationRequest,
+        KekValidationResponse = M.KekValidationResponse,
     },
 }
 
@@ -301,27 +295,13 @@ M.DynamicCardVerificationValue = {
 M.CardGenerationAttributes = {
     type = "union",
     members = {
-        AmexCardSecurityCodeVersion1 = {
-            type = "structure",
-        },
-        AmexCardSecurityCodeVersion2 = {
-            type = "structure",
-        },
-        CardVerificationValue1 = {
-            type = "structure",
-        },
-        CardVerificationValue2 = {
-            type = "structure",
-        },
-        CardHolderVerificationValue = {
-            type = "structure",
-        },
-        DynamicCardVerificationCode = {
-            type = "structure",
-        },
-        DynamicCardVerificationValue = {
-            type = "structure",
-        },
+        AmexCardSecurityCodeVersion1 = M.AmexCardSecurityCodeVersion1,
+        AmexCardSecurityCodeVersion2 = M.AmexCardSecurityCodeVersion2,
+        CardVerificationValue1 = M.CardVerificationValue1,
+        CardVerificationValue2 = M.CardVerificationValue2,
+        CardHolderVerificationValue = M.CardHolderVerificationValue,
+        DynamicCardVerificationCode = M.DynamicCardVerificationCode,
+        DynamicCardVerificationValue = M.DynamicCardVerificationValue,
     },
 }
 
@@ -352,30 +332,14 @@ M.DiscoverDynamicCardVerificationCode = {
 M.CardVerificationAttributes = {
     type = "union",
     members = {
-        AmexCardSecurityCodeVersion1 = {
-            type = "structure",
-        },
-        AmexCardSecurityCodeVersion2 = {
-            type = "structure",
-        },
-        CardVerificationValue1 = {
-            type = "structure",
-        },
-        CardVerificationValue2 = {
-            type = "structure",
-        },
-        CardHolderVerificationValue = {
-            type = "structure",
-        },
-        DynamicCardVerificationCode = {
-            type = "structure",
-        },
-        DynamicCardVerificationValue = {
-            type = "structure",
-        },
-        DiscoverDynamicCardVerificationCode = {
-            type = "structure",
-        },
+        AmexCardSecurityCodeVersion1 = M.AmexCardSecurityCodeVersion1,
+        AmexCardSecurityCodeVersion2 = M.AmexCardSecurityCodeVersion2,
+        CardVerificationValue1 = M.CardVerificationValue1,
+        CardVerificationValue2 = M.CardVerificationValue2,
+        CardHolderVerificationValue = M.CardHolderVerificationValue,
+        DynamicCardVerificationCode = M.DynamicCardVerificationCode,
+        DynamicCardVerificationValue = M.DynamicCardVerificationValue,
+        DiscoverDynamicCardVerificationCode = M.DiscoverDynamicCardVerificationCode,
     },
 }
 
@@ -409,12 +373,8 @@ M.CryptogramVerificationArpcMethod2 = {
 M.CryptogramAuthResponse = {
     type = "union",
     members = {
-        ArpcMethod1 = {
-            type = "structure",
-        },
-        ArpcMethod2 = {
-            type = "structure",
-        },
+        ArpcMethod1 = M.CryptogramVerificationArpcMethod1,
+        ArpcMethod2 = M.CryptogramVerificationArpcMethod2,
     },
 }
 
@@ -539,18 +499,10 @@ M.SymmetricEncryptionAttributes = {
 M.EncryptionDecryptionAttributes = {
     type = "union",
     members = {
-        Symmetric = {
-            type = "structure",
-        },
-        Asymmetric = {
-            type = "structure",
-        },
-        Dukpt = {
-            type = "structure",
-        },
-        Emv = {
-            type = "structure",
-        },
+        Symmetric = M.SymmetricEncryptionAttributes,
+        Asymmetric = M.AsymmetricEncryptionAttributes,
+        Dukpt = M.DukptEncryptionAttributes,
+        Emv = M.EmvEncryptionAttributes,
     },
 }
 
@@ -620,21 +572,16 @@ M.WrappedKeyMaterial = {
         Tr31KeyBlock = {
             type = "string",
         },
-        DiffieHellmanSymmetricKey = {
-            type = "structure",
-        },
+        DiffieHellmanSymmetricKey = M.EcdhDerivationAttributes,
     },
 }
 
 M.WrappedKey = {
     type = "structure",
     members = {
-        WrappedKeyMaterial = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        WrappedKeyMaterial = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WrappedKeyMaterial }),
         KeyCheckValueAlgorithm = {
             type = "string",
         },
@@ -657,15 +604,10 @@ M.DecryptDataInput = {
                 required = true,
             },
         },
-        DecryptionAttributes = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        WrappedKey = {
-            type = "structure",
-        },
+        DecryptionAttributes = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EncryptionDecryptionAttributes }),
+        WrappedKey = M.WrappedKey,
     },
 }
 
@@ -753,7 +695,7 @@ M.ValidationException = {
         },
         fieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -909,30 +851,18 @@ M.VisaAttributes = {
                 required = true,
             },
         },
-        CurrentPinAttributes = {
-            type = "structure",
-        },
+        CurrentPinAttributes = M.CurrentPinAttributes,
     },
 }
 
 M.DerivationMethodAttributes = {
     type = "union",
     members = {
-        EmvCommon = {
-            type = "structure",
-        },
-        Amex = {
-            type = "structure",
-        },
-        Visa = {
-            type = "structure",
-        },
-        Emv2000 = {
-            type = "structure",
-        },
-        Mastercard = {
-            type = "structure",
-        },
+        EmvCommon = M.EmvCommonAttributes,
+        Amex = M.AmexAttributes,
+        Visa = M.VisaAttributes,
+        Emv2000 = M.Emv2000Attributes,
+        Mastercard = M.MasterCardAttributes,
     },
 }
 
@@ -997,15 +927,10 @@ M.EncryptDataInput = {
                 required = true,
             },
         },
-        EncryptionAttributes = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        WrappedKey = {
-            type = "structure",
-        },
+        EncryptionAttributes = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EncryptionDecryptionAttributes }),
+        WrappedKey = M.WrappedKey,
     },
 }
 
@@ -1044,12 +969,9 @@ M.GenerateAs2805KekValidationInput = {
                 required = true,
             },
         },
-        KekValidationType = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        KekValidationType = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.As2805KekValidationType }),
         RandomKeySendVariantMask = {
             type = "string",
             traits = {
@@ -1104,14 +1026,11 @@ M.GenerateCardValidationDataInput = {
                 required = true,
             },
         },
-        GenerationAttributes = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        GenerationAttributes = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CardGenerationAttributes }),
         ValidationDataLength = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1220,12 +1139,9 @@ M.MacAlgorithmEmv = {
                 required = true,
             },
         },
-        SessionKeyDerivationValue = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        SessionKeyDerivationValue = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SessionKeyDerivationValue }),
     },
 }
 
@@ -1235,18 +1151,10 @@ M.MacAttributes = {
         Algorithm = {
             type = "string",
         },
-        EmvMac = {
-            type = "structure",
-        },
-        DukptIso9797Algorithm1 = {
-            type = "structure",
-        },
-        DukptIso9797Algorithm3 = {
-            type = "structure",
-        },
-        DukptCmac = {
-            type = "structure",
-        },
+        EmvMac = M.MacAlgorithmEmv,
+        DukptIso9797Algorithm1 = M.MacAlgorithmDukpt,
+        DukptIso9797Algorithm3 = M.MacAlgorithmDukpt,
+        DukptCmac = M.MacAlgorithmDukpt,
     },
 }
 
@@ -1265,14 +1173,11 @@ M.GenerateMacInput = {
                 required = true,
             },
         },
-        GenerationAttributes = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        GenerationAttributes = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MacAttributes }),
         MacLength = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1346,12 +1251,9 @@ M.GenerateMacEmvPinChangeInput = {
                 required = true,
             },
         },
-        DerivationMethodAttributes = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        DerivationMethodAttributes = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DerivationMethodAttributes }),
     },
 }
 
@@ -1430,9 +1332,7 @@ M.GenerateMacEmvPinChangeOutput = {
                 required = true,
             },
         },
-        VisaAmexDerivationOutputs = {
-            type = "structure",
-        },
+        VisaAmexDerivationOutputs = M.VisaAmexDerivationOutputs,
     },
 }
 
@@ -1548,7 +1448,7 @@ M.VisaPin = {
     type = "structure",
     members = {
         PinVerificationKeyIndex = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1566,7 +1466,7 @@ M.VisaPinVerificationValue = {
             },
         },
         PinVerificationKeyIndex = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1577,24 +1477,12 @@ M.VisaPinVerificationValue = {
 M.PinGenerationAttributes = {
     type = "union",
     members = {
-        VisaPin = {
-            type = "structure",
-        },
-        VisaPinVerificationValue = {
-            type = "structure",
-        },
-        Ibm3624PinOffset = {
-            type = "structure",
-        },
-        Ibm3624NaturalPin = {
-            type = "structure",
-        },
-        Ibm3624RandomPin = {
-            type = "structure",
-        },
-        Ibm3624PinFromOffset = {
-            type = "structure",
-        },
+        VisaPin = M.VisaPin,
+        VisaPinVerificationValue = M.VisaPinVerificationValue,
+        Ibm3624PinOffset = M.Ibm3624PinOffset,
+        Ibm3624NaturalPin = M.Ibm3624NaturalPin,
+        Ibm3624RandomPin = M.Ibm3624RandomPin,
+        Ibm3624PinFromOffset = M.Ibm3624PinFromOffset,
     },
 }
 
@@ -1620,14 +1508,11 @@ M.GeneratePinDataInput = {
                 required = true,
             },
         },
-        GenerationAttributes = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        GenerationAttributes = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PinGenerationAttributes }),
         PinDataLength = {
-            type = "number",
+            type = "integer",
         },
         PrimaryAccountNumber = {
             type = "string",
@@ -1638,9 +1523,7 @@ M.GeneratePinDataInput = {
                 required = true,
             },
         },
-        EncryptionWrappedKey = {
-            type = "structure",
-        },
+        EncryptionWrappedKey = M.WrappedKey,
     },
 }
 
@@ -1689,12 +1572,9 @@ M.GeneratePinDataOutput = {
                 required = true,
             },
         },
-        PinData = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        PinData = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PinData }),
     },
 }
 
@@ -1767,12 +1647,9 @@ M.IncomingDiffieHellmanTr31KeyBlock = {
                 required = true,
             },
         },
-        DerivationData = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        DerivationData = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DiffieHellmanDerivationData }),
         WrappedKeyBlock = {
             type = "string",
             traits = {
@@ -1785,9 +1662,7 @@ M.IncomingDiffieHellmanTr31KeyBlock = {
 M.IncomingKeyMaterial = {
     type = "union",
     members = {
-        DiffieHellmanTr31KeyBlock = {
-            type = "structure",
-        },
+        DiffieHellmanTr31KeyBlock = M.IncomingDiffieHellmanTr31KeyBlock,
     },
 }
 
@@ -1806,21 +1681,15 @@ M.OutgoingTr31KeyBlock = {
 M.OutgoingKeyMaterial = {
     type = "union",
     members = {
-        Tr31KeyBlock = {
-            type = "structure",
-        },
+        Tr31KeyBlock = M.OutgoingTr31KeyBlock,
     },
 }
 
 M.ReEncryptionAttributes = {
     type = "union",
     members = {
-        Symmetric = {
-            type = "structure",
-        },
-        Dukpt = {
-            type = "structure",
-        },
+        Symmetric = M.SymmetricEncryptionAttributes,
+        Dukpt = M.DukptEncryptionAttributes,
     },
 }
 
@@ -1846,24 +1715,14 @@ M.ReEncryptDataInput = {
                 required = true,
             },
         },
-        IncomingEncryptionAttributes = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        OutgoingEncryptionAttributes = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        IncomingWrappedKey = {
-            type = "structure",
-        },
-        OutgoingWrappedKey = {
-            type = "structure",
-        },
+        IncomingEncryptionAttributes = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ReEncryptionAttributes }),
+        OutgoingEncryptionAttributes = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ReEncryptionAttributes }),
+        IncomingWrappedKey = M.WrappedKey,
+        OutgoingWrappedKey = M.WrappedKey,
     },
 }
 
@@ -1894,18 +1753,12 @@ M.ReEncryptDataOutput = {
 M.TranslateKeyMaterialInput = {
     type = "structure",
     members = {
-        IncomingKeyMaterial = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        OutgoingKeyMaterial = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        IncomingKeyMaterial = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IncomingKeyMaterial }),
+        OutgoingKeyMaterial = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OutgoingKeyMaterial }),
         KeyCheckValueAlgorithm = {
             type = "string",
         },
@@ -1945,12 +1798,9 @@ M.WrappedWorkingKey = {
 M.TranslateKeyMaterialOutput = {
     type = "structure",
     members = {
-        WrappedKey = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        WrappedKey = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WrappedWorkingKey }),
     },
 }
 
@@ -1985,21 +1835,11 @@ M.TranslationPinDataIsoFormat1 = {
 M.TranslationIsoFormats = {
     type = "union",
     members = {
-        IsoFormat0 = {
-            type = "structure",
-        },
-        IsoFormat1 = {
-            type = "structure",
-        },
-        IsoFormat3 = {
-            type = "structure",
-        },
-        IsoFormat4 = {
-            type = "structure",
-        },
-        As2805Format0 = {
-            type = "structure",
-        },
+        IsoFormat0 = M.TranslationPinDataIsoFormat034,
+        IsoFormat1 = M.TranslationPinDataIsoFormat1,
+        IsoFormat3 = M.TranslationPinDataIsoFormat034,
+        IsoFormat4 = M.TranslationPinDataIsoFormat034,
+        As2805Format0 = M.TranslationPinDataAs2805Format0,
     },
 }
 
@@ -2018,39 +1858,23 @@ M.TranslatePinDataInput = {
                 required = true,
             },
         },
-        IncomingTranslationAttributes = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        OutgoingTranslationAttributes = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        IncomingTranslationAttributes = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TranslationIsoFormats }),
+        OutgoingTranslationAttributes = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TranslationIsoFormats }),
         EncryptedPinBlock = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        IncomingDukptAttributes = {
-            type = "structure",
-        },
-        OutgoingDukptAttributes = {
-            type = "structure",
-        },
-        IncomingWrappedKey = {
-            type = "structure",
-        },
-        OutgoingWrappedKey = {
-            type = "structure",
-        },
-        IncomingAs2805Attributes = {
-            type = "structure",
-        },
+        IncomingDukptAttributes = M.DukptDerivationAttributes,
+        OutgoingDukptAttributes = M.DukptDerivationAttributes,
+        IncomingWrappedKey = M.WrappedKey,
+        OutgoingWrappedKey = M.WrappedKey,
+        IncomingAs2805Attributes = M.As2805PekDerivationAttributes,
     },
 }
 
@@ -2221,21 +2045,11 @@ M.SessionKeyVisa = {
 M.SessionKeyDerivation = {
     type = "union",
     members = {
-        EmvCommon = {
-            type = "structure",
-        },
-        Mastercard = {
-            type = "structure",
-        },
-        Emv2000 = {
-            type = "structure",
-        },
-        Amex = {
-            type = "structure",
-        },
-        Visa = {
-            type = "structure",
-        },
+        EmvCommon = M.SessionKeyEmvCommon,
+        Mastercard = M.SessionKeyMastercard,
+        Emv2000 = M.SessionKeyEmv2000,
+        Amex = M.SessionKeyAmex,
+        Visa = M.SessionKeyVisa,
     },
 }
 
@@ -2266,15 +2080,10 @@ M.VerifyAuthRequestCryptogramInput = {
                 required = true,
             },
         },
-        SessionKeyDerivationAttributes = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        AuthResponseAttributes = {
-            type = "union",
-        },
+        SessionKeyDerivationAttributes = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SessionKeyDerivation }),
+        AuthResponseAttributes = M.CryptogramAuthResponse,
     },
 }
 
@@ -2314,12 +2123,9 @@ M.VerifyCardValidationDataInput = {
                 required = true,
             },
         },
-        VerificationAttributes = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        VerificationAttributes = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CardVerificationAttributes }),
         ValidationData = {
             type = "string",
             traits = {
@@ -2368,14 +2174,11 @@ M.VerifyMacInput = {
                 required = true,
             },
         },
-        VerificationAttributes = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        VerificationAttributes = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MacAttributes }),
         MacLength = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2402,7 +2205,7 @@ M.VisaPinVerification = {
     type = "structure",
     members = {
         PinVerificationKeyIndex = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -2419,12 +2222,8 @@ M.VisaPinVerification = {
 M.PinVerificationAttributes = {
     type = "union",
     members = {
-        VisaPin = {
-            type = "structure",
-        },
-        Ibm3624Pin = {
-            type = "structure",
-        },
+        VisaPin = M.VisaPinVerification,
+        Ibm3624Pin = M.Ibm3624PinVerification,
     },
 }
 
@@ -2443,12 +2242,9 @@ M.VerifyPinDataInput = {
                 required = true,
             },
         },
-        VerificationAttributes = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        VerificationAttributes = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PinVerificationAttributes }),
         EncryptedPinBlock = {
             type = "string",
             traits = {
@@ -2465,14 +2261,10 @@ M.VerifyPinDataInput = {
             },
         },
         PinDataLength = {
-            type = "number",
+            type = "integer",
         },
-        DukptAttributes = {
-            type = "structure",
-        },
-        EncryptionWrappedKey = {
-            type = "structure",
-        },
+        DukptAttributes = M.DukptAttributes,
+        EncryptionWrappedKey = M.WrappedKey,
     },
 }
 

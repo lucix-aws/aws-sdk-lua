@@ -22,7 +22,7 @@ M.AggregationConfig = {
             type = "string",
         },
         targetFileSize = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -92,6 +92,9 @@ M.AuthParameter = {
         },
         isRequired = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         label = {
             type = "string",
@@ -101,10 +104,13 @@ M.AuthParameter = {
         },
         isSensitiveField = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         connectorSuppliedValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -117,7 +123,7 @@ M.CustomAuthConfig = {
         },
         authParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.AuthParameter,
         },
     },
 }
@@ -135,6 +141,9 @@ M.OAuth2CustomParameter = {
         },
         isRequired = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         label = {
             type = "string",
@@ -144,10 +153,13 @@ M.OAuth2CustomParameter = {
         },
         isSensitiveField = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         connectorSuppliedValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         type = {
             type = "string",
@@ -166,23 +178,23 @@ M.OAuth2Defaults = {
     members = {
         oauthScopes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         tokenUrls = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         authCodeUrls = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         oauth2GrantTypesSupported = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         oauth2CustomProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.OAuth2CustomParameter,
         },
     },
 }
@@ -192,22 +204,32 @@ M.AuthenticationConfig = {
     members = {
         isBasicAuthSupported = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         isApiKeyAuthSupported = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         isOAuth2Supported = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         isCustomAuthSupported = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        oAuth2Defaults = {
-            type = "structure",
-        },
+        oAuth2Defaults = M.OAuth2Defaults,
         customAuthConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomAuthConfig,
         },
     },
 }
@@ -248,7 +270,7 @@ M.CancelFlowExecutionsInput = {
         },
         executionIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -258,7 +280,7 @@ M.CancelFlowExecutionsOutput = {
     members = {
         invalidExecutions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -353,7 +375,7 @@ M.GoogleAnalyticsMetadata = {
     members = {
         oAuthScopes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -363,7 +385,7 @@ M.HoneycodeMetadata = {
     members = {
         oAuthScopes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -399,15 +421,15 @@ M.SalesforceMetadata = {
     members = {
         oAuthScopes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         dataTransferApis = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         oauth2GrantTypesSupported = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -429,7 +451,7 @@ M.SlackMetadata = {
     members = {
         oAuthScopes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -439,7 +461,7 @@ M.SnowflakeMetadata = {
     members = {
         supportedRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -461,7 +483,7 @@ M.ZendeskMetadata = {
     members = {
         oAuthScopes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -469,72 +491,28 @@ M.ZendeskMetadata = {
 M.ConnectorMetadata = {
     type = "structure",
     members = {
-        Amplitude = {
-            type = "structure",
-        },
-        Datadog = {
-            type = "structure",
-        },
-        Dynatrace = {
-            type = "structure",
-        },
-        GoogleAnalytics = {
-            type = "structure",
-        },
-        InforNexus = {
-            type = "structure",
-        },
-        Marketo = {
-            type = "structure",
-        },
-        Redshift = {
-            type = "structure",
-        },
-        S3 = {
-            type = "structure",
-        },
-        Salesforce = {
-            type = "structure",
-        },
-        ServiceNow = {
-            type = "structure",
-        },
-        Singular = {
-            type = "structure",
-        },
-        Slack = {
-            type = "structure",
-        },
-        Snowflake = {
-            type = "structure",
-        },
-        Trendmicro = {
-            type = "structure",
-        },
-        Veeva = {
-            type = "structure",
-        },
-        Zendesk = {
-            type = "structure",
-        },
-        EventBridge = {
-            type = "structure",
-        },
-        Upsolver = {
-            type = "structure",
-        },
-        CustomerProfiles = {
-            type = "structure",
-        },
-        Honeycode = {
-            type = "structure",
-        },
-        SAPOData = {
-            type = "structure",
-        },
-        Pardot = {
-            type = "structure",
-        },
+        Amplitude = M.AmplitudeMetadata,
+        Datadog = M.DatadogMetadata,
+        Dynatrace = M.DynatraceMetadata,
+        GoogleAnalytics = M.GoogleAnalyticsMetadata,
+        InforNexus = M.InforNexusMetadata,
+        Marketo = M.MarketoMetadata,
+        Redshift = M.RedshiftMetadata,
+        S3 = M.S3Metadata,
+        Salesforce = M.SalesforceMetadata,
+        ServiceNow = M.ServiceNowMetadata,
+        Singular = M.SingularMetadata,
+        Slack = M.SlackMetadata,
+        Snowflake = M.SnowflakeMetadata,
+        Trendmicro = M.TrendmicroMetadata,
+        Veeva = M.VeevaMetadata,
+        Zendesk = M.ZendeskMetadata,
+        EventBridge = M.EventBridgeMetadata,
+        Upsolver = M.UpsolverMetadata,
+        CustomerProfiles = M.CustomerProfilesMetadata,
+        Honeycode = M.HoneycodeMetadata,
+        SAPOData = M.SAPODataMetadata,
+        Pardot = M.PardotMetadata,
     },
 }
 
@@ -553,9 +531,7 @@ M.LambdaConnectorProvisioningConfig = {
 M.ConnectorProvisioningConfig = {
     type = "structure",
     members = {
-        lambda = {
-            type = "structure",
-        },
+        lambda = M.LambdaConnectorProvisioningConfig,
     },
 }
 
@@ -574,6 +550,9 @@ M.ConnectorRuntimeSetting = {
         },
         isRequired = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         label = {
             type = "string",
@@ -586,7 +565,7 @@ M.ConnectorRuntimeSetting = {
         },
         connectorSuppliedValueOptions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -692,31 +671,41 @@ M.ConnectorConfiguration = {
     members = {
         canUseAsSource = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         canUseAsDestination = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         supportedDestinationConnectors = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         supportedSchedulingFrequencies = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         isPrivateLinkEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         isPrivateLinkEndpointUrlRequired = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         supportedTriggerTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        connectorMetadata = {
-            type = "structure",
-        },
+        connectorMetadata = M.ConnectorMetadata,
         connectorType = {
             type = "string",
         },
@@ -740,33 +729,29 @@ M.ConnectorConfiguration = {
         },
         connectorModes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        authenticationConfig = {
-            type = "structure",
-        },
+        authenticationConfig = M.AuthenticationConfig,
         connectorRuntimeSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.ConnectorRuntimeSetting,
         },
         supportedApiVersions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         supportedOperators = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         supportedWriteOperations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         connectorProvisioningType = {
             type = "string",
         },
-        connectorProvisioningConfig = {
-            type = "structure",
-        },
+        connectorProvisioningConfig = M.ConnectorProvisioningConfig,
         logoURL = {
             type = "string",
         },
@@ -778,11 +763,11 @@ M.ConnectorConfiguration = {
         },
         supportedDataTransferTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         supportedDataTransferApis = {
             type = "list",
-            member_type = "structure",
+            member = M.DataTransferApi,
         },
     },
 }
@@ -822,11 +807,11 @@ M.ConnectorDetail = {
         },
         connectorModes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         supportedDataTransferTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -845,6 +830,9 @@ M.ConnectorEntity = {
         },
         hasNestedEntities = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -854,22 +842,37 @@ M.DestinationFieldProperties = {
     members = {
         isCreatable = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         isNullable = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         isUpsertable = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         isUpdatable = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         isDefaultedOnCreate = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         supportedWriteOperations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -879,12 +882,21 @@ M.SourceFieldProperties = {
     members = {
         isRetrievable = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         isQueryable = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         isTimestampFieldForIncrementalQueries = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -893,10 +905,16 @@ M.Range = {
     type = "structure",
     members = {
         maximum = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         minimum = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -936,14 +954,14 @@ M.FieldTypeDetails = {
         },
         filterOperators = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         supportedValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         valueRegexPattern = {
             type = "string",
@@ -951,24 +969,17 @@ M.FieldTypeDetails = {
         supportedDateFormat = {
             type = "string",
         },
-        fieldValueRange = {
-            type = "structure",
-        },
-        fieldLengthRange = {
-            type = "structure",
-        },
+        fieldValueRange = M.Range,
+        fieldLengthRange = M.Range,
     },
 }
 
 M.SupportedFieldTypeDetails = {
     type = "structure",
     members = {
-        v1 = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        v1 = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FieldTypeDetails }),
     },
 }
 
@@ -989,29 +1000,29 @@ M.ConnectorEntityField = {
         },
         isPrimaryKey = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         defaultValue = {
             type = "string",
         },
         isDeprecated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        supportedFieldTypeDetails = {
-            type = "structure",
-        },
+        supportedFieldTypeDetails = M.SupportedFieldTypeDetails,
         description = {
             type = "string",
         },
-        sourceProperties = {
-            type = "structure",
-        },
-        destinationProperties = {
-            type = "structure",
-        },
+        sourceProperties = M.SourceFieldProperties,
+        destinationProperties = M.DestinationFieldProperties,
         customProperties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1389,8 +1400,8 @@ M.OAuth2Properties = {
         },
         tokenUrlCustomProperties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1400,12 +1411,10 @@ M.CustomConnectorProfileProperties = {
     members = {
         profileProperties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        oAuth2Properties = {
-            type = "structure",
-        },
+        oAuth2Properties = M.OAuth2Properties,
     },
 }
 
@@ -1473,6 +1482,9 @@ M.PardotConnectorProfileProperties = {
         },
         isSandboxEnvironment = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         businessUnitId = {
             type = "string",
@@ -1506,6 +1518,9 @@ M.RedshiftConnectorProfileProperties = {
         },
         isRedshiftServerless = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         clusterIdentifier = {
             type = "string",
@@ -1527,9 +1542,15 @@ M.SalesforceConnectorProfileProperties = {
         },
         isSandboxEnvironment = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         usePrivateLinkForMetadataAndAuthorization = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1551,7 +1572,7 @@ M.OAuthProperties = {
         },
         oAuthScopes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1575,7 +1596,7 @@ M.SAPODataConnectorProfileProperties = {
             },
         },
         portNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1592,11 +1613,12 @@ M.SAPODataConnectorProfileProperties = {
         privateLinkServiceName = {
             type = "string",
         },
-        oAuthProperties = {
-            type = "structure",
-        },
+        oAuthProperties = M.OAuthProperties,
         disableSSO = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1696,63 +1718,25 @@ M.ZendeskConnectorProfileProperties = {
 M.ConnectorProfileProperties = {
     type = "structure",
     members = {
-        Amplitude = {
-            type = "structure",
-        },
-        Datadog = {
-            type = "structure",
-        },
-        Dynatrace = {
-            type = "structure",
-        },
-        GoogleAnalytics = {
-            type = "structure",
-        },
-        Honeycode = {
-            type = "structure",
-        },
-        InforNexus = {
-            type = "structure",
-        },
-        Marketo = {
-            type = "structure",
-        },
-        Redshift = {
-            type = "structure",
-        },
-        Salesforce = {
-            type = "structure",
-        },
-        ServiceNow = {
-            type = "structure",
-        },
-        Singular = {
-            type = "structure",
-        },
-        Slack = {
-            type = "structure",
-        },
-        Snowflake = {
-            type = "structure",
-        },
-        Trendmicro = {
-            type = "structure",
-        },
-        Veeva = {
-            type = "structure",
-        },
-        Zendesk = {
-            type = "structure",
-        },
-        SAPOData = {
-            type = "structure",
-        },
-        CustomConnector = {
-            type = "structure",
-        },
-        Pardot = {
-            type = "structure",
-        },
+        Amplitude = M.AmplitudeConnectorProfileProperties,
+        Datadog = M.DatadogConnectorProfileProperties,
+        Dynatrace = M.DynatraceConnectorProfileProperties,
+        GoogleAnalytics = M.GoogleAnalyticsConnectorProfileProperties,
+        Honeycode = M.HoneycodeConnectorProfileProperties,
+        InforNexus = M.InforNexusConnectorProfileProperties,
+        Marketo = M.MarketoConnectorProfileProperties,
+        Redshift = M.RedshiftConnectorProfileProperties,
+        Salesforce = M.SalesforceConnectorProfileProperties,
+        ServiceNow = M.ServiceNowConnectorProfileProperties,
+        Singular = M.SingularConnectorProfileProperties,
+        Slack = M.SlackConnectorProfileProperties,
+        Snowflake = M.SnowflakeConnectorProfileProperties,
+        Trendmicro = M.TrendmicroConnectorProfileProperties,
+        Veeva = M.VeevaConnectorProfileProperties,
+        Zendesk = M.ZendeskConnectorProfileProperties,
+        SAPOData = M.SAPODataConnectorProfileProperties,
+        CustomConnector = M.CustomConnectorProfileProperties,
+        Pardot = M.PardotConnectorProfileProperties,
     },
 }
 
@@ -1806,18 +1790,14 @@ M.ConnectorProfile = {
         credentialsArn = {
             type = "string",
         },
-        connectorProfileProperties = {
-            type = "structure",
-        },
+        connectorProfileProperties = M.ConnectorProfileProperties,
         createdAt = {
             type = "timestamp",
         },
         lastUpdatedAt = {
             type = "timestamp",
         },
-        privateConnectionProvisioningState = {
-            type = "structure",
-        },
+        privateConnectionProvisioningState = M.PrivateConnectionProvisioningState,
     },
 }
 
@@ -1832,8 +1812,8 @@ M.CustomAuthCredentials = {
         },
         credentialsMap = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1853,9 +1833,7 @@ M.OAuth2Credentials = {
         refreshToken = {
             type = "string",
         },
-        oAuthRequest = {
-            type = "structure",
-        },
+        oAuthRequest = M.ConnectorOAuthRequest,
     },
 }
 
@@ -1868,18 +1846,10 @@ M.CustomConnectorProfileCredentials = {
                 required = true,
             },
         },
-        basic = {
-            type = "structure",
-        },
-        oauth2 = {
-            type = "structure",
-        },
-        apiKey = {
-            type = "structure",
-        },
-        custom = {
-            type = "structure",
-        },
+        basic = M.BasicAuthCredentials,
+        oauth2 = M.OAuth2Credentials,
+        apiKey = M.ApiKeyCredentials,
+        custom = M.CustomAuthCredentials,
     },
 }
 
@@ -1934,9 +1904,7 @@ M.GoogleAnalyticsConnectorProfileCredentials = {
         refreshToken = {
             type = "string",
         },
-        oAuthRequest = {
-            type = "structure",
-        },
+        oAuthRequest = M.ConnectorOAuthRequest,
     },
 }
 
@@ -1949,9 +1917,7 @@ M.HoneycodeConnectorProfileCredentials = {
         refreshToken = {
             type = "string",
         },
-        oAuthRequest = {
-            type = "structure",
-        },
+        oAuthRequest = M.ConnectorOAuthRequest,
     },
 }
 
@@ -2003,9 +1969,7 @@ M.MarketoConnectorProfileCredentials = {
         accessToken = {
             type = "string",
         },
-        oAuthRequest = {
-            type = "structure",
-        },
+        oAuthRequest = M.ConnectorOAuthRequest,
     },
 }
 
@@ -2018,9 +1982,7 @@ M.PardotConnectorProfileCredentials = {
         refreshToken = {
             type = "string",
         },
-        oAuthRequest = {
-            type = "structure",
-        },
+        oAuthRequest = M.ConnectorOAuthRequest,
         clientCredentialsArn = {
             type = "string",
         },
@@ -2048,9 +2010,7 @@ M.SalesforceConnectorProfileCredentials = {
         refreshToken = {
             type = "string",
         },
-        oAuthRequest = {
-            type = "structure",
-        },
+        oAuthRequest = M.ConnectorOAuthRequest,
         clientCredentialsArn = {
             type = "string",
         },
@@ -2084,21 +2044,15 @@ M.OAuthCredentials = {
         refreshToken = {
             type = "string",
         },
-        oAuthRequest = {
-            type = "structure",
-        },
+        oAuthRequest = M.ConnectorOAuthRequest,
     },
 }
 
 M.SAPODataConnectorProfileCredentials = {
     type = "structure",
     members = {
-        basicAuthCredentials = {
-            type = "structure",
-        },
-        oAuthCredentials = {
-            type = "structure",
-        },
+        basicAuthCredentials = M.BasicAuthCredentials,
+        oAuthCredentials = M.OAuthCredentials,
     },
 }
 
@@ -2111,9 +2065,7 @@ M.ServiceNowConnectorProfileCredentials = {
         password = {
             type = "string",
         },
-        oAuth2Credentials = {
-            type = "structure",
-        },
+        oAuth2Credentials = M.OAuth2Credentials,
     },
 }
 
@@ -2147,9 +2099,7 @@ M.SlackConnectorProfileCredentials = {
         accessToken = {
             type = "string",
         },
-        oAuthRequest = {
-            type = "structure",
-        },
+        oAuthRequest = M.ConnectorOAuthRequest,
     },
 }
 
@@ -2219,87 +2169,42 @@ M.ZendeskConnectorProfileCredentials = {
         accessToken = {
             type = "string",
         },
-        oAuthRequest = {
-            type = "structure",
-        },
+        oAuthRequest = M.ConnectorOAuthRequest,
     },
 }
 
 M.ConnectorProfileCredentials = {
     type = "structure",
     members = {
-        Amplitude = {
-            type = "structure",
-        },
-        Datadog = {
-            type = "structure",
-        },
-        Dynatrace = {
-            type = "structure",
-        },
-        GoogleAnalytics = {
-            type = "structure",
-        },
-        Honeycode = {
-            type = "structure",
-        },
-        InforNexus = {
-            type = "structure",
-        },
-        Marketo = {
-            type = "structure",
-        },
-        Redshift = {
-            type = "structure",
-        },
-        Salesforce = {
-            type = "structure",
-        },
-        ServiceNow = {
-            type = "structure",
-        },
-        Singular = {
-            type = "structure",
-        },
-        Slack = {
-            type = "structure",
-        },
-        Snowflake = {
-            type = "structure",
-        },
-        Trendmicro = {
-            type = "structure",
-        },
-        Veeva = {
-            type = "structure",
-        },
-        Zendesk = {
-            type = "structure",
-        },
-        SAPOData = {
-            type = "structure",
-        },
-        CustomConnector = {
-            type = "structure",
-        },
-        Pardot = {
-            type = "structure",
-        },
+        Amplitude = M.AmplitudeConnectorProfileCredentials,
+        Datadog = M.DatadogConnectorProfileCredentials,
+        Dynatrace = M.DynatraceConnectorProfileCredentials,
+        GoogleAnalytics = M.GoogleAnalyticsConnectorProfileCredentials,
+        Honeycode = M.HoneycodeConnectorProfileCredentials,
+        InforNexus = M.InforNexusConnectorProfileCredentials,
+        Marketo = M.MarketoConnectorProfileCredentials,
+        Redshift = M.RedshiftConnectorProfileCredentials,
+        Salesforce = M.SalesforceConnectorProfileCredentials,
+        ServiceNow = M.ServiceNowConnectorProfileCredentials,
+        Singular = M.SingularConnectorProfileCredentials,
+        Slack = M.SlackConnectorProfileCredentials,
+        Snowflake = M.SnowflakeConnectorProfileCredentials,
+        Trendmicro = M.TrendmicroConnectorProfileCredentials,
+        Veeva = M.VeevaConnectorProfileCredentials,
+        Zendesk = M.ZendeskConnectorProfileCredentials,
+        SAPOData = M.SAPODataConnectorProfileCredentials,
+        CustomConnector = M.CustomConnectorProfileCredentials,
+        Pardot = M.PardotConnectorProfileCredentials,
     },
 }
 
 M.ConnectorProfileConfig = {
     type = "structure",
     members = {
-        connectorProfileProperties = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        connectorProfileCredentials = {
-            type = "structure",
-        },
+        connectorProfileProperties = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConnectorProfileProperties }),
+        connectorProfileCredentials = M.ConnectorProfileCredentials,
     },
 }
 
@@ -2340,12 +2245,9 @@ M.CreateConnectorProfileInput = {
                 required = true,
             },
         },
-        connectorProfileConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        connectorProfileConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConnectorProfileConfig }),
         clientToken = {
             type = "string",
         },
@@ -2376,6 +2278,9 @@ M.ErrorHandlingConfig = {
     members = {
         failOnFirstDestinationError = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         bucketPrefix = {
             type = "string",
@@ -2395,20 +2300,18 @@ M.CustomConnectorDestinationProperties = {
                 required = true,
             },
         },
-        errorHandlingConfig = {
-            type = "structure",
-        },
+        errorHandlingConfig = M.ErrorHandlingConfig,
         writeOperationType = {
             type = "string",
         },
         idFieldNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         customProperties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2437,9 +2340,7 @@ M.EventBridgeDestinationProperties = {
                 required = true,
             },
         },
-        errorHandlingConfig = {
-            type = "structure",
-        },
+        errorHandlingConfig = M.ErrorHandlingConfig,
     },
 }
 
@@ -2452,9 +2353,7 @@ M.HoneycodeDestinationProperties = {
                 required = true,
             },
         },
-        errorHandlingConfig = {
-            type = "structure",
-        },
+        errorHandlingConfig = M.ErrorHandlingConfig,
     },
 }
 
@@ -2471,9 +2370,7 @@ M.MarketoDestinationProperties = {
                 required = true,
             },
         },
-        errorHandlingConfig = {
-            type = "structure",
-        },
+        errorHandlingConfig = M.ErrorHandlingConfig,
     },
 }
 
@@ -2495,9 +2392,7 @@ M.RedshiftDestinationProperties = {
         bucketPrefix = {
             type = "string",
         },
-        errorHandlingConfig = {
-            type = "structure",
-        },
+        errorHandlingConfig = M.ErrorHandlingConfig,
     },
 }
 
@@ -2537,7 +2432,7 @@ M.PrefixConfig = {
         },
         pathPrefixHierarchy = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2548,12 +2443,8 @@ M.S3OutputFormatConfig = {
         fileType = {
             type = "string",
         },
-        prefixConfig = {
-            type = "structure",
-        },
-        aggregationConfig = {
-            type = "structure",
-        },
+        prefixConfig = M.PrefixConfig,
+        aggregationConfig = M.AggregationConfig,
         preserveSourceDataTyping = {
             type = "boolean",
         },
@@ -2572,9 +2463,7 @@ M.S3DestinationProperties = {
         bucketPrefix = {
             type = "string",
         },
-        s3OutputFormatConfig = {
-            type = "structure",
-        },
+        s3OutputFormatConfig = M.S3OutputFormatConfig,
     },
 }
 
@@ -2589,11 +2478,9 @@ M.SalesforceDestinationProperties = {
         },
         idFieldNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        errorHandlingConfig = {
-            type = "structure",
-        },
+        errorHandlingConfig = M.ErrorHandlingConfig,
         writeOperationType = {
             type = "string",
         },
@@ -2624,16 +2511,12 @@ M.SAPODataDestinationProperties = {
                 required = true,
             },
         },
-        successResponseHandlingConfig = {
-            type = "structure",
-        },
+        successResponseHandlingConfig = M.SuccessResponseHandlingConfig,
         idFieldNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        errorHandlingConfig = {
-            type = "structure",
-        },
+        errorHandlingConfig = M.ErrorHandlingConfig,
         writeOperationType = {
             type = "string",
         },
@@ -2658,9 +2541,7 @@ M.SnowflakeDestinationProperties = {
         bucketPrefix = {
             type = "string",
         },
-        errorHandlingConfig = {
-            type = "structure",
-        },
+        errorHandlingConfig = M.ErrorHandlingConfig,
     },
 }
 
@@ -2670,15 +2551,10 @@ M.UpsolverS3OutputFormatConfig = {
         fileType = {
             type = "string",
         },
-        prefixConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        aggregationConfig = {
-            type = "structure",
-        },
+        prefixConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PrefixConfig }),
+        aggregationConfig = M.AggregationConfig,
     },
 }
 
@@ -2694,12 +2570,9 @@ M.UpsolverDestinationProperties = {
         bucketPrefix = {
             type = "string",
         },
-        s3OutputFormatConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        s3OutputFormatConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.UpsolverS3OutputFormatConfig }),
     },
 }
 
@@ -2714,11 +2587,9 @@ M.ZendeskDestinationProperties = {
         },
         idFieldNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        errorHandlingConfig = {
-            type = "structure",
-        },
+        errorHandlingConfig = M.ErrorHandlingConfig,
         writeOperationType = {
             type = "string",
         },
@@ -2728,45 +2599,19 @@ M.ZendeskDestinationProperties = {
 M.DestinationConnectorProperties = {
     type = "structure",
     members = {
-        Redshift = {
-            type = "structure",
-        },
-        S3 = {
-            type = "structure",
-        },
-        Salesforce = {
-            type = "structure",
-        },
-        Snowflake = {
-            type = "structure",
-        },
-        EventBridge = {
-            type = "structure",
-        },
-        LookoutMetrics = {
-            type = "structure",
-        },
-        Upsolver = {
-            type = "structure",
-        },
-        Honeycode = {
-            type = "structure",
-        },
-        CustomerProfiles = {
-            type = "structure",
-        },
-        Zendesk = {
-            type = "structure",
-        },
-        Marketo = {
-            type = "structure",
-        },
-        CustomConnector = {
-            type = "structure",
-        },
-        SAPOData = {
-            type = "structure",
-        },
+        Redshift = M.RedshiftDestinationProperties,
+        S3 = M.S3DestinationProperties,
+        Salesforce = M.SalesforceDestinationProperties,
+        Snowflake = M.SnowflakeDestinationProperties,
+        EventBridge = M.EventBridgeDestinationProperties,
+        LookoutMetrics = M.LookoutMetricsDestinationProperties,
+        Upsolver = M.UpsolverDestinationProperties,
+        Honeycode = M.HoneycodeDestinationProperties,
+        CustomerProfiles = M.CustomerProfilesDestinationProperties,
+        Zendesk = M.ZendeskDestinationProperties,
+        Marketo = M.MarketoDestinationProperties,
+        CustomConnector = M.CustomConnectorDestinationProperties,
+        SAPOData = M.SAPODataDestinationProperties,
     },
 }
 
@@ -2785,12 +2630,9 @@ M.DestinationFlowConfig = {
         connectorProfileName = {
             type = "string",
         },
-        destinationConnectorProperties = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        destinationConnectorProperties = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DestinationConnectorProperties }),
     },
 }
 
@@ -2821,9 +2663,7 @@ M.GlueDataCatalogConfig = {
 M.MetadataCatalogConfig = {
     type = "structure",
     members = {
-        glueDataCatalog = {
-            type = "structure",
-        },
+        glueDataCatalog = M.GlueDataCatalogConfig,
     },
 }
 
@@ -2847,12 +2687,10 @@ M.CustomConnectorSourceProperties = {
         },
         customProperties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        dataTransferApi = {
-            type = "structure",
-        },
+        dataTransferApi = M.DataTransferApi,
     },
 }
 
@@ -2954,9 +2792,7 @@ M.S3SourceProperties = {
         bucketPrefix = {
             type = "string",
         },
-        s3InputFormatConfig = {
-            type = "structure",
-        },
+        s3InputFormatConfig = M.S3InputFormatConfig,
     },
 }
 
@@ -2971,9 +2807,15 @@ M.SalesforceSourceProperties = {
         },
         enableDynamicFieldUpdate = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         includeDeletedRecords = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         dataTransferApi = {
             type = "string",
@@ -2985,7 +2827,7 @@ M.SAPODataPaginationConfig = {
     type = "structure",
     members = {
         maxPageSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -2997,7 +2839,7 @@ M.SAPODataParallelismConfig = {
     type = "structure",
     members = {
         maxParallelism = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -3011,12 +2853,8 @@ M.SAPODataSourceProperties = {
         objectPath = {
             type = "string",
         },
-        parallelismConfig = {
-            type = "structure",
-        },
-        paginationConfig = {
-            type = "structure",
-        },
+        parallelismConfig = M.SAPODataParallelismConfig,
+        paginationConfig = M.SAPODataPaginationConfig,
     },
 }
 
@@ -3082,12 +2920,21 @@ M.VeevaSourceProperties = {
         },
         includeSourceFiles = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         includeRenditions = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         includeAllVersions = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -3107,57 +2954,23 @@ M.ZendeskSourceProperties = {
 M.SourceConnectorProperties = {
     type = "structure",
     members = {
-        Amplitude = {
-            type = "structure",
-        },
-        Datadog = {
-            type = "structure",
-        },
-        Dynatrace = {
-            type = "structure",
-        },
-        GoogleAnalytics = {
-            type = "structure",
-        },
-        InforNexus = {
-            type = "structure",
-        },
-        Marketo = {
-            type = "structure",
-        },
-        S3 = {
-            type = "structure",
-        },
-        Salesforce = {
-            type = "structure",
-        },
-        ServiceNow = {
-            type = "structure",
-        },
-        Singular = {
-            type = "structure",
-        },
-        Slack = {
-            type = "structure",
-        },
-        Trendmicro = {
-            type = "structure",
-        },
-        Veeva = {
-            type = "structure",
-        },
-        Zendesk = {
-            type = "structure",
-        },
-        SAPOData = {
-            type = "structure",
-        },
-        CustomConnector = {
-            type = "structure",
-        },
-        Pardot = {
-            type = "structure",
-        },
+        Amplitude = M.AmplitudeSourceProperties,
+        Datadog = M.DatadogSourceProperties,
+        Dynatrace = M.DynatraceSourceProperties,
+        GoogleAnalytics = M.GoogleAnalyticsSourceProperties,
+        InforNexus = M.InforNexusSourceProperties,
+        Marketo = M.MarketoSourceProperties,
+        S3 = M.S3SourceProperties,
+        Salesforce = M.SalesforceSourceProperties,
+        ServiceNow = M.ServiceNowSourceProperties,
+        Singular = M.SingularSourceProperties,
+        Slack = M.SlackSourceProperties,
+        Trendmicro = M.TrendmicroSourceProperties,
+        Veeva = M.VeevaSourceProperties,
+        Zendesk = M.ZendeskSourceProperties,
+        SAPOData = M.SAPODataSourceProperties,
+        CustomConnector = M.CustomConnectorSourceProperties,
+        Pardot = M.PardotSourceProperties,
     },
 }
 
@@ -3176,15 +2989,10 @@ M.SourceFlowConfig = {
         connectorProfileName = {
             type = "string",
         },
-        sourceConnectorProperties = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        incrementalPullConfig = {
-            type = "structure",
-        },
+        sourceConnectorProperties = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SourceConnectorProperties }),
+        incrementalPullConfig = M.IncrementalPullConfig,
     },
 }
 
@@ -3226,14 +3034,12 @@ M.Task = {
     members = {
         sourceFields = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        connectorOperator = {
-            type = "structure",
-        },
+        connectorOperator = M.ConnectorOperator,
         destinationField = {
             type = "string",
         },
@@ -3245,8 +3051,8 @@ M.Task = {
         },
         taskProperties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3278,13 +3084,16 @@ M.ScheduledTriggerProperties = {
             type = "string",
         },
         scheduleOffset = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
         firstExecutionFrom = {
             type = "timestamp",
         },
         flowErrorDeactivationThreshold = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3292,9 +3101,7 @@ M.ScheduledTriggerProperties = {
 M.TriggerProperties = {
     type = "structure",
     members = {
-        Scheduled = {
-            type = "structure",
-        },
+        Scheduled = M.ScheduledTriggerProperties,
     },
 }
 
@@ -3307,9 +3114,7 @@ M.TriggerConfig = {
                 required = true,
             },
         },
-        triggerProperties = {
-            type = "structure",
-        },
+        triggerProperties = M.TriggerProperties,
     },
 }
 
@@ -3328,40 +3133,32 @@ M.CreateFlowInput = {
         kmsArn = {
             type = "string",
         },
-        triggerConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        sourceFlowConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        triggerConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TriggerConfig }),
+        sourceFlowConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SourceFlowConfig }),
         destinationFlowConfigList = {
             type = "list",
-            member_type = "structure",
+            member = M.DestinationFlowConfig,
             traits = {
                 required = true,
             },
         },
         tasks = {
             type = "list",
-            member_type = "structure",
+            member = M.Task,
             traits = {
                 required = true,
             },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        metadataCatalogConfig = {
-            type = "structure",
-        },
+        metadataCatalogConfig = M.MetadataCatalogConfig,
         clientToken = {
             type = "string",
         },
@@ -3400,6 +3197,9 @@ M.DeleteConnectorProfileInput = {
         },
         forceDelete = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -3419,6 +3219,9 @@ M.DeleteFlowInput = {
         },
         forceDelete = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -3445,9 +3248,7 @@ M.DescribeConnectorInput = {
 M.DescribeConnectorOutput = {
     type = "structure",
     members = {
-        connectorConfiguration = {
-            type = "structure",
-        },
+        connectorConfiguration = M.ConnectorConfiguration,
     },
 }
 
@@ -3477,7 +3278,7 @@ M.DescribeConnectorEntityOutput = {
     members = {
         connectorEntityFields = {
             type = "list",
-            member_type = "structure",
+            member = M.ConnectorEntityField,
             traits = {
                 required = true,
             },
@@ -3490,7 +3291,7 @@ M.DescribeConnectorProfilesInput = {
     members = {
         connectorProfileNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         connectorType = {
             type = "string",
@@ -3499,7 +3300,7 @@ M.DescribeConnectorProfilesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -3512,7 +3313,7 @@ M.DescribeConnectorProfilesOutput = {
     members = {
         connectorProfileDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.ConnectorProfile,
         },
         nextToken = {
             type = "string",
@@ -3525,10 +3326,10 @@ M.DescribeConnectorsInput = {
     members = {
         connectorTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -3541,12 +3342,12 @@ M.DescribeConnectorsOutput = {
     members = {
         connectorConfigurations = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ConnectorConfiguration,
         },
         connectors = {
             type = "list",
-            member_type = "structure",
+            member = M.ConnectorDetail,
         },
         nextToken = {
             type = "string",
@@ -3613,12 +3414,8 @@ M.MetadataCatalogDetail = {
         tableName = {
             type = "string",
         },
-        tableRegistrationOutput = {
-            type = "structure",
-        },
-        partitionRegistrationOutput = {
-            type = "structure",
-        },
+        tableRegistrationOutput = M.RegistrationOutput,
+        partitionRegistrationOutput = M.RegistrationOutput,
     },
 }
 
@@ -3643,22 +3440,16 @@ M.DescribeFlowOutput = {
         flowStatusMessage = {
             type = "string",
         },
-        sourceFlowConfig = {
-            type = "structure",
-        },
+        sourceFlowConfig = M.SourceFlowConfig,
         destinationFlowConfigList = {
             type = "list",
-            member_type = "structure",
+            member = M.DestinationFlowConfig,
         },
-        lastRunExecutionDetails = {
-            type = "structure",
-        },
-        triggerConfig = {
-            type = "structure",
-        },
+        lastRunExecutionDetails = M.ExecutionDetails,
+        triggerConfig = M.TriggerConfig,
         tasks = {
             type = "list",
-            member_type = "structure",
+            member = M.Task,
         },
         createdAt = {
             type = "timestamp",
@@ -3674,18 +3465,16 @@ M.DescribeFlowOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        metadataCatalogConfig = {
-            type = "structure",
-        },
+        metadataCatalogConfig = M.MetadataCatalogConfig,
         lastRunMetadataCatalogDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.MetadataCatalogDetail,
         },
         schemaVersion = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -3700,7 +3489,7 @@ M.DescribeFlowExecutionRecordsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -3712,7 +3501,7 @@ M.ErrorInfo = {
     type = "structure",
     members = {
         putFailuresCount = {
-            type = "number",
+            type = "long",
         },
         executionMessage = {
             type = "string",
@@ -3723,23 +3512,21 @@ M.ErrorInfo = {
 M.ExecutionResult = {
     type = "structure",
     members = {
-        errorInfo = {
-            type = "structure",
-        },
+        errorInfo = M.ErrorInfo,
         bytesProcessed = {
-            type = "number",
+            type = "long",
         },
         bytesWritten = {
-            type = "number",
+            type = "long",
         },
         recordsProcessed = {
-            type = "number",
+            type = "long",
         },
         numParallelProcesses = {
-            type = "number",
+            type = "long",
         },
         maxPageSize = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -3753,9 +3540,7 @@ M.ExecutionRecord = {
         executionStatus = {
             type = "string",
         },
-        executionResult = {
-            type = "structure",
-        },
+        executionResult = M.ExecutionResult,
         startedAt = {
             type = "timestamp",
         },
@@ -3770,7 +3555,7 @@ M.ExecutionRecord = {
         },
         metadataCatalogDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.MetadataCatalogDetail,
         },
     },
 }
@@ -3780,7 +3565,7 @@ M.DescribeFlowExecutionRecordsOutput = {
     members = {
         flowExecutions = {
             type = "list",
-            member_type = "structure",
+            member = M.ExecutionRecord,
         },
         nextToken = {
             type = "string",
@@ -3832,12 +3617,10 @@ M.FlowDefinition = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        lastRunExecutionDetails = {
-            type = "structure",
-        },
+        lastRunExecutionDetails = M.ExecutionDetails,
     },
 }
 
@@ -3857,7 +3640,7 @@ M.ListConnectorEntitiesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -3870,8 +3653,8 @@ M.ListConnectorEntitiesOutput = {
     members = {
         connectorEntityMap = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
             traits = {
                 required = true,
             },
@@ -3886,7 +3669,7 @@ M.ListConnectorsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -3899,7 +3682,7 @@ M.ListConnectorsOutput = {
     members = {
         connectors = {
             type = "list",
-            member_type = "structure",
+            member = M.ConnectorDetail,
         },
         nextToken = {
             type = "string",
@@ -3911,7 +3694,7 @@ M.ListFlowsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -3924,7 +3707,7 @@ M.ListFlowsOutput = {
     members = {
         flows = {
             type = "list",
-            member_type = "structure",
+            member = M.FlowDefinition,
         },
         nextToken = {
             type = "string",
@@ -3950,8 +3733,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3968,9 +3751,7 @@ M.RegisterConnectorInput = {
         connectorProvisioningType = {
             type = "string",
         },
-        connectorProvisioningConfig = {
-            type = "structure",
-        },
+        connectorProvisioningConfig = M.ConnectorProvisioningConfig,
         clientToken = {
             type = "string",
         },
@@ -4087,8 +3868,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4111,6 +3892,9 @@ M.UnregisterConnectorInput = {
         },
         forceDelete = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -4131,7 +3915,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -4159,12 +3943,9 @@ M.UpdateConnectorProfileInput = {
                 required = true,
             },
         },
-        connectorProfileConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        connectorProfileConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConnectorProfileConfig }),
         clientToken = {
             type = "string",
         },
@@ -4192,9 +3973,7 @@ M.UpdateConnectorRegistrationInput = {
         description = {
             type = "string",
         },
-        connectorProvisioningConfig = {
-            type = "structure",
-        },
+        connectorProvisioningConfig = M.ConnectorProvisioningConfig,
         clientToken = {
             type = "string",
         },
@@ -4222,35 +4001,27 @@ M.UpdateFlowInput = {
         description = {
             type = "string",
         },
-        triggerConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        sourceFlowConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        triggerConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TriggerConfig }),
+        sourceFlowConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SourceFlowConfig }),
         destinationFlowConfigList = {
             type = "list",
-            member_type = "structure",
+            member = M.DestinationFlowConfig,
             traits = {
                 required = true,
             },
         },
         tasks = {
             type = "list",
-            member_type = "structure",
+            member = M.Task,
             traits = {
                 required = true,
             },
         },
-        metadataCatalogConfig = {
-            type = "structure",
-        },
+        metadataCatalogConfig = M.MetadataCatalogConfig,
         clientToken = {
             type = "string",
         },

@@ -276,9 +276,9 @@ local record ValidationException
     Message: string
 end
 
-local type DetailType = "BASIC" | "FULL"
-
 local type NotificationRuleStatus = "ENABLED" | "DISABLED"
+
+local type DetailType = "BASIC" | "FULL"
 
 local record M
     CreateNotificationRuleInput: CreateNotificationRuleInput

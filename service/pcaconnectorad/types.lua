@@ -26,9 +26,7 @@ M.AccessControlEntry = {
         GroupSecurityIdentifier = {
             type = "string",
         },
-        AccessRights = {
-            type = "structure",
-        },
+        AccessRights = M.AccessRights,
         TemplateArn = {
             type = "string",
         },
@@ -50,9 +48,7 @@ M.AccessControlEntrySummary = {
         GroupSecurityIdentifier = {
             type = "string",
         },
-        AccessRights = {
-            type = "structure",
-        },
+        AccessRights = M.AccessRights,
         TemplateArn = {
             type = "string",
         },
@@ -168,7 +164,7 @@ M.ApplicationPolicies = {
         },
         Policies = {
             type = "list",
-            member_type = "union",
+            member = M.ApplicationPolicy,
             traits = {
                 required = true,
             },
@@ -194,7 +190,7 @@ M.ValidityPeriod = {
             },
         },
         Period = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -205,18 +201,12 @@ M.ValidityPeriod = {
 M.CertificateValidity = {
     type = "structure",
     members = {
-        ValidityPeriod = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        RenewalPeriod = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ValidityPeriod = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ValidityPeriod }),
+        RenewalPeriod = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ValidityPeriod }),
     },
 }
 
@@ -302,7 +292,7 @@ M.VpcInformation = {
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -325,9 +315,7 @@ M.Connector = {
         DirectoryId = {
             type = "string",
         },
-        VpcInformation = {
-            type = "structure",
-        },
+        VpcInformation = M.VpcInformation,
         Status = {
             type = "string",
         },
@@ -358,9 +346,7 @@ M.ConnectorSummary = {
         DirectoryId = {
             type = "string",
         },
-        VpcInformation = {
-            type = "structure",
-        },
+        VpcInformation = M.VpcInformation,
         Status = {
             type = "string",
         },
@@ -391,19 +377,16 @@ M.CreateConnectorInput = {
                 required = true,
             },
         },
-        VpcInformation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        VpcInformation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VpcInformation }),
         ClientToken = {
             type = "string",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -572,9 +555,7 @@ M.GetConnectorInput = {
 M.GetConnectorOutput = {
     type = "structure",
     members = {
-        Connector = {
-            type = "structure",
-        },
+        Connector = M.Connector,
     },
 }
 
@@ -582,7 +563,7 @@ M.ListConnectorsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -601,7 +582,7 @@ M.ListConnectorsOutput = {
     members = {
         Connectors = {
             type = "list",
-            member_type = "structure",
+            member = M.ConnectorSummary,
         },
         NextToken = {
             type = "string",
@@ -623,8 +604,8 @@ M.CreateDirectoryRegistrationInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -713,27 +694,19 @@ M.KeyUsage = {
         Critical = {
             type = "boolean",
         },
-        UsageFlags = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        UsageFlags = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.KeyUsageFlags }),
     },
 }
 
 M.ExtensionsV2 = {
     type = "structure",
     members = {
-        KeyUsage = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ApplicationPolicies = {
-            type = "structure",
-        },
+        KeyUsage = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.KeyUsage }),
+        ApplicationPolicies = M.ApplicationPolicies,
     },
 }
 
@@ -758,7 +731,7 @@ M.PrivateKeyAttributesV2 = {
     type = "structure",
     members = {
         MinimalKeyLength = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -771,7 +744,7 @@ M.PrivateKeyAttributesV2 = {
         },
         CryptoProviders = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -833,52 +806,31 @@ M.SubjectNameFlagsV2 = {
 M.TemplateV2 = {
     type = "structure",
     members = {
-        CertificateValidity = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        CertificateValidity = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CertificateValidity }),
         SupersededTemplates = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        PrivateKeyAttributes = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        PrivateKeyFlags = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        EnrollmentFlags = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        SubjectNameFlags = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        GeneralFlags = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Extensions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        PrivateKeyAttributes = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PrivateKeyAttributesV2 }),
+        PrivateKeyFlags = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PrivateKeyFlagsV2 }),
+        EnrollmentFlags = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EnrollmentFlagsV2 }),
+        SubjectNameFlags = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SubjectNameFlagsV2 }),
+        GeneralFlags = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.GeneralFlagsV2 }),
+        Extensions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ExtensionsV2 }),
     },
 }
 
@@ -906,15 +858,10 @@ M.EnrollmentFlagsV3 = {
 M.ExtensionsV3 = {
     type = "structure",
     members = {
-        KeyUsage = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ApplicationPolicies = {
-            type = "structure",
-        },
+        KeyUsage = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.KeyUsage }),
+        ApplicationPolicies = M.ApplicationPolicies,
     },
 }
 
@@ -968,9 +915,7 @@ M.KeyUsageProperty = {
         PropertyType = {
             type = "string",
         },
-        PropertyFlags = {
-            type = "structure",
-        },
+        PropertyFlags = M.KeyUsagePropertyFlags,
     },
 }
 
@@ -978,7 +923,7 @@ M.PrivateKeyAttributesV3 = {
     type = "structure",
     members = {
         MinimalKeyLength = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -991,14 +936,11 @@ M.PrivateKeyAttributesV3 = {
         },
         CryptoProviders = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        KeyUsageProperty = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        KeyUsageProperty = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.KeyUsageProperty }),
         Algorithm = {
             type = "string",
             traits = {
@@ -1068,58 +1010,37 @@ M.SubjectNameFlagsV3 = {
 M.TemplateV3 = {
     type = "structure",
     members = {
-        CertificateValidity = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        CertificateValidity = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CertificateValidity }),
         SupersededTemplates = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        PrivateKeyAttributes = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        PrivateKeyFlags = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        EnrollmentFlags = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        SubjectNameFlags = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        GeneralFlags = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        PrivateKeyAttributes = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PrivateKeyAttributesV3 }),
+        PrivateKeyFlags = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PrivateKeyFlagsV3 }),
+        EnrollmentFlags = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EnrollmentFlagsV3 }),
+        SubjectNameFlags = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SubjectNameFlagsV3 }),
+        GeneralFlags = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.GeneralFlagsV3 }),
         HashAlgorithm = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        Extensions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Extensions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ExtensionsV3 }),
     },
 }
 
@@ -1147,15 +1068,10 @@ M.EnrollmentFlagsV4 = {
 M.ExtensionsV4 = {
     type = "structure",
     members = {
-        KeyUsage = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ApplicationPolicies = {
-            type = "structure",
-        },
+        KeyUsage = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.KeyUsage }),
+        ApplicationPolicies = M.ApplicationPolicies,
     },
 }
 
@@ -1175,7 +1091,7 @@ M.PrivateKeyAttributesV4 = {
     type = "structure",
     members = {
         MinimalKeyLength = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1188,11 +1104,9 @@ M.PrivateKeyAttributesV4 = {
         },
         CryptoProviders = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        KeyUsageProperty = {
-            type = "union",
-        },
+        KeyUsageProperty = M.KeyUsageProperty,
         Algorithm = {
             type = "string",
         },
@@ -1265,70 +1179,43 @@ M.SubjectNameFlagsV4 = {
 M.TemplateV4 = {
     type = "structure",
     members = {
-        CertificateValidity = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        CertificateValidity = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CertificateValidity }),
         SupersededTemplates = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        PrivateKeyAttributes = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        PrivateKeyFlags = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        EnrollmentFlags = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        SubjectNameFlags = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        GeneralFlags = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        PrivateKeyAttributes = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PrivateKeyAttributesV4 }),
+        PrivateKeyFlags = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PrivateKeyFlagsV4 }),
+        EnrollmentFlags = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EnrollmentFlagsV4 }),
+        SubjectNameFlags = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SubjectNameFlagsV4 }),
+        GeneralFlags = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.GeneralFlagsV4 }),
         HashAlgorithm = {
             type = "string",
         },
-        Extensions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Extensions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ExtensionsV4 }),
     },
 }
 
 M.TemplateDefinition = {
     type = "union",
     members = {
-        TemplateV2 = {
-            type = "structure",
-        },
-        TemplateV3 = {
-            type = "structure",
-        },
-        TemplateV4 = {
-            type = "structure",
-        },
+        TemplateV2 = M.TemplateV2,
+        TemplateV3 = M.TemplateV3,
+        TemplateV4 = M.TemplateV4,
     },
 }
 
@@ -1347,19 +1234,16 @@ M.CreateTemplateInput = {
                 required = true,
             },
         },
-        Definition = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        Definition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TemplateDefinition }),
         ClientToken = {
             type = "string",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1395,12 +1279,9 @@ M.CreateTemplateGroupAccessControlEntryInput = {
                 required = true,
             },
         },
-        AccessRights = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AccessRights = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AccessRights }),
         ClientToken = {
             type = "string",
         },
@@ -1573,9 +1454,7 @@ M.GetDirectoryRegistrationInput = {
 M.GetDirectoryRegistrationOutput = {
     type = "structure",
     members = {
-        DirectoryRegistration = {
-            type = "structure",
-        },
+        DirectoryRegistration = M.DirectoryRegistration,
     },
 }
 
@@ -1583,7 +1462,7 @@ M.ListDirectoryRegistrationsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -1602,7 +1481,7 @@ M.ListDirectoryRegistrationsOutput = {
     members = {
         DirectoryRegistrations = {
             type = "list",
-            member_type = "structure",
+            member = M.DirectoryRegistrationSummary,
         },
         NextToken = {
             type = "string",
@@ -1673,9 +1552,7 @@ M.ServicePrincipalName = {
 M.GetServicePrincipalNameOutput = {
     type = "structure",
     members = {
-        ServicePrincipalName = {
-            type = "structure",
-        },
+        ServicePrincipalName = M.ServicePrincipalName,
     },
 }
 
@@ -1696,13 +1573,13 @@ M.TemplateRevision = {
     type = "structure",
     members = {
         MajorRevision = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         MinorRevision = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1724,9 +1601,7 @@ M.Template = {
         ConnectorArn = {
             type = "string",
         },
-        Definition = {
-            type = "union",
-        },
+        Definition = M.TemplateDefinition,
         Name = {
             type = "string",
         },
@@ -1734,14 +1609,12 @@ M.Template = {
             type = "string",
         },
         PolicySchema = {
-            type = "number",
+            type = "integer",
         },
         Status = {
             type = "string",
         },
-        Revision = {
-            type = "structure",
-        },
+        Revision = M.TemplateRevision,
         CreatedAt = {
             type = "timestamp",
         },
@@ -1754,9 +1627,7 @@ M.Template = {
 M.GetTemplateOutput = {
     type = "structure",
     members = {
-        Template = {
-            type = "structure",
-        },
+        Template = M.Template,
     },
 }
 
@@ -1783,9 +1654,7 @@ M.GetTemplateGroupAccessControlEntryInput = {
 M.GetTemplateGroupAccessControlEntryOutput = {
     type = "structure",
     members = {
-        AccessControlEntry = {
-            type = "structure",
-        },
+        AccessControlEntry = M.AccessControlEntry,
     },
 }
 
@@ -1793,7 +1662,7 @@ M.ListServicePrincipalNamesInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -1843,7 +1712,7 @@ M.ListServicePrincipalNamesOutput = {
     members = {
         ServicePrincipalNames = {
             type = "list",
-            member_type = "structure",
+            member = M.ServicePrincipalNameSummary,
         },
         NextToken = {
             type = "string",
@@ -1869,8 +1738,8 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1879,7 +1748,7 @@ M.ListTemplateGroupAccessControlEntriesInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -1905,7 +1774,7 @@ M.ListTemplateGroupAccessControlEntriesOutput = {
     members = {
         AccessControlEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessControlEntrySummary,
         },
         NextToken = {
             type = "string",
@@ -1917,7 +1786,7 @@ M.ListTemplatesInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -1947,9 +1816,7 @@ M.TemplateSummary = {
         ConnectorArn = {
             type = "string",
         },
-        Definition = {
-            type = "union",
-        },
+        Definition = M.TemplateDefinition,
         Name = {
             type = "string",
         },
@@ -1957,14 +1824,12 @@ M.TemplateSummary = {
             type = "string",
         },
         PolicySchema = {
-            type = "number",
+            type = "integer",
         },
         Status = {
             type = "string",
         },
-        Revision = {
-            type = "structure",
-        },
+        Revision = M.TemplateRevision,
         CreatedAt = {
             type = "timestamp",
         },
@@ -1979,7 +1844,7 @@ M.ListTemplatesOutput = {
     members = {
         Templates = {
             type = "list",
-            member_type = "structure",
+            member = M.TemplateSummary,
         },
         NextToken = {
             type = "string",
@@ -1999,8 +1864,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2032,9 +1897,7 @@ M.UpdateTemplateGroupAccessControlEntryInput = {
         GroupDisplayName = {
             type = "string",
         },
-        AccessRights = {
-            type = "structure",
-        },
+        AccessRights = M.AccessRights,
     },
 }
 
@@ -2052,9 +1915,7 @@ M.UpdateTemplateInput = {
                 required = true,
             },
         },
-        Definition = {
-            type = "union",
-        },
+        Definition = M.TemplateDefinition,
         ReenrollAllCertificateHolders = {
             type = "boolean",
         },
@@ -2077,7 +1938,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,

@@ -1,0 +1,101 @@
+local waiter = require("waiter")
+
+local M = {}
+
+--- Wait until CommandExecuted.
+function M.wait_until_command_executed(client, input, options)
+    return waiter.wait(client, "getCommandInvocation", input, {
+        min_delay = 5,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "Status",
+                        expected = "Pending",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "Status",
+                        expected = "InProgress",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "Status",
+                        expected = "Delayed",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "Status",
+                        expected = "Success",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Status",
+                        expected = "Cancelled",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Status",
+                        expected = "TimedOut",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Status",
+                        expected = "Failed",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Status",
+                        expected = "Cancelling",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "InvocationDoesNotExist",
+                },
+            },
+        },
+    }, options)
+end
+
+return M

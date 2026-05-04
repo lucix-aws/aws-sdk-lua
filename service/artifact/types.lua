@@ -64,9 +64,7 @@ M.GetAccountSettingsInput = {
 M.GetAccountSettingsOutput = {
     type = "structure",
     members = {
-        accountSettings = {
-            type = "structure",
-        },
+        accountSettings = M.AccountSettings,
     },
 }
 
@@ -81,7 +79,7 @@ M.InternalServerException = {
             },
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -168,7 +166,7 @@ M.ThrottlingException = {
             type = "string",
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -220,7 +218,7 @@ M.ValidationException = {
         },
         fieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -237,9 +235,7 @@ M.PutAccountSettingsInput = {
 M.PutAccountSettingsOutput = {
     type = "structure",
     members = {
-        accountSettings = {
-            type = "structure",
-        },
+        accountSettings = M.AccountSettings,
     },
 }
 
@@ -253,7 +249,7 @@ M.ListCustomerAgreementsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -308,11 +304,11 @@ M.CustomerAgreementSummary = {
         },
         acceptanceTerms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         terminateTerms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         type = {
             type = "string",
@@ -325,7 +321,7 @@ M.ListCustomerAgreementsOutput = {
     members = {
         customerAgreements = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomerAgreementSummary,
             traits = {
                 required = true,
             },
@@ -347,7 +343,7 @@ M.GetReportInput = {
             },
         },
         reportVersion = {
-            type = "number",
+            type = "long",
             traits = {
                 http_query = "reportVersion",
             },
@@ -382,7 +378,7 @@ M.GetReportMetadataInput = {
             },
         },
         reportVersion = {
-            type = "number",
+            type = "long",
             traits = {
                 http_query = "reportVersion",
             },
@@ -451,13 +447,13 @@ M.ReportDetail = {
             type = "string",
         },
         version = {
-            type = "number",
+            type = "long",
         },
         acceptanceType = {
             type = "string",
         },
         sequenceNumber = {
-            type = "number",
+            type = "long",
         },
         uploadState = {
             type = "string",
@@ -471,9 +467,7 @@ M.ReportDetail = {
 M.GetReportMetadataOutput = {
     type = "structure",
     members = {
-        reportDetails = {
-            type = "structure",
-        },
+        reportDetails = M.ReportDetail,
     },
 }
 
@@ -488,7 +482,7 @@ M.GetTermForReportInput = {
             },
         },
         reportVersion = {
-            type = "number",
+            type = "long",
             traits = {
                 http_query = "reportVersion",
             },
@@ -512,7 +506,7 @@ M.ListReportsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -542,7 +536,7 @@ M.ReportSummary = {
             type = "string",
         },
         version = {
-            type = "number",
+            type = "long",
         },
         uploadState = {
             type = "string",
@@ -582,7 +576,7 @@ M.ListReportsOutput = {
     members = {
         reports = {
             type = "list",
-            member_type = "structure",
+            member = M.ReportSummary,
         },
         nextToken = {
             type = "string",
@@ -601,7 +595,7 @@ M.ListReportVersionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -620,7 +614,7 @@ M.ListReportVersionsOutput = {
     members = {
         reports = {
             type = "list",
-            member_type = "structure",
+            member = M.ReportSummary,
             traits = {
                 required = true,
             },

@@ -71,7 +71,7 @@ M.Backup = {
         },
         TagList = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         HsmType = {
             type = "string",
@@ -179,7 +179,7 @@ M.CopyBackupToRegionInput = {
         },
         TagList = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -205,9 +205,7 @@ M.DestinationBackup = {
 M.CopyBackupToRegionOutput = {
     type = "structure",
     members = {
-        DestinationBackup = {
-            type = "structure",
-        },
+        DestinationBackup = M.DestinationBackup,
     },
 }
 
@@ -219,9 +217,7 @@ M.NetworkType = {
 M.CreateClusterInput = {
     type = "structure",
     members = {
-        BackupRetentionPolicy = {
-            type = "structure",
-        },
+        BackupRetentionPolicy = M.BackupRetentionPolicy,
         HsmType = {
             type = "string",
             traits = {
@@ -233,7 +229,7 @@ M.CreateClusterInput = {
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -243,7 +239,7 @@ M.CreateClusterInput = {
         },
         TagList = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         Mode = {
             type = "string",
@@ -339,9 +335,7 @@ M.Cluster = {
         BackupPolicy = {
             type = "string",
         },
-        BackupRetentionPolicy = {
-            type = "structure",
-        },
+        BackupRetentionPolicy = M.BackupRetentionPolicy,
         ClusterId = {
             type = "string",
         },
@@ -350,7 +344,7 @@ M.Cluster = {
         },
         Hsms = {
             type = "list",
-            member_type = "structure",
+            member = M.Hsm,
         },
         HsmType = {
             type = "string",
@@ -375,8 +369,8 @@ M.Cluster = {
         },
         SubnetMapping = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         VpcId = {
             type = "string",
@@ -384,12 +378,10 @@ M.Cluster = {
         NetworkType = {
             type = "string",
         },
-        Certificates = {
-            type = "structure",
-        },
+        Certificates = M.Certificates,
         TagList = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         Mode = {
             type = "string",
@@ -400,9 +392,7 @@ M.Cluster = {
 M.CreateClusterOutput = {
     type = "structure",
     members = {
-        Cluster = {
-            type = "structure",
-        },
+        Cluster = M.Cluster,
     },
 }
 
@@ -430,9 +420,7 @@ M.CreateHsmInput = {
 M.CreateHsmOutput = {
     type = "structure",
     members = {
-        Hsm = {
-            type = "structure",
-        },
+        Hsm = M.Hsm,
     },
 }
 
@@ -451,9 +439,7 @@ M.DeleteBackupInput = {
 M.DeleteBackupOutput = {
     type = "structure",
     members = {
-        Backup = {
-            type = "structure",
-        },
+        Backup = M.Backup,
     },
 }
 
@@ -472,9 +458,7 @@ M.DeleteClusterInput = {
 M.DeleteClusterOutput = {
     type = "structure",
     members = {
-        Cluster = {
-            type = "structure",
-        },
+        Cluster = M.Cluster,
     },
 }
 
@@ -536,12 +520,12 @@ M.DescribeBackupsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Filters = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         Shared = {
             type = "boolean",
@@ -557,7 +541,7 @@ M.DescribeBackupsOutput = {
     members = {
         Backups = {
             type = "list",
-            member_type = "structure",
+            member = M.Backup,
         },
         NextToken = {
             type = "string",
@@ -570,14 +554,14 @@ M.DescribeClustersInput = {
     members = {
         Filters = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -587,7 +571,7 @@ M.DescribeClustersOutput = {
     members = {
         Clusters = {
             type = "list",
-            member_type = "structure",
+            member = M.Cluster,
         },
         NextToken = {
             type = "string",
@@ -662,7 +646,7 @@ M.ListTagsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -672,7 +656,7 @@ M.ListTagsOutput = {
     members = {
         TagList = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -704,9 +688,7 @@ M.ModifyBackupAttributesInput = {
 M.ModifyBackupAttributesOutput = {
     type = "structure",
     members = {
-        Backup = {
-            type = "structure",
-        },
+        Backup = M.Backup,
     },
 }
 
@@ -716,9 +698,7 @@ M.ModifyClusterInput = {
         HsmType = {
             type = "string",
         },
-        BackupRetentionPolicy = {
-            type = "structure",
-        },
+        BackupRetentionPolicy = M.BackupRetentionPolicy,
         ClusterId = {
             type = "string",
             traits = {
@@ -731,9 +711,7 @@ M.ModifyClusterInput = {
 M.ModifyClusterOutput = {
     type = "structure",
     members = {
-        Cluster = {
-            type = "structure",
-        },
+        Cluster = M.Cluster,
     },
 }
 
@@ -776,9 +754,7 @@ M.RestoreBackupInput = {
 M.RestoreBackupOutput = {
     type = "structure",
     members = {
-        Backup = {
-            type = "structure",
-        },
+        Backup = M.Backup,
     },
 }
 
@@ -803,7 +779,7 @@ M.TagResourceInput = {
         },
         TagList = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -826,7 +802,7 @@ M.UntagResourceInput = {
         },
         TagKeyList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },

@@ -21,7 +21,10 @@ M.AutoStopConfig = {
             type = "boolean",
         },
         idleTimeoutMinutes = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -31,8 +34,8 @@ M.DiskEncryptionConfiguration = {
     members = {
         encryptionContext = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         encryptionKeyArn = {
             type = "string",
@@ -98,14 +101,13 @@ M.InitialCapacityConfig = {
     type = "structure",
     members = {
         workerCount = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
-        workerConfiguration = {
-            type = "structure",
-        },
+        workerConfiguration = M.WorkerResourceConfig,
     },
 }
 
@@ -174,8 +176,8 @@ M.CloudWatchLoggingConfiguration = {
         },
         logTypes = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
     },
 }
@@ -216,18 +218,10 @@ M.S3MonitoringConfiguration = {
 M.MonitoringConfiguration = {
     type = "structure",
     members = {
-        s3MonitoringConfiguration = {
-            type = "structure",
-        },
-        managedPersistenceMonitoringConfiguration = {
-            type = "structure",
-        },
-        cloudWatchLoggingConfiguration = {
-            type = "structure",
-        },
-        prometheusMonitoringConfiguration = {
-            type = "structure",
-        },
+        s3MonitoringConfiguration = M.S3MonitoringConfiguration,
+        managedPersistenceMonitoringConfiguration = M.ManagedPersistenceMonitoringConfiguration,
+        cloudWatchLoggingConfiguration = M.CloudWatchLoggingConfiguration,
+        prometheusMonitoringConfiguration = M.PrometheusMonitoringConfiguration,
     },
 }
 
@@ -236,11 +230,11 @@ M.NetworkConfiguration = {
     members = {
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -249,10 +243,10 @@ M.SchedulerConfiguration = {
     type = "structure",
     members = {
         queueTimeoutMinutes = {
-            type = "number",
+            type = "integer",
         },
         maxConcurrentRuns = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -270,9 +264,7 @@ M.ApplicationState = {
 M.WorkerTypeSpecification = {
     type = "structure",
     members = {
-        imageConfiguration = {
-            type = "structure",
-        },
+        imageConfiguration = M.ImageConfiguration,
     },
 }
 
@@ -370,9 +362,7 @@ M.ImageConfigurationInput = {
 M.WorkerTypeSpecificationInput = {
     type = "structure",
     members = {
-        imageConfiguration = {
-            type = "structure",
-        },
+        imageConfiguration = M.ImageConfigurationInput,
     },
 }
 
@@ -516,14 +506,15 @@ M.ListApplicationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_query = "maxResults",
             },
         },
         states = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "states",
             },
@@ -536,7 +527,7 @@ M.ListApplicationsOutput = {
     members = {
         applications = {
             type = "list",
-            member_type = "structure",
+            member = M.ApplicationSummary,
             traits = {
                 required = true,
             },
@@ -612,8 +603,9 @@ M.CancelJobRunInput = {
             },
         },
         shutdownGracePeriodInSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_query = "shutdownGracePeriodInSeconds",
             },
         },
@@ -656,7 +648,7 @@ M.GetDashboardForJobRunInput = {
             },
         },
         attempt = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "attempt",
             },
@@ -697,7 +689,7 @@ M.GetJobRunInput = {
             },
         },
         attempt = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "attempt",
             },
@@ -709,13 +701,13 @@ M.ResourceUtilization = {
     type = "structure",
     members = {
         vCPUHour = {
-            type = "number",
+            type = "double",
         },
         memoryGBHour = {
-            type = "number",
+            type = "double",
         },
         storageGBHour = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -728,7 +720,7 @@ M.JobRunExecutionIamPolicy = {
         },
         policyArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -762,7 +754,7 @@ M.SparkSubmit = {
         },
         entryPointArguments = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         sparkSubmitParameters = {
             type = "string",
@@ -773,12 +765,8 @@ M.SparkSubmit = {
 M.JobDriver = {
     type = "union",
     members = {
-        sparkSubmit = {
-            type = "structure",
-        },
-        hive = {
-            type = "structure",
-        },
+        sparkSubmit = M.SparkSubmit,
+        hive = M.Hive,
     },
 }
 
@@ -791,10 +779,13 @@ M.RetryPolicy = {
     type = "structure",
     members = {
         maxAttempts = {
-            type = "number",
+            type = "integer",
         },
         maxFailedAttemptsPerHour = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -815,13 +806,13 @@ M.TotalResourceUtilization = {
     type = "structure",
     members = {
         vCPUHour = {
-            type = "number",
+            type = "double",
         },
         memoryGBHour = {
-            type = "number",
+            type = "double",
         },
         storageGBHour = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -850,8 +841,9 @@ M.ListJobRunAttemptsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_query = "maxResults",
             },
         },
@@ -937,7 +929,7 @@ M.JobRunAttemptSummary = {
             type = "string",
         },
         attempt = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -947,7 +939,7 @@ M.ListJobRunAttemptsOutput = {
     members = {
         jobRunAttempts = {
             type = "list",
-            member_type = "structure",
+            member = M.JobRunAttemptSummary,
             traits = {
                 required = true,
             },
@@ -975,8 +967,9 @@ M.ListJobRunsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_query = "maxResults",
             },
         },
@@ -994,7 +987,7 @@ M.ListJobRunsInput = {
         },
         states = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "states",
             },
@@ -1081,7 +1074,7 @@ M.JobRunSummary = {
             type = "string",
         },
         attempt = {
-            type = "number",
+            type = "integer",
         },
         attemptCreatedAt = {
             type = "timestamp",
@@ -1097,7 +1090,7 @@ M.ListJobRunsOutput = {
     members = {
         jobRuns = {
             type = "list",
-            member_type = "structure",
+            member = M.JobRunSummary,
             traits = {
                 required = true,
             },
@@ -1150,8 +1143,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1260,14 +1253,15 @@ M.ListSessionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_query = "maxResults",
             },
         },
         states = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "states",
             },
@@ -1361,7 +1355,7 @@ M.ListSessionsOutput = {
     members = {
         sessions = {
             type = "list",
-            member_type = "structure",
+            member = M.SessionSummary,
             traits = {
                 required = true,
             },
@@ -1446,8 +1440,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1471,7 +1465,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -1495,12 +1489,12 @@ M.Configuration = {
         },
         properties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         configurations = {
             type = "list",
-            member_type = "structure",
+            member = M.Configuration,
         },
     },
 }
@@ -1546,12 +1540,10 @@ M.Application = {
         },
         initialCapacity = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.InitialCapacityConfig,
         },
-        maximumCapacity = {
-            type = "structure",
-        },
+        maximumCapacity = M.MaximumAllowedResources,
         createdAt = {
             type = "timestamp",
             traits = {
@@ -1566,51 +1558,31 @@ M.Application = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        autoStartConfiguration = {
-            type = "structure",
-        },
-        autoStopConfiguration = {
-            type = "structure",
-        },
-        networkConfiguration = {
-            type = "structure",
-        },
+        autoStartConfiguration = M.AutoStartConfig,
+        autoStopConfiguration = M.AutoStopConfig,
+        networkConfiguration = M.NetworkConfiguration,
         architecture = {
             type = "string",
         },
-        imageConfiguration = {
-            type = "structure",
-        },
+        imageConfiguration = M.ImageConfiguration,
         workerTypeSpecifications = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.WorkerTypeSpecification,
         },
         runtimeConfiguration = {
             type = "list",
-            member_type = "structure",
+            member = M.Configuration,
         },
-        monitoringConfiguration = {
-            type = "structure",
-        },
-        diskEncryptionConfiguration = {
-            type = "structure",
-        },
-        interactiveConfiguration = {
-            type = "structure",
-        },
-        schedulerConfiguration = {
-            type = "structure",
-        },
-        identityCenterConfiguration = {
-            type = "structure",
-        },
-        jobLevelCostAllocationConfiguration = {
-            type = "structure",
-        },
+        monitoringConfiguration = M.MonitoringConfiguration,
+        diskEncryptionConfiguration = M.DiskEncryptionConfiguration,
+        interactiveConfiguration = M.InteractiveConfiguration,
+        schedulerConfiguration = M.SchedulerConfiguration,
+        identityCenterConfiguration = M.IdentityCenterConfiguration,
+        jobLevelCostAllocationConfiguration = M.JobLevelCostAllocationConfiguration,
     },
 }
 
@@ -1619,14 +1591,10 @@ M.ConfigurationOverrides = {
     members = {
         applicationConfiguration = {
             type = "list",
-            member_type = "structure",
+            member = M.Configuration,
         },
-        monitoringConfiguration = {
-            type = "structure",
-        },
-        diskEncryptionConfiguration = {
-            type = "structure",
-        },
+        monitoringConfiguration = M.MonitoringConfiguration,
+        diskEncryptionConfiguration = M.DiskEncryptionConfiguration,
     },
 }
 
@@ -1656,59 +1624,37 @@ M.CreateApplicationInput = {
         },
         initialCapacity = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.InitialCapacityConfig,
         },
-        maximumCapacity = {
-            type = "structure",
-        },
+        maximumCapacity = M.MaximumAllowedResources,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        autoStartConfiguration = {
-            type = "structure",
-        },
-        autoStopConfiguration = {
-            type = "structure",
-        },
-        networkConfiguration = {
-            type = "structure",
-        },
+        autoStartConfiguration = M.AutoStartConfig,
+        autoStopConfiguration = M.AutoStopConfig,
+        networkConfiguration = M.NetworkConfiguration,
         architecture = {
             type = "string",
         },
-        imageConfiguration = {
-            type = "structure",
-        },
+        imageConfiguration = M.ImageConfigurationInput,
         workerTypeSpecifications = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.WorkerTypeSpecificationInput,
         },
         runtimeConfiguration = {
             type = "list",
-            member_type = "structure",
+            member = M.Configuration,
         },
-        monitoringConfiguration = {
-            type = "structure",
-        },
-        diskEncryptionConfiguration = {
-            type = "structure",
-        },
-        interactiveConfiguration = {
-            type = "structure",
-        },
-        schedulerConfiguration = {
-            type = "structure",
-        },
-        identityCenterConfiguration = {
-            type = "structure",
-        },
-        jobLevelCostAllocationConfiguration = {
-            type = "structure",
-        },
+        monitoringConfiguration = M.MonitoringConfiguration,
+        diskEncryptionConfiguration = M.DiskEncryptionConfiguration,
+        interactiveConfiguration = M.InteractiveConfiguration,
+        schedulerConfiguration = M.SchedulerConfiguration,
+        identityCenterConfiguration = M.IdentityCenterConfigurationInput,
+        jobLevelCostAllocationConfiguration = M.JobLevelCostAllocationConfiguration,
     },
 }
 
@@ -1717,7 +1663,7 @@ M.SessionConfigurationOverrides = {
     members = {
         runtimeConfiguration = {
             type = "list",
-            member_type = "structure",
+            member = M.Configuration,
         },
     },
 }
@@ -1740,69 +1686,44 @@ M.UpdateApplicationInput = {
         },
         initialCapacity = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.InitialCapacityConfig,
         },
-        maximumCapacity = {
-            type = "structure",
-        },
-        autoStartConfiguration = {
-            type = "structure",
-        },
-        autoStopConfiguration = {
-            type = "structure",
-        },
-        networkConfiguration = {
-            type = "structure",
-        },
+        maximumCapacity = M.MaximumAllowedResources,
+        autoStartConfiguration = M.AutoStartConfig,
+        autoStopConfiguration = M.AutoStopConfig,
+        networkConfiguration = M.NetworkConfiguration,
         architecture = {
             type = "string",
         },
-        imageConfiguration = {
-            type = "structure",
-        },
+        imageConfiguration = M.ImageConfigurationInput,
         workerTypeSpecifications = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.WorkerTypeSpecificationInput,
         },
-        interactiveConfiguration = {
-            type = "structure",
-        },
+        interactiveConfiguration = M.InteractiveConfiguration,
         releaseLabel = {
             type = "string",
         },
         runtimeConfiguration = {
             type = "list",
-            member_type = "structure",
+            member = M.Configuration,
         },
-        monitoringConfiguration = {
-            type = "structure",
-        },
-        diskEncryptionConfiguration = {
-            type = "structure",
-        },
-        schedulerConfiguration = {
-            type = "structure",
-        },
-        identityCenterConfiguration = {
-            type = "structure",
-        },
-        jobLevelCostAllocationConfiguration = {
-            type = "structure",
-        },
+        monitoringConfiguration = M.MonitoringConfiguration,
+        diskEncryptionConfiguration = M.DiskEncryptionConfiguration,
+        schedulerConfiguration = M.SchedulerConfiguration,
+        identityCenterConfiguration = M.IdentityCenterConfigurationInput,
+        jobLevelCostAllocationConfiguration = M.JobLevelCostAllocationConfiguration,
     },
 }
 
 M.GetApplicationOutput = {
     type = "structure",
     members = {
-        application = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        application = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Application }),
     },
 }
 
@@ -1854,9 +1775,7 @@ M.JobRun = {
                 required = true,
             },
         },
-        executionIamPolicy = {
-            type = "structure",
-        },
+        executionIamPolicy = M.JobRunExecutionIamPolicy,
         state = {
             type = "string",
             traits = {
@@ -1875,43 +1794,33 @@ M.JobRun = {
                 required = true,
             },
         },
-        configurationOverrides = {
-            type = "structure",
-        },
-        jobDriver = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        configurationOverrides = M.ConfigurationOverrides,
+        jobDriver = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.JobDriver }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        totalResourceUtilization = {
-            type = "structure",
-        },
-        networkConfiguration = {
-            type = "structure",
-        },
+        totalResourceUtilization = M.TotalResourceUtilization,
+        networkConfiguration = M.NetworkConfiguration,
         totalExecutionDurationSeconds = {
-            type = "number",
+            type = "integer",
         },
         executionTimeoutMinutes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
-        billedResourceUtilization = {
-            type = "structure",
-        },
+        billedResourceUtilization = M.ResourceUtilization,
         mode = {
             type = "string",
         },
-        retryPolicy = {
-            type = "structure",
-        },
+        retryPolicy = M.RetryPolicy,
         attempt = {
-            type = "number",
+            type = "integer",
         },
         attemptCreatedAt = {
             type = "timestamp",
@@ -1926,7 +1835,7 @@ M.JobRun = {
             type = "timestamp",
         },
         queuedDurationMilliseconds = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -2006,28 +1915,23 @@ M.Session = {
         idleSince = {
             type = "timestamp",
         },
-        configurationOverrides = {
-            type = "structure",
-        },
-        networkConfiguration = {
-            type = "structure",
-        },
+        configurationOverrides = M.SessionConfigurationOverrides,
+        networkConfiguration = M.NetworkConfiguration,
         idleTimeoutMinutes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        totalResourceUtilization = {
-            type = "structure",
-        },
-        billedResourceUtilization = {
-            type = "structure",
-        },
+        totalResourceUtilization = M.TotalResourceUtilization,
+        billedResourceUtilization = M.ResourceUtilization,
         totalExecutionDurationSeconds = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -2054,22 +1958,19 @@ M.StartJobRunInput = {
                 required = true,
             },
         },
-        executionIamPolicy = {
-            type = "structure",
-        },
-        jobDriver = {
-            type = "union",
-        },
-        configurationOverrides = {
-            type = "structure",
-        },
+        executionIamPolicy = M.JobRunExecutionIamPolicy,
+        jobDriver = M.JobDriver,
+        configurationOverrides = M.ConfigurationOverrides,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         executionTimeoutMinutes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
         name = {
             type = "string",
@@ -2077,9 +1978,7 @@ M.StartJobRunInput = {
         mode = {
             type = "string",
         },
-        retryPolicy = {
-            type = "structure",
-        },
+        retryPolicy = M.RetryPolicy,
     },
 }
 
@@ -2105,16 +2004,17 @@ M.StartSessionInput = {
                 required = true,
             },
         },
-        configurationOverrides = {
-            type = "structure",
-        },
+        configurationOverrides = M.SessionConfigurationOverrides,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         idleTimeoutMinutes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
         name = {
             type = "string",
@@ -2125,36 +2025,27 @@ M.StartSessionInput = {
 M.UpdateApplicationOutput = {
     type = "structure",
     members = {
-        application = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        application = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Application }),
     },
 }
 
 M.GetJobRunOutput = {
     type = "structure",
     members = {
-        jobRun = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        jobRun = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.JobRun }),
     },
 }
 
 M.GetSessionOutput = {
     type = "structure",
     members = {
-        session = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        session = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Session }),
     },
 }
 

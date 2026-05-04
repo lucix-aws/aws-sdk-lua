@@ -26,14 +26,14 @@ M.BatchGetRecordIdentifier = {
         },
         RecordIdentifiersValueAsString = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         FeatureNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -43,7 +43,7 @@ M.BatchGetRecordInput = {
     members = {
         Identifiers = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetRecordIdentifier,
             traits = {
                 required = true,
             },
@@ -98,7 +98,7 @@ M.FeatureValue = {
         },
         ValueAsStringList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -120,7 +120,7 @@ M.BatchGetRecordResultDetail = {
         },
         Record = {
             type = "list",
-            member_type = "structure",
+            member = M.FeatureValue,
             traits = {
                 required = true,
             },
@@ -136,21 +136,21 @@ M.BatchGetRecordOutput = {
     members = {
         Records = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetRecordResultDetail,
             traits = {
                 required = true,
             },
         },
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetRecordError,
             traits = {
                 required = true,
             },
         },
         UnprocessedIdentifiers = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetRecordIdentifier,
             traits = {
                 required = true,
             },
@@ -224,7 +224,7 @@ M.DeleteRecordInput = {
         },
         TargetStores = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "TargetStores",
             },
@@ -261,7 +261,7 @@ M.GetRecordInput = {
         },
         FeatureNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "FeatureName",
             },
@@ -280,7 +280,7 @@ M.GetRecordOutput = {
     members = {
         Record = {
             type = "list",
-            member_type = "structure",
+            member = M.FeatureValue,
         },
         ExpiresAt = {
             type = "string",
@@ -316,7 +316,7 @@ M.TtlDuration = {
             },
         },
         Value = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -336,18 +336,16 @@ M.PutRecordInput = {
         },
         Record = {
             type = "list",
-            member_type = "structure",
+            member = M.FeatureValue,
             traits = {
                 required = true,
             },
         },
         TargetStores = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        TtlDuration = {
-            type = "structure",
-        },
+        TtlDuration = M.TtlDuration,
     },
 }
 

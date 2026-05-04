@@ -1258,13 +1258,11 @@ end
 
 local type PrivateGraphEndpointStatus = "CREATING" | "AVAILABLE" | "DELETING" | "FAILED"
 
+local type QueryState = "RUNNING" | "WAITING" | "CANCELLING"
+
 local type ImportTaskStatus = "INITIALIZING" | "EXPORTING" | "ANALYZING_DATA" | "IMPORTING" | "REPROVISIONING" | "ROLLING_BACK" | "SUCCEEDED" | "FAILED" | "CANCELLING" | "CANCELLED" | "DELETED"
 
 local type ExportTaskStatus = "INITIALIZING" | "EXPORTING" | "SUCCEEDED" | "FAILED" | "CANCELLING" | "CANCELLED" | "DELETED"
-
-local type QueryState = "RUNNING" | "WAITING" | "CANCELLING"
-
-local type GraphSummaryMode = "BASIC" | "DETAILED"
 
 local type BlankNodeHandling = "convertToIri"
 
@@ -1272,19 +1270,21 @@ local type Format = "CSV" | "OPEN_CYPHER" | "PARQUET" | "NTRIPLES"
 
 local type QueryLanguage = "OPEN_CYPHER"
 
-local type ExplainMode = "STATIC" | "DETAILS"
+local type ParquetType = "COLUMNAR"
 
 local type QueryStateInput = "ALL" | "RUNNING" | "WAITING" | "CANCELLING"
+
+local type ExplainMode = "STATIC" | "DETAILS"
 
 local type PlanCacheType = "ENABLED" | "DISABLED" | "AUTO"
 
 local type ExportFormat = "PARQUET" | "CSV"
 
-local type ParquetType = "COLUMNAR"
-
-local type GraphStatus = "CREATING" | "AVAILABLE" | "DELETING" | "RESETTING" | "UPDATING" | "SNAPSHOTTING" | "FAILED" | "IMPORTING" | "STARTING" | "STOPPING" | "STOPPED"
+local type GraphSummaryMode = "BASIC" | "DETAILED"
 
 local type SnapshotStatus = "CREATING" | "AVAILABLE" | "DELETING" | "FAILED"
+
+local type GraphStatus = "CREATING" | "AVAILABLE" | "DELETING" | "RESETTING" | "UPDATING" | "SNAPSHOTTING" | "FAILED" | "IMPORTING" | "STARTING" | "STOPPING" | "STOPPED"
 
 local record M
     CancelExportTaskInput: CancelExportTaskInput

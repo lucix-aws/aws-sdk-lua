@@ -65,13 +65,13 @@ M.EstimatedDiscounts = {
     type = "structure",
     members = {
         savingsPlansDiscount = {
-            type = "number",
+            type = "double",
         },
         reservedInstancesDiscount = {
-            type = "number",
+            type = "double",
         },
         otherDiscount = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -80,16 +80,14 @@ M.ResourcePricing = {
     type = "structure",
     members = {
         estimatedCostBeforeDiscounts = {
-            type = "number",
+            type = "double",
         },
         estimatedNetUnusedAmortizedCommitments = {
-            type = "number",
+            type = "double",
         },
-        estimatedDiscounts = {
-            type = "structure",
-        },
+        estimatedDiscounts = M.EstimatedDiscounts,
         estimatedCostAfterDiscounts = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -101,7 +99,7 @@ M.Usage = {
             type = "string",
         },
         usageAmount = {
-            type = "number",
+            type = "double",
         },
         operation = {
             type = "string",
@@ -120,23 +118,17 @@ M.ResourceCostCalculation = {
     members = {
         usages = {
             type = "list",
-            member_type = "structure",
+            member = M.Usage,
         },
-        pricing = {
-            type = "structure",
-        },
+        pricing = M.ResourcePricing,
     },
 }
 
 M.AuroraDbClusterStorage = {
     type = "structure",
     members = {
-        configuration = {
-            type = "structure",
-        },
-        costCalculation = {
-            type = "structure",
-        },
+        configuration = M.AuroraDbClusterStorageConfiguration,
+        costCalculation = M.ResourceCostCalculation,
     },
 }
 
@@ -144,10 +136,10 @@ M.BlockStoragePerformanceConfiguration = {
     type = "structure",
     members = {
         iops = {
-            type = "number",
+            type = "double",
         },
         throughput = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -156,10 +148,10 @@ M.ComputeConfiguration = {
     type = "structure",
     members = {
         vCpu = {
-            type = "number",
+            type = "double",
         },
         memorySizeInMB = {
-            type = "number",
+            type = "integer",
         },
         architecture = {
             type = "string",
@@ -192,16 +184,16 @@ M.SavingsPlansPricing = {
     type = "structure",
     members = {
         monthlySavingsPlansEligibleCost = {
-            type = "number",
+            type = "double",
         },
         estimatedMonthlyCommitment = {
-            type = "number",
+            type = "double",
         },
         savingsPercentage = {
-            type = "number",
+            type = "double",
         },
         estimatedOnDemandCost = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -209,21 +201,15 @@ M.SavingsPlansPricing = {
 M.SavingsPlansCostCalculation = {
     type = "structure",
     members = {
-        pricing = {
-            type = "structure",
-        },
+        pricing = M.SavingsPlansPricing,
     },
 }
 
 M.ComputeSavingsPlans = {
     type = "structure",
     members = {
-        configuration = {
-            type = "structure",
-        },
-        costCalculation = {
-            type = "structure",
-        },
+        configuration = M.ComputeSavingsPlansConfiguration,
+        costCalculation = M.SavingsPlansCostCalculation,
     },
 }
 
@@ -273,9 +259,7 @@ M.GetPreferencesOutput = {
         memberAccountDiscountVisibility = {
             type = "string",
         },
-        preferredCommitment = {
-            type = "structure",
-        },
+        preferredCommitment = M.PreferredCommitment,
     },
 }
 
@@ -340,7 +324,7 @@ M.ValidationException = {
         },
         fields = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionDetail,
         },
     },
 }
@@ -394,16 +378,16 @@ M.ReservedInstancesPricing = {
     type = "structure",
     members = {
         estimatedOnDemandCost = {
-            type = "number",
+            type = "double",
         },
         monthlyReservationEligibleCost = {
-            type = "number",
+            type = "double",
         },
         savingsPercentage = {
-            type = "number",
+            type = "double",
         },
         estimatedMonthlyAmortizedReservationCost = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -411,21 +395,15 @@ M.ReservedInstancesPricing = {
 M.ReservedInstancesCostCalculation = {
     type = "structure",
     members = {
-        pricing = {
-            type = "structure",
-        },
+        pricing = M.ReservedInstancesPricing,
     },
 }
 
 M.DynamoDbReservedCapacity = {
     type = "structure",
     members = {
-        configuration = {
-            type = "structure",
-        },
-        costCalculation = {
-            type = "structure",
-        },
+        configuration = M.DynamoDbReservedCapacityConfiguration,
+        costCalculation = M.ReservedInstancesCostCalculation,
     },
 }
 
@@ -436,7 +414,7 @@ M.StorageConfiguration = {
             type = "string",
         },
         sizeInGb = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -444,12 +422,8 @@ M.StorageConfiguration = {
 M.EbsVolumeConfiguration = {
     type = "structure",
     members = {
-        storage = {
-            type = "structure",
-        },
-        performance = {
-            type = "structure",
-        },
+        storage = M.StorageConfiguration,
+        performance = M.BlockStoragePerformanceConfiguration,
         attachmentState = {
             type = "string",
         },
@@ -459,12 +433,8 @@ M.EbsVolumeConfiguration = {
 M.EbsVolume = {
     type = "structure",
     members = {
-        configuration = {
-            type = "structure",
-        },
-        costCalculation = {
-            type = "structure",
-        },
+        configuration = M.EbsVolumeConfiguration,
+        costCalculation = M.ResourceCostCalculation,
     },
 }
 
@@ -494,12 +464,10 @@ M.Ec2AutoScalingGroupType = {
 M.Ec2AutoScalingGroupConfiguration = {
     type = "structure",
     members = {
-        instance = {
-            type = "structure",
-        },
+        instance = M.InstanceConfiguration,
         mixedInstances = {
             type = "list",
-            member_type = "structure",
+            member = M.MixedInstanceConfiguration,
         },
         type = {
             type = "string",
@@ -513,33 +481,23 @@ M.Ec2AutoScalingGroupConfiguration = {
 M.Ec2AutoScalingGroup = {
     type = "structure",
     members = {
-        configuration = {
-            type = "structure",
-        },
-        costCalculation = {
-            type = "structure",
-        },
+        configuration = M.Ec2AutoScalingGroupConfiguration,
+        costCalculation = M.ResourceCostCalculation,
     },
 }
 
 M.Ec2InstanceConfiguration = {
     type = "structure",
     members = {
-        instance = {
-            type = "structure",
-        },
+        instance = M.InstanceConfiguration,
     },
 }
 
 M.Ec2Instance = {
     type = "structure",
     members = {
-        configuration = {
-            type = "structure",
-        },
-        costCalculation = {
-            type = "structure",
-        },
+        configuration = M.Ec2InstanceConfiguration,
+        costCalculation = M.ResourceCostCalculation,
     },
 }
 
@@ -570,12 +528,8 @@ M.Ec2InstanceSavingsPlansConfiguration = {
 M.Ec2InstanceSavingsPlans = {
     type = "structure",
     members = {
-        configuration = {
-            type = "structure",
-        },
-        costCalculation = {
-            type = "structure",
-        },
+        configuration = M.Ec2InstanceSavingsPlansConfiguration,
+        costCalculation = M.SavingsPlansCostCalculation,
     },
 }
 
@@ -636,33 +590,23 @@ M.Ec2ReservedInstancesConfiguration = {
 M.Ec2ReservedInstances = {
     type = "structure",
     members = {
-        configuration = {
-            type = "structure",
-        },
-        costCalculation = {
-            type = "structure",
-        },
+        configuration = M.Ec2ReservedInstancesConfiguration,
+        costCalculation = M.ReservedInstancesCostCalculation,
     },
 }
 
 M.EcsServiceConfiguration = {
     type = "structure",
     members = {
-        compute = {
-            type = "structure",
-        },
+        compute = M.ComputeConfiguration,
     },
 }
 
 M.EcsService = {
     type = "structure",
     members = {
-        configuration = {
-            type = "structure",
-        },
-        costCalculation = {
-            type = "structure",
-        },
+        configuration = M.EcsServiceConfiguration,
+        costCalculation = M.ResourceCostCalculation,
     },
 }
 
@@ -714,33 +658,23 @@ M.ElastiCacheReservedInstancesConfiguration = {
 M.ElastiCacheReservedInstances = {
     type = "structure",
     members = {
-        configuration = {
-            type = "structure",
-        },
-        costCalculation = {
-            type = "structure",
-        },
+        configuration = M.ElastiCacheReservedInstancesConfiguration,
+        costCalculation = M.ReservedInstancesCostCalculation,
     },
 }
 
 M.LambdaFunctionConfiguration = {
     type = "structure",
     members = {
-        compute = {
-            type = "structure",
-        },
+        compute = M.ComputeConfiguration,
     },
 }
 
 M.LambdaFunction = {
     type = "structure",
     members = {
-        configuration = {
-            type = "structure",
-        },
-        costCalculation = {
-            type = "structure",
-        },
+        configuration = M.LambdaFunctionConfiguration,
+        costCalculation = M.ResourceCostCalculation,
     },
 }
 
@@ -792,12 +726,8 @@ M.MemoryDbReservedInstancesConfiguration = {
 M.MemoryDbReservedInstances = {
     type = "structure",
     members = {
-        configuration = {
-            type = "structure",
-        },
-        costCalculation = {
-            type = "structure",
-        },
+        configuration = M.MemoryDbReservedInstancesConfiguration,
+        costCalculation = M.ReservedInstancesCostCalculation,
     },
 }
 
@@ -805,13 +735,13 @@ M.NatGatewayConfiguration = {
     type = "structure",
     members = {
         activeConnectionCount = {
-            type = "number",
+            type = "long",
         },
         packetsInFromSource = {
-            type = "number",
+            type = "long",
         },
         packetsInFromDestination = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -819,12 +749,8 @@ M.NatGatewayConfiguration = {
 M.NatGateway = {
     type = "structure",
     members = {
-        configuration = {
-            type = "structure",
-        },
-        costCalculation = {
-            type = "structure",
-        },
+        configuration = M.NatGatewayConfiguration,
+        costCalculation = M.ResourceCostCalculation,
     },
 }
 
@@ -873,12 +799,8 @@ M.OpenSearchReservedInstancesConfiguration = {
 M.OpenSearchReservedInstances = {
     type = "structure",
     members = {
-        configuration = {
-            type = "structure",
-        },
-        costCalculation = {
-            type = "structure",
-        },
+        configuration = M.OpenSearchReservedInstancesConfiguration,
+        costCalculation = M.ReservedInstancesCostCalculation,
     },
 }
 
@@ -894,21 +816,15 @@ M.DbInstanceConfiguration = {
 M.RdsDbInstanceConfiguration = {
     type = "structure",
     members = {
-        instance = {
-            type = "structure",
-        },
+        instance = M.DbInstanceConfiguration,
     },
 }
 
 M.RdsDbInstance = {
     type = "structure",
     members = {
-        configuration = {
-            type = "structure",
-        },
-        costCalculation = {
-            type = "structure",
-        },
+        configuration = M.RdsDbInstanceConfiguration,
+        costCalculation = M.ResourceCostCalculation,
     },
 }
 
@@ -919,13 +835,13 @@ M.RdsDbInstanceStorageConfiguration = {
             type = "string",
         },
         allocatedStorageInGb = {
-            type = "number",
+            type = "double",
         },
         iops = {
-            type = "number",
+            type = "double",
         },
         storageThroughput = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -933,12 +849,8 @@ M.RdsDbInstanceStorageConfiguration = {
 M.RdsDbInstanceStorage = {
     type = "structure",
     members = {
-        configuration = {
-            type = "structure",
-        },
-        costCalculation = {
-            type = "structure",
-        },
+        configuration = M.RdsDbInstanceStorageConfiguration,
+        costCalculation = M.ResourceCostCalculation,
     },
 }
 
@@ -1002,12 +914,8 @@ M.RdsReservedInstancesConfiguration = {
 M.RdsReservedInstances = {
     type = "structure",
     members = {
-        configuration = {
-            type = "structure",
-        },
-        costCalculation = {
-            type = "structure",
-        },
+        configuration = M.RdsReservedInstancesConfiguration,
+        costCalculation = M.ReservedInstancesCostCalculation,
     },
 }
 
@@ -1059,12 +967,8 @@ M.RedshiftReservedInstancesConfiguration = {
 M.RedshiftReservedInstances = {
     type = "structure",
     members = {
-        configuration = {
-            type = "structure",
-        },
-        costCalculation = {
-            type = "structure",
-        },
+        configuration = M.RedshiftReservedInstancesConfiguration,
+        costCalculation = M.ReservedInstancesCostCalculation,
     },
 }
 
@@ -1089,75 +993,33 @@ M.SageMakerSavingsPlansConfiguration = {
 M.SageMakerSavingsPlans = {
     type = "structure",
     members = {
-        configuration = {
-            type = "structure",
-        },
-        costCalculation = {
-            type = "structure",
-        },
+        configuration = M.SageMakerSavingsPlansConfiguration,
+        costCalculation = M.SavingsPlansCostCalculation,
     },
 }
 
 M.ResourceDetails = {
     type = "union",
     members = {
-        lambdaFunction = {
-            type = "structure",
-        },
-        ecsService = {
-            type = "structure",
-        },
-        ec2Instance = {
-            type = "structure",
-        },
-        ebsVolume = {
-            type = "structure",
-        },
-        ec2AutoScalingGroup = {
-            type = "structure",
-        },
-        ec2ReservedInstances = {
-            type = "structure",
-        },
-        rdsReservedInstances = {
-            type = "structure",
-        },
-        elastiCacheReservedInstances = {
-            type = "structure",
-        },
-        openSearchReservedInstances = {
-            type = "structure",
-        },
-        redshiftReservedInstances = {
-            type = "structure",
-        },
-        ec2InstanceSavingsPlans = {
-            type = "structure",
-        },
-        computeSavingsPlans = {
-            type = "structure",
-        },
-        sageMakerSavingsPlans = {
-            type = "structure",
-        },
-        rdsDbInstance = {
-            type = "structure",
-        },
-        rdsDbInstanceStorage = {
-            type = "structure",
-        },
-        auroraDbClusterStorage = {
-            type = "structure",
-        },
-        dynamoDbReservedCapacity = {
-            type = "structure",
-        },
-        memoryDbReservedInstances = {
-            type = "structure",
-        },
-        natGateway = {
-            type = "structure",
-        },
+        lambdaFunction = M.LambdaFunction,
+        ecsService = M.EcsService,
+        ec2Instance = M.Ec2Instance,
+        ebsVolume = M.EbsVolume,
+        ec2AutoScalingGroup = M.Ec2AutoScalingGroup,
+        ec2ReservedInstances = M.Ec2ReservedInstances,
+        rdsReservedInstances = M.RdsReservedInstances,
+        elastiCacheReservedInstances = M.ElastiCacheReservedInstances,
+        openSearchReservedInstances = M.OpenSearchReservedInstances,
+        redshiftReservedInstances = M.RedshiftReservedInstances,
+        ec2InstanceSavingsPlans = M.Ec2InstanceSavingsPlans,
+        computeSavingsPlans = M.ComputeSavingsPlans,
+        sageMakerSavingsPlans = M.SageMakerSavingsPlans,
+        rdsDbInstance = M.RdsDbInstance,
+        rdsDbInstanceStorage = M.RdsDbInstanceStorage,
+        auroraDbClusterStorage = M.AuroraDbClusterStorage,
+        dynamoDbReservedCapacity = M.DynamoDbReservedCapacity,
+        memoryDbReservedInstances = M.MemoryDbReservedInstances,
+        natGateway = M.NatGateway,
     },
 }
 
@@ -1227,16 +1089,16 @@ M.GetRecommendationOutput = {
             type = "string",
         },
         recommendationLookbackPeriodInDays = {
-            type = "number",
+            type = "integer",
         },
         costCalculationLookbackPeriodInDays = {
-            type = "number",
+            type = "integer",
         },
         estimatedSavingsPercentage = {
-            type = "number",
+            type = "double",
         },
         estimatedSavingsOverCostCalculationLookbackPeriod = {
-            type = "number",
+            type = "double",
         },
         currentResourceType = {
             type = "string",
@@ -1254,10 +1116,10 @@ M.GetRecommendationOutput = {
             type = "timestamp",
         },
         estimatedMonthlySavings = {
-            type = "number",
+            type = "double",
         },
         estimatedMonthlyCost = {
-            type = "number",
+            type = "double",
         },
         implementationEffort = {
             type = "string",
@@ -1271,15 +1133,11 @@ M.GetRecommendationOutput = {
         rollbackPossible = {
             type = "boolean",
         },
-        currentResourceDetails = {
-            type = "union",
-        },
-        recommendedResourceDetails = {
-            type = "union",
-        },
+        currentResourceDetails = M.ResourceDetails,
+        recommendedResourceDetails = M.ResourceDetails,
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1355,18 +1213,13 @@ M.ListEfficiencyMetricsInput = {
                 required = true,
             },
         },
-        timePeriod = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        timePeriod = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TimePeriod }),
         maxResults = {
-            type = "number",
+            type = "integer",
         },
-        orderBy = {
-            type = "structure",
-        },
+        orderBy = M.OrderBy,
         nextToken = {
             type = "string",
         },
@@ -1377,13 +1230,13 @@ M.MetricsByTime = {
     type = "structure",
     members = {
         score = {
-            type = "number",
+            type = "double",
         },
         savings = {
-            type = "number",
+            type = "double",
         },
         spend = {
-            type = "number",
+            type = "double",
         },
         timestamp = {
             type = "string",
@@ -1396,7 +1249,7 @@ M.EfficiencyMetricsByGroup = {
     members = {
         metricsByTime = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricsByTime,
         },
         group = {
             type = "string",
@@ -1412,7 +1265,7 @@ M.ListEfficiencyMetricsOutput = {
     members = {
         efficiencyMetricsByGroup = {
             type = "list",
-            member_type = "structure",
+            member = M.EfficiencyMetricsByGroup,
         },
         nextToken = {
             type = "string",
@@ -1425,6 +1278,9 @@ M.ListEnrollmentStatusesInput = {
     members = {
         includeOrganizationInfo = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         accountId = {
             type = "string",
@@ -1433,7 +1289,7 @@ M.ListEnrollmentStatusesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1443,7 +1299,7 @@ M.ListEnrollmentStatusesOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.AccountEnrollmentStatus,
         },
         includeMemberAccounts = {
             type = "boolean",
@@ -1465,39 +1321,39 @@ M.Filter = {
         },
         implementationEfforts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         accountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         regions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         resourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         actionTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         resourceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         resourceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         recommendationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1505,17 +1361,16 @@ M.Filter = {
 M.ListRecommendationsInput = {
     type = "structure",
     members = {
-        filter = {
-            type = "structure",
-        },
-        orderBy = {
-            type = "structure",
-        },
+        filter = M.Filter,
+        orderBy = M.OrderBy,
         includeAllRecommendations = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -1548,13 +1403,13 @@ M.Recommendation = {
             type = "string",
         },
         estimatedMonthlySavings = {
-            type = "number",
+            type = "double",
         },
         estimatedSavingsPercentage = {
-            type = "number",
+            type = "double",
         },
         estimatedMonthlyCost = {
-            type = "number",
+            type = "double",
         },
         currencyCode = {
             type = "string",
@@ -1581,14 +1436,14 @@ M.Recommendation = {
             type = "timestamp",
         },
         recommendationLookbackPeriodInDays = {
-            type = "number",
+            type = "integer",
         },
         source = {
             type = "string",
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1598,7 +1453,7 @@ M.ListRecommendationsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.Recommendation,
         },
         nextToken = {
             type = "string",
@@ -1613,9 +1468,7 @@ M.SummaryMetrics = {
 M.ListRecommendationSummariesInput = {
     type = "structure",
     members = {
-        filter = {
-            type = "structure",
-        },
+        filter = M.Filter,
         groupBy = {
             type = "string",
             traits = {
@@ -1623,11 +1476,11 @@ M.ListRecommendationSummariesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         metrics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -1642,10 +1495,10 @@ M.RecommendationSummary = {
             type = "string",
         },
         estimatedMonthlySavings = {
-            type = "number",
+            type = "double",
         },
         recommendationCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1663,11 +1516,11 @@ M.ListRecommendationSummariesOutput = {
     type = "structure",
     members = {
         estimatedTotalDedupedSavings = {
-            type = "number",
+            type = "double",
         },
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.RecommendationSummary,
         },
         groupBy = {
             type = "string",
@@ -1675,9 +1528,7 @@ M.ListRecommendationSummariesOutput = {
         currencyCode = {
             type = "string",
         },
-        metrics = {
-            type = "structure",
-        },
+        metrics = M.SummaryMetricsResult,
         nextToken = {
             type = "string",
         },
@@ -1717,9 +1568,7 @@ M.UpdatePreferencesInput = {
         memberAccountDiscountVisibility = {
             type = "string",
         },
-        preferredCommitment = {
-            type = "structure",
-        },
+        preferredCommitment = M.PreferredCommitment,
     },
 }
 
@@ -1732,9 +1581,7 @@ M.UpdatePreferencesOutput = {
         memberAccountDiscountVisibility = {
             type = "string",
         },
-        preferredCommitment = {
-            type = "structure",
-        },
+        preferredCommitment = M.PreferredCommitment,
     },
 }
 

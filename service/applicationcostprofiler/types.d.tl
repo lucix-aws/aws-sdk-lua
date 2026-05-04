@@ -162,9 +162,9 @@ local record ValidationException
     message: string
 end
 
-local type ReportFrequency = "MONTHLY" | "DAILY" | "ALL"
-
 local type Format = "CSV" | "PARQUET"
+
+local type ReportFrequency = "MONTHLY" | "DAILY" | "ALL"
 
 local record M
     DeleteReportDefinitionInput: DeleteReportDefinitionInput

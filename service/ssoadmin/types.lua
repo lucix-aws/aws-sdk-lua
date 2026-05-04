@@ -5,7 +5,7 @@ M.AccessControlAttributeValue = {
     members = {
         Source = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -22,12 +22,9 @@ M.AccessControlAttribute = {
                 required = true,
             },
         },
-        Value = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Value = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AccessControlAttributeValue }),
     },
 }
 
@@ -274,11 +271,12 @@ M.ApplicationVisibility = {
 M.PortalOptions = {
     type = "structure",
     members = {
-        SignInOptions = {
-            type = "structure",
-        },
+        SignInOptions = M.SignInOptions,
         Visibility = {
             type = "string",
+            traits = {
+                default = "ENABLED",
+            },
         },
     },
 }
@@ -312,9 +310,7 @@ M.Application = {
         Status = {
             type = "string",
         },
-        PortalOptions = {
-            type = "structure",
-        },
+        PortalOptions = M.PortalOptions,
         Description = {
             type = "string",
         },
@@ -395,7 +391,7 @@ M.GetApplicationAccessScopeOutput = {
         },
         AuthorizedTargets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -410,7 +406,10 @@ M.ListApplicationAccessScopesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 10,
+            },
         },
         NextToken = {
             type = "string",
@@ -429,7 +428,7 @@ M.ScopeDetails = {
         },
         AuthorizedTargets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -439,7 +438,7 @@ M.ListApplicationAccessScopesOutput = {
     members = {
         Scopes = {
             type = "list",
-            member_type = "structure",
+            member = M.ScopeDetails,
             traits = {
                 required = true,
             },
@@ -461,7 +460,7 @@ M.PutApplicationAccessScopeInput = {
         },
         AuthorizedTargets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ApplicationArn = {
             type = "string",
@@ -574,18 +573,14 @@ M.IamAuthenticationMethod = {
 M.AuthenticationMethod = {
     type = "union",
     members = {
-        Iam = {
-            type = "structure",
-        },
+        Iam = M.IamAuthenticationMethod,
     },
 }
 
 M.GetApplicationAuthenticationMethodOutput = {
     type = "structure",
     members = {
-        AuthenticationMethod = {
-            type = "union",
-        },
+        AuthenticationMethod = M.AuthenticationMethod,
     },
 }
 
@@ -610,9 +605,7 @@ M.AuthenticationMethodItem = {
         AuthenticationMethodType = {
             type = "string",
         },
-        AuthenticationMethod = {
-            type = "union",
-        },
+        AuthenticationMethod = M.AuthenticationMethod,
     },
 }
 
@@ -621,7 +614,7 @@ M.ListApplicationAuthenticationMethodsOutput = {
     members = {
         AuthenticationMethods = {
             type = "list",
-            member_type = "structure",
+            member = M.AuthenticationMethodItem,
         },
         NextToken = {
             type = "string",
@@ -644,12 +637,9 @@ M.PutApplicationAuthenticationMethodInput = {
                 required = true,
             },
         },
-        AuthenticationMethod = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        AuthenticationMethod = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AuthenticationMethod }),
     },
 }
 
@@ -709,7 +699,7 @@ M.AuthorizationCodeGrant = {
     members = {
         RedirectUris = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -722,7 +712,7 @@ M.AuthorizedTokenIssuer = {
         },
         AuthorizedAudiences = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -732,7 +722,7 @@ M.JwtBearerGrant = {
     members = {
         AuthorizedTokenIssuers = {
             type = "list",
-            member_type = "structure",
+            member = M.AuthorizedTokenIssuer,
         },
     },
 }
@@ -748,30 +738,19 @@ M.TokenExchangeGrant = {
 M.Grant = {
     type = "union",
     members = {
-        AuthorizationCode = {
-            type = "structure",
-        },
-        JwtBearer = {
-            type = "structure",
-        },
-        RefreshToken = {
-            type = "structure",
-        },
-        TokenExchange = {
-            type = "structure",
-        },
+        AuthorizationCode = M.AuthorizationCodeGrant,
+        JwtBearer = M.JwtBearerGrant,
+        RefreshToken = M.RefreshTokenGrant,
+        TokenExchange = M.TokenExchangeGrant,
     },
 }
 
 M.GetApplicationGrantOutput = {
     type = "structure",
     members = {
-        Grant = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        Grant = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Grant }),
     },
 }
 
@@ -799,12 +778,9 @@ M.GrantItem = {
                 required = true,
             },
         },
-        Grant = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        Grant = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Grant }),
     },
 }
 
@@ -813,7 +789,7 @@ M.ListApplicationGrantsOutput = {
     members = {
         Grants = {
             type = "list",
-            member_type = "structure",
+            member = M.GrantItem,
             traits = {
                 required = true,
             },
@@ -839,12 +815,9 @@ M.PutApplicationGrantInput = {
                 required = true,
             },
         },
-        Grant = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        Grant = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Grant }),
     },
 }
 
@@ -889,8 +862,8 @@ M.ResourceServerConfig = {
     members = {
         Scopes = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ResourceServerScopeDetails,
         },
     },
 }
@@ -907,12 +880,8 @@ M.ApplicationProvider = {
         FederationProtocol = {
             type = "string",
         },
-        DisplayData = {
-            type = "structure",
-        },
-        ResourceServerConfig = {
-            type = "structure",
-        },
+        DisplayData = M.DisplayData,
+        ResourceServerConfig = M.ResourceServerConfig,
     },
 }
 
@@ -946,12 +915,9 @@ M.AttachCustomerManagedPolicyReferenceToPermissionSetInput = {
                 required = true,
             },
         },
-        CustomerManagedPolicyReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        CustomerManagedPolicyReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CustomerManagedPolicyReference }),
     },
 }
 
@@ -1044,9 +1010,7 @@ M.CreateAccountAssignmentInput = {
 M.CreateAccountAssignmentOutput = {
     type = "structure",
     members = {
-        AccountAssignmentCreationStatus = {
-            type = "structure",
-        },
+        AccountAssignmentCreationStatus = M.AccountAssignmentOperationStatus,
     },
 }
 
@@ -1092,12 +1056,10 @@ M.CreateApplicationInput = {
         Description = {
             type = "string",
         },
-        PortalOptions = {
-            type = "structure",
-        },
+        PortalOptions = M.PortalOptions,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         Status = {
             type = "string",
@@ -1162,7 +1124,7 @@ M.CreateInstanceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1181,7 +1143,7 @@ M.InstanceAccessControlAttributeConfiguration = {
     members = {
         AccessControlAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessControlAttribute,
             traits = {
                 required = true,
             },
@@ -1198,12 +1160,9 @@ M.CreateInstanceAccessControlAttributeConfigurationInput = {
                 required = true,
             },
         },
-        InstanceAccessControlAttributeConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InstanceAccessControlAttributeConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InstanceAccessControlAttributeConfiguration }),
     },
 }
 
@@ -1237,7 +1196,7 @@ M.CreatePermissionSetInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1269,9 +1228,7 @@ M.PermissionSet = {
 M.CreatePermissionSetOutput = {
     type = "structure",
     members = {
-        PermissionSet = {
-            type = "structure",
-        },
+        PermissionSet = M.PermissionSet,
     },
 }
 
@@ -1312,9 +1269,7 @@ M.OidcJwtConfiguration = {
 M.TrustedTokenIssuerConfiguration = {
     type = "union",
     members = {
-        OidcJwtConfiguration = {
-            type = "structure",
-        },
+        OidcJwtConfiguration = M.OidcJwtConfiguration,
     },
 }
 
@@ -1343,18 +1298,15 @@ M.CreateTrustedTokenIssuerInput = {
                 required = true,
             },
         },
-        TrustedTokenIssuerConfiguration = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        TrustedTokenIssuerConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TrustedTokenIssuerConfiguration }),
         ClientToken = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1413,9 +1365,7 @@ M.DeleteAccountAssignmentInput = {
 M.DeleteAccountAssignmentOutput = {
     type = "structure",
     members = {
-        AccountAssignmentDeletionStatus = {
-            type = "structure",
-        },
+        AccountAssignmentDeletionStatus = M.AccountAssignmentOperationStatus,
     },
 }
 
@@ -1598,9 +1548,7 @@ M.DescribeAccountAssignmentCreationStatusInput = {
 M.DescribeAccountAssignmentCreationStatusOutput = {
     type = "structure",
     members = {
-        AccountAssignmentCreationStatus = {
-            type = "structure",
-        },
+        AccountAssignmentCreationStatus = M.AccountAssignmentOperationStatus,
     },
 }
 
@@ -1625,9 +1573,7 @@ M.DescribeAccountAssignmentDeletionStatusInput = {
 M.DescribeAccountAssignmentDeletionStatusOutput = {
     type = "structure",
     members = {
-        AccountAssignmentDeletionStatus = {
-            type = "structure",
-        },
+        AccountAssignmentDeletionStatus = M.AccountAssignmentOperationStatus,
     },
 }
 
@@ -1667,9 +1613,7 @@ M.DescribeApplicationOutput = {
         Status = {
             type = "string",
         },
-        PortalOptions = {
-            type = "structure",
-        },
+        PortalOptions = M.PortalOptions,
         Description = {
             type = "string",
         },
@@ -1745,12 +1689,8 @@ M.DescribeApplicationProviderOutput = {
         FederationProtocol = {
             type = "string",
         },
-        DisplayData = {
-            type = "structure",
-        },
-        ResourceServerConfig = {
-            type = "structure",
-        },
+        DisplayData = M.DisplayData,
+        ResourceServerConfig = M.ResourceServerConfig,
     },
 }
 
@@ -1826,9 +1766,7 @@ M.DescribeInstanceOutput = {
         StatusReason = {
             type = "string",
         },
-        EncryptionConfigurationDetails = {
-            type = "structure",
-        },
+        EncryptionConfigurationDetails = M.EncryptionConfigurationDetails,
     },
 }
 
@@ -1859,9 +1797,7 @@ M.DescribeInstanceAccessControlAttributeConfigurationOutput = {
         StatusReason = {
             type = "string",
         },
-        InstanceAccessControlAttributeConfiguration = {
-            type = "structure",
-        },
+        InstanceAccessControlAttributeConfiguration = M.InstanceAccessControlAttributeConfiguration,
     },
 }
 
@@ -1886,9 +1822,7 @@ M.DescribePermissionSetInput = {
 M.DescribePermissionSetOutput = {
     type = "structure",
     members = {
-        PermissionSet = {
-            type = "structure",
-        },
+        PermissionSet = M.PermissionSet,
     },
 }
 
@@ -1937,9 +1871,7 @@ M.PermissionSetProvisioningStatus = {
 M.DescribePermissionSetProvisioningStatusOutput = {
     type = "structure",
     members = {
-        PermissionSetProvisioningStatus = {
-            type = "structure",
-        },
+        PermissionSetProvisioningStatus = M.PermissionSetProvisioningStatus,
     },
 }
 
@@ -1975,6 +1907,9 @@ M.DescribeRegionOutput = {
         },
         IsPrimaryRegion = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -2003,9 +1938,7 @@ M.DescribeTrustedTokenIssuerOutput = {
         TrustedTokenIssuerType = {
             type = "string",
         },
-        TrustedTokenIssuerConfiguration = {
-            type = "union",
-        },
+        TrustedTokenIssuerConfiguration = M.TrustedTokenIssuerConfiguration,
     },
 }
 
@@ -2024,12 +1957,9 @@ M.DetachCustomerManagedPolicyReferenceFromPermissionSetInput = {
                 required = true,
             },
         },
-        CustomerManagedPolicyReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        CustomerManagedPolicyReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CustomerManagedPolicyReference }),
     },
 }
 
@@ -2098,6 +2028,7 @@ M.GetApplicationAssignmentConfigurationOutput = {
         AssignmentRequired = {
             type = "boolean",
             traits = {
+                default = true,
                 required = true,
             },
         },
@@ -2178,9 +2109,7 @@ M.GetPermissionsBoundaryForPermissionSetInput = {
 M.PermissionsBoundary = {
     type = "structure",
     members = {
-        CustomerManagedPolicyReference = {
-            type = "structure",
-        },
+        CustomerManagedPolicyReference = M.CustomerManagedPolicyReference,
         ManagedPolicyArn = {
             type = "string",
         },
@@ -2190,9 +2119,7 @@ M.PermissionsBoundary = {
 M.GetPermissionsBoundaryForPermissionSetOutput = {
     type = "structure",
     members = {
-        PermissionsBoundary = {
-            type = "structure",
-        },
+        PermissionsBoundary = M.PermissionsBoundary,
     },
 }
 
@@ -2242,14 +2169,12 @@ M.ListAccountAssignmentCreationStatusInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.OperationStatusFilter,
     },
 }
 
@@ -2258,7 +2183,7 @@ M.ListAccountAssignmentCreationStatusOutput = {
     members = {
         AccountAssignmentsCreationStatus = {
             type = "list",
-            member_type = "structure",
+            member = M.AccountAssignmentOperationStatusMetadata,
         },
         NextToken = {
             type = "string",
@@ -2276,14 +2201,12 @@ M.ListAccountAssignmentDeletionStatusInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.OperationStatusFilter,
     },
 }
 
@@ -2292,7 +2215,7 @@ M.ListAccountAssignmentDeletionStatusOutput = {
     members = {
         AccountAssignmentsDeletionStatus = {
             type = "list",
-            member_type = "structure",
+            member = M.AccountAssignmentOperationStatusMetadata,
         },
         NextToken = {
             type = "string",
@@ -2322,7 +2245,7 @@ M.ListAccountAssignmentsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2335,7 +2258,7 @@ M.ListAccountAssignmentsOutput = {
     members = {
         AccountAssignments = {
             type = "list",
-            member_type = "structure",
+            member = M.AccountAssignment,
         },
         NextToken = {
             type = "string",
@@ -2373,14 +2296,15 @@ M.ListAccountAssignmentsForPrincipalInput = {
                 required = true,
             },
         },
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.ListAccountAssignmentsFilter,
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 100,
+            },
         },
     },
 }
@@ -2390,7 +2314,7 @@ M.ListAccountAssignmentsForPrincipalOutput = {
     members = {
         AccountAssignments = {
             type = "list",
-            member_type = "structure",
+            member = M.AccountAssignmentForPrincipal,
         },
         NextToken = {
             type = "string",
@@ -2422,7 +2346,7 @@ M.ListAccountsForProvisionedPermissionSetInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2435,7 +2359,7 @@ M.ListAccountsForProvisionedPermissionSetOutput = {
     members = {
         AccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -2453,7 +2377,7 @@ M.ListApplicationAssignmentsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2466,7 +2390,7 @@ M.ListApplicationAssignmentsOutput = {
     members = {
         ApplicationAssignments = {
             type = "list",
-            member_type = "structure",
+            member = M.ApplicationAssignment,
         },
         NextToken = {
             type = "string",
@@ -2504,14 +2428,15 @@ M.ListApplicationAssignmentsForPrincipalInput = {
                 required = true,
             },
         },
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.ListApplicationAssignmentsFilter,
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 100,
+            },
         },
     },
 }
@@ -2521,7 +2446,7 @@ M.ListApplicationAssignmentsForPrincipalOutput = {
     members = {
         ApplicationAssignments = {
             type = "list",
-            member_type = "structure",
+            member = M.ApplicationAssignmentForPrincipal,
         },
         NextToken = {
             type = "string",
@@ -2533,7 +2458,7 @@ M.ListApplicationProvidersInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2546,7 +2471,7 @@ M.ListApplicationProvidersOutput = {
     members = {
         ApplicationProviders = {
             type = "list",
-            member_type = "structure",
+            member = M.ApplicationProvider,
         },
         NextToken = {
             type = "string",
@@ -2576,14 +2501,12 @@ M.ListApplicationsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.ListApplicationsFilter,
     },
 }
 
@@ -2592,7 +2515,7 @@ M.ListApplicationsOutput = {
     members = {
         Applications = {
             type = "list",
-            member_type = "structure",
+            member = M.Application,
         },
         NextToken = {
             type = "string",
@@ -2616,7 +2539,7 @@ M.ListCustomerManagedPolicyReferencesInPermissionSetInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2629,7 +2552,7 @@ M.ListCustomerManagedPolicyReferencesInPermissionSetOutput = {
     members = {
         CustomerManagedPolicyReferences = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomerManagedPolicyReference,
         },
         NextToken = {
             type = "string",
@@ -2641,7 +2564,7 @@ M.ListInstancesInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2654,7 +2577,7 @@ M.ListInstancesOutput = {
     members = {
         Instances = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceMetadata,
         },
         NextToken = {
             type = "string",
@@ -2678,7 +2601,7 @@ M.ListManagedPoliciesInPermissionSetInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2691,7 +2614,7 @@ M.ListManagedPoliciesInPermissionSetOutput = {
     members = {
         AttachedManagedPolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.AttachedManagedPolicy,
         },
         NextToken = {
             type = "string",
@@ -2709,14 +2632,12 @@ M.ListPermissionSetProvisioningStatusInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.OperationStatusFilter,
     },
 }
 
@@ -2740,7 +2661,7 @@ M.ListPermissionSetProvisioningStatusOutput = {
     members = {
         PermissionSetsProvisioningStatus = {
             type = "list",
-            member_type = "structure",
+            member = M.PermissionSetProvisioningStatusMetadata,
         },
         NextToken = {
             type = "string",
@@ -2761,7 +2682,7 @@ M.ListPermissionSetsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2771,7 +2692,7 @@ M.ListPermissionSetsOutput = {
     members = {
         PermissionSets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -2798,7 +2719,7 @@ M.ListPermissionSetsProvisionedToAccountInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2814,7 +2735,7 @@ M.ListPermissionSetsProvisionedToAccountOutput = {
         },
         PermissionSets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2829,7 +2750,7 @@ M.ListRegionsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2851,6 +2772,9 @@ M.RegionMetadata = {
         },
         IsPrimaryRegion = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -2860,7 +2784,7 @@ M.ListRegionsOutput = {
     members = {
         Regions = {
             type = "list",
-            member_type = "structure",
+            member = M.RegionMetadata,
         },
         NextToken = {
             type = "string",
@@ -2891,7 +2815,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         NextToken = {
             type = "string",
@@ -2909,7 +2833,7 @@ M.ListTrustedTokenIssuersInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2937,7 +2861,7 @@ M.ListTrustedTokenIssuersOutput = {
     members = {
         TrustedTokenIssuers = {
             type = "list",
-            member_type = "structure",
+            member = M.TrustedTokenIssuerMetadata,
         },
         NextToken = {
             type = "string",
@@ -2995,9 +2919,7 @@ M.ProvisionPermissionSetInput = {
 M.ProvisionPermissionSetOutput = {
     type = "structure",
     members = {
-        PermissionSetProvisioningStatus = {
-            type = "structure",
-        },
+        PermissionSetProvisioningStatus = M.PermissionSetProvisioningStatus,
     },
 }
 
@@ -3013,6 +2935,7 @@ M.PutApplicationAssignmentConfigurationInput = {
         AssignmentRequired = {
             type = "boolean",
             traits = {
+                default = true,
                 required = true,
             },
         },
@@ -3085,12 +3008,9 @@ M.PutPermissionsBoundaryToPermissionSetInput = {
                 required = true,
             },
         },
-        PermissionsBoundary = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        PermissionsBoundary = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PermissionsBoundary }),
     },
 }
 
@@ -3139,7 +3059,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -3165,7 +3085,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3180,9 +3100,7 @@ M.UntagResourceOutput = {
 M.UpdateApplicationPortalOptions = {
     type = "structure",
     members = {
-        SignInOptions = {
-            type = "structure",
-        },
+        SignInOptions = M.SignInOptions,
     },
 }
 
@@ -3204,9 +3122,7 @@ M.UpdateApplicationInput = {
         Status = {
             type = "string",
         },
-        PortalOptions = {
-            type = "structure",
-        },
+        PortalOptions = M.UpdateApplicationPortalOptions,
     },
 }
 
@@ -3226,9 +3142,7 @@ M.UpdateInstanceInput = {
                 required = true,
             },
         },
-        EncryptionConfiguration = {
-            type = "structure",
-        },
+        EncryptionConfiguration = M.EncryptionConfiguration,
     },
 }
 
@@ -3245,12 +3159,9 @@ M.UpdateInstanceAccessControlAttributeConfigurationInput = {
                 required = true,
             },
         },
-        InstanceAccessControlAttributeConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InstanceAccessControlAttributeConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InstanceAccessControlAttributeConfiguration }),
     },
 }
 
@@ -3292,9 +3203,7 @@ M.UpdatePermissionSetOutput = {
 M.TrustedTokenIssuerUpdateConfiguration = {
     type = "union",
     members = {
-        OidcJwtConfiguration = {
-            type = "structure",
-        },
+        OidcJwtConfiguration = M.OidcJwtUpdateConfiguration,
     },
 }
 
@@ -3310,9 +3219,7 @@ M.UpdateTrustedTokenIssuerInput = {
         Name = {
             type = "string",
         },
-        TrustedTokenIssuerConfiguration = {
-            type = "union",
-        },
+        TrustedTokenIssuerConfiguration = M.TrustedTokenIssuerUpdateConfiguration,
     },
 }
 

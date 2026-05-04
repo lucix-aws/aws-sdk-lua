@@ -20,10 +20,16 @@ M.ThrottleSettings = {
     type = "structure",
     members = {
         burstLimit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         rateLimit = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -48,6 +54,9 @@ M.ApiKey = {
         },
         enabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         createdDate = {
             type = "timestamp",
@@ -57,12 +66,12 @@ M.ApiKey = {
         },
         stageKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -87,8 +96,8 @@ M.ApiStage = {
         },
         throttle = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ThrottleSettings,
         },
     },
 }
@@ -120,7 +129,7 @@ M.Authorizer = {
         },
         providerARNs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         authType = {
             type = "string",
@@ -138,7 +147,7 @@ M.Authorizer = {
             type = "string",
         },
         authorizerResultTtlInSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -186,24 +195,30 @@ M.CreateApiKeyInput = {
         },
         enabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         generateDistinctId = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         value = {
             type = "string",
         },
         stageKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.StageKey,
         },
         customerId = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -228,6 +243,9 @@ M.CreateApiKeyOutput = {
         },
         enabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         createdDate = {
             type = "timestamp",
@@ -237,12 +255,12 @@ M.CreateApiKeyOutput = {
         },
         stageKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -323,7 +341,7 @@ M.CreateAuthorizerInput = {
         },
         providerARNs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         authType = {
             type = "string",
@@ -341,7 +359,7 @@ M.CreateAuthorizerInput = {
             type = "string",
         },
         authorizerResultTtlInSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -360,7 +378,7 @@ M.CreateAuthorizerOutput = {
         },
         providerARNs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         authType = {
             type = "string",
@@ -378,7 +396,7 @@ M.CreateAuthorizerOutput = {
             type = "string",
         },
         authorizerResultTtlInSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -444,15 +462,21 @@ M.DeploymentCanarySettings = {
     type = "structure",
     members = {
         percentTraffic = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         stageVariableOverrides = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         useStageCache = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -484,12 +508,10 @@ M.CreateDeploymentInput = {
         },
         variables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        canarySettings = {
-            type = "structure",
-        },
+        canarySettings = M.DeploymentCanarySettings,
         tracingEnabled = {
             type = "boolean",
         },
@@ -504,6 +526,9 @@ M.MethodSnapshot = {
         },
         apiKeyRequired = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -522,8 +547,8 @@ M.CreateDeploymentOutput = {
         },
         apiSummary = {
             type = "map",
-            key_type = "string",
-            value_type = "map",
+            key = { type = "string" },
+            value = { type = "map" },
         },
     },
 }
@@ -593,12 +618,9 @@ M.CreateDocumentationPartInput = {
                 required = true,
             },
         },
-        location = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        location = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DocumentationPartLocation }),
         properties = {
             type = "string",
             traits = {
@@ -614,9 +636,7 @@ M.CreateDocumentationPartOutput = {
         id = {
             type = "string",
         },
-        location = {
-            type = "structure",
-        },
+        location = M.DocumentationPartLocation,
         properties = {
             type = "string",
         },
@@ -684,14 +704,14 @@ M.EndpointConfiguration = {
     members = {
         types = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ipAddressType = {
             type = "string",
         },
         vpcEndpointIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -759,13 +779,11 @@ M.CreateDomainNameInput = {
         regionalCertificateArn = {
             type = "string",
         },
-        endpointConfiguration = {
-            type = "structure",
-        },
+        endpointConfiguration = M.EndpointConfiguration,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         securityPolicy = {
             type = "string",
@@ -773,9 +791,7 @@ M.CreateDomainNameInput = {
         endpointAccessMode = {
             type = "string",
         },
-        mutualTlsAuthentication = {
-            type = "structure",
-        },
+        mutualTlsAuthentication = M.MutualTlsAuthenticationInput,
         ownershipVerificationCertificateArn = {
             type = "string",
         },
@@ -808,7 +824,7 @@ M.MutualTlsAuthentication = {
         },
         truststoreWarnings = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -852,9 +868,7 @@ M.CreateDomainNameOutput = {
         distributionHostedZoneId = {
             type = "string",
         },
-        endpointConfiguration = {
-            type = "structure",
-        },
+        endpointConfiguration = M.EndpointConfiguration,
         domainNameStatus = {
             type = "string",
         },
@@ -869,12 +883,10 @@ M.CreateDomainNameOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        mutualTlsAuthentication = {
-            type = "structure",
-        },
+        mutualTlsAuthentication = M.MutualTlsAuthentication,
         ownershipVerificationCertificateArn = {
             type = "string",
         },
@@ -913,8 +925,8 @@ M.CreateDomainNameAccessAssociationInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -936,8 +948,8 @@ M.CreateDomainNameAccessAssociationOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1009,9 +1021,15 @@ M.CreateRequestValidatorInput = {
         },
         validateRequestBody = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         validateRequestParameters = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1027,9 +1045,15 @@ M.CreateRequestValidatorOutput = {
         },
         validateRequestBody = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         validateRequestParameters = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1081,13 +1105,13 @@ M.IntegrationResponse = {
         },
         responseParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         responseTemplates = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         contentHandling = {
             type = "string",
@@ -1105,6 +1129,9 @@ M.TlsConfig = {
     members = {
         insecureSkipVerification = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1140,13 +1167,13 @@ M.Integration = {
         },
         requestParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         requestTemplates = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         passthroughBehavior = {
             type = "string",
@@ -1155,23 +1182,24 @@ M.Integration = {
             type = "string",
         },
         timeoutInMillis = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         cacheNamespace = {
             type = "string",
         },
         cacheKeyParameters = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         integrationResponses = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.IntegrationResponse,
         },
-        tlsConfig = {
-            type = "structure",
-        },
+        tlsConfig = M.TlsConfig,
         responseTransferMode = {
             type = "string",
         },
@@ -1189,13 +1217,13 @@ M.MethodResponse = {
         },
         responseParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "boolean",
+            key = { type = "string" },
+            value = { type = "boolean" },
         },
         responseModels = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1223,25 +1251,23 @@ M.Method = {
         },
         requestParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "boolean",
+            key = { type = "string" },
+            value = { type = "boolean" },
         },
         requestModels = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         methodResponses = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.MethodResponse,
         },
-        methodIntegration = {
-            type = "structure",
-        },
+        methodIntegration = M.Integration,
         authorizationScopes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1263,8 +1289,8 @@ M.CreateResourceOutput = {
         },
         resourceMethods = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.Method,
         },
     },
 }
@@ -1289,27 +1315,28 @@ M.CreateRestApiInput = {
         },
         binaryMediaTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         minimumCompressionSize = {
-            type = "number",
+            type = "integer",
         },
         apiKeySource = {
             type = "string",
         },
-        endpointConfiguration = {
-            type = "structure",
-        },
+        endpointConfiguration = M.EndpointConfiguration,
         policy = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         disableExecuteApiEndpoint = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         securityPolicy = {
             type = "string",
@@ -1340,31 +1367,32 @@ M.CreateRestApiOutput = {
         },
         warnings = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         binaryMediaTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         minimumCompressionSize = {
-            type = "number",
+            type = "integer",
         },
         apiKeySource = {
             type = "string",
         },
-        endpointConfiguration = {
-            type = "structure",
-        },
+        endpointConfiguration = M.EndpointConfiguration,
         policy = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         disableExecuteApiEndpoint = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         rootResourceId = {
             type = "string",
@@ -1388,18 +1416,24 @@ M.CanarySettings = {
     type = "structure",
     members = {
         percentTraffic = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         deploymentId = {
             type = "string",
         },
         stageVariableOverrides = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         useStageCache = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1431,28 +1465,32 @@ M.CreateStageInput = {
         },
         cacheClusterEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         cacheClusterSize = {
             type = "string",
         },
         variables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         documentationVersion = {
             type = "string",
         },
-        canarySettings = {
-            type = "structure",
-        },
+        canarySettings = M.CanarySettings,
         tracingEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1476,30 +1514,54 @@ M.MethodSetting = {
     members = {
         metricsEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         loggingLevel = {
             type = "string",
         },
         dataTraceEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         throttlingBurstLimit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         throttlingRateLimit = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         cachingEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         cacheTtlInSeconds = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         cacheDataEncrypted = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         requireAuthorizationForCacheControl = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         unauthorizedCacheControlHeaderStrategy = {
             type = "string",
@@ -1524,6 +1586,9 @@ M.CreateStageOutput = {
         },
         cacheClusterEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         cacheClusterSize = {
             type = "string",
@@ -1533,33 +1598,32 @@ M.CreateStageOutput = {
         },
         methodSettings = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.MethodSetting,
         },
         variables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         documentationVersion = {
             type = "string",
         },
-        accessLogSettings = {
-            type = "structure",
-        },
-        canarySettings = {
-            type = "structure",
-        },
+        accessLogSettings = M.AccessLogSettings,
+        canarySettings = M.CanarySettings,
         tracingEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         webAclArn = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         createdDate = {
             type = "timestamp",
@@ -1580,10 +1644,16 @@ M.QuotaSettings = {
     type = "structure",
     members = {
         limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         offset = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         period = {
             type = "string",
@@ -1605,18 +1675,14 @@ M.CreateUsagePlanInput = {
         },
         apiStages = {
             type = "list",
-            member_type = "structure",
+            member = M.ApiStage,
         },
-        throttle = {
-            type = "structure",
-        },
-        quota = {
-            type = "structure",
-        },
+        throttle = M.ThrottleSettings,
+        quota = M.QuotaSettings,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1635,21 +1701,17 @@ M.CreateUsagePlanOutput = {
         },
         apiStages = {
             type = "list",
-            member_type = "structure",
+            member = M.ApiStage,
         },
-        throttle = {
-            type = "structure",
-        },
-        quota = {
-            type = "structure",
-        },
+        throttle = M.ThrottleSettings,
+        quota = M.QuotaSettings,
         productCode = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1711,15 +1773,15 @@ M.CreateVpcLinkInput = {
         },
         targetArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1745,7 +1807,7 @@ M.CreateVpcLinkOutput = {
         },
         targetArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         status = {
             type = "string",
@@ -1755,8 +1817,8 @@ M.CreateVpcLinkOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2374,8 +2436,8 @@ M.GenerateClientCertificateInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2400,8 +2462,8 @@ M.GenerateClientCertificateOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2416,12 +2478,10 @@ M.GetAccountOutput = {
         cloudwatchRoleArn = {
             type = "string",
         },
-        throttleSettings = {
-            type = "structure",
-        },
+        throttleSettings = M.ThrottleSettings,
         features = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         apiKeyVersion = {
             type = "string",
@@ -2468,6 +2528,9 @@ M.GetApiKeyOutput = {
         },
         enabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         createdDate = {
             type = "timestamp",
@@ -2477,12 +2540,12 @@ M.GetApiKeyOutput = {
         },
         stageKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2497,7 +2560,7 @@ M.GetApiKeysInput = {
             },
         },
         limit = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "limit",
             },
@@ -2528,11 +2591,11 @@ M.GetApiKeysOutput = {
     members = {
         warnings = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.ApiKey,
             traits = {
                 json_name = "item",
             },
@@ -2580,7 +2643,7 @@ M.GetAuthorizerOutput = {
         },
         providerARNs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         authType = {
             type = "string",
@@ -2598,7 +2661,7 @@ M.GetAuthorizerOutput = {
             type = "string",
         },
         authorizerResultTtlInSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2620,7 +2683,7 @@ M.GetAuthorizersInput = {
             },
         },
         limit = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "limit",
             },
@@ -2633,7 +2696,7 @@ M.GetAuthorizersOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.Authorizer,
             traits = {
                 json_name = "item",
             },
@@ -2711,7 +2774,7 @@ M.GetBasePathMappingsInput = {
             },
         },
         limit = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "limit",
             },
@@ -2739,7 +2802,7 @@ M.GetBasePathMappingsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.BasePathMapping,
             traits = {
                 json_name = "item",
             },
@@ -2786,8 +2849,8 @@ M.GetClientCertificateOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2802,7 +2865,7 @@ M.GetClientCertificatesInput = {
             },
         },
         limit = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "limit",
             },
@@ -2830,8 +2893,8 @@ M.ClientCertificate = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2841,7 +2904,7 @@ M.GetClientCertificatesOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.ClientCertificate,
             traits = {
                 json_name = "item",
             },
@@ -2874,7 +2937,7 @@ M.GetDeploymentInput = {
         },
         embed = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "embed",
             },
@@ -2896,8 +2959,8 @@ M.GetDeploymentOutput = {
         },
         apiSummary = {
             type = "map",
-            key_type = "string",
-            value_type = "map",
+            key = { type = "string" },
+            value = { type = "map" },
         },
     },
 }
@@ -2919,7 +2982,7 @@ M.GetDeploymentsInput = {
             },
         },
         limit = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "limit",
             },
@@ -2941,8 +3004,8 @@ M.Deployment = {
         },
         apiSummary = {
             type = "map",
-            key_type = "string",
-            value_type = "map",
+            key = { type = "string" },
+            value = { type = "map" },
         },
     },
 }
@@ -2952,7 +3015,7 @@ M.GetDeploymentsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.Deployment,
             traits = {
                 json_name = "item",
             },
@@ -2992,9 +3055,7 @@ M.GetDocumentationPartOutput = {
         id = {
             type = "string",
         },
-        location = {
-            type = "structure",
-        },
+        location = M.DocumentationPartLocation,
         properties = {
             type = "string",
         },
@@ -3041,7 +3102,7 @@ M.GetDocumentationPartsInput = {
             },
         },
         limit = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "limit",
             },
@@ -3061,9 +3122,7 @@ M.DocumentationPart = {
         id = {
             type = "string",
         },
-        location = {
-            type = "structure",
-        },
+        location = M.DocumentationPartLocation,
         properties = {
             type = "string",
         },
@@ -3075,7 +3134,7 @@ M.GetDocumentationPartsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.DocumentationPart,
             traits = {
                 json_name = "item",
             },
@@ -3141,7 +3200,7 @@ M.GetDocumentationVersionsInput = {
             },
         },
         limit = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "limit",
             },
@@ -3169,7 +3228,7 @@ M.GetDocumentationVersionsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.DocumentationVersion,
             traits = {
                 json_name = "item",
             },
@@ -3241,9 +3300,7 @@ M.GetDomainNameOutput = {
         distributionHostedZoneId = {
             type = "string",
         },
-        endpointConfiguration = {
-            type = "structure",
-        },
+        endpointConfiguration = M.EndpointConfiguration,
         domainNameStatus = {
             type = "string",
         },
@@ -3258,12 +3315,10 @@ M.GetDomainNameOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        mutualTlsAuthentication = {
-            type = "structure",
-        },
+        mutualTlsAuthentication = M.MutualTlsAuthentication,
         ownershipVerificationCertificateArn = {
             type = "string",
         },
@@ -3294,7 +3349,7 @@ M.GetDomainNameAccessAssociationsInput = {
             },
         },
         limit = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "limit",
             },
@@ -3325,8 +3380,8 @@ M.DomainNameAccessAssociation = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3336,7 +3391,7 @@ M.GetDomainNameAccessAssociationsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainNameAccessAssociation,
             traits = {
                 json_name = "item",
             },
@@ -3360,7 +3415,7 @@ M.GetDomainNamesInput = {
             },
         },
         limit = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "limit",
             },
@@ -3413,9 +3468,7 @@ M.DomainName = {
         distributionHostedZoneId = {
             type = "string",
         },
-        endpointConfiguration = {
-            type = "structure",
-        },
+        endpointConfiguration = M.EndpointConfiguration,
         domainNameStatus = {
             type = "string",
         },
@@ -3430,12 +3483,10 @@ M.DomainName = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        mutualTlsAuthentication = {
-            type = "structure",
-        },
+        mutualTlsAuthentication = M.MutualTlsAuthentication,
         ownershipVerificationCertificateArn = {
             type = "string",
         },
@@ -3456,7 +3507,7 @@ M.GetDomainNamesOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainName,
             traits = {
                 json_name = "item",
             },
@@ -3496,8 +3547,8 @@ M.GetExportInput = {
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 http_query_params = true,
             },
@@ -3566,16 +3617,19 @@ M.GetGatewayResponseOutput = {
         },
         responseParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         responseTemplates = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         defaultResponse = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -3597,7 +3651,7 @@ M.GetGatewayResponsesInput = {
             },
         },
         limit = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "limit",
             },
@@ -3616,16 +3670,19 @@ M.GatewayResponse = {
         },
         responseParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         responseTemplates = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         defaultResponse = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -3635,7 +3692,7 @@ M.GetGatewayResponsesOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.GatewayResponse,
             traits = {
                 json_name = "item",
             },
@@ -3699,13 +3756,13 @@ M.GetIntegrationOutput = {
         },
         requestParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         requestTemplates = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         passthroughBehavior = {
             type = "string",
@@ -3714,23 +3771,24 @@ M.GetIntegrationOutput = {
             type = "string",
         },
         timeoutInMillis = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         cacheNamespace = {
             type = "string",
         },
         cacheKeyParameters = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         integrationResponses = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.IntegrationResponse,
         },
-        tlsConfig = {
-            type = "structure",
-        },
+        tlsConfig = M.TlsConfig,
         responseTransferMode = {
             type = "string",
         },
@@ -3785,13 +3843,13 @@ M.GetIntegrationResponseOutput = {
         },
         responseParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         responseTemplates = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         contentHandling = {
             type = "string",
@@ -3849,25 +3907,23 @@ M.GetMethodOutput = {
         },
         requestParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "boolean",
+            key = { type = "string" },
+            value = { type = "boolean" },
         },
         requestModels = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         methodResponses = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.MethodResponse,
         },
-        methodIntegration = {
-            type = "structure",
-        },
+        methodIntegration = M.Integration,
         authorizationScopes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3914,13 +3970,13 @@ M.GetMethodResponseOutput = {
         },
         responseParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "boolean",
+            key = { type = "string" },
+            value = { type = "boolean" },
         },
         responseModels = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3945,6 +4001,7 @@ M.GetModelInput = {
         flatten = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "flatten",
             },
         },
@@ -3989,7 +4046,7 @@ M.GetModelsInput = {
             },
         },
         limit = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "limit",
             },
@@ -4023,7 +4080,7 @@ M.GetModelsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.Model,
             traits = {
                 json_name = "item",
             },
@@ -4097,9 +4154,15 @@ M.GetRequestValidatorOutput = {
         },
         validateRequestBody = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         validateRequestParameters = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -4121,7 +4184,7 @@ M.GetRequestValidatorsInput = {
             },
         },
         limit = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "limit",
             },
@@ -4140,9 +4203,15 @@ M.RequestValidator = {
         },
         validateRequestBody = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         validateRequestParameters = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -4152,7 +4221,7 @@ M.GetRequestValidatorsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.RequestValidator,
             traits = {
                 json_name = "item",
             },
@@ -4185,7 +4254,7 @@ M.GetResourceInput = {
         },
         embed = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "embed",
             },
@@ -4210,8 +4279,8 @@ M.GetResourceOutput = {
         },
         resourceMethods = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.Method,
         },
     },
 }
@@ -4233,14 +4302,14 @@ M.GetResourcesInput = {
             },
         },
         limit = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "limit",
             },
         },
         embed = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "embed",
             },
@@ -4265,8 +4334,8 @@ M.Resource = {
         },
         resourceMethods = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.Method,
         },
     },
 }
@@ -4276,7 +4345,7 @@ M.GetResourcesOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.Resource,
             traits = {
                 json_name = "item",
             },
@@ -4323,31 +4392,32 @@ M.GetRestApiOutput = {
         },
         warnings = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         binaryMediaTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         minimumCompressionSize = {
-            type = "number",
+            type = "integer",
         },
         apiKeySource = {
             type = "string",
         },
-        endpointConfiguration = {
-            type = "structure",
-        },
+        endpointConfiguration = M.EndpointConfiguration,
         policy = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         disableExecuteApiEndpoint = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         rootResourceId = {
             type = "string",
@@ -4377,7 +4447,7 @@ M.GetRestApisInput = {
             },
         },
         limit = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "limit",
             },
@@ -4405,31 +4475,32 @@ M.RestApi = {
         },
         warnings = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         binaryMediaTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         minimumCompressionSize = {
-            type = "number",
+            type = "integer",
         },
         apiKeySource = {
             type = "string",
         },
-        endpointConfiguration = {
-            type = "structure",
-        },
+        endpointConfiguration = M.EndpointConfiguration,
         policy = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         disableExecuteApiEndpoint = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         rootResourceId = {
             type = "string",
@@ -4454,7 +4525,7 @@ M.GetRestApisOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.RestApi,
             traits = {
                 json_name = "item",
             },
@@ -4494,8 +4565,8 @@ M.GetSdkInput = {
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 http_query_params = true,
             },
@@ -4554,6 +4625,9 @@ M.SdkConfigurationProperty = {
         },
         required = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         defaultValue = {
             type = "string",
@@ -4575,7 +4649,7 @@ M.GetSdkTypeOutput = {
         },
         configurationProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.SdkConfigurationProperty,
         },
     },
 }
@@ -4590,7 +4664,7 @@ M.GetSdkTypesInput = {
             },
         },
         limit = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "limit",
             },
@@ -4612,7 +4686,7 @@ M.SdkType = {
         },
         configurationProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.SdkConfigurationProperty,
         },
     },
 }
@@ -4622,7 +4696,7 @@ M.GetSdkTypesOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.SdkType,
             traits = {
                 json_name = "item",
             },
@@ -4667,6 +4741,9 @@ M.GetStageOutput = {
         },
         cacheClusterEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         cacheClusterSize = {
             type = "string",
@@ -4676,33 +4753,32 @@ M.GetStageOutput = {
         },
         methodSettings = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.MethodSetting,
         },
         variables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         documentationVersion = {
             type = "string",
         },
-        accessLogSettings = {
-            type = "structure",
-        },
-        canarySettings = {
-            type = "structure",
-        },
+        accessLogSettings = M.AccessLogSettings,
+        canarySettings = M.CanarySettings,
         tracingEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         webAclArn = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         createdDate = {
             type = "timestamp",
@@ -4749,6 +4825,9 @@ M.Stage = {
         },
         cacheClusterEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         cacheClusterSize = {
             type = "string",
@@ -4758,33 +4837,32 @@ M.Stage = {
         },
         methodSettings = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.MethodSetting,
         },
         variables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         documentationVersion = {
             type = "string",
         },
-        accessLogSettings = {
-            type = "structure",
-        },
-        canarySettings = {
-            type = "structure",
-        },
+        accessLogSettings = M.AccessLogSettings,
+        canarySettings = M.CanarySettings,
         tracingEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         webAclArn = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         createdDate = {
             type = "timestamp",
@@ -4800,7 +4878,7 @@ M.GetStagesOutput = {
     members = {
         item = {
             type = "list",
-            member_type = "structure",
+            member = M.Stage,
         },
     },
 }
@@ -4822,7 +4900,7 @@ M.GetTagsInput = {
             },
         },
         limit = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "limit",
             },
@@ -4835,8 +4913,8 @@ M.GetTagsOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -4878,7 +4956,7 @@ M.GetUsageInput = {
             },
         },
         limit = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "limit",
             },
@@ -4900,8 +4978,8 @@ M.GetUsageOutput = {
         },
         items = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
             traits = {
                 json_name = "values",
             },
@@ -4942,21 +5020,17 @@ M.GetUsagePlanOutput = {
         },
         apiStages = {
             type = "list",
-            member_type = "structure",
+            member = M.ApiStage,
         },
-        throttle = {
-            type = "structure",
-        },
-        quota = {
-            type = "structure",
-        },
+        throttle = M.ThrottleSettings,
+        quota = M.QuotaSettings,
         productCode = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -5016,7 +5090,7 @@ M.GetUsagePlanKeysInput = {
             },
         },
         limit = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "limit",
             },
@@ -5053,7 +5127,7 @@ M.GetUsagePlanKeysOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.UsagePlanKey,
             traits = {
                 json_name = "item",
             },
@@ -5083,7 +5157,7 @@ M.GetUsagePlansInput = {
             },
         },
         limit = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "limit",
             },
@@ -5105,21 +5179,17 @@ M.UsagePlan = {
         },
         apiStages = {
             type = "list",
-            member_type = "structure",
+            member = M.ApiStage,
         },
-        throttle = {
-            type = "structure",
-        },
-        quota = {
-            type = "structure",
-        },
+        throttle = M.ThrottleSettings,
+        quota = M.QuotaSettings,
         productCode = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -5129,7 +5199,7 @@ M.GetUsagePlansOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.UsagePlan,
             traits = {
                 json_name = "item",
             },
@@ -5170,7 +5240,7 @@ M.GetVpcLinkOutput = {
         },
         targetArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         status = {
             type = "string",
@@ -5180,8 +5250,8 @@ M.GetVpcLinkOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -5196,7 +5266,7 @@ M.GetVpcLinksInput = {
             },
         },
         limit = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "limit",
             },
@@ -5218,7 +5288,7 @@ M.VpcLink = {
         },
         targetArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         status = {
             type = "string",
@@ -5228,8 +5298,8 @@ M.VpcLink = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -5239,7 +5309,7 @@ M.GetVpcLinksOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcLink,
             traits = {
                 json_name = "item",
             },
@@ -5273,6 +5343,7 @@ M.ImportApiKeysInput = {
         failOnWarnings = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "failonwarnings",
             },
         },
@@ -5284,11 +5355,11 @@ M.ImportApiKeysOutput = {
     members = {
         ids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         warnings = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -5317,6 +5388,7 @@ M.ImportDocumentationPartsInput = {
         failOnWarnings = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "failonwarnings",
             },
         },
@@ -5335,11 +5407,11 @@ M.ImportDocumentationPartsOutput = {
     members = {
         ids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         warnings = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -5350,13 +5422,14 @@ M.ImportRestApiInput = {
         failOnWarnings = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "failonwarnings",
             },
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 http_query_params = true,
             },
@@ -5391,31 +5464,32 @@ M.ImportRestApiOutput = {
         },
         warnings = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         binaryMediaTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         minimumCompressionSize = {
-            type = "number",
+            type = "integer",
         },
         apiKeySource = {
             type = "string",
         },
-        endpointConfiguration = {
-            type = "structure",
-        },
+        endpointConfiguration = M.EndpointConfiguration,
         policy = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         disableExecuteApiEndpoint = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         rootResourceId = {
             type = "string",
@@ -5457,13 +5531,13 @@ M.PutGatewayResponseInput = {
         },
         responseParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         responseTemplates = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -5479,16 +5553,19 @@ M.PutGatewayResponseOutput = {
         },
         responseParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         responseTemplates = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         defaultResponse = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -5544,13 +5621,13 @@ M.PutIntegrationInput = {
         },
         requestParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         requestTemplates = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         passthroughBehavior = {
             type = "string",
@@ -5560,17 +5637,15 @@ M.PutIntegrationInput = {
         },
         cacheKeyParameters = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         contentHandling = {
             type = "string",
         },
         timeoutInMillis = {
-            type = "number",
+            type = "integer",
         },
-        tlsConfig = {
-            type = "structure",
-        },
+        tlsConfig = M.TlsConfig,
         responseTransferMode = {
             type = "string",
         },
@@ -5603,13 +5678,13 @@ M.PutIntegrationOutput = {
         },
         requestParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         requestTemplates = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         passthroughBehavior = {
             type = "string",
@@ -5618,23 +5693,24 @@ M.PutIntegrationOutput = {
             type = "string",
         },
         timeoutInMillis = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         cacheNamespace = {
             type = "string",
         },
         cacheKeyParameters = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         integrationResponses = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.IntegrationResponse,
         },
-        tlsConfig = {
-            type = "structure",
-        },
+        tlsConfig = M.TlsConfig,
         responseTransferMode = {
             type = "string",
         },
@@ -5680,13 +5756,13 @@ M.PutIntegrationResponseInput = {
         },
         responseParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         responseTemplates = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         contentHandling = {
             type = "string",
@@ -5705,13 +5781,13 @@ M.PutIntegrationResponseOutput = {
         },
         responseParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         responseTemplates = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         contentHandling = {
             type = "string",
@@ -5754,26 +5830,29 @@ M.PutMethodInput = {
         },
         apiKeyRequired = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         operationName = {
             type = "string",
         },
         requestParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "boolean",
+            key = { type = "string" },
+            value = { type = "boolean" },
         },
         requestModels = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         requestValidatorId = {
             type = "string",
         },
         authorizationScopes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -5801,25 +5880,23 @@ M.PutMethodOutput = {
         },
         requestParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "boolean",
+            key = { type = "string" },
+            value = { type = "boolean" },
         },
         requestModels = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         methodResponses = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.MethodResponse,
         },
-        methodIntegration = {
-            type = "structure",
-        },
+        methodIntegration = M.Integration,
         authorizationScopes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -5857,13 +5934,13 @@ M.PutMethodResponseInput = {
         },
         responseParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "boolean",
+            key = { type = "string" },
+            value = { type = "boolean" },
         },
         responseModels = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -5876,13 +5953,13 @@ M.PutMethodResponseOutput = {
         },
         responseParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "boolean",
+            key = { type = "string" },
+            value = { type = "boolean" },
         },
         responseModels = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -5906,13 +5983,14 @@ M.PutRestApiInput = {
         failOnWarnings = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "failonwarnings",
             },
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 http_query_params = true,
             },
@@ -5947,31 +6025,32 @@ M.PutRestApiOutput = {
         },
         warnings = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         binaryMediaTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         minimumCompressionSize = {
-            type = "number",
+            type = "integer",
         },
         apiKeySource = {
             type = "string",
         },
-        endpointConfiguration = {
-            type = "structure",
-        },
+        endpointConfiguration = M.EndpointConfiguration,
         policy = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         disableExecuteApiEndpoint = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         rootResourceId = {
             type = "string",
@@ -6027,8 +6106,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -6059,13 +6138,13 @@ M.TestInvokeAuthorizerInput = {
         },
         headers = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         multiValueHeaders = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         pathWithQueryString = {
             type = "string",
@@ -6075,13 +6154,13 @@ M.TestInvokeAuthorizerInput = {
         },
         stageVariables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         additionalContext = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -6090,13 +6169,19 @@ M.TestInvokeAuthorizerOutput = {
     type = "structure",
     members = {
         clientStatus = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         log = {
             type = "string",
         },
         latency = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         principalId = {
             type = "string",
@@ -6106,13 +6191,13 @@ M.TestInvokeAuthorizerOutput = {
         },
         authorization = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         claims = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -6149,21 +6234,21 @@ M.TestInvokeMethodInput = {
         },
         headers = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         multiValueHeaders = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         clientCertificateId = {
             type = "string",
         },
         stageVariables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -6172,26 +6257,32 @@ M.TestInvokeMethodOutput = {
     type = "structure",
     members = {
         status = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         body = {
             type = "string",
         },
         headers = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         multiValueHeaders = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         log = {
             type = "string",
         },
         latency = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -6208,7 +6299,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -6253,7 +6344,7 @@ M.UpdateAccountInput = {
     members = {
         patchOperations = {
             type = "list",
-            member_type = "structure",
+            member = M.PatchOperation,
         },
     },
 }
@@ -6264,12 +6355,10 @@ M.UpdateAccountOutput = {
         cloudwatchRoleArn = {
             type = "string",
         },
-        throttleSettings = {
-            type = "structure",
-        },
+        throttleSettings = M.ThrottleSettings,
         features = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         apiKeyVersion = {
             type = "string",
@@ -6289,7 +6378,7 @@ M.UpdateApiKeyInput = {
         },
         patchOperations = {
             type = "list",
-            member_type = "structure",
+            member = M.PatchOperation,
         },
     },
 }
@@ -6314,6 +6403,9 @@ M.UpdateApiKeyOutput = {
         },
         enabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         createdDate = {
             type = "timestamp",
@@ -6323,12 +6415,12 @@ M.UpdateApiKeyOutput = {
         },
         stageKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -6352,7 +6444,7 @@ M.UpdateAuthorizerInput = {
         },
         patchOperations = {
             type = "list",
-            member_type = "structure",
+            member = M.PatchOperation,
         },
     },
 }
@@ -6371,7 +6463,7 @@ M.UpdateAuthorizerOutput = {
         },
         providerARNs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         authType = {
             type = "string",
@@ -6389,7 +6481,7 @@ M.UpdateAuthorizerOutput = {
             type = "string",
         },
         authorizerResultTtlInSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -6419,7 +6511,7 @@ M.UpdateBasePathMappingInput = {
         },
         patchOperations = {
             type = "list",
-            member_type = "structure",
+            member = M.PatchOperation,
         },
     },
 }
@@ -6451,7 +6543,7 @@ M.UpdateClientCertificateInput = {
         },
         patchOperations = {
             type = "list",
-            member_type = "structure",
+            member = M.PatchOperation,
         },
     },
 }
@@ -6476,8 +6568,8 @@ M.UpdateClientCertificateOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -6501,7 +6593,7 @@ M.UpdateDeploymentInput = {
         },
         patchOperations = {
             type = "list",
-            member_type = "structure",
+            member = M.PatchOperation,
         },
     },
 }
@@ -6520,8 +6612,8 @@ M.UpdateDeploymentOutput = {
         },
         apiSummary = {
             type = "map",
-            key_type = "string",
-            value_type = "map",
+            key = { type = "string" },
+            value = { type = "map" },
         },
     },
 }
@@ -6545,7 +6637,7 @@ M.UpdateDocumentationPartInput = {
         },
         patchOperations = {
             type = "list",
-            member_type = "structure",
+            member = M.PatchOperation,
         },
     },
 }
@@ -6556,9 +6648,7 @@ M.UpdateDocumentationPartOutput = {
         id = {
             type = "string",
         },
-        location = {
-            type = "structure",
-        },
+        location = M.DocumentationPartLocation,
         properties = {
             type = "string",
         },
@@ -6584,7 +6674,7 @@ M.UpdateDocumentationVersionInput = {
         },
         patchOperations = {
             type = "list",
-            member_type = "structure",
+            member = M.PatchOperation,
         },
     },
 }
@@ -6622,7 +6712,7 @@ M.UpdateDomainNameInput = {
         },
         patchOperations = {
             type = "list",
-            member_type = "structure",
+            member = M.PatchOperation,
         },
     },
 }
@@ -6666,9 +6756,7 @@ M.UpdateDomainNameOutput = {
         distributionHostedZoneId = {
             type = "string",
         },
-        endpointConfiguration = {
-            type = "structure",
-        },
+        endpointConfiguration = M.EndpointConfiguration,
         domainNameStatus = {
             type = "string",
         },
@@ -6683,12 +6771,10 @@ M.UpdateDomainNameOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        mutualTlsAuthentication = {
-            type = "structure",
-        },
+        mutualTlsAuthentication = M.MutualTlsAuthentication,
         ownershipVerificationCertificateArn = {
             type = "string",
         },
@@ -6723,7 +6809,7 @@ M.UpdateGatewayResponseInput = {
         },
         patchOperations = {
             type = "list",
-            member_type = "structure",
+            member = M.PatchOperation,
         },
     },
 }
@@ -6739,16 +6825,19 @@ M.UpdateGatewayResponseOutput = {
         },
         responseParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         responseTemplates = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         defaultResponse = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -6779,7 +6868,7 @@ M.UpdateIntegrationInput = {
         },
         patchOperations = {
             type = "list",
-            member_type = "structure",
+            member = M.PatchOperation,
         },
     },
 }
@@ -6807,13 +6896,13 @@ M.UpdateIntegrationOutput = {
         },
         requestParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         requestTemplates = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         passthroughBehavior = {
             type = "string",
@@ -6822,23 +6911,24 @@ M.UpdateIntegrationOutput = {
             type = "string",
         },
         timeoutInMillis = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         cacheNamespace = {
             type = "string",
         },
         cacheKeyParameters = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         integrationResponses = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.IntegrationResponse,
         },
-        tlsConfig = {
-            type = "structure",
-        },
+        tlsConfig = M.TlsConfig,
         responseTransferMode = {
             type = "string",
         },
@@ -6881,7 +6971,7 @@ M.UpdateIntegrationResponseInput = {
         },
         patchOperations = {
             type = "list",
-            member_type = "structure",
+            member = M.PatchOperation,
         },
     },
 }
@@ -6897,13 +6987,13 @@ M.UpdateIntegrationResponseOutput = {
         },
         responseParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         responseTemplates = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         contentHandling = {
             type = "string",
@@ -6937,7 +7027,7 @@ M.UpdateMethodInput = {
         },
         patchOperations = {
             type = "list",
-            member_type = "structure",
+            member = M.PatchOperation,
         },
     },
 }
@@ -6965,25 +7055,23 @@ M.UpdateMethodOutput = {
         },
         requestParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "boolean",
+            key = { type = "string" },
+            value = { type = "boolean" },
         },
         requestModels = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         methodResponses = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.MethodResponse,
         },
-        methodIntegration = {
-            type = "structure",
-        },
+        methodIntegration = M.Integration,
         authorizationScopes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -7021,7 +7109,7 @@ M.UpdateMethodResponseInput = {
         },
         patchOperations = {
             type = "list",
-            member_type = "structure",
+            member = M.PatchOperation,
         },
     },
 }
@@ -7034,13 +7122,13 @@ M.UpdateMethodResponseOutput = {
         },
         responseParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "boolean",
+            key = { type = "string" },
+            value = { type = "boolean" },
         },
         responseModels = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -7064,7 +7152,7 @@ M.UpdateModelInput = {
         },
         patchOperations = {
             type = "list",
-            member_type = "structure",
+            member = M.PatchOperation,
         },
     },
 }
@@ -7109,7 +7197,7 @@ M.UpdateRequestValidatorInput = {
         },
         patchOperations = {
             type = "list",
-            member_type = "structure",
+            member = M.PatchOperation,
         },
     },
 }
@@ -7125,9 +7213,15 @@ M.UpdateRequestValidatorOutput = {
         },
         validateRequestBody = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         validateRequestParameters = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -7151,7 +7245,7 @@ M.UpdateResourceInput = {
         },
         patchOperations = {
             type = "list",
-            member_type = "structure",
+            member = M.PatchOperation,
         },
     },
 }
@@ -7173,8 +7267,8 @@ M.UpdateResourceOutput = {
         },
         resourceMethods = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.Method,
         },
     },
 }
@@ -7191,7 +7285,7 @@ M.UpdateRestApiInput = {
         },
         patchOperations = {
             type = "list",
-            member_type = "structure",
+            member = M.PatchOperation,
         },
     },
 }
@@ -7216,31 +7310,32 @@ M.UpdateRestApiOutput = {
         },
         warnings = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         binaryMediaTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         minimumCompressionSize = {
-            type = "number",
+            type = "integer",
         },
         apiKeySource = {
             type = "string",
         },
-        endpointConfiguration = {
-            type = "structure",
-        },
+        endpointConfiguration = M.EndpointConfiguration,
         policy = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         disableExecuteApiEndpoint = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         rootResourceId = {
             type = "string",
@@ -7279,7 +7374,7 @@ M.UpdateStageInput = {
         },
         patchOperations = {
             type = "list",
-            member_type = "structure",
+            member = M.PatchOperation,
         },
     },
 }
@@ -7301,6 +7396,9 @@ M.UpdateStageOutput = {
         },
         cacheClusterEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         cacheClusterSize = {
             type = "string",
@@ -7310,33 +7408,32 @@ M.UpdateStageOutput = {
         },
         methodSettings = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.MethodSetting,
         },
         variables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         documentationVersion = {
             type = "string",
         },
-        accessLogSettings = {
-            type = "structure",
-        },
-        canarySettings = {
-            type = "structure",
-        },
+        accessLogSettings = M.AccessLogSettings,
+        canarySettings = M.CanarySettings,
         tracingEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         webAclArn = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         createdDate = {
             type = "timestamp",
@@ -7366,7 +7463,7 @@ M.UpdateUsageInput = {
         },
         patchOperations = {
             type = "list",
-            member_type = "structure",
+            member = M.PatchOperation,
         },
     },
 }
@@ -7385,8 +7482,8 @@ M.UpdateUsageOutput = {
         },
         items = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
             traits = {
                 json_name = "values",
             },
@@ -7412,7 +7509,7 @@ M.UpdateUsagePlanInput = {
         },
         patchOperations = {
             type = "list",
-            member_type = "structure",
+            member = M.PatchOperation,
         },
     },
 }
@@ -7431,21 +7528,17 @@ M.UpdateUsagePlanOutput = {
         },
         apiStages = {
             type = "list",
-            member_type = "structure",
+            member = M.ApiStage,
         },
-        throttle = {
-            type = "structure",
-        },
-        quota = {
-            type = "structure",
-        },
+        throttle = M.ThrottleSettings,
+        quota = M.QuotaSettings,
         productCode = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -7462,7 +7555,7 @@ M.UpdateVpcLinkInput = {
         },
         patchOperations = {
             type = "list",
-            member_type = "structure",
+            member = M.PatchOperation,
         },
     },
 }
@@ -7481,7 +7574,7 @@ M.UpdateVpcLinkOutput = {
         },
         targetArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         status = {
             type = "string",
@@ -7491,8 +7584,8 @@ M.UpdateVpcLinkOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }

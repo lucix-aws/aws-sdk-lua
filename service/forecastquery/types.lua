@@ -47,8 +47,8 @@ M.QueryForecastInput = {
         },
         Filters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -66,7 +66,7 @@ M.DataPoint = {
             type = "string",
         },
         Value = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -76,8 +76,8 @@ M.Forecast = {
     members = {
         Predictions = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
     },
 }
@@ -85,9 +85,7 @@ M.Forecast = {
 M.QueryForecastOutput = {
     type = "structure",
     members = {
-        Forecast = {
-            type = "structure",
-        },
+        Forecast = M.Forecast,
     },
 }
 
@@ -128,8 +126,8 @@ M.QueryWhatIfForecastInput = {
         },
         Filters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -143,9 +141,7 @@ M.QueryWhatIfForecastInput = {
 M.QueryWhatIfForecastOutput = {
     type = "structure",
     members = {
-        Forecast = {
-            type = "structure",
-        },
+        Forecast = M.Forecast,
     },
 }
 

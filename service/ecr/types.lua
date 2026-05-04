@@ -14,7 +14,7 @@ M.BatchCheckLayerAvailabilityInput = {
         },
         layerDigests = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -58,7 +58,7 @@ M.Layer = {
             type = "string",
         },
         layerSize = {
-            type = "number",
+            type = "long",
         },
         mediaType = {
             type = "string",
@@ -71,11 +71,11 @@ M.BatchCheckLayerAvailabilityOutput = {
     members = {
         layers = {
             type = "list",
-            member_type = "structure",
+            member = M.Layer,
         },
         failures = {
             type = "list",
-            member_type = "structure",
+            member = M.LayerFailure,
         },
     },
 }
@@ -136,7 +136,7 @@ M.BatchDeleteImageInput = {
         },
         imageIds = {
             type = "list",
-            member_type = "structure",
+            member = M.ImageIdentifier,
             traits = {
                 required = true,
             },
@@ -161,9 +161,7 @@ M.ImageFailureCode = {
 M.ImageFailure = {
     type = "structure",
     members = {
-        imageId = {
-            type = "structure",
-        },
+        imageId = M.ImageIdentifier,
         failureCode = {
             type = "string",
         },
@@ -178,11 +176,11 @@ M.BatchDeleteImageOutput = {
     members = {
         imageIds = {
             type = "list",
-            member_type = "structure",
+            member = M.ImageIdentifier,
         },
         failures = {
             type = "list",
-            member_type = "structure",
+            member = M.ImageFailure,
         },
     },
 }
@@ -201,14 +199,14 @@ M.BatchGetImageInput = {
         },
         imageIds = {
             type = "list",
-            member_type = "structure",
+            member = M.ImageIdentifier,
             traits = {
                 required = true,
             },
         },
         acceptedMediaTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -222,9 +220,7 @@ M.Image = {
         repositoryName = {
             type = "string",
         },
-        imageId = {
-            type = "structure",
-        },
+        imageId = M.ImageIdentifier,
         imageManifest = {
             type = "string",
         },
@@ -239,11 +235,11 @@ M.BatchGetImageOutput = {
     members = {
         images = {
             type = "list",
-            member_type = "structure",
+            member = M.Image,
         },
         failures = {
             type = "list",
-            member_type = "structure",
+            member = M.ImageFailure,
         },
     },
 }
@@ -273,7 +269,7 @@ M.BatchGetRepositoryScanningConfigurationInput = {
     members = {
         repositoryNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -339,13 +335,16 @@ M.RepositoryScanningConfiguration = {
         },
         scanOnPush = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         scanFrequency = {
             type = "string",
         },
         appliedScanFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.ScanningRepositoryFilter,
         },
     },
 }
@@ -355,11 +354,11 @@ M.BatchGetRepositoryScanningConfigurationOutput = {
     members = {
         scanningConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.RepositoryScanningConfiguration,
         },
         failures = {
             type = "list",
-            member_type = "structure",
+            member = M.RepositoryScanningConfigurationFailure,
         },
     },
 }
@@ -394,7 +393,7 @@ M.CompleteLayerUploadInput = {
         },
         layerDigests = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -634,6 +633,9 @@ M.ImageScanningConfiguration = {
     members = {
         scanOnPush = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -699,21 +701,17 @@ M.CreateRepositoryInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         imageTagMutability = {
             type = "string",
         },
         imageTagMutabilityExclusionFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.ImageTagMutabilityExclusionFilter,
         },
-        imageScanningConfiguration = {
-            type = "structure",
-        },
-        encryptionConfiguration = {
-            type = "structure",
-        },
+        imageScanningConfiguration = M.ImageScanningConfiguration,
+        encryptionConfiguration = M.EncryptionConfiguration,
     },
 }
 
@@ -740,23 +738,17 @@ M.Repository = {
         },
         imageTagMutabilityExclusionFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.ImageTagMutabilityExclusionFilter,
         },
-        imageScanningConfiguration = {
-            type = "structure",
-        },
-        encryptionConfiguration = {
-            type = "structure",
-        },
+        imageScanningConfiguration = M.ImageScanningConfiguration,
+        encryptionConfiguration = M.EncryptionConfiguration,
     },
 }
 
 M.CreateRepositoryOutput = {
     type = "structure",
     members = {
-        repository = {
-            type = "structure",
-        },
+        repository = M.Repository,
     },
 }
 
@@ -823,19 +815,17 @@ M.CreateRepositoryCreationTemplateInput = {
         description = {
             type = "string",
         },
-        encryptionConfiguration = {
-            type = "structure",
-        },
+        encryptionConfiguration = M.EncryptionConfigurationForRepositoryCreationTemplate,
         resourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         imageTagMutability = {
             type = "string",
         },
         imageTagMutabilityExclusionFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.ImageTagMutabilityExclusionFilter,
         },
         repositoryPolicy = {
             type = "string",
@@ -845,7 +835,7 @@ M.CreateRepositoryCreationTemplateInput = {
         },
         appliedFor = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -865,19 +855,17 @@ M.RepositoryCreationTemplate = {
         description = {
             type = "string",
         },
-        encryptionConfiguration = {
-            type = "structure",
-        },
+        encryptionConfiguration = M.EncryptionConfigurationForRepositoryCreationTemplate,
         resourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         imageTagMutability = {
             type = "string",
         },
         imageTagMutabilityExclusionFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.ImageTagMutabilityExclusionFilter,
         },
         repositoryPolicy = {
             type = "string",
@@ -887,7 +875,7 @@ M.RepositoryCreationTemplate = {
         },
         appliedFor = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         customRoleArn = {
             type = "string",
@@ -907,9 +895,7 @@ M.CreateRepositoryCreationTemplateOutput = {
         registryId = {
             type = "string",
         },
-        repositoryCreationTemplate = {
-            type = "structure",
-        },
+        repositoryCreationTemplate = M.RepositoryCreationTemplate,
     },
 }
 
@@ -1058,6 +1044,9 @@ M.DeleteRepositoryInput = {
         },
         force = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1065,9 +1054,7 @@ M.DeleteRepositoryInput = {
 M.DeleteRepositoryOutput = {
     type = "structure",
     members = {
-        repository = {
-            type = "structure",
-        },
+        repository = M.Repository,
     },
 }
 
@@ -1099,9 +1086,7 @@ M.DeleteRepositoryCreationTemplateOutput = {
         registryId = {
             type = "string",
         },
-        repositoryCreationTemplate = {
-            type = "structure",
-        },
+        repositoryCreationTemplate = M.RepositoryCreationTemplate,
     },
 }
 
@@ -1192,7 +1177,7 @@ M.SigningRule = {
         },
         repositoryFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.SigningRepositoryFilter,
         },
     },
 }
@@ -1202,7 +1187,7 @@ M.SigningConfiguration = {
     members = {
         rules = {
             type = "list",
-            member_type = "structure",
+            member = M.SigningRule,
             traits = {
                 required = true,
             },
@@ -1216,9 +1201,7 @@ M.DeleteSigningConfigurationOutput = {
         registryId = {
             type = "string",
         },
-        signingConfiguration = {
-            type = "structure",
-        },
+        signingConfiguration = M.SigningConfiguration,
     },
 }
 
@@ -1272,12 +1255,9 @@ M.DescribeImageReplicationStatusInput = {
                 required = true,
             },
         },
-        imageId = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        imageId = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ImageIdentifier }),
         registryId = {
             type = "string",
         },
@@ -1314,12 +1294,10 @@ M.DescribeImageReplicationStatusOutput = {
         repositoryName = {
             type = "string",
         },
-        imageId = {
-            type = "structure",
-        },
+        imageId = M.ImageIdentifier,
         replicationStatuses = {
             type = "list",
-            member_type = "structure",
+            member = M.ImageReplicationStatus,
         },
     },
 }
@@ -1373,17 +1351,15 @@ M.DescribeImagesInput = {
         },
         imageIds = {
             type = "list",
-            member_type = "structure",
+            member = M.ImageIdentifier,
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
-        filter = {
-            type = "structure",
-        },
+        filter = M.DescribeImagesFilter,
     },
 }
 
@@ -1407,8 +1383,8 @@ M.ImageScanFindingsSummary = {
         },
         findingSeverityCounts = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
         },
     },
 }
@@ -1458,20 +1434,16 @@ M.ImageDetail = {
         },
         imageTags = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         imageSizeInBytes = {
-            type = "number",
+            type = "long",
         },
         imagePushedAt = {
             type = "timestamp",
         },
-        imageScanStatus = {
-            type = "structure",
-        },
-        imageScanFindingsSummary = {
-            type = "structure",
-        },
+        imageScanStatus = M.ImageScanStatus,
+        imageScanFindingsSummary = M.ImageScanFindingsSummary,
         imageManifestMediaType = {
             type = "string",
         },
@@ -1501,7 +1473,7 @@ M.DescribeImagesOutput = {
     members = {
         imageDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.ImageDetail,
         },
         nextToken = {
             type = "string",
@@ -1521,17 +1493,14 @@ M.DescribeImageScanFindingsInput = {
                 required = true,
             },
         },
-        imageId = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        imageId = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ImageIdentifier }),
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1540,7 +1509,10 @@ M.CvssScore = {
     type = "structure",
     members = {
         baseScore = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         scoringVector = {
             type = "string",
@@ -1561,7 +1533,7 @@ M.VulnerablePackage = {
             type = "string",
         },
         epoch = {
-            type = "number",
+            type = "integer",
         },
         filePath = {
             type = "string",
@@ -1592,15 +1564,15 @@ M.PackageVulnerabilityDetails = {
     members = {
         cvss = {
             type = "list",
-            member_type = "structure",
+            member = M.CvssScore,
         },
         referenceUrls = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         relatedVulnerabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         source = {
             type = "string",
@@ -1622,7 +1594,7 @@ M.PackageVulnerabilityDetails = {
         },
         vulnerablePackages = {
             type = "list",
-            member_type = "structure",
+            member = M.VulnerablePackage,
         },
     },
 }
@@ -1642,9 +1614,7 @@ M.Recommendation = {
 M.Remediation = {
     type = "structure",
     members = {
-        recommendation = {
-            type = "structure",
-        },
+        recommendation = M.Recommendation,
     },
 }
 
@@ -1662,7 +1632,7 @@ M.AwsEcrContainerImageDetails = {
         },
         imageTags = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         platform = {
             type = "string",
@@ -1674,7 +1644,7 @@ M.AwsEcrContainerImageDetails = {
             type = "timestamp",
         },
         inUseCount = {
-            type = "number",
+            type = "long",
         },
         registry = {
             type = "string",
@@ -1688,25 +1658,21 @@ M.AwsEcrContainerImageDetails = {
 M.ResourceDetails = {
     type = "structure",
     members = {
-        awsEcrContainerImage = {
-            type = "structure",
-        },
+        awsEcrContainerImage = M.AwsEcrContainerImageDetails,
     },
 }
 
 M.Resource = {
     type = "structure",
     members = {
-        details = {
-            type = "structure",
-        },
+        details = M.ResourceDetails,
         id = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         type = {
             type = "string",
@@ -1731,10 +1697,13 @@ M.CvssScoreDetails = {
     members = {
         adjustments = {
             type = "list",
-            member_type = "structure",
+            member = M.CvssScoreAdjustment,
         },
         score = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         scoreSource = {
             type = "string",
@@ -1751,9 +1720,7 @@ M.CvssScoreDetails = {
 M.ScoreDetails = {
     type = "structure",
     members = {
-        cvss = {
-            type = "structure",
-        },
+        cvss = M.CvssScoreDetails,
     },
 }
 
@@ -1775,22 +1742,19 @@ M.EnhancedImageScanFinding = {
         lastObservedAt = {
             type = "timestamp",
         },
-        packageVulnerabilityDetails = {
-            type = "structure",
-        },
-        remediation = {
-            type = "structure",
-        },
+        packageVulnerabilityDetails = M.PackageVulnerabilityDetails,
+        remediation = M.Remediation,
         resources = {
             type = "list",
-            member_type = "structure",
+            member = M.Resource,
         },
         score = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
-        scoreDetails = {
-            type = "structure",
-        },
+        scoreDetails = M.ScoreDetails,
         severity = {
             type = "string",
         },
@@ -1847,7 +1811,7 @@ M.ImageScanFinding = {
         },
         attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.Attribute,
         },
     },
 }
@@ -1863,16 +1827,16 @@ M.ImageScanFindings = {
         },
         findingSeverityCounts = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
         },
         findings = {
             type = "list",
-            member_type = "structure",
+            member = M.ImageScanFinding,
         },
         enhancedFindings = {
             type = "list",
-            member_type = "structure",
+            member = M.EnhancedImageScanFinding,
         },
     },
 }
@@ -1886,15 +1850,9 @@ M.DescribeImageScanFindingsOutput = {
         repositoryName = {
             type = "string",
         },
-        imageId = {
-            type = "structure",
-        },
-        imageScanStatus = {
-            type = "structure",
-        },
-        imageScanFindings = {
-            type = "structure",
-        },
+        imageId = M.ImageIdentifier,
+        imageScanStatus = M.ImageScanStatus,
+        imageScanFindings = M.ImageScanFindings,
         nextToken = {
             type = "string",
         },
@@ -1920,12 +1878,9 @@ M.DescribeImageSigningStatusInput = {
                 required = true,
             },
         },
-        imageId = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        imageId = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ImageIdentifier }),
         registryId = {
             type = "string",
         },
@@ -1962,15 +1917,13 @@ M.DescribeImageSigningStatusOutput = {
         repositoryName = {
             type = "string",
         },
-        imageId = {
-            type = "structure",
-        },
+        imageId = M.ImageIdentifier,
         registryId = {
             type = "string",
         },
         signingStatuses = {
             type = "list",
-            member_type = "structure",
+            member = M.ImageSigningStatus,
         },
     },
 }
@@ -1983,13 +1936,13 @@ M.DescribePullThroughCacheRulesInput = {
         },
         ecrRepositoryPrefixes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2032,7 +1985,7 @@ M.DescribePullThroughCacheRulesOutput = {
     members = {
         pullThroughCacheRules = {
             type = "list",
-            member_type = "structure",
+            member = M.PullThroughCacheRule,
         },
         nextToken = {
             type = "string",
@@ -2089,14 +2042,14 @@ M.ReplicationRule = {
     members = {
         destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.ReplicationDestination,
             traits = {
                 required = true,
             },
         },
         repositoryFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.RepositoryFilter,
         },
     },
 }
@@ -2106,7 +2059,7 @@ M.ReplicationConfiguration = {
     members = {
         rules = {
             type = "list",
-            member_type = "structure",
+            member = M.ReplicationRule,
             traits = {
                 required = true,
             },
@@ -2120,9 +2073,7 @@ M.DescribeRegistryOutput = {
         registryId = {
             type = "string",
         },
-        replicationConfiguration = {
-            type = "structure",
-        },
+        replicationConfiguration = M.ReplicationConfiguration,
     },
 }
 
@@ -2134,13 +2085,13 @@ M.DescribeRepositoriesInput = {
         },
         repositoryNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2150,7 +2101,7 @@ M.DescribeRepositoriesOutput = {
     members = {
         repositories = {
             type = "list",
-            member_type = "structure",
+            member = M.Repository,
         },
         nextToken = {
             type = "string",
@@ -2163,13 +2114,13 @@ M.DescribeRepositoryCreationTemplatesInput = {
     members = {
         prefixes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2182,7 +2133,7 @@ M.DescribeRepositoryCreationTemplatesOutput = {
         },
         repositoryCreationTemplates = {
             type = "list",
-            member_type = "structure",
+            member = M.RepositoryCreationTemplate,
         },
         nextToken = {
             type = "string",
@@ -2219,7 +2170,7 @@ M.GetAuthorizationTokenInput = {
     members = {
         registryIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2244,7 +2195,7 @@ M.GetAuthorizationTokenOutput = {
     members = {
         authorizationData = {
             type = "list",
-            member_type = "structure",
+            member = M.AuthorizationData,
         },
     },
 }
@@ -2368,17 +2319,15 @@ M.GetLifecyclePolicyPreviewInput = {
         },
         imageIds = {
             type = "list",
-            member_type = "structure",
+            member = M.ImageIdentifier,
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
-        filter = {
-            type = "structure",
-        },
+        filter = M.LifecyclePolicyPreviewFilter,
     },
 }
 
@@ -2413,7 +2362,7 @@ M.LifecyclePolicyPreviewResult = {
     members = {
         imageTags = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         imageDigest = {
             type = "string",
@@ -2421,11 +2370,9 @@ M.LifecyclePolicyPreviewResult = {
         imagePushedAt = {
             type = "timestamp",
         },
-        action = {
-            type = "structure",
-        },
+        action = M.LifecyclePolicyRuleAction,
         appliedRulePriority = {
-            type = "number",
+            type = "integer",
         },
         storageClass = {
             type = "string",
@@ -2447,7 +2394,7 @@ M.TransitioningImageTotalCount = {
             type = "string",
         },
         imageTotalCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2456,11 +2403,11 @@ M.LifecyclePolicyPreviewSummary = {
     type = "structure",
     members = {
         expiringImageTotalCount = {
-            type = "number",
+            type = "integer",
         },
         transitioningImageTotalCounts = {
             type = "list",
-            member_type = "structure",
+            member = M.TransitioningImageTotalCount,
         },
     },
 }
@@ -2485,11 +2432,9 @@ M.GetLifecyclePolicyPreviewOutput = {
         },
         previewResults = {
             type = "list",
-            member_type = "structure",
+            member = M.LifecyclePolicyPreviewResult,
         },
-        summary = {
-            type = "structure",
-        },
+        summary = M.LifecyclePolicyPreviewSummary,
     },
 }
 
@@ -2534,7 +2479,7 @@ M.RegistryScanningRule = {
         },
         repositoryFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.ScanningRepositoryFilter,
             traits = {
                 required = true,
             },
@@ -2555,7 +2500,7 @@ M.RegistryScanningConfiguration = {
         },
         rules = {
             type = "list",
-            member_type = "structure",
+            member = M.RegistryScanningRule,
         },
     },
 }
@@ -2566,9 +2511,7 @@ M.GetRegistryScanningConfigurationOutput = {
         registryId = {
             type = "string",
         },
-        scanningConfiguration = {
-            type = "structure",
-        },
+        scanningConfiguration = M.RegistryScanningConfiguration,
     },
 }
 
@@ -2612,9 +2555,7 @@ M.GetSigningConfigurationOutput = {
         registryId = {
             type = "string",
         },
-        signingConfiguration = {
-            type = "structure",
-        },
+        signingConfiguration = M.SigningConfiguration,
     },
 }
 
@@ -2640,7 +2581,7 @@ M.InitiateLayerUploadOutput = {
             type = "string",
         },
         partSize = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -2657,7 +2598,7 @@ M.ListImageReferrersFilter = {
     members = {
         artifactTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         artifactStatus = {
             type = "string",
@@ -2689,20 +2630,15 @@ M.ListImageReferrersInput = {
                 required = true,
             },
         },
-        subjectId = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        filter = {
-            type = "structure",
-        },
+        subjectId = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SubjectIdentifier }),
+        filter = M.ListImageReferrersFilter,
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2732,15 +2668,15 @@ M.ImageReferrer = {
             type = "string",
         },
         size = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         annotations = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         artifactStatus = {
             type = "string",
@@ -2753,7 +2689,7 @@ M.ListImageReferrersOutput = {
     members = {
         referrers = {
             type = "list",
-            member_type = "structure",
+            member = M.ImageReferrer,
         },
         nextToken = {
             type = "string",
@@ -2799,11 +2735,9 @@ M.ListImagesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
-        filter = {
-            type = "structure",
-        },
+        filter = M.ListImagesFilter,
     },
 }
 
@@ -2812,7 +2746,7 @@ M.ListImagesOutput = {
     members = {
         imageIds = {
             type = "list",
-            member_type = "structure",
+            member = M.ImageIdentifier,
         },
         nextToken = {
             type = "string",
@@ -2824,7 +2758,7 @@ M.ListPullTimeUpdateExclusionsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -2837,7 +2771,7 @@ M.ListPullTimeUpdateExclusionsOutput = {
     members = {
         pullTimeUpdateExclusions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -2862,7 +2796,7 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2960,9 +2894,7 @@ M.PutImageInput = {
 M.PutImageOutput = {
     type = "structure",
     members = {
-        image = {
-            type = "structure",
-        },
+        image = M.Image,
     },
 }
 
@@ -2988,12 +2920,9 @@ M.PutImageScanningConfigurationInput = {
                 required = true,
             },
         },
-        imageScanningConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        imageScanningConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ImageScanningConfiguration }),
     },
 }
 
@@ -3006,9 +2935,7 @@ M.PutImageScanningConfigurationOutput = {
         repositoryName = {
             type = "string",
         },
-        imageScanningConfiguration = {
-            type = "structure",
-        },
+        imageScanningConfiguration = M.ImageScanningConfiguration,
     },
 }
 
@@ -3032,7 +2959,7 @@ M.PutImageTagMutabilityInput = {
         },
         imageTagMutabilityExclusionFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.ImageTagMutabilityExclusionFilter,
         },
     },
 }
@@ -3051,7 +2978,7 @@ M.PutImageTagMutabilityOutput = {
         },
         imageTagMutabilityExclusionFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.ImageTagMutabilityExclusionFilter,
         },
     },
 }
@@ -3134,7 +3061,7 @@ M.PutRegistryScanningConfigurationInput = {
         },
         rules = {
             type = "list",
-            member_type = "structure",
+            member = M.RegistryScanningRule,
         },
     },
 }
@@ -3142,51 +3069,39 @@ M.PutRegistryScanningConfigurationInput = {
 M.PutRegistryScanningConfigurationOutput = {
     type = "structure",
     members = {
-        registryScanningConfiguration = {
-            type = "structure",
-        },
+        registryScanningConfiguration = M.RegistryScanningConfiguration,
     },
 }
 
 M.PutReplicationConfigurationInput = {
     type = "structure",
     members = {
-        replicationConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        replicationConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ReplicationConfiguration }),
     },
 }
 
 M.PutReplicationConfigurationOutput = {
     type = "structure",
     members = {
-        replicationConfiguration = {
-            type = "structure",
-        },
+        replicationConfiguration = M.ReplicationConfiguration,
     },
 }
 
 M.PutSigningConfigurationInput = {
     type = "structure",
     members = {
-        signingConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        signingConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SigningConfiguration }),
     },
 }
 
 M.PutSigningConfigurationOutput = {
     type = "structure",
     members = {
-        signingConfiguration = {
-            type = "structure",
-        },
+        signingConfiguration = M.SigningConfiguration,
     },
 }
 
@@ -3244,6 +3159,9 @@ M.SetRepositoryPolicyInput = {
         },
         force = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -3285,12 +3203,9 @@ M.StartImageScanInput = {
                 required = true,
             },
         },
-        imageId = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        imageId = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ImageIdentifier }),
     },
 }
 
@@ -3303,12 +3218,8 @@ M.StartImageScanOutput = {
         repositoryName = {
             type = "string",
         },
-        imageId = {
-            type = "structure",
-        },
-        imageScanStatus = {
-            type = "structure",
-        },
+        imageId = M.ImageIdentifier,
+        imageScanStatus = M.ImageScanStatus,
     },
 }
 
@@ -3379,7 +3290,7 @@ M.TagResourceInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -3402,7 +3313,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3441,12 +3352,9 @@ M.UpdateImageStorageClassInput = {
                 required = true,
             },
         },
-        imageId = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        imageId = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ImageIdentifier }),
         targetStorageClass = {
             type = "string",
             traits = {
@@ -3465,9 +3373,7 @@ M.UpdateImageStorageClassOutput = {
         repositoryName = {
             type = "string",
         },
-        imageId = {
-            type = "structure",
-        },
+        imageId = M.ImageIdentifier,
         imageStatus = {
             type = "string",
         },
@@ -3531,19 +3437,17 @@ M.UpdateRepositoryCreationTemplateInput = {
         description = {
             type = "string",
         },
-        encryptionConfiguration = {
-            type = "structure",
-        },
+        encryptionConfiguration = M.EncryptionConfigurationForRepositoryCreationTemplate,
         resourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         imageTagMutability = {
             type = "string",
         },
         imageTagMutabilityExclusionFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.ImageTagMutabilityExclusionFilter,
         },
         repositoryPolicy = {
             type = "string",
@@ -3553,7 +3457,7 @@ M.UpdateRepositoryCreationTemplateInput = {
         },
         appliedFor = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         customRoleArn = {
             type = "string",
@@ -3567,9 +3471,7 @@ M.UpdateRepositoryCreationTemplateOutput = {
         registryId = {
             type = "string",
         },
-        repositoryCreationTemplate = {
-            type = "structure",
-        },
+        repositoryCreationTemplate = M.RepositoryCreationTemplate,
     },
 }
 
@@ -3587,7 +3489,7 @@ M.InvalidLayerPartException = {
             type = "string",
         },
         lastValidByteReceived = {
-            type = "number",
+            type = "long",
         },
         message = {
             type = "string",
@@ -3614,13 +3516,13 @@ M.UploadLayerPartInput = {
             },
         },
         partFirstByte = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         partLastByte = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -3647,7 +3549,7 @@ M.UploadLayerPartOutput = {
             type = "string",
         },
         lastByteReceived = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -3690,6 +3592,9 @@ M.ValidatePullThroughCacheRuleOutput = {
         },
         isValid = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         failure = {
             type = "string",

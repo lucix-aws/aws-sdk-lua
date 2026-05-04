@@ -132,7 +132,10 @@ M.StatementTimeoutException = {
             type = "string",
         },
         dbConnectionId = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -187,7 +190,10 @@ M.ColumnMetadata = {
             type = "string",
         },
         type = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         typeName = {
             type = "string",
@@ -203,27 +209,51 @@ M.ColumnMetadata = {
         },
         isAutoIncrement = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         isSigned = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         isCurrency = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         isCaseSensitive = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         nullable = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         precision = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         scale = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         arrayBaseColumnType = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -310,11 +340,14 @@ M.ResultSetMetadata = {
     type = "structure",
     members = {
         columnCount = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         columnMetadata = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnMetadata,
         },
     },
 }
@@ -389,23 +422,23 @@ M.ArrayValue = {
     members = {
         booleanValues = {
             type = "list",
-            member_type = "boolean",
+            member = { type = "boolean" },
         },
         longValues = {
             type = "list",
-            member_type = "number",
+            member = { type = "long" },
         },
         doubleValues = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
         stringValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         arrayValues = {
             type = "list",
-            member_type = "union",
+            member = M.ArrayValue,
         },
     },
 }
@@ -420,10 +453,10 @@ M.Field = {
             type = "boolean",
         },
         longValue = {
-            type = "number",
+            type = "long",
         },
         doubleValue = {
-            type = "number",
+            type = "double",
         },
         stringValue = {
             type = "string",
@@ -431,9 +464,7 @@ M.Field = {
         blobValue = {
             type = "blob",
         },
-        arrayValue = {
-            type = "union",
-        },
+        arrayValue = M.ArrayValue,
     },
 }
 
@@ -443,9 +474,7 @@ M.SqlParameter = {
         name = {
             type = "string",
         },
-        value = {
-            type = "union",
-        },
+        value = M.Field,
         typeHint = {
             type = "string",
         },
@@ -457,7 +486,7 @@ M.UpdateResult = {
     members = {
         generatedFields = {
             type = "list",
-            member_type = "union",
+            member = M.Field,
         },
     },
 }
@@ -472,16 +501,16 @@ M.Value = {
             type = "boolean",
         },
         bigIntValue = {
-            type = "number",
+            type = "long",
         },
         intValue = {
-            type = "number",
+            type = "integer",
         },
         doubleValue = {
-            type = "number",
+            type = "double",
         },
         realValue = {
-            type = "number",
+            type = "float",
         },
         stringValue = {
             type = "string",
@@ -491,11 +520,9 @@ M.Value = {
         },
         arrayValues = {
             type = "list",
-            member_type = "union",
+            member = M.Value,
         },
-        structValue = {
-            type = "structure",
-        },
+        structValue = M.StructValue,
     },
 }
 
@@ -528,20 +555,24 @@ M.ExecuteStatementInput = {
         },
         parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.SqlParameter,
         },
         transactionId = {
             type = "string",
         },
         includeResultMetadata = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         continueAfterTimeout = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        resultSetOptions = {
-            type = "structure",
-        },
+        resultSetOptions = M.ResultSetOptions,
         formatRecordsAs = {
             type = "string",
         },
@@ -553,7 +584,7 @@ M.StructValue = {
     members = {
         attributes = {
             type = "list",
-            member_type = "union",
+            member = M.Value,
         },
     },
 }
@@ -587,7 +618,7 @@ M.BatchExecuteStatementInput = {
         },
         parameterSets = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
         },
         transactionId = {
             type = "string",
@@ -600,7 +631,7 @@ M.BatchExecuteStatementOutput = {
     members = {
         updateResults = {
             type = "list",
-            member_type = "structure",
+            member = M.UpdateResult,
         },
     },
 }
@@ -610,7 +641,7 @@ M.Record = {
     members = {
         values = {
             type = "list",
-            member_type = "union",
+            member = M.Value,
         },
     },
 }
@@ -620,18 +651,21 @@ M.ExecuteStatementOutput = {
     members = {
         records = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
         },
         columnMetadata = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnMetadata,
         },
         numberOfRecordsUpdated = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         generatedFields = {
             type = "list",
-            member_type = "union",
+            member = M.Field,
         },
         formattedRecords = {
             type = "string",
@@ -642,12 +676,10 @@ M.ExecuteStatementOutput = {
 M.ResultFrame = {
     type = "structure",
     members = {
-        resultSetMetadata = {
-            type = "structure",
-        },
+        resultSetMetadata = M.ResultSetMetadata,
         records = {
             type = "list",
-            member_type = "structure",
+            member = M.Record,
         },
     },
 }
@@ -655,11 +687,12 @@ M.ResultFrame = {
 M.SqlStatementResult = {
     type = "structure",
     members = {
-        resultFrame = {
-            type = "structure",
-        },
+        resultFrame = M.ResultFrame,
         numberOfRecordsUpdated = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -669,7 +702,7 @@ M.ExecuteSqlOutput = {
     members = {
         sqlStatementResults = {
             type = "list",
-            member_type = "structure",
+            member = M.SqlStatementResult,
         },
     },
 }

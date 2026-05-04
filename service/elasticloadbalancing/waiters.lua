@@ -1,0 +1,77 @@
+local waiter = require("waiter")
+
+local M = {}
+
+--- Wait until AnyInstanceInService.
+function M.wait_until_any_instance_in_service(client, input, options)
+    return waiter.wait(client, "describeInstanceHealth", input, {
+        min_delay = 15,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "InstanceStates[].State",
+                        expected = "InService",
+                        comparator = "anyStringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until InstanceDeregistered.
+function M.wait_until_instance_deregistered(client, input, options)
+    return waiter.wait(client, "describeInstanceHealth", input, {
+        min_delay = 15,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "InstanceStates[].State",
+                        expected = "OutOfService",
+                        comparator = "allStringEquals",
+                    },
+                },
+            },
+            {
+                state = "success",
+                matcher = {
+                    errorType = "InvalidInstance",
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until InstanceInService.
+function M.wait_until_instance_in_service(client, input, options)
+    return waiter.wait(client, "describeInstanceHealth", input, {
+        min_delay = 15,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "InstanceStates[].State",
+                        expected = "InService",
+                        comparator = "allStringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "InvalidInstance",
+                },
+            },
+        },
+    }, options)
+end
+
+return M

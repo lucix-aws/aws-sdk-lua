@@ -85,7 +85,7 @@ M.AssociatePhoneNumbersWithVoiceConnectorInput = {
         },
         E164PhoneNumbers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -116,7 +116,7 @@ M.AssociatePhoneNumbersWithVoiceConnectorOutput = {
     members = {
         PhoneNumberErrors = {
             type = "list",
-            member_type = "structure",
+            member = M.PhoneNumberError,
         },
     },
 }
@@ -224,7 +224,7 @@ M.AssociatePhoneNumbersWithVoiceConnectorGroupInput = {
         },
         E164PhoneNumbers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -240,7 +240,7 @@ M.AssociatePhoneNumbersWithVoiceConnectorGroupOutput = {
     members = {
         PhoneNumberErrors = {
             type = "list",
-            member_type = "structure",
+            member = M.PhoneNumberError,
         },
     },
 }
@@ -250,7 +250,7 @@ M.BatchDeletePhoneNumberInput = {
     members = {
         PhoneNumberIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -263,7 +263,7 @@ M.BatchDeletePhoneNumberOutput = {
     members = {
         PhoneNumberErrors = {
             type = "list",
-            member_type = "structure",
+            member = M.PhoneNumberError,
         },
     },
 }
@@ -299,7 +299,7 @@ M.BatchUpdatePhoneNumberInput = {
     members = {
         UpdatePhoneNumberRequestItems = {
             type = "list",
-            member_type = "structure",
+            member = M.UpdatePhoneNumberRequestItem,
             traits = {
                 required = true,
             },
@@ -312,7 +312,7 @@ M.BatchUpdatePhoneNumberOutput = {
     members = {
         PhoneNumberErrors = {
             type = "list",
-            member_type = "structure",
+            member = M.PhoneNumberError,
         },
     },
 }
@@ -387,7 +387,7 @@ M.CreatePhoneNumberOrderInput = {
         },
         E164PhoneNumbers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -452,7 +452,7 @@ M.PhoneNumberOrder = {
         },
         OrderedPhoneNumbers = {
             type = "list",
-            member_type = "structure",
+            member = M.OrderedPhoneNumber,
         },
         CreatedTimestamp = {
             type = "timestamp",
@@ -469,9 +469,7 @@ M.PhoneNumberOrder = {
 M.CreatePhoneNumberOrderOutput = {
     type = "structure",
     members = {
-        PhoneNumberOrder = {
-            type = "structure",
-        },
+        PhoneNumberOrder = M.PhoneNumberOrder,
     },
 }
 
@@ -528,7 +526,7 @@ M.CreateProxySessionInput = {
         },
         ParticipantPhoneNumbers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -537,11 +535,11 @@ M.CreateProxySessionInput = {
             type = "string",
         },
         ExpiryMinutes = {
-            type = "number",
+            type = "integer",
         },
         Capabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -552,9 +550,7 @@ M.CreateProxySessionInput = {
         GeoMatchLevel = {
             type = "string",
         },
-        GeoMatchParams = {
-            type = "structure",
-        },
+        GeoMatchParams = M.GeoMatchParams,
     },
 }
 
@@ -592,11 +588,11 @@ M.ProxySession = {
             type = "string",
         },
         ExpiryMinutes = {
-            type = "number",
+            type = "integer",
         },
         Capabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CreatedTimestamp = {
             type = "timestamp",
@@ -609,7 +605,7 @@ M.ProxySession = {
         },
         Participants = {
             type = "list",
-            member_type = "structure",
+            member = M.Participant,
         },
         NumberSelectionBehavior = {
             type = "string",
@@ -617,18 +613,14 @@ M.ProxySession = {
         GeoMatchLevel = {
             type = "string",
         },
-        GeoMatchParams = {
-            type = "structure",
-        },
+        GeoMatchParams = M.GeoMatchParams,
     },
 }
 
 M.CreateProxySessionOutput = {
     type = "structure",
     members = {
-        ProxySession = {
-            type = "structure",
-        },
+        ProxySession = M.ProxySession,
     },
 }
 
@@ -689,14 +681,14 @@ M.CreateSipMediaApplicationInput = {
         },
         Endpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.SipMediaApplicationEndpoint,
             traits = {
                 required = true,
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -715,7 +707,7 @@ M.SipMediaApplication = {
         },
         Endpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.SipMediaApplicationEndpoint,
         },
         CreatedTimestamp = {
             type = "timestamp",
@@ -732,9 +724,7 @@ M.SipMediaApplication = {
 M.CreateSipMediaApplicationOutput = {
     type = "structure",
     members = {
-        SipMediaApplication = {
-            type = "structure",
-        },
+        SipMediaApplication = M.SipMediaApplication,
     },
 }
 
@@ -762,13 +752,13 @@ M.CreateSipMediaApplicationCallInput = {
         },
         SipHeaders = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ArgumentsMap = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -785,9 +775,7 @@ M.SipMediaApplicationCall = {
 M.CreateSipMediaApplicationCallOutput = {
     type = "structure",
     members = {
-        SipMediaApplicationCall = {
-            type = "structure",
-        },
+        SipMediaApplicationCall = M.SipMediaApplicationCall,
     },
 }
 
@@ -798,7 +786,7 @@ M.SipRuleTargetApplication = {
             type = "string",
         },
         Priority = {
-            type = "number",
+            type = "integer",
         },
         AwsRegion = {
             type = "string",
@@ -837,7 +825,7 @@ M.CreateSipRuleInput = {
         },
         TargetApplications = {
             type = "list",
-            member_type = "structure",
+            member = M.SipRuleTargetApplication,
         },
     },
 }
@@ -862,7 +850,7 @@ M.SipRule = {
         },
         TargetApplications = {
             type = "list",
-            member_type = "structure",
+            member = M.SipRuleTargetApplication,
         },
         CreatedTimestamp = {
             type = "timestamp",
@@ -876,9 +864,7 @@ M.SipRule = {
 M.CreateSipRuleOutput = {
     type = "structure",
     members = {
-        SipRule = {
-            type = "structure",
-        },
+        SipRule = M.SipRule,
     },
 }
 
@@ -925,7 +911,7 @@ M.CreateVoiceConnectorInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         IntegrationType = {
             type = "string",
@@ -975,9 +961,7 @@ M.VoiceConnector = {
 M.CreateVoiceConnectorOutput = {
     type = "structure",
     members = {
-        VoiceConnector = {
-            type = "structure",
-        },
+        VoiceConnector = M.VoiceConnector,
     },
 }
 
@@ -991,7 +975,7 @@ M.VoiceConnectorItem = {
             },
         },
         Priority = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1010,7 +994,7 @@ M.CreateVoiceConnectorGroupInput = {
         },
         VoiceConnectorItems = {
             type = "list",
-            member_type = "structure",
+            member = M.VoiceConnectorItem,
         },
     },
 }
@@ -1026,7 +1010,7 @@ M.VoiceConnectorGroup = {
         },
         VoiceConnectorItems = {
             type = "list",
-            member_type = "structure",
+            member = M.VoiceConnectorItem,
         },
         CreatedTimestamp = {
             type = "timestamp",
@@ -1043,9 +1027,7 @@ M.VoiceConnectorGroup = {
 M.CreateVoiceConnectorGroupOutput = {
     type = "structure",
     members = {
-        VoiceConnectorGroup = {
-            type = "structure",
-        },
+        VoiceConnectorGroup = M.VoiceConnectorGroup,
     },
 }
 
@@ -1088,9 +1070,7 @@ M.VoiceProfile = {
 M.CreateVoiceProfileOutput = {
     type = "structure",
     members = {
-        VoiceProfile = {
-            type = "structure",
-        },
+        VoiceProfile = M.VoiceProfile,
     },
 }
 
@@ -1131,18 +1111,15 @@ M.CreateVoiceProfileDomainInput = {
         Description = {
             type = "string",
         },
-        ServerSideEncryptionConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ServerSideEncryptionConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ServerSideEncryptionConfiguration }),
         ClientRequestToken = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1162,9 +1139,7 @@ M.VoiceProfileDomain = {
         Description = {
             type = "string",
         },
-        ServerSideEncryptionConfiguration = {
-            type = "structure",
-        },
+        ServerSideEncryptionConfiguration = M.ServerSideEncryptionConfiguration,
         CreatedTimestamp = {
             type = "timestamp",
         },
@@ -1177,9 +1152,7 @@ M.VoiceProfileDomain = {
 M.CreateVoiceProfileDomainOutput = {
     type = "structure",
     members = {
-        VoiceProfileDomain = {
-            type = "structure",
-        },
+        VoiceProfileDomain = M.VoiceProfileDomain,
     },
 }
 
@@ -1406,7 +1379,7 @@ M.DeleteVoiceConnectorTerminationCredentialsInput = {
         },
         Usernames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1464,7 +1437,7 @@ M.DisassociatePhoneNumbersFromVoiceConnectorInput = {
         },
         E164PhoneNumbers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1477,7 +1450,7 @@ M.DisassociatePhoneNumbersFromVoiceConnectorOutput = {
     members = {
         PhoneNumberErrors = {
             type = "list",
-            member_type = "structure",
+            member = M.PhoneNumberError,
         },
     },
 }
@@ -1494,7 +1467,7 @@ M.DisassociatePhoneNumbersFromVoiceConnectorGroupInput = {
         },
         E164PhoneNumbers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1507,7 +1480,7 @@ M.DisassociatePhoneNumbersFromVoiceConnectorGroupOutput = {
     members = {
         PhoneNumberErrors = {
             type = "list",
-            member_type = "structure",
+            member = M.PhoneNumberError,
         },
     },
 }
@@ -1528,9 +1501,7 @@ M.VoiceConnectorSettings = {
 M.GetGlobalSettingsOutput = {
     type = "structure",
     members = {
-        VoiceConnector = {
-            type = "structure",
-        },
+        VoiceConnector = M.VoiceConnectorSettings,
     },
 }
 
@@ -1632,12 +1603,10 @@ M.PhoneNumber = {
         Status = {
             type = "string",
         },
-        Capabilities = {
-            type = "structure",
-        },
+        Capabilities = M.PhoneNumberCapabilities,
         Associations = {
             type = "list",
-            member_type = "structure",
+            member = M.PhoneNumberAssociation,
         },
         CallingName = {
             type = "string",
@@ -1666,9 +1635,7 @@ M.PhoneNumber = {
 M.GetPhoneNumberOutput = {
     type = "structure",
     members = {
-        PhoneNumber = {
-            type = "structure",
-        },
+        PhoneNumber = M.PhoneNumber,
     },
 }
 
@@ -1688,9 +1655,7 @@ M.GetPhoneNumberOrderInput = {
 M.GetPhoneNumberOrderOutput = {
     type = "structure",
     members = {
-        PhoneNumberOrder = {
-            type = "structure",
-        },
+        PhoneNumberOrder = M.PhoneNumberOrder,
     },
 }
 
@@ -1733,9 +1698,7 @@ M.GetProxySessionInput = {
 M.GetProxySessionOutput = {
     type = "structure",
     members = {
-        ProxySession = {
-            type = "structure",
-        },
+        ProxySession = M.ProxySession,
     },
 }
 
@@ -1755,9 +1718,7 @@ M.GetSipMediaApplicationInput = {
 M.GetSipMediaApplicationOutput = {
     type = "structure",
     members = {
-        SipMediaApplication = {
-            type = "structure",
-        },
+        SipMediaApplication = M.SipMediaApplication,
     },
 }
 
@@ -1785,7 +1746,7 @@ M.SipMediaApplicationAlexaSkillConfiguration = {
         },
         AlexaSkillIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1796,9 +1757,7 @@ M.SipMediaApplicationAlexaSkillConfiguration = {
 M.GetSipMediaApplicationAlexaSkillConfigurationOutput = {
     type = "structure",
     members = {
-        SipMediaApplicationAlexaSkillConfiguration = {
-            type = "structure",
-        },
+        SipMediaApplicationAlexaSkillConfiguration = M.SipMediaApplicationAlexaSkillConfiguration,
     },
 }
 
@@ -1827,9 +1786,7 @@ M.SipMediaApplicationLoggingConfiguration = {
 M.GetSipMediaApplicationLoggingConfigurationOutput = {
     type = "structure",
     members = {
-        SipMediaApplicationLoggingConfiguration = {
-            type = "structure",
-        },
+        SipMediaApplicationLoggingConfiguration = M.SipMediaApplicationLoggingConfiguration,
     },
 }
 
@@ -1849,9 +1806,7 @@ M.GetSipRuleInput = {
 M.GetSipRuleOutput = {
     type = "structure",
     members = {
-        SipRule = {
-            type = "structure",
-        },
+        SipRule = M.SipRule,
     },
 }
 
@@ -1879,7 +1834,10 @@ M.SpeakerSearchResult = {
     type = "structure",
     members = {
         ConfidenceScore = {
-            type = "number",
+            type = "float",
+            traits = {
+                default = 0,
+            },
         },
         VoiceProfileId = {
             type = "string",
@@ -1892,7 +1850,7 @@ M.SpeakerSearchDetails = {
     members = {
         Results = {
             type = "list",
-            member_type = "structure",
+            member = M.SpeakerSearchResult,
         },
         VoiceprintGenerationStatus = {
             type = "string",
@@ -1909,12 +1867,8 @@ M.SpeakerSearchTask = {
         SpeakerSearchTaskStatus = {
             type = "string",
         },
-        CallDetails = {
-            type = "structure",
-        },
-        SpeakerSearchDetails = {
-            type = "structure",
-        },
+        CallDetails = M.CallDetails,
+        SpeakerSearchDetails = M.SpeakerSearchDetails,
         CreatedTimestamp = {
             type = "timestamp",
         },
@@ -1933,9 +1887,7 @@ M.SpeakerSearchTask = {
 M.GetSpeakerSearchTaskOutput = {
     type = "structure",
     members = {
-        SpeakerSearchTask = {
-            type = "structure",
-        },
+        SpeakerSearchTask = M.SpeakerSearchTask,
     },
 }
 
@@ -1955,9 +1907,7 @@ M.GetVoiceConnectorInput = {
 M.GetVoiceConnectorOutput = {
     type = "structure",
     members = {
-        VoiceConnector = {
-            type = "structure",
-        },
+        VoiceConnector = M.VoiceConnector,
     },
 }
 
@@ -2000,7 +1950,7 @@ M.EmergencyCallingConfiguration = {
     members = {
         DNIS = {
             type = "list",
-            member_type = "structure",
+            member = M.DNISEmergencyCallingConfiguration,
         },
     },
 }
@@ -2008,9 +1958,7 @@ M.EmergencyCallingConfiguration = {
 M.GetVoiceConnectorEmergencyCallingConfigurationOutput = {
     type = "structure",
     members = {
-        EmergencyCallingConfiguration = {
-            type = "structure",
-        },
+        EmergencyCallingConfiguration = M.EmergencyCallingConfiguration,
     },
 }
 
@@ -2047,11 +1995,11 @@ M.ExternalSystemsConfiguration = {
     members = {
         SessionBorderControllerTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ContactCenterSystemTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2059,9 +2007,7 @@ M.ExternalSystemsConfiguration = {
 M.GetVoiceConnectorExternalSystemsConfigurationOutput = {
     type = "structure",
     members = {
-        ExternalSystemsConfiguration = {
-            type = "structure",
-        },
+        ExternalSystemsConfiguration = M.ExternalSystemsConfiguration,
     },
 }
 
@@ -2081,9 +2027,7 @@ M.GetVoiceConnectorGroupInput = {
 M.GetVoiceConnectorGroupOutput = {
     type = "structure",
     members = {
-        VoiceConnectorGroup = {
-            type = "structure",
-        },
+        VoiceConnectorGroup = M.VoiceConnectorGroup,
     },
 }
 
@@ -2115,9 +2059,7 @@ M.LoggingConfiguration = {
 M.GetVoiceConnectorLoggingConfigurationOutput = {
     type = "structure",
     members = {
-        LoggingConfiguration = {
-            type = "structure",
-        },
+        LoggingConfiguration = M.LoggingConfiguration,
     },
 }
 
@@ -2146,16 +2088,16 @@ M.OriginationRoute = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         Protocol = {
             type = "string",
         },
         Priority = {
-            type = "number",
+            type = "integer",
         },
         Weight = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2165,7 +2107,7 @@ M.Origination = {
     members = {
         Routes = {
             type = "list",
-            member_type = "structure",
+            member = M.OriginationRoute,
         },
         Disabled = {
             type = "boolean",
@@ -2176,9 +2118,7 @@ M.Origination = {
 M.GetVoiceConnectorOriginationOutput = {
     type = "structure",
     members = {
-        Origination = {
-            type = "structure",
-        },
+        Origination = M.Origination,
     },
 }
 
@@ -2199,7 +2139,7 @@ M.Proxy = {
     type = "structure",
     members = {
         DefaultSessionExpiryMinutes = {
-            type = "number",
+            type = "integer",
         },
         Disabled = {
             type = "boolean",
@@ -2209,7 +2149,7 @@ M.Proxy = {
         },
         PhoneNumberCountries = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2217,9 +2157,7 @@ M.Proxy = {
 M.GetVoiceConnectorProxyOutput = {
     type = "structure",
     members = {
-        Proxy = {
-            type = "structure",
-        },
+        Proxy = M.Proxy,
     },
 }
 
@@ -2267,7 +2205,7 @@ M.StreamingConfiguration = {
     type = "structure",
     members = {
         DataRetentionInHours = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -2280,20 +2218,16 @@ M.StreamingConfiguration = {
         },
         StreamingNotificationTargets = {
             type = "list",
-            member_type = "structure",
+            member = M.StreamingNotificationTarget,
         },
-        MediaInsightsConfiguration = {
-            type = "structure",
-        },
+        MediaInsightsConfiguration = M.MediaInsightsConfiguration,
     },
 }
 
 M.GetVoiceConnectorStreamingConfigurationOutput = {
     type = "structure",
     members = {
-        StreamingConfiguration = {
-            type = "structure",
-        },
+        StreamingConfiguration = M.StreamingConfiguration,
     },
 }
 
@@ -2314,18 +2248,18 @@ M.Termination = {
     type = "structure",
     members = {
         CpsLimit = {
-            type = "number",
+            type = "integer",
         },
         DefaultPhoneNumber = {
             type = "string",
         },
         CallingRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CidrAllowedList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Disabled = {
             type = "boolean",
@@ -2336,9 +2270,7 @@ M.Termination = {
 M.GetVoiceConnectorTerminationOutput = {
     type = "structure",
     members = {
-        Termination = {
-            type = "structure",
-        },
+        Termination = M.Termination,
     },
 }
 
@@ -2370,9 +2302,7 @@ M.TerminationHealth = {
 M.GetVoiceConnectorTerminationHealthOutput = {
     type = "structure",
     members = {
-        TerminationHealth = {
-            type = "structure",
-        },
+        TerminationHealth = M.TerminationHealth,
     },
 }
 
@@ -2392,9 +2322,7 @@ M.GetVoiceProfileInput = {
 M.GetVoiceProfileOutput = {
     type = "structure",
     members = {
-        VoiceProfile = {
-            type = "structure",
-        },
+        VoiceProfile = M.VoiceProfile,
     },
 }
 
@@ -2414,9 +2342,7 @@ M.GetVoiceProfileDomainInput = {
 M.GetVoiceProfileDomainOutput = {
     type = "structure",
     members = {
-        VoiceProfileDomain = {
-            type = "structure",
-        },
+        VoiceProfileDomain = M.VoiceProfileDomain,
     },
 }
 
@@ -2456,9 +2382,7 @@ M.VoiceToneAnalysisTask = {
         VoiceToneAnalysisTaskStatus = {
             type = "string",
         },
-        CallDetails = {
-            type = "structure",
-        },
+        CallDetails = M.CallDetails,
         CreatedTimestamp = {
             type = "timestamp",
         },
@@ -2477,9 +2401,7 @@ M.VoiceToneAnalysisTask = {
 M.GetVoiceToneAnalysisTaskOutput = {
     type = "structure",
     members = {
-        VoiceToneAnalysisTask = {
-            type = "structure",
-        },
+        VoiceToneAnalysisTask = M.VoiceToneAnalysisTask,
     },
 }
 
@@ -2492,7 +2414,7 @@ M.ListAvailableVoiceConnectorRegionsOutput = {
     members = {
         VoiceConnectorRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2507,7 +2429,7 @@ M.ListPhoneNumberOrdersInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -2520,7 +2442,7 @@ M.ListPhoneNumberOrdersOutput = {
     members = {
         PhoneNumberOrders = {
             type = "list",
-            member_type = "structure",
+            member = M.PhoneNumberOrder,
         },
         NextToken = {
             type = "string",
@@ -2556,7 +2478,7 @@ M.ListPhoneNumbersInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -2575,7 +2497,7 @@ M.ListPhoneNumbersOutput = {
     members = {
         PhoneNumbers = {
             type = "list",
-            member_type = "structure",
+            member = M.PhoneNumber,
         },
         NextToken = {
             type = "string",
@@ -2606,7 +2528,7 @@ M.ListProxySessionsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -2619,7 +2541,7 @@ M.ListProxySessionsOutput = {
     members = {
         ProxySessions = {
             type = "list",
-            member_type = "structure",
+            member = M.ProxySession,
         },
         NextToken = {
             type = "string",
@@ -2631,7 +2553,7 @@ M.ListSipMediaApplicationsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -2650,7 +2572,7 @@ M.ListSipMediaApplicationsOutput = {
     members = {
         SipMediaApplications = {
             type = "list",
-            member_type = "structure",
+            member = M.SipMediaApplication,
         },
         NextToken = {
             type = "string",
@@ -2668,7 +2590,7 @@ M.ListSipRulesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -2687,7 +2609,7 @@ M.ListSipRulesOutput = {
     members = {
         SipRules = {
             type = "list",
-            member_type = "structure",
+            member = M.SipRule,
         },
         NextToken = {
             type = "string",
@@ -2716,7 +2638,7 @@ M.PhoneNumberCountry = {
         },
         SupportedPhoneNumberTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2726,7 +2648,7 @@ M.ListSupportedPhoneNumberCountriesOutput = {
     members = {
         PhoneNumberCountries = {
             type = "list",
-            member_type = "structure",
+            member = M.PhoneNumberCountry,
         },
     },
 }
@@ -2749,7 +2671,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2764,7 +2686,7 @@ M.ListVoiceConnectorGroupsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -2777,7 +2699,7 @@ M.ListVoiceConnectorGroupsOutput = {
     members = {
         VoiceConnectorGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.VoiceConnectorGroup,
         },
         NextToken = {
             type = "string",
@@ -2795,7 +2717,7 @@ M.ListVoiceConnectorsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -2808,7 +2730,7 @@ M.ListVoiceConnectorsOutput = {
     members = {
         VoiceConnectors = {
             type = "list",
-            member_type = "structure",
+            member = M.VoiceConnector,
         },
         NextToken = {
             type = "string",
@@ -2834,7 +2756,7 @@ M.ListVoiceConnectorTerminationCredentialsOutput = {
     members = {
         Usernames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2849,7 +2771,7 @@ M.ListVoiceProfileDomainsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -2886,7 +2808,7 @@ M.ListVoiceProfileDomainsOutput = {
     members = {
         VoiceProfileDomains = {
             type = "list",
-            member_type = "structure",
+            member = M.VoiceProfileDomainSummary,
         },
         NextToken = {
             type = "string",
@@ -2911,7 +2833,7 @@ M.ListVoiceProfilesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -2948,7 +2870,7 @@ M.ListVoiceProfilesOutput = {
     members = {
         VoiceProfiles = {
             type = "list",
-            member_type = "structure",
+            member = M.VoiceProfileSummary,
         },
         NextToken = {
             type = "string",
@@ -2966,18 +2888,14 @@ M.PutSipMediaApplicationAlexaSkillConfigurationInput = {
                 required = true,
             },
         },
-        SipMediaApplicationAlexaSkillConfiguration = {
-            type = "structure",
-        },
+        SipMediaApplicationAlexaSkillConfiguration = M.SipMediaApplicationAlexaSkillConfiguration,
     },
 }
 
 M.PutSipMediaApplicationAlexaSkillConfigurationOutput = {
     type = "structure",
     members = {
-        SipMediaApplicationAlexaSkillConfiguration = {
-            type = "structure",
-        },
+        SipMediaApplicationAlexaSkillConfiguration = M.SipMediaApplicationAlexaSkillConfiguration,
     },
 }
 
@@ -2991,18 +2909,14 @@ M.PutSipMediaApplicationLoggingConfigurationInput = {
                 required = true,
             },
         },
-        SipMediaApplicationLoggingConfiguration = {
-            type = "structure",
-        },
+        SipMediaApplicationLoggingConfiguration = M.SipMediaApplicationLoggingConfiguration,
     },
 }
 
 M.PutSipMediaApplicationLoggingConfigurationOutput = {
     type = "structure",
     members = {
-        SipMediaApplicationLoggingConfiguration = {
-            type = "structure",
-        },
+        SipMediaApplicationLoggingConfiguration = M.SipMediaApplicationLoggingConfiguration,
     },
 }
 
@@ -3016,21 +2930,16 @@ M.PutVoiceConnectorEmergencyCallingConfigurationInput = {
                 required = true,
             },
         },
-        EmergencyCallingConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        EmergencyCallingConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EmergencyCallingConfiguration }),
     },
 }
 
 M.PutVoiceConnectorEmergencyCallingConfigurationOutput = {
     type = "structure",
     members = {
-        EmergencyCallingConfiguration = {
-            type = "structure",
-        },
+        EmergencyCallingConfiguration = M.EmergencyCallingConfiguration,
     },
 }
 
@@ -3046,11 +2955,11 @@ M.PutVoiceConnectorExternalSystemsConfigurationInput = {
         },
         SessionBorderControllerTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ContactCenterSystemTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3058,9 +2967,7 @@ M.PutVoiceConnectorExternalSystemsConfigurationInput = {
 M.PutVoiceConnectorExternalSystemsConfigurationOutput = {
     type = "structure",
     members = {
-        ExternalSystemsConfiguration = {
-            type = "structure",
-        },
+        ExternalSystemsConfiguration = M.ExternalSystemsConfiguration,
     },
 }
 
@@ -3074,21 +2981,16 @@ M.PutVoiceConnectorLoggingConfigurationInput = {
                 required = true,
             },
         },
-        LoggingConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        LoggingConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LoggingConfiguration }),
     },
 }
 
 M.PutVoiceConnectorLoggingConfigurationOutput = {
     type = "structure",
     members = {
-        LoggingConfiguration = {
-            type = "structure",
-        },
+        LoggingConfiguration = M.LoggingConfiguration,
     },
 }
 
@@ -3102,21 +3004,16 @@ M.PutVoiceConnectorOriginationInput = {
                 required = true,
             },
         },
-        Origination = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Origination = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Origination }),
     },
 }
 
 M.PutVoiceConnectorOriginationOutput = {
     type = "structure",
     members = {
-        Origination = {
-            type = "structure",
-        },
+        Origination = M.Origination,
     },
 }
 
@@ -3131,14 +3028,14 @@ M.PutVoiceConnectorProxyInput = {
             },
         },
         DefaultSessionExpiryMinutes = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         PhoneNumberPoolCountries = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3155,9 +3052,7 @@ M.PutVoiceConnectorProxyInput = {
 M.PutVoiceConnectorProxyOutput = {
     type = "structure",
     members = {
-        Proxy = {
-            type = "structure",
-        },
+        Proxy = M.Proxy,
     },
 }
 
@@ -3171,21 +3066,16 @@ M.PutVoiceConnectorStreamingConfigurationInput = {
                 required = true,
             },
         },
-        StreamingConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        StreamingConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.StreamingConfiguration }),
     },
 }
 
 M.PutVoiceConnectorStreamingConfigurationOutput = {
     type = "structure",
     members = {
-        StreamingConfiguration = {
-            type = "structure",
-        },
+        StreamingConfiguration = M.StreamingConfiguration,
     },
 }
 
@@ -3199,21 +3089,16 @@ M.PutVoiceConnectorTerminationInput = {
                 required = true,
             },
         },
-        Termination = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Termination = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Termination }),
     },
 }
 
 M.PutVoiceConnectorTerminationOutput = {
     type = "structure",
     members = {
-        Termination = {
-            type = "structure",
-        },
+        Termination = M.Termination,
     },
 }
 
@@ -3241,7 +3126,7 @@ M.PutVoiceConnectorTerminationCredentialsInput = {
         },
         Credentials = {
             type = "list",
-            member_type = "structure",
+            member = M.Credential,
         },
     },
 }
@@ -3266,9 +3151,7 @@ M.RestorePhoneNumberInput = {
 M.RestorePhoneNumberOutput = {
     type = "structure",
     members = {
-        PhoneNumber = {
-            type = "structure",
-        },
+        PhoneNumber = M.PhoneNumber,
     },
 }
 
@@ -3312,7 +3195,7 @@ M.SearchAvailablePhoneNumbersInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -3331,7 +3214,7 @@ M.SearchAvailablePhoneNumbersOutput = {
     members = {
         E164PhoneNumbers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -3373,9 +3256,7 @@ M.StartSpeakerSearchTaskInput = {
 M.StartSpeakerSearchTaskOutput = {
     type = "structure",
     members = {
-        SpeakerSearchTask = {
-            type = "structure",
-        },
+        SpeakerSearchTask = M.SpeakerSearchTask,
     },
 }
 
@@ -3427,9 +3308,7 @@ M.StartVoiceToneAnalysisTaskInput = {
 M.StartVoiceToneAnalysisTaskOutput = {
     type = "structure",
     members = {
-        VoiceToneAnalysisTask = {
-            type = "structure",
-        },
+        VoiceToneAnalysisTask = M.VoiceToneAnalysisTask,
     },
 }
 
@@ -3492,7 +3371,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -3515,7 +3394,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3530,9 +3409,7 @@ M.UntagResourceOutput = {
 M.UpdateGlobalSettingsInput = {
     type = "structure",
     members = {
-        VoiceConnector = {
-            type = "structure",
-        },
+        VoiceConnector = M.VoiceConnectorSettings,
     },
 }
 
@@ -3565,9 +3442,7 @@ M.UpdatePhoneNumberInput = {
 M.UpdatePhoneNumberOutput = {
     type = "structure",
     members = {
-        PhoneNumber = {
-            type = "structure",
-        },
+        PhoneNumber = M.PhoneNumber,
     },
 }
 
@@ -3606,13 +3481,13 @@ M.UpdateProxySessionInput = {
         },
         Capabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         ExpiryMinutes = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3620,9 +3495,7 @@ M.UpdateProxySessionInput = {
 M.UpdateProxySessionOutput = {
     type = "structure",
     members = {
-        ProxySession = {
-            type = "structure",
-        },
+        ProxySession = M.ProxySession,
     },
 }
 
@@ -3641,7 +3514,7 @@ M.UpdateSipMediaApplicationInput = {
         },
         Endpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.SipMediaApplicationEndpoint,
         },
     },
 }
@@ -3649,9 +3522,7 @@ M.UpdateSipMediaApplicationInput = {
 M.UpdateSipMediaApplicationOutput = {
     type = "structure",
     members = {
-        SipMediaApplication = {
-            type = "structure",
-        },
+        SipMediaApplication = M.SipMediaApplication,
     },
 }
 
@@ -3674,8 +3545,8 @@ M.UpdateSipMediaApplicationCallInput = {
         },
         Arguments = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3686,9 +3557,7 @@ M.UpdateSipMediaApplicationCallInput = {
 M.UpdateSipMediaApplicationCallOutput = {
     type = "structure",
     members = {
-        SipMediaApplicationCall = {
-            type = "structure",
-        },
+        SipMediaApplicationCall = M.SipMediaApplicationCall,
     },
 }
 
@@ -3713,7 +3582,7 @@ M.UpdateSipRuleInput = {
         },
         TargetApplications = {
             type = "list",
-            member_type = "structure",
+            member = M.SipRuleTargetApplication,
         },
     },
 }
@@ -3721,9 +3590,7 @@ M.UpdateSipRuleInput = {
 M.UpdateSipRuleOutput = {
     type = "structure",
     members = {
-        SipRule = {
-            type = "structure",
-        },
+        SipRule = M.SipRule,
     },
 }
 
@@ -3755,9 +3622,7 @@ M.UpdateVoiceConnectorInput = {
 M.UpdateVoiceConnectorOutput = {
     type = "structure",
     members = {
-        VoiceConnector = {
-            type = "structure",
-        },
+        VoiceConnector = M.VoiceConnector,
     },
 }
 
@@ -3779,7 +3644,7 @@ M.UpdateVoiceConnectorGroupInput = {
         },
         VoiceConnectorItems = {
             type = "list",
-            member_type = "structure",
+            member = M.VoiceConnectorItem,
             traits = {
                 required = true,
             },
@@ -3790,9 +3655,7 @@ M.UpdateVoiceConnectorGroupInput = {
 M.UpdateVoiceConnectorGroupOutput = {
     type = "structure",
     members = {
-        VoiceConnectorGroup = {
-            type = "structure",
-        },
+        VoiceConnectorGroup = M.VoiceConnectorGroup,
     },
 }
 
@@ -3818,9 +3681,7 @@ M.UpdateVoiceProfileInput = {
 M.UpdateVoiceProfileOutput = {
     type = "structure",
     members = {
-        VoiceProfile = {
-            type = "structure",
-        },
+        VoiceProfile = M.VoiceProfile,
     },
 }
 
@@ -3846,9 +3707,7 @@ M.UpdateVoiceProfileDomainInput = {
 M.UpdateVoiceProfileDomainOutput = {
     type = "structure",
     members = {
-        VoiceProfileDomain = {
-            type = "structure",
-        },
+        VoiceProfileDomain = M.VoiceProfileDomain,
     },
 }
 
@@ -3904,17 +3763,18 @@ M.ValidateE911AddressOutput = {
     type = "structure",
     members = {
         ValidationResult = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         AddressExternalId = {
             type = "string",
         },
-        Address = {
-            type = "structure",
-        },
+        Address = M.Address,
         CandidateAddressList = {
             type = "list",
-            member_type = "structure",
+            member = M.CandidateAddress,
         },
     },
 }

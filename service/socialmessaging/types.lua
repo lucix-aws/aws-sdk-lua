@@ -55,7 +55,7 @@ M.WabaPhoneNumberSetupFinalization = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -83,11 +83,11 @@ M.WabaSetupFinalization = {
         },
         eventDestinations = {
             type = "list",
-            member_type = "structure",
+            member = M.WhatsAppBusinessAccountEventDestination,
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -103,7 +103,7 @@ M.WhatsAppSetupFinalization = {
         },
         phoneNumbers = {
             type = "list",
-            member_type = "structure",
+            member = M.WabaPhoneNumberSetupFinalization,
             traits = {
                 required = true,
             },
@@ -111,9 +111,7 @@ M.WhatsAppSetupFinalization = {
         phoneNumberParent = {
             type = "string",
         },
-        waba = {
-            type = "structure",
-        },
+        waba = M.WabaSetupFinalization,
     },
 }
 
@@ -135,12 +133,8 @@ M.WhatsAppSignupCallback = {
 M.AssociateWhatsAppBusinessAccountInput = {
     type = "structure",
     members = {
-        signupCallback = {
-            type = "structure",
-        },
-        setupFinalization = {
-            type = "structure",
-        },
+        signupCallback = M.WhatsAppSignupCallback,
+        setupFinalization = M.WhatsAppSetupFinalization,
     },
 }
 
@@ -211,7 +205,7 @@ M.LinkedWhatsAppBusinessAccountIdMetaData = {
         },
         unregisteredWhatsAppPhoneNumbers = {
             type = "list",
-            member_type = "structure",
+            member = M.WhatsAppPhoneNumberDetail,
         },
         wabaId = {
             type = "string",
@@ -227,8 +221,8 @@ M.WhatsAppSignupCallbackResult = {
         },
         linkedAccountsWithIncompleteSetup = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.LinkedWhatsAppBusinessAccountIdMetaData,
         },
     },
 }
@@ -236,11 +230,9 @@ M.WhatsAppSignupCallbackResult = {
 M.AssociateWhatsAppBusinessAccountOutput = {
     type = "structure",
     members = {
-        signupCallbackResult = {
-            type = "structure",
-        },
+        signupCallbackResult = M.WhatsAppSignupCallbackResult,
         statusCode = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -364,7 +356,7 @@ M.LibraryTemplateBodyInputs = {
             type = "boolean",
         },
         codeExpirationMinutes = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -380,8 +372,8 @@ M.LibraryTemplateButtonInput = {
         },
         url = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         otpType = {
             type = "string",
@@ -391,7 +383,7 @@ M.LibraryTemplateButtonInput = {
         },
         supportedApps = {
             type = "list",
-            member_type = "map",
+            member = { type = "map" },
         },
     },
 }
@@ -425,23 +417,18 @@ M.MetaLibraryTemplate = {
         },
         libraryTemplateButtonInputs = {
             type = "list",
-            member_type = "structure",
+            member = M.LibraryTemplateButtonInput,
         },
-        libraryTemplateBodyInputs = {
-            type = "structure",
-        },
+        libraryTemplateBodyInputs = M.LibraryTemplateBodyInputs,
     },
 }
 
 M.CreateWhatsAppMessageTemplateFromLibraryInput = {
     type = "structure",
     members = {
-        metaLibraryTemplate = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        metaLibraryTemplate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MetaLibraryTemplate }),
         id = {
             type = "string",
             traits = {
@@ -493,9 +480,7 @@ M.CreateWhatsAppMessageTemplateMediaInput = {
                 required = true,
             },
         },
-        sourceS3File = {
-            type = "structure",
-        },
+        sourceS3File = M.S3File,
     },
 }
 
@@ -695,14 +680,14 @@ M.LinkedWhatsAppBusinessAccount = {
         },
         eventDestinations = {
             type = "list",
-            member_type = "structure",
+            member = M.WhatsAppBusinessAccountEventDestination,
             traits = {
                 required = true,
             },
         },
         phoneNumbers = {
             type = "list",
-            member_type = "structure",
+            member = M.WhatsAppPhoneNumberSummary,
             traits = {
                 required = true,
             },
@@ -713,9 +698,7 @@ M.LinkedWhatsAppBusinessAccount = {
 M.GetLinkedWhatsAppBusinessAccountOutput = {
     type = "structure",
     members = {
-        account = {
-            type = "structure",
-        },
+        account = M.LinkedWhatsAppBusinessAccount,
     },
 }
 
@@ -735,9 +718,7 @@ M.GetLinkedWhatsAppBusinessAccountPhoneNumberInput = {
 M.GetLinkedWhatsAppBusinessAccountPhoneNumberOutput = {
     type = "structure",
     members = {
-        phoneNumber = {
-            type = "structure",
-        },
+        phoneNumber = M.WhatsAppPhoneNumberDetail,
         linkedWhatsAppBusinessAccountId = {
             type = "string",
         },
@@ -755,8 +736,8 @@ M.S3PresignedUrl = {
         },
         headers = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -782,12 +763,8 @@ M.GetWhatsAppMessageMediaInput = {
         metadataOnly = {
             type = "boolean",
         },
-        destinationS3PresignedUrl = {
-            type = "structure",
-        },
-        destinationS3File = {
-            type = "structure",
-        },
+        destinationS3PresignedUrl = M.S3PresignedUrl,
+        destinationS3File = M.S3File,
     },
 }
 
@@ -798,7 +775,7 @@ M.GetWhatsAppMessageMediaOutput = {
             type = "string",
         },
         fileSize = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -855,7 +832,7 @@ M.LibraryTemplateButtonList = {
         },
         supportedApps = {
             type = "list",
-            member_type = "map",
+            member = { type = "map" },
         },
     },
 }
@@ -870,7 +847,7 @@ M.ListLinkedWhatsAppBusinessAccountsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -919,7 +896,7 @@ M.LinkedWhatsAppBusinessAccountSummary = {
         },
         eventDestinations = {
             type = "list",
-            member_type = "structure",
+            member = M.WhatsAppBusinessAccountEventDestination,
             traits = {
                 required = true,
             },
@@ -932,7 +909,7 @@ M.ListLinkedWhatsAppBusinessAccountsOutput = {
     members = {
         linkedAccounts = {
             type = "list",
-            member_type = "structure",
+            member = M.LinkedWhatsAppBusinessAccountSummary,
         },
         nextToken = {
             type = "string",
@@ -957,7 +934,7 @@ M.ListWhatsAppMessageTemplatesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -994,7 +971,7 @@ M.ListWhatsAppMessageTemplatesOutput = {
     members = {
         templates = {
             type = "list",
-            member_type = "structure",
+            member = M.TemplateSummary,
         },
         nextToken = {
             type = "string",
@@ -1009,7 +986,7 @@ M.ListWhatsAppTemplateLibraryInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         id = {
             type = "string",
@@ -1020,8 +997,8 @@ M.ListWhatsAppTemplateLibraryInput = {
         },
         filters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1046,7 +1023,7 @@ M.MetaLibraryTemplateDefinition = {
         },
         templateIndustry = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         templateHeader = {
             type = "string",
@@ -1056,14 +1033,14 @@ M.MetaLibraryTemplateDefinition = {
         },
         templateButtons = {
             type = "list",
-            member_type = "structure",
+            member = M.LibraryTemplateButtonList,
         },
         templateId = {
             type = "string",
         },
         templateBodyExampleParams = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1073,7 +1050,7 @@ M.ListWhatsAppTemplateLibraryOutput = {
     members = {
         metaLibraryTemplates = {
             type = "list",
-            member_type = "structure",
+            member = M.MetaLibraryTemplateDefinition,
         },
         nextToken = {
             type = "string",
@@ -1092,7 +1069,7 @@ M.PutWhatsAppBusinessAccountEventDestinationsInput = {
         },
         eventDestinations = {
             type = "list",
-            member_type = "structure",
+            member = M.WhatsAppBusinessAccountEventDestination,
             traits = {
                 required = true,
             },
@@ -1147,12 +1124,8 @@ M.PostWhatsAppMessageMediaInput = {
                 required = true,
             },
         },
-        sourceS3PresignedUrl = {
-            type = "structure",
-        },
-        sourceS3File = {
-            type = "structure",
-        },
+        sourceS3PresignedUrl = M.S3PresignedUrl,
+        sourceS3File = M.S3File,
     },
 }
 
@@ -1215,11 +1188,11 @@ M.ListTagsForResourceOutput = {
     type = "structure",
     members = {
         statusCode = {
-            type = "number",
+            type = "integer",
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1235,7 +1208,7 @@ M.TagResourceInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -1247,7 +1220,7 @@ M.TagResourceOutput = {
     type = "structure",
     members = {
         statusCode = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1263,7 +1236,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1275,7 +1248,7 @@ M.UntagResourceOutput = {
     type = "structure",
     members = {
         statusCode = {
-            type = "number",
+            type = "integer",
         },
     },
 }

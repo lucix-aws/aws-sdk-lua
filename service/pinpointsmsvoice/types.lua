@@ -118,22 +118,16 @@ M.SnsDestination = {
 M.EventDestinationDefinition = {
     type = "structure",
     members = {
-        CloudWatchLogsDestination = {
-            type = "structure",
-        },
+        CloudWatchLogsDestination = M.CloudWatchLogsDestination,
         Enabled = {
             type = "boolean",
         },
-        KinesisFirehoseDestination = {
-            type = "structure",
-        },
+        KinesisFirehoseDestination = M.KinesisFirehoseDestination,
         MatchingEventTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        SnsDestination = {
-            type = "structure",
-        },
+        SnsDestination = M.SnsDestination,
     },
 }
 
@@ -147,9 +141,7 @@ M.CreateConfigurationSetEventDestinationInput = {
                 required = true,
             },
         },
-        EventDestination = {
-            type = "structure",
-        },
+        EventDestination = M.EventDestinationDefinition,
         EventDestinationName = {
             type = "string",
         },
@@ -214,25 +206,19 @@ M.DeleteConfigurationSetEventDestinationOutput = {
 M.EventDestination = {
     type = "structure",
     members = {
-        CloudWatchLogsDestination = {
-            type = "structure",
-        },
+        CloudWatchLogsDestination = M.CloudWatchLogsDestination,
         Enabled = {
             type = "boolean",
         },
-        KinesisFirehoseDestination = {
-            type = "structure",
-        },
+        KinesisFirehoseDestination = M.KinesisFirehoseDestination,
         MatchingEventTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Name = {
             type = "string",
         },
-        SnsDestination = {
-            type = "structure",
-        },
+        SnsDestination = M.SnsDestination,
     },
 }
 
@@ -254,7 +240,7 @@ M.GetConfigurationSetEventDestinationsOutput = {
     members = {
         EventDestinations = {
             type = "list",
-            member_type = "structure",
+            member = M.EventDestination,
         },
     },
 }
@@ -282,7 +268,7 @@ M.ListConfigurationSetsOutput = {
     members = {
         ConfigurationSets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -323,15 +309,9 @@ M.SSMLMessageType = {
 M.VoiceMessageContent = {
     type = "structure",
     members = {
-        CallInstructionsMessage = {
-            type = "structure",
-        },
-        PlainTextMessage = {
-            type = "structure",
-        },
-        SSMLMessage = {
-            type = "structure",
-        },
+        CallInstructionsMessage = M.CallInstructionsMessageType,
+        PlainTextMessage = M.PlainTextMessageType,
+        SSMLMessage = M.SSMLMessageType,
     },
 }
 
@@ -344,9 +324,7 @@ M.SendVoiceMessageInput = {
         ConfigurationSetName = {
             type = "string",
         },
-        Content = {
-            type = "structure",
-        },
+        Content = M.VoiceMessageContent,
         DestinationPhoneNumber = {
             type = "string",
         },
@@ -375,9 +353,7 @@ M.UpdateConfigurationSetEventDestinationInput = {
                 required = true,
             },
         },
-        EventDestination = {
-            type = "structure",
-        },
+        EventDestination = M.EventDestinationDefinition,
         EventDestinationName = {
             type = "string",
             traits = {

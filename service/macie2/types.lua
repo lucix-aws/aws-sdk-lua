@@ -233,31 +233,31 @@ M.ObjectCountByEncryptionType = {
     type = "structure",
     members = {
         customerManaged = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "customerManaged",
             },
         },
         kmsManaged = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "kmsManaged",
             },
         },
         s3Managed = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "s3Managed",
             },
         },
         unencrypted = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "unencrypted",
             },
         },
         unknown = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "unknown",
             },
@@ -304,12 +304,9 @@ M.BlockPublicAccess = {
 M.AccountLevelPermissions = {
     type = "structure",
     members = {
-        blockPublicAccess = {
-            type = "structure",
-            traits = {
-                json_name = "blockPublicAccess",
-            },
-        },
+        blockPublicAccess = setmetatable({ traits = {
+            json_name = "blockPublicAccess",
+        } }, { __index = M.BlockPublicAccess }),
     },
 }
 
@@ -352,42 +349,27 @@ M.BucketPolicy = {
 M.BucketLevelPermissions = {
     type = "structure",
     members = {
-        accessControlList = {
-            type = "structure",
-            traits = {
-                json_name = "accessControlList",
-            },
-        },
-        blockPublicAccess = {
-            type = "structure",
-            traits = {
-                json_name = "blockPublicAccess",
-            },
-        },
-        bucketPolicy = {
-            type = "structure",
-            traits = {
-                json_name = "bucketPolicy",
-            },
-        },
+        accessControlList = setmetatable({ traits = {
+            json_name = "accessControlList",
+        } }, { __index = M.AccessControlList }),
+        blockPublicAccess = setmetatable({ traits = {
+            json_name = "blockPublicAccess",
+        } }, { __index = M.BlockPublicAccess }),
+        bucketPolicy = setmetatable({ traits = {
+            json_name = "bucketPolicy",
+        } }, { __index = M.BucketPolicy }),
     },
 }
 
 M.BucketPermissionConfiguration = {
     type = "structure",
     members = {
-        accountLevelPermissions = {
-            type = "structure",
-            traits = {
-                json_name = "accountLevelPermissions",
-            },
-        },
-        bucketLevelPermissions = {
-            type = "structure",
-            traits = {
-                json_name = "bucketLevelPermissions",
-            },
-        },
+        accountLevelPermissions = setmetatable({ traits = {
+            json_name = "accountLevelPermissions",
+        } }, { __index = M.AccountLevelPermissions }),
+        bucketLevelPermissions = setmetatable({ traits = {
+            json_name = "bucketLevelPermissions",
+        } }, { __index = M.BucketLevelPermissions }),
     },
 }
 
@@ -400,12 +382,9 @@ M.BucketPublicAccess = {
                 json_name = "effectivePermission",
             },
         },
-        permissionConfiguration = {
-            type = "structure",
-            traits = {
-                json_name = "permissionConfiguration",
-            },
-        },
+        permissionConfiguration = setmetatable({ traits = {
+            json_name = "permissionConfiguration",
+        } }, { __index = M.BucketPermissionConfiguration }),
     },
 }
 
@@ -426,7 +405,7 @@ M.ReplicationDetails = {
         },
         replicationAccounts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "replicationAccounts",
             },
@@ -488,19 +467,19 @@ M.ObjectLevelStatistics = {
     type = "structure",
     members = {
         fileType = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "fileType",
             },
         },
         storageClass = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "storageClass",
             },
         },
         total = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "total",
             },
@@ -548,13 +527,13 @@ M.BucketMetadata = {
             },
         },
         classifiableObjectCount = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "classifiableObjectCount",
             },
         },
         classifiableSizeInBytes = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "classifiableSizeInBytes",
             },
@@ -571,12 +550,9 @@ M.BucketMetadata = {
                 json_name = "errorMessage",
             },
         },
-        jobDetails = {
-            type = "structure",
-            traits = {
-                json_name = "jobDetails",
-            },
-        },
+        jobDetails = setmetatable({ traits = {
+            json_name = "jobDetails",
+        } }, { __index = M.JobDetails }),
         lastAutomatedDiscoveryTime = {
             type = "timestamp",
             traits = {
@@ -590,47 +566,35 @@ M.BucketMetadata = {
             },
         },
         objectCount = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "objectCount",
             },
         },
-        objectCountByEncryptionType = {
-            type = "structure",
-            traits = {
-                json_name = "objectCountByEncryptionType",
-            },
-        },
-        publicAccess = {
-            type = "structure",
-            traits = {
-                json_name = "publicAccess",
-            },
-        },
+        objectCountByEncryptionType = setmetatable({ traits = {
+            json_name = "objectCountByEncryptionType",
+        } }, { __index = M.ObjectCountByEncryptionType }),
+        publicAccess = setmetatable({ traits = {
+            json_name = "publicAccess",
+        } }, { __index = M.BucketPublicAccess }),
         region = {
             type = "string",
             traits = {
                 json_name = "region",
             },
         },
-        replicationDetails = {
-            type = "structure",
-            traits = {
-                json_name = "replicationDetails",
-            },
-        },
+        replicationDetails = setmetatable({ traits = {
+            json_name = "replicationDetails",
+        } }, { __index = M.ReplicationDetails }),
         sensitivityScore = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "sensitivityScore",
             },
         },
-        serverSideEncryption = {
-            type = "structure",
-            traits = {
-                json_name = "serverSideEncryption",
-            },
-        },
+        serverSideEncryption = setmetatable({ traits = {
+            json_name = "serverSideEncryption",
+        } }, { __index = M.BucketServerSideEncryption }),
         sharedAccess = {
             type = "string",
             traits = {
@@ -638,36 +602,30 @@ M.BucketMetadata = {
             },
         },
         sizeInBytes = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "sizeInBytes",
             },
         },
         sizeInBytesCompressed = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "sizeInBytesCompressed",
             },
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.KeyValuePair,
             traits = {
                 json_name = "tags",
             },
         },
-        unclassifiableObjectCount = {
-            type = "structure",
-            traits = {
-                json_name = "unclassifiableObjectCount",
-            },
-        },
-        unclassifiableObjectSizeInBytes = {
-            type = "structure",
-            traits = {
-                json_name = "unclassifiableObjectSizeInBytes",
-            },
-        },
+        unclassifiableObjectCount = setmetatable({ traits = {
+            json_name = "unclassifiableObjectCount",
+        } }, { __index = M.ObjectLevelStatistics }),
+        unclassifiableObjectSizeInBytes = setmetatable({ traits = {
+            json_name = "unclassifiableObjectSizeInBytes",
+        } }, { __index = M.ObjectLevelStatistics }),
         versioning = {
             type = "boolean",
             traits = {
@@ -730,7 +688,7 @@ M.SimpleCriterionForJob = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "values",
             },
@@ -767,7 +725,7 @@ M.TagCriterionForJob = {
         },
         tagValues = {
             type = "list",
-            member_type = "structure",
+            member = M.TagCriterionPairForJob,
             traits = {
                 json_name = "tagValues",
             },
@@ -778,18 +736,12 @@ M.TagCriterionForJob = {
 M.CriteriaForJob = {
     type = "structure",
     members = {
-        simpleCriterion = {
-            type = "structure",
-            traits = {
-                json_name = "simpleCriterion",
-            },
-        },
-        tagCriterion = {
-            type = "structure",
-            traits = {
-                json_name = "tagCriterion",
-            },
-        },
+        simpleCriterion = setmetatable({ traits = {
+            json_name = "simpleCriterion",
+        } }, { __index = M.SimpleCriterionForJob }),
+        tagCriterion = setmetatable({ traits = {
+            json_name = "tagCriterion",
+        } }, { __index = M.TagCriterionForJob }),
     },
 }
 
@@ -857,7 +809,7 @@ M.Detection = {
             },
         },
         count = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "count",
             },
@@ -909,7 +861,7 @@ M.Cell = {
             },
         },
         column = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "column",
             },
@@ -921,7 +873,7 @@ M.Cell = {
             },
         },
         row = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "row",
             },
@@ -933,19 +885,19 @@ M.Range = {
     type = "structure",
     members = {
         end = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "end",
             },
         },
         start = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "start",
             },
         },
         startColumn = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "startColumn",
             },
@@ -956,20 +908,14 @@ M.Range = {
 M.Page = {
     type = "structure",
     members = {
-        lineRange = {
-            type = "structure",
-            traits = {
-                json_name = "lineRange",
-            },
-        },
-        offsetRange = {
-            type = "structure",
-            traits = {
-                json_name = "offsetRange",
-            },
-        },
+        lineRange = setmetatable({ traits = {
+            json_name = "lineRange",
+        } }, { __index = M.Range }),
+        offsetRange = setmetatable({ traits = {
+            json_name = "offsetRange",
+        } }, { __index = M.Range }),
         pageNumber = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "pageNumber",
             },
@@ -987,7 +933,7 @@ M.Record = {
             },
         },
         recordIndex = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "recordIndex",
             },
@@ -1000,35 +946,35 @@ M.Occurrences = {
     members = {
         cells = {
             type = "list",
-            member_type = "structure",
+            member = M.Cell,
             traits = {
                 json_name = "cells",
             },
         },
         lineRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.Range,
             traits = {
                 json_name = "lineRanges",
             },
         },
         offsetRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.Range,
             traits = {
                 json_name = "offsetRanges",
             },
         },
         pages = {
             type = "list",
-            member_type = "structure",
+            member = M.Page,
             traits = {
                 json_name = "pages",
             },
         },
         records = {
             type = "list",
-            member_type = "structure",
+            member = M.Record,
             traits = {
                 json_name = "records",
             },
@@ -1046,7 +992,7 @@ M.CustomDetection = {
             },
         },
         count = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "count",
             },
@@ -1057,12 +1003,9 @@ M.CustomDetection = {
                 json_name = "name",
             },
         },
-        occurrences = {
-            type = "structure",
-            traits = {
-                json_name = "occurrences",
-            },
-        },
+        occurrences = setmetatable({ traits = {
+            json_name = "occurrences",
+        } }, { __index = M.Occurrences }),
     },
 }
 
@@ -1071,13 +1014,13 @@ M.CustomDataIdentifiers = {
     members = {
         detections = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomDetection,
             traits = {
                 json_name = "detections",
             },
         },
         totalCount = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "totalCount",
             },
@@ -1096,17 +1039,14 @@ M.DefaultDetection = {
     type = "structure",
     members = {
         count = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "count",
             },
         },
-        occurrences = {
-            type = "structure",
-            traits = {
-                json_name = "occurrences",
-            },
-        },
+        occurrences = setmetatable({ traits = {
+            json_name = "occurrences",
+        } }, { __index = M.Occurrences }),
         type = {
             type = "string",
             traits = {
@@ -1127,13 +1067,13 @@ M.SensitiveDataItem = {
         },
         detections = {
             type = "list",
-            member_type = "structure",
+            member = M.DefaultDetection,
             traits = {
                 json_name = "detections",
             },
         },
         totalCount = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "totalCount",
             },
@@ -1168,12 +1108,9 @@ M.ClassificationResult = {
                 json_name = "additionalOccurrences",
             },
         },
-        customDataIdentifiers = {
-            type = "structure",
-            traits = {
-                json_name = "customDataIdentifiers",
-            },
-        },
+        customDataIdentifiers = setmetatable({ traits = {
+            json_name = "customDataIdentifiers",
+        } }, { __index = M.CustomDataIdentifiers }),
         mimeType = {
             type = "string",
             traits = {
@@ -1182,23 +1119,20 @@ M.ClassificationResult = {
         },
         sensitiveData = {
             type = "list",
-            member_type = "structure",
+            member = M.SensitiveDataItem,
             traits = {
                 json_name = "sensitiveData",
             },
         },
         sizeClassified = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "sizeClassified",
             },
         },
-        status = {
-            type = "structure",
-            traits = {
-                json_name = "status",
-            },
-        },
+        status = setmetatable({ traits = {
+            json_name = "status",
+        } }, { __index = M.ClassificationResultStatus }),
     },
 }
 
@@ -1229,12 +1163,9 @@ M.ClassificationDetails = {
                 json_name = "originType",
             },
         },
-        result = {
-            type = "structure",
-            traits = {
-                json_name = "result",
-            },
-        },
+        result = setmetatable({ traits = {
+            json_name = "result",
+        } }, { __index = M.ClassificationResult }),
     },
 }
 
@@ -1281,12 +1212,9 @@ M.FindingAction = {
                 json_name = "actionType",
             },
         },
-        apiCallDetails = {
-            type = "structure",
-            traits = {
-                json_name = "apiCallDetails",
-            },
-        },
+        apiCallDetails = setmetatable({ traits = {
+            json_name = "apiCallDetails",
+        } }, { __index = M.ApiCallDetails }),
     },
 }
 
@@ -1336,13 +1264,13 @@ M.IpGeoLocation = {
     type = "structure",
     members = {
         lat = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "lat",
             },
         },
         lon = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "lon",
             },
@@ -1389,30 +1317,18 @@ M.IpAddressDetails = {
                 json_name = "ipAddressV4",
             },
         },
-        ipCity = {
-            type = "structure",
-            traits = {
-                json_name = "ipCity",
-            },
-        },
-        ipCountry = {
-            type = "structure",
-            traits = {
-                json_name = "ipCountry",
-            },
-        },
-        ipGeoLocation = {
-            type = "structure",
-            traits = {
-                json_name = "ipGeoLocation",
-            },
-        },
-        ipOwner = {
-            type = "structure",
-            traits = {
-                json_name = "ipOwner",
-            },
-        },
+        ipCity = setmetatable({ traits = {
+            json_name = "ipCity",
+        } }, { __index = M.IpCity }),
+        ipCountry = setmetatable({ traits = {
+            json_name = "ipCountry",
+        } }, { __index = M.IpCountry }),
+        ipGeoLocation = setmetatable({ traits = {
+            json_name = "ipGeoLocation",
+        } }, { __index = M.IpGeoLocation }),
+        ipOwner = setmetatable({ traits = {
+            json_name = "ipOwner",
+        } }, { __index = M.IpOwner }),
     },
 }
 
@@ -1473,18 +1389,12 @@ M.SessionIssuer = {
 M.SessionContext = {
     type = "structure",
     members = {
-        attributes = {
-            type = "structure",
-            traits = {
-                json_name = "attributes",
-            },
-        },
-        sessionIssuer = {
-            type = "structure",
-            traits = {
-                json_name = "sessionIssuer",
-            },
-        },
+        attributes = setmetatable({ traits = {
+            json_name = "attributes",
+        } }, { __index = M.SessionContextAttributes }),
+        sessionIssuer = setmetatable({ traits = {
+            json_name = "sessionIssuer",
+        } }, { __index = M.SessionIssuer }),
     },
 }
 
@@ -1515,12 +1425,9 @@ M.AssumedRole = {
                 json_name = "principalId",
             },
         },
-        sessionContext = {
-            type = "structure",
-            traits = {
-                json_name = "sessionContext",
-            },
-        },
+        sessionContext = setmetatable({ traits = {
+            json_name = "sessionContext",
+        } }, { __index = M.SessionContext }),
     },
 }
 
@@ -1581,12 +1488,9 @@ M.FederatedUser = {
                 json_name = "principalId",
             },
         },
-        sessionContext = {
-            type = "structure",
-            traits = {
-                json_name = "sessionContext",
-            },
-        },
+        sessionContext = setmetatable({ traits = {
+            json_name = "sessionContext",
+        } }, { __index = M.SessionContext }),
     },
 }
 
@@ -1656,42 +1560,24 @@ M.UserIdentityType = {
 M.UserIdentity = {
     type = "structure",
     members = {
-        assumedRole = {
-            type = "structure",
-            traits = {
-                json_name = "assumedRole",
-            },
-        },
-        awsAccount = {
-            type = "structure",
-            traits = {
-                json_name = "awsAccount",
-            },
-        },
-        awsService = {
-            type = "structure",
-            traits = {
-                json_name = "awsService",
-            },
-        },
-        federatedUser = {
-            type = "structure",
-            traits = {
-                json_name = "federatedUser",
-            },
-        },
-        iamUser = {
-            type = "structure",
-            traits = {
-                json_name = "iamUser",
-            },
-        },
-        root = {
-            type = "structure",
-            traits = {
-                json_name = "root",
-            },
-        },
+        assumedRole = setmetatable({ traits = {
+            json_name = "assumedRole",
+        } }, { __index = M.AssumedRole }),
+        awsAccount = setmetatable({ traits = {
+            json_name = "awsAccount",
+        } }, { __index = M.AwsAccount }),
+        awsService = setmetatable({ traits = {
+            json_name = "awsService",
+        } }, { __index = M.AwsService }),
+        federatedUser = setmetatable({ traits = {
+            json_name = "federatedUser",
+        } }, { __index = M.FederatedUser }),
+        iamUser = setmetatable({ traits = {
+            json_name = "iamUser",
+        } }, { __index = M.IamUser }),
+        root = setmetatable({ traits = {
+            json_name = "root",
+        } }, { __index = M.UserIdentityRoot }),
         type = {
             type = "string",
             traits = {
@@ -1704,42 +1590,27 @@ M.UserIdentity = {
 M.FindingActor = {
     type = "structure",
     members = {
-        domainDetails = {
-            type = "structure",
-            traits = {
-                json_name = "domainDetails",
-            },
-        },
-        ipAddressDetails = {
-            type = "structure",
-            traits = {
-                json_name = "ipAddressDetails",
-            },
-        },
-        userIdentity = {
-            type = "structure",
-            traits = {
-                json_name = "userIdentity",
-            },
-        },
+        domainDetails = setmetatable({ traits = {
+            json_name = "domainDetails",
+        } }, { __index = M.DomainDetails }),
+        ipAddressDetails = setmetatable({ traits = {
+            json_name = "ipAddressDetails",
+        } }, { __index = M.IpAddressDetails }),
+        userIdentity = setmetatable({ traits = {
+            json_name = "userIdentity",
+        } }, { __index = M.UserIdentity }),
     },
 }
 
 M.PolicyDetails = {
     type = "structure",
     members = {
-        action = {
-            type = "structure",
-            traits = {
-                json_name = "action",
-            },
-        },
-        actor = {
-            type = "structure",
-            traits = {
-                json_name = "actor",
-            },
-        },
+        action = setmetatable({ traits = {
+            json_name = "action",
+        } }, { __index = M.FindingAction }),
+        actor = setmetatable({ traits = {
+            json_name = "actor",
+        } }, { __index = M.FindingActor }),
     },
 }
 
@@ -1808,33 +1679,24 @@ M.S3Bucket = {
                 json_name = "createdAt",
             },
         },
-        defaultServerSideEncryption = {
-            type = "structure",
-            traits = {
-                json_name = "defaultServerSideEncryption",
-            },
-        },
+        defaultServerSideEncryption = setmetatable({ traits = {
+            json_name = "defaultServerSideEncryption",
+        } }, { __index = M.ServerSideEncryption }),
         name = {
             type = "string",
             traits = {
                 json_name = "name",
             },
         },
-        owner = {
-            type = "structure",
-            traits = {
-                json_name = "owner",
-            },
-        },
-        publicAccess = {
-            type = "structure",
-            traits = {
-                json_name = "publicAccess",
-            },
-        },
+        owner = setmetatable({ traits = {
+            json_name = "owner",
+        } }, { __index = M.S3BucketOwner }),
+        publicAccess = setmetatable({ traits = {
+            json_name = "publicAccess",
+        } }, { __index = M.BucketPublicAccess }),
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.KeyValuePair,
             traits = {
                 json_name = "tags",
             },
@@ -1899,14 +1761,11 @@ M.S3Object = {
                 json_name = "publicAccess",
             },
         },
-        serverSideEncryption = {
-            type = "structure",
-            traits = {
-                json_name = "serverSideEncryption",
-            },
-        },
+        serverSideEncryption = setmetatable({ traits = {
+            json_name = "serverSideEncryption",
+        } }, { __index = M.ServerSideEncryption }),
         size = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "size",
             },
@@ -1919,7 +1778,7 @@ M.S3Object = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.KeyValuePair,
             traits = {
                 json_name = "tags",
             },
@@ -1936,18 +1795,12 @@ M.S3Object = {
 M.ResourcesAffected = {
     type = "structure",
     members = {
-        s3Bucket = {
-            type = "structure",
-            traits = {
-                json_name = "s3Bucket",
-            },
-        },
-        s3Object = {
-            type = "structure",
-            traits = {
-                json_name = "s3Object",
-            },
-        },
+        s3Bucket = setmetatable({ traits = {
+            json_name = "s3Bucket",
+        } }, { __index = M.S3Bucket }),
+        s3Object = setmetatable({ traits = {
+            json_name = "s3Object",
+        } }, { __index = M.S3Object }),
     },
 }
 
@@ -1967,7 +1820,7 @@ M.Severity = {
             },
         },
         score = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "score",
             },
@@ -2010,14 +1863,11 @@ M.Finding = {
                 json_name = "category",
             },
         },
-        classificationDetails = {
-            type = "structure",
-            traits = {
-                json_name = "classificationDetails",
-            },
-        },
+        classificationDetails = setmetatable({ traits = {
+            json_name = "classificationDetails",
+        } }, { __index = M.ClassificationDetails }),
         count = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "count",
             },
@@ -2046,24 +1896,18 @@ M.Finding = {
                 json_name = "partition",
             },
         },
-        policyDetails = {
-            type = "structure",
-            traits = {
-                json_name = "policyDetails",
-            },
-        },
+        policyDetails = setmetatable({ traits = {
+            json_name = "policyDetails",
+        } }, { __index = M.PolicyDetails }),
         region = {
             type = "string",
             traits = {
                 json_name = "region",
             },
         },
-        resourcesAffected = {
-            type = "structure",
-            traits = {
-                json_name = "resourcesAffected",
-            },
-        },
+        resourcesAffected = setmetatable({ traits = {
+            json_name = "resourcesAffected",
+        } }, { __index = M.ResourcesAffected }),
         sample = {
             type = "boolean",
             traits = {
@@ -2076,12 +1920,9 @@ M.Finding = {
                 json_name = "schemaVersion",
             },
         },
-        severity = {
-            type = "structure",
-            traits = {
-                json_name = "severity",
-            },
-        },
+        severity = setmetatable({ traits = {
+            json_name = "severity",
+        } }, { __index = M.Severity }),
         title = {
             type = "string",
             traits = {
@@ -2137,8 +1978,8 @@ M.FindingsFilterListItem = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -2150,7 +1991,7 @@ M.GroupCount = {
     type = "structure",
     members = {
         count = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "count",
             },
@@ -2231,7 +2072,7 @@ M.SimpleScopeTerm = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "values",
             },
@@ -2278,7 +2119,7 @@ M.TagScopeTerm = {
         },
         tagValues = {
             type = "list",
-            member_type = "structure",
+            member = M.TagValuePair,
             traits = {
                 json_name = "tagValues",
             },
@@ -2295,18 +2136,12 @@ M.TagScopeTerm = {
 M.JobScopeTerm = {
     type = "structure",
     members = {
-        simpleScopeTerm = {
-            type = "structure",
-            traits = {
-                json_name = "simpleScopeTerm",
-            },
-        },
-        tagScopeTerm = {
-            type = "structure",
-            traits = {
-                json_name = "tagScopeTerm",
-            },
-        },
+        simpleScopeTerm = setmetatable({ traits = {
+            json_name = "simpleScopeTerm",
+        } }, { __index = M.SimpleScopeTerm }),
+        tagScopeTerm = setmetatable({ traits = {
+            json_name = "tagScopeTerm",
+        } }, { __index = M.TagScopeTerm }),
     },
 }
 
@@ -2315,7 +2150,7 @@ M.CriteriaBlockForJob = {
     members = {
         and = {
             type = "list",
-            member_type = "structure",
+            member = M.CriteriaForJob,
             traits = {
                 json_name = "and",
             },
@@ -2326,18 +2161,12 @@ M.CriteriaBlockForJob = {
 M.S3BucketCriteriaForJob = {
     type = "structure",
     members = {
-        excludes = {
-            type = "structure",
-            traits = {
-                json_name = "excludes",
-            },
-        },
-        includes = {
-            type = "structure",
-            traits = {
-                json_name = "includes",
-            },
-        },
+        excludes = setmetatable({ traits = {
+            json_name = "excludes",
+        } }, { __index = M.CriteriaBlockForJob }),
+        includes = setmetatable({ traits = {
+            json_name = "includes",
+        } }, { __index = M.CriteriaBlockForJob }),
     },
 }
 
@@ -2353,7 +2182,7 @@ M.S3BucketDefinitionForJob = {
         },
         buckets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "buckets",
                 required = true,
@@ -2420,15 +2249,12 @@ M.UserPausedDetails = {
 M.JobSummary = {
     type = "structure",
     members = {
-        bucketCriteria = {
-            type = "structure",
-            traits = {
-                json_name = "bucketCriteria",
-            },
-        },
+        bucketCriteria = setmetatable({ traits = {
+            json_name = "bucketCriteria",
+        } }, { __index = M.S3BucketCriteriaForJob }),
         bucketDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.S3BucketDefinitionForJob,
             traits = {
                 json_name = "bucketDefinitions",
             },
@@ -2457,24 +2283,18 @@ M.JobSummary = {
                 json_name = "jobType",
             },
         },
-        lastRunErrorStatus = {
-            type = "structure",
-            traits = {
-                json_name = "lastRunErrorStatus",
-            },
-        },
+        lastRunErrorStatus = setmetatable({ traits = {
+            json_name = "lastRunErrorStatus",
+        } }, { __index = M.LastRunErrorStatus }),
         name = {
             type = "string",
             traits = {
                 json_name = "name",
             },
         },
-        userPausedDetails = {
-            type = "structure",
-            traits = {
-                json_name = "userPausedDetails",
-            },
-        },
+        userPausedDetails = setmetatable({ traits = {
+            json_name = "userPausedDetails",
+        } }, { __index = M.UserPausedDetails }),
     },
 }
 
@@ -2502,7 +2322,7 @@ M.ListJobsFilterTerm = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "values",
             },
@@ -2550,13 +2370,13 @@ M.MatchingBucket = {
             },
         },
         classifiableObjectCount = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "classifiableObjectCount",
             },
         },
         classifiableSizeInBytes = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "classifiableSizeInBytes",
             },
@@ -2573,12 +2393,9 @@ M.MatchingBucket = {
                 json_name = "errorMessage",
             },
         },
-        jobDetails = {
-            type = "structure",
-            traits = {
-                json_name = "jobDetails",
-            },
-        },
+        jobDetails = setmetatable({ traits = {
+            json_name = "jobDetails",
+        } }, { __index = M.JobDetails }),
         lastAutomatedDiscoveryTime = {
             type = "timestamp",
             traits = {
@@ -2586,59 +2403,47 @@ M.MatchingBucket = {
             },
         },
         objectCount = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "objectCount",
             },
         },
-        objectCountByEncryptionType = {
-            type = "structure",
-            traits = {
-                json_name = "objectCountByEncryptionType",
-            },
-        },
+        objectCountByEncryptionType = setmetatable({ traits = {
+            json_name = "objectCountByEncryptionType",
+        } }, { __index = M.ObjectCountByEncryptionType }),
         sensitivityScore = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "sensitivityScore",
             },
         },
         sizeInBytes = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "sizeInBytes",
             },
         },
         sizeInBytesCompressed = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "sizeInBytesCompressed",
             },
         },
-        unclassifiableObjectCount = {
-            type = "structure",
-            traits = {
-                json_name = "unclassifiableObjectCount",
-            },
-        },
-        unclassifiableObjectSizeInBytes = {
-            type = "structure",
-            traits = {
-                json_name = "unclassifiableObjectSizeInBytes",
-            },
-        },
+        unclassifiableObjectCount = setmetatable({ traits = {
+            json_name = "unclassifiableObjectCount",
+        } }, { __index = M.ObjectLevelStatistics }),
+        unclassifiableObjectSizeInBytes = setmetatable({ traits = {
+            json_name = "unclassifiableObjectSizeInBytes",
+        } }, { __index = M.ObjectLevelStatistics }),
     },
 }
 
 M.MatchingResource = {
     type = "structure",
     members = {
-        matchingBucket = {
-            type = "structure",
-            traits = {
-                json_name = "matchingBucket",
-            },
-        },
+        matchingBucket = setmetatable({ traits = {
+            json_name = "matchingBucket",
+        } }, { __index = M.MatchingBucket }),
     },
 }
 
@@ -2689,8 +2494,8 @@ M.Member = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -2760,7 +2565,7 @@ M.SearchResourcesSimpleCriterion = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "values",
             },
@@ -2797,7 +2602,7 @@ M.SearchResourcesTagCriterion = {
         },
         tagValues = {
             type = "list",
-            member_type = "structure",
+            member = M.SearchResourcesTagCriterionPair,
             traits = {
                 json_name = "tagValues",
             },
@@ -2808,18 +2613,12 @@ M.SearchResourcesTagCriterion = {
 M.SearchResourcesCriteria = {
     type = "structure",
     members = {
-        simpleCriterion = {
-            type = "structure",
-            traits = {
-                json_name = "simpleCriterion",
-            },
-        },
-        tagCriterion = {
-            type = "structure",
-            traits = {
-                json_name = "tagCriterion",
-            },
-        },
+        simpleCriterion = setmetatable({ traits = {
+            json_name = "simpleCriterion",
+        } }, { __index = M.SearchResourcesSimpleCriterion }),
+        tagCriterion = setmetatable({ traits = {
+            json_name = "tagCriterion",
+        } }, { __index = M.SearchResourcesTagCriterion }),
     },
 }
 
@@ -2926,7 +2725,7 @@ M.ServiceLimit = {
             },
         },
         value = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "value",
             },
@@ -2956,12 +2755,9 @@ M.UsageByAccount = {
                 json_name = "estimatedCost",
             },
         },
-        serviceLimit = {
-            type = "structure",
-            traits = {
-                json_name = "serviceLimit",
-            },
-        },
+        serviceLimit = setmetatable({ traits = {
+            json_name = "serviceLimit",
+        } }, { __index = M.ServiceLimit }),
         type = {
             type = "string",
             traits = {
@@ -2994,7 +2790,7 @@ M.UsageRecord = {
         },
         usage = {
             type = "list",
-            member_type = "structure",
+            member = M.UsageByAccount,
             traits = {
                 json_name = "usage",
             },
@@ -3036,7 +2832,7 @@ M.UsageStatisticsFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "values",
             },
@@ -3237,12 +3033,9 @@ M.AllowListCriteria = {
                 json_name = "regex",
             },
         },
-        s3WordsList = {
-            type = "structure",
-            traits = {
-                json_name = "s3WordsList",
-            },
-        },
+        s3WordsList = setmetatable({ traits = {
+            json_name = "s3WordsList",
+        } }, { __index = M.S3WordsList }),
     },
 }
 
@@ -3297,7 +3090,7 @@ M.BatchGetCustomDataIdentifiersInput = {
     members = {
         ids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "ids",
             },
@@ -3310,14 +3103,14 @@ M.BatchGetCustomDataIdentifiersOutput = {
     members = {
         customDataIdentifiers = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetCustomDataIdentifierSummary,
             traits = {
                 json_name = "customDataIdentifiers",
             },
         },
         notFoundIdentifierIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "notFoundIdentifierIds",
             },
@@ -3330,7 +3123,7 @@ M.BatchUpdateAutomatedDiscoveryAccountsInput = {
     members = {
         accounts = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomatedDiscoveryAccountUpdate,
             traits = {
                 json_name = "accounts",
             },
@@ -3343,7 +3136,7 @@ M.BatchUpdateAutomatedDiscoveryAccountsOutput = {
     members = {
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomatedDiscoveryAccountUpdateError,
             traits = {
                 json_name = "errors",
             },
@@ -3355,25 +3148,25 @@ M.BucketCountByEffectivePermission = {
     type = "structure",
     members = {
         publiclyAccessible = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "publiclyAccessible",
             },
         },
         publiclyReadable = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "publiclyReadable",
             },
         },
         publiclyWritable = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "publiclyWritable",
             },
         },
         unknown = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "unknown",
             },
@@ -3385,25 +3178,25 @@ M.BucketCountByEncryptionType = {
     type = "structure",
     members = {
         kmsManaged = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "kmsManaged",
             },
         },
         s3Managed = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "s3Managed",
             },
         },
         unencrypted = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "unencrypted",
             },
         },
         unknown = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "unknown",
             },
@@ -3415,25 +3208,25 @@ M.BucketCountBySharedAccessType = {
     type = "structure",
     members = {
         external = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "external",
             },
         },
         internal = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "internal",
             },
         },
         notShared = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "notShared",
             },
         },
         unknown = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "unknown",
             },
@@ -3445,19 +3238,19 @@ M.BucketCountPolicyAllowsUnencryptedObjectUploads = {
     type = "structure",
     members = {
         allowsUnencryptedObjectUploads = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "allowsUnencryptedObjectUploads",
             },
         },
         deniesUnencryptedObjectUploads = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "deniesUnencryptedObjectUploads",
             },
         },
         unknown = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "unknown",
             },
@@ -3470,38 +3263,38 @@ M.BucketCriteriaAdditionalProperties = {
     members = {
         eq = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "eq",
             },
         },
         gt = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "gt",
             },
         },
         gte = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "gte",
             },
         },
         lt = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "lt",
             },
         },
         lte = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "lte",
             },
         },
         neq = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "neq",
             },
@@ -3542,25 +3335,25 @@ M.SensitivityAggregations = {
     type = "structure",
     members = {
         classifiableSizeInBytes = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "classifiableSizeInBytes",
             },
         },
         publiclyAccessibleCount = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "publiclyAccessibleCount",
             },
         },
         totalCount = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "totalCount",
             },
         },
         totalSizeInBytes = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "totalSizeInBytes",
             },
@@ -3571,30 +3364,18 @@ M.SensitivityAggregations = {
 M.BucketStatisticsBySensitivity = {
     type = "structure",
     members = {
-        classificationError = {
-            type = "structure",
-            traits = {
-                json_name = "classificationError",
-            },
-        },
-        notClassified = {
-            type = "structure",
-            traits = {
-                json_name = "notClassified",
-            },
-        },
-        notSensitive = {
-            type = "structure",
-            traits = {
-                json_name = "notSensitive",
-            },
-        },
-        sensitive = {
-            type = "structure",
-            traits = {
-                json_name = "sensitive",
-            },
-        },
+        classificationError = setmetatable({ traits = {
+            json_name = "classificationError",
+        } }, { __index = M.SensitivityAggregations }),
+        notClassified = setmetatable({ traits = {
+            json_name = "notClassified",
+        } }, { __index = M.SensitivityAggregations }),
+        notSensitive = setmetatable({ traits = {
+            json_name = "notSensitive",
+        } }, { __index = M.SensitivityAggregations }),
+        sensitive = setmetatable({ traits = {
+            json_name = "sensitive",
+        } }, { __index = M.SensitivityAggregations }),
     },
 }
 
@@ -3633,12 +3414,9 @@ M.S3Destination = {
 M.ClassificationExportConfiguration = {
     type = "structure",
     members = {
-        s3Destination = {
-            type = "structure",
-            traits = {
-                json_name = "s3Destination",
-            },
-        },
+        s3Destination = setmetatable({ traits = {
+            json_name = "s3Destination",
+        } }, { __index = M.S3Destination }),
     },
 }
 
@@ -3658,13 +3436,10 @@ M.CreateAllowListInput = {
                 required = true,
             },
         },
-        criteria = {
-            type = "structure",
-            traits = {
-                json_name = "criteria",
-                required = true,
-            },
-        },
+        criteria = setmetatable({ traits = {
+            json_name = "criteria",
+            required = true,
+        } }, { __index = M.AllowListCriteria }),
         description = {
             type = "string",
             traits = {
@@ -3680,8 +3455,8 @@ M.CreateAllowListInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -3720,7 +3495,7 @@ M.JobScopingBlock = {
     members = {
         and = {
             type = "list",
-            member_type = "structure",
+            member = M.JobScopeTerm,
             traits = {
                 json_name = "and",
             },
@@ -3731,43 +3506,31 @@ M.JobScopingBlock = {
 M.Scoping = {
     type = "structure",
     members = {
-        excludes = {
-            type = "structure",
-            traits = {
-                json_name = "excludes",
-            },
-        },
-        includes = {
-            type = "structure",
-            traits = {
-                json_name = "includes",
-            },
-        },
+        excludes = setmetatable({ traits = {
+            json_name = "excludes",
+        } }, { __index = M.JobScopingBlock }),
+        includes = setmetatable({ traits = {
+            json_name = "includes",
+        } }, { __index = M.JobScopingBlock }),
     },
 }
 
 M.S3JobDefinition = {
     type = "structure",
     members = {
-        bucketCriteria = {
-            type = "structure",
-            traits = {
-                json_name = "bucketCriteria",
-            },
-        },
+        bucketCriteria = setmetatable({ traits = {
+            json_name = "bucketCriteria",
+        } }, { __index = M.S3BucketCriteriaForJob }),
         bucketDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.S3BucketDefinitionForJob,
             traits = {
                 json_name = "bucketDefinitions",
             },
         },
-        scoping = {
-            type = "structure",
-            traits = {
-                json_name = "scoping",
-            },
-        },
+        scoping = setmetatable({ traits = {
+            json_name = "scoping",
+        } }, { __index = M.Scoping }),
     },
 }
 
@@ -3779,7 +3542,7 @@ M.MonthlySchedule = {
     type = "structure",
     members = {
         dayOfMonth = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "dayOfMonth",
             },
@@ -3812,24 +3575,15 @@ M.WeeklySchedule = {
 M.JobScheduleFrequency = {
     type = "structure",
     members = {
-        dailySchedule = {
-            type = "structure",
-            traits = {
-                json_name = "dailySchedule",
-            },
-        },
-        monthlySchedule = {
-            type = "structure",
-            traits = {
-                json_name = "monthlySchedule",
-            },
-        },
-        weeklySchedule = {
-            type = "structure",
-            traits = {
-                json_name = "weeklySchedule",
-            },
-        },
+        dailySchedule = setmetatable({ traits = {
+            json_name = "dailySchedule",
+        } }, { __index = M.DailySchedule }),
+        monthlySchedule = setmetatable({ traits = {
+            json_name = "monthlySchedule",
+        } }, { __index = M.MonthlySchedule }),
+        weeklySchedule = setmetatable({ traits = {
+            json_name = "weeklySchedule",
+        } }, { __index = M.WeeklySchedule }),
     },
 }
 
@@ -3838,7 +3592,7 @@ M.CreateClassificationJobInput = {
     members = {
         allowListIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "allowListIds",
             },
@@ -3852,7 +3606,7 @@ M.CreateClassificationJobInput = {
         },
         customDataIdentifierIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "customDataIdentifierIds",
             },
@@ -3878,7 +3632,7 @@ M.CreateClassificationJobInput = {
         },
         managedDataIdentifierIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "managedDataIdentifierIds",
             },
@@ -3896,29 +3650,23 @@ M.CreateClassificationJobInput = {
                 required = true,
             },
         },
-        s3JobDefinition = {
-            type = "structure",
-            traits = {
-                json_name = "s3JobDefinition",
-                required = true,
-            },
-        },
+        s3JobDefinition = setmetatable({ traits = {
+            json_name = "s3JobDefinition",
+            required = true,
+        } }, { __index = M.S3JobDefinition }),
         samplingPercentage = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "samplingPercentage",
             },
         },
-        scheduleFrequency = {
-            type = "structure",
-            traits = {
-                json_name = "scheduleFrequency",
-            },
-        },
+        scheduleFrequency = setmetatable({ traits = {
+            json_name = "scheduleFrequency",
+        } }, { __index = M.JobScheduleFrequency }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -3954,7 +3702,7 @@ M.SeverityLevel = {
     type = "structure",
     members = {
         occurrencesThreshold = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "occurrencesThreshold",
                 required = true,
@@ -3987,20 +3735,20 @@ M.CreateCustomDataIdentifierInput = {
         },
         ignoreWords = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "ignoreWords",
             },
         },
         keywords = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "keywords",
             },
         },
         maximumMatchDistance = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maximumMatchDistance",
             },
@@ -4021,15 +3769,15 @@ M.CreateCustomDataIdentifierInput = {
         },
         severityLevels = {
             type = "list",
-            member_type = "structure",
+            member = M.SeverityLevel,
             traits = {
                 json_name = "severityLevels",
             },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -4054,45 +3802,45 @@ M.CriterionAdditionalProperties = {
     members = {
         eq = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "eq",
             },
         },
         eqExactMatch = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "eqExactMatch",
             },
         },
         gt = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "gt",
             },
         },
         gte = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "gte",
             },
         },
         lt = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "lt",
             },
         },
         lte = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "lte",
             },
         },
         neq = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "neq",
             },
@@ -4105,8 +3853,8 @@ M.FindingCriteria = {
     members = {
         criterion = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.CriterionAdditionalProperties,
             traits = {
                 json_name = "criterion",
             },
@@ -4136,13 +3884,10 @@ M.CreateFindingsFilterInput = {
                 json_name = "description",
             },
         },
-        findingCriteria = {
-            type = "structure",
-            traits = {
-                json_name = "findingCriteria",
-                required = true,
-            },
-        },
+        findingCriteria = setmetatable({ traits = {
+            json_name = "findingCriteria",
+            required = true,
+        } }, { __index = M.FindingCriteria }),
         name = {
             type = "string",
             traits = {
@@ -4151,15 +3896,15 @@ M.CreateFindingsFilterInput = {
             },
         },
         position = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "position",
             },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -4190,7 +3935,7 @@ M.CreateInvitationsInput = {
     members = {
         accountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "accountIds",
                 required = true,
@@ -4216,7 +3961,7 @@ M.CreateInvitationsOutput = {
     members = {
         unprocessedAccounts = {
             type = "list",
-            member_type = "structure",
+            member = M.UnprocessedAccount,
             traits = {
                 json_name = "unprocessedAccounts",
             },
@@ -4227,17 +3972,14 @@ M.CreateInvitationsOutput = {
 M.CreateMemberInput = {
     type = "structure",
     members = {
-        account = {
-            type = "structure",
-            traits = {
-                json_name = "account",
-                required = true,
-            },
-        },
+        account = setmetatable({ traits = {
+            json_name = "account",
+            required = true,
+        } }, { __index = M.AccountDetail }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -4262,7 +4004,7 @@ M.CreateSampleFindingsInput = {
     members = {
         findingTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "findingTypes",
             },
@@ -4279,7 +4021,7 @@ M.DeclineInvitationsInput = {
     members = {
         accountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "accountIds",
                 required = true,
@@ -4293,7 +4035,7 @@ M.DeclineInvitationsOutput = {
     members = {
         unprocessedAccounts = {
             type = "list",
-            member_type = "structure",
+            member = M.UnprocessedAccount,
             traits = {
                 json_name = "unprocessedAccounts",
             },
@@ -4363,7 +4105,7 @@ M.DeleteInvitationsInput = {
     members = {
         accountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "accountIds",
                 required = true,
@@ -4377,7 +4119,7 @@ M.DeleteInvitationsOutput = {
     members = {
         unprocessedAccounts = {
             type = "list",
-            member_type = "structure",
+            member = M.UnprocessedAccount,
             traits = {
                 json_name = "unprocessedAccounts",
             },
@@ -4407,14 +4149,14 @@ M.DescribeBucketsInput = {
     members = {
         criteria = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.BucketCriteriaAdditionalProperties,
             traits = {
                 json_name = "criteria",
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxResults",
             },
@@ -4425,12 +4167,9 @@ M.DescribeBucketsInput = {
                 json_name = "nextToken",
             },
         },
-        sortCriteria = {
-            type = "structure",
-            traits = {
-                json_name = "sortCriteria",
-            },
-        },
+        sortCriteria = setmetatable({ traits = {
+            json_name = "sortCriteria",
+        } }, { __index = M.BucketSortCriteria }),
     },
 }
 
@@ -4439,7 +4178,7 @@ M.DescribeBucketsOutput = {
     members = {
         buckets = {
             type = "list",
-            member_type = "structure",
+            member = M.BucketMetadata,
             traits = {
                 json_name = "buckets",
             },
@@ -4470,13 +4209,13 @@ M.Statistics = {
     type = "structure",
     members = {
         approximateNumberOfObjectsToProcess = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "approximateNumberOfObjectsToProcess",
             },
         },
         numberOfRuns = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "numberOfRuns",
             },
@@ -4489,7 +4228,7 @@ M.DescribeClassificationJobOutput = {
     members = {
         allowListIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "allowListIds",
             },
@@ -4508,7 +4247,7 @@ M.DescribeClassificationJobOutput = {
         },
         customDataIdentifierIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "customDataIdentifierIds",
             },
@@ -4549,12 +4288,9 @@ M.DescribeClassificationJobOutput = {
                 json_name = "jobType",
             },
         },
-        lastRunErrorStatus = {
-            type = "structure",
-            traits = {
-                json_name = "lastRunErrorStatus",
-            },
-        },
+        lastRunErrorStatus = setmetatable({ traits = {
+            json_name = "lastRunErrorStatus",
+        } }, { __index = M.LastRunErrorStatus }),
         lastRunTime = {
             type = "timestamp",
             traits = {
@@ -4563,7 +4299,7 @@ M.DescribeClassificationJobOutput = {
         },
         managedDataIdentifierIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "managedDataIdentifierIds",
             },
@@ -4580,44 +4316,32 @@ M.DescribeClassificationJobOutput = {
                 json_name = "name",
             },
         },
-        s3JobDefinition = {
-            type = "structure",
-            traits = {
-                json_name = "s3JobDefinition",
-            },
-        },
+        s3JobDefinition = setmetatable({ traits = {
+            json_name = "s3JobDefinition",
+        } }, { __index = M.S3JobDefinition }),
         samplingPercentage = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "samplingPercentage",
             },
         },
-        scheduleFrequency = {
-            type = "structure",
-            traits = {
-                json_name = "scheduleFrequency",
-            },
-        },
-        statistics = {
-            type = "structure",
-            traits = {
-                json_name = "statistics",
-            },
-        },
+        scheduleFrequency = setmetatable({ traits = {
+            json_name = "scheduleFrequency",
+        } }, { __index = M.JobScheduleFrequency }),
+        statistics = setmetatable({ traits = {
+            json_name = "statistics",
+        } }, { __index = M.Statistics }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
         },
-        userPausedDetails = {
-            type = "structure",
-            traits = {
-                json_name = "userPausedDetails",
-            },
-        },
+        userPausedDetails = setmetatable({ traits = {
+            json_name = "userPausedDetails",
+        } }, { __index = M.UserPausedDetails }),
     },
 }
 
@@ -4793,12 +4517,9 @@ M.GetAdministratorAccountInput = {
 M.GetAdministratorAccountOutput = {
     type = "structure",
     members = {
-        administrator = {
-            type = "structure",
-            traits = {
-                json_name = "administrator",
-            },
-        },
+        administrator = setmetatable({ traits = {
+            json_name = "administrator",
+        } }, { __index = M.Invitation }),
     },
 }
 
@@ -4830,12 +4551,9 @@ M.GetAllowListOutput = {
                 json_name = "createdAt",
             },
         },
-        criteria = {
-            type = "structure",
-            traits = {
-                json_name = "criteria",
-            },
-        },
+        criteria = setmetatable({ traits = {
+            json_name = "criteria",
+        } }, { __index = M.AllowListCriteria }),
         description = {
             type = "string",
             traits = {
@@ -4854,16 +4572,13 @@ M.GetAllowListOutput = {
                 json_name = "name",
             },
         },
-        status = {
-            type = "structure",
-            traits = {
-                json_name = "status",
-            },
-        },
+        status = setmetatable({ traits = {
+            json_name = "status",
+        } }, { __index = M.AllowListStatus }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -4945,49 +4660,34 @@ M.GetBucketStatisticsOutput = {
     type = "structure",
     members = {
         bucketCount = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "bucketCount",
             },
         },
-        bucketCountByEffectivePermission = {
-            type = "structure",
-            traits = {
-                json_name = "bucketCountByEffectivePermission",
-            },
-        },
-        bucketCountByEncryptionType = {
-            type = "structure",
-            traits = {
-                json_name = "bucketCountByEncryptionType",
-            },
-        },
-        bucketCountByObjectEncryptionRequirement = {
-            type = "structure",
-            traits = {
-                json_name = "bucketCountByObjectEncryptionRequirement",
-            },
-        },
-        bucketCountBySharedAccessType = {
-            type = "structure",
-            traits = {
-                json_name = "bucketCountBySharedAccessType",
-            },
-        },
-        bucketStatisticsBySensitivity = {
-            type = "structure",
-            traits = {
-                json_name = "bucketStatisticsBySensitivity",
-            },
-        },
+        bucketCountByEffectivePermission = setmetatable({ traits = {
+            json_name = "bucketCountByEffectivePermission",
+        } }, { __index = M.BucketCountByEffectivePermission }),
+        bucketCountByEncryptionType = setmetatable({ traits = {
+            json_name = "bucketCountByEncryptionType",
+        } }, { __index = M.BucketCountByEncryptionType }),
+        bucketCountByObjectEncryptionRequirement = setmetatable({ traits = {
+            json_name = "bucketCountByObjectEncryptionRequirement",
+        } }, { __index = M.BucketCountPolicyAllowsUnencryptedObjectUploads }),
+        bucketCountBySharedAccessType = setmetatable({ traits = {
+            json_name = "bucketCountBySharedAccessType",
+        } }, { __index = M.BucketCountBySharedAccessType }),
+        bucketStatisticsBySensitivity = setmetatable({ traits = {
+            json_name = "bucketStatisticsBySensitivity",
+        } }, { __index = M.BucketStatisticsBySensitivity }),
         classifiableObjectCount = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "classifiableObjectCount",
             },
         },
         classifiableSizeInBytes = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "classifiableSizeInBytes",
             },
@@ -4999,35 +4699,29 @@ M.GetBucketStatisticsOutput = {
             },
         },
         objectCount = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "objectCount",
             },
         },
         sizeInBytes = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "sizeInBytes",
             },
         },
         sizeInBytesCompressed = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "sizeInBytesCompressed",
             },
         },
-        unclassifiableObjectCount = {
-            type = "structure",
-            traits = {
-                json_name = "unclassifiableObjectCount",
-            },
-        },
-        unclassifiableObjectSizeInBytes = {
-            type = "structure",
-            traits = {
-                json_name = "unclassifiableObjectSizeInBytes",
-            },
-        },
+        unclassifiableObjectCount = setmetatable({ traits = {
+            json_name = "unclassifiableObjectCount",
+        } }, { __index = M.ObjectLevelStatistics }),
+        unclassifiableObjectSizeInBytes = setmetatable({ traits = {
+            json_name = "unclassifiableObjectSizeInBytes",
+        } }, { __index = M.ObjectLevelStatistics }),
     },
 }
 
@@ -5038,12 +4732,9 @@ M.GetClassificationExportConfigurationInput = {
 M.GetClassificationExportConfigurationOutput = {
     type = "structure",
     members = {
-        configuration = {
-            type = "structure",
-            traits = {
-                json_name = "configuration",
-            },
-        },
+        configuration = setmetatable({ traits = {
+            json_name = "configuration",
+        } }, { __index = M.ClassificationExportConfiguration }),
     },
 }
 
@@ -5065,7 +4756,7 @@ M.S3ClassificationScopeExclusion = {
     members = {
         bucketNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "bucketNames",
                 required = true,
@@ -5077,13 +4768,10 @@ M.S3ClassificationScopeExclusion = {
 M.S3ClassificationScope = {
     type = "structure",
     members = {
-        excludes = {
-            type = "structure",
-            traits = {
-                json_name = "excludes",
-                required = true,
-            },
-        },
+        excludes = setmetatable({ traits = {
+            json_name = "excludes",
+            required = true,
+        } }, { __index = M.S3ClassificationScopeExclusion }),
     },
 }
 
@@ -5102,12 +4790,9 @@ M.GetClassificationScopeOutput = {
                 json_name = "name",
             },
         },
-        s3 = {
-            type = "structure",
-            traits = {
-                json_name = "s3",
-            },
-        },
+        s3 = setmetatable({ traits = {
+            json_name = "s3",
+        } }, { __index = M.S3ClassificationScope }),
     },
 }
 
@@ -5159,20 +4844,20 @@ M.GetCustomDataIdentifierOutput = {
         },
         ignoreWords = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "ignoreWords",
             },
         },
         keywords = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "keywords",
             },
         },
         maximumMatchDistance = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maximumMatchDistance",
             },
@@ -5191,15 +4876,15 @@ M.GetCustomDataIdentifierOutput = {
         },
         severityLevels = {
             type = "list",
-            member_type = "structure",
+            member = M.SeverityLevel,
             traits = {
                 json_name = "severityLevels",
             },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -5230,18 +4915,15 @@ M.GetFindingsInput = {
     members = {
         findingIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "findingIds",
                 required = true,
             },
         },
-        sortCriteria = {
-            type = "structure",
-            traits = {
-                json_name = "sortCriteria",
-            },
-        },
+        sortCriteria = setmetatable({ traits = {
+            json_name = "sortCriteria",
+        } }, { __index = M.SortCriteria }),
     },
 }
 
@@ -5250,7 +4932,7 @@ M.GetFindingsOutput = {
     members = {
         findings = {
             type = "list",
-            member_type = "structure",
+            member = M.Finding,
             traits = {
                 json_name = "findings",
             },
@@ -5292,12 +4974,9 @@ M.GetFindingsFilterOutput = {
                 json_name = "description",
             },
         },
-        findingCriteria = {
-            type = "structure",
-            traits = {
-                json_name = "findingCriteria",
-            },
-        },
+        findingCriteria = setmetatable({ traits = {
+            json_name = "findingCriteria",
+        } }, { __index = M.FindingCriteria }),
         id = {
             type = "string",
             traits = {
@@ -5311,15 +4990,15 @@ M.GetFindingsFilterOutput = {
             },
         },
         position = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "position",
             },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -5354,12 +5033,9 @@ M.SecurityHubConfiguration = {
 M.GetFindingsPublicationConfigurationOutput = {
     type = "structure",
     members = {
-        securityHubConfiguration = {
-            type = "structure",
-            traits = {
-                json_name = "securityHubConfiguration",
-            },
-        },
+        securityHubConfiguration = setmetatable({ traits = {
+            json_name = "securityHubConfiguration",
+        } }, { __index = M.SecurityHubConfiguration }),
     },
 }
 
@@ -5373,12 +5049,9 @@ M.GroupBy = {
 M.GetFindingStatisticsInput = {
     type = "structure",
     members = {
-        findingCriteria = {
-            type = "structure",
-            traits = {
-                json_name = "findingCriteria",
-            },
-        },
+        findingCriteria = setmetatable({ traits = {
+            json_name = "findingCriteria",
+        } }, { __index = M.FindingCriteria }),
         groupBy = {
             type = "string",
             traits = {
@@ -5387,17 +5060,14 @@ M.GetFindingStatisticsInput = {
             },
         },
         size = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "size",
             },
         },
-        sortCriteria = {
-            type = "structure",
-            traits = {
-                json_name = "sortCriteria",
-            },
-        },
+        sortCriteria = setmetatable({ traits = {
+            json_name = "sortCriteria",
+        } }, { __index = M.FindingStatisticsSortCriteria }),
     },
 }
 
@@ -5406,7 +5076,7 @@ M.GetFindingStatisticsOutput = {
     members = {
         countsByGroup = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupCount,
             traits = {
                 json_name = "countsByGroup",
             },
@@ -5422,7 +5092,7 @@ M.GetInvitationsCountOutput = {
     type = "structure",
     members = {
         invitationsCount = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "invitationsCount",
             },
@@ -5477,12 +5147,9 @@ M.GetMasterAccountInput = {
 M.GetMasterAccountOutput = {
     type = "structure",
     members = {
-        master = {
-            type = "structure",
-            traits = {
-                json_name = "master",
-            },
-        },
+        master = setmetatable({ traits = {
+            json_name = "master",
+        } }, { __index = M.Invitation }),
     },
 }
 
@@ -5546,8 +5213,8 @@ M.GetMemberOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -5578,55 +5245,55 @@ M.ResourceStatistics = {
     type = "structure",
     members = {
         totalBytesClassified = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "totalBytesClassified",
             },
         },
         totalDetections = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "totalDetections",
             },
         },
         totalDetectionsSuppressed = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "totalDetectionsSuppressed",
             },
         },
         totalItemsClassified = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "totalItemsClassified",
             },
         },
         totalItemsSensitive = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "totalItemsSensitive",
             },
         },
         totalItemsSkipped = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "totalItemsSkipped",
             },
         },
         totalItemsSkippedInvalidEncryption = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "totalItemsSkippedInvalidEncryption",
             },
         },
         totalItemsSkippedInvalidKms = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "totalItemsSkippedInvalidKms",
             },
         },
         totalItemsSkippedPermissionDenied = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "totalItemsSkippedPermissionDenied",
             },
@@ -5644,7 +5311,7 @@ M.GetResourceProfileOutput = {
             },
         },
         sensitivityScore = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "sensitivityScore",
             },
@@ -5655,12 +5322,9 @@ M.GetResourceProfileOutput = {
                 json_name = "sensitivityScoreOverridden",
             },
         },
-        statistics = {
-            type = "structure",
-            traits = {
-                json_name = "statistics",
-            },
-        },
+        statistics = setmetatable({ traits = {
+            json_name = "statistics",
+        } }, { __index = M.ResourceStatistics }),
     },
 }
 
@@ -5725,18 +5389,12 @@ M.RetrievalConfiguration = {
 M.GetRevealConfigurationOutput = {
     type = "structure",
     members = {
-        configuration = {
-            type = "structure",
-            traits = {
-                json_name = "configuration",
-            },
-        },
-        retrievalConfiguration = {
-            type = "structure",
-            traits = {
-                json_name = "retrievalConfiguration",
-            },
-        },
+        configuration = setmetatable({ traits = {
+            json_name = "configuration",
+        } }, { __index = M.RevealConfiguration }),
+        retrievalConfiguration = setmetatable({ traits = {
+            json_name = "retrievalConfiguration",
+        } }, { __index = M.RetrievalConfiguration }),
     },
 }
 
@@ -5770,8 +5428,8 @@ M.GetSensitiveDataOccurrencesOutput = {
         },
         sensitiveDataOccurrences = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
             traits = {
                 json_name = "sensitiveDataOccurrences",
             },
@@ -5823,7 +5481,7 @@ M.GetSensitiveDataOccurrencesAvailabilityOutput = {
         },
         reasons = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "reasons",
             },
@@ -5849,7 +5507,7 @@ M.SensitivityInspectionTemplateExcludes = {
     members = {
         managedDataIdentifierIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "managedDataIdentifierIds",
             },
@@ -5862,21 +5520,21 @@ M.SensitivityInspectionTemplateIncludes = {
     members = {
         allowListIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "allowListIds",
             },
         },
         customDataIdentifierIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "customDataIdentifierIds",
             },
         },
         managedDataIdentifierIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "managedDataIdentifierIds",
             },
@@ -5893,18 +5551,12 @@ M.GetSensitivityInspectionTemplateOutput = {
                 json_name = "description",
             },
         },
-        excludes = {
-            type = "structure",
-            traits = {
-                json_name = "excludes",
-            },
-        },
-        includes = {
-            type = "structure",
-            traits = {
-                json_name = "includes",
-            },
-        },
+        excludes = setmetatable({ traits = {
+            json_name = "excludes",
+        } }, { __index = M.SensitivityInspectionTemplateExcludes }),
+        includes = setmetatable({ traits = {
+            json_name = "includes",
+        } }, { __index = M.SensitivityInspectionTemplateIncludes }),
         name = {
             type = "string",
             traits = {
@@ -5955,13 +5607,13 @@ M.GetUsageStatisticsInput = {
     members = {
         filterBy = {
             type = "list",
-            member_type = "structure",
+            member = M.UsageStatisticsFilter,
             traits = {
                 json_name = "filterBy",
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxResults",
             },
@@ -5972,12 +5624,9 @@ M.GetUsageStatisticsInput = {
                 json_name = "nextToken",
             },
         },
-        sortBy = {
-            type = "structure",
-            traits = {
-                json_name = "sortBy",
-            },
-        },
+        sortBy = setmetatable({ traits = {
+            json_name = "sortBy",
+        } }, { __index = M.UsageStatisticsSortBy }),
         timeRange = {
             type = "string",
             traits = {
@@ -5998,7 +5647,7 @@ M.GetUsageStatisticsOutput = {
         },
         records = {
             type = "list",
-            member_type = "structure",
+            member = M.UsageRecord,
             traits = {
                 json_name = "records",
             },
@@ -6035,7 +5684,7 @@ M.GetUsageTotalsOutput = {
         },
         usageTotals = {
             type = "list",
-            member_type = "structure",
+            member = M.UsageTotal,
             traits = {
                 json_name = "usageTotals",
             },
@@ -6047,7 +5696,7 @@ M.ListAllowListsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -6066,7 +5715,7 @@ M.ListAllowListsOutput = {
     members = {
         allowLists = {
             type = "list",
-            member_type = "structure",
+            member = M.AllowListSummary,
             traits = {
                 json_name = "allowLists",
             },
@@ -6085,13 +5734,13 @@ M.ListAutomatedDiscoveryAccountsInput = {
     members = {
         accountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "accountIds",
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -6110,7 +5759,7 @@ M.ListAutomatedDiscoveryAccountsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomatedDiscoveryAccount,
             traits = {
                 json_name = "items",
             },
@@ -6129,14 +5778,14 @@ M.ListJobsFilterCriteria = {
     members = {
         excludes = {
             type = "list",
-            member_type = "structure",
+            member = M.ListJobsFilterTerm,
             traits = {
                 json_name = "excludes",
             },
         },
         includes = {
             type = "list",
-            member_type = "structure",
+            member = M.ListJobsFilterTerm,
             traits = {
                 json_name = "includes",
             },
@@ -6172,14 +5821,11 @@ M.ListJobsSortCriteria = {
 M.ListClassificationJobsInput = {
     type = "structure",
     members = {
-        filterCriteria = {
-            type = "structure",
-            traits = {
-                json_name = "filterCriteria",
-            },
-        },
+        filterCriteria = setmetatable({ traits = {
+            json_name = "filterCriteria",
+        } }, { __index = M.ListJobsFilterCriteria }),
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxResults",
             },
@@ -6190,12 +5836,9 @@ M.ListClassificationJobsInput = {
                 json_name = "nextToken",
             },
         },
-        sortCriteria = {
-            type = "structure",
-            traits = {
-                json_name = "sortCriteria",
-            },
-        },
+        sortCriteria = setmetatable({ traits = {
+            json_name = "sortCriteria",
+        } }, { __index = M.ListJobsSortCriteria }),
     },
 }
 
@@ -6204,7 +5847,7 @@ M.ListClassificationJobsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.JobSummary,
             traits = {
                 json_name = "items",
             },
@@ -6241,7 +5884,7 @@ M.ListClassificationScopesOutput = {
     members = {
         classificationScopes = {
             type = "list",
-            member_type = "structure",
+            member = M.ClassificationScopeSummary,
             traits = {
                 json_name = "classificationScopes",
             },
@@ -6259,7 +5902,7 @@ M.ListCustomDataIdentifiersInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxResults",
             },
@@ -6278,7 +5921,7 @@ M.ListCustomDataIdentifiersOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomDataIdentifierSummary,
             traits = {
                 json_name = "items",
             },
@@ -6295,14 +5938,11 @@ M.ListCustomDataIdentifiersOutput = {
 M.ListFindingsInput = {
     type = "structure",
     members = {
-        findingCriteria = {
-            type = "structure",
-            traits = {
-                json_name = "findingCriteria",
-            },
-        },
+        findingCriteria = setmetatable({ traits = {
+            json_name = "findingCriteria",
+        } }, { __index = M.FindingCriteria }),
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxResults",
             },
@@ -6313,12 +5953,9 @@ M.ListFindingsInput = {
                 json_name = "nextToken",
             },
         },
-        sortCriteria = {
-            type = "structure",
-            traits = {
-                json_name = "sortCriteria",
-            },
-        },
+        sortCriteria = setmetatable({ traits = {
+            json_name = "sortCriteria",
+        } }, { __index = M.SortCriteria }),
     },
 }
 
@@ -6327,7 +5964,7 @@ M.ListFindingsOutput = {
     members = {
         findingIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "findingIds",
             },
@@ -6345,7 +5982,7 @@ M.ListFindingsFiltersInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -6364,7 +6001,7 @@ M.ListFindingsFiltersOutput = {
     members = {
         findingsFilterListItems = {
             type = "list",
-            member_type = "structure",
+            member = M.FindingsFilterListItem,
             traits = {
                 json_name = "findingsFilterListItems",
             },
@@ -6382,7 +6019,7 @@ M.ListInvitationsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -6401,7 +6038,7 @@ M.ListInvitationsOutput = {
     members = {
         invitations = {
             type = "list",
-            member_type = "structure",
+            member = M.Invitation,
             traits = {
                 json_name = "invitations",
             },
@@ -6432,7 +6069,7 @@ M.ListManagedDataIdentifiersOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.ManagedDataIdentifierSummary,
             traits = {
                 json_name = "items",
             },
@@ -6450,7 +6087,7 @@ M.ListMembersInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -6475,7 +6112,7 @@ M.ListMembersOutput = {
     members = {
         members = {
             type = "list",
-            member_type = "structure",
+            member = M.Member,
             traits = {
                 json_name = "members",
             },
@@ -6493,7 +6130,7 @@ M.ListOrganizationAdminAccountsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -6512,7 +6149,7 @@ M.ListOrganizationAdminAccountsOutput = {
     members = {
         adminAccounts = {
             type = "list",
-            member_type = "structure",
+            member = M.AdminAccount,
             traits = {
                 json_name = "adminAccounts",
             },
@@ -6550,7 +6187,7 @@ M.ListResourceProfileArtifactsOutput = {
     members = {
         artifacts = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceProfileArtifact,
             traits = {
                 json_name = "artifacts",
             },
@@ -6568,7 +6205,7 @@ M.ListResourceProfileDetectionsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -6594,7 +6231,7 @@ M.ListResourceProfileDetectionsOutput = {
     members = {
         detections = {
             type = "list",
-            member_type = "structure",
+            member = M.Detection,
             traits = {
                 json_name = "detections",
             },
@@ -6612,7 +6249,7 @@ M.ListSensitivityInspectionTemplatesInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -6637,7 +6274,7 @@ M.ListSensitivityInspectionTemplatesOutput = {
         },
         sensitivityInspectionTemplates = {
             type = "list",
-            member_type = "structure",
+            member = M.SensitivityInspectionTemplatesEntry,
             traits = {
                 json_name = "sensitivityInspectionTemplates",
             },
@@ -6663,8 +6300,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -6675,25 +6312,19 @@ M.ListTagsForResourceOutput = {
 M.PutClassificationExportConfigurationInput = {
     type = "structure",
     members = {
-        configuration = {
-            type = "structure",
-            traits = {
-                json_name = "configuration",
-                required = true,
-            },
-        },
+        configuration = setmetatable({ traits = {
+            json_name = "configuration",
+            required = true,
+        } }, { __index = M.ClassificationExportConfiguration }),
     },
 }
 
 M.PutClassificationExportConfigurationOutput = {
     type = "structure",
     members = {
-        configuration = {
-            type = "structure",
-            traits = {
-                json_name = "configuration",
-            },
-        },
+        configuration = setmetatable({ traits = {
+            json_name = "configuration",
+        } }, { __index = M.ClassificationExportConfiguration }),
     },
 }
 
@@ -6706,12 +6337,9 @@ M.PutFindingsPublicationConfigurationInput = {
                 json_name = "clientToken",
             },
         },
-        securityHubConfiguration = {
-            type = "structure",
-            traits = {
-                json_name = "securityHubConfiguration",
-            },
-        },
+        securityHubConfiguration = setmetatable({ traits = {
+            json_name = "securityHubConfiguration",
+        } }, { __index = M.SecurityHubConfiguration }),
     },
 }
 
@@ -6724,7 +6352,7 @@ M.SearchResourcesCriteriaBlock = {
     members = {
         and = {
             type = "list",
-            member_type = "structure",
+            member = M.SearchResourcesCriteria,
             traits = {
                 json_name = "and",
             },
@@ -6735,18 +6363,12 @@ M.SearchResourcesCriteriaBlock = {
 M.SearchResourcesBucketCriteria = {
     type = "structure",
     members = {
-        excludes = {
-            type = "structure",
-            traits = {
-                json_name = "excludes",
-            },
-        },
-        includes = {
-            type = "structure",
-            traits = {
-                json_name = "includes",
-            },
-        },
+        excludes = setmetatable({ traits = {
+            json_name = "excludes",
+        } }, { __index = M.SearchResourcesCriteriaBlock }),
+        includes = setmetatable({ traits = {
+            json_name = "includes",
+        } }, { __index = M.SearchResourcesCriteriaBlock }),
     },
 }
 
@@ -6778,14 +6400,11 @@ M.SearchResourcesSortCriteria = {
 M.SearchResourcesInput = {
     type = "structure",
     members = {
-        bucketCriteria = {
-            type = "structure",
-            traits = {
-                json_name = "bucketCriteria",
-            },
-        },
+        bucketCriteria = setmetatable({ traits = {
+            json_name = "bucketCriteria",
+        } }, { __index = M.SearchResourcesBucketCriteria }),
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxResults",
             },
@@ -6796,12 +6415,9 @@ M.SearchResourcesInput = {
                 json_name = "nextToken",
             },
         },
-        sortCriteria = {
-            type = "structure",
-            traits = {
-                json_name = "sortCriteria",
-            },
-        },
+        sortCriteria = setmetatable({ traits = {
+            json_name = "sortCriteria",
+        } }, { __index = M.SearchResourcesSortCriteria }),
     },
 }
 
@@ -6810,7 +6426,7 @@ M.SearchResourcesOutput = {
     members = {
         matchingResources = {
             type = "list",
-            member_type = "structure",
+            member = M.MatchingResource,
             traits = {
                 json_name = "matchingResources",
             },
@@ -6836,8 +6452,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
                 required = true,
@@ -6855,20 +6471,20 @@ M.TestCustomDataIdentifierInput = {
     members = {
         ignoreWords = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "ignoreWords",
             },
         },
         keywords = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "keywords",
             },
         },
         maximumMatchDistance = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maximumMatchDistance",
             },
@@ -6894,7 +6510,7 @@ M.TestCustomDataIdentifierOutput = {
     type = "structure",
     members = {
         matchCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "matchCount",
             },
@@ -6914,7 +6530,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -6930,13 +6546,10 @@ M.UntagResourceOutput = {
 M.UpdateAllowListInput = {
     type = "structure",
     members = {
-        criteria = {
-            type = "structure",
-            traits = {
-                json_name = "criteria",
-                required = true,
-            },
-        },
+        criteria = setmetatable({ traits = {
+            json_name = "criteria",
+            required = true,
+        } }, { __index = M.AllowListCriteria }),
         description = {
             type = "string",
             traits = {
@@ -7030,7 +6643,7 @@ M.S3ClassificationScopeExclusionUpdate = {
     members = {
         bucketNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "bucketNames",
                 required = true,
@@ -7049,13 +6662,10 @@ M.S3ClassificationScopeExclusionUpdate = {
 M.S3ClassificationScopeUpdate = {
     type = "structure",
     members = {
-        excludes = {
-            type = "structure",
-            traits = {
-                json_name = "excludes",
-                required = true,
-            },
-        },
+        excludes = setmetatable({ traits = {
+            json_name = "excludes",
+            required = true,
+        } }, { __index = M.S3ClassificationScopeExclusionUpdate }),
     },
 }
 
@@ -7069,12 +6679,9 @@ M.UpdateClassificationScopeInput = {
                 required = true,
             },
         },
-        s3 = {
-            type = "structure",
-            traits = {
-                json_name = "s3",
-            },
-        },
+        s3 = setmetatable({ traits = {
+            json_name = "s3",
+        } }, { __index = M.S3ClassificationScopeUpdate }),
     },
 }
 
@@ -7103,12 +6710,9 @@ M.UpdateFindingsFilterInput = {
                 json_name = "description",
             },
         },
-        findingCriteria = {
-            type = "structure",
-            traits = {
-                json_name = "findingCriteria",
-            },
-        },
+        findingCriteria = setmetatable({ traits = {
+            json_name = "findingCriteria",
+        } }, { __index = M.FindingCriteria }),
         id = {
             type = "string",
             traits = {
@@ -7123,7 +6727,7 @@ M.UpdateFindingsFilterInput = {
             },
         },
         position = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "position",
             },
@@ -7223,7 +6827,7 @@ M.UpdateResourceProfileInput = {
             },
         },
         sensitivityScoreOverride = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "sensitivityScoreOverride",
             },
@@ -7247,7 +6851,7 @@ M.UpdateResourceProfileDetectionsInput = {
         },
         suppressDataIdentifiers = {
             type = "list",
-            member_type = "structure",
+            member = M.SuppressDataIdentifier,
             traits = {
                 json_name = "suppressDataIdentifiers",
             },
@@ -7281,37 +6885,25 @@ M.UpdateRetrievalConfiguration = {
 M.UpdateRevealConfigurationInput = {
     type = "structure",
     members = {
-        configuration = {
-            type = "structure",
-            traits = {
-                json_name = "configuration",
-                required = true,
-            },
-        },
-        retrievalConfiguration = {
-            type = "structure",
-            traits = {
-                json_name = "retrievalConfiguration",
-            },
-        },
+        configuration = setmetatable({ traits = {
+            json_name = "configuration",
+            required = true,
+        } }, { __index = M.RevealConfiguration }),
+        retrievalConfiguration = setmetatable({ traits = {
+            json_name = "retrievalConfiguration",
+        } }, { __index = M.UpdateRetrievalConfiguration }),
     },
 }
 
 M.UpdateRevealConfigurationOutput = {
     type = "structure",
     members = {
-        configuration = {
-            type = "structure",
-            traits = {
-                json_name = "configuration",
-            },
-        },
-        retrievalConfiguration = {
-            type = "structure",
-            traits = {
-                json_name = "retrievalConfiguration",
-            },
-        },
+        configuration = setmetatable({ traits = {
+            json_name = "configuration",
+        } }, { __index = M.RevealConfiguration }),
+        retrievalConfiguration = setmetatable({ traits = {
+            json_name = "retrievalConfiguration",
+        } }, { __index = M.RetrievalConfiguration }),
     },
 }
 
@@ -7324,12 +6916,9 @@ M.UpdateSensitivityInspectionTemplateInput = {
                 json_name = "description",
             },
         },
-        excludes = {
-            type = "structure",
-            traits = {
-                json_name = "excludes",
-            },
-        },
+        excludes = setmetatable({ traits = {
+            json_name = "excludes",
+        } }, { __index = M.SensitivityInspectionTemplateExcludes }),
         id = {
             type = "string",
             traits = {
@@ -7337,12 +6926,9 @@ M.UpdateSensitivityInspectionTemplateInput = {
                 required = true,
             },
         },
-        includes = {
-            type = "structure",
-            traits = {
-                json_name = "includes",
-            },
-        },
+        includes = setmetatable({ traits = {
+            json_name = "includes",
+        } }, { __index = M.SensitivityInspectionTemplateIncludes }),
     },
 }
 

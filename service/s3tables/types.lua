@@ -42,7 +42,7 @@ M.CreateNamespaceInput = {
         },
         namespace = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -61,7 +61,7 @@ M.CreateNamespaceOutput = {
         },
         namespace = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -137,7 +137,7 @@ M.IcebergPartitionField = {
     type = "structure",
     members = {
         sourceId = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "source-id",
                 required = true,
@@ -156,7 +156,7 @@ M.IcebergPartitionField = {
             },
         },
         fieldId = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "field-id",
             },
@@ -169,13 +169,13 @@ M.IcebergPartitionSpec = {
     members = {
         fields = {
             type = "list",
-            member_type = "structure",
+            member = M.IcebergPartitionField,
             traits = {
                 required = true,
             },
         },
         specId = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "spec-id",
             },
@@ -187,7 +187,7 @@ M.SchemaField = {
     type = "structure",
     members = {
         id = {
-            type = "number",
+            type = "integer",
         },
         name = {
             type = "string",
@@ -203,6 +203,9 @@ M.SchemaField = {
         },
         required = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -212,7 +215,7 @@ M.IcebergSchema = {
     members = {
         fields = {
             type = "list",
-            member_type = "structure",
+            member = M.SchemaField,
             traits = {
                 required = true,
             },
@@ -224,7 +227,7 @@ M.SchemaV2Field = {
     type = "structure",
     members = {
         id = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -268,20 +271,20 @@ M.IcebergSchemaV2 = {
         },
         fields = {
             type = "list",
-            member_type = "structure",
+            member = M.SchemaV2Field,
             traits = {
                 required = true,
             },
         },
         schemaId = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "schema-id",
             },
         },
         identifierFieldIds = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
             traits = {
                 json_name = "identifier-field-ids",
             },
@@ -303,7 +306,7 @@ M.IcebergSortField = {
     type = "structure",
     members = {
         sourceId = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "source-id",
                 required = true,
@@ -335,7 +338,7 @@ M.IcebergSortOrder = {
     type = "structure",
     members = {
         orderId = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "order-id",
                 required = true,
@@ -343,7 +346,7 @@ M.IcebergSortOrder = {
         },
         fields = {
             type = "list",
-            member_type = "structure",
+            member = M.IcebergSortField,
             traits = {
                 required = true,
             },
@@ -354,22 +357,14 @@ M.IcebergSortOrder = {
 M.IcebergMetadata = {
     type = "structure",
     members = {
-        schema = {
-            type = "structure",
-        },
-        schemaV2 = {
-            type = "structure",
-        },
-        partitionSpec = {
-            type = "structure",
-        },
-        writeOrder = {
-            type = "structure",
-        },
+        schema = M.IcebergSchema,
+        schemaV2 = M.IcebergSchemaV2,
+        partitionSpec = M.IcebergPartitionSpec,
+        writeOrder = M.IcebergSortOrder,
         properties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -377,9 +372,7 @@ M.IcebergMetadata = {
 M.TableMetadata = {
     type = "union",
     members = {
-        iceberg = {
-            type = "structure",
-        },
+        iceberg = M.IcebergMetadata,
     },
 }
 
@@ -429,19 +422,13 @@ M.CreateTableInput = {
                 required = true,
             },
         },
-        metadata = {
-            type = "union",
-        },
-        encryptionConfiguration = {
-            type = "structure",
-        },
-        storageClassConfiguration = {
-            type = "structure",
-        },
+        metadata = M.TableMetadata,
+        encryptionConfiguration = M.EncryptionConfiguration,
+        storageClassConfiguration = M.StorageClassConfiguration,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -473,16 +460,12 @@ M.CreateTableBucketInput = {
                 required = true,
             },
         },
-        encryptionConfiguration = {
-            type = "structure",
-        },
-        storageClassConfiguration = {
-            type = "structure",
-        },
+        encryptionConfiguration = M.EncryptionConfiguration,
+        storageClassConfiguration = M.StorageClassConfiguration,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -731,7 +714,7 @@ M.GetNamespaceOutput = {
     members = {
         namespace = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -809,9 +792,7 @@ M.ReplicationInformation = {
 M.ManagedTableInformation = {
     type = "structure",
     members = {
-        replicationInformation = {
-            type = "structure",
-        },
+        replicationInformation = M.ReplicationInformation,
     },
 }
 
@@ -843,13 +824,16 @@ M.GetTableOutput = {
         },
         namespace = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         namespaceId = {
             type = "string",
+            traits = {
+                default = nil,
+            },
         },
         versionToken = {
             type = "string",
@@ -910,9 +894,7 @@ M.GetTableOutput = {
         tableBucketId = {
             type = "string",
         },
-        managedTableInformation = {
-            type = "structure",
-        },
+        managedTableInformation = M.ManagedTableInformation,
     },
 }
 
@@ -987,12 +969,9 @@ M.GetTableBucketEncryptionInput = {
 M.GetTableBucketEncryptionOutput = {
     type = "structure",
     members = {
-        encryptionConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        encryptionConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EncryptionConfiguration }),
     },
 }
 
@@ -1017,10 +996,10 @@ M.IcebergUnreferencedFileRemovalSettings = {
     type = "structure",
     members = {
         unreferencedDays = {
-            type = "number",
+            type = "integer",
         },
         nonCurrentDays = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1028,9 +1007,7 @@ M.IcebergUnreferencedFileRemovalSettings = {
 M.TableBucketMaintenanceSettings = {
     type = "union",
     members = {
-        icebergUnreferencedFileRemoval = {
-            type = "structure",
-        },
+        icebergUnreferencedFileRemoval = M.IcebergUnreferencedFileRemovalSettings,
     },
 }
 
@@ -1045,9 +1022,7 @@ M.TableBucketMaintenanceConfigurationValue = {
         status = {
             type = "string",
         },
-        settings = {
-            type = "union",
-        },
+        settings = M.TableBucketMaintenanceSettings,
     },
 }
 
@@ -1062,8 +1037,8 @@ M.GetTableBucketMaintenanceConfigurationOutput = {
         },
         configuration = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.TableBucketMaintenanceConfigurationValue,
             traits = {
                 required = true,
             },
@@ -1154,7 +1129,7 @@ M.TableBucketReplicationRule = {
     members = {
         destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.ReplicationDestination,
             traits = {
                 required = true,
             },
@@ -1173,7 +1148,7 @@ M.TableBucketReplicationConfiguration = {
         },
         rules = {
             type = "list",
-            member_type = "structure",
+            member = M.TableBucketReplicationRule,
             traits = {
                 required = true,
             },
@@ -1190,12 +1165,9 @@ M.GetTableBucketReplicationOutput = {
                 required = true,
             },
         },
-        configuration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TableBucketReplicationConfiguration }),
     },
 }
 
@@ -1215,12 +1187,9 @@ M.GetTableBucketStorageClassInput = {
 M.GetTableBucketStorageClassOutput = {
     type = "structure",
     members = {
-        storageClassConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        storageClassConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.StorageClassConfiguration }),
     },
 }
 
@@ -1254,12 +1223,9 @@ M.GetTableEncryptionInput = {
 M.GetTableEncryptionOutput = {
     type = "structure",
     members = {
-        encryptionConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        encryptionConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EncryptionConfiguration }),
     },
 }
 
@@ -1306,7 +1272,7 @@ M.IcebergCompactionSettings = {
     type = "structure",
     members = {
         targetFileSizeMB = {
-            type = "number",
+            type = "integer",
         },
         strategy = {
             type = "string",
@@ -1318,10 +1284,10 @@ M.IcebergSnapshotManagementSettings = {
     type = "structure",
     members = {
         minSnapshotsToKeep = {
-            type = "number",
+            type = "integer",
         },
         maxSnapshotAgeHours = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1329,12 +1295,8 @@ M.IcebergSnapshotManagementSettings = {
 M.TableMaintenanceSettings = {
     type = "union",
     members = {
-        icebergCompaction = {
-            type = "structure",
-        },
-        icebergSnapshotManagement = {
-            type = "structure",
-        },
+        icebergCompaction = M.IcebergCompactionSettings,
+        icebergSnapshotManagement = M.IcebergSnapshotManagementSettings,
     },
 }
 
@@ -1344,9 +1306,7 @@ M.TableMaintenanceConfigurationValue = {
         status = {
             type = "string",
         },
-        settings = {
-            type = "union",
-        },
+        settings = M.TableMaintenanceSettings,
     },
 }
 
@@ -1361,8 +1321,8 @@ M.GetTableMaintenanceConfigurationOutput = {
         },
         configuration = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.TableMaintenanceConfigurationValue,
             traits = {
                 required = true,
             },
@@ -1442,8 +1402,8 @@ M.GetTableMaintenanceJobStatusOutput = {
         },
         status = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.TableMaintenanceJobStatusValue,
             traits = {
                 required = true,
             },
@@ -1555,7 +1515,7 @@ M.TableRecordExpirationSettings = {
     type = "structure",
     members = {
         days = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1571,21 +1531,16 @@ M.TableRecordExpirationConfigurationValue = {
         status = {
             type = "string",
         },
-        settings = {
-            type = "structure",
-        },
+        settings = M.TableRecordExpirationSettings,
     },
 }
 
 M.GetTableRecordExpirationConfigurationOutput = {
     type = "structure",
     members = {
-        configuration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TableRecordExpirationConfigurationValue }),
     },
 }
 
@@ -1616,13 +1571,13 @@ M.TableRecordExpirationJobMetrics = {
     type = "structure",
     members = {
         deletedDataFiles = {
-            type = "number",
+            type = "long",
         },
         deletedRecords = {
-            type = "number",
+            type = "long",
         },
         removedFilesSize = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1652,9 +1607,7 @@ M.GetTableRecordExpirationJobStatusOutput = {
         failureMessage = {
             type = "string",
         },
-        metrics = {
-            type = "structure",
-        },
+        metrics = M.TableRecordExpirationJobMetrics,
     },
 }
 
@@ -1676,7 +1629,7 @@ M.TableReplicationRule = {
     members = {
         destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.ReplicationDestination,
             traits = {
                 required = true,
             },
@@ -1695,7 +1648,7 @@ M.TableReplicationConfiguration = {
         },
         rules = {
             type = "list",
-            member_type = "structure",
+            member = M.TableReplicationRule,
             traits = {
                 required = true,
             },
@@ -1712,12 +1665,9 @@ M.GetTableReplicationOutput = {
                 required = true,
             },
         },
-        configuration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TableReplicationConfiguration }),
     },
 }
 
@@ -1777,9 +1727,7 @@ M.ReplicationDestinationStatusModel = {
         destinationTableArn = {
             type = "string",
         },
-        lastSuccessfulReplicatedUpdate = {
-            type = "structure",
-        },
+        lastSuccessfulReplicatedUpdate = M.LastSuccessfulReplicatedUpdate,
         failureMessage = {
             type = "string",
         },
@@ -1797,7 +1745,7 @@ M.GetTableReplicationStatusOutput = {
         },
         destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.ReplicationDestinationStatusModel,
             traits = {
                 required = true,
             },
@@ -1835,12 +1783,9 @@ M.GetTableStorageClassInput = {
 M.GetTableStorageClassOutput = {
     type = "structure",
     members = {
-        storageClassConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        storageClassConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.StorageClassConfiguration }),
     },
 }
 
@@ -1867,7 +1812,7 @@ M.ListNamespacesInput = {
             },
         },
         maxNamespaces = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxNamespaces",
             },
@@ -1880,7 +1825,7 @@ M.NamespaceSummary = {
     members = {
         namespace = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1918,7 +1863,7 @@ M.ListNamespacesOutput = {
     members = {
         namespaces = {
             type = "list",
-            member_type = "structure",
+            member = M.NamespaceSummary,
             traits = {
                 required = true,
             },
@@ -1945,7 +1890,7 @@ M.ListTableBucketsInput = {
             },
         },
         maxBuckets = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxBuckets",
             },
@@ -2001,7 +1946,7 @@ M.ListTableBucketsOutput = {
     members = {
         tableBuckets = {
             type = "list",
-            member_type = "structure",
+            member = M.TableBucketSummary,
             traits = {
                 required = true,
             },
@@ -2041,7 +1986,7 @@ M.ListTablesInput = {
             },
         },
         maxTables = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxTables",
             },
@@ -2054,7 +1999,7 @@ M.TableSummary = {
     members = {
         namespace = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2108,7 +2053,7 @@ M.ListTablesOutput = {
     members = {
         tables = {
             type = "list",
-            member_type = "structure",
+            member = M.TableSummary,
             traits = {
                 required = true,
             },
@@ -2137,8 +2082,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2153,12 +2098,9 @@ M.PutTableBucketEncryptionInput = {
                 required = true,
             },
         },
-        encryptionConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        encryptionConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EncryptionConfiguration }),
     },
 }
 
@@ -2183,12 +2125,9 @@ M.PutTableBucketMaintenanceConfigurationInput = {
                 required = true,
             },
         },
-        value = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        value = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TableBucketMaintenanceConfigurationValue }),
     },
 }
 
@@ -2252,12 +2191,9 @@ M.PutTableBucketReplicationInput = {
                 http_query = "versionToken",
             },
         },
-        configuration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TableBucketReplicationConfiguration }),
     },
 }
 
@@ -2289,12 +2225,9 @@ M.PutTableBucketStorageClassInput = {
                 required = true,
             },
         },
-        storageClassConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        storageClassConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.StorageClassConfiguration }),
     },
 }
 
@@ -2333,12 +2266,9 @@ M.PutTableMaintenanceConfigurationInput = {
                 required = true,
             },
         },
-        value = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        value = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TableMaintenanceConfigurationValue }),
     },
 }
 
@@ -2393,12 +2323,9 @@ M.PutTableRecordExpirationConfigurationInput = {
                 required = true,
             },
         },
-        value = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        value = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TableRecordExpirationConfigurationValue }),
     },
 }
 
@@ -2422,12 +2349,9 @@ M.PutTableReplicationInput = {
                 http_query = "versionToken",
             },
         },
-        configuration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TableReplicationConfiguration }),
     },
 }
 
@@ -2545,7 +2469,7 @@ M.UpdateTableMetadataLocationOutput = {
         },
         namespace = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2577,8 +2501,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2602,7 +2526,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,

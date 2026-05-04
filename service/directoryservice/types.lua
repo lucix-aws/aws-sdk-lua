@@ -65,9 +65,7 @@ M.SharedDirectory = {
 M.AcceptSharedDirectoryOutput = {
     type = "structure",
     members = {
-        SharedDirectory = {
-            type = "structure",
-        },
+        SharedDirectory = M.SharedDirectory,
     },
 }
 
@@ -188,13 +186,16 @@ M.AddIpRoutesInput = {
         },
         IpRoutes = {
             type = "list",
-            member_type = "structure",
+            member = M.IpRoute,
             traits = {
                 required = true,
             },
         },
         UpdateSecurityGroupForDirectoryControllers = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -253,7 +254,7 @@ M.DirectoryVpcSettings = {
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -276,12 +277,9 @@ M.AddRegionInput = {
                 required = true,
             },
         },
-        VPCSettings = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        VPCSettings = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DirectoryVpcSettings }),
     },
 }
 
@@ -370,7 +368,7 @@ M.AddTagsToResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -424,22 +422,22 @@ M.Assessment = {
         },
         CustomerDnsIps = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         VpcId = {
             type = "string",
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SelfManagedInstanceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ReportType = {
             type = "string",
@@ -455,7 +453,7 @@ M.AssessmentConfiguration = {
     members = {
         CustomerDnsIps = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -466,22 +464,19 @@ M.AssessmentConfiguration = {
                 required = true,
             },
         },
-        VpcSettings = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        VpcSettings = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DirectoryVpcSettings }),
         InstanceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -521,7 +516,7 @@ M.AssessmentReport = {
         },
         Validations = {
             type = "list",
-            member_type = "structure",
+            member = M.AssessmentValidation,
         },
     },
 }
@@ -549,7 +544,7 @@ M.AssessmentSummary = {
         },
         CustomerDnsIps = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ReportType = {
             type = "string",
@@ -660,9 +655,7 @@ M.Certificate = {
         Type = {
             type = "string",
         },
-        ClientCertAuthSettings = {
-            type = "structure",
-        },
+        ClientCertAuthSettings = M.ClientCertAuthSettings,
     },
 }
 
@@ -775,7 +768,7 @@ M.Computer = {
         },
         ComputerAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.Attribute,
         },
     },
 }
@@ -792,11 +785,11 @@ M.ConditionalForwarder = {
         },
         DnsIpAddrs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DnsIpv6Addrs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ReplicationScope = {
             type = "string",
@@ -815,18 +808,21 @@ M.DirectoryConnectSettings = {
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         CustomerDnsIps = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
+            traits = {
+                default = {},
+            },
         },
         CustomerDnsIpsV6 = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CustomerUserName = {
             type = "string",
@@ -875,15 +871,12 @@ M.ConnectDirectoryInput = {
                 required = true,
             },
         },
-        ConnectSettings = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ConnectSettings = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DirectoryConnectSettings }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         NetworkType = {
             type = "string",
@@ -969,7 +962,7 @@ M.CreateComputerInput = {
         },
         ComputerAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.Attribute,
         },
     },
 }
@@ -977,9 +970,7 @@ M.CreateComputerInput = {
 M.CreateComputerOutput = {
     type = "structure",
     members = {
-        Computer = {
-            type = "structure",
-        },
+        Computer = M.Computer,
     },
 }
 
@@ -1000,11 +991,14 @@ M.CreateConditionalForwarderInput = {
         },
         DnsIpAddrs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
+            traits = {
+                default = {},
+            },
         },
         DnsIpv6Addrs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1040,12 +1034,10 @@ M.CreateDirectoryInput = {
                 required = true,
             },
         },
-        VpcSettings = {
-            type = "structure",
-        },
+        VpcSettings = M.DirectoryVpcSettings,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         NetworkType = {
             type = "string",
@@ -1079,7 +1071,7 @@ M.CreateHybridADInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1155,18 +1147,15 @@ M.CreateMicrosoftADInput = {
         Description = {
             type = "string",
         },
-        VpcSettings = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        VpcSettings = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DirectoryVpcSettings }),
         Edition = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         NetworkType = {
             type = "string",
@@ -1268,11 +1257,11 @@ M.CreateTrustInput = {
         },
         ConditionalForwarderIpAddrs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ConditionalForwarderIpv6Addrs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SelectiveAuth = {
             type = "string",
@@ -1409,6 +1398,9 @@ M.DeleteTrustInput = {
         },
         DeleteAssociatedConditionalForwarder = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1481,12 +1473,10 @@ M.DescribeADAssessmentInput = {
 M.DescribeADAssessmentOutput = {
     type = "structure",
     members = {
-        Assessment = {
-            type = "structure",
-        },
+        Assessment = M.Assessment,
         AssessmentReports = {
             type = "list",
-            member_type = "structure",
+            member = M.AssessmentReport,
         },
     },
 }
@@ -1545,9 +1535,7 @@ M.DescribeCertificateInput = {
 M.DescribeCertificateOutput = {
     type = "structure",
     members = {
-        Certificate = {
-            type = "structure",
-        },
+        Certificate = M.Certificate,
     },
 }
 
@@ -1567,7 +1555,7 @@ M.DescribeClientAuthenticationSettingsInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1577,7 +1565,7 @@ M.DescribeClientAuthenticationSettingsOutput = {
     members = {
         ClientAuthenticationSettingsInfo = {
             type = "list",
-            member_type = "structure",
+            member = M.ClientAuthenticationSettingInfo,
         },
         NextToken = {
             type = "string",
@@ -1596,7 +1584,7 @@ M.DescribeConditionalForwardersInput = {
         },
         RemoteDomainNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1606,7 +1594,7 @@ M.DescribeConditionalForwardersOutput = {
     members = {
         ConditionalForwarders = {
             type = "list",
-            member_type = "structure",
+            member = M.ConditionalForwarder,
         },
     },
 }
@@ -1616,13 +1604,13 @@ M.DescribeDirectoriesInput = {
     members = {
         DirectoryIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1635,7 +1623,7 @@ M.DirectoryConnectSettingsDescription = {
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CustomerUserName = {
             type = "string",
@@ -1645,15 +1633,15 @@ M.DirectoryConnectSettingsDescription = {
         },
         AvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ConnectIps = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ConnectIpsV6 = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1663,11 +1651,11 @@ M.HybridSettingsDescription = {
     members = {
         SelfManagedDnsIpAddrs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SelfManagedInstanceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1689,20 +1677,23 @@ M.RadiusSettings = {
     members = {
         RadiusServers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RadiusServersIpv6 = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RadiusPort = {
-            type = "number",
+            type = "integer",
         },
         RadiusTimeout = {
-            type = "number",
+            type = "integer",
         },
         RadiusRetries = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         SharedSecret = {
             type = "string",
@@ -1715,6 +1706,9 @@ M.RadiusSettings = {
         },
         UseSameUsername = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1733,14 +1727,14 @@ M.DirectoryVpcSettingsDescription = {
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SecurityGroupId = {
             type = "string",
         },
         AvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1756,18 +1750,14 @@ M.OwnerDirectoryDescription = {
         },
         DnsIpAddrs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DnsIpv6Addrs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        VpcSettings = {
-            type = "structure",
-        },
-        RadiusSettings = {
-            type = "structure",
-        },
+        VpcSettings = M.DirectoryVpcSettingsDescription,
+        RadiusSettings = M.RadiusSettings,
         RadiusStatus = {
             type = "string",
         },
@@ -1785,7 +1775,7 @@ M.RegionsInfo = {
         },
         AdditionalRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1841,11 +1831,11 @@ M.DirectoryDescription = {
         },
         DnsIpAddrs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DnsIpv6Addrs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Stage = {
             type = "string",
@@ -1868,15 +1858,9 @@ M.DirectoryDescription = {
         Type = {
             type = "string",
         },
-        VpcSettings = {
-            type = "structure",
-        },
-        ConnectSettings = {
-            type = "structure",
-        },
-        RadiusSettings = {
-            type = "structure",
-        },
+        VpcSettings = M.DirectoryVpcSettingsDescription,
+        ConnectSettings = M.DirectoryConnectSettingsDescription,
+        RadiusSettings = M.RadiusSettings,
         RadiusStatus = {
             type = "string",
         },
@@ -1885,22 +1869,19 @@ M.DirectoryDescription = {
         },
         SsoEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         DesiredNumberOfDomainControllers = {
-            type = "number",
+            type = "integer",
         },
-        OwnerDirectoryDescription = {
-            type = "structure",
-        },
-        RegionsInfo = {
-            type = "structure",
-        },
+        OwnerDirectoryDescription = M.OwnerDirectoryDescription,
+        RegionsInfo = M.RegionsInfo,
         OsVersion = {
             type = "string",
         },
-        HybridSettings = {
-            type = "structure",
-        },
+        HybridSettings = M.HybridSettingsDescription,
         NetworkType = {
             type = "string",
         },
@@ -1912,7 +1893,7 @@ M.DescribeDirectoriesOutput = {
     members = {
         DirectoryDescriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.DirectoryDescription,
         },
         NextToken = {
             type = "string",
@@ -1965,13 +1946,13 @@ M.DescribeDomainControllersInput = {
         },
         DomainControllerIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2031,7 +2012,7 @@ M.DescribeDomainControllersOutput = {
     members = {
         DomainControllers = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainController,
         },
         NextToken = {
             type = "string",
@@ -2047,7 +2028,7 @@ M.DescribeEventTopicsInput = {
         },
         TopicNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2085,7 +2066,7 @@ M.DescribeEventTopicsOutput = {
     members = {
         EventTopics = {
             type = "list",
-            member_type = "structure",
+            member = M.EventTopic,
         },
     },
 }
@@ -2118,11 +2099,11 @@ M.HybridUpdateValue = {
     members = {
         InstanceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DnsIps = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2145,12 +2126,8 @@ M.HybridUpdateInfoEntry = {
         InitiatedBy = {
             type = "string",
         },
-        NewValue = {
-            type = "structure",
-        },
-        PreviousValue = {
-            type = "structure",
-        },
+        NewValue = M.HybridUpdateValue,
+        PreviousValue = M.HybridUpdateValue,
         StartTime = {
             type = "timestamp",
         },
@@ -2168,11 +2145,11 @@ M.HybridUpdateActivities = {
     members = {
         SelfManagedInstances = {
             type = "list",
-            member_type = "structure",
+            member = M.HybridUpdateInfoEntry,
         },
         HybridAdministratorAccount = {
             type = "list",
-            member_type = "structure",
+            member = M.HybridUpdateInfoEntry,
         },
     },
 }
@@ -2180,9 +2157,7 @@ M.HybridUpdateActivities = {
 M.DescribeHybridADUpdateOutput = {
     type = "structure",
     members = {
-        UpdateActivities = {
-            type = "structure",
-        },
+        UpdateActivities = M.HybridUpdateActivities,
         NextToken = {
             type = "string",
         },
@@ -2209,7 +2184,7 @@ M.DescribeLDAPSSettingsInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2241,7 +2216,7 @@ M.DescribeLDAPSSettingsOutput = {
     members = {
         LDAPSSettingsInfo = {
             type = "list",
-            member_type = "structure",
+            member = M.LDAPSSettingInfo,
         },
         NextToken = {
             type = "string",
@@ -2287,11 +2262,9 @@ M.RegionDescription = {
         Status = {
             type = "string",
         },
-        VpcSettings = {
-            type = "structure",
-        },
+        VpcSettings = M.DirectoryVpcSettings,
         DesiredNumberOfDomainControllers = {
-            type = "number",
+            type = "integer",
         },
         LaunchTime = {
             type = "timestamp",
@@ -2310,7 +2283,7 @@ M.DescribeRegionsOutput = {
     members = {
         RegionsDescription = {
             type = "list",
-            member_type = "structure",
+            member = M.RegionDescription,
         },
         NextToken = {
             type = "string",
@@ -2367,8 +2340,8 @@ M.SettingEntry = {
         },
         RequestDetailedStatus = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         RequestStatusMessage = {
             type = "string",
@@ -2393,7 +2366,7 @@ M.DescribeSettingsOutput = {
         },
         SettingEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.SettingEntry,
         },
         NextToken = {
             type = "string",
@@ -2412,13 +2385,13 @@ M.DescribeSharedDirectoriesInput = {
         },
         SharedDirectoryIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2428,7 +2401,7 @@ M.DescribeSharedDirectoriesOutput = {
     members = {
         SharedDirectories = {
             type = "list",
-            member_type = "structure",
+            member = M.SharedDirectory,
         },
         NextToken = {
             type = "string",
@@ -2444,13 +2417,13 @@ M.DescribeSnapshotsInput = {
         },
         SnapshotIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2495,7 +2468,7 @@ M.DescribeSnapshotsOutput = {
     members = {
         Snapshots = {
             type = "list",
-            member_type = "structure",
+            member = M.Snapshot,
         },
         NextToken = {
             type = "string",
@@ -2511,13 +2484,13 @@ M.DescribeTrustsInput = {
         },
         TrustIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2580,7 +2553,7 @@ M.DescribeTrustsOutput = {
     members = {
         Trusts = {
             type = "list",
-            member_type = "structure",
+            member = M.Trust,
         },
         NextToken = {
             type = "string",
@@ -2630,9 +2603,7 @@ M.OSUpdateSettings = {
 M.UpdateValue = {
     type = "structure",
     members = {
-        OSUpdateSettings = {
-            type = "structure",
-        },
+        OSUpdateSettings = M.OSUpdateSettings,
     },
 }
 
@@ -2651,12 +2622,8 @@ M.UpdateInfoEntry = {
         InitiatedBy = {
             type = "string",
         },
-        NewValue = {
-            type = "structure",
-        },
-        PreviousValue = {
-            type = "structure",
-        },
+        NewValue = M.UpdateValue,
+        PreviousValue = M.UpdateValue,
         StartTime = {
             type = "timestamp",
         },
@@ -2671,7 +2638,7 @@ M.DescribeUpdateDirectoryOutput = {
     members = {
         UpdateActivities = {
             type = "list",
-            member_type = "structure",
+            member = M.UpdateInfoEntry,
         },
         NextToken = {
             type = "string",
@@ -2696,31 +2663,40 @@ M.DirectoryLimits = {
     type = "structure",
     members = {
         CloudOnlyDirectoriesLimit = {
-            type = "number",
+            type = "integer",
         },
         CloudOnlyDirectoriesCurrentCount = {
-            type = "number",
+            type = "integer",
         },
         CloudOnlyDirectoriesLimitReached = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         CloudOnlyMicrosoftADLimit = {
-            type = "number",
+            type = "integer",
         },
         CloudOnlyMicrosoftADCurrentCount = {
-            type = "number",
+            type = "integer",
         },
         CloudOnlyMicrosoftADLimitReached = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         ConnectedDirectoriesLimit = {
-            type = "number",
+            type = "integer",
         },
         ConnectedDirectoriesCurrentCount = {
-            type = "number",
+            type = "integer",
         },
         ConnectedDirectoriesLimitReached = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -3008,12 +2984,9 @@ M.EnableRadiusInput = {
                 required = true,
             },
         },
-        RadiusSettings = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RadiusSettings = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RadiusSettings }),
     },
 }
 
@@ -3050,9 +3023,7 @@ M.GetDirectoryLimitsInput = {
 M.GetDirectoryLimitsOutput = {
     type = "structure",
     members = {
-        DirectoryLimits = {
-            type = "structure",
-        },
+        DirectoryLimits = M.DirectoryLimits,
     },
 }
 
@@ -3072,13 +3043,16 @@ M.SnapshotLimits = {
     type = "structure",
     members = {
         ManualSnapshotsLimit = {
-            type = "number",
+            type = "integer",
         },
         ManualSnapshotsCurrentCount = {
-            type = "number",
+            type = "integer",
         },
         ManualSnapshotsLimitReached = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -3086,9 +3060,7 @@ M.SnapshotLimits = {
 M.GetSnapshotLimitsOutput = {
     type = "structure",
     members = {
-        SnapshotLimits = {
-            type = "structure",
-        },
+        SnapshotLimits = M.SnapshotLimits,
     },
 }
 
@@ -3102,7 +3074,7 @@ M.ListADAssessmentsInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3112,7 +3084,7 @@ M.ListADAssessmentsOutput = {
     members = {
         Assessments = {
             type = "list",
-            member_type = "structure",
+            member = M.AssessmentSummary,
         },
         NextToken = {
             type = "string",
@@ -3133,7 +3105,7 @@ M.ListCertificatesInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3146,7 +3118,7 @@ M.ListCertificatesOutput = {
         },
         CertificatesInfo = {
             type = "list",
-            member_type = "structure",
+            member = M.CertificateInfo,
         },
     },
 }
@@ -3164,7 +3136,7 @@ M.ListIpRoutesInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3210,7 +3182,7 @@ M.ListIpRoutesOutput = {
     members = {
         IpRoutesInfo = {
             type = "list",
-            member_type = "structure",
+            member = M.IpRouteInfo,
         },
         NextToken = {
             type = "string",
@@ -3228,7 +3200,7 @@ M.ListLogSubscriptionsInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3253,7 +3225,7 @@ M.ListLogSubscriptionsOutput = {
     members = {
         LogSubscriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.LogSubscription,
         },
         NextToken = {
             type = "string",
@@ -3274,7 +3246,7 @@ M.ListSchemaExtensionsInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3323,7 +3295,7 @@ M.ListSchemaExtensionsOutput = {
     members = {
         SchemaExtensionsInfo = {
             type = "list",
-            member_type = "structure",
+            member = M.SchemaExtensionInfo,
         },
         NextToken = {
             type = "string",
@@ -3344,7 +3316,7 @@ M.ListTagsForResourceInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3354,7 +3326,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         NextToken = {
             type = "string",
@@ -3393,9 +3365,7 @@ M.RegisterCertificateInput = {
         Type = {
             type = "string",
         },
-        ClientCertAuthSettings = {
-            type = "structure",
-        },
+        ClientCertAuthSettings = M.ClientCertAuthSettings,
     },
 }
 
@@ -3462,11 +3432,14 @@ M.RemoveIpRoutesInput = {
         },
         CidrIps = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
+            traits = {
+                default = {},
+            },
         },
         CidrIpv6s = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3502,7 +3475,7 @@ M.RemoveTagsFromResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3644,12 +3617,9 @@ M.ShareDirectoryInput = {
         ShareNotes = {
             type = "string",
         },
-        ShareTarget = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ShareTarget = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ShareTarget }),
         ShareMethod = {
             type = "string",
             traits = {
@@ -3684,9 +3654,7 @@ M.ShareLimitExceededException = {
 M.StartADAssessmentInput = {
     type = "structure",
     members = {
-        AssessmentConfiguration = {
-            type = "structure",
-        },
+        AssessmentConfiguration = M.AssessmentConfiguration,
         DirectoryId = {
             type = "string",
         },
@@ -3714,6 +3682,7 @@ M.StartSchemaExtensionInput = {
         CreateSnapshotBeforeSchemaExtension = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -3768,12 +3737,9 @@ M.UnshareDirectoryInput = {
                 required = true,
             },
         },
-        UnshareTarget = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        UnshareTarget = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.UnshareTarget }),
     },
 }
 
@@ -3803,11 +3769,14 @@ M.UpdateConditionalForwarderInput = {
         },
         DnsIpAddrs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
+            traits = {
+                default = {},
+            },
         },
         DnsIpv6Addrs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3833,7 +3802,7 @@ M.NetworkUpdateSettings = {
         },
         CustomerDnsIpsV6 = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3853,17 +3822,14 @@ M.UpdateDirectorySetupInput = {
                 required = true,
             },
         },
-        OSUpdateSettings = {
-            type = "structure",
-        },
-        DirectorySizeUpdateSettings = {
-            type = "structure",
-        },
-        NetworkUpdateSettings = {
-            type = "structure",
-        },
+        OSUpdateSettings = M.OSUpdateSettings,
+        DirectorySizeUpdateSettings = M.DirectorySizeUpdateSettings,
+        NetworkUpdateSettings = M.NetworkUpdateSettings,
         CreateSnapshotBeforeUpdate = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -3889,14 +3855,14 @@ M.HybridCustomerInstancesSettings = {
     members = {
         CustomerDnsIps = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         InstanceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3913,12 +3879,8 @@ M.UpdateHybridADInput = {
                 required = true,
             },
         },
-        HybridAdministratorAccountUpdate = {
-            type = "structure",
-        },
-        SelfManagedInstancesSettings = {
-            type = "structure",
-        },
+        HybridAdministratorAccountUpdate = M.HybridAdministratorAccountUpdate,
+        SelfManagedInstancesSettings = M.HybridCustomerInstancesSettings,
     },
 }
 
@@ -3957,7 +3919,7 @@ M.UpdateNumberOfDomainControllersInput = {
             },
         },
         DesiredNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -3978,12 +3940,9 @@ M.UpdateRadiusInput = {
                 required = true,
             },
         },
-        RadiusSettings = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RadiusSettings = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RadiusSettings }),
     },
 }
 
@@ -4046,7 +4005,7 @@ M.UpdateSettingsInput = {
         },
         Settings = {
             type = "list",
-            member_type = "structure",
+            member = M.Setting,
             traits = {
                 required = true,
             },

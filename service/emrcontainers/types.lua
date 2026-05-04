@@ -27,18 +27,14 @@ M.TLSCertificateConfiguration = {
 M.InTransitEncryptionConfiguration = {
     type = "structure",
     members = {
-        tlsCertificateConfiguration = {
-            type = "structure",
-        },
+        tlsCertificateConfiguration = M.TLSCertificateConfiguration,
     },
 }
 
 M.EncryptionConfiguration = {
     type = "structure",
     members = {
-        inTransitEncryptionConfiguration = {
-            type = "structure",
-        },
+        inTransitEncryptionConfiguration = M.InTransitEncryptionConfiguration,
     },
 }
 
@@ -60,9 +56,7 @@ M.LakeFormationConfiguration = {
         authorizedSessionTagValue = {
             type = "string",
         },
-        secureNamespaceInfo = {
-            type = "structure",
-        },
+        secureNamespaceInfo = M.SecureNamespaceInfo,
         queryEngineRoleArn = {
             type = "string",
         },
@@ -72,12 +66,8 @@ M.LakeFormationConfiguration = {
 M.AuthorizationConfiguration = {
     type = "structure",
     members = {
-        lakeFormationConfiguration = {
-            type = "structure",
-        },
-        encryptionConfiguration = {
-            type = "structure",
-        },
+        lakeFormationConfiguration = M.LakeFormationConfiguration,
+        encryptionConfiguration = M.EncryptionConfiguration,
     },
 }
 
@@ -160,12 +150,8 @@ M.ParametricMonitoringConfiguration = {
         persistentAppUI = {
             type = "string",
         },
-        cloudWatchMonitoringConfiguration = {
-            type = "structure",
-        },
-        s3MonitoringConfiguration = {
-            type = "structure",
-        },
+        cloudWatchMonitoringConfiguration = M.ParametricCloudWatchMonitoringConfiguration,
+        s3MonitoringConfiguration = M.ParametricS3MonitoringConfiguration,
     },
 }
 
@@ -192,7 +178,7 @@ M.SparkSubmitJobDriver = {
         },
         entryPointArguments = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         sparkSubmitParameters = {
             type = "string",
@@ -203,12 +189,8 @@ M.SparkSubmitJobDriver = {
 M.JobDriver = {
     type = "structure",
     members = {
-        sparkSubmitJobDriver = {
-            type = "structure",
-        },
-        sparkSqlJobDriver = {
-            type = "structure",
-        },
+        sparkSubmitJobDriver = M.SparkSubmitJobDriver,
+        sparkSqlJobDriver = M.SparkSqlJobDriver,
     },
 }
 
@@ -282,7 +264,7 @@ M.ContainerLogRotationConfiguration = {
             },
         },
         maxFilesToKeep = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -322,21 +304,13 @@ M.S3MonitoringConfiguration = {
 M.MonitoringConfiguration = {
     type = "structure",
     members = {
-        managedLogs = {
-            type = "structure",
-        },
+        managedLogs = M.ManagedLogs,
         persistentAppUI = {
             type = "string",
         },
-        cloudWatchMonitoringConfiguration = {
-            type = "structure",
-        },
-        s3MonitoringConfiguration = {
-            type = "structure",
-        },
-        containerLogRotationConfiguration = {
-            type = "structure",
-        },
+        cloudWatchMonitoringConfiguration = M.CloudWatchMonitoringConfiguration,
+        s3MonitoringConfiguration = M.S3MonitoringConfiguration,
+        containerLogRotationConfiguration = M.ContainerLogRotationConfiguration,
     },
 }
 
@@ -373,9 +347,7 @@ M.EksInfo = {
 M.ContainerInfo = {
     type = "union",
     members = {
-        eksInfo = {
-            type = "structure",
-        },
+        eksInfo = M.EksInfo,
     },
 }
 
@@ -398,18 +370,14 @@ M.ContainerProvider = {
                 required = true,
             },
         },
-        info = {
-            type = "union",
-        },
+        info = M.ContainerInfo,
     },
 }
 
 M.SecurityConfigurationData = {
     type = "structure",
     members = {
-        authorizationConfiguration = {
-            type = "structure",
-        },
+        authorizationConfiguration = M.AuthorizationConfiguration,
     },
 }
 
@@ -428,19 +396,14 @@ M.CreateSecurityConfigurationInput = {
                 required = true,
             },
         },
-        containerProvider = {
-            type = "structure",
-        },
-        securityConfigurationData = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        containerProvider = M.ContainerProvider,
+        securityConfigurationData = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SecurityConfigurationData }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -469,12 +432,9 @@ M.CreateVirtualClusterInput = {
                 required = true,
             },
         },
-        containerProvider = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        containerProvider = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ContainerProvider }),
         clientToken = {
             type = "string",
             traits = {
@@ -483,8 +443,8 @@ M.CreateVirtualClusterInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         securityConfigurationId = {
             type = "string",
@@ -624,7 +584,7 @@ M.RetryPolicyConfiguration = {
     type = "structure",
     members = {
         maxAttempts = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -636,7 +596,7 @@ M.RetryPolicyExecution = {
     type = "structure",
     members = {
         currentAttemptCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -738,13 +698,11 @@ M.SecurityConfiguration = {
         createdBy = {
             type = "string",
         },
-        securityConfigurationData = {
-            type = "structure",
-        },
+        securityConfigurationData = M.SecurityConfigurationData,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -752,9 +710,7 @@ M.SecurityConfiguration = {
 M.DescribeSecurityConfigurationOutput = {
     type = "structure",
     members = {
-        securityConfiguration = {
-            type = "structure",
-        },
+        securityConfiguration = M.SecurityConfiguration,
     },
 }
 
@@ -793,16 +749,14 @@ M.VirtualCluster = {
         state = {
             type = "string",
         },
-        containerProvider = {
-            type = "structure",
-        },
+        containerProvider = M.ContainerProvider,
         createdAt = {
             type = "timestamp",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         securityConfigurationId = {
             type = "string",
@@ -813,9 +767,7 @@ M.VirtualCluster = {
 M.DescribeVirtualClusterOutput = {
     type = "structure",
     members = {
-        virtualCluster = {
-            type = "structure",
-        },
+        virtualCluster = M.VirtualCluster,
     },
 }
 
@@ -849,7 +801,7 @@ M.GetManagedEndpointSessionCredentialsInput = {
             },
         },
         durationInSeconds = {
-            type = "number",
+            type = "integer",
         },
         logContext = {
             type = "string",
@@ -875,9 +827,7 @@ M.GetManagedEndpointSessionCredentialsOutput = {
         id = {
             type = "string",
         },
-        credentials = {
-            type = "union",
-        },
+        credentials = M.Credentials,
         expiresAt = {
             type = "timestamp",
         },
@@ -924,13 +874,13 @@ M.ListJobRunsInput = {
         },
         states = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "states",
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -960,7 +910,7 @@ M.ListJobTemplatesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -998,20 +948,20 @@ M.ListManagedEndpointsInput = {
         },
         types = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "types",
             },
         },
         states = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "states",
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1041,7 +991,7 @@ M.ListSecurityConfigurationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1060,7 +1010,7 @@ M.ListSecurityConfigurationsOutput = {
     members = {
         securityConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.SecurityConfiguration,
         },
         nextToken = {
             type = "string",
@@ -1086,8 +1036,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1121,13 +1071,13 @@ M.ListVirtualClustersInput = {
         },
         states = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "states",
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1152,7 +1102,7 @@ M.ListVirtualClustersOutput = {
     members = {
         virtualClusters = {
             type = "list",
-            member_type = "structure",
+            member = M.VirtualCluster,
         },
         nextToken = {
             type = "string",
@@ -1190,8 +1140,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1215,7 +1165,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -1239,12 +1189,12 @@ M.Configuration = {
         },
         properties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         configurations = {
             type = "list",
-            member_type = "structure",
+            member = M.Configuration,
         },
     },
 }
@@ -1254,11 +1204,9 @@ M.ConfigurationOverrides = {
     members = {
         applicationConfiguration = {
             type = "list",
-            member_type = "structure",
+            member = M.Configuration,
         },
-        monitoringConfiguration = {
-            type = "structure",
-        },
+        monitoringConfiguration = M.MonitoringConfiguration,
     },
 }
 
@@ -1267,11 +1215,9 @@ M.ParametricConfigurationOverrides = {
     members = {
         applicationConfiguration = {
             type = "list",
-            member_type = "structure",
+            member = M.Configuration,
         },
-        monitoringConfiguration = {
-            type = "structure",
-        },
+        monitoringConfiguration = M.ParametricMonitoringConfiguration,
     },
 }
 
@@ -1312,9 +1258,7 @@ M.CreateManagedEndpointInput = {
         certificateArn = {
             type = "string",
         },
-        configurationOverrides = {
-            type = "structure",
-        },
+        configurationOverrides = M.ConfigurationOverrides,
         clientToken = {
             type = "string",
             traits = {
@@ -1323,8 +1267,8 @@ M.CreateManagedEndpointInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1359,12 +1303,8 @@ M.Endpoint = {
         certificateArn = {
             type = "string",
         },
-        certificateAuthority = {
-            type = "structure",
-        },
-        configurationOverrides = {
-            type = "structure",
-        },
+        certificateAuthority = M.Certificate,
+        configurationOverrides = M.ConfigurationOverrides,
         serverUrl = {
             type = "string",
         },
@@ -1376,7 +1316,7 @@ M.Endpoint = {
         },
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         stateDetails = {
             type = "string",
@@ -1386,8 +1326,8 @@ M.Endpoint = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1419,12 +1359,8 @@ M.JobRun = {
         releaseLabel = {
             type = "string",
         },
-        configurationOverrides = {
-            type = "structure",
-        },
-        jobDriver = {
-            type = "structure",
-        },
+        configurationOverrides = M.ConfigurationOverrides,
+        jobDriver = M.JobDriver,
         createdAt = {
             type = "timestamp",
         },
@@ -1442,15 +1378,11 @@ M.JobRun = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        retryPolicyConfiguration = {
-            type = "structure",
-        },
-        retryPolicyExecution = {
-            type = "structure",
-        },
+        retryPolicyConfiguration = M.RetryPolicyConfiguration,
+        retryPolicyExecution = M.RetryPolicyExecution,
     },
 }
 
@@ -1469,24 +1401,19 @@ M.JobTemplateData = {
                 required = true,
             },
         },
-        configurationOverrides = {
-            type = "structure",
-        },
-        jobDriver = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        configurationOverrides = M.ParametricConfigurationOverrides,
+        jobDriver = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.JobDriver }),
         parameterConfiguration = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.TemplateParameterConfiguration,
         },
         jobTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1516,28 +1443,22 @@ M.StartJobRunInput = {
         releaseLabel = {
             type = "string",
         },
-        jobDriver = {
-            type = "structure",
-        },
-        configurationOverrides = {
-            type = "structure",
-        },
+        jobDriver = M.JobDriver,
+        configurationOverrides = M.ConfigurationOverrides,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         jobTemplateId = {
             type = "string",
         },
         jobTemplateParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        retryPolicyConfiguration = {
-            type = "structure",
-        },
+        retryPolicyConfiguration = M.RetryPolicyConfiguration,
     },
 }
 
@@ -1556,16 +1477,13 @@ M.CreateJobTemplateInput = {
                 required = true,
             },
         },
-        jobTemplateData = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        jobTemplateData = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.JobTemplateData }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         kmsKeyArn = {
             type = "string",
@@ -1576,18 +1494,14 @@ M.CreateJobTemplateInput = {
 M.DescribeJobRunOutput = {
     type = "structure",
     members = {
-        jobRun = {
-            type = "structure",
-        },
+        jobRun = M.JobRun,
     },
 }
 
 M.DescribeManagedEndpointOutput = {
     type = "structure",
     members = {
-        endpoint = {
-            type = "structure",
-        },
+        endpoint = M.Endpoint,
     },
 }
 
@@ -1611,15 +1525,12 @@ M.JobTemplate = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        jobTemplateData = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        jobTemplateData = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.JobTemplateData }),
         kmsKeyArn = {
             type = "string",
         },
@@ -1632,9 +1543,7 @@ M.JobTemplate = {
 M.DescribeJobTemplateOutput = {
     type = "structure",
     members = {
-        jobTemplate = {
-            type = "structure",
-        },
+        jobTemplate = M.JobTemplate,
     },
 }
 
@@ -1643,7 +1552,7 @@ M.ListJobRunsOutput = {
     members = {
         jobRuns = {
             type = "list",
-            member_type = "structure",
+            member = M.JobRun,
         },
         nextToken = {
             type = "string",
@@ -1656,7 +1565,7 @@ M.ListManagedEndpointsOutput = {
     members = {
         endpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.Endpoint,
         },
         nextToken = {
             type = "string",
@@ -1669,7 +1578,7 @@ M.ListJobTemplatesOutput = {
     members = {
         templates = {
             type = "list",
-            member_type = "structure",
+            member = M.JobTemplate,
         },
         nextToken = {
             type = "string",

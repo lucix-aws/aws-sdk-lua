@@ -4146,73 +4146,73 @@ local record TooManyUpdates
     Message: string
 end
 
-local type ConnectionStatus = "connected" | "notconnected"
-
-local type OperatingSystem = "WINDOWS" | "AMAZON_LINUX" | "AMAZON_LINUX_2" | "AMAZON_LINUX_2022" | "UBUNTU" | "REDHAT_ENTERPRISE_LINUX" | "SUSE" | "CENTOS" | "ORACLE_LINUX" | "DEBIAN" | "MACOS" | "RASPBIAN" | "ROCKY_LINUX" | "ALMA_LINUX" | "AMAZON_LINUX_2023"
-
-local type PatchProperty = "PRODUCT" | "PRODUCT_FAMILY" | "CLASSIFICATION" | "MSRC_SEVERITY" | "PRIORITY" | "SEVERITY"
-
-local type ReviewStatus = "APPROVED" | "NOT_REVIEWED" | "PENDING" | "REJECTED"
-
-local type MaintenanceWindowExecutionStatus = "PENDING" | "IN_PROGRESS" | "SUCCESS" | "FAILED" | "TIMED_OUT" | "CANCELLING" | "CANCELLED" | "SKIPPED_OVERLAPPING"
-
-local type ResourceTypeForTagging = "Document" | "ManagedInstance" | "MaintenanceWindow" | "Parameter" | "PatchBaseline" | "OpsItem" | "OpsMetadata" | "Automation" | "Association"
-
-local type DocumentFormat = "YAML" | "JSON" | "TEXT"
-
-local type StopType = "Complete" | "Cancel"
-
-local type CommandInvocationStatus = "Pending" | "InProgress" | "Delayed" | "Success" | "Cancelled" | "TimedOut" | "Failed" | "Cancelling"
-
-local type OpsItemStatus = "Open" | "InProgress" | "Resolved" | "Pending" | "TimedOut" | "Cancelling" | "Cancelled" | "Failed" | "CompletedWithSuccess" | "CompletedWithFailure" | "Scheduled" | "RunbookInProgress" | "PendingChangeCalendarOverride" | "ChangeCalendarOverrideApproved" | "ChangeCalendarOverrideRejected" | "PendingApproval" | "Approved" | "Revoked" | "Rejected" | "Closed"
-
-local type ComplianceUploadType = "COMPLETE" | "PARTIAL"
-
-local type DocumentPermissionType = "Share"
-
-local type MaintenanceWindowTaskCutoffBehavior = "CONTINUE_TASK" | "CANCEL_TASK"
-
-local type CalendarState = "OPEN" | "CLOSED"
-
-local type PatchAction = "ALLOW_AS_DEPENDENCY" | "BLOCK"
-
-local type ParameterType = "String" | "StringList" | "SecureString"
-
-local type InventorySchemaDeleteOption = "DisableSchema" | "DeleteSchema"
-
-local type MaintenanceWindowResourceType = "INSTANCE" | "RESOURCE_GROUP"
-
-local type PatchComplianceLevel = "CRITICAL" | "HIGH" | "MEDIUM" | "LOW" | "INFORMATIONAL" | "UNSPECIFIED"
-
-local type ExecutionMode = "Auto" | "Interactive"
-
-local type SignalType = "Approve" | "Reject" | "StartStep" | "StopStep" | "Resume" | "Revoke"
-
-local type ExecutionPreviewStatus = "Pending" | "InProgress" | "Success" | "Failed"
-
-local type AssociationComplianceSeverity = "CRITICAL" | "HIGH" | "MEDIUM" | "LOW" | "UNSPECIFIED"
-
-local type ParameterTier = "Standard" | "Advanced" | "Intelligent-Tiering"
-
-local type AssociationSyncCompliance = "AUTO" | "MANUAL"
-
-local type MaintenanceWindowTaskType = "RUN_COMMAND" | "AUTOMATION" | "STEP_FUNCTIONS" | "LAMBDA"
-
-local type DocumentMetadataEnum = "DocumentReviews"
-
 local type DocumentStatus = "Creating" | "Active" | "Updating" | "Deleting" | "Failed"
 
 local type SessionState = "Active" | "History"
 
 local type PatchSet = "OS" | "APPLICATION"
 
+local type DocumentPermissionType = "Share"
+
+local type ParameterType = "String" | "StringList" | "SecureString"
+
+local type MaintenanceWindowResourceType = "INSTANCE" | "RESOURCE_GROUP"
+
+local type PatchComplianceLevel = "CRITICAL" | "HIGH" | "MEDIUM" | "LOW" | "INFORMATIONAL" | "UNSPECIFIED"
+
+local type DocumentType = "Command" | "Policy" | "Automation" | "Session" | "Package" | "ApplicationConfiguration" | "ApplicationConfigurationSchema" | "DeploymentStrategy" | "ChangeCalendar" | "Automation.ChangeTemplate" | "ProblemAnalysis" | "ProblemAnalysisTemplate" | "CloudFormation" | "ConformancePackTemplate" | "QuickSetup" | "ManualApprovalPolicy" | "AutoApprovalPolicy"
+
+local type CalendarState = "OPEN" | "CLOSED"
+
+local type PatchProperty = "PRODUCT" | "PRODUCT_FAMILY" | "CLASSIFICATION" | "MSRC_SEVERITY" | "PRIORITY" | "SEVERITY"
+
+local type OperatingSystem = "WINDOWS" | "AMAZON_LINUX" | "AMAZON_LINUX_2" | "AMAZON_LINUX_2022" | "UBUNTU" | "REDHAT_ENTERPRISE_LINUX" | "SUSE" | "CENTOS" | "ORACLE_LINUX" | "DEBIAN" | "MACOS" | "RASPBIAN" | "ROCKY_LINUX" | "ALMA_LINUX" | "AMAZON_LINUX_2023"
+
+local type ComplianceUploadType = "COMPLETE" | "PARTIAL"
+
+local type StopType = "Complete" | "Cancel"
+
+local type MaintenanceWindowExecutionStatus = "PENDING" | "IN_PROGRESS" | "SUCCESS" | "FAILED" | "TIMED_OUT" | "CANCELLING" | "CANCELLED" | "SKIPPED_OVERLAPPING"
+
+local type AssociationComplianceSeverity = "CRITICAL" | "HIGH" | "MEDIUM" | "LOW" | "UNSPECIFIED"
+
+local type DocumentFormat = "YAML" | "JSON" | "TEXT"
+
+local type CommandInvocationStatus = "Pending" | "InProgress" | "Delayed" | "Success" | "Cancelled" | "TimedOut" | "Failed" | "Cancelling"
+
+local type PatchAction = "ALLOW_AS_DEPENDENCY" | "BLOCK"
+
+local type InventorySchemaDeleteOption = "DisableSchema" | "DeleteSchema"
+
+local type MaintenanceWindowTaskCutoffBehavior = "CONTINUE_TASK" | "CANCEL_TASK"
+
 local type PatchComplianceStatus = "COMPLIANT" | "NON_COMPLIANT"
 
 local type DocumentHashType = "Sha256" | "Sha1"
 
-local type DocumentType = "Command" | "Policy" | "Automation" | "Session" | "Package" | "ApplicationConfiguration" | "ApplicationConfigurationSchema" | "DeploymentStrategy" | "ChangeCalendar" | "Automation.ChangeTemplate" | "ProblemAnalysis" | "ProblemAnalysisTemplate" | "CloudFormation" | "ConformancePackTemplate" | "QuickSetup" | "ManualApprovalPolicy" | "AutoApprovalPolicy"
-
 local type AccessRequestStatus = "Approved" | "Rejected" | "Revoked" | "Expired" | "Pending"
+
+local type SignalType = "Approve" | "Reject" | "StartStep" | "StopStep" | "Resume" | "Revoke"
+
+local type ExecutionMode = "Auto" | "Interactive"
+
+local type ConnectionStatus = "connected" | "notconnected"
+
+local type ReviewStatus = "APPROVED" | "NOT_REVIEWED" | "PENDING" | "REJECTED"
+
+local type ExecutionPreviewStatus = "Pending" | "InProgress" | "Success" | "Failed"
+
+local type OpsItemStatus = "Open" | "InProgress" | "Resolved" | "Pending" | "TimedOut" | "Cancelling" | "Cancelled" | "Failed" | "CompletedWithSuccess" | "CompletedWithFailure" | "Scheduled" | "RunbookInProgress" | "PendingChangeCalendarOverride" | "ChangeCalendarOverrideApproved" | "ChangeCalendarOverrideRejected" | "PendingApproval" | "Approved" | "Revoked" | "Rejected" | "Closed"
+
+local type ParameterTier = "Standard" | "Advanced" | "Intelligent-Tiering"
+
+local type AssociationSyncCompliance = "AUTO" | "MANUAL"
+
+local type ResourceTypeForTagging = "Document" | "ManagedInstance" | "MaintenanceWindow" | "Parameter" | "PatchBaseline" | "OpsItem" | "OpsMetadata" | "Automation" | "Association"
+
+local type MaintenanceWindowTaskType = "RUN_COMMAND" | "AUTOMATION" | "STEP_FUNCTIONS" | "LAMBDA"
+
+local type DocumentMetadataEnum = "DocumentReviews"
 
 local record M
     AddTagsToResourceInput: AddTagsToResourceInput

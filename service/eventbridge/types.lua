@@ -113,7 +113,7 @@ M.ApiDestination = {
             type = "string",
         },
         InvocationRateLimitPerSecond = {
-            type = "number",
+            type = "integer",
         },
         CreationTime = {
             type = "timestamp",
@@ -158,13 +158,19 @@ M.Archive = {
             type = "string",
         },
         RetentionDays = {
-            type = "number",
+            type = "integer",
         },
         SizeBytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         EventCount = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         CreationTime = {
             type = "timestamp",
@@ -254,7 +260,7 @@ M.CreateApiDestinationInput = {
             },
         },
         InvocationRateLimitPerSecond = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -319,7 +325,7 @@ M.CreateArchiveInput = {
             type = "string",
         },
         RetentionDays = {
-            type = "number",
+            type = "integer",
         },
         KmsKeyIdentifier = {
             type = "string",
@@ -412,12 +418,9 @@ M.ConnectivityResourceConfigurationArn = {
 M.ConnectivityResourceParameters = {
     type = "structure",
     members = {
-        ResourceParameters = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ResourceParameters = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConnectivityResourceConfigurationArn }),
     },
 }
 
@@ -432,6 +435,9 @@ M.ConnectionBodyParameter = {
         },
         IsValueSecret = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -447,6 +453,9 @@ M.ConnectionHeaderParameter = {
         },
         IsValueSecret = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -462,6 +471,9 @@ M.ConnectionQueryStringParameter = {
         },
         IsValueSecret = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -471,15 +483,15 @@ M.ConnectionHttpParameters = {
     members = {
         HeaderParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.ConnectionHeaderParameter,
         },
         QueryStringParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.ConnectionQueryStringParameter,
         },
         BodyParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.ConnectionBodyParameter,
         },
     },
 }
@@ -511,12 +523,9 @@ M.ConnectionOAuthHttpMethod = {
 M.CreateConnectionOAuthRequestParameters = {
     type = "structure",
     members = {
-        ClientParameters = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ClientParameters = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CreateConnectionOAuthClientRequestParameters }),
         AuthorizationEndpoint = {
             type = "string",
             traits = {
@@ -529,30 +538,18 @@ M.CreateConnectionOAuthRequestParameters = {
                 required = true,
             },
         },
-        OAuthHttpParameters = {
-            type = "structure",
-        },
+        OAuthHttpParameters = M.ConnectionHttpParameters,
     },
 }
 
 M.CreateConnectionAuthRequestParameters = {
     type = "structure",
     members = {
-        BasicAuthParameters = {
-            type = "structure",
-        },
-        OAuthParameters = {
-            type = "structure",
-        },
-        ApiKeyAuthParameters = {
-            type = "structure",
-        },
-        InvocationHttpParameters = {
-            type = "structure",
-        },
-        ConnectivityParameters = {
-            type = "structure",
-        },
+        BasicAuthParameters = M.CreateConnectionBasicAuthRequestParameters,
+        OAuthParameters = M.CreateConnectionOAuthRequestParameters,
+        ApiKeyAuthParameters = M.CreateConnectionApiKeyAuthRequestParameters,
+        InvocationHttpParameters = M.ConnectionHttpParameters,
+        ConnectivityParameters = M.ConnectivityResourceParameters,
     },
 }
 
@@ -574,15 +571,10 @@ M.CreateConnectionInput = {
                 required = true,
             },
         },
-        AuthParameters = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        InvocationConnectivityParameters = {
-            type = "structure",
-        },
+        AuthParameters = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CreateConnectionAuthRequestParameters }),
+        InvocationConnectivityParameters = M.ConnectivityResourceParameters,
         KmsKeyIdentifier = {
             type = "string",
         },
@@ -682,30 +674,21 @@ M.Secondary = {
 M.FailoverConfig = {
     type = "structure",
     members = {
-        Primary = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Secondary = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Primary = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Primary }),
+        Secondary = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Secondary }),
     },
 }
 
 M.RoutingConfig = {
     type = "structure",
     members = {
-        FailoverConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        FailoverConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FailoverConfig }),
     },
 }
 
@@ -721,18 +704,13 @@ M.CreateEndpointInput = {
         Description = {
             type = "string",
         },
-        RoutingConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ReplicationConfig = {
-            type = "structure",
-        },
+        RoutingConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RoutingConfig }),
+        ReplicationConfig = M.ReplicationConfig,
         EventBuses = {
             type = "list",
-            member_type = "structure",
+            member = M.EndpointEventBus,
             traits = {
                 required = true,
             },
@@ -762,15 +740,11 @@ M.CreateEndpointOutput = {
         Arn = {
             type = "string",
         },
-        RoutingConfig = {
-            type = "structure",
-        },
-        ReplicationConfig = {
-            type = "structure",
-        },
+        RoutingConfig = M.RoutingConfig,
+        ReplicationConfig = M.ReplicationConfig,
         EventBuses = {
             type = "list",
-            member_type = "structure",
+            member = M.EndpointEventBus,
         },
         RoleArn = {
             type = "string",
@@ -850,15 +824,11 @@ M.CreateEventBusInput = {
         KmsKeyIdentifier = {
             type = "string",
         },
-        DeadLetterConfig = {
-            type = "structure",
-        },
-        LogConfig = {
-            type = "structure",
-        },
+        DeadLetterConfig = M.DeadLetterConfig,
+        LogConfig = M.LogConfig,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -875,12 +845,8 @@ M.CreateEventBusOutput = {
         KmsKeyIdentifier = {
             type = "string",
         },
-        DeadLetterConfig = {
-            type = "structure",
-        },
-        LogConfig = {
-            type = "structure",
-        },
+        DeadLetterConfig = M.DeadLetterConfig,
+        LogConfig = M.LogConfig,
     },
 }
 
@@ -1093,6 +1059,9 @@ M.DeleteRuleInput = {
         },
         Force = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1148,7 +1117,7 @@ M.DescribeApiDestinationOutput = {
             type = "string",
         },
         InvocationRateLimitPerSecond = {
-            type = "number",
+            type = "integer",
         },
         CreationTime = {
             type = "timestamp",
@@ -1199,13 +1168,19 @@ M.DescribeArchiveOutput = {
             type = "string",
         },
         RetentionDays = {
-            type = "number",
+            type = "integer",
         },
         SizeBytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         EventCount = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         CreationTime = {
             type = "timestamp",
@@ -1264,12 +1239,9 @@ M.DescribeConnectionResourceParameters = {
 M.DescribeConnectionConnectivityParameters = {
     type = "structure",
     members = {
-        ResourceParameters = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ResourceParameters = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DescribeConnectionResourceParameters }),
     },
 }
 
@@ -1285,39 +1257,25 @@ M.ConnectionOAuthClientResponseParameters = {
 M.ConnectionOAuthResponseParameters = {
     type = "structure",
     members = {
-        ClientParameters = {
-            type = "structure",
-        },
+        ClientParameters = M.ConnectionOAuthClientResponseParameters,
         AuthorizationEndpoint = {
             type = "string",
         },
         HttpMethod = {
             type = "string",
         },
-        OAuthHttpParameters = {
-            type = "structure",
-        },
+        OAuthHttpParameters = M.ConnectionHttpParameters,
     },
 }
 
 M.ConnectionAuthResponseParameters = {
     type = "structure",
     members = {
-        BasicAuthParameters = {
-            type = "structure",
-        },
-        OAuthParameters = {
-            type = "structure",
-        },
-        ApiKeyAuthParameters = {
-            type = "structure",
-        },
-        InvocationHttpParameters = {
-            type = "structure",
-        },
-        ConnectivityParameters = {
-            type = "structure",
-        },
+        BasicAuthParameters = M.ConnectionBasicAuthResponseParameters,
+        OAuthParameters = M.ConnectionOAuthResponseParameters,
+        ApiKeyAuthParameters = M.ConnectionApiKeyAuthResponseParameters,
+        InvocationHttpParameters = M.ConnectionHttpParameters,
+        ConnectivityParameters = M.DescribeConnectionConnectivityParameters,
     },
 }
 
@@ -1333,9 +1291,7 @@ M.DescribeConnectionOutput = {
         Description = {
             type = "string",
         },
-        InvocationConnectivityParameters = {
-            type = "structure",
-        },
+        InvocationConnectivityParameters = M.DescribeConnectionConnectivityParameters,
         ConnectionState = {
             type = "string",
         },
@@ -1351,9 +1307,7 @@ M.DescribeConnectionOutput = {
         KmsKeyIdentifier = {
             type = "string",
         },
-        AuthParameters = {
-            type = "structure",
-        },
+        AuthParameters = M.ConnectionAuthResponseParameters,
         CreationTime = {
             type = "timestamp",
         },
@@ -1393,15 +1347,11 @@ M.DescribeEndpointOutput = {
         Arn = {
             type = "string",
         },
-        RoutingConfig = {
-            type = "structure",
-        },
-        ReplicationConfig = {
-            type = "structure",
-        },
+        RoutingConfig = M.RoutingConfig,
+        ReplicationConfig = M.ReplicationConfig,
         EventBuses = {
             type = "list",
-            member_type = "structure",
+            member = M.EndpointEventBus,
         },
         RoleArn = {
             type = "string",
@@ -1451,15 +1401,11 @@ M.DescribeEventBusOutput = {
         KmsKeyIdentifier = {
             type = "string",
         },
-        DeadLetterConfig = {
-            type = "structure",
-        },
+        DeadLetterConfig = M.DeadLetterConfig,
         Policy = {
             type = "string",
         },
-        LogConfig = {
-            type = "structure",
-        },
+        LogConfig = M.LogConfig,
         CreationTime = {
             type = "timestamp",
         },
@@ -1558,7 +1504,7 @@ M.ReplayDestination = {
         },
         FilterArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1584,9 +1530,7 @@ M.DescribeReplayOutput = {
         EventSourceArn = {
             type = "string",
         },
-        Destination = {
-            type = "structure",
-        },
+        Destination = M.ReplayDestination,
         EventStartTime = {
             type = "timestamp",
         },
@@ -1713,7 +1657,7 @@ M.ListApiDestinationsInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1723,7 +1667,7 @@ M.ListApiDestinationsOutput = {
     members = {
         ApiDestinations = {
             type = "list",
-            member_type = "structure",
+            member = M.ApiDestination,
         },
         NextToken = {
             type = "string",
@@ -1747,7 +1691,7 @@ M.ListArchivesInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1757,7 +1701,7 @@ M.ListArchivesOutput = {
     members = {
         Archives = {
             type = "list",
-            member_type = "structure",
+            member = M.Archive,
         },
         NextToken = {
             type = "string",
@@ -1778,7 +1722,7 @@ M.ListConnectionsInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1818,7 +1762,7 @@ M.ListConnectionsOutput = {
     members = {
         Connections = {
             type = "list",
-            member_type = "structure",
+            member = M.Connection,
         },
         NextToken = {
             type = "string",
@@ -1839,7 +1783,7 @@ M.ListEndpointsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1856,15 +1800,11 @@ M.Endpoint = {
         Arn = {
             type = "string",
         },
-        RoutingConfig = {
-            type = "structure",
-        },
-        ReplicationConfig = {
-            type = "structure",
-        },
+        RoutingConfig = M.RoutingConfig,
+        ReplicationConfig = M.ReplicationConfig,
         EventBuses = {
             type = "list",
-            member_type = "structure",
+            member = M.EndpointEventBus,
         },
         RoleArn = {
             type = "string",
@@ -1895,7 +1835,7 @@ M.ListEndpointsOutput = {
     members = {
         Endpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.Endpoint,
         },
         NextToken = {
             type = "string",
@@ -1913,7 +1853,7 @@ M.ListEventBusesInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1947,7 +1887,7 @@ M.ListEventBusesOutput = {
     members = {
         EventBuses = {
             type = "list",
-            member_type = "structure",
+            member = M.EventBus,
         },
         NextToken = {
             type = "string",
@@ -1965,7 +1905,7 @@ M.ListEventSourcesInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1999,7 +1939,7 @@ M.ListEventSourcesOutput = {
     members = {
         EventSources = {
             type = "list",
-            member_type = "structure",
+            member = M.EventSource,
         },
         NextToken = {
             type = "string",
@@ -2020,7 +1960,7 @@ M.ListPartnerEventSourceAccountsInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2048,7 +1988,7 @@ M.ListPartnerEventSourceAccountsOutput = {
     members = {
         PartnerEventSourceAccounts = {
             type = "list",
-            member_type = "structure",
+            member = M.PartnerEventSourceAccount,
         },
         NextToken = {
             type = "string",
@@ -2069,7 +2009,7 @@ M.ListPartnerEventSourcesInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2091,7 +2031,7 @@ M.ListPartnerEventSourcesOutput = {
     members = {
         PartnerEventSources = {
             type = "list",
-            member_type = "structure",
+            member = M.PartnerEventSource,
         },
         NextToken = {
             type = "string",
@@ -2115,7 +2055,7 @@ M.ListReplaysInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2158,7 +2098,7 @@ M.ListReplaysOutput = {
     members = {
         Replays = {
             type = "list",
-            member_type = "structure",
+            member = M.Replay,
         },
         NextToken = {
             type = "string",
@@ -2182,7 +2122,7 @@ M.ListRuleNamesByTargetInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2192,7 +2132,7 @@ M.ListRuleNamesByTargetOutput = {
     members = {
         RuleNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -2213,7 +2153,7 @@ M.ListRulesInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2256,7 +2196,7 @@ M.ListRulesOutput = {
     members = {
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.Rule,
         },
         NextToken = {
             type = "string",
@@ -2281,7 +2221,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2302,7 +2242,7 @@ M.ListTargetsByRuleInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2311,7 +2251,10 @@ M.BatchArrayProperties = {
     type = "structure",
     members = {
         Size = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2320,7 +2263,10 @@ M.BatchRetryStrategy = {
     type = "structure",
     members = {
         Attempts = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2340,12 +2286,8 @@ M.BatchParameters = {
                 required = true,
             },
         },
-        ArrayProperties = {
-            type = "structure",
-        },
-        RetryStrategy = {
-            type = "structure",
-        },
+        ArrayProperties = M.BatchArrayProperties,
+        RetryStrategy = M.BatchRetryStrategy,
     },
 }
 
@@ -2359,10 +2301,16 @@ M.CapacityProviderStrategyItem = {
             },
         },
         weight = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         base = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2378,14 +2326,14 @@ M.AwsVpcConfiguration = {
     members = {
         Subnets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         SecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AssignPublicIp = {
             type = "string",
@@ -2396,9 +2344,7 @@ M.AwsVpcConfiguration = {
 M.NetworkConfiguration = {
     type = "structure",
     members = {
-        awsvpcConfiguration = {
-            type = "structure",
-        },
+        awsvpcConfiguration = M.AwsVpcConfiguration,
     },
 }
 
@@ -2451,14 +2397,12 @@ M.EcsParameters = {
             },
         },
         TaskCount = {
-            type = "number",
+            type = "integer",
         },
         LaunchType = {
             type = "string",
         },
-        NetworkConfiguration = {
-            type = "structure",
-        },
+        NetworkConfiguration = M.NetworkConfiguration,
         PlatformVersion = {
             type = "string",
         },
@@ -2467,21 +2411,27 @@ M.EcsParameters = {
         },
         CapacityProviderStrategy = {
             type = "list",
-            member_type = "structure",
+            member = M.CapacityProviderStrategyItem,
         },
         EnableECSManagedTags = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         EnableExecuteCommand = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         PlacementConstraints = {
             type = "list",
-            member_type = "structure",
+            member = M.PlacementConstraint,
         },
         PlacementStrategy = {
             type = "list",
-            member_type = "structure",
+            member = M.PlacementStrategy,
         },
         PropagateTags = {
             type = "string",
@@ -2491,7 +2441,7 @@ M.EcsParameters = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2501,17 +2451,17 @@ M.HttpParameters = {
     members = {
         PathParameterValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         HeaderParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         QueryStringParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2521,8 +2471,8 @@ M.InputTransformer = {
     members = {
         InputPathsMap = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         InputTemplate = {
             type = "string",
@@ -2568,10 +2518,13 @@ M.RedshiftDataParameters = {
         },
         WithEvent = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Sqls = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2580,10 +2533,10 @@ M.RetryPolicy = {
     type = "structure",
     members = {
         MaximumRetryAttempts = {
-            type = "number",
+            type = "integer",
         },
         MaximumEventAgeInSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2599,7 +2552,7 @@ M.RunCommandTarget = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2612,7 +2565,7 @@ M.RunCommandParameters = {
     members = {
         RunCommandTargets = {
             type = "list",
-            member_type = "structure",
+            member = M.RunCommandTarget,
             traits = {
                 required = true,
             },
@@ -2643,7 +2596,7 @@ M.SageMakerPipelineParameters = {
     members = {
         PipelineParameterList = {
             type = "list",
-            member_type = "structure",
+            member = M.SageMakerPipelineParameter,
         },
     },
 }
@@ -2681,42 +2634,18 @@ M.Target = {
         InputPath = {
             type = "string",
         },
-        InputTransformer = {
-            type = "structure",
-        },
-        KinesisParameters = {
-            type = "structure",
-        },
-        RunCommandParameters = {
-            type = "structure",
-        },
-        EcsParameters = {
-            type = "structure",
-        },
-        BatchParameters = {
-            type = "structure",
-        },
-        SqsParameters = {
-            type = "structure",
-        },
-        HttpParameters = {
-            type = "structure",
-        },
-        RedshiftDataParameters = {
-            type = "structure",
-        },
-        SageMakerPipelineParameters = {
-            type = "structure",
-        },
-        DeadLetterConfig = {
-            type = "structure",
-        },
-        RetryPolicy = {
-            type = "structure",
-        },
-        AppSyncParameters = {
-            type = "structure",
-        },
+        InputTransformer = M.InputTransformer,
+        KinesisParameters = M.KinesisParameters,
+        RunCommandParameters = M.RunCommandParameters,
+        EcsParameters = M.EcsParameters,
+        BatchParameters = M.BatchParameters,
+        SqsParameters = M.SqsParameters,
+        HttpParameters = M.HttpParameters,
+        RedshiftDataParameters = M.RedshiftDataParameters,
+        SageMakerPipelineParameters = M.SageMakerPipelineParameters,
+        DeadLetterConfig = M.DeadLetterConfig,
+        RetryPolicy = M.RetryPolicy,
+        AppSyncParameters = M.AppSyncParameters,
     },
 }
 
@@ -2725,7 +2654,7 @@ M.ListTargetsByRuleOutput = {
     members = {
         Targets = {
             type = "list",
-            member_type = "structure",
+            member = M.Target,
         },
         NextToken = {
             type = "string",
@@ -2744,7 +2673,7 @@ M.PutEventsRequestEntry = {
         },
         Resources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DetailType = {
             type = "string",
@@ -2766,7 +2695,7 @@ M.PutEventsInput = {
     members = {
         Entries = {
             type = "list",
-            member_type = "structure",
+            member = M.PutEventsRequestEntry,
             traits = {
                 required = true,
             },
@@ -2796,11 +2725,14 @@ M.PutEventsOutput = {
     type = "structure",
     members = {
         FailedEntryCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         Entries = {
             type = "list",
-            member_type = "structure",
+            member = M.PutEventsResultEntry,
         },
     },
 }
@@ -2816,7 +2748,7 @@ M.PutPartnerEventsRequestEntry = {
         },
         Resources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DetailType = {
             type = "string",
@@ -2832,7 +2764,7 @@ M.PutPartnerEventsInput = {
     members = {
         Entries = {
             type = "list",
-            member_type = "structure",
+            member = M.PutPartnerEventsRequestEntry,
             traits = {
                 required = true,
             },
@@ -2859,11 +2791,14 @@ M.PutPartnerEventsOutput = {
     type = "structure",
     members = {
         FailedEntryCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         Entries = {
             type = "list",
-            member_type = "structure",
+            member = M.PutPartnerEventsResultEntry,
         },
     },
 }
@@ -2917,9 +2852,7 @@ M.PutPermissionInput = {
         StatementId = {
             type = "string",
         },
-        Condition = {
-            type = "structure",
-        },
+        Condition = M.Condition,
         Policy = {
             type = "string",
         },
@@ -2956,7 +2889,7 @@ M.PutRuleInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         EventBusName = {
             type = "string",
@@ -2987,7 +2920,7 @@ M.PutTargetsInput = {
         },
         Targets = {
             type = "list",
-            member_type = "structure",
+            member = M.Target,
             traits = {
                 required = true,
             },
@@ -3014,11 +2947,14 @@ M.PutTargetsOutput = {
     type = "structure",
     members = {
         FailedEntryCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         FailedEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.PutTargetsResultEntry,
         },
     },
 }
@@ -3031,6 +2967,9 @@ M.RemovePermissionInput = {
         },
         RemoveAllPermissions = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         EventBusName = {
             type = "string",
@@ -3056,13 +2995,16 @@ M.RemoveTargetsInput = {
         },
         Ids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         Force = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -3086,11 +3028,14 @@ M.RemoveTargetsOutput = {
     type = "structure",
     members = {
         FailedEntryCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         FailedEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.RemoveTargetsResultEntry,
         },
     },
 }
@@ -3125,12 +3070,9 @@ M.StartReplayInput = {
                 required = true,
             },
         },
-        Destination = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Destination = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ReplayDestination }),
     },
 }
 
@@ -3163,7 +3105,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -3198,6 +3140,9 @@ M.TestEventPatternOutput = {
     members = {
         Result = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -3213,7 +3158,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3247,7 +3192,7 @@ M.UpdateApiDestinationInput = {
             type = "string",
         },
         InvocationRateLimitPerSecond = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3286,7 +3231,7 @@ M.UpdateArchiveInput = {
             type = "string",
         },
         RetentionDays = {
-            type = "number",
+            type = "integer",
         },
         KmsKeyIdentifier = {
             type = "string",
@@ -3351,39 +3296,25 @@ M.UpdateConnectionOAuthClientRequestParameters = {
 M.UpdateConnectionOAuthRequestParameters = {
     type = "structure",
     members = {
-        ClientParameters = {
-            type = "structure",
-        },
+        ClientParameters = M.UpdateConnectionOAuthClientRequestParameters,
         AuthorizationEndpoint = {
             type = "string",
         },
         HttpMethod = {
             type = "string",
         },
-        OAuthHttpParameters = {
-            type = "structure",
-        },
+        OAuthHttpParameters = M.ConnectionHttpParameters,
     },
 }
 
 M.UpdateConnectionAuthRequestParameters = {
     type = "structure",
     members = {
-        BasicAuthParameters = {
-            type = "structure",
-        },
-        OAuthParameters = {
-            type = "structure",
-        },
-        ApiKeyAuthParameters = {
-            type = "structure",
-        },
-        InvocationHttpParameters = {
-            type = "structure",
-        },
-        ConnectivityParameters = {
-            type = "structure",
-        },
+        BasicAuthParameters = M.UpdateConnectionBasicAuthRequestParameters,
+        OAuthParameters = M.UpdateConnectionOAuthRequestParameters,
+        ApiKeyAuthParameters = M.UpdateConnectionApiKeyAuthRequestParameters,
+        InvocationHttpParameters = M.ConnectionHttpParameters,
+        ConnectivityParameters = M.ConnectivityResourceParameters,
     },
 }
 
@@ -3402,12 +3333,8 @@ M.UpdateConnectionInput = {
         AuthorizationType = {
             type = "string",
         },
-        AuthParameters = {
-            type = "structure",
-        },
-        InvocationConnectivityParameters = {
-            type = "structure",
-        },
+        AuthParameters = M.UpdateConnectionAuthRequestParameters,
+        InvocationConnectivityParameters = M.ConnectivityResourceParameters,
         KmsKeyIdentifier = {
             type = "string",
         },
@@ -3447,15 +3374,11 @@ M.UpdateEndpointInput = {
         Description = {
             type = "string",
         },
-        RoutingConfig = {
-            type = "structure",
-        },
-        ReplicationConfig = {
-            type = "structure",
-        },
+        RoutingConfig = M.RoutingConfig,
+        ReplicationConfig = M.ReplicationConfig,
         EventBuses = {
             type = "list",
-            member_type = "structure",
+            member = M.EndpointEventBus,
         },
         RoleArn = {
             type = "string",
@@ -3472,15 +3395,11 @@ M.UpdateEndpointOutput = {
         Arn = {
             type = "string",
         },
-        RoutingConfig = {
-            type = "structure",
-        },
-        ReplicationConfig = {
-            type = "structure",
-        },
+        RoutingConfig = M.RoutingConfig,
+        ReplicationConfig = M.ReplicationConfig,
         EventBuses = {
             type = "list",
-            member_type = "structure",
+            member = M.EndpointEventBus,
         },
         RoleArn = {
             type = "string",
@@ -3509,12 +3428,8 @@ M.UpdateEventBusInput = {
         Description = {
             type = "string",
         },
-        DeadLetterConfig = {
-            type = "structure",
-        },
-        LogConfig = {
-            type = "structure",
-        },
+        DeadLetterConfig = M.DeadLetterConfig,
+        LogConfig = M.LogConfig,
     },
 }
 
@@ -3533,12 +3448,8 @@ M.UpdateEventBusOutput = {
         Description = {
             type = "string",
         },
-        DeadLetterConfig = {
-            type = "structure",
-        },
-        LogConfig = {
-            type = "structure",
-        },
+        DeadLetterConfig = M.DeadLetterConfig,
+        LogConfig = M.LogConfig,
     },
 }
 

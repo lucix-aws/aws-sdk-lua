@@ -16,7 +16,7 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AmazonMWAA"
-    cfg.signing_name = "amazonmwaa"
+    cfg.signing_name = "airflow"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end

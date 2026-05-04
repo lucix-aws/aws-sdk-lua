@@ -18,14 +18,14 @@ M.GetEntitlementsInput = {
         },
         Filter = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -34,10 +34,10 @@ M.EntitlementValue = {
     type = "structure",
     members = {
         IntegerValue = {
-            type = "number",
+            type = "integer",
         },
         DoubleValue = {
-            type = "number",
+            type = "double",
         },
         BooleanValue = {
             type = "boolean",
@@ -63,9 +63,7 @@ M.Entitlement = {
         CustomerAWSAccountId = {
             type = "string",
         },
-        Value = {
-            type = "structure",
-        },
+        Value = M.EntitlementValue,
         ExpirationDate = {
             type = "timestamp",
         },
@@ -80,7 +78,7 @@ M.GetEntitlementsOutput = {
     members = {
         Entitlements = {
             type = "list",
-            member_type = "structure",
+            member = M.Entitlement,
         },
         NextToken = {
             type = "string",

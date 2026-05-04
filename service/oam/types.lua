@@ -43,12 +43,8 @@ M.MetricConfiguration = {
 M.LinkConfiguration = {
     type = "structure",
     members = {
-        LogGroupConfiguration = {
-            type = "structure",
-        },
-        MetricConfiguration = {
-            type = "structure",
-        },
+        LogGroupConfiguration = M.LogGroupConfiguration,
+        MetricConfiguration = M.MetricConfiguration,
     },
 }
 
@@ -73,7 +69,7 @@ M.CreateLinkInput = {
         },
         ResourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -86,12 +82,10 @@ M.CreateLinkInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        LinkConfiguration = {
-            type = "structure",
-        },
+        LinkConfiguration = M.LinkConfiguration,
     },
 }
 
@@ -112,19 +106,17 @@ M.CreateLinkOutput = {
         },
         ResourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SinkArn = {
             type = "string",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        LinkConfiguration = {
-            type = "structure",
-        },
+        LinkConfiguration = M.LinkConfiguration,
     },
 }
 
@@ -203,8 +195,8 @@ M.CreateSinkInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -223,8 +215,8 @@ M.CreateSinkOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -309,19 +301,17 @@ M.GetLinkOutput = {
         },
         ResourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SinkArn = {
             type = "string",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        LinkConfiguration = {
-            type = "structure",
-        },
+        LinkConfiguration = M.LinkConfiguration,
     },
 }
 
@@ -354,8 +344,8 @@ M.GetSinkOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -391,7 +381,10 @@ M.ListAttachedLinksInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         NextToken = {
             type = "string",
@@ -416,7 +409,7 @@ M.ListAttachedLinksItem = {
         },
         ResourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -426,7 +419,7 @@ M.ListAttachedLinksOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.ListAttachedLinksItem,
             traits = {
                 required = true,
             },
@@ -441,7 +434,10 @@ M.ListLinksInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         NextToken = {
             type = "string",
@@ -463,7 +459,7 @@ M.ListLinksItem = {
         },
         ResourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SinkArn = {
             type = "string",
@@ -476,7 +472,7 @@ M.ListLinksOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.ListLinksItem,
             traits = {
                 required = true,
             },
@@ -491,7 +487,10 @@ M.ListSinksInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         NextToken = {
             type = "string",
@@ -519,7 +518,7 @@ M.ListSinksOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.ListSinksItem,
             traits = {
                 required = true,
             },
@@ -548,8 +547,8 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -609,8 +608,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -644,7 +643,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -668,14 +667,12 @@ M.UpdateLinkInput = {
         },
         ResourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        LinkConfiguration = {
-            type = "structure",
-        },
+        LinkConfiguration = M.LinkConfiguration,
         IncludeTags = {
             type = "boolean",
         },
@@ -699,19 +696,17 @@ M.UpdateLinkOutput = {
         },
         ResourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SinkArn = {
             type = "string",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        LinkConfiguration = {
-            type = "structure",
-        },
+        LinkConfiguration = M.LinkConfiguration,
     },
 }
 

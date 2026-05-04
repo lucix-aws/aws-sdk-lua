@@ -72,9 +72,7 @@ M.ParticipatingResourceID = {
 M.ParticipatingResource = {
     type = "structure",
     members = {
-        participatingResourceID = {
-            type = "union",
-        },
+        participatingResourceID = M.ParticipatingResourceID,
         launchStatus = {
             type = "string",
         },
@@ -130,7 +128,7 @@ M.LaunchAction = {
             type = "boolean",
         },
         order = {
-            type = "number",
+            type = "integer",
         },
         actionVersion = {
             type = "string",
@@ -140,8 +138,8 @@ M.LaunchAction = {
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.LaunchActionParameter,
         },
         description = {
             type = "string",
@@ -161,9 +159,7 @@ M.LaunchActionRunStatus = {
 M.LaunchActionRun = {
     type = "structure",
     members = {
-        action = {
-            type = "structure",
-        },
+        action = M.LaunchAction,
         runId = {
             type = "string",
         },
@@ -184,7 +180,7 @@ M.LaunchActionsStatus = {
         },
         runs = {
             type = "list",
-            member_type = "structure",
+            member = M.LaunchActionRun,
         },
     },
 }
@@ -201,9 +197,7 @@ M.ParticipatingServer = {
         launchStatus = {
             type = "string",
         },
-        launchActionsStatus = {
-            type = "structure",
-        },
+        launchActionsStatus = M.LaunchActionsStatus,
     },
 }
 
@@ -248,16 +242,16 @@ M.Job = {
         },
         participatingServers = {
             type = "list",
-            member_type = "structure",
+            member = M.ParticipatingServer,
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         participatingResources = {
             type = "list",
-            member_type = "structure",
+            member = M.ParticipatingResource,
         },
     },
 }
@@ -265,9 +259,7 @@ M.Job = {
 M.AssociateSourceNetworkStackOutput = {
     type = "structure",
     members = {
-        job = {
-            type = "structure",
-        },
+        job = M.Job,
     },
 }
 
@@ -301,8 +293,9 @@ M.InternalServerException = {
             },
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 http_header = "Retry-After",
             },
         },
@@ -425,7 +418,7 @@ M.ValidationException = {
         },
         fieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -452,8 +445,8 @@ M.ConversionProperties = {
     members = {
         volumeToConversionMap = {
             type = "map",
-            key_type = "string",
-            value_type = "map",
+            key = { type = "string" },
+            value = { type = "map" },
         },
         rootVolumeName = {
             type = "string",
@@ -466,13 +459,13 @@ M.ConversionProperties = {
         },
         volumeToVolumeSize = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "long" },
         },
         volumeToProductCodes = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
     },
 }
@@ -481,7 +474,10 @@ M.CPU = {
     type = "structure",
     members = {
         cores = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         modelName = {
             type = "string",
@@ -500,8 +496,8 @@ M.CreateExtendedSourceServerInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -580,7 +576,7 @@ M.DataReplicationInitiation = {
         },
         steps = {
             type = "list",
-            member_type = "structure",
+            member = M.DataReplicationInitiationStep,
         },
     },
 }
@@ -613,16 +609,28 @@ M.DataReplicationInfoReplicatedDisk = {
             type = "string",
         },
         totalStorageBytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         replicatedStorageBytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         rescannedStorageBytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         backloggedStorageBytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         volumeStatus = {
             type = "string",
@@ -641,17 +649,13 @@ M.DataReplicationInfo = {
         },
         replicatedDisks = {
             type = "list",
-            member_type = "structure",
+            member = M.DataReplicationInfoReplicatedDisk,
         },
         dataReplicationState = {
             type = "string",
         },
-        dataReplicationInitiation = {
-            type = "structure",
-        },
-        dataReplicationError = {
-            type = "structure",
-        },
+        dataReplicationInitiation = M.DataReplicationInitiation,
+        dataReplicationError = M.DataReplicationError,
         stagingAvailabilityZone = {
             type = "string",
         },
@@ -691,9 +695,7 @@ M.LifeCycleLastLaunchInitiated = {
 M.LifeCycleLastLaunch = {
     type = "structure",
     members = {
-        initiated = {
-            type = "structure",
-        },
+        initiated = M.LifeCycleLastLaunchInitiated,
         status = {
             type = "string",
         },
@@ -715,9 +717,7 @@ M.LifeCycle = {
         lastSeenByServiceDateTime = {
             type = "string",
         },
-        lastLaunch = {
-            type = "structure",
-        },
+        lastLaunch = M.LifeCycleLastLaunch,
     },
 }
 
@@ -751,7 +751,10 @@ M.Disk = {
             type = "string",
         },
         bytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -782,7 +785,7 @@ M.NetworkInterface = {
         },
         ips = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         isPrimary = {
             type = "boolean",
@@ -808,27 +811,26 @@ M.SourceProperties = {
         recommendedInstanceType = {
             type = "string",
         },
-        identificationHints = {
-            type = "structure",
-        },
+        identificationHints = M.IdentificationHints,
         networkInterfaces = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkInterface,
         },
         disks = {
             type = "list",
-            member_type = "structure",
+            member = M.Disk,
         },
         cpus = {
             type = "list",
-            member_type = "structure",
+            member = M.CPU,
         },
         ramBytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
-        os = {
-            type = "structure",
-        },
+        os = M.OS,
         supportsNitroInstances = {
             type = "boolean",
         },
@@ -870,8 +872,8 @@ M.SourceServer = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         recoveryInstanceId = {
             type = "string",
@@ -879,21 +881,11 @@ M.SourceServer = {
         lastLaunchResult = {
             type = "string",
         },
-        dataReplicationInfo = {
-            type = "structure",
-        },
-        lifeCycle = {
-            type = "structure",
-        },
-        sourceProperties = {
-            type = "structure",
-        },
-        stagingArea = {
-            type = "structure",
-        },
-        sourceCloudProperties = {
-            type = "structure",
-        },
+        dataReplicationInfo = M.DataReplicationInfo,
+        lifeCycle = M.LifeCycle,
+        sourceProperties = M.SourceProperties,
+        stagingArea = M.StagingArea,
+        sourceCloudProperties = M.SourceCloudProperties,
         replicationDirection = {
             type = "string",
         },
@@ -912,9 +904,7 @@ M.SourceServer = {
 M.CreateExtendedSourceServerOutput = {
     type = "structure",
     members = {
-        sourceServer = {
-            type = "structure",
-        },
+        sourceServer = M.SourceServer,
     },
 }
 
@@ -943,8 +933,8 @@ M.CreateLaunchConfigurationTemplateInput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         launchDisposition = {
             type = "string",
@@ -958,9 +948,7 @@ M.CreateLaunchConfigurationTemplateInput = {
         copyTags = {
             type = "boolean",
         },
-        licensing = {
-            type = "structure",
-        },
+        licensing = M.Licensing,
         exportBucketArn = {
             type = "string",
         },
@@ -984,8 +972,8 @@ M.LaunchConfigurationTemplate = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         launchDisposition = {
             type = "string",
@@ -999,9 +987,7 @@ M.LaunchConfigurationTemplate = {
         copyTags = {
             type = "boolean",
         },
-        licensing = {
-            type = "structure",
-        },
+        licensing = M.Licensing,
         exportBucketArn = {
             type = "string",
         },
@@ -1017,9 +1003,7 @@ M.LaunchConfigurationTemplate = {
 M.CreateLaunchConfigurationTemplateOutput = {
     type = "structure",
     members = {
-        launchConfigurationTemplate = {
-            type = "structure",
-        },
+        launchConfigurationTemplate = M.LaunchConfigurationTemplate,
     },
 }
 
@@ -1056,7 +1040,10 @@ M.PITPolicyRule = {
     type = "structure",
     members = {
         ruleID = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         units = {
             type = "string",
@@ -1065,13 +1052,13 @@ M.PITPolicyRule = {
             },
         },
         interval = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         retentionDuration = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1096,7 +1083,7 @@ M.CreateReplicationConfigurationTemplateInput = {
         },
         replicationServersSecurityGroupsIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1120,8 +1107,9 @@ M.CreateReplicationConfigurationTemplateInput = {
             type = "string",
         },
         bandwidthThrottling = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -1133,23 +1121,23 @@ M.CreateReplicationConfigurationTemplateInput = {
         },
         stagingAreaTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
         },
         pitPolicy = {
             type = "list",
-            member_type = "structure",
+            member = M.PITPolicyRule,
             traits = {
                 required = true,
             },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         autoReplicateNewDisks = {
             type = "boolean",
@@ -1180,7 +1168,7 @@ M.CreateReplicationConfigurationTemplateOutput = {
         },
         replicationServersSecurityGroupsIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         replicationServerInstanceType = {
             type = "string",
@@ -1198,7 +1186,10 @@ M.CreateReplicationConfigurationTemplateOutput = {
             type = "string",
         },
         bandwidthThrottling = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         dataPlaneRouting = {
             type = "string",
@@ -1208,17 +1199,17 @@ M.CreateReplicationConfigurationTemplateOutput = {
         },
         stagingAreaTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         pitPolicy = {
             type = "list",
-            member_type = "structure",
+            member = M.PITPolicyRule,
         },
         autoReplicateNewDisks = {
             type = "boolean",
@@ -1252,8 +1243,8 @@ M.CreateSourceNetworkInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1395,7 +1386,7 @@ M.DescribeJobLogItemsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -1454,9 +1445,7 @@ M.SourceNetworkData = {
 M.EventResourceData = {
     type = "union",
     members = {
-        sourceNetworkData = {
-            type = "structure",
-        },
+        sourceNetworkData = M.SourceNetworkData,
     },
 }
 
@@ -1475,17 +1464,19 @@ M.JobLogEventData = {
         rawError = {
             type = "string",
         },
-        conversionProperties = {
-            type = "structure",
-        },
-        eventResourceData = {
-            type = "union",
-        },
+        conversionProperties = M.ConversionProperties,
+        eventResourceData = M.EventResourceData,
         attemptCount = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         maxAttemptsCount = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1499,9 +1490,7 @@ M.JobLog = {
         event = {
             type = "string",
         },
-        eventData = {
-            type = "structure",
-        },
+        eventData = M.JobLogEventData,
     },
 }
 
@@ -1510,7 +1499,7 @@ M.DescribeJobLogItemsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.JobLog,
         },
         nextToken = {
             type = "string",
@@ -1523,7 +1512,7 @@ M.DescribeJobsRequestFilters = {
     members = {
         jobIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         fromDate = {
             type = "string",
@@ -1537,11 +1526,9 @@ M.DescribeJobsRequestFilters = {
 M.DescribeJobsInput = {
     type = "structure",
     members = {
-        filters = {
-            type = "structure",
-        },
+        filters = M.DescribeJobsRequestFilters,
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -1554,7 +1541,7 @@ M.DescribeJobsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.Job,
         },
         nextToken = {
             type = "string",
@@ -1567,10 +1554,10 @@ M.DescribeLaunchConfigurationTemplatesInput = {
     members = {
         launchConfigurationTemplateIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -1583,7 +1570,7 @@ M.DescribeLaunchConfigurationTemplatesOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.LaunchConfigurationTemplate,
         },
         nextToken = {
             type = "string",
@@ -1596,11 +1583,11 @@ M.DescribeRecoveryInstancesRequestFilters = {
     members = {
         recoveryInstanceIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         sourceServerIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1608,11 +1595,9 @@ M.DescribeRecoveryInstancesRequestFilters = {
 M.DescribeRecoveryInstancesInput = {
     type = "structure",
     members = {
-        filters = {
-            type = "structure",
-        },
+        filters = M.DescribeRecoveryInstancesRequestFilters,
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -1705,7 +1690,7 @@ M.RecoveryInstanceDataReplicationInitiation = {
         },
         steps = {
             type = "list",
-            member_type = "structure",
+            member = M.RecoveryInstanceDataReplicationInitiationStep,
         },
     },
 }
@@ -1732,16 +1717,28 @@ M.RecoveryInstanceDataReplicationInfoReplicatedDisk = {
             type = "string",
         },
         totalStorageBytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         replicatedStorageBytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         rescannedStorageBytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         backloggedStorageBytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1757,17 +1754,13 @@ M.RecoveryInstanceDataReplicationInfo = {
         },
         replicatedDisks = {
             type = "list",
-            member_type = "structure",
+            member = M.RecoveryInstanceDataReplicationInfoReplicatedDisk,
         },
         dataReplicationState = {
             type = "string",
         },
-        dataReplicationInitiation = {
-            type = "structure",
-        },
-        dataReplicationError = {
-            type = "structure",
-        },
+        dataReplicationInitiation = M.RecoveryInstanceDataReplicationInitiation,
+        dataReplicationError = M.RecoveryInstanceDataReplicationError,
         stagingAvailabilityZone = {
             type = "string",
         },
@@ -1850,7 +1843,10 @@ M.RecoveryInstanceDisk = {
             type = "string",
         },
         bytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         ebsVolumeID = {
             type = "string",
@@ -1864,27 +1860,26 @@ M.RecoveryInstanceProperties = {
         lastUpdatedDateTime = {
             type = "string",
         },
-        identificationHints = {
-            type = "structure",
-        },
+        identificationHints = M.IdentificationHints,
         networkInterfaces = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkInterface,
         },
         disks = {
             type = "list",
-            member_type = "structure",
+            member = M.RecoveryInstanceDisk,
         },
         cpus = {
             type = "list",
-            member_type = "structure",
+            member = M.CPU,
         },
         ramBytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
-        os = {
-            type = "structure",
-        },
+        os = M.OS,
     },
 }
 
@@ -1911,18 +1906,12 @@ M.RecoveryInstance = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        failback = {
-            type = "structure",
-        },
-        dataReplicationInfo = {
-            type = "structure",
-        },
-        recoveryInstanceProperties = {
-            type = "structure",
-        },
+        failback = M.RecoveryInstanceFailback,
+        dataReplicationInfo = M.RecoveryInstanceDataReplicationInfo,
+        recoveryInstanceProperties = M.RecoveryInstanceProperties,
         pointInTimeSnapshotDateTime = {
             type = "string",
         },
@@ -1952,7 +1941,7 @@ M.DescribeRecoveryInstancesOutput = {
         },
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.RecoveryInstance,
         },
     },
 }
@@ -1983,14 +1972,12 @@ M.DescribeRecoverySnapshotsInput = {
                 required = true,
             },
         },
-        filters = {
-            type = "structure",
-        },
+        filters = M.DescribeRecoverySnapshotsRequestFilters,
         order = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -2024,7 +2011,7 @@ M.RecoverySnapshot = {
         },
         ebsSnapshots = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2034,7 +2021,7 @@ M.DescribeRecoverySnapshotsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.RecoverySnapshot,
         },
         nextToken = {
             type = "string",
@@ -2047,10 +2034,10 @@ M.DescribeReplicationConfigurationTemplatesInput = {
     members = {
         replicationConfigurationTemplateIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -2078,7 +2065,7 @@ M.ReplicationConfigurationTemplate = {
         },
         replicationServersSecurityGroupsIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         replicationServerInstanceType = {
             type = "string",
@@ -2096,7 +2083,10 @@ M.ReplicationConfigurationTemplate = {
             type = "string",
         },
         bandwidthThrottling = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         dataPlaneRouting = {
             type = "string",
@@ -2106,17 +2096,17 @@ M.ReplicationConfigurationTemplate = {
         },
         stagingAreaTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         pitPolicy = {
             type = "list",
-            member_type = "structure",
+            member = M.PITPolicyRule,
         },
         autoReplicateNewDisks = {
             type = "boolean",
@@ -2132,7 +2122,7 @@ M.DescribeReplicationConfigurationTemplatesOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.ReplicationConfigurationTemplate,
         },
         nextToken = {
             type = "string",
@@ -2145,7 +2135,7 @@ M.DescribeSourceNetworksRequestFilters = {
     members = {
         sourceNetworkIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         originAccountID = {
             type = "string",
@@ -2159,11 +2149,9 @@ M.DescribeSourceNetworksRequestFilters = {
 M.DescribeSourceNetworksInput = {
     type = "structure",
     members = {
-        filters = {
-            type = "structure",
-        },
+        filters = M.DescribeSourceNetworksRequestFilters,
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -2220,8 +2208,8 @@ M.SourceNetwork = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         replicationStatus = {
             type = "string",
@@ -2238,9 +2226,7 @@ M.SourceNetwork = {
         sourceAccountID = {
             type = "string",
         },
-        lastRecovery = {
-            type = "structure",
-        },
+        lastRecovery = M.RecoveryLifeCycle,
         launchedVpcID = {
             type = "string",
         },
@@ -2252,7 +2238,7 @@ M.DescribeSourceNetworksOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.SourceNetwork,
         },
         nextToken = {
             type = "string",
@@ -2265,14 +2251,14 @@ M.DescribeSourceServersRequestFilters = {
     members = {
         sourceServerIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         hardwareId = {
             type = "string",
         },
         stagingAccountIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2280,11 +2266,9 @@ M.DescribeSourceServersRequestFilters = {
 M.DescribeSourceServersInput = {
     type = "structure",
     members = {
-        filters = {
-            type = "structure",
-        },
+        filters = M.DescribeSourceServersRequestFilters,
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -2297,7 +2281,7 @@ M.DescribeSourceServersOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.SourceServer,
         },
         nextToken = {
             type = "string",
@@ -2344,8 +2328,8 @@ M.DisconnectSourceServerOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         recoveryInstanceId = {
             type = "string",
@@ -2353,21 +2337,11 @@ M.DisconnectSourceServerOutput = {
         lastLaunchResult = {
             type = "string",
         },
-        dataReplicationInfo = {
-            type = "structure",
-        },
-        lifeCycle = {
-            type = "structure",
-        },
-        sourceProperties = {
-            type = "structure",
-        },
-        stagingArea = {
-            type = "structure",
-        },
-        sourceCloudProperties = {
-            type = "structure",
-        },
+        dataReplicationInfo = M.DataReplicationInfo,
+        lifeCycle = M.LifeCycle,
+        sourceProperties = M.SourceProperties,
+        stagingArea = M.StagingArea,
+        sourceCloudProperties = M.SourceCloudProperties,
         replicationDirection = {
             type = "string",
         },
@@ -2412,9 +2386,7 @@ M.UpdateLaunchConfigurationTemplateInput = {
         copyTags = {
             type = "boolean",
         },
-        licensing = {
-            type = "structure",
-        },
+        licensing = M.Licensing,
         exportBucketArn = {
             type = "string",
         },
@@ -2430,9 +2402,7 @@ M.UpdateLaunchConfigurationTemplateInput = {
 M.UpdateLaunchConfigurationTemplateOutput = {
     type = "structure",
     members = {
-        launchConfigurationTemplate = {
-            type = "structure",
-        },
+        launchConfigurationTemplate = M.LaunchConfigurationTemplate,
     },
 }
 
@@ -2446,7 +2416,7 @@ M.ListExtensibleSourceServersInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -2465,8 +2435,8 @@ M.StagingSourceServer = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2476,7 +2446,7 @@ M.ListExtensibleSourceServersOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.StagingSourceServer,
         },
         nextToken = {
             type = "string",
@@ -2489,7 +2459,7 @@ M.LaunchActionsRequestFilters = {
     members = {
         actionIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2503,11 +2473,9 @@ M.ListLaunchActionsInput = {
                 required = true,
             },
         },
-        filters = {
-            type = "structure",
-        },
+        filters = M.LaunchActionsRequestFilters,
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -2520,7 +2488,7 @@ M.ListLaunchActionsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.LaunchAction,
         },
         nextToken = {
             type = "string",
@@ -2532,8 +2500,9 @@ M.ListStagingAccountsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_query = "maxResults",
             },
         },
@@ -2551,7 +2520,7 @@ M.ListStagingAccountsOutput = {
     members = {
         accounts = {
             type = "list",
-            member_type = "structure",
+            member = M.Account,
         },
         nextToken = {
             type = "string",
@@ -2577,8 +2546,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2599,7 +2568,7 @@ M.PutLaunchActionInput = {
             },
         },
         order = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -2642,8 +2611,8 @@ M.PutLaunchActionInput = {
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.LaunchActionParameter,
         },
         description = {
             type = "string",
@@ -2676,7 +2645,7 @@ M.PutLaunchActionOutput = {
             type = "boolean",
         },
         order = {
-            type = "number",
+            type = "integer",
         },
         actionVersion = {
             type = "string",
@@ -2686,8 +2655,8 @@ M.PutLaunchActionOutput = {
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.LaunchActionParameter,
         },
         description = {
             type = "string",
@@ -2723,7 +2692,10 @@ M.GetFailbackReplicationConfigurationOutput = {
             type = "string",
         },
         bandwidthThrottling = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         usePrivateIP = {
             type = "boolean",
@@ -2760,15 +2732,15 @@ M.StartFailbackLaunchInput = {
     members = {
         recoveryInstanceIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2776,9 +2748,7 @@ M.StartFailbackLaunchInput = {
 M.StartFailbackLaunchOutput = {
     type = "structure",
     members = {
-        job = {
-            type = "structure",
-        },
+        job = M.Job,
     },
 }
 
@@ -2803,7 +2773,7 @@ M.TerminateRecoveryInstancesInput = {
     members = {
         recoveryInstanceIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2814,9 +2784,7 @@ M.TerminateRecoveryInstancesInput = {
 M.TerminateRecoveryInstancesOutput = {
     type = "structure",
     members = {
-        job = {
-            type = "structure",
-        },
+        job = M.Job,
     },
 }
 
@@ -2833,7 +2801,10 @@ M.UpdateFailbackReplicationConfigurationInput = {
             type = "string",
         },
         bandwidthThrottling = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         usePrivateIP = {
             type = "boolean",
@@ -2868,7 +2839,7 @@ M.UpdateReplicationConfigurationTemplateInput = {
         },
         replicationServersSecurityGroupsIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         replicationServerInstanceType = {
             type = "string",
@@ -2886,7 +2857,10 @@ M.UpdateReplicationConfigurationTemplateInput = {
             type = "string",
         },
         bandwidthThrottling = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         dataPlaneRouting = {
             type = "string",
@@ -2896,12 +2870,12 @@ M.UpdateReplicationConfigurationTemplateInput = {
         },
         stagingAreaTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         pitPolicy = {
             type = "list",
-            member_type = "structure",
+            member = M.PITPolicyRule,
         },
         autoReplicateNewDisks = {
             type = "boolean",
@@ -2932,7 +2906,7 @@ M.UpdateReplicationConfigurationTemplateOutput = {
         },
         replicationServersSecurityGroupsIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         replicationServerInstanceType = {
             type = "string",
@@ -2950,7 +2924,10 @@ M.UpdateReplicationConfigurationTemplateOutput = {
             type = "string",
         },
         bandwidthThrottling = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         dataPlaneRouting = {
             type = "string",
@@ -2960,17 +2937,17 @@ M.UpdateReplicationConfigurationTemplateOutput = {
         },
         stagingAreaTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         pitPolicy = {
             type = "list",
-            member_type = "structure",
+            member = M.PITPolicyRule,
         },
         autoReplicateNewDisks = {
             type = "boolean",
@@ -3022,7 +2999,7 @@ M.StartSourceNetworkRecoveryInput = {
     members = {
         sourceNetworks = {
             type = "list",
-            member_type = "structure",
+            member = M.StartSourceNetworkRecoveryRequestNetworkEntry,
             traits = {
                 required = true,
             },
@@ -3032,8 +3009,8 @@ M.StartSourceNetworkRecoveryInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3041,9 +3018,7 @@ M.StartSourceNetworkRecoveryInput = {
 M.StartSourceNetworkRecoveryOutput = {
     type = "structure",
     members = {
-        job = {
-            type = "structure",
-        },
+        job = M.Job,
     },
 }
 
@@ -3062,9 +3037,7 @@ M.StartSourceNetworkReplicationInput = {
 M.StartSourceNetworkReplicationOutput = {
     type = "structure",
     members = {
-        sourceNetwork = {
-            type = "structure",
-        },
+        sourceNetwork = M.SourceNetwork,
     },
 }
 
@@ -3083,9 +3056,7 @@ M.StopSourceNetworkReplicationInput = {
 M.StopSourceNetworkReplicationOutput = {
     type = "structure",
     members = {
-        sourceNetwork = {
-            type = "structure",
-        },
+        sourceNetwork = M.SourceNetwork,
     },
 }
 
@@ -3134,15 +3105,11 @@ M.GetLaunchConfigurationOutput = {
         copyTags = {
             type = "boolean",
         },
-        licensing = {
-            type = "structure",
-        },
+        licensing = M.Licensing,
         postLaunchEnabled = {
             type = "boolean",
         },
-        launchIntoInstanceProperties = {
-            type = "structure",
-        },
+        launchIntoInstanceProperties = M.LaunchIntoInstanceProperties,
     },
 }
 
@@ -3181,10 +3148,16 @@ M.ReplicationConfigurationReplicatedDisk = {
             type = "string",
         },
         iops = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         throughput = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         optimizedStagingDiskType = {
             type = "string",
@@ -3209,7 +3182,7 @@ M.GetReplicationConfigurationOutput = {
         },
         replicationServersSecurityGroupsIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         replicationServerInstanceType = {
             type = "string",
@@ -3222,7 +3195,7 @@ M.GetReplicationConfigurationOutput = {
         },
         replicatedDisks = {
             type = "list",
-            member_type = "structure",
+            member = M.ReplicationConfigurationReplicatedDisk,
         },
         ebsEncryption = {
             type = "string",
@@ -3231,7 +3204,10 @@ M.GetReplicationConfigurationOutput = {
             type = "string",
         },
         bandwidthThrottling = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         dataPlaneRouting = {
             type = "string",
@@ -3241,12 +3217,12 @@ M.GetReplicationConfigurationOutput = {
         },
         stagingAreaTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         pitPolicy = {
             type = "list",
-            member_type = "structure",
+            member = M.PITPolicyRule,
         },
         autoReplicateNewDisks = {
             type = "boolean",
@@ -3280,8 +3256,8 @@ M.RetryDataReplicationOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         recoveryInstanceId = {
             type = "string",
@@ -3289,21 +3265,11 @@ M.RetryDataReplicationOutput = {
         lastLaunchResult = {
             type = "string",
         },
-        dataReplicationInfo = {
-            type = "structure",
-        },
-        lifeCycle = {
-            type = "structure",
-        },
-        sourceProperties = {
-            type = "structure",
-        },
-        stagingArea = {
-            type = "structure",
-        },
-        sourceCloudProperties = {
-            type = "structure",
-        },
+        dataReplicationInfo = M.DataReplicationInfo,
+        lifeCycle = M.LifeCycle,
+        sourceProperties = M.SourceProperties,
+        stagingArea = M.StagingArea,
+        sourceCloudProperties = M.SourceCloudProperties,
         replicationDirection = {
             type = "string",
         },
@@ -3339,7 +3305,7 @@ M.StartRecoveryInput = {
     members = {
         sourceServers = {
             type = "list",
-            member_type = "structure",
+            member = M.StartRecoveryRequestSourceServer,
             traits = {
                 required = true,
             },
@@ -3349,8 +3315,8 @@ M.StartRecoveryInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3358,9 +3324,7 @@ M.StartRecoveryInput = {
 M.StartRecoveryOutput = {
     type = "structure",
     members = {
-        job = {
-            type = "structure",
-        },
+        job = M.Job,
     },
 }
 
@@ -3379,9 +3343,7 @@ M.StartReplicationInput = {
 M.StartReplicationOutput = {
     type = "structure",
     members = {
-        sourceServer = {
-            type = "structure",
-        },
+        sourceServer = M.SourceServer,
     },
 }
 
@@ -3400,9 +3362,7 @@ M.StopReplicationInput = {
 M.StopReplicationOutput = {
     type = "structure",
     members = {
-        sourceServer = {
-            type = "structure",
-        },
+        sourceServer = M.SourceServer,
     },
 }
 
@@ -3430,15 +3390,11 @@ M.UpdateLaunchConfigurationInput = {
         copyTags = {
             type = "boolean",
         },
-        licensing = {
-            type = "structure",
-        },
+        licensing = M.Licensing,
         postLaunchEnabled = {
             type = "boolean",
         },
-        launchIntoInstanceProperties = {
-            type = "structure",
-        },
+        launchIntoInstanceProperties = M.LaunchIntoInstanceProperties,
     },
 }
 
@@ -3466,15 +3422,11 @@ M.UpdateLaunchConfigurationOutput = {
         copyTags = {
             type = "boolean",
         },
-        licensing = {
-            type = "structure",
-        },
+        licensing = M.Licensing,
         postLaunchEnabled = {
             type = "boolean",
         },
-        launchIntoInstanceProperties = {
-            type = "structure",
-        },
+        launchIntoInstanceProperties = M.LaunchIntoInstanceProperties,
     },
 }
 
@@ -3498,7 +3450,7 @@ M.UpdateReplicationConfigurationInput = {
         },
         replicationServersSecurityGroupsIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         replicationServerInstanceType = {
             type = "string",
@@ -3511,7 +3463,7 @@ M.UpdateReplicationConfigurationInput = {
         },
         replicatedDisks = {
             type = "list",
-            member_type = "structure",
+            member = M.ReplicationConfigurationReplicatedDisk,
         },
         ebsEncryption = {
             type = "string",
@@ -3520,7 +3472,10 @@ M.UpdateReplicationConfigurationInput = {
             type = "string",
         },
         bandwidthThrottling = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         dataPlaneRouting = {
             type = "string",
@@ -3530,12 +3485,12 @@ M.UpdateReplicationConfigurationInput = {
         },
         stagingAreaTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         pitPolicy = {
             type = "list",
-            member_type = "structure",
+            member = M.PITPolicyRule,
         },
         autoReplicateNewDisks = {
             type = "boolean",
@@ -3563,7 +3518,7 @@ M.UpdateReplicationConfigurationOutput = {
         },
         replicationServersSecurityGroupsIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         replicationServerInstanceType = {
             type = "string",
@@ -3576,7 +3531,7 @@ M.UpdateReplicationConfigurationOutput = {
         },
         replicatedDisks = {
             type = "list",
-            member_type = "structure",
+            member = M.ReplicationConfigurationReplicatedDisk,
         },
         ebsEncryption = {
             type = "string",
@@ -3585,7 +3540,10 @@ M.UpdateReplicationConfigurationOutput = {
             type = "string",
         },
         bandwidthThrottling = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         dataPlaneRouting = {
             type = "string",
@@ -3595,12 +3553,12 @@ M.UpdateReplicationConfigurationOutput = {
         },
         stagingAreaTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         pitPolicy = {
             type = "list",
-            member_type = "structure",
+            member = M.PITPolicyRule,
         },
         autoReplicateNewDisks = {
             type = "boolean",
@@ -3623,8 +3581,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3648,7 +3606,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,

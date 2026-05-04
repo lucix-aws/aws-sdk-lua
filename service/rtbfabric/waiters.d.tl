@@ -1,0 +1,17 @@
+local types = require("rtbfabric.types")
+
+local record M
+    wait_until_inbound_external_link_active: function(client: table, input: table, options: table): table, table
+    wait_until_inbound_external_link_deleted: function(client: table, input: table, options: table): table, table
+    wait_until_link_accepted: function(client: table, input: table, options: table): table, table
+    wait_until_link_active: function(client: table, input: table, options: table): table, table
+    wait_until_link_deleted: function(client: table, input: table, options: table): table, table
+    wait_until_outbound_external_link_active: function(client: table, input: table, options: table): table, table
+    wait_until_outbound_external_link_deleted: function(client: table, input: table, options: table): table, table
+    wait_until_requester_gateway_active: function(client: table, input: table, options: table): table, table
+    wait_until_requester_gateway_deleted: function(client: table, input: table, options: table): table, table
+    wait_until_responder_gateway_active: function(client: table, input: table, options: table): table, table
+    wait_until_responder_gateway_deleted: function(client: table, input: table, options: table): table, table
+end
+
+return M

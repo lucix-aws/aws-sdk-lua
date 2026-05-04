@@ -1106,43 +1106,43 @@ local record ResourceNotFoundException
     message: string
 end
 
-local type ImagePullCredentialsType = "CODEBUILD" | "SERVICE_ROLE"
+local type ReportCodeCoverageSortByType = "LINE_COVERAGE_PERCENTAGE" | "FILE_PATH"
 
-local type SortOrderType = "ASCENDING" | "DESCENDING"
+local type ComputeType = "BUILD_GENERAL1_SMALL" | "BUILD_GENERAL1_MEDIUM" | "BUILD_GENERAL1_LARGE" | "BUILD_GENERAL1_XLARGE" | "BUILD_GENERAL1_2XLARGE" | "BUILD_LAMBDA_1GB" | "BUILD_LAMBDA_2GB" | "BUILD_LAMBDA_4GB" | "BUILD_LAMBDA_8GB" | "BUILD_LAMBDA_10GB" | "ATTRIBUTE_BASED_COMPUTE" | "CUSTOM_INSTANCE_TYPE"
 
-local type ReportGroupSortByType = "NAME" | "CREATED_TIME" | "LAST_MODIFIED_TIME"
+local type EnvironmentType = "WINDOWS_CONTAINER" | "LINUX_CONTAINER" | "LINUX_GPU_CONTAINER" | "ARM_CONTAINER" | "WINDOWS_SERVER_2019_CONTAINER" | "WINDOWS_SERVER_2022_CONTAINER" | "LINUX_LAMBDA_CONTAINER" | "ARM_LAMBDA_CONTAINER" | "LINUX_EC2" | "ARM_EC2" | "WINDOWS_EC2" | "MAC_ARM"
 
-local type ProjectVisibilityType = "PUBLIC_READ" | "PRIVATE"
+local type AuthType = "OAUTH" | "BASIC_AUTH" | "PERSONAL_ACCESS_TOKEN" | "CODECONNECTIONS" | "SECRETS_MANAGER"
+
+local type FleetOverflowBehavior = "QUEUE" | "ON_DEMAND"
 
 local type ReportGroupTrendFieldType = "PASS_RATE" | "DURATION" | "TOTAL" | "LINE_COVERAGE" | "LINES_COVERED" | "LINES_MISSED" | "BRANCH_COVERAGE" | "BRANCHES_COVERED" | "BRANCHES_MISSED"
 
-local type ServerType = "GITHUB" | "BITBUCKET" | "GITHUB_ENTERPRISE" | "GITLAB" | "GITLAB_SELF_MANAGED"
+local type ReportType = "TEST" | "CODE_COVERAGE"
 
-local type ProjectSortByType = "NAME" | "CREATED_TIME" | "LAST_MODIFIED_TIME"
+local type WebhookBuildType = "BUILD" | "BUILD_BATCH" | "RUNNER_BUILDKITE_BUILD"
+
+local type FleetSortByType = "NAME" | "CREATED_TIME" | "LAST_MODIFIED_TIME"
+
+local type ImagePullCredentialsType = "CODEBUILD" | "SERVICE_ROLE"
+
+local type ProjectVisibilityType = "PUBLIC_READ" | "PRIVATE"
+
+local type ReportGroupSortByType = "NAME" | "CREATED_TIME" | "LAST_MODIFIED_TIME"
+
+local type ServerType = "GITHUB" | "BITBUCKET" | "GITHUB_ENTERPRISE" | "GITLAB" | "GITLAB_SELF_MANAGED"
 
 local type RetryBuildBatchType = "RETRY_ALL_BUILDS" | "RETRY_FAILED_BUILDS"
 
 local type SourceType = "CODECOMMIT" | "CODEPIPELINE" | "GITHUB" | "GITLAB" | "GITLAB_SELF_MANAGED" | "S3" | "BITBUCKET" | "GITHUB_ENTERPRISE" | "NO_SOURCE"
 
-local type CommandType = "SHELL"
+local type SortOrderType = "ASCENDING" | "DESCENDING"
+
+local type ProjectSortByType = "NAME" | "CREATED_TIME" | "LAST_MODIFIED_TIME"
 
 local type SharedResourceSortByType = "ARN" | "MODIFIED_TIME"
 
-local type ComputeType = "BUILD_GENERAL1_SMALL" | "BUILD_GENERAL1_MEDIUM" | "BUILD_GENERAL1_LARGE" | "BUILD_GENERAL1_XLARGE" | "BUILD_GENERAL1_2XLARGE" | "BUILD_LAMBDA_1GB" | "BUILD_LAMBDA_2GB" | "BUILD_LAMBDA_4GB" | "BUILD_LAMBDA_8GB" | "BUILD_LAMBDA_10GB" | "ATTRIBUTE_BASED_COMPUTE" | "CUSTOM_INSTANCE_TYPE"
-
-local type ReportCodeCoverageSortByType = "LINE_COVERAGE_PERCENTAGE" | "FILE_PATH"
-
-local type AuthType = "OAUTH" | "BASIC_AUTH" | "PERSONAL_ACCESS_TOKEN" | "CODECONNECTIONS" | "SECRETS_MANAGER"
-
-local type EnvironmentType = "WINDOWS_CONTAINER" | "LINUX_CONTAINER" | "LINUX_GPU_CONTAINER" | "ARM_CONTAINER" | "WINDOWS_SERVER_2019_CONTAINER" | "WINDOWS_SERVER_2022_CONTAINER" | "LINUX_LAMBDA_CONTAINER" | "ARM_LAMBDA_CONTAINER" | "LINUX_EC2" | "ARM_EC2" | "WINDOWS_EC2" | "MAC_ARM"
-
-local type FleetOverflowBehavior = "QUEUE" | "ON_DEMAND"
-
-local type WebhookBuildType = "BUILD" | "BUILD_BATCH" | "RUNNER_BUILDKITE_BUILD"
-
-local type ReportType = "TEST" | "CODE_COVERAGE"
-
-local type FleetSortByType = "NAME" | "CREATED_TIME" | "LAST_MODIFIED_TIME"
+local type CommandType = "SHELL"
 
 local record M
     BatchDeleteBuildsInput: BatchDeleteBuildsInput

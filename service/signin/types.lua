@@ -99,26 +99,20 @@ M.CreateOAuth2TokenRequestBody = {
 M.CreateOAuth2TokenInput = {
     type = "structure",
     members = {
-        tokenInput = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        tokenInput = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.CreateOAuth2TokenRequestBody }),
     },
 }
 
 M.CreateOAuth2TokenResponseBody = {
     type = "structure",
     members = {
-        accessToken = {
-            type = "structure",
-            traits = {
-                json_name = "accessToken",
-                required = true,
-            },
-        },
+        accessToken = setmetatable({ traits = {
+            json_name = "accessToken",
+            required = true,
+        } }, { __index = M.AccessToken }),
         tokenType = {
             type = "string",
             traits = {
@@ -127,7 +121,7 @@ M.CreateOAuth2TokenResponseBody = {
             },
         },
         expiresIn = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "expiresIn",
                 required = true,
@@ -152,13 +146,10 @@ M.CreateOAuth2TokenResponseBody = {
 M.CreateOAuth2TokenOutput = {
     type = "structure",
     members = {
-        tokenOutput = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        tokenOutput = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.CreateOAuth2TokenResponseBody }),
     },
 }
 

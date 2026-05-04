@@ -72,10 +72,10 @@ M.ProposedNetworkFunctionGroupChange = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         AttachmentPolicyRuleNumber = {
-            type = "number",
+            type = "integer",
         },
         NetworkFunctionGroupName = {
             type = "string",
@@ -88,10 +88,10 @@ M.ProposedSegmentChange = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         AttachmentPolicyRuleNumber = {
-            type = "number",
+            type = "integer",
         },
         SegmentName = {
             type = "string",
@@ -137,13 +137,13 @@ M.Attachment = {
         },
         EdgeLocations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ResourceArn = {
             type = "string",
         },
         AttachmentPolicyRuleNumber = {
-            type = "number",
+            type = "integer",
         },
         SegmentName = {
             type = "string",
@@ -153,14 +153,10 @@ M.Attachment = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        ProposedSegmentChange = {
-            type = "structure",
-        },
-        ProposedNetworkFunctionGroupChange = {
-            type = "structure",
-        },
+        ProposedSegmentChange = M.ProposedSegmentChange,
+        ProposedNetworkFunctionGroupChange = M.ProposedNetworkFunctionGroupChange,
         CreatedAt = {
             type = "timestamp",
         },
@@ -169,7 +165,7 @@ M.Attachment = {
         },
         LastModificationErrors = {
             type = "list",
-            member_type = "structure",
+            member = M.AttachmentError,
         },
     },
 }
@@ -177,9 +173,7 @@ M.Attachment = {
 M.AcceptAttachmentOutput = {
     type = "structure",
     members = {
-        Attachment = {
-            type = "structure",
-        },
+        Attachment = M.Attachment,
     },
 }
 
@@ -232,7 +226,7 @@ M.InternalServerException = {
             },
         },
         RetryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -264,8 +258,8 @@ M.ResourceNotFoundException = {
         },
         Context = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -281,7 +275,7 @@ M.ThrottlingException = {
             },
         },
         RetryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -329,7 +323,7 @@ M.ValidationException = {
         },
         Fields = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -405,9 +399,7 @@ M.ConnectPeerAssociation = {
 M.AssociateConnectPeerOutput = {
     type = "structure",
     members = {
-        ConnectPeerAssociation = {
-            type = "structure",
-        },
+        ConnectPeerAssociation = M.ConnectPeerAssociation,
     },
 }
 
@@ -501,9 +493,7 @@ M.CustomerGatewayAssociation = {
 M.AssociateCustomerGatewayOutput = {
     type = "structure",
     members = {
-        CustomerGatewayAssociation = {
-            type = "structure",
-        },
+        CustomerGatewayAssociation = M.CustomerGatewayAssociation,
     },
 }
 
@@ -560,9 +550,7 @@ M.LinkAssociation = {
 M.AssociateLinkOutput = {
     type = "structure",
     members = {
-        LinkAssociation = {
-            type = "structure",
-        },
+        LinkAssociation = M.LinkAssociation,
     },
 }
 
@@ -625,9 +613,7 @@ M.TransitGatewayConnectPeerAssociation = {
 M.AssociateTransitGatewayConnectPeerOutput = {
     type = "structure",
     members = {
-        TransitGatewayConnectPeerAssociation = {
-            type = "structure",
-        },
+        TransitGatewayConnectPeerAssociation = M.TransitGatewayConnectPeerAssociation,
     },
 }
 
@@ -639,11 +625,11 @@ M.AttachmentRoutingPolicyAssociationSummary = {
         },
         PendingRoutingPolicies = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AssociatedRoutingPolicies = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RoutingPolicyLabel = {
             type = "string",
@@ -667,10 +653,10 @@ M.Bandwidth = {
     type = "structure",
     members = {
         UploadSpeed = {
-            type = "number",
+            type = "integer",
         },
         DownloadSpeed = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -679,7 +665,7 @@ M.BgpOptions = {
     type = "structure",
     members = {
         PeerAsn = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -740,15 +726,11 @@ M.ConnectAttachmentOptions = {
 M.ConnectAttachment = {
     type = "structure",
     members = {
-        Attachment = {
-            type = "structure",
-        },
+        Attachment = M.Attachment,
         TransportAttachmentId = {
             type = "string",
         },
-        Options = {
-            type = "structure",
-        },
+        Options = M.ConnectAttachmentOptions,
     },
 }
 
@@ -794,7 +776,7 @@ M.Connection = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -828,10 +810,10 @@ M.ConnectPeerBgpConfiguration = {
     type = "structure",
     members = {
         CoreNetworkAsn = {
-            type = "number",
+            type = "long",
         },
         PeerAsn = {
-            type = "number",
+            type = "long",
         },
         CoreNetworkAddress = {
             type = "string",
@@ -853,14 +835,14 @@ M.ConnectPeerConfiguration = {
         },
         InsideCidrBlocks = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Protocol = {
             type = "string",
         },
         BgpConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.ConnectPeerBgpConfiguration,
         },
     },
 }
@@ -920,19 +902,17 @@ M.ConnectPeer = {
         CreatedAt = {
             type = "timestamp",
         },
-        Configuration = {
-            type = "structure",
-        },
+        Configuration = M.ConnectPeerConfiguration,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         SubnetArn = {
             type = "string",
         },
         LastModificationErrors = {
             type = "list",
-            member_type = "structure",
+            member = M.ConnectPeerError,
         },
     },
 }
@@ -960,7 +940,7 @@ M.ConnectPeerSummary = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         SubnetArn = {
             type = "string",
@@ -975,11 +955,11 @@ M.CoreNetworkEdge = {
             type = "string",
         },
         Asn = {
-            type = "number",
+            type = "long",
         },
         InsideCidrBlocks = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -989,11 +969,11 @@ M.ServiceInsertionSegments = {
     members = {
         SendVia = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SendTo = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1006,11 +986,9 @@ M.CoreNetworkNetworkFunctionGroup = {
         },
         EdgeLocations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        Segments = {
-            type = "structure",
-        },
+        Segments = M.ServiceInsertionSegments,
     },
 }
 
@@ -1022,11 +1000,11 @@ M.CoreNetworkSegment = {
         },
         EdgeLocations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SharedSegments = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1061,19 +1039,19 @@ M.CoreNetwork = {
         },
         Segments = {
             type = "list",
-            member_type = "structure",
+            member = M.CoreNetworkSegment,
         },
         NetworkFunctionGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.CoreNetworkNetworkFunctionGroup,
         },
         Edges = {
             type = "list",
-            member_type = "structure",
+            member = M.CoreNetworkEdge,
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1083,11 +1061,11 @@ M.RoutingPolicyAssociationDetail = {
     members = {
         RoutingPolicyNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SharedSegments = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1121,7 +1099,7 @@ M.EdgeOverride = {
     members = {
         EdgeSets = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
         },
         UseEdge = {
             type = "string",
@@ -1134,11 +1112,11 @@ M.Via = {
     members = {
         NetworkFunctionGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkFunctionGroup,
         },
         WithEdgeOverrides = {
             type = "list",
-            member_type = "structure",
+            member = M.EdgeOverride,
         },
     },
 }
@@ -1148,7 +1126,7 @@ M.WhenSentTo = {
     members = {
         WhenSentToSegmentsList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1162,12 +1140,8 @@ M.ServiceInsertionAction = {
         Mode = {
             type = "string",
         },
-        WhenSentTo = {
-            type = "structure",
-        },
-        Via = {
-            type = "structure",
-        },
+        WhenSentTo = M.WhenSentTo,
+        Via = M.Via,
     },
 }
 
@@ -1182,10 +1156,10 @@ M.CoreNetworkChangeValues = {
         },
         EdgeLocations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Asn = {
-            type = "number",
+            type = "long",
         },
         Cidr = {
             type = "string",
@@ -1195,24 +1169,33 @@ M.CoreNetworkChangeValues = {
         },
         InsideCidrBlocks = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SharedSegments = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ServiceInsertionActions = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceInsertionAction,
         },
         VpnEcmpSupport = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         DnsSupport = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         SecurityGroupReferencingSupport = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         RoutingPolicyDirection = {
             type = "string",
@@ -1222,14 +1205,14 @@ M.CoreNetworkChangeValues = {
         },
         PeerEdgeLocations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AttachmentId = {
             type = "string",
         },
         RoutingPolicyAssociationDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.RoutingPolicyAssociationDetail,
         },
     },
 }
@@ -1246,12 +1229,8 @@ M.CoreNetworkChange = {
         Identifier = {
             type = "string",
         },
-        PreviousValues = {
-            type = "structure",
-        },
-        NewValues = {
-            type = "structure",
-        },
+        PreviousValues = M.CoreNetworkChangeValues,
+        NewValues = M.CoreNetworkChangeValues,
         IdentifierPath = {
             type = "string",
         },
@@ -1284,7 +1263,7 @@ M.CoreNetworkChangeEventValues = {
         },
         RoutingPolicyAssociationDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.RoutingPolicyAssociationDetail,
         },
     },
 }
@@ -1307,9 +1286,7 @@ M.CoreNetworkChangeEvent = {
         Status = {
             type = "string",
         },
-        Values = {
-            type = "structure",
-        },
+        Values = M.CoreNetworkChangeEventValues,
     },
 }
 
@@ -1361,7 +1338,7 @@ M.CoreNetworkPolicy = {
             type = "string",
         },
         PolicyVersionId = {
-            type = "number",
+            type = "integer",
         },
         Alias = {
             type = "string",
@@ -1377,7 +1354,7 @@ M.CoreNetworkPolicy = {
         },
         PolicyErrors = {
             type = "list",
-            member_type = "structure",
+            member = M.CoreNetworkPolicyError,
         },
         PolicyDocument = {
             type = "string",
@@ -1397,7 +1374,7 @@ M.CoreNetworkPolicyException = {
         },
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.CoreNetworkPolicyError,
         },
     },
 }
@@ -1409,7 +1386,7 @@ M.CoreNetworkPolicyVersion = {
             type = "string",
         },
         PolicyVersionId = {
-            type = "number",
+            type = "integer",
         },
         Alias = {
             type = "string",
@@ -1456,9 +1433,7 @@ M.CoreNetworkRoutingInformation = {
         Prefix = {
             type = "string",
         },
-        NextHop = {
-            type = "structure",
-        },
+        NextHop = M.RoutingInformationNextHop,
         LocalPreference = {
             type = "string",
         },
@@ -1467,11 +1442,11 @@ M.CoreNetworkRoutingInformation = {
         },
         AsPath = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Communities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1514,7 +1489,7 @@ M.CoreNetworkSummary = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1543,15 +1518,12 @@ M.CreateConnectAttachmentInput = {
         RoutingPolicyLabel = {
             type = "string",
         },
-        Options = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Options = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConnectAttachmentOptions }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ClientToken = {
             type = "string",
@@ -1562,9 +1534,7 @@ M.CreateConnectAttachmentInput = {
 M.CreateConnectAttachmentOutput = {
     type = "structure",
     members = {
-        ConnectAttachment = {
-            type = "structure",
-        },
+        ConnectAttachment = M.ConnectAttachment,
     },
 }
 
@@ -1601,7 +1571,7 @@ M.CreateConnectionInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1609,9 +1579,7 @@ M.CreateConnectionInput = {
 M.CreateConnectionOutput = {
     type = "structure",
     members = {
-        Connection = {
-            type = "structure",
-        },
+        Connection = M.Connection,
     },
 }
 
@@ -1633,16 +1601,14 @@ M.CreateConnectPeerInput = {
                 required = true,
             },
         },
-        BgpOptions = {
-            type = "structure",
-        },
+        BgpOptions = M.BgpOptions,
         InsideCidrBlocks = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ClientToken = {
             type = "string",
@@ -1656,9 +1622,7 @@ M.CreateConnectPeerInput = {
 M.CreateConnectPeerOutput = {
     type = "structure",
     members = {
-        ConnectPeer = {
-            type = "structure",
-        },
+        ConnectPeer = M.ConnectPeer,
     },
 }
 
@@ -1676,7 +1640,7 @@ M.CreateCoreNetworkInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         PolicyDocument = {
             type = "string",
@@ -1690,9 +1654,7 @@ M.CreateCoreNetworkInput = {
 M.CreateCoreNetworkOutput = {
     type = "structure",
     members = {
-        CoreNetwork = {
-            type = "structure",
-        },
+        CoreNetwork = M.CoreNetwork,
     },
 }
 
@@ -1763,9 +1725,7 @@ M.CreateDeviceInput = {
                 required = true,
             },
         },
-        AWSLocation = {
-            type = "structure",
-        },
+        AWSLocation = M.AWSLocation,
         Description = {
             type = "string",
         },
@@ -1781,15 +1741,13 @@ M.CreateDeviceInput = {
         SerialNumber = {
             type = "string",
         },
-        Location = {
-            type = "structure",
-        },
+        Location = M.Location,
         SiteId = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1813,9 +1771,7 @@ M.Device = {
         GlobalNetworkId = {
             type = "string",
         },
-        AWSLocation = {
-            type = "structure",
-        },
+        AWSLocation = M.AWSLocation,
         Description = {
             type = "string",
         },
@@ -1831,9 +1787,7 @@ M.Device = {
         SerialNumber = {
             type = "string",
         },
-        Location = {
-            type = "structure",
-        },
+        Location = M.Location,
         SiteId = {
             type = "string",
         },
@@ -1845,7 +1799,7 @@ M.Device = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1853,9 +1807,7 @@ M.Device = {
 M.CreateDeviceOutput = {
     type = "structure",
     members = {
-        Device = {
-            type = "structure",
-        },
+        Device = M.Device,
     },
 }
 
@@ -1879,14 +1831,14 @@ M.CreateDirectConnectGatewayAttachmentInput = {
         },
         EdgeLocations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ClientToken = {
             type = "string",
@@ -1897,9 +1849,7 @@ M.CreateDirectConnectGatewayAttachmentInput = {
 M.DirectConnectGatewayAttachment = {
     type = "structure",
     members = {
-        Attachment = {
-            type = "structure",
-        },
+        Attachment = M.Attachment,
         DirectConnectGatewayArn = {
             type = "string",
         },
@@ -1909,9 +1859,7 @@ M.DirectConnectGatewayAttachment = {
 M.CreateDirectConnectGatewayAttachmentOutput = {
     type = "structure",
     members = {
-        DirectConnectGatewayAttachment = {
-            type = "structure",
-        },
+        DirectConnectGatewayAttachment = M.DirectConnectGatewayAttachment,
     },
 }
 
@@ -1923,7 +1871,7 @@ M.CreateGlobalNetworkInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1955,7 +1903,7 @@ M.GlobalNetwork = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1963,9 +1911,7 @@ M.GlobalNetwork = {
 M.CreateGlobalNetworkOutput = {
     type = "structure",
     members = {
-        GlobalNetwork = {
-            type = "structure",
-        },
+        GlobalNetwork = M.GlobalNetwork,
     },
 }
 
@@ -1985,12 +1931,9 @@ M.CreateLinkInput = {
         Type = {
             type = "string",
         },
-        Bandwidth = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Bandwidth = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Bandwidth }),
         Provider = {
             type = "string",
         },
@@ -2002,7 +1945,7 @@ M.CreateLinkInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2035,9 +1978,7 @@ M.Link = {
         Type = {
             type = "string",
         },
-        Bandwidth = {
-            type = "structure",
-        },
+        Bandwidth = M.Bandwidth,
         Provider = {
             type = "string",
         },
@@ -2049,7 +1990,7 @@ M.Link = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2057,9 +1998,7 @@ M.Link = {
 M.CreateLinkOutput = {
     type = "structure",
     members = {
-        Link = {
-            type = "structure",
-        },
+        Link = M.Link,
     },
 }
 
@@ -2076,12 +2015,10 @@ M.CreateSiteInput = {
         Description = {
             type = "string",
         },
-        Location = {
-            type = "structure",
-        },
+        Location = M.Location,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2108,9 +2045,7 @@ M.Site = {
         Description = {
             type = "string",
         },
-        Location = {
-            type = "structure",
-        },
+        Location = M.Location,
         CreatedAt = {
             type = "timestamp",
         },
@@ -2119,7 +2054,7 @@ M.Site = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2127,9 +2062,7 @@ M.Site = {
 M.CreateSiteOutput = {
     type = "structure",
     members = {
-        Site = {
-            type = "structure",
-        },
+        Site = M.Site,
     },
 }
 
@@ -2153,7 +2086,7 @@ M.CreateSiteToSiteVpnAttachmentInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ClientToken = {
             type = "string",
@@ -2164,9 +2097,7 @@ M.CreateSiteToSiteVpnAttachmentInput = {
 M.SiteToSiteVpnAttachment = {
     type = "structure",
     members = {
-        Attachment = {
-            type = "structure",
-        },
+        Attachment = M.Attachment,
         VpnConnectionArn = {
             type = "string",
         },
@@ -2176,9 +2107,7 @@ M.SiteToSiteVpnAttachment = {
 M.CreateSiteToSiteVpnAttachmentOutput = {
     type = "structure",
     members = {
-        SiteToSiteVpnAttachment = {
-            type = "structure",
-        },
+        SiteToSiteVpnAttachment = M.SiteToSiteVpnAttachment,
     },
 }
 
@@ -2199,7 +2128,7 @@ M.CreateTransitGatewayPeeringInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ClientToken = {
             type = "string",
@@ -2240,9 +2169,7 @@ M.PeeringError = {
         RequestId = {
             type = "string",
         },
-        MissingPermissionsContext = {
-            type = "structure",
-        },
+        MissingPermissionsContext = M.PermissionsErrorContext,
     },
 }
 
@@ -2286,14 +2213,14 @@ M.Peering = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         CreatedAt = {
             type = "timestamp",
         },
         LastModificationErrors = {
             type = "list",
-            member_type = "structure",
+            member = M.PeeringError,
         },
     },
 }
@@ -2301,9 +2228,7 @@ M.Peering = {
 M.TransitGatewayPeering = {
     type = "structure",
     members = {
-        Peering = {
-            type = "structure",
-        },
+        Peering = M.Peering,
         TransitGatewayArn = {
             type = "string",
         },
@@ -2316,9 +2241,7 @@ M.TransitGatewayPeering = {
 M.CreateTransitGatewayPeeringOutput = {
     type = "structure",
     members = {
-        TransitGatewayPeering = {
-            type = "structure",
-        },
+        TransitGatewayPeering = M.TransitGatewayPeering,
     },
 }
 
@@ -2342,7 +2265,7 @@ M.CreateTransitGatewayRouteTableAttachmentInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ClientToken = {
             type = "string",
@@ -2353,9 +2276,7 @@ M.CreateTransitGatewayRouteTableAttachmentInput = {
 M.TransitGatewayRouteTableAttachment = {
     type = "structure",
     members = {
-        Attachment = {
-            type = "structure",
-        },
+        Attachment = M.Attachment,
         PeeringId = {
             type = "string",
         },
@@ -2368,9 +2289,7 @@ M.TransitGatewayRouteTableAttachment = {
 M.CreateTransitGatewayRouteTableAttachmentOutput = {
     type = "structure",
     members = {
-        TransitGatewayRouteTableAttachment = {
-            type = "structure",
-        },
+        TransitGatewayRouteTableAttachment = M.TransitGatewayRouteTableAttachment,
     },
 }
 
@@ -2379,15 +2298,27 @@ M.VpcOptions = {
     members = {
         Ipv6Support = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         ApplianceModeSupport = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         DnsSupport = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         SecurityGroupReferencingSupport = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -2409,20 +2340,18 @@ M.CreateVpcAttachmentInput = {
         },
         SubnetArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        Options = {
-            type = "structure",
-        },
+        Options = M.VpcOptions,
         RoutingPolicyLabel = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ClientToken = {
             type = "string",
@@ -2433,25 +2362,19 @@ M.CreateVpcAttachmentInput = {
 M.VpcAttachment = {
     type = "structure",
     members = {
-        Attachment = {
-            type = "structure",
-        },
+        Attachment = M.Attachment,
         SubnetArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        Options = {
-            type = "structure",
-        },
+        Options = M.VpcOptions,
     },
 }
 
 M.CreateVpcAttachmentOutput = {
     type = "structure",
     members = {
-        VpcAttachment = {
-            type = "structure",
-        },
+        VpcAttachment = M.VpcAttachment,
     },
 }
 
@@ -2471,9 +2394,7 @@ M.DeleteAttachmentInput = {
 M.DeleteAttachmentOutput = {
     type = "structure",
     members = {
-        Attachment = {
-            type = "structure",
-        },
+        Attachment = M.Attachment,
     },
 }
 
@@ -2500,9 +2421,7 @@ M.DeleteConnectionInput = {
 M.DeleteConnectionOutput = {
     type = "structure",
     members = {
-        Connection = {
-            type = "structure",
-        },
+        Connection = M.Connection,
     },
 }
 
@@ -2522,9 +2441,7 @@ M.DeleteConnectPeerInput = {
 M.DeleteConnectPeerOutput = {
     type = "structure",
     members = {
-        ConnectPeer = {
-            type = "structure",
-        },
+        ConnectPeer = M.ConnectPeer,
     },
 }
 
@@ -2544,9 +2461,7 @@ M.DeleteCoreNetworkInput = {
 M.DeleteCoreNetworkOutput = {
     type = "structure",
     members = {
-        CoreNetwork = {
-            type = "structure",
-        },
+        CoreNetwork = M.CoreNetwork,
     },
 }
 
@@ -2561,7 +2476,7 @@ M.DeleteCoreNetworkPolicyVersionInput = {
             },
         },
         PolicyVersionId = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_label = true,
                 required = true,
@@ -2573,9 +2488,7 @@ M.DeleteCoreNetworkPolicyVersionInput = {
 M.DeleteCoreNetworkPolicyVersionOutput = {
     type = "structure",
     members = {
-        CoreNetworkPolicy = {
-            type = "structure",
-        },
+        CoreNetworkPolicy = M.CoreNetworkPolicy,
     },
 }
 
@@ -2634,9 +2547,7 @@ M.DeleteDeviceInput = {
 M.DeleteDeviceOutput = {
     type = "structure",
     members = {
-        Device = {
-            type = "structure",
-        },
+        Device = M.Device,
     },
 }
 
@@ -2656,9 +2567,7 @@ M.DeleteGlobalNetworkInput = {
 M.DeleteGlobalNetworkOutput = {
     type = "structure",
     members = {
-        GlobalNetwork = {
-            type = "structure",
-        },
+        GlobalNetwork = M.GlobalNetwork,
     },
 }
 
@@ -2685,9 +2594,7 @@ M.DeleteLinkInput = {
 M.DeleteLinkOutput = {
     type = "structure",
     members = {
-        Link = {
-            type = "structure",
-        },
+        Link = M.Link,
     },
 }
 
@@ -2707,9 +2614,7 @@ M.DeletePeeringInput = {
 M.DeletePeeringOutput = {
     type = "structure",
     members = {
-        Peering = {
-            type = "structure",
-        },
+        Peering = M.Peering,
     },
 }
 
@@ -2753,9 +2658,7 @@ M.DeleteSiteInput = {
 M.DeleteSiteOutput = {
     type = "structure",
     members = {
-        Site = {
-            type = "structure",
-        },
+        Site = M.Site,
     },
 }
 
@@ -2808,18 +2711,14 @@ M.TransitGatewayRegistration = {
         TransitGatewayArn = {
             type = "string",
         },
-        State = {
-            type = "structure",
-        },
+        State = M.TransitGatewayRegistrationStateReason,
     },
 }
 
 M.DeregisterTransitGatewayOutput = {
     type = "structure",
     members = {
-        TransitGatewayRegistration = {
-            type = "structure",
-        },
+        TransitGatewayRegistration = M.TransitGatewayRegistration,
     },
 }
 
@@ -2828,13 +2727,13 @@ M.DescribeGlobalNetworksInput = {
     members = {
         GlobalNetworkIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "globalNetworkIds",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2853,7 +2752,7 @@ M.DescribeGlobalNetworksOutput = {
     members = {
         GlobalNetworks = {
             type = "list",
-            member_type = "structure",
+            member = M.GlobalNetwork,
         },
         NextToken = {
             type = "string",
@@ -2884,9 +2783,7 @@ M.DisassociateConnectPeerInput = {
 M.DisassociateConnectPeerOutput = {
     type = "structure",
     members = {
-        ConnectPeerAssociation = {
-            type = "structure",
-        },
+        ConnectPeerAssociation = M.ConnectPeerAssociation,
     },
 }
 
@@ -2913,9 +2810,7 @@ M.DisassociateCustomerGatewayInput = {
 M.DisassociateCustomerGatewayOutput = {
     type = "structure",
     members = {
-        CustomerGatewayAssociation = {
-            type = "structure",
-        },
+        CustomerGatewayAssociation = M.CustomerGatewayAssociation,
     },
 }
 
@@ -2949,9 +2844,7 @@ M.DisassociateLinkInput = {
 M.DisassociateLinkOutput = {
     type = "structure",
     members = {
-        LinkAssociation = {
-            type = "structure",
-        },
+        LinkAssociation = M.LinkAssociation,
     },
 }
 
@@ -2978,9 +2871,7 @@ M.DisassociateTransitGatewayConnectPeerInput = {
 M.DisassociateTransitGatewayConnectPeerOutput = {
     type = "structure",
     members = {
-        TransitGatewayConnectPeerAssociation = {
-            type = "structure",
-        },
+        TransitGatewayConnectPeerAssociation = M.TransitGatewayConnectPeerAssociation,
     },
 }
 
@@ -2995,7 +2886,7 @@ M.ExecuteCoreNetworkChangeSetInput = {
             },
         },
         PolicyVersionId = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_label = true,
                 required = true,
@@ -3024,9 +2915,7 @@ M.GetConnectAttachmentInput = {
 M.GetConnectAttachmentOutput = {
     type = "structure",
     members = {
-        ConnectAttachment = {
-            type = "structure",
-        },
+        ConnectAttachment = M.ConnectAttachment,
     },
 }
 
@@ -3042,7 +2931,7 @@ M.GetConnectionsInput = {
         },
         ConnectionIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "connectionIds",
             },
@@ -3054,7 +2943,7 @@ M.GetConnectionsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3073,7 +2962,7 @@ M.GetConnectionsOutput = {
     members = {
         Connections = {
             type = "list",
-            member_type = "structure",
+            member = M.Connection,
         },
         NextToken = {
             type = "string",
@@ -3097,9 +2986,7 @@ M.GetConnectPeerInput = {
 M.GetConnectPeerOutput = {
     type = "structure",
     members = {
-        ConnectPeer = {
-            type = "structure",
-        },
+        ConnectPeer = M.ConnectPeer,
     },
 }
 
@@ -3115,13 +3002,13 @@ M.GetConnectPeerAssociationsInput = {
         },
         ConnectPeerIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "connectPeerIds",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3140,7 +3027,7 @@ M.GetConnectPeerAssociationsOutput = {
     members = {
         ConnectPeerAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.ConnectPeerAssociation,
         },
         NextToken = {
             type = "string",
@@ -3164,9 +3051,7 @@ M.GetCoreNetworkInput = {
 M.GetCoreNetworkOutput = {
     type = "structure",
     members = {
-        CoreNetwork = {
-            type = "structure",
-        },
+        CoreNetwork = M.CoreNetwork,
     },
 }
 
@@ -3181,14 +3066,14 @@ M.GetCoreNetworkChangeEventsInput = {
             },
         },
         PolicyVersionId = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_label = true,
                 required = true,
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3207,7 +3092,7 @@ M.GetCoreNetworkChangeEventsOutput = {
     members = {
         CoreNetworkChangeEvents = {
             type = "list",
-            member_type = "structure",
+            member = M.CoreNetworkChangeEvent,
         },
         NextToken = {
             type = "string",
@@ -3226,14 +3111,14 @@ M.GetCoreNetworkChangeSetInput = {
             },
         },
         PolicyVersionId = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_label = true,
                 required = true,
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3252,7 +3137,7 @@ M.GetCoreNetworkChangeSetOutput = {
     members = {
         CoreNetworkChanges = {
             type = "list",
-            member_type = "structure",
+            member = M.CoreNetworkChange,
         },
         NextToken = {
             type = "string",
@@ -3271,7 +3156,7 @@ M.GetCoreNetworkPolicyInput = {
             },
         },
         PolicyVersionId = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "policyVersionId",
             },
@@ -3288,9 +3173,7 @@ M.GetCoreNetworkPolicyInput = {
 M.GetCoreNetworkPolicyOutput = {
     type = "structure",
     members = {
-        CoreNetworkPolicy = {
-            type = "structure",
-        },
+        CoreNetworkPolicy = M.CoreNetworkPolicy,
     },
 }
 
@@ -3306,13 +3189,13 @@ M.GetCustomerGatewayAssociationsInput = {
         },
         CustomerGatewayArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "customerGatewayArns",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3331,7 +3214,7 @@ M.GetCustomerGatewayAssociationsOutput = {
     members = {
         CustomerGatewayAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomerGatewayAssociation,
         },
         NextToken = {
             type = "string",
@@ -3351,7 +3234,7 @@ M.GetDevicesInput = {
         },
         DeviceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "deviceIds",
             },
@@ -3363,7 +3246,7 @@ M.GetDevicesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3382,7 +3265,7 @@ M.GetDevicesOutput = {
     members = {
         Devices = {
             type = "list",
-            member_type = "structure",
+            member = M.Device,
         },
         NextToken = {
             type = "string",
@@ -3406,9 +3289,7 @@ M.GetDirectConnectGatewayAttachmentInput = {
 M.GetDirectConnectGatewayAttachmentOutput = {
     type = "structure",
     members = {
-        DirectConnectGatewayAttachment = {
-            type = "structure",
-        },
+        DirectConnectGatewayAttachment = M.DirectConnectGatewayAttachment,
     },
 }
 
@@ -3435,7 +3316,7 @@ M.GetLinkAssociationsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3454,7 +3335,7 @@ M.GetLinkAssociationsOutput = {
     members = {
         LinkAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.LinkAssociation,
         },
         NextToken = {
             type = "string",
@@ -3474,7 +3355,7 @@ M.GetLinksInput = {
         },
         LinkIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "linkIds",
             },
@@ -3498,7 +3379,7 @@ M.GetLinksInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3517,7 +3398,7 @@ M.GetLinksOutput = {
     members = {
         Links = {
             type = "list",
-            member_type = "structure",
+            member = M.Link,
         },
         NextToken = {
             type = "string",
@@ -3542,7 +3423,7 @@ M.GetNetworkResourceCountsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3563,7 +3444,7 @@ M.NetworkResourceCount = {
             type = "string",
         },
         Count = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3573,7 +3454,7 @@ M.GetNetworkResourceCountsOutput = {
     members = {
         NetworkResourceCounts = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkResourceCount,
         },
         NextToken = {
             type = "string",
@@ -3628,7 +3509,7 @@ M.GetNetworkResourceRelationshipsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3659,7 +3540,7 @@ M.GetNetworkResourceRelationshipsOutput = {
     members = {
         Relationships = {
             type = "list",
-            member_type = "structure",
+            member = M.Relationship,
         },
         NextToken = {
             type = "string",
@@ -3714,7 +3595,7 @@ M.GetNetworkResourcesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3760,12 +3641,12 @@ M.NetworkResource = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         Metadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3775,7 +3656,7 @@ M.GetNetworkResourcesOutput = {
     members = {
         NetworkResources = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkResource,
         },
         NextToken = {
             type = "string",
@@ -3789,12 +3670,8 @@ M.RouteTableIdentifier = {
         TransitGatewayRouteTableArn = {
             type = "string",
         },
-        CoreNetworkSegmentEdge = {
-            type = "structure",
-        },
-        CoreNetworkNetworkFunctionGroup = {
-            type = "structure",
-        },
+        CoreNetworkSegmentEdge = M.CoreNetworkSegmentEdgeIdentifier,
+        CoreNetworkNetworkFunctionGroup = M.CoreNetworkNetworkFunctionGroupIdentifier,
     },
 }
 
@@ -3818,44 +3695,41 @@ M.GetNetworkRoutesInput = {
                 required = true,
             },
         },
-        RouteTableIdentifier = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RouteTableIdentifier = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RouteTableIdentifier }),
         ExactCidrMatches = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         LongestPrefixMatches = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SubnetOfMatches = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SupernetOfMatches = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         PrefixListIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         States = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Types = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DestinationFilters = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
     },
 }
@@ -3895,7 +3769,7 @@ M.NetworkRoute = {
         },
         Destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkRouteDestination,
         },
         PrefixListId = {
             type = "string",
@@ -3921,9 +3795,7 @@ M.GetNetworkRoutesOutput = {
         RouteTableArn = {
             type = "string",
         },
-        CoreNetworkSegmentEdge = {
-            type = "structure",
-        },
+        CoreNetworkSegmentEdge = M.CoreNetworkSegmentEdgeIdentifier,
         RouteTableType = {
             type = "string",
         },
@@ -3932,7 +3804,7 @@ M.GetNetworkRoutesOutput = {
         },
         NetworkRoutes = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkRoute,
         },
     },
 }
@@ -3984,7 +3856,7 @@ M.GetNetworkTelemetryInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4025,9 +3897,7 @@ M.NetworkTelemetry = {
         Address = {
             type = "string",
         },
-        Health = {
-            type = "structure",
-        },
+        Health = M.ConnectionHealth,
     },
 }
 
@@ -4036,7 +3906,7 @@ M.GetNetworkTelemetryOutput = {
     members = {
         NetworkTelemetry = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkTelemetry,
         },
         NextToken = {
             type = "string",
@@ -4131,8 +4001,8 @@ M.RouteAnalysisCompletion = {
         },
         ReasonContext = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -4157,6 +4027,9 @@ M.NetworkResourceSummary = {
         },
         IsMiddlebox = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -4165,11 +4038,9 @@ M.PathComponent = {
     type = "structure",
     members = {
         Sequence = {
-            type = "number",
+            type = "integer",
         },
-        Resource = {
-            type = "structure",
-        },
+        Resource = M.NetworkResourceSummary,
         DestinationCidrBlock = {
             type = "string",
         },
@@ -4179,12 +4050,10 @@ M.PathComponent = {
 M.RouteAnalysisPath = {
     type = "structure",
     members = {
-        CompletionStatus = {
-            type = "structure",
-        },
+        CompletionStatus = M.RouteAnalysisCompletion,
         Path = {
             type = "list",
-            member_type = "structure",
+            member = M.PathComponent,
         },
     },
 }
@@ -4213,33 +4082,29 @@ M.RouteAnalysis = {
         Status = {
             type = "string",
         },
-        Source = {
-            type = "structure",
-        },
-        Destination = {
-            type = "structure",
-        },
+        Source = M.RouteAnalysisEndpointOptions,
+        Destination = M.RouteAnalysisEndpointOptions,
         IncludeReturnPath = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         UseMiddleboxes = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        ForwardPath = {
-            type = "structure",
-        },
-        ReturnPath = {
-            type = "structure",
-        },
+        ForwardPath = M.RouteAnalysisPath,
+        ReturnPath = M.RouteAnalysisPath,
     },
 }
 
 M.GetRouteAnalysisOutput = {
     type = "structure",
     members = {
-        RouteAnalysis = {
-            type = "structure",
-        },
+        RouteAnalysis = M.RouteAnalysis,
     },
 }
 
@@ -4255,13 +4120,13 @@ M.GetSitesInput = {
         },
         SiteIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "siteIds",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4280,7 +4145,7 @@ M.GetSitesOutput = {
     members = {
         Sites = {
             type = "list",
-            member_type = "structure",
+            member = M.Site,
         },
         NextToken = {
             type = "string",
@@ -4304,9 +4169,7 @@ M.GetSiteToSiteVpnAttachmentInput = {
 M.GetSiteToSiteVpnAttachmentOutput = {
     type = "structure",
     members = {
-        SiteToSiteVpnAttachment = {
-            type = "structure",
-        },
+        SiteToSiteVpnAttachment = M.SiteToSiteVpnAttachment,
     },
 }
 
@@ -4322,13 +4185,13 @@ M.GetTransitGatewayConnectPeerAssociationsInput = {
         },
         TransitGatewayConnectPeerArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "transitGatewayConnectPeerArns",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4347,7 +4210,7 @@ M.GetTransitGatewayConnectPeerAssociationsOutput = {
     members = {
         TransitGatewayConnectPeerAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.TransitGatewayConnectPeerAssociation,
         },
         NextToken = {
             type = "string",
@@ -4371,9 +4234,7 @@ M.GetTransitGatewayPeeringInput = {
 M.GetTransitGatewayPeeringOutput = {
     type = "structure",
     members = {
-        TransitGatewayPeering = {
-            type = "structure",
-        },
+        TransitGatewayPeering = M.TransitGatewayPeering,
     },
 }
 
@@ -4389,13 +4250,13 @@ M.GetTransitGatewayRegistrationsInput = {
         },
         TransitGatewayArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "transitGatewayArns",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4414,7 +4275,7 @@ M.GetTransitGatewayRegistrationsOutput = {
     members = {
         TransitGatewayRegistrations = {
             type = "list",
-            member_type = "structure",
+            member = M.TransitGatewayRegistration,
         },
         NextToken = {
             type = "string",
@@ -4438,9 +4299,7 @@ M.GetTransitGatewayRouteTableAttachmentInput = {
 M.GetTransitGatewayRouteTableAttachmentOutput = {
     type = "structure",
     members = {
-        TransitGatewayRouteTableAttachment = {
-            type = "structure",
-        },
+        TransitGatewayRouteTableAttachment = M.TransitGatewayRouteTableAttachment,
     },
 }
 
@@ -4460,9 +4319,7 @@ M.GetVpcAttachmentInput = {
 M.GetVpcAttachmentOutput = {
     type = "structure",
     members = {
-        VpcAttachment = {
-            type = "structure",
-        },
+        VpcAttachment = M.VpcAttachment,
     },
 }
 
@@ -4483,7 +4340,7 @@ M.ListAttachmentRoutingPolicyAssociationsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4502,7 +4359,7 @@ M.ListAttachmentRoutingPolicyAssociationsOutput = {
     members = {
         AttachmentRoutingPolicyAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.AttachmentRoutingPolicyAssociationSummary,
         },
         NextToken = {
             type = "string",
@@ -4538,7 +4395,7 @@ M.ListAttachmentsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4557,7 +4414,7 @@ M.ListAttachmentsOutput = {
     members = {
         Attachments = {
             type = "list",
-            member_type = "structure",
+            member = M.Attachment,
         },
         NextToken = {
             type = "string",
@@ -4581,7 +4438,7 @@ M.ListConnectPeersInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4600,7 +4457,7 @@ M.ListConnectPeersOutput = {
     members = {
         ConnectPeers = {
             type = "list",
-            member_type = "structure",
+            member = M.ConnectPeerSummary,
         },
         NextToken = {
             type = "string",
@@ -4619,7 +4476,7 @@ M.ListCoreNetworkPolicyVersionsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4638,7 +4495,7 @@ M.ListCoreNetworkPolicyVersionsOutput = {
     members = {
         CoreNetworkPolicyVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.CoreNetworkPolicyVersion,
         },
         NextToken = {
             type = "string",
@@ -4663,7 +4520,7 @@ M.ListCoreNetworkPrefixListAssociationsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4697,7 +4554,7 @@ M.ListCoreNetworkPrefixListAssociationsOutput = {
     members = {
         PrefixListAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.PrefixListAssociation,
         },
         NextToken = {
             type = "string",
@@ -4729,27 +4586,27 @@ M.ListCoreNetworkRoutingInformationInput = {
         },
         NextHopFilters = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         LocalPreferenceMatches = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ExactAsPathMatches = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MedMatches = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CommunityMatches = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4768,7 +4625,7 @@ M.ListCoreNetworkRoutingInformationOutput = {
     members = {
         CoreNetworkRoutingInformation = {
             type = "list",
-            member_type = "structure",
+            member = M.CoreNetworkRoutingInformation,
         },
         NextToken = {
             type = "string",
@@ -4780,7 +4637,7 @@ M.ListCoreNetworksInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4799,7 +4656,7 @@ M.ListCoreNetworksOutput = {
     members = {
         CoreNetworks = {
             type = "list",
-            member_type = "structure",
+            member = M.CoreNetworkSummary,
         },
         NextToken = {
             type = "string",
@@ -4811,7 +4668,7 @@ M.ListOrganizationServiceAccessStatusInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4839,7 +4696,7 @@ M.OrganizationStatus = {
         },
         AccountStatusList = {
             type = "list",
-            member_type = "structure",
+            member = M.AccountStatus,
             traits = {
                 xml_name = "OrganizationStatus",
             },
@@ -4850,9 +4707,7 @@ M.OrganizationStatus = {
 M.ListOrganizationServiceAccessStatusOutput = {
     type = "structure",
     members = {
-        OrganizationStatus = {
-            type = "structure",
-        },
+        OrganizationStatus = M.OrganizationStatus,
         NextToken = {
             type = "string",
         },
@@ -4887,7 +4742,7 @@ M.ListPeeringsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4906,7 +4761,7 @@ M.ListPeeringsOutput = {
     members = {
         Peerings = {
             type = "list",
-            member_type = "structure",
+            member = M.Peering,
         },
         NextToken = {
             type = "string",
@@ -4932,7 +4787,7 @@ M.ListTagsForResourceOutput = {
     members = {
         TagList = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -4999,7 +4854,7 @@ M.PutCoreNetworkPolicyInput = {
             type = "string",
         },
         LatestVersionId = {
-            type = "number",
+            type = "integer",
         },
         ClientToken = {
             type = "string",
@@ -5010,9 +4865,7 @@ M.PutCoreNetworkPolicyInput = {
 M.PutCoreNetworkPolicyOutput = {
     type = "structure",
     members = {
-        CoreNetworkPolicy = {
-            type = "structure",
-        },
+        CoreNetworkPolicy = M.CoreNetworkPolicy,
     },
 }
 
@@ -5061,9 +4914,7 @@ M.RegisterTransitGatewayInput = {
 M.RegisterTransitGatewayOutput = {
     type = "structure",
     members = {
-        TransitGatewayRegistration = {
-            type = "structure",
-        },
+        TransitGatewayRegistration = M.TransitGatewayRegistration,
     },
 }
 
@@ -5083,9 +4934,7 @@ M.RejectAttachmentInput = {
 M.RejectAttachmentOutput = {
     type = "structure",
     members = {
-        Attachment = {
-            type = "structure",
-        },
+        Attachment = M.Attachment,
     },
 }
 
@@ -5135,7 +4984,7 @@ M.RestoreCoreNetworkPolicyVersionInput = {
             },
         },
         PolicyVersionId = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_label = true,
                 required = true,
@@ -5147,9 +4996,7 @@ M.RestoreCoreNetworkPolicyVersionInput = {
 M.RestoreCoreNetworkPolicyVersionOutput = {
     type = "structure",
     members = {
-        CoreNetworkPolicy = {
-            type = "structure",
-        },
+        CoreNetworkPolicy = M.CoreNetworkPolicy,
     },
 }
 
@@ -5168,9 +5015,7 @@ M.StartOrganizationServiceAccessUpdateInput = {
 M.StartOrganizationServiceAccessUpdateOutput = {
     type = "structure",
     members = {
-        OrganizationStatus = {
-            type = "structure",
-        },
+        OrganizationStatus = M.OrganizationStatus,
     },
 }
 
@@ -5196,23 +5041,23 @@ M.StartRouteAnalysisInput = {
                 required = true,
             },
         },
-        Source = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Destination = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Source = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RouteAnalysisEndpointOptionsSpecification }),
+        Destination = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RouteAnalysisEndpointOptionsSpecification }),
         IncludeReturnPath = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         UseMiddleboxes = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -5220,9 +5065,7 @@ M.StartRouteAnalysisInput = {
 M.StartRouteAnalysisOutput = {
     type = "structure",
     members = {
-        RouteAnalysis = {
-            type = "structure",
-        },
+        RouteAnalysis = M.RouteAnalysis,
     },
 }
 
@@ -5238,7 +5081,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -5262,7 +5105,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -5307,9 +5150,7 @@ M.UpdateConnectionInput = {
 M.UpdateConnectionOutput = {
     type = "structure",
     members = {
-        Connection = {
-            type = "structure",
-        },
+        Connection = M.Connection,
     },
 }
 
@@ -5332,9 +5173,7 @@ M.UpdateCoreNetworkInput = {
 M.UpdateCoreNetworkOutput = {
     type = "structure",
     members = {
-        CoreNetwork = {
-            type = "structure",
-        },
+        CoreNetwork = M.CoreNetwork,
     },
 }
 
@@ -5355,9 +5194,7 @@ M.UpdateDeviceInput = {
                 required = true,
             },
         },
-        AWSLocation = {
-            type = "structure",
-        },
+        AWSLocation = M.AWSLocation,
         Description = {
             type = "string",
         },
@@ -5373,9 +5210,7 @@ M.UpdateDeviceInput = {
         SerialNumber = {
             type = "string",
         },
-        Location = {
-            type = "structure",
-        },
+        Location = M.Location,
         SiteId = {
             type = "string",
         },
@@ -5385,9 +5220,7 @@ M.UpdateDeviceInput = {
 M.UpdateDeviceOutput = {
     type = "structure",
     members = {
-        Device = {
-            type = "structure",
-        },
+        Device = M.Device,
     },
 }
 
@@ -5403,7 +5236,7 @@ M.UpdateDirectConnectGatewayAttachmentInput = {
         },
         EdgeLocations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -5411,9 +5244,7 @@ M.UpdateDirectConnectGatewayAttachmentInput = {
 M.UpdateDirectConnectGatewayAttachmentOutput = {
     type = "structure",
     members = {
-        DirectConnectGatewayAttachment = {
-            type = "structure",
-        },
+        DirectConnectGatewayAttachment = M.DirectConnectGatewayAttachment,
     },
 }
 
@@ -5436,9 +5267,7 @@ M.UpdateGlobalNetworkInput = {
 M.UpdateGlobalNetworkOutput = {
     type = "structure",
     members = {
-        GlobalNetwork = {
-            type = "structure",
-        },
+        GlobalNetwork = M.GlobalNetwork,
     },
 }
 
@@ -5465,9 +5294,7 @@ M.UpdateLinkInput = {
         Type = {
             type = "string",
         },
-        Bandwidth = {
-            type = "structure",
-        },
+        Bandwidth = M.Bandwidth,
         Provider = {
             type = "string",
         },
@@ -5477,9 +5304,7 @@ M.UpdateLinkInput = {
 M.UpdateLinkOutput = {
     type = "structure",
     members = {
-        Link = {
-            type = "structure",
-        },
+        Link = M.Link,
     },
 }
 
@@ -5502,8 +5327,8 @@ M.UpdateNetworkResourceMetadataInput = {
         },
         Metadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -5519,8 +5344,8 @@ M.UpdateNetworkResourceMetadataOutput = {
         },
         Metadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -5545,18 +5370,14 @@ M.UpdateSiteInput = {
         Description = {
             type = "string",
         },
-        Location = {
-            type = "structure",
-        },
+        Location = M.Location,
     },
 }
 
 M.UpdateSiteOutput = {
     type = "structure",
     members = {
-        Site = {
-            type = "structure",
-        },
+        Site = M.Site,
     },
 }
 
@@ -5572,24 +5393,20 @@ M.UpdateVpcAttachmentInput = {
         },
         AddSubnetArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RemoveSubnetArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        Options = {
-            type = "structure",
-        },
+        Options = M.VpcOptions,
     },
 }
 
 M.UpdateVpcAttachmentOutput = {
     type = "structure",
     members = {
-        VpcAttachment = {
-            type = "structure",
-        },
+        VpcAttachment = M.VpcAttachment,
     },
 }
 

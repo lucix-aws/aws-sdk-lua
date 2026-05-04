@@ -1,0 +1,14 @@
+local types = require("databasemigrationservice.types")
+
+local record M
+    wait_until_endpoint_deleted: function(client: table, input: table, options: table): table, table
+    wait_until_replication_instance_available: function(client: table, input: table, options: table): table, table
+    wait_until_replication_instance_deleted: function(client: table, input: table, options: table): table, table
+    wait_until_replication_task_deleted: function(client: table, input: table, options: table): table, table
+    wait_until_replication_task_ready: function(client: table, input: table, options: table): table, table
+    wait_until_replication_task_running: function(client: table, input: table, options: table): table, table
+    wait_until_replication_task_stopped: function(client: table, input: table, options: table): table, table
+    wait_until_test_connection_succeeds: function(client: table, input: table, options: table): table, table
+end
+
+return M

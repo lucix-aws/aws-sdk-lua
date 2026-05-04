@@ -16,7 +16,7 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AWSStarkControlService"
-    cfg.signing_name = "awsstarkcontrolservice"
+    cfg.signing_name = "cleanrooms-ml"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end

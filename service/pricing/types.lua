@@ -32,7 +32,10 @@ M.DescribeServicesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -48,7 +51,7 @@ M.Service = {
         },
         AttributeNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -58,7 +61,7 @@ M.DescribeServicesOutput = {
     members = {
         Services = {
             type = "list",
-            member_type = "structure",
+            member = M.Service,
         },
         FormatVersion = {
             type = "string",
@@ -148,7 +151,10 @@ M.GetAttributeValuesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -158,7 +164,7 @@ M.GetAttributeValuesOutput = {
     members = {
         AttributeValues = {
             type = "list",
-            member_type = "structure",
+            member = M.AttributeValue,
         },
         NextToken = {
             type = "string",
@@ -246,7 +252,7 @@ M.GetProductsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         FormatVersion = {
             type = "string",
@@ -255,7 +261,10 @@ M.GetProductsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -268,7 +277,7 @@ M.GetProductsOutput = {
         },
         PriceList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -304,7 +313,10 @@ M.ListPriceListsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -323,7 +335,7 @@ M.PriceList = {
         },
         FileFormats = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -333,7 +345,7 @@ M.ListPriceListsOutput = {
     members = {
         PriceLists = {
             type = "list",
-            member_type = "structure",
+            member = M.PriceList,
         },
         NextToken = {
             type = "string",

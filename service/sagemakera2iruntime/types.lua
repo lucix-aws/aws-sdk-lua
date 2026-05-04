@@ -129,9 +129,7 @@ M.DescribeHumanLoopOutput = {
                 required = true,
             },
         },
-        HumanLoopOutput = {
-            type = "structure",
-        },
+        HumanLoopOutput = M.HumanLoopOutput,
     },
 }
 
@@ -175,7 +173,7 @@ M.ListHumanLoopsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -209,7 +207,7 @@ M.ListHumanLoopsOutput = {
     members = {
         HumanLoopSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.HumanLoopSummary,
             traits = {
                 required = true,
             },
@@ -250,7 +248,7 @@ M.HumanLoopDataAttributes = {
     members = {
         ContentClassifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -285,15 +283,10 @@ M.StartHumanLoopInput = {
                 required = true,
             },
         },
-        HumanLoopInput = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        DataAttributes = {
-            type = "structure",
-        },
+        HumanLoopInput = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HumanLoopInput }),
+        DataAttributes = M.HumanLoopDataAttributes,
     },
 }
 

@@ -38,14 +38,14 @@ M.CreateHomeRegionControlInput = {
                 required = true,
             },
         },
-        Target = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Target = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Target }),
         DryRun = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -59,9 +59,7 @@ M.HomeRegionControl = {
         HomeRegion = {
             type = "string",
         },
-        Target = {
-            type = "structure",
-        },
+        Target = M.Target,
         RequestedTime = {
             type = "timestamp",
         },
@@ -71,9 +69,7 @@ M.HomeRegionControl = {
 M.CreateHomeRegionControlOutput = {
     type = "structure",
     members = {
-        HomeRegionControl = {
-            type = "structure",
-        },
+        HomeRegionControl = M.HomeRegionControl,
     },
 }
 
@@ -128,8 +124,9 @@ M.ThrottlingException = {
             },
         },
         RetryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_header = "Retry-After",
             },
         },
@@ -161,11 +158,9 @@ M.DescribeHomeRegionControlsInput = {
         HomeRegion = {
             type = "string",
         },
-        Target = {
-            type = "structure",
-        },
+        Target = M.Target,
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -178,7 +173,7 @@ M.DescribeHomeRegionControlsOutput = {
     members = {
         HomeRegionControls = {
             type = "list",
-            member_type = "structure",
+            member = M.HomeRegionControl,
         },
         NextToken = {
             type = "string",

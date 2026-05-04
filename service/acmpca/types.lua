@@ -65,7 +65,7 @@ M.ASN1Subject = {
         },
         CustomAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomAttribute,
         },
     },
 }
@@ -106,21 +106,15 @@ M.OtherName = {
 M.GeneralName = {
     type = "structure",
     members = {
-        OtherName = {
-            type = "structure",
-        },
+        OtherName = M.OtherName,
         Rfc822Name = {
             type = "string",
         },
         DnsName = {
             type = "string",
         },
-        DirectoryName = {
-            type = "structure",
-        },
-        EdiPartyName = {
-            type = "structure",
-        },
+        DirectoryName = M.ASN1Subject,
+        EdiPartyName = M.EdiPartyName,
         UniformResourceIdentifier = {
             type = "string",
         },
@@ -154,18 +148,12 @@ M.AccessMethod = {
 M.AccessDescription = {
     type = "structure",
     members = {
-        AccessMethod = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        AccessLocation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AccessMethod = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AccessMethod }),
+        AccessLocation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.GeneralName }),
     },
 }
 
@@ -174,30 +162,57 @@ M.KeyUsage = {
     members = {
         DigitalSignature = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         NonRepudiation = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         KeyEncipherment = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         DataEncipherment = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         KeyAgreement = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         KeyCertSign = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         CRLSign = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         EncipherOnly = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         DecipherOnly = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -205,12 +220,10 @@ M.KeyUsage = {
 M.CsrExtensions = {
     type = "structure",
     members = {
-        KeyUsage = {
-            type = "structure",
-        },
+        KeyUsage = M.KeyUsage,
         SubjectInformationAccess = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessDescription,
         },
     },
 }
@@ -256,15 +269,10 @@ M.CertificateAuthorityConfiguration = {
                 required = true,
             },
         },
-        Subject = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        CsrExtensions = {
-            type = "structure",
-        },
+        Subject = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ASN1Subject }),
+        CsrExtensions = M.CsrExtensions,
     },
 }
 
@@ -285,6 +293,7 @@ M.CrlDistributionPointExtensionConfiguration = {
         OmitExtension = {
             type = "boolean",
             traits = {
+                default = nil,
                 required = true,
             },
         },
@@ -307,11 +316,12 @@ M.CrlConfiguration = {
         Enabled = {
             type = "boolean",
             traits = {
+                default = nil,
                 required = true,
             },
         },
         ExpirationInDays = {
-            type = "number",
+            type = "integer",
         },
         CustomCname = {
             type = "string",
@@ -322,9 +332,7 @@ M.CrlConfiguration = {
         S3ObjectAcl = {
             type = "string",
         },
-        CrlDistributionPointExtensionConfiguration = {
-            type = "structure",
-        },
+        CrlDistributionPointExtensionConfiguration = M.CrlDistributionPointExtensionConfiguration,
         CrlType = {
             type = "string",
         },
@@ -340,6 +348,7 @@ M.OcspConfiguration = {
         Enabled = {
             type = "boolean",
             traits = {
+                default = nil,
                 required = true,
             },
         },
@@ -352,12 +361,8 @@ M.OcspConfiguration = {
 M.RevocationConfiguration = {
     type = "structure",
     members = {
-        CrlConfiguration = {
-            type = "structure",
-        },
-        OcspConfiguration = {
-            type = "structure",
-        },
+        CrlConfiguration = M.CrlConfiguration,
+        OcspConfiguration = M.OcspConfiguration,
     },
 }
 
@@ -384,15 +389,10 @@ M.CertificateAuthorityUsageMode = {
 M.CreateCertificateAuthorityInput = {
     type = "structure",
     members = {
-        CertificateAuthorityConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        RevocationConfiguration = {
-            type = "structure",
-        },
+        CertificateAuthorityConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CertificateAuthorityConfiguration }),
+        RevocationConfiguration = M.RevocationConfiguration,
         CertificateAuthorityType = {
             type = "string",
             traits = {
@@ -407,7 +407,7 @@ M.CreateCertificateAuthorityInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         UsageMode = {
             type = "string",
@@ -581,7 +581,7 @@ M.CreatePermissionInput = {
         },
         Actions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -623,7 +623,7 @@ M.DeleteCertificateAuthorityInput = {
             },
         },
         PermanentDeletionTimeInDays = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -744,12 +744,8 @@ M.CertificateAuthority = {
         FailureReason = {
             type = "string",
         },
-        CertificateAuthorityConfiguration = {
-            type = "structure",
-        },
-        RevocationConfiguration = {
-            type = "structure",
-        },
+        CertificateAuthorityConfiguration = M.CertificateAuthorityConfiguration,
+        RevocationConfiguration = M.RevocationConfiguration,
         RestorableUntil = {
             type = "timestamp",
         },
@@ -765,9 +761,7 @@ M.CertificateAuthority = {
 M.DescribeCertificateAuthorityOutput = {
     type = "structure",
     members = {
-        CertificateAuthority = {
-            type = "structure",
-        },
+        CertificateAuthority = M.CertificateAuthority,
     },
 }
 
@@ -989,12 +983,9 @@ M.PolicyQualifierInfo = {
                 required = true,
             },
         },
-        Qualifier = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Qualifier = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Qualifier }),
     },
 }
 
@@ -1009,7 +1000,7 @@ M.PolicyInformation = {
         },
         PolicyQualifiers = {
             type = "list",
-            member_type = "structure",
+            member = M.PolicyQualifierInfo,
         },
     },
 }
@@ -1031,6 +1022,9 @@ M.CustomExtension = {
         },
         Critical = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -1064,22 +1058,20 @@ M.Extensions = {
     members = {
         CertificatePolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.PolicyInformation,
         },
         ExtendedKeyUsage = {
             type = "list",
-            member_type = "structure",
+            member = M.ExtendedKeyUsage,
         },
-        KeyUsage = {
-            type = "structure",
-        },
+        KeyUsage = M.KeyUsage,
         SubjectAlternativeNames = {
             type = "list",
-            member_type = "structure",
+            member = M.GeneralName,
         },
         CustomExtensions = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomExtension,
         },
     },
 }
@@ -1087,12 +1079,8 @@ M.Extensions = {
 M.ApiPassthrough = {
     type = "structure",
     members = {
-        Extensions = {
-            type = "structure",
-        },
-        Subject = {
-            type = "structure",
-        },
+        Extensions = M.Extensions,
+        Subject = M.ASN1Subject,
     },
 }
 
@@ -1108,7 +1096,7 @@ M.Validity = {
     type = "structure",
     members = {
         Value = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -1125,9 +1113,7 @@ M.Validity = {
 M.IssueCertificateInput = {
     type = "structure",
     members = {
-        ApiPassthrough = {
-            type = "structure",
-        },
+        ApiPassthrough = M.ApiPassthrough,
         CertificateAuthorityArn = {
             type = "string",
             traits = {
@@ -1149,15 +1135,10 @@ M.IssueCertificateInput = {
         TemplateArn = {
             type = "string",
         },
-        Validity = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ValidityNotBefore = {
-            type = "structure",
-        },
+        Validity = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Validity }),
+        ValidityNotBefore = M.Validity,
         IdempotencyToken = {
             type = "string",
         },
@@ -1202,7 +1183,7 @@ M.ListCertificateAuthoritiesInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1221,7 +1202,7 @@ M.ListCertificateAuthoritiesOutput = {
         },
         CertificateAuthorities = {
             type = "list",
-            member_type = "structure",
+            member = M.CertificateAuthority,
         },
     },
 }
@@ -1230,7 +1211,7 @@ M.ListPermissionsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1261,7 +1242,7 @@ M.Permission = {
         },
         Actions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Policy = {
             type = "string",
@@ -1277,7 +1258,7 @@ M.ListPermissionsOutput = {
         },
         Permissions = {
             type = "list",
-            member_type = "structure",
+            member = M.Permission,
         },
     },
 }
@@ -1286,7 +1267,7 @@ M.ListTagsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1308,7 +1289,7 @@ M.ListTagsOutput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1411,7 +1392,7 @@ M.TagCertificateAuthorityInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -1444,7 +1425,7 @@ M.UntagCertificateAuthorityInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -1465,9 +1446,7 @@ M.UpdateCertificateAuthorityInput = {
                 required = true,
             },
         },
-        RevocationConfiguration = {
-            type = "structure",
-        },
+        RevocationConfiguration = M.RevocationConfiguration,
         Status = {
             type = "string",
         },

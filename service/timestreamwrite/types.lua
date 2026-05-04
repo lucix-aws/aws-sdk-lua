@@ -21,22 +21,40 @@ M.BatchLoadProgressReport = {
     type = "structure",
     members = {
         RecordsProcessed = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         RecordsIngested = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         ParseFailures = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         RecordIngestionFailures = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         FileFailures = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         BytesMetered = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -144,7 +162,7 @@ M.MixedMeasureMapping = {
         },
         MultiMeasureAttributeMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.MultiMeasureAttributeMapping,
         },
     },
 }
@@ -157,7 +175,7 @@ M.MultiMeasureMappings = {
         },
         MultiMeasureAttributeMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.MultiMeasureAttributeMapping,
             traits = {
                 required = true,
             },
@@ -183,17 +201,15 @@ M.DataModel = {
         },
         DimensionMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionMapping,
             traits = {
                 required = true,
             },
         },
-        MultiMeasureMappings = {
-            type = "structure",
-        },
+        MultiMeasureMappings = M.MultiMeasureMappings,
         MixedMeasureMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.MixedMeasureMapping,
         },
         MeasureNameColumn = {
             type = "string",
@@ -216,12 +232,8 @@ M.DataModelS3Configuration = {
 M.DataModelConfiguration = {
     type = "structure",
     members = {
-        DataModel = {
-            type = "structure",
-        },
-        DataModelS3Configuration = {
-            type = "structure",
-        },
+        DataModel = M.DataModel,
+        DataModelS3Configuration = M.DataModelS3Configuration,
     },
 }
 
@@ -264,15 +276,10 @@ M.DataSourceS3Configuration = {
 M.DataSourceConfiguration = {
     type = "structure",
     members = {
-        DataSourceS3Configuration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        CsvConfiguration = {
-            type = "structure",
-        },
+        DataSourceS3Configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataSourceS3Configuration }),
+        CsvConfiguration = M.CsvConfiguration,
         DataFormat = {
             type = "string",
             traits = {
@@ -311,9 +318,7 @@ M.ReportS3Configuration = {
 M.ReportConfiguration = {
     type = "structure",
     members = {
-        ReportS3Configuration = {
-            type = "structure",
-        },
+        ReportS3Configuration = M.ReportS3Configuration,
     },
 }
 
@@ -326,18 +331,10 @@ M.BatchLoadTaskDescription = {
         ErrorMessage = {
             type = "string",
         },
-        DataSourceConfiguration = {
-            type = "structure",
-        },
-        ProgressReport = {
-            type = "structure",
-        },
-        ReportConfiguration = {
-            type = "structure",
-        },
-        DataModelConfiguration = {
-            type = "structure",
-        },
+        DataSourceConfiguration = M.DataSourceConfiguration,
+        ProgressReport = M.BatchLoadProgressReport,
+        ReportConfiguration = M.ReportConfiguration,
+        DataModelConfiguration = M.DataModelConfiguration,
         TargetDatabaseName = {
             type = "string",
         },
@@ -348,7 +345,10 @@ M.BatchLoadTaskDescription = {
             type = "string",
         },
         RecordVersion = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         CreationTime = {
             type = "timestamp",
@@ -381,21 +381,13 @@ M.CreateBatchLoadTaskInput = {
         ClientToken = {
             type = "string",
         },
-        DataModelConfiguration = {
-            type = "structure",
-        },
-        DataSourceConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ReportConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DataModelConfiguration = M.DataModelConfiguration,
+        DataSourceConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataSourceConfiguration }),
+        ReportConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ReportConfiguration }),
         TargetDatabaseName = {
             type = "string",
             traits = {
@@ -409,7 +401,10 @@ M.CreateBatchLoadTaskInput = {
             },
         },
         RecordVersion = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -527,7 +522,7 @@ M.CreateDatabaseInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -542,7 +537,10 @@ M.Database = {
             type = "string",
         },
         TableCount = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         KmsKeyId = {
             type = "string",
@@ -559,9 +557,7 @@ M.Database = {
 M.CreateDatabaseOutput = {
     type = "structure",
     members = {
-        Database = {
-            type = "structure",
-        },
+        Database = M.Database,
     },
 }
 
@@ -586,9 +582,7 @@ M.S3Configuration = {
 M.MagneticStoreRejectedDataLocation = {
     type = "structure",
     members = {
-        S3Configuration = {
-            type = "structure",
-        },
+        S3Configuration = M.S3Configuration,
     },
 }
 
@@ -601,9 +595,7 @@ M.MagneticStoreWriteProperties = {
                 required = true,
             },
         },
-        MagneticStoreRejectedDataLocation = {
-            type = "structure",
-        },
+        MagneticStoreRejectedDataLocation = M.MagneticStoreRejectedDataLocation,
     },
 }
 
@@ -611,13 +603,13 @@ M.RetentionProperties = {
     type = "structure",
     members = {
         MemoryStoreRetentionPeriodInHours = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         MagneticStoreRetentionPeriodInDays = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -658,7 +650,7 @@ M.Schema = {
     members = {
         CompositePartitionKey = {
             type = "list",
-            member_type = "structure",
+            member = M.PartitionKey,
         },
     },
 }
@@ -678,19 +670,13 @@ M.CreateTableInput = {
                 required = true,
             },
         },
-        RetentionProperties = {
-            type = "structure",
-        },
+        RetentionProperties = M.RetentionProperties,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        MagneticStoreWriteProperties = {
-            type = "structure",
-        },
-        Schema = {
-            type = "structure",
-        },
+        MagneticStoreWriteProperties = M.MagneticStoreWriteProperties,
+        Schema = M.Schema,
     },
 }
 
@@ -715,30 +701,22 @@ M.Table = {
         TableStatus = {
             type = "string",
         },
-        RetentionProperties = {
-            type = "structure",
-        },
+        RetentionProperties = M.RetentionProperties,
         CreationTime = {
             type = "timestamp",
         },
         LastUpdatedTime = {
             type = "timestamp",
         },
-        MagneticStoreWriteProperties = {
-            type = "structure",
-        },
-        Schema = {
-            type = "structure",
-        },
+        MagneticStoreWriteProperties = M.MagneticStoreWriteProperties,
+        Schema = M.Schema,
     },
 }
 
 M.CreateTableOutput = {
     type = "structure",
     members = {
-        Table = {
-            type = "structure",
-        },
+        Table = M.Table,
     },
 }
 
@@ -795,12 +773,9 @@ M.DescribeBatchLoadTaskInput = {
 M.DescribeBatchLoadTaskOutput = {
     type = "structure",
     members = {
-        BatchLoadTaskDescription = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        BatchLoadTaskDescription = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BatchLoadTaskDescription }),
     },
 }
 
@@ -819,9 +794,7 @@ M.DescribeDatabaseInput = {
 M.DescribeDatabaseOutput = {
     type = "structure",
     members = {
-        Database = {
-            type = "structure",
-        },
+        Database = M.Database,
     },
 }
 
@@ -839,8 +812,9 @@ M.Endpoint = {
             },
         },
         CachePeriodInMinutes = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -852,7 +826,7 @@ M.DescribeEndpointsOutput = {
     members = {
         Endpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.Endpoint,
             traits = {
                 required = true,
             },
@@ -881,9 +855,7 @@ M.DescribeTableInput = {
 M.DescribeTableOutput = {
     type = "structure",
     members = {
-        Table = {
-            type = "structure",
-        },
+        Table = M.Table,
     },
 }
 
@@ -919,7 +891,7 @@ M.ListBatchLoadTasksInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         TaskStatus = {
             type = "string",
@@ -935,7 +907,7 @@ M.ListBatchLoadTasksOutput = {
         },
         BatchLoadTasks = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchLoadTask,
         },
     },
 }
@@ -947,7 +919,7 @@ M.ListDatabasesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -957,7 +929,7 @@ M.ListDatabasesOutput = {
     members = {
         Databases = {
             type = "list",
-            member_type = "structure",
+            member = M.Database,
         },
         NextToken = {
             type = "string",
@@ -975,7 +947,7 @@ M.ListTablesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -985,7 +957,7 @@ M.ListTablesOutput = {
     members = {
         Tables = {
             type = "list",
-            member_type = "structure",
+            member = M.Table,
         },
         NextToken = {
             type = "string",
@@ -1010,7 +982,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1044,7 +1016,7 @@ M.Record = {
     members = {
         Dimensions = {
             type = "list",
-            member_type = "structure",
+            member = M.Dimension,
         },
         MeasureName = {
             type = "string",
@@ -1062,11 +1034,14 @@ M.Record = {
             type = "string",
         },
         Version = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
         MeasureValues = {
             type = "list",
-            member_type = "structure",
+            member = M.MeasureValue,
         },
     },
 }
@@ -1075,13 +1050,22 @@ M.RecordsIngested = {
     type = "structure",
     members = {
         Total = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         MemoryStore = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         MagneticStore = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1090,13 +1074,19 @@ M.RejectedRecord = {
     type = "structure",
     members = {
         RecordIndex = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         Reason = {
             type = "string",
         },
         ExistingVersion = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -1110,7 +1100,7 @@ M.RejectedRecordsException = {
         },
         RejectedRecords = {
             type = "list",
-            member_type = "structure",
+            member = M.RejectedRecord,
         },
     },
 }
@@ -1142,7 +1132,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -1165,7 +1155,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1198,9 +1188,7 @@ M.UpdateDatabaseInput = {
 M.UpdateDatabaseOutput = {
     type = "structure",
     members = {
-        Database = {
-            type = "structure",
-        },
+        Database = M.Database,
     },
 }
 
@@ -1219,24 +1207,16 @@ M.UpdateTableInput = {
                 required = true,
             },
         },
-        RetentionProperties = {
-            type = "structure",
-        },
-        MagneticStoreWriteProperties = {
-            type = "structure",
-        },
-        Schema = {
-            type = "structure",
-        },
+        RetentionProperties = M.RetentionProperties,
+        MagneticStoreWriteProperties = M.MagneticStoreWriteProperties,
+        Schema = M.Schema,
     },
 }
 
 M.UpdateTableOutput = {
     type = "structure",
     members = {
-        Table = {
-            type = "structure",
-        },
+        Table = M.Table,
     },
 }
 
@@ -1255,12 +1235,10 @@ M.WriteRecordsInput = {
                 required = true,
             },
         },
-        CommonAttributes = {
-            type = "structure",
-        },
+        CommonAttributes = M.Record,
         Records = {
             type = "list",
-            member_type = "structure",
+            member = M.Record,
             traits = {
                 required = true,
             },
@@ -1271,9 +1249,7 @@ M.WriteRecordsInput = {
 M.WriteRecordsOutput = {
     type = "structure",
     members = {
-        RecordsIngested = {
-            type = "structure",
-        },
+        RecordsIngested = M.RecordsIngested,
     },
 }
 

@@ -352,21 +352,21 @@ local record ValidationException
     message: string
 end
 
-local type RecommendationPillar = "cost_optimizing" | "performance" | "security" | "service_limits" | "fault_tolerance" | "operational_excellence"
+local type RecommendationStatus = "ok" | "warning" | "error"
 
 local type RecommendationType = "standard" | "priority"
 
-local type RecommendationStatus = "ok" | "warning" | "error"
-
-local type ResourceStatus = "ok" | "warning" | "error"
+local type RecommendationPillar = "cost_optimizing" | "performance" | "security" | "service_limits" | "fault_tolerance" | "operational_excellence"
 
 local type UpdateRecommendationLifecycleStageReasonCode = "non_critical_account" | "temporary_account" | "valid_business_case" | "other_methods_available" | "low_priority" | "not_applicable" | "other"
 
 local type UpdateRecommendationLifecycleStage = "pending_response" | "in_progress" | "dismissed" | "resolved"
 
-local type RecommendationLanguage = "en" | "ja" | "zh" | "fr" | "de" | "ko" | "zh_TW" | "it" | "es" | "pt_BR" | "id"
+local type ResourceStatus = "ok" | "warning" | "error"
 
 local type RecommendationSource = "aws_config" | "compute_optimizer" | "cost_explorer" | "lse" | "manual" | "pse" | "rds" | "resilience" | "resilience_hub" | "security_hub" | "stir" | "ta_check" | "well_architected" | "cost_optimization_hub"
+
+local type RecommendationLanguage = "en" | "ja" | "zh" | "fr" | "de" | "ko" | "zh_TW" | "it" | "es" | "pt_BR" | "id"
 
 local type ExclusionStatus = "excluded" | "included"
 

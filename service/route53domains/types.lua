@@ -71,10 +71,10 @@ M.DnssecSigningAttributes = {
     type = "structure",
     members = {
         Algorithm = {
-            type = "number",
+            type = "integer",
         },
         Flags = {
-            type = "number",
+            type = "integer",
         },
         PublicKey = {
             type = "string",
@@ -91,12 +91,9 @@ M.AssociateDelegationSignerToDomainInput = {
                 required = true,
             },
         },
-        SigningAttributes = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SigningAttributes = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DnssecSigningAttributes }),
     },
 }
 
@@ -182,7 +179,10 @@ M.BillingRecord = {
             type = "timestamp",
         },
         Price = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -281,9 +281,7 @@ M.DomainTransferability = {
 M.CheckDomainTransferabilityOutput = {
     type = "structure",
     members = {
-        Transferability = {
-            type = "structure",
-        },
+        Transferability = M.DomainTransferability,
         Message = {
             type = "string",
         },
@@ -294,8 +292,9 @@ M.Consent = {
     type = "structure",
     members = {
         MaxPrice = {
-            type = "number",
+            type = "double",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -669,7 +668,7 @@ M.ContactDetail = {
         },
         ExtraParams = {
             type = "list",
-            member_type = "structure",
+            member = M.ExtraParam,
         },
     },
 }
@@ -706,7 +705,7 @@ M.DeleteTagsForDomainInput = {
         },
         TagsToDelete = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -786,22 +785,22 @@ M.DnssecKey = {
     type = "structure",
     members = {
         Algorithm = {
-            type = "number",
+            type = "integer",
         },
         Flags = {
-            type = "number",
+            type = "integer",
         },
         PublicKey = {
             type = "string",
         },
         DigestType = {
-            type = "number",
+            type = "integer",
         },
         Digest = {
             type = "string",
         },
         KeyTag = {
-            type = "number",
+            type = "integer",
         },
         Id = {
             type = "string",
@@ -813,8 +812,9 @@ M.PriceWithCurrency = {
     type = "structure",
     members = {
         Price = {
-            type = "number",
+            type = "double",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -833,21 +833,11 @@ M.DomainPrice = {
         Name = {
             type = "string",
         },
-        RegistrationPrice = {
-            type = "structure",
-        },
-        TransferPrice = {
-            type = "structure",
-        },
-        RenewalPrice = {
-            type = "structure",
-        },
-        ChangeOwnershipPrice = {
-            type = "structure",
-        },
-        RestorationPrice = {
-            type = "structure",
-        },
+        RegistrationPrice = M.PriceWithCurrency,
+        TransferPrice = M.PriceWithCurrency,
+        RenewalPrice = M.PriceWithCurrency,
+        ChangeOwnershipPrice = M.PriceWithCurrency,
+        RestorationPrice = M.PriceWithCurrency,
     },
 }
 
@@ -946,7 +936,7 @@ M.FilterCondition = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1004,7 +994,7 @@ M.Nameserver = {
         },
         GlueIps = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1017,20 +1007,14 @@ M.GetDomainDetailOutput = {
         },
         Nameservers = {
             type = "list",
-            member_type = "structure",
+            member = M.Nameserver,
         },
         AutoRenew = {
             type = "boolean",
         },
-        AdminContact = {
-            type = "structure",
-        },
-        RegistrantContact = {
-            type = "structure",
-        },
-        TechContact = {
-            type = "structure",
-        },
+        AdminContact = M.ContactDetail,
+        RegistrantContact = M.ContactDetail,
+        TechContact = M.ContactDetail,
         AdminPrivacy = {
             type = "boolean",
         },
@@ -1075,15 +1059,13 @@ M.GetDomainDetailOutput = {
         },
         StatusList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DnssecKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.DnssecKey,
         },
-        BillingContact = {
-            type = "structure",
-        },
+        BillingContact = M.ContactDetail,
         BillingPrivacy = {
             type = "boolean",
         },
@@ -1100,8 +1082,9 @@ M.GetDomainSuggestionsInput = {
             },
         },
         SuggestionCount = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -1119,7 +1102,7 @@ M.GetDomainSuggestionsOutput = {
     members = {
         SuggestionsList = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainSuggestion,
         },
     },
 }
@@ -1210,16 +1193,14 @@ M.ListDomainsInput = {
     members = {
         FilterConditions = {
             type = "list",
-            member_type = "structure",
+            member = M.FilterCondition,
         },
-        SortCondition = {
-            type = "structure",
-        },
+        SortCondition = M.SortCondition,
         Marker = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1229,7 +1210,7 @@ M.ListDomainsOutput = {
     members = {
         Domains = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainSummary,
         },
         NextPageMarker = {
             type = "string",
@@ -1251,15 +1232,15 @@ M.ListOperationsInput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
         Status = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Type = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SortBy = {
             type = "string",
@@ -1305,7 +1286,7 @@ M.ListOperationsOutput = {
     members = {
         Operations = {
             type = "list",
-            member_type = "structure",
+            member = M.OperationSummary,
         },
         NextPageMarker = {
             type = "string",
@@ -1323,7 +1304,7 @@ M.ListPricesInput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1333,7 +1314,7 @@ M.ListPricesOutput = {
     members = {
         Prices = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainPrice,
         },
         NextPageMarker = {
             type = "string",
@@ -1370,7 +1351,7 @@ M.ListTagsForDomainOutput = {
     members = {
         TagList = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1410,7 +1391,7 @@ M.RegisterDomainInput = {
             type = "string",
         },
         DurationInYears = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1418,24 +1399,15 @@ M.RegisterDomainInput = {
         AutoRenew = {
             type = "boolean",
         },
-        AdminContact = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        RegistrantContact = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        TechContact = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AdminContact = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ContactDetail }),
+        RegistrantContact = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ContactDetail }),
+        TechContact = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ContactDetail }),
         PrivacyProtectAdminContact = {
             type = "boolean",
         },
@@ -1445,9 +1417,7 @@ M.RegisterDomainInput = {
         PrivacyProtectTechContact = {
             type = "boolean",
         },
-        BillingContact = {
-            type = "structure",
-        },
+        BillingContact = M.ContactDetail,
         PrivacyProtectBillingContact = {
             type = "boolean",
         },
@@ -1494,11 +1464,12 @@ M.RenewDomainInput = {
             },
         },
         DurationInYears = {
-            type = "number",
+            type = "integer",
         },
         CurrentExpiryYear = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -1588,14 +1559,14 @@ M.TransferDomainInput = {
             type = "string",
         },
         DurationInYears = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Nameservers = {
             type = "list",
-            member_type = "structure",
+            member = M.Nameserver,
         },
         AuthCode = {
             type = "string",
@@ -1603,24 +1574,15 @@ M.TransferDomainInput = {
         AutoRenew = {
             type = "boolean",
         },
-        AdminContact = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        RegistrantContact = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        TechContact = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AdminContact = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ContactDetail }),
+        RegistrantContact = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ContactDetail }),
+        TechContact = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ContactDetail }),
         PrivacyProtectAdminContact = {
             type = "boolean",
         },
@@ -1630,9 +1592,7 @@ M.TransferDomainInput = {
         PrivacyProtectTechContact = {
             type = "boolean",
         },
-        BillingContact = {
-            type = "structure",
-        },
+        BillingContact = M.ContactDetail,
         PrivacyProtectBillingContact = {
             type = "boolean",
         },
@@ -1687,21 +1647,11 @@ M.UpdateDomainContactInput = {
                 required = true,
             },
         },
-        AdminContact = {
-            type = "structure",
-        },
-        RegistrantContact = {
-            type = "structure",
-        },
-        TechContact = {
-            type = "structure",
-        },
-        Consent = {
-            type = "structure",
-        },
-        BillingContact = {
-            type = "structure",
-        },
+        AdminContact = M.ContactDetail,
+        RegistrantContact = M.ContactDetail,
+        TechContact = M.ContactDetail,
+        Consent = M.Consent,
+        BillingContact = M.ContactDetail,
     },
 }
 
@@ -1761,7 +1711,7 @@ M.UpdateDomainNameserversInput = {
         },
         Nameservers = {
             type = "list",
-            member_type = "structure",
+            member = M.Nameserver,
             traits = {
                 required = true,
             },
@@ -1789,7 +1739,7 @@ M.UpdateTagsForDomainInput = {
         },
         TagsToUpdate = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1811,7 +1761,7 @@ M.ViewBillingInput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1824,7 +1774,7 @@ M.ViewBillingOutput = {
         },
         BillingRecords = {
             type = "list",
-            member_type = "structure",
+            member = M.BillingRecord,
         },
     },
 }

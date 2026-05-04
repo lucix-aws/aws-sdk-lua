@@ -216,13 +216,13 @@ M.DescribeScalableTargetsInput = {
         },
         ResourceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ScalableDimension = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -267,19 +267,19 @@ M.ScalableTarget = {
             },
         },
         MinCapacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         MaxCapacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         PredictedCapacity = {
-            type = "number",
+            type = "integer",
         },
         RoleARN = {
             type = "string",
@@ -293,9 +293,7 @@ M.ScalableTarget = {
                 required = true,
             },
         },
-        SuspendedState = {
-            type = "structure",
-        },
+        SuspendedState = M.SuspendedState,
         ScalableTargetARN = {
             type = "string",
         },
@@ -307,7 +305,7 @@ M.DescribeScalableTargetsOutput = {
     members = {
         ScalableTargets = {
             type = "list",
-            member_type = "structure",
+            member = M.ScalableTarget,
         },
         NextToken = {
             type = "string",
@@ -341,7 +339,7 @@ M.DescribeScalingActivitiesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -362,13 +360,13 @@ M.NotScaledReason = {
             },
         },
         MaxCapacity = {
-            type = "number",
+            type = "integer",
         },
         MinCapacity = {
-            type = "number",
+            type = "integer",
         },
         CurrentCapacity = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -444,7 +442,7 @@ M.ScalingActivity = {
         },
         NotScaledReasons = {
             type = "list",
-            member_type = "structure",
+            member = M.NotScaledReason,
         },
     },
 }
@@ -454,7 +452,7 @@ M.DescribeScalingActivitiesOutput = {
     members = {
         ScalingActivities = {
             type = "list",
-            member_type = "structure",
+            member = M.ScalingActivity,
         },
         NextToken = {
             type = "string",
@@ -467,7 +465,7 @@ M.DescribeScalingPoliciesInput = {
     members = {
         PolicyNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ServiceNamespace = {
             type = "string",
@@ -482,7 +480,7 @@ M.DescribeScalingPoliciesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -524,7 +522,7 @@ M.PredictiveScalingMetric = {
     members = {
         Dimensions = {
             type = "list",
-            member_type = "structure",
+            member = M.PredictiveScalingMetricDimension,
         },
         MetricName = {
             type = "string",
@@ -538,12 +536,9 @@ M.PredictiveScalingMetric = {
 M.PredictiveScalingMetricStat = {
     type = "structure",
     members = {
-        Metric = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Metric = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PredictiveScalingMetric }),
         Stat = {
             type = "string",
             traits = {
@@ -568,9 +563,7 @@ M.PredictiveScalingMetricDataQuery = {
         Expression = {
             type = "string",
         },
-        MetricStat = {
-            type = "structure",
-        },
+        MetricStat = M.PredictiveScalingMetricStat,
         Label = {
             type = "string",
         },
@@ -585,7 +578,7 @@ M.PredictiveScalingCustomizedMetricSpecification = {
     members = {
         MetricDataQueries = {
             type = "list",
-            member_type = "structure",
+            member = M.PredictiveScalingMetricDataQuery,
             traits = {
                 required = true,
             },
@@ -642,29 +635,17 @@ M.PredictiveScalingMetricSpecification = {
     type = "structure",
     members = {
         TargetValue = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
-        PredefinedMetricPairSpecification = {
-            type = "structure",
-        },
-        PredefinedScalingMetricSpecification = {
-            type = "structure",
-        },
-        PredefinedLoadMetricSpecification = {
-            type = "structure",
-        },
-        CustomizedScalingMetricSpecification = {
-            type = "structure",
-        },
-        CustomizedLoadMetricSpecification = {
-            type = "structure",
-        },
-        CustomizedCapacityMetricSpecification = {
-            type = "structure",
-        },
+        PredefinedMetricPairSpecification = M.PredictiveScalingPredefinedMetricPairSpecification,
+        PredefinedScalingMetricSpecification = M.PredictiveScalingPredefinedScalingMetricSpecification,
+        PredefinedLoadMetricSpecification = M.PredictiveScalingPredefinedLoadMetricSpecification,
+        CustomizedScalingMetricSpecification = M.PredictiveScalingCustomizedMetricSpecification,
+        CustomizedLoadMetricSpecification = M.PredictiveScalingCustomizedMetricSpecification,
+        CustomizedCapacityMetricSpecification = M.PredictiveScalingCustomizedMetricSpecification,
     },
 }
 
@@ -678,7 +659,7 @@ M.PredictiveScalingPolicyConfiguration = {
     members = {
         MetricSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.PredictiveScalingMetricSpecification,
             traits = {
                 required = true,
             },
@@ -687,13 +668,13 @@ M.PredictiveScalingPolicyConfiguration = {
             type = "string",
         },
         SchedulingBufferTime = {
-            type = "number",
+            type = "integer",
         },
         MaxCapacityBreachBehavior = {
             type = "string",
         },
         MaxCapacityBuffer = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -708,13 +689,13 @@ M.StepAdjustment = {
     type = "structure",
     members = {
         MetricIntervalLowerBound = {
-            type = "number",
+            type = "double",
         },
         MetricIntervalUpperBound = {
-            type = "number",
+            type = "double",
         },
         ScalingAdjustment = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -730,13 +711,13 @@ M.StepScalingPolicyConfiguration = {
         },
         StepAdjustments = {
             type = "list",
-            member_type = "structure",
+            member = M.StepAdjustment,
         },
         MinAdjustmentMagnitude = {
-            type = "number",
+            type = "integer",
         },
         Cooldown = {
-            type = "number",
+            type = "integer",
         },
         MetricAggregationType = {
             type = "string",
@@ -785,7 +766,7 @@ M.TargetTrackingMetric = {
     members = {
         Dimensions = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetTrackingMetricDimension,
         },
         MetricName = {
             type = "string",
@@ -799,12 +780,9 @@ M.TargetTrackingMetric = {
 M.TargetTrackingMetricStat = {
     type = "structure",
     members = {
-        Metric = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Metric = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TargetTrackingMetric }),
         Stat = {
             type = "string",
             traits = {
@@ -832,9 +810,7 @@ M.TargetTrackingMetricDataQuery = {
         Label = {
             type = "string",
         },
-        MetricStat = {
-            type = "structure",
-        },
+        MetricStat = M.TargetTrackingMetricStat,
         ReturnData = {
             type = "boolean",
         },
@@ -860,7 +836,7 @@ M.CustomizedMetricSpecification = {
         },
         Dimensions = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricDimension,
         },
         Statistic = {
             type = "string",
@@ -870,7 +846,7 @@ M.CustomizedMetricSpecification = {
         },
         Metrics = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetTrackingMetricDataQuery,
         },
     },
 }
@@ -926,22 +902,18 @@ M.TargetTrackingScalingPolicyConfiguration = {
     type = "structure",
     members = {
         TargetValue = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
-        PredefinedMetricSpecification = {
-            type = "structure",
-        },
-        CustomizedMetricSpecification = {
-            type = "structure",
-        },
+        PredefinedMetricSpecification = M.PredefinedMetricSpecification,
+        CustomizedMetricSpecification = M.CustomizedMetricSpecification,
         ScaleOutCooldown = {
-            type = "number",
+            type = "integer",
         },
         ScaleInCooldown = {
-            type = "number",
+            type = "integer",
         },
         DisableScaleIn = {
             type = "boolean",
@@ -988,18 +960,12 @@ M.ScalingPolicy = {
                 required = true,
             },
         },
-        StepScalingPolicyConfiguration = {
-            type = "structure",
-        },
-        TargetTrackingScalingPolicyConfiguration = {
-            type = "structure",
-        },
-        PredictiveScalingPolicyConfiguration = {
-            type = "structure",
-        },
+        StepScalingPolicyConfiguration = M.StepScalingPolicyConfiguration,
+        TargetTrackingScalingPolicyConfiguration = M.TargetTrackingScalingPolicyConfiguration,
+        PredictiveScalingPolicyConfiguration = M.PredictiveScalingPolicyConfiguration,
         Alarms = {
             type = "list",
-            member_type = "structure",
+            member = M.Alarm,
         },
         CreationTime = {
             type = "timestamp",
@@ -1015,7 +981,7 @@ M.DescribeScalingPoliciesOutput = {
     members = {
         ScalingPolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.ScalingPolicy,
         },
         NextToken = {
             type = "string",
@@ -1038,7 +1004,7 @@ M.DescribeScheduledActionsInput = {
     members = {
         ScheduledActionNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ServiceNamespace = {
             type = "string",
@@ -1053,7 +1019,7 @@ M.DescribeScheduledActionsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1065,10 +1031,10 @@ M.ScalableTargetAction = {
     type = "structure",
     members = {
         MinCapacity = {
-            type = "number",
+            type = "integer",
         },
         MaxCapacity = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1118,9 +1084,7 @@ M.ScheduledAction = {
         EndTime = {
             type = "timestamp",
         },
-        ScalableTargetAction = {
-            type = "structure",
-        },
+        ScalableTargetAction = M.ScalableTargetAction,
         CreationTime = {
             type = "timestamp",
             traits = {
@@ -1135,7 +1099,7 @@ M.DescribeScheduledActionsOutput = {
     members = {
         ScheduledActions = {
             type = "list",
-            member_type = "structure",
+            member = M.ScheduledAction,
         },
         NextToken = {
             type = "string",
@@ -1190,14 +1154,14 @@ M.CapacityForecast = {
     members = {
         Timestamps = {
             type = "list",
-            member_type = "timestamp",
+            member = { type = "timestamp" },
             traits = {
                 required = true,
             },
         },
         Values = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
@@ -1210,24 +1174,21 @@ M.LoadForecast = {
     members = {
         Timestamps = {
             type = "list",
-            member_type = "timestamp",
+            member = { type = "timestamp" },
             traits = {
                 required = true,
             },
         },
         Values = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
         },
-        MetricSpecification = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        MetricSpecification = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PredictiveScalingMetricSpecification }),
     },
 }
 
@@ -1236,11 +1197,9 @@ M.GetPredictiveScalingForecastOutput = {
     members = {
         LoadForecast = {
             type = "list",
-            member_type = "structure",
+            member = M.LoadForecast,
         },
-        CapacityForecast = {
-            type = "structure",
-        },
+        CapacityForecast = M.CapacityForecast,
         UpdateTime = {
             type = "timestamp",
         },
@@ -1264,8 +1223,8 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1323,15 +1282,9 @@ M.PutScalingPolicyInput = {
         PolicyType = {
             type = "string",
         },
-        StepScalingPolicyConfiguration = {
-            type = "structure",
-        },
-        TargetTrackingScalingPolicyConfiguration = {
-            type = "structure",
-        },
-        PredictiveScalingPolicyConfiguration = {
-            type = "structure",
-        },
+        StepScalingPolicyConfiguration = M.StepScalingPolicyConfiguration,
+        TargetTrackingScalingPolicyConfiguration = M.TargetTrackingScalingPolicyConfiguration,
+        PredictiveScalingPolicyConfiguration = M.PredictiveScalingPolicyConfiguration,
     },
 }
 
@@ -1346,7 +1299,7 @@ M.PutScalingPolicyOutput = {
         },
         Alarms = {
             type = "list",
-            member_type = "structure",
+            member = M.Alarm,
         },
     },
 }
@@ -1390,9 +1343,7 @@ M.PutScheduledActionInput = {
         EndTime = {
             type = "timestamp",
         },
-        ScalableTargetAction = {
-            type = "structure",
-        },
+        ScalableTargetAction = M.ScalableTargetAction,
     },
 }
 
@@ -1422,21 +1373,19 @@ M.RegisterScalableTargetInput = {
             },
         },
         MinCapacity = {
-            type = "number",
+            type = "integer",
         },
         MaxCapacity = {
-            type = "number",
+            type = "integer",
         },
         RoleARN = {
             type = "string",
         },
-        SuspendedState = {
-            type = "structure",
-        },
+        SuspendedState = M.SuspendedState,
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1461,8 +1410,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1498,7 +1447,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },

@@ -17,7 +17,7 @@ M.AddPermissionInput = {
         },
         AWSAccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "AWSAccountId",
@@ -25,7 +25,7 @@ M.AddPermissionInput = {
         },
         Actions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "ActionName",
@@ -114,7 +114,10 @@ M.CancelMessageMoveTaskOutput = {
     type = "structure",
     members = {
         ApproximateNumberOfMessagesMoved = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -145,7 +148,7 @@ M.ChangeMessageVisibilityInput = {
             },
         },
         VisibilityTimeout = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -198,7 +201,7 @@ M.ChangeMessageVisibilityBatchRequestEntry = {
             },
         },
         VisibilityTimeout = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -214,7 +217,7 @@ M.ChangeMessageVisibilityBatchInput = {
         },
         Entries = {
             type = "list",
-            member_type = "structure",
+            member = M.ChangeMessageVisibilityBatchRequestEntry,
             traits = {
                 required = true,
                 xml_name = "ChangeMessageVisibilityBatchRequestEntry",
@@ -235,6 +238,7 @@ M.BatchResultErrorEntry = {
         SenderFault = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -267,7 +271,7 @@ M.ChangeMessageVisibilityBatchOutput = {
     members = {
         Successful = {
             type = "list",
-            member_type = "structure",
+            member = M.ChangeMessageVisibilityBatchResultEntry,
             traits = {
                 required = true,
                 xml_name = "ChangeMessageVisibilityBatchResultEntry",
@@ -275,7 +279,7 @@ M.ChangeMessageVisibilityBatchOutput = {
         },
         Failed = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchResultErrorEntry,
             traits = {
                 required = true,
                 xml_name = "BatchResultErrorEntry",
@@ -350,16 +354,16 @@ M.CreateQueueInput = {
         },
         Attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 xml_name = "Attribute",
             },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 xml_name = "Tag",
             },
@@ -472,7 +476,7 @@ M.DeleteMessageBatchInput = {
         },
         Entries = {
             type = "list",
-            member_type = "structure",
+            member = M.DeleteMessageBatchRequestEntry,
             traits = {
                 required = true,
                 xml_name = "DeleteMessageBatchRequestEntry",
@@ -498,7 +502,7 @@ M.DeleteMessageBatchOutput = {
     members = {
         Successful = {
             type = "list",
-            member_type = "structure",
+            member = M.DeleteMessageBatchResultEntry,
             traits = {
                 required = true,
                 xml_name = "DeleteMessageBatchResultEntry",
@@ -506,7 +510,7 @@ M.DeleteMessageBatchOutput = {
         },
         Failed = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchResultErrorEntry,
             traits = {
                 required = true,
                 xml_name = "BatchResultErrorEntry",
@@ -542,7 +546,7 @@ M.GetQueueAttributesInput = {
         },
         AttributeNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "AttributeName",
             },
@@ -555,8 +559,8 @@ M.GetQueueAttributesOutput = {
     members = {
         Attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 xml_name = "Attribute",
             },
@@ -601,7 +605,7 @@ M.ListDeadLetterSourceQueuesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -611,7 +615,7 @@ M.ListDeadLetterSourceQueuesOutput = {
     members = {
         queueUrls = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "QueueUrl",
@@ -633,7 +637,7 @@ M.ListMessageMoveTasksInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -654,19 +658,25 @@ M.ListMessageMoveTasksResultEntry = {
             type = "string",
         },
         MaxNumberOfMessagesPerSecond = {
-            type = "number",
+            type = "integer",
         },
         ApproximateNumberOfMessagesMoved = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         ApproximateNumberOfMessagesToMove = {
-            type = "number",
+            type = "long",
         },
         FailureReason = {
             type = "string",
         },
         StartedTimestamp = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -676,7 +686,7 @@ M.ListMessageMoveTasksOutput = {
     members = {
         Results = {
             type = "list",
-            member_type = "structure",
+            member = M.ListMessageMoveTasksResultEntry,
             traits = {
                 xml_name = "ListMessageMoveTasksResultEntry",
             },
@@ -694,7 +704,7 @@ M.ListQueuesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -704,7 +714,7 @@ M.ListQueuesOutput = {
     members = {
         QueueUrls = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "QueueUrl",
             },
@@ -732,8 +742,8 @@ M.ListQueueTagsOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 xml_name = "Tag",
             },
@@ -861,33 +871,33 @@ M.ReceiveMessageInput = {
         },
         AttributeNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "AttributeName",
             },
         },
         MessageSystemAttributeNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "AttributeName",
             },
         },
         MessageAttributeNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "MessageAttributeName",
             },
         },
         MaxNumberOfMessages = {
-            type = "number",
+            type = "integer",
         },
         VisibilityTimeout = {
-            type = "number",
+            type = "integer",
         },
         WaitTimeSeconds = {
-            type = "number",
+            type = "integer",
         },
         ReceiveRequestAttemptId = {
             type = "string",
@@ -906,14 +916,14 @@ M.MessageAttributeValue = {
         },
         StringListValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "StringListValue",
             },
         },
         BinaryListValues = {
             type = "list",
-            member_type = "blob",
+            member = { type = "blob" },
             traits = {
                 xml_name = "BinaryListValue",
             },
@@ -944,8 +954,8 @@ M.Message = {
         },
         Attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 xml_name = "Attribute",
             },
@@ -955,8 +965,8 @@ M.Message = {
         },
         MessageAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.MessageAttributeValue,
             traits = {
                 xml_name = "MessageAttribute",
             },
@@ -969,7 +979,7 @@ M.ReceiveMessageOutput = {
     members = {
         Messages = {
             type = "list",
-            member_type = "structure",
+            member = M.Message,
             traits = {
                 xml_name = "Message",
             },
@@ -1024,14 +1034,14 @@ M.MessageSystemAttributeValue = {
         },
         StringListValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "StringListValue",
             },
         },
         BinaryListValues = {
             type = "list",
-            member_type = "blob",
+            member = { type = "blob" },
             traits = {
                 xml_name = "BinaryListValue",
             },
@@ -1061,20 +1071,20 @@ M.SendMessageInput = {
             },
         },
         DelaySeconds = {
-            type = "number",
+            type = "integer",
         },
         MessageAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.MessageAttributeValue,
             traits = {
                 xml_name = "MessageAttribute",
             },
         },
         MessageSystemAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.MessageSystemAttributeValue,
             traits = {
                 xml_name = "MessageSystemAttribute",
             },
@@ -1135,20 +1145,20 @@ M.SendMessageBatchRequestEntry = {
             },
         },
         DelaySeconds = {
-            type = "number",
+            type = "integer",
         },
         MessageAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.MessageAttributeValue,
             traits = {
                 xml_name = "MessageAttribute",
             },
         },
         MessageSystemAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.MessageSystemAttributeValue,
             traits = {
                 xml_name = "MessageSystemAttribute",
             },
@@ -1173,7 +1183,7 @@ M.SendMessageBatchInput = {
         },
         Entries = {
             type = "list",
-            member_type = "structure",
+            member = M.SendMessageBatchRequestEntry,
             traits = {
                 required = true,
                 xml_name = "SendMessageBatchRequestEntry",
@@ -1220,7 +1230,7 @@ M.SendMessageBatchOutput = {
     members = {
         Successful = {
             type = "list",
-            member_type = "structure",
+            member = M.SendMessageBatchResultEntry,
             traits = {
                 required = true,
                 xml_name = "SendMessageBatchResultEntry",
@@ -1228,7 +1238,7 @@ M.SendMessageBatchOutput = {
         },
         Failed = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchResultErrorEntry,
             traits = {
                 required = true,
                 xml_name = "BatchResultErrorEntry",
@@ -1248,8 +1258,8 @@ M.SetQueueAttributesInput = {
         },
         Attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "Attribute",
@@ -1275,7 +1285,7 @@ M.StartMessageMoveTaskInput = {
             type = "string",
         },
         MaxNumberOfMessagesPerSecond = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1300,8 +1310,8 @@ M.TagQueueInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "Tag",
@@ -1325,7 +1335,7 @@ M.UntagQueueInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "TagKey",

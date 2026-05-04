@@ -51,8 +51,8 @@ M.Accessor = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         NetworkType = {
             type = "string",
@@ -93,10 +93,10 @@ M.ApprovalThresholdPolicy = {
     type = "structure",
     members = {
         ThresholdPercentage = {
-            type = "number",
+            type = "integer",
         },
         ProposalDurationInHours = {
-            type = "number",
+            type = "integer",
         },
         ThresholdComparator = {
             type = "string",
@@ -121,8 +121,8 @@ M.CreateAccessorInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         NetworkType = {
             type = "string",
@@ -219,9 +219,7 @@ M.MemberFabricConfiguration = {
 M.MemberFrameworkConfiguration = {
     type = "structure",
     members = {
-        Fabric = {
-            type = "structure",
-        },
+        Fabric = M.MemberFabricConfiguration,
     },
 }
 
@@ -237,27 +235,21 @@ M.LogConfiguration = {
 M.LogConfigurations = {
     type = "structure",
     members = {
-        Cloudwatch = {
-            type = "structure",
-        },
+        Cloudwatch = M.LogConfiguration,
     },
 }
 
 M.MemberFabricLogPublishingConfiguration = {
     type = "structure",
     members = {
-        CaLogs = {
-            type = "structure",
-        },
+        CaLogs = M.LogConfigurations,
     },
 }
 
 M.MemberLogPublishingConfiguration = {
     type = "structure",
     members = {
-        Fabric = {
-            type = "structure",
-        },
+        Fabric = M.MemberFabricLogPublishingConfiguration,
     },
 }
 
@@ -273,19 +265,14 @@ M.MemberConfiguration = {
         Description = {
             type = "string",
         },
-        FrameworkConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        LogPublishingConfiguration = {
-            type = "structure",
-        },
+        FrameworkConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MemberFrameworkConfiguration }),
+        LogPublishingConfiguration = M.MemberLogPublishingConfiguration,
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         KmsKeyArn = {
             type = "string",
@@ -315,12 +302,9 @@ M.CreateMemberInput = {
                 required = true,
             },
         },
-        MemberConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        MemberConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MemberConfiguration }),
     },
 }
 
@@ -381,18 +365,14 @@ M.NetworkFabricConfiguration = {
 M.NetworkFrameworkConfiguration = {
     type = "structure",
     members = {
-        Fabric = {
-            type = "structure",
-        },
+        Fabric = M.NetworkFabricConfiguration,
     },
 }
 
 M.VotingPolicy = {
     type = "structure",
     members = {
-        ApprovalThresholdPolicy = {
-            type = "structure",
-        },
+        ApprovalThresholdPolicy = M.ApprovalThresholdPolicy,
     },
 }
 
@@ -426,25 +406,17 @@ M.CreateNetworkInput = {
                 required = true,
             },
         },
-        FrameworkConfiguration = {
-            type = "structure",
-        },
-        VotingPolicy = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        MemberConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        FrameworkConfiguration = M.NetworkFrameworkConfiguration,
+        VotingPolicy = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VotingPolicy }),
+        MemberConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MemberConfiguration }),
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -464,21 +436,15 @@ M.CreateNetworkOutput = {
 M.NodeFabricLogPublishingConfiguration = {
     type = "structure",
     members = {
-        ChaincodeLogs = {
-            type = "structure",
-        },
-        PeerLogs = {
-            type = "structure",
-        },
+        ChaincodeLogs = M.LogConfigurations,
+        PeerLogs = M.LogConfigurations,
     },
 }
 
 M.NodeLogPublishingConfiguration = {
     type = "structure",
     members = {
-        Fabric = {
-            type = "structure",
-        },
+        Fabric = M.NodeFabricLogPublishingConfiguration,
     },
 }
 
@@ -499,9 +465,7 @@ M.NodeConfiguration = {
         AvailabilityZone = {
             type = "string",
         },
-        LogPublishingConfiguration = {
-            type = "structure",
-        },
+        LogPublishingConfiguration = M.NodeLogPublishingConfiguration,
         StateDB = {
             type = "string",
         },
@@ -527,16 +491,13 @@ M.CreateNodeInput = {
         MemberId = {
             type = "string",
         },
-        NodeConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        NodeConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.NodeConfiguration }),
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -579,11 +540,11 @@ M.ProposalActions = {
     members = {
         Invitations = {
             type = "list",
-            member_type = "structure",
+            member = M.InviteAction,
         },
         Removals = {
             type = "list",
-            member_type = "structure",
+            member = M.RemoveAction,
         },
     },
 }
@@ -610,19 +571,16 @@ M.CreateProposalInput = {
                 required = true,
             },
         },
-        Actions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Actions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProposalActions }),
         Description = {
             type = "string",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -723,9 +681,7 @@ M.GetAccessorInput = {
 M.GetAccessorOutput = {
     type = "structure",
     members = {
-        Accessor = {
-            type = "structure",
-        },
+        Accessor = M.Accessor,
     },
 }
 
@@ -764,9 +720,7 @@ M.MemberFabricAttributes = {
 M.MemberFrameworkAttributes = {
     type = "structure",
     members = {
-        Fabric = {
-            type = "structure",
-        },
+        Fabric = M.MemberFabricAttributes,
     },
 }
 
@@ -795,12 +749,8 @@ M.Member = {
         Description = {
             type = "string",
         },
-        FrameworkAttributes = {
-            type = "structure",
-        },
-        LogPublishingConfiguration = {
-            type = "structure",
-        },
+        FrameworkAttributes = M.MemberFrameworkAttributes,
+        LogPublishingConfiguration = M.MemberLogPublishingConfiguration,
         Status = {
             type = "string",
         },
@@ -809,8 +759,8 @@ M.Member = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Arn = {
             type = "string",
@@ -824,9 +774,7 @@ M.Member = {
 M.GetMemberOutput = {
     type = "structure",
     members = {
-        Member = {
-            type = "structure",
-        },
+        Member = M.Member,
     },
 }
 
@@ -867,12 +815,8 @@ M.NetworkFabricAttributes = {
 M.NetworkFrameworkAttributes = {
     type = "structure",
     members = {
-        Fabric = {
-            type = "structure",
-        },
-        Ethereum = {
-            type = "structure",
-        },
+        Fabric = M.NetworkFabricAttributes,
+        Ethereum = M.NetworkEthereumAttributes,
     },
 }
 
@@ -902,15 +846,11 @@ M.Network = {
         FrameworkVersion = {
             type = "string",
         },
-        FrameworkAttributes = {
-            type = "structure",
-        },
+        FrameworkAttributes = M.NetworkFrameworkAttributes,
         VpcEndpointServiceName = {
             type = "string",
         },
-        VotingPolicy = {
-            type = "structure",
-        },
+        VotingPolicy = M.VotingPolicy,
         Status = {
             type = "string",
         },
@@ -919,8 +859,8 @@ M.Network = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Arn = {
             type = "string",
@@ -931,9 +871,7 @@ M.Network = {
 M.GetNetworkOutput = {
     type = "structure",
     members = {
-        Network = {
-            type = "structure",
-        },
+        Network = M.Network,
     },
 }
 
@@ -990,12 +928,8 @@ M.NodeFabricAttributes = {
 M.NodeFrameworkAttributes = {
     type = "structure",
     members = {
-        Fabric = {
-            type = "structure",
-        },
-        Ethereum = {
-            type = "structure",
-        },
+        Fabric = M.NodeFabricAttributes,
+        Ethereum = M.NodeEthereumAttributes,
     },
 }
 
@@ -1029,12 +963,8 @@ M.Node = {
         AvailabilityZone = {
             type = "string",
         },
-        FrameworkAttributes = {
-            type = "structure",
-        },
-        LogPublishingConfiguration = {
-            type = "structure",
-        },
+        FrameworkAttributes = M.NodeFrameworkAttributes,
+        LogPublishingConfiguration = M.NodeLogPublishingConfiguration,
         StateDB = {
             type = "string",
         },
@@ -1046,8 +976,8 @@ M.Node = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Arn = {
             type = "string",
@@ -1061,9 +991,7 @@ M.Node = {
 M.GetNodeOutput = {
     type = "structure",
     members = {
-        Node = {
-            type = "structure",
-        },
+        Node = M.Node,
     },
 }
 
@@ -1107,9 +1035,7 @@ M.Proposal = {
         Description = {
             type = "string",
         },
-        Actions = {
-            type = "structure",
-        },
+        Actions = M.ProposalActions,
         ProposedByMemberId = {
             type = "string",
         },
@@ -1126,18 +1052,18 @@ M.Proposal = {
             type = "timestamp",
         },
         YesVoteCount = {
-            type = "number",
+            type = "integer",
         },
         NoVoteCount = {
-            type = "number",
+            type = "integer",
         },
         OutstandingVoteCount = {
-            type = "number",
+            type = "integer",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Arn = {
             type = "string",
@@ -1148,9 +1074,7 @@ M.Proposal = {
 M.GetProposalOutput = {
     type = "structure",
     members = {
-        Proposal = {
-            type = "structure",
-        },
+        Proposal = M.Proposal,
     },
 }
 
@@ -1217,9 +1141,7 @@ M.Invitation = {
         Status = {
             type = "string",
         },
-        NetworkSummary = {
-            type = "structure",
-        },
+        NetworkSummary = M.NetworkSummary,
         Arn = {
             type = "string",
         },
@@ -1230,7 +1152,7 @@ M.ListAccessorsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1255,7 +1177,7 @@ M.ListAccessorsOutput = {
     members = {
         Accessors = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessorSummary,
         },
         NextToken = {
             type = "string",
@@ -1267,7 +1189,7 @@ M.ListInvitationsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1286,7 +1208,7 @@ M.ListInvitationsOutput = {
     members = {
         Invitations = {
             type = "list",
-            member_type = "structure",
+            member = M.Invitation,
         },
         NextToken = {
             type = "string",
@@ -1323,7 +1245,7 @@ M.ListMembersInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1369,7 +1291,7 @@ M.ListMembersOutput = {
     members = {
         Members = {
             type = "list",
-            member_type = "structure",
+            member = M.MemberSummary,
         },
         NextToken = {
             type = "string",
@@ -1399,7 +1321,7 @@ M.ListNetworksInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1418,7 +1340,7 @@ M.ListNetworksOutput = {
     members = {
         Networks = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkSummary,
         },
         NextToken = {
             type = "string",
@@ -1449,7 +1371,7 @@ M.ListNodesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1492,7 +1414,7 @@ M.ListNodesOutput = {
     members = {
         Nodes = {
             type = "list",
-            member_type = "structure",
+            member = M.NodeSummary,
         },
         NextToken = {
             type = "string",
@@ -1511,7 +1433,7 @@ M.ListProposalsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1560,7 +1482,7 @@ M.ListProposalsOutput = {
     members = {
         Proposals = {
             type = "list",
-            member_type = "structure",
+            member = M.ProposalSummary,
         },
         NextToken = {
             type = "string",
@@ -1586,7 +1508,7 @@ M.ListProposalVotesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1625,7 +1547,7 @@ M.ListProposalVotesOutput = {
     members = {
         ProposalVotes = {
             type = "list",
-            member_type = "structure",
+            member = M.VoteSummary,
         },
         NextToken = {
             type = "string",
@@ -1651,8 +1573,8 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1686,8 +1608,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1711,7 +1633,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -1741,9 +1663,7 @@ M.UpdateMemberInput = {
                 required = true,
             },
         },
-        LogPublishingConfiguration = {
-            type = "structure",
-        },
+        LogPublishingConfiguration = M.MemberLogPublishingConfiguration,
     },
 }
 
@@ -1771,9 +1691,7 @@ M.UpdateNodeInput = {
                 required = true,
             },
         },
-        LogPublishingConfiguration = {
-            type = "structure",
-        },
+        LogPublishingConfiguration = M.NodeLogPublishingConfiguration,
     },
 }
 

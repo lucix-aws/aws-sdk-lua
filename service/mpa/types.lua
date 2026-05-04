@@ -25,7 +25,7 @@ M.MofNApprovalStrategy = {
     type = "structure",
     members = {
         MinApprovalsRequired = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -36,18 +36,14 @@ M.MofNApprovalStrategy = {
 M.ApprovalStrategy = {
     type = "union",
     members = {
-        MofN = {
-            type = "structure",
-        },
+        MofN = M.MofNApprovalStrategy,
     },
 }
 
 M.ApprovalStrategyResponse = {
     type = "union",
     members = {
-        MofN = {
-            type = "structure",
-        },
+        MofN = M.MofNApprovalStrategy,
     },
 }
 
@@ -100,15 +96,12 @@ M.CreateApprovalTeamInput = {
         ClientToken = {
             type = "string",
         },
-        ApprovalStrategy = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        ApprovalStrategy = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ApprovalStrategy }),
         Approvers = {
             type = "list",
-            member_type = "structure",
+            member = M.ApprovalTeamRequestApprover,
             traits = {
                 required = true,
             },
@@ -121,7 +114,7 @@ M.CreateApprovalTeamInput = {
         },
         Policies = {
             type = "list",
-            member_type = "structure",
+            member = M.PolicyReference,
             traits = {
                 required = true,
             },
@@ -134,8 +127,8 @@ M.CreateApprovalTeamInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -329,7 +322,7 @@ M.GetApprovalTeamResponseApprover = {
         },
         MfaMethods = {
             type = "list",
-            member_type = "structure",
+            member = M.MfaMethod,
         },
     },
 }
@@ -365,11 +358,9 @@ M.PendingUpdate = {
         Description = {
             type = "string",
         },
-        ApprovalStrategy = {
-            type = "union",
-        },
+        ApprovalStrategy = M.ApprovalStrategyResponse,
         NumberOfApprovers = {
-            type = "number",
+            type = "integer",
         },
         Status = {
             type = "string",
@@ -382,7 +373,7 @@ M.PendingUpdate = {
         },
         Approvers = {
             type = "list",
-            member_type = "structure",
+            member = M.GetApprovalTeamResponseApprover,
         },
         UpdateInitiationTime = {
             type = "timestamp",
@@ -396,15 +387,13 @@ M.GetApprovalTeamOutput = {
         CreationTime = {
             type = "timestamp",
         },
-        ApprovalStrategy = {
-            type = "union",
-        },
+        ApprovalStrategy = M.ApprovalStrategyResponse,
         NumberOfApprovers = {
-            type = "number",
+            type = "integer",
         },
         Approvers = {
             type = "list",
-            member_type = "structure",
+            member = M.GetApprovalTeamResponseApprover,
         },
         Arn = {
             type = "string",
@@ -432,14 +421,12 @@ M.GetApprovalTeamOutput = {
         },
         Policies = {
             type = "list",
-            member_type = "structure",
+            member = M.PolicyReference,
         },
         LastUpdateTime = {
             type = "timestamp",
         },
-        PendingUpdate = {
-            type = "structure",
-        },
+        PendingUpdate = M.PendingUpdate,
     },
 }
 
@@ -447,8 +434,9 @@ M.ListApprovalTeamsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 20,
                 http_query = "MaxResults",
             },
         },
@@ -467,11 +455,9 @@ M.ListApprovalTeamsResponseApprovalTeam = {
         CreationTime = {
             type = "timestamp",
         },
-        ApprovalStrategy = {
-            type = "union",
-        },
+        ApprovalStrategy = M.ApprovalStrategyResponse,
         NumberOfApprovers = {
-            type = "number",
+            type = "integer",
         },
         Arn = {
             type = "string",
@@ -502,7 +488,7 @@ M.ListApprovalTeamsOutput = {
         },
         ApprovalTeams = {
             type = "list",
-            member_type = "structure",
+            member = M.ListApprovalTeamsResponseApprovalTeam,
         },
     },
 }
@@ -511,7 +497,7 @@ M.StartActiveApprovalTeamDeletionInput = {
     type = "structure",
     members = {
         PendingWindowDays = {
-            type = "number",
+            type = "integer",
         },
         Arn = {
             type = "string",
@@ -547,7 +533,7 @@ M.StartApprovalTeamBaselineInput = {
         },
         ApproverIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -568,12 +554,10 @@ M.UpdateAction = {
 M.UpdateApprovalTeamInput = {
     type = "structure",
     members = {
-        ApprovalStrategy = {
-            type = "union",
-        },
+        ApprovalStrategy = M.ApprovalStrategy,
         Approvers = {
             type = "list",
-            member_type = "structure",
+            member = M.ApprovalTeamRequestApprover,
         },
         Description = {
             type = "string",
@@ -587,7 +571,7 @@ M.UpdateApprovalTeamInput = {
         },
         UpdateActions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -640,7 +624,7 @@ M.PolicyVersion = {
             },
         },
         VersionId = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -693,12 +677,9 @@ M.PolicyVersion = {
 M.GetPolicyVersionOutput = {
     type = "structure",
     members = {
-        PolicyVersion = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        PolicyVersion = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PolicyVersion }),
     },
 }
 
@@ -793,28 +774,23 @@ M.IamIdentityCenter = {
 M.IdentitySourceParameters = {
     type = "structure",
     members = {
-        IamIdentityCenter = {
-            type = "structure",
-        },
+        IamIdentityCenter = M.IamIdentityCenter,
     },
 }
 
 M.CreateIdentitySourceInput = {
     type = "structure",
     members = {
-        IdentitySourceParameters = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        IdentitySourceParameters = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IdentitySourceParameters }),
         ClientToken = {
             type = "string",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -886,9 +862,7 @@ M.IamIdentityCenterForGet = {
 M.IdentitySourceParametersForGet = {
     type = "union",
     members = {
-        IamIdentityCenter = {
-            type = "structure",
-        },
+        IamIdentityCenter = M.IamIdentityCenterForGet,
     },
 }
 
@@ -912,9 +886,7 @@ M.GetIdentitySourceOutput = {
         IdentitySourceType = {
             type = "string",
         },
-        IdentitySourceParameters = {
-            type = "union",
-        },
+        IdentitySourceParameters = M.IdentitySourceParametersForGet,
         IdentitySourceArn = {
             type = "string",
         },
@@ -937,8 +909,9 @@ M.ListIdentitySourcesInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 20,
                 http_query = "MaxResults",
             },
         },
@@ -969,9 +942,7 @@ M.IamIdentityCenterForList = {
 M.IdentitySourceParametersForList = {
     type = "union",
     members = {
-        IamIdentityCenter = {
-            type = "structure",
-        },
+        IamIdentityCenter = M.IamIdentityCenterForList,
     },
 }
 
@@ -981,9 +952,7 @@ M.IdentitySourceForList = {
         IdentitySourceType = {
             type = "string",
         },
-        IdentitySourceParameters = {
-            type = "union",
-        },
+        IdentitySourceParameters = M.IdentitySourceParametersForList,
         IdentitySourceArn = {
             type = "string",
         },
@@ -1010,7 +979,7 @@ M.ListIdentitySourcesOutput = {
         },
         IdentitySources = {
             type = "list",
-            member_type = "structure",
+            member = M.IdentitySourceForList,
         },
     },
 }
@@ -1019,8 +988,9 @@ M.ListPoliciesInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 20,
                 http_query = "MaxResults",
             },
         },
@@ -1043,7 +1013,7 @@ M.Policy = {
             },
         },
         DefaultVersion = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1071,7 +1041,7 @@ M.ListPoliciesOutput = {
         },
         Policies = {
             type = "list",
-            member_type = "structure",
+            member = M.Policy,
         },
     },
 }
@@ -1080,8 +1050,9 @@ M.ListPolicyVersionsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 20,
                 http_query = "MaxResults",
             },
         },
@@ -1117,7 +1088,7 @@ M.PolicyVersionSummary = {
             },
         },
         VersionId = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1169,7 +1140,7 @@ M.ListPolicyVersionsOutput = {
         },
         PolicyVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.PolicyVersionSummary,
         },
     },
 }
@@ -1185,8 +1156,9 @@ M.ListResourcePoliciesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 20,
                 http_query = "MaxResults",
             },
         },
@@ -1222,7 +1194,7 @@ M.ListResourcePoliciesOutput = {
         },
         ResourcePolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.ListResourcePoliciesResponseResourcePolicy,
         },
     },
 }
@@ -1245,8 +1217,8 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1344,11 +1316,9 @@ M.GetSessionOutput = {
         ProtectedResourceArn = {
             type = "string",
         },
-        ApprovalStrategy = {
-            type = "union",
-        },
+        ApprovalStrategy = M.ApprovalStrategyResponse,
         NumberOfApprovers = {
-            type = "number",
+            type = "integer",
         },
         InitiationTime = {
             type = "timestamp",
@@ -1364,8 +1334,8 @@ M.GetSessionOutput = {
         },
         Metadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Status = {
             type = "string",
@@ -1402,11 +1372,11 @@ M.GetSessionOutput = {
         },
         ApproverResponses = {
             type = "list",
-            member_type = "structure",
+            member = M.GetSessionResponseApproverResponse,
         },
         AdditionalSecurityRequirements = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1458,14 +1428,17 @@ M.ListSessionsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 20,
+            },
         },
         NextToken = {
             type = "string",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
     },
 }
@@ -1526,7 +1499,7 @@ M.ListSessionsResponseSession = {
         },
         AdditionalSecurityRequirements = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1539,7 +1512,7 @@ M.ListSessionsOutput = {
         },
         Sessions = {
             type = "list",
-            member_type = "structure",
+            member = M.ListSessionsResponseSession,
         },
     },
 }
@@ -1556,8 +1529,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1597,7 +1570,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },

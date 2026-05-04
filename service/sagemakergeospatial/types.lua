@@ -56,7 +56,7 @@ M.MultiPolygonGeometryInput = {
     members = {
         Coordinates = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
             traits = {
                 required = true,
             },
@@ -69,7 +69,7 @@ M.PolygonGeometryInput = {
     members = {
         Coordinates = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
             traits = {
                 required = true,
             },
@@ -80,21 +80,15 @@ M.PolygonGeometryInput = {
 M.AreaOfInterestGeometry = {
     type = "union",
     members = {
-        PolygonGeometry = {
-            type = "structure",
-        },
-        MultiPolygonGeometry = {
-            type = "structure",
-        },
+        PolygonGeometry = M.PolygonGeometryInput,
+        MultiPolygonGeometry = M.MultiPolygonGeometryInput,
     },
 }
 
 M.AreaOfInterest = {
     type = "union",
     members = {
-        AreaOfInterestGeometry = {
-            type = "union",
-        },
+        AreaOfInterestGeometry = M.AreaOfInterestGeometry,
     },
 }
 
@@ -141,7 +135,7 @@ M.CustomIndicesInput = {
     members = {
         Operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
     },
 }
@@ -151,11 +145,9 @@ M.BandMathConfigInput = {
     members = {
         PredefinedIndices = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        CustomIndices = {
-            type = "structure",
-        },
+        CustomIndices = M.CustomIndicesInput,
     },
 }
 
@@ -174,7 +166,7 @@ M.CloudRemovalConfigInput = {
         },
         TargetBands = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -217,10 +209,10 @@ M.Filter = {
             },
         },
         Minimum = {
-            type = "number",
+            type = "float",
         },
         Maximum = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -263,15 +255,15 @@ M.RasterDataCollectionMetadata = {
         },
         SupportedFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 required = true,
             },
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -392,12 +384,9 @@ M.ExportS3DataInput = {
 M.OutputConfigInput = {
     type = "structure",
     members = {
-        S3Data = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        S3Data = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ExportS3DataInput }),
     },
 }
 
@@ -419,12 +408,9 @@ M.ExportEarthObservationJobInput = {
                 required = true,
             },
         },
-        OutputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        OutputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OutputConfigInput }),
         ExportSourceImages = {
             type = "boolean",
         },
@@ -465,12 +451,9 @@ M.ExportEarthObservationJobOutput = {
                 required = true,
             },
         },
-        OutputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        OutputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OutputConfigInput }),
         ExportSourceImages = {
             type = "boolean",
         },
@@ -543,12 +526,8 @@ M.ExportErrorDetailsOutput = {
 M.ExportErrorDetails = {
     type = "structure",
     members = {
-        ExportResults = {
-            type = "structure",
-        },
-        ExportSourceImages = {
-            type = "structure",
-        },
+        ExportResults = M.ExportErrorDetailsOutput,
+        ExportSourceImages = M.ExportErrorDetailsOutput,
     },
 }
 
@@ -560,13 +539,13 @@ M.EoCloudCoverInput = {
     type = "structure",
     members = {
         LowerBound = {
-            type = "number",
+            type = "float",
             traits = {
                 required = true,
             },
         },
         UpperBound = {
-            type = "number",
+            type = "float",
             traits = {
                 required = true,
             },
@@ -578,13 +557,13 @@ M.LandsatCloudCoverLandInput = {
     type = "structure",
     members = {
         LowerBound = {
-            type = "number",
+            type = "float",
             traits = {
                 required = true,
             },
         },
         UpperBound = {
-            type = "number",
+            type = "float",
             traits = {
                 required = true,
             },
@@ -611,13 +590,13 @@ M.ViewOffNadirInput = {
     type = "structure",
     members = {
         LowerBound = {
-            type = "number",
+            type = "float",
             traits = {
                 required = true,
             },
         },
         UpperBound = {
-            type = "number",
+            type = "float",
             traits = {
                 required = true,
             },
@@ -629,13 +608,13 @@ M.ViewSunAzimuthInput = {
     type = "structure",
     members = {
         LowerBound = {
-            type = "number",
+            type = "float",
             traits = {
                 required = true,
             },
         },
         UpperBound = {
-            type = "number",
+            type = "float",
             traits = {
                 required = true,
             },
@@ -647,13 +626,13 @@ M.ViewSunElevationInput = {
     type = "structure",
     members = {
         LowerBound = {
-            type = "number",
+            type = "float",
             traits = {
                 required = true,
             },
         },
         UpperBound = {
-            type = "number",
+            type = "float",
             traits = {
                 required = true,
             },
@@ -664,36 +643,21 @@ M.ViewSunElevationInput = {
 M.Property = {
     type = "union",
     members = {
-        EoCloudCover = {
-            type = "structure",
-        },
-        ViewOffNadir = {
-            type = "structure",
-        },
-        ViewSunAzimuth = {
-            type = "structure",
-        },
-        ViewSunElevation = {
-            type = "structure",
-        },
-        Platform = {
-            type = "structure",
-        },
-        LandsatCloudCoverLand = {
-            type = "structure",
-        },
+        EoCloudCover = M.EoCloudCoverInput,
+        ViewOffNadir = M.ViewOffNadirInput,
+        ViewSunAzimuth = M.ViewSunAzimuthInput,
+        ViewSunElevation = M.ViewSunElevationInput,
+        Platform = M.PlatformInput,
+        LandsatCloudCoverLand = M.LandsatCloudCoverLandInput,
     },
 }
 
 M.PropertyFilter = {
     type = "structure",
     members = {
-        Property = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        Property = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Property }),
     },
 }
 
@@ -702,7 +666,7 @@ M.PropertyFilters = {
     members = {
         Properties = {
             type = "list",
-            member_type = "structure",
+            member = M.PropertyFilter,
         },
         LogicalOperator = {
             type = "string",
@@ -745,18 +709,11 @@ M.RasterDataCollectionQueryOutput = {
                 required = true,
             },
         },
-        TimeRangeFilter = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        AreaOfInterest = {
-            type = "union",
-        },
-        PropertyFilters = {
-            type = "structure",
-        },
+        TimeRangeFilter = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TimeRangeFilterOutput }),
+        AreaOfInterest = M.AreaOfInterest,
+        PropertyFilters = M.PropertyFilters,
     },
 }
 
@@ -766,9 +723,7 @@ M.InputConfigOutput = {
         PreviousEarthObservationJobArn = {
             type = "string",
         },
-        RasterDataCollectionQuery = {
-            type = "structure",
-        },
+        RasterDataCollectionQuery = M.RasterDataCollectionQueryOutput,
     },
 }
 
@@ -780,7 +735,7 @@ M.GeoMosaicConfigInput = {
         },
         TargetBands = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -797,7 +752,7 @@ M.UserDefined = {
     type = "structure",
     members = {
         Value = {
-            type = "number",
+            type = "float",
             traits = {
                 required = true,
             },
@@ -814,30 +769,24 @@ M.UserDefined = {
 M.OutputResolutionResamplingInput = {
     type = "structure",
     members = {
-        UserDefined = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        UserDefined = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.UserDefined }),
     },
 }
 
 M.ResamplingConfigInput = {
     type = "structure",
     members = {
-        OutputResolution = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        OutputResolution = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OutputResolutionResamplingInput }),
         AlgorithmName = {
             type = "string",
         },
         TargetBands = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -854,21 +803,17 @@ M.OutputResolutionStackInput = {
         Predefined = {
             type = "string",
         },
-        UserDefined = {
-            type = "structure",
-        },
+        UserDefined = M.UserDefined,
     },
 }
 
 M.StackConfigInput = {
     type = "structure",
     members = {
-        OutputResolution = {
-            type = "structure",
-        },
+        OutputResolution = M.OutputResolutionStackInput,
         TargetBands = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -892,14 +837,14 @@ M.TemporalStatisticsConfigInput = {
         },
         Statistics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         TargetBands = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -924,14 +869,14 @@ M.ZonalStatisticsConfigInput = {
         },
         Statistics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         TargetBands = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ZoneS3PathKmsKeyId = {
             type = "string",
@@ -942,33 +887,15 @@ M.ZonalStatisticsConfigInput = {
 M.JobConfigInput = {
     type = "union",
     members = {
-        BandMathConfig = {
-            type = "structure",
-        },
-        ResamplingConfig = {
-            type = "structure",
-        },
-        TemporalStatisticsConfig = {
-            type = "structure",
-        },
-        CloudRemovalConfig = {
-            type = "structure",
-        },
-        ZonalStatisticsConfig = {
-            type = "structure",
-        },
-        GeoMosaicConfig = {
-            type = "structure",
-        },
-        StackConfig = {
-            type = "structure",
-        },
-        CloudMaskingConfig = {
-            type = "structure",
-        },
-        LandCoverSegmentationConfig = {
-            type = "structure",
-        },
+        BandMathConfig = M.BandMathConfigInput,
+        ResamplingConfig = M.ResamplingConfigInput,
+        TemporalStatisticsConfig = M.TemporalStatisticsConfigInput,
+        CloudRemovalConfig = M.CloudRemovalConfigInput,
+        ZonalStatisticsConfig = M.ZonalStatisticsConfigInput,
+        GeoMosaicConfig = M.GeoMosaicConfigInput,
+        StackConfig = M.StackConfigInput,
+        CloudMaskingConfig = M.CloudMaskingConfigInput,
+        LandCoverSegmentationConfig = M.LandCoverSegmentationConfigInput,
     },
 }
 
@@ -1024,7 +951,7 @@ M.GetEarthObservationJobOutput = {
             },
         },
         DurationInSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1038,38 +965,28 @@ M.GetEarthObservationJobOutput = {
         KmsKeyId = {
             type = "string",
         },
-        InputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        JobConfig = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        InputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InputConfigOutput }),
+        JobConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.JobConfigInput }),
         OutputBands = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputBand,
         },
         ExecutionRoleArn = {
             type = "string",
         },
-        ErrorDetails = {
-            type = "structure",
-        },
+        ErrorDetails = M.EarthObservationJobErrorDetails,
         ExportStatus = {
             type = "string",
         },
-        ExportErrorDetails = {
-            type = "structure",
-        },
+        ExportErrorDetails = M.ExportErrorDetails,
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1083,21 +1000,21 @@ M.GetTileInput = {
     type = "structure",
     members = {
         x = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_label = true,
                 required = true,
             },
         },
         y = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_label = true,
                 required = true,
             },
         },
         z = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_label = true,
                 required = true,
@@ -1105,7 +1022,7 @@ M.GetTileInput = {
         },
         ImageAssets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "ImageAssets",
                 required = true,
@@ -1170,6 +1087,7 @@ M.GetTileOutput = {
         BinaryFile = {
             type = "blob",
             traits = {
+                default = "",
                 http_payload = true,
             },
         },
@@ -1197,7 +1115,7 @@ M.ListEarthObservationJobsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1225,7 +1143,7 @@ M.ListEarthObservationJobOutputConfig = {
             },
         },
         DurationInSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1244,8 +1162,8 @@ M.ListEarthObservationJobOutputConfig = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1255,7 +1173,7 @@ M.ListEarthObservationJobsOutput = {
     members = {
         EarthObservationJobSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ListEarthObservationJobOutputConfig,
             traits = {
                 required = true,
             },
@@ -1293,18 +1211,11 @@ M.RasterDataCollectionQueryInput = {
                 required = true,
             },
         },
-        TimeRangeFilter = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        AreaOfInterest = {
-            type = "union",
-        },
-        PropertyFilters = {
-            type = "structure",
-        },
+        TimeRangeFilter = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TimeRangeFilterInput }),
+        AreaOfInterest = M.AreaOfInterest,
+        PropertyFilters = M.PropertyFilters,
     },
 }
 
@@ -1314,9 +1225,7 @@ M.InputConfigInput = {
         PreviousEarthObservationJobArn = {
             type = "string",
         },
-        RasterDataCollectionQuery = {
-            type = "structure",
-        },
+        RasterDataCollectionQuery = M.RasterDataCollectionQueryInput,
     },
 }
 
@@ -1335,18 +1244,12 @@ M.StartEarthObservationJobInput = {
         KmsKeyId = {
             type = "string",
         },
-        InputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        JobConfig = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        InputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InputConfigInput }),
+        JobConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.JobConfigInput }),
         ExecutionRoleArn = {
             type = "string",
             traits = {
@@ -1355,8 +1258,8 @@ M.StartEarthObservationJobInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1384,7 +1287,7 @@ M.StartEarthObservationJobOutput = {
             },
         },
         DurationInSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1398,15 +1301,10 @@ M.StartEarthObservationJobOutput = {
         KmsKeyId = {
             type = "string",
         },
-        InputConfig = {
-            type = "structure",
-        },
-        JobConfig = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        InputConfig = M.InputConfigOutput,
+        JobConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.JobConfigInput }),
         ExecutionRoleArn = {
             type = "string",
             traits = {
@@ -1415,8 +1313,8 @@ M.StartEarthObservationJobOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1455,12 +1353,9 @@ M.VectorEnrichmentJobS3Data = {
 M.ExportVectorEnrichmentJobOutputConfig = {
     type = "structure",
     members = {
-        S3Data = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        S3Data = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VectorEnrichmentJobS3Data }),
     },
 }
 
@@ -1482,12 +1377,9 @@ M.ExportVectorEnrichmentJobInput = {
                 required = true,
             },
         },
-        OutputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        OutputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ExportVectorEnrichmentJobOutputConfig }),
     },
 }
 
@@ -1525,12 +1417,9 @@ M.ExportVectorEnrichmentJobOutput = {
                 required = true,
             },
         },
-        OutputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        OutputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ExportVectorEnrichmentJobOutputConfig }),
     },
 }
 
@@ -1545,7 +1434,7 @@ M.Geometry = {
         },
         Coordinates = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
             traits = {
                 required = true,
             },
@@ -1601,22 +1490,22 @@ M.GetRasterDataCollectionOutput = {
         },
         SupportedFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 required = true,
             },
         },
         ImageSourceBands = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1671,9 +1560,7 @@ M.VectorEnrichmentJobExportErrorDetails = {
 M.VectorEnrichmentJobDataSourceConfigInput = {
     type = "union",
     members = {
-        S3Data = {
-            type = "structure",
-        },
+        S3Data = M.VectorEnrichmentJobS3Data,
     },
 }
 
@@ -1690,12 +1577,9 @@ M.VectorEnrichmentJobInputConfig = {
                 required = true,
             },
         },
-        DataSourceConfig = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        DataSourceConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VectorEnrichmentJobDataSourceConfigInput }),
     },
 }
 
@@ -1750,12 +1634,8 @@ M.ReverseGeocodingConfig = {
 M.VectorEnrichmentJobConfig = {
     type = "union",
     members = {
-        ReverseGeocodingConfig = {
-            type = "structure",
-        },
-        MapMatchingConfig = {
-            type = "structure",
-        },
+        ReverseGeocodingConfig = M.ReverseGeocodingConfig,
+        MapMatchingConfig = M.MapMatchingConfig,
     },
 }
 
@@ -1804,7 +1684,7 @@ M.GetVectorEnrichmentJobOutput = {
             },
         },
         DurationInSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1818,37 +1698,27 @@ M.GetVectorEnrichmentJobOutput = {
         KmsKeyId = {
             type = "string",
         },
-        InputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        JobConfig = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        InputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VectorEnrichmentJobInputConfig }),
+        JobConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VectorEnrichmentJobConfig }),
         ExecutionRoleArn = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        ErrorDetails = {
-            type = "structure",
-        },
+        ErrorDetails = M.VectorEnrichmentJobErrorDetails,
         ExportStatus = {
             type = "string",
         },
-        ExportErrorDetails = {
-            type = "structure",
-        },
+        ExportErrorDetails = M.VectorEnrichmentJobExportErrorDetails,
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1857,22 +1727,22 @@ M.Properties = {
     type = "structure",
     members = {
         EoCloudCover = {
-            type = "number",
+            type = "float",
         },
         ViewOffNadir = {
-            type = "number",
+            type = "float",
         },
         ViewSunAzimuth = {
-            type = "number",
+            type = "float",
         },
         ViewSunElevation = {
-            type = "number",
+            type = "float",
         },
         Platform = {
             type = "string",
         },
         LandsatCloudCoverLand = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -1886,16 +1756,13 @@ M.ItemSource = {
                 required = true,
             },
         },
-        Geometry = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Geometry = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Geometry }),
         Assets = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.AssetValue,
         },
         DateTime = {
             type = "timestamp",
@@ -1903,9 +1770,7 @@ M.ItemSource = {
                 required = true,
             },
         },
-        Properties = {
-            type = "structure",
-        },
+        Properties = M.Properties,
     },
 }
 
@@ -1919,7 +1784,7 @@ M.ListRasterDataCollectionsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -1932,7 +1797,7 @@ M.ListRasterDataCollectionsOutput = {
     members = {
         RasterDataCollectionSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.RasterDataCollectionMetadata,
             traits = {
                 required = true,
             },
@@ -1961,8 +1826,8 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1996,7 +1861,7 @@ M.ListVectorEnrichmentJobOutputConfig = {
             },
         },
         DurationInSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -2009,8 +1874,8 @@ M.ListVectorEnrichmentJobOutputConfig = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2031,7 +1896,7 @@ M.ListVectorEnrichmentJobsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2041,7 +1906,7 @@ M.ListVectorEnrichmentJobsOutput = {
     members = {
         VectorEnrichmentJobSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ListVectorEnrichmentJobOutputConfig,
             traits = {
                 required = true,
             },
@@ -2055,21 +1920,14 @@ M.ListVectorEnrichmentJobsOutput = {
 M.RasterDataCollectionQueryWithBandFilterInput = {
     type = "structure",
     members = {
-        TimeRangeFilter = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        AreaOfInterest = {
-            type = "union",
-        },
-        PropertyFilters = {
-            type = "structure",
-        },
+        TimeRangeFilter = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TimeRangeFilterInput }),
+        AreaOfInterest = M.AreaOfInterest,
+        PropertyFilters = M.PropertyFilters,
         BandFilter = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2083,12 +1941,9 @@ M.SearchRasterDataCollectionInput = {
                 required = true,
             },
         },
-        RasterDataCollectionQuery = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RasterDataCollectionQuery = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RasterDataCollectionQueryWithBandFilterInput }),
         NextToken = {
             type = "string",
         },
@@ -2099,7 +1954,7 @@ M.SearchRasterDataCollectionOutput = {
     type = "structure",
     members = {
         ApproximateResultCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -2109,7 +1964,7 @@ M.SearchRasterDataCollectionOutput = {
         },
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.ItemSource,
         },
     },
 }
@@ -2126,8 +1981,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2151,7 +2006,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -2179,18 +2034,12 @@ M.StartVectorEnrichmentJobInput = {
         KmsKeyId = {
             type = "string",
         },
-        InputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        JobConfig = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        InputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VectorEnrichmentJobInputConfig }),
+        JobConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VectorEnrichmentJobConfig }),
         ExecutionRoleArn = {
             type = "string",
             traits = {
@@ -2199,8 +2048,8 @@ M.StartVectorEnrichmentJobInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2234,7 +2083,7 @@ M.StartVectorEnrichmentJobOutput = {
             },
         },
         DurationInSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -2248,18 +2097,12 @@ M.StartVectorEnrichmentJobOutput = {
         KmsKeyId = {
             type = "string",
         },
-        InputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        JobConfig = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        InputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VectorEnrichmentJobInputConfig }),
+        JobConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VectorEnrichmentJobConfig }),
         ExecutionRoleArn = {
             type = "string",
             traits = {
@@ -2268,8 +2111,8 @@ M.StartVectorEnrichmentJobOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }

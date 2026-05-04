@@ -53,6 +53,7 @@ M.SearchInput = {
         partial = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "partial",
             },
         },
@@ -82,8 +83,9 @@ M.SearchInput = {
             },
         },
         size = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 http_query = "size",
             },
         },
@@ -94,8 +96,9 @@ M.SearchInput = {
             },
         },
         start = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 http_query = "start",
             },
         },
@@ -115,7 +118,10 @@ M.Bucket = {
             type = "string",
         },
         count = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -125,7 +131,7 @@ M.BucketInfo = {
     members = {
         buckets = {
             type = "list",
-            member_type = "structure",
+            member = M.Bucket,
         },
     },
 }
@@ -138,18 +144,18 @@ M.Hit = {
         },
         fields = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         exprs = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         highlights = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -158,17 +164,23 @@ M.Hits = {
     type = "structure",
     members = {
         found = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         start = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         cursor = {
             type = "string",
         },
         hit = {
             type = "list",
-            member_type = "structure",
+            member = M.Hit,
         },
     },
 }
@@ -183,22 +195,37 @@ M.FieldStats = {
             type = "string",
         },
         count = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         missing = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         sum = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         sumOfSquares = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         mean = {
             type = "string",
         },
         stddev = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -207,7 +234,10 @@ M.SearchStatus = {
     type = "structure",
     members = {
         timems = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         rid = {
             type = "string",
@@ -218,21 +248,17 @@ M.SearchStatus = {
 M.SearchOutput = {
     type = "structure",
     members = {
-        status = {
-            type = "structure",
-        },
-        hits = {
-            type = "structure",
-        },
+        status = M.SearchStatus,
+        hits = M.Hits,
         facets = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.BucketInfo,
         },
         stats = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.FieldStats,
         },
     },
 }
@@ -255,8 +281,9 @@ M.SuggestInput = {
             },
         },
         size = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 http_query = "size",
             },
         },
@@ -267,7 +294,10 @@ M.SuggestStatus = {
     type = "structure",
     members = {
         timems = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         rid = {
             type = "string",
@@ -282,7 +312,10 @@ M.SuggestionMatch = {
             type = "string",
         },
         score = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         id = {
             type = "string",
@@ -297,11 +330,14 @@ M.SuggestModel = {
             type = "string",
         },
         found = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         suggestions = {
             type = "list",
-            member_type = "structure",
+            member = M.SuggestionMatch,
         },
     },
 }
@@ -309,12 +345,8 @@ M.SuggestModel = {
 M.SuggestOutput = {
     type = "structure",
     members = {
-        status = {
-            type = "structure",
-        },
-        suggest = {
-            type = "structure",
-        },
+        status = M.SuggestStatus,
+        suggest = M.SuggestModel,
     },
 }
 
@@ -372,14 +404,20 @@ M.UploadDocumentsOutput = {
             type = "string",
         },
         adds = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         deletes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         warnings = {
             type = "list",
-            member_type = "structure",
+            member = M.DocumentServiceWarning,
         },
     },
 }

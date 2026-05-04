@@ -36,15 +36,15 @@ M.CreateChatTokenInput = {
         },
         capabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         sessionDurationInMinutes = {
-            type = "number",
+            type = "integer",
         },
         attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -148,7 +148,7 @@ M.ValidationException = {
         },
         fieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -217,15 +217,9 @@ M.S3DestinationConfiguration = {
 M.DestinationConfiguration = {
     type = "union",
     members = {
-        s3 = {
-            type = "structure",
-        },
-        cloudWatchLogs = {
-            type = "structure",
-        },
-        firehose = {
-            type = "structure",
-        },
+        s3 = M.S3DestinationConfiguration,
+        cloudWatchLogs = M.CloudWatchLogsDestinationConfiguration,
+        firehose = M.FirehoseDestinationConfiguration,
     },
 }
 
@@ -235,16 +229,13 @@ M.CreateLoggingConfigurationInput = {
         name = {
             type = "string",
         },
-        destinationConfiguration = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        destinationConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DestinationConfiguration }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -271,16 +262,14 @@ M.CreateLoggingConfigurationOutput = {
         name = {
             type = "string",
         },
-        destinationConfiguration = {
-            type = "union",
-        },
+        destinationConfiguration = M.DestinationConfiguration,
         state = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -308,8 +297,9 @@ M.ServiceQuotaExceededException = {
             },
         },
         limit = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -340,22 +330,20 @@ M.CreateRoomInput = {
             type = "string",
         },
         maximumMessageRatePerSecond = {
-            type = "number",
+            type = "integer",
         },
         maximumMessageLength = {
-            type = "number",
+            type = "integer",
         },
-        messageReviewHandler = {
-            type = "structure",
-        },
+        messageReviewHandler = M.MessageReviewHandler,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         loggingConfigurationIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -379,22 +367,20 @@ M.CreateRoomOutput = {
             type = "timestamp",
         },
         maximumMessageRatePerSecond = {
-            type = "number",
+            type = "integer",
         },
         maximumMessageLength = {
-            type = "number",
+            type = "integer",
         },
-        messageReviewHandler = {
-            type = "structure",
-        },
+        messageReviewHandler = M.MessageReviewHandler,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         loggingConfigurationIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -468,8 +454,9 @@ M.ThrottlingException = {
             },
         },
         limit = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -557,16 +544,14 @@ M.GetLoggingConfigurationOutput = {
         name = {
             type = "string",
         },
-        destinationConfiguration = {
-            type = "union",
-        },
+        destinationConfiguration = M.DestinationConfiguration,
         state = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -602,22 +587,20 @@ M.GetRoomOutput = {
             type = "timestamp",
         },
         maximumMessageRatePerSecond = {
-            type = "number",
+            type = "integer",
         },
         maximumMessageLength = {
-            type = "number",
+            type = "integer",
         },
-        messageReviewHandler = {
-            type = "structure",
-        },
+        messageReviewHandler = M.MessageReviewHandler,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         loggingConfigurationIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -629,7 +612,7 @@ M.ListLoggingConfigurationsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -652,16 +635,14 @@ M.LoggingConfigurationSummary = {
         name = {
             type = "string",
         },
-        destinationConfiguration = {
-            type = "union",
-        },
+        destinationConfiguration = M.DestinationConfiguration,
         state = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -671,7 +652,7 @@ M.ListLoggingConfigurationsOutput = {
     members = {
         loggingConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.LoggingConfigurationSummary,
             traits = {
                 required = true,
             },
@@ -692,7 +673,7 @@ M.ListRoomsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         messageReviewHandlerUri = {
             type = "string",
@@ -715,9 +696,7 @@ M.RoomSummary = {
         name = {
             type = "string",
         },
-        messageReviewHandler = {
-            type = "structure",
-        },
+        messageReviewHandler = M.MessageReviewHandler,
         createTime = {
             type = "timestamp",
         },
@@ -726,12 +705,12 @@ M.RoomSummary = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         loggingConfigurationIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -741,7 +720,7 @@ M.ListRoomsOutput = {
     members = {
         rooms = {
             type = "list",
-            member_type = "structure",
+            member = M.RoomSummary,
             traits = {
                 required = true,
             },
@@ -783,8 +762,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -809,8 +788,8 @@ M.SendEventInput = {
         },
         attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -836,8 +815,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -861,7 +840,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -886,9 +865,7 @@ M.UpdateLoggingConfigurationInput = {
         name = {
             type = "string",
         },
-        destinationConfiguration = {
-            type = "union",
-        },
+        destinationConfiguration = M.DestinationConfiguration,
     },
 }
 
@@ -914,16 +891,14 @@ M.UpdateLoggingConfigurationOutput = {
         name = {
             type = "string",
         },
-        destinationConfiguration = {
-            type = "union",
-        },
+        destinationConfiguration = M.DestinationConfiguration,
         state = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -941,17 +916,15 @@ M.UpdateRoomInput = {
             type = "string",
         },
         maximumMessageRatePerSecond = {
-            type = "number",
+            type = "integer",
         },
         maximumMessageLength = {
-            type = "number",
+            type = "integer",
         },
-        messageReviewHandler = {
-            type = "structure",
-        },
+        messageReviewHandler = M.MessageReviewHandler,
         loggingConfigurationIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -975,22 +948,20 @@ M.UpdateRoomOutput = {
             type = "timestamp",
         },
         maximumMessageRatePerSecond = {
-            type = "number",
+            type = "integer",
         },
         maximumMessageLength = {
-            type = "number",
+            type = "integer",
         },
-        messageReviewHandler = {
-            type = "structure",
-        },
+        messageReviewHandler = M.MessageReviewHandler,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         loggingConfigurationIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }

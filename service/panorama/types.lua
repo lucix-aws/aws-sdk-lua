@@ -127,12 +127,12 @@ M.ApplicationInstance = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         RuntimeContextStates = {
             type = "list",
-            member_type = "structure",
+            member = M.ReportedRuntimeContextState,
         },
     },
 }
@@ -182,7 +182,7 @@ M.ConflictException = {
         },
         ErrorArguments = {
             type = "list",
-            member_type = "structure",
+            member = M.ConflictExceptionErrorArgument,
         },
     },
 }
@@ -219,15 +219,10 @@ M.CreateApplicationInstanceInput = {
         Description = {
             type = "string",
         },
-        ManifestPayload = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        ManifestOverridesPayload = {
-            type = "union",
-        },
+        ManifestPayload = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ManifestPayload }),
+        ManifestOverridesPayload = M.ManifestOverridesPayload,
         ApplicationInstanceIdToReplace = {
             type = "string",
         },
@@ -242,8 +237,8 @@ M.CreateApplicationInstanceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -271,8 +266,9 @@ M.InternalServerException = {
             },
         },
         RetryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_header = "Retry-After",
             },
         },
@@ -371,11 +367,11 @@ M.ValidationException = {
         },
         ErrorArguments = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionErrorArgument,
         },
         Fields = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -391,6 +387,9 @@ M.OTAJobConfig = {
         },
         AllowMajorVersionUpdate = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -398,9 +397,7 @@ M.OTAJobConfig = {
 M.DeviceJobConfig = {
     type = "structure",
     members = {
-        OTAJobConfig = {
-            type = "structure",
-        },
+        OTAJobConfig = M.OTAJobConfig,
     },
 }
 
@@ -414,14 +411,12 @@ M.CreateJobForDevicesInput = {
     members = {
         DeviceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        DeviceJobConfig = {
-            type = "structure",
-        },
+        DeviceJobConfig = M.DeviceJobConfig,
         JobType = {
             type = "string",
             traits = {
@@ -448,7 +443,7 @@ M.CreateJobForDevicesOutput = {
     members = {
         Jobs = {
             type = "list",
-            member_type = "structure",
+            member = M.Job,
             traits = {
                 required = true,
             },
@@ -496,8 +491,8 @@ M.JobResourceTags = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -541,15 +536,15 @@ M.CreateNodeFromTemplateJobInput = {
         },
         TemplateParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
         },
         JobTags = {
             type = "list",
-            member_type = "structure",
+            member = M.JobResourceTags,
         },
     },
 }
@@ -577,8 +572,8 @@ M.CreatePackageInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -628,12 +623,9 @@ M.CreatePackageOutput = {
         Arn = {
             type = "string",
         },
-        StorageLocation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        StorageLocation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.StorageLocation }),
     },
 }
 
@@ -661,21 +653,16 @@ M.S3Location = {
 M.PackageVersionInputConfig = {
     type = "structure",
     members = {
-        S3Location = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        S3Location = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3Location }),
     },
 }
 
 M.PackageImportJobInputConfig = {
     type = "structure",
     members = {
-        PackageVersionInputConfig = {
-            type = "structure",
-        },
+        PackageVersionInputConfig = M.PackageVersionInputConfig,
     },
 }
 
@@ -701,6 +688,9 @@ M.PackageVersionOutputConfig = {
         },
         MarkLatest = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -708,9 +698,7 @@ M.PackageVersionOutputConfig = {
 M.PackageImportJobOutputConfig = {
     type = "structure",
     members = {
-        PackageVersionOutputConfig = {
-            type = "structure",
-        },
+        PackageVersionOutputConfig = M.PackageVersionOutputConfig,
     },
 }
 
@@ -723,18 +711,12 @@ M.CreatePackageImportJobInput = {
                 required = true,
             },
         },
-        InputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        OutputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PackageImportJobInputConfig }),
+        OutputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PackageImportJobOutputConfig }),
         ClientToken = {
             type = "string",
             traits = {
@@ -743,7 +725,7 @@ M.CreatePackageImportJobInput = {
         },
         JobTags = {
             type = "list",
-            member_type = "structure",
+            member = M.JobResourceTags,
         },
     },
 }
@@ -795,6 +777,7 @@ M.DeletePackageInput = {
         ForceDelete = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "ForceDelete",
             },
         },
@@ -905,12 +888,12 @@ M.DescribeApplicationInstanceOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         RuntimeContextStates = {
             type = "list",
-            member_type = "structure",
+            member = M.ReportedRuntimeContextState,
         },
     },
 }
@@ -940,12 +923,8 @@ M.DescribeApplicationInstanceDetailsOutput = {
         DefaultRuntimeContextDevice = {
             type = "string",
         },
-        ManifestPayload = {
-            type = "union",
-        },
-        ManifestOverridesPayload = {
-            type = "union",
-        },
+        ManifestPayload = M.ManifestPayload,
+        ManifestOverridesPayload = M.ManifestOverridesPayload,
         ApplicationInstanceIdToReplace = {
             type = "string",
         },
@@ -1015,15 +994,9 @@ M.NtpStatus = {
 M.NetworkStatus = {
     type = "structure",
     members = {
-        Ethernet0Status = {
-            type = "structure",
-        },
-        Ethernet1Status = {
-            type = "structure",
-        },
-        NtpStatus = {
-            type = "structure",
-        },
+        Ethernet0Status = M.EthernetStatus,
+        Ethernet1Status = M.EthernetStatus,
+        NtpStatus = M.NtpStatus,
         LastUpdatedTime = {
             type = "timestamp",
         },
@@ -1093,7 +1066,7 @@ M.StaticIpConnectionInfo = {
         },
         Dns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1116,9 +1089,7 @@ M.EthernetPayload = {
                 required = true,
             },
         },
-        StaticIpConnectionInfo = {
-            type = "structure",
-        },
+        StaticIpConnectionInfo = M.StaticIpConnectionInfo,
     },
 }
 
@@ -1127,7 +1098,7 @@ M.NtpPayload = {
     members = {
         NtpServers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1138,15 +1109,9 @@ M.NtpPayload = {
 M.NetworkPayload = {
     type = "structure",
     members = {
-        Ethernet0 = {
-            type = "structure",
-        },
-        Ethernet1 = {
-            type = "structure",
-        },
-        Ntp = {
-            type = "structure",
-        },
+        Ethernet0 = M.EthernetPayload,
+        Ethernet1 = M.EthernetPayload,
+        Ntp = M.NtpPayload,
     },
 }
 
@@ -1202,21 +1167,17 @@ M.DescribeDeviceOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        NetworkingConfiguration = {
-            type = "structure",
-        },
-        CurrentNetworkingStatus = {
-            type = "structure",
-        },
+        NetworkingConfiguration = M.NetworkPayload,
+        CurrentNetworkingStatus = M.NetworkStatus,
         LeaseExpirationTime = {
             type = "timestamp",
         },
         AlternateSoftwares = {
             type = "list",
-            member_type = "structure",
+            member = M.AlternateSoftwareMetadata,
         },
         LatestAlternateSoftware = {
             type = "string",
@@ -1224,9 +1185,7 @@ M.DescribeDeviceOutput = {
         Brand = {
             type = "string",
         },
-        LatestDeviceJob = {
-            type = "structure",
-        },
+        LatestDeviceJob = M.LatestDeviceJob,
         DeviceAggregatedStatus = {
             type = "string",
         },
@@ -1329,7 +1288,10 @@ M.NodeInputPort = {
             type = "string",
         },
         MaxConnections = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1354,14 +1316,14 @@ M.NodeInterface = {
     members = {
         Inputs = {
             type = "list",
-            member_type = "structure",
+            member = M.NodeInputPort,
             traits = {
                 required = true,
             },
         },
         Outputs = {
             type = "list",
-            member_type = "structure",
+            member = M.NodeOutputPort,
             traits = {
                 required = true,
             },
@@ -1423,12 +1385,9 @@ M.DescribeNodeOutput = {
                 required = true,
             },
         },
-        NodeInterface = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        NodeInterface = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.NodeInterface }),
         AssetName = {
             type = "string",
         },
@@ -1534,15 +1493,15 @@ M.DescribeNodeFromTemplateJobOutput = {
         },
         TemplateParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
         },
         JobTags = {
             type = "list",
-            member_type = "structure",
+            member = M.JobResourceTags,
         },
     },
 }
@@ -1581,19 +1540,16 @@ M.DescribePackageOutput = {
                 required = true,
             },
         },
-        StorageLocation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        StorageLocation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.StorageLocation }),
         ReadAccessPrincipalArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         WriteAccessPrincipalArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CreatedTime = {
             type = "timestamp",
@@ -1603,8 +1559,8 @@ M.DescribePackageOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1664,12 +1620,9 @@ M.PackageImportJobOutput = {
                 required = true,
             },
         },
-        OutputS3Location = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        OutputS3Location = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OutPutS3Location }),
     },
 }
 
@@ -1697,24 +1650,15 @@ M.DescribePackageImportJobOutput = {
                 required = true,
             },
         },
-        InputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        OutputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Output = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PackageImportJobInputConfig }),
+        OutputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PackageImportJobOutputConfig }),
+        Output = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PackageImportJobOutput }),
         CreatedTime = {
             type = "timestamp",
             traits = {
@@ -1741,7 +1685,7 @@ M.DescribePackageImportJobOutput = {
         },
         JobTags = {
             type = "list",
-            member_type = "structure",
+            member = M.JobResourceTags,
         },
     },
 }
@@ -1821,6 +1765,7 @@ M.DescribePackageVersionOutput = {
         IsLatestPatch = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -1871,15 +1816,13 @@ M.Device = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Type = {
             type = "string",
         },
-        LatestDeviceJob = {
-            type = "structure",
-        },
+        LatestDeviceJob = M.LatestDeviceJob,
         DeviceAggregatedStatus = {
             type = "string",
         },
@@ -1918,8 +1861,9 @@ M.ListApplicationInstanceDependenciesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -1961,7 +1905,7 @@ M.ListApplicationInstanceDependenciesOutput = {
     members = {
         PackageObjects = {
             type = "list",
-            member_type = "structure",
+            member = M.PackageObject,
         },
         NextToken = {
             type = "string",
@@ -1980,8 +1924,9 @@ M.ListApplicationInstanceNodeInstancesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -2039,7 +1984,7 @@ M.ListApplicationInstanceNodeInstancesOutput = {
     members = {
         NodeInstances = {
             type = "list",
-            member_type = "structure",
+            member = M.NodeInstance,
         },
         NextToken = {
             type = "string",
@@ -2073,8 +2018,9 @@ M.ListApplicationInstancesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -2092,7 +2038,7 @@ M.ListApplicationInstancesOutput = {
     members = {
         ApplicationInstances = {
             type = "list",
-            member_type = "structure",
+            member = M.ApplicationInstance,
         },
         NextToken = {
             type = "string",
@@ -2122,8 +2068,9 @@ M.ListDevicesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "MaxResults",
             },
         },
@@ -2159,7 +2106,7 @@ M.ListDevicesOutput = {
     members = {
         Devices = {
             type = "list",
-            member_type = "structure",
+            member = M.Device,
             traits = {
                 required = true,
             },
@@ -2186,8 +2133,9 @@ M.ListDevicesJobsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "MaxResults",
             },
         },
@@ -2199,7 +2147,7 @@ M.ListDevicesJobsOutput = {
     members = {
         DeviceJobs = {
             type = "list",
-            member_type = "structure",
+            member = M.DeviceJob,
         },
         NextToken = {
             type = "string",
@@ -2217,8 +2165,9 @@ M.ListNodeFromTemplateJobsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "MaxResults",
             },
         },
@@ -2254,7 +2203,7 @@ M.ListNodeFromTemplateJobsOutput = {
     members = {
         NodeFromTemplateJobs = {
             type = "list",
-            member_type = "structure",
+            member = M.NodeFromTemplateJob,
             traits = {
                 required = true,
             },
@@ -2305,8 +2254,9 @@ M.ListNodesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -2381,7 +2331,7 @@ M.ListNodesOutput = {
     members = {
         Nodes = {
             type = "list",
-            member_type = "structure",
+            member = M.Node,
         },
         NextToken = {
             type = "string",
@@ -2399,8 +2349,9 @@ M.ListPackageImportJobsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "MaxResults",
             },
         },
@@ -2436,7 +2387,7 @@ M.ListPackageImportJobsOutput = {
     members = {
         PackageImportJobs = {
             type = "list",
-            member_type = "structure",
+            member = M.PackageImportJob,
             traits = {
                 required = true,
             },
@@ -2451,8 +2402,9 @@ M.ListPackagesInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -2482,8 +2434,8 @@ M.PackageListItem = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2493,7 +2445,7 @@ M.ListPackagesOutput = {
     members = {
         Packages = {
             type = "list",
-            member_type = "structure",
+            member = M.PackageListItem,
         },
         NextToken = {
             type = "string",
@@ -2519,8 +2471,8 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2562,12 +2514,10 @@ M.ProvisionDeviceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        NetworkingConfiguration = {
-            type = "structure",
-        },
+        NetworkingConfiguration = M.NetworkPayload,
     },
 }
 
@@ -2627,6 +2577,9 @@ M.RegisterPackageVersionInput = {
         },
         MarkLatest = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -2664,7 +2617,7 @@ M.SignalApplicationInstanceNodeInstancesInput = {
         },
         NodeSignals = {
             type = "list",
-            member_type = "structure",
+            member = M.NodeSignal,
             traits = {
                 required = true,
             },
@@ -2696,8 +2649,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2721,7 +2674,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,

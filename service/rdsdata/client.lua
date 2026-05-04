@@ -16,7 +16,7 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "RdsDataService"
-    cfg.signing_name = "rdsdataservice"
+    cfg.signing_name = "rds-data"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end

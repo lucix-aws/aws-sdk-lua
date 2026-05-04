@@ -131,12 +131,9 @@ M.GetReportDefinitionOutput = {
                 required = true,
             },
         },
-        destinationS3Location = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        destinationS3Location = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3Location }),
         createdAt = {
             type = "timestamp",
             traits = {
@@ -183,12 +180,9 @@ M.SourceS3Location = {
 M.ImportApplicationUsageInput = {
     type = "structure",
     members = {
-        sourceS3Location = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        sourceS3Location = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SourceS3Location }),
     },
 }
 
@@ -214,7 +208,7 @@ M.ListReportDefinitionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -237,9 +231,7 @@ M.ReportDefinition = {
         format = {
             type = "string",
         },
-        destinationS3Location = {
-            type = "structure",
-        },
+        destinationS3Location = M.S3Location,
         createdAt = {
             type = "timestamp",
         },
@@ -254,7 +246,7 @@ M.ListReportDefinitionsOutput = {
     members = {
         reportDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.ReportDefinition,
         },
         nextToken = {
             type = "string",
@@ -289,12 +281,9 @@ M.PutReportDefinitionInput = {
                 required = true,
             },
         },
-        destinationS3Location = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        destinationS3Location = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3Location }),
     },
 }
 
@@ -345,12 +334,9 @@ M.UpdateReportDefinitionInput = {
                 required = true,
             },
         },
-        destinationS3Location = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        destinationS3Location = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3Location }),
     },
 }
 

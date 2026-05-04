@@ -1,0 +1,8 @@
+local types = require("transfer.types")
+
+local record M
+    wait_until_server_offline: function(client: table, input: table, options: table): table, table
+    wait_until_server_online: function(client: table, input: table, options: table): table, table
+end
+
+return M

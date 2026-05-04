@@ -1161,11 +1161,11 @@ local type TransformerStatus = "active" | "inactive"
 
 local type CapabilityType = "edi"
 
+local type TransformerJobStatus = "running" | "succeeded" | "failed"
+
 local type FileFormat = "XML" | "JSON" | "NOT_USED"
 
 local type MappingType = "JSONATA" | "XSLT"
-
-local type TransformerJobStatus = "running" | "succeeded" | "failed"
 
 local type Logging = "ENABLED" | "DISABLED"
 

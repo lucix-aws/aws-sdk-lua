@@ -13,6 +13,9 @@ M.ActionParameter = {
         },
         required = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -40,18 +43,18 @@ M.Action = {
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ActionParameter,
         },
         targets = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ActionTarget,
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -75,13 +78,13 @@ M.ActionSummary = {
         },
         targets = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ActionTarget,
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -110,17 +113,17 @@ M.CreateExperimentTemplateActionInput = {
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         targets = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         startAfter = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -156,7 +159,7 @@ M.ExperimentTemplateReportConfigurationDataSourcesInput = {
     members = {
         cloudWatchDashboards = {
             type = "list",
-            member_type = "structure",
+            member = M.ReportConfigurationCloudWatchDashboardInput,
         },
     },
 }
@@ -176,21 +179,15 @@ M.ReportConfigurationS3OutputInput = {
 M.ExperimentTemplateReportConfigurationOutputsInput = {
     type = "structure",
     members = {
-        s3Configuration = {
-            type = "structure",
-        },
+        s3Configuration = M.ReportConfigurationS3OutputInput,
     },
 }
 
 M.CreateExperimentTemplateReportConfigurationInput = {
     type = "structure",
     members = {
-        outputs = {
-            type = "structure",
-        },
-        dataSources = {
-            type = "structure",
-        },
+        outputs = M.ExperimentTemplateReportConfigurationOutputsInput,
+        dataSources = M.ExperimentTemplateReportConfigurationDataSourcesInput,
         preExperimentDuration = {
             type = "string",
         },
@@ -230,14 +227,10 @@ M.ExperimentTemplateS3LogConfigurationInput = {
 M.CreateExperimentTemplateLogConfigurationInput = {
     type = "structure",
     members = {
-        cloudWatchLogsConfiguration = {
-            type = "structure",
-        },
-        s3Configuration = {
-            type = "structure",
-        },
+        cloudWatchLogsConfiguration = M.ExperimentTemplateCloudWatchLogsLogConfigurationInput,
+        s3Configuration = M.ExperimentTemplateS3LogConfigurationInput,
         logSchemaVersion = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -271,7 +264,7 @@ M.ExperimentTemplateTargetInputFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -290,16 +283,16 @@ M.CreateExperimentTemplateTargetInput = {
         },
         resourceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         resourceTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.ExperimentTemplateTargetInputFilter,
         },
         selectionMode = {
             type = "string",
@@ -309,8 +302,8 @@ M.CreateExperimentTemplateTargetInput = {
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -332,20 +325,20 @@ M.CreateExperimentTemplateInput = {
         },
         stopConditions = {
             type = "list",
-            member_type = "structure",
+            member = M.CreateExperimentTemplateStopConditionInput,
             traits = {
                 required = true,
             },
         },
         targets = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.CreateExperimentTemplateTargetInput,
         },
         actions = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.CreateExperimentTemplateActionInput,
             traits = {
                 required = true,
             },
@@ -358,18 +351,12 @@ M.CreateExperimentTemplateInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        logConfiguration = {
-            type = "structure",
-        },
-        experimentOptions = {
-            type = "structure",
-        },
-        experimentReportConfiguration = {
-            type = "structure",
-        },
+        logConfiguration = M.CreateExperimentTemplateLogConfigurationInput,
+        experimentOptions = M.CreateExperimentTemplateExperimentOptionsInput,
+        experimentReportConfiguration = M.CreateExperimentTemplateReportConfigurationInput,
     },
 }
 
@@ -384,17 +371,17 @@ M.ExperimentTemplateAction = {
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         targets = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         startAfter = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -425,7 +412,7 @@ M.ExperimentTemplateReportConfigurationDataSources = {
     members = {
         cloudWatchDashboards = {
             type = "list",
-            member_type = "structure",
+            member = M.ExperimentTemplateReportConfigurationCloudWatchDashboard,
         },
     },
 }
@@ -445,21 +432,15 @@ M.ReportConfigurationS3Output = {
 M.ExperimentTemplateReportConfigurationOutputs = {
     type = "structure",
     members = {
-        s3Configuration = {
-            type = "structure",
-        },
+        s3Configuration = M.ReportConfigurationS3Output,
     },
 }
 
 M.ExperimentTemplateReportConfiguration = {
     type = "structure",
     members = {
-        outputs = {
-            type = "structure",
-        },
-        dataSources = {
-            type = "structure",
-        },
+        outputs = M.ExperimentTemplateReportConfigurationOutputs,
+        dataSources = M.ExperimentTemplateReportConfigurationDataSources,
         preExperimentDuration = {
             type = "string",
         },
@@ -493,14 +474,10 @@ M.ExperimentTemplateS3LogConfiguration = {
 M.ExperimentTemplateLogConfiguration = {
     type = "structure",
     members = {
-        cloudWatchLogsConfiguration = {
-            type = "structure",
-        },
-        s3Configuration = {
-            type = "structure",
-        },
+        cloudWatchLogsConfiguration = M.ExperimentTemplateCloudWatchLogsLogConfiguration,
+        s3Configuration = M.ExperimentTemplateS3LogConfiguration,
         logSchemaVersion = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -525,7 +502,7 @@ M.ExperimentTemplateTargetFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -538,24 +515,24 @@ M.ExperimentTemplateTarget = {
         },
         resourceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         resourceTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.ExperimentTemplateTargetFilter,
         },
         selectionMode = {
             type = "string",
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -574,17 +551,17 @@ M.ExperimentTemplate = {
         },
         targets = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ExperimentTemplateTarget,
         },
         actions = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ExperimentTemplateAction,
         },
         stopConditions = {
             type = "list",
-            member_type = "structure",
+            member = M.ExperimentTemplateStopCondition,
         },
         creationTime = {
             type = "timestamp",
@@ -597,30 +574,22 @@ M.ExperimentTemplate = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        logConfiguration = {
-            type = "structure",
-        },
-        experimentOptions = {
-            type = "structure",
-        },
+        logConfiguration = M.ExperimentTemplateLogConfiguration,
+        experimentOptions = M.ExperimentTemplateExperimentOptions,
         targetAccountConfigurationsCount = {
-            type = "number",
+            type = "long",
         },
-        experimentReportConfiguration = {
-            type = "structure",
-        },
+        experimentReportConfiguration = M.ExperimentTemplateReportConfiguration,
     },
 }
 
 M.CreateExperimentTemplateOutput = {
     type = "structure",
     members = {
-        experimentTemplate = {
-            type = "structure",
-        },
+        experimentTemplate = M.ExperimentTemplate,
     },
 }
 
@@ -704,9 +673,7 @@ M.TargetAccountConfiguration = {
 M.CreateTargetAccountConfigurationOutput = {
     type = "structure",
     members = {
-        targetAccountConfiguration = {
-            type = "structure",
-        },
+        targetAccountConfiguration = M.TargetAccountConfiguration,
     },
 }
 
@@ -726,9 +693,7 @@ M.DeleteExperimentTemplateInput = {
 M.DeleteExperimentTemplateOutput = {
     type = "structure",
     members = {
-        experimentTemplate = {
-            type = "structure",
-        },
+        experimentTemplate = M.ExperimentTemplate,
     },
 }
 
@@ -755,9 +720,7 @@ M.DeleteTargetAccountConfigurationInput = {
 M.DeleteTargetAccountConfigurationOutput = {
     type = "structure",
     members = {
-        targetAccountConfiguration = {
-            type = "structure",
-        },
+        targetAccountConfiguration = M.TargetAccountConfiguration,
     },
 }
 
@@ -796,21 +759,19 @@ M.ExperimentAction = {
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         targets = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         startAfter = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        state = {
-            type = "structure",
-        },
+        state = M.ExperimentActionState,
         startTime = {
             type = "timestamp",
         },
@@ -873,21 +834,17 @@ M.ExperimentReportState = {
         reason = {
             type = "string",
         },
-        error = {
-            type = "structure",
-        },
+        error = M.ExperimentReportError,
     },
 }
 
 M.ExperimentReport = {
     type = "structure",
     members = {
-        state = {
-            type = "structure",
-        },
+        state = M.ExperimentReportState,
         s3Reports = {
             type = "list",
-            member_type = "structure",
+            member = M.ExperimentReportS3Report,
         },
     },
 }
@@ -906,7 +863,7 @@ M.ExperimentReportConfigurationDataSources = {
     members = {
         cloudWatchDashboards = {
             type = "list",
-            member_type = "structure",
+            member = M.ExperimentReportConfigurationCloudWatchDashboard,
         },
     },
 }
@@ -926,21 +883,15 @@ M.ExperimentReportConfigurationOutputsS3Configuration = {
 M.ExperimentReportConfigurationOutputs = {
     type = "structure",
     members = {
-        s3Configuration = {
-            type = "structure",
-        },
+        s3Configuration = M.ExperimentReportConfigurationOutputsS3Configuration,
     },
 }
 
 M.ExperimentReportConfiguration = {
     type = "structure",
     members = {
-        outputs = {
-            type = "structure",
-        },
-        dataSources = {
-            type = "structure",
-        },
+        outputs = M.ExperimentReportConfigurationOutputs,
+        dataSources = M.ExperimentReportConfigurationDataSources,
         preExperimentDuration = {
             type = "string",
         },
@@ -974,14 +925,10 @@ M.ExperimentS3LogConfiguration = {
 M.ExperimentLogConfiguration = {
     type = "structure",
     members = {
-        cloudWatchLogsConfiguration = {
-            type = "structure",
-        },
-        s3Configuration = {
-            type = "structure",
-        },
+        cloudWatchLogsConfiguration = M.ExperimentCloudWatchLogsLogConfiguration,
+        s3Configuration = M.ExperimentS3LogConfiguration,
         logSchemaVersion = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1021,9 +968,7 @@ M.ExperimentState = {
         reason = {
             type = "string",
         },
-        error = {
-            type = "structure",
-        },
+        error = M.ExperimentError,
     },
 }
 
@@ -1047,7 +992,7 @@ M.ExperimentTargetFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1060,24 +1005,24 @@ M.ExperimentTarget = {
         },
         resourceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         resourceTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.ExperimentTargetFilter,
         },
         selectionMode = {
             type = "string",
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1097,22 +1042,20 @@ M.Experiment = {
         roleArn = {
             type = "string",
         },
-        state = {
-            type = "structure",
-        },
+        state = M.ExperimentState,
         targets = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ExperimentTarget,
         },
         actions = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ExperimentAction,
         },
         stopConditions = {
             type = "list",
-            member_type = "structure",
+            member = M.ExperimentStopCondition,
         },
         creationTime = {
             type = "timestamp",
@@ -1125,24 +1068,16 @@ M.Experiment = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        logConfiguration = {
-            type = "structure",
-        },
-        experimentOptions = {
-            type = "structure",
-        },
+        logConfiguration = M.ExperimentLogConfiguration,
+        experimentOptions = M.ExperimentOptions,
         targetAccountConfigurationsCount = {
-            type = "number",
+            type = "long",
         },
-        experimentReportConfiguration = {
-            type = "structure",
-        },
-        experimentReport = {
-            type = "structure",
-        },
+        experimentReportConfiguration = M.ExperimentReportConfiguration,
+        experimentReport = M.ExperimentReport,
     },
 }
 
@@ -1158,20 +1093,16 @@ M.ExperimentSummary = {
         experimentTemplateId = {
             type = "string",
         },
-        state = {
-            type = "structure",
-        },
+        state = M.ExperimentState,
         creationTime = {
             type = "timestamp",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        experimentOptions = {
-            type = "structure",
-        },
+        experimentOptions = M.ExperimentOptions,
     },
 }
 
@@ -1225,8 +1156,8 @@ M.ExperimentTemplateSummary = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1247,9 +1178,7 @@ M.GetActionInput = {
 M.GetActionOutput = {
     type = "structure",
     members = {
-        action = {
-            type = "structure",
-        },
+        action = M.Action,
     },
 }
 
@@ -1269,9 +1198,7 @@ M.GetExperimentInput = {
 M.GetExperimentOutput = {
     type = "structure",
     members = {
-        experiment = {
-            type = "structure",
-        },
+        experiment = M.Experiment,
     },
 }
 
@@ -1298,9 +1225,7 @@ M.GetExperimentTargetAccountConfigurationInput = {
 M.GetExperimentTargetAccountConfigurationOutput = {
     type = "structure",
     members = {
-        targetAccountConfiguration = {
-            type = "structure",
-        },
+        targetAccountConfiguration = M.ExperimentTargetAccountConfiguration,
     },
 }
 
@@ -1320,9 +1245,7 @@ M.GetExperimentTemplateInput = {
 M.GetExperimentTemplateOutput = {
     type = "structure",
     members = {
-        experimentTemplate = {
-            type = "structure",
-        },
+        experimentTemplate = M.ExperimentTemplate,
     },
 }
 
@@ -1366,18 +1289,14 @@ M.SafetyLever = {
         arn = {
             type = "string",
         },
-        state = {
-            type = "structure",
-        },
+        state = M.SafetyLeverState,
     },
 }
 
 M.GetSafetyLeverOutput = {
     type = "structure",
     members = {
-        safetyLever = {
-            type = "structure",
-        },
+        safetyLever = M.SafetyLever,
     },
 }
 
@@ -1404,9 +1323,7 @@ M.GetTargetAccountConfigurationInput = {
 M.GetTargetAccountConfigurationOutput = {
     type = "structure",
     members = {
-        targetAccountConfiguration = {
-            type = "structure",
-        },
+        targetAccountConfiguration = M.TargetAccountConfiguration,
     },
 }
 
@@ -1431,6 +1348,9 @@ M.TargetResourceTypeParameter = {
         },
         required = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -1446,8 +1366,8 @@ M.TargetResourceType = {
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.TargetResourceTypeParameter,
         },
     },
 }
@@ -1455,9 +1375,7 @@ M.TargetResourceType = {
 M.GetTargetResourceTypeOutput = {
     type = "structure",
     members = {
-        targetResourceType = {
-            type = "structure",
-        },
+        targetResourceType = M.TargetResourceType,
     },
 }
 
@@ -1465,7 +1383,7 @@ M.ListActionsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1484,7 +1402,7 @@ M.ListActionsOutput = {
     members = {
         actions = {
             type = "list",
-            member_type = "structure",
+            member = M.ActionSummary,
         },
         nextToken = {
             type = "string",
@@ -1503,7 +1421,7 @@ M.ListExperimentResolvedTargetsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1534,8 +1452,8 @@ M.ResolvedTarget = {
         },
         targetInformation = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1545,7 +1463,7 @@ M.ListExperimentResolvedTargetsOutput = {
     members = {
         resolvedTargets = {
             type = "list",
-            member_type = "structure",
+            member = M.ResolvedTarget,
         },
         nextToken = {
             type = "string",
@@ -1557,7 +1475,7 @@ M.ListExperimentsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1582,7 +1500,7 @@ M.ListExperimentsOutput = {
     members = {
         experiments = {
             type = "list",
-            member_type = "structure",
+            member = M.ExperimentSummary,
         },
         nextToken = {
             type = "string",
@@ -1614,7 +1532,7 @@ M.ListExperimentTargetAccountConfigurationsOutput = {
     members = {
         targetAccountConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.ExperimentTargetAccountConfigurationSummary,
         },
         nextToken = {
             type = "string",
@@ -1626,7 +1544,7 @@ M.ListExperimentTemplatesInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1645,7 +1563,7 @@ M.ListExperimentTemplatesOutput = {
     members = {
         experimentTemplates = {
             type = "list",
-            member_type = "structure",
+            member = M.ExperimentTemplateSummary,
         },
         nextToken = {
             type = "string",
@@ -1671,8 +1589,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1688,7 +1606,7 @@ M.ListTargetAccountConfigurationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1722,7 +1640,7 @@ M.ListTargetAccountConfigurationsOutput = {
     members = {
         targetAccountConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetAccountConfigurationSummary,
         },
         nextToken = {
             type = "string",
@@ -1734,7 +1652,7 @@ M.ListTargetResourceTypesInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1765,7 +1683,7 @@ M.ListTargetResourceTypesOutput = {
     members = {
         targetResourceTypes = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetResourceTypeSummary,
         },
         nextToken = {
             type = "string",
@@ -1797,13 +1715,11 @@ M.StartExperimentInput = {
                 required = true,
             },
         },
-        experimentOptions = {
-            type = "structure",
-        },
+        experimentOptions = M.StartExperimentExperimentOptionsInput,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1811,9 +1727,7 @@ M.StartExperimentInput = {
 M.StartExperimentOutput = {
     type = "structure",
     members = {
-        experiment = {
-            type = "structure",
-        },
+        experiment = M.Experiment,
     },
 }
 
@@ -1833,9 +1747,7 @@ M.StopExperimentInput = {
 M.StopExperimentOutput = {
     type = "structure",
     members = {
-        experiment = {
-            type = "structure",
-        },
+        experiment = M.Experiment,
     },
 }
 
@@ -1851,8 +1763,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1876,7 +1788,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
             },
@@ -1899,17 +1811,17 @@ M.UpdateExperimentTemplateActionInputItem = {
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         targets = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         startAfter = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1926,12 +1838,8 @@ M.UpdateExperimentTemplateExperimentOptionsInput = {
 M.UpdateExperimentTemplateReportConfigurationInput = {
     type = "structure",
     members = {
-        outputs = {
-            type = "structure",
-        },
-        dataSources = {
-            type = "structure",
-        },
+        outputs = M.ExperimentTemplateReportConfigurationOutputsInput,
+        dataSources = M.ExperimentTemplateReportConfigurationDataSourcesInput,
         preExperimentDuration = {
             type = "string",
         },
@@ -1944,14 +1852,10 @@ M.UpdateExperimentTemplateReportConfigurationInput = {
 M.UpdateExperimentTemplateLogConfigurationInput = {
     type = "structure",
     members = {
-        cloudWatchLogsConfiguration = {
-            type = "structure",
-        },
-        s3Configuration = {
-            type = "structure",
-        },
+        cloudWatchLogsConfiguration = M.ExperimentTemplateCloudWatchLogsLogConfigurationInput,
+        s3Configuration = M.ExperimentTemplateS3LogConfigurationInput,
         logSchemaVersion = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1982,16 +1886,16 @@ M.UpdateExperimentTemplateTargetInput = {
         },
         resourceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         resourceTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.ExperimentTemplateTargetInputFilter,
         },
         selectionMode = {
             type = "string",
@@ -2001,8 +1905,8 @@ M.UpdateExperimentTemplateTargetInput = {
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2022,39 +1926,31 @@ M.UpdateExperimentTemplateInput = {
         },
         stopConditions = {
             type = "list",
-            member_type = "structure",
+            member = M.UpdateExperimentTemplateStopConditionInput,
         },
         targets = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.UpdateExperimentTemplateTargetInput,
         },
         actions = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.UpdateExperimentTemplateActionInputItem,
         },
         roleArn = {
             type = "string",
         },
-        logConfiguration = {
-            type = "structure",
-        },
-        experimentOptions = {
-            type = "structure",
-        },
-        experimentReportConfiguration = {
-            type = "structure",
-        },
+        logConfiguration = M.UpdateExperimentTemplateLogConfigurationInput,
+        experimentOptions = M.UpdateExperimentTemplateExperimentOptionsInput,
+        experimentReportConfiguration = M.UpdateExperimentTemplateReportConfigurationInput,
     },
 }
 
 M.UpdateExperimentTemplateOutput = {
     type = "structure",
     members = {
-        experimentTemplate = {
-            type = "structure",
-        },
+        experimentTemplate = M.ExperimentTemplate,
     },
 }
 
@@ -2091,21 +1987,16 @@ M.UpdateSafetyLeverStateOperationInput = {
                 required = true,
             },
         },
-        state = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        state = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.UpdateSafetyLeverStateInput }),
     },
 }
 
 M.UpdateSafetyLeverStateOutput = {
     type = "structure",
     members = {
-        safetyLever = {
-            type = "structure",
-        },
+        safetyLever = M.SafetyLever,
     },
 }
 
@@ -2138,9 +2029,7 @@ M.UpdateTargetAccountConfigurationInput = {
 M.UpdateTargetAccountConfigurationOutput = {
     type = "structure",
     members = {
-        targetAccountConfiguration = {
-            type = "structure",
-        },
+        targetAccountConfiguration = M.TargetAccountConfiguration,
     },
 }
 

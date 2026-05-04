@@ -16,7 +16,7 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "TaigaWebService"
-    cfg.signing_name = "taigawebservice"
+    cfg.signing_name = "managedblockchain"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end

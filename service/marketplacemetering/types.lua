@@ -22,14 +22,14 @@ M.UsageAllocation = {
     type = "structure",
     members = {
         AllocatedUsageQuantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -45,6 +45,9 @@ M.UsageRecord = {
         },
         CustomerIdentifier = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
         Dimension = {
             type = "string",
@@ -53,11 +56,11 @@ M.UsageRecord = {
             },
         },
         Quantity = {
-            type = "number",
+            type = "integer",
         },
         UsageAllocations = {
             type = "list",
-            member_type = "structure",
+            member = M.UsageAllocation,
         },
         CustomerAWSAccountId = {
             type = "string",
@@ -73,13 +76,16 @@ M.BatchMeterUsageInput = {
     members = {
         UsageRecords = {
             type = "list",
-            member_type = "structure",
+            member = M.UsageRecord,
             traits = {
                 required = true,
             },
         },
         ProductCode = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
     },
 }
@@ -93,9 +99,7 @@ M.UsageRecordResultStatus = {
 M.UsageRecordResult = {
     type = "structure",
     members = {
-        UsageRecord = {
-            type = "structure",
-        },
+        UsageRecord = M.UsageRecord,
         MeteringRecordId = {
             type = "string",
         },
@@ -110,11 +114,11 @@ M.BatchMeterUsageOutput = {
     members = {
         Results = {
             type = "list",
-            member_type = "structure",
+            member = M.UsageRecordResult,
         },
         UnprocessedRecords = {
             type = "list",
-            member_type = "structure",
+            member = M.UsageRecord,
         },
     },
 }
@@ -281,14 +285,14 @@ M.MeterUsageInput = {
             },
         },
         UsageQuantity = {
-            type = "number",
+            type = "integer",
         },
         DryRun = {
             type = "boolean",
         },
         UsageAllocations = {
             type = "list",
-            member_type = "structure",
+            member = M.UsageAllocation,
         },
         ClientToken = {
             type = "string",
@@ -345,7 +349,7 @@ M.RegisterUsageInput = {
             },
         },
         PublicKeyVersion = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },

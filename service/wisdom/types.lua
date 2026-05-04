@@ -21,7 +21,7 @@ M.AppIntegrationsConfiguration = {
         },
         objectFields = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -65,19 +65,16 @@ M.CreateAssistantAssociationInput = {
                 required = true,
             },
         },
-        association = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        association = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AssistantAssociationInputData }),
         clientToken = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -97,9 +94,7 @@ M.KnowledgeBaseAssociationData = {
 M.AssistantAssociationOutputData = {
     type = "union",
     members = {
-        knowledgeBaseAssociation = {
-            type = "structure",
-        },
+        knowledgeBaseAssociation = M.KnowledgeBaseAssociationData,
     },
 }
 
@@ -136,16 +131,13 @@ M.AssistantAssociationData = {
                 required = true,
             },
         },
-        associationData = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        associationData = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AssistantAssociationOutputData }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -153,9 +145,7 @@ M.AssistantAssociationData = {
 M.CreateAssistantAssociationOutput = {
     type = "structure",
     members = {
-        assistantAssociation = {
-            type = "structure",
-        },
+        assistantAssociation = M.AssistantAssociationData,
     },
 }
 
@@ -239,9 +229,7 @@ M.GetAssistantAssociationInput = {
 M.GetAssistantAssociationOutput = {
     type = "structure",
     members = {
-        assistantAssociation = {
-            type = "structure",
-        },
+        assistantAssociation = M.AssistantAssociationData,
     },
 }
 
@@ -255,7 +243,7 @@ M.ListAssistantAssociationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -303,16 +291,13 @@ M.AssistantAssociationSummary = {
                 required = true,
             },
         },
-        associationData = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        associationData = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AssistantAssociationOutputData }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -322,7 +307,7 @@ M.ListAssistantAssociationsOutput = {
     members = {
         assistantAssociationSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.AssistantAssociationSummary,
             traits = {
                 required = true,
             },
@@ -369,12 +354,10 @@ M.CreateAssistantInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        serverSideEncryptionConfiguration = {
-            type = "structure",
-        },
+        serverSideEncryptionConfiguration = M.ServerSideEncryptionConfiguration,
     },
 }
 
@@ -434,24 +417,18 @@ M.AssistantData = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        serverSideEncryptionConfiguration = {
-            type = "structure",
-        },
-        integrationConfiguration = {
-            type = "structure",
-        },
+        serverSideEncryptionConfiguration = M.ServerSideEncryptionConfiguration,
+        integrationConfiguration = M.AssistantIntegrationConfiguration,
     },
 }
 
 M.CreateAssistantOutput = {
     type = "structure",
     members = {
-        assistant = {
-            type = "structure",
-        },
+        assistant = M.AssistantData,
     },
 }
 
@@ -488,9 +465,7 @@ M.GetAssistantInput = {
 M.GetAssistantOutput = {
     type = "structure",
     members = {
-        assistant = {
-            type = "structure",
-        },
+        assistant = M.AssistantData,
     },
 }
 
@@ -512,14 +487,15 @@ M.GetRecommendationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
         },
         waitTimeSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "waitTimeSeconds",
             },
         },
@@ -548,10 +524,16 @@ M.Highlight = {
     type = "structure",
     members = {
         beginOffsetInclusive = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         endOffsetExclusive = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -564,7 +546,7 @@ M.DocumentText = {
         },
         highlights = {
             type = "list",
-            member_type = "structure",
+            member = M.Highlight,
         },
     },
 }
@@ -572,18 +554,11 @@ M.DocumentText = {
 M.Document = {
     type = "structure",
     members = {
-        contentReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        title = {
-            type = "structure",
-        },
-        excerpt = {
-            type = "structure",
-        },
+        contentReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ContentReference }),
+        title = M.DocumentText,
+        excerpt = M.DocumentText,
     },
 }
 
@@ -606,14 +581,14 @@ M.RecommendationData = {
                 required = true,
             },
         },
-        document = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        document = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Document }),
         relevanceScore = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         relevanceLevel = {
             type = "string",
@@ -636,9 +611,7 @@ M.QueryRecommendationTriggerData = {
 M.RecommendationTriggerData = {
     type = "union",
     members = {
-        query = {
-            type = "structure",
-        },
+        query = M.QueryRecommendationTriggerData,
     },
 }
 
@@ -673,15 +646,12 @@ M.RecommendationTrigger = {
                 required = true,
             },
         },
-        data = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        data = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RecommendationTriggerData }),
         recommendationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -694,14 +664,14 @@ M.GetRecommendationsOutput = {
     members = {
         recommendations = {
             type = "list",
-            member_type = "structure",
+            member = M.RecommendationData,
             traits = {
                 required = true,
             },
         },
         triggers = {
             type = "list",
-            member_type = "structure",
+            member = M.RecommendationTrigger,
         },
     },
 }
@@ -716,7 +686,7 @@ M.ListAssistantsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -762,15 +732,11 @@ M.AssistantSummary = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        serverSideEncryptionConfiguration = {
-            type = "structure",
-        },
-        integrationConfiguration = {
-            type = "structure",
-        },
+        serverSideEncryptionConfiguration = M.ServerSideEncryptionConfiguration,
+        integrationConfiguration = M.AssistantIntegrationConfiguration,
     },
 }
 
@@ -779,7 +745,7 @@ M.ListAssistantsOutput = {
     members = {
         assistantSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.AssistantSummary,
             traits = {
                 required = true,
             },
@@ -809,7 +775,7 @@ M.NotifyRecommendationsReceivedInput = {
         },
         recommendationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -834,11 +800,11 @@ M.NotifyRecommendationsReceivedOutput = {
     members = {
         recommendationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.NotifyRecommendationsReceivedError,
         },
     },
 }
@@ -863,7 +829,7 @@ M.QueryAssistantInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -877,14 +843,14 @@ M.ResultData = {
                 required = true,
             },
         },
-        document = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        document = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Document }),
         relevanceScore = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -894,7 +860,7 @@ M.QueryAssistantOutput = {
     members = {
         results = {
             type = "list",
-            member_type = "structure",
+            member = M.ResultData,
             traits = {
                 required = true,
             },
@@ -952,7 +918,7 @@ M.SearchExpression = {
     members = {
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 required = true,
             },
@@ -970,7 +936,7 @@ M.SearchSessionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -982,12 +948,9 @@ M.SearchSessionsInput = {
                 required = true,
             },
         },
-        searchExpression = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        searchExpression = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SearchExpression }),
     },
 }
 
@@ -1026,7 +989,7 @@ M.SearchSessionsOutput = {
     members = {
         sessionSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.SessionSummary,
             traits = {
                 required = true,
             },
@@ -1061,8 +1024,8 @@ M.CreateSessionInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1102,21 +1065,17 @@ M.SessionData = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        integrationConfiguration = {
-            type = "structure",
-        },
+        integrationConfiguration = M.SessionIntegrationConfiguration,
     },
 }
 
 M.CreateSessionOutput = {
     type = "structure",
     members = {
-        session = {
-            type = "structure",
-        },
+        session = M.SessionData,
     },
 }
 
@@ -1143,9 +1102,7 @@ M.GetSessionInput = {
 M.GetSessionOutput = {
     type = "structure",
     members = {
-        session = {
-            type = "structure",
-        },
+        session = M.SessionData,
     },
 }
 
@@ -1161,9 +1118,7 @@ M.ConnectConfiguration = {
 M.Configuration = {
     type = "union",
     members = {
-        connectConfiguration = {
-            type = "structure",
-        },
+        connectConfiguration = M.ConnectConfiguration,
     },
 }
 
@@ -1191,8 +1146,8 @@ M.CreateContentInput = {
         },
         metadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         uploadId = {
             type = "string",
@@ -1205,8 +1160,8 @@ M.CreateContentInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1280,16 +1235,16 @@ M.ContentData = {
         },
         metadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         linkOutUri = {
             type = "string",
@@ -1313,9 +1268,7 @@ M.ContentData = {
 M.CreateContentOutput = {
     type = "structure",
     members = {
-        content = {
-            type = "structure",
-        },
+        content = M.ContentData,
     },
 }
 
@@ -1366,9 +1319,7 @@ M.GetContentInput = {
 M.GetContentOutput = {
     type = "structure",
     members = {
-        content = {
-            type = "structure",
-        },
+        content = M.ContentData,
     },
 }
 
@@ -1451,16 +1402,16 @@ M.ContentSummary = {
         },
         metadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1468,9 +1419,7 @@ M.ContentSummary = {
 M.GetContentSummaryOutput = {
     type = "structure",
     members = {
-        contentSummary = {
-            type = "structure",
-        },
+        contentSummary = M.ContentSummary,
     },
 }
 
@@ -1484,7 +1433,7 @@ M.ListContentsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1504,7 +1453,7 @@ M.ListContentsOutput = {
     members = {
         contentSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ContentSummary,
             traits = {
                 required = true,
             },
@@ -1556,8 +1505,8 @@ M.UpdateContentInput = {
         },
         metadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         uploadId = {
             type = "string",
@@ -1568,9 +1517,7 @@ M.UpdateContentInput = {
 M.UpdateContentOutput = {
     type = "structure",
     members = {
-        content = {
-            type = "structure",
-        },
+        content = M.ContentData,
     },
 }
 
@@ -1592,9 +1539,7 @@ M.RenderingConfiguration = {
 M.SourceConfiguration = {
     type = "union",
     members = {
-        appIntegrations = {
-            type = "structure",
-        },
+        appIntegrations = M.AppIntegrationsConfiguration,
     },
 }
 
@@ -1616,22 +1561,16 @@ M.CreateKnowledgeBaseInput = {
                 required = true,
             },
         },
-        sourceConfiguration = {
-            type = "union",
-        },
-        renderingConfiguration = {
-            type = "structure",
-        },
-        serverSideEncryptionConfiguration = {
-            type = "structure",
-        },
+        sourceConfiguration = M.SourceConfiguration,
+        renderingConfiguration = M.RenderingConfiguration,
+        serverSideEncryptionConfiguration = M.ServerSideEncryptionConfiguration,
         description = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1684,22 +1623,16 @@ M.KnowledgeBaseData = {
                 timestamp_format = "epoch-seconds",
             },
         },
-        sourceConfiguration = {
-            type = "union",
-        },
-        renderingConfiguration = {
-            type = "structure",
-        },
-        serverSideEncryptionConfiguration = {
-            type = "structure",
-        },
+        sourceConfiguration = M.SourceConfiguration,
+        renderingConfiguration = M.RenderingConfiguration,
+        serverSideEncryptionConfiguration = M.ServerSideEncryptionConfiguration,
         description = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1707,9 +1640,7 @@ M.KnowledgeBaseData = {
 M.CreateKnowledgeBaseOutput = {
     type = "structure",
     members = {
-        knowledgeBase = {
-            type = "structure",
-        },
+        knowledgeBase = M.KnowledgeBaseData,
     },
 }
 
@@ -1730,7 +1661,7 @@ M.GroupingConfiguration = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1751,18 +1682,13 @@ M.CreateQuickResponseInput = {
                 required = true,
             },
         },
-        content = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        content = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.QuickResponseDataProvider }),
         contentType = {
             type = "string",
         },
-        groupingConfiguration = {
-            type = "structure",
-        },
+        groupingConfiguration = M.GroupingConfiguration,
         description = {
             type = "string",
         },
@@ -1774,7 +1700,7 @@ M.CreateQuickResponseInput = {
         },
         channels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         language = {
             type = "string",
@@ -1784,8 +1710,8 @@ M.CreateQuickResponseInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1802,12 +1728,8 @@ M.QuickResponseContentProvider = {
 M.QuickResponseContents = {
     type = "structure",
     members = {
-        plainText = {
-            type = "union",
-        },
-        markdown = {
-            type = "union",
-        },
+        plainText = M.QuickResponseContentProvider,
+        markdown = M.QuickResponseContentProvider,
     },
 }
 
@@ -1881,15 +1803,11 @@ M.QuickResponseData = {
                 timestamp_format = "epoch-seconds",
             },
         },
-        contents = {
-            type = "structure",
-        },
+        contents = M.QuickResponseContents,
         description = {
             type = "string",
         },
-        groupingConfiguration = {
-            type = "structure",
-        },
+        groupingConfiguration = M.GroupingConfiguration,
         shortcutKey = {
             type = "string",
         },
@@ -1901,15 +1819,15 @@ M.QuickResponseData = {
         },
         channels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         language = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1917,9 +1835,7 @@ M.QuickResponseData = {
 M.CreateQuickResponseOutput = {
     type = "structure",
     members = {
-        quickResponse = {
-            type = "structure",
-        },
+        quickResponse = M.QuickResponseData,
     },
 }
 
@@ -2001,12 +1917,9 @@ M.ExternalSourceConfiguration = {
                 required = true,
             },
         },
-        configuration = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Configuration }),
     },
 }
 
@@ -2114,21 +2027,17 @@ M.ImportJobData = {
         },
         metadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        externalSourceConfiguration = {
-            type = "structure",
-        },
+        externalSourceConfiguration = M.ExternalSourceConfiguration,
     },
 }
 
 M.GetImportJobOutput = {
     type = "structure",
     members = {
-        importJob = {
-            type = "structure",
-        },
+        importJob = M.ImportJobData,
     },
 }
 
@@ -2148,9 +2057,7 @@ M.GetKnowledgeBaseInput = {
 M.GetKnowledgeBaseOutput = {
     type = "structure",
     members = {
-        knowledgeBase = {
-            type = "structure",
-        },
+        knowledgeBase = M.KnowledgeBaseData,
     },
 }
 
@@ -2177,9 +2084,7 @@ M.GetQuickResponseInput = {
 M.GetQuickResponseOutput = {
     type = "structure",
     members = {
-        quickResponse = {
-            type = "structure",
-        },
+        quickResponse = M.QuickResponseData,
     },
 }
 
@@ -2238,12 +2143,10 @@ M.ImportJobSummary = {
         },
         metadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        externalSourceConfiguration = {
-            type = "structure",
-        },
+        externalSourceConfiguration = M.ExternalSourceConfiguration,
     },
 }
 
@@ -2257,7 +2160,7 @@ M.ListImportJobsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2277,7 +2180,7 @@ M.ListImportJobsOutput = {
     members = {
         importJobSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ImportJobSummary,
             traits = {
                 required = true,
             },
@@ -2298,7 +2201,7 @@ M.ListKnowledgeBasesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2339,22 +2242,16 @@ M.KnowledgeBaseSummary = {
                 required = true,
             },
         },
-        sourceConfiguration = {
-            type = "union",
-        },
-        renderingConfiguration = {
-            type = "structure",
-        },
-        serverSideEncryptionConfiguration = {
-            type = "structure",
-        },
+        sourceConfiguration = M.SourceConfiguration,
+        renderingConfiguration = M.RenderingConfiguration,
+        serverSideEncryptionConfiguration = M.ServerSideEncryptionConfiguration,
         description = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2364,7 +2261,7 @@ M.ListKnowledgeBasesOutput = {
     members = {
         knowledgeBaseSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.KnowledgeBaseSummary,
             traits = {
                 required = true,
             },
@@ -2385,7 +2282,7 @@ M.ListQuickResponsesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2470,12 +2367,12 @@ M.QuickResponseSummary = {
         },
         channels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2485,7 +2382,7 @@ M.ListQuickResponsesOutput = {
     members = {
         quickResponseSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.QuickResponseSummary,
             traits = {
                 required = true,
             },
@@ -2516,15 +2413,11 @@ M.UpdateQuickResponseInput = {
         name = {
             type = "string",
         },
-        content = {
-            type = "union",
-        },
+        content = M.QuickResponseDataProvider,
         contentType = {
             type = "string",
         },
-        groupingConfiguration = {
-            type = "structure",
-        },
+        groupingConfiguration = M.GroupingConfiguration,
         removeGroupingConfiguration = {
             type = "boolean",
         },
@@ -2545,7 +2438,7 @@ M.UpdateQuickResponseInput = {
         },
         channels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         language = {
             type = "string",
@@ -2556,9 +2449,7 @@ M.UpdateQuickResponseInput = {
 M.UpdateQuickResponseOutput = {
     type = "structure",
     members = {
-        quickResponse = {
-            type = "structure",
-        },
+        quickResponse = M.QuickResponseData,
     },
 }
 
@@ -2589,7 +2480,7 @@ M.SearchContentInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2601,12 +2492,9 @@ M.SearchContentInput = {
                 required = true,
             },
         },
-        searchExpression = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        searchExpression = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SearchExpression }),
     },
 }
 
@@ -2615,7 +2503,7 @@ M.SearchContentOutput = {
     members = {
         contentSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ContentSummary,
             traits = {
                 required = true,
             },
@@ -2642,7 +2530,7 @@ M.QuickResponseFilterField = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         operator = {
             type = "string",
@@ -2698,7 +2586,7 @@ M.QuickResponseQueryField = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2723,15 +2611,13 @@ M.QuickResponseSearchExpression = {
     members = {
         queries = {
             type = "list",
-            member_type = "structure",
+            member = M.QuickResponseQueryField,
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.QuickResponseFilterField,
         },
-        orderOnField = {
-            type = "structure",
-        },
+        orderOnField = M.QuickResponseOrderField,
     },
 }
 
@@ -2745,12 +2631,9 @@ M.SearchQuickResponsesInput = {
                 required = true,
             },
         },
-        searchExpression = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        searchExpression = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.QuickResponseSearchExpression }),
         nextToken = {
             type = "string",
             traits = {
@@ -2758,15 +2641,15 @@ M.SearchQuickResponsesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
         },
         attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2816,12 +2699,9 @@ M.QuickResponseSearchResultData = {
                 required = true,
             },
         },
-        contents = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        contents = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.QuickResponseContents }),
         createdTime = {
             type = "timestamp",
             traits = {
@@ -2845,9 +2725,7 @@ M.QuickResponseSearchResultData = {
         description = {
             type = "string",
         },
-        groupingConfiguration = {
-            type = "structure",
-        },
+        groupingConfiguration = M.GroupingConfiguration,
         shortcutKey = {
             type = "string",
         },
@@ -2856,23 +2734,23 @@ M.QuickResponseSearchResultData = {
         },
         channels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         language = {
             type = "string",
         },
         attributesNotInterpolated = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         attributesInterpolated = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2882,7 +2760,7 @@ M.SearchQuickResponsesOutput = {
     members = {
         results = {
             type = "list",
-            member_type = "structure",
+            member = M.QuickResponseSearchResultData,
             traits = {
                 required = true,
             },
@@ -2910,7 +2788,7 @@ M.StartContentUploadInput = {
             },
         },
         presignedUrlTimeToLive = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2939,8 +2817,8 @@ M.StartContentUploadOutput = {
         },
         headersToInclude = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2975,21 +2853,17 @@ M.StartImportJobInput = {
         },
         metadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        externalSourceConfiguration = {
-            type = "structure",
-        },
+        externalSourceConfiguration = M.ExternalSourceConfiguration,
     },
 }
 
 M.StartImportJobOutput = {
     type = "structure",
     members = {
-        importJob = {
-            type = "structure",
-        },
+        importJob = M.ImportJobData,
     },
 }
 
@@ -3015,9 +2889,7 @@ M.UpdateKnowledgeBaseTemplateUriInput = {
 M.UpdateKnowledgeBaseTemplateUriOutput = {
     type = "structure",
     members = {
-        knowledgeBase = {
-            type = "structure",
-        },
+        knowledgeBase = M.KnowledgeBaseData,
     },
 }
 
@@ -3039,8 +2911,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3057,8 +2929,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3095,7 +2967,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,

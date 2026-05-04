@@ -90,12 +90,9 @@ M.S3Reference = {
 M.RawMessageContent = {
     type = "structure",
     members = {
-        s3Reference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        s3Reference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3Reference }),
     },
 }
 
@@ -109,12 +106,9 @@ M.PutRawMessageContentInput = {
                 required = true,
             },
         },
-        content = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        content = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RawMessageContent }),
     },
 }
 

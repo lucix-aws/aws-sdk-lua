@@ -24,7 +24,7 @@ M.VpcTransitConfiguration = {
         },
         Ipv4CidrBlocks = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -42,20 +42,18 @@ M.LocationConfiguration = {
             },
         },
         AlwaysOnCapacity = {
-            type = "number",
+            type = "integer",
         },
         OnDemandCapacity = {
-            type = "number",
+            type = "integer",
         },
         TargetIdleCapacity = {
-            type = "number",
+            type = "integer",
         },
         MaximumCapacity = {
-            type = "number",
+            type = "integer",
         },
-        VpcTransitConfiguration = {
-            type = "structure",
-        },
+        VpcTransitConfiguration = M.VpcTransitConfiguration,
     },
 }
 
@@ -71,7 +69,7 @@ M.AddStreamGroupLocationsInput = {
         },
         LocationConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.LocationConfiguration,
             traits = {
                 required = true,
             },
@@ -94,7 +92,7 @@ M.VpcTransitConfigurationResponse = {
         },
         Ipv4CidrBlocks = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TransitGatewayId = {
             type = "string",
@@ -115,32 +113,30 @@ M.LocationState = {
             type = "string",
         },
         AlwaysOnCapacity = {
-            type = "number",
+            type = "integer",
         },
         OnDemandCapacity = {
-            type = "number",
+            type = "integer",
         },
         TargetIdleCapacity = {
-            type = "number",
+            type = "integer",
         },
         MaximumCapacity = {
-            type = "number",
+            type = "integer",
         },
         RequestedCapacity = {
-            type = "number",
+            type = "integer",
         },
         AllocatedCapacity = {
-            type = "number",
+            type = "integer",
         },
         IdleCapacity = {
-            type = "number",
+            type = "integer",
         },
         InternalVpcIpv4CidrBlock = {
             type = "string",
         },
-        VpcTransitConfiguration = {
-            type = "structure",
-        },
+        VpcTransitConfiguration = M.VpcTransitConfigurationResponse,
     },
 }
 
@@ -155,7 +151,7 @@ M.AddStreamGroupLocationsOutput = {
         },
         Locations = {
             type = "list",
-            member_type = "structure",
+            member = M.LocationState,
             traits = {
                 required = true,
             },
@@ -288,12 +284,9 @@ M.CreateApplicationInput = {
                 required = true,
             },
         },
-        RuntimeEnvironment = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RuntimeEnvironment = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RuntimeEnvironment }),
         ExecutablePath = {
             type = "string",
             traits = {
@@ -308,15 +301,15 @@ M.CreateApplicationInput = {
         },
         ApplicationLogPaths = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ApplicationLogOutputUri = {
             type = "string",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ClientToken = {
             type = "string",
@@ -353,15 +346,13 @@ M.CreateApplicationOutput = {
         Description = {
             type = "string",
         },
-        RuntimeEnvironment = {
-            type = "structure",
-        },
+        RuntimeEnvironment = M.RuntimeEnvironment,
         ExecutablePath = {
             type = "string",
         },
         ApplicationLogPaths = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ApplicationLogOutputUri = {
             type = "string",
@@ -380,7 +371,7 @@ M.CreateApplicationOutput = {
         },
         ReplicationStatuses = {
             type = "list",
-            member_type = "structure",
+            member = M.ReplicationStatus,
         },
         CreatedAt = {
             type = "timestamp",
@@ -390,7 +381,7 @@ M.CreateApplicationOutput = {
         },
         AssociatedStreamGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -437,15 +428,13 @@ M.GetApplicationOutput = {
         Description = {
             type = "string",
         },
-        RuntimeEnvironment = {
-            type = "structure",
-        },
+        RuntimeEnvironment = M.RuntimeEnvironment,
         ExecutablePath = {
             type = "string",
         },
         ApplicationLogPaths = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ApplicationLogOutputUri = {
             type = "string",
@@ -464,7 +453,7 @@ M.GetApplicationOutput = {
         },
         ReplicationStatuses = {
             type = "list",
-            member_type = "structure",
+            member = M.ReplicationStatus,
         },
         CreatedAt = {
             type = "timestamp",
@@ -474,7 +463,7 @@ M.GetApplicationOutput = {
         },
         AssociatedStreamGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -489,7 +478,7 @@ M.ListApplicationsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -521,9 +510,7 @@ M.ApplicationSummary = {
         LastUpdatedAt = {
             type = "timestamp",
         },
-        RuntimeEnvironment = {
-            type = "structure",
-        },
+        RuntimeEnvironment = M.RuntimeEnvironment,
     },
 }
 
@@ -532,7 +519,7 @@ M.ListApplicationsOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.ApplicationSummary,
         },
         NextToken = {
             type = "string",
@@ -555,7 +542,7 @@ M.UpdateApplicationInput = {
         },
         ApplicationLogPaths = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ApplicationLogOutputUri = {
             type = "string",
@@ -575,15 +562,13 @@ M.UpdateApplicationOutput = {
         Description = {
             type = "string",
         },
-        RuntimeEnvironment = {
-            type = "structure",
-        },
+        RuntimeEnvironment = M.RuntimeEnvironment,
         ExecutablePath = {
             type = "string",
         },
         ApplicationLogPaths = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ApplicationLogOutputUri = {
             type = "string",
@@ -602,7 +587,7 @@ M.UpdateApplicationOutput = {
         },
         ReplicationStatuses = {
             type = "list",
-            member_type = "structure",
+            member = M.ReplicationStatus,
         },
         CreatedAt = {
             type = "timestamp",
@@ -612,7 +597,7 @@ M.UpdateApplicationOutput = {
         },
         AssociatedStreamGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -629,7 +614,7 @@ M.AssociateApplicationsInput = {
         },
         ApplicationIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -645,7 +630,7 @@ M.AssociateApplicationsOutput = {
         },
         ApplicationArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -690,12 +675,12 @@ M.CreateStreamGroupInput = {
         },
         LocationConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.LocationConfiguration,
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ClientToken = {
             type = "string",
@@ -742,12 +727,10 @@ M.CreateStreamGroupOutput = {
         Description = {
             type = "string",
         },
-        DefaultApplication = {
-            type = "structure",
-        },
+        DefaultApplication = M.DefaultApplication,
         LocationStates = {
             type = "list",
-            member_type = "structure",
+            member = M.LocationState,
         },
         StreamClass = {
             type = "string",
@@ -772,7 +755,7 @@ M.CreateStreamGroupOutput = {
         },
         AssociatedApplications = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -844,7 +827,7 @@ M.DisassociateApplicationsInput = {
         },
         ApplicationIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -860,7 +843,7 @@ M.DisassociateApplicationsOutput = {
         },
         ApplicationArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1007,23 +990,21 @@ M.GetStreamSessionOutput = {
             type = "string",
         },
         ConnectionTimeoutSeconds = {
-            type = "number",
+            type = "integer",
         },
         SessionLengthSeconds = {
-            type = "number",
+            type = "integer",
         },
         AdditionalLaunchArgs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AdditionalEnvironmentVariables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        PerformanceStatsConfiguration = {
-            type = "structure",
-        },
+        PerformanceStatsConfiguration = M.PerformanceStatsConfiguration,
         LogFileLocationUri = {
             type = "string",
         },
@@ -1039,9 +1020,7 @@ M.GetStreamSessionOutput = {
         ApplicationArn = {
             type = "string",
         },
-        ExportFilesMetadata = {
-            type = "structure",
-        },
+        ExportFilesMetadata = M.ExportFilesMetadata,
     },
 }
 
@@ -1067,7 +1046,7 @@ M.ListStreamSessionsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -1109,9 +1088,7 @@ M.StreamSessionSummary = {
         ApplicationArn = {
             type = "string",
         },
-        ExportFilesMetadata = {
-            type = "structure",
-        },
+        ExportFilesMetadata = M.ExportFilesMetadata,
         Location = {
             type = "string",
         },
@@ -1123,7 +1100,7 @@ M.ListStreamSessionsOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.StreamSessionSummary,
         },
         NextToken = {
             type = "string",
@@ -1153,7 +1130,7 @@ M.ListStreamSessionsByAccountInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -1166,7 +1143,7 @@ M.ListStreamSessionsByAccountOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.StreamSessionSummary,
         },
         NextToken = {
             type = "string",
@@ -1192,8 +1169,8 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1210,7 +1187,7 @@ M.RemoveStreamGroupLocationsInput = {
         },
         Locations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "locations",
                 required = true,
@@ -1262,26 +1239,24 @@ M.StartStreamSessionInput = {
         },
         Locations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ConnectionTimeoutSeconds = {
-            type = "number",
+            type = "integer",
         },
         SessionLengthSeconds = {
-            type = "number",
+            type = "integer",
         },
         AdditionalLaunchArgs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AdditionalEnvironmentVariables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        PerformanceStatsConfiguration = {
-            type = "structure",
-        },
+        PerformanceStatsConfiguration = M.PerformanceStatsConfiguration,
     },
 }
 
@@ -1319,23 +1294,21 @@ M.StartStreamSessionOutput = {
             type = "string",
         },
         ConnectionTimeoutSeconds = {
-            type = "number",
+            type = "integer",
         },
         SessionLengthSeconds = {
-            type = "number",
+            type = "integer",
         },
         AdditionalLaunchArgs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AdditionalEnvironmentVariables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        PerformanceStatsConfiguration = {
-            type = "structure",
-        },
+        PerformanceStatsConfiguration = M.PerformanceStatsConfiguration,
         LogFileLocationUri = {
             type = "string",
         },
@@ -1351,9 +1324,7 @@ M.StartStreamSessionOutput = {
         ApplicationArn = {
             type = "string",
         },
-        ExportFilesMetadata = {
-            type = "structure",
-        },
+        ExportFilesMetadata = M.ExportFilesMetadata,
     },
 }
 
@@ -1382,12 +1353,10 @@ M.GetStreamGroupOutput = {
         Description = {
             type = "string",
         },
-        DefaultApplication = {
-            type = "structure",
-        },
+        DefaultApplication = M.DefaultApplication,
         LocationStates = {
             type = "list",
-            member_type = "structure",
+            member = M.LocationState,
         },
         StreamClass = {
             type = "string",
@@ -1412,7 +1381,7 @@ M.GetStreamGroupOutput = {
         },
         AssociatedApplications = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1427,7 +1396,7 @@ M.ListStreamGroupsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -1450,9 +1419,7 @@ M.StreamGroupSummary = {
         Description = {
             type = "string",
         },
-        DefaultApplication = {
-            type = "structure",
-        },
+        DefaultApplication = M.DefaultApplication,
         StreamClass = {
             type = "string",
         },
@@ -1476,7 +1443,7 @@ M.ListStreamGroupsOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.StreamGroupSummary,
         },
         NextToken = {
             type = "string",
@@ -1496,7 +1463,7 @@ M.UpdateStreamGroupInput = {
         },
         LocationConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.LocationConfiguration,
         },
         Description = {
             type = "string",
@@ -1519,12 +1486,10 @@ M.UpdateStreamGroupOutput = {
         Description = {
             type = "string",
         },
-        DefaultApplication = {
-            type = "structure",
-        },
+        DefaultApplication = M.DefaultApplication,
         LocationStates = {
             type = "list",
-            member_type = "structure",
+            member = M.LocationState,
         },
         StreamClass = {
             type = "string",
@@ -1549,7 +1514,7 @@ M.UpdateStreamGroupOutput = {
         },
         AssociatedApplications = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1566,8 +1531,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1615,7 +1580,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,

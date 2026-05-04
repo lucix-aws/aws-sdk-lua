@@ -54,7 +54,7 @@ M.Trait = {
             type = "string",
         },
         Score = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -114,22 +114,22 @@ M.Attribute = {
             type = "string",
         },
         Score = {
-            type = "number",
+            type = "float",
         },
         RelationshipScore = {
-            type = "number",
+            type = "float",
         },
         RelationshipType = {
             type = "string",
         },
         Id = {
-            type = "number",
+            type = "integer",
         },
         BeginOffset = {
-            type = "number",
+            type = "integer",
         },
         EndOffset = {
-            type = "number",
+            type = "integer",
         },
         Text = {
             type = "string",
@@ -139,7 +139,7 @@ M.Attribute = {
         },
         Traits = {
             type = "list",
-            member_type = "structure",
+            member = M.Trait,
         },
     },
 }
@@ -148,7 +148,7 @@ M.Characters = {
     type = "structure",
     members = {
         OriginalTextCharacters = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -233,12 +233,8 @@ M.ComprehendMedicalAsyncJobProperties = {
         ExpirationTime = {
             type = "timestamp",
         },
-        InputDataConfig = {
-            type = "structure",
-        },
-        OutputDataConfig = {
-            type = "structure",
-        },
+        InputDataConfig = M.InputDataConfig,
+        OutputDataConfig = M.OutputDataConfig,
         LanguageCode = {
             type = "string",
         },
@@ -260,9 +256,7 @@ M.ComprehendMedicalAsyncJobProperties = {
 M.DescribeEntitiesDetectionV2JobOutput = {
     type = "structure",
     members = {
-        ComprehendMedicalAsyncJobProperties = {
-            type = "structure",
-        },
+        ComprehendMedicalAsyncJobProperties = M.ComprehendMedicalAsyncJobProperties,
     },
 }
 
@@ -321,9 +315,7 @@ M.DescribeICD10CMInferenceJobInput = {
 M.DescribeICD10CMInferenceJobOutput = {
     type = "structure",
     members = {
-        ComprehendMedicalAsyncJobProperties = {
-            type = "structure",
-        },
+        ComprehendMedicalAsyncJobProperties = M.ComprehendMedicalAsyncJobProperties,
     },
 }
 
@@ -342,9 +334,7 @@ M.DescribePHIDetectionJobInput = {
 M.DescribePHIDetectionJobOutput = {
     type = "structure",
     members = {
-        ComprehendMedicalAsyncJobProperties = {
-            type = "structure",
-        },
+        ComprehendMedicalAsyncJobProperties = M.ComprehendMedicalAsyncJobProperties,
     },
 }
 
@@ -363,9 +353,7 @@ M.DescribeRxNormInferenceJobInput = {
 M.DescribeRxNormInferenceJobOutput = {
     type = "structure",
     members = {
-        ComprehendMedicalAsyncJobProperties = {
-            type = "structure",
-        },
+        ComprehendMedicalAsyncJobProperties = M.ComprehendMedicalAsyncJobProperties,
     },
 }
 
@@ -384,9 +372,7 @@ M.DescribeSNOMEDCTInferenceJobInput = {
 M.DescribeSNOMEDCTInferenceJobOutput = {
     type = "structure",
     members = {
-        ComprehendMedicalAsyncJobProperties = {
-            type = "structure",
-        },
+        ComprehendMedicalAsyncJobProperties = M.ComprehendMedicalAsyncJobProperties,
     },
 }
 
@@ -406,16 +392,16 @@ M.Entity = {
     type = "structure",
     members = {
         Id = {
-            type = "number",
+            type = "integer",
         },
         BeginOffset = {
-            type = "number",
+            type = "integer",
         },
         EndOffset = {
-            type = "number",
+            type = "integer",
         },
         Score = {
-            type = "number",
+            type = "float",
         },
         Text = {
             type = "string",
@@ -428,11 +414,11 @@ M.Entity = {
         },
         Traits = {
             type = "list",
-            member_type = "structure",
+            member = M.Trait,
         },
         Attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.Attribute,
         },
     },
 }
@@ -443,9 +429,7 @@ M.UnmappedAttribute = {
         Type = {
             type = "string",
         },
-        Attribute = {
-            type = "structure",
-        },
+        Attribute = M.Attribute,
     },
 }
 
@@ -454,14 +438,14 @@ M.DetectEntitiesOutput = {
     members = {
         Entities = {
             type = "list",
-            member_type = "structure",
+            member = M.Entity,
             traits = {
                 required = true,
             },
         },
         UnmappedAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.UnmappedAttribute,
         },
         PaginationToken = {
             type = "string",
@@ -522,14 +506,14 @@ M.DetectEntitiesV2Output = {
     members = {
         Entities = {
             type = "list",
-            member_type = "structure",
+            member = M.Entity,
             traits = {
                 required = true,
             },
         },
         UnmappedAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.UnmappedAttribute,
         },
         PaginationToken = {
             type = "string",
@@ -560,7 +544,7 @@ M.DetectPHIOutput = {
     members = {
         Entities = {
             type = "list",
-            member_type = "structure",
+            member = M.Entity,
             traits = {
                 required = true,
             },
@@ -617,7 +601,7 @@ M.ICD10CMTrait = {
             type = "string",
         },
         Score = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -639,26 +623,26 @@ M.ICD10CMAttribute = {
             type = "string",
         },
         Score = {
-            type = "number",
+            type = "float",
         },
         RelationshipScore = {
-            type = "number",
+            type = "float",
         },
         Id = {
-            type = "number",
+            type = "integer",
         },
         BeginOffset = {
-            type = "number",
+            type = "integer",
         },
         EndOffset = {
-            type = "number",
+            type = "integer",
         },
         Text = {
             type = "string",
         },
         Traits = {
             type = "list",
-            member_type = "structure",
+            member = M.ICD10CMTrait,
         },
         Category = {
             type = "string",
@@ -683,7 +667,7 @@ M.ICD10CMConcept = {
             type = "string",
         },
         Score = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -692,7 +676,7 @@ M.ICD10CMEntity = {
     type = "structure",
     members = {
         Id = {
-            type = "number",
+            type = "integer",
         },
         Text = {
             type = "string",
@@ -704,25 +688,25 @@ M.ICD10CMEntity = {
             type = "string",
         },
         Score = {
-            type = "number",
+            type = "float",
         },
         BeginOffset = {
-            type = "number",
+            type = "integer",
         },
         EndOffset = {
-            type = "number",
+            type = "integer",
         },
         Attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.ICD10CMAttribute,
         },
         Traits = {
             type = "list",
-            member_type = "structure",
+            member = M.ICD10CMTrait,
         },
         ICD10CMConcepts = {
             type = "list",
-            member_type = "structure",
+            member = M.ICD10CMConcept,
         },
     },
 }
@@ -732,7 +716,7 @@ M.InferICD10CMOutput = {
     members = {
         Entities = {
             type = "list",
-            member_type = "structure",
+            member = M.ICD10CMEntity,
             traits = {
                 required = true,
             },
@@ -770,7 +754,7 @@ M.RxNormTrait = {
             type = "string",
         },
         Score = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -792,26 +776,26 @@ M.RxNormAttribute = {
             type = "string",
         },
         Score = {
-            type = "number",
+            type = "float",
         },
         RelationshipScore = {
-            type = "number",
+            type = "float",
         },
         Id = {
-            type = "number",
+            type = "integer",
         },
         BeginOffset = {
-            type = "number",
+            type = "integer",
         },
         EndOffset = {
-            type = "number",
+            type = "integer",
         },
         Text = {
             type = "string",
         },
         Traits = {
             type = "list",
-            member_type = "structure",
+            member = M.RxNormTrait,
         },
     },
 }
@@ -830,7 +814,7 @@ M.RxNormConcept = {
             type = "string",
         },
         Score = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -844,7 +828,7 @@ M.RxNormEntity = {
     type = "structure",
     members = {
         Id = {
-            type = "number",
+            type = "integer",
         },
         Text = {
             type = "string",
@@ -856,25 +840,25 @@ M.RxNormEntity = {
             type = "string",
         },
         Score = {
-            type = "number",
+            type = "float",
         },
         BeginOffset = {
-            type = "number",
+            type = "integer",
         },
         EndOffset = {
-            type = "number",
+            type = "integer",
         },
         Attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.RxNormAttribute,
         },
         Traits = {
             type = "list",
-            member_type = "structure",
+            member = M.RxNormTrait,
         },
         RxNormConcepts = {
             type = "list",
-            member_type = "structure",
+            member = M.RxNormConcept,
         },
     },
 }
@@ -884,7 +868,7 @@ M.InferRxNormOutput = {
     members = {
         Entities = {
             type = "list",
-            member_type = "structure",
+            member = M.RxNormEntity,
             traits = {
                 required = true,
             },
@@ -936,7 +920,7 @@ M.SNOMEDCTConcept = {
             type = "string",
         },
         Score = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -960,7 +944,7 @@ M.SNOMEDCTTrait = {
             type = "string",
         },
         Score = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -984,33 +968,33 @@ M.SNOMEDCTAttribute = {
             type = "string",
         },
         Score = {
-            type = "number",
+            type = "float",
         },
         RelationshipScore = {
-            type = "number",
+            type = "float",
         },
         RelationshipType = {
             type = "string",
         },
         Id = {
-            type = "number",
+            type = "integer",
         },
         BeginOffset = {
-            type = "number",
+            type = "integer",
         },
         EndOffset = {
-            type = "number",
+            type = "integer",
         },
         Text = {
             type = "string",
         },
         Traits = {
             type = "list",
-            member_type = "structure",
+            member = M.SNOMEDCTTrait,
         },
         SNOMEDCTConcepts = {
             type = "list",
-            member_type = "structure",
+            member = M.SNOMEDCTConcept,
         },
     },
 }
@@ -1026,7 +1010,7 @@ M.SNOMEDCTEntity = {
     type = "structure",
     members = {
         Id = {
-            type = "number",
+            type = "integer",
         },
         Text = {
             type = "string",
@@ -1038,25 +1022,25 @@ M.SNOMEDCTEntity = {
             type = "string",
         },
         Score = {
-            type = "number",
+            type = "float",
         },
         BeginOffset = {
-            type = "number",
+            type = "integer",
         },
         EndOffset = {
-            type = "number",
+            type = "integer",
         },
         Attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.SNOMEDCTAttribute,
         },
         Traits = {
             type = "list",
-            member_type = "structure",
+            member = M.SNOMEDCTTrait,
         },
         SNOMEDCTConcepts = {
             type = "list",
-            member_type = "structure",
+            member = M.SNOMEDCTConcept,
         },
     },
 }
@@ -1081,7 +1065,7 @@ M.InferSNOMEDCTOutput = {
     members = {
         Entities = {
             type = "list",
-            member_type = "structure",
+            member = M.SNOMEDCTEntity,
             traits = {
                 required = true,
             },
@@ -1092,12 +1076,8 @@ M.InferSNOMEDCTOutput = {
         ModelVersion = {
             type = "string",
         },
-        SNOMEDCTDetails = {
-            type = "structure",
-        },
-        Characters = {
-            type = "structure",
-        },
+        SNOMEDCTDetails = M.SNOMEDCTDetails,
+        Characters = M.Characters,
     },
 }
 
@@ -1122,14 +1102,12 @@ M.ComprehendMedicalAsyncJobFilter = {
 M.ListEntitiesDetectionV2JobsInput = {
     type = "structure",
     members = {
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.ComprehendMedicalAsyncJobFilter,
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1139,7 +1117,7 @@ M.ListEntitiesDetectionV2JobsOutput = {
     members = {
         ComprehendMedicalAsyncJobPropertiesList = {
             type = "list",
-            member_type = "structure",
+            member = M.ComprehendMedicalAsyncJobProperties,
         },
         NextToken = {
             type = "string",
@@ -1160,14 +1138,12 @@ M.ValidationException = {
 M.ListICD10CMInferenceJobsInput = {
     type = "structure",
     members = {
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.ComprehendMedicalAsyncJobFilter,
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1177,7 +1153,7 @@ M.ListICD10CMInferenceJobsOutput = {
     members = {
         ComprehendMedicalAsyncJobPropertiesList = {
             type = "list",
-            member_type = "structure",
+            member = M.ComprehendMedicalAsyncJobProperties,
         },
         NextToken = {
             type = "string",
@@ -1188,14 +1164,12 @@ M.ListICD10CMInferenceJobsOutput = {
 M.ListPHIDetectionJobsInput = {
     type = "structure",
     members = {
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.ComprehendMedicalAsyncJobFilter,
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1205,7 +1179,7 @@ M.ListPHIDetectionJobsOutput = {
     members = {
         ComprehendMedicalAsyncJobPropertiesList = {
             type = "list",
-            member_type = "structure",
+            member = M.ComprehendMedicalAsyncJobProperties,
         },
         NextToken = {
             type = "string",
@@ -1216,14 +1190,12 @@ M.ListPHIDetectionJobsOutput = {
 M.ListRxNormInferenceJobsInput = {
     type = "structure",
     members = {
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.ComprehendMedicalAsyncJobFilter,
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1233,7 +1205,7 @@ M.ListRxNormInferenceJobsOutput = {
     members = {
         ComprehendMedicalAsyncJobPropertiesList = {
             type = "list",
-            member_type = "structure",
+            member = M.ComprehendMedicalAsyncJobProperties,
         },
         NextToken = {
             type = "string",
@@ -1244,14 +1216,12 @@ M.ListRxNormInferenceJobsOutput = {
 M.ListSNOMEDCTInferenceJobsInput = {
     type = "structure",
     members = {
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.ComprehendMedicalAsyncJobFilter,
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1261,7 +1231,7 @@ M.ListSNOMEDCTInferenceJobsOutput = {
     members = {
         ComprehendMedicalAsyncJobPropertiesList = {
             type = "list",
-            member_type = "structure",
+            member = M.ComprehendMedicalAsyncJobProperties,
         },
         NextToken = {
             type = "string",
@@ -1272,18 +1242,12 @@ M.ListSNOMEDCTInferenceJobsOutput = {
 M.StartEntitiesDetectionV2JobInput = {
     type = "structure",
     members = {
-        InputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        OutputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InputDataConfig }),
+        OutputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OutputDataConfig }),
         DataAccessRoleArn = {
             type = "string",
             traits = {
@@ -1320,18 +1284,12 @@ M.StartEntitiesDetectionV2JobOutput = {
 M.StartICD10CMInferenceJobInput = {
     type = "structure",
     members = {
-        InputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        OutputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InputDataConfig }),
+        OutputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OutputDataConfig }),
         DataAccessRoleArn = {
             type = "string",
             traits = {
@@ -1368,18 +1326,12 @@ M.StartICD10CMInferenceJobOutput = {
 M.StartPHIDetectionJobInput = {
     type = "structure",
     members = {
-        InputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        OutputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InputDataConfig }),
+        OutputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OutputDataConfig }),
         DataAccessRoleArn = {
             type = "string",
             traits = {
@@ -1416,18 +1368,12 @@ M.StartPHIDetectionJobOutput = {
 M.StartRxNormInferenceJobInput = {
     type = "structure",
     members = {
-        InputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        OutputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InputDataConfig }),
+        OutputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OutputDataConfig }),
         DataAccessRoleArn = {
             type = "string",
             traits = {
@@ -1464,18 +1410,12 @@ M.StartRxNormInferenceJobOutput = {
 M.StartSNOMEDCTInferenceJobInput = {
     type = "structure",
     members = {
-        InputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        OutputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InputDataConfig }),
+        OutputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OutputDataConfig }),
         DataAccessRoleArn = {
             type = "string",
             traits = {

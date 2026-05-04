@@ -1,0 +1,12 @@
+local types = require("iotsitewise.types")
+
+local record M
+    wait_until_asset_active: function(client: table, input: table, options: table): table, table
+    wait_until_asset_model_active: function(client: table, input: table, options: table): table, table
+    wait_until_asset_model_not_exists: function(client: table, input: table, options: table): table, table
+    wait_until_asset_not_exists: function(client: table, input: table, options: table): table, table
+    wait_until_portal_active: function(client: table, input: table, options: table): table, table
+    wait_until_portal_not_exists: function(client: table, input: table, options: table): table, table
+end
+
+return M

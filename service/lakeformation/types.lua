@@ -24,7 +24,7 @@ M.LFTagPair = {
         },
         TagValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -103,7 +103,7 @@ M.LFTagKeyResource = {
         },
         TagValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -137,7 +137,7 @@ M.LFTag = {
         },
         TagValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -164,7 +164,10 @@ M.LFTagPolicyResource = {
         },
         Expression = {
             type = "list",
-            member_type = "structure",
+            member = M.LFTag,
+            traits = {
+                default = {},
+            },
         },
         ExpressionName = {
             type = "string",
@@ -191,9 +194,7 @@ M.TableResource = {
         Name = {
             type = "string",
         },
-        TableWildcard = {
-            type = "structure",
-        },
+        TableWildcard = M.TableWildcard,
     },
 }
 
@@ -202,7 +203,7 @@ M.ColumnWildcard = {
     members = {
         ExcludedColumnNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -227,44 +228,24 @@ M.TableWithColumnsResource = {
         },
         ColumnNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        ColumnWildcard = {
-            type = "structure",
-        },
+        ColumnWildcard = M.ColumnWildcard,
     },
 }
 
 M.Resource = {
     type = "structure",
     members = {
-        Catalog = {
-            type = "structure",
-        },
-        Database = {
-            type = "structure",
-        },
-        Table = {
-            type = "structure",
-        },
-        TableWithColumns = {
-            type = "structure",
-        },
-        DataLocation = {
-            type = "structure",
-        },
-        DataCellsFilter = {
-            type = "structure",
-        },
-        LFTag = {
-            type = "structure",
-        },
-        LFTagPolicy = {
-            type = "structure",
-        },
-        LFTagExpression = {
-            type = "structure",
-        },
+        Catalog = M.CatalogResource,
+        Database = M.DatabaseResource,
+        Table = M.TableResource,
+        TableWithColumns = M.TableWithColumnsResource,
+        DataLocation = M.DataLocationResource,
+        DataCellsFilter = M.DataCellsFilterResource,
+        LFTag = M.LFTagKeyResource,
+        LFTagPolicy = M.LFTagPolicyResource,
+        LFTagExpression = M.LFTagExpressionResource,
     },
 }
 
@@ -274,15 +255,12 @@ M.AddLFTagsToResourceInput = {
         CatalogId = {
             type = "string",
         },
-        Resource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Resource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Resource }),
         LFTags = {
             type = "list",
-            member_type = "structure",
+            member = M.LFTagPair,
             traits = {
                 required = true,
             },
@@ -305,12 +283,8 @@ M.ErrorDetail = {
 M.LFTagError = {
     type = "structure",
     members = {
-        LFTag = {
-            type = "structure",
-        },
-        Error = {
-            type = "structure",
-        },
+        LFTag = M.LFTagPair,
+        Error = M.ErrorDetail,
     },
 }
 
@@ -319,7 +293,7 @@ M.AddLFTagsToResourceOutput = {
     members = {
         Failures = {
             type = "list",
-            member_type = "structure",
+            member = M.LFTagError,
         },
     },
 }
@@ -390,14 +364,15 @@ M.AddObjectInput = {
             },
         },
         Size = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         PartitionValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -443,7 +418,7 @@ M.AssumeDecoratedRoleWithSAMLInput = {
             },
         },
         DurationSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -521,22 +496,16 @@ M.BatchPermissionsRequestEntry = {
                 required = true,
             },
         },
-        Principal = {
-            type = "structure",
-        },
-        Resource = {
-            type = "structure",
-        },
+        Principal = M.DataLakePrincipal,
+        Resource = M.Resource,
         Permissions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        Condition = {
-            type = "structure",
-        },
+        Condition = M.Condition,
         PermissionsWithGrantOption = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -549,7 +518,7 @@ M.BatchGrantPermissionsInput = {
         },
         Entries = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchPermissionsRequestEntry,
             traits = {
                 required = true,
             },
@@ -560,12 +529,8 @@ M.BatchGrantPermissionsInput = {
 M.BatchPermissionsFailureEntry = {
     type = "structure",
     members = {
-        RequestEntry = {
-            type = "structure",
-        },
-        Error = {
-            type = "structure",
-        },
+        RequestEntry = M.BatchPermissionsRequestEntry,
+        Error = M.ErrorDetail,
     },
 }
 
@@ -574,7 +539,7 @@ M.BatchGrantPermissionsOutput = {
     members = {
         Failures = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchPermissionsFailureEntry,
         },
     },
 }
@@ -587,7 +552,7 @@ M.BatchRevokePermissionsInput = {
         },
         Entries = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchPermissionsRequestEntry,
             traits = {
                 required = true,
             },
@@ -600,7 +565,7 @@ M.BatchRevokePermissionsOutput = {
     members = {
         Failures = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchPermissionsFailureEntry,
         },
     },
 }
@@ -685,9 +650,7 @@ M.RowFilter = {
         FilterExpression = {
             type = "string",
         },
-        AllRowsWildcard = {
-            type = "structure",
-        },
+        AllRowsWildcard = M.AllRowsWildcard,
     },
 }
 
@@ -718,16 +681,12 @@ M.DataCellsFilter = {
                 required = true,
             },
         },
-        RowFilter = {
-            type = "structure",
-        },
+        RowFilter = M.RowFilter,
         ColumnNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        ColumnWildcard = {
-            type = "structure",
-        },
+        ColumnWildcard = M.ColumnWildcard,
         VersionId = {
             type = "string",
         },
@@ -737,12 +696,9 @@ M.DataCellsFilter = {
 M.CreateDataCellsFilterInput = {
     type = "structure",
     members = {
-        TableData = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TableData = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataCellsFilter }),
     },
 }
 
@@ -776,7 +732,7 @@ M.ExternalFilteringConfiguration = {
         },
         AuthorizedTargets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -804,9 +760,7 @@ M.RedshiftConnect = {
 M.RedshiftScopeUnion = {
     type = "union",
     members = {
-        RedshiftConnect = {
-            type = "structure",
-        },
+        RedshiftConnect = M.RedshiftConnect,
     },
 }
 
@@ -815,7 +769,7 @@ M.ServiceIntegrationUnion = {
     members = {
         Redshift = {
             type = "list",
-            member_type = "union",
+            member = M.RedshiftScopeUnion,
         },
     },
 }
@@ -829,16 +783,14 @@ M.CreateLakeFormationIdentityCenterConfigurationInput = {
         InstanceArn = {
             type = "string",
         },
-        ExternalFiltering = {
-            type = "structure",
-        },
+        ExternalFiltering = M.ExternalFilteringConfiguration,
         ShareRecipients = {
             type = "list",
-            member_type = "structure",
+            member = M.DataLakePrincipal,
         },
         ServiceIntegrations = {
             type = "list",
-            member_type = "union",
+            member = M.ServiceIntegrationUnion,
         },
     },
 }
@@ -855,21 +807,13 @@ M.CreateLakeFormationIdentityCenterConfigurationOutput = {
 M.CreateLakeFormationOptInInput = {
     type = "structure",
     members = {
-        Principal = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Resource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Condition = {
-            type = "structure",
-        },
+        Principal = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataLakePrincipal }),
+        Resource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Resource }),
+        Condition = M.Condition,
     },
 }
 
@@ -891,7 +835,7 @@ M.CreateLFTagInput = {
         },
         TagValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -920,7 +864,7 @@ M.CreateLFTagExpressionInput = {
         },
         Expression = {
             type = "list",
-            member_type = "structure",
+            member = M.LFTag,
             traits = {
                 required = true,
             },
@@ -970,21 +914,13 @@ M.DeleteLakeFormationIdentityCenterConfigurationOutput = {
 M.DeleteLakeFormationOptInInput = {
     type = "structure",
     members = {
-        Principal = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Resource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Condition = {
-            type = "structure",
-        },
+        Principal = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataLakePrincipal }),
+        Resource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Resource }),
+        Condition = M.Condition,
     },
 }
 
@@ -1071,7 +1007,7 @@ M.DeleteObjectsOnCancelInput = {
         },
         Objects = {
             type = "list",
-            member_type = "structure",
+            member = M.VirtualObject,
             traits = {
                 required = true,
             },
@@ -1130,16 +1066,14 @@ M.DescribeLakeFormationIdentityCenterConfigurationOutput = {
         ApplicationArn = {
             type = "string",
         },
-        ExternalFiltering = {
-            type = "structure",
-        },
+        ExternalFiltering = M.ExternalFilteringConfiguration,
         ShareRecipients = {
             type = "list",
-            member_type = "structure",
+            member = M.DataLakePrincipal,
         },
         ServiceIntegrations = {
             type = "list",
-            member_type = "union",
+            member = M.ServiceIntegrationUnion,
         },
         ResourceShare = {
             type = "string",
@@ -1198,9 +1132,7 @@ M.ResourceInfo = {
 M.DescribeResourceOutput = {
     type = "structure",
     members = {
-        ResourceInfo = {
-            type = "structure",
-        },
+        ResourceInfo = M.ResourceInfo,
     },
 }
 
@@ -1237,9 +1169,7 @@ M.TransactionDescription = {
 M.DescribeTransactionOutput = {
     type = "structure",
     members = {
-        TransactionDescription = {
-            type = "structure",
-        },
+        TransactionDescription = M.TransactionDescription,
     },
 }
 
@@ -1289,9 +1219,7 @@ M.GetDataCellsFilterInput = {
 M.GetDataCellsFilterOutput = {
     type = "structure",
     members = {
-        DataCellsFilter = {
-            type = "structure",
-        },
+        DataCellsFilter = M.DataCellsFilter,
     },
 }
 
@@ -1320,12 +1248,10 @@ M.GetDataLakeSettingsInput = {
 M.PrincipalPermissions = {
     type = "structure",
     members = {
-        Principal = {
-            type = "structure",
-        },
+        Principal = M.DataLakePrincipal,
         Permissions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1335,28 +1261,28 @@ M.DataLakeSettings = {
     members = {
         DataLakeAdmins = {
             type = "list",
-            member_type = "structure",
+            member = M.DataLakePrincipal,
         },
         ReadOnlyAdmins = {
             type = "list",
-            member_type = "structure",
+            member = M.DataLakePrincipal,
         },
         CreateDatabaseDefaultPermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.PrincipalPermissions,
         },
         CreateTableDefaultPermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.PrincipalPermissions,
         },
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         TrustedResourceOwners = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AllowExternalDataFiltering = {
             type = "boolean",
@@ -1366,11 +1292,11 @@ M.DataLakeSettings = {
         },
         ExternalDataFilteringAllowList = {
             type = "list",
-            member_type = "structure",
+            member = M.DataLakePrincipal,
         },
         AuthorizedSessionTagValueList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1378,9 +1304,7 @@ M.DataLakeSettings = {
 M.GetDataLakeSettingsOutput = {
     type = "structure",
     members = {
-        DataLakeSettings = {
-            type = "structure",
-        },
+        DataLakeSettings = M.DataLakeSettings,
     },
 }
 
@@ -1400,7 +1324,7 @@ M.GetEffectivePermissionsForPathInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1410,7 +1334,7 @@ M.DetailsMap = {
     members = {
         ResourceShare = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1418,26 +1342,18 @@ M.DetailsMap = {
 M.PrincipalResourcePermissions = {
     type = "structure",
     members = {
-        Principal = {
-            type = "structure",
-        },
-        Resource = {
-            type = "structure",
-        },
-        Condition = {
-            type = "structure",
-        },
+        Principal = M.DataLakePrincipal,
+        Resource = M.Resource,
+        Condition = M.Condition,
         Permissions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         PermissionsWithGrantOption = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        AdditionalDetails = {
-            type = "structure",
-        },
+        AdditionalDetails = M.DetailsMap,
         LastUpdated = {
             type = "timestamp",
         },
@@ -1452,7 +1368,7 @@ M.GetEffectivePermissionsForPathOutput = {
     members = {
         Permissions = {
             type = "list",
-            member_type = "structure",
+            member = M.PrincipalResourcePermissions,
         },
         NextToken = {
             type = "string",
@@ -1486,7 +1402,7 @@ M.GetLFTagOutput = {
         },
         TagValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1520,7 +1436,7 @@ M.GetLFTagExpressionOutput = {
         },
         Expression = {
             type = "list",
-            member_type = "structure",
+            member = M.LFTag,
         },
     },
 }
@@ -1586,13 +1502,22 @@ M.ExecutionStatistics = {
     type = "structure",
     members = {
         AverageExecutionTimeMillis = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         DataScannedBytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         WorkUnitsExecutedCount = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1601,16 +1526,28 @@ M.PlanningStatistics = {
     type = "structure",
     members = {
         EstimatedDataToScanBytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         PlanningTimeMillis = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         QueueTimeMillis = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         WorkUnitsGeneratedCount = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1618,12 +1555,8 @@ M.PlanningStatistics = {
 M.GetQueryStatisticsOutput = {
     type = "structure",
     members = {
-        ExecutionStatistics = {
-            type = "structure",
-        },
-        PlanningStatistics = {
-            type = "structure",
-        },
+        ExecutionStatistics = M.ExecutionStatistics,
+        PlanningStatistics = M.PlanningStatistics,
         QuerySubmissionTime = {
             type = "timestamp",
         },
@@ -1656,12 +1589,9 @@ M.GetResourceLFTagsInput = {
         CatalogId = {
             type = "string",
         },
-        Resource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Resource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Resource }),
         ShowAssignedLFTags = {
             type = "boolean",
         },
@@ -1676,7 +1606,7 @@ M.ColumnLFTag = {
         },
         LFTags = {
             type = "list",
-            member_type = "structure",
+            member = M.LFTagPair,
         },
     },
 }
@@ -1686,15 +1616,15 @@ M.GetResourceLFTagsOutput = {
     members = {
         LFTagOnDatabase = {
             type = "list",
-            member_type = "structure",
+            member = M.LFTagPair,
         },
         LFTagsOnTable = {
             type = "list",
-            member_type = "structure",
+            member = M.LFTagPair,
         },
         LFTagsOnColumns = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnLFTag,
         },
     },
 }
@@ -1737,7 +1667,7 @@ M.GetTableObjectsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1755,7 +1685,10 @@ M.TableObject = {
             type = "string",
         },
         Size = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1765,11 +1698,11 @@ M.PartitionObjects = {
     members = {
         PartitionValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Objects = {
             type = "list",
-            member_type = "structure",
+            member = M.TableObject,
         },
     },
 }
@@ -1779,7 +1712,7 @@ M.GetTableObjectsOutput = {
     members = {
         Objects = {
             type = "list",
-            member_type = "structure",
+            member = M.PartitionObjects,
         },
         NextToken = {
             type = "string",
@@ -1806,14 +1739,12 @@ M.GetTemporaryDataLocationCredentialsInput = {
     type = "structure",
     members = {
         DurationSeconds = {
-            type = "number",
+            type = "integer",
         },
-        AuditContext = {
-            type = "structure",
-        },
+        AuditContext = M.AuditContext,
         DataLocations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CredentialsScope = {
             type = "string",
@@ -1842,12 +1773,10 @@ M.TemporaryCredentials = {
 M.GetTemporaryDataLocationCredentialsOutput = {
     type = "structure",
     members = {
-        Credentials = {
-            type = "structure",
-        },
+        Credentials = M.TemporaryCredentials,
         AccessibleDataLocations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CredentialsScope = {
             type = "string",
@@ -1860,7 +1789,7 @@ M.PartitionValueList = {
     members = {
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1884,25 +1813,20 @@ M.GetTemporaryGluePartitionCredentialsInput = {
                 required = true,
             },
         },
-        Partition = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Partition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PartitionValueList }),
         Permissions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DurationSeconds = {
-            type = "number",
+            type = "integer",
         },
-        AuditContext = {
-            type = "structure",
-        },
+        AuditContext = M.AuditContext,
         SupportedPermissionTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1952,8 +1876,8 @@ M.QuerySessionContext = {
         },
         AdditionalContext = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1969,24 +1893,20 @@ M.GetTemporaryGlueTableCredentialsInput = {
         },
         Permissions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DurationSeconds = {
-            type = "number",
+            type = "integer",
         },
-        AuditContext = {
-            type = "structure",
-        },
+        AuditContext = M.AuditContext,
         SupportedPermissionTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         S3Path = {
             type = "string",
         },
-        QuerySessionContext = {
-            type = "structure",
-        },
+        QuerySessionContext = M.QuerySessionContext,
     },
 }
 
@@ -2007,7 +1927,7 @@ M.GetTemporaryGlueTableCredentialsOutput = {
         },
         VendedS3Path = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2022,8 +1942,9 @@ M.GetWorkUnitResultsInput = {
             },
         },
         WorkUnitId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -2042,6 +1963,7 @@ M.GetWorkUnitResultsOutput = {
         ResultStream = {
             type = "blob",
             traits = {
+                default = "",
                 http_payload = true,
             },
         },
@@ -2055,7 +1977,7 @@ M.GetWorkUnitsInput = {
             type = "string",
         },
         PageSize = {
-            type = "number",
+            type = "integer",
         },
         QueryId = {
             type = "string",
@@ -2070,14 +1992,16 @@ M.WorkUnitRange = {
     type = "structure",
     members = {
         WorkUnitIdMax = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         WorkUnitIdMin = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -2104,7 +2028,7 @@ M.GetWorkUnitsOutput = {
         },
         WorkUnitRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkUnitRange,
             traits = {
                 required = true,
             },
@@ -2128,31 +2052,23 @@ M.GrantPermissionsInput = {
         CatalogId = {
             type = "string",
         },
-        Principal = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Resource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Principal = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataLakePrincipal }),
+        Resource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Resource }),
         Permissions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        Condition = {
-            type = "structure",
-        },
+        Condition = M.Condition,
         PermissionsWithGrantOption = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2164,14 +2080,12 @@ M.GrantPermissionsOutput = {
 M.ListDataCellsFilterInput = {
     type = "structure",
     members = {
-        Table = {
-            type = "structure",
-        },
+        Table = M.TableResource,
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2181,7 +2095,7 @@ M.ListDataCellsFilterOutput = {
     members = {
         DataCellsFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.DataCellsFilter,
         },
         NextToken = {
             type = "string",
@@ -2192,14 +2106,10 @@ M.ListDataCellsFilterOutput = {
 M.ListLakeFormationOptInsInput = {
     type = "structure",
     members = {
-        Principal = {
-            type = "structure",
-        },
-        Resource = {
-            type = "structure",
-        },
+        Principal = M.DataLakePrincipal,
+        Resource = M.Resource,
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2210,15 +2120,9 @@ M.ListLakeFormationOptInsInput = {
 M.LakeFormationOptInsInfo = {
     type = "structure",
     members = {
-        Resource = {
-            type = "structure",
-        },
-        Principal = {
-            type = "structure",
-        },
-        Condition = {
-            type = "structure",
-        },
+        Resource = M.Resource,
+        Principal = M.DataLakePrincipal,
+        Condition = M.Condition,
         LastModified = {
             type = "timestamp",
         },
@@ -2233,7 +2137,7 @@ M.ListLakeFormationOptInsOutput = {
     members = {
         LakeFormationOptInsInfoList = {
             type = "list",
-            member_type = "structure",
+            member = M.LakeFormationOptInsInfo,
         },
         NextToken = {
             type = "string",
@@ -2248,7 +2152,7 @@ M.ListLFTagExpressionsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2270,7 +2174,7 @@ M.LFTagExpression = {
         },
         Expression = {
             type = "list",
-            member_type = "structure",
+            member = M.LFTag,
         },
     },
 }
@@ -2280,7 +2184,7 @@ M.ListLFTagExpressionsOutput = {
     members = {
         LFTagExpressions = {
             type = "list",
-            member_type = "structure",
+            member = M.LFTagExpression,
         },
         NextToken = {
             type = "string",
@@ -2303,7 +2207,7 @@ M.ListLFTagsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2316,7 +2220,7 @@ M.ListLFTagsOutput = {
     members = {
         LFTags = {
             type = "list",
-            member_type = "structure",
+            member = M.LFTagPair,
         },
         NextToken = {
             type = "string",
@@ -2342,20 +2246,16 @@ M.ListPermissionsInput = {
         CatalogId = {
             type = "string",
         },
-        Principal = {
-            type = "structure",
-        },
+        Principal = M.DataLakePrincipal,
         ResourceType = {
             type = "string",
         },
-        Resource = {
-            type = "structure",
-        },
+        Resource = M.Resource,
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         IncludeRelated = {
             type = "string",
@@ -2368,7 +2268,7 @@ M.ListPermissionsOutput = {
     members = {
         PrincipalResourcePermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.PrincipalResourcePermissions,
         },
         NextToken = {
             type = "string",
@@ -2407,7 +2307,7 @@ M.FilterCondition = {
         },
         StringValueList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2417,10 +2317,10 @@ M.ListResourcesInput = {
     members = {
         FilterConditionList = {
             type = "list",
-            member_type = "structure",
+            member = M.FilterCondition,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2433,7 +2333,7 @@ M.ListResourcesOutput = {
     members = {
         ResourceInfoList = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceInfo,
         },
         NextToken = {
             type = "string",
@@ -2469,7 +2369,7 @@ M.ListTableStorageOptimizersInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2485,8 +2385,8 @@ M.StorageOptimizer = {
         },
         Config = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ErrorMessage = {
             type = "string",
@@ -2505,7 +2405,7 @@ M.ListTableStorageOptimizersOutput = {
     members = {
         StorageOptimizerList = {
             type = "list",
-            member_type = "structure",
+            member = M.StorageOptimizer,
         },
         NextToken = {
             type = "string",
@@ -2531,7 +2431,7 @@ M.ListTransactionsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2544,7 +2444,7 @@ M.ListTransactionsOutput = {
     members = {
         Transactions = {
             type = "list",
-            member_type = "structure",
+            member = M.TransactionDescription,
         },
         NextToken = {
             type = "string",
@@ -2558,12 +2458,9 @@ M.PutDataLakeSettingsInput = {
         CatalogId = {
             type = "string",
         },
-        DataLakeSettings = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DataLakeSettings = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataLakeSettings }),
     },
 }
 
@@ -2594,6 +2491,9 @@ M.RegisterResourceInput = {
         },
         WithPrivilegedAccess = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         ExpectedResourceOwnerAccount = {
             type = "string",
@@ -2611,15 +2511,12 @@ M.RemoveLFTagsFromResourceInput = {
         CatalogId = {
             type = "string",
         },
-        Resource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Resource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Resource }),
         LFTags = {
             type = "list",
-            member_type = "structure",
+            member = M.LFTagPair,
             traits = {
                 required = true,
             },
@@ -2632,7 +2529,7 @@ M.RemoveLFTagsFromResourceOutput = {
     members = {
         Failures = {
             type = "list",
-            member_type = "structure",
+            member = M.LFTagError,
         },
     },
 }
@@ -2643,31 +2540,23 @@ M.RevokePermissionsInput = {
         CatalogId = {
             type = "string",
         },
-        Principal = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Resource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Principal = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataLakePrincipal }),
+        Resource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Resource }),
         Permissions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        Condition = {
-            type = "structure",
-        },
+        Condition = M.Condition,
         PermissionsWithGrantOption = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2683,14 +2572,14 @@ M.SearchDatabasesByLFTagsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         CatalogId = {
             type = "string",
         },
         Expression = {
             type = "list",
-            member_type = "structure",
+            member = M.LFTag,
             traits = {
                 required = true,
             },
@@ -2701,12 +2590,10 @@ M.SearchDatabasesByLFTagsInput = {
 M.TaggedDatabase = {
     type = "structure",
     members = {
-        Database = {
-            type = "structure",
-        },
+        Database = M.DatabaseResource,
         LFTags = {
             type = "list",
-            member_type = "structure",
+            member = M.LFTagPair,
         },
     },
 }
@@ -2719,7 +2606,7 @@ M.SearchDatabasesByLFTagsOutput = {
         },
         DatabaseList = {
             type = "list",
-            member_type = "structure",
+            member = M.TaggedDatabase,
         },
     },
 }
@@ -2731,14 +2618,14 @@ M.SearchTablesByLFTagsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         CatalogId = {
             type = "string",
         },
         Expression = {
             type = "list",
-            member_type = "structure",
+            member = M.LFTag,
             traits = {
                 required = true,
             },
@@ -2749,20 +2636,18 @@ M.SearchTablesByLFTagsInput = {
 M.TaggedTable = {
     type = "structure",
     members = {
-        Table = {
-            type = "structure",
-        },
+        Table = M.TableResource,
         LFTagOnDatabase = {
             type = "list",
-            member_type = "structure",
+            member = M.LFTagPair,
         },
         LFTagsOnTable = {
             type = "list",
-            member_type = "structure",
+            member = M.LFTagPair,
         },
         LFTagsOnColumns = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnLFTag,
         },
     },
 }
@@ -2775,7 +2660,7 @@ M.SearchTablesByLFTagsOutput = {
         },
         TableList = {
             type = "list",
-            member_type = "structure",
+            member = M.TaggedTable,
         },
     },
 }
@@ -2797,8 +2682,8 @@ M.QueryPlanningContext = {
         },
         QueryParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         TransactionId = {
             type = "string",
@@ -2809,12 +2694,9 @@ M.QueryPlanningContext = {
 M.StartQueryPlanningInput = {
     type = "structure",
     members = {
-        QueryPlanningContext = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        QueryPlanningContext = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.QueryPlanningContext }),
         QueryString = {
             type = "string",
             traits = {
@@ -2862,12 +2744,9 @@ M.StartTransactionOutput = {
 M.UpdateDataCellsFilterInput = {
     type = "structure",
     members = {
-        TableData = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TableData = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataCellsFilter }),
     },
 }
 
@@ -2883,18 +2762,16 @@ M.UpdateLakeFormationIdentityCenterConfigurationInput = {
         },
         ShareRecipients = {
             type = "list",
-            member_type = "structure",
+            member = M.DataLakePrincipal,
         },
         ServiceIntegrations = {
             type = "list",
-            member_type = "union",
+            member = M.ServiceIntegrationUnion,
         },
         ApplicationStatus = {
             type = "string",
         },
-        ExternalFiltering = {
-            type = "structure",
-        },
+        ExternalFiltering = M.ExternalFilteringConfiguration,
     },
 }
 
@@ -2916,11 +2793,11 @@ M.UpdateLFTagInput = {
         },
         TagValuesToDelete = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TagValuesToAdd = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2946,7 +2823,7 @@ M.UpdateLFTagExpressionInput = {
         },
         Expression = {
             type = "list",
-            member_type = "structure",
+            member = M.LFTag,
             traits = {
                 required = true,
             },
@@ -3003,7 +2880,7 @@ M.DeleteObjectInput = {
         },
         PartitionValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3011,12 +2888,8 @@ M.DeleteObjectInput = {
 M.WriteOperation = {
     type = "structure",
     members = {
-        AddObject = {
-            type = "structure",
-        },
-        DeleteObject = {
-            type = "structure",
-        },
+        AddObject = M.AddObjectInput,
+        DeleteObject = M.DeleteObjectInput,
     },
 }
 
@@ -3043,7 +2916,7 @@ M.UpdateTableObjectsInput = {
         },
         WriteOperations = {
             type = "list",
-            member_type = "structure",
+            member = M.WriteOperation,
             traits = {
                 required = true,
             },
@@ -3075,8 +2948,8 @@ M.UpdateTableStorageOptimizerInput = {
         },
         StorageOptimizerConfig = {
             type = "map",
-            key_type = "string",
-            value_type = "map",
+            key = { type = "string" },
+            value = { type = "map" },
             traits = {
                 required = true,
             },

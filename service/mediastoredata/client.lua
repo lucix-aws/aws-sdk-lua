@@ -16,7 +16,7 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "MediaStoreObject_20170901"
-    cfg.signing_name = "mediastoreobject_20170901"
+    cfg.signing_name = "mediastore"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end

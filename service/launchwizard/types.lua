@@ -23,19 +23,22 @@ M.CreateDeploymentInput = {
         },
         specifications = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
         },
         dryRun = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -140,7 +143,10 @@ M.ListDeploymentEventsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         nextToken = {
             type = "string",
@@ -185,7 +191,7 @@ M.ListDeploymentEventsOutput = {
     members = {
         deploymentEvents = {
             type = "list",
-            member_type = "structure",
+            member = M.DeploymentEventDataSummary,
         },
         nextToken = {
             type = "string",
@@ -231,8 +237,8 @@ M.DeploymentData = {
         },
         specifications = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         resourceGroup = {
             type = "string",
@@ -242,8 +248,8 @@ M.DeploymentData = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         deploymentArn = {
             type = "string",
@@ -254,9 +260,7 @@ M.DeploymentData = {
 M.GetDeploymentOutput = {
     type = "structure",
     members = {
-        deployment = {
-            type = "structure",
-        },
+        deployment = M.DeploymentData,
     },
 }
 
@@ -273,7 +277,7 @@ M.DeploymentFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -283,10 +287,13 @@ M.ListDeploymentsInput = {
     members = {
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.DeploymentFilter,
         },
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         nextToken = {
             type = "string",
@@ -326,7 +333,7 @@ M.ListDeploymentsOutput = {
     members = {
         deployments = {
             type = "list",
-            member_type = "structure",
+            member = M.DeploymentDataSummary,
         },
         nextToken = {
             type = "string",
@@ -345,8 +352,8 @@ M.UpdateDeploymentInput = {
         },
         specifications = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -359,9 +366,15 @@ M.UpdateDeploymentInput = {
         },
         dryRun = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         force = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -369,9 +382,7 @@ M.UpdateDeploymentInput = {
 M.UpdateDeploymentOutput = {
     type = "structure",
     members = {
-        deployment = {
-            type = "structure",
-        },
+        deployment = M.DeploymentDataSummary,
     },
 }
 
@@ -438,9 +449,7 @@ M.DeploymentPatternVersionDataSummary = {
 M.GetDeploymentPatternVersionOutput = {
     type = "structure",
     members = {
-        deploymentPatternVersion = {
-            type = "structure",
-        },
+        deploymentPatternVersion = M.DeploymentPatternVersionDataSummary,
     },
 }
 
@@ -459,7 +468,7 @@ M.DeploymentPatternVersionFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -483,14 +492,17 @@ M.ListDeploymentPatternVersionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         nextToken = {
             type = "string",
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.DeploymentPatternVersionFilter,
         },
     },
 }
@@ -500,7 +512,7 @@ M.ListDeploymentPatternVersionsOutput = {
     members = {
         deploymentPatternVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.DeploymentPatternVersionDataSummary,
         },
         nextToken = {
             type = "string",
@@ -519,14 +531,14 @@ M.DeploymentSpecificationsField = {
         },
         allowedValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         required = {
             type = "string",
         },
         conditionals = {
             type = "list",
-            member_type = "structure",
+            member = M.DeploymentConditionalField,
         },
     },
 }
@@ -580,9 +592,7 @@ M.WorkloadData = {
 M.GetWorkloadOutput = {
     type = "structure",
     members = {
-        workload = {
-            type = "structure",
-        },
+        workload = M.WorkloadData,
     },
 }
 
@@ -640,7 +650,7 @@ M.WorkloadDeploymentPatternData = {
         },
         specifications = {
             type = "list",
-            member_type = "structure",
+            member = M.DeploymentSpecificationsField,
         },
     },
 }
@@ -648,9 +658,7 @@ M.WorkloadDeploymentPatternData = {
 M.GetWorkloadDeploymentPatternOutput = {
     type = "structure",
     members = {
-        workloadDeploymentPattern = {
-            type = "structure",
-        },
+        workloadDeploymentPattern = M.WorkloadDeploymentPatternData,
     },
 }
 
@@ -672,8 +680,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -690,8 +698,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -715,7 +723,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -732,7 +740,10 @@ M.ListWorkloadsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         nextToken = {
             type = "string",
@@ -760,7 +771,7 @@ M.ListWorkloadsOutput = {
     members = {
         workloads = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkloadDataSummary,
         },
         nextToken = {
             type = "string",
@@ -778,7 +789,10 @@ M.ListWorkloadDeploymentPatternsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         nextToken = {
             type = "string",
@@ -821,7 +835,7 @@ M.ListWorkloadDeploymentPatternsOutput = {
     members = {
         workloadDeploymentPatterns = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkloadDeploymentPatternDataSummary,
         },
         nextToken = {
             type = "string",

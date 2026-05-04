@@ -122,8 +122,8 @@ M.CreateChallengeInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -131,9 +131,7 @@ M.CreateChallengeInput = {
 M.CreateChallengeOutput = {
     type = "structure",
     members = {
-        Challenge = {
-            type = "structure",
-        },
+        Challenge = M.Challenge,
     },
 }
 
@@ -278,9 +276,7 @@ M.GetChallengeMetadataInput = {
 M.GetChallengeMetadataOutput = {
     type = "structure",
     members = {
-        ChallengeMetadata = {
-            type = "structure",
-        },
+        ChallengeMetadata = M.ChallengeMetadata,
     },
 }
 
@@ -310,7 +306,7 @@ M.ListChallengeMetadataInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -336,7 +332,7 @@ M.ListChallengeMetadataOutput = {
     members = {
         Challenges = {
             type = "list",
-            member_type = "structure",
+            member = M.ChallengeMetadataSummary,
         },
         NextToken = {
             type = "string",
@@ -365,9 +361,7 @@ M.IntuneConfiguration = {
 M.MobileDeviceManagement = {
     type = "union",
     members = {
-        Intune = {
-            type = "structure",
-        },
+        Intune = M.IntuneConfiguration,
     },
 }
 
@@ -419,12 +413,8 @@ M.Connector = {
         Type = {
             type = "string",
         },
-        MobileDeviceManagement = {
-            type = "union",
-        },
-        OpenIdConfiguration = {
-            type = "structure",
-        },
+        MobileDeviceManagement = M.MobileDeviceManagement,
+        OpenIdConfiguration = M.OpenIdConfiguration,
         Status = {
             type = "string",
         },
@@ -455,12 +445,8 @@ M.ConnectorSummary = {
         Type = {
             type = "string",
         },
-        MobileDeviceManagement = {
-            type = "union",
-        },
-        OpenIdConfiguration = {
-            type = "structure",
-        },
+        MobileDeviceManagement = M.MobileDeviceManagement,
+        OpenIdConfiguration = M.OpenIdConfiguration,
         Status = {
             type = "string",
         },
@@ -488,9 +474,7 @@ M.CreateConnectorInput = {
                 required = true,
             },
         },
-        MobileDeviceManagement = {
-            type = "union",
-        },
+        MobileDeviceManagement = M.MobileDeviceManagement,
         VpcEndpointId = {
             type = "string",
         },
@@ -499,8 +483,8 @@ M.CreateConnectorInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -547,9 +531,7 @@ M.GetConnectorInput = {
 M.GetConnectorOutput = {
     type = "structure",
     members = {
-        Connector = {
-            type = "structure",
-        },
+        Connector = M.Connector,
     },
 }
 
@@ -557,7 +539,7 @@ M.ListConnectorsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -576,7 +558,7 @@ M.ListConnectorsOutput = {
     members = {
         Connectors = {
             type = "list",
-            member_type = "structure",
+            member = M.ConnectorSummary,
         },
         NextToken = {
             type = "string",
@@ -602,8 +584,8 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -620,8 +602,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -645,7 +627,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,

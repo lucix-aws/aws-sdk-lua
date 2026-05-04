@@ -58,12 +58,10 @@ M.DisplayConfig = {
     members = {
         graph = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.GraphDisplayConfig,
         },
-        table = {
-            type = "structure",
-        },
+        table = M.TableDisplayConfigStruct,
     },
 }
 
@@ -86,11 +84,11 @@ M.CostCategoryValues = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         matchOptions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -135,14 +133,14 @@ M.DimensionValues = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         matchOptions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -155,11 +153,11 @@ M.TagValues = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         matchOptions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -187,6 +185,9 @@ M.GroupDefinition = {
         },
         type = {
             type = "string",
+            traits = {
+                default = "DIMENSION",
+            },
         },
     },
 }
@@ -231,18 +232,12 @@ M.DateTimeValue = {
 M.DateTimeRange = {
     type = "structure",
     members = {
-        startTime = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        endTime = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        startTime = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DateTimeValue }),
+        endTime = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DateTimeValue }),
     },
 }
 
@@ -349,9 +344,7 @@ M.ScheduleConfig = {
         scheduleExpressionTimeZone = {
             type = "string",
         },
-        schedulePeriod = {
-            type = "structure",
-        },
+        schedulePeriod = M.SchedulePeriod,
         state = {
             type = "string",
         },
@@ -379,37 +372,29 @@ M.ScheduledReportInput = {
                 required = true,
             },
         },
-        scheduleConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        scheduleConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ScheduleConfig }),
         description = {
             type = "string",
         },
         widgetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        widgetDateRangeOverride = {
-            type = "structure",
-        },
+        widgetDateRangeOverride = M.DateTimeRange,
     },
 }
 
 M.CreateScheduledReportInput = {
     type = "structure",
     members = {
-        scheduledReport = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        scheduledReport = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ScheduledReportInput }),
         resourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
         },
         clientToken = {
             type = "string",
@@ -543,7 +528,7 @@ M.HealthStatus = {
         },
         statusReasons = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -551,9 +536,7 @@ M.HealthStatus = {
 M.ExecuteScheduledReportOutput = {
     type = "structure",
     members = {
-        healthStatus = {
-            type = "structure",
-        },
+        healthStatus = M.HealthStatus,
         executionTriggered = {
             type = "boolean",
         },
@@ -642,22 +625,17 @@ M.ScheduledReport = {
                 required = true,
             },
         },
-        scheduleConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        scheduleConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ScheduleConfig }),
         description = {
             type = "string",
         },
         widgetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        widgetDateRangeOverride = {
-            type = "structure",
-        },
+        widgetDateRangeOverride = M.DateTimeRange,
         createdAt = {
             type = "timestamp",
         },
@@ -667,21 +645,16 @@ M.ScheduledReport = {
         lastExecutionAt = {
             type = "timestamp",
         },
-        healthStatus = {
-            type = "structure",
-        },
+        healthStatus = M.HealthStatus,
     },
 }
 
 M.GetScheduledReportOutput = {
     type = "structure",
     members = {
-        scheduledReport = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        scheduledReport = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ScheduledReport }),
     },
 }
 
@@ -689,7 +662,10 @@ M.ListDashboardsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 20,
+            },
         },
         nextToken = {
             type = "string",
@@ -741,7 +717,7 @@ M.ListDashboardsOutput = {
     members = {
         dashboards = {
             type = "list",
-            member_type = "structure",
+            member = M.DashboardReference,
             traits = {
                 required = true,
             },
@@ -759,7 +735,10 @@ M.ListScheduledReportsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 50,
+            },
         },
     },
 }
@@ -797,18 +776,15 @@ M.ScheduledReportSummary = {
                 required = true,
             },
         },
-        healthStatus = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        healthStatus = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HealthStatus }),
         scheduleExpressionTimeZone = {
             type = "string",
         },
         widgetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -818,7 +794,7 @@ M.ListScheduledReportsOutput = {
     members = {
         scheduledReports = {
             type = "list",
-            member_type = "structure",
+            member = M.ScheduledReportSummary,
             traits = {
                 required = true,
             },
@@ -846,7 +822,7 @@ M.ListTagsForResourceOutput = {
     members = {
         resourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
         },
     },
 }
@@ -862,7 +838,7 @@ M.TagResourceInput = {
         },
         resourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
             traits = {
                 required = true,
             },
@@ -885,7 +861,7 @@ M.UntagResourceInput = {
         },
         resourceTagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -930,21 +906,23 @@ M.UpdateScheduledReportInput = {
         scheduledReportExecutionRoleArn = {
             type = "string",
         },
-        scheduleConfig = {
-            type = "structure",
-        },
+        scheduleConfig = M.ScheduleConfig,
         widgetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        widgetDateRangeOverride = {
-            type = "structure",
-        },
+        widgetDateRangeOverride = M.DateTimeRange,
         clearWidgetIds = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         clearWidgetDateRangeOverride = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -966,24 +944,16 @@ M.Expression = {
     members = {
         or = {
             type = "list",
-            member_type = "structure",
+            member = M.Expression,
         },
         and = {
             type = "list",
-            member_type = "structure",
+            member = M.Expression,
         },
-        not = {
-            type = "structure",
-        },
-        dimensions = {
-            type = "structure",
-        },
-        tags = {
-            type = "structure",
-        },
-        costCategories = {
-            type = "structure",
-        },
+        not = M.Expression,
+        dimensions = M.DimensionValues,
+        tags = M.TagValues,
+        costCategories = M.CostCategoryValues,
     },
 }
 
@@ -992,17 +962,14 @@ M.CostAndUsageQuery = {
     members = {
         metrics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        timeRange = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        timeRange = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DateTimeRange }),
         granularity = {
             type = "string",
             traits = {
@@ -1011,36 +978,29 @@ M.CostAndUsageQuery = {
         },
         groupBy = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupDefinition,
         },
-        filter = {
-            type = "structure",
-        },
+        filter = M.Expression,
     },
 }
 
 M.ReservationCoverageQuery = {
     type = "structure",
     members = {
-        timeRange = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        timeRange = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DateTimeRange }),
         groupBy = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupDefinition,
         },
         granularity = {
             type = "string",
         },
-        filter = {
-            type = "structure",
-        },
+        filter = M.Expression,
         metrics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1048,105 +1008,74 @@ M.ReservationCoverageQuery = {
 M.ReservationUtilizationQuery = {
     type = "structure",
     members = {
-        timeRange = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        timeRange = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DateTimeRange }),
         groupBy = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupDefinition,
         },
         granularity = {
             type = "string",
         },
-        filter = {
-            type = "structure",
-        },
+        filter = M.Expression,
     },
 }
 
 M.SavingsPlansCoverageQuery = {
     type = "structure",
     members = {
-        timeRange = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        timeRange = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DateTimeRange }),
         metrics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         granularity = {
             type = "string",
         },
         groupBy = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupDefinition,
         },
-        filter = {
-            type = "structure",
-        },
+        filter = M.Expression,
     },
 }
 
 M.SavingsPlansUtilizationQuery = {
     type = "structure",
     members = {
-        timeRange = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        timeRange = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DateTimeRange }),
         granularity = {
             type = "string",
         },
-        filter = {
-            type = "structure",
-        },
+        filter = M.Expression,
     },
 }
 
 M.QueryParameters = {
     type = "union",
     members = {
-        costAndUsage = {
-            type = "structure",
-        },
-        savingsPlansCoverage = {
-            type = "structure",
-        },
-        savingsPlansUtilization = {
-            type = "structure",
-        },
-        reservationCoverage = {
-            type = "structure",
-        },
-        reservationUtilization = {
-            type = "structure",
-        },
+        costAndUsage = M.CostAndUsageQuery,
+        savingsPlansCoverage = M.SavingsPlansCoverageQuery,
+        savingsPlansUtilization = M.SavingsPlansUtilizationQuery,
+        reservationCoverage = M.ReservationCoverageQuery,
+        reservationUtilization = M.ReservationUtilizationQuery,
     },
 }
 
 M.WidgetConfig = {
     type = "structure",
     members = {
-        queryParameters = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        displayConfig = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        queryParameters = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.QueryParameters }),
+        displayConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DisplayConfig }),
     },
 }
 
@@ -1166,17 +1095,26 @@ M.Widget = {
             type = "string",
         },
         width = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 4,
+            },
         },
         height = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 7,
+            },
         },
         horizontalOffset = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         configs = {
             type = "list",
-            member_type = "structure",
+            member = M.WidgetConfig,
             traits = {
                 required = true,
             },
@@ -1198,14 +1136,14 @@ M.CreateDashboardInput = {
         },
         widgets = {
             type = "list",
-            member_type = "structure",
+            member = M.Widget,
             traits = {
                 required = true,
             },
         },
         resourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
         },
     },
 }
@@ -1236,7 +1174,7 @@ M.GetDashboardOutput = {
         },
         widgets = {
             type = "list",
-            member_type = "structure",
+            member = M.Widget,
             traits = {
                 required = true,
             },
@@ -1276,7 +1214,7 @@ M.UpdateDashboardInput = {
         },
         widgets = {
             type = "list",
-            member_type = "structure",
+            member = M.Widget,
         },
     },
 }

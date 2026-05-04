@@ -1,0 +1,11 @@
+local types = require("elasticloadbalancingv2.types")
+
+local record M
+    wait_until_load_balancer_available: function(client: table, input: table, options: table): table, table
+    wait_until_load_balancer_exists: function(client: table, input: table, options: table): table, table
+    wait_until_load_balancers_deleted: function(client: table, input: table, options: table): table, table
+    wait_until_target_deregistered: function(client: table, input: table, options: table): table, table
+    wait_until_target_in_service: function(client: table, input: table, options: table): table, table
+end
+
+return M

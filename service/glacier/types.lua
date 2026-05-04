@@ -176,9 +176,7 @@ M.Permission = {
 M.Grant = {
     type = "structure",
     members = {
-        Grantee = {
-            type = "structure",
-        },
+        Grantee = M.Grantee,
         Permission = {
             type = "string",
         },
@@ -210,8 +208,8 @@ M.AddTagsToVaultInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -435,7 +433,7 @@ M.DataRetrievalRule = {
             type = "string",
         },
         BytesPerHour = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -445,7 +443,7 @@ M.DataRetrievalPolicy = {
     members = {
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.DataRetrievalRule,
         },
     },
 }
@@ -636,25 +634,23 @@ M.S3Location = {
         Prefix = {
             type = "string",
         },
-        Encryption = {
-            type = "structure",
-        },
+        Encryption = M.Encryption,
         CannedACL = {
             type = "string",
         },
         AccessControlList = {
             type = "list",
-            member_type = "structure",
+            member = M.Grant,
         },
         Tagging = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         UserMetadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         StorageClass = {
             type = "string",
@@ -665,9 +661,7 @@ M.S3Location = {
 M.OutputLocation = {
     type = "structure",
     members = {
-        S3 = {
-            type = "structure",
-        },
+        S3 = M.S3Location,
     },
 }
 
@@ -678,36 +672,28 @@ M.ExpressionType = {
 M.InputSerialization = {
     type = "structure",
     members = {
-        csv = {
-            type = "structure",
-        },
+        csv = M.CSVInput,
     },
 }
 
 M.OutputSerialization = {
     type = "structure",
     members = {
-        csv = {
-            type = "structure",
-        },
+        csv = M.CSVOutput,
     },
 }
 
 M.SelectParameters = {
     type = "structure",
     members = {
-        InputSerialization = {
-            type = "structure",
-        },
+        InputSerialization = M.InputSerialization,
         ExpressionType = {
             type = "string",
         },
         Expression = {
             type = "string",
         },
-        OutputSerialization = {
-            type = "structure",
-        },
+        OutputSerialization = M.OutputSerialization,
     },
 }
 
@@ -740,6 +726,9 @@ M.DescribeJobOutput = {
         },
         Completed = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         StatusCode = {
             type = "string",
@@ -748,10 +737,10 @@ M.DescribeJobOutput = {
             type = "string",
         },
         ArchiveSizeInBytes = {
-            type = "number",
+            type = "long",
         },
         InventorySizeInBytes = {
-            type = "number",
+            type = "long",
         },
         SNSTopic = {
             type = "string",
@@ -771,18 +760,12 @@ M.DescribeJobOutput = {
         Tier = {
             type = "string",
         },
-        InventoryRetrievalParameters = {
-            type = "structure",
-        },
+        InventoryRetrievalParameters = M.InventoryRetrievalJobDescription,
         JobOutputPath = {
             type = "string",
         },
-        SelectParameters = {
-            type = "structure",
-        },
-        OutputLocation = {
-            type = "structure",
-        },
+        SelectParameters = M.SelectParameters,
+        OutputLocation = M.OutputLocation,
     },
 }
 
@@ -822,10 +805,16 @@ M.DescribeVaultOperationOutput = {
             type = "string",
         },
         NumberOfArchives = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         SizeInBytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -846,10 +835,16 @@ M.DescribeVaultOutput = {
             type = "string",
         },
         NumberOfArchives = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         SizeInBytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -870,9 +865,7 @@ M.GetDataRetrievalPolicyInput = {
 M.GetDataRetrievalPolicyOutput = {
     type = "structure",
     members = {
-        Policy = {
-            type = "structure",
-        },
+        Policy = M.DataRetrievalPolicy,
     },
 }
 
@@ -915,6 +908,7 @@ M.GetJobOutputOutput = {
         body = {
             type = "blob",
             traits = {
+                default = "",
                 http_payload = true,
             },
         },
@@ -925,8 +919,9 @@ M.GetJobOutputOutput = {
             },
         },
         status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -989,12 +984,9 @@ M.VaultAccessPolicy = {
 M.GetVaultAccessPolicyOutput = {
     type = "structure",
     members = {
-        policy = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        policy = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.VaultAccessPolicy }),
     },
 }
 
@@ -1064,7 +1056,7 @@ M.VaultNotificationConfig = {
         },
         Events = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1072,12 +1064,9 @@ M.VaultNotificationConfig = {
 M.GetVaultNotificationsOutput = {
     type = "structure",
     members = {
-        vaultNotificationConfig = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        vaultNotificationConfig = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.VaultNotificationConfig }),
     },
 }
 
@@ -1123,15 +1112,9 @@ M.JobParameters = {
         Tier = {
             type = "string",
         },
-        InventoryRetrievalParameters = {
-            type = "structure",
-        },
-        SelectParameters = {
-            type = "structure",
-        },
-        OutputLocation = {
-            type = "structure",
-        },
+        InventoryRetrievalParameters = M.InventoryRetrievalJobInput,
+        SelectParameters = M.SelectParameters,
+        OutputLocation = M.OutputLocation,
     },
 }
 
@@ -1152,12 +1135,9 @@ M.InitiateJobInput = {
                 required = true,
             },
         },
-        jobParameters = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        jobParameters = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.JobParameters }),
     },
 }
 
@@ -1293,12 +1273,9 @@ M.InitiateVaultLockInput = {
                 required = true,
             },
         },
-        policy = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        policy = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.VaultLockPolicy }),
     },
 }
 
@@ -1332,7 +1309,7 @@ M.ListJobsInput = {
             },
         },
         limit = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "limit",
             },
@@ -1381,6 +1358,9 @@ M.GlacierJobDescription = {
         },
         Completed = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         StatusCode = {
             type = "string",
@@ -1389,10 +1369,10 @@ M.GlacierJobDescription = {
             type = "string",
         },
         ArchiveSizeInBytes = {
-            type = "number",
+            type = "long",
         },
         InventorySizeInBytes = {
-            type = "number",
+            type = "long",
         },
         SNSTopic = {
             type = "string",
@@ -1412,18 +1392,12 @@ M.GlacierJobDescription = {
         Tier = {
             type = "string",
         },
-        InventoryRetrievalParameters = {
-            type = "structure",
-        },
+        InventoryRetrievalParameters = M.InventoryRetrievalJobDescription,
         JobOutputPath = {
             type = "string",
         },
-        SelectParameters = {
-            type = "structure",
-        },
-        OutputLocation = {
-            type = "structure",
-        },
+        SelectParameters = M.SelectParameters,
+        OutputLocation = M.OutputLocation,
     },
 }
 
@@ -1432,7 +1406,7 @@ M.ListJobsOutput = {
     members = {
         JobList = {
             type = "list",
-            member_type = "structure",
+            member = M.GlacierJobDescription,
         },
         Marker = {
             type = "string",
@@ -1458,7 +1432,7 @@ M.ListMultipartUploadsInput = {
             },
         },
         limit = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "limit",
             },
@@ -1485,7 +1459,10 @@ M.UploadListElement = {
             type = "string",
         },
         PartSizeInBytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         CreationDate = {
             type = "string",
@@ -1498,7 +1475,7 @@ M.ListMultipartUploadsOutput = {
     members = {
         UploadsList = {
             type = "list",
-            member_type = "structure",
+            member = M.UploadListElement,
         },
         Marker = {
             type = "string",
@@ -1537,7 +1514,7 @@ M.ListPartsInput = {
             },
         },
         limit = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "limit",
             },
@@ -1570,14 +1547,17 @@ M.ListPartsOutput = {
             type = "string",
         },
         PartSizeInBytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         CreationDate = {
             type = "string",
         },
         Parts = {
             type = "list",
-            member_type = "structure",
+            member = M.PartListElement,
         },
         Marker = {
             type = "string",
@@ -1618,7 +1598,7 @@ M.ListProvisionedCapacityOutput = {
     members = {
         ProvisionedCapacityList = {
             type = "list",
-            member_type = "structure",
+            member = M.ProvisionedCapacityDescription,
         },
     },
 }
@@ -1648,8 +1628,8 @@ M.ListTagsForVaultOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1671,7 +1651,7 @@ M.ListVaultsInput = {
             },
         },
         limit = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "limit",
             },
@@ -1684,7 +1664,7 @@ M.ListVaultsOutput = {
     members = {
         VaultList = {
             type = "list",
-            member_type = "structure",
+            member = M.DescribeVaultOutput,
         },
         Marker = {
             type = "string",
@@ -1736,7 +1716,7 @@ M.RemoveTagsFromVaultInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1755,9 +1735,7 @@ M.SetDataRetrievalPolicyInput = {
                 required = true,
             },
         },
-        Policy = {
-            type = "structure",
-        },
+        Policy = M.DataRetrievalPolicy,
     },
 }
 
@@ -1782,12 +1760,9 @@ M.SetVaultAccessPolicyInput = {
                 required = true,
             },
         },
-        policy = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        policy = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.VaultAccessPolicy }),
     },
 }
 
@@ -1812,12 +1787,9 @@ M.SetVaultNotificationsInput = {
                 required = true,
             },
         },
-        vaultNotificationConfig = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        vaultNotificationConfig = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.VaultNotificationConfig }),
     },
 }
 
@@ -1873,6 +1845,7 @@ M.UploadArchiveInput = {
         body = {
             type = "blob",
             traits = {
+                default = "",
                 http_payload = true,
             },
         },
@@ -1942,6 +1915,7 @@ M.UploadMultipartPartInput = {
         body = {
             type = "blob",
             traits = {
+                default = "",
                 http_payload = true,
             },
         },

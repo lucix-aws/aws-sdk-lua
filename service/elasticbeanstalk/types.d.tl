@@ -854,15 +854,15 @@ local type EventSeverity = "TRACE" | "DEBUG" | "INFO" | "WARN" | "ERROR" | "FATA
 
 local type EnvironmentHealth = "Green" | "Yellow" | "Red" | "Grey"
 
-local type EnvironmentInfoType = "tail" | "bundle" | "analyze"
-
 local type EnvironmentStatus = "Aborting" | "Launching" | "Updating" | "LinkingFrom" | "LinkingTo" | "Ready" | "Terminating" | "Terminated"
 
-local type ConfigurationDeploymentStatus = "deployed" | "pending" | "failed"
+local type ActionType = "InstanceRefresh" | "PlatformUpdate" | "Unknown"
 
 local type EnvironmentHealthStatus = "NoData" | "Unknown" | "Pending" | "Ok" | "Info" | "Warning" | "Degraded" | "Severe" | "Suspended"
 
-local type ActionType = "InstanceRefresh" | "PlatformUpdate" | "Unknown"
+local type EnvironmentInfoType = "tail" | "bundle" | "analyze"
+
+local type ConfigurationDeploymentStatus = "deployed" | "pending" | "failed"
 
 local type ActionStatus = "Scheduled" | "Pending" | "Running" | "Unknown"
 

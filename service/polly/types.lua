@@ -120,6 +120,7 @@ M.DescribeVoicesInput = {
         IncludeAdditionalLanguageCodes = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "IncludeAdditionalLanguageCodes",
             },
         },
@@ -266,11 +267,11 @@ M.Voice = {
         },
         AdditionalLanguageCodes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SupportedEngines = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -280,7 +281,7 @@ M.DescribeVoicesOutput = {
     members = {
         Voices = {
             type = "list",
-            member_type = "structure",
+            member = M.Voice,
         },
         NextToken = {
             type = "string",
@@ -313,6 +314,9 @@ M.FlushStreamConfiguration = {
     members = {
         Force = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -358,10 +362,16 @@ M.LexiconAttributes = {
             type = "string",
         },
         LexemesCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         Size = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -369,12 +379,8 @@ M.LexiconAttributes = {
 M.GetLexiconOutput = {
     type = "structure",
     members = {
-        Lexicon = {
-            type = "structure",
-        },
-        LexiconAttributes = {
-            type = "structure",
-        },
+        Lexicon = M.Lexicon,
+        LexiconAttributes = M.LexiconAttributes,
     },
 }
 
@@ -442,14 +448,17 @@ M.SynthesisTask = {
             type = "timestamp",
         },
         RequestCharacters = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         SnsTopicArn = {
             type = "string",
         },
         LexiconNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         OutputFormat = {
             type = "string",
@@ -459,7 +468,7 @@ M.SynthesisTask = {
         },
         SpeechMarkTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TextType = {
             type = "string",
@@ -476,9 +485,7 @@ M.SynthesisTask = {
 M.GetSpeechSynthesisTaskOutput = {
     type = "structure",
     members = {
-        SynthesisTask = {
-            type = "structure",
-        },
+        SynthesisTask = M.SynthesisTask,
     },
 }
 
@@ -578,9 +585,7 @@ M.LexiconDescription = {
         Name = {
             type = "string",
         },
-        Attributes = {
-            type = "structure",
-        },
+        Attributes = M.LexiconAttributes,
     },
 }
 
@@ -611,7 +616,7 @@ M.ListLexiconsOutput = {
     members = {
         Lexicons = {
             type = "list",
-            member_type = "structure",
+            member = M.LexiconDescription,
         },
         NextToken = {
             type = "string",
@@ -623,7 +628,7 @@ M.ListSpeechSynthesisTasksInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -651,7 +656,7 @@ M.ListSpeechSynthesisTasksOutput = {
         },
         SynthesisTasks = {
             type = "list",
-            member_type = "structure",
+            member = M.SynthesisTask,
         },
     },
 }
@@ -775,21 +780,15 @@ M.TextEvent = {
         TextType = {
             type = "string",
         },
-        FlushStreamConfiguration = {
-            type = "structure",
-        },
+        FlushStreamConfiguration = M.FlushStreamConfiguration,
     },
 }
 
 M.StartSpeechSynthesisStreamActionStream = {
     type = "union",
     members = {
-        TextEvent = {
-            type = "structure",
-        },
-        CloseStreamEvent = {
-            type = "structure",
-        },
+        TextEvent = M.TextEvent,
+        CloseStreamEvent = M.CloseStreamEvent,
     },
 }
 
@@ -811,7 +810,7 @@ M.StartSpeechSynthesisStreamInput = {
         },
         LexiconNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_header = "x-amzn-LexiconNames",
             },
@@ -836,12 +835,9 @@ M.StartSpeechSynthesisStreamInput = {
                 required = true,
             },
         },
-        ActionStream = {
-            type = "union",
-            traits = {
-                http_payload = true,
-            },
-        },
+        ActionStream = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.StartSpeechSynthesisStreamActionStream }),
     },
 }
 
@@ -849,7 +845,10 @@ M.StreamClosedEvent = {
     type = "structure",
     members = {
         RequestCharacters = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -875,7 +874,7 @@ M.ThrottlingException = {
         },
         throttlingReasons = {
             type = "list",
-            member_type = "structure",
+            member = M.ThrottlingReason,
         },
     },
 }
@@ -923,7 +922,7 @@ M.ValidationException = {
         },
         fields = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -931,36 +930,21 @@ M.ValidationException = {
 M.StartSpeechSynthesisStreamEventStream = {
     type = "union",
     members = {
-        AudioEvent = {
-            type = "structure",
-        },
-        StreamClosedEvent = {
-            type = "structure",
-        },
-        ValidationException = {
-            type = "structure",
-        },
-        ServiceQuotaExceededException = {
-            type = "structure",
-        },
-        ServiceFailureException = {
-            type = "structure",
-        },
-        ThrottlingException = {
-            type = "structure",
-        },
+        AudioEvent = M.AudioEvent,
+        StreamClosedEvent = M.StreamClosedEvent,
+        ValidationException = M.ValidationException,
+        ServiceQuotaExceededException = M.ServiceQuotaExceededException,
+        ServiceFailureException = M.ServiceFailureException,
+        ThrottlingException = M.ThrottlingException,
     },
 }
 
 M.StartSpeechSynthesisStreamOutput = {
     type = "structure",
     members = {
-        EventStream = {
-            type = "union",
-            traits = {
-                http_payload = true,
-            },
-        },
+        EventStream = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.StartSpeechSynthesisStreamEventStream }),
     },
 }
 
@@ -985,7 +969,7 @@ M.StartSpeechSynthesisTaskInput = {
         },
         LexiconNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         OutputFormat = {
             type = "string",
@@ -1010,7 +994,7 @@ M.StartSpeechSynthesisTaskInput = {
         },
         SpeechMarkTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Text = {
             type = "string",
@@ -1033,9 +1017,7 @@ M.StartSpeechSynthesisTaskInput = {
 M.StartSpeechSynthesisTaskOutput = {
     type = "structure",
     members = {
-        SynthesisTask = {
-            type = "structure",
-        },
+        SynthesisTask = M.SynthesisTask,
     },
 }
 
@@ -1060,7 +1042,7 @@ M.SynthesizeSpeechInput = {
         },
         LexiconNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         OutputFormat = {
             type = "string",
@@ -1073,7 +1055,7 @@ M.SynthesizeSpeechInput = {
         },
         SpeechMarkTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Text = {
             type = "string",
@@ -1099,6 +1081,7 @@ M.SynthesizeSpeechOutput = {
         AudioStream = {
             type = "blob",
             traits = {
+                default = "",
                 http_payload = true,
             },
         },
@@ -1109,8 +1092,9 @@ M.SynthesizeSpeechOutput = {
             },
         },
         RequestCharacters = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_header = "x-amzn-RequestCharacters",
             },
         },

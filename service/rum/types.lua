@@ -27,18 +27,21 @@ M.AppMonitorConfiguration = {
         },
         ExcludedPages = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IncludedPages = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         FavoritePages = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SessionSampleRate = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         GuestRoleArn = {
             type = "string",
@@ -48,7 +51,7 @@ M.AppMonitorConfiguration = {
         },
         Telemetries = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         EnableXRay = {
             type = "boolean",
@@ -85,9 +88,7 @@ M.CwLog = {
 M.DataStorage = {
     type = "structure",
     members = {
-        CwLog = {
-            type = "structure",
-        },
+        CwLog = M.CwLog,
     },
 }
 
@@ -114,9 +115,7 @@ M.JavaScriptSourceMaps = {
 M.DeobfuscationConfiguration = {
     type = "structure",
     members = {
-        JavaScriptSourceMaps = {
-            type = "structure",
-        },
+        JavaScriptSourceMaps = M.JavaScriptSourceMaps,
     },
 }
 
@@ -143,7 +142,7 @@ M.AppMonitor = {
         },
         DomainList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Id = {
             type = "string",
@@ -156,24 +155,16 @@ M.AppMonitor = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         State = {
             type = "string",
         },
-        AppMonitorConfiguration = {
-            type = "structure",
-        },
-        DataStorage = {
-            type = "structure",
-        },
-        CustomEvents = {
-            type = "structure",
-        },
-        DeobfuscationConfiguration = {
-            type = "structure",
-        },
+        AppMonitorConfiguration = M.AppMonitorConfiguration,
+        DataStorage = M.DataStorage,
+        CustomEvents = M.CustomEvents,
+        DeobfuscationConfiguration = M.DeobfuscationConfiguration,
         Platform = {
             type = "string",
         },
@@ -217,8 +208,8 @@ M.MetricDefinitionRequest = {
         },
         DimensionKeys = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         EventPattern = {
             type = "string",
@@ -250,7 +241,7 @@ M.BatchCreateRumMetricDefinitionsInput = {
         },
         MetricDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricDefinitionRequest,
             traits = {
                 required = true,
             },
@@ -261,12 +252,9 @@ M.BatchCreateRumMetricDefinitionsInput = {
 M.BatchCreateRumMetricDefinitionsError = {
     type = "structure",
     members = {
-        MetricDefinition = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        MetricDefinition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MetricDefinitionRequest }),
         ErrorCode = {
             type = "string",
             traits = {
@@ -305,8 +293,8 @@ M.MetricDefinition = {
         },
         DimensionKeys = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         EventPattern = {
             type = "string",
@@ -322,14 +310,14 @@ M.BatchCreateRumMetricDefinitionsOutput = {
     members = {
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchCreateRumMetricDefinitionsError,
             traits = {
                 required = true,
             },
         },
         MetricDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricDefinition,
         },
     },
 }
@@ -367,7 +355,7 @@ M.InternalServerException = {
             },
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -427,7 +415,7 @@ M.ThrottlingException = {
             type = "string",
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -473,7 +461,7 @@ M.BatchDeleteRumMetricDefinitionsInput = {
         },
         MetricDefinitionIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "metricDefinitionIds",
                 required = true,
@@ -511,14 +499,14 @@ M.BatchDeleteRumMetricDefinitionsOutput = {
     members = {
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchDeleteRumMetricDefinitionsError,
             traits = {
                 required = true,
             },
         },
         MetricDefinitionIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -547,7 +535,7 @@ M.BatchGetRumMetricDefinitionsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -566,7 +554,7 @@ M.BatchGetRumMetricDefinitionsOutput = {
     members = {
         MetricDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricDefinition,
         },
         NextToken = {
             type = "string",
@@ -588,25 +576,19 @@ M.CreateAppMonitorInput = {
         },
         DomainList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        AppMonitorConfiguration = {
-            type = "structure",
-        },
+        AppMonitorConfiguration = M.AppMonitorConfiguration,
         CwLogEnabled = {
             type = "boolean",
         },
-        CustomEvents = {
-            type = "structure",
-        },
-        DeobfuscationConfiguration = {
-            type = "structure",
-        },
+        CustomEvents = M.CustomEvents,
+        DeobfuscationConfiguration = M.DeobfuscationConfiguration,
         Platform = {
             type = "string",
         },
@@ -739,9 +721,7 @@ M.GetAppMonitorInput = {
 M.GetAppMonitorOutput = {
     type = "structure",
     members = {
-        AppMonitor = {
-            type = "structure",
-        },
+        AppMonitor = M.AppMonitor,
     },
 }
 
@@ -753,7 +733,7 @@ M.QueryFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -762,13 +742,17 @@ M.TimeRange = {
     type = "structure",
     members = {
         After = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         Before = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -783,18 +767,18 @@ M.GetAppMonitorDataInput = {
                 required = true,
             },
         },
-        TimeRange = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TimeRange = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TimeRange }),
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.QueryFilter,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         NextToken = {
             type = "string",
@@ -807,7 +791,7 @@ M.GetAppMonitorDataOutput = {
     members = {
         Events = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -844,7 +828,7 @@ M.ListAppMonitorsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -890,7 +874,7 @@ M.ListAppMonitorsOutput = {
         },
         AppMonitorSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.AppMonitorSummary,
         },
     },
 }
@@ -906,7 +890,7 @@ M.ListRumMetricsDestinationsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -940,7 +924,7 @@ M.ListRumMetricsDestinationsOutput = {
     members = {
         Destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricDestinationSummary,
         },
         NextToken = {
             type = "string",
@@ -1052,20 +1036,14 @@ M.UpdateAppMonitorInput = {
         },
         DomainList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        AppMonitorConfiguration = {
-            type = "structure",
-        },
+        AppMonitorConfiguration = M.AppMonitorConfiguration,
         CwLogEnabled = {
             type = "boolean",
         },
-        CustomEvents = {
-            type = "structure",
-        },
-        DeobfuscationConfiguration = {
-            type = "structure",
-        },
+        CustomEvents = M.CustomEvents,
+        DeobfuscationConfiguration = M.DeobfuscationConfiguration,
     },
 }
 
@@ -1092,12 +1070,9 @@ M.UpdateRumMetricDefinitionInput = {
         DestinationArn = {
             type = "string",
         },
-        MetricDefinition = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        MetricDefinition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MetricDefinitionRequest }),
         MetricDefinitionId = {
             type = "string",
             traits = {
@@ -1135,8 +1110,8 @@ M.ListTagsForResourceOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1205,21 +1180,15 @@ M.PutRumEventsInput = {
                 required = true,
             },
         },
-        AppMonitorDetails = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        UserDetails = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AppMonitorDetails = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AppMonitorDetails }),
+        UserDetails = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.UserDetails }),
         RumEvents = {
             type = "list",
-            member_type = "structure",
+            member = M.RumEvent,
             traits = {
                 required = true,
             },
@@ -1246,8 +1215,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1271,7 +1240,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,

@@ -38,11 +38,11 @@ M.GetAccountCustomizationsOutput = {
         },
         visibleServices = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         visibleRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -103,7 +103,7 @@ M.ValidationException = {
         },
         fieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -118,7 +118,7 @@ M.ListServicesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -134,7 +134,7 @@ M.ListServicesOutput = {
         },
         services = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -147,11 +147,11 @@ M.UpdateAccountCustomizationsInput = {
         },
         visibleServices = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         visibleRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -164,11 +164,11 @@ M.UpdateAccountCustomizationsOutput = {
         },
         visibleServices = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         visibleRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }

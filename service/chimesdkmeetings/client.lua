@@ -16,7 +16,7 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "ChimeMeetingsSDKService"
-    cfg.signing_name = "chimemeetingssdkservice"
+    cfg.signing_name = "chime"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end

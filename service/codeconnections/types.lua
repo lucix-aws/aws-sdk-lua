@@ -60,7 +60,7 @@ M.CreateConnectionInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         HostArn = {
             type = "string",
@@ -79,7 +79,7 @@ M.CreateConnectionOutput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -125,14 +125,14 @@ M.VpcConfiguration = {
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -164,12 +164,10 @@ M.CreateHostInput = {
                 required = true,
             },
         },
-        VpcConfiguration = {
-            type = "structure",
-        },
+        VpcConfiguration = M.VpcConfiguration,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -182,7 +180,7 @@ M.CreateHostOutput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -223,7 +221,7 @@ M.CreateRepositoryLinkInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -276,12 +274,9 @@ M.RepositoryLinkInfo = {
 M.CreateRepositoryLinkOutput = {
     type = "structure",
     members = {
-        RepositoryLinkInfo = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RepositoryLinkInfo = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RepositoryLinkInfo }),
     },
 }
 
@@ -464,12 +459,9 @@ M.SyncConfiguration = {
 M.CreateSyncConfigurationOutput = {
     type = "structure",
     members = {
-        SyncConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SyncConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SyncConfiguration }),
     },
 }
 
@@ -608,9 +600,7 @@ M.Connection = {
 M.GetConnectionOutput = {
     type = "structure",
     members = {
-        Connection = {
-            type = "structure",
-        },
+        Connection = M.Connection,
     },
 }
 
@@ -641,9 +631,7 @@ M.GetHostOutput = {
         ProviderEndpoint = {
             type = "string",
         },
-        VpcConfiguration = {
-            type = "structure",
-        },
+        VpcConfiguration = M.VpcConfiguration,
     },
 }
 
@@ -662,12 +650,9 @@ M.GetRepositoryLinkInput = {
 M.GetRepositoryLinkOutput = {
     type = "structure",
     members = {
-        RepositoryLinkInfo = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RepositoryLinkInfo = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RepositoryLinkInfo }),
     },
 }
 
@@ -747,7 +732,7 @@ M.RepositorySyncAttempt = {
         },
         Events = {
             type = "list",
-            member_type = "structure",
+            member = M.RepositorySyncEvent,
             traits = {
                 required = true,
             },
@@ -758,12 +743,9 @@ M.RepositorySyncAttempt = {
 M.GetRepositorySyncStatusOutput = {
     type = "structure",
     members = {
-        LatestSync = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        LatestSync = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RepositorySyncAttempt }),
     },
 }
 
@@ -866,17 +848,14 @@ M.ResourceSyncAttempt = {
     members = {
         Events = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceSyncEvent,
             traits = {
                 required = true,
             },
         },
-        InitialRevision = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InitialRevision = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Revision }),
         StartedAt = {
             type = "timestamp",
             traits = {
@@ -889,12 +868,9 @@ M.ResourceSyncAttempt = {
                 required = true,
             },
         },
-        TargetRevision = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TargetRevision = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Revision }),
         Target = {
             type = "string",
             traits = {
@@ -907,18 +883,11 @@ M.ResourceSyncAttempt = {
 M.GetResourceSyncStatusOutput = {
     type = "structure",
     members = {
-        DesiredState = {
-            type = "structure",
-        },
-        LatestSuccessfulSync = {
-            type = "structure",
-        },
-        LatestSync = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DesiredState = M.Revision,
+        LatestSuccessfulSync = M.ResourceSyncAttempt,
+        LatestSync = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResourceSyncAttempt }),
     },
 }
 
@@ -993,7 +962,7 @@ M.SyncBlocker = {
         },
         Contexts = {
             type = "list",
-            member_type = "structure",
+            member = M.SyncBlockerContext,
         },
         ResolvedReason = {
             type = "string",
@@ -1018,7 +987,7 @@ M.SyncBlockerSummary = {
         },
         LatestBlockers = {
             type = "list",
-            member_type = "structure",
+            member = M.SyncBlocker,
         },
     },
 }
@@ -1026,12 +995,9 @@ M.SyncBlockerSummary = {
 M.GetSyncBlockerSummaryOutput = {
     type = "structure",
     members = {
-        SyncBlockerSummary = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SyncBlockerSummary = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SyncBlockerSummary }),
     },
 }
 
@@ -1056,12 +1022,9 @@ M.GetSyncConfigurationInput = {
 M.GetSyncConfigurationOutput = {
     type = "structure",
     members = {
-        SyncConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SyncConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SyncConfiguration }),
     },
 }
 
@@ -1075,7 +1038,10 @@ M.ListConnectionsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         NextToken = {
             type = "string",
@@ -1088,7 +1054,7 @@ M.ListConnectionsOutput = {
     members = {
         Connections = {
             type = "list",
-            member_type = "structure",
+            member = M.Connection,
         },
         NextToken = {
             type = "string",
@@ -1100,7 +1066,10 @@ M.ListHostsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         NextToken = {
             type = "string",
@@ -1123,9 +1092,7 @@ M.Host = {
         ProviderEndpoint = {
             type = "string",
         },
-        VpcConfiguration = {
-            type = "structure",
-        },
+        VpcConfiguration = M.VpcConfiguration,
         Status = {
             type = "string",
         },
@@ -1140,7 +1107,7 @@ M.ListHostsOutput = {
     members = {
         Hosts = {
             type = "list",
-            member_type = "structure",
+            member = M.Host,
         },
         NextToken = {
             type = "string",
@@ -1152,7 +1119,10 @@ M.ListRepositoryLinksInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         NextToken = {
             type = "string",
@@ -1165,7 +1135,7 @@ M.ListRepositoryLinksOutput = {
     members = {
         RepositoryLinks = {
             type = "list",
-            member_type = "structure",
+            member = M.RepositoryLinkInfo,
             traits = {
                 required = true,
             },
@@ -1229,7 +1199,7 @@ M.ListRepositorySyncDefinitionsOutput = {
     members = {
         RepositorySyncDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.RepositorySyncDefinition,
             traits = {
                 required = true,
             },
@@ -1244,7 +1214,10 @@ M.ListSyncConfigurationsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         NextToken = {
             type = "string",
@@ -1269,7 +1242,7 @@ M.ListSyncConfigurationsOutput = {
     members = {
         SyncConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.SyncConfiguration,
             traits = {
                 required = true,
             },
@@ -1297,7 +1270,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1313,7 +1286,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -1336,7 +1309,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1380,9 +1353,7 @@ M.UpdateHostInput = {
         ProviderEndpoint = {
             type = "string",
         },
-        VpcConfiguration = {
-            type = "structure",
-        },
+        VpcConfiguration = M.VpcConfiguration,
     },
 }
 
@@ -1431,12 +1402,9 @@ M.UpdateRepositoryLinkInput = {
 M.UpdateRepositoryLinkOutput = {
     type = "structure",
     members = {
-        RepositoryLinkInfo = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RepositoryLinkInfo = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RepositoryLinkInfo }),
     },
 }
 
@@ -1502,12 +1470,9 @@ M.UpdateSyncBlockerOutput = {
         ParentResourceName = {
             type = "string",
         },
-        SyncBlocker = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SyncBlocker = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SyncBlocker }),
     },
 }
 
@@ -1553,12 +1518,9 @@ M.UpdateSyncConfigurationInput = {
 M.UpdateSyncConfigurationOutput = {
     type = "structure",
     members = {
-        SyncConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SyncConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SyncConfiguration }),
     },
 }
 

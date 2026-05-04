@@ -16,7 +16,7 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "EKSAuthFrontend"
-    cfg.signing_name = "eksauthfrontend"
+    cfg.signing_name = "eks-auth"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end

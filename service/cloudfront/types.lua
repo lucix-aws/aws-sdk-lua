@@ -25,14 +25,14 @@ M.KeyPairIds = {
     type = "structure",
     members = {
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -43,9 +43,7 @@ M.KGKeyPairIds = {
         KeyGroupId = {
             type = "string",
         },
-        KeyPairIds = {
-            type = "structure",
-        },
+        KeyPairIds = M.KeyPairIds,
     },
 }
 
@@ -59,14 +57,14 @@ M.ActiveTrustedKeyGroups = {
             },
         },
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.KGKeyPairIds,
         },
     },
 }
@@ -77,9 +75,7 @@ M.Signer = {
         AwsAccountNumber = {
             type = "string",
         },
-        KeyPairIds = {
-            type = "structure",
-        },
+        KeyPairIds = M.KeyPairIds,
     },
 }
 
@@ -93,14 +89,14 @@ M.ActiveTrustedSigners = {
             },
         },
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.Signer,
         },
     },
 }
@@ -109,14 +105,14 @@ M.Aliases = {
     type = "structure",
     members = {
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -153,14 +149,14 @@ M.CachedMethods = {
     type = "structure",
     members = {
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -172,21 +168,19 @@ M.AllowedMethods = {
     type = "structure",
     members = {
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        CachedMethods = {
-            type = "structure",
-        },
+        CachedMethods = M.CachedMethods,
     },
 }
 
@@ -239,14 +233,14 @@ M.IpamConfig = {
     type = "structure",
     members = {
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         IpamCidrConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.IpamCidrConfig,
             traits = {
                 required = true,
             },
@@ -284,18 +278,16 @@ M.AnycastIpList = {
         IpAddressType = {
             type = "string",
         },
-        IpamConfig = {
-            type = "structure",
-        },
+        IpamConfig = M.IpamConfig,
         AnycastIps = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         IpCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -337,7 +329,7 @@ M.AnycastIpListSummary = {
             },
         },
         IpCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -354,9 +346,7 @@ M.AnycastIpListSummary = {
         ETag = {
             type = "string",
         },
-        IpamConfig = {
-            type = "structure",
-        },
+        IpamConfig = M.IpamConfig,
     },
 }
 
@@ -365,7 +355,7 @@ M.AnycastIpListCollection = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.AnycastIpListSummary,
         },
         Marker = {
             type = "string",
@@ -377,7 +367,7 @@ M.AnycastIpListCollection = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -389,7 +379,7 @@ M.AnycastIpListCollection = {
             },
         },
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -627,9 +617,7 @@ M.CaCertificatesBundleS3Location = {
 M.CaCertificatesBundleSource = {
     type = "union",
     members = {
-        CaCertificatesBundleS3Location = {
-            type = "structure",
-        },
+        CaCertificatesBundleS3Location = M.CaCertificatesBundleS3Location,
     },
 }
 
@@ -643,14 +631,14 @@ M.CookieNames = {
     type = "structure",
     members = {
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -664,9 +652,7 @@ M.CookiePreference = {
                 required = true,
             },
         },
-        WhitelistedNames = {
-            type = "structure",
-        },
+        WhitelistedNames = M.CookieNames,
     },
 }
 
@@ -674,14 +660,14 @@ M.Headers = {
     type = "structure",
     members = {
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -690,14 +676,14 @@ M.QueryStringCacheKeys = {
     type = "structure",
     members = {
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -711,18 +697,11 @@ M.ForwardedValues = {
                 required = true,
             },
         },
-        Cookies = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Headers = {
-            type = "structure",
-        },
-        QueryStringCacheKeys = {
-            type = "structure",
-        },
+        Cookies = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CookiePreference }),
+        Headers = M.Headers,
+        QueryStringCacheKeys = M.QueryStringCacheKeys,
     },
 }
 
@@ -755,14 +734,14 @@ M.FunctionAssociations = {
     type = "structure",
     members = {
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.FunctionAssociation,
         },
     },
 }
@@ -804,14 +783,14 @@ M.LambdaFunctionAssociations = {
     type = "structure",
     members = {
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.LambdaFunctionAssociation,
         },
     },
 }
@@ -826,14 +805,14 @@ M.TrustedKeyGroups = {
             },
         },
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -848,14 +827,14 @@ M.TrustedSigners = {
             },
         },
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -881,33 +860,23 @@ M.CacheBehavior = {
                 required = true,
             },
         },
-        TrustedSigners = {
-            type = "structure",
-        },
-        TrustedKeyGroups = {
-            type = "structure",
-        },
+        TrustedSigners = M.TrustedSigners,
+        TrustedKeyGroups = M.TrustedKeyGroups,
         ViewerProtocolPolicy = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        AllowedMethods = {
-            type = "structure",
-        },
+        AllowedMethods = M.AllowedMethods,
         SmoothStreaming = {
             type = "boolean",
         },
         Compress = {
             type = "boolean",
         },
-        LambdaFunctionAssociations = {
-            type = "structure",
-        },
-        FunctionAssociations = {
-            type = "structure",
-        },
+        LambdaFunctionAssociations = M.LambdaFunctionAssociations,
+        FunctionAssociations = M.FunctionAssociations,
         FieldLevelEncryptionId = {
             type = "string",
         },
@@ -923,20 +892,16 @@ M.CacheBehavior = {
         ResponseHeadersPolicyId = {
             type = "string",
         },
-        GrpcConfig = {
-            type = "structure",
-        },
-        ForwardedValues = {
-            type = "structure",
-        },
+        GrpcConfig = M.GrpcConfig,
+        ForwardedValues = M.ForwardedValues,
         MinTTL = {
-            type = "number",
+            type = "long",
         },
         DefaultTTL = {
-            type = "number",
+            type = "long",
         },
         MaxTTL = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -945,14 +910,14 @@ M.CacheBehaviors = {
     type = "structure",
     members = {
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.CacheBehavior,
         },
     },
 }
@@ -973,9 +938,7 @@ M.CachePolicyCookiesConfig = {
                 required = true,
             },
         },
-        Cookies = {
-            type = "structure",
-        },
+        Cookies = M.CookieNames,
     },
 }
 
@@ -993,9 +956,7 @@ M.CachePolicyHeadersConfig = {
                 required = true,
             },
         },
-        Headers = {
-            type = "structure",
-        },
+        Headers = M.Headers,
     },
 }
 
@@ -1010,14 +971,14 @@ M.QueryStringNames = {
     type = "structure",
     members = {
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1031,9 +992,7 @@ M.CachePolicyQueryStringsConfig = {
                 required = true,
             },
         },
-        QueryStrings = {
-            type = "structure",
-        },
+        QueryStrings = M.QueryStringNames,
     },
 }
 
@@ -1049,24 +1008,15 @@ M.ParametersInCacheKeyAndForwardedToOrigin = {
         EnableAcceptEncodingBrotli = {
             type = "boolean",
         },
-        HeadersConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        CookiesConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        QueryStringsConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        HeadersConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CachePolicyHeadersConfig }),
+        CookiesConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CachePolicyCookiesConfig }),
+        QueryStringsConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CachePolicyQueryStringsConfig }),
     },
 }
 
@@ -1083,20 +1033,18 @@ M.CachePolicyConfig = {
             },
         },
         DefaultTTL = {
-            type = "number",
+            type = "long",
         },
         MaxTTL = {
-            type = "number",
+            type = "long",
         },
         MinTTL = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
-        ParametersInCacheKeyAndForwardedToOrigin = {
-            type = "structure",
-        },
+        ParametersInCacheKeyAndForwardedToOrigin = M.ParametersInCacheKeyAndForwardedToOrigin,
     },
 }
 
@@ -1115,12 +1063,9 @@ M.CachePolicy = {
                 required = true,
             },
         },
-        CachePolicyConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        CachePolicyConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CachePolicyConfig }),
     },
 }
 
@@ -1158,12 +1103,9 @@ M.CachePolicySummary = {
                 required = true,
             },
         },
-        CachePolicy = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        CachePolicy = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CachePolicy }),
     },
 }
 
@@ -1174,20 +1116,20 @@ M.CachePolicyList = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.CachePolicySummary,
         },
     },
 }
@@ -1322,7 +1264,7 @@ M.CustomErrorResponse = {
     type = "structure",
     members = {
         ErrorCode = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1334,7 +1276,7 @@ M.CustomErrorResponse = {
             type = "string",
         },
         ErrorCachingMinTTL = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1343,14 +1285,14 @@ M.CustomErrorResponses = {
     type = "structure",
     members = {
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomErrorResponse,
         },
     },
 }
@@ -1364,33 +1306,23 @@ M.DefaultCacheBehavior = {
                 required = true,
             },
         },
-        TrustedSigners = {
-            type = "structure",
-        },
-        TrustedKeyGroups = {
-            type = "structure",
-        },
+        TrustedSigners = M.TrustedSigners,
+        TrustedKeyGroups = M.TrustedKeyGroups,
         ViewerProtocolPolicy = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        AllowedMethods = {
-            type = "structure",
-        },
+        AllowedMethods = M.AllowedMethods,
         SmoothStreaming = {
             type = "boolean",
         },
         Compress = {
             type = "boolean",
         },
-        LambdaFunctionAssociations = {
-            type = "structure",
-        },
-        FunctionAssociations = {
-            type = "structure",
-        },
+        LambdaFunctionAssociations = M.LambdaFunctionAssociations,
+        FunctionAssociations = M.FunctionAssociations,
         FieldLevelEncryptionId = {
             type = "string",
         },
@@ -1406,20 +1338,16 @@ M.DefaultCacheBehavior = {
         ResponseHeadersPolicyId = {
             type = "string",
         },
-        GrpcConfig = {
-            type = "structure",
-        },
-        ForwardedValues = {
-            type = "structure",
-        },
+        GrpcConfig = M.GrpcConfig,
+        ForwardedValues = M.ForwardedValues,
         MinTTL = {
-            type = "number",
+            type = "long",
         },
         DefaultTTL = {
-            type = "number",
+            type = "long",
         },
         MaxTTL = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1436,15 +1364,27 @@ M.LoggingConfig = {
     members = {
         Enabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         IncludeCookies = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Bucket = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
         Prefix = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
     },
 }
@@ -1453,14 +1393,14 @@ M.StatusCodes = {
     type = "structure",
     members = {
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
             traits = {
                 required = true,
             },
@@ -1471,12 +1411,9 @@ M.StatusCodes = {
 M.OriginGroupFailoverCriteria = {
     type = "structure",
     members = {
-        StatusCodes = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        StatusCodes = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.StatusCodes }),
     },
 }
 
@@ -1496,14 +1433,14 @@ M.OriginGroupMembers = {
     type = "structure",
     members = {
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.OriginGroupMember,
             traits = {
                 required = true,
             },
@@ -1525,18 +1462,12 @@ M.OriginGroup = {
                 required = true,
             },
         },
-        FailoverCriteria = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Members = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        FailoverCriteria = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OriginGroupFailoverCriteria }),
+        Members = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OriginGroupMembers }),
         SelectionCriteria = {
             type = "string",
         },
@@ -1547,14 +1478,14 @@ M.OriginGroups = {
     type = "structure",
     members = {
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.OriginGroup,
         },
     },
 }
@@ -1581,14 +1512,14 @@ M.CustomHeaders = {
     type = "structure",
     members = {
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.OriginCustomHeader,
         },
     },
 }
@@ -1622,14 +1553,14 @@ M.OriginSslProtocols = {
     type = "structure",
     members = {
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1641,13 +1572,13 @@ M.CustomOriginConfig = {
     type = "structure",
     members = {
         HTTPPort = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         HTTPSPort = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1658,21 +1589,17 @@ M.CustomOriginConfig = {
                 required = true,
             },
         },
-        OriginSslProtocols = {
-            type = "structure",
-        },
+        OriginSslProtocols = M.OriginSslProtocols,
         OriginReadTimeout = {
-            type = "number",
+            type = "integer",
         },
         OriginKeepaliveTimeout = {
-            type = "number",
+            type = "integer",
         },
         IpAddressType = {
             type = "string",
         },
-        OriginMtlsConfig = {
-            type = "structure",
-        },
+        OriginMtlsConfig = M.OriginMtlsConfig,
     },
 }
 
@@ -1697,11 +1624,12 @@ M.S3OriginConfig = {
         OriginAccessIdentity = {
             type = "string",
             traits = {
+                default = "",
                 required = true,
             },
         },
         OriginReadTimeout = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1719,10 +1647,10 @@ M.VpcOriginConfig = {
             type = "string",
         },
         OriginReadTimeout = {
-            type = "number",
+            type = "integer",
         },
         OriginKeepaliveTimeout = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1745,30 +1673,20 @@ M.Origin = {
         OriginPath = {
             type = "string",
         },
-        CustomHeaders = {
-            type = "structure",
-        },
-        S3OriginConfig = {
-            type = "structure",
-        },
-        CustomOriginConfig = {
-            type = "structure",
-        },
-        VpcOriginConfig = {
-            type = "structure",
-        },
+        CustomHeaders = M.CustomHeaders,
+        S3OriginConfig = M.S3OriginConfig,
+        CustomOriginConfig = M.CustomOriginConfig,
+        VpcOriginConfig = M.VpcOriginConfig,
         ConnectionAttempts = {
-            type = "number",
+            type = "integer",
         },
         ConnectionTimeout = {
-            type = "number",
+            type = "integer",
         },
         ResponseCompletionTimeout = {
-            type = "number",
+            type = "integer",
         },
-        OriginShield = {
-            type = "structure",
-        },
+        OriginShield = M.OriginShield,
         OriginAccessControlId = {
             type = "string",
         },
@@ -1779,14 +1697,14 @@ M.Origins = {
     type = "structure",
     members = {
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.Origin,
             traits = {
                 required = true,
             },
@@ -1817,14 +1735,14 @@ M.GeoRestriction = {
             },
         },
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1832,12 +1750,9 @@ M.GeoRestriction = {
 M.Restrictions = {
     type = "structure",
     members = {
-        GeoRestriction = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        GeoRestriction = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.GeoRestriction }),
     },
 }
 
@@ -1862,9 +1777,7 @@ M.StringSchemaConfig = {
 M.ParameterDefinitionSchema = {
     type = "structure",
     members = {
-        StringSchema = {
-            type = "structure",
-        },
+        StringSchema = M.StringSchemaConfig,
     },
 }
 
@@ -1877,12 +1790,9 @@ M.ParameterDefinition = {
                 required = true,
             },
         },
-        Definition = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Definition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ParameterDefinitionSchema }),
     },
 }
 
@@ -1891,7 +1801,7 @@ M.TenantConfig = {
     members = {
         ParameterDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.ParameterDefinition,
         },
     },
 }
@@ -1969,10 +1879,11 @@ M.ViewerMtlsConfig = {
     members = {
         Mode = {
             type = "string",
+            traits = {
+                default = "required",
+            },
         },
-        TrustStoreConfig = {
-            type = "structure",
-        },
+        TrustStoreConfig = M.TrustStoreConfig,
     },
 }
 
@@ -1985,42 +1896,26 @@ M.DistributionConfig = {
                 required = true,
             },
         },
-        Aliases = {
-            type = "structure",
-        },
+        Aliases = M.Aliases,
         DefaultRootObject = {
             type = "string",
         },
-        Origins = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        OriginGroups = {
-            type = "structure",
-        },
-        DefaultCacheBehavior = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        CacheBehaviors = {
-            type = "structure",
-        },
-        CustomErrorResponses = {
-            type = "structure",
-        },
+        Origins = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Origins }),
+        OriginGroups = M.OriginGroups,
+        DefaultCacheBehavior = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DefaultCacheBehavior }),
+        CacheBehaviors = M.CacheBehaviors,
+        CustomErrorResponses = M.CustomErrorResponses,
         Comment = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        Logging = {
-            type = "structure",
-        },
+        Logging = M.LoggingConfig,
         PriceClass = {
             type = "string",
         },
@@ -2030,12 +1925,8 @@ M.DistributionConfig = {
                 required = true,
             },
         },
-        ViewerCertificate = {
-            type = "structure",
-        },
-        Restrictions = {
-            type = "structure",
-        },
+        ViewerCertificate = M.ViewerCertificate,
+        Restrictions = M.Restrictions,
         WebACLId = {
             type = "string",
         },
@@ -2054,21 +1945,13 @@ M.DistributionConfig = {
         AnycastIpListId = {
             type = "string",
         },
-        TenantConfig = {
-            type = "structure",
-        },
+        TenantConfig = M.TenantConfig,
         ConnectionMode = {
             type = "string",
         },
-        ViewerMtlsConfig = {
-            type = "structure",
-        },
-        ConnectionFunctionAssociation = {
-            type = "structure",
-        },
-        CacheTagConfig = {
-            type = "structure",
-        },
+        ViewerMtlsConfig = M.ViewerMtlsConfig,
+        ConnectionFunctionAssociation = M.ConnectionFunctionAssociation,
+        CacheTagConfig = M.CacheTagConfig,
     },
 }
 
@@ -2100,7 +1983,7 @@ M.Distribution = {
             },
         },
         InProgressInvalidationBatches = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -2111,21 +1994,14 @@ M.Distribution = {
                 required = true,
             },
         },
-        ActiveTrustedSigners = {
-            type = "structure",
-        },
-        ActiveTrustedKeyGroups = {
-            type = "structure",
-        },
-        DistributionConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ActiveTrustedSigners = M.ActiveTrustedSigners,
+        ActiveTrustedKeyGroups = M.ActiveTrustedKeyGroups,
+        DistributionConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DistributionConfig }),
         AliasICPRecordals = {
             type = "list",
-            member_type = "structure",
+            member = M.AliasICPRecordal,
         },
     },
 }
@@ -2133,12 +2009,9 @@ M.Distribution = {
 M.CopyDistributionOutput = {
     type = "structure",
     members = {
-        Distribution = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        Distribution = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.Distribution }),
         Location = {
             type = "string",
             traits = {
@@ -2744,7 +2617,7 @@ M.Tags = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2759,20 +2632,18 @@ M.CreateAnycastIpListInput = {
             },
         },
         IpCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
-        Tags = {
-            type = "structure",
-        },
+        Tags = M.Tags,
         IpAddressType = {
             type = "string",
         },
         IpamCidrConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.IpamCidrConfig,
         },
     },
 }
@@ -2780,12 +2651,9 @@ M.CreateAnycastIpListInput = {
 M.CreateAnycastIpListOutput = {
     type = "structure",
     members = {
-        AnycastIpList = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        AnycastIpList = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.AnycastIpList }),
         ETag = {
             type = "string",
             traits = {
@@ -2828,26 +2696,20 @@ M.UnsupportedOperation = {
 M.CreateCachePolicyInput = {
     type = "structure",
     members = {
-        CachePolicyConfig = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-                xml_name = "CachePolicyConfig",
-            },
-        },
+        CachePolicyConfig = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+            xml_name = "CachePolicyConfig",
+        } }, { __index = M.CachePolicyConfig }),
     },
 }
 
 M.CreateCachePolicyOutput = {
     type = "structure",
     members = {
-        CachePolicy = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        CachePolicy = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.CachePolicy }),
         Location = {
             type = "string",
             traits = {
@@ -2934,14 +2796,11 @@ M.CloudFrontOriginAccessIdentityConfig = {
 M.CreateCloudFrontOriginAccessIdentityInput = {
     type = "structure",
     members = {
-        CloudFrontOriginAccessIdentityConfig = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-                xml_name = "CloudFrontOriginAccessIdentityConfig",
-            },
-        },
+        CloudFrontOriginAccessIdentityConfig = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+            xml_name = "CloudFrontOriginAccessIdentityConfig",
+        } }, { __index = M.CloudFrontOriginAccessIdentityConfig }),
     },
 }
 
@@ -2960,21 +2819,16 @@ M.CloudFrontOriginAccessIdentity = {
                 required = true,
             },
         },
-        CloudFrontOriginAccessIdentityConfig = {
-            type = "structure",
-        },
+        CloudFrontOriginAccessIdentityConfig = M.CloudFrontOriginAccessIdentityConfig,
     },
 }
 
 M.CreateCloudFrontOriginAccessIdentityOutput = {
     type = "structure",
     members = {
-        CloudFrontOriginAccessIdentity = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        CloudFrontOriginAccessIdentity = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.CloudFrontOriginAccessIdentity }),
         Location = {
             type = "string",
             traits = {
@@ -3016,14 +2870,14 @@ M.KeyValueStoreAssociations = {
     type = "structure",
     members = {
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.KeyValueStoreAssociation,
         },
     },
 }
@@ -3048,9 +2902,7 @@ M.FunctionConfig = {
                 required = true,
             },
         },
-        KeyValueStoreAssociations = {
-            type = "structure",
-        },
+        KeyValueStoreAssociations = M.KeyValueStoreAssociations,
     },
 }
 
@@ -3063,21 +2915,16 @@ M.CreateConnectionFunctionInput = {
                 required = true,
             },
         },
-        ConnectionFunctionConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ConnectionFunctionConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FunctionConfig }),
         ConnectionFunctionCode = {
             type = "blob",
             traits = {
                 required = true,
             },
         },
-        Tags = {
-            type = "structure",
-        },
+        Tags = M.Tags,
     },
 }
 
@@ -3101,12 +2948,9 @@ M.ConnectionFunctionSummary = {
                 required = true,
             },
         },
-        ConnectionFunctionConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ConnectionFunctionConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FunctionConfig }),
         ConnectionFunctionArn = {
             type = "string",
             traits = {
@@ -3143,12 +2987,9 @@ M.ConnectionFunctionSummary = {
 M.CreateConnectionFunctionOutput = {
     type = "structure",
     members = {
-        ConnectionFunctionSummary = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        ConnectionFunctionSummary = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.ConnectionFunctionSummary }),
         Location = {
             type = "string",
             traits = {
@@ -3186,9 +3027,7 @@ M.CreateConnectionGroupInput = {
         Ipv6Enabled = {
             type = "boolean",
         },
-        Tags = {
-            type = "structure",
-        },
+        Tags = M.Tags,
         AnycastIpListId = {
             type = "string",
         },
@@ -3216,9 +3055,7 @@ M.ConnectionGroup = {
         LastModifiedTime = {
             type = "timestamp",
         },
-        Tags = {
-            type = "structure",
-        },
+        Tags = M.Tags,
         Ipv6Enabled = {
             type = "boolean",
         },
@@ -3243,12 +3080,9 @@ M.ConnectionGroup = {
 M.CreateConnectionGroupOutput = {
     type = "structure",
     members = {
-        ConnectionGroup = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        ConnectionGroup = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.ConnectionGroup }),
         ETag = {
             type = "string",
             traits = {
@@ -3272,14 +3106,14 @@ M.StagingDistributionDnsNames = {
     type = "structure",
     members = {
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3306,13 +3140,13 @@ M.SessionStickinessConfig = {
     type = "structure",
     members = {
         IdleTTL = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         MaximumTTL = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -3324,14 +3158,12 @@ M.ContinuousDeploymentSingleWeightConfig = {
     type = "structure",
     members = {
         Weight = {
-            type = "number",
+            type = "float",
             traits = {
                 required = true,
             },
         },
-        SessionStickinessConfig = {
-            type = "structure",
-        },
+        SessionStickinessConfig = M.SessionStickinessConfig,
     },
 }
 
@@ -3343,12 +3175,8 @@ M.ContinuousDeploymentPolicyType = {
 M.TrafficConfig = {
     type = "structure",
     members = {
-        SingleWeightConfig = {
-            type = "structure",
-        },
-        SingleHeaderConfig = {
-            type = "structure",
-        },
+        SingleWeightConfig = M.ContinuousDeploymentSingleWeightConfig,
+        SingleHeaderConfig = M.ContinuousDeploymentSingleHeaderConfig,
         Type = {
             type = "string",
             traits = {
@@ -3361,35 +3189,27 @@ M.TrafficConfig = {
 M.ContinuousDeploymentPolicyConfig = {
     type = "structure",
     members = {
-        StagingDistributionDnsNames = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        StagingDistributionDnsNames = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.StagingDistributionDnsNames }),
         Enabled = {
             type = "boolean",
             traits = {
                 required = true,
             },
         },
-        TrafficConfig = {
-            type = "structure",
-        },
+        TrafficConfig = M.TrafficConfig,
     },
 }
 
 M.CreateContinuousDeploymentPolicyInput = {
     type = "structure",
     members = {
-        ContinuousDeploymentPolicyConfig = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-                xml_name = "ContinuousDeploymentPolicyConfig",
-            },
-        },
+        ContinuousDeploymentPolicyConfig = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+            xml_name = "ContinuousDeploymentPolicyConfig",
+        } }, { __index = M.ContinuousDeploymentPolicyConfig }),
     },
 }
 
@@ -3408,24 +3228,18 @@ M.ContinuousDeploymentPolicy = {
                 required = true,
             },
         },
-        ContinuousDeploymentPolicyConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ContinuousDeploymentPolicyConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ContinuousDeploymentPolicyConfig }),
     },
 }
 
 M.CreateContinuousDeploymentPolicyOutput = {
     type = "structure",
     members = {
-        ContinuousDeploymentPolicy = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        ContinuousDeploymentPolicy = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.ContinuousDeploymentPolicy }),
         Location = {
             type = "string",
             traits = {
@@ -3474,26 +3288,20 @@ M.ContinuousDeploymentPolicyInUse = {
 M.CreateDistributionInput = {
     type = "structure",
     members = {
-        DistributionConfig = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-                xml_name = "DistributionConfig",
-            },
-        },
+        DistributionConfig = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+            xml_name = "DistributionConfig",
+        } }, { __index = M.DistributionConfig }),
     },
 }
 
 M.CreateDistributionOutput = {
     type = "structure",
     members = {
-        Distribution = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        Distribution = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.Distribution }),
         Location = {
             type = "string",
             traits = {
@@ -3550,7 +3358,7 @@ M.GeoRestrictionCustomization = {
         },
         Locations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3578,15 +3386,9 @@ M.WebAclCustomization = {
 M.Customizations = {
     type = "structure",
     members = {
-        WebAcl = {
-            type = "structure",
-        },
-        Certificate = {
-            type = "structure",
-        },
-        GeoRestrictions = {
-            type = "structure",
-        },
+        WebAcl = M.WebAclCustomization,
+        Certificate = M.Certificate,
+        GeoRestrictions = M.GeoRestrictionCustomization,
     },
 }
 
@@ -3660,27 +3462,21 @@ M.CreateDistributionTenantInput = {
         },
         Domains = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainItem,
             traits = {
                 required = true,
             },
         },
-        Tags = {
-            type = "structure",
-        },
-        Customizations = {
-            type = "structure",
-        },
+        Tags = M.Tags,
+        Customizations = M.Customizations,
         Parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.Parameter,
         },
         ConnectionGroupId = {
             type = "string",
         },
-        ManagedCertificateRequest = {
-            type = "structure",
-        },
+        ManagedCertificateRequest = M.ManagedCertificateRequest,
         Enabled = {
             type = "boolean",
         },
@@ -3724,17 +3520,13 @@ M.DistributionTenant = {
         },
         Domains = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainResult,
         },
-        Tags = {
-            type = "structure",
-        },
-        Customizations = {
-            type = "structure",
-        },
+        Tags = M.Tags,
+        Customizations = M.Customizations,
         Parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.Parameter,
         },
         ConnectionGroupId = {
             type = "string",
@@ -3757,12 +3549,9 @@ M.DistributionTenant = {
 M.CreateDistributionTenantOutput = {
     type = "structure",
     members = {
-        DistributionTenant = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        DistributionTenant = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.DistributionTenant }),
         ETag = {
             type = "string",
             traits = {
@@ -3785,44 +3574,32 @@ M.InvalidAssociation = {
 M.DistributionConfigWithTags = {
     type = "structure",
     members = {
-        DistributionConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Tags = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DistributionConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DistributionConfig }),
+        Tags = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Tags }),
     },
 }
 
 M.CreateDistributionWithTagsInput = {
     type = "structure",
     members = {
-        DistributionConfigWithTags = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-                xml_name = "DistributionConfigWithTags",
-            },
-        },
+        DistributionConfigWithTags = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+            xml_name = "DistributionConfigWithTags",
+        } }, { __index = M.DistributionConfigWithTags }),
     },
 }
 
 M.CreateDistributionWithTagsOutput = {
     type = "structure",
     members = {
-        Distribution = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        Distribution = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.Distribution }),
         Location = {
             type = "string",
             traits = {
@@ -3867,14 +3644,14 @@ M.ContentTypeProfiles = {
     type = "structure",
     members = {
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.ContentTypeProfile,
         },
     },
 }
@@ -3888,9 +3665,7 @@ M.ContentTypeProfileConfig = {
                 required = true,
             },
         },
-        ContentTypeProfiles = {
-            type = "structure",
-        },
+        ContentTypeProfiles = M.ContentTypeProfiles,
     },
 }
 
@@ -3916,14 +3691,14 @@ M.QueryArgProfiles = {
     type = "structure",
     members = {
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.QueryArgProfile,
         },
     },
 }
@@ -3937,9 +3712,7 @@ M.QueryArgProfileConfig = {
                 required = true,
             },
         },
-        QueryArgProfiles = {
-            type = "structure",
-        },
+        QueryArgProfiles = M.QueryArgProfiles,
     },
 }
 
@@ -3955,26 +3728,19 @@ M.FieldLevelEncryptionConfig = {
         Comment = {
             type = "string",
         },
-        QueryArgProfileConfig = {
-            type = "structure",
-        },
-        ContentTypeProfileConfig = {
-            type = "structure",
-        },
+        QueryArgProfileConfig = M.QueryArgProfileConfig,
+        ContentTypeProfileConfig = M.ContentTypeProfileConfig,
     },
 }
 
 M.CreateFieldLevelEncryptionConfigInput = {
     type = "structure",
     members = {
-        FieldLevelEncryptionConfig = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-                xml_name = "FieldLevelEncryptionConfig",
-            },
-        },
+        FieldLevelEncryptionConfig = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+            xml_name = "FieldLevelEncryptionConfig",
+        } }, { __index = M.FieldLevelEncryptionConfig }),
     },
 }
 
@@ -3993,24 +3759,18 @@ M.FieldLevelEncryption = {
                 required = true,
             },
         },
-        FieldLevelEncryptionConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        FieldLevelEncryptionConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FieldLevelEncryptionConfig }),
     },
 }
 
 M.CreateFieldLevelEncryptionConfigOutput = {
     type = "structure",
     members = {
-        FieldLevelEncryption = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        FieldLevelEncryption = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.FieldLevelEncryption }),
         Location = {
             type = "string",
             traits = {
@@ -4090,14 +3850,14 @@ M.FieldPatterns = {
     type = "structure",
     members = {
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4117,12 +3877,9 @@ M.EncryptionEntity = {
                 required = true,
             },
         },
-        FieldPatterns = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        FieldPatterns = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FieldPatterns }),
     },
 }
 
@@ -4130,14 +3887,14 @@ M.EncryptionEntities = {
     type = "structure",
     members = {
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.EncryptionEntity,
         },
     },
 }
@@ -4160,26 +3917,20 @@ M.FieldLevelEncryptionProfileConfig = {
         Comment = {
             type = "string",
         },
-        EncryptionEntities = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        EncryptionEntities = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EncryptionEntities }),
     },
 }
 
 M.CreateFieldLevelEncryptionProfileInput = {
     type = "structure",
     members = {
-        FieldLevelEncryptionProfileConfig = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-                xml_name = "FieldLevelEncryptionProfileConfig",
-            },
-        },
+        FieldLevelEncryptionProfileConfig = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+            xml_name = "FieldLevelEncryptionProfileConfig",
+        } }, { __index = M.FieldLevelEncryptionProfileConfig }),
     },
 }
 
@@ -4198,24 +3949,18 @@ M.FieldLevelEncryptionProfile = {
                 required = true,
             },
         },
-        FieldLevelEncryptionProfileConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        FieldLevelEncryptionProfileConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FieldLevelEncryptionProfileConfig }),
     },
 }
 
 M.CreateFieldLevelEncryptionProfileOutput = {
     type = "structure",
     members = {
-        FieldLevelEncryptionProfile = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        FieldLevelEncryptionProfile = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.FieldLevelEncryptionProfile }),
         Location = {
             type = "string",
             traits = {
@@ -4300,12 +4045,9 @@ M.CreateFunctionInput = {
                 required = true,
             },
         },
-        FunctionConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        FunctionConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FunctionConfig }),
         FunctionCode = {
             type = "blob",
             traits = {
@@ -4351,30 +4093,21 @@ M.FunctionSummary = {
         Status = {
             type = "string",
         },
-        FunctionConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        FunctionMetadata = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        FunctionConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FunctionConfig }),
+        FunctionMetadata = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FunctionMetadata }),
     },
 }
 
 M.CreateFunctionOutput = {
     type = "structure",
     members = {
-        FunctionSummary = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        FunctionSummary = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.FunctionSummary }),
         Location = {
             type = "string",
             traits = {
@@ -4424,14 +4157,14 @@ M.Paths = {
     type = "structure",
     members = {
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4439,12 +4172,9 @@ M.Paths = {
 M.InvalidationBatch = {
     type = "structure",
     members = {
-        Paths = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Paths = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Paths }),
         CallerReference = {
             type = "string",
             traits = {
@@ -4464,14 +4194,11 @@ M.CreateInvalidationInput = {
                 required = true,
             },
         },
-        InvalidationBatch = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-                xml_name = "InvalidationBatch",
-            },
-        },
+        InvalidationBatch = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+            xml_name = "InvalidationBatch",
+        } }, { __index = M.InvalidationBatch }),
     },
 }
 
@@ -4496,12 +4223,9 @@ M.Invalidation = {
                 required = true,
             },
         },
-        InvalidationBatch = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InvalidationBatch = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InvalidationBatch }),
     },
 }
 
@@ -4514,12 +4238,9 @@ M.CreateInvalidationOutput = {
                 http_header = "Location",
             },
         },
-        Invalidation = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        Invalidation = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.Invalidation }),
     },
 }
 
@@ -4543,14 +4264,11 @@ M.CreateInvalidationForDistributionTenantInput = {
                 required = true,
             },
         },
-        InvalidationBatch = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-                xml_name = "InvalidationBatch",
-            },
-        },
+        InvalidationBatch = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+            xml_name = "InvalidationBatch",
+        } }, { __index = M.InvalidationBatch }),
     },
 }
 
@@ -4563,12 +4281,9 @@ M.CreateInvalidationForDistributionTenantOutput = {
                 http_header = "Location",
             },
         },
-        Invalidation = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        Invalidation = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.Invalidation }),
     },
 }
 
@@ -4583,7 +4298,7 @@ M.KeyGroupConfig = {
         },
         Items = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4597,14 +4312,11 @@ M.KeyGroupConfig = {
 M.CreateKeyGroupInput = {
     type = "structure",
     members = {
-        KeyGroupConfig = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-                xml_name = "KeyGroupConfig",
-            },
-        },
+        KeyGroupConfig = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+            xml_name = "KeyGroupConfig",
+        } }, { __index = M.KeyGroupConfig }),
     },
 }
 
@@ -4623,24 +4335,18 @@ M.KeyGroup = {
                 required = true,
             },
         },
-        KeyGroupConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        KeyGroupConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.KeyGroupConfig }),
     },
 }
 
 M.CreateKeyGroupOutput = {
     type = "structure",
     members = {
-        KeyGroup = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        KeyGroup = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.KeyGroup }),
         Location = {
             type = "string",
             traits = {
@@ -4720,9 +4426,7 @@ M.CreateKeyValueStoreInput = {
         Comment = {
             type = "string",
         },
-        ImportSource = {
-            type = "structure",
-        },
+        ImportSource = M.ImportSource,
     },
 }
 
@@ -4768,12 +4472,9 @@ M.KeyValueStore = {
 M.CreateKeyValueStoreOutput = {
     type = "structure",
     members = {
-        KeyValueStore = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        KeyValueStore = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.KeyValueStore }),
         ETag = {
             type = "string",
             traits = {
@@ -4809,9 +4510,7 @@ M.RealtimeMetricsSubscriptionConfig = {
 M.MonitoringSubscription = {
     type = "structure",
     members = {
-        RealtimeMetricsSubscriptionConfig = {
-            type = "structure",
-        },
+        RealtimeMetricsSubscriptionConfig = M.RealtimeMetricsSubscriptionConfig,
     },
 }
 
@@ -4825,26 +4524,20 @@ M.CreateMonitoringSubscriptionInput = {
                 required = true,
             },
         },
-        MonitoringSubscription = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-                xml_name = "MonitoringSubscription",
-            },
-        },
+        MonitoringSubscription = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+            xml_name = "MonitoringSubscription",
+        } }, { __index = M.MonitoringSubscription }),
     },
 }
 
 M.CreateMonitoringSubscriptionOutput = {
     type = "structure",
     members = {
-        MonitoringSubscription = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        MonitoringSubscription = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.MonitoringSubscription }),
     },
 }
 
@@ -4911,14 +4604,11 @@ M.OriginAccessControlConfig = {
 M.CreateOriginAccessControlInput = {
     type = "structure",
     members = {
-        OriginAccessControlConfig = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-                xml_name = "OriginAccessControlConfig",
-            },
-        },
+        OriginAccessControlConfig = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+            xml_name = "OriginAccessControlConfig",
+        } }, { __index = M.OriginAccessControlConfig }),
     },
 }
 
@@ -4931,21 +4621,16 @@ M.OriginAccessControl = {
                 required = true,
             },
         },
-        OriginAccessControlConfig = {
-            type = "structure",
-        },
+        OriginAccessControlConfig = M.OriginAccessControlConfig,
     },
 }
 
 M.CreateOriginAccessControlOutput = {
     type = "structure",
     members = {
-        OriginAccessControl = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        OriginAccessControl = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.OriginAccessControl }),
         Location = {
             type = "string",
             traits = {
@@ -4997,9 +4682,7 @@ M.OriginRequestPolicyCookiesConfig = {
                 required = true,
             },
         },
-        Cookies = {
-            type = "structure",
-        },
+        Cookies = M.CookieNames,
     },
 }
 
@@ -5020,9 +4703,7 @@ M.OriginRequestPolicyHeadersConfig = {
                 required = true,
             },
         },
-        Headers = {
-            type = "structure",
-        },
+        Headers = M.Headers,
     },
 }
 
@@ -5042,9 +4723,7 @@ M.OriginRequestPolicyQueryStringsConfig = {
                 required = true,
             },
         },
-        QueryStrings = {
-            type = "structure",
-        },
+        QueryStrings = M.QueryStringNames,
     },
 }
 
@@ -5060,38 +4739,26 @@ M.OriginRequestPolicyConfig = {
                 required = true,
             },
         },
-        HeadersConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        CookiesConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        QueryStringsConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        HeadersConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OriginRequestPolicyHeadersConfig }),
+        CookiesConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OriginRequestPolicyCookiesConfig }),
+        QueryStringsConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OriginRequestPolicyQueryStringsConfig }),
     },
 }
 
 M.CreateOriginRequestPolicyInput = {
     type = "structure",
     members = {
-        OriginRequestPolicyConfig = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-                xml_name = "OriginRequestPolicyConfig",
-            },
-        },
+        OriginRequestPolicyConfig = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+            xml_name = "OriginRequestPolicyConfig",
+        } }, { __index = M.OriginRequestPolicyConfig }),
     },
 }
 
@@ -5110,24 +4777,18 @@ M.OriginRequestPolicy = {
                 required = true,
             },
         },
-        OriginRequestPolicyConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        OriginRequestPolicyConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OriginRequestPolicyConfig }),
     },
 }
 
 M.CreateOriginRequestPolicyOutput = {
     type = "structure",
     members = {
-        OriginRequestPolicy = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        OriginRequestPolicy = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.OriginRequestPolicy }),
         Location = {
             type = "string",
             traits = {
@@ -5223,14 +4884,11 @@ M.PublicKeyConfig = {
 M.CreatePublicKeyInput = {
     type = "structure",
     members = {
-        PublicKeyConfig = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-                xml_name = "PublicKeyConfig",
-            },
-        },
+        PublicKeyConfig = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+            xml_name = "PublicKeyConfig",
+        } }, { __index = M.PublicKeyConfig }),
     },
 }
 
@@ -5249,24 +4907,18 @@ M.PublicKey = {
                 required = true,
             },
         },
-        PublicKeyConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        PublicKeyConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PublicKeyConfig }),
     },
 }
 
 M.CreatePublicKeyOutput = {
     type = "structure",
     members = {
-        PublicKey = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        PublicKey = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.PublicKey }),
         Location = {
             type = "string",
             traits = {
@@ -5329,9 +4981,7 @@ M.EndPoint = {
                 required = true,
             },
         },
-        KinesisStreamConfig = {
-            type = "structure",
-        },
+        KinesisStreamConfig = M.KinesisStreamConfig,
     },
 }
 
@@ -5340,14 +4990,14 @@ M.CreateRealtimeLogConfigInput = {
     members = {
         EndPoints = {
             type = "list",
-            member_type = "structure",
+            member = M.EndPoint,
             traits = {
                 required = true,
             },
         },
         Fields = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -5359,7 +5009,7 @@ M.CreateRealtimeLogConfigInput = {
             },
         },
         SamplingRate = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -5383,21 +5033,21 @@ M.RealtimeLogConfig = {
             },
         },
         SamplingRate = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         EndPoints = {
             type = "list",
-            member_type = "structure",
+            member = M.EndPoint,
             traits = {
                 required = true,
             },
         },
         Fields = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -5408,9 +5058,7 @@ M.RealtimeLogConfig = {
 M.CreateRealtimeLogConfigOutput = {
     type = "structure",
     members = {
-        RealtimeLogConfig = {
-            type = "structure",
-        },
+        RealtimeLogConfig = M.RealtimeLogConfig,
     },
 }
 
@@ -5438,14 +5086,14 @@ M.ResponseHeadersPolicyAccessControlAllowHeaders = {
     type = "structure",
     members = {
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -5457,14 +5105,14 @@ M.ResponseHeadersPolicyAccessControlAllowMethods = {
     type = "structure",
     members = {
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -5476,14 +5124,14 @@ M.ResponseHeadersPolicyAccessControlAllowOrigins = {
     type = "structure",
     members = {
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -5495,14 +5143,14 @@ M.ResponseHeadersPolicyAccessControlExposeHeaders = {
     type = "structure",
     members = {
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -5510,35 +5158,24 @@ M.ResponseHeadersPolicyAccessControlExposeHeaders = {
 M.ResponseHeadersPolicyCorsConfig = {
     type = "structure",
     members = {
-        AccessControlAllowOrigins = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        AccessControlAllowHeaders = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        AccessControlAllowMethods = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AccessControlAllowOrigins = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResponseHeadersPolicyAccessControlAllowOrigins }),
+        AccessControlAllowHeaders = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResponseHeadersPolicyAccessControlAllowHeaders }),
+        AccessControlAllowMethods = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResponseHeadersPolicyAccessControlAllowMethods }),
         AccessControlAllowCredentials = {
             type = "boolean",
             traits = {
                 required = true,
             },
         },
-        AccessControlExposeHeaders = {
-            type = "structure",
-        },
+        AccessControlExposeHeaders = M.ResponseHeadersPolicyAccessControlExposeHeaders,
         AccessControlMaxAgeSec = {
-            type = "number",
+            type = "integer",
         },
         OriginOverride = {
             type = "boolean",
@@ -5577,14 +5214,14 @@ M.ResponseHeadersPolicyCustomHeadersConfig = {
     type = "structure",
     members = {
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.ResponseHeadersPolicyCustomHeader,
         },
     },
 }
@@ -5605,14 +5242,14 @@ M.ResponseHeadersPolicyRemoveHeadersConfig = {
     type = "structure",
     members = {
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.ResponseHeadersPolicyRemoveHeader,
         },
     },
 }
@@ -5715,7 +5352,7 @@ M.ResponseHeadersPolicyStrictTransportSecurity = {
             type = "boolean",
         },
         AccessControlMaxAgeSec = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -5750,24 +5387,12 @@ M.ResponseHeadersPolicyXSSProtection = {
 M.ResponseHeadersPolicySecurityHeadersConfig = {
     type = "structure",
     members = {
-        XSSProtection = {
-            type = "structure",
-        },
-        FrameOptions = {
-            type = "structure",
-        },
-        ReferrerPolicy = {
-            type = "structure",
-        },
-        ContentSecurityPolicy = {
-            type = "structure",
-        },
-        ContentTypeOptions = {
-            type = "structure",
-        },
-        StrictTransportSecurity = {
-            type = "structure",
-        },
+        XSSProtection = M.ResponseHeadersPolicyXSSProtection,
+        FrameOptions = M.ResponseHeadersPolicyFrameOptions,
+        ReferrerPolicy = M.ResponseHeadersPolicyReferrerPolicy,
+        ContentSecurityPolicy = M.ResponseHeadersPolicyContentSecurityPolicy,
+        ContentTypeOptions = M.ResponseHeadersPolicyContentTypeOptions,
+        StrictTransportSecurity = M.ResponseHeadersPolicyStrictTransportSecurity,
     },
 }
 
@@ -5781,7 +5406,7 @@ M.ResponseHeadersPolicyServerTimingHeadersConfig = {
             },
         },
         SamplingRate = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -5798,35 +5423,22 @@ M.ResponseHeadersPolicyConfig = {
                 required = true,
             },
         },
-        CorsConfig = {
-            type = "structure",
-        },
-        SecurityHeadersConfig = {
-            type = "structure",
-        },
-        ServerTimingHeadersConfig = {
-            type = "structure",
-        },
-        CustomHeadersConfig = {
-            type = "structure",
-        },
-        RemoveHeadersConfig = {
-            type = "structure",
-        },
+        CorsConfig = M.ResponseHeadersPolicyCorsConfig,
+        SecurityHeadersConfig = M.ResponseHeadersPolicySecurityHeadersConfig,
+        ServerTimingHeadersConfig = M.ResponseHeadersPolicyServerTimingHeadersConfig,
+        CustomHeadersConfig = M.ResponseHeadersPolicyCustomHeadersConfig,
+        RemoveHeadersConfig = M.ResponseHeadersPolicyRemoveHeadersConfig,
     },
 }
 
 M.CreateResponseHeadersPolicyInput = {
     type = "structure",
     members = {
-        ResponseHeadersPolicyConfig = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-                xml_name = "ResponseHeadersPolicyConfig",
-            },
-        },
+        ResponseHeadersPolicyConfig = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+            xml_name = "ResponseHeadersPolicyConfig",
+        } }, { __index = M.ResponseHeadersPolicyConfig }),
     },
 }
 
@@ -5845,24 +5457,18 @@ M.ResponseHeadersPolicy = {
                 required = true,
             },
         },
-        ResponseHeadersPolicyConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ResponseHeadersPolicyConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResponseHeadersPolicyConfig }),
     },
 }
 
 M.CreateResponseHeadersPolicyOutput = {
     type = "structure",
     members = {
-        ResponseHeadersPolicy = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        ResponseHeadersPolicy = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.ResponseHeadersPolicy }),
         Location = {
             type = "string",
             traits = {
@@ -5979,30 +5585,20 @@ M.StreamingDistributionConfig = {
                 required = true,
             },
         },
-        S3Origin = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Aliases = {
-            type = "structure",
-        },
+        S3Origin = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3Origin }),
+        Aliases = M.Aliases,
         Comment = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        Logging = {
-            type = "structure",
-        },
-        TrustedSigners = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Logging = M.StreamingLoggingConfig,
+        TrustedSigners = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TrustedSigners }),
         PriceClass = {
             type = "string",
         },
@@ -6018,14 +5614,11 @@ M.StreamingDistributionConfig = {
 M.CreateStreamingDistributionInput = {
     type = "structure",
     members = {
-        StreamingDistributionConfig = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-                xml_name = "StreamingDistributionConfig",
-            },
-        },
+        StreamingDistributionConfig = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+            xml_name = "StreamingDistributionConfig",
+        } }, { __index = M.StreamingDistributionConfig }),
     },
 }
 
@@ -6059,30 +5652,21 @@ M.StreamingDistribution = {
                 required = true,
             },
         },
-        ActiveTrustedSigners = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        StreamingDistributionConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ActiveTrustedSigners = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActiveTrustedSigners }),
+        StreamingDistributionConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.StreamingDistributionConfig }),
     },
 }
 
 M.CreateStreamingDistributionOutput = {
     type = "structure",
     members = {
-        StreamingDistribution = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        StreamingDistribution = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.StreamingDistribution }),
         Location = {
             type = "string",
             traits = {
@@ -6131,44 +5715,32 @@ M.TooManyStreamingDistributions = {
 M.StreamingDistributionConfigWithTags = {
     type = "structure",
     members = {
-        StreamingDistributionConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Tags = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        StreamingDistributionConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.StreamingDistributionConfig }),
+        Tags = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Tags }),
     },
 }
 
 M.CreateStreamingDistributionWithTagsInput = {
     type = "structure",
     members = {
-        StreamingDistributionConfigWithTags = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-                xml_name = "StreamingDistributionConfigWithTags",
-            },
-        },
+        StreamingDistributionConfigWithTags = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+            xml_name = "StreamingDistributionConfigWithTags",
+        } }, { __index = M.StreamingDistributionConfigWithTags }),
     },
 }
 
 M.CreateStreamingDistributionWithTagsOutput = {
     type = "structure",
     members = {
-        StreamingDistribution = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        StreamingDistribution = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.StreamingDistribution }),
         Location = {
             type = "string",
             traits = {
@@ -6193,15 +5765,10 @@ M.CreateTrustStoreInput = {
                 required = true,
             },
         },
-        CaCertificatesBundleSource = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        Tags = {
-            type = "structure",
-        },
+        CaCertificatesBundleSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CaCertificatesBundleSource }),
+        Tags = M.Tags,
     },
 }
 
@@ -6227,7 +5794,7 @@ M.TrustStore = {
             type = "string",
         },
         NumberOfCaCertificates = {
-            type = "number",
+            type = "integer",
         },
         LastModifiedTime = {
             type = "timestamp",
@@ -6241,12 +5808,9 @@ M.TrustStore = {
 M.CreateTrustStoreOutput = {
     type = "structure",
     members = {
-        TrustStore = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        TrustStore = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.TrustStore }),
         ETag = {
             type = "string",
             traits = {
@@ -6272,13 +5836,13 @@ M.VpcOriginEndpointConfig = {
             },
         },
         HTTPPort = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         HTTPSPort = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -6289,24 +5853,17 @@ M.VpcOriginEndpointConfig = {
                 required = true,
             },
         },
-        OriginSslProtocols = {
-            type = "structure",
-        },
+        OriginSslProtocols = M.OriginSslProtocols,
     },
 }
 
 M.CreateVpcOriginInput = {
     type = "structure",
     members = {
-        VpcOriginEndpointConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Tags = {
-            type = "structure",
-        },
+        VpcOriginEndpointConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VpcOriginEndpointConfig }),
+        Tags = M.Tags,
     },
 }
 
@@ -6346,24 +5903,18 @@ M.VpcOrigin = {
                 required = true,
             },
         },
-        VpcOriginEndpointConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        VpcOriginEndpointConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VpcOriginEndpointConfig }),
     },
 }
 
 M.CreateVpcOriginOutput = {
     type = "structure",
     members = {
-        VpcOrigin = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        VpcOrigin = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.VpcOrigin }),
         Location = {
             type = "string",
             traits = {
@@ -7095,12 +6646,9 @@ M.DeleteVpcOriginInput = {
 M.DeleteVpcOriginOutput = {
     type = "structure",
     members = {
-        VpcOrigin = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        VpcOrigin = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.VpcOrigin }),
         ETag = {
             type = "string",
             traits = {
@@ -7132,12 +6680,9 @@ M.DescribeConnectionFunctionInput = {
 M.DescribeConnectionFunctionOutput = {
     type = "structure",
     members = {
-        ConnectionFunctionSummary = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        ConnectionFunctionSummary = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.ConnectionFunctionSummary }),
         ETag = {
             type = "string",
             traits = {
@@ -7169,12 +6714,9 @@ M.DescribeFunctionInput = {
 M.DescribeFunctionOutput = {
     type = "structure",
     members = {
-        FunctionSummary = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        FunctionSummary = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.FunctionSummary }),
         ETag = {
             type = "string",
             traits = {
@@ -7200,12 +6742,9 @@ M.DescribeKeyValueStoreInput = {
 M.DescribeKeyValueStoreOutput = {
     type = "structure",
     members = {
-        KeyValueStore = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        KeyValueStore = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.KeyValueStore }),
         ETag = {
             type = "string",
             traits = {
@@ -7299,12 +6838,9 @@ M.GetAnycastIpListInput = {
 M.GetAnycastIpListOutput = {
     type = "structure",
     members = {
-        AnycastIpList = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        AnycastIpList = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.AnycastIpList }),
         ETag = {
             type = "string",
             traits = {
@@ -7330,12 +6866,9 @@ M.GetCachePolicyInput = {
 M.GetCachePolicyOutput = {
     type = "structure",
     members = {
-        CachePolicy = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        CachePolicy = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.CachePolicy }),
         ETag = {
             type = "string",
             traits = {
@@ -7361,12 +6894,9 @@ M.GetCachePolicyConfigInput = {
 M.GetCachePolicyConfigOutput = {
     type = "structure",
     members = {
-        CachePolicyConfig = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        CachePolicyConfig = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.CachePolicyConfig }),
         ETag = {
             type = "string",
             traits = {
@@ -7392,12 +6922,9 @@ M.GetCloudFrontOriginAccessIdentityInput = {
 M.GetCloudFrontOriginAccessIdentityOutput = {
     type = "structure",
     members = {
-        CloudFrontOriginAccessIdentity = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        CloudFrontOriginAccessIdentity = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.CloudFrontOriginAccessIdentity }),
         ETag = {
             type = "string",
             traits = {
@@ -7423,12 +6950,9 @@ M.GetCloudFrontOriginAccessIdentityConfigInput = {
 M.GetCloudFrontOriginAccessIdentityConfigOutput = {
     type = "structure",
     members = {
-        CloudFrontOriginAccessIdentityConfig = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        CloudFrontOriginAccessIdentityConfig = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.CloudFrontOriginAccessIdentityConfig }),
         ETag = {
             type = "string",
             traits = {
@@ -7497,12 +7021,9 @@ M.GetConnectionGroupInput = {
 M.GetConnectionGroupOutput = {
     type = "structure",
     members = {
-        ConnectionGroup = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        ConnectionGroup = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.ConnectionGroup }),
         ETag = {
             type = "string",
             traits = {
@@ -7528,12 +7049,9 @@ M.GetConnectionGroupByRoutingEndpointInput = {
 M.GetConnectionGroupByRoutingEndpointOutput = {
     type = "structure",
     members = {
-        ConnectionGroup = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        ConnectionGroup = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.ConnectionGroup }),
         ETag = {
             type = "string",
             traits = {
@@ -7559,12 +7077,9 @@ M.GetContinuousDeploymentPolicyInput = {
 M.GetContinuousDeploymentPolicyOutput = {
     type = "structure",
     members = {
-        ContinuousDeploymentPolicy = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        ContinuousDeploymentPolicy = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.ContinuousDeploymentPolicy }),
         ETag = {
             type = "string",
             traits = {
@@ -7590,12 +7105,9 @@ M.GetContinuousDeploymentPolicyConfigInput = {
 M.GetContinuousDeploymentPolicyConfigOutput = {
     type = "structure",
     members = {
-        ContinuousDeploymentPolicyConfig = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        ContinuousDeploymentPolicyConfig = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.ContinuousDeploymentPolicyConfig }),
         ETag = {
             type = "string",
             traits = {
@@ -7621,12 +7133,9 @@ M.GetDistributionInput = {
 M.GetDistributionOutput = {
     type = "structure",
     members = {
-        Distribution = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        Distribution = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.Distribution }),
         ETag = {
             type = "string",
             traits = {
@@ -7652,12 +7161,9 @@ M.GetDistributionConfigInput = {
 M.GetDistributionConfigOutput = {
     type = "structure",
     members = {
-        DistributionConfig = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        DistributionConfig = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.DistributionConfig }),
         ETag = {
             type = "string",
             traits = {
@@ -7683,12 +7189,9 @@ M.GetDistributionTenantInput = {
 M.GetDistributionTenantOutput = {
     type = "structure",
     members = {
-        DistributionTenant = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        DistributionTenant = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.DistributionTenant }),
         ETag = {
             type = "string",
             traits = {
@@ -7714,12 +7217,9 @@ M.GetDistributionTenantByDomainInput = {
 M.GetDistributionTenantByDomainOutput = {
     type = "structure",
     members = {
-        DistributionTenant = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        DistributionTenant = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.DistributionTenant }),
         ETag = {
             type = "string",
             traits = {
@@ -7745,12 +7245,9 @@ M.GetFieldLevelEncryptionInput = {
 M.GetFieldLevelEncryptionOutput = {
     type = "structure",
     members = {
-        FieldLevelEncryption = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        FieldLevelEncryption = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.FieldLevelEncryption }),
         ETag = {
             type = "string",
             traits = {
@@ -7776,12 +7273,9 @@ M.GetFieldLevelEncryptionConfigInput = {
 M.GetFieldLevelEncryptionConfigOutput = {
     type = "structure",
     members = {
-        FieldLevelEncryptionConfig = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        FieldLevelEncryptionConfig = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.FieldLevelEncryptionConfig }),
         ETag = {
             type = "string",
             traits = {
@@ -7807,12 +7301,9 @@ M.GetFieldLevelEncryptionProfileInput = {
 M.GetFieldLevelEncryptionProfileOutput = {
     type = "structure",
     members = {
-        FieldLevelEncryptionProfile = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        FieldLevelEncryptionProfile = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.FieldLevelEncryptionProfile }),
         ETag = {
             type = "string",
             traits = {
@@ -7838,12 +7329,9 @@ M.GetFieldLevelEncryptionProfileConfigInput = {
 M.GetFieldLevelEncryptionProfileConfigOutput = {
     type = "structure",
     members = {
-        FieldLevelEncryptionProfileConfig = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        FieldLevelEncryptionProfileConfig = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.FieldLevelEncryptionProfileConfig }),
         ETag = {
             type = "string",
             traits = {
@@ -7919,12 +7407,9 @@ M.GetInvalidationInput = {
 M.GetInvalidationOutput = {
     type = "structure",
     members = {
-        Invalidation = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        Invalidation = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.Invalidation }),
     },
 }
 
@@ -7961,12 +7446,9 @@ M.GetInvalidationForDistributionTenantInput = {
 M.GetInvalidationForDistributionTenantOutput = {
     type = "structure",
     members = {
-        Invalidation = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        Invalidation = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.Invalidation }),
     },
 }
 
@@ -7986,12 +7468,9 @@ M.GetKeyGroupInput = {
 M.GetKeyGroupOutput = {
     type = "structure",
     members = {
-        KeyGroup = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        KeyGroup = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.KeyGroup }),
         ETag = {
             type = "string",
             traits = {
@@ -8017,12 +7496,9 @@ M.GetKeyGroupConfigInput = {
 M.GetKeyGroupConfigOutput = {
     type = "structure",
     members = {
-        KeyGroupConfig = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        KeyGroupConfig = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.KeyGroupConfig }),
         ETag = {
             type = "string",
             traits = {
@@ -8087,7 +7563,7 @@ M.ManagedCertificateDetails = {
         },
         ValidationTokenDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationTokenDetail,
         },
     },
 }
@@ -8095,12 +7571,9 @@ M.ManagedCertificateDetails = {
 M.GetManagedCertificateDetailsOutput = {
     type = "structure",
     members = {
-        ManagedCertificateDetails = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        ManagedCertificateDetails = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.ManagedCertificateDetails }),
     },
 }
 
@@ -8120,12 +7593,9 @@ M.GetMonitoringSubscriptionInput = {
 M.GetMonitoringSubscriptionOutput = {
     type = "structure",
     members = {
-        MonitoringSubscription = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        MonitoringSubscription = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.MonitoringSubscription }),
     },
 }
 
@@ -8145,12 +7615,9 @@ M.GetOriginAccessControlInput = {
 M.GetOriginAccessControlOutput = {
     type = "structure",
     members = {
-        OriginAccessControl = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        OriginAccessControl = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.OriginAccessControl }),
         ETag = {
             type = "string",
             traits = {
@@ -8176,12 +7643,9 @@ M.GetOriginAccessControlConfigInput = {
 M.GetOriginAccessControlConfigOutput = {
     type = "structure",
     members = {
-        OriginAccessControlConfig = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        OriginAccessControlConfig = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.OriginAccessControlConfig }),
         ETag = {
             type = "string",
             traits = {
@@ -8207,12 +7671,9 @@ M.GetOriginRequestPolicyInput = {
 M.GetOriginRequestPolicyOutput = {
     type = "structure",
     members = {
-        OriginRequestPolicy = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        OriginRequestPolicy = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.OriginRequestPolicy }),
         ETag = {
             type = "string",
             traits = {
@@ -8238,12 +7699,9 @@ M.GetOriginRequestPolicyConfigInput = {
 M.GetOriginRequestPolicyConfigOutput = {
     type = "structure",
     members = {
-        OriginRequestPolicyConfig = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        OriginRequestPolicyConfig = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.OriginRequestPolicyConfig }),
         ETag = {
             type = "string",
             traits = {
@@ -8269,12 +7727,9 @@ M.GetPublicKeyInput = {
 M.GetPublicKeyOutput = {
     type = "structure",
     members = {
-        PublicKey = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        PublicKey = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.PublicKey }),
         ETag = {
             type = "string",
             traits = {
@@ -8300,12 +7755,9 @@ M.GetPublicKeyConfigInput = {
 M.GetPublicKeyConfigOutput = {
     type = "structure",
     members = {
-        PublicKeyConfig = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        PublicKeyConfig = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.PublicKeyConfig }),
         ETag = {
             type = "string",
             traits = {
@@ -8330,9 +7782,7 @@ M.GetRealtimeLogConfigInput = {
 M.GetRealtimeLogConfigOutput = {
     type = "structure",
     members = {
-        RealtimeLogConfig = {
-            type = "structure",
-        },
+        RealtimeLogConfig = M.RealtimeLogConfig,
     },
 }
 
@@ -8376,12 +7826,9 @@ M.GetResponseHeadersPolicyInput = {
 M.GetResponseHeadersPolicyOutput = {
     type = "structure",
     members = {
-        ResponseHeadersPolicy = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        ResponseHeadersPolicy = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.ResponseHeadersPolicy }),
         ETag = {
             type = "string",
             traits = {
@@ -8407,12 +7854,9 @@ M.GetResponseHeadersPolicyConfigInput = {
 M.GetResponseHeadersPolicyConfigOutput = {
     type = "structure",
     members = {
-        ResponseHeadersPolicyConfig = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        ResponseHeadersPolicyConfig = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.ResponseHeadersPolicyConfig }),
         ETag = {
             type = "string",
             traits = {
@@ -8438,12 +7882,9 @@ M.GetStreamingDistributionInput = {
 M.GetStreamingDistributionOutput = {
     type = "structure",
     members = {
-        StreamingDistribution = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        StreamingDistribution = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.StreamingDistribution }),
         ETag = {
             type = "string",
             traits = {
@@ -8469,12 +7910,9 @@ M.GetStreamingDistributionConfigInput = {
 M.GetStreamingDistributionConfigOutput = {
     type = "structure",
     members = {
-        StreamingDistributionConfig = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        StreamingDistributionConfig = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.StreamingDistributionConfig }),
         ETag = {
             type = "string",
             traits = {
@@ -8500,12 +7938,9 @@ M.GetTrustStoreInput = {
 M.GetTrustStoreOutput = {
     type = "structure",
     members = {
-        TrustStore = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        TrustStore = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.TrustStore }),
         ETag = {
             type = "string",
             traits = {
@@ -8531,12 +7966,9 @@ M.GetVpcOriginInput = {
 M.GetVpcOriginOutput = {
     type = "structure",
     members = {
-        VpcOrigin = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        VpcOrigin = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.VpcOrigin }),
         ETag = {
             type = "string",
             traits = {
@@ -8556,7 +7988,7 @@ M.ListAnycastIpListsInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxItems",
             },
@@ -8567,13 +7999,10 @@ M.ListAnycastIpListsInput = {
 M.ListAnycastIpListsOutput = {
     type = "structure",
     members = {
-        AnycastIpLists = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                xml_name = "AnycastIpListCollection",
-            },
-        },
+        AnycastIpLists = setmetatable({ traits = {
+            http_payload = true,
+            xml_name = "AnycastIpListCollection",
+        } }, { __index = M.AnycastIpListCollection }),
     },
 }
 
@@ -8593,7 +8022,7 @@ M.ListCachePoliciesInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxItems",
             },
@@ -8604,12 +8033,9 @@ M.ListCachePoliciesInput = {
 M.ListCachePoliciesOutput = {
     type = "structure",
     members = {
-        CachePolicyList = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        CachePolicyList = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.CachePolicyList }),
     },
 }
 
@@ -8623,7 +8049,7 @@ M.ListCloudFrontOriginAccessIdentitiesInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxItems",
             },
@@ -8668,7 +8094,7 @@ M.CloudFrontOriginAccessIdentityList = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -8680,14 +8106,14 @@ M.CloudFrontOriginAccessIdentityList = {
             },
         },
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.CloudFrontOriginAccessIdentitySummary,
         },
     },
 }
@@ -8695,12 +8121,9 @@ M.CloudFrontOriginAccessIdentityList = {
 M.ListCloudFrontOriginAccessIdentitiesOutput = {
     type = "structure",
     members = {
-        CloudFrontOriginAccessIdentityList = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        CloudFrontOriginAccessIdentityList = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.CloudFrontOriginAccessIdentityList }),
     },
 }
 
@@ -8728,7 +8151,7 @@ M.ListConflictingAliasesInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxItems",
             },
@@ -8758,14 +8181,14 @@ M.ConflictingAliasesList = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
         Quantity = {
-            type = "number",
+            type = "integer",
         },
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.ConflictingAlias,
         },
     },
 }
@@ -8773,12 +8196,9 @@ M.ConflictingAliasesList = {
 M.ListConflictingAliasesOutput = {
     type = "structure",
     members = {
-        ConflictingAliasesList = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        ConflictingAliasesList = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.ConflictingAliasesList }),
     },
 }
 
@@ -8789,7 +8209,7 @@ M.ListConnectionFunctionsInput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
         Stage = {
             type = "string",
@@ -8805,7 +8225,7 @@ M.ListConnectionFunctionsOutput = {
         },
         ConnectionFunctions = {
             type = "list",
-            member_type = "structure",
+            member = M.ConnectionFunctionSummary,
         },
     },
 }
@@ -8822,14 +8242,12 @@ M.ConnectionGroupAssociationFilter = {
 M.ListConnectionGroupsInput = {
     type = "structure",
     members = {
-        AssociationFilter = {
-            type = "structure",
-        },
+        AssociationFilter = M.ConnectionGroupAssociationFilter,
         Marker = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -8902,7 +8320,7 @@ M.ListConnectionGroupsOutput = {
         },
         ConnectionGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.ConnectionGroupSummary,
         },
     },
 }
@@ -8917,7 +8335,7 @@ M.ListContinuousDeploymentPoliciesInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxItems",
             },
@@ -8928,12 +8346,9 @@ M.ListContinuousDeploymentPoliciesInput = {
 M.ContinuousDeploymentPolicySummary = {
     type = "structure",
     members = {
-        ContinuousDeploymentPolicy = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ContinuousDeploymentPolicy = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ContinuousDeploymentPolicy }),
     },
 }
 
@@ -8944,20 +8359,20 @@ M.ContinuousDeploymentPolicyList = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.ContinuousDeploymentPolicySummary,
         },
     },
 }
@@ -8965,12 +8380,9 @@ M.ContinuousDeploymentPolicyList = {
 M.ListContinuousDeploymentPoliciesOutput = {
     type = "structure",
     members = {
-        ContinuousDeploymentPolicyList = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        ContinuousDeploymentPolicyList = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.ContinuousDeploymentPolicyList }),
     },
 }
 
@@ -8984,7 +8396,7 @@ M.ListDistributionsInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxItems",
             },
@@ -9028,39 +8440,22 @@ M.DistributionSummary = {
                 required = true,
             },
         },
-        Aliases = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Origins = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        OriginGroups = {
-            type = "structure",
-        },
-        DefaultCacheBehavior = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        CacheBehaviors = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        CustomErrorResponses = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Aliases = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Aliases }),
+        Origins = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Origins }),
+        OriginGroups = M.OriginGroups,
+        DefaultCacheBehavior = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DefaultCacheBehavior }),
+        CacheBehaviors = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CacheBehaviors }),
+        CustomErrorResponses = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CustomErrorResponses }),
         Comment = {
             type = "string",
             traits = {
@@ -9079,18 +8474,12 @@ M.DistributionSummary = {
                 required = true,
             },
         },
-        ViewerCertificate = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Restrictions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ViewerCertificate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ViewerCertificate }),
+        Restrictions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Restrictions }),
         WebACLId = {
             type = "string",
             traits = {
@@ -9111,7 +8500,7 @@ M.DistributionSummary = {
         },
         AliasICPRecordals = {
             type = "list",
-            member_type = "structure",
+            member = M.AliasICPRecordal,
         },
         Staging = {
             type = "boolean",
@@ -9125,12 +8514,8 @@ M.DistributionSummary = {
         AnycastIpListId = {
             type = "string",
         },
-        ViewerMtlsConfig = {
-            type = "structure",
-        },
-        ConnectionFunctionAssociation = {
-            type = "structure",
-        },
+        ViewerMtlsConfig = M.ViewerMtlsConfig,
+        ConnectionFunctionAssociation = M.ConnectionFunctionAssociation,
     },
 }
 
@@ -9147,7 +8532,7 @@ M.DistributionList = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -9159,14 +8544,14 @@ M.DistributionList = {
             },
         },
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.DistributionSummary,
         },
     },
 }
@@ -9174,12 +8559,9 @@ M.DistributionList = {
 M.ListDistributionsOutput = {
     type = "structure",
     members = {
-        DistributionList = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        DistributionList = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.DistributionList }),
     },
 }
 
@@ -9193,7 +8575,7 @@ M.ListDistributionsByAnycastIpListIdInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxItems",
             },
@@ -9211,12 +8593,9 @@ M.ListDistributionsByAnycastIpListIdInput = {
 M.ListDistributionsByAnycastIpListIdOutput = {
     type = "structure",
     members = {
-        DistributionList = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        DistributionList = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.DistributionList }),
     },
 }
 
@@ -9230,7 +8609,7 @@ M.ListDistributionsByCachePolicyIdInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxItems",
             },
@@ -9258,7 +8637,7 @@ M.DistributionIdList = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -9270,14 +8649,14 @@ M.DistributionIdList = {
             },
         },
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -9285,12 +8664,9 @@ M.DistributionIdList = {
 M.ListDistributionsByCachePolicyIdOutput = {
     type = "structure",
     members = {
-        DistributionIdList = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        DistributionIdList = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.DistributionIdList }),
     },
 }
 
@@ -9304,7 +8680,7 @@ M.ListDistributionsByConnectionFunctionInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxItems",
             },
@@ -9322,12 +8698,9 @@ M.ListDistributionsByConnectionFunctionInput = {
 M.ListDistributionsByConnectionFunctionOutput = {
     type = "structure",
     members = {
-        DistributionList = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        DistributionList = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.DistributionList }),
     },
 }
 
@@ -9341,7 +8714,7 @@ M.ListDistributionsByConnectionModeInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxItems",
             },
@@ -9359,12 +8732,9 @@ M.ListDistributionsByConnectionModeInput = {
 M.ListDistributionsByConnectionModeOutput = {
     type = "structure",
     members = {
-        DistributionList = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        DistributionList = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.DistributionList }),
     },
 }
 
@@ -9378,7 +8748,7 @@ M.ListDistributionsByKeyGroupInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxItems",
             },
@@ -9396,12 +8766,9 @@ M.ListDistributionsByKeyGroupInput = {
 M.ListDistributionsByKeyGroupOutput = {
     type = "structure",
     members = {
-        DistributionIdList = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        DistributionIdList = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.DistributionIdList }),
     },
 }
 
@@ -9415,7 +8782,7 @@ M.ListDistributionsByOriginRequestPolicyIdInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxItems",
             },
@@ -9433,12 +8800,9 @@ M.ListDistributionsByOriginRequestPolicyIdInput = {
 M.ListDistributionsByOriginRequestPolicyIdOutput = {
     type = "structure",
     members = {
-        DistributionIdList = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        DistributionIdList = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.DistributionIdList }),
     },
 }
 
@@ -9459,7 +8823,7 @@ M.ListDistributionsByOwnedResourceInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxItems",
             },
@@ -9498,7 +8862,7 @@ M.DistributionIdOwnerList = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -9510,14 +8874,14 @@ M.DistributionIdOwnerList = {
             },
         },
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.DistributionIdOwner,
         },
     },
 }
@@ -9525,12 +8889,9 @@ M.DistributionIdOwnerList = {
 M.ListDistributionsByOwnedResourceOutput = {
     type = "structure",
     members = {
-        DistributionList = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        DistributionList = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.DistributionIdOwnerList }),
     },
 }
 
@@ -9541,7 +8902,7 @@ M.ListDistributionsByRealtimeLogConfigInput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
         RealtimeLogConfigName = {
             type = "string",
@@ -9555,12 +8916,9 @@ M.ListDistributionsByRealtimeLogConfigInput = {
 M.ListDistributionsByRealtimeLogConfigOutput = {
     type = "structure",
     members = {
-        DistributionList = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        DistributionList = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.DistributionList }),
     },
 }
 
@@ -9574,7 +8932,7 @@ M.ListDistributionsByResponseHeadersPolicyIdInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxItems",
             },
@@ -9592,12 +8950,9 @@ M.ListDistributionsByResponseHeadersPolicyIdInput = {
 M.ListDistributionsByResponseHeadersPolicyIdOutput = {
     type = "structure",
     members = {
-        DistributionIdList = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        DistributionIdList = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.DistributionIdList }),
     },
 }
 
@@ -9618,7 +8973,7 @@ M.ListDistributionsByTrustStoreInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxItems",
             },
@@ -9629,12 +8984,9 @@ M.ListDistributionsByTrustStoreInput = {
 M.ListDistributionsByTrustStoreOutput = {
     type = "structure",
     members = {
-        DistributionList = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        DistributionList = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.DistributionList }),
     },
 }
 
@@ -9648,7 +9000,7 @@ M.ListDistributionsByVpcOriginIdInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxItems",
             },
@@ -9666,12 +9018,9 @@ M.ListDistributionsByVpcOriginIdInput = {
 M.ListDistributionsByVpcOriginIdOutput = {
     type = "structure",
     members = {
-        DistributionIdList = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        DistributionIdList = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.DistributionIdList }),
     },
 }
 
@@ -9685,7 +9034,7 @@ M.ListDistributionsByWebACLIdInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxItems",
             },
@@ -9703,12 +9052,9 @@ M.ListDistributionsByWebACLIdInput = {
 M.ListDistributionsByWebACLIdOutput = {
     type = "structure",
     members = {
-        DistributionList = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        DistributionList = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.DistributionList }),
     },
 }
 
@@ -9727,14 +9073,12 @@ M.DistributionTenantAssociationFilter = {
 M.ListDistributionTenantsInput = {
     type = "structure",
     members = {
-        AssociationFilter = {
-            type = "structure",
-        },
+        AssociationFilter = M.DistributionTenantAssociationFilter,
         Marker = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -9768,7 +9112,7 @@ M.DistributionTenantSummary = {
         },
         Domains = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainResult,
             traits = {
                 required = true,
             },
@@ -9776,9 +9120,7 @@ M.DistributionTenantSummary = {
         ConnectionGroupId = {
             type = "string",
         },
-        Customizations = {
-            type = "structure",
-        },
+        Customizations = M.Customizations,
         CreatedTime = {
             type = "timestamp",
             traits = {
@@ -9814,7 +9156,7 @@ M.ListDistributionTenantsOutput = {
         },
         DistributionTenantList = {
             type = "list",
-            member_type = "structure",
+            member = M.DistributionTenantSummary,
         },
     },
 }
@@ -9832,7 +9174,7 @@ M.ListDistributionTenantsByCustomizationInput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -9845,7 +9187,7 @@ M.ListDistributionTenantsByCustomizationOutput = {
         },
         DistributionTenantList = {
             type = "list",
-            member_type = "structure",
+            member = M.DistributionTenantSummary,
         },
     },
 }
@@ -9871,14 +9213,11 @@ M.ListDomainConflictsInput = {
                 required = true,
             },
         },
-        DomainControlValidationResource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DomainControlValidationResource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DistributionResourceId }),
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -9926,7 +9265,7 @@ M.ListDomainConflictsOutput = {
     members = {
         DomainConflicts = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainConflict,
         },
         NextMarker = {
             type = "string",
@@ -9944,7 +9283,7 @@ M.ListFieldLevelEncryptionConfigsInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxItems",
             },
@@ -9970,12 +9309,8 @@ M.FieldLevelEncryptionSummary = {
         Comment = {
             type = "string",
         },
-        QueryArgProfileConfig = {
-            type = "structure",
-        },
-        ContentTypeProfileConfig = {
-            type = "structure",
-        },
+        QueryArgProfileConfig = M.QueryArgProfileConfig,
+        ContentTypeProfileConfig = M.ContentTypeProfileConfig,
     },
 }
 
@@ -9986,20 +9321,20 @@ M.FieldLevelEncryptionList = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldLevelEncryptionSummary,
         },
     },
 }
@@ -10007,12 +9342,9 @@ M.FieldLevelEncryptionList = {
 M.ListFieldLevelEncryptionConfigsOutput = {
     type = "structure",
     members = {
-        FieldLevelEncryptionList = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        FieldLevelEncryptionList = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.FieldLevelEncryptionList }),
     },
 }
 
@@ -10026,7 +9358,7 @@ M.ListFieldLevelEncryptionProfilesInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxItems",
             },
@@ -10055,12 +9387,9 @@ M.FieldLevelEncryptionProfileSummary = {
                 required = true,
             },
         },
-        EncryptionEntities = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        EncryptionEntities = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EncryptionEntities }),
         Comment = {
             type = "string",
         },
@@ -10074,20 +9403,20 @@ M.FieldLevelEncryptionProfileList = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldLevelEncryptionProfileSummary,
         },
     },
 }
@@ -10095,12 +9424,9 @@ M.FieldLevelEncryptionProfileList = {
 M.ListFieldLevelEncryptionProfilesOutput = {
     type = "structure",
     members = {
-        FieldLevelEncryptionProfileList = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        FieldLevelEncryptionProfileList = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.FieldLevelEncryptionProfileList }),
     },
 }
 
@@ -10114,7 +9440,7 @@ M.ListFunctionsInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxItems",
             },
@@ -10135,20 +9461,20 @@ M.FunctionList = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.FunctionSummary,
         },
     },
 }
@@ -10156,12 +9482,9 @@ M.FunctionList = {
 M.ListFunctionsOutput = {
     type = "structure",
     members = {
-        FunctionList = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        FunctionList = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.FunctionList }),
     },
 }
 
@@ -10182,7 +9505,7 @@ M.ListInvalidationsInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxItems",
             },
@@ -10227,7 +9550,7 @@ M.InvalidationList = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -10239,14 +9562,14 @@ M.InvalidationList = {
             },
         },
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.InvalidationSummary,
         },
     },
 }
@@ -10254,12 +9577,9 @@ M.InvalidationList = {
 M.ListInvalidationsOutput = {
     type = "structure",
     members = {
-        InvalidationList = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        InvalidationList = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.InvalidationList }),
     },
 }
 
@@ -10280,7 +9600,7 @@ M.ListInvalidationsForDistributionTenantInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxItems",
             },
@@ -10291,12 +9611,9 @@ M.ListInvalidationsForDistributionTenantInput = {
 M.ListInvalidationsForDistributionTenantOutput = {
     type = "structure",
     members = {
-        InvalidationList = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        InvalidationList = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.InvalidationList }),
     },
 }
 
@@ -10310,7 +9627,7 @@ M.ListKeyGroupsInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxItems",
             },
@@ -10321,12 +9638,9 @@ M.ListKeyGroupsInput = {
 M.KeyGroupSummary = {
     type = "structure",
     members = {
-        KeyGroup = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        KeyGroup = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.KeyGroup }),
     },
 }
 
@@ -10337,20 +9651,20 @@ M.KeyGroupList = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.KeyGroupSummary,
         },
     },
 }
@@ -10358,12 +9672,9 @@ M.KeyGroupList = {
 M.ListKeyGroupsOutput = {
     type = "structure",
     members = {
-        KeyGroupList = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        KeyGroupList = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.KeyGroupList }),
     },
 }
 
@@ -10377,7 +9688,7 @@ M.ListKeyValueStoresInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxItems",
             },
@@ -10398,20 +9709,20 @@ M.KeyValueStoreList = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.KeyValueStore,
         },
     },
 }
@@ -10419,12 +9730,9 @@ M.KeyValueStoreList = {
 M.ListKeyValueStoresOutput = {
     type = "structure",
     members = {
-        KeyValueStoreList = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        KeyValueStoreList = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.KeyValueStoreList }),
     },
 }
 
@@ -10438,7 +9746,7 @@ M.ListOriginAccessControlsInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxItems",
             },
@@ -10501,7 +9809,7 @@ M.OriginAccessControlList = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -10513,14 +9821,14 @@ M.OriginAccessControlList = {
             },
         },
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.OriginAccessControlSummary,
         },
     },
 }
@@ -10528,12 +9836,9 @@ M.OriginAccessControlList = {
 M.ListOriginAccessControlsOutput = {
     type = "structure",
     members = {
-        OriginAccessControlList = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        OriginAccessControlList = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.OriginAccessControlList }),
     },
 }
 
@@ -10558,7 +9863,7 @@ M.ListOriginRequestPoliciesInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxItems",
             },
@@ -10575,12 +9880,9 @@ M.OriginRequestPolicySummary = {
                 required = true,
             },
         },
-        OriginRequestPolicy = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        OriginRequestPolicy = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OriginRequestPolicy }),
     },
 }
 
@@ -10591,20 +9893,20 @@ M.OriginRequestPolicyList = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.OriginRequestPolicySummary,
         },
     },
 }
@@ -10612,12 +9914,9 @@ M.OriginRequestPolicyList = {
 M.ListOriginRequestPoliciesOutput = {
     type = "structure",
     members = {
-        OriginRequestPolicyList = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        OriginRequestPolicyList = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.OriginRequestPolicyList }),
     },
 }
 
@@ -10631,7 +9930,7 @@ M.ListPublicKeysInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxItems",
             },
@@ -10679,20 +9978,20 @@ M.PublicKeyList = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.PublicKeySummary,
         },
     },
 }
@@ -10700,12 +9999,9 @@ M.PublicKeyList = {
 M.ListPublicKeysOutput = {
     type = "structure",
     members = {
-        PublicKeyList = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        PublicKeyList = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.PublicKeyList }),
     },
 }
 
@@ -10713,7 +10009,7 @@ M.ListRealtimeLogConfigsInput = {
     type = "structure",
     members = {
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxItems",
             },
@@ -10731,14 +10027,14 @@ M.RealtimeLogConfigs = {
     type = "structure",
     members = {
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.RealtimeLogConfig,
         },
         IsTruncated = {
             type = "boolean",
@@ -10761,12 +10057,9 @@ M.RealtimeLogConfigs = {
 M.ListRealtimeLogConfigsOutput = {
     type = "structure",
     members = {
-        RealtimeLogConfigs = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        RealtimeLogConfigs = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.RealtimeLogConfigs }),
     },
 }
 
@@ -10791,7 +10084,7 @@ M.ListResponseHeadersPoliciesInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxItems",
             },
@@ -10808,12 +10101,9 @@ M.ResponseHeadersPolicySummary = {
                 required = true,
             },
         },
-        ResponseHeadersPolicy = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ResponseHeadersPolicy = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResponseHeadersPolicy }),
     },
 }
 
@@ -10824,20 +10114,20 @@ M.ResponseHeadersPolicyList = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.ResponseHeadersPolicySummary,
         },
     },
 }
@@ -10845,12 +10135,9 @@ M.ResponseHeadersPolicyList = {
 M.ListResponseHeadersPoliciesOutput = {
     type = "structure",
     members = {
-        ResponseHeadersPolicyList = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        ResponseHeadersPolicyList = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.ResponseHeadersPolicyList }),
     },
 }
 
@@ -10864,7 +10151,7 @@ M.ListStreamingDistributionsInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxItems",
             },
@@ -10905,24 +10192,15 @@ M.StreamingDistributionSummary = {
                 required = true,
             },
         },
-        S3Origin = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Aliases = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        TrustedSigners = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        S3Origin = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3Origin }),
+        Aliases = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Aliases }),
+        TrustedSigners = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TrustedSigners }),
         Comment = {
             type = "string",
             traits = {
@@ -10957,7 +10235,7 @@ M.StreamingDistributionList = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -10969,14 +10247,14 @@ M.StreamingDistributionList = {
             },
         },
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.StreamingDistributionSummary,
         },
     },
 }
@@ -10984,12 +10262,9 @@ M.StreamingDistributionList = {
 M.ListStreamingDistributionsOutput = {
     type = "structure",
     members = {
-        StreamingDistributionList = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        StreamingDistributionList = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.StreamingDistributionList }),
     },
 }
 
@@ -11009,13 +10284,10 @@ M.ListTagsForResourceInput = {
 M.ListTagsForResourceOutput = {
     type = "structure",
     members = {
-        Tags = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        Tags = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.Tags }),
     },
 }
 
@@ -11026,7 +10298,7 @@ M.ListTrustStoresInput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -11059,7 +10331,7 @@ M.TrustStoreSummary = {
             },
         },
         NumberOfCaCertificates = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -11090,7 +10362,7 @@ M.ListTrustStoresOutput = {
         },
         TrustStoreList = {
             type = "list",
-            member_type = "structure",
+            member = M.TrustStoreSummary,
         },
     },
 }
@@ -11105,7 +10377,7 @@ M.ListVpcOriginsInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxItems",
             },
@@ -11177,7 +10449,7 @@ M.VpcOriginList = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -11189,14 +10461,14 @@ M.VpcOriginList = {
             },
         },
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcOriginSummary,
         },
     },
 }
@@ -11204,12 +10476,9 @@ M.VpcOriginList = {
 M.ListVpcOriginsOutput = {
     type = "structure",
     members = {
-        VpcOriginList = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        VpcOriginList = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.VpcOriginList }),
     },
 }
 
@@ -11236,12 +10505,9 @@ M.PublishConnectionFunctionInput = {
 M.PublishConnectionFunctionOutput = {
     type = "structure",
     members = {
-        ConnectionFunctionSummary = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        ConnectionFunctionSummary = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.ConnectionFunctionSummary }),
     },
 }
 
@@ -11268,12 +10534,9 @@ M.PublishFunctionInput = {
 M.PublishFunctionOutput = {
     type = "structure",
     members = {
-        FunctionSummary = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        FunctionSummary = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.FunctionSummary }),
     },
 }
 
@@ -11314,14 +10577,11 @@ M.TagResourceInput = {
                 required = true,
             },
         },
-        Tags = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-                xml_name = "Tags",
-            },
-        },
+        Tags = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+            xml_name = "Tags",
+        } }, { __index = M.Tags }),
     },
 }
 
@@ -11361,15 +10621,13 @@ M.TestConnectionFunctionInput = {
 M.ConnectionFunctionTestResult = {
     type = "structure",
     members = {
-        ConnectionFunctionSummary = {
-            type = "structure",
-        },
+        ConnectionFunctionSummary = M.ConnectionFunctionSummary,
         ComputeUtilization = {
             type = "string",
         },
         ConnectionFunctionExecutionLogs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ConnectionFunctionErrorMessage = {
             type = "string",
@@ -11383,12 +10641,9 @@ M.ConnectionFunctionTestResult = {
 M.TestConnectionFunctionOutput = {
     type = "structure",
     members = {
-        ConnectionFunctionTestResult = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        ConnectionFunctionTestResult = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.ConnectionFunctionTestResult }),
     },
 }
 
@@ -11434,15 +10689,13 @@ M.TestFunctionInput = {
 M.TestResult = {
     type = "structure",
     members = {
-        FunctionSummary = {
-            type = "structure",
-        },
+        FunctionSummary = M.FunctionSummary,
         ComputeUtilization = {
             type = "string",
         },
         FunctionExecutionLogs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         FunctionErrorMessage = {
             type = "string",
@@ -11456,12 +10709,9 @@ M.TestResult = {
 M.TestFunctionOutput = {
     type = "structure",
     members = {
-        TestResult = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        TestResult = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.TestResult }),
     },
 }
 
@@ -11470,7 +10720,7 @@ M.TagKeys = {
     members = {
         Items = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -11485,14 +10735,11 @@ M.UntagResourceInput = {
                 required = true,
             },
         },
-        TagKeys = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-                xml_name = "TagKeys",
-            },
-        },
+        TagKeys = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+            xml_name = "TagKeys",
+        } }, { __index = M.TagKeys }),
     },
 }
 
@@ -11515,7 +10762,7 @@ M.UpdateAnycastIpListInput = {
         },
         IpamCidrConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.IpamCidrConfig,
         },
         IfMatch = {
             type = "string",
@@ -11530,12 +10777,9 @@ M.UpdateAnycastIpListInput = {
 M.UpdateAnycastIpListOutput = {
     type = "structure",
     members = {
-        AnycastIpList = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        AnycastIpList = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.AnycastIpList }),
         ETag = {
             type = "string",
             traits = {
@@ -11548,14 +10792,11 @@ M.UpdateAnycastIpListOutput = {
 M.UpdateCachePolicyInput = {
     type = "structure",
     members = {
-        CachePolicyConfig = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-                xml_name = "CachePolicyConfig",
-            },
-        },
+        CachePolicyConfig = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+            xml_name = "CachePolicyConfig",
+        } }, { __index = M.CachePolicyConfig }),
         Id = {
             type = "string",
             traits = {
@@ -11575,12 +10816,9 @@ M.UpdateCachePolicyInput = {
 M.UpdateCachePolicyOutput = {
     type = "structure",
     members = {
-        CachePolicy = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        CachePolicy = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.CachePolicy }),
         ETag = {
             type = "string",
             traits = {
@@ -11593,14 +10831,11 @@ M.UpdateCachePolicyOutput = {
 M.UpdateCloudFrontOriginAccessIdentityInput = {
     type = "structure",
     members = {
-        CloudFrontOriginAccessIdentityConfig = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-                xml_name = "CloudFrontOriginAccessIdentityConfig",
-            },
-        },
+        CloudFrontOriginAccessIdentityConfig = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+            xml_name = "CloudFrontOriginAccessIdentityConfig",
+        } }, { __index = M.CloudFrontOriginAccessIdentityConfig }),
         Id = {
             type = "string",
             traits = {
@@ -11620,12 +10855,9 @@ M.UpdateCloudFrontOriginAccessIdentityInput = {
 M.UpdateCloudFrontOriginAccessIdentityOutput = {
     type = "structure",
     members = {
-        CloudFrontOriginAccessIdentity = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        CloudFrontOriginAccessIdentity = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.CloudFrontOriginAccessIdentity }),
         ETag = {
             type = "string",
             traits = {
@@ -11652,12 +10884,9 @@ M.UpdateConnectionFunctionInput = {
                 required = true,
             },
         },
-        ConnectionFunctionConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ConnectionFunctionConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FunctionConfig }),
         ConnectionFunctionCode = {
             type = "blob",
             traits = {
@@ -11670,12 +10899,9 @@ M.UpdateConnectionFunctionInput = {
 M.UpdateConnectionFunctionOutput = {
     type = "structure",
     members = {
-        ConnectionFunctionSummary = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        ConnectionFunctionSummary = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.ConnectionFunctionSummary }),
         ETag = {
             type = "string",
             traits = {
@@ -11717,12 +10943,9 @@ M.UpdateConnectionGroupInput = {
 M.UpdateConnectionGroupOutput = {
     type = "structure",
     members = {
-        ConnectionGroup = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        ConnectionGroup = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.ConnectionGroup }),
         ETag = {
             type = "string",
             traits = {
@@ -11735,14 +10958,11 @@ M.UpdateConnectionGroupOutput = {
 M.UpdateContinuousDeploymentPolicyInput = {
     type = "structure",
     members = {
-        ContinuousDeploymentPolicyConfig = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-                xml_name = "ContinuousDeploymentPolicyConfig",
-            },
-        },
+        ContinuousDeploymentPolicyConfig = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+            xml_name = "ContinuousDeploymentPolicyConfig",
+        } }, { __index = M.ContinuousDeploymentPolicyConfig }),
         Id = {
             type = "string",
             traits = {
@@ -11762,12 +10982,9 @@ M.UpdateContinuousDeploymentPolicyInput = {
 M.UpdateContinuousDeploymentPolicyOutput = {
     type = "structure",
     members = {
-        ContinuousDeploymentPolicy = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        ContinuousDeploymentPolicy = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.ContinuousDeploymentPolicy }),
         ETag = {
             type = "string",
             traits = {
@@ -11780,14 +10997,11 @@ M.UpdateContinuousDeploymentPolicyOutput = {
 M.UpdateDistributionInput = {
     type = "structure",
     members = {
-        DistributionConfig = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-                xml_name = "DistributionConfig",
-            },
-        },
+        DistributionConfig = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+            xml_name = "DistributionConfig",
+        } }, { __index = M.DistributionConfig }),
         Id = {
             type = "string",
             traits = {
@@ -11807,12 +11021,9 @@ M.UpdateDistributionInput = {
 M.UpdateDistributionOutput = {
     type = "structure",
     members = {
-        Distribution = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        Distribution = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.Distribution }),
         ETag = {
             type = "string",
             traits = {
@@ -11837,14 +11048,12 @@ M.UpdateDistributionTenantInput = {
         },
         Domains = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainItem,
         },
-        Customizations = {
-            type = "structure",
-        },
+        Customizations = M.Customizations,
         Parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.Parameter,
         },
         ConnectionGroupId = {
             type = "string",
@@ -11856,9 +11065,7 @@ M.UpdateDistributionTenantInput = {
                 required = true,
             },
         },
-        ManagedCertificateRequest = {
-            type = "structure",
-        },
+        ManagedCertificateRequest = M.ManagedCertificateRequest,
         Enabled = {
             type = "boolean",
         },
@@ -11868,12 +11075,9 @@ M.UpdateDistributionTenantInput = {
 M.UpdateDistributionTenantOutput = {
     type = "structure",
     members = {
-        DistributionTenant = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        DistributionTenant = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.DistributionTenant }),
         ETag = {
             type = "string",
             traits = {
@@ -11911,12 +11115,9 @@ M.UpdateDistributionWithStagingConfigInput = {
 M.UpdateDistributionWithStagingConfigOutput = {
     type = "structure",
     members = {
-        Distribution = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        Distribution = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.Distribution }),
         ETag = {
             type = "string",
             traits = {
@@ -11935,12 +11136,9 @@ M.UpdateDomainAssociationInput = {
                 required = true,
             },
         },
-        TargetResource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TargetResource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DistributionResourceId }),
         IfMatch = {
             type = "string",
             traits = {
@@ -11971,14 +11169,11 @@ M.UpdateDomainAssociationOutput = {
 M.UpdateFieldLevelEncryptionConfigInput = {
     type = "structure",
     members = {
-        FieldLevelEncryptionConfig = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-                xml_name = "FieldLevelEncryptionConfig",
-            },
-        },
+        FieldLevelEncryptionConfig = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+            xml_name = "FieldLevelEncryptionConfig",
+        } }, { __index = M.FieldLevelEncryptionConfig }),
         Id = {
             type = "string",
             traits = {
@@ -11998,12 +11193,9 @@ M.UpdateFieldLevelEncryptionConfigInput = {
 M.UpdateFieldLevelEncryptionConfigOutput = {
     type = "structure",
     members = {
-        FieldLevelEncryption = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        FieldLevelEncryption = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.FieldLevelEncryption }),
         ETag = {
             type = "string",
             traits = {
@@ -12016,14 +11208,11 @@ M.UpdateFieldLevelEncryptionConfigOutput = {
 M.UpdateFieldLevelEncryptionProfileInput = {
     type = "structure",
     members = {
-        FieldLevelEncryptionProfileConfig = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-                xml_name = "FieldLevelEncryptionProfileConfig",
-            },
-        },
+        FieldLevelEncryptionProfileConfig = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+            xml_name = "FieldLevelEncryptionProfileConfig",
+        } }, { __index = M.FieldLevelEncryptionProfileConfig }),
         Id = {
             type = "string",
             traits = {
@@ -12043,12 +11232,9 @@ M.UpdateFieldLevelEncryptionProfileInput = {
 M.UpdateFieldLevelEncryptionProfileOutput = {
     type = "structure",
     members = {
-        FieldLevelEncryptionProfile = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        FieldLevelEncryptionProfile = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.FieldLevelEncryptionProfile }),
         ETag = {
             type = "string",
             traits = {
@@ -12075,12 +11261,9 @@ M.UpdateFunctionInput = {
                 required = true,
             },
         },
-        FunctionConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        FunctionConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FunctionConfig }),
         FunctionCode = {
             type = "blob",
             traits = {
@@ -12093,12 +11276,9 @@ M.UpdateFunctionInput = {
 M.UpdateFunctionOutput = {
     type = "structure",
     members = {
-        FunctionSummary = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        FunctionSummary = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.FunctionSummary }),
         ETag = {
             type = "string",
             traits = {
@@ -12111,14 +11291,11 @@ M.UpdateFunctionOutput = {
 M.UpdateKeyGroupInput = {
     type = "structure",
     members = {
-        KeyGroupConfig = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-                xml_name = "KeyGroupConfig",
-            },
-        },
+        KeyGroupConfig = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+            xml_name = "KeyGroupConfig",
+        } }, { __index = M.KeyGroupConfig }),
         Id = {
             type = "string",
             traits = {
@@ -12138,12 +11315,9 @@ M.UpdateKeyGroupInput = {
 M.UpdateKeyGroupOutput = {
     type = "structure",
     members = {
-        KeyGroup = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        KeyGroup = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.KeyGroup }),
         ETag = {
             type = "string",
             traits = {
@@ -12182,12 +11356,9 @@ M.UpdateKeyValueStoreInput = {
 M.UpdateKeyValueStoreOutput = {
     type = "structure",
     members = {
-        KeyValueStore = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        KeyValueStore = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.KeyValueStore }),
         ETag = {
             type = "string",
             traits = {
@@ -12200,14 +11371,11 @@ M.UpdateKeyValueStoreOutput = {
 M.UpdateOriginAccessControlInput = {
     type = "structure",
     members = {
-        OriginAccessControlConfig = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-                xml_name = "OriginAccessControlConfig",
-            },
-        },
+        OriginAccessControlConfig = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+            xml_name = "OriginAccessControlConfig",
+        } }, { __index = M.OriginAccessControlConfig }),
         Id = {
             type = "string",
             traits = {
@@ -12227,12 +11395,9 @@ M.UpdateOriginAccessControlInput = {
 M.UpdateOriginAccessControlOutput = {
     type = "structure",
     members = {
-        OriginAccessControl = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        OriginAccessControl = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.OriginAccessControl }),
         ETag = {
             type = "string",
             traits = {
@@ -12245,14 +11410,11 @@ M.UpdateOriginAccessControlOutput = {
 M.UpdateOriginRequestPolicyInput = {
     type = "structure",
     members = {
-        OriginRequestPolicyConfig = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-                xml_name = "OriginRequestPolicyConfig",
-            },
-        },
+        OriginRequestPolicyConfig = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+            xml_name = "OriginRequestPolicyConfig",
+        } }, { __index = M.OriginRequestPolicyConfig }),
         Id = {
             type = "string",
             traits = {
@@ -12272,12 +11434,9 @@ M.UpdateOriginRequestPolicyInput = {
 M.UpdateOriginRequestPolicyOutput = {
     type = "structure",
     members = {
-        OriginRequestPolicy = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        OriginRequestPolicy = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.OriginRequestPolicy }),
         ETag = {
             type = "string",
             traits = {
@@ -12290,14 +11449,11 @@ M.UpdateOriginRequestPolicyOutput = {
 M.UpdatePublicKeyInput = {
     type = "structure",
     members = {
-        PublicKeyConfig = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-                xml_name = "PublicKeyConfig",
-            },
-        },
+        PublicKeyConfig = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+            xml_name = "PublicKeyConfig",
+        } }, { __index = M.PublicKeyConfig }),
         Id = {
             type = "string",
             traits = {
@@ -12317,12 +11473,9 @@ M.UpdatePublicKeyInput = {
 M.UpdatePublicKeyOutput = {
     type = "structure",
     members = {
-        PublicKey = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        PublicKey = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.PublicKey }),
         ETag = {
             type = "string",
             traits = {
@@ -12337,11 +11490,11 @@ M.UpdateRealtimeLogConfigInput = {
     members = {
         EndPoints = {
             type = "list",
-            member_type = "structure",
+            member = M.EndPoint,
         },
         Fields = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Name = {
             type = "string",
@@ -12350,7 +11503,7 @@ M.UpdateRealtimeLogConfigInput = {
             type = "string",
         },
         SamplingRate = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -12358,23 +11511,18 @@ M.UpdateRealtimeLogConfigInput = {
 M.UpdateRealtimeLogConfigOutput = {
     type = "structure",
     members = {
-        RealtimeLogConfig = {
-            type = "structure",
-        },
+        RealtimeLogConfig = M.RealtimeLogConfig,
     },
 }
 
 M.UpdateResponseHeadersPolicyInput = {
     type = "structure",
     members = {
-        ResponseHeadersPolicyConfig = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-                xml_name = "ResponseHeadersPolicyConfig",
-            },
-        },
+        ResponseHeadersPolicyConfig = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+            xml_name = "ResponseHeadersPolicyConfig",
+        } }, { __index = M.ResponseHeadersPolicyConfig }),
         Id = {
             type = "string",
             traits = {
@@ -12394,12 +11542,9 @@ M.UpdateResponseHeadersPolicyInput = {
 M.UpdateResponseHeadersPolicyOutput = {
     type = "structure",
     members = {
-        ResponseHeadersPolicy = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        ResponseHeadersPolicy = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.ResponseHeadersPolicy }),
         ETag = {
             type = "string",
             traits = {
@@ -12412,14 +11557,11 @@ M.UpdateResponseHeadersPolicyOutput = {
 M.UpdateStreamingDistributionInput = {
     type = "structure",
     members = {
-        StreamingDistributionConfig = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-                xml_name = "StreamingDistributionConfig",
-            },
-        },
+        StreamingDistributionConfig = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+            xml_name = "StreamingDistributionConfig",
+        } }, { __index = M.StreamingDistributionConfig }),
         Id = {
             type = "string",
             traits = {
@@ -12439,12 +11581,9 @@ M.UpdateStreamingDistributionInput = {
 M.UpdateStreamingDistributionOutput = {
     type = "structure",
     members = {
-        StreamingDistribution = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        StreamingDistribution = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.StreamingDistribution }),
         ETag = {
             type = "string",
             traits = {
@@ -12464,13 +11603,10 @@ M.UpdateTrustStoreInput = {
                 required = true,
             },
         },
-        CaCertificatesBundleSource = {
-            type = "union",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        CaCertificatesBundleSource = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.CaCertificatesBundleSource }),
         IfMatch = {
             type = "string",
             traits = {
@@ -12484,12 +11620,9 @@ M.UpdateTrustStoreInput = {
 M.UpdateTrustStoreOutput = {
     type = "structure",
     members = {
-        TrustStore = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        TrustStore = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.TrustStore }),
         ETag = {
             type = "string",
             traits = {
@@ -12502,14 +11635,11 @@ M.UpdateTrustStoreOutput = {
 M.UpdateVpcOriginInput = {
     type = "structure",
     members = {
-        VpcOriginEndpointConfig = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-                xml_name = "VpcOriginEndpointConfig",
-            },
-        },
+        VpcOriginEndpointConfig = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+            xml_name = "VpcOriginEndpointConfig",
+        } }, { __index = M.VpcOriginEndpointConfig }),
         Id = {
             type = "string",
             traits = {
@@ -12530,12 +11660,9 @@ M.UpdateVpcOriginInput = {
 M.UpdateVpcOriginOutput = {
     type = "structure",
     members = {
-        VpcOrigin = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        VpcOrigin = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.VpcOrigin }),
         ETag = {
             type = "string",
             traits = {
@@ -12592,7 +11719,7 @@ M.VerifyDnsConfigurationOutput = {
     members = {
         DnsConfigurationList = {
             type = "list",
-            member_type = "structure",
+            member = M.DnsConfiguration,
         },
     },
 }

@@ -79,21 +79,11 @@ M.ModuleLoggingConfigurationInput = {
 M.LoggingConfigurationInput = {
     type = "structure",
     members = {
-        DagProcessingLogs = {
-            type = "structure",
-        },
-        SchedulerLogs = {
-            type = "structure",
-        },
-        WebserverLogs = {
-            type = "structure",
-        },
-        WorkerLogs = {
-            type = "structure",
-        },
-        TaskLogs = {
-            type = "structure",
-        },
+        DagProcessingLogs = M.ModuleLoggingConfigurationInput,
+        SchedulerLogs = M.ModuleLoggingConfigurationInput,
+        WebserverLogs = M.ModuleLoggingConfigurationInput,
+        WorkerLogs = M.ModuleLoggingConfigurationInput,
+        TaskLogs = M.ModuleLoggingConfigurationInput,
     },
 }
 
@@ -102,11 +92,11 @@ M.NetworkConfiguration = {
     members = {
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -144,12 +134,9 @@ M.CreateEnvironmentInput = {
                 required = true,
             },
         },
-        NetworkConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        NetworkConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.NetworkConfiguration }),
         PluginsS3Path = {
             type = "string",
         },
@@ -170,14 +157,14 @@ M.CreateEnvironmentInput = {
         },
         AirflowConfigurationOptions = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         EnvironmentClass = {
             type = "string",
         },
         MaxWorkers = {
-            type = "number",
+            type = "integer",
         },
         KmsKey = {
             type = "string",
@@ -185,34 +172,32 @@ M.CreateEnvironmentInput = {
         AirflowVersion = {
             type = "string",
         },
-        LoggingConfiguration = {
-            type = "structure",
-        },
+        LoggingConfiguration = M.LoggingConfigurationInput,
         WeeklyMaintenanceWindowStart = {
             type = "string",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         WebserverAccessMode = {
             type = "string",
         },
         MinWorkers = {
-            type = "number",
+            type = "integer",
         },
         Schedulers = {
-            type = "number",
+            type = "integer",
         },
         EndpointManagement = {
             type = "string",
         },
         MinWebservers = {
-            type = "number",
+            type = "integer",
         },
         MaxWebservers = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -339,9 +324,7 @@ M.LastUpdate = {
         CreatedAt = {
             type = "timestamp",
         },
-        Error = {
-            type = "structure",
-        },
+        Error = M.UpdateError,
         Source = {
             type = "string",
         },
@@ -369,21 +352,11 @@ M.ModuleLoggingConfiguration = {
 M.LoggingConfiguration = {
     type = "structure",
     members = {
-        DagProcessingLogs = {
-            type = "structure",
-        },
-        SchedulerLogs = {
-            type = "structure",
-        },
-        WebserverLogs = {
-            type = "structure",
-        },
-        WorkerLogs = {
-            type = "structure",
-        },
-        TaskLogs = {
-            type = "structure",
-        },
+        DagProcessingLogs = M.ModuleLoggingConfiguration,
+        SchedulerLogs = M.ModuleLoggingConfiguration,
+        WebserverLogs = M.ModuleLoggingConfiguration,
+        WorkerLogs = M.ModuleLoggingConfiguration,
+        TaskLogs = M.ModuleLoggingConfiguration,
     },
 }
 
@@ -458,40 +431,34 @@ M.Environment = {
         },
         AirflowConfigurationOptions = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         EnvironmentClass = {
             type = "string",
         },
         MaxWorkers = {
-            type = "number",
+            type = "integer",
         },
-        NetworkConfiguration = {
-            type = "structure",
-        },
-        LoggingConfiguration = {
-            type = "structure",
-        },
-        LastUpdate = {
-            type = "structure",
-        },
+        NetworkConfiguration = M.NetworkConfiguration,
+        LoggingConfiguration = M.LoggingConfiguration,
+        LastUpdate = M.LastUpdate,
         WeeklyMaintenanceWindowStart = {
             type = "string",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         WebserverAccessMode = {
             type = "string",
         },
         MinWorkers = {
-            type = "number",
+            type = "integer",
         },
         Schedulers = {
-            type = "number",
+            type = "integer",
         },
         WebserverVpcEndpointService = {
             type = "string",
@@ -506,10 +473,10 @@ M.Environment = {
             type = "string",
         },
         MinWebservers = {
-            type = "number",
+            type = "integer",
         },
         MaxWebservers = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -517,9 +484,7 @@ M.Environment = {
 M.GetEnvironmentOutput = {
     type = "structure",
     members = {
-        Environment = {
-            type = "structure",
-        },
+        Environment = M.Environment,
     },
 }
 
@@ -566,7 +531,7 @@ M.InvokeRestApiOutput = {
     type = "structure",
     members = {
         RestApiStatusCode = {
-            type = "number",
+            type = "integer",
         },
         RestApiResponse = {
             type = "document",
@@ -579,7 +544,7 @@ M.RestApiClientException = {
     error = "client",
     members = {
         RestApiStatusCode = {
-            type = "number",
+            type = "integer",
         },
         RestApiResponse = {
             type = "document",
@@ -592,7 +557,7 @@ M.RestApiServerException = {
     error = "client",
     members = {
         RestApiStatusCode = {
-            type = "number",
+            type = "integer",
         },
         RestApiResponse = {
             type = "document",
@@ -610,7 +575,7 @@ M.ListEnvironmentsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -623,7 +588,7 @@ M.ListEnvironmentsOutput = {
     members = {
         Environments = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -652,8 +617,8 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -680,16 +645,16 @@ M.StatisticSet = {
     type = "structure",
     members = {
         SampleCount = {
-            type = "number",
+            type = "integer",
         },
         Sum = {
-            type = "number",
+            type = "double",
         },
         Minimum = {
-            type = "number",
+            type = "double",
         },
         Maximum = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -741,17 +706,15 @@ M.MetricDatum = {
         },
         Dimensions = {
             type = "list",
-            member_type = "structure",
+            member = M.Dimension,
         },
         Value = {
-            type = "number",
+            type = "double",
         },
         Unit = {
             type = "string",
         },
-        StatisticValues = {
-            type = "structure",
-        },
+        StatisticValues = M.StatisticSet,
     },
 }
 
@@ -767,7 +730,7 @@ M.PublishMetricsInput = {
         },
         MetricData = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricDatum,
             traits = {
                 required = true,
             },
@@ -791,8 +754,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -816,7 +779,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -834,7 +797,7 @@ M.UpdateNetworkConfigurationInput = {
     members = {
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -857,8 +820,8 @@ M.UpdateEnvironmentInput = {
         },
         AirflowConfigurationOptions = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         AirflowVersion = {
             type = "string",
@@ -869,27 +832,23 @@ M.UpdateEnvironmentInput = {
         EnvironmentClass = {
             type = "string",
         },
-        LoggingConfiguration = {
-            type = "structure",
-        },
+        LoggingConfiguration = M.LoggingConfigurationInput,
         MaxWorkers = {
-            type = "number",
+            type = "integer",
         },
         MinWorkers = {
-            type = "number",
+            type = "integer",
         },
         MaxWebservers = {
-            type = "number",
+            type = "integer",
         },
         MinWebservers = {
-            type = "number",
+            type = "integer",
         },
         WorkerReplacementStrategy = {
             type = "string",
         },
-        NetworkConfiguration = {
-            type = "structure",
-        },
+        NetworkConfiguration = M.UpdateNetworkConfigurationInput,
         PluginsS3Path = {
             type = "string",
         },
@@ -903,7 +862,7 @@ M.UpdateEnvironmentInput = {
             type = "string",
         },
         Schedulers = {
-            type = "number",
+            type = "integer",
         },
         SourceBucketArn = {
             type = "string",

@@ -18,11 +18,9 @@ M.AbpV1_0_x = {
         DevAddr = {
             type = "string",
         },
-        SessionKeys = {
-            type = "structure",
-        },
+        SessionKeys = M.SessionKeysAbpV1_0_x,
         FCntStart = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -51,11 +49,9 @@ M.AbpV1_1 = {
         DevAddr = {
             type = "string",
         },
-        SessionKeys = {
-            type = "structure",
-        },
+        SessionKeys = M.SessionKeysAbpV1_1,
         FCntStart = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -74,10 +70,10 @@ M.Accuracy = {
     type = "structure",
     members = {
         HorizontalAccuracy = {
-            type = "number",
+            type = "float",
         },
         VerticalAccuracy = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -86,7 +82,10 @@ M.WiFiCellular = {
     type = "structure",
     members = {
         ConfidencePercent = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 68,
+            },
         },
     },
 }
@@ -94,9 +93,7 @@ M.WiFiCellular = {
 M.AdvancedConfiguration = {
     type = "structure",
     members = {
-        WiFiCellular = {
-            type = "structure",
-        },
+        WiFiCellular = M.WiFiCellular,
     },
 }
 
@@ -114,7 +111,7 @@ M.ApplicationConfig = {
     type = "structure",
     members = {
         FPort = {
-            type = "number",
+            type = "integer",
         },
         Type = {
             type = "string",
@@ -158,18 +155,15 @@ M.Tag = {
 M.AssociateAwsAccountWithPartnerAccountInput = {
     type = "structure",
     members = {
-        Sidewalk = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Sidewalk = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SidewalkAccountInfo }),
         ClientRequestToken = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -177,9 +171,7 @@ M.AssociateAwsAccountWithPartnerAccountInput = {
 M.AssociateAwsAccountWithPartnerAccountOutput = {
     type = "structure",
     members = {
-        Sidewalk = {
-            type = "structure",
-        },
+        Sidewalk = M.SidewalkAccountInfo,
         Arn = {
             type = "string",
         },
@@ -401,11 +393,11 @@ M.Beaconing = {
     type = "structure",
     members = {
         DataRate = {
-            type = "number",
+            type = "integer",
         },
         Frequencies = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
         },
     },
 }
@@ -431,13 +423,13 @@ M.CdmaLocalId = {
     type = "structure",
     members = {
         PnOffset = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         CdmaChannel = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -449,22 +441,22 @@ M.CdmaNmrObj = {
     type = "structure",
     members = {
         PnOffset = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         CdmaChannel = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         PilotPower = {
-            type = "number",
+            type = "integer",
         },
         BaseStationId = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -473,41 +465,39 @@ M.CdmaObj = {
     type = "structure",
     members = {
         SystemId = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         NetworkId = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         BaseStationId = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         RegistrationZone = {
-            type = "number",
+            type = "integer",
         },
-        CdmaLocalId = {
-            type = "structure",
-        },
+        CdmaLocalId = M.CdmaLocalId,
         PilotPower = {
-            type = "number",
+            type = "integer",
         },
         BaseLat = {
-            type = "number",
+            type = "float",
         },
         BaseLng = {
-            type = "number",
+            type = "float",
         },
         CdmaNmr = {
             type = "list",
-            member_type = "structure",
+            member = M.CdmaNmrObj,
         },
     },
 }
@@ -516,13 +506,13 @@ M.GsmLocalId = {
     type = "structure",
     members = {
         Bsic = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Bcch = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -534,13 +524,13 @@ M.GlobalIdentity = {
     type = "structure",
     members = {
         Lac = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         GeranCid = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -552,23 +542,21 @@ M.GsmNmrObj = {
     type = "structure",
     members = {
         Bsic = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Bcch = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         RxLevel = {
-            type = "number",
+            type = "integer",
         },
-        GlobalIdentity = {
-            type = "structure",
-        },
+        GlobalIdentity = M.GlobalIdentity,
     },
 }
 
@@ -576,41 +564,39 @@ M.GsmObj = {
     type = "structure",
     members = {
         Mcc = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Mnc = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Lac = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         GeranCid = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
-        GsmLocalId = {
-            type = "structure",
-        },
+        GsmLocalId = M.GsmLocalId,
         GsmTimingAdvance = {
-            type = "number",
+            type = "integer",
         },
         RxLevel = {
-            type = "number",
+            type = "integer",
         },
         GsmNmr = {
             type = "list",
-            member_type = "structure",
+            member = M.GsmNmrObj,
         },
     },
 }
@@ -619,13 +605,13 @@ M.LteLocalId = {
     type = "structure",
     members = {
         Pci = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Earfcn = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -637,25 +623,28 @@ M.LteNmrObj = {
     type = "structure",
     members = {
         Pci = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Earfcn = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         EutranCid = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         Rsrp = {
-            type = "number",
+            type = "integer",
         },
         Rsrq = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -664,44 +653,45 @@ M.LteObj = {
     type = "structure",
     members = {
         Mcc = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Mnc = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         EutranCid = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Tac = {
-            type = "number",
+            type = "integer",
         },
-        LteLocalId = {
-            type = "structure",
-        },
+        LteLocalId = M.LteLocalId,
         LteTimingAdvance = {
-            type = "number",
+            type = "integer",
         },
         Rsrp = {
-            type = "number",
+            type = "integer",
         },
         Rsrq = {
-            type = "number",
+            type = "float",
         },
         NrCapable = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         LteNmr = {
             type = "list",
-            member_type = "structure",
+            member = M.LteNmrObj,
         },
     },
 }
@@ -710,13 +700,13 @@ M.TdscdmaLocalId = {
     type = "structure",
     members = {
         Uarfcn = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         CellParams = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -728,25 +718,25 @@ M.TdscdmaNmrObj = {
     type = "structure",
     members = {
         Uarfcn = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         CellParams = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         UtranCid = {
-            type = "number",
+            type = "integer",
         },
         Rscp = {
-            type = "number",
+            type = "integer",
         },
         PathLoss = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -755,41 +745,39 @@ M.TdscdmaObj = {
     type = "structure",
     members = {
         Mcc = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Mnc = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Lac = {
-            type = "number",
+            type = "integer",
         },
         UtranCid = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
-        TdscdmaLocalId = {
-            type = "structure",
-        },
+        TdscdmaLocalId = M.TdscdmaLocalId,
         TdscdmaTimingAdvance = {
-            type = "number",
+            type = "integer",
         },
         Rscp = {
-            type = "number",
+            type = "integer",
         },
         PathLoss = {
-            type = "number",
+            type = "integer",
         },
         TdscdmaNmr = {
             type = "list",
-            member_type = "structure",
+            member = M.TdscdmaNmrObj,
         },
     },
 }
@@ -798,13 +786,13 @@ M.WcdmaLocalId = {
     type = "structure",
     members = {
         Uarfcndl = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Psc = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -816,28 +804,28 @@ M.WcdmaNmrObj = {
     type = "structure",
     members = {
         Uarfcndl = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Psc = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         UtranCid = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Rscp = {
-            type = "number",
+            type = "integer",
         },
         PathLoss = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -846,38 +834,36 @@ M.WcdmaObj = {
     type = "structure",
     members = {
         Mcc = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Mnc = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Lac = {
-            type = "number",
+            type = "integer",
         },
         UtranCid = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
-        WcdmaLocalId = {
-            type = "structure",
-        },
+        WcdmaLocalId = M.WcdmaLocalId,
         Rscp = {
-            type = "number",
+            type = "integer",
         },
         PathLoss = {
-            type = "number",
+            type = "integer",
         },
         WcdmaNmr = {
             type = "list",
-            member_type = "structure",
+            member = M.WcdmaNmrObj,
         },
     },
 }
@@ -887,23 +873,23 @@ M.CellTowers = {
     members = {
         Gsm = {
             type = "list",
-            member_type = "structure",
+            member = M.GsmObj,
         },
         Wcdma = {
             type = "list",
-            member_type = "structure",
+            member = M.WcdmaObj,
         },
         Tdscdma = {
             type = "list",
-            member_type = "structure",
+            member = M.TdscdmaObj,
         },
         Lte = {
             type = "list",
-            member_type = "structure",
+            member = M.LteObj,
         },
         Cdma = {
             type = "list",
-            member_type = "structure",
+            member = M.CdmaObj,
         },
     },
 }
@@ -953,9 +939,7 @@ M.LoRaWANConnectionStatusEventNotificationConfigurations = {
 M.ConnectionStatusEventConfiguration = {
     type = "structure",
     members = {
-        LoRaWAN = {
-            type = "structure",
-        },
+        LoRaWAN = M.LoRaWANConnectionStatusEventNotificationConfigurations,
         WirelessGatewayIdEventTopic = {
             type = "string",
         },
@@ -974,9 +958,7 @@ M.LoRaWANConnectionStatusResourceTypeEventConfiguration = {
 M.ConnectionStatusResourceTypeEventConfiguration = {
     type = "structure",
     members = {
-        LoRaWAN = {
-            type = "structure",
-        },
+        LoRaWAN = M.LoRaWANConnectionStatusResourceTypeEventConfiguration,
     },
 }
 
@@ -1017,7 +999,7 @@ M.CreateDestinationInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ClientRequestToken = {
             type = "string",
@@ -1042,24 +1024,30 @@ M.LoRaWANDeviceProfile = {
     members = {
         SupportsClassB = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         ClassBTimeout = {
-            type = "number",
+            type = "integer",
         },
         PingSlotPeriod = {
-            type = "number",
+            type = "integer",
         },
         PingSlotDr = {
-            type = "number",
+            type = "integer",
         },
         PingSlotFreq = {
-            type = "number",
+            type = "integer",
         },
         SupportsClassC = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         ClassCTimeout = {
-            type = "number",
+            type = "integer",
         },
         MacVersion = {
             type = "string",
@@ -1068,26 +1056,26 @@ M.LoRaWANDeviceProfile = {
             type = "string",
         },
         RxDelay1 = {
-            type = "number",
+            type = "integer",
         },
         RxDrOffset1 = {
-            type = "number",
+            type = "integer",
         },
         RxDataRate2 = {
-            type = "number",
+            type = "integer",
         },
         RxFreq2 = {
-            type = "number",
+            type = "integer",
         },
         FactoryPresetFreqsList = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
         },
         MaxEirp = {
-            type = "number",
+            type = "integer",
         },
         MaxDutyCycle = {
-            type = "number",
+            type = "integer",
         },
         RfRegion = {
             type = "string",
@@ -1097,6 +1085,9 @@ M.LoRaWANDeviceProfile = {
         },
         Supports32BitFCnt = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1111,19 +1102,15 @@ M.CreateDeviceProfileInput = {
         Name = {
             type = "string",
         },
-        LoRaWAN = {
-            type = "structure",
-        },
+        LoRaWAN = M.LoRaWANDeviceProfile,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ClientRequestToken = {
             type = "string",
         },
-        Sidewalk = {
-            type = "structure",
-        },
+        Sidewalk = M.SidewalkCreateDeviceProfile,
     },
 }
 
@@ -1176,9 +1163,7 @@ M.CreateFuotaTaskInput = {
         ClientRequestToken = {
             type = "string",
         },
-        LoRaWAN = {
-            type = "structure",
-        },
+        LoRaWAN = M.LoRaWANFuotaTask,
         FirmwareUpdateImage = {
             type = "string",
             traits = {
@@ -1193,16 +1178,16 @@ M.CreateFuotaTaskInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         RedundancyPercent = {
-            type = "number",
+            type = "integer",
         },
         FragmentSizeBytes = {
-            type = "number",
+            type = "integer",
         },
         FragmentIntervalMS = {
-            type = "number",
+            type = "integer",
         },
         Descriptor = {
             type = "string",
@@ -1232,10 +1217,10 @@ M.ParticipatingGatewaysMulticast = {
     members = {
         GatewayList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TransmissionInterval = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1249,9 +1234,7 @@ M.LoRaWANMulticast = {
         DlClass = {
             type = "string",
         },
-        ParticipatingGateways = {
-            type = "structure",
-        },
+        ParticipatingGateways = M.ParticipatingGatewaysMulticast,
     },
 }
 
@@ -1267,15 +1250,12 @@ M.CreateMulticastGroupInput = {
         ClientRequestToken = {
             type = "string",
         },
-        LoRaWAN = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        LoRaWAN = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LoRaWANMulticast }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1332,30 +1312,28 @@ M.CreateNetworkAnalyzerConfigurationInput = {
                 required = true,
             },
         },
-        TraceContent = {
-            type = "structure",
-        },
+        TraceContent = M.TraceContent,
         WirelessDevices = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         WirelessGateways = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Description = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ClientRequestToken = {
             type = "string",
         },
         MulticastGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1377,30 +1355,39 @@ M.LoRaWANServiceProfile = {
     members = {
         AddGwMetadata = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         DrMin = {
-            type = "number",
+            type = "integer",
         },
         DrMax = {
-            type = "number",
+            type = "integer",
         },
         PrAllowed = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         RaAllowed = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         TxPowerIndexMin = {
-            type = "number",
+            type = "integer",
         },
         TxPowerIndexMax = {
-            type = "number",
+            type = "integer",
         },
         NbTransMin = {
-            type = "number",
+            type = "integer",
         },
         NbTransMax = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1411,12 +1398,10 @@ M.CreateServiceProfileInput = {
         Name = {
             type = "string",
         },
-        LoRaWAN = {
-            type = "structure",
-        },
+        LoRaWAN = M.LoRaWANServiceProfile,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ClientRequestToken = {
             type = "string",
@@ -1440,13 +1425,13 @@ M.Positioning = {
     type = "structure",
     members = {
         ClockSync = {
-            type = "number",
+            type = "integer",
         },
         Stream = {
-            type = "number",
+            type = "integer",
         },
         Gnss = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1455,20 +1440,18 @@ M.FPorts = {
     type = "structure",
     members = {
         Fuota = {
-            type = "number",
+            type = "integer",
         },
         Multicast = {
-            type = "number",
+            type = "integer",
         },
         ClockSync = {
-            type = "number",
+            type = "integer",
         },
-        Positioning = {
-            type = "structure",
-        },
+        Positioning = M.Positioning,
         Applications = {
             type = "list",
-            member_type = "structure",
+            member = M.ApplicationConfig,
         },
     },
 }
@@ -1518,21 +1501,11 @@ M.LoRaWANDevice = {
         ServiceProfileId = {
             type = "string",
         },
-        OtaaV1_1 = {
-            type = "structure",
-        },
-        OtaaV1_0_x = {
-            type = "structure",
-        },
-        AbpV1_1 = {
-            type = "structure",
-        },
-        AbpV1_0_x = {
-            type = "structure",
-        },
-        FPorts = {
-            type = "structure",
-        },
+        OtaaV1_1 = M.OtaaV1_1,
+        OtaaV1_0_x = M.OtaaV1_0_x,
+        AbpV1_1 = M.AbpV1_1,
+        AbpV1_0_x = M.AbpV1_0_x,
+        FPorts = M.FPorts,
     },
 }
 
@@ -1556,9 +1529,7 @@ M.SidewalkCreateWirelessDevice = {
         DeviceProfileId = {
             type = "string",
         },
-        Positioning = {
-            type = "structure",
-        },
+        Positioning = M.SidewalkPositioning,
         SidewalkManufacturingSn = {
             type = "string",
         },
@@ -1594,19 +1565,15 @@ M.CreateWirelessDeviceInput = {
         ClientRequestToken = {
             type = "string",
         },
-        LoRaWAN = {
-            type = "structure",
-        },
+        LoRaWAN = M.LoRaWANDevice,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         Positioning = {
             type = "string",
         },
-        Sidewalk = {
-            type = "structure",
-        },
+        Sidewalk = M.SidewalkCreateWirelessDevice,
     },
 }
 
@@ -1633,21 +1600,19 @@ M.LoRaWANGateway = {
         },
         JoinEuiFilters = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
         },
         NetIdFilters = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SubBands = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
         },
-        Beaconing = {
-            type = "structure",
-        },
+        Beaconing = M.Beaconing,
         MaxEirp = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -1661,15 +1626,12 @@ M.CreateWirelessGatewayInput = {
         Description = {
             type = "string",
         },
-        LoRaWAN = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        LoRaWAN = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LoRaWANGateway }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ClientRequestToken = {
             type = "string",
@@ -1751,14 +1713,10 @@ M.LoRaWANUpdateGatewayTaskCreate = {
             type = "string",
         },
         SigKeyCrc = {
-            type = "number",
+            type = "long",
         },
-        CurrentVersion = {
-            type = "structure",
-        },
-        UpdateVersion = {
-            type = "structure",
-        },
+        CurrentVersion = M.LoRaWANGatewayVersion,
+        UpdateVersion = M.LoRaWANGatewayVersion,
     },
 }
 
@@ -1771,9 +1729,7 @@ M.UpdateWirelessGatewayTaskCreate = {
         UpdateDataRole = {
             type = "string",
         },
-        LoRaWAN = {
-            type = "structure",
-        },
+        LoRaWAN = M.LoRaWANUpdateGatewayTaskCreate,
     },
 }
 
@@ -1783,21 +1739,20 @@ M.CreateWirelessGatewayTaskDefinitionInput = {
         AutoCreateTasks = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
         Name = {
             type = "string",
         },
-        Update = {
-            type = "structure",
-        },
+        Update = M.UpdateWirelessGatewayTaskCreate,
         ClientRequestToken = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1824,7 +1779,7 @@ M.DakCertificateMetadata = {
             },
         },
         MaxAllowedSignature = {
-            type = "number",
+            type = "integer",
         },
         FactorySupport = {
             type = "boolean",
@@ -2134,9 +2089,7 @@ M.SidewalkEventNotificationConfigurations = {
 M.DeviceRegistrationStateEventConfiguration = {
     type = "structure",
     members = {
-        Sidewalk = {
-            type = "structure",
-        },
+        Sidewalk = M.SidewalkEventNotificationConfigurations,
         WirelessDeviceIdEventTopic = {
             type = "string",
         },
@@ -2155,9 +2108,7 @@ M.SidewalkResourceTypeEventConfiguration = {
 M.DeviceRegistrationStateResourceTypeEventConfiguration = {
     type = "structure",
     members = {
-        Sidewalk = {
-            type = "structure",
-        },
+        Sidewalk = M.SidewalkResourceTypeEventConfiguration,
     },
 }
 
@@ -2352,7 +2303,7 @@ M.GatewayListItem = {
             },
         },
         DownlinkFrequency = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -2371,13 +2322,13 @@ M.ParticipatingGateways = {
         },
         GatewayList = {
             type = "list",
-            member_type = "structure",
+            member = M.GatewayListItem,
             traits = {
                 required = true,
             },
         },
         TransmissionInterval = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -2389,11 +2340,9 @@ M.LoRaWANSendDataToDevice = {
     type = "structure",
     members = {
         FPort = {
-            type = "number",
+            type = "integer",
         },
-        ParticipatingGateways = {
-            type = "structure",
-        },
+        ParticipatingGateways = M.ParticipatingGateways,
     },
 }
 
@@ -2404,14 +2353,12 @@ M.DownlinkQueueMessage = {
             type = "string",
         },
         TransmitMode = {
-            type = "number",
+            type = "integer",
         },
         ReceivedAt = {
             type = "string",
         },
-        LoRaWAN = {
-            type = "structure",
-        },
+        LoRaWAN = M.LoRaWANSendDataToDevice,
     },
 }
 
@@ -2435,9 +2382,7 @@ M.LoRaWANJoinEventNotificationConfigurations = {
 M.JoinEventConfiguration = {
     type = "structure",
     members = {
-        LoRaWAN = {
-            type = "structure",
-        },
+        LoRaWAN = M.LoRaWANJoinEventNotificationConfigurations,
         WirelessDeviceIdEventTopic = {
             type = "string",
         },
@@ -2447,9 +2392,7 @@ M.JoinEventConfiguration = {
 M.MessageDeliveryStatusEventConfiguration = {
     type = "structure",
     members = {
-        Sidewalk = {
-            type = "structure",
-        },
+        Sidewalk = M.SidewalkEventNotificationConfigurations,
         WirelessDeviceIdEventTopic = {
             type = "string",
         },
@@ -2459,9 +2402,7 @@ M.MessageDeliveryStatusEventConfiguration = {
 M.ProximityEventConfiguration = {
     type = "structure",
     members = {
-        Sidewalk = {
-            type = "structure",
-        },
+        Sidewalk = M.SidewalkEventNotificationConfigurations,
         WirelessDeviceIdEventTopic = {
             type = "string",
         },
@@ -2471,21 +2412,11 @@ M.ProximityEventConfiguration = {
 M.EventNotificationItemConfigurations = {
     type = "structure",
     members = {
-        DeviceRegistrationState = {
-            type = "structure",
-        },
-        Proximity = {
-            type = "structure",
-        },
-        Join = {
-            type = "structure",
-        },
-        ConnectionStatus = {
-            type = "structure",
-        },
-        MessageDeliveryStatus = {
-            type = "structure",
-        },
+        DeviceRegistrationState = M.DeviceRegistrationStateEventConfiguration,
+        Proximity = M.ProximityEventConfiguration,
+        Join = M.JoinEventConfiguration,
+        ConnectionStatus = M.ConnectionStatusEventConfiguration,
+        MessageDeliveryStatus = M.MessageDeliveryStatusEventConfiguration,
     },
 }
 
@@ -2513,9 +2444,7 @@ M.EventConfigurationItem = {
         PartnerType = {
             type = "string",
         },
-        Events = {
-            type = "structure",
-        },
+        Events = M.EventNotificationItemConfigurations,
     },
 }
 
@@ -2598,7 +2527,7 @@ M.FuotaTaskLogOption = {
         },
         Events = {
             type = "list",
-            member_type = "structure",
+            member = M.FuotaTaskEventLogOption,
         },
     },
 }
@@ -2672,7 +2601,7 @@ M.SidewalkGetDeviceProfile = {
         },
         DakCertificateMetadata = {
             type = "list",
-            member_type = "structure",
+            member = M.DakCertificateMetadata,
         },
     },
 }
@@ -2689,12 +2618,8 @@ M.GetDeviceProfileOutput = {
         Id = {
             type = "string",
         },
-        LoRaWAN = {
-            type = "structure",
-        },
-        Sidewalk = {
-            type = "structure",
-        },
+        LoRaWAN = M.LoRaWANDeviceProfile,
+        Sidewalk = M.SidewalkGetDeviceProfile,
     },
 }
 
@@ -2714,48 +2639,32 @@ M.LoRaWANJoinResourceTypeEventConfiguration = {
 M.JoinResourceTypeEventConfiguration = {
     type = "structure",
     members = {
-        LoRaWAN = {
-            type = "structure",
-        },
+        LoRaWAN = M.LoRaWANJoinResourceTypeEventConfiguration,
     },
 }
 
 M.MessageDeliveryStatusResourceTypeEventConfiguration = {
     type = "structure",
     members = {
-        Sidewalk = {
-            type = "structure",
-        },
+        Sidewalk = M.SidewalkResourceTypeEventConfiguration,
     },
 }
 
 M.ProximityResourceTypeEventConfiguration = {
     type = "structure",
     members = {
-        Sidewalk = {
-            type = "structure",
-        },
+        Sidewalk = M.SidewalkResourceTypeEventConfiguration,
     },
 }
 
 M.GetEventConfigurationByResourceTypesOutput = {
     type = "structure",
     members = {
-        DeviceRegistrationState = {
-            type = "structure",
-        },
-        Proximity = {
-            type = "structure",
-        },
-        Join = {
-            type = "structure",
-        },
-        ConnectionStatus = {
-            type = "structure",
-        },
-        MessageDeliveryStatus = {
-            type = "structure",
-        },
+        DeviceRegistrationState = M.DeviceRegistrationStateResourceTypeEventConfiguration,
+        Proximity = M.ProximityResourceTypeEventConfiguration,
+        Join = M.JoinResourceTypeEventConfiguration,
+        ConnectionStatus = M.ConnectionStatusResourceTypeEventConfiguration,
+        MessageDeliveryStatus = M.MessageDeliveryStatusResourceTypeEventConfiguration,
     },
 }
 
@@ -2802,9 +2711,7 @@ M.GetFuotaTaskOutput = {
         Description = {
             type = "string",
         },
-        LoRaWAN = {
-            type = "structure",
-        },
+        LoRaWAN = M.LoRaWANFuotaTaskGetInfo,
         FirmwareUpdateImage = {
             type = "string",
         },
@@ -2815,13 +2722,13 @@ M.GetFuotaTaskOutput = {
             type = "timestamp",
         },
         RedundancyPercent = {
-            type = "number",
+            type = "integer",
         },
         FragmentSizeBytes = {
-            type = "number",
+            type = "integer",
         },
         FragmentIntervalMS = {
-            type = "number",
+            type = "integer",
         },
         Descriptor = {
             type = "string",
@@ -2876,7 +2783,7 @@ M.WirelessDeviceLogOption = {
         },
         Events = {
             type = "list",
-            member_type = "structure",
+            member = M.WirelessDeviceEventLogOption,
         },
     },
 }
@@ -2925,7 +2832,7 @@ M.WirelessGatewayLogOption = {
         },
         Events = {
             type = "list",
-            member_type = "structure",
+            member = M.WirelessGatewayEventLogOption,
         },
     },
 }
@@ -2938,15 +2845,15 @@ M.GetLogLevelsByResourceTypesOutput = {
         },
         WirelessGatewayLogOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.WirelessGatewayLogOption,
         },
         WirelessDeviceLogOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.WirelessDeviceLogOption,
         },
         FuotaTaskLogOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.FuotaTaskLogOption,
         },
     },
 }
@@ -2972,9 +2879,7 @@ M.SummaryMetricConfiguration = {
 M.GetMetricConfigurationOutput = {
     type = "structure",
     members = {
-        SummaryMetric = {
-            type = "structure",
-        },
+        SummaryMetric = M.SummaryMetricConfiguration,
     },
 }
 
@@ -3024,7 +2929,7 @@ M.SummaryMetricQuery = {
         },
         Dimensions = {
             type = "list",
-            member_type = "structure",
+            member = M.Dimension,
         },
         AggregationPeriod = {
             type = "string",
@@ -3043,7 +2948,7 @@ M.GetMetricsInput = {
     members = {
         SummaryMetricQueries = {
             type = "list",
-            member_type = "structure",
+            member = M.SummaryMetricQuery,
         },
     },
 }
@@ -3057,22 +2962,22 @@ M.MetricQueryValue = {
     type = "structure",
     members = {
         Min = {
-            type = "number",
+            type = "double",
         },
         Max = {
-            type = "number",
+            type = "double",
         },
         Sum = {
-            type = "number",
+            type = "double",
         },
         Avg = {
-            type = "number",
+            type = "double",
         },
         Std = {
-            type = "number",
+            type = "double",
         },
         P90 = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -3094,7 +2999,7 @@ M.SummaryMetricQueryResult = {
         },
         Dimensions = {
             type = "list",
-            member_type = "structure",
+            member = M.Dimension,
         },
         AggregationPeriod = {
             type = "string",
@@ -3107,11 +3012,11 @@ M.SummaryMetricQueryResult = {
         },
         Timestamps = {
             type = "list",
-            member_type = "timestamp",
+            member = { type = "timestamp" },
         },
         Values = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricQueryValue,
         },
         Unit = {
             type = "string",
@@ -3124,7 +3029,7 @@ M.GetMetricsOutput = {
     members = {
         SummaryMetricQueryResults = {
             type = "list",
-            member_type = "structure",
+            member = M.SummaryMetricQueryResult,
         },
     },
 }
@@ -3152,14 +3057,12 @@ M.LoRaWANMulticastGet = {
             type = "string",
         },
         NumberOfDevicesRequested = {
-            type = "number",
+            type = "integer",
         },
         NumberOfDevicesInGroup = {
-            type = "number",
+            type = "integer",
         },
-        ParticipatingGateways = {
-            type = "structure",
-        },
+        ParticipatingGateways = M.ParticipatingGatewaysMulticast,
     },
 }
 
@@ -3181,9 +3084,7 @@ M.GetMulticastGroupOutput = {
         Status = {
             type = "string",
         },
-        LoRaWAN = {
-            type = "structure",
-        },
+        LoRaWAN = M.LoRaWANMulticastGet,
         CreatedAt = {
             type = "timestamp",
         },
@@ -3207,19 +3108,19 @@ M.LoRaWANMulticastSession = {
     type = "structure",
     members = {
         DlDr = {
-            type = "number",
+            type = "integer",
         },
         DlFreq = {
-            type = "number",
+            type = "integer",
         },
         SessionStartTime = {
             type = "timestamp",
         },
         SessionTimeout = {
-            type = "number",
+            type = "integer",
         },
         PingSlotPeriod = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3227,9 +3128,7 @@ M.LoRaWANMulticastSession = {
 M.GetMulticastGroupSessionOutput = {
     type = "structure",
     members = {
-        LoRaWAN = {
-            type = "structure",
-        },
+        LoRaWAN = M.LoRaWANMulticastSession,
     },
 }
 
@@ -3249,16 +3148,14 @@ M.GetNetworkAnalyzerConfigurationInput = {
 M.GetNetworkAnalyzerConfigurationOutput = {
     type = "structure",
     members = {
-        TraceContent = {
-            type = "structure",
-        },
+        TraceContent = M.TraceContent,
         WirelessDevices = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         WirelessGateways = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Description = {
             type = "string",
@@ -3271,7 +3168,7 @@ M.GetNetworkAnalyzerConfigurationOutput = {
         },
         MulticastGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3314,11 +3211,12 @@ M.SidewalkAccountInfoWithFingerprint = {
 M.GetPartnerAccountOutput = {
     type = "structure",
     members = {
-        Sidewalk = {
-            type = "structure",
-        },
+        Sidewalk = M.SidewalkAccountInfoWithFingerprint,
         AccountLinked = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -3361,11 +3259,9 @@ M.GetPositionOutput = {
     members = {
         Position = {
             type = "list",
-            member_type = "number",
+            member = { type = "float" },
         },
-        Accuracy = {
-            type = "structure",
-        },
+        Accuracy = M.Accuracy,
         SolverType = {
             type = "string",
         },
@@ -3432,18 +3328,14 @@ M.SemtechGnssDetail = {
 M.PositionSolverDetails = {
     type = "structure",
     members = {
-        SemtechGnss = {
-            type = "structure",
-        },
+        SemtechGnss = M.SemtechGnssDetail,
     },
 }
 
 M.GetPositionConfigurationOutput = {
     type = "structure",
     members = {
-        Solvers = {
-            type = "structure",
-        },
+        Solvers = M.PositionSolverDetails,
         Destination = {
             type = "string",
         },
@@ -3460,20 +3352,23 @@ M.Gnss = {
             },
         },
         CaptureTime = {
-            type = "number",
+            type = "float",
         },
         CaptureTimeAccuracy = {
-            type = "number",
+            type = "float",
         },
         AssistPosition = {
             type = "list",
-            member_type = "number",
+            member = { type = "float" },
         },
         AssistAltitude = {
-            type = "number",
+            type = "float",
         },
         Use2DSolver = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -3500,7 +3395,7 @@ M.WiFiAccessPoint = {
             },
         },
         Rss = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -3513,23 +3408,15 @@ M.GetPositionEstimateInput = {
     members = {
         WiFiAccessPoints = {
             type = "list",
-            member_type = "structure",
+            member = M.WiFiAccessPoint,
         },
-        CellTowers = {
-            type = "structure",
-        },
-        Ip = {
-            type = "structure",
-        },
-        Gnss = {
-            type = "structure",
-        },
+        CellTowers = M.CellTowers,
+        Ip = M.Ip,
+        Gnss = M.Gnss,
         Timestamp = {
             type = "timestamp",
         },
-        AdvancedConfiguration = {
-            type = "structure",
-        },
+        AdvancedConfiguration = M.AdvancedConfiguration,
     },
 }
 
@@ -3574,21 +3461,11 @@ M.GetResourceEventConfigurationInput = {
 M.GetResourceEventConfigurationOutput = {
     type = "structure",
     members = {
-        DeviceRegistrationState = {
-            type = "structure",
-        },
-        Proximity = {
-            type = "structure",
-        },
-        Join = {
-            type = "structure",
-        },
-        ConnectionStatus = {
-            type = "structure",
-        },
-        MessageDeliveryStatus = {
-            type = "structure",
-        },
+        DeviceRegistrationState = M.DeviceRegistrationStateEventConfiguration,
+        Proximity = M.ProximityEventConfiguration,
+        Join = M.JoinEventConfiguration,
+        ConnectionStatus = M.ConnectionStatusEventConfiguration,
+        MessageDeliveryStatus = M.MessageDeliveryStatusEventConfiguration,
     },
 }
 
@@ -3702,73 +3579,103 @@ M.LoRaWANGetServiceProfileInfo = {
     type = "structure",
     members = {
         UlRate = {
-            type = "number",
+            type = "integer",
         },
         UlBucketSize = {
-            type = "number",
+            type = "integer",
         },
         UlRatePolicy = {
             type = "string",
         },
         DlRate = {
-            type = "number",
+            type = "integer",
         },
         DlBucketSize = {
-            type = "number",
+            type = "integer",
         },
         DlRatePolicy = {
             type = "string",
         },
         AddGwMetadata = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         DevStatusReqFreq = {
-            type = "number",
+            type = "integer",
         },
         ReportDevStatusBattery = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         ReportDevStatusMargin = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         DrMin = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         DrMax = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         ChannelMask = {
             type = "string",
         },
         PrAllowed = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         HrAllowed = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         RaAllowed = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         NwkGeoLoc = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         TargetPer = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         MinGwDiversity = {
-            type = "number",
+            type = "integer",
         },
         TxPowerIndexMin = {
-            type = "number",
+            type = "integer",
         },
         TxPowerIndexMax = {
-            type = "number",
+            type = "integer",
         },
         NbTransMin = {
-            type = "number",
+            type = "integer",
         },
         NbTransMax = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3785,9 +3692,7 @@ M.GetServiceProfileOutput = {
         Id = {
             type = "string",
         },
-        LoRaWAN = {
-            type = "structure",
-        },
+        LoRaWAN = M.LoRaWANGetServiceProfileInfo,
     },
 }
 
@@ -3839,11 +3744,11 @@ M.SidewalkDevice = {
         },
         DeviceCertificates = {
             type = "list",
-            member_type = "structure",
+            member = M.CertificateList,
         },
         PrivateKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.CertificateList,
         },
         DeviceProfileId = {
             type = "string",
@@ -3854,9 +3759,7 @@ M.SidewalkDevice = {
         Status = {
             type = "string",
         },
-        Positioning = {
-            type = "structure",
-        },
+        Positioning = M.SidewalkPositioning,
     },
 }
 
@@ -3887,12 +3790,8 @@ M.GetWirelessDeviceOutput = {
         ThingArn = {
             type = "string",
         },
-        LoRaWAN = {
-            type = "structure",
-        },
-        Sidewalk = {
-            type = "structure",
-        },
+        LoRaWAN = M.LoRaWANDevice,
+        Sidewalk = M.SidewalkDevice,
         Positioning = {
             type = "string",
         },
@@ -3917,14 +3816,12 @@ M.SidewalkGetStartImportInfo = {
     members = {
         DeviceCreationFileList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Role = {
             type = "string",
         },
-        Positioning = {
-            type = "structure",
-        },
+        Positioning = M.SidewalkPositioning,
     },
 }
 
@@ -3952,9 +3849,7 @@ M.GetWirelessDeviceImportTaskOutput = {
         Positioning = {
             type = "string",
         },
-        Sidewalk = {
-            type = "structure",
-        },
+        Sidewalk = M.SidewalkGetStartImportInfo,
         CreationTime = {
             type = "timestamp",
         },
@@ -3965,16 +3860,16 @@ M.GetWirelessDeviceImportTaskOutput = {
             type = "string",
         },
         InitializedImportedDeviceCount = {
-            type = "number",
+            type = "long",
         },
         PendingImportedDeviceCount = {
-            type = "number",
+            type = "long",
         },
         OnboardedImportedDeviceCount = {
-            type = "number",
+            type = "long",
         },
         FailedImportedDeviceCount = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -3999,10 +3894,10 @@ M.LoRaWANGatewayMetadata = {
             type = "string",
         },
         Snr = {
-            type = "number",
+            type = "double",
         },
         Rssi = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -4017,10 +3912,10 @@ M.LoRaWANPublicGatewayMetadata = {
             type = "string",
         },
         Rssi = {
-            type = "number",
+            type = "double",
         },
         Snr = {
-            type = "number",
+            type = "double",
         },
         RfRegion = {
             type = "string",
@@ -4038,24 +3933,24 @@ M.LoRaWANDeviceMetadata = {
             type = "string",
         },
         FPort = {
-            type = "number",
+            type = "integer",
         },
         DataRate = {
-            type = "number",
+            type = "integer",
         },
         Frequency = {
-            type = "number",
+            type = "integer",
         },
         Timestamp = {
             type = "string",
         },
         Gateways = {
             type = "list",
-            member_type = "structure",
+            member = M.LoRaWANGatewayMetadata,
         },
         PublicGateways = {
             type = "list",
-            member_type = "structure",
+            member = M.LoRaWANPublicGatewayMetadata,
         },
     },
 }
@@ -4064,7 +3959,7 @@ M.SidewalkDeviceMetadata = {
     type = "structure",
     members = {
         Rssi = {
-            type = "number",
+            type = "integer",
         },
         BatteryLevel = {
             type = "string",
@@ -4087,12 +3982,8 @@ M.GetWirelessDeviceStatisticsOutput = {
         LastUplinkReceivedAt = {
             type = "string",
         },
-        LoRaWAN = {
-            type = "structure",
-        },
-        Sidewalk = {
-            type = "structure",
-        },
+        LoRaWAN = M.LoRaWANDeviceMetadata,
+        Sidewalk = M.SidewalkDeviceMetadata,
     },
 }
 
@@ -4134,9 +4025,7 @@ M.GetWirelessGatewayOutput = {
         Description = {
             type = "string",
         },
-        LoRaWAN = {
-            type = "structure",
-        },
+        LoRaWAN = M.LoRaWANGateway,
         Arn = {
             type = "string",
         },
@@ -4190,18 +4079,14 @@ M.GetWirelessGatewayFirmwareInformationInput = {
 M.LoRaWANGatewayCurrentVersion = {
     type = "structure",
     members = {
-        CurrentVersion = {
-            type = "structure",
-        },
+        CurrentVersion = M.LoRaWANGatewayVersion,
     },
 }
 
 M.GetWirelessGatewayFirmwareInformationOutput = {
     type = "structure",
     members = {
-        LoRaWAN = {
-            type = "structure",
-        },
+        LoRaWAN = M.LoRaWANGatewayCurrentVersion,
     },
 }
 
@@ -4285,13 +4170,14 @@ M.GetWirelessGatewayTaskDefinitionOutput = {
     members = {
         AutoCreateTasks = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Name = {
             type = "string",
         },
-        Update = {
-            type = "structure",
-        },
+        Update = M.UpdateWirelessGatewayTaskCreate,
         Arn = {
             type = "string",
         },
@@ -4326,9 +4212,7 @@ M.ImportedSidewalkDevice = {
 M.ImportedWirelessDevice = {
     type = "structure",
     members = {
-        Sidewalk = {
-            type = "structure",
-        },
+        Sidewalk = M.ImportedSidewalkDevice,
     },
 }
 
@@ -4336,8 +4220,9 @@ M.ListDestinationsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -4358,7 +4243,7 @@ M.ListDestinationsOutput = {
         },
         DestinationList = {
             type = "list",
-            member_type = "structure",
+            member = M.Destinations,
         },
     },
 }
@@ -4373,8 +4258,9 @@ M.ListDeviceProfilesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -4395,7 +4281,7 @@ M.ListDeviceProfilesOutput = {
         },
         DeviceProfileList = {
             type = "list",
-            member_type = "structure",
+            member = M.DeviceProfile,
         },
     },
 }
@@ -4411,8 +4297,9 @@ M.ListDevicesForWirelessDeviceImportTaskInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -4434,9 +4321,7 @@ M.ListDevicesForWirelessDeviceImportTaskInput = {
 M.SidewalkListDevicesForImportInfo = {
     type = "structure",
     members = {
-        Positioning = {
-            type = "structure",
-        },
+        Positioning = M.SidewalkPositioning,
     },
 }
 
@@ -4452,12 +4337,10 @@ M.ListDevicesForWirelessDeviceImportTaskOutput = {
         Positioning = {
             type = "string",
         },
-        Sidewalk = {
-            type = "structure",
-        },
+        Sidewalk = M.SidewalkListDevicesForImportInfo,
         ImportedWirelessDeviceList = {
             type = "list",
-            member_type = "structure",
+            member = M.ImportedWirelessDevice,
         },
     },
 }
@@ -4473,8 +4356,9 @@ M.ListEventConfigurationsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -4495,7 +4379,7 @@ M.ListEventConfigurationsOutput = {
         },
         EventConfigurationsList = {
             type = "list",
-            member_type = "structure",
+            member = M.EventConfigurationItem,
         },
     },
 }
@@ -4510,8 +4394,9 @@ M.ListFuotaTasksInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -4526,7 +4411,7 @@ M.ListFuotaTasksOutput = {
         },
         FuotaTaskList = {
             type = "list",
-            member_type = "structure",
+            member = M.FuotaTask,
         },
     },
 }
@@ -4541,8 +4426,9 @@ M.ListMulticastGroupsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -4572,7 +4458,7 @@ M.ListMulticastGroupsOutput = {
         },
         MulticastGroupList = {
             type = "list",
-            member_type = "structure",
+            member = M.MulticastGroup,
         },
     },
 }
@@ -4594,8 +4480,9 @@ M.ListMulticastGroupsByFuotaTaskInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -4619,7 +4506,7 @@ M.ListMulticastGroupsByFuotaTaskOutput = {
         },
         MulticastGroupList = {
             type = "list",
-            member_type = "structure",
+            member = M.MulticastGroupByFuotaTask,
         },
     },
 }
@@ -4628,8 +4515,9 @@ M.ListNetworkAnalyzerConfigurationsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -4662,7 +4550,7 @@ M.ListNetworkAnalyzerConfigurationsOutput = {
         },
         NetworkAnalyzerConfigurationList = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkAnalyzerConfigurations,
         },
     },
 }
@@ -4677,8 +4565,9 @@ M.ListPartnerAccountsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -4693,7 +4582,7 @@ M.ListPartnerAccountsOutput = {
         },
         Sidewalk = {
             type = "list",
-            member_type = "structure",
+            member = M.SidewalkAccountInfoWithFingerprint,
         },
     },
 }
@@ -4708,8 +4597,9 @@ M.ListPositionConfigurationsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -4731,9 +4621,7 @@ M.PositionConfigurationItem = {
         ResourceType = {
             type = "string",
         },
-        Solvers = {
-            type = "structure",
-        },
+        Solvers = M.PositionSolverDetails,
         Destination = {
             type = "string",
         },
@@ -4745,7 +4633,7 @@ M.ListPositionConfigurationsOutput = {
     members = {
         PositionConfigurationList = {
             type = "list",
-            member_type = "structure",
+            member = M.PositionConfigurationItem,
         },
         NextToken = {
             type = "string",
@@ -4770,8 +4658,9 @@ M.ListQueuedMessagesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -4792,7 +4681,7 @@ M.ListQueuedMessagesOutput = {
         },
         DownlinkQueueMessagesList = {
             type = "list",
-            member_type = "structure",
+            member = M.DownlinkQueueMessage,
         },
     },
 }
@@ -4807,8 +4696,9 @@ M.ListServiceProfilesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -4838,7 +4728,7 @@ M.ListServiceProfilesOutput = {
         },
         ServiceProfileList = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceProfile,
         },
     },
 }
@@ -4861,7 +4751,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -4870,8 +4760,9 @@ M.ListWirelessDeviceImportTasksInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -4899,9 +4790,7 @@ M.WirelessDeviceImportTask = {
         Positioning = {
             type = "string",
         },
-        Sidewalk = {
-            type = "structure",
-        },
+        Sidewalk = M.SidewalkGetStartImportInfo,
         CreationTime = {
             type = "timestamp",
         },
@@ -4912,16 +4801,16 @@ M.WirelessDeviceImportTask = {
             type = "string",
         },
         InitializedImportedDeviceCount = {
-            type = "number",
+            type = "long",
         },
         PendingImportedDeviceCount = {
-            type = "number",
+            type = "long",
         },
         OnboardedImportedDeviceCount = {
-            type = "number",
+            type = "long",
         },
         FailedImportedDeviceCount = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -4934,7 +4823,7 @@ M.ListWirelessDeviceImportTasksOutput = {
         },
         WirelessDeviceImportTaskList = {
             type = "list",
-            member_type = "structure",
+            member = M.WirelessDeviceImportTask,
         },
     },
 }
@@ -4943,8 +4832,9 @@ M.ListWirelessDevicesInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -5016,7 +4906,7 @@ M.SidewalkListDevice = {
         },
         DeviceCertificates = {
             type = "list",
-            member_type = "structure",
+            member = M.CertificateList,
         },
         DeviceProfileId = {
             type = "string",
@@ -5024,9 +4914,7 @@ M.SidewalkListDevice = {
         Status = {
             type = "string",
         },
-        Positioning = {
-            type = "structure",
-        },
+        Positioning = M.SidewalkPositioning,
     },
 }
 
@@ -5051,12 +4939,8 @@ M.WirelessDeviceStatistics = {
         LastUplinkReceivedAt = {
             type = "string",
         },
-        LoRaWAN = {
-            type = "structure",
-        },
-        Sidewalk = {
-            type = "structure",
-        },
+        LoRaWAN = M.LoRaWANListDevice,
+        Sidewalk = M.SidewalkListDevice,
         FuotaDeviceStatus = {
             type = "string",
         },
@@ -5064,7 +4948,7 @@ M.WirelessDeviceStatistics = {
             type = "string",
         },
         McGroupId = {
-            type = "number",
+            type = "integer",
         },
         Positioning = {
             type = "string",
@@ -5080,7 +4964,7 @@ M.ListWirelessDevicesOutput = {
         },
         WirelessDeviceList = {
             type = "list",
-            member_type = "structure",
+            member = M.WirelessDeviceStatistics,
         },
     },
 }
@@ -5095,8 +4979,9 @@ M.ListWirelessGatewaysInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -5118,9 +5003,7 @@ M.WirelessGatewayStatistics = {
         Description = {
             type = "string",
         },
-        LoRaWAN = {
-            type = "structure",
-        },
+        LoRaWAN = M.LoRaWANGateway,
         LastUplinkReceivedAt = {
             type = "string",
         },
@@ -5135,7 +5018,7 @@ M.ListWirelessGatewaysOutput = {
         },
         WirelessGatewayList = {
             type = "list",
-            member_type = "structure",
+            member = M.WirelessGatewayStatistics,
         },
     },
 }
@@ -5148,8 +5031,9 @@ M.ListWirelessGatewayTaskDefinitionsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -5171,12 +5055,8 @@ M.ListWirelessGatewayTaskDefinitionsInput = {
 M.LoRaWANUpdateGatewayTaskEntry = {
     type = "structure",
     members = {
-        CurrentVersion = {
-            type = "structure",
-        },
-        UpdateVersion = {
-            type = "structure",
-        },
+        CurrentVersion = M.LoRaWANGatewayVersion,
+        UpdateVersion = M.LoRaWANGatewayVersion,
     },
 }
 
@@ -5186,9 +5066,7 @@ M.UpdateWirelessGatewayTaskEntry = {
         Id = {
             type = "string",
         },
-        LoRaWAN = {
-            type = "structure",
-        },
+        LoRaWAN = M.LoRaWANUpdateGatewayTaskEntry,
         Arn = {
             type = "string",
         },
@@ -5203,7 +5081,7 @@ M.ListWirelessGatewayTaskDefinitionsOutput = {
         },
         TaskDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.UpdateWirelessGatewayTaskEntry,
         },
     },
 }
@@ -5229,9 +5107,7 @@ M.SemtechGnssConfiguration = {
 M.PositionSolverConfigurations = {
     type = "structure",
     members = {
-        SemtechGnss = {
-            type = "structure",
-        },
+        SemtechGnss = M.SemtechGnssConfiguration,
     },
 }
 
@@ -5252,9 +5128,7 @@ M.PutPositionConfigurationInput = {
                 required = true,
             },
         },
-        Solvers = {
-            type = "structure",
-        },
+        Solvers = M.PositionSolverConfigurations,
         Destination = {
             type = "string",
         },
@@ -5331,7 +5205,7 @@ M.LoRaWANMulticastMetadata = {
     type = "structure",
     members = {
         FPort = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5339,9 +5213,7 @@ M.LoRaWANMulticastMetadata = {
 M.MulticastWirelessMetadata = {
     type = "structure",
     members = {
-        LoRaWAN = {
-            type = "structure",
-        },
+        LoRaWAN = M.LoRaWANMulticastMetadata,
     },
 }
 
@@ -5361,12 +5233,9 @@ M.SendDataToMulticastGroupInput = {
                 required = true,
             },
         },
-        WirelessMetadata = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        WirelessMetadata = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MulticastWirelessMetadata }),
     },
 }
 
@@ -5390,13 +5259,13 @@ M.SidewalkSendDataToDevice = {
     type = "structure",
     members = {
         Seq = {
-            type = "number",
+            type = "integer",
         },
         MessageType = {
             type = "string",
         },
         AckModeRetryDurationSecs = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5404,12 +5273,8 @@ M.SidewalkSendDataToDevice = {
 M.WirelessMetadata = {
     type = "structure",
     members = {
-        LoRaWAN = {
-            type = "structure",
-        },
-        Sidewalk = {
-            type = "structure",
-        },
+        LoRaWAN = M.LoRaWANSendDataToDevice,
+        Sidewalk = M.SidewalkSendDataToDevice,
     },
 }
 
@@ -5424,7 +5289,7 @@ M.SendDataToWirelessDeviceInput = {
             },
         },
         TransmitMode = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -5435,9 +5300,7 @@ M.SendDataToWirelessDeviceInput = {
                 required = true,
             },
         },
-        WirelessMetadata = {
-            type = "structure",
-        },
+        WirelessMetadata = M.WirelessMetadata,
     },
 }
 
@@ -5465,7 +5328,7 @@ M.StartBulkAssociateWirelessDeviceWithMulticastGroupInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -5489,7 +5352,7 @@ M.StartBulkDisassociateWirelessDeviceFromMulticastGroupInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -5517,9 +5380,7 @@ M.StartFuotaTaskInput = {
                 required = true,
             },
         },
-        LoRaWAN = {
-            type = "structure",
-        },
+        LoRaWAN = M.LoRaWANStartFuotaTask,
     },
 }
 
@@ -5537,12 +5398,9 @@ M.StartMulticastGroupSessionInput = {
                 required = true,
             },
         },
-        LoRaWAN = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        LoRaWAN = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LoRaWANMulticastSession }),
     },
 }
 
@@ -5556,9 +5414,7 @@ M.SidewalkSingleStartImportInfo = {
         SidewalkManufacturingSn = {
             type = "string",
         },
-        Positioning = {
-            type = "structure",
-        },
+        Positioning = M.SidewalkPositioning,
     },
 }
 
@@ -5579,17 +5435,14 @@ M.StartSingleWirelessDeviceImportTaskInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         Positioning = {
             type = "string",
         },
-        Sidewalk = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Sidewalk = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SidewalkSingleStartImportInfo }),
     },
 }
 
@@ -5614,9 +5467,7 @@ M.SidewalkStartImportInfo = {
         Role = {
             type = "string",
         },
-        Positioning = {
-            type = "structure",
-        },
+        Positioning = M.SidewalkPositioning,
     },
 }
 
@@ -5634,17 +5485,14 @@ M.StartWirelessDeviceImportTaskInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         Positioning = {
             type = "string",
         },
-        Sidewalk = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Sidewalk = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SidewalkStartImportInfo }),
     },
 }
 
@@ -5672,7 +5520,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -5731,7 +5579,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -5776,21 +5624,11 @@ M.UpdateDestinationOutput = {
 M.UpdateEventConfigurationByResourceTypesInput = {
     type = "structure",
     members = {
-        DeviceRegistrationState = {
-            type = "structure",
-        },
-        Proximity = {
-            type = "structure",
-        },
-        Join = {
-            type = "structure",
-        },
-        ConnectionStatus = {
-            type = "structure",
-        },
-        MessageDeliveryStatus = {
-            type = "structure",
-        },
+        DeviceRegistrationState = M.DeviceRegistrationStateResourceTypeEventConfiguration,
+        Proximity = M.ProximityResourceTypeEventConfiguration,
+        Join = M.JoinResourceTypeEventConfiguration,
+        ConnectionStatus = M.ConnectionStatusResourceTypeEventConfiguration,
+        MessageDeliveryStatus = M.MessageDeliveryStatusResourceTypeEventConfiguration,
     },
 }
 
@@ -5814,9 +5652,7 @@ M.UpdateFuotaTaskInput = {
         Description = {
             type = "string",
         },
-        LoRaWAN = {
-            type = "structure",
-        },
+        LoRaWAN = M.LoRaWANFuotaTask,
         FirmwareUpdateImage = {
             type = "string",
         },
@@ -5824,13 +5660,13 @@ M.UpdateFuotaTaskInput = {
             type = "string",
         },
         RedundancyPercent = {
-            type = "number",
+            type = "integer",
         },
         FragmentSizeBytes = {
-            type = "number",
+            type = "integer",
         },
         FragmentIntervalMS = {
-            type = "number",
+            type = "integer",
         },
         Descriptor = {
             type = "string",
@@ -5850,15 +5686,15 @@ M.UpdateLogLevelsByResourceTypesInput = {
         },
         FuotaTaskLogOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.FuotaTaskLogOption,
         },
         WirelessDeviceLogOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.WirelessDeviceLogOption,
         },
         WirelessGatewayLogOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.WirelessGatewayLogOption,
         },
     },
 }
@@ -5870,9 +5706,7 @@ M.UpdateLogLevelsByResourceTypesOutput = {
 M.UpdateMetricConfigurationInput = {
     type = "structure",
     members = {
-        SummaryMetric = {
-            type = "structure",
-        },
+        SummaryMetric = M.SummaryMetricConfiguration,
     },
 }
 
@@ -5896,9 +5730,7 @@ M.UpdateMulticastGroupInput = {
         Description = {
             type = "string",
         },
-        LoRaWAN = {
-            type = "structure",
-        },
+        LoRaWAN = M.LoRaWANMulticast,
     },
 }
 
@@ -5916,35 +5748,33 @@ M.UpdateNetworkAnalyzerConfigurationInput = {
                 required = true,
             },
         },
-        TraceContent = {
-            type = "structure",
-        },
+        TraceContent = M.TraceContent,
         WirelessDevicesToAdd = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         WirelessDevicesToRemove = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         WirelessGatewaysToAdd = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         WirelessGatewaysToRemove = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Description = {
             type = "string",
         },
         MulticastGroupsToAdd = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MulticastGroupsToRemove = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -5965,12 +5795,9 @@ M.SidewalkUpdateAccount = {
 M.UpdatePartnerAccountInput = {
     type = "structure",
     members = {
-        Sidewalk = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Sidewalk = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SidewalkUpdateAccount }),
         PartnerAccountId = {
             type = "string",
             traits = {
@@ -6011,7 +5838,7 @@ M.UpdatePositionInput = {
         },
         Position = {
             type = "list",
-            member_type = "number",
+            member = { type = "float" },
             traits = {
                 required = true,
             },
@@ -6046,21 +5873,11 @@ M.UpdateResourceEventConfigurationInput = {
                 http_query = "partnerType",
             },
         },
-        DeviceRegistrationState = {
-            type = "structure",
-        },
-        Proximity = {
-            type = "structure",
-        },
-        Join = {
-            type = "structure",
-        },
-        ConnectionStatus = {
-            type = "structure",
-        },
-        MessageDeliveryStatus = {
-            type = "structure",
-        },
+        DeviceRegistrationState = M.DeviceRegistrationStateEventConfiguration,
+        Proximity = M.ProximityEventConfiguration,
+        Join = M.JoinEventConfiguration,
+        ConnectionStatus = M.ConnectionStatusEventConfiguration,
+        MessageDeliveryStatus = M.MessageDeliveryStatusEventConfiguration,
     },
 }
 
@@ -6102,7 +5919,7 @@ M.UpdateAbpV1_0_x = {
     type = "structure",
     members = {
         FCntStart = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -6111,7 +5928,7 @@ M.UpdateAbpV1_1 = {
     type = "structure",
     members = {
         FCntStart = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -6119,12 +5936,10 @@ M.UpdateAbpV1_1 = {
 M.UpdateFPorts = {
     type = "structure",
     members = {
-        Positioning = {
-            type = "structure",
-        },
+        Positioning = M.Positioning,
         Applications = {
             type = "list",
-            member_type = "structure",
+            member = M.ApplicationConfig,
         },
     },
 }
@@ -6138,24 +5953,16 @@ M.LoRaWANUpdateDevice = {
         ServiceProfileId = {
             type = "string",
         },
-        AbpV1_1 = {
-            type = "structure",
-        },
-        AbpV1_0_x = {
-            type = "structure",
-        },
-        FPorts = {
-            type = "structure",
-        },
+        AbpV1_1 = M.UpdateAbpV1_1,
+        AbpV1_0_x = M.UpdateAbpV1_0_x,
+        FPorts = M.UpdateFPorts,
     },
 }
 
 M.SidewalkUpdateWirelessDevice = {
     type = "structure",
     members = {
-        Positioning = {
-            type = "structure",
-        },
+        Positioning = M.SidewalkPositioning,
     },
 }
 
@@ -6178,15 +5985,11 @@ M.UpdateWirelessDeviceInput = {
         Description = {
             type = "string",
         },
-        LoRaWAN = {
-            type = "structure",
-        },
+        LoRaWAN = M.LoRaWANUpdateDevice,
         Positioning = {
             type = "string",
         },
-        Sidewalk = {
-            type = "structure",
-        },
+        Sidewalk = M.SidewalkUpdateWirelessDevice,
     },
 }
 
@@ -6213,12 +6016,9 @@ M.UpdateWirelessDeviceImportTaskInput = {
                 required = true,
             },
         },
-        Sidewalk = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Sidewalk = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SidewalkUpdateImportInfo }),
     },
 }
 
@@ -6244,14 +6044,14 @@ M.UpdateWirelessGatewayInput = {
         },
         JoinEuiFilters = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
         },
         NetIdFilters = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MaxEirp = {
-            type = "number",
+            type = "float",
         },
     },
 }

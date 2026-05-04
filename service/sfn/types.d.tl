@@ -1210,19 +1210,17 @@ local record ValidationException
     reason: string
 end
 
-local type ValidateStateMachineDefinitionResultCode = "OK" | "FAIL"
-
-local type TestExecutionStatus = "SUCCEEDED" | "FAILED" | "RETRIABLE" | "CAUGHT_ERROR"
+local type ExecutionRedriveStatus = "REDRIVABLE" | "NOT_REDRIVABLE" | "REDRIVABLE_BY_MAP_RUN"
 
 local type ExecutionStatus = "RUNNING" | "SUCCEEDED" | "FAILED" | "TIMED_OUT" | "ABORTED" | "PENDING_REDRIVE"
 
 local type ExecutionRedriveFilter = "REDRIVEN" | "NOT_REDRIVEN"
 
+local type ValidateStateMachineDefinitionSeverity = "ERROR" | "WARNING"
+
 local type StateMachineStatus = "ACTIVE" | "DELETING"
 
 local type MapRunStatus = "RUNNING" | "SUCCEEDED" | "FAILED" | "ABORTED"
-
-local type ValidateStateMachineDefinitionSeverity = "ERROR" | "WARNING"
 
 local type SyncExecutionStatus = "SUCCEEDED" | "FAILED" | "TIMED_OUT"
 
@@ -1230,9 +1228,11 @@ local type StateMachineType = "STANDARD" | "EXPRESS"
 
 local type IncludedData = "ALL_DATA" | "METADATA_ONLY"
 
-local type InspectionLevel = "INFO" | "DEBUG" | "TRACE"
+local type TestExecutionStatus = "SUCCEEDED" | "FAILED" | "RETRIABLE" | "CAUGHT_ERROR"
 
-local type ExecutionRedriveStatus = "REDRIVABLE" | "NOT_REDRIVABLE" | "REDRIVABLE_BY_MAP_RUN"
+local type ValidateStateMachineDefinitionResultCode = "OK" | "FAIL"
+
+local type InspectionLevel = "INFO" | "DEBUG" | "TRACE"
 
 local record M
     CreateActivityInput: CreateActivityInput

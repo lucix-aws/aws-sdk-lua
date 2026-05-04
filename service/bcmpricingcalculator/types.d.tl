@@ -1699,13 +1699,13 @@ local type WorkloadEstimateRateType = "BEFORE_DISCOUNTS" | "AFTER_DISCOUNTS" | "
 
 local type CurrencyCode = "USD"
 
-local type WorkloadEstimateStatus = "UPDATING" | "VALID" | "INVALID" | "ACTION_NEEDED"
+local type GroupSharingPreferenceEnum = "OPEN" | "PRIORITIZED" | "RESTRICTED"
 
-local type BillScenarioStatus = "READY" | "LOCKED" | "FAILED" | "STALE"
+local type WorkloadEstimateStatus = "UPDATING" | "VALID" | "INVALID" | "ACTION_NEEDED"
 
 local type BillEstimateStatus = "IN_PROGRESS" | "COMPLETE" | "FAILED"
 
-local type GroupSharingPreferenceEnum = "OPEN" | "PRIORITIZED" | "RESTRICTED"
+local type BillScenarioStatus = "READY" | "LOCKED" | "FAILED" | "STALE"
 
 local record M
     BatchCreateBillScenarioCommitmentModificationInput: BatchCreateBillScenarioCommitmentModificationInput

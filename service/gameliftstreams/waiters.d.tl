@@ -1,0 +1,11 @@
+local types = require("gameliftstreams.types")
+
+local record M
+    wait_until_application_deleted: function(client: table, input: table, options: table): table, table
+    wait_until_application_ready: function(client: table, input: table, options: table): table, table
+    wait_until_stream_group_active: function(client: table, input: table, options: table): table, table
+    wait_until_stream_group_deleted: function(client: table, input: table, options: table): table, table
+    wait_until_stream_session_active: function(client: table, input: table, options: table): table, table
+end
+
+return M

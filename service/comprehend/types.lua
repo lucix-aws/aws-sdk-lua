@@ -24,7 +24,7 @@ M.AugmentedManifestsListItem = {
         },
         AttributeNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -46,7 +46,7 @@ M.BatchDetectDominantLanguageInput = {
     members = {
         TextList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -58,7 +58,7 @@ M.BatchItemError = {
     type = "structure",
     members = {
         Index = {
-            type = "number",
+            type = "integer",
         },
         ErrorCode = {
             type = "string",
@@ -76,7 +76,7 @@ M.DominantLanguage = {
             type = "string",
         },
         Score = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -85,11 +85,11 @@ M.BatchDetectDominantLanguageItemResult = {
     type = "structure",
     members = {
         Index = {
-            type = "number",
+            type = "integer",
         },
         Languages = {
             type = "list",
-            member_type = "structure",
+            member = M.DominantLanguage,
         },
     },
 }
@@ -99,14 +99,14 @@ M.BatchDetectDominantLanguageOutput = {
     members = {
         ResultList = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchDetectDominantLanguageItemResult,
             traits = {
                 required = true,
             },
         },
         ErrorList = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchItemError,
             traits = {
                 required = true,
             },
@@ -164,9 +164,7 @@ M.InvalidRequestException = {
         Reason = {
             type = "string",
         },
-        Detail = {
-            type = "structure",
-        },
+        Detail = M.InvalidRequestDetail,
     },
 }
 
@@ -200,7 +198,7 @@ M.BatchDetectEntitiesInput = {
     members = {
         TextList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -221,10 +219,10 @@ M.ChildBlock = {
             type = "string",
         },
         BeginOffset = {
-            type = "number",
+            type = "integer",
         },
         EndOffset = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -236,14 +234,14 @@ M.BlockReference = {
             type = "string",
         },
         BeginOffset = {
-            type = "number",
+            type = "integer",
         },
         EndOffset = {
-            type = "number",
+            type = "integer",
         },
         ChildBlocks = {
             type = "list",
-            member_type = "structure",
+            member = M.ChildBlock,
         },
     },
 }
@@ -264,7 +262,7 @@ M.Entity = {
     type = "structure",
     members = {
         Score = {
-            type = "number",
+            type = "float",
         },
         Type = {
             type = "string",
@@ -273,14 +271,14 @@ M.Entity = {
             type = "string",
         },
         BeginOffset = {
-            type = "number",
+            type = "integer",
         },
         EndOffset = {
-            type = "number",
+            type = "integer",
         },
         BlockReferences = {
             type = "list",
-            member_type = "structure",
+            member = M.BlockReference,
         },
     },
 }
@@ -289,11 +287,11 @@ M.BatchDetectEntitiesItemResult = {
     type = "structure",
     members = {
         Index = {
-            type = "number",
+            type = "integer",
         },
         Entities = {
             type = "list",
-            member_type = "structure",
+            member = M.Entity,
         },
     },
 }
@@ -303,14 +301,14 @@ M.BatchDetectEntitiesOutput = {
     members = {
         ResultList = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchDetectEntitiesItemResult,
             traits = {
                 required = true,
             },
         },
         ErrorList = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchItemError,
             traits = {
                 required = true,
             },
@@ -333,7 +331,7 @@ M.BatchDetectKeyPhrasesInput = {
     members = {
         TextList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -351,16 +349,16 @@ M.KeyPhrase = {
     type = "structure",
     members = {
         Score = {
-            type = "number",
+            type = "float",
         },
         Text = {
             type = "string",
         },
         BeginOffset = {
-            type = "number",
+            type = "integer",
         },
         EndOffset = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -369,11 +367,11 @@ M.BatchDetectKeyPhrasesItemResult = {
     type = "structure",
     members = {
         Index = {
-            type = "number",
+            type = "integer",
         },
         KeyPhrases = {
             type = "list",
-            member_type = "structure",
+            member = M.KeyPhrase,
         },
     },
 }
@@ -383,14 +381,14 @@ M.BatchDetectKeyPhrasesOutput = {
     members = {
         ResultList = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchDetectKeyPhrasesItemResult,
             traits = {
                 required = true,
             },
         },
         ErrorList = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchItemError,
             traits = {
                 required = true,
             },
@@ -403,7 +401,7 @@ M.BatchDetectSentimentInput = {
     members = {
         TextList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -428,16 +426,16 @@ M.SentimentScore = {
     type = "structure",
     members = {
         Positive = {
-            type = "number",
+            type = "float",
         },
         Negative = {
-            type = "number",
+            type = "float",
         },
         Neutral = {
-            type = "number",
+            type = "float",
         },
         Mixed = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -446,14 +444,12 @@ M.BatchDetectSentimentItemResult = {
     type = "structure",
     members = {
         Index = {
-            type = "number",
+            type = "integer",
         },
         Sentiment = {
             type = "string",
         },
-        SentimentScore = {
-            type = "structure",
-        },
+        SentimentScore = M.SentimentScore,
     },
 }
 
@@ -462,14 +458,14 @@ M.BatchDetectSentimentOutput = {
     members = {
         ResultList = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchDetectSentimentItemResult,
             traits = {
                 required = true,
             },
         },
         ErrorList = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchItemError,
             traits = {
                 required = true,
             },
@@ -491,7 +487,7 @@ M.BatchDetectSyntaxInput = {
     members = {
         TextList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -533,7 +529,7 @@ M.PartOfSpeechTag = {
             type = "string",
         },
         Score = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -542,20 +538,18 @@ M.SyntaxToken = {
     type = "structure",
     members = {
         TokenId = {
-            type = "number",
+            type = "integer",
         },
         Text = {
             type = "string",
         },
         BeginOffset = {
-            type = "number",
+            type = "integer",
         },
         EndOffset = {
-            type = "number",
+            type = "integer",
         },
-        PartOfSpeech = {
-            type = "structure",
-        },
+        PartOfSpeech = M.PartOfSpeechTag,
     },
 }
 
@@ -563,11 +557,11 @@ M.BatchDetectSyntaxItemResult = {
     type = "structure",
     members = {
         Index = {
-            type = "number",
+            type = "integer",
         },
         SyntaxTokens = {
             type = "list",
-            member_type = "structure",
+            member = M.SyntaxToken,
         },
     },
 }
@@ -577,14 +571,14 @@ M.BatchDetectSyntaxOutput = {
     members = {
         ResultList = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchDetectSyntaxItemResult,
             traits = {
                 required = true,
             },
         },
         ErrorList = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchItemError,
             traits = {
                 required = true,
             },
@@ -597,7 +591,7 @@ M.BatchDetectTargetedSentimentInput = {
     members = {
         TextList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -617,9 +611,7 @@ M.MentionSentiment = {
         Sentiment = {
             type = "string",
         },
-        SentimentScore = {
-            type = "structure",
-        },
+        SentimentScore = M.SentimentScore,
     },
 }
 
@@ -647,10 +639,10 @@ M.TargetedSentimentMention = {
     type = "structure",
     members = {
         Score = {
-            type = "number",
+            type = "float",
         },
         GroupScore = {
-            type = "number",
+            type = "float",
         },
         Text = {
             type = "string",
@@ -658,14 +650,12 @@ M.TargetedSentimentMention = {
         Type = {
             type = "string",
         },
-        MentionSentiment = {
-            type = "structure",
-        },
+        MentionSentiment = M.MentionSentiment,
         BeginOffset = {
-            type = "number",
+            type = "integer",
         },
         EndOffset = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -675,11 +665,11 @@ M.TargetedSentimentEntity = {
     members = {
         DescriptiveMentionIndex = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
         },
         Mentions = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetedSentimentMention,
         },
     },
 }
@@ -688,11 +678,11 @@ M.BatchDetectTargetedSentimentItemResult = {
     type = "structure",
     members = {
         Index = {
-            type = "number",
+            type = "integer",
         },
         Entities = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetedSentimentEntity,
         },
     },
 }
@@ -702,14 +692,14 @@ M.BatchDetectTargetedSentimentOutput = {
     members = {
         ResultList = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchDetectTargetedSentimentItemResult,
             traits = {
                 required = true,
             },
         },
         ErrorList = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchItemError,
             traits = {
                 required = true,
             },
@@ -726,16 +716,16 @@ M.BoundingBox = {
     type = "structure",
     members = {
         Height = {
-            type = "number",
+            type = "float",
         },
         Left = {
-            type = "number",
+            type = "float",
         },
         Top = {
-            type = "number",
+            type = "float",
         },
         Width = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -744,10 +734,10 @@ M.Point = {
     type = "structure",
     members = {
         X = {
-            type = "number",
+            type = "float",
         },
         Y = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -755,12 +745,10 @@ M.Point = {
 M.Geometry = {
     type = "structure",
     members = {
-        BoundingBox = {
-            type = "structure",
-        },
+        BoundingBox = M.BoundingBox,
         Polygon = {
             type = "list",
-            member_type = "structure",
+            member = M.Point,
         },
     },
 }
@@ -774,7 +762,7 @@ M.RelationshipsListItem = {
     members = {
         Ids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Type = {
             type = "string",
@@ -795,14 +783,12 @@ M.Block = {
             type = "string",
         },
         Page = {
-            type = "number",
+            type = "integer",
         },
-        Geometry = {
-            type = "structure",
-        },
+        Geometry = M.Geometry,
         Relationships = {
             type = "list",
-            member_type = "structure",
+            member = M.RelationshipsListItem,
         },
     },
 }
@@ -811,28 +797,28 @@ M.ClassifierEvaluationMetrics = {
     type = "structure",
     members = {
         Accuracy = {
-            type = "number",
+            type = "double",
         },
         Precision = {
-            type = "number",
+            type = "double",
         },
         Recall = {
-            type = "number",
+            type = "double",
         },
         F1Score = {
-            type = "number",
+            type = "double",
         },
         MicroPrecision = {
-            type = "number",
+            type = "double",
         },
         MicroRecall = {
-            type = "number",
+            type = "double",
         },
         MicroF1Score = {
-            type = "number",
+            type = "double",
         },
         HammingLoss = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -841,17 +827,15 @@ M.ClassifierMetadata = {
     type = "structure",
     members = {
         NumberOfLabels = {
-            type = "number",
+            type = "integer",
         },
         NumberOfTrainedDocuments = {
-            type = "number",
+            type = "integer",
         },
         NumberOfTestDocuments = {
-            type = "number",
+            type = "integer",
         },
-        EvaluationMetrics = {
-            type = "structure",
-        },
+        EvaluationMetrics = M.ClassifierEvaluationMetrics,
     },
 }
 
@@ -884,7 +868,7 @@ M.DocumentReaderConfig = {
         },
         FeatureTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -904,9 +888,7 @@ M.ClassifyDocumentInput = {
         Bytes = {
             type = "blob",
         },
-        DocumentReaderConfig = {
-            type = "structure",
-        },
+        DocumentReaderConfig = M.DocumentReaderConfig,
     },
 }
 
@@ -917,10 +899,10 @@ M.DocumentClass = {
             type = "string",
         },
         Score = {
-            type = "number",
+            type = "float",
         },
         Page = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -929,10 +911,10 @@ M.ExtractedCharactersListItem = {
     type = "structure",
     members = {
         Page = {
-            type = "number",
+            type = "integer",
         },
         Count = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -941,11 +923,11 @@ M.DocumentMetadata = {
     type = "structure",
     members = {
         Pages = {
-            type = "number",
+            type = "integer",
         },
         ExtractedCharacters = {
             type = "list",
-            member_type = "structure",
+            member = M.ExtractedCharactersListItem,
         },
     },
 }
@@ -964,7 +946,7 @@ M.DocumentTypeListItem = {
     type = "structure",
     members = {
         Page = {
-            type = "number",
+            type = "integer",
         },
         Type = {
             type = "string",
@@ -984,7 +966,7 @@ M.ErrorsListItem = {
     type = "structure",
     members = {
         Page = {
-            type = "number",
+            type = "integer",
         },
         ErrorCode = {
             type = "string",
@@ -1002,10 +984,10 @@ M.DocumentLabel = {
             type = "string",
         },
         Score = {
-            type = "number",
+            type = "float",
         },
         Page = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1019,7 +1001,7 @@ M.WarningsListItem = {
     type = "structure",
     members = {
         Page = {
-            type = "number",
+            type = "integer",
         },
         WarnCode = {
             type = "string",
@@ -1035,26 +1017,24 @@ M.ClassifyDocumentOutput = {
     members = {
         Classes = {
             type = "list",
-            member_type = "structure",
+            member = M.DocumentClass,
         },
         Labels = {
             type = "list",
-            member_type = "structure",
+            member = M.DocumentLabel,
         },
-        DocumentMetadata = {
-            type = "structure",
-        },
+        DocumentMetadata = M.DocumentMetadata,
         DocumentType = {
             type = "list",
-            member_type = "structure",
+            member = M.DocumentTypeListItem,
         },
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.ErrorsListItem,
         },
         Warnings = {
             type = "list",
-            member_type = "structure",
+            member = M.WarningsListItem,
         },
     },
 }
@@ -1134,7 +1114,7 @@ M.EntityLabel = {
             type = "string",
         },
         Score = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -1144,7 +1124,7 @@ M.ContainsPiiEntitiesOutput = {
     members = {
         Labels = {
             type = "list",
-            member_type = "structure",
+            member = M.EntityLabel,
         },
     },
 }
@@ -1159,7 +1139,7 @@ M.DatasetAugmentedManifestsListItem = {
     members = {
         AttributeNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1249,18 +1229,11 @@ M.DatasetEntityRecognizerEntityList = {
 M.DatasetEntityRecognizerInputDataConfig = {
     type = "structure",
     members = {
-        Annotations = {
-            type = "structure",
-        },
-        Documents = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        EntityList = {
-            type = "structure",
-        },
+        Annotations = M.DatasetEntityRecognizerAnnotations,
+        Documents = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DatasetEntityRecognizerDocuments }),
+        EntityList = M.DatasetEntityRecognizerEntityList,
     },
 }
 
@@ -1269,17 +1242,13 @@ M.DatasetInputDataConfig = {
     members = {
         AugmentedManifests = {
             type = "list",
-            member_type = "structure",
+            member = M.DatasetAugmentedManifestsListItem,
         },
         DataFormat = {
             type = "string",
         },
-        DocumentClassifierInputDataConfig = {
-            type = "structure",
-        },
-        EntityRecognizerInputDataConfig = {
-            type = "structure",
-        },
+        DocumentClassifierInputDataConfig = M.DatasetDocumentClassifierInputDataConfig,
+        EntityRecognizerInputDataConfig = M.DatasetEntityRecognizerInputDataConfig,
     },
 }
 
@@ -1319,18 +1288,15 @@ M.CreateDatasetInput = {
         Description = {
             type = "string",
         },
-        InputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DatasetInputDataConfig }),
         ClientRequestToken = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1436,17 +1402,13 @@ M.DocumentClassifierInputDataConfig = {
         },
         AugmentedManifests = {
             type = "list",
-            member_type = "structure",
+            member = M.AugmentedManifestsListItem,
         },
         DocumentType = {
             type = "string",
         },
-        Documents = {
-            type = "structure",
-        },
-        DocumentReaderConfig = {
-            type = "structure",
-        },
+        Documents = M.DocumentClassifierDocuments,
+        DocumentReaderConfig = M.DocumentReaderConfig,
     },
 }
 
@@ -1475,14 +1437,14 @@ M.VpcConfig = {
     members = {
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         Subnets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1510,17 +1472,12 @@ M.CreateDocumentClassifierInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        InputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        OutputDataConfig = {
-            type = "structure",
-        },
+        InputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DocumentClassifierInputDataConfig }),
+        OutputDataConfig = M.DocumentClassifierOutputDataConfig,
         ClientRequestToken = {
             type = "string",
         },
@@ -1533,9 +1490,7 @@ M.CreateDocumentClassifierInput = {
         VolumeKmsKeyId = {
             type = "string",
         },
-        VpcConfig = {
-            type = "structure",
-        },
+        VpcConfig = M.VpcConfig,
         Mode = {
             type = "string",
         },
@@ -1580,7 +1535,7 @@ M.CreateEndpointInput = {
             type = "string",
         },
         DesiredInferenceUnits = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1590,7 +1545,7 @@ M.CreateEndpointInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         DataAccessRoleArn = {
             type = "string",
@@ -1683,23 +1638,17 @@ M.EntityRecognizerInputDataConfig = {
         },
         EntityTypes = {
             type = "list",
-            member_type = "structure",
+            member = M.EntityTypesListItem,
             traits = {
                 required = true,
             },
         },
-        Documents = {
-            type = "structure",
-        },
-        Annotations = {
-            type = "structure",
-        },
-        EntityList = {
-            type = "structure",
-        },
+        Documents = M.EntityRecognizerDocuments,
+        Annotations = M.EntityRecognizerAnnotations,
+        EntityList = M.EntityRecognizerEntityList,
         AugmentedManifests = {
             type = "list",
-            member_type = "structure",
+            member = M.AugmentedManifestsListItem,
         },
     },
 }
@@ -1724,14 +1673,11 @@ M.CreateEntityRecognizerInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        InputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EntityRecognizerInputDataConfig }),
         ClientRequestToken = {
             type = "string",
         },
@@ -1744,9 +1690,7 @@ M.CreateEntityRecognizerInput = {
         VolumeKmsKeyId = {
             type = "string",
         },
-        VpcConfig = {
-            type = "structure",
-        },
+        VpcConfig = M.VpcConfig,
         ModelKmsKeyId = {
             type = "string",
         },
@@ -1777,9 +1721,7 @@ M.DataSecurityConfig = {
         DataLakeKmsKeyId = {
             type = "string",
         },
-        VpcConfig = {
-            type = "structure",
-        },
+        VpcConfig = M.VpcConfig,
     },
 }
 
@@ -1799,7 +1741,7 @@ M.DocumentClassificationConfig = {
         },
         Labels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1809,7 +1751,7 @@ M.EntityRecognitionConfig = {
     members = {
         EntityTypes = {
             type = "list",
-            member_type = "structure",
+            member = M.EntityTypesListItem,
             traits = {
                 required = true,
             },
@@ -1826,12 +1768,8 @@ M.TaskConfig = {
                 required = true,
             },
         },
-        DocumentClassificationConfig = {
-            type = "structure",
-        },
-        EntityRecognitionConfig = {
-            type = "structure",
-        },
+        DocumentClassificationConfig = M.DocumentClassificationConfig,
+        EntityRecognitionConfig = M.EntityRecognitionConfig,
     },
 }
 
@@ -1853,9 +1791,7 @@ M.CreateFlywheelInput = {
                 required = true,
             },
         },
-        TaskConfig = {
-            type = "structure",
-        },
+        TaskConfig = M.TaskConfig,
         ModelType = {
             type = "string",
         },
@@ -1865,15 +1801,13 @@ M.CreateFlywheelInput = {
                 required = true,
             },
         },
-        DataSecurityConfig = {
-            type = "structure",
-        },
+        DataSecurityConfig = M.DataSecurityConfig,
         ClientRequestToken = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2016,7 +1950,7 @@ M.DatasetProperties = {
             type = "string",
         },
         NumberOfDocuments = {
-            type = "number",
+            type = "long",
         },
         CreationTime = {
             type = "timestamp",
@@ -2030,9 +1964,7 @@ M.DatasetProperties = {
 M.DescribeDatasetOutput = {
     type = "structure",
     members = {
-        DatasetProperties = {
-            type = "structure",
-        },
+        DatasetProperties = M.DatasetProperties,
     },
 }
 
@@ -2060,9 +1992,7 @@ M.InputDataConfig = {
         InputFormat = {
             type = "string",
         },
-        DocumentReaderConfig = {
-            type = "structure",
-        },
+        DocumentReaderConfig = M.DocumentReaderConfig,
     },
 }
 
@@ -2117,21 +2047,15 @@ M.DocumentClassificationJobProperties = {
         DocumentClassifierArn = {
             type = "string",
         },
-        InputDataConfig = {
-            type = "structure",
-        },
-        OutputDataConfig = {
-            type = "structure",
-        },
+        InputDataConfig = M.InputDataConfig,
+        OutputDataConfig = M.OutputDataConfig,
         DataAccessRoleArn = {
             type = "string",
         },
         VolumeKmsKeyId = {
             type = "string",
         },
-        VpcConfig = {
-            type = "structure",
-        },
+        VpcConfig = M.VpcConfig,
         FlywheelArn = {
             type = "string",
         },
@@ -2141,9 +2065,7 @@ M.DocumentClassificationJobProperties = {
 M.DescribeDocumentClassificationJobOutput = {
     type = "structure",
     members = {
-        DocumentClassificationJobProperties = {
-            type = "structure",
-        },
+        DocumentClassificationJobProperties = M.DocumentClassificationJobProperties,
     },
 }
 
@@ -2207,24 +2129,16 @@ M.DocumentClassifierProperties = {
         TrainingEndTime = {
             type = "timestamp",
         },
-        InputDataConfig = {
-            type = "structure",
-        },
-        OutputDataConfig = {
-            type = "structure",
-        },
-        ClassifierMetadata = {
-            type = "structure",
-        },
+        InputDataConfig = M.DocumentClassifierInputDataConfig,
+        OutputDataConfig = M.DocumentClassifierOutputDataConfig,
+        ClassifierMetadata = M.ClassifierMetadata,
         DataAccessRoleArn = {
             type = "string",
         },
         VolumeKmsKeyId = {
             type = "string",
         },
-        VpcConfig = {
-            type = "structure",
-        },
+        VpcConfig = M.VpcConfig,
         Mode = {
             type = "string",
         },
@@ -2246,9 +2160,7 @@ M.DocumentClassifierProperties = {
 M.DescribeDocumentClassifierOutput = {
     type = "structure",
     members = {
-        DocumentClassifierProperties = {
-            type = "structure",
-        },
+        DocumentClassifierProperties = M.DocumentClassifierProperties,
     },
 }
 
@@ -2288,30 +2200,22 @@ M.DominantLanguageDetectionJobProperties = {
         EndTime = {
             type = "timestamp",
         },
-        InputDataConfig = {
-            type = "structure",
-        },
-        OutputDataConfig = {
-            type = "structure",
-        },
+        InputDataConfig = M.InputDataConfig,
+        OutputDataConfig = M.OutputDataConfig,
         DataAccessRoleArn = {
             type = "string",
         },
         VolumeKmsKeyId = {
             type = "string",
         },
-        VpcConfig = {
-            type = "structure",
-        },
+        VpcConfig = M.VpcConfig,
     },
 }
 
 M.DescribeDominantLanguageDetectionJobOutput = {
     type = "structure",
     members = {
-        DominantLanguageDetectionJobProperties = {
-            type = "structure",
-        },
+        DominantLanguageDetectionJobProperties = M.DominantLanguageDetectionJobProperties,
     },
 }
 
@@ -2354,10 +2258,10 @@ M.EndpointProperties = {
             type = "string",
         },
         DesiredInferenceUnits = {
-            type = "number",
+            type = "integer",
         },
         CurrentInferenceUnits = {
-            type = "number",
+            type = "integer",
         },
         CreationTime = {
             type = "timestamp",
@@ -2380,9 +2284,7 @@ M.EndpointProperties = {
 M.DescribeEndpointOutput = {
     type = "structure",
     members = {
-        EndpointProperties = {
-            type = "structure",
-        },
+        EndpointProperties = M.EndpointProperties,
     },
 }
 
@@ -2425,12 +2327,8 @@ M.EntitiesDetectionJobProperties = {
         EntityRecognizerArn = {
             type = "string",
         },
-        InputDataConfig = {
-            type = "structure",
-        },
-        OutputDataConfig = {
-            type = "structure",
-        },
+        InputDataConfig = M.InputDataConfig,
+        OutputDataConfig = M.OutputDataConfig,
         LanguageCode = {
             type = "string",
         },
@@ -2440,9 +2338,7 @@ M.EntitiesDetectionJobProperties = {
         VolumeKmsKeyId = {
             type = "string",
         },
-        VpcConfig = {
-            type = "structure",
-        },
+        VpcConfig = M.VpcConfig,
         FlywheelArn = {
             type = "string",
         },
@@ -2452,9 +2348,7 @@ M.EntitiesDetectionJobProperties = {
 M.DescribeEntitiesDetectionJobOutput = {
     type = "structure",
     members = {
-        EntitiesDetectionJobProperties = {
-            type = "structure",
-        },
+        EntitiesDetectionJobProperties = M.EntitiesDetectionJobProperties,
     },
 }
 
@@ -2483,13 +2377,13 @@ M.EntityTypesEvaluationMetrics = {
     type = "structure",
     members = {
         Precision = {
-            type = "number",
+            type = "double",
         },
         Recall = {
-            type = "number",
+            type = "double",
         },
         F1Score = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -2500,11 +2394,9 @@ M.EntityRecognizerMetadataEntityTypesListItem = {
         Type = {
             type = "string",
         },
-        EvaluationMetrics = {
-            type = "structure",
-        },
+        EvaluationMetrics = M.EntityTypesEvaluationMetrics,
         NumberOfTrainMentions = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2513,13 +2405,13 @@ M.EntityRecognizerEvaluationMetrics = {
     type = "structure",
     members = {
         Precision = {
-            type = "number",
+            type = "double",
         },
         Recall = {
-            type = "number",
+            type = "double",
         },
         F1Score = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -2528,17 +2420,15 @@ M.EntityRecognizerMetadata = {
     type = "structure",
     members = {
         NumberOfTrainedDocuments = {
-            type = "number",
+            type = "integer",
         },
         NumberOfTestDocuments = {
-            type = "number",
+            type = "integer",
         },
-        EvaluationMetrics = {
-            type = "structure",
-        },
+        EvaluationMetrics = M.EntityRecognizerEvaluationMetrics,
         EntityTypes = {
             type = "list",
-            member_type = "structure",
+            member = M.EntityRecognizerMetadataEntityTypesListItem,
         },
     },
 }
@@ -2570,21 +2460,15 @@ M.EntityRecognizerProperties = {
         TrainingEndTime = {
             type = "timestamp",
         },
-        InputDataConfig = {
-            type = "structure",
-        },
-        RecognizerMetadata = {
-            type = "structure",
-        },
+        InputDataConfig = M.EntityRecognizerInputDataConfig,
+        RecognizerMetadata = M.EntityRecognizerMetadata,
         DataAccessRoleArn = {
             type = "string",
         },
         VolumeKmsKeyId = {
             type = "string",
         },
-        VpcConfig = {
-            type = "structure",
-        },
+        VpcConfig = M.VpcConfig,
         ModelKmsKeyId = {
             type = "string",
         },
@@ -2597,18 +2481,14 @@ M.EntityRecognizerProperties = {
         FlywheelArn = {
             type = "string",
         },
-        OutputDataConfig = {
-            type = "structure",
-        },
+        OutputDataConfig = M.EntityRecognizerOutputDataConfig,
     },
 }
 
 M.DescribeEntityRecognizerOutput = {
     type = "structure",
     members = {
-        EntityRecognizerProperties = {
-            type = "structure",
-        },
+        EntityRecognizerProperties = M.EntityRecognizerProperties,
     },
 }
 
@@ -2648,12 +2528,8 @@ M.EventsDetectionJobProperties = {
         EndTime = {
             type = "timestamp",
         },
-        InputDataConfig = {
-            type = "structure",
-        },
-        OutputDataConfig = {
-            type = "structure",
-        },
+        InputDataConfig = M.InputDataConfig,
+        OutputDataConfig = M.OutputDataConfig,
         LanguageCode = {
             type = "string",
         },
@@ -2662,7 +2538,7 @@ M.EventsDetectionJobProperties = {
         },
         TargetEventTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2670,9 +2546,7 @@ M.EventsDetectionJobProperties = {
 M.DescribeEventsDetectionJobOutput = {
     type = "structure",
     members = {
-        EventsDetectionJobProperties = {
-            type = "structure",
-        },
+        EventsDetectionJobProperties = M.EventsDetectionJobProperties,
     },
 }
 
@@ -2708,15 +2582,11 @@ M.FlywheelProperties = {
         DataAccessRoleArn = {
             type = "string",
         },
-        TaskConfig = {
-            type = "structure",
-        },
+        TaskConfig = M.TaskConfig,
         DataLakeS3Uri = {
             type = "string",
         },
-        DataSecurityConfig = {
-            type = "structure",
-        },
+        DataSecurityConfig = M.DataSecurityConfig,
         Status = {
             type = "string",
         },
@@ -2741,9 +2611,7 @@ M.FlywheelProperties = {
 M.DescribeFlywheelOutput = {
     type = "structure",
     members = {
-        FlywheelProperties = {
-            type = "structure",
-        },
+        FlywheelProperties = M.FlywheelProperties,
     },
 }
 
@@ -2769,16 +2637,16 @@ M.FlywheelModelEvaluationMetrics = {
     type = "structure",
     members = {
         AverageF1Score = {
-            type = "number",
+            type = "double",
         },
         AveragePrecision = {
-            type = "number",
+            type = "double",
         },
         AverageRecall = {
-            type = "number",
+            type = "double",
         },
         AverageAccuracy = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -2816,15 +2684,11 @@ M.FlywheelIterationProperties = {
         EvaluatedModelArn = {
             type = "string",
         },
-        EvaluatedModelMetrics = {
-            type = "structure",
-        },
+        EvaluatedModelMetrics = M.FlywheelModelEvaluationMetrics,
         TrainedModelArn = {
             type = "string",
         },
-        TrainedModelMetrics = {
-            type = "structure",
-        },
+        TrainedModelMetrics = M.FlywheelModelEvaluationMetrics,
         EvaluationManifestS3Prefix = {
             type = "string",
         },
@@ -2834,9 +2698,7 @@ M.FlywheelIterationProperties = {
 M.DescribeFlywheelIterationOutput = {
     type = "structure",
     members = {
-        FlywheelIterationProperties = {
-            type = "structure",
-        },
+        FlywheelIterationProperties = M.FlywheelIterationProperties,
     },
 }
 
@@ -2876,12 +2738,8 @@ M.KeyPhrasesDetectionJobProperties = {
         EndTime = {
             type = "timestamp",
         },
-        InputDataConfig = {
-            type = "structure",
-        },
-        OutputDataConfig = {
-            type = "structure",
-        },
+        InputDataConfig = M.InputDataConfig,
+        OutputDataConfig = M.OutputDataConfig,
         LanguageCode = {
             type = "string",
         },
@@ -2891,18 +2749,14 @@ M.KeyPhrasesDetectionJobProperties = {
         VolumeKmsKeyId = {
             type = "string",
         },
-        VpcConfig = {
-            type = "structure",
-        },
+        VpcConfig = M.VpcConfig,
     },
 }
 
 M.DescribeKeyPhrasesDetectionJobOutput = {
     type = "structure",
     members = {
-        KeyPhrasesDetectionJobProperties = {
-            type = "structure",
-        },
+        KeyPhrasesDetectionJobProperties = M.KeyPhrasesDetectionJobProperties,
     },
 }
 
@@ -2948,7 +2802,7 @@ M.RedactionConfig = {
     members = {
         PiiEntityTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MaskMode = {
             type = "string",
@@ -2983,15 +2837,9 @@ M.PiiEntitiesDetectionJobProperties = {
         EndTime = {
             type = "timestamp",
         },
-        InputDataConfig = {
-            type = "structure",
-        },
-        OutputDataConfig = {
-            type = "structure",
-        },
-        RedactionConfig = {
-            type = "structure",
-        },
+        InputDataConfig = M.InputDataConfig,
+        OutputDataConfig = M.PiiOutputDataConfig,
+        RedactionConfig = M.RedactionConfig,
         LanguageCode = {
             type = "string",
         },
@@ -3007,9 +2855,7 @@ M.PiiEntitiesDetectionJobProperties = {
 M.DescribePiiEntitiesDetectionJobOutput = {
     type = "structure",
     members = {
-        PiiEntitiesDetectionJobProperties = {
-            type = "structure",
-        },
+        PiiEntitiesDetectionJobProperties = M.PiiEntitiesDetectionJobProperties,
     },
 }
 
@@ -3079,12 +2925,8 @@ M.SentimentDetectionJobProperties = {
         EndTime = {
             type = "timestamp",
         },
-        InputDataConfig = {
-            type = "structure",
-        },
-        OutputDataConfig = {
-            type = "structure",
-        },
+        InputDataConfig = M.InputDataConfig,
+        OutputDataConfig = M.OutputDataConfig,
         LanguageCode = {
             type = "string",
         },
@@ -3094,18 +2936,14 @@ M.SentimentDetectionJobProperties = {
         VolumeKmsKeyId = {
             type = "string",
         },
-        VpcConfig = {
-            type = "structure",
-        },
+        VpcConfig = M.VpcConfig,
     },
 }
 
 M.DescribeSentimentDetectionJobOutput = {
     type = "structure",
     members = {
-        SentimentDetectionJobProperties = {
-            type = "structure",
-        },
+        SentimentDetectionJobProperties = M.SentimentDetectionJobProperties,
     },
 }
 
@@ -3145,12 +2983,8 @@ M.TargetedSentimentDetectionJobProperties = {
         EndTime = {
             type = "timestamp",
         },
-        InputDataConfig = {
-            type = "structure",
-        },
-        OutputDataConfig = {
-            type = "structure",
-        },
+        InputDataConfig = M.InputDataConfig,
+        OutputDataConfig = M.OutputDataConfig,
         LanguageCode = {
             type = "string",
         },
@@ -3160,18 +2994,14 @@ M.TargetedSentimentDetectionJobProperties = {
         VolumeKmsKeyId = {
             type = "string",
         },
-        VpcConfig = {
-            type = "structure",
-        },
+        VpcConfig = M.VpcConfig,
     },
 }
 
 M.DescribeTargetedSentimentDetectionJobOutput = {
     type = "structure",
     members = {
-        TargetedSentimentDetectionJobProperties = {
-            type = "structure",
-        },
+        TargetedSentimentDetectionJobProperties = M.TargetedSentimentDetectionJobProperties,
     },
 }
 
@@ -3211,14 +3041,10 @@ M.TopicsDetectionJobProperties = {
         EndTime = {
             type = "timestamp",
         },
-        InputDataConfig = {
-            type = "structure",
-        },
-        OutputDataConfig = {
-            type = "structure",
-        },
+        InputDataConfig = M.InputDataConfig,
+        OutputDataConfig = M.OutputDataConfig,
         NumberOfTopics = {
-            type = "number",
+            type = "integer",
         },
         DataAccessRoleArn = {
             type = "string",
@@ -3226,18 +3052,14 @@ M.TopicsDetectionJobProperties = {
         VolumeKmsKeyId = {
             type = "string",
         },
-        VpcConfig = {
-            type = "structure",
-        },
+        VpcConfig = M.VpcConfig,
     },
 }
 
 M.DescribeTopicsDetectionJobOutput = {
     type = "structure",
     members = {
-        TopicsDetectionJobProperties = {
-            type = "structure",
-        },
+        TopicsDetectionJobProperties = M.TopicsDetectionJobProperties,
     },
 }
 
@@ -3258,7 +3080,7 @@ M.DetectDominantLanguageOutput = {
     members = {
         Languages = {
             type = "list",
-            member_type = "structure",
+            member = M.DominantLanguage,
         },
     },
 }
@@ -3278,9 +3100,7 @@ M.DetectEntitiesInput = {
         Bytes = {
             type = "blob",
         },
-        DocumentReaderConfig = {
-            type = "structure",
-        },
+        DocumentReaderConfig = M.DocumentReaderConfig,
     },
 }
 
@@ -3289,22 +3109,20 @@ M.DetectEntitiesOutput = {
     members = {
         Entities = {
             type = "list",
-            member_type = "structure",
+            member = M.Entity,
         },
-        DocumentMetadata = {
-            type = "structure",
-        },
+        DocumentMetadata = M.DocumentMetadata,
         DocumentType = {
             type = "list",
-            member_type = "structure",
+            member = M.DocumentTypeListItem,
         },
         Blocks = {
             type = "list",
-            member_type = "structure",
+            member = M.Block,
         },
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.ErrorsListItem,
         },
     },
 }
@@ -3332,7 +3150,7 @@ M.DetectKeyPhrasesOutput = {
     members = {
         KeyPhrases = {
             type = "list",
-            member_type = "structure",
+            member = M.KeyPhrase,
         },
     },
 }
@@ -3359,16 +3177,16 @@ M.PiiEntity = {
     type = "structure",
     members = {
         Score = {
-            type = "number",
+            type = "float",
         },
         Type = {
             type = "string",
         },
         BeginOffset = {
-            type = "number",
+            type = "integer",
         },
         EndOffset = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3378,7 +3196,7 @@ M.DetectPiiEntitiesOutput = {
     members = {
         Entities = {
             type = "list",
-            member_type = "structure",
+            member = M.PiiEntity,
         },
     },
 }
@@ -3407,9 +3225,7 @@ M.DetectSentimentOutput = {
         Sentiment = {
             type = "string",
         },
-        SentimentScore = {
-            type = "structure",
-        },
+        SentimentScore = M.SentimentScore,
     },
 }
 
@@ -3436,7 +3252,7 @@ M.DetectSyntaxOutput = {
     members = {
         SyntaxTokens = {
             type = "list",
-            member_type = "structure",
+            member = M.SyntaxToken,
         },
     },
 }
@@ -3464,7 +3280,7 @@ M.DetectTargetedSentimentOutput = {
     members = {
         Entities = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetedSentimentEntity,
         },
     },
 }
@@ -3486,7 +3302,7 @@ M.DetectToxicContentInput = {
     members = {
         TextSegments = {
             type = "list",
-            member_type = "structure",
+            member = M.TextSegment,
             traits = {
                 required = true,
             },
@@ -3517,7 +3333,7 @@ M.ToxicContent = {
             type = "string",
         },
         Score = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -3527,10 +3343,10 @@ M.ToxicLabels = {
     members = {
         Labels = {
             type = "list",
-            member_type = "structure",
+            member = M.ToxicContent,
         },
         Toxicity = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -3540,7 +3356,7 @@ M.DetectToxicContentOutput = {
     members = {
         ResultList = {
             type = "list",
-            member_type = "structure",
+            member = M.ToxicLabels,
         },
     },
 }
@@ -3568,7 +3384,7 @@ M.ImportModelInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3616,14 +3432,12 @@ M.ListDatasetsInput = {
         FlywheelArn = {
             type = "string",
         },
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.DatasetFilter,
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3633,7 +3447,7 @@ M.ListDatasetsOutput = {
     members = {
         DatasetPropertiesList = {
             type = "list",
-            member_type = "structure",
+            member = M.DatasetProperties,
         },
         NextToken = {
             type = "string",
@@ -3662,14 +3476,12 @@ M.DocumentClassificationJobFilter = {
 M.ListDocumentClassificationJobsInput = {
     type = "structure",
     members = {
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.DocumentClassificationJobFilter,
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3679,7 +3491,7 @@ M.ListDocumentClassificationJobsOutput = {
     members = {
         DocumentClassificationJobPropertiesList = {
             type = "list",
-            member_type = "structure",
+            member = M.DocumentClassificationJobProperties,
         },
         NextToken = {
             type = "string",
@@ -3708,14 +3520,12 @@ M.DocumentClassifierFilter = {
 M.ListDocumentClassifiersInput = {
     type = "structure",
     members = {
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.DocumentClassifierFilter,
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3725,7 +3535,7 @@ M.ListDocumentClassifiersOutput = {
     members = {
         DocumentClassifierPropertiesList = {
             type = "list",
-            member_type = "structure",
+            member = M.DocumentClassifierProperties,
         },
         NextToken = {
             type = "string",
@@ -3740,7 +3550,7 @@ M.ListDocumentClassifierSummariesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3752,7 +3562,7 @@ M.DocumentClassifierSummary = {
             type = "string",
         },
         NumberOfVersions = {
-            type = "number",
+            type = "integer",
         },
         LatestVersionCreatedAt = {
             type = "timestamp",
@@ -3771,7 +3581,7 @@ M.ListDocumentClassifierSummariesOutput = {
     members = {
         DocumentClassifierSummariesList = {
             type = "list",
-            member_type = "structure",
+            member = M.DocumentClassifierSummary,
         },
         NextToken = {
             type = "string",
@@ -3800,14 +3610,12 @@ M.DominantLanguageDetectionJobFilter = {
 M.ListDominantLanguageDetectionJobsInput = {
     type = "structure",
     members = {
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.DominantLanguageDetectionJobFilter,
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3817,7 +3625,7 @@ M.ListDominantLanguageDetectionJobsOutput = {
     members = {
         DominantLanguageDetectionJobPropertiesList = {
             type = "list",
-            member_type = "structure",
+            member = M.DominantLanguageDetectionJobProperties,
         },
         NextToken = {
             type = "string",
@@ -3846,14 +3654,12 @@ M.EndpointFilter = {
 M.ListEndpointsInput = {
     type = "structure",
     members = {
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.EndpointFilter,
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3863,7 +3669,7 @@ M.ListEndpointsOutput = {
     members = {
         EndpointPropertiesList = {
             type = "list",
-            member_type = "structure",
+            member = M.EndpointProperties,
         },
         NextToken = {
             type = "string",
@@ -3892,14 +3698,12 @@ M.EntitiesDetectionJobFilter = {
 M.ListEntitiesDetectionJobsInput = {
     type = "structure",
     members = {
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.EntitiesDetectionJobFilter,
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3909,7 +3713,7 @@ M.ListEntitiesDetectionJobsOutput = {
     members = {
         EntitiesDetectionJobPropertiesList = {
             type = "list",
-            member_type = "structure",
+            member = M.EntitiesDetectionJobProperties,
         },
         NextToken = {
             type = "string",
@@ -3938,14 +3742,12 @@ M.EntityRecognizerFilter = {
 M.ListEntityRecognizersInput = {
     type = "structure",
     members = {
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.EntityRecognizerFilter,
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3955,7 +3757,7 @@ M.ListEntityRecognizersOutput = {
     members = {
         EntityRecognizerPropertiesList = {
             type = "list",
-            member_type = "structure",
+            member = M.EntityRecognizerProperties,
         },
         NextToken = {
             type = "string",
@@ -3970,7 +3772,7 @@ M.ListEntityRecognizerSummariesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3982,7 +3784,7 @@ M.EntityRecognizerSummary = {
             type = "string",
         },
         NumberOfVersions = {
-            type = "number",
+            type = "integer",
         },
         LatestVersionCreatedAt = {
             type = "timestamp",
@@ -4001,7 +3803,7 @@ M.ListEntityRecognizerSummariesOutput = {
     members = {
         EntityRecognizerSummariesList = {
             type = "list",
-            member_type = "structure",
+            member = M.EntityRecognizerSummary,
         },
         NextToken = {
             type = "string",
@@ -4030,14 +3832,12 @@ M.EventsDetectionJobFilter = {
 M.ListEventsDetectionJobsInput = {
     type = "structure",
     members = {
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.EventsDetectionJobFilter,
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4047,7 +3847,7 @@ M.ListEventsDetectionJobsOutput = {
     members = {
         EventsDetectionJobPropertiesList = {
             type = "list",
-            member_type = "structure",
+            member = M.EventsDetectionJobProperties,
         },
         NextToken = {
             type = "string",
@@ -4076,14 +3876,12 @@ M.ListFlywheelIterationHistoryInput = {
                 required = true,
             },
         },
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.FlywheelIterationFilter,
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4093,7 +3891,7 @@ M.ListFlywheelIterationHistoryOutput = {
     members = {
         FlywheelIterationPropertiesList = {
             type = "list",
-            member_type = "structure",
+            member = M.FlywheelIterationProperties,
         },
         NextToken = {
             type = "string",
@@ -4119,14 +3917,12 @@ M.FlywheelFilter = {
 M.ListFlywheelsInput = {
     type = "structure",
     members = {
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.FlywheelFilter,
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4169,7 +3965,7 @@ M.ListFlywheelsOutput = {
     members = {
         FlywheelSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.FlywheelSummary,
         },
         NextToken = {
             type = "string",
@@ -4198,14 +3994,12 @@ M.KeyPhrasesDetectionJobFilter = {
 M.ListKeyPhrasesDetectionJobsInput = {
     type = "structure",
     members = {
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.KeyPhrasesDetectionJobFilter,
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4215,7 +4009,7 @@ M.ListKeyPhrasesDetectionJobsOutput = {
     members = {
         KeyPhrasesDetectionJobPropertiesList = {
             type = "list",
-            member_type = "structure",
+            member = M.KeyPhrasesDetectionJobProperties,
         },
         NextToken = {
             type = "string",
@@ -4244,14 +4038,12 @@ M.PiiEntitiesDetectionJobFilter = {
 M.ListPiiEntitiesDetectionJobsInput = {
     type = "structure",
     members = {
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.PiiEntitiesDetectionJobFilter,
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4261,7 +4053,7 @@ M.ListPiiEntitiesDetectionJobsOutput = {
     members = {
         PiiEntitiesDetectionJobPropertiesList = {
             type = "list",
-            member_type = "structure",
+            member = M.PiiEntitiesDetectionJobProperties,
         },
         NextToken = {
             type = "string",
@@ -4290,14 +4082,12 @@ M.SentimentDetectionJobFilter = {
 M.ListSentimentDetectionJobsInput = {
     type = "structure",
     members = {
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.SentimentDetectionJobFilter,
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4307,7 +4097,7 @@ M.ListSentimentDetectionJobsOutput = {
     members = {
         SentimentDetectionJobPropertiesList = {
             type = "list",
-            member_type = "structure",
+            member = M.SentimentDetectionJobProperties,
         },
         NextToken = {
             type = "string",
@@ -4335,7 +4125,7 @@ M.ListTagsForResourceOutput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -4361,14 +4151,12 @@ M.TargetedSentimentDetectionJobFilter = {
 M.ListTargetedSentimentDetectionJobsInput = {
     type = "structure",
     members = {
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.TargetedSentimentDetectionJobFilter,
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4378,7 +4166,7 @@ M.ListTargetedSentimentDetectionJobsOutput = {
     members = {
         TargetedSentimentDetectionJobPropertiesList = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetedSentimentDetectionJobProperties,
         },
         NextToken = {
             type = "string",
@@ -4407,14 +4195,12 @@ M.TopicsDetectionJobFilter = {
 M.ListTopicsDetectionJobsInput = {
     type = "structure",
     members = {
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.TopicsDetectionJobFilter,
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4424,7 +4210,7 @@ M.ListTopicsDetectionJobsOutput = {
     members = {
         TopicsDetectionJobPropertiesList = {
             type = "list",
-            member_type = "structure",
+            member = M.TopicsDetectionJobProperties,
         },
         NextToken = {
             type = "string",
@@ -4471,18 +4257,12 @@ M.StartDocumentClassificationJobInput = {
         DocumentClassifierArn = {
             type = "string",
         },
-        InputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        OutputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InputDataConfig }),
+        OutputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OutputDataConfig }),
         DataAccessRoleArn = {
             type = "string",
             traits = {
@@ -4495,12 +4275,10 @@ M.StartDocumentClassificationJobInput = {
         VolumeKmsKeyId = {
             type = "string",
         },
-        VpcConfig = {
-            type = "structure",
-        },
+        VpcConfig = M.VpcConfig,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         FlywheelArn = {
             type = "string",
@@ -4529,18 +4307,12 @@ M.StartDocumentClassificationJobOutput = {
 M.StartDominantLanguageDetectionJobInput = {
     type = "structure",
     members = {
-        InputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        OutputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InputDataConfig }),
+        OutputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OutputDataConfig }),
         DataAccessRoleArn = {
             type = "string",
             traits = {
@@ -4556,12 +4328,10 @@ M.StartDominantLanguageDetectionJobInput = {
         VolumeKmsKeyId = {
             type = "string",
         },
-        VpcConfig = {
-            type = "structure",
-        },
+        VpcConfig = M.VpcConfig,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -4584,18 +4354,12 @@ M.StartDominantLanguageDetectionJobOutput = {
 M.StartEntitiesDetectionJobInput = {
     type = "structure",
     members = {
-        InputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        OutputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InputDataConfig }),
+        OutputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OutputDataConfig }),
         DataAccessRoleArn = {
             type = "string",
             traits = {
@@ -4620,12 +4384,10 @@ M.StartEntitiesDetectionJobInput = {
         VolumeKmsKeyId = {
             type = "string",
         },
-        VpcConfig = {
-            type = "structure",
-        },
+        VpcConfig = M.VpcConfig,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         FlywheelArn = {
             type = "string",
@@ -4654,18 +4416,12 @@ M.StartEntitiesDetectionJobOutput = {
 M.StartEventsDetectionJobInput = {
     type = "structure",
     members = {
-        InputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        OutputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InputDataConfig }),
+        OutputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OutputDataConfig }),
         DataAccessRoleArn = {
             type = "string",
             traits = {
@@ -4686,14 +4442,14 @@ M.StartEventsDetectionJobInput = {
         },
         TargetEventTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -4743,18 +4499,12 @@ M.StartFlywheelIterationOutput = {
 M.StartKeyPhrasesDetectionJobInput = {
     type = "structure",
     members = {
-        InputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        OutputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InputDataConfig }),
+        OutputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OutputDataConfig }),
         DataAccessRoleArn = {
             type = "string",
             traits = {
@@ -4776,12 +4526,10 @@ M.StartKeyPhrasesDetectionJobInput = {
         VolumeKmsKeyId = {
             type = "string",
         },
-        VpcConfig = {
-            type = "structure",
-        },
+        VpcConfig = M.VpcConfig,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -4804,27 +4552,19 @@ M.StartKeyPhrasesDetectionJobOutput = {
 M.StartPiiEntitiesDetectionJobInput = {
     type = "structure",
     members = {
-        InputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        OutputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InputDataConfig }),
+        OutputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OutputDataConfig }),
         Mode = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        RedactionConfig = {
-            type = "structure",
-        },
+        RedactionConfig = M.RedactionConfig,
         DataAccessRoleArn = {
             type = "string",
             traits = {
@@ -4845,7 +4585,7 @@ M.StartPiiEntitiesDetectionJobInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -4868,18 +4608,12 @@ M.StartPiiEntitiesDetectionJobOutput = {
 M.StartSentimentDetectionJobInput = {
     type = "structure",
     members = {
-        InputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        OutputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InputDataConfig }),
+        OutputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OutputDataConfig }),
         DataAccessRoleArn = {
             type = "string",
             traits = {
@@ -4901,12 +4635,10 @@ M.StartSentimentDetectionJobInput = {
         VolumeKmsKeyId = {
             type = "string",
         },
-        VpcConfig = {
-            type = "structure",
-        },
+        VpcConfig = M.VpcConfig,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -4929,18 +4661,12 @@ M.StartSentimentDetectionJobOutput = {
 M.StartTargetedSentimentDetectionJobInput = {
     type = "structure",
     members = {
-        InputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        OutputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InputDataConfig }),
+        OutputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OutputDataConfig }),
         DataAccessRoleArn = {
             type = "string",
             traits = {
@@ -4962,12 +4688,10 @@ M.StartTargetedSentimentDetectionJobInput = {
         VolumeKmsKeyId = {
             type = "string",
         },
-        VpcConfig = {
-            type = "structure",
-        },
+        VpcConfig = M.VpcConfig,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -4990,18 +4714,12 @@ M.StartTargetedSentimentDetectionJobOutput = {
 M.StartTopicsDetectionJobInput = {
     type = "structure",
     members = {
-        InputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        OutputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InputDataConfig }),
+        OutputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OutputDataConfig }),
         DataAccessRoleArn = {
             type = "string",
             traits = {
@@ -5012,7 +4730,7 @@ M.StartTopicsDetectionJobInput = {
             type = "string",
         },
         NumberOfTopics = {
-            type = "number",
+            type = "integer",
         },
         ClientRequestToken = {
             type = "string",
@@ -5020,12 +4738,10 @@ M.StartTopicsDetectionJobInput = {
         VolumeKmsKeyId = {
             type = "string",
         },
-        VpcConfig = {
-            type = "structure",
-        },
+        VpcConfig = M.VpcConfig,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -5266,7 +4982,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -5299,7 +5015,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -5324,7 +5040,7 @@ M.UpdateEndpointInput = {
             type = "string",
         },
         DesiredInferenceUnits = {
-            type = "number",
+            type = "integer",
         },
         DesiredDataAccessRoleArn = {
             type = "string",
@@ -5353,9 +5069,7 @@ M.UpdateDataSecurityConfig = {
         VolumeKmsKeyId = {
             type = "string",
         },
-        VpcConfig = {
-            type = "structure",
-        },
+        VpcConfig = M.VpcConfig,
     },
 }
 
@@ -5374,18 +5088,14 @@ M.UpdateFlywheelInput = {
         DataAccessRoleArn = {
             type = "string",
         },
-        DataSecurityConfig = {
-            type = "structure",
-        },
+        DataSecurityConfig = M.UpdateDataSecurityConfig,
     },
 }
 
 M.UpdateFlywheelOutput = {
     type = "structure",
     members = {
-        FlywheelProperties = {
-            type = "structure",
-        },
+        FlywheelProperties = M.FlywheelProperties,
     },
 }
 

@@ -339,9 +339,7 @@ M.CreateCustomKeyStoreInput = {
         XksProxyVpcEndpointServiceOwner = {
             type = "string",
         },
-        XksProxyAuthenticationCredential = {
-            type = "structure",
-        },
+        XksProxyAuthenticationCredential = M.XksProxyAuthenticationCredentialType,
         XksProxyConnectivity = {
             type = "string",
         },
@@ -472,13 +470,13 @@ M.GrantConstraints = {
     members = {
         EncryptionContextSubset = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         EncryptionContextEquals = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -523,17 +521,15 @@ M.CreateGrantInput = {
         },
         Operations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        Constraints = {
-            type = "structure",
-        },
+        Constraints = M.GrantConstraints,
         GrantTokens = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Name = {
             type = "string",
@@ -680,10 +676,13 @@ M.CreateKeyInput = {
         },
         BypassPolicyLockoutSafetyCheck = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         MultiRegion = {
             type = "boolean",
@@ -756,12 +755,10 @@ M.MultiRegionConfiguration = {
         MultiRegionKeyType = {
             type = "string",
         },
-        PrimaryKey = {
-            type = "structure",
-        },
+        PrimaryKey = M.MultiRegionKey,
         ReplicaKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.MultiRegionKey,
         },
     },
 }
@@ -811,6 +808,9 @@ M.KeyMetadata = {
         },
         Enabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Description = {
             type = "string",
@@ -850,32 +850,28 @@ M.KeyMetadata = {
         },
         EncryptionAlgorithms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SigningAlgorithms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         KeyAgreementAlgorithms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MultiRegion = {
             type = "boolean",
         },
-        MultiRegionConfiguration = {
-            type = "structure",
-        },
+        MultiRegionConfiguration = M.MultiRegionConfiguration,
         PendingDeletionWindowInDays = {
-            type = "number",
+            type = "integer",
         },
         MacAlgorithms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        XksKeyConfiguration = {
-            type = "structure",
-        },
+        XksKeyConfiguration = M.XksKeyConfigurationType,
         CurrentKeyMaterialId = {
             type = "string",
         },
@@ -885,9 +881,7 @@ M.KeyMetadata = {
 M.CreateKeyOutput = {
     type = "structure",
     members = {
-        KeyMetadata = {
-            type = "structure",
-        },
+        KeyMetadata = M.KeyMetadata,
     },
 }
 
@@ -1012,9 +1006,7 @@ M.CustomKeyStoresListEntry = {
         CustomKeyStoreType = {
             type = "string",
         },
-        XksProxyConfiguration = {
-            type = "structure",
-        },
+        XksProxyConfiguration = M.XksProxyConfigurationType,
     },
 }
 
@@ -1063,12 +1055,12 @@ M.DecryptInput = {
         },
         EncryptionContext = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         GrantTokens = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         KeyId = {
             type = "string",
@@ -1076,15 +1068,13 @@ M.DecryptInput = {
         EncryptionAlgorithm = {
             type = "string",
         },
-        Recipient = {
-            type = "structure",
-        },
+        Recipient = M.RecipientInfo,
         DryRun = {
             type = "boolean",
         },
         DryRunModifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1232,14 +1222,12 @@ M.DeriveSharedSecretInput = {
         },
         GrantTokens = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DryRun = {
             type = "boolean",
         },
-        Recipient = {
-            type = "structure",
-        },
+        Recipient = M.RecipientInfo,
     },
 }
 
@@ -1274,7 +1262,7 @@ M.DescribeCustomKeyStoresInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -1287,13 +1275,16 @@ M.DescribeCustomKeyStoresOutput = {
     members = {
         CustomKeyStores = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomKeyStoresListEntry,
         },
         NextMarker = {
             type = "string",
         },
         Truncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1319,7 +1310,7 @@ M.DescribeKeyInput = {
         },
         GrantTokens = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1327,9 +1318,7 @@ M.DescribeKeyInput = {
 M.DescribeKeyOutput = {
     type = "structure",
     members = {
-        KeyMetadata = {
-            type = "structure",
-        },
+        KeyMetadata = M.KeyMetadata,
     },
 }
 
@@ -1407,7 +1396,7 @@ M.EnableKeyRotationInput = {
             },
         },
         RotationPeriodInDays = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1433,12 +1422,12 @@ M.EncryptInput = {
         },
         EncryptionContext = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         GrantTokens = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         EncryptionAlgorithm = {
             type = "string",
@@ -1485,22 +1474,20 @@ M.GenerateDataKeyInput = {
         },
         EncryptionContext = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         NumberOfBytes = {
-            type = "number",
+            type = "integer",
         },
         KeySpec = {
             type = "string",
         },
         GrantTokens = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        Recipient = {
-            type = "structure",
-        },
+        Recipient = M.RecipientInfo,
         DryRun = {
             type = "boolean",
         },
@@ -1533,8 +1520,8 @@ M.GenerateDataKeyPairInput = {
     members = {
         EncryptionContext = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         KeyId = {
             type = "string",
@@ -1550,11 +1537,9 @@ M.GenerateDataKeyPairInput = {
         },
         GrantTokens = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        Recipient = {
-            type = "structure",
-        },
+        Recipient = M.RecipientInfo,
         DryRun = {
             type = "boolean",
         },
@@ -1593,8 +1578,8 @@ M.GenerateDataKeyPairWithoutPlaintextInput = {
     members = {
         EncryptionContext = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         KeyId = {
             type = "string",
@@ -1610,7 +1595,7 @@ M.GenerateDataKeyPairWithoutPlaintextInput = {
         },
         GrantTokens = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DryRun = {
             type = "boolean",
@@ -1650,18 +1635,18 @@ M.GenerateDataKeyWithoutPlaintextInput = {
         },
         EncryptionContext = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         KeySpec = {
             type = "string",
         },
         NumberOfBytes = {
-            type = "number",
+            type = "integer",
         },
         GrantTokens = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DryRun = {
             type = "boolean",
@@ -1707,7 +1692,7 @@ M.GenerateMacInput = {
         },
         GrantTokens = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DryRun = {
             type = "boolean",
@@ -1734,14 +1719,12 @@ M.GenerateRandomInput = {
     type = "structure",
     members = {
         NumberOfBytes = {
-            type = "number",
+            type = "integer",
         },
         CustomKeyStoreId = {
             type = "string",
         },
-        Recipient = {
-            type = "structure",
-        },
+        Recipient = M.RecipientInfo,
     },
 }
 
@@ -1808,9 +1791,7 @@ M.GetKeyLastUsageOutput = {
         KeyId = {
             type = "string",
         },
-        KeyLastUsage = {
-            type = "structure",
-        },
+        KeyLastUsage = M.KeyLastUsageData,
         TrackingStartDate = {
             type = "timestamp",
         },
@@ -1864,12 +1845,15 @@ M.GetKeyRotationStatusOutput = {
     members = {
         KeyRotationEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         KeyId = {
             type = "string",
         },
         RotationPeriodInDays = {
-            type = "number",
+            type = "integer",
         },
         NextRotationDate = {
             type = "timestamp",
@@ -1940,7 +1924,7 @@ M.GetPublicKeyInput = {
         },
         GrantTokens = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1965,15 +1949,15 @@ M.GetPublicKeyOutput = {
         },
         EncryptionAlgorithms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SigningAlgorithms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         KeyAgreementAlgorithms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2004,11 +1988,9 @@ M.GrantListEntry = {
         },
         Operations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        Constraints = {
-            type = "structure",
-        },
+        Constraints = M.GrantConstraints,
     },
 }
 
@@ -2154,7 +2136,7 @@ M.ListAliasesInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -2167,13 +2149,16 @@ M.ListAliasesOutput = {
     members = {
         Aliases = {
             type = "list",
-            member_type = "structure",
+            member = M.AliasListEntry,
         },
         NextMarker = {
             type = "string",
         },
         Truncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -2182,7 +2167,7 @@ M.ListGrantsInput = {
     type = "structure",
     members = {
         Limit = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -2207,13 +2192,16 @@ M.ListGrantsOutput = {
     members = {
         Grants = {
             type = "list",
-            member_type = "structure",
+            member = M.GrantListEntry,
         },
         NextMarker = {
             type = "string",
         },
         Truncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -2228,7 +2216,7 @@ M.ListKeyPoliciesInput = {
             },
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -2241,13 +2229,16 @@ M.ListKeyPoliciesOutput = {
     members = {
         PolicyNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextMarker = {
             type = "string",
         },
         Truncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -2265,7 +2256,7 @@ M.ListKeyRotationsInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -2316,13 +2307,16 @@ M.ListKeyRotationsOutput = {
     members = {
         Rotations = {
             type = "list",
-            member_type = "structure",
+            member = M.RotationsListEntry,
         },
         NextMarker = {
             type = "string",
         },
         Truncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -2331,7 +2325,7 @@ M.ListKeysInput = {
     type = "structure",
     members = {
         Limit = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -2344,13 +2338,16 @@ M.ListKeysOutput = {
     members = {
         Keys = {
             type = "list",
-            member_type = "structure",
+            member = M.KeyListEntry,
         },
         NextMarker = {
             type = "string",
         },
         Truncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -2365,7 +2362,7 @@ M.ListResourceTagsInput = {
             },
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -2378,13 +2375,16 @@ M.ListResourceTagsOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         NextMarker = {
             type = "string",
         },
         Truncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -2393,7 +2393,7 @@ M.ListRetirableGrantsInput = {
     type = "structure",
     members = {
         Limit = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -2412,13 +2412,16 @@ M.ListRetirableGrantsOutput = {
     members = {
         Grants = {
             type = "list",
-            member_type = "structure",
+            member = M.GrantListEntry,
         },
         NextMarker = {
             type = "string",
         },
         Truncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -2449,6 +2452,9 @@ M.PutKeyPolicyInput = {
         },
         BypassPolicyLockoutSafetyCheck = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -2465,8 +2471,8 @@ M.ReEncryptInput = {
         },
         SourceEncryptionContext = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         SourceKeyId = {
             type = "string",
@@ -2479,8 +2485,8 @@ M.ReEncryptInput = {
         },
         DestinationEncryptionContext = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         SourceEncryptionAlgorithm = {
             type = "string",
@@ -2490,14 +2496,14 @@ M.ReEncryptInput = {
         },
         GrantTokens = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DryRun = {
             type = "boolean",
         },
         DryRunModifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2549,13 +2555,16 @@ M.ReplicateKeyInput = {
         },
         BypassPolicyLockoutSafetyCheck = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Description = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2563,15 +2572,13 @@ M.ReplicateKeyInput = {
 M.ReplicateKeyOutput = {
     type = "structure",
     members = {
-        ReplicaKeyMetadata = {
-            type = "structure",
-        },
+        ReplicaKeyMetadata = M.KeyMetadata,
         ReplicaPolicy = {
             type = "string",
         },
         ReplicaTags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2654,7 +2661,7 @@ M.ScheduleKeyDeletionInput = {
             },
         },
         PendingWindowInDays = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2672,7 +2679,7 @@ M.ScheduleKeyDeletionOutput = {
             type = "string",
         },
         PendingWindowInDays = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2697,7 +2704,7 @@ M.SignInput = {
         },
         GrantTokens = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SigningAlgorithm = {
             type = "string",
@@ -2737,7 +2744,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -2760,7 +2767,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2824,9 +2831,7 @@ M.UpdateCustomKeyStoreInput = {
         XksProxyVpcEndpointServiceOwner = {
             type = "string",
         },
-        XksProxyAuthenticationCredential = {
-            type = "structure",
-        },
+        XksProxyAuthenticationCredential = M.XksProxyAuthenticationCredentialType,
         XksProxyConnectivity = {
             type = "string",
         },
@@ -2913,7 +2918,7 @@ M.VerifyInput = {
         },
         GrantTokens = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DryRun = {
             type = "boolean",
@@ -2929,6 +2934,9 @@ M.VerifyOutput = {
         },
         SignatureValid = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         SigningAlgorithm = {
             type = "string",
@@ -2965,7 +2973,7 @@ M.VerifyMacInput = {
         },
         GrantTokens = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DryRun = {
             type = "boolean",
@@ -2981,6 +2989,9 @@ M.VerifyMacOutput = {
         },
         MacValid = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         MacAlgorithm = {
             type = "string",

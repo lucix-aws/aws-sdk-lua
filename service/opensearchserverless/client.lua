@@ -16,9 +16,9 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "OpenSearchServerless"
-    cfg.signing_name = "opensearchserverless"
+    cfg.signing_name = "aoss"
     if not cfg.protocol then
-        cfg.protocol = awsjson_protocol.new("1.0")
+        cfg.protocol = awsjson_protocol.new({ version = "1.0", service_id = cfg.service_id })
     end
     if not cfg.endpoint_provider then
         cfg.endpoint_provider = function(params)

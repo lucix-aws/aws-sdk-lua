@@ -40,12 +40,12 @@ M.AssetSummary = {
             },
         },
         size = {
-            type = "number",
+            type = "long",
         },
         hashes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -168,11 +168,11 @@ M.RepositoryDescription = {
         },
         upstreams = {
             type = "list",
-            member_type = "structure",
+            member = M.UpstreamRepositoryInfo,
         },
         externalConnections = {
             type = "list",
-            member_type = "structure",
+            member = M.RepositoryExternalConnectionInfo,
         },
         createdTime = {
             type = "timestamp",
@@ -183,9 +183,7 @@ M.RepositoryDescription = {
 M.AssociateExternalConnectionOutput = {
     type = "structure",
     members = {
-        repository = {
-            type = "structure",
-        },
+        repository = M.RepositoryDescription,
     },
 }
 
@@ -278,7 +276,7 @@ M.ThrottlingException = {
             },
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -362,12 +360,12 @@ M.CopyPackageVersionsInput = {
         },
         versions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         versionRevisions = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         allowOverwrite = {
             type = "boolean",
@@ -425,13 +423,13 @@ M.CopyPackageVersionsOutput = {
     members = {
         successfulVersions = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.SuccessfulPackageVersionInfo,
         },
         failedVersions = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.PackageVersionError,
         },
     },
 }
@@ -469,7 +467,7 @@ M.CreateDomainInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -501,10 +499,16 @@ M.DomainDescription = {
             type = "string",
         },
         repositoryCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         assetSizeBytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         s3BucketArn = {
             type = "string",
@@ -515,9 +519,7 @@ M.DomainDescription = {
 M.CreateDomainOutput = {
     type = "structure",
     members = {
-        domain = {
-            type = "structure",
-        },
+        domain = M.DomainDescription,
     },
 }
 
@@ -551,7 +553,7 @@ M.CreatePackageGroupInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -590,11 +592,9 @@ M.PackageGroupOriginRestriction = {
         effectiveMode = {
             type = "string",
         },
-        inheritedFrom = {
-            type = "structure",
-        },
+        inheritedFrom = M.PackageGroupReference,
         repositoriesCount = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -604,8 +604,8 @@ M.PackageGroupOriginConfiguration = {
     members = {
         restrictions = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.PackageGroupOriginRestriction,
         },
     },
 }
@@ -634,21 +634,15 @@ M.PackageGroupDescription = {
         description = {
             type = "string",
         },
-        originConfiguration = {
-            type = "structure",
-        },
-        parent = {
-            type = "structure",
-        },
+        originConfiguration = M.PackageGroupOriginConfiguration,
+        parent = M.PackageGroupReference,
     },
 }
 
 M.CreatePackageGroupOutput = {
     type = "structure",
     members = {
-        packageGroup = {
-            type = "structure",
-        },
+        packageGroup = M.PackageGroupDescription,
     },
 }
 
@@ -692,11 +686,11 @@ M.CreateRepositoryInput = {
         },
         upstreams = {
             type = "list",
-            member_type = "structure",
+            member = M.UpstreamRepository,
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -704,9 +698,7 @@ M.CreateRepositoryInput = {
 M.CreateRepositoryOutput = {
     type = "structure",
     members = {
-        repository = {
-            type = "structure",
-        },
+        repository = M.RepositoryDescription,
     },
 }
 
@@ -732,9 +724,7 @@ M.DeleteDomainInput = {
 M.DeleteDomainOutput = {
     type = "structure",
     members = {
-        domain = {
-            type = "structure",
-        },
+        domain = M.DomainDescription,
     },
 }
 
@@ -781,9 +771,7 @@ M.ResourcePolicy = {
 M.DeleteDomainPermissionsPolicyOutput = {
     type = "structure",
     members = {
-        policy = {
-            type = "structure",
-        },
+        policy = M.ResourcePolicy,
     },
 }
 
@@ -854,9 +842,7 @@ M.PackageOriginRestrictions = {
 M.PackageOriginConfiguration = {
     type = "structure",
     members = {
-        restrictions = {
-            type = "structure",
-        },
+        restrictions = M.PackageOriginRestrictions,
     },
 }
 
@@ -872,18 +858,14 @@ M.PackageSummary = {
         package = {
             type = "string",
         },
-        originConfiguration = {
-            type = "structure",
-        },
+        originConfiguration = M.PackageOriginConfiguration,
     },
 }
 
 M.DeletePackageOutput = {
     type = "structure",
     members = {
-        deletedPackage = {
-            type = "structure",
-        },
+        deletedPackage = M.PackageSummary,
     },
 }
 
@@ -916,9 +898,7 @@ M.DeletePackageGroupInput = {
 M.DeletePackageGroupOutput = {
     type = "structure",
     members = {
-        packageGroup = {
-            type = "structure",
-        },
+        packageGroup = M.PackageGroupDescription,
     },
 }
 
@@ -967,7 +947,7 @@ M.DeletePackageVersionsInput = {
         },
         versions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -983,13 +963,13 @@ M.DeletePackageVersionsOutput = {
     members = {
         successfulVersions = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.SuccessfulPackageVersionInfo,
         },
         failedVersions = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.PackageVersionError,
         },
     },
 }
@@ -1023,9 +1003,7 @@ M.DeleteRepositoryInput = {
 M.DeleteRepositoryOutput = {
     type = "structure",
     members = {
-        repository = {
-            type = "structure",
-        },
+        repository = M.RepositoryDescription,
     },
 }
 
@@ -1064,9 +1042,7 @@ M.DeleteRepositoryPermissionsPolicyInput = {
 M.DeleteRepositoryPermissionsPolicyOutput = {
     type = "structure",
     members = {
-        policy = {
-            type = "structure",
-        },
+        policy = M.ResourcePolicy,
     },
 }
 
@@ -1092,9 +1068,7 @@ M.DescribeDomainInput = {
 M.DescribeDomainOutput = {
     type = "structure",
     members = {
-        domain = {
-            type = "structure",
-        },
+        domain = M.DomainDescription,
     },
 }
 
@@ -1156,21 +1130,16 @@ M.PackageDescription = {
         name = {
             type = "string",
         },
-        originConfiguration = {
-            type = "structure",
-        },
+        originConfiguration = M.PackageOriginConfiguration,
     },
 }
 
 M.DescribePackageOutput = {
     type = "structure",
     members = {
-        package = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        package = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PackageDescription }),
     },
 }
 
@@ -1203,9 +1172,7 @@ M.DescribePackageGroupInput = {
 M.DescribePackageGroupOutput = {
     type = "structure",
     members = {
-        packageGroup = {
-            type = "structure",
-        },
+        packageGroup = M.PackageGroupDescription,
     },
 }
 
@@ -1295,9 +1262,7 @@ M.PackageVersionOriginType = {
 M.PackageVersionOrigin = {
     type = "structure",
     members = {
-        domainEntryPoint = {
-            type = "structure",
-        },
+        domainEntryPoint = M.DomainEntryPoint,
         originType = {
             type = "string",
         },
@@ -1336,7 +1301,7 @@ M.PackageVersionDescription = {
         },
         licenses = {
             type = "list",
-            member_type = "structure",
+            member = M.LicenseInfo,
         },
         revision = {
             type = "string",
@@ -1344,21 +1309,16 @@ M.PackageVersionDescription = {
         status = {
             type = "string",
         },
-        origin = {
-            type = "structure",
-        },
+        origin = M.PackageVersionOrigin,
     },
 }
 
 M.DescribePackageVersionOutput = {
     type = "structure",
     members = {
-        packageVersion = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        packageVersion = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PackageVersionDescription }),
     },
 }
 
@@ -1391,9 +1351,7 @@ M.DescribeRepositoryInput = {
 M.DescribeRepositoryOutput = {
     type = "structure",
     members = {
-        repository = {
-            type = "structure",
-        },
+        repository = M.RepositoryDescription,
     },
 }
 
@@ -1433,9 +1391,7 @@ M.DisassociateExternalConnectionInput = {
 M.DisassociateExternalConnectionOutput = {
     type = "structure",
     members = {
-        repository = {
-            type = "structure",
-        },
+        repository = M.RepositoryDescription,
     },
 }
 
@@ -1484,15 +1440,15 @@ M.DisposePackageVersionsInput = {
         },
         versions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         versionRevisions = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         expectedStatus = {
             type = "string",
@@ -1505,13 +1461,13 @@ M.DisposePackageVersionsOutput = {
     members = {
         successfulVersions = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.SuccessfulPackageVersionInfo,
         },
         failedVersions = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.PackageVersionError,
         },
     },
 }
@@ -1558,9 +1514,7 @@ M.GetAssociatedPackageGroupInput = {
 M.GetAssociatedPackageGroupOutput = {
     type = "structure",
     members = {
-        packageGroup = {
-            type = "structure",
-        },
+        packageGroup = M.PackageGroupDescription,
         associationType = {
             type = "string",
         },
@@ -1584,7 +1538,7 @@ M.GetAuthorizationTokenInput = {
             },
         },
         durationSeconds = {
-            type = "number",
+            type = "long",
             traits = {
                 http_query = "duration",
             },
@@ -1626,9 +1580,7 @@ M.GetDomainPermissionsPolicyInput = {
 M.GetDomainPermissionsPolicyOutput = {
     type = "structure",
     members = {
-        policy = {
-            type = "structure",
-        },
+        policy = M.ResourcePolicy,
     },
 }
 
@@ -1704,6 +1656,7 @@ M.GetPackageVersionAssetOutput = {
         asset = {
             type = "blob",
             traits = {
+                default = "",
                 http_payload = true,
             },
         },
@@ -1887,9 +1840,7 @@ M.GetRepositoryPermissionsPolicyInput = {
 M.GetRepositoryPermissionsPolicyOutput = {
     type = "structure",
     members = {
-        policy = {
-            type = "structure",
-        },
+        policy = M.ResourcePolicy,
     },
 }
 
@@ -1924,7 +1875,7 @@ M.ListAllowedRepositoriesForGroupInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -1943,7 +1894,7 @@ M.ListAllowedRepositoriesForGroupOutput = {
     members = {
         allowedRepositories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -1975,7 +1926,7 @@ M.ListAssociatedPackagesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -2000,7 +1951,7 @@ M.ListAssociatedPackagesOutput = {
     members = {
         packages = {
             type = "list",
-            member_type = "structure",
+            member = M.AssociatedPackage,
         },
         nextToken = {
             type = "string",
@@ -2012,7 +1963,7 @@ M.ListDomainsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -2049,7 +2000,7 @@ M.ListDomainsOutput = {
     members = {
         domains = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainSummary,
         },
         nextToken = {
             type = "string",
@@ -2074,7 +2025,7 @@ M.ListPackageGroupsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -2118,12 +2069,8 @@ M.PackageGroupSummary = {
         description = {
             type = "string",
         },
-        originConfiguration = {
-            type = "structure",
-        },
-        parent = {
-            type = "structure",
-        },
+        originConfiguration = M.PackageGroupOriginConfiguration,
+        parent = M.PackageGroupReference,
     },
 }
 
@@ -2132,7 +2079,7 @@ M.ListPackageGroupsOutput = {
     members = {
         packageGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.PackageGroupSummary,
         },
         nextToken = {
             type = "string",
@@ -2182,7 +2129,7 @@ M.ListPackagesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -2213,7 +2160,7 @@ M.ListPackagesOutput = {
     members = {
         packages = {
             type = "list",
-            member_type = "structure",
+            member = M.PackageSummary,
         },
         nextToken = {
             type = "string",
@@ -2272,7 +2219,7 @@ M.ListPackageVersionAssetsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -2309,7 +2256,7 @@ M.ListPackageVersionAssetsOutput = {
         },
         assets = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetSummary,
         },
     },
 }
@@ -2414,7 +2361,7 @@ M.ListPackageVersionDependenciesOutput = {
         },
         dependencies = {
             type = "list",
-            member_type = "structure",
+            member = M.PackageDependency,
         },
     },
 }
@@ -2479,7 +2426,7 @@ M.ListPackageVersionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -2517,9 +2464,7 @@ M.PackageVersionSummary = {
                 required = true,
             },
         },
-        origin = {
-            type = "structure",
-        },
+        origin = M.PackageVersionOrigin,
     },
 }
 
@@ -2540,7 +2485,7 @@ M.ListPackageVersionsOutput = {
         },
         versions = {
             type = "list",
-            member_type = "structure",
+            member = M.PackageVersionSummary,
         },
         nextToken = {
             type = "string",
@@ -2558,7 +2503,7 @@ M.ListRepositoriesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -2604,7 +2549,7 @@ M.ListRepositoriesOutput = {
     members = {
         repositories = {
             type = "list",
-            member_type = "structure",
+            member = M.RepositorySummary,
         },
         nextToken = {
             type = "string",
@@ -2641,7 +2586,7 @@ M.ListRepositoriesInDomainInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -2660,7 +2605,7 @@ M.ListRepositoriesInDomainOutput = {
     members = {
         repositories = {
             type = "list",
-            member_type = "structure",
+            member = M.RepositorySummary,
         },
         nextToken = {
             type = "string",
@@ -2692,7 +2637,7 @@ M.ListSubPackageGroupsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -2711,7 +2656,7 @@ M.ListSubPackageGroupsOutput = {
     members = {
         packageGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.PackageGroupSummary,
         },
         nextToken = {
             type = "string",
@@ -2737,7 +2682,7 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2843,9 +2788,7 @@ M.PublishPackageVersionOutput = {
         status = {
             type = "string",
         },
-        asset = {
-            type = "structure",
-        },
+        asset = M.AssetSummary,
     },
 }
 
@@ -2876,9 +2819,7 @@ M.PutDomainPermissionsPolicyInput = {
 M.PutDomainPermissionsPolicyOutput = {
     type = "structure",
     members = {
-        policy = {
-            type = "structure",
-        },
+        policy = M.ResourcePolicy,
     },
 }
 
@@ -2925,21 +2866,16 @@ M.PutPackageOriginConfigurationInput = {
                 required = true,
             },
         },
-        restrictions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        restrictions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PackageOriginRestrictions }),
     },
 }
 
 M.PutPackageOriginConfigurationOutput = {
     type = "structure",
     members = {
-        originConfiguration = {
-            type = "structure",
-        },
+        originConfiguration = M.PackageOriginConfiguration,
     },
 }
 
@@ -2981,9 +2917,7 @@ M.PutRepositoryPermissionsPolicyInput = {
 M.PutRepositoryPermissionsPolicyOutput = {
     type = "structure",
     members = {
-        policy = {
-            type = "structure",
-        },
+        policy = M.ResourcePolicy,
     },
 }
 
@@ -2999,7 +2933,7 @@ M.TagResourceInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -3023,7 +2957,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3069,9 +3003,7 @@ M.UpdatePackageGroupInput = {
 M.UpdatePackageGroupOutput = {
     type = "structure",
     members = {
-        packageGroup = {
-            type = "structure",
-        },
+        packageGroup = M.PackageGroupDescription,
     },
 }
 
@@ -3112,16 +3044,16 @@ M.UpdatePackageGroupOriginConfigurationInput = {
         },
         restrictions = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         addAllowedRepositories = {
             type = "list",
-            member_type = "structure",
+            member = M.PackageGroupAllowedRepository,
         },
         removeAllowedRepositories = {
             type = "list",
-            member_type = "structure",
+            member = M.PackageGroupAllowedRepository,
         },
     },
 }
@@ -3134,13 +3066,11 @@ M.PackageGroupAllowedRepositoryUpdateType = {
 M.UpdatePackageGroupOriginConfigurationOutput = {
     type = "structure",
     members = {
-        packageGroup = {
-            type = "structure",
-        },
+        packageGroup = M.PackageGroupDescription,
         allowedRepositoryUpdates = {
             type = "map",
-            key_type = "string",
-            value_type = "map",
+            key = { type = "string" },
+            value = { type = "map" },
         },
     },
 }
@@ -3190,15 +3120,15 @@ M.UpdatePackageVersionsStatusInput = {
         },
         versions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         versionRevisions = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         expectedStatus = {
             type = "string",
@@ -3217,13 +3147,13 @@ M.UpdatePackageVersionsStatusOutput = {
     members = {
         successfulVersions = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.SuccessfulPackageVersionInfo,
         },
         failedVersions = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.PackageVersionError,
         },
     },
 }
@@ -3256,7 +3186,7 @@ M.UpdateRepositoryInput = {
         },
         upstreams = {
             type = "list",
-            member_type = "structure",
+            member = M.UpstreamRepository,
         },
     },
 }
@@ -3264,9 +3194,7 @@ M.UpdateRepositoryInput = {
 M.UpdateRepositoryOutput = {
     type = "structure",
     members = {
-        repository = {
-            type = "structure",
-        },
+        repository = M.RepositoryDescription,
     },
 }
 

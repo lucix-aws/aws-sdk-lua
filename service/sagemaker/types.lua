@@ -41,7 +41,7 @@ M.AcceleratorPartitionConfig = {
             },
         },
         Count = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -185,20 +185,18 @@ M.ComputeQuotaResourceConfig = {
             },
         },
         Count = {
-            type = "number",
+            type = "integer",
         },
         Accelerators = {
-            type = "number",
+            type = "integer",
         },
         VCpu = {
-            type = "number",
+            type = "float",
         },
         MemoryInGiB = {
-            type = "number",
+            type = "float",
         },
-        AcceleratorPartition = {
-            type = "structure",
-        },
+        AcceleratorPartition = M.AcceleratorPartitionConfig,
     },
 }
 
@@ -243,9 +241,7 @@ M.ActionSummary = {
         ActionName = {
             type = "string",
         },
-        Source = {
-            type = "structure",
-        },
+        Source = M.ActionSource,
         ActionType = {
             type = "string",
         },
@@ -341,18 +337,18 @@ M.AddClusterNodeSpecification = {
             },
         },
         IncrementTargetCountBy = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         AvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         InstanceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -362,7 +358,7 @@ M.AdditionalEnis = {
     members = {
         EfaEnis = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -422,12 +418,8 @@ M.S3ModelDataSource = {
                 required = true,
             },
         },
-        ModelAccessConfig = {
-            type = "structure",
-        },
-        HubAccessConfig = {
-            type = "structure",
-        },
+        ModelAccessConfig = M.ModelAccessConfig,
+        HubAccessConfig = M.InferenceHubAccessConfig,
         ManifestS3Uri = {
             type = "string",
         },
@@ -449,12 +441,9 @@ M.AdditionalModelDataSource = {
                 required = true,
             },
         },
-        S3DataSource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        S3DataSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3ModelDataSource }),
     },
 }
 
@@ -510,9 +499,7 @@ M.BaseModel = {
 M.ModelDataSource = {
     type = "structure",
     members = {
-        S3DataSource = {
-            type = "structure",
-        },
+        S3DataSource = M.S3ModelDataSource,
     },
 }
 
@@ -543,20 +530,16 @@ M.ModelPackageContainerDefinition = {
         ModelDataUrl = {
             type = "string",
         },
-        ModelDataSource = {
-            type = "structure",
-        },
+        ModelDataSource = M.ModelDataSource,
         ProductId = {
             type = "string",
         },
         Environment = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        ModelInput = {
-            type = "structure",
-        },
+        ModelInput = M.ModelInput,
         Framework = {
             type = "string",
         },
@@ -568,20 +551,16 @@ M.ModelPackageContainerDefinition = {
         },
         AdditionalModelDataSources = {
             type = "list",
-            member_type = "structure",
+            member = M.AdditionalModelDataSource,
         },
-        AdditionalS3DataSource = {
-            type = "structure",
-        },
+        AdditionalS3DataSource = M.AdditionalS3DataSource,
         ModelDataETag = {
             type = "string",
         },
         IsCheckpoint = {
             type = "boolean",
         },
-        BaseModel = {
-            type = "structure",
-        },
+        BaseModel = M.BaseModel,
     },
 }
 
@@ -984,26 +963,26 @@ M.AdditionalInferenceSpecificationDefinition = {
         },
         Containers = {
             type = "list",
-            member_type = "structure",
+            member = M.ModelPackageContainerDefinition,
             traits = {
                 required = true,
             },
         },
         SupportedTransformInstanceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SupportedRealtimeInferenceInstanceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SupportedContentTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SupportedResponseMIMETypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1037,7 +1016,7 @@ M.AddTagsInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -1050,7 +1029,7 @@ M.AddTagsOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1065,7 +1044,7 @@ M.AgentVersion = {
             },
         },
         AgentCount = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -1107,7 +1086,7 @@ M.AIBenchmarkEndpoint = {
         },
         InferenceComponents = {
             type = "list",
-            member_type = "structure",
+            member = M.AIBenchmarkInferenceComponent,
         },
     },
 }
@@ -1161,14 +1140,14 @@ M.VpcConfig = {
     members = {
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         Subnets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1179,9 +1158,7 @@ M.VpcConfig = {
 M.AIBenchmarkNetworkConfig = {
     type = "structure",
     members = {
-        VpcConfig = {
-            type = "structure",
-        },
+        VpcConfig = M.VpcConfig,
     },
 }
 
@@ -1220,7 +1197,7 @@ M.AIBenchmarkOutputResult = {
         },
         CloudWatchLogs = {
             type = "list",
-            member_type = "structure",
+            member = M.AICloudWatchLogs,
         },
     },
 }
@@ -1228,9 +1205,7 @@ M.AIBenchmarkOutputResult = {
 M.AIBenchmarkTarget = {
     type = "union",
     members = {
-        Endpoint = {
-            type = "structure",
-        },
+        Endpoint = M.AIBenchmarkEndpoint,
     },
 }
 
@@ -1246,7 +1221,7 @@ M.AICapacityReservationConfig = {
         },
         MlReservationArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1266,9 +1241,7 @@ M.AIWorkloadS3DataSource = {
 M.AIWorkloadDataSource = {
     type = "structure",
     members = {
-        S3DataSource = {
-            type = "structure",
-        },
+        S3DataSource = M.AIWorkloadS3DataSource,
     },
 }
 
@@ -1281,12 +1254,9 @@ M.AIWorkloadInputDataConfig = {
                 required = true,
             },
         },
-        DataSource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DataSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AIWorkloadDataSource }),
     },
 }
 
@@ -1295,7 +1265,7 @@ M.AIDatasetConfig = {
     members = {
         InputDataConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.AIWorkloadInputDataConfig,
         },
     },
 }
@@ -1312,9 +1282,7 @@ M.AIModelSourceS3 = {
 M.AIModelSource = {
     type = "union",
     members = {
-        S3 = {
-            type = "structure",
-        },
+        S3 = M.AIModelSourceS3,
     },
 }
 
@@ -1377,7 +1345,7 @@ M.AIRecommendationDeploymentConfiguration = {
     members = {
         S3 = {
             type = "list",
-            member_type = "structure",
+            member = M.AIRecommendationDeploymentS3Channel,
         },
         ImageUri = {
             type = "string",
@@ -1386,15 +1354,15 @@ M.AIRecommendationDeploymentConfiguration = {
             type = "string",
         },
         InstanceCount = {
-            type = "number",
+            type = "integer",
         },
         CopyCountPerInstance = {
-            type = "number",
+            type = "integer",
         },
         EnvironmentVariables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1430,10 +1398,10 @@ M.AIRecommendationInstanceDetail = {
             type = "string",
         },
         InstanceCount = {
-            type = "number",
+            type = "integer",
         },
         CopyCountPerInstance = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1449,7 +1417,7 @@ M.AIRecommendationModelDetails = {
         },
         InstanceDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.AIRecommendationInstanceDetail,
         },
     },
 }
@@ -1470,8 +1438,8 @@ M.AIRecommendationOptimizationDetail = {
         },
         OptimizationConfig = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1484,20 +1452,16 @@ M.AIRecommendation = {
         },
         OptimizationDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.AIRecommendationOptimizationDetail,
         },
-        ModelDetails = {
-            type = "structure",
-        },
-        DeploymentConfiguration = {
-            type = "structure",
-        },
+        ModelDetails = M.AIRecommendationModelDetails,
+        DeploymentConfiguration = M.AIRecommendationDeploymentConfiguration,
         AIBenchmarkJobArn = {
             type = "string",
         },
         ExpectedPerformance = {
             type = "list",
-            member_type = "structure",
+            member = M.AIRecommendationPerformanceMetric,
         },
     },
 }
@@ -1507,11 +1471,9 @@ M.AIRecommendationComputeSpec = {
     members = {
         InstanceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        CapacityReservationConfig = {
-            type = "structure",
-        },
+        CapacityReservationConfig = M.AICapacityReservationConfig,
     },
 }
 
@@ -1620,7 +1582,7 @@ M.AIRecommendationPerformanceTarget = {
     members = {
         Constraints = {
             type = "list",
-            member_type = "structure",
+            member = M.AIRecommendationConstraint,
             traits = {
                 required = true,
             },
@@ -1640,12 +1602,9 @@ M.WorkloadSpec = {
 M.AIWorkloadConfigs = {
     type = "structure",
     members = {
-        WorkloadSpec = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        WorkloadSpec = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkloadSpec }),
     },
 }
 
@@ -1743,9 +1702,7 @@ M.TrainingImageConfig = {
                 required = true,
             },
         },
-        TrainingRepositoryAuthConfig = {
-            type = "structure",
-        },
+        TrainingRepositoryAuthConfig = M.TrainingRepositoryAuthConfig,
     },
 }
 
@@ -1772,22 +1729,20 @@ M.AlgorithmSpecification = {
         },
         MetricDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricDefinition,
         },
         EnableSageMakerMetricsTimeSeries = {
             type = "boolean",
         },
         ContainerEntrypoint = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ContainerArguments = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        TrainingImageConfig = {
-            type = "structure",
-        },
+        TrainingImageConfig = M.TrainingImageConfig,
     },
 }
 
@@ -1832,11 +1787,11 @@ M.AlgorithmStatusDetails = {
     members = {
         ValidationStatuses = {
             type = "list",
-            member_type = "structure",
+            member = M.AlgorithmStatusItem,
         },
         ImageScanStatuses = {
             type = "list",
-            member_type = "structure",
+            member = M.AlgorithmStatusItem,
         },
     },
 }
@@ -1970,33 +1925,23 @@ M.S3DataSource = {
         },
         AttributeNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         InstanceGroupNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        ModelAccessConfig = {
-            type = "structure",
-        },
-        HubAccessConfig = {
-            type = "structure",
-        },
+        ModelAccessConfig = M.ModelAccessConfig,
+        HubAccessConfig = M.HubAccessConfig,
     },
 }
 
 M.DataSource = {
     type = "structure",
     members = {
-        S3DataSource = {
-            type = "structure",
-        },
-        FileSystemDataSource = {
-            type = "structure",
-        },
-        DatasetSource = {
-            type = "structure",
-        },
+        S3DataSource = M.S3DataSource,
+        FileSystemDataSource = M.FileSystemDataSource,
+        DatasetSource = M.DatasetSource,
     },
 }
 
@@ -2009,7 +1954,7 @@ M.ShuffleConfig = {
     type = "structure",
     members = {
         Seed = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -2026,12 +1971,9 @@ M.Channel = {
                 required = true,
             },
         },
-        DataSource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DataSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataSource }),
         ContentType = {
             type = "string",
         },
@@ -2044,9 +1986,7 @@ M.Channel = {
         InputMode = {
             type = "string",
         },
-        ShuffleConfig = {
-            type = "structure",
-        },
+        ShuffleConfig = M.ShuffleConfig,
     },
 }
 
@@ -2231,7 +2171,7 @@ M.InstanceGroup = {
             },
         },
         InstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -2252,7 +2192,7 @@ M.PlacementSpecification = {
             type = "string",
         },
         InstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -2268,7 +2208,7 @@ M.InstancePlacementConfig = {
         },
         PlacementSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.PlacementSpecification,
         },
     },
 }
@@ -2280,27 +2220,25 @@ M.ResourceConfig = {
             type = "string",
         },
         InstanceCount = {
-            type = "number",
+            type = "integer",
         },
         VolumeSizeInGB = {
-            type = "number",
+            type = "integer",
         },
         VolumeKmsKeyId = {
             type = "string",
         },
         KeepAlivePeriodInSeconds = {
-            type = "number",
+            type = "integer",
         },
         InstanceGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceGroup,
         },
         TrainingPlanArn = {
             type = "string",
         },
-        InstancePlacementConfig = {
-            type = "structure",
-        },
+        InstancePlacementConfig = M.InstancePlacementConfig,
     },
 }
 
@@ -2308,13 +2246,13 @@ M.StoppingCondition = {
     type = "structure",
     members = {
         MaxRuntimeInSeconds = {
-            type = "number",
+            type = "integer",
         },
         MaxWaitTimeInSeconds = {
-            type = "number",
+            type = "integer",
         },
         MaxPendingTimeInSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2330,34 +2268,25 @@ M.TrainingJobDefinition = {
         },
         HyperParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         InputDataConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.Channel,
             traits = {
                 required = true,
             },
         },
-        OutputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ResourceConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        StoppingCondition = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        OutputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OutputDataConfig }),
+        ResourceConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResourceConfig }),
+        StoppingCondition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.StoppingCondition }),
     },
 }
 
@@ -2387,12 +2316,9 @@ M.TransformS3DataSource = {
 M.TransformDataSource = {
     type = "structure",
     members = {
-        S3DataSource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        S3DataSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TransformS3DataSource }),
     },
 }
 
@@ -2406,12 +2332,9 @@ M.SplitType = {
 M.TransformInput = {
     type = "structure",
     members = {
-        DataSource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DataSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TransformDataSource }),
         ContentType = {
             type = "string",
         },
@@ -2460,7 +2383,7 @@ M.TransformResources = {
             },
         },
         InstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -2478,37 +2401,28 @@ M.TransformJobDefinition = {
     type = "structure",
     members = {
         MaxConcurrentTransforms = {
-            type = "number",
+            type = "integer",
         },
         MaxPayloadInMB = {
-            type = "number",
+            type = "integer",
         },
         BatchStrategy = {
             type = "string",
         },
         Environment = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        TransformInput = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        TransformOutput = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        TransformResources = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TransformInput = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TransformInput }),
+        TransformOutput = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TransformOutput }),
+        TransformResources = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TransformResources }),
     },
 }
 
@@ -2521,15 +2435,10 @@ M.AlgorithmValidationProfile = {
                 required = true,
             },
         },
-        TrainingJobDefinition = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        TransformJobDefinition = {
-            type = "structure",
-        },
+        TrainingJobDefinition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TrainingJobDefinition }),
+        TransformJobDefinition = M.TransformJobDefinition,
     },
 }
 
@@ -2544,7 +2453,7 @@ M.AlgorithmValidationSpecification = {
         },
         ValidationProfiles = {
             type = "list",
-            member_type = "structure",
+            member = M.AlgorithmValidationProfile,
             traits = {
                 required = true,
             },
@@ -2812,9 +2721,7 @@ M.AppDetails = {
         CreationTime = {
             type = "timestamp",
         },
-        ResourceSpec = {
-            type = "structure",
-        },
+        ResourceSpec = M.ResourceSpec,
     },
 }
 
@@ -2823,16 +2730,16 @@ M.ContainerConfig = {
     members = {
         ContainerArguments = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ContainerEntrypoint = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ContainerEnvironmentVariables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2844,10 +2751,10 @@ M.FileSystemConfig = {
             type = "string",
         },
         DefaultUid = {
-            type = "number",
+            type = "integer",
         },
         DefaultGid = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2855,24 +2762,16 @@ M.FileSystemConfig = {
 M.CodeEditorAppImageConfig = {
     type = "structure",
     members = {
-        FileSystemConfig = {
-            type = "structure",
-        },
-        ContainerConfig = {
-            type = "structure",
-        },
+        FileSystemConfig = M.FileSystemConfig,
+        ContainerConfig = M.ContainerConfig,
     },
 }
 
 M.JupyterLabAppImageConfig = {
     type = "structure",
     members = {
-        FileSystemConfig = {
-            type = "structure",
-        },
-        ContainerConfig = {
-            type = "structure",
-        },
+        FileSystemConfig = M.FileSystemConfig,
+        ContainerConfig = M.ContainerConfig,
     },
 }
 
@@ -2896,14 +2795,12 @@ M.KernelGatewayImageConfig = {
     members = {
         KernelSpecs = {
             type = "list",
-            member_type = "structure",
+            member = M.KernelSpec,
             traits = {
                 required = true,
             },
         },
-        FileSystemConfig = {
-            type = "structure",
-        },
+        FileSystemConfig = M.FileSystemConfig,
     },
 }
 
@@ -2922,15 +2819,9 @@ M.AppImageConfigDetails = {
         LastModifiedTime = {
             type = "timestamp",
         },
-        KernelGatewayImageConfig = {
-            type = "structure",
-        },
-        JupyterLabAppImageConfig = {
-            type = "structure",
-        },
-        CodeEditorAppImageConfig = {
-            type = "structure",
-        },
+        KernelGatewayImageConfig = M.KernelGatewayImageConfig,
+        JupyterLabAppImageConfig = M.JupyterLabAppImageConfig,
+        CodeEditorAppImageConfig = M.CodeEditorAppImageConfig,
     },
 }
 
@@ -2952,13 +2843,13 @@ M.IdleSettings = {
             type = "string",
         },
         IdleTimeoutInMinutes = {
-            type = "number",
+            type = "integer",
         },
         MinIdleTimeoutInMinutes = {
-            type = "number",
+            type = "integer",
         },
         MaxIdleTimeoutInMinutes = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2966,9 +2857,7 @@ M.IdleSettings = {
 M.AppLifecycleManagement = {
     type = "structure",
     members = {
-        IdleSettings = {
-            type = "structure",
-        },
+        IdleSettings = M.IdleSettings,
     },
 }
 
@@ -2997,11 +2886,11 @@ M.AppSpecification = {
         },
         ContainerEntrypoint = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ContainerArguments = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3042,7 +2931,7 @@ M.ArtifactSource = {
         },
         SourceTypes = {
             type = "list",
-            member_type = "structure",
+            member = M.ArtifactSourceType,
         },
     },
 }
@@ -3056,9 +2945,7 @@ M.ArtifactSummary = {
         ArtifactName = {
             type = "string",
         },
-        Source = {
-            type = "structure",
-        },
+        Source = M.ArtifactSource,
         ArtifactType = {
             type = "string",
         },
@@ -3146,9 +3033,7 @@ M.UserContext = {
         DomainId = {
             type = "string",
         },
-        IamIdentity = {
-            type = "structure",
-        },
+        IamIdentity = M.IamIdentity,
     },
 }
 
@@ -3179,9 +3064,7 @@ M.AssociationSummary = {
         CreationTime = {
             type = "timestamp",
         },
-        CreatedBy = {
-            type = "structure",
-        },
+        CreatedBy = M.UserContext,
     },
 }
 
@@ -3189,7 +3072,7 @@ M.AsyncInferenceClientConfig = {
     type = "structure",
     members = {
         MaxConcurrentInvocationsPerInstance = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3210,7 +3093,7 @@ M.AsyncInferenceNotificationConfig = {
         },
         IncludeInferenceResponseIn = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3224,9 +3107,7 @@ M.AsyncInferenceOutputConfig = {
         S3OutputPath = {
             type = "string",
         },
-        NotificationConfig = {
-            type = "structure",
-        },
+        NotificationConfig = M.AsyncInferenceNotificationConfig,
         S3FailurePath = {
             type = "string",
         },
@@ -3236,15 +3117,10 @@ M.AsyncInferenceOutputConfig = {
 M.AsyncInferenceConfig = {
     type = "structure",
     members = {
-        ClientConfig = {
-            type = "structure",
-        },
-        OutputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ClientConfig = M.AsyncInferenceClientConfig,
+        OutputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AsyncInferenceOutputConfig }),
     },
 }
 
@@ -3421,7 +3297,7 @@ M.AutoMLAlgorithmConfig = {
     members = {
         AutoMLAlgorithms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3512,7 +3388,7 @@ M.MetricDatum = {
             type = "string",
         },
         Value = {
-            type = "number",
+            type = "float",
         },
         Set = {
             type = "string",
@@ -3523,12 +3399,10 @@ M.MetricDatum = {
 M.CandidateProperties = {
     type = "structure",
     members = {
-        CandidateArtifactLocations = {
-            type = "structure",
-        },
+        CandidateArtifactLocations = M.CandidateArtifactLocations,
         CandidateMetrics = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricDatum,
         },
     },
 }
@@ -3589,7 +3463,7 @@ M.FinalAutoMLJobObjectiveMetric = {
             },
         },
         Value = {
-            type = "number",
+            type = "float",
             traits = {
                 required = true,
             },
@@ -3622,8 +3496,8 @@ M.AutoMLContainerDefinition = {
         },
         Environment = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3643,9 +3517,7 @@ M.AutoMLCandidate = {
                 required = true,
             },
         },
-        FinalAutoMLJobObjectiveMetric = {
-            type = "structure",
-        },
+        FinalAutoMLJobObjectiveMetric = M.FinalAutoMLJobObjectiveMetric,
         ObjectiveStatus = {
             type = "string",
             traits = {
@@ -3654,7 +3526,7 @@ M.AutoMLCandidate = {
         },
         CandidateSteps = {
             type = "list",
-            member_type = "structure",
+            member = M.AutoMLCandidateStep,
             traits = {
                 required = true,
             },
@@ -3667,7 +3539,7 @@ M.AutoMLCandidate = {
         },
         InferenceContainers = {
             type = "list",
-            member_type = "structure",
+            member = M.AutoMLContainerDefinition,
         },
         CreationTime = {
             type = "timestamp",
@@ -3687,13 +3559,11 @@ M.AutoMLCandidate = {
         FailureReason = {
             type = "string",
         },
-        CandidateProperties = {
-            type = "structure",
-        },
+        CandidateProperties = M.CandidateProperties,
         InferenceContainerDefinitions = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
     },
 }
@@ -3706,7 +3576,7 @@ M.AutoMLCandidateGenerationConfig = {
         },
         AlgorithmsConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.AutoMLAlgorithmConfig,
         },
     },
 }
@@ -3743,21 +3613,16 @@ M.AutoMLS3DataSource = {
 M.AutoMLDataSource = {
     type = "structure",
     members = {
-        S3DataSource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        S3DataSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AutoMLS3DataSource }),
     },
 }
 
 M.AutoMLChannel = {
     type = "structure",
     members = {
-        DataSource = {
-            type = "structure",
-        },
+        DataSource = M.AutoMLDataSource,
         CompressionType = {
             type = "string",
         },
@@ -3794,9 +3659,7 @@ M.EmrServerlessComputeConfig = {
 M.AutoMLComputeConfig = {
     type = "structure",
     members = {
-        EmrServerlessComputeConfig = {
-            type = "structure",
-        },
+        EmrServerlessComputeConfig = M.EmrServerlessComputeConfig,
     },
 }
 
@@ -3804,7 +3667,7 @@ M.AutoMLDataSplitConfig = {
     type = "structure",
     members = {
         ValidationFraction = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -3833,9 +3696,7 @@ M.AutoMLJobChannel = {
         CompressionType = {
             type = "string",
         },
-        DataSource = {
-            type = "structure",
-        },
+        DataSource = M.AutoMLDataSource,
     },
 }
 
@@ -3843,13 +3704,13 @@ M.AutoMLJobCompletionCriteria = {
     type = "structure",
     members = {
         MaxCandidates = {
-            type = "number",
+            type = "integer",
         },
         MaxRuntimePerTrainingJobInSeconds = {
-            type = "number",
+            type = "integer",
         },
         MaxAutoMLJobRuntimeInSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3869,27 +3730,17 @@ M.AutoMLSecurityConfig = {
         EnableInterContainerTrafficEncryption = {
             type = "boolean",
         },
-        VpcConfig = {
-            type = "structure",
-        },
+        VpcConfig = M.VpcConfig,
     },
 }
 
 M.AutoMLJobConfig = {
     type = "structure",
     members = {
-        CompletionCriteria = {
-            type = "structure",
-        },
-        SecurityConfig = {
-            type = "structure",
-        },
-        CandidateGenerationConfig = {
-            type = "structure",
-        },
-        DataSplitConfig = {
-            type = "structure",
-        },
+        CompletionCriteria = M.AutoMLJobCompletionCriteria,
+        SecurityConfig = M.AutoMLSecurityConfig,
+        CandidateGenerationConfig = M.AutoMLCandidateGenerationConfig,
+        DataSplitConfig = M.AutoMLDataSplitConfig,
         Mode = {
             type = "string",
         },
@@ -4003,7 +3854,7 @@ M.AutoMLJobSummary = {
         },
         PartialFailureReasons = {
             type = "list",
-            member_type = "structure",
+            member = M.AutoMLPartialFailureReason,
         },
     },
 }
@@ -4026,9 +3877,7 @@ M.AutoMLOutputDataConfig = {
 M.ImageClassificationJobConfig = {
     type = "structure",
     members = {
-        CompletionCriteria = {
-            type = "structure",
-        },
+        CompletionCriteria = M.AutoMLJobCompletionCriteria,
     },
 }
 
@@ -4037,7 +3886,7 @@ M.CandidateGenerationConfig = {
     members = {
         AlgorithmsConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.AutoMLAlgorithmConfig,
         },
     },
 }
@@ -4051,12 +3900,8 @@ M.ProblemType = {
 M.TabularJobConfig = {
     type = "structure",
     members = {
-        CandidateGenerationConfig = {
-            type = "structure",
-        },
-        CompletionCriteria = {
-            type = "structure",
-        },
+        CandidateGenerationConfig = M.CandidateGenerationConfig,
+        CompletionCriteria = M.AutoMLJobCompletionCriteria,
         FeatureSpecificationS3Uri = {
             type = "string",
         },
@@ -4084,9 +3929,7 @@ M.TabularJobConfig = {
 M.TextClassificationJobConfig = {
     type = "structure",
     members = {
-        CompletionCriteria = {
-            type = "structure",
-        },
+        CompletionCriteria = M.AutoMLJobCompletionCriteria,
         ContentColumn = {
             type = "string",
             traits = {
@@ -4105,20 +3948,16 @@ M.TextClassificationJobConfig = {
 M.TextGenerationJobConfig = {
     type = "structure",
     members = {
-        CompletionCriteria = {
-            type = "structure",
-        },
+        CompletionCriteria = M.AutoMLJobCompletionCriteria,
         BaseModelName = {
             type = "string",
         },
         TextGenerationHyperParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        ModelAccessConfig = {
-            type = "structure",
-        },
+        ModelAccessConfig = M.ModelAccessConfig,
     },
 }
 
@@ -4154,7 +3993,7 @@ M.TimeSeriesConfig = {
         },
         GroupingAttributeNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4175,13 +4014,13 @@ M.TimeSeriesTransformations = {
     members = {
         Filling = {
             type = "map",
-            key_type = "string",
-            value_type = "map",
+            key = { type = "string" },
+            value = { type = "map" },
         },
         Aggregation = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -4192,9 +4031,7 @@ M.TimeSeriesForecastingJobConfig = {
         FeatureSpecificationS3Uri = {
             type = "string",
         },
-        CompletionCriteria = {
-            type = "structure",
-        },
+        CompletionCriteria = M.AutoMLJobCompletionCriteria,
         ForecastFrequency = {
             type = "string",
             traits = {
@@ -4202,52 +4039,35 @@ M.TimeSeriesForecastingJobConfig = {
             },
         },
         ForecastHorizon = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         ForecastQuantiles = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        Transformations = {
-            type = "structure",
-        },
-        TimeSeriesConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Transformations = M.TimeSeriesTransformations,
+        TimeSeriesConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TimeSeriesConfig }),
         HolidayConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.HolidayConfigAttributes,
         },
-        CandidateGenerationConfig = {
-            type = "structure",
-        },
+        CandidateGenerationConfig = M.CandidateGenerationConfig,
     },
 }
 
 M.AutoMLProblemTypeConfig = {
     type = "union",
     members = {
-        ImageClassificationJobConfig = {
-            type = "structure",
-        },
-        TextClassificationJobConfig = {
-            type = "structure",
-        },
-        TimeSeriesForecastingJobConfig = {
-            type = "structure",
-        },
-        TabularJobConfig = {
-            type = "structure",
-        },
-        TextGenerationJobConfig = {
-            type = "structure",
-        },
+        ImageClassificationJobConfig = M.ImageClassificationJobConfig,
+        TextClassificationJobConfig = M.TextClassificationJobConfig,
+        TimeSeriesForecastingJobConfig = M.TimeSeriesForecastingJobConfig,
+        TabularJobConfig = M.TabularJobConfig,
+        TextGenerationJobConfig = M.TextGenerationJobConfig,
     },
 }
 
@@ -4280,27 +4100,17 @@ M.TextGenerationResolvedAttributes = {
 M.AutoMLProblemTypeResolvedAttributes = {
     type = "union",
     members = {
-        TabularResolvedAttributes = {
-            type = "structure",
-        },
-        TextGenerationResolvedAttributes = {
-            type = "structure",
-        },
+        TabularResolvedAttributes = M.TabularResolvedAttributes,
+        TextGenerationResolvedAttributes = M.TextGenerationResolvedAttributes,
     },
 }
 
 M.AutoMLResolvedAttributes = {
     type = "structure",
     members = {
-        AutoMLJobObjective = {
-            type = "structure",
-        },
-        CompletionCriteria = {
-            type = "structure",
-        },
-        AutoMLProblemTypeResolvedAttributes = {
-            type = "union",
-        },
+        AutoMLJobObjective = M.AutoMLJobObjective,
+        CompletionCriteria = M.AutoMLJobCompletionCriteria,
+        AutoMLProblemTypeResolvedAttributes = M.AutoMLProblemTypeResolvedAttributes,
     },
 }
 
@@ -4344,7 +4154,7 @@ M.AutoRollbackConfig = {
     members = {
         Alarms = {
             type = "list",
-            member_type = "structure",
+            member = M.Alarm,
         },
     },
 }
@@ -4377,7 +4187,7 @@ M.AvailableUpgrade = {
         },
         ReleaseNotes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4401,7 +4211,7 @@ M.BatchAddClusterNodesInput = {
         },
         NodesToAdd = {
             type = "list",
-            member_type = "structure",
+            member = M.AddClusterNodeSpecification,
             traits = {
                 required = true,
             },
@@ -4432,18 +4242,18 @@ M.BatchAddClusterNodesError = {
             },
         },
         FailedCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         AvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         InstanceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Message = {
             type = "string",
@@ -4484,11 +4294,11 @@ M.NodeAdditionResult = {
         },
         AvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         InstanceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4498,14 +4308,14 @@ M.BatchAddClusterNodesOutput = {
     members = {
         Successful = {
             type = "list",
-            member_type = "structure",
+            member = M.NodeAdditionResult,
             traits = {
                 required = true,
             },
         },
         Failed = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchAddClusterNodesError,
             traits = {
                 required = true,
             },
@@ -4572,11 +4382,11 @@ M.BatchDeleteClusterNodesInput = {
         },
         NodeIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NodeLogicalIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4610,19 +4420,19 @@ M.BatchDeleteClusterNodesOutput = {
     members = {
         Failed = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchDeleteClusterNodesError,
         },
         Successful = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         FailedNodeLogicalIds = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchDeleteClusterNodeLogicalIdsError,
         },
         SuccessfulNodeLogicalIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4632,7 +4442,7 @@ M.BatchDescribeModelPackageInput = {
     members = {
         ModelPackageArnList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4663,26 +4473,26 @@ M.InferenceSpecification = {
     members = {
         Containers = {
             type = "list",
-            member_type = "structure",
+            member = M.ModelPackageContainerDefinition,
             traits = {
                 required = true,
             },
         },
         SupportedTransformInstanceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SupportedRealtimeInferenceInstanceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SupportedContentTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SupportedResponseMIMETypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4716,7 +4526,7 @@ M.BatchDescribeModelPackageSummary = {
             },
         },
         ModelPackageVersion = {
-            type = "number",
+            type = "integer",
         },
         ModelPackageArn = {
             type = "string",
@@ -4733,12 +4543,9 @@ M.BatchDescribeModelPackageSummary = {
                 required = true,
             },
         },
-        InferenceSpecification = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InferenceSpecification = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InferenceSpecification }),
         ModelPackageStatus = {
             type = "string",
             traits = {
@@ -4759,13 +4566,13 @@ M.BatchDescribeModelPackageOutput = {
     members = {
         ModelPackageSummaries = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.BatchDescribeModelPackageSummary,
         },
         BatchDescribeModelPackageErrorMap = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.BatchDescribeModelPackageError,
         },
     },
 }
@@ -4812,11 +4619,11 @@ M.BatchRebootClusterNodesInput = {
         },
         NodeIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NodeLogicalIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4850,19 +4657,19 @@ M.BatchRebootClusterNodesOutput = {
     members = {
         Successful = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Failed = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchRebootClusterNodesError,
         },
         FailedNodeLogicalIds = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchRebootClusterNodeLogicalIdsError,
         },
         SuccessfulNodeLogicalIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4909,11 +4716,11 @@ M.BatchReplaceClusterNodesInput = {
         },
         NodeIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NodeLogicalIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4947,19 +4754,19 @@ M.BatchReplaceClusterNodesOutput = {
     members = {
         Successful = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Failed = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchReplaceClusterNodesError,
         },
         FailedNodeLogicalIds = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchReplaceClusterNodeLogicalIdsError,
         },
         SuccessfulNodeLogicalIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4989,15 +4796,9 @@ M.MonitoringParquetDatasetFormat = {
 M.MonitoringDatasetFormat = {
     type = "structure",
     members = {
-        Csv = {
-            type = "structure",
-        },
-        Json = {
-            type = "structure",
-        },
-        Parquet = {
-            type = "structure",
-        },
+        Csv = M.MonitoringCsvDatasetFormat,
+        Json = M.MonitoringJsonDatasetFormat,
+        Parquet = M.MonitoringParquetDatasetFormat,
     },
 }
 
@@ -5020,12 +4821,9 @@ M.BatchTransformInput = {
                 required = true,
             },
         },
-        DatasetFormat = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DatasetFormat = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MonitoringDatasetFormat }),
         LocalPath = {
             type = "string",
             traits = {
@@ -5048,7 +4846,7 @@ M.BatchTransformInput = {
             type = "string",
         },
         ProbabilityThresholdAttribute = {
-            type = "number",
+            type = "double",
         },
         StartTimeOffset = {
             type = "string",
@@ -5102,7 +4900,7 @@ M.BestObjectiveNotImproving = {
     type = "structure",
     members = {
         MaxNumberOfTrainingJobsNotImproving = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5131,15 +4929,9 @@ M.MetricsSource = {
 M.Bias = {
     type = "structure",
     members = {
-        Report = {
-            type = "structure",
-        },
-        PreTrainingReport = {
-            type = "structure",
-        },
-        PostTrainingReport = {
-            type = "structure",
-        },
+        Report = M.MetricsSource,
+        PreTrainingReport = M.MetricsSource,
+        PostTrainingReport = M.MetricsSource,
     },
 }
 
@@ -5158,7 +4950,7 @@ M.CapacitySize = {
             },
         },
         Value = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -5182,34 +4974,27 @@ M.TrafficRoutingConfig = {
             },
         },
         WaitIntervalInSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
-        CanarySize = {
-            type = "structure",
-        },
-        LinearStepSize = {
-            type = "structure",
-        },
+        CanarySize = M.CapacitySize,
+        LinearStepSize = M.CapacitySize,
     },
 }
 
 M.BlueGreenUpdatePolicy = {
     type = "structure",
     members = {
-        TrafficRoutingConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TrafficRoutingConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TrafficRoutingConfig }),
         TerminationWaitInSeconds = {
-            type = "number",
+            type = "integer",
         },
         MaximumExecutionTimeoutInSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5257,7 +5042,7 @@ M.CallbackStepMetadata = {
         },
         OutputParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputParameter,
         },
     },
 }
@@ -5366,31 +5151,17 @@ M.WorkspaceSettings = {
 M.CanvasAppSettings = {
     type = "structure",
     members = {
-        TimeSeriesForecastingSettings = {
-            type = "structure",
-        },
-        ModelRegisterSettings = {
-            type = "structure",
-        },
-        WorkspaceSettings = {
-            type = "structure",
-        },
+        TimeSeriesForecastingSettings = M.TimeSeriesForecastingSettings,
+        ModelRegisterSettings = M.ModelRegisterSettings,
+        WorkspaceSettings = M.WorkspaceSettings,
         IdentityProviderOAuthSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.IdentityProviderOAuthSetting,
         },
-        DirectDeploySettings = {
-            type = "structure",
-        },
-        KendraSettings = {
-            type = "structure",
-        },
-        GenerativeAiSettings = {
-            type = "structure",
-        },
-        EmrServerlessSettings = {
-            type = "structure",
-        },
+        DirectDeploySettings = M.DirectDeploySettings,
+        KendraSettings = M.KendraSettings,
+        GenerativeAiSettings = M.GenerativeAiSettings,
+        EmrServerlessSettings = M.EmrServerlessSettings,
     },
 }
 
@@ -5430,7 +5201,7 @@ M.CapacitySizeConfig = {
             },
         },
         Value = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -5443,11 +5214,11 @@ M.CaptureContentTypeHeader = {
     members = {
         CsvContentTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         JsonContentTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -5486,7 +5257,7 @@ M.CategoricalParameter = {
         },
         Value = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -5505,7 +5276,7 @@ M.CategoricalParameterRange = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -5518,7 +5289,7 @@ M.CategoricalParameterRangeSpecification = {
     members = {
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -5561,7 +5332,7 @@ M.CfnCreateTemplateProvider = {
         },
         Parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.CfnStackCreateParameter,
         },
     },
 }
@@ -5634,11 +5405,9 @@ M.CfnTemplateProviderDetail = {
         },
         Parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.CfnStackParameter,
         },
-        StackDetail = {
-            type = "structure",
-        },
+        StackDetail = M.CfnStackDetail,
     },
 }
 
@@ -5659,7 +5428,7 @@ M.CfnUpdateTemplateProvider = {
         },
         Parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.CfnStackUpdateParameter,
         },
     },
 }
@@ -5681,18 +5450,18 @@ M.ChannelSpecification = {
         },
         SupportedContentTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         SupportedCompressionTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SupportedInputModes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -5761,16 +5530,16 @@ M.ClarifyInferenceConfig = {
             type = "string",
         },
         MaxRecordCount = {
-            type = "number",
+            type = "integer",
         },
         MaxPayloadInMB = {
-            type = "number",
+            type = "integer",
         },
         ProbabilityIndex = {
-            type = "number",
+            type = "integer",
         },
         LabelIndex = {
-            type = "number",
+            type = "integer",
         },
         ProbabilityAttribute = {
             type = "string",
@@ -5780,15 +5549,15 @@ M.ClarifyInferenceConfig = {
         },
         LabelHeaders = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         FeatureHeaders = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         FeatureTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -5898,24 +5667,19 @@ M.ClarifyTextConfig = {
 M.ClarifyShapConfig = {
     type = "structure",
     members = {
-        ShapBaselineConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ShapBaselineConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ClarifyShapBaselineConfig }),
         NumberOfSamples = {
-            type = "number",
+            type = "integer",
         },
         UseLogit = {
             type = "boolean",
         },
         Seed = {
-            type = "number",
+            type = "integer",
         },
-        TextConfig = {
-            type = "structure",
-        },
+        TextConfig = M.ClarifyTextConfig,
     },
 }
 
@@ -5925,15 +5689,10 @@ M.ClarifyExplainerConfig = {
         EnableExplanations = {
             type = "string",
         },
-        InferenceConfig = {
-            type = "structure",
-        },
-        ShapConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InferenceConfig = M.ClarifyInferenceConfig,
+        ShapConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ClarifyShapConfig }),
     },
 }
 
@@ -6003,12 +5762,8 @@ M.ClusterSpotOptions = {
 M.ClusterCapacityRequirements = {
     type = "structure",
     members = {
-        Spot = {
-            type = "structure",
-        },
-        OnDemand = {
-            type = "structure",
-        },
+        Spot = M.ClusterSpotOptions,
+        OnDemand = M.ClusterOnDemandOptions,
     },
 }
 
@@ -6026,7 +5781,7 @@ M.ClusterEbsVolumeConfig = {
     type = "structure",
     members = {
         VolumeSizeInGB = {
-            type = "number",
+            type = "integer",
         },
         VolumeKmsKeyId = {
             type = "string",
@@ -6045,7 +5800,7 @@ M.ClusterMetadata = {
         },
         EksRoleAccessEntries = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SlrAccessEntry = {
             type = "string",
@@ -6059,12 +5814,8 @@ M.InstanceMetadata = {
         CustomerEni = {
             type = "string",
         },
-        AdditionalEnis = {
-            type = "structure",
-        },
-        CapacityReservation = {
-            type = "structure",
-        },
+        AdditionalEnis = M.AdditionalEnis,
+        CapacityReservation = M.CapacityReservation,
         FailureMessage = {
             type = "string",
         },
@@ -6086,15 +5837,13 @@ M.InstanceGroupMetadata = {
         AvailabilityZoneId = {
             type = "string",
         },
-        CapacityReservation = {
-            type = "structure",
-        },
+        CapacityReservation = M.CapacityReservation,
         SubnetId = {
             type = "string",
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AmiOverride = {
             type = "string",
@@ -6106,13 +5855,13 @@ M.InstanceGroupScalingMetadata = {
     type = "structure",
     members = {
         InstanceCount = {
-            type = "number",
+            type = "integer",
         },
         TargetCount = {
-            type = "number",
+            type = "integer",
         },
         MinCount = {
-            type = "number",
+            type = "integer",
         },
         FailureMessage = {
             type = "string",
@@ -6123,27 +5872,17 @@ M.InstanceGroupScalingMetadata = {
 M.EventMetadata = {
     type = "union",
     members = {
-        Cluster = {
-            type = "structure",
-        },
-        InstanceGroup = {
-            type = "structure",
-        },
-        InstanceGroupScaling = {
-            type = "structure",
-        },
-        Instance = {
-            type = "structure",
-        },
+        Cluster = M.ClusterMetadata,
+        InstanceGroup = M.InstanceGroupMetadata,
+        InstanceGroupScaling = M.InstanceGroupScalingMetadata,
+        Instance = M.InstanceMetadata,
     },
 }
 
 M.EventDetails = {
     type = "structure",
     members = {
-        EventMetadata = {
-            type = "union",
-        },
+        EventMetadata = M.EventMetadata,
     },
 }
 
@@ -6192,9 +5931,7 @@ M.ClusterEventDetail = {
                 required = true,
             },
         },
-        EventDetails = {
-            type = "structure",
-        },
+        EventDetails = M.EventDetails,
         Description = {
             type = "string",
         },
@@ -6285,30 +6022,23 @@ M.ClusterFsxOpenZfsConfig = {
 M.RollingDeploymentPolicy = {
     type = "structure",
     members = {
-        MaximumBatchSize = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        RollbackMaximumBatchSize = {
-            type = "structure",
-        },
+        MaximumBatchSize = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CapacitySizeConfig }),
+        RollbackMaximumBatchSize = M.CapacitySizeConfig,
     },
 }
 
 M.DeploymentConfiguration = {
     type = "structure",
     members = {
-        RollingUpdatePolicy = {
-            type = "structure",
-        },
+        RollingUpdatePolicy = M.RollingDeploymentPolicy,
         WaitIntervalInSeconds = {
-            type = "number",
+            type = "integer",
         },
         AutoRollbackConfiguration = {
             type = "list",
-            member_type = "structure",
+            member = M.AlarmDetails,
         },
     },
 }
@@ -6318,11 +6048,11 @@ M.ClusterInstanceRequirementDetails = {
     members = {
         CurrentInstanceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DesiredInstanceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -6330,15 +6060,9 @@ M.ClusterInstanceRequirementDetails = {
 M.ClusterInstanceStorageConfig = {
     type = "union",
     members = {
-        EbsVolumeConfig = {
-            type = "structure",
-        },
-        FsxLustreConfig = {
-            type = "structure",
-        },
-        FsxOpenZfsConfig = {
-            type = "structure",
-        },
+        EbsVolumeConfig = M.ClusterEbsVolumeConfig,
+        FsxLustreConfig = M.ClusterFsxLustreConfig,
+        FsxOpenZfsConfig = M.ClusterFsxOpenZfsConfig,
     },
 }
 
@@ -6349,10 +6073,10 @@ M.ClusterInstanceTypeDetail = {
             type = "string",
         },
         CurrentCount = {
-            type = "number",
+            type = "integer",
         },
         ThreadsPerCore = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -6389,21 +6113,21 @@ M.ClusterKubernetesConfigDetails = {
     members = {
         CurrentLabels = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         DesiredLabels = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         CurrentTaints = {
             type = "list",
-            member_type = "structure",
+            member = M.ClusterKubernetesTaint,
         },
         DesiredTaints = {
             type = "list",
-            member_type = "structure",
+            member = M.ClusterKubernetesTaint,
         },
     },
 }
@@ -6451,9 +6175,7 @@ M.ScheduledUpdateConfig = {
                 required = true,
             },
         },
-        DeploymentConfig = {
-            type = "structure",
-        },
+        DeploymentConfig = M.DeploymentConfiguration,
     },
 }
 
@@ -6474,7 +6196,7 @@ M.ClusterSlurmConfigDetails = {
         },
         PartitionNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -6502,13 +6224,13 @@ M.ClusterInstanceGroupDetails = {
     type = "structure",
     members = {
         CurrentCount = {
-            type = "number",
+            type = "integer",
         },
         TargetCount = {
-            type = "number",
+            type = "integer",
         },
         MinCount = {
-            type = "number",
+            type = "integer",
         },
         InstanceGroupName = {
             type = "string",
@@ -6516,29 +6238,25 @@ M.ClusterInstanceGroupDetails = {
         InstanceType = {
             type = "string",
         },
-        InstanceRequirements = {
-            type = "structure",
-        },
+        InstanceRequirements = M.ClusterInstanceRequirementDetails,
         InstanceTypeDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.ClusterInstanceTypeDetail,
         },
-        LifeCycleConfig = {
-            type = "structure",
-        },
+        LifeCycleConfig = M.ClusterLifeCycleConfig,
         ExecutionRole = {
             type = "string",
         },
         ThreadsPerCore = {
-            type = "number",
+            type = "integer",
         },
         InstanceStorageConfigs = {
             type = "list",
-            member_type = "union",
+            member = M.ClusterInstanceStorageConfig,
         },
         OnStartDeepHealthChecks = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Status = {
             type = "string",
@@ -6549,12 +6267,8 @@ M.ClusterInstanceGroupDetails = {
         TrainingPlanStatus = {
             type = "string",
         },
-        OverrideVpcConfig = {
-            type = "structure",
-        },
-        ScheduledUpdateConfig = {
-            type = "structure",
-        },
+        OverrideVpcConfig = M.VpcConfig,
+        ScheduledUpdateConfig = M.ScheduledUpdateConfig,
         CurrentImageId = {
             type = "string",
         },
@@ -6563,30 +6277,20 @@ M.ClusterInstanceGroupDetails = {
         },
         ActiveOperations = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
         },
-        KubernetesConfig = {
-            type = "structure",
-        },
-        CapacityRequirements = {
-            type = "structure",
-        },
+        KubernetesConfig = M.ClusterKubernetesConfigDetails,
+        CapacityRequirements = M.ClusterCapacityRequirements,
         TargetStateCount = {
-            type = "number",
+            type = "integer",
         },
         SoftwareUpdateStatus = {
             type = "string",
         },
-        ActiveSoftwareUpdateConfig = {
-            type = "structure",
-        },
-        SlurmConfig = {
-            type = "structure",
-        },
-        NetworkInterface = {
-            type = "structure",
-        },
+        ActiveSoftwareUpdateConfig = M.DeploymentConfiguration,
+        SlurmConfig = M.ClusterSlurmConfigDetails,
+        NetworkInterface = M.ClusterNetworkInterfaceDetails,
     },
 }
 
@@ -6595,7 +6299,7 @@ M.ClusterInstanceRequirements = {
     members = {
         InstanceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -6608,12 +6312,12 @@ M.ClusterKubernetesConfig = {
     members = {
         Labels = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Taints = {
             type = "list",
-            member_type = "structure",
+            member = M.ClusterKubernetesTaint,
         },
     },
 }
@@ -6638,7 +6342,7 @@ M.ClusterSlurmConfig = {
         },
         PartitionNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -6647,13 +6351,13 @@ M.ClusterInstanceGroupSpecification = {
     type = "structure",
     members = {
         InstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         MinInstanceCount = {
-            type = "number",
+            type = "integer",
         },
         InstanceGroupName = {
             type = "string",
@@ -6664,12 +6368,8 @@ M.ClusterInstanceGroupSpecification = {
         InstanceType = {
             type = "string",
         },
-        InstanceRequirements = {
-            type = "structure",
-        },
-        LifeCycleConfig = {
-            type = "structure",
-        },
+        InstanceRequirements = M.ClusterInstanceRequirements,
+        LifeCycleConfig = M.ClusterLifeCycleConfig,
         ExecutionRole = {
             type = "string",
             traits = {
@@ -6677,40 +6377,28 @@ M.ClusterInstanceGroupSpecification = {
             },
         },
         ThreadsPerCore = {
-            type = "number",
+            type = "integer",
         },
         InstanceStorageConfigs = {
             type = "list",
-            member_type = "union",
+            member = M.ClusterInstanceStorageConfig,
         },
         OnStartDeepHealthChecks = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TrainingPlanArn = {
             type = "string",
         },
-        OverrideVpcConfig = {
-            type = "structure",
-        },
-        ScheduledUpdateConfig = {
-            type = "structure",
-        },
+        OverrideVpcConfig = M.VpcConfig,
+        ScheduledUpdateConfig = M.ScheduledUpdateConfig,
         ImageId = {
             type = "string",
         },
-        KubernetesConfig = {
-            type = "structure",
-        },
-        SlurmConfig = {
-            type = "structure",
-        },
-        CapacityRequirements = {
-            type = "structure",
-        },
-        NetworkInterface = {
-            type = "structure",
-        },
+        KubernetesConfig = M.ClusterKubernetesConfig,
+        SlurmConfig = M.ClusterSlurmConfig,
+        CapacityRequirements = M.ClusterCapacityRequirements,
+        NetworkInterface = M.ClusterNetworkInterface,
     },
 }
 
@@ -6746,21 +6434,21 @@ M.ClusterKubernetesConfigNodeDetails = {
     members = {
         CurrentLabels = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         DesiredLabels = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         CurrentTaints = {
             type = "list",
-            member_type = "structure",
+            member = M.ClusterKubernetesTaint,
         },
         DesiredTaints = {
             type = "list",
-            member_type = "structure",
+            member = M.ClusterKubernetesTaint,
         },
     },
 }
@@ -6789,9 +6477,7 @@ M.ClusterNodeDetails = {
         NodeLogicalId = {
             type = "string",
         },
-        InstanceStatus = {
-            type = "structure",
-        },
+        InstanceStatus = M.ClusterInstanceStatusDetails,
         InstanceType = {
             type = "string",
         },
@@ -6801,18 +6487,14 @@ M.ClusterNodeDetails = {
         LastSoftwareUpdateTime = {
             type = "timestamp",
         },
-        LifeCycleConfig = {
-            type = "structure",
-        },
-        OverrideVpcConfig = {
-            type = "structure",
-        },
+        LifeCycleConfig = M.ClusterLifeCycleConfig,
+        OverrideVpcConfig = M.VpcConfig,
         ThreadsPerCore = {
-            type = "number",
+            type = "integer",
         },
         InstanceStorageConfigs = {
             type = "list",
-            member_type = "union",
+            member = M.ClusterInstanceStorageConfig,
         },
         PrivatePrimaryIp = {
             type = "string",
@@ -6823,27 +6505,19 @@ M.ClusterNodeDetails = {
         PrivateDnsHostname = {
             type = "string",
         },
-        Placement = {
-            type = "structure",
-        },
+        Placement = M.ClusterInstancePlacement,
         CurrentImageId = {
             type = "string",
         },
         DesiredImageId = {
             type = "string",
         },
-        UltraServerInfo = {
-            type = "structure",
-        },
-        KubernetesConfig = {
-            type = "structure",
-        },
+        UltraServerInfo = M.UltraServerInfo,
+        KubernetesConfig = M.ClusterKubernetesConfigNodeDetails,
         CapacityType = {
             type = "string",
         },
-        NetworkInterface = {
-            type = "structure",
-        },
+        NetworkInterface = M.ClusterNetworkInterfaceDetails,
     },
 }
 
@@ -6889,15 +6563,10 @@ M.ClusterNodeSummary = {
         LastSoftwareUpdateTime = {
             type = "timestamp",
         },
-        InstanceStatus = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        UltraServerInfo = {
-            type = "structure",
-        },
+        InstanceStatus = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ClusterInstanceStatusDetails }),
+        UltraServerInfo = M.UltraServerInfo,
         PrivateDnsHostname = {
             type = "string",
         },
@@ -6934,12 +6603,8 @@ M.ClusterOrchestratorSlurmConfig = {
 M.ClusterOrchestrator = {
     type = "structure",
     members = {
-        Eks = {
-            type = "structure",
-        },
-        Slurm = {
-            type = "structure",
-        },
+        Eks = M.ClusterOrchestratorEksConfig,
+        Slurm = M.ClusterOrchestratorSlurmConfig,
     },
 }
 
@@ -6947,13 +6612,13 @@ M.FSxLustreConfig = {
     type = "structure",
     members = {
         SizeInGiB = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         PerUnitStorageThroughput = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -6964,9 +6629,7 @@ M.FSxLustreConfig = {
 M.EnvironmentConfigDetails = {
     type = "structure",
     members = {
-        FSxLustreConfig = {
-            type = "structure",
-        },
+        FSxLustreConfig = M.FSxLustreConfig,
         S3OutputPath = {
             type = "string",
         },
@@ -6977,10 +6640,10 @@ M.ClusterRestrictedInstanceGroupDetails = {
     type = "structure",
     members = {
         CurrentCount = {
-            type = "number",
+            type = "integer",
         },
         TargetCount = {
-            type = "number",
+            type = "integer",
         },
         InstanceGroupName = {
             type = "string",
@@ -6992,15 +6655,15 @@ M.ClusterRestrictedInstanceGroupDetails = {
             type = "string",
         },
         ThreadsPerCore = {
-            type = "number",
+            type = "integer",
         },
         InstanceStorageConfigs = {
             type = "list",
-            member_type = "union",
+            member = M.ClusterInstanceStorageConfig,
         },
         OnStartDeepHealthChecks = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Status = {
             type = "string",
@@ -7011,24 +6674,16 @@ M.ClusterRestrictedInstanceGroupDetails = {
         TrainingPlanStatus = {
             type = "string",
         },
-        OverrideVpcConfig = {
-            type = "structure",
-        },
-        ScheduledUpdateConfig = {
-            type = "structure",
-        },
-        EnvironmentConfig = {
-            type = "structure",
-        },
+        OverrideVpcConfig = M.VpcConfig,
+        ScheduledUpdateConfig = M.ScheduledUpdateConfig,
+        EnvironmentConfig = M.EnvironmentConfigDetails,
     },
 }
 
 M.EnvironmentConfig = {
     type = "structure",
     members = {
-        FSxLustreConfig = {
-            type = "structure",
-        },
+        FSxLustreConfig = M.FSxLustreConfig,
     },
 }
 
@@ -7036,7 +6691,7 @@ M.ClusterRestrictedInstanceGroupSpecification = {
     type = "structure",
     members = {
         InstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -7060,28 +6715,22 @@ M.ClusterRestrictedInstanceGroupSpecification = {
             },
         },
         ThreadsPerCore = {
-            type = "number",
+            type = "integer",
         },
         InstanceStorageConfigs = {
             type = "list",
-            member_type = "union",
+            member = M.ClusterInstanceStorageConfig,
         },
         OnStartDeepHealthChecks = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TrainingPlanArn = {
             type = "string",
         },
-        OverrideVpcConfig = {
-            type = "structure",
-        },
-        ScheduledUpdateConfig = {
-            type = "structure",
-        },
-        EnvironmentConfig = {
-            type = "structure",
-        },
+        OverrideVpcConfig = M.VpcConfig,
+        ScheduledUpdateConfig = M.ScheduledUpdateConfig,
+        EnvironmentConfig = M.EnvironmentConfig,
     },
 }
 
@@ -7116,7 +6765,7 @@ M.ClusterSchedulerConfigSummary = {
             },
         },
         ClusterSchedulerConfigVersion = {
-            type = "number",
+            type = "integer",
         },
         Name = {
             type = "string",
@@ -7189,7 +6838,7 @@ M.ClusterSummary = {
         },
         TrainingPlanArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -7204,7 +6853,7 @@ M.ClusterTieredStorageConfig = {
             },
         },
         InstanceMemoryAllocationPercentage = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -7219,7 +6868,7 @@ M.CustomImage = {
             },
         },
         ImageVersionNumber = {
-            type = "number",
+            type = "integer",
         },
         AppImageConfigName = {
             type = "string",
@@ -7233,20 +6882,16 @@ M.CustomImage = {
 M.CodeEditorAppSettings = {
     type = "structure",
     members = {
-        DefaultResourceSpec = {
-            type = "structure",
-        },
+        DefaultResourceSpec = M.ResourceSpec,
         CustomImages = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomImage,
         },
         LifecycleConfigArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        AppLifecycleManagement = {
-            type = "structure",
-        },
+        AppLifecycleManagement = M.AppLifecycleManagement,
         BuiltInLifecycleConfigArn = {
             type = "string",
         },
@@ -7321,9 +6966,7 @@ M.CodeRepositorySummary = {
                 required = true,
             },
         },
-        GitConfig = {
-            type = "structure",
-        },
+        GitConfig = M.GitConfig,
     },
 }
 
@@ -7373,7 +7016,7 @@ M.VectorConfig = {
     type = "structure",
     members = {
         Dimension = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -7384,9 +7027,7 @@ M.VectorConfig = {
 M.CollectionConfig = {
     type = "union",
     members = {
-        VectorConfig = {
-            type = "structure",
-        },
+        VectorConfig = M.VectorConfig,
     },
 }
 
@@ -7398,8 +7039,8 @@ M.CollectionConfiguration = {
         },
         CollectionParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -7556,11 +7197,11 @@ M.ResourceSharingConfig = {
             },
         },
         BorrowLimit = {
-            type = "number",
+            type = "integer",
         },
         AbsoluteBorrowLimits = {
             type = "list",
-            member_type = "structure",
+            member = M.ComputeQuotaResourceConfig,
         },
     },
 }
@@ -7570,11 +7211,9 @@ M.ComputeQuotaConfig = {
     members = {
         ComputeQuotaResources = {
             type = "list",
-            member_type = "structure",
+            member = M.ComputeQuotaResourceConfig,
         },
-        ResourceSharingConfig = {
-            type = "structure",
-        },
+        ResourceSharingConfig = M.ResourceSharingConfig,
         PreemptTeamTasks = {
             type = "string",
         },
@@ -7591,7 +7230,7 @@ M.ComputeQuotaTarget = {
             },
         },
         FairShareWeight = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -7618,7 +7257,7 @@ M.ComputeQuotaSummary = {
             },
         },
         ComputeQuotaVersion = {
-            type = "number",
+            type = "integer",
         },
         Status = {
             type = "string",
@@ -7629,15 +7268,10 @@ M.ComputeQuotaSummary = {
         ClusterArn = {
             type = "string",
         },
-        ComputeQuotaConfig = {
-            type = "structure",
-        },
-        ComputeQuotaTarget = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ComputeQuotaConfig = M.ComputeQuotaConfig,
+        ComputeQuotaTarget = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ComputeQuotaTarget }),
         ActivationState = {
             type = "string",
         },
@@ -7703,9 +7337,7 @@ M.ImageConfig = {
                 required = true,
             },
         },
-        RepositoryAuthConfig = {
-            type = "structure",
-        },
+        RepositoryAuthConfig = M.RepositoryAuthConfig,
     },
 }
 
@@ -7737,26 +7369,22 @@ M.ContainerDefinition = {
         Image = {
             type = "string",
         },
-        ImageConfig = {
-            type = "structure",
-        },
+        ImageConfig = M.ImageConfig,
         Mode = {
             type = "string",
         },
         ModelDataUrl = {
             type = "string",
         },
-        ModelDataSource = {
-            type = "structure",
-        },
+        ModelDataSource = M.ModelDataSource,
         AdditionalModelDataSources = {
             type = "list",
-            member_type = "structure",
+            member = M.AdditionalModelDataSource,
         },
         Environment = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ModelPackageName = {
             type = "string",
@@ -7764,9 +7392,7 @@ M.ContainerDefinition = {
         InferenceSpecificationName = {
             type = "string",
         },
-        MultiModelConfig = {
-            type = "structure",
-        },
+        MultiModelConfig = M.MultiModelConfig,
     },
 }
 
@@ -7802,9 +7428,7 @@ M.ContextSummary = {
         ContextName = {
             type = "string",
         },
-        Source = {
-            type = "structure",
-        },
+        Source = M.ContextSource,
         ContextType = {
             type = "string",
         },
@@ -7905,12 +7529,9 @@ M.CreateActionInput = {
                 required = true,
             },
         },
-        Source = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Source = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActionSource }),
         ActionType = {
             type = "string",
             traits = {
@@ -7925,15 +7546,13 @@ M.CreateActionInput = {
         },
         Properties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        MetadataProperties = {
-            type = "structure",
-        },
+        MetadataProperties = M.MetadataProperties,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -7956,18 +7575,12 @@ M.CreateAIBenchmarkJobInput = {
                 required = true,
             },
         },
-        BenchmarkTarget = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        OutputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        BenchmarkTarget = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AIBenchmarkTarget }),
+        OutputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AIBenchmarkOutputConfig }),
         AIWorkloadConfigIdentifier = {
             type = "string",
             traits = {
@@ -7980,12 +7593,10 @@ M.CreateAIBenchmarkJobInput = {
                 required = true,
             },
         },
-        NetworkConfig = {
-            type = "structure",
-        },
+        NetworkConfig = M.AIBenchmarkNetworkConfig,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -8021,48 +7632,35 @@ M.CreateAIRecommendationJobInput = {
                 required = true,
             },
         },
-        ModelSource = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        OutputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ModelSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AIModelSource }),
+        OutputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AIRecommendationOutputConfig }),
         AIWorkloadConfigIdentifier = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        PerformanceTarget = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        PerformanceTarget = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AIRecommendationPerformanceTarget }),
         RoleArn = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        InferenceSpecification = {
-            type = "structure",
-        },
+        InferenceSpecification = M.AIRecommendationInferenceSpecification,
         OptimizeModel = {
             type = "boolean",
         },
-        ComputeSpec = {
-            type = "structure",
-        },
+        ComputeSpec = M.AIRecommendationComputeSpec,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -8088,15 +7686,11 @@ M.CreateAIWorkloadConfigInput = {
                 required = true,
             },
         },
-        DatasetConfig = {
-            type = "union",
-        },
-        AIWorkloadConfigs = {
-            type = "structure",
-        },
+        DatasetConfig = M.AIDatasetConfig,
+        AIWorkloadConfigs = M.AIWorkloadConfigs,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -8134,15 +7728,9 @@ M.IntegerParameterRangeSpecification = {
 M.ParameterRange = {
     type = "structure",
     members = {
-        IntegerParameterRangeSpecification = {
-            type = "structure",
-        },
-        ContinuousParameterRangeSpecification = {
-            type = "structure",
-        },
-        CategoricalParameterRangeSpecification = {
-            type = "structure",
-        },
+        IntegerParameterRangeSpecification = M.IntegerParameterRangeSpecification,
+        ContinuousParameterRangeSpecification = M.ContinuousParameterRangeSpecification,
+        CategoricalParameterRangeSpecification = M.CategoricalParameterRangeSpecification,
     },
 }
 
@@ -8171,9 +7759,7 @@ M.HyperParameterSpecification = {
                 required = true,
             },
         },
-        Range = {
-            type = "structure",
-        },
+        Range = M.ParameterRange,
         IsTunable = {
             type = "boolean",
         },
@@ -8223,11 +7809,11 @@ M.TrainingSpecification = {
         },
         SupportedHyperParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.HyperParameterSpecification,
         },
         SupportedTrainingInstanceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -8237,22 +7823,20 @@ M.TrainingSpecification = {
         },
         MetricDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricDefinition,
         },
         TrainingChannels = {
             type = "list",
-            member_type = "structure",
+            member = M.ChannelSpecification,
             traits = {
                 required = true,
             },
         },
         SupportedTuningJobObjectiveMetrics = {
             type = "list",
-            member_type = "structure",
+            member = M.HyperParameterTuningJobObjective,
         },
-        AdditionalS3DataSource = {
-            type = "structure",
-        },
+        AdditionalS3DataSource = M.AdditionalS3DataSource,
     },
 }
 
@@ -8268,24 +7852,17 @@ M.CreateAlgorithmInput = {
         AlgorithmDescription = {
             type = "string",
         },
-        TrainingSpecification = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        InferenceSpecification = {
-            type = "structure",
-        },
-        ValidationSpecification = {
-            type = "structure",
-        },
+        TrainingSpecification = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TrainingSpecification }),
+        InferenceSpecification = M.InferenceSpecification,
+        ValidationSpecification = M.AlgorithmValidationSpecification,
         CertifyForMarketplace = {
             type = "boolean",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -8331,11 +7908,9 @@ M.CreateAppInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        ResourceSpec = {
-            type = "structure",
-        },
+        ResourceSpec = M.ResourceSpec,
         RecoveryMode = {
             type = "boolean",
         },
@@ -8362,17 +7937,11 @@ M.CreateAppImageConfigInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        KernelGatewayImageConfig = {
-            type = "structure",
-        },
-        JupyterLabAppImageConfig = {
-            type = "structure",
-        },
-        CodeEditorAppImageConfig = {
-            type = "structure",
-        },
+        KernelGatewayImageConfig = M.KernelGatewayImageConfig,
+        JupyterLabAppImageConfig = M.JupyterLabAppImageConfig,
+        CodeEditorAppImageConfig = M.CodeEditorAppImageConfig,
     },
 }
 
@@ -8391,12 +7960,9 @@ M.CreateArtifactInput = {
         ArtifactName = {
             type = "string",
         },
-        Source = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Source = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ArtifactSource }),
         ArtifactType = {
             type = "string",
             traits = {
@@ -8405,15 +7971,13 @@ M.CreateArtifactInput = {
         },
         Properties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        MetadataProperties = {
-            type = "structure",
-        },
+        MetadataProperties = M.MetadataProperties,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -8450,26 +8014,19 @@ M.CreateAutoMLJobInput = {
         },
         InputDataConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.AutoMLChannel,
             traits = {
                 required = true,
             },
         },
-        OutputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        OutputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AutoMLOutputDataConfig }),
         ProblemType = {
             type = "string",
         },
-        AutoMLJobObjective = {
-            type = "structure",
-        },
-        AutoMLJobConfig = {
-            type = "structure",
-        },
+        AutoMLJobObjective = M.AutoMLJobObjective,
+        AutoMLJobConfig = M.AutoMLJobConfig,
         RoleArn = {
             type = "string",
             traits = {
@@ -8481,11 +8038,9 @@ M.CreateAutoMLJobInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        ModelDeployConfig = {
-            type = "structure",
-        },
+        ModelDeployConfig = M.ModelDeployConfig,
     },
 }
 
@@ -8512,23 +8067,17 @@ M.CreateAutoMLJobV2Input = {
         },
         AutoMLJobInputDataConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.AutoMLJobChannel,
             traits = {
                 required = true,
             },
         },
-        OutputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        AutoMLProblemTypeConfig = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        OutputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AutoMLOutputDataConfig }),
+        AutoMLProblemTypeConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AutoMLProblemTypeConfig }),
         RoleArn = {
             type = "string",
             traits = {
@@ -8537,23 +8086,13 @@ M.CreateAutoMLJobV2Input = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        SecurityConfig = {
-            type = "structure",
-        },
-        AutoMLJobObjective = {
-            type = "structure",
-        },
-        ModelDeployConfig = {
-            type = "structure",
-        },
-        DataSplitConfig = {
-            type = "structure",
-        },
-        AutoMLComputeConfig = {
-            type = "structure",
-        },
+        SecurityConfig = M.AutoMLSecurityConfig,
+        AutoMLJobObjective = M.AutoMLJobObjective,
+        ModelDeployConfig = M.ModelDeployConfig,
+        DataSplitConfig = M.AutoMLDataSplitConfig,
+        AutoMLComputeConfig = M.AutoMLComputeConfig,
     },
 }
 
@@ -8580,37 +8119,29 @@ M.CreateClusterInput = {
         },
         InstanceGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.ClusterInstanceGroupSpecification,
         },
         RestrictedInstanceGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.ClusterRestrictedInstanceGroupSpecification,
         },
-        VpcConfig = {
-            type = "structure",
-        },
+        VpcConfig = M.VpcConfig,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        Orchestrator = {
-            type = "structure",
-        },
+        Orchestrator = M.ClusterOrchestrator,
         NodeRecovery = {
             type = "string",
         },
-        TieredStorageConfig = {
-            type = "structure",
-        },
+        TieredStorageConfig = M.ClusterTieredStorageConfig,
         NodeProvisioningMode = {
             type = "string",
         },
         ClusterRole = {
             type = "string",
         },
-        AutoScaling = {
-            type = "structure",
-        },
+        AutoScaling = M.ClusterAutoScalingConfig,
     },
 }
 
@@ -8646,7 +8177,7 @@ M.PriorityClass = {
             },
         },
         Weight = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -8659,7 +8190,7 @@ M.SchedulerConfig = {
     members = {
         PriorityClasses = {
             type = "list",
-            member_type = "structure",
+            member = M.PriorityClass,
         },
         FairShare = {
             type = "string",
@@ -8685,18 +8216,15 @@ M.CreateClusterSchedulerConfigInput = {
                 required = true,
             },
         },
-        SchedulerConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SchedulerConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SchedulerConfig }),
         Description = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -8728,15 +8256,12 @@ M.CreateCodeRepositoryInput = {
                 required = true,
             },
         },
-        GitConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        GitConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.GitConfig }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -8822,9 +8347,7 @@ M.OutputConfig = {
         TargetDevice = {
             type = "string",
         },
-        TargetPlatform = {
-            type = "structure",
-        },
+        TargetPlatform = M.TargetPlatform,
         CompilerOptions = {
             type = "string",
         },
@@ -8839,14 +8362,14 @@ M.NeoVpcConfig = {
     members = {
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         Subnets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -8872,27 +8395,17 @@ M.CreateCompilationJobInput = {
         ModelPackageVersionArn = {
             type = "string",
         },
-        InputConfig = {
-            type = "structure",
-        },
-        OutputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        VpcConfig = {
-            type = "structure",
-        },
-        StoppingCondition = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InputConfig = M.InputConfig,
+        OutputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OutputConfig }),
+        VpcConfig = M.NeoVpcConfig,
+        StoppingCondition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.StoppingCondition }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -8927,24 +8440,18 @@ M.CreateComputeQuotaInput = {
                 required = true,
             },
         },
-        ComputeQuotaConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ComputeQuotaTarget = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ComputeQuotaConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ComputeQuotaConfig }),
+        ComputeQuotaTarget = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ComputeQuotaTarget }),
         ActivationState = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -8976,12 +8483,9 @@ M.CreateContextInput = {
                 required = true,
             },
         },
-        Source = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Source = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ContextSource }),
         ContextType = {
             type = "string",
             traits = {
@@ -8993,12 +8497,12 @@ M.CreateContextInput = {
         },
         Properties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -9023,11 +8527,11 @@ M.DataQualityAppSpecification = {
         },
         ContainerEntrypoint = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ContainerArguments = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RecordPreprocessorSourceUri = {
             type = "string",
@@ -9037,8 +8541,8 @@ M.DataQualityAppSpecification = {
         },
         Environment = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -9067,12 +8571,8 @@ M.DataQualityBaselineConfig = {
         BaseliningJobName = {
             type = "string",
         },
-        ConstraintsResource = {
-            type = "structure",
-        },
-        StatisticsResource = {
-            type = "structure",
-        },
+        ConstraintsResource = M.MonitoringConstraintsResource,
+        StatisticsResource = M.MonitoringStatisticsResource,
     },
 }
 
@@ -9107,7 +8607,7 @@ M.EndpointInput = {
             type = "string",
         },
         ProbabilityThresholdAttribute = {
-            type = "number",
+            type = "double",
         },
         StartTimeOffset = {
             type = "string",
@@ -9124,12 +8624,8 @@ M.EndpointInput = {
 M.DataQualityJobInput = {
     type = "structure",
     members = {
-        EndpointInput = {
-            type = "structure",
-        },
-        BatchTransformInput = {
-            type = "structure",
-        },
+        EndpointInput = M.EndpointInput,
+        BatchTransformInput = M.BatchTransformInput,
     },
 }
 
@@ -9162,12 +8658,9 @@ M.MonitoringS3Output = {
 M.MonitoringOutput = {
     type = "structure",
     members = {
-        S3Output = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        S3Output = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MonitoringS3Output }),
     },
 }
 
@@ -9176,7 +8669,7 @@ M.MonitoringOutputConfig = {
     members = {
         MonitoringOutputs = {
             type = "list",
-            member_type = "structure",
+            member = M.MonitoringOutput,
             traits = {
                 required = true,
             },
@@ -9321,7 +8814,7 @@ M.MonitoringClusterConfig = {
     type = "structure",
     members = {
         InstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -9333,7 +8826,7 @@ M.MonitoringClusterConfig = {
             },
         },
         VolumeSizeInGB = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -9347,12 +8840,9 @@ M.MonitoringClusterConfig = {
 M.MonitoringResources = {
     type = "structure",
     members = {
-        ClusterConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ClusterConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MonitoringClusterConfig }),
     },
 }
 
@@ -9365,9 +8855,7 @@ M.MonitoringNetworkConfig = {
         EnableNetworkIsolation = {
             type = "boolean",
         },
-        VpcConfig = {
-            type = "structure",
-        },
+        VpcConfig = M.VpcConfig,
     },
 }
 
@@ -9375,7 +8863,7 @@ M.MonitoringStoppingCondition = {
     type = "structure",
     members = {
         MaxRuntimeInSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -9392,48 +8880,30 @@ M.CreateDataQualityJobDefinitionInput = {
                 required = true,
             },
         },
-        DataQualityBaselineConfig = {
-            type = "structure",
-        },
-        DataQualityAppSpecification = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        DataQualityJobInput = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        DataQualityJobOutputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        JobResources = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        NetworkConfig = {
-            type = "structure",
-        },
+        DataQualityBaselineConfig = M.DataQualityBaselineConfig,
+        DataQualityAppSpecification = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataQualityAppSpecification }),
+        DataQualityJobInput = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataQualityJobInput }),
+        DataQualityJobOutputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MonitoringOutputConfig }),
+        JobResources = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MonitoringResources }),
+        NetworkConfig = M.MonitoringNetworkConfig,
         RoleArn = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        StoppingCondition = {
-            type = "structure",
-        },
+        StoppingCondition = M.MonitoringStoppingCondition,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -9490,15 +8960,12 @@ M.CreateDeviceFleetInput = {
         Description = {
             type = "string",
         },
-        OutputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        OutputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EdgeOutputConfig }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         EnableIotRoleAlias = {
             type = "boolean",
@@ -9558,15 +9025,9 @@ M.S3FileSystemConfig = {
 M.CustomFileSystemConfig = {
     type = "union",
     members = {
-        EFSFileSystemConfig = {
-            type = "structure",
-        },
-        FSxLustreFileSystemConfig = {
-            type = "structure",
-        },
-        S3FileSystemConfig = {
-            type = "structure",
-        },
+        EFSFileSystemConfig = M.EFSFileSystemConfig,
+        FSxLustreFileSystemConfig = M.FSxLustreFileSystemConfig,
+        S3FileSystemConfig = M.S3FileSystemConfig,
     },
 }
 
@@ -9574,13 +9035,13 @@ M.CustomPosixUserConfig = {
     type = "structure",
     members = {
         Uid = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         Gid = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -9593,11 +9054,11 @@ M.EmrSettings = {
     members = {
         AssumableRoleArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ExecutionRoleArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -9605,27 +9066,21 @@ M.EmrSettings = {
 M.JupyterLabAppSettings = {
     type = "structure",
     members = {
-        DefaultResourceSpec = {
-            type = "structure",
-        },
+        DefaultResourceSpec = M.ResourceSpec,
         CustomImages = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomImage,
         },
         LifecycleConfigArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CodeRepositories = {
             type = "list",
-            member_type = "structure",
+            member = M.CodeRepository,
         },
-        AppLifecycleManagement = {
-            type = "structure",
-        },
-        EmrSettings = {
-            type = "structure",
-        },
+        AppLifecycleManagement = M.AppLifecycleManagement,
+        EmrSettings = M.EmrSettings,
         BuiltInLifecycleConfigArn = {
             type = "string",
         },
@@ -9635,16 +9090,14 @@ M.JupyterLabAppSettings = {
 M.JupyterServerAppSettings = {
     type = "structure",
     members = {
-        DefaultResourceSpec = {
-            type = "structure",
-        },
+        DefaultResourceSpec = M.ResourceSpec,
         LifecycleConfigArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CodeRepositories = {
             type = "list",
-            member_type = "structure",
+            member = M.CodeRepository,
         },
     },
 }
@@ -9652,16 +9105,14 @@ M.JupyterServerAppSettings = {
 M.KernelGatewayAppSettings = {
     type = "structure",
     members = {
-        DefaultResourceSpec = {
-            type = "structure",
-        },
+        DefaultResourceSpec = M.ResourceSpec,
         CustomImages = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomImage,
         },
         LifecycleConfigArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -9670,13 +9121,13 @@ M.DefaultEbsStorageSettings = {
     type = "structure",
     members = {
         DefaultEbsVolumeSizeInGb = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         MaximumEbsVolumeSizeInGb = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -9687,9 +9138,7 @@ M.DefaultEbsStorageSettings = {
 M.DefaultSpaceStorageSettings = {
     type = "structure",
     members = {
-        DefaultEbsStorageSettings = {
-            type = "structure",
-        },
+        DefaultEbsStorageSettings = M.DefaultEbsStorageSettings,
     },
 }
 
@@ -9701,26 +9150,16 @@ M.DefaultSpaceSettings = {
         },
         SecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        JupyterServerAppSettings = {
-            type = "structure",
-        },
-        KernelGatewayAppSettings = {
-            type = "structure",
-        },
-        JupyterLabAppSettings = {
-            type = "structure",
-        },
-        SpaceStorageSettings = {
-            type = "structure",
-        },
-        CustomPosixUserConfig = {
-            type = "structure",
-        },
+        JupyterServerAppSettings = M.JupyterServerAppSettings,
+        KernelGatewayAppSettings = M.KernelGatewayAppSettings,
+        JupyterLabAppSettings = M.JupyterLabAppSettings,
+        SpaceStorageSettings = M.DefaultSpaceStorageSettings,
+        CustomPosixUserConfig = M.CustomPosixUserConfig,
         CustomFileSystemConfigs = {
             type = "list",
-            member_type = "union",
+            member = M.CustomFileSystemConfig,
         },
     },
 }
@@ -9728,12 +9167,10 @@ M.DefaultSpaceSettings = {
 M.RSessionAppSettings = {
     type = "structure",
     members = {
-        DefaultResourceSpec = {
-            type = "structure",
-        },
+        DefaultResourceSpec = M.ResourceSpec,
         CustomImages = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomImage,
         },
     },
 }
@@ -9823,7 +9260,7 @@ M.HiddenSageMakerImage = {
         },
         VersionAliases = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -9833,19 +9270,19 @@ M.StudioWebPortalSettings = {
     members = {
         HiddenMlTools = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         HiddenAppTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         HiddenInstanceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         HiddenSageMakerImageVersionAliases = {
             type = "list",
-            member_type = "structure",
+            member = M.HiddenSageMakerImage,
         },
     },
 }
@@ -9853,9 +9290,7 @@ M.StudioWebPortalSettings = {
 M.TensorBoardAppSettings = {
     type = "structure",
     members = {
-        DefaultResourceSpec = {
-            type = "structure",
-        },
+        DefaultResourceSpec = M.ResourceSpec,
     },
 }
 
@@ -9867,54 +9302,30 @@ M.UserSettings = {
         },
         SecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        SharingSettings = {
-            type = "structure",
-        },
-        JupyterServerAppSettings = {
-            type = "structure",
-        },
-        KernelGatewayAppSettings = {
-            type = "structure",
-        },
-        TensorBoardAppSettings = {
-            type = "structure",
-        },
-        RStudioServerProAppSettings = {
-            type = "structure",
-        },
-        RSessionAppSettings = {
-            type = "structure",
-        },
-        CanvasAppSettings = {
-            type = "structure",
-        },
-        CodeEditorAppSettings = {
-            type = "structure",
-        },
-        JupyterLabAppSettings = {
-            type = "structure",
-        },
-        SpaceStorageSettings = {
-            type = "structure",
-        },
+        SharingSettings = M.SharingSettings,
+        JupyterServerAppSettings = M.JupyterServerAppSettings,
+        KernelGatewayAppSettings = M.KernelGatewayAppSettings,
+        TensorBoardAppSettings = M.TensorBoardAppSettings,
+        RStudioServerProAppSettings = M.RStudioServerProAppSettings,
+        RSessionAppSettings = M.RSessionAppSettings,
+        CanvasAppSettings = M.CanvasAppSettings,
+        CodeEditorAppSettings = M.CodeEditorAppSettings,
+        JupyterLabAppSettings = M.JupyterLabAppSettings,
+        SpaceStorageSettings = M.DefaultSpaceStorageSettings,
         DefaultLandingUri = {
             type = "string",
         },
         StudioWebPortal = {
             type = "string",
         },
-        CustomPosixUserConfig = {
-            type = "structure",
-        },
+        CustomPosixUserConfig = M.CustomPosixUserConfig,
         CustomFileSystemConfigs = {
             type = "list",
-            member_type = "union",
+            member = M.CustomFileSystemConfig,
         },
-        StudioWebPortalSettings = {
-            type = "structure",
-        },
+        StudioWebPortalSettings = M.StudioWebPortalSettings,
         AutoMountHomeEFS = {
             type = "string",
         },
@@ -9929,7 +9340,7 @@ M.DockerSettings = {
         },
         VpcOnlyTrustedAccounts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RootlessDocker = {
             type = "string",
@@ -9962,9 +9373,7 @@ M.RStudioServerProDomainSettings = {
         RStudioPackageManagerUrl = {
             type = "string",
         },
-        DefaultResourceSpec = {
-            type = "structure",
-        },
+        DefaultResourceSpec = M.ResourceSpec,
     },
 }
 
@@ -10015,26 +9424,16 @@ M.DomainSettings = {
     members = {
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        RStudioServerProDomainSettings = {
-            type = "structure",
-        },
+        RStudioServerProDomainSettings = M.RStudioServerProDomainSettings,
         ExecutionRoleIdentityConfig = {
             type = "string",
         },
-        TrustedIdentityPropagationSettings = {
-            type = "structure",
-        },
-        DockerSettings = {
-            type = "structure",
-        },
-        AmazonQSettings = {
-            type = "structure",
-        },
-        UnifiedStudioSettings = {
-            type = "structure",
-        },
+        TrustedIdentityPropagationSettings = M.TrustedIdentityPropagationSettings,
+        DockerSettings = M.DockerSettings,
+        AmazonQSettings = M.AmazonQSettings,
+        UnifiedStudioSettings = M.UnifiedStudioSettings,
         IpAddressType = {
             type = "string",
         },
@@ -10061,25 +9460,20 @@ M.CreateDomainInput = {
                 required = true,
             },
         },
-        DefaultUserSettings = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        DomainSettings = {
-            type = "structure",
-        },
+        DefaultUserSettings = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.UserSettings }),
+        DomainSettings = M.DomainSettings,
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         VpcId = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         AppNetworkAccessType = {
             type = "string",
@@ -10096,9 +9490,7 @@ M.CreateDomainInput = {
         TagPropagation = {
             type = "string",
         },
-        DefaultSpaceSettings = {
-            type = "structure",
-        },
+        DefaultSpaceSettings = M.DefaultSpaceSettings,
     },
 }
 
@@ -10168,11 +9560,11 @@ M.DeviceSelectionConfig = {
             },
         },
         Percentage = {
-            type = "number",
+            type = "integer",
         },
         DeviceNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DeviceNameContains = {
             type = "string",
@@ -10189,15 +9581,10 @@ M.DeploymentStage = {
                 required = true,
             },
         },
-        DeviceSelectionConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        DeploymentConfig = {
-            type = "structure",
-        },
+        DeviceSelectionConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DeviceSelectionConfig }),
+        DeploymentConfig = M.EdgeDeploymentConfig,
     },
 }
 
@@ -10212,7 +9599,7 @@ M.CreateEdgeDeploymentPlanInput = {
         },
         ModelConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.EdgeDeploymentModelConfig,
             traits = {
                 required = true,
             },
@@ -10225,11 +9612,11 @@ M.CreateEdgeDeploymentPlanInput = {
         },
         Stages = {
             type = "list",
-            member_type = "structure",
+            member = M.DeploymentStage,
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -10257,7 +9644,7 @@ M.CreateEdgeDeploymentStageInput = {
         },
         Stages = {
             type = "list",
-            member_type = "structure",
+            member = M.DeploymentStage,
             traits = {
                 required = true,
             },
@@ -10302,18 +9689,15 @@ M.CreateEdgePackagingJobInput = {
                 required = true,
             },
         },
-        OutputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        OutputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EdgeOutputConfig }),
         ResourceKey = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -10325,39 +9709,28 @@ M.CreateEdgePackagingJobOutput = {
 M.RollingUpdatePolicy = {
     type = "structure",
     members = {
-        MaximumBatchSize = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        MaximumBatchSize = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CapacitySize }),
         WaitIntervalInSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         MaximumExecutionTimeoutInSeconds = {
-            type = "number",
+            type = "integer",
         },
-        RollbackMaximumBatchSize = {
-            type = "structure",
-        },
+        RollbackMaximumBatchSize = M.CapacitySize,
     },
 }
 
 M.DeploymentConfig = {
     type = "structure",
     members = {
-        BlueGreenUpdatePolicy = {
-            type = "structure",
-        },
-        RollingUpdatePolicy = {
-            type = "structure",
-        },
-        AutoRollbackConfiguration = {
-            type = "structure",
-        },
+        BlueGreenUpdatePolicy = M.BlueGreenUpdatePolicy,
+        RollingUpdatePolicy = M.RollingUpdatePolicy,
+        AutoRollbackConfiguration = M.AutoRollbackConfig,
     },
 }
 
@@ -10376,12 +9749,10 @@ M.CreateEndpointInput = {
                 required = true,
             },
         },
-        DeploymentConfig = {
-            type = "structure",
-        },
+        DeploymentConfig = M.DeploymentConfig,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -10405,7 +9776,7 @@ M.DataCaptureConfig = {
             type = "boolean",
         },
         InitialSamplingPercentage = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -10421,23 +9792,19 @@ M.DataCaptureConfig = {
         },
         CaptureOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.CaptureOption,
             traits = {
                 required = true,
             },
         },
-        CaptureContentTypeHeader = {
-            type = "structure",
-        },
+        CaptureContentTypeHeader = M.CaptureContentTypeHeader,
     },
 }
 
 M.ExplainerConfig = {
     type = "structure",
     members = {
-        ClarifyExplainerConfig = {
-            type = "structure",
-        },
+        ClarifyExplainerConfig = M.ClarifyExplainerConfig,
     },
 }
 
@@ -10520,7 +9887,7 @@ M.InstancePool = {
             type = "string",
         },
         Priority = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -10543,10 +9910,10 @@ M.ProductionVariantManagedInstanceScalingScaleInPolicy = {
             },
         },
         MaximumStepSize = {
-            type = "number",
+            type = "integer",
         },
         CooldownInMinutes = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -10563,14 +9930,12 @@ M.ProductionVariantManagedInstanceScaling = {
             type = "string",
         },
         MinInstanceCount = {
-            type = "number",
+            type = "integer",
         },
         MaxInstanceCount = {
-            type = "number",
+            type = "integer",
         },
-        ScaleInPolicy = {
-            type = "structure",
-        },
+        ScaleInPolicy = M.ProductionVariantManagedInstanceScalingScaleInPolicy,
     },
 }
 
@@ -10595,19 +9960,19 @@ M.ProductionVariantServerlessConfig = {
     type = "structure",
     members = {
         MemorySizeInMB = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         MaxConcurrency = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         ProvisionedConcurrency = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -10625,54 +9990,44 @@ M.ProductionVariant = {
             type = "string",
         },
         InitialInstanceCount = {
-            type = "number",
+            type = "integer",
         },
         InstanceType = {
             type = "string",
         },
         InstancePools = {
             type = "list",
-            member_type = "structure",
+            member = M.InstancePool,
         },
         VariantInstanceProvisionTimeoutInSeconds = {
-            type = "number",
+            type = "integer",
         },
         InitialVariantWeight = {
-            type = "number",
+            type = "float",
         },
         AcceleratorType = {
             type = "string",
         },
-        CoreDumpConfig = {
-            type = "structure",
-        },
-        ServerlessConfig = {
-            type = "structure",
-        },
+        CoreDumpConfig = M.ProductionVariantCoreDumpConfig,
+        ServerlessConfig = M.ProductionVariantServerlessConfig,
         VolumeSizeInGB = {
-            type = "number",
+            type = "integer",
         },
         ModelDataDownloadTimeoutInSeconds = {
-            type = "number",
+            type = "integer",
         },
         ContainerStartupHealthCheckTimeoutInSeconds = {
-            type = "number",
+            type = "integer",
         },
         EnableSSMAccess = {
             type = "boolean",
         },
-        ManagedInstanceScaling = {
-            type = "structure",
-        },
-        RoutingConfig = {
-            type = "structure",
-        },
+        ManagedInstanceScaling = M.ProductionVariantManagedInstanceScaling,
+        RoutingConfig = M.ProductionVariantRoutingConfig,
         InferenceAmiVersion = {
             type = "string",
         },
-        CapacityReservationConfig = {
-            type = "structure",
-        },
+        CapacityReservationConfig = M.ProductionVariantCapacityReservationConfig,
     },
 }
 
@@ -10687,43 +10042,33 @@ M.CreateEndpointConfigInput = {
         },
         ProductionVariants = {
             type = "list",
-            member_type = "structure",
+            member = M.ProductionVariant,
             traits = {
                 required = true,
             },
         },
-        DataCaptureConfig = {
-            type = "structure",
-        },
+        DataCaptureConfig = M.DataCaptureConfig,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         KmsKeyId = {
             type = "string",
         },
-        AsyncInferenceConfig = {
-            type = "structure",
-        },
-        ExplainerConfig = {
-            type = "structure",
-        },
+        AsyncInferenceConfig = M.AsyncInferenceConfig,
+        ExplainerConfig = M.ExplainerConfig,
         ShadowProductionVariants = {
             type = "list",
-            member_type = "structure",
+            member = M.ProductionVariant,
         },
         ExecutionRoleArn = {
             type = "string",
         },
-        VpcConfig = {
-            type = "structure",
-        },
+        VpcConfig = M.VpcConfig,
         EnableNetworkIsolation = {
             type = "boolean",
         },
-        MetricsConfig = {
-            type = "structure",
-        },
+        MetricsConfig = M.MetricsConfig,
     },
 }
 
@@ -10756,7 +10101,7 @@ M.CreateExperimentInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -10794,9 +10139,7 @@ M.FeatureDefinition = {
         CollectionType = {
             type = "string",
         },
-        CollectionConfig = {
-            type = "union",
-        },
+        CollectionConfig = M.CollectionConfig,
     },
 }
 
@@ -10851,18 +10194,13 @@ M.TableFormat = {
 M.OfflineStoreConfig = {
     type = "structure",
     members = {
-        S3StorageConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        S3StorageConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3StorageConfig }),
         DisableGlueTableCreation = {
             type = "boolean",
         },
-        DataCatalogConfig = {
-            type = "structure",
-        },
+        DataCatalogConfig = M.DataCatalogConfig,
         TableFormat = {
             type = "string",
         },
@@ -10898,7 +10236,7 @@ M.TtlDuration = {
             type = "string",
         },
         Value = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -10906,15 +10244,11 @@ M.TtlDuration = {
 M.OnlineStoreConfig = {
     type = "structure",
     members = {
-        SecurityConfig = {
-            type = "structure",
-        },
+        SecurityConfig = M.OnlineStoreSecurityConfig,
         EnableOnlineStore = {
             type = "boolean",
         },
-        TtlDuration = {
-            type = "structure",
-        },
+        TtlDuration = M.TtlDuration,
         StorageType = {
             type = "string",
         },
@@ -10936,10 +10270,10 @@ M.ThroughputConfig = {
             },
         },
         ProvisionedReadCapacityUnits = {
-            type = "number",
+            type = "integer",
         },
         ProvisionedWriteCapacityUnits = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -10967,20 +10301,14 @@ M.CreateFeatureGroupInput = {
         },
         FeatureDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.FeatureDefinition,
             traits = {
                 required = true,
             },
         },
-        OnlineStoreConfig = {
-            type = "structure",
-        },
-        OfflineStoreConfig = {
-            type = "structure",
-        },
-        ThroughputConfig = {
-            type = "structure",
-        },
+        OnlineStoreConfig = M.OnlineStoreConfig,
+        OfflineStoreConfig = M.OfflineStoreConfig,
+        ThroughputConfig = M.ThroughputConfig,
         RoleArn = {
             type = "string",
         },
@@ -10989,7 +10317,7 @@ M.CreateFeatureGroupInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -11021,12 +10349,9 @@ M.HumanLoopActivationConditionsConfig = {
 M.HumanLoopActivationConfig = {
     type = "structure",
     members = {
-        HumanLoopActivationConditionsConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        HumanLoopActivationConditionsConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HumanLoopActivationConditionsConfig }),
     },
 }
 
@@ -11034,13 +10359,13 @@ M.USD = {
     type = "structure",
     members = {
         Dollars = {
-            type = "number",
+            type = "integer",
         },
         Cents = {
-            type = "number",
+            type = "integer",
         },
         TenthFractionsOfACent = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -11048,9 +10373,7 @@ M.USD = {
 M.PublicWorkforceTaskPrice = {
     type = "structure",
     members = {
-        AmountInUsd = {
-            type = "structure",
-        },
+        AmountInUsd = M.USD,
     },
 }
 
@@ -11082,24 +10405,22 @@ M.HumanLoopConfig = {
             },
         },
         TaskCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         TaskAvailabilityLifetimeInSeconds = {
-            type = "number",
+            type = "integer",
         },
         TaskTimeLimitInSeconds = {
-            type = "number",
+            type = "integer",
         },
         TaskKeywords = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        PublicWorkforceTaskPrice = {
-            type = "structure",
-        },
+        PublicWorkforceTaskPrice = M.PublicWorkforceTaskPrice,
     },
 }
 
@@ -11139,21 +10460,12 @@ M.CreateFlowDefinitionInput = {
                 required = true,
             },
         },
-        HumanLoopRequestSource = {
-            type = "structure",
-        },
-        HumanLoopActivationConfig = {
-            type = "structure",
-        },
-        HumanLoopConfig = {
-            type = "structure",
-        },
-        OutputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        HumanLoopRequestSource = M.HumanLoopRequestSource,
+        HumanLoopActivationConfig = M.HumanLoopActivationConfig,
+        HumanLoopConfig = M.HumanLoopConfig,
+        OutputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FlowDefinitionOutputConfig }),
         RoleArn = {
             type = "string",
             traits = {
@@ -11162,7 +10474,7 @@ M.CreateFlowDefinitionInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -11208,14 +10520,12 @@ M.CreateHubInput = {
         },
         HubSearchKeywords = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        S3StorageConfig = {
-            type = "structure",
-        },
+        S3StorageConfig = M.HubS3StorageConfig,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -11276,11 +10586,9 @@ M.CreateHubContentPresignedUrlsInput = {
         HubContentVersion = {
             type = "string",
         },
-        AccessConfig = {
-            type = "structure",
-        },
+        AccessConfig = M.PresignedUrlAccessConfig,
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -11293,7 +10601,7 @@ M.CreateHubContentPresignedUrlsOutput = {
     members = {
         AuthorizedUrlConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.AuthorizedUrl,
             traits = {
                 required = true,
             },
@@ -11327,7 +10635,7 @@ M.CreateHubContentReferenceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -11371,15 +10679,12 @@ M.CreateHumanTaskUiInput = {
                 required = true,
             },
         },
-        UiTemplate = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        UiTemplate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.UiTemplate }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -11428,19 +10733,19 @@ M.ParameterRanges = {
     members = {
         IntegerParameterRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.IntegerParameterRange,
         },
         ContinuousParameterRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.ContinuousParameterRange,
         },
         CategoricalParameterRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.CategoricalParameterRange,
         },
         AutoParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.AutoParameter,
         },
     },
 }
@@ -11449,16 +10754,16 @@ M.ResourceLimits = {
     type = "structure",
     members = {
         MaxNumberOfTrainingJobs = {
-            type = "number",
+            type = "integer",
         },
         MaxParallelTrainingJobs = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         MaxRuntimeInSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -11474,10 +10779,10 @@ M.HyperbandStrategyConfig = {
     type = "structure",
     members = {
         MinResource = {
-            type = "number",
+            type = "integer",
         },
         MaxResource = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -11485,9 +10790,7 @@ M.HyperbandStrategyConfig = {
 M.HyperParameterTuningJobStrategyConfig = {
     type = "structure",
     members = {
-        HyperbandStrategyConfig = {
-            type = "structure",
-        },
+        HyperbandStrategyConfig = M.HyperbandStrategyConfig,
     },
 }
 
@@ -11500,14 +10803,10 @@ M.TuningJobCompletionCriteria = {
     type = "structure",
     members = {
         TargetObjectiveMetricValue = {
-            type = "number",
+            type = "float",
         },
-        BestObjectiveNotImproving = {
-            type = "structure",
-        },
-        ConvergenceDetected = {
-            type = "structure",
-        },
+        BestObjectiveNotImproving = M.BestObjectiveNotImproving,
+        ConvergenceDetected = M.ConvergenceDetected,
     },
 }
 
@@ -11520,29 +10819,18 @@ M.HyperParameterTuningJobConfig = {
                 required = true,
             },
         },
-        StrategyConfig = {
-            type = "structure",
-        },
-        HyperParameterTuningJobObjective = {
-            type = "structure",
-        },
-        ResourceLimits = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ParameterRanges = {
-            type = "structure",
-        },
+        StrategyConfig = M.HyperParameterTuningJobStrategyConfig,
+        HyperParameterTuningJobObjective = M.HyperParameterTuningJobObjective,
+        ResourceLimits = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResourceLimits }),
+        ParameterRanges = M.ParameterRanges,
         TrainingJobEarlyStoppingType = {
             type = "string",
         },
-        TuningJobCompletionCriteria = {
-            type = "structure",
-        },
+        TuningJobCompletionCriteria = M.TuningJobCompletionCriteria,
         RandomSeed = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -11564,7 +10852,7 @@ M.HyperParameterAlgorithmSpecification = {
         },
         MetricDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricDefinition,
         },
     },
 }
@@ -11583,13 +10871,13 @@ M.HyperParameterTuningInstanceConfig = {
             },
         },
         InstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         VolumeSizeInGB = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -11604,10 +10892,10 @@ M.HyperParameterTuningResourceConfig = {
             type = "string",
         },
         InstanceCount = {
-            type = "number",
+            type = "integer",
         },
         VolumeSizeInGB = {
-            type = "number",
+            type = "integer",
         },
         VolumeKmsKeyId = {
             type = "string",
@@ -11617,7 +10905,7 @@ M.HyperParameterTuningResourceConfig = {
         },
         InstanceConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.HyperParameterTuningInstanceConfig,
         },
     },
 }
@@ -11626,7 +10914,7 @@ M.RetryStrategy = {
     type = "structure",
     members = {
         MaximumRetryAttempts = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -11640,23 +10928,16 @@ M.HyperParameterTrainingJobDefinition = {
         DefinitionName = {
             type = "string",
         },
-        TuningObjective = {
-            type = "structure",
-        },
-        HyperParameterRanges = {
-            type = "structure",
-        },
+        TuningObjective = M.HyperParameterTuningJobObjective,
+        HyperParameterRanges = M.ParameterRanges,
         StaticHyperParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        AlgorithmSpecification = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AlgorithmSpecification = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HyperParameterAlgorithmSpecification }),
         RoleArn = {
             type = "string",
             traits = {
@@ -11665,29 +10946,17 @@ M.HyperParameterTrainingJobDefinition = {
         },
         InputDataConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.Channel,
         },
-        VpcConfig = {
-            type = "structure",
-        },
-        OutputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ResourceConfig = {
-            type = "structure",
-        },
-        HyperParameterTuningResourceConfig = {
-            type = "structure",
-        },
-        StoppingCondition = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        VpcConfig = M.VpcConfig,
+        OutputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OutputDataConfig }),
+        ResourceConfig = M.ResourceConfig,
+        HyperParameterTuningResourceConfig = M.HyperParameterTuningResourceConfig,
+        StoppingCondition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.StoppingCondition }),
         EnableNetworkIsolation = {
             type = "boolean",
         },
@@ -11697,16 +10966,12 @@ M.HyperParameterTrainingJobDefinition = {
         EnableManagedSpotTraining = {
             type = "boolean",
         },
-        CheckpointConfig = {
-            type = "structure",
-        },
-        RetryStrategy = {
-            type = "structure",
-        },
+        CheckpointConfig = M.CheckpointConfig,
+        RetryStrategy = M.RetryStrategy,
         Environment = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -11730,7 +10995,7 @@ M.HyperParameterTuningJobWarmStartConfig = {
     members = {
         ParentHyperParameterTuningJobs = {
             type = "list",
-            member_type = "structure",
+            member = M.ParentHyperParameterTuningJob,
             traits = {
                 required = true,
             },
@@ -11753,29 +11018,20 @@ M.CreateHyperParameterTuningJobInput = {
                 required = true,
             },
         },
-        HyperParameterTuningJobConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        TrainingJobDefinition = {
-            type = "structure",
-        },
+        HyperParameterTuningJobConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HyperParameterTuningJobConfig }),
+        TrainingJobDefinition = M.HyperParameterTrainingJobDefinition,
         TrainingJobDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.HyperParameterTrainingJobDefinition,
         },
-        WarmStartConfig = {
-            type = "structure",
-        },
+        WarmStartConfig = M.HyperParameterTuningJobWarmStartConfig,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        Autotune = {
-            type = "structure",
-        },
+        Autotune = M.Autotune,
     },
 }
 
@@ -11814,7 +11070,7 @@ M.CreateImageInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -11869,7 +11125,7 @@ M.CreateImageVersionInput = {
         },
         Aliases = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         VendorGuidance = {
             type = "string",
@@ -11908,7 +11164,7 @@ M.InferenceComponentRuntimeConfig = {
     type = "structure",
     members = {
         CopyCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -11920,19 +11176,19 @@ M.InferenceComponentComputeResourceRequirements = {
     type = "structure",
     members = {
         NumberOfCpuCoresRequired = {
-            type = "number",
+            type = "float",
         },
         NumberOfAcceleratorDevicesRequired = {
-            type = "number",
+            type = "float",
         },
         MinMemoryRequiredInMb = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         MaxMemoryRequiredInMb = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -11948,8 +11204,8 @@ M.InferenceComponentContainerSpecification = {
         },
         Environment = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -11976,7 +11232,7 @@ M.InferenceComponentAvailabilityZoneBalance = {
             },
         },
         MaxImbalance = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -11995,9 +11251,7 @@ M.InferenceComponentSchedulingConfig = {
                 required = true,
             },
         },
-        AvailabilityZoneBalance = {
-            type = "structure",
-        },
+        AvailabilityZoneBalance = M.InferenceComponentAvailabilityZoneBalance,
     },
 }
 
@@ -12005,10 +11259,10 @@ M.InferenceComponentStartupParameters = {
     type = "structure",
     members = {
         ModelDataDownloadTimeoutInSeconds = {
-            type = "number",
+            type = "integer",
         },
         ContainerStartupHealthCheckTimeoutInSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -12022,24 +11276,14 @@ M.InferenceComponentSpecification = {
         ModelName = {
             type = "string",
         },
-        Container = {
-            type = "structure",
-        },
-        StartupParameters = {
-            type = "structure",
-        },
-        ComputeResourceRequirements = {
-            type = "structure",
-        },
+        Container = M.InferenceComponentContainerSpecification,
+        StartupParameters = M.InferenceComponentStartupParameters,
+        ComputeResourceRequirements = M.InferenceComponentComputeResourceRequirements,
         BaseInferenceComponentName = {
             type = "string",
         },
-        DataCacheConfig = {
-            type = "structure",
-        },
-        SchedulingConfig = {
-            type = "structure",
-        },
+        DataCacheConfig = M.InferenceComponentDataCacheConfig,
+        SchedulingConfig = M.InferenceComponentSchedulingConfig,
     },
 }
 
@@ -12061,19 +11305,15 @@ M.CreateInferenceComponentInput = {
         VariantName = {
             type = "string",
         },
-        Specification = {
-            type = "structure",
-        },
+        Specification = M.InferenceComponentSpecification,
         Specifications = {
             type = "list",
-            member_type = "structure",
+            member = M.InferenceComponentSpecification,
         },
-        RuntimeConfig = {
-            type = "structure",
-        },
+        RuntimeConfig = M.InferenceComponentRuntimeConfig,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -12102,9 +11342,7 @@ M.InferenceExperimentDataStorageConfig = {
         KmsKey = {
             type = "string",
         },
-        ContentType = {
-            type = "structure",
-        },
+        ContentType = M.CaptureContentTypeHeader,
     },
 }
 
@@ -12298,7 +11536,7 @@ M.RealTimeInferenceConfig = {
             },
         },
         InstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -12315,12 +11553,9 @@ M.ModelInfrastructureConfig = {
                 required = true,
             },
         },
-        RealTimeInferenceConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RealTimeInferenceConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RealTimeInferenceConfig }),
     },
 }
 
@@ -12339,12 +11574,9 @@ M.ModelVariantConfig = {
                 required = true,
             },
         },
-        InfrastructureConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InfrastructureConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ModelInfrastructureConfig }),
     },
 }
 
@@ -12370,7 +11602,7 @@ M.ShadowModelVariantConfig = {
             },
         },
         SamplingPercentage = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -12389,7 +11621,7 @@ M.ShadowModeConfig = {
         },
         ShadowModelVariants = {
             type = "list",
-            member_type = "structure",
+            member = M.ShadowModelVariantConfig,
             traits = {
                 required = true,
             },
@@ -12416,9 +11648,7 @@ M.CreateInferenceExperimentInput = {
                 required = true,
             },
         },
-        Schedule = {
-            type = "structure",
-        },
+        Schedule = M.InferenceExperimentSchedule,
         Description = {
             type = "string",
         },
@@ -12436,26 +11666,21 @@ M.CreateInferenceExperimentInput = {
         },
         ModelVariants = {
             type = "list",
-            member_type = "structure",
+            member = M.ModelVariantConfig,
             traits = {
                 required = true,
             },
         },
-        DataStorageConfig = {
-            type = "structure",
-        },
-        ShadowModeConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DataStorageConfig = M.InferenceExperimentDataStorageConfig,
+        ShadowModeConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ShadowModeConfig }),
         KmsKey = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -12480,7 +11705,7 @@ M.RecommendationJobPayloadConfig = {
         },
         SupportedContentTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -12505,15 +11730,13 @@ M.RecommendationJobContainerConfig = {
         FrameworkVersion = {
             type = "string",
         },
-        PayloadConfig = {
-            type = "structure",
-        },
+        PayloadConfig = M.RecommendationJobPayloadConfig,
         NearestModelName = {
             type = "string",
         },
         SupportedInstanceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SupportedEndpointType = {
             type = "string",
@@ -12523,7 +11746,7 @@ M.RecommendationJobContainerConfig = {
         },
         SupportedResponseMIMETypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -12533,7 +11756,7 @@ M.EnvironmentParameterRanges = {
     members = {
         CategoricalParameterRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.CategoricalParameter,
         },
     },
 }
@@ -12544,15 +11767,11 @@ M.EndpointInputConfiguration = {
         InstanceType = {
             type = "string",
         },
-        ServerlessConfig = {
-            type = "structure",
-        },
+        ServerlessConfig = M.ProductionVariantServerlessConfig,
         InferenceSpecificationName = {
             type = "string",
         },
-        EnvironmentParameterRanges = {
-            type = "structure",
-        },
+        EnvironmentParameterRanges = M.EnvironmentParameterRanges,
     },
 }
 
@@ -12569,10 +11788,10 @@ M.RecommendationJobResourceLimit = {
     type = "structure",
     members = {
         MaxNumberOfTests = {
-            type = "number",
+            type = "integer",
         },
         MaxParallelOfTests = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -12581,13 +11800,13 @@ M.Phase = {
     type = "structure",
     members = {
         InitialNumberOfUsers = {
-            type = "number",
+            type = "integer",
         },
         SpawnRate = {
-            type = "number",
+            type = "integer",
         },
         DurationInSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -12596,13 +11815,13 @@ M.Stairs = {
     type = "structure",
     members = {
         DurationInSeconds = {
-            type = "number",
+            type = "integer",
         },
         NumberOfSteps = {
-            type = "number",
+            type = "integer",
         },
         UsersPerStep = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -12620,11 +11839,9 @@ M.TrafficPattern = {
         },
         Phases = {
             type = "list",
-            member_type = "structure",
+            member = M.Phase,
         },
-        Stairs = {
-            type = "structure",
-        },
+        Stairs = M.Stairs,
     },
 }
 
@@ -12633,14 +11850,14 @@ M.RecommendationJobVpcConfig = {
     members = {
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         Subnets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -12658,31 +11875,23 @@ M.RecommendationJobInputConfig = {
             type = "string",
         },
         JobDurationInSeconds = {
-            type = "number",
+            type = "integer",
         },
-        TrafficPattern = {
-            type = "structure",
-        },
-        ResourceLimit = {
-            type = "structure",
-        },
+        TrafficPattern = M.TrafficPattern,
+        ResourceLimit = M.RecommendationJobResourceLimit,
         EndpointConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.EndpointInputConfiguration,
         },
         VolumeKmsKeyId = {
             type = "string",
         },
-        ContainerConfig = {
-            type = "structure",
-        },
+        ContainerConfig = M.RecommendationJobContainerConfig,
         Endpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.EndpointInfo,
         },
-        VpcConfig = {
-            type = "structure",
-        },
+        VpcConfig = M.RecommendationJobVpcConfig,
     },
 }
 
@@ -12706,9 +11915,7 @@ M.RecommendationJobOutputConfig = {
         KmsKeyId = {
             type = "string",
         },
-        CompiledOutputConfig = {
-            type = "structure",
-        },
+        CompiledOutputConfig = M.RecommendationJobCompiledOutputConfig,
     },
 }
 
@@ -12724,7 +11931,7 @@ M.ModelLatencyThreshold = {
             type = "string",
         },
         ValueInMilliseconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -12733,11 +11940,11 @@ M.RecommendationJobStoppingConditions = {
     type = "structure",
     members = {
         MaxInvocations = {
-            type = "number",
+            type = "integer",
         },
         ModelLatencyThresholds = {
             type = "list",
-            member_type = "structure",
+            member = M.ModelLatencyThreshold,
         },
         FlatInvocations = {
             type = "string",
@@ -12766,24 +11973,17 @@ M.CreateInferenceRecommendationsJobInput = {
                 required = true,
             },
         },
-        InputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RecommendationJobInputConfig }),
         JobDescription = {
             type = "string",
         },
-        StoppingConditions = {
-            type = "structure",
-        },
-        OutputConfig = {
-            type = "structure",
-        },
+        StoppingConditions = M.RecommendationJobStoppingConditions,
+        OutputConfig = M.RecommendationJobOutputConfig,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -12821,18 +12021,15 @@ M.HumanTaskConfig = {
                 required = true,
             },
         },
-        UiConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        UiConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.UiConfig }),
         PreHumanTaskLambdaArn = {
             type = "string",
         },
         TaskKeywords = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TaskTitle = {
             type = "string",
@@ -12847,29 +12044,25 @@ M.HumanTaskConfig = {
             },
         },
         NumberOfHumanWorkersPerDataObject = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         TaskTimeLimitInSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         TaskAvailabilityLifetimeInSeconds = {
-            type = "number",
+            type = "integer",
         },
         MaxConcurrentTaskCount = {
-            type = "number",
+            type = "integer",
         },
-        AnnotationConsolidationConfig = {
-            type = "structure",
-        },
-        PublicWorkforceTaskPrice = {
-            type = "structure",
-        },
+        AnnotationConsolidationConfig = M.AnnotationConsolidationConfig,
+        PublicWorkforceTaskPrice = M.PublicWorkforceTaskPrice,
     },
 }
 
@@ -12878,7 +12071,7 @@ M.LabelingJobDataAttributes = {
     members = {
         ContentClassifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -12910,27 +12103,18 @@ M.LabelingJobSnsDataSource = {
 M.LabelingJobDataSource = {
     type = "structure",
     members = {
-        S3DataSource = {
-            type = "structure",
-        },
-        SnsDataSource = {
-            type = "structure",
-        },
+        S3DataSource = M.LabelingJobS3DataSource,
+        SnsDataSource = M.LabelingJobSnsDataSource,
     },
 }
 
 M.LabelingJobInputConfig = {
     type = "structure",
     members = {
-        DataSource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        DataAttributes = {
-            type = "structure",
-        },
+        DataSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LabelingJobDataSource }),
+        DataAttributes = M.LabelingJobDataAttributes,
     },
 }
 
@@ -12940,9 +12124,7 @@ M.LabelingJobResourceConfig = {
         VolumeKmsKeyId = {
             type = "string",
         },
-        VpcConfig = {
-            type = "structure",
-        },
+        VpcConfig = M.VpcConfig,
     },
 }
 
@@ -12958,9 +12140,7 @@ M.LabelingJobAlgorithmsConfig = {
         InitialActiveLearningModelArn = {
             type = "string",
         },
-        LabelingJobResourceConfig = {
-            type = "structure",
-        },
+        LabelingJobResourceConfig = M.LabelingJobResourceConfig,
     },
 }
 
@@ -12986,10 +12166,10 @@ M.LabelingJobStoppingConditions = {
     type = "structure",
     members = {
         MaxHumanLabeledObjectCount = {
-            type = "number",
+            type = "integer",
         },
         MaxPercentageOfInputDatasetLabeled = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -13009,18 +12189,12 @@ M.CreateLabelingJobInput = {
                 required = true,
             },
         },
-        InputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        OutputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LabelingJobInputConfig }),
+        OutputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LabelingJobOutputConfig }),
         RoleArn = {
             type = "string",
             traits = {
@@ -13030,21 +12204,14 @@ M.CreateLabelingJobInput = {
         LabelCategoryConfigS3Uri = {
             type = "string",
         },
-        StoppingConditions = {
-            type = "structure",
-        },
-        LabelingJobAlgorithmsConfig = {
-            type = "structure",
-        },
-        HumanTaskConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        StoppingConditions = M.LabelingJobStoppingConditions,
+        LabelingJobAlgorithmsConfig = M.LabelingJobAlgorithmsConfig,
+        HumanTaskConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HumanTaskConfig }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -13098,11 +12265,11 @@ M.CreateMlflowAppInput = {
         },
         DefaultDomainIdList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -13157,7 +12324,7 @@ M.CreateMlflowTrackingServerInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         S3BucketOwnerAccountId = {
             type = "string",
@@ -13203,26 +12370,20 @@ M.CreateModelInput = {
                 required = true,
             },
         },
-        PrimaryContainer = {
-            type = "structure",
-        },
+        PrimaryContainer = M.ContainerDefinition,
         Containers = {
             type = "list",
-            member_type = "structure",
+            member = M.ContainerDefinition,
         },
-        InferenceExecutionConfig = {
-            type = "structure",
-        },
+        InferenceExecutionConfig = M.InferenceExecutionConfig,
         ExecutionRoleArn = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        VpcConfig = {
-            type = "structure",
-        },
+        VpcConfig = M.VpcConfig,
         EnableNetworkIsolation = {
             type = "boolean",
         },
@@ -13258,8 +12419,8 @@ M.ModelBiasAppSpecification = {
         },
         Environment = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -13270,9 +12431,7 @@ M.ModelBiasBaselineConfig = {
         BaseliningJobName = {
             type = "string",
         },
-        ConstraintsResource = {
-            type = "structure",
-        },
+        ConstraintsResource = M.MonitoringConstraintsResource,
     },
 }
 
@@ -13288,18 +12447,11 @@ M.MonitoringGroundTruthS3Input = {
 M.ModelBiasJobInput = {
     type = "structure",
     members = {
-        EndpointInput = {
-            type = "structure",
-        },
-        BatchTransformInput = {
-            type = "structure",
-        },
-        GroundTruthS3Input = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        EndpointInput = M.EndpointInput,
+        BatchTransformInput = M.BatchTransformInput,
+        GroundTruthS3Input = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MonitoringGroundTruthS3Input }),
     },
 }
 
@@ -13312,48 +12464,30 @@ M.CreateModelBiasJobDefinitionInput = {
                 required = true,
             },
         },
-        ModelBiasBaselineConfig = {
-            type = "structure",
-        },
-        ModelBiasAppSpecification = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ModelBiasJobInput = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ModelBiasJobOutputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        JobResources = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        NetworkConfig = {
-            type = "structure",
-        },
+        ModelBiasBaselineConfig = M.ModelBiasBaselineConfig,
+        ModelBiasAppSpecification = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ModelBiasAppSpecification }),
+        ModelBiasJobInput = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ModelBiasJobInput }),
+        ModelBiasJobOutputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MonitoringOutputConfig }),
+        JobResources = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MonitoringResources }),
+        NetworkConfig = M.MonitoringNetworkConfig,
         RoleArn = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        StoppingCondition = {
-            type = "structure",
-        },
+        StoppingCondition = M.MonitoringStoppingCondition,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -13395,9 +12529,7 @@ M.CreateModelCardInput = {
                 required = true,
             },
         },
-        SecurityConfig = {
-            type = "structure",
-        },
+        SecurityConfig = M.ModelCardSecurityConfig,
         Content = {
             type = "string",
             traits = {
@@ -13412,7 +12544,7 @@ M.CreateModelCardInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -13451,7 +12583,7 @@ M.CreateModelCardExportJobInput = {
             },
         },
         ModelCardVersion = {
-            type = "number",
+            type = "integer",
         },
         ModelCardExportJobName = {
             type = "string",
@@ -13459,12 +12591,9 @@ M.CreateModelCardExportJobInput = {
                 required = true,
             },
         },
-        OutputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        OutputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ModelCardExportOutputConfig }),
     },
 }
 
@@ -13497,8 +12626,8 @@ M.ModelExplainabilityAppSpecification = {
         },
         Environment = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -13509,21 +12638,15 @@ M.ModelExplainabilityBaselineConfig = {
         BaseliningJobName = {
             type = "string",
         },
-        ConstraintsResource = {
-            type = "structure",
-        },
+        ConstraintsResource = M.MonitoringConstraintsResource,
     },
 }
 
 M.ModelExplainabilityJobInput = {
     type = "structure",
     members = {
-        EndpointInput = {
-            type = "structure",
-        },
-        BatchTransformInput = {
-            type = "structure",
-        },
+        EndpointInput = M.EndpointInput,
+        BatchTransformInput = M.BatchTransformInput,
     },
 }
 
@@ -13536,48 +12659,30 @@ M.CreateModelExplainabilityJobDefinitionInput = {
                 required = true,
             },
         },
-        ModelExplainabilityBaselineConfig = {
-            type = "structure",
-        },
-        ModelExplainabilityAppSpecification = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ModelExplainabilityJobInput = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ModelExplainabilityJobOutputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        JobResources = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        NetworkConfig = {
-            type = "structure",
-        },
+        ModelExplainabilityBaselineConfig = M.ModelExplainabilityBaselineConfig,
+        ModelExplainabilityAppSpecification = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ModelExplainabilityAppSpecification }),
+        ModelExplainabilityJobInput = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ModelExplainabilityJobInput }),
+        ModelExplainabilityJobOutputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MonitoringOutputConfig }),
+        JobResources = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MonitoringResources }),
+        NetworkConfig = M.MonitoringNetworkConfig,
         RoleArn = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        StoppingCondition = {
-            type = "structure",
-        },
+        StoppingCondition = M.MonitoringStoppingCondition,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -13615,69 +12720,43 @@ M.FileSource = {
 M.DriftCheckBias = {
     type = "structure",
     members = {
-        ConfigFile = {
-            type = "structure",
-        },
-        PreTrainingConstraints = {
-            type = "structure",
-        },
-        PostTrainingConstraints = {
-            type = "structure",
-        },
+        ConfigFile = M.FileSource,
+        PreTrainingConstraints = M.MetricsSource,
+        PostTrainingConstraints = M.MetricsSource,
     },
 }
 
 M.DriftCheckExplainability = {
     type = "structure",
     members = {
-        Constraints = {
-            type = "structure",
-        },
-        ConfigFile = {
-            type = "structure",
-        },
+        Constraints = M.MetricsSource,
+        ConfigFile = M.FileSource,
     },
 }
 
 M.DriftCheckModelDataQuality = {
     type = "structure",
     members = {
-        Statistics = {
-            type = "structure",
-        },
-        Constraints = {
-            type = "structure",
-        },
+        Statistics = M.MetricsSource,
+        Constraints = M.MetricsSource,
     },
 }
 
 M.DriftCheckModelQuality = {
     type = "structure",
     members = {
-        Statistics = {
-            type = "structure",
-        },
-        Constraints = {
-            type = "structure",
-        },
+        Statistics = M.MetricsSource,
+        Constraints = M.MetricsSource,
     },
 }
 
 M.DriftCheckBaselines = {
     type = "structure",
     members = {
-        Bias = {
-            type = "structure",
-        },
-        Explainability = {
-            type = "structure",
-        },
-        ModelQuality = {
-            type = "structure",
-        },
-        ModelDataQuality = {
-            type = "structure",
-        },
+        Bias = M.DriftCheckBias,
+        Explainability = M.DriftCheckExplainability,
+        ModelQuality = M.DriftCheckModelQuality,
+        ModelDataQuality = M.DriftCheckModelDataQuality,
     },
 }
 
@@ -13717,51 +12796,33 @@ M.ModelLifeCycle = {
 M.Explainability = {
     type = "structure",
     members = {
-        Report = {
-            type = "structure",
-        },
+        Report = M.MetricsSource,
     },
 }
 
 M.ModelDataQuality = {
     type = "structure",
     members = {
-        Statistics = {
-            type = "structure",
-        },
-        Constraints = {
-            type = "structure",
-        },
+        Statistics = M.MetricsSource,
+        Constraints = M.MetricsSource,
     },
 }
 
 M.ModelQuality = {
     type = "structure",
     members = {
-        Statistics = {
-            type = "structure",
-        },
-        Constraints = {
-            type = "structure",
-        },
+        Statistics = M.MetricsSource,
+        Constraints = M.MetricsSource,
     },
 }
 
 M.ModelMetrics = {
     type = "structure",
     members = {
-        ModelQuality = {
-            type = "structure",
-        },
-        ModelDataQuality = {
-            type = "structure",
-        },
-        Bias = {
-            type = "structure",
-        },
-        Explainability = {
-            type = "structure",
-        },
+        ModelQuality = M.ModelQuality,
+        ModelDataQuality = M.ModelDataQuality,
+        Bias = M.Bias,
+        Explainability = M.Explainability,
     },
 }
 
@@ -13788,9 +12849,7 @@ M.SourceAlgorithm = {
         ModelDataUrl = {
             type = "string",
         },
-        ModelDataSource = {
-            type = "structure",
-        },
+        ModelDataSource = M.ModelDataSource,
         ModelDataETag = {
             type = "string",
         },
@@ -13808,7 +12867,7 @@ M.SourceAlgorithmSpecification = {
     members = {
         SourceAlgorithms = {
             type = "list",
-            member_type = "structure",
+            member = M.SourceAlgorithm,
             traits = {
                 required = true,
             },
@@ -13825,12 +12884,9 @@ M.ModelPackageValidationProfile = {
                 required = true,
             },
         },
-        TransformJobDefinition = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TransformJobDefinition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TransformJobDefinition }),
     },
 }
 
@@ -13845,7 +12901,7 @@ M.ModelPackageValidationSpecification = {
         },
         ValidationProfiles = {
             type = "list",
-            member_type = "structure",
+            member = M.ModelPackageValidationProfile,
             traits = {
                 required = true,
             },
@@ -13868,31 +12924,21 @@ M.CreateModelPackageInput = {
         ModelPackageRegistrationType = {
             type = "string",
         },
-        InferenceSpecification = {
-            type = "structure",
-        },
-        ValidationSpecification = {
-            type = "structure",
-        },
-        SourceAlgorithmSpecification = {
-            type = "structure",
-        },
+        InferenceSpecification = M.InferenceSpecification,
+        ValidationSpecification = M.ModelPackageValidationSpecification,
+        SourceAlgorithmSpecification = M.SourceAlgorithmSpecification,
         CertifyForMarketplace = {
             type = "boolean",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ModelApprovalStatus = {
             type = "string",
         },
-        MetadataProperties = {
-            type = "structure",
-        },
-        ModelMetrics = {
-            type = "structure",
-        },
+        MetadataProperties = M.MetadataProperties,
+        ModelMetrics = M.ModelMetrics,
         ClientToken = {
             type = "string",
         },
@@ -13907,15 +12953,13 @@ M.CreateModelPackageInput = {
         },
         CustomerMetadataProperties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        DriftCheckBaselines = {
-            type = "structure",
-        },
+        DriftCheckBaselines = M.DriftCheckBaselines,
         AdditionalInferenceSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.AdditionalInferenceSpecificationDefinition,
         },
         SkipModelValidation = {
             type = "string",
@@ -13923,15 +12967,9 @@ M.CreateModelPackageInput = {
         SourceUri = {
             type = "string",
         },
-        SecurityConfig = {
-            type = "structure",
-        },
-        ModelCard = {
-            type = "structure",
-        },
-        ModelLifeCycle = {
-            type = "structure",
-        },
+        SecurityConfig = M.ModelPackageSecurityConfig,
+        ModelCard = M.ModelPackageModelCard,
+        ModelLifeCycle = M.ModelLifeCycle,
     },
 }
 
@@ -13961,7 +12999,7 @@ M.CreateModelPackageGroupInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -13995,11 +13033,11 @@ M.ModelQualityAppSpecification = {
         },
         ContainerEntrypoint = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ContainerArguments = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RecordPreprocessorSourceUri = {
             type = "string",
@@ -14012,8 +13050,8 @@ M.ModelQualityAppSpecification = {
         },
         Environment = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -14024,27 +13062,18 @@ M.ModelQualityBaselineConfig = {
         BaseliningJobName = {
             type = "string",
         },
-        ConstraintsResource = {
-            type = "structure",
-        },
+        ConstraintsResource = M.MonitoringConstraintsResource,
     },
 }
 
 M.ModelQualityJobInput = {
     type = "structure",
     members = {
-        EndpointInput = {
-            type = "structure",
-        },
-        BatchTransformInput = {
-            type = "structure",
-        },
-        GroundTruthS3Input = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        EndpointInput = M.EndpointInput,
+        BatchTransformInput = M.BatchTransformInput,
+        GroundTruthS3Input = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MonitoringGroundTruthS3Input }),
     },
 }
 
@@ -14057,48 +13086,30 @@ M.CreateModelQualityJobDefinitionInput = {
                 required = true,
             },
         },
-        ModelQualityBaselineConfig = {
-            type = "structure",
-        },
-        ModelQualityAppSpecification = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ModelQualityJobInput = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ModelQualityJobOutputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        JobResources = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        NetworkConfig = {
-            type = "structure",
-        },
+        ModelQualityBaselineConfig = M.ModelQualityBaselineConfig,
+        ModelQualityAppSpecification = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ModelQualityAppSpecification }),
+        ModelQualityJobInput = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ModelQualityJobInput }),
+        ModelQualityJobOutputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MonitoringOutputConfig }),
+        JobResources = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MonitoringResources }),
+        NetworkConfig = M.MonitoringNetworkConfig,
         RoleArn = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        StoppingCondition = {
-            type = "structure",
-        },
+        StoppingCondition = M.MonitoringStoppingCondition,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -14121,12 +13132,8 @@ M.MonitoringBaselineConfig = {
         BaseliningJobName = {
             type = "string",
         },
-        ConstraintsResource = {
-            type = "structure",
-        },
-        StatisticsResource = {
-            type = "structure",
-        },
+        ConstraintsResource = M.MonitoringConstraintsResource,
+        StatisticsResource = M.MonitoringStatisticsResource,
     },
 }
 
@@ -14141,11 +13148,11 @@ M.MonitoringAppSpecification = {
         },
         ContainerEntrypoint = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ContainerArguments = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RecordPreprocessorSourceUri = {
             type = "string",
@@ -14159,12 +13166,8 @@ M.MonitoringAppSpecification = {
 M.MonitoringInput = {
     type = "structure",
     members = {
-        EndpointInput = {
-            type = "structure",
-        },
-        BatchTransformInput = {
-            type = "structure",
-        },
+        EndpointInput = M.EndpointInput,
+        BatchTransformInput = M.BatchTransformInput,
     },
 }
 
@@ -14177,54 +13180,37 @@ M.NetworkConfig = {
         EnableNetworkIsolation = {
             type = "boolean",
         },
-        VpcConfig = {
-            type = "structure",
-        },
+        VpcConfig = M.VpcConfig,
     },
 }
 
 M.MonitoringJobDefinition = {
     type = "structure",
     members = {
-        BaselineConfig = {
-            type = "structure",
-        },
+        BaselineConfig = M.MonitoringBaselineConfig,
         MonitoringInputs = {
             type = "list",
-            member_type = "structure",
+            member = M.MonitoringInput,
             traits = {
                 required = true,
             },
         },
-        MonitoringOutputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        MonitoringResources = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        MonitoringAppSpecification = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        StoppingCondition = {
-            type = "structure",
-        },
+        MonitoringOutputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MonitoringOutputConfig }),
+        MonitoringResources = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MonitoringResources }),
+        MonitoringAppSpecification = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MonitoringAppSpecification }),
+        StoppingCondition = M.MonitoringStoppingCondition,
         Environment = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        NetworkConfig = {
-            type = "structure",
-        },
+        NetworkConfig = M.NetworkConfig,
         RoleArn = {
             type = "string",
             traits = {
@@ -14262,12 +13248,8 @@ M.ScheduleConfig = {
 M.MonitoringScheduleConfig = {
     type = "structure",
     members = {
-        ScheduleConfig = {
-            type = "structure",
-        },
-        MonitoringJobDefinition = {
-            type = "structure",
-        },
+        ScheduleConfig = M.ScheduleConfig,
+        MonitoringJobDefinition = M.MonitoringJobDefinition,
         MonitoringJobDefinitionName = {
             type = "string",
         },
@@ -14286,15 +13268,12 @@ M.CreateMonitoringScheduleInput = {
                 required = true,
             },
         },
-        MonitoringScheduleConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        MonitoringScheduleConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MonitoringScheduleConfig }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -14362,7 +13341,7 @@ M.CreateNotebookInstanceInput = {
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IpAddressType = {
             type = "string",
@@ -14378,7 +13357,7 @@ M.CreateNotebookInstanceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         LifecycleConfigName = {
             type = "string",
@@ -14387,18 +13366,18 @@ M.CreateNotebookInstanceInput = {
             type = "string",
         },
         VolumeSizeInGB = {
-            type = "number",
+            type = "integer",
         },
         AcceleratorTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DefaultCodeRepository = {
             type = "string",
         },
         AdditionalCodeRepositories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RootAccess = {
             type = "string",
@@ -14406,9 +13385,7 @@ M.CreateNotebookInstanceInput = {
         PlatformIdentifier = {
             type = "string",
         },
-        InstanceMetadataServiceConfiguration = {
-            type = "structure",
-        },
+        InstanceMetadataServiceConfiguration = M.InstanceMetadataServiceConfiguration,
     },
 }
 
@@ -14441,15 +13418,15 @@ M.CreateNotebookInstanceLifecycleConfigInput = {
         },
         OnCreate = {
             type = "list",
-            member_type = "structure",
+            member = M.NotebookInstanceLifecycleHook,
         },
         OnStart = {
             type = "list",
-            member_type = "structure",
+            member = M.NotebookInstanceLifecycleHook,
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -14526,9 +13503,7 @@ M.OptimizationJobModelSourceS3 = {
         S3Uri = {
             type = "string",
         },
-        ModelAccessConfig = {
-            type = "structure",
-        },
+        ModelAccessConfig = M.OptimizationModelAccessConfig,
     },
 }
 
@@ -14544,12 +13519,8 @@ M.OptimizationSageMakerModel = {
 M.OptimizationJobModelSource = {
     type = "structure",
     members = {
-        S3 = {
-            type = "structure",
-        },
-        SageMakerModel = {
-            type = "structure",
-        },
+        S3 = M.OptimizationJobModelSourceS3,
+        SageMakerModel = M.OptimizationSageMakerModel,
     },
 }
 
@@ -14561,8 +13532,8 @@ M.ModelCompilationConfig = {
         },
         OverrideEnvironment = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -14575,8 +13546,8 @@ M.ModelQuantizationConfig = {
         },
         OverrideEnvironment = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -14589,8 +13560,8 @@ M.ModelShardingConfig = {
         },
         OverrideEnvironment = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -14631,27 +13602,17 @@ M.ModelSpeculativeDecodingConfig = {
                 required = true,
             },
         },
-        TrainingDataSource = {
-            type = "structure",
-        },
+        TrainingDataSource = M.ModelSpeculativeDecodingTrainingDataSource,
     },
 }
 
 M.OptimizationConfig = {
     type = "union",
     members = {
-        ModelQuantizationConfig = {
-            type = "structure",
-        },
-        ModelCompilationConfig = {
-            type = "structure",
-        },
-        ModelShardingConfig = {
-            type = "structure",
-        },
-        ModelSpeculativeDecodingConfig = {
-            type = "structure",
-        },
+        ModelQuantizationConfig = M.ModelQuantizationConfig,
+        ModelCompilationConfig = M.ModelCompilationConfig,
+        ModelShardingConfig = M.ModelShardingConfig,
+        ModelSpeculativeDecodingConfig = M.ModelSpeculativeDecodingConfig,
     },
 }
 
@@ -14667,9 +13628,7 @@ M.OptimizationJobOutputConfig = {
                 required = true,
             },
         },
-        SageMakerModel = {
-            type = "structure",
-        },
+        SageMakerModel = M.OptimizationSageMakerModel,
     },
 }
 
@@ -14678,14 +13637,14 @@ M.OptimizationVpcConfig = {
     members = {
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         Subnets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -14708,12 +13667,9 @@ M.CreateOptimizationJobInput = {
                 required = true,
             },
         },
-        ModelSource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ModelSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OptimizationJobModelSource }),
         DeploymentInstanceType = {
             type = "string",
             traits = {
@@ -14721,39 +13677,31 @@ M.CreateOptimizationJobInput = {
             },
         },
         MaxInstanceCount = {
-            type = "number",
+            type = "integer",
         },
         OptimizationEnvironment = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         OptimizationConfigs = {
             type = "list",
-            member_type = "union",
+            member = M.OptimizationConfig,
             traits = {
                 required = true,
             },
         },
-        OutputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        StoppingCondition = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        OutputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OptimizationJobOutputConfig }),
+        StoppingCondition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.StoppingCondition }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        VpcConfig = {
-            type = "structure",
-        },
+        VpcConfig = M.OptimizationVpcConfig,
     },
 }
 
@@ -14780,7 +13728,7 @@ M.RoleGroupAssignment = {
         },
         GroupPatterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -14793,20 +13741,20 @@ M.PartnerAppConfig = {
     members = {
         AdminUsers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Arguments = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         AssignedGroupPatterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RoleGroupAssignments = {
             type = "list",
-            member_type = "structure",
+            member = M.RoleGroupAssignment,
         },
     },
 }
@@ -14855,18 +13803,14 @@ M.CreatePartnerAppInput = {
         KmsKeyId = {
             type = "string",
         },
-        MaintenanceConfig = {
-            type = "structure",
-        },
+        MaintenanceConfig = M.PartnerAppMaintenanceConfig,
         Tier = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        ApplicationConfig = {
-            type = "structure",
-        },
+        ApplicationConfig = M.PartnerAppConfig,
         AuthType = {
             type = "string",
             traits = {
@@ -14884,7 +13828,7 @@ M.CreatePartnerAppInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -14908,10 +13852,10 @@ M.CreatePartnerAppPresignedUrlInput = {
             },
         },
         ExpiresInSeconds = {
-            type = "number",
+            type = "integer",
         },
         SessionExpirationDurationInSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -14929,7 +13873,7 @@ M.ParallelismConfiguration = {
     type = "structure",
     members = {
         MaxParallelExecutionSteps = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -14973,9 +13917,7 @@ M.CreatePipelineInput = {
         PipelineDefinition = {
             type = "string",
         },
-        PipelineDefinitionS3Location = {
-            type = "structure",
-        },
+        PipelineDefinitionS3Location = M.PipelineDefinitionS3Location,
         PipelineDescription = {
             type = "string",
         },
@@ -14993,11 +13935,9 @@ M.CreatePipelineInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        ParallelismConfiguration = {
-            type = "structure",
-        },
+        ParallelismConfiguration = M.ParallelismConfiguration,
     },
 }
 
@@ -15026,10 +13966,10 @@ M.CreatePresignedDomainUrlInput = {
             },
         },
         SessionExpirationDurationInSeconds = {
-            type = "number",
+            type = "integer",
         },
         ExpiresInSeconds = {
-            type = "number",
+            type = "integer",
         },
         SpaceName = {
             type = "string",
@@ -15059,10 +13999,10 @@ M.CreatePresignedMlflowAppUrlInput = {
             },
         },
         ExpiresInSeconds = {
-            type = "number",
+            type = "integer",
         },
         SessionExpirationDurationInSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -15086,10 +14026,10 @@ M.CreatePresignedMlflowTrackingServerUrlInput = {
             },
         },
         ExpiresInSeconds = {
-            type = "number",
+            type = "integer",
         },
         SessionExpirationDurationInSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -15113,7 +14053,7 @@ M.CreatePresignedNotebookInstanceUrlInput = {
             },
         },
         SessionExpirationDurationInSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -15225,12 +14165,8 @@ M.RedshiftDatasetDefinition = {
 M.DatasetDefinition = {
     type = "structure",
     members = {
-        AthenaDatasetDefinition = {
-            type = "structure",
-        },
-        RedshiftDatasetDefinition = {
-            type = "structure",
-        },
+        AthenaDatasetDefinition = M.AthenaDatasetDefinition,
+        RedshiftDatasetDefinition = M.RedshiftDatasetDefinition,
         LocalPath = {
             type = "string",
         },
@@ -15295,12 +14231,8 @@ M.ProcessingInput = {
         AppManaged = {
             type = "boolean",
         },
-        S3Input = {
-            type = "structure",
-        },
-        DatasetDefinition = {
-            type = "structure",
-        },
+        S3Input = M.ProcessingS3Input,
+        DatasetDefinition = M.DatasetDefinition,
     },
 }
 
@@ -15346,12 +14278,8 @@ M.ProcessingOutput = {
                 required = true,
             },
         },
-        S3Output = {
-            type = "structure",
-        },
-        FeatureStoreOutput = {
-            type = "structure",
-        },
+        S3Output = M.ProcessingS3Output,
+        FeatureStoreOutput = M.ProcessingFeatureStoreOutput,
         AppManaged = {
             type = "boolean",
         },
@@ -15363,7 +14291,7 @@ M.ProcessingOutputConfig = {
     members = {
         Outputs = {
             type = "list",
-            member_type = "structure",
+            member = M.ProcessingOutput,
             traits = {
                 required = true,
             },
@@ -15378,7 +14306,7 @@ M.ProcessingClusterConfig = {
     type = "structure",
     members = {
         InstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -15390,7 +14318,7 @@ M.ProcessingClusterConfig = {
             },
         },
         VolumeSizeInGB = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -15404,12 +14332,9 @@ M.ProcessingClusterConfig = {
 M.ProcessingResources = {
     type = "structure",
     members = {
-        ClusterConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ClusterConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProcessingClusterConfig }),
     },
 }
 
@@ -15417,7 +14342,7 @@ M.ProcessingStoppingCondition = {
     type = "structure",
     members = {
         MaxRuntimeInSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -15430,40 +14355,28 @@ M.CreateProcessingJobInput = {
     members = {
         ProcessingInputs = {
             type = "list",
-            member_type = "structure",
+            member = M.ProcessingInput,
         },
-        ProcessingOutputConfig = {
-            type = "structure",
-        },
+        ProcessingOutputConfig = M.ProcessingOutputConfig,
         ProcessingJobName = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        ProcessingResources = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        StoppingCondition = {
-            type = "structure",
-        },
-        AppSpecification = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ProcessingResources = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProcessingResources }),
+        StoppingCondition = M.ProcessingStoppingCondition,
+        AppSpecification = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AppSpecification }),
         Environment = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        NetworkConfig = {
-            type = "structure",
-        },
+        NetworkConfig = M.NetworkConfig,
         RoleArn = {
             type = "string",
             traits = {
@@ -15472,11 +14385,9 @@ M.CreateProcessingJobInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        ExperimentConfig = {
-            type = "structure",
-        },
+        ExperimentConfig = M.ExperimentConfig,
     },
 }
 
@@ -15521,7 +14432,7 @@ M.ServiceCatalogProvisioningDetails = {
         },
         ProvisioningParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.ProvisioningParameter,
         },
     },
 }
@@ -15529,9 +14440,7 @@ M.ServiceCatalogProvisioningDetails = {
 M.CreateTemplateProvider = {
     type = "structure",
     members = {
-        CfnTemplateProvider = {
-            type = "structure",
-        },
+        CfnTemplateProvider = M.CfnCreateTemplateProvider,
     },
 }
 
@@ -15547,16 +14456,14 @@ M.CreateProjectInput = {
         ProjectDescription = {
             type = "string",
         },
-        ServiceCatalogProvisioningDetails = {
-            type = "structure",
-        },
+        ServiceCatalogProvisioningDetails = M.ServiceCatalogProvisioningDetails,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         TemplateProviders = {
             type = "list",
-            member_type = "structure",
+            member = M.CreateTemplateProvider,
         },
     },
 }
@@ -15595,7 +14502,7 @@ M.SpaceIdleSettings = {
     type = "structure",
     members = {
         IdleTimeoutInMinutes = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -15603,21 +14510,15 @@ M.SpaceIdleSettings = {
 M.SpaceAppLifecycleManagement = {
     type = "structure",
     members = {
-        IdleSettings = {
-            type = "structure",
-        },
+        IdleSettings = M.SpaceIdleSettings,
     },
 }
 
 M.SpaceCodeEditorAppSettings = {
     type = "structure",
     members = {
-        DefaultResourceSpec = {
-            type = "structure",
-        },
-        AppLifecycleManagement = {
-            type = "structure",
-        },
+        DefaultResourceSpec = M.ResourceSpec,
+        AppLifecycleManagement = M.SpaceAppLifecycleManagement,
     },
 }
 
@@ -15660,31 +14561,21 @@ M.S3FileSystem = {
 M.CustomFileSystem = {
     type = "union",
     members = {
-        EFSFileSystem = {
-            type = "structure",
-        },
-        FSxLustreFileSystem = {
-            type = "structure",
-        },
-        S3FileSystem = {
-            type = "structure",
-        },
+        EFSFileSystem = M.EFSFileSystem,
+        FSxLustreFileSystem = M.FSxLustreFileSystem,
+        S3FileSystem = M.S3FileSystem,
     },
 }
 
 M.SpaceJupyterLabAppSettings = {
     type = "structure",
     members = {
-        DefaultResourceSpec = {
-            type = "structure",
-        },
+        DefaultResourceSpec = M.ResourceSpec,
         CodeRepositories = {
             type = "list",
-            member_type = "structure",
+            member = M.CodeRepository,
         },
-        AppLifecycleManagement = {
-            type = "structure",
-        },
+        AppLifecycleManagement = M.SpaceAppLifecycleManagement,
     },
 }
 
@@ -15692,7 +14583,7 @@ M.EbsStorageSettings = {
     type = "structure",
     members = {
         EbsVolumeSizeInGb = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -15703,39 +14594,27 @@ M.EbsStorageSettings = {
 M.SpaceStorageSettings = {
     type = "structure",
     members = {
-        EbsStorageSettings = {
-            type = "structure",
-        },
+        EbsStorageSettings = M.EbsStorageSettings,
     },
 }
 
 M.SpaceSettings = {
     type = "structure",
     members = {
-        JupyterServerAppSettings = {
-            type = "structure",
-        },
-        KernelGatewayAppSettings = {
-            type = "structure",
-        },
-        CodeEditorAppSettings = {
-            type = "structure",
-        },
-        JupyterLabAppSettings = {
-            type = "structure",
-        },
+        JupyterServerAppSettings = M.JupyterServerAppSettings,
+        KernelGatewayAppSettings = M.KernelGatewayAppSettings,
+        CodeEditorAppSettings = M.SpaceCodeEditorAppSettings,
+        JupyterLabAppSettings = M.SpaceJupyterLabAppSettings,
         AppType = {
             type = "string",
         },
-        SpaceStorageSettings = {
-            type = "structure",
-        },
+        SpaceStorageSettings = M.SpaceStorageSettings,
         SpaceManagedResources = {
             type = "string",
         },
         CustomFileSystems = {
             type = "list",
-            member_type = "union",
+            member = M.CustomFileSystem,
         },
         RemoteAccess = {
             type = "string",
@@ -15777,17 +14656,11 @@ M.CreateSpaceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        SpaceSettings = {
-            type = "structure",
-        },
-        OwnershipSettings = {
-            type = "structure",
-        },
-        SpaceSharingSettings = {
-            type = "structure",
-        },
+        SpaceSettings = M.SpaceSettings,
+        OwnershipSettings = M.OwnershipSettings,
+        SpaceSharingSettings = M.SpaceSharingSettings,
         SpaceDisplayName = {
             type = "string",
         },
@@ -15833,7 +14706,7 @@ M.CreateStudioLifecycleConfigInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -15861,12 +14734,12 @@ M.DebugHookConfig = {
         },
         HookParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         CollectionConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.CollectionConfiguration,
         },
     },
 }
@@ -15896,12 +14769,12 @@ M.DebugRuleConfiguration = {
             type = "string",
         },
         VolumeSizeInGB = {
-            type = "number",
+            type = "integer",
         },
         RuleParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -15955,12 +14828,12 @@ M.ProfilerConfig = {
             type = "string",
         },
         ProfilingIntervalInMilliseconds = {
-            type = "number",
+            type = "long",
         },
         ProfilingParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         DisableProfiler = {
             type = "boolean",
@@ -15993,12 +14866,12 @@ M.ProfilerRuleConfiguration = {
             type = "string",
         },
         VolumeSizeInGB = {
-            type = "number",
+            type = "integer",
         },
         RuleParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -16102,12 +14975,10 @@ M.CreateTrainingJobInput = {
         },
         HyperParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        AlgorithmSpecification = {
-            type = "structure",
-        },
+        AlgorithmSpecification = M.AlgorithmSpecification,
         RoleArn = {
             type = "string",
             traits = {
@@ -16116,26 +14987,17 @@ M.CreateTrainingJobInput = {
         },
         InputDataConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.Channel,
         },
-        OutputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ResourceConfig = {
-            type = "structure",
-        },
-        VpcConfig = {
-            type = "structure",
-        },
-        StoppingCondition = {
-            type = "structure",
-        },
+        OutputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OutputDataConfig }),
+        ResourceConfig = M.ResourceConfig,
+        VpcConfig = M.VpcConfig,
+        StoppingCondition = M.StoppingCondition,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         EnableNetworkIsolation = {
             type = "boolean",
@@ -16146,55 +15008,31 @@ M.CreateTrainingJobInput = {
         EnableManagedSpotTraining = {
             type = "boolean",
         },
-        CheckpointConfig = {
-            type = "structure",
-        },
-        DebugHookConfig = {
-            type = "structure",
-        },
+        CheckpointConfig = M.CheckpointConfig,
+        DebugHookConfig = M.DebugHookConfig,
         DebugRuleConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.DebugRuleConfiguration,
         },
-        TensorBoardOutputConfig = {
-            type = "structure",
-        },
-        ExperimentConfig = {
-            type = "structure",
-        },
-        ProfilerConfig = {
-            type = "structure",
-        },
+        TensorBoardOutputConfig = M.TensorBoardOutputConfig,
+        ExperimentConfig = M.ExperimentConfig,
+        ProfilerConfig = M.ProfilerConfig,
         ProfilerRuleConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.ProfilerRuleConfiguration,
         },
         Environment = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        RetryStrategy = {
-            type = "structure",
-        },
-        RemoteDebugConfig = {
-            type = "structure",
-        },
-        InfraCheckConfig = {
-            type = "structure",
-        },
-        SessionChainingConfig = {
-            type = "structure",
-        },
-        ServerlessJobConfig = {
-            type = "structure",
-        },
-        MlflowConfig = {
-            type = "structure",
-        },
-        ModelPackageConfig = {
-            type = "structure",
-        },
+        RetryStrategy = M.RetryStrategy,
+        RemoteDebugConfig = M.RemoteDebugConfig,
+        InfraCheckConfig = M.InfraCheckConfig,
+        SessionChainingConfig = M.SessionChainingConfig,
+        ServerlessJobConfig = M.ServerlessJobConfig,
+        MlflowConfig = M.MlflowConfig,
+        ModelPackageConfig = M.ModelPackageConfig,
     },
 }
 
@@ -16226,11 +15064,11 @@ M.CreateTrainingPlanInput = {
             },
         },
         SpareInstanceCountPerUltraServer = {
-            type = "number",
+            type = "integer",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -16271,10 +15109,10 @@ M.ModelClientConfig = {
     type = "structure",
     members = {
         InvocationsTimeoutInSeconds = {
-            type = "number",
+            type = "integer",
         },
         InvocationsMaxRetries = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -16295,53 +15133,36 @@ M.CreateTransformJobInput = {
             },
         },
         MaxConcurrentTransforms = {
-            type = "number",
+            type = "integer",
         },
-        ModelClientConfig = {
-            type = "structure",
-        },
+        ModelClientConfig = M.ModelClientConfig,
         MaxPayloadInMB = {
-            type = "number",
+            type = "integer",
         },
         BatchStrategy = {
             type = "string",
         },
         Environment = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        TransformInput = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        TransformOutput = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        DataCaptureConfig = {
-            type = "structure",
-        },
-        TransformResources = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        DataProcessing = {
-            type = "structure",
-        },
+        TransformInput = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TransformInput }),
+        TransformOutput = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TransformOutput }),
+        DataCaptureConfig = M.BatchDataCaptureConfig,
+        TransformResources = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TransformResources }),
+        DataProcessing = M.DataProcessing,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        ExperimentConfig = {
-            type = "structure",
-        },
+        ExperimentConfig = M.ExperimentConfig,
     },
 }
 
@@ -16375,12 +15196,10 @@ M.CreateTrialInput = {
                 required = true,
             },
         },
-        MetadataProperties = {
-            type = "structure",
-        },
+        MetadataProperties = M.MetadataProperties,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -16416,7 +15235,7 @@ M.TrialComponentParameterValue = {
             type = "string",
         },
         NumberValue = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -16453,9 +15272,7 @@ M.CreateTrialComponentInput = {
         DisplayName = {
             type = "string",
         },
-        Status = {
-            type = "structure",
-        },
+        Status = M.TrialComponentStatus,
         StartTime = {
             type = "timestamp",
         },
@@ -16464,25 +15281,23 @@ M.CreateTrialComponentInput = {
         },
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.TrialComponentParameterValue,
         },
         InputArtifacts = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.TrialComponentArtifact,
         },
         OutputArtifacts = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.TrialComponentArtifact,
         },
-        MetadataProperties = {
-            type = "structure",
-        },
+        MetadataProperties = M.MetadataProperties,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -16519,11 +15334,9 @@ M.CreateUserProfileInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        UserSettings = {
-            type = "structure",
-        },
+        UserSettings = M.UserSettings,
     },
 }
 
@@ -16597,8 +15410,8 @@ M.OidcConfig = {
         },
         AuthenticationRequestExtraParams = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -16608,7 +15421,7 @@ M.SourceIpConfig = {
     members = {
         Cidrs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -16624,11 +15437,11 @@ M.WorkforceVpcConfigRequest = {
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Subnets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -16636,15 +15449,9 @@ M.WorkforceVpcConfigRequest = {
 M.CreateWorkforceInput = {
     type = "structure",
     members = {
-        CognitoConfig = {
-            type = "structure",
-        },
-        OidcConfig = {
-            type = "structure",
-        },
-        SourceIpConfig = {
-            type = "structure",
-        },
+        CognitoConfig = M.CognitoConfig,
+        OidcConfig = M.OidcConfig,
+        SourceIpConfig = M.SourceIpConfig,
         WorkforceName = {
             type = "string",
             traits = {
@@ -16653,11 +15460,9 @@ M.CreateWorkforceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        WorkforceVpcConfig = {
-            type = "structure",
-        },
+        WorkforceVpcConfig = M.WorkforceVpcConfigRequest,
         IpAddressType = {
             type = "string",
         },
@@ -16681,7 +15486,7 @@ M.OidcMemberDefinition = {
     members = {
         Groups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -16689,12 +15494,8 @@ M.OidcMemberDefinition = {
 M.MemberDefinition = {
     type = "structure",
     members = {
-        CognitoMemberDefinition = {
-            type = "structure",
-        },
-        OidcMemberDefinition = {
-            type = "structure",
-        },
+        CognitoMemberDefinition = M.CognitoMemberDefinition,
+        OidcMemberDefinition = M.OidcMemberDefinition,
     },
 }
 
@@ -16727,18 +15528,14 @@ M.IamPolicyConstraints = {
 M.S3Presign = {
     type = "structure",
     members = {
-        IamPolicyConstraints = {
-            type = "structure",
-        },
+        IamPolicyConstraints = M.IamPolicyConstraints,
     },
 }
 
 M.WorkerAccessConfiguration = {
     type = "structure",
     members = {
-        S3Presign = {
-            type = "structure",
-        },
+        S3Presign = M.S3Presign,
     },
 }
 
@@ -16756,7 +15553,7 @@ M.CreateWorkteamInput = {
         },
         MemberDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.MemberDefinition,
             traits = {
                 required = true,
             },
@@ -16767,15 +15564,11 @@ M.CreateWorkteamInput = {
                 required = true,
             },
         },
-        NotificationConfiguration = {
-            type = "structure",
-        },
-        WorkerAccessConfiguration = {
-            type = "structure",
-        },
+        NotificationConfiguration = M.NotificationConfiguration,
+        WorkerAccessConfiguration = M.WorkerAccessConfiguration,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -16833,7 +15626,7 @@ M.DataCaptureConfigSummary = {
             },
         },
         CurrentSamplingPercentage = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -16894,11 +15687,11 @@ M.InstanceGroupHealthCheckConfiguration = {
         },
         InstanceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DeepHealthChecks = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -17062,9 +15855,7 @@ M.DeleteArtifactInput = {
         ArtifactArn = {
             type = "string",
         },
-        Source = {
-            type = "structure",
-        },
+        Source = M.ArtifactSource,
     },
 }
 
@@ -17271,9 +16062,7 @@ M.DeleteDomainInput = {
                 required = true,
             },
         },
-        RetentionPolicy = {
-            type = "structure",
-        },
+        RetentionPolicy = M.RetentionPolicy,
     },
 }
 
@@ -17540,7 +16329,7 @@ M.DeleteImageVersionInput = {
             },
         },
         Version = {
-            type = "number",
+            type = "integer",
         },
         Alias = {
             type = "string",
@@ -17958,7 +16747,7 @@ M.DeleteTagsInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -18122,8 +16911,8 @@ M.RealTimeInferenceRecommendation = {
         },
         Environment = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -18146,7 +16935,7 @@ M.DeploymentRecommendation = {
         },
         RealTimeInferenceRecommendations = {
             type = "list",
-            member_type = "structure",
+            member = M.RealTimeInferenceRecommendation,
         },
     },
 }
@@ -18172,19 +16961,19 @@ M.EdgeDeploymentStatus = {
             },
         },
         EdgeDeploymentSuccessInStage = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         EdgeDeploymentPendingInStage = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         EdgeDeploymentFailedInStage = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -18207,24 +16996,15 @@ M.DeploymentStageStatusSummary = {
                 required = true,
             },
         },
-        DeviceSelectionConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        DeploymentConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        DeploymentStatus = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DeviceSelectionConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DeviceSelectionConfig }),
+        DeploymentConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EdgeDeploymentConfig }),
+        DeploymentStatus = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EdgeDeploymentStatus }),
     },
 }
 
@@ -18239,7 +17019,7 @@ M.DeregisterDevicesInput = {
         },
         DeviceNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -18281,9 +17061,7 @@ M.DescribeActionOutput = {
         ActionArn = {
             type = "string",
         },
-        Source = {
-            type = "structure",
-        },
+        Source = M.ActionSource,
         ActionType = {
             type = "string",
         },
@@ -18295,24 +17073,18 @@ M.DescribeActionOutput = {
         },
         Properties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         CreationTime = {
             type = "timestamp",
         },
-        CreatedBy = {
-            type = "structure",
-        },
+        CreatedBy = M.UserContext,
         LastModifiedTime = {
             type = "timestamp",
         },
-        LastModifiedBy = {
-            type = "structure",
-        },
-        MetadataProperties = {
-            type = "structure",
-        },
+        LastModifiedBy = M.UserContext,
+        MetadataProperties = M.MetadataProperties,
         LineageGroupArn = {
             type = "string",
         },
@@ -18355,18 +17127,12 @@ M.DescribeAIBenchmarkJobOutput = {
         FailureReason = {
             type = "string",
         },
-        BenchmarkTarget = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        OutputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        BenchmarkTarget = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AIBenchmarkTarget }),
+        OutputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AIBenchmarkOutputResult }),
         AIWorkloadConfigIdentifier = {
             type = "string",
             traits = {
@@ -18379,9 +17145,7 @@ M.DescribeAIBenchmarkJobOutput = {
                 required = true,
             },
         },
-        NetworkConfig = {
-            type = "structure",
-        },
+        NetworkConfig = M.AIBenchmarkNetworkConfig,
         CreationTime = {
             type = "timestamp",
             traits = {
@@ -18396,7 +17160,7 @@ M.DescribeAIBenchmarkJobOutput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -18437,21 +17201,13 @@ M.DescribeAIRecommendationJobOutput = {
         FailureReason = {
             type = "string",
         },
-        ModelSource = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        OutputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        InferenceSpecification = {
-            type = "structure",
-        },
+        ModelSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AIModelSource }),
+        OutputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AIRecommendationOutputResult }),
+        InferenceSpecification = M.AIRecommendationInferenceSpecification,
         AIWorkloadConfigIdentifier = {
             type = "string",
             traits = {
@@ -18461,12 +17217,10 @@ M.DescribeAIRecommendationJobOutput = {
         OptimizeModel = {
             type = "boolean",
         },
-        PerformanceTarget = {
-            type = "structure",
-        },
+        PerformanceTarget = M.AIRecommendationPerformanceTarget,
         Recommendations = {
             type = "list",
-            member_type = "structure",
+            member = M.AIRecommendation,
         },
         RoleArn = {
             type = "string",
@@ -18474,9 +17228,7 @@ M.DescribeAIRecommendationJobOutput = {
                 required = true,
             },
         },
-        ComputeSpec = {
-            type = "structure",
-        },
+        ComputeSpec = M.AIRecommendationComputeSpec,
         CreationTime = {
             type = "timestamp",
             traits = {
@@ -18491,7 +17243,7 @@ M.DescribeAIRecommendationJobOutput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -18523,15 +17275,11 @@ M.DescribeAIWorkloadConfigOutput = {
                 required = true,
             },
         },
-        DatasetConfig = {
-            type = "union",
-        },
-        AIWorkloadConfigs = {
-            type = "structure",
-        },
+        DatasetConfig = M.AIDatasetConfig,
+        AIWorkloadConfigs = M.AIWorkloadConfigs,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         CreationTime = {
             type = "timestamp",
@@ -18578,30 +17326,20 @@ M.DescribeAlgorithmOutput = {
                 required = true,
             },
         },
-        TrainingSpecification = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        InferenceSpecification = {
-            type = "structure",
-        },
-        ValidationSpecification = {
-            type = "structure",
-        },
+        TrainingSpecification = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TrainingSpecification }),
+        InferenceSpecification = M.InferenceSpecification,
+        ValidationSpecification = M.AlgorithmValidationSpecification,
         AlgorithmStatus = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        AlgorithmStatusDetails = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AlgorithmStatusDetails = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AlgorithmStatusDetails }),
         ProductId = {
             type = "string",
         },
@@ -18683,9 +17421,7 @@ M.DescribeAppOutput = {
         FailureReason = {
             type = "string",
         },
-        ResourceSpec = {
-            type = "structure",
-        },
+        ResourceSpec = M.ResourceSpec,
         BuiltInLifecycleConfigArn = {
             type = "string",
         },
@@ -18719,15 +17455,9 @@ M.DescribeAppImageConfigOutput = {
         LastModifiedTime = {
             type = "timestamp",
         },
-        KernelGatewayImageConfig = {
-            type = "structure",
-        },
-        JupyterLabAppImageConfig = {
-            type = "structure",
-        },
-        CodeEditorAppImageConfig = {
-            type = "structure",
-        },
+        KernelGatewayImageConfig = M.KernelGatewayImageConfig,
+        JupyterLabAppImageConfig = M.JupyterLabAppImageConfig,
+        CodeEditorAppImageConfig = M.CodeEditorAppImageConfig,
     },
 }
 
@@ -18752,32 +17482,24 @@ M.DescribeArtifactOutput = {
         ArtifactArn = {
             type = "string",
         },
-        Source = {
-            type = "structure",
-        },
+        Source = M.ArtifactSource,
         ArtifactType = {
             type = "string",
         },
         Properties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         CreationTime = {
             type = "timestamp",
         },
-        CreatedBy = {
-            type = "structure",
-        },
+        CreatedBy = M.UserContext,
         LastModifiedTime = {
             type = "timestamp",
         },
-        LastModifiedBy = {
-            type = "structure",
-        },
-        MetadataProperties = {
-            type = "structure",
-        },
+        LastModifiedBy = M.UserContext,
+        MetadataProperties = M.MetadataProperties,
         LineageGroupArn = {
             type = "string",
         },
@@ -18808,15 +17530,11 @@ M.ModelDeployResult = {
 M.ResolvedAttributes = {
     type = "structure",
     members = {
-        AutoMLJobObjective = {
-            type = "structure",
-        },
+        AutoMLJobObjective = M.AutoMLJobObjective,
         ProblemType = {
             type = "string",
         },
-        CompletionCriteria = {
-            type = "structure",
-        },
+        CompletionCriteria = M.AutoMLJobCompletionCriteria,
     },
 }
 
@@ -18837,32 +17555,25 @@ M.DescribeAutoMLJobOutput = {
         },
         InputDataConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.AutoMLChannel,
             traits = {
                 required = true,
             },
         },
-        OutputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        OutputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AutoMLOutputDataConfig }),
         RoleArn = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        AutoMLJobObjective = {
-            type = "structure",
-        },
+        AutoMLJobObjective = M.AutoMLJobObjective,
         ProblemType = {
             type = "string",
         },
-        AutoMLJobConfig = {
-            type = "structure",
-        },
+        AutoMLJobConfig = M.AutoMLJobConfig,
         CreationTime = {
             type = "timestamp",
             traits = {
@@ -18883,11 +17594,9 @@ M.DescribeAutoMLJobOutput = {
         },
         PartialFailureReasons = {
             type = "list",
-            member_type = "structure",
+            member = M.AutoMLPartialFailureReason,
         },
-        BestCandidate = {
-            type = "structure",
-        },
+        BestCandidate = M.AutoMLCandidate,
         AutoMLJobStatus = {
             type = "string",
             traits = {
@@ -18903,18 +17612,10 @@ M.DescribeAutoMLJobOutput = {
         GenerateCandidateDefinitionsOnly = {
             type = "boolean",
         },
-        AutoMLJobArtifacts = {
-            type = "structure",
-        },
-        ResolvedAttributes = {
-            type = "structure",
-        },
-        ModelDeployConfig = {
-            type = "structure",
-        },
-        ModelDeployResult = {
-            type = "structure",
-        },
+        AutoMLJobArtifacts = M.AutoMLJobArtifacts,
+        ResolvedAttributes = M.ResolvedAttributes,
+        ModelDeployConfig = M.ModelDeployConfig,
+        ModelDeployResult = M.ModelDeployResult,
     },
 }
 
@@ -18947,29 +17648,22 @@ M.DescribeAutoMLJobV2Output = {
         },
         AutoMLJobInputDataConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.AutoMLJobChannel,
             traits = {
                 required = true,
             },
         },
-        OutputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        OutputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AutoMLOutputDataConfig }),
         RoleArn = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        AutoMLJobObjective = {
-            type = "structure",
-        },
-        AutoMLProblemTypeConfig = {
-            type = "union",
-        },
+        AutoMLJobObjective = M.AutoMLJobObjective,
+        AutoMLProblemTypeConfig = M.AutoMLProblemTypeConfig,
         AutoMLProblemTypeConfigName = {
             type = "string",
         },
@@ -18993,11 +17687,9 @@ M.DescribeAutoMLJobV2Output = {
         },
         PartialFailureReasons = {
             type = "list",
-            member_type = "structure",
+            member = M.AutoMLPartialFailureReason,
         },
-        BestCandidate = {
-            type = "structure",
-        },
+        BestCandidate = M.AutoMLCandidate,
         AutoMLJobStatus = {
             type = "string",
             traits = {
@@ -19010,27 +17702,13 @@ M.DescribeAutoMLJobV2Output = {
                 required = true,
             },
         },
-        AutoMLJobArtifacts = {
-            type = "structure",
-        },
-        ResolvedAttributes = {
-            type = "structure",
-        },
-        ModelDeployConfig = {
-            type = "structure",
-        },
-        ModelDeployResult = {
-            type = "structure",
-        },
-        DataSplitConfig = {
-            type = "structure",
-        },
-        SecurityConfig = {
-            type = "structure",
-        },
-        AutoMLComputeConfig = {
-            type = "structure",
-        },
+        AutoMLJobArtifacts = M.AutoMLJobArtifacts,
+        ResolvedAttributes = M.AutoMLResolvedAttributes,
+        ModelDeployConfig = M.ModelDeployConfig,
+        ModelDeployResult = M.ModelDeployResult,
+        DataSplitConfig = M.AutoMLDataSplitConfig,
+        SecurityConfig = M.AutoMLSecurityConfig,
+        AutoMLComputeConfig = M.AutoMLComputeConfig,
     },
 }
 
@@ -19072,24 +17750,18 @@ M.DescribeClusterOutput = {
         },
         InstanceGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.ClusterInstanceGroupDetails,
             traits = {
                 required = true,
             },
         },
         RestrictedInstanceGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.ClusterRestrictedInstanceGroupDetails,
         },
-        VpcConfig = {
-            type = "structure",
-        },
-        Orchestrator = {
-            type = "structure",
-        },
-        TieredStorageConfig = {
-            type = "structure",
-        },
+        VpcConfig = M.VpcConfig,
+        Orchestrator = M.ClusterOrchestrator,
+        TieredStorageConfig = M.ClusterTieredStorageConfig,
         NodeRecovery = {
             type = "string",
         },
@@ -19099,9 +17771,7 @@ M.DescribeClusterOutput = {
         ClusterRole = {
             type = "string",
         },
-        AutoScaling = {
-            type = "structure",
-        },
+        AutoScaling = M.ClusterAutoScalingConfigOutput,
     },
 }
 
@@ -19126,9 +17796,7 @@ M.DescribeClusterEventInput = {
 M.DescribeClusterEventOutput = {
     type = "structure",
     members = {
-        EventDetails = {
-            type = "structure",
-        },
+        EventDetails = M.ClusterEventDetail,
     },
 }
 
@@ -19153,12 +17821,9 @@ M.DescribeClusterNodeInput = {
 M.DescribeClusterNodeOutput = {
     type = "structure",
     members = {
-        NodeDetails = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        NodeDetails = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ClusterNodeDetails }),
     },
 }
 
@@ -19172,7 +17837,7 @@ M.DescribeClusterSchedulerConfigInput = {
             },
         },
         ClusterSchedulerConfigVersion = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -19205,7 +17870,7 @@ M.DescribeClusterSchedulerConfigOutput = {
             },
         },
         ClusterSchedulerConfigVersion = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -19221,15 +17886,13 @@ M.DescribeClusterSchedulerConfigOutput = {
         },
         StatusDetails = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ClusterArn = {
             type = "string",
         },
-        SchedulerConfig = {
-            type = "structure",
-        },
+        SchedulerConfig = M.SchedulerConfig,
         Description = {
             type = "string",
         },
@@ -19239,15 +17902,11 @@ M.DescribeClusterSchedulerConfigOutput = {
                 required = true,
             },
         },
-        CreatedBy = {
-            type = "structure",
-        },
+        CreatedBy = M.UserContext,
         LastModifiedTime = {
             type = "timestamp",
         },
-        LastModifiedBy = {
-            type = "structure",
-        },
+        LastModifiedBy = M.UserContext,
     },
 }
 
@@ -19290,9 +17949,7 @@ M.DescribeCodeRepositoryOutput = {
                 required = true,
             },
         },
-        GitConfig = {
-            type = "structure",
-        },
+        GitConfig = M.GitConfig,
     },
 }
 
@@ -19356,12 +18013,9 @@ M.DescribeCompilationJobOutput = {
         CompilationEndTime = {
             type = "timestamp",
         },
-        StoppingCondition = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        StoppingCondition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.StoppingCondition }),
         InferenceImage = {
             type = "string",
         },
@@ -19386,39 +18040,24 @@ M.DescribeCompilationJobOutput = {
                 required = true,
             },
         },
-        ModelArtifacts = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ModelDigests = {
-            type = "structure",
-        },
+        ModelArtifacts = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ModelArtifacts }),
+        ModelDigests = M.ModelDigests,
         RoleArn = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        InputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        OutputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        VpcConfig = {
-            type = "structure",
-        },
-        DerivedInformation = {
-            type = "structure",
-        },
+        InputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InputConfig }),
+        OutputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OutputConfig }),
+        VpcConfig = M.NeoVpcConfig,
+        DerivedInformation = M.DerivedInformation,
     },
 }
 
@@ -19432,7 +18071,7 @@ M.DescribeComputeQuotaInput = {
             },
         },
         ComputeQuotaVersion = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -19462,7 +18101,7 @@ M.DescribeComputeQuotaOutput = {
             type = "string",
         },
         ComputeQuotaVersion = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -19479,15 +18118,10 @@ M.DescribeComputeQuotaOutput = {
         ClusterArn = {
             type = "string",
         },
-        ComputeQuotaConfig = {
-            type = "structure",
-        },
-        ComputeQuotaTarget = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ComputeQuotaConfig = M.ComputeQuotaConfig,
+        ComputeQuotaTarget = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ComputeQuotaTarget }),
         ActivationState = {
             type = "string",
         },
@@ -19497,15 +18131,11 @@ M.DescribeComputeQuotaOutput = {
                 required = true,
             },
         },
-        CreatedBy = {
-            type = "structure",
-        },
+        CreatedBy = M.UserContext,
         LastModifiedTime = {
             type = "timestamp",
         },
-        LastModifiedBy = {
-            type = "structure",
-        },
+        LastModifiedBy = M.UserContext,
     },
 }
 
@@ -19530,9 +18160,7 @@ M.DescribeContextOutput = {
         ContextArn = {
             type = "string",
         },
-        Source = {
-            type = "structure",
-        },
+        Source = M.ContextSource,
         ContextType = {
             type = "string",
         },
@@ -19541,21 +18169,17 @@ M.DescribeContextOutput = {
         },
         Properties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         CreationTime = {
             type = "timestamp",
         },
-        CreatedBy = {
-            type = "structure",
-        },
+        CreatedBy = M.UserContext,
         LastModifiedTime = {
             type = "timestamp",
         },
-        LastModifiedBy = {
-            type = "structure",
-        },
+        LastModifiedBy = M.UserContext,
         LineageGroupArn = {
             type = "string",
         },
@@ -19595,45 +18219,27 @@ M.DescribeDataQualityJobDefinitionOutput = {
                 required = true,
             },
         },
-        DataQualityBaselineConfig = {
-            type = "structure",
-        },
-        DataQualityAppSpecification = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        DataQualityJobInput = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        DataQualityJobOutputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        JobResources = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        NetworkConfig = {
-            type = "structure",
-        },
+        DataQualityBaselineConfig = M.DataQualityBaselineConfig,
+        DataQualityAppSpecification = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataQualityAppSpecification }),
+        DataQualityJobInput = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataQualityJobInput }),
+        DataQualityJobOutputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MonitoringOutputConfig }),
+        JobResources = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MonitoringResources }),
+        NetworkConfig = M.MonitoringNetworkConfig,
         RoleArn = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        StoppingCondition = {
-            type = "structure",
-        },
+        StoppingCondition = M.MonitoringStoppingCondition,
     },
 }
 
@@ -19717,10 +18323,10 @@ M.DescribeDeviceOutput = {
         },
         Models = {
             type = "list",
-            member_type = "structure",
+            member = M.EdgeModel,
         },
         MaxModels = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -19758,12 +18364,9 @@ M.DescribeDeviceFleetOutput = {
                 required = true,
             },
         },
-        OutputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        OutputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EdgeOutputConfig }),
         Description = {
             type = "string",
         },
@@ -19849,12 +18452,8 @@ M.DescribeDomainOutput = {
         AuthMode = {
             type = "string",
         },
-        DefaultUserSettings = {
-            type = "structure",
-        },
-        DomainSettings = {
-            type = "structure",
-        },
+        DefaultUserSettings = M.UserSettings,
+        DomainSettings = M.DomainSettings,
         AppNetworkAccessType = {
             type = "string",
         },
@@ -19863,7 +18462,7 @@ M.DescribeDomainOutput = {
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Url = {
             type = "string",
@@ -19880,9 +18479,7 @@ M.DescribeDomainOutput = {
         TagPropagation = {
             type = "string",
         },
-        DefaultSpaceSettings = {
-            type = "structure",
-        },
+        DefaultSpaceSettings = M.DefaultSpaceSettings,
     },
 }
 
@@ -19899,7 +18496,7 @@ M.DescribeEdgeDeploymentPlanInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -19921,7 +18518,7 @@ M.DescribeEdgeDeploymentPlanOutput = {
         },
         ModelConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.EdgeDeploymentModelConfig,
             traits = {
                 required = true,
             },
@@ -19933,17 +18530,17 @@ M.DescribeEdgeDeploymentPlanOutput = {
             },
         },
         EdgeDeploymentSuccess = {
-            type = "number",
+            type = "integer",
         },
         EdgeDeploymentPending = {
-            type = "number",
+            type = "integer",
         },
         EdgeDeploymentFailed = {
-            type = "number",
+            type = "integer",
         },
         Stages = {
             type = "list",
-            member_type = "structure",
+            member = M.DeploymentStageStatusSummary,
             traits = {
                 required = true,
             },
@@ -20034,9 +18631,7 @@ M.DescribeEdgePackagingJobOutput = {
         RoleArn = {
             type = "string",
         },
-        OutputConfig = {
-            type = "structure",
-        },
+        OutputConfig = M.EdgeOutputConfig,
         ResourceKey = {
             type = "string",
         },
@@ -20061,9 +18656,7 @@ M.DescribeEdgePackagingJobOutput = {
         ModelSignature = {
             type = "string",
         },
-        PresetDeploymentOutput = {
-            type = "structure",
-        },
+        PresetDeploymentOutput = M.EdgePresetDeploymentOutput,
     },
 }
 
@@ -20101,7 +18694,7 @@ M.InstancePoolSummary = {
             },
         },
         CurrentInstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -20146,46 +18739,38 @@ M.PendingProductionVariantSummary = {
         },
         DeployedImages = {
             type = "list",
-            member_type = "structure",
+            member = M.DeployedImage,
         },
         CurrentWeight = {
-            type = "number",
+            type = "float",
         },
         DesiredWeight = {
-            type = "number",
+            type = "float",
         },
         CurrentInstanceCount = {
-            type = "number",
+            type = "integer",
         },
         DesiredInstanceCount = {
-            type = "number",
+            type = "integer",
         },
         InstanceType = {
             type = "string",
         },
         InstancePools = {
             type = "list",
-            member_type = "structure",
+            member = M.InstancePoolSummary,
         },
         AcceleratorType = {
             type = "string",
         },
         VariantStatus = {
             type = "list",
-            member_type = "structure",
+            member = M.ProductionVariantStatus,
         },
-        CurrentServerlessConfig = {
-            type = "structure",
-        },
-        DesiredServerlessConfig = {
-            type = "structure",
-        },
-        ManagedInstanceScaling = {
-            type = "structure",
-        },
-        RoutingConfig = {
-            type = "structure",
-        },
+        CurrentServerlessConfig = M.ProductionVariantServerlessConfig,
+        DesiredServerlessConfig = M.ProductionVariantServerlessConfig,
+        ManagedInstanceScaling = M.ProductionVariantManagedInstanceScaling,
+        RoutingConfig = M.ProductionVariantRoutingConfig,
     },
 }
 
@@ -20200,14 +18785,14 @@ M.PendingDeploymentSummary = {
         },
         ProductionVariants = {
             type = "list",
-            member_type = "structure",
+            member = M.PendingProductionVariantSummary,
         },
         StartTime = {
             type = "timestamp",
         },
         ShadowProductionVariants = {
             type = "list",
-            member_type = "structure",
+            member = M.PendingProductionVariantSummary,
         },
     },
 }
@@ -20219,13 +18804,13 @@ M.Ec2CapacityReservation = {
             type = "string",
         },
         TotalInstanceCount = {
-            type = "number",
+            type = "integer",
         },
         AvailableInstanceCount = {
-            type = "number",
+            type = "integer",
         },
         UsedByCurrentEndpoint = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -20240,17 +18825,17 @@ M.ProductionVariantCapacityReservationSummary = {
             type = "string",
         },
         TotalInstanceCount = {
-            type = "number",
+            type = "integer",
         },
         AvailableInstanceCount = {
-            type = "number",
+            type = "integer",
         },
         UsedByCurrentEndpoint = {
-            type = "number",
+            type = "integer",
         },
         Ec2CapacityReservations = {
             type = "list",
-            member_type = "structure",
+            member = M.Ec2CapacityReservation,
         },
     },
 }
@@ -20266,43 +18851,33 @@ M.ProductionVariantSummary = {
         },
         DeployedImages = {
             type = "list",
-            member_type = "structure",
+            member = M.DeployedImage,
         },
         CurrentWeight = {
-            type = "number",
+            type = "float",
         },
         DesiredWeight = {
-            type = "number",
+            type = "float",
         },
         CurrentInstanceCount = {
-            type = "number",
+            type = "integer",
         },
         DesiredInstanceCount = {
-            type = "number",
+            type = "integer",
         },
         InstancePools = {
             type = "list",
-            member_type = "structure",
+            member = M.InstancePoolSummary,
         },
         VariantStatus = {
             type = "list",
-            member_type = "structure",
+            member = M.ProductionVariantStatus,
         },
-        CurrentServerlessConfig = {
-            type = "structure",
-        },
-        DesiredServerlessConfig = {
-            type = "structure",
-        },
-        ManagedInstanceScaling = {
-            type = "structure",
-        },
-        RoutingConfig = {
-            type = "structure",
-        },
-        CapacityReservationConfig = {
-            type = "structure",
-        },
+        CurrentServerlessConfig = M.ProductionVariantServerlessConfig,
+        DesiredServerlessConfig = M.ProductionVariantServerlessConfig,
+        ManagedInstanceScaling = M.ProductionVariantManagedInstanceScaling,
+        RoutingConfig = M.ProductionVariantRoutingConfig,
+        CapacityReservationConfig = M.ProductionVariantCapacityReservationSummary,
     },
 }
 
@@ -20326,11 +18901,9 @@ M.DescribeEndpointOutput = {
         },
         ProductionVariants = {
             type = "list",
-            member_type = "structure",
+            member = M.ProductionVariantSummary,
         },
-        DataCaptureConfig = {
-            type = "structure",
-        },
+        DataCaptureConfig = M.DataCaptureConfigSummary,
         EndpointStatus = {
             type = "string",
             traits = {
@@ -20352,25 +18925,15 @@ M.DescribeEndpointOutput = {
                 required = true,
             },
         },
-        LastDeploymentConfig = {
-            type = "structure",
-        },
-        AsyncInferenceConfig = {
-            type = "structure",
-        },
-        PendingDeploymentSummary = {
-            type = "structure",
-        },
-        ExplainerConfig = {
-            type = "structure",
-        },
+        LastDeploymentConfig = M.DeploymentConfig,
+        AsyncInferenceConfig = M.AsyncInferenceConfig,
+        PendingDeploymentSummary = M.PendingDeploymentSummary,
+        ExplainerConfig = M.ExplainerConfig,
         ShadowProductionVariants = {
             type = "list",
-            member_type = "structure",
+            member = M.ProductionVariantSummary,
         },
-        MetricsConfig = {
-            type = "structure",
-        },
+        MetricsConfig = M.MetricsConfig,
     },
 }
 
@@ -20403,14 +18966,12 @@ M.DescribeEndpointConfigOutput = {
         },
         ProductionVariants = {
             type = "list",
-            member_type = "structure",
+            member = M.ProductionVariant,
             traits = {
                 required = true,
             },
         },
-        DataCaptureConfig = {
-            type = "structure",
-        },
+        DataCaptureConfig = M.DataCaptureConfig,
         KmsKeyId = {
             type = "string",
         },
@@ -20420,28 +18981,20 @@ M.DescribeEndpointConfigOutput = {
                 required = true,
             },
         },
-        AsyncInferenceConfig = {
-            type = "structure",
-        },
-        ExplainerConfig = {
-            type = "structure",
-        },
+        AsyncInferenceConfig = M.AsyncInferenceConfig,
+        ExplainerConfig = M.ExplainerConfig,
         ShadowProductionVariants = {
             type = "list",
-            member_type = "structure",
+            member = M.ProductionVariant,
         },
         ExecutionRoleArn = {
             type = "string",
         },
-        VpcConfig = {
-            type = "structure",
-        },
+        VpcConfig = M.VpcConfig,
         EnableNetworkIsolation = {
             type = "boolean",
         },
-        MetricsConfig = {
-            type = "structure",
-        },
+        MetricsConfig = M.MetricsConfig,
     },
 }
 
@@ -20484,24 +19037,18 @@ M.DescribeExperimentOutput = {
         DisplayName = {
             type = "string",
         },
-        Source = {
-            type = "structure",
-        },
+        Source = M.ExperimentSource,
         Description = {
             type = "string",
         },
         CreationTime = {
             type = "timestamp",
         },
-        CreatedBy = {
-            type = "structure",
-        },
+        CreatedBy = M.UserContext,
         LastModifiedTime = {
             type = "timestamp",
         },
-        LastModifiedBy = {
-            type = "structure",
-        },
+        LastModifiedBy = M.UserContext,
     },
 }
 
@@ -20580,10 +19127,10 @@ M.ThroughputConfigDescription = {
             },
         },
         ProvisionedReadCapacityUnits = {
-            type = "number",
+            type = "integer",
         },
         ProvisionedWriteCapacityUnits = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -20617,7 +19164,7 @@ M.DescribeFeatureGroupOutput = {
         },
         FeatureDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.FeatureDefinition,
             traits = {
                 required = true,
             },
@@ -20631,27 +19178,17 @@ M.DescribeFeatureGroupOutput = {
         LastModifiedTime = {
             type = "timestamp",
         },
-        OnlineStoreConfig = {
-            type = "structure",
-        },
-        OfflineStoreConfig = {
-            type = "structure",
-        },
-        ThroughputConfig = {
-            type = "structure",
-        },
+        OnlineStoreConfig = M.OnlineStoreConfig,
+        OfflineStoreConfig = M.OfflineStoreConfig,
+        ThroughputConfig = M.ThroughputConfigDescription,
         RoleArn = {
             type = "string",
         },
         FeatureGroupStatus = {
             type = "string",
         },
-        OfflineStoreStatus = {
-            type = "structure",
-        },
-        LastUpdateStatus = {
-            type = "structure",
-        },
+        OfflineStoreStatus = M.OfflineStoreStatus,
+        LastUpdateStatus = M.LastUpdateStatus,
         FailureReason = {
             type = "string",
         },
@@ -20665,7 +19202,7 @@ M.DescribeFeatureGroupOutput = {
             },
         },
         OnlineStoreTotalSizeBytes = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -20744,7 +19281,7 @@ M.DescribeFeatureMetadataOutput = {
         },
         Parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.FeatureParameter,
         },
     },
 }
@@ -20795,21 +19332,12 @@ M.DescribeFlowDefinitionOutput = {
                 required = true,
             },
         },
-        HumanLoopRequestSource = {
-            type = "structure",
-        },
-        HumanLoopActivationConfig = {
-            type = "structure",
-        },
-        HumanLoopConfig = {
-            type = "structure",
-        },
-        OutputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        HumanLoopRequestSource = M.HumanLoopRequestSource,
+        HumanLoopActivationConfig = M.HumanLoopActivationConfig,
+        HumanLoopConfig = M.HumanLoopConfig,
+        OutputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FlowDefinitionOutputConfig }),
         RoleArn = {
             type = "string",
             traits = {
@@ -20867,11 +19395,9 @@ M.DescribeHubOutput = {
         },
         HubSearchKeywords = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        S3StorageConfig = {
-            type = "structure",
-        },
+        S3StorageConfig = M.HubS3StorageConfig,
         HubStatus = {
             type = "string",
             traits = {
@@ -21022,11 +19548,11 @@ M.DescribeHubContentOutput = {
         },
         HubContentSearchKeywords = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         HubContentDependencies = {
             type = "list",
-            member_type = "structure",
+            member = M.HubContentDependency,
         },
         HubContentStatus = {
             type = "string",
@@ -21102,12 +19628,9 @@ M.DescribeHumanTaskUiOutput = {
                 required = true,
             },
         },
-        UiTemplate = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        UiTemplate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.UiTemplateInfo }),
     },
 }
 
@@ -21136,7 +19659,7 @@ M.FinalHyperParameterTuningJobObjectiveMetric = {
             },
         },
         Value = {
-            type = "number",
+            type = "float",
             traits = {
                 required = true,
             },
@@ -21194,8 +19717,8 @@ M.HyperParameterTrainingJobSummary = {
         },
         TunedHyperParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -21203,9 +19726,7 @@ M.HyperParameterTrainingJobSummary = {
         FailureReason = {
             type = "string",
         },
-        FinalHyperParameterTuningJobObjectiveMetric = {
-            type = "structure",
-        },
+        FinalHyperParameterTuningJobObjectiveMetric = M.FinalHyperParameterTuningJobObjectiveMetric,
         ObjectiveStatus = {
             type = "string",
         },
@@ -21216,7 +19737,7 @@ M.HyperParameterTuningJobConsumedResources = {
     type = "structure",
     members = {
         RuntimeInSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -21235,13 +19756,13 @@ M.ObjectiveStatusCounters = {
     type = "structure",
     members = {
         Succeeded = {
-            type = "number",
+            type = "integer",
         },
         Pending = {
-            type = "number",
+            type = "integer",
         },
         Failed = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -21250,19 +19771,19 @@ M.TrainingJobStatusCounters = {
     type = "structure",
     members = {
         Completed = {
-            type = "number",
+            type = "integer",
         },
         InProgress = {
-            type = "number",
+            type = "integer",
         },
         RetryableError = {
-            type = "number",
+            type = "integer",
         },
         NonRetryableError = {
-            type = "number",
+            type = "integer",
         },
         Stopped = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -21271,7 +19792,7 @@ M.HyperParameterTuningJobCompletionDetails = {
     type = "structure",
     members = {
         NumberOfTrainingJobsObjectiveNotImproving = {
-            type = "number",
+            type = "integer",
         },
         ConvergenceDetectedTime = {
             type = "timestamp",
@@ -21294,18 +19815,13 @@ M.DescribeHyperParameterTuningJobOutput = {
                 required = true,
             },
         },
-        HyperParameterTuningJobConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        TrainingJobDefinition = {
-            type = "structure",
-        },
+        HyperParameterTuningJobConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HyperParameterTuningJobConfig }),
+        TrainingJobDefinition = M.HyperParameterTrainingJobDefinition,
         TrainingJobDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.HyperParameterTrainingJobDefinition,
         },
         HyperParameterTuningJobStatus = {
             type = "string",
@@ -21325,39 +19841,21 @@ M.DescribeHyperParameterTuningJobOutput = {
         LastModifiedTime = {
             type = "timestamp",
         },
-        TrainingJobStatusCounters = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ObjectiveStatusCounters = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        BestTrainingJob = {
-            type = "structure",
-        },
-        OverallBestTrainingJob = {
-            type = "structure",
-        },
-        WarmStartConfig = {
-            type = "structure",
-        },
-        Autotune = {
-            type = "structure",
-        },
+        TrainingJobStatusCounters = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TrainingJobStatusCounters }),
+        ObjectiveStatusCounters = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectiveStatusCounters }),
+        BestTrainingJob = M.HyperParameterTrainingJobSummary,
+        OverallBestTrainingJob = M.HyperParameterTrainingJobSummary,
+        WarmStartConfig = M.HyperParameterTuningJobWarmStartConfig,
+        Autotune = M.Autotune,
         FailureReason = {
             type = "string",
         },
-        TuningJobCompletionDetails = {
-            type = "structure",
-        },
-        ConsumedResources = {
-            type = "structure",
-        },
+        TuningJobCompletionDetails = M.HyperParameterTuningJobCompletionDetails,
+        ConsumedResources = M.HyperParameterTuningJobConsumedResources,
     },
 }
 
@@ -21426,7 +19924,7 @@ M.DescribeImageVersionInput = {
             },
         },
         Version = {
-            type = "number",
+            type = "integer",
         },
         Alias = {
             type = "string",
@@ -21470,7 +19968,7 @@ M.DescribeImageVersionOutput = {
             type = "timestamp",
         },
         Version = {
-            type = "number",
+            type = "integer",
         },
         VendorGuidance = {
             type = "string",
@@ -21531,7 +20029,7 @@ M.InferenceComponentCapacitySize = {
             },
         },
         Value = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -21542,39 +20040,29 @@ M.InferenceComponentCapacitySize = {
 M.InferenceComponentRollingUpdatePolicy = {
     type = "structure",
     members = {
-        MaximumBatchSize = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        MaximumBatchSize = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InferenceComponentCapacitySize }),
         WaitIntervalInSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         MaximumExecutionTimeoutInSeconds = {
-            type = "number",
+            type = "integer",
         },
-        RollbackMaximumBatchSize = {
-            type = "structure",
-        },
+        RollbackMaximumBatchSize = M.InferenceComponentCapacitySize,
     },
 }
 
 M.InferenceComponentDeploymentConfig = {
     type = "structure",
     members = {
-        RollingUpdatePolicy = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        AutoRollbackConfiguration = {
-            type = "structure",
-        },
+        RollingUpdatePolicy = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InferenceComponentRollingUpdatePolicy }),
+        AutoRollbackConfiguration = M.AutoRollbackConfig,
     },
 }
 
@@ -21588,7 +20076,7 @@ M.InferenceComponentPlacementStatus = {
             },
         },
         CurrentCopyCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -21600,14 +20088,14 @@ M.InferenceComponentRuntimeConfigSummary = {
     type = "structure",
     members = {
         DesiredCopyCount = {
-            type = "number",
+            type = "integer",
         },
         CurrentCopyCount = {
-            type = "number",
+            type = "integer",
         },
         PlacementStatus = {
             type = "list",
-            member_type = "structure",
+            member = M.InferenceComponentPlacementStatus,
         },
     },
 }
@@ -21615,16 +20103,14 @@ M.InferenceComponentRuntimeConfigSummary = {
 M.InferenceComponentContainerSpecificationSummary = {
     type = "structure",
     members = {
-        DeployedImage = {
-            type = "structure",
-        },
+        DeployedImage = M.DeployedImage,
         ArtifactUrl = {
             type = "string",
         },
         Environment = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -21650,24 +20136,14 @@ M.InferenceComponentSpecificationSummary = {
         ModelName = {
             type = "string",
         },
-        Container = {
-            type = "structure",
-        },
-        StartupParameters = {
-            type = "structure",
-        },
-        ComputeResourceRequirements = {
-            type = "structure",
-        },
+        Container = M.InferenceComponentContainerSpecificationSummary,
+        StartupParameters = M.InferenceComponentStartupParameters,
+        ComputeResourceRequirements = M.InferenceComponentComputeResourceRequirements,
         BaseInferenceComponentName = {
             type = "string",
         },
-        DataCacheConfig = {
-            type = "structure",
-        },
-        SchedulingConfig = {
-            type = "structure",
-        },
+        DataCacheConfig = M.InferenceComponentDataCacheConfigSummary,
+        SchedulingConfig = M.InferenceComponentSchedulingConfig,
     },
 }
 
@@ -21704,16 +20180,12 @@ M.DescribeInferenceComponentOutput = {
         FailureReason = {
             type = "string",
         },
-        Specification = {
-            type = "structure",
-        },
+        Specification = M.InferenceComponentSpecificationSummary,
         Specifications = {
             type = "list",
-            member_type = "structure",
+            member = M.InferenceComponentSpecificationSummary,
         },
-        RuntimeConfig = {
-            type = "structure",
-        },
+        RuntimeConfig = M.InferenceComponentRuntimeConfigSummary,
         CreationTime = {
             type = "timestamp",
             traits = {
@@ -21729,9 +20201,7 @@ M.DescribeInferenceComponentOutput = {
         InferenceComponentStatus = {
             type = "string",
         },
-        LastDeploymentConfig = {
-            type = "structure",
-        },
+        LastDeploymentConfig = M.InferenceComponentDeploymentConfig,
     },
 }
 
@@ -21791,12 +20261,9 @@ M.ModelVariantConfigSummary = {
                 required = true,
             },
         },
-        InfrastructureConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InfrastructureConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ModelInfrastructureConfig }),
         Status = {
             type = "string",
             traits = {
@@ -21838,9 +20305,7 @@ M.DescribeInferenceExperimentOutput = {
                 required = true,
             },
         },
-        Schedule = {
-            type = "structure",
-        },
+        Schedule = M.InferenceExperimentSchedule,
         Status = {
             type = "string",
             traits = {
@@ -21865,25 +20330,18 @@ M.DescribeInferenceExperimentOutput = {
         RoleArn = {
             type = "string",
         },
-        EndpointMetadata = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        EndpointMetadata = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EndpointMetadata }),
         ModelVariants = {
             type = "list",
-            member_type = "structure",
+            member = M.ModelVariantConfigSummary,
             traits = {
                 required = true,
             },
         },
-        DataStorageConfig = {
-            type = "structure",
-        },
-        ShadowModeConfig = {
-            type = "structure",
-        },
+        DataStorageConfig = M.InferenceExperimentDataStorageConfig,
+        ShadowModeConfig = M.ShadowModeConfig,
         KmsKey = {
             type = "string",
         },
@@ -21906,13 +20364,13 @@ M.InferenceMetrics = {
     type = "structure",
     members = {
         MaxInvocations = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         ModelLatency = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -21923,18 +20381,12 @@ M.InferenceMetrics = {
 M.EndpointPerformance = {
     type = "structure",
     members = {
-        Metrics = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        EndpointInfo = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Metrics = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InferenceMetrics }),
+        EndpointInfo = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EndpointInfo }),
     },
 }
 
@@ -21957,11 +20409,9 @@ M.EndpointOutputConfiguration = {
             type = "string",
         },
         InitialInstanceCount = {
-            type = "number",
+            type = "integer",
         },
-        ServerlessConfig = {
-            type = "structure",
-        },
+        ServerlessConfig = M.ProductionVariantServerlessConfig,
     },
 }
 
@@ -21969,25 +20419,25 @@ M.RecommendationMetrics = {
     type = "structure",
     members = {
         CostPerHour = {
-            type = "number",
+            type = "float",
         },
         CostPerInference = {
-            type = "number",
+            type = "float",
         },
         MaxInvocations = {
-            type = "number",
+            type = "integer",
         },
         ModelLatency = {
-            type = "number",
+            type = "integer",
         },
         CpuUtilization = {
-            type = "number",
+            type = "float",
         },
         MemoryUtilization = {
-            type = "number",
+            type = "float",
         },
         ModelSetupTime = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -22024,7 +20474,7 @@ M.ModelConfiguration = {
         },
         EnvironmentParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentParameter,
         },
         CompilationJobName = {
             type = "string",
@@ -22038,21 +20488,13 @@ M.InferenceRecommendation = {
         RecommendationId = {
             type = "string",
         },
-        Metrics = {
-            type = "structure",
-        },
-        EndpointConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ModelConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Metrics = M.RecommendationMetrics,
+        EndpointConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EndpointOutputConfiguration }),
+        ModelConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ModelConfiguration }),
         InvocationEndTime = {
             type = "timestamp",
         },
@@ -22127,22 +20569,17 @@ M.DescribeInferenceRecommendationsJobOutput = {
         FailureReason = {
             type = "string",
         },
-        InputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        StoppingConditions = {
-            type = "structure",
-        },
+        InputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RecommendationJobInputConfig }),
+        StoppingConditions = M.RecommendationJobStoppingConditions,
         InferenceRecommendations = {
             type = "list",
-            member_type = "structure",
+            member = M.InferenceRecommendation,
         },
         EndpointPerformances = {
             type = "list",
-            member_type = "structure",
+            member = M.EndpointPerformance,
         },
     },
 }
@@ -22163,19 +20600,19 @@ M.LabelCounters = {
     type = "structure",
     members = {
         TotalLabeled = {
-            type = "number",
+            type = "integer",
         },
         HumanLabeled = {
-            type = "number",
+            type = "integer",
         },
         MachineLabeled = {
-            type = "number",
+            type = "integer",
         },
         FailedNonRetryableError = {
-            type = "number",
+            type = "integer",
         },
         Unlabeled = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -22213,12 +20650,9 @@ M.DescribeLabelingJobOutput = {
                 required = true,
             },
         },
-        LabelCounters = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        LabelCounters = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LabelCounters }),
         FailureReason = {
             type = "string",
         },
@@ -22255,18 +20689,12 @@ M.DescribeLabelingJobOutput = {
         LabelAttributeName = {
             type = "string",
         },
-        InputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        OutputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LabelingJobInputConfig }),
+        OutputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LabelingJobOutputConfig }),
         RoleArn = {
             type = "string",
             traits = {
@@ -22276,25 +20704,16 @@ M.DescribeLabelingJobOutput = {
         LabelCategoryConfigS3Uri = {
             type = "string",
         },
-        StoppingConditions = {
-            type = "structure",
-        },
-        LabelingJobAlgorithmsConfig = {
-            type = "structure",
-        },
-        HumanTaskConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        StoppingConditions = M.LabelingJobStoppingConditions,
+        LabelingJobAlgorithmsConfig = M.LabelingJobAlgorithmsConfig,
+        HumanTaskConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HumanTaskConfig }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        LabelingJobOutput = {
-            type = "structure",
-        },
+        LabelingJobOutput = M.LabelingJobOutput,
     },
 }
 
@@ -22328,15 +20747,11 @@ M.DescribeLineageGroupOutput = {
         CreationTime = {
             type = "timestamp",
         },
-        CreatedBy = {
-            type = "structure",
-        },
+        CreatedBy = M.UserContext,
         LastModifiedTime = {
             type = "timestamp",
         },
-        LastModifiedBy = {
-            type = "structure",
-        },
+        LastModifiedBy = M.UserContext,
     },
 }
 
@@ -22399,20 +20814,16 @@ M.DescribeMlflowAppOutput = {
         },
         DefaultDomainIdList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CreationTime = {
             type = "timestamp",
         },
-        CreatedBy = {
-            type = "structure",
-        },
+        CreatedBy = M.UserContext,
         LastModifiedTime = {
             type = "timestamp",
         },
-        LastModifiedBy = {
-            type = "structure",
-        },
+        LastModifiedBy = M.UserContext,
         WeeklyMaintenanceWindowStart = {
             type = "string",
         },
@@ -22507,15 +20918,11 @@ M.DescribeMlflowTrackingServerOutput = {
         CreationTime = {
             type = "timestamp",
         },
-        CreatedBy = {
-            type = "structure",
-        },
+        CreatedBy = M.UserContext,
         LastModifiedTime = {
             type = "timestamp",
         },
-        LastModifiedBy = {
-            type = "structure",
-        },
+        LastModifiedBy = M.UserContext,
         S3BucketOwnerAccountId = {
             type = "string",
         },
@@ -22546,22 +20953,16 @@ M.DescribeModelOutput = {
                 required = true,
             },
         },
-        PrimaryContainer = {
-            type = "structure",
-        },
+        PrimaryContainer = M.ContainerDefinition,
         Containers = {
             type = "list",
-            member_type = "structure",
+            member = M.ContainerDefinition,
         },
-        InferenceExecutionConfig = {
-            type = "structure",
-        },
+        InferenceExecutionConfig = M.InferenceExecutionConfig,
         ExecutionRoleArn = {
             type = "string",
         },
-        VpcConfig = {
-            type = "structure",
-        },
+        VpcConfig = M.VpcConfig,
         CreationTime = {
             type = "timestamp",
             traits = {
@@ -22577,9 +20978,7 @@ M.DescribeModelOutput = {
         EnableNetworkIsolation = {
             type = "boolean",
         },
-        DeploymentRecommendation = {
-            type = "structure",
-        },
+        DeploymentRecommendation = M.DeploymentRecommendation,
     },
 }
 
@@ -22616,45 +21015,27 @@ M.DescribeModelBiasJobDefinitionOutput = {
                 required = true,
             },
         },
-        ModelBiasBaselineConfig = {
-            type = "structure",
-        },
-        ModelBiasAppSpecification = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ModelBiasJobInput = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ModelBiasJobOutputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        JobResources = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        NetworkConfig = {
-            type = "structure",
-        },
+        ModelBiasBaselineConfig = M.ModelBiasBaselineConfig,
+        ModelBiasAppSpecification = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ModelBiasAppSpecification }),
+        ModelBiasJobInput = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ModelBiasJobInput }),
+        ModelBiasJobOutputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MonitoringOutputConfig }),
+        JobResources = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MonitoringResources }),
+        NetworkConfig = M.MonitoringNetworkConfig,
         RoleArn = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        StoppingCondition = {
-            type = "structure",
-        },
+        StoppingCondition = M.MonitoringStoppingCondition,
     },
 }
 
@@ -22668,7 +21049,7 @@ M.DescribeModelCardInput = {
             },
         },
         ModelCardVersion = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -22698,7 +21079,7 @@ M.DescribeModelCardOutput = {
             },
         },
         ModelCardVersion = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -22715,27 +21096,20 @@ M.DescribeModelCardOutput = {
                 required = true,
             },
         },
-        SecurityConfig = {
-            type = "structure",
-        },
+        SecurityConfig = M.ModelCardSecurityConfig,
         CreationTime = {
             type = "timestamp",
             traits = {
                 required = true,
             },
         },
-        CreatedBy = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        CreatedBy = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.UserContext }),
         LastModifiedTime = {
             type = "timestamp",
         },
-        LastModifiedBy = {
-            type = "structure",
-        },
+        LastModifiedBy = M.UserContext,
         ModelCardProcessingStatus = {
             type = "string",
         },
@@ -22800,17 +21174,14 @@ M.DescribeModelCardExportJobOutput = {
             },
         },
         ModelCardVersion = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
-        OutputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        OutputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ModelCardExportOutputConfig }),
         CreatedAt = {
             type = "timestamp",
             traits = {
@@ -22826,9 +21197,7 @@ M.DescribeModelCardExportJobOutput = {
         FailureReason = {
             type = "string",
         },
-        ExportArtifacts = {
-            type = "structure",
-        },
+        ExportArtifacts = M.ModelCardExportArtifacts,
     },
 }
 
@@ -22865,45 +21234,27 @@ M.DescribeModelExplainabilityJobDefinitionOutput = {
                 required = true,
             },
         },
-        ModelExplainabilityBaselineConfig = {
-            type = "structure",
-        },
-        ModelExplainabilityAppSpecification = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ModelExplainabilityJobInput = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ModelExplainabilityJobOutputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        JobResources = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        NetworkConfig = {
-            type = "structure",
-        },
+        ModelExplainabilityBaselineConfig = M.ModelExplainabilityBaselineConfig,
+        ModelExplainabilityAppSpecification = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ModelExplainabilityAppSpecification }),
+        ModelExplainabilityJobInput = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ModelExplainabilityJobInput }),
+        ModelExplainabilityJobOutputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MonitoringOutputConfig }),
+        JobResources = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MonitoringResources }),
+        NetworkConfig = M.MonitoringNetworkConfig,
         RoleArn = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        StoppingCondition = {
-            type = "structure",
-        },
+        StoppingCondition = M.MonitoringStoppingCondition,
     },
 }
 
@@ -22952,14 +21303,14 @@ M.ModelPackageStatusDetails = {
     members = {
         ValidationStatuses = {
             type = "list",
-            member_type = "structure",
+            member = M.ModelPackageStatusItem,
             traits = {
                 required = true,
             },
         },
         ImageScanStatuses = {
             type = "list",
-            member_type = "structure",
+            member = M.ModelPackageStatusItem,
         },
     },
 }
@@ -22977,7 +21328,7 @@ M.DescribeModelPackageOutput = {
             type = "string",
         },
         ModelPackageVersion = {
-            type = "number",
+            type = "integer",
         },
         ModelPackageRegistrationType = {
             type = "string",
@@ -22997,48 +21348,31 @@ M.DescribeModelPackageOutput = {
                 required = true,
             },
         },
-        InferenceSpecification = {
-            type = "structure",
-        },
-        SourceAlgorithmSpecification = {
-            type = "structure",
-        },
-        ValidationSpecification = {
-            type = "structure",
-        },
+        InferenceSpecification = M.InferenceSpecification,
+        SourceAlgorithmSpecification = M.SourceAlgorithmSpecification,
+        ValidationSpecification = M.ModelPackageValidationSpecification,
         ModelPackageStatus = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        ModelPackageStatusDetails = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ModelPackageStatusDetails = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ModelPackageStatusDetails }),
         CertifyForMarketplace = {
             type = "boolean",
         },
         ModelApprovalStatus = {
             type = "string",
         },
-        CreatedBy = {
-            type = "structure",
-        },
-        MetadataProperties = {
-            type = "structure",
-        },
-        ModelMetrics = {
-            type = "structure",
-        },
+        CreatedBy = M.UserContext,
+        MetadataProperties = M.MetadataProperties,
+        ModelMetrics = M.ModelMetrics,
         LastModifiedTime = {
             type = "timestamp",
         },
-        LastModifiedBy = {
-            type = "structure",
-        },
+        LastModifiedBy = M.UserContext,
         ApprovalDescription = {
             type = "string",
         },
@@ -23053,15 +21387,13 @@ M.DescribeModelPackageOutput = {
         },
         CustomerMetadataProperties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        DriftCheckBaselines = {
-            type = "structure",
-        },
+        DriftCheckBaselines = M.DriftCheckBaselines,
         AdditionalInferenceSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.AdditionalInferenceSpecificationDefinition,
         },
         SkipModelValidation = {
             type = "string",
@@ -23069,15 +21401,9 @@ M.DescribeModelPackageOutput = {
         SourceUri = {
             type = "string",
         },
-        SecurityConfig = {
-            type = "structure",
-        },
-        ModelCard = {
-            type = "structure",
-        },
-        ModelLifeCycle = {
-            type = "structure",
-        },
+        SecurityConfig = M.ModelPackageSecurityConfig,
+        ModelCard = M.ModelPackageModelCard,
+        ModelLifeCycle = M.ModelLifeCycle,
     },
 }
 
@@ -23126,12 +21452,9 @@ M.DescribeModelPackageGroupOutput = {
                 required = true,
             },
         },
-        CreatedBy = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        CreatedBy = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.UserContext }),
         ModelPackageGroupStatus = {
             type = "string",
             traits = {
@@ -23174,45 +21497,27 @@ M.DescribeModelQualityJobDefinitionOutput = {
                 required = true,
             },
         },
-        ModelQualityBaselineConfig = {
-            type = "structure",
-        },
-        ModelQualityAppSpecification = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ModelQualityJobInput = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ModelQualityJobOutputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        JobResources = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        NetworkConfig = {
-            type = "structure",
-        },
+        ModelQualityBaselineConfig = M.ModelQualityBaselineConfig,
+        ModelQualityAppSpecification = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ModelQualityAppSpecification }),
+        ModelQualityJobInput = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ModelQualityJobInput }),
+        ModelQualityJobOutputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MonitoringOutputConfig }),
+        JobResources = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MonitoringResources }),
+        NetworkConfig = M.MonitoringNetworkConfig,
         RoleArn = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        StoppingCondition = {
-            type = "structure",
-        },
+        StoppingCondition = M.MonitoringStoppingCondition,
     },
 }
 
@@ -23335,18 +21640,13 @@ M.DescribeMonitoringScheduleOutput = {
                 required = true,
             },
         },
-        MonitoringScheduleConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        MonitoringScheduleConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MonitoringScheduleConfig }),
         EndpointName = {
             type = "string",
         },
-        LastMonitoringExecutionSummary = {
-            type = "structure",
-        },
+        LastMonitoringExecutionSummary = M.MonitoringExecutionSummary,
     },
 }
 
@@ -23401,7 +21701,7 @@ M.DescribeNotebookInstanceOutput = {
         },
         SecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RoleArn = {
             type = "string",
@@ -23425,18 +21725,18 @@ M.DescribeNotebookInstanceOutput = {
             type = "string",
         },
         VolumeSizeInGB = {
-            type = "number",
+            type = "integer",
         },
         AcceleratorTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DefaultCodeRepository = {
             type = "string",
         },
         AdditionalCodeRepositories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RootAccess = {
             type = "string",
@@ -23444,9 +21744,7 @@ M.DescribeNotebookInstanceOutput = {
         PlatformIdentifier = {
             type = "string",
         },
-        InstanceMetadataServiceConfiguration = {
-            type = "structure",
-        },
+        InstanceMetadataServiceConfiguration = M.InstanceMetadataServiceConfiguration,
     },
 }
 
@@ -23473,11 +21771,11 @@ M.DescribeNotebookInstanceLifecycleConfigOutput = {
         },
         OnCreate = {
             type = "list",
-            member_type = "structure",
+            member = M.NotebookInstanceLifecycleHook,
         },
         OnStart = {
             type = "list",
-            member_type = "structure",
+            member = M.NotebookInstanceLifecycleHook,
         },
         LastModifiedTime = {
             type = "timestamp",
@@ -23560,16 +21858,13 @@ M.DescribeOptimizationJobOutput = {
                 required = true,
             },
         },
-        ModelSource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ModelSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OptimizationJobModelSource }),
         OptimizationEnvironment = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         DeploymentInstanceType = {
             type = "string",
@@ -23578,39 +21873,29 @@ M.DescribeOptimizationJobOutput = {
             },
         },
         MaxInstanceCount = {
-            type = "number",
+            type = "integer",
         },
         OptimizationConfigs = {
             type = "list",
-            member_type = "union",
+            member = M.OptimizationConfig,
             traits = {
                 required = true,
             },
         },
-        OutputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        OptimizationOutput = {
-            type = "structure",
-        },
+        OutputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OptimizationJobOutputConfig }),
+        OptimizationOutput = M.OptimizationOutput,
         RoleArn = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        StoppingCondition = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        VpcConfig = {
-            type = "structure",
-        },
+        StoppingCondition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.StoppingCondition }),
+        VpcConfig = M.OptimizationVpcConfig,
     },
 }
 
@@ -23681,36 +21966,28 @@ M.DescribePartnerAppOutput = {
         BaseUrl = {
             type = "string",
         },
-        MaintenanceConfig = {
-            type = "structure",
-        },
+        MaintenanceConfig = M.PartnerAppMaintenanceConfig,
         Tier = {
             type = "string",
         },
         Version = {
             type = "string",
         },
-        ApplicationConfig = {
-            type = "structure",
-        },
+        ApplicationConfig = M.PartnerAppConfig,
         AuthType = {
             type = "string",
         },
         EnableIamSessionBasedIdentity = {
             type = "boolean",
         },
-        Error = {
-            type = "structure",
-        },
+        Error = M.ErrorInfo,
         EnableAutoMinorVersionUpgrade = {
             type = "boolean",
         },
         CurrentVersionEolDate = {
             type = "timestamp",
         },
-        AvailableUpgrade = {
-            type = "structure",
-        },
+        AvailableUpgrade = M.AvailableUpgrade,
     },
 }
 
@@ -23724,7 +22001,7 @@ M.DescribePipelineInput = {
             },
         },
         PipelineVersionId = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -23767,15 +22044,9 @@ M.DescribePipelineOutput = {
         LastRunTime = {
             type = "timestamp",
         },
-        CreatedBy = {
-            type = "structure",
-        },
-        LastModifiedBy = {
-            type = "structure",
-        },
-        ParallelismConfiguration = {
-            type = "structure",
-        },
+        CreatedBy = M.UserContext,
+        LastModifiedBy = M.UserContext,
+        ParallelismConfiguration = M.ParallelismConfiguration,
         PipelineVersionDisplayName = {
             type = "string",
         },
@@ -23873,7 +22144,7 @@ M.SelectiveExecutionConfig = {
         },
         SelectedSteps = {
             type = "list",
-            member_type = "structure",
+            member = M.SelectedStep,
             traits = {
                 required = true,
             },
@@ -23899,9 +22170,7 @@ M.DescribePipelineExecutionOutput = {
         PipelineExecutionDescription = {
             type = "string",
         },
-        PipelineExperimentConfig = {
-            type = "structure",
-        },
+        PipelineExperimentConfig = M.PipelineExperimentConfig,
         FailureReason = {
             type = "string",
         },
@@ -23911,24 +22180,14 @@ M.DescribePipelineExecutionOutput = {
         LastModifiedTime = {
             type = "timestamp",
         },
-        CreatedBy = {
-            type = "structure",
-        },
-        LastModifiedBy = {
-            type = "structure",
-        },
-        ParallelismConfiguration = {
-            type = "structure",
-        },
-        SelectiveExecutionConfig = {
-            type = "structure",
-        },
+        CreatedBy = M.UserContext,
+        LastModifiedBy = M.UserContext,
+        ParallelismConfiguration = M.ParallelismConfiguration,
+        SelectiveExecutionConfig = M.SelectiveExecutionConfig,
         PipelineVersionId = {
-            type = "number",
+            type = "long",
         },
-        MLflowConfig = {
-            type = "structure",
-        },
+        MLflowConfig = M.MLflowConfiguration,
     },
 }
 
@@ -23957,46 +22216,32 @@ M.DescribeProcessingJobOutput = {
     members = {
         ProcessingInputs = {
             type = "list",
-            member_type = "structure",
+            member = M.ProcessingInput,
         },
-        ProcessingOutputConfig = {
-            type = "structure",
-        },
+        ProcessingOutputConfig = M.ProcessingOutputConfig,
         ProcessingJobName = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        ProcessingResources = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        StoppingCondition = {
-            type = "structure",
-        },
-        AppSpecification = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ProcessingResources = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProcessingResources }),
+        StoppingCondition = M.ProcessingStoppingCondition,
+        AppSpecification = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AppSpecification }),
         Environment = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        NetworkConfig = {
-            type = "structure",
-        },
+        NetworkConfig = M.NetworkConfig,
         RoleArn = {
             type = "string",
         },
-        ExperimentConfig = {
-            type = "structure",
-        },
+        ExperimentConfig = M.ExperimentConfig,
         ProcessingJobArn = {
             type = "string",
             traits = {
@@ -24082,9 +22327,7 @@ M.ServiceCatalogProvisionedProductDetails = {
 M.TemplateProviderDetail = {
     type = "structure",
     members = {
-        CfnTemplateProviderDetail = {
-            type = "structure",
-        },
+        CfnTemplateProviderDetail = M.CfnTemplateProviderDetail,
     },
 }
 
@@ -24112,12 +22355,8 @@ M.DescribeProjectOutput = {
         ProjectDescription = {
             type = "string",
         },
-        ServiceCatalogProvisioningDetails = {
-            type = "structure",
-        },
-        ServiceCatalogProvisionedProductDetails = {
-            type = "structure",
-        },
+        ServiceCatalogProvisioningDetails = M.ServiceCatalogProvisioningDetails,
+        ServiceCatalogProvisionedProductDetails = M.ServiceCatalogProvisionedProductDetails,
         ProjectStatus = {
             type = "string",
             traits = {
@@ -24126,11 +22365,9 @@ M.DescribeProjectOutput = {
         },
         TemplateProviderDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.TemplateProviderDetail,
         },
-        CreatedBy = {
-            type = "structure",
-        },
+        CreatedBy = M.UserContext,
         CreationTime = {
             type = "timestamp",
             traits = {
@@ -24140,9 +22377,7 @@ M.DescribeProjectOutput = {
         LastModifiedTime = {
             type = "timestamp",
         },
-        LastModifiedBy = {
-            type = "structure",
-        },
+        LastModifiedBy = M.UserContext,
     },
 }
 
@@ -24201,13 +22436,13 @@ M.UltraServerSummary = {
             },
         },
         UltraServerCount = {
-            type = "number",
+            type = "integer",
         },
         AvailableSpareInstanceCount = {
-            type = "number",
+            type = "integer",
         },
         UnhealthyInstanceCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -24231,10 +22466,10 @@ M.DescribeReservedCapacityOutput = {
             type = "string",
         },
         DurationHours = {
-            type = "number",
+            type = "long",
         },
         DurationMinutes = {
-            type = "number",
+            type = "long",
         },
         StartTime = {
             type = "timestamp",
@@ -24249,20 +22484,18 @@ M.DescribeReservedCapacityOutput = {
             },
         },
         TotalInstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         AvailableInstanceCount = {
-            type = "number",
+            type = "integer",
         },
         InUseInstanceCount = {
-            type = "number",
+            type = "integer",
         },
-        UltraServerSummary = {
-            type = "structure",
-        },
+        UltraServerSummary = M.UltraServerSummary,
     },
 }
 
@@ -24321,15 +22554,9 @@ M.DescribeSpaceOutput = {
         FailureReason = {
             type = "string",
         },
-        SpaceSettings = {
-            type = "structure",
-        },
-        OwnershipSettings = {
-            type = "structure",
-        },
-        SpaceSharingSettings = {
-            type = "structure",
-        },
+        SpaceSettings = M.SpaceSettings,
+        OwnershipSettings = M.OwnershipSettings,
+        SpaceSharingSettings = M.SpaceSharingSettings,
         SpaceDisplayName = {
             type = "string",
         },
@@ -24414,12 +22641,9 @@ M.SubscribedWorkteam = {
 M.DescribeSubscribedWorkteamOutput = {
     type = "structure",
     members = {
-        SubscribedWorkteam = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SubscribedWorkteam = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SubscribedWorkteam }),
     },
 }
 
@@ -24442,7 +22666,7 @@ M.MetricData = {
             type = "string",
         },
         Value = {
-            type = "number",
+            type = "float",
         },
         Timestamp = {
             type = "timestamp",
@@ -24492,16 +22716,16 @@ M.TrainingProgressInfo = {
     type = "structure",
     members = {
         TotalStepCountPerEpoch = {
-            type = "number",
+            type = "long",
         },
         CurrentStep = {
-            type = "number",
+            type = "long",
         },
         CurrentEpoch = {
-            type = "number",
+            type = "long",
         },
         MaxEpoch = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -24567,7 +22791,7 @@ M.WarmPoolStatus = {
             },
         },
         ResourceRetainedBillableTimeInSeconds = {
-            type = "number",
+            type = "integer",
         },
         ReusedByJob = {
             type = "string",
@@ -24599,12 +22823,9 @@ M.DescribeTrainingJobOutput = {
         AutoMLJobArn = {
             type = "string",
         },
-        ModelArtifacts = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ModelArtifacts = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ModelArtifacts }),
         TrainingJobStatus = {
             type = "string",
             traits = {
@@ -24622,37 +22843,24 @@ M.DescribeTrainingJobOutput = {
         },
         HyperParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        AlgorithmSpecification = {
-            type = "structure",
-        },
+        AlgorithmSpecification = M.AlgorithmSpecification,
         RoleArn = {
             type = "string",
         },
         InputDataConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.Channel,
         },
-        OutputDataConfig = {
-            type = "structure",
-        },
-        ResourceConfig = {
-            type = "structure",
-        },
-        WarmPoolStatus = {
-            type = "structure",
-        },
-        VpcConfig = {
-            type = "structure",
-        },
-        StoppingCondition = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        OutputDataConfig = M.OutputDataConfig,
+        ResourceConfig = M.ResourceConfig,
+        WarmPoolStatus = M.WarmPoolStatus,
+        VpcConfig = M.VpcConfig,
+        StoppingCondition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.StoppingCondition }),
         CreationTime = {
             type = "timestamp",
             traits = {
@@ -24670,11 +22878,11 @@ M.DescribeTrainingJobOutput = {
         },
         SecondaryStatusTransitions = {
             type = "list",
-            member_type = "structure",
+            member = M.SecondaryStatusTransition,
         },
         FinalMetricDataList = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricData,
         },
         EnableNetworkIsolation = {
             type = "boolean",
@@ -24685,78 +22893,52 @@ M.DescribeTrainingJobOutput = {
         EnableManagedSpotTraining = {
             type = "boolean",
         },
-        CheckpointConfig = {
-            type = "structure",
-        },
+        CheckpointConfig = M.CheckpointConfig,
         TrainingTimeInSeconds = {
-            type = "number",
+            type = "integer",
         },
         BillableTimeInSeconds = {
-            type = "number",
+            type = "integer",
         },
         BillableTokenCount = {
-            type = "number",
+            type = "long",
         },
-        DebugHookConfig = {
-            type = "structure",
-        },
-        ExperimentConfig = {
-            type = "structure",
-        },
+        DebugHookConfig = M.DebugHookConfig,
+        ExperimentConfig = M.ExperimentConfig,
         DebugRuleConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.DebugRuleConfiguration,
         },
-        TensorBoardOutputConfig = {
-            type = "structure",
-        },
+        TensorBoardOutputConfig = M.TensorBoardOutputConfig,
         DebugRuleEvaluationStatuses = {
             type = "list",
-            member_type = "structure",
+            member = M.DebugRuleEvaluationStatus,
         },
-        ProfilerConfig = {
-            type = "structure",
-        },
+        ProfilerConfig = M.ProfilerConfig,
         ProfilerRuleConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.ProfilerRuleConfiguration,
         },
         ProfilerRuleEvaluationStatuses = {
             type = "list",
-            member_type = "structure",
+            member = M.ProfilerRuleEvaluationStatus,
         },
         ProfilingStatus = {
             type = "string",
         },
         Environment = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        RetryStrategy = {
-            type = "structure",
-        },
-        RemoteDebugConfig = {
-            type = "structure",
-        },
-        InfraCheckConfig = {
-            type = "structure",
-        },
-        ServerlessJobConfig = {
-            type = "structure",
-        },
-        MlflowConfig = {
-            type = "structure",
-        },
-        ModelPackageConfig = {
-            type = "structure",
-        },
-        MlflowDetails = {
-            type = "structure",
-        },
-        ProgressInfo = {
-            type = "structure",
-        },
+        RetryStrategy = M.RetryStrategy,
+        RemoteDebugConfig = M.RemoteDebugConfig,
+        InfraCheckConfig = M.InfraCheckConfig,
+        ServerlessJobConfig = M.ServerlessJobConfig,
+        MlflowConfig = M.MlflowConfig,
+        ModelPackageConfig = M.ModelPackageConfig,
+        MlflowDetails = M.MlflowDetails,
+        ProgressInfo = M.TrainingProgressInfo,
         OutputModelPackageArn = {
             type = "string",
         },
@@ -24791,7 +22973,7 @@ M.ReservedCapacitySummary = {
             type = "string",
         },
         UltraServerCount = {
-            type = "number",
+            type = "integer",
         },
         InstanceType = {
             type = "string",
@@ -24800,7 +22982,7 @@ M.ReservedCapacitySummary = {
             },
         },
         TotalInstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -24815,10 +22997,10 @@ M.ReservedCapacitySummary = {
             type = "string",
         },
         DurationHours = {
-            type = "number",
+            type = "long",
         },
         DurationMinutes = {
-            type = "number",
+            type = "long",
         },
         StartTime = {
             type = "timestamp",
@@ -24868,10 +23050,10 @@ M.DescribeTrainingPlanOutput = {
             type = "string",
         },
         DurationHours = {
-            type = "number",
+            type = "long",
         },
         DurationMinutes = {
-            type = "number",
+            type = "long",
         },
         StartTime = {
             type = "timestamp",
@@ -24886,30 +23068,30 @@ M.DescribeTrainingPlanOutput = {
             type = "string",
         },
         TotalInstanceCount = {
-            type = "number",
+            type = "integer",
         },
         AvailableInstanceCount = {
-            type = "number",
+            type = "integer",
         },
         InUseInstanceCount = {
-            type = "number",
+            type = "integer",
         },
         UnhealthyInstanceCount = {
-            type = "number",
+            type = "integer",
         },
         AvailableSpareInstanceCount = {
-            type = "number",
+            type = "integer",
         },
         TotalUltraServerCount = {
-            type = "number",
+            type = "integer",
         },
         TargetResources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ReservedCapacitySummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ReservedCapacitySummary,
         },
     },
 }
@@ -24927,7 +23109,7 @@ M.DescribeTrainingPlanExtensionHistoryInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -24963,7 +23145,7 @@ M.TrainingPlanExtension = {
             type = "string",
         },
         DurationHours = {
-            type = "number",
+            type = "integer",
         },
         UpfrontFee = {
             type = "string",
@@ -24979,7 +23161,7 @@ M.DescribeTrainingPlanExtensionHistoryOutput = {
     members = {
         TrainingPlanExtensions = {
             type = "list",
-            member_type = "structure",
+            member = M.TrainingPlanExtension,
             traits = {
                 required = true,
             },
@@ -25041,40 +23223,28 @@ M.DescribeTransformJobOutput = {
             },
         },
         MaxConcurrentTransforms = {
-            type = "number",
+            type = "integer",
         },
-        ModelClientConfig = {
-            type = "structure",
-        },
+        ModelClientConfig = M.ModelClientConfig,
         MaxPayloadInMB = {
-            type = "number",
+            type = "integer",
         },
         BatchStrategy = {
             type = "string",
         },
         Environment = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        TransformInput = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        TransformOutput = {
-            type = "structure",
-        },
-        DataCaptureConfig = {
-            type = "structure",
-        },
-        TransformResources = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TransformInput = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TransformInput }),
+        TransformOutput = M.TransformOutput,
+        DataCaptureConfig = M.BatchDataCaptureConfig,
+        TransformResources = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TransformResources }),
         CreationTime = {
             type = "timestamp",
             traits = {
@@ -25093,12 +23263,8 @@ M.DescribeTransformJobOutput = {
         AutoMLJobArn = {
             type = "string",
         },
-        DataProcessing = {
-            type = "structure",
-        },
-        ExperimentConfig = {
-            type = "structure",
-        },
+        DataProcessing = M.DataProcessing,
+        ExperimentConfig = M.ExperimentConfig,
     },
 }
 
@@ -25144,24 +23310,16 @@ M.DescribeTrialOutput = {
         ExperimentName = {
             type = "string",
         },
-        Source = {
-            type = "structure",
-        },
+        Source = M.TrialSource,
         CreationTime = {
             type = "timestamp",
         },
-        CreatedBy = {
-            type = "structure",
-        },
+        CreatedBy = M.UserContext,
         LastModifiedTime = {
             type = "timestamp",
         },
-        LastModifiedBy = {
-            type = "structure",
-        },
-        MetadataProperties = {
-            type = "structure",
-        },
+        LastModifiedBy = M.UserContext,
+        MetadataProperties = M.MetadataProperties,
     },
 }
 
@@ -25190,22 +23348,22 @@ M.TrialComponentMetricSummary = {
             type = "timestamp",
         },
         Max = {
-            type = "number",
+            type = "double",
         },
         Min = {
-            type = "number",
+            type = "double",
         },
         Last = {
-            type = "number",
+            type = "double",
         },
         Count = {
-            type = "number",
+            type = "integer",
         },
         Avg = {
-            type = "number",
+            type = "double",
         },
         StdDev = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -25237,12 +23395,8 @@ M.DescribeTrialComponentOutput = {
         DisplayName = {
             type = "string",
         },
-        Source = {
-            type = "structure",
-        },
-        Status = {
-            type = "structure",
-        },
+        Source = M.TrialComponentSource,
+        Status = M.TrialComponentStatus,
         StartTime = {
             type = "timestamp",
         },
@@ -25252,43 +23406,37 @@ M.DescribeTrialComponentOutput = {
         CreationTime = {
             type = "timestamp",
         },
-        CreatedBy = {
-            type = "structure",
-        },
+        CreatedBy = M.UserContext,
         LastModifiedTime = {
             type = "timestamp",
         },
-        LastModifiedBy = {
-            type = "structure",
-        },
+        LastModifiedBy = M.UserContext,
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.TrialComponentParameterValue,
         },
         InputArtifacts = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.TrialComponentArtifact,
         },
         OutputArtifacts = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.TrialComponentArtifact,
         },
-        MetadataProperties = {
-            type = "structure",
-        },
+        MetadataProperties = M.MetadataProperties,
         Metrics = {
             type = "list",
-            member_type = "structure",
+            member = M.TrialComponentMetricSummary,
         },
         LineageGroupArn = {
             type = "string",
         },
         Sources = {
             type = "list",
-            member_type = "structure",
+            member = M.TrialComponentSource,
         },
     },
 }
@@ -25354,9 +23502,7 @@ M.DescribeUserProfileOutput = {
         SingleSignOnUserValue = {
             type = "string",
         },
-        UserSettings = {
-            type = "structure",
-        },
+        UserSettings = M.UserSettings,
     },
 }
 
@@ -25401,8 +23547,8 @@ M.OidcConfigForResponse = {
         },
         AuthenticationRequestExtraParams = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -25426,14 +23572,14 @@ M.WorkforceVpcConfigResponse = {
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         Subnets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -25462,24 +23608,16 @@ M.Workforce = {
         LastUpdatedDate = {
             type = "timestamp",
         },
-        SourceIpConfig = {
-            type = "structure",
-        },
+        SourceIpConfig = M.SourceIpConfig,
         SubDomain = {
             type = "string",
         },
-        CognitoConfig = {
-            type = "structure",
-        },
-        OidcConfig = {
-            type = "structure",
-        },
+        CognitoConfig = M.CognitoConfig,
+        OidcConfig = M.OidcConfigForResponse,
         CreateDate = {
             type = "timestamp",
         },
-        WorkforceVpcConfig = {
-            type = "structure",
-        },
+        WorkforceVpcConfig = M.WorkforceVpcConfigResponse,
         Status = {
             type = "string",
         },
@@ -25495,12 +23633,9 @@ M.Workforce = {
 M.DescribeWorkforceOutput = {
     type = "structure",
     members = {
-        Workforce = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Workforce = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Workforce }),
     },
 }
 
@@ -25527,7 +23662,7 @@ M.Workteam = {
         },
         MemberDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.MemberDefinition,
             traits = {
                 required = true,
             },
@@ -25543,7 +23678,7 @@ M.Workteam = {
         },
         ProductListingIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Description = {
             type = "string",
@@ -25560,24 +23695,17 @@ M.Workteam = {
         LastUpdatedDate = {
             type = "timestamp",
         },
-        NotificationConfiguration = {
-            type = "structure",
-        },
-        WorkerAccessConfiguration = {
-            type = "structure",
-        },
+        NotificationConfiguration = M.NotificationConfiguration,
+        WorkerAccessConfiguration = M.WorkerAccessConfiguration,
     },
 }
 
 M.DescribeWorkteamOutput = {
     type = "structure",
     members = {
-        Workteam = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Workteam = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Workteam }),
     },
 }
 
@@ -25585,10 +23713,10 @@ M.ProductionVariantServerlessUpdateConfig = {
     type = "structure",
     members = {
         MaxConcurrency = {
-            type = "number",
+            type = "integer",
         },
         ProvisionedConcurrency = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -25603,14 +23731,12 @@ M.DesiredWeightAndCapacity = {
             },
         },
         DesiredWeight = {
-            type = "number",
+            type = "float",
         },
         DesiredInstanceCount = {
-            type = "number",
+            type = "integer",
         },
-        ServerlessUpdateConfig = {
-            type = "structure",
-        },
+        ServerlessUpdateConfig = M.ProductionVariantServerlessUpdateConfig,
     },
 }
 
@@ -25789,13 +23915,13 @@ M.DeviceStats = {
     type = "structure",
     members = {
         ConnectedDeviceCount = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         RegisteredDeviceCount = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -25853,7 +23979,7 @@ M.DeviceSummary = {
         },
         Models = {
             type = "list",
-            member_type = "structure",
+            member = M.EdgeModelSummary,
         },
         AgentVersion = {
             type = "string",
@@ -25941,9 +24067,7 @@ M.RStudioServerProDomainSettingsForUpdate = {
                 required = true,
             },
         },
-        DefaultResourceSpec = {
-            type = "structure",
-        },
+        DefaultResourceSpec = M.ResourceSpec,
         RStudioConnectUrl = {
             type = "string",
         },
@@ -25956,28 +24080,18 @@ M.RStudioServerProDomainSettingsForUpdate = {
 M.DomainSettingsForUpdate = {
     type = "structure",
     members = {
-        RStudioServerProDomainSettingsForUpdate = {
-            type = "structure",
-        },
+        RStudioServerProDomainSettingsForUpdate = M.RStudioServerProDomainSettingsForUpdate,
         ExecutionRoleIdentityConfig = {
             type = "string",
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        TrustedIdentityPropagationSettings = {
-            type = "structure",
-        },
-        DockerSettings = {
-            type = "structure",
-        },
-        AmazonQSettings = {
-            type = "structure",
-        },
-        UnifiedStudioSettings = {
-            type = "structure",
-        },
+        TrustedIdentityPropagationSettings = M.TrustedIdentityPropagationSettings,
+        DockerSettings = M.DockerSettings,
+        AmazonQSettings = M.AmazonQSettings,
+        UnifiedStudioSettings = M.UnifiedStudioSettings,
         IpAddressType = {
             type = "string",
         },
@@ -25996,23 +24110,17 @@ M.PredefinedMetricSpecification = {
 M.MetricSpecification = {
     type = "union",
     members = {
-        Predefined = {
-            type = "structure",
-        },
-        Customized = {
-            type = "structure",
-        },
+        Predefined = M.PredefinedMetricSpecification,
+        Customized = M.CustomizedMetricSpecification,
     },
 }
 
 M.TargetTrackingScalingPolicyConfiguration = {
     type = "structure",
     members = {
-        MetricSpecification = {
-            type = "union",
-        },
+        MetricSpecification = M.MetricSpecification,
         TargetValue = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -26020,9 +24128,7 @@ M.TargetTrackingScalingPolicyConfiguration = {
 M.ScalingPolicy = {
     type = "union",
     members = {
-        TargetTracking = {
-            type = "structure",
-        },
+        TargetTracking = M.TargetTrackingScalingPolicyConfiguration,
     },
 }
 
@@ -26030,20 +24136,20 @@ M.DynamicScalingConfiguration = {
     type = "structure",
     members = {
         MinCapacity = {
-            type = "number",
+            type = "integer",
         },
         MaxCapacity = {
-            type = "number",
+            type = "integer",
         },
         ScaleInCooldown = {
-            type = "number",
+            type = "integer",
         },
         ScaleOutCooldown = {
-            type = "number",
+            type = "integer",
         },
         ScalingPolicies = {
             type = "list",
-            member_type = "union",
+            member = M.ScalingPolicy,
         },
     },
 }
@@ -26085,19 +24191,19 @@ M.EdgeDeploymentPlanSummary = {
             },
         },
         EdgeDeploymentSuccess = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         EdgeDeploymentPending = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         EdgeDeploymentFailed = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -26127,25 +24233,25 @@ M.EdgeModelStat = {
             },
         },
         OfflineDeviceCount = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         ConnectedDeviceCount = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         ActiveDeviceCount = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         SamplingDeviceCount = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -26242,18 +24348,14 @@ M.MonitoringSchedule = {
         LastModifiedTime = {
             type = "timestamp",
         },
-        MonitoringScheduleConfig = {
-            type = "structure",
-        },
+        MonitoringScheduleConfig = M.MonitoringScheduleConfig,
         EndpointName = {
             type = "string",
         },
-        LastMonitoringExecutionSummary = {
-            type = "structure",
-        },
+        LastMonitoringExecutionSummary = M.MonitoringExecutionSummary,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -26281,11 +24383,9 @@ M.Endpoint = {
         },
         ProductionVariants = {
             type = "list",
-            member_type = "structure",
+            member = M.ProductionVariantSummary,
         },
-        DataCaptureConfig = {
-            type = "structure",
-        },
+        DataCaptureConfig = M.DataCaptureConfigSummary,
         EndpointStatus = {
             type = "string",
             traits = {
@@ -26309,15 +24409,15 @@ M.Endpoint = {
         },
         MonitoringSchedules = {
             type = "list",
-            member_type = "structure",
+            member = M.MonitoringSchedule,
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ShadowProductionVariants = {
             type = "list",
-            member_type = "structure",
+            member = M.ProductionVariantSummary,
         },
     },
 }
@@ -26427,27 +24527,21 @@ M.Experiment = {
         DisplayName = {
             type = "string",
         },
-        Source = {
-            type = "structure",
-        },
+        Source = M.ExperimentSource,
         Description = {
             type = "string",
         },
         CreationTime = {
             type = "timestamp",
         },
-        CreatedBy = {
-            type = "structure",
-        },
+        CreatedBy = M.UserContext,
         LastModifiedTime = {
             type = "timestamp",
         },
-        LastModifiedBy = {
-            type = "structure",
-        },
+        LastModifiedBy = M.UserContext,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -26464,9 +24558,7 @@ M.ExperimentSummary = {
         DisplayName = {
             type = "string",
         },
-        ExperimentSource = {
-            type = "structure",
-        },
+        ExperimentSource = M.ExperimentSource,
         CreationTime = {
             type = "timestamp",
         },
@@ -26493,7 +24585,7 @@ M.ExtendTrainingPlanOutput = {
     members = {
         TrainingPlanExtensions = {
             type = "list",
-            member_type = "structure",
+            member = M.TrainingPlanExtension,
             traits = {
                 required = true,
             },
@@ -26527,7 +24619,7 @@ M.FeatureGroup = {
         },
         FeatureDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.FeatureDefinition,
         },
         CreationTime = {
             type = "timestamp",
@@ -26535,24 +24627,16 @@ M.FeatureGroup = {
         LastModifiedTime = {
             type = "timestamp",
         },
-        OnlineStoreConfig = {
-            type = "structure",
-        },
-        OfflineStoreConfig = {
-            type = "structure",
-        },
+        OnlineStoreConfig = M.OnlineStoreConfig,
+        OfflineStoreConfig = M.OfflineStoreConfig,
         RoleArn = {
             type = "string",
         },
         FeatureGroupStatus = {
             type = "string",
         },
-        OfflineStoreStatus = {
-            type = "structure",
-        },
-        LastUpdateStatus = {
-            type = "structure",
-        },
+        OfflineStoreStatus = M.OfflineStoreStatus,
+        LastUpdateStatus = M.LastUpdateStatus,
         FailureReason = {
             type = "string",
         },
@@ -26561,7 +24645,7 @@ M.FeatureGroup = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -26602,9 +24686,7 @@ M.FeatureGroupSummary = {
         FeatureGroupStatus = {
             type = "string",
         },
-        OfflineStoreStatus = {
-            type = "structure",
-        },
+        OfflineStoreStatus = M.OfflineStoreStatus,
     },
 }
 
@@ -26634,7 +24716,7 @@ M.FeatureMetadata = {
         },
         Parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.FeatureParameter,
         },
     },
 }
@@ -26730,25 +24812,21 @@ M.GetDeviceFleetReportOutput = {
                 required = true,
             },
         },
-        OutputConfig = {
-            type = "structure",
-        },
+        OutputConfig = M.EdgeOutputConfig,
         Description = {
             type = "string",
         },
         ReportGenerated = {
             type = "timestamp",
         },
-        DeviceStats = {
-            type = "structure",
-        },
+        DeviceStats = M.DeviceStats,
         AgentVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.AgentVersion,
         },
         ModelStats = {
             type = "list",
-            member_type = "structure",
+            member = M.EdgeModelStat,
         },
     },
 }
@@ -26823,10 +24901,10 @@ M.ScalingPolicyObjective = {
     type = "structure",
     members = {
         MinInvocationsPerMinute = {
-            type = "number",
+            type = "integer",
         },
         MaxInvocationsPerMinute = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -26847,11 +24925,9 @@ M.GetScalingConfigurationRecommendationInput = {
             type = "string",
         },
         TargetCpuUtilizationPerCore = {
-            type = "number",
+            type = "integer",
         },
-        ScalingPolicyObjective = {
-            type = "structure",
-        },
+        ScalingPolicyObjective = M.ScalingPolicyObjective,
     },
 }
 
@@ -26859,10 +24935,10 @@ M.ScalingPolicyMetric = {
     type = "structure",
     members = {
         InvocationsPerInstance = {
-            type = "number",
+            type = "integer",
         },
         ModelLatency = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -26880,17 +24956,11 @@ M.GetScalingConfigurationRecommendationOutput = {
             type = "string",
         },
         TargetCpuUtilizationPerCore = {
-            type = "number",
+            type = "integer",
         },
-        ScalingPolicyObjective = {
-            type = "structure",
-        },
-        Metric = {
-            type = "structure",
-        },
-        DynamicScalingConfiguration = {
-            type = "structure",
-        },
+        ScalingPolicyObjective = M.ScalingPolicyObjective,
+        Metric = M.ScalingPolicyMetric,
+        DynamicScalingConfiguration = M.DynamicScalingConfiguration,
     },
 }
 
@@ -26930,9 +25000,7 @@ M.PropertyNameQuery = {
 M.SuggestionQuery = {
     type = "structure",
     members = {
-        PropertyNameQuery = {
-            type = "structure",
-        },
+        PropertyNameQuery = M.PropertyNameQuery,
     },
 }
 
@@ -26945,9 +25013,7 @@ M.GetSearchSuggestionsInput = {
                 required = true,
             },
         },
-        SuggestionQuery = {
-            type = "structure",
-        },
+        SuggestionQuery = M.SuggestionQuery,
     },
 }
 
@@ -26965,7 +25031,7 @@ M.GetSearchSuggestionsOutput = {
     members = {
         PropertyNameSuggestions = {
             type = "list",
-            member_type = "structure",
+            member = M.PropertyNameSuggestion,
         },
     },
 }
@@ -27026,7 +25092,7 @@ M.HubContentInfo = {
         },
         HubContentSearchKeywords = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         HubContentStatus = {
             type = "string",
@@ -27075,7 +25141,7 @@ M.HubInfo = {
         },
         HubSearchKeywords = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         HubStatus = {
             type = "string",
@@ -27138,15 +25204,11 @@ M.HyperParameterTuningJobSearchEntity = {
         HyperParameterTuningJobArn = {
             type = "string",
         },
-        HyperParameterTuningJobConfig = {
-            type = "structure",
-        },
-        TrainingJobDefinition = {
-            type = "structure",
-        },
+        HyperParameterTuningJobConfig = M.HyperParameterTuningJobConfig,
+        TrainingJobDefinition = M.HyperParameterTrainingJobDefinition,
         TrainingJobDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.HyperParameterTrainingJobDefinition,
         },
         HyperParameterTuningJobStatus = {
             type = "string",
@@ -27160,33 +25222,19 @@ M.HyperParameterTuningJobSearchEntity = {
         LastModifiedTime = {
             type = "timestamp",
         },
-        TrainingJobStatusCounters = {
-            type = "structure",
-        },
-        ObjectiveStatusCounters = {
-            type = "structure",
-        },
-        BestTrainingJob = {
-            type = "structure",
-        },
-        OverallBestTrainingJob = {
-            type = "structure",
-        },
-        WarmStartConfig = {
-            type = "structure",
-        },
+        TrainingJobStatusCounters = M.TrainingJobStatusCounters,
+        ObjectiveStatusCounters = M.ObjectiveStatusCounters,
+        BestTrainingJob = M.HyperParameterTrainingJobSummary,
+        OverallBestTrainingJob = M.HyperParameterTrainingJobSummary,
+        WarmStartConfig = M.HyperParameterTuningJobWarmStartConfig,
         FailureReason = {
             type = "string",
         },
-        TuningJobCompletionDetails = {
-            type = "structure",
-        },
-        ConsumedResources = {
-            type = "structure",
-        },
+        TuningJobCompletionDetails = M.HyperParameterTuningJobCompletionDetails,
+        ConsumedResources = M.HyperParameterTuningJobConsumedResources,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -27236,21 +25284,13 @@ M.HyperParameterTuningJobSummary = {
         LastModifiedTime = {
             type = "timestamp",
         },
-        TrainingJobStatusCounters = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ObjectiveStatusCounters = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ResourceLimits = {
-            type = "structure",
-        },
+        TrainingJobStatusCounters = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TrainingJobStatusCounters }),
+        ObjectiveStatusCounters = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectiveStatusCounters }),
+        ResourceLimits = M.ResourceLimits,
     },
 }
 
@@ -27347,7 +25387,7 @@ M.ImageVersion = {
             },
         },
         Version = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -27416,11 +25456,11 @@ M.ImportHubContentInput = {
         },
         HubContentSearchKeywords = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -27524,9 +25564,7 @@ M.InferenceExperimentSummary = {
                 required = true,
             },
         },
-        Schedule = {
-            type = "structure",
-        },
+        Schedule = M.InferenceExperimentSchedule,
         Status = {
             type = "string",
             traits = {
@@ -27637,21 +25675,12 @@ M.InferenceRecommendationsJob = {
 M.RecommendationJobInferenceBenchmark = {
     type = "structure",
     members = {
-        Metrics = {
-            type = "structure",
-        },
-        EndpointMetrics = {
-            type = "structure",
-        },
-        EndpointConfiguration = {
-            type = "structure",
-        },
-        ModelConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Metrics = M.RecommendationMetrics,
+        EndpointMetrics = M.InferenceMetrics,
+        EndpointConfiguration = M.EndpointOutputConfiguration,
+        ModelConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ModelConfiguration }),
         FailureReason = {
             type = "string",
         },
@@ -27689,9 +25718,7 @@ M.InferenceRecommendationsJobStep = {
                 required = true,
             },
         },
-        InferenceBenchmark = {
-            type = "structure",
-        },
+        InferenceBenchmark = M.RecommendationJobInferenceBenchmark,
     },
 }
 
@@ -27699,13 +25726,13 @@ M.LabelCountersForWorkteam = {
     type = "structure",
     members = {
         HumanLabeled = {
-            type = "number",
+            type = "integer",
         },
         PendingHuman = {
-            type = "number",
+            type = "integer",
         },
         Total = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -27734,11 +25761,9 @@ M.LabelingJobForWorkteamSummary = {
                 required = true,
             },
         },
-        LabelCounters = {
-            type = "structure",
-        },
+        LabelCounters = M.LabelCountersForWorkteam,
         NumberOfHumanWorkersPerDataObject = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -27776,12 +25801,9 @@ M.LabelingJobSummary = {
                 required = true,
             },
         },
-        LabelCounters = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        LabelCounters = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LabelCounters }),
         WorkteamArn = {
             type = "string",
             traits = {
@@ -27797,12 +25819,8 @@ M.LabelingJobSummary = {
         FailureReason = {
             type = "string",
         },
-        LabelingJobOutput = {
-            type = "structure",
-        },
-        InputConfig = {
-            type = "structure",
-        },
+        LabelingJobOutput = M.LabelingJobOutput,
+        InputConfig = M.LabelingJobInputConfig,
     },
 }
 
@@ -27814,7 +25832,7 @@ M.LambdaStepMetadata = {
         },
         OutputParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputParameter,
         },
     },
 }
@@ -27845,22 +25863,22 @@ M.LineageMetadata = {
     members = {
         ActionArns = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ArtifactArns = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ContextArns = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Associations = {
             type = "list",
-            member_type = "structure",
+            member = M.AssociationInfo,
         },
     },
 }
@@ -27907,7 +25925,7 @@ M.ListActionsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -27917,7 +25935,7 @@ M.ListActionsOutput = {
     members = {
         ActionSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ActionSummary,
         },
         NextToken = {
             type = "string",
@@ -27935,7 +25953,7 @@ M.ListAIBenchmarkJobsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -27966,7 +25984,7 @@ M.ListAIBenchmarkJobsOutput = {
     members = {
         AIBenchmarkJobs = {
             type = "list",
-            member_type = "structure",
+            member = M.AIBenchmarkJobSummary,
             traits = {
                 required = true,
             },
@@ -27987,7 +26005,7 @@ M.ListAIRecommendationJobsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -28018,7 +26036,7 @@ M.ListAIRecommendationJobsOutput = {
     members = {
         AIRecommendationJobs = {
             type = "list",
-            member_type = "structure",
+            member = M.AIRecommendationJobSummary,
             traits = {
                 required = true,
             },
@@ -28038,7 +26056,7 @@ M.ListAIWorkloadConfigsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -28066,7 +26084,7 @@ M.ListAIWorkloadConfigsOutput = {
     members = {
         AIWorkloadConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.AIWorkloadConfigSummary,
             traits = {
                 required = true,
             },
@@ -28087,7 +26105,7 @@ M.ListAlgorithmsInput = {
             type = "timestamp",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NameContains = {
             type = "string",
@@ -28109,7 +26127,7 @@ M.ListAlgorithmsOutput = {
     members = {
         AlgorithmSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.AlgorithmSummary,
             traits = {
                 required = true,
             },
@@ -28133,10 +26151,10 @@ M.ListAliasesInput = {
             type = "string",
         },
         Version = {
-            type = "number",
+            type = "integer",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -28149,7 +26167,7 @@ M.ListAliasesOutput = {
     members = {
         SageMakerImageVersionAliases = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -28161,7 +26179,7 @@ M.ListAppImageConfigsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -28198,7 +26216,7 @@ M.ListAppImageConfigsOutput = {
         },
         AppImageConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.AppImageConfigDetails,
         },
     },
 }
@@ -28210,7 +26228,7 @@ M.ListAppsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         SortOrder = {
             type = "string",
@@ -28235,7 +26253,7 @@ M.ListAppsOutput = {
     members = {
         Apps = {
             type = "list",
-            member_type = "structure",
+            member = M.AppDetails,
         },
         NextToken = {
             type = "string",
@@ -28272,7 +26290,7 @@ M.ListArtifactsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -28282,7 +26300,7 @@ M.ListArtifactsOutput = {
     members = {
         ArtifactSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ArtifactSummary,
         },
         NextToken = {
             type = "string",
@@ -28332,7 +26350,7 @@ M.ListAssociationsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -28342,7 +26360,7 @@ M.ListAssociationsOutput = {
     members = {
         AssociationSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.AssociationSummary,
         },
         NextToken = {
             type = "string",
@@ -28378,7 +26396,7 @@ M.ListAutoMLJobsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -28391,7 +26409,7 @@ M.ListAutoMLJobsOutput = {
     members = {
         AutoMLJobSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.AutoMLJobSummary,
             traits = {
                 required = true,
             },
@@ -28424,7 +26442,7 @@ M.ListCandidatesForAutoMLJobInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -28437,7 +26455,7 @@ M.ListCandidatesForAutoMLJobOutput = {
     members = {
         Candidates = {
             type = "list",
-            member_type = "structure",
+            member = M.AutoMLCandidate,
             traits = {
                 required = true,
             },
@@ -28479,7 +26497,7 @@ M.ListClusterEventsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -28495,7 +26513,7 @@ M.ListClusterEventsOutput = {
         },
         Events = {
             type = "list",
-            member_type = "structure",
+            member = M.ClusterEventSummary,
         },
     },
 }
@@ -28519,7 +26537,7 @@ M.ListClusterNodesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -28544,7 +26562,7 @@ M.ListClusterNodesOutput = {
         },
         ClusterNodeSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ClusterNodeSummary,
             traits = {
                 required = true,
             },
@@ -28562,7 +26580,7 @@ M.ListClustersInput = {
             type = "timestamp",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NameContains = {
             type = "string",
@@ -28590,7 +26608,7 @@ M.ListClustersOutput = {
         },
         ClusterSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ClusterSummary,
             traits = {
                 required = true,
             },
@@ -28632,7 +26650,7 @@ M.ListClusterSchedulerConfigsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -28642,7 +26660,7 @@ M.ListClusterSchedulerConfigsOutput = {
     members = {
         ClusterSchedulerConfigSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ClusterSchedulerConfigSummary,
         },
         NextToken = {
             type = "string",
@@ -28666,7 +26684,7 @@ M.ListCodeRepositoriesInput = {
             type = "timestamp",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NameContains = {
             type = "string",
@@ -28688,7 +26706,7 @@ M.ListCodeRepositoriesOutput = {
     members = {
         CodeRepositorySummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.CodeRepositorySummary,
             traits = {
                 required = true,
             },
@@ -28712,7 +26730,7 @@ M.ListCompilationJobsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         CreationTimeAfter = {
             type = "timestamp",
@@ -28746,7 +26764,7 @@ M.ListCompilationJobsOutput = {
     members = {
         CompilationJobSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.CompilationJobSummary,
             traits = {
                 required = true,
             },
@@ -28792,7 +26810,7 @@ M.ListComputeQuotasInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -28802,7 +26820,7 @@ M.ListComputeQuotasOutput = {
     members = {
         ComputeQuotaSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ComputeQuotaSummary,
         },
         NextToken = {
             type = "string",
@@ -28840,7 +26858,7 @@ M.ListContextsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -28850,7 +26868,7 @@ M.ListContextsOutput = {
     members = {
         ContextSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ContextSummary,
         },
         NextToken = {
             type = "string",
@@ -28879,7 +26897,7 @@ M.ListDataQualityJobDefinitionsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NameContains = {
             type = "string",
@@ -28928,7 +26946,7 @@ M.ListDataQualityJobDefinitionsOutput = {
     members = {
         JobDefinitionSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.MonitoringJobDefinitionSummary,
             traits = {
                 required = true,
             },
@@ -28952,7 +26970,7 @@ M.ListDeviceFleetsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         CreationTimeAfter = {
             type = "timestamp",
@@ -28983,7 +27001,7 @@ M.ListDeviceFleetsOutput = {
     members = {
         DeviceFleetSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.DeviceFleetSummary,
             traits = {
                 required = true,
             },
@@ -29001,7 +27019,7 @@ M.ListDevicesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         LatestHeartbeatAfter = {
             type = "timestamp",
@@ -29020,7 +27038,7 @@ M.ListDevicesOutput = {
     members = {
         DeviceSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.DeviceSummary,
             traits = {
                 required = true,
             },
@@ -29038,7 +27056,7 @@ M.ListDomainsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -29048,7 +27066,7 @@ M.ListDomainsOutput = {
     members = {
         Domains = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainDetails,
         },
         NextToken = {
             type = "string",
@@ -29070,7 +27088,7 @@ M.ListEdgeDeploymentPlansInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         CreationTimeAfter = {
             type = "timestamp",
@@ -29104,7 +27122,7 @@ M.ListEdgeDeploymentPlansOutput = {
     members = {
         EdgeDeploymentPlanSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.EdgeDeploymentPlanSummary,
             traits = {
                 required = true,
             },
@@ -29130,7 +27148,7 @@ M.ListEdgePackagingJobsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         CreationTimeAfter = {
             type = "timestamp",
@@ -29167,7 +27185,7 @@ M.ListEdgePackagingJobsOutput = {
     members = {
         EdgePackagingJobSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.EdgePackagingJobSummary,
             traits = {
                 required = true,
             },
@@ -29196,7 +27214,7 @@ M.ListEndpointConfigsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NameContains = {
             type = "string",
@@ -29215,7 +27233,7 @@ M.ListEndpointConfigsOutput = {
     members = {
         EndpointConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.EndpointConfigSummary,
             traits = {
                 required = true,
             },
@@ -29239,7 +27257,7 @@ M.ListEndpointsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NameContains = {
             type = "string",
@@ -29267,7 +27285,7 @@ M.ListEndpointsOutput = {
     members = {
         Endpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.EndpointSummary,
             traits = {
                 required = true,
             },
@@ -29302,7 +27320,7 @@ M.ListExperimentsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -29312,7 +27330,7 @@ M.ListExperimentsOutput = {
     members = {
         ExperimentSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ExperimentSummary,
         },
         NextToken = {
             type = "string",
@@ -29345,7 +27363,7 @@ M.ListFeatureGroupsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -29358,7 +27376,7 @@ M.ListFeatureGroupsOutput = {
     members = {
         FeatureGroupSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.FeatureGroupSummary,
             traits = {
                 required = true,
             },
@@ -29385,7 +27403,7 @@ M.ListFlowDefinitionsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -29395,7 +27413,7 @@ M.ListFlowDefinitionsOutput = {
     members = {
         FlowDefinitionSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.FlowDefinitionSummary,
             traits = {
                 required = true,
             },
@@ -29440,7 +27458,7 @@ M.ListHubContentsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -29453,7 +27471,7 @@ M.ListHubContentsOutput = {
     members = {
         HubContentSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.HubContentInfo,
             traits = {
                 required = true,
             },
@@ -29504,7 +27522,7 @@ M.ListHubContentVersionsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -29517,7 +27535,7 @@ M.ListHubContentVersionsOutput = {
     members = {
         HubContentSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.HubContentInfo,
             traits = {
                 required = true,
             },
@@ -29553,7 +27571,7 @@ M.ListHubsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -29566,7 +27584,7 @@ M.ListHubsOutput = {
     members = {
         HubSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.HubInfo,
             traits = {
                 required = true,
             },
@@ -29593,7 +27611,7 @@ M.ListHumanTaskUisInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -29603,7 +27621,7 @@ M.ListHumanTaskUisOutput = {
     members = {
         HumanTaskUiSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.HumanTaskUiSummary,
             traits = {
                 required = true,
             },
@@ -29621,7 +27639,7 @@ M.ListHyperParameterTuningJobsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         SortBy = {
             type = "string",
@@ -29655,7 +27673,7 @@ M.ListHyperParameterTuningJobsOutput = {
     members = {
         HyperParameterTuningJobSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.HyperParameterTuningJobSummary,
             traits = {
                 required = true,
             },
@@ -29682,7 +27700,7 @@ M.ListImagesInput = {
             type = "timestamp",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NameContains = {
             type = "string",
@@ -29704,7 +27722,7 @@ M.ListImagesOutput = {
     members = {
         Images = {
             type = "list",
-            member_type = "structure",
+            member = M.Image,
         },
         NextToken = {
             type = "string",
@@ -29734,7 +27752,7 @@ M.ListImageVersionsInput = {
             type = "timestamp",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -29753,7 +27771,7 @@ M.ListImageVersionsOutput = {
     members = {
         ImageVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.ImageVersion,
         },
         NextToken = {
             type = "string",
@@ -29774,7 +27792,7 @@ M.ListInferenceComponentsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NameContains = {
             type = "string",
@@ -29808,7 +27826,7 @@ M.ListInferenceComponentsOutput = {
     members = {
         InferenceComponents = {
             type = "list",
-            member_type = "structure",
+            member = M.InferenceComponentSummary,
             traits = {
                 required = true,
             },
@@ -29859,7 +27877,7 @@ M.ListInferenceExperimentsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -29869,7 +27887,7 @@ M.ListInferenceExperimentsOutput = {
     members = {
         InferenceExperiments = {
             type = "list",
-            member_type = "structure",
+            member = M.InferenceExperimentSummary,
         },
         NextToken = {
             type = "string",
@@ -29914,7 +27932,7 @@ M.ListInferenceRecommendationsJobsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         ModelNameEquals = {
             type = "string",
@@ -29930,7 +27948,7 @@ M.ListInferenceRecommendationsJobsOutput = {
     members = {
         InferenceRecommendationsJobs = {
             type = "list",
-            member_type = "structure",
+            member = M.InferenceRecommendationsJob,
             traits = {
                 required = true,
             },
@@ -29957,7 +27975,7 @@ M.ListInferenceRecommendationsJobStepsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -29970,7 +27988,7 @@ M.ListInferenceRecommendationsJobStepsOutput = {
     members = {
         Steps = {
             type = "list",
-            member_type = "structure",
+            member = M.InferenceRecommendationsJobStep,
         },
         NextToken = {
             type = "string",
@@ -30000,7 +28018,7 @@ M.ListLabelingJobsInput = {
             type = "timestamp",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -30025,7 +28043,7 @@ M.ListLabelingJobsOutput = {
     members = {
         LabelingJobSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.LabelingJobSummary,
         },
         NextToken = {
             type = "string",
@@ -30047,7 +28065,7 @@ M.ListLabelingJobsForWorkteamInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -30075,7 +28093,7 @@ M.ListLabelingJobsForWorkteamOutput = {
     members = {
         LabelingJobSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.LabelingJobForWorkteamSummary,
             traits = {
                 required = true,
             },
@@ -30110,7 +28128,7 @@ M.ListLineageGroupsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -30120,7 +28138,7 @@ M.ListLineageGroupsOutput = {
     members = {
         LineageGroupSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.LineageGroupSummary,
         },
         NextToken = {
             type = "string",
@@ -30165,7 +28183,7 @@ M.ListMlflowAppsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -30199,7 +28217,7 @@ M.ListMlflowAppsOutput = {
     members = {
         Summaries = {
             type = "list",
-            member_type = "structure",
+            member = M.MlflowAppSummary,
         },
         NextToken = {
             type = "string",
@@ -30238,7 +28256,7 @@ M.ListMlflowTrackingServersInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -30275,7 +28293,7 @@ M.ListMlflowTrackingServersOutput = {
     members = {
         TrackingServerSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.TrackingServerSummary,
         },
         NextToken = {
             type = "string",
@@ -30299,7 +28317,7 @@ M.ListModelBiasJobDefinitionsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NameContains = {
             type = "string",
@@ -30318,7 +28336,7 @@ M.ListModelBiasJobDefinitionsOutput = {
     members = {
         JobDefinitionSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.MonitoringJobDefinitionSummary,
             traits = {
                 required = true,
             },
@@ -30350,7 +28368,7 @@ M.ListModelCardExportJobsInput = {
             },
         },
         ModelCardVersion = {
-            type = "number",
+            type = "integer",
         },
         CreationTimeAfter = {
             type = "timestamp",
@@ -30374,7 +28392,7 @@ M.ListModelCardExportJobsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -30407,7 +28425,7 @@ M.ModelCardExportJobSummary = {
             },
         },
         ModelCardVersion = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -30432,7 +28450,7 @@ M.ListModelCardExportJobsOutput = {
     members = {
         ModelCardExportJobSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ModelCardExportJobSummary,
             traits = {
                 required = true,
             },
@@ -30463,7 +28481,7 @@ M.ListModelCardsInput = {
             type = "timestamp",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NameContains = {
             type = "string",
@@ -30521,7 +28539,7 @@ M.ListModelCardsOutput = {
     members = {
         ModelCardSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ModelCardSummary,
             traits = {
                 required = true,
             },
@@ -30546,7 +28564,7 @@ M.ListModelCardVersionsInput = {
             type = "timestamp",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         ModelCardName = {
             type = "string",
@@ -30591,7 +28609,7 @@ M.ModelCardVersionSummary = {
             },
         },
         ModelCardVersion = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -30613,7 +28631,7 @@ M.ListModelCardVersionsOutput = {
     members = {
         ModelCardVersionSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.ModelCardVersionSummary,
             traits = {
                 required = true,
             },
@@ -30640,7 +28658,7 @@ M.ListModelExplainabilityJobDefinitionsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NameContains = {
             type = "string",
@@ -30659,7 +28677,7 @@ M.ListModelExplainabilityJobDefinitionsOutput = {
     members = {
         JobDefinitionSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.MonitoringJobDefinitionSummary,
             traits = {
                 required = true,
             },
@@ -30700,7 +28718,7 @@ M.ModelMetadataSearchExpression = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.ModelMetadataFilter,
         },
     },
 }
@@ -30708,14 +28726,12 @@ M.ModelMetadataSearchExpression = {
 M.ListModelMetadataInput = {
     type = "structure",
     members = {
-        SearchExpression = {
-            type = "structure",
-        },
+        SearchExpression = M.ModelMetadataSearchExpression,
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -30761,7 +28777,7 @@ M.ListModelMetadataOutput = {
     members = {
         ModelMetadataSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ModelMetadataSummary,
             traits = {
                 required = true,
             },
@@ -30787,7 +28803,7 @@ M.ListModelPackageGroupsInput = {
             type = "timestamp",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NameContains = {
             type = "string",
@@ -30845,7 +28861,7 @@ M.ListModelPackageGroupsOutput = {
     members = {
         ModelPackageGroupSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.ModelPackageGroupSummary,
             traits = {
                 required = true,
             },
@@ -30877,7 +28893,7 @@ M.ListModelPackagesInput = {
             type = "timestamp",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NameContains = {
             type = "string",
@@ -30913,7 +28929,7 @@ M.ModelPackageSummary = {
             type = "string",
         },
         ModelPackageVersion = {
-            type = "number",
+            type = "integer",
         },
         ModelPackageArn = {
             type = "string",
@@ -30939,9 +28955,7 @@ M.ModelPackageSummary = {
         ModelApprovalStatus = {
             type = "string",
         },
-        ModelLifeCycle = {
-            type = "structure",
-        },
+        ModelLifeCycle = M.ModelLifeCycle,
         ModelPackageRegistrationType = {
             type = "string",
         },
@@ -30953,7 +28967,7 @@ M.ListModelPackagesOutput = {
     members = {
         ModelPackageSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.ModelPackageSummary,
             traits = {
                 required = true,
             },
@@ -30980,7 +28994,7 @@ M.ListModelQualityJobDefinitionsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NameContains = {
             type = "string",
@@ -30999,7 +29013,7 @@ M.ListModelQualityJobDefinitionsOutput = {
     members = {
         JobDefinitionSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.MonitoringJobDefinitionSummary,
             traits = {
                 required = true,
             },
@@ -31028,7 +29042,7 @@ M.ListModelsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NameContains = {
             type = "string",
@@ -31071,7 +29085,7 @@ M.ListModelsOutput = {
     members = {
         Models = {
             type = "list",
-            member_type = "structure",
+            member = M.ModelSummary,
             traits = {
                 required = true,
             },
@@ -31111,7 +29125,7 @@ M.ListMonitoringAlertHistoryInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         CreationTimeBefore = {
             type = "timestamp",
@@ -31160,7 +29174,7 @@ M.ListMonitoringAlertHistoryOutput = {
     members = {
         MonitoringAlertHistory = {
             type = "list",
-            member_type = "structure",
+            member = M.MonitoringAlertHistorySummary,
         },
         NextToken = {
             type = "string",
@@ -31181,7 +29195,7 @@ M.ListMonitoringAlertsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -31198,9 +29212,7 @@ M.ModelDashboardIndicatorAction = {
 M.MonitoringAlertActions = {
     type = "structure",
     members = {
-        ModelDashboardIndicator = {
-            type = "structure",
-        },
+        ModelDashboardIndicator = M.ModelDashboardIndicatorAction,
     },
 }
 
@@ -31232,23 +29244,20 @@ M.MonitoringAlertSummary = {
             },
         },
         DatapointsToAlert = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         EvaluationPeriod = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
-        Actions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Actions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MonitoringAlertActions }),
     },
 }
 
@@ -31257,7 +29266,7 @@ M.ListMonitoringAlertsOutput = {
     members = {
         MonitoringAlertSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.MonitoringAlertSummary,
         },
         NextToken = {
             type = "string",
@@ -31290,7 +29299,7 @@ M.ListMonitoringExecutionsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         ScheduledTimeBefore = {
             type = "timestamp",
@@ -31327,7 +29336,7 @@ M.ListMonitoringExecutionsOutput = {
     members = {
         MonitoringExecutionSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.MonitoringExecutionSummary,
             traits = {
                 required = true,
             },
@@ -31360,7 +29369,7 @@ M.ListMonitoringSchedulesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NameContains = {
             type = "string",
@@ -31439,7 +29448,7 @@ M.ListMonitoringSchedulesOutput = {
     members = {
         MonitoringScheduleSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.MonitoringScheduleSummary,
             traits = {
                 required = true,
             },
@@ -31468,7 +29477,7 @@ M.ListNotebookInstanceLifecycleConfigsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         SortBy = {
             type = "string",
@@ -31526,7 +29535,7 @@ M.ListNotebookInstanceLifecycleConfigsOutput = {
         },
         NotebookInstanceLifecycleConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.NotebookInstanceLifecycleConfigSummary,
         },
     },
 }
@@ -31549,7 +29558,7 @@ M.ListNotebookInstancesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         SortBy = {
             type = "string",
@@ -31625,7 +29634,7 @@ M.NotebookInstanceSummary = {
         },
         AdditionalCodeRepositories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -31638,7 +29647,7 @@ M.ListNotebookInstancesOutput = {
         },
         NotebookInstances = {
             type = "list",
-            member_type = "structure",
+            member = M.NotebookInstanceSummary,
         },
     },
 }
@@ -31656,7 +29665,7 @@ M.ListOptimizationJobsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         CreationTimeAfter = {
             type = "timestamp",
@@ -31731,11 +29740,11 @@ M.OptimizationJobSummary = {
             },
         },
         MaxInstanceCount = {
-            type = "number",
+            type = "integer",
         },
         OptimizationTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -31748,7 +29757,7 @@ M.ListOptimizationJobsOutput = {
     members = {
         OptimizationJobSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.OptimizationJobSummary,
             traits = {
                 required = true,
             },
@@ -31763,7 +29772,7 @@ M.ListPartnerAppsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -31797,7 +29806,7 @@ M.ListPartnerAppsOutput = {
     members = {
         Summaries = {
             type = "list",
-            member_type = "structure",
+            member = M.PartnerAppSummary,
         },
         NextToken = {
             type = "string",
@@ -31835,7 +29844,7 @@ M.ListPipelineExecutionsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -31869,7 +29878,7 @@ M.ListPipelineExecutionsOutput = {
     members = {
         PipelineExecutionSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.PipelineExecutionSummary,
         },
         NextToken = {
             type = "string",
@@ -31887,7 +29896,7 @@ M.ListPipelineExecutionStepsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         SortOrder = {
             type = "string",
@@ -31988,72 +29997,28 @@ M.TuningJobStepMetaData = {
 M.PipelineExecutionStepMetadata = {
     type = "structure",
     members = {
-        TrainingJob = {
-            type = "structure",
-        },
-        ProcessingJob = {
-            type = "structure",
-        },
-        TransformJob = {
-            type = "structure",
-        },
-        TuningJob = {
-            type = "structure",
-        },
-        Model = {
-            type = "structure",
-        },
-        RegisterModel = {
-            type = "structure",
-        },
-        Condition = {
-            type = "structure",
-        },
-        Callback = {
-            type = "structure",
-        },
-        Lambda = {
-            type = "structure",
-        },
-        EMR = {
-            type = "structure",
-        },
-        QualityCheck = {
-            type = "structure",
-        },
-        ClarifyCheck = {
-            type = "structure",
-        },
-        Fail = {
-            type = "structure",
-        },
-        AutoMLJob = {
-            type = "structure",
-        },
-        Endpoint = {
-            type = "structure",
-        },
-        EndpointConfig = {
-            type = "structure",
-        },
-        BedrockCustomModel = {
-            type = "structure",
-        },
-        BedrockCustomModelDeployment = {
-            type = "structure",
-        },
-        BedrockProvisionedModelThroughput = {
-            type = "structure",
-        },
-        BedrockModelImport = {
-            type = "structure",
-        },
-        InferenceComponent = {
-            type = "structure",
-        },
-        Lineage = {
-            type = "structure",
-        },
+        TrainingJob = M.TrainingJobStepMetadata,
+        ProcessingJob = M.ProcessingJobStepMetadata,
+        TransformJob = M.TransformJobStepMetadata,
+        TuningJob = M.TuningJobStepMetaData,
+        Model = M.ModelStepMetadata,
+        RegisterModel = M.RegisterModelStepMetadata,
+        Condition = M.ConditionStepMetadata,
+        Callback = M.CallbackStepMetadata,
+        Lambda = M.LambdaStepMetadata,
+        EMR = M.EMRStepMetadata,
+        QualityCheck = M.QualityCheckStepMetadata,
+        ClarifyCheck = M.ClarifyCheckStepMetadata,
+        Fail = M.FailStepMetadata,
+        AutoMLJob = M.AutoMLJobStepMetadata,
+        Endpoint = M.EndpointStepMetadata,
+        EndpointConfig = M.EndpointConfigStepMetadata,
+        BedrockCustomModel = M.BedrockCustomModelMetadata,
+        BedrockCustomModelDeployment = M.BedrockCustomModelDeploymentMetadata,
+        BedrockProvisionedModelThroughput = M.BedrockProvisionedModelThroughputMetadata,
+        BedrockModelImport = M.BedrockModelImportMetadata,
+        InferenceComponent = M.InferenceComponentMetadata,
+        Lineage = M.LineageMetadata,
     },
 }
 
@@ -32096,21 +30061,15 @@ M.PipelineExecutionStep = {
         StepStatus = {
             type = "string",
         },
-        CacheHitResult = {
-            type = "structure",
-        },
+        CacheHitResult = M.CacheHitResult,
         FailureReason = {
             type = "string",
         },
-        Metadata = {
-            type = "structure",
-        },
+        Metadata = M.PipelineExecutionStepMetadata,
         AttemptCount = {
-            type = "number",
+            type = "integer",
         },
-        SelectiveExecutionResult = {
-            type = "structure",
-        },
+        SelectiveExecutionResult = M.SelectiveExecutionResult,
     },
 }
 
@@ -32119,7 +30078,7 @@ M.ListPipelineExecutionStepsOutput = {
     members = {
         PipelineExecutionSteps = {
             type = "list",
-            member_type = "structure",
+            member = M.PipelineExecutionStep,
         },
         NextToken = {
             type = "string",
@@ -32140,7 +30099,7 @@ M.ListPipelineParametersForExecutionInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -32168,7 +30127,7 @@ M.ListPipelineParametersForExecutionOutput = {
     members = {
         PipelineParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.Parameter,
         },
         NextToken = {
             type = "string",
@@ -32203,7 +30162,7 @@ M.ListPipelinesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -32243,7 +30202,7 @@ M.ListPipelinesOutput = {
     members = {
         PipelineSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.PipelineSummary,
         },
         NextToken = {
             type = "string",
@@ -32273,7 +30232,7 @@ M.ListPipelineVersionsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -32285,7 +30244,7 @@ M.PipelineVersionSummary = {
             type = "string",
         },
         PipelineVersionId = {
-            type = "number",
+            type = "long",
         },
         CreationTime = {
             type = "timestamp",
@@ -32307,7 +30266,7 @@ M.ListPipelineVersionsOutput = {
     members = {
         PipelineVersionSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.PipelineVersionSummary,
         },
         NextToken = {
             type = "string",
@@ -32346,7 +30305,7 @@ M.ListProcessingJobsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -32398,7 +30357,7 @@ M.ListProcessingJobsOutput = {
     members = {
         ProcessingJobSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ProcessingJobSummary,
             traits = {
                 required = true,
             },
@@ -32429,7 +30388,7 @@ M.ListProjectsInput = {
             type = "timestamp",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NameContains = {
             type = "string",
@@ -32490,7 +30449,7 @@ M.ListProjectsOutput = {
     members = {
         ProjectSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.ProjectSummary,
             traits = {
                 required = true,
             },
@@ -32529,7 +30488,7 @@ M.ListResourceCatalogsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -32572,7 +30531,7 @@ M.ListResourceCatalogsOutput = {
     members = {
         ResourceCatalogs = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceCatalog,
         },
         NextToken = {
             type = "string",
@@ -32592,7 +30551,7 @@ M.ListSpacesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         SortOrder = {
             type = "string",
@@ -32627,9 +30586,7 @@ M.SpaceSettingsSummary = {
         RemoteAccess = {
             type = "string",
         },
-        SpaceStorageSettings = {
-            type = "structure",
-        },
+        SpaceStorageSettings = M.SpaceStorageSettings,
     },
 }
 
@@ -32660,15 +30617,9 @@ M.SpaceDetails = {
         LastModifiedTime = {
             type = "timestamp",
         },
-        SpaceSettingsSummary = {
-            type = "structure",
-        },
-        SpaceSharingSettingsSummary = {
-            type = "structure",
-        },
-        OwnershipSettingsSummary = {
-            type = "structure",
-        },
+        SpaceSettingsSummary = M.SpaceSettingsSummary,
+        SpaceSharingSettingsSummary = M.SpaceSharingSettingsSummary,
+        OwnershipSettingsSummary = M.OwnershipSettingsSummary,
         SpaceDisplayName = {
             type = "string",
         },
@@ -32680,7 +30631,7 @@ M.ListSpacesOutput = {
     members = {
         Spaces = {
             type = "list",
-            member_type = "structure",
+            member = M.SpaceDetails,
         },
         NextToken = {
             type = "string",
@@ -32695,7 +30646,7 @@ M.ListStageDevicesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         EdgeDeploymentPlanName = {
             type = "string",
@@ -32720,7 +30671,7 @@ M.ListStageDevicesOutput = {
     members = {
         DeviceDeploymentSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.DeviceDeploymentSummary,
             traits = {
                 required = true,
             },
@@ -32741,7 +30692,7 @@ M.ListStudioLifecycleConfigsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -32802,7 +30753,7 @@ M.ListStudioLifecycleConfigsOutput = {
         },
         StudioLifecycleConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.StudioLifecycleConfigDetails,
         },
     },
 }
@@ -32817,7 +30768,7 @@ M.ListSubscribedWorkteamsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -32827,7 +30778,7 @@ M.ListSubscribedWorkteamsOutput = {
     members = {
         SubscribedWorkteams = {
             type = "list",
-            member_type = "structure",
+            member = M.SubscribedWorkteam,
             traits = {
                 required = true,
             },
@@ -32851,7 +30802,7 @@ M.ListTagsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -32861,7 +30812,7 @@ M.ListTagsOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         NextToken = {
             type = "string",
@@ -32876,7 +30827,7 @@ M.ListTrainingJobsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         CreationTimeAfter = {
             type = "timestamp",
@@ -32947,9 +30898,7 @@ M.TrainingJobSummary = {
         SecondaryStatus = {
             type = "string",
         },
-        WarmPoolStatus = {
-            type = "structure",
-        },
+        WarmPoolStatus = M.WarmPoolStatus,
         TrainingPlanArn = {
             type = "string",
         },
@@ -32961,7 +30910,7 @@ M.ListTrainingJobsOutput = {
     members = {
         TrainingJobSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.TrainingJobSummary,
             traits = {
                 required = true,
             },
@@ -32992,7 +30941,7 @@ M.ListTrainingJobsForHyperParameterTuningJobInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         StatusEquals = {
             type = "string",
@@ -33011,7 +30960,7 @@ M.ListTrainingJobsForHyperParameterTuningJobOutput = {
     members = {
         TrainingJobSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.HyperParameterTrainingJobSummary,
             traits = {
                 required = true,
             },
@@ -33062,7 +31011,7 @@ M.ListTrainingPlansInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         StartTimeAfter = {
             type = "timestamp",
@@ -33078,7 +31027,7 @@ M.ListTrainingPlansInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.TrainingPlanFilter,
         },
     },
 }
@@ -33108,10 +31057,10 @@ M.TrainingPlanSummary = {
             type = "string",
         },
         DurationHours = {
-            type = "number",
+            type = "long",
         },
         DurationMinutes = {
-            type = "number",
+            type = "long",
         },
         StartTime = {
             type = "timestamp",
@@ -33126,24 +31075,24 @@ M.TrainingPlanSummary = {
             type = "string",
         },
         TotalInstanceCount = {
-            type = "number",
+            type = "integer",
         },
         AvailableInstanceCount = {
-            type = "number",
+            type = "integer",
         },
         InUseInstanceCount = {
-            type = "number",
+            type = "integer",
         },
         TotalUltraServerCount = {
-            type = "number",
+            type = "integer",
         },
         TargetResources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ReservedCapacitySummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ReservedCapacitySummary,
         },
     },
 }
@@ -33156,7 +31105,7 @@ M.ListTrainingPlansOutput = {
         },
         TrainingPlanSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.TrainingPlanSummary,
             traits = {
                 required = true,
             },
@@ -33195,7 +31144,7 @@ M.ListTransformJobsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -33244,7 +31193,7 @@ M.ListTransformJobsOutput = {
     members = {
         TransformJobSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.TransformJobSummary,
             traits = {
                 required = true,
             },
@@ -33285,7 +31234,7 @@ M.ListTrialComponentsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -33305,12 +31254,8 @@ M.TrialComponentSummary = {
         DisplayName = {
             type = "string",
         },
-        TrialComponentSource = {
-            type = "structure",
-        },
-        Status = {
-            type = "structure",
-        },
+        TrialComponentSource = M.TrialComponentSource,
+        Status = M.TrialComponentStatus,
         StartTime = {
             type = "timestamp",
         },
@@ -33320,15 +31265,11 @@ M.TrialComponentSummary = {
         CreationTime = {
             type = "timestamp",
         },
-        CreatedBy = {
-            type = "structure",
-        },
+        CreatedBy = M.UserContext,
         LastModifiedTime = {
             type = "timestamp",
         },
-        LastModifiedBy = {
-            type = "structure",
-        },
+        LastModifiedBy = M.UserContext,
     },
 }
 
@@ -33337,7 +31278,7 @@ M.ListTrialComponentsOutput = {
     members = {
         TrialComponentSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.TrialComponentSummary,
         },
         NextToken = {
             type = "string",
@@ -33372,7 +31313,7 @@ M.ListTrialsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -33392,9 +31333,7 @@ M.TrialSummary = {
         DisplayName = {
             type = "string",
         },
-        TrialSource = {
-            type = "structure",
-        },
+        TrialSource = M.TrialSource,
         CreationTime = {
             type = "timestamp",
         },
@@ -33409,7 +31348,7 @@ M.ListTrialsOutput = {
     members = {
         TrialSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.TrialSummary,
         },
         NextToken = {
             type = "string",
@@ -33427,7 +31366,7 @@ M.ListUltraServersByReservedCapacityInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -33469,25 +31408,25 @@ M.UltraServer = {
             },
         },
         TotalInstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         ConfiguredSpareInstanceCount = {
-            type = "number",
+            type = "integer",
         },
         AvailableInstanceCount = {
-            type = "number",
+            type = "integer",
         },
         InUseInstanceCount = {
-            type = "number",
+            type = "integer",
         },
         AvailableSpareInstanceCount = {
-            type = "number",
+            type = "integer",
         },
         UnhealthyInstanceCount = {
-            type = "number",
+            type = "integer",
         },
         HealthStatus = {
             type = "string",
@@ -33503,7 +31442,7 @@ M.ListUltraServersByReservedCapacityOutput = {
         },
         UltraServers = {
             type = "list",
-            member_type = "structure",
+            member = M.UltraServer,
             traits = {
                 required = true,
             },
@@ -33523,7 +31462,7 @@ M.ListUserProfilesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         SortOrder = {
             type = "string",
@@ -33566,7 +31505,7 @@ M.ListUserProfilesOutput = {
     members = {
         UserProfiles = {
             type = "list",
-            member_type = "structure",
+            member = M.UserProfileDetails,
         },
         NextToken = {
             type = "string",
@@ -33595,7 +31534,7 @@ M.ListWorkforcesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -33605,7 +31544,7 @@ M.ListWorkforcesOutput = {
     members = {
         Workforces = {
             type = "list",
-            member_type = "structure",
+            member = M.Workforce,
             traits = {
                 required = true,
             },
@@ -33637,7 +31576,7 @@ M.ListWorkteamsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -33647,7 +31586,7 @@ M.ListWorkteamsOutput = {
     members = {
         Workteams = {
             type = "list",
-            member_type = "structure",
+            member = M.Workteam,
             traits = {
                 required = true,
             },
@@ -33664,22 +31603,16 @@ M.Model = {
         ModelName = {
             type = "string",
         },
-        PrimaryContainer = {
-            type = "structure",
-        },
+        PrimaryContainer = M.ContainerDefinition,
         Containers = {
             type = "list",
-            member_type = "structure",
+            member = M.ContainerDefinition,
         },
-        InferenceExecutionConfig = {
-            type = "structure",
-        },
+        InferenceExecutionConfig = M.InferenceExecutionConfig,
         ExecutionRoleArn = {
             type = "string",
         },
-        VpcConfig = {
-            type = "structure",
-        },
+        VpcConfig = M.VpcConfig,
         CreationTime = {
             type = "timestamp",
         },
@@ -33691,11 +31624,9 @@ M.Model = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        DeploymentRecommendation = {
-            type = "structure",
-        },
+        DeploymentRecommendation = M.DeploymentRecommendation,
     },
 }
 
@@ -33709,7 +31640,7 @@ M.ModelCard = {
             type = "string",
         },
         ModelCardVersion = {
-            type = "number",
+            type = "integer",
         },
         Content = {
             type = "string",
@@ -33717,24 +31648,18 @@ M.ModelCard = {
         ModelCardStatus = {
             type = "string",
         },
-        SecurityConfig = {
-            type = "structure",
-        },
+        SecurityConfig = M.ModelCardSecurityConfig,
         CreationTime = {
             type = "timestamp",
         },
-        CreatedBy = {
-            type = "structure",
-        },
+        CreatedBy = M.UserContext,
         LastModifiedTime = {
             type = "timestamp",
         },
-        LastModifiedBy = {
-            type = "structure",
-        },
+        LastModifiedBy = M.UserContext,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ModelId = {
             type = "string",
@@ -33803,34 +31728,24 @@ M.TransformJob = {
             type = "string",
         },
         MaxConcurrentTransforms = {
-            type = "number",
+            type = "integer",
         },
-        ModelClientConfig = {
-            type = "structure",
-        },
+        ModelClientConfig = M.ModelClientConfig,
         MaxPayloadInMB = {
-            type = "number",
+            type = "integer",
         },
         BatchStrategy = {
             type = "string",
         },
         Environment = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        TransformInput = {
-            type = "structure",
-        },
-        TransformOutput = {
-            type = "structure",
-        },
-        DataCaptureConfig = {
-            type = "structure",
-        },
-        TransformResources = {
-            type = "structure",
-        },
+        TransformInput = M.TransformInput,
+        TransformOutput = M.TransformOutput,
+        DataCaptureConfig = M.BatchDataCaptureConfig,
+        TransformResources = M.TransformResources,
         CreationTime = {
             type = "timestamp",
         },
@@ -33846,15 +31761,11 @@ M.TransformJob = {
         AutoMLJobArn = {
             type = "string",
         },
-        DataProcessing = {
-            type = "structure",
-        },
-        ExperimentConfig = {
-            type = "structure",
-        },
+        DataProcessing = M.DataProcessing,
+        ExperimentConfig = M.ExperimentConfig,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -33869,29 +31780,23 @@ M.ModelDashboardModelCard = {
             type = "string",
         },
         ModelCardVersion = {
-            type = "number",
+            type = "integer",
         },
         ModelCardStatus = {
             type = "string",
         },
-        SecurityConfig = {
-            type = "structure",
-        },
+        SecurityConfig = M.ModelCardSecurityConfig,
         CreationTime = {
             type = "timestamp",
         },
-        CreatedBy = {
-            type = "structure",
-        },
+        CreatedBy = M.UserContext,
         LastModifiedTime = {
             type = "timestamp",
         },
-        LastModifiedBy = {
-            type = "structure",
-        },
+        LastModifiedBy = M.UserContext,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ModelId = {
             type = "string",
@@ -33926,45 +31831,33 @@ M.ModelDashboardMonitoringSchedule = {
         LastModifiedTime = {
             type = "timestamp",
         },
-        MonitoringScheduleConfig = {
-            type = "structure",
-        },
+        MonitoringScheduleConfig = M.MonitoringScheduleConfig,
         EndpointName = {
             type = "string",
         },
         MonitoringAlertSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.MonitoringAlertSummary,
         },
-        LastMonitoringExecutionSummary = {
-            type = "structure",
-        },
-        BatchTransformInput = {
-            type = "structure",
-        },
+        LastMonitoringExecutionSummary = M.MonitoringExecutionSummary,
+        BatchTransformInput = M.BatchTransformInput,
     },
 }
 
 M.ModelDashboardModel = {
     type = "structure",
     members = {
-        Model = {
-            type = "structure",
-        },
+        Model = M.Model,
         Endpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.ModelDashboardEndpoint,
         },
-        LastBatchTransformJob = {
-            type = "structure",
-        },
+        LastBatchTransformJob = M.TransformJob,
         MonitoringSchedules = {
             type = "list",
-            member_type = "structure",
+            member = M.ModelDashboardMonitoringSchedule,
         },
-        ModelCard = {
-            type = "structure",
-        },
+        ModelCard = M.ModelDashboardModelCard,
     },
 }
 
@@ -33978,7 +31871,7 @@ M.ModelPackage = {
             type = "string",
         },
         ModelPackageVersion = {
-            type = "number",
+            type = "integer",
         },
         ModelPackageRegistrationType = {
             type = "string",
@@ -33992,42 +31885,26 @@ M.ModelPackage = {
         CreationTime = {
             type = "timestamp",
         },
-        InferenceSpecification = {
-            type = "structure",
-        },
-        SourceAlgorithmSpecification = {
-            type = "structure",
-        },
-        ValidationSpecification = {
-            type = "structure",
-        },
+        InferenceSpecification = M.InferenceSpecification,
+        SourceAlgorithmSpecification = M.SourceAlgorithmSpecification,
+        ValidationSpecification = M.ModelPackageValidationSpecification,
         ModelPackageStatus = {
             type = "string",
         },
-        ModelPackageStatusDetails = {
-            type = "structure",
-        },
+        ModelPackageStatusDetails = M.ModelPackageStatusDetails,
         CertifyForMarketplace = {
             type = "boolean",
         },
         ModelApprovalStatus = {
             type = "string",
         },
-        CreatedBy = {
-            type = "structure",
-        },
-        MetadataProperties = {
-            type = "structure",
-        },
-        ModelMetrics = {
-            type = "structure",
-        },
+        CreatedBy = M.UserContext,
+        MetadataProperties = M.MetadataProperties,
+        ModelMetrics = M.ModelMetrics,
         LastModifiedTime = {
             type = "timestamp",
         },
-        LastModifiedBy = {
-            type = "structure",
-        },
+        LastModifiedBy = M.UserContext,
         ApprovalDescription = {
             type = "string",
         },
@@ -34042,32 +31919,24 @@ M.ModelPackage = {
         },
         AdditionalInferenceSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.AdditionalInferenceSpecificationDefinition,
         },
         SourceUri = {
             type = "string",
         },
-        SecurityConfig = {
-            type = "structure",
-        },
-        ModelCard = {
-            type = "structure",
-        },
-        ModelLifeCycle = {
-            type = "structure",
-        },
+        SecurityConfig = M.ModelPackageSecurityConfig,
+        ModelCard = M.ModelPackageModelCard,
+        ModelLifeCycle = M.ModelLifeCycle,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         CustomerMetadataProperties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        DriftCheckBaselines = {
-            type = "structure",
-        },
+        DriftCheckBaselines = M.DriftCheckBaselines,
         SkipModelValidation = {
             type = "string",
         },
@@ -34089,15 +31958,13 @@ M.ModelPackageGroup = {
         CreationTime = {
             type = "timestamp",
         },
-        CreatedBy = {
-            type = "structure",
-        },
+        CreatedBy = M.UserContext,
         ModelPackageGroupStatus = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -34119,7 +31986,7 @@ M.NestedFilters = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 required = true,
             },
@@ -34130,9 +31997,7 @@ M.NestedFilters = {
 M.OnlineStoreConfigUpdate = {
     type = "structure",
     members = {
-        TtlDuration = {
-            type = "structure",
-        },
+        TtlDuration = M.TtlDuration,
     },
 }
 
@@ -34178,18 +32043,12 @@ M.Pipeline = {
         LastRunTime = {
             type = "timestamp",
         },
-        CreatedBy = {
-            type = "structure",
-        },
-        LastModifiedBy = {
-            type = "structure",
-        },
-        ParallelismConfiguration = {
-            type = "structure",
-        },
+        CreatedBy = M.UserContext,
+        LastModifiedBy = M.UserContext,
+        ParallelismConfiguration = M.ParallelismConfiguration,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -34212,9 +32071,7 @@ M.PipelineExecution = {
         PipelineExecutionDescription = {
             type = "string",
         },
-        PipelineExperimentConfig = {
-            type = "structure",
-        },
+        PipelineExperimentConfig = M.PipelineExperimentConfig,
         FailureReason = {
             type = "string",
         },
@@ -34224,24 +32081,16 @@ M.PipelineExecution = {
         LastModifiedTime = {
             type = "timestamp",
         },
-        CreatedBy = {
-            type = "structure",
-        },
-        LastModifiedBy = {
-            type = "structure",
-        },
-        ParallelismConfiguration = {
-            type = "structure",
-        },
-        SelectiveExecutionConfig = {
-            type = "structure",
-        },
+        CreatedBy = M.UserContext,
+        LastModifiedBy = M.UserContext,
+        ParallelismConfiguration = M.ParallelismConfiguration,
+        SelectiveExecutionConfig = M.SelectiveExecutionConfig,
         PipelineParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.Parameter,
         },
         PipelineVersionId = {
-            type = "number",
+            type = "long",
         },
         PipelineVersionDisplayName = {
             type = "string",
@@ -34256,7 +32105,7 @@ M.PipelineVersion = {
             type = "string",
         },
         PipelineVersionId = {
-            type = "number",
+            type = "long",
         },
         PipelineVersionDisplayName = {
             type = "string",
@@ -34270,12 +32119,8 @@ M.PipelineVersion = {
         LastModifiedTime = {
             type = "timestamp",
         },
-        CreatedBy = {
-            type = "structure",
-        },
-        LastModifiedBy = {
-            type = "structure",
-        },
+        CreatedBy = M.UserContext,
+        LastModifiedBy = M.UserContext,
         LastExecutedPipelineExecutionArn = {
             type = "string",
         },
@@ -34293,37 +32138,25 @@ M.ProcessingJob = {
     members = {
         ProcessingInputs = {
             type = "list",
-            member_type = "structure",
+            member = M.ProcessingInput,
         },
-        ProcessingOutputConfig = {
-            type = "structure",
-        },
+        ProcessingOutputConfig = M.ProcessingOutputConfig,
         ProcessingJobName = {
             type = "string",
         },
-        ProcessingResources = {
-            type = "structure",
-        },
-        StoppingCondition = {
-            type = "structure",
-        },
-        AppSpecification = {
-            type = "structure",
-        },
+        ProcessingResources = M.ProcessingResources,
+        StoppingCondition = M.ProcessingStoppingCondition,
+        AppSpecification = M.AppSpecification,
         Environment = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        NetworkConfig = {
-            type = "structure",
-        },
+        NetworkConfig = M.NetworkConfig,
         RoleArn = {
             type = "string",
         },
-        ExperimentConfig = {
-            type = "structure",
-        },
+        ExperimentConfig = M.ExperimentConfig,
         ProcessingJobArn = {
             type = "string",
         },
@@ -34359,7 +32192,7 @@ M.ProcessingJob = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -34371,12 +32204,12 @@ M.ProfilerConfigForUpdate = {
             type = "string",
         },
         ProfilingIntervalInMilliseconds = {
-            type = "number",
+            type = "long",
         },
         ProfilingParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         DisableProfiler = {
             type = "boolean",
@@ -34399,35 +32232,27 @@ M.Project = {
         ProjectDescription = {
             type = "string",
         },
-        ServiceCatalogProvisioningDetails = {
-            type = "structure",
-        },
-        ServiceCatalogProvisionedProductDetails = {
-            type = "structure",
-        },
+        ServiceCatalogProvisioningDetails = M.ServiceCatalogProvisioningDetails,
+        ServiceCatalogProvisionedProductDetails = M.ServiceCatalogProvisionedProductDetails,
         ProjectStatus = {
             type = "string",
         },
-        CreatedBy = {
-            type = "structure",
-        },
+        CreatedBy = M.UserContext,
         CreationTime = {
             type = "timestamp",
         },
         TemplateProviderDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.TemplateProviderDetail,
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         LastModifiedTime = {
             type = "timestamp",
         },
-        LastModifiedBy = {
-            type = "structure",
-        },
+        LastModifiedBy = M.UserContext,
     },
 }
 
@@ -34466,11 +32291,11 @@ M.QueryFilters = {
     members = {
         Types = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         LineageTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CreatedBefore = {
             type = "timestamp",
@@ -34486,8 +32311,8 @@ M.QueryFilters = {
         },
         Properties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -34497,7 +32322,7 @@ M.QueryLineageInput = {
     members = {
         StartArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Direction = {
             type = "string",
@@ -34505,14 +32330,12 @@ M.QueryLineageInput = {
         IncludeEdges = {
             type = "boolean",
         },
-        Filters = {
-            type = "structure",
-        },
+        Filters = M.QueryFilters,
         MaxDepth = {
-            type = "number",
+            type = "integer",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -34540,11 +32363,11 @@ M.QueryLineageOutput = {
     members = {
         Vertices = {
             type = "list",
-            member_type = "structure",
+            member = M.Vertex,
         },
         Edges = {
             type = "list",
-            member_type = "structure",
+            member = M.Edge,
         },
         NextToken = {
             type = "string",
@@ -34563,14 +32386,14 @@ M.RegisterDevicesInput = {
         },
         Devices = {
             type = "list",
-            member_type = "structure",
+            member = M.Device,
             traits = {
                 required = true,
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -34626,15 +32449,10 @@ M.RenderingError = {
 M.RenderUiTemplateInput = {
     type = "structure",
     members = {
-        UiTemplate = {
-            type = "structure",
-        },
-        Task = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        UiTemplate = M.UiTemplate,
+        Task = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RenderableTask }),
         RoleArn = {
             type = "string",
             traits = {
@@ -34658,7 +32476,7 @@ M.RenderUiTemplateOutput = {
         },
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.RenderingError,
             traits = {
                 required = true,
             },
@@ -34676,7 +32494,7 @@ M.ReservedCapacityOffering = {
             type = "string",
         },
         UltraServerCount = {
-            type = "number",
+            type = "integer",
         },
         InstanceType = {
             type = "string",
@@ -34685,7 +32503,7 @@ M.ReservedCapacityOffering = {
             },
         },
         InstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -34694,10 +32512,10 @@ M.ReservedCapacityOffering = {
             type = "string",
         },
         DurationHours = {
-            type = "number",
+            type = "long",
         },
         DurationMinutes = {
-            type = "number",
+            type = "long",
         },
         StartTime = {
             type = "timestamp",
@@ -34718,7 +32536,7 @@ M.ResourceConfigForUpdate = {
     type = "structure",
     members = {
         KeepAlivePeriodInSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -34741,9 +32559,7 @@ M.RetryPipelineExecutionInput = {
                 required = true,
             },
         },
-        ParallelismConfiguration = {
-            type = "structure",
-        },
+        ParallelismConfiguration = M.ParallelismConfiguration,
     },
 }
 
@@ -34791,9 +32607,7 @@ M.TrainingJob = {
         AutoMLJobArn = {
             type = "string",
         },
-        ModelArtifacts = {
-            type = "structure",
-        },
+        ModelArtifacts = M.ModelArtifacts,
         TrainingJobStatus = {
             type = "string",
         },
@@ -34805,31 +32619,21 @@ M.TrainingJob = {
         },
         HyperParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        AlgorithmSpecification = {
-            type = "structure",
-        },
+        AlgorithmSpecification = M.AlgorithmSpecification,
         RoleArn = {
             type = "string",
         },
         InputDataConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.Channel,
         },
-        OutputDataConfig = {
-            type = "structure",
-        },
-        ResourceConfig = {
-            type = "structure",
-        },
-        VpcConfig = {
-            type = "structure",
-        },
-        StoppingCondition = {
-            type = "structure",
-        },
+        OutputDataConfig = M.OutputDataConfig,
+        ResourceConfig = M.ResourceConfig,
+        VpcConfig = M.VpcConfig,
+        StoppingCondition = M.StoppingCondition,
         CreationTime = {
             type = "timestamp",
         },
@@ -34844,11 +32648,11 @@ M.TrainingJob = {
         },
         SecondaryStatusTransitions = {
             type = "list",
-            member_type = "structure",
+            member = M.SecondaryStatusTransition,
         },
         FinalMetricDataList = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricData,
         },
         EnableNetworkIsolation = {
             type = "boolean",
@@ -34859,52 +32663,38 @@ M.TrainingJob = {
         EnableManagedSpotTraining = {
             type = "boolean",
         },
-        CheckpointConfig = {
-            type = "structure",
-        },
+        CheckpointConfig = M.CheckpointConfig,
         TrainingTimeInSeconds = {
-            type = "number",
+            type = "integer",
         },
         BillableTimeInSeconds = {
-            type = "number",
+            type = "integer",
         },
-        DebugHookConfig = {
-            type = "structure",
-        },
-        ExperimentConfig = {
-            type = "structure",
-        },
+        DebugHookConfig = M.DebugHookConfig,
+        ExperimentConfig = M.ExperimentConfig,
         DebugRuleConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.DebugRuleConfiguration,
         },
-        TensorBoardOutputConfig = {
-            type = "structure",
-        },
+        TensorBoardOutputConfig = M.TensorBoardOutputConfig,
         DebugRuleEvaluationStatuses = {
             type = "list",
-            member_type = "structure",
+            member = M.DebugRuleEvaluationStatus,
         },
         OutputModelPackageArn = {
             type = "string",
         },
-        ModelPackageConfig = {
-            type = "structure",
-        },
-        ProfilerConfig = {
-            type = "structure",
-        },
+        ModelPackageConfig = M.ModelPackageConfig,
+        ProfilerConfig = M.ProfilerConfig,
         Environment = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        RetryStrategy = {
-            type = "structure",
-        },
+        RetryStrategy = M.RetryStrategy,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -34918,15 +32708,11 @@ M.TrialComponentSimpleSummary = {
         TrialComponentArn = {
             type = "string",
         },
-        TrialComponentSource = {
-            type = "structure",
-        },
+        TrialComponentSource = M.TrialComponentSource,
         CreationTime = {
             type = "timestamp",
         },
-        CreatedBy = {
-            type = "structure",
-        },
+        CreatedBy = M.UserContext,
     },
 }
 
@@ -34945,31 +32731,23 @@ M.Trial = {
         ExperimentName = {
             type = "string",
         },
-        Source = {
-            type = "structure",
-        },
+        Source = M.TrialSource,
         CreationTime = {
             type = "timestamp",
         },
-        CreatedBy = {
-            type = "structure",
-        },
+        CreatedBy = M.UserContext,
         LastModifiedTime = {
             type = "timestamp",
         },
-        LastModifiedBy = {
-            type = "structure",
-        },
-        MetadataProperties = {
-            type = "structure",
-        },
+        LastModifiedBy = M.UserContext,
+        MetadataProperties = M.MetadataProperties,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         TrialComponentSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.TrialComponentSimpleSummary,
         },
     },
 }
@@ -34980,15 +32758,9 @@ M.TrialComponentSourceDetail = {
         SourceArn = {
             type = "string",
         },
-        TrainingJob = {
-            type = "structure",
-        },
-        ProcessingJob = {
-            type = "structure",
-        },
-        TransformJob = {
-            type = "structure",
-        },
+        TrainingJob = M.TrainingJob,
+        ProcessingJob = M.ProcessingJob,
+        TransformJob = M.TransformJob,
     },
 }
 
@@ -35004,12 +32776,8 @@ M.TrialComponent = {
         TrialComponentArn = {
             type = "string",
         },
-        Source = {
-            type = "structure",
-        },
-        Status = {
-            type = "structure",
-        },
+        Source = M.TrialComponentSource,
+        Status = M.TrialComponentStatus,
         StartTime = {
             type = "timestamp",
         },
@@ -35019,50 +32787,42 @@ M.TrialComponent = {
         CreationTime = {
             type = "timestamp",
         },
-        CreatedBy = {
-            type = "structure",
-        },
+        CreatedBy = M.UserContext,
         LastModifiedTime = {
             type = "timestamp",
         },
-        LastModifiedBy = {
-            type = "structure",
-        },
+        LastModifiedBy = M.UserContext,
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.TrialComponentParameterValue,
         },
         InputArtifacts = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.TrialComponentArtifact,
         },
         OutputArtifacts = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.TrialComponentArtifact,
         },
         Metrics = {
             type = "list",
-            member_type = "structure",
+            member = M.TrialComponentMetricSummary,
         },
-        MetadataProperties = {
-            type = "structure",
-        },
-        SourceDetail = {
-            type = "structure",
-        },
+        MetadataProperties = M.MetadataProperties,
+        SourceDetail = M.TrialComponentSourceDetail,
         LineageGroupArn = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         Parents = {
             type = "list",
-            member_type = "structure",
+            member = M.Parent,
         },
         RunName = {
             type = "string",
@@ -35073,54 +32833,22 @@ M.TrialComponent = {
 M.SearchRecord = {
     type = "structure",
     members = {
-        TrainingJob = {
-            type = "structure",
-        },
-        Experiment = {
-            type = "structure",
-        },
-        Trial = {
-            type = "structure",
-        },
-        TrialComponent = {
-            type = "structure",
-        },
-        Endpoint = {
-            type = "structure",
-        },
-        ModelPackage = {
-            type = "structure",
-        },
-        ModelPackageGroup = {
-            type = "structure",
-        },
-        Pipeline = {
-            type = "structure",
-        },
-        PipelineExecution = {
-            type = "structure",
-        },
-        PipelineVersion = {
-            type = "structure",
-        },
-        FeatureGroup = {
-            type = "structure",
-        },
-        FeatureMetadata = {
-            type = "structure",
-        },
-        Project = {
-            type = "structure",
-        },
-        HyperParameterTuningJob = {
-            type = "structure",
-        },
-        ModelCard = {
-            type = "structure",
-        },
-        Model = {
-            type = "structure",
-        },
+        TrainingJob = M.TrainingJob,
+        Experiment = M.Experiment,
+        Trial = M.Trial,
+        TrialComponent = M.TrialComponent,
+        Endpoint = M.Endpoint,
+        ModelPackage = M.ModelPackage,
+        ModelPackageGroup = M.ModelPackageGroup,
+        Pipeline = M.Pipeline,
+        PipelineExecution = M.PipelineExecution,
+        PipelineVersion = M.PipelineVersion,
+        FeatureGroup = M.FeatureGroup,
+        FeatureMetadata = M.FeatureMetadata,
+        Project = M.Project,
+        HyperParameterTuningJob = M.HyperParameterTuningJobSearchEntity,
+        ModelCard = M.ModelCard,
+        Model = M.ModelDashboardModel,
     },
 }
 
@@ -35128,7 +32856,7 @@ M.TotalHits = {
     type = "structure",
     members = {
         Value = {
-            type = "number",
+            type = "long",
         },
         Relation = {
             type = "string",
@@ -35141,14 +32869,12 @@ M.SearchOutput = {
     members = {
         Results = {
             type = "list",
-            member_type = "structure",
+            member = M.SearchRecord,
         },
         NextToken = {
             type = "string",
         },
-        TotalHits = {
-            type = "structure",
-        },
+        TotalHits = M.TotalHits,
     },
 }
 
@@ -35159,13 +32885,13 @@ M.SearchTrainingPlanOfferingsInput = {
             type = "string",
         },
         InstanceCount = {
-            type = "number",
+            type = "integer",
         },
         UltraServerType = {
             type = "string",
         },
         UltraServerCount = {
-            type = "number",
+            type = "integer",
         },
         StartTimeAfter = {
             type = "timestamp",
@@ -35174,11 +32900,11 @@ M.SearchTrainingPlanOfferingsInput = {
             type = "timestamp",
         },
         DurationHours = {
-            type = "number",
+            type = "long",
         },
         TargetResources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TrainingPlanArn = {
             type = "string",
@@ -35205,7 +32931,7 @@ M.TrainingPlanExtensionOffering = {
             type = "timestamp",
         },
         DurationHours = {
-            type = "number",
+            type = "integer",
         },
         UpfrontFee = {
             type = "string",
@@ -35227,7 +32953,7 @@ M.TrainingPlanOffering = {
         },
         TargetResources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -35239,10 +32965,10 @@ M.TrainingPlanOffering = {
             type = "timestamp",
         },
         DurationHours = {
-            type = "number",
+            type = "long",
         },
         DurationMinutes = {
-            type = "number",
+            type = "long",
         },
         UpfrontFee = {
             type = "string",
@@ -35252,7 +32978,7 @@ M.TrainingPlanOffering = {
         },
         ReservedCapacityOfferings = {
             type = "list",
-            member_type = "structure",
+            member = M.ReservedCapacityOffering,
         },
     },
 }
@@ -35262,14 +32988,14 @@ M.SearchTrainingPlanOfferingsOutput = {
     members = {
         TrainingPlanOfferings = {
             type = "list",
-            member_type = "structure",
+            member = M.TrainingPlanOffering,
             traits = {
                 required = true,
             },
         },
         TrainingPlanExtensionOfferings = {
             type = "list",
-            member_type = "structure",
+            member = M.TrainingPlanExtensionOffering,
         },
     },
 }
@@ -35312,7 +33038,7 @@ M.SendPipelineExecutionStepSuccessInput = {
         },
         OutputParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputParameter,
         },
         ClientRequestToken = {
             type = "string",
@@ -35340,7 +33066,7 @@ M.StartClusterHealthCheckInput = {
         },
         DeepHealthCheckConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceGroupHealthCheckConfiguration,
             traits = {
                 required = true,
             },
@@ -35473,7 +33199,7 @@ M.StartPipelineExecutionInput = {
         },
         PipelineParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.Parameter,
         },
         PipelineExecutionDescription = {
             type = "string",
@@ -35484,14 +33210,10 @@ M.StartPipelineExecutionInput = {
                 required = true,
             },
         },
-        ParallelismConfiguration = {
-            type = "structure",
-        },
-        SelectiveExecutionConfig = {
-            type = "structure",
-        },
+        ParallelismConfiguration = M.ParallelismConfiguration,
+        SelectiveExecutionConfig = M.SelectiveExecutionConfig,
         PipelineVersionId = {
-            type = "number",
+            type = "long",
         },
         MlflowExperimentName = {
             type = "string",
@@ -35680,15 +33402,15 @@ M.StopInferenceExperimentInput = {
         },
         ModelVariantActions = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
         },
         DesiredModelVariants = {
             type = "list",
-            member_type = "structure",
+            member = M.ModelVariantConfig,
         },
         DesiredState = {
             type = "string",
@@ -35904,12 +33626,12 @@ M.UpdateActionInput = {
         },
         Properties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         PropertiesToRemove = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -35932,15 +33654,9 @@ M.UpdateAppImageConfigInput = {
                 required = true,
             },
         },
-        KernelGatewayImageConfig = {
-            type = "structure",
-        },
-        JupyterLabAppImageConfig = {
-            type = "structure",
-        },
-        CodeEditorAppImageConfig = {
-            type = "structure",
-        },
+        KernelGatewayImageConfig = M.KernelGatewayImageConfig,
+        JupyterLabAppImageConfig = M.JupyterLabAppImageConfig,
+        CodeEditorAppImageConfig = M.CodeEditorAppImageConfig,
     },
 }
 
@@ -35967,12 +33683,12 @@ M.UpdateArtifactInput = {
         },
         Properties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         PropertiesToRemove = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -35997,21 +33713,19 @@ M.UpdateClusterInput = {
         },
         InstanceGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.ClusterInstanceGroupSpecification,
         },
         RestrictedInstanceGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.ClusterRestrictedInstanceGroupSpecification,
         },
-        TieredStorageConfig = {
-            type = "structure",
-        },
+        TieredStorageConfig = M.ClusterTieredStorageConfig,
         NodeRecovery = {
             type = "string",
         },
         InstanceGroupsToDelete = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NodeProvisioningMode = {
             type = "string",
@@ -36019,12 +33733,8 @@ M.UpdateClusterInput = {
         ClusterRole = {
             type = "string",
         },
-        AutoScaling = {
-            type = "structure",
-        },
-        Orchestrator = {
-            type = "structure",
-        },
+        AutoScaling = M.ClusterAutoScalingConfig,
+        Orchestrator = M.ClusterOrchestrator,
     },
 }
 
@@ -36050,14 +33760,12 @@ M.UpdateClusterSchedulerConfigInput = {
             },
         },
         TargetVersion = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
-        SchedulerConfig = {
-            type = "structure",
-        },
+        SchedulerConfig = M.SchedulerConfig,
         Description = {
             type = "string",
         },
@@ -36074,7 +33782,7 @@ M.UpdateClusterSchedulerConfigOutput = {
             },
         },
         ClusterSchedulerConfigVersion = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -36105,11 +33813,9 @@ M.UpdateClusterSoftwareInput = {
         },
         InstanceGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.UpdateClusterSoftwareInstanceGroupSpecification,
         },
-        DeploymentConfig = {
-            type = "structure",
-        },
+        DeploymentConfig = M.DeploymentConfiguration,
         ImageId = {
             type = "string",
         },
@@ -36137,9 +33843,7 @@ M.UpdateCodeRepositoryInput = {
                 required = true,
             },
         },
-        GitConfig = {
-            type = "structure",
-        },
+        GitConfig = M.GitConfigForUpdate,
     },
 }
 
@@ -36165,17 +33869,13 @@ M.UpdateComputeQuotaInput = {
             },
         },
         TargetVersion = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
-        ComputeQuotaConfig = {
-            type = "structure",
-        },
-        ComputeQuotaTarget = {
-            type = "structure",
-        },
+        ComputeQuotaConfig = M.ComputeQuotaConfig,
+        ComputeQuotaTarget = M.ComputeQuotaTarget,
         ActivationState = {
             type = "string",
         },
@@ -36195,7 +33895,7 @@ M.UpdateComputeQuotaOutput = {
             },
         },
         ComputeQuotaVersion = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -36217,12 +33917,12 @@ M.UpdateContextInput = {
         },
         Properties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         PropertiesToRemove = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -36251,12 +33951,9 @@ M.UpdateDeviceFleetInput = {
         Description = {
             type = "string",
         },
-        OutputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        OutputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EdgeOutputConfig }),
         EnableIotRoleAlias = {
             type = "boolean",
         },
@@ -36278,7 +33975,7 @@ M.UpdateDevicesInput = {
         },
         Devices = {
             type = "list",
-            member_type = "structure",
+            member = M.Device,
             traits = {
                 required = true,
             },
@@ -36299,21 +33996,15 @@ M.UpdateDomainInput = {
                 required = true,
             },
         },
-        DefaultUserSettings = {
-            type = "structure",
-        },
-        DomainSettingsForUpdate = {
-            type = "structure",
-        },
+        DefaultUserSettings = M.UserSettings,
+        DomainSettingsForUpdate = M.DomainSettingsForUpdate,
         AppSecurityGroupManagement = {
             type = "string",
         },
-        DefaultSpaceSettings = {
-            type = "structure",
-        },
+        DefaultSpaceSettings = M.DefaultSpaceSettings,
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AppNetworkAccessType = {
             type = "string",
@@ -36374,11 +34065,9 @@ M.UpdateEndpointInput = {
         },
         ExcludeRetainedVariantProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.VariantProperty,
         },
-        DeploymentConfig = {
-            type = "structure",
-        },
+        DeploymentConfig = M.DeploymentConfig,
         RetainDeploymentConfig = {
             type = "boolean",
         },
@@ -36408,7 +34097,7 @@ M.UpdateEndpointWeightsAndCapacitiesInput = {
         },
         DesiredWeightsAndCapacities = {
             type = "list",
-            member_type = "structure",
+            member = M.DesiredWeightAndCapacity,
             traits = {
                 required = true,
             },
@@ -36462,10 +34151,10 @@ M.ThroughputConfigUpdate = {
             type = "string",
         },
         ProvisionedReadCapacityUnits = {
-            type = "number",
+            type = "integer",
         },
         ProvisionedWriteCapacityUnits = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -36481,14 +34170,10 @@ M.UpdateFeatureGroupInput = {
         },
         FeatureAdditions = {
             type = "list",
-            member_type = "structure",
+            member = M.FeatureDefinition,
         },
-        OnlineStoreConfig = {
-            type = "structure",
-        },
-        ThroughputConfig = {
-            type = "structure",
-        },
+        OnlineStoreConfig = M.OnlineStoreConfigUpdate,
+        ThroughputConfig = M.ThroughputConfigUpdate,
     },
 }
 
@@ -36524,11 +34209,11 @@ M.UpdateFeatureMetadataInput = {
         },
         ParameterAdditions = {
             type = "list",
-            member_type = "structure",
+            member = M.FeatureParameter,
         },
         ParameterRemovals = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -36554,7 +34239,7 @@ M.UpdateHubInput = {
         },
         HubSearchKeywords = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -36609,7 +34294,7 @@ M.UpdateHubContentInput = {
         },
         HubContentSearchKeywords = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SupportStatus = {
             type = "string",
@@ -36685,7 +34370,7 @@ M.UpdateImageInput = {
     members = {
         DeleteProperties = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Description = {
             type = "string",
@@ -36727,15 +34412,15 @@ M.UpdateImageVersionInput = {
             type = "string",
         },
         Version = {
-            type = "number",
+            type = "integer",
         },
         AliasesToAdd = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AliasesToDelete = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         VendorGuidance = {
             type = "string",
@@ -36779,19 +34464,13 @@ M.UpdateInferenceComponentInput = {
                 required = true,
             },
         },
-        Specification = {
-            type = "structure",
-        },
+        Specification = M.InferenceComponentSpecification,
         Specifications = {
             type = "list",
-            member_type = "structure",
+            member = M.InferenceComponentSpecification,
         },
-        RuntimeConfig = {
-            type = "structure",
-        },
-        DeploymentConfig = {
-            type = "structure",
-        },
+        RuntimeConfig = M.InferenceComponentRuntimeConfig,
+        DeploymentConfig = M.InferenceComponentDeploymentConfig,
     },
 }
 
@@ -36816,12 +34495,9 @@ M.UpdateInferenceComponentRuntimeConfigInput = {
                 required = true,
             },
         },
-        DesiredRuntimeConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DesiredRuntimeConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InferenceComponentRuntimeConfig }),
     },
 }
 
@@ -36846,22 +34522,16 @@ M.UpdateInferenceExperimentInput = {
                 required = true,
             },
         },
-        Schedule = {
-            type = "structure",
-        },
+        Schedule = M.InferenceExperimentSchedule,
         Description = {
             type = "string",
         },
         ModelVariants = {
             type = "list",
-            member_type = "structure",
+            member = M.ModelVariantConfig,
         },
-        DataStorageConfig = {
-            type = "structure",
-        },
-        ShadowModeConfig = {
-            type = "structure",
-        },
+        DataStorageConfig = M.InferenceExperimentDataStorageConfig,
+        ShadowModeConfig = M.ShadowModeConfig,
     },
 }
 
@@ -36900,7 +34570,7 @@ M.UpdateMlflowAppInput = {
         },
         DefaultDomainIdList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AccountDefaultStatus = {
             type = "string",
@@ -37006,29 +34676,23 @@ M.UpdateModelPackageInput = {
         },
         CustomerMetadataProperties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         CustomerMetadataPropertiesToRemove = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AdditionalInferenceSpecificationsToAdd = {
             type = "list",
-            member_type = "structure",
+            member = M.AdditionalInferenceSpecificationDefinition,
         },
-        InferenceSpecification = {
-            type = "structure",
-        },
+        InferenceSpecification = M.InferenceSpecification,
         SourceUri = {
             type = "string",
         },
-        ModelCard = {
-            type = "structure",
-        },
-        ModelLifeCycle = {
-            type = "structure",
-        },
+        ModelCard = M.ModelPackageModelCard,
+        ModelLifeCycle = M.ModelLifeCycle,
         ClientToken = {
             type = "string",
         },
@@ -37063,13 +34727,13 @@ M.UpdateMonitoringAlertInput = {
             },
         },
         DatapointsToAlert = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         EvaluationPeriod = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -37101,12 +34765,9 @@ M.UpdateMonitoringScheduleInput = {
                 required = true,
             },
         },
-        MonitoringScheduleConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        MonitoringScheduleConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MonitoringScheduleConfig }),
     },
 }
 
@@ -37150,18 +34811,18 @@ M.UpdateNotebookInstanceInput = {
             type = "boolean",
         },
         VolumeSizeInGB = {
-            type = "number",
+            type = "integer",
         },
         DefaultCodeRepository = {
             type = "string",
         },
         AdditionalCodeRepositories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AcceleratorTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DisassociateAcceleratorTypes = {
             type = "boolean",
@@ -37175,9 +34836,7 @@ M.UpdateNotebookInstanceInput = {
         RootAccess = {
             type = "string",
         },
-        InstanceMetadataServiceConfiguration = {
-            type = "structure",
-        },
+        InstanceMetadataServiceConfiguration = M.InstanceMetadataServiceConfiguration,
     },
 }
 
@@ -37196,11 +34855,11 @@ M.UpdateNotebookInstanceLifecycleConfigInput = {
         },
         OnCreate = {
             type = "list",
-            member_type = "structure",
+            member = M.NotebookInstanceLifecycleHook,
         },
         OnStart = {
             type = "list",
-            member_type = "structure",
+            member = M.NotebookInstanceLifecycleHook,
         },
     },
 }
@@ -37218,15 +34877,11 @@ M.UpdatePartnerAppInput = {
                 required = true,
             },
         },
-        MaintenanceConfig = {
-            type = "structure",
-        },
+        MaintenanceConfig = M.PartnerAppMaintenanceConfig,
         Tier = {
             type = "string",
         },
-        ApplicationConfig = {
-            type = "structure",
-        },
+        ApplicationConfig = M.PartnerAppConfig,
         EnableIamSessionBasedIdentity = {
             type = "boolean",
         },
@@ -37241,7 +34896,7 @@ M.UpdatePartnerAppInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -37270,18 +34925,14 @@ M.UpdatePipelineInput = {
         PipelineDefinition = {
             type = "string",
         },
-        PipelineDefinitionS3Location = {
-            type = "structure",
-        },
+        PipelineDefinitionS3Location = M.PipelineDefinitionS3Location,
         PipelineDescription = {
             type = "string",
         },
         RoleArn = {
             type = "string",
         },
-        ParallelismConfiguration = {
-            type = "structure",
-        },
+        ParallelismConfiguration = M.ParallelismConfiguration,
     },
 }
 
@@ -37292,7 +34943,7 @@ M.UpdatePipelineOutput = {
             type = "string",
         },
         PipelineVersionId = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -37312,9 +34963,7 @@ M.UpdatePipelineExecutionInput = {
         PipelineExecutionDisplayName = {
             type = "string",
         },
-        ParallelismConfiguration = {
-            type = "structure",
-        },
+        ParallelismConfiguration = M.ParallelismConfiguration,
     },
 }
 
@@ -37337,7 +34986,7 @@ M.UpdatePipelineVersionInput = {
             },
         },
         PipelineVersionId = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -37358,7 +35007,7 @@ M.UpdatePipelineVersionOutput = {
             type = "string",
         },
         PipelineVersionId = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -37371,7 +35020,7 @@ M.ServiceCatalogProvisioningUpdateDetails = {
         },
         ProvisioningParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.ProvisioningParameter,
         },
     },
 }
@@ -37379,9 +35028,7 @@ M.ServiceCatalogProvisioningUpdateDetails = {
 M.UpdateTemplateProvider = {
     type = "structure",
     members = {
-        CfnTemplateProvider = {
-            type = "structure",
-        },
+        CfnTemplateProvider = M.CfnUpdateTemplateProvider,
     },
 }
 
@@ -37397,16 +35044,14 @@ M.UpdateProjectInput = {
         ProjectDescription = {
             type = "string",
         },
-        ServiceCatalogProvisioningUpdateDetails = {
-            type = "structure",
-        },
+        ServiceCatalogProvisioningUpdateDetails = M.ServiceCatalogProvisioningUpdateDetails,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         TemplateProvidersToUpdate = {
             type = "list",
-            member_type = "structure",
+            member = M.UpdateTemplateProvider,
         },
     },
 }
@@ -37438,9 +35083,7 @@ M.UpdateSpaceInput = {
                 required = true,
             },
         },
-        SpaceSettings = {
-            type = "structure",
-        },
+        SpaceSettings = M.SpaceSettings,
         SpaceDisplayName = {
             type = "string",
         },
@@ -37465,19 +35108,13 @@ M.UpdateTrainingJobInput = {
                 required = true,
             },
         },
-        ProfilerConfig = {
-            type = "structure",
-        },
+        ProfilerConfig = M.ProfilerConfigForUpdate,
         ProfilerRuleConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.ProfilerRuleConfiguration,
         },
-        ResourceConfig = {
-            type = "structure",
-        },
-        RemoteDebugConfig = {
-            type = "structure",
-        },
+        ResourceConfig = M.ResourceConfigForUpdate,
+        RemoteDebugConfig = M.RemoteDebugConfigForUpdate,
     },
 }
 
@@ -37529,9 +35166,7 @@ M.UpdateTrialComponentInput = {
         DisplayName = {
             type = "string",
         },
-        Status = {
-            type = "structure",
-        },
+        Status = M.TrialComponentStatus,
         StartTime = {
             type = "timestamp",
         },
@@ -37540,30 +35175,30 @@ M.UpdateTrialComponentInput = {
         },
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.TrialComponentParameterValue,
         },
         ParametersToRemove = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         InputArtifacts = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.TrialComponentArtifact,
         },
         InputArtifactsToRemove = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         OutputArtifacts = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.TrialComponentArtifact,
         },
         OutputArtifactsToRemove = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -37592,9 +35227,7 @@ M.UpdateUserProfileInput = {
                 required = true,
             },
         },
-        UserSettings = {
-            type = "structure",
-        },
+        UserSettings = M.UserSettings,
     },
 }
 
@@ -37616,15 +35249,9 @@ M.UpdateWorkforceInput = {
                 required = true,
             },
         },
-        SourceIpConfig = {
-            type = "structure",
-        },
-        OidcConfig = {
-            type = "structure",
-        },
-        WorkforceVpcConfig = {
-            type = "structure",
-        },
+        SourceIpConfig = M.SourceIpConfig,
+        OidcConfig = M.OidcConfig,
+        WorkforceVpcConfig = M.WorkforceVpcConfigRequest,
         IpAddressType = {
             type = "string",
         },
@@ -37634,12 +35261,9 @@ M.UpdateWorkforceInput = {
 M.UpdateWorkforceOutput = {
     type = "structure",
     members = {
-        Workforce = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Workforce = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Workforce }),
     },
 }
 
@@ -37654,29 +35278,22 @@ M.UpdateWorkteamInput = {
         },
         MemberDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.MemberDefinition,
         },
         Description = {
             type = "string",
         },
-        NotificationConfiguration = {
-            type = "structure",
-        },
-        WorkerAccessConfiguration = {
-            type = "structure",
-        },
+        NotificationConfiguration = M.NotificationConfiguration,
+        WorkerAccessConfiguration = M.WorkerAccessConfiguration,
     },
 }
 
 M.UpdateWorkteamOutput = {
     type = "structure",
     members = {
-        Workteam = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Workteam = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Workteam }),
     },
 }
 
@@ -37685,15 +35302,15 @@ M.SearchExpression = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         NestedFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.NestedFilters,
         },
         SubExpressions = {
             type = "list",
-            member_type = "structure",
+            member = M.SearchExpression,
         },
         Operator = {
             type = "string",
@@ -37710,9 +35327,7 @@ M.SearchInput = {
                 required = true,
             },
         },
-        SearchExpression = {
-            type = "structure",
-        },
+        SearchExpression = M.SearchExpression,
         SortBy = {
             type = "string",
         },
@@ -37723,14 +35338,14 @@ M.SearchInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         CrossAccountFilterOption = {
             type = "string",
         },
         VisibilityConditions = {
             type = "list",
-            member_type = "structure",
+            member = M.VisibilityConditions,
         },
     },
 }

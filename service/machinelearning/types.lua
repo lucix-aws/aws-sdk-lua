@@ -24,7 +24,7 @@ M.AddTagsInput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -64,7 +64,10 @@ M.InternalServerException = {
             type = "string",
         },
         code = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -77,7 +80,10 @@ M.InvalidInputException = {
             type = "string",
         },
         code = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -100,7 +106,10 @@ M.ResourceNotFoundException = {
             type = "string",
         },
         code = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -169,7 +178,10 @@ M.IdempotentParameterMismatchException = {
             type = "string",
         },
         code = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -213,24 +225,18 @@ M.RDSDatabase = {
 M.RDSDataSpec = {
     type = "structure",
     members = {
-        DatabaseInformation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DatabaseInformation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RDSDatabase }),
         SelectSqlQuery = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        DatabaseCredentials = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DatabaseCredentials = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RDSDatabaseCredentials }),
         S3StagingLocation = {
             type = "string",
             traits = {
@@ -266,7 +272,7 @@ M.RDSDataSpec = {
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -286,12 +292,9 @@ M.CreateDataSourceFromRDSInput = {
         DataSourceName = {
             type = "string",
         },
-        RDSData = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RDSData = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RDSDataSpec }),
         RoleARN = {
             type = "string",
             traits = {
@@ -300,6 +303,9 @@ M.CreateDataSourceFromRDSInput = {
         },
         ComputeStatistics = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -352,24 +358,18 @@ M.RedshiftDatabase = {
 M.RedshiftDataSpec = {
     type = "structure",
     members = {
-        DatabaseInformation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DatabaseInformation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RedshiftDatabase }),
         SelectSqlQuery = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        DatabaseCredentials = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DatabaseCredentials = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RedshiftDatabaseCredentials }),
         S3StagingLocation = {
             type = "string",
             traits = {
@@ -400,12 +400,9 @@ M.CreateDataSourceFromRedshiftInput = {
         DataSourceName = {
             type = "string",
         },
-        DataSpec = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DataSpec = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RedshiftDataSpec }),
         RoleARN = {
             type = "string",
             traits = {
@@ -414,6 +411,9 @@ M.CreateDataSourceFromRedshiftInput = {
         },
         ComputeStatistics = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -460,14 +460,14 @@ M.CreateDataSourceFromS3Input = {
         DataSourceName = {
             type = "string",
         },
-        DataSpec = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DataSpec = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3DataSpec }),
         ComputeStatistics = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -543,8 +543,8 @@ M.CreateMLModelInput = {
         },
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         TrainingDataSourceId = {
             type = "string",
@@ -593,7 +593,10 @@ M.RealtimeEndpointInfo = {
     type = "structure",
     members = {
         PeakRequestsPerSecond = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         CreatedAt = {
             type = "timestamp",
@@ -613,9 +616,7 @@ M.CreateRealtimeEndpointOutput = {
         MLModelId = {
             type = "string",
         },
-        RealtimeEndpointInfo = {
-            type = "structure",
-        },
+        RealtimeEndpointInfo = M.RealtimeEndpointInfo,
     },
 }
 
@@ -721,9 +722,7 @@ M.DeleteRealtimeEndpointOutput = {
         MLModelId = {
             type = "string",
         },
-        RealtimeEndpointInfo = {
-            type = "structure",
-        },
+        RealtimeEndpointInfo = M.RealtimeEndpointInfo,
     },
 }
 
@@ -732,7 +731,7 @@ M.DeleteTagsInput = {
     members = {
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -814,7 +813,7 @@ M.DescribeBatchPredictionsInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -864,7 +863,7 @@ M.BatchPrediction = {
             type = "string",
         },
         ComputeTime = {
-            type = "number",
+            type = "long",
         },
         FinishedAt = {
             type = "timestamp",
@@ -873,10 +872,10 @@ M.BatchPrediction = {
             type = "timestamp",
         },
         TotalRecordCount = {
-            type = "number",
+            type = "long",
         },
         InvalidRecordCount = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -886,7 +885,7 @@ M.DescribeBatchPredictionsOutput = {
     members = {
         Results = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchPrediction,
         },
         NextToken = {
             type = "string",
@@ -937,7 +936,7 @@ M.DescribeDataSourcesInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -945,9 +944,7 @@ M.DescribeDataSourcesInput = {
 M.RDSMetadata = {
     type = "structure",
     members = {
-        Database = {
-            type = "structure",
-        },
+        Database = M.RDSDatabase,
         DatabaseUserName = {
             type = "string",
         },
@@ -969,9 +966,7 @@ M.RDSMetadata = {
 M.RedshiftMetadata = {
     type = "structure",
     members = {
-        RedshiftDatabase = {
-            type = "structure",
-        },
+        RedshiftDatabase = M.RedshiftDatabase,
         DatabaseUserName = {
             type = "string",
         },
@@ -1003,10 +998,10 @@ M.DataSource = {
             type = "timestamp",
         },
         DataSizeInBytes = {
-            type = "number",
+            type = "long",
         },
         NumberOfFiles = {
-            type = "number",
+            type = "long",
         },
         Name = {
             type = "string",
@@ -1017,20 +1012,19 @@ M.DataSource = {
         Message = {
             type = "string",
         },
-        RedshiftMetadata = {
-            type = "structure",
-        },
-        RDSMetadata = {
-            type = "structure",
-        },
+        RedshiftMetadata = M.RedshiftMetadata,
+        RDSMetadata = M.RDSMetadata,
         RoleARN = {
             type = "string",
         },
         ComputeStatistics = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         ComputeTime = {
-            type = "number",
+            type = "long",
         },
         FinishedAt = {
             type = "timestamp",
@@ -1046,7 +1040,7 @@ M.DescribeDataSourcesOutput = {
     members = {
         Results = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSource,
         },
         NextToken = {
             type = "string",
@@ -1099,7 +1093,7 @@ M.DescribeEvaluationsInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1109,8 +1103,8 @@ M.PerformanceMetrics = {
     members = {
         Properties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1145,14 +1139,12 @@ M.Evaluation = {
         Status = {
             type = "string",
         },
-        PerformanceMetrics = {
-            type = "structure",
-        },
+        PerformanceMetrics = M.PerformanceMetrics,
         Message = {
             type = "string",
         },
         ComputeTime = {
-            type = "number",
+            type = "long",
         },
         FinishedAt = {
             type = "timestamp",
@@ -1168,7 +1160,7 @@ M.DescribeEvaluationsOutput = {
     members = {
         Results = {
             type = "list",
-            member_type = "structure",
+            member = M.Evaluation,
         },
         NextToken = {
             type = "string",
@@ -1223,7 +1215,7 @@ M.DescribeMLModelsInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1253,15 +1245,13 @@ M.MLModel = {
             type = "string",
         },
         SizeInBytes = {
-            type = "number",
+            type = "long",
         },
-        EndpointInfo = {
-            type = "structure",
-        },
+        EndpointInfo = M.RealtimeEndpointInfo,
         TrainingParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         InputDataLocationS3 = {
             type = "string",
@@ -1273,7 +1263,7 @@ M.MLModel = {
             type = "string",
         },
         ScoreThreshold = {
-            type = "number",
+            type = "float",
         },
         ScoreThresholdLastUpdatedAt = {
             type = "timestamp",
@@ -1282,7 +1272,7 @@ M.MLModel = {
             type = "string",
         },
         ComputeTime = {
-            type = "number",
+            type = "long",
         },
         FinishedAt = {
             type = "timestamp",
@@ -1298,7 +1288,7 @@ M.DescribeMLModelsOutput = {
     members = {
         Results = {
             type = "list",
-            member_type = "structure",
+            member = M.MLModel,
         },
         NextToken = {
             type = "string",
@@ -1335,7 +1325,7 @@ M.DescribeTagsOutput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1392,7 +1382,7 @@ M.GetBatchPredictionOutput = {
             type = "string",
         },
         ComputeTime = {
-            type = "number",
+            type = "long",
         },
         FinishedAt = {
             type = "timestamp",
@@ -1401,10 +1391,10 @@ M.GetBatchPredictionOutput = {
             type = "timestamp",
         },
         TotalRecordCount = {
-            type = "number",
+            type = "long",
         },
         InvalidRecordCount = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1420,6 +1410,9 @@ M.GetDataSourceInput = {
         },
         Verbose = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1446,10 +1439,10 @@ M.GetDataSourceOutput = {
             type = "timestamp",
         },
         DataSizeInBytes = {
-            type = "number",
+            type = "long",
         },
         NumberOfFiles = {
-            type = "number",
+            type = "long",
         },
         Name = {
             type = "string",
@@ -1463,20 +1456,19 @@ M.GetDataSourceOutput = {
         Message = {
             type = "string",
         },
-        RedshiftMetadata = {
-            type = "structure",
-        },
-        RDSMetadata = {
-            type = "structure",
-        },
+        RedshiftMetadata = M.RedshiftMetadata,
+        RDSMetadata = M.RDSMetadata,
         RoleARN = {
             type = "string",
         },
         ComputeStatistics = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         ComputeTime = {
-            type = "number",
+            type = "long",
         },
         FinishedAt = {
             type = "timestamp",
@@ -1532,9 +1524,7 @@ M.GetEvaluationOutput = {
         Status = {
             type = "string",
         },
-        PerformanceMetrics = {
-            type = "structure",
-        },
+        PerformanceMetrics = M.PerformanceMetrics,
         LogUri = {
             type = "string",
         },
@@ -1542,7 +1532,7 @@ M.GetEvaluationOutput = {
             type = "string",
         },
         ComputeTime = {
-            type = "number",
+            type = "long",
         },
         FinishedAt = {
             type = "timestamp",
@@ -1564,6 +1554,9 @@ M.GetMLModelInput = {
         },
         Verbose = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1593,15 +1586,13 @@ M.GetMLModelOutput = {
             type = "string",
         },
         SizeInBytes = {
-            type = "number",
+            type = "long",
         },
-        EndpointInfo = {
-            type = "structure",
-        },
+        EndpointInfo = M.RealtimeEndpointInfo,
         TrainingParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         InputDataLocationS3 = {
             type = "string",
@@ -1610,7 +1601,7 @@ M.GetMLModelOutput = {
             type = "string",
         },
         ScoreThreshold = {
-            type = "number",
+            type = "float",
         },
         ScoreThresholdLastUpdatedAt = {
             type = "timestamp",
@@ -1622,7 +1613,7 @@ M.GetMLModelOutput = {
             type = "string",
         },
         ComputeTime = {
-            type = "number",
+            type = "long",
         },
         FinishedAt = {
             type = "timestamp",
@@ -1647,7 +1638,10 @@ M.LimitExceededException = {
             type = "string",
         },
         code = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1663,8 +1657,8 @@ M.PredictInput = {
         },
         Record = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1700,17 +1694,17 @@ M.Prediction = {
             type = "string",
         },
         predictedValue = {
-            type = "number",
+            type = "float",
         },
         predictedScores = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "float" },
         },
         details = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1718,9 +1712,7 @@ M.Prediction = {
 M.PredictOutput = {
     type = "structure",
     members = {
-        Prediction = {
-            type = "structure",
-        },
+        Prediction = M.Prediction,
     },
 }
 
@@ -1818,7 +1810,7 @@ M.UpdateMLModelInput = {
             type = "string",
         },
         ScoreThreshold = {
-            type = "number",
+            type = "float",
         },
     },
 }

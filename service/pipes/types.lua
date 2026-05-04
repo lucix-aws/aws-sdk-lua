@@ -10,14 +10,14 @@ M.AwsVpcConfiguration = {
     members = {
         Subnets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         SecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AssignPublicIp = {
             type = "string",
@@ -29,7 +29,7 @@ M.BatchArrayProperties = {
     type = "structure",
     members = {
         Size = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -75,18 +75,18 @@ M.BatchContainerOverrides = {
     members = {
         Command = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Environment = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchEnvironmentVariable,
         },
         InstanceType = {
             type = "string",
         },
         ResourceRequirements = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchResourceRequirement,
         },
     },
 }
@@ -112,7 +112,7 @@ M.BatchRetryStrategy = {
     type = "structure",
     members = {
         Attempts = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -127,10 +127,16 @@ M.CapacityProviderStrategyItem = {
             },
         },
         weight = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         base = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -191,17 +197,17 @@ M.PipeEnrichmentHttpParameters = {
     members = {
         PathParameterValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         HeaderParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         QueryStringParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -212,9 +218,7 @@ M.PipeEnrichmentParameters = {
         InputTemplate = {
             type = "string",
         },
-        HttpParameters = {
-            type = "structure",
-        },
+        HttpParameters = M.PipeEnrichmentHttpParameters,
     },
 }
 
@@ -274,15 +278,9 @@ M.S3LogDestinationParameters = {
 M.PipeLogConfigurationParameters = {
     type = "structure",
     members = {
-        S3LogDestination = {
-            type = "structure",
-        },
-        FirehoseLogDestination = {
-            type = "structure",
-        },
-        CloudwatchLogsLogDestination = {
-            type = "structure",
-        },
+        S3LogDestination = M.S3LogDestinationParameters,
+        FirehoseLogDestination = M.FirehoseLogDestinationParameters,
+        CloudwatchLogsLogDestination = M.CloudwatchLogsLogDestinationParameters,
         Level = {
             type = "string",
             traits = {
@@ -291,7 +289,7 @@ M.PipeLogConfigurationParameters = {
         },
         IncludeExecutionData = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -308,12 +306,9 @@ M.MQBrokerAccessCredentials = {
 M.PipeSourceActiveMQBrokerParameters = {
     type = "structure",
     members = {
-        Credentials = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        Credentials = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MQBrokerAccessCredentials }),
         QueueName = {
             type = "string",
             traits = {
@@ -321,10 +316,10 @@ M.PipeSourceActiveMQBrokerParameters = {
             },
         },
         BatchSize = {
-            type = "number",
+            type = "integer",
         },
         MaximumBatchingWindowInSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -351,25 +346,23 @@ M.PipeSourceDynamoDBStreamParameters = {
     type = "structure",
     members = {
         BatchSize = {
-            type = "number",
+            type = "integer",
         },
-        DeadLetterConfig = {
-            type = "structure",
-        },
+        DeadLetterConfig = M.DeadLetterConfig,
         OnPartialBatchItemFailure = {
             type = "string",
         },
         MaximumBatchingWindowInSeconds = {
-            type = "number",
+            type = "integer",
         },
         MaximumRecordAgeInSeconds = {
-            type = "number",
+            type = "integer",
         },
         MaximumRetryAttempts = {
-            type = "number",
+            type = "integer",
         },
         ParallelizationFactor = {
-            type = "number",
+            type = "integer",
         },
         StartingPosition = {
             type = "string",
@@ -394,7 +387,7 @@ M.FilterCriteria = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
     },
 }
@@ -409,25 +402,23 @@ M.PipeSourceKinesisStreamParameters = {
     type = "structure",
     members = {
         BatchSize = {
-            type = "number",
+            type = "integer",
         },
-        DeadLetterConfig = {
-            type = "structure",
-        },
+        DeadLetterConfig = M.DeadLetterConfig,
         OnPartialBatchItemFailure = {
             type = "string",
         },
         MaximumBatchingWindowInSeconds = {
-            type = "number",
+            type = "integer",
         },
         MaximumRecordAgeInSeconds = {
-            type = "number",
+            type = "integer",
         },
         MaximumRetryAttempts = {
-            type = "number",
+            type = "integer",
         },
         ParallelizationFactor = {
-            type = "number",
+            type = "integer",
         },
         StartingPosition = {
             type = "string",
@@ -471,29 +462,24 @@ M.PipeSourceManagedStreamingKafkaParameters = {
             type = "string",
         },
         BatchSize = {
-            type = "number",
+            type = "integer",
         },
         MaximumBatchingWindowInSeconds = {
-            type = "number",
+            type = "integer",
         },
         ConsumerGroupID = {
             type = "string",
         },
-        Credentials = {
-            type = "union",
-        },
+        Credentials = M.MSKAccessCredentials,
     },
 }
 
 M.PipeSourceRabbitMQBrokerParameters = {
     type = "structure",
     members = {
-        Credentials = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        Credentials = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MQBrokerAccessCredentials }),
         QueueName = {
             type = "string",
             traits = {
@@ -504,10 +490,10 @@ M.PipeSourceRabbitMQBrokerParameters = {
             type = "string",
         },
         BatchSize = {
-            type = "number",
+            type = "integer",
         },
         MaximumBatchingWindowInSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -540,11 +526,11 @@ M.SelfManagedKafkaAccessConfigurationVpc = {
     members = {
         Subnets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SecurityGroup = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -563,26 +549,22 @@ M.PipeSourceSelfManagedKafkaParameters = {
         },
         AdditionalBootstrapServers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         BatchSize = {
-            type = "number",
+            type = "integer",
         },
         MaximumBatchingWindowInSeconds = {
-            type = "number",
+            type = "integer",
         },
         ConsumerGroupID = {
             type = "string",
         },
-        Credentials = {
-            type = "union",
-        },
+        Credentials = M.SelfManagedKafkaAccessConfigurationCredentials,
         ServerRootCaCertificate = {
             type = "string",
         },
-        Vpc = {
-            type = "structure",
-        },
+        Vpc = M.SelfManagedKafkaAccessConfigurationVpc,
     },
 }
 
@@ -590,10 +572,10 @@ M.PipeSourceSqsQueueParameters = {
     type = "structure",
     members = {
         BatchSize = {
-            type = "number",
+            type = "integer",
         },
         MaximumBatchingWindowInSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -601,30 +583,14 @@ M.PipeSourceSqsQueueParameters = {
 M.PipeSourceParameters = {
     type = "structure",
     members = {
-        FilterCriteria = {
-            type = "structure",
-        },
-        KinesisStreamParameters = {
-            type = "structure",
-        },
-        DynamoDBStreamParameters = {
-            type = "structure",
-        },
-        SqsQueueParameters = {
-            type = "structure",
-        },
-        ActiveMQBrokerParameters = {
-            type = "structure",
-        },
-        RabbitMQBrokerParameters = {
-            type = "structure",
-        },
-        ManagedStreamingKafkaParameters = {
-            type = "structure",
-        },
-        SelfManagedKafkaParameters = {
-            type = "structure",
-        },
+        FilterCriteria = M.FilterCriteria,
+        KinesisStreamParameters = M.PipeSourceKinesisStreamParameters,
+        DynamoDBStreamParameters = M.PipeSourceDynamoDBStreamParameters,
+        SqsQueueParameters = M.PipeSourceSqsQueueParameters,
+        ActiveMQBrokerParameters = M.PipeSourceActiveMQBrokerParameters,
+        RabbitMQBrokerParameters = M.PipeSourceRabbitMQBrokerParameters,
+        ManagedStreamingKafkaParameters = M.PipeSourceManagedStreamingKafkaParameters,
+        SelfManagedKafkaParameters = M.PipeSourceSelfManagedKafkaParameters,
     },
 }
 
@@ -643,23 +609,17 @@ M.PipeTargetBatchJobParameters = {
                 required = true,
             },
         },
-        ArrayProperties = {
-            type = "structure",
-        },
-        RetryStrategy = {
-            type = "structure",
-        },
-        ContainerOverrides = {
-            type = "structure",
-        },
+        ArrayProperties = M.BatchArrayProperties,
+        RetryStrategy = M.BatchRetryStrategy,
+        ContainerOverrides = M.BatchContainerOverrides,
         DependsOn = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchJobDependency,
         },
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -685,9 +645,7 @@ M.LaunchType = {
 M.NetworkConfiguration = {
     type = "structure",
     members = {
-        awsvpcConfiguration = {
-            type = "structure",
-        },
+        awsvpcConfiguration = M.AwsVpcConfiguration,
     },
 }
 
@@ -753,31 +711,31 @@ M.EcsContainerOverride = {
     members = {
         Command = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Cpu = {
-            type = "number",
+            type = "integer",
         },
         Environment = {
             type = "list",
-            member_type = "structure",
+            member = M.EcsEnvironmentVariable,
         },
         EnvironmentFiles = {
             type = "list",
-            member_type = "structure",
+            member = M.EcsEnvironmentFile,
         },
         Memory = {
-            type = "number",
+            type = "integer",
         },
         MemoryReservation = {
-            type = "number",
+            type = "integer",
         },
         Name = {
             type = "string",
         },
         ResourceRequirements = {
             type = "list",
-            member_type = "structure",
+            member = M.EcsResourceRequirement,
         },
     },
 }
@@ -786,7 +744,7 @@ M.EcsEphemeralStorage = {
     type = "structure",
     members = {
         sizeInGiB = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -811,20 +769,18 @@ M.EcsTaskOverride = {
     members = {
         ContainerOverrides = {
             type = "list",
-            member_type = "structure",
+            member = M.EcsContainerOverride,
         },
         Cpu = {
             type = "string",
         },
-        EphemeralStorage = {
-            type = "structure",
-        },
+        EphemeralStorage = M.EcsEphemeralStorage,
         ExecutionRoleArn = {
             type = "string",
         },
         InferenceAcceleratorOverrides = {
             type = "list",
-            member_type = "structure",
+            member = M.EcsInferenceAcceleratorOverride,
         },
         Memory = {
             type = "string",
@@ -902,14 +858,12 @@ M.PipeTargetEcsTaskParameters = {
             },
         },
         TaskCount = {
-            type = "number",
+            type = "integer",
         },
         LaunchType = {
             type = "string",
         },
-        NetworkConfiguration = {
-            type = "structure",
-        },
+        NetworkConfiguration = M.NetworkConfiguration,
         PlatformVersion = {
             type = "string",
         },
@@ -918,21 +872,27 @@ M.PipeTargetEcsTaskParameters = {
         },
         CapacityProviderStrategy = {
             type = "list",
-            member_type = "structure",
+            member = M.CapacityProviderStrategyItem,
         },
         EnableECSManagedTags = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         EnableExecuteCommand = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         PlacementConstraints = {
             type = "list",
-            member_type = "structure",
+            member = M.PlacementConstraint,
         },
         PlacementStrategy = {
             type = "list",
-            member_type = "structure",
+            member = M.PlacementStrategy,
         },
         PropagateTags = {
             type = "string",
@@ -940,12 +900,10 @@ M.PipeTargetEcsTaskParameters = {
         ReferenceId = {
             type = "string",
         },
-        Overrides = {
-            type = "structure",
-        },
+        Overrides = M.EcsTaskOverride,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -964,7 +922,7 @@ M.PipeTargetEventBridgeEventBusParameters = {
         },
         Resources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Time = {
             type = "string",
@@ -977,17 +935,17 @@ M.PipeTargetHttpParameters = {
     members = {
         PathParameterValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         HeaderParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         QueryStringParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1038,10 +996,13 @@ M.PipeTargetRedshiftDataParameters = {
         },
         WithEvent = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Sqls = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1072,7 +1033,7 @@ M.PipeTargetSageMakerPipelineParameters = {
     members = {
         PipelineParameterList = {
             type = "list",
-            member_type = "structure",
+            member = M.SageMakerPipelineParameter,
         },
     },
 }
@@ -1176,7 +1137,7 @@ M.MultiMeasureMapping = {
         },
         MultiMeasureAttributeMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.MultiMeasureAttributeMapping,
             traits = {
                 required = true,
             },
@@ -1239,18 +1200,18 @@ M.PipeTargetTimestreamParameters = {
         },
         DimensionMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionMapping,
             traits = {
                 required = true,
             },
         },
         SingleMeasureMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.SingleMeasureMapping,
         },
         MultiMeasureMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.MultiMeasureMapping,
         },
     },
 }
@@ -1261,42 +1222,18 @@ M.PipeTargetParameters = {
         InputTemplate = {
             type = "string",
         },
-        LambdaFunctionParameters = {
-            type = "structure",
-        },
-        StepFunctionStateMachineParameters = {
-            type = "structure",
-        },
-        KinesisStreamParameters = {
-            type = "structure",
-        },
-        EcsTaskParameters = {
-            type = "structure",
-        },
-        BatchJobParameters = {
-            type = "structure",
-        },
-        SqsQueueParameters = {
-            type = "structure",
-        },
-        HttpParameters = {
-            type = "structure",
-        },
-        RedshiftDataParameters = {
-            type = "structure",
-        },
-        SageMakerPipelineParameters = {
-            type = "structure",
-        },
-        EventBridgeEventBusParameters = {
-            type = "structure",
-        },
-        CloudWatchLogsParameters = {
-            type = "structure",
-        },
-        TimestreamParameters = {
-            type = "structure",
-        },
+        LambdaFunctionParameters = M.PipeTargetLambdaFunctionParameters,
+        StepFunctionStateMachineParameters = M.PipeTargetStateMachineParameters,
+        KinesisStreamParameters = M.PipeTargetKinesisStreamParameters,
+        EcsTaskParameters = M.PipeTargetEcsTaskParameters,
+        BatchJobParameters = M.PipeTargetBatchJobParameters,
+        SqsQueueParameters = M.PipeTargetSqsQueueParameters,
+        HttpParameters = M.PipeTargetHttpParameters,
+        RedshiftDataParameters = M.PipeTargetRedshiftDataParameters,
+        SageMakerPipelineParameters = M.PipeTargetSageMakerPipelineParameters,
+        EventBridgeEventBusParameters = M.PipeTargetEventBridgeEventBusParameters,
+        CloudWatchLogsParameters = M.PipeTargetCloudWatchLogsParameters,
+        TimestreamParameters = M.PipeTargetTimestreamParameters,
     },
 }
 
@@ -1322,24 +1259,18 @@ M.CreatePipeInput = {
                 required = true,
             },
         },
-        SourceParameters = {
-            type = "structure",
-        },
+        SourceParameters = M.PipeSourceParameters,
         Enrichment = {
             type = "string",
         },
-        EnrichmentParameters = {
-            type = "structure",
-        },
+        EnrichmentParameters = M.PipeEnrichmentParameters,
         Target = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        TargetParameters = {
-            type = "structure",
-        },
+        TargetParameters = M.PipeTargetParameters,
         RoleArn = {
             type = "string",
             traits = {
@@ -1348,12 +1279,10 @@ M.CreatePipeInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        LogConfiguration = {
-            type = "structure",
-        },
+        LogConfiguration = M.PipeLogConfigurationParameters,
         KmsKeyIdentifier = {
             type = "string",
         },
@@ -1413,7 +1342,7 @@ M.InternalException = {
             },
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -1485,7 +1414,7 @@ M.ThrottlingException = {
             type = "string",
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -1520,7 +1449,7 @@ M.ValidationException = {
         },
         fieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -1611,21 +1540,15 @@ M.S3LogDestination = {
 M.PipeLogConfiguration = {
     type = "structure",
     members = {
-        S3LogDestination = {
-            type = "structure",
-        },
-        FirehoseLogDestination = {
-            type = "structure",
-        },
-        CloudwatchLogsLogDestination = {
-            type = "structure",
-        },
+        S3LogDestination = M.S3LogDestination,
+        FirehoseLogDestination = M.FirehoseLogDestination,
+        CloudwatchLogsLogDestination = M.CloudwatchLogsLogDestination,
         Level = {
             type = "string",
         },
         IncludeExecutionData = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1654,28 +1577,22 @@ M.DescribePipeOutput = {
         Source = {
             type = "string",
         },
-        SourceParameters = {
-            type = "structure",
-        },
+        SourceParameters = M.PipeSourceParameters,
         Enrichment = {
             type = "string",
         },
-        EnrichmentParameters = {
-            type = "structure",
-        },
+        EnrichmentParameters = M.PipeEnrichmentParameters,
         Target = {
             type = "string",
         },
-        TargetParameters = {
-            type = "structure",
-        },
+        TargetParameters = M.PipeTargetParameters,
         RoleArn = {
             type = "string",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         CreationTime = {
             type = "timestamp",
@@ -1683,9 +1600,7 @@ M.DescribePipeOutput = {
         LastModifiedTime = {
             type = "timestamp",
         },
-        LogConfiguration = {
-            type = "structure",
-        },
+        LogConfiguration = M.PipeLogConfiguration,
         KmsKeyIdentifier = {
             type = "string",
         },
@@ -1732,7 +1647,7 @@ M.ListPipesInput = {
             },
         },
         Limit = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "Limit",
             },
@@ -1781,7 +1696,7 @@ M.ListPipesOutput = {
     members = {
         Pipes = {
             type = "list",
-            member_type = "structure",
+            member = M.Pipe,
         },
         NextToken = {
             type = "string",
@@ -1807,8 +1722,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1890,17 +1805,14 @@ M.StopPipeOutput = {
 M.UpdatePipeSourceActiveMQBrokerParameters = {
     type = "structure",
     members = {
-        Credentials = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        Credentials = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MQBrokerAccessCredentials }),
         BatchSize = {
-            type = "number",
+            type = "integer",
         },
         MaximumBatchingWindowInSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1909,25 +1821,23 @@ M.UpdatePipeSourceDynamoDBStreamParameters = {
     type = "structure",
     members = {
         BatchSize = {
-            type = "number",
+            type = "integer",
         },
-        DeadLetterConfig = {
-            type = "structure",
-        },
+        DeadLetterConfig = M.DeadLetterConfig,
         OnPartialBatchItemFailure = {
             type = "string",
         },
         MaximumBatchingWindowInSeconds = {
-            type = "number",
+            type = "integer",
         },
         MaximumRecordAgeInSeconds = {
-            type = "number",
+            type = "integer",
         },
         MaximumRetryAttempts = {
-            type = "number",
+            type = "integer",
         },
         ParallelizationFactor = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1936,25 +1846,23 @@ M.UpdatePipeSourceKinesisStreamParameters = {
     type = "structure",
     members = {
         BatchSize = {
-            type = "number",
+            type = "integer",
         },
-        DeadLetterConfig = {
-            type = "structure",
-        },
+        DeadLetterConfig = M.DeadLetterConfig,
         OnPartialBatchItemFailure = {
             type = "string",
         },
         MaximumBatchingWindowInSeconds = {
-            type = "number",
+            type = "integer",
         },
         MaximumRecordAgeInSeconds = {
-            type = "number",
+            type = "integer",
         },
         MaximumRetryAttempts = {
-            type = "number",
+            type = "integer",
         },
         ParallelizationFactor = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1963,13 +1871,11 @@ M.UpdatePipeSourceManagedStreamingKafkaParameters = {
     type = "structure",
     members = {
         BatchSize = {
-            type = "number",
+            type = "integer",
         },
-        Credentials = {
-            type = "union",
-        },
+        Credentials = M.MSKAccessCredentials,
         MaximumBatchingWindowInSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1977,17 +1883,14 @@ M.UpdatePipeSourceManagedStreamingKafkaParameters = {
 M.UpdatePipeSourceRabbitMQBrokerParameters = {
     type = "structure",
     members = {
-        Credentials = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        Credentials = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MQBrokerAccessCredentials }),
         BatchSize = {
-            type = "number",
+            type = "integer",
         },
         MaximumBatchingWindowInSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1996,20 +1899,16 @@ M.UpdatePipeSourceSelfManagedKafkaParameters = {
     type = "structure",
     members = {
         BatchSize = {
-            type = "number",
+            type = "integer",
         },
         MaximumBatchingWindowInSeconds = {
-            type = "number",
+            type = "integer",
         },
-        Credentials = {
-            type = "union",
-        },
+        Credentials = M.SelfManagedKafkaAccessConfigurationCredentials,
         ServerRootCaCertificate = {
             type = "string",
         },
-        Vpc = {
-            type = "structure",
-        },
+        Vpc = M.SelfManagedKafkaAccessConfigurationVpc,
     },
 }
 
@@ -2017,10 +1916,10 @@ M.UpdatePipeSourceSqsQueueParameters = {
     type = "structure",
     members = {
         BatchSize = {
-            type = "number",
+            type = "integer",
         },
         MaximumBatchingWindowInSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2028,30 +1927,14 @@ M.UpdatePipeSourceSqsQueueParameters = {
 M.UpdatePipeSourceParameters = {
     type = "structure",
     members = {
-        FilterCriteria = {
-            type = "structure",
-        },
-        KinesisStreamParameters = {
-            type = "structure",
-        },
-        DynamoDBStreamParameters = {
-            type = "structure",
-        },
-        SqsQueueParameters = {
-            type = "structure",
-        },
-        ActiveMQBrokerParameters = {
-            type = "structure",
-        },
-        RabbitMQBrokerParameters = {
-            type = "structure",
-        },
-        ManagedStreamingKafkaParameters = {
-            type = "structure",
-        },
-        SelfManagedKafkaParameters = {
-            type = "structure",
-        },
+        FilterCriteria = M.FilterCriteria,
+        KinesisStreamParameters = M.UpdatePipeSourceKinesisStreamParameters,
+        DynamoDBStreamParameters = M.UpdatePipeSourceDynamoDBStreamParameters,
+        SqsQueueParameters = M.UpdatePipeSourceSqsQueueParameters,
+        ActiveMQBrokerParameters = M.UpdatePipeSourceActiveMQBrokerParameters,
+        RabbitMQBrokerParameters = M.UpdatePipeSourceRabbitMQBrokerParameters,
+        ManagedStreamingKafkaParameters = M.UpdatePipeSourceManagedStreamingKafkaParameters,
+        SelfManagedKafkaParameters = M.UpdatePipeSourceSelfManagedKafkaParameters,
     },
 }
 
@@ -2071,30 +1954,22 @@ M.UpdatePipeInput = {
         DesiredState = {
             type = "string",
         },
-        SourceParameters = {
-            type = "structure",
-        },
+        SourceParameters = M.UpdatePipeSourceParameters,
         Enrichment = {
             type = "string",
         },
-        EnrichmentParameters = {
-            type = "structure",
-        },
+        EnrichmentParameters = M.PipeEnrichmentParameters,
         Target = {
             type = "string",
         },
-        TargetParameters = {
-            type = "structure",
-        },
+        TargetParameters = M.PipeTargetParameters,
         RoleArn = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        LogConfiguration = {
-            type = "structure",
-        },
+        LogConfiguration = M.PipeLogConfigurationParameters,
         KmsKeyIdentifier = {
             type = "string",
         },
@@ -2137,8 +2012,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2162,7 +2037,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,

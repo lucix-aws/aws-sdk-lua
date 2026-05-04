@@ -276,11 +276,11 @@ local record ValidationException
     Reason: string
 end
 
+local type ChecksumAggregationMethod = "LINEAR"
+
 local type ChecksumAlgorithm = "SHA256"
 
 local type Status = "completed" | "pending" | "error"
-
-local type ChecksumAggregationMethod = "LINEAR"
 
 local type SSEType = "sse-ebs" | "sse-kms" | "none"
 

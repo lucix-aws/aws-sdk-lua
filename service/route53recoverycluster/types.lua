@@ -100,8 +100,9 @@ M.InternalServerException = {
             },
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_header = "Retry-After",
             },
         },
@@ -144,8 +145,9 @@ M.ThrottlingException = {
             },
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_header = "Retry-After",
             },
         },
@@ -192,7 +194,7 @@ M.ValidationException = {
         },
         fields = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -207,7 +209,7 @@ M.ListRoutingControlsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -241,7 +243,7 @@ M.ListRoutingControlsOutput = {
     members = {
         RoutingControls = {
             type = "list",
-            member_type = "structure",
+            member = M.RoutingControl,
             traits = {
                 required = true,
             },
@@ -300,7 +302,7 @@ M.UpdateRoutingControlStateInput = {
         },
         SafetyRulesToOverride = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -332,14 +334,14 @@ M.UpdateRoutingControlStatesInput = {
     members = {
         UpdateRoutingControlStateEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.UpdateRoutingControlStateEntry,
             traits = {
                 required = true,
             },
         },
         SafetyRulesToOverride = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }

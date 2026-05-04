@@ -59,7 +59,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -131,7 +131,7 @@ M.FlexibleTimeWindow = {
             },
         },
         MaximumWindowInMinutes = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -160,10 +160,16 @@ M.CapacityProviderStrategyItem = {
             },
         },
         weight = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         base = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -179,14 +185,14 @@ M.AwsVpcConfiguration = {
     members = {
         Subnets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         SecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AssignPublicIp = {
             type = "string",
@@ -197,9 +203,7 @@ M.AwsVpcConfiguration = {
 M.NetworkConfiguration = {
     type = "structure",
     members = {
-        awsvpcConfiguration = {
-            type = "structure",
-        },
+        awsvpcConfiguration = M.AwsVpcConfiguration,
     },
 }
 
@@ -252,14 +256,12 @@ M.EcsParameters = {
             },
         },
         TaskCount = {
-            type = "number",
+            type = "integer",
         },
         LaunchType = {
             type = "string",
         },
-        NetworkConfiguration = {
-            type = "structure",
-        },
+        NetworkConfiguration = M.NetworkConfiguration,
         PlatformVersion = {
             type = "string",
         },
@@ -268,7 +270,7 @@ M.EcsParameters = {
         },
         CapacityProviderStrategy = {
             type = "list",
-            member_type = "structure",
+            member = M.CapacityProviderStrategyItem,
         },
         EnableECSManagedTags = {
             type = "boolean",
@@ -278,11 +280,11 @@ M.EcsParameters = {
         },
         PlacementConstraints = {
             type = "list",
-            member_type = "structure",
+            member = M.PlacementConstraint,
         },
         PlacementStrategy = {
             type = "list",
-            member_type = "structure",
+            member = M.PlacementStrategy,
         },
         PropagateTags = {
             type = "string",
@@ -292,7 +294,7 @@ M.EcsParameters = {
         },
         Tags = {
             type = "list",
-            member_type = "map",
+            member = { type = "map" },
         },
     },
 }
@@ -331,10 +333,10 @@ M.RetryPolicy = {
     type = "structure",
     members = {
         MaximumEventAgeInSeconds = {
-            type = "number",
+            type = "integer",
         },
         MaximumRetryAttempts = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -362,7 +364,7 @@ M.SageMakerPipelineParameters = {
     members = {
         PipelineParameterList = {
             type = "list",
-            member_type = "structure",
+            member = M.SageMakerPipelineParameter,
         },
     },
 }
@@ -391,30 +393,16 @@ M.Target = {
                 required = true,
             },
         },
-        DeadLetterConfig = {
-            type = "structure",
-        },
-        RetryPolicy = {
-            type = "structure",
-        },
+        DeadLetterConfig = M.DeadLetterConfig,
+        RetryPolicy = M.RetryPolicy,
         Input = {
             type = "string",
         },
-        EcsParameters = {
-            type = "structure",
-        },
-        EventBridgeParameters = {
-            type = "structure",
-        },
-        KinesisParameters = {
-            type = "structure",
-        },
-        SageMakerPipelineParameters = {
-            type = "structure",
-        },
-        SqsParameters = {
-            type = "structure",
-        },
+        EcsParameters = M.EcsParameters,
+        EventBridgeParameters = M.EventBridgeParameters,
+        KinesisParameters = M.KinesisParameters,
+        SageMakerPipelineParameters = M.SageMakerPipelineParameters,
+        SqsParameters = M.SqsParameters,
     },
 }
 
@@ -455,18 +443,12 @@ M.CreateScheduleInput = {
         KmsKeyArn = {
             type = "string",
         },
-        Target = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        FlexibleTimeWindow = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Target = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Target }),
+        FlexibleTimeWindow = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FlexibleTimeWindow }),
         ClientToken = {
             type = "string",
         },
@@ -588,12 +570,8 @@ M.GetScheduleOutput = {
         KmsKeyArn = {
             type = "string",
         },
-        Target = {
-            type = "structure",
-        },
-        FlexibleTimeWindow = {
-            type = "structure",
-        },
+        Target = M.Target,
+        FlexibleTimeWindow = M.FlexibleTimeWindow,
         ActionAfterCompletion = {
             type = "string",
         },
@@ -628,7 +606,7 @@ M.ListSchedulesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -669,9 +647,7 @@ M.ScheduleSummary = {
         LastModificationDate = {
             type = "timestamp",
         },
-        Target = {
-            type = "structure",
-        },
+        Target = M.TargetSummary,
     },
 }
 
@@ -683,7 +659,7 @@ M.ListSchedulesOutput = {
         },
         Schedules = {
             type = "list",
-            member_type = "structure",
+            member = M.ScheduleSummary,
             traits = {
                 required = true,
             },
@@ -728,18 +704,12 @@ M.UpdateScheduleInput = {
         KmsKeyArn = {
             type = "string",
         },
-        Target = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        FlexibleTimeWindow = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Target = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Target }),
+        FlexibleTimeWindow = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FlexibleTimeWindow }),
         ClientToken = {
             type = "string",
         },
@@ -773,7 +743,7 @@ M.CreateScheduleGroupInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ClientToken = {
             type = "string",
@@ -871,7 +841,7 @@ M.ListScheduleGroupsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -908,7 +878,7 @@ M.ListScheduleGroupsOutput = {
         },
         ScheduleGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.ScheduleGroupSummary,
             traits = {
                 required = true,
             },
@@ -928,7 +898,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -952,7 +922,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "TagKeys",
                 required = true,

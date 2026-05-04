@@ -21,8 +21,8 @@ M.ConfigurationDefinition = {
         },
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -53,8 +53,8 @@ M.ConfigurationDefinitionInput = {
         },
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -85,8 +85,8 @@ M.ConfigurationDefinitionSummary = {
         },
         FirstClassParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -133,8 +133,8 @@ M.StatusSummary = {
         },
         StatusDetails = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -156,11 +156,11 @@ M.ConfigurationManagerSummary = {
         },
         StatusSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.StatusSummary,
         },
         ConfigurationDefinitionSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigurationDefinitionSummary,
         },
     },
 }
@@ -197,12 +197,12 @@ M.ConfigurationSummary = {
         },
         FirstClassParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         StatusSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.StatusSummary,
         },
     },
 }
@@ -228,15 +228,15 @@ M.CreateConfigurationManagerInput = {
         },
         ConfigurationDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigurationDefinitionInput,
             traits = {
                 required = true,
             },
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -324,7 +324,7 @@ M.Filter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -383,12 +383,12 @@ M.GetConfigurationOutput = {
         },
         StatusSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.StatusSummary,
         },
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -435,16 +435,16 @@ M.GetConfigurationManagerOutput = {
         },
         StatusSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.StatusSummary,
         },
         ConfigurationDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigurationDefinition,
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -465,9 +465,7 @@ M.ServiceSettings = {
 M.GetServiceSettingsOutput = {
     type = "structure",
     members = {
-        ServiceSettings = {
-            type = "structure",
-        },
+        ServiceSettings = M.ServiceSettings,
     },
 }
 
@@ -478,11 +476,11 @@ M.ListConfigurationManagersInput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
     },
 }
@@ -492,7 +490,7 @@ M.ListConfigurationManagersOutput = {
     members = {
         ConfigurationManagersList = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigurationManagerSummary,
         },
         NextToken = {
             type = "string",
@@ -507,11 +505,11 @@ M.ListConfigurationsInput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         ManagerArn = {
             type = "string",
@@ -527,7 +525,7 @@ M.ListConfigurationsOutput = {
     members = {
         ConfigurationsList = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigurationSummary,
         },
         NextToken = {
             type = "string",
@@ -556,7 +554,7 @@ M.ListQuickSetupTypesOutput = {
     members = {
         QuickSetupTypeList = {
             type = "list",
-            member_type = "structure",
+            member = M.QuickSetupTypeOutput,
         },
     },
 }
@@ -591,7 +589,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.TagEntry,
         },
     },
 }
@@ -608,8 +606,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -633,7 +631,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -668,8 +666,8 @@ M.UpdateConfigurationDefinitionInput = {
         },
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         LocalDeploymentExecutionRoleName = {
             type = "string",

@@ -53,7 +53,7 @@ M.ActionInteraction = {
         },
         impression = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         properties = {
             type = "string",
@@ -82,7 +82,7 @@ M.PutActionInteractionsInput = {
         },
         actionInteractions = {
             type = "list",
-            member_type = "structure",
+            member = M.ActionInteraction,
             traits = {
                 required = true,
             },
@@ -125,7 +125,7 @@ M.PutActionsInput = {
         },
         actions = {
             type = "list",
-            member_type = "structure",
+            member = M.Action,
             traits = {
                 required = true,
             },
@@ -162,7 +162,7 @@ M.Event = {
             },
         },
         eventValue = {
-            type = "number",
+            type = "float",
         },
         itemId = {
             type = "string",
@@ -181,11 +181,9 @@ M.Event = {
         },
         impression = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        metricAttribution = {
-            type = "structure",
-        },
+        metricAttribution = M.MetricAttribution,
     },
 }
 
@@ -209,7 +207,7 @@ M.PutEventsInput = {
         },
         eventList = {
             type = "list",
-            member_type = "structure",
+            member = M.Event,
             traits = {
                 required = true,
             },
@@ -247,7 +245,7 @@ M.PutItemsInput = {
         },
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.Item,
             traits = {
                 required = true,
             },
@@ -285,7 +283,7 @@ M.PutUsersInput = {
         },
         users = {
             type = "list",
-            member_type = "structure",
+            member = M.User,
             traits = {
                 required = true,
             },

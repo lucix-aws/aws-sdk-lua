@@ -10,7 +10,7 @@ M.ProvisionedThroughput = {
             },
         },
         VolumeThroughput = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "volumeThroughput",
             },
@@ -28,14 +28,11 @@ M.BrokerEBSVolumeInfo = {
                 required = true,
             },
         },
-        ProvisionedThroughput = {
-            type = "structure",
-            traits = {
-                json_name = "provisionedThroughput",
-            },
-        },
+        ProvisionedThroughput = setmetatable({ traits = {
+            json_name = "provisionedThroughput",
+        } }, { __index = M.ProvisionedThroughput }),
         VolumeSizeGB = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "volumeSizeGB",
             },
@@ -144,18 +141,12 @@ M.VpcConnectivityScram = {
 M.VpcConnectivitySasl = {
     type = "structure",
     members = {
-        Scram = {
-            type = "structure",
-            traits = {
-                json_name = "scram",
-            },
-        },
-        Iam = {
-            type = "structure",
-            traits = {
-                json_name = "iam",
-            },
-        },
+        Scram = setmetatable({ traits = {
+            json_name = "scram",
+        } }, { __index = M.VpcConnectivityScram }),
+        Iam = setmetatable({ traits = {
+            json_name = "iam",
+        } }, { __index = M.VpcConnectivityIam }),
     },
 }
 
@@ -174,48 +165,33 @@ M.VpcConnectivityTls = {
 M.VpcConnectivityClientAuthentication = {
     type = "structure",
     members = {
-        Sasl = {
-            type = "structure",
-            traits = {
-                json_name = "sasl",
-            },
-        },
-        Tls = {
-            type = "structure",
-            traits = {
-                json_name = "tls",
-            },
-        },
+        Sasl = setmetatable({ traits = {
+            json_name = "sasl",
+        } }, { __index = M.VpcConnectivitySasl }),
+        Tls = setmetatable({ traits = {
+            json_name = "tls",
+        } }, { __index = M.VpcConnectivityTls }),
     },
 }
 
 M.VpcConnectivity = {
     type = "structure",
     members = {
-        ClientAuthentication = {
-            type = "structure",
-            traits = {
-                json_name = "clientAuthentication",
-            },
-        },
+        ClientAuthentication = setmetatable({ traits = {
+            json_name = "clientAuthentication",
+        } }, { __index = M.VpcConnectivityClientAuthentication }),
     },
 }
 
 M.ConnectivityInfo = {
     type = "structure",
     members = {
-        PublicAccess = {
-            type = "structure",
-            traits = {
-                json_name = "publicAccess",
-            },
-        },
-        VpcConnectivity = {
-            type = "structure",
-            traits = {
-                json_name = "vpcConnectivity",
-            },
-        },
+        PublicAccess = setmetatable({ traits = {
+            json_name = "publicAccess",
+        } }, { __index = M.PublicAccess }),
+        VpcConnectivity = setmetatable({ traits = {
+            json_name = "vpcConnectivity",
+        } }, { __index = M.VpcConnectivity }),
         NetworkType = {
             type = "string",
             traits = {
@@ -228,14 +204,11 @@ M.ConnectivityInfo = {
 M.EBSStorageInfo = {
     type = "structure",
     members = {
-        ProvisionedThroughput = {
-            type = "structure",
-            traits = {
-                json_name = "provisionedThroughput",
-            },
-        },
+        ProvisionedThroughput = setmetatable({ traits = {
+            json_name = "provisionedThroughput",
+        } }, { __index = M.ProvisionedThroughput }),
         VolumeSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "volumeSize",
             },
@@ -246,12 +219,9 @@ M.EBSStorageInfo = {
 M.StorageInfo = {
     type = "structure",
     members = {
-        EbsStorageInfo = {
-            type = "structure",
-            traits = {
-                json_name = "ebsStorageInfo",
-            },
-        },
+        EbsStorageInfo = setmetatable({ traits = {
+            json_name = "ebsStorageInfo",
+        } }, { __index = M.EBSStorageInfo }),
     },
 }
 
@@ -266,7 +236,7 @@ M.BrokerNodeGroupInfo = {
         },
         ClientSubnets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "clientSubnets",
                 required = true,
@@ -281,26 +251,20 @@ M.BrokerNodeGroupInfo = {
         },
         SecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "securityGroups",
             },
         },
-        StorageInfo = {
-            type = "structure",
-            traits = {
-                json_name = "storageInfo",
-            },
-        },
-        ConnectivityInfo = {
-            type = "structure",
-            traits = {
-                json_name = "connectivityInfo",
-            },
-        },
+        StorageInfo = setmetatable({ traits = {
+            json_name = "storageInfo",
+        } }, { __index = M.StorageInfo }),
+        ConnectivityInfo = setmetatable({ traits = {
+            json_name = "connectivityInfo",
+        } }, { __index = M.ConnectivityInfo }),
         ZoneIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "zoneIds",
             },
@@ -335,18 +299,12 @@ M.Scram = {
 M.Sasl = {
     type = "structure",
     members = {
-        Scram = {
-            type = "structure",
-            traits = {
-                json_name = "scram",
-            },
-        },
-        Iam = {
-            type = "structure",
-            traits = {
-                json_name = "iam",
-            },
-        },
+        Scram = setmetatable({ traits = {
+            json_name = "scram",
+        } }, { __index = M.Scram }),
+        Iam = setmetatable({ traits = {
+            json_name = "iam",
+        } }, { __index = M.Iam }),
     },
 }
 
@@ -355,7 +313,7 @@ M.Tls = {
     members = {
         CertificateAuthorityArnList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "certificateAuthorityArnList",
             },
@@ -384,24 +342,15 @@ M.Unauthenticated = {
 M.ClientAuthentication = {
     type = "structure",
     members = {
-        Sasl = {
-            type = "structure",
-            traits = {
-                json_name = "sasl",
-            },
-        },
-        Tls = {
-            type = "structure",
-            traits = {
-                json_name = "tls",
-            },
-        },
-        Unauthenticated = {
-            type = "structure",
-            traits = {
-                json_name = "unauthenticated",
-            },
-        },
+        Sasl = setmetatable({ traits = {
+            json_name = "sasl",
+        } }, { __index = M.Sasl }),
+        Tls = setmetatable({ traits = {
+            json_name = "tls",
+        } }, { __index = M.Tls }),
+        Unauthenticated = setmetatable({ traits = {
+            json_name = "unauthenticated",
+        } }, { __index = M.Unauthenticated }),
     },
 }
 
@@ -415,7 +364,7 @@ M.BrokerSoftwareInfo = {
             },
         },
         ConfigurationRevision = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "configurationRevision",
             },
@@ -475,18 +424,12 @@ M.EncryptionInTransit = {
 M.EncryptionInfo = {
     type = "structure",
     members = {
-        EncryptionAtRest = {
-            type = "structure",
-            traits = {
-                json_name = "encryptionAtRest",
-            },
-        },
-        EncryptionInTransit = {
-            type = "structure",
-            traits = {
-                json_name = "encryptionInTransit",
-            },
-        },
+        EncryptionAtRest = setmetatable({ traits = {
+            json_name = "encryptionAtRest",
+        } }, { __index = M.EncryptionAtRest }),
+        EncryptionInTransit = setmetatable({ traits = {
+            json_name = "encryptionInTransit",
+        } }, { __index = M.EncryptionInTransit }),
     },
 }
 
@@ -563,37 +506,25 @@ M.S3 = {
 M.BrokerLogs = {
     type = "structure",
     members = {
-        CloudWatchLogs = {
-            type = "structure",
-            traits = {
-                json_name = "cloudWatchLogs",
-            },
-        },
-        Firehose = {
-            type = "structure",
-            traits = {
-                json_name = "firehose",
-            },
-        },
-        S3 = {
-            type = "structure",
-            traits = {
-                json_name = "s3",
-            },
-        },
+        CloudWatchLogs = setmetatable({ traits = {
+            json_name = "cloudWatchLogs",
+        } }, { __index = M.CloudWatchLogs }),
+        Firehose = setmetatable({ traits = {
+            json_name = "firehose",
+        } }, { __index = M.Firehose }),
+        S3 = setmetatable({ traits = {
+            json_name = "s3",
+        } }, { __index = M.S3 }),
     },
 }
 
 M.LoggingInfo = {
     type = "structure",
     members = {
-        BrokerLogs = {
-            type = "structure",
-            traits = {
-                json_name = "brokerLogs",
-                required = true,
-            },
-        },
+        BrokerLogs = setmetatable({ traits = {
+            json_name = "brokerLogs",
+            required = true,
+        } }, { __index = M.BrokerLogs }),
     },
 }
 
@@ -626,31 +557,22 @@ M.NodeExporterInfo = {
 M.PrometheusInfo = {
     type = "structure",
     members = {
-        JmxExporter = {
-            type = "structure",
-            traits = {
-                json_name = "jmxExporter",
-            },
-        },
-        NodeExporter = {
-            type = "structure",
-            traits = {
-                json_name = "nodeExporter",
-            },
-        },
+        JmxExporter = setmetatable({ traits = {
+            json_name = "jmxExporter",
+        } }, { __index = M.JmxExporterInfo }),
+        NodeExporter = setmetatable({ traits = {
+            json_name = "nodeExporter",
+        } }, { __index = M.NodeExporterInfo }),
     },
 }
 
 M.OpenMonitoringInfo = {
     type = "structure",
     members = {
-        Prometheus = {
-            type = "structure",
-            traits = {
-                json_name = "prometheus",
-                required = true,
-            },
-        },
+        Prometheus = setmetatable({ traits = {
+            json_name = "prometheus",
+            required = true,
+        } }, { __index = M.PrometheusInfo }),
     },
 }
 
@@ -679,57 +601,36 @@ M.StorageMode = {
 M.Provisioned = {
     type = "structure",
     members = {
-        BrokerNodeGroupInfo = {
-            type = "structure",
-            traits = {
-                json_name = "brokerNodeGroupInfo",
-                required = true,
-            },
-        },
-        Rebalancing = {
-            type = "structure",
-            traits = {
-                json_name = "rebalancing",
-            },
-        },
-        CurrentBrokerSoftwareInfo = {
-            type = "structure",
-            traits = {
-                json_name = "currentBrokerSoftwareInfo",
-            },
-        },
-        ClientAuthentication = {
-            type = "structure",
-            traits = {
-                json_name = "clientAuthentication",
-            },
-        },
-        EncryptionInfo = {
-            type = "structure",
-            traits = {
-                json_name = "encryptionInfo",
-            },
-        },
+        BrokerNodeGroupInfo = setmetatable({ traits = {
+            json_name = "brokerNodeGroupInfo",
+            required = true,
+        } }, { __index = M.BrokerNodeGroupInfo }),
+        Rebalancing = setmetatable({ traits = {
+            json_name = "rebalancing",
+        } }, { __index = M.Rebalancing }),
+        CurrentBrokerSoftwareInfo = setmetatable({ traits = {
+            json_name = "currentBrokerSoftwareInfo",
+        } }, { __index = M.BrokerSoftwareInfo }),
+        ClientAuthentication = setmetatable({ traits = {
+            json_name = "clientAuthentication",
+        } }, { __index = M.ClientAuthentication }),
+        EncryptionInfo = setmetatable({ traits = {
+            json_name = "encryptionInfo",
+        } }, { __index = M.EncryptionInfo }),
         EnhancedMonitoring = {
             type = "string",
             traits = {
                 json_name = "enhancedMonitoring",
             },
         },
-        OpenMonitoring = {
-            type = "structure",
-            traits = {
-                json_name = "openMonitoring",
-            },
-        },
-        LoggingInfo = {
-            type = "structure",
-            traits = {
-                json_name = "loggingInfo",
-            },
-        },
+        OpenMonitoring = setmetatable({ traits = {
+            json_name = "openMonitoring",
+        } }, { __index = M.OpenMonitoringInfo }),
+        LoggingInfo = setmetatable({ traits = {
+            json_name = "loggingInfo",
+        } }, { __index = M.LoggingInfo }),
         NumberOfBrokerNodes = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "numberOfBrokerNodes",
                 required = true,
@@ -765,24 +666,18 @@ M.Provisioned = {
 M.ServerlessSasl = {
     type = "structure",
     members = {
-        Iam = {
-            type = "structure",
-            traits = {
-                json_name = "iam",
-            },
-        },
+        Iam = setmetatable({ traits = {
+            json_name = "iam",
+        } }, { __index = M.Iam }),
     },
 }
 
 M.ServerlessClientAuthentication = {
     type = "structure",
     members = {
-        Sasl = {
-            type = "structure",
-            traits = {
-                json_name = "sasl",
-            },
-        },
+        Sasl = setmetatable({ traits = {
+            json_name = "sasl",
+        } }, { __index = M.ServerlessSasl }),
     },
 }
 
@@ -803,7 +698,7 @@ M.VpcConfig = {
     members = {
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "subnetIds",
                 required = true,
@@ -811,7 +706,7 @@ M.VpcConfig = {
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "securityGroupIds",
             },
@@ -824,24 +719,18 @@ M.Serverless = {
     members = {
         VpcConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcConfig,
             traits = {
                 json_name = "vpcConfigs",
                 required = true,
             },
         },
-        ClientAuthentication = {
-            type = "structure",
-            traits = {
-                json_name = "clientAuthentication",
-            },
-        },
-        ConnectivityInfo = {
-            type = "structure",
-            traits = {
-                json_name = "connectivityInfo",
-            },
-        },
+        ClientAuthentication = setmetatable({ traits = {
+            json_name = "clientAuthentication",
+        } }, { __index = M.ServerlessClientAuthentication }),
+        ConnectivityInfo = setmetatable({ traits = {
+            json_name = "connectivityInfo",
+        } }, { __index = M.ServerlessConnectivityInfo }),
     },
 }
 
@@ -919,32 +808,23 @@ M.Cluster = {
                 json_name = "state",
             },
         },
-        StateInfo = {
-            type = "structure",
-            traits = {
-                json_name = "stateInfo",
-            },
-        },
+        StateInfo = setmetatable({ traits = {
+            json_name = "stateInfo",
+        } }, { __index = M.StateInfo }),
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
         },
-        Provisioned = {
-            type = "structure",
-            traits = {
-                json_name = "provisioned",
-            },
-        },
-        Serverless = {
-            type = "structure",
-            traits = {
-                json_name = "serverless",
-            },
-        },
+        Provisioned = setmetatable({ traits = {
+            json_name = "provisioned",
+        } }, { __index = M.Provisioned }),
+        Serverless = setmetatable({ traits = {
+            json_name = "serverless",
+        } }, { __index = M.Serverless }),
     },
 }
 
@@ -977,31 +857,22 @@ M.NodeExporter = {
 M.Prometheus = {
     type = "structure",
     members = {
-        JmxExporter = {
-            type = "structure",
-            traits = {
-                json_name = "jmxExporter",
-            },
-        },
-        NodeExporter = {
-            type = "structure",
-            traits = {
-                json_name = "nodeExporter",
-            },
-        },
+        JmxExporter = setmetatable({ traits = {
+            json_name = "jmxExporter",
+        } }, { __index = M.JmxExporter }),
+        NodeExporter = setmetatable({ traits = {
+            json_name = "nodeExporter",
+        } }, { __index = M.NodeExporter }),
     },
 }
 
 M.OpenMonitoring = {
     type = "structure",
     members = {
-        Prometheus = {
-            type = "structure",
-            traits = {
-                json_name = "prometheus",
-                required = true,
-            },
-        },
+        Prometheus = setmetatable({ traits = {
+            json_name = "prometheus",
+            required = true,
+        } }, { __index = M.Prometheus }),
     },
 }
 
@@ -1014,24 +885,15 @@ M.ClusterInfo = {
                 json_name = "activeOperationArn",
             },
         },
-        BrokerNodeGroupInfo = {
-            type = "structure",
-            traits = {
-                json_name = "brokerNodeGroupInfo",
-            },
-        },
-        Rebalancing = {
-            type = "structure",
-            traits = {
-                json_name = "rebalancing",
-            },
-        },
-        ClientAuthentication = {
-            type = "structure",
-            traits = {
-                json_name = "clientAuthentication",
-            },
-        },
+        BrokerNodeGroupInfo = setmetatable({ traits = {
+            json_name = "brokerNodeGroupInfo",
+        } }, { __index = M.BrokerNodeGroupInfo }),
+        Rebalancing = setmetatable({ traits = {
+            json_name = "rebalancing",
+        } }, { __index = M.Rebalancing }),
+        ClientAuthentication = setmetatable({ traits = {
+            json_name = "clientAuthentication",
+        } }, { __index = M.ClientAuthentication }),
         ClusterArn = {
             type = "string",
             traits = {
@@ -1050,44 +912,32 @@ M.ClusterInfo = {
                 json_name = "creationTime",
             },
         },
-        CurrentBrokerSoftwareInfo = {
-            type = "structure",
-            traits = {
-                json_name = "currentBrokerSoftwareInfo",
-            },
-        },
+        CurrentBrokerSoftwareInfo = setmetatable({ traits = {
+            json_name = "currentBrokerSoftwareInfo",
+        } }, { __index = M.BrokerSoftwareInfo }),
         CurrentVersion = {
             type = "string",
             traits = {
                 json_name = "currentVersion",
             },
         },
-        EncryptionInfo = {
-            type = "structure",
-            traits = {
-                json_name = "encryptionInfo",
-            },
-        },
+        EncryptionInfo = setmetatable({ traits = {
+            json_name = "encryptionInfo",
+        } }, { __index = M.EncryptionInfo }),
         EnhancedMonitoring = {
             type = "string",
             traits = {
                 json_name = "enhancedMonitoring",
             },
         },
-        OpenMonitoring = {
-            type = "structure",
-            traits = {
-                json_name = "openMonitoring",
-            },
-        },
-        LoggingInfo = {
-            type = "structure",
-            traits = {
-                json_name = "loggingInfo",
-            },
-        },
+        OpenMonitoring = setmetatable({ traits = {
+            json_name = "openMonitoring",
+        } }, { __index = M.OpenMonitoring }),
+        LoggingInfo = setmetatable({ traits = {
+            json_name = "loggingInfo",
+        } }, { __index = M.LoggingInfo }),
         NumberOfBrokerNodes = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "numberOfBrokerNodes",
             },
@@ -1098,16 +948,13 @@ M.ClusterInfo = {
                 json_name = "state",
             },
         },
-        StateInfo = {
-            type = "structure",
-            traits = {
-                json_name = "stateInfo",
-            },
-        },
+        StateInfo = setmetatable({ traits = {
+            json_name = "stateInfo",
+        } }, { __index = M.StateInfo }),
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -1172,12 +1019,9 @@ M.ClusterOperationStepInfo = {
 M.ClusterOperationStep = {
     type = "structure",
     members = {
-        StepInfo = {
-            type = "structure",
-            traits = {
-                json_name = "stepInfo",
-            },
-        },
+        StepInfo = setmetatable({ traits = {
+            json_name = "stepInfo",
+        } }, { __index = M.ClusterOperationStepInfo }),
         StepName = {
             type = "string",
             traits = {
@@ -1192,14 +1036,14 @@ M.BrokerCountUpdateInfo = {
     members = {
         CreatedBrokerIds = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 json_name = "createdBrokerIds",
             },
         },
         DeletedBrokerIds = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 json_name = "deletedBrokerIds",
             },
@@ -1218,7 +1062,7 @@ M.ConfigurationInfo = {
             },
         },
         Revision = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "revision",
                 required = true,
@@ -1244,19 +1088,16 @@ M.MutableClusterInfo = {
     members = {
         BrokerEBSVolumeInfo = {
             type = "list",
-            member_type = "structure",
+            member = M.BrokerEBSVolumeInfo,
             traits = {
                 json_name = "brokerEBSVolumeInfo",
             },
         },
-        ConfigurationInfo = {
-            type = "structure",
-            traits = {
-                json_name = "configurationInfo",
-            },
-        },
+        ConfigurationInfo = setmetatable({ traits = {
+            json_name = "configurationInfo",
+        } }, { __index = M.ConfigurationInfo }),
         NumberOfBrokerNodes = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "numberOfBrokerNodes",
             },
@@ -1267,72 +1108,48 @@ M.MutableClusterInfo = {
                 json_name = "enhancedMonitoring",
             },
         },
-        OpenMonitoring = {
-            type = "structure",
-            traits = {
-                json_name = "openMonitoring",
-            },
-        },
-        ZookeeperAccess = {
-            type = "structure",
-            traits = {
-                json_name = "zookeeperAccess",
-            },
-        },
+        OpenMonitoring = setmetatable({ traits = {
+            json_name = "openMonitoring",
+        } }, { __index = M.OpenMonitoring }),
+        ZookeeperAccess = setmetatable({ traits = {
+            json_name = "zookeeperAccess",
+        } }, { __index = M.ZookeeperAccess }),
         KafkaVersion = {
             type = "string",
             traits = {
                 json_name = "kafkaVersion",
             },
         },
-        LoggingInfo = {
-            type = "structure",
-            traits = {
-                json_name = "loggingInfo",
-            },
-        },
+        LoggingInfo = setmetatable({ traits = {
+            json_name = "loggingInfo",
+        } }, { __index = M.LoggingInfo }),
         InstanceType = {
             type = "string",
             traits = {
                 json_name = "instanceType",
             },
         },
-        ClientAuthentication = {
-            type = "structure",
-            traits = {
-                json_name = "clientAuthentication",
-            },
-        },
-        EncryptionInfo = {
-            type = "structure",
-            traits = {
-                json_name = "encryptionInfo",
-            },
-        },
-        ConnectivityInfo = {
-            type = "structure",
-            traits = {
-                json_name = "connectivityInfo",
-            },
-        },
+        ClientAuthentication = setmetatable({ traits = {
+            json_name = "clientAuthentication",
+        } }, { __index = M.ClientAuthentication }),
+        EncryptionInfo = setmetatable({ traits = {
+            json_name = "encryptionInfo",
+        } }, { __index = M.EncryptionInfo }),
+        ConnectivityInfo = setmetatable({ traits = {
+            json_name = "connectivityInfo",
+        } }, { __index = M.ConnectivityInfo }),
         StorageMode = {
             type = "string",
             traits = {
                 json_name = "storageMode",
             },
         },
-        BrokerCountUpdateInfo = {
-            type = "structure",
-            traits = {
-                json_name = "brokerCountUpdateInfo",
-            },
-        },
-        Rebalancing = {
-            type = "structure",
-            traits = {
-                json_name = "rebalancing",
-            },
-        },
+        BrokerCountUpdateInfo = setmetatable({ traits = {
+            json_name = "brokerCountUpdateInfo",
+        } }, { __index = M.BrokerCountUpdateInfo }),
+        Rebalancing = setmetatable({ traits = {
+            json_name = "rebalancing",
+        } }, { __index = M.Rebalancing }),
     },
 }
 
@@ -1374,12 +1191,9 @@ M.VpcConnectionInfo = {
                 json_name = "owner",
             },
         },
-        UserIdentity = {
-            type = "structure",
-            traits = {
-                json_name = "userIdentity",
-            },
-        },
+        UserIdentity = setmetatable({ traits = {
+            json_name = "userIdentity",
+        } }, { __index = M.UserIdentity }),
         CreationTime = {
             type = "timestamp",
             traits = {
@@ -1416,12 +1230,9 @@ M.ClusterOperationInfo = {
                 json_name = "endTime",
             },
         },
-        ErrorInfo = {
-            type = "structure",
-            traits = {
-                json_name = "errorInfo",
-            },
-        },
+        ErrorInfo = setmetatable({ traits = {
+            json_name = "errorInfo",
+        } }, { __index = M.ErrorInfo }),
         OperationArn = {
             type = "string",
             traits = {
@@ -1436,7 +1247,7 @@ M.ClusterOperationInfo = {
         },
         OperationSteps = {
             type = "list",
-            member_type = "structure",
+            member = M.ClusterOperationStep,
             traits = {
                 json_name = "operationSteps",
             },
@@ -1447,24 +1258,15 @@ M.ClusterOperationInfo = {
                 json_name = "operationType",
             },
         },
-        SourceClusterInfo = {
-            type = "structure",
-            traits = {
-                json_name = "sourceClusterInfo",
-            },
-        },
-        TargetClusterInfo = {
-            type = "structure",
-            traits = {
-                json_name = "targetClusterInfo",
-            },
-        },
-        VpcConnectionInfo = {
-            type = "structure",
-            traits = {
-                json_name = "vpcConnectionInfo",
-            },
-        },
+        SourceClusterInfo = setmetatable({ traits = {
+            json_name = "sourceClusterInfo",
+        } }, { __index = M.MutableClusterInfo }),
+        TargetClusterInfo = setmetatable({ traits = {
+            json_name = "targetClusterInfo",
+        } }, { __index = M.MutableClusterInfo }),
+        VpcConnectionInfo = setmetatable({ traits = {
+            json_name = "vpcConnectionInfo",
+        } }, { __index = M.VpcConnectionInfo }),
     },
 }
 
@@ -1527,7 +1329,7 @@ M.CompatibleKafkaVersion = {
         },
         TargetVersions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "targetVersions",
             },
@@ -1552,7 +1354,7 @@ M.ConfigurationRevision = {
             },
         },
         Revision = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "revision",
                 required = true,
@@ -1593,19 +1395,16 @@ M.Configuration = {
         },
         KafkaVersions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "kafkaVersions",
                 required = true,
             },
         },
-        LatestRevision = {
-            type = "structure",
-            traits = {
-                json_name = "latestRevision",
-                required = true,
-            },
-        },
+        LatestRevision = setmetatable({ traits = {
+            json_name = "latestRevision",
+            required = true,
+        } }, { __index = M.ConfigurationRevision }),
         Name = {
             type = "string",
             traits = {
@@ -1684,13 +1483,10 @@ M.KafkaClusterSaslScramAuthentication = {
 M.KafkaClusterClientAuthentication = {
     type = "structure",
     members = {
-        SaslScram = {
-            type = "structure",
-            traits = {
-                json_name = "saslScram",
-                required = true,
-            },
-        },
+        SaslScram = setmetatable({ traits = {
+            json_name = "saslScram",
+            required = true,
+        } }, { __index = M.KafkaClusterSaslScramAuthentication }),
     },
 }
 
@@ -1722,14 +1518,14 @@ M.KafkaClusterClientVpcConfig = {
     members = {
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "securityGroupIds",
             },
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "subnetIds",
                 required = true,
@@ -1741,96 +1537,60 @@ M.KafkaClusterClientVpcConfig = {
 M.KafkaCluster = {
     type = "structure",
     members = {
-        AmazonMskCluster = {
-            type = "structure",
-            traits = {
-                json_name = "amazonMskCluster",
-            },
-        },
-        ApacheKafkaCluster = {
-            type = "structure",
-            traits = {
-                json_name = "apacheKafkaCluster",
-            },
-        },
-        VpcConfig = {
-            type = "structure",
-            traits = {
-                json_name = "vpcConfig",
-            },
-        },
-        ClientAuthentication = {
-            type = "structure",
-            traits = {
-                json_name = "clientAuthentication",
-            },
-        },
-        EncryptionInTransit = {
-            type = "structure",
-            traits = {
-                json_name = "encryptionInTransit",
-            },
-        },
+        AmazonMskCluster = setmetatable({ traits = {
+            json_name = "amazonMskCluster",
+        } }, { __index = M.AmazonMskCluster }),
+        ApacheKafkaCluster = setmetatable({ traits = {
+            json_name = "apacheKafkaCluster",
+        } }, { __index = M.ApacheKafkaCluster }),
+        VpcConfig = setmetatable({ traits = {
+            json_name = "vpcConfig",
+        } }, { __index = M.KafkaClusterClientVpcConfig }),
+        ClientAuthentication = setmetatable({ traits = {
+            json_name = "clientAuthentication",
+        } }, { __index = M.KafkaClusterClientAuthentication }),
+        EncryptionInTransit = setmetatable({ traits = {
+            json_name = "encryptionInTransit",
+        } }, { __index = M.KafkaClusterEncryptionInTransit }),
     },
 }
 
 M.KafkaClusterDescription = {
     type = "structure",
     members = {
-        AmazonMskCluster = {
-            type = "structure",
-            traits = {
-                json_name = "amazonMskCluster",
-            },
-        },
-        ApacheKafkaCluster = {
-            type = "structure",
-            traits = {
-                json_name = "apacheKafkaCluster",
-            },
-        },
+        AmazonMskCluster = setmetatable({ traits = {
+            json_name = "amazonMskCluster",
+        } }, { __index = M.AmazonMskCluster }),
+        ApacheKafkaCluster = setmetatable({ traits = {
+            json_name = "apacheKafkaCluster",
+        } }, { __index = M.ApacheKafkaCluster }),
         KafkaClusterAlias = {
             type = "string",
             traits = {
                 json_name = "kafkaClusterAlias",
             },
         },
-        VpcConfig = {
-            type = "structure",
-            traits = {
-                json_name = "vpcConfig",
-            },
-        },
-        ClientAuthentication = {
-            type = "structure",
-            traits = {
-                json_name = "clientAuthentication",
-            },
-        },
-        EncryptionInTransit = {
-            type = "structure",
-            traits = {
-                json_name = "encryptionInTransit",
-            },
-        },
+        VpcConfig = setmetatable({ traits = {
+            json_name = "vpcConfig",
+        } }, { __index = M.KafkaClusterClientVpcConfig }),
+        ClientAuthentication = setmetatable({ traits = {
+            json_name = "clientAuthentication",
+        } }, { __index = M.KafkaClusterClientAuthentication }),
+        EncryptionInTransit = setmetatable({ traits = {
+            json_name = "encryptionInTransit",
+        } }, { __index = M.KafkaClusterEncryptionInTransit }),
     },
 }
 
 M.KafkaClusterSummary = {
     type = "structure",
     members = {
-        AmazonMskCluster = {
-            type = "structure",
-            traits = {
-                json_name = "amazonMskCluster",
-            },
-        },
-        ApacheKafkaCluster = {
-            type = "structure",
-            traits = {
-                json_name = "apacheKafkaCluster",
-            },
-        },
+        AmazonMskCluster = setmetatable({ traits = {
+            json_name = "amazonMskCluster",
+        } }, { __index = M.AmazonMskCluster }),
+        ApacheKafkaCluster = setmetatable({ traits = {
+            json_name = "apacheKafkaCluster",
+        } }, { __index = M.ApacheKafkaCluster }),
         KafkaClusterAlias = {
             type = "string",
             traits = {
@@ -1873,7 +1633,7 @@ M.BrokerNodeInfo = {
             },
         },
         BrokerId = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "brokerId",
             },
@@ -1890,15 +1650,12 @@ M.BrokerNodeInfo = {
                 json_name = "clientVpcIpAddress",
             },
         },
-        CurrentBrokerSoftwareInfo = {
-            type = "structure",
-            traits = {
-                json_name = "currentBrokerSoftwareInfo",
-            },
-        },
+        CurrentBrokerSoftwareInfo = setmetatable({ traits = {
+            json_name = "currentBrokerSoftwareInfo",
+        } }, { __index = M.BrokerSoftwareInfo }),
         Endpoints = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "endpoints",
             },
@@ -1911,7 +1668,7 @@ M.ControllerNodeInfo = {
     members = {
         Endpoints = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "endpoints",
             },
@@ -1940,13 +1697,13 @@ M.ZookeeperNodeInfo = {
         },
         Endpoints = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "endpoints",
             },
         },
         ZookeeperId = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "zookeeperId",
             },
@@ -1969,18 +1726,12 @@ M.NodeInfo = {
                 json_name = "addedToClusterTime",
             },
         },
-        BrokerNodeInfo = {
-            type = "structure",
-            traits = {
-                json_name = "brokerNodeInfo",
-            },
-        },
-        ControllerNodeInfo = {
-            type = "structure",
-            traits = {
-                json_name = "controllerNodeInfo",
-            },
-        },
+        BrokerNodeInfo = setmetatable({ traits = {
+            json_name = "brokerNodeInfo",
+        } }, { __index = M.BrokerNodeInfo }),
+        ControllerNodeInfo = setmetatable({ traits = {
+            json_name = "controllerNodeInfo",
+        } }, { __index = M.ControllerNodeInfo }),
         InstanceType = {
             type = "string",
             traits = {
@@ -1999,12 +1750,9 @@ M.NodeInfo = {
                 json_name = "nodeType",
             },
         },
-        ZookeeperNodeInfo = {
-            type = "structure",
-            traits = {
-                json_name = "zookeeperNodeInfo",
-            },
-        },
+        ZookeeperNodeInfo = setmetatable({ traits = {
+            json_name = "zookeeperNodeInfo",
+        } }, { __index = M.ZookeeperNodeInfo }),
     },
 }
 
@@ -2018,14 +1766,14 @@ M.ConsumerGroupReplication = {
     members = {
         ConsumerGroupsToExclude = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "consumerGroupsToExclude",
             },
         },
         ConsumerGroupsToReplicate = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "consumerGroupsToReplicate",
                 required = true,
@@ -2115,28 +1863,22 @@ M.TopicReplication = {
                 json_name = "detectAndCopyNewTopics",
             },
         },
-        StartingPosition = {
-            type = "structure",
-            traits = {
-                json_name = "startingPosition",
-            },
-        },
-        TopicNameConfiguration = {
-            type = "structure",
-            traits = {
-                json_name = "topicNameConfiguration",
-            },
-        },
+        StartingPosition = setmetatable({ traits = {
+            json_name = "startingPosition",
+        } }, { __index = M.ReplicationStartingPosition }),
+        TopicNameConfiguration = setmetatable({ traits = {
+            json_name = "topicNameConfiguration",
+        } }, { __index = M.ReplicationTopicNameConfiguration }),
         TopicsToExclude = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "topicsToExclude",
             },
         },
         TopicsToReplicate = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "topicsToReplicate",
                 required = true,
@@ -2148,13 +1890,10 @@ M.TopicReplication = {
 M.ReplicationInfo = {
     type = "structure",
     members = {
-        ConsumerGroupReplication = {
-            type = "structure",
-            traits = {
-                json_name = "consumerGroupReplication",
-                required = true,
-            },
-        },
+        ConsumerGroupReplication = setmetatable({ traits = {
+            json_name = "consumerGroupReplication",
+            required = true,
+        } }, { __index = M.ConsumerGroupReplication }),
         SourceKafkaClusterArn = {
             type = "string",
             traits = {
@@ -2186,25 +1925,19 @@ M.ReplicationInfo = {
                 json_name = "targetKafkaClusterId",
             },
         },
-        TopicReplication = {
-            type = "structure",
-            traits = {
-                json_name = "topicReplication",
-                required = true,
-            },
-        },
+        TopicReplication = setmetatable({ traits = {
+            json_name = "topicReplication",
+            required = true,
+        } }, { __index = M.TopicReplication }),
     },
 }
 
 M.ReplicationInfoDescription = {
     type = "structure",
     members = {
-        ConsumerGroupReplication = {
-            type = "structure",
-            traits = {
-                json_name = "consumerGroupReplication",
-            },
-        },
+        ConsumerGroupReplication = setmetatable({ traits = {
+            json_name = "consumerGroupReplication",
+        } }, { __index = M.ConsumerGroupReplication }),
         SourceKafkaClusterAlias = {
             type = "string",
             traits = {
@@ -2223,12 +1956,9 @@ M.ReplicationInfoDescription = {
                 json_name = "targetKafkaClusterAlias",
             },
         },
-        TopicReplication = {
-            type = "structure",
-            traits = {
-                json_name = "topicReplication",
-            },
-        },
+        TopicReplication = setmetatable({ traits = {
+            json_name = "topicReplication",
+        } }, { __index = M.TopicReplication }),
     },
 }
 
@@ -2281,14 +2011,14 @@ M.ReplicatorSummary = {
         },
         KafkaClustersSummary = {
             type = "list",
-            member_type = "structure",
+            member = M.KafkaClusterSummary,
             traits = {
                 json_name = "kafkaClustersSummary",
             },
         },
         ReplicationInfoSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.ReplicationInfoSummary,
             traits = {
                 json_name = "replicationInfoSummaryList",
             },
@@ -2336,19 +2066,19 @@ M.TopicInfo = {
             },
         },
         ReplicationFactor = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "replicationFactor",
             },
         },
         PartitionCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "partitionCount",
             },
         },
         OutOfSyncReplicaCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "outOfSyncReplicaCount",
             },
@@ -2360,27 +2090,27 @@ M.TopicPartitionInfo = {
     type = "structure",
     members = {
         Partition = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "partition",
             },
         },
         Leader = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "leader",
             },
         },
         Replicas = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
             traits = {
                 json_name = "replicas",
             },
         },
         Isr = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
             traits = {
                 json_name = "isr",
             },
@@ -2487,7 +2217,7 @@ M.BatchAssociateScramSecretInput = {
         },
         SecretArnList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "secretArnList",
                 required = true,
@@ -2507,7 +2237,7 @@ M.BatchAssociateScramSecretOutput = {
         },
         UnprocessedScramSecrets = {
             type = "list",
-            member_type = "structure",
+            member = M.UnprocessedScramSecret,
             traits = {
                 json_name = "unprocessedScramSecrets",
             },
@@ -2641,7 +2371,7 @@ M.BatchDisassociateScramSecretInput = {
         },
         SecretArnList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "secretArnList",
                 required = true,
@@ -2661,7 +2391,7 @@ M.BatchDisassociateScramSecretOutput = {
         },
         UnprocessedScramSecrets = {
             type = "list",
-            member_type = "structure",
+            member = M.UnprocessedScramSecret,
             traits = {
                 json_name = "unprocessedScramSecrets",
             },
@@ -2693,29 +2423,20 @@ M.ClusterOperationV2Provisioned = {
     members = {
         OperationSteps = {
             type = "list",
-            member_type = "structure",
+            member = M.ClusterOperationStep,
             traits = {
                 json_name = "operationSteps",
             },
         },
-        SourceClusterInfo = {
-            type = "structure",
-            traits = {
-                json_name = "sourceClusterInfo",
-            },
-        },
-        TargetClusterInfo = {
-            type = "structure",
-            traits = {
-                json_name = "targetClusterInfo",
-            },
-        },
-        VpcConnectionInfo = {
-            type = "structure",
-            traits = {
-                json_name = "vpcConnectionInfo",
-            },
-        },
+        SourceClusterInfo = setmetatable({ traits = {
+            json_name = "sourceClusterInfo",
+        } }, { __index = M.MutableClusterInfo }),
+        TargetClusterInfo = setmetatable({ traits = {
+            json_name = "targetClusterInfo",
+        } }, { __index = M.MutableClusterInfo }),
+        VpcConnectionInfo = setmetatable({ traits = {
+            json_name = "vpcConnectionInfo",
+        } }, { __index = M.VpcConnectionInfo }),
     },
 }
 
@@ -2734,12 +2455,9 @@ M.VpcConnectionInfoServerless = {
                 json_name = "owner",
             },
         },
-        UserIdentity = {
-            type = "structure",
-            traits = {
-                json_name = "userIdentity",
-            },
-        },
+        UserIdentity = setmetatable({ traits = {
+            json_name = "userIdentity",
+        } }, { __index = M.UserIdentity }),
         VpcConnectionArn = {
             type = "string",
             traits = {
@@ -2752,24 +2470,15 @@ M.VpcConnectionInfoServerless = {
 M.ClusterOperationV2Serverless = {
     type = "structure",
     members = {
-        SourceClusterInfo = {
-            type = "structure",
-            traits = {
-                json_name = "sourceClusterInfo",
-            },
-        },
-        TargetClusterInfo = {
-            type = "structure",
-            traits = {
-                json_name = "targetClusterInfo",
-            },
-        },
-        VpcConnectionInfo = {
-            type = "structure",
-            traits = {
-                json_name = "vpcConnectionInfo",
-            },
-        },
+        SourceClusterInfo = setmetatable({ traits = {
+            json_name = "sourceClusterInfo",
+        } }, { __index = M.ServerlessConnectivityInfo }),
+        TargetClusterInfo = setmetatable({ traits = {
+            json_name = "targetClusterInfo",
+        } }, { __index = M.ServerlessConnectivityInfo }),
+        VpcConnectionInfo = setmetatable({ traits = {
+            json_name = "vpcConnectionInfo",
+        } }, { __index = M.VpcConnectionInfoServerless }),
     },
 }
 
@@ -2800,12 +2509,9 @@ M.ClusterOperationV2 = {
                 json_name = "endTime",
             },
         },
-        ErrorInfo = {
-            type = "structure",
-            traits = {
-                json_name = "errorInfo",
-            },
-        },
+        ErrorInfo = setmetatable({ traits = {
+            json_name = "errorInfo",
+        } }, { __index = M.ErrorInfo }),
         OperationArn = {
             type = "string",
             traits = {
@@ -2824,18 +2530,12 @@ M.ClusterOperationV2 = {
                 json_name = "operationType",
             },
         },
-        Provisioned = {
-            type = "structure",
-            traits = {
-                json_name = "provisioned",
-            },
-        },
-        Serverless = {
-            type = "structure",
-            traits = {
-                json_name = "serverless",
-            },
-        },
+        Provisioned = setmetatable({ traits = {
+            json_name = "provisioned",
+        } }, { __index = M.ClusterOperationV2Provisioned }),
+        Serverless = setmetatable({ traits = {
+            json_name = "serverless",
+        } }, { __index = M.ClusterOperationV2Serverless }),
     },
 }
 
@@ -2863,7 +2563,7 @@ M.ConsumerGroupReplicationUpdate = {
     members = {
         ConsumerGroupsToExclude = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "consumerGroupsToExclude",
                 required = true,
@@ -2871,7 +2571,7 @@ M.ConsumerGroupReplicationUpdate = {
         },
         ConsumerGroupsToReplicate = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "consumerGroupsToReplicate",
                 required = true,
@@ -2916,25 +2616,16 @@ M.ControllerMovedException = {
 M.CreateClusterInput = {
     type = "structure",
     members = {
-        BrokerNodeGroupInfo = {
-            type = "structure",
-            traits = {
-                json_name = "brokerNodeGroupInfo",
-                required = true,
-            },
-        },
-        Rebalancing = {
-            type = "structure",
-            traits = {
-                json_name = "rebalancing",
-            },
-        },
-        ClientAuthentication = {
-            type = "structure",
-            traits = {
-                json_name = "clientAuthentication",
-            },
-        },
+        BrokerNodeGroupInfo = setmetatable({ traits = {
+            json_name = "brokerNodeGroupInfo",
+            required = true,
+        } }, { __index = M.BrokerNodeGroupInfo }),
+        Rebalancing = setmetatable({ traits = {
+            json_name = "rebalancing",
+        } }, { __index = M.Rebalancing }),
+        ClientAuthentication = setmetatable({ traits = {
+            json_name = "clientAuthentication",
+        } }, { __index = M.ClientAuthentication }),
         ClusterName = {
             type = "string",
             traits = {
@@ -2942,30 +2633,21 @@ M.CreateClusterInput = {
                 required = true,
             },
         },
-        ConfigurationInfo = {
-            type = "structure",
-            traits = {
-                json_name = "configurationInfo",
-            },
-        },
-        EncryptionInfo = {
-            type = "structure",
-            traits = {
-                json_name = "encryptionInfo",
-            },
-        },
+        ConfigurationInfo = setmetatable({ traits = {
+            json_name = "configurationInfo",
+        } }, { __index = M.ConfigurationInfo }),
+        EncryptionInfo = setmetatable({ traits = {
+            json_name = "encryptionInfo",
+        } }, { __index = M.EncryptionInfo }),
         EnhancedMonitoring = {
             type = "string",
             traits = {
                 json_name = "enhancedMonitoring",
             },
         },
-        OpenMonitoring = {
-            type = "structure",
-            traits = {
-                json_name = "openMonitoring",
-            },
-        },
+        OpenMonitoring = setmetatable({ traits = {
+            json_name = "openMonitoring",
+        } }, { __index = M.OpenMonitoringInfo }),
         KafkaVersion = {
             type = "string",
             traits = {
@@ -2973,14 +2655,11 @@ M.CreateClusterInput = {
                 required = true,
             },
         },
-        LoggingInfo = {
-            type = "structure",
-            traits = {
-                json_name = "loggingInfo",
-            },
-        },
+        LoggingInfo = setmetatable({ traits = {
+            json_name = "loggingInfo",
+        } }, { __index = M.LoggingInfo }),
         NumberOfBrokerNodes = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "numberOfBrokerNodes",
                 required = true,
@@ -2988,8 +2667,8 @@ M.CreateClusterInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -3030,49 +2709,31 @@ M.CreateClusterOutput = {
 M.ProvisionedRequest = {
     type = "structure",
     members = {
-        BrokerNodeGroupInfo = {
-            type = "structure",
-            traits = {
-                json_name = "brokerNodeGroupInfo",
-                required = true,
-            },
-        },
-        Rebalancing = {
-            type = "structure",
-            traits = {
-                json_name = "rebalancing",
-            },
-        },
-        ClientAuthentication = {
-            type = "structure",
-            traits = {
-                json_name = "clientAuthentication",
-            },
-        },
-        ConfigurationInfo = {
-            type = "structure",
-            traits = {
-                json_name = "configurationInfo",
-            },
-        },
-        EncryptionInfo = {
-            type = "structure",
-            traits = {
-                json_name = "encryptionInfo",
-            },
-        },
+        BrokerNodeGroupInfo = setmetatable({ traits = {
+            json_name = "brokerNodeGroupInfo",
+            required = true,
+        } }, { __index = M.BrokerNodeGroupInfo }),
+        Rebalancing = setmetatable({ traits = {
+            json_name = "rebalancing",
+        } }, { __index = M.Rebalancing }),
+        ClientAuthentication = setmetatable({ traits = {
+            json_name = "clientAuthentication",
+        } }, { __index = M.ClientAuthentication }),
+        ConfigurationInfo = setmetatable({ traits = {
+            json_name = "configurationInfo",
+        } }, { __index = M.ConfigurationInfo }),
+        EncryptionInfo = setmetatable({ traits = {
+            json_name = "encryptionInfo",
+        } }, { __index = M.EncryptionInfo }),
         EnhancedMonitoring = {
             type = "string",
             traits = {
                 json_name = "enhancedMonitoring",
             },
         },
-        OpenMonitoring = {
-            type = "structure",
-            traits = {
-                json_name = "openMonitoring",
-            },
-        },
+        OpenMonitoring = setmetatable({ traits = {
+            json_name = "openMonitoring",
+        } }, { __index = M.OpenMonitoringInfo }),
         KafkaVersion = {
             type = "string",
             traits = {
@@ -3080,14 +2741,11 @@ M.ProvisionedRequest = {
                 required = true,
             },
         },
-        LoggingInfo = {
-            type = "structure",
-            traits = {
-                json_name = "loggingInfo",
-            },
-        },
+        LoggingInfo = setmetatable({ traits = {
+            json_name = "loggingInfo",
+        } }, { __index = M.LoggingInfo }),
         NumberOfBrokerNodes = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "numberOfBrokerNodes",
                 required = true,
@@ -3107,18 +2765,15 @@ M.ServerlessRequest = {
     members = {
         VpcConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcConfig,
             traits = {
                 json_name = "vpcConfigs",
                 required = true,
             },
         },
-        ClientAuthentication = {
-            type = "structure",
-            traits = {
-                json_name = "clientAuthentication",
-            },
-        },
+        ClientAuthentication = setmetatable({ traits = {
+            json_name = "clientAuthentication",
+        } }, { __index = M.ServerlessClientAuthentication }),
     },
 }
 
@@ -3134,24 +2789,18 @@ M.CreateClusterV2Input = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
         },
-        Provisioned = {
-            type = "structure",
-            traits = {
-                json_name = "provisioned",
-            },
-        },
-        Serverless = {
-            type = "structure",
-            traits = {
-                json_name = "serverless",
-            },
-        },
+        Provisioned = setmetatable({ traits = {
+            json_name = "provisioned",
+        } }, { __index = M.ProvisionedRequest }),
+        Serverless = setmetatable({ traits = {
+            json_name = "serverless",
+        } }, { __index = M.ServerlessRequest }),
     },
 }
 
@@ -3196,7 +2845,7 @@ M.CreateConfigurationInput = {
         },
         KafkaVersions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "kafkaVersions",
             },
@@ -3233,12 +2882,9 @@ M.CreateConfigurationOutput = {
                 json_name = "creationTime",
             },
         },
-        LatestRevision = {
-            type = "structure",
-            traits = {
-                json_name = "latestRevision",
-            },
-        },
+        LatestRevision = setmetatable({ traits = {
+            json_name = "latestRevision",
+        } }, { __index = M.ConfigurationRevision }),
         Name = {
             type = "string",
             traits = {
@@ -3320,36 +2966,24 @@ M.ReplicatorS3 = {
 M.ReplicatorLogDelivery = {
     type = "structure",
     members = {
-        CloudWatchLogs = {
-            type = "structure",
-            traits = {
-                json_name = "cloudWatchLogs",
-            },
-        },
-        Firehose = {
-            type = "structure",
-            traits = {
-                json_name = "firehose",
-            },
-        },
-        S3 = {
-            type = "structure",
-            traits = {
-                json_name = "s3",
-            },
-        },
+        CloudWatchLogs = setmetatable({ traits = {
+            json_name = "cloudWatchLogs",
+        } }, { __index = M.ReplicatorCloudWatchLogs }),
+        Firehose = setmetatable({ traits = {
+            json_name = "firehose",
+        } }, { __index = M.ReplicatorFirehose }),
+        S3 = setmetatable({ traits = {
+            json_name = "s3",
+        } }, { __index = M.ReplicatorS3 }),
     },
 }
 
 M.LogDelivery = {
     type = "structure",
     members = {
-        ReplicatorLogDelivery = {
-            type = "structure",
-            traits = {
-                json_name = "replicatorLogDelivery",
-            },
-        },
+        ReplicatorLogDelivery = setmetatable({ traits = {
+            json_name = "replicatorLogDelivery",
+        } }, { __index = M.ReplicatorLogDelivery }),
     },
 }
 
@@ -3364,7 +2998,7 @@ M.CreateReplicatorInput = {
         },
         KafkaClusters = {
             type = "list",
-            member_type = "structure",
+            member = M.KafkaCluster,
             traits = {
                 json_name = "kafkaClusters",
                 required = true,
@@ -3372,7 +3006,7 @@ M.CreateReplicatorInput = {
         },
         ReplicationInfoList = {
             type = "list",
-            member_type = "structure",
+            member = M.ReplicationInfo,
             traits = {
                 json_name = "replicationInfoList",
                 required = true,
@@ -3394,18 +3028,15 @@ M.CreateReplicatorInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
         },
-        LogDelivery = {
-            type = "structure",
-            traits = {
-                json_name = "logDelivery",
-            },
-        },
+        LogDelivery = setmetatable({ traits = {
+            json_name = "logDelivery",
+        } }, { __index = M.LogDelivery }),
     },
 }
 
@@ -3451,14 +3082,14 @@ M.CreateTopicInput = {
             },
         },
         PartitionCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "partitionCount",
                 required = true,
             },
         },
         ReplicationFactor = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "replicationFactor",
                 required = true,
@@ -3663,7 +3294,7 @@ M.CreateVpcConnectionInput = {
         },
         ClientSubnets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "clientSubnets",
                 required = true,
@@ -3671,7 +3302,7 @@ M.CreateVpcConnectionInput = {
         },
         SecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "securityGroups",
                 required = true,
@@ -3679,8 +3310,8 @@ M.CreateVpcConnectionInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -3717,14 +3348,14 @@ M.CreateVpcConnectionOutput = {
         },
         ClientSubnets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "clientSubnets",
             },
         },
         SecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "securityGroups",
             },
@@ -3737,8 +3368,8 @@ M.CreateVpcConnectionOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -3959,12 +3590,9 @@ M.DescribeClusterInput = {
 M.DescribeClusterOutput = {
     type = "structure",
     members = {
-        ClusterInfo = {
-            type = "structure",
-            traits = {
-                json_name = "clusterInfo",
-            },
-        },
+        ClusterInfo = setmetatable({ traits = {
+            json_name = "clusterInfo",
+        } }, { __index = M.ClusterInfo }),
     },
 }
 
@@ -3984,12 +3612,9 @@ M.DescribeClusterOperationInput = {
 M.DescribeClusterOperationOutput = {
     type = "structure",
     members = {
-        ClusterOperationInfo = {
-            type = "structure",
-            traits = {
-                json_name = "clusterOperationInfo",
-            },
-        },
+        ClusterOperationInfo = setmetatable({ traits = {
+            json_name = "clusterOperationInfo",
+        } }, { __index = M.ClusterOperationInfo }),
     },
 }
 
@@ -4009,12 +3634,9 @@ M.DescribeClusterOperationV2Input = {
 M.DescribeClusterOperationV2Output = {
     type = "structure",
     members = {
-        ClusterOperationInfo = {
-            type = "structure",
-            traits = {
-                json_name = "clusterOperationInfo",
-            },
-        },
+        ClusterOperationInfo = setmetatable({ traits = {
+            json_name = "clusterOperationInfo",
+        } }, { __index = M.ClusterOperationV2 }),
     },
 }
 
@@ -4034,12 +3656,9 @@ M.DescribeClusterV2Input = {
 M.DescribeClusterV2Output = {
     type = "structure",
     members = {
-        ClusterInfo = {
-            type = "structure",
-            traits = {
-                json_name = "clusterInfo",
-            },
-        },
+        ClusterInfo = setmetatable({ traits = {
+            json_name = "clusterInfo",
+        } }, { __index = M.Cluster }),
     },
 }
 
@@ -4079,17 +3698,14 @@ M.DescribeConfigurationOutput = {
         },
         KafkaVersions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "kafkaVersions",
             },
         },
-        LatestRevision = {
-            type = "structure",
-            traits = {
-                json_name = "latestRevision",
-            },
-        },
+        LatestRevision = setmetatable({ traits = {
+            json_name = "latestRevision",
+        } }, { __index = M.ConfigurationRevision }),
         Name = {
             type = "string",
             traits = {
@@ -4116,7 +3732,7 @@ M.DescribeConfigurationRevisionInput = {
             },
         },
         Revision = {
-            type = "number",
+            type = "long",
             traits = {
                 http_label = true,
                 required = true,
@@ -4147,7 +3763,7 @@ M.DescribeConfigurationRevisionOutput = {
             },
         },
         Revision = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "revision",
             },
@@ -4215,14 +3831,14 @@ M.DescribeReplicatorOutput = {
         },
         KafkaClusters = {
             type = "list",
-            member_type = "structure",
+            member = M.KafkaClusterDescription,
             traits = {
                 json_name = "kafkaClusters",
             },
         },
         ReplicationInfoList = {
             type = "list",
-            member_type = "structure",
+            member = M.ReplicationInfoDescription,
             traits = {
                 json_name = "replicationInfoList",
             },
@@ -4263,26 +3879,20 @@ M.DescribeReplicatorOutput = {
                 json_name = "serviceExecutionRoleArn",
             },
         },
-        StateInfo = {
-            type = "structure",
-            traits = {
-                json_name = "stateInfo",
-            },
-        },
+        StateInfo = setmetatable({ traits = {
+            json_name = "stateInfo",
+        } }, { __index = M.ReplicationStateInfo }),
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
         },
-        LogDelivery = {
-            type = "structure",
-            traits = {
-                json_name = "logDelivery",
-            },
-        },
+        LogDelivery = setmetatable({ traits = {
+            json_name = "logDelivery",
+        } }, { __index = M.LogDelivery }),
     },
 }
 
@@ -4322,13 +3932,13 @@ M.DescribeTopicOutput = {
             },
         },
         ReplicationFactor = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "replicationFactor",
             },
         },
         PartitionCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "partitionCount",
             },
@@ -4366,7 +3976,7 @@ M.DescribeTopicPartitionsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4385,7 +3995,7 @@ M.DescribeTopicPartitionsOutput = {
     members = {
         Partitions = {
             type = "list",
-            member_type = "structure",
+            member = M.TopicPartitionInfo,
             traits = {
                 json_name = "partitions",
             },
@@ -4447,14 +4057,14 @@ M.DescribeVpcConnectionOutput = {
         },
         Subnets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "subnets",
             },
         },
         SecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "securityGroups",
             },
@@ -4467,8 +4077,8 @@ M.DescribeVpcConnectionOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -4627,7 +4237,7 @@ M.GetCompatibleKafkaVersionsOutput = {
     members = {
         CompatibleKafkaVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.CompatibleKafkaVersion,
             traits = {
                 json_name = "compatibleKafkaVersions",
             },
@@ -4646,7 +4256,7 @@ M.ListClientVpcConnectionsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4665,7 +4275,7 @@ M.ListClientVpcConnectionsOutput = {
     members = {
         ClientVpcConnections = {
             type = "list",
-            member_type = "structure",
+            member = M.ClientVpcConnection,
             traits = {
                 json_name = "clientVpcConnections",
             },
@@ -4690,7 +4300,7 @@ M.ListClusterOperationsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4709,7 +4319,7 @@ M.ListClusterOperationsOutput = {
     members = {
         ClusterOperationInfoList = {
             type = "list",
-            member_type = "structure",
+            member = M.ClusterOperationInfo,
             traits = {
                 json_name = "clusterOperationInfoList",
             },
@@ -4734,7 +4344,7 @@ M.ListClusterOperationsV2Input = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4753,7 +4363,7 @@ M.ListClusterOperationsV2Output = {
     members = {
         ClusterOperationInfoList = {
             type = "list",
-            member_type = "structure",
+            member = M.ClusterOperationV2Summary,
             traits = {
                 json_name = "clusterOperationInfoList",
             },
@@ -4777,7 +4387,7 @@ M.ListClustersInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4796,7 +4406,7 @@ M.ListClustersOutput = {
     members = {
         ClusterInfoList = {
             type = "list",
-            member_type = "structure",
+            member = M.ClusterInfo,
             traits = {
                 json_name = "clusterInfoList",
             },
@@ -4826,7 +4436,7 @@ M.ListClustersV2Input = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4845,7 +4455,7 @@ M.ListClustersV2Output = {
     members = {
         ClusterInfoList = {
             type = "list",
-            member_type = "structure",
+            member = M.Cluster,
             traits = {
                 json_name = "clusterInfoList",
             },
@@ -4870,7 +4480,7 @@ M.ListConfigurationRevisionsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4895,7 +4505,7 @@ M.ListConfigurationRevisionsOutput = {
         },
         Revisions = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigurationRevision,
             traits = {
                 json_name = "revisions",
             },
@@ -4907,7 +4517,7 @@ M.ListConfigurationsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4926,7 +4536,7 @@ M.ListConfigurationsOutput = {
     members = {
         Configurations = {
             type = "list",
-            member_type = "structure",
+            member = M.Configuration,
             traits = {
                 json_name = "configurations",
             },
@@ -4944,7 +4554,7 @@ M.ListKafkaVersionsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4963,7 +4573,7 @@ M.ListKafkaVersionsOutput = {
     members = {
         KafkaVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.KafkaVersion,
             traits = {
                 json_name = "kafkaVersions",
             },
@@ -4988,7 +4598,7 @@ M.ListNodesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -5013,7 +4623,7 @@ M.ListNodesOutput = {
         },
         NodeInfoList = {
             type = "list",
-            member_type = "structure",
+            member = M.NodeInfo,
             traits = {
                 json_name = "nodeInfoList",
             },
@@ -5025,7 +4635,7 @@ M.ListReplicatorsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -5056,7 +4666,7 @@ M.ListReplicatorsOutput = {
         },
         Replicators = {
             type = "list",
-            member_type = "structure",
+            member = M.ReplicatorSummary,
             traits = {
                 json_name = "replicators",
             },
@@ -5075,7 +4685,7 @@ M.ListScramSecretsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -5100,7 +4710,7 @@ M.ListScramSecretsOutput = {
         },
         SecretArnList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "secretArnList",
             },
@@ -5126,8 +4736,8 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -5146,7 +4756,7 @@ M.ListTopicsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -5171,7 +4781,7 @@ M.ListTopicsOutput = {
     members = {
         Topics = {
             type = "list",
-            member_type = "structure",
+            member = M.TopicInfo,
             traits = {
                 json_name = "topics",
             },
@@ -5189,7 +4799,7 @@ M.ListVpcConnectionsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -5208,7 +4818,7 @@ M.ListVpcConnectionsOutput = {
     members = {
         VpcConnections = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcConnection,
             traits = {
                 json_name = "vpcConnections",
             },
@@ -5265,7 +4875,7 @@ M.RebootBrokerInput = {
     members = {
         BrokerIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "brokerIds",
                 required = true,
@@ -5335,8 +4945,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
                 required = true,
@@ -5361,7 +4971,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -5392,7 +5002,7 @@ M.UpdateBrokerCountInput = {
             },
         },
         TargetNumberOfBrokerNodes = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "targetNumberOfBrokerNodes",
                 required = true,
@@ -5438,7 +5048,7 @@ M.UpdateBrokerStorageInput = {
         },
         TargetBrokerEBSVolumeInfo = {
             type = "list",
-            member_type = "structure",
+            member = M.BrokerEBSVolumeInfo,
             traits = {
                 json_name = "targetBrokerEBSVolumeInfo",
                 required = true,
@@ -5520,13 +5130,10 @@ M.UpdateClusterConfigurationInput = {
                 required = true,
             },
         },
-        ConfigurationInfo = {
-            type = "structure",
-            traits = {
-                json_name = "configurationInfo",
-                required = true,
-            },
-        },
+        ConfigurationInfo = setmetatable({ traits = {
+            json_name = "configurationInfo",
+            required = true,
+        } }, { __index = M.ConfigurationInfo }),
         CurrentVersion = {
             type = "string",
             traits = {
@@ -5565,12 +5172,9 @@ M.UpdateClusterKafkaVersionInput = {
                 required = true,
             },
         },
-        ConfigurationInfo = {
-            type = "structure",
-            traits = {
-                json_name = "configurationInfo",
-            },
-        },
+        ConfigurationInfo = setmetatable({ traits = {
+            json_name = "configurationInfo",
+        } }, { __index = M.ConfigurationInfo }),
         CurrentVersion = {
             type = "string",
             traits = {
@@ -5641,12 +5245,9 @@ M.UpdateConfigurationOutput = {
                 json_name = "arn",
             },
         },
-        LatestRevision = {
-            type = "structure",
-            traits = {
-                json_name = "latestRevision",
-            },
-        },
+        LatestRevision = setmetatable({ traits = {
+            json_name = "latestRevision",
+        } }, { __index = M.ConfigurationRevision }),
     },
 }
 
@@ -5660,12 +5261,9 @@ M.UpdateConnectivityInput = {
                 required = true,
             },
         },
-        ConnectivityInfo = {
-            type = "structure",
-            traits = {
-                json_name = "connectivityInfo",
-            },
-        },
+        ConnectivityInfo = setmetatable({ traits = {
+            json_name = "connectivityInfo",
+        } }, { __index = M.ConnectivityInfo }),
         CurrentVersion = {
             type = "string",
             traits = {
@@ -5673,12 +5271,9 @@ M.UpdateConnectivityInput = {
                 required = true,
             },
         },
-        ZookeeperAccess = {
-            type = "structure",
-            traits = {
-                json_name = "zookeeperAccess",
-            },
-        },
+        ZookeeperAccess = setmetatable({ traits = {
+            json_name = "zookeeperAccess",
+        } }, { __index = M.ZookeeperAccess }),
     },
 }
 
@@ -5723,18 +5318,12 @@ M.UpdateMonitoringInput = {
                 json_name = "enhancedMonitoring",
             },
         },
-        OpenMonitoring = {
-            type = "structure",
-            traits = {
-                json_name = "openMonitoring",
-            },
-        },
-        LoggingInfo = {
-            type = "structure",
-            traits = {
-                json_name = "loggingInfo",
-            },
-        },
+        OpenMonitoring = setmetatable({ traits = {
+            json_name = "openMonitoring",
+        } }, { __index = M.OpenMonitoringInfo }),
+        LoggingInfo = setmetatable({ traits = {
+            json_name = "loggingInfo",
+        } }, { __index = M.LoggingInfo }),
     },
 }
 
@@ -5773,13 +5362,10 @@ M.UpdateRebalancingInput = {
                 required = true,
             },
         },
-        Rebalancing = {
-            type = "structure",
-            traits = {
-                json_name = "rebalancing",
-                required = true,
-            },
-        },
+        Rebalancing = setmetatable({ traits = {
+            json_name = "rebalancing",
+            required = true,
+        } }, { __index = M.Rebalancing }),
     },
 }
 
@@ -5827,7 +5413,7 @@ M.TopicReplicationUpdate = {
         },
         TopicsToExclude = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "topicsToExclude",
                 required = true,
@@ -5835,7 +5421,7 @@ M.TopicReplicationUpdate = {
         },
         TopicsToReplicate = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "topicsToReplicate",
                 required = true,
@@ -5847,12 +5433,9 @@ M.TopicReplicationUpdate = {
 M.UpdateReplicationInfoInput = {
     type = "structure",
     members = {
-        ConsumerGroupReplication = {
-            type = "structure",
-            traits = {
-                json_name = "consumerGroupReplication",
-            },
-        },
+        ConsumerGroupReplication = setmetatable({ traits = {
+            json_name = "consumerGroupReplication",
+        } }, { __index = M.ConsumerGroupReplicationUpdate }),
         CurrentVersion = {
             type = "string",
             traits = {
@@ -5891,18 +5474,12 @@ M.UpdateReplicationInfoInput = {
                 json_name = "targetKafkaClusterId",
             },
         },
-        TopicReplication = {
-            type = "structure",
-            traits = {
-                json_name = "topicReplication",
-            },
-        },
-        LogDelivery = {
-            type = "structure",
-            traits = {
-                json_name = "logDelivery",
-            },
-        },
+        TopicReplication = setmetatable({ traits = {
+            json_name = "topicReplication",
+        } }, { __index = M.TopicReplicationUpdate }),
+        LogDelivery = setmetatable({ traits = {
+            json_name = "logDelivery",
+        } }, { __index = M.LogDelivery }),
     },
 }
 
@@ -5927,12 +5504,9 @@ M.UpdateReplicationInfoOutput = {
 M.UpdateSecurityInput = {
     type = "structure",
     members = {
-        ClientAuthentication = {
-            type = "structure",
-            traits = {
-                json_name = "clientAuthentication",
-            },
-        },
+        ClientAuthentication = setmetatable({ traits = {
+            json_name = "clientAuthentication",
+        } }, { __index = M.ClientAuthentication }),
         ClusterArn = {
             type = "string",
             traits = {
@@ -5947,12 +5521,9 @@ M.UpdateSecurityInput = {
                 required = true,
             },
         },
-        EncryptionInfo = {
-            type = "structure",
-            traits = {
-                json_name = "encryptionInfo",
-            },
-        },
+        EncryptionInfo = setmetatable({ traits = {
+            json_name = "encryptionInfo",
+        } }, { __index = M.EncryptionInfo }),
     },
 }
 
@@ -5991,12 +5562,9 @@ M.UpdateStorageInput = {
                 required = true,
             },
         },
-        ProvisionedThroughput = {
-            type = "structure",
-            traits = {
-                json_name = "provisionedThroughput",
-            },
-        },
+        ProvisionedThroughput = setmetatable({ traits = {
+            json_name = "provisionedThroughput",
+        } }, { __index = M.ProvisionedThroughput }),
         StorageMode = {
             type = "string",
             traits = {
@@ -6004,7 +5572,7 @@ M.UpdateStorageInput = {
             },
         },
         VolumeSizeGB = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "volumeSizeGB",
             },
@@ -6054,7 +5622,7 @@ M.UpdateTopicInput = {
             },
         },
         PartitionCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "partitionCount",
             },

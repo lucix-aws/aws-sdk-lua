@@ -1,0 +1,919 @@
+local waiter = require("waiter")
+
+local M = {}
+
+--- Wait until ChannelCreated.
+function M.wait_until_channel_created(client, input, options)
+    return waiter.wait(client, "describeChannel", input, {
+        min_delay = 3,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "IDLE",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "CREATING",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "InternalServerErrorException",
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "CREATE_FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until ChannelDeleted.
+function M.wait_until_channel_deleted(client, input, options)
+    return waiter.wait(client, "describeChannel", input, {
+        min_delay = 5,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "DELETED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "DELETING",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "InternalServerErrorException",
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until ChannelPlacementGroupAssigned.
+function M.wait_until_channel_placement_group_assigned(client, input, options)
+    return waiter.wait(client, "describeChannelPlacementGroup", input, {
+        min_delay = 3,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "ASSIGNED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "ASSIGNING",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "InternalServerErrorException",
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until ChannelPlacementGroupDeleted.
+function M.wait_until_channel_placement_group_deleted(client, input, options)
+    return waiter.wait(client, "describeChannelPlacementGroup", input, {
+        min_delay = 5,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "DELETED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "DELETING",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "InternalServerErrorException",
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until ChannelPlacementGroupUnassigned.
+function M.wait_until_channel_placement_group_unassigned(client, input, options)
+    return waiter.wait(client, "describeChannelPlacementGroup", input, {
+        min_delay = 5,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "UNASSIGNED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "UNASSIGNING",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "InternalServerErrorException",
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until ChannelRunning.
+function M.wait_until_channel_running(client, input, options)
+    return waiter.wait(client, "describeChannel", input, {
+        min_delay = 5,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "RUNNING",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "STARTING",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "InternalServerErrorException",
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until ChannelStopped.
+function M.wait_until_channel_stopped(client, input, options)
+    return waiter.wait(client, "describeChannel", input, {
+        min_delay = 5,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "IDLE",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "STOPPING",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "InternalServerErrorException",
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until ClusterCreated.
+function M.wait_until_cluster_created(client, input, options)
+    return waiter.wait(client, "describeCluster", input, {
+        min_delay = 3,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "ACTIVE",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "CREATING",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "InternalServerErrorException",
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "CREATE_FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until ClusterDeleted.
+function M.wait_until_cluster_deleted(client, input, options)
+    return waiter.wait(client, "describeCluster", input, {
+        min_delay = 5,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "DELETED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "DELETING",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "InternalServerErrorException",
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until InputAttached.
+function M.wait_until_input_attached(client, input, options)
+    return waiter.wait(client, "describeInput", input, {
+        min_delay = 5,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "ATTACHED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "DETACHED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "InternalServerErrorException",
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until InputDeleted.
+function M.wait_until_input_deleted(client, input, options)
+    return waiter.wait(client, "describeInput", input, {
+        min_delay = 5,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "DELETED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "DELETING",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "InternalServerErrorException",
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until InputDetached.
+function M.wait_until_input_detached(client, input, options)
+    return waiter.wait(client, "describeInput", input, {
+        min_delay = 5,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "DETACHED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "CREATING",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "ATTACHED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "InternalServerErrorException",
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until MultiplexCreated.
+function M.wait_until_multiplex_created(client, input, options)
+    return waiter.wait(client, "describeMultiplex", input, {
+        min_delay = 3,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "IDLE",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "CREATING",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "InternalServerErrorException",
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "CREATE_FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until MultiplexDeleted.
+function M.wait_until_multiplex_deleted(client, input, options)
+    return waiter.wait(client, "describeMultiplex", input, {
+        min_delay = 5,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "DELETED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "DELETING",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "InternalServerErrorException",
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until MultiplexRunning.
+function M.wait_until_multiplex_running(client, input, options)
+    return waiter.wait(client, "describeMultiplex", input, {
+        min_delay = 5,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "RUNNING",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "STARTING",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "InternalServerErrorException",
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until MultiplexStopped.
+function M.wait_until_multiplex_stopped(client, input, options)
+    return waiter.wait(client, "describeMultiplex", input, {
+        min_delay = 5,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "IDLE",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "STOPPING",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "InternalServerErrorException",
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until NodeDeregistered.
+function M.wait_until_node_deregistered(client, input, options)
+    return waiter.wait(client, "describeNode", input, {
+        min_delay = 5,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "DEREGISTERED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "DEREGISTERING",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "DRAINING",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "InternalServerErrorException",
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until NodeRegistered.
+function M.wait_until_node_registered(client, input, options)
+    return waiter.wait(client, "describeNode", input, {
+        min_delay = 3,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "ACTIVE",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "REGISTERING",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "NotFoundException",
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "REGISTRATION_FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "InternalServerErrorException",
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until SignalMapCreated.
+function M.wait_until_signal_map_created(client, input, options)
+    return waiter.wait(client, "getSignalMap", input, {
+        min_delay = 5,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "Status",
+                        expected = "CREATE_COMPLETE",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "Status",
+                        expected = "CREATE_IN_PROGRESS",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Status",
+                        expected = "CREATE_FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until SignalMapMonitorDeleted.
+function M.wait_until_signal_map_monitor_deleted(client, input, options)
+    return waiter.wait(client, "getSignalMap", input, {
+        min_delay = 5,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "MonitorDeployment.Status",
+                        expected = "DELETE_COMPLETE",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "MonitorDeployment.Status",
+                        expected = "DELETE_IN_PROGRESS",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "MonitorDeployment.Status",
+                        expected = "DELETE_FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until SignalMapMonitorDeployed.
+function M.wait_until_signal_map_monitor_deployed(client, input, options)
+    return waiter.wait(client, "getSignalMap", input, {
+        min_delay = 5,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "MonitorDeployment.Status",
+                        expected = "DRY_RUN_DEPLOYMENT_COMPLETE",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "MonitorDeployment.Status",
+                        expected = "DEPLOYMENT_COMPLETE",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "MonitorDeployment.Status",
+                        expected = "DRY_RUN_DEPLOYMENT_IN_PROGRESS",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "MonitorDeployment.Status",
+                        expected = "DEPLOYMENT_IN_PROGRESS",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "MonitorDeployment.Status",
+                        expected = "DRY_RUN_DEPLOYMENT_FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "MonitorDeployment.Status",
+                        expected = "DEPLOYMENT_FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until SignalMapUpdated.
+function M.wait_until_signal_map_updated(client, input, options)
+    return waiter.wait(client, "getSignalMap", input, {
+        min_delay = 5,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "Status",
+                        expected = "UPDATE_COMPLETE",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "Status",
+                        expected = "UPDATE_IN_PROGRESS",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Status",
+                        expected = "UPDATE_FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Status",
+                        expected = "UPDATE_REVERTED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+return M

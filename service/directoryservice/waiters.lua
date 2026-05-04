@@ -1,0 +1,35 @@
+local waiter = require("waiter")
+
+local M = {}
+
+--- Wait until HybridADUpdated.
+function M.wait_until_hybrid_a_d_updated(client, input, options)
+    return waiter.wait(client, "describeHybridADUpdate", input, {
+        min_delay = 120,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "UpdateActivities.SelfManagedInstances[].Status",
+                        expected = "Updated",
+                        comparator = "allStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "UpdateActivities.SelfManagedInstances[].Status",
+                        expected = "UpdateFailed",
+                        comparator = "anyStringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+return M

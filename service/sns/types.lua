@@ -17,14 +17,14 @@ M.AddPermissionInput = {
         },
         AWSAccountId = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         ActionName = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -93,6 +93,9 @@ M.CheckIfPhoneNumberIsOptedOutOutput = {
     members = {
         isOptedOut = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -184,8 +187,8 @@ M.CreatePlatformApplicationInput = {
         },
         Attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -222,8 +225,8 @@ M.CreatePlatformEndpointInput = {
         },
         Attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -331,12 +334,12 @@ M.CreateTopicInput = {
         },
         Attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         DataProtectionPolicy = {
             type = "string",
@@ -525,8 +528,8 @@ M.GetEndpointAttributesOutput = {
     members = {
         Attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -548,8 +551,8 @@ M.GetPlatformApplicationAttributesOutput = {
     members = {
         Attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -559,7 +562,7 @@ M.GetSMSAttributesInput = {
     members = {
         attributes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -569,8 +572,8 @@ M.GetSMSAttributesOutput = {
     members = {
         attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -585,6 +588,7 @@ M.GetSMSSandboxAccountStatusOutput = {
         IsInSandbox = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -608,8 +612,8 @@ M.GetSubscriptionAttributesOutput = {
     members = {
         Attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -631,8 +635,8 @@ M.GetTopicAttributesOutput = {
     members = {
         Attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -660,8 +664,8 @@ M.Endpoint = {
         },
         Attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -671,7 +675,7 @@ M.ListEndpointsByPlatformApplicationOutput = {
     members = {
         Endpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.Endpoint,
         },
         NextToken = {
             type = "string",
@@ -686,7 +690,7 @@ M.ListOriginationNumbersInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -723,7 +727,7 @@ M.PhoneNumberInformation = {
         },
         NumberCapabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -736,7 +740,7 @@ M.ListOriginationNumbersOutput = {
         },
         PhoneNumbers = {
             type = "list",
-            member_type = "structure",
+            member = M.PhoneNumberInformation,
         },
     },
 }
@@ -768,7 +772,7 @@ M.ListPhoneNumbersOptedOutOutput = {
     members = {
         phoneNumbers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -793,8 +797,8 @@ M.PlatformApplication = {
         },
         Attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -804,7 +808,7 @@ M.ListPlatformApplicationsOutput = {
     members = {
         PlatformApplications = {
             type = "list",
-            member_type = "structure",
+            member = M.PlatformApplication,
         },
         NextToken = {
             type = "string",
@@ -819,7 +823,7 @@ M.ListSMSSandboxPhoneNumbersInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -846,7 +850,7 @@ M.ListSMSSandboxPhoneNumbersOutput = {
     members = {
         PhoneNumbers = {
             type = "list",
-            member_type = "structure",
+            member = M.SMSSandboxPhoneNumber,
             traits = {
                 required = true,
             },
@@ -892,7 +896,7 @@ M.ListSubscriptionsOutput = {
     members = {
         Subscriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.Subscription,
         },
         NextToken = {
             type = "string",
@@ -920,7 +924,7 @@ M.ListSubscriptionsByTopicOutput = {
     members = {
         Subscriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.Subscription,
         },
         NextToken = {
             type = "string",
@@ -945,7 +949,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -973,7 +977,7 @@ M.ListTopicsOutput = {
     members = {
         Topics = {
             type = "list",
-            member_type = "structure",
+            member = M.Topic,
         },
         NextToken = {
             type = "string",
@@ -1131,8 +1135,8 @@ M.PublishInput = {
         },
         MessageAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.MessageAttributeValue,
         },
         MessageDeduplicationId = {
             type = "string",
@@ -1218,8 +1222,8 @@ M.PublishBatchRequestEntry = {
         },
         MessageAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.MessageAttributeValue,
         },
         MessageDeduplicationId = {
             type = "string",
@@ -1241,7 +1245,7 @@ M.PublishBatchInput = {
         },
         PublishBatchRequestEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.PublishBatchRequestEntry,
             traits = {
                 required = true,
             },
@@ -1270,6 +1274,7 @@ M.BatchResultErrorEntry = {
         SenderFault = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -1296,11 +1301,11 @@ M.PublishBatchOutput = {
     members = {
         Successful = {
             type = "list",
-            member_type = "structure",
+            member = M.PublishBatchResultEntry,
         },
         Failed = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchResultErrorEntry,
         },
     },
 }
@@ -1370,8 +1375,8 @@ M.SetEndpointAttributesInput = {
         },
         Attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1394,8 +1399,8 @@ M.SetPlatformApplicationAttributesInput = {
         },
         Attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1412,8 +1417,8 @@ M.SetSMSAttributesInput = {
     members = {
         attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1495,11 +1500,14 @@ M.SubscribeInput = {
         },
         Attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ReturnSubscriptionArn = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1524,7 +1532,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -1563,7 +1571,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },

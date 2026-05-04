@@ -86,16 +86,13 @@ M.PutDeploymentParameterInput = {
                 required = true,
             },
         },
-        deploymentParameter = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        deploymentParameter = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DeploymentParameterInput }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         expirationDate = {
             type = "timestamp",
@@ -132,8 +129,8 @@ M.PutDeploymentParameterOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -214,8 +211,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -232,8 +229,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -254,7 +251,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,

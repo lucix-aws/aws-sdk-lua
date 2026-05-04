@@ -45,11 +45,9 @@ M.Actor = {
         },
         uris = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        authentication = {
-            type = "structure",
-        },
+        authentication = M.Authentication,
         description = {
             type = "string",
         },
@@ -185,7 +183,7 @@ M.ValidationException = {
         },
         fieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -198,11 +196,11 @@ M.VpcConfig = {
         },
         securityGroupArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         subnetArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -212,27 +210,27 @@ M.AWSResources = {
     members = {
         vpcs = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcConfig,
         },
         logGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         s3Buckets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         secretArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         lambdaFunctionArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         iamRoles = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -273,16 +271,12 @@ M.AgentSpace = {
         description = {
             type = "string",
         },
-        awsResources = {
-            type = "structure",
-        },
+        awsResources = M.AWSResources,
         targetDomainIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        codeReviewSettings = {
-            type = "structure",
-        },
+        codeReviewSettings = M.CodeReviewSettings,
         kmsKeyId = {
             type = "string",
         },
@@ -306,7 +300,7 @@ M.BatchGetAgentSpacesInput = {
     members = {
         agentSpaceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -319,11 +313,11 @@ M.BatchGetAgentSpacesOutput = {
     members = {
         agentSpaces = {
             type = "list",
-            member_type = "structure",
+            member = M.AgentSpace,
         },
         notFound = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -340,23 +334,19 @@ M.CreateAgentSpaceInput = {
         description = {
             type = "string",
         },
-        awsResources = {
-            type = "structure",
-        },
+        awsResources = M.AWSResources,
         targetDomainIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        codeReviewSettings = {
-            type = "structure",
-        },
+        codeReviewSettings = M.CodeReviewSettings,
         kmsKeyId = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -379,16 +369,12 @@ M.CreateAgentSpaceOutput = {
         description = {
             type = "string",
         },
-        awsResources = {
-            type = "structure",
-        },
+        awsResources = M.AWSResources,
         targetDomainIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        codeReviewSettings = {
-            type = "structure",
-        },
+        codeReviewSettings = M.CodeReviewSettings,
         kmsKeyId = {
             type = "string",
         },
@@ -435,7 +421,7 @@ M.ListAgentSpacesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -475,7 +461,7 @@ M.ListAgentSpacesOutput = {
     members = {
         agentSpaceSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.AgentSpaceSummary,
         },
         nextToken = {
             type = "string",
@@ -498,16 +484,12 @@ M.UpdateAgentSpaceInput = {
         description = {
             type = "string",
         },
-        awsResources = {
-            type = "structure",
-        },
+        awsResources = M.AWSResources,
         targetDomainIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        codeReviewSettings = {
-            type = "structure",
-        },
+        codeReviewSettings = M.CodeReviewSettings,
     },
 }
 
@@ -529,16 +511,12 @@ M.UpdateAgentSpaceOutput = {
         description = {
             type = "string",
         },
-        awsResources = {
-            type = "structure",
-        },
+        awsResources = M.AWSResources,
         targetDomainIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        codeReviewSettings = {
-            type = "structure",
-        },
+        codeReviewSettings = M.CodeReviewSettings,
         createdAt = {
             type = "timestamp",
             traits = {
@@ -568,8 +546,8 @@ M.CreateApplicationInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -644,9 +622,7 @@ M.GetApplicationOutput = {
         applicationName = {
             type = "string",
         },
-        idcConfiguration = {
-            type = "structure",
-        },
+        idcConfiguration = M.IdCConfiguration,
         roleArn = {
             type = "string",
         },
@@ -663,7 +639,7 @@ M.ListApplicationsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -700,7 +676,7 @@ M.ListApplicationsOutput = {
     members = {
         applicationSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ApplicationSummary,
             traits = {
                 required = true,
             },
@@ -867,23 +843,23 @@ M.Assets = {
     members = {
         endpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.Endpoint,
         },
         actors = {
             type = "list",
-            member_type = "structure",
+            member = M.Actor,
         },
         documents = {
             type = "list",
-            member_type = "structure",
+            member = M.DocumentInfo,
         },
         sourceCode = {
             type = "list",
-            member_type = "structure",
+            member = M.SourceCodeRepository,
         },
         integratedRepositories = {
             type = "list",
-            member_type = "structure",
+            member = M.IntegratedRepository,
         },
     },
 }
@@ -893,7 +869,7 @@ M.BatchDeletePentestsInput = {
     members = {
         pentestIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -996,11 +972,11 @@ M.NetworkTrafficConfig = {
     members = {
         rules = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkTrafficRule,
         },
         customHeaders = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomHeader,
         },
     },
 }
@@ -1026,28 +1002,19 @@ M.Pentest = {
                 required = true,
             },
         },
-        assets = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        assets = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Assets }),
         excludeRiskTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         serviceRole = {
             type = "string",
         },
-        logConfig = {
-            type = "structure",
-        },
-        vpcConfig = {
-            type = "structure",
-        },
-        networkTrafficConfig = {
-            type = "structure",
-        },
+        logConfig = M.CloudWatchLog,
+        vpcConfig = M.VpcConfig,
+        networkTrafficConfig = M.NetworkTrafficConfig,
         codeRemediationStrategy = {
             type = "string",
         },
@@ -1083,11 +1050,11 @@ M.BatchDeletePentestsOutput = {
     members = {
         deleted = {
             type = "list",
-            member_type = "structure",
+            member = M.Pentest,
         },
         failed = {
             type = "list",
-            member_type = "structure",
+            member = M.DeletePentestFailure,
         },
     },
 }
@@ -1103,7 +1070,7 @@ M.BatchGetArtifactMetadataInput = {
         },
         artifactIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1116,7 +1083,7 @@ M.BatchGetArtifactMetadataOutput = {
     members = {
         artifactMetadataList = {
             type = "list",
-            member_type = "structure",
+            member = M.ArtifactMetadataItem,
             traits = {
                 required = true,
             },
@@ -1129,7 +1096,7 @@ M.BatchGetFindingsInput = {
     members = {
         findingIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1178,7 +1145,7 @@ M.CodeRemediationTask = {
         },
         taskDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.CodeRemediationTaskDetails,
         },
     },
 }
@@ -1258,9 +1225,7 @@ M.Finding = {
         attackScript = {
             type = "string",
         },
-        codeRemediationTask = {
-            type = "structure",
-        },
+        codeRemediationTask = M.CodeRemediationTask,
         lastUpdatedBy = {
             type = "string",
         },
@@ -1284,11 +1249,11 @@ M.BatchGetFindingsOutput = {
     members = {
         findings = {
             type = "list",
-            member_type = "structure",
+            member = M.Finding,
         },
         notFound = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1298,7 +1263,7 @@ M.BatchGetPentestJobsInput = {
     members = {
         pentestJobIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1422,58 +1387,50 @@ M.PentestJob = {
         },
         endpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.Endpoint,
         },
         actors = {
             type = "list",
-            member_type = "structure",
+            member = M.Actor,
         },
         documents = {
             type = "list",
-            member_type = "structure",
+            member = M.DocumentInfo,
         },
         sourceCode = {
             type = "list",
-            member_type = "structure",
+            member = M.SourceCodeRepository,
         },
         excludePaths = {
             type = "list",
-            member_type = "structure",
+            member = M.Endpoint,
         },
         allowedDomains = {
             type = "list",
-            member_type = "structure",
+            member = M.Endpoint,
         },
         excludeRiskTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         steps = {
             type = "list",
-            member_type = "structure",
+            member = M.Step,
         },
         executionContext = {
             type = "list",
-            member_type = "structure",
+            member = M.ExecutionContext,
         },
         serviceRole = {
             type = "string",
         },
-        logConfig = {
-            type = "structure",
-        },
-        vpcConfig = {
-            type = "structure",
-        },
-        networkTrafficConfig = {
-            type = "structure",
-        },
-        errorInformation = {
-            type = "structure",
-        },
+        logConfig = M.CloudWatchLog,
+        vpcConfig = M.VpcConfig,
+        networkTrafficConfig = M.NetworkTrafficConfig,
+        errorInformation = M.ErrorInformation,
         integratedRepositories = {
             type = "list",
-            member_type = "structure",
+            member = M.IntegratedRepository,
         },
         codeRemediationStrategy = {
             type = "string",
@@ -1498,11 +1455,11 @@ M.BatchGetPentestJobsOutput = {
     members = {
         pentestJobs = {
             type = "list",
-            member_type = "structure",
+            member = M.PentestJob,
         },
         notFound = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1518,7 +1475,7 @@ M.BatchGetPentestJobTasksInput = {
         },
         taskIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1556,9 +1513,7 @@ M.LogLocation = {
         logType = {
             type = "string",
         },
-        cloudWatchLog = {
-            type = "structure",
-        },
+        cloudWatchLog = M.CloudWatchLog,
     },
 }
 
@@ -1588,20 +1543,16 @@ M.Task = {
         },
         categories = {
             type = "list",
-            member_type = "structure",
+            member = M.Category,
         },
         riskType = {
             type = "string",
         },
-        targetEndpoint = {
-            type = "structure",
-        },
+        targetEndpoint = M.Endpoint,
         executionStatus = {
             type = "string",
         },
-        logsLocation = {
-            type = "structure",
-        },
+        logsLocation = M.LogLocation,
         createdAt = {
             type = "timestamp",
             traits = {
@@ -1622,11 +1573,11 @@ M.BatchGetPentestJobTasksOutput = {
     members = {
         tasks = {
             type = "list",
-            member_type = "structure",
+            member = M.Task,
         },
         notFound = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1636,7 +1587,7 @@ M.BatchGetPentestsInput = {
     members = {
         pentestIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1655,11 +1606,11 @@ M.BatchGetPentestsOutput = {
     members = {
         pentests = {
             type = "list",
-            member_type = "structure",
+            member = M.Pentest,
         },
         notFound = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1669,7 +1620,7 @@ M.BatchGetTargetDomainsInput = {
     members = {
         targetDomainIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1719,12 +1670,8 @@ M.VerificationDetails = {
         method = {
             type = "string",
         },
-        dnsTxt = {
-            type = "structure",
-        },
-        httpRoute = {
-            type = "structure",
-        },
+        dnsTxt = M.DnsVerification,
+        httpRoute = M.HttpVerification,
     },
 }
 
@@ -1753,9 +1700,7 @@ M.TargetDomain = {
         verificationStatus = {
             type = "string",
         },
-        verificationDetails = {
-            type = "structure",
-        },
+        verificationDetails = M.VerificationDetails,
         createdAt = {
             type = "timestamp",
             traits = {
@@ -1776,11 +1721,11 @@ M.BatchGetTargetDomainsOutput = {
     members = {
         targetDomains = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetDomain,
         },
         notFound = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1822,9 +1767,7 @@ M.GitHubIntegrationInput = {
 M.ProviderInput = {
     type = "union",
     members = {
-        github = {
-            type = "structure",
-        },
+        github = M.GitHubIntegrationInput,
     },
 }
 
@@ -1841,12 +1784,9 @@ M.CreateIntegrationInput = {
                 required = true,
             },
         },
-        input = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        input = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProviderInput }),
         integrationDisplayName = {
             type = "string",
             traits = {
@@ -1858,8 +1798,8 @@ M.CreateIntegrationInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1892,9 +1832,7 @@ M.UserConfig = {
 M.MembershipConfig = {
     type = "union",
     members = {
-        user = {
-            type = "structure",
-        },
+        user = M.UserConfig,
     },
 }
 
@@ -1929,9 +1867,7 @@ M.CreateMembershipInput = {
                 required = true,
             },
         },
-        config = {
-            type = "union",
-        },
+        config = M.MembershipConfig,
     },
 }
 
@@ -1954,25 +1890,17 @@ M.CreatePentestInput = {
                 required = true,
             },
         },
-        assets = {
-            type = "structure",
-        },
+        assets = M.Assets,
         excludeRiskTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         serviceRole = {
             type = "string",
         },
-        logConfig = {
-            type = "structure",
-        },
-        vpcConfig = {
-            type = "structure",
-        },
-        networkTrafficConfig = {
-            type = "structure",
-        },
+        logConfig = M.CloudWatchLog,
+        vpcConfig = M.VpcConfig,
+        networkTrafficConfig = M.NetworkTrafficConfig,
         codeRemediationStrategy = {
             type = "string",
         },
@@ -2000,19 +1928,15 @@ M.CreatePentestOutput = {
                 timestamp_format = "date-time",
             },
         },
-        assets = {
-            type = "structure",
-        },
+        assets = M.Assets,
         excludeRiskTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         serviceRole = {
             type = "string",
         },
-        logConfig = {
-            type = "structure",
-        },
+        logConfig = M.CloudWatchLog,
         agentSpaceId = {
             type = "string",
         },
@@ -2036,8 +1960,8 @@ M.CreateTargetDomainInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2063,9 +1987,7 @@ M.CreateTargetDomainOutput = {
                 required = true,
             },
         },
-        verificationDetails = {
-            type = "structure",
-        },
+        verificationDetails = M.VerificationDetails,
         createdAt = {
             type = "timestamp",
             traits = {
@@ -2294,12 +2216,9 @@ M.GetArtifactOutput = {
                 required = true,
             },
         },
-        artifact = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        artifact = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Artifact }),
         fileName = {
             type = "string",
             traits = {
@@ -2459,42 +2378,31 @@ M.InitiateProviderRegistrationOutput = {
 M.IntegratedResource = {
     type = "union",
     members = {
-        githubRepository = {
-            type = "structure",
-        },
+        githubRepository = M.GitHubRepositoryResource,
     },
 }
 
 M.ProviderResourceCapabilities = {
     type = "union",
     members = {
-        github = {
-            type = "structure",
-        },
+        github = M.GitHubResourceCapabilities,
     },
 }
 
 M.IntegratedResourceInputItem = {
     type = "structure",
     members = {
-        resource = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        capabilities = {
-            type = "union",
-        },
+        resource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IntegratedResource }),
+        capabilities = M.ProviderResourceCapabilities,
     },
 }
 
 M.IntegratedResourceMetadata = {
     type = "union",
     members = {
-        githubRepository = {
-            type = "structure",
-        },
+        githubRepository = M.GitHubRepositoryMetadata,
     },
 }
 
@@ -2507,15 +2415,10 @@ M.IntegratedResourceSummary = {
                 required = true,
             },
         },
-        resource = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        capabilities = {
-            type = "union",
-        },
+        resource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IntegratedResourceMetadata }),
+        capabilities = M.ProviderResourceCapabilities,
     },
 }
 
@@ -2534,14 +2437,12 @@ M.IntegrationFilter = {
 M.ListIntegrationsInput = {
     type = "structure",
     members = {
-        filter = {
-            type = "union",
-        },
+        filter = M.IntegrationFilter,
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2587,7 +2488,7 @@ M.ListIntegrationsOutput = {
     members = {
         integrationSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.IntegrationSummary,
             traits = {
                 required = true,
             },
@@ -2611,7 +2512,7 @@ M.ListArtifactsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2621,7 +2522,7 @@ M.ListArtifactsOutput = {
     members = {
         artifactSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ArtifactSummary,
             traits = {
                 required = true,
             },
@@ -2636,7 +2537,7 @@ M.ListDiscoveredEndpointsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         pentestJobId = {
             type = "string",
@@ -2664,7 +2565,7 @@ M.ListDiscoveredEndpointsOutput = {
     members = {
         discoveredEndpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.DiscoveredEndpoint,
         },
         nextToken = {
             type = "string",
@@ -2676,7 +2577,7 @@ M.ListFindingsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         pentestJobId = {
             type = "string",
@@ -2716,7 +2617,7 @@ M.ListFindingsOutput = {
     members = {
         findingsSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.FindingSummary,
         },
         nextToken = {
             type = "string",
@@ -2747,7 +2648,7 @@ M.ListIntegratedResourcesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2757,7 +2658,7 @@ M.ListIntegratedResourcesOutput = {
     members = {
         integratedResourceSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.IntegratedResourceSummary,
             traits = {
                 required = true,
             },
@@ -2792,7 +2693,7 @@ M.ListMembershipsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -2821,9 +2722,7 @@ M.UserMetadata = {
 M.MemberMetadata = {
     type = "union",
     members = {
-        user = {
-            type = "structure",
-        },
+        user = M.UserMetadata,
     },
 }
 
@@ -2854,12 +2753,8 @@ M.MembershipSummary = {
                 required = true,
             },
         },
-        config = {
-            type = "union",
-        },
-        metadata = {
-            type = "union",
-        },
+        config = M.MembershipConfig,
+        metadata = M.MemberMetadata,
         createdAt = {
             type = "timestamp",
             traits = {
@@ -2894,7 +2789,7 @@ M.ListMembershipsOutput = {
     members = {
         membershipSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.MembershipSummary,
             traits = {
                 required = true,
             },
@@ -2909,7 +2804,7 @@ M.ListPentestJobsForPentestInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         pentestId = {
             type = "string",
@@ -2970,7 +2865,7 @@ M.ListPentestJobsForPentestOutput = {
     members = {
         pentestJobSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.PentestJobSummary,
         },
         nextToken = {
             type = "string",
@@ -2988,7 +2883,7 @@ M.ListPentestJobTasksInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         pentestJobId = {
             type = "string",
@@ -3052,7 +2947,7 @@ M.ListPentestJobTasksOutput = {
     members = {
         taskSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.TaskSummary,
         },
         nextToken = {
             type = "string",
@@ -3064,7 +2959,7 @@ M.ListPentestsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -3119,7 +3014,7 @@ M.ListPentestsOutput = {
     members = {
         pentestSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.PentestSummary,
         },
         nextToken = {
             type = "string",
@@ -3145,8 +3040,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3158,7 +3053,7 @@ M.ListTargetDomainsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3189,7 +3084,7 @@ M.ListTargetDomainsOutput = {
     members = {
         targetDomainSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetDomainSummary,
         },
         nextToken = {
             type = "string",
@@ -3214,7 +3109,7 @@ M.StartCodeRemediationInput = {
         },
         findingIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3311,8 +3206,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3363,9 +3258,7 @@ M.UpdateTargetDomainOutput = {
                 required = true,
             },
         },
-        verificationDetails = {
-            type = "structure",
-        },
+        verificationDetails = M.VerificationDetails,
         createdAt = {
             type = "timestamp",
             traits = {
@@ -3393,7 +3286,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -3451,7 +3344,7 @@ M.UpdateIntegratedResourcesInput = {
         },
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.IntegratedResourceInputItem,
             traits = {
                 required = true,
             },
@@ -3481,25 +3374,17 @@ M.UpdatePentestInput = {
         title = {
             type = "string",
         },
-        assets = {
-            type = "structure",
-        },
+        assets = M.Assets,
         excludeRiskTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         serviceRole = {
             type = "string",
         },
-        logConfig = {
-            type = "structure",
-        },
-        vpcConfig = {
-            type = "structure",
-        },
-        networkTrafficConfig = {
-            type = "structure",
-        },
+        logConfig = M.CloudWatchLog,
+        vpcConfig = M.VpcConfig,
+        networkTrafficConfig = M.NetworkTrafficConfig,
         codeRemediationStrategy = {
             type = "string",
         },
@@ -3527,19 +3412,15 @@ M.UpdatePentestOutput = {
                 timestamp_format = "date-time",
             },
         },
-        assets = {
-            type = "structure",
-        },
+        assets = M.Assets,
         excludeRiskTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         serviceRole = {
             type = "string",
         },
-        logConfig = {
-            type = "structure",
-        },
+        logConfig = M.CloudWatchLog,
         agentSpaceId = {
             type = "string",
         },

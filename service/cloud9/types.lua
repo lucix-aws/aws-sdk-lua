@@ -11,7 +11,10 @@ M.BadRequestException = {
             type = "string",
         },
         code = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -27,7 +30,10 @@ M.ConflictException = {
             type = "string",
         },
         code = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -86,14 +92,14 @@ M.CreateEnvironmentEC2Input = {
             },
         },
         automaticStopTimeMinutes = {
-            type = "number",
+            type = "integer",
         },
         ownerArn = {
             type = "string",
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         connectionType = {
             type = "string",
@@ -124,7 +130,10 @@ M.ForbiddenException = {
             type = "string",
         },
         code = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -140,7 +149,10 @@ M.InternalServerErrorException = {
             type = "string",
         },
         code = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -156,7 +168,10 @@ M.LimitExceededException = {
             type = "string",
         },
         code = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -172,7 +187,10 @@ M.NotFoundException = {
             type = "string",
         },
         code = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -188,7 +206,10 @@ M.TooManyRequestsException = {
             type = "string",
         },
         code = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -264,12 +285,9 @@ M.EnvironmentMember = {
 M.CreateEnvironmentMembershipOutput = {
     type = "structure",
     members = {
-        membership = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        membership = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EnvironmentMember }),
     },
 }
 
@@ -322,13 +340,13 @@ M.DescribeEnvironmentMembershipsInput = {
         },
         permissions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -338,7 +356,7 @@ M.DescribeEnvironmentMembershipsOutput = {
     members = {
         memberships = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentMember,
         },
         nextToken = {
             type = "string",
@@ -351,7 +369,7 @@ M.DescribeEnvironmentsInput = {
     members = {
         environmentIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -434,9 +452,7 @@ M.Environment = {
                 required = true,
             },
         },
-        lifecycle = {
-            type = "structure",
-        },
+        lifecycle = M.EnvironmentLifecycle,
         managedCredentialsStatus = {
             type = "string",
         },
@@ -448,7 +464,7 @@ M.DescribeEnvironmentsOutput = {
     members = {
         environments = {
             type = "list",
-            member_type = "structure",
+            member = M.Environment,
         },
     },
 }
@@ -500,7 +516,7 @@ M.ListEnvironmentsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -513,7 +529,7 @@ M.ListEnvironmentsOutput = {
         },
         environmentIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -535,7 +551,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -551,7 +567,10 @@ M.ConcurrentAccessException = {
             type = "string",
         },
         code = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -567,7 +586,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -590,7 +609,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -659,9 +678,7 @@ M.UpdateEnvironmentMembershipInput = {
 M.UpdateEnvironmentMembershipOutput = {
     type = "structure",
     members = {
-        membership = {
-            type = "structure",
-        },
+        membership = M.EnvironmentMember,
     },
 }
 

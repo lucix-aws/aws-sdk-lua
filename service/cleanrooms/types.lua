@@ -25,13 +25,13 @@ M.AccessBudgetDetails = {
             type = "timestamp",
         },
         remainingBudget = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         budget = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -59,13 +59,13 @@ M.AccessBudget = {
         },
         details = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessBudgetDetails,
             traits = {
                 required = true,
             },
         },
         aggregateRemainingBudget = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -83,7 +83,7 @@ M.BudgetParameter = {
             },
         },
         budget = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -99,7 +99,7 @@ M.AccessBudgetsPrivacyTemplateParametersInput = {
     members = {
         budgetParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.BudgetParameter,
             traits = {
                 required = true,
             },
@@ -118,7 +118,7 @@ M.AccessBudgetsPrivacyTemplateParametersOutput = {
     members = {
         budgetParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.BudgetParameter,
             traits = {
                 required = true,
             },
@@ -137,7 +137,7 @@ M.AccessBudgetsPrivacyTemplateUpdateParameters = {
     members = {
         budgetParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.BudgetParameter,
             traits = {
                 required = true,
             },
@@ -181,7 +181,7 @@ M.AggregateColumn = {
     members = {
         columnNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -209,7 +209,7 @@ M.AggregationConstraint = {
             },
         },
         minimum = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -327,11 +327,11 @@ M.ConfiguredTableAssociationAnalysisRuleAggregation = {
     members = {
         allowedResultReceivers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         allowedAdditionalAnalyses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -341,11 +341,11 @@ M.ConfiguredTableAssociationAnalysisRuleCustom = {
     members = {
         allowedResultReceivers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         allowedAdditionalAnalyses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -355,11 +355,11 @@ M.ConfiguredTableAssociationAnalysisRuleList = {
     members = {
         allowedResultReceivers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         allowedAdditionalAnalyses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -367,24 +367,16 @@ M.ConfiguredTableAssociationAnalysisRuleList = {
 M.ConfiguredTableAssociationAnalysisRulePolicyV1 = {
     type = "union",
     members = {
-        list = {
-            type = "structure",
-        },
-        aggregation = {
-            type = "structure",
-        },
-        custom = {
-            type = "structure",
-        },
+        list = M.ConfiguredTableAssociationAnalysisRuleList,
+        aggregation = M.ConfiguredTableAssociationAnalysisRuleAggregation,
+        custom = M.ConfiguredTableAssociationAnalysisRuleCustom,
     },
 }
 
 M.ConfiguredTableAssociationAnalysisRulePolicy = {
     type = "union",
     members = {
-        v1 = {
-            type = "union",
-        },
+        v1 = M.ConfiguredTableAssociationAnalysisRulePolicyV1,
     },
 }
 
@@ -429,14 +421,14 @@ M.ConsolidatedPolicyAggregation = {
     members = {
         aggregateColumns = {
             type = "list",
-            member_type = "structure",
+            member = M.AggregateColumn,
             traits = {
                 required = true,
             },
         },
         joinColumns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -446,25 +438,25 @@ M.ConsolidatedPolicyAggregation = {
         },
         allowedJoinOperators = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         dimensionColumns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         scalarFunctions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         outputConstraints = {
             type = "list",
-            member_type = "structure",
+            member = M.AggregationConstraint,
             traits = {
                 required = true,
             },
@@ -474,11 +466,11 @@ M.ConsolidatedPolicyAggregation = {
         },
         allowedResultReceivers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         allowedAdditionalAnalyses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -500,7 +492,7 @@ M.DifferentialPrivacyConfiguration = {
     members = {
         columns = {
             type = "list",
-            member_type = "structure",
+            member = M.DifferentialPrivacyColumn,
             traits = {
                 required = true,
             },
@@ -513,32 +505,30 @@ M.ConsolidatedPolicyCustom = {
     members = {
         allowedAnalyses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         allowedAnalysisProviders = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         additionalAnalyses = {
             type = "string",
         },
         disallowedOutputColumns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        differentialPrivacy = {
-            type = "structure",
-        },
+        differentialPrivacy = M.DifferentialPrivacyConfiguration,
         allowedResultReceivers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         allowedAdditionalAnalyses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -548,18 +538,18 @@ M.ConsolidatedPolicyList = {
     members = {
         joinColumns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         allowedJoinOperators = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         listColumns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -569,11 +559,11 @@ M.ConsolidatedPolicyList = {
         },
         allowedResultReceivers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         allowedAdditionalAnalyses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -581,24 +571,16 @@ M.ConsolidatedPolicyList = {
 M.ConsolidatedPolicyV1 = {
     type = "union",
     members = {
-        list = {
-            type = "structure",
-        },
-        aggregation = {
-            type = "structure",
-        },
-        custom = {
-            type = "structure",
-        },
+        list = M.ConsolidatedPolicyList,
+        aggregation = M.ConsolidatedPolicyAggregation,
+        custom = M.ConsolidatedPolicyCustom,
     },
 }
 
 M.ConsolidatedPolicy = {
     type = "union",
     members = {
-        v1 = {
-            type = "union",
-        },
+        v1 = M.ConsolidatedPolicyV1,
     },
 }
 
@@ -607,14 +589,14 @@ M.AnalysisRuleAggregation = {
     members = {
         aggregateColumns = {
             type = "list",
-            member_type = "structure",
+            member = M.AggregateColumn,
             traits = {
                 required = true,
             },
         },
         joinColumns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -624,25 +606,25 @@ M.AnalysisRuleAggregation = {
         },
         allowedJoinOperators = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         dimensionColumns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         scalarFunctions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         outputConstraints = {
             type = "list",
-            member_type = "structure",
+            member = M.AggregationConstraint,
             traits = {
                 required = true,
             },
@@ -658,25 +640,23 @@ M.AnalysisRuleCustom = {
     members = {
         allowedAnalyses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         allowedAnalysisProviders = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         additionalAnalyses = {
             type = "string",
         },
         disallowedOutputColumns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        differentialPrivacy = {
-            type = "structure",
-        },
+        differentialPrivacy = M.DifferentialPrivacyConfiguration,
     },
 }
 
@@ -685,7 +665,7 @@ M.QueryConstraintRequireOverlap = {
     members = {
         columns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -693,9 +673,7 @@ M.QueryConstraintRequireOverlap = {
 M.QueryConstraint = {
     type = "union",
     members = {
-        requireOverlap = {
-            type = "structure",
-        },
+        requireOverlap = M.QueryConstraintRequireOverlap,
     },
 }
 
@@ -704,21 +682,21 @@ M.AnalysisRuleIdMappingTable = {
     members = {
         joinColumns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         queryConstraints = {
             type = "list",
-            member_type = "union",
+            member = M.QueryConstraint,
             traits = {
                 required = true,
             },
         },
         dimensionColumns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -728,18 +706,18 @@ M.AnalysisRuleList = {
     members = {
         joinColumns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         allowedJoinOperators = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         listColumns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -753,27 +731,17 @@ M.AnalysisRuleList = {
 M.AnalysisRulePolicyV1 = {
     type = "union",
     members = {
-        list = {
-            type = "structure",
-        },
-        aggregation = {
-            type = "structure",
-        },
-        custom = {
-            type = "structure",
-        },
-        idMappingTable = {
-            type = "structure",
-        },
+        list = M.AnalysisRuleList,
+        aggregation = M.AnalysisRuleAggregation,
+        custom = M.AnalysisRuleCustom,
+        idMappingTable = M.AnalysisRuleIdMappingTable,
     },
 }
 
 M.AnalysisRulePolicy = {
     type = "union",
     members = {
-        v1 = {
-            type = "union",
-        },
+        v1 = M.AnalysisRulePolicyV1,
     },
 }
 
@@ -817,18 +785,11 @@ M.AnalysisRule = {
                 required = true,
             },
         },
-        policy = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        collaborationPolicy = {
-            type = "union",
-        },
-        consolidatedPolicy = {
-            type = "union",
-        },
+        policy = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AnalysisRulePolicy }),
+        collaborationPolicy = M.ConfiguredTableAssociationAnalysisRulePolicy,
+        consolidatedPolicy = M.ConsolidatedPolicy,
     },
 }
 
@@ -837,7 +798,7 @@ M.AnalysisSchema = {
     members = {
         referencedTables = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -863,27 +824,21 @@ M.S3Location = {
 M.AnalysisTemplateArtifact = {
     type = "structure",
     members = {
-        location = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        location = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3Location }),
     },
 }
 
 M.AnalysisTemplateArtifacts = {
     type = "structure",
     members = {
-        entryPoint = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        entryPoint = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AnalysisTemplateArtifact }),
         additionalArtifacts = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalysisTemplateArtifact,
         },
         roleArn = {
             type = "string",
@@ -900,9 +855,7 @@ M.AnalysisSource = {
         text = {
             type = "string",
         },
-        artifacts = {
-            type = "structure",
-        },
+        artifacts = M.AnalysisTemplateArtifacts,
     },
 }
 
@@ -918,15 +871,12 @@ M.Hash = {
 M.AnalysisTemplateArtifactMetadata = {
     type = "structure",
     members = {
-        entryPointHash = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        entryPointHash = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Hash }),
         additionalArtifactHashes = {
             type = "list",
-            member_type = "structure",
+            member = M.Hash,
         },
     },
 }
@@ -934,9 +884,7 @@ M.AnalysisTemplateArtifactMetadata = {
 M.AnalysisSourceMetadata = {
     type = "union",
     members = {
-        artifacts = {
-            type = "structure",
-        },
+        artifacts = M.AnalysisTemplateArtifactMetadata,
     },
 }
 
@@ -990,7 +938,7 @@ M.ColumnClassificationDetails = {
     members = {
         columnMapping = {
             type = "list",
-            member_type = "structure",
+            member = M.SyntheticDataColumnProperties,
             traits = {
                 required = true,
             },
@@ -1002,32 +950,27 @@ M.MLSyntheticDataParameters = {
     type = "structure",
     members = {
         epsilon = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
         maxMembershipInferenceAttackScore = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
-        columnClassification = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        columnClassification = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ColumnClassificationDetails }),
     },
 }
 
 M.SyntheticDataParameters = {
     type = "union",
     members = {
-        mlSyntheticDataParameters = {
-            type = "structure",
-        },
+        mlSyntheticDataParameters = M.MLSyntheticDataParameters,
     },
 }
 
@@ -1070,7 +1013,7 @@ M.AnalysisTemplateValidationStatusDetail = {
         },
         reasons = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalysisTemplateValidationStatusReason,
         },
     },
 }
@@ -1135,41 +1078,29 @@ M.AnalysisTemplate = {
                 required = true,
             },
         },
-        schema = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        schema = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AnalysisSchema }),
         format = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        source = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        sourceMetadata = {
-            type = "union",
-        },
+        source = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AnalysisSource }),
+        sourceMetadata = M.AnalysisSourceMetadata,
         analysisParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalysisParameter,
         },
         validations = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalysisTemplateValidationStatusDetail,
         },
-        errorMessageConfiguration = {
-            type = "structure",
-        },
-        syntheticDataParameters = {
-            type = "union",
-        },
+        errorMessageConfiguration = M.ErrorMessageConfiguration,
+        syntheticDataParameters = M.SyntheticDataParameters,
     },
 }
 
@@ -1230,42 +1161,30 @@ M.CreateAnalysisTemplateInput = {
                 required = true,
             },
         },
-        source = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        source = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AnalysisSource }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         analysisParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalysisParameter,
         },
-        schema = {
-            type = "structure",
-        },
-        errorMessageConfiguration = {
-            type = "structure",
-        },
-        syntheticDataParameters = {
-            type = "union",
-        },
+        schema = M.AnalysisSchema,
+        errorMessageConfiguration = M.ErrorMessageConfiguration,
+        syntheticDataParameters = M.SyntheticDataParameters,
     },
 }
 
 M.CreateAnalysisTemplateOutput = {
     type = "structure",
     members = {
-        analysisTemplate = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        analysisTemplate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AnalysisTemplate }),
     },
 }
 
@@ -1321,7 +1240,7 @@ M.ServiceQuotaExceededException = {
             },
         },
         quotaValue = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -1376,7 +1295,7 @@ M.ValidationException = {
         },
         fieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -1428,12 +1347,9 @@ M.GetAnalysisTemplateInput = {
 M.GetAnalysisTemplateOutput = {
     type = "structure",
     members = {
-        analysisTemplate = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        analysisTemplate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AnalysisTemplate }),
     },
 }
 
@@ -1454,7 +1370,7 @@ M.ListAnalysisTemplatesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1536,7 +1452,7 @@ M.ListAnalysisTemplatesOutput = {
         },
         analysisTemplateSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalysisTemplateSummary,
             traits = {
                 required = true,
             },
@@ -1570,12 +1486,9 @@ M.UpdateAnalysisTemplateInput = {
 M.UpdateAnalysisTemplateOutput = {
     type = "structure",
     members = {
-        analysisTemplate = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        analysisTemplate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AnalysisTemplate }),
     },
 }
 
@@ -1694,7 +1607,7 @@ M.BatchGetCollaborationAnalysisTemplateInput = {
         },
         analysisTemplateArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1756,38 +1669,27 @@ M.CollaborationAnalysisTemplate = {
                 required = true,
             },
         },
-        schema = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        schema = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AnalysisSchema }),
         format = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        source = {
-            type = "union",
-        },
-        sourceMetadata = {
-            type = "union",
-        },
+        source = M.AnalysisSource,
+        sourceMetadata = M.AnalysisSourceMetadata,
         analysisParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalysisParameter,
         },
         validations = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalysisTemplateValidationStatusDetail,
         },
-        errorMessageConfiguration = {
-            type = "structure",
-        },
-        syntheticDataParameters = {
-            type = "union",
-        },
+        errorMessageConfiguration = M.ErrorMessageConfiguration,
+        syntheticDataParameters = M.SyntheticDataParameters,
     },
 }
 
@@ -1820,14 +1722,14 @@ M.BatchGetCollaborationAnalysisTemplateOutput = {
     members = {
         collaborationAnalysisTemplates = {
             type = "list",
-            member_type = "structure",
+            member = M.CollaborationAnalysisTemplate,
             traits = {
                 required = true,
             },
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetCollaborationAnalysisTemplateError,
             traits = {
                 required = true,
             },
@@ -1847,7 +1749,7 @@ M.BatchGetSchemaInput = {
         },
         names = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1949,18 +1851,19 @@ M.SchemaStatusDetail = {
         },
         reasons = {
             type = "list",
-            member_type = "structure",
+            member = M.SchemaStatusReason,
         },
         analysisRuleType = {
             type = "string",
         },
         configurations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         analysisType = {
             type = "string",
             traits = {
+                default = nil,
                 required = true,
             },
         },
@@ -1995,7 +1898,7 @@ M.IdMappingTableSchemaTypeProperties = {
     members = {
         idMappingTableInputSource = {
             type = "list",
-            member_type = "structure",
+            member = M.IdMappingTableInputSource,
             traits = {
                 required = true,
             },
@@ -2006,9 +1909,7 @@ M.IdMappingTableSchemaTypeProperties = {
 M.SchemaTypeProperties = {
     type = "union",
     members = {
-        idMappingTable = {
-            type = "structure",
-        },
+        idMappingTable = M.IdMappingTableSchemaTypeProperties,
     },
 }
 
@@ -2027,21 +1928,21 @@ M.Schema = {
     members = {
         columns = {
             type = "list",
-            member_type = "structure",
+            member = M.Column,
             traits = {
                 required = true,
             },
         },
         partitionKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.Column,
             traits = {
                 required = true,
             },
         },
         analysisRuleTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2051,7 +1952,7 @@ M.Schema = {
         },
         selectedAnalysisMethods = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         creatorAccountId = {
             type = "string",
@@ -2103,17 +2004,16 @@ M.Schema = {
         },
         schemaStatusDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.SchemaStatusDetail,
             traits = {
+                default = {},
                 required = true,
             },
         },
         resourceArn = {
             type = "string",
         },
-        schemaTypeProperties = {
-            type = "union",
-        },
+        schemaTypeProperties = M.SchemaTypeProperties,
     },
 }
 
@@ -2122,14 +2022,14 @@ M.BatchGetSchemaOutput = {
     members = {
         schemas = {
             type = "list",
-            member_type = "structure",
+            member = M.Schema,
             traits = {
                 required = true,
             },
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetSchemaError,
             traits = {
                 required = true,
             },
@@ -2167,7 +2067,7 @@ M.BatchGetSchemaAnalysisRuleInput = {
         },
         schemaAnalysisRuleRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.SchemaAnalysisRuleRequest,
             traits = {
                 required = true,
             },
@@ -2210,14 +2110,14 @@ M.BatchGetSchemaAnalysisRuleOutput = {
     members = {
         analysisRules = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalysisRule,
             traits = {
                 required = true,
             },
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetSchemaAnalysisRuleError,
             traits = {
                 required = true,
             },
@@ -2241,7 +2141,7 @@ M.MLMemberAbilities = {
     members = {
         customMLMemberAbilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2300,15 +2200,9 @@ M.SyntheticDataGenerationPaymentConfig = {
 M.MLPaymentConfig = {
     type = "structure",
     members = {
-        modelTraining = {
-            type = "structure",
-        },
-        modelInference = {
-            type = "structure",
-        },
-        syntheticDataGeneration = {
-            type = "structure",
-        },
+        modelTraining = M.ModelTrainingPaymentConfig,
+        modelInference = M.ModelInferencePaymentConfig,
+        syntheticDataGeneration = M.SyntheticDataGenerationPaymentConfig,
     },
 }
 
@@ -2327,18 +2221,11 @@ M.QueryComputePaymentConfig = {
 M.PaymentConfiguration = {
     type = "structure",
     members = {
-        queryCompute = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        machineLearning = {
-            type = "structure",
-        },
-        jobCompute = {
-            type = "structure",
-        },
+        queryCompute = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.QueryComputePaymentConfig }),
+        machineLearning = M.MLPaymentConfig,
+        jobCompute = M.JobComputePaymentConfig,
     },
 }
 
@@ -2388,23 +2275,19 @@ M.MemberSpecification = {
         },
         memberAbilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        mlMemberAbilities = {
-            type = "structure",
-        },
+        mlMemberAbilities = M.MLMemberAbilities,
         displayName = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        paymentConfiguration = {
-            type = "structure",
-        },
+        paymentConfiguration = M.PaymentConfiguration,
     },
 }
 
@@ -2418,7 +2301,7 @@ M.CreateCollaborationInput = {
     members = {
         members = {
             type = "list",
-            member_type = "structure",
+            member = M.MemberSpecification,
             traits = {
                 required = true,
             },
@@ -2437,23 +2320,19 @@ M.CreateCollaborationInput = {
         },
         creatorMemberAbilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        creatorMLMemberAbilities = {
-            type = "structure",
-        },
+        creatorMLMemberAbilities = M.MLMemberAbilities,
         creatorDisplayName = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        dataEncryptionMetadata = {
-            type = "structure",
-        },
+        dataEncryptionMetadata = M.DataEncryptionMetadata,
         queryLogStatus = {
             type = "string",
             traits = {
@@ -2465,22 +2344,20 @@ M.CreateCollaborationInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        creatorPaymentConfiguration = {
-            type = "structure",
-        },
+        creatorPaymentConfiguration = M.PaymentConfiguration,
         analyticsEngine = {
             type = "string",
         },
         autoApprovedChangeRequestTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         allowedResultRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         isMetricsEnabled = {
             type = "boolean",
@@ -2555,9 +2432,7 @@ M.Collaboration = {
         membershipArn = {
             type = "string",
         },
-        dataEncryptionMetadata = {
-            type = "structure",
-        },
+        dataEncryptionMetadata = M.DataEncryptionMetadata,
         queryLogStatus = {
             type = "string",
             traits = {
@@ -2572,11 +2447,11 @@ M.Collaboration = {
         },
         autoApprovedChangeTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         allowedResultRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         isMetricsEnabled = {
             type = "boolean",
@@ -2587,12 +2462,9 @@ M.Collaboration = {
 M.CreateCollaborationOutput = {
     type = "structure",
     members = {
-        collaboration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        collaboration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Collaboration }),
     },
 }
 
@@ -2601,7 +2473,7 @@ M.CollaborationChangeSpecification = {
     members = {
         autoApprovedChangeTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2617,7 +2489,7 @@ M.MemberChangeSpecification = {
         },
         memberAbilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2631,12 +2503,8 @@ M.MemberChangeSpecification = {
 M.ChangeSpecification = {
     type = "union",
     members = {
-        member = {
-            type = "structure",
-        },
-        collaboration = {
-            type = "structure",
-        },
+        member = M.MemberChangeSpecification,
+        collaboration = M.CollaborationChangeSpecification,
     },
 }
 
@@ -2654,12 +2522,9 @@ M.ChangeInput = {
                 required = true,
             },
         },
-        specification = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        specification = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ChangeSpecification }),
     },
 }
 
@@ -2675,7 +2540,7 @@ M.CreateCollaborationChangeRequestInput = {
         },
         changes = {
             type = "list",
-            member_type = "structure",
+            member = M.ChangeInput,
             traits = {
                 required = true,
             },
@@ -2699,15 +2564,12 @@ M.Change = {
                 required = true,
             },
         },
-        specification = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        specification = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ChangeSpecification }),
         types = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2764,15 +2626,15 @@ M.CollaborationChangeRequest = {
         },
         changes = {
             type = "list",
-            member_type = "structure",
+            member = M.Change,
             traits = {
                 required = true,
             },
         },
         approvals = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ApprovalStatusDetails,
         },
     },
 }
@@ -2780,12 +2642,9 @@ M.CollaborationChangeRequest = {
 M.CreateCollaborationChangeRequestOutput = {
     type = "structure",
     members = {
-        collaborationChangeRequest = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        collaborationChangeRequest = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CollaborationChangeRequest }),
     },
 }
 
@@ -2846,12 +2705,9 @@ M.GetCollaborationInput = {
 M.GetCollaborationOutput = {
     type = "structure",
     members = {
-        collaboration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        collaboration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Collaboration }),
     },
 }
 
@@ -2878,12 +2734,9 @@ M.GetCollaborationAnalysisTemplateInput = {
 M.GetCollaborationAnalysisTemplateOutput = {
     type = "structure",
     members = {
-        collaborationAnalysisTemplate = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        collaborationAnalysisTemplate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CollaborationAnalysisTemplate }),
     },
 }
 
@@ -2910,12 +2763,9 @@ M.GetCollaborationChangeRequestInput = {
 M.GetCollaborationChangeRequestOutput = {
     type = "structure",
     members = {
-        collaborationChangeRequest = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        collaborationChangeRequest = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CollaborationChangeRequest }),
     },
 }
 
@@ -3005,12 +2855,9 @@ M.CollaborationConfiguredAudienceModelAssociation = {
 M.GetCollaborationConfiguredAudienceModelAssociationOutput = {
     type = "structure",
     members = {
-        collaborationConfiguredAudienceModelAssociation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        collaborationConfiguredAudienceModelAssociation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CollaborationConfiguredAudienceModelAssociation }),
     },
 }
 
@@ -3040,6 +2887,7 @@ M.IdMappingConfig = {
         allowUseAsDimensionColumn = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -3075,7 +2923,7 @@ M.IdNamespaceAssociationInputReferenceProperties = {
         },
         idMappingWorkflowsSupported = {
             type = "list",
-            member_type = "document",
+            member = { type = "document" },
             traits = {
                 required = true,
             },
@@ -3137,33 +2985,22 @@ M.CollaborationIdNamespaceAssociation = {
                 required = true,
             },
         },
-        inputReferenceConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        inputReferenceProperties = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        idMappingConfig = {
-            type = "structure",
-        },
+        inputReferenceConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IdNamespaceAssociationInputReferenceConfig }),
+        inputReferenceProperties = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IdNamespaceAssociationInputReferenceProperties }),
+        idMappingConfig = M.IdMappingConfig,
     },
 }
 
 M.GetCollaborationIdNamespaceAssociationOutput = {
     type = "structure",
     members = {
-        collaborationIdNamespaceAssociation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        collaborationIdNamespaceAssociation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CollaborationIdNamespaceAssociation }),
     },
 }
 
@@ -3196,13 +3033,13 @@ M.DifferentialPrivacyTemplateParametersOutput = {
     type = "structure",
     members = {
         epsilon = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         usersNoisePerQuery = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -3213,12 +3050,8 @@ M.DifferentialPrivacyTemplateParametersOutput = {
 M.PrivacyBudgetTemplateParametersOutput = {
     type = "union",
     members = {
-        differentialPrivacy = {
-            type = "structure",
-        },
-        accessBudget = {
-            type = "structure",
-        },
+        differentialPrivacy = M.DifferentialPrivacyTemplateParametersOutput,
+        accessBudget = M.AccessBudgetsPrivacyTemplateParametersOutput,
     },
 }
 
@@ -3284,24 +3117,18 @@ M.CollaborationPrivacyBudgetTemplate = {
                 required = true,
             },
         },
-        parameters = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        parameters = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PrivacyBudgetTemplateParametersOutput }),
     },
 }
 
 M.GetCollaborationPrivacyBudgetTemplateOutput = {
     type = "structure",
     members = {
-        collaborationPrivacyBudgetTemplate = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        collaborationPrivacyBudgetTemplate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CollaborationPrivacyBudgetTemplate }),
     },
 }
 
@@ -3328,12 +3155,9 @@ M.GetSchemaInput = {
 M.GetSchemaOutput = {
     type = "structure",
     members = {
-        schema = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        schema = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Schema }),
     },
 }
 
@@ -3367,12 +3191,9 @@ M.GetSchemaAnalysisRuleInput = {
 M.GetSchemaAnalysisRuleOutput = {
     type = "structure",
     members = {
-        analysisRule = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        analysisRule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AnalysisRule }),
     },
 }
 
@@ -3393,7 +3214,7 @@ M.ListCollaborationAnalysisTemplatesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3469,7 +3290,7 @@ M.ListCollaborationAnalysisTemplatesOutput = {
         },
         collaborationAnalysisTemplateSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.CollaborationAnalysisTemplateSummary,
             traits = {
                 required = true,
             },
@@ -3500,7 +3321,7 @@ M.ListCollaborationChangeRequestsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3549,15 +3370,15 @@ M.CollaborationChangeRequestSummary = {
         },
         changes = {
             type = "list",
-            member_type = "structure",
+            member = M.Change,
             traits = {
                 required = true,
             },
         },
         approvals = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ApprovalStatusDetails,
         },
     },
 }
@@ -3567,7 +3388,7 @@ M.ListCollaborationChangeRequestsOutput = {
     members = {
         collaborationChangeRequestSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.CollaborationChangeRequestSummary,
             traits = {
                 required = true,
             },
@@ -3595,7 +3416,7 @@ M.ListCollaborationConfiguredAudienceModelAssociationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3665,7 +3486,7 @@ M.ListCollaborationConfiguredAudienceModelAssociationsOutput = {
     members = {
         collaborationConfiguredAudienceModelAssociationSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.CollaborationConfiguredAudienceModelAssociationSummary,
             traits = {
                 required = true,
             },
@@ -3693,7 +3514,7 @@ M.ListCollaborationIdNamespaceAssociationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3758,12 +3579,9 @@ M.CollaborationIdNamespaceAssociationSummary = {
                 required = true,
             },
         },
-        inputReferenceConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        inputReferenceConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IdNamespaceAssociationInputReferenceConfig }),
         name = {
             type = "string",
             traits = {
@@ -3773,12 +3591,9 @@ M.CollaborationIdNamespaceAssociationSummary = {
         description = {
             type = "string",
         },
-        inputReferenceProperties = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        inputReferenceProperties = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IdNamespaceAssociationInputReferencePropertiesSummary }),
     },
 }
 
@@ -3790,7 +3605,7 @@ M.ListCollaborationIdNamespaceAssociationsOutput = {
         },
         collaborationIdNamespaceAssociationSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.CollaborationIdNamespaceAssociationSummary,
             traits = {
                 required = true,
             },
@@ -3816,7 +3631,7 @@ M.ListCollaborationPrivacyBudgetsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3854,13 +3669,13 @@ M.DifferentialPrivacyPrivacyBudgetAggregation = {
             },
         },
         maxCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         remainingCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -3873,13 +3688,13 @@ M.DifferentialPrivacyPrivacyBudget = {
     members = {
         aggregations = {
             type = "list",
-            member_type = "structure",
+            member = M.DifferentialPrivacyPrivacyBudgetAggregation,
             traits = {
                 required = true,
             },
         },
         epsilon = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -3890,12 +3705,8 @@ M.DifferentialPrivacyPrivacyBudget = {
 M.PrivacyBudget = {
     type = "union",
     members = {
-        differentialPrivacy = {
-            type = "structure",
-        },
-        accessBudget = {
-            type = "structure",
-        },
+        differentialPrivacy = M.DifferentialPrivacyPrivacyBudget,
+        accessBudget = M.AccessBudget,
     },
 }
 
@@ -3956,12 +3767,9 @@ M.CollaborationPrivacyBudgetSummary = {
                 required = true,
             },
         },
-        budget = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        budget = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PrivacyBudget }),
     },
 }
 
@@ -3970,7 +3778,7 @@ M.ListCollaborationPrivacyBudgetsOutput = {
     members = {
         collaborationPrivacyBudgetSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.CollaborationPrivacyBudgetSummary,
             traits = {
                 required = true,
             },
@@ -3998,7 +3806,7 @@ M.ListCollaborationPrivacyBudgetTemplatesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4068,7 +3876,7 @@ M.ListCollaborationPrivacyBudgetTemplatesOutput = {
         },
         collaborationPrivacyBudgetTemplateSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.CollaborationPrivacyBudgetTemplateSummary,
             traits = {
                 required = true,
             },
@@ -4091,7 +3899,7 @@ M.ListCollaborationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4176,7 +3984,7 @@ M.ListCollaborationsOutput = {
         },
         collaborationList = {
             type = "list",
-            member_type = "structure",
+            member = M.CollaborationSummary,
             traits = {
                 required = true,
             },
@@ -4201,7 +4009,7 @@ M.ListMembersInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4232,14 +4040,12 @@ M.MemberSummary = {
         },
         abilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        mlAbilities = {
-            type = "structure",
-        },
+        mlAbilities = M.MLMemberAbilities,
         createTime = {
             type = "timestamp",
             traits = {
@@ -4258,12 +4064,9 @@ M.MemberSummary = {
         membershipArn = {
             type = "string",
         },
-        paymentConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        paymentConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PaymentConfiguration }),
     },
 }
 
@@ -4275,7 +4078,7 @@ M.ListMembersOutput = {
         },
         memberSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.MemberSummary,
             traits = {
                 required = true,
             },
@@ -4306,7 +4109,7 @@ M.ListSchemasInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4361,7 +4164,7 @@ M.SchemaSummary = {
         },
         analysisRuleTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4374,7 +4177,7 @@ M.SchemaSummary = {
         },
         selectedAnalysisMethods = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4384,7 +4187,7 @@ M.ListSchemasOutput = {
     members = {
         schemaSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.SchemaSummary,
             traits = {
                 required = true,
             },
@@ -4420,12 +4223,9 @@ M.UpdateCollaborationInput = {
 M.UpdateCollaborationOutput = {
     type = "structure",
     members = {
-        collaboration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        collaboration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Collaboration }),
     },
 }
 
@@ -4465,12 +4265,9 @@ M.UpdateCollaborationChangeRequestInput = {
 M.UpdateCollaborationChangeRequestOutput = {
     type = "structure",
     members = {
-        collaborationChangeRequest = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        collaborationChangeRequest = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CollaborationChangeRequest }),
     },
 }
 
@@ -4504,8 +4301,8 @@ M.CreateConfiguredAudienceModelAssociationInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         description = {
             type = "string",
@@ -4591,12 +4388,9 @@ M.ConfiguredAudienceModelAssociation = {
 M.CreateConfiguredAudienceModelAssociationOutput = {
     type = "structure",
     members = {
-        configuredAudienceModelAssociation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        configuredAudienceModelAssociation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConfiguredAudienceModelAssociation }),
     },
 }
 
@@ -4647,12 +4441,9 @@ M.GetConfiguredAudienceModelAssociationInput = {
 M.GetConfiguredAudienceModelAssociationOutput = {
     type = "structure",
     members = {
-        configuredAudienceModelAssociation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        configuredAudienceModelAssociation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConfiguredAudienceModelAssociation }),
     },
 }
 
@@ -4673,7 +4464,7 @@ M.ListConfiguredAudienceModelAssociationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4755,7 +4546,7 @@ M.ListConfiguredAudienceModelAssociationsOutput = {
     members = {
         configuredAudienceModelAssociationSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfiguredAudienceModelAssociationSummary,
             traits = {
                 required = true,
             },
@@ -4795,12 +4586,9 @@ M.UpdateConfiguredAudienceModelAssociationInput = {
 M.UpdateConfiguredAudienceModelAssociationOutput = {
     type = "structure",
     members = {
-        configuredAudienceModelAssociation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        configuredAudienceModelAssociation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConfiguredAudienceModelAssociation }),
     },
 }
 
@@ -4837,8 +4625,8 @@ M.CreateConfiguredTableAssociationInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -4905,7 +4693,7 @@ M.ConfiguredTableAssociation = {
         },
         analysisRuleTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         createTime = {
             type = "timestamp",
@@ -4925,12 +4713,9 @@ M.ConfiguredTableAssociation = {
 M.CreateConfiguredTableAssociationOutput = {
     type = "structure",
     members = {
-        configuredTableAssociation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        configuredTableAssociation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConfiguredTableAssociation }),
     },
 }
 
@@ -4957,12 +4742,9 @@ M.CreateConfiguredTableAssociationAnalysisRuleInput = {
                 required = true,
             },
         },
-        analysisRulePolicy = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        analysisRulePolicy = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConfiguredTableAssociationAnalysisRulePolicy }),
     },
 }
 
@@ -4987,12 +4769,9 @@ M.ConfiguredTableAssociationAnalysisRule = {
                 required = true,
             },
         },
-        policy = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        policy = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConfiguredTableAssociationAnalysisRulePolicy }),
         type = {
             type = "string",
             traits = {
@@ -5017,12 +4796,9 @@ M.ConfiguredTableAssociationAnalysisRule = {
 M.CreateConfiguredTableAssociationAnalysisRuleOutput = {
     type = "structure",
     members = {
-        analysisRule = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        analysisRule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConfiguredTableAssociationAnalysisRule }),
     },
 }
 
@@ -5104,12 +4880,9 @@ M.GetConfiguredTableAssociationInput = {
 M.GetConfiguredTableAssociationOutput = {
     type = "structure",
     members = {
-        configuredTableAssociation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        configuredTableAssociation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConfiguredTableAssociation }),
     },
 }
 
@@ -5143,12 +4916,9 @@ M.GetConfiguredTableAssociationAnalysisRuleInput = {
 M.GetConfiguredTableAssociationAnalysisRuleOutput = {
     type = "structure",
     members = {
-        analysisRule = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        analysisRule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConfiguredTableAssociationAnalysisRule }),
     },
 }
 
@@ -5169,7 +4939,7 @@ M.ListConfiguredTableAssociationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -5230,7 +5000,7 @@ M.ConfiguredTableAssociationSummary = {
         },
         analysisRuleTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -5240,7 +5010,7 @@ M.ListConfiguredTableAssociationsOutput = {
     members = {
         configuredTableAssociationSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfiguredTableAssociationSummary,
             traits = {
                 required = true,
             },
@@ -5280,12 +5050,9 @@ M.UpdateConfiguredTableAssociationInput = {
 M.UpdateConfiguredTableAssociationOutput = {
     type = "structure",
     members = {
-        configuredTableAssociation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        configuredTableAssociation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConfiguredTableAssociation }),
     },
 }
 
@@ -5313,24 +5080,18 @@ M.UpdateConfiguredTableAssociationAnalysisRuleInput = {
                 required = true,
             },
         },
-        analysisRulePolicy = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        analysisRulePolicy = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConfiguredTableAssociationAnalysisRulePolicy }),
     },
 }
 
 M.UpdateConfiguredTableAssociationAnalysisRuleOutput = {
     type = "structure",
     members = {
-        analysisRule = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        analysisRule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConfiguredTableAssociationAnalysisRule }),
     },
 }
 
@@ -5378,7 +5139,7 @@ M.SnowflakeTableSchema = {
     members = {
         v1 = {
             type = "list",
-            member_type = "structure",
+            member = M.SnowflakeTableSchemaV1,
         },
     },
 }
@@ -5416,27 +5177,18 @@ M.SnowflakeTableReference = {
                 required = true,
             },
         },
-        tableSchema = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        tableSchema = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SnowflakeTableSchema }),
     },
 }
 
 M.TableReference = {
     type = "union",
     members = {
-        glue = {
-            type = "structure",
-        },
-        snowflake = {
-            type = "structure",
-        },
-        athena = {
-            type = "structure",
-        },
+        glue = M.GlueTableReference,
+        snowflake = M.SnowflakeTableReference,
+        athena = M.AthenaTableReference,
     },
 }
 
@@ -5452,15 +5204,12 @@ M.CreateConfiguredTableInput = {
         description = {
             type = "string",
         },
-        tableReference = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        tableReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TableReference }),
         allowedColumns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -5473,12 +5222,12 @@ M.CreateConfiguredTableInput = {
         },
         selectedAnalysisMethods = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -5513,12 +5262,9 @@ M.ConfiguredTable = {
         description = {
             type = "string",
         },
-        tableReference = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        tableReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TableReference }),
         createTime = {
             type = "timestamp",
             traits = {
@@ -5533,7 +5279,7 @@ M.ConfiguredTable = {
         },
         analysisRuleTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -5546,14 +5292,14 @@ M.ConfiguredTable = {
         },
         allowedColumns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         selectedAnalysisMethods = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -5561,36 +5307,25 @@ M.ConfiguredTable = {
 M.CreateConfiguredTableOutput = {
     type = "structure",
     members = {
-        configuredTable = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        configuredTable = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConfiguredTable }),
     },
 }
 
 M.ConfiguredTableAnalysisRulePolicyV1 = {
     type = "union",
     members = {
-        list = {
-            type = "structure",
-        },
-        aggregation = {
-            type = "structure",
-        },
-        custom = {
-            type = "structure",
-        },
+        list = M.AnalysisRuleList,
+        aggregation = M.AnalysisRuleAggregation,
+        custom = M.AnalysisRuleCustom,
     },
 }
 
 M.ConfiguredTableAnalysisRulePolicy = {
     type = "union",
     members = {
-        v1 = {
-            type = "union",
-        },
+        v1 = M.ConfiguredTableAnalysisRulePolicyV1,
     },
 }
 
@@ -5610,12 +5345,9 @@ M.CreateConfiguredTableAnalysisRuleInput = {
                 required = true,
             },
         },
-        analysisRulePolicy = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        analysisRulePolicy = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConfiguredTableAnalysisRulePolicy }),
     },
 }
 
@@ -5634,12 +5366,9 @@ M.ConfiguredTableAnalysisRule = {
                 required = true,
             },
         },
-        policy = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        policy = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConfiguredTableAnalysisRulePolicy }),
         type = {
             type = "string",
             traits = {
@@ -5664,12 +5393,9 @@ M.ConfiguredTableAnalysisRule = {
 M.CreateConfiguredTableAnalysisRuleOutput = {
     type = "structure",
     members = {
-        analysisRule = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        analysisRule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConfiguredTableAnalysisRule }),
     },
 }
 
@@ -5730,12 +5456,9 @@ M.GetConfiguredTableInput = {
 M.GetConfiguredTableOutput = {
     type = "structure",
     members = {
-        configuredTable = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        configuredTable = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConfiguredTable }),
     },
 }
 
@@ -5762,12 +5485,9 @@ M.GetConfiguredTableAnalysisRuleInput = {
 M.GetConfiguredTableAnalysisRuleOutput = {
     type = "structure",
     members = {
-        analysisRule = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        analysisRule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConfiguredTableAnalysisRule }),
     },
 }
 
@@ -5781,7 +5501,7 @@ M.ListConfiguredTablesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -5824,7 +5544,7 @@ M.ConfiguredTableSummary = {
         },
         analysisRuleTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -5837,7 +5557,7 @@ M.ConfiguredTableSummary = {
         },
         selectedAnalysisMethods = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -5847,7 +5567,7 @@ M.ListConfiguredTablesOutput = {
     members = {
         configuredTableSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfiguredTableSummary,
             traits = {
                 required = true,
             },
@@ -5874,19 +5594,17 @@ M.UpdateConfiguredTableInput = {
         description = {
             type = "string",
         },
-        tableReference = {
-            type = "union",
-        },
+        tableReference = M.TableReference,
         allowedColumns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         analysisMethod = {
             type = "string",
         },
         selectedAnalysisMethods = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -5894,12 +5612,9 @@ M.UpdateConfiguredTableInput = {
 M.UpdateConfiguredTableOutput = {
     type = "structure",
     members = {
-        configuredTable = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        configuredTable = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConfiguredTable }),
     },
 }
 
@@ -5920,24 +5635,18 @@ M.UpdateConfiguredTableAnalysisRuleInput = {
                 required = true,
             },
         },
-        analysisRulePolicy = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        analysisRulePolicy = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConfiguredTableAnalysisRulePolicy }),
     },
 }
 
 M.UpdateConfiguredTableAnalysisRuleOutput = {
     type = "structure",
     members = {
-        analysisRule = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        analysisRule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConfiguredTableAnalysisRule }),
     },
 }
 
@@ -5978,16 +5687,13 @@ M.CreateIdMappingTableInput = {
         description = {
             type = "string",
         },
-        inputReferenceConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        inputReferenceConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IdMappingTableInputReferenceConfig }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         kmsKeyArn = {
             type = "string",
@@ -6000,7 +5706,7 @@ M.IdMappingTableInputReferenceProperties = {
     members = {
         idMappingTableInputSource = {
             type = "list",
-            member_type = "structure",
+            member = M.IdMappingTableInputSource,
             traits = {
                 required = true,
             },
@@ -6023,12 +5729,9 @@ M.IdMappingTable = {
                 required = true,
             },
         },
-        inputReferenceConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        inputReferenceConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IdMappingTableInputReferenceConfig }),
         membershipId = {
             type = "string",
             traits = {
@@ -6074,12 +5777,9 @@ M.IdMappingTable = {
                 required = true,
             },
         },
-        inputReferenceProperties = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        inputReferenceProperties = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IdMappingTableInputReferenceProperties }),
         kmsKeyArn = {
             type = "string",
         },
@@ -6089,12 +5789,9 @@ M.IdMappingTable = {
 M.CreateIdMappingTableOutput = {
     type = "structure",
     members = {
-        idMappingTable = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        idMappingTable = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IdMappingTable }),
     },
 }
 
@@ -6145,12 +5842,9 @@ M.GetIdMappingTableInput = {
 M.GetIdMappingTableOutput = {
     type = "structure",
     members = {
-        idMappingTable = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        idMappingTable = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IdMappingTable }),
     },
 }
 
@@ -6171,7 +5865,7 @@ M.ListIdMappingTablesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -6233,12 +5927,9 @@ M.IdMappingTableSummary = {
         description = {
             type = "string",
         },
-        inputReferenceConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        inputReferenceConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IdMappingTableInputReferenceConfig }),
         name = {
             type = "string",
             traits = {
@@ -6253,7 +5944,7 @@ M.ListIdMappingTablesOutput = {
     members = {
         idMappingTableSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.IdMappingTableSummary,
             traits = {
                 required = true,
             },
@@ -6334,12 +6025,9 @@ M.UpdateIdMappingTableInput = {
 M.UpdateIdMappingTableOutput = {
     type = "structure",
     members = {
-        idMappingTable = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        idMappingTable = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IdMappingTable }),
     },
 }
 
@@ -6353,16 +6041,13 @@ M.CreateIdNamespaceAssociationInput = {
                 required = true,
             },
         },
-        inputReferenceConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        inputReferenceConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IdNamespaceAssociationInputReferenceConfig }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         name = {
             type = "string",
@@ -6373,9 +6058,7 @@ M.CreateIdNamespaceAssociationInput = {
         description = {
             type = "string",
         },
-        idMappingConfig = {
-            type = "structure",
-        },
+        idMappingConfig = M.IdMappingConfig,
     },
 }
 
@@ -6439,33 +6122,22 @@ M.IdNamespaceAssociation = {
                 required = true,
             },
         },
-        inputReferenceConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        inputReferenceProperties = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        idMappingConfig = {
-            type = "structure",
-        },
+        inputReferenceConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IdNamespaceAssociationInputReferenceConfig }),
+        inputReferenceProperties = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IdNamespaceAssociationInputReferenceProperties }),
+        idMappingConfig = M.IdMappingConfig,
     },
 }
 
 M.CreateIdNamespaceAssociationOutput = {
     type = "structure",
     members = {
-        idNamespaceAssociation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        idNamespaceAssociation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IdNamespaceAssociation }),
     },
 }
 
@@ -6516,12 +6188,9 @@ M.GetIdNamespaceAssociationInput = {
 M.GetIdNamespaceAssociationOutput = {
     type = "structure",
     members = {
-        idNamespaceAssociation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        idNamespaceAssociation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IdNamespaceAssociation }),
     },
 }
 
@@ -6542,7 +6211,7 @@ M.ListIdNamespaceAssociationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -6601,12 +6270,9 @@ M.IdNamespaceAssociationSummary = {
                 required = true,
             },
         },
-        inputReferenceConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        inputReferenceConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IdNamespaceAssociationInputReferenceConfig }),
         name = {
             type = "string",
             traits = {
@@ -6616,12 +6282,9 @@ M.IdNamespaceAssociationSummary = {
         description = {
             type = "string",
         },
-        inputReferenceProperties = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        inputReferenceProperties = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IdNamespaceAssociationInputReferencePropertiesSummary }),
     },
 }
 
@@ -6633,7 +6296,7 @@ M.ListIdNamespaceAssociationsOutput = {
         },
         idNamespaceAssociationSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.IdNamespaceAssociationSummary,
             traits = {
                 required = true,
             },
@@ -6664,21 +6327,16 @@ M.UpdateIdNamespaceAssociationInput = {
         description = {
             type = "string",
         },
-        idMappingConfig = {
-            type = "structure",
-        },
+        idMappingConfig = M.IdMappingConfig,
     },
 }
 
 M.UpdateIdNamespaceAssociationOutput = {
     type = "structure",
     members = {
-        idNamespaceAssociation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        idNamespaceAssociation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IdNamespaceAssociation }),
     },
 }
 
@@ -6700,8 +6358,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -6727,21 +6385,16 @@ M.ProtectedJobS3OutputConfigurationInput = {
 M.MembershipProtectedJobOutputConfiguration = {
     type = "union",
     members = {
-        s3 = {
-            type = "structure",
-        },
+        s3 = M.ProtectedJobS3OutputConfigurationInput,
     },
 }
 
 M.MembershipProtectedJobResultConfiguration = {
     type = "structure",
     members = {
-        outputConfiguration = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        outputConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MembershipProtectedJobOutputConfiguration }),
         roleArn = {
             type = "string",
             traits = {
@@ -6783,21 +6436,16 @@ M.ProtectedQueryS3OutputConfiguration = {
 M.MembershipProtectedQueryOutputConfiguration = {
     type = "union",
     members = {
-        s3 = {
-            type = "structure",
-        },
+        s3 = M.ProtectedQueryS3OutputConfiguration,
     },
 }
 
 M.MembershipProtectedQueryResultConfiguration = {
     type = "structure",
     members = {
-        outputConfiguration = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        outputConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MembershipProtectedQueryOutputConfiguration }),
         roleArn = {
             type = "string",
         },
@@ -6860,15 +6508,9 @@ M.MembershipSyntheticDataGenerationPaymentConfig = {
 M.MembershipMLPaymentConfig = {
     type = "structure",
     members = {
-        modelTraining = {
-            type = "structure",
-        },
-        modelInference = {
-            type = "structure",
-        },
-        syntheticDataGeneration = {
-            type = "structure",
-        },
+        modelTraining = M.MembershipModelTrainingPaymentConfig,
+        modelInference = M.MembershipModelInferencePaymentConfig,
+        syntheticDataGeneration = M.MembershipSyntheticDataGenerationPaymentConfig,
     },
 }
 
@@ -6887,18 +6529,11 @@ M.MembershipQueryComputePaymentConfig = {
 M.MembershipPaymentConfiguration = {
     type = "structure",
     members = {
-        queryCompute = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        machineLearning = {
-            type = "structure",
-        },
-        jobCompute = {
-            type = "structure",
-        },
+        queryCompute = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MembershipQueryComputePaymentConfig }),
+        machineLearning = M.MembershipMLPaymentConfig,
+        jobCompute = M.MembershipJobComputePaymentConfig,
     },
 }
 
@@ -6927,18 +6562,12 @@ M.CreateMembershipInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        defaultResultConfiguration = {
-            type = "structure",
-        },
-        defaultJobResultConfiguration = {
-            type = "structure",
-        },
-        paymentConfiguration = {
-            type = "structure",
-        },
+        defaultResultConfiguration = M.MembershipProtectedQueryResultConfiguration,
+        defaultJobResultConfiguration = M.MembershipProtectedJobResultConfiguration,
+        paymentConfiguration = M.MembershipPaymentConfiguration,
         isMetricsEnabled = {
             type = "boolean",
         },
@@ -7016,14 +6645,12 @@ M.Membership = {
         },
         memberAbilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        mlMemberAbilities = {
-            type = "structure",
-        },
+        mlMemberAbilities = M.MLMemberAbilities,
         queryLogStatus = {
             type = "string",
             traits = {
@@ -7033,18 +6660,11 @@ M.Membership = {
         jobLogStatus = {
             type = "string",
         },
-        defaultResultConfiguration = {
-            type = "structure",
-        },
-        defaultJobResultConfiguration = {
-            type = "structure",
-        },
-        paymentConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        defaultResultConfiguration = M.MembershipProtectedQueryResultConfiguration,
+        defaultJobResultConfiguration = M.MembershipProtectedJobResultConfiguration,
+        paymentConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MembershipPaymentConfiguration }),
         isMetricsEnabled = {
             type = "boolean",
         },
@@ -7054,12 +6674,9 @@ M.Membership = {
 M.CreateMembershipOutput = {
     type = "structure",
     members = {
-        membership = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        membership = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Membership }),
     },
 }
 
@@ -7096,12 +6713,9 @@ M.GetMembershipInput = {
 M.GetMembershipOutput = {
     type = "structure",
     members = {
-        membership = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        membership = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Membership }),
     },
 }
 
@@ -7130,8 +6744,8 @@ M.WorkerComputeConfigurationProperties = {
     members = {
         spark = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -7151,23 +6765,19 @@ M.ProtectedJobWorkerComputeConfiguration = {
             },
         },
         number = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
-        properties = {
-            type = "union",
-        },
+        properties = M.WorkerComputeConfigurationProperties,
     },
 }
 
 M.ProtectedJobComputeConfiguration = {
     type = "union",
     members = {
-        worker = {
-            type = "structure",
-        },
+        worker = M.ProtectedJobWorkerComputeConfiguration,
     },
 }
 
@@ -7200,8 +6810,8 @@ M.ProtectedJobParameters = {
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -7233,12 +6843,10 @@ M.ProtectedJobS3Output = {
 M.ProtectedJobOutput = {
     type = "union",
     members = {
-        s3 = {
-            type = "structure",
-        },
+        s3 = M.ProtectedJobS3Output,
         memberList = {
             type = "list",
-            member_type = "structure",
+            member = M.ProtectedJobSingleMemberOutput,
         },
     },
 }
@@ -7246,12 +6854,9 @@ M.ProtectedJobOutput = {
 M.ProtectedJobResult = {
     type = "structure",
     members = {
-        output = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        output = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProtectedJobOutput }),
     },
 }
 
@@ -7285,24 +6890,17 @@ M.ProtectedJobS3OutputConfigurationOutput = {
 M.ProtectedJobOutputConfigurationOutput = {
     type = "union",
     members = {
-        s3 = {
-            type = "structure",
-        },
-        member = {
-            type = "structure",
-        },
+        s3 = M.ProtectedJobS3OutputConfigurationOutput,
+        member = M.ProtectedJobMemberOutputConfigurationOutput,
     },
 }
 
 M.ProtectedJobResultConfigurationOutput = {
     type = "structure",
     members = {
-        outputConfiguration = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        outputConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProtectedJobOutputConfigurationOutput }),
     },
 }
 
@@ -7310,7 +6908,7 @@ M.BilledJobResourceUtilization = {
     type = "structure",
     members = {
         units = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -7322,11 +6920,9 @@ M.ProtectedJobStatistics = {
     type = "structure",
     members = {
         totalDurationInMillis = {
-            type = "number",
+            type = "long",
         },
-        billedResourceUtilization = {
-            type = "structure",
-        },
+        billedResourceUtilization = M.BilledJobResourceUtilization,
     },
 }
 
@@ -7366,42 +6962,27 @@ M.ProtectedJob = {
                 required = true,
             },
         },
-        jobParameters = {
-            type = "structure",
-        },
+        jobParameters = M.ProtectedJobParameters,
         status = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        resultConfiguration = {
-            type = "structure",
-        },
-        statistics = {
-            type = "structure",
-        },
-        result = {
-            type = "structure",
-        },
-        error = {
-            type = "structure",
-        },
-        computeConfiguration = {
-            type = "union",
-        },
+        resultConfiguration = M.ProtectedJobResultConfigurationOutput,
+        statistics = M.ProtectedJobStatistics,
+        result = M.ProtectedJobResult,
+        error = M.ProtectedJobError,
+        computeConfiguration = M.ProtectedJobComputeConfiguration,
     },
 }
 
 M.GetProtectedJobOutput = {
     type = "structure",
     members = {
-        protectedJob = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        protectedJob = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProtectedJob }),
     },
 }
 
@@ -7437,20 +7018,16 @@ M.WorkerComputeConfiguration = {
             type = "string",
         },
         number = {
-            type = "number",
+            type = "integer",
         },
-        properties = {
-            type = "union",
-        },
+        properties = M.WorkerComputeConfigurationProperties,
     },
 }
 
 M.ComputeConfiguration = {
     type = "union",
     members = {
-        worker = {
-            type = "structure",
-        },
+        worker = M.WorkerComputeConfiguration,
     },
 }
 
@@ -7470,16 +7047,16 @@ M.DifferentialPrivacySensitivityParameters = {
             },
         },
         userContributionLimit = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         minColumnValue = {
-            type = "number",
+            type = "float",
         },
         maxColumnValue = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -7489,7 +7066,7 @@ M.DifferentialPrivacyParameters = {
     members = {
         sensitivityParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.DifferentialPrivacySensitivityParameters,
             traits = {
                 required = true,
             },
@@ -7542,12 +7119,10 @@ M.ProtectedQueryS3Output = {
 M.ProtectedQueryDistributeOutput = {
     type = "structure",
     members = {
-        s3 = {
-            type = "structure",
-        },
+        s3 = M.ProtectedQueryS3Output,
         memberList = {
             type = "list",
-            member_type = "structure",
+            member = M.ProtectedQuerySingleMemberOutput,
         },
     },
 }
@@ -7555,28 +7130,21 @@ M.ProtectedQueryDistributeOutput = {
 M.ProtectedQueryOutput = {
     type = "union",
     members = {
-        s3 = {
-            type = "structure",
-        },
+        s3 = M.ProtectedQueryS3Output,
         memberList = {
             type = "list",
-            member_type = "structure",
+            member = M.ProtectedQuerySingleMemberOutput,
         },
-        distribute = {
-            type = "structure",
-        },
+        distribute = M.ProtectedQueryDistributeOutput,
     },
 }
 
 M.ProtectedQueryResult = {
     type = "structure",
     members = {
-        output = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        output = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProtectedQueryOutput }),
     },
 }
 
@@ -7595,12 +7163,8 @@ M.ProtectedQueryMemberOutputConfiguration = {
 M.ProtectedQueryDistributeOutputConfigurationLocation = {
     type = "union",
     members = {
-        s3 = {
-            type = "structure",
-        },
-        member = {
-            type = "structure",
-        },
+        s3 = M.ProtectedQueryS3OutputConfiguration,
+        member = M.ProtectedQueryMemberOutputConfiguration,
     },
 }
 
@@ -7609,7 +7173,7 @@ M.ProtectedQueryDistributeOutputConfiguration = {
     members = {
         locations = {
             type = "list",
-            member_type = "union",
+            member = M.ProtectedQueryDistributeOutputConfigurationLocation,
             traits = {
                 required = true,
             },
@@ -7620,27 +7184,18 @@ M.ProtectedQueryDistributeOutputConfiguration = {
 M.ProtectedQueryOutputConfiguration = {
     type = "union",
     members = {
-        s3 = {
-            type = "structure",
-        },
-        member = {
-            type = "structure",
-        },
-        distribute = {
-            type = "structure",
-        },
+        s3 = M.ProtectedQueryS3OutputConfiguration,
+        member = M.ProtectedQueryMemberOutputConfiguration,
+        distribute = M.ProtectedQueryDistributeOutputConfiguration,
     },
 }
 
 M.ProtectedQueryResultConfiguration = {
     type = "structure",
     members = {
-        outputConfiguration = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        outputConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProtectedQueryOutputConfiguration }),
     },
 }
 
@@ -7655,8 +7210,8 @@ M.ProtectedQuerySQLParameters = {
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -7665,7 +7220,7 @@ M.BilledResourceUtilization = {
     type = "structure",
     members = {
         units = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -7677,11 +7232,9 @@ M.ProtectedQueryStatistics = {
     type = "structure",
     members = {
         totalDurationInMillis = {
-            type = "number",
+            type = "long",
         },
-        billedResourceUtilization = {
-            type = "structure",
-        },
+        billedResourceUtilization = M.BilledResourceUtilization,
     },
 }
 
@@ -7722,45 +7275,28 @@ M.ProtectedQuery = {
                 required = true,
             },
         },
-        sqlParameters = {
-            type = "structure",
-        },
+        sqlParameters = M.ProtectedQuerySQLParameters,
         status = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        resultConfiguration = {
-            type = "structure",
-        },
-        statistics = {
-            type = "structure",
-        },
-        result = {
-            type = "structure",
-        },
-        error = {
-            type = "structure",
-        },
-        differentialPrivacy = {
-            type = "structure",
-        },
-        computeConfiguration = {
-            type = "union",
-        },
+        resultConfiguration = M.ProtectedQueryResultConfiguration,
+        statistics = M.ProtectedQueryStatistics,
+        result = M.ProtectedQueryResult,
+        error = M.ProtectedQueryError,
+        differentialPrivacy = M.DifferentialPrivacyParameters,
+        computeConfiguration = M.ComputeConfiguration,
     },
 }
 
 M.GetProtectedQueryOutput = {
     type = "structure",
     members = {
-        protectedQuery = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        protectedQuery = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProtectedQuery }),
     },
 }
 
@@ -7774,7 +7310,7 @@ M.ListMembershipsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -7853,20 +7389,15 @@ M.MembershipSummary = {
         },
         memberAbilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        mlMemberAbilities = {
-            type = "structure",
-        },
-        paymentConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        mlMemberAbilities = M.MLMemberAbilities,
+        paymentConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MembershipPaymentConfiguration }),
     },
 }
 
@@ -7878,7 +7409,7 @@ M.ListMembershipsOutput = {
         },
         membershipSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.MembershipSummary,
             traits = {
                 required = true,
             },
@@ -7910,7 +7441,7 @@ M.ListPrivacyBudgetsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -7987,12 +7518,9 @@ M.PrivacyBudgetSummary = {
                 required = true,
             },
         },
-        budget = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        budget = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PrivacyBudget }),
     },
 }
 
@@ -8001,7 +7529,7 @@ M.ListPrivacyBudgetsOutput = {
     members = {
         privacyBudgetSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.PrivacyBudgetSummary,
             traits = {
                 required = true,
             },
@@ -8035,7 +7563,7 @@ M.ListProtectedJobsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -8052,7 +7580,7 @@ M.ProtectedJobDirectAnalysisConfigurationDetails = {
     members = {
         receiverAccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -8060,9 +7588,7 @@ M.ProtectedJobDirectAnalysisConfigurationDetails = {
 M.ProtectedJobConfigurationDetails = {
     type = "union",
     members = {
-        directAnalysisConfigurationDetails = {
-            type = "structure",
-        },
+        directAnalysisConfigurationDetails = M.ProtectedJobDirectAnalysisConfigurationDetails,
     },
 }
 
@@ -8075,9 +7601,7 @@ M.ProtectedJobReceiverConfiguration = {
                 required = true,
             },
         },
-        configurationDetails = {
-            type = "union",
-        },
+        configurationDetails = M.ProtectedJobConfigurationDetails,
     },
 }
 
@@ -8116,8 +7640,9 @@ M.ProtectedJobSummary = {
         },
         receiverConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.ProtectedJobReceiverConfiguration,
             traits = {
+                default = {},
                 required = true,
             },
         },
@@ -8132,7 +7657,7 @@ M.ListProtectedJobsOutput = {
         },
         protectedJobs = {
             type = "list",
-            member_type = "structure",
+            member = M.ProtectedJobSummary,
             traits = {
                 required = true,
             },
@@ -8163,7 +7688,7 @@ M.ListProtectedQueriesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -8176,7 +7701,7 @@ M.DirectAnalysisConfigurationDetails = {
     members = {
         receiverAccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -8184,9 +7709,7 @@ M.DirectAnalysisConfigurationDetails = {
 M.ConfigurationDetails = {
     type = "union",
     members = {
-        directAnalysisConfigurationDetails = {
-            type = "structure",
-        },
+        directAnalysisConfigurationDetails = M.DirectAnalysisConfigurationDetails,
     },
 }
 
@@ -8199,9 +7722,7 @@ M.ReceiverConfiguration = {
                 required = true,
             },
         },
-        configurationDetails = {
-            type = "union",
-        },
+        configurationDetails = M.ConfigurationDetails,
     },
 }
 
@@ -8240,8 +7761,9 @@ M.ProtectedQuerySummary = {
         },
         receiverConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.ReceiverConfiguration,
             traits = {
+                default = {},
                 required = true,
             },
         },
@@ -8256,7 +7778,7 @@ M.ListProtectedQueriesOutput = {
         },
         protectedQueries = {
             type = "list",
-            member_type = "structure",
+            member = M.ProtectedQuerySummary,
             traits = {
                 required = true,
             },
@@ -8268,13 +7790,13 @@ M.DifferentialPrivacyPreviewParametersInput = {
     type = "structure",
     members = {
         epsilon = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         usersNoisePerQuery = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -8285,9 +7807,7 @@ M.DifferentialPrivacyPreviewParametersInput = {
 M.PreviewPrivacyImpactParametersInput = {
     type = "union",
     members = {
-        differentialPrivacy = {
-            type = "structure",
-        },
+        differentialPrivacy = M.DifferentialPrivacyPreviewParametersInput,
     },
 }
 
@@ -8301,12 +7821,9 @@ M.PreviewPrivacyImpactInput = {
                 required = true,
             },
         },
-        parameters = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        parameters = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PreviewPrivacyImpactParametersInput }),
     },
 }
 
@@ -8320,7 +7837,7 @@ M.DifferentialPrivacyPreviewAggregation = {
             },
         },
         maxCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -8333,7 +7850,7 @@ M.DifferentialPrivacyPrivacyImpact = {
     members = {
         aggregations = {
             type = "list",
-            member_type = "structure",
+            member = M.DifferentialPrivacyPreviewAggregation,
             traits = {
                 required = true,
             },
@@ -8344,21 +7861,16 @@ M.DifferentialPrivacyPrivacyImpact = {
 M.PrivacyImpact = {
     type = "union",
     members = {
-        differentialPrivacy = {
-            type = "structure",
-        },
+        differentialPrivacy = M.DifferentialPrivacyPrivacyImpact,
     },
 }
 
 M.PreviewPrivacyImpactOutput = {
     type = "structure",
     members = {
-        privacyImpact = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        privacyImpact = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PrivacyImpact }),
     },
 }
 
@@ -8377,21 +7889,16 @@ M.ProtectedJobMemberOutputConfigurationInput = {
 M.ProtectedJobOutputConfigurationInput = {
     type = "union",
     members = {
-        member = {
-            type = "structure",
-        },
+        member = M.ProtectedJobMemberOutputConfigurationInput,
     },
 }
 
 M.ProtectedJobResultConfigurationInput = {
     type = "structure",
     members = {
-        outputConfiguration = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        outputConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProtectedJobOutputConfigurationInput }),
     },
 }
 
@@ -8415,30 +7922,20 @@ M.StartProtectedJobInput = {
                 required = true,
             },
         },
-        jobParameters = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        resultConfiguration = {
-            type = "structure",
-        },
-        computeConfiguration = {
-            type = "union",
-        },
+        jobParameters = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProtectedJobParameters }),
+        resultConfiguration = M.ProtectedJobResultConfigurationInput,
+        computeConfiguration = M.ProtectedJobComputeConfiguration,
     },
 }
 
 M.StartProtectedJobOutput = {
     type = "structure",
     members = {
-        protectedJob = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        protectedJob = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProtectedJob }),
     },
 }
 
@@ -8462,30 +7959,20 @@ M.StartProtectedQueryInput = {
                 required = true,
             },
         },
-        sqlParameters = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        resultConfiguration = {
-            type = "structure",
-        },
-        computeConfiguration = {
-            type = "union",
-        },
+        sqlParameters = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProtectedQuerySQLParameters }),
+        resultConfiguration = M.ProtectedQueryResultConfiguration,
+        computeConfiguration = M.ComputeConfiguration,
     },
 }
 
 M.StartProtectedQueryOutput = {
     type = "structure",
     members = {
-        protectedQuery = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        protectedQuery = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProtectedQuery }),
     },
 }
 
@@ -8505,24 +7992,17 @@ M.UpdateMembershipInput = {
         jobLogStatus = {
             type = "string",
         },
-        defaultResultConfiguration = {
-            type = "structure",
-        },
-        defaultJobResultConfiguration = {
-            type = "structure",
-        },
+        defaultResultConfiguration = M.MembershipProtectedQueryResultConfiguration,
+        defaultJobResultConfiguration = M.MembershipProtectedJobResultConfiguration,
     },
 }
 
 M.UpdateMembershipOutput = {
     type = "structure",
     members = {
-        membership = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        membership = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Membership }),
     },
 }
 
@@ -8559,12 +8039,9 @@ M.UpdateProtectedJobInput = {
 M.UpdateProtectedJobOutput = {
     type = "structure",
     members = {
-        protectedJob = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        protectedJob = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProtectedJob }),
     },
 }
 
@@ -8601,12 +8078,9 @@ M.UpdateProtectedQueryInput = {
 M.UpdateProtectedQueryOutput = {
     type = "structure",
     members = {
-        protectedQuery = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        protectedQuery = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProtectedQuery }),
     },
 }
 
@@ -8614,13 +8088,13 @@ M.DifferentialPrivacyTemplateParametersInput = {
     type = "structure",
     members = {
         epsilon = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         usersNoisePerQuery = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -8631,12 +8105,8 @@ M.DifferentialPrivacyTemplateParametersInput = {
 M.PrivacyBudgetTemplateParametersInput = {
     type = "union",
     members = {
-        differentialPrivacy = {
-            type = "structure",
-        },
-        accessBudget = {
-            type = "structure",
-        },
+        differentialPrivacy = M.DifferentialPrivacyTemplateParametersInput,
+        accessBudget = M.AccessBudgetsPrivacyTemplateParametersInput,
     },
 }
 
@@ -8659,16 +8129,13 @@ M.CreatePrivacyBudgetTemplateInput = {
                 required = true,
             },
         },
-        parameters = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        parameters = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PrivacyBudgetTemplateParametersInput }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -8736,24 +8203,18 @@ M.PrivacyBudgetTemplate = {
                 required = true,
             },
         },
-        parameters = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        parameters = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PrivacyBudgetTemplateParametersOutput }),
     },
 }
 
 M.CreatePrivacyBudgetTemplateOutput = {
     type = "structure",
     members = {
-        privacyBudgetTemplate = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        privacyBudgetTemplate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PrivacyBudgetTemplate }),
     },
 }
 
@@ -8804,12 +8265,9 @@ M.GetPrivacyBudgetTemplateInput = {
 M.GetPrivacyBudgetTemplateOutput = {
     type = "structure",
     members = {
-        privacyBudgetTemplate = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        privacyBudgetTemplate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PrivacyBudgetTemplate }),
     },
 }
 
@@ -8830,7 +8288,7 @@ M.ListPrivacyBudgetTemplatesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -8906,7 +8364,7 @@ M.ListPrivacyBudgetTemplatesOutput = {
         },
         privacyBudgetTemplateSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.PrivacyBudgetTemplateSummary,
             traits = {
                 required = true,
             },
@@ -8918,10 +8376,10 @@ M.DifferentialPrivacyTemplateUpdateParameters = {
     type = "structure",
     members = {
         epsilon = {
-            type = "number",
+            type = "integer",
         },
         usersNoisePerQuery = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -8929,12 +8387,8 @@ M.DifferentialPrivacyTemplateUpdateParameters = {
 M.PrivacyBudgetTemplateUpdateParameters = {
     type = "union",
     members = {
-        differentialPrivacy = {
-            type = "structure",
-        },
-        accessBudget = {
-            type = "structure",
-        },
+        differentialPrivacy = M.DifferentialPrivacyTemplateUpdateParameters,
+        accessBudget = M.AccessBudgetsPrivacyTemplateUpdateParameters,
     },
 }
 
@@ -8961,21 +8415,16 @@ M.UpdatePrivacyBudgetTemplateInput = {
                 required = true,
             },
         },
-        parameters = {
-            type = "union",
-        },
+        parameters = M.PrivacyBudgetTemplateUpdateParameters,
     },
 }
 
 M.UpdatePrivacyBudgetTemplateOutput = {
     type = "structure",
     members = {
-        privacyBudgetTemplate = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        privacyBudgetTemplate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PrivacyBudgetTemplate }),
     },
 }
 
@@ -8991,8 +8440,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -9016,7 +8465,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,

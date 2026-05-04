@@ -29,7 +29,7 @@ M.AddTagsToResourceInput = {
         },
         TagList = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -58,6 +58,9 @@ M.CloudHsmInternalException = {
         },
         retryable = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -71,6 +74,9 @@ M.CloudHsmServiceException = {
         },
         retryable = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -84,6 +90,9 @@ M.InvalidRequestException = {
         },
         retryable = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -311,15 +320,15 @@ M.DescribeHapgOutput = {
         },
         HsmsLastActionFailed = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         HsmsPendingDeletion = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         HsmsPendingRegistration = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Label = {
             type = "string",
@@ -329,7 +338,7 @@ M.DescribeHapgOutput = {
         },
         PartitionSerialList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         State = {
             type = "string",
@@ -424,7 +433,7 @@ M.DescribeHsmOutput = {
         },
         Partitions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -479,7 +488,7 @@ M.GetConfigInput = {
         },
         HapgList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -511,7 +520,7 @@ M.ListAvailableZonesOutput = {
     members = {
         AZList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -530,7 +539,7 @@ M.ListHapgsOutput = {
     members = {
         HapgList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -555,7 +564,7 @@ M.ListHsmsOutput = {
     members = {
         HsmList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -577,7 +586,7 @@ M.ListLunaClientsOutput = {
     members = {
         ClientList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -605,7 +614,7 @@ M.ListTagsForResourceOutput = {
     members = {
         TagList = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -627,7 +636,7 @@ M.ModifyHapgInput = {
         },
         PartitionSerialList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -731,7 +740,7 @@ M.RemoveTagsFromResourceInput = {
         },
         TagKeyList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },

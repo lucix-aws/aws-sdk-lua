@@ -87,12 +87,9 @@ M.AlertManagerDefinitionStatus = {
 M.CreateAlertManagerDefinitionOutput = {
     type = "structure",
     members = {
-        status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AlertManagerDefinitionStatus }),
     },
 }
 
@@ -107,7 +104,7 @@ M.InternalServerException = {
             },
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -194,7 +191,7 @@ M.ThrottlingException = {
             type = "string",
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -245,7 +242,7 @@ M.ValidationException = {
         },
         fieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -289,12 +286,9 @@ M.DescribeAlertManagerDefinitionInput = {
 M.AlertManagerDefinitionDescription = {
     type = "structure",
     members = {
-        status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AlertManagerDefinitionStatus }),
         data = {
             type = "blob",
             traits = {
@@ -319,12 +313,9 @@ M.AlertManagerDefinitionDescription = {
 M.DescribeAlertManagerDefinitionOutput = {
     type = "structure",
     members = {
-        alertManagerDefinition = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        alertManagerDefinition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AlertManagerDefinitionDescription }),
     },
 }
 
@@ -353,12 +344,9 @@ M.PutAlertManagerDefinitionInput = {
 M.PutAlertManagerDefinitionOutput = {
     type = "structure",
     members = {
-        status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AlertManagerDefinitionStatus }),
     },
 }
 
@@ -396,8 +384,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -417,9 +405,7 @@ M.AmpConfiguration = {
 M.Destination = {
     type = "union",
     members = {
-        ampConfiguration = {
-            type = "structure",
-        },
+        ampConfiguration = M.AmpConfiguration,
     },
 }
 
@@ -455,11 +441,11 @@ M.EksConfiguration = {
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -472,14 +458,14 @@ M.VpcConfiguration = {
     members = {
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -490,12 +476,8 @@ M.VpcConfiguration = {
 M.Source = {
     type = "union",
     members = {
-        eksConfiguration = {
-            type = "structure",
-        },
-        vpcConfiguration = {
-            type = "structure",
-        },
+        eksConfiguration = M.EksConfiguration,
+        vpcConfiguration = M.VpcConfiguration,
     },
 }
 
@@ -505,34 +487,23 @@ M.CreateScraperInput = {
         alias = {
             type = "string",
         },
-        scrapeConfiguration = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        source = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        destination = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        roleConfiguration = {
-            type = "structure",
-        },
+        scrapeConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ScrapeConfiguration }),
+        source = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Source }),
+        destination = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Destination }),
+        roleConfiguration = M.RoleConfiguration,
         clientToken = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -574,16 +545,13 @@ M.CreateScraperOutput = {
                 required = true,
             },
         },
-        status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ScraperStatus }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -616,12 +584,9 @@ M.DeleteScraperOutput = {
                 required = true,
             },
         },
-        status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ScraperStatus }),
     },
 }
 
@@ -662,12 +627,9 @@ M.ScraperDescription = {
                 required = true,
             },
         },
-        status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ScraperStatus }),
         createdAt = {
             type = "timestamp",
             traits = {
@@ -682,45 +644,31 @@ M.ScraperDescription = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         statusReason = {
             type = "string",
         },
-        scrapeConfiguration = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        source = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        destination = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        roleConfiguration = {
-            type = "structure",
-        },
+        scrapeConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ScrapeConfiguration }),
+        source = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Source }),
+        destination = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Destination }),
+        roleConfiguration = M.RoleConfiguration,
     },
 }
 
 M.DescribeScraperOutput = {
     type = "structure",
     members = {
-        scraper = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        scraper = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ScraperDescription }),
     },
 }
 
@@ -729,8 +677,8 @@ M.ListScrapersInput = {
     members = {
         filters = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
             traits = {
                 http_query_params = true,
             },
@@ -742,7 +690,7 @@ M.ListScrapersInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -774,12 +722,9 @@ M.ScraperSummary = {
                 required = true,
             },
         },
-        status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ScraperStatus }),
         createdAt = {
             type = "timestamp",
             traits = {
@@ -794,27 +739,19 @@ M.ScraperSummary = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         statusReason = {
             type = "string",
         },
-        source = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        destination = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        roleConfiguration = {
-            type = "structure",
-        },
+        source = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Source }),
+        destination = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Destination }),
+        roleConfiguration = M.RoleConfiguration,
     },
 }
 
@@ -823,7 +760,7 @@ M.ListScrapersOutput = {
     members = {
         scrapers = {
             type = "list",
-            member_type = "structure",
+            member = M.ScraperSummary,
             traits = {
                 required = true,
             },
@@ -885,9 +822,7 @@ M.CloudWatchLogDestination = {
 M.ScraperLoggingDestination = {
     type = "union",
     members = {
-        cloudWatchLogs = {
-            type = "structure",
-        },
+        cloudWatchLogs = M.CloudWatchLogDestination,
     },
 }
 
@@ -896,8 +831,8 @@ M.ComponentConfig = {
     members = {
         options = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -917,9 +852,7 @@ M.ScraperComponent = {
                 required = true,
             },
         },
-        config = {
-            type = "structure",
-        },
+        config = M.ComponentConfig,
     },
 }
 
@@ -950,27 +883,21 @@ M.ScraperLoggingConfigurationStatus = {
 M.DescribeScraperLoggingConfigurationOutput = {
     type = "structure",
     members = {
-        status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ScraperLoggingConfigurationStatus }),
         scraperId = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        loggingDestination = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        loggingDestination = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ScraperLoggingDestination }),
         scraperComponents = {
             type = "list",
-            member_type = "structure",
+            member = M.ScraperComponent,
             traits = {
                 required = true,
             },
@@ -994,15 +921,12 @@ M.UpdateScraperLoggingConfigurationInput = {
                 required = true,
             },
         },
-        loggingDestination = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        loggingDestination = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ScraperLoggingDestination }),
         scraperComponents = {
             type = "list",
-            member_type = "structure",
+            member = M.ScraperComponent,
         },
     },
 }
@@ -1010,12 +934,9 @@ M.UpdateScraperLoggingConfigurationInput = {
 M.UpdateScraperLoggingConfigurationOutput = {
     type = "structure",
     members = {
-        status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ScraperLoggingConfigurationStatus }),
     },
 }
 
@@ -1032,15 +953,9 @@ M.UpdateScraperInput = {
         alias = {
             type = "string",
         },
-        scrapeConfiguration = {
-            type = "union",
-        },
-        destination = {
-            type = "union",
-        },
-        roleConfiguration = {
-            type = "structure",
-        },
+        scrapeConfiguration = M.ScrapeConfiguration,
+        destination = M.Destination,
+        roleConfiguration = M.RoleConfiguration,
         clientToken = {
             type = "string",
         },
@@ -1062,16 +977,13 @@ M.UpdateScraperOutput = {
                 required = true,
             },
         },
-        status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ScraperStatus }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1088,8 +1000,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1113,7 +1025,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -1130,10 +1042,10 @@ M.IgnoreNearExpected = {
     type = "union",
     members = {
         amount = {
-            type = "number",
+            type = "double",
         },
         ratio = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -1148,26 +1060,26 @@ M.RandomCutForestConfiguration = {
             },
         },
         shingleSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 8,
+            },
         },
         sampleSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 256,
+            },
         },
-        ignoreNearExpectedFromAbove = {
-            type = "union",
-        },
-        ignoreNearExpectedFromBelow = {
-            type = "union",
-        },
+        ignoreNearExpectedFromAbove = M.IgnoreNearExpected,
+        ignoreNearExpectedFromBelow = M.IgnoreNearExpected,
     },
 }
 
 M.AnomalyDetectorConfiguration = {
     type = "union",
     members = {
-        randomCutForest = {
-            type = "structure",
-        },
+        randomCutForest = M.RandomCutForestConfiguration,
     },
 }
 
@@ -1200,29 +1112,27 @@ M.CreateAnomalyDetectorInput = {
             },
         },
         evaluationIntervalInSeconds = {
-            type = "number",
-        },
-        missingDataAction = {
-            type = "union",
-        },
-        configuration = {
-            type = "union",
+            type = "integer",
             traits = {
-                required = true,
+                default = 60,
             },
         },
+        missingDataAction = M.AnomalyDetectorMissingDataAction,
+        configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AnomalyDetectorConfiguration }),
         labels = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         clientToken = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1267,16 +1177,13 @@ M.CreateAnomalyDetectorOutput = {
                 required = true,
             },
         },
-        status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AnomalyDetectorStatus }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1353,25 +1260,18 @@ M.AnomalyDetectorDescription = {
             },
         },
         evaluationIntervalInSeconds = {
-            type = "number",
+            type = "integer",
         },
-        missingDataAction = {
-            type = "union",
-        },
-        configuration = {
-            type = "union",
-        },
+        missingDataAction = M.AnomalyDetectorMissingDataAction,
+        configuration = M.AnomalyDetectorConfiguration,
         labels = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AnomalyDetectorStatus }),
         createdAt = {
             type = "timestamp",
             traits = {
@@ -1386,8 +1286,8 @@ M.AnomalyDetectorDescription = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1395,12 +1295,9 @@ M.AnomalyDetectorDescription = {
 M.DescribeAnomalyDetectorOutput = {
     type = "structure",
     members = {
-        anomalyDetector = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        anomalyDetector = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AnomalyDetectorDescription }),
     },
 }
 
@@ -1421,7 +1318,7 @@ M.ListAnomalyDetectorsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1456,12 +1353,9 @@ M.AnomalyDetectorSummary = {
                 required = true,
             },
         },
-        status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AnomalyDetectorStatus }),
         createdAt = {
             type = "timestamp",
             traits = {
@@ -1476,8 +1370,8 @@ M.AnomalyDetectorSummary = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1487,7 +1381,7 @@ M.ListAnomalyDetectorsOutput = {
     members = {
         anomalyDetectors = {
             type = "list",
-            member_type = "structure",
+            member = M.AnomalyDetectorSummary,
             traits = {
                 required = true,
             },
@@ -1516,21 +1410,19 @@ M.PutAnomalyDetectorInput = {
             },
         },
         evaluationIntervalInSeconds = {
-            type = "number",
-        },
-        missingDataAction = {
-            type = "union",
-        },
-        configuration = {
-            type = "union",
+            type = "integer",
             traits = {
-                required = true,
+                default = 60,
             },
         },
+        missingDataAction = M.AnomalyDetectorMissingDataAction,
+        configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AnomalyDetectorConfiguration }),
         labels = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         clientToken = {
             type = "string",
@@ -1553,16 +1445,13 @@ M.PutAnomalyDetectorOutput = {
                 required = true,
             },
         },
-        status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AnomalyDetectorStatus }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1578,8 +1467,8 @@ M.CreateWorkspaceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         kmsKeyArn = {
             type = "string",
@@ -1622,16 +1511,13 @@ M.CreateWorkspaceOutput = {
                 required = true,
             },
         },
-        status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkspaceStatus }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         kmsKeyArn = {
             type = "string",
@@ -1693,12 +1579,9 @@ M.WorkspaceDescription = {
                 required = true,
             },
         },
-        status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkspaceStatus }),
         prometheusEndpoint = {
             type = "string",
         },
@@ -1710,8 +1593,8 @@ M.WorkspaceDescription = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         kmsKeyArn = {
             type = "string",
@@ -1722,12 +1605,9 @@ M.WorkspaceDescription = {
 M.DescribeWorkspaceOutput = {
     type = "structure",
     members = {
-        workspace = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        workspace = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkspaceDescription }),
     },
 }
 
@@ -1747,7 +1627,7 @@ M.ListWorkspacesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1773,12 +1653,9 @@ M.WorkspaceSummary = {
                 required = true,
             },
         },
-        status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkspaceStatus }),
         createdAt = {
             type = "timestamp",
             traits = {
@@ -1787,8 +1664,8 @@ M.WorkspaceSummary = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         kmsKeyArn = {
             type = "string",
@@ -1801,7 +1678,7 @@ M.ListWorkspacesOutput = {
     members = {
         workspaces = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkspaceSummary,
             traits = {
                 required = true,
             },
@@ -1861,12 +1738,9 @@ M.LoggingConfigurationStatus = {
 M.CreateLoggingConfigurationOutput = {
     type = "structure",
     members = {
-        status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LoggingConfigurationStatus }),
     },
 }
 
@@ -1909,12 +1783,9 @@ M.DescribeLoggingConfigurationInput = {
 M.LoggingConfigurationMetadata = {
     type = "structure",
     members = {
-        status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LoggingConfigurationStatus }),
         workspace = {
             type = "string",
             traits = {
@@ -1945,12 +1816,9 @@ M.LoggingConfigurationMetadata = {
 M.DescribeLoggingConfigurationOutput = {
     type = "structure",
     members = {
-        loggingConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        loggingConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LoggingConfigurationMetadata }),
     },
 }
 
@@ -1979,12 +1847,9 @@ M.UpdateLoggingConfigurationInput = {
 M.UpdateLoggingConfigurationOutput = {
     type = "structure",
     members = {
-        status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LoggingConfigurationStatus }),
     },
 }
 
@@ -1992,7 +1857,7 @@ M.LoggingFilter = {
     type = "structure",
     members = {
         qspThreshold = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -2003,18 +1868,12 @@ M.LoggingFilter = {
 M.LoggingDestination = {
     type = "structure",
     members = {
-        cloudWatchLogs = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        filters = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        cloudWatchLogs = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CloudWatchLogDestination }),
+        filters = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LoggingFilter }),
     },
 }
 
@@ -2030,7 +1889,7 @@ M.CreateQueryLoggingConfigurationInput = {
         },
         destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.LoggingDestination,
             traits = {
                 required = true,
             },
@@ -2068,12 +1927,9 @@ M.QueryLoggingConfigurationStatus = {
 M.CreateQueryLoggingConfigurationOutput = {
     type = "structure",
     members = {
-        status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.QueryLoggingConfigurationStatus }),
     },
 }
 
@@ -2116,12 +1972,9 @@ M.DescribeQueryLoggingConfigurationInput = {
 M.QueryLoggingConfigurationMetadata = {
     type = "structure",
     members = {
-        status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.QueryLoggingConfigurationStatus }),
         workspace = {
             type = "string",
             traits = {
@@ -2130,7 +1983,7 @@ M.QueryLoggingConfigurationMetadata = {
         },
         destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.LoggingDestination,
             traits = {
                 required = true,
             },
@@ -2153,12 +2006,9 @@ M.QueryLoggingConfigurationMetadata = {
 M.DescribeQueryLoggingConfigurationOutput = {
     type = "structure",
     members = {
-        queryLoggingConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        queryLoggingConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.QueryLoggingConfigurationMetadata }),
     },
 }
 
@@ -2174,7 +2024,7 @@ M.UpdateQueryLoggingConfigurationInput = {
         },
         destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.LoggingDestination,
             traits = {
                 required = true,
             },
@@ -2188,12 +2038,9 @@ M.UpdateQueryLoggingConfigurationInput = {
 M.UpdateQueryLoggingConfigurationOutput = {
     type = "structure",
     members = {
-        status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.QueryLoggingConfigurationStatus }),
     },
 }
 
@@ -2224,8 +2071,8 @@ M.CreateRuleGroupsNamespaceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2269,16 +2116,13 @@ M.CreateRuleGroupsNamespaceOutput = {
                 required = true,
             },
         },
-        status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RuleGroupsNamespaceStatus }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2348,12 +2192,9 @@ M.RuleGroupsNamespaceDescription = {
                 required = true,
             },
         },
-        status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RuleGroupsNamespaceStatus }),
         data = {
             type = "blob",
             traits = {
@@ -2374,8 +2215,8 @@ M.RuleGroupsNamespaceDescription = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2383,12 +2224,9 @@ M.RuleGroupsNamespaceDescription = {
 M.DescribeRuleGroupsNamespaceOutput = {
     type = "structure",
     members = {
-        ruleGroupsNamespace = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ruleGroupsNamespace = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RuleGroupsNamespaceDescription }),
     },
 }
 
@@ -2415,7 +2253,7 @@ M.ListRuleGroupsNamespacesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2438,12 +2276,9 @@ M.RuleGroupsNamespaceSummary = {
                 required = true,
             },
         },
-        status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RuleGroupsNamespaceStatus }),
         createdAt = {
             type = "timestamp",
             traits = {
@@ -2458,8 +2293,8 @@ M.RuleGroupsNamespaceSummary = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2469,7 +2304,7 @@ M.ListRuleGroupsNamespacesOutput = {
     members = {
         ruleGroupsNamespaces = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleGroupsNamespaceSummary,
             traits = {
                 required = true,
             },
@@ -2524,16 +2359,13 @@ M.PutRuleGroupsNamespaceOutput = {
                 required = true,
             },
         },
-        status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RuleGroupsNamespaceStatus }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2578,7 +2410,7 @@ M.LimitsPerLabelSetEntry = {
     type = "structure",
     members = {
         maxSeries = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -2586,16 +2418,13 @@ M.LimitsPerLabelSetEntry = {
 M.LimitsPerLabelSet = {
     type = "structure",
     members = {
-        limits = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        limits = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LimitsPerLabelSetEntry }),
         labelSet = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2627,18 +2456,15 @@ M.WorkspaceConfigurationStatus = {
 M.WorkspaceConfigurationDescription = {
     type = "structure",
     members = {
-        status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkspaceConfigurationStatus }),
         limitsPerLabelSet = {
             type = "list",
-            member_type = "structure",
+            member = M.LimitsPerLabelSet,
         },
         retentionPeriodInDays = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2646,12 +2472,9 @@ M.WorkspaceConfigurationDescription = {
 M.DescribeWorkspaceConfigurationOutput = {
     type = "structure",
     members = {
-        workspaceConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        workspaceConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkspaceConfigurationDescription }),
     },
 }
 
@@ -2670,10 +2493,10 @@ M.UpdateWorkspaceConfigurationInput = {
         },
         limitsPerLabelSet = {
             type = "list",
-            member_type = "structure",
+            member = M.LimitsPerLabelSet,
         },
         retentionPeriodInDays = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2681,12 +2504,9 @@ M.UpdateWorkspaceConfigurationInput = {
 M.UpdateWorkspaceConfigurationOutput = {
     type = "structure",
     members = {
-        status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkspaceConfigurationStatus }),
     },
 }
 

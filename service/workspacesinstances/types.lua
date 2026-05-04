@@ -82,7 +82,7 @@ M.InternalServerException = {
             },
         },
         RetryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -132,7 +132,7 @@ M.ThrottlingException = {
             type = "string",
         },
         RetryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -191,7 +191,7 @@ M.ValidationException = {
         },
         FieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -247,13 +247,13 @@ M.EbsBlockDevice = {
             type = "string",
         },
         Iops = {
-            type = "number",
+            type = "integer",
         },
         Throughput = {
-            type = "number",
+            type = "integer",
         },
         VolumeSize = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -264,9 +264,7 @@ M.BlockDeviceMappingRequest = {
         DeviceName = {
             type = "string",
         },
-        Ebs = {
-            type = "structure",
-        },
+        Ebs = M.EbsBlockDevice,
         NoDevice = {
             type = "string",
         },
@@ -300,9 +298,7 @@ M.CapacityReservationSpecification = {
         CapacityReservationPreference = {
             type = "string",
         },
-        CapacityReservationTarget = {
-            type = "structure",
-        },
+        CapacityReservationTarget = M.CapacityReservationTarget,
     },
 }
 
@@ -310,13 +306,13 @@ M.ConnectionTrackingSpecificationRequest = {
     type = "structure",
     members = {
         TcpEstablishedTimeout = {
-            type = "number",
+            type = "integer",
         },
         UdpStreamTimeout = {
-            type = "number",
+            type = "integer",
         },
         UdpTimeout = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -333,10 +329,10 @@ M.CpuOptionsRequest = {
             type = "string",
         },
         CoreCount = {
-            type = "number",
+            type = "integer",
         },
         ThreadsPerCore = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -368,7 +364,7 @@ M.TagSpecification = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -389,23 +385,23 @@ M.CreateVolumeInput = {
             type = "boolean",
         },
         Iops = {
-            type = "number",
+            type = "integer",
         },
         KmsKeyId = {
             type = "string",
         },
         SizeInGB = {
-            type = "number",
+            type = "integer",
         },
         SnapshotId = {
             type = "string",
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
         },
         Throughput = {
-            type = "number",
+            type = "integer",
         },
         VolumeType = {
             type = "string",
@@ -517,7 +513,7 @@ M.SpotMarketOptions = {
     type = "structure",
     members = {
         BlockDurationMinutes = {
-            type = "number",
+            type = "integer",
         },
         InstanceInterruptionBehavior = {
             type = "string",
@@ -540,9 +536,7 @@ M.InstanceMarketOptionsRequest = {
         MarketType = {
             type = "string",
         },
-        SpotOptions = {
-            type = "structure",
-        },
+        SpotOptions = M.SpotMarketOptions,
     },
 }
 
@@ -606,7 +600,7 @@ M.InstanceMetadataOptionsRequest = {
             type = "string",
         },
         HttpPutResponseHopLimit = {
-            type = "number",
+            type = "integer",
         },
         HttpTokens = {
             type = "string",
@@ -641,9 +635,7 @@ M.EnaSrdSpecificationRequest = {
         EnaSrdEnabled = {
             type = "boolean",
         },
-        EnaSrdUdpSpecification = {
-            type = "structure",
-        },
+        EnaSrdUdpSpecification = M.EnaSrdUdpSpecificationRequest,
     },
 }
 
@@ -692,44 +684,40 @@ M.InstanceNetworkInterfaceSpecification = {
         AssociatePublicIpAddress = {
             type = "boolean",
         },
-        ConnectionTrackingSpecification = {
-            type = "structure",
-        },
+        ConnectionTrackingSpecification = M.ConnectionTrackingSpecificationRequest,
         Description = {
             type = "string",
         },
         DeviceIndex = {
-            type = "number",
+            type = "integer",
         },
-        EnaSrdSpecification = {
-            type = "structure",
-        },
+        EnaSrdSpecification = M.EnaSrdSpecificationRequest,
         InterfaceType = {
             type = "string",
         },
         Ipv4Prefixes = {
             type = "list",
-            member_type = "structure",
+            member = M.Ipv4PrefixSpecificationRequest,
         },
         Ipv4PrefixCount = {
-            type = "number",
+            type = "integer",
         },
         Ipv6AddressCount = {
-            type = "number",
+            type = "integer",
         },
         Ipv6Addresses = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceIpv6Address,
         },
         Ipv6Prefixes = {
             type = "list",
-            member_type = "structure",
+            member = M.Ipv6PrefixSpecificationRequest,
         },
         Ipv6PrefixCount = {
-            type = "number",
+            type = "integer",
         },
         NetworkCardIndex = {
-            type = "number",
+            type = "integer",
         },
         NetworkInterfaceId = {
             type = "string",
@@ -742,14 +730,14 @@ M.InstanceNetworkInterfaceSpecification = {
         },
         PrivateIpAddresses = {
             type = "list",
-            member_type = "structure",
+            member = M.PrivateIpAddressSpecification,
         },
         SecondaryPrivateIpAddressCount = {
-            type = "number",
+            type = "integer",
         },
         Groups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SubnetId = {
             type = "string",
@@ -794,7 +782,7 @@ M.Placement = {
             type = "string",
         },
         PartitionNumber = {
-            type = "number",
+            type = "integer",
         },
         Tenancy = {
             type = "string",
@@ -827,17 +815,11 @@ M.ManagedInstanceRequest = {
     members = {
         BlockDeviceMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.BlockDeviceMappingRequest,
         },
-        CapacityReservationSpecification = {
-            type = "structure",
-        },
-        CpuOptions = {
-            type = "structure",
-        },
-        CreditSpecification = {
-            type = "structure",
-        },
+        CapacityReservationSpecification = M.CapacityReservationSpecification,
+        CpuOptions = M.CpuOptionsRequest,
+        CreditSpecification = M.CreditSpecificationRequest,
         DisableApiStop = {
             type = "boolean",
         },
@@ -847,30 +829,22 @@ M.ManagedInstanceRequest = {
         EnablePrimaryIpv6 = {
             type = "boolean",
         },
-        EnclaveOptions = {
-            type = "structure",
-        },
-        HibernationOptions = {
-            type = "structure",
-        },
-        IamInstanceProfile = {
-            type = "structure",
-        },
+        EnclaveOptions = M.EnclaveOptionsRequest,
+        HibernationOptions = M.HibernationOptionsRequest,
+        IamInstanceProfile = M.IamInstanceProfileSpecification,
         ImageId = {
             type = "string",
         },
-        InstanceMarketOptions = {
-            type = "structure",
-        },
+        InstanceMarketOptions = M.InstanceMarketOptionsRequest,
         InstanceType = {
             type = "string",
         },
         Ipv6Addresses = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceIpv6Address,
         },
         Ipv6AddressCount = {
-            type = "number",
+            type = "integer",
         },
         KernelId = {
             type = "string",
@@ -880,30 +854,18 @@ M.ManagedInstanceRequest = {
         },
         LicenseSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.LicenseConfigurationRequest,
         },
-        MaintenanceOptions = {
-            type = "structure",
-        },
-        MetadataOptions = {
-            type = "structure",
-        },
-        Monitoring = {
-            type = "structure",
-        },
+        MaintenanceOptions = M.InstanceMaintenanceOptionsRequest,
+        MetadataOptions = M.InstanceMetadataOptionsRequest,
+        Monitoring = M.RunInstancesMonitoringEnabled,
         NetworkInterfaces = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceNetworkInterfaceSpecification,
         },
-        NetworkPerformanceOptions = {
-            type = "structure",
-        },
-        Placement = {
-            type = "structure",
-        },
-        PrivateDnsNameOptions = {
-            type = "structure",
-        },
+        NetworkPerformanceOptions = M.InstanceNetworkPerformanceOptionsRequest,
+        Placement = M.Placement,
+        PrivateDnsNameOptions = M.PrivateDnsNameOptionsRequest,
         PrivateIpAddress = {
             type = "string",
         },
@@ -912,18 +874,18 @@ M.ManagedInstanceRequest = {
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SubnetId = {
             type = "string",
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
         },
         UserData = {
             type = "string",
@@ -939,17 +901,12 @@ M.CreateWorkspaceInstanceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        ManagedInstance = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        BillingConfiguration = {
-            type = "structure",
-        },
+        ManagedInstance = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ManagedInstanceRequest }),
+        BillingConfiguration = M.BillingConfiguration,
     },
 }
 
@@ -1089,11 +1046,11 @@ M.GetWorkspaceInstanceOutput = {
     members = {
         WorkspaceInstanceErrors = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkspaceInstanceError,
         },
         EC2InstanceErrors = {
             type = "list",
-            member_type = "structure",
+            member = M.EC2InstanceError,
         },
         ProvisionState = {
             type = "string",
@@ -1101,12 +1058,8 @@ M.GetWorkspaceInstanceOutput = {
         WorkspaceInstanceId = {
             type = "string",
         },
-        EC2ManagedInstance = {
-            type = "structure",
-        },
-        BillingConfiguration = {
-            type = "structure",
-        },
+        EC2ManagedInstance = M.EC2ManagedInstance,
+        BillingConfiguration = M.BillingConfiguration,
     },
 }
 
@@ -1153,14 +1106,12 @@ M.ListInstanceTypesInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
-        InstanceConfigurationFilter = {
-            type = "structure",
-        },
+        InstanceConfigurationFilter = M.InstanceConfigurationFilter,
     },
 }
 
@@ -1187,7 +1138,7 @@ M.InstanceTypeInfo = {
         },
         SupportedInstanceConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.SupportedInstanceConfiguration,
         },
     },
 }
@@ -1197,7 +1148,7 @@ M.ListInstanceTypesOutput = {
     members = {
         InstanceTypes = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceTypeInfo,
             traits = {
                 required = true,
             },
@@ -1212,7 +1163,7 @@ M.ListRegionsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1234,7 +1185,7 @@ M.ListRegionsOutput = {
     members = {
         Regions = {
             type = "list",
-            member_type = "structure",
+            member = M.Region,
             traits = {
                 required = true,
             },
@@ -1262,7 +1213,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1272,10 +1223,10 @@ M.ListWorkspaceInstancesInput = {
     members = {
         ProvisionStates = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1292,9 +1243,7 @@ M.WorkspaceInstance = {
         WorkspaceInstanceId = {
             type = "string",
         },
-        EC2ManagedInstance = {
-            type = "structure",
-        },
+        EC2ManagedInstance = M.EC2ManagedInstance,
     },
 }
 
@@ -1303,7 +1252,7 @@ M.ListWorkspaceInstancesOutput = {
     members = {
         WorkspaceInstances = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkspaceInstance,
             traits = {
                 required = true,
             },
@@ -1325,7 +1274,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -1348,7 +1297,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },

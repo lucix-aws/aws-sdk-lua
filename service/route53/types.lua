@@ -29,7 +29,7 @@ M.AccountLimit = {
             },
         },
         Value = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -92,12 +92,9 @@ M.ChangeInfo = {
 M.ActivateKeySigningKeyOutput = {
     type = "structure",
     members = {
-        ChangeInfo = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ChangeInfo = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ChangeInfo }),
     },
 }
 
@@ -246,6 +243,7 @@ M.AliasTarget = {
         EvaluateTargetHealth = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -323,12 +321,9 @@ M.AssociateVPCWithHostedZoneInput = {
                 required = true,
             },
         },
-        VPC = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        VPC = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VPC }),
         Comment = {
             type = "string",
         },
@@ -338,12 +333,9 @@ M.AssociateVPCWithHostedZoneInput = {
 M.AssociateVPCWithHostedZoneOutput = {
     type = "structure",
     members = {
-        ChangeInfo = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ChangeInfo = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ChangeInfo }),
     },
 }
 
@@ -439,7 +431,7 @@ M.CidrCollectionChange = {
         },
         CidrList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -458,11 +450,11 @@ M.ChangeCidrCollectionInput = {
             },
         },
         CollectionVersion = {
-            type = "number",
+            type = "long",
         },
         Changes = {
             type = "list",
-            member_type = "structure",
+            member = M.CidrCollectionChange,
             traits = {
                 required = true,
             },
@@ -583,11 +575,9 @@ M.GeoProximityLocation = {
         LocalZoneGroup = {
             type = "string",
         },
-        Coordinates = {
-            type = "structure",
-        },
+        Coordinates = M.Coordinates,
         Bias = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -685,14 +675,12 @@ M.ResourceRecordSet = {
             type = "string",
         },
         Weight = {
-            type = "number",
+            type = "long",
         },
         Region = {
             type = "string",
         },
-        GeoLocation = {
-            type = "structure",
-        },
+        GeoLocation = M.GeoLocation,
         Failover = {
             type = "string",
         },
@@ -700,27 +688,21 @@ M.ResourceRecordSet = {
             type = "boolean",
         },
         TTL = {
-            type = "number",
+            type = "long",
         },
         ResourceRecords = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceRecord,
         },
-        AliasTarget = {
-            type = "structure",
-        },
+        AliasTarget = M.AliasTarget,
         HealthCheckId = {
             type = "string",
         },
         TrafficPolicyInstanceId = {
             type = "string",
         },
-        CidrRoutingConfig = {
-            type = "structure",
-        },
-        GeoProximityLocation = {
-            type = "structure",
-        },
+        CidrRoutingConfig = M.CidrRoutingConfig,
+        GeoProximityLocation = M.GeoProximityLocation,
     },
 }
 
@@ -733,12 +715,9 @@ M.Change = {
                 required = true,
             },
         },
-        ResourceRecordSet = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ResourceRecordSet = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResourceRecordSet }),
     },
 }
 
@@ -750,7 +729,7 @@ M.ChangeBatch = {
         },
         Changes = {
             type = "list",
-            member_type = "structure",
+            member = M.Change,
             traits = {
                 required = true,
             },
@@ -768,24 +747,18 @@ M.ChangeResourceRecordSetsInput = {
                 required = true,
             },
         },
-        ChangeBatch = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ChangeBatch = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ChangeBatch }),
     },
 }
 
 M.ChangeResourceRecordSetsOutput = {
     type = "structure",
     members = {
-        ChangeInfo = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ChangeInfo = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ChangeInfo }),
     },
 }
 
@@ -795,7 +768,7 @@ M.InvalidChangeBatch = {
     members = {
         messages = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         message = {
             type = "string",
@@ -849,11 +822,11 @@ M.ChangeTagsForResourceInput = {
         },
         AddTags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         RemoveTagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -913,7 +886,7 @@ M.CidrCollection = {
             type = "string",
         },
         Version = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -921,9 +894,7 @@ M.CidrCollection = {
 M.CreateCidrCollectionOutput = {
     type = "structure",
     members = {
-        Collection = {
-            type = "structure",
-        },
+        Collection = M.CidrCollection,
         Location = {
             type = "string",
             traits = {
@@ -968,7 +939,7 @@ M.HealthCheckConfig = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         Type = {
             type = "string",
@@ -986,10 +957,10 @@ M.HealthCheckConfig = {
             type = "string",
         },
         RequestInterval = {
-            type = "number",
+            type = "integer",
         },
         FailureThreshold = {
-            type = "number",
+            type = "integer",
         },
         MeasureLatency = {
             type = "boolean",
@@ -1001,22 +972,20 @@ M.HealthCheckConfig = {
             type = "boolean",
         },
         HealthThreshold = {
-            type = "number",
+            type = "integer",
         },
         ChildHealthChecks = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         EnableSNI = {
             type = "boolean",
         },
         Regions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        AlarmIdentifier = {
-            type = "structure",
-        },
+        AlarmIdentifier = M.AlarmIdentifier,
         InsufficientDataHealthStatus = {
             type = "string",
         },
@@ -1035,12 +1004,9 @@ M.CreateHealthCheckInput = {
                 required = true,
             },
         },
-        HealthCheckConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        HealthCheckConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HealthCheckConfig }),
     },
 }
 
@@ -1081,13 +1047,13 @@ M.CloudWatchAlarmConfiguration = {
     type = "structure",
     members = {
         EvaluationPeriods = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Threshold = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -1099,7 +1065,7 @@ M.CloudWatchAlarmConfiguration = {
             },
         },
         Period = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1124,7 +1090,7 @@ M.CloudWatchAlarmConfiguration = {
         },
         Dimensions = {
             type = "list",
-            member_type = "structure",
+            member = M.Dimension,
         },
     },
 }
@@ -1156,36 +1122,26 @@ M.HealthCheck = {
                 required = true,
             },
         },
-        LinkedService = {
-            type = "structure",
-        },
-        HealthCheckConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        LinkedService = M.LinkedService,
+        HealthCheckConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HealthCheckConfig }),
         HealthCheckVersion = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
-        CloudWatchAlarmConfiguration = {
-            type = "structure",
-        },
+        CloudWatchAlarmConfiguration = M.CloudWatchAlarmConfiguration,
     },
 }
 
 M.CreateHealthCheckOutput = {
     type = "structure",
     members = {
-        HealthCheck = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        HealthCheck = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HealthCheck }),
         Location = {
             type = "string",
             traits = {
@@ -1224,6 +1180,9 @@ M.HostedZoneConfig = {
         },
         PrivateZone = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1237,18 +1196,14 @@ M.CreateHostedZoneInput = {
                 required = true,
             },
         },
-        VPC = {
-            type = "structure",
-        },
+        VPC = M.VPC,
         CallerReference = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        HostedZoneConfig = {
-            type = "structure",
-        },
+        HostedZoneConfig = M.HostedZoneConfig,
         DelegationSetId = {
             type = "string",
         },
@@ -1266,7 +1221,7 @@ M.DelegationSet = {
         },
         NameServers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1289,9 +1244,7 @@ M.HostedZoneFeatures = {
         AcceleratedRecoveryStatus = {
             type = "string",
         },
-        FailureReasons = {
-            type = "structure",
-        },
+        FailureReasons = M.HostedZoneFailureReasons,
     },
 }
 
@@ -1316,45 +1269,28 @@ M.HostedZone = {
                 required = true,
             },
         },
-        Config = {
-            type = "structure",
-        },
+        Config = M.HostedZoneConfig,
         ResourceRecordSetCount = {
-            type = "number",
+            type = "long",
         },
-        LinkedService = {
-            type = "structure",
-        },
-        Features = {
-            type = "structure",
-        },
+        LinkedService = M.LinkedService,
+        Features = M.HostedZoneFeatures,
     },
 }
 
 M.CreateHostedZoneOutput = {
     type = "structure",
     members = {
-        HostedZone = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ChangeInfo = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        DelegationSet = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        VPC = {
-            type = "structure",
-        },
+        HostedZone = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HostedZone }),
+        ChangeInfo = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ChangeInfo }),
+        DelegationSet = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DelegationSet }),
+        VPC = M.VPC,
         Location = {
             type = "string",
             traits = {
@@ -1471,22 +1407,34 @@ M.KeySigningKey = {
             type = "string",
         },
         Flag = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         SigningAlgorithmMnemonic = {
             type = "string",
         },
         SigningAlgorithmType = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         DigestAlgorithmMnemonic = {
             type = "string",
         },
         DigestAlgorithmType = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         KeyTag = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         DigestValue = {
             type = "string",
@@ -1518,18 +1466,12 @@ M.KeySigningKey = {
 M.CreateKeySigningKeyOutput = {
     type = "structure",
     members = {
-        ChangeInfo = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        KeySigningKey = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ChangeInfo = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ChangeInfo }),
+        KeySigningKey = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.KeySigningKey }),
         Location = {
             type = "string",
             traits = {
@@ -1625,12 +1567,9 @@ M.QueryLoggingConfig = {
 M.CreateQueryLoggingConfigOutput = {
     type = "structure",
     members = {
-        QueryLoggingConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        QueryLoggingConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.QueryLoggingConfig }),
         Location = {
             type = "string",
             traits = {
@@ -1689,12 +1628,9 @@ M.CreateReusableDelegationSetInput = {
 M.CreateReusableDelegationSetOutput = {
     type = "structure",
     members = {
-        DelegationSet = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DelegationSet = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DelegationSet }),
         Location = {
             type = "string",
             traits = {
@@ -1766,7 +1702,7 @@ M.TrafficPolicy = {
             },
         },
         Version = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1798,12 +1734,9 @@ M.TrafficPolicy = {
 M.CreateTrafficPolicyOutput = {
     type = "structure",
     members = {
-        TrafficPolicy = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TrafficPolicy = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TrafficPolicy }),
         Location = {
             type = "string",
             traits = {
@@ -1860,7 +1793,7 @@ M.CreateTrafficPolicyInstanceInput = {
             },
         },
         TTL = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -1872,7 +1805,7 @@ M.CreateTrafficPolicyInstanceInput = {
             },
         },
         TrafficPolicyVersion = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1902,7 +1835,7 @@ M.TrafficPolicyInstance = {
             },
         },
         TTL = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -1926,7 +1859,7 @@ M.TrafficPolicyInstance = {
             },
         },
         TrafficPolicyVersion = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1943,12 +1876,9 @@ M.TrafficPolicyInstance = {
 M.CreateTrafficPolicyInstanceOutput = {
     type = "structure",
     members = {
-        TrafficPolicyInstance = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TrafficPolicyInstance = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TrafficPolicyInstance }),
         Location = {
             type = "string",
             traits = {
@@ -2014,12 +1944,9 @@ M.CreateTrafficPolicyVersionInput = {
 M.CreateTrafficPolicyVersionOutput = {
     type = "structure",
     members = {
-        TrafficPolicy = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TrafficPolicy = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TrafficPolicy }),
         Location = {
             type = "string",
             traits = {
@@ -2050,12 +1977,9 @@ M.CreateVPCAssociationAuthorizationInput = {
                 required = true,
             },
         },
-        VPC = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        VPC = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VPC }),
     },
 }
 
@@ -2068,12 +1992,9 @@ M.CreateVPCAssociationAuthorizationOutput = {
                 required = true,
             },
         },
-        VPC = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        VPC = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VPC }),
     },
 }
 
@@ -2110,12 +2031,9 @@ M.DeactivateKeySigningKeyInput = {
 M.DeactivateKeySigningKeyOutput = {
     type = "structure",
     members = {
-        ChangeInfo = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ChangeInfo = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ChangeInfo }),
     },
 }
 
@@ -2209,12 +2127,9 @@ M.DeleteHostedZoneInput = {
 M.DeleteHostedZoneOutput = {
     type = "structure",
     members = {
-        ChangeInfo = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ChangeInfo = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ChangeInfo }),
     },
 }
 
@@ -2251,12 +2166,9 @@ M.DeleteKeySigningKeyInput = {
 M.DeleteKeySigningKeyOutput = {
     type = "structure",
     members = {
-        ChangeInfo = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ChangeInfo = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ChangeInfo }),
     },
 }
 
@@ -2325,7 +2237,7 @@ M.DeleteTrafficPolicyInput = {
             },
         },
         Version = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_label = true,
                 required = true,
@@ -2385,12 +2297,9 @@ M.DeleteVPCAssociationAuthorizationInput = {
                 required = true,
             },
         },
-        VPC = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        VPC = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VPC }),
     },
 }
 
@@ -2424,12 +2333,9 @@ M.DisableHostedZoneDNSSECInput = {
 M.DisableHostedZoneDNSSECOutput = {
     type = "structure",
     members = {
-        ChangeInfo = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ChangeInfo = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ChangeInfo }),
     },
 }
 
@@ -2453,12 +2359,9 @@ M.DisassociateVPCFromHostedZoneInput = {
                 required = true,
             },
         },
-        VPC = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        VPC = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VPC }),
         Comment = {
             type = "string",
         },
@@ -2468,12 +2371,9 @@ M.DisassociateVPCFromHostedZoneInput = {
 M.DisassociateVPCFromHostedZoneOutput = {
     type = "structure",
     members = {
-        ChangeInfo = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ChangeInfo = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ChangeInfo }),
     },
 }
 
@@ -2513,12 +2413,9 @@ M.EnableHostedZoneDNSSECInput = {
 M.EnableHostedZoneDNSSECOutput = {
     type = "structure",
     members = {
-        ChangeInfo = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ChangeInfo = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ChangeInfo }),
     },
 }
 
@@ -2558,15 +2455,13 @@ M.GetAccountLimitInput = {
 M.GetAccountLimitOutput = {
     type = "structure",
     members = {
-        Limit = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Limit = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AccountLimit }),
         Count = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -2589,12 +2484,9 @@ M.GetChangeInput = {
 M.GetChangeOutput = {
     type = "structure",
     members = {
-        ChangeInfo = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ChangeInfo = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ChangeInfo }),
     },
 }
 
@@ -2617,7 +2509,7 @@ M.GetCheckerIpRangesOutput = {
     members = {
         CheckerIpRanges = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2653,15 +2545,12 @@ M.DNSSECStatus = {
 M.GetDNSSECOutput = {
     type = "structure",
     members = {
-        Status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DNSSECStatus }),
         KeySigningKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.KeySigningKey,
             traits = {
                 required = true,
             },
@@ -2720,12 +2609,9 @@ M.GeoLocationDetails = {
 M.GetGeoLocationOutput = {
     type = "structure",
     members = {
-        GeoLocationDetails = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        GeoLocationDetails = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.GeoLocationDetails }),
     },
 }
 
@@ -2755,12 +2641,9 @@ M.GetHealthCheckInput = {
 M.GetHealthCheckOutput = {
     type = "structure",
     members = {
-        HealthCheck = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        HealthCheck = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HealthCheck }),
     },
 }
 
@@ -2782,7 +2665,7 @@ M.GetHealthCheckCountOutput = {
     type = "structure",
     members = {
         HealthCheckCount = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -2824,9 +2707,7 @@ M.HealthCheckObservation = {
         IPAddress = {
             type = "string",
         },
-        StatusReport = {
-            type = "structure",
-        },
+        StatusReport = M.StatusReport,
     },
 }
 
@@ -2835,7 +2716,7 @@ M.GetHealthCheckLastFailureReasonOutput = {
     members = {
         HealthCheckObservations = {
             type = "list",
-            member_type = "structure",
+            member = M.HealthCheckObservation,
             traits = {
                 required = true,
             },
@@ -2861,7 +2742,7 @@ M.GetHealthCheckStatusOutput = {
     members = {
         HealthCheckObservations = {
             type = "list",
-            member_type = "structure",
+            member = M.HealthCheckObservation,
             traits = {
                 required = true,
             },
@@ -2885,18 +2766,13 @@ M.GetHostedZoneInput = {
 M.GetHostedZoneOutput = {
     type = "structure",
     members = {
-        HostedZone = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        DelegationSet = {
-            type = "structure",
-        },
+        HostedZone = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HostedZone }),
+        DelegationSet = M.DelegationSet,
         VPCs = {
             type = "list",
-            member_type = "structure",
+            member = M.VPC,
         },
     },
 }
@@ -2909,7 +2785,7 @@ M.GetHostedZoneCountOutput = {
     type = "structure",
     members = {
         HostedZoneCount = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -2952,7 +2828,7 @@ M.HostedZoneLimit = {
             },
         },
         Value = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -2963,15 +2839,13 @@ M.HostedZoneLimit = {
 M.GetHostedZoneLimitOutput = {
     type = "structure",
     members = {
-        Limit = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Limit = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HostedZoneLimit }),
         Count = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -3004,12 +2878,9 @@ M.GetQueryLoggingConfigInput = {
 M.GetQueryLoggingConfigOutput = {
     type = "structure",
     members = {
-        QueryLoggingConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        QueryLoggingConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.QueryLoggingConfig }),
     },
 }
 
@@ -3029,12 +2900,9 @@ M.GetReusableDelegationSetInput = {
 M.GetReusableDelegationSetOutput = {
     type = "structure",
     members = {
-        DelegationSet = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DelegationSet = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DelegationSet }),
     },
 }
 
@@ -3072,7 +2940,7 @@ M.ReusableDelegationSetLimit = {
             },
         },
         Value = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -3083,15 +2951,13 @@ M.ReusableDelegationSetLimit = {
 M.GetReusableDelegationSetLimitOutput = {
     type = "structure",
     members = {
-        Limit = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Limit = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ReusableDelegationSetLimit }),
         Count = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -3109,7 +2975,7 @@ M.GetTrafficPolicyInput = {
             },
         },
         Version = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_label = true,
                 required = true,
@@ -3121,12 +2987,9 @@ M.GetTrafficPolicyInput = {
 M.GetTrafficPolicyOutput = {
     type = "structure",
     members = {
-        TrafficPolicy = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TrafficPolicy = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TrafficPolicy }),
     },
 }
 
@@ -3146,12 +3009,9 @@ M.GetTrafficPolicyInstanceInput = {
 M.GetTrafficPolicyInstanceOutput = {
     type = "structure",
     members = {
-        TrafficPolicyInstance = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TrafficPolicyInstance = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TrafficPolicyInstance }),
     },
 }
 
@@ -3163,7 +3023,7 @@ M.GetTrafficPolicyInstanceCountOutput = {
     type = "structure",
     members = {
         TrafficPolicyInstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -3194,7 +3054,7 @@ M.ListCidrBlocksInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxresults",
             },
@@ -3222,7 +3082,7 @@ M.ListCidrBlocksOutput = {
         },
         CidrBlocks = {
             type = "list",
-            member_type = "structure",
+            member = M.CidrBlockSummary,
         },
     },
 }
@@ -3247,7 +3107,7 @@ M.ListCidrCollectionsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxresults",
             },
@@ -3268,7 +3128,7 @@ M.CollectionSummary = {
             type = "string",
         },
         Version = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -3281,7 +3141,7 @@ M.ListCidrCollectionsOutput = {
         },
         CidrCollections = {
             type = "list",
-            member_type = "structure",
+            member = M.CollectionSummary,
         },
     },
 }
@@ -3303,7 +3163,7 @@ M.ListCidrLocationsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxresults",
             },
@@ -3328,7 +3188,7 @@ M.ListCidrLocationsOutput = {
         },
         CidrLocations = {
             type = "list",
-            member_type = "structure",
+            member = M.LocationSummary,
         },
     },
 }
@@ -3355,7 +3215,7 @@ M.ListGeoLocationsInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxitems",
             },
@@ -3368,7 +3228,7 @@ M.ListGeoLocationsOutput = {
     members = {
         GeoLocationDetailsList = {
             type = "list",
-            member_type = "structure",
+            member = M.GeoLocationDetails,
             traits = {
                 required = true,
             },
@@ -3376,6 +3236,7 @@ M.ListGeoLocationsOutput = {
         IsTruncated = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -3389,7 +3250,7 @@ M.ListGeoLocationsOutput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -3407,7 +3268,7 @@ M.ListHealthChecksInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxitems",
             },
@@ -3420,7 +3281,7 @@ M.ListHealthChecksOutput = {
     members = {
         HealthChecks = {
             type = "list",
-            member_type = "structure",
+            member = M.HealthCheck,
             traits = {
                 required = true,
             },
@@ -3434,6 +3295,7 @@ M.ListHealthChecksOutput = {
         IsTruncated = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -3441,7 +3303,7 @@ M.ListHealthChecksOutput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -3463,7 +3325,7 @@ M.ListHostedZonesInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxitems",
             },
@@ -3488,7 +3350,7 @@ M.ListHostedZonesOutput = {
     members = {
         HostedZones = {
             type = "list",
-            member_type = "structure",
+            member = M.HostedZone,
             traits = {
                 required = true,
             },
@@ -3502,6 +3364,7 @@ M.ListHostedZonesOutput = {
         IsTruncated = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -3509,7 +3372,7 @@ M.ListHostedZonesOutput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -3533,7 +3396,7 @@ M.ListHostedZonesByNameInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxitems",
             },
@@ -3546,7 +3409,7 @@ M.ListHostedZonesByNameOutput = {
     members = {
         HostedZones = {
             type = "list",
-            member_type = "structure",
+            member = M.HostedZone,
             traits = {
                 required = true,
             },
@@ -3560,6 +3423,7 @@ M.ListHostedZonesByNameOutput = {
         IsTruncated = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -3570,7 +3434,7 @@ M.ListHostedZonesByNameOutput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -3606,7 +3470,7 @@ M.ListHostedZonesByVPCInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxitems",
             },
@@ -3647,12 +3511,9 @@ M.HostedZoneSummary = {
                 required = true,
             },
         },
-        Owner = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Owner = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HostedZoneOwner }),
     },
 }
 
@@ -3661,13 +3522,13 @@ M.ListHostedZonesByVPCOutput = {
     members = {
         HostedZoneSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.HostedZoneSummary,
             traits = {
                 required = true,
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -3694,7 +3555,7 @@ M.ListQueryLoggingConfigsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxresults",
             },
@@ -3707,7 +3568,7 @@ M.ListQueryLoggingConfigsOutput = {
     members = {
         QueryLoggingConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.QueryLoggingConfig,
             traits = {
                 required = true,
             },
@@ -3747,7 +3608,7 @@ M.ListResourceRecordSetsInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxitems",
             },
@@ -3760,7 +3621,7 @@ M.ListResourceRecordSetsOutput = {
     members = {
         ResourceRecordSets = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceRecordSet,
             traits = {
                 required = true,
             },
@@ -3768,6 +3629,7 @@ M.ListResourceRecordSetsOutput = {
         IsTruncated = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -3781,7 +3643,7 @@ M.ListResourceRecordSetsOutput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -3799,7 +3661,7 @@ M.ListReusableDelegationSetsInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxitems",
             },
@@ -3812,7 +3674,7 @@ M.ListReusableDelegationSetsOutput = {
     members = {
         DelegationSets = {
             type = "list",
-            member_type = "structure",
+            member = M.DelegationSet,
             traits = {
                 required = true,
             },
@@ -3826,6 +3688,7 @@ M.ListReusableDelegationSetsOutput = {
         IsTruncated = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -3833,7 +3696,7 @@ M.ListReusableDelegationSetsOutput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -3872,7 +3735,7 @@ M.ResourceTagSet = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3880,12 +3743,9 @@ M.ResourceTagSet = {
 M.ListTagsForResourceOutput = {
     type = "structure",
     members = {
-        ResourceTagSet = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ResourceTagSet = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResourceTagSet }),
     },
 }
 
@@ -3901,7 +3761,7 @@ M.ListTagsForResourcesInput = {
         },
         ResourceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3914,7 +3774,7 @@ M.ListTagsForResourcesOutput = {
     members = {
         ResourceTagSets = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTagSet,
             traits = {
                 required = true,
             },
@@ -3932,7 +3792,7 @@ M.ListTrafficPoliciesInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxitems",
             },
@@ -3962,13 +3822,13 @@ M.TrafficPolicySummary = {
             },
         },
         LatestVersion = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         TrafficPolicyCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -3981,7 +3841,7 @@ M.ListTrafficPoliciesOutput = {
     members = {
         TrafficPolicySummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.TrafficPolicySummary,
             traits = {
                 required = true,
             },
@@ -3989,6 +3849,7 @@ M.ListTrafficPoliciesOutput = {
         IsTruncated = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -3999,7 +3860,7 @@ M.ListTrafficPoliciesOutput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -4029,7 +3890,7 @@ M.ListTrafficPolicyInstancesInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxitems",
             },
@@ -4042,7 +3903,7 @@ M.ListTrafficPolicyInstancesOutput = {
     members = {
         TrafficPolicyInstances = {
             type = "list",
-            member_type = "structure",
+            member = M.TrafficPolicyInstance,
             traits = {
                 required = true,
             },
@@ -4059,11 +3920,12 @@ M.ListTrafficPolicyInstancesOutput = {
         IsTruncated = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -4094,7 +3956,7 @@ M.ListTrafficPolicyInstancesByHostedZoneInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxitems",
             },
@@ -4107,7 +3969,7 @@ M.ListTrafficPolicyInstancesByHostedZoneOutput = {
     members = {
         TrafficPolicyInstances = {
             type = "list",
-            member_type = "structure",
+            member = M.TrafficPolicyInstance,
             traits = {
                 required = true,
             },
@@ -4121,11 +3983,12 @@ M.ListTrafficPolicyInstancesByHostedZoneOutput = {
         IsTruncated = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -4144,7 +4007,7 @@ M.ListTrafficPolicyInstancesByPolicyInput = {
             },
         },
         TrafficPolicyVersion = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "version",
                 required = true,
@@ -4169,7 +4032,7 @@ M.ListTrafficPolicyInstancesByPolicyInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxitems",
             },
@@ -4182,7 +4045,7 @@ M.ListTrafficPolicyInstancesByPolicyOutput = {
     members = {
         TrafficPolicyInstances = {
             type = "list",
-            member_type = "structure",
+            member = M.TrafficPolicyInstance,
             traits = {
                 required = true,
             },
@@ -4199,11 +4062,12 @@ M.ListTrafficPolicyInstancesByPolicyOutput = {
         IsTruncated = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -4228,7 +4092,7 @@ M.ListTrafficPolicyVersionsInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxitems",
             },
@@ -4241,7 +4105,7 @@ M.ListTrafficPolicyVersionsOutput = {
     members = {
         TrafficPolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.TrafficPolicy,
             traits = {
                 required = true,
             },
@@ -4249,6 +4113,7 @@ M.ListTrafficPolicyVersionsOutput = {
         IsTruncated = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -4259,7 +4124,7 @@ M.ListTrafficPolicyVersionsOutput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -4284,7 +4149,7 @@ M.ListVPCAssociationAuthorizationsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxresults",
             },
@@ -4306,7 +4171,7 @@ M.ListVPCAssociationAuthorizationsOutput = {
         },
         VPCs = {
             type = "list",
-            member_type = "structure",
+            member = M.VPC,
             traits = {
                 required = true,
             },
@@ -4382,7 +4247,7 @@ M.TestDNSAnswerOutput = {
         },
         RecordData = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4430,13 +4295,13 @@ M.UpdateHealthCheckInput = {
             },
         },
         HealthCheckVersion = {
-            type = "number",
+            type = "long",
         },
         IPAddress = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         ResourcePath = {
             type = "string",
@@ -4448,7 +4313,7 @@ M.UpdateHealthCheckInput = {
             type = "string",
         },
         FailureThreshold = {
-            type = "number",
+            type = "integer",
         },
         Inverted = {
             type = "boolean",
@@ -4457,28 +4322,26 @@ M.UpdateHealthCheckInput = {
             type = "boolean",
         },
         HealthThreshold = {
-            type = "number",
+            type = "integer",
         },
         ChildHealthChecks = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         EnableSNI = {
             type = "boolean",
         },
         Regions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        AlarmIdentifier = {
-            type = "structure",
-        },
+        AlarmIdentifier = M.AlarmIdentifier,
         InsufficientDataHealthStatus = {
             type = "string",
         },
         ResetElements = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4486,12 +4349,9 @@ M.UpdateHealthCheckInput = {
 M.UpdateHealthCheckOutput = {
     type = "structure",
     members = {
-        HealthCheck = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        HealthCheck = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HealthCheck }),
     },
 }
 
@@ -4514,12 +4374,9 @@ M.UpdateHostedZoneCommentInput = {
 M.UpdateHostedZoneCommentOutput = {
     type = "structure",
     members = {
-        HostedZone = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        HostedZone = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HostedZone }),
     },
 }
 
@@ -4554,7 +4411,7 @@ M.UpdateTrafficPolicyCommentInput = {
             },
         },
         Version = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_label = true,
                 required = true,
@@ -4572,12 +4429,9 @@ M.UpdateTrafficPolicyCommentInput = {
 M.UpdateTrafficPolicyCommentOutput = {
     type = "structure",
     members = {
-        TrafficPolicy = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TrafficPolicy = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TrafficPolicy }),
     },
 }
 
@@ -4602,7 +4456,7 @@ M.UpdateTrafficPolicyInstanceInput = {
             },
         },
         TTL = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -4614,7 +4468,7 @@ M.UpdateTrafficPolicyInstanceInput = {
             },
         },
         TrafficPolicyVersion = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -4625,12 +4479,9 @@ M.UpdateTrafficPolicyInstanceInput = {
 M.UpdateTrafficPolicyInstanceOutput = {
     type = "structure",
     members = {
-        TrafficPolicyInstance = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TrafficPolicyInstance = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TrafficPolicyInstance }),
     },
 }
 

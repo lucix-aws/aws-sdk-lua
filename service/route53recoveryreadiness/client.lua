@@ -16,7 +16,7 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "Route53RecoveryReadiness"
-    cfg.signing_name = "route53recoveryreadiness"
+    cfg.signing_name = "route53-recovery-readiness"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end

@@ -16,7 +16,7 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AWSMigrationHubStrategyRecommendation"
-    cfg.signing_name = "awsmigrationhubstrategyrecommendation"
+    cfg.signing_name = "migrationhub-strategy"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end

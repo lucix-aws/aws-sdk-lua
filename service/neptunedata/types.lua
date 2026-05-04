@@ -707,7 +707,7 @@ M.CreateMLEndpointInput = {
             type = "string",
         },
         instanceCount = {
-            type = "number",
+            type = "integer",
         },
         volumeEncryptionKMSKey = {
             type = "string",
@@ -725,7 +725,7 @@ M.CreateMLEndpointOutput = {
             type = "string",
         },
         creationTimeInMillis = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -784,7 +784,7 @@ M.DeletePropertygraphStatisticsOutput = {
     type = "structure",
     members = {
         statusCode = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_response_code = true,
             },
@@ -792,9 +792,7 @@ M.DeletePropertygraphStatisticsOutput = {
         status = {
             type = "string",
         },
-        payload = {
-            type = "structure",
-        },
+        payload = M.DeleteStatisticsValueMap,
     },
 }
 
@@ -856,7 +854,7 @@ M.DeleteSparqlStatisticsOutput = {
     type = "structure",
     members = {
         statusCode = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_response_code = true,
             },
@@ -864,9 +862,7 @@ M.DeleteSparqlStatisticsOutput = {
         status = {
             type = "string",
         },
-        payload = {
-            type = "structure",
-        },
+        payload = M.DeleteStatisticsValueMap,
     },
 }
 
@@ -903,9 +899,7 @@ M.ExecuteFastResetOutput = {
                 required = true,
             },
         },
-        payload = {
-            type = "structure",
-        },
+        payload = M.FastResetToken,
     },
 }
 
@@ -1151,7 +1145,7 @@ M.ExecuteGremlinProfileQueryInput = {
             },
         },
         chop = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "profile.chop",
             },
@@ -1209,7 +1203,7 @@ M.GremlinQueryStatusAttributes = {
             type = "string",
         },
         code = {
-            type = "number",
+            type = "integer",
         },
         attributes = {
             type = "document",
@@ -1223,9 +1217,7 @@ M.ExecuteGremlinQueryOutput = {
         requestId = {
             type = "string",
         },
-        status = {
-            type = "structure",
-        },
+        status = M.GremlinQueryStatusAttributes,
         result = {
             type = "document",
         },
@@ -1339,35 +1331,29 @@ M.GetEngineStatusOutput = {
         dfeQueryEngine = {
             type = "string",
         },
-        gremlin = {
-            type = "structure",
-        },
-        sparql = {
-            type = "structure",
-        },
-        opencypher = {
-            type = "structure",
-        },
+        gremlin = M.QueryLanguageVersion,
+        sparql = M.QueryLanguageVersion,
+        opencypher = M.QueryLanguageVersion,
         labMode = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         rollingBackTrxCount = {
-            type = "number",
+            type = "integer",
         },
         rollingBackTrxEarliestStartTime = {
             type = "string",
         },
         features = {
             type = "map",
-            key_type = "string",
-            value_type = "document",
+            key = { type = "string" },
+            value = { type = "document" },
         },
         settings = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1389,10 +1375,10 @@ M.QueryEvalStats = {
     type = "structure",
     members = {
         waited = {
-            type = "number",
+            type = "integer",
         },
         elapsed = {
-            type = "number",
+            type = "integer",
         },
         cancelled = {
             type = "boolean",
@@ -1412,9 +1398,7 @@ M.GetGremlinQueryStatusOutput = {
         queryString = {
             type = "string",
         },
-        queryEvalStats = {
-            type = "structure",
-        },
+        queryEvalStats = M.QueryEvalStats,
     },
 }
 
@@ -1441,13 +1425,13 @@ M.GetLoaderJobStatusInput = {
             },
         },
         page = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "page",
             },
         },
         errorsPerPage = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "errorsPerPage",
             },
@@ -1525,9 +1509,7 @@ M.GetMLDataProcessingJobOutput = {
         id = {
             type = "string",
         },
-        processingJob = {
-            type = "structure",
-        },
+        processingJob = M.MlResourceDefinition,
     },
 }
 
@@ -1571,12 +1553,8 @@ M.GetMLEndpointOutput = {
         id = {
             type = "string",
         },
-        endpoint = {
-            type = "structure",
-        },
-        endpointConfig = {
-            type = "structure",
-        },
+        endpoint = M.MlResourceDefinition,
+        endpointConfig = M.MlConfigDefinition,
     },
 }
 
@@ -1608,18 +1586,12 @@ M.GetMLModelTrainingJobOutput = {
         id = {
             type = "string",
         },
-        processingJob = {
-            type = "structure",
-        },
-        hpoJob = {
-            type = "structure",
-        },
-        modelTransformJob = {
-            type = "structure",
-        },
+        processingJob = M.MlResourceDefinition,
+        hpoJob = M.MlResourceDefinition,
+        modelTransformJob = M.MlResourceDefinition,
         mlModels = {
             type = "list",
-            member_type = "structure",
+            member = M.MlConfigDefinition,
         },
     },
 }
@@ -1652,15 +1624,11 @@ M.GetMLModelTransformJobOutput = {
         id = {
             type = "string",
         },
-        baseProcessingJob = {
-            type = "structure",
-        },
-        remoteModelTransformJob = {
-            type = "structure",
-        },
+        baseProcessingJob = M.MlResourceDefinition,
+        remoteModelTransformJob = M.MlResourceDefinition,
         models = {
             type = "list",
-            member_type = "structure",
+            member = M.MlConfigDefinition,
         },
     },
 }
@@ -1687,9 +1655,7 @@ M.GetOpenCypherQueryStatusOutput = {
         queryString = {
             type = "string",
         },
-        queryEvalStats = {
-            type = "structure",
-        },
+        queryEvalStats = M.QueryEvalStats,
     },
 }
 
@@ -1701,13 +1667,13 @@ M.StatisticsSummary = {
     type = "structure",
     members = {
         signatureCount = {
-            type = "number",
+            type = "integer",
         },
         instanceCount = {
-            type = "number",
+            type = "integer",
         },
         predicateCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1733,9 +1699,7 @@ M.Statistics = {
         note = {
             type = "string",
         },
-        signatureInfo = {
-            type = "structure",
-        },
+        signatureInfo = M.StatisticsSummary,
     },
 }
 
@@ -1748,12 +1712,9 @@ M.GetPropertygraphStatisticsOutput = {
                 required = true,
             },
         },
-        payload = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        payload = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Statistics }),
     },
 }
 
@@ -1797,7 +1758,7 @@ M.GetPropertygraphStreamInput = {
     type = "structure",
     members = {
         limit = {
-            type = "number",
+            type = "long",
             traits = {
                 http_query = "limit",
             },
@@ -1809,13 +1770,13 @@ M.GetPropertygraphStreamInput = {
             },
         },
         commitNum = {
-            type = "number",
+            type = "long",
             traits = {
                 http_query = "commitNum",
             },
         },
         opNum = {
-            type = "number",
+            type = "long",
             traits = {
                 http_query = "opNum",
             },
@@ -1869,7 +1830,7 @@ M.PropertygraphRecord = {
     type = "structure",
     members = {
         commitTimestampInMillis = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "commitTimestamp",
                 required = true,
@@ -1877,18 +1838,15 @@ M.PropertygraphRecord = {
         },
         eventId = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        data = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        data = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PropertygraphData }),
         op = {
             type = "string",
             traits = {
@@ -1906,14 +1864,14 @@ M.GetPropertygraphStreamOutput = {
     members = {
         lastEventId = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
         },
         lastTrxTimestampInMillis = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "lastTrxTimestamp",
                 required = true,
@@ -1927,13 +1885,13 @@ M.GetPropertygraphStreamOutput = {
         },
         records = {
             type = "list",
-            member_type = "structure",
+            member = M.PropertygraphRecord,
             traits = {
                 required = true,
             },
         },
         totalRecords = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -2002,6 +1960,7 @@ M.GetPropertygraphSummaryInput = {
         mode = {
             type = "string",
             traits = {
+                default = "basic",
                 http_query = "mode",
             },
         },
@@ -2012,11 +1971,11 @@ M.EdgeStructure = {
     type = "structure",
     members = {
         count = {
-            type = "number",
+            type = "long",
         },
         edgeProperties = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2025,15 +1984,15 @@ M.NodeStructure = {
     type = "structure",
     members = {
         count = {
-            type = "number",
+            type = "long",
         },
         nodeProperties = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         distinctOutgoingEdgeLabels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2042,52 +2001,52 @@ M.PropertygraphSummary = {
     type = "structure",
     members = {
         numNodes = {
-            type = "number",
+            type = "long",
         },
         numEdges = {
-            type = "number",
+            type = "long",
         },
         numNodeLabels = {
-            type = "number",
+            type = "long",
         },
         numEdgeLabels = {
-            type = "number",
+            type = "long",
         },
         nodeLabels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         edgeLabels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         numNodeProperties = {
-            type = "number",
+            type = "long",
         },
         numEdgeProperties = {
-            type = "number",
+            type = "long",
         },
         nodeProperties = {
             type = "list",
-            member_type = "map",
+            member = { type = "map" },
         },
         edgeProperties = {
             type = "list",
-            member_type = "map",
+            member = { type = "map" },
         },
         totalNodePropertyValues = {
-            type = "number",
+            type = "long",
         },
         totalEdgePropertyValues = {
-            type = "number",
+            type = "long",
         },
         nodeStructures = {
             type = "list",
-            member_type = "structure",
+            member = M.NodeStructure,
         },
         edgeStructures = {
             type = "list",
-            member_type = "structure",
+            member = M.EdgeStructure,
         },
     },
 }
@@ -2104,9 +2063,7 @@ M.PropertygraphSummaryValueMap = {
                 timestamp_format = "date-time",
             },
         },
-        graphSummary = {
-            type = "structure",
-        },
+        graphSummary = M.PropertygraphSummary,
     },
 }
 
@@ -2114,14 +2071,12 @@ M.GetPropertygraphSummaryOutput = {
     type = "structure",
     members = {
         statusCode = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_response_code = true,
             },
         },
-        payload = {
-            type = "structure",
-        },
+        payload = M.PropertygraphSummaryValueMap,
     },
 }
 
@@ -2131,6 +2086,7 @@ M.GetRDFGraphSummaryInput = {
         mode = {
             type = "string",
             traits = {
+                default = "basic",
                 http_query = "mode",
             },
         },
@@ -2141,11 +2097,11 @@ M.SubjectStructure = {
     type = "structure",
     members = {
         count = {
-            type = "number",
+            type = "long",
         },
         predicates = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2154,28 +2110,28 @@ M.RDFGraphSummary = {
     type = "structure",
     members = {
         numDistinctSubjects = {
-            type = "number",
+            type = "long",
         },
         numDistinctPredicates = {
-            type = "number",
+            type = "long",
         },
         numQuads = {
-            type = "number",
+            type = "long",
         },
         numClasses = {
-            type = "number",
+            type = "long",
         },
         classes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         predicates = {
             type = "list",
-            member_type = "map",
+            member = { type = "map" },
         },
         subjectStructures = {
             type = "list",
-            member_type = "structure",
+            member = M.SubjectStructure,
         },
     },
 }
@@ -2192,9 +2148,7 @@ M.RDFGraphSummaryValueMap = {
                 timestamp_format = "date-time",
             },
         },
-        graphSummary = {
-            type = "structure",
-        },
+        graphSummary = M.RDFGraphSummary,
     },
 }
 
@@ -2202,14 +2156,12 @@ M.GetRDFGraphSummaryOutput = {
     type = "structure",
     members = {
         statusCode = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_response_code = true,
             },
         },
-        payload = {
-            type = "structure",
-        },
+        payload = M.RDFGraphSummaryValueMap,
     },
 }
 
@@ -2226,12 +2178,9 @@ M.GetSparqlStatisticsOutput = {
                 required = true,
             },
         },
-        payload = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        payload = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Statistics }),
     },
 }
 
@@ -2239,7 +2188,7 @@ M.GetSparqlStreamInput = {
     type = "structure",
     members = {
         limit = {
-            type = "number",
+            type = "long",
             traits = {
                 http_query = "limit",
             },
@@ -2251,13 +2200,13 @@ M.GetSparqlStreamInput = {
             },
         },
         commitNum = {
-            type = "number",
+            type = "long",
             traits = {
                 http_query = "commitNum",
             },
         },
         opNum = {
-            type = "number",
+            type = "long",
             traits = {
                 http_query = "opNum",
             },
@@ -2287,7 +2236,7 @@ M.SparqlRecord = {
     type = "structure",
     members = {
         commitTimestampInMillis = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "commitTimestamp",
                 required = true,
@@ -2295,18 +2244,15 @@ M.SparqlRecord = {
         },
         eventId = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        data = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        data = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SparqlData }),
         op = {
             type = "string",
             traits = {
@@ -2324,14 +2270,14 @@ M.GetSparqlStreamOutput = {
     members = {
         lastEventId = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
         },
         lastTrxTimestampInMillis = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "lastTrxTimestamp",
                 required = true,
@@ -2345,13 +2291,13 @@ M.GetSparqlStreamOutput = {
         },
         records = {
             type = "list",
-            member_type = "structure",
+            member = M.SparqlRecord,
             traits = {
                 required = true,
             },
         },
         totalRecords = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -2380,9 +2326,7 @@ M.GremlinQueryStatus = {
         queryString = {
             type = "string",
         },
-        queryEvalStats = {
-            type = "structure",
-        },
+        queryEvalStats = M.QueryEvalStats,
     },
 }
 
@@ -2390,14 +2334,14 @@ M.ListGremlinQueriesOutput = {
     type = "structure",
     members = {
         acceptedQueryCount = {
-            type = "number",
+            type = "integer",
         },
         runningQueryCount = {
-            type = "number",
+            type = "integer",
         },
         queries = {
             type = "list",
-            member_type = "structure",
+            member = M.GremlinQueryStatus,
         },
     },
 }
@@ -2406,7 +2350,7 @@ M.ListLoaderJobsInput = {
     type = "structure",
     members = {
         limit = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "limit",
             },
@@ -2425,7 +2369,7 @@ M.LoaderIdResult = {
     members = {
         loadIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2439,12 +2383,9 @@ M.ListLoaderJobsOutput = {
                 required = true,
             },
         },
-        payload = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        payload = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LoaderIdResult }),
     },
 }
 
@@ -2452,7 +2393,7 @@ M.ListMLDataProcessingJobsInput = {
     type = "structure",
     members = {
         maxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxItems",
             },
@@ -2471,7 +2412,7 @@ M.ListMLDataProcessingJobsOutput = {
     members = {
         ids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2480,7 +2421,7 @@ M.ListMLEndpointsInput = {
     type = "structure",
     members = {
         maxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxItems",
             },
@@ -2499,7 +2440,7 @@ M.ListMLEndpointsOutput = {
     members = {
         ids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2508,7 +2449,7 @@ M.ListMLModelTrainingJobsInput = {
     type = "structure",
     members = {
         maxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxItems",
             },
@@ -2527,7 +2468,7 @@ M.ListMLModelTrainingJobsOutput = {
     members = {
         ids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2536,7 +2477,7 @@ M.ListMLModelTransformJobsInput = {
     type = "structure",
     members = {
         maxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxItems",
             },
@@ -2555,7 +2496,7 @@ M.ListMLModelTransformJobsOutput = {
     members = {
         ids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2576,14 +2517,14 @@ M.ListOpenCypherQueriesOutput = {
     type = "structure",
     members = {
         acceptedQueryCount = {
-            type = "number",
+            type = "integer",
         },
         runningQueryCount = {
-            type = "number",
+            type = "integer",
         },
         queries = {
             type = "list",
-            member_type = "structure",
+            member = M.GremlinQueryStatus,
         },
     },
 }
@@ -2621,9 +2562,7 @@ M.ManagePropertygraphStatisticsOutput = {
                 required = true,
             },
         },
-        payload = {
-            type = "structure",
-        },
+        payload = M.RefreshStatisticsIdMap,
     },
 }
 
@@ -2645,9 +2584,7 @@ M.ManageSparqlStatisticsOutput = {
                 required = true,
             },
         },
-        payload = {
-            type = "structure",
-        },
+        payload = M.RefreshStatisticsIdMap,
     },
 }
 
@@ -2776,8 +2713,8 @@ M.StartLoaderJobInput = {
         },
         parserConfiguration = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         updateSingleCardinalityProperties = {
             type = "boolean",
@@ -2787,7 +2724,7 @@ M.StartLoaderJobInput = {
         },
         dependencies = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         userProvidedEdgeIds = {
             type = "boolean",
@@ -2809,8 +2746,8 @@ M.StartLoaderJobOutput = {
         },
         payload = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2849,10 +2786,10 @@ M.StartMLDataProcessingJobInput = {
             type = "string",
         },
         processingInstanceVolumeSizeInGB = {
-            type = "number",
+            type = "integer",
         },
         processingTimeOutInSeconds = {
-            type = "number",
+            type = "integer",
         },
         modelType = {
             type = "string",
@@ -2862,11 +2799,11 @@ M.StartMLDataProcessingJobInput = {
         },
         subnets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         volumeEncryptionKMSKey = {
             type = "string",
@@ -2887,7 +2824,7 @@ M.StartMLDataProcessingJobOutput = {
             type = "string",
         },
         creationTimeInMillis = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -2944,24 +2881,24 @@ M.StartMLModelTrainingJobInput = {
             type = "string",
         },
         trainingInstanceVolumeSizeInGB = {
-            type = "number",
+            type = "integer",
         },
         trainingTimeOutInSeconds = {
-            type = "number",
+            type = "integer",
         },
         maxHPONumberOfTrainingJobs = {
-            type = "number",
+            type = "integer",
         },
         maxHPOParallelTrainingJobs = {
-            type = "number",
+            type = "integer",
         },
         subnets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         volumeEncryptionKMSKey = {
             type = "string",
@@ -2972,9 +2909,7 @@ M.StartMLModelTrainingJobInput = {
         enableManagedSpotTraining = {
             type = "boolean",
         },
-        customModelTrainingParameters = {
-            type = "structure",
-        },
+        customModelTrainingParameters = M.CustomModelTrainingParameters,
     },
 }
 
@@ -2988,7 +2923,7 @@ M.StartMLModelTrainingJobOutput = {
             type = "string",
         },
         creationTimeInMillis = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -3035,22 +2970,20 @@ M.StartMLModelTransformJobInput = {
         neptuneIamRoleArn = {
             type = "string",
         },
-        customModelTransformParameters = {
-            type = "structure",
-        },
+        customModelTransformParameters = M.CustomModelTransformParameters,
         baseProcessingInstanceType = {
             type = "string",
         },
         baseProcessingInstanceVolumeSizeInGB = {
-            type = "number",
+            type = "integer",
         },
         subnets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         volumeEncryptionKMSKey = {
             type = "string",
@@ -3071,7 +3004,7 @@ M.StartMLModelTransformJobOutput = {
             type = "string",
         },
         creationTimeInMillis = {
-            type = "number",
+            type = "long",
         },
     },
 }

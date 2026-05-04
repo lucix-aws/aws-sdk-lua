@@ -16,7 +16,7 @@ M.AssociateEntityToThingInput = {
             },
         },
         namespaceVersion = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -90,14 +90,11 @@ M.DefinitionDocument = {
 M.CreateFlowTemplateInput = {
     type = "structure",
     members = {
-        definition = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        definition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DefinitionDocument }),
         compatibleNamespaceVersion = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -112,7 +109,7 @@ M.FlowTemplateSummary = {
             type = "string",
         },
         revisionNumber = {
-            type = "number",
+            type = "long",
         },
         createdAt = {
             type = "timestamp",
@@ -123,9 +120,7 @@ M.FlowTemplateSummary = {
 M.CreateFlowTemplateOutput = {
     type = "structure",
     members = {
-        summary = {
-            type = "structure",
-        },
+        summary = M.FlowTemplateSummary,
     },
 }
 
@@ -154,6 +149,9 @@ M.MetricsConfiguration = {
     members = {
         cloudMetricEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         metricRuleRoleArn = {
             type = "string",
@@ -189,14 +187,11 @@ M.CreateSystemInstanceInput = {
     members = {
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        definition = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        definition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DefinitionDocument }),
         target = {
             type = "string",
             traits = {
@@ -209,9 +204,7 @@ M.CreateSystemInstanceInput = {
         s3BucketName = {
             type = "string",
         },
-        metricsConfiguration = {
-            type = "structure",
-        },
+        metricsConfiguration = M.MetricsConfiguration,
         flowActionsRoleArn = {
             type = "string",
         },
@@ -265,23 +258,18 @@ M.SystemInstanceSummary = {
 M.CreateSystemInstanceOutput = {
     type = "structure",
     members = {
-        summary = {
-            type = "structure",
-        },
+        summary = M.SystemInstanceSummary,
     },
 }
 
 M.CreateSystemTemplateInput = {
     type = "structure",
     members = {
-        definition = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        definition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DefinitionDocument }),
         compatibleNamespaceVersion = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -296,7 +284,7 @@ M.SystemTemplateSummary = {
             type = "string",
         },
         revisionNumber = {
-            type = "number",
+            type = "long",
         },
         createdAt = {
             type = "timestamp",
@@ -307,9 +295,7 @@ M.SystemTemplateSummary = {
 M.CreateSystemTemplateOutput = {
     type = "structure",
     members = {
-        summary = {
-            type = "structure",
-        },
+        summary = M.SystemTemplateSummary,
     },
 }
 
@@ -391,7 +377,7 @@ M.DependencyRevision = {
             type = "string",
         },
         revisionNumber = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -408,12 +394,9 @@ M.DeploySystemInstanceInput = {
 M.DeploySystemInstanceOutput = {
     type = "structure",
     members = {
-        summary = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        summary = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SystemInstanceSummary }),
         greengrassDeploymentId = {
             type = "string",
         },
@@ -474,10 +457,10 @@ M.DescribeNamespaceOutput = {
             type = "string",
         },
         trackingNamespaceVersion = {
-            type = "number",
+            type = "long",
         },
         namespaceVersion = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -532,9 +515,7 @@ M.EntityDescription = {
         createdAt = {
             type = "timestamp",
         },
-        definition = {
-            type = "structure",
-        },
+        definition = M.DefinitionDocument,
     },
 }
 
@@ -553,7 +534,7 @@ M.EntityFilter = {
         },
         value = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -630,14 +611,10 @@ M.FlowExecutionSummary = {
 M.FlowTemplateDescription = {
     type = "structure",
     members = {
-        summary = {
-            type = "structure",
-        },
-        definition = {
-            type = "structure",
-        },
+        summary = M.FlowTemplateSummary,
+        definition = M.DefinitionDocument,
         validatedNamespaceVersion = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -657,7 +634,7 @@ M.FlowTemplateFilter = {
         },
         value = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -670,13 +647,13 @@ M.GetEntitiesInput = {
     members = {
         ids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         namespaceVersion = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -686,7 +663,7 @@ M.GetEntitiesOutput = {
     members = {
         descriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.EntityDescription,
         },
     },
 }
@@ -701,7 +678,7 @@ M.GetFlowTemplateInput = {
             },
         },
         revisionNumber = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -709,9 +686,7 @@ M.GetFlowTemplateInput = {
 M.GetFlowTemplateOutput = {
     type = "structure",
     members = {
-        description = {
-            type = "structure",
-        },
+        description = M.FlowTemplateDescription,
     },
 }
 
@@ -728,7 +703,7 @@ M.GetFlowTemplateRevisionsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -738,7 +713,7 @@ M.GetFlowTemplateRevisionsOutput = {
     members = {
         summaries = {
             type = "list",
-            member_type = "structure",
+            member = M.FlowTemplateSummary,
         },
         nextToken = {
             type = "string",
@@ -796,24 +771,18 @@ M.GetSystemInstanceInput = {
 M.SystemInstanceDescription = {
     type = "structure",
     members = {
-        summary = {
-            type = "structure",
-        },
-        definition = {
-            type = "structure",
-        },
+        summary = M.SystemInstanceSummary,
+        definition = M.DefinitionDocument,
         s3BucketName = {
             type = "string",
         },
-        metricsConfiguration = {
-            type = "structure",
-        },
+        metricsConfiguration = M.MetricsConfiguration,
         validatedNamespaceVersion = {
-            type = "number",
+            type = "long",
         },
         validatedDependencyRevisions = {
             type = "list",
-            member_type = "structure",
+            member = M.DependencyRevision,
         },
         flowActionsRoleArn = {
             type = "string",
@@ -824,9 +793,7 @@ M.SystemInstanceDescription = {
 M.GetSystemInstanceOutput = {
     type = "structure",
     members = {
-        description = {
-            type = "structure",
-        },
+        description = M.SystemInstanceDescription,
     },
 }
 
@@ -840,7 +807,7 @@ M.GetSystemTemplateInput = {
             },
         },
         revisionNumber = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -848,14 +815,10 @@ M.GetSystemTemplateInput = {
 M.SystemTemplateDescription = {
     type = "structure",
     members = {
-        summary = {
-            type = "structure",
-        },
-        definition = {
-            type = "structure",
-        },
+        summary = M.SystemTemplateSummary,
+        definition = M.DefinitionDocument,
         validatedNamespaceVersion = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -863,9 +826,7 @@ M.SystemTemplateDescription = {
 M.GetSystemTemplateOutput = {
     type = "structure",
     members = {
-        description = {
-            type = "structure",
-        },
+        description = M.SystemTemplateDescription,
     },
 }
 
@@ -882,7 +843,7 @@ M.GetSystemTemplateRevisionsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -892,7 +853,7 @@ M.GetSystemTemplateRevisionsOutput = {
     members = {
         summaries = {
             type = "list",
-            member_type = "structure",
+            member = M.SystemTemplateSummary,
         },
         nextToken = {
             type = "string",
@@ -940,11 +901,11 @@ M.GetUploadStatusOutput = {
             type = "string",
         },
         namespaceVersion = {
-            type = "number",
+            type = "long",
         },
         failureReason = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         createdDate = {
             type = "timestamp",
@@ -968,7 +929,7 @@ M.ListFlowExecutionMessagesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -978,7 +939,7 @@ M.ListFlowExecutionMessagesOutput = {
     members = {
         messages = {
             type = "list",
-            member_type = "structure",
+            member = M.FlowExecutionMessage,
         },
         nextToken = {
             type = "string",
@@ -990,7 +951,7 @@ M.ListTagsForResourceInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         resourceArn = {
             type = "string",
@@ -1009,7 +970,7 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         nextToken = {
             type = "string",
@@ -1022,23 +983,23 @@ M.SearchEntitiesInput = {
     members = {
         entityTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.EntityFilter,
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         namespaceVersion = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1048,7 +1009,7 @@ M.SearchEntitiesOutput = {
     members = {
         descriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.EntityDescription,
         },
         nextToken = {
             type = "string",
@@ -1078,7 +1039,7 @@ M.SearchFlowExecutionsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1088,7 +1049,7 @@ M.SearchFlowExecutionsOutput = {
     members = {
         summaries = {
             type = "list",
-            member_type = "structure",
+            member = M.FlowExecutionSummary,
         },
         nextToken = {
             type = "string",
@@ -1101,13 +1062,13 @@ M.SearchFlowTemplatesInput = {
     members = {
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.FlowTemplateFilter,
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1117,7 +1078,7 @@ M.SearchFlowTemplatesOutput = {
     members = {
         summaries = {
             type = "list",
-            member_type = "structure",
+            member = M.FlowTemplateSummary,
         },
         nextToken = {
             type = "string",
@@ -1139,7 +1100,7 @@ M.SystemInstanceFilter = {
         },
         value = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1149,13 +1110,13 @@ M.SearchSystemInstancesInput = {
     members = {
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.SystemInstanceFilter,
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1165,7 +1126,7 @@ M.SearchSystemInstancesOutput = {
     members = {
         summaries = {
             type = "list",
-            member_type = "structure",
+            member = M.SystemInstanceSummary,
         },
         nextToken = {
             type = "string",
@@ -1188,7 +1149,7 @@ M.SystemTemplateFilter = {
         },
         value = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1201,13 +1162,13 @@ M.SearchSystemTemplatesInput = {
     members = {
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.SystemTemplateFilter,
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1217,7 +1178,7 @@ M.SearchSystemTemplatesOutput = {
     members = {
         summaries = {
             type = "list",
-            member_type = "structure",
+            member = M.SystemTemplateSummary,
         },
         nextToken = {
             type = "string",
@@ -1238,10 +1199,10 @@ M.SearchThingsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         namespaceVersion = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1263,7 +1224,7 @@ M.SearchThingsOutput = {
     members = {
         things = {
             type = "list",
-            member_type = "structure",
+            member = M.Thing,
         },
         nextToken = {
             type = "string",
@@ -1282,7 +1243,7 @@ M.TagResourceInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -1306,9 +1267,7 @@ M.UndeploySystemInstanceInput = {
 M.UndeploySystemInstanceOutput = {
     type = "structure",
     members = {
-        summary = {
-            type = "structure",
-        },
+        summary = M.SystemInstanceSummary,
     },
 }
 
@@ -1323,7 +1282,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1344,14 +1303,11 @@ M.UpdateFlowTemplateInput = {
                 required = true,
             },
         },
-        definition = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        definition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DefinitionDocument }),
         compatibleNamespaceVersion = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1359,9 +1315,7 @@ M.UpdateFlowTemplateInput = {
 M.UpdateFlowTemplateOutput = {
     type = "structure",
     members = {
-        summary = {
-            type = "structure",
-        },
+        summary = M.FlowTemplateSummary,
     },
 }
 
@@ -1374,14 +1328,11 @@ M.UpdateSystemTemplateInput = {
                 required = true,
             },
         },
-        definition = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        definition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DefinitionDocument }),
         compatibleNamespaceVersion = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1389,23 +1340,25 @@ M.UpdateSystemTemplateInput = {
 M.UpdateSystemTemplateOutput = {
     type = "structure",
     members = {
-        summary = {
-            type = "structure",
-        },
+        summary = M.SystemTemplateSummary,
     },
 }
 
 M.UploadEntityDefinitionsInput = {
     type = "structure",
     members = {
-        document = {
-            type = "structure",
-        },
+        document = M.DefinitionDocument,
         syncWithPublicNamespace = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         deprecateExistingEntities = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }

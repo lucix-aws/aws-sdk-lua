@@ -4,16 +4,16 @@ M.AbsoluteTimeRange = {
     type = "structure",
     members = {
         StartTime = {
-            type = "number",
+            type = "long",
         },
         EndTime = {
-            type = "number",
+            type = "long",
         },
         First = {
-            type = "number",
+            type = "long",
         },
         Last = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -62,7 +62,7 @@ M.CallAnalyticsJobDetails = {
     members = {
         Skipped = {
             type = "list",
-            member_type = "structure",
+            member = M.CallAnalyticsSkippedFeature,
         },
     },
 }
@@ -83,7 +83,10 @@ M.ChannelDefinition = {
     type = "structure",
     members = {
         ChannelId = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         ParticipantRole = {
             type = "string",
@@ -263,7 +266,7 @@ M.ContentRedaction = {
         },
         PiiEntityTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -316,21 +319,17 @@ M.CallAnalyticsJobSettings = {
         LanguageModelName = {
             type = "string",
         },
-        ContentRedaction = {
-            type = "structure",
-        },
+        ContentRedaction = M.ContentRedaction,
         LanguageOptions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         LanguageIdSettings = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.LanguageIdSettings,
         },
-        Summarization = {
-            type = "structure",
-        },
+        Summarization = M.Summarization,
     },
 }
 
@@ -373,24 +372,18 @@ M.CallAnalyticsJob = {
         CallAnalyticsJobStatus = {
             type = "string",
         },
-        CallAnalyticsJobDetails = {
-            type = "structure",
-        },
+        CallAnalyticsJobDetails = M.CallAnalyticsJobDetails,
         LanguageCode = {
             type = "string",
         },
         MediaSampleRateHertz = {
-            type = "number",
+            type = "integer",
         },
         MediaFormat = {
             type = "string",
         },
-        Media = {
-            type = "structure",
-        },
-        Transcript = {
-            type = "structure",
-        },
+        Media = M.Media,
+        Transcript = M.Transcript,
         StartTime = {
             type = "timestamp",
         },
@@ -407,18 +400,16 @@ M.CallAnalyticsJob = {
             type = "string",
         },
         IdentifiedLanguageScore = {
-            type = "number",
+            type = "float",
         },
-        Settings = {
-            type = "structure",
-        },
+        Settings = M.CallAnalyticsJobSettings,
         ChannelDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.ChannelDefinition,
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -444,9 +435,7 @@ M.CallAnalyticsJobSummary = {
         CallAnalyticsJobStatus = {
             type = "string",
         },
-        CallAnalyticsJobDetails = {
-            type = "structure",
-        },
+        CallAnalyticsJobDetails = M.CallAnalyticsJobDetails,
         FailureReason = {
             type = "string",
         },
@@ -462,16 +451,16 @@ M.RelativeTimeRange = {
     type = "structure",
     members = {
         StartPercentage = {
-            type = "number",
+            type = "integer",
         },
         EndPercentage = {
-            type = "number",
+            type = "integer",
         },
         First = {
-            type = "number",
+            type = "integer",
         },
         Last = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -480,17 +469,13 @@ M.InterruptionFilter = {
     type = "structure",
     members = {
         Threshold = {
-            type = "number",
+            type = "long",
         },
         ParticipantRole = {
             type = "string",
         },
-        AbsoluteTimeRange = {
-            type = "structure",
-        },
-        RelativeTimeRange = {
-            type = "structure",
-        },
+        AbsoluteTimeRange = M.AbsoluteTimeRange,
+        RelativeTimeRange = M.RelativeTimeRange,
         Negate = {
             type = "boolean",
         },
@@ -501,14 +486,10 @@ M.NonTalkTimeFilter = {
     type = "structure",
     members = {
         Threshold = {
-            type = "number",
+            type = "long",
         },
-        AbsoluteTimeRange = {
-            type = "structure",
-        },
-        RelativeTimeRange = {
-            type = "structure",
-        },
+        AbsoluteTimeRange = M.AbsoluteTimeRange,
+        RelativeTimeRange = M.RelativeTimeRange,
         Negate = {
             type = "boolean",
         },
@@ -527,17 +508,13 @@ M.SentimentFilter = {
     members = {
         Sentiments = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        AbsoluteTimeRange = {
-            type = "structure",
-        },
-        RelativeTimeRange = {
-            type = "structure",
-        },
+        AbsoluteTimeRange = M.AbsoluteTimeRange,
+        RelativeTimeRange = M.RelativeTimeRange,
         ParticipantRole = {
             type = "string",
         },
@@ -560,12 +537,8 @@ M.TranscriptFilter = {
                 required = true,
             },
         },
-        AbsoluteTimeRange = {
-            type = "structure",
-        },
-        RelativeTimeRange = {
-            type = "structure",
-        },
+        AbsoluteTimeRange = M.AbsoluteTimeRange,
+        RelativeTimeRange = M.RelativeTimeRange,
         ParticipantRole = {
             type = "string",
         },
@@ -574,7 +547,7 @@ M.TranscriptFilter = {
         },
         Targets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -585,18 +558,10 @@ M.TranscriptFilter = {
 M.Rule = {
     type = "union",
     members = {
-        NonTalkTimeFilter = {
-            type = "structure",
-        },
-        InterruptionFilter = {
-            type = "structure",
-        },
-        TranscriptFilter = {
-            type = "structure",
-        },
-        SentimentFilter = {
-            type = "structure",
-        },
+        NonTalkTimeFilter = M.NonTalkTimeFilter,
+        InterruptionFilter = M.InterruptionFilter,
+        TranscriptFilter = M.TranscriptFilter,
+        SentimentFilter = M.SentimentFilter,
     },
 }
 
@@ -608,7 +573,7 @@ M.CategoryProperties = {
         },
         Rules = {
             type = "list",
-            member_type = "union",
+            member = M.Rule,
         },
         CreateTime = {
             type = "timestamp",
@@ -618,7 +583,7 @@ M.CategoryProperties = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         InputType = {
             type = "string",
@@ -677,14 +642,14 @@ M.CreateCallAnalyticsCategoryInput = {
         },
         Rules = {
             type = "list",
-            member_type = "union",
+            member = M.Rule,
             traits = {
                 required = true,
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         InputType = {
             type = "string",
@@ -695,9 +660,7 @@ M.CreateCallAnalyticsCategoryInput = {
 M.CreateCallAnalyticsCategoryOutput = {
     type = "structure",
     members = {
-        CategoryProperties = {
-            type = "structure",
-        },
+        CategoryProperties = M.CategoryProperties,
     },
 }
 
@@ -764,15 +727,12 @@ M.CreateLanguageModelInput = {
                 required = true,
             },
         },
-        InputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InputDataConfig }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -795,9 +755,7 @@ M.CreateLanguageModelOutput = {
         ModelName = {
             type = "string",
         },
-        InputDataConfig = {
-            type = "structure",
-        },
+        InputDataConfig = M.InputDataConfig,
         ModelStatus = {
             type = "string",
         },
@@ -828,7 +786,7 @@ M.CreateMedicalVocabularyInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -878,14 +836,14 @@ M.CreateVocabularyInput = {
         },
         Phrases = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         VocabularyFileUri = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         DataAccessRoleArn = {
             type = "string",
@@ -932,14 +890,14 @@ M.CreateVocabularyFilterInput = {
         },
         Words = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         VocabularyFilterFileUri = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         DataAccessRoleArn = {
             type = "string",
@@ -1165,18 +1123,14 @@ M.LanguageModel = {
         FailureReason = {
             type = "string",
         },
-        InputDataConfig = {
-            type = "structure",
-        },
+        InputDataConfig = M.InputDataConfig,
     },
 }
 
 M.DescribeLanguageModelOutput = {
     type = "structure",
     members = {
-        LanguageModel = {
-            type = "structure",
-        },
+        LanguageModel = M.LanguageModel,
     },
 }
 
@@ -1196,9 +1150,7 @@ M.GetCallAnalyticsCategoryInput = {
 M.GetCallAnalyticsCategoryOutput = {
     type = "structure",
     members = {
-        CategoryProperties = {
-            type = "structure",
-        },
+        CategoryProperties = M.CategoryProperties,
     },
 }
 
@@ -1218,9 +1170,7 @@ M.GetCallAnalyticsJobInput = {
 M.GetCallAnalyticsJobOutput = {
     type = "structure",
     members = {
-        CallAnalyticsJob = {
-            type = "structure",
-        },
+        CallAnalyticsJob = M.CallAnalyticsJob,
     },
 }
 
@@ -1246,8 +1196,9 @@ M.MedicalScribeChannelDefinition = {
     type = "structure",
     members = {
         ChannelId = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -1296,7 +1247,7 @@ M.MedicalScribeSettings = {
             type = "boolean",
         },
         MaxSpeakerLabels = {
-            type = "number",
+            type = "integer",
         },
         ChannelIdentification = {
             type = "boolean",
@@ -1310,9 +1261,7 @@ M.MedicalScribeSettings = {
         VocabularyFilterMethod = {
             type = "string",
         },
-        ClinicalNoteGenerationSettings = {
-            type = "structure",
-        },
+        ClinicalNoteGenerationSettings = M.ClinicalNoteGenerationSettings,
     },
 }
 
@@ -1328,12 +1277,8 @@ M.MedicalScribeJob = {
         LanguageCode = {
             type = "string",
         },
-        Media = {
-            type = "structure",
-        },
-        MedicalScribeOutput = {
-            type = "structure",
-        },
+        Media = M.Media,
+        MedicalScribeOutput = M.MedicalScribeOutput,
         StartTime = {
             type = "timestamp",
         },
@@ -1346,22 +1291,20 @@ M.MedicalScribeJob = {
         FailureReason = {
             type = "string",
         },
-        Settings = {
-            type = "structure",
-        },
+        Settings = M.MedicalScribeSettings,
         DataAccessRoleArn = {
             type = "string",
         },
         ChannelDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.MedicalScribeChannelDefinition,
         },
         MedicalScribeContextProvided = {
             type = "boolean",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1369,9 +1312,7 @@ M.MedicalScribeJob = {
 M.GetMedicalScribeJobOutput = {
     type = "structure",
     members = {
-        MedicalScribeJob = {
-            type = "structure",
-        },
+        MedicalScribeJob = M.MedicalScribeJob,
     },
 }
 
@@ -1399,7 +1340,7 @@ M.MedicalTranscriptionSetting = {
             type = "boolean",
         },
         MaxSpeakerLabels = {
-            type = "number",
+            type = "integer",
         },
         ChannelIdentification = {
             type = "boolean",
@@ -1408,7 +1349,7 @@ M.MedicalTranscriptionSetting = {
             type = "boolean",
         },
         MaxAlternatives = {
-            type = "number",
+            type = "integer",
         },
         VocabularyName = {
             type = "string",
@@ -1454,17 +1395,13 @@ M.MedicalTranscriptionJob = {
             type = "string",
         },
         MediaSampleRateHertz = {
-            type = "number",
+            type = "integer",
         },
         MediaFormat = {
             type = "string",
         },
-        Media = {
-            type = "structure",
-        },
-        Transcript = {
-            type = "structure",
-        },
+        Media = M.Media,
+        Transcript = M.MedicalTranscript,
         StartTime = {
             type = "timestamp",
         },
@@ -1477,9 +1414,7 @@ M.MedicalTranscriptionJob = {
         FailureReason = {
             type = "string",
         },
-        Settings = {
-            type = "structure",
-        },
+        Settings = M.MedicalTranscriptionSetting,
         ContentIdentificationType = {
             type = "string",
         },
@@ -1491,7 +1426,7 @@ M.MedicalTranscriptionJob = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1499,9 +1434,7 @@ M.MedicalTranscriptionJob = {
 M.GetMedicalTranscriptionJobOutput = {
     type = "structure",
     members = {
-        MedicalTranscriptionJob = {
-            type = "structure",
-        },
+        MedicalTranscriptionJob = M.MedicalTranscriptionJob,
     },
 }
 
@@ -1574,7 +1507,7 @@ M.LanguageCodeItem = {
             type = "string",
         },
         DurationInSeconds = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -1598,7 +1531,7 @@ M.Settings = {
             type = "boolean",
         },
         MaxSpeakerLabels = {
-            type = "number",
+            type = "integer",
         },
         ChannelIdentification = {
             type = "boolean",
@@ -1607,7 +1540,7 @@ M.Settings = {
             type = "boolean",
         },
         MaxAlternatives = {
-            type = "number",
+            type = "integer",
         },
         VocabularyFilterName = {
             type = "string",
@@ -1628,14 +1561,14 @@ M.SubtitlesOutput = {
     members = {
         Formats = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SubtitleFileUris = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         OutputStartIndex = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1649,7 +1582,7 @@ M.ToxicityDetectionSettings = {
     members = {
         ToxicityCategories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1670,17 +1603,13 @@ M.TranscriptionJob = {
             type = "string",
         },
         MediaSampleRateHertz = {
-            type = "number",
+            type = "integer",
         },
         MediaFormat = {
             type = "string",
         },
-        Media = {
-            type = "structure",
-        },
-        Transcript = {
-            type = "structure",
-        },
+        Media = M.Media,
+        Transcript = M.Transcript,
         StartTime = {
             type = "timestamp",
         },
@@ -1693,18 +1622,10 @@ M.TranscriptionJob = {
         FailureReason = {
             type = "string",
         },
-        Settings = {
-            type = "structure",
-        },
-        ModelSettings = {
-            type = "structure",
-        },
-        JobExecutionSettings = {
-            type = "structure",
-        },
-        ContentRedaction = {
-            type = "structure",
-        },
+        Settings = M.Settings,
+        ModelSettings = M.ModelSettings,
+        JobExecutionSettings = M.JobExecutionSettings,
+        ContentRedaction = M.ContentRedaction,
         IdentifyLanguage = {
             type = "boolean",
         },
@@ -1713,30 +1634,28 @@ M.TranscriptionJob = {
         },
         LanguageOptions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IdentifiedLanguageScore = {
-            type = "number",
+            type = "float",
         },
         LanguageCodes = {
             type = "list",
-            member_type = "structure",
+            member = M.LanguageCodeItem,
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        Subtitles = {
-            type = "structure",
-        },
+        Subtitles = M.SubtitlesOutput,
         LanguageIdSettings = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.LanguageIdSettings,
         },
         ToxicityDetection = {
             type = "list",
-            member_type = "structure",
+            member = M.ToxicityDetectionSettings,
         },
     },
 }
@@ -1744,9 +1663,7 @@ M.TranscriptionJob = {
 M.GetTranscriptionJobOutput = {
     type = "structure",
     members = {
-        TranscriptionJob = {
-            type = "structure",
-        },
+        TranscriptionJob = M.TranscriptionJob,
     },
 }
 
@@ -1828,7 +1745,7 @@ M.ListCallAnalyticsCategoriesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -1844,7 +1761,7 @@ M.ListCallAnalyticsCategoriesOutput = {
         },
         Categories = {
             type = "list",
-            member_type = "structure",
+            member = M.CategoryProperties,
         },
     },
 }
@@ -1871,7 +1788,7 @@ M.ListCallAnalyticsJobsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -1890,7 +1807,7 @@ M.ListCallAnalyticsJobsOutput = {
         },
         CallAnalyticsJobSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.CallAnalyticsJobSummary,
         },
     },
 }
@@ -1917,7 +1834,7 @@ M.ListLanguageModelsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -1933,7 +1850,7 @@ M.ListLanguageModelsOutput = {
         },
         Models = {
             type = "list",
-            member_type = "structure",
+            member = M.LanguageModel,
         },
     },
 }
@@ -1960,7 +1877,7 @@ M.ListMedicalScribeJobsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -2006,7 +1923,7 @@ M.ListMedicalScribeJobsOutput = {
         },
         MedicalScribeJobSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.MedicalScribeJobSummary,
         },
     },
 }
@@ -2033,7 +1950,7 @@ M.ListMedicalTranscriptionJobsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -2096,7 +2013,7 @@ M.ListMedicalTranscriptionJobsOutput = {
         },
         MedicalTranscriptionJobSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.MedicalTranscriptionJobSummary,
         },
     },
 }
@@ -2111,7 +2028,7 @@ M.ListMedicalVocabulariesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -2160,7 +2077,7 @@ M.ListMedicalVocabulariesOutput = {
         },
         Vocabularies = {
             type = "list",
-            member_type = "structure",
+            member = M.VocabularyInfo,
         },
     },
 }
@@ -2186,7 +2103,7 @@ M.ListTagsForResourceOutput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2213,7 +2130,7 @@ M.ListTranscriptionJobsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -2248,12 +2165,8 @@ M.TranscriptionJobSummary = {
         OutputLocationType = {
             type = "string",
         },
-        ContentRedaction = {
-            type = "structure",
-        },
-        ModelSettings = {
-            type = "structure",
-        },
+        ContentRedaction = M.ContentRedaction,
+        ModelSettings = M.ModelSettings,
         IdentifyLanguage = {
             type = "boolean",
         },
@@ -2261,15 +2174,15 @@ M.TranscriptionJobSummary = {
             type = "boolean",
         },
         IdentifiedLanguageScore = {
-            type = "number",
+            type = "float",
         },
         LanguageCodes = {
             type = "list",
-            member_type = "structure",
+            member = M.LanguageCodeItem,
         },
         ToxicityDetection = {
             type = "list",
-            member_type = "structure",
+            member = M.ToxicityDetectionSettings,
         },
     },
 }
@@ -2285,7 +2198,7 @@ M.ListTranscriptionJobsOutput = {
         },
         TranscriptionJobSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.TranscriptionJobSummary,
         },
     },
 }
@@ -2300,7 +2213,7 @@ M.ListVocabulariesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -2331,7 +2244,7 @@ M.ListVocabulariesOutput = {
         },
         Vocabularies = {
             type = "list",
-            member_type = "structure",
+            member = M.VocabularyInfo,
         },
     },
 }
@@ -2346,7 +2259,7 @@ M.ListVocabularyFiltersInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -2383,7 +2296,7 @@ M.ListVocabularyFiltersOutput = {
         },
         VocabularyFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.VocabularyFilterInfo,
         },
     },
 }
@@ -2406,9 +2319,7 @@ M.MedicalScribePatientContext = {
 M.MedicalScribeContext = {
     type = "structure",
     members = {
-        PatientContext = {
-            type = "structure",
-        },
+        PatientContext = M.MedicalScribePatientContext,
     },
 }
 
@@ -2422,12 +2333,9 @@ M.StartCallAnalyticsJobInput = {
                 required = true,
             },
         },
-        Media = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Media = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Media }),
         OutputLocation = {
             type = "string",
         },
@@ -2437,16 +2345,14 @@ M.StartCallAnalyticsJobInput = {
         DataAccessRoleArn = {
             type = "string",
         },
-        Settings = {
-            type = "structure",
-        },
+        Settings = M.CallAnalyticsJobSettings,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ChannelDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.ChannelDefinition,
         },
     },
 }
@@ -2454,9 +2360,7 @@ M.StartCallAnalyticsJobInput = {
 M.StartCallAnalyticsJobOutput = {
     type = "structure",
     members = {
-        CallAnalyticsJob = {
-            type = "structure",
-        },
+        CallAnalyticsJob = M.CallAnalyticsJob,
     },
 }
 
@@ -2470,12 +2374,9 @@ M.StartMedicalScribeJobInput = {
                 required = true,
             },
         },
-        Media = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Media = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Media }),
         OutputBucketName = {
             type = "string",
             traits = {
@@ -2487,8 +2388,8 @@ M.StartMedicalScribeJobInput = {
         },
         KMSEncryptionContext = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         DataAccessRoleArn = {
             type = "string",
@@ -2496,32 +2397,25 @@ M.StartMedicalScribeJobInput = {
                 required = true,
             },
         },
-        Settings = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Settings = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MedicalScribeSettings }),
         ChannelDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.MedicalScribeChannelDefinition,
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        MedicalScribeContext = {
-            type = "structure",
-        },
+        MedicalScribeContext = M.MedicalScribeContext,
     },
 }
 
 M.StartMedicalScribeJobOutput = {
     type = "structure",
     members = {
-        MedicalScribeJob = {
-            type = "structure",
-        },
+        MedicalScribeJob = M.MedicalScribeJob,
     },
 }
 
@@ -2542,17 +2436,14 @@ M.StartMedicalTranscriptionJobInput = {
             },
         },
         MediaSampleRateHertz = {
-            type = "number",
+            type = "integer",
         },
         MediaFormat = {
             type = "string",
         },
-        Media = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Media = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Media }),
         OutputBucketName = {
             type = "string",
             traits = {
@@ -2567,12 +2458,10 @@ M.StartMedicalTranscriptionJobInput = {
         },
         KMSEncryptionContext = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        Settings = {
-            type = "structure",
-        },
+        Settings = M.MedicalTranscriptionSetting,
         ContentIdentificationType = {
             type = "string",
         },
@@ -2590,7 +2479,7 @@ M.StartMedicalTranscriptionJobInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2598,9 +2487,7 @@ M.StartMedicalTranscriptionJobInput = {
 M.StartMedicalTranscriptionJobOutput = {
     type = "structure",
     members = {
-        MedicalTranscriptionJob = {
-            type = "structure",
-        },
+        MedicalTranscriptionJob = M.MedicalTranscriptionJob,
     },
 }
 
@@ -2609,10 +2496,10 @@ M.Subtitles = {
     members = {
         Formats = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         OutputStartIndex = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2631,17 +2518,14 @@ M.StartTranscriptionJobInput = {
             type = "string",
         },
         MediaSampleRateHertz = {
-            type = "number",
+            type = "integer",
         },
         MediaFormat = {
             type = "string",
         },
-        Media = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Media = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Media }),
         OutputBucketName = {
             type = "string",
         },
@@ -2653,21 +2537,13 @@ M.StartTranscriptionJobInput = {
         },
         KMSEncryptionContext = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        Settings = {
-            type = "structure",
-        },
-        ModelSettings = {
-            type = "structure",
-        },
-        JobExecutionSettings = {
-            type = "structure",
-        },
-        ContentRedaction = {
-            type = "structure",
-        },
+        Settings = M.Settings,
+        ModelSettings = M.ModelSettings,
+        JobExecutionSettings = M.JobExecutionSettings,
+        ContentRedaction = M.ContentRedaction,
         IdentifyLanguage = {
             type = "boolean",
         },
@@ -2676,23 +2552,21 @@ M.StartTranscriptionJobInput = {
         },
         LanguageOptions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        Subtitles = {
-            type = "structure",
-        },
+        Subtitles = M.Subtitles,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         LanguageIdSettings = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.LanguageIdSettings,
         },
         ToxicityDetection = {
             type = "list",
-            member_type = "structure",
+            member = M.ToxicityDetectionSettings,
         },
     },
 }
@@ -2700,9 +2574,7 @@ M.StartTranscriptionJobInput = {
 M.StartTranscriptionJobOutput = {
     type = "structure",
     members = {
-        TranscriptionJob = {
-            type = "structure",
-        },
+        TranscriptionJob = M.TranscriptionJob,
     },
 }
 
@@ -2718,7 +2590,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -2742,7 +2614,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -2767,7 +2639,7 @@ M.UpdateCallAnalyticsCategoryInput = {
         },
         Rules = {
             type = "list",
-            member_type = "union",
+            member = M.Rule,
             traits = {
                 required = true,
             },
@@ -2781,9 +2653,7 @@ M.UpdateCallAnalyticsCategoryInput = {
 M.UpdateCallAnalyticsCategoryOutput = {
     type = "structure",
     members = {
-        CategoryProperties = {
-            type = "structure",
-        },
+        CategoryProperties = M.CategoryProperties,
     },
 }
 
@@ -2848,7 +2718,7 @@ M.UpdateVocabularyInput = {
         },
         Phrases = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         VocabularyFileUri = {
             type = "string",
@@ -2889,7 +2759,7 @@ M.UpdateVocabularyFilterInput = {
         },
         Words = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         VocabularyFilterFileUri = {
             type = "string",

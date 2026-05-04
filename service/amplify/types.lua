@@ -32,8 +32,8 @@ M.AutoBranchCreationConfig = {
         },
         environmentVariables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         basicAuthCredentials = {
             type = "string",
@@ -153,8 +153,8 @@ M.CreateAppInput = {
         },
         environmentVariables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         enableBranchAutoBuild = {
             type = "boolean",
@@ -170,12 +170,12 @@ M.CreateAppInput = {
         },
         customRules = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomRule,
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         buildSpec = {
             type = "string",
@@ -188,17 +188,11 @@ M.CreateAppInput = {
         },
         autoBranchCreationPatterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        autoBranchCreationConfig = {
-            type = "structure",
-        },
-        jobConfig = {
-            type = "structure",
-        },
-        cacheConfig = {
-            type = "structure",
-        },
+        autoBranchCreationConfig = M.AutoBranchCreationConfig,
+        jobConfig = M.JobConfig,
+        cacheConfig = M.CacheConfig,
     },
 }
 
@@ -272,8 +266,8 @@ M.App = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         description = {
             type = "string",
@@ -313,8 +307,8 @@ M.App = {
         },
         environmentVariables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -345,11 +339,9 @@ M.App = {
         },
         customRules = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomRule,
         },
-        productionBranch = {
-            type = "structure",
-        },
+        productionBranch = M.ProductionBranch,
         buildSpec = {
             type = "string",
         },
@@ -361,38 +353,27 @@ M.App = {
         },
         autoBranchCreationPatterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        autoBranchCreationConfig = {
-            type = "structure",
-        },
+        autoBranchCreationConfig = M.AutoBranchCreationConfig,
         repositoryCloneMethod = {
             type = "string",
         },
-        cacheConfig = {
-            type = "structure",
-        },
+        cacheConfig = M.CacheConfig,
         webhookCreateTime = {
             type = "timestamp",
         },
-        wafConfiguration = {
-            type = "structure",
-        },
-        jobConfig = {
-            type = "structure",
-        },
+        wafConfiguration = M.WafConfiguration,
+        jobConfig = M.JobConfig,
     },
 }
 
 M.CreateAppOutput = {
     type = "structure",
     members = {
-        app = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        app = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.App }),
     },
 }
 
@@ -500,12 +481,9 @@ M.BackendEnvironment = {
 M.CreateBackendEnvironmentOutput = {
     type = "structure",
     members = {
-        backendEnvironment = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        backendEnvironment = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BackendEnvironment }),
     },
 }
 
@@ -564,8 +542,8 @@ M.CreateBranchInput = {
         },
         environmentVariables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         basicAuthCredentials = {
             type = "string",
@@ -578,8 +556,8 @@ M.CreateBranchInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         buildSpec = {
             type = "string",
@@ -599,9 +577,7 @@ M.CreateBranchInput = {
         backendEnvironmentArn = {
             type = "string",
         },
-        backend = {
-            type = "structure",
-        },
+        backend = M.Backend,
         computeRoleArn = {
             type = "string",
         },
@@ -631,8 +607,8 @@ M.Branch = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         stage = {
             type = "string",
@@ -666,8 +642,8 @@ M.Branch = {
         },
         environmentVariables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -683,7 +659,7 @@ M.Branch = {
         },
         customDomains = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -732,7 +708,7 @@ M.Branch = {
         },
         associatedResources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         enablePullRequestPreview = {
             type = "boolean",
@@ -752,9 +728,7 @@ M.Branch = {
         backendEnvironmentArn = {
             type = "string",
         },
-        backend = {
-            type = "structure",
-        },
+        backend = M.Backend,
         computeRoleArn = {
             type = "string",
         },
@@ -764,12 +738,9 @@ M.Branch = {
 M.CreateBranchOutput = {
     type = "structure",
     members = {
-        branch = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        branch = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Branch }),
     },
 }
 
@@ -792,8 +763,8 @@ M.CreateDeploymentInput = {
         },
         fileMap = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -806,8 +777,8 @@ M.CreateDeploymentOutput = {
         },
         fileUploadUrls = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -880,21 +851,19 @@ M.CreateDomainAssociationInput = {
         },
         subDomainSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.SubDomainSetting,
             traits = {
                 required = true,
             },
         },
         autoSubDomainCreationPatterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         autoSubDomainIAMRole = {
             type = "string",
         },
-        certificateSettings = {
-            type = "structure",
-        },
+        certificateSettings = M.CertificateSettings,
     },
 }
 
@@ -932,12 +901,9 @@ M.DomainStatus = {
 M.SubDomain = {
     type = "structure",
     members = {
-        subDomainSetting = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        subDomainSetting = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SubDomainSetting }),
         verified = {
             type = "boolean",
             traits = {
@@ -986,7 +952,7 @@ M.DomainAssociation = {
         },
         autoSubDomainCreationPatterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         autoSubDomainIAMRole = {
             type = "string",
@@ -1011,26 +977,21 @@ M.DomainAssociation = {
         },
         subDomains = {
             type = "list",
-            member_type = "structure",
+            member = M.SubDomain,
             traits = {
                 required = true,
             },
         },
-        certificate = {
-            type = "structure",
-        },
+        certificate = M.Certificate,
     },
 }
 
 M.CreateDomainAssociationOutput = {
     type = "structure",
     members = {
-        domainAssociation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        domainAssociation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DomainAssociation }),
     },
 }
 
@@ -1110,12 +1071,9 @@ M.Webhook = {
 M.CreateWebhookOutput = {
     type = "structure",
     members = {
-        webhook = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        webhook = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Webhook }),
     },
 }
 
@@ -1135,12 +1093,9 @@ M.DeleteAppInput = {
 M.DeleteAppOutput = {
     type = "structure",
     members = {
-        app = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        app = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.App }),
     },
 }
 
@@ -1167,12 +1122,9 @@ M.DeleteBackendEnvironmentInput = {
 M.DeleteBackendEnvironmentOutput = {
     type = "structure",
     members = {
-        backendEnvironment = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        backendEnvironment = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BackendEnvironment }),
     },
 }
 
@@ -1199,12 +1151,9 @@ M.DeleteBranchInput = {
 M.DeleteBranchOutput = {
     type = "structure",
     members = {
-        branch = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        branch = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Branch }),
     },
 }
 
@@ -1231,12 +1180,9 @@ M.DeleteDomainAssociationInput = {
 M.DeleteDomainAssociationOutput = {
     type = "structure",
     members = {
-        domainAssociation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        domainAssociation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DomainAssociation }),
     },
 }
 
@@ -1356,12 +1302,9 @@ M.JobSummary = {
 M.DeleteJobOutput = {
     type = "structure",
     members = {
-        jobSummary = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        jobSummary = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.JobSummary }),
     },
 }
 
@@ -1381,12 +1324,9 @@ M.DeleteWebhookInput = {
 M.DeleteWebhookOutput = {
     type = "structure",
     members = {
-        webhook = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        webhook = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Webhook }),
     },
 }
 
@@ -1440,12 +1380,9 @@ M.GetAppInput = {
 M.GetAppOutput = {
     type = "structure",
     members = {
-        app = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        app = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.App }),
     },
 }
 
@@ -1503,12 +1440,9 @@ M.GetBackendEnvironmentInput = {
 M.GetBackendEnvironmentOutput = {
     type = "structure",
     members = {
-        backendEnvironment = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        backendEnvironment = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BackendEnvironment }),
     },
 }
 
@@ -1535,12 +1469,9 @@ M.GetBranchInput = {
 M.GetBranchOutput = {
     type = "structure",
     members = {
-        branch = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        branch = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Branch }),
     },
 }
 
@@ -1567,12 +1498,9 @@ M.GetDomainAssociationInput = {
 M.GetDomainAssociationOutput = {
     type = "structure",
     members = {
-        domainAssociation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        domainAssociation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DomainAssociation }),
     },
 }
 
@@ -1644,8 +1572,8 @@ M.Step = {
         },
         screenshots = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         statusReason = {
             type = "string",
@@ -1659,15 +1587,12 @@ M.Step = {
 M.Job = {
     type = "structure",
     members = {
-        summary = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        summary = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.JobSummary }),
         steps = {
             type = "list",
-            member_type = "structure",
+            member = M.Step,
             traits = {
                 required = true,
             },
@@ -1678,12 +1603,9 @@ M.Job = {
 M.GetJobOutput = {
     type = "structure",
     members = {
-        job = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        job = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Job }),
     },
 }
 
@@ -1703,12 +1625,9 @@ M.GetWebhookInput = {
 M.GetWebhookOutput = {
     type = "structure",
     members = {
-        webhook = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        webhook = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Webhook }),
     },
 }
 
@@ -1722,8 +1641,9 @@ M.ListAppsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -1735,7 +1655,7 @@ M.ListAppsOutput = {
     members = {
         apps = {
             type = "list",
-            member_type = "structure",
+            member = M.App,
             traits = {
                 required = true,
             },
@@ -1777,8 +1697,9 @@ M.ListArtifactsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -1808,7 +1729,7 @@ M.ListArtifactsOutput = {
     members = {
         artifacts = {
             type = "list",
-            member_type = "structure",
+            member = M.Artifact,
             traits = {
                 required = true,
             },
@@ -1842,8 +1763,9 @@ M.ListBackendEnvironmentsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -1855,7 +1777,7 @@ M.ListBackendEnvironmentsOutput = {
     members = {
         backendEnvironments = {
             type = "list",
-            member_type = "structure",
+            member = M.BackendEnvironment,
             traits = {
                 required = true,
             },
@@ -1883,8 +1805,9 @@ M.ListBranchesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -1896,7 +1819,7 @@ M.ListBranchesOutput = {
     members = {
         branches = {
             type = "list",
-            member_type = "structure",
+            member = M.Branch,
             traits = {
                 required = true,
             },
@@ -1924,8 +1847,9 @@ M.ListDomainAssociationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -1937,7 +1861,7 @@ M.ListDomainAssociationsOutput = {
     members = {
         domainAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainAssociation,
             traits = {
                 required = true,
             },
@@ -1972,8 +1896,9 @@ M.ListJobsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -1985,7 +1910,7 @@ M.ListJobsOutput = {
     members = {
         jobSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.JobSummary,
             traits = {
                 required = true,
             },
@@ -2014,8 +1939,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2056,8 +1981,9 @@ M.ListWebhooksInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -2069,7 +1995,7 @@ M.ListWebhooksOutput = {
     members = {
         webhooks = {
             type = "list",
-            member_type = "structure",
+            member = M.Webhook,
             traits = {
                 required = true,
             },
@@ -2112,12 +2038,9 @@ M.StartDeploymentInput = {
 M.StartDeploymentOutput = {
     type = "structure",
     members = {
-        jobSummary = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        jobSummary = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.JobSummary }),
     },
 }
 
@@ -2165,12 +2088,9 @@ M.StartJobInput = {
 M.StartJobOutput = {
     type = "structure",
     members = {
-        jobSummary = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        jobSummary = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.JobSummary }),
     },
 }
 
@@ -2204,12 +2124,9 @@ M.StopJobInput = {
 M.StopJobOutput = {
     type = "structure",
     members = {
-        jobSummary = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        jobSummary = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.JobSummary }),
     },
 }
 
@@ -2225,8 +2142,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2250,7 +2167,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -2290,8 +2207,8 @@ M.UpdateAppInput = {
         },
         environmentVariables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         enableBranchAutoBuild = {
             type = "boolean",
@@ -2307,7 +2224,7 @@ M.UpdateAppInput = {
         },
         customRules = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomRule,
         },
         buildSpec = {
             type = "string",
@@ -2320,11 +2237,9 @@ M.UpdateAppInput = {
         },
         autoBranchCreationPatterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        autoBranchCreationConfig = {
-            type = "structure",
-        },
+        autoBranchCreationConfig = M.AutoBranchCreationConfig,
         repository = {
             type = "string",
         },
@@ -2334,24 +2249,17 @@ M.UpdateAppInput = {
         accessToken = {
             type = "string",
         },
-        jobConfig = {
-            type = "structure",
-        },
-        cacheConfig = {
-            type = "structure",
-        },
+        jobConfig = M.JobConfig,
+        cacheConfig = M.CacheConfig,
     },
 }
 
 M.UpdateAppOutput = {
     type = "structure",
     members = {
-        app = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        app = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.App }),
     },
 }
 
@@ -2392,8 +2300,8 @@ M.UpdateBranchInput = {
         },
         environmentVariables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         basicAuthCredentials = {
             type = "string",
@@ -2422,9 +2330,7 @@ M.UpdateBranchInput = {
         backendEnvironmentArn = {
             type = "string",
         },
-        backend = {
-            type = "structure",
-        },
+        backend = M.Backend,
         computeRoleArn = {
             type = "string",
         },
@@ -2434,12 +2340,9 @@ M.UpdateBranchInput = {
 M.UpdateBranchOutput = {
     type = "structure",
     members = {
-        branch = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        branch = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Branch }),
     },
 }
 
@@ -2465,30 +2368,25 @@ M.UpdateDomainAssociationInput = {
         },
         subDomainSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.SubDomainSetting,
         },
         autoSubDomainCreationPatterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         autoSubDomainIAMRole = {
             type = "string",
         },
-        certificateSettings = {
-            type = "structure",
-        },
+        certificateSettings = M.CertificateSettings,
     },
 }
 
 M.UpdateDomainAssociationOutput = {
     type = "structure",
     members = {
-        domainAssociation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        domainAssociation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DomainAssociation }),
     },
 }
 
@@ -2514,12 +2412,9 @@ M.UpdateWebhookInput = {
 M.UpdateWebhookOutput = {
     type = "structure",
     members = {
-        webhook = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        webhook = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Webhook }),
     },
 }
 

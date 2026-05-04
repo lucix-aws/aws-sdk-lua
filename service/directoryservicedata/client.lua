@@ -16,7 +16,7 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "DirectoryServiceData"
-    cfg.signing_name = "directoryservicedata"
+    cfg.signing_name = "ds-data"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end

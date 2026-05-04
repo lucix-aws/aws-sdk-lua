@@ -49,7 +49,7 @@ M.RecordingDestinations = {
     members = {
         S3Buckets = {
             type = "list",
-            member_type = "structure",
+            member = M.S3Bucket,
             traits = {
                 required = true,
             },
@@ -60,12 +60,9 @@ M.RecordingDestinations = {
 M.ConnectionRecordingPreferences = {
     type = "structure",
     members = {
-        RecordingDestinations = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RecordingDestinations = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RecordingDestinations }),
         KMSKeyArn = {
             type = "string",
             traits = {
@@ -168,21 +165,16 @@ M.GetConnectionRecordingPreferencesOutput = {
         ClientToken = {
             type = "string",
         },
-        ConnectionRecordingPreferences = {
-            type = "structure",
-        },
+        ConnectionRecordingPreferences = M.ConnectionRecordingPreferences,
     },
 }
 
 M.UpdateConnectionRecordingPreferencesInput = {
     type = "structure",
     members = {
-        ConnectionRecordingPreferences = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ConnectionRecordingPreferences = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConnectionRecordingPreferences }),
         ClientToken = {
             type = "string",
         },
@@ -195,9 +187,7 @@ M.UpdateConnectionRecordingPreferencesOutput = {
         ClientToken = {
             type = "string",
         },
-        ConnectionRecordingPreferences = {
-            type = "structure",
-        },
+        ConnectionRecordingPreferences = M.ConnectionRecordingPreferences,
     },
 }
 

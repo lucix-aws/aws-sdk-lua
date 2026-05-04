@@ -63,7 +63,7 @@ M.CreateNotificationRuleInput = {
         },
         EventTypeIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -76,7 +76,7 @@ M.CreateNotificationRuleInput = {
         },
         Targets = {
             type = "list",
-            member_type = "structure",
+            member = M.Target,
             traits = {
                 required = true,
             },
@@ -92,8 +92,8 @@ M.CreateNotificationRuleInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Status = {
             type = "string",
@@ -172,6 +172,9 @@ M.DeleteTargetInput = {
         },
         ForceUnsubscribeAll = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -247,14 +250,14 @@ M.DescribeNotificationRuleOutput = {
         },
         EventTypes = {
             type = "list",
-            member_type = "structure",
+            member = M.EventTypeSummary,
         },
         Resource = {
             type = "string",
         },
         Targets = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetSummary,
         },
         DetailType = {
             type = "string",
@@ -273,8 +276,8 @@ M.DescribeNotificationRuleOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -327,13 +330,13 @@ M.ListEventTypesInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.ListEventTypesFilter,
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -343,7 +346,7 @@ M.ListEventTypesOutput = {
     members = {
         EventTypes = {
             type = "list",
-            member_type = "structure",
+            member = M.EventTypeSummary,
         },
         NextToken = {
             type = "string",
@@ -381,13 +384,13 @@ M.ListNotificationRulesInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.ListNotificationRulesFilter,
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -412,7 +415,7 @@ M.ListNotificationRulesOutput = {
         },
         NotificationRules = {
             type = "list",
-            member_type = "structure",
+            member = M.NotificationRuleSummary,
         },
     },
 }
@@ -434,8 +437,8 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -469,13 +472,13 @@ M.ListTargetsInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.ListTargetsFilter,
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -485,7 +488,7 @@ M.ListTargetsOutput = {
     members = {
         Targets = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetSummary,
         },
         NextToken = {
             type = "string",
@@ -502,12 +505,9 @@ M.SubscribeInput = {
                 required = true,
             },
         },
-        Target = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Target = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Target }),
         ClientRequestToken = {
             type = "string",
         },
@@ -534,8 +534,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -548,8 +548,8 @@ M.TagResourceOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -596,7 +596,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -626,11 +626,11 @@ M.UpdateNotificationRuleInput = {
         },
         EventTypeIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Targets = {
             type = "list",
-            member_type = "structure",
+            member = M.Target,
         },
         DetailType = {
             type = "string",

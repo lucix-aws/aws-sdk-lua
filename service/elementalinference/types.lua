@@ -29,12 +29,8 @@ M.CroppingConfig = {
 M.OutputConfig = {
     type = "union",
     members = {
-        cropping = {
-            type = "structure",
-        },
-        clipping = {
-            type = "structure",
-        },
+        cropping = M.CroppingConfig,
+        clipping = M.ClippingConfig,
     },
 }
 
@@ -52,12 +48,9 @@ M.CreateOutput = {
                 required = true,
             },
         },
-        outputConfig = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        outputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OutputConfig }),
         status = {
             type = "string",
             traits = {
@@ -88,13 +81,16 @@ M.AssociateFeedInput = {
         },
         outputs = {
             type = "list",
-            member_type = "structure",
+            member = M.CreateOutput,
             traits = {
                 required = true,
             },
         },
         dryRun = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -206,15 +202,15 @@ M.CreateFeedInput = {
         },
         outputs = {
             type = "list",
-            member_type = "structure",
+            member = M.CreateOutput,
             traits = {
                 required = true,
             },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -240,12 +236,9 @@ M.GetOutput = {
                 required = true,
             },
         },
-        outputConfig = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        outputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OutputConfig }),
         status = {
             type = "string",
             traits = {
@@ -294,14 +287,14 @@ M.CreateFeedOutput = {
         },
         dataEndpoints = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         outputs = {
             type = "list",
-            member_type = "structure",
+            member = M.GetOutput,
             traits = {
                 required = true,
             },
@@ -312,13 +305,11 @@ M.CreateFeedOutput = {
                 required = true,
             },
         },
-        association = {
-            type = "structure",
-        },
+        association = M.FeedAssociation,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -378,6 +369,9 @@ M.DisassociateFeedInput = {
         },
         dryRun = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -436,14 +430,14 @@ M.GetFeedOutput = {
         },
         dataEndpoints = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         outputs = {
             type = "list",
-            member_type = "structure",
+            member = M.GetOutput,
             traits = {
                 required = true,
             },
@@ -454,13 +448,11 @@ M.GetFeedOutput = {
                 required = true,
             },
         },
-        association = {
-            type = "structure",
-        },
+        association = M.FeedAssociation,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -469,7 +461,7 @@ M.ListFeedsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -504,9 +496,7 @@ M.FeedSummary = {
                 required = true,
             },
         },
-        association = {
-            type = "structure",
-        },
+        association = M.FeedAssociation,
         status = {
             type = "string",
             traits = {
@@ -521,7 +511,7 @@ M.ListFeedsOutput = {
     members = {
         feeds = {
             type = "list",
-            member_type = "structure",
+            member = M.FeedSummary,
             traits = {
                 required = true,
             },
@@ -541,12 +531,9 @@ M.UpdateOutput = {
                 required = true,
             },
         },
-        outputConfig = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        outputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OutputConfig }),
         status = {
             type = "string",
             traits = {
@@ -580,7 +567,7 @@ M.UpdateFeedInput = {
         },
         outputs = {
             type = "list",
-            member_type = "structure",
+            member = M.UpdateOutput,
             traits = {
                 required = true,
             },
@@ -611,14 +598,14 @@ M.UpdateFeedOutput = {
         },
         dataEndpoints = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         outputs = {
             type = "list",
-            member_type = "structure",
+            member = M.GetOutput,
             traits = {
                 required = true,
             },
@@ -629,13 +616,11 @@ M.UpdateFeedOutput = {
                 required = true,
             },
         },
-        association = {
-            type = "structure",
-        },
+        association = M.FeedAssociation,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -658,8 +643,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -676,8 +661,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -701,7 +686,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,

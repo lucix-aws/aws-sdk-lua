@@ -1,0 +1,8 @@
+local types = require("appstream.types")
+
+local record M
+    wait_until_fleet_started: function(client: table, input: table, options: table): table, table
+    wait_until_fleet_stopped: function(client: table, input: table, options: table): table, table
+end
+
+return M

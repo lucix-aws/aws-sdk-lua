@@ -72,8 +72,9 @@ M.InternalServerException = {
             type = "string",
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_header = "Retry-After",
             },
         },
@@ -110,8 +111,9 @@ M.ThrottlingException = {
             type = "string",
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_header = "Retry-After",
             },
         },
@@ -155,7 +157,7 @@ M.ValidationException = {
         },
         fieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -484,15 +486,15 @@ M.WebContentFilteringPolicy = {
     members = {
         blockedCategories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         allowedUrls = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         blockedUrls = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -502,15 +504,15 @@ M.CreateBrowserSettingsInput = {
     members = {
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         customerManagedKey = {
             type = "string",
         },
         additionalEncryptionContext = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         browserPolicy = {
             type = "string",
@@ -518,9 +520,7 @@ M.CreateBrowserSettingsInput = {
         clientToken = {
             type = "string",
         },
-        webContentFilteringPolicy = {
-            type = "structure",
-        },
+        webContentFilteringPolicy = M.WebContentFilteringPolicy,
     },
 }
 
@@ -599,7 +599,7 @@ M.BrowserSettings = {
         },
         associatedPortalArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         browserPolicy = {
             type = "string",
@@ -609,21 +609,17 @@ M.BrowserSettings = {
         },
         additionalEncryptionContext = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        webContentFilteringPolicy = {
-            type = "structure",
-        },
+        webContentFilteringPolicy = M.WebContentFilteringPolicy,
     },
 }
 
 M.GetBrowserSettingsOutput = {
     type = "structure",
     members = {
-        browserSettings = {
-            type = "structure",
-        },
+        browserSettings = M.BrowserSettings,
     },
 }
 
@@ -637,7 +633,7 @@ M.ListBrowserSettingsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -662,7 +658,7 @@ M.ListBrowserSettingsOutput = {
     members = {
         browserSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.BrowserSettingsSummary,
         },
         nextToken = {
             type = "string",
@@ -686,21 +682,16 @@ M.UpdateBrowserSettingsInput = {
         clientToken = {
             type = "string",
         },
-        webContentFilteringPolicy = {
-            type = "structure",
-        },
+        webContentFilteringPolicy = M.WebContentFilteringPolicy,
     },
 }
 
 M.UpdateBrowserSettingsOutput = {
     type = "structure",
     members = {
-        browserSettings = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        browserSettings = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BrowserSettings }),
     },
 }
 
@@ -753,25 +744,20 @@ M.InlineRedactionPattern = {
         builtInPatternId = {
             type = "string",
         },
-        customPattern = {
-            type = "structure",
-        },
-        redactionPlaceHolder = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        customPattern = M.CustomPattern,
+        redactionPlaceHolder = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RedactionPlaceHolder }),
         enforcedUrls = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         exemptUrls = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         confidenceLevel = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -781,21 +767,21 @@ M.InlineRedactionConfiguration = {
     members = {
         inlineRedactionPatterns = {
             type = "list",
-            member_type = "structure",
+            member = M.InlineRedactionPattern,
             traits = {
                 required = true,
             },
         },
         globalEnforcedUrls = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         globalExemptUrls = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         globalConfidenceLevel = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -811,19 +797,17 @@ M.CreateDataProtectionSettingsInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         customerManagedKey = {
             type = "string",
         },
         additionalEncryptionContext = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        inlineRedactionConfiguration = {
-            type = "structure",
-        },
+        inlineRedactionConfiguration = M.InlineRedactionConfiguration,
         clientToken = {
             type = "string",
         },
@@ -881,12 +865,10 @@ M.DataProtectionSettings = {
                 required = true,
             },
         },
-        inlineRedactionConfiguration = {
-            type = "structure",
-        },
+        inlineRedactionConfiguration = M.InlineRedactionConfiguration,
         associatedPortalArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         displayName = {
             type = "string",
@@ -902,8 +884,8 @@ M.DataProtectionSettings = {
         },
         additionalEncryptionContext = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -911,9 +893,7 @@ M.DataProtectionSettings = {
 M.GetDataProtectionSettingsOutput = {
     type = "structure",
     members = {
-        dataProtectionSettings = {
-            type = "structure",
-        },
+        dataProtectionSettings = M.DataProtectionSettings,
     },
 }
 
@@ -927,7 +907,7 @@ M.ListDataProtectionSettingsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -961,7 +941,7 @@ M.ListDataProtectionSettingsOutput = {
     members = {
         dataProtectionSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.DataProtectionSettingsSummary,
         },
         nextToken = {
             type = "string",
@@ -979,9 +959,7 @@ M.UpdateDataProtectionSettingsInput = {
                 required = true,
             },
         },
-        inlineRedactionConfiguration = {
-            type = "structure",
-        },
+        inlineRedactionConfiguration = M.InlineRedactionConfiguration,
         displayName = {
             type = "string",
         },
@@ -997,12 +975,9 @@ M.UpdateDataProtectionSettingsInput = {
 M.UpdateDataProtectionSettingsOutput = {
     type = "structure",
     members = {
-        dataProtectionSettings = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        dataProtectionSettings = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataProtectionSettings }),
     },
 }
 
@@ -1069,7 +1044,7 @@ M.Session = {
         },
         clientIpAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         status = {
             type = "string",
@@ -1086,9 +1061,7 @@ M.Session = {
 M.GetSessionOutput = {
     type = "structure",
     members = {
-        session = {
-            type = "structure",
-        },
+        session = M.Session,
     },
 }
 
@@ -1124,8 +1097,8 @@ M.CreateIdentityProviderInput = {
         },
         identityProviderDetails = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1135,7 +1108,7 @@ M.CreateIdentityProviderInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1199,8 +1172,8 @@ M.IdentityProvider = {
         },
         identityProviderDetails = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1208,9 +1181,7 @@ M.IdentityProvider = {
 M.GetIdentityProviderOutput = {
     type = "structure",
     members = {
-        identityProvider = {
-            type = "structure",
-        },
+        identityProvider = M.IdentityProvider,
     },
 }
 
@@ -1224,7 +1195,7 @@ M.ListIdentityProvidersInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1265,7 +1236,7 @@ M.ListIdentityProvidersOutput = {
         },
         identityProviders = {
             type = "list",
-            member_type = "structure",
+            member = M.IdentityProviderSummary,
         },
     },
 }
@@ -1288,8 +1259,8 @@ M.UpdateIdentityProviderInput = {
         },
         identityProviderDetails = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         clientToken = {
             type = "string",
@@ -1300,12 +1271,9 @@ M.UpdateIdentityProviderInput = {
 M.UpdateIdentityProviderOutput = {
     type = "structure",
     members = {
-        identityProvider = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        identityProvider = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IdentityProvider }),
     },
 }
 
@@ -1335,19 +1303,19 @@ M.CreateIpAccessSettingsInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         customerManagedKey = {
             type = "string",
         },
         additionalEncryptionContext = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ipRules = {
             type = "list",
-            member_type = "structure",
+            member = M.IpRule,
             traits = {
                 required = true,
             },
@@ -1411,11 +1379,11 @@ M.IpAccessSettings = {
         },
         associatedPortalArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ipRules = {
             type = "list",
-            member_type = "structure",
+            member = M.IpRule,
         },
         displayName = {
             type = "string",
@@ -1431,8 +1399,8 @@ M.IpAccessSettings = {
         },
         additionalEncryptionContext = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1440,9 +1408,7 @@ M.IpAccessSettings = {
 M.GetIpAccessSettingsOutput = {
     type = "structure",
     members = {
-        ipAccessSettings = {
-            type = "structure",
-        },
+        ipAccessSettings = M.IpAccessSettings,
     },
 }
 
@@ -1456,7 +1422,7 @@ M.ListIpAccessSettingsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1490,7 +1456,7 @@ M.ListIpAccessSettingsOutput = {
     members = {
         ipAccessSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.IpAccessSettingsSummary,
         },
         nextToken = {
             type = "string",
@@ -1516,7 +1482,7 @@ M.UpdateIpAccessSettingsInput = {
         },
         ipRules = {
             type = "list",
-            member_type = "structure",
+            member = M.IpRule,
         },
         clientToken = {
             type = "string",
@@ -1527,12 +1493,9 @@ M.UpdateIpAccessSettingsInput = {
 M.UpdateIpAccessSettingsOutput = {
     type = "structure",
     members = {
-        ipAccessSettings = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ipAccessSettings = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IpAccessSettings }),
     },
 }
 
@@ -1576,7 +1539,7 @@ M.ListSessionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1619,7 +1582,7 @@ M.ListSessionsOutput = {
     members = {
         sessions = {
             type = "list",
-            member_type = "structure",
+            member = M.SessionSummary,
             traits = {
                 required = true,
             },
@@ -1648,7 +1611,7 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1664,21 +1627,21 @@ M.CreateNetworkSettingsInput = {
         },
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         clientToken = {
             type = "string",
@@ -1739,18 +1702,18 @@ M.NetworkSettings = {
         },
         associatedPortalArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         vpcId = {
             type = "string",
         },
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1758,9 +1721,7 @@ M.NetworkSettings = {
 M.GetNetworkSettingsOutput = {
     type = "structure",
     members = {
-        networkSettings = {
-            type = "structure",
-        },
+        networkSettings = M.NetworkSettings,
     },
 }
 
@@ -1774,7 +1735,7 @@ M.ListNetworkSettingsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1802,7 +1763,7 @@ M.ListNetworkSettingsOutput = {
     members = {
         networkSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkSettingsSummary,
         },
         nextToken = {
             type = "string",
@@ -1825,11 +1786,11 @@ M.UpdateNetworkSettingsInput = {
         },
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         clientToken = {
             type = "string",
@@ -1840,12 +1801,9 @@ M.UpdateNetworkSettingsInput = {
 M.UpdateNetworkSettingsOutput = {
     type = "structure",
     members = {
-        networkSettings = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        networkSettings = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.NetworkSettings }),
     },
 }
 
@@ -1867,15 +1825,15 @@ M.CreatePortalInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         customerManagedKey = {
             type = "string",
         },
         additionalEncryptionContext = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         clientToken = {
             type = "string",
@@ -1887,7 +1845,7 @@ M.CreatePortalInput = {
             type = "string",
         },
         maxConcurrentSessions = {
-            type = "number",
+            type = "integer",
         },
         portalCustomDomain = {
             type = "string",
@@ -2151,14 +2109,14 @@ M.Portal = {
         },
         additionalEncryptionContext = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         instanceType = {
             type = "string",
         },
         maxConcurrentSessions = {
-            type = "number",
+            type = "integer",
         },
         portalCustomDomain = {
             type = "string",
@@ -2169,9 +2127,7 @@ M.Portal = {
 M.GetPortalOutput = {
     type = "structure",
     members = {
-        portal = {
-            type = "structure",
-        },
+        portal = M.Portal,
     },
 }
 
@@ -2213,7 +2169,7 @@ M.ListPortalsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2279,7 +2235,7 @@ M.PortalSummary = {
             type = "string",
         },
         maxConcurrentSessions = {
-            type = "number",
+            type = "integer",
         },
         portalCustomDomain = {
             type = "string",
@@ -2292,7 +2248,7 @@ M.ListPortalsOutput = {
     members = {
         portals = {
             type = "list",
-            member_type = "structure",
+            member = M.PortalSummary,
         },
         nextToken = {
             type = "string",
@@ -2320,7 +2276,7 @@ M.UpdatePortalInput = {
             type = "string",
         },
         maxConcurrentSessions = {
-            type = "number",
+            type = "integer",
         },
         portalCustomDomain = {
             type = "string",
@@ -2331,9 +2287,7 @@ M.UpdatePortalInput = {
 M.UpdatePortalOutput = {
     type = "structure",
     members = {
-        portal = {
-            type = "structure",
-        },
+        portal = M.Portal,
     },
 }
 
@@ -2364,12 +2318,10 @@ M.Event = {
 M.EventFilter = {
     type = "union",
     members = {
-        all = {
-            type = "structure",
-        },
+        all = M.Unit,
         include = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2417,27 +2369,19 @@ M.S3LogConfiguration = {
 M.LogConfiguration = {
     type = "structure",
     members = {
-        s3 = {
-            type = "structure",
-        },
+        s3 = M.S3LogConfiguration,
     },
 }
 
 M.CreateSessionLoggerInput = {
     type = "structure",
     members = {
-        eventFilter = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        logConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        eventFilter = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EventFilter }),
+        logConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LogConfiguration }),
         displayName = {
             type = "string",
         },
@@ -2446,12 +2390,12 @@ M.CreateSessionLoggerInput = {
         },
         additionalEncryptionContext = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         clientToken = {
             type = "string",
@@ -2510,23 +2454,19 @@ M.SessionLogger = {
                 required = true,
             },
         },
-        eventFilter = {
-            type = "union",
-        },
-        logConfiguration = {
-            type = "structure",
-        },
+        eventFilter = M.EventFilter,
+        logConfiguration = M.LogConfiguration,
         customerManagedKey = {
             type = "string",
         },
         additionalEncryptionContext = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         associatedPortalArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         displayName = {
             type = "string",
@@ -2540,9 +2480,7 @@ M.SessionLogger = {
 M.GetSessionLoggerOutput = {
     type = "structure",
     members = {
-        sessionLogger = {
-            type = "structure",
-        },
+        sessionLogger = M.SessionLogger,
     },
 }
 
@@ -2556,7 +2494,7 @@ M.ListSessionLoggersInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2573,9 +2511,7 @@ M.SessionLoggerSummary = {
                 required = true,
             },
         },
-        logConfiguration = {
-            type = "structure",
-        },
+        logConfiguration = M.LogConfiguration,
         displayName = {
             type = "string",
         },
@@ -2590,7 +2526,7 @@ M.ListSessionLoggersOutput = {
     members = {
         sessionLoggers = {
             type = "list",
-            member_type = "structure",
+            member = M.SessionLoggerSummary,
         },
         nextToken = {
             type = "string",
@@ -2608,12 +2544,8 @@ M.UpdateSessionLoggerInput = {
                 required = true,
             },
         },
-        eventFilter = {
-            type = "union",
-        },
-        logConfiguration = {
-            type = "structure",
-        },
+        eventFilter = M.EventFilter,
+        logConfiguration = M.LogConfiguration,
         displayName = {
             type = "string",
         },
@@ -2623,12 +2555,9 @@ M.UpdateSessionLoggerInput = {
 M.UpdateSessionLoggerOutput = {
     type = "structure",
     members = {
-        sessionLogger = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        sessionLogger = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SessionLogger }),
     },
 }
 
@@ -2644,7 +2573,7 @@ M.TagResourceInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -2698,14 +2627,14 @@ M.CreateTrustStoreInput = {
     members = {
         certificateList = {
             type = "list",
-            member_type = "blob",
+            member = { type = "blob" },
             traits = {
                 required = true,
             },
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         clientToken = {
             type = "string",
@@ -2760,7 +2689,7 @@ M.TrustStore = {
     members = {
         associatedPortalArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         trustStoreArn = {
             type = "string",
@@ -2774,9 +2703,7 @@ M.TrustStore = {
 M.GetTrustStoreOutput = {
     type = "structure",
     members = {
-        trustStore = {
-            type = "structure",
-        },
+        trustStore = M.TrustStore,
     },
 }
 
@@ -2833,9 +2760,7 @@ M.GetTrustStoreCertificateOutput = {
                 required = true,
             },
         },
-        certificate = {
-            type = "structure",
-        },
+        certificate = M.Certificate,
     },
 }
 
@@ -2856,7 +2781,7 @@ M.ListTrustStoreCertificatesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2869,7 +2794,7 @@ M.ListTrustStoreCertificatesOutput = {
     members = {
         certificateList = {
             type = "list",
-            member_type = "structure",
+            member = M.CertificateSummary,
         },
         trustStoreArn = {
             type = "string",
@@ -2893,7 +2818,7 @@ M.ListTrustStoresInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2915,7 +2840,7 @@ M.ListTrustStoresOutput = {
     members = {
         trustStores = {
             type = "list",
-            member_type = "structure",
+            member = M.TrustStoreSummary,
         },
         nextToken = {
             type = "string",
@@ -2935,11 +2860,11 @@ M.UpdateTrustStoreInput = {
         },
         certificatesToAdd = {
             type = "list",
-            member_type = "blob",
+            member = { type = "blob" },
         },
         certificatesToDelete = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         clientToken = {
             type = "string",
@@ -2971,7 +2896,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -2995,7 +2920,7 @@ M.CreateUserAccessLoggingSettingsInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         clientToken = {
             type = "string",
@@ -3056,7 +2981,7 @@ M.UserAccessLoggingSettings = {
         },
         associatedPortalArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         kinesisStreamArn = {
             type = "string",
@@ -3067,9 +2992,7 @@ M.UserAccessLoggingSettings = {
 M.GetUserAccessLoggingSettingsOutput = {
     type = "structure",
     members = {
-        userAccessLoggingSettings = {
-            type = "structure",
-        },
+        userAccessLoggingSettings = M.UserAccessLoggingSettings,
     },
 }
 
@@ -3083,7 +3006,7 @@ M.ListUserAccessLoggingSettingsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3111,7 +3034,7 @@ M.ListUserAccessLoggingSettingsOutput = {
     members = {
         userAccessLoggingSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.UserAccessLoggingSettingsSummary,
         },
         nextToken = {
             type = "string",
@@ -3141,12 +3064,9 @@ M.UpdateUserAccessLoggingSettingsInput = {
 M.UpdateUserAccessLoggingSettingsOutput = {
     type = "structure",
     members = {
-        userAccessLoggingSettings = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        userAccessLoggingSettings = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.UserAccessLoggingSettings }),
     },
 }
 
@@ -3238,25 +3158,17 @@ M.LocalizedBrandingStrings = {
 M.BrandingConfiguration = {
     type = "structure",
     members = {
-        logo = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        wallpaper = {
-            type = "structure",
-        },
-        favicon = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        logo = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ImageMetadata }),
+        wallpaper = M.ImageMetadata,
+        favicon = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ImageMetadata }),
         localizedStrings = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.LocalizedBrandingStrings,
             traits = {
                 required = true,
             },
@@ -3296,14 +3208,14 @@ M.CookieSynchronizationConfiguration = {
     members = {
         allowlist = {
             type = "list",
-            member_type = "structure",
+            member = M.CookieSpecification,
             traits = {
                 required = true,
             },
         },
         blocklist = {
             type = "list",
-            member_type = "structure",
+            member = M.CookieSpecification,
         },
     },
 }
@@ -3335,25 +3247,17 @@ M.WallpaperImageInput = {
 M.BrandingConfigurationCreateInput = {
     type = "structure",
     members = {
-        logo = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        wallpaper = {
-            type = "union",
-        },
-        favicon = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        logo = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IconImageInput }),
+        wallpaper = M.WallpaperImageInput,
+        favicon = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IconImageInput }),
         localizedStrings = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.LocalizedBrandingStrings,
             traits = {
                 required = true,
             },
@@ -3415,7 +3319,7 @@ M.ToolbarConfiguration = {
         },
         hiddenToolbarItems = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         maxDisplayResolution = {
             type = "string",
@@ -3458,37 +3362,37 @@ M.CreateUserSettingsInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         disconnectTimeoutInMinutes = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         idleDisconnectTimeoutInMinutes = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         clientToken = {
             type = "string",
         },
-        cookieSynchronizationConfiguration = {
-            type = "structure",
-        },
+        cookieSynchronizationConfiguration = M.CookieSynchronizationConfiguration,
         customerManagedKey = {
             type = "string",
         },
         additionalEncryptionContext = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         deepLinkAllowed = {
             type = "string",
         },
-        toolbarConfiguration = {
-            type = "structure",
-        },
-        brandingConfigurationInput = {
-            type = "structure",
-        },
+        toolbarConfiguration = M.ToolbarConfiguration,
+        brandingConfigurationInput = M.BrandingConfigurationCreateInput,
         webAuthnAllowed = {
             type = "string",
         },
@@ -3548,7 +3452,7 @@ M.UserSettings = {
         },
         associatedPortalArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         copyAllowed = {
             type = "string",
@@ -3566,31 +3470,31 @@ M.UserSettings = {
             type = "string",
         },
         disconnectTimeoutInMinutes = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         idleDisconnectTimeoutInMinutes = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
-        cookieSynchronizationConfiguration = {
-            type = "structure",
-        },
+        cookieSynchronizationConfiguration = M.CookieSynchronizationConfiguration,
         customerManagedKey = {
             type = "string",
         },
         additionalEncryptionContext = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         deepLinkAllowed = {
             type = "string",
         },
-        toolbarConfiguration = {
-            type = "structure",
-        },
-        brandingConfiguration = {
-            type = "structure",
-        },
+        toolbarConfiguration = M.ToolbarConfiguration,
+        brandingConfiguration = M.BrandingConfiguration,
         webAuthnAllowed = {
             type = "string",
         },
@@ -3600,9 +3504,7 @@ M.UserSettings = {
 M.GetUserSettingsOutput = {
     type = "structure",
     members = {
-        userSettings = {
-            type = "structure",
-        },
+        userSettings = M.UserSettings,
     },
 }
 
@@ -3616,7 +3518,7 @@ M.ListUserSettingsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3649,23 +3551,23 @@ M.UserSettingsSummary = {
             type = "string",
         },
         disconnectTimeoutInMinutes = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         idleDisconnectTimeoutInMinutes = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
-        cookieSynchronizationConfiguration = {
-            type = "structure",
-        },
+        cookieSynchronizationConfiguration = M.CookieSynchronizationConfiguration,
         deepLinkAllowed = {
             type = "string",
         },
-        toolbarConfiguration = {
-            type = "structure",
-        },
-        brandingConfiguration = {
-            type = "structure",
-        },
+        toolbarConfiguration = M.ToolbarConfiguration,
+        brandingConfiguration = M.BrandingConfiguration,
         webAuthnAllowed = {
             type = "string",
         },
@@ -3677,7 +3579,7 @@ M.ListUserSettingsOutput = {
     members = {
         userSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.UserSettingsSummary,
         },
         nextToken = {
             type = "string",
@@ -3688,19 +3590,13 @@ M.ListUserSettingsOutput = {
 M.BrandingConfigurationUpdateInput = {
     type = "structure",
     members = {
-        logo = {
-            type = "union",
-        },
-        wallpaper = {
-            type = "union",
-        },
-        favicon = {
-            type = "union",
-        },
+        logo = M.IconImageInput,
+        wallpaper = M.WallpaperImageInput,
+        favicon = M.IconImageInput,
         localizedStrings = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.LocalizedBrandingStrings,
         },
         colorTheme = {
             type = "string",
@@ -3737,26 +3633,26 @@ M.UpdateUserSettingsInput = {
             type = "string",
         },
         disconnectTimeoutInMinutes = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         idleDisconnectTimeoutInMinutes = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         clientToken = {
             type = "string",
         },
-        cookieSynchronizationConfiguration = {
-            type = "structure",
-        },
+        cookieSynchronizationConfiguration = M.CookieSynchronizationConfiguration,
         deepLinkAllowed = {
             type = "string",
         },
-        toolbarConfiguration = {
-            type = "structure",
-        },
-        brandingConfigurationInput = {
-            type = "structure",
-        },
+        toolbarConfiguration = M.ToolbarConfiguration,
+        brandingConfigurationInput = M.BrandingConfigurationUpdateInput,
         webAuthnAllowed = {
             type = "string",
         },
@@ -3766,12 +3662,9 @@ M.UpdateUserSettingsInput = {
 M.UpdateUserSettingsOutput = {
     type = "structure",
     members = {
-        userSettings = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        userSettings = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.UserSettings }),
     },
 }
 

@@ -1,0 +1,9 @@
+local types = require("elasticloadbalancing.types")
+
+local record M
+    wait_until_any_instance_in_service: function(client: table, input: table, options: table): table, table
+    wait_until_instance_deregistered: function(client: table, input: table, options: table): table, table
+    wait_until_instance_in_service: function(client: table, input: table, options: table): table, table
+end
+
+return M

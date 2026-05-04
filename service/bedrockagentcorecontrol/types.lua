@@ -15,9 +15,7 @@ M.AgentCardDefinition = {
 M.A2aDescriptor = {
     type = "structure",
     members = {
-        agentCard = {
-            type = "structure",
-        },
+        agentCard = M.AgentCardDefinition,
     },
 }
 
@@ -77,24 +75,21 @@ M.TrafficSplitEntry = {
             },
         },
         weight = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
-        configurationBundle = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        configurationBundle = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConfigurationBundleReference }),
         description = {
             type = "string",
         },
         metadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -104,7 +99,7 @@ M.WeightedOverride = {
     members = {
         trafficSplit = {
             type = "list",
-            member_type = "structure",
+            member = M.TrafficSplitEntry,
             traits = {
                 required = true,
             },
@@ -115,12 +110,8 @@ M.WeightedOverride = {
 M.ConfigurationBundleAction = {
     type = "union",
     members = {
-        staticOverride = {
-            type = "structure",
-        },
-        weightedOverride = {
-            type = "structure",
-        },
+        staticOverride = M.StaticOverride,
+        weightedOverride = M.WeightedOverride,
     },
 }
 
@@ -146,7 +137,7 @@ M.TargetTrafficSplitEntry = {
             },
         },
         weight = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -162,8 +153,8 @@ M.TargetTrafficSplitEntry = {
         },
         metadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -173,7 +164,7 @@ M.WeightedRoute = {
     members = {
         trafficSplit = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetTrafficSplitEntry,
             traits = {
                 required = true,
             },
@@ -184,24 +175,16 @@ M.WeightedRoute = {
 M.RouteToTargetAction = {
     type = "union",
     members = {
-        staticRoute = {
-            type = "structure",
-        },
-        weightedRoute = {
-            type = "structure",
-        },
+        staticRoute = M.StaticRoute,
+        weightedRoute = M.WeightedRoute,
     },
 }
 
 M.Action = {
     type = "union",
     members = {
-        configurationBundle = {
-            type = "union",
-        },
-        routeToTarget = {
-            type = "union",
-        },
+        configurationBundle = M.ConfigurationBundleAction,
+        routeToTarget = M.RouteToTargetAction,
     },
 }
 
@@ -248,8 +231,8 @@ M.CreateAgentRuntimeEndpointInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -389,7 +372,7 @@ M.ValidationException = {
         },
         fieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -529,7 +512,7 @@ M.ListAgentRuntimeEndpointsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -605,7 +588,7 @@ M.ListAgentRuntimeEndpointsOutput = {
     members = {
         runtimeEndpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.AgentRuntimeEndpoint,
             traits = {
                 required = true,
             },
@@ -720,21 +703,16 @@ M.S3Location = {
 M.Code = {
     type = "union",
     members = {
-        s3 = {
-            type = "structure",
-        },
+        s3 = M.S3Location,
     },
 }
 
 M.CodeConfiguration = {
     type = "structure",
     members = {
-        code = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        code = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Code }),
         runtime = {
             type = "string",
             traits = {
@@ -743,7 +721,7 @@ M.CodeConfiguration = {
         },
         entryPoint = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -766,12 +744,8 @@ M.ContainerConfiguration = {
 M.AgentRuntimeArtifact = {
     type = "union",
     members = {
-        containerConfiguration = {
-            type = "structure",
-        },
-        codeConfiguration = {
-            type = "structure",
-        },
+        containerConfiguration = M.ContainerConfiguration,
+        codeConfiguration = M.CodeConfiguration,
     },
 }
 
@@ -789,7 +763,7 @@ M.ClaimMatchValueType = {
         },
         matchValueStringList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -797,12 +771,9 @@ M.ClaimMatchValueType = {
 M.AuthorizingClaimMatchValueType = {
     type = "structure",
     members = {
-        claimMatchValue = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        claimMatchValue = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ClaimMatchValueType }),
         claimMatchOperator = {
             type = "string",
             traits = {
@@ -832,12 +803,9 @@ M.CustomClaimValidationType = {
                 required = true,
             },
         },
-        authorizingClaimMatchValue = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        authorizingClaimMatchValue = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AuthorizingClaimMatchValueType }),
     },
 }
 
@@ -857,7 +825,7 @@ M.ManagedVpcResource = {
         },
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -870,12 +838,12 @@ M.ManagedVpcResource = {
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         routingDomain = {
             type = "string",
@@ -895,12 +863,8 @@ M.SelfManagedLatticeResource = {
 M.PrivateEndpoint = {
     type = "union",
     members = {
-        selfManagedLatticeResource = {
-            type = "union",
-        },
-        managedVpcResource = {
-            type = "structure",
-        },
+        selfManagedLatticeResource = M.SelfManagedLatticeResource,
+        managedVpcResource = M.ManagedVpcResource,
     },
 }
 
@@ -913,12 +877,9 @@ M.PrivateEndpointOverride = {
                 required = true,
             },
         },
-        privateEndpoint = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        privateEndpoint = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PrivateEndpoint }),
     },
 }
 
@@ -933,26 +894,24 @@ M.CustomJWTAuthorizerConfiguration = {
         },
         allowedAudience = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         allowedClients = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         allowedScopes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         customClaims = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomClaimValidationType,
         },
-        privateEndpoint = {
-            type = "union",
-        },
+        privateEndpoint = M.PrivateEndpoint,
         privateEndpointOverrides = {
             type = "list",
-            member_type = "structure",
+            member = M.PrivateEndpointOverride,
         },
     },
 }
@@ -960,9 +919,7 @@ M.CustomJWTAuthorizerConfiguration = {
 M.AuthorizerConfiguration = {
     type = "union",
     members = {
-        customJWTAuthorizer = {
-            type = "structure",
-        },
+        customJWTAuthorizer = M.CustomJWTAuthorizerConfiguration,
     },
 }
 
@@ -981,9 +938,7 @@ M.SessionStorageConfiguration = {
 M.FilesystemConfiguration = {
     type = "union",
     members = {
-        sessionStorage = {
-            type = "structure",
-        },
+        sessionStorage = M.SessionStorageConfiguration,
     },
 }
 
@@ -991,10 +946,10 @@ M.LifecycleConfiguration = {
     type = "structure",
     members = {
         idleRuntimeSessionTimeout = {
-            type = "number",
+            type = "integer",
         },
         maxLifetime = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1009,14 +964,14 @@ M.VpcConfig = {
     members = {
         securityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         subnets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1033,9 +988,7 @@ M.NetworkConfiguration = {
                 required = true,
             },
         },
-        networkModeConfig = {
-            type = "structure",
-        },
+        networkModeConfig = M.VpcConfig,
     },
 }
 
@@ -1063,7 +1016,7 @@ M.RequestHeaderConfiguration = {
     members = {
         requestHeaderAllowlist = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1077,55 +1030,41 @@ M.CreateAgentRuntimeInput = {
                 required = true,
             },
         },
-        agentRuntimeArtifact = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        agentRuntimeArtifact = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AgentRuntimeArtifact }),
         roleArn = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        networkConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        networkConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.NetworkConfiguration }),
         clientToken = {
             type = "string",
         },
         description = {
             type = "string",
         },
-        authorizerConfiguration = {
-            type = "union",
-        },
-        requestHeaderConfiguration = {
-            type = "union",
-        },
-        protocolConfiguration = {
-            type = "structure",
-        },
-        lifecycleConfiguration = {
-            type = "structure",
-        },
+        authorizerConfiguration = M.AuthorizerConfiguration,
+        requestHeaderConfiguration = M.RequestHeaderConfiguration,
+        protocolConfiguration = M.ProtocolConfiguration,
+        lifecycleConfiguration = M.LifecycleConfiguration,
         environmentVariables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         filesystemConfigurations = {
             type = "list",
-            member_type = "union",
+            member = M.FilesystemConfiguration,
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1160,9 +1099,7 @@ M.CreateAgentRuntimeOutput = {
                 required = true,
             },
         },
-        workloadIdentityDetails = {
-            type = "structure",
-        },
+        workloadIdentityDetails = M.WorkloadIdentityDetails,
         agentRuntimeId = {
             type = "string",
             traits = {
@@ -1300,56 +1237,38 @@ M.GetAgentRuntimeOutput = {
                 required = true,
             },
         },
-        networkConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        networkConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.NetworkConfiguration }),
         status = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        lifecycleConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        lifecycleConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LifecycleConfiguration }),
         failureReason = {
             type = "string",
         },
         description = {
             type = "string",
         },
-        workloadIdentityDetails = {
-            type = "structure",
-        },
-        agentRuntimeArtifact = {
-            type = "union",
-        },
-        protocolConfiguration = {
-            type = "structure",
-        },
+        workloadIdentityDetails = M.WorkloadIdentityDetails,
+        agentRuntimeArtifact = M.AgentRuntimeArtifact,
+        protocolConfiguration = M.ProtocolConfiguration,
         environmentVariables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        authorizerConfiguration = {
-            type = "union",
-        },
-        requestHeaderConfiguration = {
-            type = "union",
-        },
-        metadataConfiguration = {
-            type = "structure",
-        },
+        authorizerConfiguration = M.AuthorizerConfiguration,
+        requestHeaderConfiguration = M.RequestHeaderConfiguration,
+        metadataConfiguration = M.RuntimeMetadataConfiguration,
         filesystemConfigurations = {
             type = "list",
-            member_type = "union",
+            member = M.FilesystemConfiguration,
         },
     },
 }
@@ -1358,7 +1277,7 @@ M.ListAgentRuntimesInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1425,7 +1344,7 @@ M.ListAgentRuntimesOutput = {
     members = {
         agentRuntimes = {
             type = "list",
-            member_type = "structure",
+            member = M.AgentRuntime,
             traits = {
                 required = true,
             },
@@ -1447,7 +1366,7 @@ M.ListAgentRuntimeVersionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1466,7 +1385,7 @@ M.ListAgentRuntimeVersionsOutput = {
     members = {
         agentRuntimes = {
             type = "list",
-            member_type = "structure",
+            member = M.AgentRuntime,
             traits = {
                 required = true,
             },
@@ -1487,50 +1406,34 @@ M.UpdateAgentRuntimeInput = {
                 required = true,
             },
         },
-        agentRuntimeArtifact = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        agentRuntimeArtifact = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AgentRuntimeArtifact }),
         roleArn = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        networkConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        networkConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.NetworkConfiguration }),
         description = {
             type = "string",
         },
-        authorizerConfiguration = {
-            type = "union",
-        },
-        requestHeaderConfiguration = {
-            type = "union",
-        },
-        protocolConfiguration = {
-            type = "structure",
-        },
-        lifecycleConfiguration = {
-            type = "structure",
-        },
-        metadataConfiguration = {
-            type = "structure",
-        },
+        authorizerConfiguration = M.AuthorizerConfiguration,
+        requestHeaderConfiguration = M.RequestHeaderConfiguration,
+        protocolConfiguration = M.ProtocolConfiguration,
+        lifecycleConfiguration = M.LifecycleConfiguration,
+        metadataConfiguration = M.RuntimeMetadataConfiguration,
         environmentVariables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         filesystemConfigurations = {
             type = "list",
-            member_type = "union",
+            member = M.FilesystemConfiguration,
         },
         clientToken = {
             type = "string",
@@ -1553,9 +1456,7 @@ M.UpdateAgentRuntimeOutput = {
                 required = true,
             },
         },
-        workloadIdentityDetails = {
-            type = "structure",
-        },
+        workloadIdentityDetails = M.WorkloadIdentityDetails,
         agentRuntimeVersion = {
             type = "string",
             traits = {
@@ -1607,12 +1508,8 @@ M.SkillMdDefinition = {
 M.AgentSkillsDescriptor = {
     type = "structure",
     members = {
-        skillMd = {
-            type = "structure",
-        },
-        skillDefinition = {
-            type = "structure",
-        },
+        skillMd = M.SkillMdDefinition,
+        skillDefinition = M.SkillDefinition,
     },
 }
 
@@ -1633,8 +1530,8 @@ M.CreateApiKeyCredentialProviderInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1654,12 +1551,9 @@ M.Secret = {
 M.CreateApiKeyCredentialProviderOutput = {
     type = "structure",
     members = {
-        apiKeySecretArn = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        apiKeySecretArn = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Secret }),
         name = {
             type = "string",
             traits = {
@@ -1752,12 +1646,9 @@ M.GetApiKeyCredentialProviderInput = {
 M.GetApiKeyCredentialProviderOutput = {
     type = "structure",
     members = {
-        apiKeySecretArn = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        apiKeySecretArn = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Secret }),
         name = {
             type = "string",
             traits = {
@@ -1792,7 +1683,10 @@ M.ListApiKeyCredentialProvidersInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 10,
+            },
         },
     },
 }
@@ -1832,7 +1726,7 @@ M.ListApiKeyCredentialProvidersOutput = {
     members = {
         credentialProviders = {
             type = "list",
-            member_type = "structure",
+            member = M.ApiKeyCredentialProviderItem,
             traits = {
                 required = true,
             },
@@ -1864,12 +1758,9 @@ M.UpdateApiKeyCredentialProviderInput = {
 M.UpdateApiKeyCredentialProviderOutput = {
     type = "structure",
     members = {
-        apiKeySecretArn = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        apiKeySecretArn = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Secret }),
         name = {
             type = "string",
             traits = {
@@ -1914,8 +1805,8 @@ M.CreateBrowserProfileInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2080,7 +1971,7 @@ M.ListBrowserProfilesInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2156,7 +2047,7 @@ M.ListBrowserProfilesOutput = {
     members = {
         profileSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.BrowserProfileSummary,
             traits = {
                 required = true,
             },
@@ -2173,6 +2064,7 @@ M.BrowserSigningConfigInput = {
         enabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -2194,30 +2086,23 @@ M.SecretsManagerLocation = {
 M.CertificateLocation = {
     type = "union",
     members = {
-        secretsManager = {
-            type = "structure",
-        },
+        secretsManager = M.SecretsManagerLocation,
     },
 }
 
 M.Certificate = {
     type = "structure",
     members = {
-        location = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        location = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CertificateLocation }),
     },
 }
 
 M.ResourceLocation = {
     type = "union",
     members = {
-        s3 = {
-            type = "structure",
-        },
+        s3 = M.S3Location,
     },
 }
 
@@ -2229,12 +2114,9 @@ M.BrowserEnterprisePolicyType = {
 M.BrowserEnterprisePolicy = {
     type = "structure",
     members = {
-        location = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        location = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResourceLocation }),
         type = {
             type = "string",
         },
@@ -2252,12 +2134,11 @@ M.BrowserNetworkConfiguration = {
         networkMode = {
             type = "string",
             traits = {
+                default = "PUBLIC",
                 required = true,
             },
         },
-        vpcConfig = {
-            type = "structure",
-        },
+        vpcConfig = M.VpcConfig,
     },
 }
 
@@ -2266,10 +2147,11 @@ M.RecordingConfig = {
     members = {
         enabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        s3Location = {
-            type = "structure",
-        },
+        s3Location = M.S3Location,
     },
 }
 
@@ -2288,33 +2170,26 @@ M.CreateBrowserInput = {
         executionRoleArn = {
             type = "string",
         },
-        networkConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        recording = {
-            type = "structure",
-        },
-        browserSigning = {
-            type = "structure",
-        },
+        networkConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BrowserNetworkConfiguration }),
+        recording = M.RecordingConfig,
+        browserSigning = M.BrowserSigningConfigInput,
         enterprisePolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.BrowserEnterprisePolicy,
         },
         certificates = {
             type = "list",
-            member_type = "structure",
+            member = M.Certificate,
         },
         clientToken = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2420,6 +2295,7 @@ M.BrowserSigningConfigOutput = {
         enabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -2453,25 +2329,18 @@ M.GetBrowserOutput = {
         executionRoleArn = {
             type = "string",
         },
-        networkConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        recording = {
-            type = "structure",
-        },
-        browserSigning = {
-            type = "structure",
-        },
+        networkConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BrowserNetworkConfiguration }),
+        recording = M.RecordingConfig,
+        browserSigning = M.BrowserSigningConfigOutput,
         enterprisePolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.BrowserEnterprisePolicy,
         },
         certificates = {
             type = "list",
-            member_type = "structure",
+            member = M.Certificate,
         },
         status = {
             type = "string",
@@ -2506,7 +2375,7 @@ M.ListBrowsersInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2570,7 +2439,7 @@ M.ListBrowsersOutput = {
     members = {
         browserSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.BrowserSummary,
             traits = {
                 required = true,
             },
@@ -2593,12 +2462,11 @@ M.CodeInterpreterNetworkConfiguration = {
         networkMode = {
             type = "string",
             traits = {
+                default = "SANDBOX",
                 required = true,
             },
         },
-        vpcConfig = {
-            type = "structure",
-        },
+        vpcConfig = M.VpcConfig,
     },
 }
 
@@ -2617,23 +2485,20 @@ M.CreateCodeInterpreterInput = {
         executionRoleArn = {
             type = "string",
         },
-        networkConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        networkConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CodeInterpreterNetworkConfiguration }),
         certificates = {
             type = "list",
-            member_type = "structure",
+            member = M.Certificate,
         },
         clientToken = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2760,12 +2625,9 @@ M.GetCodeInterpreterOutput = {
         executionRoleArn = {
             type = "string",
         },
-        networkConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        networkConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CodeInterpreterNetworkConfiguration }),
         status = {
             type = "string",
             traits = {
@@ -2774,7 +2636,7 @@ M.GetCodeInterpreterOutput = {
         },
         certificates = {
             type = "list",
-            member_type = "structure",
+            member = M.Certificate,
         },
         failureReason = {
             type = "string",
@@ -2798,7 +2660,7 @@ M.ListCodeInterpretersInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2862,7 +2724,7 @@ M.ListCodeInterpretersOutput = {
     members = {
         codeInterpreterSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.CodeInterpreterSummary,
             traits = {
                 required = true,
             },
@@ -2917,8 +2779,8 @@ M.CreateConfigurationBundleInput = {
         },
         components = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ComponentConfiguration,
             traits = {
                 required = true,
             },
@@ -2929,13 +2791,11 @@ M.CreateConfigurationBundleInput = {
         commitMessage = {
             type = "string",
         },
-        createdBy = {
-            type = "structure",
-        },
+        createdBy = M.VersionCreatedBySource,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3035,14 +2895,12 @@ M.VersionLineageMetadata = {
     members = {
         parentVersionIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         branchName = {
             type = "string",
         },
-        createdBy = {
-            type = "structure",
-        },
+        createdBy = M.VersionCreatedBySource,
         commitMessage = {
             type = "string",
         },
@@ -3081,15 +2939,13 @@ M.GetConfigurationBundleOutput = {
         },
         components = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ComponentConfiguration,
             traits = {
                 required = true,
             },
         },
-        lineageMetadata = {
-            type = "structure",
-        },
+        lineageMetadata = M.VersionLineageMetadata,
         createdAt = {
             type = "timestamp",
             traits = {
@@ -3157,15 +3013,13 @@ M.GetConfigurationBundleVersionOutput = {
         },
         components = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ComponentConfiguration,
             traits = {
                 required = true,
             },
         },
-        lineageMetadata = {
-            type = "structure",
-        },
+        lineageMetadata = M.VersionLineageMetadata,
         createdAt = {
             type = "timestamp",
             traits = {
@@ -3191,7 +3045,7 @@ M.ListConfigurationBundlesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3231,7 +3085,7 @@ M.ListConfigurationBundlesOutput = {
     members = {
         bundles = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigurationBundleSummary,
             traits = {
                 required = true,
             },
@@ -3274,14 +3128,12 @@ M.ListConfigurationBundleVersionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
         },
-        filter = {
-            type = "structure",
-        },
+        filter = M.VersionFilter,
     },
 }
 
@@ -3306,9 +3158,7 @@ M.ConfigurationBundleVersionSummary = {
                 required = true,
             },
         },
-        lineageMetadata = {
-            type = "structure",
-        },
+        lineageMetadata = M.VersionLineageMetadata,
         versionCreatedAt = {
             type = "timestamp",
             traits = {
@@ -3323,7 +3173,7 @@ M.ListConfigurationBundleVersionsOutput = {
     members = {
         versions = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigurationBundleVersionSummary,
             traits = {
                 required = true,
             },
@@ -3355,12 +3205,12 @@ M.UpdateConfigurationBundleInput = {
         },
         components = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ComponentConfiguration,
         },
         parentVersionIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         branchName = {
             type = "string",
@@ -3368,9 +3218,7 @@ M.UpdateConfigurationBundleInput = {
         commitMessage = {
             type = "string",
         },
-        createdBy = {
-            type = "structure",
-        },
+        createdBy = M.VersionCreatedBySource,
     },
 }
 
@@ -3431,7 +3279,7 @@ M.LambdaEvaluatorConfig = {
             },
         },
         lambdaTimeoutInSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3439,9 +3287,7 @@ M.LambdaEvaluatorConfig = {
 M.CodeBasedEvaluatorConfig = {
     type = "union",
     members = {
-        lambdaConfig = {
-            type = "structure",
-        },
+        lambdaConfig = M.LambdaEvaluatorConfig,
     },
 }
 
@@ -3449,17 +3295,17 @@ M.InferenceConfiguration = {
     type = "structure",
     members = {
         maxTokens = {
-            type = "number",
+            type = "integer",
         },
         temperature = {
-            type = "number",
+            type = "float",
         },
         topP = {
-            type = "number",
+            type = "float",
         },
         stopSequences = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3473,9 +3319,7 @@ M.BedrockEvaluatorModelConfig = {
                 required = true,
             },
         },
-        inferenceConfig = {
-            type = "structure",
-        },
+        inferenceConfig = M.InferenceConfiguration,
         additionalModelRequestFields = {
             type = "document",
         },
@@ -3485,9 +3329,7 @@ M.BedrockEvaluatorModelConfig = {
 M.EvaluatorModelConfig = {
     type = "union",
     members = {
-        bedrockEvaluatorModelConfig = {
-            type = "structure",
-        },
+        bedrockEvaluatorModelConfig = M.BedrockEvaluatorModelConfig,
     },
 }
 
@@ -3519,7 +3361,7 @@ M.NumericalScaleDefinition = {
             },
         },
         value = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -3538,11 +3380,11 @@ M.RatingScale = {
     members = {
         numerical = {
             type = "list",
-            member_type = "structure",
+            member = M.NumericalScaleDefinition,
         },
         categorical = {
             type = "list",
-            member_type = "structure",
+            member = M.CategoricalScaleDefinition,
         },
     },
 }
@@ -3556,30 +3398,20 @@ M.LlmAsAJudgeEvaluatorConfig = {
                 required = true,
             },
         },
-        ratingScale = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        modelConfig = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        ratingScale = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RatingScale }),
+        modelConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EvaluatorModelConfig }),
     },
 }
 
 M.EvaluatorConfig = {
     type = "union",
     members = {
-        llmAsAJudge = {
-            type = "structure",
-        },
-        codeBased = {
-            type = "union",
-        },
+        llmAsAJudge = M.LlmAsAJudgeEvaluatorConfig,
+        codeBased = M.CodeBasedEvaluatorConfig,
     },
 }
 
@@ -3604,12 +3436,9 @@ M.CreateEvaluatorInput = {
         description = {
             type = "string",
         },
-        evaluatorConfig = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        evaluatorConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EvaluatorConfig }),
         level = {
             type = "string",
             traits = {
@@ -3621,8 +3450,8 @@ M.CreateEvaluatorInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3751,12 +3580,9 @@ M.GetEvaluatorOutput = {
         description = {
             type = "string",
         },
-        evaluatorConfig = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        evaluatorConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EvaluatorConfig }),
         level = {
             type = "string",
             traits = {
@@ -3800,7 +3626,7 @@ M.ListEvaluatorsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3879,7 +3705,7 @@ M.ListEvaluatorsOutput = {
     members = {
         evaluators = {
             type = "list",
-            member_type = "structure",
+            member = M.EvaluatorSummary,
             traits = {
                 required = true,
             },
@@ -3906,9 +3732,7 @@ M.UpdateEvaluatorInput = {
         description = {
             type = "string",
         },
-        evaluatorConfig = {
-            type = "union",
-        },
+        evaluatorConfig = M.EvaluatorConfig,
         level = {
             type = "string",
         },
@@ -3991,31 +3815,24 @@ M.LambdaInterceptorConfiguration = {
 M.InterceptorConfiguration = {
     type = "union",
     members = {
-        lambda = {
-            type = "structure",
-        },
+        lambda = M.LambdaInterceptorConfiguration,
     },
 }
 
 M.GatewayInterceptorConfiguration = {
     type = "structure",
     members = {
-        interceptor = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        interceptor = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InterceptorConfiguration }),
         interceptionPoints = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        inputConfiguration = {
-            type = "structure",
-        },
+        inputConfiguration = M.InterceptorInputConfiguration,
     },
 }
 
@@ -4051,7 +3868,7 @@ M.MCPGatewayConfiguration = {
     members = {
         supportedVersions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         instructions = {
             type = "string",
@@ -4065,9 +3882,7 @@ M.MCPGatewayConfiguration = {
 M.GatewayProtocolConfiguration = {
     type = "union",
     members = {
-        mcp = {
-            type = "structure",
-        },
+        mcp = M.MCPGatewayConfiguration,
     },
 }
 
@@ -4098,36 +3913,33 @@ M.CreateGatewayInput = {
         },
         protocolType = {
             type = "string",
+            traits = {
+                default = "MCP",
+            },
         },
-        protocolConfiguration = {
-            type = "union",
-        },
+        protocolConfiguration = M.GatewayProtocolConfiguration,
         authorizerType = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        authorizerConfiguration = {
-            type = "union",
-        },
+        authorizerConfiguration = M.AuthorizerConfiguration,
         kmsKeyArn = {
             type = "string",
         },
         interceptorConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.GatewayInterceptorConfiguration,
         },
-        policyEngineConfiguration = {
-            type = "structure",
-        },
+        policyEngineConfiguration = M.GatewayPolicyEngineConfiguration,
         exceptionLevel = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -4179,7 +3991,7 @@ M.CreateGatewayOutput = {
         },
         statusReasons = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         name = {
             type = "string",
@@ -4195,32 +4007,27 @@ M.CreateGatewayOutput = {
         },
         protocolType = {
             type = "string",
+            traits = {
+                default = "MCP",
+            },
         },
-        protocolConfiguration = {
-            type = "union",
-        },
+        protocolConfiguration = M.GatewayProtocolConfiguration,
         authorizerType = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        authorizerConfiguration = {
-            type = "union",
-        },
+        authorizerConfiguration = M.AuthorizerConfiguration,
         kmsKeyArn = {
             type = "string",
         },
         interceptorConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.GatewayInterceptorConfiguration,
         },
-        policyEngineConfiguration = {
-            type = "structure",
-        },
-        workloadIdentityDetails = {
-            type = "structure",
-        },
+        policyEngineConfiguration = M.GatewayPolicyEngineConfiguration,
+        workloadIdentityDetails = M.WorkloadIdentityDetails,
         exceptionLevel = {
             type = "string",
         },
@@ -4257,7 +4064,7 @@ M.DeleteGatewayOutput = {
         },
         statusReasons = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4313,7 +4120,7 @@ M.GetGatewayOutput = {
         },
         statusReasons = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         name = {
             type = "string",
@@ -4329,32 +4136,27 @@ M.GetGatewayOutput = {
         },
         protocolType = {
             type = "string",
+            traits = {
+                default = "MCP",
+            },
         },
-        protocolConfiguration = {
-            type = "union",
-        },
+        protocolConfiguration = M.GatewayProtocolConfiguration,
         authorizerType = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        authorizerConfiguration = {
-            type = "union",
-        },
+        authorizerConfiguration = M.AuthorizerConfiguration,
         kmsKeyArn = {
             type = "string",
         },
         interceptorConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.GatewayInterceptorConfiguration,
         },
-        policyEngineConfiguration = {
-            type = "structure",
-        },
-        workloadIdentityDetails = {
-            type = "structure",
-        },
+        policyEngineConfiguration = M.GatewayPolicyEngineConfiguration,
+        workloadIdentityDetails = M.WorkloadIdentityDetails,
         exceptionLevel = {
             type = "string",
         },
@@ -4365,7 +4167,7 @@ M.ListGatewaysInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4423,6 +4225,9 @@ M.GatewaySummary = {
         },
         protocolType = {
             type = "string",
+            traits = {
+                default = "MCP",
+            },
         },
     },
 }
@@ -4432,7 +4237,7 @@ M.ListGatewaysOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.GatewaySummary,
             traits = {
                 required = true,
             },
@@ -4470,29 +4275,26 @@ M.UpdateGatewayInput = {
         },
         protocolType = {
             type = "string",
+            traits = {
+                default = "MCP",
+            },
         },
-        protocolConfiguration = {
-            type = "union",
-        },
+        protocolConfiguration = M.GatewayProtocolConfiguration,
         authorizerType = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        authorizerConfiguration = {
-            type = "union",
-        },
+        authorizerConfiguration = M.AuthorizerConfiguration,
         kmsKeyArn = {
             type = "string",
         },
         interceptorConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.GatewayInterceptorConfiguration,
         },
-        policyEngineConfiguration = {
-            type = "structure",
-        },
+        policyEngineConfiguration = M.GatewayPolicyEngineConfiguration,
         exceptionLevel = {
             type = "string",
         },
@@ -4537,7 +4339,7 @@ M.UpdateGatewayOutput = {
         },
         statusReasons = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         name = {
             type = "string",
@@ -4553,32 +4355,27 @@ M.UpdateGatewayOutput = {
         },
         protocolType = {
             type = "string",
+            traits = {
+                default = "MCP",
+            },
         },
-        protocolConfiguration = {
-            type = "union",
-        },
+        protocolConfiguration = M.GatewayProtocolConfiguration,
         authorizerType = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        authorizerConfiguration = {
-            type = "union",
-        },
+        authorizerConfiguration = M.AuthorizerConfiguration,
         kmsKeyArn = {
             type = "string",
         },
         interceptorConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.GatewayInterceptorConfiguration,
         },
-        policyEngineConfiguration = {
-            type = "structure",
-        },
-        workloadIdentityDetails = {
-            type = "structure",
-        },
+        policyEngineConfiguration = M.GatewayPolicyEngineConfiguration,
+        workloadIdentityDetails = M.WorkloadIdentityDetails,
         exceptionLevel = {
             type = "string",
         },
@@ -4590,7 +4387,7 @@ M.MatchPaths = {
     members = {
         anyOf = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4621,9 +4418,7 @@ M.IamPrincipal = {
 M.MatchPrincipalEntry = {
     type = "union",
     members = {
-        iamPrincipal = {
-            type = "structure",
-        },
+        iamPrincipal = M.IamPrincipal,
     },
 }
 
@@ -4632,7 +4427,7 @@ M.MatchPrincipals = {
     members = {
         anyOf = {
             type = "list",
-            member_type = "union",
+            member = M.MatchPrincipalEntry,
             traits = {
                 required = true,
             },
@@ -4643,12 +4438,8 @@ M.MatchPrincipals = {
 M.Condition = {
     type = "union",
     members = {
-        matchPrincipals = {
-            type = "structure",
-        },
-        matchPaths = {
-            type = "structure",
-        },
+        matchPrincipals = M.MatchPrincipals,
+        matchPaths = M.MatchPaths,
     },
 }
 
@@ -4666,18 +4457,18 @@ M.CreateGatewayRuleInput = {
             type = "string",
         },
         priority = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         conditions = {
             type = "list",
-            member_type = "union",
+            member = M.Condition,
         },
         actions = {
             type = "list",
-            member_type = "union",
+            member = M.Action,
             traits = {
                 required = true,
             },
@@ -4723,18 +4514,18 @@ M.CreateGatewayRuleOutput = {
             },
         },
         priority = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         conditions = {
             type = "list",
-            member_type = "union",
+            member = M.Condition,
         },
         actions = {
             type = "list",
-            member_type = "union",
+            member = M.Action,
             traits = {
                 required = true,
             },
@@ -4754,9 +4545,7 @@ M.CreateGatewayRuleOutput = {
                 required = true,
             },
         },
-        system = {
-            type = "structure",
-        },
+        system = M.SystemManagedBlock,
     },
 }
 
@@ -4834,18 +4623,18 @@ M.GetGatewayRuleOutput = {
             },
         },
         priority = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         conditions = {
             type = "list",
-            member_type = "union",
+            member = M.Condition,
         },
         actions = {
             type = "list",
-            member_type = "union",
+            member = M.Action,
             traits = {
                 required = true,
             },
@@ -4865,9 +4654,7 @@ M.GetGatewayRuleOutput = {
                 required = true,
             },
         },
-        system = {
-            type = "structure",
-        },
+        system = M.SystemManagedBlock,
         updatedAt = {
             type = "timestamp",
         },
@@ -4885,7 +4672,7 @@ M.ListGatewayRulesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4915,18 +4702,18 @@ M.GatewayRuleDetail = {
             },
         },
         priority = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         conditions = {
             type = "list",
-            member_type = "union",
+            member = M.Condition,
         },
         actions = {
             type = "list",
-            member_type = "union",
+            member = M.Action,
             traits = {
                 required = true,
             },
@@ -4946,9 +4733,7 @@ M.GatewayRuleDetail = {
                 required = true,
             },
         },
-        system = {
-            type = "structure",
-        },
+        system = M.SystemManagedBlock,
         updatedAt = {
             type = "timestamp",
         },
@@ -4960,7 +4745,7 @@ M.ListGatewayRulesOutput = {
     members = {
         gatewayRules = {
             type = "list",
-            member_type = "structure",
+            member = M.GatewayRuleDetail,
             traits = {
                 required = true,
             },
@@ -4989,15 +4774,15 @@ M.UpdateGatewayRuleInput = {
             },
         },
         priority = {
-            type = "number",
+            type = "integer",
         },
         conditions = {
             type = "list",
-            member_type = "union",
+            member = M.Condition,
         },
         actions = {
             type = "list",
-            member_type = "union",
+            member = M.Action,
         },
         description = {
             type = "string",
@@ -5021,18 +4806,18 @@ M.UpdateGatewayRuleOutput = {
             },
         },
         priority = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         conditions = {
             type = "list",
-            member_type = "union",
+            member = M.Condition,
         },
         actions = {
             type = "list",
-            member_type = "union",
+            member = M.Action,
             traits = {
                 required = true,
             },
@@ -5052,9 +4837,7 @@ M.UpdateGatewayRuleOutput = {
                 required = true,
             },
         },
-        system = {
-            type = "structure",
-        },
+        system = M.SystemManagedBlock,
         updatedAt = {
             type = "timestamp",
         },
@@ -5119,18 +4902,21 @@ M.OAuthCredentialProvider = {
         },
         scopes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         customParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         grantType = {
             type = "string",
+            traits = {
+                default = "CLIENT_CREDENTIALS",
+            },
         },
         defaultReturnUrl = {
             type = "string",
@@ -5141,15 +4927,9 @@ M.OAuthCredentialProvider = {
 M.CredentialProvider = {
     type = "union",
     members = {
-        oauthCredentialProvider = {
-            type = "structure",
-        },
-        apiKeyCredentialProvider = {
-            type = "structure",
-        },
-        iamCredentialProvider = {
-            type = "structure",
-        },
+        oauthCredentialProvider = M.OAuthCredentialProvider,
+        apiKeyCredentialProvider = M.GatewayApiKeyCredentialProvider,
+        iamCredentialProvider = M.IamCredentialProvider,
     },
 }
 
@@ -5170,9 +4950,7 @@ M.CredentialProviderConfiguration = {
                 required = true,
             },
         },
-        credentialProvider = {
-            type = "union",
-        },
+        credentialProvider = M.CredentialProvider,
     },
 }
 
@@ -5181,15 +4959,15 @@ M.MetadataConfiguration = {
     members = {
         allowedRequestHeaders = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         allowedQueryParameters = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         allowedResponseHeaders = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -5212,9 +4990,7 @@ M.RuntimeTargetConfiguration = {
 M.HttpTargetConfiguration = {
     type = "union",
     members = {
-        agentcoreRuntime = {
-            type = "structure",
-        },
+        agentcoreRuntime = M.RuntimeTargetConfiguration,
     },
 }
 
@@ -5239,7 +5015,7 @@ M.ApiGatewayToolFilter = {
         },
         methods = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -5279,11 +5055,11 @@ M.ApiGatewayToolConfiguration = {
     members = {
         toolOverrides = {
             type = "list",
-            member_type = "structure",
+            member = M.ApiGatewayToolOverride,
         },
         toolFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.ApiGatewayToolFilter,
             traits = {
                 required = true,
             },
@@ -5306,12 +5082,9 @@ M.ApiGatewayTargetConfiguration = {
                 required = true,
             },
         },
-        apiGatewayToolConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        apiGatewayToolConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ApiGatewayToolConfiguration }),
     },
 }
 
@@ -5344,9 +5117,7 @@ M.ListingMode = {
 M.McpToolSchemaConfiguration = {
     type = "union",
     members = {
-        s3 = {
-            type = "structure",
-        },
+        s3 = M.S3Configuration,
         inlinePayload = {
             type = "string",
         },
@@ -5362,14 +5133,12 @@ M.McpServerTargetConfiguration = {
                 required = true,
             },
         },
-        mcpToolSchema = {
-            type = "union",
-        },
+        mcpToolSchema = M.McpToolSchemaConfiguration,
         listingMode = {
             type = "string",
         },
         resourcePriority = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5377,9 +5146,7 @@ M.McpServerTargetConfiguration = {
 M.ApiSchemaConfiguration = {
     type = "union",
     members = {
-        s3 = {
-            type = "structure",
-        },
+        s3 = M.S3Configuration,
         inlinePayload = {
             type = "string",
         },
@@ -5404,9 +5171,7 @@ M.OAuth2AuthorizationData = {
 M.AuthorizationData = {
     type = "union",
     members = {
-        oauth2 = {
-            type = "structure",
-        },
+        oauth2 = M.OAuth2AuthorizationData,
     },
 }
 
@@ -5487,7 +5252,7 @@ M.DeleteGatewayTargetOutput = {
         },
         statusReasons = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -5523,7 +5288,7 @@ M.ListGatewayTargetsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -5574,7 +5339,7 @@ M.TargetSummary = {
             },
         },
         resourcePriority = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5584,7 +5349,7 @@ M.ListGatewayTargetsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetSummary,
             traits = {
                 required = true,
             },
@@ -5607,7 +5372,7 @@ M.SynchronizeGatewayTargetsInput = {
         },
         targetIdList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -5675,12 +5440,9 @@ M.GetTokenVaultOutput = {
                 required = true,
             },
         },
-        kmsConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        kmsConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.KmsConfiguration }),
         lastModifiedDate = {
             type = "timestamp",
             traits = {
@@ -5693,15 +5455,11 @@ M.GetTokenVaultOutput = {
 M.HarnessAgentCoreRuntimeEnvironmentRequest = {
     type = "structure",
     members = {
-        lifecycleConfiguration = {
-            type = "structure",
-        },
-        networkConfiguration = {
-            type = "structure",
-        },
+        lifecycleConfiguration = M.LifecycleConfiguration,
+        networkConfiguration = M.NetworkConfiguration,
         filesystemConfigurations = {
             type = "list",
-            member_type = "union",
+            member = M.FilesystemConfiguration,
         },
     },
 }
@@ -5709,18 +5467,14 @@ M.HarnessAgentCoreRuntimeEnvironmentRequest = {
 M.HarnessEnvironmentProviderRequest = {
     type = "union",
     members = {
-        agentCoreRuntimeEnvironment = {
-            type = "structure",
-        },
+        agentCoreRuntimeEnvironment = M.HarnessAgentCoreRuntimeEnvironmentRequest,
     },
 }
 
 M.HarnessEnvironmentArtifact = {
     type = "union",
     members = {
-        containerConfiguration = {
-            type = "structure",
-        },
+        containerConfiguration = M.ContainerConfiguration,
     },
 }
 
@@ -5728,10 +5482,10 @@ M.HarnessAgentCoreMemoryRetrievalConfig = {
     type = "structure",
     members = {
         topK = {
-            type = "number",
+            type = "integer",
         },
         relevanceScore = {
-            type = "number",
+            type = "float",
         },
         strategyId = {
             type = "string",
@@ -5752,12 +5506,12 @@ M.HarnessAgentCoreMemoryConfiguration = {
             type = "string",
         },
         messagesCount = {
-            type = "number",
+            type = "integer",
         },
         retrievalConfig = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.HarnessAgentCoreMemoryRetrievalConfig,
         },
     },
 }
@@ -5765,9 +5519,7 @@ M.HarnessAgentCoreMemoryConfiguration = {
 M.HarnessMemoryConfiguration = {
     type = "union",
     members = {
-        agentCoreMemoryConfiguration = {
-            type = "structure",
-        },
+        agentCoreMemoryConfiguration = M.HarnessAgentCoreMemoryConfiguration,
     },
 }
 
@@ -5781,13 +5533,13 @@ M.HarnessBedrockModelConfig = {
             },
         },
         maxTokens = {
-            type = "number",
+            type = "integer",
         },
         temperature = {
-            type = "number",
+            type = "float",
         },
         topP = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -5808,16 +5560,16 @@ M.HarnessGeminiModelConfig = {
             },
         },
         maxTokens = {
-            type = "number",
+            type = "integer",
         },
         temperature = {
-            type = "number",
+            type = "float",
         },
         topP = {
-            type = "number",
+            type = "float",
         },
         topK = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5838,13 +5590,13 @@ M.HarnessOpenAiModelConfig = {
             },
         },
         maxTokens = {
-            type = "number",
+            type = "integer",
         },
         temperature = {
-            type = "number",
+            type = "float",
         },
         topP = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -5852,15 +5604,9 @@ M.HarnessOpenAiModelConfig = {
 M.HarnessModelConfiguration = {
     type = "union",
     members = {
-        bedrockModelConfig = {
-            type = "structure",
-        },
-        openAiModelConfig = {
-            type = "structure",
-        },
-        geminiModelConfig = {
-            type = "structure",
-        },
+        bedrockModelConfig = M.HarnessBedrockModelConfig,
+        openAiModelConfig = M.HarnessOpenAiModelConfig,
+        geminiModelConfig = M.HarnessGeminiModelConfig,
     },
 }
 
@@ -5907,15 +5653,9 @@ M.Unit = {
 M.HarnessGatewayOutboundAuth = {
     type = "union",
     members = {
-        awsIam = {
-            type = "structure",
-        },
-        none = {
-            type = "structure",
-        },
-        oauth = {
-            type = "structure",
-        },
+        awsIam = M.Unit,
+        none = M.Unit,
+        oauth = M.OAuthCredentialProvider,
     },
 }
 
@@ -5928,9 +5668,7 @@ M.HarnessAgentCoreGatewayConfig = {
                 required = true,
             },
         },
-        outboundAuth = {
-            type = "union",
-        },
+        outboundAuth = M.HarnessGatewayOutboundAuth,
     },
 }
 
@@ -5963,8 +5701,8 @@ M.HarnessRemoteMcpConfig = {
         },
         headers = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -5972,21 +5710,11 @@ M.HarnessRemoteMcpConfig = {
 M.HarnessToolConfiguration = {
     type = "union",
     members = {
-        remoteMcp = {
-            type = "structure",
-        },
-        agentCoreBrowser = {
-            type = "structure",
-        },
-        agentCoreGateway = {
-            type = "structure",
-        },
-        inlineFunction = {
-            type = "structure",
-        },
-        agentCoreCodeInterpreter = {
-            type = "structure",
-        },
+        remoteMcp = M.HarnessRemoteMcpConfig,
+        agentCoreBrowser = M.HarnessAgentCoreBrowserConfig,
+        agentCoreGateway = M.HarnessAgentCoreGatewayConfig,
+        inlineFunction = M.HarnessInlineFunctionConfig,
+        agentCoreCodeInterpreter = M.HarnessAgentCoreCodeInterpreterConfig,
     },
 }
 
@@ -6010,9 +5738,7 @@ M.HarnessTool = {
         name = {
             type = "string",
         },
-        config = {
-            type = "union",
-        },
+        config = M.HarnessToolConfiguration,
     },
 }
 
@@ -6020,7 +5746,7 @@ M.HarnessSlidingWindowConfiguration = {
     type = "structure",
     members = {
         messagesCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -6029,10 +5755,10 @@ M.HarnessSummarizationConfiguration = {
     type = "structure",
     members = {
         summaryRatio = {
-            type = "number",
+            type = "float",
         },
         preserveRecentMessages = {
-            type = "number",
+            type = "integer",
         },
         summarizationSystemPrompt = {
             type = "string",
@@ -6043,12 +5769,8 @@ M.HarnessSummarizationConfiguration = {
 M.HarnessTruncationStrategyConfiguration = {
     type = "union",
     members = {
-        slidingWindow = {
-            type = "structure",
-        },
-        summarization = {
-            type = "structure",
-        },
+        slidingWindow = M.HarnessSlidingWindowConfiguration,
+        summarization = M.HarnessSummarizationConfiguration,
     },
 }
 
@@ -6067,9 +5789,7 @@ M.HarnessTruncationConfiguration = {
                 required = true,
             },
         },
-        config = {
-            type = "union",
-        },
+        config = M.HarnessTruncationStrategyConfiguration,
     },
 }
 
@@ -6091,58 +5811,46 @@ M.CreateHarnessInput = {
                 required = true,
             },
         },
-        environment = {
-            type = "union",
-        },
-        environmentArtifact = {
-            type = "union",
-        },
+        environment = M.HarnessEnvironmentProviderRequest,
+        environmentArtifact = M.HarnessEnvironmentArtifact,
         environmentVariables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        authorizerConfiguration = {
-            type = "union",
-        },
-        model = {
-            type = "union",
-        },
+        authorizerConfiguration = M.AuthorizerConfiguration,
+        model = M.HarnessModelConfiguration,
         systemPrompt = {
             type = "list",
-            member_type = "union",
+            member = M.HarnessSystemContentBlock,
         },
         tools = {
             type = "list",
-            member_type = "structure",
+            member = M.HarnessTool,
         },
         skills = {
             type = "list",
-            member_type = "union",
+            member = M.HarnessSkill,
         },
         allowedTools = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        memory = {
-            type = "union",
-        },
-        truncation = {
-            type = "structure",
-        },
+        memory = M.HarnessMemoryConfiguration,
+        truncation = M.HarnessTruncationConfiguration,
         maxIterations = {
-            type = "number",
+            type = "integer",
         },
         maxTokens = {
-            type = "number",
+            type = "integer",
         },
         timeoutSeconds = {
-            type = "number",
+            type = "integer",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -6168,21 +5876,15 @@ M.HarnessAgentCoreRuntimeEnvironment = {
                 required = true,
             },
         },
-        lifecycleConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        networkConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        lifecycleConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LifecycleConfiguration }),
+        networkConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.NetworkConfiguration }),
         filesystemConfigurations = {
             type = "list",
-            member_type = "union",
+            member = M.FilesystemConfiguration,
         },
     },
 }
@@ -6190,9 +5892,7 @@ M.HarnessAgentCoreRuntimeEnvironment = {
 M.HarnessEnvironmentProvider = {
     type = "union",
     members = {
-        agentCoreRuntimeEnvironment = {
-            type = "structure",
-        },
+        agentCoreRuntimeEnvironment = M.HarnessAgentCoreRuntimeEnvironment,
     },
 }
 
@@ -6251,74 +5951,59 @@ M.Harness = {
                 required = true,
             },
         },
-        model = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        model = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HarnessModelConfiguration }),
         systemPrompt = {
             type = "list",
-            member_type = "union",
+            member = M.HarnessSystemContentBlock,
             traits = {
                 required = true,
             },
         },
         tools = {
             type = "list",
-            member_type = "structure",
+            member = M.HarnessTool,
             traits = {
                 required = true,
             },
         },
         skills = {
             type = "list",
-            member_type = "union",
+            member = M.HarnessSkill,
             traits = {
                 required = true,
             },
         },
         allowedTools = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        truncation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        environment = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        environmentArtifact = {
-            type = "union",
-        },
+        truncation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HarnessTruncationConfiguration }),
+        environment = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HarnessEnvironmentProvider }),
+        environmentArtifact = M.HarnessEnvironmentArtifact,
         environmentVariables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        authorizerConfiguration = {
-            type = "union",
-        },
-        memory = {
-            type = "union",
-        },
+        authorizerConfiguration = M.AuthorizerConfiguration,
+        memory = M.HarnessMemoryConfiguration,
         maxIterations = {
-            type = "number",
+            type = "integer",
         },
         maxTokens = {
-            type = "number",
+            type = "integer",
         },
         timeoutSeconds = {
-            type = "number",
+            type = "integer",
         },
         failureReason = {
             type = "string",
@@ -6329,12 +6014,9 @@ M.Harness = {
 M.CreateHarnessOutput = {
     type = "structure",
     members = {
-        harness = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        harness = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Harness }),
     },
 }
 
@@ -6360,9 +6042,7 @@ M.DeleteHarnessInput = {
 M.DeleteHarnessOutput = {
     type = "structure",
     members = {
-        harness = {
-            type = "structure",
-        },
+        harness = M.Harness,
     },
 }
 
@@ -6382,12 +6062,9 @@ M.GetHarnessInput = {
 M.GetHarnessOutput = {
     type = "structure",
     members = {
-        harness = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        harness = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Harness }),
     },
 }
 
@@ -6395,7 +6072,7 @@ M.ListHarnessesInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -6456,7 +6133,7 @@ M.ListHarnessesOutput = {
     members = {
         harnesses = {
             type = "list",
-            member_type = "structure",
+            member = M.HarnessSummary,
             traits = {
                 required = true,
             },
@@ -6470,27 +6147,21 @@ M.ListHarnessesOutput = {
 M.UpdatedAuthorizerConfiguration = {
     type = "structure",
     members = {
-        optionalValue = {
-            type = "union",
-        },
+        optionalValue = M.AuthorizerConfiguration,
     },
 }
 
 M.UpdatedHarnessEnvironmentArtifact = {
     type = "structure",
     members = {
-        optionalValue = {
-            type = "union",
-        },
+        optionalValue = M.HarnessEnvironmentArtifact,
     },
 }
 
 M.UpdatedHarnessMemoryConfiguration = {
     type = "structure",
     members = {
-        optionalValue = {
-            type = "union",
-        },
+        optionalValue = M.HarnessMemoryConfiguration,
     },
 }
 
@@ -6510,53 +6181,41 @@ M.UpdateHarnessInput = {
         executionRoleArn = {
             type = "string",
         },
-        environment = {
-            type = "union",
-        },
-        environmentArtifact = {
-            type = "structure",
-        },
+        environment = M.HarnessEnvironmentProviderRequest,
+        environmentArtifact = M.UpdatedHarnessEnvironmentArtifact,
         environmentVariables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        authorizerConfiguration = {
-            type = "structure",
-        },
-        model = {
-            type = "union",
-        },
+        authorizerConfiguration = M.UpdatedAuthorizerConfiguration,
+        model = M.HarnessModelConfiguration,
         systemPrompt = {
             type = "list",
-            member_type = "union",
+            member = M.HarnessSystemContentBlock,
         },
         tools = {
             type = "list",
-            member_type = "structure",
+            member = M.HarnessTool,
         },
         skills = {
             type = "list",
-            member_type = "union",
+            member = M.HarnessSkill,
         },
         allowedTools = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        memory = {
-            type = "structure",
-        },
-        truncation = {
-            type = "structure",
-        },
+        memory = M.UpdatedHarnessMemoryConfiguration,
+        truncation = M.HarnessTruncationConfiguration,
         maxIterations = {
-            type = "number",
+            type = "integer",
         },
         maxTokens = {
-            type = "number",
+            type = "integer",
         },
         timeoutSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -6564,12 +6223,9 @@ M.UpdateHarnessInput = {
 M.UpdateHarnessOutput = {
     type = "structure",
     members = {
-        harness = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        harness = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Harness }),
     },
 }
 
@@ -6591,8 +6247,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -6661,10 +6317,10 @@ M.NumberValidation = {
     type = "structure",
     members = {
         minValue = {
-            type = "number",
+            type = "double",
         },
         maxValue = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -6674,10 +6330,10 @@ M.StringListValidation = {
     members = {
         allowedValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         maxItems = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -6687,7 +6343,7 @@ M.StringValidation = {
     members = {
         allowedValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -6698,15 +6354,9 @@ M.StringValidation = {
 M.Validation = {
     type = "union",
     members = {
-        stringValidation = {
-            type = "structure",
-        },
-        stringListValidation = {
-            type = "structure",
-        },
-        numberValidation = {
-            type = "structure",
-        },
+        stringValidation = M.StringValidation,
+        stringListValidation = M.StringListValidation,
+        numberValidation = M.NumberValidation,
     },
 }
 
@@ -6722,18 +6372,14 @@ M.LlmExtractionConfig = {
                 required = true,
             },
         },
-        validation = {
-            type = "union",
-        },
+        validation = M.Validation,
     },
 }
 
 M.ExtractionConfig = {
     type = "union",
     members = {
-        llmExtractionConfig = {
-            type = "structure",
-        },
+        llmExtractionConfig = M.LlmExtractionConfig,
     },
 }
 
@@ -6749,9 +6395,7 @@ M.MetadataSchemaEntry = {
         type = {
             type = "string",
         },
-        extractionConfig = {
-            type = "union",
-        },
+        extractionConfig = M.ExtractionConfig,
     },
 }
 
@@ -6760,7 +6404,7 @@ M.MemoryRecordSchema = {
     members = {
         metadataSchema = {
             type = "list",
-            member_type = "structure",
+            member = M.MetadataSchemaEntry,
         },
     },
 }
@@ -6782,30 +6426,22 @@ M.EpisodicOverrideReflectionConfigurationInput = {
         },
         namespaces = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         namespaceTemplates = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        memoryRecordSchema = {
-            type = "structure",
-        },
+        memoryRecordSchema = M.MemoryRecordSchema,
     },
 }
 
 M.EpisodicOverrideConfigurationInput = {
     type = "structure",
     members = {
-        extraction = {
-            type = "structure",
-        },
-        consolidation = {
-            type = "structure",
-        },
-        reflection = {
-            type = "structure",
-        },
+        extraction = M.EpisodicOverrideExtractionConfigurationInput,
+        consolidation = M.EpisodicOverrideConsolidationConfigurationInput,
+        reflection = M.EpisodicOverrideReflectionConfigurationInput,
     },
 }
 
@@ -6831,7 +6467,10 @@ M.MessageBasedTriggerInput = {
     type = "structure",
     members = {
         messageCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 6,
+            },
         },
     },
 }
@@ -6840,7 +6479,10 @@ M.TimeBasedTriggerInput = {
     type = "structure",
     members = {
         idleSessionTimeout = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 20,
+            },
         },
     },
 }
@@ -6849,7 +6491,10 @@ M.TokenBasedTriggerInput = {
     type = "structure",
     members = {
         tokenCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 5000,
+            },
         },
     },
 }
@@ -6857,15 +6502,9 @@ M.TokenBasedTriggerInput = {
 M.TriggerConditionInput = {
     type = "union",
     members = {
-        messageBasedTrigger = {
-            type = "structure",
-        },
-        tokenBasedTrigger = {
-            type = "structure",
-        },
-        timeBasedTrigger = {
-            type = "structure",
-        },
+        messageBasedTrigger = M.MessageBasedTriggerInput,
+        tokenBasedTrigger = M.TokenBasedTriggerInput,
+        timeBasedTrigger = M.TimeBasedTriggerInput,
     },
 }
 
@@ -6874,16 +6513,16 @@ M.SelfManagedConfigurationInput = {
     members = {
         triggerConditions = {
             type = "list",
-            member_type = "union",
+            member = M.TriggerConditionInput,
         },
-        invocationConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        invocationConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InvocationConfigurationInput }),
         historicalContextWindowSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 4,
+            },
         },
     },
 }
@@ -6927,12 +6566,8 @@ M.SemanticOverrideExtractionConfigurationInput = {
 M.SemanticOverrideConfigurationInput = {
     type = "structure",
     members = {
-        extraction = {
-            type = "structure",
-        },
-        consolidation = {
-            type = "structure",
-        },
+        extraction = M.SemanticOverrideExtractionConfigurationInput,
+        consolidation = M.SemanticOverrideConsolidationConfigurationInput,
     },
 }
 
@@ -6957,9 +6592,7 @@ M.SummaryOverrideConsolidationConfigurationInput = {
 M.SummaryOverrideConfigurationInput = {
     type = "structure",
     members = {
-        consolidation = {
-            type = "structure",
-        },
+        consolidation = M.SummaryOverrideConsolidationConfigurationInput,
     },
 }
 
@@ -7002,33 +6635,19 @@ M.UserPreferenceOverrideExtractionConfigurationInput = {
 M.UserPreferenceOverrideConfigurationInput = {
     type = "structure",
     members = {
-        extraction = {
-            type = "structure",
-        },
-        consolidation = {
-            type = "structure",
-        },
+        extraction = M.UserPreferenceOverrideExtractionConfigurationInput,
+        consolidation = M.UserPreferenceOverrideConsolidationConfigurationInput,
     },
 }
 
 M.CustomConfigurationInput = {
     type = "union",
     members = {
-        semanticOverride = {
-            type = "structure",
-        },
-        summaryOverride = {
-            type = "structure",
-        },
-        userPreferenceOverride = {
-            type = "structure",
-        },
-        episodicOverride = {
-            type = "structure",
-        },
-        selfManagedConfiguration = {
-            type = "structure",
-        },
+        semanticOverride = M.SemanticOverrideConfigurationInput,
+        summaryOverride = M.SummaryOverrideConfigurationInput,
+        userPreferenceOverride = M.UserPreferenceOverrideConfigurationInput,
+        episodicOverride = M.EpisodicOverrideConfigurationInput,
+        selfManagedConfiguration = M.SelfManagedConfigurationInput,
     },
 }
 
@@ -7046,18 +6665,14 @@ M.CustomMemoryStrategyInput = {
         },
         namespaces = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         namespaceTemplates = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        configuration = {
-            type = "union",
-        },
-        memoryRecordSchema = {
-            type = "structure",
-        },
+        configuration = M.CustomConfigurationInput,
+        memoryRecordSchema = M.MemoryRecordSchema,
     },
 }
 
@@ -7066,15 +6681,13 @@ M.EpisodicReflectionConfigurationInput = {
     members = {
         namespaces = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         namespaceTemplates = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        memoryRecordSchema = {
-            type = "structure",
-        },
+        memoryRecordSchema = M.MemoryRecordSchema,
     },
 }
 
@@ -7092,18 +6705,14 @@ M.EpisodicMemoryStrategyInput = {
         },
         namespaces = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         namespaceTemplates = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        reflectionConfiguration = {
-            type = "structure",
-        },
-        memoryRecordSchema = {
-            type = "structure",
-        },
+        reflectionConfiguration = M.EpisodicReflectionConfigurationInput,
+        memoryRecordSchema = M.MemoryRecordSchema,
     },
 }
 
@@ -7121,15 +6730,13 @@ M.SemanticMemoryStrategyInput = {
         },
         namespaces = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         namespaceTemplates = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        memoryRecordSchema = {
-            type = "structure",
-        },
+        memoryRecordSchema = M.MemoryRecordSchema,
     },
 }
 
@@ -7147,15 +6754,13 @@ M.SummaryMemoryStrategyInput = {
         },
         namespaces = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         namespaceTemplates = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        memoryRecordSchema = {
-            type = "structure",
-        },
+        memoryRecordSchema = M.MemoryRecordSchema,
     },
 }
 
@@ -7173,36 +6778,24 @@ M.UserPreferenceMemoryStrategyInput = {
         },
         namespaces = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         namespaceTemplates = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        memoryRecordSchema = {
-            type = "structure",
-        },
+        memoryRecordSchema = M.MemoryRecordSchema,
     },
 }
 
 M.MemoryStrategyInput = {
     type = "union",
     members = {
-        semanticMemoryStrategy = {
-            type = "structure",
-        },
-        summaryMemoryStrategy = {
-            type = "structure",
-        },
-        userPreferenceMemoryStrategy = {
-            type = "structure",
-        },
-        customMemoryStrategy = {
-            type = "structure",
-        },
-        episodicMemoryStrategy = {
-            type = "structure",
-        },
+        semanticMemoryStrategy = M.SemanticMemoryStrategyInput,
+        summaryMemoryStrategy = M.SummaryMemoryStrategyInput,
+        userPreferenceMemoryStrategy = M.UserPreferenceMemoryStrategyInput,
+        customMemoryStrategy = M.CustomMemoryStrategyInput,
+        episodicMemoryStrategy = M.EpisodicMemoryStrategyInput,
     },
 }
 
@@ -7226,6 +6819,9 @@ M.ContentConfiguration = {
         },
         level = {
             type = "string",
+            traits = {
+                default = "METADATA_ONLY",
+            },
         },
     },
 }
@@ -7241,7 +6837,7 @@ M.KinesisResource = {
         },
         contentConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.ContentConfiguration,
             traits = {
                 required = true,
             },
@@ -7252,9 +6848,7 @@ M.KinesisResource = {
 M.StreamDeliveryResource = {
     type = "union",
     members = {
-        kinesis = {
-            type = "structure",
-        },
+        kinesis = M.KinesisResource,
     },
 }
 
@@ -7263,7 +6857,7 @@ M.StreamDeliveryResources = {
     members = {
         resources = {
             type = "list",
-            member_type = "union",
+            member = M.StreamDeliveryResource,
             traits = {
                 required = true,
             },
@@ -7293,26 +6887,24 @@ M.CreateMemoryInput = {
             type = "string",
         },
         eventExpiryDuration = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         memoryStrategies = {
             type = "list",
-            member_type = "union",
+            member = M.MemoryStrategyInput,
         },
         indexedKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.IndexedKey,
         },
-        streamDeliveryResources = {
-            type = "structure",
-        },
+        streamDeliveryResources = M.StreamDeliveryResources,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -7399,27 +6991,17 @@ M.UserPreferenceConsolidationOverride = {
 M.CustomConsolidationConfiguration = {
     type = "union",
     members = {
-        semanticConsolidationOverride = {
-            type = "structure",
-        },
-        summaryConsolidationOverride = {
-            type = "structure",
-        },
-        userPreferenceConsolidationOverride = {
-            type = "structure",
-        },
-        episodicConsolidationOverride = {
-            type = "structure",
-        },
+        semanticConsolidationOverride = M.SemanticConsolidationOverride,
+        summaryConsolidationOverride = M.SummaryConsolidationOverride,
+        userPreferenceConsolidationOverride = M.UserPreferenceConsolidationOverride,
+        episodicConsolidationOverride = M.EpisodicConsolidationOverride,
     },
 }
 
 M.ConsolidationConfiguration = {
     type = "union",
     members = {
-        customConsolidationConfiguration = {
-            type = "union",
-        },
+        customConsolidationConfiguration = M.CustomConsolidationConfiguration,
     },
 }
 
@@ -7480,24 +7062,16 @@ M.UserPreferenceExtractionOverride = {
 M.CustomExtractionConfiguration = {
     type = "union",
     members = {
-        semanticExtractionOverride = {
-            type = "structure",
-        },
-        userPreferenceExtractionOverride = {
-            type = "structure",
-        },
-        episodicExtractionOverride = {
-            type = "structure",
-        },
+        semanticExtractionOverride = M.SemanticExtractionOverride,
+        userPreferenceExtractionOverride = M.UserPreferenceExtractionOverride,
+        episodicExtractionOverride = M.EpisodicExtractionOverride,
     },
 }
 
 M.ExtractionConfiguration = {
     type = "union",
     members = {
-        customExtractionConfiguration = {
-            type = "union",
-        },
+        customExtractionConfiguration = M.CustomExtractionConfiguration,
     },
 }
 
@@ -7518,24 +7092,20 @@ M.EpisodicReflectionOverride = {
         },
         namespaces = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         namespaceTemplates = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        memoryRecordSchema = {
-            type = "structure",
-        },
+        memoryRecordSchema = M.MemoryRecordSchema,
     },
 }
 
 M.CustomReflectionConfiguration = {
     type = "union",
     members = {
-        episodicReflectionOverride = {
-            type = "structure",
-        },
+        episodicReflectionOverride = M.EpisodicReflectionOverride,
     },
 }
 
@@ -7544,27 +7114,21 @@ M.EpisodicReflectionConfiguration = {
     members = {
         namespaces = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         namespaceTemplates = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        memoryRecordSchema = {
-            type = "structure",
-        },
+        memoryRecordSchema = M.MemoryRecordSchema,
     },
 }
 
 M.ReflectionConfiguration = {
     type = "union",
     members = {
-        customReflectionConfiguration = {
-            type = "union",
-        },
-        episodicReflectionConfiguration = {
-            type = "structure",
-        },
+        customReflectionConfiguration = M.CustomReflectionConfiguration,
+        episodicReflectionConfiguration = M.EpisodicReflectionConfiguration,
     },
 }
 
@@ -7590,7 +7154,7 @@ M.MessageBasedTrigger = {
     type = "structure",
     members = {
         messageCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -7599,7 +7163,7 @@ M.TimeBasedTrigger = {
     type = "structure",
     members = {
         idleSessionTimeout = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -7608,7 +7172,7 @@ M.TokenBasedTrigger = {
     type = "structure",
     members = {
         tokenCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -7616,15 +7180,9 @@ M.TokenBasedTrigger = {
 M.TriggerCondition = {
     type = "union",
     members = {
-        messageBasedTrigger = {
-            type = "structure",
-        },
-        tokenBasedTrigger = {
-            type = "structure",
-        },
-        timeBasedTrigger = {
-            type = "structure",
-        },
+        messageBasedTrigger = M.MessageBasedTrigger,
+        tokenBasedTrigger = M.TokenBasedTrigger,
+        timeBasedTrigger = M.TimeBasedTrigger,
     },
 }
 
@@ -7633,19 +7191,16 @@ M.SelfManagedConfiguration = {
     members = {
         triggerConditions = {
             type = "list",
-            member_type = "union",
+            member = M.TriggerCondition,
             traits = {
                 required = true,
             },
         },
-        invocationConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        invocationConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InvocationConfiguration }),
         historicalContextWindowSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -7667,18 +7222,10 @@ M.StrategyConfiguration = {
         type = {
             type = "string",
         },
-        extraction = {
-            type = "union",
-        },
-        consolidation = {
-            type = "union",
-        },
-        reflection = {
-            type = "union",
-        },
-        selfManagedConfiguration = {
-            type = "structure",
-        },
+        extraction = M.ExtractionConfiguration,
+        consolidation = M.ConsolidationConfiguration,
+        reflection = M.ReflectionConfiguration,
+        selfManagedConfiguration = M.SelfManagedConfiguration,
     },
 }
 
@@ -7715,9 +7262,7 @@ M.MemoryStrategy = {
         description = {
             type = "string",
         },
-        configuration = {
-            type = "structure",
-        },
+        configuration = M.StrategyConfiguration,
         type = {
             type = "string",
             traits = {
@@ -7726,14 +7271,14 @@ M.MemoryStrategy = {
         },
         namespaces = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         namespaceTemplates = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -7747,9 +7292,7 @@ M.MemoryStrategy = {
         status = {
             type = "string",
         },
-        memoryRecordSchema = {
-            type = "structure",
-        },
+        memoryRecordSchema = M.MemoryRecordSchema,
     },
 }
 
@@ -7784,7 +7327,7 @@ M.Memory = {
             type = "string",
         },
         eventExpiryDuration = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -7812,24 +7355,20 @@ M.Memory = {
         },
         strategies = {
             type = "list",
-            member_type = "structure",
+            member = M.MemoryStrategy,
         },
         indexedKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.IndexedKey,
         },
-        streamDeliveryResources = {
-            type = "structure",
-        },
+        streamDeliveryResources = M.StreamDeliveryResources,
     },
 }
 
 M.CreateMemoryOutput = {
     type = "structure",
     members = {
-        memory = {
-            type = "structure",
-        },
+        memory = M.Memory,
     },
 }
 
@@ -7905,6 +7444,7 @@ M.GetMemoryInput = {
         view = {
             type = "string",
             traits = {
+                default = "full",
                 http_query = "view",
             },
         },
@@ -7914,12 +7454,9 @@ M.GetMemoryInput = {
 M.GetMemoryOutput = {
     type = "structure",
     members = {
-        memory = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        memory = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Memory }),
     },
 }
 
@@ -7927,7 +7464,10 @@ M.ListMemoriesInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 100,
+            },
         },
         nextToken = {
             type = "string",
@@ -7967,7 +7507,7 @@ M.ListMemoriesOutput = {
     members = {
         memories = {
             type = "list",
-            member_type = "structure",
+            member = M.MemorySummary,
             traits = {
                 required = true,
             },
@@ -7993,72 +7533,48 @@ M.DeleteMemoryStrategyInput = {
 M.CustomConsolidationConfigurationInput = {
     type = "union",
     members = {
-        semanticConsolidationOverride = {
-            type = "structure",
-        },
-        summaryConsolidationOverride = {
-            type = "structure",
-        },
-        userPreferenceConsolidationOverride = {
-            type = "structure",
-        },
-        episodicConsolidationOverride = {
-            type = "structure",
-        },
+        semanticConsolidationOverride = M.SemanticOverrideConsolidationConfigurationInput,
+        summaryConsolidationOverride = M.SummaryOverrideConsolidationConfigurationInput,
+        userPreferenceConsolidationOverride = M.UserPreferenceOverrideConsolidationConfigurationInput,
+        episodicConsolidationOverride = M.EpisodicOverrideConsolidationConfigurationInput,
     },
 }
 
 M.ModifyConsolidationConfiguration = {
     type = "union",
     members = {
-        customConsolidationConfiguration = {
-            type = "union",
-        },
+        customConsolidationConfiguration = M.CustomConsolidationConfigurationInput,
     },
 }
 
 M.CustomExtractionConfigurationInput = {
     type = "union",
     members = {
-        semanticExtractionOverride = {
-            type = "structure",
-        },
-        userPreferenceExtractionOverride = {
-            type = "structure",
-        },
-        episodicExtractionOverride = {
-            type = "structure",
-        },
+        semanticExtractionOverride = M.SemanticOverrideExtractionConfigurationInput,
+        userPreferenceExtractionOverride = M.UserPreferenceOverrideExtractionConfigurationInput,
+        episodicExtractionOverride = M.EpisodicOverrideExtractionConfigurationInput,
     },
 }
 
 M.ModifyExtractionConfiguration = {
     type = "union",
     members = {
-        customExtractionConfiguration = {
-            type = "union",
-        },
+        customExtractionConfiguration = M.CustomExtractionConfigurationInput,
     },
 }
 
 M.CustomReflectionConfigurationInput = {
     type = "union",
     members = {
-        episodicReflectionOverride = {
-            type = "structure",
-        },
+        episodicReflectionOverride = M.EpisodicOverrideReflectionConfigurationInput,
     },
 }
 
 M.ModifyReflectionConfiguration = {
     type = "union",
     members = {
-        episodicReflectionConfiguration = {
-            type = "structure",
-        },
-        customReflectionConfiguration = {
-            type = "union",
-        },
+        episodicReflectionConfiguration = M.EpisodicReflectionConfigurationInput,
+        customReflectionConfiguration = M.CustomReflectionConfigurationInput,
     },
 }
 
@@ -8079,13 +7595,11 @@ M.ModifySelfManagedConfiguration = {
     members = {
         triggerConditions = {
             type = "list",
-            member_type = "union",
+            member = M.TriggerConditionInput,
         },
-        invocationConfiguration = {
-            type = "structure",
-        },
+        invocationConfiguration = M.ModifyInvocationConfigurationInput,
         historicalContextWindowSize = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -8093,18 +7607,10 @@ M.ModifySelfManagedConfiguration = {
 M.ModifyStrategyConfiguration = {
     type = "structure",
     members = {
-        extraction = {
-            type = "union",
-        },
-        consolidation = {
-            type = "union",
-        },
-        reflection = {
-            type = "union",
-        },
-        selfManagedConfiguration = {
-            type = "structure",
-        },
+        extraction = M.ModifyExtractionConfiguration,
+        consolidation = M.ModifyConsolidationConfiguration,
+        reflection = M.ModifyReflectionConfiguration,
+        selfManagedConfiguration = M.ModifySelfManagedConfiguration,
     },
 }
 
@@ -8122,18 +7628,14 @@ M.ModifyMemoryStrategyInput = {
         },
         namespaces = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         namespaceTemplates = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        configuration = {
-            type = "structure",
-        },
-        memoryRecordSchema = {
-            type = "structure",
-        },
+        configuration = M.ModifyStrategyConfiguration,
+        memoryRecordSchema = M.MemoryRecordSchema,
     },
 }
 
@@ -8142,15 +7644,15 @@ M.ModifyMemoryStrategies = {
     members = {
         addMemoryStrategies = {
             type = "list",
-            member_type = "union",
+            member = M.MemoryStrategyInput,
         },
         modifyMemoryStrategies = {
             type = "list",
-            member_type = "structure",
+            member = M.ModifyMemoryStrategyInput,
         },
         deleteMemoryStrategies = {
             type = "list",
-            member_type = "structure",
+            member = M.DeleteMemoryStrategyInput,
         },
     },
 }
@@ -8172,30 +7674,24 @@ M.UpdateMemoryInput = {
             type = "string",
         },
         eventExpiryDuration = {
-            type = "number",
+            type = "integer",
         },
         memoryExecutionRoleArn = {
             type = "string",
         },
-        memoryStrategies = {
-            type = "structure",
-        },
+        memoryStrategies = M.ModifyMemoryStrategies,
         addIndexedKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.IndexedKey,
         },
-        streamDeliveryResources = {
-            type = "structure",
-        },
+        streamDeliveryResources = M.StreamDeliveryResources,
     },
 }
 
 M.UpdateMemoryOutput = {
     type = "structure",
     members = {
-        memory = {
-            type = "structure",
-        },
+        memory = M.Memory,
     },
 }
 
@@ -8274,11 +7770,11 @@ M.Oauth2AuthorizationServerMetadata = {
         },
         responseTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         tokenEndpointAuthMethods = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -8289,9 +7785,7 @@ M.Oauth2Discovery = {
         discoveryUrl = {
             type = "string",
         },
-        authorizationServerMetadata = {
-            type = "structure",
-        },
+        authorizationServerMetadata = M.Oauth2AuthorizationServerMetadata,
     },
 }
 
@@ -8311,7 +7805,7 @@ M.TokenExchangeGrantTypeConfigType = {
         },
         actorTokenScopes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -8325,37 +7819,34 @@ M.OnBehalfOfTokenExchangeConfigType = {
                 required = true,
             },
         },
-        tokenExchangeGrantTypeConfig = {
-            type = "structure",
-        },
+        tokenExchangeGrantTypeConfig = M.TokenExchangeGrantTypeConfigType,
     },
 }
 
 M.CustomOauth2ProviderConfigInput = {
     type = "structure",
     members = {
-        oauthDiscovery = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        oauthDiscovery = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Oauth2Discovery }),
         clientId = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
         clientSecret = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
-        privateEndpoint = {
-            type = "union",
-        },
+        privateEndpoint = M.PrivateEndpoint,
         privateEndpointOverrides = {
             type = "list",
-            member_type = "structure",
+            member = M.PrivateEndpointOverride,
         },
-        onBehalfOfTokenExchangeConfig = {
-            type = "structure",
-        },
+        onBehalfOfTokenExchangeConfig = M.OnBehalfOfTokenExchangeConfigType,
         clientAuthenticationMethod = {
             type = "string",
         },
@@ -8503,33 +7994,15 @@ M.SlackOauth2ProviderConfigInput = {
 M.Oauth2ProviderConfigInput = {
     type = "union",
     members = {
-        customOauth2ProviderConfig = {
-            type = "structure",
-        },
-        googleOauth2ProviderConfig = {
-            type = "structure",
-        },
-        githubOauth2ProviderConfig = {
-            type = "structure",
-        },
-        slackOauth2ProviderConfig = {
-            type = "structure",
-        },
-        salesforceOauth2ProviderConfig = {
-            type = "structure",
-        },
-        microsoftOauth2ProviderConfig = {
-            type = "structure",
-        },
-        atlassianOauth2ProviderConfig = {
-            type = "structure",
-        },
-        linkedinOauth2ProviderConfig = {
-            type = "structure",
-        },
-        includedOauth2ProviderConfig = {
-            type = "structure",
-        },
+        customOauth2ProviderConfig = M.CustomOauth2ProviderConfigInput,
+        googleOauth2ProviderConfig = M.GoogleOauth2ProviderConfigInput,
+        githubOauth2ProviderConfig = M.GithubOauth2ProviderConfigInput,
+        slackOauth2ProviderConfig = M.SlackOauth2ProviderConfigInput,
+        salesforceOauth2ProviderConfig = M.SalesforceOauth2ProviderConfigInput,
+        microsoftOauth2ProviderConfig = M.MicrosoftOauth2ProviderConfigInput,
+        atlassianOauth2ProviderConfig = M.AtlassianOauth2ProviderConfigInput,
+        linkedinOauth2ProviderConfig = M.LinkedinOauth2ProviderConfigInput,
+        includedOauth2ProviderConfig = M.IncludedOauth2ProviderConfigInput,
     },
 }
 
@@ -8548,16 +8021,13 @@ M.CreateOauth2CredentialProviderInput = {
                 required = true,
             },
         },
-        oauth2ProviderConfigInput = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        oauth2ProviderConfigInput = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Oauth2ProviderConfigInput }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -8565,12 +8035,9 @@ M.CreateOauth2CredentialProviderInput = {
 M.AtlassianOauth2ProviderConfigOutput = {
     type = "structure",
     members = {
-        oauthDiscovery = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        oauthDiscovery = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Oauth2Discovery }),
         clientId = {
             type = "string",
         },
@@ -8580,25 +8047,18 @@ M.AtlassianOauth2ProviderConfigOutput = {
 M.CustomOauth2ProviderConfigOutput = {
     type = "structure",
     members = {
-        oauthDiscovery = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        oauthDiscovery = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Oauth2Discovery }),
         clientId = {
             type = "string",
         },
-        privateEndpoint = {
-            type = "union",
-        },
+        privateEndpoint = M.PrivateEndpoint,
         privateEndpointOverrides = {
             type = "list",
-            member_type = "structure",
+            member = M.PrivateEndpointOverride,
         },
-        onBehalfOfTokenExchangeConfig = {
-            type = "structure",
-        },
+        onBehalfOfTokenExchangeConfig = M.OnBehalfOfTokenExchangeConfigType,
         clientAuthenticationMethod = {
             type = "string",
         },
@@ -8608,12 +8068,9 @@ M.CustomOauth2ProviderConfigOutput = {
 M.GithubOauth2ProviderConfigOutput = {
     type = "structure",
     members = {
-        oauthDiscovery = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        oauthDiscovery = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Oauth2Discovery }),
         clientId = {
             type = "string",
         },
@@ -8623,12 +8080,9 @@ M.GithubOauth2ProviderConfigOutput = {
 M.GoogleOauth2ProviderConfigOutput = {
     type = "structure",
     members = {
-        oauthDiscovery = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        oauthDiscovery = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Oauth2Discovery }),
         clientId = {
             type = "string",
         },
@@ -8638,12 +8092,9 @@ M.GoogleOauth2ProviderConfigOutput = {
 M.IncludedOauth2ProviderConfigOutput = {
     type = "structure",
     members = {
-        oauthDiscovery = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        oauthDiscovery = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Oauth2Discovery }),
         clientId = {
             type = "string",
         },
@@ -8653,12 +8104,9 @@ M.IncludedOauth2ProviderConfigOutput = {
 M.LinkedinOauth2ProviderConfigOutput = {
     type = "structure",
     members = {
-        oauthDiscovery = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        oauthDiscovery = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Oauth2Discovery }),
         clientId = {
             type = "string",
         },
@@ -8668,12 +8116,9 @@ M.LinkedinOauth2ProviderConfigOutput = {
 M.MicrosoftOauth2ProviderConfigOutput = {
     type = "structure",
     members = {
-        oauthDiscovery = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        oauthDiscovery = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Oauth2Discovery }),
         clientId = {
             type = "string",
         },
@@ -8683,12 +8128,9 @@ M.MicrosoftOauth2ProviderConfigOutput = {
 M.SalesforceOauth2ProviderConfigOutput = {
     type = "structure",
     members = {
-        oauthDiscovery = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        oauthDiscovery = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Oauth2Discovery }),
         clientId = {
             type = "string",
         },
@@ -8698,12 +8140,9 @@ M.SalesforceOauth2ProviderConfigOutput = {
 M.SlackOauth2ProviderConfigOutput = {
     type = "structure",
     members = {
-        oauthDiscovery = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        oauthDiscovery = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Oauth2Discovery }),
         clientId = {
             type = "string",
         },
@@ -8713,33 +8152,15 @@ M.SlackOauth2ProviderConfigOutput = {
 M.Oauth2ProviderConfigOutput = {
     type = "union",
     members = {
-        customOauth2ProviderConfig = {
-            type = "structure",
-        },
-        googleOauth2ProviderConfig = {
-            type = "structure",
-        },
-        githubOauth2ProviderConfig = {
-            type = "structure",
-        },
-        slackOauth2ProviderConfig = {
-            type = "structure",
-        },
-        salesforceOauth2ProviderConfig = {
-            type = "structure",
-        },
-        microsoftOauth2ProviderConfig = {
-            type = "structure",
-        },
-        atlassianOauth2ProviderConfig = {
-            type = "structure",
-        },
-        linkedinOauth2ProviderConfig = {
-            type = "structure",
-        },
-        includedOauth2ProviderConfig = {
-            type = "structure",
-        },
+        customOauth2ProviderConfig = M.CustomOauth2ProviderConfigOutput,
+        googleOauth2ProviderConfig = M.GoogleOauth2ProviderConfigOutput,
+        githubOauth2ProviderConfig = M.GithubOauth2ProviderConfigOutput,
+        slackOauth2ProviderConfig = M.SlackOauth2ProviderConfigOutput,
+        salesforceOauth2ProviderConfig = M.SalesforceOauth2ProviderConfigOutput,
+        microsoftOauth2ProviderConfig = M.MicrosoftOauth2ProviderConfigOutput,
+        atlassianOauth2ProviderConfig = M.AtlassianOauth2ProviderConfigOutput,
+        linkedinOauth2ProviderConfig = M.LinkedinOauth2ProviderConfigOutput,
+        includedOauth2ProviderConfig = M.IncludedOauth2ProviderConfigOutput,
     },
 }
 
@@ -8756,12 +8177,9 @@ M.Status = {
 M.CreateOauth2CredentialProviderOutput = {
     type = "structure",
     members = {
-        clientSecretArn = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        clientSecretArn = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Secret }),
         name = {
             type = "string",
             traits = {
@@ -8777,9 +8195,7 @@ M.CreateOauth2CredentialProviderOutput = {
         callbackUrl = {
             type = "string",
         },
-        oauth2ProviderConfigOutput = {
-            type = "union",
-        },
+        oauth2ProviderConfigOutput = M.Oauth2ProviderConfigOutput,
         status = {
             type = "string",
         },
@@ -8817,12 +8233,9 @@ M.GetOauth2CredentialProviderInput = {
 M.GetOauth2CredentialProviderOutput = {
     type = "structure",
     members = {
-        clientSecretArn = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        clientSecretArn = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Secret }),
         name = {
             type = "string",
             traits = {
@@ -8844,12 +8257,9 @@ M.GetOauth2CredentialProviderOutput = {
         callbackUrl = {
             type = "string",
         },
-        oauth2ProviderConfigOutput = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        oauth2ProviderConfigOutput = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Oauth2ProviderConfigOutput }),
         createdTime = {
             type = "timestamp",
             traits = {
@@ -8878,7 +8288,10 @@ M.ListOauth2CredentialProvidersInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 10,
+            },
         },
     },
 }
@@ -8924,7 +8337,7 @@ M.ListOauth2CredentialProvidersOutput = {
     members = {
         credentialProviders = {
             type = "list",
-            member_type = "structure",
+            member = M.Oauth2CredentialProviderItem,
             traits = {
                 required = true,
             },
@@ -8950,24 +8363,18 @@ M.UpdateOauth2CredentialProviderInput = {
                 required = true,
             },
         },
-        oauth2ProviderConfigInput = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        oauth2ProviderConfigInput = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Oauth2ProviderConfigInput }),
     },
 }
 
 M.UpdateOauth2CredentialProviderOutput = {
     type = "structure",
     members = {
-        clientSecretArn = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        clientSecretArn = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Secret }),
         name = {
             type = "string",
             traits = {
@@ -8989,12 +8396,9 @@ M.UpdateOauth2CredentialProviderOutput = {
         callbackUrl = {
             type = "string",
         },
-        oauth2ProviderConfigOutput = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        oauth2ProviderConfigOutput = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Oauth2ProviderConfigOutput }),
         createdTime = {
             type = "timestamp",
             traits = {
@@ -9018,14 +8422,14 @@ M.CloudWatchLogsInputConfig = {
     members = {
         logGroupNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         serviceNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -9036,9 +8440,7 @@ M.CloudWatchLogsInputConfig = {
 M.DataSourceConfig = {
     type = "union",
     members = {
-        cloudWatchLogs = {
-            type = "structure",
-        },
+        cloudWatchLogs = M.CloudWatchLogsInputConfig,
     },
 }
 
@@ -9069,7 +8471,7 @@ M.FilterValue = {
             type = "string",
         },
         doubleValue = {
-            type = "number",
+            type = "double",
         },
         booleanValue = {
             type = "boolean",
@@ -9092,12 +8494,9 @@ M.Filter = {
                 required = true,
             },
         },
-        value = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        value = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FilterValue }),
     },
 }
 
@@ -9105,7 +8504,7 @@ M.SamplingConfig = {
     type = "structure",
     members = {
         samplingPercentage = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -9117,7 +8516,7 @@ M.SessionConfig = {
     type = "structure",
     members = {
         sessionTimeoutMinutes = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -9128,19 +8527,14 @@ M.SessionConfig = {
 M.Rule = {
     type = "structure",
     members = {
-        samplingConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        samplingConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SamplingConfig }),
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
-        sessionConfig = {
-            type = "structure",
-        },
+        sessionConfig = M.SessionConfig,
     },
 }
 
@@ -9159,21 +8553,15 @@ M.CreateOnlineEvaluationConfigInput = {
         description = {
             type = "string",
         },
-        rule = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        dataSourceConfig = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        rule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Rule }),
+        dataSourceConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataSourceConfig }),
         evaluators = {
             type = "list",
-            member_type = "union",
+            member = M.EvaluatorReference,
             traits = {
                 required = true,
             },
@@ -9192,8 +8580,8 @@ M.CreateOnlineEvaluationConfigInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -9218,12 +8606,9 @@ M.CloudWatchOutputConfig = {
 M.OutputConfig = {
     type = "structure",
     members = {
-        cloudWatchConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        cloudWatchConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CloudWatchOutputConfig }),
     },
 }
 
@@ -9258,9 +8643,7 @@ M.CreateOnlineEvaluationConfigOutput = {
                 required = true,
             },
         },
-        outputConfig = {
-            type = "structure",
-        },
+        outputConfig = M.OutputConfig,
         status = {
             type = "string",
             traits = {
@@ -9353,28 +8736,20 @@ M.GetOnlineEvaluationConfigOutput = {
         description = {
             type = "string",
         },
-        rule = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        dataSourceConfig = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        rule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Rule }),
+        dataSourceConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataSourceConfig }),
         evaluators = {
             type = "list",
-            member_type = "union",
+            member = M.EvaluatorReference,
             traits = {
                 required = true,
             },
         },
-        outputConfig = {
-            type = "structure",
-        },
+        outputConfig = M.OutputConfig,
         evaluationExecutionRoleArn = {
             type = "string",
         },
@@ -9418,7 +8793,7 @@ M.ListOnlineEvaluationConfigsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -9485,7 +8860,7 @@ M.ListOnlineEvaluationConfigsOutput = {
     members = {
         onlineEvaluationConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.OnlineEvaluationConfigSummary,
             traits = {
                 required = true,
             },
@@ -9512,15 +8887,11 @@ M.UpdateOnlineEvaluationConfigInput = {
         description = {
             type = "string",
         },
-        rule = {
-            type = "structure",
-        },
-        dataSourceConfig = {
-            type = "union",
-        },
+        rule = M.Rule,
+        dataSourceConfig = M.DataSourceConfig,
         evaluators = {
             type = "list",
-            member_type = "union",
+            member = M.EvaluatorReference,
         },
         evaluationExecutionRoleArn = {
             type = "string",
@@ -9590,8 +8961,8 @@ M.CreatePolicyEngineInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -9650,7 +9021,7 @@ M.CreatePolicyEngineOutput = {
         },
         statusReasons = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -9718,7 +9089,7 @@ M.DeletePolicyEngineOutput = {
         },
         statusReasons = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -9786,7 +9157,7 @@ M.GetPolicyEngineOutput = {
         },
         statusReasons = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -9807,7 +9178,7 @@ M.ListPolicyEnginesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -9859,7 +9230,7 @@ M.PolicyEngine = {
         },
         statusReasons = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -9875,7 +9246,7 @@ M.ListPolicyEnginesOutput = {
     members = {
         policyEngines = {
             type = "list",
-            member_type = "structure",
+            member = M.PolicyEngine,
             traits = {
                 required = true,
             },
@@ -9905,9 +9276,7 @@ M.UpdatePolicyEngineInput = {
                 required = true,
             },
         },
-        description = {
-            type = "structure",
-        },
+        description = M.UpdatedDescription,
     },
 }
 
@@ -9955,7 +9324,7 @@ M.UpdatePolicyEngineOutput = {
         },
         statusReasons = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -10029,12 +9398,9 @@ M.GetPolicyGenerationOutput = {
                 required = true,
             },
         },
-        resource = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        resource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Resource }),
         createdAt = {
             type = "timestamp",
             traits = {
@@ -10055,7 +9421,7 @@ M.GetPolicyGenerationOutput = {
         },
         statusReasons = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -10090,7 +9456,7 @@ M.ListPolicyGenerationAssetsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -10131,12 +9497,8 @@ M.PolicyGenerationDetails = {
 M.PolicyDefinition = {
     type = "union",
     members = {
-        cedar = {
-            type = "structure",
-        },
-        policyGeneration = {
-            type = "structure",
-        },
+        cedar = M.CedarPolicy,
+        policyGeneration = M.PolicyGenerationDetails,
     },
 }
 
@@ -10171,9 +9533,7 @@ M.PolicyGenerationAsset = {
                 required = true,
             },
         },
-        definition = {
-            type = "union",
-        },
+        definition = M.PolicyDefinition,
         rawTextFragment = {
             type = "string",
             traits = {
@@ -10182,7 +9542,7 @@ M.PolicyGenerationAsset = {
         },
         findings = {
             type = "list",
-            member_type = "structure",
+            member = M.Finding,
             traits = {
                 required = true,
             },
@@ -10195,7 +9555,7 @@ M.ListPolicyGenerationAssetsOutput = {
     members = {
         policyGenerationAssets = {
             type = "list",
-            member_type = "structure",
+            member = M.PolicyGenerationAsset,
         },
         nextToken = {
             type = "string",
@@ -10213,7 +9573,7 @@ M.ListPolicyGenerationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -10255,12 +9615,9 @@ M.PolicyGeneration = {
                 required = true,
             },
         },
-        resource = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        resource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Resource }),
         createdAt = {
             type = "timestamp",
             traits = {
@@ -10281,7 +9638,7 @@ M.PolicyGeneration = {
         },
         statusReasons = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -10297,7 +9654,7 @@ M.ListPolicyGenerationsOutput = {
     members = {
         policyGenerations = {
             type = "list",
-            member_type = "structure",
+            member = M.PolicyGeneration,
             traits = {
                 required = true,
             },
@@ -10327,18 +9684,12 @@ M.StartPolicyGenerationInput = {
                 required = true,
             },
         },
-        resource = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        content = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        resource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Resource }),
+        content = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Content }),
         name = {
             type = "string",
             traits = {
@@ -10378,12 +9729,9 @@ M.StartPolicyGenerationOutput = {
                 required = true,
             },
         },
-        resource = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        resource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Resource }),
         createdAt = {
             type = "timestamp",
             traits = {
@@ -10404,7 +9752,7 @@ M.StartPolicyGenerationOutput = {
         },
         statusReasons = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -10429,17 +9777,17 @@ M.CreatePolicyInput = {
                 required = true,
             },
         },
-        definition = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        definition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PolicyDefinition }),
         description = {
             type = "string",
         },
         validationMode = {
             type = "string",
+            traits = {
+                default = "FAIL_ON_ANY_FINDINGS",
+            },
         },
         policyEngineId = {
             type = "string",
@@ -10485,12 +9833,9 @@ M.CreatePolicyOutput = {
                 required = true,
             },
         },
-        definition = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        definition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PolicyDefinition }),
         description = {
             type = "string",
         },
@@ -10520,7 +9865,7 @@ M.CreatePolicyOutput = {
         },
         statusReasons = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -10569,12 +9914,9 @@ M.DeletePolicyOutput = {
                 required = true,
             },
         },
-        definition = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        definition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PolicyDefinition }),
         description = {
             type = "string",
         },
@@ -10604,7 +9946,7 @@ M.DeletePolicyOutput = {
         },
         statusReasons = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -10653,12 +9995,9 @@ M.GetPolicyOutput = {
                 required = true,
             },
         },
-        definition = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        definition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PolicyDefinition }),
         description = {
             type = "string",
         },
@@ -10688,7 +10027,7 @@ M.GetPolicyOutput = {
         },
         statusReasons = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -10706,7 +10045,7 @@ M.ListPoliciesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -10748,12 +10087,9 @@ M.Policy = {
                 required = true,
             },
         },
-        definition = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        definition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PolicyDefinition }),
         description = {
             type = "string",
         },
@@ -10783,7 +10119,7 @@ M.Policy = {
         },
         statusReasons = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -10796,7 +10132,7 @@ M.ListPoliciesOutput = {
     members = {
         policies = {
             type = "list",
-            member_type = "structure",
+            member = M.Policy,
             traits = {
                 required = true,
             },
@@ -10824,14 +10160,13 @@ M.UpdatePolicyInput = {
                 required = true,
             },
         },
-        description = {
-            type = "structure",
-        },
-        definition = {
-            type = "union",
-        },
+        description = M.UpdatedDescription,
+        definition = M.PolicyDefinition,
         validationMode = {
             type = "string",
+            traits = {
+                default = "FAIL_ON_ANY_FINDINGS",
+            },
         },
     },
 }
@@ -10857,12 +10192,9 @@ M.UpdatePolicyOutput = {
                 required = true,
             },
         },
-        definition = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        definition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PolicyDefinition }),
         description = {
             type = "string",
         },
@@ -10892,7 +10224,7 @@ M.UpdatePolicyOutput = {
         },
         statusReasons = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -10967,30 +10299,18 @@ M.ToolsDefinition = {
 M.McpDescriptor = {
     type = "structure",
     members = {
-        server = {
-            type = "structure",
-        },
-        tools = {
-            type = "structure",
-        },
+        server = M.ServerDefinition,
+        tools = M.ToolsDefinition,
     },
 }
 
 M.Descriptors = {
     type = "structure",
     members = {
-        mcp = {
-            type = "structure",
-        },
-        a2a = {
-            type = "structure",
-        },
-        custom = {
-            type = "structure",
-        },
-        agentSkills = {
-            type = "structure",
-        },
+        mcp = M.McpDescriptor,
+        a2a = M.A2aDescriptor,
+        custom = M.CustomDescriptor,
+        agentSkills = M.AgentSkillsDescriptor,
     },
 }
 
@@ -11034,12 +10354,12 @@ M.RegistryRecordOAuthCredentialProvider = {
         },
         scopes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         customParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -11047,12 +10367,8 @@ M.RegistryRecordOAuthCredentialProvider = {
 M.RegistryRecordCredentialProviderUnion = {
     type = "union",
     members = {
-        oauthCredentialProvider = {
-            type = "structure",
-        },
-        iamCredentialProvider = {
-            type = "structure",
-        },
+        oauthCredentialProvider = M.RegistryRecordOAuthCredentialProvider,
+        iamCredentialProvider = M.RegistryRecordIamCredentialProvider,
     },
 }
 
@@ -11070,12 +10386,9 @@ M.RegistryRecordCredentialProviderConfiguration = {
                 required = true,
             },
         },
-        credentialProvider = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        credentialProvider = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RegistryRecordCredentialProviderUnion }),
     },
 }
 
@@ -11090,7 +10403,7 @@ M.FromUrlSynchronizationConfiguration = {
         },
         credentialProviderConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.RegistryRecordCredentialProviderConfiguration,
         },
     },
 }
@@ -11098,9 +10411,7 @@ M.FromUrlSynchronizationConfiguration = {
 M.SynchronizationConfiguration = {
     type = "structure",
     members = {
-        fromUrl = {
-            type = "structure",
-        },
+        fromUrl = M.FromUrlSynchronizationConfiguration,
     },
 }
 
@@ -11133,18 +10444,14 @@ M.CreateRegistryRecordInput = {
                 required = true,
             },
         },
-        descriptors = {
-            type = "structure",
-        },
+        descriptors = M.Descriptors,
         recordVersion = {
             type = "string",
         },
         synchronizationType = {
             type = "string",
         },
-        synchronizationConfiguration = {
-            type = "structure",
-        },
+        synchronizationConfiguration = M.SynchronizationConfiguration,
         clientToken = {
             type = "string",
         },
@@ -11261,12 +10568,9 @@ M.GetRegistryRecordOutput = {
                 required = true,
             },
         },
-        descriptors = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        descriptors = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Descriptors }),
         recordVersion = {
             type = "string",
         },
@@ -11294,9 +10598,7 @@ M.GetRegistryRecordOutput = {
         synchronizationType = {
             type = "string",
         },
-        synchronizationConfiguration = {
-            type = "structure",
-        },
+        synchronizationConfiguration = M.SynchronizationConfiguration,
     },
 }
 
@@ -11311,7 +10613,7 @@ M.ListRegistryRecordsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -11411,7 +10713,7 @@ M.ListRegistryRecordsOutput = {
     members = {
         registryRecords = {
             type = "list",
-            member_type = "structure",
+            member = M.RegistryRecordSummary,
             traits = {
                 required = true,
             },
@@ -11481,132 +10783,96 @@ M.SubmitRegistryRecordForApprovalOutput = {
 M.UpdatedA2aDescriptor = {
     type = "structure",
     members = {
-        optionalValue = {
-            type = "structure",
-        },
+        optionalValue = M.A2aDescriptor,
     },
 }
 
 M.UpdatedSkillDefinition = {
     type = "structure",
     members = {
-        optionalValue = {
-            type = "structure",
-        },
+        optionalValue = M.SkillDefinition,
     },
 }
 
 M.UpdatedSkillMdDefinition = {
     type = "structure",
     members = {
-        optionalValue = {
-            type = "structure",
-        },
+        optionalValue = M.SkillMdDefinition,
     },
 }
 
 M.UpdatedAgentSkillsDescriptorFields = {
     type = "structure",
     members = {
-        skillMd = {
-            type = "structure",
-        },
-        skillDefinition = {
-            type = "structure",
-        },
+        skillMd = M.UpdatedSkillMdDefinition,
+        skillDefinition = M.UpdatedSkillDefinition,
     },
 }
 
 M.UpdatedAgentSkillsDescriptor = {
     type = "structure",
     members = {
-        optionalValue = {
-            type = "structure",
-        },
+        optionalValue = M.UpdatedAgentSkillsDescriptorFields,
     },
 }
 
 M.UpdatedCustomDescriptor = {
     type = "structure",
     members = {
-        optionalValue = {
-            type = "structure",
-        },
+        optionalValue = M.CustomDescriptor,
     },
 }
 
 M.UpdatedServerDefinition = {
     type = "structure",
     members = {
-        optionalValue = {
-            type = "structure",
-        },
+        optionalValue = M.ServerDefinition,
     },
 }
 
 M.UpdatedToolsDefinition = {
     type = "structure",
     members = {
-        optionalValue = {
-            type = "structure",
-        },
+        optionalValue = M.ToolsDefinition,
     },
 }
 
 M.UpdatedMcpDescriptorFields = {
     type = "structure",
     members = {
-        server = {
-            type = "structure",
-        },
-        tools = {
-            type = "structure",
-        },
+        server = M.UpdatedServerDefinition,
+        tools = M.UpdatedToolsDefinition,
     },
 }
 
 M.UpdatedMcpDescriptor = {
     type = "structure",
     members = {
-        optionalValue = {
-            type = "structure",
-        },
+        optionalValue = M.UpdatedMcpDescriptorFields,
     },
 }
 
 M.UpdatedDescriptorsUnion = {
     type = "structure",
     members = {
-        mcp = {
-            type = "structure",
-        },
-        a2a = {
-            type = "structure",
-        },
-        custom = {
-            type = "structure",
-        },
-        agentSkills = {
-            type = "structure",
-        },
+        mcp = M.UpdatedMcpDescriptor,
+        a2a = M.UpdatedA2aDescriptor,
+        custom = M.UpdatedCustomDescriptor,
+        agentSkills = M.UpdatedAgentSkillsDescriptor,
     },
 }
 
 M.UpdatedDescriptors = {
     type = "structure",
     members = {
-        optionalValue = {
-            type = "structure",
-        },
+        optionalValue = M.UpdatedDescriptorsUnion,
     },
 }
 
 M.UpdatedSynchronizationConfiguration = {
     type = "structure",
     members = {
-        optionalValue = {
-            type = "structure",
-        },
+        optionalValue = M.SynchronizationConfiguration,
     },
 }
 
@@ -11639,24 +10905,16 @@ M.UpdateRegistryRecordInput = {
         name = {
             type = "string",
         },
-        description = {
-            type = "structure",
-        },
+        description = M.UpdatedDescription,
         descriptorType = {
             type = "string",
         },
-        descriptors = {
-            type = "structure",
-        },
+        descriptors = M.UpdatedDescriptors,
         recordVersion = {
             type = "string",
         },
-        synchronizationType = {
-            type = "structure",
-        },
-        synchronizationConfiguration = {
-            type = "structure",
-        },
+        synchronizationType = M.UpdatedSynchronizationType,
+        synchronizationConfiguration = M.UpdatedSynchronizationConfiguration,
         triggerSynchronization = {
             type = "boolean",
         },
@@ -11699,12 +10957,9 @@ M.UpdateRegistryRecordOutput = {
                 required = true,
             },
         },
-        descriptors = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        descriptors = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Descriptors }),
         recordVersion = {
             type = "string",
         },
@@ -11732,9 +10987,7 @@ M.UpdateRegistryRecordOutput = {
         synchronizationType = {
             type = "string",
         },
-        synchronizationConfiguration = {
-            type = "structure",
-        },
+        synchronizationConfiguration = M.SynchronizationConfiguration,
     },
 }
 
@@ -11817,6 +11070,9 @@ M.ApprovalConfiguration = {
     members = {
         autoApproval = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -11841,15 +11097,11 @@ M.CreateRegistryInput = {
         authorizerType = {
             type = "string",
         },
-        authorizerConfiguration = {
-            type = "union",
-        },
+        authorizerConfiguration = M.AuthorizerConfiguration,
         clientToken = {
             type = "string",
         },
-        approvalConfiguration = {
-            type = "structure",
-        },
+        approvalConfiguration = M.ApprovalConfiguration,
     },
 }
 
@@ -11940,12 +11192,8 @@ M.GetRegistryOutput = {
         authorizerType = {
             type = "string",
         },
-        authorizerConfiguration = {
-            type = "union",
-        },
-        approvalConfiguration = {
-            type = "structure",
-        },
+        authorizerConfiguration = M.AuthorizerConfiguration,
+        approvalConfiguration = M.ApprovalConfiguration,
         status = {
             type = "string",
             traits = {
@@ -11974,7 +11222,7 @@ M.ListRegistriesInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -12050,7 +11298,7 @@ M.ListRegistriesOutput = {
     members = {
         registries = {
             type = "list",
-            member_type = "structure",
+            member = M.RegistrySummary,
             traits = {
                 required = true,
             },
@@ -12064,9 +11312,7 @@ M.ListRegistriesOutput = {
 M.UpdatedApprovalConfiguration = {
     type = "structure",
     members = {
-        optionalValue = {
-            type = "structure",
-        },
+        optionalValue = M.ApprovalConfiguration,
     },
 }
 
@@ -12083,15 +11329,9 @@ M.UpdateRegistryInput = {
         name = {
             type = "string",
         },
-        description = {
-            type = "structure",
-        },
-        authorizerConfiguration = {
-            type = "structure",
-        },
-        approvalConfiguration = {
-            type = "structure",
-        },
+        description = M.UpdatedDescription,
+        authorizerConfiguration = M.UpdatedAuthorizerConfiguration,
+        approvalConfiguration = M.UpdatedApprovalConfiguration,
     },
 }
 
@@ -12122,12 +11362,8 @@ M.UpdateRegistryOutput = {
         authorizerType = {
             type = "string",
         },
-        authorizerConfiguration = {
-            type = "union",
-        },
-        approvalConfiguration = {
-            type = "structure",
-        },
+        authorizerConfiguration = M.AuthorizerConfiguration,
+        approvalConfiguration = M.ApprovalConfiguration,
         status = {
             type = "string",
             traits = {
@@ -12171,12 +11407,9 @@ M.SetTokenVaultCMKInput = {
         tokenVaultId = {
             type = "string",
         },
-        kmsConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        kmsConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.KmsConfiguration }),
     },
 }
 
@@ -12189,12 +11422,9 @@ M.SetTokenVaultCMKOutput = {
                 required = true,
             },
         },
-        kmsConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        kmsConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.KmsConfiguration }),
         lastModifiedDate = {
             type = "timestamp",
             traits = {
@@ -12216,8 +11446,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -12241,7 +11471,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -12265,12 +11495,12 @@ M.CreateWorkloadIdentityInput = {
         },
         allowedResourceOauth2ReturnUrls = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -12292,7 +11522,7 @@ M.CreateWorkloadIdentityOutput = {
         },
         allowedResourceOauth2ReturnUrls = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -12342,7 +11572,7 @@ M.GetWorkloadIdentityOutput = {
         },
         allowedResourceOauth2ReturnUrls = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         createdTime = {
             type = "timestamp",
@@ -12366,7 +11596,10 @@ M.ListWorkloadIdentitiesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 10,
+            },
         },
     },
 }
@@ -12394,7 +11627,7 @@ M.ListWorkloadIdentitiesOutput = {
     members = {
         workloadIdentities = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkloadIdentityType,
             traits = {
                 required = true,
             },
@@ -12416,7 +11649,7 @@ M.UpdateWorkloadIdentityInput = {
         },
         allowedResourceOauth2ReturnUrls = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -12438,7 +11671,7 @@ M.UpdateWorkloadIdentityOutput = {
         },
         allowedResourceOauth2ReturnUrls = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         createdTime = {
             type = "timestamp",
@@ -12466,16 +11699,14 @@ M.SchemaDefinition = {
         },
         properties = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.SchemaDefinition,
         },
         required = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        items = {
-            type = "structure",
-        },
+        items = M.SchemaDefinition,
         description = {
             type = "string",
         },
@@ -12497,27 +11728,20 @@ M.ToolDefinition = {
                 required = true,
             },
         },
-        inputSchema = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        outputSchema = {
-            type = "structure",
-        },
+        inputSchema = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SchemaDefinition }),
+        outputSchema = M.SchemaDefinition,
     },
 }
 
 M.ToolSchema = {
     type = "union",
     members = {
-        s3 = {
-            type = "structure",
-        },
+        s3 = M.S3Configuration,
         inlinePayload = {
             type = "list",
-            member_type = "structure",
+            member = M.ToolDefinition,
         },
     },
 }
@@ -12531,45 +11755,28 @@ M.McpLambdaTargetConfiguration = {
                 required = true,
             },
         },
-        toolSchema = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        toolSchema = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ToolSchema }),
     },
 }
 
 M.McpTargetConfiguration = {
     type = "union",
     members = {
-        openApiSchema = {
-            type = "union",
-        },
-        smithyModel = {
-            type = "union",
-        },
-        lambda = {
-            type = "structure",
-        },
-        mcpServer = {
-            type = "structure",
-        },
-        apiGateway = {
-            type = "structure",
-        },
+        openApiSchema = M.ApiSchemaConfiguration,
+        smithyModel = M.ApiSchemaConfiguration,
+        lambda = M.McpLambdaTargetConfiguration,
+        mcpServer = M.McpServerTargetConfiguration,
+        apiGateway = M.ApiGatewayTargetConfiguration,
     },
 }
 
 M.TargetConfiguration = {
     type = "union",
     members = {
-        mcp = {
-            type = "union",
-        },
-        http = {
-            type = "union",
-        },
+        mcp = M.McpTargetConfiguration,
+        http = M.HttpTargetConfiguration,
     },
 }
 
@@ -12595,22 +11802,15 @@ M.CreateGatewayTargetInput = {
         clientToken = {
             type = "string",
         },
-        targetConfiguration = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        targetConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TargetConfiguration }),
         credentialProviderConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.CredentialProviderConfiguration,
         },
-        metadataConfiguration = {
-            type = "structure",
-        },
-        privateEndpoint = {
-            type = "union",
-        },
+        metadataConfiguration = M.MetadataConfiguration,
+        privateEndpoint = M.PrivateEndpoint,
     },
 }
 
@@ -12649,7 +11849,7 @@ M.CreateGatewayTargetOutput = {
         },
         statusReasons = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         name = {
             type = "string",
@@ -12660,15 +11860,12 @@ M.CreateGatewayTargetOutput = {
         description = {
             type = "string",
         },
-        targetConfiguration = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        targetConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TargetConfiguration }),
         credentialProviderConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.CredentialProviderConfiguration,
             traits = {
                 required = true,
             },
@@ -12676,19 +11873,13 @@ M.CreateGatewayTargetOutput = {
         lastSynchronizedAt = {
             type = "timestamp",
         },
-        metadataConfiguration = {
-            type = "structure",
-        },
-        privateEndpoint = {
-            type = "union",
-        },
+        metadataConfiguration = M.MetadataConfiguration,
+        privateEndpoint = M.PrivateEndpoint,
         privateEndpointManagedResources = {
             type = "list",
-            member_type = "structure",
+            member = M.ManagedResourceDetails,
         },
-        authorizationData = {
-            type = "union",
-        },
+        authorizationData = M.AuthorizationData,
         protocolType = {
             type = "string",
         },
@@ -12730,7 +11921,7 @@ M.GatewayTarget = {
         },
         statusReasons = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         name = {
             type = "string",
@@ -12741,15 +11932,12 @@ M.GatewayTarget = {
         description = {
             type = "string",
         },
-        targetConfiguration = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        targetConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TargetConfiguration }),
         credentialProviderConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.CredentialProviderConfiguration,
             traits = {
                 required = true,
             },
@@ -12757,19 +11945,13 @@ M.GatewayTarget = {
         lastSynchronizedAt = {
             type = "timestamp",
         },
-        metadataConfiguration = {
-            type = "structure",
-        },
-        privateEndpoint = {
-            type = "union",
-        },
+        metadataConfiguration = M.MetadataConfiguration,
+        privateEndpoint = M.PrivateEndpoint,
         privateEndpointManagedResources = {
             type = "list",
-            member_type = "structure",
+            member = M.ManagedResourceDetails,
         },
-        authorizationData = {
-            type = "union",
-        },
+        authorizationData = M.AuthorizationData,
         protocolType = {
             type = "string",
         },
@@ -12811,7 +11993,7 @@ M.GetGatewayTargetOutput = {
         },
         statusReasons = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         name = {
             type = "string",
@@ -12822,15 +12004,12 @@ M.GetGatewayTargetOutput = {
         description = {
             type = "string",
         },
-        targetConfiguration = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        targetConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TargetConfiguration }),
         credentialProviderConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.CredentialProviderConfiguration,
             traits = {
                 required = true,
             },
@@ -12838,19 +12017,13 @@ M.GetGatewayTargetOutput = {
         lastSynchronizedAt = {
             type = "timestamp",
         },
-        metadataConfiguration = {
-            type = "structure",
-        },
-        privateEndpoint = {
-            type = "union",
-        },
+        metadataConfiguration = M.MetadataConfiguration,
+        privateEndpoint = M.PrivateEndpoint,
         privateEndpointManagedResources = {
             type = "list",
-            member_type = "structure",
+            member = M.ManagedResourceDetails,
         },
-        authorizationData = {
-            type = "union",
-        },
+        authorizationData = M.AuthorizationData,
         protocolType = {
             type = "string",
         },
@@ -12883,22 +12056,15 @@ M.UpdateGatewayTargetInput = {
         description = {
             type = "string",
         },
-        targetConfiguration = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        targetConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TargetConfiguration }),
         credentialProviderConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.CredentialProviderConfiguration,
         },
-        metadataConfiguration = {
-            type = "structure",
-        },
-        privateEndpoint = {
-            type = "union",
-        },
+        metadataConfiguration = M.MetadataConfiguration,
+        privateEndpoint = M.PrivateEndpoint,
     },
 }
 
@@ -12937,7 +12103,7 @@ M.UpdateGatewayTargetOutput = {
         },
         statusReasons = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         name = {
             type = "string",
@@ -12948,15 +12114,12 @@ M.UpdateGatewayTargetOutput = {
         description = {
             type = "string",
         },
-        targetConfiguration = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        targetConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TargetConfiguration }),
         credentialProviderConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.CredentialProviderConfiguration,
             traits = {
                 required = true,
             },
@@ -12964,19 +12127,13 @@ M.UpdateGatewayTargetOutput = {
         lastSynchronizedAt = {
             type = "timestamp",
         },
-        metadataConfiguration = {
-            type = "structure",
-        },
-        privateEndpoint = {
-            type = "union",
-        },
+        metadataConfiguration = M.MetadataConfiguration,
+        privateEndpoint = M.PrivateEndpoint,
         privateEndpointManagedResources = {
             type = "list",
-            member_type = "structure",
+            member = M.ManagedResourceDetails,
         },
-        authorizationData = {
-            type = "union",
-        },
+        authorizationData = M.AuthorizationData,
         protocolType = {
             type = "string",
         },
@@ -12988,7 +12145,7 @@ M.SynchronizeGatewayTargetsOutput = {
     members = {
         targets = {
             type = "list",
-            member_type = "structure",
+            member = M.GatewayTarget,
         },
     },
 }

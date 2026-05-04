@@ -39,7 +39,7 @@ M.BatchAddChannelRoleToAccessorsInput = {
         },
         accessorIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -63,7 +63,7 @@ M.BatchError = {
             },
         },
         error = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -82,14 +82,14 @@ M.BatchAddChannelRoleToAccessorsOutput = {
     members = {
         addedAccessorIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchError,
             traits = {
                 required = true,
             },
@@ -108,7 +108,7 @@ M.InternalServerException = {
             },
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -158,7 +158,7 @@ M.ThrottlingException = {
             type = "string",
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -209,7 +209,7 @@ M.ValidationException = {
         },
         fieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -233,7 +233,7 @@ M.BatchAddRoleInput = {
         },
         accessorIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -252,14 +252,14 @@ M.BatchAddRoleOutput = {
     members = {
         addedAccessorIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchError,
             traits = {
                 required = true,
             },
@@ -286,7 +286,7 @@ M.BatchRemoveChannelRoleFromAccessorsInput = {
         },
         accessorIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -305,14 +305,14 @@ M.BatchRemoveChannelRoleFromAccessorsOutput = {
     members = {
         removedAccessorIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchError,
             traits = {
                 required = true,
             },
@@ -332,7 +332,7 @@ M.BatchRemoveRoleInput = {
         },
         accessorIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -351,14 +351,14 @@ M.BatchRemoveRoleOutput = {
     members = {
         removedAccessorIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchError,
             traits = {
                 required = true,
             },
@@ -419,13 +419,13 @@ M.ChannelData = {
             },
         },
         userCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         groupCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -547,7 +547,7 @@ M.SupportedEmailDomainsParameters = {
         },
         allowedDomains = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -586,15 +586,13 @@ M.CreateSpaceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         roleArn = {
             type = "string",
         },
-        supportedEmailDomains = {
-            type = "structure",
-        },
+        supportedEmailDomains = M.SupportedEmailDomainsParameters,
     },
 }
 
@@ -716,8 +714,8 @@ M.GetChannelOutput = {
         },
         channelRoles = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         channelStatus = {
             type = "string",
@@ -749,7 +747,7 @@ M.SupportedEmailDomainsStatus = {
         },
         allowedDomains = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -849,36 +847,34 @@ M.GetSpaceOutput = {
             },
         },
         storageLimit = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         userAdmins = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         groupAdmins = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         roles = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         userKMSKey = {
             type = "string",
         },
         userCount = {
-            type = "number",
+            type = "integer",
         },
         contentSize = {
-            type = "number",
+            type = "long",
         },
-        supportedEmailDomains = {
-            type = "structure",
-        },
+        supportedEmailDomains = M.SupportedEmailDomainsStatus,
     },
 }
 
@@ -899,8 +895,9 @@ M.ListChannelsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 10,
                 http_query = "maxResults",
             },
         },
@@ -912,7 +909,7 @@ M.ListChannelsOutput = {
     members = {
         channels = {
             type = "list",
-            member_type = "structure",
+            member = M.ChannelData,
             traits = {
                 required = true,
             },
@@ -933,8 +930,9 @@ M.ListSpacesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 10,
                 http_query = "maxResults",
             },
         },
@@ -1002,7 +1000,7 @@ M.SpaceData = {
             },
         },
         storageLimit = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -1024,14 +1022,12 @@ M.SpaceData = {
             type = "string",
         },
         userCount = {
-            type = "number",
+            type = "integer",
         },
         contentSize = {
-            type = "number",
+            type = "long",
         },
-        supportedEmailDomains = {
-            type = "structure",
-        },
+        supportedEmailDomains = M.SupportedEmailDomainsStatus,
     },
 }
 
@@ -1040,7 +1036,7 @@ M.ListSpacesOutput = {
     members = {
         spaces = {
             type = "list",
-            member_type = "structure",
+            member = M.SpaceData,
             traits = {
                 required = true,
             },
@@ -1069,8 +1065,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1111,7 +1107,7 @@ M.SendInvitesInput = {
         },
         accessorIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1147,8 +1143,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1172,7 +1168,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -1237,9 +1233,7 @@ M.UpdateSpaceInput = {
         roleArn = {
             type = "string",
         },
-        supportedEmailDomains = {
-            type = "structure",
-        },
+        supportedEmailDomains = M.SupportedEmailDomainsParameters,
     },
 }
 

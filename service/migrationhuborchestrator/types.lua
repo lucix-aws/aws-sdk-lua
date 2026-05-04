@@ -31,8 +31,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -67,19 +67,19 @@ M.StepInput = {
     type = "union",
     members = {
         integerValue = {
-            type = "number",
+            type = "integer",
         },
         stringValue = {
             type = "string",
         },
         listOfStringsValue = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         mapOfStringValue = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -107,20 +107,20 @@ M.CreateWorkflowInput = {
         },
         inputParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.StepInput,
             traits = {
                 required = true,
             },
         },
         stepTargets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -165,12 +165,12 @@ M.CreateWorkflowOutput = {
         },
         workflowInputs = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.StepInput,
         },
         stepTargets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         status = {
             type = "string",
@@ -180,8 +180,8 @@ M.CreateWorkflowOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -312,23 +312,23 @@ M.GetWorkflowOutput = {
         },
         tools = {
             type = "list",
-            member_type = "structure",
+            member = M.Tool,
         },
         totalSteps = {
-            type = "number",
+            type = "integer",
         },
         completedSteps = {
-            type = "number",
+            type = "integer",
         },
         workflowInputs = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.StepInput,
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         workflowBucket = {
             type = "string",
@@ -340,8 +340,9 @@ M.ListWorkflowsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -406,10 +407,10 @@ M.MigrationWorkflowSummary = {
             type = "string",
         },
         completedSteps = {
-            type = "number",
+            type = "integer",
         },
         totalSteps = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -422,7 +423,7 @@ M.ListWorkflowsOutput = {
         },
         migrationWorkflowSummary = {
             type = "list",
-            member_type = "structure",
+            member = M.MigrationWorkflowSummary,
             traits = {
                 required = true,
             },
@@ -516,12 +517,12 @@ M.UpdateWorkflowInput = {
         },
         inputParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.StepInput,
         },
         stepTargets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -549,12 +550,12 @@ M.UpdateWorkflowOutput = {
         },
         workflowInputs = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.StepInput,
         },
         stepTargets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         status = {
             type = "string",
@@ -567,8 +568,8 @@ M.UpdateWorkflowOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -607,19 +608,16 @@ M.CreateTemplateInput = {
         templateDescription = {
             type = "string",
         },
-        templateSource = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        templateSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TemplateSource }),
         clientToken = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -635,8 +633,8 @@ M.CreateTemplateOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -718,11 +716,11 @@ M.GetTemplateOutput = {
         },
         inputs = {
             type = "list",
-            member_type = "structure",
+            member = M.TemplateInput,
         },
         tools = {
             type = "list",
-            member_type = "structure",
+            member = M.Tool,
         },
         creationTime = {
             type = "timestamp",
@@ -741,8 +739,8 @@ M.GetTemplateOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -751,8 +749,9 @@ M.ListTemplatesInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -797,7 +796,7 @@ M.ListTemplatesOutput = {
         },
         templateSummary = {
             type = "list",
-            member_type = "structure",
+            member = M.TemplateSummary,
             traits = {
                 required = true,
             },
@@ -838,8 +837,8 @@ M.UpdateTemplateOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -848,8 +847,9 @@ M.ListPluginsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -899,7 +899,7 @@ M.ListPluginsOutput = {
         },
         plugins = {
             type = "list",
-            member_type = "structure",
+            member = M.PluginSummary,
         },
     },
 }
@@ -916,8 +916,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1017,12 +1017,8 @@ M.StepAutomationConfiguration = {
         scriptLocationS3Bucket = {
             type = "string",
         },
-        scriptLocationS3Key = {
-            type = "structure",
-        },
-        command = {
-            type = "structure",
-        },
+        scriptLocationS3Key = M.PlatformScriptKey,
+        command = M.PlatformCommand,
         runEnvironment = {
             type = "string",
         },
@@ -1058,19 +1054,17 @@ M.GetTemplateStepOutput = {
         },
         previous = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         next = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         outputs = {
             type = "list",
-            member_type = "structure",
+            member = M.StepOutput,
         },
-        stepAutomationConfiguration = {
-            type = "structure",
-        },
+        stepAutomationConfiguration = M.StepAutomationConfiguration,
     },
 }
 
@@ -1078,8 +1072,9 @@ M.ListTemplateStepsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -1137,11 +1132,11 @@ M.TemplateStepSummary = {
         },
         previous = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         next = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1154,7 +1149,7 @@ M.ListTemplateStepsOutput = {
         },
         templateStepSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.TemplateStepSummary,
         },
     },
 }
@@ -1216,15 +1211,15 @@ M.GetTemplateStepGroupOutput = {
         },
         tools = {
             type = "list",
-            member_type = "structure",
+            member = M.Tool,
         },
         previous = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         next = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1233,8 +1228,9 @@ M.ListTemplateStepGroupsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -1265,11 +1261,11 @@ M.TemplateStepGroupSummary = {
         },
         previous = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         next = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1282,7 +1278,7 @@ M.ListTemplateStepGroupsOutput = {
         },
         templateStepGroupSummary = {
             type = "list",
-            member_type = "structure",
+            member = M.TemplateStepGroupSummary,
             traits = {
                 required = true,
             },
@@ -1302,7 +1298,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -1319,14 +1315,14 @@ M.WorkflowStepOutputUnion = {
     type = "union",
     members = {
         integerValue = {
-            type = "number",
+            type = "integer",
         },
         stringValue = {
             type = "string",
         },
         listOfStringValue = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1343,9 +1339,7 @@ M.WorkflowStepOutput = {
         required = {
             type = "boolean",
         },
-        value = {
-            type = "union",
-        },
+        value = M.WorkflowStepOutputUnion,
     },
 }
 
@@ -1355,12 +1349,8 @@ M.WorkflowStepAutomationConfiguration = {
         scriptLocationS3Bucket = {
             type = "string",
         },
-        scriptLocationS3Key = {
-            type = "structure",
-        },
-        command = {
-            type = "structure",
-        },
+        scriptLocationS3Key = M.PlatformScriptKey,
+        command = M.PlatformCommand,
         runEnvironment = {
             type = "string",
         },
@@ -1400,24 +1390,22 @@ M.CreateWorkflowStepInput = {
         description = {
             type = "string",
         },
-        workflowStepAutomationConfiguration = {
-            type = "structure",
-        },
+        workflowStepAutomationConfiguration = M.WorkflowStepAutomationConfiguration,
         stepTarget = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         outputs = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkflowStepOutput,
         },
         previous = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         next = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1533,24 +1521,22 @@ M.GetWorkflowStepOutput = {
         owner = {
             type = "string",
         },
-        workflowStepAutomationConfiguration = {
-            type = "structure",
-        },
+        workflowStepAutomationConfiguration = M.WorkflowStepAutomationConfiguration,
         stepTarget = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         outputs = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkflowStepOutput,
         },
         previous = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         next = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         status = {
             type = "string",
@@ -1571,13 +1557,13 @@ M.GetWorkflowStepOutput = {
             type = "timestamp",
         },
         noOfSrvCompleted = {
-            type = "number",
+            type = "integer",
         },
         noOfSrvFailed = {
-            type = "number",
+            type = "integer",
         },
         totalNoOfSrv = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1592,8 +1578,9 @@ M.ListWorkflowStepsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -1631,11 +1618,11 @@ M.WorkflowStepSummary = {
         },
         previous = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         next = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         status = {
             type = "string",
@@ -1644,13 +1631,13 @@ M.WorkflowStepSummary = {
             type = "string",
         },
         noOfSrvCompleted = {
-            type = "number",
+            type = "integer",
         },
         noOfSrvFailed = {
-            type = "number",
+            type = "integer",
         },
         totalNoOfSrv = {
-            type = "number",
+            type = "integer",
         },
         description = {
             type = "string",
@@ -1669,7 +1656,7 @@ M.ListWorkflowStepsOutput = {
         },
         workflowStepsSummary = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkflowStepSummary,
             traits = {
                 required = true,
             },
@@ -1753,24 +1740,22 @@ M.UpdateWorkflowStepInput = {
         stepActionType = {
             type = "string",
         },
-        workflowStepAutomationConfiguration = {
-            type = "structure",
-        },
+        workflowStepAutomationConfiguration = M.WorkflowStepAutomationConfiguration,
         stepTarget = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         outputs = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkflowStepOutput,
         },
         previous = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         next = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         status = {
             type = "string",
@@ -1816,11 +1801,11 @@ M.CreateWorkflowStepGroupInput = {
         },
         next = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         previous = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1842,15 +1827,15 @@ M.CreateWorkflowStepGroupOutput = {
         },
         tools = {
             type = "list",
-            member_type = "structure",
+            member = M.Tool,
         },
         next = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         previous = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         creationTime = {
             type = "timestamp",
@@ -1934,15 +1919,15 @@ M.GetWorkflowStepGroupOutput = {
         },
         tools = {
             type = "list",
-            member_type = "structure",
+            member = M.Tool,
         },
         previous = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         next = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1957,8 +1942,9 @@ M.ListWorkflowStepGroupsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -1989,11 +1975,11 @@ M.WorkflowStepGroupSummary = {
         },
         previous = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         next = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2006,7 +1992,7 @@ M.ListWorkflowStepGroupsOutput = {
         },
         workflowStepGroupsSummary = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkflowStepGroupSummary,
             traits = {
                 required = true,
             },
@@ -2039,11 +2025,11 @@ M.UpdateWorkflowStepGroupInput = {
         },
         next = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         previous = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2065,15 +2051,15 @@ M.UpdateWorkflowStepGroupOutput = {
         },
         tools = {
             type = "list",
-            member_type = "structure",
+            member = M.Tool,
         },
         next = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         previous = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         lastModifiedTime = {
             type = "timestamp",

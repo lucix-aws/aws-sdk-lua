@@ -1897,55 +1897,55 @@ local record InternalServerErrorException
     Type: string
 end
 
+local type AutoEnableMembers = "NEW" | "ALL" | "NONE"
+
+local type IpSetStatus = "INACTIVE" | "ACTIVATING" | "ACTIVE" | "DEACTIVATING" | "ERROR" | "DELETE_PENDING" | "DELETED"
+
+local type FilterAction = "NOOP" | "ARCHIVE"
+
+local type ThreatIntelSetStatus = "INACTIVE" | "ACTIVATING" | "ACTIVE" | "DEACTIVATING" | "ERROR" | "DELETE_PENDING" | "DELETED"
+
+local type ScanStatusReason = "ACCESS_DENIED" | "RESOURCE_NOT_FOUND" | "SNAPSHOT_SIZE_LIMIT_EXCEEDED" | "RESOURCE_UNAVAILABLE" | "INCONSISTENT_SOURCE" | "INCREMENTAL_NO_DIFFERENCE" | "NO_EBS_VOLUMES_FOUND" | "UNSUPPORTED_PRODUCT_CODE_TYPE" | "AMI_SNAPSHOT_LIMIT_EXCEEDED" | "UNRELATED_RESOURCES" | "BASE_RESOURCE_NOT_SCANNED" | "BASE_CREATED_AFTER_TARGET" | "UNSUPPORTED_FOR_INCREMENTAL" | "UNSUPPORTED_AMI" | "UNSUPPORTED_SNAPSHOT" | "UNSUPPORTED_COMPOSITE_RECOVERY_POINT" | "ALL_FILES_SKIPPED_OR_FAILED"
+
+local type TrustedEntitySetFormat = "TXT" | "STIX" | "OTX_CSV" | "ALIEN_VAULT" | "PROOF_POINT" | "FIRE_EYE"
+
+local type DestinationType = "S3"
+
+local type MalwareProtectionResourceType = "EBS_RECOVERY_POINT" | "EBS_SNAPSHOT" | "EBS_VOLUME" | "EC2_AMI" | "EC2_INSTANCE" | "EC2_RECOVERY_POINT" | "S3_RECOVERY_POINT" | "S3_BUCKET"
+
+local type UsageStatisticType = "SUM_BY_ACCOUNT" | "SUM_BY_DATA_SOURCE" | "SUM_BY_RESOURCE" | "TOP_RESOURCES" | "SUM_BY_FEATURES" | "TOP_ACCOUNTS_BY_FEATURE"
+
+local type ThreatEntitySetFormat = "TXT" | "STIX" | "OTX_CSV" | "ALIEN_VAULT" | "PROOF_POINT" | "FIRE_EYE"
+
+local type ThreatEntitySetStatus = "INACTIVE" | "ACTIVATING" | "ACTIVE" | "DEACTIVATING" | "ERROR" | "DELETE_PENDING" | "DELETED"
+
+local type EbsSnapshotPreservation = "NO_RETENTION" | "RETENTION_WITH_FINDING"
+
+local type ScanCategory = "FULL_SCAN" | "INCREMENTAL_SCAN"
+
 local type MalwareProtectionScanType = "BACKUP_INITIATED" | "ON_DEMAND" | "GUARDDUTY_INITIATED"
 
 local type DetectorStatus = "ENABLED" | "DISABLED"
 
 local type ThreatIntelSetFormat = "TXT" | "STIX" | "OTX_CSV" | "ALIEN_VAULT" | "PROOF_POINT" | "FIRE_EYE"
 
-local type OrderBy = "ASC" | "DESC"
-
 local type MalwareProtectionScanStatus = "RUNNING" | "COMPLETED" | "COMPLETED_WITH_ISSUES" | "FAILED" | "SKIPPED"
+
+local type TrustedEntitySetStatus = "INACTIVE" | "ACTIVATING" | "ACTIVE" | "DEACTIVATING" | "ERROR" | "DELETE_PENDING" | "DELETED"
 
 local type MalwareProtectionPlanStatus = "ACTIVE" | "WARNING" | "ERROR"
 
-local type TrustedEntitySetStatus = "INACTIVE" | "ACTIVATING" | "ACTIVE" | "DEACTIVATING" | "ERROR" | "DELETE_PENDING" | "DELETED"
+local type OrderBy = "ASC" | "DESC"
+
+local type IpSetFormat = "TXT" | "STIX" | "OTX_CSV" | "ALIEN_VAULT" | "PROOF_POINT" | "FIRE_EYE"
 
 local type GroupByType = "ACCOUNT" | "DATE" | "FINDING_TYPE" | "RESOURCE" | "SEVERITY"
 
 local type FindingPublishingFrequency = "FIFTEEN_MINUTES" | "ONE_HOUR" | "SIX_HOURS"
 
-local type IpSetFormat = "TXT" | "STIX" | "OTX_CSV" | "ALIEN_VAULT" | "PROOF_POINT" | "FIRE_EYE"
-
-local type AutoEnableMembers = "NEW" | "ALL" | "NONE"
-
-local type IpSetStatus = "INACTIVE" | "ACTIVATING" | "ACTIVE" | "DEACTIVATING" | "ERROR" | "DELETE_PENDING" | "DELETED"
-
-local type Feedback = "USEFUL" | "NOT_USEFUL"
-
 local type PublishingStatus = "PENDING_VERIFICATION" | "PUBLISHING" | "UNABLE_TO_PUBLISH_FIX_DESTINATION_PROPERTY" | "STOPPED"
 
-local type ScanStatusReason = "ACCESS_DENIED" | "RESOURCE_NOT_FOUND" | "SNAPSHOT_SIZE_LIMIT_EXCEEDED" | "RESOURCE_UNAVAILABLE" | "INCONSISTENT_SOURCE" | "INCREMENTAL_NO_DIFFERENCE" | "NO_EBS_VOLUMES_FOUND" | "UNSUPPORTED_PRODUCT_CODE_TYPE" | "AMI_SNAPSHOT_LIMIT_EXCEEDED" | "UNRELATED_RESOURCES" | "BASE_RESOURCE_NOT_SCANNED" | "BASE_CREATED_AFTER_TARGET" | "UNSUPPORTED_FOR_INCREMENTAL" | "UNSUPPORTED_AMI" | "UNSUPPORTED_SNAPSHOT" | "UNSUPPORTED_COMPOSITE_RECOVERY_POINT" | "ALL_FILES_SKIPPED_OR_FAILED"
-
-local type ThreatIntelSetStatus = "INACTIVE" | "ACTIVATING" | "ACTIVE" | "DEACTIVATING" | "ERROR" | "DELETE_PENDING" | "DELETED"
-
-local type MalwareProtectionResourceType = "EBS_RECOVERY_POINT" | "EBS_SNAPSHOT" | "EBS_VOLUME" | "EC2_AMI" | "EC2_INSTANCE" | "EC2_RECOVERY_POINT" | "S3_RECOVERY_POINT" | "S3_BUCKET"
-
-local type FilterAction = "NOOP" | "ARCHIVE"
-
-local type DestinationType = "S3"
-
-local type TrustedEntitySetFormat = "TXT" | "STIX" | "OTX_CSV" | "ALIEN_VAULT" | "PROOF_POINT" | "FIRE_EYE"
-
-local type UsageStatisticType = "SUM_BY_ACCOUNT" | "SUM_BY_DATA_SOURCE" | "SUM_BY_RESOURCE" | "TOP_RESOURCES" | "SUM_BY_FEATURES" | "TOP_ACCOUNTS_BY_FEATURE"
-
-local type ThreatEntitySetFormat = "TXT" | "STIX" | "OTX_CSV" | "ALIEN_VAULT" | "PROOF_POINT" | "FIRE_EYE"
-
-local type ScanCategory = "FULL_SCAN" | "INCREMENTAL_SCAN"
-
-local type EbsSnapshotPreservation = "NO_RETENTION" | "RETENTION_WITH_FINDING"
-
-local type ThreatEntitySetStatus = "INACTIVE" | "ACTIVATING" | "ACTIVE" | "DEACTIVATING" | "ERROR" | "DELETE_PENDING" | "DELETED"
+local type Feedback = "USEFUL" | "NOT_USEFUL"
 
 local record M
     AcceptAdministratorInvitationInput: AcceptAdministratorInvitationInput

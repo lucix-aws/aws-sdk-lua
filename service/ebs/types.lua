@@ -25,7 +25,7 @@ M.Block = {
     type = "structure",
     members = {
         BlockIndex = {
-            type = "number",
+            type = "integer",
         },
         BlockToken = {
             type = "string",
@@ -37,7 +37,7 @@ M.ChangedBlock = {
     type = "structure",
     members = {
         BlockIndex = {
-            type = "number",
+            type = "integer",
         },
         FirstBlockToken = {
             type = "string",
@@ -67,7 +67,7 @@ M.CompleteSnapshotInput = {
             },
         },
         ChangedBlocksCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "x-amz-ChangedBlocksCount",
                 required = true,
@@ -237,7 +237,7 @@ M.GetSnapshotBlockInput = {
             },
         },
         BlockIndex = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_label = true,
                 required = true,
@@ -257,7 +257,7 @@ M.GetSnapshotBlockOutput = {
     type = "structure",
     members = {
         DataLength = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "x-amz-Data-Length",
             },
@@ -265,6 +265,7 @@ M.GetSnapshotBlockOutput = {
         BlockData = {
             type = "blob",
             traits = {
+                default = "",
                 http_payload = true,
             },
         },
@@ -306,13 +307,13 @@ M.ListChangedBlocksInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
         },
         StartingBlockIndex = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "startingBlockIndex",
             },
@@ -325,16 +326,16 @@ M.ListChangedBlocksOutput = {
     members = {
         ChangedBlocks = {
             type = "list",
-            member_type = "structure",
+            member = M.ChangedBlock,
         },
         ExpiryTime = {
             type = "timestamp",
         },
         VolumeSize = {
-            type = "number",
+            type = "long",
         },
         BlockSize = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -359,13 +360,13 @@ M.ListSnapshotBlocksInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
         },
         StartingBlockIndex = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "startingBlockIndex",
             },
@@ -378,16 +379,16 @@ M.ListSnapshotBlocksOutput = {
     members = {
         Blocks = {
             type = "list",
-            member_type = "structure",
+            member = M.Block,
         },
         ExpiryTime = {
             type = "timestamp",
         },
         VolumeSize = {
-            type = "number",
+            type = "long",
         },
         BlockSize = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -406,7 +407,7 @@ M.PutSnapshotBlockInput = {
             },
         },
         BlockIndex = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_label = true,
                 required = true,
@@ -420,14 +421,14 @@ M.PutSnapshotBlockInput = {
             },
         },
         DataLength = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "x-amz-Data-Length",
                 required = true,
             },
         },
         Progress = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "x-amz-Progress",
             },
@@ -483,7 +484,7 @@ M.StartSnapshotInput = {
     type = "structure",
     members = {
         VolumeSize = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -493,7 +494,7 @@ M.StartSnapshotInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         Description = {
             type = "string",
@@ -508,7 +509,7 @@ M.StartSnapshotInput = {
             type = "string",
         },
         Timeout = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -538,14 +539,14 @@ M.StartSnapshotOutput = {
             type = "timestamp",
         },
         VolumeSize = {
-            type = "number",
+            type = "long",
         },
         BlockSize = {
-            type = "number",
+            type = "integer",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ParentSnapshotId = {
             type = "string",

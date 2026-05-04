@@ -52,11 +52,11 @@ M.AwsLogSourceConfiguration = {
     members = {
         accounts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         regions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -69,6 +69,9 @@ M.AwsLogSourceConfiguration = {
         },
         sourceVersion = {
             type = "string",
+            traits = {
+                default = "latest",
+            },
         },
     },
 }
@@ -116,7 +119,7 @@ M.CreateAwsLogSourceInput = {
     members = {
         sources = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsLogSourceConfiguration,
             traits = {
                 required = true,
             },
@@ -129,7 +132,7 @@ M.CreateAwsLogSourceOutput = {
     members = {
         failed = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -174,7 +177,7 @@ M.ThrottlingException = {
             type = "string",
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -197,18 +200,12 @@ M.CustomLogSourceCrawlerConfiguration = {
 M.CustomLogSourceConfiguration = {
     type = "structure",
     members = {
-        crawlerConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        providerIdentity = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        crawlerConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CustomLogSourceCrawlerConfiguration }),
+        providerIdentity = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AwsIdentity }),
     },
 }
 
@@ -226,14 +223,11 @@ M.CreateCustomLogSourceInput = {
         },
         eventClasses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        configuration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CustomLogSourceConfiguration }),
     },
 }
 
@@ -273,21 +267,15 @@ M.CustomLogSourceResource = {
         sourceVersion = {
             type = "string",
         },
-        provider = {
-            type = "structure",
-        },
-        attributes = {
-            type = "structure",
-        },
+        provider = M.CustomLogSourceProvider,
+        attributes = M.CustomLogSourceAttributes,
     },
 }
 
 M.CreateCustomLogSourceOutput = {
     type = "structure",
     members = {
-        source = {
-            type = "structure",
-        },
+        source = M.CustomLogSourceResource,
     },
 }
 
@@ -304,7 +292,7 @@ M.DataLakeLifecycleExpiration = {
     type = "structure",
     members = {
         days = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -316,7 +304,7 @@ M.DataLakeLifecycleTransition = {
             type = "string",
         },
         days = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -324,12 +312,10 @@ M.DataLakeLifecycleTransition = {
 M.DataLakeLifecycleConfiguration = {
     type = "structure",
     members = {
-        expiration = {
-            type = "structure",
-        },
+        expiration = M.DataLakeLifecycleExpiration,
         transitions = {
             type = "list",
-            member_type = "structure",
+            member = M.DataLakeLifecycleTransition,
         },
     },
 }
@@ -339,7 +325,7 @@ M.DataLakeReplicationConfiguration = {
     members = {
         regions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         roleArn = {
             type = "string",
@@ -356,15 +342,9 @@ M.DataLakeConfiguration = {
                 required = true,
             },
         },
-        encryptionConfiguration = {
-            type = "structure",
-        },
-        lifecycleConfiguration = {
-            type = "structure",
-        },
-        replicationConfiguration = {
-            type = "structure",
-        },
+        encryptionConfiguration = M.DataLakeEncryptionConfiguration,
+        lifecycleConfiguration = M.DataLakeLifecycleConfiguration,
+        replicationConfiguration = M.DataLakeReplicationConfiguration,
     },
 }
 
@@ -391,7 +371,7 @@ M.CreateDataLakeInput = {
     members = {
         configurations = {
             type = "list",
-            member_type = "structure",
+            member = M.DataLakeConfiguration,
             traits = {
                 required = true,
             },
@@ -404,7 +384,7 @@ M.CreateDataLakeInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -437,9 +417,7 @@ M.DataLakeUpdateStatus = {
         status = {
             type = "string",
         },
-        exception = {
-            type = "structure",
-        },
+        exception = M.DataLakeUpdateException,
     },
 }
 
@@ -461,21 +439,13 @@ M.DataLakeResource = {
         s3BucketArn = {
             type = "string",
         },
-        encryptionConfiguration = {
-            type = "structure",
-        },
-        lifecycleConfiguration = {
-            type = "structure",
-        },
-        replicationConfiguration = {
-            type = "structure",
-        },
+        encryptionConfiguration = M.DataLakeEncryptionConfiguration,
+        lifecycleConfiguration = M.DataLakeLifecycleConfiguration,
+        replicationConfiguration = M.DataLakeReplicationConfiguration,
         createStatus = {
             type = "string",
         },
-        updateStatus = {
-            type = "structure",
-        },
+        updateStatus = M.DataLakeUpdateStatus,
     },
 }
 
@@ -484,7 +454,7 @@ M.CreateDataLakeOutput = {
     members = {
         dataLakes = {
             type = "list",
-            member_type = "structure",
+            member = M.DataLakeResource,
         },
     },
 }
@@ -505,7 +475,7 @@ M.CreateDataLakeExceptionSubscriptionInput = {
             },
         },
         exceptionTimeToLive = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -525,7 +495,7 @@ M.DataLakeAutoEnableNewAccountConfiguration = {
         },
         sources = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsLogSourceResource,
             traits = {
                 required = true,
             },
@@ -538,7 +508,7 @@ M.CreateDataLakeOrganizationConfigurationInput = {
     members = {
         autoEnableNewAccount = {
             type = "list",
-            member_type = "structure",
+            member = M.DataLakeAutoEnableNewAccountConfiguration,
         },
     },
 }
@@ -550,24 +520,17 @@ M.CreateDataLakeOrganizationConfigurationOutput = {
 M.LogSourceResource = {
     type = "union",
     members = {
-        awsLogSource = {
-            type = "structure",
-        },
-        customLogSource = {
-            type = "structure",
-        },
+        awsLogSource = M.AwsLogSourceResource,
+        customLogSource = M.CustomLogSourceResource,
     },
 }
 
 M.CreateSubscriberInput = {
     type = "structure",
     members = {
-        subscriberIdentity = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        subscriberIdentity = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AwsIdentity }),
         subscriberName = {
             type = "string",
             traits = {
@@ -579,18 +542,18 @@ M.CreateSubscriberInput = {
         },
         sources = {
             type = "list",
-            member_type = "union",
+            member = M.LogSourceResource,
             traits = {
                 required = true,
             },
         },
         accessTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -617,12 +580,9 @@ M.SubscriberResource = {
                 required = true,
             },
         },
-        subscriberIdentity = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        subscriberIdentity = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AwsIdentity }),
         subscriberName = {
             type = "string",
             traits = {
@@ -634,14 +594,14 @@ M.SubscriberResource = {
         },
         sources = {
             type = "list",
-            member_type = "union",
+            member = M.LogSourceResource,
             traits = {
                 required = true,
             },
         },
         accessTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         roleArn = {
             type = "string",
@@ -679,9 +639,7 @@ M.SubscriberResource = {
 M.CreateSubscriberOutput = {
     type = "structure",
     members = {
-        subscriber = {
-            type = "structure",
-        },
+        subscriber = M.SubscriberResource,
     },
 }
 
@@ -724,12 +682,8 @@ M.SqsNotificationConfiguration = {
 M.NotificationConfiguration = {
     type = "union",
     members = {
-        sqsNotificationConfiguration = {
-            type = "structure",
-        },
-        httpsNotificationConfiguration = {
-            type = "structure",
-        },
+        sqsNotificationConfiguration = M.SqsNotificationConfiguration,
+        httpsNotificationConfiguration = M.HttpsNotificationConfiguration,
     },
 }
 
@@ -743,12 +697,9 @@ M.CreateSubscriberNotificationInput = {
                 required = true,
             },
         },
-        configuration = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.NotificationConfiguration }),
     },
 }
 
@@ -766,7 +717,7 @@ M.DeleteAwsLogSourceInput = {
     members = {
         sources = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsLogSourceConfiguration,
             traits = {
                 required = true,
             },
@@ -779,7 +730,7 @@ M.DeleteAwsLogSourceOutput = {
     members = {
         failed = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -812,7 +763,7 @@ M.DeleteDataLakeInput = {
     members = {
         regions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -829,7 +780,7 @@ M.DeleteDataLakeOrganizationConfigurationInput = {
     members = {
         autoEnableNewAccount = {
             type = "list",
-            member_type = "structure",
+            member = M.DataLakeAutoEnableNewAccountConfiguration,
         },
     },
 }
@@ -847,7 +798,7 @@ M.GetDataLakeOrganizationConfigurationOutput = {
     members = {
         autoEnableNewAccount = {
             type = "list",
-            member_type = "structure",
+            member = M.DataLakeAutoEnableNewAccountConfiguration,
         },
     },
 }
@@ -857,10 +808,13 @@ M.GetDataLakeSourcesInput = {
     members = {
         accounts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 50,
+            },
         },
         nextToken = {
             type = "string",
@@ -897,11 +851,11 @@ M.DataLakeSource = {
         },
         eventClasses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         sourceStatuses = {
             type = "list",
-            member_type = "structure",
+            member = M.DataLakeSourceStatus,
         },
     },
 }
@@ -914,7 +868,7 @@ M.GetDataLakeSourcesOutput = {
         },
         dataLakeSources = {
             type = "list",
-            member_type = "structure",
+            member = M.DataLakeSource,
         },
         nextToken = {
             type = "string",
@@ -927,7 +881,7 @@ M.ListDataLakesInput = {
     members = {
         regions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "regions",
             },
@@ -940,7 +894,7 @@ M.ListDataLakesOutput = {
     members = {
         dataLakes = {
             type = "list",
-            member_type = "structure",
+            member = M.DataLakeResource,
         },
     },
 }
@@ -950,18 +904,21 @@ M.ListLogSourcesInput = {
     members = {
         accounts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         regions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         sources = {
             type = "list",
-            member_type = "union",
+            member = M.LogSourceResource,
         },
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 50,
+            },
         },
         nextToken = {
             type = "string",
@@ -980,7 +937,7 @@ M.LogSource = {
         },
         sources = {
             type = "list",
-            member_type = "union",
+            member = M.LogSourceResource,
         },
     },
 }
@@ -990,7 +947,7 @@ M.ListLogSourcesOutput = {
     members = {
         sources = {
             type = "list",
-            member_type = "structure",
+            member = M.LogSource,
         },
         nextToken = {
             type = "string",
@@ -1003,7 +960,7 @@ M.UpdateDataLakeInput = {
     members = {
         configurations = {
             type = "list",
-            member_type = "structure",
+            member = M.DataLakeConfiguration,
             traits = {
                 required = true,
             },
@@ -1019,7 +976,7 @@ M.UpdateDataLakeOutput = {
     members = {
         dataLakes = {
             type = "list",
-            member_type = "structure",
+            member = M.DataLakeResource,
         },
     },
 }
@@ -1109,7 +1066,7 @@ M.GetDataLakeExceptionSubscriptionOutput = {
             type = "string",
         },
         exceptionTimeToLive = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1130,9 +1087,7 @@ M.GetSubscriberInput = {
 M.GetSubscriberOutput = {
     type = "structure",
     members = {
-        subscriber = {
-            type = "structure",
-        },
+        subscriber = M.SubscriberResource,
     },
 }
 
@@ -1141,10 +1096,13 @@ M.ListDataLakeExceptionsInput = {
     members = {
         regions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 50,
+            },
         },
         nextToken = {
             type = "string",
@@ -1157,7 +1115,7 @@ M.ListDataLakeExceptionsOutput = {
     members = {
         exceptions = {
             type = "list",
-            member_type = "structure",
+            member = M.DataLakeException,
         },
         nextToken = {
             type = "string",
@@ -1175,8 +1133,9 @@ M.ListSubscribersInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 50,
                 http_query = "maxResults",
             },
         },
@@ -1188,7 +1147,7 @@ M.ListSubscribersOutput = {
     members = {
         subscribers = {
             type = "list",
-            member_type = "structure",
+            member = M.SubscriberResource,
         },
         nextToken = {
             type = "string",
@@ -1214,7 +1173,7 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1245,9 +1204,7 @@ M.UpdateSubscriberInput = {
                 required = true,
             },
         },
-        subscriberIdentity = {
-            type = "structure",
-        },
+        subscriberIdentity = M.AwsIdentity,
         subscriberName = {
             type = "string",
         },
@@ -1256,7 +1213,7 @@ M.UpdateSubscriberInput = {
         },
         sources = {
             type = "list",
-            member_type = "union",
+            member = M.LogSourceResource,
         },
     },
 }
@@ -1264,9 +1221,7 @@ M.UpdateSubscriberInput = {
 M.UpdateSubscriberOutput = {
     type = "structure",
     members = {
-        subscriber = {
-            type = "structure",
-        },
+        subscriber = M.SubscriberResource,
     },
 }
 
@@ -1280,12 +1235,9 @@ M.UpdateSubscriberNotificationInput = {
                 required = true,
             },
         },
-        configuration = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.NotificationConfiguration }),
     },
 }
 
@@ -1310,7 +1262,7 @@ M.TagResourceInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -1334,7 +1286,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -1363,7 +1315,7 @@ M.UpdateDataLakeExceptionSubscriptionInput = {
             },
         },
         exceptionTimeToLive = {
-            type = "number",
+            type = "long",
         },
     },
 }

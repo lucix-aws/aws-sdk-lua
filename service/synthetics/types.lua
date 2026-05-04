@@ -30,18 +30,14 @@ M.S3EncryptionConfig = {
 M.ArtifactConfigInput = {
     type = "structure",
     members = {
-        S3Encryption = {
-            type = "structure",
-        },
+        S3Encryption = M.S3EncryptionConfig,
     },
 }
 
 M.ArtifactConfigOutput = {
     type = "structure",
     members = {
-        S3Encryption = {
-            type = "structure",
-        },
+        S3Encryption = M.S3EncryptionConfig,
     },
 }
 
@@ -139,7 +135,7 @@ M.BaseScreenshot = {
         },
         IgnoreCoordinates = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -188,11 +184,11 @@ M.CanaryCodeOutput = {
         },
         BlueprintTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Dependencies = {
             type = "list",
-            member_type = "structure",
+            member = M.Dependency,
         },
     },
 }
@@ -230,16 +226,16 @@ M.CanaryRunConfigOutput = {
     type = "structure",
     members = {
         TimeoutInSeconds = {
-            type = "number",
+            type = "integer",
         },
         MemoryInMB = {
-            type = "number",
+            type = "integer",
         },
         ActiveTracing = {
             type = "boolean",
         },
         EphemeralStorage = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -248,7 +244,7 @@ M.RetryConfigOutput = {
     type = "structure",
     members = {
         MaxRetries = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -260,11 +256,9 @@ M.CanaryScheduleOutput = {
             type = "string",
         },
         DurationInSeconds = {
-            type = "number",
+            type = "long",
         },
-        RetryConfig = {
-            type = "structure",
-        },
+        RetryConfig = M.RetryConfigOutput,
     },
 }
 
@@ -333,7 +327,7 @@ M.VisualReferenceOutput = {
     members = {
         BaseScreenshots = {
             type = "list",
-            member_type = "structure",
+            member = M.BaseScreenshot,
         },
         BaseCanaryRunId = {
             type = "string",
@@ -352,11 +346,11 @@ M.VpcConfigOutput = {
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Ipv6AllowedForDualStack = {
             type = "boolean",
@@ -373,30 +367,20 @@ M.Canary = {
         Name = {
             type = "string",
         },
-        Code = {
-            type = "structure",
-        },
+        Code = M.CanaryCodeOutput,
         ExecutionRoleArn = {
             type = "string",
         },
-        Schedule = {
-            type = "structure",
-        },
-        RunConfig = {
-            type = "structure",
-        },
+        Schedule = M.CanaryScheduleOutput,
+        RunConfig = M.CanaryRunConfigOutput,
         SuccessRetentionPeriodInDays = {
-            type = "number",
+            type = "integer",
         },
         FailureRetentionPeriodInDays = {
-            type = "number",
+            type = "integer",
         },
-        Status = {
-            type = "structure",
-        },
-        Timeline = {
-            type = "structure",
-        },
+        Status = M.CanaryStatus,
+        Timeline = M.CanaryTimeline,
         ArtifactS3Location = {
             type = "string",
         },
@@ -406,38 +390,30 @@ M.Canary = {
         RuntimeVersion = {
             type = "string",
         },
-        VpcConfig = {
-            type = "structure",
-        },
-        VisualReference = {
-            type = "structure",
-        },
+        VpcConfig = M.VpcConfigOutput,
+        VisualReference = M.VisualReferenceOutput,
         ProvisionedResourceCleanup = {
             type = "string",
         },
         BrowserConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.BrowserConfig,
         },
         EngineConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.EngineConfig,
         },
         VisualReferences = {
             type = "list",
-            member_type = "structure",
+            member = M.VisualReferenceOutput,
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        ArtifactConfig = {
-            type = "structure",
-        },
-        DryRunConfig = {
-            type = "structure",
-        },
+        ArtifactConfig = M.ArtifactConfigOutput,
+        DryRunConfig = M.DryRunConfigOutput,
     },
 }
 
@@ -510,23 +486,17 @@ M.CanaryRun = {
             type = "string",
         },
         RetryAttempt = {
-            type = "number",
+            type = "integer",
         },
         Name = {
             type = "string",
         },
-        Status = {
-            type = "structure",
-        },
-        Timeline = {
-            type = "structure",
-        },
+        Status = M.CanaryRunStatus,
+        Timeline = M.CanaryRunTimeline,
         ArtifactS3Location = {
             type = "string",
         },
-        DryRunConfig = {
-            type = "structure",
-        },
+        DryRunConfig = M.CanaryDryRunConfigOutput,
         BrowserType = {
             type = "string",
         },
@@ -539,9 +509,7 @@ M.CanaryLastRun = {
         CanaryName = {
             type = "string",
         },
-        LastRun = {
-            type = "structure",
-        },
+        LastRun = M.CanaryRun,
     },
 }
 
@@ -562,14 +530,17 @@ M.CanaryCodeInput = {
         },
         Handler = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
         BlueprintTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Dependencies = {
             type = "list",
-            member_type = "structure",
+            member = M.Dependency,
         },
     },
 }
@@ -578,21 +549,21 @@ M.CanaryRunConfigInput = {
     type = "structure",
     members = {
         TimeoutInSeconds = {
-            type = "number",
+            type = "integer",
         },
         MemoryInMB = {
-            type = "number",
+            type = "integer",
         },
         ActiveTracing = {
             type = "boolean",
         },
         EnvironmentVariables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         EphemeralStorage = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -601,7 +572,7 @@ M.RetryConfigInput = {
     type = "structure",
     members = {
         MaxRetries = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -619,11 +590,9 @@ M.CanaryScheduleInput = {
             },
         },
         DurationInSeconds = {
-            type = "number",
+            type = "long",
         },
-        RetryConfig = {
-            type = "structure",
-        },
+        RetryConfig = M.RetryConfigInput,
     },
 }
 
@@ -636,11 +605,11 @@ M.VpcConfigInput = {
     members = {
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Ipv6AllowedForDualStack = {
             type = "boolean",
@@ -657,12 +626,9 @@ M.CreateCanaryInput = {
                 required = true,
             },
         },
-        Code = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Code = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CanaryCodeInput }),
         ArtifactS3Location = {
             type = "string",
             traits = {
@@ -675,20 +641,15 @@ M.CreateCanaryInput = {
                 required = true,
             },
         },
-        Schedule = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        RunConfig = {
-            type = "structure",
-        },
+        Schedule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CanaryScheduleInput }),
+        RunConfig = M.CanaryRunConfigInput,
         SuccessRetentionPeriodInDays = {
-            type = "number",
+            type = "integer",
         },
         FailureRetentionPeriodInDays = {
-            type = "number",
+            type = "integer",
         },
         RuntimeVersion = {
             type = "string",
@@ -696,37 +657,31 @@ M.CreateCanaryInput = {
                 required = true,
             },
         },
-        VpcConfig = {
-            type = "structure",
-        },
+        VpcConfig = M.VpcConfigInput,
         ResourcesToReplicateTags = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ProvisionedResourceCleanup = {
             type = "string",
         },
         BrowserConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.BrowserConfig,
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        ArtifactConfig = {
-            type = "structure",
-        },
+        ArtifactConfig = M.ArtifactConfigInput,
     },
 }
 
 M.CreateCanaryOutput = {
     type = "structure",
     members = {
-        Canary = {
-            type = "structure",
-        },
+        Canary = M.Canary,
     },
 }
 
@@ -751,8 +706,8 @@ M.CreateGroupInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -771,8 +726,8 @@ M.Group = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         CreatedTime = {
             type = "timestamp",
@@ -786,9 +741,7 @@ M.Group = {
 M.CreateGroupOutput = {
     type = "structure",
     members = {
-        Group = {
-            type = "structure",
-        },
+        Group = M.Group,
     },
 }
 
@@ -805,6 +758,7 @@ M.DeleteCanaryInput = {
         DeleteLambda = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "deleteLambda",
             },
         },
@@ -839,11 +793,11 @@ M.DescribeCanariesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Names = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -853,7 +807,7 @@ M.DescribeCanariesOutput = {
     members = {
         Canaries = {
             type = "list",
-            member_type = "structure",
+            member = M.Canary,
         },
         NextToken = {
             type = "string",
@@ -868,11 +822,11 @@ M.DescribeCanariesLastRunInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Names = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         BrowserType = {
             type = "string",
@@ -885,7 +839,7 @@ M.DescribeCanariesLastRunOutput = {
     members = {
         CanariesLastRun = {
             type = "list",
-            member_type = "structure",
+            member = M.CanaryLastRun,
         },
         NextToken = {
             type = "string",
@@ -900,7 +854,7 @@ M.DescribeRuntimeVersionsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -928,7 +882,7 @@ M.DescribeRuntimeVersionsOutput = {
     members = {
         RuntimeVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.RuntimeVersion,
         },
         NextToken = {
             type = "string",
@@ -981,9 +935,7 @@ M.GetCanaryInput = {
 M.GetCanaryOutput = {
     type = "structure",
     members = {
-        Canary = {
-            type = "structure",
-        },
+        Canary = M.Canary,
     },
 }
 
@@ -1006,7 +958,7 @@ M.GetCanaryRunsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         DryRunId = {
             type = "string",
@@ -1022,7 +974,7 @@ M.GetCanaryRunsOutput = {
     members = {
         CanaryRuns = {
             type = "list",
-            member_type = "structure",
+            member = M.CanaryRun,
         },
         NextToken = {
             type = "string",
@@ -1046,9 +998,7 @@ M.GetGroupInput = {
 M.GetGroupOutput = {
     type = "structure",
     members = {
-        Group = {
-            type = "structure",
-        },
+        Group = M.Group,
     },
 }
 
@@ -1084,7 +1034,7 @@ M.ListAssociatedGroupsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         ResourceArn = {
             type = "string",
@@ -1101,7 +1051,7 @@ M.ListAssociatedGroupsOutput = {
     members = {
         Groups = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupSummary,
         },
         NextToken = {
             type = "string",
@@ -1116,7 +1066,7 @@ M.ListGroupResourcesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         GroupIdentifier = {
             type = "string",
@@ -1133,7 +1083,7 @@ M.ListGroupResourcesOutput = {
     members = {
         Resources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -1148,7 +1098,7 @@ M.ListGroupsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1158,7 +1108,7 @@ M.ListGroupsOutput = {
     members = {
         Groups = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupSummary,
         },
         NextToken = {
             type = "string",
@@ -1184,8 +1134,8 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1232,7 +1182,7 @@ M.VisualReferenceInput = {
     members = {
         BaseScreenshots = {
             type = "list",
-            member_type = "structure",
+            member = M.BaseScreenshot,
         },
         BaseCanaryRunId = {
             type = "string",
@@ -1256,46 +1206,36 @@ M.StartCanaryDryRunInput = {
                 required = true,
             },
         },
-        Code = {
-            type = "structure",
-        },
+        Code = M.CanaryCodeInput,
         RuntimeVersion = {
             type = "string",
         },
-        RunConfig = {
-            type = "structure",
-        },
-        VpcConfig = {
-            type = "structure",
-        },
+        RunConfig = M.CanaryRunConfigInput,
+        VpcConfig = M.VpcConfigInput,
         ExecutionRoleArn = {
             type = "string",
         },
         SuccessRetentionPeriodInDays = {
-            type = "number",
+            type = "integer",
         },
         FailureRetentionPeriodInDays = {
-            type = "number",
+            type = "integer",
         },
-        VisualReference = {
-            type = "structure",
-        },
+        VisualReference = M.VisualReferenceInput,
         ArtifactS3Location = {
             type = "string",
         },
-        ArtifactConfig = {
-            type = "structure",
-        },
+        ArtifactConfig = M.ArtifactConfigInput,
         ProvisionedResourceCleanup = {
             type = "string",
         },
         BrowserConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.BrowserConfig,
         },
         VisualReferences = {
             type = "list",
-            member_type = "structure",
+            member = M.VisualReferenceInput,
         },
     },
 }
@@ -1303,9 +1243,7 @@ M.StartCanaryDryRunInput = {
 M.StartCanaryDryRunOutput = {
     type = "structure",
     members = {
-        DryRunConfig = {
-            type = "structure",
-        },
+        DryRunConfig = M.DryRunConfigOutput,
     },
 }
 
@@ -1338,8 +1276,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1363,7 +1301,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -1386,39 +1324,27 @@ M.UpdateCanaryInput = {
                 required = true,
             },
         },
-        Code = {
-            type = "structure",
-        },
+        Code = M.CanaryCodeInput,
         ExecutionRoleArn = {
             type = "string",
         },
         RuntimeVersion = {
             type = "string",
         },
-        Schedule = {
-            type = "structure",
-        },
-        RunConfig = {
-            type = "structure",
-        },
+        Schedule = M.CanaryScheduleInput,
+        RunConfig = M.CanaryRunConfigInput,
         SuccessRetentionPeriodInDays = {
-            type = "number",
+            type = "integer",
         },
         FailureRetentionPeriodInDays = {
-            type = "number",
+            type = "integer",
         },
-        VpcConfig = {
-            type = "structure",
-        },
-        VisualReference = {
-            type = "structure",
-        },
+        VpcConfig = M.VpcConfigInput,
+        VisualReference = M.VisualReferenceInput,
         ArtifactS3Location = {
             type = "string",
         },
-        ArtifactConfig = {
-            type = "structure",
-        },
+        ArtifactConfig = M.ArtifactConfigInput,
         ProvisionedResourceCleanup = {
             type = "string",
         },
@@ -1427,11 +1353,11 @@ M.UpdateCanaryInput = {
         },
         VisualReferences = {
             type = "list",
-            member_type = "structure",
+            member = M.VisualReferenceInput,
         },
         BrowserConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.BrowserConfig,
         },
     },
 }

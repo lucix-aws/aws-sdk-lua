@@ -4,10 +4,10 @@ M.AmazonOpenSearchServerlessBufferingHints = {
     type = "structure",
     members = {
         IntervalInSeconds = {
-            type = "number",
+            type = "integer",
         },
         SizeInMBs = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -79,7 +79,7 @@ M.Processor = {
         },
         Parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.ProcessorParameter,
         },
     },
 }
@@ -92,7 +92,7 @@ M.ProcessingConfiguration = {
         },
         Processors = {
             type = "list",
-            member_type = "structure",
+            member = M.Processor,
         },
     },
 }
@@ -101,7 +101,7 @@ M.AmazonOpenSearchServerlessRetryOptions = {
     type = "structure",
     members = {
         DurationInSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -115,10 +115,10 @@ M.BufferingHints = {
     type = "structure",
     members = {
         SizeInMBs = {
-            type = "number",
+            type = "integer",
         },
         IntervalInSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -153,9 +153,7 @@ M.EncryptionConfiguration = {
         NoEncryptionConfig = {
             type = "string",
         },
-        KMSEncryptionConfig = {
-            type = "structure",
-        },
+        KMSEncryptionConfig = M.KMSEncryptionConfig,
     },
 }
 
@@ -180,18 +178,12 @@ M.S3DestinationConfiguration = {
         ErrorOutputPrefix = {
             type = "string",
         },
-        BufferingHints = {
-            type = "structure",
-        },
+        BufferingHints = M.BufferingHints,
         CompressionFormat = {
             type = "string",
         },
-        EncryptionConfiguration = {
-            type = "structure",
-        },
-        CloudWatchLoggingOptions = {
-            type = "structure",
-        },
+        EncryptionConfiguration = M.EncryptionConfiguration,
+        CloudWatchLoggingOptions = M.CloudWatchLoggingOptions,
     },
 }
 
@@ -200,7 +192,7 @@ M.VpcConfiguration = {
     members = {
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -213,7 +205,7 @@ M.VpcConfiguration = {
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -239,30 +231,17 @@ M.AmazonOpenSearchServerlessDestinationConfiguration = {
                 required = true,
             },
         },
-        BufferingHints = {
-            type = "structure",
-        },
-        RetryOptions = {
-            type = "structure",
-        },
+        BufferingHints = M.AmazonOpenSearchServerlessBufferingHints,
+        RetryOptions = M.AmazonOpenSearchServerlessRetryOptions,
         S3BackupMode = {
             type = "string",
         },
-        S3Configuration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ProcessingConfiguration = {
-            type = "structure",
-        },
-        CloudWatchLoggingOptions = {
-            type = "structure",
-        },
-        VpcConfiguration = {
-            type = "structure",
-        },
+        S3Configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3DestinationConfiguration }),
+        ProcessingConfiguration = M.ProcessingConfiguration,
+        CloudWatchLoggingOptions = M.CloudWatchLoggingOptions,
+        VpcConfiguration = M.VpcConfiguration,
     },
 }
 
@@ -287,27 +266,19 @@ M.S3DestinationDescription = {
         ErrorOutputPrefix = {
             type = "string",
         },
-        BufferingHints = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        BufferingHints = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BufferingHints }),
         CompressionFormat = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        EncryptionConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        CloudWatchLoggingOptions = {
-            type = "structure",
-        },
+        EncryptionConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EncryptionConfiguration }),
+        CloudWatchLoggingOptions = M.CloudWatchLoggingOptions,
     },
 }
 
@@ -316,7 +287,7 @@ M.VpcConfigurationDescription = {
     members = {
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -329,7 +300,7 @@ M.VpcConfigurationDescription = {
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -355,27 +326,15 @@ M.AmazonOpenSearchServerlessDestinationDescription = {
         IndexName = {
             type = "string",
         },
-        BufferingHints = {
-            type = "structure",
-        },
-        RetryOptions = {
-            type = "structure",
-        },
+        BufferingHints = M.AmazonOpenSearchServerlessBufferingHints,
+        RetryOptions = M.AmazonOpenSearchServerlessRetryOptions,
         S3BackupMode = {
             type = "string",
         },
-        S3DestinationDescription = {
-            type = "structure",
-        },
-        ProcessingConfiguration = {
-            type = "structure",
-        },
-        CloudWatchLoggingOptions = {
-            type = "structure",
-        },
-        VpcConfigurationDescription = {
-            type = "structure",
-        },
+        S3DestinationDescription = M.S3DestinationDescription,
+        ProcessingConfiguration = M.ProcessingConfiguration,
+        CloudWatchLoggingOptions = M.CloudWatchLoggingOptions,
+        VpcConfigurationDescription = M.VpcConfigurationDescription,
     },
 }
 
@@ -394,18 +353,12 @@ M.S3DestinationUpdate = {
         ErrorOutputPrefix = {
             type = "string",
         },
-        BufferingHints = {
-            type = "structure",
-        },
+        BufferingHints = M.BufferingHints,
         CompressionFormat = {
             type = "string",
         },
-        EncryptionConfiguration = {
-            type = "structure",
-        },
-        CloudWatchLoggingOptions = {
-            type = "structure",
-        },
+        EncryptionConfiguration = M.EncryptionConfiguration,
+        CloudWatchLoggingOptions = M.CloudWatchLoggingOptions,
     },
 }
 
@@ -421,21 +374,11 @@ M.AmazonOpenSearchServerlessDestinationUpdate = {
         IndexName = {
             type = "string",
         },
-        BufferingHints = {
-            type = "structure",
-        },
-        RetryOptions = {
-            type = "structure",
-        },
-        S3Update = {
-            type = "structure",
-        },
-        ProcessingConfiguration = {
-            type = "structure",
-        },
-        CloudWatchLoggingOptions = {
-            type = "structure",
-        },
+        BufferingHints = M.AmazonOpenSearchServerlessBufferingHints,
+        RetryOptions = M.AmazonOpenSearchServerlessRetryOptions,
+        S3Update = M.S3DestinationUpdate,
+        ProcessingConfiguration = M.ProcessingConfiguration,
+        CloudWatchLoggingOptions = M.CloudWatchLoggingOptions,
     },
 }
 
@@ -443,10 +386,10 @@ M.AmazonopensearchserviceBufferingHints = {
     type = "structure",
     members = {
         IntervalInSeconds = {
-            type = "number",
+            type = "integer",
         },
         SizeInMBs = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -480,7 +423,7 @@ M.AmazonopensearchserviceRetryOptions = {
     type = "structure",
     members = {
         DurationInSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -517,33 +460,18 @@ M.AmazonopensearchserviceDestinationConfiguration = {
         IndexRotationPeriod = {
             type = "string",
         },
-        BufferingHints = {
-            type = "structure",
-        },
-        RetryOptions = {
-            type = "structure",
-        },
+        BufferingHints = M.AmazonopensearchserviceBufferingHints,
+        RetryOptions = M.AmazonopensearchserviceRetryOptions,
         S3BackupMode = {
             type = "string",
         },
-        S3Configuration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ProcessingConfiguration = {
-            type = "structure",
-        },
-        CloudWatchLoggingOptions = {
-            type = "structure",
-        },
-        VpcConfiguration = {
-            type = "structure",
-        },
-        DocumentIdOptions = {
-            type = "structure",
-        },
+        S3Configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3DestinationConfiguration }),
+        ProcessingConfiguration = M.ProcessingConfiguration,
+        CloudWatchLoggingOptions = M.CloudWatchLoggingOptions,
+        VpcConfiguration = M.VpcConfiguration,
+        DocumentIdOptions = M.DocumentIdOptions,
     },
 }
 
@@ -568,30 +496,16 @@ M.AmazonopensearchserviceDestinationDescription = {
         IndexRotationPeriod = {
             type = "string",
         },
-        BufferingHints = {
-            type = "structure",
-        },
-        RetryOptions = {
-            type = "structure",
-        },
+        BufferingHints = M.AmazonopensearchserviceBufferingHints,
+        RetryOptions = M.AmazonopensearchserviceRetryOptions,
         S3BackupMode = {
             type = "string",
         },
-        S3DestinationDescription = {
-            type = "structure",
-        },
-        ProcessingConfiguration = {
-            type = "structure",
-        },
-        CloudWatchLoggingOptions = {
-            type = "structure",
-        },
-        VpcConfigurationDescription = {
-            type = "structure",
-        },
-        DocumentIdOptions = {
-            type = "structure",
-        },
+        S3DestinationDescription = M.S3DestinationDescription,
+        ProcessingConfiguration = M.ProcessingConfiguration,
+        CloudWatchLoggingOptions = M.CloudWatchLoggingOptions,
+        VpcConfigurationDescription = M.VpcConfigurationDescription,
+        DocumentIdOptions = M.DocumentIdOptions,
     },
 }
 
@@ -616,24 +530,12 @@ M.AmazonopensearchserviceDestinationUpdate = {
         IndexRotationPeriod = {
             type = "string",
         },
-        BufferingHints = {
-            type = "structure",
-        },
-        RetryOptions = {
-            type = "structure",
-        },
-        S3Update = {
-            type = "structure",
-        },
-        ProcessingConfiguration = {
-            type = "structure",
-        },
-        CloudWatchLoggingOptions = {
-            type = "structure",
-        },
-        DocumentIdOptions = {
-            type = "structure",
-        },
+        BufferingHints = M.AmazonopensearchserviceBufferingHints,
+        RetryOptions = M.AmazonopensearchserviceRetryOptions,
+        S3Update = M.S3DestinationUpdate,
+        ProcessingConfiguration = M.ProcessingConfiguration,
+        CloudWatchLoggingOptions = M.CloudWatchLoggingOptions,
+        DocumentIdOptions = M.DocumentIdOptions,
     },
 }
 
@@ -710,11 +612,11 @@ M.DatabaseColumnList = {
     members = {
         Include = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Exclude = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -724,11 +626,11 @@ M.DatabaseList = {
     members = {
         Include = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Exclude = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -754,12 +656,9 @@ M.SecretsManagerConfiguration = {
 M.DatabaseSourceAuthenticationConfiguration = {
     type = "structure",
     members = {
-        SecretsManagerConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SecretsManagerConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SecretsManagerConfiguration }),
     },
 }
 
@@ -785,11 +684,11 @@ M.DatabaseTableList = {
     members = {
         Include = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Exclude = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -815,7 +714,7 @@ M.DatabaseSourceConfiguration = {
             },
         },
         Port = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -823,24 +722,16 @@ M.DatabaseSourceConfiguration = {
         SSLMode = {
             type = "string",
         },
-        Databases = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Tables = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Columns = {
-            type = "structure",
-        },
+        Databases = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DatabaseList }),
+        Tables = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DatabaseTableList }),
+        Columns = M.DatabaseColumnList,
         SurrogateKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SnapshotWatermarkTable = {
             type = "string",
@@ -848,18 +739,12 @@ M.DatabaseSourceConfiguration = {
                 required = true,
             },
         },
-        DatabaseSourceAuthenticationConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        DatabaseSourceVPCConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DatabaseSourceAuthenticationConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DatabaseSourceAuthenticationConfiguration }),
+        DatabaseSourceVPCConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DatabaseSourceVPCConfiguration }),
     },
 }
 
@@ -894,7 +779,7 @@ M.DirectPutSourceConfiguration = {
     type = "structure",
     members = {
         ThroughputHintInMBs = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -906,10 +791,10 @@ M.ElasticsearchBufferingHints = {
     type = "structure",
     members = {
         IntervalInSeconds = {
-            type = "number",
+            type = "integer",
         },
         SizeInMBs = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -926,7 +811,7 @@ M.ElasticsearchRetryOptions = {
     type = "structure",
     members = {
         DurationInSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -963,33 +848,18 @@ M.ElasticsearchDestinationConfiguration = {
         IndexRotationPeriod = {
             type = "string",
         },
-        BufferingHints = {
-            type = "structure",
-        },
-        RetryOptions = {
-            type = "structure",
-        },
+        BufferingHints = M.ElasticsearchBufferingHints,
+        RetryOptions = M.ElasticsearchRetryOptions,
         S3BackupMode = {
             type = "string",
         },
-        S3Configuration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ProcessingConfiguration = {
-            type = "structure",
-        },
-        CloudWatchLoggingOptions = {
-            type = "structure",
-        },
-        VpcConfiguration = {
-            type = "structure",
-        },
-        DocumentIdOptions = {
-            type = "structure",
-        },
+        S3Configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3DestinationConfiguration }),
+        ProcessingConfiguration = M.ProcessingConfiguration,
+        CloudWatchLoggingOptions = M.CloudWatchLoggingOptions,
+        VpcConfiguration = M.VpcConfiguration,
+        DocumentIdOptions = M.DocumentIdOptions,
     },
 }
 
@@ -998,7 +868,7 @@ M.HiveJsonSerDe = {
     members = {
         TimestampFormats = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1014,8 +884,8 @@ M.OpenXJsonSerDe = {
         },
         ColumnToJsonKeyMappings = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1023,21 +893,15 @@ M.OpenXJsonSerDe = {
 M.Deserializer = {
     type = "structure",
     members = {
-        OpenXJsonSerDe = {
-            type = "structure",
-        },
-        HiveJsonSerDe = {
-            type = "structure",
-        },
+        OpenXJsonSerDe = M.OpenXJsonSerDe,
+        HiveJsonSerDe = M.HiveJsonSerDe,
     },
 }
 
 M.InputFormatConfiguration = {
     type = "structure",
     members = {
-        Deserializer = {
-            type = "structure",
-        },
+        Deserializer = M.Deserializer,
     },
 }
 
@@ -1056,32 +920,32 @@ M.OrcSerDe = {
     type = "structure",
     members = {
         StripeSizeBytes = {
-            type = "number",
+            type = "integer",
         },
         BlockSizeBytes = {
-            type = "number",
+            type = "integer",
         },
         RowIndexStride = {
-            type = "number",
+            type = "integer",
         },
         EnablePadding = {
             type = "boolean",
         },
         PaddingTolerance = {
-            type = "number",
+            type = "double",
         },
         Compression = {
             type = "string",
         },
         BloomFilterColumns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         BloomFilterFalsePositiveProbability = {
-            type = "number",
+            type = "double",
         },
         DictionaryKeyThreshold = {
-            type = "number",
+            type = "double",
         },
         FormatVersion = {
             type = "string",
@@ -1104,10 +968,10 @@ M.ParquetSerDe = {
     type = "structure",
     members = {
         BlockSizeBytes = {
-            type = "number",
+            type = "integer",
         },
         PageSizeBytes = {
-            type = "number",
+            type = "integer",
         },
         Compression = {
             type = "string",
@@ -1116,7 +980,7 @@ M.ParquetSerDe = {
             type = "boolean",
         },
         MaxPaddingBytes = {
-            type = "number",
+            type = "integer",
         },
         WriterVersion = {
             type = "string",
@@ -1127,21 +991,15 @@ M.ParquetSerDe = {
 M.Serializer = {
     type = "structure",
     members = {
-        ParquetSerDe = {
-            type = "structure",
-        },
-        OrcSerDe = {
-            type = "structure",
-        },
+        ParquetSerDe = M.ParquetSerDe,
+        OrcSerDe = M.OrcSerDe,
     },
 }
 
 M.OutputFormatConfiguration = {
     type = "structure",
     members = {
-        Serializer = {
-            type = "structure",
-        },
+        Serializer = M.Serializer,
     },
 }
 
@@ -1172,15 +1030,9 @@ M.SchemaConfiguration = {
 M.DataFormatConversionConfiguration = {
     type = "structure",
     members = {
-        SchemaConfiguration = {
-            type = "structure",
-        },
-        InputFormatConfiguration = {
-            type = "structure",
-        },
-        OutputFormatConfiguration = {
-            type = "structure",
-        },
+        SchemaConfiguration = M.SchemaConfiguration,
+        InputFormatConfiguration = M.InputFormatConfiguration,
+        OutputFormatConfiguration = M.OutputFormatConfiguration,
         Enabled = {
             type = "boolean",
         },
@@ -1191,7 +1043,7 @@ M.RetryOptions = {
     type = "structure",
     members = {
         DurationInSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1199,9 +1051,7 @@ M.RetryOptions = {
 M.DynamicPartitioningConfiguration = {
     type = "structure",
     members = {
-        RetryOptions = {
-            type = "structure",
-        },
+        RetryOptions = M.RetryOptions,
         Enabled = {
             type = "boolean",
         },
@@ -1234,33 +1084,19 @@ M.ExtendedS3DestinationConfiguration = {
         ErrorOutputPrefix = {
             type = "string",
         },
-        BufferingHints = {
-            type = "structure",
-        },
+        BufferingHints = M.BufferingHints,
         CompressionFormat = {
             type = "string",
         },
-        EncryptionConfiguration = {
-            type = "structure",
-        },
-        CloudWatchLoggingOptions = {
-            type = "structure",
-        },
-        ProcessingConfiguration = {
-            type = "structure",
-        },
+        EncryptionConfiguration = M.EncryptionConfiguration,
+        CloudWatchLoggingOptions = M.CloudWatchLoggingOptions,
+        ProcessingConfiguration = M.ProcessingConfiguration,
         S3BackupMode = {
             type = "string",
         },
-        S3BackupConfiguration = {
-            type = "structure",
-        },
-        DataFormatConversionConfiguration = {
-            type = "structure",
-        },
-        DynamicPartitioningConfiguration = {
-            type = "structure",
-        },
+        S3BackupConfiguration = M.S3DestinationConfiguration,
+        DataFormatConversionConfiguration = M.DataFormatConversionConfiguration,
+        DynamicPartitioningConfiguration = M.DynamicPartitioningConfiguration,
         FileExtension = {
             type = "string",
         },
@@ -1274,10 +1110,10 @@ M.HttpEndpointBufferingHints = {
     type = "structure",
     members = {
         SizeInMBs = {
-            type = "number",
+            type = "integer",
         },
         IntervalInSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1326,7 +1162,7 @@ M.HttpEndpointRequestConfiguration = {
         },
         CommonAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.HttpEndpointCommonAttribute,
         },
     },
 }
@@ -1335,7 +1171,7 @@ M.HttpEndpointRetryOptions = {
     type = "structure",
     members = {
         DurationInSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1348,42 +1184,24 @@ M.HttpEndpointS3BackupMode = {
 M.HttpEndpointDestinationConfiguration = {
     type = "structure",
     members = {
-        EndpointConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        BufferingHints = {
-            type = "structure",
-        },
-        CloudWatchLoggingOptions = {
-            type = "structure",
-        },
-        RequestConfiguration = {
-            type = "structure",
-        },
-        ProcessingConfiguration = {
-            type = "structure",
-        },
+        EndpointConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HttpEndpointConfiguration }),
+        BufferingHints = M.HttpEndpointBufferingHints,
+        CloudWatchLoggingOptions = M.CloudWatchLoggingOptions,
+        RequestConfiguration = M.HttpEndpointRequestConfiguration,
+        ProcessingConfiguration = M.ProcessingConfiguration,
         RoleARN = {
             type = "string",
         },
-        RetryOptions = {
-            type = "structure",
-        },
+        RetryOptions = M.HttpEndpointRetryOptions,
         S3BackupMode = {
             type = "string",
         },
-        S3Configuration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        SecretsManagerConfiguration = {
-            type = "structure",
-        },
+        S3Configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3DestinationConfiguration }),
+        SecretsManagerConfiguration = M.SecretsManagerConfiguration,
     },
 }
 
@@ -1404,7 +1222,7 @@ M.PartitionSpec = {
     members = {
         Identity = {
             type = "list",
-            member_type = "structure",
+            member = M.PartitionField,
         },
     },
 }
@@ -1426,11 +1244,9 @@ M.DestinationTableConfiguration = {
         },
         UniqueKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        PartitionSpec = {
-            type = "structure",
-        },
+        PartitionSpec = M.PartitionSpec,
         S3ErrorOutputPrefix = {
             type = "string",
         },
@@ -1471,29 +1287,17 @@ M.IcebergDestinationConfiguration = {
     members = {
         DestinationTableConfigurationList = {
             type = "list",
-            member_type = "structure",
+            member = M.DestinationTableConfiguration,
         },
-        SchemaEvolutionConfiguration = {
-            type = "structure",
-        },
-        TableCreationConfiguration = {
-            type = "structure",
-        },
-        BufferingHints = {
-            type = "structure",
-        },
-        CloudWatchLoggingOptions = {
-            type = "structure",
-        },
-        ProcessingConfiguration = {
-            type = "structure",
-        },
+        SchemaEvolutionConfiguration = M.SchemaEvolutionConfiguration,
+        TableCreationConfiguration = M.TableCreationConfiguration,
+        BufferingHints = M.BufferingHints,
+        CloudWatchLoggingOptions = M.CloudWatchLoggingOptions,
+        ProcessingConfiguration = M.ProcessingConfiguration,
         S3BackupMode = {
             type = "string",
         },
-        RetryOptions = {
-            type = "structure",
-        },
+        RetryOptions = M.RetryOptions,
         RoleARN = {
             type = "string",
             traits = {
@@ -1503,18 +1307,12 @@ M.IcebergDestinationConfiguration = {
         AppendOnly = {
             type = "boolean",
         },
-        CatalogConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        S3Configuration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        CatalogConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CatalogConfiguration }),
+        S3Configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3DestinationConfiguration }),
     },
 }
 
@@ -1551,12 +1349,9 @@ M.MSKSourceConfiguration = {
                 required = true,
             },
         },
-        AuthenticationConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AuthenticationConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AuthenticationConfiguration }),
         ReadFromTimestamp = {
             type = "timestamp",
         },
@@ -1567,7 +1362,7 @@ M.RedshiftRetryOptions = {
     type = "structure",
     members = {
         DurationInSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1592,42 +1387,26 @@ M.RedshiftDestinationConfiguration = {
                 required = true,
             },
         },
-        CopyCommand = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        CopyCommand = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CopyCommand }),
         Username = {
             type = "string",
         },
         Password = {
             type = "string",
         },
-        RetryOptions = {
-            type = "structure",
-        },
-        S3Configuration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ProcessingConfiguration = {
-            type = "structure",
-        },
+        RetryOptions = M.RedshiftRetryOptions,
+        S3Configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3DestinationConfiguration }),
+        ProcessingConfiguration = M.ProcessingConfiguration,
         S3BackupMode = {
             type = "string",
         },
-        S3BackupConfiguration = {
-            type = "structure",
-        },
-        CloudWatchLoggingOptions = {
-            type = "structure",
-        },
-        SecretsManagerConfiguration = {
-            type = "structure",
-        },
+        S3BackupConfiguration = M.S3DestinationConfiguration,
+        CloudWatchLoggingOptions = M.CloudWatchLoggingOptions,
+        SecretsManagerConfiguration = M.SecretsManagerConfiguration,
     },
 }
 
@@ -1635,10 +1414,10 @@ M.SnowflakeBufferingHints = {
     type = "structure",
     members = {
         SizeInMBs = {
-            type = "number",
+            type = "integer",
         },
         IntervalInSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1653,7 +1432,7 @@ M.SnowflakeRetryOptions = {
     type = "structure",
     members = {
         DurationInSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1723,9 +1502,7 @@ M.SnowflakeDestinationConfiguration = {
                 required = true,
             },
         },
-        SnowflakeRoleConfiguration = {
-            type = "structure",
-        },
+        SnowflakeRoleConfiguration = M.SnowflakeRoleConfiguration,
         DataLoadingOption = {
             type = "string",
         },
@@ -1735,39 +1512,24 @@ M.SnowflakeDestinationConfiguration = {
         ContentColumnName = {
             type = "string",
         },
-        SnowflakeVpcConfiguration = {
-            type = "structure",
-        },
-        CloudWatchLoggingOptions = {
-            type = "structure",
-        },
-        ProcessingConfiguration = {
-            type = "structure",
-        },
+        SnowflakeVpcConfiguration = M.SnowflakeVpcConfiguration,
+        CloudWatchLoggingOptions = M.CloudWatchLoggingOptions,
+        ProcessingConfiguration = M.ProcessingConfiguration,
         RoleARN = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        RetryOptions = {
-            type = "structure",
-        },
+        RetryOptions = M.SnowflakeRetryOptions,
         S3BackupMode = {
             type = "string",
         },
-        S3Configuration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        SecretsManagerConfiguration = {
-            type = "structure",
-        },
-        BufferingHints = {
-            type = "structure",
-        },
+        S3Configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3DestinationConfiguration }),
+        SecretsManagerConfiguration = M.SecretsManagerConfiguration,
+        BufferingHints = M.SnowflakeBufferingHints,
     },
 }
 
@@ -1775,10 +1537,10 @@ M.SplunkBufferingHints = {
     type = "structure",
     members = {
         IntervalInSeconds = {
-            type = "number",
+            type = "integer",
         },
         SizeInMBs = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1792,7 +1554,7 @@ M.SplunkRetryOptions = {
     type = "structure",
     members = {
         DurationInSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1821,32 +1583,19 @@ M.SplunkDestinationConfiguration = {
             type = "string",
         },
         HECAcknowledgmentTimeoutInSeconds = {
-            type = "number",
+            type = "integer",
         },
-        RetryOptions = {
-            type = "structure",
-        },
+        RetryOptions = M.SplunkRetryOptions,
         S3BackupMode = {
             type = "string",
         },
-        S3Configuration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ProcessingConfiguration = {
-            type = "structure",
-        },
-        CloudWatchLoggingOptions = {
-            type = "structure",
-        },
-        BufferingHints = {
-            type = "structure",
-        },
-        SecretsManagerConfiguration = {
-            type = "structure",
-        },
+        S3Configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3DestinationConfiguration }),
+        ProcessingConfiguration = M.ProcessingConfiguration,
+        CloudWatchLoggingOptions = M.CloudWatchLoggingOptions,
+        BufferingHints = M.SplunkBufferingHints,
+        SecretsManagerConfiguration = M.SecretsManagerConfiguration,
     },
 }
 
@@ -1877,55 +1626,25 @@ M.CreateDeliveryStreamInput = {
         DeliveryStreamType = {
             type = "string",
         },
-        DirectPutSourceConfiguration = {
-            type = "structure",
-        },
-        KinesisStreamSourceConfiguration = {
-            type = "structure",
-        },
-        DeliveryStreamEncryptionConfigurationInput = {
-            type = "structure",
-        },
-        S3DestinationConfiguration = {
-            type = "structure",
-        },
-        ExtendedS3DestinationConfiguration = {
-            type = "structure",
-        },
-        RedshiftDestinationConfiguration = {
-            type = "structure",
-        },
-        ElasticsearchDestinationConfiguration = {
-            type = "structure",
-        },
-        AmazonopensearchserviceDestinationConfiguration = {
-            type = "structure",
-        },
-        SplunkDestinationConfiguration = {
-            type = "structure",
-        },
-        HttpEndpointDestinationConfiguration = {
-            type = "structure",
-        },
+        DirectPutSourceConfiguration = M.DirectPutSourceConfiguration,
+        KinesisStreamSourceConfiguration = M.KinesisStreamSourceConfiguration,
+        DeliveryStreamEncryptionConfigurationInput = M.DeliveryStreamEncryptionConfigurationInput,
+        S3DestinationConfiguration = M.S3DestinationConfiguration,
+        ExtendedS3DestinationConfiguration = M.ExtendedS3DestinationConfiguration,
+        RedshiftDestinationConfiguration = M.RedshiftDestinationConfiguration,
+        ElasticsearchDestinationConfiguration = M.ElasticsearchDestinationConfiguration,
+        AmazonopensearchserviceDestinationConfiguration = M.AmazonopensearchserviceDestinationConfiguration,
+        SplunkDestinationConfiguration = M.SplunkDestinationConfiguration,
+        HttpEndpointDestinationConfiguration = M.HttpEndpointDestinationConfiguration,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        AmazonOpenSearchServerlessDestinationConfiguration = {
-            type = "structure",
-        },
-        MSKSourceConfiguration = {
-            type = "structure",
-        },
-        SnowflakeDestinationConfiguration = {
-            type = "structure",
-        },
-        IcebergDestinationConfiguration = {
-            type = "structure",
-        },
-        DatabaseSourceConfiguration = {
-            type = "structure",
-        },
+        AmazonOpenSearchServerlessDestinationConfiguration = M.AmazonOpenSearchServerlessDestinationConfiguration,
+        MSKSourceConfiguration = M.MSKSourceConfiguration,
+        SnowflakeDestinationConfiguration = M.SnowflakeDestinationConfiguration,
+        IcebergDestinationConfiguration = M.IcebergDestinationConfiguration,
+        DatabaseSourceConfiguration = M.DatabaseSourceConfiguration,
     },
 }
 
@@ -2063,9 +1782,7 @@ M.DatabaseSnapshotInfo = {
                 required = true,
             },
         },
-        FailureDescription = {
-            type = "structure",
-        },
+        FailureDescription = M.FailureDescription,
     },
 }
 
@@ -2079,37 +1796,27 @@ M.DatabaseSourceDescription = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         SSLMode = {
             type = "string",
         },
-        Databases = {
-            type = "structure",
-        },
-        Tables = {
-            type = "structure",
-        },
-        Columns = {
-            type = "structure",
-        },
+        Databases = M.DatabaseList,
+        Tables = M.DatabaseTableList,
+        Columns = M.DatabaseColumnList,
         SurrogateKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SnapshotWatermarkTable = {
             type = "string",
         },
         SnapshotInfo = {
             type = "list",
-            member_type = "structure",
+            member = M.DatabaseSnapshotInfo,
         },
-        DatabaseSourceAuthenticationConfiguration = {
-            type = "structure",
-        },
-        DatabaseSourceVPCConfiguration = {
-            type = "structure",
-        },
+        DatabaseSourceAuthenticationConfiguration = M.DatabaseSourceAuthenticationConfiguration,
+        DatabaseSourceVPCConfiguration = M.DatabaseSourceVPCConfiguration,
     },
 }
 
@@ -2163,9 +1870,7 @@ M.DeliveryStreamEncryptionConfiguration = {
         Status = {
             type = "string",
         },
-        FailureDescription = {
-            type = "structure",
-        },
+        FailureDescription = M.FailureDescription,
     },
 }
 
@@ -2198,30 +1903,16 @@ M.ElasticsearchDestinationDescription = {
         IndexRotationPeriod = {
             type = "string",
         },
-        BufferingHints = {
-            type = "structure",
-        },
-        RetryOptions = {
-            type = "structure",
-        },
+        BufferingHints = M.ElasticsearchBufferingHints,
+        RetryOptions = M.ElasticsearchRetryOptions,
         S3BackupMode = {
             type = "string",
         },
-        S3DestinationDescription = {
-            type = "structure",
-        },
-        ProcessingConfiguration = {
-            type = "structure",
-        },
-        CloudWatchLoggingOptions = {
-            type = "structure",
-        },
-        VpcConfigurationDescription = {
-            type = "structure",
-        },
-        DocumentIdOptions = {
-            type = "structure",
-        },
+        S3DestinationDescription = M.S3DestinationDescription,
+        ProcessingConfiguration = M.ProcessingConfiguration,
+        CloudWatchLoggingOptions = M.CloudWatchLoggingOptions,
+        VpcConfigurationDescription = M.VpcConfigurationDescription,
+        DocumentIdOptions = M.DocumentIdOptions,
     },
 }
 
@@ -2246,42 +1937,26 @@ M.ExtendedS3DestinationDescription = {
         ErrorOutputPrefix = {
             type = "string",
         },
-        BufferingHints = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        BufferingHints = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BufferingHints }),
         CompressionFormat = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        EncryptionConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        CloudWatchLoggingOptions = {
-            type = "structure",
-        },
-        ProcessingConfiguration = {
-            type = "structure",
-        },
+        EncryptionConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EncryptionConfiguration }),
+        CloudWatchLoggingOptions = M.CloudWatchLoggingOptions,
+        ProcessingConfiguration = M.ProcessingConfiguration,
         S3BackupMode = {
             type = "string",
         },
-        S3BackupDescription = {
-            type = "structure",
-        },
-        DataFormatConversionConfiguration = {
-            type = "structure",
-        },
-        DynamicPartitioningConfiguration = {
-            type = "structure",
-        },
+        S3BackupDescription = M.S3DestinationDescription,
+        DataFormatConversionConfiguration = M.DataFormatConversionConfiguration,
+        DynamicPartitioningConfiguration = M.DynamicPartitioningConfiguration,
         FileExtension = {
             type = "string",
         },
@@ -2306,36 +1981,20 @@ M.HttpEndpointDescription = {
 M.HttpEndpointDestinationDescription = {
     type = "structure",
     members = {
-        EndpointConfiguration = {
-            type = "structure",
-        },
-        BufferingHints = {
-            type = "structure",
-        },
-        CloudWatchLoggingOptions = {
-            type = "structure",
-        },
-        RequestConfiguration = {
-            type = "structure",
-        },
-        ProcessingConfiguration = {
-            type = "structure",
-        },
+        EndpointConfiguration = M.HttpEndpointDescription,
+        BufferingHints = M.HttpEndpointBufferingHints,
+        CloudWatchLoggingOptions = M.CloudWatchLoggingOptions,
+        RequestConfiguration = M.HttpEndpointRequestConfiguration,
+        ProcessingConfiguration = M.ProcessingConfiguration,
         RoleARN = {
             type = "string",
         },
-        RetryOptions = {
-            type = "structure",
-        },
+        RetryOptions = M.HttpEndpointRetryOptions,
         S3BackupMode = {
             type = "string",
         },
-        S3DestinationDescription = {
-            type = "structure",
-        },
-        SecretsManagerConfiguration = {
-            type = "structure",
-        },
+        S3DestinationDescription = M.S3DestinationDescription,
+        SecretsManagerConfiguration = M.SecretsManagerConfiguration,
     },
 }
 
@@ -2344,41 +2003,25 @@ M.IcebergDestinationDescription = {
     members = {
         DestinationTableConfigurationList = {
             type = "list",
-            member_type = "structure",
+            member = M.DestinationTableConfiguration,
         },
-        SchemaEvolutionConfiguration = {
-            type = "structure",
-        },
-        TableCreationConfiguration = {
-            type = "structure",
-        },
-        BufferingHints = {
-            type = "structure",
-        },
-        CloudWatchLoggingOptions = {
-            type = "structure",
-        },
-        ProcessingConfiguration = {
-            type = "structure",
-        },
+        SchemaEvolutionConfiguration = M.SchemaEvolutionConfiguration,
+        TableCreationConfiguration = M.TableCreationConfiguration,
+        BufferingHints = M.BufferingHints,
+        CloudWatchLoggingOptions = M.CloudWatchLoggingOptions,
+        ProcessingConfiguration = M.ProcessingConfiguration,
         S3BackupMode = {
             type = "string",
         },
-        RetryOptions = {
-            type = "structure",
-        },
+        RetryOptions = M.RetryOptions,
         RoleARN = {
             type = "string",
         },
         AppendOnly = {
             type = "boolean",
         },
-        CatalogConfiguration = {
-            type = "structure",
-        },
-        S3DestinationDescription = {
-            type = "structure",
-        },
+        CatalogConfiguration = M.CatalogConfiguration,
+        S3DestinationDescription = M.S3DestinationDescription,
     },
 }
 
@@ -2397,39 +2040,23 @@ M.RedshiftDestinationDescription = {
                 required = true,
             },
         },
-        CopyCommand = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        CopyCommand = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CopyCommand }),
         Username = {
             type = "string",
         },
-        RetryOptions = {
-            type = "structure",
-        },
-        S3DestinationDescription = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ProcessingConfiguration = {
-            type = "structure",
-        },
+        RetryOptions = M.RedshiftRetryOptions,
+        S3DestinationDescription = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3DestinationDescription }),
+        ProcessingConfiguration = M.ProcessingConfiguration,
         S3BackupMode = {
             type = "string",
         },
-        S3BackupDescription = {
-            type = "structure",
-        },
-        CloudWatchLoggingOptions = {
-            type = "structure",
-        },
-        SecretsManagerConfiguration = {
-            type = "structure",
-        },
+        S3BackupDescription = M.S3DestinationDescription,
+        CloudWatchLoggingOptions = M.CloudWatchLoggingOptions,
+        SecretsManagerConfiguration = M.SecretsManagerConfiguration,
     },
 }
 
@@ -2451,9 +2078,7 @@ M.SnowflakeDestinationDescription = {
         Table = {
             type = "string",
         },
-        SnowflakeRoleConfiguration = {
-            type = "structure",
-        },
+        SnowflakeRoleConfiguration = M.SnowflakeRoleConfiguration,
         DataLoadingOption = {
             type = "string",
         },
@@ -2463,33 +2088,19 @@ M.SnowflakeDestinationDescription = {
         ContentColumnName = {
             type = "string",
         },
-        SnowflakeVpcConfiguration = {
-            type = "structure",
-        },
-        CloudWatchLoggingOptions = {
-            type = "structure",
-        },
-        ProcessingConfiguration = {
-            type = "structure",
-        },
+        SnowflakeVpcConfiguration = M.SnowflakeVpcConfiguration,
+        CloudWatchLoggingOptions = M.CloudWatchLoggingOptions,
+        ProcessingConfiguration = M.ProcessingConfiguration,
         RoleARN = {
             type = "string",
         },
-        RetryOptions = {
-            type = "structure",
-        },
+        RetryOptions = M.SnowflakeRetryOptions,
         S3BackupMode = {
             type = "string",
         },
-        S3DestinationDescription = {
-            type = "structure",
-        },
-        SecretsManagerConfiguration = {
-            type = "structure",
-        },
-        BufferingHints = {
-            type = "structure",
-        },
+        S3DestinationDescription = M.S3DestinationDescription,
+        SecretsManagerConfiguration = M.SecretsManagerConfiguration,
+        BufferingHints = M.SnowflakeBufferingHints,
     },
 }
 
@@ -2506,29 +2117,17 @@ M.SplunkDestinationDescription = {
             type = "string",
         },
         HECAcknowledgmentTimeoutInSeconds = {
-            type = "number",
+            type = "integer",
         },
-        RetryOptions = {
-            type = "structure",
-        },
+        RetryOptions = M.SplunkRetryOptions,
         S3BackupMode = {
             type = "string",
         },
-        S3DestinationDescription = {
-            type = "structure",
-        },
-        ProcessingConfiguration = {
-            type = "structure",
-        },
-        CloudWatchLoggingOptions = {
-            type = "structure",
-        },
-        BufferingHints = {
-            type = "structure",
-        },
-        SecretsManagerConfiguration = {
-            type = "structure",
-        },
+        S3DestinationDescription = M.S3DestinationDescription,
+        ProcessingConfiguration = M.ProcessingConfiguration,
+        CloudWatchLoggingOptions = M.CloudWatchLoggingOptions,
+        BufferingHints = M.SplunkBufferingHints,
+        SecretsManagerConfiguration = M.SecretsManagerConfiguration,
     },
 }
 
@@ -2541,36 +2140,16 @@ M.DestinationDescription = {
                 required = true,
             },
         },
-        S3DestinationDescription = {
-            type = "structure",
-        },
-        ExtendedS3DestinationDescription = {
-            type = "structure",
-        },
-        RedshiftDestinationDescription = {
-            type = "structure",
-        },
-        ElasticsearchDestinationDescription = {
-            type = "structure",
-        },
-        AmazonopensearchserviceDestinationDescription = {
-            type = "structure",
-        },
-        SplunkDestinationDescription = {
-            type = "structure",
-        },
-        HttpEndpointDestinationDescription = {
-            type = "structure",
-        },
-        SnowflakeDestinationDescription = {
-            type = "structure",
-        },
-        AmazonOpenSearchServerlessDestinationDescription = {
-            type = "structure",
-        },
-        IcebergDestinationDescription = {
-            type = "structure",
-        },
+        S3DestinationDescription = M.S3DestinationDescription,
+        ExtendedS3DestinationDescription = M.ExtendedS3DestinationDescription,
+        RedshiftDestinationDescription = M.RedshiftDestinationDescription,
+        ElasticsearchDestinationDescription = M.ElasticsearchDestinationDescription,
+        AmazonopensearchserviceDestinationDescription = M.AmazonopensearchserviceDestinationDescription,
+        SplunkDestinationDescription = M.SplunkDestinationDescription,
+        HttpEndpointDestinationDescription = M.HttpEndpointDestinationDescription,
+        SnowflakeDestinationDescription = M.SnowflakeDestinationDescription,
+        AmazonOpenSearchServerlessDestinationDescription = M.AmazonOpenSearchServerlessDestinationDescription,
+        IcebergDestinationDescription = M.IcebergDestinationDescription,
     },
 }
 
@@ -2578,7 +2157,7 @@ M.DirectPutSourceDescription = {
     type = "structure",
     members = {
         ThroughputHintInMBs = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2607,9 +2186,7 @@ M.MSKSourceDescription = {
         TopicName = {
             type = "string",
         },
-        AuthenticationConfiguration = {
-            type = "structure",
-        },
+        AuthenticationConfiguration = M.AuthenticationConfiguration,
         DeliveryStartTimestamp = {
             type = "timestamp",
         },
@@ -2622,18 +2199,10 @@ M.MSKSourceDescription = {
 M.SourceDescription = {
     type = "structure",
     members = {
-        DirectPutSourceDescription = {
-            type = "structure",
-        },
-        KinesisStreamSourceDescription = {
-            type = "structure",
-        },
-        MSKSourceDescription = {
-            type = "structure",
-        },
-        DatabaseSourceDescription = {
-            type = "structure",
-        },
+        DirectPutSourceDescription = M.DirectPutSourceDescription,
+        KinesisStreamSourceDescription = M.KinesisStreamSourceDescription,
+        MSKSourceDescription = M.MSKSourceDescription,
+        DatabaseSourceDescription = M.DatabaseSourceDescription,
     },
 }
 
@@ -2658,12 +2227,8 @@ M.DeliveryStreamDescription = {
                 required = true,
             },
         },
-        FailureDescription = {
-            type = "structure",
-        },
-        DeliveryStreamEncryptionConfiguration = {
-            type = "structure",
-        },
+        FailureDescription = M.FailureDescription,
+        DeliveryStreamEncryptionConfiguration = M.DeliveryStreamEncryptionConfiguration,
         DeliveryStreamType = {
             type = "string",
             traits = {
@@ -2682,12 +2247,10 @@ M.DeliveryStreamDescription = {
         LastUpdateTimestamp = {
             type = "timestamp",
         },
-        Source = {
-            type = "structure",
-        },
+        Source = M.SourceDescription,
         Destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.DestinationDescription,
             traits = {
                 required = true,
             },
@@ -2711,7 +2274,7 @@ M.DescribeDeliveryStreamInput = {
             },
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         ExclusiveStartDestinationId = {
             type = "string",
@@ -2722,12 +2285,9 @@ M.DescribeDeliveryStreamInput = {
 M.DescribeDeliveryStreamOutput = {
     type = "structure",
     members = {
-        DeliveryStreamDescription = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DeliveryStreamDescription = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DeliveryStreamDescription }),
     },
 }
 
@@ -2752,24 +2312,12 @@ M.ElasticsearchDestinationUpdate = {
         IndexRotationPeriod = {
             type = "string",
         },
-        BufferingHints = {
-            type = "structure",
-        },
-        RetryOptions = {
-            type = "structure",
-        },
-        S3Update = {
-            type = "structure",
-        },
-        ProcessingConfiguration = {
-            type = "structure",
-        },
-        CloudWatchLoggingOptions = {
-            type = "structure",
-        },
-        DocumentIdOptions = {
-            type = "structure",
-        },
+        BufferingHints = M.ElasticsearchBufferingHints,
+        RetryOptions = M.ElasticsearchRetryOptions,
+        S3Update = M.S3DestinationUpdate,
+        ProcessingConfiguration = M.ProcessingConfiguration,
+        CloudWatchLoggingOptions = M.CloudWatchLoggingOptions,
+        DocumentIdOptions = M.DocumentIdOptions,
     },
 }
 
@@ -2788,33 +2336,19 @@ M.ExtendedS3DestinationUpdate = {
         ErrorOutputPrefix = {
             type = "string",
         },
-        BufferingHints = {
-            type = "structure",
-        },
+        BufferingHints = M.BufferingHints,
         CompressionFormat = {
             type = "string",
         },
-        EncryptionConfiguration = {
-            type = "structure",
-        },
-        CloudWatchLoggingOptions = {
-            type = "structure",
-        },
-        ProcessingConfiguration = {
-            type = "structure",
-        },
+        EncryptionConfiguration = M.EncryptionConfiguration,
+        CloudWatchLoggingOptions = M.CloudWatchLoggingOptions,
+        ProcessingConfiguration = M.ProcessingConfiguration,
         S3BackupMode = {
             type = "string",
         },
-        S3BackupUpdate = {
-            type = "structure",
-        },
-        DataFormatConversionConfiguration = {
-            type = "structure",
-        },
-        DynamicPartitioningConfiguration = {
-            type = "structure",
-        },
+        S3BackupUpdate = M.S3DestinationUpdate,
+        DataFormatConversionConfiguration = M.DataFormatConversionConfiguration,
+        DynamicPartitioningConfiguration = M.DynamicPartitioningConfiguration,
         FileExtension = {
             type = "string",
         },
@@ -2828,7 +2362,7 @@ M.ListDeliveryStreamsInput = {
     type = "structure",
     members = {
         Limit = {
-            type = "number",
+            type = "integer",
         },
         DeliveryStreamType = {
             type = "string",
@@ -2844,7 +2378,7 @@ M.ListDeliveryStreamsOutput = {
     members = {
         DeliveryStreamNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2871,7 +2405,7 @@ M.ListTagsForDeliveryStreamInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2881,7 +2415,7 @@ M.ListTagsForDeliveryStreamOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -2929,12 +2463,9 @@ M.PutRecordInput = {
                 required = true,
             },
         },
-        Record = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Record = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Record }),
     },
 }
 
@@ -2974,7 +2505,7 @@ M.PutRecordBatchInput = {
         },
         Records = {
             type = "list",
-            member_type = "structure",
+            member = M.Record,
             traits = {
                 required = true,
             },
@@ -3001,7 +2532,7 @@ M.PutRecordBatchOutput = {
     type = "structure",
     members = {
         FailedPutCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -3011,7 +2542,7 @@ M.PutRecordBatchOutput = {
         },
         RequestResponses = {
             type = "list",
-            member_type = "structure",
+            member = M.PutRecordBatchResponseEntry,
             traits = {
                 required = true,
             },
@@ -3028,9 +2559,7 @@ M.StartDeliveryStreamEncryptionInput = {
                 required = true,
             },
         },
-        DeliveryStreamEncryptionConfigurationInput = {
-            type = "structure",
-        },
+        DeliveryStreamEncryptionConfigurationInput = M.DeliveryStreamEncryptionConfigurationInput,
     },
 }
 
@@ -3065,7 +2594,7 @@ M.TagDeliveryStreamInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -3088,7 +2617,7 @@ M.UntagDeliveryStreamInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3103,36 +2632,20 @@ M.UntagDeliveryStreamOutput = {
 M.HttpEndpointDestinationUpdate = {
     type = "structure",
     members = {
-        EndpointConfiguration = {
-            type = "structure",
-        },
-        BufferingHints = {
-            type = "structure",
-        },
-        CloudWatchLoggingOptions = {
-            type = "structure",
-        },
-        RequestConfiguration = {
-            type = "structure",
-        },
-        ProcessingConfiguration = {
-            type = "structure",
-        },
+        EndpointConfiguration = M.HttpEndpointConfiguration,
+        BufferingHints = M.HttpEndpointBufferingHints,
+        CloudWatchLoggingOptions = M.CloudWatchLoggingOptions,
+        RequestConfiguration = M.HttpEndpointRequestConfiguration,
+        ProcessingConfiguration = M.ProcessingConfiguration,
         RoleARN = {
             type = "string",
         },
-        RetryOptions = {
-            type = "structure",
-        },
+        RetryOptions = M.HttpEndpointRetryOptions,
         S3BackupMode = {
             type = "string",
         },
-        S3Update = {
-            type = "structure",
-        },
-        SecretsManagerConfiguration = {
-            type = "structure",
-        },
+        S3Update = M.S3DestinationUpdate,
+        SecretsManagerConfiguration = M.SecretsManagerConfiguration,
     },
 }
 
@@ -3141,41 +2654,25 @@ M.IcebergDestinationUpdate = {
     members = {
         DestinationTableConfigurationList = {
             type = "list",
-            member_type = "structure",
+            member = M.DestinationTableConfiguration,
         },
-        SchemaEvolutionConfiguration = {
-            type = "structure",
-        },
-        TableCreationConfiguration = {
-            type = "structure",
-        },
-        BufferingHints = {
-            type = "structure",
-        },
-        CloudWatchLoggingOptions = {
-            type = "structure",
-        },
-        ProcessingConfiguration = {
-            type = "structure",
-        },
+        SchemaEvolutionConfiguration = M.SchemaEvolutionConfiguration,
+        TableCreationConfiguration = M.TableCreationConfiguration,
+        BufferingHints = M.BufferingHints,
+        CloudWatchLoggingOptions = M.CloudWatchLoggingOptions,
+        ProcessingConfiguration = M.ProcessingConfiguration,
         S3BackupMode = {
             type = "string",
         },
-        RetryOptions = {
-            type = "structure",
-        },
+        RetryOptions = M.RetryOptions,
         RoleARN = {
             type = "string",
         },
         AppendOnly = {
             type = "boolean",
         },
-        CatalogConfiguration = {
-            type = "structure",
-        },
-        S3Configuration = {
-            type = "structure",
-        },
+        CatalogConfiguration = M.CatalogConfiguration,
+        S3Configuration = M.S3DestinationConfiguration,
     },
 }
 
@@ -3188,36 +2685,22 @@ M.RedshiftDestinationUpdate = {
         ClusterJDBCURL = {
             type = "string",
         },
-        CopyCommand = {
-            type = "structure",
-        },
+        CopyCommand = M.CopyCommand,
         Username = {
             type = "string",
         },
         Password = {
             type = "string",
         },
-        RetryOptions = {
-            type = "structure",
-        },
-        S3Update = {
-            type = "structure",
-        },
-        ProcessingConfiguration = {
-            type = "structure",
-        },
+        RetryOptions = M.RedshiftRetryOptions,
+        S3Update = M.S3DestinationUpdate,
+        ProcessingConfiguration = M.ProcessingConfiguration,
         S3BackupMode = {
             type = "string",
         },
-        S3BackupUpdate = {
-            type = "structure",
-        },
-        CloudWatchLoggingOptions = {
-            type = "structure",
-        },
-        SecretsManagerConfiguration = {
-            type = "structure",
-        },
+        S3BackupUpdate = M.S3DestinationUpdate,
+        CloudWatchLoggingOptions = M.CloudWatchLoggingOptions,
+        SecretsManagerConfiguration = M.SecretsManagerConfiguration,
     },
 }
 
@@ -3245,9 +2728,7 @@ M.SnowflakeDestinationUpdate = {
         Table = {
             type = "string",
         },
-        SnowflakeRoleConfiguration = {
-            type = "structure",
-        },
+        SnowflakeRoleConfiguration = M.SnowflakeRoleConfiguration,
         DataLoadingOption = {
             type = "string",
         },
@@ -3257,30 +2738,18 @@ M.SnowflakeDestinationUpdate = {
         ContentColumnName = {
             type = "string",
         },
-        CloudWatchLoggingOptions = {
-            type = "structure",
-        },
-        ProcessingConfiguration = {
-            type = "structure",
-        },
+        CloudWatchLoggingOptions = M.CloudWatchLoggingOptions,
+        ProcessingConfiguration = M.ProcessingConfiguration,
         RoleARN = {
             type = "string",
         },
-        RetryOptions = {
-            type = "structure",
-        },
+        RetryOptions = M.SnowflakeRetryOptions,
         S3BackupMode = {
             type = "string",
         },
-        S3Update = {
-            type = "structure",
-        },
-        SecretsManagerConfiguration = {
-            type = "structure",
-        },
-        BufferingHints = {
-            type = "structure",
-        },
+        S3Update = M.S3DestinationUpdate,
+        SecretsManagerConfiguration = M.SecretsManagerConfiguration,
+        BufferingHints = M.SnowflakeBufferingHints,
     },
 }
 
@@ -3297,29 +2766,17 @@ M.SplunkDestinationUpdate = {
             type = "string",
         },
         HECAcknowledgmentTimeoutInSeconds = {
-            type = "number",
+            type = "integer",
         },
-        RetryOptions = {
-            type = "structure",
-        },
+        RetryOptions = M.SplunkRetryOptions,
         S3BackupMode = {
             type = "string",
         },
-        S3Update = {
-            type = "structure",
-        },
-        ProcessingConfiguration = {
-            type = "structure",
-        },
-        CloudWatchLoggingOptions = {
-            type = "structure",
-        },
-        BufferingHints = {
-            type = "structure",
-        },
-        SecretsManagerConfiguration = {
-            type = "structure",
-        },
+        S3Update = M.S3DestinationUpdate,
+        ProcessingConfiguration = M.ProcessingConfiguration,
+        CloudWatchLoggingOptions = M.CloudWatchLoggingOptions,
+        BufferingHints = M.SplunkBufferingHints,
+        SecretsManagerConfiguration = M.SecretsManagerConfiguration,
     },
 }
 
@@ -3344,36 +2801,16 @@ M.UpdateDestinationInput = {
                 required = true,
             },
         },
-        S3DestinationUpdate = {
-            type = "structure",
-        },
-        ExtendedS3DestinationUpdate = {
-            type = "structure",
-        },
-        RedshiftDestinationUpdate = {
-            type = "structure",
-        },
-        ElasticsearchDestinationUpdate = {
-            type = "structure",
-        },
-        AmazonopensearchserviceDestinationUpdate = {
-            type = "structure",
-        },
-        SplunkDestinationUpdate = {
-            type = "structure",
-        },
-        HttpEndpointDestinationUpdate = {
-            type = "structure",
-        },
-        AmazonOpenSearchServerlessDestinationUpdate = {
-            type = "structure",
-        },
-        SnowflakeDestinationUpdate = {
-            type = "structure",
-        },
-        IcebergDestinationUpdate = {
-            type = "structure",
-        },
+        S3DestinationUpdate = M.S3DestinationUpdate,
+        ExtendedS3DestinationUpdate = M.ExtendedS3DestinationUpdate,
+        RedshiftDestinationUpdate = M.RedshiftDestinationUpdate,
+        ElasticsearchDestinationUpdate = M.ElasticsearchDestinationUpdate,
+        AmazonopensearchserviceDestinationUpdate = M.AmazonopensearchserviceDestinationUpdate,
+        SplunkDestinationUpdate = M.SplunkDestinationUpdate,
+        HttpEndpointDestinationUpdate = M.HttpEndpointDestinationUpdate,
+        AmazonOpenSearchServerlessDestinationUpdate = M.AmazonOpenSearchServerlessDestinationUpdate,
+        SnowflakeDestinationUpdate = M.SnowflakeDestinationUpdate,
+        IcebergDestinationUpdate = M.IcebergDestinationUpdate,
     },
 }
 

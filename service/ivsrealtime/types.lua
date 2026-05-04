@@ -120,16 +120,16 @@ M.Video = {
     type = "structure",
     members = {
         width = {
-            type = "number",
+            type = "integer",
         },
         height = {
-            type = "number",
+            type = "integer",
         },
         framerate = {
-            type = "number",
+            type = "float",
         },
         bitrate = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -140,13 +140,11 @@ M.CreateEncoderConfigurationInput = {
         name = {
             type = "string",
         },
-        video = {
-            type = "structure",
-        },
+        video = M.Video,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -163,13 +161,11 @@ M.EncoderConfiguration = {
         name = {
             type = "string",
         },
-        video = {
-            type = "structure",
-        },
+        video = M.Video,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -177,9 +173,7 @@ M.EncoderConfiguration = {
 M.CreateEncoderConfigurationOutput = {
     type = "structure",
     members = {
-        encoderConfiguration = {
-            type = "structure",
-        },
+        encoderConfiguration = M.EncoderConfiguration,
     },
 }
 
@@ -492,8 +486,8 @@ M.CreateIngestConfigurationInput = {
         },
         attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ingestProtocol = {
             type = "string",
@@ -503,14 +497,20 @@ M.CreateIngestConfigurationInput = {
         },
         insecureIngest = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         redundantIngest = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -579,20 +579,23 @@ M.IngestConfiguration = {
         },
         redundantIngest = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         redundantIngestCredentials = {
             type = "list",
-            member_type = "structure",
+            member = M.RedundantIngestCredential,
         },
         attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -600,9 +603,7 @@ M.IngestConfiguration = {
 M.CreateIngestConfigurationOutput = {
     type = "structure",
     members = {
-        ingestConfiguration = {
-            type = "structure",
-        },
+        ingestConfiguration = M.IngestConfiguration,
     },
 }
 
@@ -621,19 +622,19 @@ M.CreateParticipantTokenInput = {
             },
         },
         duration = {
-            type = "number",
+            type = "integer",
         },
         userId = {
             type = "string",
         },
         attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         capabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -652,15 +653,15 @@ M.ParticipantToken = {
         },
         attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         duration = {
-            type = "number",
+            type = "integer",
         },
         capabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         expirationTime = {
             type = "timestamp",
@@ -671,9 +672,7 @@ M.ParticipantToken = {
 M.CreateParticipantTokenOutput = {
     type = "structure",
     members = {
-        participantToken = {
-            type = "structure",
-        },
+        participantToken = M.ParticipantToken,
     },
 }
 
@@ -681,7 +680,10 @@ M.ParticipantRecordingHlsConfiguration = {
     type = "structure",
     members = {
         targetSegmentDurationSeconds = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -706,11 +708,11 @@ M.ParticipantThumbnailConfiguration = {
     type = "structure",
     members = {
         targetIntervalSeconds = {
-            type = "number",
+            type = "integer",
         },
         storage = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         recordingMode = {
             type = "string",
@@ -729,19 +731,21 @@ M.AutoParticipantRecordingConfiguration = {
         },
         mediaTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        thumbnailConfiguration = {
-            type = "structure",
-        },
+        thumbnailConfiguration = M.ParticipantThumbnailConfiguration,
         recordingReconnectWindowSeconds = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
-        hlsConfiguration = {
-            type = "structure",
-        },
+        hlsConfiguration = M.ParticipantRecordingHlsConfiguration,
         recordParticipantReplicas = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -750,19 +754,19 @@ M.ParticipantTokenConfiguration = {
     type = "structure",
     members = {
         duration = {
-            type = "number",
+            type = "integer",
         },
         userId = {
             type = "string",
         },
         attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         capabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -775,16 +779,14 @@ M.CreateStageInput = {
         },
         participantTokenConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.ParticipantTokenConfiguration,
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        autoParticipantRecordingConfiguration = {
-            type = "structure",
-        },
+        autoParticipantRecordingConfiguration = M.AutoParticipantRecordingConfiguration,
     },
 }
 
@@ -823,27 +825,21 @@ M.Stage = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        autoParticipantRecordingConfiguration = {
-            type = "structure",
-        },
-        endpoints = {
-            type = "structure",
-        },
+        autoParticipantRecordingConfiguration = M.AutoParticipantRecordingConfiguration,
+        endpoints = M.StageEndpoints,
     },
 }
 
 M.CreateStageOutput = {
     type = "structure",
     members = {
-        stage = {
-            type = "structure",
-        },
+        stage = M.Stage,
         participantTokens = {
             type = "list",
-            member_type = "structure",
+            member = M.ParticipantToken,
         },
     },
 }
@@ -866,16 +862,13 @@ M.CreateStorageConfigurationInput = {
         name = {
             type = "string",
         },
-        s3 = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        s3 = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3StorageConfiguration }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -892,13 +885,11 @@ M.StorageConfiguration = {
         name = {
             type = "string",
         },
-        s3 = {
-            type = "structure",
-        },
+        s3 = M.S3StorageConfiguration,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -906,9 +897,7 @@ M.StorageConfiguration = {
 M.CreateStorageConfigurationOutput = {
     type = "structure",
     members = {
-        storageConfiguration = {
-            type = "structure",
-        },
+        storageConfiguration = M.StorageConfiguration,
     },
 }
 
@@ -939,6 +928,9 @@ M.DeleteIngestConfigurationInput = {
         },
         force = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1055,7 +1047,10 @@ M.CompositionRecordingHlsConfiguration = {
     type = "structure",
     members = {
         targetSegmentDurationSeconds = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -1063,9 +1058,7 @@ M.CompositionRecordingHlsConfiguration = {
 M.RecordingConfiguration = {
     type = "structure",
     members = {
-        hlsConfiguration = {
-            type = "structure",
-        },
+        hlsConfiguration = M.CompositionRecordingHlsConfiguration,
         format = {
             type = "string",
         },
@@ -1076,11 +1069,11 @@ M.CompositionThumbnailConfiguration = {
     type = "structure",
     members = {
         targetIntervalSeconds = {
-            type = "number",
+            type = "integer",
         },
         storage = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1096,17 +1089,15 @@ M.S3DestinationConfiguration = {
         },
         encoderConfigurationArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        recordingConfiguration = {
-            type = "structure",
-        },
+        recordingConfiguration = M.RecordingConfiguration,
         thumbnailConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.CompositionThumbnailConfiguration,
         },
     },
 }
@@ -1117,12 +1108,8 @@ M.DestinationConfiguration = {
         name = {
             type = "string",
         },
-        channel = {
-            type = "structure",
-        },
-        s3 = {
-            type = "structure",
-        },
+        channel = M.ChannelDestinationConfiguration,
+        s3 = M.S3DestinationConfiguration,
     },
 }
 
@@ -1141,9 +1128,7 @@ M.S3Detail = {
 M.DestinationDetail = {
     type = "structure",
     members = {
-        s3 = {
-            type = "structure",
-        },
+        s3 = M.S3Detail,
     },
 }
 
@@ -1177,15 +1162,10 @@ M.Destination = {
         endTime = {
             type = "timestamp",
         },
-        configuration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        detail = {
-            type = "structure",
-        },
+        configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DestinationConfiguration }),
+        detail = M.DestinationDetail,
     },
 }
 
@@ -1210,6 +1190,9 @@ M.GridConfiguration = {
         },
         omitStoppedVideo = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         videoAspectRatio = {
             type = "string",
@@ -1218,7 +1201,10 @@ M.GridConfiguration = {
             type = "string",
         },
         gridGap = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         participantOrderAttribute = {
             type = "string",
@@ -1246,12 +1232,18 @@ M.PipConfiguration = {
         },
         omitStoppedVideo = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         videoFillMode = {
             type = "string",
         },
         gridGap = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         pipParticipantAttribute = {
             type = "string",
@@ -1260,16 +1252,19 @@ M.PipConfiguration = {
             type = "string",
         },
         pipOffset = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         pipPosition = {
             type = "string",
         },
         pipWidth = {
-            type = "number",
+            type = "integer",
         },
         pipHeight = {
-            type = "number",
+            type = "integer",
         },
         participantOrderAttribute = {
             type = "string",
@@ -1280,12 +1275,8 @@ M.PipConfiguration = {
 M.LayoutConfiguration = {
     type = "structure",
     members = {
-        grid = {
-            type = "structure",
-        },
-        pip = {
-            type = "structure",
-        },
+        grid = M.GridConfiguration,
+        pip = M.PipConfiguration,
     },
 }
 
@@ -1318,23 +1309,20 @@ M.Composition = {
                 required = true,
             },
         },
-        layout = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        layout = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LayoutConfiguration }),
         destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.Destination,
             traits = {
                 required = true,
             },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         startTime = {
             type = "timestamp",
@@ -1348,9 +1336,7 @@ M.Composition = {
 M.GetCompositionOutput = {
     type = "structure",
     members = {
-        composition = {
-            type = "structure",
-        },
+        composition = M.Composition,
     },
 }
 
@@ -1369,9 +1355,7 @@ M.GetEncoderConfigurationInput = {
 M.GetEncoderConfigurationOutput = {
     type = "structure",
     members = {
-        encoderConfiguration = {
-            type = "structure",
-        },
+        encoderConfiguration = M.EncoderConfiguration,
     },
 }
 
@@ -1390,9 +1374,7 @@ M.GetIngestConfigurationInput = {
 M.GetIngestConfigurationOutput = {
     type = "structure",
     members = {
-        ingestConfiguration = {
-            type = "structure",
-        },
+        ingestConfiguration = M.IngestConfiguration,
     },
 }
 
@@ -1469,11 +1451,14 @@ M.Participant = {
         },
         attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         published = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         ispName = {
             type = "string",
@@ -1519,6 +1504,9 @@ M.Participant = {
         },
         redundantIngest = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         ingestConfigurationArn = {
             type = "string",
@@ -1529,9 +1517,7 @@ M.Participant = {
 M.GetParticipantOutput = {
     type = "structure",
     members = {
-        participant = {
-            type = "structure",
-        },
+        participant = M.Participant,
     },
 }
 
@@ -1564,8 +1550,8 @@ M.PublicKey = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1573,9 +1559,7 @@ M.PublicKey = {
 M.GetPublicKeyOutput = {
     type = "structure",
     members = {
-        publicKey = {
-            type = "structure",
-        },
+        publicKey = M.PublicKey,
     },
 }
 
@@ -1594,9 +1578,7 @@ M.GetStageInput = {
 M.GetStageOutput = {
     type = "structure",
     members = {
-        stage = {
-            type = "structure",
-        },
+        stage = M.Stage,
     },
 }
 
@@ -1636,9 +1618,7 @@ M.StageSession = {
 M.GetStageSessionOutput = {
     type = "structure",
     members = {
-        stageSession = {
-            type = "structure",
-        },
+        stageSession = M.StageSession,
     },
 }
 
@@ -1657,9 +1637,7 @@ M.GetStorageConfigurationInput = {
 M.GetStorageConfigurationOutput = {
     type = "structure",
     members = {
-        storageConfiguration = {
-            type = "structure",
-        },
+        storageConfiguration = M.StorageConfiguration,
     },
 }
 
@@ -1677,8 +1655,8 @@ M.ImportPublicKeyInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1686,9 +1664,7 @@ M.ImportPublicKeyInput = {
 M.ImportPublicKeyOutput = {
     type = "structure",
     members = {
-        publicKey = {
-            type = "structure",
-        },
+        publicKey = M.PublicKey,
     },
 }
 
@@ -1705,7 +1681,7 @@ M.ListCompositionsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1751,7 +1727,7 @@ M.CompositionSummary = {
         },
         destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.DestinationSummary,
             traits = {
                 required = true,
             },
@@ -1764,8 +1740,8 @@ M.CompositionSummary = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         startTime = {
             type = "timestamp",
@@ -1781,7 +1757,7 @@ M.ListCompositionsOutput = {
     members = {
         compositions = {
             type = "list",
-            member_type = "structure",
+            member = M.CompositionSummary,
             traits = {
                 required = true,
             },
@@ -1799,7 +1775,7 @@ M.ListEncoderConfigurationsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1818,8 +1794,8 @@ M.EncoderConfigurationSummary = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1829,7 +1805,7 @@ M.ListEncoderConfigurationsOutput = {
     members = {
         encoderConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.EncoderConfigurationSummary,
             traits = {
                 required = true,
             },
@@ -1853,7 +1829,7 @@ M.ListIngestConfigurationsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1899,6 +1875,9 @@ M.IngestConfigurationSummary = {
         },
         redundantIngest = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1908,7 +1887,7 @@ M.ListIngestConfigurationsOutput = {
     members = {
         ingestConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.IngestConfigurationSummary,
             traits = {
                 required = true,
             },
@@ -1944,7 +1923,7 @@ M.ListParticipantEventsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1986,12 +1965,12 @@ M.ExchangedParticipantToken = {
     members = {
         capabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         userId = {
             type = "string",
@@ -2028,13 +2007,12 @@ M.Event = {
         },
         replica = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        previousToken = {
-            type = "structure",
-        },
-        newToken = {
-            type = "structure",
-        },
+        previousToken = M.ExchangedParticipantToken,
+        newToken = M.ExchangedParticipantToken,
     },
 }
 
@@ -2043,7 +2021,7 @@ M.ListParticipantEventsOutput = {
     members = {
         events = {
             type = "list",
-            member_type = "structure",
+            member = M.Event,
             traits = {
                 required = true,
             },
@@ -2073,7 +2051,7 @@ M.ListParticipantReplicasInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2125,7 +2103,7 @@ M.ListParticipantReplicasOutput = {
     members = {
         replicas = {
             type = "list",
-            member_type = "structure",
+            member = M.ParticipantReplica,
             traits = {
                 required = true,
             },
@@ -2164,6 +2142,9 @@ M.ListParticipantsInput = {
         },
         filterByPublished = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         filterByState = {
             type = "string",
@@ -2172,7 +2153,7 @@ M.ListParticipantsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         filterByRecordingState = {
             type = "string",
@@ -2197,6 +2178,9 @@ M.ParticipantSummary = {
         },
         published = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         recordingState = {
             type = "string",
@@ -2215,6 +2199,9 @@ M.ParticipantSummary = {
         },
         redundantIngest = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         ingestConfigurationArn = {
             type = "string",
@@ -2227,7 +2214,7 @@ M.ListParticipantsOutput = {
     members = {
         participants = {
             type = "list",
-            member_type = "structure",
+            member = M.ParticipantSummary,
             traits = {
                 required = true,
             },
@@ -2245,7 +2232,7 @@ M.ListPublicKeysInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2261,8 +2248,8 @@ M.PublicKeySummary = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2272,7 +2259,7 @@ M.ListPublicKeysOutput = {
     members = {
         publicKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.PublicKeySummary,
             traits = {
                 required = true,
             },
@@ -2290,7 +2277,7 @@ M.ListStagesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2312,8 +2299,8 @@ M.StageSummary = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2323,7 +2310,7 @@ M.ListStagesOutput = {
     members = {
         stages = {
             type = "list",
-            member_type = "structure",
+            member = M.StageSummary,
             traits = {
                 required = true,
             },
@@ -2347,7 +2334,7 @@ M.ListStageSessionsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2372,7 +2359,7 @@ M.ListStageSessionsOutput = {
     members = {
         stageSessions = {
             type = "list",
-            member_type = "structure",
+            member = M.StageSessionSummary,
             traits = {
                 required = true,
             },
@@ -2390,7 +2377,7 @@ M.ListStorageConfigurationsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2407,13 +2394,11 @@ M.StorageConfigurationSummary = {
         name = {
             type = "string",
         },
-        s3 = {
-            type = "structure",
-        },
+        s3 = M.S3StorageConfiguration,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2423,7 +2408,7 @@ M.ListStorageConfigurationsOutput = {
     members = {
         storageConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.StorageConfigurationSummary,
             traits = {
                 required = true,
             },
@@ -2452,8 +2437,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2473,20 +2458,18 @@ M.StartCompositionInput = {
         idempotencyToken = {
             type = "string",
         },
-        layout = {
-            type = "structure",
-        },
+        layout = M.LayoutConfiguration,
         destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.DestinationConfiguration,
             traits = {
                 required = true,
             },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2494,9 +2477,7 @@ M.StartCompositionInput = {
 M.StartCompositionOutput = {
     type = "structure",
     members = {
-        composition = {
-            type = "structure",
-        },
+        composition = M.Composition,
     },
 }
 
@@ -2522,12 +2503,12 @@ M.StartParticipantReplicationInput = {
             },
         },
         reconnectWindowSeconds = {
-            type = "number",
+            type = "integer",
         },
         attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2680,8 +2661,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2705,7 +2686,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -2732,6 +2713,9 @@ M.UpdateIngestConfigurationInput = {
         },
         redundantIngest = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -2739,9 +2723,7 @@ M.UpdateIngestConfigurationInput = {
 M.UpdateIngestConfigurationOutput = {
     type = "structure",
     members = {
-        ingestConfiguration = {
-            type = "structure",
-        },
+        ingestConfiguration = M.IngestConfiguration,
     },
 }
 
@@ -2757,18 +2739,14 @@ M.UpdateStageInput = {
         name = {
             type = "string",
         },
-        autoParticipantRecordingConfiguration = {
-            type = "structure",
-        },
+        autoParticipantRecordingConfiguration = M.AutoParticipantRecordingConfiguration,
     },
 }
 
 M.UpdateStageOutput = {
     type = "structure",
     members = {
-        stage = {
-            type = "structure",
-        },
+        stage = M.Stage,
     },
 }
 

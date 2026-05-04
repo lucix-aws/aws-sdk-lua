@@ -20,8 +20,8 @@ M.BadRequestDetails = {
     members = {
         InvalidParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.InvalidParameterDetail,
         },
     },
 }
@@ -40,9 +40,7 @@ M.BadRequestException = {
         Reason = {
             type = "string",
         },
-        Details = {
-            type = "union",
-        },
+        Details = M.BadRequestDetails,
     },
 }
 
@@ -76,8 +74,8 @@ M.ResourceNotFoundException = {
         },
         ReferencedBy = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -104,7 +102,7 @@ M.StartConfigurationSessionInput = {
             },
         },
         RequiredMinimumPollIntervalInSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -151,8 +149,9 @@ M.GetLatestConfigurationOutput = {
             },
         },
         NextPollIntervalInSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_header = "Next-Poll-Interval-In-Seconds",
             },
         },

@@ -51,8 +51,8 @@ M.RequestBody = {
     members = {
         content = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
     },
 }
@@ -71,11 +71,9 @@ M.ActionGroupInvocationInput = {
         },
         parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.Parameter,
         },
-        requestBody = {
-            type = "structure",
-        },
+        requestBody = M.RequestBody,
         function = {
             type = "string",
         },
@@ -92,10 +90,10 @@ M.Usage = {
     type = "structure",
     members = {
         inputTokens = {
-            type = "number",
+            type = "integer",
         },
         outputTokens = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -116,17 +114,15 @@ M.Metadata = {
             },
         },
         totalTimeMs = {
-            type = "number",
+            type = "long",
         },
         operationTotalTimeMs = {
-            type = "number",
+            type = "long",
         },
         clientRequestId = {
             type = "string",
         },
-        usage = {
-            type = "structure",
-        },
+        usage = M.Usage,
     },
 }
 
@@ -136,9 +132,7 @@ M.ActionGroupInvocationOutput = {
         text = {
             type = "string",
         },
-        metadata = {
-            type = "structure",
-        },
+        metadata = M.Metadata,
     },
 }
 
@@ -171,9 +165,7 @@ M.S3Identifier = {
 M.APISchema = {
     type = "union",
     members = {
-        s3 = {
-            type = "structure",
-        },
+        s3 = M.S3Identifier,
         payload = {
             type = "string",
         },
@@ -225,8 +217,8 @@ M.FunctionDefinition = {
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ParameterDetail,
         },
         requireConfirmation = {
             type = "string",
@@ -239,7 +231,7 @@ M.FunctionSchema = {
     members = {
         functions = {
             type = "list",
-            member_type = "structure",
+            member = M.FunctionDefinition,
         },
     },
 }
@@ -259,19 +251,13 @@ M.AgentActionGroup = {
         parentActionGroupSignature = {
             type = "string",
         },
-        actionGroupExecutor = {
-            type = "union",
-        },
-        apiSchema = {
-            type = "union",
-        },
-        functionSchema = {
-            type = "union",
-        },
+        actionGroupExecutor = M.ActionGroupExecutor,
+        apiSchema = M.APISchema,
+        functionSchema = M.FunctionSchema,
         parentActionGroupSignatureParams = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -312,12 +298,9 @@ M.ImageInput = {
                 required = true,
             },
         },
-        source = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        source = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ImageInputSource }),
     },
 }
 
@@ -329,7 +312,7 @@ M.ContentBody = {
         },
         images = {
             type = "list",
-            member_type = "structure",
+            member = M.ImageInput,
         },
     },
 }
@@ -361,12 +344,12 @@ M.ApiResult = {
             type = "string",
         },
         httpStatusCode = {
-            type = "number",
+            type = "integer",
         },
         responseBody = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ContentBody,
         },
         agentId = {
             type = "string",
@@ -391,8 +374,8 @@ M.FunctionResult = {
         },
         responseBody = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ContentBody,
         },
         responseState = {
             type = "string",
@@ -406,12 +389,8 @@ M.FunctionResult = {
 M.InvocationResultMember = {
     type = "union",
     members = {
-        apiResult = {
-            type = "structure",
-        },
-        functionResult = {
-            type = "structure",
-        },
+        apiResult = M.ApiResult,
+        functionResult = M.FunctionResult,
     },
 }
 
@@ -423,7 +402,7 @@ M.ReturnControlResults = {
         },
         returnControlInvocationResults = {
             type = "list",
-            member_type = "union",
+            member = M.InvocationResultMember,
         },
     },
 }
@@ -442,9 +421,7 @@ M.AgentCollaboratorInputPayload = {
         text = {
             type = "string",
         },
-        returnControlResults = {
-            type = "structure",
-        },
+        returnControlResults = M.ReturnControlResults,
     },
 }
 
@@ -457,9 +434,7 @@ M.AgentCollaboratorInvocationInput = {
         agentCollaboratorAliasArn = {
             type = "string",
         },
-        input = {
-            type = "structure",
-        },
+        input = M.AgentCollaboratorInputPayload,
     },
 }
 
@@ -483,7 +458,7 @@ M.PropertyParameters = {
     members = {
         properties = {
             type = "list",
-            member_type = "structure",
+            member = M.Parameter,
         },
     },
 }
@@ -493,8 +468,8 @@ M.ApiRequestBody = {
     members = {
         content = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.PropertyParameters,
         },
     },
 }
@@ -516,11 +491,9 @@ M.ApiInvocationInput = {
         },
         parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.ApiParameter,
         },
-        requestBody = {
-            type = "structure",
-        },
+        requestBody = M.ApiRequestBody,
         actionInvocationType = {
             type = "string",
         },
@@ -559,7 +532,7 @@ M.FunctionInvocationInput = {
         },
         parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.FunctionParameter,
         },
         function = {
             type = "string",
@@ -579,12 +552,8 @@ M.FunctionInvocationInput = {
 M.InvocationInputMember = {
     type = "union",
     members = {
-        apiInvocationInput = {
-            type = "structure",
-        },
-        functionInvocationInput = {
-            type = "structure",
-        },
+        apiInvocationInput = M.ApiInvocationInput,
+        functionInvocationInput = M.FunctionInvocationInput,
     },
 }
 
@@ -593,7 +562,7 @@ M.ReturnControlPayload = {
     members = {
         invocationInputs = {
             type = "list",
-            member_type = "union",
+            member = M.InvocationInputMember,
         },
         invocationId = {
             type = "string",
@@ -610,9 +579,7 @@ M.AgentCollaboratorOutputPayload = {
         text = {
             type = "string",
         },
-        returnControlPayload = {
-            type = "structure",
-        },
+        returnControlPayload = M.ReturnControlPayload,
     },
 }
 
@@ -625,12 +592,8 @@ M.AgentCollaboratorInvocationOutput = {
         agentCollaboratorAliasArn = {
             type = "string",
         },
-        output = {
-            type = "structure",
-        },
-        metadata = {
-            type = "structure",
-        },
+        output = M.AgentCollaboratorOutputPayload,
+        metadata = M.Metadata,
     },
 }
 
@@ -658,9 +621,7 @@ M.CustomOrchestrationTrace = {
         traceId = {
             type = "string",
         },
-        event = {
-            type = "structure",
-        },
+        event = M.CustomOrchestrationTraceEvent,
     },
 }
 
@@ -674,11 +635,9 @@ M.FailureTrace = {
             type = "string",
         },
         failureCode = {
-            type = "number",
+            type = "integer",
         },
-        metadata = {
-            type = "structure",
-        },
+        metadata = M.Metadata,
     },
 }
 
@@ -727,7 +686,7 @@ M.GuardrailContentPolicyAssessment = {
     members = {
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.GuardrailContentFilter,
         },
     },
 }
@@ -809,11 +768,11 @@ M.GuardrailSensitiveInformationPolicyAssessment = {
     members = {
         piiEntities = {
             type = "list",
-            member_type = "structure",
+            member = M.GuardrailPiiEntityFilter,
         },
         regexes = {
             type = "list",
-            member_type = "structure",
+            member = M.GuardrailRegexFilter,
         },
     },
 }
@@ -846,7 +805,7 @@ M.GuardrailTopicPolicyAssessment = {
     members = {
         topics = {
             type = "list",
-            member_type = "structure",
+            member = M.GuardrailTopic,
         },
     },
 }
@@ -891,11 +850,11 @@ M.GuardrailWordPolicyAssessment = {
     members = {
         customWords = {
             type = "list",
-            member_type = "structure",
+            member = M.GuardrailCustomWord,
         },
         managedWordLists = {
             type = "list",
-            member_type = "structure",
+            member = M.GuardrailManagedWord,
         },
     },
 }
@@ -903,18 +862,10 @@ M.GuardrailWordPolicyAssessment = {
 M.GuardrailAssessment = {
     type = "structure",
     members = {
-        topicPolicy = {
-            type = "structure",
-        },
-        contentPolicy = {
-            type = "structure",
-        },
-        wordPolicy = {
-            type = "structure",
-        },
-        sensitiveInformationPolicy = {
-            type = "structure",
-        },
+        topicPolicy = M.GuardrailTopicPolicyAssessment,
+        contentPolicy = M.GuardrailContentPolicyAssessment,
+        wordPolicy = M.GuardrailWordPolicyAssessment,
+        sensitiveInformationPolicy = M.GuardrailSensitiveInformationPolicyAssessment,
     },
 }
 
@@ -929,15 +880,13 @@ M.GuardrailTrace = {
         },
         inputAssessments = {
             type = "list",
-            member_type = "structure",
+            member = M.GuardrailAssessment,
         },
         outputAssessments = {
             type = "list",
-            member_type = "structure",
+            member = M.GuardrailAssessment,
         },
-        metadata = {
-            type = "structure",
-        },
+        metadata = M.Metadata,
     },
 }
 
@@ -949,7 +898,7 @@ M.CodeInterpreterInvocationInput = {
         },
         files = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -983,18 +932,10 @@ M.InvocationInput = {
         invocationType = {
             type = "string",
         },
-        actionGroupInvocationInput = {
-            type = "structure",
-        },
-        knowledgeBaseLookupInput = {
-            type = "structure",
-        },
-        codeInterpreterInvocationInput = {
-            type = "structure",
-        },
-        agentCollaboratorInvocationInput = {
-            type = "structure",
-        },
+        actionGroupInvocationInput = M.ActionGroupInvocationInput,
+        knowledgeBaseLookupInput = M.KnowledgeBaseLookupInput,
+        codeInterpreterInvocationInput = M.CodeInterpreterInvocationInput,
+        agentCollaboratorInvocationInput = M.AgentCollaboratorInvocationInput,
     },
 }
 
@@ -1002,20 +943,20 @@ M.InferenceConfiguration = {
     type = "structure",
     members = {
         temperature = {
-            type = "number",
+            type = "float",
         },
         topP = {
-            type = "number",
+            type = "float",
         },
         topK = {
-            type = "number",
+            type = "integer",
         },
         maximumLength = {
-            type = "number",
+            type = "integer",
         },
         stopSequences = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1051,9 +992,7 @@ M.ModelInvocationInput = {
         promptCreationMode = {
             type = "string",
         },
-        inferenceConfiguration = {
-            type = "structure",
-        },
+        inferenceConfiguration = M.InferenceConfiguration,
         parserMode = {
             type = "string",
         },
@@ -1090,9 +1029,7 @@ M.ReasoningTextBlock = {
 M.ReasoningContentBlock = {
     type = "union",
     members = {
-        reasoningText = {
-            type = "structure",
-        },
+        reasoningText = M.ReasoningTextBlock,
         redactedContent = {
             type = "blob",
         },
@@ -1105,15 +1042,9 @@ M.OrchestrationModelInvocationOutput = {
         traceId = {
             type = "string",
         },
-        rawResponse = {
-            type = "structure",
-        },
-        metadata = {
-            type = "structure",
-        },
-        reasoningContent = {
-            type = "union",
-        },
+        rawResponse = M.RawResponse,
+        metadata = M.Metadata,
+        reasoningContent = M.ReasoningContentBlock,
     },
 }
 
@@ -1128,14 +1059,12 @@ M.CodeInterpreterInvocationOutput = {
         },
         files = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         executionTimeout = {
             type = "boolean",
         },
-        metadata = {
-            type = "structure",
-        },
+        metadata = M.Metadata,
     },
 }
 
@@ -1145,9 +1074,7 @@ M.FinalResponse = {
         text = {
             type = "string",
         },
-        metadata = {
-            type = "structure",
-        },
+        metadata = M.Metadata,
     },
 }
 
@@ -1221,19 +1148,18 @@ M.RetrievalResultContent = {
         },
         text = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
         byteContent = {
             type = "string",
         },
-        video = {
-            type = "structure",
-        },
-        audio = {
-            type = "structure",
-        },
+        video = M.VideoSegment,
+        audio = M.AudioSegment,
         row = {
             type = "list",
-            member_type = "structure",
+            member = M.RetrievalResultContentColumn,
         },
     },
 }
@@ -1330,46 +1256,26 @@ M.RetrievalResultLocation = {
                 required = true,
             },
         },
-        s3Location = {
-            type = "structure",
-        },
-        webLocation = {
-            type = "structure",
-        },
-        confluenceLocation = {
-            type = "structure",
-        },
-        salesforceLocation = {
-            type = "structure",
-        },
-        sharePointLocation = {
-            type = "structure",
-        },
-        customDocumentLocation = {
-            type = "structure",
-        },
-        kendraDocumentLocation = {
-            type = "structure",
-        },
-        sqlLocation = {
-            type = "structure",
-        },
+        s3Location = M.RetrievalResultS3Location,
+        webLocation = M.RetrievalResultWebLocation,
+        confluenceLocation = M.RetrievalResultConfluenceLocation,
+        salesforceLocation = M.RetrievalResultSalesforceLocation,
+        sharePointLocation = M.RetrievalResultSharePointLocation,
+        customDocumentLocation = M.RetrievalResultCustomDocumentLocation,
+        kendraDocumentLocation = M.RetrievalResultKendraDocumentLocation,
+        sqlLocation = M.RetrievalResultSqlLocation,
     },
 }
 
 M.RetrievedReference = {
     type = "structure",
     members = {
-        content = {
-            type = "structure",
-        },
-        location = {
-            type = "structure",
-        },
+        content = M.RetrievalResultContent,
+        location = M.RetrievalResultLocation,
         metadata = {
             type = "map",
-            key_type = "string",
-            value_type = "document",
+            key = { type = "string" },
+            value = { type = "document" },
         },
     },
 }
@@ -1379,11 +1285,9 @@ M.KnowledgeBaseLookupOutput = {
     members = {
         retrievedReferences = {
             type = "list",
-            member_type = "structure",
+            member = M.RetrievedReference,
         },
-        metadata = {
-            type = "structure",
-        },
+        metadata = M.Metadata,
     },
 }
 
@@ -1423,24 +1327,12 @@ M.Observation = {
         type = {
             type = "string",
         },
-        actionGroupInvocationOutput = {
-            type = "structure",
-        },
-        agentCollaboratorInvocationOutput = {
-            type = "structure",
-        },
-        knowledgeBaseLookupOutput = {
-            type = "structure",
-        },
-        finalResponse = {
-            type = "structure",
-        },
-        repromptResponse = {
-            type = "structure",
-        },
-        codeInterpreterInvocationOutput = {
-            type = "structure",
-        },
+        actionGroupInvocationOutput = M.ActionGroupInvocationOutput,
+        agentCollaboratorInvocationOutput = M.AgentCollaboratorInvocationOutput,
+        knowledgeBaseLookupOutput = M.KnowledgeBaseLookupOutput,
+        finalResponse = M.FinalResponse,
+        repromptResponse = M.RepromptResponse,
+        codeInterpreterInvocationOutput = M.CodeInterpreterInvocationOutput,
     },
 }
 
@@ -1459,21 +1351,11 @@ M.Rationale = {
 M.OrchestrationTrace = {
     type = "union",
     members = {
-        rationale = {
-            type = "structure",
-        },
-        invocationInput = {
-            type = "structure",
-        },
-        observation = {
-            type = "structure",
-        },
-        modelInvocationInput = {
-            type = "structure",
-        },
-        modelInvocationOutput = {
-            type = "structure",
-        },
+        rationale = M.Rationale,
+        invocationInput = M.InvocationInput,
+        observation = M.Observation,
+        modelInvocationInput = M.ModelInvocationInput,
+        modelInvocationOutput = M.OrchestrationModelInvocationOutput,
     },
 }
 
@@ -1492,30 +1374,18 @@ M.PostProcessingModelInvocationOutput = {
         traceId = {
             type = "string",
         },
-        parsedResponse = {
-            type = "structure",
-        },
-        rawResponse = {
-            type = "structure",
-        },
-        metadata = {
-            type = "structure",
-        },
-        reasoningContent = {
-            type = "union",
-        },
+        parsedResponse = M.PostProcessingParsedResponse,
+        rawResponse = M.RawResponse,
+        metadata = M.Metadata,
+        reasoningContent = M.ReasoningContentBlock,
     },
 }
 
 M.PostProcessingTrace = {
     type = "union",
     members = {
-        modelInvocationInput = {
-            type = "structure",
-        },
-        modelInvocationOutput = {
-            type = "structure",
-        },
+        modelInvocationInput = M.ModelInvocationInput,
+        modelInvocationOutput = M.PostProcessingModelInvocationOutput,
     },
 }
 
@@ -1537,30 +1407,18 @@ M.PreProcessingModelInvocationOutput = {
         traceId = {
             type = "string",
         },
-        parsedResponse = {
-            type = "structure",
-        },
-        rawResponse = {
-            type = "structure",
-        },
-        metadata = {
-            type = "structure",
-        },
-        reasoningContent = {
-            type = "union",
-        },
+        parsedResponse = M.PreProcessingParsedResponse,
+        rawResponse = M.RawResponse,
+        metadata = M.Metadata,
+        reasoningContent = M.ReasoningContentBlock,
     },
 }
 
 M.PreProcessingTrace = {
     type = "union",
     members = {
-        modelInvocationInput = {
-            type = "structure",
-        },
-        modelInvocationOutput = {
-            type = "structure",
-        },
+        modelInvocationInput = M.ModelInvocationInput,
+        modelInvocationOutput = M.PreProcessingModelInvocationOutput,
     },
 }
 
@@ -1570,57 +1428,31 @@ M.RoutingClassifierModelInvocationOutput = {
         traceId = {
             type = "string",
         },
-        rawResponse = {
-            type = "structure",
-        },
-        metadata = {
-            type = "structure",
-        },
+        rawResponse = M.RawResponse,
+        metadata = M.Metadata,
     },
 }
 
 M.RoutingClassifierTrace = {
     type = "union",
     members = {
-        invocationInput = {
-            type = "structure",
-        },
-        observation = {
-            type = "structure",
-        },
-        modelInvocationInput = {
-            type = "structure",
-        },
-        modelInvocationOutput = {
-            type = "structure",
-        },
+        invocationInput = M.InvocationInput,
+        observation = M.Observation,
+        modelInvocationInput = M.ModelInvocationInput,
+        modelInvocationOutput = M.RoutingClassifierModelInvocationOutput,
     },
 }
 
 M.Trace = {
     type = "union",
     members = {
-        guardrailTrace = {
-            type = "structure",
-        },
-        preProcessingTrace = {
-            type = "union",
-        },
-        orchestrationTrace = {
-            type = "union",
-        },
-        postProcessingTrace = {
-            type = "union",
-        },
-        routingClassifierTrace = {
-            type = "union",
-        },
-        failureTrace = {
-            type = "structure",
-        },
-        customOrchestrationTrace = {
-            type = "structure",
-        },
+        guardrailTrace = M.GuardrailTrace,
+        preProcessingTrace = M.PreProcessingTrace,
+        orchestrationTrace = M.OrchestrationTrace,
+        postProcessingTrace = M.PostProcessingTrace,
+        routingClassifierTrace = M.RoutingClassifierTrace,
+        failureTrace = M.FailureTrace,
+        customOrchestrationTrace = M.CustomOrchestrationTrace,
     },
 }
 
@@ -1630,12 +1462,10 @@ M.TracePart = {
         sessionId = {
             type = "string",
         },
-        trace = {
-            type = "union",
-        },
+        trace = M.Trace,
         callerChain = {
             type = "list",
-            member_type = "union",
+            member = M.Caller,
         },
         eventTime = {
             type = "timestamp",
@@ -1847,7 +1677,7 @@ M.GetFlowExecutionOutput = {
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.FlowExecutionError,
         },
         flowAliasIdentifier = {
             type = "string",
@@ -1900,7 +1730,7 @@ M.ListFlowExecutionEventsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1950,7 +1780,7 @@ M.ConditionResultEvent = {
         },
         satisfiedConditions = {
             type = "list",
-            member_type = "structure",
+            member = M.SatisfiedCondition,
             traits = {
                 required = true,
             },
@@ -2006,12 +1836,9 @@ M.FlowInputField = {
                 required = true,
             },
         },
-        content = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        content = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FlowExecutionContent }),
     },
 }
 
@@ -2032,7 +1859,7 @@ M.FlowExecutionInputEvent = {
         },
         fields = {
             type = "list",
-            member_type = "structure",
+            member = M.FlowInputField,
             traits = {
                 required = true,
             },
@@ -2049,12 +1876,9 @@ M.FlowOutputField = {
                 required = true,
             },
         },
-        content = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        content = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FlowExecutionContent }),
     },
 }
 
@@ -2075,7 +1899,7 @@ M.FlowExecutionOutputEvent = {
         },
         fields = {
             type = "list",
-            member_type = "structure",
+            member = M.FlowOutputField,
             traits = {
                 required = true,
             },
@@ -2130,7 +1954,7 @@ M.NodeTraceElements = {
     members = {
         agentTraces = {
             type = "list",
-            member_type = "structure",
+            member = M.TracePart,
         },
     },
 }
@@ -2150,12 +1974,9 @@ M.NodeDependencyEvent = {
                 required = true,
             },
         },
-        traceElements = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        traceElements = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.NodeTraceElements }),
     },
 }
 
@@ -2226,7 +2047,7 @@ M.NodeInputExecutionChainItem = {
             },
         },
         index = {
-            type = "number",
+            type = "integer",
         },
         type = {
             type = "string",
@@ -2278,15 +2099,10 @@ M.NodeInputField = {
                 required = true,
             },
         },
-        content = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        source = {
-            type = "structure",
-        },
+        content = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.NodeExecutionContent }),
+        source = M.NodeInputSource,
         type = {
             type = "string",
         },
@@ -2295,7 +2111,7 @@ M.NodeInputField = {
         },
         executionChain = {
             type = "list",
-            member_type = "structure",
+            member = M.NodeInputExecutionChainItem,
         },
     },
 }
@@ -2317,7 +2133,7 @@ M.NodeInputEvent = {
         },
         fields = {
             type = "list",
-            member_type = "structure",
+            member = M.NodeInputField,
             traits = {
                 required = true,
             },
@@ -2352,15 +2168,12 @@ M.NodeOutputField = {
                 required = true,
             },
         },
-        content = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        content = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.NodeExecutionContent }),
         next = {
             type = "list",
-            member_type = "structure",
+            member = M.NodeOutputNext,
         },
         type = {
             type = "string",
@@ -2385,7 +2198,7 @@ M.NodeOutputEvent = {
         },
         fields = {
             type = "list",
-            member_type = "structure",
+            member = M.NodeOutputField,
             traits = {
                 required = true,
             },
@@ -2396,33 +2209,15 @@ M.NodeOutputEvent = {
 M.FlowExecutionEvent = {
     type = "union",
     members = {
-        flowInputEvent = {
-            type = "structure",
-        },
-        flowOutputEvent = {
-            type = "structure",
-        },
-        nodeInputEvent = {
-            type = "structure",
-        },
-        nodeOutputEvent = {
-            type = "structure",
-        },
-        conditionResultEvent = {
-            type = "structure",
-        },
-        nodeFailureEvent = {
-            type = "structure",
-        },
-        flowFailureEvent = {
-            type = "structure",
-        },
-        nodeActionEvent = {
-            type = "structure",
-        },
-        nodeDependencyEvent = {
-            type = "structure",
-        },
+        flowInputEvent = M.FlowExecutionInputEvent,
+        flowOutputEvent = M.FlowExecutionOutputEvent,
+        nodeInputEvent = M.NodeInputEvent,
+        nodeOutputEvent = M.NodeOutputEvent,
+        conditionResultEvent = M.ConditionResultEvent,
+        nodeFailureEvent = M.NodeFailureEvent,
+        flowFailureEvent = M.FlowFailureEvent,
+        nodeActionEvent = M.NodeActionEvent,
+        nodeDependencyEvent = M.NodeDependencyEvent,
     },
 }
 
@@ -2431,7 +2226,7 @@ M.ListFlowExecutionEventsOutput = {
     members = {
         flowExecutionEvents = {
             type = "list",
-            member_type = "union",
+            member = M.FlowExecutionEvent,
             traits = {
                 required = true,
             },
@@ -2459,7 +2254,7 @@ M.ListFlowExecutionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2523,7 +2318,7 @@ M.ListFlowExecutionsOutput = {
     members = {
         flowExecutionSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.FlowExecutionSummary,
             traits = {
                 required = true,
             },
@@ -2601,12 +2396,9 @@ M.FlowInput = {
         nodeOutputName = {
             type = "string",
         },
-        content = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        content = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FlowInputContent }),
         nodeInputName = {
             type = "string",
         },
@@ -2623,6 +2415,9 @@ M.PerformanceConfiguration = {
     members = {
         latency = {
             type = "string",
+            traits = {
+                default = "standard",
+            },
         },
     },
 }
@@ -2630,9 +2425,7 @@ M.PerformanceConfiguration = {
 M.ModelPerformanceConfiguration = {
     type = "structure",
     members = {
-        performanceConfig = {
-            type = "structure",
-        },
+        performanceConfig = M.PerformanceConfiguration,
     },
 }
 
@@ -2658,14 +2451,12 @@ M.StartFlowExecutionInput = {
         },
         inputs = {
             type = "list",
-            member_type = "structure",
+            member = M.FlowInput,
             traits = {
                 required = true,
             },
         },
-        modelPerformanceConfiguration = {
-            type = "structure",
-        },
+        modelPerformanceConfiguration = M.ModelPerformanceConfiguration,
     },
 }
 
@@ -2739,7 +2530,7 @@ M.InvokeFlowInput = {
         },
         inputs = {
             type = "list",
-            member_type = "structure",
+            member = M.FlowInput,
             traits = {
                 required = true,
             },
@@ -2747,9 +2538,7 @@ M.InvokeFlowInput = {
         enableTrace = {
             type = "boolean",
         },
-        modelPerformanceConfiguration = {
-            type = "structure",
-        },
+        modelPerformanceConfiguration = M.ModelPerformanceConfiguration,
         executionId = {
             type = "string",
         },
@@ -2807,12 +2596,9 @@ M.FlowMultiTurnInputRequestEvent = {
                 required = true,
             },
         },
-        content = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        content = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FlowMultiTurnInputContent }),
     },
 }
 
@@ -2840,12 +2626,9 @@ M.FlowOutputEvent = {
                 required = true,
             },
         },
-        content = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        content = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FlowOutputContent }),
     },
 }
 
@@ -2878,7 +2661,7 @@ M.FlowTraceConditionNodeResultEvent = {
         },
         satisfiedConditions = {
             type = "list",
-            member_type = "structure",
+            member = M.FlowTraceCondition,
             traits = {
                 required = true,
             },
@@ -2933,7 +2716,7 @@ M.TraceElements = {
     members = {
         agentTraces = {
             type = "list",
-            member_type = "structure",
+            member = M.TracePart,
         },
     },
 }
@@ -2953,12 +2736,9 @@ M.FlowTraceDependencyEvent = {
                 required = true,
             },
         },
-        traceElements = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        traceElements = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TraceElements }),
     },
 }
 
@@ -2981,7 +2761,7 @@ M.FlowTraceNodeInputExecutionChainItem = {
             },
         },
         index = {
-            type = "number",
+            type = "integer",
         },
         type = {
             type = "string",
@@ -3025,15 +2805,10 @@ M.FlowTraceNodeInputField = {
                 required = true,
             },
         },
-        content = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        source = {
-            type = "structure",
-        },
+        content = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FlowTraceNodeInputContent }),
+        source = M.FlowTraceNodeInputSource,
         type = {
             type = "string",
         },
@@ -3042,7 +2817,7 @@ M.FlowTraceNodeInputField = {
         },
         executionChain = {
             type = "list",
-            member_type = "structure",
+            member = M.FlowTraceNodeInputExecutionChainItem,
         },
     },
 }
@@ -3064,7 +2839,7 @@ M.FlowTraceNodeInputEvent = {
         },
         fields = {
             type = "list",
-            member_type = "structure",
+            member = M.FlowTraceNodeInputField,
             traits = {
                 required = true,
             },
@@ -3108,15 +2883,12 @@ M.FlowTraceNodeOutputField = {
                 required = true,
             },
         },
-        content = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        content = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FlowTraceNodeOutputContent }),
         next = {
             type = "list",
-            member_type = "structure",
+            member = M.FlowTraceNodeOutputNext,
         },
         type = {
             type = "string",
@@ -3141,7 +2913,7 @@ M.FlowTraceNodeOutputEvent = {
         },
         fields = {
             type = "list",
-            member_type = "structure",
+            member = M.FlowTraceNodeOutputField,
             traits = {
                 required = true,
             },
@@ -3152,91 +2924,49 @@ M.FlowTraceNodeOutputEvent = {
 M.FlowTrace = {
     type = "union",
     members = {
-        nodeInputTrace = {
-            type = "structure",
-        },
-        nodeOutputTrace = {
-            type = "structure",
-        },
-        conditionNodeResultTrace = {
-            type = "structure",
-        },
-        nodeActionTrace = {
-            type = "structure",
-        },
-        nodeDependencyTrace = {
-            type = "structure",
-        },
+        nodeInputTrace = M.FlowTraceNodeInputEvent,
+        nodeOutputTrace = M.FlowTraceNodeOutputEvent,
+        conditionNodeResultTrace = M.FlowTraceConditionNodeResultEvent,
+        nodeActionTrace = M.FlowTraceNodeActionEvent,
+        nodeDependencyTrace = M.FlowTraceDependencyEvent,
     },
 }
 
 M.FlowTraceEvent = {
     type = "structure",
     members = {
-        trace = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        trace = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FlowTrace }),
     },
 }
 
 M.FlowResponseStream = {
     type = "union",
     members = {
-        flowOutputEvent = {
-            type = "structure",
-        },
-        flowCompletionEvent = {
-            type = "structure",
-        },
-        flowTraceEvent = {
-            type = "structure",
-        },
-        internalServerException = {
-            type = "structure",
-        },
-        validationException = {
-            type = "structure",
-        },
-        resourceNotFoundException = {
-            type = "structure",
-        },
-        serviceQuotaExceededException = {
-            type = "structure",
-        },
-        throttlingException = {
-            type = "structure",
-        },
-        accessDeniedException = {
-            type = "structure",
-        },
-        conflictException = {
-            type = "structure",
-        },
-        dependencyFailedException = {
-            type = "structure",
-        },
-        badGatewayException = {
-            type = "structure",
-        },
-        flowMultiTurnInputRequestEvent = {
-            type = "structure",
-        },
+        flowOutputEvent = M.FlowOutputEvent,
+        flowCompletionEvent = M.FlowCompletionEvent,
+        flowTraceEvent = M.FlowTraceEvent,
+        internalServerException = M.InternalServerException,
+        validationException = M.ValidationException,
+        resourceNotFoundException = M.ResourceNotFoundException,
+        serviceQuotaExceededException = M.ServiceQuotaExceededException,
+        throttlingException = M.ThrottlingException,
+        accessDeniedException = M.AccessDeniedException,
+        conflictException = M.ConflictException,
+        dependencyFailedException = M.DependencyFailedException,
+        badGatewayException = M.BadGatewayException,
+        flowMultiTurnInputRequestEvent = M.FlowMultiTurnInputRequestEvent,
     },
 }
 
 M.InvokeFlowOutput = {
     type = "structure",
     members = {
-        responseStream = {
-            type = "union",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        responseStream = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.FlowResponseStream }),
         executionId = {
             type = "string",
             traits = {
@@ -3297,9 +3027,7 @@ M.TextToSqlConfiguration = {
                 required = true,
             },
         },
-        knowledgeBaseConfiguration = {
-            type = "structure",
-        },
+        knowledgeBaseConfiguration = M.TextToSqlKnowledgeBaseConfiguration,
     },
 }
 
@@ -3312,27 +3040,19 @@ M.TransformationConfiguration = {
                 required = true,
             },
         },
-        textToSqlConfiguration = {
-            type = "structure",
-        },
+        textToSqlConfiguration = M.TextToSqlConfiguration,
     },
 }
 
 M.GenerateQueryInput = {
     type = "structure",
     members = {
-        queryGenerationInput = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        transformationConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        queryGenerationInput = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.QueryGenerationInput }),
+        transformationConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TransformationConfiguration }),
     },
 }
 
@@ -3357,7 +3077,7 @@ M.GenerateQueryOutput = {
     members = {
         queries = {
             type = "list",
-            member_type = "structure",
+            member = M.GeneratedQuery,
         },
     },
 }
@@ -3365,9 +3085,7 @@ M.GenerateQueryOutput = {
 M.BedrockModelConfigurations = {
     type = "structure",
     members = {
-        performanceConfig = {
-            type = "structure",
-        },
+        performanceConfig = M.PerformanceConfiguration,
     },
 }
 
@@ -3375,10 +3093,13 @@ M.PromptCreationConfigurations = {
     type = "structure",
     members = {
         previousConversationTurnsToInclude = {
-            type = "number",
+            type = "integer",
         },
         excludePreviousThinkingSteps = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -3408,7 +3129,7 @@ M.Message = {
         },
         content = {
             type = "list",
-            member_type = "union",
+            member = M.ContentBlock,
             traits = {
                 required = true,
             },
@@ -3421,7 +3142,7 @@ M.ConversationHistory = {
     members = {
         messages = {
             type = "list",
-            member_type = "structure",
+            member = M.Message,
         },
     },
 }
@@ -3470,12 +3191,8 @@ M.FileSource = {
                 required = true,
             },
         },
-        s3Location = {
-            type = "structure",
-        },
-        byteContent = {
-            type = "structure",
-        },
+        s3Location = M.S3ObjectFile,
+        byteContent = M.ByteContentFile,
     },
 }
 
@@ -3493,12 +3210,9 @@ M.InputFile = {
                 required = true,
             },
         },
-        source = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        source = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FileSource }),
         useCase = {
             type = "string",
             traits = {
@@ -3562,7 +3276,7 @@ M.ImplicitFilterConfiguration = {
     members = {
         metadataAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.MetadataAttributeSchema,
             traits = {
                 required = true,
             },
@@ -3603,11 +3317,11 @@ M.RerankingMetadataSelectiveModeConfiguration = {
     members = {
         fieldsToInclude = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldForReranking,
         },
         fieldsToExclude = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldForReranking,
         },
     },
 }
@@ -3621,9 +3335,7 @@ M.MetadataConfigurationForReranking = {
                 required = true,
             },
         },
-        selectiveModeConfiguration = {
-            type = "union",
-        },
+        selectiveModeConfiguration = M.RerankingMetadataSelectiveModeConfiguration,
     },
 }
 
@@ -3638,8 +3350,8 @@ M.VectorSearchBedrockRerankingModelConfiguration = {
         },
         additionalModelRequestFields = {
             type = "map",
-            key_type = "string",
-            value_type = "document",
+            key = { type = "string" },
+            value = { type = "document" },
         },
     },
 }
@@ -3647,18 +3359,13 @@ M.VectorSearchBedrockRerankingModelConfiguration = {
 M.VectorSearchBedrockRerankingConfiguration = {
     type = "structure",
     members = {
-        modelConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        modelConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VectorSearchBedrockRerankingModelConfiguration }),
         numberOfRerankedResults = {
-            type = "number",
+            type = "integer",
         },
-        metadataConfiguration = {
-            type = "structure",
-        },
+        metadataConfiguration = M.MetadataConfigurationForReranking,
     },
 }
 
@@ -3675,9 +3382,7 @@ M.VectorSearchRerankingConfiguration = {
                 required = true,
             },
         },
-        bedrockRerankingConfiguration = {
-            type = "structure",
-        },
+        bedrockRerankingConfiguration = M.VectorSearchBedrockRerankingConfiguration,
     },
 }
 
@@ -3686,9 +3391,12 @@ M.StreamingConfigurations = {
     members = {
         streamFinalResponse = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         applyGuardrailInterval = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3697,10 +3405,10 @@ M.Span = {
     type = "structure",
     members = {
         start = {
-            type = "number",
+            type = "integer",
         },
         end = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3711,30 +3419,24 @@ M.TextResponsePart = {
         text = {
             type = "string",
         },
-        span = {
-            type = "structure",
-        },
+        span = M.Span,
     },
 }
 
 M.GeneratedResponsePart = {
     type = "structure",
     members = {
-        textResponsePart = {
-            type = "structure",
-        },
+        textResponsePart = M.TextResponsePart,
     },
 }
 
 M.Citation = {
     type = "structure",
     members = {
-        generatedResponsePart = {
-            type = "structure",
-        },
+        generatedResponsePart = M.GeneratedResponsePart,
         retrievedReferences = {
             type = "list",
-            member_type = "structure",
+            member = M.RetrievedReference,
         },
     },
 }
@@ -3744,7 +3446,7 @@ M.Attribution = {
     members = {
         citations = {
             type = "list",
-            member_type = "structure",
+            member = M.Citation,
         },
     },
 }
@@ -3755,9 +3457,7 @@ M.PayloadPart = {
         bytes = {
             type = "blob",
         },
-        attribution = {
-            type = "structure",
-        },
+        attribution = M.Attribution,
     },
 }
 
@@ -3781,7 +3481,7 @@ M.FilePart = {
     members = {
         files = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputFile,
         },
     },
 }
@@ -3799,61 +3499,30 @@ M.ModelNotReadyException = {
 M.ResponseStream = {
     type = "union",
     members = {
-        chunk = {
-            type = "structure",
-        },
-        trace = {
-            type = "structure",
-        },
-        returnControl = {
-            type = "structure",
-        },
-        internalServerException = {
-            type = "structure",
-        },
-        validationException = {
-            type = "structure",
-        },
-        resourceNotFoundException = {
-            type = "structure",
-        },
-        serviceQuotaExceededException = {
-            type = "structure",
-        },
-        throttlingException = {
-            type = "structure",
-        },
-        accessDeniedException = {
-            type = "structure",
-        },
-        conflictException = {
-            type = "structure",
-        },
-        dependencyFailedException = {
-            type = "structure",
-        },
-        badGatewayException = {
-            type = "structure",
-        },
-        modelNotReadyException = {
-            type = "structure",
-        },
-        files = {
-            type = "structure",
-        },
+        chunk = M.PayloadPart,
+        trace = M.TracePart,
+        returnControl = M.ReturnControlPayload,
+        internalServerException = M.InternalServerException,
+        validationException = M.ValidationException,
+        resourceNotFoundException = M.ResourceNotFoundException,
+        serviceQuotaExceededException = M.ServiceQuotaExceededException,
+        throttlingException = M.ThrottlingException,
+        accessDeniedException = M.AccessDeniedException,
+        conflictException = M.ConflictException,
+        dependencyFailedException = M.DependencyFailedException,
+        badGatewayException = M.BadGatewayException,
+        modelNotReadyException = M.ModelNotReadyException,
+        files = M.FilePart,
     },
 }
 
 M.InvokeAgentOutput = {
     type = "structure",
     members = {
-        completion = {
-            type = "union",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        completion = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.ResponseStream }),
         contentType = {
             type = "string",
             traits = {
@@ -3880,9 +3549,7 @@ M.InvokeAgentOutput = {
 M.InlineBedrockModelConfigurations = {
     type = "structure",
     members = {
-        performanceConfig = {
-            type = "structure",
-        },
+        performanceConfig = M.PerformanceConfiguration,
     },
 }
 
@@ -3953,9 +3620,7 @@ M.PromptConfiguration = {
         basePromptTemplate = {
             type = "string",
         },
-        inferenceConfiguration = {
-            type = "structure",
-        },
+        inferenceConfiguration = M.InferenceConfiguration,
         parserMode = {
             type = "string",
         },
@@ -3973,7 +3638,7 @@ M.PromptOverrideConfiguration = {
     members = {
         promptConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.PromptConfiguration,
             traits = {
                 required = true,
             },
@@ -3996,9 +3661,7 @@ M.OrchestrationExecutor = {
 M.CustomOrchestration = {
     type = "structure",
     members = {
-        executor = {
-            type = "union",
-        },
+        executor = M.OrchestrationExecutor,
     },
 }
 
@@ -4007,28 +3670,26 @@ M.InlineSessionState = {
     members = {
         sessionAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         promptSessionAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         returnControlInvocationResults = {
             type = "list",
-            member_type = "union",
+            member = M.InvocationResultMember,
         },
         invocationId = {
             type = "string",
         },
         files = {
             type = "list",
-            member_type = "structure",
+            member = M.InputFile,
         },
-        conversationHistory = {
-            type = "structure",
-        },
+        conversationHistory = M.ConversationHistory,
     },
 }
 
@@ -4043,9 +3704,7 @@ M.InlineAgentPayloadPart = {
         bytes = {
             type = "blob",
         },
-        attribution = {
-            type = "structure",
-        },
+        attribution = M.Attribution,
     },
 }
 
@@ -4054,7 +3713,7 @@ M.InlineAgentFilePart = {
     members = {
         files = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputFile,
         },
     },
 }
@@ -4064,7 +3723,7 @@ M.InlineAgentReturnControlPayload = {
     members = {
         invocationInputs = {
             type = "list",
-            member_type = "union",
+            member = M.InvocationInputMember,
         },
         invocationId = {
             type = "string",
@@ -4078,12 +3737,10 @@ M.InlineAgentTracePart = {
         sessionId = {
             type = "string",
         },
-        trace = {
-            type = "union",
-        },
+        trace = M.Trace,
         callerChain = {
             type = "list",
-            member_type = "union",
+            member = M.Caller,
         },
         eventTime = {
             type = "timestamp",
@@ -4100,58 +3757,29 @@ M.InlineAgentTracePart = {
 M.InlineAgentResponseStream = {
     type = "union",
     members = {
-        chunk = {
-            type = "structure",
-        },
-        trace = {
-            type = "structure",
-        },
-        returnControl = {
-            type = "structure",
-        },
-        internalServerException = {
-            type = "structure",
-        },
-        validationException = {
-            type = "structure",
-        },
-        resourceNotFoundException = {
-            type = "structure",
-        },
-        serviceQuotaExceededException = {
-            type = "structure",
-        },
-        throttlingException = {
-            type = "structure",
-        },
-        accessDeniedException = {
-            type = "structure",
-        },
-        conflictException = {
-            type = "structure",
-        },
-        dependencyFailedException = {
-            type = "structure",
-        },
-        badGatewayException = {
-            type = "structure",
-        },
-        files = {
-            type = "structure",
-        },
+        chunk = M.InlineAgentPayloadPart,
+        trace = M.InlineAgentTracePart,
+        returnControl = M.InlineAgentReturnControlPayload,
+        internalServerException = M.InternalServerException,
+        validationException = M.ValidationException,
+        resourceNotFoundException = M.ResourceNotFoundException,
+        serviceQuotaExceededException = M.ServiceQuotaExceededException,
+        throttlingException = M.ThrottlingException,
+        accessDeniedException = M.AccessDeniedException,
+        conflictException = M.ConflictException,
+        dependencyFailedException = M.DependencyFailedException,
+        badGatewayException = M.BadGatewayException,
+        files = M.InlineAgentFilePart,
     },
 }
 
 M.InvokeInlineAgentOutput = {
     type = "structure",
     members = {
-        completion = {
-            type = "union",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        completion = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.InlineAgentResponseStream }),
         contentType = {
             type = "string",
             traits = {
@@ -4219,7 +3847,7 @@ M.GetAgentMemoryInput = {
             },
         },
         maxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxItems",
             },
@@ -4279,9 +3907,7 @@ M.MemorySessionSummary = {
 M.Memory = {
     type = "union",
     members = {
-        sessionSummary = {
-            type = "structure",
-        },
+        sessionSummary = M.MemorySessionSummary,
     },
 }
 
@@ -4293,7 +3919,7 @@ M.GetAgentMemoryOutput = {
         },
         memoryContents = {
             type = "list",
-            member_type = "union",
+            member = M.Memory,
         },
     },
 }
@@ -4313,21 +3939,16 @@ M.TextPrompt = {
 M.InputPrompt = {
     type = "union",
     members = {
-        textPrompt = {
-            type = "structure",
-        },
+        textPrompt = M.TextPrompt,
     },
 }
 
 M.OptimizePromptInput = {
     type = "structure",
     members = {
-        input = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        input = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InputPrompt }),
         targetModelId = {
             type = "string",
             traits = {
@@ -4349,61 +3970,38 @@ M.AnalyzePromptEvent = {
 M.OptimizedPrompt = {
     type = "union",
     members = {
-        textPrompt = {
-            type = "structure",
-        },
+        textPrompt = M.TextPrompt,
     },
 }
 
 M.OptimizedPromptEvent = {
     type = "structure",
     members = {
-        optimizedPrompt = {
-            type = "union",
-        },
+        optimizedPrompt = M.OptimizedPrompt,
     },
 }
 
 M.OptimizedPromptStream = {
     type = "union",
     members = {
-        optimizedPromptEvent = {
-            type = "structure",
-        },
-        analyzePromptEvent = {
-            type = "structure",
-        },
-        internalServerException = {
-            type = "structure",
-        },
-        throttlingException = {
-            type = "structure",
-        },
-        validationException = {
-            type = "structure",
-        },
-        dependencyFailedException = {
-            type = "structure",
-        },
-        accessDeniedException = {
-            type = "structure",
-        },
-        badGatewayException = {
-            type = "structure",
-        },
+        optimizedPromptEvent = M.OptimizedPromptEvent,
+        analyzePromptEvent = M.AnalyzePromptEvent,
+        internalServerException = M.InternalServerException,
+        throttlingException = M.ThrottlingException,
+        validationException = M.ValidationException,
+        dependencyFailedException = M.DependencyFailedException,
+        accessDeniedException = M.AccessDeniedException,
+        badGatewayException = M.BadGatewayException,
     },
 }
 
 M.OptimizePromptOutput = {
     type = "structure",
     members = {
-        optimizedPrompt = {
-            type = "union",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        optimizedPrompt = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.OptimizedPromptStream }),
     },
 }
 
@@ -4429,12 +4027,9 @@ M.RerankQuery = {
                 required = true,
             },
         },
-        textQuery = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        textQuery = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RerankTextDocument }),
     },
 }
 
@@ -4449,8 +4044,8 @@ M.BedrockRerankingModelConfiguration = {
         },
         additionalModelRequestFields = {
             type = "map",
-            key_type = "string",
-            value_type = "document",
+            key = { type = "string" },
+            value = { type = "document" },
         },
     },
 }
@@ -4459,14 +4054,11 @@ M.BedrockRerankingConfiguration = {
     type = "structure",
     members = {
         numberOfResults = {
-            type = "number",
+            type = "integer",
         },
-        modelConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        modelConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BedrockRerankingModelConfiguration }),
     },
 }
 
@@ -4483,12 +4075,9 @@ M.RerankingConfiguration = {
                 required = true,
             },
         },
-        bedrockRerankingConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        bedrockRerankingConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BedrockRerankingConfiguration }),
     },
 }
 
@@ -4506,9 +4095,7 @@ M.RerankDocument = {
                 required = true,
             },
         },
-        textDocument = {
-            type = "structure",
-        },
+        textDocument = M.RerankTextDocument,
         jsonDocument = {
             type = "document",
         },
@@ -4528,12 +4115,9 @@ M.RerankSource = {
                 required = true,
             },
         },
-        inlineDocumentSource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        inlineDocumentSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RerankDocument }),
     },
 }
 
@@ -4542,24 +4126,21 @@ M.RerankInput = {
     members = {
         queries = {
             type = "list",
-            member_type = "structure",
+            member = M.RerankQuery,
             traits = {
                 required = true,
             },
         },
         sources = {
             type = "list",
-            member_type = "structure",
+            member = M.RerankSource,
             traits = {
                 required = true,
             },
         },
-        rerankingConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        rerankingConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RerankingConfiguration }),
         nextToken = {
             type = "string",
         },
@@ -4570,20 +4151,18 @@ M.RerankResult = {
     type = "structure",
     members = {
         index = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         relevanceScore = {
-            type = "number",
+            type = "float",
             traits = {
                 required = true,
             },
         },
-        document = {
-            type = "structure",
-        },
+        document = M.RerankDocument,
     },
 }
 
@@ -4592,7 +4171,7 @@ M.RerankOutput = {
     members = {
         results = {
             type = "list",
-            member_type = "structure",
+            member = M.RerankResult,
             traits = {
                 required = true,
             },
@@ -4637,17 +4216,17 @@ M.TextInferenceConfig = {
     type = "structure",
     members = {
         temperature = {
-            type = "number",
+            type = "float",
         },
         topP = {
-            type = "number",
+            type = "float",
         },
         maxTokens = {
-            type = "number",
+            type = "integer",
         },
         stopSequences = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4655,9 +4234,7 @@ M.TextInferenceConfig = {
 M.InferenceConfig = {
     type = "structure",
     members = {
-        textInferenceConfig = {
-            type = "structure",
-        },
+        textInferenceConfig = M.TextInferenceConfig,
     },
 }
 
@@ -4673,23 +4250,15 @@ M.PromptTemplate = {
 M.ExternalSourcesGenerationConfiguration = {
     type = "structure",
     members = {
-        promptTemplate = {
-            type = "structure",
-        },
-        guardrailConfiguration = {
-            type = "structure",
-        },
-        inferenceConfig = {
-            type = "structure",
-        },
+        promptTemplate = M.PromptTemplate,
+        guardrailConfiguration = M.GuardrailConfiguration,
+        inferenceConfig = M.InferenceConfig,
         additionalModelRequestFields = {
             type = "map",
-            key_type = "string",
-            value_type = "document",
+            key = { type = "string" },
+            value = { type = "document" },
         },
-        performanceConfig = {
-            type = "structure",
-        },
+        performanceConfig = M.PerformanceConfiguration,
     },
 }
 
@@ -4743,12 +4312,8 @@ M.ExternalSource = {
                 required = true,
             },
         },
-        s3Location = {
-            type = "structure",
-        },
-        byteContent = {
-            type = "structure",
-        },
+        s3Location = M.S3ObjectDoc,
+        byteContent = M.ByteContentDoc,
     },
 }
 
@@ -4763,37 +4328,27 @@ M.ExternalSourcesRetrieveAndGenerateConfiguration = {
         },
         sources = {
             type = "list",
-            member_type = "structure",
+            member = M.ExternalSource,
             traits = {
                 required = true,
             },
         },
-        generationConfiguration = {
-            type = "structure",
-        },
+        generationConfiguration = M.ExternalSourcesGenerationConfiguration,
     },
 }
 
 M.GenerationConfiguration = {
     type = "structure",
     members = {
-        promptTemplate = {
-            type = "structure",
-        },
-        guardrailConfiguration = {
-            type = "structure",
-        },
-        inferenceConfig = {
-            type = "structure",
-        },
+        promptTemplate = M.PromptTemplate,
+        guardrailConfiguration = M.GuardrailConfiguration,
+        inferenceConfig = M.InferenceConfig,
         additionalModelRequestFields = {
             type = "map",
-            key_type = "string",
-            value_type = "document",
+            key = { type = "string" },
+            value = { type = "document" },
         },
-        performanceConfig = {
-            type = "structure",
-        },
+        performanceConfig = M.PerformanceConfiguration,
     },
 }
 
@@ -4816,23 +4371,15 @@ M.QueryTransformationConfiguration = {
 M.OrchestrationConfiguration = {
     type = "structure",
     members = {
-        promptTemplate = {
-            type = "structure",
-        },
-        inferenceConfig = {
-            type = "structure",
-        },
+        promptTemplate = M.PromptTemplate,
+        inferenceConfig = M.InferenceConfig,
         additionalModelRequestFields = {
             type = "map",
-            key_type = "string",
-            value_type = "document",
+            key = { type = "string" },
+            value = { type = "document" },
         },
-        queryTransformationConfiguration = {
-            type = "structure",
-        },
-        performanceConfig = {
-            type = "structure",
-        },
+        queryTransformationConfiguration = M.QueryTransformationConfiguration,
+        performanceConfig = M.PerformanceConfiguration,
     },
 }
 
@@ -4879,15 +4426,12 @@ M.RetrieveAndGenerateOperationOutput = {
                 required = true,
             },
         },
-        output = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        output = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RetrieveAndGenerateOutput }),
         citations = {
             type = "list",
-            member_type = "structure",
+            member = M.Citation,
         },
         guardrailAction = {
             type = "string",
@@ -4898,15 +4442,11 @@ M.RetrieveAndGenerateOperationOutput = {
 M.CitationEvent = {
     type = "structure",
     members = {
-        citation = {
-            type = "structure",
-        },
-        generatedResponsePart = {
-            type = "structure",
-        },
+        citation = M.Citation,
+        generatedResponsePart = M.GeneratedResponsePart,
         retrievedReferences = {
             type = "list",
-            member_type = "structure",
+            member = M.RetrievedReference,
         },
     },
 }
@@ -4935,55 +4475,28 @@ M.RetrieveAndGenerateOutputEvent = {
 M.RetrieveAndGenerateStreamResponseOutput = {
     type = "union",
     members = {
-        output = {
-            type = "structure",
-        },
-        citation = {
-            type = "structure",
-        },
-        guardrail = {
-            type = "structure",
-        },
-        internalServerException = {
-            type = "structure",
-        },
-        validationException = {
-            type = "structure",
-        },
-        resourceNotFoundException = {
-            type = "structure",
-        },
-        serviceQuotaExceededException = {
-            type = "structure",
-        },
-        throttlingException = {
-            type = "structure",
-        },
-        accessDeniedException = {
-            type = "structure",
-        },
-        conflictException = {
-            type = "structure",
-        },
-        dependencyFailedException = {
-            type = "structure",
-        },
-        badGatewayException = {
-            type = "structure",
-        },
+        output = M.RetrieveAndGenerateOutputEvent,
+        citation = M.CitationEvent,
+        guardrail = M.GuardrailEvent,
+        internalServerException = M.InternalServerException,
+        validationException = M.ValidationException,
+        resourceNotFoundException = M.ResourceNotFoundException,
+        serviceQuotaExceededException = M.ServiceQuotaExceededException,
+        throttlingException = M.ThrottlingException,
+        accessDeniedException = M.AccessDeniedException,
+        conflictException = M.ConflictException,
+        dependencyFailedException = M.DependencyFailedException,
+        badGatewayException = M.BadGatewayException,
     },
 }
 
 M.RetrieveAndGenerateStreamOutput = {
     type = "structure",
     members = {
-        stream = {
-            type = "union",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        stream = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.RetrieveAndGenerateStreamResponseOutput }),
         sessionId = {
             type = "string",
             traits = {
@@ -5029,35 +4542,34 @@ M.KnowledgeBaseQuery = {
     members = {
         type = {
             type = "string",
+            traits = {
+                default = "TEXT",
+            },
         },
         text = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
-        image = {
-            type = "structure",
-        },
+        image = M.InputImage,
     },
 }
 
 M.KnowledgeBaseRetrievalResult = {
     type = "structure",
     members = {
-        content = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        location = {
-            type = "structure",
-        },
+        content = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RetrievalResultContent }),
+        location = M.RetrievalResultLocation,
         score = {
-            type = "number",
+            type = "double",
         },
         metadata = {
             type = "map",
-            key_type = "string",
-            value_type = "document",
+            key = { type = "string" },
+            value = { type = "document" },
         },
     },
 }
@@ -5067,7 +4579,7 @@ M.RetrieveOutput = {
     members = {
         retrievalResults = {
             type = "list",
-            member_type = "structure",
+            member = M.KnowledgeBaseRetrievalResult,
             traits = {
                 required = true,
             },
@@ -5086,16 +4598,16 @@ M.CreateSessionInput = {
     members = {
         sessionMetadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         encryptionKeyArn = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -5238,8 +4750,8 @@ M.GetSessionOutput = {
         },
         sessionMetadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         encryptionKeyArn = {
             type = "string",
@@ -5300,8 +4812,9 @@ M.ListInvocationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 10,
                 http_query = "maxResults",
             },
         },
@@ -5344,7 +4857,7 @@ M.ListInvocationsOutput = {
     members = {
         invocationSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.InvocationSummary,
             traits = {
                 required = true,
             },
@@ -5406,9 +4919,7 @@ M.ImageSource = {
         bytes = {
             type = "blob",
         },
-        s3Location = {
-            type = "structure",
-        },
+        s3Location = M.S3Location,
     },
 }
 
@@ -5421,12 +4932,9 @@ M.ImageBlock = {
                 required = true,
             },
         },
-        source = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        source = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ImageSource }),
     },
 }
 
@@ -5436,9 +4944,7 @@ M.BedrockSessionContentBlock = {
         text = {
             type = "string",
         },
-        image = {
-            type = "structure",
-        },
+        image = M.ImageBlock,
     },
 }
 
@@ -5447,7 +4953,7 @@ M.InvocationStepPayload = {
     members = {
         contentBlocks = {
             type = "list",
-            member_type = "union",
+            member = M.BedrockSessionContentBlock,
         },
     },
 }
@@ -5479,24 +4985,18 @@ M.InvocationStep = {
                 required = true,
             },
         },
-        payload = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        payload = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InvocationStepPayload }),
     },
 }
 
 M.GetInvocationStepOutput = {
     type = "structure",
     members = {
-        invocationStep = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        invocationStep = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InvocationStep }),
     },
 }
 
@@ -5513,8 +5013,9 @@ M.ListInvocationStepsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 10,
                 http_query = "maxResults",
             },
         },
@@ -5563,7 +5064,7 @@ M.ListInvocationStepsOutput = {
     members = {
         invocationStepSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.InvocationStepSummary,
             traits = {
                 required = true,
             },
@@ -5596,12 +5097,9 @@ M.PutInvocationStepInput = {
                 required = true,
             },
         },
-        payload = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        payload = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InvocationStepPayload }),
         invocationStepId = {
             type = "string",
         },
@@ -5624,8 +5122,9 @@ M.ListSessionsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 10,
                 http_query = "maxResults",
             },
         },
@@ -5679,7 +5178,7 @@ M.ListSessionsOutput = {
     members = {
         sessionSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.SessionSummary,
             traits = {
                 required = true,
             },
@@ -5695,8 +5194,8 @@ M.UpdateSessionInput = {
     members = {
         sessionMetadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         sessionIdentifier = {
             type = "string",
@@ -5762,8 +5261,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -5780,8 +5279,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -5805,7 +5304,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -5821,46 +5320,24 @@ M.UntagResourceOutput = {
 M.RetrievalFilter = {
     type = "union",
     members = {
-        equals = {
-            type = "structure",
-        },
-        notEquals = {
-            type = "structure",
-        },
-        greaterThan = {
-            type = "structure",
-        },
-        greaterThanOrEquals = {
-            type = "structure",
-        },
-        lessThan = {
-            type = "structure",
-        },
-        lessThanOrEquals = {
-            type = "structure",
-        },
-        in = {
-            type = "structure",
-        },
-        notIn = {
-            type = "structure",
-        },
-        startsWith = {
-            type = "structure",
-        },
-        listContains = {
-            type = "structure",
-        },
-        stringContains = {
-            type = "structure",
-        },
+        equals = M.FilterAttribute,
+        notEquals = M.FilterAttribute,
+        greaterThan = M.FilterAttribute,
+        greaterThanOrEquals = M.FilterAttribute,
+        lessThan = M.FilterAttribute,
+        lessThanOrEquals = M.FilterAttribute,
+        in = M.FilterAttribute,
+        notIn = M.FilterAttribute,
+        startsWith = M.FilterAttribute,
+        listContains = M.FilterAttribute,
+        stringContains = M.FilterAttribute,
         andAll = {
             type = "list",
-            member_type = "union",
+            member = M.RetrievalFilter,
         },
         orAll = {
             type = "list",
-            member_type = "union",
+            member = M.RetrievalFilter,
         },
     },
 }
@@ -5869,32 +5346,26 @@ M.KnowledgeBaseVectorSearchConfiguration = {
     type = "structure",
     members = {
         numberOfResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 5,
+            },
         },
         overrideSearchType = {
             type = "string",
         },
-        filter = {
-            type = "union",
-        },
-        rerankingConfiguration = {
-            type = "structure",
-        },
-        implicitFilterConfiguration = {
-            type = "structure",
-        },
+        filter = M.RetrievalFilter,
+        rerankingConfiguration = M.VectorSearchRerankingConfiguration,
+        implicitFilterConfiguration = M.ImplicitFilterConfiguration,
     },
 }
 
 M.KnowledgeBaseRetrievalConfiguration = {
     type = "structure",
     members = {
-        vectorSearchConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        vectorSearchConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.KnowledgeBaseVectorSearchConfiguration }),
     },
 }
 
@@ -5913,9 +5384,7 @@ M.KnowledgeBase = {
                 required = true,
             },
         },
-        retrievalConfiguration = {
-            type = "structure",
-        },
+        retrievalConfiguration = M.KnowledgeBaseRetrievalConfiguration,
     },
 }
 
@@ -5928,12 +5397,9 @@ M.KnowledgeBaseConfiguration = {
                 required = true,
             },
         },
-        retrievalConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        retrievalConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.KnowledgeBaseRetrievalConfiguration }),
     },
 }
 
@@ -5952,15 +5418,9 @@ M.KnowledgeBaseRetrieveAndGenerateConfiguration = {
                 required = true,
             },
         },
-        retrievalConfiguration = {
-            type = "structure",
-        },
-        generationConfiguration = {
-            type = "structure",
-        },
-        orchestrationConfiguration = {
-            type = "structure",
-        },
+        retrievalConfiguration = M.KnowledgeBaseRetrievalConfiguration,
+        generationConfiguration = M.GenerationConfiguration,
+        orchestrationConfiguration = M.OrchestrationConfiguration,
     },
 }
 
@@ -5974,18 +5434,11 @@ M.RetrieveInput = {
                 required = true,
             },
         },
-        retrievalQuery = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        retrievalConfiguration = {
-            type = "structure",
-        },
-        guardrailConfiguration = {
-            type = "structure",
-        },
+        retrievalQuery = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.KnowledgeBaseQuery }),
+        retrievalConfiguration = M.KnowledgeBaseRetrievalConfiguration,
+        guardrailConfiguration = M.GuardrailConfiguration,
         nextToken = {
             type = "string",
         },
@@ -6001,12 +5454,8 @@ M.RetrieveAndGenerateConfiguration = {
                 required = true,
             },
         },
-        knowledgeBaseConfiguration = {
-            type = "structure",
-        },
-        externalSourcesConfiguration = {
-            type = "structure",
-        },
+        knowledgeBaseConfiguration = M.KnowledgeBaseRetrieveAndGenerateConfiguration,
+        externalSourcesConfiguration = M.ExternalSourcesRetrieveAndGenerateConfiguration,
     },
 }
 
@@ -6029,28 +5478,24 @@ M.Collaborator = {
             },
         },
         idleSessionTTLInSeconds = {
-            type = "number",
+            type = "integer",
         },
         actionGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.AgentActionGroup,
         },
         knowledgeBases = {
             type = "list",
-            member_type = "structure",
+            member = M.KnowledgeBase,
         },
-        guardrailConfiguration = {
-            type = "structure",
-        },
-        promptOverrideConfiguration = {
-            type = "structure",
-        },
+        guardrailConfiguration = M.GuardrailConfigurationWithArn,
+        promptOverrideConfiguration = M.PromptOverrideConfiguration,
         agentCollaboration = {
             type = "string",
         },
         collaboratorConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.CollaboratorConfiguration,
         },
         agentName = {
             type = "string",
@@ -6064,18 +5509,11 @@ M.RetrieveAndGenerateOperationInput = {
         sessionId = {
             type = "string",
         },
-        input = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        retrieveAndGenerateConfiguration = {
-            type = "structure",
-        },
-        sessionConfiguration = {
-            type = "structure",
-        },
+        input = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RetrieveAndGenerateInput }),
+        retrieveAndGenerateConfiguration = M.RetrieveAndGenerateConfiguration,
+        sessionConfiguration = M.RetrieveAndGenerateSessionConfiguration,
     },
 }
 
@@ -6085,18 +5523,11 @@ M.RetrieveAndGenerateStreamInput = {
         sessionId = {
             type = "string",
         },
-        input = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        retrieveAndGenerateConfiguration = {
-            type = "structure",
-        },
-        sessionConfiguration = {
-            type = "structure",
-        },
+        input = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RetrieveAndGenerateInput }),
+        retrieveAndGenerateConfiguration = M.RetrieveAndGenerateConfiguration,
+        sessionConfiguration = M.RetrieveAndGenerateSessionConfiguration,
     },
 }
 
@@ -6105,41 +5536,37 @@ M.SessionState = {
     members = {
         sessionAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         promptSessionAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         returnControlInvocationResults = {
             type = "list",
-            member_type = "union",
+            member = M.InvocationResultMember,
         },
         invocationId = {
             type = "string",
         },
         files = {
             type = "list",
-            member_type = "structure",
+            member = M.InputFile,
         },
         knowledgeBaseConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.KnowledgeBaseConfiguration,
         },
-        conversationHistory = {
-            type = "structure",
-        },
+        conversationHistory = M.ConversationHistory,
     },
 }
 
 M.InvokeAgentInput = {
     type = "structure",
     members = {
-        sessionState = {
-            type = "structure",
-        },
+        sessionState = M.SessionState,
         agentId = {
             type = "string",
             traits = {
@@ -6173,15 +5600,9 @@ M.InvokeAgentInput = {
         memoryId = {
             type = "string",
         },
-        bedrockModelConfigurations = {
-            type = "structure",
-        },
-        streamingConfigurations = {
-            type = "structure",
-        },
-        promptCreationConfigurations = {
-            type = "structure",
-        },
+        bedrockModelConfigurations = M.BedrockModelConfigurations,
+        streamingConfigurations = M.StreamingConfigurations,
+        promptCreationConfigurations = M.PromptCreationConfigurations,
         sourceArn = {
             type = "string",
             traits = {
@@ -6210,28 +5631,24 @@ M.InvokeInlineAgentInput = {
             },
         },
         idleSessionTTLInSeconds = {
-            type = "number",
+            type = "integer",
         },
         actionGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.AgentActionGroup,
         },
         knowledgeBases = {
             type = "list",
-            member_type = "structure",
+            member = M.KnowledgeBase,
         },
-        guardrailConfiguration = {
-            type = "structure",
-        },
-        promptOverrideConfiguration = {
-            type = "structure",
-        },
+        guardrailConfiguration = M.GuardrailConfigurationWithArn,
+        promptOverrideConfiguration = M.PromptOverrideConfiguration,
         agentCollaboration = {
             type = "string",
         },
         collaboratorConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.CollaboratorConfiguration,
         },
         agentName = {
             type = "string",
@@ -6252,28 +5669,18 @@ M.InvokeInlineAgentInput = {
         inputText = {
             type = "string",
         },
-        streamingConfigurations = {
-            type = "structure",
-        },
-        promptCreationConfigurations = {
-            type = "structure",
-        },
-        inlineSessionState = {
-            type = "structure",
-        },
+        streamingConfigurations = M.StreamingConfigurations,
+        promptCreationConfigurations = M.PromptCreationConfigurations,
+        inlineSessionState = M.InlineSessionState,
         collaborators = {
             type = "list",
-            member_type = "structure",
+            member = M.Collaborator,
         },
-        bedrockModelConfigurations = {
-            type = "structure",
-        },
+        bedrockModelConfigurations = M.InlineBedrockModelConfigurations,
         orchestrationType = {
             type = "string",
         },
-        customOrchestration = {
-            type = "structure",
-        },
+        customOrchestration = M.CustomOrchestration,
     },
 }
 

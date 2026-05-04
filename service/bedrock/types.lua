@@ -15,14 +15,14 @@ M.ModelEnforcement = {
     members = {
         includedModels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         excludedModels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -62,12 +62,8 @@ M.AccountEnforcedGuardrailInferenceInputConfiguration = {
                 required = true,
             },
         },
-        selectiveContentGuarding = {
-            type = "structure",
-        },
-        modelEnforcement = {
-            type = "structure",
-        },
+        selectiveContentGuarding = M.SelectiveContentGuarding,
+        modelEnforcement = M.ModelEnforcement,
     },
 }
 
@@ -95,9 +91,7 @@ M.AccountEnforcedGuardrailOutputConfiguration = {
         inputTags = {
             type = "string",
         },
-        selectiveContentGuarding = {
-            type = "structure",
-        },
+        selectiveContentGuarding = M.SelectiveContentGuarding,
         guardrailVersion = {
             type = "string",
         },
@@ -116,9 +110,7 @@ M.AccountEnforcedGuardrailOutputConfiguration = {
         owner = {
             type = "string",
         },
-        modelEnforcement = {
-            type = "structure",
-        },
+        modelEnforcement = M.ModelEnforcement,
     },
 }
 
@@ -300,7 +292,7 @@ M.AutomatedReasoningPolicyDefinitionType = {
         },
         values = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomatedReasoningPolicyDefinitionTypeValue,
             traits = {
                 required = true,
             },
@@ -337,18 +329,21 @@ M.AutomatedReasoningPolicyDefinition = {
     members = {
         version = {
             type = "string",
+            traits = {
+                default = "1",
+            },
         },
         types = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomatedReasoningPolicyDefinitionType,
         },
         rules = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomatedReasoningPolicyDefinitionRule,
         },
         variables = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomatedReasoningPolicyDefinitionVariable,
         },
     },
 }
@@ -386,15 +381,13 @@ M.CreateAutomatedReasoningPolicyInput = {
         clientRequestToken = {
             type = "string",
         },
-        policyDefinition = {
-            type = "structure",
-        },
+        policyDefinition = M.AutomatedReasoningPolicyDefinition,
         kmsKeyId = {
             type = "string",
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -503,7 +496,7 @@ M.CreateAutomatedReasoningPolicyTestCaseInput = {
             type = "string",
         },
         confidenceThreshold = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -547,7 +540,7 @@ M.CreateAutomatedReasoningPolicyVersionInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -604,6 +597,7 @@ M.DeleteAutomatedReasoningPolicyInput = {
         force = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "force",
             },
         },
@@ -702,13 +696,10 @@ M.ExportAutomatedReasoningPolicyVersionInput = {
 M.ExportAutomatedReasoningPolicyVersionOutput = {
     type = "structure",
     members = {
-        policyDefinition = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        policyDefinition = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.AutomatedReasoningPolicyDefinition }),
     },
 }
 
@@ -837,7 +828,7 @@ M.AutomatedReasoningPolicyAddTypeAnnotation = {
         },
         values = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomatedReasoningPolicyDefinitionTypeValue,
             traits = {
                 required = true,
             },
@@ -922,7 +913,7 @@ M.AutomatedReasoningPolicyUpdateFromRuleFeedbackAnnotation = {
     members = {
         ruleIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         feedback = {
             type = "string",
@@ -938,7 +929,7 @@ M.AutomatedReasoningPolicyUpdateFromScenarioFeedbackAnnotation = {
     members = {
         ruleIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         scenarioExpression = {
             type = "string",
@@ -1018,15 +1009,9 @@ M.AutomatedReasoningPolicyUpdateTypeValue = {
 M.AutomatedReasoningPolicyTypeValueAnnotation = {
     type = "union",
     members = {
-        addTypeValue = {
-            type = "structure",
-        },
-        updateTypeValue = {
-            type = "structure",
-        },
-        deleteTypeValue = {
-            type = "structure",
-        },
+        addTypeValue = M.AutomatedReasoningPolicyAddTypeValue,
+        updateTypeValue = M.AutomatedReasoningPolicyUpdateTypeValue,
+        deleteTypeValue = M.AutomatedReasoningPolicyDeleteTypeValue,
     },
 }
 
@@ -1047,7 +1032,7 @@ M.AutomatedReasoningPolicyUpdateTypeAnnotation = {
         },
         values = {
             type = "list",
-            member_type = "union",
+            member = M.AutomatedReasoningPolicyTypeValueAnnotation,
             traits = {
                 required = true,
             },
@@ -1076,45 +1061,19 @@ M.AutomatedReasoningPolicyUpdateVariableAnnotation = {
 M.AutomatedReasoningPolicyAnnotation = {
     type = "union",
     members = {
-        addType = {
-            type = "structure",
-        },
-        updateType = {
-            type = "structure",
-        },
-        deleteType = {
-            type = "structure",
-        },
-        addVariable = {
-            type = "structure",
-        },
-        updateVariable = {
-            type = "structure",
-        },
-        deleteVariable = {
-            type = "structure",
-        },
-        addRule = {
-            type = "structure",
-        },
-        updateRule = {
-            type = "structure",
-        },
-        deleteRule = {
-            type = "structure",
-        },
-        addRuleFromNaturalLanguage = {
-            type = "structure",
-        },
-        updateFromRulesFeedback = {
-            type = "structure",
-        },
-        updateFromScenarioFeedback = {
-            type = "structure",
-        },
-        ingestContent = {
-            type = "structure",
-        },
+        addType = M.AutomatedReasoningPolicyAddTypeAnnotation,
+        updateType = M.AutomatedReasoningPolicyUpdateTypeAnnotation,
+        deleteType = M.AutomatedReasoningPolicyDeleteTypeAnnotation,
+        addVariable = M.AutomatedReasoningPolicyAddVariableAnnotation,
+        updateVariable = M.AutomatedReasoningPolicyUpdateVariableAnnotation,
+        deleteVariable = M.AutomatedReasoningPolicyDeleteVariableAnnotation,
+        addRule = M.AutomatedReasoningPolicyAddRuleAnnotation,
+        updateRule = M.AutomatedReasoningPolicyUpdateRuleAnnotation,
+        deleteRule = M.AutomatedReasoningPolicyDeleteRuleAnnotation,
+        addRuleFromNaturalLanguage = M.AutomatedReasoningPolicyAddRuleFromNaturalLanguageAnnotation,
+        updateFromRulesFeedback = M.AutomatedReasoningPolicyUpdateFromRuleFeedbackAnnotation,
+        updateFromScenarioFeedback = M.AutomatedReasoningPolicyUpdateFromScenarioFeedbackAnnotation,
+        ingestContent = M.AutomatedReasoningPolicyIngestContentAnnotation,
     },
 }
 
@@ -1141,7 +1100,7 @@ M.GetAutomatedReasoningPolicyAnnotationsOutput = {
         },
         annotations = {
             type = "list",
-            member_type = "union",
+            member = M.AutomatedReasoningPolicyAnnotation,
             traits = {
                 required = true,
             },
@@ -1323,7 +1282,7 @@ M.AutomatedReasoningPolicyBuildResultAssetManifest = {
     members = {
         entries = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomatedReasoningPolicyBuildResultAssetManifestEntry,
             traits = {
                 required = true,
             },
@@ -1334,36 +1293,27 @@ M.AutomatedReasoningPolicyBuildResultAssetManifest = {
 M.AutomatedReasoningPolicyAddRuleMutation = {
     type = "structure",
     members = {
-        rule = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        rule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AutomatedReasoningPolicyDefinitionRule }),
     },
 }
 
 M.AutomatedReasoningPolicyAddTypeMutation = {
     type = "structure",
     members = {
-        type = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        type = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AutomatedReasoningPolicyDefinitionType }),
     },
 }
 
 M.AutomatedReasoningPolicyAddVariableMutation = {
     type = "structure",
     members = {
-        variable = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        variable = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AutomatedReasoningPolicyDefinitionVariable }),
     },
 }
 
@@ -1406,69 +1356,42 @@ M.AutomatedReasoningPolicyDeleteVariableMutation = {
 M.AutomatedReasoningPolicyUpdateRuleMutation = {
     type = "structure",
     members = {
-        rule = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        rule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AutomatedReasoningPolicyDefinitionRule }),
     },
 }
 
 M.AutomatedReasoningPolicyUpdateTypeMutation = {
     type = "structure",
     members = {
-        type = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        type = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AutomatedReasoningPolicyDefinitionType }),
     },
 }
 
 M.AutomatedReasoningPolicyUpdateVariableMutation = {
     type = "structure",
     members = {
-        variable = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        variable = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AutomatedReasoningPolicyDefinitionVariable }),
     },
 }
 
 M.AutomatedReasoningPolicyMutation = {
     type = "union",
     members = {
-        addType = {
-            type = "structure",
-        },
-        updateType = {
-            type = "structure",
-        },
-        deleteType = {
-            type = "structure",
-        },
-        addVariable = {
-            type = "structure",
-        },
-        updateVariable = {
-            type = "structure",
-        },
-        deleteVariable = {
-            type = "structure",
-        },
-        addRule = {
-            type = "structure",
-        },
-        updateRule = {
-            type = "structure",
-        },
-        deleteRule = {
-            type = "structure",
-        },
+        addType = M.AutomatedReasoningPolicyAddTypeMutation,
+        updateType = M.AutomatedReasoningPolicyUpdateTypeMutation,
+        deleteType = M.AutomatedReasoningPolicyDeleteTypeMutation,
+        addVariable = M.AutomatedReasoningPolicyAddVariableMutation,
+        updateVariable = M.AutomatedReasoningPolicyUpdateVariableMutation,
+        deleteVariable = M.AutomatedReasoningPolicyDeleteVariableMutation,
+        addRule = M.AutomatedReasoningPolicyAddRuleMutation,
+        updateRule = M.AutomatedReasoningPolicyUpdateRuleMutation,
+        deleteRule = M.AutomatedReasoningPolicyDeleteRuleMutation,
     },
 }
 
@@ -1479,12 +1402,8 @@ M.AutomatedReasoningPolicyPlanning = {
 M.AutomatedReasoningPolicyBuildStepContext = {
     type = "union",
     members = {
-        planning = {
-            type = "structure",
-        },
-        mutation = {
-            type = "union",
-        },
+        planning = M.AutomatedReasoningPolicyPlanning,
+        mutation = M.AutomatedReasoningPolicyMutation,
     },
 }
 
@@ -1515,33 +1434,22 @@ M.AutomatedReasoningPolicyBuildStepMessage = {
 M.AutomatedReasoningPolicyDefinitionElement = {
     type = "union",
     members = {
-        policyDefinitionVariable = {
-            type = "structure",
-        },
-        policyDefinitionType = {
-            type = "structure",
-        },
-        policyDefinitionRule = {
-            type = "structure",
-        },
+        policyDefinitionVariable = M.AutomatedReasoningPolicyDefinitionVariable,
+        policyDefinitionType = M.AutomatedReasoningPolicyDefinitionType,
+        policyDefinitionRule = M.AutomatedReasoningPolicyDefinitionRule,
     },
 }
 
 M.AutomatedReasoningPolicyBuildStep = {
     type = "structure",
     members = {
-        context = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        priorElement = {
-            type = "union",
-        },
+        context = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AutomatedReasoningPolicyBuildStepContext }),
+        priorElement = M.AutomatedReasoningPolicyDefinitionElement,
         messages = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomatedReasoningPolicyBuildStepMessage,
             traits = {
                 required = true,
             },
@@ -1557,12 +1465,9 @@ M.AutomatedReasoningPolicyAnnotationStatus = {
 M.AutomatedReasoningPolicyBuildLogEntry = {
     type = "structure",
     members = {
-        annotation = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        annotation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AutomatedReasoningPolicyAnnotation }),
         status = {
             type = "string",
             traits = {
@@ -1571,7 +1476,7 @@ M.AutomatedReasoningPolicyBuildLogEntry = {
         },
         buildSteps = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomatedReasoningPolicyBuildStep,
             traits = {
                 required = true,
             },
@@ -1584,7 +1489,7 @@ M.AutomatedReasoningPolicyBuildLog = {
     members = {
         entries = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomatedReasoningPolicyBuildLogEntry,
             traits = {
                 required = true,
             },
@@ -1630,7 +1535,7 @@ M.AutomatedReasoningPolicyStatementLocation = {
     members = {
         lines = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
             traits = {
                 required = true,
             },
@@ -1653,12 +1558,9 @@ M.AutomatedReasoningPolicyAtomicStatement = {
                 required = true,
             },
         },
-        location = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        location = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AutomatedReasoningPolicyStatementLocation }),
     },
 }
 
@@ -1666,7 +1568,7 @@ M.AutomatedReasoningPolicyAnnotatedLine = {
     type = "structure",
     members = {
         lineNumber = {
-            type = "number",
+            type = "integer",
         },
         lineText = {
             type = "string",
@@ -1677,9 +1579,7 @@ M.AutomatedReasoningPolicyAnnotatedLine = {
 M.AutomatedReasoningPolicyAnnotatedContent = {
     type = "union",
     members = {
-        line = {
-            type = "structure",
-        },
+        line = M.AutomatedReasoningPolicyAnnotatedLine,
     },
 }
 
@@ -1687,11 +1587,11 @@ M.AutomatedReasoningPolicyAnnotatedChunk = {
     type = "structure",
     members = {
         pageNumber = {
-            type = "number",
+            type = "integer",
         },
         content = {
             type = "list",
-            member_type = "union",
+            member = M.AutomatedReasoningPolicyAnnotatedContent,
             traits = {
                 required = true,
             },
@@ -1722,14 +1622,14 @@ M.AutomatedReasoningPolicyReportSourceDocument = {
         },
         atomicStatements = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomatedReasoningPolicyAtomicStatement,
             traits = {
                 required = true,
             },
         },
         documentContent = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomatedReasoningPolicyAnnotatedChunk,
             traits = {
                 required = true,
             },
@@ -1766,14 +1666,14 @@ M.AutomatedReasoningPolicyRuleReport = {
         },
         groundingStatements = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomatedReasoningPolicyStatementReference,
         },
         groundingJustifications = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         accuracyScore = {
-            type = "number",
+            type = "double",
         },
         accuracyJustification = {
             type = "string",
@@ -1792,14 +1692,14 @@ M.AutomatedReasoningPolicyVariableReport = {
         },
         groundingStatements = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomatedReasoningPolicyStatementReference,
         },
         groundingJustifications = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         accuracyScore = {
-            type = "number",
+            type = "double",
         },
         accuracyJustification = {
             type = "string",
@@ -1811,36 +1711,36 @@ M.AutomatedReasoningPolicyFidelityReport = {
     type = "structure",
     members = {
         coverageScore = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
         accuracyScore = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
         ruleReports = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.AutomatedReasoningPolicyRuleReport,
             traits = {
                 required = true,
             },
         },
         variableReports = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.AutomatedReasoningPolicyVariableReport,
             traits = {
                 required = true,
             },
         },
         documentSources = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomatedReasoningPolicyReportSourceDocument,
             traits = {
                 required = true,
             },
@@ -1877,7 +1777,7 @@ M.AutomatedReasoningPolicyGeneratedTestCases = {
     members = {
         generatedTestCases = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomatedReasoningPolicyGeneratedTestCase,
             traits = {
                 required = true,
             },
@@ -1908,7 +1808,7 @@ M.AutomatedReasoningPolicyScenario = {
         },
         ruleIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1921,7 +1821,7 @@ M.AutomatedReasoningPolicyScenarios = {
     members = {
         policyScenarios = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomatedReasoningPolicyScenario,
             traits = {
                 required = true,
             },
@@ -1934,14 +1834,14 @@ M.AutomatedReasoningPolicyDisjointRuleSet = {
     members = {
         variables = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         rules = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1971,54 +1871,54 @@ M.AutomatedReasoningPolicyDefinitionQualityReport = {
     type = "structure",
     members = {
         typeCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         variableCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         ruleCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         unusedTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         unusedTypeValues = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomatedReasoningPolicyDefinitionTypeValuePair,
             traits = {
                 required = true,
             },
         },
         unusedVariables = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         conflictingRules = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         disjointRuleSets = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomatedReasoningPolicyDisjointRuleSet,
             traits = {
                 required = true,
             },
@@ -2029,30 +1929,14 @@ M.AutomatedReasoningPolicyDefinitionQualityReport = {
 M.AutomatedReasoningPolicyBuildResultAssets = {
     type = "union",
     members = {
-        policyDefinition = {
-            type = "structure",
-        },
-        qualityReport = {
-            type = "structure",
-        },
-        buildLog = {
-            type = "structure",
-        },
-        generatedTestCases = {
-            type = "structure",
-        },
-        policyScenarios = {
-            type = "structure",
-        },
-        assetManifest = {
-            type = "structure",
-        },
-        document = {
-            type = "structure",
-        },
-        fidelityReport = {
-            type = "structure",
-        },
+        policyDefinition = M.AutomatedReasoningPolicyDefinition,
+        qualityReport = M.AutomatedReasoningPolicyDefinitionQualityReport,
+        buildLog = M.AutomatedReasoningPolicyBuildLog,
+        generatedTestCases = M.AutomatedReasoningPolicyGeneratedTestCases,
+        policyScenarios = M.AutomatedReasoningPolicyScenarios,
+        assetManifest = M.AutomatedReasoningPolicyBuildResultAssetManifest,
+        document = M.AutomatedReasoningPolicySourceDocument,
+        fidelityReport = M.AutomatedReasoningPolicyFidelityReport,
     },
 }
 
@@ -2071,9 +1955,7 @@ M.GetAutomatedReasoningPolicyBuildWorkflowResultAssetsOutput = {
                 required = true,
             },
         },
-        buildWorkflowAssets = {
-            type = "union",
-        },
+        buildWorkflowAssets = M.AutomatedReasoningPolicyBuildResultAssets,
     },
 }
 
@@ -2106,9 +1988,7 @@ M.GetAutomatedReasoningPolicyNextScenarioOutput = {
                 required = true,
             },
         },
-        scenario = {
-            type = "structure",
-        },
+        scenario = M.AutomatedReasoningPolicyScenario,
     },
 }
 
@@ -2166,7 +2046,7 @@ M.AutomatedReasoningPolicyTestCase = {
             },
         },
         confidenceThreshold = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -2180,12 +2060,9 @@ M.GetAutomatedReasoningPolicyTestCaseOutput = {
                 required = true,
             },
         },
-        testCase = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        testCase = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AutomatedReasoningPolicyTestCase }),
     },
 }
 
@@ -2256,11 +2133,11 @@ M.AutomatedReasoningCheckLogicWarning = {
         },
         premises = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomatedReasoningLogicStatement,
         },
         claims = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomatedReasoningLogicStatement,
         },
     },
 }
@@ -2279,25 +2156,25 @@ M.AutomatedReasoningCheckTranslation = {
     members = {
         premises = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomatedReasoningLogicStatement,
         },
         claims = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomatedReasoningLogicStatement,
             traits = {
                 required = true,
             },
         },
         untranslatedPremises = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomatedReasoningCheckInputTextReference,
         },
         untranslatedClaims = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomatedReasoningCheckInputTextReference,
         },
         confidence = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -2308,32 +2185,24 @@ M.AutomatedReasoningCheckTranslation = {
 M.AutomatedReasoningCheckImpossibleFinding = {
     type = "structure",
     members = {
-        translation = {
-            type = "structure",
-        },
+        translation = M.AutomatedReasoningCheckTranslation,
         contradictingRules = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomatedReasoningCheckRule,
         },
-        logicWarning = {
-            type = "structure",
-        },
+        logicWarning = M.AutomatedReasoningCheckLogicWarning,
     },
 }
 
 M.AutomatedReasoningCheckInvalidFinding = {
     type = "structure",
     members = {
-        translation = {
-            type = "structure",
-        },
+        translation = M.AutomatedReasoningCheckTranslation,
         contradictingRules = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomatedReasoningCheckRule,
         },
-        logicWarning = {
-            type = "structure",
-        },
+        logicWarning = M.AutomatedReasoningCheckLogicWarning,
     },
 }
 
@@ -2346,7 +2215,7 @@ M.AutomatedReasoningCheckScenario = {
     members = {
         statements = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomatedReasoningLogicStatement,
         },
     },
 }
@@ -2354,18 +2223,10 @@ M.AutomatedReasoningCheckScenario = {
 M.AutomatedReasoningCheckSatisfiableFinding = {
     type = "structure",
     members = {
-        translation = {
-            type = "structure",
-        },
-        claimsTrueScenario = {
-            type = "structure",
-        },
-        claimsFalseScenario = {
-            type = "structure",
-        },
-        logicWarning = {
-            type = "structure",
-        },
+        translation = M.AutomatedReasoningCheckTranslation,
+        claimsTrueScenario = M.AutomatedReasoningCheckScenario,
+        claimsFalseScenario = M.AutomatedReasoningCheckScenario,
+        logicWarning = M.AutomatedReasoningCheckLogicWarning,
     },
 }
 
@@ -2378,7 +2239,7 @@ M.AutomatedReasoningCheckTranslationOption = {
     members = {
         translations = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomatedReasoningCheckTranslation,
         },
     },
 }
@@ -2388,11 +2249,11 @@ M.AutomatedReasoningCheckTranslationAmbiguousFinding = {
     members = {
         options = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomatedReasoningCheckTranslationOption,
         },
         differenceScenarios = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomatedReasoningCheckScenario,
         },
     },
 }
@@ -2400,46 +2261,26 @@ M.AutomatedReasoningCheckTranslationAmbiguousFinding = {
 M.AutomatedReasoningCheckValidFinding = {
     type = "structure",
     members = {
-        translation = {
-            type = "structure",
-        },
-        claimsTrueScenario = {
-            type = "structure",
-        },
+        translation = M.AutomatedReasoningCheckTranslation,
+        claimsTrueScenario = M.AutomatedReasoningCheckScenario,
         supportingRules = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomatedReasoningCheckRule,
         },
-        logicWarning = {
-            type = "structure",
-        },
+        logicWarning = M.AutomatedReasoningCheckLogicWarning,
     },
 }
 
 M.AutomatedReasoningCheckFinding = {
     type = "union",
     members = {
-        valid = {
-            type = "structure",
-        },
-        invalid = {
-            type = "structure",
-        },
-        satisfiable = {
-            type = "structure",
-        },
-        impossible = {
-            type = "structure",
-        },
-        translationAmbiguous = {
-            type = "structure",
-        },
-        tooComplex = {
-            type = "structure",
-        },
-        noTranslations = {
-            type = "structure",
-        },
+        valid = M.AutomatedReasoningCheckValidFinding,
+        invalid = M.AutomatedReasoningCheckInvalidFinding,
+        satisfiable = M.AutomatedReasoningCheckSatisfiableFinding,
+        impossible = M.AutomatedReasoningCheckImpossibleFinding,
+        translationAmbiguous = M.AutomatedReasoningCheckTranslationAmbiguousFinding,
+        tooComplex = M.AutomatedReasoningCheckTooComplexFinding,
+        noTranslations = M.AutomatedReasoningCheckNoTranslationsFinding,
     },
 }
 
@@ -2459,12 +2300,9 @@ M.AutomatedReasoningPolicyTestRunStatus = {
 M.AutomatedReasoningPolicyTestResult = {
     type = "structure",
     members = {
-        testCase = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        testCase = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AutomatedReasoningPolicyTestCase }),
         policyArn = {
             type = "string",
             traits = {
@@ -2479,7 +2317,7 @@ M.AutomatedReasoningPolicyTestResult = {
         },
         testFindings = {
             type = "list",
-            member_type = "union",
+            member = M.AutomatedReasoningCheckFinding,
         },
         testRunResult = {
             type = "string",
@@ -2499,12 +2337,9 @@ M.AutomatedReasoningPolicyTestResult = {
 M.GetAutomatedReasoningPolicyTestResultOutput = {
     type = "structure",
     members = {
-        testResult = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        testResult = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AutomatedReasoningPolicyTestResult }),
     },
 }
 
@@ -2524,8 +2359,9 @@ M.ListAutomatedReasoningPoliciesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 25,
                 http_query = "maxResults",
             },
         },
@@ -2582,7 +2418,7 @@ M.ListAutomatedReasoningPoliciesOutput = {
     members = {
         automatedReasoningPolicySummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomatedReasoningPolicySummary,
             traits = {
                 required = true,
             },
@@ -2610,8 +2446,9 @@ M.ListAutomatedReasoningPolicyBuildWorkflowsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 25,
                 http_query = "maxResults",
             },
         },
@@ -2665,7 +2502,7 @@ M.ListAutomatedReasoningPolicyBuildWorkflowsOutput = {
     members = {
         automatedReasoningPolicyBuildWorkflowSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomatedReasoningPolicyBuildWorkflowSummary,
             traits = {
                 required = true,
             },
@@ -2689,12 +2526,14 @@ M.ListAutomatedReasoningPolicyTestCasesInput = {
         nextToken = {
             type = "string",
             traits = {
+                default = nil,
                 http_query = "nextToken",
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 25,
                 http_query = "maxResults",
             },
         },
@@ -2706,7 +2545,7 @@ M.ListAutomatedReasoningPolicyTestCasesOutput = {
     members = {
         testCases = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomatedReasoningPolicyTestCase,
             traits = {
                 required = true,
             },
@@ -2737,12 +2576,14 @@ M.ListAutomatedReasoningPolicyTestResultsInput = {
         nextToken = {
             type = "string",
             traits = {
+                default = nil,
                 http_query = "nextToken",
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 25,
                 http_query = "maxResults",
             },
         },
@@ -2754,7 +2595,7 @@ M.ListAutomatedReasoningPolicyTestResultsOutput = {
     members = {
         testResults = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomatedReasoningPolicyTestResult,
             traits = {
                 required = true,
             },
@@ -2797,7 +2638,7 @@ M.AutomatedReasoningPolicyGenerateFidelityReportContent = {
     members = {
         documents = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomatedReasoningPolicyBuildWorkflowDocument,
         },
     },
 }
@@ -2807,7 +2648,7 @@ M.AutomatedReasoningPolicyBuildWorkflowRepairContent = {
     members = {
         annotations = {
             type = "list",
-            member_type = "union",
+            member = M.AutomatedReasoningPolicyAnnotation,
             traits = {
                 required = true,
             },
@@ -2820,26 +2661,18 @@ M.AutomatedReasoningPolicyWorkflowTypeContent = {
     members = {
         documents = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomatedReasoningPolicyBuildWorkflowDocument,
         },
-        policyRepairAssets = {
-            type = "structure",
-        },
-        generateFidelityReportContent = {
-            type = "union",
-        },
+        policyRepairAssets = M.AutomatedReasoningPolicyBuildWorkflowRepairContent,
+        generateFidelityReportContent = M.AutomatedReasoningPolicyGenerateFidelityReportContent,
     },
 }
 
 M.AutomatedReasoningPolicyBuildWorkflowSource = {
     type = "structure",
     members = {
-        policyDefinition = {
-            type = "structure",
-        },
-        workflowContent = {
-            type = "union",
-        },
+        policyDefinition = M.AutomatedReasoningPolicyDefinition,
+        workflowContent = M.AutomatedReasoningPolicyWorkflowTypeContent,
     },
 }
 
@@ -2866,13 +2699,10 @@ M.StartAutomatedReasoningPolicyBuildWorkflowInput = {
                 http_header = "x-amz-client-token",
             },
         },
-        sourceContent = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        sourceContent = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.AutomatedReasoningPolicyBuildWorkflowSource }),
     },
 }
 
@@ -2913,7 +2743,7 @@ M.StartAutomatedReasoningPolicyTestWorkflowInput = {
         },
         testCaseIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         clientRequestToken = {
             type = "string",
@@ -2943,12 +2773,9 @@ M.UpdateAutomatedReasoningPolicyInput = {
                 required = true,
             },
         },
-        policyDefinition = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        policyDefinition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AutomatedReasoningPolicyDefinition }),
         name = {
             type = "string",
         },
@@ -3007,7 +2834,7 @@ M.UpdateAutomatedReasoningPolicyAnnotationsInput = {
         },
         annotations = {
             type = "list",
-            member_type = "union",
+            member = M.AutomatedReasoningPolicyAnnotation,
             traits = {
                 required = true,
             },
@@ -3090,7 +2917,7 @@ M.UpdateAutomatedReasoningPolicyTestCaseInput = {
             },
         },
         confidenceThreshold = {
-            type = "number",
+            type = "double",
         },
         clientRequestToken = {
             type = "string",
@@ -3121,14 +2948,14 @@ M.VpcConfig = {
     members = {
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3140,7 +2967,7 @@ M.SageMakerEndpoint = {
     type = "structure",
     members = {
         initialInstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -3160,18 +2987,14 @@ M.SageMakerEndpoint = {
         kmsEncryptionKey = {
             type = "string",
         },
-        vpc = {
-            type = "structure",
-        },
+        vpc = M.VpcConfig,
     },
 }
 
 M.EndpointConfig = {
     type = "union",
     members = {
-        sageMaker = {
-            type = "structure",
-        },
+        sageMaker = M.SageMakerEndpoint,
     },
 }
 
@@ -3184,14 +3007,14 @@ M.CreateMarketplaceModelEndpointInput = {
                 required = true,
             },
         },
-        endpointConfig = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        endpointConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EndpointConfig }),
         acceptEula = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         endpointName = {
             type = "string",
@@ -3204,7 +3027,7 @@ M.CreateMarketplaceModelEndpointInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3247,12 +3070,9 @@ M.MarketplaceModelEndpoint = {
                 required = true,
             },
         },
-        endpointConfig = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        endpointConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EndpointConfig }),
         endpointStatus = {
             type = "string",
             traits = {
@@ -3268,12 +3088,9 @@ M.MarketplaceModelEndpoint = {
 M.CreateMarketplaceModelEndpointOutput = {
     type = "structure",
     members = {
-        marketplaceModelEndpoint = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        marketplaceModelEndpoint = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MarketplaceModelEndpoint }),
     },
 }
 
@@ -3337,9 +3154,7 @@ M.GetMarketplaceModelEndpointInput = {
 M.GetMarketplaceModelEndpointOutput = {
     type = "structure",
     members = {
-        marketplaceModelEndpoint = {
-            type = "structure",
-        },
+        marketplaceModelEndpoint = M.MarketplaceModelEndpoint,
     },
 }
 
@@ -3347,7 +3162,7 @@ M.ListMarketplaceModelEndpointsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3408,7 +3223,7 @@ M.ListMarketplaceModelEndpointsOutput = {
     members = {
         marketplaceModelEndpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.MarketplaceModelEndpointSummary,
         },
         nextToken = {
             type = "string",
@@ -3438,12 +3253,9 @@ M.RegisterMarketplaceModelEndpointInput = {
 M.RegisterMarketplaceModelEndpointOutput = {
     type = "structure",
     members = {
-        marketplaceModelEndpoint = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        marketplaceModelEndpoint = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MarketplaceModelEndpoint }),
     },
 }
 
@@ -3457,12 +3269,9 @@ M.UpdateMarketplaceModelEndpointInput = {
                 required = true,
             },
         },
-        endpointConfig = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        endpointConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EndpointConfig }),
         clientRequestToken = {
             type = "string",
         },
@@ -3472,12 +3281,9 @@ M.UpdateMarketplaceModelEndpointInput = {
 M.UpdateMarketplaceModelEndpointOutput = {
     type = "structure",
     members = {
-        marketplaceModelEndpoint = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        marketplaceModelEndpoint = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MarketplaceModelEndpoint }),
     },
 }
 
@@ -3501,7 +3307,7 @@ M.CreateCustomModelDeploymentInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         clientRequestToken = {
             type = "string",
@@ -3617,9 +3423,7 @@ M.GetCustomModelDeploymentOutput = {
         description = {
             type = "string",
         },
-        updateDetails = {
-            type = "structure",
-        },
+        updateDetails = M.CustomModelDeploymentUpdateDetails,
         failureMessage = {
             type = "string",
         },
@@ -3660,7 +3464,7 @@ M.ListCustomModelDeploymentsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3748,7 +3552,7 @@ M.ListCustomModelDeploymentsOutput = {
         },
         modelDeploymentSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomModelDeploymentSummary,
         },
     },
 }
@@ -3799,9 +3603,7 @@ M.S3DataSource = {
 M.ModelDataSource = {
     type = "union",
     members = {
-        s3DataSource = {
-            type = "structure",
-        },
+        s3DataSource = M.S3DataSource,
     },
 }
 
@@ -3814,12 +3616,9 @@ M.CreateCustomModelInput = {
                 required = true,
             },
         },
-        modelSourceConfig = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        modelSourceConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ModelDataSource }),
         modelKmsKeyArn = {
             type = "string",
         },
@@ -3828,7 +3627,7 @@ M.CreateCustomModelInput = {
         },
         modelTags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         clientRequestToken = {
             type = "string",
@@ -3888,7 +3687,7 @@ M.TeacherModelConfig = {
             },
         },
         maxResponseLengthForInference = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3896,12 +3695,9 @@ M.TeacherModelConfig = {
 M.DistillationConfig = {
     type = "structure",
     members = {
-        teacherModelConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        teacherModelConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TeacherModelConfig }),
     },
 }
 
@@ -3920,9 +3716,7 @@ M.LambdaGraderConfig = {
 M.GraderConfig = {
     type = "union",
     members = {
-        lambdaGrader = {
-            type = "structure",
-        },
+        lambdaGrader = M.LambdaGraderConfig,
     },
 }
 
@@ -3936,28 +3730,28 @@ M.RFTHyperParameters = {
     type = "structure",
     members = {
         epochCount = {
-            type = "number",
+            type = "integer",
         },
         batchSize = {
-            type = "number",
+            type = "integer",
         },
         learningRate = {
-            type = "number",
+            type = "float",
         },
         maxPromptLength = {
-            type = "number",
+            type = "integer",
         },
         trainingSamplePerPrompt = {
-            type = "number",
+            type = "integer",
         },
         inferenceMaxTokens = {
-            type = "number",
+            type = "integer",
         },
         reasoningEffort = {
             type = "string",
         },
         evalInterval = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3965,24 +3759,16 @@ M.RFTHyperParameters = {
 M.RFTConfig = {
     type = "structure",
     members = {
-        graderConfig = {
-            type = "union",
-        },
-        hyperParameters = {
-            type = "structure",
-        },
+        graderConfig = M.GraderConfig,
+        hyperParameters = M.RFTHyperParameters,
     },
 }
 
 M.CustomizationConfig = {
     type = "union",
     members = {
-        distillationConfig = {
-            type = "structure",
-        },
-        rftConfig = {
-            type = "structure",
-        },
+        distillationConfig = M.DistillationConfig,
+        rftConfig = M.RFTConfig,
     },
 }
 
@@ -4026,13 +3812,13 @@ M.RequestMetadataBaseFilters = {
     members = {
         equals = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         notEquals = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -4042,21 +3828,21 @@ M.RequestMetadataFilters = {
     members = {
         equals = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         notEquals = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         andAll = {
             type = "list",
-            member_type = "structure",
+            member = M.RequestMetadataBaseFilters,
         },
         orAll = {
             type = "list",
-            member_type = "structure",
+            member = M.RequestMetadataBaseFilters,
         },
     },
 }
@@ -4066,16 +3852,14 @@ M.InvocationLogsConfig = {
     members = {
         usePromptResponse = {
             type = "boolean",
-        },
-        invocationLogSource = {
-            type = "union",
             traits = {
-                required = true,
+                default = false,
             },
         },
-        requestMetadataFilters = {
-            type = "union",
-        },
+        invocationLogSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InvocationLogSource }),
+        requestMetadataFilters = M.RequestMetadataFilters,
     },
 }
 
@@ -4085,9 +3869,7 @@ M.TrainingDataConfig = {
         s3Uri = {
             type = "string",
         },
-        invocationLogsConfig = {
-            type = "structure",
-        },
+        invocationLogsConfig = M.InvocationLogsConfig,
     },
 }
 
@@ -4095,7 +3877,7 @@ M.TrainingMetrics = {
     type = "structure",
     members = {
         trainingLoss = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -4117,7 +3899,7 @@ M.ValidationDataConfig = {
     members = {
         validators = {
             type = "list",
-            member_type = "structure",
+            member = M.Validator,
             traits = {
                 required = true,
             },
@@ -4129,7 +3911,7 @@ M.ValidatorMetric = {
     type = "structure",
     members = {
         validationLoss = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -4166,24 +3948,16 @@ M.GetCustomModelOutput = {
         },
         hyperParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        trainingDataConfig = {
-            type = "structure",
-        },
-        validationDataConfig = {
-            type = "structure",
-        },
-        outputDataConfig = {
-            type = "structure",
-        },
-        trainingMetrics = {
-            type = "structure",
-        },
+        trainingDataConfig = M.TrainingDataConfig,
+        validationDataConfig = M.ValidationDataConfig,
+        outputDataConfig = M.OutputDataConfig,
+        trainingMetrics = M.TrainingMetrics,
         validationMetrics = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidatorMetric,
         },
         creationTime = {
             type = "timestamp",
@@ -4191,9 +3965,7 @@ M.GetCustomModelOutput = {
                 required = true,
             },
         },
-        customizationConfig = {
-            type = "union",
-        },
+        customizationConfig = M.CustomizationConfig,
         modelStatus = {
             type = "string",
         },
@@ -4237,7 +4009,7 @@ M.ListCustomModelsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4328,7 +4100,7 @@ M.ListCustomModelsOutput = {
         },
         modelSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomModelSummary,
         },
     },
 }
@@ -4367,7 +4139,7 @@ M.ListEnforcedGuardrailsConfigurationOutput = {
     members = {
         guardrailsConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.AccountEnforcedGuardrailOutputConfiguration,
             traits = {
                 required = true,
             },
@@ -4384,12 +4156,9 @@ M.PutEnforcedGuardrailConfigurationInput = {
         configId = {
             type = "string",
         },
-        guardrailInferenceConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        guardrailInferenceConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AccountEnforcedGuardrailInferenceInputConfiguration }),
     },
 }
 
@@ -4413,7 +4182,7 @@ M.BatchDeleteEvaluationJobInput = {
     members = {
         jobIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4474,14 +4243,14 @@ M.BatchDeleteEvaluationJobOutput = {
     members = {
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchDeleteEvaluationJobError,
             traits = {
                 required = true,
             },
         },
         evaluationJobs = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchDeleteEvaluationJobItem,
             traits = {
                 required = true,
             },
@@ -4501,7 +4270,7 @@ M.RatingScaleItemValue = {
             type = "string",
         },
         floatValue = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -4515,12 +4284,9 @@ M.RatingScaleItem = {
                 required = true,
             },
         },
-        value = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        value = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RatingScaleItemValue }),
     },
 }
 
@@ -4541,7 +4307,7 @@ M.CustomMetricDefinition = {
         },
         ratingScale = {
             type = "list",
-            member_type = "structure",
+            member = M.RatingScaleItem,
         },
     },
 }
@@ -4549,9 +4315,7 @@ M.CustomMetricDefinition = {
 M.AutomatedEvaluationCustomMetricSource = {
     type = "union",
     members = {
-        customMetricDefinition = {
-            type = "structure",
-        },
+        customMetricDefinition = M.CustomMetricDefinition,
     },
 }
 
@@ -4572,7 +4336,7 @@ M.CustomMetricEvaluatorModelConfig = {
     members = {
         bedrockEvaluatorModels = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomMetricBedrockEvaluatorModel,
             traits = {
                 required = true,
             },
@@ -4585,17 +4349,14 @@ M.AutomatedEvaluationCustomMetricConfig = {
     members = {
         customMetrics = {
             type = "list",
-            member_type = "union",
+            member = M.AutomatedEvaluationCustomMetricSource,
             traits = {
                 required = true,
             },
         },
-        evaluatorModelConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        evaluatorModelConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CustomMetricEvaluatorModelConfig }),
     },
 }
 
@@ -4617,9 +4378,7 @@ M.EvaluationDataset = {
                 required = true,
             },
         },
-        datasetLocation = {
-            type = "union",
-        },
+        datasetLocation = M.EvaluationDatasetLocation,
     },
 }
 
@@ -4640,15 +4399,12 @@ M.EvaluationDatasetMetricConfig = {
                 required = true,
             },
         },
-        dataset = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        dataset = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EvaluationDataset }),
         metricNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4673,7 +4429,7 @@ M.EvaluatorModelConfig = {
     members = {
         bedrockEvaluatorModels = {
             type = "list",
-            member_type = "structure",
+            member = M.BedrockEvaluatorModel,
         },
     },
 }
@@ -4683,17 +4439,13 @@ M.AutomatedEvaluationConfig = {
     members = {
         datasetMetricConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.EvaluationDatasetMetricConfig,
             traits = {
                 required = true,
             },
         },
-        evaluatorModelConfig = {
-            type = "union",
-        },
-        customMetricConfig = {
-            type = "structure",
-        },
+        evaluatorModelConfig = M.EvaluatorModelConfig,
+        customMetricConfig = M.AutomatedEvaluationCustomMetricConfig,
     },
 }
 
@@ -4736,16 +4488,14 @@ M.HumanWorkflowConfig = {
 M.HumanEvaluationConfig = {
     type = "structure",
     members = {
-        humanWorkflowConfig = {
-            type = "structure",
-        },
+        humanWorkflowConfig = M.HumanWorkflowConfig,
         customMetrics = {
             type = "list",
-            member_type = "structure",
+            member = M.HumanEvaluationCustomMetric,
         },
         datasetMetricConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.EvaluationDatasetMetricConfig,
             traits = {
                 required = true,
             },
@@ -4756,12 +4506,8 @@ M.HumanEvaluationConfig = {
 M.EvaluationConfig = {
     type = "union",
     members = {
-        automated = {
-            type = "structure",
-        },
-        human = {
-            type = "structure",
-        },
+        automated = M.AutomatedEvaluationConfig,
+        human = M.HumanEvaluationConfig,
     },
 }
 
@@ -4790,10 +4536,11 @@ M.EvaluationBedrockModel = {
         },
         inferenceParams = {
             type = "string",
+            traits = {
+                default = "{}",
+            },
         },
-        performanceConfig = {
-            type = "structure",
-        },
+        performanceConfig = M.PerformanceConfiguration,
     },
 }
 
@@ -4812,12 +4559,8 @@ M.EvaluationPrecomputedInferenceSource = {
 M.EvaluationModelConfig = {
     type = "union",
     members = {
-        bedrockModel = {
-            type = "structure",
-        },
-        precomputedInferenceSource = {
-            type = "structure",
-        },
+        bedrockModel = M.EvaluationBedrockModel,
+        precomputedInferenceSource = M.EvaluationPrecomputedInferenceSource,
     },
 }
 
@@ -4843,17 +4586,17 @@ M.TextInferenceConfig = {
     type = "structure",
     members = {
         temperature = {
-            type = "number",
+            type = "float",
         },
         topP = {
-            type = "number",
+            type = "float",
         },
         maxTokens = {
-            type = "number",
+            type = "integer",
         },
         stopSequences = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4861,9 +4604,7 @@ M.TextInferenceConfig = {
 M.KbInferenceConfig = {
     type = "structure",
     members = {
-        textInferenceConfig = {
-            type = "structure",
-        },
+        textInferenceConfig = M.TextInferenceConfig,
     },
 }
 
@@ -4879,19 +4620,13 @@ M.PromptTemplate = {
 M.ExternalSourcesGenerationConfiguration = {
     type = "structure",
     members = {
-        promptTemplate = {
-            type = "structure",
-        },
-        guardrailConfiguration = {
-            type = "structure",
-        },
-        kbInferenceConfig = {
-            type = "structure",
-        },
+        promptTemplate = M.PromptTemplate,
+        guardrailConfiguration = M.GuardrailConfiguration,
+        kbInferenceConfig = M.KbInferenceConfig,
         additionalModelRequestFields = {
             type = "map",
-            key_type = "string",
-            value_type = "document",
+            key = { type = "string" },
+            value = { type = "document" },
         },
     },
 }
@@ -4946,12 +4681,8 @@ M.ExternalSource = {
                 required = true,
             },
         },
-        s3Location = {
-            type = "structure",
-        },
-        byteContent = {
-            type = "structure",
-        },
+        s3Location = M.S3ObjectDoc,
+        byteContent = M.ByteContentDoc,
     },
 }
 
@@ -4966,33 +4697,25 @@ M.ExternalSourcesRetrieveAndGenerateConfiguration = {
         },
         sources = {
             type = "list",
-            member_type = "structure",
+            member = M.ExternalSource,
             traits = {
                 required = true,
             },
         },
-        generationConfiguration = {
-            type = "structure",
-        },
+        generationConfiguration = M.ExternalSourcesGenerationConfiguration,
     },
 }
 
 M.GenerationConfiguration = {
     type = "structure",
     members = {
-        promptTemplate = {
-            type = "structure",
-        },
-        guardrailConfiguration = {
-            type = "structure",
-        },
-        kbInferenceConfig = {
-            type = "structure",
-        },
+        promptTemplate = M.PromptTemplate,
+        guardrailConfiguration = M.GuardrailConfiguration,
+        kbInferenceConfig = M.KbInferenceConfig,
         additionalModelRequestFields = {
             type = "map",
-            key_type = "string",
-            value_type = "document",
+            key = { type = "string" },
+            value = { type = "document" },
         },
     },
 }
@@ -5016,12 +4739,9 @@ M.QueryTransformationConfiguration = {
 M.OrchestrationConfiguration = {
     type = "structure",
     members = {
-        queryTransformationConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        queryTransformationConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.QueryTransformationConfiguration }),
     },
 }
 
@@ -5079,7 +4799,7 @@ M.ImplicitFilterConfiguration = {
     members = {
         metadataAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.MetadataAttributeSchema,
             traits = {
                 required = true,
             },
@@ -5120,11 +4840,11 @@ M.RerankingMetadataSelectiveModeConfiguration = {
     members = {
         fieldsToInclude = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldForReranking,
         },
         fieldsToExclude = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldForReranking,
         },
     },
 }
@@ -5138,9 +4858,7 @@ M.MetadataConfigurationForReranking = {
                 required = true,
             },
         },
-        selectiveModeConfiguration = {
-            type = "union",
-        },
+        selectiveModeConfiguration = M.RerankingMetadataSelectiveModeConfiguration,
     },
 }
 
@@ -5155,8 +4873,8 @@ M.VectorSearchBedrockRerankingModelConfiguration = {
         },
         additionalModelRequestFields = {
             type = "map",
-            key_type = "string",
-            value_type = "document",
+            key = { type = "string" },
+            value = { type = "document" },
         },
     },
 }
@@ -5164,18 +4882,13 @@ M.VectorSearchBedrockRerankingModelConfiguration = {
 M.VectorSearchBedrockRerankingConfiguration = {
     type = "structure",
     members = {
-        modelConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        modelConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VectorSearchBedrockRerankingModelConfiguration }),
         numberOfRerankedResults = {
-            type = "number",
+            type = "integer",
         },
-        metadataConfiguration = {
-            type = "structure",
-        },
+        metadataConfiguration = M.MetadataConfigurationForReranking,
     },
 }
 
@@ -5192,9 +4905,7 @@ M.VectorSearchRerankingConfiguration = {
                 required = true,
             },
         },
-        bedrockRerankingConfiguration = {
-            type = "structure",
-        },
+        bedrockRerankingConfiguration = M.VectorSearchBedrockRerankingConfiguration,
     },
 }
 
@@ -5230,12 +4941,8 @@ M.EvaluationPrecomputedRetrieveSourceConfig = {
 M.EvaluationPrecomputedRagSourceConfig = {
     type = "union",
     members = {
-        retrieveSourceConfig = {
-            type = "structure",
-        },
-        retrieveAndGenerateSourceConfig = {
-            type = "structure",
-        },
+        retrieveSourceConfig = M.EvaluationPrecomputedRetrieveSourceConfig,
+        retrieveAndGenerateSourceConfig = M.EvaluationPrecomputedRetrieveAndGenerateSourceConfig,
     },
 }
 
@@ -5319,7 +5026,7 @@ M.ListEvaluationJobsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -5350,11 +5057,11 @@ M.EvaluationModelConfigSummary = {
     members = {
         bedrockModelIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         precomputedInferenceSourceIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -5364,11 +5071,11 @@ M.EvaluationRagConfigSummary = {
     members = {
         bedrockKnowledgeBaseIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         precomputedRagSourceIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -5376,12 +5083,8 @@ M.EvaluationRagConfigSummary = {
 M.EvaluationInferenceConfigSummary = {
     type = "structure",
     members = {
-        modelConfigSummary = {
-            type = "structure",
-        },
-        ragConfigSummary = {
-            type = "structure",
-        },
+        modelConfigSummary = M.EvaluationModelConfigSummary,
+        ragConfigSummary = M.EvaluationRagConfigSummary,
     },
 }
 
@@ -5420,30 +5123,31 @@ M.EvaluationSummary = {
         },
         evaluationTaskTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         modelIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
+            traits = {
+                default = {},
+            },
         },
         ragIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         evaluatorModelIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         customMetricsEvaluatorModelIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        inferenceConfigSummary = {
-            type = "structure",
-        },
+        inferenceConfigSummary = M.EvaluationInferenceConfigSummary,
         applicationType = {
             type = "string",
         },
@@ -5458,7 +5162,7 @@ M.ListEvaluationJobsOutput = {
         },
         jobSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.EvaluationSummary,
         },
     },
 }
@@ -5485,13 +5189,13 @@ M.GuardrailAutomatedReasoningPolicyConfig = {
     members = {
         policies = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         confidenceThreshold = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -5545,11 +5249,11 @@ M.GuardrailContentFilterConfig = {
         },
         inputModalities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         outputModalities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         inputAction = {
             type = "string",
@@ -5588,14 +5292,12 @@ M.GuardrailContentPolicyConfig = {
     members = {
         filtersConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.GuardrailContentFilterConfig,
             traits = {
                 required = true,
             },
         },
-        tierConfig = {
-            type = "structure",
-        },
+        tierConfig = M.GuardrailContentFiltersTierConfig,
     },
 }
 
@@ -5619,7 +5321,7 @@ M.GuardrailContextualGroundingFilterConfig = {
             },
         },
         threshold = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -5638,7 +5340,7 @@ M.GuardrailContextualGroundingPolicyConfig = {
     members = {
         filtersConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.GuardrailContextualGroundingFilterConfig,
             traits = {
                 required = true,
             },
@@ -5772,11 +5474,11 @@ M.GuardrailSensitiveInformationPolicyConfig = {
     members = {
         piiEntitiesConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.GuardrailPiiEntityConfig,
         },
         regexesConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.GuardrailRegexConfig,
         },
     },
 }
@@ -5824,7 +5526,7 @@ M.GuardrailTopicConfig = {
         },
         examples = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         type = {
             type = "string",
@@ -5852,14 +5554,12 @@ M.GuardrailTopicPolicyConfig = {
     members = {
         topicsConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.GuardrailTopicConfig,
             traits = {
                 required = true,
             },
         },
-        tierConfig = {
-            type = "structure",
-        },
+        tierConfig = M.GuardrailTopicsTierConfig,
     },
 }
 
@@ -5925,11 +5625,11 @@ M.GuardrailWordPolicyConfig = {
     members = {
         wordsConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.GuardrailWordConfig,
         },
         managedWordListsConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.GuardrailManagedWordsConfig,
         },
     },
 }
@@ -5946,27 +5646,13 @@ M.CreateGuardrailInput = {
         description = {
             type = "string",
         },
-        topicPolicyConfig = {
-            type = "structure",
-        },
-        contentPolicyConfig = {
-            type = "structure",
-        },
-        wordPolicyConfig = {
-            type = "structure",
-        },
-        sensitiveInformationPolicyConfig = {
-            type = "structure",
-        },
-        contextualGroundingPolicyConfig = {
-            type = "structure",
-        },
-        automatedReasoningPolicyConfig = {
-            type = "structure",
-        },
-        crossRegionConfig = {
-            type = "structure",
-        },
+        topicPolicyConfig = M.GuardrailTopicPolicyConfig,
+        contentPolicyConfig = M.GuardrailContentPolicyConfig,
+        wordPolicyConfig = M.GuardrailWordPolicyConfig,
+        sensitiveInformationPolicyConfig = M.GuardrailSensitiveInformationPolicyConfig,
+        contextualGroundingPolicyConfig = M.GuardrailContextualGroundingPolicyConfig,
+        automatedReasoningPolicyConfig = M.GuardrailAutomatedReasoningPolicyConfig,
+        crossRegionConfig = M.GuardrailCrossRegionConfig,
         blockedInputMessaging = {
             type = "string",
             traits = {
@@ -5984,7 +5670,7 @@ M.CreateGuardrailInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         clientRequestToken = {
             type = "string",
@@ -6106,13 +5792,13 @@ M.GuardrailAutomatedReasoningPolicy = {
     members = {
         policies = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         confidenceThreshold = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -6140,11 +5826,11 @@ M.GuardrailContentFilter = {
         },
         inputModalities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         outputModalities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         inputAction = {
             type = "string",
@@ -6178,11 +5864,9 @@ M.GuardrailContentPolicy = {
     members = {
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.GuardrailContentFilter,
         },
-        tier = {
-            type = "structure",
-        },
+        tier = M.GuardrailContentFiltersTier,
     },
 }
 
@@ -6196,7 +5880,7 @@ M.GuardrailContextualGroundingFilter = {
             },
         },
         threshold = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -6215,7 +5899,7 @@ M.GuardrailContextualGroundingPolicy = {
     members = {
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.GuardrailContextualGroundingFilter,
             traits = {
                 required = true,
             },
@@ -6309,11 +5993,11 @@ M.GuardrailSensitiveInformationPolicy = {
     members = {
         piiEntities = {
             type = "list",
-            member_type = "structure",
+            member = M.GuardrailPiiEntity,
         },
         regexes = {
             type = "list",
-            member_type = "structure",
+            member = M.GuardrailRegex,
         },
     },
 }
@@ -6356,7 +6040,7 @@ M.GuardrailTopic = {
         },
         examples = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         type = {
             type = "string",
@@ -6381,14 +6065,12 @@ M.GuardrailTopicPolicy = {
     members = {
         topics = {
             type = "list",
-            member_type = "structure",
+            member = M.GuardrailTopic,
             traits = {
                 required = true,
             },
         },
-        tier = {
-            type = "structure",
-        },
+        tier = M.GuardrailTopicsTier,
     },
 }
 
@@ -6445,11 +6127,11 @@ M.GuardrailWordPolicy = {
     members = {
         words = {
             type = "list",
-            member_type = "structure",
+            member = M.GuardrailWord,
         },
         managedWordLists = {
             type = "list",
-            member_type = "structure",
+            member = M.GuardrailManagedWords,
         },
     },
 }
@@ -6490,27 +6172,13 @@ M.GetGuardrailOutput = {
                 required = true,
             },
         },
-        topicPolicy = {
-            type = "structure",
-        },
-        contentPolicy = {
-            type = "structure",
-        },
-        wordPolicy = {
-            type = "structure",
-        },
-        sensitiveInformationPolicy = {
-            type = "structure",
-        },
-        contextualGroundingPolicy = {
-            type = "structure",
-        },
-        automatedReasoningPolicy = {
-            type = "structure",
-        },
-        crossRegionDetails = {
-            type = "structure",
-        },
+        topicPolicy = M.GuardrailTopicPolicy,
+        contentPolicy = M.GuardrailContentPolicy,
+        wordPolicy = M.GuardrailWordPolicy,
+        sensitiveInformationPolicy = M.GuardrailSensitiveInformationPolicy,
+        contextualGroundingPolicy = M.GuardrailContextualGroundingPolicy,
+        automatedReasoningPolicy = M.GuardrailAutomatedReasoningPolicy,
+        crossRegionDetails = M.GuardrailCrossRegionDetails,
         createdAt = {
             type = "timestamp",
             traits = {
@@ -6525,11 +6193,11 @@ M.GetGuardrailOutput = {
         },
         statusReasons = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         failureRecommendations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         blockedInputMessaging = {
             type = "string",
@@ -6559,7 +6227,7 @@ M.ListGuardrailsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -6621,9 +6289,7 @@ M.GuardrailSummary = {
                 required = true,
             },
         },
-        crossRegionDetails = {
-            type = "structure",
-        },
+        crossRegionDetails = M.GuardrailCrossRegionDetails,
     },
 }
 
@@ -6632,7 +6298,7 @@ M.ListGuardrailsOutput = {
     members = {
         guardrails = {
             type = "list",
-            member_type = "structure",
+            member = M.GuardrailSummary,
             traits = {
                 required = true,
             },
@@ -6662,27 +6328,13 @@ M.UpdateGuardrailInput = {
         description = {
             type = "string",
         },
-        topicPolicyConfig = {
-            type = "structure",
-        },
-        contentPolicyConfig = {
-            type = "structure",
-        },
-        wordPolicyConfig = {
-            type = "structure",
-        },
-        sensitiveInformationPolicyConfig = {
-            type = "structure",
-        },
-        contextualGroundingPolicyConfig = {
-            type = "structure",
-        },
-        automatedReasoningPolicyConfig = {
-            type = "structure",
-        },
-        crossRegionConfig = {
-            type = "structure",
-        },
+        topicPolicyConfig = M.GuardrailTopicPolicyConfig,
+        contentPolicyConfig = M.GuardrailContentPolicyConfig,
+        wordPolicyConfig = M.GuardrailWordPolicyConfig,
+        sensitiveInformationPolicyConfig = M.GuardrailSensitiveInformationPolicyConfig,
+        contextualGroundingPolicyConfig = M.GuardrailContextualGroundingPolicyConfig,
+        automatedReasoningPolicyConfig = M.GuardrailAutomatedReasoningPolicyConfig,
+        crossRegionConfig = M.GuardrailCrossRegionConfig,
         blockedInputMessaging = {
             type = "string",
             traits = {
@@ -6755,15 +6407,12 @@ M.CreateInferenceProfileInput = {
         clientRequestToken = {
             type = "string",
         },
-        modelSource = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        modelSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InferenceProfileModelSource }),
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -6857,7 +6506,7 @@ M.GetInferenceProfileOutput = {
         },
         models = {
             type = "list",
-            member_type = "structure",
+            member = M.InferenceProfileModel,
             traits = {
                 required = true,
             },
@@ -6887,7 +6536,7 @@ M.ListInferenceProfilesInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -6933,7 +6582,7 @@ M.InferenceProfileSummary = {
         },
         models = {
             type = "list",
-            member_type = "structure",
+            member = M.InferenceProfileModel,
             traits = {
                 required = true,
             },
@@ -6964,7 +6613,7 @@ M.ListInferenceProfilesOutput = {
     members = {
         inferenceProfileSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.InferenceProfileSummary,
         },
         nextToken = {
             type = "string",
@@ -7014,21 +6663,15 @@ M.CloudWatchConfig = {
                 required = true,
             },
         },
-        largeDataDeliveryS3Config = {
-            type = "structure",
-        },
+        largeDataDeliveryS3Config = M.S3Config,
     },
 }
 
 M.LoggingConfig = {
     type = "structure",
     members = {
-        cloudWatchConfig = {
-            type = "structure",
-        },
-        s3Config = {
-            type = "structure",
-        },
+        cloudWatchConfig = M.CloudWatchConfig,
+        s3Config = M.S3Config,
         textDataDeliveryEnabled = {
             type = "boolean",
         },
@@ -7050,21 +6693,16 @@ M.LoggingConfig = {
 M.GetModelInvocationLoggingConfigurationOutput = {
     type = "structure",
     members = {
-        loggingConfig = {
-            type = "structure",
-        },
+        loggingConfig = M.LoggingConfig,
     },
 }
 
 M.PutModelInvocationLoggingConfigurationInput = {
     type = "structure",
     members = {
-        loggingConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        loggingConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LoggingConfig }),
     },
 }
 
@@ -7092,7 +6730,7 @@ M.CreateModelCopyJobInput = {
         },
         targetModelTags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         clientRequestToken = {
             type = "string",
@@ -7178,7 +6816,7 @@ M.GetModelCopyJobOutput = {
         },
         targetModelTags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         failureMessage = {
             type = "string",
@@ -7229,7 +6867,7 @@ M.ListModelCopyJobsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -7302,7 +6940,7 @@ M.ModelCopyJobSummary = {
         },
         targetModelTags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         failureMessage = {
             type = "string",
@@ -7321,7 +6959,7 @@ M.ListModelCopyJobsOutput = {
         },
         modelCopyJobSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ModelCopyJobSummary,
         },
     },
 }
@@ -7347,26 +6985,21 @@ M.CreateModelImportJobInput = {
                 required = true,
             },
         },
-        modelDataSource = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        modelDataSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ModelDataSource }),
         jobTags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         importedModelTags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         clientRequestToken = {
             type = "string",
         },
-        vpcConfig = {
-            type = "structure",
-        },
+        vpcConfig = M.VpcConfig,
         importedModelKmsKeyId = {
             type = "string",
         },
@@ -7419,7 +7052,7 @@ M.CustomModelUnits = {
     type = "structure",
     members = {
         customModelUnitsPerModelCopy = {
-            type = "number",
+            type = "integer",
         },
         customModelUnitsVersion = {
             type = "string",
@@ -7442,9 +7075,7 @@ M.GetImportedModelOutput = {
         jobArn = {
             type = "string",
         },
-        modelDataSource = {
-            type = "union",
-        },
+        modelDataSource = M.ModelDataSource,
         creationTime = {
             type = "timestamp",
         },
@@ -7457,9 +7088,7 @@ M.GetImportedModelOutput = {
         instructSupported = {
             type = "boolean",
         },
-        customModelUnits = {
-            type = "structure",
-        },
+        customModelUnits = M.CustomModelUnits,
     },
 }
 
@@ -7500,9 +7129,7 @@ M.GetModelImportJobOutput = {
         roleArn = {
             type = "string",
         },
-        modelDataSource = {
-            type = "union",
-        },
+        modelDataSource = M.ModelDataSource,
         status = {
             type = "string",
         },
@@ -7518,9 +7145,7 @@ M.GetModelImportJobOutput = {
         endTime = {
             type = "timestamp",
         },
-        vpcConfig = {
-            type = "structure",
-        },
+        vpcConfig = M.VpcConfig,
         importedModelKmsKeyArn = {
             type = "string",
         },
@@ -7549,7 +7174,7 @@ M.ListImportedModelsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -7613,7 +7238,7 @@ M.ListImportedModelsOutput = {
         },
         modelSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ImportedModelSummary,
         },
     },
 }
@@ -7646,7 +7271,7 @@ M.ListModelImportJobsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -7722,7 +7347,7 @@ M.ListModelImportJobsOutput = {
         },
         modelImportJobSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ModelImportJobSummary,
         },
     },
 }
@@ -7752,9 +7377,7 @@ M.ModelInvocationJobS3InputDataConfig = {
 M.ModelInvocationJobInputDataConfig = {
     type = "union",
     members = {
-        s3InputDataConfig = {
-            type = "structure",
-        },
+        s3InputDataConfig = M.ModelInvocationJobS3InputDataConfig,
     },
 }
 
@@ -7784,9 +7407,7 @@ M.ModelInvocationJobS3OutputDataConfig = {
 M.ModelInvocationJobOutputDataConfig = {
     type = "union",
     members = {
-        s3OutputDataConfig = {
-            type = "structure",
-        },
+        s3OutputDataConfig = M.ModelInvocationJobS3OutputDataConfig,
     },
 }
 
@@ -7814,30 +7435,25 @@ M.CreateModelInvocationJobInput = {
                 required = true,
             },
         },
-        inputDataConfig = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        outputDataConfig = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        vpcConfig = {
-            type = "structure",
-        },
+        inputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ModelInvocationJobInputDataConfig }),
+        outputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ModelInvocationJobOutputDataConfig }),
+        vpcConfig = M.VpcConfig,
         timeoutDurationInHours = {
-            type = "number",
+            type = "integer",
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         modelInvocationType = {
             type = "string",
+            traits = {
+                default = "InvokeModel",
+            },
         },
     },
 }
@@ -7925,23 +7541,15 @@ M.GetModelInvocationJobOutput = {
         endTime = {
             type = "timestamp",
         },
-        inputDataConfig = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        outputDataConfig = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        vpcConfig = {
-            type = "structure",
-        },
+        inputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ModelInvocationJobInputDataConfig }),
+        outputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ModelInvocationJobOutputDataConfig }),
+        vpcConfig = M.VpcConfig,
         timeoutDurationInHours = {
-            type = "number",
+            type = "integer",
         },
         jobExpirationTime = {
             type = "timestamp",
@@ -7950,16 +7558,16 @@ M.GetModelInvocationJobOutput = {
             type = "string",
         },
         totalRecordCount = {
-            type = "number",
+            type = "long",
         },
         processedRecordCount = {
-            type = "number",
+            type = "long",
         },
         successRecordCount = {
-            type = "number",
+            type = "long",
         },
         errorRecordCount = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -7992,7 +7600,7 @@ M.ListModelInvocationJobsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -8066,23 +7674,15 @@ M.ModelInvocationJobSummary = {
         endTime = {
             type = "timestamp",
         },
-        inputDataConfig = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        outputDataConfig = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        vpcConfig = {
-            type = "structure",
-        },
+        inputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ModelInvocationJobInputDataConfig }),
+        outputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ModelInvocationJobOutputDataConfig }),
+        vpcConfig = M.VpcConfig,
         timeoutDurationInHours = {
-            type = "number",
+            type = "integer",
         },
         jobExpirationTime = {
             type = "timestamp",
@@ -8091,16 +7691,16 @@ M.ModelInvocationJobSummary = {
             type = "string",
         },
         totalRecordCount = {
-            type = "number",
+            type = "long",
         },
         processedRecordCount = {
-            type = "number",
+            type = "long",
         },
         successRecordCount = {
-            type = "number",
+            type = "long",
         },
         errorRecordCount = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -8113,7 +7713,7 @@ M.ListModelInvocationJobsOutput = {
         },
         invocationJobSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ModelInvocationJobSummary,
         },
     },
 }
@@ -8217,35 +7817,31 @@ M.FoundationModelDetails = {
         },
         inputModalities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         outputModalities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         responseStreamingSupported = {
             type = "boolean",
         },
         customizationsSupported = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         inferenceTypesSupported = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        modelLifecycle = {
-            type = "structure",
-        },
+        modelLifecycle = M.FoundationModelLifecycle,
     },
 }
 
 M.GetFoundationModelOutput = {
     type = "structure",
     members = {
-        modelDetails = {
-            type = "structure",
-        },
+        modelDetails = M.FoundationModelDetails,
     },
 }
 
@@ -8302,26 +7898,24 @@ M.FoundationModelSummary = {
         },
         inputModalities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         outputModalities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         responseStreamingSupported = {
             type = "boolean",
         },
         customizationsSupported = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         inferenceTypesSupported = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        modelLifecycle = {
-            type = "structure",
-        },
+        modelLifecycle = M.FoundationModelLifecycle,
     },
 }
 
@@ -8330,7 +7924,7 @@ M.ListFoundationModelsOutput = {
     members = {
         modelSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.FoundationModelSummary,
         },
     },
 }
@@ -8351,7 +7945,7 @@ M.RoutingCriteria = {
     type = "structure",
     members = {
         responseQualityDifference = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -8373,7 +7967,7 @@ M.CreatePromptRouterInput = {
         },
         models = {
             type = "list",
-            member_type = "structure",
+            member = M.PromptRouterTargetModel,
             traits = {
                 required = true,
             },
@@ -8381,21 +7975,15 @@ M.CreatePromptRouterInput = {
         description = {
             type = "string",
         },
-        routingCriteria = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        fallbackModel = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        routingCriteria = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RoutingCriteria }),
+        fallbackModel = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PromptRouterTargetModel }),
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -8457,12 +8045,9 @@ M.GetPromptRouterOutput = {
                 required = true,
             },
         },
-        routingCriteria = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        routingCriteria = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RoutingCriteria }),
         description = {
             type = "string",
         },
@@ -8480,17 +8065,14 @@ M.GetPromptRouterOutput = {
         },
         models = {
             type = "list",
-            member_type = "structure",
+            member = M.PromptRouterTargetModel,
             traits = {
                 required = true,
             },
         },
-        fallbackModel = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        fallbackModel = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PromptRouterTargetModel }),
         status = {
             type = "string",
             traits = {
@@ -8510,7 +8092,7 @@ M.ListPromptRoutersInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -8524,6 +8106,7 @@ M.ListPromptRoutersInput = {
         type = {
             type = "string",
             traits = {
+                default = "default",
                 http_query = "type",
             },
         },
@@ -8539,12 +8122,9 @@ M.PromptRouterSummary = {
                 required = true,
             },
         },
-        routingCriteria = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        routingCriteria = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RoutingCriteria }),
         description = {
             type = "string",
         },
@@ -8562,17 +8142,14 @@ M.PromptRouterSummary = {
         },
         models = {
             type = "list",
-            member_type = "structure",
+            member = M.PromptRouterTargetModel,
             traits = {
                 required = true,
             },
         },
-        fallbackModel = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        fallbackModel = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PromptRouterTargetModel }),
         status = {
             type = "string",
             traits = {
@@ -8593,7 +8170,7 @@ M.ListPromptRoutersOutput = {
     members = {
         promptRouterSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.PromptRouterSummary,
         },
         nextToken = {
             type = "string",
@@ -8613,7 +8190,7 @@ M.CreateProvisionedModelThroughputInput = {
             type = "string",
         },
         modelUnits = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -8635,7 +8212,7 @@ M.CreateProvisionedModelThroughputInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -8693,13 +8270,13 @@ M.GetProvisionedModelThroughputOutput = {
     type = "structure",
     members = {
         modelUnits = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         desiredModelUnits = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -8802,7 +8379,7 @@ M.ListProvisionedModelThroughputsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -8862,13 +8439,13 @@ M.ProvisionedModelSummary = {
             },
         },
         modelUnits = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         desiredModelUnits = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -8908,7 +8485,7 @@ M.ListProvisionedModelThroughputsOutput = {
         },
         provisionedModelSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ProvisionedModelSummary,
         },
     },
 }
@@ -9085,12 +8662,9 @@ M.GetFoundationModelAvailabilityOutput = {
                 required = true,
             },
         },
-        agreementAvailability = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        agreementAvailability = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AgreementAvailability }),
         authorizationStatus = {
             type = "string",
             traits = {
@@ -9177,7 +8751,7 @@ M.PricingTerm = {
     members = {
         rateCard = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionalPriceRate,
             traits = {
                 required = true,
             },
@@ -9197,27 +8771,16 @@ M.ValidityTerm = {
 M.TermDetails = {
     type = "structure",
     members = {
-        usageBasedPricingTerm = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        legalTerm = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        supportTerm = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        validityTerm = {
-            type = "structure",
-        },
+        usageBasedPricingTerm = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PricingTerm }),
+        legalTerm = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LegalTerm }),
+        supportTerm = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SupportTerm }),
+        validityTerm = M.ValidityTerm,
     },
 }
 
@@ -9233,12 +8796,9 @@ M.Offer = {
                 required = true,
             },
         },
-        termDetails = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        termDetails = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TermDetails }),
     },
 }
 
@@ -9253,7 +8813,7 @@ M.ListFoundationModelAgreementOffersOutput = {
         },
         offers = {
             type = "list",
-            member_type = "structure",
+            member = M.Offer,
             traits = {
                 required = true,
             },
@@ -9278,7 +8838,7 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -9294,7 +8854,7 @@ M.TagResourceInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -9317,7 +8877,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -9367,38 +8927,26 @@ M.CreateModelCustomizationJobInput = {
         },
         jobTags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         customModelTags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        trainingDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        validationDataConfig = {
-            type = "structure",
-        },
-        outputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        trainingDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TrainingDataConfig }),
+        validationDataConfig = M.ValidationDataConfig,
+        outputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OutputDataConfig }),
         hyperParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        vpcConfig = {
-            type = "structure",
-        },
-        customizationConfig = {
-            type = "union",
-        },
+        vpcConfig = M.VpcConfig,
+        customizationConfig = M.CustomizationConfig,
     },
 }
 
@@ -9492,15 +9040,9 @@ M.ValidationDetails = {
 M.StatusDetails = {
     type = "structure",
     members = {
-        validationDetails = {
-            type = "structure",
-        },
-        dataProcessingDetails = {
-            type = "structure",
-        },
-        trainingDetails = {
-            type = "structure",
-        },
+        validationDetails = M.ValidationDetails,
+        dataProcessingDetails = M.DataProcessingDetails,
+        trainingDetails = M.TrainingDetails,
     },
 }
 
@@ -9540,9 +9082,7 @@ M.GetModelCustomizationJobOutput = {
         status = {
             type = "string",
         },
-        statusDetails = {
-            type = "structure",
-        },
+        statusDetails = M.StatusDetails,
         failureMessage = {
             type = "string",
         },
@@ -9566,46 +9106,31 @@ M.GetModelCustomizationJobOutput = {
         },
         hyperParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        trainingDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        validationDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        outputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        trainingDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TrainingDataConfig }),
+        validationDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ValidationDataConfig }),
+        outputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OutputDataConfig }),
         customizationType = {
             type = "string",
         },
         outputModelKmsKeyArn = {
             type = "string",
         },
-        trainingMetrics = {
-            type = "structure",
-        },
+        trainingMetrics = M.TrainingMetrics,
         validationMetrics = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidatorMetric,
         },
-        vpcConfig = {
-            type = "structure",
-        },
-        customizationConfig = {
-            type = "union",
-        },
+        vpcConfig = M.VpcConfig,
+        customizationConfig = M.CustomizationConfig,
     },
 }
 
@@ -9645,7 +9170,7 @@ M.ListModelCustomizationJobsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -9698,9 +9223,7 @@ M.ModelCustomizationJobSummary = {
                 required = true,
             },
         },
-        statusDetails = {
-            type = "structure",
-        },
+        statusDetails = M.StatusDetails,
         lastModifiedTime = {
             type = "timestamp",
         },
@@ -9733,7 +9256,7 @@ M.ListModelCustomizationJobsOutput = {
         },
         modelCustomizationJobSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ModelCustomizationJobSummary,
         },
     },
 }
@@ -9758,46 +9281,24 @@ M.StopModelCustomizationJobOutput = {
 M.RetrievalFilter = {
     type = "union",
     members = {
-        equals = {
-            type = "structure",
-        },
-        notEquals = {
-            type = "structure",
-        },
-        greaterThan = {
-            type = "structure",
-        },
-        greaterThanOrEquals = {
-            type = "structure",
-        },
-        lessThan = {
-            type = "structure",
-        },
-        lessThanOrEquals = {
-            type = "structure",
-        },
-        in = {
-            type = "structure",
-        },
-        notIn = {
-            type = "structure",
-        },
-        startsWith = {
-            type = "structure",
-        },
-        listContains = {
-            type = "structure",
-        },
-        stringContains = {
-            type = "structure",
-        },
+        equals = M.FilterAttribute,
+        notEquals = M.FilterAttribute,
+        greaterThan = M.FilterAttribute,
+        greaterThanOrEquals = M.FilterAttribute,
+        lessThan = M.FilterAttribute,
+        lessThanOrEquals = M.FilterAttribute,
+        in = M.FilterAttribute,
+        notIn = M.FilterAttribute,
+        startsWith = M.FilterAttribute,
+        listContains = M.FilterAttribute,
+        stringContains = M.FilterAttribute,
         andAll = {
             type = "list",
-            member_type = "union",
+            member = M.RetrievalFilter,
         },
         orAll = {
             type = "list",
-            member_type = "union",
+            member = M.RetrievalFilter,
         },
     },
 }
@@ -9806,32 +9307,23 @@ M.KnowledgeBaseVectorSearchConfiguration = {
     type = "structure",
     members = {
         numberOfResults = {
-            type = "number",
+            type = "integer",
         },
         overrideSearchType = {
             type = "string",
         },
-        filter = {
-            type = "union",
-        },
-        implicitFilterConfiguration = {
-            type = "structure",
-        },
-        rerankingConfiguration = {
-            type = "structure",
-        },
+        filter = M.RetrievalFilter,
+        implicitFilterConfiguration = M.ImplicitFilterConfiguration,
+        rerankingConfiguration = M.VectorSearchRerankingConfiguration,
     },
 }
 
 M.KnowledgeBaseRetrievalConfiguration = {
     type = "structure",
     members = {
-        vectorSearchConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        vectorSearchConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.KnowledgeBaseVectorSearchConfiguration }),
     },
 }
 
@@ -9850,15 +9342,9 @@ M.KnowledgeBaseRetrieveAndGenerateConfiguration = {
                 required = true,
             },
         },
-        retrievalConfiguration = {
-            type = "structure",
-        },
-        generationConfiguration = {
-            type = "structure",
-        },
-        orchestrationConfiguration = {
-            type = "structure",
-        },
+        retrievalConfiguration = M.KnowledgeBaseRetrievalConfiguration,
+        generationConfiguration = M.GenerationConfiguration,
+        orchestrationConfiguration = M.OrchestrationConfiguration,
     },
 }
 
@@ -9871,12 +9357,9 @@ M.RetrieveConfig = {
                 required = true,
             },
         },
-        knowledgeBaseRetrievalConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        knowledgeBaseRetrievalConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.KnowledgeBaseRetrievalConfiguration }),
     },
 }
 
@@ -9889,36 +9372,24 @@ M.RetrieveAndGenerateConfiguration = {
                 required = true,
             },
         },
-        knowledgeBaseConfiguration = {
-            type = "structure",
-        },
-        externalSourcesConfiguration = {
-            type = "structure",
-        },
+        knowledgeBaseConfiguration = M.KnowledgeBaseRetrieveAndGenerateConfiguration,
+        externalSourcesConfiguration = M.ExternalSourcesRetrieveAndGenerateConfiguration,
     },
 }
 
 M.KnowledgeBaseConfig = {
     type = "union",
     members = {
-        retrieveConfig = {
-            type = "structure",
-        },
-        retrieveAndGenerateConfig = {
-            type = "structure",
-        },
+        retrieveConfig = M.RetrieveConfig,
+        retrieveAndGenerateConfig = M.RetrieveAndGenerateConfiguration,
     },
 }
 
 M.RAGConfig = {
     type = "union",
     members = {
-        knowledgeBaseConfig = {
-            type = "union",
-        },
-        precomputedRagSourceConfig = {
-            type = "union",
-        },
+        knowledgeBaseConfig = M.KnowledgeBaseConfig,
+        precomputedRagSourceConfig = M.EvaluationPrecomputedRagSourceConfig,
     },
 }
 
@@ -9927,11 +9398,11 @@ M.EvaluationInferenceConfig = {
     members = {
         models = {
             type = "list",
-            member_type = "union",
+            member = M.EvaluationModelConfig,
         },
         ragConfigs = {
             type = "list",
-            member_type = "union",
+            member = M.RAGConfig,
         },
     },
 }
@@ -9962,29 +9433,20 @@ M.CreateEvaluationJobInput = {
         },
         jobTags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         applicationType = {
             type = "string",
         },
-        evaluationConfig = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        inferenceConfig = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        outputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        evaluationConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EvaluationConfig }),
+        inferenceConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EvaluationInferenceConfig }),
+        outputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EvaluationOutputDataConfig }),
     },
 }
 
@@ -10030,24 +9492,15 @@ M.GetEvaluationJobOutput = {
         applicationType = {
             type = "string",
         },
-        evaluationConfig = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        inferenceConfig = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        outputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        evaluationConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EvaluationConfig }),
+        inferenceConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EvaluationInferenceConfig }),
+        outputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EvaluationOutputDataConfig }),
         creationTime = {
             type = "timestamp",
             traits = {
@@ -10059,7 +9512,7 @@ M.GetEvaluationJobOutput = {
         },
         failureMessages = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }

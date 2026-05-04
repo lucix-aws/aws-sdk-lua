@@ -3309,29 +3309,11 @@ local record ValidationException
     fieldList: {ValidationExceptionField}
 end
 
-local type ConfiguredTableAnalysisRuleType = "AGGREGATION" | "LIST" | "CUSTOM"
-
-local type AnalysisFormat = "SQL" | "PYSPARK_1_0"
-
-local type PrivacyBudgetType = "DIFFERENTIAL_PRIVACY" | "ACCESS_BUDGET"
-
-local type ChangeRequestAction = "APPROVE" | "DENY" | "CANCEL" | "COMMIT"
-
-local type ChangeRequestStatus = "PENDING" | "APPROVED" | "CANCELLED" | "DENIED" | "COMMITTED"
-
-local type AnalyticsEngine = "SPARK" | "CLEAN_ROOMS_SQL"
-
-local type SchemaType = "TABLE" | "ID_MAPPING_TABLE"
-
-local type ProtectedJobStatus = "SUBMITTED" | "STARTED" | "CANCELLED" | "CANCELLING" | "FAILED" | "SUCCESS"
-
-local type PrivacyBudgetTemplateAutoRefresh = "CALENDAR_MONTH" | "NONE"
-
-local type CollaborationJobLogStatus = "ENABLED" | "DISABLED"
-
 local type AnalysisMethod = "DIRECT_QUERY" | "DIRECT_JOB" | "MULTIPLE"
 
 local type MembershipQueryLogStatus = "ENABLED" | "DISABLED"
+
+local type MembershipJobLogStatus = "ENABLED" | "DISABLED"
 
 local type ConfiguredTableAssociationAnalysisRuleType = "AGGREGATION" | "LIST" | "CUSTOM"
 
@@ -3339,13 +3321,31 @@ local type JobType = "BATCH" | "INCREMENTAL" | "DELETE_ONLY"
 
 local type TargetProtectedJobStatus = "CANCELLED"
 
-local type AnalysisRuleType = "AGGREGATION" | "LIST" | "CUSTOM" | "ID_MAPPING_TABLE"
-
-local type MembershipJobLogStatus = "ENABLED" | "DISABLED"
-
 local type ProtectedJobType = "PYSPARK"
 
+local type ConfiguredTableAnalysisRuleType = "AGGREGATION" | "LIST" | "CUSTOM"
+
+local type AnalysisRuleType = "AGGREGATION" | "LIST" | "CUSTOM" | "ID_MAPPING_TABLE"
+
 local type CollaborationQueryLogStatus = "ENABLED" | "DISABLED"
+
+local type ChangeRequestStatus = "PENDING" | "APPROVED" | "CANCELLED" | "DENIED" | "COMMITTED"
+
+local type PrivacyBudgetType = "DIFFERENTIAL_PRIVACY" | "ACCESS_BUDGET"
+
+local type ChangeRequestAction = "APPROVE" | "DENY" | "CANCEL" | "COMMIT"
+
+local type AnalyticsEngine = "SPARK" | "CLEAN_ROOMS_SQL"
+
+local type ProtectedJobStatus = "SUBMITTED" | "STARTED" | "CANCELLED" | "CANCELLING" | "FAILED" | "SUCCESS"
+
+local type SchemaType = "TABLE" | "ID_MAPPING_TABLE"
+
+local type PrivacyBudgetTemplateAutoRefresh = "CALENDAR_MONTH" | "NONE"
+
+local type AnalysisFormat = "SQL" | "PYSPARK_1_0"
+
+local type CollaborationJobLogStatus = "ENABLED" | "DISABLED"
 
 local record M
     BatchGetCollaborationAnalysisTemplateInput: BatchGetCollaborationAnalysisTemplateInput

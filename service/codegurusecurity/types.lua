@@ -29,19 +29,19 @@ M.FindingMetricsValuePerSeverity = {
     type = "structure",
     members = {
         info = {
-            type = "number",
+            type = "double",
         },
         low = {
-            type = "number",
+            type = "double",
         },
         medium = {
-            type = "number",
+            type = "double",
         },
         high = {
-            type = "number",
+            type = "double",
         },
         critical = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -52,18 +52,10 @@ M.AccountFindingsMetric = {
         date = {
             type = "timestamp",
         },
-        newFindings = {
-            type = "structure",
-        },
-        closedFindings = {
-            type = "structure",
-        },
-        openFindings = {
-            type = "structure",
-        },
-        meanTimeToClose = {
-            type = "structure",
-        },
+        newFindings = M.FindingMetricsValuePerSeverity,
+        closedFindings = M.FindingMetricsValuePerSeverity,
+        openFindings = M.FindingMetricsValuePerSeverity,
+        meanTimeToClose = M.FindingMetricsValuePerSeverity,
     },
 }
 
@@ -95,7 +87,7 @@ M.BatchGetFindingsInput = {
     members = {
         findingIdentifiers = {
             type = "list",
-            member_type = "structure",
+            member = M.FindingIdentifier,
             traits = {
                 required = true,
             },
@@ -168,12 +160,10 @@ M.SuggestedFix = {
 M.Remediation = {
     type = "structure",
     members = {
-        recommendation = {
-            type = "structure",
-        },
+        recommendation = M.Recommendation,
         suggestedFixes = {
             type = "list",
-            member_type = "structure",
+            member = M.SuggestedFix,
         },
     },
 }
@@ -208,7 +198,7 @@ M.CodeLine = {
     type = "structure",
     members = {
         number = {
-            type = "number",
+            type = "integer",
         },
         content = {
             type = "string",
@@ -226,14 +216,14 @@ M.FilePath = {
             type = "string",
         },
         startLine = {
-            type = "number",
+            type = "integer",
         },
         endLine = {
-            type = "number",
+            type = "integer",
         },
         codeSnippet = {
             type = "list",
-            member_type = "structure",
+            member = M.CodeLine,
         },
     },
 }
@@ -243,20 +233,18 @@ M.Vulnerability = {
     members = {
         referenceUrls = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         relatedVulnerabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         id = {
             type = "string",
         },
-        filePath = {
-            type = "structure",
-        },
+        filePath = M.FilePath,
         itemCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -285,24 +273,18 @@ M.Finding = {
         status = {
             type = "string",
         },
-        resource = {
-            type = "structure",
-        },
-        vulnerability = {
-            type = "structure",
-        },
+        resource = M.Resource,
+        vulnerability = M.Vulnerability,
         severity = {
             type = "string",
         },
-        remediation = {
-            type = "structure",
-        },
+        remediation = M.Remediation,
         title = {
             type = "string",
         },
         detectorTags = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         detectorId = {
             type = "string",
@@ -321,14 +303,14 @@ M.BatchGetFindingsOutput = {
     members = {
         findings = {
             type = "list",
-            member_type = "structure",
+            member = M.Finding,
             traits = {
                 required = true,
             },
         },
         failedFindings = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetFindingsError,
             traits = {
                 required = true,
             },
@@ -424,7 +406,7 @@ M.ValidationException = {
         },
         fieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -480,12 +462,9 @@ M.CreateScanInput = {
         clientToken = {
             type = "string",
         },
-        resourceId = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        resourceId = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResourceId }),
         scanName = {
             type = "string",
             traits = {
@@ -500,8 +479,8 @@ M.CreateScanInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -527,12 +506,9 @@ M.CreateScanOutput = {
                 required = true,
             },
         },
-        resourceId = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        resourceId = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResourceId }),
         scanState = {
             type = "string",
             traits = {
@@ -599,8 +575,8 @@ M.CreateUploadUrlOutput = {
         },
         requestHeaders = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -630,12 +606,9 @@ M.EncryptionConfig = {
 M.GetAccountConfigurationOutput = {
     type = "structure",
     members = {
-        encryptionConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        encryptionConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EncryptionConfig }),
     },
 }
 
@@ -656,7 +629,7 @@ M.GetFindingsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -675,7 +648,7 @@ M.GetFindingsOutput = {
     members = {
         findings = {
             type = "list",
-            member_type = "structure",
+            member = M.Finding,
         },
         nextToken = {
             type = "string",
@@ -703,7 +676,7 @@ M.CategoryWithFindingNum = {
             type = "string",
         },
         findingNumber = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -715,7 +688,7 @@ M.ScanNameWithFindingNum = {
             type = "string",
         },
         findingNumber = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -726,20 +699,18 @@ M.MetricsSummary = {
         date = {
             type = "timestamp",
         },
-        openFindings = {
-            type = "structure",
-        },
+        openFindings = M.FindingMetricsValuePerSeverity,
         categoriesWithMostFindings = {
             type = "list",
-            member_type = "structure",
+            member = M.CategoryWithFindingNum,
         },
         scansWithMostOpenFindings = {
             type = "list",
-            member_type = "structure",
+            member = M.ScanNameWithFindingNum,
         },
         scansWithMostOpenCriticalFindings = {
             type = "list",
-            member_type = "structure",
+            member = M.ScanNameWithFindingNum,
         },
     },
 }
@@ -747,9 +718,7 @@ M.MetricsSummary = {
 M.GetMetricsSummaryOutput = {
     type = "structure",
     members = {
-        metricsSummary = {
-            type = "structure",
-        },
+        metricsSummary = M.MetricsSummary,
     },
 }
 
@@ -809,7 +778,7 @@ M.GetScanOutput = {
             type = "timestamp",
         },
         numberOfRevisions = {
-            type = "number",
+            type = "long",
         },
         scanNameArn = {
             type = "string",
@@ -830,7 +799,7 @@ M.ListFindingsMetricsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -857,7 +826,7 @@ M.ListFindingsMetricsOutput = {
     members = {
         findingsMetrics = {
             type = "list",
-            member_type = "structure",
+            member = M.AccountFindingsMetric,
         },
         nextToken = {
             type = "string",
@@ -875,7 +844,7 @@ M.ListScansInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -924,7 +893,7 @@ M.ListScansOutput = {
     members = {
         summaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ScanSummary,
         },
         nextToken = {
             type = "string",
@@ -950,8 +919,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -968,8 +937,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -993,7 +962,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -1009,24 +978,18 @@ M.UntagResourceOutput = {
 M.UpdateAccountConfigurationInput = {
     type = "structure",
     members = {
-        encryptionConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        encryptionConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EncryptionConfig }),
     },
 }
 
 M.UpdateAccountConfigurationOutput = {
     type = "structure",
     members = {
-        encryptionConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        encryptionConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EncryptionConfig }),
     },
 }
 

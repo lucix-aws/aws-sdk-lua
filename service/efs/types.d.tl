@@ -1104,17 +1104,17 @@ end
 
 local type IpAddressType = "IPV4_ONLY" | "IPV6_ONLY" | "DUAL_STACK"
 
+local type ReplicationOverwriteProtection = "ENABLED" | "DISABLED" | "REPLICATING"
+
 local type LifeCycleState = "creating" | "available" | "updating" | "deleting" | "deleted" | "error"
 
 local type ResourceIdType = "LONG_ID" | "SHORT_ID"
 
 local type DeletionMode = "ALL_CONFIGURATIONS" | "LOCAL_CONFIGURATION_ONLY"
 
-local type ReplicationOverwriteProtection = "ENABLED" | "DISABLED" | "REPLICATING"
+local type ThroughputMode = "bursting" | "provisioned" | "elastic"
 
 local type PerformanceMode = "generalPurpose" | "maxIO"
-
-local type ThroughputMode = "bursting" | "provisioned" | "elastic"
 
 local record M
     CreateAccessPointInput: CreateAccessPointInput

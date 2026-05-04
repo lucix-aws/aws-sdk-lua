@@ -10,7 +10,7 @@ M.AcceptChoice = {
             },
         },
         predictionChoice = {
-            type = "number",
+            type = "integer",
         },
         editedValue = {
             type = "string",
@@ -29,7 +29,7 @@ M.AcceptedAssetScope = {
         },
         filterIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -49,7 +49,7 @@ M.AcceptRule = {
             type = "string",
         },
         threshold = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -77,12 +77,10 @@ M.AcceptPredictionsInput = {
                 http_query = "revision",
             },
         },
-        acceptRule = {
-            type = "structure",
-        },
+        acceptRule = M.AcceptRule,
         acceptChoices = {
             type = "list",
-            member_type = "structure",
+            member = M.AcceptChoice,
         },
         clientToken = {
             type = "string",
@@ -215,7 +213,7 @@ M.Permissions = {
     members = {
         s3 = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -229,12 +227,9 @@ M.AssetPermission = {
                 required = true,
             },
         },
-        permissions = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        permissions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Permissions }),
     },
 }
 
@@ -260,11 +255,11 @@ M.AcceptSubscriptionRequestInput = {
         },
         assetScopes = {
             type = "list",
-            member_type = "structure",
+            member = M.AcceptedAssetScope,
         },
         assetPermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetPermission,
         },
     },
 }
@@ -307,7 +302,7 @@ M.AssetScope = {
         },
         filterIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -353,14 +348,10 @@ M.SubscribedAssetListing = {
         },
         glossaryTerms = {
             type = "list",
-            member_type = "structure",
+            member = M.DetailedGlossaryTerm,
         },
-        assetScope = {
-            type = "structure",
-        },
-        permissions = {
-            type = "union",
-        },
+        assetScope = M.AssetScope,
+        permissions = M.Permissions,
     },
 }
 
@@ -390,7 +381,7 @@ M.SubscribedProductListing = {
         },
         glossaryTerms = {
             type = "list",
-            member_type = "structure",
+            member = M.DetailedGlossaryTerm,
         },
         name = {
             type = "string",
@@ -400,7 +391,7 @@ M.SubscribedProductListing = {
         },
         assetListings = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetInDataProductListingItem,
         },
     },
 }
@@ -408,12 +399,8 @@ M.SubscribedProductListing = {
 M.SubscribedListingItem = {
     type = "union",
     members = {
-        assetListing = {
-            type = "structure",
-        },
-        productListing = {
-            type = "structure",
-        },
+        assetListing = M.SubscribedAssetListing,
+        productListing = M.SubscribedProductListing,
     },
 }
 
@@ -441,12 +428,9 @@ M.SubscribedListing = {
                 required = true,
             },
         },
-        item = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        item = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SubscribedListingItem }),
         ownerProjectId = {
             type = "string",
             traits = {
@@ -528,12 +512,8 @@ M.SsoUserProfileDetails = {
 M.UserProfileDetails = {
     type = "union",
     members = {
-        iam = {
-            type = "structure",
-        },
-        sso = {
-            type = "structure",
-        },
+        iam = M.IamUserProfileDetails,
+        sso = M.SsoUserProfileDetails,
     },
 }
 
@@ -543,27 +523,17 @@ M.SubscribedUser = {
         id = {
             type = "string",
         },
-        details = {
-            type = "union",
-        },
+        details = M.UserProfileDetails,
     },
 }
 
 M.SubscribedPrincipal = {
     type = "union",
     members = {
-        project = {
-            type = "structure",
-        },
-        user = {
-            type = "structure",
-        },
-        group = {
-            type = "structure",
-        },
-        iam = {
-            type = "structure",
-        },
+        project = M.SubscribedProject,
+        user = M.SubscribedUser,
+        group = M.SubscribedGroup,
+        iam = M.SubscribedIamPrincipal,
     },
 }
 
@@ -617,14 +587,14 @@ M.AcceptSubscriptionRequestOutput = {
         },
         subscribedPrincipals = {
             type = "list",
-            member_type = "union",
+            member = M.SubscribedPrincipal,
             traits = {
                 required = true,
             },
         },
         subscribedListings = {
             type = "list",
-            member_type = "structure",
+            member = M.SubscribedListing,
             traits = {
                 required = true,
             },
@@ -640,7 +610,7 @@ M.AcceptSubscriptionRequestOutput = {
         },
         metadataForms = {
             type = "list",
-            member_type = "structure",
+            member = M.FormOutput,
         },
     },
 }
@@ -669,7 +639,7 @@ M.AccountInfo = {
         },
         supportedRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -731,11 +701,9 @@ M.AccountSource = {
     members = {
         accounts = {
             type = "list",
-            member_type = "structure",
+            member = M.AccountInfo,
         },
-        customAccountPoolHandler = {
-            type = "structure",
-        },
+        customAccountPoolHandler = M.CustomAccountPoolHandler,
     },
 }
 
@@ -751,9 +719,7 @@ M.AwsConsoleLinkParameters = {
 M.ActionParameters = {
     type = "union",
     members = {
-        awsConsoleLink = {
-            type = "structure",
-        },
+        awsConsoleLink = M.AwsConsoleLinkParameters,
     },
 }
 
@@ -788,12 +754,8 @@ M.OwnerUserProperties = {
 M.OwnerProperties = {
     type = "union",
     members = {
-        user = {
-            type = "structure",
-        },
-        group = {
-            type = "structure",
-        },
+        user = M.OwnerUserProperties,
+        group = M.OwnerGroupProperties,
     },
 }
 
@@ -821,12 +783,9 @@ M.AddEntityOwnerInput = {
                 required = true,
             },
         },
-        owner = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        owner = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OwnerProperties }),
         clientToken = {
             type = "string",
         },
@@ -842,7 +801,7 @@ M.AdditionalAttributes = {
     members = {
         formNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -922,7 +881,7 @@ M.CreateProjectFromProjectProfilePolicyGrantDetail = {
         },
         projectProfiles = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -957,48 +916,20 @@ M.UseAssetTypePolicyGrantDetail = {
 M.PolicyGrantDetail = {
     type = "union",
     members = {
-        createDomainUnit = {
-            type = "structure",
-        },
-        overrideDomainUnitOwners = {
-            type = "structure",
-        },
-        addToProjectMemberPool = {
-            type = "structure",
-        },
-        overrideProjectOwners = {
-            type = "structure",
-        },
-        createGlossary = {
-            type = "structure",
-        },
-        createFormType = {
-            type = "structure",
-        },
-        createAssetType = {
-            type = "structure",
-        },
-        createProject = {
-            type = "structure",
-        },
-        createEnvironmentProfile = {
-            type = "structure",
-        },
-        delegateCreateEnvironmentProfile = {
-            type = "structure",
-        },
-        createEnvironment = {
-            type = "structure",
-        },
-        createEnvironmentFromBlueprint = {
-            type = "structure",
-        },
-        createProjectFromProjectProfile = {
-            type = "structure",
-        },
-        useAssetType = {
-            type = "structure",
-        },
+        createDomainUnit = M.CreateDomainUnitPolicyGrantDetail,
+        overrideDomainUnitOwners = M.OverrideDomainUnitOwnersPolicyGrantDetail,
+        addToProjectMemberPool = M.AddToProjectMemberPoolPolicyGrantDetail,
+        overrideProjectOwners = M.OverrideProjectOwnersPolicyGrantDetail,
+        createGlossary = M.CreateGlossaryPolicyGrantDetail,
+        createFormType = M.CreateFormTypePolicyGrantDetail,
+        createAssetType = M.CreateAssetTypePolicyGrantDetail,
+        createProject = M.CreateProjectPolicyGrantDetail,
+        createEnvironmentProfile = M.CreateEnvironmentProfilePolicyGrantDetail,
+        delegateCreateEnvironmentProfile = M.Unit,
+        createEnvironment = M.Unit,
+        createEnvironmentFromBlueprint = M.Unit,
+        createProjectFromProjectProfile = M.CreateProjectFromProjectProfilePolicyGrantDetail,
+        useAssetType = M.UseAssetTypePolicyGrantDetail,
     },
 }
 
@@ -1037,9 +968,7 @@ M.AllDomainUnitsGrantFilter = {
 M.DomainUnitGrantFilter = {
     type = "union",
     members = {
-        allDomainUnitsGrantFilter = {
-            type = "structure",
-        },
+        allDomainUnitsGrantFilter = M.AllDomainUnitsGrantFilter,
     },
 }
 
@@ -1055,9 +984,7 @@ M.DomainUnitPolicyGrantPrincipal = {
         domainUnitIdentifier = {
             type = "string",
         },
-        domainUnitGrantFilter = {
-            type = "union",
-        },
+        domainUnitGrantFilter = M.DomainUnitGrantFilter,
     },
 }
 
@@ -1087,6 +1014,9 @@ M.DomainUnitFilterForProject = {
         },
         includeChildDomainUnits = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1094,9 +1024,7 @@ M.DomainUnitFilterForProject = {
 M.ProjectGrantFilter = {
     type = "union",
     members = {
-        domainUnitFilter = {
-            type = "structure",
-        },
+        domainUnitFilter = M.DomainUnitFilterForProject,
     },
 }
 
@@ -1112,9 +1040,7 @@ M.ProjectPolicyGrantPrincipal = {
         projectIdentifier = {
             type = "string",
         },
-        projectGrantFilter = {
-            type = "union",
-        },
+        projectGrantFilter = M.ProjectGrantFilter,
     },
 }
 
@@ -1128,27 +1054,17 @@ M.UserPolicyGrantPrincipal = {
         userIdentifier = {
             type = "string",
         },
-        allUsersGrantFilter = {
-            type = "structure",
-        },
+        allUsersGrantFilter = M.AllUsersGrantFilter,
     },
 }
 
 M.PolicyGrantPrincipal = {
     type = "union",
     members = {
-        user = {
-            type = "union",
-        },
-        group = {
-            type = "union",
-        },
-        project = {
-            type = "structure",
-        },
-        domainUnit = {
-            type = "structure",
-        },
+        user = M.UserPolicyGrantPrincipal,
+        group = M.GroupPolicyGrantPrincipal,
+        project = M.ProjectPolicyGrantPrincipal,
+        domainUnit = M.DomainUnitPolicyGrantPrincipal,
     },
 }
 
@@ -1182,18 +1098,12 @@ M.AddPolicyGrantInput = {
                 required = true,
             },
         },
-        principal = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        detail = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        principal = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PolicyGrantPrincipal }),
+        detail = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PolicyGrantDetail }),
         clientToken = {
             type = "string",
         },
@@ -1231,7 +1141,7 @@ M.AggregationOutputItem = {
             type = "string",
         },
         count = {
-            type = "number",
+            type = "integer",
         },
         displayValue = {
             type = "string",
@@ -1250,7 +1160,7 @@ M.AggregationOutput = {
         },
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.AggregationOutputItem,
         },
     },
 }
@@ -1366,9 +1276,7 @@ M.BusinessNameGenerationConfiguration = {
 M.PredictionConfiguration = {
     type = "structure",
     members = {
-        businessNameGeneration = {
-            type = "structure",
-        },
+        businessNameGeneration = M.BusinessNameGenerationConfiguration,
     },
 }
 
@@ -1405,11 +1313,11 @@ M.CreateAssetInput = {
         },
         glossaryTerms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         formsInput = {
             type = "list",
-            member_type = "structure",
+            member = M.FormInput,
         },
         owningProjectIdentifier = {
             type = "string",
@@ -1417,9 +1325,7 @@ M.CreateAssetInput = {
                 required = true,
             },
         },
-        predictionConfiguration = {
-            type = "structure",
-        },
+        predictionConfiguration = M.PredictionConfiguration,
         clientToken = {
             type = "string",
         },
@@ -1512,11 +1418,11 @@ M.CreateAssetOutput = {
         },
         glossaryTerms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         governedGlossaryTerms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         owningProjectId = {
             type = "string",
@@ -1530,27 +1436,23 @@ M.CreateAssetOutput = {
                 required = true,
             },
         },
-        listing = {
-            type = "structure",
-        },
+        listing = M.AssetListingDetails,
         formsOutput = {
             type = "list",
-            member_type = "structure",
+            member = M.FormOutput,
             traits = {
                 required = true,
             },
         },
         readOnlyFormsOutput = {
             type = "list",
-            member_type = "structure",
+            member = M.FormOutput,
         },
         latestTimeSeriesDataPointFormsOutput = {
             type = "list",
-            member_type = "structure",
+            member = M.TimeSeriesDataPointSummaryFormOutput,
         },
-        predictionConfiguration = {
-            type = "structure",
-        },
+        predictionConfiguration = M.PredictionConfiguration,
     },
 }
 
@@ -1585,15 +1487,13 @@ M.CreateAssetRevisionInput = {
         },
         glossaryTerms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         formsInput = {
             type = "list",
-            member_type = "structure",
+            member = M.FormInput,
         },
-        predictionConfiguration = {
-            type = "structure",
-        },
+        predictionConfiguration = M.PredictionConfiguration,
         clientToken = {
             type = "string",
         },
@@ -1653,11 +1553,11 @@ M.CreateAssetRevisionOutput = {
         },
         glossaryTerms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         governedGlossaryTerms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         owningProjectId = {
             type = "string",
@@ -1671,27 +1571,23 @@ M.CreateAssetRevisionOutput = {
                 required = true,
             },
         },
-        listing = {
-            type = "structure",
-        },
+        listing = M.AssetListingDetails,
         formsOutput = {
             type = "list",
-            member_type = "structure",
+            member = M.FormOutput,
             traits = {
                 required = true,
             },
         },
         readOnlyFormsOutput = {
             type = "list",
-            member_type = "structure",
+            member = M.FormOutput,
         },
         latestTimeSeriesDataPointFormsOutput = {
             type = "list",
-            member_type = "structure",
+            member = M.TimeSeriesDataPointSummaryFormOutput,
         },
-        predictionConfiguration = {
-            type = "structure",
-        },
+        predictionConfiguration = M.PredictionConfiguration,
     },
 }
 
@@ -1798,11 +1694,11 @@ M.GetAssetOutput = {
         },
         glossaryTerms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         governedGlossaryTerms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         owningProjectId = {
             type = "string",
@@ -1816,23 +1712,21 @@ M.GetAssetOutput = {
                 required = true,
             },
         },
-        listing = {
-            type = "structure",
-        },
+        listing = M.AssetListingDetails,
         formsOutput = {
             type = "list",
-            member_type = "structure",
+            member = M.FormOutput,
             traits = {
                 required = true,
             },
         },
         readOnlyFormsOutput = {
             type = "list",
-            member_type = "structure",
+            member = M.FormOutput,
         },
         latestTimeSeriesDataPointFormsOutput = {
             type = "list",
-            member_type = "structure",
+            member = M.TimeSeriesDataPointSummaryFormOutput,
         },
     },
 }
@@ -1842,7 +1736,7 @@ M.ColumnFilterConfiguration = {
     members = {
         includedColumnNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1912,7 +1806,7 @@ M.InExpression = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2027,7 +1921,7 @@ M.NotInExpression = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2056,42 +1950,18 @@ M.NotLikeExpression = {
 M.RowFilterExpression = {
     type = "union",
     members = {
-        equalTo = {
-            type = "structure",
-        },
-        notEqualTo = {
-            type = "structure",
-        },
-        greaterThan = {
-            type = "structure",
-        },
-        lessThan = {
-            type = "structure",
-        },
-        greaterThanOrEqualTo = {
-            type = "structure",
-        },
-        lessThanOrEqualTo = {
-            type = "structure",
-        },
-        isNull = {
-            type = "structure",
-        },
-        isNotNull = {
-            type = "structure",
-        },
-        in = {
-            type = "structure",
-        },
-        notIn = {
-            type = "structure",
-        },
-        like = {
-            type = "structure",
-        },
-        notLike = {
-            type = "structure",
-        },
+        equalTo = M.EqualToExpression,
+        notEqualTo = M.NotEqualToExpression,
+        greaterThan = M.GreaterThanExpression,
+        lessThan = M.LessThanExpression,
+        greaterThanOrEqualTo = M.GreaterThanOrEqualToExpression,
+        lessThanOrEqualTo = M.LessThanOrEqualToExpression,
+        isNull = M.IsNullExpression,
+        isNotNull = M.IsNotNullExpression,
+        in = M.InExpression,
+        notIn = M.NotInExpression,
+        like = M.LikeExpression,
+        notLike = M.NotLikeExpression,
     },
 }
 
@@ -2135,7 +2005,7 @@ M.AssetFilterSummary = {
         },
         effectiveColumnNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         effectiveRowFilter = {
             type = "string",
@@ -2153,10 +2023,10 @@ M.MatchOffset = {
     type = "structure",
     members = {
         startOffset = {
-            type = "number",
+            type = "integer",
         },
         endOffset = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2172,7 +2042,7 @@ M.TextMatchItem = {
         },
         matchOffsets = {
             type = "list",
-            member_type = "structure",
+            member = M.MatchOffset,
         },
     },
 }
@@ -2182,7 +2052,7 @@ M.MatchRationaleItem = {
     members = {
         textMatches = {
             type = "list",
-            member_type = "structure",
+            member = M.TextMatchItem,
         },
     },
 }
@@ -2192,19 +2062,19 @@ M.AssetItemAdditionalAttributes = {
     members = {
         formsOutput = {
             type = "list",
-            member_type = "structure",
+            member = M.FormOutput,
         },
         readOnlyFormsOutput = {
             type = "list",
-            member_type = "structure",
+            member = M.FormOutput,
         },
         latestTimeSeriesDataPointFormsOutput = {
             type = "list",
-            member_type = "structure",
+            member = M.TimeSeriesDataPointSummaryFormOutput,
         },
         matchRationale = {
             type = "list",
-            member_type = "union",
+            member = M.MatchRationaleItem,
         },
     },
 }
@@ -2262,7 +2132,7 @@ M.AssetItem = {
         },
         glossaryTerms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         owningProjectId = {
             type = "string",
@@ -2270,12 +2140,10 @@ M.AssetItem = {
                 required = true,
             },
         },
-        additionalAttributes = {
-            type = "structure",
-        },
+        additionalAttributes = M.AssetItemAdditionalAttributes,
         governedGlossaryTerms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2300,15 +2168,15 @@ M.AssetListing = {
         },
         latestTimeSeriesDataPointForms = {
             type = "list",
-            member_type = "structure",
+            member = M.TimeSeriesDataPointSummaryFormOutput,
         },
         glossaryTerms = {
             type = "list",
-            member_type = "structure",
+            member = M.DetailedGlossaryTerm,
         },
         governedGlossaryTerms = {
             type = "list",
-            member_type = "structure",
+            member = M.DetailedGlossaryTerm,
         },
         owningProjectId = {
             type = "string",
@@ -2324,11 +2192,11 @@ M.AssetListingItemAdditionalAttributes = {
         },
         matchRationale = {
             type = "list",
-            member_type = "union",
+            member = M.MatchRationaleItem,
         },
         latestTimeSeriesDataPointForms = {
             type = "list",
-            member_type = "structure",
+            member = M.TimeSeriesDataPointSummaryFormOutput,
         },
     },
 }
@@ -2368,18 +2236,16 @@ M.AssetListingItem = {
         },
         glossaryTerms = {
             type = "list",
-            member_type = "structure",
+            member = M.DetailedGlossaryTerm,
         },
         governedGlossaryTerms = {
             type = "list",
-            member_type = "structure",
+            member = M.DetailedGlossaryTerm,
         },
         owningProjectId = {
             type = "string",
         },
-        additionalAttributes = {
-            type = "structure",
-        },
+        additionalAttributes = M.AssetListingItemAdditionalAttributes,
     },
 }
 
@@ -2464,8 +2330,8 @@ M.CreateAssetTypeInput = {
         },
         formsInput = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.FormEntryInput,
             traits = {
                 required = true,
             },
@@ -2526,8 +2392,8 @@ M.CreateAssetTypeOutput = {
         },
         formsOutput = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.FormEntryOutput,
             traits = {
                 required = true,
             },
@@ -2632,8 +2498,8 @@ M.GetAssetTypeOutput = {
         },
         formsOutput = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.FormEntryOutput,
             traits = {
                 required = true,
             },
@@ -2691,8 +2557,8 @@ M.AssetTypeItem = {
         },
         formsOutput = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.FormEntryOutput,
             traits = {
                 required = true,
             },
@@ -2740,7 +2606,7 @@ M.AssetTypesForRule = {
         },
         specificAssetTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2806,7 +2672,7 @@ M.AssociateGovernedTermsInput = {
         },
         governedGlossaryTerms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2885,7 +2751,7 @@ M.AttributeInput = {
         },
         forms = {
             type = "list",
-            member_type = "structure",
+            member = M.FormInput,
             traits = {
                 required = true,
             },
@@ -2953,23 +2819,17 @@ M.OAuth2Properties = {
         oAuth2GrantType = {
             type = "string",
         },
-        oAuth2ClientApplication = {
-            type = "structure",
-        },
+        oAuth2ClientApplication = M.OAuth2ClientApplication,
         tokenUrl = {
             type = "string",
         },
         tokenUrlParametersMap = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        authorizationCodeProperties = {
-            type = "structure",
-        },
-        oAuth2Credentials = {
-            type = "structure",
-        },
+        authorizationCodeProperties = M.AuthorizationCodeProperties,
+        oAuth2Credentials = M.GlueOAuth2Credentials,
     },
 }
 
@@ -2982,9 +2842,7 @@ M.AuthenticationConfiguration = {
         secretArn = {
             type = "string",
         },
-        oAuth2Properties = {
-            type = "structure",
-        },
+        oAuth2Properties = M.OAuth2Properties,
     },
 }
 
@@ -3006,22 +2864,18 @@ M.AuthenticationConfigurationInput = {
         authenticationType = {
             type = "string",
         },
-        oAuth2Properties = {
-            type = "structure",
-        },
+        oAuth2Properties = M.OAuth2Properties,
         secretArn = {
             type = "string",
         },
         kmsKeyArn = {
             type = "string",
         },
-        basicAuthenticationCredentials = {
-            type = "structure",
-        },
+        basicAuthenticationCredentials = M.BasicAuthenticationCredentials,
         customAuthenticationCredentials = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3032,9 +2886,7 @@ M.AuthenticationConfigurationPatch = {
         secretArn = {
             type = "string",
         },
-        basicAuthenticationCredentials = {
-            type = "structure",
-        },
+        basicAuthenticationCredentials = M.BasicAuthenticationCredentials,
     },
 }
 
@@ -3084,7 +2936,7 @@ M.BatchGetAttributeOutput = {
         },
         forms = {
             type = "list",
-            member_type = "structure",
+            member = M.FormOutput,
         },
     },
 }
@@ -3121,7 +2973,7 @@ M.BatchGetAttributesMetadataInput = {
         },
         attributeIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "attributeIdentifier",
                 required = true,
@@ -3135,11 +2987,11 @@ M.BatchGetAttributesMetadataOutput = {
     members = {
         attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetAttributeOutput,
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.AttributeError,
             traits = {
                 required = true,
             },
@@ -3188,7 +3040,7 @@ M.BatchPutAttributesMetadataInput = {
         },
         attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.AttributeInput,
             traits = {
                 required = true,
             },
@@ -3201,11 +3053,11 @@ M.BatchPutAttributesMetadataOutput = {
     members = {
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.AttributeError,
         },
         attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchPutAttributeOutput,
         },
     },
 }
@@ -3302,18 +3154,12 @@ M.CancelSubscriptionOutput = {
                 required = true,
             },
         },
-        subscribedPrincipal = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        subscribedListing = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        subscribedPrincipal = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SubscribedPrincipal }),
+        subscribedListing = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SubscribedListing }),
         subscriptionRequestId = {
             type = "string",
         },
@@ -3393,7 +3239,7 @@ M.ConfigurableEnvironmentAction = {
         },
         parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigurableActionParameter,
             traits = {
                 required = true,
             },
@@ -3409,8 +3255,8 @@ M.Configuration = {
         },
         properties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3465,11 +3311,11 @@ M.PhysicalConnectionRequirements = {
         },
         subnetIdList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         securityGroupIdList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         availabilityZone = {
             type = "string",
@@ -3482,12 +3328,10 @@ M.GlueConnectionInput = {
     members = {
         connectionProperties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        physicalConnectionRequirements = {
-            type = "structure",
-        },
+        physicalConnectionRequirements = M.PhysicalConnectionRequirements,
         name = {
             type = "string",
         },
@@ -3505,35 +3349,31 @@ M.GlueConnectionInput = {
         },
         validateForComputeEnvironments = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         sparkProperties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         athenaProperties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         pythonProperties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        authenticationConfiguration = {
-            type = "structure",
-        },
+        authenticationConfiguration = M.AuthenticationConfigurationInput,
     },
 }
 
 M.GluePropertiesInput = {
     type = "structure",
     members = {
-        glueConnectionInput = {
-            type = "structure",
-        },
+        glueConnectionInput = M.GlueConnectionInput,
     },
 }
 
@@ -3600,9 +3440,7 @@ M.RedshiftCredentials = {
         secretArn = {
             type = "string",
         },
-        usernamePassword = {
-            type = "structure",
-        },
+        usernamePassword = M.UsernamePassword,
     },
 }
 
@@ -3621,9 +3459,7 @@ M.RedshiftLineageSyncConfigurationInput = {
         enabled = {
             type = "boolean",
         },
-        schedule = {
-            type = "structure",
-        },
+        schedule = M.LineageSyncSchedule,
     },
 }
 
@@ -3642,9 +3478,7 @@ M.RedshiftStorageProperties = {
 M.RedshiftPropertiesInput = {
     type = "structure",
     members = {
-        storage = {
-            type = "union",
-        },
+        storage = M.RedshiftStorageProperties,
         databaseName = {
             type = "string",
         },
@@ -3652,14 +3486,10 @@ M.RedshiftPropertiesInput = {
             type = "string",
         },
         port = {
-            type = "number",
+            type = "integer",
         },
-        credentials = {
-            type = "union",
-        },
-        lineageSync = {
-            type = "structure",
-        },
+        credentials = M.RedshiftCredentials,
+        lineageSync = M.RedshiftLineageSyncConfigurationInput,
     },
 }
 
@@ -3723,27 +3553,25 @@ M.SparkGlueArgs = {
 M.SparkGluePropertiesInput = {
     type = "structure",
     members = {
-        additionalArgs = {
-            type = "structure",
-        },
+        additionalArgs = M.SparkGlueArgs,
         glueConnectionName = {
             type = "string",
         },
         glueConnectionNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         glueVersion = {
             type = "string",
         },
         idleTimeout = {
-            type = "number",
+            type = "integer",
         },
         javaVirtualEnv = {
             type = "string",
         },
         numberOfWorkers = {
-            type = "number",
+            type = "integer",
         },
         pythonVirtualEnv = {
             type = "string",
@@ -3770,45 +3598,19 @@ M.WorkflowsServerlessPropertiesInput = {
 M.ConnectionPropertiesInput = {
     type = "union",
     members = {
-        athenaProperties = {
-            type = "structure",
-        },
-        glueProperties = {
-            type = "structure",
-        },
-        hyperPodProperties = {
-            type = "structure",
-        },
-        iamProperties = {
-            type = "structure",
-        },
-        redshiftProperties = {
-            type = "structure",
-        },
-        sparkEmrProperties = {
-            type = "structure",
-        },
-        sparkGlueProperties = {
-            type = "structure",
-        },
-        s3Properties = {
-            type = "structure",
-        },
-        amazonQProperties = {
-            type = "structure",
-        },
-        mlflowProperties = {
-            type = "structure",
-        },
-        workflowsMwaaProperties = {
-            type = "structure",
-        },
-        workflowsServerlessProperties = {
-            type = "structure",
-        },
-        lakehouseProperties = {
-            type = "structure",
-        },
+        athenaProperties = M.AthenaPropertiesInput,
+        glueProperties = M.GluePropertiesInput,
+        hyperPodProperties = M.HyperPodPropertiesInput,
+        iamProperties = M.IamPropertiesInput,
+        redshiftProperties = M.RedshiftPropertiesInput,
+        sparkEmrProperties = M.SparkEmrPropertiesInput,
+        sparkGlueProperties = M.SparkGluePropertiesInput,
+        s3Properties = M.S3PropertiesInput,
+        amazonQProperties = M.AmazonQPropertiesInput,
+        mlflowProperties = M.MlflowPropertiesInput,
+        workflowsMwaaProperties = M.WorkflowsMwaaPropertiesInput,
+        workflowsServerlessProperties = M.WorkflowsServerlessPropertiesInput,
+        lakehouseProperties = M.LakehousePropertiesInput,
     },
 }
 
@@ -3897,21 +3699,15 @@ M.RedshiftLineageSyncConfigurationOutput = {
         enabled = {
             type = "boolean",
         },
-        schedule = {
-            type = "structure",
-        },
+        schedule = M.LineageSyncSchedule,
     },
 }
 
 M.RedshiftPropertiesOutput = {
     type = "structure",
     members = {
-        storage = {
-            type = "union",
-        },
-        credentials = {
-            type = "union",
-        },
+        storage = M.RedshiftStorageProperties,
+        credentials = M.RedshiftCredentials,
         isProvisionedSecret = {
             type = "boolean",
         },
@@ -3924,9 +3720,7 @@ M.RedshiftPropertiesOutput = {
         redshiftTempDir = {
             type = "string",
         },
-        lineageSync = {
-            type = "structure",
-        },
+        lineageSync = M.RedshiftLineageSyncConfigurationOutput,
         status = {
             type = "string",
         },
@@ -3983,9 +3777,7 @@ M.SparkEmrPropertiesOutput = {
         computeArn = {
             type = "string",
         },
-        credentials = {
-            type = "structure",
-        },
+        credentials = M.UsernamePassword,
         credentialsExpiration = {
             type = "timestamp",
             traits = {
@@ -4022,36 +3814,32 @@ M.SparkEmrPropertiesOutput = {
         managedEndpointArn = {
             type = "string",
         },
-        managedEndpointCredentials = {
-            type = "structure",
-        },
+        managedEndpointCredentials = M.ManagedEndpointCredentials,
     },
 }
 
 M.SparkGluePropertiesOutput = {
     type = "structure",
     members = {
-        additionalArgs = {
-            type = "structure",
-        },
+        additionalArgs = M.SparkGlueArgs,
         glueConnectionName = {
             type = "string",
         },
         glueConnectionNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         glueVersion = {
             type = "string",
         },
         idleTimeout = {
-            type = "number",
+            type = "integer",
         },
         javaVirtualEnv = {
             type = "string",
         },
         numberOfWorkers = {
-            type = "number",
+            type = "integer",
         },
         pythonVirtualEnv = {
             type = "string",
@@ -4078,45 +3866,19 @@ M.WorkflowsServerlessPropertiesOutput = {
 M.ConnectionPropertiesOutput = {
     type = "union",
     members = {
-        athenaProperties = {
-            type = "structure",
-        },
-        glueProperties = {
-            type = "structure",
-        },
-        hyperPodProperties = {
-            type = "structure",
-        },
-        iamProperties = {
-            type = "structure",
-        },
-        redshiftProperties = {
-            type = "structure",
-        },
-        sparkEmrProperties = {
-            type = "structure",
-        },
-        sparkGlueProperties = {
-            type = "structure",
-        },
-        s3Properties = {
-            type = "structure",
-        },
-        amazonQProperties = {
-            type = "structure",
-        },
-        mlflowProperties = {
-            type = "structure",
-        },
-        workflowsMwaaProperties = {
-            type = "structure",
-        },
-        workflowsServerlessProperties = {
-            type = "structure",
-        },
-        lakehouseProperties = {
-            type = "structure",
-        },
+        athenaProperties = M.AthenaPropertiesOutput,
+        glueProperties = M.GluePropertiesOutput,
+        hyperPodProperties = M.HyperPodPropertiesOutput,
+        iamProperties = M.IamPropertiesOutput,
+        redshiftProperties = M.RedshiftPropertiesOutput,
+        sparkEmrProperties = M.SparkEmrPropertiesOutput,
+        sparkGlueProperties = M.SparkGluePropertiesOutput,
+        s3Properties = M.S3PropertiesOutput,
+        amazonQProperties = M.AmazonQPropertiesOutput,
+        mlflowProperties = M.MlflowPropertiesOutput,
+        workflowsMwaaProperties = M.WorkflowsMwaaPropertiesOutput,
+        workflowsServerlessProperties = M.WorkflowsServerlessPropertiesOutput,
+        lakehouseProperties = M.LakehousePropertiesOutput,
     },
 }
 
@@ -4128,21 +3890,17 @@ M.GlueConnectionPatch = {
         },
         connectionProperties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        authenticationConfiguration = {
-            type = "structure",
-        },
+        authenticationConfiguration = M.AuthenticationConfigurationPatch,
     },
 }
 
 M.GluePropertiesPatch = {
     type = "structure",
     members = {
-        glueConnectionInput = {
-            type = "structure",
-        },
+        glueConnectionInput = M.GlueConnectionPatch,
     },
 }
 
@@ -4176,9 +3934,7 @@ M.MlflowPropertiesPatch = {
 M.RedshiftPropertiesPatch = {
     type = "structure",
     members = {
-        storage = {
-            type = "union",
-        },
+        storage = M.RedshiftStorageProperties,
         databaseName = {
             type = "string",
         },
@@ -4186,14 +3942,10 @@ M.RedshiftPropertiesPatch = {
             type = "string",
         },
         port = {
-            type = "number",
+            type = "integer",
         },
-        credentials = {
-            type = "union",
-        },
-        lineageSync = {
-            type = "structure",
-        },
+        credentials = M.RedshiftCredentials,
+        lineageSync = M.RedshiftLineageSyncConfigurationInput,
     },
 }
 
@@ -4248,33 +4000,15 @@ M.SparkEmrPropertiesPatch = {
 M.ConnectionPropertiesPatch = {
     type = "union",
     members = {
-        athenaProperties = {
-            type = "structure",
-        },
-        glueProperties = {
-            type = "structure",
-        },
-        iamProperties = {
-            type = "structure",
-        },
-        redshiftProperties = {
-            type = "structure",
-        },
-        sparkEmrProperties = {
-            type = "structure",
-        },
-        s3Properties = {
-            type = "structure",
-        },
-        amazonQProperties = {
-            type = "structure",
-        },
-        mlflowProperties = {
-            type = "structure",
-        },
-        lakehouseProperties = {
-            type = "structure",
-        },
+        athenaProperties = M.AthenaPropertiesPatch,
+        glueProperties = M.GluePropertiesPatch,
+        iamProperties = M.IamPropertiesPatch,
+        redshiftProperties = M.RedshiftPropertiesPatch,
+        sparkEmrProperties = M.SparkEmrPropertiesPatch,
+        s3Properties = M.S3PropertiesPatch,
+        amazonQProperties = M.AmazonQPropertiesPatch,
+        mlflowProperties = M.MlflowPropertiesPatch,
+        lakehouseProperties = M.LakehousePropertiesPatch,
     },
 }
 
@@ -4322,31 +4056,29 @@ M.GlueConnection = {
         },
         matchCriteria = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         connectionProperties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         sparkProperties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         athenaProperties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         pythonProperties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        physicalConnectionRequirements = {
-            type = "structure",
-        },
+        physicalConnectionRequirements = M.PhysicalConnectionRequirements,
         creationTime = {
             type = "timestamp",
         },
@@ -4365,15 +4097,13 @@ M.GlueConnection = {
         lastConnectionValidationTime = {
             type = "timestamp",
         },
-        authenticationConfiguration = {
-            type = "structure",
-        },
+        authenticationConfiguration = M.AuthenticationConfiguration,
         connectionSchemaVersion = {
-            type = "number",
+            type = "integer",
         },
         compatibleComputeEnvironments = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4391,19 +4121,15 @@ M.Protocol = {
 M.PhysicalEndpoint = {
     type = "structure",
     members = {
-        awsLocation = {
-            type = "structure",
-        },
+        awsLocation = M.AwsLocation,
         glueConnectionName = {
             type = "string",
         },
         glueConnectionNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        glueConnection = {
-            type = "structure",
-        },
+        glueConnection = M.GlueConnection,
         enableTrustedIdentityPropagation = {
             type = "boolean",
         },
@@ -4411,7 +4137,7 @@ M.PhysicalEndpoint = {
             type = "string",
         },
         port = {
-            type = "number",
+            type = "integer",
         },
         protocol = {
             type = "string",
@@ -4427,7 +4153,7 @@ M.ConnectionSummary = {
     members = {
         configurations = {
             type = "list",
-            member_type = "structure",
+            member = M.Configuration,
         },
         connectionId = {
             type = "string",
@@ -4458,7 +4184,7 @@ M.ConnectionSummary = {
         },
         physicalEndpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.PhysicalEndpoint,
             traits = {
                 required = true,
             },
@@ -4466,9 +4192,7 @@ M.ConnectionSummary = {
         projectId = {
             type = "string",
         },
-        props = {
-            type = "union",
-        },
+        props = M.ConnectionPropertiesOutput,
         type = {
             type = "string",
             traits = {
@@ -4506,12 +4230,9 @@ M.CreateAccountPoolInput = {
                 required = true,
             },
         },
-        accountSource = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        accountSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AccountSource }),
     },
 }
 
@@ -4533,12 +4254,9 @@ M.CreateAccountPoolOutput = {
         resolutionStrategy = {
             type = "string",
         },
-        accountSource = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        accountSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AccountSource }),
         createdBy = {
             type = "string",
             traits = {
@@ -4569,15 +4287,13 @@ M.CreateAccountPoolOutput = {
 M.CreateConnectionInput = {
     type = "structure",
     members = {
-        awsLocation = {
-            type = "structure",
-        },
+        awsLocation = M.AwsLocation,
         clientToken = {
             type = "string",
         },
         configurations = {
             type = "list",
-            member_type = "structure",
+            member = M.Configuration,
         },
         description = {
             type = "string",
@@ -4598,9 +4314,7 @@ M.CreateConnectionInput = {
                 required = true,
             },
         },
-        props = {
-            type = "union",
-        },
+        props = M.ConnectionPropertiesInput,
         enableTrustedIdentityPropagation = {
             type = "boolean",
         },
@@ -4621,7 +4335,7 @@ M.CreateConnectionOutput = {
         },
         configurations = {
             type = "list",
-            member_type = "structure",
+            member = M.Configuration,
         },
         description = {
             type = "string",
@@ -4649,7 +4363,7 @@ M.CreateConnectionOutput = {
         },
         physicalEndpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.PhysicalEndpoint,
             traits = {
                 required = true,
             },
@@ -4657,9 +4371,7 @@ M.CreateConnectionOutput = {
         projectId = {
             type = "string",
         },
-        props = {
-            type = "union",
-        },
+        props = M.ConnectionPropertiesOutput,
         type = {
             type = "string",
             traits = {
@@ -4696,7 +4408,7 @@ M.DataProductItem = {
         },
         glossaryTerms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4728,15 +4440,15 @@ M.CreateDataProductInput = {
         },
         glossaryTerms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         formsInput = {
             type = "list",
-            member_type = "structure",
+            member = M.FormInput,
         },
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.DataProductItem,
         },
         clientToken = {
             type = "string",
@@ -4786,6 +4498,7 @@ M.CreateDataProductOutput = {
         status = {
             type = "string",
             traits = {
+                default = "CREATED",
                 required = true,
             },
         },
@@ -4794,15 +4507,15 @@ M.CreateDataProductOutput = {
         },
         glossaryTerms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.DataProductItem,
         },
         formsOutput = {
             type = "list",
-            member_type = "structure",
+            member = M.FormOutput,
         },
         createdAt = {
             type = "timestamp",
@@ -4847,15 +4560,15 @@ M.CreateDataProductRevisionInput = {
         },
         glossaryTerms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.DataProductItem,
         },
         formsInput = {
             type = "list",
-            member_type = "structure",
+            member = M.FormInput,
         },
         clientToken = {
             type = "string",
@@ -4899,6 +4612,7 @@ M.CreateDataProductRevisionOutput = {
         status = {
             type = "string",
             traits = {
+                default = "CREATED",
                 required = true,
             },
         },
@@ -4907,15 +4621,15 @@ M.CreateDataProductRevisionOutput = {
         },
         glossaryTerms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.DataProductItem,
         },
         formsOutput = {
             type = "list",
-            member_type = "structure",
+            member = M.FormOutput,
         },
         createdAt = {
             type = "timestamp",
@@ -4969,7 +4683,7 @@ M.RelationalFilterConfiguration = {
         },
         filterExpressions = {
             type = "list",
-            member_type = "structure",
+            member = M.FilterExpression,
         },
     },
 }
@@ -4982,7 +4696,7 @@ M.GlueRunConfigurationInput = {
         },
         relationalFilterConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.RelationalFilterConfiguration,
             traits = {
                 required = true,
             },
@@ -5035,12 +4749,8 @@ M.RedshiftServerlessStorage = {
 M.RedshiftStorage = {
     type = "union",
     members = {
-        redshiftClusterSource = {
-            type = "structure",
-        },
-        redshiftServerlessSource = {
-            type = "structure",
-        },
+        redshiftClusterSource = M.RedshiftClusterStorage,
+        redshiftServerlessSource = M.RedshiftServerlessStorage,
     },
 }
 
@@ -5052,17 +4762,13 @@ M.RedshiftRunConfigurationInput = {
         },
         relationalFilterConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.RelationalFilterConfiguration,
             traits = {
                 required = true,
             },
         },
-        redshiftCredentialConfiguration = {
-            type = "structure",
-        },
-        redshiftStorage = {
-            type = "union",
-        },
+        redshiftCredentialConfiguration = M.RedshiftCredentialConfiguration,
+        redshiftStorage = M.RedshiftStorage,
     },
 }
 
@@ -5071,8 +4777,8 @@ M.SageMakerRunConfigurationInput = {
     members = {
         trackingAssets = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
             traits = {
                 required = true,
             },
@@ -5083,15 +4789,9 @@ M.SageMakerRunConfigurationInput = {
 M.DataSourceConfigurationInput = {
     type = "union",
     members = {
-        glueRunConfiguration = {
-            type = "structure",
-        },
-        redshiftRunConfiguration = {
-            type = "structure",
-        },
-        sageMakerRunConfiguration = {
-            type = "structure",
-        },
+        glueRunConfiguration = M.GlueRunConfigurationInput,
+        redshiftRunConfiguration = M.RedshiftRunConfigurationInput,
+        sageMakerRunConfiguration = M.SageMakerRunConfigurationInput,
     },
 }
 
@@ -5225,24 +4925,18 @@ M.CreateDataSourceInput = {
                 required = true,
             },
         },
-        configuration = {
-            type = "union",
-        },
-        recommendation = {
-            type = "structure",
-        },
+        configuration = M.DataSourceConfigurationInput,
+        recommendation = M.RecommendationConfiguration,
         enableSetting = {
             type = "string",
         },
-        schedule = {
-            type = "structure",
-        },
+        schedule = M.ScheduleConfiguration,
         publishOnImport = {
             type = "boolean",
         },
         assetFormsInput = {
             type = "list",
-            member_type = "structure",
+            member = M.FormInput,
         },
         clientToken = {
             type = "string",
@@ -5264,7 +4958,7 @@ M.GlueRunConfigurationOutput = {
         },
         relationalFilterConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.RelationalFilterConfiguration,
             traits = {
                 required = true,
             },
@@ -5292,20 +4986,15 @@ M.RedshiftRunConfigurationOutput = {
         },
         relationalFilterConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.RelationalFilterConfiguration,
             traits = {
                 required = true,
             },
         },
-        redshiftCredentialConfiguration = {
-            type = "structure",
-        },
-        redshiftStorage = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        redshiftCredentialConfiguration = M.RedshiftCredentialConfiguration,
+        redshiftStorage = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RedshiftStorage }),
     },
 }
 
@@ -5320,8 +5009,8 @@ M.SageMakerRunConfigurationOutput = {
         },
         trackingAssets = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
             traits = {
                 required = true,
             },
@@ -5332,15 +5021,9 @@ M.SageMakerRunConfigurationOutput = {
 M.DataSourceConfigurationOutput = {
     type = "union",
     members = {
-        glueRunConfiguration = {
-            type = "structure",
-        },
-        redshiftRunConfiguration = {
-            type = "structure",
-        },
-        sageMakerRunConfiguration = {
-            type = "structure",
-        },
+        glueRunConfiguration = M.GlueRunConfigurationOutput,
+        redshiftRunConfiguration = M.RedshiftRunConfigurationOutput,
+        sageMakerRunConfiguration = M.SageMakerRunConfigurationOutput,
     },
 }
 
@@ -5430,12 +5113,8 @@ M.CreateDataSourceOutput = {
         connectionId = {
             type = "string",
         },
-        configuration = {
-            type = "union",
-        },
-        recommendation = {
-            type = "structure",
-        },
+        configuration = M.DataSourceConfigurationOutput,
+        recommendation = M.RecommendationConfiguration,
         enableSetting = {
             type = "string",
         },
@@ -5444,23 +5123,17 @@ M.CreateDataSourceOutput = {
         },
         assetFormsOutput = {
             type = "list",
-            member_type = "structure",
+            member = M.FormOutput,
         },
-        schedule = {
-            type = "structure",
-        },
+        schedule = M.ScheduleConfiguration,
         lastRunStatus = {
             type = "string",
         },
         lastRunAt = {
             type = "timestamp",
         },
-        lastRunErrorMessage = {
-            type = "structure",
-        },
-        errorMessage = {
-            type = "structure",
-        },
+        lastRunErrorMessage = M.DataSourceErrorMessage,
+        errorMessage = M.DataSourceErrorMessage,
         createdAt = {
             type = "timestamp",
         },
@@ -5507,9 +5180,7 @@ M.CreateDomainInput = {
         description = {
             type = "string",
         },
-        singleSignOn = {
-            type = "structure",
-        },
+        singleSignOn = M.SingleSignOn,
         domainExecutionRole = {
             type = "string",
         },
@@ -5518,8 +5189,8 @@ M.CreateDomainInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         domainVersion = {
             type = "string",
@@ -5560,9 +5231,7 @@ M.CreateDomainOutput = {
         description = {
             type = "string",
         },
-        singleSignOn = {
-            type = "structure",
-        },
+        singleSignOn = M.SingleSignOn,
         domainExecutionRole = {
             type = "string",
         },
@@ -5580,8 +5249,8 @@ M.CreateDomainOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         domainVersion = {
             type = "string",
@@ -5644,12 +5313,8 @@ M.DomainUnitUserProperties = {
 M.DomainUnitOwnerProperties = {
     type = "union",
     members = {
-        user = {
-            type = "structure",
-        },
-        group = {
-            type = "structure",
-        },
+        user = M.DomainUnitUserProperties,
+        group = M.DomainUnitGroupProperties,
     },
 }
 
@@ -5682,14 +5347,14 @@ M.CreateDomainUnitOutput = {
         },
         owners = {
             type = "list",
-            member_type = "union",
+            member = M.DomainUnitOwnerProperties,
             traits = {
                 required = true,
             },
         },
         ancestorDomainUnitIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -5745,11 +5410,11 @@ M.CreateEnvironmentInput = {
         },
         userParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentParameter,
         },
         glossaryTerms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         environmentAccountIdentifier = {
             type = "string",
@@ -5761,7 +5426,7 @@ M.CreateEnvironmentInput = {
             type = "string",
         },
         deploymentOrder = {
-            type = "number",
+            type = "integer",
         },
         environmentConfigurationId = {
             type = "string",
@@ -5776,10 +5441,10 @@ M.DeploymentProperties = {
     type = "structure",
     members = {
         startTimeoutMinutes = {
-            type = "number",
+            type = "integer",
         },
         endTimeoutMinutes = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5824,12 +5489,10 @@ M.Deployment = {
         deploymentStatus = {
             type = "string",
         },
-        failureReason = {
-            type = "structure",
-        },
+        failureReason = M.EnvironmentError,
         messages = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         isDeploymentComplete = {
             type = "boolean",
@@ -5864,9 +5527,7 @@ M.Resource = {
 M.ProvisioningProperties = {
     type = "union",
     members = {
-        cloudFormation = {
-            type = "structure",
-        },
+        cloudFormation = M.CloudFormationProperties,
     },
 }
 
@@ -5966,6 +5627,9 @@ M.CreateEnvironmentOutput = {
         },
         environmentProfileId = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
         awsAccountId = {
             type = "string",
@@ -5981,32 +5645,26 @@ M.CreateEnvironmentOutput = {
         },
         provisionedResources = {
             type = "list",
-            member_type = "structure",
+            member = M.Resource,
         },
         status = {
             type = "string",
         },
         environmentActions = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigurableEnvironmentAction,
         },
         glossaryTerms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         userParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomParameter,
         },
-        lastDeployment = {
-            type = "structure",
-        },
-        provisioningProperties = {
-            type = "union",
-        },
-        deploymentProperties = {
-            type = "structure",
-        },
+        lastDeployment = M.Deployment,
+        provisioningProperties = M.ProvisioningProperties,
+        deploymentProperties = M.DeploymentProperties,
         environmentBlueprintId = {
             type = "string",
         },
@@ -6042,12 +5700,9 @@ M.CreateEnvironmentActionInput = {
                 required = true,
             },
         },
-        parameters = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        parameters = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActionParameters }),
         description = {
             type = "string",
         },
@@ -6081,12 +5736,9 @@ M.CreateEnvironmentActionOutput = {
                 required = true,
             },
         },
-        parameters = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        parameters = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActionParameters }),
         description = {
             type = "string",
         },
@@ -6112,15 +5764,12 @@ M.CreateEnvironmentBlueprintInput = {
         description = {
             type = "string",
         },
-        provisioningProperties = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        provisioningProperties = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProvisioningProperties }),
         userParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomParameter,
         },
     },
 }
@@ -6149,22 +5798,17 @@ M.CreateEnvironmentBlueprintOutput = {
                 required = true,
             },
         },
-        provisioningProperties = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        deploymentProperties = {
-            type = "structure",
-        },
+        provisioningProperties = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProvisioningProperties }),
+        deploymentProperties = M.DeploymentProperties,
         userParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomParameter,
         },
         glossaryTerms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         createdAt = {
             type = "timestamp",
@@ -6214,7 +5858,7 @@ M.CreateEnvironmentProfileInput = {
         },
         userParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentParameter,
         },
         awsAccountId = {
             type = "string",
@@ -6284,7 +5928,7 @@ M.CreateEnvironmentProfileOutput = {
         },
         userParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomParameter,
         },
     },
 }
@@ -6319,12 +5963,9 @@ M.CreateFormTypeInput = {
                 required = true,
             },
         },
-        model = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        model = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Model }),
         owningProjectIdentifier = {
             type = "string",
             traits = {
@@ -6415,7 +6056,7 @@ M.CreateGlossaryInput = {
         },
         usageRestrictions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         clientToken = {
             type = "string",
@@ -6458,7 +6099,7 @@ M.CreateGlossaryOutput = {
         },
         usageRestrictions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -6473,11 +6114,11 @@ M.TermRelations = {
     members = {
         isA = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         classifies = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -6513,9 +6154,7 @@ M.CreateGlossaryTermInput = {
         longDescription = {
             type = "string",
         },
-        termRelations = {
-            type = "structure",
-        },
+        termRelations = M.TermRelations,
         clientToken = {
             type = "string",
         },
@@ -6561,12 +6200,10 @@ M.CreateGlossaryTermOutput = {
         longDescription = {
             type = "string",
         },
-        termRelations = {
-            type = "structure",
-        },
+        termRelations = M.TermRelations,
         usageRestrictions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -6711,12 +6348,9 @@ M.Member = {
 M.ProjectMembershipAssignment = {
     type = "structure",
     members = {
-        member = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        member = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Member }),
         designation = {
             type = "string",
             traits = {
@@ -6753,15 +6387,13 @@ M.EnvironmentConfigurationUserParameter = {
         environmentId = {
             type = "string",
         },
-        environmentResolvedAccount = {
-            type = "structure",
-        },
+        environmentResolvedAccount = M.EnvironmentResolvedAccount,
         environmentConfigurationName = {
             type = "string",
         },
         environmentParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentParameter,
         },
     },
 }
@@ -6787,12 +6419,12 @@ M.CreateProjectInput = {
         },
         resourceTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         glossaryTerms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         domainUnitId = {
             type = "string",
@@ -6802,7 +6434,7 @@ M.CreateProjectInput = {
         },
         userParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentConfigurationUserParameter,
         },
         projectCategory = {
             type = "string",
@@ -6812,7 +6444,7 @@ M.CreateProjectInput = {
         },
         membershipAssignments = {
             type = "list",
-            member_type = "structure",
+            member = M.ProjectMembershipAssignment,
         },
     },
 }
@@ -6833,8 +6465,8 @@ M.EnvironmentDeploymentDetails = {
         },
         environmentFailureReasons = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
     },
 }
@@ -6918,7 +6550,7 @@ M.CreateProjectOutput = {
         },
         failureReasons = {
             type = "list",
-            member_type = "structure",
+            member = M.ProjectDeletionError,
         },
         createdBy = {
             type = "string",
@@ -6940,11 +6572,11 @@ M.CreateProjectOutput = {
         },
         resourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
         },
         glossaryTerms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         domainUnitId = {
             type = "string",
@@ -6954,11 +6586,9 @@ M.CreateProjectOutput = {
         },
         userParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentConfigurationUserParameter,
         },
-        environmentDeploymentDetails = {
-            type = "structure",
-        },
+        environmentDeploymentDetails = M.EnvironmentDeploymentDetails,
         projectCategory = {
             type = "string",
         },
@@ -6982,12 +6612,9 @@ M.CreateProjectMembershipInput = {
                 required = true,
             },
         },
-        member = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        member = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Member }),
         designation = {
             type = "string",
             traits = {
@@ -7036,11 +6663,11 @@ M.EnvironmentConfigurationParametersDetails = {
         },
         parameterOverrides = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentConfigurationParameter,
         },
         resolvedParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentConfigurationParameter,
         },
     },
 }
@@ -7074,21 +6701,15 @@ M.EnvironmentConfiguration = {
         deploymentMode = {
             type = "string",
         },
-        configurationParameters = {
-            type = "structure",
-        },
-        awsAccount = {
-            type = "union",
-        },
+        configurationParameters = M.EnvironmentConfigurationParametersDetails,
+        awsAccount = M.AwsAccount,
         accountPools = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        awsRegion = {
-            type = "union",
-        },
+        awsRegion = M.Region,
         deploymentOrder = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -7146,7 +6767,7 @@ M.CreateProjectProfileInput = {
         },
         projectResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTagParameter,
         },
         allowCustomProjectResourceTags = {
             type = "boolean",
@@ -7156,7 +6777,7 @@ M.CreateProjectProfileInput = {
         },
         environmentConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentConfiguration,
         },
         domainUnitIdentifier = {
             type = "string",
@@ -7193,7 +6814,7 @@ M.CreateProjectProfileOutput = {
         },
         projectResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTagParameter,
         },
         allowCustomProjectResourceTags = {
             type = "boolean",
@@ -7203,7 +6824,7 @@ M.CreateProjectProfileOutput = {
         },
         environmentConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentConfiguration,
         },
         createdBy = {
             type = "string",
@@ -7239,7 +6860,7 @@ M.GlossaryTermEnforcementDetail = {
     members = {
         requiredGlossaryTermIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -7267,7 +6888,7 @@ M.MetadataFormEnforcementDetail = {
     members = {
         requiredMetadataForms = {
             type = "list",
-            member_type = "structure",
+            member = M.MetadataFormReference,
         },
     },
 }
@@ -7275,12 +6896,8 @@ M.MetadataFormEnforcementDetail = {
 M.RuleDetail = {
     type = "union",
     members = {
-        metadataFormEnforcementDetail = {
-            type = "structure",
-        },
-        glossaryTermEnforcementDetail = {
-            type = "structure",
-        },
+        metadataFormEnforcementDetail = M.MetadataFormEnforcementDetail,
+        glossaryTermEnforcementDetail = M.GlossaryTermEnforcementDetail,
     },
 }
 
@@ -7295,7 +6912,7 @@ M.ProjectsForRule = {
         },
         specificProjects = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -7303,15 +6920,11 @@ M.ProjectsForRule = {
 M.RuleScope = {
     type = "structure",
     members = {
-        assetType = {
-            type = "structure",
-        },
+        assetType = M.AssetTypesForRule,
         dataProduct = {
             type = "boolean",
         },
-        project = {
-            type = "structure",
-        },
+        project = M.ProjectsForRule,
     },
 }
 
@@ -7333,9 +6946,7 @@ M.DomainUnitTarget = {
 M.RuleTarget = {
     type = "union",
     members = {
-        domainUnitTarget = {
-            type = "structure",
-        },
+        domainUnitTarget = M.DomainUnitTarget,
     },
 }
 
@@ -7355,30 +6966,21 @@ M.CreateRuleInput = {
                 required = true,
             },
         },
-        target = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        target = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RuleTarget }),
         action = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        scope = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        detail = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        scope = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RuleScope }),
+        detail = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RuleDetail }),
         description = {
             type = "string",
         },
@@ -7418,30 +7020,21 @@ M.CreateRuleOutput = {
                 required = true,
             },
         },
-        target = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        target = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RuleTarget }),
         action = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        scope = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        detail = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        scope = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RuleScope }),
+        detail = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RuleDetail }),
         targetType = {
             type = "string",
         },
@@ -7484,9 +7077,7 @@ M.ListingRevisionInput = {
 M.GrantedEntityInput = {
     type = "union",
     members = {
-        listing = {
-            type = "structure",
-        },
+        listing = M.ListingRevisionInput,
     },
 }
 
@@ -7509,15 +7100,12 @@ M.CreateSubscriptionGrantInput = {
         subscriptionTargetIdentifier = {
             type = "string",
         },
-        grantedEntity = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        grantedEntity = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.GrantedEntityInput }),
         assetTargetNames = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetTargetNameMap,
         },
         clientToken = {
             type = "string",
@@ -7569,21 +7157,15 @@ M.SubscribedAsset = {
         targetName = {
             type = "string",
         },
-        failureCause = {
-            type = "structure",
-        },
+        failureCause = M.FailureCause,
         grantedTimestamp = {
             type = "timestamp",
         },
         failureTimestamp = {
             type = "timestamp",
         },
-        assetScope = {
-            type = "structure",
-        },
-        permissions = {
-            type = "union",
-        },
+        assetScope = M.AssetScope,
+        permissions = M.Permissions,
     },
 }
 
@@ -7608,9 +7190,7 @@ M.ListingRevision = {
 M.GrantedEntity = {
     type = "union",
     members = {
-        listing = {
-            type = "structure",
-        },
+        listing = M.ListingRevision,
     },
 }
 
@@ -7669,12 +7249,9 @@ M.CreateSubscriptionGrantOutput = {
                 required = true,
             },
         },
-        grantedEntity = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        grantedEntity = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.GrantedEntity }),
         status = {
             type = "string",
             traits = {
@@ -7683,7 +7260,7 @@ M.CreateSubscriptionGrantOutput = {
         },
         assets = {
             type = "list",
-            member_type = "structure",
+            member = M.SubscribedAsset,
         },
         subscriptionId = {
             type = "string",
@@ -7742,18 +7319,10 @@ M.SubscribedUserInput = {
 M.SubscribedPrincipalInput = {
     type = "union",
     members = {
-        project = {
-            type = "structure",
-        },
-        user = {
-            type = "structure",
-        },
-        group = {
-            type = "structure",
-        },
-        iam = {
-            type = "structure",
-        },
+        project = M.SubscribedProjectInput,
+        user = M.SubscribedUserInput,
+        group = M.SubscribedGroupInput,
+        iam = M.SubscribedIamPrincipalInput,
     },
 }
 
@@ -7769,14 +7338,14 @@ M.CreateSubscriptionRequestInput = {
         },
         subscribedPrincipals = {
             type = "list",
-            member_type = "union",
+            member = M.SubscribedPrincipalInput,
             traits = {
                 required = true,
             },
         },
         subscribedListings = {
             type = "list",
-            member_type = "structure",
+            member = M.SubscribedListingInput,
             traits = {
                 required = true,
             },
@@ -7792,15 +7361,15 @@ M.CreateSubscriptionRequestInput = {
         },
         metadataForms = {
             type = "list",
-            member_type = "structure",
+            member = M.FormInput,
         },
         assetPermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetPermission,
         },
         assetScopes = {
             type = "list",
-            member_type = "structure",
+            member = M.AcceptedAssetScope,
         },
     },
 }
@@ -7855,14 +7424,14 @@ M.CreateSubscriptionRequestOutput = {
         },
         subscribedPrincipals = {
             type = "list",
-            member_type = "union",
+            member = M.SubscribedPrincipal,
             traits = {
                 required = true,
             },
         },
         subscribedListings = {
             type = "list",
-            member_type = "structure",
+            member = M.SubscribedListing,
             traits = {
                 required = true,
             },
@@ -7878,7 +7447,7 @@ M.CreateSubscriptionRequestOutput = {
         },
         metadataForms = {
             type = "list",
-            member_type = "structure",
+            member = M.FormOutput,
         },
     },
 }
@@ -7937,14 +7506,14 @@ M.CreateSubscriptionTargetInput = {
         },
         subscriptionTargetConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.SubscriptionTargetForm,
             traits = {
                 required = true,
             },
         },
         authorizedPrincipals = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -7957,7 +7526,7 @@ M.CreateSubscriptionTargetInput = {
         },
         applicableAssetTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -7985,7 +7554,7 @@ M.CreateSubscriptionTargetOutput = {
         },
         authorizedPrincipals = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -8043,14 +7612,14 @@ M.CreateSubscriptionTargetOutput = {
         },
         applicableAssetTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         subscriptionTargetConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.SubscriptionTargetForm,
             traits = {
                 required = true,
             },
@@ -8129,9 +7698,7 @@ M.CreateUserProfileOutput = {
         status = {
             type = "string",
         },
-        details = {
-            type = "union",
-        },
+        details = M.UserProfileDetails,
     },
 }
 
@@ -8232,6 +7799,7 @@ M.GetDataProductOutput = {
         status = {
             type = "string",
             traits = {
+                default = "CREATED",
                 required = true,
             },
         },
@@ -8240,15 +7808,15 @@ M.GetDataProductOutput = {
         },
         glossaryTerms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.DataProductItem,
         },
         formsOutput = {
             type = "list",
-            member_type = "structure",
+            member = M.FormOutput,
         },
         createdAt = {
             type = "timestamp",
@@ -8270,7 +7838,7 @@ M.DataProductItemAdditionalAttributes = {
     members = {
         matchRationale = {
             type = "list",
-            member_type = "union",
+            member = M.MatchRationaleItem,
         },
     },
 }
@@ -8286,7 +7854,7 @@ M.ListingSummary = {
         },
         glossaryTerms = {
             type = "list",
-            member_type = "structure",
+            member = M.DetailedGlossaryTerm,
         },
     },
 }
@@ -8308,14 +7876,14 @@ M.DataProductListing = {
         },
         glossaryTerms = {
             type = "list",
-            member_type = "structure",
+            member = M.DetailedGlossaryTerm,
         },
         owningProjectId = {
             type = "string",
         },
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.ListingSummary,
         },
     },
 }
@@ -8328,7 +7896,7 @@ M.DataProductListingItemAdditionalAttributes = {
         },
         matchRationale = {
             type = "list",
-            member_type = "union",
+            member = M.MatchRationaleItem,
         },
     },
 }
@@ -8344,7 +7912,7 @@ M.ListingSummaryItem = {
         },
         glossaryTerms = {
             type = "list",
-            member_type = "structure",
+            member = M.DetailedGlossaryTerm,
         },
     },
 }
@@ -8381,17 +7949,15 @@ M.DataProductListingItem = {
         },
         glossaryTerms = {
             type = "list",
-            member_type = "structure",
+            member = M.DetailedGlossaryTerm,
         },
         owningProjectId = {
             type = "string",
         },
-        additionalAttributes = {
-            type = "structure",
-        },
+        additionalAttributes = M.DataProductListingItemAdditionalAttributes,
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.ListingSummaryItem,
         },
     },
 }
@@ -8428,7 +7994,7 @@ M.DataProductResultItem = {
         },
         glossaryTerms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         createdAt = {
             type = "timestamp",
@@ -8442,9 +8008,7 @@ M.DataProductResultItem = {
         firstRevisionCreatedBy = {
             type = "string",
         },
-        additionalAttributes = {
-            type = "structure",
-        },
+        additionalAttributes = M.DataProductItemAdditionalAttributes,
     },
 }
 
@@ -8540,7 +8104,7 @@ M.GlueSelfGrantStatusOutput = {
     members = {
         selfGrantStatusDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.SelfGrantStatusDetail,
             traits = {
                 required = true,
             },
@@ -8553,7 +8117,7 @@ M.RedshiftSelfGrantStatusOutput = {
     members = {
         selfGrantStatusDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.SelfGrantStatusDetail,
             traits = {
                 required = true,
             },
@@ -8564,12 +8128,8 @@ M.RedshiftSelfGrantStatusOutput = {
 M.SelfGrantStatusOutput = {
     type = "union",
     members = {
-        glueSelfGrantStatus = {
-            type = "structure",
-        },
-        redshiftSelfGrantStatus = {
-            type = "structure",
-        },
+        glueSelfGrantStatus = M.GlueSelfGrantStatusOutput,
+        redshiftSelfGrantStatus = M.RedshiftSelfGrantStatusOutput,
     },
 }
 
@@ -8615,9 +8175,7 @@ M.DeleteDataSourceOutput = {
         connectionId = {
             type = "string",
         },
-        configuration = {
-            type = "union",
-        },
+        configuration = M.DataSourceConfigurationOutput,
         enableSetting = {
             type = "string",
         },
@@ -8626,32 +8184,24 @@ M.DeleteDataSourceOutput = {
         },
         assetFormsOutput = {
             type = "list",
-            member_type = "structure",
+            member = M.FormOutput,
         },
-        schedule = {
-            type = "structure",
-        },
+        schedule = M.ScheduleConfiguration,
         lastRunStatus = {
             type = "string",
         },
         lastRunAt = {
             type = "timestamp",
         },
-        lastRunErrorMessage = {
-            type = "structure",
-        },
-        errorMessage = {
-            type = "structure",
-        },
+        lastRunErrorMessage = M.DataSourceErrorMessage,
+        errorMessage = M.DataSourceErrorMessage,
         createdAt = {
             type = "timestamp",
         },
         updatedAt = {
             type = "timestamp",
         },
-        selfGrantStatus = {
-            type = "union",
-        },
+        selfGrantStatus = M.SelfGrantStatusOutput,
         retainPermissionsOnRevokeFailure = {
             type = "boolean",
         },
@@ -8720,12 +8270,8 @@ M.GetDataSourceOutput = {
         connectionId = {
             type = "string",
         },
-        configuration = {
-            type = "union",
-        },
-        recommendation = {
-            type = "structure",
-        },
+        configuration = M.DataSourceConfigurationOutput,
+        recommendation = M.RecommendationConfiguration,
         enableSetting = {
             type = "string",
         },
@@ -8734,35 +8280,27 @@ M.GetDataSourceOutput = {
         },
         assetFormsOutput = {
             type = "list",
-            member_type = "structure",
+            member = M.FormOutput,
         },
-        schedule = {
-            type = "structure",
-        },
+        schedule = M.ScheduleConfiguration,
         lastRunStatus = {
             type = "string",
         },
         lastRunAt = {
             type = "timestamp",
         },
-        lastRunErrorMessage = {
-            type = "structure",
-        },
+        lastRunErrorMessage = M.DataSourceErrorMessage,
         lastRunAssetCount = {
-            type = "number",
+            type = "integer",
         },
-        errorMessage = {
-            type = "structure",
-        },
+        errorMessage = M.DataSourceErrorMessage,
         createdAt = {
             type = "timestamp",
         },
         updatedAt = {
             type = "timestamp",
         },
-        selfGrantStatus = {
-            type = "union",
-        },
+        selfGrantStatus = M.SelfGrantStatusOutput,
     },
 }
 
@@ -8820,7 +8358,7 @@ M.ListDataSourcesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -8870,20 +8408,16 @@ M.DataSourceSummary = {
         enableSetting = {
             type = "string",
         },
-        schedule = {
-            type = "structure",
-        },
+        schedule = M.ScheduleConfiguration,
         lastRunStatus = {
             type = "string",
         },
         lastRunAt = {
             type = "timestamp",
         },
-        lastRunErrorMessage = {
-            type = "structure",
-        },
+        lastRunErrorMessage = M.DataSourceErrorMessage,
         lastRunAssetCount = {
-            type = "number",
+            type = "integer",
         },
         createdAt = {
             type = "timestamp",
@@ -8902,7 +8436,7 @@ M.ListDataSourcesOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceSummary,
             traits = {
                 required = true,
             },
@@ -8944,17 +8478,11 @@ M.UpdateDataSourceInput = {
         },
         assetFormsInput = {
             type = "list",
-            member_type = "structure",
+            member = M.FormInput,
         },
-        schedule = {
-            type = "structure",
-        },
-        configuration = {
-            type = "union",
-        },
-        recommendation = {
-            type = "structure",
-        },
+        schedule = M.ScheduleConfiguration,
+        configuration = M.DataSourceConfigurationInput,
+        recommendation = M.RecommendationConfiguration,
         retainPermissionsOnRevokeFailure = {
             type = "boolean",
         },
@@ -9003,12 +8531,8 @@ M.UpdateDataSourceOutput = {
         connectionId = {
             type = "string",
         },
-        configuration = {
-            type = "union",
-        },
-        recommendation = {
-            type = "structure",
-        },
+        configuration = M.DataSourceConfigurationOutput,
+        recommendation = M.RecommendationConfiguration,
         enableSetting = {
             type = "string",
         },
@@ -9017,32 +8541,24 @@ M.UpdateDataSourceOutput = {
         },
         assetFormsOutput = {
             type = "list",
-            member_type = "structure",
+            member = M.FormOutput,
         },
-        schedule = {
-            type = "structure",
-        },
+        schedule = M.ScheduleConfiguration,
         lastRunStatus = {
             type = "string",
         },
         lastRunAt = {
             type = "timestamp",
         },
-        lastRunErrorMessage = {
-            type = "structure",
-        },
-        errorMessage = {
-            type = "structure",
-        },
+        lastRunErrorMessage = M.DataSourceErrorMessage,
+        errorMessage = M.DataSourceErrorMessage,
         createdAt = {
             type = "timestamp",
         },
         updatedAt = {
             type = "timestamp",
         },
-        selfGrantStatus = {
-            type = "union",
-        },
+        selfGrantStatus = M.SelfGrantStatusOutput,
         retainPermissionsOnRevokeFailure = {
             type = "boolean",
         },
@@ -9094,19 +8610,19 @@ M.RunStatisticsForAssets = {
     type = "structure",
     members = {
         added = {
-            type = "number",
+            type = "integer",
         },
         updated = {
-            type = "number",
+            type = "integer",
         },
         unchanged = {
-            type = "number",
+            type = "integer",
         },
         skipped = {
-            type = "number",
+            type = "integer",
         },
         failed = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -9153,15 +8669,9 @@ M.GetDataSourceRunOutput = {
         dataSourceConfigurationSnapshot = {
             type = "string",
         },
-        runStatisticsForAssets = {
-            type = "structure",
-        },
-        lineageSummary = {
-            type = "structure",
-        },
-        errorMessage = {
-            type = "structure",
-        },
+        runStatisticsForAssets = M.RunStatisticsForAssets,
+        lineageSummary = M.DataSourceRunLineageSummary,
+        errorMessage = M.DataSourceErrorMessage,
         createdAt = {
             type = "timestamp",
             traits = {
@@ -9213,7 +8723,7 @@ M.ListDataSourceRunsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -9254,12 +8764,8 @@ M.DataSourceRunSummary = {
                 required = true,
             },
         },
-        runStatisticsForAssets = {
-            type = "structure",
-        },
-        errorMessage = {
-            type = "structure",
-        },
+        runStatisticsForAssets = M.RunStatisticsForAssets,
+        errorMessage = M.DataSourceErrorMessage,
         createdAt = {
             type = "timestamp",
             traits = {
@@ -9278,9 +8784,7 @@ M.DataSourceRunSummary = {
         stoppedAt = {
             type = "timestamp",
         },
-        lineageSummary = {
-            type = "structure",
-        },
+        lineageSummary = M.DataSourceRunLineageSummary,
     },
 }
 
@@ -9289,7 +8793,7 @@ M.ListDataSourceRunsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceRunSummary,
             traits = {
                 required = true,
             },
@@ -9365,12 +8869,8 @@ M.StartDataSourceRunOutput = {
         dataSourceConfigurationSnapshot = {
             type = "string",
         },
-        runStatisticsForAssets = {
-            type = "structure",
-        },
-        errorMessage = {
-            type = "structure",
-        },
+        runStatisticsForAssets = M.RunStatisticsForAssets,
+        errorMessage = M.DataSourceErrorMessage,
         createdAt = {
             type = "timestamp",
             traits = {
@@ -9453,12 +8953,8 @@ M.DataSourceRunActivity = {
         technicalDescription = {
             type = "string",
         },
-        errorMessage = {
-            type = "structure",
-        },
-        lineageSummary = {
-            type = "structure",
-        },
+        errorMessage = M.DataSourceErrorMessage,
+        lineageSummary = M.LineageInfo,
         createdAt = {
             type = "timestamp",
             traits = {
@@ -9725,12 +9221,9 @@ M.DeleteProjectMembershipInput = {
                 required = true,
             },
         },
-        member = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        member = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Member }),
     },
 }
 
@@ -9827,12 +9320,9 @@ M.DeleteSubscriptionGrantOutput = {
                 required = true,
             },
         },
-        grantedEntity = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        grantedEntity = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.GrantedEntity }),
         status = {
             type = "string",
             traits = {
@@ -9841,7 +9331,7 @@ M.DeleteSubscriptionGrantOutput = {
         },
         assets = {
             type = "list",
-            member_type = "structure",
+            member = M.SubscribedAsset,
         },
         subscriptionId = {
             type = "string",
@@ -10010,7 +9500,7 @@ M.DisassociateGovernedTermsInput = {
         },
         governedGlossaryTerms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -10090,9 +9580,7 @@ M.GetDomainOutput = {
         description = {
             type = "string",
         },
-        singleSignOn = {
-            type = "structure",
-        },
+        singleSignOn = M.SingleSignOn,
         domainExecutionRole = {
             type = "string",
             traits = {
@@ -10122,8 +9610,8 @@ M.GetDomainOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         domainVersion = {
             type = "string",
@@ -10144,7 +9632,7 @@ M.ListDomainsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -10217,7 +9705,7 @@ M.ListDomainsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainSummary,
             traits = {
                 required = true,
             },
@@ -10241,9 +9729,7 @@ M.UpdateDomainInput = {
         description = {
             type = "string",
         },
-        singleSignOn = {
-            type = "structure",
-        },
+        singleSignOn = M.SingleSignOn,
         domainExecutionRole = {
             type = "string",
         },
@@ -10277,9 +9763,7 @@ M.UpdateDomainOutput = {
         description = {
             type = "string",
         },
-        singleSignOn = {
-            type = "structure",
-        },
+        singleSignOn = M.SingleSignOn,
         domainExecutionRole = {
             type = "string",
         },
@@ -10368,7 +9852,7 @@ M.GetDomainUnitOutput = {
         },
         owners = {
             type = "list",
-            member_type = "union",
+            member = M.DomainUnitOwnerProperties,
             traits = {
                 required = true,
             },
@@ -10406,7 +9890,7 @@ M.ListDomainUnitsForParentInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -10443,7 +9927,7 @@ M.ListDomainUnitsForParentOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainUnitSummary,
             traits = {
                 required = true,
             },
@@ -10503,7 +9987,7 @@ M.UpdateDomainUnitOutput = {
         },
         owners = {
             type = "list",
-            member_type = "union",
+            member = M.DomainUnitOwnerProperties,
             traits = {
                 required = true,
             },
@@ -10581,7 +10065,7 @@ M.LakeFormationConfiguration = {
         },
         locationRegistrationExcludeS3Locations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -10589,9 +10073,7 @@ M.LakeFormationConfiguration = {
 M.ProvisioningConfiguration = {
     type = "union",
     members = {
-        lakeFormationConfiguration = {
-            type = "structure",
-        },
+        lakeFormationConfiguration = M.LakeFormationConfiguration,
     },
 }
 
@@ -10621,12 +10103,12 @@ M.GetEnvironmentBlueprintConfigurationOutput = {
         },
         enabledRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         regionalParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "map",
+            key = { type = "string" },
+            value = { type = "map" },
         },
         createdAt = {
             type = "timestamp",
@@ -10642,7 +10124,7 @@ M.GetEnvironmentBlueprintConfigurationOutput = {
         },
         provisioningConfigurations = {
             type = "list",
-            member_type = "union",
+            member = M.ProvisioningConfiguration,
         },
     },
 }
@@ -10658,7 +10140,7 @@ M.ListEnvironmentBlueprintConfigurationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -10698,12 +10180,12 @@ M.EnvironmentBlueprintConfigurationItem = {
         },
         enabledRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         regionalParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "map",
+            key = { type = "string" },
+            value = { type = "map" },
         },
         createdAt = {
             type = "timestamp",
@@ -10719,7 +10201,7 @@ M.EnvironmentBlueprintConfigurationItem = {
         },
         provisioningConfigurations = {
             type = "list",
-            member_type = "union",
+            member = M.ProvisioningConfiguration,
         },
     },
 }
@@ -10729,7 +10211,7 @@ M.ListEnvironmentBlueprintConfigurationsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentBlueprintConfigurationItem,
         },
         nextToken = {
             type = "string",
@@ -10765,24 +10247,24 @@ M.PutEnvironmentBlueprintConfigurationInput = {
         },
         enabledRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         regionalParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "map",
+            key = { type = "string" },
+            value = { type = "map" },
         },
         globalParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         provisioningConfigurations = {
             type = "list",
-            member_type = "union",
+            member = M.ProvisioningConfiguration,
         },
     },
 }
@@ -10813,12 +10295,12 @@ M.PutEnvironmentBlueprintConfigurationOutput = {
         },
         enabledRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         regionalParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "map",
+            key = { type = "string" },
+            value = { type = "map" },
         },
         createdAt = {
             type = "timestamp",
@@ -10834,7 +10316,7 @@ M.PutEnvironmentBlueprintConfigurationOutput = {
         },
         provisioningConfigurations = {
             type = "list",
-            member_type = "union",
+            member = M.ProvisioningConfiguration,
         },
     },
 }
@@ -10928,12 +10410,9 @@ M.GetFormTypeOutput = {
                 required = true,
             },
         },
-        model = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        model = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Model }),
         owningProjectId = {
             type = "string",
         },
@@ -10957,7 +10436,7 @@ M.GetFormTypeOutput = {
         },
         imports = {
             type = "list",
-            member_type = "structure",
+            member = M.Import,
         },
     },
 }
@@ -11000,12 +10479,9 @@ M.GetAccountPoolOutput = {
         resolutionStrategy = {
             type = "string",
         },
-        accountSource = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        accountSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AccountSource }),
         createdBy = {
             type = "string",
             traits = {
@@ -11089,12 +10565,10 @@ M.GetConnectionInput = {
 M.GetConnectionOutput = {
     type = "structure",
     members = {
-        connectionCredentials = {
-            type = "structure",
-        },
+        connectionCredentials = M.ConnectionCredentials,
         configurations = {
             type = "list",
-            member_type = "structure",
+            member = M.Configuration,
         },
         connectionId = {
             type = "string",
@@ -11131,7 +10605,7 @@ M.GetConnectionOutput = {
         },
         physicalEndpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.PhysicalEndpoint,
             traits = {
                 required = true,
             },
@@ -11139,9 +10613,7 @@ M.GetConnectionOutput = {
         projectId = {
             type = "string",
         },
-        props = {
-            type = "union",
-        },
+        props = M.ConnectionPropertiesOutput,
         type = {
             type = "string",
             traits = {
@@ -11188,9 +10660,7 @@ M.GetDataExportConfigurationOutput = {
         status = {
             type = "string",
         },
-        encryptionConfiguration = {
-            type = "structure",
-        },
+        encryptionConfiguration = M.EncryptionConfiguration,
         s3TableBucketArn = {
             type = "string",
         },
@@ -11270,6 +10740,9 @@ M.GetEnvironmentOutput = {
         },
         environmentProfileId = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
         awsAccountId = {
             type = "string",
@@ -11285,32 +10758,26 @@ M.GetEnvironmentOutput = {
         },
         provisionedResources = {
             type = "list",
-            member_type = "structure",
+            member = M.Resource,
         },
         status = {
             type = "string",
         },
         environmentActions = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigurableEnvironmentAction,
         },
         glossaryTerms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         userParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomParameter,
         },
-        lastDeployment = {
-            type = "structure",
-        },
-        provisioningProperties = {
-            type = "union",
-        },
-        deploymentProperties = {
-            type = "structure",
-        },
+        lastDeployment = M.Deployment,
+        provisioningProperties = M.ProvisioningProperties,
+        deploymentProperties = M.DeploymentProperties,
         environmentBlueprintId = {
             type = "string",
         },
@@ -11377,12 +10844,9 @@ M.GetEnvironmentActionOutput = {
                 required = true,
             },
         },
-        parameters = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        parameters = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActionParameters }),
         description = {
             type = "string",
         },
@@ -11433,22 +10897,17 @@ M.GetEnvironmentBlueprintOutput = {
                 required = true,
             },
         },
-        provisioningProperties = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        deploymentProperties = {
-            type = "structure",
-        },
+        provisioningProperties = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProvisioningProperties }),
+        deploymentProperties = M.DeploymentProperties,
         userParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomParameter,
         },
         glossaryTerms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         createdAt = {
             type = "timestamp",
@@ -11585,7 +11044,7 @@ M.GetEnvironmentProfileOutput = {
         },
         userParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomParameter,
         },
     },
 }
@@ -11692,14 +11151,14 @@ M.LineageSqlQueryRunDetails = {
             type = "timestamp",
         },
         totalQueriesProcessed = {
-            type = "number",
+            type = "integer",
         },
         numQueriesFailed = {
-            type = "number",
+            type = "integer",
         },
         errorMessages = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -11707,18 +11166,14 @@ M.LineageSqlQueryRunDetails = {
 M.LineageRunDetails = {
     type = "structure",
     members = {
-        sqlQueryRunDetails = {
-            type = "structure",
-        },
+        sqlQueryRunDetails = M.LineageSqlQueryRunDetails,
     },
 }
 
 M.JobRunDetails = {
     type = "union",
     members = {
-        lineageRunDetails = {
-            type = "structure",
-        },
+        lineageRunDetails = M.LineageRunDetails,
     },
 }
 
@@ -11772,15 +11227,11 @@ M.GetJobRunOutput = {
         runMode = {
             type = "string",
         },
-        details = {
-            type = "union",
-        },
+        details = M.JobRunDetails,
         status = {
             type = "string",
         },
-        error = {
-            type = "structure",
-        },
+        error = M.JobRunError,
         createdBy = {
             type = "string",
         },
@@ -11952,15 +11403,15 @@ M.GetLineageNodeOutput = {
         },
         formsOutput = {
             type = "list",
-            member_type = "structure",
+            member = M.FormOutput,
         },
         upstreamNodes = {
             type = "list",
-            member_type = "structure",
+            member = M.LineageNodeReference,
         },
         downstreamNodes = {
             type = "list",
-            member_type = "structure",
+            member = M.LineageNodeReference,
         },
     },
 }
@@ -12014,7 +11465,7 @@ M.GetProjectOutput = {
         },
         failureReasons = {
             type = "list",
-            member_type = "structure",
+            member = M.ProjectDeletionError,
         },
         createdBy = {
             type = "string",
@@ -12036,11 +11487,11 @@ M.GetProjectOutput = {
         },
         resourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
         },
         glossaryTerms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         domainUnitId = {
             type = "string",
@@ -12050,11 +11501,9 @@ M.GetProjectOutput = {
         },
         userParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentConfigurationUserParameter,
         },
-        environmentDeploymentDetails = {
-            type = "structure",
-        },
+        environmentDeploymentDetails = M.EnvironmentDeploymentDetails,
         projectCategory = {
             type = "string",
         },
@@ -12110,7 +11559,7 @@ M.GetProjectProfileOutput = {
         },
         projectResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTagParameter,
         },
         allowCustomProjectResourceTags = {
             type = "boolean",
@@ -12120,7 +11569,7 @@ M.GetProjectProfileOutput = {
         },
         environmentConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentConfiguration,
         },
         createdBy = {
             type = "string",
@@ -12208,18 +11657,12 @@ M.GetSubscriptionOutput = {
                 required = true,
             },
         },
-        subscribedPrincipal = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        subscribedListing = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        subscribedPrincipal = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SubscribedPrincipal }),
+        subscribedListing = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SubscribedListing }),
         subscriptionRequestId = {
             type = "string",
         },
@@ -12294,12 +11737,9 @@ M.GetSubscriptionGrantOutput = {
                 required = true,
             },
         },
-        grantedEntity = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        grantedEntity = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.GrantedEntity }),
         status = {
             type = "string",
             traits = {
@@ -12308,7 +11748,7 @@ M.GetSubscriptionGrantOutput = {
         },
         assets = {
             type = "list",
-            member_type = "structure",
+            member = M.SubscribedAsset,
         },
         subscriptionId = {
             type = "string",
@@ -12386,14 +11826,14 @@ M.GetSubscriptionRequestDetailsOutput = {
         },
         subscribedPrincipals = {
             type = "list",
-            member_type = "union",
+            member = M.SubscribedPrincipal,
             traits = {
                 required = true,
             },
         },
         subscribedListings = {
             type = "list",
-            member_type = "structure",
+            member = M.SubscribedListing,
             traits = {
                 required = true,
             },
@@ -12409,7 +11849,7 @@ M.GetSubscriptionRequestDetailsOutput = {
         },
         metadataForms = {
             type = "list",
-            member_type = "structure",
+            member = M.FormOutput,
         },
     },
 }
@@ -12452,7 +11892,7 @@ M.GetSubscriptionTargetOutput = {
         },
         authorizedPrincipals = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -12510,14 +11950,14 @@ M.GetSubscriptionTargetOutput = {
         },
         applicableAssetTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         subscriptionTargetConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.SubscriptionTargetForm,
             traits = {
                 required = true,
             },
@@ -12623,9 +12063,7 @@ M.GetTimeSeriesDataPointOutput = {
         formName = {
             type = "string",
         },
-        form = {
-            type = "structure",
-        },
+        form = M.TimeSeriesDataPointFormOutput,
     },
 }
 
@@ -12676,9 +12114,7 @@ M.GetUserProfileOutput = {
         status = {
             type = "string",
         },
-        details = {
-            type = "union",
-        },
+        details = M.UserProfileDetails,
     },
 }
 
@@ -12776,7 +12212,7 @@ M.GetGlossaryOutput = {
         },
         usageRestrictions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -12848,7 +12284,7 @@ M.UpdateGlossaryOutput = {
         },
         usageRestrictions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -12930,9 +12366,7 @@ M.GetGlossaryTermOutput = {
         longDescription = {
             type = "string",
         },
-        termRelations = {
-            type = "structure",
-        },
+        termRelations = M.TermRelations,
         status = {
             type = "string",
             traits = {
@@ -12953,7 +12387,7 @@ M.GetGlossaryTermOutput = {
         },
         usageRestrictions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -12987,9 +12421,7 @@ M.UpdateGlossaryTermInput = {
         longDescription = {
             type = "string",
         },
-        termRelations = {
-            type = "structure",
-        },
+        termRelations = M.TermRelations,
         status = {
             type = "string",
         },
@@ -13035,12 +12467,10 @@ M.UpdateGlossaryTermOutput = {
         longDescription = {
             type = "string",
         },
-        termRelations = {
-            type = "structure",
-        },
+        termRelations = M.TermRelations,
         usageRestrictions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -13089,7 +12519,7 @@ M.ListAccountPoolsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -13102,7 +12532,7 @@ M.ListAccountPoolsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.AccountPoolSummary,
         },
         nextToken = {
             type = "string",
@@ -13134,7 +12564,7 @@ M.ListAccountsInAccountPoolInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -13147,7 +12577,7 @@ M.ListAccountsInAccountPoolOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.AccountInfo,
         },
         nextToken = {
             type = "string",
@@ -13185,7 +12615,7 @@ M.ListAssetFiltersInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -13198,7 +12628,7 @@ M.ListAssetFiltersOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetFilterSummary,
             traits = {
                 required = true,
             },
@@ -13233,7 +12663,7 @@ M.ListAssetRevisionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -13246,7 +12676,7 @@ M.ListAssetRevisionsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetRevision,
         },
         nextToken = {
             type = "string",
@@ -13269,7 +12699,7 @@ M.ListConnectionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -13330,7 +12760,7 @@ M.ListConnectionsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.ConnectionSummary,
             traits = {
                 required = true,
             },
@@ -13359,7 +12789,7 @@ M.ListDataProductRevisionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -13378,7 +12808,7 @@ M.ListDataProductRevisionsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.DataProductRevision,
             traits = {
                 required = true,
             },
@@ -13419,7 +12849,7 @@ M.ListDataSourceRunActivitiesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -13432,7 +12862,7 @@ M.ListDataSourceRunActivitiesOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceRunActivity,
             traits = {
                 required = true,
             },
@@ -13468,7 +12898,7 @@ M.ListEntityOwnersInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -13503,12 +12933,8 @@ M.OwnerUserPropertiesOutput = {
 M.OwnerPropertiesOutput = {
     type = "union",
     members = {
-        user = {
-            type = "structure",
-        },
-        group = {
-            type = "structure",
-        },
+        user = M.OwnerUserPropertiesOutput,
+        group = M.OwnerGroupPropertiesOutput,
     },
 }
 
@@ -13517,7 +12943,7 @@ M.ListEntityOwnersOutput = {
     members = {
         owners = {
             type = "list",
-            member_type = "union",
+            member = M.OwnerPropertiesOutput,
             traits = {
                 required = true,
             },
@@ -13552,7 +12978,7 @@ M.ListEnvironmentActionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -13587,12 +13013,9 @@ M.EnvironmentActionSummary = {
                 required = true,
             },
         },
-        parameters = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        parameters = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActionParameters }),
         description = {
             type = "string",
         },
@@ -13604,7 +13027,7 @@ M.ListEnvironmentActionsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentActionSummary,
         },
         nextToken = {
             type = "string",
@@ -13623,7 +13046,7 @@ M.ListEnvironmentBlueprintsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -13673,12 +13096,9 @@ M.EnvironmentBlueprintSummary = {
                 required = true,
             },
         },
-        provisioningProperties = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        provisioningProperties = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProvisioningProperties }),
         createdAt = {
             type = "timestamp",
             traits = {
@@ -13699,7 +13119,7 @@ M.ListEnvironmentBlueprintsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentBlueprintSummary,
             traits = {
                 required = true,
             },
@@ -13757,7 +13177,7 @@ M.ListEnvironmentProfilesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -13830,7 +13250,7 @@ M.ListEnvironmentProfilesOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentProfileSummary,
             traits = {
                 required = true,
             },
@@ -13901,7 +13321,7 @@ M.ListEnvironmentsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -13962,6 +13382,9 @@ M.EnvironmentSummary = {
         },
         environmentProfileId = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
         awsAccountId = {
             type = "string",
@@ -13992,7 +13415,7 @@ M.ListEnvironmentsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentSummary,
             traits = {
                 required = true,
             },
@@ -14047,6 +13470,7 @@ M.GetListingInput = {
         listingRevision = {
             type = "string",
             traits = {
+                default = "latest",
                 http_query = "listingRevision",
             },
         },
@@ -14056,12 +13480,8 @@ M.GetListingInput = {
 M.ListingItem = {
     type = "union",
     members = {
-        assetListing = {
-            type = "structure",
-        },
-        dataProductListing = {
-            type = "structure",
-        },
+        assetListing = M.AssetListing,
+        dataProductListing = M.DataProductListing,
     },
 }
 
@@ -14098,9 +13518,7 @@ M.GetListingOutput = {
         updatedBy = {
             type = "string",
         },
-        item = {
-            type = "union",
-        },
+        item = M.ListingItem,
         name = {
             type = "string",
         },
@@ -14149,7 +13567,7 @@ M.ListJobRunsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -14178,9 +13596,7 @@ M.JobRunSummary = {
         status = {
             type = "string",
         },
-        error = {
-            type = "structure",
-        },
+        error = M.JobRunError,
         createdBy = {
             type = "string",
         },
@@ -14201,7 +13617,7 @@ M.ListJobRunsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.JobRunSummary,
         },
         nextToken = {
             type = "string",
@@ -14220,7 +13636,7 @@ M.ListLineageEventsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -14288,16 +13704,14 @@ M.OpenLineageRunEventSummary = {
         runId = {
             type = "string",
         },
-        job = {
-            type = "structure",
-        },
+        job = M.NameIdentifier,
         inputs = {
             type = "list",
-            member_type = "structure",
+            member = M.NameIdentifier,
         },
         outputs = {
             type = "list",
-            member_type = "structure",
+            member = M.NameIdentifier,
         },
     },
 }
@@ -14305,9 +13719,7 @@ M.OpenLineageRunEventSummary = {
 M.EventSummary = {
     type = "union",
     members = {
-        openLineageRunEventSummary = {
-            type = "structure",
-        },
+        openLineageRunEventSummary = M.OpenLineageRunEventSummary,
     },
 }
 
@@ -14326,9 +13738,7 @@ M.LineageEventSummary = {
         eventTime = {
             type = "timestamp",
         },
-        eventSummary = {
-            type = "union",
-        },
+        eventSummary = M.EventSummary,
         createdBy = {
             type = "string",
         },
@@ -14343,7 +13753,7 @@ M.ListLineageEventsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.LineageEventSummary,
         },
         nextToken = {
             type = "string",
@@ -14367,7 +13777,7 @@ M.ListLineageNodeHistoryInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -14468,7 +13878,7 @@ M.ListLineageNodeHistoryOutput = {
     members = {
         nodes = {
             type = "list",
-            member_type = "structure",
+            member = M.LineageNodeSummary,
         },
         nextToken = {
             type = "string",
@@ -14517,7 +13927,7 @@ M.ListNotificationsInput = {
         },
         subjects = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "subjects",
             },
@@ -14529,7 +13939,7 @@ M.ListNotificationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -14585,12 +13995,9 @@ M.Topic = {
                 required = true,
             },
         },
-        resource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        resource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.NotificationResource }),
         role = {
             type = "string",
             traits = {
@@ -14621,12 +14028,9 @@ M.NotificationOutput = {
                 required = true,
             },
         },
-        topic = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        topic = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Topic }),
         title = {
             type = "string",
             traits = {
@@ -14662,8 +14066,8 @@ M.NotificationOutput = {
         },
         metadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -14673,7 +14077,7 @@ M.ListNotificationsOutput = {
     members = {
         notifications = {
             type = "list",
-            member_type = "structure",
+            member = M.NotificationOutput,
         },
         nextToken = {
             type = "string",
@@ -14713,7 +14117,7 @@ M.ListPolicyGrantsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -14730,12 +14134,8 @@ M.ListPolicyGrantsInput = {
 M.PolicyGrantMember = {
     type = "structure",
     members = {
-        principal = {
-            type = "union",
-        },
-        detail = {
-            type = "union",
-        },
+        principal = M.PolicyGrantPrincipal,
+        detail = M.PolicyGrantDetail,
         createdAt = {
             type = "timestamp",
         },
@@ -14753,7 +14153,7 @@ M.ListPolicyGrantsOutput = {
     members = {
         grantList = {
             type = "list",
-            member_type = "structure",
+            member = M.PolicyGrantMember,
             traits = {
                 required = true,
             },
@@ -14804,7 +14204,7 @@ M.ListProjectMembershipsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -14839,24 +14239,17 @@ M.UserDetails = {
 M.MemberDetails = {
     type = "union",
     members = {
-        user = {
-            type = "structure",
-        },
-        group = {
-            type = "structure",
-        },
+        user = M.UserDetails,
+        group = M.GroupDetails,
     },
 }
 
 M.ProjectMember = {
     type = "structure",
     members = {
-        memberDetails = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        memberDetails = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MemberDetails }),
         designation = {
             type = "string",
             traits = {
@@ -14871,7 +14264,7 @@ M.ListProjectMembershipsOutput = {
     members = {
         members = {
             type = "list",
-            member_type = "structure",
+            member = M.ProjectMember,
             traits = {
                 required = true,
             },
@@ -14917,7 +14310,7 @@ M.ListProjectProfilesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -14981,7 +14374,7 @@ M.ListProjectProfilesOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.ProjectProfileSummary,
         },
         nextToken = {
             type = "string",
@@ -15030,7 +14423,7 @@ M.ListProjectsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -15067,7 +14460,7 @@ M.ProjectSummary = {
         },
         failureReasons = {
             type = "list",
-            member_type = "structure",
+            member = M.ProjectDeletionError,
         },
         createdBy = {
             type = "string",
@@ -15101,7 +14494,7 @@ M.ListProjectsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.ProjectSummary,
         },
         nextToken = {
             type = "string",
@@ -15185,7 +14578,7 @@ M.ListSubscriptionGrantsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -15244,12 +14637,9 @@ M.SubscriptionGrantSummary = {
                 required = true,
             },
         },
-        grantedEntity = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        grantedEntity = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.GrantedEntity }),
         status = {
             type = "string",
             traits = {
@@ -15258,7 +14648,7 @@ M.SubscriptionGrantSummary = {
         },
         assets = {
             type = "list",
-            member_type = "structure",
+            member = M.SubscribedAsset,
         },
         subscriptionId = {
             type = "string",
@@ -15271,7 +14661,7 @@ M.ListSubscriptionGrantsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.SubscriptionGrantSummary,
             traits = {
                 required = true,
             },
@@ -15347,7 +14737,7 @@ M.ListSubscriptionRequestsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -15432,14 +14822,14 @@ M.SubscriptionRequestSummary = {
         },
         subscribedPrincipals = {
             type = "list",
-            member_type = "union",
+            member = M.SubscribedPrincipal,
             traits = {
                 required = true,
             },
         },
         subscribedListings = {
             type = "list",
-            member_type = "structure",
+            member = M.SubscribedListing,
             traits = {
                 required = true,
             },
@@ -15455,7 +14845,7 @@ M.SubscriptionRequestSummary = {
         },
         metadataFormsSummary = {
             type = "list",
-            member_type = "structure",
+            member = M.MetadataFormSummary,
         },
     },
 }
@@ -15465,7 +14855,7 @@ M.ListSubscriptionRequestsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.SubscriptionRequestSummary,
             traits = {
                 required = true,
             },
@@ -15547,7 +14937,7 @@ M.ListSubscriptionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -15603,18 +14993,12 @@ M.SubscriptionSummary = {
                 required = true,
             },
         },
-        subscribedPrincipal = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        subscribedListing = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        subscribedPrincipal = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SubscribedPrincipal }),
+        subscribedListing = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SubscribedListing }),
         subscriptionRequestId = {
             type = "string",
         },
@@ -15629,7 +15013,7 @@ M.ListSubscriptionsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.SubscriptionSummary,
             traits = {
                 required = true,
             },
@@ -15670,7 +15054,7 @@ M.ListSubscriptionTargetsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -15695,7 +15079,7 @@ M.SubscriptionTargetSummary = {
         },
         authorizedPrincipals = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -15753,14 +15137,14 @@ M.SubscriptionTargetSummary = {
         },
         applicableAssetTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         subscriptionTargetConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.SubscriptionTargetForm,
             traits = {
                 required = true,
             },
@@ -15782,7 +15166,7 @@ M.ListSubscriptionTargetsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.SubscriptionTargetSummary,
             traits = {
                 required = true,
             },
@@ -15811,8 +15195,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -15867,7 +15251,7 @@ M.ListTimeSeriesDataPointsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -15880,7 +15264,7 @@ M.ListTimeSeriesDataPointsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.TimeSeriesDataPointSummaryFormOutput,
         },
         nextToken = {
             type = "string",
@@ -15990,9 +15374,7 @@ M.GetMetadataGenerationRunOutput = {
                 required = true,
             },
         },
-        target = {
-            type = "structure",
-        },
+        target = M.MetadataGenerationRunTarget,
         status = {
             type = "string",
         },
@@ -16001,7 +15383,7 @@ M.GetMetadataGenerationRunOutput = {
         },
         types = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         createdAt = {
             type = "timestamp",
@@ -16017,7 +15399,7 @@ M.GetMetadataGenerationRunOutput = {
         },
         typeStats = {
             type = "list",
-            member_type = "structure",
+            member = M.MetadataGenerationRunTypeStat,
         },
     },
 }
@@ -16051,7 +15433,7 @@ M.ListMetadataGenerationRunsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -16080,9 +15462,7 @@ M.MetadataGenerationRunItem = {
                 required = true,
             },
         },
-        target = {
-            type = "structure",
-        },
+        target = M.MetadataGenerationRunTarget,
         status = {
             type = "string",
         },
@@ -16091,7 +15471,7 @@ M.MetadataGenerationRunItem = {
         },
         types = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         createdAt = {
             type = "timestamp",
@@ -16113,7 +15493,7 @@ M.ListMetadataGenerationRunsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.MetadataGenerationRunItem,
         },
         nextToken = {
             type = "string",
@@ -16136,14 +15516,11 @@ M.StartMetadataGenerationRunInput = {
         },
         types = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        target = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        target = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MetadataGenerationRunTarget }),
         clientToken = {
             type = "string",
         },
@@ -16179,7 +15556,7 @@ M.StartMetadataGenerationRunOutput = {
         },
         types = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         createdAt = {
             type = "timestamp",
@@ -16203,6 +15580,7 @@ M.PackageConfig = {
         packageManager = {
             type = "string",
             traits = {
+                default = "UV",
                 required = true,
             },
         },
@@ -16218,9 +15596,7 @@ M.EnvironmentConfig = {
         imageVersion = {
             type = "string",
         },
-        packageConfig = {
-            type = "structure",
-        },
+        packageConfig = M.PackageConfig,
     },
 }
 
@@ -16275,11 +15651,11 @@ M.NetworkConfig = {
         },
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -16310,7 +15686,7 @@ M.TimeoutConfig = {
     type = "structure",
     members = {
         runTimeoutInMinutes = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -16371,39 +15747,25 @@ M.GetNotebookRunOutput = {
         },
         cellOrder = {
             type = "list",
-            member_type = "structure",
+            member = M.CellInformation,
         },
         metadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        computeConfiguration = {
-            type = "structure",
-        },
-        networkConfiguration = {
-            type = "structure",
-        },
-        timeoutConfiguration = {
-            type = "structure",
-        },
-        environmentConfiguration = {
-            type = "structure",
-        },
-        storageConfiguration = {
-            type = "structure",
-        },
-        triggerSource = {
-            type = "structure",
-        },
-        error = {
-            type = "structure",
-        },
+        computeConfiguration = M.ComputeConfig,
+        networkConfiguration = M.NetworkConfig,
+        timeoutConfiguration = M.TimeoutConfig,
+        environmentConfiguration = M.EnvironmentConfig,
+        storageConfiguration = M.StorageConfig,
+        triggerSource = M.TriggerSource,
+        error = M.NotebookRunError,
         createdAt = {
             type = "timestamp",
         },
@@ -16461,7 +15823,7 @@ M.ListNotebookRunsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -16517,9 +15879,7 @@ M.NotebookRunSummary = {
                 required = true,
             },
         },
-        triggerSource = {
-            type = "structure",
-        },
+        triggerSource = M.TriggerSource,
         createdAt = {
             type = "timestamp",
         },
@@ -16546,7 +15906,7 @@ M.ListNotebookRunsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.NotebookRunSummary,
         },
         nextToken = {
             type = "string",
@@ -16579,27 +15939,19 @@ M.StartNotebookRunInput = {
         scheduleIdentifier = {
             type = "string",
         },
-        computeConfiguration = {
-            type = "structure",
-        },
-        networkConfiguration = {
-            type = "structure",
-        },
-        timeoutConfiguration = {
-            type = "structure",
-        },
-        triggerSource = {
-            type = "structure",
-        },
+        computeConfiguration = M.ComputeConfig,
+        networkConfiguration = M.NetworkConfig,
+        timeoutConfiguration = M.TimeoutConfig,
+        triggerSource = M.TriggerSource,
         metadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         clientToken = {
             type = "string",
@@ -16645,39 +15997,25 @@ M.StartNotebookRunOutput = {
         },
         cellOrder = {
             type = "list",
-            member_type = "structure",
+            member = M.CellInformation,
         },
         metadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        computeConfiguration = {
-            type = "structure",
-        },
-        networkConfiguration = {
-            type = "structure",
-        },
-        timeoutConfiguration = {
-            type = "structure",
-        },
-        environmentConfiguration = {
-            type = "structure",
-        },
-        storageConfiguration = {
-            type = "structure",
-        },
-        triggerSource = {
-            type = "structure",
-        },
-        error = {
-            type = "structure",
-        },
+        computeConfiguration = M.ComputeConfig,
+        networkConfiguration = M.NetworkConfig,
+        timeoutConfiguration = M.TimeoutConfig,
+        environmentConfiguration = M.EnvironmentConfig,
+        storageConfiguration = M.StorageConfig,
+        triggerSource = M.TriggerSource,
+        error = M.NotebookRunError,
         createdAt = {
             type = "timestamp",
         },
@@ -16846,7 +16184,7 @@ M.PostTimeSeriesDataPointsInput = {
         },
         forms = {
             type = "list",
-            member_type = "structure",
+            member = M.TimeSeriesDataPointFormInput,
             traits = {
                 required = true,
             },
@@ -16871,7 +16209,7 @@ M.PostTimeSeriesDataPointsOutput = {
         },
         forms = {
             type = "list",
-            member_type = "structure",
+            member = M.TimeSeriesDataPointFormOutput,
         },
     },
 }
@@ -16892,9 +16230,7 @@ M.PutDataExportConfigurationInput = {
                 required = true,
             },
         },
-        encryptionConfiguration = {
-            type = "structure",
-        },
+        encryptionConfiguration = M.EncryptionConfiguration,
         clientToken = {
             type = "string",
         },
@@ -16929,12 +16265,18 @@ M.Filter = {
         },
         value = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
         intValue = {
-            type = "number",
+            type = "long",
         },
         operator = {
             type = "string",
+            traits = {
+                default = "EQ",
+            },
         },
     },
 }
@@ -16964,7 +16306,7 @@ M.RelationPattern = {
             },
         },
         maxPathLength = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -17019,15 +16361,15 @@ M.LineageNodeItem = {
         },
         formsOutput = {
             type = "list",
-            member_type = "structure",
+            member = M.FormOutput,
         },
         upstreamLineageNodeIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         downstreamLineageNodeIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -17035,9 +16377,7 @@ M.LineageNodeItem = {
 M.ResultItem = {
     type = "union",
     members = {
-        lineageNode = {
-            type = "structure",
-        },
+        lineageNode = M.LineageNodeItem,
     },
 }
 
@@ -17046,7 +16386,7 @@ M.QueryGraphOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "union",
+            member = M.ResultItem,
         },
         nextToken = {
             type = "string",
@@ -17065,7 +16405,7 @@ M.RejectChoice = {
         },
         predictionChoices = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
         },
     },
 }
@@ -17082,7 +16422,7 @@ M.RejectRule = {
             type = "string",
         },
         threshold = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -17110,12 +16450,10 @@ M.RejectPredictionsInput = {
                 http_query = "revision",
             },
         },
-        rejectRule = {
-            type = "structure",
-        },
+        rejectRule = M.RejectRule,
         rejectChoices = {
             type = "list",
-            member_type = "structure",
+            member = M.RejectChoice,
         },
         clientToken = {
             type = "string",
@@ -17220,14 +16558,14 @@ M.RejectSubscriptionRequestOutput = {
         },
         subscribedPrincipals = {
             type = "list",
-            member_type = "union",
+            member = M.SubscribedPrincipal,
             traits = {
                 required = true,
             },
         },
         subscribedListings = {
             type = "list",
-            member_type = "structure",
+            member = M.SubscribedListing,
             traits = {
                 required = true,
             },
@@ -17243,7 +16581,7 @@ M.RejectSubscriptionRequestOutput = {
         },
         metadataForms = {
             type = "list",
-            member_type = "structure",
+            member = M.FormOutput,
         },
     },
 }
@@ -17272,12 +16610,9 @@ M.RemoveEntityOwnerInput = {
                 required = true,
             },
         },
-        owner = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        owner = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OwnerProperties }),
         clientToken = {
             type = "string",
         },
@@ -17318,12 +16653,9 @@ M.RemovePolicyGrantInput = {
                 required = true,
             },
         },
-        principal = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        principal = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PolicyGrantPrincipal }),
         grantIdentifier = {
             type = "string",
         },
@@ -17402,18 +16734,12 @@ M.RevokeSubscriptionOutput = {
                 required = true,
             },
         },
-        subscribedPrincipal = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        subscribedListing = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        subscribedPrincipal = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SubscribedPrincipal }),
+        subscribedListing = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SubscribedListing }),
         subscriptionRequestId = {
             type = "string",
         },
@@ -17500,30 +16826,21 @@ M.GetRuleOutput = {
                 required = true,
             },
         },
-        target = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        target = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RuleTarget }),
         action = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        scope = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        detail = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        scope = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RuleScope }),
+        detail = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RuleDetail }),
         targetType = {
             type = "string",
         },
@@ -17595,14 +16912,14 @@ M.ListRulesInput = {
         },
         projectIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "projectIds",
             },
         },
         assetTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "assetTypes",
             },
@@ -17620,7 +16937,7 @@ M.ListRulesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -17652,15 +16969,11 @@ M.RuleSummary = {
         targetType = {
             type = "string",
         },
-        target = {
-            type = "union",
-        },
+        target = M.RuleTarget,
         action = {
             type = "string",
         },
-        scope = {
-            type = "structure",
-        },
+        scope = M.RuleScope,
         updatedAt = {
             type = "timestamp",
         },
@@ -17675,7 +16988,7 @@ M.ListRulesOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleSummary,
             traits = {
                 required = true,
             },
@@ -17709,12 +17022,8 @@ M.UpdateRuleInput = {
         description = {
             type = "string",
         },
-        scope = {
-            type = "structure",
-        },
-        detail = {
-            type = "union",
-        },
+        scope = M.RuleScope,
+        detail = M.RuleDetail,
         includeChildDomainUnits = {
             type = "boolean",
         },
@@ -17748,30 +17057,21 @@ M.UpdateRuleOutput = {
                 required = true,
             },
         },
-        target = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        target = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RuleTarget }),
         action = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        scope = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        detail = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        scope = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RuleScope }),
+        detail = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RuleDetail }),
         description = {
             type = "string",
         },
@@ -17847,7 +17147,7 @@ M.GlossaryItemAdditionalAttributes = {
     members = {
         matchRationale = {
             type = "list",
-            member_type = "union",
+            member = M.MatchRationaleItem,
         },
     },
 }
@@ -17890,7 +17190,7 @@ M.GlossaryItem = {
         },
         usageRestrictions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         createdAt = {
             type = "timestamp",
@@ -17904,9 +17204,7 @@ M.GlossaryItem = {
         updatedBy = {
             type = "string",
         },
-        additionalAttributes = {
-            type = "structure",
-        },
+        additionalAttributes = M.GlossaryItemAdditionalAttributes,
     },
 }
 
@@ -17915,7 +17213,7 @@ M.GlossaryTermItemAdditionalAttributes = {
     members = {
         matchRationale = {
             type = "list",
-            member_type = "union",
+            member = M.MatchRationaleItem,
         },
     },
 }
@@ -17952,14 +17250,12 @@ M.GlossaryTermItem = {
         },
         usageRestrictions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         longDescription = {
             type = "string",
         },
-        termRelations = {
-            type = "structure",
-        },
+        termRelations = M.TermRelations,
         status = {
             type = "string",
             traits = {
@@ -17978,27 +17274,17 @@ M.GlossaryTermItem = {
         updatedBy = {
             type = "string",
         },
-        additionalAttributes = {
-            type = "structure",
-        },
+        additionalAttributes = M.GlossaryTermItemAdditionalAttributes,
     },
 }
 
 M.SearchInventoryResultItem = {
     type = "union",
     members = {
-        glossaryItem = {
-            type = "structure",
-        },
-        glossaryTermItem = {
-            type = "structure",
-        },
-        assetItem = {
-            type = "structure",
-        },
-        dataProductItem = {
-            type = "structure",
-        },
+        glossaryItem = M.GlossaryItem,
+        glossaryTermItem = M.GlossaryTermItem,
+        assetItem = M.AssetItem,
+        dataProductItem = M.DataProductResultItem,
     },
 }
 
@@ -18007,13 +17293,13 @@ M.SearchOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "union",
+            member = M.SearchInventoryResultItem,
         },
         nextToken = {
             type = "string",
         },
         totalMatchCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -18044,7 +17330,7 @@ M.SearchGroupProfilesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -18081,7 +17367,7 @@ M.SearchGroupProfilesOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupProfileSummary,
         },
         nextToken = {
             type = "string",
@@ -18092,12 +17378,8 @@ M.SearchGroupProfilesOutput = {
 M.SearchResultItem = {
     type = "union",
     members = {
-        assetListing = {
-            type = "structure",
-        },
-        dataProductListing = {
-            type = "structure",
-        },
+        assetListing = M.AssetListingItem,
+        dataProductListing = M.DataProductListingItem,
     },
 }
 
@@ -18106,17 +17388,17 @@ M.SearchListingsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "union",
+            member = M.SearchResultItem,
         },
         nextToken = {
             type = "string",
         },
         totalMatchCount = {
-            type = "number",
+            type = "integer",
         },
         aggregates = {
             type = "list",
-            member_type = "structure",
+            member = M.AggregationOutput,
         },
     },
 }
@@ -18148,9 +17430,7 @@ M.FormTypeData = {
                 required = true,
             },
         },
-        model = {
-            type = "union",
-        },
+        model = M.Model,
         status = {
             type = "string",
         },
@@ -18174,7 +17454,7 @@ M.FormTypeData = {
         },
         imports = {
             type = "list",
-            member_type = "structure",
+            member = M.Import,
         },
     },
 }
@@ -18214,8 +17494,8 @@ M.LineageNodeTypeItem = {
         },
         formsOutput = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.FormEntryOutput,
             traits = {
                 required = true,
             },
@@ -18226,15 +17506,9 @@ M.LineageNodeTypeItem = {
 M.SearchTypesResultItem = {
     type = "union",
     members = {
-        assetTypeItem = {
-            type = "structure",
-        },
-        formTypeItem = {
-            type = "structure",
-        },
-        lineageNodeTypeItem = {
-            type = "structure",
-        },
+        assetTypeItem = M.AssetTypeItem,
+        formTypeItem = M.FormTypeData,
+        lineageNodeTypeItem = M.LineageNodeTypeItem,
     },
 }
 
@@ -18243,13 +17517,13 @@ M.SearchTypesOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "union",
+            member = M.SearchTypesResultItem,
         },
         nextToken = {
             type = "string",
         },
         totalMatchCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -18281,7 +17555,7 @@ M.SearchUserProfilesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -18304,9 +17578,7 @@ M.UserProfileSummary = {
         status = {
             type = "string",
         },
-        details = {
-            type = "union",
-        },
+        details = M.UserProfileDetails,
     },
 }
 
@@ -18315,7 +17587,7 @@ M.SearchUserProfilesOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.UserProfileSummary,
         },
         nextToken = {
             type = "string",
@@ -18335,8 +17607,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -18360,7 +17632,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -18399,9 +17671,7 @@ M.UpdateAccountPoolInput = {
         resolutionStrategy = {
             type = "string",
         },
-        accountSource = {
-            type = "union",
-        },
+        accountSource = M.AccountSource,
     },
 }
 
@@ -18423,12 +17693,9 @@ M.UpdateAccountPoolOutput = {
         resolutionStrategy = {
             type = "string",
         },
-        accountSource = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        accountSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AccountSource }),
         createdBy = {
             type = "string",
             traits = {
@@ -18461,7 +17728,7 @@ M.UpdateConnectionInput = {
     members = {
         configurations = {
             type = "list",
-            member_type = "structure",
+            member = M.Configuration,
         },
         domainIdentifier = {
             type = "string",
@@ -18480,12 +17747,8 @@ M.UpdateConnectionInput = {
         description = {
             type = "string",
         },
-        awsLocation = {
-            type = "structure",
-        },
-        props = {
-            type = "union",
-        },
+        awsLocation = M.AwsLocation,
+        props = M.ConnectionPropertiesPatch,
     },
 }
 
@@ -18494,7 +17757,7 @@ M.UpdateConnectionOutput = {
     members = {
         configurations = {
             type = "list",
-            member_type = "structure",
+            member = M.Configuration,
         },
         connectionId = {
             type = "string",
@@ -18528,7 +17791,7 @@ M.UpdateConnectionOutput = {
         },
         physicalEndpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.PhysicalEndpoint,
             traits = {
                 required = true,
             },
@@ -18536,9 +17799,7 @@ M.UpdateConnectionOutput = {
         projectId = {
             type = "string",
         },
-        props = {
-            type = "union",
-        },
+        props = M.ConnectionPropertiesOutput,
         type = {
             type = "string",
             traits = {
@@ -18576,14 +17837,14 @@ M.UpdateEnvironmentInput = {
         },
         glossaryTerms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         blueprintVersion = {
             type = "string",
         },
         userParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentParameter,
         },
         environmentConfigurationName = {
             type = "string",
@@ -18638,6 +17899,9 @@ M.UpdateEnvironmentOutput = {
         },
         environmentProfileId = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
         awsAccountId = {
             type = "string",
@@ -18653,32 +17917,26 @@ M.UpdateEnvironmentOutput = {
         },
         provisionedResources = {
             type = "list",
-            member_type = "structure",
+            member = M.Resource,
         },
         status = {
             type = "string",
         },
         environmentActions = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigurableEnvironmentAction,
         },
         glossaryTerms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         userParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomParameter,
         },
-        lastDeployment = {
-            type = "structure",
-        },
-        provisioningProperties = {
-            type = "union",
-        },
-        deploymentProperties = {
-            type = "structure",
-        },
+        lastDeployment = M.Deployment,
+        provisioningProperties = M.ProvisioningProperties,
+        deploymentProperties = M.DeploymentProperties,
         environmentBlueprintId = {
             type = "string",
         },
@@ -18715,9 +17973,7 @@ M.UpdateEnvironmentActionInput = {
                 required = true,
             },
         },
-        parameters = {
-            type = "union",
-        },
+        parameters = M.ActionParameters,
         name = {
             type = "string",
         },
@@ -18754,12 +18010,9 @@ M.UpdateEnvironmentActionOutput = {
                 required = true,
             },
         },
-        parameters = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        parameters = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActionParameters }),
         description = {
             type = "string",
         },
@@ -18786,12 +18039,10 @@ M.UpdateEnvironmentBlueprintInput = {
         description = {
             type = "string",
         },
-        provisioningProperties = {
-            type = "union",
-        },
+        provisioningProperties = M.ProvisioningProperties,
         userParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomParameter,
         },
     },
 }
@@ -18820,22 +18071,17 @@ M.UpdateEnvironmentBlueprintOutput = {
                 required = true,
             },
         },
-        provisioningProperties = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        deploymentProperties = {
-            type = "structure",
-        },
+        provisioningProperties = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProvisioningProperties }),
+        deploymentProperties = M.DeploymentProperties,
         userParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomParameter,
         },
         glossaryTerms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         createdAt = {
             type = "timestamp",
@@ -18877,7 +18123,7 @@ M.UpdateEnvironmentProfileInput = {
         },
         userParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentParameter,
         },
         awsAccountId = {
             type = "string",
@@ -18947,7 +18193,7 @@ M.UpdateEnvironmentProfileOutput = {
         },
         userParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomParameter,
         },
     },
 }
@@ -19027,22 +18273,20 @@ M.UpdateProjectInput = {
         },
         resourceTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         glossaryTerms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         domainUnitId = {
             type = "string",
         },
-        environmentDeploymentDetails = {
-            type = "structure",
-        },
+        environmentDeploymentDetails = M.EnvironmentDeploymentDetails,
         userParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentConfigurationUserParameter,
         },
         projectProfileVersion = {
             type = "string",
@@ -19079,7 +18323,7 @@ M.UpdateProjectOutput = {
         },
         failureReasons = {
             type = "list",
-            member_type = "structure",
+            member = M.ProjectDeletionError,
         },
         createdBy = {
             type = "string",
@@ -19101,11 +18345,11 @@ M.UpdateProjectOutput = {
         },
         resourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
         },
         glossaryTerms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         domainUnitId = {
             type = "string",
@@ -19115,11 +18359,9 @@ M.UpdateProjectOutput = {
         },
         userParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentConfigurationUserParameter,
         },
-        environmentDeploymentDetails = {
-            type = "structure",
-        },
+        environmentDeploymentDetails = M.EnvironmentDeploymentDetails,
         projectCategory = {
             type = "string",
         },
@@ -19154,7 +18396,7 @@ M.UpdateProjectProfileInput = {
         },
         projectResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTagParameter,
         },
         allowCustomProjectResourceTags = {
             type = "boolean",
@@ -19164,7 +18406,7 @@ M.UpdateProjectProfileInput = {
         },
         environmentConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentConfiguration,
         },
         domainUnitIdentifier = {
             type = "string",
@@ -19201,7 +18443,7 @@ M.UpdateProjectProfileOutput = {
         },
         projectResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTagParameter,
         },
         allowCustomProjectResourceTags = {
             type = "boolean",
@@ -19211,7 +18453,7 @@ M.UpdateProjectProfileOutput = {
         },
         environmentConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentConfiguration,
         },
         createdBy = {
             type = "string",
@@ -19299,9 +18541,7 @@ M.UpdateSubscriptionGrantStatusInput = {
                 required = true,
             },
         },
-        failureCause = {
-            type = "structure",
-        },
+        failureCause = M.FailureCause,
         targetName = {
             type = "string",
         },
@@ -19353,12 +18593,9 @@ M.UpdateSubscriptionGrantStatusOutput = {
                 required = true,
             },
         },
-        grantedEntity = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        grantedEntity = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.GrantedEntity }),
         status = {
             type = "string",
             traits = {
@@ -19367,7 +18604,7 @@ M.UpdateSubscriptionGrantStatusOutput = {
         },
         assets = {
             type = "list",
-            member_type = "structure",
+            member = M.SubscribedAsset,
         },
         subscriptionId = {
             type = "string",
@@ -19451,14 +18688,14 @@ M.UpdateSubscriptionRequestOutput = {
         },
         subscribedPrincipals = {
             type = "list",
-            member_type = "union",
+            member = M.SubscribedPrincipal,
             traits = {
                 required = true,
             },
         },
         subscribedListings = {
             type = "list",
-            member_type = "structure",
+            member = M.SubscribedListing,
             traits = {
                 required = true,
             },
@@ -19474,7 +18711,7 @@ M.UpdateSubscriptionRequestOutput = {
         },
         metadataForms = {
             type = "list",
-            member_type = "structure",
+            member = M.FormOutput,
         },
     },
 }
@@ -19508,15 +18745,15 @@ M.UpdateSubscriptionTargetInput = {
         },
         authorizedPrincipals = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         applicableAssetTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         subscriptionTargetConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.SubscriptionTargetForm,
         },
         manageAccessRole = {
             type = "string",
@@ -19541,7 +18778,7 @@ M.UpdateSubscriptionTargetOutput = {
         },
         authorizedPrincipals = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -19599,14 +18836,14 @@ M.UpdateSubscriptionTargetOutput = {
         },
         applicableAssetTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         subscriptionTargetConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.SubscriptionTargetForm,
             traits = {
                 required = true,
             },
@@ -19670,25 +18907,21 @@ M.UpdateUserProfileOutput = {
         status = {
             type = "string",
         },
-        details = {
-            type = "union",
-        },
+        details = M.UserProfileDetails,
     },
 }
 
 M.FilterClause = {
     type = "union",
     members = {
-        filter = {
-            type = "structure",
-        },
+        filter = M.Filter,
         and = {
             type = "list",
-            member_type = "union",
+            member = M.FilterClause,
         },
         or = {
             type = "list",
-            member_type = "union",
+            member = M.FilterClause,
         },
     },
 }
@@ -19696,16 +18929,14 @@ M.FilterClause = {
 M.RowFilter = {
     type = "union",
     members = {
-        expression = {
-            type = "union",
-        },
+        expression = M.RowFilterExpression,
         and = {
             type = "list",
-            member_type = "union",
+            member = M.RowFilter,
         },
         or = {
             type = "list",
-            member_type = "union",
+            member = M.RowFilter,
         },
     },
 }
@@ -19725,23 +18956,21 @@ M.EntityPattern = {
                 required = true,
             },
         },
-        filters = {
-            type = "union",
-        },
+        filters = M.FilterClause,
     },
 }
 
 M.RowFilterConfiguration = {
     type = "structure",
     members = {
-        rowFilter = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        rowFilter = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RowFilter }),
         sensitive = {
             type = "boolean",
+            traits = {
+                default = true,
+            },
         },
     },
 }
@@ -19760,7 +18989,7 @@ M.SearchInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -19776,17 +19005,13 @@ M.SearchInput = {
         },
         searchIn = {
             type = "list",
-            member_type = "structure",
+            member = M.SearchInItem,
         },
-        filters = {
-            type = "union",
-        },
-        sort = {
-            type = "structure",
-        },
+        filters = M.FilterClause,
+        sort = M.SearchSort,
         additionalAttributes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -19806,27 +19031,23 @@ M.SearchListingsInput = {
         },
         searchIn = {
             type = "list",
-            member_type = "structure",
+            member = M.SearchInItem,
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
         },
-        filters = {
-            type = "union",
-        },
+        filters = M.FilterClause,
         aggregations = {
             type = "list",
-            member_type = "structure",
+            member = M.AggregationListItem,
         },
-        sort = {
-            type = "structure",
-        },
+        sort = M.SearchSort,
         additionalAttributes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -19842,7 +19063,7 @@ M.SearchTypesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -19858,14 +19079,10 @@ M.SearchTypesInput = {
         },
         searchIn = {
             type = "list",
-            member_type = "structure",
+            member = M.SearchInItem,
         },
-        filters = {
-            type = "union",
-        },
-        sort = {
-            type = "structure",
-        },
+        filters = M.FilterClause,
+        sort = M.SearchSort,
         managed = {
             type = "boolean",
             traits = {
@@ -19878,24 +19095,16 @@ M.SearchTypesInput = {
 M.AssetFilterConfiguration = {
     type = "union",
     members = {
-        columnConfiguration = {
-            type = "structure",
-        },
-        rowConfiguration = {
-            type = "structure",
-        },
+        columnConfiguration = M.ColumnFilterConfiguration,
+        rowConfiguration = M.RowFilterConfiguration,
     },
 }
 
 M.MatchClause = {
     type = "union",
     members = {
-        relationPattern = {
-            type = "structure",
-        },
-        entityPattern = {
-            type = "structure",
-        },
+        relationPattern = M.RelationPattern,
+        entityPattern = M.EntityPattern,
     },
 }
 
@@ -19925,12 +19134,9 @@ M.CreateAssetFilterInput = {
         description = {
             type = "string",
         },
-        configuration = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AssetFilterConfiguration }),
         clientToken = {
             type = "string",
         },
@@ -19970,12 +19176,9 @@ M.CreateAssetFilterOutput = {
         status = {
             type = "string",
         },
-        configuration = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AssetFilterConfiguration }),
         createdAt = {
             type = "timestamp",
         },
@@ -19984,7 +19187,7 @@ M.CreateAssetFilterOutput = {
         },
         effectiveColumnNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         effectiveRowFilter = {
             type = "string",
@@ -20025,12 +19228,9 @@ M.GetAssetFilterOutput = {
         status = {
             type = "string",
         },
-        configuration = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AssetFilterConfiguration }),
         createdAt = {
             type = "timestamp",
         },
@@ -20039,7 +19239,7 @@ M.GetAssetFilterOutput = {
         },
         effectiveColumnNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         effectiveRowFilter = {
             type = "string",
@@ -20077,9 +19277,7 @@ M.UpdateAssetFilterInput = {
         description = {
             type = "string",
         },
-        configuration = {
-            type = "union",
-        },
+        configuration = M.AssetFilterConfiguration,
     },
 }
 
@@ -20116,12 +19314,9 @@ M.UpdateAssetFilterOutput = {
         status = {
             type = "string",
         },
-        configuration = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AssetFilterConfiguration }),
         createdAt = {
             type = "timestamp",
         },
@@ -20130,7 +19325,7 @@ M.UpdateAssetFilterOutput = {
         },
         effectiveColumnNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         effectiveRowFilter = {
             type = "string",
@@ -20150,13 +19345,13 @@ M.QueryGraphInput = {
         },
         match = {
             type = "list",
-            member_type = "union",
+            member = M.MatchClause,
             traits = {
                 required = true,
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -20167,9 +19362,7 @@ M.QueryGraphInput = {
                 http_query = "nextToken",
             },
         },
-        additionalAttributes = {
-            type = "structure",
-        },
+        additionalAttributes = M.AdditionalAttributes,
     },
 }
 

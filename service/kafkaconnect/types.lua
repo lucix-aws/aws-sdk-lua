@@ -70,7 +70,10 @@ M.ScaleInPolicyDescription = {
     type = "structure",
     members = {
         cpuUtilizationPercentage = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -79,7 +82,10 @@ M.ScaleOutPolicyDescription = {
     type = "structure",
     members = {
         cpuUtilizationPercentage = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -88,22 +94,30 @@ M.AutoScalingDescription = {
     type = "structure",
     members = {
         maxWorkerCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         mcuCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         minWorkerCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
-        scaleInPolicy = {
-            type = "structure",
-        },
-        scaleOutPolicy = {
-            type = "structure",
-        },
+        scaleInPolicy = M.ScaleInPolicyDescription,
+        scaleOutPolicy = M.ScaleOutPolicyDescription,
         maxAutoscalingTaskCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -112,10 +126,16 @@ M.ProvisionedCapacityDescription = {
     type = "structure",
     members = {
         mcuCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         workerCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -123,12 +143,8 @@ M.ProvisionedCapacityDescription = {
 M.CapacityDescription = {
     type = "structure",
     members = {
-        autoScaling = {
-            type = "structure",
-        },
-        provisionedCapacity = {
-            type = "structure",
-        },
+        autoScaling = M.AutoScalingDescription,
+        provisionedCapacity = M.ProvisionedCapacityDescription,
     },
 }
 
@@ -145,11 +161,11 @@ M.VpcDescription = {
     members = {
         securityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         subnets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -160,18 +176,14 @@ M.ApacheKafkaClusterDescription = {
         bootstrapServers = {
             type = "string",
         },
-        vpc = {
-            type = "structure",
-        },
+        vpc = M.VpcDescription,
     },
 }
 
 M.KafkaClusterDescription = {
     type = "structure",
     members = {
-        apacheKafkaCluster = {
-            type = "structure",
-        },
+        apacheKafkaCluster = M.ApacheKafkaClusterDescription,
     },
 }
 
@@ -208,6 +220,9 @@ M.CloudWatchLogsLogDeliveryDescription = {
     members = {
         enabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         logGroup = {
             type = "string",
@@ -223,6 +238,9 @@ M.FirehoseLogDeliveryDescription = {
         },
         enabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -235,6 +253,9 @@ M.S3LogDeliveryDescription = {
         },
         enabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         prefix = {
             type = "string",
@@ -245,24 +266,16 @@ M.S3LogDeliveryDescription = {
 M.WorkerLogDeliveryDescription = {
     type = "structure",
     members = {
-        cloudWatchLogs = {
-            type = "structure",
-        },
-        firehose = {
-            type = "structure",
-        },
-        s3 = {
-            type = "structure",
-        },
+        cloudWatchLogs = M.CloudWatchLogsLogDeliveryDescription,
+        firehose = M.FirehoseLogDeliveryDescription,
+        s3 = M.S3LogDeliveryDescription,
     },
 }
 
 M.LogDeliveryDescription = {
     type = "structure",
     members = {
-        workerLogDelivery = {
-            type = "structure",
-        },
+        workerLogDelivery = M.WorkerLogDeliveryDescription,
     },
 }
 
@@ -278,7 +291,10 @@ M.CustomPluginDescription = {
             type = "string",
         },
         revision = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -286,9 +302,7 @@ M.CustomPluginDescription = {
 M.PluginDescription = {
     type = "structure",
     members = {
-        customPlugin = {
-            type = "structure",
-        },
+        customPlugin = M.CustomPluginDescription,
     },
 }
 
@@ -296,7 +310,10 @@ M.WorkerConfigurationDescription = {
     type = "structure",
     members = {
         revision = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         workerConfigurationArn = {
             type = "string",
@@ -307,9 +324,7 @@ M.WorkerConfigurationDescription = {
 M.ConnectorSummary = {
     type = "structure",
     members = {
-        capacity = {
-            type = "structure",
-        },
+        capacity = M.CapacityDescription,
         connectorArn = {
             type = "string",
         },
@@ -328,34 +343,24 @@ M.ConnectorSummary = {
         currentVersion = {
             type = "string",
         },
-        kafkaCluster = {
-            type = "structure",
-        },
-        kafkaClusterClientAuthentication = {
-            type = "structure",
-        },
-        kafkaClusterEncryptionInTransit = {
-            type = "structure",
-        },
+        kafkaCluster = M.KafkaClusterDescription,
+        kafkaClusterClientAuthentication = M.KafkaClusterClientAuthenticationDescription,
+        kafkaClusterEncryptionInTransit = M.KafkaClusterEncryptionInTransitDescription,
         kafkaConnectVersion = {
             type = "string",
         },
-        logDelivery = {
-            type = "structure",
-        },
+        logDelivery = M.LogDeliveryDescription,
         networkType = {
             type = "string",
         },
         plugins = {
             type = "list",
-            member_type = "structure",
+            member = M.PluginDescription,
         },
         serviceExecutionRoleArn = {
             type = "string",
         },
-        workerConfiguration = {
-            type = "structure",
-        },
+        workerConfiguration = M.WorkerConfigurationDescription,
     },
 }
 
@@ -380,7 +385,10 @@ M.CustomPluginFileDescription = {
             type = "string",
         },
         fileSize = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -403,9 +411,7 @@ M.S3LocationDescription = {
 M.CustomPluginLocationDescription = {
     type = "structure",
     members = {
-        s3Location = {
-            type = "structure",
-        },
+        s3Location = M.S3LocationDescription,
     },
 }
 
@@ -421,14 +427,13 @@ M.CustomPluginRevisionSummary = {
         description = {
             type = "string",
         },
-        fileDescription = {
-            type = "structure",
-        },
-        location = {
-            type = "structure",
-        },
+        fileDescription = M.CustomPluginFileDescription,
+        location = M.CustomPluginLocationDescription,
         revision = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -448,9 +453,7 @@ M.CustomPluginSummary = {
         description = {
             type = "string",
         },
-        latestRevision = {
-            type = "structure",
-        },
+        latestRevision = M.CustomPluginRevisionSummary,
         name = {
             type = "string",
         },
@@ -467,8 +470,9 @@ M.CustomPlugin = {
             },
         },
         revision = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -478,12 +482,9 @@ M.CustomPlugin = {
 M.Plugin = {
     type = "structure",
     members = {
-        customPlugin = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        customPlugin = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CustomPlugin }),
     },
 }
 
@@ -497,7 +498,10 @@ M.WorkerConfigurationRevisionSummary = {
             type = "string",
         },
         revision = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -516,9 +520,7 @@ M.WorkerConfigurationSummary = {
         description = {
             type = "string",
         },
-        latestRevision = {
-            type = "structure",
-        },
+        latestRevision = M.WorkerConfigurationRevisionSummary,
         name = {
             type = "string",
         },
@@ -536,11 +538,11 @@ M.Vpc = {
     members = {
         securityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         subnets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -557,12 +559,9 @@ M.ApacheKafkaCluster = {
                 required = true,
             },
         },
-        vpc = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        vpc = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Vpc }),
     },
 }
 
@@ -570,8 +569,9 @@ M.ScaleInPolicy = {
     type = "structure",
     members = {
         cpuUtilizationPercentage = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -582,8 +582,9 @@ M.ScaleOutPolicy = {
     type = "structure",
     members = {
         cpuUtilizationPercentage = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -594,31 +595,33 @@ M.AutoScaling = {
     type = "structure",
     members = {
         maxWorkerCount = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         mcuCount = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         minWorkerCount = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
-        scaleInPolicy = {
-            type = "structure",
-        },
-        scaleOutPolicy = {
-            type = "structure",
-        },
+        scaleInPolicy = M.ScaleInPolicy,
+        scaleOutPolicy = M.ScaleOutPolicy,
         maxAutoscalingTaskCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -627,8 +630,9 @@ M.ScaleInPolicyUpdate = {
     type = "structure",
     members = {
         cpuUtilizationPercentage = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -639,8 +643,9 @@ M.ScaleOutPolicyUpdate = {
     type = "structure",
     members = {
         cpuUtilizationPercentage = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -651,37 +656,37 @@ M.AutoScalingUpdate = {
     type = "structure",
     members = {
         maxWorkerCount = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         mcuCount = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         minWorkerCount = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
-        scaleInPolicy = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        scaleOutPolicy = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        scaleInPolicy = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ScaleInPolicyUpdate }),
+        scaleOutPolicy = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ScaleOutPolicyUpdate }),
         maxAutoscalingTaskCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -700,14 +705,16 @@ M.ProvisionedCapacity = {
     type = "structure",
     members = {
         mcuCount = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         workerCount = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -717,12 +724,8 @@ M.ProvisionedCapacity = {
 M.Capacity = {
     type = "structure",
     members = {
-        autoScaling = {
-            type = "structure",
-        },
-        provisionedCapacity = {
-            type = "structure",
-        },
+        autoScaling = M.AutoScaling,
+        provisionedCapacity = M.ProvisionedCapacity,
     },
 }
 
@@ -730,14 +733,16 @@ M.ProvisionedCapacityUpdate = {
     type = "structure",
     members = {
         mcuCount = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         workerCount = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -747,12 +752,8 @@ M.ProvisionedCapacityUpdate = {
 M.CapacityUpdate = {
     type = "structure",
     members = {
-        autoScaling = {
-            type = "structure",
-        },
-        provisionedCapacity = {
-            type = "structure",
-        },
+        autoScaling = M.AutoScalingUpdate,
+        provisionedCapacity = M.ProvisionedCapacityUpdate,
     },
 }
 
@@ -762,6 +763,7 @@ M.CloudWatchLogsLogDelivery = {
         enabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -784,12 +786,9 @@ M.ConflictException = {
 M.KafkaCluster = {
     type = "structure",
     members = {
-        apacheKafkaCluster = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        apacheKafkaCluster = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ApacheKafkaCluster }),
     },
 }
 
@@ -826,6 +825,7 @@ M.FirehoseLogDelivery = {
         enabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -841,6 +841,7 @@ M.S3LogDelivery = {
         enabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -853,27 +854,18 @@ M.S3LogDelivery = {
 M.WorkerLogDelivery = {
     type = "structure",
     members = {
-        cloudWatchLogs = {
-            type = "structure",
-        },
-        firehose = {
-            type = "structure",
-        },
-        s3 = {
-            type = "structure",
-        },
+        cloudWatchLogs = M.CloudWatchLogsLogDelivery,
+        firehose = M.FirehoseLogDelivery,
+        s3 = M.S3LogDelivery,
     },
 }
 
 M.LogDelivery = {
     type = "structure",
     members = {
-        workerLogDelivery = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        workerLogDelivery = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkerLogDelivery }),
     },
 }
 
@@ -881,8 +873,9 @@ M.WorkerConfiguration = {
     type = "structure",
     members = {
         revision = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -898,16 +891,13 @@ M.WorkerConfiguration = {
 M.CreateConnectorInput = {
     type = "structure",
     members = {
-        capacity = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        capacity = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Capacity }),
         connectorConfiguration = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -921,39 +911,28 @@ M.CreateConnectorInput = {
                 required = true,
             },
         },
-        kafkaCluster = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        kafkaClusterClientAuthentication = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        kafkaClusterEncryptionInTransit = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        kafkaCluster = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.KafkaCluster }),
+        kafkaClusterClientAuthentication = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.KafkaClusterClientAuthentication }),
+        kafkaClusterEncryptionInTransit = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.KafkaClusterEncryptionInTransit }),
         kafkaConnectVersion = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        logDelivery = {
-            type = "structure",
-        },
+        logDelivery = M.LogDelivery,
         networkType = {
             type = "string",
         },
         plugins = {
             type = "list",
-            member_type = "structure",
+            member = M.Plugin,
             traits = {
                 required = true,
             },
@@ -964,13 +943,11 @@ M.CreateConnectorInput = {
                 required = true,
             },
         },
-        workerConfiguration = {
-            type = "structure",
-        },
+        workerConfiguration = M.WorkerConfiguration,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1074,12 +1051,9 @@ M.S3Location = {
 M.CustomPluginLocation = {
     type = "structure",
     members = {
-        s3Location = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        s3Location = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3Location }),
     },
 }
 
@@ -1095,12 +1069,9 @@ M.CreateCustomPluginInput = {
         description = {
             type = "string",
         },
-        location = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        location = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CustomPluginLocation }),
         name = {
             type = "string",
             traits = {
@@ -1109,8 +1080,8 @@ M.CreateCustomPluginInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1128,7 +1099,10 @@ M.CreateCustomPluginOutput = {
             type = "string",
         },
         revision = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1153,8 +1127,8 @@ M.CreateWorkerConfigurationInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1165,9 +1139,7 @@ M.CreateWorkerConfigurationOutput = {
         creationTime = {
             type = "timestamp",
         },
-        latestRevision = {
-            type = "structure",
-        },
+        latestRevision = M.WorkerConfigurationRevisionSummary,
         name = {
             type = "string",
         },
@@ -1289,16 +1261,14 @@ M.StateDescription = {
 M.DescribeConnectorOutput = {
     type = "structure",
     members = {
-        capacity = {
-            type = "structure",
-        },
+        capacity = M.CapacityDescription,
         connectorArn = {
             type = "string",
         },
         connectorConfiguration = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         connectorDescription = {
             type = "string",
@@ -1315,37 +1285,25 @@ M.DescribeConnectorOutput = {
         currentVersion = {
             type = "string",
         },
-        kafkaCluster = {
-            type = "structure",
-        },
-        kafkaClusterClientAuthentication = {
-            type = "structure",
-        },
-        kafkaClusterEncryptionInTransit = {
-            type = "structure",
-        },
+        kafkaCluster = M.KafkaClusterDescription,
+        kafkaClusterClientAuthentication = M.KafkaClusterClientAuthenticationDescription,
+        kafkaClusterEncryptionInTransit = M.KafkaClusterEncryptionInTransitDescription,
         kafkaConnectVersion = {
             type = "string",
         },
-        logDelivery = {
-            type = "structure",
-        },
+        logDelivery = M.LogDeliveryDescription,
         networkType = {
             type = "string",
         },
         plugins = {
             type = "list",
-            member_type = "structure",
+            member = M.PluginDescription,
         },
         serviceExecutionRoleArn = {
             type = "string",
         },
-        workerConfiguration = {
-            type = "structure",
-        },
-        stateDescription = {
-            type = "structure",
-        },
+        workerConfiguration = M.WorkerConfigurationDescription,
+        stateDescription = M.StateDescription,
     },
 }
 
@@ -1365,9 +1323,7 @@ M.DescribeConnectorOperationInput = {
 M.WorkerSetting = {
     type = "structure",
     members = {
-        capacity = {
-            type = "structure",
-        },
+        capacity = M.CapacityDescription,
     },
 }
 
@@ -1388,27 +1344,21 @@ M.DescribeConnectorOperationOutput = {
         },
         operationSteps = {
             type = "list",
-            member_type = "structure",
+            member = M.ConnectorOperationStep,
         },
-        originWorkerSetting = {
-            type = "structure",
-        },
+        originWorkerSetting = M.WorkerSetting,
         originConnectorConfiguration = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        targetWorkerSetting = {
-            type = "structure",
-        },
+        targetWorkerSetting = M.WorkerSetting,
         targetConnectorConfiguration = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        errorInfo = {
-            type = "structure",
-        },
+        errorInfo = M.StateDescription,
         creationTime = {
             type = "timestamp",
         },
@@ -1446,15 +1396,11 @@ M.DescribeCustomPluginOutput = {
         description = {
             type = "string",
         },
-        latestRevision = {
-            type = "structure",
-        },
+        latestRevision = M.CustomPluginRevisionSummary,
         name = {
             type = "string",
         },
-        stateDescription = {
-            type = "structure",
-        },
+        stateDescription = M.StateDescription,
     },
 }
 
@@ -1484,7 +1430,10 @@ M.WorkerConfigurationRevisionDescription = {
             type = "string",
         },
         revision = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1498,9 +1447,7 @@ M.DescribeWorkerConfigurationOutput = {
         description = {
             type = "string",
         },
-        latestRevision = {
-            type = "structure",
-        },
+        latestRevision = M.WorkerConfigurationRevisionDescription,
         name = {
             type = "string",
         },
@@ -1524,7 +1471,7 @@ M.ListConnectorOperationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1543,7 +1490,7 @@ M.ListConnectorOperationsOutput = {
     members = {
         connectorOperations = {
             type = "list",
-            member_type = "structure",
+            member = M.ConnectorOperationSummary,
         },
         nextToken = {
             type = "string",
@@ -1561,7 +1508,7 @@ M.ListConnectorsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1580,7 +1527,7 @@ M.ListConnectorsOutput = {
     members = {
         connectors = {
             type = "list",
-            member_type = "structure",
+            member = M.ConnectorSummary,
         },
         nextToken = {
             type = "string",
@@ -1592,7 +1539,7 @@ M.ListCustomPluginsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1617,7 +1564,7 @@ M.ListCustomPluginsOutput = {
     members = {
         customPlugins = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomPluginSummary,
         },
         nextToken = {
             type = "string",
@@ -1643,8 +1590,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1653,7 +1600,7 @@ M.ListWorkerConfigurationsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1681,7 +1628,7 @@ M.ListWorkerConfigurationsOutput = {
         },
         workerConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkerConfigurationSummary,
         },
     },
 }
@@ -1698,8 +1645,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1723,7 +1670,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -1739,13 +1686,11 @@ M.UntagResourceOutput = {
 M.UpdateConnectorInput = {
     type = "structure",
     members = {
-        capacity = {
-            type = "structure",
-        },
+        capacity = M.CapacityUpdate,
         connectorConfiguration = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         connectorArn = {
             type = "string",

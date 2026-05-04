@@ -19,8 +19,9 @@ M.Dimension = {
             },
         },
         dimensionValue = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -38,7 +39,7 @@ M.ConfigurableUpfrontPricingTermConfiguration = {
         },
         dimensions = {
             type = "list",
-            member_type = "structure",
+            member = M.Dimension,
             traits = {
                 required = true,
             },
@@ -85,15 +86,11 @@ M.Selector = {
 M.ConfigurableUpfrontRateCardItem = {
     type = "structure",
     members = {
-        selector = {
-            type = "structure",
-        },
-        constraints = {
-            type = "structure",
-        },
+        selector = M.Selector,
+        constraints = M.Constraints,
         rateCard = {
             type = "list",
-            member_type = "structure",
+            member = M.RateCardItem,
         },
     },
 }
@@ -109,11 +106,9 @@ M.ConfigurableUpfrontPricingTerm = {
         },
         rateCards = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigurableUpfrontRateCardItem,
         },
-        configuration = {
-            type = "structure",
-        },
+        configuration = M.ConfigurableUpfrontPricingTermConfiguration,
     },
 }
 
@@ -124,7 +119,10 @@ M.GrantItem = {
             type = "string",
         },
         maxQuantity = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 1,
+            },
         },
     },
 }
@@ -146,7 +144,7 @@ M.FixedUpfrontPricingTerm = {
         },
         grants = {
             type = "list",
-            member_type = "structure",
+            member = M.GrantItem,
         },
     },
 }
@@ -162,7 +160,7 @@ M.FreeTrialPricingTerm = {
         },
         grants = {
             type = "list",
-            member_type = "structure",
+            member = M.GrantItem,
         },
     },
 }
@@ -190,7 +188,7 @@ M.LegalTerm = {
         },
         documents = {
             type = "list",
-            member_type = "structure",
+            member = M.DocumentItem,
         },
     },
 }
@@ -218,7 +216,7 @@ M.PaymentScheduleTerm = {
         },
         schedule = {
             type = "list",
-            member_type = "structure",
+            member = M.ScheduleItem,
         },
     },
 }
@@ -259,9 +257,7 @@ M.RenewalTerm = {
         type = {
             type = "string",
         },
-        configuration = {
-            type = "structure",
-        },
+        configuration = M.RenewalTermConfiguration,
     },
 }
 
@@ -282,7 +278,7 @@ M.UsageBasedRateCardItem = {
     members = {
         rateCard = {
             type = "list",
-            member_type = "structure",
+            member = M.RateCardItem,
         },
     },
 }
@@ -298,7 +294,7 @@ M.UsageBasedPricingTerm = {
         },
         rateCards = {
             type = "list",
-            member_type = "structure",
+            member = M.UsageBasedRateCardItem,
         },
     },
 }
@@ -353,51 +349,25 @@ M.VariablePaymentTerm = {
         maxTotalChargeAmount = {
             type = "string",
         },
-        configuration = {
-            type = "structure",
-        },
+        configuration = M.VariablePaymentTermConfiguration,
     },
 }
 
 M.AcceptedTerm = {
     type = "union",
     members = {
-        legalTerm = {
-            type = "structure",
-        },
-        supportTerm = {
-            type = "structure",
-        },
-        renewalTerm = {
-            type = "structure",
-        },
-        usageBasedPricingTerm = {
-            type = "structure",
-        },
-        configurableUpfrontPricingTerm = {
-            type = "structure",
-        },
-        byolPricingTerm = {
-            type = "structure",
-        },
-        recurringPaymentTerm = {
-            type = "structure",
-        },
-        validityTerm = {
-            type = "structure",
-        },
-        paymentScheduleTerm = {
-            type = "structure",
-        },
-        freeTrialPricingTerm = {
-            type = "structure",
-        },
-        fixedUpfrontPricingTerm = {
-            type = "structure",
-        },
-        variablePaymentTerm = {
-            type = "structure",
-        },
+        legalTerm = M.LegalTerm,
+        supportTerm = M.SupportTerm,
+        renewalTerm = M.RenewalTerm,
+        usageBasedPricingTerm = M.UsageBasedPricingTerm,
+        configurableUpfrontPricingTerm = M.ConfigurableUpfrontPricingTerm,
+        byolPricingTerm = M.ByolPricingTerm,
+        recurringPaymentTerm = M.RecurringPaymentTerm,
+        validityTerm = M.ValidityTerm,
+        paymentScheduleTerm = M.PaymentScheduleTerm,
+        freeTrialPricingTerm = M.FreeTrialPricingTerm,
+        fixedUpfrontPricingTerm = M.FixedUpfrontPricingTerm,
+        variablePaymentTerm = M.VariablePaymentTerm,
     },
 }
 
@@ -476,13 +446,13 @@ M.InvoiceBillingPeriod = {
     type = "structure",
     members = {
         month = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         year = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -531,21 +501,15 @@ M.AgreementInvoiceLineItemGroupSummary = {
         invoiceId = {
             type = "string",
         },
-        pricingCurrencyAmount = {
-            type = "structure",
-        },
-        invoiceBillingPeriod = {
-            type = "structure",
-        },
+        pricingCurrencyAmount = M.PricingCurrencyAmount,
+        invoiceBillingPeriod = M.InvoiceBillingPeriod,
         issuedTime = {
             type = "timestamp",
         },
         invoiceType = {
             type = "string",
         },
-        invoicingEntity = {
-            type = "structure",
-        },
+        invoicingEntity = M.InvoicingEntity,
     },
 }
 
@@ -578,7 +542,7 @@ M.ProposalSummary = {
     members = {
         resources = {
             type = "list",
-            member_type = "structure",
+            member = M.Resource,
         },
         offerId = {
             type = "string",
@@ -616,15 +580,9 @@ M.AgreementViewSummary = {
         agreementType = {
             type = "string",
         },
-        acceptor = {
-            type = "structure",
-        },
-        proposer = {
-            type = "structure",
-        },
-        proposalSummary = {
-            type = "structure",
-        },
+        acceptor = M.Acceptor,
+        proposer = M.Proposer,
+        proposalSummary = M.ProposalSummary,
         status = {
             type = "string",
         },
@@ -691,7 +649,7 @@ M.BatchCreateBillingAdjustmentRequestInput = {
     members = {
         billingAdjustmentRequestEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchCreateBillingAdjustmentRequestEntry,
             traits = {
                 required = true,
             },
@@ -753,14 +711,14 @@ M.BatchCreateBillingAdjustmentRequestOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchCreateBillingAdjustmentItem,
             traits = {
                 required = true,
             },
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchCreateBillingAdjustmentError,
             traits = {
                 required = true,
             },
@@ -879,7 +837,7 @@ M.ValidationException = {
         },
         fields = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -1047,12 +1005,8 @@ M.DescribeAgreementOutput = {
         agreementId = {
             type = "string",
         },
-        acceptor = {
-            type = "structure",
-        },
-        proposer = {
-            type = "structure",
-        },
+        acceptor = M.Acceptor,
+        proposer = M.Proposer,
         startTime = {
             type = "timestamp",
         },
@@ -1065,12 +1019,8 @@ M.DescribeAgreementOutput = {
         agreementType = {
             type = "string",
         },
-        estimatedCharges = {
-            type = "structure",
-        },
-        proposalSummary = {
-            type = "structure",
-        },
+        estimatedCharges = M.EstimatedCharges,
+        proposalSummary = M.ProposalSummary,
         status = {
             type = "string",
         },
@@ -1192,7 +1142,7 @@ M.GetAgreementTermsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -1205,7 +1155,7 @@ M.GetAgreementTermsOutput = {
     members = {
         acceptedTerms = {
             type = "list",
-            member_type = "union",
+            member = M.AcceptedTerm,
         },
         nextToken = {
             type = "string",
@@ -1325,7 +1275,7 @@ M.ListAgreementCancellationRequestsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -1341,7 +1291,7 @@ M.ListAgreementCancellationRequestsOutput = {
         },
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.AgreementCancellationRequestSummary,
         },
     },
 }
@@ -1371,9 +1321,7 @@ M.ListAgreementInvoiceLineItemsInput = {
         invoiceType = {
             type = "string",
         },
-        invoiceBillingPeriod = {
-            type = "structure",
-        },
+        invoiceBillingPeriod = M.InvoiceBillingPeriod,
         beforeIssuedTime = {
             type = "timestamp",
         },
@@ -1381,7 +1329,7 @@ M.ListAgreementInvoiceLineItemsInput = {
             type = "timestamp",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -1394,7 +1342,7 @@ M.ListAgreementInvoiceLineItemsOutput = {
     members = {
         agreementInvoiceLineItemGroupSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.AgreementInvoiceLineItemGroupSummary,
         },
         nextToken = {
             type = "string",
@@ -1424,7 +1372,7 @@ M.ListAgreementPaymentRequestsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -1473,7 +1421,7 @@ M.ListAgreementPaymentRequestsOutput = {
         },
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.PaymentRequestSummary,
             traits = {
                 required = true,
             },
@@ -1497,7 +1445,7 @@ M.ListBillingAdjustmentRequestsInput = {
             type = "timestamp",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         catalog = {
             type = "string",
@@ -1585,7 +1533,7 @@ M.ListBillingAdjustmentRequestsOutput = {
         },
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.BillingAdjustmentSummary,
             traits = {
                 required = true,
             },
@@ -1601,7 +1549,7 @@ M.Filter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1631,13 +1579,11 @@ M.SearchAgreementsInput = {
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
-        sort = {
-            type = "structure",
-        },
+        sort = M.Sort,
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -1650,7 +1596,7 @@ M.SearchAgreementsOutput = {
     members = {
         agreementViewSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.AgreementViewSummary,
         },
         nextToken = {
             type = "string",

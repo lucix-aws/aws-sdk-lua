@@ -20,10 +20,10 @@ M.ActionMetadata = {
             },
         },
         programCount = {
-            type = "number",
+            type = "long",
         },
         executableCount = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -69,12 +69,8 @@ M.ScriptModeConfig = {
 M.AlgorithmSpecification = {
     type = "structure",
     members = {
-        scriptModeConfig = {
-            type = "structure",
-        },
-        containerImage = {
-            type = "structure",
-        },
+        scriptModeConfig = M.ScriptModeConfig,
+        containerImage = M.ContainerImage,
     },
 }
 
@@ -196,7 +192,7 @@ M.GetDeviceOutput = {
         },
         deviceQueueInfo = {
             type = "list",
-            member_type = "structure",
+            member = M.DeviceQueueInfo,
         },
     },
 }
@@ -235,17 +231,17 @@ M.ProgramSetValidationFailure = {
     type = "structure",
     members = {
         programIndex = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         inputsIndex = {
-            type = "number",
+            type = "long",
         },
         errors = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -266,7 +262,7 @@ M.ValidationException = {
         },
         programSetValidationFailures = {
             type = "list",
-            member_type = "structure",
+            member = M.ProgramSetValidationFailure,
         },
     },
 }
@@ -282,7 +278,7 @@ M.SearchDevicesFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -297,11 +293,11 @@ M.SearchDevicesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.SearchDevicesFilter,
             traits = {
                 required = true,
             },
@@ -350,7 +346,7 @@ M.SearchDevicesOutput = {
     members = {
         devices = {
             type = "list",
-            member_type = "structure",
+            member = M.DeviceSummary,
             traits = {
                 required = true,
             },
@@ -449,12 +445,9 @@ M.S3DataSource = {
 M.DataSource = {
     type = "structure",
     members = {
-        s3DataSource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        s3DataSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3DataSource }),
     },
 }
 
@@ -470,12 +463,9 @@ M.InputFileConfig = {
         contentType = {
             type = "string",
         },
-        dataSource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        dataSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataSource }),
     },
 }
 
@@ -550,13 +540,13 @@ M.InstanceConfig = {
             },
         },
         volumeSizeInGb = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         instanceCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -580,7 +570,7 @@ M.JobStoppingCondition = {
     type = "structure",
     members = {
         maxRuntimeInSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -594,25 +584,17 @@ M.CreateJobInput = {
                 required = true,
             },
         },
-        algorithmSpecification = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        algorithmSpecification = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AlgorithmSpecification }),
         inputDataConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.InputFileConfig,
         },
-        outputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        checkpointConfig = {
-            type = "structure",
-        },
+        outputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.JobOutputDataConfig }),
+        checkpointConfig = M.JobCheckpointConfig,
         jobName = {
             type = "string",
             traits = {
@@ -625,34 +607,26 @@ M.CreateJobInput = {
                 required = true,
             },
         },
-        stoppingCondition = {
-            type = "structure",
-        },
-        instanceConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        stoppingCondition = M.JobStoppingCondition,
+        instanceConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InstanceConfig }),
         hyperParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        deviceConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        deviceConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DeviceConfig }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         associations = {
             type = "list",
-            member_type = "structure",
+            member = M.Association,
         },
     },
 }
@@ -715,7 +689,7 @@ M.GetJobInput = {
         },
         additionalAttributeNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "additionalAttributeNames",
             },
@@ -817,37 +791,24 @@ M.GetJobOutput = {
         },
         hyperParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         inputDataConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.InputFileConfig,
         },
-        outputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        stoppingCondition = {
-            type = "structure",
-        },
-        checkpointConfig = {
-            type = "structure",
-        },
-        algorithmSpecification = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        instanceConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        outputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.JobOutputDataConfig }),
+        stoppingCondition = M.JobStoppingCondition,
+        checkpointConfig = M.JobCheckpointConfig,
+        algorithmSpecification = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AlgorithmSpecification }),
+        instanceConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InstanceConfig }),
         createdAt = {
             type = "timestamp",
             traits = {
@@ -868,26 +829,22 @@ M.GetJobOutput = {
             },
         },
         billableDuration = {
-            type = "number",
+            type = "integer",
         },
-        deviceConfig = {
-            type = "structure",
-        },
+        deviceConfig = M.DeviceConfig,
         events = {
             type = "list",
-            member_type = "structure",
+            member = M.JobEventDetails,
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        queueInfo = {
-            type = "structure",
-        },
+        queueInfo = M.HybridJobQueueInfo,
         associations = {
             type = "list",
-            member_type = "structure",
+            member = M.Association,
         },
     },
 }
@@ -913,7 +870,7 @@ M.SearchJobsFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -934,11 +891,11 @@ M.SearchJobsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.SearchJobsFilter,
             traits = {
                 required = true,
             },
@@ -994,8 +951,8 @@ M.JobSummary = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1005,7 +962,7 @@ M.SearchJobsOutput = {
     members = {
         jobs = {
             type = "list",
-            member_type = "structure",
+            member = M.JobSummary,
             traits = {
                 required = true,
             },
@@ -1034,8 +991,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1110,7 +1067,7 @@ M.CreateQuantumTaskInput = {
             type = "string",
         },
         shots = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -1135,19 +1092,17 @@ M.CreateQuantumTaskInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         jobToken = {
             type = "string",
         },
         associations = {
             type = "list",
-            member_type = "structure",
+            member = M.Association,
         },
-        experimentalCapabilities = {
-            type = "union",
-        },
+        experimentalCapabilities = M.ExperimentalCapabilities,
     },
 }
 
@@ -1179,7 +1134,7 @@ M.GetQuantumTaskInput = {
         },
         additionalAttributeNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "additionalAttributeNames",
             },
@@ -1252,7 +1207,7 @@ M.GetQuantumTaskOutput = {
             },
         },
         shots = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -1284,28 +1239,22 @@ M.GetQuantumTaskOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         jobArn = {
             type = "string",
         },
-        queueInfo = {
-            type = "structure",
-        },
+        queueInfo = M.QuantumTaskQueueInfo,
         associations = {
             type = "list",
-            member_type = "structure",
+            member = M.Association,
         },
         numSuccessfulShots = {
-            type = "number",
+            type = "long",
         },
-        actionMetadata = {
-            type = "structure",
-        },
-        experimentalCapabilities = {
-            type = "union",
-        },
+        actionMetadata = M.ActionMetadata,
+        experimentalCapabilities = M.ExperimentalCapabilities,
     },
 }
 
@@ -1329,7 +1278,7 @@ M.SearchQuantumTasksFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1350,11 +1299,11 @@ M.SearchQuantumTasksInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.SearchQuantumTasksFilter,
             traits = {
                 required = true,
             },
@@ -1384,7 +1333,7 @@ M.QuantumTaskSummary = {
             },
         },
         shots = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -1416,8 +1365,8 @@ M.QuantumTaskSummary = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1427,7 +1376,7 @@ M.SearchQuantumTasksOutput = {
     members = {
         quantumTasks = {
             type = "list",
-            member_type = "structure",
+            member = M.QuantumTaskSummary,
             traits = {
                 required = true,
             },
@@ -1479,13 +1428,11 @@ M.CreateSpendingLimitInput = {
                 required = true,
             },
         },
-        timePeriod = {
-            type = "structure",
-        },
+        timePeriod = M.TimePeriod,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1534,7 +1481,7 @@ M.SearchSpendingLimitsFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1555,11 +1502,11 @@ M.SearchSpendingLimitsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.SearchSpendingLimitsFilter,
         },
     },
 }
@@ -1579,12 +1526,9 @@ M.SpendingLimitSummary = {
                 required = true,
             },
         },
-        timePeriod = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        timePeriod = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TimePeriod }),
         spendingLimit = {
             type = "string",
             traits = {
@@ -1619,8 +1563,8 @@ M.SpendingLimitSummary = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1630,7 +1574,7 @@ M.SearchSpendingLimitsOutput = {
     members = {
         spendingLimits = {
             type = "list",
-            member_type = "structure",
+            member = M.SpendingLimitSummary,
             traits = {
                 required = true,
             },
@@ -1660,9 +1604,7 @@ M.UpdateSpendingLimitInput = {
         spendingLimit = {
             type = "string",
         },
-        timePeriod = {
-            type = "structure",
-        },
+        timePeriod = M.TimePeriod,
     },
 }
 
@@ -1682,8 +1624,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1707,7 +1649,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,

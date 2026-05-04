@@ -98,7 +98,7 @@ M.ResourceShareInvitation = {
         },
         resourceShareAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceShareAssociation,
         },
         receiverArn = {
             type = "string",
@@ -109,9 +109,7 @@ M.ResourceShareInvitation = {
 M.AcceptResourceShareInvitationOutput = {
     type = "structure",
     members = {
-        resourceShareInvitation = {
-            type = "structure",
-        },
+        resourceShareInvitation = M.ResourceShareInvitation,
         clientToken = {
             type = "string",
         },
@@ -259,18 +257,18 @@ M.AssociateResourceShareInput = {
         },
         resourceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         principals = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         clientToken = {
             type = "string",
         },
         sources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -280,7 +278,7 @@ M.AssociateResourceShareOutput = {
     members = {
         resourceShareAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceShareAssociation,
         },
         clientToken = {
             type = "string",
@@ -375,7 +373,7 @@ M.AssociateResourceSharePermissionInput = {
             type = "string",
         },
         permissionVersion = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -430,7 +428,7 @@ M.CreatePermissionInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -484,7 +482,7 @@ M.ResourceSharePermissionSummary = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -492,9 +490,7 @@ M.ResourceSharePermissionSummary = {
 M.CreatePermissionOutput = {
     type = "structure",
     members = {
-        permission = {
-            type = "structure",
-        },
+        permission = M.ResourceSharePermissionSummary,
         clientToken = {
             type = "string",
         },
@@ -622,7 +618,7 @@ M.ResourceSharePermissionDetail = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -630,9 +626,7 @@ M.ResourceSharePermissionDetail = {
 M.CreatePermissionVersionOutput = {
     type = "structure",
     members = {
-        permission = {
-            type = "structure",
-        },
+        permission = M.ResourceSharePermissionDetail,
         clientToken = {
             type = "string",
         },
@@ -672,15 +666,15 @@ M.CreateResourceShareInput = {
         },
         resourceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         principals = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         allowExternalPrincipals = {
             type = "boolean",
@@ -690,15 +684,13 @@ M.CreateResourceShareInput = {
         },
         permissionArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         sources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        resourceShareConfiguration = {
-            type = "structure",
-        },
+        resourceShareConfiguration = M.ResourceShareConfiguration,
     },
 }
 
@@ -739,7 +731,7 @@ M.ResourceShare = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         creationTime = {
             type = "timestamp",
@@ -750,18 +742,14 @@ M.ResourceShare = {
         featureSet = {
             type = "string",
         },
-        resourceShareConfiguration = {
-            type = "structure",
-        },
+        resourceShareConfiguration = M.ResourceShareConfiguration,
     },
 }
 
 M.CreateResourceShareOutput = {
     type = "structure",
     members = {
-        resourceShare = {
-            type = "structure",
-        },
+        resourceShare = M.ResourceShare,
         clientToken = {
             type = "string",
         },
@@ -842,7 +830,7 @@ M.DeletePermissionVersionInput = {
             },
         },
         permissionVersion = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "permissionVersion",
                 required = true,
@@ -920,18 +908,18 @@ M.DisassociateResourceShareInput = {
         },
         resourceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         principals = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         clientToken = {
             type = "string",
         },
         sources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -941,7 +929,7 @@ M.DisassociateResourceShareOutput = {
     members = {
         resourceShareAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceShareAssociation,
         },
         clientToken = {
             type = "string",
@@ -1008,7 +996,7 @@ M.GetPermissionInput = {
             },
         },
         permissionVersion = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1016,9 +1004,7 @@ M.GetPermissionInput = {
 M.GetPermissionOutput = {
     type = "structure",
     members = {
-        permission = {
-            type = "structure",
-        },
+        permission = M.ResourceSharePermissionDetail,
     },
 }
 
@@ -1027,7 +1013,7 @@ M.GetResourcePoliciesInput = {
     members = {
         resourceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1039,7 +1025,7 @@ M.GetResourcePoliciesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1049,7 +1035,7 @@ M.GetResourcePoliciesOutput = {
     members = {
         policies = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -1094,7 +1080,7 @@ M.GetResourceShareAssociationsInput = {
         },
         resourceShareArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         resourceArn = {
             type = "string",
@@ -1109,7 +1095,7 @@ M.GetResourceShareAssociationsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1119,7 +1105,7 @@ M.GetResourceShareAssociationsOutput = {
     members = {
         resourceShareAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceShareAssociation,
         },
         nextToken = {
             type = "string",
@@ -1132,17 +1118,17 @@ M.GetResourceShareInvitationsInput = {
     members = {
         resourceShareInvitationArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         resourceShareArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1152,7 +1138,7 @@ M.GetResourceShareInvitationsOutput = {
     members = {
         resourceShareInvitations = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceShareInvitation,
         },
         nextToken = {
             type = "string",
@@ -1186,7 +1172,7 @@ M.TagFilter = {
         },
         tagValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1196,7 +1182,7 @@ M.GetResourceSharesInput = {
     members = {
         resourceShareArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         resourceShareStatus = {
             type = "string",
@@ -1212,19 +1198,19 @@ M.GetResourceSharesInput = {
         },
         tagFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.TagFilter,
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         permissionArn = {
             type = "string",
         },
         permissionVersion = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1234,7 +1220,7 @@ M.GetResourceSharesOutput = {
     members = {
         resourceShares = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceShare,
         },
         nextToken = {
             type = "string",
@@ -1261,7 +1247,7 @@ M.ListPendingInvitationResourcesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         resourceRegionScope = {
             type = "string",
@@ -1320,7 +1306,7 @@ M.ListPendingInvitationResourcesOutput = {
     members = {
         resources = {
             type = "list",
-            member_type = "structure",
+            member = M.Resource,
         },
         nextToken = {
             type = "string",
@@ -1348,7 +1334,7 @@ M.ListPermissionAssociationsInput = {
             type = "string",
         },
         permissionVersion = {
-            type = "number",
+            type = "integer",
         },
         associationStatus = {
             type = "string",
@@ -1366,7 +1352,7 @@ M.ListPermissionAssociationsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1406,7 +1392,7 @@ M.ListPermissionAssociationsOutput = {
     members = {
         permissions = {
             type = "list",
-            member_type = "structure",
+            member = M.AssociatedPermission,
         },
         nextToken = {
             type = "string",
@@ -1430,7 +1416,7 @@ M.ListPermissionsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         permissionType = {
             type = "string",
@@ -1443,7 +1429,7 @@ M.ListPermissionsOutput = {
     members = {
         permissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceSharePermissionSummary,
         },
         nextToken = {
             type = "string",
@@ -1464,7 +1450,7 @@ M.ListPermissionVersionsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1474,7 +1460,7 @@ M.ListPermissionVersionsOutput = {
     members = {
         permissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceSharePermissionSummary,
         },
         nextToken = {
             type = "string",
@@ -1496,20 +1482,20 @@ M.ListPrincipalsInput = {
         },
         principals = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         resourceType = {
             type = "string",
         },
         resourceShareArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1540,7 +1526,7 @@ M.ListPrincipalsOutput = {
     members = {
         principals = {
             type = "list",
-            member_type = "structure",
+            member = M.Principal,
         },
         nextToken = {
             type = "string",
@@ -1559,7 +1545,7 @@ M.ListReplacePermissionAssociationsWorkInput = {
     members = {
         workIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         status = {
             type = "string",
@@ -1568,7 +1554,7 @@ M.ListReplacePermissionAssociationsWorkInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1611,7 +1597,7 @@ M.ListReplacePermissionAssociationsWorkOutput = {
     members = {
         replacePermissionAssociationsWorks = {
             type = "list",
-            member_type = "structure",
+            member = M.ReplacePermissionAssociationsWork,
         },
         nextToken = {
             type = "string",
@@ -1649,17 +1635,17 @@ M.ListResourcesInput = {
         },
         resourceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         resourceShareArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         resourceRegionScope = {
             type = "string",
@@ -1672,7 +1658,7 @@ M.ListResourcesOutput = {
     members = {
         resources = {
             type = "list",
-            member_type = "structure",
+            member = M.Resource,
         },
         nextToken = {
             type = "string",
@@ -1693,7 +1679,7 @@ M.ListResourceSharePermissionsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1703,7 +1689,7 @@ M.ListResourceSharePermissionsOutput = {
     members = {
         permissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceSharePermissionSummary,
         },
         nextToken = {
             type = "string",
@@ -1718,7 +1704,7 @@ M.ListResourceTypesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         resourceRegionScope = {
             type = "string",
@@ -1746,7 +1732,7 @@ M.ListResourceTypesOutput = {
     members = {
         resourceTypes = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceNameAndResourceType,
         },
         nextToken = {
             type = "string",
@@ -1759,7 +1745,7 @@ M.ListSourceAssociationsInput = {
     members = {
         resourceShareArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         sourceId = {
             type = "string",
@@ -1774,7 +1760,7 @@ M.ListSourceAssociationsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1811,7 +1797,7 @@ M.ListSourceAssociationsOutput = {
     members = {
         sourceAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.AssociatedSource,
         },
         nextToken = {
             type = "string",
@@ -1843,9 +1829,7 @@ M.PromotePermissionCreatedFromPolicyInput = {
 M.PromotePermissionCreatedFromPolicyOutput = {
     type = "structure",
     members = {
-        permission = {
-            type = "structure",
-        },
+        permission = M.ResourceSharePermissionSummary,
         clientToken = {
             type = "string",
         },
@@ -1908,9 +1892,7 @@ M.RejectResourceShareInvitationInput = {
 M.RejectResourceShareInvitationOutput = {
     type = "structure",
     members = {
-        resourceShareInvitation = {
-            type = "structure",
-        },
+        resourceShareInvitation = M.ResourceShareInvitation,
         clientToken = {
             type = "string",
         },
@@ -1927,7 +1909,7 @@ M.ReplacePermissionAssociationsInput = {
             },
         },
         fromPermissionVersion = {
-            type = "number",
+            type = "integer",
         },
         toPermissionArn = {
             type = "string",
@@ -1944,9 +1926,7 @@ M.ReplacePermissionAssociationsInput = {
 M.ReplacePermissionAssociationsOutput = {
     type = "structure",
     members = {
-        replacePermissionAssociationsWork = {
-            type = "structure",
-        },
+        replacePermissionAssociationsWork = M.ReplacePermissionAssociationsWork,
         clientToken = {
             type = "string",
         },
@@ -1963,7 +1943,7 @@ M.SetDefaultPermissionVersionInput = {
             },
         },
         permissionVersion = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1997,7 +1977,7 @@ M.TagResourceInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -2020,7 +2000,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2059,9 +2039,7 @@ M.UpdateResourceShareInput = {
 M.UpdateResourceShareOutput = {
     type = "structure",
     members = {
-        resourceShare = {
-            type = "structure",
-        },
+        resourceShare = M.ResourceShare,
         clientToken = {
             type = "string",
         },

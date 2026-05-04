@@ -171,7 +171,7 @@ M.ValidationException = {
         },
         fieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -293,9 +293,7 @@ M.AlternateContact = {
 M.GetAlternateContactOutput = {
     type = "structure",
     members = {
-        AlternateContact = {
-            type = "structure",
-        },
+        AlternateContact = M.AlternateContact,
     },
 }
 
@@ -467,21 +465,16 @@ M.ContactInformation = {
 M.GetContactInformationOutput = {
     type = "structure",
     members = {
-        ContactInformation = {
-            type = "structure",
-        },
+        ContactInformation = M.ContactInformation,
     },
 }
 
 M.PutContactInformationInput = {
     type = "structure",
     members = {
-        ContactInformation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ContactInformation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ContactInformation }),
         AccountId = {
             type = "string",
         },
@@ -620,14 +613,14 @@ M.ListRegionsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         RegionOptStatusContains = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -652,7 +645,7 @@ M.ListRegionsOutput = {
         },
         Regions = {
             type = "list",
-            member_type = "structure",
+            member = M.Region,
         },
     },
 }

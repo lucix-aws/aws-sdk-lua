@@ -31,13 +31,13 @@ M.Corridor = {
     members = {
         LineString = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
             traits = {
                 required = true,
             },
         },
         Radius = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -55,7 +55,7 @@ M.PolylineCorridor = {
             },
         },
         Radius = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -68,21 +68,17 @@ M.IsolineAvoidanceAreaGeometry = {
     members = {
         BoundingBox = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
-        Corridor = {
-            type = "structure",
-        },
+        Corridor = M.Corridor,
         Polygon = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
         },
-        PolylineCorridor = {
-            type = "structure",
-        },
+        PolylineCorridor = M.PolylineCorridor,
         PolylinePolygon = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -92,14 +88,11 @@ M.IsolineAvoidanceArea = {
     members = {
         Except = {
             type = "list",
-            member_type = "structure",
+            member = M.IsolineAvoidanceAreaGeometry,
         },
-        Geometry = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Geometry = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IsolineAvoidanceAreaGeometry }),
     },
 }
 
@@ -123,7 +116,7 @@ M.IsolineAvoidanceOptions = {
     members = {
         Areas = {
             type = "list",
-            member_type = "structure",
+            member = M.IsolineAvoidanceArea,
         },
         CarShuttleTrains = {
             type = "boolean",
@@ -148,7 +141,7 @@ M.IsolineAvoidanceOptions = {
         },
         TruckRoadTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Tunnels = {
             type = "boolean",
@@ -158,7 +151,7 @@ M.IsolineAvoidanceOptions = {
         },
         ZoneCategories = {
             type = "list",
-            member_type = "structure",
+            member = M.IsolineAvoidanceZoneCategory,
         },
     },
 }
@@ -175,10 +168,16 @@ M.IsolineMatchingOptions = {
             type = "string",
         },
         OnRoadThreshold = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Radius = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Strategy = {
             type = "string",
@@ -196,7 +195,7 @@ M.IsolineSideOfStreetOptions = {
     members = {
         Position = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
@@ -211,17 +210,19 @@ M.IsolineDestinationOptions = {
     type = "structure",
     members = {
         AvoidActionsForDistance = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Heading = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
-        Matching = {
-            type = "structure",
-        },
-        SideOfStreet = {
-            type = "structure",
-        },
+        Matching = M.IsolineMatchingOptions,
+        SideOfStreet = M.IsolineSideOfStreetOptions,
     },
 }
 
@@ -234,10 +235,16 @@ M.IsolineGranularityOptions = {
     type = "structure",
     members = {
         MaxPoints = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         MaxResolution = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -257,17 +264,19 @@ M.IsolineOriginOptions = {
     type = "structure",
     members = {
         AvoidActionsForDistance = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Heading = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
-        Matching = {
-            type = "structure",
-        },
-        SideOfStreet = {
-            type = "structure",
-        },
+        Matching = M.IsolineMatchingOptions,
+        SideOfStreet = M.IsolineSideOfStreetOptions,
     },
 }
 
@@ -276,11 +285,11 @@ M.IsolineThresholds = {
     members = {
         Distance = {
             type = "list",
-            member_type = "number",
+            member = { type = "long" },
         },
         Time = {
             type = "list",
-            member_type = "number",
+            member = { type = "long" },
         },
     },
 }
@@ -294,7 +303,10 @@ M.IsolineTrafficOptions = {
     type = "structure",
     members = {
         FlowEventThresholdOverride = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Usage = {
             type = "string",
@@ -330,14 +342,18 @@ M.IsolineCarOptions = {
         EngineType = {
             type = "string",
         },
-        LicensePlate = {
-            type = "structure",
-        },
+        LicensePlate = M.IsolineVehicleLicensePlate,
         MaxSpeed = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = nil,
+            },
         },
         Occupancy = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -348,14 +364,18 @@ M.IsolineScooterOptions = {
         EngineType = {
             type = "string",
         },
-        LicensePlate = {
-            type = "structure",
-        },
+        LicensePlate = M.IsolineVehicleLicensePlate,
         MaxSpeed = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = nil,
+            },
         },
         Occupancy = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -378,10 +398,16 @@ M.IsolineTrailerOptions = {
     type = "structure",
     members = {
         AxleCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         TrailerCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -396,19 +422,34 @@ M.WeightPerAxleGroup = {
     type = "structure",
     members = {
         Single = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Tandem = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Triple = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Quad = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Quint = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -417,48 +458,74 @@ M.IsolineTruckOptions = {
     type = "structure",
     members = {
         AxleCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         EngineType = {
             type = "string",
         },
         GrossWeight = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         HazardousCargos = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Height = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         HeightAboveFirstAxle = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         KpraLength = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Length = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
-        LicensePlate = {
-            type = "structure",
-        },
+        LicensePlate = M.IsolineVehicleLicensePlate,
         MaxSpeed = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = nil,
+            },
         },
         Occupancy = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         PayloadCapacity = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         TireCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
-        Trailer = {
-            type = "structure",
-        },
+        Trailer = M.IsolineTrailerOptions,
         TruckType = {
             type = "string",
         },
@@ -466,13 +533,17 @@ M.IsolineTruckOptions = {
             type = "string",
         },
         WeightPerAxle = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
-        WeightPerAxleGroup = {
-            type = "structure",
-        },
+        WeightPerAxleGroup = M.WeightPerAxleGroup,
         Width = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -480,30 +551,20 @@ M.IsolineTruckOptions = {
 M.IsolineTravelModeOptions = {
     type = "structure",
     members = {
-        Car = {
-            type = "structure",
-        },
-        Scooter = {
-            type = "structure",
-        },
-        Truck = {
-            type = "structure",
-        },
+        Car = M.IsolineCarOptions,
+        Scooter = M.IsolineScooterOptions,
+        Truck = M.IsolineTruckOptions,
     },
 }
 
 M.CalculateIsolinesInput = {
     type = "structure",
     members = {
-        Allow = {
-            type = "structure",
-        },
+        Allow = M.IsolineAllowOptions,
         ArrivalTime = {
             type = "string",
         },
-        Avoid = {
-            type = "structure",
-        },
+        Avoid = M.IsolineAvoidanceOptions,
         DepartNow = {
             type = "boolean",
         },
@@ -512,17 +573,13 @@ M.CalculateIsolinesInput = {
         },
         Destination = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
-        DestinationOptions = {
-            type = "structure",
-        },
+        DestinationOptions = M.IsolineDestinationOptions,
         IsolineGeometryFormat = {
             type = "string",
         },
-        IsolineGranularity = {
-            type = "structure",
-        },
+        IsolineGranularity = M.IsolineGranularityOptions,
         Key = {
             type = "string",
             traits = {
@@ -537,26 +594,17 @@ M.CalculateIsolinesInput = {
         },
         Origin = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
-        OriginOptions = {
-            type = "structure",
-        },
-        Thresholds = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Traffic = {
-            type = "structure",
-        },
+        OriginOptions = M.IsolineOriginOptions,
+        Thresholds = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IsolineThresholds }),
+        Traffic = M.IsolineTrafficOptions,
         TravelMode = {
             type = "string",
         },
-        TravelModeOptions = {
-            type = "structure",
-        },
+        TravelModeOptions = M.IsolineTravelModeOptions,
     },
 }
 
@@ -565,7 +613,7 @@ M.IsolineConnectionGeometry = {
     members = {
         LineString = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
         },
         Polyline = {
             type = "string",
@@ -577,19 +625,16 @@ M.IsolineConnection = {
     type = "structure",
     members = {
         FromPolygonIndex = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
-        Geometry = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Geometry = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IsolineConnectionGeometry }),
         ToPolygonIndex = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -602,11 +647,11 @@ M.IsolineShapeGeometry = {
     members = {
         Polygon = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
         },
         PolylinePolygon = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -616,23 +661,29 @@ M.Isoline = {
     members = {
         Connections = {
             type = "list",
-            member_type = "structure",
+            member = M.IsolineConnection,
             traits = {
                 required = true,
             },
         },
         DistanceThreshold = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Geometries = {
             type = "list",
-            member_type = "structure",
+            member = M.IsolineShapeGeometry,
             traits = {
                 required = true,
             },
         },
         TimeThreshold = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -654,7 +705,7 @@ M.CalculateIsolinesOutput = {
         },
         Isolines = {
             type = "list",
-            member_type = "structure",
+            member = M.Isoline,
             traits = {
                 required = true,
             },
@@ -668,11 +719,11 @@ M.CalculateIsolinesOutput = {
         },
         SnappedDestination = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
         SnappedOrigin = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
     },
 }
@@ -754,7 +805,7 @@ M.ValidationException = {
         },
         FieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
             traits = {
                 json_name = "fieldList",
                 required = true,
@@ -780,15 +831,15 @@ M.RouteMatrixAvoidanceAreaGeometry = {
     members = {
         BoundingBox = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
         Polygon = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
         },
         PolylinePolygon = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -796,12 +847,9 @@ M.RouteMatrixAvoidanceAreaGeometry = {
 M.RouteMatrixAvoidanceArea = {
     type = "structure",
     members = {
-        Geometry = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Geometry = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RouteMatrixAvoidanceAreaGeometry }),
     },
 }
 
@@ -825,7 +873,7 @@ M.RouteMatrixAvoidanceOptions = {
     members = {
         Areas = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteMatrixAvoidanceArea,
         },
         CarShuttleTrains = {
             type = "boolean",
@@ -847,7 +895,7 @@ M.RouteMatrixAvoidanceOptions = {
         },
         TruckRoadTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Tunnels = {
             type = "boolean",
@@ -857,7 +905,7 @@ M.RouteMatrixAvoidanceOptions = {
         },
         ZoneCategories = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteMatrixAvoidanceZoneCategory,
         },
     },
 }
@@ -869,10 +917,16 @@ M.RouteMatrixMatchingOptions = {
             type = "string",
         },
         OnRoadThreshold = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Radius = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Strategy = {
             type = "string",
@@ -885,7 +939,7 @@ M.RouteMatrixSideOfStreetOptions = {
     members = {
         Position = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
@@ -900,29 +954,29 @@ M.RouteMatrixDestinationOptions = {
     type = "structure",
     members = {
         AvoidActionsForDistance = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Heading = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
-        Matching = {
-            type = "structure",
-        },
-        SideOfStreet = {
-            type = "structure",
-        },
+        Matching = M.RouteMatrixMatchingOptions,
+        SideOfStreet = M.RouteMatrixSideOfStreetOptions,
     },
 }
 
 M.RouteMatrixDestination = {
     type = "structure",
     members = {
-        Options = {
-            type = "structure",
-        },
+        Options = M.RouteMatrixDestinationOptions,
         Position = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
@@ -935,7 +989,7 @@ M.RouteMatrixExclusionOptions = {
     members = {
         Countries = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -947,29 +1001,29 @@ M.RouteMatrixOriginOptions = {
     type = "structure",
     members = {
         AvoidActionsForDistance = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Heading = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
-        Matching = {
-            type = "structure",
-        },
-        SideOfStreet = {
-            type = "structure",
-        },
+        Matching = M.RouteMatrixMatchingOptions,
+        SideOfStreet = M.RouteMatrixSideOfStreetOptions,
     },
 }
 
 M.RouteMatrixOrigin = {
     type = "structure",
     members = {
-        Options = {
-            type = "structure",
-        },
+        Options = M.RouteMatrixOriginOptions,
         Position = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
@@ -981,10 +1035,16 @@ M.RouteMatrixAutoCircle = {
     type = "structure",
     members = {
         Margin = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         MaxRadius = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -994,13 +1054,13 @@ M.Circle = {
     members = {
         Center = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
         },
         Radius = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -1011,19 +1071,15 @@ M.Circle = {
 M.RouteMatrixBoundaryGeometry = {
     type = "structure",
     members = {
-        AutoCircle = {
-            type = "structure",
-        },
-        Circle = {
-            type = "structure",
-        },
+        AutoCircle = M.RouteMatrixAutoCircle,
+        Circle = M.Circle,
         BoundingBox = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
         Polygon = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
         },
     },
 }
@@ -1031,9 +1087,7 @@ M.RouteMatrixBoundaryGeometry = {
 M.RouteMatrixBoundary = {
     type = "structure",
     members = {
-        Geometry = {
-            type = "structure",
-        },
+        Geometry = M.RouteMatrixBoundaryGeometry,
         Unbounded = {
             type = "boolean",
         },
@@ -1044,7 +1098,10 @@ M.RouteMatrixTrafficOptions = {
     type = "structure",
     members = {
         FlowEventThresholdOverride = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Usage = {
             type = "string",
@@ -1071,14 +1128,18 @@ M.RouteMatrixVehicleLicensePlate = {
 M.RouteMatrixCarOptions = {
     type = "structure",
     members = {
-        LicensePlate = {
-            type = "structure",
-        },
+        LicensePlate = M.RouteMatrixVehicleLicensePlate,
         MaxSpeed = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = nil,
+            },
         },
         Occupancy = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -1086,14 +1147,18 @@ M.RouteMatrixCarOptions = {
 M.RouteMatrixScooterOptions = {
     type = "structure",
     members = {
-        LicensePlate = {
-            type = "structure",
-        },
+        LicensePlate = M.RouteMatrixVehicleLicensePlate,
         MaxSpeed = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = nil,
+            },
         },
         Occupancy = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -1116,7 +1181,7 @@ M.RouteMatrixTrailerOptions = {
     type = "structure",
     members = {
         TrailerCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1131,39 +1196,59 @@ M.RouteMatrixTruckOptions = {
     type = "structure",
     members = {
         AxleCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         GrossWeight = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         HazardousCargos = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Height = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         KpraLength = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Length = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
-        LicensePlate = {
-            type = "structure",
-        },
+        LicensePlate = M.RouteMatrixVehicleLicensePlate,
         MaxSpeed = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = nil,
+            },
         },
         Occupancy = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         PayloadCapacity = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
-        Trailer = {
-            type = "structure",
-        },
+        Trailer = M.RouteMatrixTrailerOptions,
         TruckType = {
             type = "string",
         },
@@ -1171,13 +1256,17 @@ M.RouteMatrixTruckOptions = {
             type = "string",
         },
         WeightPerAxle = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
-        WeightPerAxleGroup = {
-            type = "structure",
-        },
+        WeightPerAxleGroup = M.WeightPerAxleGroup,
         Width = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1185,27 +1274,17 @@ M.RouteMatrixTruckOptions = {
 M.RouteMatrixTravelModeOptions = {
     type = "structure",
     members = {
-        Car = {
-            type = "structure",
-        },
-        Scooter = {
-            type = "structure",
-        },
-        Truck = {
-            type = "structure",
-        },
+        Car = M.RouteMatrixCarOptions,
+        Scooter = M.RouteMatrixScooterOptions,
+        Truck = M.RouteMatrixTruckOptions,
     },
 }
 
 M.CalculateRouteMatrixInput = {
     type = "structure",
     members = {
-        Allow = {
-            type = "structure",
-        },
-        Avoid = {
-            type = "structure",
-        },
+        Allow = M.RouteMatrixAllowOptions,
+        Avoid = M.RouteMatrixAvoidanceOptions,
         DepartNow = {
             type = "boolean",
         },
@@ -1214,14 +1293,12 @@ M.CalculateRouteMatrixInput = {
         },
         Destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteMatrixDestination,
             traits = {
                 required = true,
             },
         },
-        Exclude = {
-            type = "structure",
-        },
+        Exclude = M.RouteMatrixExclusionOptions,
         Key = {
             type = "string",
             traits = {
@@ -1233,23 +1310,17 @@ M.CalculateRouteMatrixInput = {
         },
         Origins = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteMatrixOrigin,
             traits = {
                 required = true,
             },
         },
-        RoutingBoundary = {
-            type = "structure",
-        },
-        Traffic = {
-            type = "structure",
-        },
+        RoutingBoundary = M.RouteMatrixBoundary,
+        Traffic = M.RouteMatrixTrafficOptions,
         TravelMode = {
             type = "string",
         },
-        TravelModeOptions = {
-            type = "structure",
-        },
+        TravelModeOptions = M.RouteMatrixTravelModeOptions,
     },
 }
 
@@ -1269,14 +1340,16 @@ M.RouteMatrixEntry = {
     type = "structure",
     members = {
         Distance = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         Duration = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -1290,7 +1363,7 @@ M.CalculateRouteMatrixOutput = {
     type = "structure",
     members = {
         ErrorCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1304,17 +1377,14 @@ M.CalculateRouteMatrixOutput = {
         },
         RouteMatrix = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
             traits = {
                 required = true,
             },
         },
-        RoutingBoundary = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RoutingBoundary = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RouteMatrixBoundary }),
     },
 }
 
@@ -1333,23 +1403,19 @@ M.RouteAllowOptions = {
 M.RouteAvoidanceAreaGeometry = {
     type = "structure",
     members = {
-        Corridor = {
-            type = "structure",
-        },
+        Corridor = M.Corridor,
         BoundingBox = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
         Polygon = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
         },
-        PolylineCorridor = {
-            type = "structure",
-        },
+        PolylineCorridor = M.PolylineCorridor,
         PolylinePolygon = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1359,14 +1425,11 @@ M.RouteAvoidanceArea = {
     members = {
         Except = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteAvoidanceAreaGeometry,
         },
-        Geometry = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Geometry = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RouteAvoidanceAreaGeometry }),
     },
 }
 
@@ -1393,7 +1456,7 @@ M.RouteAvoidanceOptions = {
     members = {
         Areas = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteAvoidanceArea,
         },
         CarShuttleTrains = {
             type = "boolean",
@@ -1418,7 +1481,7 @@ M.RouteAvoidanceOptions = {
         },
         TruckRoadTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Tunnels = {
             type = "boolean",
@@ -1428,7 +1491,7 @@ M.RouteAvoidanceOptions = {
         },
         ZoneCategories = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteAvoidanceZoneCategory,
         },
     },
 }
@@ -1440,10 +1503,16 @@ M.RouteMatchingOptions = {
             type = "string",
         },
         OnRoadThreshold = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Radius = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Strategy = {
             type = "string",
@@ -1456,7 +1525,7 @@ M.RouteSideOfStreetOptions = {
     members = {
         Position = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
@@ -1471,22 +1540,27 @@ M.RouteDestinationOptions = {
     type = "structure",
     members = {
         AvoidActionsForDistance = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         AvoidUTurns = {
             type = "boolean",
         },
         Heading = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
-        Matching = {
-            type = "structure",
-        },
-        SideOfStreet = {
-            type = "structure",
-        },
+        Matching = M.RouteMatchingOptions,
+        SideOfStreet = M.RouteSideOfStreetOptions,
         StopDuration = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1495,14 +1569,16 @@ M.RouteDriverScheduleInterval = {
     type = "structure",
     members = {
         DriveDuration = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         RestDuration = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -1514,7 +1590,7 @@ M.RouteDriverOptions = {
     members = {
         Schedule = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteDriverScheduleInterval,
         },
     },
 }
@@ -1524,7 +1600,7 @@ M.RouteExclusionOptions = {
     members = {
         Countries = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1553,20 +1629,22 @@ M.RouteOriginOptions = {
     type = "structure",
     members = {
         AvoidActionsForDistance = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         AvoidUTurns = {
             type = "boolean",
         },
         Heading = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
-        Matching = {
-            type = "structure",
-        },
-        SideOfStreet = {
-            type = "structure",
-        },
+        Matching = M.RouteMatchingOptions,
+        SideOfStreet = M.RouteSideOfStreetOptions,
     },
 }
 
@@ -1628,9 +1706,7 @@ M.RouteTollOptions = {
         Currency = {
             type = "string",
         },
-        EmissionType = {
-            type = "structure",
-        },
+        EmissionType = M.RouteEmissionType,
         VehicleCategory = {
             type = "string",
         },
@@ -1641,7 +1717,10 @@ M.RouteTrafficOptions = {
     type = "structure",
     members = {
         FlowEventThresholdOverride = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Usage = {
             type = "string",
@@ -1677,14 +1756,18 @@ M.RouteCarOptions = {
         EngineType = {
             type = "string",
         },
-        LicensePlate = {
-            type = "structure",
-        },
+        LicensePlate = M.RouteVehicleLicensePlate,
         MaxSpeed = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = nil,
+            },
         },
         Occupancy = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -1693,7 +1776,10 @@ M.RoutePedestrianOptions = {
     type = "structure",
     members = {
         Speed = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -1704,14 +1790,18 @@ M.RouteScooterOptions = {
         EngineType = {
             type = "string",
         },
-        LicensePlate = {
-            type = "structure",
-        },
+        LicensePlate = M.RouteVehicleLicensePlate,
         MaxSpeed = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = nil,
+            },
         },
         Occupancy = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -1734,10 +1824,16 @@ M.RouteTrailerOptions = {
     type = "structure",
     members = {
         AxleCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         TrailerCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -1752,48 +1848,74 @@ M.RouteTruckOptions = {
     type = "structure",
     members = {
         AxleCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         EngineType = {
             type = "string",
         },
         GrossWeight = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         HazardousCargos = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Height = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         HeightAboveFirstAxle = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         KpraLength = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Length = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
-        LicensePlate = {
-            type = "structure",
-        },
+        LicensePlate = M.RouteVehicleLicensePlate,
         MaxSpeed = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = nil,
+            },
         },
         Occupancy = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         PayloadCapacity = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         TireCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
-        Trailer = {
-            type = "structure",
-        },
+        Trailer = M.RouteTrailerOptions,
         TruckType = {
             type = "string",
         },
@@ -1801,13 +1923,17 @@ M.RouteTruckOptions = {
             type = "string",
         },
         WeightPerAxle = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
-        WeightPerAxleGroup = {
-            type = "structure",
-        },
+        WeightPerAxleGroup = M.WeightPerAxleGroup,
         Width = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1815,18 +1941,10 @@ M.RouteTruckOptions = {
 M.RouteTravelModeOptions = {
     type = "structure",
     members = {
-        Car = {
-            type = "structure",
-        },
-        Pedestrian = {
-            type = "structure",
-        },
-        Scooter = {
-            type = "structure",
-        },
-        Truck = {
-            type = "structure",
-        },
+        Car = M.RouteCarOptions,
+        Pedestrian = M.RoutePedestrianOptions,
+        Scooter = M.RouteScooterOptions,
+        Truck = M.RouteTruckOptions,
     },
 }
 
@@ -1839,32 +1957,37 @@ M.RouteWaypoint = {
     type = "structure",
     members = {
         AvoidActionsForDistance = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         AvoidUTurns = {
             type = "boolean",
         },
         Heading = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
-        Matching = {
-            type = "structure",
-        },
+        Matching = M.RouteMatchingOptions,
         PassThrough = {
             type = "boolean",
         },
         Position = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
         },
-        SideOfStreet = {
-            type = "structure",
-        },
+        SideOfStreet = M.RouteSideOfStreetOptions,
         StopDuration = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1872,15 +1995,11 @@ M.RouteWaypoint = {
 M.CalculateRoutesInput = {
     type = "structure",
     members = {
-        Allow = {
-            type = "structure",
-        },
+        Allow = M.RouteAllowOptions,
         ArrivalTime = {
             type = "string",
         },
-        Avoid = {
-            type = "structure",
-        },
+        Avoid = M.RouteAvoidanceOptions,
         DepartNow = {
             type = "boolean",
         },
@@ -1889,20 +2008,14 @@ M.CalculateRoutesInput = {
         },
         Destination = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
         },
-        DestinationOptions = {
-            type = "structure",
-        },
-        Driver = {
-            type = "structure",
-        },
-        Exclude = {
-            type = "structure",
-        },
+        DestinationOptions = M.RouteDestinationOptions,
+        Driver = M.RouteDriverOptions,
+        Exclude = M.RouteExclusionOptions,
         InstructionsMeasurementSystem = {
             type = "string",
         },
@@ -1914,53 +2027,45 @@ M.CalculateRoutesInput = {
         },
         Languages = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         LegAdditionalFeatures = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         LegGeometryFormat = {
             type = "string",
         },
         MaxAlternatives = {
-            type = "number",
+            type = "integer",
         },
         OptimizeRoutingFor = {
             type = "string",
         },
         Origin = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
         },
-        OriginOptions = {
-            type = "structure",
-        },
+        OriginOptions = M.RouteOriginOptions,
         SpanAdditionalFeatures = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        Tolls = {
-            type = "structure",
-        },
-        Traffic = {
-            type = "structure",
-        },
+        Tolls = M.RouteTollOptions,
+        Traffic = M.RouteTrafficOptions,
         TravelMode = {
             type = "string",
         },
-        TravelModeOptions = {
-            type = "structure",
-        },
+        TravelModeOptions = M.RouteTravelModeOptions,
         TravelStepType = {
             type = "string",
         },
         Waypoints = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteWaypoint,
         },
     },
 }
@@ -1999,8 +2104,9 @@ M.RouteFerryAfterTravelStep = {
     type = "structure",
     members = {
         Duration = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -2024,17 +2130,17 @@ M.RouteFerryPlace = {
         },
         OriginalPosition = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
         Position = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
         },
         WaypointIndex = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2042,12 +2148,9 @@ M.RouteFerryPlace = {
 M.RouteFerryArrival = {
     type = "structure",
     members = {
-        Place = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Place = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RouteFerryPlace }),
         Time = {
             type = "string",
         },
@@ -2062,8 +2165,9 @@ M.RouteFerryBeforeTravelStep = {
     type = "structure",
     members = {
         Duration = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -2082,12 +2186,9 @@ M.RouteFerryBeforeTravelStep = {
 M.RouteFerryDeparture = {
     type = "structure",
     members = {
-        Place = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Place = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RouteFerryPlace }),
         Time = {
             type = "string",
         },
@@ -2124,17 +2225,17 @@ M.RoutePassThroughPlace = {
     members = {
         OriginalPosition = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
         Position = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
         },
         WaypointIndex = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2143,14 +2244,11 @@ M.RoutePassThroughWaypoint = {
     type = "structure",
     members = {
         GeometryOffset = {
-            type = "number",
+            type = "integer",
         },
-        Place = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Place = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RoutePassThroughPlace }),
     },
 }
 
@@ -2176,17 +2274,23 @@ M.RouteFerrySpan = {
             type = "string",
         },
         Distance = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Duration = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         GeometryOffset = {
-            type = "number",
+            type = "integer",
         },
         Names = {
             type = "list",
-            member_type = "structure",
+            member = M.LocalizedString,
         },
         Region = {
             type = "string",
@@ -2198,14 +2302,16 @@ M.RouteFerryOverviewSummary = {
     type = "structure",
     members = {
         Distance = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         Duration = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -2216,8 +2322,9 @@ M.RouteFerryTravelOnlySummary = {
     type = "structure",
     members = {
         Duration = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -2227,12 +2334,8 @@ M.RouteFerryTravelOnlySummary = {
 M.RouteFerrySummary = {
     type = "structure",
     members = {
-        Overview = {
-            type = "structure",
-        },
-        TravelOnly = {
-            type = "structure",
-        },
+        Overview = M.RouteFerryOverviewSummary,
+        TravelOnly = M.RouteFerryTravelOnlySummary,
     },
 }
 
@@ -2246,16 +2349,20 @@ M.RouteFerryTravelStep = {
     type = "structure",
     members = {
         Distance = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Duration = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         GeometryOffset = {
-            type = "number",
+            type = "integer",
         },
         Instruction = {
             type = "string",
@@ -2274,40 +2381,34 @@ M.RouteFerryLegDetails = {
     members = {
         AfterTravelSteps = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteFerryAfterTravelStep,
             traits = {
                 required = true,
             },
         },
-        Arrival = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Arrival = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RouteFerryArrival }),
         BeforeTravelSteps = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteFerryBeforeTravelStep,
             traits = {
                 required = true,
             },
         },
-        Departure = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Departure = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RouteFerryDeparture }),
         Notices = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteFerryNotice,
             traits = {
                 required = true,
             },
         },
         PassThroughWaypoints = {
             type = "list",
-            member_type = "structure",
+            member = M.RoutePassThroughWaypoint,
             traits = {
                 required = true,
             },
@@ -2317,17 +2418,15 @@ M.RouteFerryLegDetails = {
         },
         Spans = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteFerrySpan,
             traits = {
                 required = true,
             },
         },
-        Summary = {
-            type = "structure",
-        },
+        Summary = M.RouteFerrySummary,
         TravelSteps = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteFerryTravelStep,
             traits = {
                 required = true,
             },
@@ -2340,7 +2439,7 @@ M.RouteLegGeometry = {
     members = {
         LineString = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
         },
         Polyline = {
             type = "string",
@@ -2361,11 +2460,11 @@ M.RoutePedestrianPlace = {
         },
         OriginalPosition = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
         Position = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
@@ -2374,7 +2473,7 @@ M.RoutePedestrianPlace = {
             type = "string",
         },
         WaypointIndex = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2382,12 +2481,9 @@ M.RoutePedestrianPlace = {
 M.RoutePedestrianArrival = {
     type = "structure",
     members = {
-        Place = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Place = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RoutePedestrianPlace }),
         Time = {
             type = "string",
         },
@@ -2397,12 +2493,9 @@ M.RoutePedestrianArrival = {
 M.RoutePedestrianDeparture = {
     type = "structure",
     members = {
-        Place = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Place = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RoutePedestrianPlace }),
         Time = {
             type = "string",
         },
@@ -2436,13 +2529,22 @@ M.RouteSpanDynamicSpeedDetails = {
     type = "structure",
     members = {
         BestCaseSpeed = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         TurnDuration = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         TypicalSpeed = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2500,7 +2602,10 @@ M.RouteSpanSpeedLimitDetails = {
     type = "structure",
     members = {
         MaxSpeed = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         Unlimited = {
             type = "boolean",
@@ -2512,54 +2617,62 @@ M.RoutePedestrianSpan = {
     type = "structure",
     members = {
         BestCaseDuration = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Country = {
             type = "string",
         },
         Distance = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Duration = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
-        DynamicSpeed = {
-            type = "structure",
-        },
+        DynamicSpeed = M.RouteSpanDynamicSpeedDetails,
         FunctionalClassification = {
-            type = "number",
+            type = "integer",
         },
         GeometryOffset = {
-            type = "number",
+            type = "integer",
         },
         Incidents = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
         },
         Names = {
             type = "list",
-            member_type = "structure",
+            member = M.LocalizedString,
         },
         PedestrianAccess = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Region = {
             type = "string",
         },
         RoadAttributes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RouteNumbers = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteNumber,
         },
-        SpeedLimit = {
-            type = "structure",
-        },
+        SpeedLimit = M.RouteSpanSpeedLimitDetails,
         TypicalDuration = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2568,14 +2681,16 @@ M.RoutePedestrianOverviewSummary = {
     type = "structure",
     members = {
         Distance = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         Duration = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -2586,8 +2701,9 @@ M.RoutePedestrianTravelOnlySummary = {
     type = "structure",
     members = {
         Duration = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -2597,12 +2713,8 @@ M.RoutePedestrianTravelOnlySummary = {
 M.RoutePedestrianSummary = {
     type = "structure",
     members = {
-        Overview = {
-            type = "structure",
-        },
-        TravelOnly = {
-            type = "structure",
-        },
+        Overview = M.RoutePedestrianOverviewSummary,
+        TravelOnly = M.RoutePedestrianTravelOnlySummary,
     },
 }
 
@@ -2611,7 +2723,7 @@ M.RouteContinueStepDetails = {
     members = {
         Intersection = {
             type = "list",
-            member_type = "structure",
+            member = M.LocalizedString,
             traits = {
                 required = true,
             },
@@ -2630,21 +2742,21 @@ M.RouteRoad = {
     members = {
         RoadName = {
             type = "list",
-            member_type = "structure",
+            member = M.LocalizedString,
             traits = {
                 required = true,
             },
         },
         RouteNumber = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteNumber,
             traits = {
                 required = true,
             },
         },
         Towards = {
             type = "list",
-            member_type = "structure",
+            member = M.LocalizedString,
             traits = {
                 required = true,
             },
@@ -2672,7 +2784,7 @@ M.RouteKeepStepDetails = {
     members = {
         Intersection = {
             type = "list",
-            member_type = "structure",
+            member = M.LocalizedString,
             traits = {
                 required = true,
             },
@@ -2681,7 +2793,10 @@ M.RouteKeepStepDetails = {
             type = "string",
         },
         TurnAngle = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         TurnIntensity = {
             type = "string",
@@ -2694,7 +2809,7 @@ M.RouteRoundaboutEnterStepDetails = {
     members = {
         Intersection = {
             type = "list",
-            member_type = "structure",
+            member = M.LocalizedString,
             traits = {
                 required = true,
             },
@@ -2703,7 +2818,10 @@ M.RouteRoundaboutEnterStepDetails = {
             type = "string",
         },
         TurnAngle = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         TurnIntensity = {
             type = "string",
@@ -2716,16 +2834,22 @@ M.RouteRoundaboutExitStepDetails = {
     members = {
         Intersection = {
             type = "list",
-            member_type = "structure",
+            member = M.LocalizedString,
             traits = {
                 required = true,
             },
         },
         RelativeExit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         RoundaboutAngle = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         SteeringDirection = {
             type = "string",
@@ -2738,7 +2862,7 @@ M.RouteRoundaboutPassStepDetails = {
     members = {
         Intersection = {
             type = "list",
-            member_type = "structure",
+            member = M.LocalizedString,
             traits = {
                 required = true,
             },
@@ -2747,7 +2871,10 @@ M.RouteRoundaboutPassStepDetails = {
             type = "string",
         },
         TurnAngle = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         TurnIntensity = {
             type = "string",
@@ -2758,12 +2885,8 @@ M.RouteRoundaboutPassStepDetails = {
 M.RouteSignpostLabel = {
     type = "structure",
     members = {
-        RouteNumber = {
-            type = "structure",
-        },
-        Text = {
-            type = "structure",
-        },
+        RouteNumber = M.RouteNumber,
+        Text = M.LocalizedString,
     },
 }
 
@@ -2772,7 +2895,7 @@ M.RouteSignpost = {
     members = {
         Labels = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteSignpostLabel,
             traits = {
                 required = true,
             },
@@ -2785,7 +2908,7 @@ M.RouteTurnStepDetails = {
     members = {
         Intersection = {
             type = "list",
-            member_type = "structure",
+            member = M.LocalizedString,
             traits = {
                 required = true,
             },
@@ -2794,7 +2917,10 @@ M.RouteTurnStepDetails = {
             type = "string",
         },
         TurnAngle = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         TurnIntensity = {
             type = "string",
@@ -2816,52 +2942,38 @@ M.RoutePedestrianTravelStepType = {
 M.RoutePedestrianTravelStep = {
     type = "structure",
     members = {
-        ContinueStepDetails = {
-            type = "structure",
-        },
-        CurrentRoad = {
-            type = "structure",
-        },
+        ContinueStepDetails = M.RouteContinueStepDetails,
+        CurrentRoad = M.RouteRoad,
         Distance = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Duration = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         ExitNumber = {
             type = "list",
-            member_type = "structure",
+            member = M.LocalizedString,
         },
         GeometryOffset = {
-            type = "number",
+            type = "integer",
         },
         Instruction = {
             type = "string",
         },
-        KeepStepDetails = {
-            type = "structure",
-        },
-        NextRoad = {
-            type = "structure",
-        },
-        RoundaboutEnterStepDetails = {
-            type = "structure",
-        },
-        RoundaboutExitStepDetails = {
-            type = "structure",
-        },
-        RoundaboutPassStepDetails = {
-            type = "structure",
-        },
-        Signpost = {
-            type = "structure",
-        },
-        TurnStepDetails = {
-            type = "structure",
-        },
+        KeepStepDetails = M.RouteKeepStepDetails,
+        NextRoad = M.RouteRoad,
+        RoundaboutEnterStepDetails = M.RouteRoundaboutEnterStepDetails,
+        RoundaboutExitStepDetails = M.RouteRoundaboutExitStepDetails,
+        RoundaboutPassStepDetails = M.RouteRoundaboutPassStepDetails,
+        Signpost = M.RouteSignpost,
+        TurnStepDetails = M.RouteTurnStepDetails,
         Type = {
             type = "string",
             traits = {
@@ -2874,45 +2986,37 @@ M.RoutePedestrianTravelStep = {
 M.RoutePedestrianLegDetails = {
     type = "structure",
     members = {
-        Arrival = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Departure = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Arrival = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RoutePedestrianArrival }),
+        Departure = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RoutePedestrianDeparture }),
         Notices = {
             type = "list",
-            member_type = "structure",
+            member = M.RoutePedestrianNotice,
             traits = {
                 required = true,
             },
         },
         PassThroughWaypoints = {
             type = "list",
-            member_type = "structure",
+            member = M.RoutePassThroughWaypoint,
             traits = {
                 required = true,
             },
         },
         Spans = {
             type = "list",
-            member_type = "structure",
+            member = M.RoutePedestrianSpan,
             traits = {
                 required = true,
             },
         },
-        Summary = {
-            type = "structure",
-        },
+        Summary = M.RoutePedestrianSummary,
         TravelSteps = {
             type = "list",
-            member_type = "structure",
+            member = M.RoutePedestrianTravelStep,
             traits = {
                 required = true,
             },
@@ -2943,11 +3047,11 @@ M.RouteVehiclePlace = {
         },
         OriginalPosition = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
         Position = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
@@ -2956,7 +3060,7 @@ M.RouteVehiclePlace = {
             type = "string",
         },
         WaypointIndex = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2964,12 +3068,9 @@ M.RouteVehiclePlace = {
 M.RouteVehicleArrival = {
     type = "structure",
     members = {
-        Place = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Place = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RouteVehiclePlace }),
         Time = {
             type = "string",
         },
@@ -2979,12 +3080,9 @@ M.RouteVehicleArrival = {
 M.RouteVehicleDeparture = {
     type = "structure",
     members = {
-        Place = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Place = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RouteVehiclePlace }),
         Time = {
             type = "string",
         },
@@ -3067,10 +3165,10 @@ M.RouteNoticeDetailRange = {
     type = "structure",
     members = {
         Min = {
-            type = "number",
+            type = "integer",
         },
         Max = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3091,8 +3189,9 @@ M.RouteWeightConstraint = {
             },
         },
         Value = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -3105,52 +3204,60 @@ M.RouteViolatedConstraints = {
         AllHazardsRestricted = {
             type = "boolean",
         },
-        AxleCount = {
-            type = "structure",
-        },
+        AxleCount = M.RouteNoticeDetailRange,
         HazardousCargos = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         MaxHeight = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         MaxKpraLength = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         MaxLength = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         MaxPayloadCapacity = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
-        MaxWeight = {
-            type = "structure",
-        },
+        MaxWeight = M.RouteWeightConstraint,
         MaxWeightPerAxle = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
-        MaxWeightPerAxleGroup = {
-            type = "structure",
-        },
+        MaxWeightPerAxleGroup = M.WeightPerAxleGroup,
         MaxWidth = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
-        Occupancy = {
-            type = "structure",
-        },
+        Occupancy = M.RouteNoticeDetailRange,
         RestrictedTimes = {
             type = "string",
         },
         TimeDependent = {
             type = "boolean",
         },
-        TrailerCount = {
-            type = "structure",
-        },
+        TrailerCount = M.RouteNoticeDetailRange,
         TravelMode = {
             type = "boolean",
         },
@@ -3172,9 +3279,7 @@ M.RouteVehicleNoticeDetail = {
         Title = {
             type = "string",
         },
-        ViolatedConstraints = {
-            type = "structure",
-        },
+        ViolatedConstraints = M.RouteViolatedConstraints,
     },
 }
 
@@ -3189,7 +3294,7 @@ M.RouteVehicleNotice = {
         },
         Details = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteVehicleNoticeDetail,
             traits = {
                 required = true,
             },
@@ -3233,44 +3338,51 @@ M.RouteVehicleSpan = {
     type = "structure",
     members = {
         BestCaseDuration = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         CarAccess = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Country = {
             type = "string",
         },
         Distance = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Duration = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
-        DynamicSpeed = {
-            type = "structure",
-        },
+        DynamicSpeed = M.RouteSpanDynamicSpeedDetails,
         FunctionalClassification = {
-            type = "number",
+            type = "integer",
         },
         Gate = {
             type = "string",
         },
         GeometryOffset = {
-            type = "number",
+            type = "integer",
         },
         Incidents = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
         },
         Names = {
             type = "list",
-            member_type = "structure",
+            member = M.LocalizedString,
         },
         Notices = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
         },
         RailwayCrossing = {
             type = "string",
@@ -3280,37 +3392,38 @@ M.RouteVehicleSpan = {
         },
         RoadAttributes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RouteNumbers = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteNumber,
         },
         ScooterAccess = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        SpeedLimit = {
-            type = "structure",
-        },
+        SpeedLimit = M.RouteSpanSpeedLimitDetails,
         TollSystems = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
         },
         TruckAccess = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TruckRoadTypes = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
         },
         TypicalDuration = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Zones = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
         },
     },
 }
@@ -3319,22 +3432,30 @@ M.RouteVehicleOverviewSummary = {
     type = "structure",
     members = {
         BestCaseDuration = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Distance = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         Duration = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         TypicalDuration = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -3343,16 +3464,23 @@ M.RouteVehicleTravelOnlySummary = {
     type = "structure",
     members = {
         BestCaseDuration = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Duration = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         TypicalDuration = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -3360,12 +3488,8 @@ M.RouteVehicleTravelOnlySummary = {
 M.RouteVehicleSummary = {
     type = "structure",
     members = {
-        Overview = {
-            type = "structure",
-        },
-        TravelOnly = {
-            type = "structure",
-        },
+        Overview = M.RouteVehicleOverviewSummary,
+        TravelOnly = M.RouteVehicleTravelOnlySummary,
     },
 }
 
@@ -3377,7 +3501,7 @@ M.RouteTollPaymentSite = {
         },
         Position = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
@@ -3389,13 +3513,13 @@ M.RouteTollPriceValueRange = {
     type = "structure",
     members = {
         Min = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
         Max = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -3419,7 +3543,10 @@ M.RouteTollPrice = {
             },
         },
         PerDuration = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Range = {
             type = "boolean",
@@ -3427,11 +3554,9 @@ M.RouteTollPrice = {
                 required = true,
             },
         },
-        RangeValue = {
-            type = "structure",
-        },
+        RangeValue = M.RouteTollPriceValueRange,
         Value = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -3457,7 +3582,7 @@ M.RouteTollPassValidityPeriod = {
             },
         },
         PeriodCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3472,14 +3597,12 @@ M.RouteTollPass = {
             type = "boolean",
         },
         TransferCount = {
-            type = "number",
+            type = "integer",
         },
         TripCount = {
-            type = "number",
+            type = "integer",
         },
-        ValidityPeriod = {
-            type = "structure",
-        },
+        ValidityPeriod = M.RouteTollPassValidityPeriod,
     },
 }
 
@@ -3509,40 +3632,33 @@ M.RouteTollRate = {
         ApplicableTimes = {
             type = "string",
         },
-        ConvertedPrice = {
-            type = "structure",
-        },
+        ConvertedPrice = M.RouteTollPrice,
         Id = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        LocalPrice = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        LocalPrice = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RouteTollPrice }),
         Name = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        Pass = {
-            type = "structure",
-        },
+        Pass = M.RouteTollPass,
         PaymentMethods = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         Transponders = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteTransponder,
             traits = {
                 required = true,
             },
@@ -3558,21 +3674,21 @@ M.RouteToll = {
         },
         PaymentSites = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteTollPaymentSite,
             traits = {
                 required = true,
             },
         },
         Rates = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteTollRate,
             traits = {
                 required = true,
             },
         },
         Systems = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
             traits = {
                 required = true,
             },
@@ -3594,7 +3710,7 @@ M.RouteContinueHighwayStepDetails = {
     members = {
         Intersection = {
             type = "list",
-            member_type = "structure",
+            member = M.LocalizedString,
             traits = {
                 required = true,
             },
@@ -3603,7 +3719,10 @@ M.RouteContinueHighwayStepDetails = {
             type = "string",
         },
         TurnAngle = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         TurnIntensity = {
             type = "string",
@@ -3616,7 +3735,7 @@ M.RouteEnterHighwayStepDetails = {
     members = {
         Intersection = {
             type = "list",
-            member_type = "structure",
+            member = M.LocalizedString,
             traits = {
                 required = true,
             },
@@ -3625,7 +3744,10 @@ M.RouteEnterHighwayStepDetails = {
             type = "string",
         },
         TurnAngle = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         TurnIntensity = {
             type = "string",
@@ -3638,19 +3760,25 @@ M.RouteExitStepDetails = {
     members = {
         Intersection = {
             type = "list",
-            member_type = "structure",
+            member = M.LocalizedString,
             traits = {
                 required = true,
             },
         },
         RelativeExit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         SteeringDirection = {
             type = "string",
         },
         TurnAngle = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         TurnIntensity = {
             type = "string",
@@ -3663,7 +3791,7 @@ M.RouteRampStepDetails = {
     members = {
         Intersection = {
             type = "list",
-            member_type = "structure",
+            member = M.LocalizedString,
             traits = {
                 required = true,
             },
@@ -3672,7 +3800,10 @@ M.RouteRampStepDetails = {
             type = "string",
         },
         TurnAngle = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         TurnIntensity = {
             type = "string",
@@ -3701,7 +3832,7 @@ M.RouteUTurnStepDetails = {
     members = {
         Intersection = {
             type = "list",
-            member_type = "structure",
+            member = M.LocalizedString,
             traits = {
                 required = true,
             },
@@ -3710,7 +3841,10 @@ M.RouteUTurnStepDetails = {
             type = "string",
         },
         TurnAngle = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         TurnIntensity = {
             type = "string",
@@ -3721,73 +3855,49 @@ M.RouteUTurnStepDetails = {
 M.RouteVehicleTravelStep = {
     type = "structure",
     members = {
-        ContinueHighwayStepDetails = {
-            type = "structure",
-        },
-        ContinueStepDetails = {
-            type = "structure",
-        },
-        CurrentRoad = {
-            type = "structure",
-        },
+        ContinueHighwayStepDetails = M.RouteContinueHighwayStepDetails,
+        ContinueStepDetails = M.RouteContinueStepDetails,
+        CurrentRoad = M.RouteRoad,
         Distance = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Duration = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
-        EnterHighwayStepDetails = {
-            type = "structure",
-        },
+        EnterHighwayStepDetails = M.RouteEnterHighwayStepDetails,
         ExitNumber = {
             type = "list",
-            member_type = "structure",
+            member = M.LocalizedString,
         },
-        ExitStepDetails = {
-            type = "structure",
-        },
+        ExitStepDetails = M.RouteExitStepDetails,
         GeometryOffset = {
-            type = "number",
+            type = "integer",
         },
         Instruction = {
             type = "string",
         },
-        KeepStepDetails = {
-            type = "structure",
-        },
-        NextRoad = {
-            type = "structure",
-        },
-        RampStepDetails = {
-            type = "structure",
-        },
-        RoundaboutEnterStepDetails = {
-            type = "structure",
-        },
-        RoundaboutExitStepDetails = {
-            type = "structure",
-        },
-        RoundaboutPassStepDetails = {
-            type = "structure",
-        },
-        Signpost = {
-            type = "structure",
-        },
-        TurnStepDetails = {
-            type = "structure",
-        },
+        KeepStepDetails = M.RouteKeepStepDetails,
+        NextRoad = M.RouteRoad,
+        RampStepDetails = M.RouteRampStepDetails,
+        RoundaboutEnterStepDetails = M.RouteRoundaboutEnterStepDetails,
+        RoundaboutExitStepDetails = M.RouteRoundaboutExitStepDetails,
+        RoundaboutPassStepDetails = M.RouteRoundaboutPassStepDetails,
+        Signpost = M.RouteSignpost,
+        TurnStepDetails = M.RouteTurnStepDetails,
         Type = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        UTurnStepDetails = {
-            type = "structure",
-        },
+        UTurnStepDetails = M.RouteUTurnStepDetails,
     },
 }
 
@@ -3806,80 +3916,72 @@ M.RouteZone = {
 M.RouteVehicleLegDetails = {
     type = "structure",
     members = {
-        Arrival = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Departure = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Arrival = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RouteVehicleArrival }),
+        Departure = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RouteVehicleDeparture }),
         Incidents = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteVehicleIncident,
             traits = {
                 required = true,
             },
         },
         Notices = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteVehicleNotice,
             traits = {
                 required = true,
             },
         },
         PassThroughWaypoints = {
             type = "list",
-            member_type = "structure",
+            member = M.RoutePassThroughWaypoint,
             traits = {
                 required = true,
             },
         },
         Spans = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteVehicleSpan,
             traits = {
                 required = true,
             },
         },
-        Summary = {
-            type = "structure",
-        },
+        Summary = M.RouteVehicleSummary,
         Tolls = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteToll,
             traits = {
                 required = true,
             },
         },
         TollSystems = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteTollSystem,
             traits = {
                 required = true,
             },
         },
         TravelSteps = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteVehicleTravelStep,
             traits = {
                 required = true,
             },
         },
         TruckRoadTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         Zones = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteZone,
             traits = {
                 required = true,
             },
@@ -3890,21 +3992,14 @@ M.RouteVehicleLegDetails = {
 M.RouteLeg = {
     type = "structure",
     members = {
-        FerryLegDetails = {
-            type = "structure",
-        },
-        Geometry = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        FerryLegDetails = M.RouteFerryLegDetails,
+        Geometry = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RouteLegGeometry }),
         Language = {
             type = "string",
         },
-        PedestrianLegDetails = {
-            type = "structure",
-        },
+        PedestrianLegDetails = M.RoutePedestrianLegDetails,
         TravelMode = {
             type = "string",
             traits = {
@@ -3917,21 +4012,15 @@ M.RouteLeg = {
                 required = true,
             },
         },
-        VehicleLegDetails = {
-            type = "structure",
-        },
+        VehicleLegDetails = M.RouteVehicleLegDetails,
     },
 }
 
 M.RouteMajorRoadLabel = {
     type = "structure",
     members = {
-        RoadName = {
-            type = "structure",
-        },
-        RouteNumber = {
-            type = "structure",
-        },
+        RoadName = M.LocalizedString,
+        RouteNumber = M.RouteNumber,
     },
 }
 
@@ -3956,11 +4045,9 @@ M.RouteTollPriceSummary = {
                 required = true,
             },
         },
-        RangeValue = {
-            type = "structure",
-        },
+        RangeValue = M.RouteTollPriceValueRange,
         Value = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -3971,9 +4058,7 @@ M.RouteTollPriceSummary = {
 M.RouteTollSummary = {
     type = "structure",
     members = {
-        Total = {
-            type = "structure",
-        },
+        Total = M.RouteTollPriceSummary,
     },
 }
 
@@ -3981,14 +4066,18 @@ M.RouteSummary = {
     type = "structure",
     members = {
         Distance = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Duration = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
-        Tolls = {
-            type = "structure",
-        },
+        Tolls = M.RouteTollSummary,
     },
 }
 
@@ -3997,21 +4086,19 @@ M.Route = {
     members = {
         Legs = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteLeg,
             traits = {
                 required = true,
             },
         },
         MajorRoadLabels = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteMajorRoadLabel,
             traits = {
                 required = true,
             },
         },
-        Summary = {
-            type = "structure",
-        },
+        Summary = M.RouteSummary,
     },
 }
 
@@ -4026,7 +4113,7 @@ M.CalculateRoutesOutput = {
         },
         Notices = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteResponseNotice,
             traits = {
                 required = true,
             },
@@ -4040,7 +4127,7 @@ M.CalculateRoutesOutput = {
         },
         Routes = {
             type = "list",
-            member_type = "structure",
+            member = M.Route,
             traits = {
                 required = true,
             },
@@ -4063,7 +4150,7 @@ M.WaypointOptimizationAvoidanceAreaGeometry = {
     members = {
         BoundingBox = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
     },
 }
@@ -4071,12 +4158,9 @@ M.WaypointOptimizationAvoidanceAreaGeometry = {
 M.WaypointOptimizationAvoidanceArea = {
     type = "structure",
     members = {
-        Geometry = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Geometry = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WaypointOptimizationAvoidanceAreaGeometry }),
     },
 }
 
@@ -4085,7 +4169,7 @@ M.WaypointOptimizationAvoidanceOptions = {
     members = {
         Areas = {
             type = "list",
-            member_type = "structure",
+            member = M.WaypointOptimizationAvoidanceArea,
         },
         CarShuttleTrains = {
             type = "boolean",
@@ -4120,8 +4204,9 @@ M.WaypointOptimizationDrivingDistanceOptions = {
     type = "structure",
     members = {
         DrivingDistance = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -4137,9 +4222,7 @@ M.WaypointOptimizationClusteringOptions = {
                 required = true,
             },
         },
-        DrivingDistanceOptions = {
-            type = "structure",
-        },
+        DrivingDistanceOptions = M.WaypointOptimizationDrivingDistanceOptions,
     },
 }
 
@@ -4164,18 +4247,12 @@ M.WaypointOptimizationAccessHoursEntry = {
 M.WaypointOptimizationAccessHours = {
     type = "structure",
     members = {
-        From = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        To = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        From = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WaypointOptimizationAccessHoursEntry }),
+        To = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WaypointOptimizationAccessHoursEntry }),
     },
 }
 
@@ -4184,7 +4261,7 @@ M.WaypointOptimizationSideOfStreetOptions = {
     members = {
         Position = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
@@ -4198,24 +4275,26 @@ M.WaypointOptimizationSideOfStreetOptions = {
 M.WaypointOptimizationDestinationOptions = {
     type = "structure",
     members = {
-        AccessHours = {
-            type = "structure",
-        },
+        AccessHours = M.WaypointOptimizationAccessHours,
         AppointmentTime = {
             type = "string",
         },
         Heading = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         Id = {
             type = "string",
         },
         ServiceDuration = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
-        SideOfStreet = {
-            type = "structure",
-        },
+        SideOfStreet = M.WaypointOptimizationSideOfStreetOptions,
     },
 }
 
@@ -4223,14 +4302,16 @@ M.WaypointOptimizationRestCycleDurations = {
     type = "structure",
     members = {
         RestDuration = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         WorkDuration = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -4240,18 +4321,12 @@ M.WaypointOptimizationRestCycleDurations = {
 M.WaypointOptimizationRestCycles = {
     type = "structure",
     members = {
-        LongCycle = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ShortCycle = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        LongCycle = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WaypointOptimizationRestCycleDurations }),
+        ShortCycle = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WaypointOptimizationRestCycleDurations }),
     },
 }
 
@@ -4275,12 +4350,8 @@ M.WaypointOptimizationServiceTimeTreatment = {
 M.WaypointOptimizationDriverOptions = {
     type = "structure",
     members = {
-        RestCycles = {
-            type = "structure",
-        },
-        RestProfile = {
-            type = "structure",
-        },
+        RestCycles = M.WaypointOptimizationRestCycles,
+        RestProfile = M.WaypointOptimizationRestProfile,
         TreatServiceTimeAs = {
             type = "string",
         },
@@ -4292,7 +4363,7 @@ M.WaypointOptimizationExclusionOptions = {
     members = {
         Countries = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4334,7 +4405,10 @@ M.WaypointOptimizationPedestrianOptions = {
     type = "structure",
     members = {
         Speed = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -4357,7 +4431,7 @@ M.WaypointOptimizationTrailerOptions = {
     type = "structure",
     members = {
         TrailerCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4371,21 +4445,28 @@ M.WaypointOptimizationTruckOptions = {
     type = "structure",
     members = {
         GrossWeight = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         HazardousCargos = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Height = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Length = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
-        Trailer = {
-            type = "structure",
-        },
+        Trailer = M.WaypointOptimizationTrailerOptions,
         TruckType = {
             type = "string",
         },
@@ -4393,10 +4474,16 @@ M.WaypointOptimizationTruckOptions = {
             type = "string",
         },
         WeightPerAxle = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Width = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -4404,75 +4491,63 @@ M.WaypointOptimizationTruckOptions = {
 M.WaypointOptimizationTravelModeOptions = {
     type = "structure",
     members = {
-        Pedestrian = {
-            type = "structure",
-        },
-        Truck = {
-            type = "structure",
-        },
+        Pedestrian = M.WaypointOptimizationPedestrianOptions,
+        Truck = M.WaypointOptimizationTruckOptions,
     },
 }
 
 M.WaypointOptimizationWaypoint = {
     type = "structure",
     members = {
-        AccessHours = {
-            type = "structure",
-        },
+        AccessHours = M.WaypointOptimizationAccessHours,
         AppointmentTime = {
             type = "string",
         },
         Before = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
         },
         Heading = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         Id = {
             type = "string",
         },
         Position = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
         },
         ServiceDuration = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
-        SideOfStreet = {
-            type = "structure",
-        },
+        SideOfStreet = M.WaypointOptimizationSideOfStreetOptions,
     },
 }
 
 M.OptimizeWaypointsInput = {
     type = "structure",
     members = {
-        Avoid = {
-            type = "structure",
-        },
-        Clustering = {
-            type = "structure",
-        },
+        Avoid = M.WaypointOptimizationAvoidanceOptions,
+        Clustering = M.WaypointOptimizationClusteringOptions,
         DepartureTime = {
             type = "string",
         },
         Destination = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
-        DestinationOptions = {
-            type = "structure",
-        },
-        Driver = {
-            type = "structure",
-        },
-        Exclude = {
-            type = "structure",
-        },
+        DestinationOptions = M.WaypointOptimizationDestinationOptions,
+        Driver = M.WaypointOptimizationDriverOptions,
+        Exclude = M.WaypointOptimizationExclusionOptions,
         Key = {
             type = "string",
             traits = {
@@ -4484,26 +4559,20 @@ M.OptimizeWaypointsInput = {
         },
         Origin = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
         },
-        OriginOptions = {
-            type = "structure",
-        },
-        Traffic = {
-            type = "structure",
-        },
+        OriginOptions = M.WaypointOptimizationOriginOptions,
+        Traffic = M.WaypointOptimizationTrafficOptions,
         TravelMode = {
             type = "string",
         },
-        TravelModeOptions = {
-            type = "structure",
-        },
+        TravelModeOptions = M.WaypointOptimizationTravelModeOptions,
         Waypoints = {
             type = "list",
-            member_type = "structure",
+            member = M.WaypointOptimizationWaypoint,
         },
     },
 }
@@ -4512,8 +4581,9 @@ M.WaypointOptimizationConnection = {
     type = "structure",
     members = {
         Distance = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -4524,8 +4594,9 @@ M.WaypointOptimizationConnection = {
             },
         },
         RestDuration = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -4536,14 +4607,16 @@ M.WaypointOptimizationConnection = {
             },
         },
         TravelDuration = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         WaitDuration = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -4576,7 +4649,7 @@ M.WaypointOptimizationImpedingWaypoint = {
     members = {
         FailedConstraints = {
             type = "list",
-            member_type = "structure",
+            member = M.WaypointOptimizationFailedConstraint,
             traits = {
                 required = true,
             },
@@ -4589,7 +4662,7 @@ M.WaypointOptimizationImpedingWaypoint = {
         },
         Position = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
@@ -4604,7 +4677,7 @@ M.WaypointOptimizationOptimizedWaypoint = {
             type = "string",
         },
         ClusterIndex = {
-            type = "number",
+            type = "integer",
         },
         DepartureTime = {
             type = "string",
@@ -4620,7 +4693,7 @@ M.WaypointOptimizationOptimizedWaypoint = {
         },
         Position = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
@@ -4632,26 +4705,30 @@ M.WaypointOptimizationTimeBreakdown = {
     type = "structure",
     members = {
         RestDuration = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         ServiceDuration = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         TravelDuration = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         WaitDuration = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -4663,33 +4740,35 @@ M.OptimizeWaypointsOutput = {
     members = {
         Connections = {
             type = "list",
-            member_type = "structure",
+            member = M.WaypointOptimizationConnection,
             traits = {
                 required = true,
             },
         },
         Distance = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         Duration = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         ImpedingWaypoints = {
             type = "list",
-            member_type = "structure",
+            member = M.WaypointOptimizationImpedingWaypoint,
             traits = {
                 required = true,
             },
         },
         OptimizedWaypoints = {
             type = "list",
-            member_type = "structure",
+            member = M.WaypointOptimizationOptimizedWaypoint,
             traits = {
                 required = true,
             },
@@ -4701,12 +4780,9 @@ M.OptimizeWaypointsOutput = {
                 required = true,
             },
         },
-        TimeBreakdown = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TimeBreakdown = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WaypointOptimizationTimeBreakdown }),
     },
 }
 
@@ -4714,17 +4790,23 @@ M.RoadSnapTracePoint = {
     type = "structure",
     members = {
         Heading = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         Position = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
         },
         Speed = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         Timestamp = {
             type = "string",
@@ -4757,7 +4839,7 @@ M.RoadSnapTrailerOptions = {
     type = "structure",
     members = {
         TrailerCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4766,26 +4848,36 @@ M.RoadSnapTruckOptions = {
     type = "structure",
     members = {
         GrossWeight = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         HazardousCargos = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Height = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Length = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
-        Trailer = {
-            type = "structure",
-        },
+        Trailer = M.RoadSnapTrailerOptions,
         TunnelRestrictionCode = {
             type = "string",
         },
         Width = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -4793,9 +4885,7 @@ M.RoadSnapTruckOptions = {
 M.RoadSnapTravelModeOptions = {
     type = "structure",
     members = {
-        Truck = {
-            type = "structure",
-        },
+        Truck = M.RoadSnapTruckOptions,
     },
 }
 
@@ -4812,11 +4902,14 @@ M.SnapToRoadsInput = {
             type = "string",
         },
         SnapRadius = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         TracePoints = {
             type = "list",
-            member_type = "structure",
+            member = M.RoadSnapTracePoint,
             traits = {
                 required = true,
             },
@@ -4824,9 +4917,7 @@ M.SnapToRoadsInput = {
         TravelMode = {
             type = "string",
         },
-        TravelModeOptions = {
-            type = "structure",
-        },
+        TravelModeOptions = M.RoadSnapTravelModeOptions,
     },
 }
 
@@ -4857,7 +4948,7 @@ M.RoadSnapNotice = {
         },
         TracePointIndexes = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
             traits = {
                 required = true,
             },
@@ -4870,7 +4961,7 @@ M.RoadSnapSnappedGeometry = {
     members = {
         LineString = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
         },
         Polyline = {
             type = "string",
@@ -4882,21 +4973,21 @@ M.RoadSnapSnappedTracePoint = {
     type = "structure",
     members = {
         Confidence = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
         OriginalPosition = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
         },
         SnappedPosition = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
@@ -4909,7 +5000,7 @@ M.SnapToRoadsOutput = {
     members = {
         Notices = {
             type = "list",
-            member_type = "structure",
+            member = M.RoadSnapNotice,
             traits = {
                 required = true,
             },
@@ -4921,9 +5012,7 @@ M.SnapToRoadsOutput = {
                 required = true,
             },
         },
-        SnappedGeometry = {
-            type = "structure",
-        },
+        SnappedGeometry = M.RoadSnapSnappedGeometry,
         SnappedGeometryFormat = {
             type = "string",
             traits = {
@@ -4932,7 +5021,7 @@ M.SnapToRoadsOutput = {
         },
         SnappedTracePoints = {
             type = "list",
-            member_type = "structure",
+            member = M.RoadSnapSnappedTracePoint,
             traits = {
                 required = true,
             },

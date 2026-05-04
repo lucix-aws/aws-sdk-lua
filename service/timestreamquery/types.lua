@@ -25,9 +25,7 @@ M.SnsConfiguration = {
 M.AccountSettingsNotificationConfiguration = {
     type = "structure",
     members = {
-        SnsConfiguration = {
-            type = "structure",
-        },
+        SnsConfiguration = M.SnsConfiguration,
         RoleArn = {
             type = "string",
             traits = {
@@ -153,24 +151,18 @@ M.S3Configuration = {
 M.ErrorReportConfiguration = {
     type = "structure",
     members = {
-        S3Configuration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        S3Configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3Configuration }),
     },
 }
 
 M.NotificationConfiguration = {
     type = "structure",
     members = {
-        SnsConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SnsConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SnsConfiguration }),
     },
 }
 
@@ -283,7 +275,7 @@ M.MixedMeasureMapping = {
         },
         MultiMeasureAttributeMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.MultiMeasureAttributeMapping,
         },
     },
 }
@@ -296,7 +288,7 @@ M.MultiMeasureMappings = {
         },
         MultiMeasureAttributeMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.MultiMeasureAttributeMapping,
             traits = {
                 required = true,
             },
@@ -327,17 +319,15 @@ M.TimestreamConfiguration = {
         },
         DimensionMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionMapping,
             traits = {
                 required = true,
             },
         },
-        MultiMeasureMappings = {
-            type = "structure",
-        },
+        MultiMeasureMappings = M.MultiMeasureMappings,
         MixedMeasureMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.MixedMeasureMapping,
         },
         MeasureNameColumn = {
             type = "string",
@@ -348,12 +338,9 @@ M.TimestreamConfiguration = {
 M.TargetConfiguration = {
     type = "structure",
     members = {
-        TimestreamConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TimestreamConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TimestreamConfiguration }),
     },
 }
 
@@ -372,21 +359,13 @@ M.CreateScheduledQueryInput = {
                 required = true,
             },
         },
-        ScheduleConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        NotificationConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        TargetConfiguration = {
-            type = "structure",
-        },
+        ScheduleConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ScheduleConfiguration }),
+        NotificationConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.NotificationConfiguration }),
+        TargetConfiguration = M.TargetConfiguration,
         ClientToken = {
             type = "string",
         },
@@ -398,17 +377,14 @@ M.CreateScheduledQueryInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         KmsKeyId = {
             type = "string",
         },
-        ErrorReportConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ErrorReportConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ErrorReportConfiguration }),
     },
 }
 
@@ -477,7 +453,7 @@ M.LastUpdate = {
     type = "structure",
     members = {
         TargetQueryTCU = {
-            type = "number",
+            type = "integer",
         },
         Status = {
             type = "string",
@@ -492,14 +468,10 @@ M.ProvisionedCapacityResponse = {
     type = "structure",
     members = {
         ActiveQueryTCU = {
-            type = "number",
+            type = "integer",
         },
-        NotificationConfiguration = {
-            type = "structure",
-        },
-        LastUpdate = {
-            type = "structure",
-        },
+        NotificationConfiguration = M.AccountSettingsNotificationConfiguration,
+        LastUpdate = M.LastUpdate,
     },
 }
 
@@ -509,9 +481,7 @@ M.QueryComputeResponse = {
         ComputeMode = {
             type = "string",
         },
-        ProvisionedCapacity = {
-            type = "structure",
-        },
+        ProvisionedCapacity = M.ProvisionedCapacityResponse,
     },
 }
 
@@ -524,14 +494,12 @@ M.DescribeAccountSettingsOutput = {
     type = "structure",
     members = {
         MaxQueryTCU = {
-            type = "number",
+            type = "integer",
         },
         QueryPricingModel = {
             type = "string",
         },
-        QueryCompute = {
-            type = "structure",
-        },
+        QueryCompute = M.QueryComputeResponse,
     },
 }
 
@@ -549,8 +517,9 @@ M.Endpoint = {
             },
         },
         CachePeriodInMinutes = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -562,7 +531,7 @@ M.DescribeEndpointsOutput = {
     members = {
         Endpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.Endpoint,
             traits = {
                 required = true,
             },
@@ -597,9 +566,7 @@ M.S3ReportLocation = {
 M.ErrorReportLocation = {
     type = "structure",
     members = {
-        S3ReportLocation = {
-            type = "structure",
-        },
+        S3ReportLocation = M.S3ReportLocation,
     },
 }
 
@@ -607,22 +574,40 @@ M.ExecutionStats = {
     type = "structure",
     members = {
         ExecutionTimeInMillis = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         DataWrites = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         BytesMetered = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         CumulativeBytesScanned = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         RecordsIngested = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         QueryResultRows = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -631,14 +616,17 @@ M.QuerySpatialCoverageMax = {
     type = "structure",
     members = {
         Value = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         TableArn = {
             type = "string",
         },
         PartitionKey = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -646,9 +634,7 @@ M.QuerySpatialCoverageMax = {
 M.QuerySpatialCoverage = {
     type = "structure",
     members = {
-        Max = {
-            type = "structure",
-        },
+        Max = M.QuerySpatialCoverageMax,
     },
 }
 
@@ -656,7 +642,10 @@ M.QueryTemporalRangeMax = {
     type = "structure",
     members = {
         Value = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         TableArn = {
             type = "string",
@@ -667,29 +656,32 @@ M.QueryTemporalRangeMax = {
 M.QueryTemporalRange = {
     type = "structure",
     members = {
-        Max = {
-            type = "structure",
-        },
+        Max = M.QueryTemporalRangeMax,
     },
 }
 
 M.ScheduledQueryInsightsResponse = {
     type = "structure",
     members = {
-        QuerySpatialCoverage = {
-            type = "structure",
-        },
-        QueryTemporalRange = {
-            type = "structure",
-        },
+        QuerySpatialCoverage = M.QuerySpatialCoverage,
+        QueryTemporalRange = M.QueryTemporalRange,
         QueryTableCount = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
         OutputRows = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
         OutputBytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -713,15 +705,9 @@ M.ScheduledQueryRunSummary = {
         RunStatus = {
             type = "string",
         },
-        ExecutionStats = {
-            type = "structure",
-        },
-        QueryInsightsResponse = {
-            type = "structure",
-        },
-        ErrorReportLocation = {
-            type = "structure",
-        },
+        ExecutionStats = M.ExecutionStats,
+        QueryInsightsResponse = M.ScheduledQueryInsightsResponse,
+        ErrorReportLocation = M.ErrorReportLocation,
         FailureReason = {
             type = "string",
         },
@@ -769,36 +755,24 @@ M.ScheduledQueryDescription = {
         NextInvocationTime = {
             type = "timestamp",
         },
-        ScheduleConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        NotificationConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        TargetConfiguration = {
-            type = "structure",
-        },
+        ScheduleConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ScheduleConfiguration }),
+        NotificationConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.NotificationConfiguration }),
+        TargetConfiguration = M.TargetConfiguration,
         ScheduledQueryExecutionRoleArn = {
             type = "string",
         },
         KmsKeyId = {
             type = "string",
         },
-        ErrorReportConfiguration = {
-            type = "structure",
-        },
-        LastRunSummary = {
-            type = "structure",
-        },
+        ErrorReportConfiguration = M.ErrorReportConfiguration,
+        LastRunSummary = M.ScheduledQueryRunSummary,
         RecentlyFailedRuns = {
             type = "list",
-            member_type = "structure",
+            member = M.ScheduledQueryRunSummary,
         },
     },
 }
@@ -806,12 +780,9 @@ M.ScheduledQueryDescription = {
 M.DescribeScheduledQueryOutput = {
     type = "structure",
     members = {
-        ScheduledQuery = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ScheduledQuery = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ScheduledQueryDescription }),
     },
 }
 
@@ -850,9 +821,7 @@ M.ExecuteScheduledQueryInput = {
         ClientToken = {
             type = "string",
         },
-        QueryInsights = {
-            type = "structure",
-        },
+        QueryInsights = M.ScheduledQueryInsights,
     },
 }
 
@@ -864,7 +833,7 @@ M.ListScheduledQueriesInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -887,9 +856,7 @@ M.TimestreamDestination = {
 M.TargetDestination = {
     type = "structure",
     members = {
-        TimestreamDestination = {
-            type = "structure",
-        },
+        TimestreamDestination = M.TimestreamDestination,
     },
 }
 
@@ -923,12 +890,8 @@ M.ScheduledQuery = {
         NextInvocationTime = {
             type = "timestamp",
         },
-        ErrorReportConfiguration = {
-            type = "structure",
-        },
-        TargetDestination = {
-            type = "structure",
-        },
+        ErrorReportConfiguration = M.ErrorReportConfiguration,
+        TargetDestination = M.TargetDestination,
         LastRunStatus = {
             type = "string",
         },
@@ -940,7 +903,7 @@ M.ListScheduledQueriesOutput = {
     members = {
         ScheduledQueries = {
             type = "list",
-            member_type = "structure",
+            member = M.ScheduledQuery,
             traits = {
                 required = true,
             },
@@ -961,7 +924,7 @@ M.ListTagsForResourceInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -974,7 +937,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -1004,14 +967,12 @@ M.ProvisionedCapacityRequest = {
     type = "structure",
     members = {
         TargetQueryTCU = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
-        NotificationConfiguration = {
-            type = "structure",
-        },
+        NotificationConfiguration = M.AccountSettingsNotificationConfiguration,
     },
 }
 
@@ -1058,40 +1019,52 @@ M.QueryInput = {
             type = "string",
         },
         MaxRows = {
-            type = "number",
+            type = "integer",
         },
-        QueryInsights = {
-            type = "structure",
-        },
+        QueryInsights = M.QueryInsights,
     },
 }
 
 M.QueryInsightsResponse = {
     type = "structure",
     members = {
-        QuerySpatialCoverage = {
-            type = "structure",
-        },
-        QueryTemporalRange = {
-            type = "structure",
-        },
+        QuerySpatialCoverage = M.QuerySpatialCoverage,
+        QueryTemporalRange = M.QueryTemporalRange,
         QueryTableCount = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
         OutputRows = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
         OutputBytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
         UnloadPartitionCount = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
         UnloadWrittenRows = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
         UnloadWrittenBytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -1100,13 +1073,22 @@ M.QueryStatus = {
     type = "structure",
     members = {
         ProgressPercentage = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         CumulativeBytesScanned = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         CumulativeBytesMetered = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1117,9 +1099,7 @@ M.QueryComputeRequest = {
         ComputeMode = {
             type = "string",
         },
-        ProvisionedCapacity = {
-            type = "structure",
-        },
+        ProvisionedCapacity = M.ProvisionedCapacityRequest,
     },
 }
 
@@ -1134,7 +1114,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -1157,7 +1137,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1173,14 +1153,12 @@ M.UpdateAccountSettingsInput = {
     type = "structure",
     members = {
         MaxQueryTCU = {
-            type = "number",
+            type = "integer",
         },
         QueryPricingModel = {
             type = "string",
         },
-        QueryCompute = {
-            type = "structure",
-        },
+        QueryCompute = M.QueryComputeRequest,
     },
 }
 
@@ -1188,14 +1166,12 @@ M.UpdateAccountSettingsOutput = {
     type = "structure",
     members = {
         MaxQueryTCU = {
-            type = "number",
+            type = "integer",
         },
         QueryPricingModel = {
             type = "string",
         },
-        QueryCompute = {
-            type = "structure",
-        },
+        QueryCompute = M.QueryComputeResponse,
     },
 }
 
@@ -1227,12 +1203,9 @@ M.ColumnInfo = {
         Name = {
             type = "string",
         },
-        Type = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Type = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Type }),
     },
 }
 
@@ -1242,15 +1215,11 @@ M.Type = {
         ScalarType = {
             type = "string",
         },
-        ArrayColumnInfo = {
-            type = "structure",
-        },
-        TimeSeriesMeasureValueColumnInfo = {
-            type = "structure",
-        },
+        ArrayColumnInfo = M.ColumnInfo,
+        TimeSeriesMeasureValueColumnInfo = M.ColumnInfo,
         RowColumnInfo = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnInfo,
         },
     },
 }
@@ -1263,15 +1232,13 @@ M.Datum = {
         },
         TimeSeriesValue = {
             type = "list",
-            member_type = "structure",
+            member = M.TimeSeriesDataPoint,
         },
         ArrayValue = {
             type = "list",
-            member_type = "structure",
+            member = M.Datum,
         },
-        RowValue = {
-            type = "structure",
-        },
+        RowValue = M.Row,
         NullValue = {
             type = "boolean",
         },
@@ -1287,12 +1254,9 @@ M.ParameterMapping = {
                 required = true,
             },
         },
-        Type = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Type = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Type }),
     },
 }
 
@@ -1302,9 +1266,7 @@ M.SelectColumn = {
         Name = {
             type = "string",
         },
-        Type = {
-            type = "structure",
-        },
+        Type = M.Type,
         DatabaseName = {
             type = "string",
         },
@@ -1326,12 +1288,9 @@ M.TimeSeriesDataPoint = {
                 required = true,
             },
         },
-        Value = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Value = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Datum }),
     },
 }
 
@@ -1340,7 +1299,7 @@ M.Row = {
     members = {
         Data = {
             type = "list",
-            member_type = "structure",
+            member = M.Datum,
             traits = {
                 required = true,
             },
@@ -1362,24 +1321,20 @@ M.QueryOutput = {
         },
         Rows = {
             type = "list",
-            member_type = "structure",
+            member = M.Row,
             traits = {
                 required = true,
             },
         },
         ColumnInfo = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnInfo,
             traits = {
                 required = true,
             },
         },
-        QueryStatus = {
-            type = "structure",
-        },
-        QueryInsightsResponse = {
-            type = "structure",
-        },
+        QueryStatus = M.QueryStatus,
+        QueryInsightsResponse = M.QueryInsightsResponse,
     },
 }
 
@@ -1394,14 +1349,14 @@ M.PrepareQueryOutput = {
         },
         Columns = {
             type = "list",
-            member_type = "structure",
+            member = M.SelectColumn,
             traits = {
                 required = true,
             },
         },
         Parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.ParameterMapping,
             traits = {
                 required = true,
             },

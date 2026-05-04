@@ -1,0 +1,215 @@
+local waiter = require("waiter")
+
+local M = {}
+
+--- Wait until CallAnalyticsJobCompleted.
+function M.wait_until_call_analytics_job_completed(client, input, options)
+    return waiter.wait(client, "getCallAnalyticsJob", input, {
+        min_delay = 10,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "CallAnalyticsJob.CallAnalyticsJobStatus",
+                        expected = "COMPLETED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "CallAnalyticsJob.CallAnalyticsJobStatus",
+                        expected = "FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until LanguageModelCompleted.
+function M.wait_until_language_model_completed(client, input, options)
+    return waiter.wait(client, "describeLanguageModel", input, {
+        min_delay = 120,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "LanguageModel.ModelStatus",
+                        expected = "COMPLETED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "LanguageModel.ModelStatus",
+                        expected = "FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until MedicalScribeJobCompleted.
+function M.wait_until_medical_scribe_job_completed(client, input, options)
+    return waiter.wait(client, "getMedicalScribeJob", input, {
+        min_delay = 10,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "MedicalScribeJob.MedicalScribeJobStatus",
+                        expected = "COMPLETED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "MedicalScribeJob.MedicalScribeJobStatus",
+                        expected = "FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until MedicalTranscriptionJobCompleted.
+function M.wait_until_medical_transcription_job_completed(client, input, options)
+    return waiter.wait(client, "getMedicalTranscriptionJob", input, {
+        min_delay = 10,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "MedicalTranscriptionJob.TranscriptionJobStatus",
+                        expected = "COMPLETED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "MedicalTranscriptionJob.TranscriptionJobStatus",
+                        expected = "FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until MedicalVocabularyReady.
+function M.wait_until_medical_vocabulary_ready(client, input, options)
+    return waiter.wait(client, "getMedicalVocabulary", input, {
+        min_delay = 10,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "VocabularyState",
+                        expected = "READY",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "VocabularyState",
+                        expected = "FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until TranscriptionJobCompleted.
+function M.wait_until_transcription_job_completed(client, input, options)
+    return waiter.wait(client, "getTranscriptionJob", input, {
+        min_delay = 10,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "TranscriptionJob.TranscriptionJobStatus",
+                        expected = "COMPLETED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "TranscriptionJob.TranscriptionJobStatus",
+                        expected = "FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until VocabularyReady.
+function M.wait_until_vocabulary_ready(client, input, options)
+    return waiter.wait(client, "getVocabulary", input, {
+        min_delay = 10,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "VocabularyState",
+                        expected = "READY",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "VocabularyState",
+                        expected = "FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+return M

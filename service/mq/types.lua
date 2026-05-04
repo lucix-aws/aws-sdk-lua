@@ -58,7 +58,7 @@ M.BrokerEngineType = {
         },
         EngineVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.EngineVersion,
             traits = {
                 json_name = "engineVersions",
             },
@@ -77,7 +77,7 @@ M.BrokerInstance = {
         },
         Endpoints = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "endpoints",
             },
@@ -107,7 +107,7 @@ M.BrokerInstanceOption = {
     members = {
         AvailabilityZones = {
             type = "list",
-            member_type = "structure",
+            member = M.AvailabilityZone,
             traits = {
                 json_name = "availabilityZones",
             },
@@ -132,14 +132,14 @@ M.BrokerInstanceOption = {
         },
         SupportedDeploymentModes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "supportedDeploymentModes",
             },
         },
         SupportedEngineVersions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "supportedEngineVersions",
             },
@@ -236,7 +236,7 @@ M.ConfigurationRevision = {
             },
         },
         Revision = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "revision",
                 required = true,
@@ -297,13 +297,10 @@ M.Configuration = {
                 required = true,
             },
         },
-        LatestRevision = {
-            type = "structure",
-            traits = {
-                json_name = "latestRevision",
-                required = true,
-            },
-        },
+        LatestRevision = setmetatable({ traits = {
+            json_name = "latestRevision",
+            required = true,
+        } }, { __index = M.ConfigurationRevision }),
         Name = {
             type = "string",
             traits = {
@@ -313,8 +310,8 @@ M.Configuration = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -333,7 +330,7 @@ M.ConfigurationId = {
             },
         },
         Revision = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "revision",
             },
@@ -383,7 +380,7 @@ M.User = {
         },
         Groups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "groups",
             },
@@ -458,25 +455,19 @@ M.BadRequestException = {
 M.Configurations = {
     type = "structure",
     members = {
-        Current = {
-            type = "structure",
-            traits = {
-                json_name = "current",
-            },
-        },
+        Current = setmetatable({ traits = {
+            json_name = "current",
+        } }, { __index = M.ConfigurationId }),
         History = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigurationId,
             traits = {
                 json_name = "history",
             },
         },
-        Pending = {
-            type = "structure",
-            traits = {
-                json_name = "pending",
-            },
-        },
+        Pending = setmetatable({ traits = {
+            json_name = "pending",
+        } }, { __index = M.ConfigurationId }),
     },
 }
 
@@ -528,7 +519,7 @@ M.LdapServerMetadataInput = {
     members = {
         Hosts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "hosts",
                 required = true,
@@ -679,12 +670,9 @@ M.CreateBrokerInput = {
                 required = true,
             },
         },
-        Configuration = {
-            type = "structure",
-            traits = {
-                json_name = "configuration",
-            },
-        },
+        Configuration = setmetatable({ traits = {
+            json_name = "configuration",
+        } }, { __index = M.ConfigurationId }),
         CreatorRequestId = {
             type = "string",
             traits = {
@@ -698,12 +686,9 @@ M.CreateBrokerInput = {
                 required = true,
             },
         },
-        EncryptionOptions = {
-            type = "structure",
-            traits = {
-                json_name = "encryptionOptions",
-            },
-        },
+        EncryptionOptions = setmetatable({ traits = {
+            json_name = "encryptionOptions",
+        } }, { __index = M.EncryptionOptions }),
         EngineType = {
             type = "string",
             traits = {
@@ -724,24 +709,15 @@ M.CreateBrokerInput = {
                 required = true,
             },
         },
-        LdapServerMetadata = {
-            type = "structure",
-            traits = {
-                json_name = "ldapServerMetadata",
-            },
-        },
-        Logs = {
-            type = "structure",
-            traits = {
-                json_name = "logs",
-            },
-        },
-        MaintenanceWindowStartTime = {
-            type = "structure",
-            traits = {
-                json_name = "maintenanceWindowStartTime",
-            },
-        },
+        LdapServerMetadata = setmetatable({ traits = {
+            json_name = "ldapServerMetadata",
+        } }, { __index = M.LdapServerMetadataInput }),
+        Logs = setmetatable({ traits = {
+            json_name = "logs",
+        } }, { __index = M.Logs }),
+        MaintenanceWindowStartTime = setmetatable({ traits = {
+            json_name = "maintenanceWindowStartTime",
+        } }, { __index = M.WeeklyStartTime }),
         PubliclyAccessible = {
             type = "boolean",
             traits = {
@@ -751,7 +727,7 @@ M.CreateBrokerInput = {
         },
         SecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "securityGroups",
             },
@@ -764,22 +740,22 @@ M.CreateBrokerInput = {
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "subnetIds",
             },
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
         },
         Users = {
             type = "list",
-            member_type = "structure",
+            member = M.User,
             traits = {
                 json_name = "users",
             },
@@ -905,8 +881,8 @@ M.CreateConfigurationInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -941,12 +917,9 @@ M.CreateConfigurationOutput = {
                 json_name = "id",
             },
         },
-        LatestRevision = {
-            type = "structure",
-            traits = {
-                json_name = "latestRevision",
-            },
-        },
+        LatestRevision = setmetatable({ traits = {
+            json_name = "latestRevision",
+        } }, { __index = M.ConfigurationRevision }),
         Name = {
             type = "string",
             traits = {
@@ -968,8 +941,8 @@ M.CreateTagsInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -1018,7 +991,7 @@ M.CreateUserInput = {
         },
         Groups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "groups",
             },
@@ -1073,12 +1046,9 @@ M.DataReplicationCounterpart = {
 M.DataReplicationMetadataOutput = {
     type = "structure",
     members = {
-        DataReplicationCounterpart = {
-            type = "structure",
-            traits = {
-                json_name = "dataReplicationCounterpart",
-            },
-        },
+        DataReplicationCounterpart = setmetatable({ traits = {
+            json_name = "dataReplicationCounterpart",
+        } }, { __index = M.DataReplicationCounterpart }),
         DataReplicationRole = {
             type = "string",
             traits = {
@@ -1151,7 +1121,7 @@ M.DeleteTagsInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -1206,7 +1176,7 @@ M.LdapServerMetadataOutput = {
     members = {
         Hosts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "hosts",
                 required = true,
@@ -1321,12 +1291,9 @@ M.LogsSummary = {
                 required = true,
             },
         },
-        Pending = {
-            type = "structure",
-            traits = {
-                json_name = "pending",
-            },
-        },
+        Pending = setmetatable({ traits = {
+            json_name = "pending",
+        } }, { __index = M.PendingLogs }),
     },
 }
 
@@ -1335,7 +1302,7 @@ M.DescribeBrokerOutput = {
     members = {
         ActionsRequired = {
             type = "list",
-            member_type = "structure",
+            member = M.ActionRequired,
             traits = {
                 json_name = "actionsRequired",
             },
@@ -1366,7 +1333,7 @@ M.DescribeBrokerOutput = {
         },
         BrokerInstances = {
             type = "list",
-            member_type = "structure",
+            member = M.BrokerInstance,
             traits = {
                 json_name = "brokerInstances",
             },
@@ -1383,12 +1350,9 @@ M.DescribeBrokerOutput = {
                 json_name = "brokerState",
             },
         },
-        Configurations = {
-            type = "structure",
-            traits = {
-                json_name = "configurations",
-            },
-        },
+        Configurations = setmetatable({ traits = {
+            json_name = "configurations",
+        } }, { __index = M.Configurations }),
         Created = {
             type = "timestamp",
             traits = {
@@ -1401,12 +1365,9 @@ M.DescribeBrokerOutput = {
                 json_name = "deploymentMode",
             },
         },
-        EncryptionOptions = {
-            type = "structure",
-            traits = {
-                json_name = "encryptionOptions",
-            },
-        },
+        EncryptionOptions = setmetatable({ traits = {
+            json_name = "encryptionOptions",
+        } }, { __index = M.EncryptionOptions }),
         EngineType = {
             type = "string",
             traits = {
@@ -1425,24 +1386,15 @@ M.DescribeBrokerOutput = {
                 json_name = "hostInstanceType",
             },
         },
-        LdapServerMetadata = {
-            type = "structure",
-            traits = {
-                json_name = "ldapServerMetadata",
-            },
-        },
-        Logs = {
-            type = "structure",
-            traits = {
-                json_name = "logs",
-            },
-        },
-        MaintenanceWindowStartTime = {
-            type = "structure",
-            traits = {
-                json_name = "maintenanceWindowStartTime",
-            },
-        },
+        LdapServerMetadata = setmetatable({ traits = {
+            json_name = "ldapServerMetadata",
+        } }, { __index = M.LdapServerMetadataOutput }),
+        Logs = setmetatable({ traits = {
+            json_name = "logs",
+        } }, { __index = M.LogsSummary }),
+        MaintenanceWindowStartTime = setmetatable({ traits = {
+            json_name = "maintenanceWindowStartTime",
+        } }, { __index = M.WeeklyStartTime }),
         PendingAuthenticationStrategy = {
             type = "string",
             traits = {
@@ -1461,15 +1413,12 @@ M.DescribeBrokerOutput = {
                 json_name = "pendingHostInstanceType",
             },
         },
-        PendingLdapServerMetadata = {
-            type = "structure",
-            traits = {
-                json_name = "pendingLdapServerMetadata",
-            },
-        },
+        PendingLdapServerMetadata = setmetatable({ traits = {
+            json_name = "pendingLdapServerMetadata",
+        } }, { __index = M.LdapServerMetadataOutput }),
         PendingSecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "pendingSecurityGroups",
             },
@@ -1482,7 +1431,7 @@ M.DescribeBrokerOutput = {
         },
         SecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "securityGroups",
             },
@@ -1495,44 +1444,38 @@ M.DescribeBrokerOutput = {
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "subnetIds",
             },
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
         },
         Users = {
             type = "list",
-            member_type = "structure",
+            member = M.UserSummary,
             traits = {
                 json_name = "users",
             },
         },
-        DataReplicationMetadata = {
-            type = "structure",
-            traits = {
-                json_name = "dataReplicationMetadata",
-            },
-        },
+        DataReplicationMetadata = setmetatable({ traits = {
+            json_name = "dataReplicationMetadata",
+        } }, { __index = M.DataReplicationMetadataOutput }),
         DataReplicationMode = {
             type = "string",
             traits = {
                 json_name = "dataReplicationMode",
             },
         },
-        PendingDataReplicationMetadata = {
-            type = "structure",
-            traits = {
-                json_name = "pendingDataReplicationMetadata",
-            },
-        },
+        PendingDataReplicationMetadata = setmetatable({ traits = {
+            json_name = "pendingDataReplicationMetadata",
+        } }, { __index = M.DataReplicationMetadataOutput }),
         PendingDataReplicationMode = {
             type = "string",
             traits = {
@@ -1552,7 +1495,7 @@ M.DescribeBrokerEngineTypesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1571,13 +1514,13 @@ M.DescribeBrokerEngineTypesOutput = {
     members = {
         BrokerEngineTypes = {
             type = "list",
-            member_type = "structure",
+            member = M.BrokerEngineType,
             traits = {
                 json_name = "brokerEngineTypes",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxResults",
             },
@@ -1607,7 +1550,7 @@ M.DescribeBrokerInstanceOptionsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1632,13 +1575,13 @@ M.DescribeBrokerInstanceOptionsOutput = {
     members = {
         BrokerInstanceOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.BrokerInstanceOption,
             traits = {
                 json_name = "brokerInstanceOptions",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxResults",
             },
@@ -1710,12 +1653,9 @@ M.DescribeConfigurationOutput = {
                 json_name = "id",
             },
         },
-        LatestRevision = {
-            type = "structure",
-            traits = {
-                json_name = "latestRevision",
-            },
-        },
+        LatestRevision = setmetatable({ traits = {
+            json_name = "latestRevision",
+        } }, { __index = M.ConfigurationRevision }),
         Name = {
             type = "string",
             traits = {
@@ -1724,8 +1664,8 @@ M.DescribeConfigurationOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -1814,7 +1754,7 @@ M.UserPendingChanges = {
         },
         Groups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "groups",
             },
@@ -1846,17 +1786,14 @@ M.DescribeUserOutput = {
         },
         Groups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "groups",
             },
         },
-        Pending = {
-            type = "structure",
-            traits = {
-                json_name = "pending",
-            },
-        },
+        Pending = setmetatable({ traits = {
+            json_name = "pending",
+        } }, { __index = M.UserPendingChanges }),
         Username = {
             type = "string",
             traits = {
@@ -1876,7 +1813,7 @@ M.ListBrokersInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1895,7 +1832,7 @@ M.ListBrokersOutput = {
     members = {
         BrokerSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.BrokerSummary,
             traits = {
                 json_name = "brokerSummaries",
             },
@@ -1920,7 +1857,7 @@ M.ListConfigurationRevisionsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1944,7 +1881,7 @@ M.ListConfigurationRevisionsOutput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxResults",
             },
@@ -1957,7 +1894,7 @@ M.ListConfigurationRevisionsOutput = {
         },
         Revisions = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigurationRevision,
             traits = {
                 json_name = "revisions",
             },
@@ -1969,7 +1906,7 @@ M.ListConfigurationsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1988,13 +1925,13 @@ M.ListConfigurationsOutput = {
     members = {
         Configurations = {
             type = "list",
-            member_type = "structure",
+            member = M.Configuration,
             traits = {
                 json_name = "configurations",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxResults",
             },
@@ -2026,8 +1963,8 @@ M.ListTagsOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -2046,7 +1983,7 @@ M.ListUsersInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2070,7 +2007,7 @@ M.ListUsersOutput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxResults",
             },
@@ -2083,7 +2020,7 @@ M.ListUsersOutput = {
         },
         Users = {
             type = "list",
-            member_type = "structure",
+            member = M.UserSummary,
             traits = {
                 json_name = "users",
             },
@@ -2167,12 +2104,9 @@ M.UpdateBrokerInput = {
                 required = true,
             },
         },
-        Configuration = {
-            type = "structure",
-            traits = {
-                json_name = "configuration",
-            },
-        },
+        Configuration = setmetatable({ traits = {
+            json_name = "configuration",
+        } }, { __index = M.ConfigurationId }),
         EngineVersion = {
             type = "string",
             traits = {
@@ -2185,27 +2119,18 @@ M.UpdateBrokerInput = {
                 json_name = "hostInstanceType",
             },
         },
-        LdapServerMetadata = {
-            type = "structure",
-            traits = {
-                json_name = "ldapServerMetadata",
-            },
-        },
-        Logs = {
-            type = "structure",
-            traits = {
-                json_name = "logs",
-            },
-        },
-        MaintenanceWindowStartTime = {
-            type = "structure",
-            traits = {
-                json_name = "maintenanceWindowStartTime",
-            },
-        },
+        LdapServerMetadata = setmetatable({ traits = {
+            json_name = "ldapServerMetadata",
+        } }, { __index = M.LdapServerMetadataInput }),
+        Logs = setmetatable({ traits = {
+            json_name = "logs",
+        } }, { __index = M.Logs }),
+        MaintenanceWindowStartTime = setmetatable({ traits = {
+            json_name = "maintenanceWindowStartTime",
+        } }, { __index = M.WeeklyStartTime }),
         SecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "securityGroups",
             },
@@ -2240,12 +2165,9 @@ M.UpdateBrokerOutput = {
                 json_name = "brokerId",
             },
         },
-        Configuration = {
-            type = "structure",
-            traits = {
-                json_name = "configuration",
-            },
-        },
+        Configuration = setmetatable({ traits = {
+            json_name = "configuration",
+        } }, { __index = M.ConfigurationId }),
         EngineVersion = {
             type = "string",
             traits = {
@@ -2258,49 +2180,34 @@ M.UpdateBrokerOutput = {
                 json_name = "hostInstanceType",
             },
         },
-        LdapServerMetadata = {
-            type = "structure",
-            traits = {
-                json_name = "ldapServerMetadata",
-            },
-        },
-        Logs = {
-            type = "structure",
-            traits = {
-                json_name = "logs",
-            },
-        },
-        MaintenanceWindowStartTime = {
-            type = "structure",
-            traits = {
-                json_name = "maintenanceWindowStartTime",
-            },
-        },
+        LdapServerMetadata = setmetatable({ traits = {
+            json_name = "ldapServerMetadata",
+        } }, { __index = M.LdapServerMetadataOutput }),
+        Logs = setmetatable({ traits = {
+            json_name = "logs",
+        } }, { __index = M.Logs }),
+        MaintenanceWindowStartTime = setmetatable({ traits = {
+            json_name = "maintenanceWindowStartTime",
+        } }, { __index = M.WeeklyStartTime }),
         SecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "securityGroups",
             },
         },
-        DataReplicationMetadata = {
-            type = "structure",
-            traits = {
-                json_name = "dataReplicationMetadata",
-            },
-        },
+        DataReplicationMetadata = setmetatable({ traits = {
+            json_name = "dataReplicationMetadata",
+        } }, { __index = M.DataReplicationMetadataOutput }),
         DataReplicationMode = {
             type = "string",
             traits = {
                 json_name = "dataReplicationMode",
             },
         },
-        PendingDataReplicationMetadata = {
-            type = "structure",
-            traits = {
-                json_name = "pendingDataReplicationMetadata",
-            },
-        },
+        PendingDataReplicationMetadata = setmetatable({ traits = {
+            json_name = "pendingDataReplicationMetadata",
+        } }, { __index = M.DataReplicationMetadataOutput }),
         PendingDataReplicationMode = {
             type = "string",
             traits = {
@@ -2357,12 +2264,9 @@ M.UpdateConfigurationOutput = {
                 json_name = "id",
             },
         },
-        LatestRevision = {
-            type = "structure",
-            traits = {
-                json_name = "latestRevision",
-            },
-        },
+        LatestRevision = setmetatable({ traits = {
+            json_name = "latestRevision",
+        } }, { __index = M.ConfigurationRevision }),
         Name = {
             type = "string",
             traits = {
@@ -2371,7 +2275,7 @@ M.UpdateConfigurationOutput = {
         },
         Warnings = {
             type = "list",
-            member_type = "structure",
+            member = M.SanitizationWarning,
             traits = {
                 json_name = "warnings",
             },
@@ -2397,7 +2301,7 @@ M.UpdateUserInput = {
         },
         Groups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "groups",
             },

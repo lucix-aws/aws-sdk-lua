@@ -45,27 +45,27 @@ M.AdvancedFieldSelector = {
         },
         Equals = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         StartsWith = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         EndsWith = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NotEquals = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NotStartsWith = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NotEndsWith = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -78,7 +78,7 @@ M.AdvancedEventSelector = {
         },
         FieldSelectors = {
             type = "list",
-            member_type = "structure",
+            member = M.AdvancedFieldSelector,
             traits = {
                 required = true,
             },
@@ -150,15 +150,9 @@ M.LogsEncryptionConfiguration = {
 M.DestinationLogsConfiguration = {
     type = "structure",
     members = {
-        LogsEncryptionConfiguration = {
-            type = "structure",
-        },
-        BackupConfiguration = {
-            type = "structure",
-        },
-        LogGroupNameConfiguration = {
-            type = "structure",
-        },
+        LogsEncryptionConfiguration = M.LogsEncryptionConfiguration,
+        BackupConfiguration = M.LogsBackupConfiguration,
+        LogGroupNameConfiguration = M.LogGroupNameConfiguration,
     },
 }
 
@@ -174,9 +168,7 @@ M.CentralizationRuleDestination = {
         Account = {
             type = "string",
         },
-        DestinationLogsConfiguration = {
-            type = "structure",
-        },
+        DestinationLogsConfiguration = M.DestinationLogsConfiguration,
     },
 }
 
@@ -190,6 +182,9 @@ M.SourceLogsConfiguration = {
     members = {
         LogGroupSelectionCriteria = {
             type = "string",
+            traits = {
+                default = "*",
+            },
         },
         DataSourceSelectionCriteria = {
             type = "string",
@@ -208,7 +203,7 @@ M.CentralizationRuleSource = {
     members = {
         Regions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -216,27 +211,19 @@ M.CentralizationRuleSource = {
         Scope = {
             type = "string",
         },
-        SourceLogsConfiguration = {
-            type = "structure",
-        },
+        SourceLogsConfiguration = M.SourceLogsConfiguration,
     },
 }
 
 M.CentralizationRule = {
     type = "structure",
     members = {
-        Source = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Destination = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Source = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CentralizationRuleSource }),
+        Destination = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CentralizationRuleDestination }),
     },
 }
 
@@ -259,13 +246,13 @@ M.CentralizationRuleSummary = {
             type = "string",
         },
         CreatedTimeStamp = {
-            type = "number",
+            type = "long",
         },
         CreatedRegion = {
             type = "string",
         },
         LastUpdateTimeStamp = {
-            type = "number",
+            type = "long",
         },
         RuleHealth = {
             type = "string",
@@ -287,7 +274,7 @@ M.CloudtrailParameters = {
     members = {
         AdvancedEventSelectors = {
             type = "list",
-            member_type = "structure",
+            member = M.AdvancedEventSelector,
             traits = {
                 required = true,
             },
@@ -307,12 +294,8 @@ M.LabelNameCondition = {
 M.Condition = {
     type = "structure",
     members = {
-        ActionCondition = {
-            type = "structure",
-        },
-        LabelNameCondition = {
-            type = "structure",
-        },
+        ActionCondition = M.ActionCondition,
+        LabelNameCondition = M.LabelNameCondition,
     },
 }
 
@@ -342,22 +325,22 @@ M.ConfigurationSummary = {
     members = {
         Sources = {
             type = "list",
-            member_type = "structure",
+            member = M.Source,
         },
         DataSources = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSource,
         },
         Processors = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ProcessorCount = {
-            type = "number",
+            type = "integer",
         },
         Sinks = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -387,16 +370,13 @@ M.CreateCentralizationRuleForOrganizationInput = {
                 required = true,
             },
         },
-        Rule = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Rule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CentralizationRule }),
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -424,7 +404,7 @@ M.InternalServerException = {
             },
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -481,8 +461,8 @@ M.ValidationError = {
         },
         FieldMap = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -496,7 +476,7 @@ M.ValidationException = {
         },
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationError,
         },
     },
 }
@@ -524,12 +504,9 @@ M.Encryption = {
 M.CreateS3TableIntegrationInput = {
     type = "structure",
     members = {
-        Encryption = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Encryption = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Encryption }),
         RoleArn = {
             type = "string",
             traits = {
@@ -538,8 +515,8 @@ M.CreateS3TableIntegrationInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -574,16 +551,13 @@ M.CreateTelemetryPipelineInput = {
                 required = true,
             },
         },
-        Configuration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TelemetryPipelineConfiguration }),
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -631,7 +605,7 @@ M.LogDeliveryParameters = {
     members = {
         LogTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -662,7 +636,7 @@ M.VPCFlowLogParameters = {
             type = "string",
         },
         MaxAggregationInterval = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -688,7 +662,7 @@ M.Filter = {
         },
         Conditions = {
             type = "list",
-            member_type = "structure",
+            member = M.Condition,
         },
     },
 }
@@ -698,7 +672,7 @@ M.LoggingFilter = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         DefaultBehavior = {
             type = "string",
@@ -722,9 +696,7 @@ M.SingleHeader = {
 M.FieldToMatch = {
     type = "structure",
     members = {
-        SingleHeader = {
-            type = "structure",
-        },
+        SingleHeader = M.SingleHeader,
         UriPath = {
             type = "string",
         },
@@ -742,11 +714,9 @@ M.WAFLoggingParameters = {
     members = {
         RedactedFields = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldToMatch,
         },
-        LoggingFilter = {
-            type = "structure",
-        },
+        LoggingFilter = M.LoggingFilter,
         LogType = {
             type = "string",
         },
@@ -763,26 +733,14 @@ M.TelemetryDestinationConfiguration = {
             type = "string",
         },
         RetentionInDays = {
-            type = "number",
+            type = "integer",
         },
-        VPCFlowLogParameters = {
-            type = "structure",
-        },
-        CloudtrailParameters = {
-            type = "structure",
-        },
-        ELBLoadBalancerLoggingParameters = {
-            type = "structure",
-        },
-        WAFLoggingParameters = {
-            type = "structure",
-        },
-        LogDeliveryParameters = {
-            type = "structure",
-        },
-        MskMonitoringParameters = {
-            type = "structure",
-        },
+        VPCFlowLogParameters = M.VPCFlowLogParameters,
+        CloudtrailParameters = M.CloudtrailParameters,
+        ELBLoadBalancerLoggingParameters = M.ELBLoadBalancerLoggingParameters,
+        WAFLoggingParameters = M.WAFLoggingParameters,
+        LogDeliveryParameters = M.LogDeliveryParameters,
+        MskMonitoringParameters = M.MskMonitoringParameters,
     },
 }
 
@@ -838,11 +796,9 @@ M.TelemetryRule = {
         },
         TelemetrySourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        DestinationConfiguration = {
-            type = "structure",
-        },
+        DestinationConfiguration = M.TelemetryDestinationConfiguration,
         Scope = {
             type = "string",
         },
@@ -854,7 +810,7 @@ M.TelemetryRule = {
         },
         Regions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AllRegions = {
             type = "boolean",
@@ -871,16 +827,13 @@ M.CreateTelemetryRuleInput = {
                 required = true,
             },
         },
-        Rule = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Rule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TelemetryRule }),
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -903,16 +856,13 @@ M.CreateTelemetryRuleForOrganizationInput = {
                 required = true,
             },
         },
-        Rule = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Rule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TelemetryRule }),
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1057,13 +1007,13 @@ M.GetCentralizationRuleForOrganizationOutput = {
             type = "string",
         },
         CreatedTimeStamp = {
-            type = "number",
+            type = "long",
         },
         CreatedRegion = {
             type = "string",
         },
         LastUpdateTimeStamp = {
-            type = "number",
+            type = "long",
         },
         RuleHealth = {
             type = "string",
@@ -1071,9 +1021,7 @@ M.GetCentralizationRuleForOrganizationOutput = {
         FailureReason = {
             type = "string",
         },
-        CentralizationRule = {
-            type = "structure",
-        },
+        CentralizationRule = M.CentralizationRule,
     },
 }
 
@@ -1106,14 +1054,12 @@ M.GetS3TableIntegrationOutput = {
         Status = {
             type = "string",
         },
-        Encryption = {
-            type = "structure",
-        },
+        Encryption = M.Encryption,
         DestinationTableBucketArn = {
             type = "string",
         },
         CreatedTimeStamp = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1186,7 +1132,7 @@ M.GetTelemetryEvaluationStatusOutput = {
         },
         RegionStatuses = {
             type = "list",
-            member_type = "structure",
+            member = M.RegionStatus,
         },
     },
 }
@@ -1209,7 +1155,7 @@ M.GetTelemetryEvaluationStatusForOrganizationOutput = {
         },
         RegionStatuses = {
             type = "list",
-            member_type = "structure",
+            member = M.RegionStatus,
         },
     },
 }
@@ -1248,10 +1194,10 @@ M.TelemetryPipeline = {
     type = "structure",
     members = {
         CreatedTimeStamp = {
-            type = "number",
+            type = "long",
         },
         LastUpdateTimeStamp = {
-            type = "number",
+            type = "long",
         },
         Arn = {
             type = "string",
@@ -1259,19 +1205,15 @@ M.TelemetryPipeline = {
         Name = {
             type = "string",
         },
-        Configuration = {
-            type = "structure",
-        },
+        Configuration = M.TelemetryPipelineConfiguration,
         Status = {
             type = "string",
         },
-        StatusReason = {
-            type = "structure",
-        },
+        StatusReason = M.TelemetryPipelineStatusReason,
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1279,9 +1221,7 @@ M.TelemetryPipeline = {
 M.GetTelemetryPipelineOutput = {
     type = "structure",
     members = {
-        Pipeline = {
-            type = "structure",
-        },
+        Pipeline = M.TelemetryPipeline,
     },
 }
 
@@ -1307,14 +1247,12 @@ M.GetTelemetryRuleOutput = {
             type = "string",
         },
         CreatedTimeStamp = {
-            type = "number",
+            type = "long",
         },
         LastUpdateTimeStamp = {
-            type = "number",
+            type = "long",
         },
-        TelemetryRule = {
-            type = "structure",
-        },
+        TelemetryRule = M.TelemetryRule,
         HomeRegion = {
             type = "string",
         },
@@ -1323,7 +1261,7 @@ M.GetTelemetryRuleOutput = {
         },
         RegionStatuses = {
             type = "list",
-            member_type = "structure",
+            member = M.RegionStatus,
         },
     },
 }
@@ -1350,14 +1288,12 @@ M.GetTelemetryRuleForOrganizationOutput = {
             type = "string",
         },
         CreatedTimeStamp = {
-            type = "number",
+            type = "long",
         },
         LastUpdateTimeStamp = {
-            type = "number",
+            type = "long",
         },
-        TelemetryRule = {
-            type = "structure",
-        },
+        TelemetryRule = M.TelemetryRule,
         HomeRegion = {
             type = "string",
         },
@@ -1366,7 +1302,7 @@ M.GetTelemetryRuleForOrganizationOutput = {
         },
         RegionStatuses = {
             type = "list",
-            member_type = "structure",
+            member = M.RegionStatus,
         },
     },
 }
@@ -1393,7 +1329,10 @@ M.ListCentralizationRulesForOrganizationInput = {
             type = "boolean",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         NextToken = {
             type = "string",
@@ -1406,7 +1345,7 @@ M.ListCentralizationRulesForOrganizationOutput = {
     members = {
         CentralizationRuleSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.CentralizationRuleSummary,
         },
         NextToken = {
             type = "string",
@@ -1428,20 +1367,23 @@ M.ListResourceTelemetryInput = {
         },
         ResourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TelemetryConfigurationState = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ResourceTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         NextToken = {
             type = "string",
@@ -1457,8 +1399,8 @@ M.TelemetryConfiguration = {
         },
         TelemetryConfigurationState = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ResourceType = {
             type = "string",
@@ -1468,11 +1410,11 @@ M.TelemetryConfiguration = {
         },
         ResourceTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         LastUpdateTimeStamp = {
-            type = "number",
+            type = "long",
         },
         TelemetrySourceType = {
             type = "string",
@@ -1485,7 +1427,7 @@ M.ListResourceTelemetryOutput = {
     members = {
         TelemetryConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.TelemetryConfiguration,
         },
         NextToken = {
             type = "string",
@@ -1498,27 +1440,30 @@ M.ListResourceTelemetryForOrganizationInput = {
     members = {
         AccountIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ResourceIdentifierPrefix = {
             type = "string",
         },
         ResourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TelemetryConfigurationState = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ResourceTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         NextToken = {
             type = "string",
@@ -1531,7 +1476,7 @@ M.ListResourceTelemetryForOrganizationOutput = {
     members = {
         TelemetryConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.TelemetryConfiguration,
         },
         NextToken = {
             type = "string",
@@ -1543,7 +1488,10 @@ M.ListS3TableIntegrationsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         NextToken = {
             type = "string",
@@ -1556,7 +1504,7 @@ M.ListS3TableIntegrationsOutput = {
     members = {
         IntegrationSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.IntegrationSummary,
         },
         NextToken = {
             type = "string",
@@ -1581,8 +1529,8 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1594,7 +1542,10 @@ M.ListTelemetryPipelinesInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         NextToken = {
             type = "string",
@@ -1606,10 +1557,10 @@ M.TelemetryPipelineSummary = {
     type = "structure",
     members = {
         CreatedTimeStamp = {
-            type = "number",
+            type = "long",
         },
         LastUpdateTimeStamp = {
-            type = "number",
+            type = "long",
         },
         Arn = {
             type = "string",
@@ -1622,12 +1573,10 @@ M.TelemetryPipelineSummary = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        ConfigurationSummary = {
-            type = "structure",
-        },
+        ConfigurationSummary = M.ConfigurationSummary,
     },
 }
 
@@ -1636,7 +1585,7 @@ M.ListTelemetryPipelinesOutput = {
     members = {
         PipelineSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.TelemetryPipelineSummary,
         },
         NextToken = {
             type = "string",
@@ -1651,7 +1600,10 @@ M.ListTelemetryRulesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         NextToken = {
             type = "string",
@@ -1669,10 +1621,10 @@ M.TelemetryRuleSummary = {
             type = "string",
         },
         CreatedTimeStamp = {
-            type = "number",
+            type = "long",
         },
         LastUpdateTimeStamp = {
-            type = "number",
+            type = "long",
         },
         ResourceType = {
             type = "string",
@@ -1682,7 +1634,7 @@ M.TelemetryRuleSummary = {
         },
         TelemetrySourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1692,7 +1644,7 @@ M.ListTelemetryRulesOutput = {
     members = {
         TelemetryRuleSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.TelemetryRuleSummary,
         },
         NextToken = {
             type = "string",
@@ -1708,14 +1660,17 @@ M.ListTelemetryRulesForOrganizationInput = {
         },
         SourceAccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SourceOrganizationUnitIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         NextToken = {
             type = "string",
@@ -1728,7 +1683,7 @@ M.ListTelemetryRulesForOrganizationOutput = {
     members = {
         TelemetryRuleSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.TelemetryRuleSummary,
         },
         NextToken = {
             type = "string",
@@ -1757,7 +1712,7 @@ M.StartTelemetryEvaluationInput = {
     members = {
         Regions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AllRegions = {
             type = "boolean",
@@ -1774,7 +1729,7 @@ M.StartTelemetryEvaluationForOrganizationInput = {
     members = {
         Regions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AllRegions = {
             type = "boolean",
@@ -1826,8 +1781,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1848,12 +1803,9 @@ M.UpdateTelemetryPipelineInput = {
                 required = true,
             },
         },
-        Configuration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TelemetryPipelineConfiguration }),
     },
 }
 
@@ -1883,17 +1835,14 @@ M.TestTelemetryPipelineInput = {
     members = {
         Records = {
             type = "list",
-            member_type = "structure",
+            member = M.Record,
             traits = {
                 required = true,
             },
         },
-        Configuration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TelemetryPipelineConfiguration }),
     },
 }
 
@@ -1909,12 +1858,8 @@ M.PipelineOutputError = {
 M.PipelineOutput = {
     type = "structure",
     members = {
-        Record = {
-            type = "structure",
-        },
-        Error = {
-            type = "structure",
-        },
+        Record = M.Record,
+        Error = M.PipelineOutputError,
     },
 }
 
@@ -1923,7 +1868,7 @@ M.TestTelemetryPipelineOutput = {
     members = {
         Results = {
             type = "list",
-            member_type = "structure",
+            member = M.PipelineOutput,
         },
     },
 }
@@ -1939,7 +1884,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1960,12 +1905,9 @@ M.UpdateCentralizationRuleForOrganizationInput = {
                 required = true,
             },
         },
-        Rule = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Rule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CentralizationRule }),
     },
 }
 
@@ -1987,12 +1929,9 @@ M.UpdateTelemetryRuleInput = {
                 required = true,
             },
         },
-        Rule = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Rule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TelemetryRule }),
     },
 }
 
@@ -2014,12 +1953,9 @@ M.UpdateTelemetryRuleForOrganizationInput = {
                 required = true,
             },
         },
-        Rule = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Rule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TelemetryRule }),
     },
 }
 
@@ -2035,12 +1971,9 @@ M.UpdateTelemetryRuleForOrganizationOutput = {
 M.ValidateTelemetryPipelineConfigurationInput = {
     type = "structure",
     members = {
-        Configuration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TelemetryPipelineConfiguration }),
     },
 }
 
@@ -2049,7 +1982,7 @@ M.ValidateTelemetryPipelineConfigurationOutput = {
     members = {
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationError,
         },
     },
 }

@@ -16,7 +16,7 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AmazonPrometheusService"
-    cfg.signing_name = "amazonprometheusservice"
+    cfg.signing_name = "aps"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end

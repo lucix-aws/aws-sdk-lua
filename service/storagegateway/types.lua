@@ -56,7 +56,7 @@ M.ActivateGatewayInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -143,8 +143,8 @@ M.StorageGatewayError = {
         },
         errorDetails = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -156,9 +156,7 @@ M.InternalServerError = {
         message = {
             type = "string",
         },
-        error = {
-            type = "structure",
-        },
+        error = M.StorageGatewayError,
     },
 }
 
@@ -169,9 +167,7 @@ M.InvalidGatewayRequestException = {
         message = {
             type = "string",
         },
-        error = {
-            type = "structure",
-        },
+        error = M.StorageGatewayError,
     },
 }
 
@@ -197,7 +193,7 @@ M.AddCacheInput = {
         },
         DiskIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -225,7 +221,7 @@ M.AddTagsToResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -253,7 +249,7 @@ M.AddUploadBufferInput = {
         },
         DiskIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -281,7 +277,7 @@ M.AddWorkingStorageInput = {
         },
         DiskIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -315,6 +311,9 @@ M.AssignTapePoolInput = {
         },
         BypassGovernanceRetention = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -332,7 +331,7 @@ M.CacheAttributes = {
     type = "structure",
     members = {
         CacheStaleTimeoutInSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -342,7 +341,7 @@ M.EndpointNetworkConfiguration = {
     members = {
         IpAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -382,17 +381,13 @@ M.AssociateFileSystemInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         AuditDestinationARN = {
             type = "string",
         },
-        CacheAttributes = {
-            type = "structure",
-        },
-        EndpointNetworkConfiguration = {
-            type = "structure",
-        },
+        CacheAttributes = M.CacheAttributes,
+        EndpointNetworkConfiguration = M.EndpointNetworkConfiguration,
     },
 }
 
@@ -463,19 +458,22 @@ M.AutomaticTapeCreationRule = {
             },
         },
         TapeSizeInBytes = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         MinimumNumTapes = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Worm = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -485,7 +483,7 @@ M.AutomaticTapeCreationPolicyInfo = {
     members = {
         AutomaticTapeCreationRules = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomaticTapeCreationRule,
         },
         GatewayARN = {
             type = "string",
@@ -508,41 +506,41 @@ M.BandwidthRateLimitInterval = {
     type = "structure",
     members = {
         StartHourOfDay = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         StartMinuteOfHour = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         EndHourOfDay = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         EndMinuteOfHour = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         DaysOfWeek = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
             traits = {
                 required = true,
             },
         },
         AverageUploadRateLimitInBitsPerSec = {
-            type = "number",
+            type = "long",
         },
         AverageDownloadRateLimitInBitsPerSec = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -557,13 +555,19 @@ M.VolumeiSCSIAttributes = {
             type = "string",
         },
         NetworkInterfacePort = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         LunNumber = {
-            type = "number",
+            type = "integer",
         },
         ChapEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -587,22 +591,23 @@ M.CachediSCSIVolume = {
             type = "string",
         },
         VolumeSizeInBytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         VolumeProgress = {
-            type = "number",
+            type = "double",
         },
         SourceSnapshotId = {
             type = "string",
         },
-        VolumeiSCSIAttributes = {
-            type = "structure",
-        },
+        VolumeiSCSIAttributes = M.VolumeiSCSIAttributes,
         CreatedDate = {
             type = "timestamp",
         },
         VolumeUsedInBytes = {
-            type = "number",
+            type = "long",
         },
         KMSKey = {
             type = "string",
@@ -629,7 +634,7 @@ M.CacheReportFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -655,7 +660,7 @@ M.CacheReportInfo = {
             type = "string",
         },
         ReportCompletionPercent = {
-            type = "number",
+            type = "integer",
         },
         EndTime = {
             type = "timestamp",
@@ -674,18 +679,18 @@ M.CacheReportInfo = {
         },
         InclusionFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.CacheReportFilter,
         },
         ExclusionFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.CacheReportFilter,
         },
         ReportName = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -798,8 +803,9 @@ M.CreateCachediSCSIVolumeInput = {
             },
         },
         VolumeSizeInBytes = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -835,7 +841,7 @@ M.CreateCachediSCSIVolumeInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -868,10 +874,10 @@ M.NFSFileShareDefaults = {
             type = "string",
         },
         GroupId = {
-            type = "number",
+            type = "long",
         },
         OwnerId = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -895,9 +901,7 @@ M.CreateNFSFileShareInput = {
                 required = true,
             },
         },
-        NFSFileShareDefaults = {
-            type = "structure",
-        },
+        NFSFileShareDefaults = M.NFSFileShareDefaults,
         GatewayARN = {
             type = "string",
             traits = {
@@ -933,7 +937,7 @@ M.CreateNFSFileShareInput = {
         },
         ClientList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Squash = {
             type = "string",
@@ -949,14 +953,12 @@ M.CreateNFSFileShareInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         FileShareName = {
             type = "string",
         },
-        CacheAttributes = {
-            type = "structure",
-        },
+        CacheAttributes = M.CacheAttributes,
         NotificationPolicy = {
             type = "string",
         },
@@ -1040,15 +1042,15 @@ M.CreateSMBFileShareInput = {
         },
         AdminUserList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ValidUserList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         InvalidUserList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AuditDestinationARN = {
             type = "string",
@@ -1061,14 +1063,12 @@ M.CreateSMBFileShareInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         FileShareName = {
             type = "string",
         },
-        CacheAttributes = {
-            type = "structure",
-        },
+        CacheAttributes = M.CacheAttributes,
         NotificationPolicy = {
             type = "string",
         },
@@ -1110,7 +1110,7 @@ M.CreateSnapshotInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1134,9 +1134,7 @@ M.ServiceUnavailableError = {
         message = {
             type = "string",
         },
-        error = {
-            type = "structure",
-        },
+        error = M.StorageGatewayError,
     },
 }
 
@@ -1157,7 +1155,7 @@ M.CreateSnapshotFromVolumeRecoveryPointInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1198,6 +1196,7 @@ M.CreateStorediSCSIVolumeInput = {
         PreserveExistingData = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -1221,7 +1220,7 @@ M.CreateStorediSCSIVolumeInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1233,7 +1232,10 @@ M.CreateStorediSCSIVolumeOutput = {
             type = "string",
         },
         VolumeSizeInBytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         TargetARN = {
             type = "string",
@@ -1271,11 +1273,11 @@ M.CreateTapePoolInput = {
             type = "string",
         },
         RetentionLockTimeInDays = {
-            type = "number",
+            type = "integer",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1299,7 +1301,7 @@ M.CreateTapesInput = {
             },
         },
         TapeSizeInBytes = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -1311,7 +1313,7 @@ M.CreateTapesInput = {
             },
         },
         NumTapesToCreate = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1333,10 +1335,13 @@ M.CreateTapesInput = {
         },
         Worm = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1346,7 +1351,7 @@ M.CreateTapesOutput = {
     members = {
         TapeARNs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1361,7 +1366,7 @@ M.CreateTapeWithBarcodeInput = {
             },
         },
         TapeSizeInBytes = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -1383,10 +1388,13 @@ M.CreateTapeWithBarcodeInput = {
         },
         Worm = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1510,6 +1518,9 @@ M.DeleteFileShareInput = {
         },
         ForceDelete = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1582,6 +1593,9 @@ M.DeleteTapeInput = {
         },
         BypassGovernanceRetention = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1606,6 +1620,9 @@ M.DeleteTapeArchiveInput = {
         },
         BypassGovernanceRetention = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1707,10 +1724,10 @@ M.DescribeBandwidthRateLimitOutput = {
             type = "string",
         },
         AverageUploadRateLimitInBitsPerSec = {
-            type = "number",
+            type = "long",
         },
         AverageDownloadRateLimitInBitsPerSec = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1735,7 +1752,7 @@ M.DescribeBandwidthRateLimitScheduleOutput = {
         },
         BandwidthRateLimitIntervals = {
             type = "list",
-            member_type = "structure",
+            member = M.BandwidthRateLimitInterval,
         },
     },
 }
@@ -1760,22 +1777,37 @@ M.DescribeCacheOutput = {
         },
         DiskIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CacheAllocatedInBytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         CacheUsedPercentage = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         CacheDirtyPercentage = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         CacheHitPercentage = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         CacheMissPercentage = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1785,7 +1817,7 @@ M.DescribeCachediSCSIVolumesInput = {
     members = {
         VolumeARNs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1798,7 +1830,7 @@ M.DescribeCachediSCSIVolumesOutput = {
     members = {
         CachediSCSIVolumes = {
             type = "list",
-            member_type = "structure",
+            member = M.CachediSCSIVolume,
         },
     },
 }
@@ -1818,9 +1850,7 @@ M.DescribeCacheReportInput = {
 M.DescribeCacheReportOutput = {
     type = "structure",
     members = {
-        CacheReportInfo = {
-            type = "structure",
-        },
+        CacheReportInfo = M.CacheReportInfo,
     },
 }
 
@@ -1841,7 +1871,7 @@ M.DescribeChapCredentialsOutput = {
     members = {
         ChapCredentials = {
             type = "list",
-            member_type = "structure",
+            member = M.ChapInfo,
         },
     },
 }
@@ -1851,7 +1881,7 @@ M.DescribeFileSystemAssociationsInput = {
     members = {
         FileSystemAssociationARNList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1888,17 +1918,13 @@ M.FileSystemAssociationInfo = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        CacheAttributes = {
-            type = "structure",
-        },
-        EndpointNetworkConfiguration = {
-            type = "structure",
-        },
+        CacheAttributes = M.CacheAttributes,
+        EndpointNetworkConfiguration = M.EndpointNetworkConfiguration,
         FileSystemAssociationStatusDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.FileSystemAssociationStatusDetail,
         },
     },
 }
@@ -1908,7 +1934,7 @@ M.DescribeFileSystemAssociationsOutput = {
     members = {
         FileSystemAssociationInfoList = {
             type = "list",
-            member_type = "structure",
+            member = M.FileSystemAssociationInfo,
         },
     },
 }
@@ -1975,7 +2001,7 @@ M.DescribeGatewayInformationOutput = {
         },
         GatewayNetworkInterfaces = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkInterface,
         },
         GatewayType = {
             type = "string",
@@ -1994,7 +2020,7 @@ M.DescribeGatewayInformationOutput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         VPCEndpoint = {
             type = "string",
@@ -2019,7 +2045,7 @@ M.DescribeGatewayInformationOutput = {
         },
         SupportedGatewayCapacities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         HostEnvironmentId = {
             type = "string",
@@ -2058,23 +2084,21 @@ M.DescribeMaintenanceStartTimeOutput = {
             type = "string",
         },
         HourOfDay = {
-            type = "number",
+            type = "integer",
         },
         MinuteOfHour = {
-            type = "number",
+            type = "integer",
         },
         DayOfWeek = {
-            type = "number",
+            type = "integer",
         },
         DayOfMonth = {
-            type = "number",
+            type = "integer",
         },
         Timezone = {
             type = "string",
         },
-        SoftwareUpdatePreferences = {
-            type = "structure",
-        },
+        SoftwareUpdatePreferences = M.SoftwareUpdatePreferences,
     },
 }
 
@@ -2083,7 +2107,7 @@ M.DescribeNFSFileSharesInput = {
     members = {
         FileShareARNList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2094,9 +2118,7 @@ M.DescribeNFSFileSharesInput = {
 M.NFSFileShareInfo = {
     type = "structure",
     members = {
-        NFSFileShareDefaults = {
-            type = "structure",
-        },
+        NFSFileShareDefaults = M.NFSFileShareDefaults,
         FileShareARN = {
             type = "string",
         },
@@ -2114,6 +2136,9 @@ M.NFSFileShareInfo = {
         },
         KMSEncrypted = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         KMSKey = {
             type = "string",
@@ -2135,7 +2160,7 @@ M.NFSFileShareInfo = {
         },
         ClientList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Squash = {
             type = "string",
@@ -2151,14 +2176,12 @@ M.NFSFileShareInfo = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         FileShareName = {
             type = "string",
         },
-        CacheAttributes = {
-            type = "structure",
-        },
+        CacheAttributes = M.CacheAttributes,
         NotificationPolicy = {
             type = "string",
         },
@@ -2179,7 +2202,7 @@ M.DescribeNFSFileSharesOutput = {
     members = {
         NFSFileShareInfoList = {
             type = "list",
-            member_type = "structure",
+            member = M.NFSFileShareInfo,
         },
     },
 }
@@ -2189,7 +2212,7 @@ M.DescribeSMBFileSharesInput = {
     members = {
         FileShareARNList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2217,6 +2240,9 @@ M.SMBFileShareInfo = {
         },
         KMSEncrypted = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         KMSKey = {
             type = "string",
@@ -2253,15 +2279,15 @@ M.SMBFileShareInfo = {
         },
         AdminUserList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ValidUserList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         InvalidUserList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AuditDestinationARN = {
             type = "string",
@@ -2274,14 +2300,12 @@ M.SMBFileShareInfo = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         FileShareName = {
             type = "string",
         },
-        CacheAttributes = {
-            type = "structure",
-        },
+        CacheAttributes = M.CacheAttributes,
         NotificationPolicy = {
             type = "string",
         },
@@ -2302,7 +2326,7 @@ M.DescribeSMBFileSharesOutput = {
     members = {
         SMBFileShareInfoList = {
             type = "list",
-            member_type = "structure",
+            member = M.SMBFileShareInfo,
         },
     },
 }
@@ -2324,7 +2348,7 @@ M.SMBLocalGroups = {
     members = {
         GatewayAdmins = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2357,9 +2381,7 @@ M.DescribeSMBSettingsOutput = {
         FileSharesVisible = {
             type = "boolean",
         },
-        SMBLocalGroups = {
-            type = "structure",
-        },
+        SMBLocalGroups = M.SMBLocalGroups,
     },
 }
 
@@ -2382,10 +2404,10 @@ M.DescribeSnapshotScheduleOutput = {
             type = "string",
         },
         StartAt = {
-            type = "number",
+            type = "integer",
         },
         RecurrenceInHours = {
-            type = "number",
+            type = "integer",
         },
         Description = {
             type = "string",
@@ -2395,7 +2417,7 @@ M.DescribeSnapshotScheduleOutput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2405,7 +2427,7 @@ M.DescribeStorediSCSIVolumesInput = {
     members = {
         VolumeARNs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2432,10 +2454,13 @@ M.StorediSCSIVolume = {
             type = "string",
         },
         VolumeSizeInBytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         VolumeProgress = {
-            type = "number",
+            type = "double",
         },
         VolumeDiskId = {
             type = "string",
@@ -2445,15 +2470,16 @@ M.StorediSCSIVolume = {
         },
         PreservedExistingData = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        VolumeiSCSIAttributes = {
-            type = "structure",
-        },
+        VolumeiSCSIAttributes = M.VolumeiSCSIAttributes,
         CreatedDate = {
             type = "timestamp",
         },
         VolumeUsedInBytes = {
-            type = "number",
+            type = "long",
         },
         KMSKey = {
             type = "string",
@@ -2469,7 +2495,7 @@ M.DescribeStorediSCSIVolumesOutput = {
     members = {
         StorediSCSIVolumes = {
             type = "list",
-            member_type = "structure",
+            member = M.StorediSCSIVolume,
         },
     },
 }
@@ -2479,13 +2505,13 @@ M.DescribeTapeArchivesInput = {
     members = {
         TapeARNs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Marker = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2503,7 +2529,7 @@ M.TapeArchive = {
             type = "timestamp",
         },
         TapeSizeInBytes = {
-            type = "number",
+            type = "long",
         },
         CompletionTime = {
             type = "timestamp",
@@ -2515,7 +2541,7 @@ M.TapeArchive = {
             type = "string",
         },
         TapeUsedInBytes = {
-            type = "number",
+            type = "long",
         },
         KMSKey = {
             type = "string",
@@ -2525,6 +2551,9 @@ M.TapeArchive = {
         },
         Worm = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         RetentionStartDate = {
             type = "timestamp",
@@ -2540,7 +2569,7 @@ M.DescribeTapeArchivesOutput = {
     members = {
         TapeArchives = {
             type = "list",
-            member_type = "structure",
+            member = M.TapeArchive,
         },
         Marker = {
             type = "string",
@@ -2561,7 +2590,7 @@ M.DescribeTapeRecoveryPointsInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2576,7 +2605,7 @@ M.TapeRecoveryPointInfo = {
             type = "timestamp",
         },
         TapeSizeInBytes = {
-            type = "number",
+            type = "long",
         },
         TapeStatus = {
             type = "string",
@@ -2592,7 +2621,7 @@ M.DescribeTapeRecoveryPointsOutput = {
         },
         TapeRecoveryPointInfos = {
             type = "list",
-            member_type = "structure",
+            member = M.TapeRecoveryPointInfo,
         },
         Marker = {
             type = "string",
@@ -2611,13 +2640,13 @@ M.DescribeTapesInput = {
         },
         TapeARNs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Marker = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2635,7 +2664,7 @@ M.Tape = {
             type = "timestamp",
         },
         TapeSizeInBytes = {
-            type = "number",
+            type = "long",
         },
         TapeStatus = {
             type = "string",
@@ -2644,10 +2673,10 @@ M.Tape = {
             type = "string",
         },
         Progress = {
-            type = "number",
+            type = "double",
         },
         TapeUsedInBytes = {
-            type = "number",
+            type = "long",
         },
         KMSKey = {
             type = "string",
@@ -2657,6 +2686,9 @@ M.Tape = {
         },
         Worm = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         RetentionStartDate = {
             type = "timestamp",
@@ -2672,7 +2704,7 @@ M.DescribeTapesOutput = {
     members = {
         Tapes = {
             type = "list",
-            member_type = "structure",
+            member = M.Tape,
         },
         Marker = {
             type = "string",
@@ -2700,13 +2732,19 @@ M.DescribeUploadBufferOutput = {
         },
         DiskIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         UploadBufferUsedInBytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         UploadBufferAllocatedInBytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2722,13 +2760,13 @@ M.DescribeVTLDevicesInput = {
         },
         VTLDeviceARNs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Marker = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2743,10 +2781,16 @@ M.DeviceiSCSIAttributes = {
             type = "string",
         },
         NetworkInterfacePort = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         ChapEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -2766,9 +2810,7 @@ M.VTLDevice = {
         VTLDeviceProductIdentifier = {
             type = "string",
         },
-        DeviceiSCSIAttributes = {
-            type = "structure",
-        },
+        DeviceiSCSIAttributes = M.DeviceiSCSIAttributes,
     },
 }
 
@@ -2780,7 +2822,7 @@ M.DescribeVTLDevicesOutput = {
         },
         VTLDevices = {
             type = "list",
-            member_type = "structure",
+            member = M.VTLDevice,
         },
         Marker = {
             type = "string",
@@ -2808,13 +2850,19 @@ M.DescribeWorkingStorageOutput = {
         },
         DiskIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         WorkingStorageUsedInBytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         WorkingStorageAllocatedInBytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2875,6 +2923,9 @@ M.DisassociateFileSystemInput = {
         },
         ForceDelete = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -2904,7 +2955,10 @@ M.Disk = {
             type = "string",
         },
         DiskSizeInBytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         DiskAllocationType = {
             type = "string",
@@ -2914,7 +2968,7 @@ M.Disk = {
         },
         DiskAttributeList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2930,6 +2984,9 @@ M.EvictFilesFailingUploadInput = {
         },
         ForceRemove = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -3046,10 +3103,10 @@ M.JoinDomainInput = {
         },
         DomainControllers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TimeoutInSeconds = {
-            type = "number",
+            type = "integer",
         },
         UserName = {
             type = "string",
@@ -3092,7 +3149,7 @@ M.ListAutomaticTapeCreationPoliciesOutput = {
     members = {
         AutomaticTapeCreationPolicyInfos = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomaticTapeCreationPolicyInfo,
         },
     },
 }
@@ -3111,7 +3168,7 @@ M.ListCacheReportsOutput = {
     members = {
         CacheReportList = {
             type = "list",
-            member_type = "structure",
+            member = M.CacheReportInfo,
         },
         Marker = {
             type = "string",
@@ -3126,7 +3183,7 @@ M.ListFileSharesInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -3145,7 +3202,7 @@ M.ListFileSharesOutput = {
         },
         FileShareInfoList = {
             type = "list",
-            member_type = "structure",
+            member = M.FileShareInfo,
         },
     },
 }
@@ -3157,7 +3214,7 @@ M.ListFileSystemAssociationsInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -3176,7 +3233,7 @@ M.ListFileSystemAssociationsOutput = {
         },
         FileSystemAssociationSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.FileSystemAssociationSummary,
         },
     },
 }
@@ -3188,7 +3245,7 @@ M.ListGatewaysInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3198,7 +3255,7 @@ M.ListGatewaysOutput = {
     members = {
         Gateways = {
             type = "list",
-            member_type = "structure",
+            member = M.GatewayInfo,
         },
         Marker = {
             type = "string",
@@ -3226,7 +3283,7 @@ M.ListLocalDisksOutput = {
         },
         Disks = {
             type = "list",
-            member_type = "structure",
+            member = M.Disk,
         },
     },
 }
@@ -3244,7 +3301,7 @@ M.ListTagsForResourceInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3260,7 +3317,7 @@ M.ListTagsForResourceOutput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3270,13 +3327,13 @@ M.ListTapePoolsInput = {
     members = {
         PoolARNs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Marker = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3302,7 +3359,7 @@ M.PoolInfo = {
             type = "string",
         },
         RetentionLockTimeInDays = {
-            type = "number",
+            type = "integer",
         },
         PoolStatus = {
             type = "string",
@@ -3315,7 +3372,7 @@ M.ListTapePoolsOutput = {
     members = {
         PoolInfos = {
             type = "list",
-            member_type = "structure",
+            member = M.PoolInfo,
         },
         Marker = {
             type = "string",
@@ -3328,13 +3385,13 @@ M.ListTapesInput = {
     members = {
         TapeARNs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Marker = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3349,7 +3406,7 @@ M.TapeInfo = {
             type = "string",
         },
         TapeSizeInBytes = {
-            type = "number",
+            type = "long",
         },
         TapeStatus = {
             type = "string",
@@ -3374,7 +3431,7 @@ M.ListTapesOutput = {
     members = {
         TapeInfos = {
             type = "list",
-            member_type = "structure",
+            member = M.TapeInfo,
         },
         Marker = {
             type = "string",
@@ -3399,7 +3456,7 @@ M.ListVolumeInitiatorsOutput = {
     members = {
         Initiators = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3423,10 +3480,16 @@ M.VolumeRecoveryPointInfo = {
             type = "string",
         },
         VolumeSizeInBytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         VolumeUsageInBytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         VolumeRecoveryPointTime = {
             type = "string",
@@ -3442,7 +3505,7 @@ M.ListVolumeRecoveryPointsOutput = {
         },
         VolumeRecoveryPointInfos = {
             type = "list",
-            member_type = "structure",
+            member = M.VolumeRecoveryPointInfo,
         },
     },
 }
@@ -3457,7 +3520,7 @@ M.ListVolumesInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3481,7 +3544,10 @@ M.VolumeInfo = {
             type = "string",
         },
         VolumeSizeInBytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         VolumeAttachmentStatus = {
             type = "string",
@@ -3500,7 +3566,7 @@ M.ListVolumesOutput = {
         },
         VolumeInfos = {
             type = "list",
-            member_type = "structure",
+            member = M.VolumeInfo,
         },
     },
 }
@@ -3540,7 +3606,7 @@ M.RefreshCacheInput = {
         },
         FolderList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Recursive = {
             type = "boolean",
@@ -3571,7 +3637,7 @@ M.RemoveTagsFromResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3791,11 +3857,11 @@ M.StartCacheReportInput = {
         },
         InclusionFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.CacheReportFilter,
         },
         ExclusionFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.CacheReportFilter,
         },
         ClientToken = {
             type = "string",
@@ -3805,7 +3871,7 @@ M.StartCacheReportInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3845,7 +3911,7 @@ M.UpdateAutomaticTapeCreationPolicyInput = {
     members = {
         AutomaticTapeCreationRules = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomaticTapeCreationRule,
             traits = {
                 required = true,
             },
@@ -3878,10 +3944,10 @@ M.UpdateBandwidthRateLimitInput = {
             },
         },
         AverageUploadRateLimitInBitsPerSec = {
-            type = "number",
+            type = "long",
         },
         AverageDownloadRateLimitInBitsPerSec = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -3906,7 +3972,7 @@ M.UpdateBandwidthRateLimitScheduleInput = {
         },
         BandwidthRateLimitIntervals = {
             type = "list",
-            member_type = "structure",
+            member = M.BandwidthRateLimitInterval,
             traits = {
                 required = true,
             },
@@ -3980,9 +4046,7 @@ M.UpdateFileSystemAssociationInput = {
         AuditDestinationARN = {
             type = "string",
         },
-        CacheAttributes = {
-            type = "structure",
-        },
+        CacheAttributes = M.CacheAttributes,
     },
 }
 
@@ -4062,20 +4126,18 @@ M.UpdateMaintenanceStartTimeInput = {
             },
         },
         HourOfDay = {
-            type = "number",
+            type = "integer",
         },
         MinuteOfHour = {
-            type = "number",
+            type = "integer",
         },
         DayOfWeek = {
-            type = "number",
+            type = "integer",
         },
         DayOfMonth = {
-            type = "number",
+            type = "integer",
         },
-        SoftwareUpdatePreferences = {
-            type = "structure",
-        },
+        SoftwareUpdatePreferences = M.SoftwareUpdatePreferences,
     },
 }
 
@@ -4106,9 +4168,7 @@ M.UpdateNFSFileShareInput = {
         KMSKey = {
             type = "string",
         },
-        NFSFileShareDefaults = {
-            type = "structure",
-        },
+        NFSFileShareDefaults = M.NFSFileShareDefaults,
         DefaultStorageClass = {
             type = "string",
         },
@@ -4117,7 +4177,7 @@ M.UpdateNFSFileShareInput = {
         },
         ClientList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Squash = {
             type = "string",
@@ -4134,9 +4194,7 @@ M.UpdateNFSFileShareInput = {
         FileShareName = {
             type = "string",
         },
-        CacheAttributes = {
-            type = "structure",
-        },
+        CacheAttributes = M.CacheAttributes,
         NotificationPolicy = {
             type = "string",
         },
@@ -4196,15 +4254,15 @@ M.UpdateSMBFileShareInput = {
         },
         AdminUserList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ValidUserList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         InvalidUserList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AuditDestinationARN = {
             type = "string",
@@ -4215,9 +4273,7 @@ M.UpdateSMBFileShareInput = {
         FileShareName = {
             type = "string",
         },
-        CacheAttributes = {
-            type = "structure",
-        },
+        CacheAttributes = M.CacheAttributes,
         NotificationPolicy = {
             type = "string",
         },
@@ -4272,12 +4328,9 @@ M.UpdateSMBLocalGroupsInput = {
                 required = true,
             },
         },
-        SMBLocalGroups = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SMBLocalGroups = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SMBLocalGroups }),
     },
 }
 
@@ -4327,13 +4380,13 @@ M.UpdateSnapshotScheduleInput = {
             },
         },
         StartAt = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         RecurrenceInHours = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -4343,7 +4396,7 @@ M.UpdateSnapshotScheduleInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }

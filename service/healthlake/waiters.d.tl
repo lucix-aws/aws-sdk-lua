@@ -1,0 +1,10 @@
+local types = require("healthlake.types")
+
+local record M
+    wait_until_f_h_i_r_datastore_active: function(client: table, input: table, options: table): table, table
+    wait_until_f_h_i_r_datastore_deleted: function(client: table, input: table, options: table): table, table
+    wait_until_f_h_i_r_export_job_completed: function(client: table, input: table, options: table): table, table
+    wait_until_f_h_i_r_import_job_completed: function(client: table, input: table, options: table): table, table
+end
+
+return M

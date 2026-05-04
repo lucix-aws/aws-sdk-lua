@@ -702,11 +702,11 @@ local record ServiceNotFound
     Message: string
 end
 
+local type HealthStatusFilter = "HEALTHY" | "UNHEALTHY" | "ALL" | "HEALTHY_OR_ELSE_ALL"
+
 local type CustomHealthStatus = "HEALTHY" | "UNHEALTHY"
 
 local type ServiceTypeOption = "HTTP"
-
-local type HealthStatusFilter = "HEALTHY" | "UNHEALTHY" | "ALL" | "HEALTHY_OR_ELSE_ALL"
 
 local record M
     CreateHttpNamespaceInput: CreateHttpNamespaceInput

@@ -369,7 +369,7 @@ M.Account = {
         },
         Paths = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         JoinedMethod = {
             type = "string",
@@ -606,7 +606,7 @@ M.CreateAccountInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -668,9 +668,7 @@ M.CreateAccountStatus = {
 M.CreateAccountOutput = {
     type = "structure",
     members = {
-        CreateAccountStatus = {
-            type = "structure",
-        },
+        CreateAccountStatus = M.CreateAccountStatus,
     },
 }
 
@@ -707,7 +705,7 @@ M.CreateGovCloudAccountInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -715,9 +713,7 @@ M.CreateGovCloudAccountInput = {
 M.CreateGovCloudAccountOutput = {
     type = "structure",
     members = {
-        CreateAccountStatus = {
-            type = "structure",
-        },
+        CreateAccountStatus = M.CreateAccountStatus,
     },
 }
 
@@ -792,7 +788,7 @@ M.Organization = {
         },
         AvailablePolicyTypes = {
             type = "list",
-            member_type = "structure",
+            member = M.PolicyTypeSummary,
         },
     },
 }
@@ -800,9 +796,7 @@ M.Organization = {
 M.CreateOrganizationOutput = {
     type = "structure",
     members = {
-        Organization = {
-            type = "structure",
-        },
+        Organization = M.Organization,
     },
 }
 
@@ -823,7 +817,7 @@ M.CreateOrganizationalUnitInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -849,9 +843,7 @@ M.OrganizationalUnit = {
 M.CreateOrganizationalUnitOutput = {
     type = "structure",
     members = {
-        OrganizationalUnit = {
-            type = "structure",
-        },
+        OrganizationalUnit = M.OrganizationalUnit,
     },
 }
 
@@ -904,7 +896,7 @@ M.CreatePolicyInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -929,6 +921,9 @@ M.PolicySummary = {
         },
         AwsManaged = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -936,9 +931,7 @@ M.PolicySummary = {
 M.Policy = {
     type = "structure",
     members = {
-        PolicySummary = {
-            type = "structure",
-        },
+        PolicySummary = M.PolicySummary,
         Content = {
             type = "string",
         },
@@ -948,9 +941,7 @@ M.Policy = {
 M.CreatePolicyOutput = {
     type = "structure",
     members = {
-        Policy = {
-            type = "structure",
-        },
+        Policy = M.Policy,
     },
 }
 
@@ -1131,9 +1122,7 @@ M.DescribeAccountInput = {
 M.DescribeAccountOutput = {
     type = "structure",
     members = {
-        Account = {
-            type = "structure",
-        },
+        Account = M.Account,
     },
 }
 
@@ -1162,9 +1151,7 @@ M.DescribeCreateAccountStatusInput = {
 M.DescribeCreateAccountStatusOutput = {
     type = "structure",
     members = {
-        CreateAccountStatus = {
-            type = "structure",
-        },
+        CreateAccountStatus = M.CreateAccountStatus,
     },
 }
 
@@ -1218,9 +1205,7 @@ M.EffectivePolicy = {
 M.DescribeEffectivePolicyOutput = {
     type = "structure",
     members = {
-        EffectivePolicy = {
-            type = "structure",
-        },
+        EffectivePolicy = M.EffectivePolicy,
     },
 }
 
@@ -1253,9 +1238,7 @@ M.DescribeOrganizationInput = {
 M.DescribeOrganizationOutput = {
     type = "structure",
     members = {
-        Organization = {
-            type = "structure",
-        },
+        Organization = M.Organization,
     },
 }
 
@@ -1274,9 +1257,7 @@ M.DescribeOrganizationalUnitInput = {
 M.DescribeOrganizationalUnitOutput = {
     type = "structure",
     members = {
-        OrganizationalUnit = {
-            type = "structure",
-        },
+        OrganizationalUnit = M.OrganizationalUnit,
     },
 }
 
@@ -1295,9 +1276,7 @@ M.DescribePolicyInput = {
 M.DescribePolicyOutput = {
     type = "structure",
     members = {
-        Policy = {
-            type = "structure",
-        },
+        Policy = M.Policy,
     },
 }
 
@@ -1320,9 +1299,7 @@ M.ResourcePolicySummary = {
 M.ResourcePolicy = {
     type = "structure",
     members = {
-        ResourcePolicySummary = {
-            type = "structure",
-        },
+        ResourcePolicySummary = M.ResourcePolicySummary,
         Content = {
             type = "string",
         },
@@ -1332,9 +1309,7 @@ M.ResourcePolicy = {
 M.DescribeResourcePolicyOutput = {
     type = "structure",
     members = {
-        ResourcePolicy = {
-            type = "structure",
-        },
+        ResourcePolicy = M.ResourcePolicy,
     },
 }
 
@@ -1393,12 +1368,8 @@ M.ResponsibilityTransfer = {
         Status = {
             type = "string",
         },
-        Source = {
-            type = "structure",
-        },
-        Target = {
-            type = "structure",
-        },
+        Source = M.TransferParticipant,
+        Target = M.TransferParticipant,
         StartTimestamp = {
             type = "timestamp",
         },
@@ -1414,9 +1385,7 @@ M.ResponsibilityTransfer = {
 M.DescribeResponsibilityTransferOutput = {
     type = "structure",
     members = {
-        ResponsibilityTransfer = {
-            type = "structure",
-        },
+        ResponsibilityTransfer = M.ResponsibilityTransfer,
     },
 }
 
@@ -1510,7 +1479,7 @@ M.Root = {
         },
         PolicyTypes = {
             type = "list",
-            member_type = "structure",
+            member = M.PolicyTypeSummary,
         },
     },
 }
@@ -1518,9 +1487,7 @@ M.Root = {
 M.DisablePolicyTypeOutput = {
     type = "structure",
     members = {
-        Root = {
-            type = "structure",
-        },
+        Root = M.Root,
     },
 }
 
@@ -1575,9 +1542,7 @@ M.EnablePolicyTypeInput = {
 M.EnablePolicyTypeOutput = {
     type = "structure",
     members = {
-        Root = {
-            type = "structure",
-        },
+        Root = M.Root,
     },
 }
 
@@ -1604,18 +1569,15 @@ M.DuplicateHandshakeException = {
 M.InviteAccountToOrganizationInput = {
     type = "structure",
     members = {
-        Target = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Target = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HandshakeParty }),
         Notes = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1629,12 +1591,9 @@ M.InviteOrganizationToTransferResponsibilityInput = {
                 required = true,
             },
         },
-        Target = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Target = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HandshakeParty }),
         Notes = {
             type = "string",
         },
@@ -1652,7 +1611,7 @@ M.InviteOrganizationToTransferResponsibilityInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1672,7 +1631,7 @@ M.ListAccountsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1682,7 +1641,7 @@ M.ListAccountsOutput = {
     members = {
         Accounts = {
             type = "list",
-            member_type = "structure",
+            member = M.Account,
         },
         NextToken = {
             type = "string",
@@ -1703,7 +1662,7 @@ M.ListAccountsForParentInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1713,7 +1672,7 @@ M.ListAccountsForParentOutput = {
     members = {
         Accounts = {
             type = "list",
-            member_type = "structure",
+            member = M.Account,
         },
         NextToken = {
             type = "string",
@@ -1734,7 +1693,7 @@ M.ListAccountsWithInvalidEffectivePolicyInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1744,7 +1703,7 @@ M.ListAccountsWithInvalidEffectivePolicyOutput = {
     members = {
         Accounts = {
             type = "list",
-            member_type = "structure",
+            member = M.Account,
         },
         PolicyType = {
             type = "string",
@@ -1762,7 +1721,7 @@ M.ListAWSServiceAccessForOrganizationInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1784,7 +1743,7 @@ M.ListAWSServiceAccessForOrganizationOutput = {
     members = {
         EnabledServicePrincipals = {
             type = "list",
-            member_type = "structure",
+            member = M.EnabledServicePrincipal,
         },
         NextToken = {
             type = "string",
@@ -1816,7 +1775,7 @@ M.ListChildrenInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1838,7 +1797,7 @@ M.ListChildrenOutput = {
     members = {
         Children = {
             type = "list",
-            member_type = "structure",
+            member = M.Child,
         },
         NextToken = {
             type = "string",
@@ -1851,13 +1810,13 @@ M.ListCreateAccountStatusInput = {
     members = {
         States = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1867,7 +1826,7 @@ M.ListCreateAccountStatusOutput = {
     members = {
         CreateAccountStatuses = {
             type = "list",
-            member_type = "structure",
+            member = M.CreateAccountStatus,
         },
         NextToken = {
             type = "string",
@@ -1885,7 +1844,7 @@ M.ListDelegatedAdministratorsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1928,7 +1887,7 @@ M.ListDelegatedAdministratorsOutput = {
     members = {
         DelegatedAdministrators = {
             type = "list",
-            member_type = "structure",
+            member = M.DelegatedAdministrator,
         },
         NextToken = {
             type = "string",
@@ -1949,7 +1908,7 @@ M.ListDelegatedServicesForAccountInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1971,7 +1930,7 @@ M.ListDelegatedServicesForAccountOutput = {
     members = {
         DelegatedServices = {
             type = "list",
-            member_type = "structure",
+            member = M.DelegatedService,
         },
         NextToken = {
             type = "string",
@@ -1998,7 +1957,7 @@ M.ListEffectivePolicyValidationErrorsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2017,7 +1976,7 @@ M.EffectivePolicyValidationError = {
         },
         ContributingPolicies = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2042,7 +2001,7 @@ M.ListEffectivePolicyValidationErrorsOutput = {
         },
         EffectivePolicyValidationErrors = {
             type = "list",
-            member_type = "structure",
+            member = M.EffectivePolicyValidationError,
         },
     },
 }
@@ -2062,14 +2021,12 @@ M.HandshakeFilter = {
 M.ListHandshakesForAccountInput = {
     type = "structure",
     members = {
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.HandshakeFilter,
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2077,14 +2034,12 @@ M.ListHandshakesForAccountInput = {
 M.ListHandshakesForOrganizationInput = {
     type = "structure",
     members = {
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.HandshakeFilter,
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2105,7 +2060,7 @@ M.ListInboundResponsibilityTransfersInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2115,7 +2070,7 @@ M.ListInboundResponsibilityTransfersOutput = {
     members = {
         ResponsibilityTransfers = {
             type = "list",
-            member_type = "structure",
+            member = M.ResponsibilityTransfer,
         },
         NextToken = {
             type = "string",
@@ -2136,7 +2091,7 @@ M.ListOrganizationalUnitsForParentInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2146,7 +2101,7 @@ M.ListOrganizationalUnitsForParentOutput = {
     members = {
         OrganizationalUnits = {
             type = "list",
-            member_type = "structure",
+            member = M.OrganizationalUnit,
         },
         NextToken = {
             type = "string",
@@ -2167,7 +2122,7 @@ M.ListOutboundResponsibilityTransfersInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2177,7 +2132,7 @@ M.ListOutboundResponsibilityTransfersOutput = {
     members = {
         ResponsibilityTransfers = {
             type = "list",
-            member_type = "structure",
+            member = M.ResponsibilityTransfer,
         },
         NextToken = {
             type = "string",
@@ -2208,7 +2163,7 @@ M.ListParentsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2235,7 +2190,7 @@ M.ListParentsOutput = {
     members = {
         Parents = {
             type = "list",
-            member_type = "structure",
+            member = M.Parent,
         },
         NextToken = {
             type = "string",
@@ -2256,7 +2211,7 @@ M.ListPoliciesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2266,7 +2221,7 @@ M.ListPoliciesOutput = {
     members = {
         Policies = {
             type = "list",
-            member_type = "structure",
+            member = M.PolicySummary,
         },
         NextToken = {
             type = "string",
@@ -2293,7 +2248,7 @@ M.ListPoliciesForTargetInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2303,7 +2258,7 @@ M.ListPoliciesForTargetOutput = {
     members = {
         Policies = {
             type = "list",
-            member_type = "structure",
+            member = M.PolicySummary,
         },
         NextToken = {
             type = "string",
@@ -2318,7 +2273,7 @@ M.ListRootsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2328,7 +2283,7 @@ M.ListRootsOutput = {
     members = {
         Roots = {
             type = "list",
-            member_type = "structure",
+            member = M.Root,
         },
         NextToken = {
             type = "string",
@@ -2356,7 +2311,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         NextToken = {
             type = "string",
@@ -2377,7 +2332,7 @@ M.ListTargetsForPolicyInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2411,7 +2366,7 @@ M.ListTargetsForPolicyOutput = {
     members = {
         Targets = {
             type = "list",
-            member_type = "structure",
+            member = M.PolicyTargetSummary,
         },
         NextToken = {
             type = "string",
@@ -2488,7 +2443,7 @@ M.PutResourcePolicyInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2496,9 +2451,7 @@ M.PutResourcePolicyInput = {
 M.PutResourcePolicyOutput = {
     type = "structure",
     members = {
-        ResourcePolicy = {
-            type = "structure",
-        },
+        ResourcePolicy = M.ResourcePolicy,
     },
 }
 
@@ -2551,7 +2504,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -2601,9 +2554,7 @@ M.TerminateResponsibilityTransferInput = {
 M.TerminateResponsibilityTransferOutput = {
     type = "structure",
     members = {
-        ResponsibilityTransfer = {
-            type = "structure",
-        },
+        ResponsibilityTransfer = M.ResponsibilityTransfer,
     },
 }
 
@@ -2618,7 +2569,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2648,9 +2599,7 @@ M.UpdateOrganizationalUnitInput = {
 M.UpdateOrganizationalUnitOutput = {
     type = "structure",
     members = {
-        OrganizationalUnit = {
-            type = "structure",
-        },
+        OrganizationalUnit = M.OrganizationalUnit,
     },
 }
 
@@ -2678,9 +2627,7 @@ M.UpdatePolicyInput = {
 M.UpdatePolicyOutput = {
     type = "structure",
     members = {
-        Policy = {
-            type = "structure",
-        },
+        Policy = M.Policy,
     },
 }
 
@@ -2705,9 +2652,7 @@ M.UpdateResponsibilityTransferInput = {
 M.UpdateResponsibilityTransferOutput = {
     type = "structure",
     members = {
-        ResponsibilityTransfer = {
-            type = "structure",
-        },
+        ResponsibilityTransfer = M.ResponsibilityTransfer,
     },
 }
 
@@ -2722,7 +2667,7 @@ M.HandshakeResource = {
         },
         Resources = {
             type = "list",
-            member_type = "structure",
+            member = M.HandshakeResource,
         },
     },
 }
@@ -2738,7 +2683,7 @@ M.Handshake = {
         },
         Parties = {
             type = "list",
-            member_type = "structure",
+            member = M.HandshakeParty,
         },
         State = {
             type = "string",
@@ -2754,7 +2699,7 @@ M.Handshake = {
         },
         Resources = {
             type = "list",
-            member_type = "structure",
+            member = M.HandshakeResource,
         },
     },
 }
@@ -2762,63 +2707,49 @@ M.Handshake = {
 M.AcceptHandshakeOutput = {
     type = "structure",
     members = {
-        Handshake = {
-            type = "structure",
-        },
+        Handshake = M.Handshake,
     },
 }
 
 M.CancelHandshakeOutput = {
     type = "structure",
     members = {
-        Handshake = {
-            type = "structure",
-        },
+        Handshake = M.Handshake,
     },
 }
 
 M.DeclineHandshakeOutput = {
     type = "structure",
     members = {
-        Handshake = {
-            type = "structure",
-        },
+        Handshake = M.Handshake,
     },
 }
 
 M.DescribeHandshakeOutput = {
     type = "structure",
     members = {
-        Handshake = {
-            type = "structure",
-        },
+        Handshake = M.Handshake,
     },
 }
 
 M.EnableAllFeaturesOutput = {
     type = "structure",
     members = {
-        Handshake = {
-            type = "structure",
-        },
+        Handshake = M.Handshake,
     },
 }
 
 M.InviteAccountToOrganizationOutput = {
     type = "structure",
     members = {
-        Handshake = {
-            type = "structure",
-        },
+        Handshake = M.Handshake,
     },
 }
 
 M.InviteOrganizationToTransferResponsibilityOutput = {
     type = "structure",
     members = {
-        Handshake = {
-            type = "structure",
-        },
+        Handshake = M.Handshake,
     },
 }
 
@@ -2827,7 +2758,7 @@ M.ListHandshakesForAccountOutput = {
     members = {
         Handshakes = {
             type = "list",
-            member_type = "structure",
+            member = M.Handshake,
         },
         NextToken = {
             type = "string",
@@ -2840,7 +2771,7 @@ M.ListHandshakesForOrganizationOutput = {
     members = {
         Handshakes = {
             type = "list",
-            member_type = "structure",
+            member = M.Handshake,
         },
         NextToken = {
             type = "string",

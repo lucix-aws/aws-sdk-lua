@@ -15,16 +15,16 @@ M.PerformanceInsightsMetric = {
         },
         Dimensions = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Filter = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Value = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -32,9 +32,7 @@ M.PerformanceInsightsMetric = {
 M.Data = {
     type = "structure",
     members = {
-        PerformanceInsightsMetric = {
-            type = "structure",
-        },
+        PerformanceInsightsMetric = M.PerformanceInsightsMetric,
     },
 }
 
@@ -110,7 +108,7 @@ M.AnalysisReportSummary = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -150,7 +148,7 @@ M.CreatePerformanceAnalysisReportInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -204,7 +202,7 @@ M.DataPoint = {
             },
         },
         Value = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -251,10 +249,10 @@ M.DimensionGroup = {
         },
         Dimensions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -293,28 +291,23 @@ M.DescribeDimensionKeysInput = {
             },
         },
         PeriodInSeconds = {
-            type = "number",
+            type = "integer",
         },
-        GroupBy = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        GroupBy = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DimensionGroup }),
         AdditionalMetrics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        PartitionBy = {
-            type = "structure",
-        },
+        PartitionBy = M.DimensionGroup,
         Filter = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -327,20 +320,20 @@ M.DimensionKeyDescription = {
     members = {
         Dimensions = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Total = {
-            type = "number",
+            type = "double",
         },
         AdditionalMetrics = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "double" },
         },
         Partitions = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
     },
 }
@@ -350,8 +343,8 @@ M.ResponsePartitionKey = {
     members = {
         Dimensions = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -370,11 +363,11 @@ M.DescribeDimensionKeysOutput = {
         },
         PartitionKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.ResponsePartitionKey,
         },
         Keys = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionKeyDescription,
         },
         NextToken = {
             type = "string",
@@ -405,7 +398,7 @@ M.DimensionGroupDetail = {
         },
         Dimensions = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionDetail,
         },
     },
 }
@@ -472,7 +465,7 @@ M.GetDimensionKeyDetailsInput = {
         },
         RequestedDimensions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -482,7 +475,7 @@ M.GetDimensionKeyDetailsOutput = {
     members = {
         Dimensions = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionKeyDetail,
         },
     },
 }
@@ -548,8 +541,8 @@ M.GetResourceMetadataOutput = {
         },
         Features = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.FeatureMetadata,
         },
     },
 }
@@ -563,13 +556,11 @@ M.MetricQuery = {
                 required = true,
             },
         },
-        GroupBy = {
-            type = "structure",
-        },
+        GroupBy = M.DimensionGroup,
         Filter = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -596,7 +587,7 @@ M.GetResourceMetricsInput = {
         },
         MetricQueries = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricQuery,
             traits = {
                 required = true,
             },
@@ -614,10 +605,10 @@ M.GetResourceMetricsInput = {
             },
         },
         PeriodInSeconds = {
-            type = "number",
+            type = "integer",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -639,8 +630,8 @@ M.ResponseResourceMetricKey = {
         },
         Dimensions = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -648,12 +639,10 @@ M.ResponseResourceMetricKey = {
 M.MetricKeyDataPoints = {
     type = "structure",
     members = {
-        Key = {
-            type = "structure",
-        },
+        Key = M.ResponseResourceMetricKey,
         DataPoints = {
             type = "list",
-            member_type = "structure",
+            member = M.DataPoint,
         },
     },
 }
@@ -672,7 +661,7 @@ M.GetResourceMetricsOutput = {
         },
         MetricList = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricKeyDataPoints,
         },
         NextToken = {
             type = "string",
@@ -697,20 +686,20 @@ M.ListAvailableResourceDimensionsInput = {
         },
         Metrics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         AuthorizedActions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -723,7 +712,7 @@ M.MetricDimensionGroups = {
         },
         Groups = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionGroupDetail,
         },
     },
 }
@@ -733,7 +722,7 @@ M.ListAvailableResourceDimensionsOutput = {
     members = {
         MetricDimensions = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricDimensionGroups,
         },
         NextToken = {
             type = "string",
@@ -758,7 +747,7 @@ M.ListAvailableResourceMetricsInput = {
         },
         MetricTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -767,7 +756,7 @@ M.ListAvailableResourceMetricsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -792,7 +781,7 @@ M.ListAvailableResourceMetricsOutput = {
     members = {
         Metrics = {
             type = "list",
-            member_type = "structure",
+            member = M.ResponseResourceMetric,
         },
         NextToken = {
             type = "string",
@@ -819,7 +808,7 @@ M.ListPerformanceAnalysisReportsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         ListTags = {
             type = "boolean",
@@ -832,7 +821,7 @@ M.ListPerformanceAnalysisReportsOutput = {
     members = {
         AnalysisReports = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalysisReportSummary,
         },
         NextToken = {
             type = "string",
@@ -863,7 +852,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -885,7 +874,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -914,7 +903,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -952,22 +941,22 @@ M.Insight = {
         },
         SupportingInsights = {
             type = "list",
-            member_type = "structure",
+            member = M.Insight,
         },
         Description = {
             type = "string",
         },
         Recommendations = {
             type = "list",
-            member_type = "structure",
+            member = M.Recommendation,
         },
         InsightData = {
             type = "list",
-            member_type = "structure",
+            member = M.Data,
         },
         BaselineData = {
             type = "list",
-            member_type = "structure",
+            member = M.Data,
         },
     },
 }
@@ -1001,7 +990,7 @@ M.AnalysisReport = {
         },
         Insights = {
             type = "list",
-            member_type = "structure",
+            member = M.Insight,
         },
     },
 }
@@ -1009,9 +998,7 @@ M.AnalysisReport = {
 M.GetPerformanceAnalysisReportOutput = {
     type = "structure",
     members = {
-        AnalysisReport = {
-            type = "structure",
-        },
+        AnalysisReport = M.AnalysisReport,
     },
 }
 

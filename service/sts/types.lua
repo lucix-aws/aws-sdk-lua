@@ -74,21 +74,21 @@ M.AssumeRoleInput = {
         },
         PolicyArns = {
             type = "list",
-            member_type = "structure",
+            member = M.PolicyDescriptorType,
         },
         Policy = {
             type = "string",
         },
         DurationSeconds = {
-            type = "number",
+            type = "integer",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         TransitiveTagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ExternalId = {
             type = "string",
@@ -104,7 +104,7 @@ M.AssumeRoleInput = {
         },
         ProvidedContexts = {
             type = "list",
-            member_type = "structure",
+            member = M.ProvidedContext,
         },
     },
 }
@@ -142,14 +142,10 @@ M.Credentials = {
 M.AssumeRoleOutput = {
     type = "structure",
     members = {
-        Credentials = {
-            type = "structure",
-        },
-        AssumedRoleUser = {
-            type = "structure",
-        },
+        Credentials = M.Credentials,
+        AssumedRoleUser = M.AssumedRoleUser,
         PackedPolicySize = {
-            type = "number",
+            type = "integer",
         },
         SourceIdentity = {
             type = "string",
@@ -220,13 +216,13 @@ M.AssumeRoleWithSAMLInput = {
         },
         PolicyArns = {
             type = "list",
-            member_type = "structure",
+            member = M.PolicyDescriptorType,
         },
         Policy = {
             type = "string",
         },
         DurationSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -234,14 +230,10 @@ M.AssumeRoleWithSAMLInput = {
 M.AssumeRoleWithSAMLOutput = {
     type = "structure",
     members = {
-        Credentials = {
-            type = "structure",
-        },
-        AssumedRoleUser = {
-            type = "structure",
-        },
+        Credentials = M.Credentials,
+        AssumedRoleUser = M.AssumedRoleUser,
         PackedPolicySize = {
-            type = "number",
+            type = "integer",
         },
         Subject = {
             type = "string",
@@ -310,13 +302,13 @@ M.AssumeRoleWithWebIdentityInput = {
         },
         PolicyArns = {
             type = "list",
-            member_type = "structure",
+            member = M.PolicyDescriptorType,
         },
         Policy = {
             type = "string",
         },
         DurationSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -324,17 +316,13 @@ M.AssumeRoleWithWebIdentityInput = {
 M.AssumeRoleWithWebIdentityOutput = {
     type = "structure",
     members = {
-        Credentials = {
-            type = "structure",
-        },
+        Credentials = M.Credentials,
         SubjectFromWebIdentityToken = {
             type = "string",
         },
-        AssumedRoleUser = {
-            type = "structure",
-        },
+        AssumedRoleUser = M.AssumedRoleUser,
         PackedPolicySize = {
-            type = "number",
+            type = "integer",
         },
         Provider = {
             type = "string",
@@ -367,14 +355,11 @@ M.AssumeRootInput = {
                 required = true,
             },
         },
-        TaskPolicyArn = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TaskPolicyArn = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PolicyDescriptorType }),
         DurationSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -382,9 +367,7 @@ M.AssumeRootInput = {
 M.AssumeRootOutput = {
     type = "structure",
     members = {
-        Credentials = {
-            type = "structure",
-        },
+        Credentials = M.Credentials,
         SourceIdentity = {
             type = "string",
         },
@@ -487,11 +470,9 @@ M.GetDelegatedAccessTokenInput = {
 M.GetDelegatedAccessTokenOutput = {
     type = "structure",
     members = {
-        Credentials = {
-            type = "structure",
-        },
+        Credentials = M.Credentials,
         PackedPolicySize = {
-            type = "number",
+            type = "integer",
         },
         AssumedPrincipal = {
             type = "string",
@@ -513,14 +494,14 @@ M.GetFederationTokenInput = {
         },
         PolicyArns = {
             type = "list",
-            member_type = "structure",
+            member = M.PolicyDescriptorType,
         },
         DurationSeconds = {
-            type = "number",
+            type = "integer",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -546,14 +527,10 @@ M.FederatedUser = {
 M.GetFederationTokenOutput = {
     type = "structure",
     members = {
-        Credentials = {
-            type = "structure",
-        },
-        FederatedUser = {
-            type = "structure",
-        },
+        Credentials = M.Credentials,
+        FederatedUser = M.FederatedUser,
         PackedPolicySize = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -562,7 +539,7 @@ M.GetSessionTokenInput = {
     type = "structure",
     members = {
         DurationSeconds = {
-            type = "number",
+            type = "integer",
         },
         SerialNumber = {
             type = "string",
@@ -576,9 +553,7 @@ M.GetSessionTokenInput = {
 M.GetSessionTokenOutput = {
     type = "structure",
     members = {
-        Credentials = {
-            type = "structure",
-        },
+        Credentials = M.Credentials,
     },
 }
 
@@ -587,13 +562,13 @@ M.GetWebIdentityTokenInput = {
     members = {
         Audience = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         DurationSeconds = {
-            type = "number",
+            type = "integer",
         },
         SigningAlgorithm = {
             type = "string",
@@ -603,7 +578,7 @@ M.GetWebIdentityTokenInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }

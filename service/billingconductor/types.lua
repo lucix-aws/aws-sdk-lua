@@ -36,7 +36,10 @@ M.AccountGrouping = {
     members = {
         LinkedAccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
+            traits = {
+                default = {},
+            },
         },
         AutoAssociate = {
             type = "boolean",
@@ -58,7 +61,7 @@ M.AssociateAccountsInput = {
         },
         AccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -122,8 +125,9 @@ M.InternalServerException = {
             },
         },
         RetryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_header = "Retry-After",
             },
         },
@@ -197,8 +201,9 @@ M.ThrottlingException = {
             },
         },
         RetryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_header = "Retry-After",
             },
         },
@@ -307,7 +312,7 @@ M.ValidationException = {
         },
         Fields = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -323,7 +328,7 @@ M.AssociatePricingRulesInput = {
         },
         PricingRuleArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -366,9 +371,7 @@ M.AssociateResourceResponseElement = {
         Arn = {
             type = "string",
         },
-        Error = {
-            type = "structure",
-        },
+        Error = M.AssociateResourceError,
     },
 }
 
@@ -411,18 +414,12 @@ M.CreateBillingGroupInput = {
                 required = true,
             },
         },
-        AccountGrouping = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ComputationPreference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AccountGrouping = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AccountGrouping }),
+        ComputationPreference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ComputationPreference }),
         PrimaryAccountId = {
             type = "string",
         },
@@ -431,8 +428,8 @@ M.CreateBillingGroupInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -478,7 +475,7 @@ M.DisassociateAccountsInput = {
         },
         AccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -533,33 +530,33 @@ M.ListBillingGroupsFilter = {
     members = {
         Arns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         PricingPlan = {
             type = "string",
         },
         Statuses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AutoAssociate = {
             type = "boolean",
         },
         PrimaryAccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         BillingGroupTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Names = {
             type = "list",
-            member_type = "structure",
+            member = M.StringSearch,
         },
         ResponsibilityTransferArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -571,14 +568,12 @@ M.ListBillingGroupsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
-        Filters = {
-            type = "structure",
-        },
+        Filters = M.ListBillingGroupsFilter,
     },
 }
 
@@ -609,17 +604,24 @@ M.BillingGroupListElement = {
         PrimaryAccountId = {
             type = "string",
         },
-        ComputationPreference = {
-            type = "structure",
-        },
+        ComputationPreference = M.ComputationPreference,
         Size = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         CreationTime = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         LastModifiedTime = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Status = {
             type = "string",
@@ -627,9 +629,7 @@ M.BillingGroupListElement = {
         StatusReason = {
             type = "string",
         },
-        AccountGrouping = {
-            type = "structure",
-        },
+        AccountGrouping = M.ListBillingGroupAccountGrouping,
         BillingGroupType = {
             type = "string",
         },
@@ -641,7 +641,7 @@ M.ListBillingGroupsOutput = {
     members = {
         BillingGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.BillingGroupListElement,
         },
         NextToken = {
             type = "string",
@@ -676,15 +676,11 @@ M.UpdateBillingGroupInput = {
         Status = {
             type = "string",
         },
-        ComputationPreference = {
-            type = "structure",
-        },
+        ComputationPreference = M.ComputationPreference,
         Description = {
             type = "string",
         },
-        AccountGrouping = {
-            type = "structure",
-        },
+        AccountGrouping = M.UpdateBillingGroupAccountGrouping,
     },
 }
 
@@ -707,10 +703,16 @@ M.UpdateBillingGroupOutput = {
             type = "string",
         },
         Size = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         LastModifiedTime = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Status = {
             type = "string",
@@ -718,9 +720,7 @@ M.UpdateBillingGroupOutput = {
         StatusReason = {
             type = "string",
         },
-        AccountGrouping = {
-            type = "structure",
-        },
+        AccountGrouping = M.UpdateBillingGroupAccountGrouping,
     },
 }
 
@@ -750,14 +750,12 @@ M.BatchAssociateResourcesToCustomLineItemInput = {
         },
         ResourceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        BillingPeriodRange = {
-            type = "structure",
-        },
+        BillingPeriodRange = M.CustomLineItemBillingPeriodRange,
     },
 }
 
@@ -766,11 +764,11 @@ M.BatchAssociateResourcesToCustomLineItemOutput = {
     members = {
         SuccessfullyAssociatedResources = {
             type = "list",
-            member_type = "structure",
+            member = M.AssociateResourceResponseElement,
         },
         FailedAssociatedResources = {
             type = "list",
-            member_type = "structure",
+            member = M.AssociateResourceResponseElement,
         },
     },
 }
@@ -786,14 +784,12 @@ M.BatchDisassociateResourcesFromCustomLineItemInput = {
         },
         ResourceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        BillingPeriodRange = {
-            type = "structure",
-        },
+        BillingPeriodRange = M.CustomLineItemBillingPeriodRange,
     },
 }
 
@@ -803,9 +799,7 @@ M.DisassociateResourceResponseElement = {
         Arn = {
             type = "string",
         },
-        Error = {
-            type = "structure",
-        },
+        Error = M.AssociateResourceError,
     },
 }
 
@@ -814,11 +808,11 @@ M.BatchDisassociateResourcesFromCustomLineItemOutput = {
     members = {
         SuccessfullyDisassociatedResources = {
             type = "list",
-            member_type = "structure",
+            member = M.DisassociateResourceResponseElement,
         },
         FailedDisassociatedResources = {
             type = "list",
-            member_type = "structure",
+            member = M.DisassociateResourceResponseElement,
         },
     },
 }
@@ -827,7 +821,7 @@ M.CustomLineItemFlatChargeDetails = {
     type = "structure",
     members = {
         ChargeValue = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -866,11 +860,14 @@ M.LineItemFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
+            traits = {
+                default = {},
+            },
         },
         AttributeValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -879,14 +876,14 @@ M.CustomLineItemPercentageChargeDetails = {
     type = "structure",
     members = {
         PercentageValue = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
         AssociatedValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -899,12 +896,8 @@ M.CustomLineItemType = {
 M.CustomLineItemChargeDetails = {
     type = "structure",
     members = {
-        Flat = {
-            type = "structure",
-        },
-        Percentage = {
-            type = "structure",
-        },
+        Flat = M.CustomLineItemFlatChargeDetails,
+        Percentage = M.CustomLineItemPercentageChargeDetails,
         Type = {
             type = "string",
             traits = {
@@ -913,7 +906,7 @@ M.CustomLineItemChargeDetails = {
         },
         LineItemFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.LineItemFilter,
         },
     },
 }
@@ -962,29 +955,22 @@ M.CreateCustomLineItemInput = {
                 required = true,
             },
         },
-        BillingPeriodRange = {
-            type = "structure",
-        },
+        BillingPeriodRange = M.CustomLineItemBillingPeriodRange,
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        ChargeDetails = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ChargeDetails = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CustomLineItemChargeDetails }),
         AccountId = {
             type = "string",
         },
         ComputationRule = {
             type = "string",
         },
-        PresentationDetails = {
-            type = "structure",
-        },
+        PresentationDetails = M.PresentationObject,
     },
 }
 
@@ -1006,9 +992,7 @@ M.DeleteCustomLineItemInput = {
                 required = true,
             },
         },
-        BillingPeriodRange = {
-            type = "structure",
-        },
+        BillingPeriodRange = M.CustomLineItemBillingPeriodRange,
     },
 }
 
@@ -1026,19 +1010,19 @@ M.ListCustomLineItemsFilter = {
     members = {
         Names = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         BillingGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Arns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1050,14 +1034,12 @@ M.ListCustomLineItemsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
-        Filters = {
-            type = "structure",
-        },
+        Filters = M.ListCustomLineItemsFilter,
     },
 }
 
@@ -1065,7 +1047,7 @@ M.ListCustomLineItemFlatChargeDetails = {
     type = "structure",
     members = {
         ChargeValue = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -1077,7 +1059,7 @@ M.ListCustomLineItemPercentageChargeDetails = {
     type = "structure",
     members = {
         PercentageValue = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -1088,12 +1070,8 @@ M.ListCustomLineItemPercentageChargeDetails = {
 M.ListCustomLineItemChargeDetails = {
     type = "structure",
     members = {
-        Flat = {
-            type = "structure",
-        },
-        Percentage = {
-            type = "structure",
-        },
+        Flat = M.ListCustomLineItemFlatChargeDetails,
+        Percentage = M.ListCustomLineItemPercentageChargeDetails,
         Type = {
             type = "string",
             traits = {
@@ -1102,7 +1080,7 @@ M.ListCustomLineItemChargeDetails = {
         },
         LineItemFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.LineItemFilter,
         },
     },
 }
@@ -1121,9 +1099,7 @@ M.CustomLineItemListElement = {
         Name = {
             type = "string",
         },
-        ChargeDetails = {
-            type = "structure",
-        },
+        ChargeDetails = M.ListCustomLineItemChargeDetails,
         CurrencyCode = {
             type = "string",
         },
@@ -1137,13 +1113,22 @@ M.CustomLineItemListElement = {
             type = "string",
         },
         CreationTime = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         LastModifiedTime = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         AssociationSize = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         AccountId = {
             type = "string",
@@ -1151,9 +1136,7 @@ M.CustomLineItemListElement = {
         ComputationRule = {
             type = "string",
         },
-        PresentationDetails = {
-            type = "structure",
-        },
+        PresentationDetails = M.PresentationObject,
     },
 }
 
@@ -1162,7 +1145,7 @@ M.ListCustomLineItemsOutput = {
     members = {
         CustomLineItems = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomLineItemListElement,
         },
         NextToken = {
             type = "string",
@@ -1185,9 +1168,7 @@ M.ListCustomLineItemVersionsBillingPeriodRangeFilter = {
 M.ListCustomLineItemVersionsFilter = {
     type = "structure",
     members = {
-        BillingPeriodRange = {
-            type = "structure",
-        },
+        BillingPeriodRange = M.ListCustomLineItemVersionsBillingPeriodRangeFilter,
     },
 }
 
@@ -1201,14 +1182,12 @@ M.ListCustomLineItemVersionsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
-        Filters = {
-            type = "structure",
-        },
+        Filters = M.ListCustomLineItemVersionsFilter,
     },
 }
 
@@ -1218,9 +1197,7 @@ M.CustomLineItemVersionListElement = {
         Name = {
             type = "string",
         },
-        ChargeDetails = {
-            type = "structure",
-        },
+        ChargeDetails = M.ListCustomLineItemChargeDetails,
         CurrencyCode = {
             type = "string",
         },
@@ -1234,13 +1211,22 @@ M.CustomLineItemVersionListElement = {
             type = "string",
         },
         CreationTime = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         LastModifiedTime = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         AssociationSize = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         StartBillingPeriod = {
             type = "string",
@@ -1252,7 +1238,10 @@ M.CustomLineItemVersionListElement = {
             type = "string",
         },
         StartTime = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         AccountId = {
             type = "string",
@@ -1260,9 +1249,7 @@ M.CustomLineItemVersionListElement = {
         ComputationRule = {
             type = "string",
         },
-        PresentationDetails = {
-            type = "structure",
-        },
+        PresentationDetails = M.PresentationObject,
     },
 }
 
@@ -1271,7 +1258,7 @@ M.ListCustomLineItemVersionsOutput = {
     members = {
         CustomLineItemVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomLineItemVersionListElement,
         },
         NextToken = {
             type = "string",
@@ -1306,14 +1293,12 @@ M.ListResourcesAssociatedToCustomLineItemInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
-        Filters = {
-            type = "structure",
-        },
+        Filters = M.ListResourcesAssociatedToCustomLineItemFilter,
     },
 }
 
@@ -1340,7 +1325,7 @@ M.ListResourcesAssociatedToCustomLineItemOutput = {
         },
         AssociatedResources = {
             type = "list",
-            member_type = "structure",
+            member = M.ListResourcesAssociatedToCustomLineItemResponseElement,
         },
         NextToken = {
             type = "string",
@@ -1352,7 +1337,7 @@ M.UpdateCustomLineItemFlatChargeDetails = {
     type = "structure",
     members = {
         ChargeValue = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -1364,7 +1349,7 @@ M.UpdateCustomLineItemPercentageChargeDetails = {
     type = "structure",
     members = {
         PercentageValue = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -1375,15 +1360,11 @@ M.UpdateCustomLineItemPercentageChargeDetails = {
 M.UpdateCustomLineItemChargeDetails = {
     type = "structure",
     members = {
-        Flat = {
-            type = "structure",
-        },
-        Percentage = {
-            type = "structure",
-        },
+        Flat = M.UpdateCustomLineItemFlatChargeDetails,
+        Percentage = M.UpdateCustomLineItemPercentageChargeDetails,
         LineItemFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.LineItemFilter,
         },
     },
 }
@@ -1403,12 +1384,8 @@ M.UpdateCustomLineItemInput = {
         Description = {
             type = "string",
         },
-        ChargeDetails = {
-            type = "structure",
-        },
-        BillingPeriodRange = {
-            type = "structure",
-        },
+        ChargeDetails = M.UpdateCustomLineItemChargeDetails,
+        BillingPeriodRange = M.CustomLineItemBillingPeriodRange,
     },
 }
 
@@ -1427,14 +1404,18 @@ M.UpdateCustomLineItemOutput = {
         Description = {
             type = "string",
         },
-        ChargeDetails = {
-            type = "structure",
-        },
+        ChargeDetails = M.ListCustomLineItemChargeDetails,
         LastModifiedTime = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         AssociationSize = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1471,15 +1452,13 @@ M.GetBillingGroupCostReportInput = {
                 required = true,
             },
         },
-        BillingPeriodRange = {
-            type = "structure",
-        },
+        BillingPeriodRange = M.BillingPeriodRange,
         GroupBy = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1510,7 +1489,7 @@ M.BillingGroupCostReportResultElement = {
         },
         Attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.Attribute,
         },
     },
 }
@@ -1520,7 +1499,7 @@ M.GetBillingGroupCostReportOutput = {
     members = {
         BillingGroupCostReportResults = {
             type = "list",
-            member_type = "structure",
+            member = M.BillingGroupCostReportResultElement,
         },
         NextToken = {
             type = "string",
@@ -1539,7 +1518,7 @@ M.ListAccountAssociationsFilter = {
         },
         AccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1550,9 +1529,7 @@ M.ListAccountAssociationsInput = {
         BillingPeriod = {
             type = "string",
         },
-        Filters = {
-            type = "structure",
-        },
+        Filters = M.ListAccountAssociationsFilter,
         NextToken = {
             type = "string",
         },
@@ -1564,7 +1541,7 @@ M.ListAccountAssociationsOutput = {
     members = {
         LinkedAccounts = {
             type = "list",
-            member_type = "structure",
+            member = M.AccountAssociationsListElement,
         },
         NextToken = {
             type = "string",
@@ -1577,7 +1554,7 @@ M.ListBillingGroupCostReportsFilter = {
     members = {
         BillingGroupArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1589,14 +1566,12 @@ M.ListBillingGroupCostReportsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
-        Filters = {
-            type = "structure",
-        },
+        Filters = M.ListBillingGroupCostReportsFilter,
     },
 }
 
@@ -1629,7 +1604,7 @@ M.ListBillingGroupCostReportsOutput = {
     members = {
         BillingGroupCostReports = {
             type = "list",
-            member_type = "structure",
+            member = M.BillingGroupCostReportElement,
         },
         NextToken = {
             type = "string",
@@ -1655,8 +1630,8 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1681,12 +1656,12 @@ M.CreatePricingPlanInput = {
         },
         PricingRuleArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1732,7 +1707,7 @@ M.DisassociatePricingRulesInput = {
         },
         PricingRuleArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1754,7 +1729,7 @@ M.ListPricingPlansFilter = {
     members = {
         Arns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1765,11 +1740,9 @@ M.ListPricingPlansInput = {
         BillingPeriod = {
             type = "string",
         },
-        Filters = {
-            type = "structure",
-        },
+        Filters = M.ListPricingPlansFilter,
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1790,13 +1763,22 @@ M.PricingPlanListElement = {
             type = "string",
         },
         Size = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         CreationTime = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         LastModifiedTime = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1809,7 +1791,7 @@ M.ListPricingPlansOutput = {
         },
         PricingPlans = {
             type = "list",
-            member_type = "structure",
+            member = M.PricingPlanListElement,
         },
         NextToken = {
             type = "string",
@@ -1830,7 +1812,7 @@ M.ListPricingPlansAssociatedWithPricingRuleInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1849,7 +1831,7 @@ M.ListPricingPlansAssociatedWithPricingRuleOutput = {
         },
         PricingPlanArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -1888,10 +1870,16 @@ M.UpdatePricingPlanOutput = {
             type = "string",
         },
         Size = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         LastModifiedTime = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1918,12 +1906,9 @@ M.CreateFreeTierConfig = {
 M.CreateTieringInput = {
     type = "structure",
     members = {
-        FreeTier = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        FreeTier = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CreateFreeTierConfig }),
     },
 }
 
@@ -1964,22 +1949,20 @@ M.CreatePricingRuleInput = {
             },
         },
         ModifierPercentage = {
-            type = "number",
+            type = "double",
         },
         Service = {
             type = "string",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         BillingEntity = {
             type = "string",
         },
-        Tiering = {
-            type = "structure",
-        },
+        Tiering = M.CreateTieringInput,
         UsageType = {
             type = "string",
         },
@@ -2024,7 +2007,7 @@ M.ListPricingRulesFilter = {
     members = {
         Arns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2035,11 +2018,9 @@ M.ListPricingRulesInput = {
         BillingPeriod = {
             type = "string",
         },
-        Filters = {
-            type = "structure",
-        },
+        Filters = M.ListPricingRulesFilter,
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2062,12 +2043,9 @@ M.FreeTierConfig = {
 M.Tiering = {
     type = "structure",
     members = {
-        FreeTier = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        FreeTier = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FreeTierConfig }),
     },
 }
 
@@ -2090,26 +2068,33 @@ M.PricingRuleListElement = {
             type = "string",
         },
         ModifierPercentage = {
-            type = "number",
+            type = "double",
         },
         Service = {
             type = "string",
         },
         AssociatedPricingPlanCount = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         CreationTime = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         LastModifiedTime = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         BillingEntity = {
             type = "string",
         },
-        Tiering = {
-            type = "structure",
-        },
+        Tiering = M.Tiering,
         UsageType = {
             type = "string",
         },
@@ -2127,7 +2112,7 @@ M.ListPricingRulesOutput = {
         },
         PricingRules = {
             type = "list",
-            member_type = "structure",
+            member = M.PricingRuleListElement,
         },
         NextToken = {
             type = "string",
@@ -2148,7 +2133,7 @@ M.ListPricingRulesAssociatedToPricingPlanInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2167,7 +2152,7 @@ M.ListPricingRulesAssociatedToPricingPlanOutput = {
         },
         PricingRuleArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -2190,12 +2175,9 @@ M.UpdateFreeTierConfig = {
 M.UpdateTieringInput = {
     type = "structure",
     members = {
-        FreeTier = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        FreeTier = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.UpdateFreeTierConfig }),
     },
 }
 
@@ -2218,11 +2200,9 @@ M.UpdatePricingRuleInput = {
             type = "string",
         },
         ModifierPercentage = {
-            type = "number",
+            type = "double",
         },
-        Tiering = {
-            type = "structure",
-        },
+        Tiering = M.UpdateTieringInput,
     },
 }
 
@@ -2245,23 +2225,27 @@ M.UpdatePricingRuleOutput = {
             type = "string",
         },
         ModifierPercentage = {
-            type = "number",
+            type = "double",
         },
         Service = {
             type = "string",
         },
         AssociatedPricingPlanCount = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         LastModifiedTime = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         BillingEntity = {
             type = "string",
         },
-        Tiering = {
-            type = "structure",
-        },
+        Tiering = M.UpdateTieringInput,
         UsageType = {
             type = "string",
         },
@@ -2283,8 +2267,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2308,7 +2292,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,

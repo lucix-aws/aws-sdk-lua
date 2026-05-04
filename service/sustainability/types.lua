@@ -35,8 +35,8 @@ M.FilterExpression = {
     members = {
         Dimensions = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
     },
 }
@@ -53,7 +53,10 @@ M.GranularityConfiguration = {
     type = "structure",
     members = {
         FiscalYearStartMonth = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 1,
+            },
         },
     },
 }
@@ -79,31 +82,30 @@ M.TimePeriod = {
 M.GetEstimatedCarbonEmissionsInput = {
     type = "structure",
     members = {
-        TimePeriod = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TimePeriod = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TimePeriod }),
         GroupBy = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        FilterBy = {
-            type = "structure",
-        },
+        FilterBy = M.FilterExpression,
         EmissionsTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Granularity = {
             type = "string",
+            traits = {
+                default = "MONTHLY",
+            },
         },
-        GranularityConfiguration = {
-            type = "structure",
-        },
+        GranularityConfiguration = M.GranularityConfiguration,
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 1000,
+            },
         },
         NextToken = {
             type = "string",
@@ -119,7 +121,7 @@ M.Emissions = {
     type = "structure",
     members = {
         Value = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -136,16 +138,13 @@ M.Emissions = {
 M.EstimatedCarbonEmissions = {
     type = "structure",
     members = {
-        TimePeriod = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TimePeriod = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TimePeriod }),
         DimensionsValues = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -158,8 +157,8 @@ M.EstimatedCarbonEmissions = {
         },
         EmissionsValues = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.Emissions,
             traits = {
                 required = true,
             },
@@ -172,7 +171,7 @@ M.GetEstimatedCarbonEmissionsOutput = {
     members = {
         Results = {
             type = "list",
-            member_type = "structure",
+            member = M.EstimatedCarbonEmissions,
             traits = {
                 required = true,
             },
@@ -228,21 +227,21 @@ M.ValidationException = {
 M.GetEstimatedCarbonEmissionsDimensionValuesInput = {
     type = "structure",
     members = {
-        TimePeriod = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TimePeriod = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TimePeriod }),
         Dimensions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 1000,
+            },
         },
         NextToken = {
             type = "string",
@@ -273,7 +272,7 @@ M.GetEstimatedCarbonEmissionsDimensionValuesOutput = {
     members = {
         Results = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionEntry,
         },
         NextToken = {
             type = "string",

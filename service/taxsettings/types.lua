@@ -85,16 +85,14 @@ M.AccountMetaData = {
         seller = {
             type = "string",
         },
-        address = {
-            type = "structure",
-        },
+        address = M.Address,
         addressType = {
             type = "string",
         },
         addressRoleMap = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.Jurisdiction,
         },
     },
 }
@@ -293,7 +291,10 @@ M.MalaysiaAdditionalInfo = {
     members = {
         serviceTaxCodes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
+            traits = {
+                default = {},
+            },
         },
         taxInformationNumber = {
             type = "string",
@@ -471,69 +472,27 @@ M.VietnamAdditionalInfo = {
 M.AdditionalInfoResponse = {
     type = "structure",
     members = {
-        malaysiaAdditionalInfo = {
-            type = "structure",
-        },
-        israelAdditionalInfo = {
-            type = "structure",
-        },
-        estoniaAdditionalInfo = {
-            type = "structure",
-        },
-        canadaAdditionalInfo = {
-            type = "structure",
-        },
-        brazilAdditionalInfo = {
-            type = "structure",
-        },
-        spainAdditionalInfo = {
-            type = "structure",
-        },
-        kenyaAdditionalInfo = {
-            type = "structure",
-        },
-        southKoreaAdditionalInfo = {
-            type = "structure",
-        },
-        turkeyAdditionalInfo = {
-            type = "structure",
-        },
-        georgiaAdditionalInfo = {
-            type = "structure",
-        },
-        italyAdditionalInfo = {
-            type = "structure",
-        },
-        romaniaAdditionalInfo = {
-            type = "structure",
-        },
-        ukraineAdditionalInfo = {
-            type = "structure",
-        },
-        polandAdditionalInfo = {
-            type = "structure",
-        },
-        saudiArabiaAdditionalInfo = {
-            type = "structure",
-        },
-        indiaAdditionalInfo = {
-            type = "structure",
-        },
-        indonesiaAdditionalInfo = {
-            type = "structure",
-        },
-        vietnamAdditionalInfo = {
-            type = "structure",
-        },
-        egyptAdditionalInfo = {
-            type = "structure",
-        },
-        greeceAdditionalInfo = {
-            type = "structure",
-        },
-        uzbekistanAdditionalInfo = {
-            type = "structure",
-        },
+        malaysiaAdditionalInfo = M.MalaysiaAdditionalInfo,
+        israelAdditionalInfo = M.IsraelAdditionalInfo,
+        estoniaAdditionalInfo = M.EstoniaAdditionalInfo,
+        canadaAdditionalInfo = M.CanadaAdditionalInfo,
+        brazilAdditionalInfo = M.BrazilAdditionalInfo,
+        spainAdditionalInfo = M.SpainAdditionalInfo,
+        kenyaAdditionalInfo = M.KenyaAdditionalInfo,
+        southKoreaAdditionalInfo = M.SouthKoreaAdditionalInfo,
+        turkeyAdditionalInfo = M.TurkeyAdditionalInfo,
+        georgiaAdditionalInfo = M.GeorgiaAdditionalInfo,
+        italyAdditionalInfo = M.ItalyAdditionalInfo,
+        romaniaAdditionalInfo = M.RomaniaAdditionalInfo,
+        ukraineAdditionalInfo = M.UkraineAdditionalInfo,
+        polandAdditionalInfo = M.PolandAdditionalInfo,
+        saudiArabiaAdditionalInfo = M.SaudiArabiaAdditionalInfo,
+        indiaAdditionalInfo = M.IndiaAdditionalInfo,
+        indonesiaAdditionalInfo = M.IndonesiaAdditionalInfo,
+        vietnamAdditionalInfo = M.VietnamAdditionalInfo,
+        egyptAdditionalInfo = M.EgyptAdditionalInfo,
+        greeceAdditionalInfo = M.GreeceAdditionalInfo,
+        uzbekistanAdditionalInfo = M.UzbekistanAdditionalInfo,
     },
 }
 
@@ -610,20 +569,15 @@ M.TaxRegistrationWithJurisdiction = {
         },
         taxDocumentMetadatas = {
             type = "list",
-            member_type = "structure",
+            member = M.TaxDocumentMetadata,
         },
         certifiedEmailId = {
             type = "string",
         },
-        additionalTaxInformation = {
-            type = "structure",
-        },
-        jurisdiction = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        additionalTaxInformation = M.AdditionalInfoResponse,
+        jurisdiction = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Jurisdiction }),
     },
 }
 
@@ -633,78 +587,34 @@ M.AccountDetails = {
         accountId = {
             type = "string",
         },
-        taxRegistration = {
-            type = "structure",
-        },
-        taxInheritanceDetails = {
-            type = "structure",
-        },
-        accountMetaData = {
-            type = "structure",
-        },
+        taxRegistration = M.TaxRegistrationWithJurisdiction,
+        taxInheritanceDetails = M.TaxInheritanceDetails,
+        accountMetaData = M.AccountMetaData,
     },
 }
 
 M.AdditionalInfoRequest = {
     type = "structure",
     members = {
-        malaysiaAdditionalInfo = {
-            type = "structure",
-        },
-        israelAdditionalInfo = {
-            type = "structure",
-        },
-        estoniaAdditionalInfo = {
-            type = "structure",
-        },
-        canadaAdditionalInfo = {
-            type = "structure",
-        },
-        spainAdditionalInfo = {
-            type = "structure",
-        },
-        kenyaAdditionalInfo = {
-            type = "structure",
-        },
-        southKoreaAdditionalInfo = {
-            type = "structure",
-        },
-        turkeyAdditionalInfo = {
-            type = "structure",
-        },
-        georgiaAdditionalInfo = {
-            type = "structure",
-        },
-        italyAdditionalInfo = {
-            type = "structure",
-        },
-        romaniaAdditionalInfo = {
-            type = "structure",
-        },
-        ukraineAdditionalInfo = {
-            type = "structure",
-        },
-        polandAdditionalInfo = {
-            type = "structure",
-        },
-        saudiArabiaAdditionalInfo = {
-            type = "structure",
-        },
-        indonesiaAdditionalInfo = {
-            type = "structure",
-        },
-        vietnamAdditionalInfo = {
-            type = "structure",
-        },
-        egyptAdditionalInfo = {
-            type = "structure",
-        },
-        greeceAdditionalInfo = {
-            type = "structure",
-        },
-        uzbekistanAdditionalInfo = {
-            type = "structure",
-        },
+        malaysiaAdditionalInfo = M.MalaysiaAdditionalInfo,
+        israelAdditionalInfo = M.IsraelAdditionalInfo,
+        estoniaAdditionalInfo = M.EstoniaAdditionalInfo,
+        canadaAdditionalInfo = M.CanadaAdditionalInfo,
+        spainAdditionalInfo = M.SpainAdditionalInfo,
+        kenyaAdditionalInfo = M.KenyaAdditionalInfo,
+        southKoreaAdditionalInfo = M.SouthKoreaAdditionalInfo,
+        turkeyAdditionalInfo = M.TurkeyAdditionalInfo,
+        georgiaAdditionalInfo = M.GeorgiaAdditionalInfo,
+        italyAdditionalInfo = M.ItalyAdditionalInfo,
+        romaniaAdditionalInfo = M.RomaniaAdditionalInfo,
+        ukraineAdditionalInfo = M.UkraineAdditionalInfo,
+        polandAdditionalInfo = M.PolandAdditionalInfo,
+        saudiArabiaAdditionalInfo = M.SaudiArabiaAdditionalInfo,
+        indonesiaAdditionalInfo = M.IndonesiaAdditionalInfo,
+        vietnamAdditionalInfo = M.VietnamAdditionalInfo,
+        egyptAdditionalInfo = M.EgyptAdditionalInfo,
+        greeceAdditionalInfo = M.GreeceAdditionalInfo,
+        uzbekistanAdditionalInfo = M.UzbekistanAdditionalInfo,
     },
 }
 
@@ -741,7 +651,7 @@ M.BatchDeleteTaxRegistrationInput = {
     members = {
         accountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -775,7 +685,7 @@ M.BatchDeleteTaxRegistrationOutput = {
     members = {
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchDeleteTaxRegistrationError,
             traits = {
                 required = true,
             },
@@ -859,7 +769,7 @@ M.ValidationException = {
         },
         fieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -869,7 +779,7 @@ M.BatchGetTaxExemptionsInput = {
     members = {
         accountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -895,7 +805,7 @@ M.TaxExemptionType = {
         },
         applicableJurisdictions = {
             type = "list",
-            member_type = "structure",
+            member = M.Authority,
         },
     },
 }
@@ -903,18 +813,12 @@ M.TaxExemptionType = {
 M.TaxExemption = {
     type = "structure",
     members = {
-        authority = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        taxExemptionType = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        authority = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Authority }),
+        taxExemptionType = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TaxExemptionType }),
         effectiveDate = {
             type = "timestamp",
         },
@@ -935,7 +839,7 @@ M.TaxExemptionDetails = {
     members = {
         taxExemptions = {
             type = "list",
-            member_type = "structure",
+            member = M.TaxExemption,
         },
         heritageObtainedDetails = {
             type = "boolean",
@@ -954,12 +858,12 @@ M.BatchGetTaxExemptionsOutput = {
     members = {
         taxExemptionDetailsMap = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.TaxExemptionDetails,
         },
         failedAccounts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1022,12 +926,8 @@ M.SourceS3Location = {
 M.TaxRegistrationDocument = {
     type = "structure",
     members = {
-        s3Location = {
-            type = "structure",
-        },
-        file = {
-            type = "structure",
-        },
+        s3Location = M.SourceS3Location,
+        file = M.TaxRegistrationDocFile,
     },
 }
 
@@ -1039,7 +939,7 @@ M.VerificationDetails = {
         },
         taxRegistrationDocuments = {
             type = "list",
-            member_type = "structure",
+            member = M.TaxRegistrationDocument,
         },
     },
 }
@@ -1062,18 +962,12 @@ M.TaxRegistrationEntry = {
         legalName = {
             type = "string",
         },
-        legalAddress = {
-            type = "structure",
-        },
+        legalAddress = M.Address,
         sector = {
             type = "string",
         },
-        additionalTaxInformation = {
-            type = "structure",
-        },
-        verificationDetails = {
-            type = "structure",
-        },
+        additionalTaxInformation = M.AdditionalInfoRequest,
+        verificationDetails = M.VerificationDetails,
         certifiedEmailId = {
             type = "string",
         },
@@ -1085,17 +979,14 @@ M.BatchPutTaxRegistrationInput = {
     members = {
         accountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        taxRegistrationEntry = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        taxRegistrationEntry = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TaxRegistrationEntry }),
     },
 }
 
@@ -1128,7 +1019,7 @@ M.BatchPutTaxRegistrationOutput = {
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchPutTaxRegistrationError,
             traits = {
                 required = true,
             },
@@ -1220,7 +1111,7 @@ M.GetTaxExemptionTypesOutput = {
     members = {
         taxExemptionTypes = {
             type = "list",
-            member_type = "structure",
+            member = M.TaxExemptionType,
         },
     },
 }
@@ -1284,44 +1175,32 @@ M.TaxRegistration = {
         },
         taxDocumentMetadatas = {
             type = "list",
-            member_type = "structure",
+            member = M.TaxDocumentMetadata,
         },
         certifiedEmailId = {
             type = "string",
         },
-        additionalTaxInformation = {
-            type = "structure",
-        },
-        legalAddress = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        additionalTaxInformation = M.AdditionalInfoResponse,
+        legalAddress = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Address }),
     },
 }
 
 M.GetTaxRegistrationOutput = {
     type = "structure",
     members = {
-        taxRegistration = {
-            type = "structure",
-        },
+        taxRegistration = M.TaxRegistration,
     },
 }
 
 M.GetTaxRegistrationDocumentInput = {
     type = "structure",
     members = {
-        destinationS3Location = {
-            type = "structure",
-        },
-        taxDocumentMetadata = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        destinationS3Location = M.DestinationS3Location,
+        taxDocumentMetadata = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TaxDocumentMetadata }),
     },
 }
 
@@ -1341,7 +1220,7 @@ M.ListSupplementalTaxRegistrationsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -1374,12 +1253,9 @@ M.SupplementalTaxRegistration = {
                 required = true,
             },
         },
-        address = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        address = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Address }),
         authorityId = {
             type = "string",
             traits = {
@@ -1400,7 +1276,7 @@ M.ListSupplementalTaxRegistrationsOutput = {
     members = {
         taxRegistrations = {
             type = "list",
-            member_type = "structure",
+            member = M.SupplementalTaxRegistration,
             traits = {
                 required = true,
             },
@@ -1415,7 +1291,7 @@ M.ListTaxExemptionsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -1431,8 +1307,8 @@ M.ListTaxExemptionsOutput = {
         },
         taxExemptionDetailsMap = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.TaxExemptionDetails,
         },
     },
 }
@@ -1441,7 +1317,7 @@ M.ListTaxRegistrationsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -1454,7 +1330,7 @@ M.ListTaxRegistrationsOutput = {
     members = {
         accountDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.AccountDetails,
             traits = {
                 required = true,
             },
@@ -1486,24 +1362,18 @@ M.SupplementalTaxRegistrationEntry = {
                 required = true,
             },
         },
-        address = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        address = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Address }),
     },
 }
 
 M.PutSupplementalTaxRegistrationInput = {
     type = "structure",
     members = {
-        taxRegistrationEntry = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        taxRegistrationEntry = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SupplementalTaxRegistrationEntry }),
     },
 }
 
@@ -1530,29 +1400,23 @@ M.PutTaxExemptionInput = {
     members = {
         accountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        authority = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        authority = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Authority }),
         exemptionType = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        exemptionCertificate = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        exemptionCertificate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ExemptionCertificate }),
     },
 }
 
@@ -1584,12 +1448,9 @@ M.PutTaxRegistrationInput = {
         accountId = {
             type = "string",
         },
-        taxRegistrationEntry = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        taxRegistrationEntry = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TaxRegistrationEntry }),
     },
 }
 

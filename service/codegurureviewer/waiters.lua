@@ -1,0 +1,85 @@
+local waiter = require("waiter")
+
+local M = {}
+
+--- Wait until CodeReviewCompleted.
+function M.wait_until_code_review_completed(client, input, options)
+    return waiter.wait(client, "describeCodeReview", input, {
+        min_delay = 10,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "CodeReview.State",
+                        expected = "Completed",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "CodeReview.State",
+                        expected = "Failed",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "CodeReview.State",
+                        expected = "Pending",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until RepositoryAssociationSucceeded.
+function M.wait_until_repository_association_succeeded(client, input, options)
+    return waiter.wait(client, "describeRepositoryAssociation", input, {
+        min_delay = 10,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "RepositoryAssociation.State",
+                        expected = "Associated",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "RepositoryAssociation.State",
+                        expected = "Failed",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "RepositoryAssociation.State",
+                        expected = "Associating",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+return M

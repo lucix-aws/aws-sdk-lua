@@ -61,7 +61,7 @@ M.InternalServerException = {
             },
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -86,8 +86,9 @@ M.ListSearchJobBackupsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 1000,
                 http_query = "maxResults",
             },
         },
@@ -139,7 +140,7 @@ M.ListSearchJobBackupsOutput = {
     members = {
         Results = {
             type = "list",
-            member_type = "structure",
+            member = M.SearchJobBackupsResult,
             traits = {
                 required = true,
             },
@@ -192,7 +193,7 @@ M.ThrottlingException = {
             type = "string",
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -230,8 +231,9 @@ M.ListSearchJobResultsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 1000,
                 http_query = "maxResults",
             },
         },
@@ -257,7 +259,7 @@ M.EBSResultItem = {
             type = "string",
         },
         FileSize = {
-            type = "number",
+            type = "long",
         },
         CreationTime = {
             type = "timestamp",
@@ -284,7 +286,7 @@ M.S3ResultItem = {
             type = "string",
         },
         ObjectSize = {
-            type = "number",
+            type = "long",
         },
         CreationTime = {
             type = "timestamp",
@@ -301,12 +303,8 @@ M.S3ResultItem = {
 M.ResultItem = {
     type = "union",
     members = {
-        S3ResultItem = {
-            type = "structure",
-        },
-        EBSResultItem = {
-            type = "structure",
-        },
+        S3ResultItem = M.S3ResultItem,
+        EBSResultItem = M.EBSResultItem,
     },
 }
 
@@ -315,7 +313,7 @@ M.ListSearchJobResultsOutput = {
     members = {
         Results = {
             type = "list",
-            member_type = "union",
+            member = M.ResultItem,
             traits = {
                 required = true,
             },
@@ -344,8 +342,8 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -354,13 +352,13 @@ M.CurrentSearchProgress = {
     type = "structure",
     members = {
         RecoveryPointsScannedCount = {
-            type = "number",
+            type = "integer",
         },
         ItemsScannedCount = {
-            type = "number",
+            type = "long",
         },
         ItemsMatchedCount = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -396,6 +394,9 @@ M.TimeCondition = {
         },
         Operator = {
             type = "string",
+            traits = {
+                default = "EQUALS_TO",
+            },
         },
     },
 }
@@ -422,6 +423,9 @@ M.StringCondition = {
         },
         Operator = {
             type = "string",
+            traits = {
+                default = "EQUALS_TO",
+            },
         },
     },
 }
@@ -437,13 +441,16 @@ M.LongCondition = {
     type = "structure",
     members = {
         Value = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         Operator = {
             type = "string",
+            traits = {
+                default = "EQUALS_TO",
+            },
         },
     },
 }
@@ -453,19 +460,19 @@ M.EBSItemFilter = {
     members = {
         FilePaths = {
             type = "list",
-            member_type = "structure",
+            member = M.StringCondition,
         },
         Sizes = {
             type = "list",
-            member_type = "structure",
+            member = M.LongCondition,
         },
         CreationTimes = {
             type = "list",
-            member_type = "structure",
+            member = M.TimeCondition,
         },
         LastModificationTimes = {
             type = "list",
-            member_type = "structure",
+            member = M.TimeCondition,
         },
     },
 }
@@ -475,23 +482,23 @@ M.S3ItemFilter = {
     members = {
         ObjectKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.StringCondition,
         },
         Sizes = {
             type = "list",
-            member_type = "structure",
+            member = M.LongCondition,
         },
         CreationTimes = {
             type = "list",
-            member_type = "structure",
+            member = M.TimeCondition,
         },
         VersionIds = {
             type = "list",
-            member_type = "structure",
+            member = M.StringCondition,
         },
         ETags = {
             type = "list",
-            member_type = "structure",
+            member = M.StringCondition,
         },
     },
 }
@@ -501,11 +508,11 @@ M.ItemFilters = {
     members = {
         S3ItemFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.S3ItemFilter,
         },
         EBSItemFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.EBSItemFilter,
         },
     },
 }
@@ -515,26 +522,24 @@ M.SearchScope = {
     members = {
         BackupResourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        BackupResourceCreationTime = {
-            type = "structure",
-        },
+        BackupResourceCreationTime = M.BackupCreationTimeFilter,
         SourceResourceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         BackupResourceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         BackupResourceTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -543,10 +548,10 @@ M.SearchScopeSummary = {
     type = "structure",
     members = {
         TotalRecoveryPointsToScanCount = {
-            type = "number",
+            type = "integer",
         },
         TotalItemsToScanCount = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -557,12 +562,8 @@ M.GetSearchJobOutput = {
         Name = {
             type = "string",
         },
-        SearchScopeSummary = {
-            type = "structure",
-        },
-        CurrentSearchProgress = {
-            type = "structure",
-        },
+        SearchScopeSummary = M.SearchScopeSummary,
+        CurrentSearchProgress = M.CurrentSearchProgress,
         StatusMessage = {
             type = "string",
         },
@@ -578,18 +579,12 @@ M.GetSearchJobOutput = {
                 required = true,
             },
         },
-        SearchScope = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ItemFilters = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SearchScope = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SearchScope }),
+        ItemFilters = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ItemFilters }),
         CreationTime = {
             type = "timestamp",
             traits = {
@@ -627,8 +622,9 @@ M.ListSearchJobsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 1000,
                 http_query = "MaxResults",
             },
         },
@@ -656,9 +652,7 @@ M.SearchJobSummary = {
         CompletionTime = {
             type = "timestamp",
         },
-        SearchScopeSummary = {
-            type = "structure",
-        },
+        SearchScopeSummary = M.SearchScopeSummary,
         StatusMessage = {
             type = "string",
         },
@@ -670,7 +664,7 @@ M.ListSearchJobsOutput = {
     members = {
         SearchJobs = {
             type = "list",
-            member_type = "structure",
+            member = M.SearchJobSummary,
             traits = {
                 required = true,
             },
@@ -723,8 +717,8 @@ M.StartSearchJobInput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Name = {
             type = "string",
@@ -735,15 +729,10 @@ M.StartSearchJobInput = {
         ClientToken = {
             type = "string",
         },
-        SearchScope = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ItemFilters = {
-            type = "structure",
-        },
+        SearchScope = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SearchScope }),
+        ItemFilters = M.ItemFilters,
     },
 }
 
@@ -803,9 +792,7 @@ M.S3ExportSpecification = {
 M.ExportSpecification = {
     type = "union",
     members = {
-        s3ExportSpecification = {
-            type = "structure",
-        },
+        s3ExportSpecification = M.S3ExportSpecification,
     },
 }
 
@@ -846,9 +833,7 @@ M.GetSearchResultExportJobOutput = {
         StatusMessage = {
             type = "string",
         },
-        ExportSpecification = {
-            type = "union",
-        },
+        ExportSpecification = M.ExportSpecification,
         SearchJobArn = {
             type = "string",
         },
@@ -877,8 +862,9 @@ M.ListSearchResultExportJobsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 1000,
                 http_query = "MaxResults",
             },
         },
@@ -920,7 +906,7 @@ M.ListSearchResultExportJobsOutput = {
     members = {
         ExportJobs = {
             type = "list",
-            member_type = "structure",
+            member = M.ExportJobSummary,
             traits = {
                 required = true,
             },
@@ -940,19 +926,16 @@ M.StartSearchResultExportJobInput = {
                 required = true,
             },
         },
-        ExportSpecification = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        ExportSpecification = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ExportSpecification }),
         ClientToken = {
             type = "string",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         RoleArn = {
             type = "string",
@@ -987,8 +970,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1012,7 +995,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,

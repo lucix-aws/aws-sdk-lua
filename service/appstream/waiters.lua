@@ -1,0 +1,85 @@
+local waiter = require("waiter")
+
+local M = {}
+
+--- Wait until FleetStarted.
+function M.wait_until_fleet_started(client, input, options)
+    return waiter.wait(client, "describeFleets", input, {
+        min_delay = 30,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "Fleets[].State",
+                        expected = "RUNNING",
+                        comparator = "allStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Fleets[].State",
+                        expected = "STOPPING",
+                        comparator = "anyStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Fleets[].State",
+                        expected = "STOPPED",
+                        comparator = "anyStringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until FleetStopped.
+function M.wait_until_fleet_stopped(client, input, options)
+    return waiter.wait(client, "describeFleets", input, {
+        min_delay = 30,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "Fleets[].State",
+                        expected = "STOPPED",
+                        comparator = "allStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Fleets[].State",
+                        expected = "STARTING",
+                        comparator = "anyStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Fleets[].State",
+                        expected = "RUNNING",
+                        comparator = "anyStringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+return M

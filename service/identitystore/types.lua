@@ -46,6 +46,9 @@ M.Address = {
         },
         Primary = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -89,12 +92,8 @@ M.UniqueAttribute = {
 M.AlternateIdentifier = {
     type = "union",
     members = {
-        ExternalId = {
-            type = "structure",
-        },
-        UniqueAttribute = {
-            type = "structure",
-        },
+        ExternalId = M.ExternalId,
+        UniqueAttribute = M.UniqueAttribute,
     },
 }
 
@@ -122,12 +121,9 @@ M.GetGroupIdInput = {
                 required = true,
             },
         },
-        AlternateIdentifier = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        AlternateIdentifier = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AlternateIdentifier }),
     },
 }
 
@@ -160,8 +156,9 @@ M.InternalServerException = {
             type = "string",
         },
         RetryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_header = "Retry-After",
             },
         },
@@ -217,8 +214,9 @@ M.ThrottlingException = {
             type = "string",
         },
         RetryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_header = "Retry-After",
             },
         },
@@ -275,12 +273,9 @@ M.GetGroupMembershipIdInput = {
                 required = true,
             },
         },
-        MemberId = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        MemberId = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MemberId }),
     },
 }
 
@@ -311,12 +306,9 @@ M.GetUserIdInput = {
                 required = true,
             },
         },
-        AlternateIdentifier = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        AlternateIdentifier = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AlternateIdentifier }),
     },
 }
 
@@ -374,12 +366,9 @@ M.CreateGroupMembershipInput = {
                 required = true,
             },
         },
-        MemberId = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        MemberId = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MemberId }),
     },
 }
 
@@ -475,12 +464,9 @@ M.DescribeGroupMembershipOutput = {
                 required = true,
             },
         },
-        MemberId = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        MemberId = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MemberId }),
         CreatedAt = {
             type = "timestamp",
         },
@@ -512,7 +498,7 @@ M.ListGroupMembershipsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -535,9 +521,7 @@ M.GroupMembership = {
         GroupId = {
             type = "string",
         },
-        MemberId = {
-            type = "union",
-        },
+        MemberId = M.MemberId,
         CreatedAt = {
             type = "timestamp",
         },
@@ -558,7 +542,7 @@ M.ListGroupMembershipsOutput = {
     members = {
         GroupMemberships = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupMembership,
             traits = {
                 required = true,
             },
@@ -659,7 +643,7 @@ M.DescribeGroupOutput = {
         },
         ExternalIds = {
             type = "list",
-            member_type = "structure",
+            member = M.ExternalId,
         },
         Description = {
             type = "string",
@@ -713,14 +697,14 @@ M.ListGroupsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
     },
 }
@@ -739,7 +723,7 @@ M.Group = {
         },
         ExternalIds = {
             type = "list",
-            member_type = "structure",
+            member = M.ExternalId,
         },
         Description = {
             type = "string",
@@ -770,7 +754,7 @@ M.ListGroupsOutput = {
     members = {
         Groups = {
             type = "list",
-            member_type = "structure",
+            member = M.Group,
             traits = {
                 required = true,
             },
@@ -798,7 +782,7 @@ M.UpdateGroupInput = {
         },
         Operations = {
             type = "list",
-            member_type = "structure",
+            member = M.AttributeOperation,
             traits = {
                 required = true,
             },
@@ -819,15 +803,12 @@ M.IsMemberInGroupsInput = {
                 required = true,
             },
         },
-        MemberId = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        MemberId = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MemberId }),
         GroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -841,11 +822,12 @@ M.GroupMembershipExistenceResult = {
         GroupId = {
             type = "string",
         },
-        MemberId = {
-            type = "union",
-        },
+        MemberId = M.MemberId,
         MembershipExists = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -855,7 +837,7 @@ M.IsMemberInGroupsOutput = {
     members = {
         Results = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupMembershipExistenceResult,
             traits = {
                 required = true,
             },
@@ -872,14 +854,11 @@ M.ListGroupMembershipsForMemberInput = {
                 required = true,
             },
         },
-        MemberId = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        MemberId = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MemberId }),
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -892,7 +871,7 @@ M.ListGroupMembershipsForMemberOutput = {
     members = {
         GroupMemberships = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupMembership,
             traits = {
                 required = true,
             },
@@ -914,6 +893,9 @@ M.Email = {
         },
         Primary = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -953,6 +935,9 @@ M.PhoneNumber = {
         },
         Primary = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -974,6 +959,9 @@ M.Photo = {
         },
         Primary = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -989,6 +977,9 @@ M.Role = {
         },
         Primary = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1005,9 +996,7 @@ M.CreateUserInput = {
         UserName = {
             type = "string",
         },
-        Name = {
-            type = "structure",
-        },
+        Name = M.Name,
         DisplayName = {
             type = "string",
         },
@@ -1019,15 +1008,15 @@ M.CreateUserInput = {
         },
         Emails = {
             type = "list",
-            member_type = "structure",
+            member = M.Email,
         },
         Addresses = {
             type = "list",
-            member_type = "structure",
+            member = M.Address,
         },
         PhoneNumbers = {
             type = "list",
-            member_type = "structure",
+            member = M.PhoneNumber,
         },
         UserType = {
             type = "string",
@@ -1046,7 +1035,7 @@ M.CreateUserInput = {
         },
         Photos = {
             type = "list",
-            member_type = "structure",
+            member = M.Photo,
         },
         Website = {
             type = "string",
@@ -1056,12 +1045,12 @@ M.CreateUserInput = {
         },
         Roles = {
             type = "list",
-            member_type = "structure",
+            member = M.Role,
         },
         Extensions = {
             type = "map",
-            key_type = "string",
-            value_type = "document",
+            key = { type = "string" },
+            value = { type = "document" },
         },
     },
 }
@@ -1123,7 +1112,7 @@ M.DescribeUserInput = {
         },
         Extensions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1153,11 +1142,9 @@ M.DescribeUserOutput = {
         },
         ExternalIds = {
             type = "list",
-            member_type = "structure",
+            member = M.ExternalId,
         },
-        Name = {
-            type = "structure",
-        },
+        Name = M.Name,
         DisplayName = {
             type = "string",
         },
@@ -1169,15 +1156,15 @@ M.DescribeUserOutput = {
         },
         Emails = {
             type = "list",
-            member_type = "structure",
+            member = M.Email,
         },
         Addresses = {
             type = "list",
-            member_type = "structure",
+            member = M.Address,
         },
         PhoneNumbers = {
             type = "list",
-            member_type = "structure",
+            member = M.PhoneNumber,
         },
         UserType = {
             type = "string",
@@ -1199,7 +1186,7 @@ M.DescribeUserOutput = {
         },
         Photos = {
             type = "list",
-            member_type = "structure",
+            member = M.Photo,
         },
         Website = {
             type = "string",
@@ -1209,7 +1196,7 @@ M.DescribeUserOutput = {
         },
         Roles = {
             type = "list",
-            member_type = "structure",
+            member = M.Role,
         },
         CreatedAt = {
             type = "timestamp",
@@ -1225,8 +1212,8 @@ M.DescribeUserOutput = {
         },
         Extensions = {
             type = "map",
-            key_type = "string",
-            value_type = "document",
+            key = { type = "string" },
+            value = { type = "document" },
         },
     },
 }
@@ -1242,17 +1229,17 @@ M.ListUsersInput = {
         },
         Extensions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
     },
 }
@@ -1277,11 +1264,9 @@ M.User = {
         },
         ExternalIds = {
             type = "list",
-            member_type = "structure",
+            member = M.ExternalId,
         },
-        Name = {
-            type = "structure",
-        },
+        Name = M.Name,
         DisplayName = {
             type = "string",
         },
@@ -1293,15 +1278,15 @@ M.User = {
         },
         Emails = {
             type = "list",
-            member_type = "structure",
+            member = M.Email,
         },
         Addresses = {
             type = "list",
-            member_type = "structure",
+            member = M.Address,
         },
         PhoneNumbers = {
             type = "list",
-            member_type = "structure",
+            member = M.PhoneNumber,
         },
         UserType = {
             type = "string",
@@ -1323,7 +1308,7 @@ M.User = {
         },
         Photos = {
             type = "list",
-            member_type = "structure",
+            member = M.Photo,
         },
         Website = {
             type = "string",
@@ -1333,7 +1318,7 @@ M.User = {
         },
         Roles = {
             type = "list",
-            member_type = "structure",
+            member = M.Role,
         },
         CreatedAt = {
             type = "timestamp",
@@ -1349,8 +1334,8 @@ M.User = {
         },
         Extensions = {
             type = "map",
-            key_type = "string",
-            value_type = "document",
+            key = { type = "string" },
+            value = { type = "document" },
         },
     },
 }
@@ -1360,7 +1345,7 @@ M.ListUsersOutput = {
     members = {
         Users = {
             type = "list",
-            member_type = "structure",
+            member = M.User,
             traits = {
                 required = true,
             },
@@ -1388,7 +1373,7 @@ M.UpdateUserInput = {
         },
         Operations = {
             type = "list",
-            member_type = "structure",
+            member = M.AttributeOperation,
             traits = {
                 required = true,
             },

@@ -26,14 +26,12 @@ M.DescribeStreamInput = {
             },
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         ExclusiveStartShardId = {
             type = "string",
         },
-        ShardFilter = {
-            type = "structure",
-        },
+        ShardFilter = M.ShardFilter,
     },
 }
 
@@ -78,9 +76,7 @@ M.Shard = {
         ShardId = {
             type = "string",
         },
-        SequenceNumberRange = {
-            type = "structure",
-        },
+        SequenceNumberRange = M.SequenceNumberRange,
         ParentShardId = {
             type = "string",
         },
@@ -124,11 +120,11 @@ M.StreamDescription = {
         },
         KeySchema = {
             type = "list",
-            member_type = "structure",
+            member = M.KeySchemaElement,
         },
         Shards = {
             type = "list",
-            member_type = "structure",
+            member = M.Shard,
         },
         LastEvaluatedShardId = {
             type = "string",
@@ -139,9 +135,7 @@ M.StreamDescription = {
 M.DescribeStreamOutput = {
     type = "structure",
     members = {
-        StreamDescription = {
-            type = "structure",
-        },
+        StreamDescription = M.StreamDescription,
     },
 }
 
@@ -185,7 +179,7 @@ M.GetRecordsInput = {
             },
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -278,7 +272,7 @@ M.ListStreamsInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         ExclusiveStartStreamArn = {
             type = "string",
@@ -306,7 +300,7 @@ M.ListStreamsOutput = {
     members = {
         Streams = {
             type = "list",
-            member_type = "structure",
+            member = M.Stream,
         },
         LastEvaluatedStreamArn = {
             type = "string",
@@ -328,24 +322,24 @@ M.AttributeValue = {
         },
         SS = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NS = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         BS = {
             type = "list",
-            member_type = "blob",
+            member = { type = "blob" },
         },
         M = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.AttributeValue,
         },
         L = {
             type = "list",
-            member_type = "union",
+            member = M.AttributeValue,
         },
         NULL = {
             type = "boolean",
@@ -364,24 +358,24 @@ M.StreamRecord = {
         },
         Keys = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.AttributeValue,
         },
         NewImage = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.AttributeValue,
         },
         OldImage = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.AttributeValue,
         },
         SequenceNumber = {
             type = "string",
         },
         SizeBytes = {
-            type = "number",
+            type = "long",
         },
         StreamViewType = {
             type = "string",
@@ -407,12 +401,8 @@ M.Record = {
         awsRegion = {
             type = "string",
         },
-        dynamodb = {
-            type = "structure",
-        },
-        userIdentity = {
-            type = "structure",
-        },
+        dynamodb = M.StreamRecord,
+        userIdentity = M.Identity,
     },
 }
 
@@ -421,7 +411,7 @@ M.GetRecordsOutput = {
     members = {
         Records = {
             type = "list",
-            member_type = "structure",
+            member = M.Record,
         },
         NextShardIterator = {
             type = "string",

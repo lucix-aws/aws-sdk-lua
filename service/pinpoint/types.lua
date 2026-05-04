@@ -64,24 +64,24 @@ M.ActivityResponse = {
             type = "string",
         },
         SuccessfulEndpointCount = {
-            type = "number",
+            type = "integer",
         },
         TimezonesCompletedCount = {
-            type = "number",
+            type = "integer",
         },
         TimezonesTotalCount = {
-            type = "number",
+            type = "integer",
         },
         TotalEndpointCount = {
-            type = "number",
+            type = "integer",
         },
         TreatmentId = {
             type = "string",
         },
         ExecutionMetrics = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -91,7 +91,7 @@ M.ActivitiesResponse = {
     members = {
         Item = {
             type = "list",
-            member_type = "structure",
+            member = M.ActivityResponse,
             traits = {
                 required = true,
             },
@@ -120,7 +120,7 @@ M.AttributeDimension = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -141,7 +141,7 @@ M.SetDimension = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -159,7 +159,7 @@ M.MetricDimension = {
             },
         },
         Value = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -172,16 +172,14 @@ M.EventDimensions = {
     members = {
         Attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.AttributeDimension,
         },
-        EventType = {
-            type = "structure",
-        },
+        EventType = M.SetDimension,
         Metrics = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.MetricDimension,
         },
     },
 }
@@ -189,9 +187,7 @@ M.EventDimensions = {
 M.EventCondition = {
     type = "structure",
     members = {
-        Dimensions = {
-            type = "structure",
-        },
+        Dimensions = M.EventDimensions,
         MessageActivity = {
             type = "string",
         },
@@ -243,33 +239,19 @@ M.RecencyDimension = {
 M.SegmentBehaviors = {
     type = "structure",
     members = {
-        Recency = {
-            type = "structure",
-        },
+        Recency = M.RecencyDimension,
     },
 }
 
 M.SegmentDemographics = {
     type = "structure",
     members = {
-        AppVersion = {
-            type = "structure",
-        },
-        Channel = {
-            type = "structure",
-        },
-        DeviceType = {
-            type = "structure",
-        },
-        Make = {
-            type = "structure",
-        },
-        Model = {
-            type = "structure",
-        },
-        Platform = {
-            type = "structure",
-        },
+        AppVersion = M.SetDimension,
+        Channel = M.SetDimension,
+        DeviceType = M.SetDimension,
+        Make = M.SetDimension,
+        Model = M.SetDimension,
+        Platform = M.SetDimension,
     },
 }
 
@@ -277,13 +259,13 @@ M.GPSCoordinates = {
     type = "structure",
     members = {
         Latitude = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
         Longitude = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -294,14 +276,11 @@ M.GPSCoordinates = {
 M.GPSPointDimension = {
     type = "structure",
     members = {
-        Coordinates = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Coordinates = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.GPSCoordinates }),
         RangeInKilometers = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -309,12 +288,8 @@ M.GPSPointDimension = {
 M.SegmentLocation = {
     type = "structure",
     members = {
-        Country = {
-            type = "structure",
-        },
-        GPSPoint = {
-            type = "structure",
-        },
+        Country = M.SetDimension,
+        GPSPoint = M.GPSPointDimension,
     },
 }
 
@@ -323,27 +298,21 @@ M.SegmentDimensions = {
     members = {
         Attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.AttributeDimension,
         },
-        Behavior = {
-            type = "structure",
-        },
-        Demographic = {
-            type = "structure",
-        },
-        Location = {
-            type = "structure",
-        },
+        Behavior = M.SegmentBehaviors,
+        Demographic = M.SegmentDemographics,
+        Location = M.SegmentLocation,
         Metrics = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.MetricDimension,
         },
         UserAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.AttributeDimension,
         },
     },
 }
@@ -351,18 +320,11 @@ M.SegmentDimensions = {
 M.SimpleCondition = {
     type = "structure",
     members = {
-        EventCondition = {
-            type = "structure",
-        },
-        SegmentCondition = {
-            type = "structure",
-        },
-        SegmentDimensions = {
-            type = "structure",
-            traits = {
-                json_name = "segmentDimensions",
-            },
-        },
+        EventCondition = M.EventCondition,
+        SegmentCondition = M.SegmentCondition,
+        SegmentDimensions = setmetatable({ traits = {
+            json_name = "segmentDimensions",
+        } }, { __index = M.SegmentDimensions }),
     },
 }
 
@@ -376,7 +338,7 @@ M.Condition = {
     members = {
         Conditions = {
             type = "list",
-            member_type = "structure",
+            member = M.SimpleCondition,
         },
         Operator = {
             type = "string",
@@ -399,12 +361,8 @@ M.WaitTime = {
 M.ConditionalSplitActivity = {
     type = "structure",
     members = {
-        Condition = {
-            type = "structure",
-        },
-        EvaluationWaitTime = {
-            type = "structure",
-        },
+        Condition = M.Condition,
+        EvaluationWaitTime = M.WaitTime,
         FalseActivity = {
             type = "string",
         },
@@ -440,11 +398,9 @@ M.CustomMessageActivity = {
         },
         EndpointTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        MessageConfig = {
-            type = "structure",
-        },
+        MessageConfig = M.JourneyCustomMessage,
         NextActivity = {
             type = "string",
         },
@@ -469,9 +425,7 @@ M.JourneyEmailMessage = {
 M.EmailMessageActivity = {
     type = "structure",
     members = {
-        MessageConfig = {
-            type = "structure",
-        },
+        MessageConfig = M.JourneyEmailMessage,
         NextActivity = {
             type = "string",
         },
@@ -491,7 +445,7 @@ M.HoldoutActivity = {
             type = "string",
         },
         Percentage = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -502,9 +456,7 @@ M.HoldoutActivity = {
 M.MultiConditionalBranch = {
     type = "structure",
     members = {
-        Condition = {
-            type = "structure",
-        },
+        Condition = M.SimpleCondition,
         NextActivity = {
             type = "string",
         },
@@ -516,14 +468,12 @@ M.MultiConditionalSplitActivity = {
     members = {
         Branches = {
             type = "list",
-            member_type = "structure",
+            member = M.MultiConditionalBranch,
         },
         DefaultActivity = {
             type = "string",
         },
-        EvaluationWaitTime = {
-            type = "structure",
-        },
+        EvaluationWaitTime = M.WaitTime,
     },
 }
 
@@ -539,9 +489,7 @@ M.JourneyPushMessage = {
 M.PushMessageActivity = {
     type = "structure",
     members = {
-        MessageConfig = {
-            type = "structure",
-        },
+        MessageConfig = M.JourneyPushMessage,
         NextActivity = {
             type = "string",
         },
@@ -561,7 +509,7 @@ M.RandomSplitEntry = {
             type = "string",
         },
         Percentage = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -571,7 +519,7 @@ M.RandomSplitActivity = {
     members = {
         Branches = {
             type = "list",
-            member_type = "structure",
+            member = M.RandomSplitEntry,
         },
     },
 }
@@ -605,9 +553,7 @@ M.JourneySMSMessage = {
 M.SMSMessageActivity = {
     type = "structure",
     members = {
-        MessageConfig = {
-            type = "structure",
-        },
+        MessageConfig = M.JourneySMSMessage,
         NextActivity = {
             type = "string",
         },
@@ -626,48 +572,26 @@ M.WaitActivity = {
         NextActivity = {
             type = "string",
         },
-        WaitTime = {
-            type = "structure",
-        },
+        WaitTime = M.WaitTime,
     },
 }
 
 M.Activity = {
     type = "structure",
     members = {
-        CUSTOM = {
-            type = "structure",
-        },
-        ConditionalSplit = {
-            type = "structure",
-        },
+        CUSTOM = M.CustomMessageActivity,
+        ConditionalSplit = M.ConditionalSplitActivity,
         Description = {
             type = "string",
         },
-        EMAIL = {
-            type = "structure",
-        },
-        Holdout = {
-            type = "structure",
-        },
-        MultiCondition = {
-            type = "structure",
-        },
-        PUSH = {
-            type = "structure",
-        },
-        RandomSplit = {
-            type = "structure",
-        },
-        SMS = {
-            type = "structure",
-        },
-        Wait = {
-            type = "structure",
-        },
-        ContactCenter = {
-            type = "structure",
-        },
+        EMAIL = M.EmailMessageActivity,
+        Holdout = M.HoldoutActivity,
+        MultiCondition = M.MultiConditionalSplitActivity,
+        PUSH = M.PushMessageActivity,
+        RandomSplit = M.RandomSplitActivity,
+        SMS = M.SMSMessageActivity,
+        Wait = M.WaitActivity,
+        ContactCenter = M.ContactCenterActivity,
     },
 }
 
@@ -698,16 +622,16 @@ M.AddressConfiguration = {
         },
         Context = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         RawContent = {
             type = "string",
         },
         Substitutions = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         TitleOverride = {
             type = "string",
@@ -770,7 +694,7 @@ M.ADMChannelResponse = {
             },
         },
         Version = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -789,8 +713,8 @@ M.ADMMessage = {
         },
         Data = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ExpiresAfter = {
             type = "string",
@@ -821,8 +745,8 @@ M.ADMMessage = {
         },
         Substitutions = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         Title = {
             type = "string",
@@ -942,7 +866,7 @@ M.APNSChannelResponse = {
             },
         },
         Version = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -957,7 +881,7 @@ M.APNSMessage = {
             type = "string",
         },
         Badge = {
-            type = "number",
+            type = "integer",
         },
         Body = {
             type = "string",
@@ -970,8 +894,8 @@ M.APNSMessage = {
         },
         Data = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         MediaUrl = {
             type = "string",
@@ -993,14 +917,14 @@ M.APNSMessage = {
         },
         Substitutions = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         ThreadId = {
             type = "string",
         },
         TimeToLive = {
-            type = "number",
+            type = "integer",
         },
         Title = {
             type = "string",
@@ -1108,7 +1032,7 @@ M.APNSSandboxChannelResponse = {
             },
         },
         Version = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1183,7 +1107,7 @@ M.APNSVoipChannelResponse = {
             },
         },
         Version = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1258,7 +1182,7 @@ M.APNSVoipSandboxChannelResponse = {
             },
         },
         Version = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1292,14 +1216,14 @@ M.ResultRow = {
     members = {
         GroupedBys = {
             type = "list",
-            member_type = "structure",
+            member = M.ResultRowValue,
             traits = {
                 required = true,
             },
         },
         Values = {
             type = "list",
-            member_type = "structure",
+            member = M.ResultRowValue,
             traits = {
                 required = true,
             },
@@ -1312,7 +1236,7 @@ M.BaseKpiResult = {
     members = {
         Rows = {
             type = "list",
-            member_type = "structure",
+            member = M.ResultRow,
             traits = {
                 required = true,
             },
@@ -1341,12 +1265,9 @@ M.ApplicationDateRangeKpiResponse = {
                 required = true,
             },
         },
-        KpiResult = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        KpiResult = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BaseKpiResult }),
         NextToken = {
             type = "string",
         },
@@ -1382,8 +1303,8 @@ M.ApplicationResponse = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -1398,10 +1319,10 @@ M.JourneyTimeframeCap = {
     type = "structure",
     members = {
         Cap = {
-            type = "number",
+            type = "integer",
         },
         Days = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1410,13 +1331,11 @@ M.ApplicationSettingsJourneyLimits = {
     type = "structure",
     members = {
         DailyCap = {
-            type = "number",
+            type = "integer",
         },
-        TimeframeCap = {
-            type = "structure",
-        },
+        TimeframeCap = M.JourneyTimeframeCap,
         TotalCap = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1445,19 +1364,19 @@ M.CampaignLimits = {
     type = "structure",
     members = {
         Daily = {
-            type = "number",
+            type = "integer",
         },
         MaximumDuration = {
-            type = "number",
+            type = "integer",
         },
         MessagesPerSecond = {
-            type = "number",
+            type = "integer",
         },
         Total = {
-            type = "number",
+            type = "integer",
         },
         Session = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1483,21 +1402,13 @@ M.ApplicationSettingsResource = {
                 required = true,
             },
         },
-        CampaignHook = {
-            type = "structure",
-        },
+        CampaignHook = M.CampaignHook,
         LastModifiedDate = {
             type = "string",
         },
-        Limits = {
-            type = "structure",
-        },
-        QuietTime = {
-            type = "structure",
-        },
-        JourneyLimits = {
-            type = "structure",
-        },
+        Limits = M.CampaignLimits,
+        QuietTime = M.QuietTime,
+        JourneyLimits = M.ApplicationSettingsJourneyLimits,
     },
 }
 
@@ -1506,7 +1417,7 @@ M.ApplicationsResponse = {
     members = {
         Item = {
             type = "list",
-            member_type = "structure",
+            member = M.ApplicationResponse,
         },
         NextToken = {
             type = "string",
@@ -1531,7 +1442,7 @@ M.AttributesResource = {
         },
         Attributes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1610,7 +1521,7 @@ M.BaiduChannelResponse = {
             },
         },
         Version = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1626,8 +1537,8 @@ M.BaiduMessage = {
         },
         Data = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         IconReference = {
             type = "string",
@@ -1652,11 +1563,11 @@ M.BaiduMessage = {
         },
         Substitutions = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         TimeToLive = {
-            type = "number",
+            type = "integer",
         },
         Title = {
             type = "string",
@@ -1709,12 +1620,9 @@ M.CampaignDateRangeKpiResponse = {
                 required = true,
             },
         },
-        KpiResult = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        KpiResult = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BaseKpiResult }),
         NextToken = {
             type = "string",
         },
@@ -1750,7 +1658,7 @@ M.CampaignEmailMessage = {
         },
         Headers = {
             type = "list",
-            member_type = "structure",
+            member = M.MessageHeader,
         },
         HtmlBody = {
             type = "string",
@@ -1769,12 +1677,9 @@ M.FilterType = {
 M.CampaignEventFilter = {
     type = "structure",
     members = {
-        Dimensions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Dimensions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EventDimensions }),
         FilterType = {
             type = "string",
             traits = {
@@ -1854,7 +1759,7 @@ M.DefaultButtonConfiguration = {
             type = "string",
         },
         BorderRadius = {
-            type = "number",
+            type = "integer",
         },
         ButtonAction = {
             type = "string",
@@ -1880,18 +1785,10 @@ M.DefaultButtonConfiguration = {
 M.InAppMessageButton = {
     type = "structure",
     members = {
-        Android = {
-            type = "structure",
-        },
-        DefaultConfig = {
-            type = "structure",
-        },
-        IOS = {
-            type = "structure",
-        },
-        Web = {
-            type = "structure",
-        },
+        Android = M.OverrideButtonConfiguration,
+        DefaultConfig = M.DefaultButtonConfiguration,
+        IOS = M.OverrideButtonConfiguration,
+        Web = M.OverrideButtonConfiguration,
     },
 }
 
@@ -1901,21 +1798,13 @@ M.InAppMessageContent = {
         BackgroundColor = {
             type = "string",
         },
-        BodyConfig = {
-            type = "structure",
-        },
-        HeaderConfig = {
-            type = "structure",
-        },
+        BodyConfig = M.InAppMessageBodyConfig,
+        HeaderConfig = M.InAppMessageHeaderConfig,
         ImageUrl = {
             type = "string",
         },
-        PrimaryBtn = {
-            type = "structure",
-        },
-        SecondaryBtn = {
-            type = "structure",
-        },
+        PrimaryBtn = M.InAppMessageButton,
+        SecondaryBtn = M.InAppMessageButton,
     },
 }
 
@@ -1936,12 +1825,12 @@ M.CampaignInAppMessage = {
         },
         Content = {
             type = "list",
-            member_type = "structure",
+            member = M.InAppMessageContent,
         },
         CustomConfig = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Layout = {
             type = "string",
@@ -1960,7 +1849,7 @@ M.CustomDeliveryConfiguration = {
         },
         EndpointTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1996,7 +1885,7 @@ M.Message = {
             type = "boolean",
         },
         TimeToLive = {
-            type = "number",
+            type = "integer",
         },
         Title = {
             type = "string",
@@ -2034,33 +1923,15 @@ M.CampaignSmsMessage = {
 M.MessageConfiguration = {
     type = "structure",
     members = {
-        ADMMessage = {
-            type = "structure",
-        },
-        APNSMessage = {
-            type = "structure",
-        },
-        BaiduMessage = {
-            type = "structure",
-        },
-        CustomMessage = {
-            type = "structure",
-        },
-        DefaultMessage = {
-            type = "structure",
-        },
-        EmailMessage = {
-            type = "structure",
-        },
-        GCMMessage = {
-            type = "structure",
-        },
-        SMSMessage = {
-            type = "structure",
-        },
-        InAppMessage = {
-            type = "structure",
-        },
+        ADMMessage = M.Message,
+        APNSMessage = M.Message,
+        BaiduMessage = M.Message,
+        CustomMessage = M.CampaignCustomMessage,
+        DefaultMessage = M.Message,
+        EmailMessage = M.CampaignEmailMessage,
+        GCMMessage = M.Message,
+        SMSMessage = M.CampaignSmsMessage,
+        InAppMessage = M.CampaignInAppMessage,
     },
 }
 
@@ -2080,18 +1951,14 @@ M.Schedule = {
         EndTime = {
             type = "string",
         },
-        EventFilter = {
-            type = "structure",
-        },
+        EventFilter = M.CampaignEventFilter,
         Frequency = {
             type = "string",
         },
         IsLocalTime = {
             type = "boolean",
         },
-        QuietTime = {
-            type = "structure",
-        },
+        QuietTime = M.QuietTime,
         StartTime = {
             type = "string",
             traits = {
@@ -2138,54 +2005,34 @@ M.Template = {
 M.TemplateConfiguration = {
     type = "structure",
     members = {
-        EmailTemplate = {
-            type = "structure",
-        },
-        PushTemplate = {
-            type = "structure",
-        },
-        SMSTemplate = {
-            type = "structure",
-        },
-        VoiceTemplate = {
-            type = "structure",
-        },
-        InAppTemplate = {
-            type = "structure",
-        },
+        EmailTemplate = M.Template,
+        PushTemplate = M.Template,
+        SMSTemplate = M.Template,
+        VoiceTemplate = M.Template,
+        InAppTemplate = M.Template,
     },
 }
 
 M.TreatmentResource = {
     type = "structure",
     members = {
-        CustomDeliveryConfiguration = {
-            type = "structure",
-        },
+        CustomDeliveryConfiguration = M.CustomDeliveryConfiguration,
         Id = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        MessageConfiguration = {
-            type = "structure",
-        },
-        Schedule = {
-            type = "structure",
-        },
+        MessageConfiguration = M.MessageConfiguration,
+        Schedule = M.Schedule,
         SizePercent = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
-        State = {
-            type = "structure",
-        },
-        TemplateConfiguration = {
-            type = "structure",
-        },
+        State = M.CampaignState,
+        TemplateConfiguration = M.TemplateConfiguration,
         TreatmentDescription = {
             type = "string",
         },
@@ -2200,7 +2047,7 @@ M.CampaignResponse = {
     members = {
         AdditionalTreatments = {
             type = "list",
-            member_type = "structure",
+            member = M.TreatmentResource,
         },
         ApplicationId = {
             type = "string",
@@ -2220,21 +2067,15 @@ M.CampaignResponse = {
                 required = true,
             },
         },
-        CustomDeliveryConfiguration = {
-            type = "structure",
-        },
-        DefaultState = {
-            type = "structure",
-        },
+        CustomDeliveryConfiguration = M.CustomDeliveryConfiguration,
+        DefaultState = M.CampaignState,
         Description = {
             type = "string",
         },
         HoldoutPercent = {
-            type = "number",
+            type = "integer",
         },
-        Hook = {
-            type = "structure",
-        },
+        Hook = M.CampaignHook,
         Id = {
             type = "string",
             traits = {
@@ -2250,18 +2091,12 @@ M.CampaignResponse = {
                 required = true,
             },
         },
-        Limits = {
-            type = "structure",
-        },
-        MessageConfiguration = {
-            type = "structure",
-        },
+        Limits = M.CampaignLimits,
+        MessageConfiguration = M.MessageConfiguration,
         Name = {
             type = "string",
         },
-        Schedule = {
-            type = "structure",
-        },
+        Schedule = M.Schedule,
         SegmentId = {
             type = "string",
             traits = {
@@ -2269,25 +2104,21 @@ M.CampaignResponse = {
             },
         },
         SegmentVersion = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
-        State = {
-            type = "structure",
-        },
+        State = M.CampaignState,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
         },
-        TemplateConfiguration = {
-            type = "structure",
-        },
+        TemplateConfiguration = M.TemplateConfiguration,
         TreatmentDescription = {
             type = "string",
         },
@@ -2295,10 +2126,10 @@ M.CampaignResponse = {
             type = "string",
         },
         Version = {
-            type = "number",
+            type = "integer",
         },
         Priority = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2308,7 +2139,7 @@ M.CampaignsResponse = {
     members = {
         Item = {
             type = "list",
-            member_type = "structure",
+            member = M.CampaignResponse,
             traits = {
                 required = true,
             },
@@ -2347,7 +2178,7 @@ M.ChannelResponse = {
             type = "string",
         },
         Version = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2357,8 +2188,8 @@ M.ChannelsResponse = {
     members = {
         Channels = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ChannelResponse,
             traits = {
                 required = true,
             },
@@ -2386,23 +2217,23 @@ M.ClosedDays = {
     members = {
         EMAIL = {
             type = "list",
-            member_type = "structure",
+            member = M.ClosedDaysRule,
         },
         SMS = {
             type = "list",
-            member_type = "structure",
+            member = M.ClosedDaysRule,
         },
         PUSH = {
             type = "list",
-            member_type = "structure",
+            member = M.ClosedDaysRule,
         },
         VOICE = {
             type = "list",
-            member_type = "structure",
+            member = M.ClosedDaysRule,
         },
         CUSTOM = {
             type = "list",
-            member_type = "structure",
+            member = M.ClosedDaysRule,
         },
     },
 }
@@ -2431,8 +2262,8 @@ M.CreateApplicationRequest = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -2443,26 +2274,20 @@ M.CreateApplicationRequest = {
 M.CreateAppInput = {
     type = "structure",
     members = {
-        CreateApplicationRequest = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        CreateApplicationRequest = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.CreateApplicationRequest }),
     },
 }
 
 M.CreateAppOutput = {
     type = "structure",
     members = {
-        ApplicationResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        ApplicationResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.ApplicationResponse }),
     },
 }
 
@@ -2547,24 +2372,16 @@ M.TooManyRequestsException = {
 M.WriteTreatmentResource = {
     type = "structure",
     members = {
-        CustomDeliveryConfiguration = {
-            type = "structure",
-        },
-        MessageConfiguration = {
-            type = "structure",
-        },
-        Schedule = {
-            type = "structure",
-        },
+        CustomDeliveryConfiguration = M.CustomDeliveryConfiguration,
+        MessageConfiguration = M.MessageConfiguration,
+        Schedule = M.Schedule,
         SizePercent = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
-        TemplateConfiguration = {
-            type = "structure",
-        },
+        TemplateConfiguration = M.TemplateConfiguration,
         TreatmentDescription = {
             type = "string",
         },
@@ -2579,52 +2396,40 @@ M.WriteCampaignRequest = {
     members = {
         AdditionalTreatments = {
             type = "list",
-            member_type = "structure",
+            member = M.WriteTreatmentResource,
         },
-        CustomDeliveryConfiguration = {
-            type = "structure",
-        },
+        CustomDeliveryConfiguration = M.CustomDeliveryConfiguration,
         Description = {
             type = "string",
         },
         HoldoutPercent = {
-            type = "number",
+            type = "integer",
         },
-        Hook = {
-            type = "structure",
-        },
+        Hook = M.CampaignHook,
         IsPaused = {
             type = "boolean",
         },
-        Limits = {
-            type = "structure",
-        },
-        MessageConfiguration = {
-            type = "structure",
-        },
+        Limits = M.CampaignLimits,
+        MessageConfiguration = M.MessageConfiguration,
         Name = {
             type = "string",
         },
-        Schedule = {
-            type = "structure",
-        },
+        Schedule = M.Schedule,
         SegmentId = {
             type = "string",
         },
         SegmentVersion = {
-            type = "number",
+            type = "integer",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
         },
-        TemplateConfiguration = {
-            type = "structure",
-        },
+        TemplateConfiguration = M.TemplateConfiguration,
         TreatmentDescription = {
             type = "string",
         },
@@ -2632,7 +2437,7 @@ M.WriteCampaignRequest = {
             type = "string",
         },
         Priority = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2647,26 +2452,20 @@ M.CreateCampaignInput = {
                 required = true,
             },
         },
-        WriteCampaignRequest = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        WriteCampaignRequest = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.WriteCampaignRequest }),
     },
 }
 
 M.CreateCampaignOutput = {
     type = "structure",
     members = {
-        CampaignResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        CampaignResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.CampaignResponse }),
     },
 }
 
@@ -2687,12 +2486,12 @@ M.EmailTemplateRequest = {
         },
         Headers = {
             type = "list",
-            member_type = "structure",
+            member = M.MessageHeader,
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -2709,13 +2508,10 @@ M.EmailTemplateRequest = {
 M.CreateEmailTemplateInput = {
     type = "structure",
     members = {
-        EmailTemplateRequest = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        EmailTemplateRequest = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.EmailTemplateRequest }),
         TemplateName = {
             type = "string",
             traits = {
@@ -2744,13 +2540,10 @@ M.CreateTemplateMessageBody = {
 M.CreateEmailTemplateOutput = {
     type = "structure",
     members = {
-        CreateTemplateMessageBody = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        CreateTemplateMessageBody = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.CreateTemplateMessageBody }),
     },
 }
 
@@ -2773,7 +2566,7 @@ M.ExportJobRequest = {
             type = "string",
         },
         SegmentVersion = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2788,13 +2581,10 @@ M.CreateExportJobInput = {
                 required = true,
             },
         },
-        ExportJobRequest = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        ExportJobRequest = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.ExportJobRequest }),
     },
 }
 
@@ -2817,7 +2607,7 @@ M.ExportJobResource = {
             type = "string",
         },
         SegmentVersion = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2844,7 +2634,7 @@ M.ExportJobResponse = {
             },
         },
         CompletedPieces = {
-            type = "number",
+            type = "integer",
         },
         CompletionDate = {
             type = "string",
@@ -2855,18 +2645,15 @@ M.ExportJobResponse = {
                 required = true,
             },
         },
-        Definition = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Definition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ExportJobResource }),
         FailedPieces = {
-            type = "number",
+            type = "integer",
         },
         Failures = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Id = {
             type = "string",
@@ -2881,13 +2668,13 @@ M.ExportJobResponse = {
             },
         },
         TotalFailures = {
-            type = "number",
+            type = "integer",
         },
         TotalPieces = {
-            type = "number",
+            type = "integer",
         },
         TotalProcessed = {
-            type = "number",
+            type = "integer",
         },
         Type = {
             type = "string",
@@ -2901,13 +2688,10 @@ M.ExportJobResponse = {
 M.CreateExportJobOutput = {
     type = "structure",
     members = {
-        ExportJobResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        ExportJobResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.ExportJobResponse }),
     },
 }
 
@@ -2965,13 +2749,10 @@ M.CreateImportJobInput = {
                 required = true,
             },
         },
-        ImportJobRequest = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        ImportJobRequest = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.ImportJobRequest }),
     },
 }
 
@@ -3024,7 +2805,7 @@ M.ImportJobResponse = {
             },
         },
         CompletedPieces = {
-            type = "number",
+            type = "integer",
         },
         CompletionDate = {
             type = "string",
@@ -3035,18 +2816,15 @@ M.ImportJobResponse = {
                 required = true,
             },
         },
-        Definition = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Definition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ImportJobResource }),
         FailedPieces = {
-            type = "number",
+            type = "integer",
         },
         Failures = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Id = {
             type = "string",
@@ -3061,13 +2839,13 @@ M.ImportJobResponse = {
             },
         },
         TotalFailures = {
-            type = "number",
+            type = "integer",
         },
         TotalPieces = {
-            type = "number",
+            type = "integer",
         },
         TotalProcessed = {
-            type = "number",
+            type = "integer",
         },
         Type = {
             type = "string",
@@ -3081,13 +2859,10 @@ M.ImportJobResponse = {
 M.CreateImportJobOutput = {
     type = "structure",
     members = {
-        ImportJobResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        ImportJobResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.ImportJobResponse }),
     },
 }
 
@@ -3096,20 +2871,20 @@ M.InAppTemplateRequest = {
     members = {
         Content = {
             type = "list",
-            member_type = "structure",
+            member = M.InAppMessageContent,
         },
         CustomConfig = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Layout = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -3123,13 +2898,10 @@ M.InAppTemplateRequest = {
 M.CreateInAppTemplateInput = {
     type = "structure",
     members = {
-        InAppTemplateRequest = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        InAppTemplateRequest = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.InAppTemplateRequest }),
         TemplateName = {
             type = "string",
             traits = {
@@ -3158,13 +2930,10 @@ M.TemplateCreateMessageBody = {
 M.CreateInAppTemplateOutput = {
     type = "structure",
     members = {
-        TemplateCreateMessageBody = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        TemplateCreateMessageBody = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.TemplateCreateMessageBody }),
     },
 }
 
@@ -3184,22 +2953,20 @@ M.JourneyLimits = {
     type = "structure",
     members = {
         DailyCap = {
-            type = "number",
+            type = "integer",
         },
         EndpointReentryCap = {
-            type = "number",
+            type = "integer",
         },
         MessagesPerSecond = {
-            type = "number",
+            type = "integer",
         },
         EndpointReentryInterval = {
             type = "string",
         },
-        TimeframeCap = {
-            type = "structure",
-        },
+        TimeframeCap = M.JourneyTimeframeCap,
         TotalCap = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3231,28 +2998,28 @@ M.OpenHours = {
     members = {
         EMAIL = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         SMS = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         PUSH = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         VOICE = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         CUSTOM = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
     },
 }
@@ -3275,12 +3042,9 @@ M.JourneySchedule = {
 M.EventFilter = {
     type = "structure",
     members = {
-        Dimensions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Dimensions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EventDimensions }),
         FilterType = {
             type = "string",
             traits = {
@@ -3293,9 +3057,7 @@ M.EventFilter = {
 M.EventStartCondition = {
     type = "structure",
     members = {
-        EventFilter = {
-            type = "structure",
-        },
+        EventFilter = M.EventFilter,
         SegmentId = {
             type = "string",
         },
@@ -3308,12 +3070,8 @@ M.StartCondition = {
         Description = {
             type = "string",
         },
-        EventStartCondition = {
-            type = "structure",
-        },
-        SegmentStartCondition = {
-            type = "structure",
-        },
+        EventStartCondition = M.EventStartCondition,
+        SegmentStartCondition = M.SegmentCondition,
     },
 }
 
@@ -3331,8 +3089,8 @@ M.WriteJourneyRequest = {
     members = {
         Activities = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.Activity,
         },
         CreationDate = {
             type = "string",
@@ -3340,9 +3098,7 @@ M.WriteJourneyRequest = {
         LastModifiedDate = {
             type = "string",
         },
-        Limits = {
-            type = "structure",
-        },
+        Limits = M.JourneyLimits,
         LocalTime = {
             type = "boolean",
         },
@@ -3352,21 +3108,15 @@ M.WriteJourneyRequest = {
                 required = true,
             },
         },
-        QuietTime = {
-            type = "structure",
-        },
+        QuietTime = M.QuietTime,
         RefreshFrequency = {
             type = "string",
         },
-        Schedule = {
-            type = "structure",
-        },
+        Schedule = M.JourneySchedule,
         StartActivity = {
             type = "string",
         },
-        StartCondition = {
-            type = "structure",
-        },
+        StartCondition = M.StartCondition,
         State = {
             type = "string",
         },
@@ -3376,21 +3126,15 @@ M.WriteJourneyRequest = {
         RefreshOnSegmentUpdate = {
             type = "boolean",
         },
-        JourneyChannelSettings = {
-            type = "structure",
-        },
+        JourneyChannelSettings = M.JourneyChannelSettings,
         SendingSchedule = {
             type = "boolean",
         },
-        OpenHours = {
-            type = "structure",
-        },
-        ClosedDays = {
-            type = "structure",
-        },
+        OpenHours = M.OpenHours,
+        ClosedDays = M.ClosedDays,
         TimezoneEstimationMethods = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3405,13 +3149,10 @@ M.CreateJourneyInput = {
                 required = true,
             },
         },
-        WriteJourneyRequest = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        WriteJourneyRequest = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.WriteJourneyRequest }),
     },
 }
 
@@ -3420,8 +3161,8 @@ M.JourneyResponse = {
     members = {
         Activities = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.Activity,
         },
         ApplicationId = {
             type = "string",
@@ -3441,9 +3182,7 @@ M.JourneyResponse = {
         LastModifiedDate = {
             type = "string",
         },
-        Limits = {
-            type = "structure",
-        },
+        Limits = M.JourneyLimits,
         LocalTime = {
             type = "boolean",
         },
@@ -3453,28 +3192,22 @@ M.JourneyResponse = {
                 required = true,
             },
         },
-        QuietTime = {
-            type = "structure",
-        },
+        QuietTime = M.QuietTime,
         RefreshFrequency = {
             type = "string",
         },
-        Schedule = {
-            type = "structure",
-        },
+        Schedule = M.JourneySchedule,
         StartActivity = {
             type = "string",
         },
-        StartCondition = {
-            type = "structure",
-        },
+        StartCondition = M.StartCondition,
         State = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -3485,21 +3218,15 @@ M.JourneyResponse = {
         RefreshOnSegmentUpdate = {
             type = "boolean",
         },
-        JourneyChannelSettings = {
-            type = "structure",
-        },
+        JourneyChannelSettings = M.JourneyChannelSettings,
         SendingSchedule = {
             type = "boolean",
         },
-        OpenHours = {
-            type = "structure",
-        },
-        ClosedDays = {
-            type = "structure",
-        },
+        OpenHours = M.OpenHours,
+        ClosedDays = M.ClosedDays,
         TimezoneEstimationMethods = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3507,13 +3234,10 @@ M.JourneyResponse = {
 M.CreateJourneyOutput = {
     type = "structure",
     members = {
-        JourneyResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        JourneyResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.JourneyResponse }),
     },
 }
 
@@ -3541,31 +3265,21 @@ M.DefaultPushNotificationTemplate = {
 M.PushNotificationTemplateRequest = {
     type = "structure",
     members = {
-        ADM = {
-            type = "structure",
-        },
-        APNS = {
-            type = "structure",
-        },
-        Baidu = {
-            type = "structure",
-        },
-        Default = {
-            type = "structure",
-        },
+        ADM = M.AndroidPushNotificationTemplate,
+        APNS = M.APNSPushNotificationTemplate,
+        Baidu = M.AndroidPushNotificationTemplate,
+        Default = M.DefaultPushNotificationTemplate,
         DefaultSubstitutions = {
             type = "string",
         },
-        GCM = {
-            type = "structure",
-        },
+        GCM = M.AndroidPushNotificationTemplate,
         RecommenderId = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -3579,13 +3293,10 @@ M.PushNotificationTemplateRequest = {
 M.CreatePushTemplateInput = {
     type = "structure",
     members = {
-        PushNotificationTemplateRequest = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        PushNotificationTemplateRequest = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.PushNotificationTemplateRequest }),
         TemplateName = {
             type = "string",
             traits = {
@@ -3599,13 +3310,10 @@ M.CreatePushTemplateInput = {
 M.CreatePushTemplateOutput = {
     type = "structure",
     members = {
-        CreateTemplateMessageBody = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        CreateTemplateMessageBody = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.CreateTemplateMessageBody }),
     },
 }
 
@@ -3614,8 +3322,8 @@ M.CreateRecommenderConfigurationShape = {
     members = {
         Attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Description = {
             type = "string",
@@ -3645,7 +3353,7 @@ M.CreateRecommenderConfigurationShape = {
             type = "string",
         },
         RecommendationsPerMessage = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3653,13 +3361,10 @@ M.CreateRecommenderConfigurationShape = {
 M.CreateRecommenderConfigurationInput = {
     type = "structure",
     members = {
-        CreateRecommenderConfiguration = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        CreateRecommenderConfiguration = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.CreateRecommenderConfigurationShape }),
     },
 }
 
@@ -3668,8 +3373,8 @@ M.RecommenderConfigurationResponse = {
     members = {
         Attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         CreationDate = {
             type = "string",
@@ -3717,7 +3422,7 @@ M.RecommenderConfigurationResponse = {
             type = "string",
         },
         RecommendationsPerMessage = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3725,13 +3430,10 @@ M.RecommenderConfigurationResponse = {
 M.CreateRecommenderConfigurationOutput = {
     type = "structure",
     members = {
-        RecommenderConfigurationResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        RecommenderConfigurationResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.RecommenderConfigurationResponse }),
     },
 }
 
@@ -3745,7 +3447,7 @@ M.SegmentReference = {
             },
         },
         Version = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3767,11 +3469,11 @@ M.SegmentGroup = {
     members = {
         Dimensions = {
             type = "list",
-            member_type = "structure",
+            member = M.SegmentDimensions,
         },
         SourceSegments = {
             type = "list",
-            member_type = "structure",
+            member = M.SegmentReference,
         },
         SourceType = {
             type = "string",
@@ -3793,7 +3495,7 @@ M.SegmentGroupList = {
     members = {
         Groups = {
             type = "list",
-            member_type = "structure",
+            member = M.SegmentGroup,
         },
         Include = {
             type = "string",
@@ -3804,19 +3506,15 @@ M.SegmentGroupList = {
 M.WriteSegmentRequest = {
     type = "structure",
     members = {
-        Dimensions = {
-            type = "structure",
-        },
+        Dimensions = M.SegmentDimensions,
         Name = {
             type = "string",
         },
-        SegmentGroups = {
-            type = "structure",
-        },
+        SegmentGroups = M.SegmentGroupList,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -3834,13 +3532,10 @@ M.CreateSegmentInput = {
                 required = true,
             },
         },
-        WriteSegmentRequest = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        WriteSegmentRequest = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.WriteSegmentRequest }),
     },
 }
 
@@ -3849,8 +3544,8 @@ M.SegmentImportResource = {
     members = {
         ChannelCounts = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
         },
         ExternalId = {
             type = "string",
@@ -3877,7 +3572,7 @@ M.SegmentImportResource = {
             },
         },
         Size = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -3911,27 +3606,21 @@ M.SegmentResponse = {
                 required = true,
             },
         },
-        Dimensions = {
-            type = "structure",
-        },
+        Dimensions = M.SegmentDimensions,
         Id = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        ImportDefinition = {
-            type = "structure",
-        },
+        ImportDefinition = M.SegmentImportResource,
         LastModifiedDate = {
             type = "string",
         },
         Name = {
             type = "string",
         },
-        SegmentGroups = {
-            type = "structure",
-        },
+        SegmentGroups = M.SegmentGroupList,
         SegmentType = {
             type = "string",
             traits = {
@@ -3940,14 +3629,14 @@ M.SegmentResponse = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
         },
         Version = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3955,13 +3644,10 @@ M.SegmentResponse = {
 M.CreateSegmentOutput = {
     type = "structure",
     members = {
-        SegmentResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        SegmentResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.SegmentResponse }),
     },
 }
 
@@ -3979,8 +3665,8 @@ M.SMSTemplateRequest = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -3994,13 +3680,10 @@ M.SMSTemplateRequest = {
 M.CreateSmsTemplateInput = {
     type = "structure",
     members = {
-        SMSTemplateRequest = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        SMSTemplateRequest = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.SMSTemplateRequest }),
         TemplateName = {
             type = "string",
             traits = {
@@ -4014,13 +3697,10 @@ M.CreateSmsTemplateInput = {
 M.CreateSmsTemplateOutput = {
     type = "structure",
     members = {
-        CreateTemplateMessageBody = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        CreateTemplateMessageBody = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.CreateTemplateMessageBody }),
     },
 }
 
@@ -4038,8 +3718,8 @@ M.VoiceTemplateRequest = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -4063,26 +3743,20 @@ M.CreateVoiceTemplateInput = {
                 required = true,
             },
         },
-        VoiceTemplateRequest = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        VoiceTemplateRequest = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.VoiceTemplateRequest }),
     },
 }
 
 M.CreateVoiceTemplateOutput = {
     type = "structure",
     members = {
-        CreateTemplateMessageBody = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        CreateTemplateMessageBody = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.CreateTemplateMessageBody }),
     },
 }
 
@@ -4094,8 +3768,8 @@ M.DefaultMessage = {
         },
         Substitutions = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
     },
 }
@@ -4111,16 +3785,16 @@ M.DefaultPushNotificationMessage = {
         },
         Data = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         SilentPush = {
             type = "boolean",
         },
         Substitutions = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         Title = {
             type = "string",
@@ -4147,13 +3821,10 @@ M.DeleteAdmChannelInput = {
 M.DeleteAdmChannelOutput = {
     type = "structure",
     members = {
-        ADMChannelResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        ADMChannelResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.ADMChannelResponse }),
     },
 }
 
@@ -4173,13 +3844,10 @@ M.DeleteApnsChannelInput = {
 M.DeleteApnsChannelOutput = {
     type = "structure",
     members = {
-        APNSChannelResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        APNSChannelResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.APNSChannelResponse }),
     },
 }
 
@@ -4199,13 +3867,10 @@ M.DeleteApnsSandboxChannelInput = {
 M.DeleteApnsSandboxChannelOutput = {
     type = "structure",
     members = {
-        APNSSandboxChannelResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        APNSSandboxChannelResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.APNSSandboxChannelResponse }),
     },
 }
 
@@ -4225,13 +3890,10 @@ M.DeleteApnsVoipChannelInput = {
 M.DeleteApnsVoipChannelOutput = {
     type = "structure",
     members = {
-        APNSVoipChannelResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        APNSVoipChannelResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.APNSVoipChannelResponse }),
     },
 }
 
@@ -4251,13 +3913,10 @@ M.DeleteApnsVoipSandboxChannelInput = {
 M.DeleteApnsVoipSandboxChannelOutput = {
     type = "structure",
     members = {
-        APNSVoipSandboxChannelResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        APNSVoipSandboxChannelResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.APNSVoipSandboxChannelResponse }),
     },
 }
 
@@ -4277,13 +3936,10 @@ M.DeleteAppInput = {
 M.DeleteAppOutput = {
     type = "structure",
     members = {
-        ApplicationResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        ApplicationResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.ApplicationResponse }),
     },
 }
 
@@ -4303,13 +3959,10 @@ M.DeleteBaiduChannelInput = {
 M.DeleteBaiduChannelOutput = {
     type = "structure",
     members = {
-        BaiduChannelResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        BaiduChannelResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.BaiduChannelResponse }),
     },
 }
 
@@ -4336,13 +3989,10 @@ M.DeleteCampaignInput = {
 M.DeleteCampaignOutput = {
     type = "structure",
     members = {
-        CampaignResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        CampaignResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.CampaignResponse }),
     },
 }
 
@@ -4396,7 +4046,7 @@ M.EmailChannelResponse = {
             type = "string",
         },
         MessagesPerSecond = {
-            type = "number",
+            type = "integer",
         },
         Platform = {
             type = "string",
@@ -4411,7 +4061,7 @@ M.EmailChannelResponse = {
             type = "string",
         },
         Version = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4419,13 +4069,10 @@ M.EmailChannelResponse = {
 M.DeleteEmailChannelOutput = {
     type = "structure",
     members = {
-        EmailChannelResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        EmailChannelResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.EmailChannelResponse }),
     },
 }
 
@@ -4463,13 +4110,10 @@ M.MessageBody = {
 M.DeleteEmailTemplateOutput = {
     type = "structure",
     members = {
-        MessageBody = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        MessageBody = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.MessageBody }),
     },
 }
 
@@ -4533,10 +4177,10 @@ M.EndpointLocation = {
             type = "string",
         },
         Latitude = {
-            type = "number",
+            type = "double",
         },
         Longitude = {
-            type = "number",
+            type = "double",
         },
         PostalCode = {
             type = "string",
@@ -4552,8 +4196,8 @@ M.EndpointUser = {
     members = {
         UserAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         UserId = {
             type = "string",
@@ -4572,8 +4216,8 @@ M.EndpointResponse = {
         },
         Attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         ChannelType = {
             type = "string",
@@ -4584,9 +4228,7 @@ M.EndpointResponse = {
         CreationDate = {
             type = "string",
         },
-        Demographic = {
-            type = "structure",
-        },
+        Demographic = M.EndpointDemographic,
         EffectiveDate = {
             type = "string",
         },
@@ -4596,13 +4238,11 @@ M.EndpointResponse = {
         Id = {
             type = "string",
         },
-        Location = {
-            type = "structure",
-        },
+        Location = M.EndpointLocation,
         Metrics = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "double" },
         },
         OptOut = {
             type = "string",
@@ -4610,22 +4250,17 @@ M.EndpointResponse = {
         RequestId = {
             type = "string",
         },
-        User = {
-            type = "structure",
-        },
+        User = M.EndpointUser,
     },
 }
 
 M.DeleteEndpointOutput = {
     type = "structure",
     members = {
-        EndpointResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        EndpointResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.EndpointResponse }),
     },
 }
 
@@ -4678,13 +4313,10 @@ M.EventStream = {
 M.DeleteEventStreamOutput = {
     type = "structure",
     members = {
-        EventStream = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        EventStream = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.EventStream }),
     },
 }
 
@@ -4744,7 +4376,7 @@ M.GCMChannelResponse = {
             },
         },
         Version = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4752,13 +4384,10 @@ M.GCMChannelResponse = {
 M.DeleteGcmChannelOutput = {
     type = "structure",
     members = {
-        GCMChannelResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        GCMChannelResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.GCMChannelResponse }),
     },
 }
 
@@ -4784,13 +4413,10 @@ M.DeleteInAppTemplateInput = {
 M.DeleteInAppTemplateOutput = {
     type = "structure",
     members = {
-        MessageBody = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        MessageBody = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.MessageBody }),
     },
 }
 
@@ -4817,13 +4443,10 @@ M.DeleteJourneyInput = {
 M.DeleteJourneyOutput = {
     type = "structure",
     members = {
-        JourneyResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        JourneyResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.JourneyResponse }),
     },
 }
 
@@ -4849,13 +4472,10 @@ M.DeletePushTemplateInput = {
 M.DeletePushTemplateOutput = {
     type = "structure",
     members = {
-        MessageBody = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        MessageBody = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.MessageBody }),
     },
 }
 
@@ -4875,13 +4495,10 @@ M.DeleteRecommenderConfigurationInput = {
 M.DeleteRecommenderConfigurationOutput = {
     type = "structure",
     members = {
-        RecommenderConfigurationResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        RecommenderConfigurationResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.RecommenderConfigurationResponse }),
     },
 }
 
@@ -4908,13 +4525,10 @@ M.DeleteSegmentInput = {
 M.DeleteSegmentOutput = {
     type = "structure",
     members = {
-        SegmentResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        SegmentResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.SegmentResponse }),
     },
 }
 
@@ -4965,7 +4579,7 @@ M.SMSChannelResponse = {
             },
         },
         PromotionalMessagesPerSecond = {
-            type = "number",
+            type = "integer",
         },
         SenderId = {
             type = "string",
@@ -4974,10 +4588,10 @@ M.SMSChannelResponse = {
             type = "string",
         },
         TransactionalMessagesPerSecond = {
-            type = "number",
+            type = "integer",
         },
         Version = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4985,13 +4599,10 @@ M.SMSChannelResponse = {
 M.DeleteSmsChannelOutput = {
     type = "structure",
     members = {
-        SMSChannelResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        SMSChannelResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.SMSChannelResponse }),
     },
 }
 
@@ -5017,13 +4628,10 @@ M.DeleteSmsTemplateInput = {
 M.DeleteSmsTemplateOutput = {
     type = "structure",
     members = {
-        MessageBody = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        MessageBody = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.MessageBody }),
     },
 }
 
@@ -5052,7 +4660,7 @@ M.EndpointsResponse = {
     members = {
         Item = {
             type = "list",
-            member_type = "structure",
+            member = M.EndpointResponse,
             traits = {
                 required = true,
             },
@@ -5063,13 +4671,10 @@ M.EndpointsResponse = {
 M.DeleteUserEndpointsOutput = {
     type = "structure",
     members = {
-        EndpointsResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        EndpointsResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.EndpointsResponse }),
     },
 }
 
@@ -5120,7 +4725,7 @@ M.VoiceChannelResponse = {
             },
         },
         Version = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5128,13 +4733,10 @@ M.VoiceChannelResponse = {
 M.DeleteVoiceChannelOutput = {
     type = "structure",
     members = {
-        VoiceChannelResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        VoiceChannelResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.VoiceChannelResponse }),
     },
 }
 
@@ -5160,13 +4762,10 @@ M.DeleteVoiceTemplateInput = {
 M.DeleteVoiceTemplateOutput = {
     type = "structure",
     members = {
-        MessageBody = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        MessageBody = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.MessageBody }),
     },
 }
 
@@ -5204,18 +4803,12 @@ M.SimpleEmailPart = {
 M.SimpleEmail = {
     type = "structure",
     members = {
-        HtmlPart = {
-            type = "structure",
-        },
-        Subject = {
-            type = "structure",
-        },
-        TextPart = {
-            type = "structure",
-        },
+        HtmlPart = M.SimpleEmailPart,
+        Subject = M.SimpleEmailPart,
+        TextPart = M.SimpleEmailPart,
         Headers = {
             type = "list",
-            member_type = "structure",
+            member = M.MessageHeader,
         },
     },
 }
@@ -5232,20 +4825,16 @@ M.EmailMessage = {
         FromAddress = {
             type = "string",
         },
-        RawEmail = {
-            type = "structure",
-        },
+        RawEmail = M.RawEmail,
         ReplyToAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        SimpleEmail = {
-            type = "structure",
-        },
+        SimpleEmail = M.SimpleEmail,
         Substitutions = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
     },
 }
@@ -5264,8 +4853,8 @@ M.GCMMessage = {
         },
         Data = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         IconReference = {
             type = "string",
@@ -5299,11 +4888,11 @@ M.GCMMessage = {
         },
         Substitutions = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         TimeToLive = {
-            type = "number",
+            type = "integer",
         },
         Title = {
             type = "string",
@@ -5337,8 +4926,8 @@ M.SMSMessage = {
         },
         Substitutions = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         EntityId = {
             type = "string",
@@ -5363,8 +4952,8 @@ M.VoiceMessage = {
         },
         Substitutions = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         VoiceId = {
             type = "string",
@@ -5375,33 +4964,15 @@ M.VoiceMessage = {
 M.DirectMessageConfiguration = {
     type = "structure",
     members = {
-        ADMMessage = {
-            type = "structure",
-        },
-        APNSMessage = {
-            type = "structure",
-        },
-        BaiduMessage = {
-            type = "structure",
-        },
-        DefaultMessage = {
-            type = "structure",
-        },
-        DefaultPushNotificationMessage = {
-            type = "structure",
-        },
-        EmailMessage = {
-            type = "structure",
-        },
-        GCMMessage = {
-            type = "structure",
-        },
-        SMSMessage = {
-            type = "structure",
-        },
-        VoiceMessage = {
-            type = "structure",
-        },
+        ADMMessage = M.ADMMessage,
+        APNSMessage = M.APNSMessage,
+        BaiduMessage = M.BaiduMessage,
+        DefaultMessage = M.DefaultMessage,
+        DefaultPushNotificationMessage = M.DefaultPushNotificationMessage,
+        EmailMessage = M.EmailMessage,
+        GCMMessage = M.GCMMessage,
+        SMSMessage = M.SMSMessage,
+        VoiceMessage = M.VoiceMessage,
     },
 }
 
@@ -5475,12 +5046,12 @@ M.EmailTemplateResponse = {
         },
         Headers = {
             type = "list",
-            member_type = "structure",
+            member = M.MessageHeader,
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -5517,15 +5088,13 @@ M.EndpointBatchItem = {
         },
         Attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         ChannelType = {
             type = "string",
         },
-        Demographic = {
-            type = "structure",
-        },
+        Demographic = M.EndpointDemographic,
         EffectiveDate = {
             type = "string",
         },
@@ -5535,13 +5104,11 @@ M.EndpointBatchItem = {
         Id = {
             type = "string",
         },
-        Location = {
-            type = "structure",
-        },
+        Location = M.EndpointLocation,
         Metrics = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "double" },
         },
         OptOut = {
             type = "string",
@@ -5549,9 +5116,7 @@ M.EndpointBatchItem = {
         RequestId = {
             type = "string",
         },
-        User = {
-            type = "structure",
-        },
+        User = M.EndpointUser,
     },
 }
 
@@ -5560,7 +5125,7 @@ M.EndpointBatchRequest = {
     members = {
         Item = {
             type = "list",
-            member_type = "structure",
+            member = M.EndpointBatchItem,
             traits = {
                 required = true,
             },
@@ -5575,7 +5140,7 @@ M.EndpointItemResponse = {
             type = "string",
         },
         StatusCode = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5596,7 +5161,7 @@ M.EndpointMessageResult = {
             type = "string",
         },
         StatusCode = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -5618,28 +5183,24 @@ M.EndpointRequest = {
         },
         Attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         ChannelType = {
             type = "string",
         },
-        Demographic = {
-            type = "structure",
-        },
+        Demographic = M.EndpointDemographic,
         EffectiveDate = {
             type = "string",
         },
         EndpointStatus = {
             type = "string",
         },
-        Location = {
-            type = "structure",
-        },
+        Location = M.EndpointLocation,
         Metrics = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "double" },
         },
         OptOut = {
             type = "string",
@@ -5647,9 +5208,7 @@ M.EndpointRequest = {
         RequestId = {
             type = "string",
         },
-        User = {
-            type = "structure",
-        },
+        User = M.EndpointUser,
     },
 }
 
@@ -5661,16 +5220,16 @@ M.EndpointSendConfiguration = {
         },
         Context = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         RawContent = {
             type = "string",
         },
         Substitutions = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         TitleOverride = {
             type = "string",
@@ -5682,7 +5241,7 @@ M.Session = {
     type = "structure",
     members = {
         Duration = {
-            type = "number",
+            type = "integer",
         },
         Id = {
             type = "string",
@@ -5716,8 +5275,8 @@ M.Event = {
         },
         Attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ClientSdkVersion = {
             type = "string",
@@ -5730,15 +5289,13 @@ M.Event = {
         },
         Metrics = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "double" },
         },
         SdkName = {
             type = "string",
         },
-        Session = {
-            type = "structure",
-        },
+        Session = M.Session,
         Timestamp = {
             type = "string",
             traits = {
@@ -5755,7 +5312,7 @@ M.EventItemResponse = {
             type = "string",
         },
         StatusCode = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5768,28 +5325,24 @@ M.PublicEndpoint = {
         },
         Attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         ChannelType = {
             type = "string",
         },
-        Demographic = {
-            type = "structure",
-        },
+        Demographic = M.EndpointDemographic,
         EffectiveDate = {
             type = "string",
         },
         EndpointStatus = {
             type = "string",
         },
-        Location = {
-            type = "structure",
-        },
+        Location = M.EndpointLocation,
         Metrics = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "double" },
         },
         OptOut = {
             type = "string",
@@ -5797,25 +5350,20 @@ M.PublicEndpoint = {
         RequestId = {
             type = "string",
         },
-        User = {
-            type = "structure",
-        },
+        User = M.EndpointUser,
     },
 }
 
 M.EventsBatch = {
     type = "structure",
     members = {
-        Endpoint = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Endpoint = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PublicEndpoint }),
         Events = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.Event,
             traits = {
                 required = true,
             },
@@ -5828,8 +5376,8 @@ M.EventsRequest = {
     members = {
         BatchItem = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.EventsBatch,
             traits = {
                 required = true,
             },
@@ -5840,13 +5388,11 @@ M.EventsRequest = {
 M.ItemResponse = {
     type = "structure",
     members = {
-        EndpointItemResponse = {
-            type = "structure",
-        },
+        EndpointItemResponse = M.EndpointItemResponse,
         EventsItemResponse = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.EventItemResponse,
         },
     },
 }
@@ -5856,8 +5402,8 @@ M.EventsResponse = {
     members = {
         Results = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ItemResponse,
         },
     },
 }
@@ -5867,7 +5413,7 @@ M.ExportJobsResponse = {
     members = {
         Item = {
             type = "list",
-            member_type = "structure",
+            member = M.ExportJobResponse,
             traits = {
                 required = true,
             },
@@ -5912,13 +5458,10 @@ M.GetAdmChannelInput = {
 M.GetAdmChannelOutput = {
     type = "structure",
     members = {
-        ADMChannelResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        ADMChannelResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.ADMChannelResponse }),
     },
 }
 
@@ -5938,13 +5481,10 @@ M.GetApnsChannelInput = {
 M.GetApnsChannelOutput = {
     type = "structure",
     members = {
-        APNSChannelResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        APNSChannelResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.APNSChannelResponse }),
     },
 }
 
@@ -5964,13 +5504,10 @@ M.GetApnsSandboxChannelInput = {
 M.GetApnsSandboxChannelOutput = {
     type = "structure",
     members = {
-        APNSSandboxChannelResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        APNSSandboxChannelResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.APNSSandboxChannelResponse }),
     },
 }
 
@@ -5990,13 +5527,10 @@ M.GetApnsVoipChannelInput = {
 M.GetApnsVoipChannelOutput = {
     type = "structure",
     members = {
-        APNSVoipChannelResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        APNSVoipChannelResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.APNSVoipChannelResponse }),
     },
 }
 
@@ -6016,13 +5550,10 @@ M.GetApnsVoipSandboxChannelInput = {
 M.GetApnsVoipSandboxChannelOutput = {
     type = "structure",
     members = {
-        APNSVoipSandboxChannelResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        APNSVoipSandboxChannelResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.APNSVoipSandboxChannelResponse }),
     },
 }
 
@@ -6042,13 +5573,10 @@ M.GetAppInput = {
 M.GetAppOutput = {
     type = "structure",
     members = {
-        ApplicationResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        ApplicationResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.ApplicationResponse }),
     },
 }
 
@@ -6099,13 +5627,10 @@ M.GetApplicationDateRangeKpiInput = {
 M.GetApplicationDateRangeKpiOutput = {
     type = "structure",
     members = {
-        ApplicationDateRangeKpiResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        ApplicationDateRangeKpiResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.ApplicationDateRangeKpiResponse }),
     },
 }
 
@@ -6125,13 +5650,10 @@ M.GetApplicationSettingsInput = {
 M.GetApplicationSettingsOutput = {
     type = "structure",
     members = {
-        ApplicationSettingsResource = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        ApplicationSettingsResource = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.ApplicationSettingsResource }),
     },
 }
 
@@ -6156,13 +5678,10 @@ M.GetAppsInput = {
 M.GetAppsOutput = {
     type = "structure",
     members = {
-        ApplicationsResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        ApplicationsResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.ApplicationsResponse }),
     },
 }
 
@@ -6182,13 +5701,10 @@ M.GetBaiduChannelInput = {
 M.GetBaiduChannelOutput = {
     type = "structure",
     members = {
-        BaiduChannelResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        BaiduChannelResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.BaiduChannelResponse }),
     },
 }
 
@@ -6215,13 +5731,10 @@ M.GetCampaignInput = {
 M.GetCampaignOutput = {
     type = "structure",
     members = {
-        CampaignResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        CampaignResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.CampaignResponse }),
     },
 }
 
@@ -6260,13 +5773,10 @@ M.GetCampaignActivitiesInput = {
 M.GetCampaignActivitiesOutput = {
     type = "structure",
     members = {
-        ActivitiesResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        ActivitiesResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.ActivitiesResponse }),
     },
 }
 
@@ -6324,13 +5834,10 @@ M.GetCampaignDateRangeKpiInput = {
 M.GetCampaignDateRangeKpiOutput = {
     type = "structure",
     members = {
-        CampaignDateRangeKpiResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        CampaignDateRangeKpiResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.CampaignDateRangeKpiResponse }),
     },
 }
 
@@ -6362,13 +5869,10 @@ M.GetCampaignsInput = {
 M.GetCampaignsOutput = {
     type = "structure",
     members = {
-        CampaignsResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        CampaignsResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.CampaignsResponse }),
     },
 }
 
@@ -6402,13 +5906,10 @@ M.GetCampaignVersionInput = {
 M.GetCampaignVersionOutput = {
     type = "structure",
     members = {
-        CampaignResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        CampaignResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.CampaignResponse }),
     },
 }
 
@@ -6447,13 +5948,10 @@ M.GetCampaignVersionsInput = {
 M.GetCampaignVersionsOutput = {
     type = "structure",
     members = {
-        CampaignsResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        CampaignsResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.CampaignsResponse }),
     },
 }
 
@@ -6473,13 +5971,10 @@ M.GetChannelsInput = {
 M.GetChannelsOutput = {
     type = "structure",
     members = {
-        ChannelsResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        ChannelsResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.ChannelsResponse }),
     },
 }
 
@@ -6499,13 +5994,10 @@ M.GetEmailChannelInput = {
 M.GetEmailChannelOutput = {
     type = "structure",
     members = {
-        EmailChannelResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        EmailChannelResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.EmailChannelResponse }),
     },
 }
 
@@ -6531,13 +6023,10 @@ M.GetEmailTemplateInput = {
 M.GetEmailTemplateOutput = {
     type = "structure",
     members = {
-        EmailTemplateResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        EmailTemplateResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.EmailTemplateResponse }),
     },
 }
 
@@ -6564,13 +6053,10 @@ M.GetEndpointInput = {
 M.GetEndpointOutput = {
     type = "structure",
     members = {
-        EndpointResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        EndpointResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.EndpointResponse }),
     },
 }
 
@@ -6590,13 +6076,10 @@ M.GetEventStreamInput = {
 M.GetEventStreamOutput = {
     type = "structure",
     members = {
-        EventStream = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        EventStream = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.EventStream }),
     },
 }
 
@@ -6623,13 +6106,10 @@ M.GetExportJobInput = {
 M.GetExportJobOutput = {
     type = "structure",
     members = {
-        ExportJobResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        ExportJobResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.ExportJobResponse }),
     },
 }
 
@@ -6661,13 +6141,10 @@ M.GetExportJobsInput = {
 M.GetExportJobsOutput = {
     type = "structure",
     members = {
-        ExportJobsResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        ExportJobsResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.ExportJobsResponse }),
     },
 }
 
@@ -6687,13 +6164,10 @@ M.GetGcmChannelInput = {
 M.GetGcmChannelOutput = {
     type = "structure",
     members = {
-        GCMChannelResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        GCMChannelResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.GCMChannelResponse }),
     },
 }
 
@@ -6720,13 +6194,10 @@ M.GetImportJobInput = {
 M.GetImportJobOutput = {
     type = "structure",
     members = {
-        ImportJobResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        ImportJobResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.ImportJobResponse }),
     },
 }
 
@@ -6760,7 +6231,7 @@ M.ImportJobsResponse = {
     members = {
         Item = {
             type = "list",
-            member_type = "structure",
+            member = M.ImportJobResponse,
             traits = {
                 required = true,
             },
@@ -6774,13 +6245,10 @@ M.ImportJobsResponse = {
 M.GetImportJobsOutput = {
     type = "structure",
     members = {
-        ImportJobsResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        ImportJobsResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.ImportJobsResponse }),
     },
 }
 
@@ -6809,12 +6277,12 @@ M.InAppMessage = {
     members = {
         Content = {
             type = "list",
-            member_type = "structure",
+            member = M.InAppMessageContent,
         },
         CustomConfig = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Layout = {
             type = "string",
@@ -6828,12 +6296,8 @@ M.InAppCampaignSchedule = {
         EndDate = {
             type = "string",
         },
-        EventFilter = {
-            type = "structure",
-        },
-        QuietTime = {
-            type = "structure",
-        },
+        EventFilter = M.CampaignEventFilter,
+        QuietTime = M.QuietTime,
     },
 }
 
@@ -6844,22 +6308,18 @@ M.InAppMessageCampaign = {
             type = "string",
         },
         DailyCap = {
-            type = "number",
+            type = "integer",
         },
-        InAppMessage = {
-            type = "structure",
-        },
+        InAppMessage = M.InAppMessage,
         Priority = {
-            type = "number",
+            type = "integer",
         },
-        Schedule = {
-            type = "structure",
-        },
+        Schedule = M.InAppCampaignSchedule,
         SessionCap = {
-            type = "number",
+            type = "integer",
         },
         TotalCap = {
-            type = "number",
+            type = "integer",
         },
         TreatmentId = {
             type = "string",
@@ -6872,7 +6332,7 @@ M.InAppMessagesResponse = {
     members = {
         InAppMessageCampaigns = {
             type = "list",
-            member_type = "structure",
+            member = M.InAppMessageCampaign,
         },
     },
 }
@@ -6880,13 +6340,10 @@ M.InAppMessagesResponse = {
 M.GetInAppMessagesOutput = {
     type = "structure",
     members = {
-        InAppMessagesResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        InAppMessagesResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.InAppMessagesResponse }),
     },
 }
 
@@ -6917,7 +6374,7 @@ M.InAppTemplateResponse = {
         },
         Content = {
             type = "list",
-            member_type = "structure",
+            member = M.InAppMessageContent,
         },
         CreationDate = {
             type = "string",
@@ -6927,8 +6384,8 @@ M.InAppTemplateResponse = {
         },
         CustomConfig = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         LastModifiedDate = {
             type = "string",
@@ -6941,8 +6398,8 @@ M.InAppTemplateResponse = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -6971,13 +6428,10 @@ M.InAppTemplateResponse = {
 M.GetInAppTemplateOutput = {
     type = "structure",
     members = {
-        InAppTemplateResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        InAppTemplateResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.InAppTemplateResponse }),
     },
 }
 
@@ -7004,13 +6458,10 @@ M.GetJourneyInput = {
 M.GetJourneyOutput = {
     type = "structure",
     members = {
-        JourneyResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        JourneyResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.JourneyResponse }),
     },
 }
 
@@ -7092,12 +6543,9 @@ M.JourneyDateRangeKpiResponse = {
                 required = true,
             },
         },
-        KpiResult = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        KpiResult = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BaseKpiResult }),
         NextToken = {
             type = "string",
         },
@@ -7113,13 +6561,10 @@ M.JourneyDateRangeKpiResponse = {
 M.GetJourneyDateRangeKpiOutput = {
     type = "structure",
     members = {
-        JourneyDateRangeKpiResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        JourneyDateRangeKpiResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.JourneyDateRangeKpiResponse }),
     },
 }
 
@@ -7197,8 +6642,8 @@ M.JourneyExecutionActivityMetricsResponse = {
         },
         Metrics = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -7209,13 +6654,10 @@ M.JourneyExecutionActivityMetricsResponse = {
 M.GetJourneyExecutionActivityMetricsOutput = {
     type = "structure",
     members = {
-        JourneyExecutionActivityMetricsResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        JourneyExecutionActivityMetricsResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.JourneyExecutionActivityMetricsResponse }),
     },
 }
 
@@ -7274,8 +6716,8 @@ M.JourneyExecutionMetricsResponse = {
         },
         Metrics = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -7286,13 +6728,10 @@ M.JourneyExecutionMetricsResponse = {
 M.GetJourneyExecutionMetricsOutput = {
     type = "structure",
     members = {
-        JourneyExecutionMetricsResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        JourneyExecutionMetricsResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.JourneyExecutionMetricsResponse }),
     },
 }
 
@@ -7377,8 +6816,8 @@ M.JourneyRunExecutionActivityMetricsResponse = {
         },
         Metrics = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -7395,13 +6834,10 @@ M.JourneyRunExecutionActivityMetricsResponse = {
 M.GetJourneyRunExecutionActivityMetricsOutput = {
     type = "structure",
     members = {
-        JourneyRunExecutionActivityMetricsResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        JourneyRunExecutionActivityMetricsResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.JourneyRunExecutionActivityMetricsResponse }),
     },
 }
 
@@ -7467,8 +6903,8 @@ M.JourneyRunExecutionMetricsResponse = {
         },
         Metrics = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -7485,13 +6921,10 @@ M.JourneyRunExecutionMetricsResponse = {
 M.GetJourneyRunExecutionMetricsOutput = {
     type = "structure",
     members = {
-        JourneyRunExecutionMetricsResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        JourneyRunExecutionMetricsResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.JourneyRunExecutionMetricsResponse }),
     },
 }
 
@@ -7569,7 +7002,7 @@ M.JourneyRunsResponse = {
     members = {
         Item = {
             type = "list",
-            member_type = "structure",
+            member = M.JourneyRunResponse,
             traits = {
                 required = true,
             },
@@ -7583,13 +7016,10 @@ M.JourneyRunsResponse = {
 M.GetJourneyRunsOutput = {
     type = "structure",
     members = {
-        JourneyRunsResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        JourneyRunsResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.JourneyRunsResponse }),
     },
 }
 
@@ -7615,33 +7045,23 @@ M.GetPushTemplateInput = {
 M.PushNotificationTemplateResponse = {
     type = "structure",
     members = {
-        ADM = {
-            type = "structure",
-        },
-        APNS = {
-            type = "structure",
-        },
+        ADM = M.AndroidPushNotificationTemplate,
+        APNS = M.APNSPushNotificationTemplate,
         Arn = {
             type = "string",
         },
-        Baidu = {
-            type = "structure",
-        },
+        Baidu = M.AndroidPushNotificationTemplate,
         CreationDate = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        Default = {
-            type = "structure",
-        },
+        Default = M.DefaultPushNotificationTemplate,
         DefaultSubstitutions = {
             type = "string",
         },
-        GCM = {
-            type = "structure",
-        },
+        GCM = M.AndroidPushNotificationTemplate,
         LastModifiedDate = {
             type = "string",
             traits = {
@@ -7653,8 +7073,8 @@ M.PushNotificationTemplateResponse = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -7683,13 +7103,10 @@ M.PushNotificationTemplateResponse = {
 M.GetPushTemplateOutput = {
     type = "structure",
     members = {
-        PushNotificationTemplateResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        PushNotificationTemplateResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.PushNotificationTemplateResponse }),
     },
 }
 
@@ -7709,13 +7126,10 @@ M.GetRecommenderConfigurationInput = {
 M.GetRecommenderConfigurationOutput = {
     type = "structure",
     members = {
-        RecommenderConfigurationResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        RecommenderConfigurationResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.RecommenderConfigurationResponse }),
     },
 }
 
@@ -7742,7 +7156,7 @@ M.ListRecommenderConfigurationsResponse = {
     members = {
         Item = {
             type = "list",
-            member_type = "structure",
+            member = M.RecommenderConfigurationResponse,
             traits = {
                 required = true,
             },
@@ -7756,13 +7170,10 @@ M.ListRecommenderConfigurationsResponse = {
 M.GetRecommenderConfigurationsOutput = {
     type = "structure",
     members = {
-        ListRecommenderConfigurationsResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        ListRecommenderConfigurationsResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.ListRecommenderConfigurationsResponse }),
     },
 }
 
@@ -7789,13 +7200,10 @@ M.GetSegmentInput = {
 M.GetSegmentOutput = {
     type = "structure",
     members = {
-        SegmentResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        SegmentResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.SegmentResponse }),
     },
 }
 
@@ -7834,13 +7242,10 @@ M.GetSegmentExportJobsInput = {
 M.GetSegmentExportJobsOutput = {
     type = "structure",
     members = {
-        ExportJobsResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        ExportJobsResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.ExportJobsResponse }),
     },
 }
 
@@ -7879,13 +7284,10 @@ M.GetSegmentImportJobsInput = {
 M.GetSegmentImportJobsOutput = {
     type = "structure",
     members = {
-        ImportJobsResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        ImportJobsResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.ImportJobsResponse }),
     },
 }
 
@@ -7919,7 +7321,7 @@ M.SegmentsResponse = {
     members = {
         Item = {
             type = "list",
-            member_type = "structure",
+            member = M.SegmentResponse,
             traits = {
                 required = true,
             },
@@ -7933,13 +7335,10 @@ M.SegmentsResponse = {
 M.GetSegmentsOutput = {
     type = "structure",
     members = {
-        SegmentsResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        SegmentsResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.SegmentsResponse }),
     },
 }
 
@@ -7973,13 +7372,10 @@ M.GetSegmentVersionInput = {
 M.GetSegmentVersionOutput = {
     type = "structure",
     members = {
-        SegmentResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        SegmentResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.SegmentResponse }),
     },
 }
 
@@ -8018,13 +7414,10 @@ M.GetSegmentVersionsInput = {
 M.GetSegmentVersionsOutput = {
     type = "structure",
     members = {
-        SegmentsResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        SegmentsResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.SegmentsResponse }),
     },
 }
 
@@ -8044,13 +7437,10 @@ M.GetSmsChannelInput = {
 M.GetSmsChannelOutput = {
     type = "structure",
     members = {
-        SMSChannelResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        SMSChannelResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.SMSChannelResponse }),
     },
 }
 
@@ -8102,8 +7492,8 @@ M.SMSTemplateResponse = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -8132,13 +7522,10 @@ M.SMSTemplateResponse = {
 M.GetSmsTemplateOutput = {
     type = "structure",
     members = {
-        SMSTemplateResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        SMSTemplateResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.SMSTemplateResponse }),
     },
 }
 
@@ -8165,13 +7552,10 @@ M.GetUserEndpointsInput = {
 M.GetUserEndpointsOutput = {
     type = "structure",
     members = {
-        EndpointsResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        EndpointsResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.EndpointsResponse }),
     },
 }
 
@@ -8191,13 +7575,10 @@ M.GetVoiceChannelInput = {
 M.GetVoiceChannelOutput = {
     type = "structure",
     members = {
-        VoiceChannelResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        VoiceChannelResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.VoiceChannelResponse }),
     },
 }
 
@@ -8249,8 +7630,8 @@ M.VoiceTemplateResponse = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -8282,13 +7663,10 @@ M.VoiceTemplateResponse = {
 M.GetVoiceTemplateOutput = {
     type = "structure",
     members = {
-        VoiceTemplateResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        VoiceTemplateResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.VoiceTemplateResponse }),
     },
 }
 
@@ -8297,7 +7675,7 @@ M.JourneysResponse = {
     members = {
         Item = {
             type = "list",
-            member_type = "structure",
+            member = M.JourneyResponse,
             traits = {
                 required = true,
             },
@@ -8345,13 +7723,10 @@ M.ListJourneysInput = {
 M.ListJourneysOutput = {
     type = "structure",
     members = {
-        JourneysResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        JourneysResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.JourneysResponse }),
     },
 }
 
@@ -8378,8 +7753,8 @@ M.TemplateResponse = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -8462,8 +7837,8 @@ M.TagsModel = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
                 required = true,
@@ -8475,13 +7850,10 @@ M.TagsModel = {
 M.ListTagsForResourceOutput = {
     type = "structure",
     members = {
-        TagsModel = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        TagsModel = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.TagsModel }),
     },
 }
 
@@ -8520,7 +7892,7 @@ M.TemplatesResponse = {
     members = {
         Item = {
             type = "list",
-            member_type = "structure",
+            member = M.TemplateResponse,
             traits = {
                 required = true,
             },
@@ -8534,13 +7906,10 @@ M.TemplatesResponse = {
 M.ListTemplatesOutput = {
     type = "structure",
     members = {
-        TemplatesResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        TemplatesResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.TemplatesResponse }),
     },
 }
 
@@ -8581,7 +7950,7 @@ M.TemplateVersionsResponse = {
     members = {
         Item = {
             type = "list",
-            member_type = "structure",
+            member = M.TemplateVersionResponse,
             traits = {
                 required = true,
             },
@@ -8601,13 +7970,10 @@ M.TemplateVersionsResponse = {
 M.ListTemplateVersionsOutput = {
     type = "structure",
     members = {
-        TemplateVersionsResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        TemplateVersionsResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.TemplateVersionsResponse }),
     },
 }
 
@@ -8624,7 +7990,7 @@ M.MessageResult = {
             type = "string",
         },
         StatusCode = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -8643,28 +8009,23 @@ M.MessageRequest = {
     members = {
         Addresses = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.AddressConfiguration,
         },
         Context = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Endpoints = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.EndpointSendConfiguration,
         },
-        MessageConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        TemplateConfiguration = {
-            type = "structure",
-        },
+        MessageConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DirectMessageConfiguration }),
+        TemplateConfiguration = M.TemplateConfiguration,
         TraceId = {
             type = "string",
         },
@@ -8682,16 +8043,16 @@ M.MessageResponse = {
         },
         EndpointResult = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.EndpointMessageResult,
         },
         RequestId = {
             type = "string",
         },
         Result = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.MessageResult,
         },
     },
 }
@@ -8745,7 +8106,7 @@ M.NumberValidateResponse = {
             type = "string",
         },
         PhoneTypeCode = {
-            type = "number",
+            type = "integer",
         },
         Timezone = {
             type = "string",
@@ -8759,26 +8120,20 @@ M.NumberValidateResponse = {
 M.PhoneNumberValidateInput = {
     type = "structure",
     members = {
-        NumberValidateRequest = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        NumberValidateRequest = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.NumberValidateRequest }),
     },
 }
 
 M.PhoneNumberValidateOutput = {
     type = "structure",
     members = {
-        NumberValidateResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        NumberValidateResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.NumberValidateResponse }),
     },
 }
 
@@ -8792,26 +8147,20 @@ M.PutEventsInput = {
                 required = true,
             },
         },
-        EventsRequest = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        EventsRequest = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.EventsRequest }),
     },
 }
 
 M.PutEventsOutput = {
     type = "structure",
     members = {
-        EventsResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        EventsResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.EventsResponse }),
     },
 }
 
@@ -8843,26 +8192,20 @@ M.PutEventStreamInput = {
                 required = true,
             },
         },
-        WriteEventStream = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        WriteEventStream = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.WriteEventStream }),
     },
 }
 
 M.PutEventStreamOutput = {
     type = "structure",
     members = {
-        EventStream = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        EventStream = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.EventStream }),
     },
 }
 
@@ -8871,7 +8214,7 @@ M.UpdateAttributesRequest = {
     members = {
         Blacklist = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -8893,26 +8236,20 @@ M.RemoveAttributesInput = {
                 required = true,
             },
         },
-        UpdateAttributesRequest = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        UpdateAttributesRequest = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.UpdateAttributesRequest }),
     },
 }
 
 M.RemoveAttributesOutput = {
     type = "structure",
     members = {
-        AttributesResource = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        AttributesResource = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.AttributesResource }),
     },
 }
 
@@ -8926,26 +8263,20 @@ M.SendMessagesInput = {
                 required = true,
             },
         },
-        MessageRequest = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        MessageRequest = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.MessageRequest }),
     },
 }
 
 M.SendMessagesOutput = {
     type = "structure",
     members = {
-        MessageResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        MessageResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.MessageResponse }),
     },
 }
 
@@ -8953,7 +8284,7 @@ M.SendOTPMessageRequestParameters = {
     type = "structure",
     members = {
         AllowedAttempts = {
-            type = "number",
+            type = "integer",
         },
         BrandName = {
             type = "string",
@@ -8968,7 +8299,7 @@ M.SendOTPMessageRequestParameters = {
             },
         },
         CodeLength = {
-            type = "number",
+            type = "integer",
         },
         DestinationIdentity = {
             type = "string",
@@ -8998,7 +8329,7 @@ M.SendOTPMessageRequestParameters = {
             type = "string",
         },
         ValidityPeriod = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -9013,26 +8344,20 @@ M.SendOTPMessageInput = {
                 required = true,
             },
         },
-        SendOTPMessageRequestParameters = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        SendOTPMessageRequestParameters = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.SendOTPMessageRequestParameters }),
     },
 }
 
 M.SendOTPMessageOutput = {
     type = "structure",
     members = {
-        MessageResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        MessageResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.MessageResponse }),
     },
 }
 
@@ -9041,25 +8366,20 @@ M.SendUsersMessageRequest = {
     members = {
         Context = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        MessageConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        TemplateConfiguration = {
-            type = "structure",
-        },
+        MessageConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DirectMessageConfiguration }),
+        TemplateConfiguration = M.TemplateConfiguration,
         TraceId = {
             type = "string",
         },
         Users = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.EndpointSendConfiguration,
             traits = {
                 required = true,
             },
@@ -9077,13 +8397,10 @@ M.SendUsersMessagesInput = {
                 required = true,
             },
         },
-        SendUsersMessageRequest = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        SendUsersMessageRequest = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.SendUsersMessageRequest }),
     },
 }
 
@@ -9101,8 +8418,8 @@ M.SendUsersMessageResponse = {
         },
         Result = {
             type = "map",
-            key_type = "string",
-            value_type = "map",
+            key = { type = "string" },
+            value = { type = "map" },
         },
     },
 }
@@ -9110,13 +8427,10 @@ M.SendUsersMessageResponse = {
 M.SendUsersMessagesOutput = {
     type = "structure",
     members = {
-        SendUsersMessageResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        SendUsersMessageResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.SendUsersMessageResponse }),
     },
 }
 
@@ -9130,13 +8444,10 @@ M.TagResourceInput = {
                 required = true,
             },
         },
-        TagsModel = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        TagsModel = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.TagsModel }),
     },
 }
 
@@ -9156,7 +8467,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -9172,13 +8483,10 @@ M.UntagResourceOutput = {
 M.UpdateAdmChannelInput = {
     type = "structure",
     members = {
-        ADMChannelRequest = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        ADMChannelRequest = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.ADMChannelRequest }),
         ApplicationId = {
             type = "string",
             traits = {
@@ -9192,26 +8500,20 @@ M.UpdateAdmChannelInput = {
 M.UpdateAdmChannelOutput = {
     type = "structure",
     members = {
-        ADMChannelResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        ADMChannelResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.ADMChannelResponse }),
     },
 }
 
 M.UpdateApnsChannelInput = {
     type = "structure",
     members = {
-        APNSChannelRequest = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        APNSChannelRequest = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.APNSChannelRequest }),
         ApplicationId = {
             type = "string",
             traits = {
@@ -9225,26 +8527,20 @@ M.UpdateApnsChannelInput = {
 M.UpdateApnsChannelOutput = {
     type = "structure",
     members = {
-        APNSChannelResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        APNSChannelResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.APNSChannelResponse }),
     },
 }
 
 M.UpdateApnsSandboxChannelInput = {
     type = "structure",
     members = {
-        APNSSandboxChannelRequest = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        APNSSandboxChannelRequest = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.APNSSandboxChannelRequest }),
         ApplicationId = {
             type = "string",
             traits = {
@@ -9258,26 +8554,20 @@ M.UpdateApnsSandboxChannelInput = {
 M.UpdateApnsSandboxChannelOutput = {
     type = "structure",
     members = {
-        APNSSandboxChannelResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        APNSSandboxChannelResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.APNSSandboxChannelResponse }),
     },
 }
 
 M.UpdateApnsVoipChannelInput = {
     type = "structure",
     members = {
-        APNSVoipChannelRequest = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        APNSVoipChannelRequest = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.APNSVoipChannelRequest }),
         ApplicationId = {
             type = "string",
             traits = {
@@ -9291,26 +8581,20 @@ M.UpdateApnsVoipChannelInput = {
 M.UpdateApnsVoipChannelOutput = {
     type = "structure",
     members = {
-        APNSVoipChannelResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        APNSVoipChannelResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.APNSVoipChannelResponse }),
     },
 }
 
 M.UpdateApnsVoipSandboxChannelInput = {
     type = "structure",
     members = {
-        APNSVoipSandboxChannelRequest = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        APNSVoipSandboxChannelRequest = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.APNSVoipSandboxChannelRequest }),
         ApplicationId = {
             type = "string",
             traits = {
@@ -9324,37 +8608,26 @@ M.UpdateApnsVoipSandboxChannelInput = {
 M.UpdateApnsVoipSandboxChannelOutput = {
     type = "structure",
     members = {
-        APNSVoipSandboxChannelResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        APNSVoipSandboxChannelResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.APNSVoipSandboxChannelResponse }),
     },
 }
 
 M.WriteApplicationSettingsRequest = {
     type = "structure",
     members = {
-        CampaignHook = {
-            type = "structure",
-        },
+        CampaignHook = M.CampaignHook,
         CloudWatchMetricsEnabled = {
             type = "boolean",
         },
         EventTaggingEnabled = {
             type = "boolean",
         },
-        Limits = {
-            type = "structure",
-        },
-        QuietTime = {
-            type = "structure",
-        },
-        JourneyLimits = {
-            type = "structure",
-        },
+        Limits = M.CampaignLimits,
+        QuietTime = M.QuietTime,
+        JourneyLimits = M.ApplicationSettingsJourneyLimits,
     },
 }
 
@@ -9368,26 +8641,20 @@ M.UpdateApplicationSettingsInput = {
                 required = true,
             },
         },
-        WriteApplicationSettingsRequest = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        WriteApplicationSettingsRequest = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.WriteApplicationSettingsRequest }),
     },
 }
 
 M.UpdateApplicationSettingsOutput = {
     type = "structure",
     members = {
-        ApplicationSettingsResource = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        ApplicationSettingsResource = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.ApplicationSettingsResource }),
     },
 }
 
@@ -9401,26 +8668,20 @@ M.UpdateBaiduChannelInput = {
                 required = true,
             },
         },
-        BaiduChannelRequest = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        BaiduChannelRequest = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.BaiduChannelRequest }),
     },
 }
 
 M.UpdateBaiduChannelOutput = {
     type = "structure",
     members = {
-        BaiduChannelResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        BaiduChannelResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.BaiduChannelResponse }),
     },
 }
 
@@ -9441,26 +8702,20 @@ M.UpdateCampaignInput = {
                 required = true,
             },
         },
-        WriteCampaignRequest = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        WriteCampaignRequest = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.WriteCampaignRequest }),
     },
 }
 
 M.UpdateCampaignOutput = {
     type = "structure",
     members = {
-        CampaignResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        CampaignResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.CampaignResponse }),
     },
 }
 
@@ -9474,26 +8729,20 @@ M.UpdateEmailChannelInput = {
                 required = true,
             },
         },
-        EmailChannelRequest = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        EmailChannelRequest = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.EmailChannelRequest }),
     },
 }
 
 M.UpdateEmailChannelOutput = {
     type = "structure",
     members = {
-        EmailChannelResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        EmailChannelResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.EmailChannelResponse }),
     },
 }
 
@@ -9506,13 +8755,10 @@ M.UpdateEmailTemplateInput = {
                 http_query = "create-new-version",
             },
         },
-        EmailTemplateRequest = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        EmailTemplateRequest = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.EmailTemplateRequest }),
         TemplateName = {
             type = "string",
             traits = {
@@ -9532,13 +8778,10 @@ M.UpdateEmailTemplateInput = {
 M.UpdateEmailTemplateOutput = {
     type = "structure",
     members = {
-        MessageBody = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        MessageBody = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.MessageBody }),
     },
 }
 
@@ -9559,26 +8802,20 @@ M.UpdateEndpointInput = {
                 required = true,
             },
         },
-        EndpointRequest = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        EndpointRequest = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.EndpointRequest }),
     },
 }
 
 M.UpdateEndpointOutput = {
     type = "structure",
     members = {
-        MessageBody = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        MessageBody = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.MessageBody }),
     },
 }
 
@@ -9592,26 +8829,20 @@ M.UpdateEndpointsBatchInput = {
                 required = true,
             },
         },
-        EndpointBatchRequest = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        EndpointBatchRequest = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.EndpointBatchRequest }),
     },
 }
 
 M.UpdateEndpointsBatchOutput = {
     type = "structure",
     members = {
-        MessageBody = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        MessageBody = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.MessageBody }),
     },
 }
 
@@ -9625,26 +8856,20 @@ M.UpdateGcmChannelInput = {
                 required = true,
             },
         },
-        GCMChannelRequest = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        GCMChannelRequest = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.GCMChannelRequest }),
     },
 }
 
 M.UpdateGcmChannelOutput = {
     type = "structure",
     members = {
-        GCMChannelResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        GCMChannelResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.GCMChannelResponse }),
     },
 }
 
@@ -9657,13 +8882,10 @@ M.UpdateInAppTemplateInput = {
                 http_query = "create-new-version",
             },
         },
-        InAppTemplateRequest = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        InAppTemplateRequest = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.InAppTemplateRequest }),
         TemplateName = {
             type = "string",
             traits = {
@@ -9683,13 +8905,10 @@ M.UpdateInAppTemplateInput = {
 M.UpdateInAppTemplateOutput = {
     type = "structure",
     members = {
-        MessageBody = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        MessageBody = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.MessageBody }),
     },
 }
 
@@ -9710,26 +8929,20 @@ M.UpdateJourneyInput = {
                 required = true,
             },
         },
-        WriteJourneyRequest = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        WriteJourneyRequest = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.WriteJourneyRequest }),
     },
 }
 
 M.UpdateJourneyOutput = {
     type = "structure",
     members = {
-        JourneyResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        JourneyResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.JourneyResponse }),
     },
 }
 
@@ -9750,26 +8963,20 @@ M.UpdateJourneyStateInput = {
                 required = true,
             },
         },
-        JourneyStateRequest = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        JourneyStateRequest = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.JourneyStateRequest }),
     },
 }
 
 M.UpdateJourneyStateOutput = {
     type = "structure",
     members = {
-        JourneyResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        JourneyResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.JourneyResponse }),
     },
 }
 
@@ -9782,13 +8989,10 @@ M.UpdatePushTemplateInput = {
                 http_query = "create-new-version",
             },
         },
-        PushNotificationTemplateRequest = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        PushNotificationTemplateRequest = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.PushNotificationTemplateRequest }),
         TemplateName = {
             type = "string",
             traits = {
@@ -9808,13 +9012,10 @@ M.UpdatePushTemplateInput = {
 M.UpdatePushTemplateOutput = {
     type = "structure",
     members = {
-        MessageBody = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        MessageBody = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.MessageBody }),
     },
 }
 
@@ -9823,8 +9024,8 @@ M.UpdateRecommenderConfigurationShape = {
     members = {
         Attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Description = {
             type = "string",
@@ -9854,7 +9055,7 @@ M.UpdateRecommenderConfigurationShape = {
             type = "string",
         },
         RecommendationsPerMessage = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -9869,26 +9070,20 @@ M.UpdateRecommenderConfigurationInput = {
                 required = true,
             },
         },
-        UpdateRecommenderConfiguration = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        UpdateRecommenderConfiguration = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.UpdateRecommenderConfigurationShape }),
     },
 }
 
 M.UpdateRecommenderConfigurationOutput = {
     type = "structure",
     members = {
-        RecommenderConfigurationResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        RecommenderConfigurationResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.RecommenderConfigurationResponse }),
     },
 }
 
@@ -9909,26 +9104,20 @@ M.UpdateSegmentInput = {
                 required = true,
             },
         },
-        WriteSegmentRequest = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        WriteSegmentRequest = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.WriteSegmentRequest }),
     },
 }
 
 M.UpdateSegmentOutput = {
     type = "structure",
     members = {
-        SegmentResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        SegmentResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.SegmentResponse }),
     },
 }
 
@@ -9957,26 +9146,20 @@ M.UpdateSmsChannelInput = {
                 required = true,
             },
         },
-        SMSChannelRequest = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        SMSChannelRequest = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.SMSChannelRequest }),
     },
 }
 
 M.UpdateSmsChannelOutput = {
     type = "structure",
     members = {
-        SMSChannelResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        SMSChannelResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.SMSChannelResponse }),
     },
 }
 
@@ -9989,13 +9172,10 @@ M.UpdateSmsTemplateInput = {
                 http_query = "create-new-version",
             },
         },
-        SMSTemplateRequest = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        SMSTemplateRequest = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.SMSTemplateRequest }),
         TemplateName = {
             type = "string",
             traits = {
@@ -10015,13 +9195,10 @@ M.UpdateSmsTemplateInput = {
 M.UpdateSmsTemplateOutput = {
     type = "structure",
     members = {
-        MessageBody = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        MessageBody = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.MessageBody }),
     },
 }
 
@@ -10037,13 +9214,10 @@ M.TemplateActiveVersionRequest = {
 M.UpdateTemplateActiveVersionInput = {
     type = "structure",
     members = {
-        TemplateActiveVersionRequest = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        TemplateActiveVersionRequest = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.TemplateActiveVersionRequest }),
         TemplateName = {
             type = "string",
             traits = {
@@ -10064,13 +9238,10 @@ M.UpdateTemplateActiveVersionInput = {
 M.UpdateTemplateActiveVersionOutput = {
     type = "structure",
     members = {
-        MessageBody = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        MessageBody = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.MessageBody }),
     },
 }
 
@@ -10093,26 +9264,20 @@ M.UpdateVoiceChannelInput = {
                 required = true,
             },
         },
-        VoiceChannelRequest = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        VoiceChannelRequest = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.VoiceChannelRequest }),
     },
 }
 
 M.UpdateVoiceChannelOutput = {
     type = "structure",
     members = {
-        VoiceChannelResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        VoiceChannelResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.VoiceChannelResponse }),
     },
 }
 
@@ -10138,26 +9303,20 @@ M.UpdateVoiceTemplateInput = {
                 http_query = "version",
             },
         },
-        VoiceTemplateRequest = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        VoiceTemplateRequest = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.VoiceTemplateRequest }),
     },
 }
 
 M.UpdateVoiceTemplateOutput = {
     type = "structure",
     members = {
-        MessageBody = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        MessageBody = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.MessageBody }),
     },
 }
 
@@ -10195,13 +9354,10 @@ M.VerifyOTPMessageInput = {
                 required = true,
             },
         },
-        VerifyOTPMessageRequestParameters = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        VerifyOTPMessageRequestParameters = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.VerifyOTPMessageRequestParameters }),
     },
 }
 
@@ -10217,13 +9373,10 @@ M.VerificationResponse = {
 M.VerifyOTPMessageOutput = {
     type = "structure",
     members = {
-        VerificationResponse = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        VerificationResponse = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.VerificationResponse }),
     },
 }
 

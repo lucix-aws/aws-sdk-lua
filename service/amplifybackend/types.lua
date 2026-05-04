@@ -168,12 +168,9 @@ M.CreateBackendInput = {
                 required = true,
             },
         },
-        ResourceConfig = {
-            type = "structure",
-            traits = {
-                json_name = "resourceConfig",
-            },
-        },
+        ResourceConfig = setmetatable({ traits = {
+            json_name = "resourceConfig",
+        } }, { __index = M.ResourceConfig }),
         ResourceName = {
             type = "string",
             traits = {
@@ -248,7 +245,7 @@ M.BackendAPIAppSyncAuthSettings = {
             },
         },
         ExpirationTime = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "expirationTime",
             },
@@ -295,12 +292,9 @@ M.BackendAPIAuthType = {
                 json_name = "mode",
             },
         },
-        Settings = {
-            type = "structure",
-            traits = {
-                json_name = "settings",
-            },
-        },
+        Settings = setmetatable({ traits = {
+            json_name = "settings",
+        } }, { __index = M.BackendAPIAppSyncAuthSettings }),
     },
 }
 
@@ -328,7 +322,7 @@ M.BackendAPIResourceConfig = {
     members = {
         AdditionalAuthTypes = {
             type = "list",
-            member_type = "structure",
+            member = M.BackendAPIAuthType,
             traits = {
                 json_name = "additionalAuthTypes",
             },
@@ -339,18 +333,12 @@ M.BackendAPIResourceConfig = {
                 json_name = "apiName",
             },
         },
-        ConflictResolution = {
-            type = "structure",
-            traits = {
-                json_name = "conflictResolution",
-            },
-        },
-        DefaultAuthType = {
-            type = "structure",
-            traits = {
-                json_name = "defaultAuthType",
-            },
-        },
+        ConflictResolution = setmetatable({ traits = {
+            json_name = "conflictResolution",
+        } }, { __index = M.BackendAPIConflictResolution }),
+        DefaultAuthType = setmetatable({ traits = {
+            json_name = "defaultAuthType",
+        } }, { __index = M.BackendAPIAuthType }),
         Service = {
             type = "string",
             traits = {
@@ -383,13 +371,10 @@ M.CreateBackendAPIInput = {
                 required = true,
             },
         },
-        ResourceConfig = {
-            type = "structure",
-            traits = {
-                json_name = "resourceConfig",
-                required = true,
-            },
-        },
+        ResourceConfig = setmetatable({ traits = {
+            json_name = "resourceConfig",
+            required = true,
+        } }, { __index = M.BackendAPIResourceConfig }),
         ResourceName = {
             type = "string",
             traits = {
@@ -516,18 +501,12 @@ M.CreateBackendAuthForgotPasswordConfig = {
                 required = true,
             },
         },
-        EmailSettings = {
-            type = "structure",
-            traits = {
-                json_name = "emailSettings",
-            },
-        },
-        SmsSettings = {
-            type = "structure",
-            traits = {
-                json_name = "smsSettings",
-            },
-        },
+        EmailSettings = setmetatable({ traits = {
+            json_name = "emailSettings",
+        } }, { __index = M.EmailSettings }),
+        SmsSettings = setmetatable({ traits = {
+            json_name = "smsSettings",
+        } }, { __index = M.SmsSettings }),
     },
 }
 
@@ -547,7 +526,7 @@ M.Settings = {
     members = {
         MfaTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "mfaTypes",
             },
@@ -570,12 +549,9 @@ M.CreateBackendAuthMFAConfig = {
                 required = true,
             },
         },
-        Settings = {
-            type = "structure",
-            traits = {
-                json_name = "settings",
-            },
-        },
+        Settings = setmetatable({ traits = {
+            json_name = "settings",
+        } }, { __index = M.Settings }),
     },
 }
 
@@ -643,18 +619,10 @@ M.BackendAuthAppleProviderConfig = {
 M.SocialProviderSettings = {
     type = "structure",
     members = {
-        Facebook = {
-            type = "structure",
-        },
-        Google = {
-            type = "structure",
-        },
-        LoginWithAmazon = {
-            type = "structure",
-        },
-        SignInWithApple = {
-            type = "structure",
-        },
+        Facebook = M.BackendAuthSocialProviderConfig,
+        Google = M.BackendAuthSocialProviderConfig,
+        LoginWithAmazon = M.BackendAuthSocialProviderConfig,
+        SignInWithApple = M.BackendAuthAppleProviderConfig,
     },
 }
 
@@ -676,7 +644,7 @@ M.CreateBackendAuthOAuthConfig = {
         },
         OAuthScopes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "oAuthScopes",
                 required = true,
@@ -684,7 +652,7 @@ M.CreateBackendAuthOAuthConfig = {
         },
         RedirectSignInURIs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "redirectSignInURIs",
                 required = true,
@@ -692,18 +660,15 @@ M.CreateBackendAuthOAuthConfig = {
         },
         RedirectSignOutURIs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "redirectSignOutURIs",
                 required = true,
             },
         },
-        SocialProviderSettings = {
-            type = "structure",
-            traits = {
-                json_name = "socialProviderSettings",
-            },
-        },
+        SocialProviderSettings = setmetatable({ traits = {
+            json_name = "socialProviderSettings",
+        } }, { __index = M.SocialProviderSettings }),
     },
 }
 
@@ -712,13 +677,13 @@ M.CreateBackendAuthPasswordPolicyConfig = {
     members = {
         AdditionalConstraints = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "additionalConstraints",
             },
         },
         MinimumLength = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "minimumLength",
                 required = true,
@@ -764,51 +729,33 @@ M.CreateBackendAuthVerificationMessageConfig = {
                 required = true,
             },
         },
-        EmailSettings = {
-            type = "structure",
-            traits = {
-                json_name = "emailSettings",
-            },
-        },
-        SmsSettings = {
-            type = "structure",
-            traits = {
-                json_name = "smsSettings",
-            },
-        },
+        EmailSettings = setmetatable({ traits = {
+            json_name = "emailSettings",
+        } }, { __index = M.EmailSettings }),
+        SmsSettings = setmetatable({ traits = {
+            json_name = "smsSettings",
+        } }, { __index = M.SmsSettings }),
     },
 }
 
 M.CreateBackendAuthUserPoolConfig = {
     type = "structure",
     members = {
-        ForgotPassword = {
-            type = "structure",
-            traits = {
-                json_name = "forgotPassword",
-            },
-        },
-        Mfa = {
-            type = "structure",
-            traits = {
-                json_name = "mfa",
-            },
-        },
-        OAuth = {
-            type = "structure",
-            traits = {
-                json_name = "oAuth",
-            },
-        },
-        PasswordPolicy = {
-            type = "structure",
-            traits = {
-                json_name = "passwordPolicy",
-            },
-        },
+        ForgotPassword = setmetatable({ traits = {
+            json_name = "forgotPassword",
+        } }, { __index = M.CreateBackendAuthForgotPasswordConfig }),
+        Mfa = setmetatable({ traits = {
+            json_name = "mfa",
+        } }, { __index = M.CreateBackendAuthMFAConfig }),
+        OAuth = setmetatable({ traits = {
+            json_name = "oAuth",
+        } }, { __index = M.CreateBackendAuthOAuthConfig }),
+        PasswordPolicy = setmetatable({ traits = {
+            json_name = "passwordPolicy",
+        } }, { __index = M.CreateBackendAuthPasswordPolicyConfig }),
         RequiredSignUpAttributes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "requiredSignUpAttributes",
                 required = true,
@@ -828,12 +775,9 @@ M.CreateBackendAuthUserPoolConfig = {
                 required = true,
             },
         },
-        VerificationMessage = {
-            type = "structure",
-            traits = {
-                json_name = "verificationMessage",
-            },
-        },
+        VerificationMessage = setmetatable({ traits = {
+            json_name = "verificationMessage",
+        } }, { __index = M.CreateBackendAuthVerificationMessageConfig }),
     },
 }
 
@@ -847,12 +791,9 @@ M.CreateBackendAuthResourceConfig = {
                 required = true,
             },
         },
-        IdentityPoolConfigs = {
-            type = "structure",
-            traits = {
-                json_name = "identityPoolConfigs",
-            },
-        },
+        IdentityPoolConfigs = setmetatable({ traits = {
+            json_name = "identityPoolConfigs",
+        } }, { __index = M.CreateBackendAuthIdentityPoolConfig }),
         Service = {
             type = "string",
             traits = {
@@ -860,13 +801,10 @@ M.CreateBackendAuthResourceConfig = {
                 required = true,
             },
         },
-        UserPoolConfigs = {
-            type = "structure",
-            traits = {
-                json_name = "userPoolConfigs",
-                required = true,
-            },
-        },
+        UserPoolConfigs = setmetatable({ traits = {
+            json_name = "userPoolConfigs",
+            required = true,
+        } }, { __index = M.CreateBackendAuthUserPoolConfig }),
     },
 }
 
@@ -887,13 +825,10 @@ M.CreateBackendAuthInput = {
                 required = true,
             },
         },
-        ResourceConfig = {
-            type = "structure",
-            traits = {
-                json_name = "resourceConfig",
-                required = true,
-            },
-        },
+        ResourceConfig = setmetatable({ traits = {
+            json_name = "resourceConfig",
+            required = true,
+        } }, { __index = M.CreateBackendAuthResourceConfig }),
         ResourceName = {
             type = "string",
             traits = {
@@ -1012,7 +947,7 @@ M.BackendStoragePermissions = {
     members = {
         Authenticated = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "authenticated",
                 required = true,
@@ -1020,7 +955,7 @@ M.BackendStoragePermissions = {
         },
         UnAuthenticated = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "unAuthenticated",
             },
@@ -1041,13 +976,10 @@ M.CreateBackendStorageResourceConfig = {
                 json_name = "bucketName",
             },
         },
-        Permissions = {
-            type = "structure",
-            traits = {
-                json_name = "permissions",
-                required = true,
-            },
-        },
+        Permissions = setmetatable({ traits = {
+            json_name = "permissions",
+            required = true,
+        } }, { __index = M.BackendStoragePermissions }),
         ServiceName = {
             type = "string",
             traits = {
@@ -1075,13 +1007,10 @@ M.CreateBackendStorageInput = {
                 required = true,
             },
         },
-        ResourceConfig = {
-            type = "structure",
-            traits = {
-                json_name = "resourceConfig",
-                required = true,
-            },
-        },
+        ResourceConfig = setmetatable({ traits = {
+            json_name = "resourceConfig",
+            required = true,
+        } }, { __index = M.CreateBackendStorageResourceConfig }),
         ResourceName = {
             type = "string",
             traits = {
@@ -1244,12 +1173,9 @@ M.DeleteBackendAPIInput = {
                 required = true,
             },
         },
-        ResourceConfig = {
-            type = "structure",
-            traits = {
-                json_name = "resourceConfig",
-            },
-        },
+        ResourceConfig = setmetatable({ traits = {
+            json_name = "resourceConfig",
+        } }, { __index = M.BackendAPIResourceConfig }),
         ResourceName = {
             type = "string",
             traits = {
@@ -1584,7 +1510,7 @@ M.GetBackendOutput = {
         },
         BackendEnvironmentList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "backendEnvironmentList",
             },
@@ -1621,12 +1547,9 @@ M.GetBackendAPIInput = {
                 required = true,
             },
         },
-        ResourceConfig = {
-            type = "structure",
-            traits = {
-                json_name = "resourceConfig",
-            },
-        },
+        ResourceConfig = setmetatable({ traits = {
+            json_name = "resourceConfig",
+        } }, { __index = M.BackendAPIResourceConfig }),
         ResourceName = {
             type = "string",
             traits = {
@@ -1658,12 +1581,9 @@ M.GetBackendAPIOutput = {
                 json_name = "error",
             },
         },
-        ResourceConfig = {
-            type = "structure",
-            traits = {
-                json_name = "resourceConfig",
-            },
-        },
+        ResourceConfig = setmetatable({ traits = {
+            json_name = "resourceConfig",
+        } }, { __index = M.BackendAPIResourceConfig }),
         ResourceName = {
             type = "string",
             traits = {
@@ -1777,12 +1697,9 @@ M.GetBackendAuthOutput = {
                 json_name = "error",
             },
         },
-        ResourceConfig = {
-            type = "structure",
-            traits = {
-                json_name = "resourceConfig",
-            },
-        },
+        ResourceConfig = setmetatable({ traits = {
+            json_name = "resourceConfig",
+        } }, { __index = M.CreateBackendAuthResourceConfig }),
         ResourceName = {
             type = "string",
             traits = {
@@ -1916,12 +1833,9 @@ M.GetBackendStorageResourceConfig = {
                 required = true,
             },
         },
-        Permissions = {
-            type = "structure",
-            traits = {
-                json_name = "permissions",
-            },
-        },
+        Permissions = setmetatable({ traits = {
+            json_name = "permissions",
+        } }, { __index = M.BackendStoragePermissions }),
         ServiceName = {
             type = "string",
             traits = {
@@ -1947,12 +1861,9 @@ M.GetBackendStorageOutput = {
                 json_name = "backendEnvironmentName",
             },
         },
-        ResourceConfig = {
-            type = "structure",
-            traits = {
-                json_name = "resourceConfig",
-            },
-        },
+        ResourceConfig = setmetatable({ traits = {
+            json_name = "resourceConfig",
+        } }, { __index = M.GetBackendStorageResourceConfig }),
         ResourceName = {
             type = "string",
             traits = {
@@ -2188,7 +2099,7 @@ M.ListBackendJobsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxResults",
             },
@@ -2275,7 +2186,7 @@ M.ListBackendJobsOutput = {
     members = {
         Jobs = {
             type = "list",
-            member_type = "structure",
+            member = M.BackendJobRespObj,
             traits = {
                 json_name = "jobs",
             },
@@ -2324,7 +2235,7 @@ M.ListS3BucketsOutput = {
     members = {
         Buckets = {
             type = "list",
-            member_type = "structure",
+            member = M.S3BucketInfo,
             traits = {
                 json_name = "buckets",
             },
@@ -2435,12 +2346,9 @@ M.UpdateBackendAPIInput = {
                 required = true,
             },
         },
-        ResourceConfig = {
-            type = "structure",
-            traits = {
-                json_name = "resourceConfig",
-            },
-        },
+        ResourceConfig = setmetatable({ traits = {
+            json_name = "resourceConfig",
+        } }, { __index = M.BackendAPIResourceConfig }),
         ResourceName = {
             type = "string",
             traits = {
@@ -2514,18 +2422,12 @@ M.UpdateBackendAuthForgotPasswordConfig = {
                 json_name = "deliveryMethod",
             },
         },
-        EmailSettings = {
-            type = "structure",
-            traits = {
-                json_name = "emailSettings",
-            },
-        },
-        SmsSettings = {
-            type = "structure",
-            traits = {
-                json_name = "smsSettings",
-            },
-        },
+        EmailSettings = setmetatable({ traits = {
+            json_name = "emailSettings",
+        } }, { __index = M.EmailSettings }),
+        SmsSettings = setmetatable({ traits = {
+            json_name = "smsSettings",
+        } }, { __index = M.SmsSettings }),
     },
 }
 
@@ -2535,12 +2437,9 @@ M.UpdateBackendAuthMFAConfig = {
         MFAMode = {
             type = "string",
         },
-        Settings = {
-            type = "structure",
-            traits = {
-                json_name = "settings",
-            },
-        },
+        Settings = setmetatable({ traits = {
+            json_name = "settings",
+        } }, { __index = M.Settings }),
     },
 }
 
@@ -2561,31 +2460,28 @@ M.UpdateBackendAuthOAuthConfig = {
         },
         OAuthScopes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "oAuthScopes",
             },
         },
         RedirectSignInURIs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "redirectSignInURIs",
             },
         },
         RedirectSignOutURIs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "redirectSignOutURIs",
             },
         },
-        SocialProviderSettings = {
-            type = "structure",
-            traits = {
-                json_name = "socialProviderSettings",
-            },
-        },
+        SocialProviderSettings = setmetatable({ traits = {
+            json_name = "socialProviderSettings",
+        } }, { __index = M.SocialProviderSettings }),
     },
 }
 
@@ -2594,13 +2490,13 @@ M.UpdateBackendAuthPasswordPolicyConfig = {
     members = {
         AdditionalConstraints = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "additionalConstraints",
             },
         },
         MinimumLength = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "minimumLength",
             },
@@ -2618,54 +2514,33 @@ M.UpdateBackendAuthVerificationMessageConfig = {
                 required = true,
             },
         },
-        EmailSettings = {
-            type = "structure",
-            traits = {
-                json_name = "emailSettings",
-            },
-        },
-        SmsSettings = {
-            type = "structure",
-            traits = {
-                json_name = "smsSettings",
-            },
-        },
+        EmailSettings = setmetatable({ traits = {
+            json_name = "emailSettings",
+        } }, { __index = M.EmailSettings }),
+        SmsSettings = setmetatable({ traits = {
+            json_name = "smsSettings",
+        } }, { __index = M.SmsSettings }),
     },
 }
 
 M.UpdateBackendAuthUserPoolConfig = {
     type = "structure",
     members = {
-        ForgotPassword = {
-            type = "structure",
-            traits = {
-                json_name = "forgotPassword",
-            },
-        },
-        Mfa = {
-            type = "structure",
-            traits = {
-                json_name = "mfa",
-            },
-        },
-        OAuth = {
-            type = "structure",
-            traits = {
-                json_name = "oAuth",
-            },
-        },
-        PasswordPolicy = {
-            type = "structure",
-            traits = {
-                json_name = "passwordPolicy",
-            },
-        },
-        VerificationMessage = {
-            type = "structure",
-            traits = {
-                json_name = "verificationMessage",
-            },
-        },
+        ForgotPassword = setmetatable({ traits = {
+            json_name = "forgotPassword",
+        } }, { __index = M.UpdateBackendAuthForgotPasswordConfig }),
+        Mfa = setmetatable({ traits = {
+            json_name = "mfa",
+        } }, { __index = M.UpdateBackendAuthMFAConfig }),
+        OAuth = setmetatable({ traits = {
+            json_name = "oAuth",
+        } }, { __index = M.UpdateBackendAuthOAuthConfig }),
+        PasswordPolicy = setmetatable({ traits = {
+            json_name = "passwordPolicy",
+        } }, { __index = M.UpdateBackendAuthPasswordPolicyConfig }),
+        VerificationMessage = setmetatable({ traits = {
+            json_name = "verificationMessage",
+        } }, { __index = M.UpdateBackendAuthVerificationMessageConfig }),
     },
 }
 
@@ -2679,12 +2554,9 @@ M.UpdateBackendAuthResourceConfig = {
                 required = true,
             },
         },
-        IdentityPoolConfigs = {
-            type = "structure",
-            traits = {
-                json_name = "identityPoolConfigs",
-            },
-        },
+        IdentityPoolConfigs = setmetatable({ traits = {
+            json_name = "identityPoolConfigs",
+        } }, { __index = M.UpdateBackendAuthIdentityPoolConfig }),
         Service = {
             type = "string",
             traits = {
@@ -2692,13 +2564,10 @@ M.UpdateBackendAuthResourceConfig = {
                 required = true,
             },
         },
-        UserPoolConfigs = {
-            type = "structure",
-            traits = {
-                json_name = "userPoolConfigs",
-                required = true,
-            },
-        },
+        UserPoolConfigs = setmetatable({ traits = {
+            json_name = "userPoolConfigs",
+            required = true,
+        } }, { __index = M.UpdateBackendAuthUserPoolConfig }),
     },
 }
 
@@ -2719,13 +2588,10 @@ M.UpdateBackendAuthInput = {
                 required = true,
             },
         },
-        ResourceConfig = {
-            type = "structure",
-            traits = {
-                json_name = "resourceConfig",
-                required = true,
-            },
-        },
+        ResourceConfig = setmetatable({ traits = {
+            json_name = "resourceConfig",
+            required = true,
+        } }, { __index = M.UpdateBackendAuthResourceConfig }),
         ResourceName = {
             type = "string",
             traits = {
@@ -2818,12 +2684,9 @@ M.UpdateBackendConfigInput = {
                 required = true,
             },
         },
-        LoginAuthConfig = {
-            type = "structure",
-            traits = {
-                json_name = "loginAuthConfig",
-            },
-        },
+        LoginAuthConfig = setmetatable({ traits = {
+            json_name = "loginAuthConfig",
+        } }, { __index = M.LoginAuthConfigReqObj }),
     },
 }
 
@@ -2848,12 +2711,9 @@ M.UpdateBackendConfigOutput = {
                 json_name = "error",
             },
         },
-        LoginAuthConfig = {
-            type = "structure",
-            traits = {
-                json_name = "loginAuthConfig",
-            },
-        },
+        LoginAuthConfig = setmetatable({ traits = {
+            json_name = "loginAuthConfig",
+        } }, { __index = M.LoginAuthConfigReqObj }),
     },
 }
 
@@ -2953,13 +2813,10 @@ M.UpdateBackendJobOutput = {
 M.UpdateBackendStorageResourceConfig = {
     type = "structure",
     members = {
-        Permissions = {
-            type = "structure",
-            traits = {
-                json_name = "permissions",
-                required = true,
-            },
-        },
+        Permissions = setmetatable({ traits = {
+            json_name = "permissions",
+            required = true,
+        } }, { __index = M.BackendStoragePermissions }),
         ServiceName = {
             type = "string",
             traits = {
@@ -2987,13 +2844,10 @@ M.UpdateBackendStorageInput = {
                 required = true,
             },
         },
-        ResourceConfig = {
-            type = "structure",
-            traits = {
-                json_name = "resourceConfig",
-                required = true,
-            },
-        },
+        ResourceConfig = setmetatable({ traits = {
+            json_name = "resourceConfig",
+            required = true,
+        } }, { __index = M.UpdateBackendStorageResourceConfig }),
         ResourceName = {
             type = "string",
             traits = {

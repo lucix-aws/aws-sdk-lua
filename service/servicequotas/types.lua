@@ -280,8 +280,8 @@ M.GetAutoManagementConfigurationOutput = {
         },
         ExclusionList = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
     },
 }
@@ -318,7 +318,7 @@ M.QuotaPeriod = {
     type = "structure",
     members = {
         PeriodValue = {
-            type = "number",
+            type = "integer",
         },
         PeriodUnit = {
             type = "string",
@@ -357,8 +357,8 @@ M.MetricInfo = {
         },
         MetricDimensions = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         MetricStatisticRecommendation = {
             type = "string",
@@ -385,32 +385,30 @@ M.ServiceQuota = {
             type = "string",
         },
         Value = {
-            type = "number",
+            type = "double",
         },
         Unit = {
             type = "string",
         },
         Adjustable = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         GlobalQuota = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        UsageMetric = {
-            type = "structure",
-        },
-        Period = {
-            type = "structure",
-        },
-        ErrorReason = {
-            type = "structure",
-        },
+        UsageMetric = M.MetricInfo,
+        Period = M.QuotaPeriod,
+        ErrorReason = M.ErrorReason,
         QuotaAppliedAtLevel = {
             type = "string",
         },
-        QuotaContext = {
-            type = "structure",
-        },
+        QuotaContext = M.QuotaContextInfo,
         Description = {
             type = "string",
         },
@@ -420,9 +418,7 @@ M.ServiceQuota = {
 M.GetAWSDefaultServiceQuotaOutput = {
     type = "structure",
     members = {
-        Quota = {
-            type = "structure",
-        },
+        Quota = M.ServiceQuota,
     },
 }
 
@@ -439,7 +435,7 @@ M.GetQuotaUtilizationReportInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -460,19 +456,22 @@ M.QuotaUtilizationInfo = {
             type = "string",
         },
         Utilization = {
-            type = "number",
+            type = "double",
         },
         DefaultValue = {
-            type = "number",
+            type = "double",
         },
         AppliedValue = {
-            type = "number",
+            type = "double",
         },
         ServiceName = {
             type = "string",
         },
         Adjustable = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -497,11 +496,11 @@ M.GetQuotaUtilizationReportOutput = {
             type = "timestamp",
         },
         TotalCount = {
-            type = "number",
+            type = "integer",
         },
         Quotas = {
             type = "list",
-            member_type = "structure",
+            member = M.QuotaUtilizationInfo,
         },
         NextToken = {
             type = "string",
@@ -566,7 +565,7 @@ M.RequestedServiceQuotaChange = {
             type = "string",
         },
         DesiredValue = {
-            type = "number",
+            type = "double",
         },
         Status = {
             type = "string",
@@ -585,6 +584,9 @@ M.RequestedServiceQuotaChange = {
         },
         GlobalQuota = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Unit = {
             type = "string",
@@ -592,18 +594,14 @@ M.RequestedServiceQuotaChange = {
         QuotaRequestedAtLevel = {
             type = "string",
         },
-        QuotaContext = {
-            type = "structure",
-        },
+        QuotaContext = M.QuotaContextInfo,
     },
 }
 
 M.GetRequestedServiceQuotaChangeOutput = {
     type = "structure",
     members = {
-        RequestedQuota = {
-            type = "structure",
-        },
+        RequestedQuota = M.RequestedServiceQuotaChange,
     },
 }
 
@@ -631,9 +629,7 @@ M.GetServiceQuotaInput = {
 M.GetServiceQuotaOutput = {
     type = "structure",
     members = {
-        Quota = {
-            type = "structure",
-        },
+        Quota = M.ServiceQuota,
     },
 }
 
@@ -677,7 +673,7 @@ M.ServiceQuotaIncreaseRequestInTemplate = {
             type = "string",
         },
         DesiredValue = {
-            type = "number",
+            type = "double",
         },
         AwsRegion = {
             type = "string",
@@ -687,6 +683,9 @@ M.ServiceQuotaIncreaseRequestInTemplate = {
         },
         GlobalQuota = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -694,9 +693,7 @@ M.ServiceQuotaIncreaseRequestInTemplate = {
 M.GetServiceQuotaIncreaseRequestFromTemplateOutput = {
     type = "structure",
     members = {
-        ServiceQuotaIncreaseRequestInTemplate = {
-            type = "structure",
-        },
+        ServiceQuotaIncreaseRequestInTemplate = M.ServiceQuotaIncreaseRequestInTemplate,
     },
 }
 
@@ -741,7 +738,7 @@ M.ListAWSDefaultServiceQuotasInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -754,7 +751,7 @@ M.ListAWSDefaultServiceQuotasOutput = {
         },
         Quotas = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceQuota,
         },
     },
 }
@@ -772,7 +769,7 @@ M.ListRequestedServiceQuotaChangeHistoryInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         QuotaRequestedAtLevel = {
             type = "string",
@@ -788,7 +785,7 @@ M.ListRequestedServiceQuotaChangeHistoryOutput = {
         },
         RequestedQuotas = {
             type = "list",
-            member_type = "structure",
+            member = M.RequestedServiceQuotaChange,
         },
     },
 }
@@ -815,7 +812,7 @@ M.ListRequestedServiceQuotaChangeHistoryByQuotaInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         QuotaRequestedAtLevel = {
             type = "string",
@@ -831,7 +828,7 @@ M.ListRequestedServiceQuotaChangeHistoryByQuotaOutput = {
         },
         RequestedQuotas = {
             type = "list",
-            member_type = "structure",
+            member = M.RequestedServiceQuotaChange,
         },
     },
 }
@@ -849,7 +846,7 @@ M.ListServiceQuotaIncreaseRequestsInTemplateInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -859,7 +856,7 @@ M.ListServiceQuotaIncreaseRequestsInTemplateOutput = {
     members = {
         ServiceQuotaIncreaseRequestInTemplateList = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceQuotaIncreaseRequestInTemplate,
         },
         NextToken = {
             type = "string",
@@ -880,7 +877,7 @@ M.ListServiceQuotasInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         QuotaCode = {
             type = "string",
@@ -899,7 +896,7 @@ M.ListServiceQuotasOutput = {
         },
         Quotas = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceQuota,
         },
     },
 }
@@ -911,7 +908,7 @@ M.ListServicesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -936,7 +933,7 @@ M.ListServicesOutput = {
         },
         Services = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceInfo,
         },
     },
 }
@@ -958,7 +955,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -985,7 +982,7 @@ M.PutServiceQuotaIncreaseRequestIntoTemplateInput = {
             },
         },
         DesiredValue = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -996,9 +993,7 @@ M.PutServiceQuotaIncreaseRequestIntoTemplateInput = {
 M.PutServiceQuotaIncreaseRequestIntoTemplateOutput = {
     type = "structure",
     members = {
-        ServiceQuotaIncreaseRequestInTemplate = {
-            type = "structure",
-        },
+        ServiceQuotaIncreaseRequestInTemplate = M.ServiceQuotaIncreaseRequestInTemplate,
     },
 }
 
@@ -1028,7 +1023,7 @@ M.RequestServiceQuotaIncreaseInput = {
             },
         },
         DesiredValue = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -1045,9 +1040,7 @@ M.RequestServiceQuotaIncreaseInput = {
 M.RequestServiceQuotaIncreaseOutput = {
     type = "structure",
     members = {
-        RequestedQuota = {
-            type = "structure",
-        },
+        RequestedQuota = M.RequestedServiceQuotaChange,
     },
 }
 
@@ -1071,8 +1064,8 @@ M.StartAutoManagementInput = {
         },
         ExclusionList = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
     },
 }
@@ -1129,7 +1122,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -1162,7 +1155,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1185,8 +1178,8 @@ M.UpdateAutoManagementInput = {
         },
         ExclusionList = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
     },
 }

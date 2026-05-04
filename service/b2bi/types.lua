@@ -41,11 +41,11 @@ M.X12CodeListValidationRule = {
         },
         codesToAdd = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         codesToRemove = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -60,13 +60,13 @@ M.X12ElementLengthValidationRule = {
             },
         },
         maxLength = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         minLength = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -100,15 +100,9 @@ M.X12ElementRequirementValidationRule = {
 M.X12ValidationRule = {
     type = "union",
     members = {
-        codeListValidationRule = {
-            type = "structure",
-        },
-        elementLengthValidationRule = {
-            type = "structure",
-        },
-        elementRequirementValidationRule = {
-            type = "structure",
-        },
+        codeListValidationRule = M.X12CodeListValidationRule,
+        elementLengthValidationRule = M.X12ElementLengthValidationRule,
+        elementRequirementValidationRule = M.X12ElementRequirementValidationRule,
     },
 }
 
@@ -117,7 +111,7 @@ M.X12ValidationOptions = {
     members = {
         validationRules = {
             type = "list",
-            member_type = "union",
+            member = M.X12ValidationRule,
         },
     },
 }
@@ -125,21 +119,15 @@ M.X12ValidationOptions = {
 M.X12AdvancedOptions = {
     type = "structure",
     members = {
-        splitOptions = {
-            type = "structure",
-        },
-        validationOptions = {
-            type = "structure",
-        },
+        splitOptions = M.X12SplitOptions,
+        validationOptions = M.X12ValidationOptions,
     },
 }
 
 M.AdvancedOptions = {
     type = "structure",
     members = {
-        x12 = {
-            type = "structure",
-        },
+        x12 = M.X12AdvancedOptions,
     },
 }
 
@@ -542,9 +530,7 @@ M.X12Details = {
 M.EdiType = {
     type = "union",
     members = {
-        x12Details = {
-            type = "structure",
-        },
+        x12Details = M.X12Details,
     },
 }
 
@@ -554,24 +540,15 @@ M.EdiConfiguration = {
         capabilityDirection = {
             type = "string",
         },
-        type = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        inputLocation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        outputLocation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        type = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EdiType }),
+        inputLocation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3Location }),
+        outputLocation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3Location }),
         transformerId = {
             type = "string",
             traits = {
@@ -584,9 +561,7 @@ M.EdiConfiguration = {
 M.CapabilityConfiguration = {
     type = "union",
     members = {
-        edi = {
-            type = "structure",
-        },
+        edi = M.EdiConfiguration,
     },
 }
 
@@ -627,22 +602,19 @@ M.CreateCapabilityInput = {
                 required = true,
             },
         },
-        configuration = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CapabilityConfiguration }),
         instructionsDocuments = {
             type = "list",
-            member_type = "structure",
+            member = M.S3Location,
         },
         clientToken = {
             type = "string",
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -674,15 +646,12 @@ M.CreateCapabilityOutput = {
                 required = true,
             },
         },
-        configuration = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CapabilityConfiguration }),
         instructionsDocuments = {
             type = "list",
-            member_type = "structure",
+            member = M.S3Location,
         },
         createdAt = {
             type = "timestamp",
@@ -704,7 +673,7 @@ M.InternalServerException = {
             },
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -773,7 +742,7 @@ M.ThrottlingException = {
             },
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -851,15 +820,12 @@ M.GetCapabilityOutput = {
                 required = true,
             },
         },
-        configuration = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CapabilityConfiguration }),
         instructionsDocuments = {
             type = "list",
-            member_type = "structure",
+            member = M.S3Location,
         },
         createdAt = {
             type = "timestamp",
@@ -883,7 +849,7 @@ M.ListCapabilitiesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -929,7 +895,7 @@ M.ListCapabilitiesOutput = {
     members = {
         capabilities = {
             type = "list",
-            member_type = "structure",
+            member = M.CapabilitySummary,
             traits = {
                 required = true,
             },
@@ -953,12 +919,10 @@ M.UpdateCapabilityInput = {
         name = {
             type = "string",
         },
-        configuration = {
-            type = "union",
-        },
+        configuration = M.CapabilityConfiguration,
         instructionsDocuments = {
             type = "list",
-            member_type = "structure",
+            member = M.S3Location,
         },
     },
 }
@@ -990,15 +954,12 @@ M.UpdateCapabilityOutput = {
                 required = true,
             },
         },
-        configuration = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CapabilityConfiguration }),
         instructionsDocuments = {
             type = "list",
-            member_type = "structure",
+            member = M.S3Location,
         },
         createdAt = {
             type = "timestamp",
@@ -1020,30 +981,23 @@ M.MappingType = {
 M.TemplateDetails = {
     type = "union",
     members = {
-        x12 = {
-            type = "structure",
-        },
+        x12 = M.X12Details,
     },
 }
 
 M.CreateStarterMappingTemplateInput = {
     type = "structure",
     members = {
-        outputSampleLocation = {
-            type = "structure",
-        },
+        outputSampleLocation = M.S3Location,
         mappingType = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        templateDetails = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        templateDetails = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TemplateDetails }),
     },
 }
 
@@ -1093,7 +1047,7 @@ M.GenerateMappingOutput = {
             },
         },
         mappingAccuracy = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -1135,7 +1089,7 @@ M.GetTransformerJobOutput = {
         },
         outputFiles = {
             type = "list",
-            member_type = "structure",
+            member = M.S3Location,
         },
         message = {
             type = "string",
@@ -1161,7 +1115,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1198,18 +1152,14 @@ M.X12AcknowledgmentOptions = {
 M.X12InboundEdiOptions = {
     type = "structure",
     members = {
-        acknowledgmentOptions = {
-            type = "structure",
-        },
+        acknowledgmentOptions = M.X12AcknowledgmentOptions,
     },
 }
 
 M.InboundEdiOptions = {
     type = "structure",
     members = {
-        x12 = {
-            type = "structure",
-        },
+        x12 = M.X12InboundEdiOptions,
     },
 }
 
@@ -1217,13 +1167,13 @@ M.X12ControlNumbers = {
     type = "structure",
     members = {
         startingInterchangeControlNumber = {
-            type = "number",
+            type = "integer",
         },
         startingFunctionalGroupControlNumber = {
-            type = "number",
+            type = "integer",
         },
         startingTransactionSetControlNumber = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1294,21 +1244,13 @@ M.X12InterchangeControlHeaders = {
 M.X12OutboundEdiHeaders = {
     type = "structure",
     members = {
-        interchangeControlHeaders = {
-            type = "structure",
-        },
-        functionalGroupHeaders = {
-            type = "structure",
-        },
-        delimiters = {
-            type = "structure",
-        },
+        interchangeControlHeaders = M.X12InterchangeControlHeaders,
+        functionalGroupHeaders = M.X12FunctionalGroupHeaders,
+        delimiters = M.X12Delimiters,
         validateEdi = {
             type = "boolean",
         },
-        controlNumbers = {
-            type = "structure",
-        },
+        controlNumbers = M.X12ControlNumbers,
         gs05TimeFormat = {
             type = "string",
         },
@@ -1340,7 +1282,7 @@ M.WrapOptions = {
             type = "string",
         },
         lineLength = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1348,33 +1290,23 @@ M.WrapOptions = {
 M.X12Envelope = {
     type = "structure",
     members = {
-        common = {
-            type = "structure",
-        },
-        wrapOptions = {
-            type = "structure",
-        },
+        common = M.X12OutboundEdiHeaders,
+        wrapOptions = M.WrapOptions,
     },
 }
 
 M.OutboundEdiOptions = {
     type = "union",
     members = {
-        x12 = {
-            type = "structure",
-        },
+        x12 = M.X12Envelope,
     },
 }
 
 M.CapabilityOptions = {
     type = "structure",
     members = {
-        outboundEdi = {
-            type = "union",
-        },
-        inboundEdi = {
-            type = "structure",
-        },
+        outboundEdi = M.OutboundEdiOptions,
+        inboundEdi = M.InboundEdiOptions,
     },
 }
 
@@ -1404,20 +1336,18 @@ M.CreatePartnershipInput = {
         },
         capabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        capabilityOptions = {
-            type = "structure",
-        },
+        capabilityOptions = M.CapabilityOptions,
         clientToken = {
             type = "string",
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1454,11 +1384,9 @@ M.CreatePartnershipOutput = {
         },
         capabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        capabilityOptions = {
-            type = "structure",
-        },
+        capabilityOptions = M.CapabilityOptions,
         tradingPartnerId = {
             type = "string",
         },
@@ -1533,11 +1461,9 @@ M.GetPartnershipOutput = {
         },
         capabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        capabilityOptions = {
-            type = "structure",
-        },
+        capabilityOptions = M.CapabilityOptions,
         tradingPartnerId = {
             type = "string",
         },
@@ -1569,7 +1495,7 @@ M.ListPartnershipsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1597,11 +1523,9 @@ M.PartnershipSummary = {
         },
         capabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        capabilityOptions = {
-            type = "structure",
-        },
+        capabilityOptions = M.CapabilityOptions,
         tradingPartnerId = {
             type = "string",
         },
@@ -1622,7 +1546,7 @@ M.ListPartnershipsOutput = {
     members = {
         partnerships = {
             type = "list",
-            member_type = "structure",
+            member = M.PartnershipSummary,
             traits = {
                 required = true,
             },
@@ -1648,11 +1572,9 @@ M.UpdatePartnershipInput = {
         },
         capabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        capabilityOptions = {
-            type = "structure",
-        },
+        capabilityOptions = M.CapabilityOptions,
     },
 }
 
@@ -1688,11 +1610,9 @@ M.UpdatePartnershipOutput = {
         },
         capabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        capabilityOptions = {
-            type = "structure",
-        },
+        capabilityOptions = M.CapabilityOptions,
         tradingPartnerId = {
             type = "string",
         },
@@ -1748,7 +1668,7 @@ M.CreateProfileInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1898,7 +1818,7 @@ M.ListProfilesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1950,7 +1870,7 @@ M.ListProfilesOutput = {
     members = {
         profiles = {
             type = "list",
-            member_type = "structure",
+            member = M.ProfileSummary,
             traits = {
                 required = true,
             },
@@ -2043,18 +1963,12 @@ M.UpdateProfileOutput = {
 M.StartTransformerJobInput = {
     type = "structure",
     members = {
-        inputFile = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        outputLocation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        inputFile = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3Location }),
+        outputLocation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3Location }),
         transformerId = {
             type = "string",
             traits = {
@@ -2091,7 +2005,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -2126,12 +2040,9 @@ M.ConversionSource = {
                 required = true,
             },
         },
-        inputFile = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        inputFile = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InputFileSource }),
     },
 }
 
@@ -2142,18 +2053,14 @@ M.ConversionTargetFormat = {
 M.ConversionTargetFormatDetails = {
     type = "union",
     members = {
-        x12 = {
-            type = "structure",
-        },
+        x12 = M.X12Details,
     },
 }
 
 M.OutputSampleFileSource = {
     type = "union",
     members = {
-        fileLocation = {
-            type = "structure",
-        },
+        fileLocation = M.S3Location,
     },
 }
 
@@ -2166,33 +2073,21 @@ M.ConversionTarget = {
                 required = true,
             },
         },
-        formatDetails = {
-            type = "union",
-        },
-        outputSampleFile = {
-            type = "union",
-        },
-        advancedOptions = {
-            type = "structure",
-        },
+        formatDetails = M.ConversionTargetFormatDetails,
+        outputSampleFile = M.OutputSampleFileSource,
+        advancedOptions = M.AdvancedOptions,
     },
 }
 
 M.TestConversionInput = {
     type = "structure",
     members = {
-        source = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        target = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        source = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConversionSource }),
+        target = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConversionTarget }),
     },
 }
 
@@ -2207,7 +2102,7 @@ M.TestConversionOutput = {
         },
         validationMessages = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2257,27 +2152,19 @@ M.TestMappingOutput = {
 M.TestParsingInput = {
     type = "structure",
     members = {
-        inputFile = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        inputFile = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3Location }),
         fileFormat = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        ediType = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        advancedOptions = {
-            type = "structure",
-        },
+        ediType = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EdiType }),
+        advancedOptions = M.AdvancedOptions,
     },
 }
 
@@ -2292,11 +2179,11 @@ M.TestParsingOutput = {
         },
         parsedSplitFileContents = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         validationMessages = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2304,9 +2191,7 @@ M.TestParsingOutput = {
 M.FormatOptions = {
     type = "union",
     members = {
-        x12 = {
-            type = "structure",
-        },
+        x12 = M.X12Details,
     },
 }
 
@@ -2323,12 +2208,8 @@ M.InputConversion = {
                 required = true,
             },
         },
-        formatOptions = {
-            type = "union",
-        },
-        advancedOptions = {
-            type = "structure",
-        },
+        formatOptions = M.FormatOptions,
+        advancedOptions = M.AdvancedOptions,
     },
 }
 
@@ -2365,12 +2246,8 @@ M.OutputConversion = {
                 required = true,
             },
         },
-        formatOptions = {
-            type = "union",
-        },
-        advancedOptions = {
-            type = "structure",
-        },
+        formatOptions = M.FormatOptions,
+        advancedOptions = M.AdvancedOptions,
     },
 }
 
@@ -2397,7 +2274,7 @@ M.SampleDocuments = {
         },
         keys = {
             type = "list",
-            member_type = "structure",
+            member = M.SampleDocumentKeys,
             traits = {
                 required = true,
             },
@@ -2419,7 +2296,7 @@ M.CreateTransformerInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         fileFormat = {
             type = "string",
@@ -2427,24 +2304,14 @@ M.CreateTransformerInput = {
         mappingTemplate = {
             type = "string",
         },
-        ediType = {
-            type = "union",
-        },
+        ediType = M.EdiType,
         sampleDocument = {
             type = "string",
         },
-        inputConversion = {
-            type = "structure",
-        },
-        mapping = {
-            type = "structure",
-        },
-        outputConversion = {
-            type = "structure",
-        },
-        sampleDocuments = {
-            type = "structure",
-        },
+        inputConversion = M.InputConversion,
+        mapping = M.Mapping,
+        outputConversion = M.OutputConversion,
+        sampleDocuments = M.SampleDocuments,
     },
 }
 
@@ -2488,28 +2355,24 @@ M.CreateTransformerOutput = {
         },
         fileFormat = {
             type = "string",
+            traits = {
+                default = "NOT_USED",
+            },
         },
         mappingTemplate = {
             type = "string",
+            traits = {
+                default = "NOT_USED",
+            },
         },
-        ediType = {
-            type = "union",
-        },
+        ediType = M.EdiType,
         sampleDocument = {
             type = "string",
         },
-        inputConversion = {
-            type = "structure",
-        },
-        mapping = {
-            type = "structure",
-        },
-        outputConversion = {
-            type = "structure",
-        },
-        sampleDocuments = {
-            type = "structure",
-        },
+        inputConversion = M.InputConversion,
+        mapping = M.Mapping,
+        outputConversion = M.OutputConversion,
+        sampleDocuments = M.SampleDocuments,
     },
 }
 
@@ -2581,28 +2444,24 @@ M.GetTransformerOutput = {
         },
         fileFormat = {
             type = "string",
+            traits = {
+                default = "NOT_USED",
+            },
         },
         mappingTemplate = {
             type = "string",
+            traits = {
+                default = "NOT_USED",
+            },
         },
-        ediType = {
-            type = "union",
-        },
+        ediType = M.EdiType,
         sampleDocument = {
             type = "string",
         },
-        inputConversion = {
-            type = "structure",
-        },
-        mapping = {
-            type = "structure",
-        },
-        outputConversion = {
-            type = "structure",
-        },
-        sampleDocuments = {
-            type = "structure",
-        },
+        inputConversion = M.InputConversion,
+        mapping = M.Mapping,
+        outputConversion = M.OutputConversion,
+        sampleDocuments = M.SampleDocuments,
     },
 }
 
@@ -2616,7 +2475,7 @@ M.ListTransformersInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2656,28 +2515,24 @@ M.TransformerSummary = {
         },
         fileFormat = {
             type = "string",
+            traits = {
+                default = "NOT_USED",
+            },
         },
         mappingTemplate = {
             type = "string",
+            traits = {
+                default = "NOT_USED",
+            },
         },
-        ediType = {
-            type = "union",
-        },
+        ediType = M.EdiType,
         sampleDocument = {
             type = "string",
         },
-        inputConversion = {
-            type = "structure",
-        },
-        mapping = {
-            type = "structure",
-        },
-        outputConversion = {
-            type = "structure",
-        },
-        sampleDocuments = {
-            type = "structure",
-        },
+        inputConversion = M.InputConversion,
+        mapping = M.Mapping,
+        outputConversion = M.OutputConversion,
+        sampleDocuments = M.SampleDocuments,
     },
 }
 
@@ -2686,7 +2541,7 @@ M.ListTransformersOutput = {
     members = {
         transformers = {
             type = "list",
-            member_type = "structure",
+            member = M.TransformerSummary,
             traits = {
                 required = true,
             },
@@ -2719,24 +2574,14 @@ M.UpdateTransformerInput = {
         mappingTemplate = {
             type = "string",
         },
-        ediType = {
-            type = "union",
-        },
+        ediType = M.EdiType,
         sampleDocument = {
             type = "string",
         },
-        inputConversion = {
-            type = "structure",
-        },
-        mapping = {
-            type = "structure",
-        },
-        outputConversion = {
-            type = "structure",
-        },
-        sampleDocuments = {
-            type = "structure",
-        },
+        inputConversion = M.InputConversion,
+        mapping = M.Mapping,
+        outputConversion = M.OutputConversion,
+        sampleDocuments = M.SampleDocuments,
     },
 }
 
@@ -2781,28 +2626,24 @@ M.UpdateTransformerOutput = {
         },
         fileFormat = {
             type = "string",
+            traits = {
+                default = "NOT_USED",
+            },
         },
         mappingTemplate = {
             type = "string",
+            traits = {
+                default = "NOT_USED",
+            },
         },
-        ediType = {
-            type = "union",
-        },
+        ediType = M.EdiType,
         sampleDocument = {
             type = "string",
         },
-        inputConversion = {
-            type = "structure",
-        },
-        mapping = {
-            type = "structure",
-        },
-        outputConversion = {
-            type = "structure",
-        },
-        sampleDocuments = {
-            type = "structure",
-        },
+        inputConversion = M.InputConversion,
+        mapping = M.Mapping,
+        outputConversion = M.OutputConversion,
+        sampleDocuments = M.SampleDocuments,
     },
 }
 
@@ -2818,7 +2659,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "TagKeys",
                 required = true,

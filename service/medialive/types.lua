@@ -15,13 +15,10 @@ M.OutputLocationRef = {
 M.AdditionalDestinations = {
     type = "structure",
     members = {
-        Destination = {
-            type = "structure",
-            traits = {
-                json_name = "destination",
-                required = true,
-            },
-        },
+        Destination = setmetatable({ traits = {
+            json_name = "destination",
+            required = true,
+        } }, { __index = M.OutputLocationRef }),
     },
 }
 
@@ -29,14 +26,14 @@ M.InputChannelLevel = {
     type = "structure",
     members = {
         Gain = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "gain",
                 required = true,
             },
         },
         InputChannel = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "inputChannel",
                 required = true,
@@ -50,14 +47,14 @@ M.AudioChannelMapping = {
     members = {
         InputChannelLevels = {
             type = "list",
-            member_type = "structure",
+            member = M.InputChannelLevel,
             traits = {
                 json_name = "inputChannelLevels",
                 required = true,
             },
         },
         OutputChannel = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "outputChannel",
                 required = true,
@@ -103,7 +100,7 @@ M.AudioNormalizationSettings = {
             },
         },
         TargetLkfs = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "targetLkfs",
             },
@@ -184,7 +181,7 @@ M.NielsenNaesIiNw = {
             },
         },
         Sid = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "sid",
                 required = true,
@@ -202,36 +199,27 @@ M.NielsenNaesIiNw = {
 M.NielsenWatermarksSettings = {
     type = "structure",
     members = {
-        NielsenCbetSettings = {
-            type = "structure",
-            traits = {
-                json_name = "nielsenCbetSettings",
-            },
-        },
+        NielsenCbetSettings = setmetatable({ traits = {
+            json_name = "nielsenCbetSettings",
+        } }, { __index = M.NielsenCBET }),
         NielsenDistributionType = {
             type = "string",
             traits = {
                 json_name = "nielsenDistributionType",
             },
         },
-        NielsenNaesIiNwSettings = {
-            type = "structure",
-            traits = {
-                json_name = "nielsenNaesIiNwSettings",
-            },
-        },
+        NielsenNaesIiNwSettings = setmetatable({ traits = {
+            json_name = "nielsenNaesIiNwSettings",
+        } }, { __index = M.NielsenNaesIiNw }),
     },
 }
 
 M.AudioWatermarkSettings = {
     type = "structure",
     members = {
-        NielsenWatermarksSettings = {
-            type = "structure",
-            traits = {
-                json_name = "nielsenWatermarksSettings",
-            },
-        },
+        NielsenWatermarksSettings = setmetatable({ traits = {
+            json_name = "nielsenWatermarksSettings",
+        } }, { __index = M.NielsenWatermarksSettings }),
     },
 }
 
@@ -280,7 +268,7 @@ M.AacSettings = {
     type = "structure",
     members = {
         Bitrate = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "bitrate",
             },
@@ -316,7 +304,7 @@ M.AacSettings = {
             },
         },
         SampleRate = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "sampleRate",
             },
@@ -378,7 +366,7 @@ M.Ac3Settings = {
     type = "structure",
     members = {
         Bitrate = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "bitrate",
             },
@@ -396,7 +384,7 @@ M.Ac3Settings = {
             },
         },
         Dialnorm = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "dialnorm",
             },
@@ -456,7 +444,7 @@ M.Eac3AtmosSettings = {
     type = "structure",
     members = {
         Bitrate = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "bitrate",
             },
@@ -468,7 +456,7 @@ M.Eac3AtmosSettings = {
             },
         },
         Dialnorm = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "dialnorm",
             },
@@ -486,13 +474,13 @@ M.Eac3AtmosSettings = {
             },
         },
         HeightTrim = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "heightTrim",
             },
         },
         SurroundTrim = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "surroundTrim",
             },
@@ -596,7 +584,7 @@ M.Eac3Settings = {
             },
         },
         Bitrate = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "bitrate",
             },
@@ -620,7 +608,7 @@ M.Eac3Settings = {
             },
         },
         Dialnorm = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "dialnorm",
             },
@@ -650,25 +638,25 @@ M.Eac3Settings = {
             },
         },
         LoRoCenterMixLevel = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "loRoCenterMixLevel",
             },
         },
         LoRoSurroundMixLevel = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "loRoSurroundMixLevel",
             },
         },
         LtRtCenterMixLevel = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "ltRtCenterMixLevel",
             },
         },
         LtRtSurroundMixLevel = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "ltRtSurroundMixLevel",
             },
@@ -721,7 +709,7 @@ M.Mp2Settings = {
     type = "structure",
     members = {
         Bitrate = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "bitrate",
             },
@@ -733,7 +721,7 @@ M.Mp2Settings = {
             },
         },
         SampleRate = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "sampleRate",
             },
@@ -756,7 +744,7 @@ M.WavSettings = {
     type = "structure",
     members = {
         BitDepth = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "bitDepth",
             },
@@ -768,7 +756,7 @@ M.WavSettings = {
             },
         },
         SampleRate = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "sampleRate",
             },
@@ -779,48 +767,27 @@ M.WavSettings = {
 M.AudioCodecSettings = {
     type = "structure",
     members = {
-        AacSettings = {
-            type = "structure",
-            traits = {
-                json_name = "aacSettings",
-            },
-        },
-        Ac3Settings = {
-            type = "structure",
-            traits = {
-                json_name = "ac3Settings",
-            },
-        },
-        Eac3AtmosSettings = {
-            type = "structure",
-            traits = {
-                json_name = "eac3AtmosSettings",
-            },
-        },
-        Eac3Settings = {
-            type = "structure",
-            traits = {
-                json_name = "eac3Settings",
-            },
-        },
-        Mp2Settings = {
-            type = "structure",
-            traits = {
-                json_name = "mp2Settings",
-            },
-        },
-        PassThroughSettings = {
-            type = "structure",
-            traits = {
-                json_name = "passThroughSettings",
-            },
-        },
-        WavSettings = {
-            type = "structure",
-            traits = {
-                json_name = "wavSettings",
-            },
-        },
+        AacSettings = setmetatable({ traits = {
+            json_name = "aacSettings",
+        } }, { __index = M.AacSettings }),
+        Ac3Settings = setmetatable({ traits = {
+            json_name = "ac3Settings",
+        } }, { __index = M.Ac3Settings }),
+        Eac3AtmosSettings = setmetatable({ traits = {
+            json_name = "eac3AtmosSettings",
+        } }, { __index = M.Eac3AtmosSettings }),
+        Eac3Settings = setmetatable({ traits = {
+            json_name = "eac3Settings",
+        } }, { __index = M.Eac3Settings }),
+        Mp2Settings = setmetatable({ traits = {
+            json_name = "mp2Settings",
+        } }, { __index = M.Mp2Settings }),
+        PassThroughSettings = setmetatable({ traits = {
+            json_name = "passThroughSettings",
+        } }, { __index = M.PassThroughSettings }),
+        WavSettings = setmetatable({ traits = {
+            json_name = "wavSettings",
+        } }, { __index = M.WavSettings }),
     },
 }
 
@@ -844,20 +811,20 @@ M.RemixSettings = {
     members = {
         ChannelMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.AudioChannelMapping,
             traits = {
                 json_name = "channelMappings",
                 required = true,
             },
         },
         ChannelsIn = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "channelsIn",
             },
         },
         ChannelsOut = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "channelsOut",
             },
@@ -868,12 +835,9 @@ M.RemixSettings = {
 M.AudioDescription = {
     type = "structure",
     members = {
-        AudioNormalizationSettings = {
-            type = "structure",
-            traits = {
-                json_name = "audioNormalizationSettings",
-            },
-        },
+        AudioNormalizationSettings = setmetatable({ traits = {
+            json_name = "audioNormalizationSettings",
+        } }, { __index = M.AudioNormalizationSettings }),
         AudioSelectorName = {
             type = "string",
             traits = {
@@ -893,18 +857,12 @@ M.AudioDescription = {
                 json_name = "audioTypeControl",
             },
         },
-        AudioWatermarkingSettings = {
-            type = "structure",
-            traits = {
-                json_name = "audioWatermarkingSettings",
-            },
-        },
-        CodecSettings = {
-            type = "structure",
-            traits = {
-                json_name = "codecSettings",
-            },
-        },
+        AudioWatermarkingSettings = setmetatable({ traits = {
+            json_name = "audioWatermarkingSettings",
+        } }, { __index = M.AudioWatermarkSettings }),
+        CodecSettings = setmetatable({ traits = {
+            json_name = "codecSettings",
+        } }, { __index = M.AudioCodecSettings }),
         LanguageCode = {
             type = "string",
             traits = {
@@ -924,12 +882,9 @@ M.AudioDescription = {
                 required = true,
             },
         },
-        RemixSettings = {
-            type = "structure",
-            traits = {
-                json_name = "remixSettings",
-            },
-        },
+        RemixSettings = setmetatable({ traits = {
+            json_name = "remixSettings",
+        } }, { __index = M.RemixSettings }),
         StreamName = {
             type = "string",
             traits = {
@@ -938,7 +893,7 @@ M.AudioDescription = {
         },
         AudioDashRoles = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "audioDashRoles",
             },
@@ -1000,7 +955,7 @@ M.AudioPidSelection = {
     type = "structure",
     members = {
         Pid = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "pid",
                 required = true,
@@ -1038,7 +993,7 @@ M.AudioTrack = {
     type = "structure",
     members = {
         Track = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "track",
                 required = true,
@@ -1052,48 +1007,33 @@ M.AudioTrackSelection = {
     members = {
         Tracks = {
             type = "list",
-            member_type = "structure",
+            member = M.AudioTrack,
             traits = {
                 json_name = "tracks",
                 required = true,
             },
         },
-        DolbyEDecode = {
-            type = "structure",
-            traits = {
-                json_name = "dolbyEDecode",
-            },
-        },
+        DolbyEDecode = setmetatable({ traits = {
+            json_name = "dolbyEDecode",
+        } }, { __index = M.AudioDolbyEDecode }),
     },
 }
 
 M.AudioSelectorSettings = {
     type = "structure",
     members = {
-        AudioHlsRenditionSelection = {
-            type = "structure",
-            traits = {
-                json_name = "audioHlsRenditionSelection",
-            },
-        },
-        AudioLanguageSelection = {
-            type = "structure",
-            traits = {
-                json_name = "audioLanguageSelection",
-            },
-        },
-        AudioPidSelection = {
-            type = "structure",
-            traits = {
-                json_name = "audioPidSelection",
-            },
-        },
-        AudioTrackSelection = {
-            type = "structure",
-            traits = {
-                json_name = "audioTrackSelection",
-            },
-        },
+        AudioHlsRenditionSelection = setmetatable({ traits = {
+            json_name = "audioHlsRenditionSelection",
+        } }, { __index = M.AudioHlsRenditionSelection }),
+        AudioLanguageSelection = setmetatable({ traits = {
+            json_name = "audioLanguageSelection",
+        } }, { __index = M.AudioLanguageSelection }),
+        AudioPidSelection = setmetatable({ traits = {
+            json_name = "audioPidSelection",
+        } }, { __index = M.AudioPidSelection }),
+        AudioTrackSelection = setmetatable({ traits = {
+            json_name = "audioTrackSelection",
+        } }, { __index = M.AudioTrackSelection }),
     },
 }
 
@@ -1107,12 +1047,9 @@ M.AudioSelector = {
                 required = true,
             },
         },
-        SelectorSettings = {
-            type = "structure",
-            traits = {
-                json_name = "selectorSettings",
-            },
-        },
+        SelectorSettings = setmetatable({ traits = {
+            json_name = "selectorSettings",
+        } }, { __index = M.AudioSelectorSettings }),
     },
 }
 
@@ -1283,17 +1220,14 @@ M.BurnInDestinationSettings = {
             },
         },
         BackgroundOpacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "backgroundOpacity",
             },
         },
-        Font = {
-            type = "structure",
-            traits = {
-                json_name = "font",
-            },
-        },
+        Font = setmetatable({ traits = {
+            json_name = "font",
+        } }, { __index = M.InputLocation }),
         FontColor = {
             type = "string",
             traits = {
@@ -1301,13 +1235,13 @@ M.BurnInDestinationSettings = {
             },
         },
         FontOpacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "fontOpacity",
             },
         },
         FontResolution = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "fontResolution",
             },
@@ -1325,7 +1259,7 @@ M.BurnInDestinationSettings = {
             },
         },
         OutlineSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "outlineSize",
             },
@@ -1337,19 +1271,19 @@ M.BurnInDestinationSettings = {
             },
         },
         ShadowOpacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "shadowOpacity",
             },
         },
         ShadowXOffset = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "shadowXOffset",
             },
         },
         ShadowYOffset = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "shadowYOffset",
             },
@@ -1361,13 +1295,13 @@ M.BurnInDestinationSettings = {
             },
         },
         XPosition = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "xPosition",
             },
         },
         YPosition = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "yPosition",
             },
@@ -1444,17 +1378,14 @@ M.DvbSubDestinationSettings = {
             },
         },
         BackgroundOpacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "backgroundOpacity",
             },
         },
-        Font = {
-            type = "structure",
-            traits = {
-                json_name = "font",
-            },
-        },
+        Font = setmetatable({ traits = {
+            json_name = "font",
+        } }, { __index = M.InputLocation }),
         FontColor = {
             type = "string",
             traits = {
@@ -1462,13 +1393,13 @@ M.DvbSubDestinationSettings = {
             },
         },
         FontOpacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "fontOpacity",
             },
         },
         FontResolution = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "fontResolution",
             },
@@ -1486,7 +1417,7 @@ M.DvbSubDestinationSettings = {
             },
         },
         OutlineSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "outlineSize",
             },
@@ -1498,19 +1429,19 @@ M.DvbSubDestinationSettings = {
             },
         },
         ShadowOpacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "shadowOpacity",
             },
         },
         ShadowXOffset = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "shadowXOffset",
             },
         },
         ShadowYOffset = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "shadowYOffset",
             },
@@ -1522,13 +1453,13 @@ M.DvbSubDestinationSettings = {
             },
         },
         XPosition = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "xPosition",
             },
         },
         YPosition = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "yPosition",
             },
@@ -1580,13 +1511,13 @@ M.EbuTtDDestinationSettings = {
             },
         },
         DefaultFontSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "defaultFontSize",
             },
         },
         DefaultLineHeight = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "defaultLineHeight",
             },
@@ -1659,84 +1590,45 @@ M.WebvttDestinationSettings = {
 M.CaptionDestinationSettings = {
     type = "structure",
     members = {
-        AribDestinationSettings = {
-            type = "structure",
-            traits = {
-                json_name = "aribDestinationSettings",
-            },
-        },
-        BurnInDestinationSettings = {
-            type = "structure",
-            traits = {
-                json_name = "burnInDestinationSettings",
-            },
-        },
-        DvbSubDestinationSettings = {
-            type = "structure",
-            traits = {
-                json_name = "dvbSubDestinationSettings",
-            },
-        },
-        EbuTtDDestinationSettings = {
-            type = "structure",
-            traits = {
-                json_name = "ebuTtDDestinationSettings",
-            },
-        },
-        EmbeddedDestinationSettings = {
-            type = "structure",
-            traits = {
-                json_name = "embeddedDestinationSettings",
-            },
-        },
-        EmbeddedPlusScte20DestinationSettings = {
-            type = "structure",
-            traits = {
-                json_name = "embeddedPlusScte20DestinationSettings",
-            },
-        },
-        RtmpCaptionInfoDestinationSettings = {
-            type = "structure",
-            traits = {
-                json_name = "rtmpCaptionInfoDestinationSettings",
-            },
-        },
-        Scte20PlusEmbeddedDestinationSettings = {
-            type = "structure",
-            traits = {
-                json_name = "scte20PlusEmbeddedDestinationSettings",
-            },
-        },
-        Scte27DestinationSettings = {
-            type = "structure",
-            traits = {
-                json_name = "scte27DestinationSettings",
-            },
-        },
-        SmpteTtDestinationSettings = {
-            type = "structure",
-            traits = {
-                json_name = "smpteTtDestinationSettings",
-            },
-        },
-        TeletextDestinationSettings = {
-            type = "structure",
-            traits = {
-                json_name = "teletextDestinationSettings",
-            },
-        },
-        TtmlDestinationSettings = {
-            type = "structure",
-            traits = {
-                json_name = "ttmlDestinationSettings",
-            },
-        },
-        WebvttDestinationSettings = {
-            type = "structure",
-            traits = {
-                json_name = "webvttDestinationSettings",
-            },
-        },
+        AribDestinationSettings = setmetatable({ traits = {
+            json_name = "aribDestinationSettings",
+        } }, { __index = M.AribDestinationSettings }),
+        BurnInDestinationSettings = setmetatable({ traits = {
+            json_name = "burnInDestinationSettings",
+        } }, { __index = M.BurnInDestinationSettings }),
+        DvbSubDestinationSettings = setmetatable({ traits = {
+            json_name = "dvbSubDestinationSettings",
+        } }, { __index = M.DvbSubDestinationSettings }),
+        EbuTtDDestinationSettings = setmetatable({ traits = {
+            json_name = "ebuTtDDestinationSettings",
+        } }, { __index = M.EbuTtDDestinationSettings }),
+        EmbeddedDestinationSettings = setmetatable({ traits = {
+            json_name = "embeddedDestinationSettings",
+        } }, { __index = M.EmbeddedDestinationSettings }),
+        EmbeddedPlusScte20DestinationSettings = setmetatable({ traits = {
+            json_name = "embeddedPlusScte20DestinationSettings",
+        } }, { __index = M.EmbeddedPlusScte20DestinationSettings }),
+        RtmpCaptionInfoDestinationSettings = setmetatable({ traits = {
+            json_name = "rtmpCaptionInfoDestinationSettings",
+        } }, { __index = M.RtmpCaptionInfoDestinationSettings }),
+        Scte20PlusEmbeddedDestinationSettings = setmetatable({ traits = {
+            json_name = "scte20PlusEmbeddedDestinationSettings",
+        } }, { __index = M.Scte20PlusEmbeddedDestinationSettings }),
+        Scte27DestinationSettings = setmetatable({ traits = {
+            json_name = "scte27DestinationSettings",
+        } }, { __index = M.Scte27DestinationSettings }),
+        SmpteTtDestinationSettings = setmetatable({ traits = {
+            json_name = "smpteTtDestinationSettings",
+        } }, { __index = M.SmpteTtDestinationSettings }),
+        TeletextDestinationSettings = setmetatable({ traits = {
+            json_name = "teletextDestinationSettings",
+        } }, { __index = M.TeletextDestinationSettings }),
+        TtmlDestinationSettings = setmetatable({ traits = {
+            json_name = "ttmlDestinationSettings",
+        } }, { __index = M.TtmlDestinationSettings }),
+        WebvttDestinationSettings = setmetatable({ traits = {
+            json_name = "webvttDestinationSettings",
+        } }, { __index = M.WebvttDestinationSettings }),
     },
 }
 
@@ -1756,12 +1648,9 @@ M.CaptionDescription = {
                 required = true,
             },
         },
-        DestinationSettings = {
-            type = "structure",
-            traits = {
-                json_name = "destinationSettings",
-            },
-        },
+        DestinationSettings = setmetatable({ traits = {
+            json_name = "destinationSettings",
+        } }, { __index = M.CaptionDestinationSettings }),
         LanguageCode = {
             type = "string",
             traits = {
@@ -1783,7 +1672,7 @@ M.CaptionDescription = {
         },
         CaptionDashRoles = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "captionDashRoles",
             },
@@ -1801,7 +1690,7 @@ M.CaptionLanguageMapping = {
     type = "structure",
     members = {
         CaptionChannel = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "captionChannel",
                 required = true,
@@ -1828,7 +1717,7 @@ M.AncillarySourceSettings = {
     type = "structure",
     members = {
         SourceAncillaryChannelNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "sourceAncillaryChannelNumber",
             },
@@ -1859,7 +1748,7 @@ M.DvbSubSourceSettings = {
             },
         },
         Pid = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "pid",
             },
@@ -1893,13 +1782,13 @@ M.EmbeddedSourceSettings = {
             },
         },
         Source608ChannelNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "source608ChannelNumber",
             },
         },
         Source608TrackNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "source608TrackNumber",
             },
@@ -1922,7 +1811,7 @@ M.Scte20SourceSettings = {
             },
         },
         Source608ChannelNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "source608ChannelNumber",
             },
@@ -1949,7 +1838,7 @@ M.Scte27SourceSettings = {
             },
         },
         Pid = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "pid",
             },
@@ -1961,28 +1850,28 @@ M.CaptionRectangle = {
     type = "structure",
     members = {
         Height = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "height",
                 required = true,
             },
         },
         LeftOffset = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "leftOffset",
                 required = true,
             },
         },
         TopOffset = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "topOffset",
                 required = true,
             },
         },
         Width = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "width",
                 required = true,
@@ -1994,12 +1883,9 @@ M.CaptionRectangle = {
 M.TeletextSourceSettings = {
     type = "structure",
     members = {
-        OutputRectangle = {
-            type = "structure",
-            traits = {
-                json_name = "outputRectangle",
-            },
-        },
+        OutputRectangle = setmetatable({ traits = {
+            json_name = "outputRectangle",
+        } }, { __index = M.CaptionRectangle }),
         PageNumber = {
             type = "string",
             traits = {
@@ -2012,48 +1898,27 @@ M.TeletextSourceSettings = {
 M.CaptionSelectorSettings = {
     type = "structure",
     members = {
-        AncillarySourceSettings = {
-            type = "structure",
-            traits = {
-                json_name = "ancillarySourceSettings",
-            },
-        },
-        AribSourceSettings = {
-            type = "structure",
-            traits = {
-                json_name = "aribSourceSettings",
-            },
-        },
-        DvbSubSourceSettings = {
-            type = "structure",
-            traits = {
-                json_name = "dvbSubSourceSettings",
-            },
-        },
-        EmbeddedSourceSettings = {
-            type = "structure",
-            traits = {
-                json_name = "embeddedSourceSettings",
-            },
-        },
-        Scte20SourceSettings = {
-            type = "structure",
-            traits = {
-                json_name = "scte20SourceSettings",
-            },
-        },
-        Scte27SourceSettings = {
-            type = "structure",
-            traits = {
-                json_name = "scte27SourceSettings",
-            },
-        },
-        TeletextSourceSettings = {
-            type = "structure",
-            traits = {
-                json_name = "teletextSourceSettings",
-            },
-        },
+        AncillarySourceSettings = setmetatable({ traits = {
+            json_name = "ancillarySourceSettings",
+        } }, { __index = M.AncillarySourceSettings }),
+        AribSourceSettings = setmetatable({ traits = {
+            json_name = "aribSourceSettings",
+        } }, { __index = M.AribSourceSettings }),
+        DvbSubSourceSettings = setmetatable({ traits = {
+            json_name = "dvbSubSourceSettings",
+        } }, { __index = M.DvbSubSourceSettings }),
+        EmbeddedSourceSettings = setmetatable({ traits = {
+            json_name = "embeddedSourceSettings",
+        } }, { __index = M.EmbeddedSourceSettings }),
+        Scte20SourceSettings = setmetatable({ traits = {
+            json_name = "scte20SourceSettings",
+        } }, { __index = M.Scte20SourceSettings }),
+        Scte27SourceSettings = setmetatable({ traits = {
+            json_name = "scte27SourceSettings",
+        } }, { __index = M.Scte27SourceSettings }),
+        TeletextSourceSettings = setmetatable({ traits = {
+            json_name = "teletextSourceSettings",
+        } }, { __index = M.TeletextSourceSettings }),
     },
 }
 
@@ -2073,12 +1938,9 @@ M.CaptionSelector = {
                 required = true,
             },
         },
-        SelectorSettings = {
-            type = "structure",
-            traits = {
-                json_name = "selectorSettings",
-            },
-        },
+        SelectorSettings = setmetatable({ traits = {
+            json_name = "selectorSettings",
+        } }, { __index = M.CaptionSelectorSettings }),
     },
 }
 
@@ -2352,7 +2214,7 @@ M.SrtOutputDestinationSettings = {
             },
         },
         ListenerPort = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "listenerPort",
             },
@@ -2371,41 +2233,38 @@ M.OutputDestination = {
         },
         MediaPackageSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.MediaPackageOutputDestinationSettings,
             traits = {
                 json_name = "mediaPackageSettings",
             },
         },
-        MultiplexSettings = {
-            type = "structure",
-            traits = {
-                json_name = "multiplexSettings",
-            },
-        },
+        MultiplexSettings = setmetatable({ traits = {
+            json_name = "multiplexSettings",
+        } }, { __index = M.MultiplexProgramChannelDestinationSettings }),
         Settings = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputDestinationSettings,
             traits = {
                 json_name = "settings",
             },
         },
         SrtSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.SrtOutputDestinationSettings,
             traits = {
                 json_name = "srtSettings",
             },
         },
         LogicalInterfaceNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "logicalInterfaceNames",
             },
         },
         MediaConnectRouterSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.MediaConnectRouterOutputDestinationSettings,
             traits = {
                 json_name = "mediaConnectRouterSettings",
             },
@@ -2436,7 +2295,7 @@ M.AudioSilenceFailoverSettings = {
             },
         },
         AudioSilenceThresholdMsec = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "audioSilenceThresholdMsec",
             },
@@ -2448,7 +2307,7 @@ M.InputLossFailoverSettings = {
     type = "structure",
     members = {
         InputLossThresholdMsec = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "inputLossThresholdMsec",
             },
@@ -2460,13 +2319,13 @@ M.VideoBlackFailoverSettings = {
     type = "structure",
     members = {
         BlackDetectThreshold = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "blackDetectThreshold",
             },
         },
         VideoBlackThresholdMsec = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "videoBlackThresholdMsec",
             },
@@ -2477,36 +2336,24 @@ M.VideoBlackFailoverSettings = {
 M.FailoverConditionSettings = {
     type = "structure",
     members = {
-        AudioSilenceSettings = {
-            type = "structure",
-            traits = {
-                json_name = "audioSilenceSettings",
-            },
-        },
-        InputLossSettings = {
-            type = "structure",
-            traits = {
-                json_name = "inputLossSettings",
-            },
-        },
-        VideoBlackSettings = {
-            type = "structure",
-            traits = {
-                json_name = "videoBlackSettings",
-            },
-        },
+        AudioSilenceSettings = setmetatable({ traits = {
+            json_name = "audioSilenceSettings",
+        } }, { __index = M.AudioSilenceFailoverSettings }),
+        InputLossSettings = setmetatable({ traits = {
+            json_name = "inputLossSettings",
+        } }, { __index = M.InputLossFailoverSettings }),
+        VideoBlackSettings = setmetatable({ traits = {
+            json_name = "videoBlackSettings",
+        } }, { __index = M.VideoBlackFailoverSettings }),
     },
 }
 
 M.FailoverCondition = {
     type = "structure",
     members = {
-        FailoverConditionSettings = {
-            type = "structure",
-            traits = {
-                json_name = "failoverConditionSettings",
-            },
-        },
+        FailoverConditionSettings = setmetatable({ traits = {
+            json_name = "failoverConditionSettings",
+        } }, { __index = M.FailoverConditionSettings }),
     },
 }
 
@@ -2519,14 +2366,14 @@ M.AutomaticInputFailoverSettings = {
     type = "structure",
     members = {
         ErrorClearTimeMsec = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "errorClearTimeMsec",
             },
         },
         FailoverConditions = {
             type = "list",
-            member_type = "structure",
+            member = M.FailoverCondition,
             traits = {
                 json_name = "failoverConditions",
             },
@@ -2572,25 +2419,25 @@ M.HlsInputSettings = {
     type = "structure",
     members = {
         Bandwidth = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "bandwidth",
             },
         },
         BufferSegments = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "bufferSegments",
             },
         },
         Retries = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "retries",
             },
         },
         RetryInterval = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "retryInterval",
             },
@@ -2624,24 +2471,18 @@ M.NetworkInputServerValidation = {
 M.NetworkInputSettings = {
     type = "structure",
     members = {
-        HlsInputSettings = {
-            type = "structure",
-            traits = {
-                json_name = "hlsInputSettings",
-            },
-        },
+        HlsInputSettings = setmetatable({ traits = {
+            json_name = "hlsInputSettings",
+        } }, { __index = M.HlsInputSettings }),
         ServerValidation = {
             type = "string",
             traits = {
                 json_name = "serverValidation",
             },
         },
-        MulticastInputSettings = {
-            type = "structure",
-            traits = {
-                json_name = "multicastInputSettings",
-            },
-        },
+        MulticastInputSettings = setmetatable({ traits = {
+            json_name = "multicastInputSettings",
+        } }, { __index = M.MulticastInputSettings }),
     },
 }
 
@@ -2667,13 +2508,13 @@ M.Hdr10Settings = {
     type = "structure",
     members = {
         MaxCll = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxCll",
             },
         },
         MaxFall = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxFall",
             },
@@ -2684,12 +2525,9 @@ M.Hdr10Settings = {
 M.VideoSelectorColorSpaceSettings = {
     type = "structure",
     members = {
-        Hdr10Settings = {
-            type = "structure",
-            traits = {
-                json_name = "hdr10Settings",
-            },
-        },
+        Hdr10Settings = setmetatable({ traits = {
+            json_name = "hdr10Settings",
+        } }, { __index = M.Hdr10Settings }),
     },
 }
 
@@ -2702,7 +2540,7 @@ M.VideoSelectorPid = {
     type = "structure",
     members = {
         Pid = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "pid",
             },
@@ -2714,7 +2552,7 @@ M.VideoSelectorProgramId = {
     type = "structure",
     members = {
         ProgramId = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "programId",
             },
@@ -2725,18 +2563,12 @@ M.VideoSelectorProgramId = {
 M.VideoSelectorSettings = {
     type = "structure",
     members = {
-        VideoSelectorPid = {
-            type = "structure",
-            traits = {
-                json_name = "videoSelectorPid",
-            },
-        },
-        VideoSelectorProgramId = {
-            type = "structure",
-            traits = {
-                json_name = "videoSelectorProgramId",
-            },
-        },
+        VideoSelectorPid = setmetatable({ traits = {
+            json_name = "videoSelectorPid",
+        } }, { __index = M.VideoSelectorPid }),
+        VideoSelectorProgramId = setmetatable({ traits = {
+            json_name = "videoSelectorProgramId",
+        } }, { __index = M.VideoSelectorProgramId }),
     },
 }
 
@@ -2749,24 +2581,18 @@ M.VideoSelector = {
                 json_name = "colorSpace",
             },
         },
-        ColorSpaceSettings = {
-            type = "structure",
-            traits = {
-                json_name = "colorSpaceSettings",
-            },
-        },
+        ColorSpaceSettings = setmetatable({ traits = {
+            json_name = "colorSpaceSettings",
+        } }, { __index = M.VideoSelectorColorSpaceSettings }),
         ColorSpaceUsage = {
             type = "string",
             traits = {
                 json_name = "colorSpaceUsage",
             },
         },
-        SelectorSettings = {
-            type = "structure",
-            traits = {
-                json_name = "selectorSettings",
-            },
-        },
+        SelectorSettings = setmetatable({ traits = {
+            json_name = "selectorSettings",
+        } }, { __index = M.VideoSelectorSettings }),
     },
 }
 
@@ -2775,14 +2601,14 @@ M.InputSettings = {
     members = {
         AudioSelectors = {
             type = "list",
-            member_type = "structure",
+            member = M.AudioSelector,
             traits = {
                 json_name = "audioSelectors",
             },
         },
         CaptionSelectors = {
             type = "list",
-            member_type = "structure",
+            member = M.CaptionSelector,
             traits = {
                 json_name = "captionSelectors",
             },
@@ -2800,7 +2626,7 @@ M.InputSettings = {
             },
         },
         FilterStrength = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "filterStrength",
             },
@@ -2811,14 +2637,11 @@ M.InputSettings = {
                 json_name = "inputFilter",
             },
         },
-        NetworkInputSettings = {
-            type = "structure",
-            traits = {
-                json_name = "networkInputSettings",
-            },
-        },
+        NetworkInputSettings = setmetatable({ traits = {
+            json_name = "networkInputSettings",
+        } }, { __index = M.NetworkInputSettings }),
         Scte35Pid = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "scte35Pid",
             },
@@ -2835,24 +2658,18 @@ M.InputSettings = {
                 json_name = "sourceEndBehavior",
             },
         },
-        VideoSelector = {
-            type = "structure",
-            traits = {
-                json_name = "videoSelector",
-            },
-        },
+        VideoSelector = setmetatable({ traits = {
+            json_name = "videoSelector",
+        } }, { __index = M.VideoSelector }),
     },
 }
 
 M.InputAttachment = {
     type = "structure",
     members = {
-        AutomaticInputFailoverSettings = {
-            type = "structure",
-            traits = {
-                json_name = "automaticInputFailoverSettings",
-            },
-        },
+        AutomaticInputFailoverSettings = setmetatable({ traits = {
+            json_name = "automaticInputFailoverSettings",
+        } }, { __index = M.AutomaticInputFailoverSettings }),
         InputAttachmentName = {
             type = "string",
             traits = {
@@ -2865,15 +2682,12 @@ M.InputAttachment = {
                 json_name = "inputId",
             },
         },
-        InputSettings = {
-            type = "structure",
-            traits = {
-                json_name = "inputSettings",
-            },
-        },
+        InputSettings = setmetatable({ traits = {
+            json_name = "inputSettings",
+        } }, { __index = M.InputSettings }),
         LogicalInterfaceNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "logicalInterfaceNames",
             },
@@ -2951,7 +2765,7 @@ M.DescribePrimaryChannelSettings = {
     members = {
         FollowingChannelArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "followingChannelArns",
             },
@@ -2968,18 +2782,12 @@ M.DescribePrimaryChannelSettings = {
 M.DescribeLinkedChannelSettings = {
     type = "structure",
     members = {
-        FollowerChannelSettings = {
-            type = "structure",
-            traits = {
-                json_name = "followerChannelSettings",
-            },
-        },
-        PrimaryChannelSettings = {
-            type = "structure",
-            traits = {
-                json_name = "primaryChannelSettings",
-            },
-        },
+        FollowerChannelSettings = setmetatable({ traits = {
+            json_name = "followerChannelSettings",
+        } }, { __index = M.DescribeFollowerChannelSettings }),
+        PrimaryChannelSettings = setmetatable({ traits = {
+            json_name = "primaryChannelSettings",
+        } }, { __index = M.DescribePrimaryChannelSettings }),
     },
 }
 
@@ -3050,28 +2858,28 @@ M.VpcOutputSettingsDescription = {
     members = {
         AvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "availabilityZones",
             },
         },
         NetworkInterfaceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "networkInterfaceIds",
             },
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "securityGroupIds",
             },
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "subnetIds",
             },
@@ -3088,12 +2896,9 @@ M.ChannelSummary = {
                 json_name = "arn",
             },
         },
-        CdiInputSpecification = {
-            type = "structure",
-            traits = {
-                json_name = "cdiInputSpecification",
-            },
-        },
+        CdiInputSpecification = setmetatable({ traits = {
+            json_name = "cdiInputSpecification",
+        } }, { __index = M.CdiInputSpecification }),
         ChannelClass = {
             type = "string",
             traits = {
@@ -3102,14 +2907,14 @@ M.ChannelSummary = {
         },
         Destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputDestination,
             traits = {
                 json_name = "destinations",
             },
         },
         EgressEndpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.ChannelEgressEndpoint,
             traits = {
                 json_name = "egressEndpoints",
             },
@@ -3122,29 +2927,23 @@ M.ChannelSummary = {
         },
         InputAttachments = {
             type = "list",
-            member_type = "structure",
+            member = M.InputAttachment,
             traits = {
                 json_name = "inputAttachments",
             },
         },
-        InputSpecification = {
-            type = "structure",
-            traits = {
-                json_name = "inputSpecification",
-            },
-        },
+        InputSpecification = setmetatable({ traits = {
+            json_name = "inputSpecification",
+        } }, { __index = M.InputSpecification }),
         LogLevel = {
             type = "string",
             traits = {
                 json_name = "logLevel",
             },
         },
-        Maintenance = {
-            type = "structure",
-            traits = {
-                json_name = "maintenance",
-            },
-        },
+        Maintenance = setmetatable({ traits = {
+            json_name = "maintenance",
+        } }, { __index = M.MaintenanceStatus }),
         Name = {
             type = "string",
             traits = {
@@ -3152,7 +2951,7 @@ M.ChannelSummary = {
             },
         },
         PipelinesRunningCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "pipelinesRunningCount",
             },
@@ -3171,56 +2970,41 @@ M.ChannelSummary = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
         },
-        Vpc = {
-            type = "structure",
-            traits = {
-                json_name = "vpc",
-            },
-        },
-        AnywhereSettings = {
-            type = "structure",
-            traits = {
-                json_name = "anywhereSettings",
-            },
-        },
-        ChannelEngineVersion = {
-            type = "structure",
-            traits = {
-                json_name = "channelEngineVersion",
-            },
-        },
+        Vpc = setmetatable({ traits = {
+            json_name = "vpc",
+        } }, { __index = M.VpcOutputSettingsDescription }),
+        AnywhereSettings = setmetatable({ traits = {
+            json_name = "anywhereSettings",
+        } }, { __index = M.DescribeAnywhereSettings }),
+        ChannelEngineVersion = setmetatable({ traits = {
+            json_name = "channelEngineVersion",
+        } }, { __index = M.ChannelEngineVersionResponse }),
         UsedChannelEngineVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.ChannelEngineVersionResponse,
             traits = {
                 json_name = "usedChannelEngineVersions",
             },
         },
-        LinkedChannelSettings = {
-            type = "structure",
-            traits = {
-                json_name = "linkedChannelSettings",
-            },
-        },
+        LinkedChannelSettings = setmetatable({ traits = {
+            json_name = "linkedChannelSettings",
+        } }, { __index = M.DescribeLinkedChannelSettings }),
         ChannelSecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "channelSecurityGroups",
             },
         },
-        InferenceSettings = {
-            type = "structure",
-            traits = {
-                json_name = "inferenceSettings",
-            },
-        },
+        InferenceSettings = setmetatable({ traits = {
+            json_name = "inferenceSettings",
+        } }, { __index = M.DescribeInferenceSettings }),
     },
 }
 
@@ -3269,14 +3053,14 @@ M.CloudWatchAlarmTemplateGroupSummary = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
         },
         TemplateCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "templateCount",
                 required = true,
@@ -3344,7 +3128,7 @@ M.CloudWatchAlarmTemplateSummary = {
             },
         },
         DatapointsToAlarm = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "datapointsToAlarm",
             },
@@ -3356,7 +3140,7 @@ M.CloudWatchAlarmTemplateSummary = {
             },
         },
         EvaluationPeriods = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "evaluationPeriods",
                 required = true,
@@ -3397,7 +3181,7 @@ M.CloudWatchAlarmTemplateSummary = {
             },
         },
         Period = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "period",
                 required = true,
@@ -3412,8 +3196,8 @@ M.CloudWatchAlarmTemplateSummary = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -3426,7 +3210,7 @@ M.CloudWatchAlarmTemplateSummary = {
             },
         },
         Threshold = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "threshold",
                 required = true,
@@ -3505,7 +3289,7 @@ M.CmafIngestCaptionLanguageMapping = {
     type = "structure",
     members = {
         CaptionChannel = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "captionChannel",
                 required = true,
@@ -3576,7 +3360,7 @@ M.DescribeChannelPlacementGroupSummary = {
         },
         Channels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "channels",
             },
@@ -3601,7 +3385,7 @@ M.DescribeChannelPlacementGroupSummary = {
         },
         Nodes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "nodes",
             },
@@ -3648,7 +3432,7 @@ M.ClusterNetworkSettings = {
         },
         InterfaceMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.InterfaceMapping,
             traits = {
                 json_name = "interfaceMappings",
             },
@@ -3676,7 +3460,7 @@ M.DescribeClusterSummary = {
         },
         ChannelIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "channelIds",
             },
@@ -3705,12 +3489,9 @@ M.DescribeClusterSummary = {
                 json_name = "name",
             },
         },
-        NetworkSettings = {
-            type = "structure",
-            traits = {
-                json_name = "networkSettings",
-            },
-        },
+        NetworkSettings = setmetatable({ traits = {
+            json_name = "networkSettings",
+        } }, { __index = M.ClusterNetworkSettings }),
         State = {
             type = "string",
             traits = {
@@ -3773,7 +3554,7 @@ M.DescribeNetworkSummary = {
         },
         AssociatedClusterIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "associatedClusterIds",
             },
@@ -3786,7 +3567,7 @@ M.DescribeNetworkSummary = {
         },
         IpPools = {
             type = "list",
-            member_type = "structure",
+            member = M.IpPool,
             traits = {
                 json_name = "ipPools",
             },
@@ -3799,7 +3580,7 @@ M.DescribeNetworkSummary = {
         },
         Routes = {
             type = "list",
-            member_type = "structure",
+            member = M.Route,
             traits = {
                 json_name = "routes",
             },
@@ -3846,7 +3627,7 @@ M.NodeInterfaceMapping = {
         },
         PhysicalInterfaceIpAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "physicalInterfaceIpAddresses",
             },
@@ -3863,13 +3644,13 @@ M.SdiSourceMapping = {
     type = "structure",
     members = {
         CardNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "cardNumber",
             },
         },
         ChannelNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "channelNumber",
             },
@@ -3909,7 +3690,7 @@ M.DescribeNodeSummary = {
         },
         ChannelPlacementGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "channelPlacementGroups",
             },
@@ -3952,7 +3733,7 @@ M.DescribeNodeSummary = {
         },
         NodeInterfaceMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.NodeInterfaceMapping,
             traits = {
                 json_name = "nodeInterfaceMappings",
             },
@@ -3971,7 +3752,7 @@ M.DescribeNodeSummary = {
         },
         SdiSourceMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.SdiSourceMapping,
             traits = {
                 json_name = "sdiSourceMappings",
             },
@@ -4024,14 +3805,14 @@ M.EventBridgeRuleTemplateGroupSummary = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
         },
         TemplateCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "templateCount",
                 required = true,
@@ -4080,7 +3861,7 @@ M.EventBridgeRuleTemplateSummary = {
             },
         },
         EventTargetCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "eventTargetCount",
                 required = true,
@@ -4122,8 +3903,8 @@ M.EventBridgeRuleTemplateSummary = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -4207,12 +3988,9 @@ M.InputDestination = {
                 json_name = "url",
             },
         },
-        Vpc = {
-            type = "structure",
-            traits = {
-                json_name = "vpc",
-            },
-        },
+        Vpc = setmetatable({ traits = {
+            json_name = "vpc",
+        } }, { __index = M.InputDestinationVpc }),
         Network = {
             type = "string",
             traits = {
@@ -4221,7 +3999,7 @@ M.InputDestination = {
         },
         NetworkRoutes = {
             type = "list",
-            member_type = "structure",
+            member = M.InputDestinationRoute,
             traits = {
                 json_name = "networkRoutes",
             },
@@ -4292,7 +4070,7 @@ M.MulticastSettings = {
     members = {
         Sources = {
             type = "list",
-            member_type = "structure",
+            member = M.MulticastSource,
             traits = {
                 json_name = "sources",
             },
@@ -4328,7 +4106,7 @@ M.RouterInputSettings = {
     members = {
         Destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.RouterDestination,
             traits = {
                 json_name = "destinations",
             },
@@ -4352,7 +4130,7 @@ M.InputSdpLocation = {
     type = "structure",
     members = {
         MediaIndex = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "mediaIndex",
             },
@@ -4371,36 +4149,30 @@ M.Smpte2110ReceiverGroupSdpSettings = {
     members = {
         AncillarySdps = {
             type = "list",
-            member_type = "structure",
+            member = M.InputSdpLocation,
             traits = {
                 json_name = "ancillarySdps",
             },
         },
         AudioSdps = {
             type = "list",
-            member_type = "structure",
+            member = M.InputSdpLocation,
             traits = {
                 json_name = "audioSdps",
             },
         },
-        VideoSdp = {
-            type = "structure",
-            traits = {
-                json_name = "videoSdp",
-            },
-        },
+        VideoSdp = setmetatable({ traits = {
+            json_name = "videoSdp",
+        } }, { __index = M.InputSdpLocation }),
     },
 }
 
 M.Smpte2110ReceiverGroup = {
     type = "structure",
     members = {
-        SdpSettings = {
-            type = "structure",
-            traits = {
-                json_name = "sdpSettings",
-            },
-        },
+        SdpSettings = setmetatable({ traits = {
+            json_name = "sdpSettings",
+        } }, { __index = M.Smpte2110ReceiverGroupSdpSettings }),
     },
 }
 
@@ -4409,7 +4181,7 @@ M.Smpte2110ReceiverGroupSettings = {
     members = {
         Smpte2110ReceiverGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.Smpte2110ReceiverGroup,
             traits = {
                 json_name = "smpte2110ReceiverGroups",
             },
@@ -4468,14 +4240,11 @@ M.SrtCallerDecryption = {
 M.SrtCallerSource = {
     type = "structure",
     members = {
-        Decryption = {
-            type = "structure",
-            traits = {
-                json_name = "decryption",
-            },
-        },
+        Decryption = setmetatable({ traits = {
+            json_name = "decryption",
+        } }, { __index = M.SrtCallerDecryption }),
         MinimumLatency = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "minimumLatency",
             },
@@ -4524,14 +4293,11 @@ M.SrtListenerDecryption = {
 M.SrtListenerSettings = {
     type = "structure",
     members = {
-        Decryption = {
-            type = "structure",
-            traits = {
-                json_name = "decryption",
-            },
-        },
+        Decryption = setmetatable({ traits = {
+            json_name = "decryption",
+        } }, { __index = M.SrtListenerDecryption }),
         MinimumLatency = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "minimumLatency",
             },
@@ -4550,17 +4316,14 @@ M.SrtSettings = {
     members = {
         SrtCallerSources = {
             type = "list",
-            member_type = "structure",
+            member = M.SrtCallerSource,
             traits = {
                 json_name = "srtCallerSources",
             },
         },
-        SrtListenerSettings = {
-            type = "structure",
-            traits = {
-                json_name = "srtListenerSettings",
-            },
-        },
+        SrtListenerSettings = setmetatable({ traits = {
+            json_name = "srtListenerSettings",
+        } }, { __index = M.SrtListenerSettings }),
     },
 }
 
@@ -4602,14 +4365,14 @@ M.Input = {
         },
         AttachedChannels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "attachedChannels",
             },
         },
         Destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.InputDestination,
             traits = {
                 json_name = "destinations",
             },
@@ -4628,14 +4391,14 @@ M.Input = {
         },
         InputDevices = {
             type = "list",
-            member_type = "structure",
+            member = M.InputDeviceSettings,
             traits = {
                 json_name = "inputDevices",
             },
         },
         InputPartnerIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "inputPartnerIds",
             },
@@ -4648,7 +4411,7 @@ M.Input = {
         },
         MediaConnectFlows = {
             type = "list",
-            member_type = "structure",
+            member = M.MediaConnectFlow,
             traits = {
                 json_name = "mediaConnectFlows",
             },
@@ -4667,14 +4430,14 @@ M.Input = {
         },
         SecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "securityGroups",
             },
         },
         Sources = {
             type = "list",
-            member_type = "structure",
+            member = M.InputSource,
             traits = {
                 json_name = "sources",
             },
@@ -4687,8 +4450,8 @@ M.Input = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -4699,43 +4462,31 @@ M.Input = {
                 json_name = "type",
             },
         },
-        SrtSettings = {
-            type = "structure",
-            traits = {
-                json_name = "srtSettings",
-            },
-        },
+        SrtSettings = setmetatable({ traits = {
+            json_name = "srtSettings",
+        } }, { __index = M.SrtSettings }),
         InputNetworkLocation = {
             type = "string",
             traits = {
                 json_name = "inputNetworkLocation",
             },
         },
-        MulticastSettings = {
-            type = "structure",
-            traits = {
-                json_name = "multicastSettings",
-            },
-        },
-        Smpte2110ReceiverGroupSettings = {
-            type = "structure",
-            traits = {
-                json_name = "smpte2110ReceiverGroupSettings",
-            },
-        },
+        MulticastSettings = setmetatable({ traits = {
+            json_name = "multicastSettings",
+        } }, { __index = M.MulticastSettings }),
+        Smpte2110ReceiverGroupSettings = setmetatable({ traits = {
+            json_name = "smpte2110ReceiverGroupSettings",
+        } }, { __index = M.Smpte2110ReceiverGroupSettings }),
         SdiSources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "sdiSources",
             },
         },
-        RouterSettings = {
-            type = "structure",
-            traits = {
-                json_name = "routerSettings",
-            },
-        },
+        RouterSettings = setmetatable({ traits = {
+            json_name = "routerSettings",
+        } }, { __index = M.RouterInputSettings }),
     },
 }
 
@@ -4774,7 +4525,7 @@ M.InputDestinationRequest = {
         },
         NetworkRoutes = {
             type = "list",
-            member_type = "structure",
+            member = M.InputRequestDestinationRoute,
             traits = {
                 json_name = "networkRoutes",
             },
@@ -4803,7 +4554,7 @@ M.InputDeviceConfigurableAudioChannelPairConfig = {
     type = "structure",
     members = {
         Id = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "id",
             },
@@ -4888,19 +4639,19 @@ M.InputDeviceHdSettings = {
             },
         },
         Framerate = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "framerate",
             },
         },
         Height = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "height",
             },
         },
         MaxBitrate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxBitrate",
             },
@@ -4912,13 +4663,13 @@ M.InputDeviceHdSettings = {
             },
         },
         Width = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "width",
             },
         },
         LatencyMs = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "latencyMs",
             },
@@ -4936,7 +4687,7 @@ M.InputDeviceNetworkSettings = {
     members = {
         DnsAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "dnsAddresses",
             },
@@ -4994,7 +4745,7 @@ M.InputDeviceUhdAudioChannelPairConfig = {
     type = "structure",
     members = {
         Id = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "id",
             },
@@ -5065,19 +4816,19 @@ M.InputDeviceUhdSettings = {
             },
         },
         Framerate = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "framerate",
             },
         },
         Height = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "height",
             },
         },
         MaxBitrate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxBitrate",
             },
@@ -5089,13 +4840,13 @@ M.InputDeviceUhdSettings = {
             },
         },
         Width = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "width",
             },
         },
         LatencyMs = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "latencyMs",
             },
@@ -5106,15 +4857,12 @@ M.InputDeviceUhdSettings = {
                 json_name = "codec",
             },
         },
-        MediaconnectSettings = {
-            type = "structure",
-            traits = {
-                json_name = "mediaconnectSettings",
-            },
-        },
+        MediaconnectSettings = setmetatable({ traits = {
+            json_name = "mediaconnectSettings",
+        } }, { __index = M.InputDeviceMediaConnectSettings }),
         AudioChannelPairs = {
             type = "list",
-            member_type = "structure",
+            member = M.InputDeviceUhdAudioChannelPairConfig,
             traits = {
                 json_name = "audioChannelPairs",
             },
@@ -5155,12 +4903,9 @@ M.InputDeviceSummary = {
                 json_name = "deviceUpdateStatus",
             },
         },
-        HdDeviceSettings = {
-            type = "structure",
-            traits = {
-                json_name = "hdDeviceSettings",
-            },
-        },
+        HdDeviceSettings = setmetatable({ traits = {
+            json_name = "hdDeviceSettings",
+        } }, { __index = M.InputDeviceHdSettings }),
         Id = {
             type = "string",
             traits = {
@@ -5179,12 +4924,9 @@ M.InputDeviceSummary = {
                 json_name = "name",
             },
         },
-        NetworkSettings = {
-            type = "structure",
-            traits = {
-                json_name = "networkSettings",
-            },
-        },
+        NetworkSettings = setmetatable({ traits = {
+            json_name = "networkSettings",
+        } }, { __index = M.InputDeviceNetworkSettings }),
         SerialNumber = {
             type = "string",
             traits = {
@@ -5197,16 +4939,13 @@ M.InputDeviceSummary = {
                 json_name = "type",
             },
         },
-        UhdDeviceSettings = {
-            type = "structure",
-            traits = {
-                json_name = "uhdDeviceSettings",
-            },
-        },
+        UhdDeviceSettings = setmetatable({ traits = {
+            json_name = "uhdDeviceSettings",
+        } }, { __index = M.InputDeviceUhdSettings }),
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -5219,7 +4958,7 @@ M.InputDeviceSummary = {
         },
         MedialiveInputArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "medialiveInputArns",
             },
@@ -5269,7 +5008,7 @@ M.InputSecurityGroup = {
         },
         Inputs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "inputs",
             },
@@ -5282,22 +5021,22 @@ M.InputSecurityGroup = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
         },
         WhitelistRules = {
             type = "list",
-            member_type = "structure",
+            member = M.InputWhitelistRule,
             traits = {
                 json_name = "whitelistRules",
             },
         },
         Channels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "channels",
             },
@@ -5416,13 +5155,10 @@ M.MediaConnectFlowRequest = {
 M.MediaPackageAdditionalDestinations = {
     type = "structure",
     members = {
-        Destination = {
-            type = "structure",
-            traits = {
-                json_name = "destination",
-                required = true,
-            },
-        },
+        Destination = setmetatable({ traits = {
+            json_name = "destination",
+            required = true,
+        } }, { __index = M.OutputLocationRef }),
     },
 }
 
@@ -5551,12 +5287,9 @@ M.MultiplexMediaConnectOutputDestinationSettings = {
 M.MultiplexOutputDestination = {
     type = "structure",
     members = {
-        MediaConnectSettings = {
-            type = "structure",
-            traits = {
-                json_name = "mediaConnectSettings",
-            },
-        },
+        MediaConnectSettings = setmetatable({ traits = {
+            json_name = "mediaConnectSettings",
+        } }, { __index = M.MultiplexMediaConnectOutputDestinationSettings }),
     },
 }
 
@@ -5600,7 +5333,7 @@ M.MultiplexSettingsSummary = {
     type = "structure",
     members = {
         TransportStreamBitrate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "transportStreamBitrate",
             },
@@ -5631,7 +5364,7 @@ M.MultiplexSummary = {
         },
         AvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "availabilityZones",
             },
@@ -5642,12 +5375,9 @@ M.MultiplexSummary = {
                 json_name = "id",
             },
         },
-        MultiplexSettings = {
-            type = "structure",
-            traits = {
-                json_name = "multiplexSettings",
-            },
-        },
+        MultiplexSettings = setmetatable({ traits = {
+            json_name = "multiplexSettings",
+        } }, { __index = M.MultiplexSettingsSummary }),
         Name = {
             type = "string",
             traits = {
@@ -5655,13 +5385,13 @@ M.MultiplexSummary = {
             },
         },
         PipelinesRunningCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "pipelinesRunningCount",
             },
         },
         ProgramCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "programCount",
             },
@@ -5674,8 +5404,8 @@ M.MultiplexSummary = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -5832,7 +5562,7 @@ M.Offering = {
             },
         },
         Duration = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "duration",
             },
@@ -5844,7 +5574,7 @@ M.Offering = {
             },
         },
         FixedPrice = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "fixedPrice",
             },
@@ -5873,14 +5603,11 @@ M.Offering = {
                 json_name = "region",
             },
         },
-        ResourceSpecification = {
-            type = "structure",
-            traits = {
-                json_name = "resourceSpecification",
-            },
-        },
+        ResourceSpecification = setmetatable({ traits = {
+            json_name = "resourceSpecification",
+        } }, { __index = M.ReservationResourceSpecification }),
         UsagePrice = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "usagePrice",
             },
@@ -5927,7 +5654,7 @@ M.DvbNitSettings = {
     type = "structure",
     members = {
         NetworkId = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "networkId",
                 required = true,
@@ -5941,7 +5668,7 @@ M.DvbNitSettings = {
             },
         },
         RepInterval = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "repInterval",
             },
@@ -5966,7 +5693,7 @@ M.DvbSdtSettings = {
             },
         },
         RepInterval = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "repInterval",
             },
@@ -5990,7 +5717,7 @@ M.DvbTdtSettings = {
     type = "structure",
     members = {
         RepInterval = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "repInterval",
             },
@@ -6096,7 +5823,7 @@ M.M2tsSettings = {
             },
         },
         AudioFramesPerPes = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "audioFramesPerPes",
             },
@@ -6114,7 +5841,7 @@ M.M2tsSettings = {
             },
         },
         Bitrate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "bitrate",
             },
@@ -6131,30 +5858,21 @@ M.M2tsSettings = {
                 json_name = "ccDescriptor",
             },
         },
-        DvbNitSettings = {
-            type = "structure",
-            traits = {
-                json_name = "dvbNitSettings",
-            },
-        },
-        DvbSdtSettings = {
-            type = "structure",
-            traits = {
-                json_name = "dvbSdtSettings",
-            },
-        },
+        DvbNitSettings = setmetatable({ traits = {
+            json_name = "dvbNitSettings",
+        } }, { __index = M.DvbNitSettings }),
+        DvbSdtSettings = setmetatable({ traits = {
+            json_name = "dvbSdtSettings",
+        } }, { __index = M.DvbSdtSettings }),
         DvbSubPids = {
             type = "string",
             traits = {
                 json_name = "dvbSubPids",
             },
         },
-        DvbTdtSettings = {
-            type = "structure",
-            traits = {
-                json_name = "dvbTdtSettings",
-            },
-        },
+        DvbTdtSettings = setmetatable({ traits = {
+            json_name = "dvbTdtSettings",
+        } }, { __index = M.DvbTdtSettings }),
         DvbTeletextPid = {
             type = "string",
             traits = {
@@ -6174,7 +5892,7 @@ M.M2tsSettings = {
             },
         },
         EbpLookaheadMs = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "ebpLookaheadMs",
             },
@@ -6210,7 +5928,7 @@ M.M2tsSettings = {
             },
         },
         FragmentTime = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "fragmentTime",
             },
@@ -6234,13 +5952,13 @@ M.M2tsSettings = {
             },
         },
         NullPacketBitrate = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "nullPacketBitrate",
             },
         },
         PatInterval = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "patInterval",
             },
@@ -6252,7 +5970,7 @@ M.M2tsSettings = {
             },
         },
         PcrPeriod = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "pcrPeriod",
             },
@@ -6264,7 +5982,7 @@ M.M2tsSettings = {
             },
         },
         PmtInterval = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "pmtInterval",
             },
@@ -6276,7 +5994,7 @@ M.M2tsSettings = {
             },
         },
         ProgramNum = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "programNum",
             },
@@ -6318,7 +6036,7 @@ M.M2tsSettings = {
             },
         },
         SegmentationTime = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "segmentationTime",
             },
@@ -6336,7 +6054,7 @@ M.M2tsSettings = {
             },
         },
         TransportStreamId = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "transportStreamId",
             },
@@ -6348,7 +6066,7 @@ M.M2tsSettings = {
             },
         },
         Scte35PrerollPullupMilliseconds = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "scte35PrerollPullupMilliseconds",
             },
@@ -6363,31 +6081,22 @@ M.RawSettings = {
 M.ArchiveContainerSettings = {
     type = "structure",
     members = {
-        M2tsSettings = {
-            type = "structure",
-            traits = {
-                json_name = "m2tsSettings",
-            },
-        },
-        RawSettings = {
-            type = "structure",
-            traits = {
-                json_name = "rawSettings",
-            },
-        },
+        M2tsSettings = setmetatable({ traits = {
+            json_name = "m2tsSettings",
+        } }, { __index = M.M2tsSettings }),
+        RawSettings = setmetatable({ traits = {
+            json_name = "rawSettings",
+        } }, { __index = M.RawSettings }),
     },
 }
 
 M.ArchiveOutputSettings = {
     type = "structure",
     members = {
-        ContainerSettings = {
-            type = "structure",
-            traits = {
-                json_name = "containerSettings",
-                required = true,
-            },
-        },
+        ContainerSettings = setmetatable({ traits = {
+            json_name = "containerSettings",
+            required = true,
+        } }, { __index = M.ArchiveContainerSettings }),
         Extension = {
             type = "string",
             traits = {
@@ -6453,12 +6162,9 @@ M.AudioOnlyHlsSettings = {
                 json_name = "audioGroupId",
             },
         },
-        AudioOnlyImage = {
-            type = "structure",
-            traits = {
-                json_name = "audioOnlyImage",
-            },
-        },
+        AudioOnlyImage = setmetatable({ traits = {
+            json_name = "audioOnlyImage",
+        } }, { __index = M.InputLocation }),
         AudioTrackType = {
             type = "string",
             traits = {
@@ -6541,7 +6247,7 @@ M.M3u8Settings = {
     type = "structure",
     members = {
         AudioFramesPerPes = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "audioFramesPerPes",
             },
@@ -6565,7 +6271,7 @@ M.M3u8Settings = {
             },
         },
         PatInterval = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "patInterval",
             },
@@ -6577,7 +6283,7 @@ M.M3u8Settings = {
             },
         },
         PcrPeriod = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "pcrPeriod",
             },
@@ -6589,7 +6295,7 @@ M.M3u8Settings = {
             },
         },
         PmtInterval = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "pmtInterval",
             },
@@ -6601,7 +6307,7 @@ M.M3u8Settings = {
             },
         },
         ProgramNum = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "programNum",
             },
@@ -6631,7 +6337,7 @@ M.M3u8Settings = {
             },
         },
         TransportStreamId = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "transportStreamId",
             },
@@ -6666,43 +6372,28 @@ M.StandardHlsSettings = {
                 json_name = "audioRenditionSets",
             },
         },
-        M3u8Settings = {
-            type = "structure",
-            traits = {
-                json_name = "m3u8Settings",
-                required = true,
-            },
-        },
+        M3u8Settings = setmetatable({ traits = {
+            json_name = "m3u8Settings",
+            required = true,
+        } }, { __index = M.M3u8Settings }),
     },
 }
 
 M.HlsSettings = {
     type = "structure",
     members = {
-        AudioOnlyHlsSettings = {
-            type = "structure",
-            traits = {
-                json_name = "audioOnlyHlsSettings",
-            },
-        },
-        Fmp4HlsSettings = {
-            type = "structure",
-            traits = {
-                json_name = "fmp4HlsSettings",
-            },
-        },
-        FrameCaptureHlsSettings = {
-            type = "structure",
-            traits = {
-                json_name = "frameCaptureHlsSettings",
-            },
-        },
-        StandardHlsSettings = {
-            type = "structure",
-            traits = {
-                json_name = "standardHlsSettings",
-            },
-        },
+        AudioOnlyHlsSettings = setmetatable({ traits = {
+            json_name = "audioOnlyHlsSettings",
+        } }, { __index = M.AudioOnlyHlsSettings }),
+        Fmp4HlsSettings = setmetatable({ traits = {
+            json_name = "fmp4HlsSettings",
+        } }, { __index = M.Fmp4HlsSettings }),
+        FrameCaptureHlsSettings = setmetatable({ traits = {
+            json_name = "frameCaptureHlsSettings",
+        } }, { __index = M.FrameCaptureHlsSettings }),
+        StandardHlsSettings = setmetatable({ traits = {
+            json_name = "standardHlsSettings",
+        } }, { __index = M.StandardHlsSettings }),
     },
 }
 
@@ -6715,13 +6406,10 @@ M.HlsOutputSettings = {
                 json_name = "h265PackagingType",
             },
         },
-        HlsSettings = {
-            type = "structure",
-            traits = {
-                json_name = "hlsSettings",
-                required = true,
-            },
-        },
+        HlsSettings = setmetatable({ traits = {
+            json_name = "hlsSettings",
+            required = true,
+        } }, { __index = M.HlsSettings }),
         NameModifier = {
             type = "string",
             traits = {
@@ -6758,38 +6446,26 @@ M.MediaConnectRouterOutputConnectionMap = {
 M.MediaConnectRouterContainerSettings = {
     type = "structure",
     members = {
-        M2tsSettings = {
-            type = "structure",
-            traits = {
-                json_name = "m2tsSettings",
-            },
-        },
+        M2tsSettings = setmetatable({ traits = {
+            json_name = "m2tsSettings",
+        } }, { __index = M.M2tsSettings }),
     },
 }
 
 M.MediaConnectRouterOutputSettings = {
     type = "structure",
     members = {
-        ConnectedRouterInputs = {
-            type = "structure",
-            traits = {
-                json_name = "connectedRouterInputs",
-            },
-        },
-        ContainerSettings = {
-            type = "structure",
-            traits = {
-                json_name = "containerSettings",
-                required = true,
-            },
-        },
-        Destination = {
-            type = "structure",
-            traits = {
-                json_name = "destination",
-                required = true,
-            },
-        },
+        ConnectedRouterInputs = setmetatable({ traits = {
+            json_name = "connectedRouterInputs",
+        } }, { __index = M.MediaConnectRouterOutputConnectionMap }),
+        ContainerSettings = setmetatable({ traits = {
+            json_name = "containerSettings",
+            required = true,
+        } }, { __index = M.MediaConnectRouterContainerSettings }),
+        Destination = setmetatable({ traits = {
+            json_name = "destination",
+            required = true,
+        } }, { __index = M.OutputLocationRef }),
     },
 }
 
@@ -6838,12 +6514,9 @@ M.MediaPackageV2DestinationSettings = {
 M.MediaPackageOutputSettings = {
     type = "structure",
     members = {
-        MediaPackageV2DestinationSettings = {
-            type = "structure",
-            traits = {
-                json_name = "mediaPackageV2DestinationSettings",
-            },
-        },
+        MediaPackageV2DestinationSettings = setmetatable({ traits = {
+            json_name = "mediaPackageV2DestinationSettings",
+        } }, { __index = M.MediaPackageV2DestinationSettings }),
     },
 }
 
@@ -6892,7 +6565,7 @@ M.MultiplexM2tsSettings = {
             },
         },
         AudioFramesPerPes = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "audioFramesPerPes",
             },
@@ -6940,7 +6613,7 @@ M.MultiplexM2tsSettings = {
             },
         },
         PcrPeriod = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "pcrPeriod",
             },
@@ -6952,7 +6625,7 @@ M.MultiplexM2tsSettings = {
             },
         },
         Scte35PrerollPullupMilliseconds = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "scte35PrerollPullupMilliseconds",
             },
@@ -6963,31 +6636,22 @@ M.MultiplexM2tsSettings = {
 M.MultiplexContainerSettings = {
     type = "structure",
     members = {
-        MultiplexM2tsSettings = {
-            type = "structure",
-            traits = {
-                json_name = "multiplexM2tsSettings",
-            },
-        },
+        MultiplexM2tsSettings = setmetatable({ traits = {
+            json_name = "multiplexM2tsSettings",
+        } }, { __index = M.MultiplexM2tsSettings }),
     },
 }
 
 M.MultiplexOutputSettings = {
     type = "structure",
     members = {
-        Destination = {
-            type = "structure",
-            traits = {
-                json_name = "destination",
-                required = true,
-            },
-        },
-        ContainerSettings = {
-            type = "structure",
-            traits = {
-                json_name = "containerSettings",
-            },
-        },
+        Destination = setmetatable({ traits = {
+            json_name = "destination",
+            required = true,
+        } }, { __index = M.OutputLocationRef }),
+        ContainerSettings = setmetatable({ traits = {
+            json_name = "containerSettings",
+        } }, { __index = M.MultiplexContainerSettings }),
     },
 }
 
@@ -7006,20 +6670,17 @@ M.RtmpOutputSettings = {
             },
         },
         ConnectionRetryInterval = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "connectionRetryInterval",
             },
         },
-        Destination = {
-            type = "structure",
-            traits = {
-                json_name = "destination",
-                required = true,
-            },
-        },
+        Destination = setmetatable({ traits = {
+            json_name = "destination",
+            required = true,
+        } }, { __index = M.OutputLocationRef }),
         NumRetries = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "numRetries",
             },
@@ -7030,12 +6691,9 @@ M.RtmpOutputSettings = {
 M.UdpContainerSettings = {
     type = "structure",
     members = {
-        M2tsSettings = {
-            type = "structure",
-            traits = {
-                json_name = "m2tsSettings",
-            },
-        },
+        M2tsSettings = setmetatable({ traits = {
+            json_name = "m2tsSettings",
+        } }, { __index = M.M2tsSettings }),
     },
 }
 
@@ -7049,25 +6707,19 @@ M.SrtOutputSettings = {
     type = "structure",
     members = {
         BufferMsec = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "bufferMsec",
             },
         },
-        ContainerSettings = {
-            type = "structure",
-            traits = {
-                json_name = "containerSettings",
-                required = true,
-            },
-        },
-        Destination = {
-            type = "structure",
-            traits = {
-                json_name = "destination",
-                required = true,
-            },
-        },
+        ContainerSettings = setmetatable({ traits = {
+            json_name = "containerSettings",
+            required = true,
+        } }, { __index = M.UdpContainerSettings }),
+        Destination = setmetatable({ traits = {
+            json_name = "destination",
+            required = true,
+        } }, { __index = M.OutputLocationRef }),
         EncryptionType = {
             type = "string",
             traits = {
@@ -7075,7 +6727,7 @@ M.SrtOutputSettings = {
             },
         },
         Latency = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "latency",
             },
@@ -7092,7 +6744,7 @@ M.FecOutputSettings = {
     type = "structure",
     members = {
         ColumnDepth = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "columnDepth",
             },
@@ -7104,7 +6756,7 @@ M.FecOutputSettings = {
             },
         },
         RowLength = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "rowLength",
             },
@@ -7116,103 +6768,61 @@ M.UdpOutputSettings = {
     type = "structure",
     members = {
         BufferMsec = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "bufferMsec",
             },
         },
-        ContainerSettings = {
-            type = "structure",
-            traits = {
-                json_name = "containerSettings",
-                required = true,
-            },
-        },
-        Destination = {
-            type = "structure",
-            traits = {
-                json_name = "destination",
-                required = true,
-            },
-        },
-        FecOutputSettings = {
-            type = "structure",
-            traits = {
-                json_name = "fecOutputSettings",
-            },
-        },
+        ContainerSettings = setmetatable({ traits = {
+            json_name = "containerSettings",
+            required = true,
+        } }, { __index = M.UdpContainerSettings }),
+        Destination = setmetatable({ traits = {
+            json_name = "destination",
+            required = true,
+        } }, { __index = M.OutputLocationRef }),
+        FecOutputSettings = setmetatable({ traits = {
+            json_name = "fecOutputSettings",
+        } }, { __index = M.FecOutputSettings }),
     },
 }
 
 M.OutputSettings = {
     type = "structure",
     members = {
-        ArchiveOutputSettings = {
-            type = "structure",
-            traits = {
-                json_name = "archiveOutputSettings",
-            },
-        },
-        FrameCaptureOutputSettings = {
-            type = "structure",
-            traits = {
-                json_name = "frameCaptureOutputSettings",
-            },
-        },
-        HlsOutputSettings = {
-            type = "structure",
-            traits = {
-                json_name = "hlsOutputSettings",
-            },
-        },
-        MediaPackageOutputSettings = {
-            type = "structure",
-            traits = {
-                json_name = "mediaPackageOutputSettings",
-            },
-        },
-        MsSmoothOutputSettings = {
-            type = "structure",
-            traits = {
-                json_name = "msSmoothOutputSettings",
-            },
-        },
-        MultiplexOutputSettings = {
-            type = "structure",
-            traits = {
-                json_name = "multiplexOutputSettings",
-            },
-        },
-        RtmpOutputSettings = {
-            type = "structure",
-            traits = {
-                json_name = "rtmpOutputSettings",
-            },
-        },
-        UdpOutputSettings = {
-            type = "structure",
-            traits = {
-                json_name = "udpOutputSettings",
-            },
-        },
-        CmafIngestOutputSettings = {
-            type = "structure",
-            traits = {
-                json_name = "cmafIngestOutputSettings",
-            },
-        },
-        SrtOutputSettings = {
-            type = "structure",
-            traits = {
-                json_name = "srtOutputSettings",
-            },
-        },
-        MediaConnectRouterOutputSettings = {
-            type = "structure",
-            traits = {
-                json_name = "mediaConnectRouterOutputSettings",
-            },
-        },
+        ArchiveOutputSettings = setmetatable({ traits = {
+            json_name = "archiveOutputSettings",
+        } }, { __index = M.ArchiveOutputSettings }),
+        FrameCaptureOutputSettings = setmetatable({ traits = {
+            json_name = "frameCaptureOutputSettings",
+        } }, { __index = M.FrameCaptureOutputSettings }),
+        HlsOutputSettings = setmetatable({ traits = {
+            json_name = "hlsOutputSettings",
+        } }, { __index = M.HlsOutputSettings }),
+        MediaPackageOutputSettings = setmetatable({ traits = {
+            json_name = "mediaPackageOutputSettings",
+        } }, { __index = M.MediaPackageOutputSettings }),
+        MsSmoothOutputSettings = setmetatable({ traits = {
+            json_name = "msSmoothOutputSettings",
+        } }, { __index = M.MsSmoothOutputSettings }),
+        MultiplexOutputSettings = setmetatable({ traits = {
+            json_name = "multiplexOutputSettings",
+        } }, { __index = M.MultiplexOutputSettings }),
+        RtmpOutputSettings = setmetatable({ traits = {
+            json_name = "rtmpOutputSettings",
+        } }, { __index = M.RtmpOutputSettings }),
+        UdpOutputSettings = setmetatable({ traits = {
+            json_name = "udpOutputSettings",
+        } }, { __index = M.UdpOutputSettings }),
+        CmafIngestOutputSettings = setmetatable({ traits = {
+            json_name = "cmafIngestOutputSettings",
+        } }, { __index = M.CmafIngestOutputSettings }),
+        SrtOutputSettings = setmetatable({ traits = {
+            json_name = "srtOutputSettings",
+        } }, { __index = M.SrtOutputSettings }),
+        MediaConnectRouterOutputSettings = setmetatable({ traits = {
+            json_name = "mediaConnectRouterOutputSettings",
+        } }, { __index = M.MediaConnectRouterOutputSettings }),
     },
 }
 
@@ -7221,14 +6831,14 @@ M.Output = {
     members = {
         AudioDescriptionNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "audioDescriptionNames",
             },
         },
         CaptionDescriptionNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "captionDescriptionNames",
             },
@@ -7239,13 +6849,10 @@ M.Output = {
                 json_name = "outputName",
             },
         },
-        OutputSettings = {
-            type = "structure",
-            traits = {
-                json_name = "outputSettings",
-                required = true,
-            },
-        },
+        OutputSettings = setmetatable({ traits = {
+            json_name = "outputSettings",
+            required = true,
+        } }, { __index = M.OutputSettings }),
         VideoDescriptionName = {
             type = "string",
             traits = {
@@ -7277,33 +6884,24 @@ M.ArchiveS3Settings = {
 M.ArchiveCdnSettings = {
     type = "structure",
     members = {
-        ArchiveS3Settings = {
-            type = "structure",
-            traits = {
-                json_name = "archiveS3Settings",
-            },
-        },
+        ArchiveS3Settings = setmetatable({ traits = {
+            json_name = "archiveS3Settings",
+        } }, { __index = M.ArchiveS3Settings }),
     },
 }
 
 M.ArchiveGroupSettings = {
     type = "structure",
     members = {
-        ArchiveCdnSettings = {
-            type = "structure",
-            traits = {
-                json_name = "archiveCdnSettings",
-            },
-        },
-        Destination = {
-            type = "structure",
-            traits = {
-                json_name = "destination",
-                required = true,
-            },
-        },
+        ArchiveCdnSettings = setmetatable({ traits = {
+            json_name = "archiveCdnSettings",
+        } }, { __index = M.ArchiveCdnSettings }),
+        Destination = setmetatable({ traits = {
+            json_name = "destination",
+            required = true,
+        } }, { __index = M.OutputLocationRef }),
         RolloverInterval = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "rolloverInterval",
             },
@@ -7350,13 +6948,10 @@ M.CmafTimedMetadataPassthrough = {
 M.CmafIngestGroupSettings = {
     type = "structure",
     members = {
-        Destination = {
-            type = "structure",
-            traits = {
-                json_name = "destination",
-                required = true,
-            },
-        },
+        Destination = setmetatable({ traits = {
+            json_name = "destination",
+            required = true,
+        } }, { __index = M.OutputLocationRef }),
         NielsenId3Behavior = {
             type = "string",
             traits = {
@@ -7370,7 +6965,7 @@ M.CmafIngestGroupSettings = {
             },
         },
         SegmentLength = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "segmentLength",
             },
@@ -7382,7 +6977,7 @@ M.CmafIngestGroupSettings = {
             },
         },
         SendDelayMs = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "sendDelayMs",
             },
@@ -7425,7 +7020,7 @@ M.CmafIngestGroupSettings = {
         },
         CaptionLanguageMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.CmafIngestCaptionLanguageMapping,
             traits = {
                 json_name = "captionLanguageMappings",
             },
@@ -7437,7 +7032,7 @@ M.CmafIngestGroupSettings = {
             },
         },
         TimedMetadataId3Period = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "timedMetadataId3Period",
             },
@@ -7450,7 +7045,7 @@ M.CmafIngestGroupSettings = {
         },
         AdditionalDestinations = {
             type = "list",
-            member_type = "structure",
+            member = M.AdditionalDestinations,
             traits = {
                 json_name = "additionalDestinations",
             },
@@ -7473,31 +7068,22 @@ M.FrameCaptureS3Settings = {
 M.FrameCaptureCdnSettings = {
     type = "structure",
     members = {
-        FrameCaptureS3Settings = {
-            type = "structure",
-            traits = {
-                json_name = "frameCaptureS3Settings",
-            },
-        },
+        FrameCaptureS3Settings = setmetatable({ traits = {
+            json_name = "frameCaptureS3Settings",
+        } }, { __index = M.FrameCaptureS3Settings }),
     },
 }
 
 M.FrameCaptureGroupSettings = {
     type = "structure",
     members = {
-        Destination = {
-            type = "structure",
-            traits = {
-                json_name = "destination",
-                required = true,
-            },
-        },
-        FrameCaptureCdnSettings = {
-            type = "structure",
-            traits = {
-                json_name = "frameCaptureCdnSettings",
-            },
-        },
+        Destination = setmetatable({ traits = {
+            json_name = "destination",
+            required = true,
+        } }, { __index = M.OutputLocationRef }),
+        FrameCaptureCdnSettings = setmetatable({ traits = {
+            json_name = "frameCaptureCdnSettings",
+        } }, { __index = M.FrameCaptureCdnSettings }),
     },
 }
 
@@ -7541,13 +7127,13 @@ M.HlsAkamaiSettings = {
     type = "structure",
     members = {
         ConnectionRetryInterval = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "connectionRetryInterval",
             },
         },
         FilecacheDuration = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "filecacheDuration",
             },
@@ -7559,13 +7145,13 @@ M.HlsAkamaiSettings = {
             },
         },
         NumRetries = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "numRetries",
             },
         },
         RestartDelay = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "restartDelay",
             },
@@ -7589,25 +7175,25 @@ M.HlsBasicPutSettings = {
     type = "structure",
     members = {
         ConnectionRetryInterval = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "connectionRetryInterval",
             },
         },
         FilecacheDuration = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "filecacheDuration",
             },
         },
         NumRetries = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "numRetries",
             },
         },
         RestartDelay = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "restartDelay",
             },
@@ -7623,13 +7209,13 @@ M.HlsMediaStoreSettings = {
     type = "structure",
     members = {
         ConnectionRetryInterval = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "connectionRetryInterval",
             },
         },
         FilecacheDuration = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "filecacheDuration",
             },
@@ -7641,13 +7227,13 @@ M.HlsMediaStoreSettings = {
             },
         },
         NumRetries = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "numRetries",
             },
         },
         RestartDelay = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "restartDelay",
             },
@@ -7676,13 +7262,13 @@ M.HlsWebdavSettings = {
     type = "structure",
     members = {
         ConnectionRetryInterval = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "connectionRetryInterval",
             },
         },
         FilecacheDuration = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "filecacheDuration",
             },
@@ -7694,13 +7280,13 @@ M.HlsWebdavSettings = {
             },
         },
         NumRetries = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "numRetries",
             },
         },
         RestartDelay = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "restartDelay",
             },
@@ -7711,36 +7297,21 @@ M.HlsWebdavSettings = {
 M.HlsCdnSettings = {
     type = "structure",
     members = {
-        HlsAkamaiSettings = {
-            type = "structure",
-            traits = {
-                json_name = "hlsAkamaiSettings",
-            },
-        },
-        HlsBasicPutSettings = {
-            type = "structure",
-            traits = {
-                json_name = "hlsBasicPutSettings",
-            },
-        },
-        HlsMediaStoreSettings = {
-            type = "structure",
-            traits = {
-                json_name = "hlsMediaStoreSettings",
-            },
-        },
-        HlsS3Settings = {
-            type = "structure",
-            traits = {
-                json_name = "hlsS3Settings",
-            },
-        },
-        HlsWebdavSettings = {
-            type = "structure",
-            traits = {
-                json_name = "hlsWebdavSettings",
-            },
-        },
+        HlsAkamaiSettings = setmetatable({ traits = {
+            json_name = "hlsAkamaiSettings",
+        } }, { __index = M.HlsAkamaiSettings }),
+        HlsBasicPutSettings = setmetatable({ traits = {
+            json_name = "hlsBasicPutSettings",
+        } }, { __index = M.HlsBasicPutSettings }),
+        HlsMediaStoreSettings = setmetatable({ traits = {
+            json_name = "hlsMediaStoreSettings",
+        } }, { __index = M.HlsMediaStoreSettings }),
+        HlsS3Settings = setmetatable({ traits = {
+            json_name = "hlsS3Settings",
+        } }, { __index = M.HlsS3Settings }),
+        HlsWebdavSettings = setmetatable({ traits = {
+            json_name = "hlsWebdavSettings",
+        } }, { __index = M.HlsWebdavSettings }),
     },
 }
 
@@ -7777,12 +7348,9 @@ M.HlsIvSource = {
 M.StaticKeySettings = {
     type = "structure",
     members = {
-        KeyProviderServer = {
-            type = "structure",
-            traits = {
-                json_name = "keyProviderServer",
-            },
-        },
+        KeyProviderServer = setmetatable({ traits = {
+            json_name = "keyProviderServer",
+        } }, { __index = M.InputLocation }),
         StaticKeyValue = {
             type = "string",
             traits = {
@@ -7796,12 +7364,9 @@ M.StaticKeySettings = {
 M.KeyProviderSettings = {
     type = "structure",
     members = {
-        StaticKeySettings = {
-            type = "structure",
-            traits = {
-                json_name = "staticKeySettings",
-            },
-        },
+        StaticKeySettings = setmetatable({ traits = {
+            json_name = "staticKeySettings",
+        } }, { __index = M.StaticKeySettings }),
     },
 }
 
@@ -7867,7 +7432,7 @@ M.HlsGroupSettings = {
     members = {
         AdMarkers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "adMarkers",
             },
@@ -7898,7 +7463,7 @@ M.HlsGroupSettings = {
         },
         CaptionLanguageMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.CaptionLanguageMapping,
             traits = {
                 json_name = "captionLanguageMappings",
             },
@@ -7927,13 +7492,10 @@ M.HlsGroupSettings = {
                 json_name = "constantIv",
             },
         },
-        Destination = {
-            type = "structure",
-            traits = {
-                json_name = "destination",
-                required = true,
-            },
-        },
+        Destination = setmetatable({ traits = {
+            json_name = "destination",
+            required = true,
+        } }, { __index = M.OutputLocationRef }),
         DirectoryStructure = {
             type = "string",
             traits = {
@@ -7952,12 +7514,9 @@ M.HlsGroupSettings = {
                 json_name = "encryptionType",
             },
         },
-        HlsCdnSettings = {
-            type = "structure",
-            traits = {
-                json_name = "hlsCdnSettings",
-            },
-        },
+        HlsCdnSettings = setmetatable({ traits = {
+            json_name = "hlsCdnSettings",
+        } }, { __index = M.HlsCdnSettings }),
         HlsId3SegmentTagging = {
             type = "string",
             traits = {
@@ -7977,7 +7536,7 @@ M.HlsGroupSettings = {
             },
         },
         IndexNSegments = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "indexNSegments",
             },
@@ -8001,7 +7560,7 @@ M.HlsGroupSettings = {
             },
         },
         KeepSegments = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "keepSegments",
             },
@@ -8018,12 +7577,9 @@ M.HlsGroupSettings = {
                 json_name = "keyFormatVersions",
             },
         },
-        KeyProviderSettings = {
-            type = "structure",
-            traits = {
-                json_name = "keyProviderSettings",
-            },
-        },
+        KeyProviderSettings = setmetatable({ traits = {
+            json_name = "keyProviderSettings",
+        } }, { __index = M.KeyProviderSettings }),
         ManifestCompression = {
             type = "string",
             traits = {
@@ -8037,7 +7593,7 @@ M.HlsGroupSettings = {
             },
         },
         MinSegmentLength = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "minSegmentLength",
             },
@@ -8067,7 +7623,7 @@ M.HlsGroupSettings = {
             },
         },
         ProgramDateTimePeriod = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "programDateTimePeriod",
             },
@@ -8079,7 +7635,7 @@ M.HlsGroupSettings = {
             },
         },
         SegmentLength = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "segmentLength",
             },
@@ -8091,7 +7647,7 @@ M.HlsGroupSettings = {
             },
         },
         SegmentsPerSubdirectory = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "segmentsPerSubdirectory",
             },
@@ -8109,13 +7665,13 @@ M.HlsGroupSettings = {
             },
         },
         TimedMetadataId3Period = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "timedMetadataId3Period",
             },
         },
         TimestampDeltaMilliseconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "timestampDeltaMilliseconds",
             },
@@ -8134,7 +7690,7 @@ M.MediaConnectRouterGroupSettings = {
     members = {
         AvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "availabilityZones",
             },
@@ -8147,7 +7703,7 @@ M.MediaPackageV2GroupSettings = {
     members = {
         CaptionLanguageMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.CaptionLanguageMapping,
             traits = {
                 json_name = "captionLanguageMappings",
             },
@@ -8177,7 +7733,7 @@ M.MediaPackageV2GroupSettings = {
             },
         },
         SegmentLength = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "segmentLength",
             },
@@ -8195,7 +7751,7 @@ M.MediaPackageV2GroupSettings = {
             },
         },
         TimedMetadataId3Period = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "timedMetadataId3Period",
             },
@@ -8208,7 +7764,7 @@ M.MediaPackageV2GroupSettings = {
         },
         AdditionalDestinations = {
             type = "list",
-            member_type = "structure",
+            member = M.MediaPackageAdditionalDestinations,
             traits = {
                 json_name = "additionalDestinations",
             },
@@ -8219,19 +7775,13 @@ M.MediaPackageV2GroupSettings = {
 M.MediaPackageGroupSettings = {
     type = "structure",
     members = {
-        Destination = {
-            type = "structure",
-            traits = {
-                json_name = "destination",
-                required = true,
-            },
-        },
-        MediapackageV2GroupSettings = {
-            type = "structure",
-            traits = {
-                json_name = "mediapackageV2GroupSettings",
-            },
-        },
+        Destination = setmetatable({ traits = {
+            json_name = "destination",
+            required = true,
+        } }, { __index = M.OutputLocationRef }),
+        MediapackageV2GroupSettings = setmetatable({ traits = {
+            json_name = "mediapackageV2GroupSettings",
+        } }, { __index = M.MediaPackageV2GroupSettings }),
     },
 }
 
@@ -8304,18 +7854,15 @@ M.MsSmoothGroupSettings = {
             },
         },
         ConnectionRetryInterval = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "connectionRetryInterval",
             },
         },
-        Destination = {
-            type = "structure",
-            traits = {
-                json_name = "destination",
-                required = true,
-            },
-        },
+        Destination = setmetatable({ traits = {
+            json_name = "destination",
+            required = true,
+        } }, { __index = M.OutputLocationRef }),
         EventId = {
             type = "string",
             traits = {
@@ -8335,13 +7882,13 @@ M.MsSmoothGroupSettings = {
             },
         },
         FilecacheDuration = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "filecacheDuration",
             },
         },
         FragmentLength = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "fragmentLength",
             },
@@ -8353,13 +7900,13 @@ M.MsSmoothGroupSettings = {
             },
         },
         NumRetries = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "numRetries",
             },
         },
         RestartDelay = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "restartDelay",
             },
@@ -8371,7 +7918,7 @@ M.MsSmoothGroupSettings = {
             },
         },
         SendDelayMs = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "sendDelayMs",
             },
@@ -8443,7 +7990,7 @@ M.RtmpGroupSettings = {
     members = {
         AdMarkers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "adMarkers",
             },
@@ -8461,7 +8008,7 @@ M.RtmpGroupSettings = {
             },
         },
         CacheLength = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "cacheLength",
             },
@@ -8479,7 +8026,7 @@ M.RtmpGroupSettings = {
             },
         },
         RestartDelay = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "restartDelay",
             },
@@ -8533,7 +8080,7 @@ M.UdpGroupSettings = {
             },
         },
         TimedMetadataId3Period = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "timedMetadataId3Period",
             },
@@ -8544,72 +8091,39 @@ M.UdpGroupSettings = {
 M.OutputGroupSettings = {
     type = "structure",
     members = {
-        ArchiveGroupSettings = {
-            type = "structure",
-            traits = {
-                json_name = "archiveGroupSettings",
-            },
-        },
-        FrameCaptureGroupSettings = {
-            type = "structure",
-            traits = {
-                json_name = "frameCaptureGroupSettings",
-            },
-        },
-        HlsGroupSettings = {
-            type = "structure",
-            traits = {
-                json_name = "hlsGroupSettings",
-            },
-        },
-        MediaPackageGroupSettings = {
-            type = "structure",
-            traits = {
-                json_name = "mediaPackageGroupSettings",
-            },
-        },
-        MsSmoothGroupSettings = {
-            type = "structure",
-            traits = {
-                json_name = "msSmoothGroupSettings",
-            },
-        },
-        MultiplexGroupSettings = {
-            type = "structure",
-            traits = {
-                json_name = "multiplexGroupSettings",
-            },
-        },
-        RtmpGroupSettings = {
-            type = "structure",
-            traits = {
-                json_name = "rtmpGroupSettings",
-            },
-        },
-        UdpGroupSettings = {
-            type = "structure",
-            traits = {
-                json_name = "udpGroupSettings",
-            },
-        },
-        CmafIngestGroupSettings = {
-            type = "structure",
-            traits = {
-                json_name = "cmafIngestGroupSettings",
-            },
-        },
-        SrtGroupSettings = {
-            type = "structure",
-            traits = {
-                json_name = "srtGroupSettings",
-            },
-        },
-        MediaConnectRouterGroupSettings = {
-            type = "structure",
-            traits = {
-                json_name = "mediaConnectRouterGroupSettings",
-            },
-        },
+        ArchiveGroupSettings = setmetatable({ traits = {
+            json_name = "archiveGroupSettings",
+        } }, { __index = M.ArchiveGroupSettings }),
+        FrameCaptureGroupSettings = setmetatable({ traits = {
+            json_name = "frameCaptureGroupSettings",
+        } }, { __index = M.FrameCaptureGroupSettings }),
+        HlsGroupSettings = setmetatable({ traits = {
+            json_name = "hlsGroupSettings",
+        } }, { __index = M.HlsGroupSettings }),
+        MediaPackageGroupSettings = setmetatable({ traits = {
+            json_name = "mediaPackageGroupSettings",
+        } }, { __index = M.MediaPackageGroupSettings }),
+        MsSmoothGroupSettings = setmetatable({ traits = {
+            json_name = "msSmoothGroupSettings",
+        } }, { __index = M.MsSmoothGroupSettings }),
+        MultiplexGroupSettings = setmetatable({ traits = {
+            json_name = "multiplexGroupSettings",
+        } }, { __index = M.MultiplexGroupSettings }),
+        RtmpGroupSettings = setmetatable({ traits = {
+            json_name = "rtmpGroupSettings",
+        } }, { __index = M.RtmpGroupSettings }),
+        UdpGroupSettings = setmetatable({ traits = {
+            json_name = "udpGroupSettings",
+        } }, { __index = M.UdpGroupSettings }),
+        CmafIngestGroupSettings = setmetatable({ traits = {
+            json_name = "cmafIngestGroupSettings",
+        } }, { __index = M.CmafIngestGroupSettings }),
+        SrtGroupSettings = setmetatable({ traits = {
+            json_name = "srtGroupSettings",
+        } }, { __index = M.SrtGroupSettings }),
+        MediaConnectRouterGroupSettings = setmetatable({ traits = {
+            json_name = "mediaConnectRouterGroupSettings",
+        } }, { __index = M.MediaConnectRouterGroupSettings }),
     },
 }
 
@@ -8622,16 +8136,13 @@ M.OutputGroup = {
                 json_name = "name",
             },
         },
-        OutputGroupSettings = {
-            type = "structure",
-            traits = {
-                json_name = "outputGroupSettings",
-                required = true,
-            },
-        },
+        OutputGroupSettings = setmetatable({ traits = {
+            json_name = "outputGroupSettings",
+            required = true,
+        } }, { __index = M.OutputGroupSettings }),
         Outputs = {
             type = "list",
-            member_type = "structure",
+            member = M.Output,
             traits = {
                 json_name = "outputs",
                 required = true,
@@ -8673,12 +8184,9 @@ M.PipelineDetail = {
                 json_name = "pipelineId",
             },
         },
-        ChannelEngineVersion = {
-            type = "structure",
-            traits = {
-                json_name = "channelEngineVersion",
-            },
-        },
+        ChannelEngineVersion = setmetatable({ traits = {
+            json_name = "channelEngineVersion",
+        } }, { __index = M.ChannelEngineVersionResponse }),
     },
 }
 
@@ -8716,7 +8224,7 @@ M.RenewalSettings = {
             },
         },
         RenewalCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "renewalCount",
             },
@@ -8741,7 +8249,7 @@ M.Reservation = {
             },
         },
         Count = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "count",
             },
@@ -8753,7 +8261,7 @@ M.Reservation = {
             },
         },
         Duration = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "duration",
             },
@@ -8771,7 +8279,7 @@ M.Reservation = {
             },
         },
         FixedPrice = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "fixedPrice",
             },
@@ -8806,24 +8314,18 @@ M.Reservation = {
                 json_name = "region",
             },
         },
-        RenewalSettings = {
-            type = "structure",
-            traits = {
-                json_name = "renewalSettings",
-            },
-        },
+        RenewalSettings = setmetatable({ traits = {
+            json_name = "renewalSettings",
+        } }, { __index = M.RenewalSettings }),
         ReservationId = {
             type = "string",
             traits = {
                 json_name = "reservationId",
             },
         },
-        ResourceSpecification = {
-            type = "structure",
-            traits = {
-                json_name = "resourceSpecification",
-            },
-        },
+        ResourceSpecification = setmetatable({ traits = {
+            json_name = "resourceSpecification",
+        } }, { __index = M.ReservationResourceSpecification }),
         Start = {
             type = "string",
             traits = {
@@ -8838,14 +8340,14 @@ M.Reservation = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
         },
         UsagePrice = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "usagePrice",
             },
@@ -9001,18 +8503,12 @@ M.InputClippingSettings = {
                 required = true,
             },
         },
-        StartTimecode = {
-            type = "structure",
-            traits = {
-                json_name = "startTimecode",
-            },
-        },
-        StopTimecode = {
-            type = "structure",
-            traits = {
-                json_name = "stopTimecode",
-            },
-        },
+        StartTimecode = setmetatable({ traits = {
+            json_name = "startTimecode",
+        } }, { __index = M.StartTimecode }),
+        StopTimecode = setmetatable({ traits = {
+            json_name = "stopTimecode",
+        } }, { __index = M.StopTimecode }),
     },
 }
 
@@ -9025,15 +8521,12 @@ M.InputPrepareScheduleActionSettings = {
                 json_name = "inputAttachmentNameReference",
             },
         },
-        InputClippingSettings = {
-            type = "structure",
-            traits = {
-                json_name = "inputClippingSettings",
-            },
-        },
+        InputClippingSettings = setmetatable({ traits = {
+            json_name = "inputClippingSettings",
+        } }, { __index = M.InputClippingSettings }),
         UrlPath = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "urlPath",
             },
@@ -9051,15 +8544,12 @@ M.InputSwitchScheduleActionSettings = {
                 required = true,
             },
         },
-        InputClippingSettings = {
-            type = "structure",
-            traits = {
-                json_name = "inputClippingSettings",
-            },
-        },
+        InputClippingSettings = setmetatable({ traits = {
+            json_name = "inputClippingSettings",
+        } }, { __index = M.InputClippingSettings }),
         UrlPath = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "urlPath",
             },
@@ -9071,7 +8561,7 @@ M.MotionGraphicsActivateScheduleActionSettings = {
     type = "structure",
     members = {
         Duration = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "duration",
             },
@@ -9106,7 +8596,7 @@ M.PauseStateScheduleActionSettings = {
     members = {
         Pipelines = {
             type = "list",
-            member_type = "structure",
+            member = M.PipelinePauseStateSettings,
             traits = {
                 json_name = "pipelines",
             },
@@ -9142,7 +8632,7 @@ M.Scte35ReturnToNetworkScheduleActionSettings = {
     type = "structure",
     members = {
         SpliceEventId = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "spliceEventId",
                 required = true,
@@ -9155,13 +8645,13 @@ M.Scte35SpliceInsertScheduleActionSettings = {
     type = "structure",
     members = {
         Duration = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "duration",
             },
         },
         SpliceEventId = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "spliceEventId",
                 required = true,
@@ -9234,14 +8724,11 @@ M.Scte35SegmentationCancelIndicator = {
 M.Scte35SegmentationDescriptor = {
     type = "structure",
     members = {
-        DeliveryRestrictions = {
-            type = "structure",
-            traits = {
-                json_name = "deliveryRestrictions",
-            },
-        },
+        DeliveryRestrictions = setmetatable({ traits = {
+            json_name = "deliveryRestrictions",
+        } }, { __index = M.Scte35DeliveryRestrictions }),
         SegmentNum = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "segmentNum",
             },
@@ -9254,20 +8741,20 @@ M.Scte35SegmentationDescriptor = {
             },
         },
         SegmentationDuration = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "segmentationDuration",
             },
         },
         SegmentationEventId = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "segmentationEventId",
                 required = true,
             },
         },
         SegmentationTypeId = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "segmentationTypeId",
             },
@@ -9279,25 +8766,25 @@ M.Scte35SegmentationDescriptor = {
             },
         },
         SegmentationUpidType = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "segmentationUpidType",
             },
         },
         SegmentsExpected = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "segmentsExpected",
             },
         },
         SubSegmentNum = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "subSegmentNum",
             },
         },
         SubSegmentsExpected = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "subSegmentsExpected",
             },
@@ -9308,26 +8795,20 @@ M.Scte35SegmentationDescriptor = {
 M.Scte35DescriptorSettings = {
     type = "structure",
     members = {
-        SegmentationDescriptorScte35DescriptorSettings = {
-            type = "structure",
-            traits = {
-                json_name = "segmentationDescriptorScte35DescriptorSettings",
-                required = true,
-            },
-        },
+        SegmentationDescriptorScte35DescriptorSettings = setmetatable({ traits = {
+            json_name = "segmentationDescriptorScte35DescriptorSettings",
+            required = true,
+        } }, { __index = M.Scte35SegmentationDescriptor }),
     },
 }
 
 M.Scte35Descriptor = {
     type = "structure",
     members = {
-        Scte35DescriptorSettings = {
-            type = "structure",
-            traits = {
-                json_name = "scte35DescriptorSettings",
-                required = true,
-            },
-        },
+        Scte35DescriptorSettings = setmetatable({ traits = {
+            json_name = "scte35DescriptorSettings",
+            required = true,
+        } }, { __index = M.Scte35DescriptorSettings }),
     },
 }
 
@@ -9336,7 +8817,7 @@ M.Scte35TimeSignalScheduleActionSettings = {
     members = {
         Scte35Descriptors = {
             type = "list",
-            member_type = "structure",
+            member = M.Scte35Descriptor,
             traits = {
                 json_name = "scte35Descriptors",
                 required = true,
@@ -9349,62 +8830,59 @@ M.StaticImageActivateScheduleActionSettings = {
     type = "structure",
     members = {
         Duration = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "duration",
             },
         },
         FadeIn = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "fadeIn",
             },
         },
         FadeOut = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "fadeOut",
             },
         },
         Height = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "height",
             },
         },
-        Image = {
-            type = "structure",
-            traits = {
-                json_name = "image",
-                required = true,
-            },
-        },
+        Image = setmetatable({ traits = {
+            json_name = "image",
+            required = true,
+        } }, { __index = M.InputLocation }),
         ImageX = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "imageX",
             },
         },
         ImageY = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "imageY",
             },
         },
         Layer = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "layer",
             },
         },
         Opacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "opacity",
             },
         },
         Width = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "width",
             },
@@ -9416,13 +8894,13 @@ M.StaticImageDeactivateScheduleActionSettings = {
     type = "structure",
     members = {
         FadeOut = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "fadeOut",
             },
         },
         Layer = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "layer",
             },
@@ -9434,70 +8912,67 @@ M.StaticImageOutputActivateScheduleActionSettings = {
     type = "structure",
     members = {
         Duration = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "duration",
             },
         },
         FadeIn = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "fadeIn",
             },
         },
         FadeOut = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "fadeOut",
             },
         },
         Height = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "height",
             },
         },
-        Image = {
-            type = "structure",
-            traits = {
-                json_name = "image",
-                required = true,
-            },
-        },
+        Image = setmetatable({ traits = {
+            json_name = "image",
+            required = true,
+        } }, { __index = M.InputLocation }),
         ImageX = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "imageX",
             },
         },
         ImageY = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "imageY",
             },
         },
         Layer = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "layer",
             },
         },
         Opacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "opacity",
             },
         },
         OutputNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "outputNames",
                 required = true,
             },
         },
         Width = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "width",
             },
@@ -9509,20 +8984,20 @@ M.StaticImageOutputDeactivateScheduleActionSettings = {
     type = "structure",
     members = {
         FadeOut = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "fadeOut",
             },
         },
         Layer = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "layer",
             },
         },
         OutputNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "outputNames",
                 required = true,
@@ -9547,108 +9022,57 @@ M.TimedMetadataScheduleActionSettings = {
 M.ScheduleActionSettings = {
     type = "structure",
     members = {
-        HlsId3SegmentTaggingSettings = {
-            type = "structure",
-            traits = {
-                json_name = "hlsId3SegmentTaggingSettings",
-            },
-        },
-        HlsTimedMetadataSettings = {
-            type = "structure",
-            traits = {
-                json_name = "hlsTimedMetadataSettings",
-            },
-        },
-        InputPrepareSettings = {
-            type = "structure",
-            traits = {
-                json_name = "inputPrepareSettings",
-            },
-        },
-        InputSwitchSettings = {
-            type = "structure",
-            traits = {
-                json_name = "inputSwitchSettings",
-            },
-        },
-        MotionGraphicsImageActivateSettings = {
-            type = "structure",
-            traits = {
-                json_name = "motionGraphicsImageActivateSettings",
-            },
-        },
-        MotionGraphicsImageDeactivateSettings = {
-            type = "structure",
-            traits = {
-                json_name = "motionGraphicsImageDeactivateSettings",
-            },
-        },
-        PauseStateSettings = {
-            type = "structure",
-            traits = {
-                json_name = "pauseStateSettings",
-            },
-        },
-        Scte35InputSettings = {
-            type = "structure",
-            traits = {
-                json_name = "scte35InputSettings",
-            },
-        },
-        Scte35ReturnToNetworkSettings = {
-            type = "structure",
-            traits = {
-                json_name = "scte35ReturnToNetworkSettings",
-            },
-        },
-        Scte35SpliceInsertSettings = {
-            type = "structure",
-            traits = {
-                json_name = "scte35SpliceInsertSettings",
-            },
-        },
-        Scte35TimeSignalSettings = {
-            type = "structure",
-            traits = {
-                json_name = "scte35TimeSignalSettings",
-            },
-        },
-        StaticImageActivateSettings = {
-            type = "structure",
-            traits = {
-                json_name = "staticImageActivateSettings",
-            },
-        },
-        StaticImageDeactivateSettings = {
-            type = "structure",
-            traits = {
-                json_name = "staticImageDeactivateSettings",
-            },
-        },
-        StaticImageOutputActivateSettings = {
-            type = "structure",
-            traits = {
-                json_name = "staticImageOutputActivateSettings",
-            },
-        },
-        StaticImageOutputDeactivateSettings = {
-            type = "structure",
-            traits = {
-                json_name = "staticImageOutputDeactivateSettings",
-            },
-        },
-        Id3SegmentTaggingSettings = {
-            type = "structure",
-            traits = {
-                json_name = "id3SegmentTaggingSettings",
-            },
-        },
-        TimedMetadataSettings = {
-            type = "structure",
-            traits = {
-                json_name = "timedMetadataSettings",
-            },
-        },
+        HlsId3SegmentTaggingSettings = setmetatable({ traits = {
+            json_name = "hlsId3SegmentTaggingSettings",
+        } }, { __index = M.HlsId3SegmentTaggingScheduleActionSettings }),
+        HlsTimedMetadataSettings = setmetatable({ traits = {
+            json_name = "hlsTimedMetadataSettings",
+        } }, { __index = M.HlsTimedMetadataScheduleActionSettings }),
+        InputPrepareSettings = setmetatable({ traits = {
+            json_name = "inputPrepareSettings",
+        } }, { __index = M.InputPrepareScheduleActionSettings }),
+        InputSwitchSettings = setmetatable({ traits = {
+            json_name = "inputSwitchSettings",
+        } }, { __index = M.InputSwitchScheduleActionSettings }),
+        MotionGraphicsImageActivateSettings = setmetatable({ traits = {
+            json_name = "motionGraphicsImageActivateSettings",
+        } }, { __index = M.MotionGraphicsActivateScheduleActionSettings }),
+        MotionGraphicsImageDeactivateSettings = setmetatable({ traits = {
+            json_name = "motionGraphicsImageDeactivateSettings",
+        } }, { __index = M.MotionGraphicsDeactivateScheduleActionSettings }),
+        PauseStateSettings = setmetatable({ traits = {
+            json_name = "pauseStateSettings",
+        } }, { __index = M.PauseStateScheduleActionSettings }),
+        Scte35InputSettings = setmetatable({ traits = {
+            json_name = "scte35InputSettings",
+        } }, { __index = M.Scte35InputScheduleActionSettings }),
+        Scte35ReturnToNetworkSettings = setmetatable({ traits = {
+            json_name = "scte35ReturnToNetworkSettings",
+        } }, { __index = M.Scte35ReturnToNetworkScheduleActionSettings }),
+        Scte35SpliceInsertSettings = setmetatable({ traits = {
+            json_name = "scte35SpliceInsertSettings",
+        } }, { __index = M.Scte35SpliceInsertScheduleActionSettings }),
+        Scte35TimeSignalSettings = setmetatable({ traits = {
+            json_name = "scte35TimeSignalSettings",
+        } }, { __index = M.Scte35TimeSignalScheduleActionSettings }),
+        StaticImageActivateSettings = setmetatable({ traits = {
+            json_name = "staticImageActivateSettings",
+        } }, { __index = M.StaticImageActivateScheduleActionSettings }),
+        StaticImageDeactivateSettings = setmetatable({ traits = {
+            json_name = "staticImageDeactivateSettings",
+        } }, { __index = M.StaticImageDeactivateScheduleActionSettings }),
+        StaticImageOutputActivateSettings = setmetatable({ traits = {
+            json_name = "staticImageOutputActivateSettings",
+        } }, { __index = M.StaticImageOutputActivateScheduleActionSettings }),
+        StaticImageOutputDeactivateSettings = setmetatable({ traits = {
+            json_name = "staticImageOutputDeactivateSettings",
+        } }, { __index = M.StaticImageOutputDeactivateScheduleActionSettings }),
+        Id3SegmentTaggingSettings = setmetatable({ traits = {
+            json_name = "id3SegmentTaggingSettings",
+        } }, { __index = M.Id3SegmentTaggingScheduleActionSettings }),
+        TimedMetadataSettings = setmetatable({ traits = {
+            json_name = "timedMetadataSettings",
+        } }, { __index = M.TimedMetadataScheduleActionSettings }),
     },
 }
 
@@ -9697,24 +9121,15 @@ M.ImmediateModeScheduleActionStartSettings = {
 M.ScheduleActionStartSettings = {
     type = "structure",
     members = {
-        FixedModeScheduleActionStartSettings = {
-            type = "structure",
-            traits = {
-                json_name = "fixedModeScheduleActionStartSettings",
-            },
-        },
-        FollowModeScheduleActionStartSettings = {
-            type = "structure",
-            traits = {
-                json_name = "followModeScheduleActionStartSettings",
-            },
-        },
-        ImmediateModeScheduleActionStartSettings = {
-            type = "structure",
-            traits = {
-                json_name = "immediateModeScheduleActionStartSettings",
-            },
-        },
+        FixedModeScheduleActionStartSettings = setmetatable({ traits = {
+            json_name = "fixedModeScheduleActionStartSettings",
+        } }, { __index = M.FixedModeScheduleActionStartSettings }),
+        FollowModeScheduleActionStartSettings = setmetatable({ traits = {
+            json_name = "followModeScheduleActionStartSettings",
+        } }, { __index = M.FollowModeScheduleActionStartSettings }),
+        ImmediateModeScheduleActionStartSettings = setmetatable({ traits = {
+            json_name = "immediateModeScheduleActionStartSettings",
+        } }, { __index = M.ImmediateModeScheduleActionStartSettings }),
     },
 }
 
@@ -9728,20 +9143,14 @@ M.ScheduleAction = {
                 required = true,
             },
         },
-        ScheduleActionSettings = {
-            type = "structure",
-            traits = {
-                json_name = "scheduleActionSettings",
-                required = true,
-            },
-        },
-        ScheduleActionStartSettings = {
-            type = "structure",
-            traits = {
-                json_name = "scheduleActionStartSettings",
-                required = true,
-            },
-        },
+        ScheduleActionSettings = setmetatable({ traits = {
+            json_name = "scheduleActionSettings",
+            required = true,
+        } }, { __index = M.ScheduleActionSettings }),
+        ScheduleActionStartSettings = setmetatable({ traits = {
+            json_name = "scheduleActionStartSettings",
+            required = true,
+        } }, { __index = M.ScheduleActionStartSettings }),
     },
 }
 
@@ -9778,7 +9187,7 @@ M.SdiSourceSummary = {
         },
         Inputs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "inputs",
             },
@@ -9894,8 +9303,8 @@ M.SignalMapSummary = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -9924,14 +9333,11 @@ M.SrtCallerDecryptionRequest = {
 M.SrtCallerSourceRequest = {
     type = "structure",
     members = {
-        Decryption = {
-            type = "structure",
-            traits = {
-                json_name = "decryption",
-            },
-        },
+        Decryption = setmetatable({ traits = {
+            json_name = "decryption",
+        } }, { __index = M.SrtCallerDecryptionRequest }),
         MinimumLatency = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "minimumLatency",
             },
@@ -10003,7 +9409,7 @@ M.ThumbnailDetail = {
         },
         Thumbnails = {
             type = "list",
-            member_type = "structure",
+            member = M.Thumbnail,
             traits = {
                 json_name = "thumbnails",
             },
@@ -10094,36 +9500,21 @@ M.Rec709Settings = {
 M.Av1ColorSpaceSettings = {
     type = "structure",
     members = {
-        ColorSpacePassthroughSettings = {
-            type = "structure",
-            traits = {
-                json_name = "colorSpacePassthroughSettings",
-            },
-        },
-        Hdr10Settings = {
-            type = "structure",
-            traits = {
-                json_name = "hdr10Settings",
-            },
-        },
-        Rec601Settings = {
-            type = "structure",
-            traits = {
-                json_name = "rec601Settings",
-            },
-        },
-        Rec709Settings = {
-            type = "structure",
-            traits = {
-                json_name = "rec709Settings",
-            },
-        },
-        Hlg2020Settings = {
-            type = "structure",
-            traits = {
-                json_name = "hlg2020Settings",
-            },
-        },
+        ColorSpacePassthroughSettings = setmetatable({ traits = {
+            json_name = "colorSpacePassthroughSettings",
+        } }, { __index = M.ColorSpacePassthroughSettings }),
+        Hdr10Settings = setmetatable({ traits = {
+            json_name = "hdr10Settings",
+        } }, { __index = M.Hdr10Settings }),
+        Rec601Settings = setmetatable({ traits = {
+            json_name = "rec601Settings",
+        } }, { __index = M.Rec601Settings }),
+        Rec709Settings = setmetatable({ traits = {
+            json_name = "rec709Settings",
+        } }, { __index = M.Rec709Settings }),
+        Hlg2020Settings = setmetatable({ traits = {
+            json_name = "hlg2020Settings",
+        } }, { __index = M.Hlg2020Settings }),
     },
 }
 
@@ -10250,17 +9641,14 @@ M.Av1Settings = {
             },
         },
         BufSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "bufSize",
             },
         },
-        ColorSpaceSettings = {
-            type = "structure",
-            traits = {
-                json_name = "colorSpaceSettings",
-            },
-        },
+        ColorSpaceSettings = setmetatable({ traits = {
+            json_name = "colorSpaceSettings",
+        } }, { __index = M.Av1ColorSpaceSettings }),
         FixedAfd = {
             type = "string",
             traits = {
@@ -10268,21 +9656,21 @@ M.Av1Settings = {
             },
         },
         FramerateDenominator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "framerateDenominator",
                 required = true,
             },
         },
         FramerateNumerator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "framerateNumerator",
                 required = true,
             },
         },
         GopSize = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "gopSize",
             },
@@ -10306,31 +9694,31 @@ M.Av1Settings = {
             },
         },
         MaxBitrate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxBitrate",
             },
         },
         MinIInterval = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "minIInterval",
             },
         },
         ParDenominator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "parDenominator",
             },
         },
         ParNumerator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "parNumerator",
             },
         },
         QvbrQualityLevel = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "qvbrQualityLevel",
             },
@@ -10341,14 +9729,11 @@ M.Av1Settings = {
                 json_name = "sceneChangeDetect",
             },
         },
-        TimecodeBurninSettings = {
-            type = "structure",
-            traits = {
-                json_name = "timecodeBurninSettings",
-            },
-        },
+        TimecodeBurninSettings = setmetatable({ traits = {
+            json_name = "timecodeBurninSettings",
+        } }, { __index = M.TimecodeBurninSettings }),
         Bitrate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "bitrate",
             },
@@ -10360,7 +9745,7 @@ M.Av1Settings = {
             },
         },
         MinBitrate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "minBitrate",
             },
@@ -10401,7 +9786,7 @@ M.FrameCaptureSettings = {
     type = "structure",
     members = {
         CaptureInterval = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "captureInterval",
             },
@@ -10412,12 +9797,9 @@ M.FrameCaptureSettings = {
                 json_name = "captureIntervalUnits",
             },
         },
-        TimecodeBurninSettings = {
-            type = "structure",
-            traits = {
-                json_name = "timecodeBurninSettings",
-            },
-        },
+        TimecodeBurninSettings = setmetatable({ traits = {
+            json_name = "timecodeBurninSettings",
+        } }, { __index = M.TimecodeBurninSettings }),
     },
 }
 
@@ -10439,24 +9821,15 @@ M.H264ColorMetadata = {
 M.H264ColorSpaceSettings = {
     type = "structure",
     members = {
-        ColorSpacePassthroughSettings = {
-            type = "structure",
-            traits = {
-                json_name = "colorSpacePassthroughSettings",
-            },
-        },
-        Rec601Settings = {
-            type = "structure",
-            traits = {
-                json_name = "rec601Settings",
-            },
-        },
-        Rec709Settings = {
-            type = "structure",
-            traits = {
-                json_name = "rec709Settings",
-            },
-        },
+        ColorSpacePassthroughSettings = setmetatable({ traits = {
+            json_name = "colorSpacePassthroughSettings",
+        } }, { __index = M.ColorSpacePassthroughSettings }),
+        Rec601Settings = setmetatable({ traits = {
+            json_name = "rec601Settings",
+        } }, { __index = M.Rec601Settings }),
+        Rec709Settings = setmetatable({ traits = {
+            json_name = "rec709Settings",
+        } }, { __index = M.Rec709Settings }),
     },
 }
 
@@ -10545,18 +9918,12 @@ M.TemporalFilterSettings = {
 M.H264FilterSettings = {
     type = "structure",
     members = {
-        TemporalFilterSettings = {
-            type = "structure",
-            traits = {
-                json_name = "temporalFilterSettings",
-            },
-        },
-        BandwidthReductionFilterSettings = {
-            type = "structure",
-            traits = {
-                json_name = "bandwidthReductionFilterSettings",
-            },
-        },
+        TemporalFilterSettings = setmetatable({ traits = {
+            json_name = "temporalFilterSettings",
+        } }, { __index = M.TemporalFilterSettings }),
+        BandwidthReductionFilterSettings = setmetatable({ traits = {
+            json_name = "bandwidthReductionFilterSettings",
+        } }, { __index = M.BandwidthReductionFilterSettings }),
     },
 }
 
@@ -10688,19 +10055,19 @@ M.H264Settings = {
             },
         },
         Bitrate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "bitrate",
             },
         },
         BufFillPct = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "bufFillPct",
             },
         },
         BufSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "bufSize",
             },
@@ -10711,24 +10078,18 @@ M.H264Settings = {
                 json_name = "colorMetadata",
             },
         },
-        ColorSpaceSettings = {
-            type = "structure",
-            traits = {
-                json_name = "colorSpaceSettings",
-            },
-        },
+        ColorSpaceSettings = setmetatable({ traits = {
+            json_name = "colorSpaceSettings",
+        } }, { __index = M.H264ColorSpaceSettings }),
         EntropyEncoding = {
             type = "string",
             traits = {
                 json_name = "entropyEncoding",
             },
         },
-        FilterSettings = {
-            type = "structure",
-            traits = {
-                json_name = "filterSettings",
-            },
-        },
+        FilterSettings = setmetatable({ traits = {
+            json_name = "filterSettings",
+        } }, { __index = M.H264FilterSettings }),
         FixedAfd = {
             type = "string",
             traits = {
@@ -10754,13 +10115,13 @@ M.H264Settings = {
             },
         },
         FramerateDenominator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "framerateDenominator",
             },
         },
         FramerateNumerator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "framerateNumerator",
             },
@@ -10772,19 +10133,19 @@ M.H264Settings = {
             },
         },
         GopClosedCadence = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "gopClosedCadence",
             },
         },
         GopNumBFrames = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "gopNumBFrames",
             },
         },
         GopSize = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "gopSize",
             },
@@ -10808,19 +10169,19 @@ M.H264Settings = {
             },
         },
         MaxBitrate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxBitrate",
             },
         },
         MinIInterval = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "minIInterval",
             },
         },
         NumRefFrames = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "numRefFrames",
             },
@@ -10832,13 +10193,13 @@ M.H264Settings = {
             },
         },
         ParDenominator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "parDenominator",
             },
         },
         ParNumerator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "parNumerator",
             },
@@ -10856,7 +10217,7 @@ M.H264Settings = {
             },
         },
         QvbrQualityLevel = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "qvbrQualityLevel",
             },
@@ -10880,13 +10241,13 @@ M.H264Settings = {
             },
         },
         Slices = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "slices",
             },
         },
         Softness = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "softness",
             },
@@ -10921,20 +10282,17 @@ M.H264Settings = {
                 json_name = "timecodeInsertion",
             },
         },
-        TimecodeBurninSettings = {
-            type = "structure",
-            traits = {
-                json_name = "timecodeBurninSettings",
-            },
-        },
+        TimecodeBurninSettings = setmetatable({ traits = {
+            json_name = "timecodeBurninSettings",
+        } }, { __index = M.TimecodeBurninSettings }),
         MinQp = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "minQp",
             },
         },
         MinBitrate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "minBitrate",
             },
@@ -10969,42 +10327,24 @@ M.DolbyVision81Settings = {
 M.H265ColorSpaceSettings = {
     type = "structure",
     members = {
-        ColorSpacePassthroughSettings = {
-            type = "structure",
-            traits = {
-                json_name = "colorSpacePassthroughSettings",
-            },
-        },
-        DolbyVision81Settings = {
-            type = "structure",
-            traits = {
-                json_name = "dolbyVision81Settings",
-            },
-        },
-        Hdr10Settings = {
-            type = "structure",
-            traits = {
-                json_name = "hdr10Settings",
-            },
-        },
-        Rec601Settings = {
-            type = "structure",
-            traits = {
-                json_name = "rec601Settings",
-            },
-        },
-        Rec709Settings = {
-            type = "structure",
-            traits = {
-                json_name = "rec709Settings",
-            },
-        },
-        Hlg2020Settings = {
-            type = "structure",
-            traits = {
-                json_name = "hlg2020Settings",
-            },
-        },
+        ColorSpacePassthroughSettings = setmetatable({ traits = {
+            json_name = "colorSpacePassthroughSettings",
+        } }, { __index = M.ColorSpacePassthroughSettings }),
+        DolbyVision81Settings = setmetatable({ traits = {
+            json_name = "dolbyVision81Settings",
+        } }, { __index = M.DolbyVision81Settings }),
+        Hdr10Settings = setmetatable({ traits = {
+            json_name = "hdr10Settings",
+        } }, { __index = M.Hdr10Settings }),
+        Rec601Settings = setmetatable({ traits = {
+            json_name = "rec601Settings",
+        } }, { __index = M.Rec601Settings }),
+        Rec709Settings = setmetatable({ traits = {
+            json_name = "rec709Settings",
+        } }, { __index = M.Rec709Settings }),
+        Hlg2020Settings = setmetatable({ traits = {
+            json_name = "hlg2020Settings",
+        } }, { __index = M.Hlg2020Settings }),
     },
 }
 
@@ -11016,18 +10356,12 @@ M.H265Deblocking = {
 M.H265FilterSettings = {
     type = "structure",
     members = {
-        TemporalFilterSettings = {
-            type = "structure",
-            traits = {
-                json_name = "temporalFilterSettings",
-            },
-        },
-        BandwidthReductionFilterSettings = {
-            type = "structure",
-            traits = {
-                json_name = "bandwidthReductionFilterSettings",
-            },
-        },
+        TemporalFilterSettings = setmetatable({ traits = {
+            json_name = "temporalFilterSettings",
+        } }, { __index = M.TemporalFilterSettings }),
+        BandwidthReductionFilterSettings = setmetatable({ traits = {
+            json_name = "bandwidthReductionFilterSettings",
+        } }, { __index = M.BandwidthReductionFilterSettings }),
     },
 }
 
@@ -11147,13 +10481,13 @@ M.H265Settings = {
             },
         },
         Bitrate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "bitrate",
             },
         },
         BufSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "bufSize",
             },
@@ -11164,18 +10498,12 @@ M.H265Settings = {
                 json_name = "colorMetadata",
             },
         },
-        ColorSpaceSettings = {
-            type = "structure",
-            traits = {
-                json_name = "colorSpaceSettings",
-            },
-        },
-        FilterSettings = {
-            type = "structure",
-            traits = {
-                json_name = "filterSettings",
-            },
-        },
+        ColorSpaceSettings = setmetatable({ traits = {
+            json_name = "colorSpaceSettings",
+        } }, { __index = M.H265ColorSpaceSettings }),
+        FilterSettings = setmetatable({ traits = {
+            json_name = "filterSettings",
+        } }, { __index = M.H265FilterSettings }),
         FixedAfd = {
             type = "string",
             traits = {
@@ -11189,27 +10517,27 @@ M.H265Settings = {
             },
         },
         FramerateDenominator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "framerateDenominator",
                 required = true,
             },
         },
         FramerateNumerator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "framerateNumerator",
                 required = true,
             },
         },
         GopClosedCadence = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "gopClosedCadence",
             },
         },
         GopSize = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "gopSize",
             },
@@ -11233,25 +10561,25 @@ M.H265Settings = {
             },
         },
         MaxBitrate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxBitrate",
             },
         },
         MinIInterval = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "minIInterval",
             },
         },
         ParDenominator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "parDenominator",
             },
         },
         ParNumerator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "parNumerator",
             },
@@ -11263,7 +10591,7 @@ M.H265Settings = {
             },
         },
         QvbrQualityLevel = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "qvbrQualityLevel",
             },
@@ -11287,7 +10615,7 @@ M.H265Settings = {
             },
         },
         Slices = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "slices",
             },
@@ -11304,12 +10632,9 @@ M.H265Settings = {
                 json_name = "timecodeInsertion",
             },
         },
-        TimecodeBurninSettings = {
-            type = "structure",
-            traits = {
-                json_name = "timecodeBurninSettings",
-            },
-        },
+        TimecodeBurninSettings = setmetatable({ traits = {
+            json_name = "timecodeBurninSettings",
+        } }, { __index = M.TimecodeBurninSettings }),
         MvOverPictureBoundaries = {
             type = "string",
             traits = {
@@ -11323,7 +10648,7 @@ M.H265Settings = {
             },
         },
         TileHeight = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "tileHeight",
             },
@@ -11335,7 +10660,7 @@ M.H265Settings = {
             },
         },
         TileWidth = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "tileWidth",
             },
@@ -11347,7 +10672,7 @@ M.H265Settings = {
             },
         },
         MinQp = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "minQp",
             },
@@ -11365,13 +10690,13 @@ M.H265Settings = {
             },
         },
         GopNumBFrames = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "gopNumBFrames",
             },
         },
         MinBitrate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "minBitrate",
             },
@@ -11411,12 +10736,9 @@ M.Mpeg2DisplayRatio = {
 M.Mpeg2FilterSettings = {
     type = "structure",
     members = {
-        TemporalFilterSettings = {
-            type = "structure",
-            traits = {
-                json_name = "temporalFilterSettings",
-            },
-        },
+        TemporalFilterSettings = setmetatable({ traits = {
+            json_name = "temporalFilterSettings",
+        } }, { __index = M.TemporalFilterSettings }),
     },
 }
 
@@ -11473,12 +10795,9 @@ M.Mpeg2Settings = {
                 json_name = "displayAspectRatio",
             },
         },
-        FilterSettings = {
-            type = "structure",
-            traits = {
-                json_name = "filterSettings",
-            },
-        },
+        FilterSettings = setmetatable({ traits = {
+            json_name = "filterSettings",
+        } }, { __index = M.Mpeg2FilterSettings }),
         FixedAfd = {
             type = "string",
             traits = {
@@ -11486,33 +10805,33 @@ M.Mpeg2Settings = {
             },
         },
         FramerateDenominator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "framerateDenominator",
                 required = true,
             },
         },
         FramerateNumerator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "framerateNumerator",
                 required = true,
             },
         },
         GopClosedCadence = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "gopClosedCadence",
             },
         },
         GopNumBFrames = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "gopNumBFrames",
             },
         },
         GopSize = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "gopSize",
             },
@@ -11541,48 +10860,30 @@ M.Mpeg2Settings = {
                 json_name = "timecodeInsertion",
             },
         },
-        TimecodeBurninSettings = {
-            type = "structure",
-            traits = {
-                json_name = "timecodeBurninSettings",
-            },
-        },
+        TimecodeBurninSettings = setmetatable({ traits = {
+            json_name = "timecodeBurninSettings",
+        } }, { __index = M.TimecodeBurninSettings }),
     },
 }
 
 M.VideoCodecSettings = {
     type = "structure",
     members = {
-        FrameCaptureSettings = {
-            type = "structure",
-            traits = {
-                json_name = "frameCaptureSettings",
-            },
-        },
-        H264Settings = {
-            type = "structure",
-            traits = {
-                json_name = "h264Settings",
-            },
-        },
-        H265Settings = {
-            type = "structure",
-            traits = {
-                json_name = "h265Settings",
-            },
-        },
-        Mpeg2Settings = {
-            type = "structure",
-            traits = {
-                json_name = "mpeg2Settings",
-            },
-        },
-        Av1Settings = {
-            type = "structure",
-            traits = {
-                json_name = "av1Settings",
-            },
-        },
+        FrameCaptureSettings = setmetatable({ traits = {
+            json_name = "frameCaptureSettings",
+        } }, { __index = M.FrameCaptureSettings }),
+        H264Settings = setmetatable({ traits = {
+            json_name = "h264Settings",
+        } }, { __index = M.H264Settings }),
+        H265Settings = setmetatable({ traits = {
+            json_name = "h265Settings",
+        } }, { __index = M.H265Settings }),
+        Mpeg2Settings = setmetatable({ traits = {
+            json_name = "mpeg2Settings",
+        } }, { __index = M.Mpeg2Settings }),
+        Av1Settings = setmetatable({ traits = {
+            json_name = "av1Settings",
+        } }, { __index = M.Av1Settings }),
     },
 }
 
@@ -11601,14 +10902,11 @@ M.VideoDescriptionScalingBehavior = {
 M.VideoDescription = {
     type = "structure",
     members = {
-        CodecSettings = {
-            type = "structure",
-            traits = {
-                json_name = "codecSettings",
-            },
-        },
+        CodecSettings = setmetatable({ traits = {
+            json_name = "codecSettings",
+        } }, { __index = M.VideoCodecSettings }),
         Height = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "height",
             },
@@ -11633,13 +10931,13 @@ M.VideoDescription = {
             },
         },
         Sharpness = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "sharpness",
             },
         },
         Width = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "width",
             },
@@ -11784,7 +11082,7 @@ M.UnprocessableEntityException = {
         },
         ValidationErrors = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationError,
             traits = {
                 json_name = "validationErrors",
             },
@@ -11830,12 +11128,9 @@ M.AvailBlankingState = {
 M.AvailBlanking = {
     type = "structure",
     members = {
-        AvailBlankingImage = {
-            type = "structure",
-            traits = {
-                json_name = "availBlankingImage",
-            },
-        },
+        AvailBlankingImage = setmetatable({ traits = {
+            json_name = "availBlankingImage",
+        } }, { __index = M.InputLocation }),
         State = {
             type = "string",
             traits = {
@@ -11856,7 +11151,7 @@ M.Esam = {
             },
         },
         AdAvailOffset = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "adAvailOffset",
             },
@@ -11903,7 +11198,7 @@ M.Scte35SpliceInsert = {
     type = "structure",
     members = {
         AdAvailOffset = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "adAvailOffset",
             },
@@ -11937,7 +11232,7 @@ M.Scte35TimeSignalApos = {
     type = "structure",
     members = {
         AdAvailOffset = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "adAvailOffset",
             },
@@ -11960,24 +11255,15 @@ M.Scte35TimeSignalApos = {
 M.AvailSettings = {
     type = "structure",
     members = {
-        Esam = {
-            type = "structure",
-            traits = {
-                json_name = "esam",
-            },
-        },
-        Scte35SpliceInsert = {
-            type = "structure",
-            traits = {
-                json_name = "scte35SpliceInsert",
-            },
-        },
-        Scte35TimeSignalApos = {
-            type = "structure",
-            traits = {
-                json_name = "scte35TimeSignalApos",
-            },
-        },
+        Esam = setmetatable({ traits = {
+            json_name = "esam",
+        } }, { __index = M.Esam }),
+        Scte35SpliceInsert = setmetatable({ traits = {
+            json_name = "scte35SpliceInsert",
+        } }, { __index = M.Scte35SpliceInsert }),
+        Scte35TimeSignalApos = setmetatable({ traits = {
+            json_name = "scte35TimeSignalApos",
+        } }, { __index = M.Scte35TimeSignalApos }),
     },
 }
 
@@ -11989,12 +11275,9 @@ M.Scte35SegmentationScope = {
 M.AvailConfiguration = {
     type = "structure",
     members = {
-        AvailSettings = {
-            type = "structure",
-            traits = {
-                json_name = "availSettings",
-            },
-        },
+        AvailSettings = setmetatable({ traits = {
+            json_name = "availSettings",
+        } }, { __index = M.AvailSettings }),
         Scte35SegmentationScope = {
             type = "string",
             traits = {
@@ -12009,28 +11292,28 @@ M.BatchDeleteInput = {
     members = {
         ChannelIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "channelIds",
             },
         },
         InputIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "inputIds",
             },
         },
         InputSecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "inputSecurityGroupIds",
             },
         },
         MultiplexIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "multiplexIds",
             },
@@ -12043,14 +11326,14 @@ M.BatchDeleteOutput = {
     members = {
         Failed = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchFailedResultModel,
             traits = {
                 json_name = "failed",
             },
         },
         Successful = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchSuccessfulResultModel,
             traits = {
                 json_name = "successful",
             },
@@ -12063,7 +11346,7 @@ M.BatchScheduleActionCreateRequest = {
     members = {
         ScheduleActions = {
             type = "list",
-            member_type = "structure",
+            member = M.ScheduleAction,
             traits = {
                 json_name = "scheduleActions",
                 required = true,
@@ -12077,7 +11360,7 @@ M.BatchScheduleActionCreateResult = {
     members = {
         ScheduleActions = {
             type = "list",
-            member_type = "structure",
+            member = M.ScheduleAction,
             traits = {
                 json_name = "scheduleActions",
                 required = true,
@@ -12091,7 +11374,7 @@ M.BatchScheduleActionDeleteRequest = {
     members = {
         ActionNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "actionNames",
                 required = true,
@@ -12105,7 +11388,7 @@ M.BatchScheduleActionDeleteResult = {
     members = {
         ScheduleActions = {
             type = "list",
-            member_type = "structure",
+            member = M.ScheduleAction,
             traits = {
                 json_name = "scheduleActions",
                 required = true,
@@ -12119,14 +11402,14 @@ M.BatchStartInput = {
     members = {
         ChannelIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "channelIds",
             },
         },
         MultiplexIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "multiplexIds",
             },
@@ -12139,14 +11422,14 @@ M.BatchStartOutput = {
     members = {
         Failed = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchFailedResultModel,
             traits = {
                 json_name = "failed",
             },
         },
         Successful = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchSuccessfulResultModel,
             traits = {
                 json_name = "successful",
             },
@@ -12159,14 +11442,14 @@ M.BatchStopInput = {
     members = {
         ChannelIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "channelIds",
             },
         },
         MultiplexIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "multiplexIds",
             },
@@ -12179,14 +11462,14 @@ M.BatchStopOutput = {
     members = {
         Failed = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchFailedResultModel,
             traits = {
                 json_name = "failed",
             },
         },
         Successful = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchSuccessfulResultModel,
             traits = {
                 json_name = "successful",
             },
@@ -12204,36 +11487,24 @@ M.BatchUpdateScheduleInput = {
                 required = true,
             },
         },
-        Creates = {
-            type = "structure",
-            traits = {
-                json_name = "creates",
-            },
-        },
-        Deletes = {
-            type = "structure",
-            traits = {
-                json_name = "deletes",
-            },
-        },
+        Creates = setmetatable({ traits = {
+            json_name = "creates",
+        } }, { __index = M.BatchScheduleActionCreateRequest }),
+        Deletes = setmetatable({ traits = {
+            json_name = "deletes",
+        } }, { __index = M.BatchScheduleActionDeleteRequest }),
     },
 }
 
 M.BatchUpdateScheduleOutput = {
     type = "structure",
     members = {
-        Creates = {
-            type = "structure",
-            traits = {
-                json_name = "creates",
-            },
-        },
-        Deletes = {
-            type = "structure",
-            traits = {
-                json_name = "deletes",
-            },
-        },
+        Creates = setmetatable({ traits = {
+            json_name = "creates",
+        } }, { __index = M.BatchScheduleActionCreateResult }),
+        Deletes = setmetatable({ traits = {
+            json_name = "deletes",
+        } }, { __index = M.BatchScheduleActionDeleteResult }),
     },
 }
 
@@ -12250,24 +11521,18 @@ M.BlackoutSlateState = {
 M.BlackoutSlate = {
     type = "structure",
     members = {
-        BlackoutSlateImage = {
-            type = "structure",
-            traits = {
-                json_name = "blackoutSlateImage",
-            },
-        },
+        BlackoutSlateImage = setmetatable({ traits = {
+            json_name = "blackoutSlateImage",
+        } }, { __index = M.InputLocation }),
         NetworkEndBlackout = {
             type = "string",
             traits = {
                 json_name = "networkEndBlackout",
             },
         },
-        NetworkEndBlackoutImage = {
-            type = "structure",
-            traits = {
-                json_name = "networkEndBlackoutImage",
-            },
-        },
+        NetworkEndBlackoutImage = setmetatable({ traits = {
+            json_name = "networkEndBlackoutImage",
+        } }, { __index = M.InputLocation }),
         NetworkId = {
             type = "string",
             traits = {
@@ -12305,7 +11570,7 @@ M.ColorCorrectionSettings = {
     members = {
         GlobalColorCorrections = {
             type = "list",
-            member_type = "structure",
+            member = M.ColorCorrection,
             traits = {
                 json_name = "globalColorCorrections",
                 required = true,
@@ -12356,7 +11621,7 @@ M.InputLossBehavior = {
     type = "structure",
     members = {
         BlackFrameMsec = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "blackFrameMsec",
             },
@@ -12367,12 +11632,9 @@ M.InputLossBehavior = {
                 json_name = "inputLossImageColor",
             },
         },
-        InputLossImageSlate = {
-            type = "structure",
-            traits = {
-                json_name = "inputLossImageSlate",
-            },
-        },
+        InputLossImageSlate = setmetatable({ traits = {
+            json_name = "inputLossImageSlate",
+        } }, { __index = M.InputLocation }),
         InputLossImageType = {
             type = "string",
             traits = {
@@ -12380,7 +11642,7 @@ M.InputLossBehavior = {
             },
         },
         RepeatFrameMsec = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "repeatFrameMsec",
             },
@@ -12450,24 +11712,15 @@ M.PipelineLockingSettings = {
 M.OutputLockingSettings = {
     type = "structure",
     members = {
-        EpochLockingSettings = {
-            type = "structure",
-            traits = {
-                json_name = "epochLockingSettings",
-            },
-        },
-        PipelineLockingSettings = {
-            type = "structure",
-            traits = {
-                json_name = "pipelineLockingSettings",
-            },
-        },
-        DisabledLockingSettings = {
-            type = "structure",
-            traits = {
-                json_name = "disabledLockingSettings",
-            },
-        },
+        EpochLockingSettings = setmetatable({ traits = {
+            json_name = "epochLockingSettings",
+        } }, { __index = M.EpochLockingSettings }),
+        PipelineLockingSettings = setmetatable({ traits = {
+            json_name = "pipelineLockingSettings",
+        } }, { __index = M.PipelineLockingSettings }),
+        DisabledLockingSettings = setmetatable({ traits = {
+            json_name = "disabledLockingSettings",
+        } }, { __index = M.DisabledLockingSettings }),
     },
 }
 
@@ -12485,7 +11738,7 @@ M.GlobalConfiguration = {
     type = "structure",
     members = {
         InitialAudioGain = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "initialAudioGain",
             },
@@ -12496,12 +11749,9 @@ M.GlobalConfiguration = {
                 json_name = "inputEndAction",
             },
         },
-        InputLossBehavior = {
-            type = "structure",
-            traits = {
-                json_name = "inputLossBehavior",
-            },
-        },
+        InputLossBehavior = setmetatable({ traits = {
+            json_name = "inputLossBehavior",
+        } }, { __index = M.InputLossBehavior }),
         OutputLockingMode = {
             type = "string",
             traits = {
@@ -12520,12 +11770,9 @@ M.GlobalConfiguration = {
                 json_name = "supportLowFramerateInputs",
             },
         },
-        OutputLockingSettings = {
-            type = "structure",
-            traits = {
-                json_name = "outputLockingSettings",
-            },
-        },
+        OutputLockingSettings = setmetatable({ traits = {
+            json_name = "outputLockingSettings",
+        } }, { __index = M.OutputLockingSettings }),
     },
 }
 
@@ -12541,12 +11788,9 @@ M.HtmlMotionGraphicsSettings = {
 M.MotionGraphicsSettings = {
     type = "structure",
     members = {
-        HtmlMotionGraphicsSettings = {
-            type = "structure",
-            traits = {
-                json_name = "htmlMotionGraphicsSettings",
-            },
-        },
+        HtmlMotionGraphicsSettings = setmetatable({ traits = {
+            json_name = "htmlMotionGraphicsSettings",
+        } }, { __index = M.HtmlMotionGraphicsSettings }),
     },
 }
 
@@ -12559,13 +11803,10 @@ M.MotionGraphicsConfiguration = {
                 json_name = "motionGraphicsInsertion",
             },
         },
-        MotionGraphicsSettings = {
-            type = "structure",
-            traits = {
-                json_name = "motionGraphicsSettings",
-                required = true,
-            },
-        },
+        MotionGraphicsSettings = setmetatable({ traits = {
+            json_name = "motionGraphicsSettings",
+            required = true,
+        } }, { __index = M.MotionGraphicsSettings }),
     },
 }
 
@@ -12627,7 +11868,7 @@ M.TimecodeConfig = {
             },
         },
         SyncThreshold = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "syncThreshold",
             },
@@ -12640,96 +11881,66 @@ M.EncoderSettings = {
     members = {
         AudioDescriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.AudioDescription,
             traits = {
                 json_name = "audioDescriptions",
                 required = true,
             },
         },
-        AvailBlanking = {
-            type = "structure",
-            traits = {
-                json_name = "availBlanking",
-            },
-        },
-        AvailConfiguration = {
-            type = "structure",
-            traits = {
-                json_name = "availConfiguration",
-            },
-        },
-        BlackoutSlate = {
-            type = "structure",
-            traits = {
-                json_name = "blackoutSlate",
-            },
-        },
+        AvailBlanking = setmetatable({ traits = {
+            json_name = "availBlanking",
+        } }, { __index = M.AvailBlanking }),
+        AvailConfiguration = setmetatable({ traits = {
+            json_name = "availConfiguration",
+        } }, { __index = M.AvailConfiguration }),
+        BlackoutSlate = setmetatable({ traits = {
+            json_name = "blackoutSlate",
+        } }, { __index = M.BlackoutSlate }),
         CaptionDescriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.CaptionDescription,
             traits = {
                 json_name = "captionDescriptions",
             },
         },
-        FeatureActivations = {
-            type = "structure",
-            traits = {
-                json_name = "featureActivations",
-            },
-        },
-        GlobalConfiguration = {
-            type = "structure",
-            traits = {
-                json_name = "globalConfiguration",
-            },
-        },
-        MotionGraphicsConfiguration = {
-            type = "structure",
-            traits = {
-                json_name = "motionGraphicsConfiguration",
-            },
-        },
-        NielsenConfiguration = {
-            type = "structure",
-            traits = {
-                json_name = "nielsenConfiguration",
-            },
-        },
+        FeatureActivations = setmetatable({ traits = {
+            json_name = "featureActivations",
+        } }, { __index = M.FeatureActivations }),
+        GlobalConfiguration = setmetatable({ traits = {
+            json_name = "globalConfiguration",
+        } }, { __index = M.GlobalConfiguration }),
+        MotionGraphicsConfiguration = setmetatable({ traits = {
+            json_name = "motionGraphicsConfiguration",
+        } }, { __index = M.MotionGraphicsConfiguration }),
+        NielsenConfiguration = setmetatable({ traits = {
+            json_name = "nielsenConfiguration",
+        } }, { __index = M.NielsenConfiguration }),
         OutputGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputGroup,
             traits = {
                 json_name = "outputGroups",
                 required = true,
             },
         },
-        TimecodeConfig = {
-            type = "structure",
-            traits = {
-                json_name = "timecodeConfig",
-                required = true,
-            },
-        },
+        TimecodeConfig = setmetatable({ traits = {
+            json_name = "timecodeConfig",
+            required = true,
+        } }, { __index = M.TimecodeConfig }),
         VideoDescriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.VideoDescription,
             traits = {
                 json_name = "videoDescriptions",
                 required = true,
             },
         },
-        ThumbnailConfiguration = {
-            type = "structure",
-            traits = {
-                json_name = "thumbnailConfiguration",
-            },
-        },
-        ColorCorrectionSettings = {
-            type = "structure",
-            traits = {
-                json_name = "colorCorrectionSettings",
-            },
-        },
+        ThumbnailConfiguration = setmetatable({ traits = {
+            json_name = "thumbnailConfiguration",
+        } }, { __index = M.ThumbnailConfiguration }),
+        ColorCorrectionSettings = setmetatable({ traits = {
+            json_name = "colorCorrectionSettings",
+        } }, { __index = M.ColorCorrectionSettings }),
     },
 }
 
@@ -12742,12 +11953,9 @@ M.Channel = {
                 json_name = "arn",
             },
         },
-        CdiInputSpecification = {
-            type = "structure",
-            traits = {
-                json_name = "cdiInputSpecification",
-            },
-        },
+        CdiInputSpecification = setmetatable({ traits = {
+            json_name = "cdiInputSpecification",
+        } }, { __index = M.CdiInputSpecification }),
         ChannelClass = {
             type = "string",
             traits = {
@@ -12756,24 +11964,21 @@ M.Channel = {
         },
         Destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputDestination,
             traits = {
                 json_name = "destinations",
             },
         },
         EgressEndpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.ChannelEgressEndpoint,
             traits = {
                 json_name = "egressEndpoints",
             },
         },
-        EncoderSettings = {
-            type = "structure",
-            traits = {
-                json_name = "encoderSettings",
-            },
-        },
+        EncoderSettings = setmetatable({ traits = {
+            json_name = "encoderSettings",
+        } }, { __index = M.EncoderSettings }),
         Id = {
             type = "string",
             traits = {
@@ -12782,29 +11987,23 @@ M.Channel = {
         },
         InputAttachments = {
             type = "list",
-            member_type = "structure",
+            member = M.InputAttachment,
             traits = {
                 json_name = "inputAttachments",
             },
         },
-        InputSpecification = {
-            type = "structure",
-            traits = {
-                json_name = "inputSpecification",
-            },
-        },
+        InputSpecification = setmetatable({ traits = {
+            json_name = "inputSpecification",
+        } }, { __index = M.InputSpecification }),
         LogLevel = {
             type = "string",
             traits = {
                 json_name = "logLevel",
             },
         },
-        Maintenance = {
-            type = "structure",
-            traits = {
-                json_name = "maintenance",
-            },
-        },
+        Maintenance = setmetatable({ traits = {
+            json_name = "maintenance",
+        } }, { __index = M.MaintenanceStatus }),
         Name = {
             type = "string",
             traits = {
@@ -12813,13 +12012,13 @@ M.Channel = {
         },
         PipelineDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.PipelineDetail,
             traits = {
                 json_name = "pipelineDetails",
             },
         },
         PipelinesRunningCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "pipelinesRunningCount",
             },
@@ -12838,49 +12037,34 @@ M.Channel = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
         },
-        Vpc = {
-            type = "structure",
-            traits = {
-                json_name = "vpc",
-            },
-        },
-        AnywhereSettings = {
-            type = "structure",
-            traits = {
-                json_name = "anywhereSettings",
-            },
-        },
-        ChannelEngineVersion = {
-            type = "structure",
-            traits = {
-                json_name = "channelEngineVersion",
-            },
-        },
-        LinkedChannelSettings = {
-            type = "structure",
-            traits = {
-                json_name = "linkedChannelSettings",
-            },
-        },
+        Vpc = setmetatable({ traits = {
+            json_name = "vpc",
+        } }, { __index = M.VpcOutputSettingsDescription }),
+        AnywhereSettings = setmetatable({ traits = {
+            json_name = "anywhereSettings",
+        } }, { __index = M.DescribeAnywhereSettings }),
+        ChannelEngineVersion = setmetatable({ traits = {
+            json_name = "channelEngineVersion",
+        } }, { __index = M.ChannelEngineVersionResponse }),
+        LinkedChannelSettings = setmetatable({ traits = {
+            json_name = "linkedChannelSettings",
+        } }, { __index = M.DescribeLinkedChannelSettings }),
         ChannelSecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "channelSecurityGroups",
             },
         },
-        InferenceSettings = {
-            type = "structure",
-            traits = {
-                json_name = "inferenceSettings",
-            },
-        },
+        InferenceSettings = setmetatable({ traits = {
+            json_name = "inferenceSettings",
+        } }, { __index = M.DescribeInferenceSettings }),
     },
 }
 
@@ -12923,7 +12107,7 @@ M.ClusterNetworkSettingsCreateRequest = {
         },
         InterfaceMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.InterfaceMappingCreateRequest,
             traits = {
                 json_name = "interfaceMappings",
             },
@@ -12942,7 +12126,7 @@ M.ClusterNetworkSettingsUpdateRequest = {
         },
         InterfaceMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.InterfaceMappingUpdateRequest,
             traits = {
                 json_name = "interfaceMappings",
             },
@@ -12999,18 +12183,12 @@ M.PrimaryChannelSettings = {
 M.LinkedChannelSettings = {
     type = "structure",
     members = {
-        FollowerChannelSettings = {
-            type = "structure",
-            traits = {
-                json_name = "followerChannelSettings",
-            },
-        },
-        PrimaryChannelSettings = {
-            type = "structure",
-            traits = {
-                json_name = "primaryChannelSettings",
-            },
-        },
+        FollowerChannelSettings = setmetatable({ traits = {
+            json_name = "followerChannelSettings",
+        } }, { __index = M.FollowerChannelSettings }),
+        PrimaryChannelSettings = setmetatable({ traits = {
+            json_name = "primaryChannelSettings",
+        } }, { __index = M.PrimaryChannelSettings }),
     },
 }
 
@@ -13037,21 +12215,21 @@ M.VpcOutputSettings = {
     members = {
         PublicAddressAllocationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "publicAddressAllocationIds",
             },
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "securityGroupIds",
             },
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "subnetIds",
                 required = true,
@@ -13063,12 +12241,9 @@ M.VpcOutputSettings = {
 M.CreateChannelInput = {
     type = "structure",
     members = {
-        CdiInputSpecification = {
-            type = "structure",
-            traits = {
-                json_name = "cdiInputSpecification",
-            },
-        },
+        CdiInputSpecification = setmetatable({ traits = {
+            json_name = "cdiInputSpecification",
+        } }, { __index = M.CdiInputSpecification }),
         ChannelClass = {
             type = "string",
             traits = {
@@ -13077,42 +12252,33 @@ M.CreateChannelInput = {
         },
         Destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputDestination,
             traits = {
                 json_name = "destinations",
             },
         },
-        EncoderSettings = {
-            type = "structure",
-            traits = {
-                json_name = "encoderSettings",
-            },
-        },
+        EncoderSettings = setmetatable({ traits = {
+            json_name = "encoderSettings",
+        } }, { __index = M.EncoderSettings }),
         InputAttachments = {
             type = "list",
-            member_type = "structure",
+            member = M.InputAttachment,
             traits = {
                 json_name = "inputAttachments",
             },
         },
-        InputSpecification = {
-            type = "structure",
-            traits = {
-                json_name = "inputSpecification",
-            },
-        },
+        InputSpecification = setmetatable({ traits = {
+            json_name = "inputSpecification",
+        } }, { __index = M.InputSpecification }),
         LogLevel = {
             type = "string",
             traits = {
                 json_name = "logLevel",
             },
         },
-        Maintenance = {
-            type = "structure",
-            traits = {
-                json_name = "maintenance",
-            },
-        },
+        Maintenance = setmetatable({ traits = {
+            json_name = "maintenance",
+        } }, { __index = M.MaintenanceCreateSettings }),
         Name = {
             type = "string",
             traits = {
@@ -13139,67 +12305,49 @@ M.CreateChannelInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
         },
-        Vpc = {
-            type = "structure",
-            traits = {
-                json_name = "vpc",
-            },
-        },
-        AnywhereSettings = {
-            type = "structure",
-            traits = {
-                json_name = "anywhereSettings",
-            },
-        },
-        ChannelEngineVersion = {
-            type = "structure",
-            traits = {
-                json_name = "channelEngineVersion",
-            },
-        },
+        Vpc = setmetatable({ traits = {
+            json_name = "vpc",
+        } }, { __index = M.VpcOutputSettings }),
+        AnywhereSettings = setmetatable({ traits = {
+            json_name = "anywhereSettings",
+        } }, { __index = M.AnywhereSettings }),
+        ChannelEngineVersion = setmetatable({ traits = {
+            json_name = "channelEngineVersion",
+        } }, { __index = M.ChannelEngineVersionRequest }),
         DryRun = {
             type = "boolean",
             traits = {
                 json_name = "dryRun",
             },
         },
-        LinkedChannelSettings = {
-            type = "structure",
-            traits = {
-                json_name = "linkedChannelSettings",
-            },
-        },
+        LinkedChannelSettings = setmetatable({ traits = {
+            json_name = "linkedChannelSettings",
+        } }, { __index = M.LinkedChannelSettings }),
         ChannelSecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "channelSecurityGroups",
             },
         },
-        InferenceSettings = {
-            type = "structure",
-            traits = {
-                json_name = "inferenceSettings",
-            },
-        },
+        InferenceSettings = setmetatable({ traits = {
+            json_name = "inferenceSettings",
+        } }, { __index = M.InferenceSettings }),
     },
 }
 
 M.CreateChannelOutput = {
     type = "structure",
     members = {
-        Channel = {
-            type = "structure",
-            traits = {
-                json_name = "channel",
-            },
-        },
+        Channel = setmetatable({ traits = {
+            json_name = "channel",
+        } }, { __index = M.Channel }),
     },
 }
 
@@ -13221,7 +12369,7 @@ M.CreateChannelPlacementGroupInput = {
         },
         Nodes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "nodes",
             },
@@ -13234,8 +12382,8 @@ M.CreateChannelPlacementGroupInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -13254,7 +12402,7 @@ M.CreateChannelPlacementGroupOutput = {
         },
         Channels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "channels",
             },
@@ -13279,7 +12427,7 @@ M.CreateChannelPlacementGroupOutput = {
         },
         Nodes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "nodes",
             },
@@ -13304,7 +12452,7 @@ M.CreateCloudWatchAlarmTemplateInput = {
             },
         },
         DatapointsToAlarm = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "datapointsToAlarm",
             },
@@ -13316,7 +12464,7 @@ M.CreateCloudWatchAlarmTemplateInput = {
             },
         },
         EvaluationPeriods = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "evaluationPeriods",
                 required = true,
@@ -13344,7 +12492,7 @@ M.CreateCloudWatchAlarmTemplateInput = {
             },
         },
         Period = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "period",
                 required = true,
@@ -13359,8 +12507,8 @@ M.CreateCloudWatchAlarmTemplateInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -13373,7 +12521,7 @@ M.CreateCloudWatchAlarmTemplateInput = {
             },
         },
         Threshold = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "threshold",
                 required = true,
@@ -13417,7 +12565,7 @@ M.CreateCloudWatchAlarmTemplateOutput = {
             },
         },
         DatapointsToAlarm = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "datapointsToAlarm",
             },
@@ -13429,7 +12577,7 @@ M.CreateCloudWatchAlarmTemplateOutput = {
             },
         },
         EvaluationPeriods = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "evaluationPeriods",
             },
@@ -13465,7 +12613,7 @@ M.CreateCloudWatchAlarmTemplateOutput = {
             },
         },
         Period = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "period",
             },
@@ -13478,8 +12626,8 @@ M.CreateCloudWatchAlarmTemplateOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -13491,7 +12639,7 @@ M.CreateCloudWatchAlarmTemplateOutput = {
             },
         },
         Threshold = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "threshold",
             },
@@ -13523,8 +12671,8 @@ M.CreateCloudWatchAlarmTemplateGroupInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -13579,8 +12727,8 @@ M.CreateCloudWatchAlarmTemplateGroupOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -13609,12 +12757,9 @@ M.CreateClusterInput = {
                 json_name = "name",
             },
         },
-        NetworkSettings = {
-            type = "structure",
-            traits = {
-                json_name = "networkSettings",
-            },
-        },
+        NetworkSettings = setmetatable({ traits = {
+            json_name = "networkSettings",
+        } }, { __index = M.ClusterNetworkSettingsCreateRequest }),
         RequestId = {
             type = "string",
             traits = {
@@ -13623,8 +12768,8 @@ M.CreateClusterInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -13643,7 +12788,7 @@ M.CreateClusterOutput = {
         },
         ChannelIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "channelIds",
             },
@@ -13672,12 +12817,9 @@ M.CreateClusterOutput = {
                 json_name = "name",
             },
         },
-        NetworkSettings = {
-            type = "structure",
-            traits = {
-                json_name = "networkSettings",
-            },
-        },
+        NetworkSettings = setmetatable({ traits = {
+            json_name = "networkSettings",
+        } }, { __index = M.ClusterNetworkSettings }),
         State = {
             type = "string",
             traits = {
@@ -13698,7 +12840,7 @@ M.CreateEventBridgeRuleTemplateInput = {
         },
         EventTargets = {
             type = "list",
-            member_type = "structure",
+            member = M.EventBridgeRuleTemplateTarget,
             traits = {
                 json_name = "eventTargets",
             },
@@ -13726,8 +12868,8 @@ M.CreateEventBridgeRuleTemplateInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -13764,7 +12906,7 @@ M.CreateEventBridgeRuleTemplateOutput = {
         },
         EventTargets = {
             type = "list",
-            member_type = "structure",
+            member = M.EventBridgeRuleTemplateTarget,
             traits = {
                 json_name = "eventTargets",
             },
@@ -13801,8 +12943,8 @@ M.CreateEventBridgeRuleTemplateOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -13828,8 +12970,8 @@ M.CreateEventBridgeRuleTemplateGroupInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -13884,8 +13026,8 @@ M.CreateEventBridgeRuleTemplateGroupOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -13898,7 +13040,7 @@ M.MulticastSettingsCreateRequest = {
     members = {
         Sources = {
             type = "list",
-            member_type = "structure",
+            member = M.MulticastSourceCreateRequest,
             traits = {
                 json_name = "sources",
             },
@@ -13911,7 +13053,7 @@ M.RouterSettings = {
     members = {
         Destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.RouterDestinationSettings,
             traits = {
                 json_name = "destinations",
             },
@@ -13954,15 +13096,12 @@ M.SrtListenerDecryptionRequest = {
 M.SrtListenerSettingsRequest = {
     type = "structure",
     members = {
-        Decryption = {
-            type = "structure",
-            traits = {
-                json_name = "decryption",
-                required = true,
-            },
-        },
+        Decryption = setmetatable({ traits = {
+            json_name = "decryption",
+            required = true,
+        } }, { __index = M.SrtListenerDecryptionRequest }),
         MinimumLatency = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "minimumLatency",
                 required = true,
@@ -13982,17 +13121,14 @@ M.SrtSettingsRequest = {
     members = {
         SrtCallerSources = {
             type = "list",
-            member_type = "structure",
+            member = M.SrtCallerSourceRequest,
             traits = {
                 json_name = "srtCallerSources",
             },
         },
-        SrtListenerSettings = {
-            type = "structure",
-            traits = {
-                json_name = "srtListenerSettings",
-            },
-        },
+        SrtListenerSettings = setmetatable({ traits = {
+            json_name = "srtListenerSettings",
+        } }, { __index = M.SrtListenerSettingsRequest }),
     },
 }
 
@@ -14001,14 +13137,14 @@ M.InputVpcRequest = {
     members = {
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "securityGroupIds",
             },
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "subnetIds",
                 required = true,
@@ -14022,28 +13158,28 @@ M.CreateInputInput = {
     members = {
         Destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.InputDestinationRequest,
             traits = {
                 json_name = "destinations",
             },
         },
         InputDevices = {
             type = "list",
-            member_type = "structure",
+            member = M.InputDeviceSettings,
             traits = {
                 json_name = "inputDevices",
             },
         },
         InputSecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "inputSecurityGroups",
             },
         },
         MediaConnectFlows = {
             type = "list",
-            member_type = "structure",
+            member = M.MediaConnectFlowRequest,
             traits = {
                 json_name = "mediaConnectFlows",
             },
@@ -14068,15 +13204,15 @@ M.CreateInputInput = {
         },
         Sources = {
             type = "list",
-            member_type = "structure",
+            member = M.InputSourceRequest,
             traits = {
                 json_name = "sources",
             },
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -14087,61 +13223,43 @@ M.CreateInputInput = {
                 json_name = "type",
             },
         },
-        Vpc = {
-            type = "structure",
-            traits = {
-                json_name = "vpc",
-            },
-        },
-        SrtSettings = {
-            type = "structure",
-            traits = {
-                json_name = "srtSettings",
-            },
-        },
+        Vpc = setmetatable({ traits = {
+            json_name = "vpc",
+        } }, { __index = M.InputVpcRequest }),
+        SrtSettings = setmetatable({ traits = {
+            json_name = "srtSettings",
+        } }, { __index = M.SrtSettingsRequest }),
         InputNetworkLocation = {
             type = "string",
             traits = {
                 json_name = "inputNetworkLocation",
             },
         },
-        MulticastSettings = {
-            type = "structure",
-            traits = {
-                json_name = "multicastSettings",
-            },
-        },
-        Smpte2110ReceiverGroupSettings = {
-            type = "structure",
-            traits = {
-                json_name = "smpte2110ReceiverGroupSettings",
-            },
-        },
+        MulticastSettings = setmetatable({ traits = {
+            json_name = "multicastSettings",
+        } }, { __index = M.MulticastSettingsCreateRequest }),
+        Smpte2110ReceiverGroupSettings = setmetatable({ traits = {
+            json_name = "smpte2110ReceiverGroupSettings",
+        } }, { __index = M.Smpte2110ReceiverGroupSettings }),
         SdiSources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "sdiSources",
             },
         },
-        RouterSettings = {
-            type = "structure",
-            traits = {
-                json_name = "routerSettings",
-            },
-        },
+        RouterSettings = setmetatable({ traits = {
+            json_name = "routerSettings",
+        } }, { __index = M.RouterSettings }),
     },
 }
 
 M.CreateInputOutput = {
     type = "structure",
     members = {
-        Input = {
-            type = "structure",
-            traits = {
-                json_name = "input",
-            },
-        },
+        Input = setmetatable({ traits = {
+            json_name = "input",
+        } }, { __index = M.Input }),
     },
 }
 
@@ -14150,15 +13268,15 @@ M.CreateInputSecurityGroupInput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
         },
         WhitelistRules = {
             type = "list",
-            member_type = "structure",
+            member = M.InputWhitelistRuleCidr,
             traits = {
                 json_name = "whitelistRules",
             },
@@ -14169,12 +13287,9 @@ M.CreateInputSecurityGroupInput = {
 M.CreateInputSecurityGroupOutput = {
     type = "structure",
     members = {
-        SecurityGroup = {
-            type = "structure",
-            traits = {
-                json_name = "securityGroup",
-            },
-        },
+        SecurityGroup = setmetatable({ traits = {
+            json_name = "securityGroup",
+        } }, { __index = M.InputSecurityGroup }),
     },
 }
 
@@ -14182,27 +13297,27 @@ M.MultiplexSettings = {
     type = "structure",
     members = {
         MaximumVideoBufferDelayMilliseconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maximumVideoBufferDelayMilliseconds",
             },
         },
         TransportStreamBitrate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "transportStreamBitrate",
                 required = true,
             },
         },
         TransportStreamId = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "transportStreamId",
                 required = true,
             },
         },
         TransportStreamReservedBitrate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "transportStreamReservedBitrate",
             },
@@ -14215,19 +13330,16 @@ M.CreateMultiplexInput = {
     members = {
         AvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "availabilityZones",
                 required = true,
             },
         },
-        MultiplexSettings = {
-            type = "structure",
-            traits = {
-                json_name = "multiplexSettings",
-                required = true,
-            },
-        },
+        MultiplexSettings = setmetatable({ traits = {
+            json_name = "multiplexSettings",
+            required = true,
+        } }, { __index = M.MultiplexSettings }),
         Name = {
             type = "string",
             traits = {
@@ -14244,8 +13356,8 @@ M.CreateMultiplexInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -14264,14 +13376,14 @@ M.Multiplex = {
         },
         AvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "availabilityZones",
             },
         },
         Destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.MultiplexOutputDestination,
             traits = {
                 json_name = "destinations",
             },
@@ -14282,12 +13394,9 @@ M.Multiplex = {
                 json_name = "id",
             },
         },
-        MultiplexSettings = {
-            type = "structure",
-            traits = {
-                json_name = "multiplexSettings",
-            },
-        },
+        MultiplexSettings = setmetatable({ traits = {
+            json_name = "multiplexSettings",
+        } }, { __index = M.MultiplexSettings }),
         Name = {
             type = "string",
             traits = {
@@ -14295,13 +13404,13 @@ M.Multiplex = {
             },
         },
         PipelinesRunningCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "pipelinesRunningCount",
             },
         },
         ProgramCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "programCount",
             },
@@ -14314,8 +13423,8 @@ M.Multiplex = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -14326,12 +13435,9 @@ M.Multiplex = {
 M.CreateMultiplexOutput = {
     type = "structure",
     members = {
-        Multiplex = {
-            type = "structure",
-            traits = {
-                json_name = "multiplex",
-            },
-        },
+        Multiplex = setmetatable({ traits = {
+            json_name = "multiplex",
+        } }, { __index = M.Multiplex }),
     },
 }
 
@@ -14365,19 +13471,19 @@ M.MultiplexStatmuxVideoSettings = {
     type = "structure",
     members = {
         MaximumBitrate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maximumBitrate",
             },
         },
         MinimumBitrate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "minimumBitrate",
             },
         },
         Priority = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "priority",
             },
@@ -14389,17 +13495,14 @@ M.MultiplexVideoSettings = {
     type = "structure",
     members = {
         ConstantBitrate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "constantBitrate",
             },
         },
-        StatmuxSettings = {
-            type = "structure",
-            traits = {
-                json_name = "statmuxSettings",
-            },
-        },
+        StatmuxSettings = setmetatable({ traits = {
+            json_name = "statmuxSettings",
+        } }, { __index = M.MultiplexStatmuxVideoSettings }),
     },
 }
 
@@ -14413,24 +13516,18 @@ M.MultiplexProgramSettings = {
             },
         },
         ProgramNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "programNumber",
                 required = true,
             },
         },
-        ServiceDescriptor = {
-            type = "structure",
-            traits = {
-                json_name = "serviceDescriptor",
-            },
-        },
-        VideoSettings = {
-            type = "structure",
-            traits = {
-                json_name = "videoSettings",
-            },
-        },
+        ServiceDescriptor = setmetatable({ traits = {
+            json_name = "serviceDescriptor",
+        } }, { __index = M.MultiplexProgramServiceDescriptor }),
+        VideoSettings = setmetatable({ traits = {
+            json_name = "videoSettings",
+        } }, { __index = M.MultiplexVideoSettings }),
     },
 }
 
@@ -14444,13 +13541,10 @@ M.CreateMultiplexProgramInput = {
                 required = true,
             },
         },
-        MultiplexProgramSettings = {
-            type = "structure",
-            traits = {
-                json_name = "multiplexProgramSettings",
-                required = true,
-            },
-        },
+        MultiplexProgramSettings = setmetatable({ traits = {
+            json_name = "multiplexProgramSettings",
+            required = true,
+        } }, { __index = M.MultiplexProgramSettings }),
         ProgramName = {
             type = "string",
             traits = {
@@ -14473,107 +13567,107 @@ M.MultiplexProgramPacketIdentifiersMap = {
     members = {
         AudioPids = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
             traits = {
                 json_name = "audioPids",
             },
         },
         DvbSubPids = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
             traits = {
                 json_name = "dvbSubPids",
             },
         },
         DvbTeletextPid = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "dvbTeletextPid",
             },
         },
         EtvPlatformPid = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "etvPlatformPid",
             },
         },
         EtvSignalPid = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "etvSignalPid",
             },
         },
         KlvDataPids = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
             traits = {
                 json_name = "klvDataPids",
             },
         },
         PcrPid = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "pcrPid",
             },
         },
         PmtPid = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "pmtPid",
             },
         },
         PrivateMetadataPid = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "privateMetadataPid",
             },
         },
         Scte27Pids = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
             traits = {
                 json_name = "scte27Pids",
             },
         },
         Scte35Pid = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "scte35Pid",
             },
         },
         TimedMetadataPid = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "timedMetadataPid",
             },
         },
         VideoPid = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "videoPid",
             },
         },
         AribCaptionsPid = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "aribCaptionsPid",
             },
         },
         DvbTeletextPids = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
             traits = {
                 json_name = "dvbTeletextPids",
             },
         },
         EcmPid = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "ecmPid",
             },
         },
         Smpte2038Pid = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "smpte2038Pid",
             },
@@ -14590,21 +13684,15 @@ M.MultiplexProgram = {
                 json_name = "channelId",
             },
         },
-        MultiplexProgramSettings = {
-            type = "structure",
-            traits = {
-                json_name = "multiplexProgramSettings",
-            },
-        },
-        PacketIdentifiersMap = {
-            type = "structure",
-            traits = {
-                json_name = "packetIdentifiersMap",
-            },
-        },
+        MultiplexProgramSettings = setmetatable({ traits = {
+            json_name = "multiplexProgramSettings",
+        } }, { __index = M.MultiplexProgramSettings }),
+        PacketIdentifiersMap = setmetatable({ traits = {
+            json_name = "packetIdentifiersMap",
+        } }, { __index = M.MultiplexProgramPacketIdentifiersMap }),
         PipelineDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.MultiplexProgramPipelineDetail,
             traits = {
                 json_name = "pipelineDetails",
             },
@@ -14621,12 +13709,9 @@ M.MultiplexProgram = {
 M.CreateMultiplexProgramOutput = {
     type = "structure",
     members = {
-        MultiplexProgram = {
-            type = "structure",
-            traits = {
-                json_name = "multiplexProgram",
-            },
-        },
+        MultiplexProgram = setmetatable({ traits = {
+            json_name = "multiplexProgram",
+        } }, { __index = M.MultiplexProgram }),
     },
 }
 
@@ -14635,7 +13720,7 @@ M.CreateNetworkInput = {
     members = {
         IpPools = {
             type = "list",
-            member_type = "structure",
+            member = M.IpPoolCreateRequest,
             traits = {
                 json_name = "ipPools",
             },
@@ -14654,15 +13739,15 @@ M.CreateNetworkInput = {
         },
         Routes = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteCreateRequest,
             traits = {
                 json_name = "routes",
             },
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -14681,7 +13766,7 @@ M.CreateNetworkOutput = {
         },
         AssociatedClusterIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "associatedClusterIds",
             },
@@ -14694,7 +13779,7 @@ M.CreateNetworkOutput = {
         },
         IpPools = {
             type = "list",
-            member_type = "structure",
+            member = M.IpPool,
             traits = {
                 json_name = "ipPools",
             },
@@ -14707,7 +13792,7 @@ M.CreateNetworkOutput = {
         },
         Routes = {
             type = "list",
-            member_type = "structure",
+            member = M.Route,
             traits = {
                 json_name = "routes",
             },
@@ -14739,7 +13824,7 @@ M.CreateNodeInput = {
         },
         NodeInterfaceMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.NodeInterfaceMappingCreateRequest,
             traits = {
                 json_name = "nodeInterfaceMappings",
             },
@@ -14758,8 +13843,8 @@ M.CreateNodeInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -14778,7 +13863,7 @@ M.CreateNodeOutput = {
         },
         ChannelPlacementGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "channelPlacementGroups",
             },
@@ -14815,7 +13900,7 @@ M.CreateNodeOutput = {
         },
         NodeInterfaceMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.NodeInterfaceMapping,
             traits = {
                 json_name = "nodeInterfaceMappings",
             },
@@ -14834,7 +13919,7 @@ M.CreateNodeOutput = {
         },
         SdiSourceMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.SdiSourceMapping,
             traits = {
                 json_name = "sdiSourceMappings",
             },
@@ -14866,7 +13951,7 @@ M.CreateNodeRegistrationScriptInput = {
         },
         NodeInterfaceMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.NodeInterfaceMapping,
             traits = {
                 json_name = "nodeInterfaceMappings",
             },
@@ -14916,8 +14001,8 @@ M.CreatePartnerInputInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -14928,12 +14013,9 @@ M.CreatePartnerInputInput = {
 M.CreatePartnerInputOutput = {
     type = "structure",
     members = {
-        Input = {
-            type = "structure",
-            traits = {
-                json_name = "input",
-            },
-        },
+        Input = setmetatable({ traits = {
+            json_name = "input",
+        } }, { __index = M.Input }),
     },
 }
 
@@ -14960,8 +14042,8 @@ M.CreateSdiSourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -14992,7 +14074,7 @@ M.SdiSource = {
         },
         Inputs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "inputs",
             },
@@ -15027,12 +14109,9 @@ M.SdiSource = {
 M.CreateSdiSourceOutput = {
     type = "structure",
     members = {
-        SdiSource = {
-            type = "structure",
-            traits = {
-                json_name = "sdiSource",
-            },
-        },
+        SdiSource = setmetatable({ traits = {
+            json_name = "sdiSource",
+        } }, { __index = M.SdiSource }),
     },
 }
 
@@ -15041,7 +14120,7 @@ M.CreateSignalMapInput = {
     members = {
         CloudWatchAlarmTemplateGroupIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "cloudWatchAlarmTemplateGroupIdentifiers",
             },
@@ -15061,7 +14140,7 @@ M.CreateSignalMapInput = {
         },
         EventBridgeRuleTemplateGroupIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "eventBridgeRuleTemplateGroupIdentifiers",
             },
@@ -15075,8 +14154,8 @@ M.CreateSignalMapInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -15095,7 +14174,7 @@ M.MediaResource = {
     members = {
         Destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.MediaResourceNeighbor,
             traits = {
                 json_name = "destinations",
             },
@@ -15108,7 +14187,7 @@ M.MediaResource = {
         },
         Sources = {
             type = "list",
-            member_type = "structure",
+            member = M.MediaResourceNeighbor,
             traits = {
                 json_name = "sources",
             },
@@ -15172,7 +14251,7 @@ M.CreateSignalMapOutput = {
         },
         CloudWatchAlarmTemplateGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "cloudWatchAlarmTemplateGroupIds",
             },
@@ -15203,15 +14282,15 @@ M.CreateSignalMapOutput = {
         },
         EventBridgeRuleTemplateGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "eventBridgeRuleTemplateGroupIds",
             },
         },
         FailedMediaResourceMap = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.MediaResource,
             traits = {
                 json_name = "failedMediaResourceMap",
             },
@@ -15228,16 +14307,13 @@ M.CreateSignalMapOutput = {
                 json_name = "lastDiscoveredAt",
             },
         },
-        LastSuccessfulMonitorDeployment = {
-            type = "structure",
-            traits = {
-                json_name = "lastSuccessfulMonitorDeployment",
-            },
-        },
+        LastSuccessfulMonitorDeployment = setmetatable({ traits = {
+            json_name = "lastSuccessfulMonitorDeployment",
+        } }, { __index = M.SuccessfulMonitorDeployment }),
         MediaResourceMap = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.MediaResource,
             traits = {
                 json_name = "mediaResourceMap",
             },
@@ -15254,12 +14330,9 @@ M.CreateSignalMapOutput = {
                 json_name = "monitorChangesPendingDeployment",
             },
         },
-        MonitorDeployment = {
-            type = "structure",
-            traits = {
-                json_name = "monitorDeployment",
-            },
-        },
+        MonitorDeployment = setmetatable({ traits = {
+            json_name = "monitorDeployment",
+        } }, { __index = M.MonitorDeployment }),
         Name = {
             type = "string",
             traits = {
@@ -15274,8 +14347,8 @@ M.CreateSignalMapOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -15295,8 +14368,8 @@ M.CreateTagsInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -15330,12 +14403,9 @@ M.DeleteChannelOutput = {
                 json_name = "arn",
             },
         },
-        CdiInputSpecification = {
-            type = "structure",
-            traits = {
-                json_name = "cdiInputSpecification",
-            },
-        },
+        CdiInputSpecification = setmetatable({ traits = {
+            json_name = "cdiInputSpecification",
+        } }, { __index = M.CdiInputSpecification }),
         ChannelClass = {
             type = "string",
             traits = {
@@ -15344,24 +14414,21 @@ M.DeleteChannelOutput = {
         },
         Destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputDestination,
             traits = {
                 json_name = "destinations",
             },
         },
         EgressEndpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.ChannelEgressEndpoint,
             traits = {
                 json_name = "egressEndpoints",
             },
         },
-        EncoderSettings = {
-            type = "structure",
-            traits = {
-                json_name = "encoderSettings",
-            },
-        },
+        EncoderSettings = setmetatable({ traits = {
+            json_name = "encoderSettings",
+        } }, { __index = M.EncoderSettings }),
         Id = {
             type = "string",
             traits = {
@@ -15370,29 +14437,23 @@ M.DeleteChannelOutput = {
         },
         InputAttachments = {
             type = "list",
-            member_type = "structure",
+            member = M.InputAttachment,
             traits = {
                 json_name = "inputAttachments",
             },
         },
-        InputSpecification = {
-            type = "structure",
-            traits = {
-                json_name = "inputSpecification",
-            },
-        },
+        InputSpecification = setmetatable({ traits = {
+            json_name = "inputSpecification",
+        } }, { __index = M.InputSpecification }),
         LogLevel = {
             type = "string",
             traits = {
                 json_name = "logLevel",
             },
         },
-        Maintenance = {
-            type = "structure",
-            traits = {
-                json_name = "maintenance",
-            },
-        },
+        Maintenance = setmetatable({ traits = {
+            json_name = "maintenance",
+        } }, { __index = M.MaintenanceStatus }),
         Name = {
             type = "string",
             traits = {
@@ -15401,13 +14462,13 @@ M.DeleteChannelOutput = {
         },
         PipelineDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.PipelineDetail,
             traits = {
                 json_name = "pipelineDetails",
             },
         },
         PipelinesRunningCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "pipelinesRunningCount",
             },
@@ -15426,49 +14487,34 @@ M.DeleteChannelOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
         },
-        Vpc = {
-            type = "structure",
-            traits = {
-                json_name = "vpc",
-            },
-        },
-        AnywhereSettings = {
-            type = "structure",
-            traits = {
-                json_name = "anywhereSettings",
-            },
-        },
-        ChannelEngineVersion = {
-            type = "structure",
-            traits = {
-                json_name = "channelEngineVersion",
-            },
-        },
-        LinkedChannelSettings = {
-            type = "structure",
-            traits = {
-                json_name = "linkedChannelSettings",
-            },
-        },
+        Vpc = setmetatable({ traits = {
+            json_name = "vpc",
+        } }, { __index = M.VpcOutputSettingsDescription }),
+        AnywhereSettings = setmetatable({ traits = {
+            json_name = "anywhereSettings",
+        } }, { __index = M.DescribeAnywhereSettings }),
+        ChannelEngineVersion = setmetatable({ traits = {
+            json_name = "channelEngineVersion",
+        } }, { __index = M.ChannelEngineVersionResponse }),
+        LinkedChannelSettings = setmetatable({ traits = {
+            json_name = "linkedChannelSettings",
+        } }, { __index = M.DescribeLinkedChannelSettings }),
         ChannelSecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "channelSecurityGroups",
             },
         },
-        InferenceSettings = {
-            type = "structure",
-            traits = {
-                json_name = "inferenceSettings",
-            },
-        },
+        InferenceSettings = setmetatable({ traits = {
+            json_name = "inferenceSettings",
+        } }, { __index = M.DescribeInferenceSettings }),
     },
 }
 
@@ -15503,7 +14549,7 @@ M.DeleteChannelPlacementGroupOutput = {
         },
         Channels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "channels",
             },
@@ -15528,7 +14574,7 @@ M.DeleteChannelPlacementGroupOutput = {
         },
         Nodes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "nodes",
             },
@@ -15600,7 +14646,7 @@ M.DeleteClusterOutput = {
         },
         ChannelIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "channelIds",
             },
@@ -15629,12 +14675,9 @@ M.DeleteClusterOutput = {
                 json_name = "name",
             },
         },
-        NetworkSettings = {
-            type = "structure",
-            traits = {
-                json_name = "networkSettings",
-            },
-        },
+        NetworkSettings = setmetatable({ traits = {
+            json_name = "networkSettings",
+        } }, { __index = M.ClusterNetworkSettings }),
         State = {
             type = "string",
             traits = {
@@ -15736,14 +14779,14 @@ M.DeleteMultiplexOutput = {
         },
         AvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "availabilityZones",
             },
         },
         Destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.MultiplexOutputDestination,
             traits = {
                 json_name = "destinations",
             },
@@ -15754,12 +14797,9 @@ M.DeleteMultiplexOutput = {
                 json_name = "id",
             },
         },
-        MultiplexSettings = {
-            type = "structure",
-            traits = {
-                json_name = "multiplexSettings",
-            },
-        },
+        MultiplexSettings = setmetatable({ traits = {
+            json_name = "multiplexSettings",
+        } }, { __index = M.MultiplexSettings }),
         Name = {
             type = "string",
             traits = {
@@ -15767,13 +14807,13 @@ M.DeleteMultiplexOutput = {
             },
         },
         PipelinesRunningCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "pipelinesRunningCount",
             },
         },
         ProgramCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "programCount",
             },
@@ -15786,8 +14826,8 @@ M.DeleteMultiplexOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -15824,21 +14864,15 @@ M.DeleteMultiplexProgramOutput = {
                 json_name = "channelId",
             },
         },
-        MultiplexProgramSettings = {
-            type = "structure",
-            traits = {
-                json_name = "multiplexProgramSettings",
-            },
-        },
-        PacketIdentifiersMap = {
-            type = "structure",
-            traits = {
-                json_name = "packetIdentifiersMap",
-            },
-        },
+        MultiplexProgramSettings = setmetatable({ traits = {
+            json_name = "multiplexProgramSettings",
+        } }, { __index = M.MultiplexProgramSettings }),
+        PacketIdentifiersMap = setmetatable({ traits = {
+            json_name = "packetIdentifiersMap",
+        } }, { __index = M.MultiplexProgramPacketIdentifiersMap }),
         PipelineDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.MultiplexProgramPipelineDetail,
             traits = {
                 json_name = "pipelineDetails",
             },
@@ -15876,7 +14910,7 @@ M.DeleteNetworkOutput = {
         },
         AssociatedClusterIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "associatedClusterIds",
             },
@@ -15889,7 +14923,7 @@ M.DeleteNetworkOutput = {
         },
         IpPools = {
             type = "list",
-            member_type = "structure",
+            member = M.IpPool,
             traits = {
                 json_name = "ipPools",
             },
@@ -15902,7 +14936,7 @@ M.DeleteNetworkOutput = {
         },
         Routes = {
             type = "list",
-            member_type = "structure",
+            member = M.Route,
             traits = {
                 json_name = "routes",
             },
@@ -15947,7 +14981,7 @@ M.DeleteNodeOutput = {
         },
         ChannelPlacementGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "channelPlacementGroups",
             },
@@ -15984,7 +15018,7 @@ M.DeleteNodeOutput = {
         },
         NodeInterfaceMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.NodeInterfaceMapping,
             traits = {
                 json_name = "nodeInterfaceMappings",
             },
@@ -16003,7 +15037,7 @@ M.DeleteNodeOutput = {
         },
         SdiSourceMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.SdiSourceMapping,
             traits = {
                 json_name = "sdiSourceMappings",
             },
@@ -16034,7 +15068,7 @@ M.DeleteReservationOutput = {
             },
         },
         Count = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "count",
             },
@@ -16046,7 +15080,7 @@ M.DeleteReservationOutput = {
             },
         },
         Duration = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "duration",
             },
@@ -16064,7 +15098,7 @@ M.DeleteReservationOutput = {
             },
         },
         FixedPrice = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "fixedPrice",
             },
@@ -16099,24 +15133,18 @@ M.DeleteReservationOutput = {
                 json_name = "region",
             },
         },
-        RenewalSettings = {
-            type = "structure",
-            traits = {
-                json_name = "renewalSettings",
-            },
-        },
+        RenewalSettings = setmetatable({ traits = {
+            json_name = "renewalSettings",
+        } }, { __index = M.RenewalSettings }),
         ReservationId = {
             type = "string",
             traits = {
                 json_name = "reservationId",
             },
         },
-        ResourceSpecification = {
-            type = "structure",
-            traits = {
-                json_name = "resourceSpecification",
-            },
-        },
+        ResourceSpecification = setmetatable({ traits = {
+            json_name = "resourceSpecification",
+        } }, { __index = M.ReservationResourceSpecification }),
         Start = {
             type = "string",
             traits = {
@@ -16131,14 +15159,14 @@ M.DeleteReservationOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
         },
         UsagePrice = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "usagePrice",
             },
@@ -16179,12 +15207,9 @@ M.DeleteSdiSourceInput = {
 M.DeleteSdiSourceOutput = {
     type = "structure",
     members = {
-        SdiSource = {
-            type = "structure",
-            traits = {
-                json_name = "sdiSource",
-            },
-        },
+        SdiSource = setmetatable({ traits = {
+            json_name = "sdiSource",
+        } }, { __index = M.SdiSource }),
     },
 }
 
@@ -16217,7 +15242,7 @@ M.DeleteTagsInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -16237,12 +15262,9 @@ M.DescribeAccountConfigurationInput = {
 M.DescribeAccountConfigurationOutput = {
     type = "structure",
     members = {
-        AccountConfiguration = {
-            type = "structure",
-            traits = {
-                json_name = "accountConfiguration",
-            },
-        },
+        AccountConfiguration = setmetatable({ traits = {
+            json_name = "accountConfiguration",
+        } }, { __index = M.AccountConfiguration }),
     },
 }
 
@@ -16268,12 +15290,9 @@ M.DescribeChannelOutput = {
                 json_name = "arn",
             },
         },
-        CdiInputSpecification = {
-            type = "structure",
-            traits = {
-                json_name = "cdiInputSpecification",
-            },
-        },
+        CdiInputSpecification = setmetatable({ traits = {
+            json_name = "cdiInputSpecification",
+        } }, { __index = M.CdiInputSpecification }),
         ChannelClass = {
             type = "string",
             traits = {
@@ -16282,24 +15301,21 @@ M.DescribeChannelOutput = {
         },
         Destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputDestination,
             traits = {
                 json_name = "destinations",
             },
         },
         EgressEndpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.ChannelEgressEndpoint,
             traits = {
                 json_name = "egressEndpoints",
             },
         },
-        EncoderSettings = {
-            type = "structure",
-            traits = {
-                json_name = "encoderSettings",
-            },
-        },
+        EncoderSettings = setmetatable({ traits = {
+            json_name = "encoderSettings",
+        } }, { __index = M.EncoderSettings }),
         Id = {
             type = "string",
             traits = {
@@ -16308,29 +15324,23 @@ M.DescribeChannelOutput = {
         },
         InputAttachments = {
             type = "list",
-            member_type = "structure",
+            member = M.InputAttachment,
             traits = {
                 json_name = "inputAttachments",
             },
         },
-        InputSpecification = {
-            type = "structure",
-            traits = {
-                json_name = "inputSpecification",
-            },
-        },
+        InputSpecification = setmetatable({ traits = {
+            json_name = "inputSpecification",
+        } }, { __index = M.InputSpecification }),
         LogLevel = {
             type = "string",
             traits = {
                 json_name = "logLevel",
             },
         },
-        Maintenance = {
-            type = "structure",
-            traits = {
-                json_name = "maintenance",
-            },
-        },
+        Maintenance = setmetatable({ traits = {
+            json_name = "maintenance",
+        } }, { __index = M.MaintenanceStatus }),
         Name = {
             type = "string",
             traits = {
@@ -16339,13 +15349,13 @@ M.DescribeChannelOutput = {
         },
         PipelineDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.PipelineDetail,
             traits = {
                 json_name = "pipelineDetails",
             },
         },
         PipelinesRunningCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "pipelinesRunningCount",
             },
@@ -16364,49 +15374,34 @@ M.DescribeChannelOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
         },
-        Vpc = {
-            type = "structure",
-            traits = {
-                json_name = "vpc",
-            },
-        },
-        AnywhereSettings = {
-            type = "structure",
-            traits = {
-                json_name = "anywhereSettings",
-            },
-        },
-        ChannelEngineVersion = {
-            type = "structure",
-            traits = {
-                json_name = "channelEngineVersion",
-            },
-        },
-        LinkedChannelSettings = {
-            type = "structure",
-            traits = {
-                json_name = "linkedChannelSettings",
-            },
-        },
+        Vpc = setmetatable({ traits = {
+            json_name = "vpc",
+        } }, { __index = M.VpcOutputSettingsDescription }),
+        AnywhereSettings = setmetatable({ traits = {
+            json_name = "anywhereSettings",
+        } }, { __index = M.DescribeAnywhereSettings }),
+        ChannelEngineVersion = setmetatable({ traits = {
+            json_name = "channelEngineVersion",
+        } }, { __index = M.ChannelEngineVersionResponse }),
+        LinkedChannelSettings = setmetatable({ traits = {
+            json_name = "linkedChannelSettings",
+        } }, { __index = M.DescribeLinkedChannelSettings }),
         ChannelSecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "channelSecurityGroups",
             },
         },
-        InferenceSettings = {
-            type = "structure",
-            traits = {
-                json_name = "inferenceSettings",
-            },
-        },
+        InferenceSettings = setmetatable({ traits = {
+            json_name = "inferenceSettings",
+        } }, { __index = M.DescribeInferenceSettings }),
     },
 }
 
@@ -16441,7 +15436,7 @@ M.DescribeChannelPlacementGroupOutput = {
         },
         Channels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "channels",
             },
@@ -16466,7 +15461,7 @@ M.DescribeChannelPlacementGroupOutput = {
         },
         Nodes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "nodes",
             },
@@ -16504,7 +15499,7 @@ M.DescribeClusterOutput = {
         },
         ChannelIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "channelIds",
             },
@@ -16533,12 +15528,9 @@ M.DescribeClusterOutput = {
                 json_name = "name",
             },
         },
-        NetworkSettings = {
-            type = "structure",
-            traits = {
-                json_name = "networkSettings",
-            },
-        },
+        NetworkSettings = setmetatable({ traits = {
+            json_name = "networkSettings",
+        } }, { __index = M.ClusterNetworkSettings }),
         State = {
             type = "string",
             traits = {
@@ -16572,14 +15564,14 @@ M.DescribeInputOutput = {
         },
         AttachedChannels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "attachedChannels",
             },
         },
         Destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.InputDestination,
             traits = {
                 json_name = "destinations",
             },
@@ -16598,14 +15590,14 @@ M.DescribeInputOutput = {
         },
         InputDevices = {
             type = "list",
-            member_type = "structure",
+            member = M.InputDeviceSettings,
             traits = {
                 json_name = "inputDevices",
             },
         },
         InputPartnerIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "inputPartnerIds",
             },
@@ -16618,7 +15610,7 @@ M.DescribeInputOutput = {
         },
         MediaConnectFlows = {
             type = "list",
-            member_type = "structure",
+            member = M.MediaConnectFlow,
             traits = {
                 json_name = "mediaConnectFlows",
             },
@@ -16637,14 +15629,14 @@ M.DescribeInputOutput = {
         },
         SecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "securityGroups",
             },
         },
         Sources = {
             type = "list",
-            member_type = "structure",
+            member = M.InputSource,
             traits = {
                 json_name = "sources",
             },
@@ -16657,8 +15649,8 @@ M.DescribeInputOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -16669,43 +15661,31 @@ M.DescribeInputOutput = {
                 json_name = "type",
             },
         },
-        SrtSettings = {
-            type = "structure",
-            traits = {
-                json_name = "srtSettings",
-            },
-        },
+        SrtSettings = setmetatable({ traits = {
+            json_name = "srtSettings",
+        } }, { __index = M.SrtSettings }),
         InputNetworkLocation = {
             type = "string",
             traits = {
                 json_name = "inputNetworkLocation",
             },
         },
-        MulticastSettings = {
-            type = "structure",
-            traits = {
-                json_name = "multicastSettings",
-            },
-        },
-        Smpte2110ReceiverGroupSettings = {
-            type = "structure",
-            traits = {
-                json_name = "smpte2110ReceiverGroupSettings",
-            },
-        },
+        MulticastSettings = setmetatable({ traits = {
+            json_name = "multicastSettings",
+        } }, { __index = M.MulticastSettings }),
+        Smpte2110ReceiverGroupSettings = setmetatable({ traits = {
+            json_name = "smpte2110ReceiverGroupSettings",
+        } }, { __index = M.Smpte2110ReceiverGroupSettings }),
         SdiSources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "sdiSources",
             },
         },
-        RouterSettings = {
-            type = "structure",
-            traits = {
-                json_name = "routerSettings",
-            },
-        },
+        RouterSettings = setmetatable({ traits = {
+            json_name = "routerSettings",
+        } }, { __index = M.RouterInputSettings }),
     },
 }
 
@@ -16749,12 +15729,9 @@ M.DescribeInputDeviceOutput = {
                 json_name = "deviceUpdateStatus",
             },
         },
-        HdDeviceSettings = {
-            type = "structure",
-            traits = {
-                json_name = "hdDeviceSettings",
-            },
-        },
+        HdDeviceSettings = setmetatable({ traits = {
+            json_name = "hdDeviceSettings",
+        } }, { __index = M.InputDeviceHdSettings }),
         Id = {
             type = "string",
             traits = {
@@ -16773,12 +15750,9 @@ M.DescribeInputDeviceOutput = {
                 json_name = "name",
             },
         },
-        NetworkSettings = {
-            type = "structure",
-            traits = {
-                json_name = "networkSettings",
-            },
-        },
+        NetworkSettings = setmetatable({ traits = {
+            json_name = "networkSettings",
+        } }, { __index = M.InputDeviceNetworkSettings }),
         SerialNumber = {
             type = "string",
             traits = {
@@ -16791,16 +15765,13 @@ M.DescribeInputDeviceOutput = {
                 json_name = "type",
             },
         },
-        UhdDeviceSettings = {
-            type = "structure",
-            traits = {
-                json_name = "uhdDeviceSettings",
-            },
-        },
+        UhdDeviceSettings = setmetatable({ traits = {
+            json_name = "uhdDeviceSettings",
+        } }, { __index = M.InputDeviceUhdSettings }),
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -16813,7 +15784,7 @@ M.DescribeInputDeviceOutput = {
         },
         MedialiveInputArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "medialiveInputArns",
             },
@@ -16853,6 +15824,7 @@ M.DescribeInputDeviceThumbnailOutput = {
         Body = {
             type = "blob",
             traits = {
+                default = "",
                 http_payload = true,
                 json_name = "body",
             },
@@ -16864,7 +15836,7 @@ M.DescribeInputDeviceThumbnailOutput = {
             },
         },
         ContentLength = {
-            type = "number",
+            type = "long",
             traits = {
                 http_header = "Content-Length",
             },
@@ -16914,7 +15886,7 @@ M.DescribeInputSecurityGroupOutput = {
         },
         Inputs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "inputs",
             },
@@ -16927,22 +15899,22 @@ M.DescribeInputSecurityGroupOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
         },
         WhitelistRules = {
             type = "list",
-            member_type = "structure",
+            member = M.InputWhitelistRule,
             traits = {
                 json_name = "whitelistRules",
             },
         },
         Channels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "channels",
             },
@@ -16974,14 +15946,14 @@ M.DescribeMultiplexOutput = {
         },
         AvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "availabilityZones",
             },
         },
         Destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.MultiplexOutputDestination,
             traits = {
                 json_name = "destinations",
             },
@@ -16992,12 +15964,9 @@ M.DescribeMultiplexOutput = {
                 json_name = "id",
             },
         },
-        MultiplexSettings = {
-            type = "structure",
-            traits = {
-                json_name = "multiplexSettings",
-            },
-        },
+        MultiplexSettings = setmetatable({ traits = {
+            json_name = "multiplexSettings",
+        } }, { __index = M.MultiplexSettings }),
         Name = {
             type = "string",
             traits = {
@@ -17005,13 +15974,13 @@ M.DescribeMultiplexOutput = {
             },
         },
         PipelinesRunningCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "pipelinesRunningCount",
             },
         },
         ProgramCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "programCount",
             },
@@ -17024,8 +15993,8 @@ M.DescribeMultiplexOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -17062,21 +16031,15 @@ M.DescribeMultiplexProgramOutput = {
                 json_name = "channelId",
             },
         },
-        MultiplexProgramSettings = {
-            type = "structure",
-            traits = {
-                json_name = "multiplexProgramSettings",
-            },
-        },
-        PacketIdentifiersMap = {
-            type = "structure",
-            traits = {
-                json_name = "packetIdentifiersMap",
-            },
-        },
+        MultiplexProgramSettings = setmetatable({ traits = {
+            json_name = "multiplexProgramSettings",
+        } }, { __index = M.MultiplexProgramSettings }),
+        PacketIdentifiersMap = setmetatable({ traits = {
+            json_name = "packetIdentifiersMap",
+        } }, { __index = M.MultiplexProgramPacketIdentifiersMap }),
         PipelineDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.MultiplexProgramPipelineDetail,
             traits = {
                 json_name = "pipelineDetails",
             },
@@ -17114,7 +16077,7 @@ M.DescribeNetworkOutput = {
         },
         AssociatedClusterIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "associatedClusterIds",
             },
@@ -17127,7 +16090,7 @@ M.DescribeNetworkOutput = {
         },
         IpPools = {
             type = "list",
-            member_type = "structure",
+            member = M.IpPool,
             traits = {
                 json_name = "ipPools",
             },
@@ -17140,7 +16103,7 @@ M.DescribeNetworkOutput = {
         },
         Routes = {
             type = "list",
-            member_type = "structure",
+            member = M.Route,
             traits = {
                 json_name = "routes",
             },
@@ -17185,7 +16148,7 @@ M.DescribeNodeOutput = {
         },
         ChannelPlacementGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "channelPlacementGroups",
             },
@@ -17222,7 +16185,7 @@ M.DescribeNodeOutput = {
         },
         NodeInterfaceMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.NodeInterfaceMapping,
             traits = {
                 json_name = "nodeInterfaceMappings",
             },
@@ -17241,7 +16204,7 @@ M.DescribeNodeOutput = {
         },
         SdiSourceMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.SdiSourceMapping,
             traits = {
                 json_name = "sdiSourceMappings",
             },
@@ -17278,7 +16241,7 @@ M.DescribeOfferingOutput = {
             },
         },
         Duration = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "duration",
             },
@@ -17290,7 +16253,7 @@ M.DescribeOfferingOutput = {
             },
         },
         FixedPrice = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "fixedPrice",
             },
@@ -17319,14 +16282,11 @@ M.DescribeOfferingOutput = {
                 json_name = "region",
             },
         },
-        ResourceSpecification = {
-            type = "structure",
-            traits = {
-                json_name = "resourceSpecification",
-            },
-        },
+        ResourceSpecification = setmetatable({ traits = {
+            json_name = "resourceSpecification",
+        } }, { __index = M.ReservationResourceSpecification }),
         UsagePrice = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "usagePrice",
             },
@@ -17357,7 +16317,7 @@ M.DescribeReservationOutput = {
             },
         },
         Count = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "count",
             },
@@ -17369,7 +16329,7 @@ M.DescribeReservationOutput = {
             },
         },
         Duration = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "duration",
             },
@@ -17387,7 +16347,7 @@ M.DescribeReservationOutput = {
             },
         },
         FixedPrice = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "fixedPrice",
             },
@@ -17422,24 +16382,18 @@ M.DescribeReservationOutput = {
                 json_name = "region",
             },
         },
-        RenewalSettings = {
-            type = "structure",
-            traits = {
-                json_name = "renewalSettings",
-            },
-        },
+        RenewalSettings = setmetatable({ traits = {
+            json_name = "renewalSettings",
+        } }, { __index = M.RenewalSettings }),
         ReservationId = {
             type = "string",
             traits = {
                 json_name = "reservationId",
             },
         },
-        ResourceSpecification = {
-            type = "structure",
-            traits = {
-                json_name = "resourceSpecification",
-            },
-        },
+        ResourceSpecification = setmetatable({ traits = {
+            json_name = "resourceSpecification",
+        } }, { __index = M.ReservationResourceSpecification }),
         Start = {
             type = "string",
             traits = {
@@ -17454,14 +16408,14 @@ M.DescribeReservationOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
         },
         UsagePrice = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "usagePrice",
             },
@@ -17480,7 +16434,7 @@ M.DescribeScheduleInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -17505,7 +16459,7 @@ M.DescribeScheduleOutput = {
         },
         ScheduleActions = {
             type = "list",
-            member_type = "structure",
+            member = M.ScheduleAction,
             traits = {
                 json_name = "scheduleActions",
             },
@@ -17529,12 +16483,9 @@ M.DescribeSdiSourceInput = {
 M.DescribeSdiSourceOutput = {
     type = "structure",
     members = {
-        SdiSource = {
-            type = "structure",
-            traits = {
-                json_name = "sdiSource",
-            },
-        },
+        SdiSource = setmetatable({ traits = {
+            json_name = "sdiSource",
+        } }, { __index = M.SdiSource }),
     },
 }
 
@@ -17570,7 +16521,7 @@ M.DescribeThumbnailsOutput = {
     members = {
         ThumbnailDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.ThumbnailDetail,
             traits = {
                 json_name = "thumbnailDetails",
             },
@@ -17613,7 +16564,7 @@ M.GetCloudWatchAlarmTemplateOutput = {
             },
         },
         DatapointsToAlarm = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "datapointsToAlarm",
             },
@@ -17625,7 +16576,7 @@ M.GetCloudWatchAlarmTemplateOutput = {
             },
         },
         EvaluationPeriods = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "evaluationPeriods",
             },
@@ -17661,7 +16612,7 @@ M.GetCloudWatchAlarmTemplateOutput = {
             },
         },
         Period = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "period",
             },
@@ -17674,8 +16625,8 @@ M.GetCloudWatchAlarmTemplateOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -17687,7 +16638,7 @@ M.GetCloudWatchAlarmTemplateOutput = {
             },
         },
         Threshold = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "threshold",
             },
@@ -17755,8 +16706,8 @@ M.GetCloudWatchAlarmTemplateGroupOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -17800,7 +16751,7 @@ M.GetEventBridgeRuleTemplateOutput = {
         },
         EventTargets = {
             type = "list",
-            member_type = "structure",
+            member = M.EventBridgeRuleTemplateTarget,
             traits = {
                 json_name = "eventTargets",
             },
@@ -17837,8 +16788,8 @@ M.GetEventBridgeRuleTemplateOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -17900,8 +16851,8 @@ M.GetEventBridgeRuleTemplateGroupOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -17933,7 +16884,7 @@ M.GetSignalMapOutput = {
         },
         CloudWatchAlarmTemplateGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "cloudWatchAlarmTemplateGroupIds",
             },
@@ -17964,15 +16915,15 @@ M.GetSignalMapOutput = {
         },
         EventBridgeRuleTemplateGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "eventBridgeRuleTemplateGroupIds",
             },
         },
         FailedMediaResourceMap = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.MediaResource,
             traits = {
                 json_name = "failedMediaResourceMap",
             },
@@ -17989,16 +16940,13 @@ M.GetSignalMapOutput = {
                 json_name = "lastDiscoveredAt",
             },
         },
-        LastSuccessfulMonitorDeployment = {
-            type = "structure",
-            traits = {
-                json_name = "lastSuccessfulMonitorDeployment",
-            },
-        },
+        LastSuccessfulMonitorDeployment = setmetatable({ traits = {
+            json_name = "lastSuccessfulMonitorDeployment",
+        } }, { __index = M.SuccessfulMonitorDeployment }),
         MediaResourceMap = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.MediaResource,
             traits = {
                 json_name = "mediaResourceMap",
             },
@@ -18015,12 +16963,9 @@ M.GetSignalMapOutput = {
                 json_name = "monitorChangesPendingDeployment",
             },
         },
-        MonitorDeployment = {
-            type = "structure",
-            traits = {
-                json_name = "monitorDeployment",
-            },
-        },
+        MonitorDeployment = setmetatable({ traits = {
+            json_name = "monitorDeployment",
+        } }, { __index = M.MonitorDeployment }),
         Name = {
             type = "string",
             traits = {
@@ -18035,8 +16980,8 @@ M.GetSignalMapOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -18084,13 +17029,13 @@ M.InputDeviceConfigurableSettings = {
             },
         },
         MaxBitrate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxBitrate",
             },
         },
         LatencyMs = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "latencyMs",
             },
@@ -18101,15 +17046,12 @@ M.InputDeviceConfigurableSettings = {
                 json_name = "codec",
             },
         },
-        MediaconnectSettings = {
-            type = "structure",
-            traits = {
-                json_name = "mediaconnectSettings",
-            },
-        },
+        MediaconnectSettings = setmetatable({ traits = {
+            json_name = "mediaconnectSettings",
+        } }, { __index = M.InputDeviceMediaConnectConfigurableSettings }),
         AudioChannelPairs = {
             type = "list",
-            member_type = "structure",
+            member = M.InputDeviceConfigurableAudioChannelPairConfig,
             traits = {
                 json_name = "audioChannelPairs",
             },
@@ -18134,7 +17076,7 @@ M.ListAlertsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -18159,7 +17101,7 @@ M.ListAlertsOutput = {
     members = {
         Alerts = {
             type = "list",
-            member_type = "structure",
+            member = M.ChannelAlert,
             traits = {
                 json_name = "alerts",
             },
@@ -18184,7 +17126,7 @@ M.ListChannelPlacementGroupsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -18203,7 +17145,7 @@ M.ListChannelPlacementGroupsOutput = {
     members = {
         ChannelPlacementGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.DescribeChannelPlacementGroupSummary,
             traits = {
                 json_name = "channelPlacementGroups",
             },
@@ -18221,7 +17163,7 @@ M.ListChannelsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -18240,7 +17182,7 @@ M.ListChannelsOutput = {
     members = {
         Channels = {
             type = "list",
-            member_type = "structure",
+            member = M.ChannelSummary,
             traits = {
                 json_name = "channels",
             },
@@ -18258,7 +17200,7 @@ M.ListCloudWatchAlarmTemplateGroupsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -18289,7 +17231,7 @@ M.ListCloudWatchAlarmTemplateGroupsOutput = {
     members = {
         CloudWatchAlarmTemplateGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.CloudWatchAlarmTemplateGroupSummary,
             traits = {
                 json_name = "cloudWatchAlarmTemplateGroups",
             },
@@ -18313,7 +17255,7 @@ M.ListCloudWatchAlarmTemplatesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -18344,7 +17286,7 @@ M.ListCloudWatchAlarmTemplatesOutput = {
     members = {
         CloudWatchAlarmTemplates = {
             type = "list",
-            member_type = "structure",
+            member = M.CloudWatchAlarmTemplateSummary,
             traits = {
                 json_name = "cloudWatchAlarmTemplates",
             },
@@ -18369,7 +17311,7 @@ M.ListClusterAlertsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -18394,7 +17336,7 @@ M.ListClusterAlertsOutput = {
     members = {
         Alerts = {
             type = "list",
-            member_type = "structure",
+            member = M.ClusterAlert,
             traits = {
                 json_name = "alerts",
             },
@@ -18412,7 +17354,7 @@ M.ListClustersInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -18431,7 +17373,7 @@ M.ListClustersOutput = {
     members = {
         Clusters = {
             type = "list",
-            member_type = "structure",
+            member = M.DescribeClusterSummary,
             traits = {
                 json_name = "clusters",
             },
@@ -18449,7 +17391,7 @@ M.ListEventBridgeRuleTemplateGroupsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -18474,7 +17416,7 @@ M.ListEventBridgeRuleTemplateGroupsOutput = {
     members = {
         EventBridgeRuleTemplateGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.EventBridgeRuleTemplateGroupSummary,
             traits = {
                 json_name = "eventBridgeRuleTemplateGroups",
             },
@@ -18498,7 +17440,7 @@ M.ListEventBridgeRuleTemplatesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -18523,7 +17465,7 @@ M.ListEventBridgeRuleTemplatesOutput = {
     members = {
         EventBridgeRuleTemplates = {
             type = "list",
-            member_type = "structure",
+            member = M.EventBridgeRuleTemplateSummary,
             traits = {
                 json_name = "eventBridgeRuleTemplates",
             },
@@ -18541,7 +17483,7 @@ M.ListInputDevicesInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -18560,7 +17502,7 @@ M.ListInputDevicesOutput = {
     members = {
         InputDevices = {
             type = "list",
-            member_type = "structure",
+            member = M.InputDeviceSummary,
             traits = {
                 json_name = "inputDevices",
             },
@@ -18578,7 +17520,7 @@ M.ListInputDeviceTransfersInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -18604,7 +17546,7 @@ M.ListInputDeviceTransfersOutput = {
     members = {
         InputDeviceTransfers = {
             type = "list",
-            member_type = "structure",
+            member = M.TransferringInputDeviceSummary,
             traits = {
                 json_name = "inputDeviceTransfers",
             },
@@ -18622,7 +17564,7 @@ M.ListInputsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -18641,7 +17583,7 @@ M.ListInputsOutput = {
     members = {
         Inputs = {
             type = "list",
-            member_type = "structure",
+            member = M.Input,
             traits = {
                 json_name = "inputs",
             },
@@ -18659,7 +17601,7 @@ M.ListInputSecurityGroupsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -18678,7 +17620,7 @@ M.ListInputSecurityGroupsOutput = {
     members = {
         InputSecurityGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.InputSecurityGroup,
             traits = {
                 json_name = "inputSecurityGroups",
             },
@@ -18696,7 +17638,7 @@ M.ListMultiplexAlertsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -18728,7 +17670,7 @@ M.ListMultiplexAlertsOutput = {
     members = {
         Alerts = {
             type = "list",
-            member_type = "structure",
+            member = M.MultiplexAlert,
             traits = {
                 json_name = "alerts",
             },
@@ -18746,7 +17688,7 @@ M.ListMultiplexesInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -18765,7 +17707,7 @@ M.ListMultiplexesOutput = {
     members = {
         Multiplexes = {
             type = "list",
-            member_type = "structure",
+            member = M.MultiplexSummary,
             traits = {
                 json_name = "multiplexes",
             },
@@ -18783,7 +17725,7 @@ M.ListMultiplexProgramsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -18809,7 +17751,7 @@ M.ListMultiplexProgramsOutput = {
     members = {
         MultiplexPrograms = {
             type = "list",
-            member_type = "structure",
+            member = M.MultiplexProgramSummary,
             traits = {
                 json_name = "multiplexPrograms",
             },
@@ -18827,7 +17769,7 @@ M.ListNetworksInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -18846,7 +17788,7 @@ M.ListNetworksOutput = {
     members = {
         Networks = {
             type = "list",
-            member_type = "structure",
+            member = M.DescribeNetworkSummary,
             traits = {
                 json_name = "networks",
             },
@@ -18871,7 +17813,7 @@ M.ListNodesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -18896,7 +17838,7 @@ M.ListNodesOutput = {
         },
         Nodes = {
             type = "list",
-            member_type = "structure",
+            member = M.DescribeNodeSummary,
             traits = {
                 json_name = "nodes",
             },
@@ -18932,7 +17874,7 @@ M.ListOfferingsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -18993,7 +17935,7 @@ M.ListOfferingsOutput = {
         },
         Offerings = {
             type = "list",
-            member_type = "structure",
+            member = M.Offering,
             traits = {
                 json_name = "offerings",
             },
@@ -19017,7 +17959,7 @@ M.ListReservationsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -19078,7 +18020,7 @@ M.ListReservationsOutput = {
         },
         Reservations = {
             type = "list",
-            member_type = "structure",
+            member = M.Reservation,
             traits = {
                 json_name = "reservations",
             },
@@ -19090,7 +18032,7 @@ M.ListSdiSourcesInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -19115,7 +18057,7 @@ M.ListSdiSourcesOutput = {
         },
         SdiSources = {
             type = "list",
-            member_type = "structure",
+            member = M.SdiSourceSummary,
             traits = {
                 json_name = "sdiSources",
             },
@@ -19139,7 +18081,7 @@ M.ListSignalMapsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -19164,7 +18106,7 @@ M.ListSignalMapsOutput = {
         },
         SignalMaps = {
             type = "list",
-            member_type = "structure",
+            member = M.SignalMapSummary,
             traits = {
                 json_name = "signalMaps",
             },
@@ -19190,8 +18132,8 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -19208,7 +18150,7 @@ M.ListVersionsOutput = {
     members = {
         Versions = {
             type = "list",
-            member_type = "structure",
+            member = M.ChannelEngineVersionResponse,
             traits = {
                 json_name = "versions",
             },
@@ -19244,7 +18186,7 @@ M.PurchaseOfferingInput = {
     type = "structure",
     members = {
         Count = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "count",
                 required = true,
@@ -19263,12 +18205,9 @@ M.PurchaseOfferingInput = {
                 required = true,
             },
         },
-        RenewalSettings = {
-            type = "structure",
-            traits = {
-                json_name = "renewalSettings",
-            },
-        },
+        RenewalSettings = setmetatable({ traits = {
+            json_name = "renewalSettings",
+        } }, { __index = M.RenewalSettings }),
         RequestId = {
             type = "string",
             traits = {
@@ -19283,8 +18222,8 @@ M.PurchaseOfferingInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -19295,12 +18234,9 @@ M.PurchaseOfferingInput = {
 M.PurchaseOfferingOutput = {
     type = "structure",
     members = {
-        Reservation = {
-            type = "structure",
-            traits = {
-                json_name = "reservation",
-            },
-        },
+        Reservation = setmetatable({ traits = {
+            json_name = "reservation",
+        } }, { __index = M.Reservation }),
     },
 }
 
@@ -19361,7 +18297,7 @@ M.RestartChannelPipelinesInput = {
         },
         PipelineIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "pipelineIds",
             },
@@ -19378,12 +18314,9 @@ M.RestartChannelPipelinesOutput = {
                 json_name = "arn",
             },
         },
-        CdiInputSpecification = {
-            type = "structure",
-            traits = {
-                json_name = "cdiInputSpecification",
-            },
-        },
+        CdiInputSpecification = setmetatable({ traits = {
+            json_name = "cdiInputSpecification",
+        } }, { __index = M.CdiInputSpecification }),
         ChannelClass = {
             type = "string",
             traits = {
@@ -19392,24 +18325,21 @@ M.RestartChannelPipelinesOutput = {
         },
         Destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputDestination,
             traits = {
                 json_name = "destinations",
             },
         },
         EgressEndpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.ChannelEgressEndpoint,
             traits = {
                 json_name = "egressEndpoints",
             },
         },
-        EncoderSettings = {
-            type = "structure",
-            traits = {
-                json_name = "encoderSettings",
-            },
-        },
+        EncoderSettings = setmetatable({ traits = {
+            json_name = "encoderSettings",
+        } }, { __index = M.EncoderSettings }),
         Id = {
             type = "string",
             traits = {
@@ -19418,29 +18348,23 @@ M.RestartChannelPipelinesOutput = {
         },
         InputAttachments = {
             type = "list",
-            member_type = "structure",
+            member = M.InputAttachment,
             traits = {
                 json_name = "inputAttachments",
             },
         },
-        InputSpecification = {
-            type = "structure",
-            traits = {
-                json_name = "inputSpecification",
-            },
-        },
+        InputSpecification = setmetatable({ traits = {
+            json_name = "inputSpecification",
+        } }, { __index = M.InputSpecification }),
         LogLevel = {
             type = "string",
             traits = {
                 json_name = "logLevel",
             },
         },
-        Maintenance = {
-            type = "structure",
-            traits = {
-                json_name = "maintenance",
-            },
-        },
+        Maintenance = setmetatable({ traits = {
+            json_name = "maintenance",
+        } }, { __index = M.MaintenanceStatus }),
         MaintenanceStatus = {
             type = "string",
             traits = {
@@ -19455,13 +18379,13 @@ M.RestartChannelPipelinesOutput = {
         },
         PipelineDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.PipelineDetail,
             traits = {
                 json_name = "pipelineDetails",
             },
         },
         PipelinesRunningCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "pipelinesRunningCount",
             },
@@ -19480,49 +18404,34 @@ M.RestartChannelPipelinesOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
         },
-        Vpc = {
-            type = "structure",
-            traits = {
-                json_name = "vpc",
-            },
-        },
-        AnywhereSettings = {
-            type = "structure",
-            traits = {
-                json_name = "anywhereSettings",
-            },
-        },
-        ChannelEngineVersion = {
-            type = "structure",
-            traits = {
-                json_name = "channelEngineVersion",
-            },
-        },
-        LinkedChannelSettings = {
-            type = "structure",
-            traits = {
-                json_name = "linkedChannelSettings",
-            },
-        },
+        Vpc = setmetatable({ traits = {
+            json_name = "vpc",
+        } }, { __index = M.VpcOutputSettingsDescription }),
+        AnywhereSettings = setmetatable({ traits = {
+            json_name = "anywhereSettings",
+        } }, { __index = M.DescribeAnywhereSettings }),
+        ChannelEngineVersion = setmetatable({ traits = {
+            json_name = "channelEngineVersion",
+        } }, { __index = M.ChannelEngineVersionResponse }),
+        LinkedChannelSettings = setmetatable({ traits = {
+            json_name = "linkedChannelSettings",
+        } }, { __index = M.DescribeLinkedChannelSettings }),
         ChannelSecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "channelSecurityGroups",
             },
         },
-        InferenceSettings = {
-            type = "structure",
-            traits = {
-                json_name = "inferenceSettings",
-            },
-        },
+        InferenceSettings = setmetatable({ traits = {
+            json_name = "inferenceSettings",
+        } }, { __index = M.DescribeInferenceSettings }),
     },
 }
 
@@ -19548,12 +18457,9 @@ M.StartChannelOutput = {
                 json_name = "arn",
             },
         },
-        CdiInputSpecification = {
-            type = "structure",
-            traits = {
-                json_name = "cdiInputSpecification",
-            },
-        },
+        CdiInputSpecification = setmetatable({ traits = {
+            json_name = "cdiInputSpecification",
+        } }, { __index = M.CdiInputSpecification }),
         ChannelClass = {
             type = "string",
             traits = {
@@ -19562,24 +18468,21 @@ M.StartChannelOutput = {
         },
         Destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputDestination,
             traits = {
                 json_name = "destinations",
             },
         },
         EgressEndpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.ChannelEgressEndpoint,
             traits = {
                 json_name = "egressEndpoints",
             },
         },
-        EncoderSettings = {
-            type = "structure",
-            traits = {
-                json_name = "encoderSettings",
-            },
-        },
+        EncoderSettings = setmetatable({ traits = {
+            json_name = "encoderSettings",
+        } }, { __index = M.EncoderSettings }),
         Id = {
             type = "string",
             traits = {
@@ -19588,29 +18491,23 @@ M.StartChannelOutput = {
         },
         InputAttachments = {
             type = "list",
-            member_type = "structure",
+            member = M.InputAttachment,
             traits = {
                 json_name = "inputAttachments",
             },
         },
-        InputSpecification = {
-            type = "structure",
-            traits = {
-                json_name = "inputSpecification",
-            },
-        },
+        InputSpecification = setmetatable({ traits = {
+            json_name = "inputSpecification",
+        } }, { __index = M.InputSpecification }),
         LogLevel = {
             type = "string",
             traits = {
                 json_name = "logLevel",
             },
         },
-        Maintenance = {
-            type = "structure",
-            traits = {
-                json_name = "maintenance",
-            },
-        },
+        Maintenance = setmetatable({ traits = {
+            json_name = "maintenance",
+        } }, { __index = M.MaintenanceStatus }),
         Name = {
             type = "string",
             traits = {
@@ -19619,13 +18516,13 @@ M.StartChannelOutput = {
         },
         PipelineDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.PipelineDetail,
             traits = {
                 json_name = "pipelineDetails",
             },
         },
         PipelinesRunningCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "pipelinesRunningCount",
             },
@@ -19644,49 +18541,34 @@ M.StartChannelOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
         },
-        Vpc = {
-            type = "structure",
-            traits = {
-                json_name = "vpc",
-            },
-        },
-        AnywhereSettings = {
-            type = "structure",
-            traits = {
-                json_name = "anywhereSettings",
-            },
-        },
-        ChannelEngineVersion = {
-            type = "structure",
-            traits = {
-                json_name = "channelEngineVersion",
-            },
-        },
-        LinkedChannelSettings = {
-            type = "structure",
-            traits = {
-                json_name = "linkedChannelSettings",
-            },
-        },
+        Vpc = setmetatable({ traits = {
+            json_name = "vpc",
+        } }, { __index = M.VpcOutputSettingsDescription }),
+        AnywhereSettings = setmetatable({ traits = {
+            json_name = "anywhereSettings",
+        } }, { __index = M.DescribeAnywhereSettings }),
+        ChannelEngineVersion = setmetatable({ traits = {
+            json_name = "channelEngineVersion",
+        } }, { __index = M.ChannelEngineVersionResponse }),
+        LinkedChannelSettings = setmetatable({ traits = {
+            json_name = "linkedChannelSettings",
+        } }, { __index = M.DescribeLinkedChannelSettings }),
         ChannelSecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "channelSecurityGroups",
             },
         },
-        InferenceSettings = {
-            type = "structure",
-            traits = {
-                json_name = "inferenceSettings",
-            },
-        },
+        InferenceSettings = setmetatable({ traits = {
+            json_name = "inferenceSettings",
+        } }, { __index = M.DescribeInferenceSettings }),
     },
 }
 
@@ -19714,7 +18596,7 @@ M.StartDeleteMonitorDeploymentOutput = {
         },
         CloudWatchAlarmTemplateGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "cloudWatchAlarmTemplateGroupIds",
             },
@@ -19745,15 +18627,15 @@ M.StartDeleteMonitorDeploymentOutput = {
         },
         EventBridgeRuleTemplateGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "eventBridgeRuleTemplateGroupIds",
             },
         },
         FailedMediaResourceMap = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.MediaResource,
             traits = {
                 json_name = "failedMediaResourceMap",
             },
@@ -19770,16 +18652,13 @@ M.StartDeleteMonitorDeploymentOutput = {
                 json_name = "lastDiscoveredAt",
             },
         },
-        LastSuccessfulMonitorDeployment = {
-            type = "structure",
-            traits = {
-                json_name = "lastSuccessfulMonitorDeployment",
-            },
-        },
+        LastSuccessfulMonitorDeployment = setmetatable({ traits = {
+            json_name = "lastSuccessfulMonitorDeployment",
+        } }, { __index = M.SuccessfulMonitorDeployment }),
         MediaResourceMap = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.MediaResource,
             traits = {
                 json_name = "mediaResourceMap",
             },
@@ -19796,12 +18675,9 @@ M.StartDeleteMonitorDeploymentOutput = {
                 json_name = "monitorChangesPendingDeployment",
             },
         },
-        MonitorDeployment = {
-            type = "structure",
-            traits = {
-                json_name = "monitorDeployment",
-            },
-        },
+        MonitorDeployment = setmetatable({ traits = {
+            json_name = "monitorDeployment",
+        } }, { __index = M.MonitorDeployment }),
         Name = {
             type = "string",
             traits = {
@@ -19816,8 +18692,8 @@ M.StartDeleteMonitorDeploymentOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -19889,7 +18765,7 @@ M.StartMonitorDeploymentOutput = {
         },
         CloudWatchAlarmTemplateGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "cloudWatchAlarmTemplateGroupIds",
             },
@@ -19920,15 +18796,15 @@ M.StartMonitorDeploymentOutput = {
         },
         EventBridgeRuleTemplateGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "eventBridgeRuleTemplateGroupIds",
             },
         },
         FailedMediaResourceMap = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.MediaResource,
             traits = {
                 json_name = "failedMediaResourceMap",
             },
@@ -19945,16 +18821,13 @@ M.StartMonitorDeploymentOutput = {
                 json_name = "lastDiscoveredAt",
             },
         },
-        LastSuccessfulMonitorDeployment = {
-            type = "structure",
-            traits = {
-                json_name = "lastSuccessfulMonitorDeployment",
-            },
-        },
+        LastSuccessfulMonitorDeployment = setmetatable({ traits = {
+            json_name = "lastSuccessfulMonitorDeployment",
+        } }, { __index = M.SuccessfulMonitorDeployment }),
         MediaResourceMap = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.MediaResource,
             traits = {
                 json_name = "mediaResourceMap",
             },
@@ -19971,12 +18844,9 @@ M.StartMonitorDeploymentOutput = {
                 json_name = "monitorChangesPendingDeployment",
             },
         },
-        MonitorDeployment = {
-            type = "structure",
-            traits = {
-                json_name = "monitorDeployment",
-            },
-        },
+        MonitorDeployment = setmetatable({ traits = {
+            json_name = "monitorDeployment",
+        } }, { __index = M.MonitorDeployment }),
         Name = {
             type = "string",
             traits = {
@@ -19991,8 +18861,8 @@ M.StartMonitorDeploymentOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -20024,14 +18894,14 @@ M.StartMultiplexOutput = {
         },
         AvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "availabilityZones",
             },
         },
         Destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.MultiplexOutputDestination,
             traits = {
                 json_name = "destinations",
             },
@@ -20042,12 +18912,9 @@ M.StartMultiplexOutput = {
                 json_name = "id",
             },
         },
-        MultiplexSettings = {
-            type = "structure",
-            traits = {
-                json_name = "multiplexSettings",
-            },
-        },
+        MultiplexSettings = setmetatable({ traits = {
+            json_name = "multiplexSettings",
+        } }, { __index = M.MultiplexSettings }),
         Name = {
             type = "string",
             traits = {
@@ -20055,13 +18922,13 @@ M.StartMultiplexOutput = {
             },
         },
         PipelinesRunningCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "pipelinesRunningCount",
             },
         },
         ProgramCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "programCount",
             },
@@ -20074,8 +18941,8 @@ M.StartMultiplexOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -20088,7 +18955,7 @@ M.StartUpdateSignalMapInput = {
     members = {
         CloudWatchAlarmTemplateGroupIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "cloudWatchAlarmTemplateGroupIdentifiers",
             },
@@ -20107,7 +18974,7 @@ M.StartUpdateSignalMapInput = {
         },
         EventBridgeRuleTemplateGroupIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "eventBridgeRuleTemplateGroupIdentifiers",
             },
@@ -20145,7 +19012,7 @@ M.StartUpdateSignalMapOutput = {
         },
         CloudWatchAlarmTemplateGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "cloudWatchAlarmTemplateGroupIds",
             },
@@ -20176,15 +19043,15 @@ M.StartUpdateSignalMapOutput = {
         },
         EventBridgeRuleTemplateGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "eventBridgeRuleTemplateGroupIds",
             },
         },
         FailedMediaResourceMap = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.MediaResource,
             traits = {
                 json_name = "failedMediaResourceMap",
             },
@@ -20201,16 +19068,13 @@ M.StartUpdateSignalMapOutput = {
                 json_name = "lastDiscoveredAt",
             },
         },
-        LastSuccessfulMonitorDeployment = {
-            type = "structure",
-            traits = {
-                json_name = "lastSuccessfulMonitorDeployment",
-            },
-        },
+        LastSuccessfulMonitorDeployment = setmetatable({ traits = {
+            json_name = "lastSuccessfulMonitorDeployment",
+        } }, { __index = M.SuccessfulMonitorDeployment }),
         MediaResourceMap = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.MediaResource,
             traits = {
                 json_name = "mediaResourceMap",
             },
@@ -20227,12 +19091,9 @@ M.StartUpdateSignalMapOutput = {
                 json_name = "monitorChangesPendingDeployment",
             },
         },
-        MonitorDeployment = {
-            type = "structure",
-            traits = {
-                json_name = "monitorDeployment",
-            },
-        },
+        MonitorDeployment = setmetatable({ traits = {
+            json_name = "monitorDeployment",
+        } }, { __index = M.MonitorDeployment }),
         Name = {
             type = "string",
             traits = {
@@ -20247,8 +19108,8 @@ M.StartUpdateSignalMapOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -20278,12 +19139,9 @@ M.StopChannelOutput = {
                 json_name = "arn",
             },
         },
-        CdiInputSpecification = {
-            type = "structure",
-            traits = {
-                json_name = "cdiInputSpecification",
-            },
-        },
+        CdiInputSpecification = setmetatable({ traits = {
+            json_name = "cdiInputSpecification",
+        } }, { __index = M.CdiInputSpecification }),
         ChannelClass = {
             type = "string",
             traits = {
@@ -20292,24 +19150,21 @@ M.StopChannelOutput = {
         },
         Destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputDestination,
             traits = {
                 json_name = "destinations",
             },
         },
         EgressEndpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.ChannelEgressEndpoint,
             traits = {
                 json_name = "egressEndpoints",
             },
         },
-        EncoderSettings = {
-            type = "structure",
-            traits = {
-                json_name = "encoderSettings",
-            },
-        },
+        EncoderSettings = setmetatable({ traits = {
+            json_name = "encoderSettings",
+        } }, { __index = M.EncoderSettings }),
         Id = {
             type = "string",
             traits = {
@@ -20318,29 +19173,23 @@ M.StopChannelOutput = {
         },
         InputAttachments = {
             type = "list",
-            member_type = "structure",
+            member = M.InputAttachment,
             traits = {
                 json_name = "inputAttachments",
             },
         },
-        InputSpecification = {
-            type = "structure",
-            traits = {
-                json_name = "inputSpecification",
-            },
-        },
+        InputSpecification = setmetatable({ traits = {
+            json_name = "inputSpecification",
+        } }, { __index = M.InputSpecification }),
         LogLevel = {
             type = "string",
             traits = {
                 json_name = "logLevel",
             },
         },
-        Maintenance = {
-            type = "structure",
-            traits = {
-                json_name = "maintenance",
-            },
-        },
+        Maintenance = setmetatable({ traits = {
+            json_name = "maintenance",
+        } }, { __index = M.MaintenanceStatus }),
         Name = {
             type = "string",
             traits = {
@@ -20349,13 +19198,13 @@ M.StopChannelOutput = {
         },
         PipelineDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.PipelineDetail,
             traits = {
                 json_name = "pipelineDetails",
             },
         },
         PipelinesRunningCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "pipelinesRunningCount",
             },
@@ -20374,49 +19223,34 @@ M.StopChannelOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
         },
-        Vpc = {
-            type = "structure",
-            traits = {
-                json_name = "vpc",
-            },
-        },
-        AnywhereSettings = {
-            type = "structure",
-            traits = {
-                json_name = "anywhereSettings",
-            },
-        },
-        ChannelEngineVersion = {
-            type = "structure",
-            traits = {
-                json_name = "channelEngineVersion",
-            },
-        },
-        LinkedChannelSettings = {
-            type = "structure",
-            traits = {
-                json_name = "linkedChannelSettings",
-            },
-        },
+        Vpc = setmetatable({ traits = {
+            json_name = "vpc",
+        } }, { __index = M.VpcOutputSettingsDescription }),
+        AnywhereSettings = setmetatable({ traits = {
+            json_name = "anywhereSettings",
+        } }, { __index = M.DescribeAnywhereSettings }),
+        ChannelEngineVersion = setmetatable({ traits = {
+            json_name = "channelEngineVersion",
+        } }, { __index = M.ChannelEngineVersionResponse }),
+        LinkedChannelSettings = setmetatable({ traits = {
+            json_name = "linkedChannelSettings",
+        } }, { __index = M.DescribeLinkedChannelSettings }),
         ChannelSecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "channelSecurityGroups",
             },
         },
-        InferenceSettings = {
-            type = "structure",
-            traits = {
-                json_name = "inferenceSettings",
-            },
-        },
+        InferenceSettings = setmetatable({ traits = {
+            json_name = "inferenceSettings",
+        } }, { __index = M.DescribeInferenceSettings }),
     },
 }
 
@@ -20461,14 +19295,14 @@ M.StopMultiplexOutput = {
         },
         AvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "availabilityZones",
             },
         },
         Destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.MultiplexOutputDestination,
             traits = {
                 json_name = "destinations",
             },
@@ -20479,12 +19313,9 @@ M.StopMultiplexOutput = {
                 json_name = "id",
             },
         },
-        MultiplexSettings = {
-            type = "structure",
-            traits = {
-                json_name = "multiplexSettings",
-            },
-        },
+        MultiplexSettings = setmetatable({ traits = {
+            json_name = "multiplexSettings",
+        } }, { __index = M.MultiplexSettings }),
         Name = {
             type = "string",
             traits = {
@@ -20492,13 +19323,13 @@ M.StopMultiplexOutput = {
             },
         },
         PipelinesRunningCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "pipelinesRunningCount",
             },
         },
         ProgramCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "programCount",
             },
@@ -20511,8 +19342,8 @@ M.StopMultiplexOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -20558,24 +19389,18 @@ M.TransferInputDeviceOutput = {
 M.UpdateAccountConfigurationInput = {
     type = "structure",
     members = {
-        AccountConfiguration = {
-            type = "structure",
-            traits = {
-                json_name = "accountConfiguration",
-            },
-        },
+        AccountConfiguration = setmetatable({ traits = {
+            json_name = "accountConfiguration",
+        } }, { __index = M.AccountConfiguration }),
     },
 }
 
 M.UpdateAccountConfigurationOutput = {
     type = "structure",
     members = {
-        AccountConfiguration = {
-            type = "structure",
-            traits = {
-                json_name = "accountConfiguration",
-            },
-        },
+        AccountConfiguration = setmetatable({ traits = {
+            json_name = "accountConfiguration",
+        } }, { __index = M.AccountConfiguration }),
     },
 }
 
@@ -20594,12 +19419,9 @@ M.SpecialRouterSettings = {
 M.UpdateChannelInput = {
     type = "structure",
     members = {
-        CdiInputSpecification = {
-            type = "structure",
-            traits = {
-                json_name = "cdiInputSpecification",
-            },
-        },
+        CdiInputSpecification = setmetatable({ traits = {
+            json_name = "cdiInputSpecification",
+        } }, { __index = M.CdiInputSpecification }),
         ChannelId = {
             type = "string",
             traits = {
@@ -20609,42 +19431,33 @@ M.UpdateChannelInput = {
         },
         Destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputDestination,
             traits = {
                 json_name = "destinations",
             },
         },
-        EncoderSettings = {
-            type = "structure",
-            traits = {
-                json_name = "encoderSettings",
-            },
-        },
+        EncoderSettings = setmetatable({ traits = {
+            json_name = "encoderSettings",
+        } }, { __index = M.EncoderSettings }),
         InputAttachments = {
             type = "list",
-            member_type = "structure",
+            member = M.InputAttachment,
             traits = {
                 json_name = "inputAttachments",
             },
         },
-        InputSpecification = {
-            type = "structure",
-            traits = {
-                json_name = "inputSpecification",
-            },
-        },
+        InputSpecification = setmetatable({ traits = {
+            json_name = "inputSpecification",
+        } }, { __index = M.InputSpecification }),
         LogLevel = {
             type = "string",
             traits = {
                 json_name = "logLevel",
             },
         },
-        Maintenance = {
-            type = "structure",
-            traits = {
-                json_name = "maintenance",
-            },
-        },
+        Maintenance = setmetatable({ traits = {
+            json_name = "maintenance",
+        } }, { __index = M.MaintenanceUpdateSettings }),
         Name = {
             type = "string",
             traits = {
@@ -20657,61 +19470,43 @@ M.UpdateChannelInput = {
                 json_name = "roleArn",
             },
         },
-        ChannelEngineVersion = {
-            type = "structure",
-            traits = {
-                json_name = "channelEngineVersion",
-            },
-        },
+        ChannelEngineVersion = setmetatable({ traits = {
+            json_name = "channelEngineVersion",
+        } }, { __index = M.ChannelEngineVersionRequest }),
         DryRun = {
             type = "boolean",
             traits = {
                 json_name = "dryRun",
             },
         },
-        AnywhereSettings = {
-            type = "structure",
-            traits = {
-                json_name = "anywhereSettings",
-            },
-        },
-        LinkedChannelSettings = {
-            type = "structure",
-            traits = {
-                json_name = "linkedChannelSettings",
-            },
-        },
+        AnywhereSettings = setmetatable({ traits = {
+            json_name = "anywhereSettings",
+        } }, { __index = M.AnywhereSettings }),
+        LinkedChannelSettings = setmetatable({ traits = {
+            json_name = "linkedChannelSettings",
+        } }, { __index = M.LinkedChannelSettings }),
         ChannelSecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "channelSecurityGroups",
             },
         },
-        InferenceSettings = {
-            type = "structure",
-            traits = {
-                json_name = "inferenceSettings",
-            },
-        },
-        SpecialRouterSettings = {
-            type = "structure",
-            traits = {
-                json_name = "specialRouterSettings",
-            },
-        },
+        InferenceSettings = setmetatable({ traits = {
+            json_name = "inferenceSettings",
+        } }, { __index = M.InferenceSettings }),
+        SpecialRouterSettings = setmetatable({ traits = {
+            json_name = "specialRouterSettings",
+        } }, { __index = M.SpecialRouterSettings }),
     },
 }
 
 M.UpdateChannelOutput = {
     type = "structure",
     members = {
-        Channel = {
-            type = "structure",
-            traits = {
-                json_name = "channel",
-            },
-        },
+        Channel = setmetatable({ traits = {
+            json_name = "channel",
+        } }, { __index = M.Channel }),
     },
 }
 
@@ -20734,7 +19529,7 @@ M.UpdateChannelClassInput = {
         },
         Destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputDestination,
             traits = {
                 json_name = "destinations",
             },
@@ -20745,12 +19540,9 @@ M.UpdateChannelClassInput = {
 M.UpdateChannelClassOutput = {
     type = "structure",
     members = {
-        Channel = {
-            type = "structure",
-            traits = {
-                json_name = "channel",
-            },
-        },
+        Channel = setmetatable({ traits = {
+            json_name = "channel",
+        } }, { __index = M.Channel }),
     },
 }
 
@@ -20779,7 +19571,7 @@ M.UpdateChannelPlacementGroupInput = {
         },
         Nodes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "nodes",
             },
@@ -20798,7 +19590,7 @@ M.UpdateChannelPlacementGroupOutput = {
         },
         Channels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "channels",
             },
@@ -20823,7 +19615,7 @@ M.UpdateChannelPlacementGroupOutput = {
         },
         Nodes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "nodes",
             },
@@ -20847,7 +19639,7 @@ M.UpdateCloudWatchAlarmTemplateInput = {
             },
         },
         DatapointsToAlarm = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "datapointsToAlarm",
             },
@@ -20859,7 +19651,7 @@ M.UpdateCloudWatchAlarmTemplateInput = {
             },
         },
         EvaluationPeriods = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "evaluationPeriods",
             },
@@ -20890,7 +19682,7 @@ M.UpdateCloudWatchAlarmTemplateInput = {
             },
         },
         Period = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "period",
             },
@@ -20908,7 +19700,7 @@ M.UpdateCloudWatchAlarmTemplateInput = {
             },
         },
         Threshold = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "threshold",
             },
@@ -20944,7 +19736,7 @@ M.UpdateCloudWatchAlarmTemplateOutput = {
             },
         },
         DatapointsToAlarm = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "datapointsToAlarm",
             },
@@ -20956,7 +19748,7 @@ M.UpdateCloudWatchAlarmTemplateOutput = {
             },
         },
         EvaluationPeriods = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "evaluationPeriods",
             },
@@ -20992,7 +19784,7 @@ M.UpdateCloudWatchAlarmTemplateOutput = {
             },
         },
         Period = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "period",
             },
@@ -21005,8 +19797,8 @@ M.UpdateCloudWatchAlarmTemplateOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -21018,7 +19810,7 @@ M.UpdateCloudWatchAlarmTemplateOutput = {
             },
         },
         Threshold = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "threshold",
             },
@@ -21092,8 +19884,8 @@ M.UpdateCloudWatchAlarmTemplateGroupOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -21117,12 +19909,9 @@ M.UpdateClusterInput = {
                 json_name = "name",
             },
         },
-        NetworkSettings = {
-            type = "structure",
-            traits = {
-                json_name = "networkSettings",
-            },
-        },
+        NetworkSettings = setmetatable({ traits = {
+            json_name = "networkSettings",
+        } }, { __index = M.ClusterNetworkSettingsUpdateRequest }),
     },
 }
 
@@ -21137,7 +19926,7 @@ M.UpdateClusterOutput = {
         },
         ChannelIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "channelIds",
             },
@@ -21160,12 +19949,9 @@ M.UpdateClusterOutput = {
                 json_name = "name",
             },
         },
-        NetworkSettings = {
-            type = "structure",
-            traits = {
-                json_name = "networkSettings",
-            },
-        },
+        NetworkSettings = setmetatable({ traits = {
+            json_name = "networkSettings",
+        } }, { __index = M.ClusterNetworkSettings }),
         State = {
             type = "string",
             traits = {
@@ -21186,7 +19972,7 @@ M.UpdateEventBridgeRuleTemplateInput = {
         },
         EventTargets = {
             type = "list",
-            member_type = "structure",
+            member = M.EventBridgeRuleTemplateTarget,
             traits = {
                 json_name = "eventTargets",
             },
@@ -21242,7 +20028,7 @@ M.UpdateEventBridgeRuleTemplateOutput = {
         },
         EventTargets = {
             type = "list",
-            member_type = "structure",
+            member = M.EventBridgeRuleTemplateTarget,
             traits = {
                 json_name = "eventTargets",
             },
@@ -21279,8 +20065,8 @@ M.UpdateEventBridgeRuleTemplateOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -21348,8 +20134,8 @@ M.UpdateEventBridgeRuleTemplateGroupOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -21362,7 +20148,7 @@ M.MulticastSettingsUpdateRequest = {
     members = {
         Sources = {
             type = "list",
-            member_type = "structure",
+            member = M.MulticastSourceUpdateRequest,
             traits = {
                 json_name = "sources",
             },
@@ -21375,14 +20161,14 @@ M.UpdateInputInput = {
     members = {
         Destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.InputDestinationRequest,
             traits = {
                 json_name = "destinations",
             },
         },
         InputDevices = {
             type = "list",
-            member_type = "structure",
+            member = M.InputDeviceRequest,
             traits = {
                 json_name = "inputDevices",
             },
@@ -21396,14 +20182,14 @@ M.UpdateInputInput = {
         },
         InputSecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "inputSecurityGroups",
             },
         },
         MediaConnectFlows = {
             type = "list",
-            member_type = "structure",
+            member = M.MediaConnectFlowRequest,
             traits = {
                 json_name = "mediaConnectFlows",
             },
@@ -21422,66 +20208,48 @@ M.UpdateInputInput = {
         },
         Sources = {
             type = "list",
-            member_type = "structure",
+            member = M.InputSourceRequest,
             traits = {
                 json_name = "sources",
             },
         },
-        SrtSettings = {
-            type = "structure",
-            traits = {
-                json_name = "srtSettings",
-            },
-        },
-        MulticastSettings = {
-            type = "structure",
-            traits = {
-                json_name = "multicastSettings",
-            },
-        },
-        Smpte2110ReceiverGroupSettings = {
-            type = "structure",
-            traits = {
-                json_name = "smpte2110ReceiverGroupSettings",
-            },
-        },
+        SrtSettings = setmetatable({ traits = {
+            json_name = "srtSettings",
+        } }, { __index = M.SrtSettingsRequest }),
+        MulticastSettings = setmetatable({ traits = {
+            json_name = "multicastSettings",
+        } }, { __index = M.MulticastSettingsUpdateRequest }),
+        Smpte2110ReceiverGroupSettings = setmetatable({ traits = {
+            json_name = "smpte2110ReceiverGroupSettings",
+        } }, { __index = M.Smpte2110ReceiverGroupSettings }),
         SdiSources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "sdiSources",
             },
         },
-        SpecialRouterSettings = {
-            type = "structure",
-            traits = {
-                json_name = "specialRouterSettings",
-            },
-        },
+        SpecialRouterSettings = setmetatable({ traits = {
+            json_name = "specialRouterSettings",
+        } }, { __index = M.SpecialRouterSettings }),
     },
 }
 
 M.UpdateInputOutput = {
     type = "structure",
     members = {
-        Input = {
-            type = "structure",
-            traits = {
-                json_name = "input",
-            },
-        },
+        Input = setmetatable({ traits = {
+            json_name = "input",
+        } }, { __index = M.Input }),
     },
 }
 
 M.UpdateInputDeviceInput = {
     type = "structure",
     members = {
-        HdDeviceSettings = {
-            type = "structure",
-            traits = {
-                json_name = "hdDeviceSettings",
-            },
-        },
+        HdDeviceSettings = setmetatable({ traits = {
+            json_name = "hdDeviceSettings",
+        } }, { __index = M.InputDeviceConfigurableSettings }),
         InputDeviceId = {
             type = "string",
             traits = {
@@ -21495,12 +20263,9 @@ M.UpdateInputDeviceInput = {
                 json_name = "name",
             },
         },
-        UhdDeviceSettings = {
-            type = "structure",
-            traits = {
-                json_name = "uhdDeviceSettings",
-            },
-        },
+        UhdDeviceSettings = setmetatable({ traits = {
+            json_name = "uhdDeviceSettings",
+        } }, { __index = M.InputDeviceConfigurableSettings }),
         AvailabilityZone = {
             type = "string",
             traits = {
@@ -21537,12 +20302,9 @@ M.UpdateInputDeviceOutput = {
                 json_name = "deviceUpdateStatus",
             },
         },
-        HdDeviceSettings = {
-            type = "structure",
-            traits = {
-                json_name = "hdDeviceSettings",
-            },
-        },
+        HdDeviceSettings = setmetatable({ traits = {
+            json_name = "hdDeviceSettings",
+        } }, { __index = M.InputDeviceHdSettings }),
         Id = {
             type = "string",
             traits = {
@@ -21561,12 +20323,9 @@ M.UpdateInputDeviceOutput = {
                 json_name = "name",
             },
         },
-        NetworkSettings = {
-            type = "structure",
-            traits = {
-                json_name = "networkSettings",
-            },
-        },
+        NetworkSettings = setmetatable({ traits = {
+            json_name = "networkSettings",
+        } }, { __index = M.InputDeviceNetworkSettings }),
         SerialNumber = {
             type = "string",
             traits = {
@@ -21579,16 +20338,13 @@ M.UpdateInputDeviceOutput = {
                 json_name = "type",
             },
         },
-        UhdDeviceSettings = {
-            type = "structure",
-            traits = {
-                json_name = "uhdDeviceSettings",
-            },
-        },
+        UhdDeviceSettings = setmetatable({ traits = {
+            json_name = "uhdDeviceSettings",
+        } }, { __index = M.InputDeviceUhdSettings }),
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -21601,7 +20357,7 @@ M.UpdateInputDeviceOutput = {
         },
         MedialiveInputArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "medialiveInputArns",
             },
@@ -21627,15 +20383,15 @@ M.UpdateInputSecurityGroupInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
         },
         WhitelistRules = {
             type = "list",
-            member_type = "structure",
+            member = M.InputWhitelistRuleCidr,
             traits = {
                 json_name = "whitelistRules",
             },
@@ -21646,12 +20402,9 @@ M.UpdateInputSecurityGroupInput = {
 M.UpdateInputSecurityGroupOutput = {
     type = "structure",
     members = {
-        SecurityGroup = {
-            type = "structure",
-            traits = {
-                json_name = "securityGroup",
-            },
-        },
+        SecurityGroup = setmetatable({ traits = {
+            json_name = "securityGroup",
+        } }, { __index = M.InputSecurityGroup }),
     },
 }
 
@@ -21665,12 +20418,9 @@ M.UpdateMultiplexInput = {
                 required = true,
             },
         },
-        MultiplexSettings = {
-            type = "structure",
-            traits = {
-                json_name = "multiplexSettings",
-            },
-        },
+        MultiplexSettings = setmetatable({ traits = {
+            json_name = "multiplexSettings",
+        } }, { __index = M.MultiplexSettings }),
         Name = {
             type = "string",
             traits = {
@@ -21679,8 +20429,8 @@ M.UpdateMultiplexInput = {
         },
         PacketIdentifiersMapping = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.MultiplexProgramPacketIdentifiersMap,
             traits = {
                 json_name = "packetIdentifiersMapping",
             },
@@ -21691,12 +20441,9 @@ M.UpdateMultiplexInput = {
 M.UpdateMultiplexOutput = {
     type = "structure",
     members = {
-        Multiplex = {
-            type = "structure",
-            traits = {
-                json_name = "multiplex",
-            },
-        },
+        Multiplex = setmetatable({ traits = {
+            json_name = "multiplex",
+        } }, { __index = M.Multiplex }),
     },
 }
 
@@ -21710,12 +20457,9 @@ M.UpdateMultiplexProgramInput = {
                 required = true,
             },
         },
-        MultiplexProgramSettings = {
-            type = "structure",
-            traits = {
-                json_name = "multiplexProgramSettings",
-            },
-        },
+        MultiplexProgramSettings = setmetatable({ traits = {
+            json_name = "multiplexProgramSettings",
+        } }, { __index = M.MultiplexProgramSettings }),
         ProgramName = {
             type = "string",
             traits = {
@@ -21729,12 +20473,9 @@ M.UpdateMultiplexProgramInput = {
 M.UpdateMultiplexProgramOutput = {
     type = "structure",
     members = {
-        MultiplexProgram = {
-            type = "structure",
-            traits = {
-                json_name = "multiplexProgram",
-            },
-        },
+        MultiplexProgram = setmetatable({ traits = {
+            json_name = "multiplexProgram",
+        } }, { __index = M.MultiplexProgram }),
     },
 }
 
@@ -21743,7 +20484,7 @@ M.UpdateNetworkInput = {
     members = {
         IpPools = {
             type = "list",
-            member_type = "structure",
+            member = M.IpPoolUpdateRequest,
             traits = {
                 json_name = "ipPools",
             },
@@ -21763,7 +20504,7 @@ M.UpdateNetworkInput = {
         },
         Routes = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteUpdateRequest,
             traits = {
                 json_name = "routes",
             },
@@ -21782,7 +20523,7 @@ M.UpdateNetworkOutput = {
         },
         AssociatedClusterIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "associatedClusterIds",
             },
@@ -21795,7 +20536,7 @@ M.UpdateNetworkOutput = {
         },
         IpPools = {
             type = "list",
-            member_type = "structure",
+            member = M.IpPool,
             traits = {
                 json_name = "ipPools",
             },
@@ -21808,7 +20549,7 @@ M.UpdateNetworkOutput = {
         },
         Routes = {
             type = "list",
-            member_type = "structure",
+            member = M.Route,
             traits = {
                 json_name = "routes",
             },
@@ -21826,13 +20567,13 @@ M.SdiSourceMappingUpdateRequest = {
     type = "structure",
     members = {
         CardNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "cardNumber",
             },
         },
         ChannelNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "channelNumber",
             },
@@ -21877,7 +20618,7 @@ M.UpdateNodeInput = {
         },
         SdiSourceMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.SdiSourceMappingUpdateRequest,
             traits = {
                 json_name = "sdiSourceMappings",
             },
@@ -21896,7 +20637,7 @@ M.UpdateNodeOutput = {
         },
         ChannelPlacementGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "channelPlacementGroups",
             },
@@ -21933,7 +20674,7 @@ M.UpdateNodeOutput = {
         },
         NodeInterfaceMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.NodeInterfaceMapping,
             traits = {
                 json_name = "nodeInterfaceMappings",
             },
@@ -21952,7 +20693,7 @@ M.UpdateNodeOutput = {
         },
         SdiSourceMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.SdiSourceMapping,
             traits = {
                 json_name = "sdiSourceMappings",
             },
@@ -22002,7 +20743,7 @@ M.UpdateNodeStateOutput = {
         },
         ChannelPlacementGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "channelPlacementGroups",
             },
@@ -22039,7 +20780,7 @@ M.UpdateNodeStateOutput = {
         },
         NodeInterfaceMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.NodeInterfaceMapping,
             traits = {
                 json_name = "nodeInterfaceMappings",
             },
@@ -22058,7 +20799,7 @@ M.UpdateNodeStateOutput = {
         },
         SdiSourceMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.SdiSourceMapping,
             traits = {
                 json_name = "sdiSourceMappings",
             },
@@ -22075,12 +20816,9 @@ M.UpdateReservationInput = {
                 json_name = "name",
             },
         },
-        RenewalSettings = {
-            type = "structure",
-            traits = {
-                json_name = "renewalSettings",
-            },
-        },
+        RenewalSettings = setmetatable({ traits = {
+            json_name = "renewalSettings",
+        } }, { __index = M.RenewalSettings }),
         ReservationId = {
             type = "string",
             traits = {
@@ -22094,12 +20832,9 @@ M.UpdateReservationInput = {
 M.UpdateReservationOutput = {
     type = "structure",
     members = {
-        Reservation = {
-            type = "structure",
-            traits = {
-                json_name = "reservation",
-            },
-        },
+        Reservation = setmetatable({ traits = {
+            json_name = "reservation",
+        } }, { __index = M.Reservation }),
     },
 }
 
@@ -22137,12 +20872,9 @@ M.UpdateSdiSourceInput = {
 M.UpdateSdiSourceOutput = {
     type = "structure",
     members = {
-        SdiSource = {
-            type = "structure",
-            traits = {
-                json_name = "sdiSource",
-            },
-        },
+        SdiSource = setmetatable({ traits = {
+            json_name = "sdiSource",
+        } }, { __index = M.SdiSource }),
     },
 }
 

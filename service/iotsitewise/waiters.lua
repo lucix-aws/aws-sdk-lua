@@ -1,0 +1,133 @@
+local waiter = require("waiter")
+
+local M = {}
+
+--- Wait until AssetActive.
+function M.wait_until_asset_active(client, input, options)
+    return waiter.wait(client, "describeAsset", input, {
+        min_delay = 3,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "assetStatus.state",
+                        expected = "ACTIVE",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "assetStatus.state",
+                        expected = "FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until AssetModelActive.
+function M.wait_until_asset_model_active(client, input, options)
+    return waiter.wait(client, "describeAssetModel", input, {
+        min_delay = 3,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "assetModelStatus.state",
+                        expected = "ACTIVE",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "assetModelStatus.state",
+                        expected = "FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until AssetModelNotExists.
+function M.wait_until_asset_model_not_exists(client, input, options)
+    return waiter.wait(client, "describeAssetModel", input, {
+        min_delay = 3,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    errorType = "ResourceNotFoundException",
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until AssetNotExists.
+function M.wait_until_asset_not_exists(client, input, options)
+    return waiter.wait(client, "describeAsset", input, {
+        min_delay = 3,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    errorType = "ResourceNotFoundException",
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until PortalActive.
+function M.wait_until_portal_active(client, input, options)
+    return waiter.wait(client, "describePortal", input, {
+        min_delay = 3,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "portalStatus.state",
+                        expected = "ACTIVE",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until PortalNotExists.
+function M.wait_until_portal_not_exists(client, input, options)
+    return waiter.wait(client, "describePortal", input, {
+        min_delay = 3,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    errorType = "ResourceNotFoundException",
+                },
+            },
+        },
+    }, options)
+end
+
+return M

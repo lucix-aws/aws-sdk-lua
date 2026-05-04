@@ -41,12 +41,9 @@ M.S3Object = {
 M.BlueprintOptimizationOutputConfiguration = {
     type = "structure",
     members = {
-        s3Object = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        s3Object = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3Object }),
     },
 }
 
@@ -70,9 +67,7 @@ M.GetBlueprintOptimizationStatusOutput = {
         errorMessage = {
             type = "string",
         },
-        outputConfiguration = {
-            type = "structure",
-        },
+        outputConfiguration = M.BlueprintOptimizationOutputConfiguration,
     },
 }
 
@@ -133,7 +128,7 @@ M.ValidationException = {
         },
         fieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -169,8 +164,8 @@ M.EncryptionConfiguration = {
         },
         kmsEncryptionContext = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -178,18 +173,12 @@ M.EncryptionConfiguration = {
 M.BlueprintOptimizationSample = {
     type = "structure",
     members = {
-        assetS3Object = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        groundTruthS3Object = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        assetS3Object = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3Object }),
+        groundTruthS3Object = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3Object }),
     },
 }
 
@@ -214,37 +203,29 @@ M.Tag = {
 M.InvokeBlueprintOptimizationAsyncInput = {
     type = "structure",
     members = {
-        blueprint = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        blueprint = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BlueprintOptimizationObject }),
         samples = {
             type = "list",
-            member_type = "structure",
+            member = M.BlueprintOptimizationSample,
             traits = {
                 required = true,
             },
         },
-        outputConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        outputConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BlueprintOptimizationOutputConfiguration }),
         dataAutomationProfileArn = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        encryptionConfiguration = {
-            type = "structure",
-        },
+        encryptionConfiguration = M.EncryptionConfiguration,
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -315,12 +296,10 @@ M.CreateBlueprintInput = {
         clientToken = {
             type = "string",
         },
-        encryptionConfiguration = {
-            type = "structure",
-        },
+        encryptionConfiguration = M.EncryptionConfiguration,
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -375,12 +354,12 @@ M.Blueprint = {
         },
         kmsEncryptionContext = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         optimizationSamples = {
             type = "list",
-            member_type = "structure",
+            member = M.BlueprintOptimizationSample,
         },
         optimizationTime = {
             type = "timestamp",
@@ -391,12 +370,9 @@ M.Blueprint = {
 M.CreateBlueprintOutput = {
     type = "structure",
     members = {
-        blueprint = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        blueprint = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Blueprint }),
     },
 }
 
@@ -445,12 +421,9 @@ M.GetBlueprintInput = {
 M.GetBlueprintOutput = {
     type = "structure",
     members = {
-        blueprint = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        blueprint = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Blueprint }),
     },
 }
 
@@ -498,14 +471,12 @@ M.ListBlueprintsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
         },
-        projectFilter = {
-            type = "structure",
-        },
+        projectFilter = M.DataAutomationProjectFilter,
     },
 }
 
@@ -544,7 +515,7 @@ M.ListBlueprintsOutput = {
     members = {
         blueprints = {
             type = "list",
-            member_type = "structure",
+            member = M.BlueprintSummary,
             traits = {
                 required = true,
             },
@@ -574,21 +545,16 @@ M.UpdateBlueprintInput = {
         blueprintStage = {
             type = "string",
         },
-        encryptionConfiguration = {
-            type = "structure",
-        },
+        encryptionConfiguration = M.EncryptionConfiguration,
     },
 }
 
 M.UpdateBlueprintOutput = {
     type = "structure",
     members = {
-        blueprint = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        blueprint = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Blueprint }),
     },
 }
 
@@ -643,12 +609,9 @@ M.CreateBlueprintVersionInput = {
 M.CreateBlueprintVersionOutput = {
     type = "structure",
     members = {
-        blueprint = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        blueprint = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Blueprint }),
     },
 }
 
@@ -733,12 +696,9 @@ M.DataAutomationLibraryIngestionJob = {
                 required = true,
             },
         },
-        outputConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        outputConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OutputConfiguration }),
         completionTime = {
             type = "timestamp",
         },
@@ -754,9 +714,7 @@ M.DataAutomationLibraryIngestionJob = {
 M.GetDataAutomationLibraryIngestionJobOutput = {
     type = "structure",
     members = {
-        job = {
-            type = "structure",
-        },
+        job = M.DataAutomationLibraryIngestionJob,
     },
 }
 
@@ -765,7 +723,7 @@ M.DeleteEntitiesInfo = {
     members = {
         entityIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -819,7 +777,7 @@ M.VocabularyEntityInfo = {
         },
         phrases = {
             type = "list",
-            member_type = "structure",
+            member = M.Phrase,
             traits = {
                 required = true,
             },
@@ -830,9 +788,7 @@ M.VocabularyEntityInfo = {
 M.UpsertEntityInfo = {
     type = "union",
     members = {
-        vocabulary = {
-            type = "structure",
-        },
+        vocabulary = M.VocabularyEntityInfo,
     },
 }
 
@@ -841,23 +797,17 @@ M.InlinePayload = {
     members = {
         upsertEntitiesInfo = {
             type = "list",
-            member_type = "union",
+            member = M.UpsertEntityInfo,
         },
-        deleteEntitiesInfo = {
-            type = "structure",
-        },
+        deleteEntitiesInfo = M.DeleteEntitiesInfo,
     },
 }
 
 M.InputConfiguration = {
     type = "structure",
     members = {
-        s3Object = {
-            type = "structure",
-        },
-        inlinePayload = {
-            type = "union",
-        },
+        s3Object = M.S3Object,
+        inlinePayload = M.InlinePayload,
     },
 }
 
@@ -876,12 +826,9 @@ M.EventBridgeConfiguration = {
 M.NotificationConfiguration = {
     type = "structure",
     members = {
-        eventBridgeConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        eventBridgeConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EventBridgeConfiguration }),
     },
 }
 
@@ -898,12 +845,9 @@ M.InvokeDataAutomationLibraryIngestionJobInput = {
         clientToken = {
             type = "string",
         },
-        inputConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        inputConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InputConfiguration }),
         entityType = {
             type = "string",
             traits = {
@@ -916,18 +860,13 @@ M.InvokeDataAutomationLibraryIngestionJobInput = {
                 required = true,
             },
         },
-        outputConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        notificationConfiguration = {
-            type = "structure",
-        },
+        outputConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OutputConfiguration }),
+        notificationConfiguration = M.NotificationConfiguration,
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -952,7 +891,7 @@ M.ListDataAutomationLibraryIngestionJobsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -1004,7 +943,7 @@ M.ListDataAutomationLibraryIngestionJobsOutput = {
     members = {
         jobs = {
             type = "list",
-            member_type = "structure",
+            member = M.DataAutomationLibraryIngestionJobSummary,
         },
         nextToken = {
             type = "string",
@@ -1027,12 +966,10 @@ M.CreateDataAutomationLibraryInput = {
         clientToken = {
             type = "string",
         },
-        encryptionConfiguration = {
-            type = "structure",
-        },
+        encryptionConfiguration = M.EncryptionConfiguration,
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1139,15 +1076,15 @@ M.DataAutomationLibrary = {
         },
         entityTypes = {
             type = "list",
-            member_type = "structure",
+            member = M.EntityTypeInfo,
         },
         kmsKeyId = {
             type = "string",
         },
         kmsEncryptionContext = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1155,9 +1092,7 @@ M.DataAutomationLibrary = {
 M.GetDataAutomationLibraryOutput = {
     type = "structure",
     members = {
-        library = {
-            type = "structure",
-        },
+        library = M.DataAutomationLibrary,
     },
 }
 
@@ -1165,14 +1100,12 @@ M.ListDataAutomationLibrariesInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
         },
-        projectFilter = {
-            type = "structure",
-        },
+        projectFilter = M.DataAutomationProjectFilter,
     },
 }
 
@@ -1202,7 +1135,7 @@ M.ListDataAutomationLibrariesOutput = {
     members = {
         libraries = {
             type = "list",
-            member_type = "structure",
+            member = M.DataAutomationLibrarySummary,
         },
         nextToken = {
             type = "string",
@@ -1264,7 +1197,7 @@ M.CustomOutputConfiguration = {
     members = {
         blueprints = {
             type = "list",
-            member_type = "structure",
+            member = M.BlueprintItem,
         },
     },
 }
@@ -1286,7 +1219,7 @@ M.DataAutomationLibraryConfiguration = {
     members = {
         libraries = {
             type = "list",
-            member_type = "structure",
+            member = M.DataAutomationLibraryItem,
         },
     },
 }
@@ -1301,7 +1234,7 @@ M.AudioLanguageConfiguration = {
     members = {
         inputLanguages = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         generativeOutputLanguage = {
             type = "string",
@@ -1381,7 +1314,7 @@ M.PIIEntitiesConfiguration = {
     members = {
         piiEntityTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         redactionMaskMode = {
             type = "string",
@@ -1400,26 +1333,18 @@ M.SensitiveDataConfiguration = {
         },
         detectionScope = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        piiEntitiesConfiguration = {
-            type = "structure",
-        },
+        piiEntitiesConfiguration = M.PIIEntitiesConfiguration,
     },
 }
 
 M.AudioOverrideConfiguration = {
     type = "structure",
     members = {
-        modalityProcessing = {
-            type = "structure",
-        },
-        languageConfiguration = {
-            type = "structure",
-        },
-        sensitiveDataConfiguration = {
-            type = "structure",
-        },
+        modalityProcessing = M.ModalityProcessingConfiguration,
+        languageConfiguration = M.AudioLanguageConfiguration,
+        sensitiveDataConfiguration = M.SensitiveDataConfiguration,
     },
 }
 
@@ -1435,27 +1360,17 @@ M.SplitterConfiguration = {
 M.DocumentOverrideConfiguration = {
     type = "structure",
     members = {
-        splitter = {
-            type = "structure",
-        },
-        modalityProcessing = {
-            type = "structure",
-        },
-        sensitiveDataConfiguration = {
-            type = "structure",
-        },
+        splitter = M.SplitterConfiguration,
+        modalityProcessing = M.ModalityProcessingConfiguration,
+        sensitiveDataConfiguration = M.SensitiveDataConfiguration,
     },
 }
 
 M.ImageOverrideConfiguration = {
     type = "structure",
     members = {
-        modalityProcessing = {
-            type = "structure",
-        },
-        sensitiveDataConfiguration = {
-            type = "structure",
-        },
+        modalityProcessing = M.ModalityProcessingConfiguration,
+        sensitiveDataConfiguration = M.SensitiveDataConfiguration,
     },
 }
 
@@ -1487,33 +1402,19 @@ M.ModalityRoutingConfiguration = {
 M.VideoOverrideConfiguration = {
     type = "structure",
     members = {
-        modalityProcessing = {
-            type = "structure",
-        },
-        sensitiveDataConfiguration = {
-            type = "structure",
-        },
+        modalityProcessing = M.ModalityProcessingConfiguration,
+        sensitiveDataConfiguration = M.SensitiveDataConfiguration,
     },
 }
 
 M.OverrideConfiguration = {
     type = "structure",
     members = {
-        document = {
-            type = "structure",
-        },
-        image = {
-            type = "structure",
-        },
-        video = {
-            type = "structure",
-        },
-        audio = {
-            type = "structure",
-        },
-        modalityRouting = {
-            type = "structure",
-        },
+        document = M.DocumentOverrideConfiguration,
+        image = M.ImageOverrideConfiguration,
+        video = M.VideoOverrideConfiguration,
+        audio = M.AudioOverrideConfiguration,
+        modalityRouting = M.ModalityRoutingConfiguration,
     },
 }
 
@@ -1549,21 +1450,15 @@ M.SpeakerLabelingConfiguration = {
 M.TranscriptConfiguration = {
     type = "structure",
     members = {
-        speakerLabeling = {
-            type = "structure",
-        },
-        channelLabeling = {
-            type = "structure",
-        },
+        speakerLabeling = M.SpeakerLabelingConfiguration,
+        channelLabeling = M.ChannelLabelingConfiguration,
     },
 }
 
 M.AudioExtractionCategoryTypeConfiguration = {
     type = "structure",
     members = {
-        transcript = {
-            type = "structure",
-        },
+        transcript = M.TranscriptConfiguration,
     },
 }
 
@@ -1584,23 +1479,18 @@ M.AudioExtractionCategory = {
         },
         types = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        typeConfiguration = {
-            type = "structure",
-        },
+        typeConfiguration = M.AudioExtractionCategoryTypeConfiguration,
     },
 }
 
 M.AudioStandardExtraction = {
     type = "structure",
     members = {
-        category = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        category = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AudioExtractionCategory }),
     },
 }
 
@@ -1621,7 +1511,7 @@ M.AudioStandardGenerativeField = {
         },
         types = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1629,12 +1519,8 @@ M.AudioStandardGenerativeField = {
 M.AudioStandardOutputConfiguration = {
     type = "structure",
     members = {
-        extraction = {
-            type = "structure",
-        },
-        generativeField = {
-            type = "structure",
-        },
+        extraction = M.AudioStandardExtraction,
+        generativeField = M.AudioStandardGenerativeField,
     },
 }
 
@@ -1663,7 +1549,7 @@ M.DocumentExtractionGranularity = {
     members = {
         types = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1671,18 +1557,12 @@ M.DocumentExtractionGranularity = {
 M.DocumentStandardExtraction = {
     type = "structure",
     members = {
-        granularity = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        boundingBox = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        granularity = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DocumentExtractionGranularity }),
+        boundingBox = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DocumentBoundingBox }),
     },
 }
 
@@ -1722,7 +1602,7 @@ M.DocumentOutputTextFormat = {
     members = {
         types = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1730,33 +1610,21 @@ M.DocumentOutputTextFormat = {
 M.DocumentOutputFormat = {
     type = "structure",
     members = {
-        textFormat = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        additionalFileFormat = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        textFormat = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DocumentOutputTextFormat }),
+        additionalFileFormat = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DocumentOutputAdditionalFileFormat }),
     },
 }
 
 M.DocumentStandardOutputConfiguration = {
     type = "structure",
     members = {
-        extraction = {
-            type = "structure",
-        },
-        generativeField = {
-            type = "structure",
-        },
-        outputFormat = {
-            type = "structure",
-        },
+        extraction = M.DocumentStandardExtraction,
+        generativeField = M.DocumentStandardGenerativeField,
+        outputFormat = M.DocumentOutputFormat,
     },
 }
 
@@ -1789,7 +1657,7 @@ M.ImageExtractionCategory = {
         },
         types = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1797,18 +1665,12 @@ M.ImageExtractionCategory = {
 M.ImageStandardExtraction = {
     type = "structure",
     members = {
-        category = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        boundingBox = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        category = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ImageExtractionCategory }),
+        boundingBox = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ImageBoundingBox }),
     },
 }
 
@@ -1828,7 +1690,7 @@ M.ImageStandardGenerativeField = {
         },
         types = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1836,12 +1698,8 @@ M.ImageStandardGenerativeField = {
 M.ImageStandardOutputConfiguration = {
     type = "structure",
     members = {
-        extraction = {
-            type = "structure",
-        },
-        generativeField = {
-            type = "structure",
-        },
+        extraction = M.ImageStandardExtraction,
+        generativeField = M.ImageStandardGenerativeField,
     },
 }
 
@@ -1875,7 +1733,7 @@ M.VideoExtractionCategory = {
         },
         types = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1883,18 +1741,12 @@ M.VideoExtractionCategory = {
 M.VideoStandardExtraction = {
     type = "structure",
     members = {
-        category = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        boundingBox = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        category = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VideoExtractionCategory }),
+        boundingBox = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VideoBoundingBox }),
     },
 }
 
@@ -1915,7 +1767,7 @@ M.VideoStandardGenerativeField = {
         },
         types = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1923,30 +1775,18 @@ M.VideoStandardGenerativeField = {
 M.VideoStandardOutputConfiguration = {
     type = "structure",
     members = {
-        extraction = {
-            type = "structure",
-        },
-        generativeField = {
-            type = "structure",
-        },
+        extraction = M.VideoStandardExtraction,
+        generativeField = M.VideoStandardGenerativeField,
     },
 }
 
 M.StandardOutputConfiguration = {
     type = "structure",
     members = {
-        document = {
-            type = "structure",
-        },
-        image = {
-            type = "structure",
-        },
-        video = {
-            type = "structure",
-        },
-        audio = {
-            type = "structure",
-        },
+        document = M.DocumentStandardOutputConfiguration,
+        image = M.ImageStandardOutputConfiguration,
+        video = M.VideoStandardOutputConfiguration,
+        audio = M.AudioStandardOutputConfiguration,
     },
 }
 
@@ -1967,31 +1807,23 @@ M.CreateDataAutomationProjectInput = {
         },
         projectType = {
             type = "string",
-        },
-        standardOutputConfiguration = {
-            type = "structure",
             traits = {
-                required = true,
+                default = "ASYNC",
             },
         },
-        customOutputConfiguration = {
-            type = "structure",
-        },
-        overrideConfiguration = {
-            type = "structure",
-        },
-        dataAutomationLibraryConfiguration = {
-            type = "structure",
-        },
+        standardOutputConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.StandardOutputConfiguration }),
+        customOutputConfiguration = M.CustomOutputConfiguration,
+        overrideConfiguration = M.OverrideConfiguration,
+        dataAutomationLibraryConfiguration = M.DataAutomationLibraryConfiguration,
         clientToken = {
             type = "string",
         },
-        encryptionConfiguration = {
-            type = "structure",
-        },
+        encryptionConfiguration = M.EncryptionConfiguration,
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2100,18 +1932,10 @@ M.DataAutomationProject = {
         projectDescription = {
             type = "string",
         },
-        standardOutputConfiguration = {
-            type = "structure",
-        },
-        customOutputConfiguration = {
-            type = "structure",
-        },
-        overrideConfiguration = {
-            type = "structure",
-        },
-        dataAutomationLibraryConfiguration = {
-            type = "structure",
-        },
+        standardOutputConfiguration = M.StandardOutputConfiguration,
+        customOutputConfiguration = M.CustomOutputConfiguration,
+        overrideConfiguration = M.OverrideConfiguration,
+        dataAutomationLibraryConfiguration = M.DataAutomationLibraryConfiguration,
         status = {
             type = "string",
             traits = {
@@ -2123,8 +1947,8 @@ M.DataAutomationProject = {
         },
         kmsEncryptionContext = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2132,12 +1956,9 @@ M.DataAutomationProject = {
 M.GetDataAutomationProjectOutput = {
     type = "structure",
     members = {
-        project = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        project = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataAutomationProject }),
     },
 }
 
@@ -2181,7 +2002,7 @@ M.ListDataAutomationProjectsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -2189,15 +2010,11 @@ M.ListDataAutomationProjectsInput = {
         projectStageFilter = {
             type = "string",
         },
-        blueprintFilter = {
-            type = "structure",
-        },
+        blueprintFilter = M.BlueprintFilter,
         resourceOwner = {
             type = "string",
         },
-        libraryFilter = {
-            type = "structure",
-        },
+        libraryFilter = M.DataAutomationLibraryFilter,
     },
 }
 
@@ -2233,7 +2050,7 @@ M.ListDataAutomationProjectsOutput = {
     members = {
         projects = {
             type = "list",
-            member_type = "structure",
+            member = M.DataAutomationProjectSummary,
             traits = {
                 required = true,
             },
@@ -2260,24 +2077,13 @@ M.UpdateDataAutomationProjectInput = {
         projectDescription = {
             type = "string",
         },
-        standardOutputConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        customOutputConfiguration = {
-            type = "structure",
-        },
-        overrideConfiguration = {
-            type = "structure",
-        },
-        dataAutomationLibraryConfiguration = {
-            type = "structure",
-        },
-        encryptionConfiguration = {
-            type = "structure",
-        },
+        standardOutputConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.StandardOutputConfiguration }),
+        customOutputConfiguration = M.CustomOutputConfiguration,
+        overrideConfiguration = M.OverrideConfiguration,
+        dataAutomationLibraryConfiguration = M.DataAutomationLibraryConfiguration,
+        encryptionConfiguration = M.EncryptionConfiguration,
     },
 }
 
@@ -2340,7 +2146,7 @@ M.VocabularyEntity = {
         },
         phrases = {
             type = "list",
-            member_type = "structure",
+            member = M.Phrase,
         },
         lastModifiedTime = {
             type = "timestamp",
@@ -2351,18 +2157,14 @@ M.VocabularyEntity = {
 M.EntityDetails = {
     type = "union",
     members = {
-        vocabulary = {
-            type = "structure",
-        },
+        vocabulary = M.VocabularyEntity,
     },
 }
 
 M.GetDataAutomationLibraryEntityOutput = {
     type = "structure",
     members = {
-        entity = {
-            type = "union",
-        },
+        entity = M.EntityDetails,
     },
 }
 
@@ -2384,7 +2186,7 @@ M.ListDataAutomationLibraryEntitiesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -2405,7 +2207,7 @@ M.VocabularyEntitySummary = {
             type = "string",
         },
         numOfPhrases = {
-            type = "number",
+            type = "integer",
         },
         lastModifiedTime = {
             type = "timestamp",
@@ -2416,9 +2218,7 @@ M.VocabularyEntitySummary = {
 M.DataAutomationLibraryEntitySummary = {
     type = "union",
     members = {
-        vocabulary = {
-            type = "structure",
-        },
+        vocabulary = M.VocabularyEntitySummary,
     },
 }
 
@@ -2427,7 +2227,7 @@ M.ListDataAutomationLibraryEntitiesOutput = {
     members = {
         entities = {
             type = "list",
-            member_type = "union",
+            member = M.DataAutomationLibraryEntitySummary,
         },
         nextToken = {
             type = "string",
@@ -2452,7 +2252,7 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2468,7 +2268,7 @@ M.TagResourceInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -2491,7 +2291,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },

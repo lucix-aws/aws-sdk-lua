@@ -234,7 +234,7 @@ M.DataSourceFreeTrial = {
     type = "structure",
     members = {
         FreeTrialDaysRemaining = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "freeTrialDaysRemaining",
             },
@@ -245,66 +245,42 @@ M.DataSourceFreeTrial = {
 M.KubernetesDataSourceFreeTrial = {
     type = "structure",
     members = {
-        AuditLogs = {
-            type = "structure",
-            traits = {
-                json_name = "auditLogs",
-            },
-        },
+        AuditLogs = setmetatable({ traits = {
+            json_name = "auditLogs",
+        } }, { __index = M.DataSourceFreeTrial }),
     },
 }
 
 M.MalwareProtectionDataSourceFreeTrial = {
     type = "structure",
     members = {
-        ScanEc2InstanceWithFindings = {
-            type = "structure",
-            traits = {
-                json_name = "scanEc2InstanceWithFindings",
-            },
-        },
+        ScanEc2InstanceWithFindings = setmetatable({ traits = {
+            json_name = "scanEc2InstanceWithFindings",
+        } }, { __index = M.DataSourceFreeTrial }),
     },
 }
 
 M.DataSourcesFreeTrial = {
     type = "structure",
     members = {
-        CloudTrail = {
-            type = "structure",
-            traits = {
-                json_name = "cloudTrail",
-            },
-        },
-        DnsLogs = {
-            type = "structure",
-            traits = {
-                json_name = "dnsLogs",
-            },
-        },
-        FlowLogs = {
-            type = "structure",
-            traits = {
-                json_name = "flowLogs",
-            },
-        },
-        S3Logs = {
-            type = "structure",
-            traits = {
-                json_name = "s3Logs",
-            },
-        },
-        Kubernetes = {
-            type = "structure",
-            traits = {
-                json_name = "kubernetes",
-            },
-        },
-        MalwareProtection = {
-            type = "structure",
-            traits = {
-                json_name = "malwareProtection",
-            },
-        },
+        CloudTrail = setmetatable({ traits = {
+            json_name = "cloudTrail",
+        } }, { __index = M.DataSourceFreeTrial }),
+        DnsLogs = setmetatable({ traits = {
+            json_name = "dnsLogs",
+        } }, { __index = M.DataSourceFreeTrial }),
+        FlowLogs = setmetatable({ traits = {
+            json_name = "flowLogs",
+        } }, { __index = M.DataSourceFreeTrial }),
+        S3Logs = setmetatable({ traits = {
+            json_name = "s3Logs",
+        } }, { __index = M.DataSourceFreeTrial }),
+        Kubernetes = setmetatable({ traits = {
+            json_name = "kubernetes",
+        } }, { __index = M.KubernetesDataSourceFreeTrial }),
+        MalwareProtection = setmetatable({ traits = {
+            json_name = "malwareProtection",
+        } }, { __index = M.MalwareProtectionDataSourceFreeTrial }),
     },
 }
 
@@ -332,7 +308,7 @@ M.FreeTrialFeatureConfigurationResult = {
             },
         },
         FreeTrialDaysRemaining = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "freeTrialDaysRemaining",
             },
@@ -349,15 +325,12 @@ M.AccountFreeTrialInfo = {
                 json_name = "accountId",
             },
         },
-        DataSources = {
-            type = "structure",
-            traits = {
-                json_name = "dataSources",
-            },
-        },
+        DataSources = setmetatable({ traits = {
+            json_name = "dataSources",
+        } }, { __index = M.DataSourcesFreeTrial }),
         Features = {
             type = "list",
-            member_type = "structure",
+            member = M.FreeTrialFeatureConfigurationResult,
             traits = {
                 json_name = "features",
             },
@@ -398,12 +371,9 @@ M.BlockPublicAccess = {
 M.AccountLevelPermissions = {
     type = "structure",
     members = {
-        BlockPublicAccess = {
-            type = "structure",
-            traits = {
-                json_name = "blockPublicAccess",
-            },
-        },
+        BlockPublicAccess = setmetatable({ traits = {
+            json_name = "blockPublicAccess",
+        } }, { __index = M.BlockPublicAccess }),
     },
 }
 
@@ -423,7 +393,7 @@ M.AccountStatistics = {
             },
         },
         TotalFindings = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "totalFindings",
             },
@@ -495,13 +465,13 @@ M.GeoLocation = {
     type = "structure",
     members = {
         Lat = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "lat",
             },
         },
         Lon = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "lon",
             },
@@ -542,24 +512,15 @@ M.Organization = {
 M.RemoteIpDetails = {
     type = "structure",
     members = {
-        City = {
-            type = "structure",
-            traits = {
-                json_name = "city",
-            },
-        },
-        Country = {
-            type = "structure",
-            traits = {
-                json_name = "country",
-            },
-        },
-        GeoLocation = {
-            type = "structure",
-            traits = {
-                json_name = "geoLocation",
-            },
-        },
+        City = setmetatable({ traits = {
+            json_name = "city",
+        } }, { __index = M.City }),
+        Country = setmetatable({ traits = {
+            json_name = "country",
+        } }, { __index = M.Country }),
+        GeoLocation = setmetatable({ traits = {
+            json_name = "geoLocation",
+        } }, { __index = M.GeoLocation }),
         IpAddressV4 = {
             type = "string",
             traits = {
@@ -572,12 +533,9 @@ M.RemoteIpDetails = {
                 json_name = "ipAddressV6",
             },
         },
-        Organization = {
-            type = "structure",
-            traits = {
-                json_name = "organization",
-            },
-        },
+        Organization = setmetatable({ traits = {
+            json_name = "organization",
+        } }, { __index = M.Organization }),
     },
 }
 
@@ -596,12 +554,9 @@ M.AwsApiCallAction = {
                 json_name = "callerType",
             },
         },
-        DomainDetails = {
-            type = "structure",
-            traits = {
-                json_name = "domainDetails",
-            },
-        },
+        DomainDetails = setmetatable({ traits = {
+            json_name = "domainDetails",
+        } }, { __index = M.DomainDetails }),
         ErrorCode = {
             type = "string",
             traits = {
@@ -614,28 +569,22 @@ M.AwsApiCallAction = {
                 json_name = "userAgent",
             },
         },
-        RemoteIpDetails = {
-            type = "structure",
-            traits = {
-                json_name = "remoteIpDetails",
-            },
-        },
+        RemoteIpDetails = setmetatable({ traits = {
+            json_name = "remoteIpDetails",
+        } }, { __index = M.RemoteIpDetails }),
         ServiceName = {
             type = "string",
             traits = {
                 json_name = "serviceName",
             },
         },
-        RemoteAccountDetails = {
-            type = "structure",
-            traits = {
-                json_name = "remoteAccountDetails",
-            },
-        },
+        RemoteAccountDetails = setmetatable({ traits = {
+            json_name = "remoteAccountDetails",
+        } }, { __index = M.RemoteAccountDetails }),
         AffectedResources = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "affectedResources",
             },
@@ -720,7 +669,7 @@ M.KubernetesApiCallAction = {
         },
         SourceIps = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "sourceIPs",
             },
@@ -731,14 +680,11 @@ M.KubernetesApiCallAction = {
                 json_name = "userAgent",
             },
         },
-        RemoteIpDetails = {
-            type = "structure",
-            traits = {
-                json_name = "remoteIpDetails",
-            },
-        },
+        RemoteIpDetails = setmetatable({ traits = {
+            json_name = "remoteIpDetails",
+        } }, { __index = M.RemoteIpDetails }),
         StatusCode = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "statusCode",
             },
@@ -864,7 +810,7 @@ M.LocalPortDetails = {
     type = "structure",
     members = {
         Port = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "port",
             },
@@ -882,7 +828,7 @@ M.RemotePortDetails = {
     type = "structure",
     members = {
         Port = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "port",
             },
@@ -911,66 +857,45 @@ M.NetworkConnectionAction = {
                 json_name = "connectionDirection",
             },
         },
-        LocalPortDetails = {
-            type = "structure",
-            traits = {
-                json_name = "localPortDetails",
-            },
-        },
+        LocalPortDetails = setmetatable({ traits = {
+            json_name = "localPortDetails",
+        } }, { __index = M.LocalPortDetails }),
         Protocol = {
             type = "string",
             traits = {
                 json_name = "protocol",
             },
         },
-        LocalIpDetails = {
-            type = "structure",
-            traits = {
-                json_name = "localIpDetails",
-            },
-        },
+        LocalIpDetails = setmetatable({ traits = {
+            json_name = "localIpDetails",
+        } }, { __index = M.LocalIpDetails }),
         LocalNetworkInterface = {
             type = "string",
             traits = {
                 json_name = "localNetworkInterface",
             },
         },
-        RemoteIpDetails = {
-            type = "structure",
-            traits = {
-                json_name = "remoteIpDetails",
-            },
-        },
-        RemotePortDetails = {
-            type = "structure",
-            traits = {
-                json_name = "remotePortDetails",
-            },
-        },
+        RemoteIpDetails = setmetatable({ traits = {
+            json_name = "remoteIpDetails",
+        } }, { __index = M.RemoteIpDetails }),
+        RemotePortDetails = setmetatable({ traits = {
+            json_name = "remotePortDetails",
+        } }, { __index = M.RemotePortDetails }),
     },
 }
 
 M.PortProbeDetail = {
     type = "structure",
     members = {
-        LocalPortDetails = {
-            type = "structure",
-            traits = {
-                json_name = "localPortDetails",
-            },
-        },
-        LocalIpDetails = {
-            type = "structure",
-            traits = {
-                json_name = "localIpDetails",
-            },
-        },
-        RemoteIpDetails = {
-            type = "structure",
-            traits = {
-                json_name = "remoteIpDetails",
-            },
-        },
+        LocalPortDetails = setmetatable({ traits = {
+            json_name = "localPortDetails",
+        } }, { __index = M.LocalPortDetails }),
+        LocalIpDetails = setmetatable({ traits = {
+            json_name = "localIpDetails",
+        } }, { __index = M.LocalIpDetails }),
+        RemoteIpDetails = setmetatable({ traits = {
+            json_name = "remoteIpDetails",
+        } }, { __index = M.RemoteIpDetails }),
     },
 }
 
@@ -985,7 +910,7 @@ M.PortProbeAction = {
         },
         PortProbeDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.PortProbeDetail,
             traits = {
                 json_name = "portProbeDetails",
             },
@@ -1009,13 +934,13 @@ M.LoginAttribute = {
             },
         },
         FailedLoginAttempts = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "failedLoginAttempts",
             },
         },
         SuccessfulLoginAttempts = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "successfulLoginAttempts",
             },
@@ -1026,15 +951,12 @@ M.LoginAttribute = {
 M.RdsLoginAttemptAction = {
     type = "structure",
     members = {
-        RemoteIpDetails = {
-            type = "structure",
-            traits = {
-                json_name = "remoteIpDetails",
-            },
-        },
+        RemoteIpDetails = setmetatable({ traits = {
+            json_name = "remoteIpDetails",
+        } }, { __index = M.RemoteIpDetails }),
         LoginAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.LoginAttribute,
         },
     },
 }
@@ -1048,60 +970,33 @@ M.Action = {
                 json_name = "actionType",
             },
         },
-        AwsApiCallAction = {
-            type = "structure",
-            traits = {
-                json_name = "awsApiCallAction",
-            },
-        },
-        DnsRequestAction = {
-            type = "structure",
-            traits = {
-                json_name = "dnsRequestAction",
-            },
-        },
-        NetworkConnectionAction = {
-            type = "structure",
-            traits = {
-                json_name = "networkConnectionAction",
-            },
-        },
-        PortProbeAction = {
-            type = "structure",
-            traits = {
-                json_name = "portProbeAction",
-            },
-        },
-        KubernetesApiCallAction = {
-            type = "structure",
-            traits = {
-                json_name = "kubernetesApiCallAction",
-            },
-        },
-        KubernetesPermissionCheckedDetails = {
-            type = "structure",
-            traits = {
-                json_name = "kubernetesPermissionCheckedDetails",
-            },
-        },
-        KubernetesRoleBindingDetails = {
-            type = "structure",
-            traits = {
-                json_name = "kubernetesRoleBindingDetails",
-            },
-        },
-        KubernetesRoleDetails = {
-            type = "structure",
-            traits = {
-                json_name = "kubernetesRoleDetails",
-            },
-        },
-        RdsLoginAttemptAction = {
-            type = "structure",
-            traits = {
-                json_name = "rdsLoginAttemptAction",
-            },
-        },
+        AwsApiCallAction = setmetatable({ traits = {
+            json_name = "awsApiCallAction",
+        } }, { __index = M.AwsApiCallAction }),
+        DnsRequestAction = setmetatable({ traits = {
+            json_name = "dnsRequestAction",
+        } }, { __index = M.DnsRequestAction }),
+        NetworkConnectionAction = setmetatable({ traits = {
+            json_name = "networkConnectionAction",
+        } }, { __index = M.NetworkConnectionAction }),
+        PortProbeAction = setmetatable({ traits = {
+            json_name = "portProbeAction",
+        } }, { __index = M.PortProbeAction }),
+        KubernetesApiCallAction = setmetatable({ traits = {
+            json_name = "kubernetesApiCallAction",
+        } }, { __index = M.KubernetesApiCallAction }),
+        KubernetesPermissionCheckedDetails = setmetatable({ traits = {
+            json_name = "kubernetesPermissionCheckedDetails",
+        } }, { __index = M.KubernetesPermissionCheckedDetails }),
+        KubernetesRoleBindingDetails = setmetatable({ traits = {
+            json_name = "kubernetesRoleBindingDetails",
+        } }, { __index = M.KubernetesRoleBindingDetails }),
+        KubernetesRoleDetails = setmetatable({ traits = {
+            json_name = "kubernetesRoleDetails",
+        } }, { __index = M.KubernetesRoleDetails }),
+        RdsLoginAttemptAction = setmetatable({ traits = {
+            json_name = "rdsLoginAttemptAction",
+        } }, { __index = M.RdsLoginAttemptAction }),
     },
 }
 
@@ -1196,12 +1091,9 @@ M.User = {
                 json_name = "credentialUid",
             },
         },
-        Account = {
-            type = "structure",
-            traits = {
-                json_name = "account",
-            },
-        },
+        Account = setmetatable({ traits = {
+            json_name = "account",
+        } }, { __index = M.Account }),
     },
 }
 
@@ -1215,24 +1107,15 @@ M.Actor = {
                 required = true,
             },
         },
-        User = {
-            type = "structure",
-            traits = {
-                json_name = "user",
-            },
-        },
-        Session = {
-            type = "structure",
-            traits = {
-                json_name = "session",
-            },
-        },
-        Process = {
-            type = "structure",
-            traits = {
-                json_name = "process",
-            },
-        },
+        User = setmetatable({ traits = {
+            json_name = "user",
+        } }, { __index = M.User }),
+        Session = setmetatable({ traits = {
+            json_name = "session",
+        } }, { __index = M.Session }),
+        Process = setmetatable({ traits = {
+            json_name = "process",
+        } }, { __index = M.ActorProcess }),
     },
 }
 
@@ -1342,7 +1225,7 @@ M.Observations = {
     members = {
         Text = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "text",
             },
@@ -1376,12 +1259,9 @@ M.AnomalyObject = {
                 json_name = "profileSubtype",
             },
         },
-        Observations = {
-            type = "structure",
-            traits = {
-                json_name = "observations",
-            },
-        },
+        Observations = setmetatable({ traits = {
+            json_name = "observations",
+        } }, { __index = M.Observations }),
     },
 }
 
@@ -1390,8 +1270,8 @@ M.AnomalyUnusual = {
     members = {
         Behavior = {
             type = "map",
-            key_type = "string",
-            value_type = "map",
+            key = { type = "string" },
+            value = { type = "map" },
             traits = {
                 json_name = "behavior",
             },
@@ -1404,18 +1284,15 @@ M.Anomaly = {
     members = {
         Profiles = {
             type = "map",
-            key_type = "string",
-            value_type = "map",
+            key = { type = "string" },
+            value = { type = "map" },
             traits = {
                 json_name = "profiles",
             },
         },
-        Unusual = {
-            type = "structure",
-            traits = {
-                json_name = "unusual",
-            },
-        },
+        Unusual = setmetatable({ traits = {
+            json_name = "unusual",
+        } }, { __index = M.AnomalyUnusual }),
     },
 }
 
@@ -1431,7 +1308,7 @@ M.ArchiveFindingsInput = {
         },
         FindingIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "findingIds",
                 required = true,
@@ -1461,7 +1338,7 @@ M.AutonomousSystem = {
             },
         },
         Number = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "number",
                 required = true,
@@ -1475,7 +1352,7 @@ M.AutoscalingAutoScalingGroup = {
     members = {
         Ec2InstanceUids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "ec2InstanceUids",
             },
@@ -1504,24 +1381,15 @@ M.BucketPolicy = {
 M.BucketLevelPermissions = {
     type = "structure",
     members = {
-        AccessControlList = {
-            type = "structure",
-            traits = {
-                json_name = "accessControlList",
-            },
-        },
-        BucketPolicy = {
-            type = "structure",
-            traits = {
-                json_name = "bucketPolicy",
-            },
-        },
-        BlockPublicAccess = {
-            type = "structure",
-            traits = {
-                json_name = "blockPublicAccess",
-            },
-        },
+        AccessControlList = setmetatable({ traits = {
+            json_name = "accessControlList",
+        } }, { __index = M.AccessControlList }),
+        BucketPolicy = setmetatable({ traits = {
+            json_name = "bucketPolicy",
+        } }, { __index = M.BucketPolicy }),
+        BlockPublicAccess = setmetatable({ traits = {
+            json_name = "blockPublicAccess",
+        } }, { __index = M.BlockPublicAccess }),
     },
 }
 
@@ -1530,7 +1398,7 @@ M.CloudformationStack = {
     members = {
         Ec2InstanceUids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "ec2InstanceUids",
             },
@@ -1570,90 +1438,90 @@ M.Condition = {
     members = {
         Eq = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "eq",
             },
         },
         Neq = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "neq",
             },
         },
         Gt = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "gt",
             },
         },
         Gte = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "gte",
             },
         },
         Lt = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "lt",
             },
         },
         Lte = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "lte",
             },
         },
         Equals = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "equals",
             },
         },
         NotEquals = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "notEquals",
             },
         },
         GreaterThan = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "greaterThan",
             },
         },
         GreaterThanOrEqual = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "greaterThanOrEqual",
             },
         },
         LessThan = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "lessThan",
             },
         },
         LessThanOrEqual = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "lessThanOrEqual",
             },
         },
         Matches = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "matches",
             },
         },
         NotMatches = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "notMatches",
             },
@@ -1751,17 +1619,14 @@ M.Container = {
         },
         VolumeMounts = {
             type = "list",
-            member_type = "structure",
+            member = M.VolumeMount,
             traits = {
                 json_name = "volumeMounts",
             },
         },
-        SecurityContext = {
-            type = "structure",
-            traits = {
-                json_name = "securityContext",
-            },
-        },
+        SecurityContext = setmetatable({ traits = {
+            json_name = "securityContext",
+        } }, { __index = M.SecurityContext }),
     },
 }
 
@@ -1788,13 +1653,13 @@ M.ContainerInstanceDetails = {
     type = "structure",
     members = {
         CoveredContainerInstances = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "coveredContainerInstances",
             },
         },
         CompatibleContainerInstances = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "compatibleContainerInstances",
             },
@@ -1840,12 +1705,9 @@ M.CoverageEc2InstanceDetails = {
                 json_name = "clusterArn",
             },
         },
-        AgentDetails = {
-            type = "structure",
-            traits = {
-                json_name = "agentDetails",
-            },
-        },
+        AgentDetails = setmetatable({ traits = {
+            json_name = "agentDetails",
+        } }, { __index = M.AgentDetails }),
         ManagementType = {
             type = "string",
             traits = {
@@ -1860,7 +1722,7 @@ M.FargateDetails = {
     members = {
         Issues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "issues",
             },
@@ -1883,18 +1745,12 @@ M.CoverageEcsClusterDetails = {
                 json_name = "clusterName",
             },
         },
-        FargateDetails = {
-            type = "structure",
-            traits = {
-                json_name = "fargateDetails",
-            },
-        },
-        ContainerInstanceDetails = {
-            type = "structure",
-            traits = {
-                json_name = "containerInstanceDetails",
-            },
-        },
+        FargateDetails = setmetatable({ traits = {
+            json_name = "fargateDetails",
+        } }, { __index = M.FargateDetails }),
+        ContainerInstanceDetails = setmetatable({ traits = {
+            json_name = "containerInstanceDetails",
+        } }, { __index = M.ContainerInstanceDetails }),
     },
 }
 
@@ -1908,23 +1764,20 @@ M.CoverageEksClusterDetails = {
             },
         },
         CoveredNodes = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "coveredNodes",
             },
         },
         CompatibleNodes = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "compatibleNodes",
             },
         },
-        AddonDetails = {
-            type = "structure",
-            traits = {
-                json_name = "addonDetails",
-            },
-        },
+        AddonDetails = setmetatable({ traits = {
+            json_name = "addonDetails",
+        } }, { __index = M.AddonDetails }),
         ManagementType = {
             type = "string",
             traits = {
@@ -1939,14 +1792,14 @@ M.CoverageFilterCondition = {
     members = {
         Equals = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "equals",
             },
         },
         NotEquals = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "notEquals",
             },
@@ -1977,12 +1830,9 @@ M.CoverageFilterCriterion = {
                 json_name = "criterionKey",
             },
         },
-        FilterCondition = {
-            type = "structure",
-            traits = {
-                json_name = "filterCondition",
-            },
-        },
+        FilterCondition = setmetatable({ traits = {
+            json_name = "filterCondition",
+        } }, { __index = M.CoverageFilterCondition }),
     },
 }
 
@@ -1991,7 +1841,7 @@ M.CoverageFilterCriteria = {
     members = {
         FilterCriterion = {
             type = "list",
-            member_type = "structure",
+            member = M.CoverageFilterCriterion,
             traits = {
                 json_name = "filterCriterion",
             },
@@ -2002,24 +1852,15 @@ M.CoverageFilterCriteria = {
 M.CoverageResourceDetails = {
     type = "structure",
     members = {
-        EksClusterDetails = {
-            type = "structure",
-            traits = {
-                json_name = "eksClusterDetails",
-            },
-        },
-        EcsClusterDetails = {
-            type = "structure",
-            traits = {
-                json_name = "ecsClusterDetails",
-            },
-        },
-        Ec2InstanceDetails = {
-            type = "structure",
-            traits = {
-                json_name = "ec2InstanceDetails",
-            },
-        },
+        EksClusterDetails = setmetatable({ traits = {
+            json_name = "eksClusterDetails",
+        } }, { __index = M.CoverageEksClusterDetails }),
+        EcsClusterDetails = setmetatable({ traits = {
+            json_name = "ecsClusterDetails",
+        } }, { __index = M.CoverageEcsClusterDetails }),
+        Ec2InstanceDetails = setmetatable({ traits = {
+            json_name = "ec2InstanceDetails",
+        } }, { __index = M.CoverageEc2InstanceDetails }),
         ResourceType = {
             type = "string",
             traits = {
@@ -2050,12 +1891,9 @@ M.CoverageResource = {
                 json_name = "accountId",
             },
         },
-        ResourceDetails = {
-            type = "structure",
-            traits = {
-                json_name = "resourceDetails",
-            },
-        },
+        ResourceDetails = setmetatable({ traits = {
+            json_name = "resourceDetails",
+        } }, { __index = M.CoverageResourceDetails }),
         CoverageStatus = {
             type = "string",
             traits = {
@@ -2117,16 +1955,16 @@ M.CoverageStatistics = {
     members = {
         CountByResourceType = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "long" },
             traits = {
                 json_name = "countByResourceType",
             },
         },
         CountByCoverageStatus = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "long" },
             traits = {
                 json_name = "countByCoverageStatus",
             },
@@ -2155,13 +1993,10 @@ M.KubernetesAuditLogsConfiguration = {
 M.KubernetesConfiguration = {
     type = "structure",
     members = {
-        AuditLogs = {
-            type = "structure",
-            traits = {
-                json_name = "auditLogs",
-                required = true,
-            },
-        },
+        AuditLogs = setmetatable({ traits = {
+            json_name = "auditLogs",
+            required = true,
+        } }, { __index = M.KubernetesAuditLogsConfiguration }),
     },
 }
 
@@ -2180,12 +2015,9 @@ M.ScanEc2InstanceWithFindings = {
 M.MalwareProtectionConfiguration = {
     type = "structure",
     members = {
-        ScanEc2InstanceWithFindings = {
-            type = "structure",
-            traits = {
-                json_name = "scanEc2InstanceWithFindings",
-            },
-        },
+        ScanEc2InstanceWithFindings = setmetatable({ traits = {
+            json_name = "scanEc2InstanceWithFindings",
+        } }, { __index = M.ScanEc2InstanceWithFindings }),
     },
 }
 
@@ -2205,24 +2037,15 @@ M.S3LogsConfiguration = {
 M.DataSourceConfigurations = {
     type = "structure",
     members = {
-        S3Logs = {
-            type = "structure",
-            traits = {
-                json_name = "s3Logs",
-            },
-        },
-        Kubernetes = {
-            type = "structure",
-            traits = {
-                json_name = "kubernetes",
-            },
-        },
-        MalwareProtection = {
-            type = "structure",
-            traits = {
-                json_name = "malwareProtection",
-            },
-        },
+        S3Logs = setmetatable({ traits = {
+            json_name = "s3Logs",
+        } }, { __index = M.S3LogsConfiguration }),
+        Kubernetes = setmetatable({ traits = {
+            json_name = "kubernetes",
+        } }, { __index = M.KubernetesConfiguration }),
+        MalwareProtection = setmetatable({ traits = {
+            json_name = "malwareProtection",
+        } }, { __index = M.MalwareProtectionConfiguration }),
     },
 }
 
@@ -2282,7 +2105,7 @@ M.DetectorFeatureConfiguration = {
         },
         AdditionalConfiguration = {
             type = "list",
-            member_type = "structure",
+            member = M.DetectorAdditionalConfiguration,
             traits = {
                 json_name = "additionalConfiguration",
             },
@@ -2318,23 +2141,20 @@ M.CreateDetectorInput = {
                 json_name = "findingPublishingFrequency",
             },
         },
-        DataSources = {
-            type = "structure",
-            traits = {
-                json_name = "dataSources",
-            },
-        },
+        DataSources = setmetatable({ traits = {
+            json_name = "dataSources",
+        } }, { __index = M.DataSourceConfigurations }),
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
         },
         Features = {
             type = "list",
-            member_type = "structure",
+            member = M.DetectorFeatureConfiguration,
             traits = {
                 json_name = "features",
             },
@@ -2363,24 +2183,18 @@ M.EbsVolumesResult = {
 M.ScanEc2InstanceWithFindingsResult = {
     type = "structure",
     members = {
-        EbsVolumes = {
-            type = "structure",
-            traits = {
-                json_name = "ebsVolumes",
-            },
-        },
+        EbsVolumes = setmetatable({ traits = {
+            json_name = "ebsVolumes",
+        } }, { __index = M.EbsVolumesResult }),
     },
 }
 
 M.MalwareProtectionConfigurationResult = {
     type = "structure",
     members = {
-        ScanEc2InstanceWithFindings = {
-            type = "structure",
-            traits = {
-                json_name = "scanEc2InstanceWithFindings",
-            },
-        },
+        ScanEc2InstanceWithFindings = setmetatable({ traits = {
+            json_name = "scanEc2InstanceWithFindings",
+        } }, { __index = M.ScanEc2InstanceWithFindingsResult }),
         ServiceRole = {
             type = "string",
             traits = {
@@ -2393,12 +2207,9 @@ M.MalwareProtectionConfigurationResult = {
 M.UnprocessedDataSourcesResult = {
     type = "structure",
     members = {
-        MalwareProtection = {
-            type = "structure",
-            traits = {
-                json_name = "malwareProtection",
-            },
-        },
+        MalwareProtection = setmetatable({ traits = {
+            json_name = "malwareProtection",
+        } }, { __index = M.MalwareProtectionConfigurationResult }),
     },
 }
 
@@ -2411,12 +2222,9 @@ M.CreateDetectorOutput = {
                 json_name = "detectorId",
             },
         },
-        UnprocessedDataSources = {
-            type = "structure",
-            traits = {
-                json_name = "unprocessedDataSources",
-            },
-        },
+        UnprocessedDataSources = setmetatable({ traits = {
+            json_name = "unprocessedDataSources",
+        } }, { __index = M.UnprocessedDataSourcesResult }),
     },
 }
 
@@ -2430,8 +2238,8 @@ M.FindingCriteria = {
     members = {
         Criterion = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.Condition,
             traits = {
                 json_name = "criterion",
             },
@@ -2469,18 +2277,15 @@ M.CreateFilterInput = {
             },
         },
         Rank = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "rank",
             },
         },
-        FindingCriteria = {
-            type = "structure",
-            traits = {
-                json_name = "findingCriteria",
-                required = true,
-            },
-        },
+        FindingCriteria = setmetatable({ traits = {
+            json_name = "findingCriteria",
+            required = true,
+        } }, { __index = M.FindingCriteria }),
         ClientToken = {
             type = "string",
             traits = {
@@ -2489,8 +2294,8 @@ M.CreateFilterInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -2566,8 +2371,8 @@ M.CreateIPSetInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -2614,12 +2419,9 @@ M.MalwareProtectionPlanTaggingAction = {
 M.MalwareProtectionPlanActions = {
     type = "structure",
     members = {
-        Tagging = {
-            type = "structure",
-            traits = {
-                json_name = "tagging",
-            },
-        },
+        Tagging = setmetatable({ traits = {
+            json_name = "tagging",
+        } }, { __index = M.MalwareProtectionPlanTaggingAction }),
     },
 }
 
@@ -2634,7 +2436,7 @@ M.CreateS3BucketResource = {
         },
         ObjectPrefixes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "objectPrefixes",
             },
@@ -2645,12 +2447,9 @@ M.CreateS3BucketResource = {
 M.CreateProtectedResource = {
     type = "structure",
     members = {
-        S3Bucket = {
-            type = "structure",
-            traits = {
-                json_name = "s3Bucket",
-            },
-        },
+        S3Bucket = setmetatable({ traits = {
+            json_name = "s3Bucket",
+        } }, { __index = M.CreateS3BucketResource }),
     },
 }
 
@@ -2670,23 +2469,17 @@ M.CreateMalwareProtectionPlanInput = {
                 required = true,
             },
         },
-        ProtectedResource = {
-            type = "structure",
-            traits = {
-                json_name = "protectedResource",
-                required = true,
-            },
-        },
-        Actions = {
-            type = "structure",
-            traits = {
-                json_name = "actions",
-            },
-        },
+        ProtectedResource = setmetatable({ traits = {
+            json_name = "protectedResource",
+            required = true,
+        } }, { __index = M.CreateProtectedResource }),
+        Actions = setmetatable({ traits = {
+            json_name = "actions",
+        } }, { __index = M.MalwareProtectionPlanActions }),
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -2718,7 +2511,7 @@ M.CreateMembersInput = {
         },
         AccountDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.AccountDetail,
             traits = {
                 json_name = "accountDetails",
                 required = true,
@@ -2752,7 +2545,7 @@ M.CreateMembersOutput = {
     members = {
         UnprocessedAccounts = {
             type = "list",
-            member_type = "structure",
+            member = M.UnprocessedAccount,
             traits = {
                 json_name = "unprocessedAccounts",
                 required = true,
@@ -2800,13 +2593,10 @@ M.CreatePublishingDestinationInput = {
                 required = true,
             },
         },
-        DestinationProperties = {
-            type = "structure",
-            traits = {
-                json_name = "destinationProperties",
-                required = true,
-            },
-        },
+        DestinationProperties = setmetatable({ traits = {
+            json_name = "destinationProperties",
+            required = true,
+        } }, { __index = M.DestinationProperties }),
         ClientToken = {
             type = "string",
             traits = {
@@ -2815,8 +2605,8 @@ M.CreatePublishingDestinationInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -2849,7 +2639,7 @@ M.CreateSampleFindingsInput = {
         },
         FindingTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "findingTypes",
             },
@@ -2922,8 +2712,8 @@ M.CreateThreatEntitySetInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -2999,8 +2789,8 @@ M.CreateThreatIntelSetInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -3088,8 +2878,8 @@ M.CreateTrustedEntitySetInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -3171,13 +2961,10 @@ M.KubernetesAuditLogsConfigurationResult = {
 M.KubernetesConfigurationResult = {
     type = "structure",
     members = {
-        AuditLogs = {
-            type = "structure",
-            traits = {
-                json_name = "auditLogs",
-                required = true,
-            },
-        },
+        AuditLogs = setmetatable({ traits = {
+            json_name = "auditLogs",
+            required = true,
+        } }, { __index = M.KubernetesAuditLogsConfigurationResult }),
     },
 }
 
@@ -3197,46 +2984,28 @@ M.S3LogsConfigurationResult = {
 M.DataSourceConfigurationsResult = {
     type = "structure",
     members = {
-        CloudTrail = {
-            type = "structure",
-            traits = {
-                json_name = "cloudTrail",
-                required = true,
-            },
-        },
-        DNSLogs = {
-            type = "structure",
-            traits = {
-                json_name = "dnsLogs",
-                required = true,
-            },
-        },
-        FlowLogs = {
-            type = "structure",
-            traits = {
-                json_name = "flowLogs",
-                required = true,
-            },
-        },
-        S3Logs = {
-            type = "structure",
-            traits = {
-                json_name = "s3Logs",
-                required = true,
-            },
-        },
-        Kubernetes = {
-            type = "structure",
-            traits = {
-                json_name = "kubernetes",
-            },
-        },
-        MalwareProtection = {
-            type = "structure",
-            traits = {
-                json_name = "malwareProtection",
-            },
-        },
+        CloudTrail = setmetatable({ traits = {
+            json_name = "cloudTrail",
+            required = true,
+        } }, { __index = M.CloudTrailConfigurationResult }),
+        DNSLogs = setmetatable({ traits = {
+            json_name = "dnsLogs",
+            required = true,
+        } }, { __index = M.DNSLogsConfigurationResult }),
+        FlowLogs = setmetatable({ traits = {
+            json_name = "flowLogs",
+            required = true,
+        } }, { __index = M.FlowLogsConfigurationResult }),
+        S3Logs = setmetatable({ traits = {
+            json_name = "s3Logs",
+            required = true,
+        } }, { __index = M.S3LogsConfigurationResult }),
+        Kubernetes = setmetatable({ traits = {
+            json_name = "kubernetes",
+        } }, { __index = M.KubernetesConfigurationResult }),
+        MalwareProtection = setmetatable({ traits = {
+            json_name = "malwareProtection",
+        } }, { __index = M.MalwareProtectionConfigurationResult }),
     },
 }
 
@@ -3256,13 +3025,13 @@ M.DateStatistics = {
             },
         },
         Severity = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "severity",
             },
         },
         TotalFindings = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "totalFindings",
             },
@@ -3275,7 +3044,7 @@ M.DeclineInvitationsInput = {
     members = {
         AccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "accountIds",
                 required = true,
@@ -3289,7 +3058,7 @@ M.DeclineInvitationsOutput = {
     members = {
         UnprocessedAccounts = {
             type = "list",
-            member_type = "structure",
+            member = M.UnprocessedAccount,
             traits = {
                 json_name = "unprocessedAccounts",
                 required = true,
@@ -3362,7 +3131,7 @@ M.DeleteInvitationsInput = {
     members = {
         AccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "accountIds",
                 required = true,
@@ -3376,7 +3145,7 @@ M.DeleteInvitationsOutput = {
     members = {
         UnprocessedAccounts = {
             type = "list",
-            member_type = "structure",
+            member = M.UnprocessedAccount,
             traits = {
                 json_name = "unprocessedAccounts",
                 required = true,
@@ -3457,7 +3226,7 @@ M.DeleteMembersInput = {
         },
         AccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "accountIds",
                 required = true,
@@ -3471,7 +3240,7 @@ M.DeleteMembersOutput = {
     members = {
         UnprocessedAccounts = {
             type = "list",
-            member_type = "structure",
+            member = M.UnprocessedAccount,
             traits = {
                 json_name = "unprocessedAccounts",
                 required = true,
@@ -3586,13 +3355,13 @@ M.FilterCondition = {
             },
         },
         GreaterThan = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "greaterThan",
             },
         },
         LessThan = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "lessThan",
             },
@@ -3609,12 +3378,9 @@ M.FilterCriterion = {
                 json_name = "criterionKey",
             },
         },
-        FilterCondition = {
-            type = "structure",
-            traits = {
-                json_name = "filterCondition",
-            },
-        },
+        FilterCondition = setmetatable({ traits = {
+            json_name = "filterCondition",
+        } }, { __index = M.FilterCondition }),
     },
 }
 
@@ -3623,7 +3389,7 @@ M.FilterCriteria = {
     members = {
         FilterCriterion = {
             type = "list",
-            member_type = "structure",
+            member = M.FilterCriterion,
             traits = {
                 json_name = "filterCriterion",
             },
@@ -3666,23 +3432,17 @@ M.DescribeMalwareScansInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxResults",
             },
         },
-        FilterCriteria = {
-            type = "structure",
-            traits = {
-                json_name = "filterCriteria",
-            },
-        },
-        SortCriteria = {
-            type = "structure",
-            traits = {
-                json_name = "sortCriteria",
-            },
-        },
+        FilterCriteria = setmetatable({ traits = {
+            json_name = "filterCriteria",
+        } }, { __index = M.FilterCriteria }),
+        SortCriteria = setmetatable({ traits = {
+            json_name = "sortCriteria",
+        } }, { __index = M.SortCriteria }),
     },
 }
 
@@ -3708,7 +3468,7 @@ M.VolumeDetail = {
             },
         },
         VolumeSizeInGB = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "volumeSizeInGB",
             },
@@ -3849,24 +3609,15 @@ M.Scan = {
                 json_name = "scanEndTime",
             },
         },
-        TriggerDetails = {
-            type = "structure",
-            traits = {
-                json_name = "triggerDetails",
-            },
-        },
-        ResourceDetails = {
-            type = "structure",
-            traits = {
-                json_name = "resourceDetails",
-            },
-        },
-        ScanResultDetails = {
-            type = "structure",
-            traits = {
-                json_name = "scanResultDetails",
-            },
-        },
+        TriggerDetails = setmetatable({ traits = {
+            json_name = "triggerDetails",
+        } }, { __index = M.TriggerDetails }),
+        ResourceDetails = setmetatable({ traits = {
+            json_name = "resourceDetails",
+        } }, { __index = M.ResourceDetails }),
+        ScanResultDetails = setmetatable({ traits = {
+            json_name = "scanResultDetails",
+        } }, { __index = M.ScanResultDetails }),
         AccountId = {
             type = "string",
             traits = {
@@ -3874,20 +3625,20 @@ M.Scan = {
             },
         },
         TotalBytes = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "totalBytes",
             },
         },
         FileCount = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "fileCount",
             },
         },
         AttachedVolumes = {
             type = "list",
-            member_type = "structure",
+            member = M.VolumeDetail,
             traits = {
                 json_name = "attachedVolumes",
             },
@@ -3906,7 +3657,7 @@ M.DescribeMalwareScansOutput = {
     members = {
         Scans = {
             type = "list",
-            member_type = "structure",
+            member = M.Scan,
             traits = {
                 json_name = "scans",
                 required = true,
@@ -3932,7 +3683,7 @@ M.DescribeOrganizationConfigurationInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3962,13 +3713,10 @@ M.OrganizationKubernetesAuditLogsConfigurationResult = {
 M.OrganizationKubernetesConfigurationResult = {
     type = "structure",
     members = {
-        AuditLogs = {
-            type = "structure",
-            traits = {
-                json_name = "auditLogs",
-                required = true,
-            },
-        },
+        AuditLogs = setmetatable({ traits = {
+            json_name = "auditLogs",
+            required = true,
+        } }, { __index = M.OrganizationKubernetesAuditLogsConfigurationResult }),
     },
 }
 
@@ -3987,24 +3735,18 @@ M.OrganizationEbsVolumesResult = {
 M.OrganizationScanEc2InstanceWithFindingsResult = {
     type = "structure",
     members = {
-        EbsVolumes = {
-            type = "structure",
-            traits = {
-                json_name = "ebsVolumes",
-            },
-        },
+        EbsVolumes = setmetatable({ traits = {
+            json_name = "ebsVolumes",
+        } }, { __index = M.OrganizationEbsVolumesResult }),
     },
 }
 
 M.OrganizationMalwareProtectionConfigurationResult = {
     type = "structure",
     members = {
-        ScanEc2InstanceWithFindings = {
-            type = "structure",
-            traits = {
-                json_name = "scanEc2InstanceWithFindings",
-            },
-        },
+        ScanEc2InstanceWithFindings = setmetatable({ traits = {
+            json_name = "scanEc2InstanceWithFindings",
+        } }, { __index = M.OrganizationScanEc2InstanceWithFindingsResult }),
     },
 }
 
@@ -4024,25 +3766,16 @@ M.OrganizationS3LogsConfigurationResult = {
 M.OrganizationDataSourceConfigurationsResult = {
     type = "structure",
     members = {
-        S3Logs = {
-            type = "structure",
-            traits = {
-                json_name = "s3Logs",
-                required = true,
-            },
-        },
-        Kubernetes = {
-            type = "structure",
-            traits = {
-                json_name = "kubernetes",
-            },
-        },
-        MalwareProtection = {
-            type = "structure",
-            traits = {
-                json_name = "malwareProtection",
-            },
-        },
+        S3Logs = setmetatable({ traits = {
+            json_name = "s3Logs",
+            required = true,
+        } }, { __index = M.OrganizationS3LogsConfigurationResult }),
+        Kubernetes = setmetatable({ traits = {
+            json_name = "kubernetes",
+        } }, { __index = M.OrganizationKubernetesConfigurationResult }),
+        MalwareProtection = setmetatable({ traits = {
+            json_name = "malwareProtection",
+        } }, { __index = M.OrganizationMalwareProtectionConfigurationResult }),
     },
 }
 
@@ -4103,7 +3836,7 @@ M.OrganizationFeatureConfigurationResult = {
         },
         AdditionalConfiguration = {
             type = "list",
-            member_type = "structure",
+            member = M.OrganizationAdditionalConfigurationResult,
             traits = {
                 json_name = "additionalConfiguration",
             },
@@ -4127,15 +3860,12 @@ M.DescribeOrganizationConfigurationOutput = {
                 required = true,
             },
         },
-        DataSources = {
-            type = "structure",
-            traits = {
-                json_name = "dataSources",
-            },
-        },
+        DataSources = setmetatable({ traits = {
+            json_name = "dataSources",
+        } }, { __index = M.OrganizationDataSourceConfigurationsResult }),
         Features = {
             type = "list",
-            member_type = "structure",
+            member = M.OrganizationFeatureConfigurationResult,
             traits = {
                 json_name = "features",
             },
@@ -4207,23 +3937,20 @@ M.DescribePublishingDestinationOutput = {
             },
         },
         PublishingFailureStartTimestamp = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "publishingFailureStartTimestamp",
                 required = true,
             },
         },
-        DestinationProperties = {
-            type = "structure",
-            traits = {
-                json_name = "destinationProperties",
-                required = true,
-            },
-        },
+        DestinationProperties = setmetatable({ traits = {
+            json_name = "destinationProperties",
+            required = true,
+        } }, { __index = M.DestinationProperties }),
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -4294,14 +4021,14 @@ M.NetworkGeoLocation = {
             },
         },
         Latitude = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "lat",
                 required = true,
             },
         },
         Longitude = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "lon",
                 required = true,
@@ -4333,29 +4060,20 @@ M.NetworkEndpoint = {
             },
         },
         Port = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "port",
             },
         },
-        Location = {
-            type = "structure",
-            traits = {
-                json_name = "location",
-            },
-        },
-        AutonomousSystem = {
-            type = "structure",
-            traits = {
-                json_name = "autonomousSystem",
-            },
-        },
-        Connection = {
-            type = "structure",
-            traits = {
-                json_name = "connection",
-            },
-        },
+        Location = setmetatable({ traits = {
+            json_name = "location",
+        } }, { __index = M.NetworkGeoLocation }),
+        AutonomousSystem = setmetatable({ traits = {
+            json_name = "autonomousSystem",
+        } }, { __index = M.AutonomousSystem }),
+        Connection = setmetatable({ traits = {
+            json_name = "connection",
+        } }, { __index = M.NetworkConnection }),
     },
 }
 
@@ -4364,7 +4082,7 @@ M.Ec2Image = {
     members = {
         Ec2InstanceUids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "ec2InstanceUids",
             },
@@ -4429,9 +4147,7 @@ M.Ec2Instance = {
                 json_name = "instanceState",
             },
         },
-        IamInstanceProfile = {
-            type = "structure",
-        },
+        IamInstanceProfile = M.IamInstanceProfile,
         InstanceType = {
             type = "string",
             traits = {
@@ -4452,14 +4168,14 @@ M.Ec2Instance = {
         },
         ProductCodes = {
             type = "list",
-            member_type = "structure",
+            member = M.ProductCode,
             traits = {
                 json_name = "productCodes",
             },
         },
         Ec2NetworkInterfaceUids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "ec2NetworkInterfaceUids",
             },
@@ -4472,7 +4188,7 @@ M.Ec2LaunchTemplate = {
     members = {
         Ec2InstanceUids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "ec2InstanceUids",
             },
@@ -4527,14 +4243,14 @@ M.Ec2NetworkInterface = {
     members = {
         Ipv6Addresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "ipv6Addresses",
             },
         },
         PrivateIpAddresses = {
             type = "list",
-            member_type = "structure",
+            member = M.PrivateIpAddressDetails,
             traits = {
                 json_name = "privateIpAddresses",
             },
@@ -4547,7 +4263,7 @@ M.Ec2NetworkInterface = {
         },
         SecurityGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.SecurityGroup,
             traits = {
                 json_name = "securityGroups",
             },
@@ -4572,7 +4288,7 @@ M.Ec2Vpc = {
     members = {
         Ec2InstanceUids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "ec2InstanceUids",
             },
@@ -4599,7 +4315,7 @@ M.EcsCluster = {
         },
         Ec2InstanceUids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "ec2InstanceUids",
             },
@@ -4635,7 +4351,7 @@ M.EcsTask = {
         },
         ContainerUids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "containerUids",
             },
@@ -4672,7 +4388,7 @@ M.EksCluster = {
         },
         Ec2InstanceUids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "ec2InstanceUids",
             },
@@ -4685,7 +4401,7 @@ M.IamInstanceProfileV2 = {
     members = {
         Ec2InstanceUids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "ec2InstanceUids",
             },
@@ -4709,7 +4425,7 @@ M.KubernetesWorkload = {
     members = {
         ContainerUids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "containerUids",
             },
@@ -4819,21 +4535,15 @@ M.S3Bucket = {
                 json_name = "publicWriteAccess",
             },
         },
-        AccountPublicAccess = {
-            type = "structure",
-            traits = {
-                json_name = "accountPublicAccess",
-            },
-        },
-        BucketPublicAccess = {
-            type = "structure",
-            traits = {
-                json_name = "bucketPublicAccess",
-            },
-        },
+        AccountPublicAccess = setmetatable({ traits = {
+            json_name = "accountPublicAccess",
+        } }, { __index = M.PublicAccessConfiguration }),
+        BucketPublicAccess = setmetatable({ traits = {
+            json_name = "bucketPublicAccess",
+        } }, { __index = M.PublicAccessConfiguration }),
         S3ObjectUids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "s3ObjectUids",
             },
@@ -4868,102 +4578,54 @@ M.S3Object = {
 M.ResourceData = {
     type = "structure",
     members = {
-        S3Bucket = {
-            type = "structure",
-            traits = {
-                json_name = "s3Bucket",
-            },
-        },
-        Ec2Instance = {
-            type = "structure",
-            traits = {
-                json_name = "ec2Instance",
-            },
-        },
-        AccessKey = {
-            type = "structure",
-            traits = {
-                json_name = "accessKey",
-            },
-        },
-        Ec2NetworkInterface = {
-            type = "structure",
-            traits = {
-                json_name = "ec2NetworkInterface",
-            },
-        },
-        S3Object = {
-            type = "structure",
-            traits = {
-                json_name = "s3Object",
-            },
-        },
-        EksCluster = {
-            type = "structure",
-            traits = {
-                json_name = "eksCluster",
-            },
-        },
-        KubernetesWorkload = {
-            type = "structure",
-            traits = {
-                json_name = "kubernetesWorkload",
-            },
-        },
-        Container = {
-            type = "structure",
-            traits = {
-                json_name = "container",
-            },
-        },
-        EcsCluster = {
-            type = "structure",
-            traits = {
-                json_name = "ecsCluster",
-            },
-        },
-        EcsTask = {
-            type = "structure",
-            traits = {
-                json_name = "ecsTask",
-            },
-        },
-        IamInstanceProfile = {
-            type = "structure",
-            traits = {
-                json_name = "iamInstanceProfile",
-            },
-        },
-        AutoscalingAutoScalingGroup = {
-            type = "structure",
-            traits = {
-                json_name = "autoscalingAutoScalingGroup",
-            },
-        },
-        Ec2LaunchTemplate = {
-            type = "structure",
-            traits = {
-                json_name = "ec2LaunchTemplate",
-            },
-        },
-        Ec2Vpc = {
-            type = "structure",
-            traits = {
-                json_name = "ec2Vpc",
-            },
-        },
-        Ec2Image = {
-            type = "structure",
-            traits = {
-                json_name = "ec2Image",
-            },
-        },
-        CloudformationStack = {
-            type = "structure",
-            traits = {
-                json_name = "cloudformationStack",
-            },
-        },
+        S3Bucket = setmetatable({ traits = {
+            json_name = "s3Bucket",
+        } }, { __index = M.S3Bucket }),
+        Ec2Instance = setmetatable({ traits = {
+            json_name = "ec2Instance",
+        } }, { __index = M.Ec2Instance }),
+        AccessKey = setmetatable({ traits = {
+            json_name = "accessKey",
+        } }, { __index = M.AccessKey }),
+        Ec2NetworkInterface = setmetatable({ traits = {
+            json_name = "ec2NetworkInterface",
+        } }, { __index = M.Ec2NetworkInterface }),
+        S3Object = setmetatable({ traits = {
+            json_name = "s3Object",
+        } }, { __index = M.S3Object }),
+        EksCluster = setmetatable({ traits = {
+            json_name = "eksCluster",
+        } }, { __index = M.EksCluster }),
+        KubernetesWorkload = setmetatable({ traits = {
+            json_name = "kubernetesWorkload",
+        } }, { __index = M.KubernetesWorkload }),
+        Container = setmetatable({ traits = {
+            json_name = "container",
+        } }, { __index = M.ContainerFindingResource }),
+        EcsCluster = setmetatable({ traits = {
+            json_name = "ecsCluster",
+        } }, { __index = M.EcsCluster }),
+        EcsTask = setmetatable({ traits = {
+            json_name = "ecsTask",
+        } }, { __index = M.EcsTask }),
+        IamInstanceProfile = setmetatable({ traits = {
+            json_name = "iamInstanceProfile",
+        } }, { __index = M.IamInstanceProfileV2 }),
+        AutoscalingAutoScalingGroup = setmetatable({ traits = {
+            json_name = "autoscalingAutoScalingGroup",
+        } }, { __index = M.AutoscalingAutoScalingGroup }),
+        Ec2LaunchTemplate = setmetatable({ traits = {
+            json_name = "ec2LaunchTemplate",
+        } }, { __index = M.Ec2LaunchTemplate }),
+        Ec2Vpc = setmetatable({ traits = {
+            json_name = "ec2Vpc",
+        } }, { __index = M.Ec2Vpc }),
+        Ec2Image = setmetatable({ traits = {
+            json_name = "ec2Image",
+        } }, { __index = M.Ec2Image }),
+        CloudformationStack = setmetatable({ traits = {
+            json_name = "cloudformationStack",
+        } }, { __index = M.CloudformationStack }),
     },
 }
 
@@ -5053,17 +4715,14 @@ M.ResourceV2 = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 json_name = "tags",
             },
         },
-        Data = {
-            type = "structure",
-            traits = {
-                json_name = "data",
-            },
-        },
+        Data = setmetatable({ traits = {
+            json_name = "data",
+        } }, { __index = M.ResourceData }),
     },
 }
 
@@ -5099,7 +4758,7 @@ M.Indicator = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "values",
             },
@@ -5182,13 +4841,13 @@ M.Signal = {
             },
         },
         Severity = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "severity",
             },
         },
         Count = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "count",
                 required = true,
@@ -5196,28 +4855,28 @@ M.Signal = {
         },
         ResourceUids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "resourceUids",
             },
         },
         ActorIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "actorIds",
             },
         },
         EndpointIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "endpointIds",
             },
         },
         SignalIndicators = {
             type = "list",
-            member_type = "structure",
+            member = M.Indicator,
             traits = {
                 json_name = "signalIndicators",
             },
@@ -5244,28 +4903,28 @@ M.Sequence = {
         },
         Actors = {
             type = "list",
-            member_type = "structure",
+            member = M.Actor,
             traits = {
                 json_name = "actors",
             },
         },
         Resources = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceV2,
             traits = {
                 json_name = "resources",
             },
         },
         Endpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkEndpoint,
             traits = {
                 json_name = "endpoints",
             },
         },
         Signals = {
             type = "list",
-            member_type = "structure",
+            member = M.Signal,
             traits = {
                 json_name = "signals",
                 required = true,
@@ -5273,14 +4932,14 @@ M.Sequence = {
         },
         SequenceIndicators = {
             type = "list",
-            member_type = "structure",
+            member = M.Indicator,
             traits = {
                 json_name = "sequenceIndicators",
             },
         },
         AdditionalSequenceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "additionalSequenceTypes",
             },
@@ -5291,18 +4950,12 @@ M.Sequence = {
 M.Detection = {
     type = "structure",
     members = {
-        Anomaly = {
-            type = "structure",
-            traits = {
-                json_name = "anomaly",
-            },
-        },
-        Sequence = {
-            type = "structure",
-            traits = {
-                json_name = "sequence",
-            },
-        },
+        Anomaly = setmetatable({ traits = {
+            json_name = "anomaly",
+        } }, { __index = M.Anomaly }),
+        Sequence = setmetatable({ traits = {
+            json_name = "sequence",
+        } }, { __index = M.Sequence }),
     },
 }
 
@@ -5371,7 +5024,7 @@ M.DetectorFeatureConfigurationResult = {
         },
         AdditionalConfiguration = {
             type = "list",
-            member_type = "structure",
+            member = M.DetectorAdditionalConfigurationResult,
             traits = {
                 json_name = "additionalConfiguration",
             },
@@ -5447,7 +5100,7 @@ M.DisassociateMembersInput = {
         },
         AccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "accountIds",
                 required = true,
@@ -5461,7 +5114,7 @@ M.DisassociateMembersOutput = {
     members = {
         UnprocessedAccounts = {
             type = "list",
-            member_type = "structure",
+            member = M.UnprocessedAccount,
             traits = {
                 json_name = "unprocessedAccounts",
                 required = true,
@@ -5504,14 +5157,14 @@ M.EbsVolumeDetails = {
     members = {
         ScannedVolumeDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.VolumeDetail,
             traits = {
                 json_name = "scannedVolumeDetails",
             },
         },
         SkippedVolumeDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.VolumeDetail,
             traits = {
                 json_name = "skippedVolumeDetails",
             },
@@ -5535,7 +5188,7 @@ M.HighestSeverityThreatDetails = {
             },
         },
         Count = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "count",
             },
@@ -5547,19 +5200,19 @@ M.ScannedItemCount = {
     type = "structure",
     members = {
         TotalGb = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "totalGb",
             },
         },
         Files = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "files",
             },
         },
         Volumes = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "volumes",
             },
@@ -5613,14 +5266,14 @@ M.ScanThreatName = {
             },
         },
         ItemCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "itemCount",
             },
         },
         FilePaths = {
             type = "list",
-            member_type = "structure",
+            member = M.ScanFilePath,
             traits = {
                 json_name = "filePaths",
             },
@@ -5632,13 +5285,13 @@ M.ThreatDetectedByName = {
     type = "structure",
     members = {
         ItemCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "itemCount",
             },
         },
         UniqueThreatNameCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "uniqueThreatNameCount",
             },
@@ -5651,7 +5304,7 @@ M.ThreatDetectedByName = {
         },
         ThreatNames = {
             type = "list",
-            member_type = "structure",
+            member = M.ScanThreatName,
             traits = {
                 json_name = "threatNames",
             },
@@ -5663,7 +5316,7 @@ M.ThreatsDetectedItemCount = {
     type = "structure",
     members = {
         Files = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "files",
             },
@@ -5674,30 +5327,18 @@ M.ThreatsDetectedItemCount = {
 M.ScanDetections = {
     type = "structure",
     members = {
-        ScannedItemCount = {
-            type = "structure",
-            traits = {
-                json_name = "scannedItemCount",
-            },
-        },
-        ThreatsDetectedItemCount = {
-            type = "structure",
-            traits = {
-                json_name = "threatsDetectedItemCount",
-            },
-        },
-        HighestSeverityThreatDetails = {
-            type = "structure",
-            traits = {
-                json_name = "highestSeverityThreatDetails",
-            },
-        },
-        ThreatDetectedByName = {
-            type = "structure",
-            traits = {
-                json_name = "threatDetectedByName",
-            },
-        },
+        ScannedItemCount = setmetatable({ traits = {
+            json_name = "scannedItemCount",
+        } }, { __index = M.ScannedItemCount }),
+        ThreatsDetectedItemCount = setmetatable({ traits = {
+            json_name = "threatsDetectedItemCount",
+        } }, { __index = M.ThreatsDetectedItemCount }),
+        HighestSeverityThreatDetails = setmetatable({ traits = {
+            json_name = "highestSeverityThreatDetails",
+        } }, { __index = M.HighestSeverityThreatDetails }),
+        ThreatDetectedByName = setmetatable({ traits = {
+            json_name = "threatDetectedByName",
+        } }, { __index = M.ThreatDetectedByName }),
     },
 }
 
@@ -5730,17 +5371,14 @@ M.EbsVolumeScanDetails = {
         },
         Sources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "sources",
             },
         },
-        ScanDetections = {
-            type = "structure",
-            traits = {
-                json_name = "scanDetections",
-            },
-        },
+        ScanDetections = setmetatable({ traits = {
+            json_name = "scanDetections",
+        } }, { __index = M.ScanDetections }),
         ScanType = {
             type = "string",
             traits = {
@@ -5783,12 +5421,9 @@ M.Volume = {
                 json_name = "name",
             },
         },
-        HostPath = {
-            type = "structure",
-            traits = {
-                json_name = "hostPath",
-            },
-        },
+        HostPath = setmetatable({ traits = {
+            json_name = "hostPath",
+        } }, { __index = M.HostPath }),
     },
 }
 
@@ -5833,21 +5468,21 @@ M.EcsTaskDetails = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 json_name = "tags",
             },
         },
         Volumes = {
             type = "list",
-            member_type = "structure",
+            member = M.Volume,
             traits = {
                 json_name = "volumes",
             },
         },
         Containers = {
             type = "list",
-            member_type = "structure",
+            member = M.Container,
             traits = {
                 json_name = "containers",
             },
@@ -5889,36 +5524,33 @@ M.EcsClusterDetails = {
             },
         },
         ActiveServicesCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "activeServicesCount",
             },
         },
         RegisteredContainerInstancesCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "registeredContainerInstancesCount",
             },
         },
         RunningTasksCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "runningTasksCount",
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 json_name = "tags",
             },
         },
-        TaskDetails = {
-            type = "structure",
-            traits = {
-                json_name = "taskDetails",
-            },
-        },
+        TaskDetails = setmetatable({ traits = {
+            json_name = "taskDetails",
+        } }, { __index = M.EcsTaskDetails }),
     },
 }
 
@@ -5951,7 +5583,7 @@ M.EksClusterDetails = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 json_name = "tags",
             },
@@ -5993,7 +5625,7 @@ M.ThreatIntelligenceDetail = {
         },
         ThreatNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "threatNames",
             },
@@ -6012,7 +5644,7 @@ M.Evidence = {
     members = {
         ThreatIntelligenceDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.ThreatIntelligenceDetail,
             traits = {
                 json_name = "threatIntelligenceDetails",
             },
@@ -6030,7 +5662,7 @@ M.NetworkInterface = {
     members = {
         Ipv6Addresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "ipv6Addresses",
             },
@@ -6055,7 +5687,7 @@ M.NetworkInterface = {
         },
         PrivateIpAddresses = {
             type = "list",
-            member_type = "structure",
+            member = M.PrivateIpAddressDetails,
             traits = {
                 json_name = "privateIpAddresses",
             },
@@ -6074,7 +5706,7 @@ M.NetworkInterface = {
         },
         SecurityGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.SecurityGroup,
             traits = {
                 json_name = "securityGroups",
             },
@@ -6103,12 +5735,9 @@ M.InstanceDetails = {
                 json_name = "availabilityZone",
             },
         },
-        IamInstanceProfile = {
-            type = "structure",
-            traits = {
-                json_name = "iamInstanceProfile",
-            },
-        },
+        IamInstanceProfile = setmetatable({ traits = {
+            json_name = "iamInstanceProfile",
+        } }, { __index = M.IamInstanceProfile }),
         ImageDescription = {
             type = "string",
             traits = {
@@ -6153,7 +5782,7 @@ M.InstanceDetails = {
         },
         NetworkInterfaces = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkInterface,
             traits = {
                 json_name = "networkInterfaces",
             },
@@ -6166,14 +5795,14 @@ M.InstanceDetails = {
         },
         ProductCodes = {
             type = "list",
-            member_type = "structure",
+            member = M.ProductCode,
             traits = {
                 json_name = "productCodes",
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 json_name = "tags",
             },
@@ -6192,7 +5821,7 @@ M.ImpersonatedUser = {
         },
         Groups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "groups",
             },
@@ -6217,24 +5846,21 @@ M.KubernetesUserDetails = {
         },
         Groups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "groups",
             },
         },
         SessionName = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "sessionName",
             },
         },
-        ImpersonatedUser = {
-            type = "structure",
-            traits = {
-                json_name = "impersonatedUser",
-            },
-        },
+        ImpersonatedUser = setmetatable({ traits = {
+            json_name = "impersonatedUser",
+        } }, { __index = M.ImpersonatedUser }),
     },
 }
 
@@ -6279,14 +5905,14 @@ M.KubernetesWorkloadDetails = {
         },
         Containers = {
             type = "list",
-            member_type = "structure",
+            member = M.Container,
             traits = {
                 json_name = "containers",
             },
         },
         Volumes = {
             type = "list",
-            member_type = "structure",
+            member = M.Volume,
             traits = {
                 json_name = "volumes",
             },
@@ -6309,18 +5935,12 @@ M.KubernetesWorkloadDetails = {
 M.KubernetesDetails = {
     type = "structure",
     members = {
-        KubernetesUserDetails = {
-            type = "structure",
-            traits = {
-                json_name = "kubernetesUserDetails",
-            },
-        },
-        KubernetesWorkloadDetails = {
-            type = "structure",
-            traits = {
-                json_name = "kubernetesWorkloadDetails",
-            },
-        },
+        KubernetesUserDetails = setmetatable({ traits = {
+            json_name = "kubernetesUserDetails",
+        } }, { __index = M.KubernetesUserDetails }),
+        KubernetesWorkloadDetails = setmetatable({ traits = {
+            json_name = "kubernetesWorkloadDetails",
+        } }, { __index = M.KubernetesWorkloadDetails }),
     },
 }
 
@@ -6329,7 +5949,7 @@ M.VpcConfig = {
     members = {
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "subnetIds",
             },
@@ -6342,7 +5962,7 @@ M.VpcConfig = {
         },
         SecurityGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.SecurityGroup,
             traits = {
                 json_name = "securityGroups",
             },
@@ -6395,15 +6015,12 @@ M.LambdaDetails = {
                 json_name = "role",
             },
         },
-        VpcConfig = {
-            type = "structure",
-            traits = {
-                json_name = "vpcConfig",
-            },
-        },
+        VpcConfig = setmetatable({ traits = {
+            json_name = "vpcConfig",
+        } }, { __index = M.VpcConfig }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 json_name = "tags",
             },
@@ -6452,7 +6069,7 @@ M.RdsDbInstanceDetails = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 json_name = "tags",
             },
@@ -6537,7 +6154,7 @@ M.RdsLimitlessDbDetails = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 json_name = "tags",
             },
@@ -6578,30 +6195,21 @@ M.Owner = {
 M.PermissionConfiguration = {
     type = "structure",
     members = {
-        BucketLevelPermissions = {
-            type = "structure",
-            traits = {
-                json_name = "bucketLevelPermissions",
-            },
-        },
-        AccountLevelPermissions = {
-            type = "structure",
-            traits = {
-                json_name = "accountLevelPermissions",
-            },
-        },
+        BucketLevelPermissions = setmetatable({ traits = {
+            json_name = "bucketLevelPermissions",
+        } }, { __index = M.BucketLevelPermissions }),
+        AccountLevelPermissions = setmetatable({ traits = {
+            json_name = "accountLevelPermissions",
+        } }, { __index = M.AccountLevelPermissions }),
     },
 }
 
 M.PublicAccess = {
     type = "structure",
     members = {
-        PermissionConfiguration = {
-            type = "structure",
-            traits = {
-                json_name = "permissionConfiguration",
-            },
-        },
+        PermissionConfiguration = setmetatable({ traits = {
+            json_name = "permissionConfiguration",
+        } }, { __index = M.PermissionConfiguration }),
         EffectivePermission = {
             type = "string",
             traits = {
@@ -6674,34 +6282,25 @@ M.S3BucketDetail = {
                 json_name = "createdAt",
             },
         },
-        Owner = {
-            type = "structure",
-            traits = {
-                json_name = "owner",
-            },
-        },
+        Owner = setmetatable({ traits = {
+            json_name = "owner",
+        } }, { __index = M.Owner }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 json_name = "tags",
             },
         },
-        DefaultServerSideEncryption = {
-            type = "structure",
-            traits = {
-                json_name = "defaultServerSideEncryption",
-            },
-        },
-        PublicAccess = {
-            type = "structure",
-            traits = {
-                json_name = "publicAccess",
-            },
-        },
+        DefaultServerSideEncryption = setmetatable({ traits = {
+            json_name = "defaultServerSideEncryption",
+        } }, { __index = M.DefaultServerSideEncryption }),
+        PublicAccess = setmetatable({ traits = {
+            json_name = "publicAccess",
+        } }, { __index = M.PublicAccess }),
         S3ObjectDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.S3ObjectDetail,
             traits = {
                 json_name = "s3ObjectDetails",
             },
@@ -6712,103 +6311,61 @@ M.S3BucketDetail = {
 M.Resource = {
     type = "structure",
     members = {
-        AccessKeyDetails = {
-            type = "structure",
-            traits = {
-                json_name = "accessKeyDetails",
-            },
-        },
+        AccessKeyDetails = setmetatable({ traits = {
+            json_name = "accessKeyDetails",
+        } }, { __index = M.AccessKeyDetails }),
         S3BucketDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.S3BucketDetail,
             traits = {
                 json_name = "s3BucketDetails",
             },
         },
-        InstanceDetails = {
-            type = "structure",
-            traits = {
-                json_name = "instanceDetails",
-            },
-        },
-        EksClusterDetails = {
-            type = "structure",
-            traits = {
-                json_name = "eksClusterDetails",
-            },
-        },
-        KubernetesDetails = {
-            type = "structure",
-            traits = {
-                json_name = "kubernetesDetails",
-            },
-        },
+        InstanceDetails = setmetatable({ traits = {
+            json_name = "instanceDetails",
+        } }, { __index = M.InstanceDetails }),
+        EksClusterDetails = setmetatable({ traits = {
+            json_name = "eksClusterDetails",
+        } }, { __index = M.EksClusterDetails }),
+        KubernetesDetails = setmetatable({ traits = {
+            json_name = "kubernetesDetails",
+        } }, { __index = M.KubernetesDetails }),
         ResourceType = {
             type = "string",
             traits = {
                 json_name = "resourceType",
             },
         },
-        EbsVolumeDetails = {
-            type = "structure",
-            traits = {
-                json_name = "ebsVolumeDetails",
-            },
-        },
-        EcsClusterDetails = {
-            type = "structure",
-            traits = {
-                json_name = "ecsClusterDetails",
-            },
-        },
-        ContainerDetails = {
-            type = "structure",
-            traits = {
-                json_name = "containerDetails",
-            },
-        },
-        LambdaDetails = {
-            type = "structure",
-            traits = {
-                json_name = "lambdaDetails",
-            },
-        },
-        RdsDbInstanceDetails = {
-            type = "structure",
-            traits = {
-                json_name = "rdsDbInstanceDetails",
-            },
-        },
-        RdsLimitlessDbDetails = {
-            type = "structure",
-            traits = {
-                json_name = "rdsLimitlessDbDetails",
-            },
-        },
-        RdsDbUserDetails = {
-            type = "structure",
-            traits = {
-                json_name = "rdsDbUserDetails",
-            },
-        },
-        EbsSnapshotDetails = {
-            type = "structure",
-            traits = {
-                json_name = "ebsSnapshotDetails",
-            },
-        },
-        Ec2ImageDetails = {
-            type = "structure",
-            traits = {
-                json_name = "ec2ImageDetails",
-            },
-        },
-        RecoveryPointDetails = {
-            type = "structure",
-            traits = {
-                json_name = "recoveryPointDetails",
-            },
-        },
+        EbsVolumeDetails = setmetatable({ traits = {
+            json_name = "ebsVolumeDetails",
+        } }, { __index = M.EbsVolumeDetails }),
+        EcsClusterDetails = setmetatable({ traits = {
+            json_name = "ecsClusterDetails",
+        } }, { __index = M.EcsClusterDetails }),
+        ContainerDetails = setmetatable({ traits = {
+            json_name = "containerDetails",
+        } }, { __index = M.Container }),
+        LambdaDetails = setmetatable({ traits = {
+            json_name = "lambdaDetails",
+        } }, { __index = M.LambdaDetails }),
+        RdsDbInstanceDetails = setmetatable({ traits = {
+            json_name = "rdsDbInstanceDetails",
+        } }, { __index = M.RdsDbInstanceDetails }),
+        RdsLimitlessDbDetails = setmetatable({ traits = {
+            json_name = "rdsLimitlessDbDetails",
+        } }, { __index = M.RdsLimitlessDbDetails }),
+        RdsDbUserDetails = setmetatable({ traits = {
+            json_name = "rdsDbUserDetails",
+        } }, { __index = M.RdsDbUserDetails }),
+        EbsSnapshotDetails = setmetatable({ traits = {
+            json_name = "ebsSnapshotDetails",
+        } }, { __index = M.EbsSnapshotDetails }),
+        Ec2ImageDetails = setmetatable({ traits = {
+            json_name = "ec2ImageDetails",
+        } }, { __index = M.Ec2ImageDetails }),
+        RecoveryPointDetails = setmetatable({ traits = {
+            json_name = "recoveryPointDetails",
+        } }, { __index = M.RecoveryPointDetails }),
     },
 }
 
@@ -6857,12 +6414,9 @@ M.MalwareProtectionFindingsScanConfiguration = {
                 json_name = "triggerType",
             },
         },
-        IncrementalScanDetails = {
-            type = "structure",
-            traits = {
-                json_name = "incrementalScanDetails",
-            },
-        },
+        IncrementalScanDetails = setmetatable({ traits = {
+            json_name = "incrementalScanDetails",
+        } }, { __index = M.IncrementalScanDetails }),
     },
 }
 
@@ -6893,12 +6447,9 @@ M.ItemDetails = {
                 json_name = "hash",
             },
         },
-        AdditionalInfo = {
-            type = "structure",
-            traits = {
-                json_name = "additionalInfo",
-            },
-        },
+        AdditionalInfo = setmetatable({ traits = {
+            json_name = "additionalInfo",
+        } }, { __index = M.AdditionalInfo }),
     },
 }
 
@@ -6937,13 +6488,13 @@ M.Threat = {
         },
         ItemPaths = {
             type = "list",
-            member_type = "structure",
+            member = M.ItemPath,
             traits = {
                 json_name = "itemPaths",
             },
         },
         Count = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "count",
             },
@@ -6956,7 +6507,7 @@ M.Threat = {
         },
         ItemDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.ItemDetails,
             traits = {
                 json_name = "itemDetails",
             },
@@ -6969,7 +6520,7 @@ M.MalwareScanDetails = {
     members = {
         Threats = {
             type = "list",
-            member_type = "structure",
+            member = M.Threat,
             traits = {
                 json_name = "threats",
             },
@@ -6992,14 +6543,11 @@ M.MalwareScanDetails = {
                 json_name = "scanCategory",
             },
         },
-        ScanConfiguration = {
-            type = "structure",
-            traits = {
-                json_name = "scanConfiguration",
-            },
-        },
+        ScanConfiguration = setmetatable({ traits = {
+            json_name = "scanConfiguration",
+        } }, { __index = M.MalwareProtectionFindingsScanConfiguration }),
         UniqueThreatCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "uniqueThreatCount",
             },
@@ -7017,13 +6565,13 @@ M.LineageObject = {
             },
         },
         NamespacePid = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "namespacePid",
             },
         },
         UserId = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "userId",
             },
@@ -7035,7 +6583,7 @@ M.LineageObject = {
             },
         },
         Pid = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "pid",
             },
@@ -7053,7 +6601,7 @@ M.LineageObject = {
             },
         },
         Euid = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "euid",
             },
@@ -7089,7 +6637,7 @@ M.ProcessDetails = {
             },
         },
         NamespacePid = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "namespacePid",
             },
@@ -7101,7 +6649,7 @@ M.ProcessDetails = {
             },
         },
         Pid = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "pid",
             },
@@ -7131,20 +6679,20 @@ M.ProcessDetails = {
             },
         },
         UserId = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "userId",
             },
         },
         Euid = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "euid",
             },
         },
         Lineage = {
             type = "list",
-            member_type = "structure",
+            member = M.LineageObject,
             traits = {
                 json_name = "lineage",
             },
@@ -7155,12 +6703,9 @@ M.ProcessDetails = {
 M.RuntimeContext = {
     type = "structure",
     members = {
-        ModifyingProcess = {
-            type = "structure",
-            traits = {
-                json_name = "modifyingProcess",
-            },
-        },
+        ModifyingProcess = setmetatable({ traits = {
+            json_name = "modifyingProcess",
+        } }, { __index = M.ProcessDetails }),
         ModifiedAt = {
             type = "timestamp",
             traits = {
@@ -7223,7 +6768,7 @@ M.RuntimeContext = {
         },
         Flags = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "flags",
             },
@@ -7252,12 +6797,9 @@ M.RuntimeContext = {
                 json_name = "shellHistoryFilePath",
             },
         },
-        TargetProcess = {
-            type = "structure",
-            traits = {
-                json_name = "targetProcess",
-            },
-        },
+        TargetProcess = setmetatable({ traits = {
+            json_name = "targetProcess",
+        } }, { __index = M.ProcessDetails }),
         AddressFamily = {
             type = "string",
             traits = {
@@ -7265,14 +6807,14 @@ M.RuntimeContext = {
             },
         },
         IanaProtocolNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "ianaProtocolNumber",
             },
         },
         MemoryRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "memoryRegions",
             },
@@ -7313,36 +6855,24 @@ M.RuntimeContext = {
 M.RuntimeDetails = {
     type = "structure",
     members = {
-        Process = {
-            type = "structure",
-            traits = {
-                json_name = "process",
-            },
-        },
-        Context = {
-            type = "structure",
-            traits = {
-                json_name = "context",
-            },
-        },
+        Process = setmetatable({ traits = {
+            json_name = "process",
+        } }, { __index = M.ProcessDetails }),
+        Context = setmetatable({ traits = {
+            json_name = "context",
+        } }, { __index = M.RuntimeContext }),
     },
 }
 
 M.Service = {
     type = "structure",
     members = {
-        Action = {
-            type = "structure",
-            traits = {
-                json_name = "action",
-            },
-        },
-        Evidence = {
-            type = "structure",
-            traits = {
-                json_name = "evidence",
-            },
-        },
+        Action = setmetatable({ traits = {
+            json_name = "action",
+        } }, { __index = M.Action }),
+        Evidence = setmetatable({ traits = {
+            json_name = "evidence",
+        } }, { __index = M.Evidence }),
         Archived = {
             type = "boolean",
             traits = {
@@ -7350,7 +6880,7 @@ M.Service = {
             },
         },
         Count = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "count",
             },
@@ -7391,42 +6921,27 @@ M.Service = {
                 json_name = "userFeedback",
             },
         },
-        AdditionalInfo = {
-            type = "structure",
-            traits = {
-                json_name = "additionalInfo",
-            },
-        },
+        AdditionalInfo = setmetatable({ traits = {
+            json_name = "additionalInfo",
+        } }, { __index = M.ServiceAdditionalInfo }),
         FeatureName = {
             type = "string",
             traits = {
                 json_name = "featureName",
             },
         },
-        EbsVolumeScanDetails = {
-            type = "structure",
-            traits = {
-                json_name = "ebsVolumeScanDetails",
-            },
-        },
-        RuntimeDetails = {
-            type = "structure",
-            traits = {
-                json_name = "runtimeDetails",
-            },
-        },
-        Detection = {
-            type = "structure",
-            traits = {
-                json_name = "detection",
-            },
-        },
-        MalwareScanDetails = {
-            type = "structure",
-            traits = {
-                json_name = "malwareScanDetails",
-            },
-        },
+        EbsVolumeScanDetails = setmetatable({ traits = {
+            json_name = "ebsVolumeScanDetails",
+        } }, { __index = M.EbsVolumeScanDetails }),
+        RuntimeDetails = setmetatable({ traits = {
+            json_name = "runtimeDetails",
+        } }, { __index = M.RuntimeDetails }),
+        Detection = setmetatable({ traits = {
+            json_name = "detection",
+        } }, { __index = M.Detection }),
+        MalwareScanDetails = setmetatable({ traits = {
+            json_name = "malwareScanDetails",
+        } }, { __index = M.MalwareScanDetails }),
     },
 }
 
@@ -7448,7 +6963,7 @@ M.Finding = {
             },
         },
         Confidence = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "confidence",
             },
@@ -7486,13 +7001,10 @@ M.Finding = {
                 required = true,
             },
         },
-        Resource = {
-            type = "structure",
-            traits = {
-                json_name = "resource",
-                required = true,
-            },
-        },
+        Resource = setmetatable({ traits = {
+            json_name = "resource",
+            required = true,
+        } }, { __index = M.Resource }),
         SchemaVersion = {
             type = "string",
             traits = {
@@ -7500,14 +7012,11 @@ M.Finding = {
                 required = true,
             },
         },
-        Service = {
-            type = "structure",
-            traits = {
-                json_name = "service",
-            },
-        },
+        Service = setmetatable({ traits = {
+            json_name = "service",
+        } }, { __index = M.Service }),
         Severity = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "severity",
                 required = true,
@@ -7558,7 +7067,7 @@ M.FindingTypeStatistics = {
             },
         },
         TotalFindings = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "totalFindings",
             },
@@ -7594,7 +7103,7 @@ M.ResourceStatistics = {
             },
         },
         TotalFindings = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "totalFindings",
             },
@@ -7612,13 +7121,13 @@ M.SeverityStatistics = {
             },
         },
         Severity = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "severity",
             },
         },
         TotalFindings = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "totalFindings",
             },
@@ -7631,43 +7140,43 @@ M.FindingStatistics = {
     members = {
         CountBySeverity = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
             traits = {
                 json_name = "countBySeverity",
             },
         },
         GroupedByAccount = {
             type = "list",
-            member_type = "structure",
+            member = M.AccountStatistics,
             traits = {
                 json_name = "groupedByAccount",
             },
         },
         GroupedByDate = {
             type = "list",
-            member_type = "structure",
+            member = M.DateStatistics,
             traits = {
                 json_name = "groupedByDate",
             },
         },
         GroupedByFindingType = {
             type = "list",
-            member_type = "structure",
+            member = M.FindingTypeStatistics,
             traits = {
                 json_name = "groupedByFindingType",
             },
         },
         GroupedByResource = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceStatistics,
             traits = {
                 json_name = "groupedByResource",
             },
         },
         GroupedBySeverity = {
             type = "list",
-            member_type = "structure",
+            member = M.SeverityStatistics,
             traits = {
                 json_name = "groupedBySeverity",
             },
@@ -7695,13 +7204,10 @@ M.GetAdministratorAccountInput = {
 M.GetAdministratorAccountOutput = {
     type = "structure",
     members = {
-        Administrator = {
-            type = "structure",
-            traits = {
-                json_name = "administrator",
-                required = true,
-            },
-        },
+        Administrator = setmetatable({ traits = {
+            json_name = "administrator",
+            required = true,
+        } }, { __index = M.Administrator }),
     },
 }
 
@@ -7715,15 +7221,12 @@ M.GetCoverageStatisticsInput = {
                 required = true,
             },
         },
-        FilterCriteria = {
-            type = "structure",
-            traits = {
-                json_name = "filterCriteria",
-            },
-        },
+        FilterCriteria = setmetatable({ traits = {
+            json_name = "filterCriteria",
+        } }, { __index = M.CoverageFilterCriteria }),
         StatisticsType = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "statisticsType",
                 required = true,
@@ -7735,12 +7238,9 @@ M.GetCoverageStatisticsInput = {
 M.GetCoverageStatisticsOutput = {
     type = "structure",
     members = {
-        CoverageStatistics = {
-            type = "structure",
-            traits = {
-                json_name = "coverageStatistics",
-            },
-        },
+        CoverageStatistics = setmetatable({ traits = {
+            json_name = "coverageStatistics",
+        } }, { __index = M.CoverageStatistics }),
     },
 }
 
@@ -7792,23 +7292,20 @@ M.GetDetectorOutput = {
                 json_name = "updatedAt",
             },
         },
-        DataSources = {
-            type = "structure",
-            traits = {
-                json_name = "dataSources",
-            },
-        },
+        DataSources = setmetatable({ traits = {
+            json_name = "dataSources",
+        } }, { __index = M.DataSourceConfigurationsResult }),
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
         },
         Features = {
             type = "list",
-            member_type = "structure",
+            member = M.DetectorFeatureConfigurationResult,
             traits = {
                 json_name = "features",
             },
@@ -7860,22 +7357,19 @@ M.GetFilterOutput = {
             },
         },
         Rank = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "rank",
             },
         },
-        FindingCriteria = {
-            type = "structure",
-            traits = {
-                json_name = "findingCriteria",
-                required = true,
-            },
-        },
+        FindingCriteria = setmetatable({ traits = {
+            json_name = "findingCriteria",
+            required = true,
+        } }, { __index = M.FindingCriteria }),
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -7895,18 +7389,15 @@ M.GetFindingsInput = {
         },
         FindingIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "findingIds",
                 required = true,
             },
         },
-        SortCriteria = {
-            type = "structure",
-            traits = {
-                json_name = "sortCriteria",
-            },
-        },
+        SortCriteria = setmetatable({ traits = {
+            json_name = "sortCriteria",
+        } }, { __index = M.SortCriteria }),
     },
 }
 
@@ -7915,7 +7406,7 @@ M.GetFindingsOutput = {
     members = {
         Findings = {
             type = "list",
-            member_type = "structure",
+            member = M.Finding,
             traits = {
                 json_name = "findings",
                 required = true,
@@ -7944,17 +7435,14 @@ M.GetFindingsStatisticsInput = {
         },
         FindingStatisticTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "findingStatisticTypes",
             },
         },
-        FindingCriteria = {
-            type = "structure",
-            traits = {
-                json_name = "findingCriteria",
-            },
-        },
+        FindingCriteria = setmetatable({ traits = {
+            json_name = "findingCriteria",
+        } }, { __index = M.FindingCriteria }),
         GroupBy = {
             type = "string",
             traits = {
@@ -7968,7 +7456,7 @@ M.GetFindingsStatisticsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxResults",
             },
@@ -7979,13 +7467,10 @@ M.GetFindingsStatisticsInput = {
 M.GetFindingsStatisticsOutput = {
     type = "structure",
     members = {
-        FindingStatistics = {
-            type = "structure",
-            traits = {
-                json_name = "findingStatistics",
-                required = true,
-            },
-        },
+        FindingStatistics = setmetatable({ traits = {
+            json_name = "findingStatistics",
+            required = true,
+        } }, { __index = M.FindingStatistics }),
         NextToken = {
             type = "string",
             traits = {
@@ -8003,7 +7488,7 @@ M.GetInvitationsCountOutput = {
     type = "structure",
     members = {
         InvitationsCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "invitationsCount",
             },
@@ -8074,8 +7559,8 @@ M.GetIPSetOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -8141,18 +7626,12 @@ M.GetMalwareProtectionPlanOutput = {
                 json_name = "role",
             },
         },
-        ProtectedResource = {
-            type = "structure",
-            traits = {
-                json_name = "protectedResource",
-            },
-        },
-        Actions = {
-            type = "structure",
-            traits = {
-                json_name = "actions",
-            },
-        },
+        ProtectedResource = setmetatable({ traits = {
+            json_name = "protectedResource",
+        } }, { __index = M.CreateProtectedResource }),
+        Actions = setmetatable({ traits = {
+            json_name = "actions",
+        } }, { __index = M.MalwareProtectionPlanActions }),
         CreatedAt = {
             type = "timestamp",
             traits = {
@@ -8167,15 +7646,15 @@ M.GetMalwareProtectionPlanOutput = {
         },
         StatusReasons = {
             type = "list",
-            member_type = "structure",
+            member = M.MalwareProtectionPlanStatusReason,
             traits = {
                 json_name = "statusReasons",
             },
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -8228,42 +7707,27 @@ M.ScanConfiguration = {
                 json_name = "role",
             },
         },
-        TriggerDetails = {
-            type = "structure",
-            traits = {
-                json_name = "triggerDetails",
-            },
-        },
-        IncrementalScanDetails = {
-            type = "structure",
-            traits = {
-                json_name = "incrementalScanDetails",
-            },
-        },
-        RecoveryPoint = {
-            type = "structure",
-            traits = {
-                json_name = "recoveryPoint",
-            },
-        },
+        TriggerDetails = setmetatable({ traits = {
+            json_name = "triggerDetails",
+        } }, { __index = M.TriggerDetails }),
+        IncrementalScanDetails = setmetatable({ traits = {
+            json_name = "incrementalScanDetails",
+        } }, { __index = M.IncrementalScanDetails }),
+        RecoveryPoint = setmetatable({ traits = {
+            json_name = "recoveryPoint",
+        } }, { __index = M.ScanConfigurationRecoveryPoint }),
     },
 }
 
 M.ScannedResourceDetails = {
     type = "structure",
     members = {
-        EbsVolume = {
-            type = "structure",
-            traits = {
-                json_name = "ebsVolume",
-            },
-        },
-        EbsSnapshot = {
-            type = "structure",
-            traits = {
-                json_name = "ebsSnapshot",
-            },
-        },
+        EbsVolume = setmetatable({ traits = {
+            json_name = "ebsVolume",
+        } }, { __index = M.VolumeDetail }),
+        EbsSnapshot = setmetatable({ traits = {
+            json_name = "ebsSnapshot",
+        } }, { __index = M.EbsSnapshot }),
     },
 }
 
@@ -8322,12 +7786,9 @@ M.ScannedResource = {
                 json_name = "scanStatusReason",
             },
         },
-        ResourceDetails = {
-            type = "structure",
-            traits = {
-                json_name = "resourceDetails",
-            },
-        },
+        ResourceDetails = setmetatable({ traits = {
+            json_name = "resourceDetails",
+        } }, { __index = M.ScannedResourceDetails }),
     },
 }
 
@@ -8352,7 +7813,7 @@ M.ScanResultThreat = {
             },
         },
         Count = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "count",
             },
@@ -8365,7 +7826,7 @@ M.ScanResultThreat = {
         },
         ItemDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.ItemDetails,
             traits = {
                 json_name = "itemDetails",
             },
@@ -8383,44 +7844,44 @@ M.GetMalwareScanResultDetails = {
             },
         },
         SkippedFileCount = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "skippedFileCount",
             },
         },
         FailedFileCount = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "failedFileCount",
             },
         },
         ThreatFoundFileCount = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "threatFoundFileCount",
             },
         },
         TotalFileCount = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "totalFileCount",
             },
         },
         TotalBytes = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "totalBytes",
             },
         },
         UniqueThreatCount = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "uniqueThreatCount",
             },
         },
         Threats = {
             type = "list",
-            member_type = "structure",
+            member = M.ScanResultThreat,
             traits = {
                 json_name = "threats",
             },
@@ -8462,36 +7923,33 @@ M.GetMalwareScanOutput = {
             },
         },
         ScannedResourcesCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "scannedResourcesCount",
             },
         },
         SkippedResourcesCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "skippedResourcesCount",
             },
         },
         FailedResourcesCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "failedResourcesCount",
             },
         },
         ScannedResources = {
             type = "list",
-            member_type = "structure",
+            member = M.ScannedResource,
             traits = {
                 json_name = "scannedResources",
             },
         },
-        ScanConfiguration = {
-            type = "structure",
-            traits = {
-                json_name = "scanConfiguration",
-            },
-        },
+        ScanConfiguration = setmetatable({ traits = {
+            json_name = "scanConfiguration",
+        } }, { __index = M.ScanConfiguration }),
         ScanCategory = {
             type = "string",
             traits = {
@@ -8528,12 +7986,9 @@ M.GetMalwareScanOutput = {
                 json_name = "scanCompletedAt",
             },
         },
-        ScanResultDetails = {
-            type = "structure",
-            traits = {
-                json_name = "scanResultDetails",
-            },
-        },
+        ScanResultDetails = setmetatable({ traits = {
+            json_name = "scanResultDetails",
+        } }, { __index = M.GetMalwareScanResultDetails }),
     },
 }
 
@@ -8578,7 +8033,7 @@ M.ScanCondition = {
     members = {
         MapEquals = {
             type = "list",
-            member_type = "structure",
+            member = M.ScanConditionPair,
             traits = {
                 json_name = "mapEquals",
                 required = true,
@@ -8592,16 +8047,16 @@ M.ScanResourceCriteria = {
     members = {
         Include = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ScanCondition,
             traits = {
                 json_name = "include",
             },
         },
         Exclude = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ScanCondition,
             traits = {
                 json_name = "exclude",
             },
@@ -8612,12 +8067,9 @@ M.ScanResourceCriteria = {
 M.GetMalwareScanSettingsOutput = {
     type = "structure",
     members = {
-        ScanResourceCriteria = {
-            type = "structure",
-            traits = {
-                json_name = "scanResourceCriteria",
-            },
-        },
+        ScanResourceCriteria = setmetatable({ traits = {
+            json_name = "scanResourceCriteria",
+        } }, { __index = M.ScanResourceCriteria }),
         EbsSnapshotPreservation = {
             type = "string",
             traits = {
@@ -8673,13 +8125,10 @@ M.Master = {
 M.GetMasterAccountOutput = {
     type = "structure",
     members = {
-        Master = {
-            type = "structure",
-            traits = {
-                json_name = "master",
-                required = true,
-            },
-        },
+        Master = setmetatable({ traits = {
+            json_name = "master",
+            required = true,
+        } }, { __index = M.Master }),
     },
 }
 
@@ -8695,7 +8144,7 @@ M.GetMemberDetectorsInput = {
         },
         AccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "accountIds",
                 required = true,
@@ -8751,7 +8200,7 @@ M.MemberFeaturesConfigurationResult = {
         },
         AdditionalConfiguration = {
             type = "list",
-            member_type = "structure",
+            member = M.MemberAdditionalConfigurationResult,
             traits = {
                 json_name = "additionalConfiguration",
             },
@@ -8769,16 +8218,13 @@ M.MemberDataSourceConfiguration = {
                 required = true,
             },
         },
-        DataSources = {
-            type = "structure",
-            traits = {
-                json_name = "dataSources",
-                required = true,
-            },
-        },
+        DataSources = setmetatable({ traits = {
+            json_name = "dataSources",
+            required = true,
+        } }, { __index = M.DataSourceConfigurationsResult }),
         Features = {
             type = "list",
-            member_type = "structure",
+            member = M.MemberFeaturesConfigurationResult,
             traits = {
                 json_name = "features",
             },
@@ -8791,7 +8237,7 @@ M.GetMemberDetectorsOutput = {
     members = {
         MemberDataSourceConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.MemberDataSourceConfiguration,
             traits = {
                 json_name = "members",
                 required = true,
@@ -8799,7 +8245,7 @@ M.GetMemberDetectorsOutput = {
         },
         UnprocessedAccounts = {
             type = "list",
-            member_type = "structure",
+            member = M.UnprocessedAccount,
             traits = {
                 json_name = "unprocessedAccounts",
                 required = true,
@@ -8820,7 +8266,7 @@ M.GetMembersInput = {
         },
         AccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "accountIds",
                 required = true,
@@ -8893,7 +8339,7 @@ M.GetMembersOutput = {
     members = {
         Members = {
             type = "list",
-            member_type = "structure",
+            member = M.Member,
             traits = {
                 json_name = "members",
                 required = true,
@@ -8901,7 +8347,7 @@ M.GetMembersOutput = {
         },
         UnprocessedAccounts = {
             type = "list",
-            member_type = "structure",
+            member = M.UnprocessedAccount,
             traits = {
                 json_name = "unprocessedAccounts",
                 required = true,
@@ -8924,7 +8370,7 @@ M.OrganizationFeatureStatisticsAdditionalConfiguration = {
             },
         },
         EnabledAccountsCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "enabledAccountsCount",
             },
@@ -8942,14 +8388,14 @@ M.OrganizationFeatureStatistics = {
             },
         },
         EnabledAccountsCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "enabledAccountsCount",
             },
         },
         AdditionalConfiguration = {
             type = "list",
-            member_type = "structure",
+            member = M.OrganizationFeatureStatisticsAdditionalConfiguration,
             traits = {
                 json_name = "additionalConfiguration",
             },
@@ -8961,32 +8407,32 @@ M.OrganizationStatistics = {
     type = "structure",
     members = {
         TotalAccountsCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "totalAccountsCount",
             },
         },
         MemberAccountsCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "memberAccountsCount",
             },
         },
         ActiveAccountsCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "activeAccountsCount",
             },
         },
         EnabledAccountsCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "enabledAccountsCount",
             },
         },
         CountByFeature = {
             type = "list",
-            member_type = "structure",
+            member = M.OrganizationFeatureStatistics,
             traits = {
                 json_name = "countByFeature",
             },
@@ -9003,24 +8449,18 @@ M.OrganizationDetails = {
                 json_name = "updatedAt",
             },
         },
-        OrganizationStatistics = {
-            type = "structure",
-            traits = {
-                json_name = "organizationStatistics",
-            },
-        },
+        OrganizationStatistics = setmetatable({ traits = {
+            json_name = "organizationStatistics",
+        } }, { __index = M.OrganizationStatistics }),
     },
 }
 
 M.GetOrganizationStatisticsOutput = {
     type = "structure",
     members = {
-        OrganizationDetails = {
-            type = "structure",
-            traits = {
-                json_name = "organizationDetails",
-            },
-        },
+        OrganizationDetails = setmetatable({ traits = {
+            json_name = "organizationDetails",
+        } }, { __index = M.OrganizationDetails }),
     },
 }
 
@@ -9036,7 +8476,7 @@ M.GetRemainingFreeTrialDaysInput = {
         },
         AccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "accountIds",
                 required = true,
@@ -9050,14 +8490,14 @@ M.GetRemainingFreeTrialDaysOutput = {
     members = {
         Accounts = {
             type = "list",
-            member_type = "structure",
+            member = M.AccountFreeTrialInfo,
             traits = {
                 json_name = "accounts",
             },
         },
         UnprocessedAccounts = {
             type = "list",
-            member_type = "structure",
+            member = M.UnprocessedAccount,
             traits = {
                 json_name = "unprocessedAccounts",
             },
@@ -9134,8 +8574,8 @@ M.GetThreatEntitySetOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -9224,8 +8664,8 @@ M.GetThreatIntelSetOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -9308,8 +8748,8 @@ M.GetTrustedEntitySetOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -9356,28 +8796,28 @@ M.UsageCriteria = {
     members = {
         AccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "accountIds",
             },
         },
         DataSources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "dataSources",
             },
         },
         Resources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "resources",
             },
         },
         Features = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "features",
             },
@@ -9411,13 +8851,10 @@ M.GetUsageStatisticsInput = {
                 required = true,
             },
         },
-        UsageCriteria = {
-            type = "structure",
-            traits = {
-                json_name = "usageCriteria",
-                required = true,
-            },
-        },
+        UsageCriteria = setmetatable({ traits = {
+            json_name = "usageCriteria",
+            required = true,
+        } }, { __index = M.UsageCriteria }),
         Unit = {
             type = "string",
             traits = {
@@ -9425,7 +8862,7 @@ M.GetUsageStatisticsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxResults",
             },
@@ -9466,12 +8903,9 @@ M.UsageAccountResult = {
                 json_name = "accountId",
             },
         },
-        Total = {
-            type = "structure",
-            traits = {
-                json_name = "total",
-            },
-        },
+        Total = setmetatable({ traits = {
+            json_name = "total",
+        } }, { __index = M.Total }),
     },
 }
 
@@ -9484,12 +8918,9 @@ M.UsageDataSourceResult = {
                 json_name = "dataSource",
             },
         },
-        Total = {
-            type = "structure",
-            traits = {
-                json_name = "total",
-            },
-        },
+        Total = setmetatable({ traits = {
+            json_name = "total",
+        } }, { __index = M.Total }),
     },
 }
 
@@ -9502,12 +8933,9 @@ M.UsageFeatureResult = {
                 json_name = "feature",
             },
         },
-        Total = {
-            type = "structure",
-            traits = {
-                json_name = "total",
-            },
-        },
+        Total = setmetatable({ traits = {
+            json_name = "total",
+        } }, { __index = M.Total }),
     },
 }
 
@@ -9520,12 +8948,9 @@ M.UsageResourceResult = {
                 json_name = "resource",
             },
         },
-        Total = {
-            type = "structure",
-            traits = {
-                json_name = "total",
-            },
-        },
+        Total = setmetatable({ traits = {
+            json_name = "total",
+        } }, { __index = M.Total }),
     },
 }
 
@@ -9538,12 +8963,9 @@ M.UsageTopAccountResult = {
                 json_name = "accountId",
             },
         },
-        Total = {
-            type = "structure",
-            traits = {
-                json_name = "total",
-            },
-        },
+        Total = setmetatable({ traits = {
+            json_name = "total",
+        } }, { __index = M.Total }),
     },
 }
 
@@ -9558,7 +8980,7 @@ M.UsageTopAccountsResult = {
         },
         Accounts = {
             type = "list",
-            member_type = "structure",
+            member = M.UsageTopAccountResult,
             traits = {
                 json_name = "accounts",
             },
@@ -9571,42 +8993,42 @@ M.UsageStatistics = {
     members = {
         SumByAccount = {
             type = "list",
-            member_type = "structure",
+            member = M.UsageAccountResult,
             traits = {
                 json_name = "sumByAccount",
             },
         },
         TopAccountsByFeature = {
             type = "list",
-            member_type = "structure",
+            member = M.UsageTopAccountsResult,
             traits = {
                 json_name = "topAccountsByFeature",
             },
         },
         SumByDataSource = {
             type = "list",
-            member_type = "structure",
+            member = M.UsageDataSourceResult,
             traits = {
                 json_name = "sumByDataSource",
             },
         },
         SumByResource = {
             type = "list",
-            member_type = "structure",
+            member = M.UsageResourceResult,
             traits = {
                 json_name = "sumByResource",
             },
         },
         TopResources = {
             type = "list",
-            member_type = "structure",
+            member = M.UsageResourceResult,
             traits = {
                 json_name = "topResources",
             },
         },
         SumByFeature = {
             type = "list",
-            member_type = "structure",
+            member = M.UsageFeatureResult,
             traits = {
                 json_name = "sumByFeature",
             },
@@ -9617,12 +9039,9 @@ M.UsageStatistics = {
 M.GetUsageStatisticsOutput = {
     type = "structure",
     members = {
-        UsageStatistics = {
-            type = "structure",
-            traits = {
-                json_name = "usageStatistics",
-            },
-        },
+        UsageStatistics = setmetatable({ traits = {
+            json_name = "usageStatistics",
+        } }, { __index = M.UsageStatistics }),
         NextToken = {
             type = "string",
             traits = {
@@ -9644,7 +9063,7 @@ M.InviteMembersInput = {
         },
         AccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "accountIds",
                 required = true,
@@ -9670,7 +9089,7 @@ M.InviteMembersOutput = {
     members = {
         UnprocessedAccounts = {
             type = "list",
-            member_type = "structure",
+            member = M.UnprocessedAccount,
             traits = {
                 json_name = "unprocessedAccounts",
                 required = true,
@@ -9696,23 +9115,17 @@ M.ListCoverageInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxResults",
             },
         },
-        FilterCriteria = {
-            type = "structure",
-            traits = {
-                json_name = "filterCriteria",
-            },
-        },
-        SortCriteria = {
-            type = "structure",
-            traits = {
-                json_name = "sortCriteria",
-            },
-        },
+        FilterCriteria = setmetatable({ traits = {
+            json_name = "filterCriteria",
+        } }, { __index = M.CoverageFilterCriteria }),
+        SortCriteria = setmetatable({ traits = {
+            json_name = "sortCriteria",
+        } }, { __index = M.CoverageSortCriteria }),
     },
 }
 
@@ -9721,7 +9134,7 @@ M.ListCoverageOutput = {
     members = {
         Resources = {
             type = "list",
-            member_type = "structure",
+            member = M.CoverageResource,
             traits = {
                 json_name = "resources",
                 required = true,
@@ -9740,7 +9153,7 @@ M.ListDetectorsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -9759,7 +9172,7 @@ M.ListDetectorsOutput = {
     members = {
         DetectorIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "detectorIds",
                 required = true,
@@ -9785,7 +9198,7 @@ M.ListFiltersInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -9804,7 +9217,7 @@ M.ListFiltersOutput = {
     members = {
         FilterNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "filterNames",
                 required = true,
@@ -9829,20 +9242,14 @@ M.ListFindingsInput = {
                 required = true,
             },
         },
-        FindingCriteria = {
-            type = "structure",
-            traits = {
-                json_name = "findingCriteria",
-            },
-        },
-        SortCriteria = {
-            type = "structure",
-            traits = {
-                json_name = "sortCriteria",
-            },
-        },
+        FindingCriteria = setmetatable({ traits = {
+            json_name = "findingCriteria",
+        } }, { __index = M.FindingCriteria }),
+        SortCriteria = setmetatable({ traits = {
+            json_name = "sortCriteria",
+        } }, { __index = M.SortCriteria }),
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxResults",
             },
@@ -9861,7 +9268,7 @@ M.ListFindingsOutput = {
     members = {
         FindingIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "findingIds",
                 required = true,
@@ -9880,7 +9287,7 @@ M.ListInvitationsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -9929,7 +9336,7 @@ M.ListInvitationsOutput = {
     members = {
         Invitations = {
             type = "list",
-            member_type = "structure",
+            member = M.Invitation,
             traits = {
                 json_name = "invitations",
             },
@@ -9954,7 +9361,7 @@ M.ListIPSetsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -9973,7 +9380,7 @@ M.ListIPSetsOutput = {
     members = {
         IpSetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "ipSetIds",
                 required = true,
@@ -10017,7 +9424,7 @@ M.ListMalwareProtectionPlansOutput = {
     members = {
         MalwareProtectionPlans = {
             type = "list",
-            member_type = "structure",
+            member = M.MalwareProtectionPlanSummary,
             traits = {
                 json_name = "malwareProtectionPlans",
             },
@@ -10051,12 +9458,9 @@ M.ListMalwareScansFilterCriterion = {
                 json_name = "criterionKey",
             },
         },
-        FilterCondition = {
-            type = "structure",
-            traits = {
-                json_name = "filterCondition",
-            },
-        },
+        FilterCondition = setmetatable({ traits = {
+            json_name = "filterCondition",
+        } }, { __index = M.FilterCondition }),
     },
 }
 
@@ -10065,7 +9469,7 @@ M.ListMalwareScansFilterCriteria = {
     members = {
         ListMalwareScansFilterCriterion = {
             type = "list",
-            member_type = "structure",
+            member = M.ListMalwareScansFilterCriterion,
             traits = {
                 json_name = "filterCriterion",
             },
@@ -10077,7 +9481,7 @@ M.ListMalwareScansInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -10088,18 +9492,12 @@ M.ListMalwareScansInput = {
                 http_query = "nextToken",
             },
         },
-        FilterCriteria = {
-            type = "structure",
-            traits = {
-                json_name = "filterCriteria",
-            },
-        },
-        SortCriteria = {
-            type = "structure",
-            traits = {
-                json_name = "sortCriteria",
-            },
-        },
+        FilterCriteria = setmetatable({ traits = {
+            json_name = "filterCriteria",
+        } }, { __index = M.ListMalwareScansFilterCriteria }),
+        SortCriteria = setmetatable({ traits = {
+            json_name = "sortCriteria",
+        } }, { __index = M.SortCriteria }),
     },
 }
 
@@ -10162,7 +9560,7 @@ M.ListMalwareScansOutput = {
     members = {
         Scans = {
             type = "list",
-            member_type = "structure",
+            member = M.MalwareScan,
             traits = {
                 json_name = "scans",
                 required = true,
@@ -10188,7 +9586,7 @@ M.ListMembersInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -10213,7 +9611,7 @@ M.ListMembersOutput = {
     members = {
         Members = {
             type = "list",
-            member_type = "structure",
+            member = M.Member,
             traits = {
                 json_name = "members",
             },
@@ -10231,7 +9629,7 @@ M.ListOrganizationAdminAccountsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -10250,7 +9648,7 @@ M.ListOrganizationAdminAccountsOutput = {
     members = {
         AdminAccounts = {
             type = "list",
-            member_type = "structure",
+            member = M.AdminAccount,
             traits = {
                 json_name = "adminAccounts",
             },
@@ -10275,7 +9673,7 @@ M.ListPublishingDestinationsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -10294,7 +9692,7 @@ M.ListPublishingDestinationsOutput = {
     members = {
         Destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.Destination,
             traits = {
                 json_name = "destinations",
                 required = true,
@@ -10327,8 +9725,8 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -10347,7 +9745,7 @@ M.ListThreatEntitySetsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -10366,7 +9764,7 @@ M.ListThreatEntitySetsOutput = {
     members = {
         ThreatEntitySetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "threatEntitySetIds",
                 required = true,
@@ -10392,7 +9790,7 @@ M.ListThreatIntelSetsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -10411,7 +9809,7 @@ M.ListThreatIntelSetsOutput = {
     members = {
         ThreatIntelSetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "threatIntelSetIds",
                 required = true,
@@ -10437,7 +9835,7 @@ M.ListTrustedEntitySetsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -10456,7 +9854,7 @@ M.ListTrustedEntitySetsOutput = {
     members = {
         TrustedEntitySetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "trustedEntitySetIds",
                 required = true,
@@ -10498,12 +9896,9 @@ M.S3ObjectForSendObjectMalwareScan = {
 M.SendObjectMalwareScanInput = {
     type = "structure",
     members = {
-        S3Object = {
-            type = "structure",
-            traits = {
-                json_name = "s3Object",
-            },
-        },
+        S3Object = setmetatable({ traits = {
+            json_name = "s3Object",
+        } }, { __index = M.S3ObjectForSendObjectMalwareScan }),
     },
 }
 
@@ -10534,18 +9929,12 @@ M.StartMalwareScanConfiguration = {
                 required = true,
             },
         },
-        IncrementalScanDetails = {
-            type = "structure",
-            traits = {
-                json_name = "incrementalScanDetails",
-            },
-        },
-        RecoveryPoint = {
-            type = "structure",
-            traits = {
-                json_name = "recoveryPoint",
-            },
-        },
+        IncrementalScanDetails = setmetatable({ traits = {
+            json_name = "incrementalScanDetails",
+        } }, { __index = M.IncrementalScanDetails }),
+        RecoveryPoint = setmetatable({ traits = {
+            json_name = "recoveryPoint",
+        } }, { __index = M.RecoveryPoint }),
     },
 }
 
@@ -10565,12 +9954,9 @@ M.StartMalwareScanInput = {
                 json_name = "clientToken",
             },
         },
-        ScanConfiguration = {
-            type = "structure",
-            traits = {
-                json_name = "scanConfiguration",
-            },
-        },
+        ScanConfiguration = setmetatable({ traits = {
+            json_name = "scanConfiguration",
+        } }, { __index = M.StartMalwareScanConfiguration }),
     },
 }
 
@@ -10598,7 +9984,7 @@ M.StartMonitoringMembersInput = {
         },
         AccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "accountIds",
                 required = true,
@@ -10612,7 +9998,7 @@ M.StartMonitoringMembersOutput = {
     members = {
         UnprocessedAccounts = {
             type = "list",
-            member_type = "structure",
+            member = M.UnprocessedAccount,
             traits = {
                 json_name = "unprocessedAccounts",
                 required = true,
@@ -10633,7 +10019,7 @@ M.StopMonitoringMembersInput = {
         },
         AccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "accountIds",
                 required = true,
@@ -10647,7 +10033,7 @@ M.StopMonitoringMembersOutput = {
     members = {
         UnprocessedAccounts = {
             type = "list",
-            member_type = "structure",
+            member = M.UnprocessedAccount,
             traits = {
                 json_name = "unprocessedAccounts",
                 required = true,
@@ -10668,8 +10054,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
                 required = true,
@@ -10694,7 +10080,7 @@ M.UnarchiveFindingsInput = {
         },
         FindingIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "findingIds",
                 required = true,
@@ -10719,7 +10105,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -10754,15 +10140,12 @@ M.UpdateDetectorInput = {
                 json_name = "findingPublishingFrequency",
             },
         },
-        DataSources = {
-            type = "structure",
-            traits = {
-                json_name = "dataSources",
-            },
-        },
+        DataSources = setmetatable({ traits = {
+            json_name = "dataSources",
+        } }, { __index = M.DataSourceConfigurations }),
         Features = {
             type = "list",
-            member_type = "structure",
+            member = M.DetectorFeatureConfiguration,
             traits = {
                 json_name = "features",
             },
@@ -10804,17 +10187,14 @@ M.UpdateFilterInput = {
             },
         },
         Rank = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "rank",
             },
         },
-        FindingCriteria = {
-            type = "structure",
-            traits = {
-                json_name = "findingCriteria",
-            },
-        },
+        FindingCriteria = setmetatable({ traits = {
+            json_name = "findingCriteria",
+        } }, { __index = M.FindingCriteria }),
     },
 }
 
@@ -10843,7 +10223,7 @@ M.UpdateFindingsFeedbackInput = {
         },
         FindingIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "findingIds",
                 required = true,
@@ -10922,7 +10302,7 @@ M.UpdateS3BucketResource = {
     members = {
         ObjectPrefixes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "objectPrefixes",
             },
@@ -10933,12 +10313,9 @@ M.UpdateS3BucketResource = {
 M.UpdateProtectedResource = {
     type = "structure",
     members = {
-        S3Bucket = {
-            type = "structure",
-            traits = {
-                json_name = "s3Bucket",
-            },
-        },
+        S3Bucket = setmetatable({ traits = {
+            json_name = "s3Bucket",
+        } }, { __index = M.UpdateS3BucketResource }),
     },
 }
 
@@ -10958,18 +10335,12 @@ M.UpdateMalwareProtectionPlanInput = {
                 json_name = "role",
             },
         },
-        Actions = {
-            type = "structure",
-            traits = {
-                json_name = "actions",
-            },
-        },
-        ProtectedResource = {
-            type = "structure",
-            traits = {
-                json_name = "protectedResource",
-            },
-        },
+        Actions = setmetatable({ traits = {
+            json_name = "actions",
+        } }, { __index = M.MalwareProtectionPlanActions }),
+        ProtectedResource = setmetatable({ traits = {
+            json_name = "protectedResource",
+        } }, { __index = M.UpdateProtectedResource }),
     },
 }
 
@@ -10987,12 +10358,9 @@ M.UpdateMalwareScanSettingsInput = {
                 required = true,
             },
         },
-        ScanResourceCriteria = {
-            type = "structure",
-            traits = {
-                json_name = "scanResourceCriteria",
-            },
-        },
+        ScanResourceCriteria = setmetatable({ traits = {
+            json_name = "scanResourceCriteria",
+        } }, { __index = M.ScanResourceCriteria }),
         EbsSnapshotPreservation = {
             type = "string",
             traits = {
@@ -11041,7 +10409,7 @@ M.MemberFeaturesConfiguration = {
         },
         AdditionalConfiguration = {
             type = "list",
-            member_type = "structure",
+            member = M.MemberAdditionalConfiguration,
             traits = {
                 json_name = "additionalConfiguration",
             },
@@ -11061,21 +10429,18 @@ M.UpdateMemberDetectorsInput = {
         },
         AccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "accountIds",
                 required = true,
             },
         },
-        DataSources = {
-            type = "structure",
-            traits = {
-                json_name = "dataSources",
-            },
-        },
+        DataSources = setmetatable({ traits = {
+            json_name = "dataSources",
+        } }, { __index = M.DataSourceConfigurations }),
         Features = {
             type = "list",
-            member_type = "structure",
+            member = M.MemberFeaturesConfiguration,
             traits = {
                 json_name = "features",
             },
@@ -11088,7 +10453,7 @@ M.UpdateMemberDetectorsOutput = {
     members = {
         UnprocessedAccounts = {
             type = "list",
-            member_type = "structure",
+            member = M.UnprocessedAccount,
             traits = {
                 json_name = "unprocessedAccounts",
                 required = true,
@@ -11113,13 +10478,10 @@ M.OrganizationKubernetesAuditLogsConfiguration = {
 M.OrganizationKubernetesConfiguration = {
     type = "structure",
     members = {
-        AuditLogs = {
-            type = "structure",
-            traits = {
-                json_name = "auditLogs",
-                required = true,
-            },
-        },
+        AuditLogs = setmetatable({ traits = {
+            json_name = "auditLogs",
+            required = true,
+        } }, { __index = M.OrganizationKubernetesAuditLogsConfiguration }),
     },
 }
 
@@ -11138,24 +10500,18 @@ M.OrganizationEbsVolumes = {
 M.OrganizationScanEc2InstanceWithFindings = {
     type = "structure",
     members = {
-        EbsVolumes = {
-            type = "structure",
-            traits = {
-                json_name = "ebsVolumes",
-            },
-        },
+        EbsVolumes = setmetatable({ traits = {
+            json_name = "ebsVolumes",
+        } }, { __index = M.OrganizationEbsVolumes }),
     },
 }
 
 M.OrganizationMalwareProtectionConfiguration = {
     type = "structure",
     members = {
-        ScanEc2InstanceWithFindings = {
-            type = "structure",
-            traits = {
-                json_name = "scanEc2InstanceWithFindings",
-            },
-        },
+        ScanEc2InstanceWithFindings = setmetatable({ traits = {
+            json_name = "scanEc2InstanceWithFindings",
+        } }, { __index = M.OrganizationScanEc2InstanceWithFindings }),
     },
 }
 
@@ -11175,24 +10531,15 @@ M.OrganizationS3LogsConfiguration = {
 M.OrganizationDataSourceConfigurations = {
     type = "structure",
     members = {
-        S3Logs = {
-            type = "structure",
-            traits = {
-                json_name = "s3Logs",
-            },
-        },
-        Kubernetes = {
-            type = "structure",
-            traits = {
-                json_name = "kubernetes",
-            },
-        },
-        MalwareProtection = {
-            type = "structure",
-            traits = {
-                json_name = "malwareProtection",
-            },
-        },
+        S3Logs = setmetatable({ traits = {
+            json_name = "s3Logs",
+        } }, { __index = M.OrganizationS3LogsConfiguration }),
+        Kubernetes = setmetatable({ traits = {
+            json_name = "kubernetes",
+        } }, { __index = M.OrganizationKubernetesConfiguration }),
+        MalwareProtection = setmetatable({ traits = {
+            json_name = "malwareProtection",
+        } }, { __index = M.OrganizationMalwareProtectionConfiguration }),
     },
 }
 
@@ -11231,7 +10578,7 @@ M.OrganizationFeatureConfiguration = {
         },
         AdditionalConfiguration = {
             type = "list",
-            member_type = "structure",
+            member = M.OrganizationAdditionalConfiguration,
             traits = {
                 json_name = "additionalConfiguration",
             },
@@ -11255,15 +10602,12 @@ M.UpdateOrganizationConfigurationInput = {
                 json_name = "autoEnable",
             },
         },
-        DataSources = {
-            type = "structure",
-            traits = {
-                json_name = "dataSources",
-            },
-        },
+        DataSources = setmetatable({ traits = {
+            json_name = "dataSources",
+        } }, { __index = M.OrganizationDataSourceConfigurations }),
         Features = {
             type = "list",
-            member_type = "structure",
+            member = M.OrganizationFeatureConfiguration,
             traits = {
                 json_name = "features",
             },
@@ -11298,12 +10642,9 @@ M.UpdatePublishingDestinationInput = {
                 required = true,
             },
         },
-        DestinationProperties = {
-            type = "structure",
-            traits = {
-                json_name = "destinationProperties",
-            },
-        },
+        DestinationProperties = setmetatable({ traits = {
+            json_name = "destinationProperties",
+        } }, { __index = M.DestinationProperties }),
     },
 }
 

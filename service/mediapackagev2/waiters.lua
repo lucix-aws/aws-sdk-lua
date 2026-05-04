@@ -1,0 +1,65 @@
+local waiter = require("waiter")
+
+local M = {}
+
+--- Wait until HarvestJobFinished.
+function M.wait_until_harvest_job_finished(client, input, options)
+    return waiter.wait(client, "getHarvestJob", input, {
+        min_delay = 2,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "Status",
+                        expected = "COMPLETED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "Status",
+                        expected = "CANCELLED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Status",
+                        expected = "FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "Status",
+                        expected = "QUEUED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "Status",
+                        expected = "IN_PROGRESS",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+return M

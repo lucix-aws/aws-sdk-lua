@@ -28,13 +28,13 @@ M.ResponderErrorMaskingForHttpCode = {
         },
         loggingTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         responseLoggingPercentage = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -44,7 +44,7 @@ M.LinkAttributes = {
     members = {
         responderErrorMasking = {
             type = "list",
-            member_type = "structure",
+            member = M.ResponderErrorMaskingForHttpCode,
         },
         customerProvidedId = {
             type = "string",
@@ -56,13 +56,13 @@ M.LinkApplicationLogSampling = {
     type = "structure",
     members = {
         errorLog = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
         filterLog = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -73,24 +73,18 @@ M.LinkApplicationLogSampling = {
 M.LinkApplicationLogConfiguration = {
     type = "structure",
     members = {
-        sampling = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        sampling = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LinkApplicationLogSampling }),
     },
 }
 
 M.LinkLogSettings = {
     type = "structure",
     members = {
-        applicationLogs = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        applicationLogs = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LinkApplicationLogConfiguration }),
     },
 }
 
@@ -111,17 +105,12 @@ M.AcceptLinkInput = {
                 required = true,
             },
         },
-        attributes = {
-            type = "structure",
-        },
-        logSettings = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        attributes = M.LinkAttributes,
+        logSettings = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LinkLogSettings }),
         timeoutInMillis = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -145,10 +134,10 @@ M.NoBidModuleParameters = {
             type = "string",
         },
         reasonCode = {
-            type = "number",
+            type = "integer",
         },
         passThroughPercentage = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -175,7 +164,7 @@ M.NoBidAction = {
     type = "structure",
     members = {
         noBidReasonCode = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -183,12 +172,8 @@ M.NoBidAction = {
 M.Action = {
     type = "union",
     members = {
-        noBid = {
-            type = "structure",
-        },
-        headerTag = {
-            type = "structure",
-        },
+        noBid = M.NoBidAction,
+        headerTag = M.HeaderTagAction,
     },
 }
 
@@ -203,7 +188,7 @@ M.FilterCriterion = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -216,7 +201,7 @@ M.Filter = {
     members = {
         criteria = {
             type = "list",
-            member_type = "structure",
+            member = M.FilterCriterion,
             traits = {
                 required = true,
             },
@@ -240,19 +225,16 @@ M.OpenRtbAttributeModuleParameters = {
         },
         filterConfiguration = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 required = true,
             },
         },
-        action = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        action = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Action }),
         holdbackPercentage = {
-            type = "number",
+            type = "float",
             traits = {
                 required = true,
             },
@@ -264,7 +246,7 @@ M.RateLimiterModuleParameters = {
     type = "structure",
     members = {
         tps = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -272,15 +254,9 @@ M.RateLimiterModuleParameters = {
 M.ModuleParameters = {
     type = "union",
     members = {
-        noBid = {
-            type = "structure",
-        },
-        openRtbAttribute = {
-            type = "structure",
-        },
-        rateLimiter = {
-            type = "structure",
-        },
+        noBid = M.NoBidModuleParameters,
+        openRtbAttribute = M.OpenRtbAttributeModuleParameters,
+        rateLimiter = M.RateLimiterModuleParameters,
     },
 }
 
@@ -298,11 +274,9 @@ M.ModuleConfiguration = {
         },
         dependsOn = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        moduleParameters = {
-            type = "union",
-        },
+        moduleParameters = M.ModuleParameters,
     },
 }
 
@@ -360,18 +334,14 @@ M.AcceptLinkOutput = {
         },
         flowModules = {
             type = "list",
-            member_type = "structure",
+            member = M.ModuleConfiguration,
         },
         pendingFlowModules = {
             type = "list",
-            member_type = "structure",
+            member = M.ModuleConfiguration,
         },
-        attributes = {
-            type = "structure",
-        },
-        logSettings = {
-            type = "structure",
-        },
+        attributes = M.LinkAttributes,
+        logSettings = M.LinkLogSettings,
         connectivityType = {
             type = "string",
         },
@@ -471,7 +441,7 @@ M.HealthCheckConfig = {
     type = "structure",
     members = {
         port = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -486,19 +456,19 @@ M.HealthCheckConfig = {
             type = "string",
         },
         timeoutMs = {
-            type = "number",
+            type = "integer",
         },
         intervalSeconds = {
-            type = "number",
+            type = "integer",
         },
         statusCodeMatcher = {
             type = "string",
         },
         healthyThresholdCount = {
-            type = "number",
+            type = "integer",
         },
         unhealthyThresholdCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -508,7 +478,7 @@ M.AutoScalingGroupsConfiguration = {
     members = {
         autoScalingGroupNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -519,9 +489,7 @@ M.AutoScalingGroupsConfiguration = {
                 required = true,
             },
         },
-        healthCheckConfig = {
-            type = "structure",
-        },
+        healthCheckConfig = M.HealthCheckConfig,
     },
 }
 
@@ -541,19 +509,14 @@ M.CreateInboundExternalLinkInput = {
                 required = true,
             },
         },
-        attributes = {
-            type = "structure",
-        },
-        logSettings = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        attributes = M.LinkAttributes,
+        logSettings = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LinkLogSettings }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -617,25 +580,20 @@ M.CreateLinkInput = {
                 required = true,
             },
         },
-        attributes = {
-            type = "structure",
-        },
+        attributes = M.LinkAttributes,
         httpResponderAllowed = {
             type = "boolean",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        logSettings = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        logSettings = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LinkLogSettings }),
         timeoutInMillis = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -678,18 +636,14 @@ M.CreateLinkOutput = {
         },
         flowModules = {
             type = "list",
-            member_type = "structure",
+            member = M.ModuleConfiguration,
         },
         pendingFlowModules = {
             type = "list",
-            member_type = "structure",
+            member = M.ModuleConfiguration,
         },
-        attributes = {
-            type = "structure",
-        },
-        logSettings = {
-            type = "structure",
-        },
+        attributes = M.LinkAttributes,
+        logSettings = M.LinkLogSettings,
         connectivityType = {
             type = "string",
         },
@@ -721,25 +675,20 @@ M.CreateOutboundExternalLinkInput = {
                 required = true,
             },
         },
-        attributes = {
-            type = "structure",
-        },
+        attributes = M.LinkAttributes,
         publicEndpoint = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        logSettings = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        logSettings = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LinkLogSettings }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -779,14 +728,14 @@ M.CreateRequesterGatewayInput = {
         },
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -802,8 +751,8 @@ M.CreateRequesterGatewayInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -854,7 +803,7 @@ M.ListenerConfig = {
     members = {
         protocols = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -907,12 +856,8 @@ M.EksEndpointsConfiguration = {
 M.ManagedEndpointConfiguration = {
     type = "union",
     members = {
-        autoScalingGroups = {
-            type = "structure",
-        },
-        eksEndpoints = {
-            type = "structure",
-        },
+        autoScalingGroups = M.AutoScalingGroupsConfiguration,
+        eksEndpoints = M.EksEndpointsConfiguration,
     },
 }
 
@@ -921,7 +866,7 @@ M.TrustStoreConfiguration = {
     members = {
         certificateAuthorityCertificates = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -940,14 +885,14 @@ M.CreateResponderGatewayInput = {
         },
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -956,7 +901,7 @@ M.CreateResponderGatewayInput = {
             type = "string",
         },
         port = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -967,15 +912,9 @@ M.CreateResponderGatewayInput = {
                 required = true,
             },
         },
-        listenerConfig = {
-            type = "structure",
-        },
-        trustStoreConfiguration = {
-            type = "structure",
-        },
-        managedEndpointConfiguration = {
-            type = "union",
-        },
+        listenerConfig = M.ListenerConfig,
+        trustStoreConfiguration = M.TrustStoreConfiguration,
+        managedEndpointConfiguration = M.ManagedEndpointConfiguration,
         clientToken = {
             type = "string",
             traits = {
@@ -987,8 +926,8 @@ M.CreateResponderGatewayInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         gatewayType = {
             type = "string",
@@ -1023,9 +962,7 @@ M.CreateResponderGatewayOutput = {
                 required = true,
             },
         },
-        listenerConfig = {
-            type = "structure",
-        },
+        listenerConfig = M.ListenerConfig,
         externalInboundEndpoint = {
             type = "string",
         },
@@ -1266,18 +1203,14 @@ M.GetLinkOutput = {
         },
         flowModules = {
             type = "list",
-            member_type = "structure",
+            member = M.ModuleConfiguration,
         },
         pendingFlowModules = {
             type = "list",
-            member_type = "structure",
+            member = M.ModuleConfiguration,
         },
-        attributes = {
-            type = "structure",
-        },
-        logSettings = {
-            type = "structure",
-        },
+        attributes = M.LinkAttributes,
+        logSettings = M.LinkLogSettings,
         connectivityType = {
             type = "string",
         },
@@ -1289,14 +1222,14 @@ M.GetLinkOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         httpResponderAllowed = {
             type = "boolean",
         },
         timeoutInMillis = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1318,7 +1251,7 @@ M.ListLinksInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1364,18 +1297,14 @@ M.ListLinksResponseStructure = {
         },
         flowModules = {
             type = "list",
-            member_type = "structure",
+            member = M.ModuleConfiguration,
         },
         pendingFlowModules = {
             type = "list",
-            member_type = "structure",
+            member = M.ModuleConfiguration,
         },
-        attributes = {
-            type = "structure",
-        },
-        logSettings = {
-            type = "structure",
-        },
+        attributes = M.LinkAttributes,
+        logSettings = M.LinkLogSettings,
         connectivityType = {
             type = "string",
         },
@@ -1387,8 +1316,8 @@ M.ListLinksResponseStructure = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         publicEndpoint = {
             type = "string",
@@ -1401,7 +1330,7 @@ M.ListLinksOutput = {
     members = {
         links = {
             type = "list",
-            member_type = "structure",
+            member = M.ListLinksResponseStructure,
         },
         nextToken = {
             type = "string",
@@ -1467,18 +1396,14 @@ M.RejectLinkOutput = {
         },
         flowModules = {
             type = "list",
-            member_type = "structure",
+            member = M.ModuleConfiguration,
         },
         pendingFlowModules = {
             type = "list",
-            member_type = "structure",
+            member = M.ModuleConfiguration,
         },
-        attributes = {
-            type = "structure",
-        },
-        logSettings = {
-            type = "structure",
-        },
+        attributes = M.LinkAttributes,
+        logSettings = M.LinkLogSettings,
         connectivityType = {
             type = "string",
         },
@@ -1508,11 +1433,9 @@ M.UpdateLinkInput = {
                 required = true,
             },
         },
-        logSettings = {
-            type = "structure",
-        },
+        logSettings = M.LinkLogSettings,
         timeoutInMillis = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1560,7 +1483,7 @@ M.UpdateLinkModuleFlowInput = {
         },
         modules = {
             type = "list",
-            member_type = "structure",
+            member = M.ModuleConfiguration,
             traits = {
                 required = true,
             },
@@ -1641,15 +1564,13 @@ M.GetInboundExternalLinkOutput = {
         },
         flowModules = {
             type = "list",
-            member_type = "structure",
+            member = M.ModuleConfiguration,
         },
         pendingFlowModules = {
             type = "list",
-            member_type = "structure",
+            member = M.ModuleConfiguration,
         },
-        attributes = {
-            type = "structure",
-        },
+        attributes = M.LinkAttributes,
         createdAt = {
             type = "timestamp",
         },
@@ -1658,12 +1579,10 @@ M.GetInboundExternalLinkOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        logSettings = {
-            type = "structure",
-        },
+        logSettings = M.LinkLogSettings,
         connectivityType = {
             type = "string",
         },
@@ -1719,15 +1638,13 @@ M.GetOutboundExternalLinkOutput = {
         },
         flowModules = {
             type = "list",
-            member_type = "structure",
+            member = M.ModuleConfiguration,
         },
         pendingFlowModules = {
             type = "list",
-            member_type = "structure",
+            member = M.ModuleConfiguration,
         },
-        attributes = {
-            type = "structure",
-        },
+        attributes = M.LinkAttributes,
         createdAt = {
             type = "timestamp",
         },
@@ -1736,12 +1653,10 @@ M.GetOutboundExternalLinkOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        logSettings = {
-            type = "structure",
-        },
+        logSettings = M.LinkLogSettings,
         connectivityType = {
             type = "string",
         },
@@ -1793,14 +1708,14 @@ M.GetRequesterGatewayOutput = {
         },
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1813,14 +1728,14 @@ M.GetRequesterGatewayOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         activeLinksCount = {
-            type = "number",
+            type = "integer",
         },
         totalLinksCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1849,14 +1764,14 @@ M.GetResponderGatewayOutput = {
         },
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1880,7 +1795,7 @@ M.GetResponderGatewayOutput = {
             type = "string",
         },
         port = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1891,15 +1806,9 @@ M.GetResponderGatewayOutput = {
                 required = true,
             },
         },
-        listenerConfig = {
-            type = "structure",
-        },
-        trustStoreConfiguration = {
-            type = "structure",
-        },
-        managedEndpointConfiguration = {
-            type = "union",
-        },
+        listenerConfig = M.ListenerConfig,
+        trustStoreConfiguration = M.TrustStoreConfiguration,
+        managedEndpointConfiguration = M.ManagedEndpointConfiguration,
         gatewayId = {
             type = "string",
             traits = {
@@ -1908,17 +1817,17 @@ M.GetResponderGatewayOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         activeLinksCount = {
-            type = "number",
+            type = "integer",
         },
         totalLinksCount = {
-            type = "number",
+            type = "integer",
         },
         inboundLinksCount = {
-            type = "number",
+            type = "integer",
         },
         gatewayType = {
             type = "string",
@@ -1933,8 +1842,9 @@ M.ListRequesterGatewaysInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 10,
                 http_query = "maxResults",
             },
         },
@@ -1952,7 +1862,7 @@ M.ListRequesterGatewaysOutput = {
     members = {
         gatewayIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -1964,8 +1874,9 @@ M.ListResponderGatewaysInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 10,
                 http_query = "maxResults",
             },
         },
@@ -1983,7 +1894,7 @@ M.ListResponderGatewaysOutput = {
     members = {
         gatewayIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -2009,8 +1920,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2062,7 +1973,7 @@ M.UpdateResponderGatewayInput = {
             type = "string",
         },
         port = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -2073,15 +1984,9 @@ M.UpdateResponderGatewayInput = {
                 required = true,
             },
         },
-        listenerConfig = {
-            type = "structure",
-        },
-        trustStoreConfiguration = {
-            type = "structure",
-        },
-        managedEndpointConfiguration = {
-            type = "union",
-        },
+        listenerConfig = M.ListenerConfig,
+        trustStoreConfiguration = M.TrustStoreConfiguration,
+        managedEndpointConfiguration = M.ManagedEndpointConfiguration,
         clientToken = {
             type = "string",
             traits = {
@@ -2131,8 +2036,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2156,7 +2061,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,

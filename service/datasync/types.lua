@@ -26,9 +26,7 @@ M.AgentListEntry = {
         Status = {
             type = "string",
         },
-        Platform = {
-            type = "structure",
-        },
+        Platform = M.Platform,
     },
 }
 
@@ -150,18 +148,18 @@ M.CreateAgentInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.TagListEntry,
         },
         VpcEndpointId = {
             type = "string",
         },
         SubnetArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SecurityGroupArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -202,9 +200,7 @@ M.CreateLocationAzureBlobInput = {
                 required = true,
             },
         },
-        SasConfiguration = {
-            type = "structure",
-        },
+        SasConfiguration = M.AzureBlobSasConfiguration,
         BlobType = {
             type = "string",
         },
@@ -216,18 +212,14 @@ M.CreateLocationAzureBlobInput = {
         },
         AgentArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.TagListEntry,
         },
-        CmkSecretConfig = {
-            type = "structure",
-        },
-        CustomSecretConfig = {
-            type = "structure",
-        },
+        CmkSecretConfig = M.CmkSecretConfig,
+        CustomSecretConfig = M.CustomSecretConfig,
     },
 }
 
@@ -251,7 +243,7 @@ M.Ec2Config = {
         },
         SecurityGroupArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -276,15 +268,12 @@ M.CreateLocationEfsInput = {
                 required = true,
             },
         },
-        Ec2Config = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Ec2Config = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Ec2Config }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.TagListEntry,
         },
         AccessPointArn = {
             type = "string",
@@ -318,7 +307,7 @@ M.CreateLocationFsxLustreInput = {
         },
         SecurityGroupArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -328,7 +317,7 @@ M.CreateLocationFsxLustreInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.TagListEntry,
         },
     },
 }
@@ -361,9 +350,7 @@ M.NfsMountOptions = {
 M.FsxProtocolNfs = {
     type = "structure",
     members = {
-        MountOptions = {
-            type = "structure",
-        },
+        MountOptions = M.NfsMountOptions,
     },
 }
 
@@ -399,11 +386,12 @@ M.FsxProtocolSmb = {
         Domain = {
             type = "string",
         },
-        MountOptions = {
-            type = "structure",
-        },
+        MountOptions = M.SmbMountOptions,
         Password = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
         User = {
             type = "string",
@@ -411,42 +399,29 @@ M.FsxProtocolSmb = {
                 required = true,
             },
         },
-        ManagedSecretConfig = {
-            type = "structure",
-        },
-        CmkSecretConfig = {
-            type = "structure",
-        },
-        CustomSecretConfig = {
-            type = "structure",
-        },
+        ManagedSecretConfig = M.ManagedSecretConfig,
+        CmkSecretConfig = M.CmkSecretConfig,
+        CustomSecretConfig = M.CustomSecretConfig,
     },
 }
 
 M.FsxProtocol = {
     type = "structure",
     members = {
-        NFS = {
-            type = "structure",
-        },
-        SMB = {
-            type = "structure",
-        },
+        NFS = M.FsxProtocolNfs,
+        SMB = M.FsxProtocolSmb,
     },
 }
 
 M.CreateLocationFsxOntapInput = {
     type = "structure",
     members = {
-        Protocol = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Protocol = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FsxProtocol }),
         SecurityGroupArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -462,7 +437,7 @@ M.CreateLocationFsxOntapInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.TagListEntry,
         },
     },
 }
@@ -485,15 +460,12 @@ M.CreateLocationFsxOpenZfsInput = {
                 required = true,
             },
         },
-        Protocol = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Protocol = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FsxProtocol }),
         SecurityGroupArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -503,7 +475,7 @@ M.CreateLocationFsxOpenZfsInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.TagListEntry,
         },
     },
 }
@@ -531,14 +503,14 @@ M.CreateLocationFsxWindowsInput = {
         },
         SecurityGroupArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.TagListEntry,
         },
         User = {
             type = "string",
@@ -552,12 +524,8 @@ M.CreateLocationFsxWindowsInput = {
         Password = {
             type = "string",
         },
-        CmkSecretConfig = {
-            type = "structure",
-        },
-        CustomSecretConfig = {
-            type = "structure",
-        },
+        CmkSecretConfig = M.CmkSecretConfig,
+        CustomSecretConfig = M.CustomSecretConfig,
     },
 }
 
@@ -585,7 +553,7 @@ M.HdfsNameNode = {
             },
         },
         Port = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -627,23 +595,21 @@ M.CreateLocationHdfsInput = {
         },
         NameNodes = {
             type = "list",
-            member_type = "structure",
+            member = M.HdfsNameNode,
             traits = {
                 required = true,
             },
         },
         BlockSize = {
-            type = "number",
+            type = "integer",
         },
         ReplicationFactor = {
-            type = "number",
+            type = "integer",
         },
         KmsKeyProviderUri = {
             type = "string",
         },
-        QopConfiguration = {
-            type = "structure",
-        },
+        QopConfiguration = M.QopConfiguration,
         AuthenticationType = {
             type = "string",
             traits = {
@@ -664,21 +630,17 @@ M.CreateLocationHdfsInput = {
         },
         AgentArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.TagListEntry,
         },
-        CmkSecretConfig = {
-            type = "structure",
-        },
-        CustomSecretConfig = {
-            type = "structure",
-        },
+        CmkSecretConfig = M.CmkSecretConfig,
+        CustomSecretConfig = M.CustomSecretConfig,
     },
 }
 
@@ -696,7 +658,7 @@ M.OnPremConfig = {
     members = {
         AgentArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -719,18 +681,13 @@ M.CreateLocationNfsInput = {
                 required = true,
             },
         },
-        OnPremConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        MountOptions = {
-            type = "structure",
-        },
+        OnPremConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OnPremConfig }),
+        MountOptions = M.NfsMountOptions,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.TagListEntry,
         },
     },
 }
@@ -759,7 +716,7 @@ M.CreateLocationObjectStorageInput = {
             },
         },
         ServerPort = {
-            type = "number",
+            type = "integer",
         },
         ServerProtocol = {
             type = "string",
@@ -781,21 +738,17 @@ M.CreateLocationObjectStorageInput = {
         },
         AgentArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.TagListEntry,
         },
         ServerCertificate = {
             type = "blob",
         },
-        CmkSecretConfig = {
-            type = "structure",
-        },
-        CustomSecretConfig = {
-            type = "structure",
-        },
+        CmkSecretConfig = M.CmkSecretConfig,
+        CustomSecretConfig = M.CustomSecretConfig,
     },
 }
 
@@ -846,19 +799,16 @@ M.CreateLocationS3Input = {
         S3StorageClass = {
             type = "string",
         },
-        S3Config = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        S3Config = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3Config }),
         AgentArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.TagListEntry,
         },
     },
 }
@@ -901,32 +851,26 @@ M.CreateLocationSmbInput = {
         Password = {
             type = "string",
         },
-        CmkSecretConfig = {
-            type = "structure",
-        },
-        CustomSecretConfig = {
-            type = "structure",
-        },
+        CmkSecretConfig = M.CmkSecretConfig,
+        CustomSecretConfig = M.CustomSecretConfig,
         AgentArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        MountOptions = {
-            type = "structure",
-        },
+        MountOptions = M.SmbMountOptions,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.TagListEntry,
         },
         AuthenticationType = {
             type = "string",
         },
         DnsIpAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         KerberosPrincipal = {
             type = "string",
@@ -1003,12 +947,9 @@ M.S3ManifestConfig = {
 M.SourceManifestConfig = {
     type = "structure",
     members = {
-        S3 = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        S3 = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3ManifestConfig }),
     },
 }
 
@@ -1021,9 +962,7 @@ M.ManifestConfig = {
         Format = {
             type = "string",
         },
-        Source = {
-            type = "structure",
-        },
+        Source = M.SourceManifestConfig,
     },
 }
 
@@ -1130,7 +1069,7 @@ M.Options = {
             type = "string",
         },
         BytesPerSecond = {
-            type = "number",
+            type = "long",
         },
         TaskQueueing = {
             type = "string",
@@ -1199,9 +1138,7 @@ M.ReportDestinationS3 = {
 M.ReportDestination = {
     type = "structure",
     members = {
-        S3 = {
-            type = "structure",
-        },
+        S3 = M.ReportDestinationS3,
     },
 }
 
@@ -1232,27 +1169,17 @@ M.ReportOverride = {
 M.ReportOverrides = {
     type = "structure",
     members = {
-        Transferred = {
-            type = "structure",
-        },
-        Verified = {
-            type = "structure",
-        },
-        Deleted = {
-            type = "structure",
-        },
-        Skipped = {
-            type = "structure",
-        },
+        Transferred = M.ReportOverride,
+        Verified = M.ReportOverride,
+        Deleted = M.ReportOverride,
+        Skipped = M.ReportOverride,
     },
 }
 
 M.TaskReportConfig = {
     type = "structure",
     members = {
-        Destination = {
-            type = "structure",
-        },
+        Destination = M.ReportDestination,
         OutputType = {
             type = "string",
         },
@@ -1262,9 +1189,7 @@ M.TaskReportConfig = {
         ObjectVersionIds = {
             type = "string",
         },
-        Overrides = {
-            type = "structure",
-        },
+        Overrides = M.ReportOverrides,
     },
 }
 
@@ -1289,30 +1214,22 @@ M.CreateTaskInput = {
         Name = {
             type = "string",
         },
-        Options = {
-            type = "structure",
-        },
+        Options = M.Options,
         Excludes = {
             type = "list",
-            member_type = "structure",
+            member = M.FilterRule,
         },
-        Schedule = {
-            type = "structure",
-        },
+        Schedule = M.TaskSchedule,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.TagListEntry,
         },
         Includes = {
             type = "list",
-            member_type = "structure",
+            member = M.FilterRule,
         },
-        ManifestConfig = {
-            type = "structure",
-        },
-        TaskReportConfig = {
-            type = "structure",
-        },
+        ManifestConfig = M.ManifestConfig,
+        TaskReportConfig = M.TaskReportConfig,
         TaskMode = {
             type = "string",
         },
@@ -1406,11 +1323,11 @@ M.PrivateLinkConfig = {
         },
         SubnetArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SecurityGroupArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1436,12 +1353,8 @@ M.DescribeAgentOutput = {
         EndpointType = {
             type = "string",
         },
-        PrivateLinkConfig = {
-            type = "structure",
-        },
-        Platform = {
-            type = "structure",
-        },
+        PrivateLinkConfig = M.PrivateLinkConfig,
+        Platform = M.Platform,
     },
 }
 
@@ -1477,20 +1390,14 @@ M.DescribeLocationAzureBlobOutput = {
         },
         AgentArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CreationTime = {
             type = "timestamp",
         },
-        ManagedSecretConfig = {
-            type = "structure",
-        },
-        CmkSecretConfig = {
-            type = "structure",
-        },
-        CustomSecretConfig = {
-            type = "structure",
-        },
+        ManagedSecretConfig = M.ManagedSecretConfig,
+        CmkSecretConfig = M.CmkSecretConfig,
+        CustomSecretConfig = M.CustomSecretConfig,
     },
 }
 
@@ -1515,9 +1422,7 @@ M.DescribeLocationEfsOutput = {
         LocationUri = {
             type = "string",
         },
-        Ec2Config = {
-            type = "structure",
-        },
+        Ec2Config = M.Ec2Config,
         CreationTime = {
             type = "timestamp",
         },
@@ -1556,7 +1461,7 @@ M.DescribeLocationFsxLustreOutput = {
         },
         SecurityGroupArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CreationTime = {
             type = "timestamp",
@@ -1588,12 +1493,10 @@ M.DescribeLocationFsxOntapOutput = {
         LocationUri = {
             type = "string",
         },
-        Protocol = {
-            type = "structure",
-        },
+        Protocol = M.FsxProtocol,
         SecurityGroupArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         StorageVirtualMachineArn = {
             type = "string",
@@ -1627,11 +1530,9 @@ M.DescribeLocationFsxOpenZfsOutput = {
         },
         SecurityGroupArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        Protocol = {
-            type = "structure",
-        },
+        Protocol = M.FsxProtocol,
         CreationTime = {
             type = "timestamp",
         },
@@ -1661,7 +1562,7 @@ M.DescribeLocationFsxWindowsOutput = {
         },
         SecurityGroupArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CreationTime = {
             type = "timestamp",
@@ -1672,15 +1573,9 @@ M.DescribeLocationFsxWindowsOutput = {
         Domain = {
             type = "string",
         },
-        ManagedSecretConfig = {
-            type = "structure",
-        },
-        CmkSecretConfig = {
-            type = "structure",
-        },
-        CustomSecretConfig = {
-            type = "structure",
-        },
+        ManagedSecretConfig = M.ManagedSecretConfig,
+        CmkSecretConfig = M.CmkSecretConfig,
+        CustomSecretConfig = M.CustomSecretConfig,
     },
 }
 
@@ -1707,20 +1602,18 @@ M.DescribeLocationHdfsOutput = {
         },
         NameNodes = {
             type = "list",
-            member_type = "structure",
+            member = M.HdfsNameNode,
         },
         BlockSize = {
-            type = "number",
+            type = "integer",
         },
         ReplicationFactor = {
-            type = "number",
+            type = "integer",
         },
         KmsKeyProviderUri = {
             type = "string",
         },
-        QopConfiguration = {
-            type = "structure",
-        },
+        QopConfiguration = M.QopConfiguration,
         AuthenticationType = {
             type = "string",
         },
@@ -1732,20 +1625,14 @@ M.DescribeLocationHdfsOutput = {
         },
         AgentArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CreationTime = {
             type = "timestamp",
         },
-        ManagedSecretConfig = {
-            type = "structure",
-        },
-        CmkSecretConfig = {
-            type = "structure",
-        },
-        CustomSecretConfig = {
-            type = "structure",
-        },
+        ManagedSecretConfig = M.ManagedSecretConfig,
+        CmkSecretConfig = M.CmkSecretConfig,
+        CustomSecretConfig = M.CustomSecretConfig,
     },
 }
 
@@ -1770,12 +1657,8 @@ M.DescribeLocationNfsOutput = {
         LocationUri = {
             type = "string",
         },
-        OnPremConfig = {
-            type = "structure",
-        },
-        MountOptions = {
-            type = "structure",
-        },
+        OnPremConfig = M.OnPremConfig,
+        MountOptions = M.NfsMountOptions,
         CreationTime = {
             type = "timestamp",
         },
@@ -1807,14 +1690,14 @@ M.DescribeLocationObjectStorageOutput = {
             type = "string",
         },
         ServerPort = {
-            type = "number",
+            type = "integer",
         },
         ServerProtocol = {
             type = "string",
         },
         AgentArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CreationTime = {
             type = "timestamp",
@@ -1822,15 +1705,9 @@ M.DescribeLocationObjectStorageOutput = {
         ServerCertificate = {
             type = "blob",
         },
-        ManagedSecretConfig = {
-            type = "structure",
-        },
-        CmkSecretConfig = {
-            type = "structure",
-        },
-        CustomSecretConfig = {
-            type = "structure",
-        },
+        ManagedSecretConfig = M.ManagedSecretConfig,
+        CmkSecretConfig = M.CmkSecretConfig,
+        CustomSecretConfig = M.CustomSecretConfig,
     },
 }
 
@@ -1858,12 +1735,10 @@ M.DescribeLocationS3Output = {
         S3StorageClass = {
             type = "string",
         },
-        S3Config = {
-            type = "structure",
-        },
+        S3Config = M.S3Config,
         AgentArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CreationTime = {
             type = "timestamp",
@@ -1894,7 +1769,7 @@ M.DescribeLocationSmbOutput = {
         },
         AgentArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         User = {
             type = "string",
@@ -1902,15 +1777,13 @@ M.DescribeLocationSmbOutput = {
         Domain = {
             type = "string",
         },
-        MountOptions = {
-            type = "structure",
-        },
+        MountOptions = M.SmbMountOptions,
         CreationTime = {
             type = "timestamp",
         },
         DnsIpAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         KerberosPrincipal = {
             type = "string",
@@ -1918,15 +1791,9 @@ M.DescribeLocationSmbOutput = {
         AuthenticationType = {
             type = "string",
         },
-        ManagedSecretConfig = {
-            type = "structure",
-        },
-        CmkSecretConfig = {
-            type = "structure",
-        },
-        CustomSecretConfig = {
-            type = "structure",
-        },
+        ManagedSecretConfig = M.ManagedSecretConfig,
+        CmkSecretConfig = M.CmkSecretConfig,
+        CustomSecretConfig = M.CustomSecretConfig,
     },
 }
 
@@ -1996,22 +1863,18 @@ M.DescribeTaskOutput = {
         },
         SourceNetworkInterfaceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DestinationNetworkInterfaceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        Options = {
-            type = "structure",
-        },
+        Options = M.Options,
         Excludes = {
             type = "list",
-            member_type = "structure",
+            member = M.FilterRule,
         },
-        Schedule = {
-            type = "structure",
-        },
+        Schedule = M.TaskSchedule,
         ErrorCode = {
             type = "string",
         },
@@ -2023,17 +1886,11 @@ M.DescribeTaskOutput = {
         },
         Includes = {
             type = "list",
-            member_type = "structure",
+            member = M.FilterRule,
         },
-        ManifestConfig = {
-            type = "structure",
-        },
-        TaskReportConfig = {
-            type = "structure",
-        },
-        ScheduleDetails = {
-            type = "structure",
-        },
+        ManifestConfig = M.ManifestConfig,
+        TaskReportConfig = M.TaskReportConfig,
+        ScheduleDetails = M.TaskScheduleDetails,
         TaskMode = {
             type = "string",
         },
@@ -2056,16 +1913,28 @@ M.TaskExecutionFilesFailedDetail = {
     type = "structure",
     members = {
         Prepare = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Transfer = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Verify = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Delete = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2074,10 +1943,16 @@ M.TaskExecutionFilesListedDetail = {
     type = "structure",
     members = {
         AtSource = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         AtDestinationForDelete = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2086,19 +1961,34 @@ M.TaskExecutionFoldersFailedDetail = {
     type = "structure",
     members = {
         List = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Prepare = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Transfer = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Verify = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Delete = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2107,10 +1997,16 @@ M.TaskExecutionFoldersListedDetail = {
     type = "structure",
     members = {
         AtSource = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         AtDestinationForDelete = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2140,22 +2036,22 @@ M.TaskExecutionResultDetail = {
     type = "structure",
     members = {
         PrepareDuration = {
-            type = "number",
+            type = "long",
         },
         PrepareStatus = {
             type = "string",
         },
         TotalDuration = {
-            type = "number",
+            type = "long",
         },
         TransferDuration = {
-            type = "number",
+            type = "long",
         },
         TransferStatus = {
             type = "string",
         },
         VerifyDuration = {
-            type = "number",
+            type = "long",
         },
         VerifyStatus = {
             type = "string",
@@ -2189,101 +2085,116 @@ M.DescribeTaskExecutionOutput = {
         Status = {
             type = "string",
         },
-        Options = {
-            type = "structure",
-        },
+        Options = M.Options,
         Excludes = {
             type = "list",
-            member_type = "structure",
+            member = M.FilterRule,
         },
         Includes = {
             type = "list",
-            member_type = "structure",
+            member = M.FilterRule,
         },
-        ManifestConfig = {
-            type = "structure",
-        },
+        ManifestConfig = M.ManifestConfig,
         StartTime = {
             type = "timestamp",
         },
         EstimatedFilesToTransfer = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         EstimatedBytesToTransfer = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         FilesTransferred = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         BytesWritten = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         BytesTransferred = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         BytesCompressed = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
-        Result = {
-            type = "structure",
-        },
-        TaskReportConfig = {
-            type = "structure",
-        },
+        Result = M.TaskExecutionResultDetail,
+        TaskReportConfig = M.TaskReportConfig,
         FilesDeleted = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         FilesSkipped = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         FilesVerified = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
-        ReportResult = {
-            type = "structure",
-        },
+        ReportResult = M.ReportResult,
         EstimatedFilesToDelete = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         TaskMode = {
             type = "string",
         },
         FilesPrepared = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
-        FilesListed = {
-            type = "structure",
-        },
-        FilesFailed = {
-            type = "structure",
-        },
+        FilesListed = M.TaskExecutionFilesListedDetail,
+        FilesFailed = M.TaskExecutionFilesFailedDetail,
         EstimatedFoldersToDelete = {
-            type = "number",
+            type = "long",
         },
         EstimatedFoldersToTransfer = {
-            type = "number",
+            type = "long",
         },
         FoldersSkipped = {
-            type = "number",
+            type = "long",
         },
         FoldersPrepared = {
-            type = "number",
+            type = "long",
         },
         FoldersTransferred = {
-            type = "number",
+            type = "long",
         },
         FoldersVerified = {
-            type = "number",
+            type = "long",
         },
         FoldersDeleted = {
-            type = "number",
+            type = "long",
         },
-        FoldersListed = {
-            type = "structure",
-        },
-        FoldersFailed = {
-            type = "structure",
-        },
+        FoldersListed = M.TaskExecutionFoldersListedDetail,
+        FoldersFailed = M.TaskExecutionFoldersFailedDetail,
         LaunchTime = {
             type = "timestamp",
         },
@@ -2297,7 +2208,7 @@ M.ListAgentsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2310,7 +2221,7 @@ M.ListAgentsOutput = {
     members = {
         Agents = {
             type = "list",
-            member_type = "structure",
+            member = M.AgentListEntry,
         },
         NextToken = {
             type = "string",
@@ -2348,7 +2259,7 @@ M.LocationFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2366,14 +2277,14 @@ M.ListLocationsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.LocationFilter,
         },
     },
 }
@@ -2395,7 +2306,7 @@ M.ListLocationsOutput = {
     members = {
         Locations = {
             type = "list",
-            member_type = "structure",
+            member = M.LocationListEntry,
         },
         NextToken = {
             type = "string",
@@ -2413,7 +2324,7 @@ M.ListTagsForResourceInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2426,7 +2337,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.TagListEntry,
         },
         NextToken = {
             type = "string",
@@ -2441,7 +2352,7 @@ M.ListTaskExecutionsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2469,7 +2380,7 @@ M.ListTaskExecutionsOutput = {
     members = {
         TaskExecutions = {
             type = "list",
-            member_type = "structure",
+            member = M.TaskExecutionListEntry,
         },
         NextToken = {
             type = "string",
@@ -2493,7 +2404,7 @@ M.TaskFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2511,14 +2422,14 @@ M.ListTasksInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.TaskFilter,
         },
     },
 }
@@ -2546,7 +2457,7 @@ M.ListTasksOutput = {
     members = {
         Tasks = {
             type = "list",
-            member_type = "structure",
+            member = M.TaskListEntry,
         },
         NextToken = {
             type = "string",
@@ -2563,26 +2474,20 @@ M.StartTaskExecutionInput = {
                 required = true,
             },
         },
-        OverrideOptions = {
-            type = "structure",
-        },
+        OverrideOptions = M.Options,
         Includes = {
             type = "list",
-            member_type = "structure",
+            member = M.FilterRule,
         },
         Excludes = {
             type = "list",
-            member_type = "structure",
+            member = M.FilterRule,
         },
-        ManifestConfig = {
-            type = "structure",
-        },
-        TaskReportConfig = {
-            type = "structure",
-        },
+        ManifestConfig = M.ManifestConfig,
+        TaskReportConfig = M.TaskReportConfig,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.TagListEntry,
         },
     },
 }
@@ -2607,7 +2512,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.TagListEntry,
             traits = {
                 required = true,
             },
@@ -2630,7 +2535,7 @@ M.UntagResourceInput = {
         },
         Keys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2676,9 +2581,7 @@ M.UpdateLocationAzureBlobInput = {
         AuthenticationType = {
             type = "string",
         },
-        SasConfiguration = {
-            type = "structure",
-        },
+        SasConfiguration = M.AzureBlobSasConfiguration,
         BlobType = {
             type = "string",
         },
@@ -2687,14 +2590,10 @@ M.UpdateLocationAzureBlobInput = {
         },
         AgentArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        CmkSecretConfig = {
-            type = "structure",
-        },
-        CustomSecretConfig = {
-            type = "structure",
-        },
+        CmkSecretConfig = M.CmkSecretConfig,
+        CustomSecretConfig = M.CustomSecretConfig,
     },
 }
 
@@ -2755,33 +2654,23 @@ M.FsxUpdateProtocolSmb = {
         Domain = {
             type = "string",
         },
-        MountOptions = {
-            type = "structure",
-        },
+        MountOptions = M.SmbMountOptions,
         Password = {
             type = "string",
         },
         User = {
             type = "string",
         },
-        CmkSecretConfig = {
-            type = "structure",
-        },
-        CustomSecretConfig = {
-            type = "structure",
-        },
+        CmkSecretConfig = M.CmkSecretConfig,
+        CustomSecretConfig = M.CustomSecretConfig,
     },
 }
 
 M.FsxUpdateProtocol = {
     type = "structure",
     members = {
-        NFS = {
-            type = "structure",
-        },
-        SMB = {
-            type = "structure",
-        },
+        NFS = M.FsxProtocolNfs,
+        SMB = M.FsxUpdateProtocolSmb,
     },
 }
 
@@ -2794,9 +2683,7 @@ M.UpdateLocationFsxOntapInput = {
                 required = true,
             },
         },
-        Protocol = {
-            type = "structure",
-        },
+        Protocol = M.FsxUpdateProtocol,
         Subdirectory = {
             type = "string",
         },
@@ -2816,9 +2703,7 @@ M.UpdateLocationFsxOpenZfsInput = {
                 required = true,
             },
         },
-        Protocol = {
-            type = "structure",
-        },
+        Protocol = M.FsxProtocol,
         Subdirectory = {
             type = "string",
         },
@@ -2850,12 +2735,8 @@ M.UpdateLocationFsxWindowsInput = {
         Password = {
             type = "string",
         },
-        CmkSecretConfig = {
-            type = "structure",
-        },
-        CustomSecretConfig = {
-            type = "structure",
-        },
+        CmkSecretConfig = M.CmkSecretConfig,
+        CustomSecretConfig = M.CustomSecretConfig,
     },
 }
 
@@ -2877,20 +2758,18 @@ M.UpdateLocationHdfsInput = {
         },
         NameNodes = {
             type = "list",
-            member_type = "structure",
+            member = M.HdfsNameNode,
         },
         BlockSize = {
-            type = "number",
+            type = "integer",
         },
         ReplicationFactor = {
-            type = "number",
+            type = "integer",
         },
         KmsKeyProviderUri = {
             type = "string",
         },
-        QopConfiguration = {
-            type = "structure",
-        },
+        QopConfiguration = M.QopConfiguration,
         AuthenticationType = {
             type = "string",
         },
@@ -2908,14 +2787,10 @@ M.UpdateLocationHdfsInput = {
         },
         AgentArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        CmkSecretConfig = {
-            type = "structure",
-        },
-        CustomSecretConfig = {
-            type = "structure",
-        },
+        CmkSecretConfig = M.CmkSecretConfig,
+        CustomSecretConfig = M.CustomSecretConfig,
     },
 }
 
@@ -2938,12 +2813,8 @@ M.UpdateLocationNfsInput = {
         ServerHostname = {
             type = "string",
         },
-        OnPremConfig = {
-            type = "structure",
-        },
-        MountOptions = {
-            type = "structure",
-        },
+        OnPremConfig = M.OnPremConfig,
+        MountOptions = M.NfsMountOptions,
     },
 }
 
@@ -2961,7 +2832,7 @@ M.UpdateLocationObjectStorageInput = {
             },
         },
         ServerPort = {
-            type = "number",
+            type = "integer",
         },
         ServerProtocol = {
             type = "string",
@@ -2980,17 +2851,13 @@ M.UpdateLocationObjectStorageInput = {
         },
         AgentArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ServerCertificate = {
             type = "blob",
         },
-        CmkSecretConfig = {
-            type = "structure",
-        },
-        CustomSecretConfig = {
-            type = "structure",
-        },
+        CmkSecretConfig = M.CmkSecretConfig,
+        CustomSecretConfig = M.CustomSecretConfig,
     },
 }
 
@@ -3013,9 +2880,7 @@ M.UpdateLocationS3Input = {
         S3StorageClass = {
             type = "string",
         },
-        S3Config = {
-            type = "structure",
-        },
+        S3Config = M.S3Config,
     },
 }
 
@@ -3047,25 +2912,19 @@ M.UpdateLocationSmbInput = {
         Password = {
             type = "string",
         },
-        CmkSecretConfig = {
-            type = "structure",
-        },
-        CustomSecretConfig = {
-            type = "structure",
-        },
+        CmkSecretConfig = M.CmkSecretConfig,
+        CustomSecretConfig = M.CustomSecretConfig,
         AgentArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        MountOptions = {
-            type = "structure",
-        },
+        MountOptions = M.SmbMountOptions,
         AuthenticationType = {
             type = "string",
         },
         DnsIpAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         KerberosPrincipal = {
             type = "string",
@@ -3092,16 +2951,12 @@ M.UpdateTaskInput = {
                 required = true,
             },
         },
-        Options = {
-            type = "structure",
-        },
+        Options = M.Options,
         Excludes = {
             type = "list",
-            member_type = "structure",
+            member = M.FilterRule,
         },
-        Schedule = {
-            type = "structure",
-        },
+        Schedule = M.TaskSchedule,
         Name = {
             type = "string",
         },
@@ -3110,14 +2965,10 @@ M.UpdateTaskInput = {
         },
         Includes = {
             type = "list",
-            member_type = "structure",
+            member = M.FilterRule,
         },
-        ManifestConfig = {
-            type = "structure",
-        },
-        TaskReportConfig = {
-            type = "structure",
-        },
+        ManifestConfig = M.ManifestConfig,
+        TaskReportConfig = M.TaskReportConfig,
     },
 }
 
@@ -3134,12 +2985,9 @@ M.UpdateTaskExecutionInput = {
                 required = true,
             },
         },
-        Options = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Options = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Options }),
     },
 }
 

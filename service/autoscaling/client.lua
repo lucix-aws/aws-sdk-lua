@@ -16,7 +16,7 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AutoScaling_2011_01_01"
-    cfg.signing_name = "autoscaling_2011_01_01"
+    cfg.signing_name = "autoscaling"
     if not cfg.protocol then
         cfg.protocol = query_protocol.new("awsQuery")
     end

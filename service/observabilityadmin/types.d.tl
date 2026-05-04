@@ -1412,9 +1412,9 @@ local record ValidationException
     Errors: {ValidationError}
 end
 
-local type CentralizationFailureReason = "TRUSTED_ACCESS_NOT_ENABLED" | "DESTINATION_ACCOUNT_NOT_IN_ORGANIZATION" | "INTERNAL_SERVER_ERROR"
-
 local type RuleHealth = "Healthy" | "Unhealthy" | "Provisioning"
+
+local type CentralizationFailureReason = "TRUSTED_ACCESS_NOT_ENABLED" | "DESTINATION_ACCOUNT_NOT_IN_ORGANIZATION" | "INTERNAL_SERVER_ERROR"
 
 local type TelemetryEnrichmentStatus = "Running" | "Stopped" | "Impaired"
 

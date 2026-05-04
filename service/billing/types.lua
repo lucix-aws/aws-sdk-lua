@@ -42,7 +42,7 @@ M.AssociateSourceViewsInput = {
         },
         sourceViews = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -231,7 +231,7 @@ M.ValidationException = {
         },
         fieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -247,7 +247,7 @@ M.CostCategoryValues = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -270,7 +270,7 @@ M.DimensionValues = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -289,7 +289,7 @@ M.TagValues = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -312,18 +312,10 @@ M.TimeRange = {
 M.Expression = {
     type = "structure",
     members = {
-        dimensions = {
-            type = "structure",
-        },
-        tags = {
-            type = "structure",
-        },
-        costCategories = {
-            type = "structure",
-        },
-        timeRange = {
-            type = "structure",
-        },
+        dimensions = M.DimensionValues,
+        tags = M.TagValues,
+        costCategories = M.CostCategoryValues,
+        timeRange = M.TimeRange,
     },
 }
 
@@ -356,14 +348,12 @@ M.CreateBillingViewInput = {
         },
         sourceViews = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        dataFilterExpression = {
-            type = "structure",
-        },
+        dataFilterExpression = M.Expression,
         clientToken = {
             type = "string",
             traits = {
@@ -372,7 +362,7 @@ M.CreateBillingViewInput = {
         },
         resourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
         },
     },
 }
@@ -403,6 +393,9 @@ M.DeleteBillingViewInput = {
         },
         force = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -430,7 +423,7 @@ M.DisassociateSourceViewsInput = {
         },
         sourceViews = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -496,7 +489,7 @@ M.BillingViewHealthStatus = {
         },
         statusReasons = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -522,9 +515,7 @@ M.BillingViewElement = {
         sourceAccountId = {
             type = "string",
         },
-        dataFilterExpression = {
-            type = "structure",
-        },
+        dataFilterExpression = M.Expression,
         createdAt = {
             type = "timestamp",
         },
@@ -532,29 +523,24 @@ M.BillingViewElement = {
             type = "timestamp",
         },
         derivedViewCount = {
-            type = "number",
+            type = "integer",
         },
         sourceViewCount = {
-            type = "number",
+            type = "integer",
         },
         viewDefinitionLastUpdatedAt = {
             type = "timestamp",
         },
-        healthStatus = {
-            type = "structure",
-        },
+        healthStatus = M.BillingViewHealthStatus,
     },
 }
 
 M.GetBillingViewOutput = {
     type = "structure",
     members = {
-        billingView = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        billingView = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BillingViewElement }),
     },
 }
 
@@ -610,20 +596,18 @@ M.StringSearch = {
 M.ListBillingViewsInput = {
     type = "structure",
     members = {
-        activeTimeRange = {
-            type = "structure",
-        },
+        activeTimeRange = M.ActiveTimeRange,
         arns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         billingViewTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         names = {
             type = "list",
-            member_type = "structure",
+            member = M.StringSearch,
         },
         ownerAccountId = {
             type = "string",
@@ -632,7 +616,7 @@ M.ListBillingViewsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -661,9 +645,7 @@ M.BillingViewListElement = {
         billingViewType = {
             type = "string",
         },
-        healthStatus = {
-            type = "structure",
-        },
+        healthStatus = M.BillingViewHealthStatus,
     },
 }
 
@@ -672,7 +654,7 @@ M.ListBillingViewsOutput = {
     members = {
         billingViews = {
             type = "list",
-            member_type = "structure",
+            member = M.BillingViewListElement,
             traits = {
                 required = true,
             },
@@ -693,7 +675,7 @@ M.ListSourceViewsForBillingViewInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -706,7 +688,7 @@ M.ListSourceViewsForBillingViewOutput = {
     members = {
         sourceViews = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -734,7 +716,7 @@ M.ListTagsForResourceOutput = {
     members = {
         resourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
         },
     },
 }
@@ -750,7 +732,7 @@ M.TagResourceInput = {
         },
         resourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
             traits = {
                 required = true,
             },
@@ -773,7 +755,7 @@ M.UntagResourceInput = {
         },
         resourceTagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -800,9 +782,7 @@ M.UpdateBillingViewInput = {
         description = {
             type = "string",
         },
-        dataFilterExpression = {
-            type = "structure",
-        },
+        dataFilterExpression = M.Expression,
     },
 }
 

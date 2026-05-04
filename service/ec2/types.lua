@@ -4,13 +4,13 @@ M.AcceleratorCount = {
     type = "structure",
     members = {
         Min = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "min",
             },
         },
         Max = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "max",
             },
@@ -22,10 +22,10 @@ M.AcceleratorCountRequest = {
     type = "structure",
     members = {
         Min = {
-            type = "number",
+            type = "integer",
         },
         Max = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -64,13 +64,13 @@ M.AcceleratorTotalMemoryMiB = {
     type = "structure",
     members = {
         Min = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "min",
             },
         },
         Max = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "max",
             },
@@ -82,10 +82,10 @@ M.AcceleratorTotalMemoryMiBRequest = {
     type = "structure",
     members = {
         Min = {
-            type = "number",
+            type = "integer",
         },
         Max = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -236,7 +236,7 @@ M.TagSpecification = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "Tag",
             },
@@ -255,7 +255,7 @@ M.AcceptAddressTransferInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -317,12 +317,9 @@ M.AddressTransfer = {
 M.AcceptAddressTransferOutput = {
     type = "structure",
     members = {
-        AddressTransfer = {
-            type = "structure",
-            traits = {
-                xml_name = "addressTransfer",
-            },
-        },
+        AddressTransfer = setmetatable({ traits = {
+            xml_name = "addressTransfer",
+        } }, { __index = M.AddressTransfer }),
     },
 }
 
@@ -357,7 +354,7 @@ M.TargetConfigurationRequest = {
     type = "structure",
     members = {
         InstanceCount = {
-            type = "number",
+            type = "integer",
         },
         OfferingId = {
             type = "string",
@@ -376,7 +373,7 @@ M.AcceptReservedInstancesExchangeQuoteInput = {
         },
         ReservedInstanceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "ReservedInstanceId",
@@ -384,7 +381,7 @@ M.AcceptReservedInstancesExchangeQuoteInput = {
         },
         TargetConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetConfigurationRequest,
             traits = {
                 xml_name = "TargetConfiguration",
             },
@@ -473,12 +470,9 @@ M.TransitGatewayClientVpnAttachment = {
 M.AcceptTransitGatewayClientVpnAttachmentOutput = {
     type = "structure",
     members = {
-        TransitGatewayClientVpnAttachment = {
-            type = "structure",
-            traits = {
-                xml_name = "transitGatewayClientVpnAttachment",
-            },
-        },
+        TransitGatewayClientVpnAttachment = setmetatable({ traits = {
+            xml_name = "transitGatewayClientVpnAttachment",
+        } }, { __index = M.TransitGatewayClientVpnAttachment }),
     },
 }
 
@@ -493,7 +487,7 @@ M.AcceptTransitGatewayMulticastDomainAssociationsInput = {
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DryRun = {
             type = "boolean",
@@ -576,7 +570,7 @@ M.TransitGatewayMulticastDomainAssociations = {
         },
         Subnets = {
             type = "list",
-            member_type = "structure",
+            member = M.SubnetAssociation,
             traits = {
                 xml_name = "subnets",
             },
@@ -587,12 +581,9 @@ M.TransitGatewayMulticastDomainAssociations = {
 M.AcceptTransitGatewayMulticastDomainAssociationsOutput = {
     type = "structure",
     members = {
-        Associations = {
-            type = "structure",
-            traits = {
-                xml_name = "associations",
-            },
-        },
+        Associations = setmetatable({ traits = {
+            xml_name = "associations",
+        } }, { __index = M.TransitGatewayMulticastDomainAssociations }),
     },
 }
 
@@ -707,30 +698,18 @@ M.TransitGatewayPeeringAttachment = {
                 xml_name = "accepterTransitGatewayAttachmentId",
             },
         },
-        RequesterTgwInfo = {
-            type = "structure",
-            traits = {
-                xml_name = "requesterTgwInfo",
-            },
-        },
-        AccepterTgwInfo = {
-            type = "structure",
-            traits = {
-                xml_name = "accepterTgwInfo",
-            },
-        },
-        Options = {
-            type = "structure",
-            traits = {
-                xml_name = "options",
-            },
-        },
-        Status = {
-            type = "structure",
-            traits = {
-                xml_name = "status",
-            },
-        },
+        RequesterTgwInfo = setmetatable({ traits = {
+            xml_name = "requesterTgwInfo",
+        } }, { __index = M.PeeringTgwInfo }),
+        AccepterTgwInfo = setmetatable({ traits = {
+            xml_name = "accepterTgwInfo",
+        } }, { __index = M.PeeringTgwInfo }),
+        Options = setmetatable({ traits = {
+            xml_name = "options",
+        } }, { __index = M.TransitGatewayPeeringAttachmentOptions }),
+        Status = setmetatable({ traits = {
+            xml_name = "status",
+        } }, { __index = M.PeeringAttachmentStatus }),
         State = {
             type = "string",
             traits = {
@@ -745,7 +724,7 @@ M.TransitGatewayPeeringAttachment = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -756,12 +735,9 @@ M.TransitGatewayPeeringAttachment = {
 M.AcceptTransitGatewayPeeringAttachmentOutput = {
     type = "structure",
     members = {
-        TransitGatewayPeeringAttachment = {
-            type = "structure",
-            traits = {
-                xml_name = "transitGatewayPeeringAttachment",
-            },
-        },
+        TransitGatewayPeeringAttachment = setmetatable({ traits = {
+            xml_name = "transitGatewayPeeringAttachment",
+        } }, { __index = M.TransitGatewayPeeringAttachment }),
     },
 }
 
@@ -865,7 +841,7 @@ M.TransitGatewayVpcAttachment = {
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "subnetIds",
             },
@@ -876,15 +852,12 @@ M.TransitGatewayVpcAttachment = {
                 xml_name = "creationTime",
             },
         },
-        Options = {
-            type = "structure",
-            traits = {
-                xml_name = "options",
-            },
-        },
+        Options = setmetatable({ traits = {
+            xml_name = "options",
+        } }, { __index = M.TransitGatewayVpcAttachmentOptions }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -895,12 +868,9 @@ M.TransitGatewayVpcAttachment = {
 M.AcceptTransitGatewayVpcAttachmentOutput = {
     type = "structure",
     members = {
-        TransitGatewayVpcAttachment = {
-            type = "structure",
-            traits = {
-                xml_name = "transitGatewayVpcAttachment",
-            },
-        },
+        TransitGatewayVpcAttachment = setmetatable({ traits = {
+            xml_name = "transitGatewayVpcAttachment",
+        } }, { __index = M.TransitGatewayVpcAttachment }),
     },
 }
 
@@ -918,7 +888,7 @@ M.AcceptVpcEndpointConnectionsInput = {
         },
         VpcEndpointIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "VpcEndpointId",
@@ -948,12 +918,9 @@ M.UnsuccessfulItemError = {
 M.UnsuccessfulItem = {
     type = "structure",
     members = {
-        Error = {
-            type = "structure",
-            traits = {
-                xml_name = "error",
-            },
-        },
+        Error = setmetatable({ traits = {
+            xml_name = "error",
+        } }, { __index = M.UnsuccessfulItemError }),
         ResourceId = {
             type = "string",
             traits = {
@@ -968,7 +935,7 @@ M.AcceptVpcEndpointConnectionsOutput = {
     members = {
         Unsuccessful = {
             type = "list",
-            member_type = "structure",
+            member = M.UnsuccessfulItem,
             traits = {
                 xml_name = "unsuccessful",
             },
@@ -1054,14 +1021,14 @@ M.VpcPeeringConnectionVpcInfo = {
         },
         Ipv6CidrBlockSet = {
             type = "list",
-            member_type = "structure",
+            member = M.Ipv6CidrBlock,
             traits = {
                 xml_name = "ipv6CidrBlockSet",
             },
         },
         CidrBlockSet = {
             type = "list",
-            member_type = "structure",
+            member = M.CidrBlock,
             traits = {
                 xml_name = "cidrBlockSet",
             },
@@ -1072,12 +1039,9 @@ M.VpcPeeringConnectionVpcInfo = {
                 xml_name = "ownerId",
             },
         },
-        PeeringOptions = {
-            type = "structure",
-            traits = {
-                xml_name = "peeringOptions",
-            },
-        },
+        PeeringOptions = setmetatable({ traits = {
+            xml_name = "peeringOptions",
+        } }, { __index = M.VpcPeeringConnectionOptionsDescription }),
         VpcId = {
             type = "string",
             traits = {
@@ -1126,33 +1090,24 @@ M.VpcPeeringConnectionStateReason = {
 M.VpcPeeringConnection = {
     type = "structure",
     members = {
-        AccepterVpcInfo = {
-            type = "structure",
-            traits = {
-                xml_name = "accepterVpcInfo",
-            },
-        },
+        AccepterVpcInfo = setmetatable({ traits = {
+            xml_name = "accepterVpcInfo",
+        } }, { __index = M.VpcPeeringConnectionVpcInfo }),
         ExpirationTime = {
             type = "timestamp",
             traits = {
                 xml_name = "expirationTime",
             },
         },
-        RequesterVpcInfo = {
-            type = "structure",
-            traits = {
-                xml_name = "requesterVpcInfo",
-            },
-        },
-        Status = {
-            type = "structure",
-            traits = {
-                xml_name = "status",
-            },
-        },
+        RequesterVpcInfo = setmetatable({ traits = {
+            xml_name = "requesterVpcInfo",
+        } }, { __index = M.VpcPeeringConnectionVpcInfo }),
+        Status = setmetatable({ traits = {
+            xml_name = "status",
+        } }, { __index = M.VpcPeeringConnectionStateReason }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -1169,12 +1124,9 @@ M.VpcPeeringConnection = {
 M.AcceptVpcPeeringConnectionOutput = {
     type = "structure",
     members = {
-        VpcPeeringConnection = {
-            type = "structure",
-            traits = {
-                xml_name = "vpcPeeringConnection",
-            },
-        },
+        VpcPeeringConnection = setmetatable({ traits = {
+            xml_name = "vpcPeeringConnection",
+        } }, { __index = M.VpcPeeringConnection }),
     },
 }
 
@@ -1182,13 +1134,13 @@ M.PortRange = {
     type = "structure",
     members = {
         From = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "from",
             },
         },
         To = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "to",
             },
@@ -1211,12 +1163,9 @@ M.AnalysisAclRule = {
                 xml_name = "egress",
             },
         },
-        PortRange = {
-            type = "structure",
-            traits = {
-                xml_name = "portRange",
-            },
-        },
+        PortRange = setmetatable({ traits = {
+            xml_name = "portRange",
+        } }, { __index = M.PortRange }),
         Protocol = {
             type = "string",
             traits = {
@@ -1230,7 +1179,7 @@ M.AnalysisAclRule = {
             },
         },
         RuleNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "ruleNumber",
             },
@@ -1273,7 +1222,7 @@ M.RuleOption = {
         },
         Settings = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "settingSet",
             },
@@ -1292,7 +1241,7 @@ M.RuleGroupRuleOptionsPair = {
         },
         RuleOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleOption,
             traits = {
                 xml_name = "ruleOptionSet",
             },
@@ -1327,35 +1276,29 @@ M.AdditionalDetail = {
                 xml_name = "additionalDetailType",
             },
         },
-        Component = {
-            type = "structure",
-            traits = {
-                xml_name = "component",
-            },
-        },
-        VpcEndpointService = {
-            type = "structure",
-            traits = {
-                xml_name = "vpcEndpointService",
-            },
-        },
+        Component = setmetatable({ traits = {
+            xml_name = "component",
+        } }, { __index = M.AnalysisComponent }),
+        VpcEndpointService = setmetatable({ traits = {
+            xml_name = "vpcEndpointService",
+        } }, { __index = M.AnalysisComponent }),
         RuleOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleOption,
             traits = {
                 xml_name = "ruleOptionSet",
             },
         },
         RuleGroupTypePairs = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleGroupTypePair,
             traits = {
                 xml_name = "ruleGroupTypePairSet",
             },
         },
         RuleGroupRuleOptionsPairs = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleGroupRuleOptionsPair,
             traits = {
                 xml_name = "ruleGroupRuleOptionsPairSet",
             },
@@ -1368,7 +1311,7 @@ M.AdditionalDetail = {
         },
         LoadBalancers = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalysisComponent,
             traits = {
                 xml_name = "loadBalancerSet",
             },
@@ -1380,13 +1323,13 @@ M.AnalysisLoadBalancerListener = {
     type = "structure",
     members = {
         LoadBalancerPort = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "loadBalancerPort",
             },
         },
         InstancePort = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "instancePort",
             },
@@ -1405,28 +1348,28 @@ M.FirewallStatefulRule = {
         },
         Sources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "sourceSet",
             },
         },
         Destinations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "destinationSet",
             },
         },
         SourcePorts = {
             type = "list",
-            member_type = "structure",
+            member = M.PortRange,
             traits = {
                 xml_name = "sourcePortSet",
             },
         },
         DestinationPorts = {
             type = "list",
-            member_type = "structure",
+            member = M.PortRange,
             traits = {
                 xml_name = "destinationPortSet",
             },
@@ -1463,35 +1406,35 @@ M.FirewallStatelessRule = {
         },
         Sources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "sourceSet",
             },
         },
         Destinations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "destinationSet",
             },
         },
         SourcePorts = {
             type = "list",
-            member_type = "structure",
+            member = M.PortRange,
             traits = {
                 xml_name = "sourcePortSet",
             },
         },
         DestinationPorts = {
             type = "list",
-            member_type = "structure",
+            member = M.PortRange,
             traits = {
                 xml_name = "destinationPortSet",
             },
         },
         Protocols = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
             traits = {
                 xml_name = "protocolSet",
             },
@@ -1503,7 +1446,7 @@ M.FirewallStatelessRule = {
             },
         },
         Priority = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "priority",
             },
@@ -1532,14 +1475,11 @@ M.AnalysisLoadBalancerTarget = {
                 xml_name = "availabilityZoneId",
             },
         },
-        Instance = {
-            type = "structure",
-            traits = {
-                xml_name = "instance",
-            },
-        },
+        Instance = setmetatable({ traits = {
+            xml_name = "instance",
+        } }, { __index = M.AnalysisComponent }),
         Port = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "port",
             },
@@ -1658,12 +1598,9 @@ M.AnalysisSecurityGroupRule = {
                 xml_name = "securityGroupId",
             },
         },
-        PortRange = {
-            type = "structure",
-            traits = {
-                xml_name = "portRange",
-            },
-        },
+        PortRange = setmetatable({ traits = {
+            xml_name = "portRange",
+        } }, { __index = M.PortRange }),
         PrefixListId = {
             type = "string",
             traits = {
@@ -1730,18 +1667,12 @@ M.TransitGatewayRouteTableRoute = {
 M.Explanation = {
     type = "structure",
     members = {
-        Acl = {
-            type = "structure",
-            traits = {
-                xml_name = "acl",
-            },
-        },
-        AclRule = {
-            type = "structure",
-            traits = {
-                xml_name = "aclRule",
-            },
-        },
+        Acl = setmetatable({ traits = {
+            xml_name = "acl",
+        } }, { __index = M.AnalysisComponent }),
+        AclRule = setmetatable({ traits = {
+            xml_name = "aclRule",
+        } }, { __index = M.AnalysisAclRule }),
         Address = {
             type = "string",
             traits = {
@@ -1750,62 +1681,47 @@ M.Explanation = {
         },
         Addresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "addressSet",
             },
         },
-        AttachedTo = {
-            type = "structure",
-            traits = {
-                xml_name = "attachedTo",
-            },
-        },
+        AttachedTo = setmetatable({ traits = {
+            xml_name = "attachedTo",
+        } }, { __index = M.AnalysisComponent }),
         AvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "availabilityZoneSet",
             },
         },
         AvailabilityZoneIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "availabilityZoneIdSet",
             },
         },
         Cidrs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "cidrSet",
             },
         },
-        Component = {
-            type = "structure",
-            traits = {
-                xml_name = "component",
-            },
-        },
-        CustomerGateway = {
-            type = "structure",
-            traits = {
-                xml_name = "customerGateway",
-            },
-        },
-        Destination = {
-            type = "structure",
-            traits = {
-                xml_name = "destination",
-            },
-        },
-        DestinationVpc = {
-            type = "structure",
-            traits = {
-                xml_name = "destinationVpc",
-            },
-        },
+        Component = setmetatable({ traits = {
+            xml_name = "component",
+        } }, { __index = M.AnalysisComponent }),
+        CustomerGateway = setmetatable({ traits = {
+            xml_name = "customerGateway",
+        } }, { __index = M.AnalysisComponent }),
+        Destination = setmetatable({ traits = {
+            xml_name = "destination",
+        } }, { __index = M.AnalysisComponent }),
+        DestinationVpc = setmetatable({ traits = {
+            xml_name = "destinationVpc",
+        } }, { __index = M.AnalysisComponent }),
         Direction = {
             type = "string",
             traits = {
@@ -1818,226 +1734,151 @@ M.Explanation = {
                 xml_name = "explanationCode",
             },
         },
-        IngressRouteTable = {
-            type = "structure",
-            traits = {
-                xml_name = "ingressRouteTable",
-            },
-        },
-        InternetGateway = {
-            type = "structure",
-            traits = {
-                xml_name = "internetGateway",
-            },
-        },
+        IngressRouteTable = setmetatable({ traits = {
+            xml_name = "ingressRouteTable",
+        } }, { __index = M.AnalysisComponent }),
+        InternetGateway = setmetatable({ traits = {
+            xml_name = "internetGateway",
+        } }, { __index = M.AnalysisComponent }),
         LoadBalancerArn = {
             type = "string",
             traits = {
                 xml_name = "loadBalancerArn",
             },
         },
-        ClassicLoadBalancerListener = {
-            type = "structure",
-            traits = {
-                xml_name = "classicLoadBalancerListener",
-            },
-        },
+        ClassicLoadBalancerListener = setmetatable({ traits = {
+            xml_name = "classicLoadBalancerListener",
+        } }, { __index = M.AnalysisLoadBalancerListener }),
         LoadBalancerListenerPort = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "loadBalancerListenerPort",
             },
         },
-        LoadBalancerTarget = {
-            type = "structure",
-            traits = {
-                xml_name = "loadBalancerTarget",
-            },
-        },
-        LoadBalancerTargetGroup = {
-            type = "structure",
-            traits = {
-                xml_name = "loadBalancerTargetGroup",
-            },
-        },
+        LoadBalancerTarget = setmetatable({ traits = {
+            xml_name = "loadBalancerTarget",
+        } }, { __index = M.AnalysisLoadBalancerTarget }),
+        LoadBalancerTargetGroup = setmetatable({ traits = {
+            xml_name = "loadBalancerTargetGroup",
+        } }, { __index = M.AnalysisComponent }),
         LoadBalancerTargetGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalysisComponent,
             traits = {
                 xml_name = "loadBalancerTargetGroupSet",
             },
         },
         LoadBalancerTargetPort = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "loadBalancerTargetPort",
             },
         },
-        ElasticLoadBalancerListener = {
-            type = "structure",
-            traits = {
-                xml_name = "elasticLoadBalancerListener",
-            },
-        },
+        ElasticLoadBalancerListener = setmetatable({ traits = {
+            xml_name = "elasticLoadBalancerListener",
+        } }, { __index = M.AnalysisComponent }),
         MissingComponent = {
             type = "string",
             traits = {
                 xml_name = "missingComponent",
             },
         },
-        NatGateway = {
-            type = "structure",
-            traits = {
-                xml_name = "natGateway",
-            },
-        },
-        NetworkInterface = {
-            type = "structure",
-            traits = {
-                xml_name = "networkInterface",
-            },
-        },
+        NatGateway = setmetatable({ traits = {
+            xml_name = "natGateway",
+        } }, { __index = M.AnalysisComponent }),
+        NetworkInterface = setmetatable({ traits = {
+            xml_name = "networkInterface",
+        } }, { __index = M.AnalysisComponent }),
         PacketField = {
             type = "string",
             traits = {
                 xml_name = "packetField",
             },
         },
-        VpcPeeringConnection = {
-            type = "structure",
-            traits = {
-                xml_name = "vpcPeeringConnection",
-            },
-        },
+        VpcPeeringConnection = setmetatable({ traits = {
+            xml_name = "vpcPeeringConnection",
+        } }, { __index = M.AnalysisComponent }),
         Port = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "port",
             },
         },
         PortRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.PortRange,
             traits = {
                 xml_name = "portRangeSet",
             },
         },
-        PrefixList = {
-            type = "structure",
-            traits = {
-                xml_name = "prefixList",
-            },
-        },
+        PrefixList = setmetatable({ traits = {
+            xml_name = "prefixList",
+        } }, { __index = M.AnalysisComponent }),
         Protocols = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "protocolSet",
             },
         },
-        RouteTableRoute = {
-            type = "structure",
-            traits = {
-                xml_name = "routeTableRoute",
-            },
-        },
-        RouteTable = {
-            type = "structure",
-            traits = {
-                xml_name = "routeTable",
-            },
-        },
-        SecurityGroup = {
-            type = "structure",
-            traits = {
-                xml_name = "securityGroup",
-            },
-        },
-        SecurityGroupRule = {
-            type = "structure",
-            traits = {
-                xml_name = "securityGroupRule",
-            },
-        },
+        RouteTableRoute = setmetatable({ traits = {
+            xml_name = "routeTableRoute",
+        } }, { __index = M.AnalysisRouteTableRoute }),
+        RouteTable = setmetatable({ traits = {
+            xml_name = "routeTable",
+        } }, { __index = M.AnalysisComponent }),
+        SecurityGroup = setmetatable({ traits = {
+            xml_name = "securityGroup",
+        } }, { __index = M.AnalysisComponent }),
+        SecurityGroupRule = setmetatable({ traits = {
+            xml_name = "securityGroupRule",
+        } }, { __index = M.AnalysisSecurityGroupRule }),
         SecurityGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalysisComponent,
             traits = {
                 xml_name = "securityGroupSet",
             },
         },
-        SourceVpc = {
-            type = "structure",
-            traits = {
-                xml_name = "sourceVpc",
-            },
-        },
+        SourceVpc = setmetatable({ traits = {
+            xml_name = "sourceVpc",
+        } }, { __index = M.AnalysisComponent }),
         State = {
             type = "string",
             traits = {
                 xml_name = "state",
             },
         },
-        Subnet = {
-            type = "structure",
-            traits = {
-                xml_name = "subnet",
-            },
-        },
-        SubnetRouteTable = {
-            type = "structure",
-            traits = {
-                xml_name = "subnetRouteTable",
-            },
-        },
-        Vpc = {
-            type = "structure",
-            traits = {
-                xml_name = "vpc",
-            },
-        },
-        VpcEndpoint = {
-            type = "structure",
-            traits = {
-                xml_name = "vpcEndpoint",
-            },
-        },
-        VpnConnection = {
-            type = "structure",
-            traits = {
-                xml_name = "vpnConnection",
-            },
-        },
-        VpnGateway = {
-            type = "structure",
-            traits = {
-                xml_name = "vpnGateway",
-            },
-        },
-        TransitGateway = {
-            type = "structure",
-            traits = {
-                xml_name = "transitGateway",
-            },
-        },
-        TransitGatewayRouteTable = {
-            type = "structure",
-            traits = {
-                xml_name = "transitGatewayRouteTable",
-            },
-        },
-        TransitGatewayRouteTableRoute = {
-            type = "structure",
-            traits = {
-                xml_name = "transitGatewayRouteTableRoute",
-            },
-        },
-        TransitGatewayAttachment = {
-            type = "structure",
-            traits = {
-                xml_name = "transitGatewayAttachment",
-            },
-        },
+        Subnet = setmetatable({ traits = {
+            xml_name = "subnet",
+        } }, { __index = M.AnalysisComponent }),
+        SubnetRouteTable = setmetatable({ traits = {
+            xml_name = "subnetRouteTable",
+        } }, { __index = M.AnalysisComponent }),
+        Vpc = setmetatable({ traits = {
+            xml_name = "vpc",
+        } }, { __index = M.AnalysisComponent }),
+        VpcEndpoint = setmetatable({ traits = {
+            xml_name = "vpcEndpoint",
+        } }, { __index = M.AnalysisComponent }),
+        VpnConnection = setmetatable({ traits = {
+            xml_name = "vpnConnection",
+        } }, { __index = M.AnalysisComponent }),
+        VpnGateway = setmetatable({ traits = {
+            xml_name = "vpnGateway",
+        } }, { __index = M.AnalysisComponent }),
+        TransitGateway = setmetatable({ traits = {
+            xml_name = "transitGateway",
+        } }, { __index = M.AnalysisComponent }),
+        TransitGatewayRouteTable = setmetatable({ traits = {
+            xml_name = "transitGatewayRouteTable",
+        } }, { __index = M.AnalysisComponent }),
+        TransitGatewayRouteTableRoute = setmetatable({ traits = {
+            xml_name = "transitGatewayRouteTableRoute",
+        } }, { __index = M.TransitGatewayRouteTableRoute }),
+        TransitGatewayAttachment = setmetatable({ traits = {
+            xml_name = "transitGatewayAttachment",
+        } }, { __index = M.AnalysisComponent }),
         ComponentAccount = {
             type = "string",
             traits = {
@@ -2050,18 +1891,12 @@ M.Explanation = {
                 xml_name = "componentRegion",
             },
         },
-        FirewallStatelessRule = {
-            type = "structure",
-            traits = {
-                xml_name = "firewallStatelessRule",
-            },
-        },
-        FirewallStatefulRule = {
-            type = "structure",
-            traits = {
-                xml_name = "firewallStatefulRule",
-            },
-        },
+        FirewallStatelessRule = setmetatable({ traits = {
+            xml_name = "firewallStatelessRule",
+        } }, { __index = M.FirewallStatelessRule }),
+        FirewallStatefulRule = setmetatable({ traits = {
+            xml_name = "firewallStatefulRule",
+        } }, { __index = M.FirewallStatefulRule }),
     },
 }
 
@@ -2070,14 +1905,14 @@ M.AnalysisPacketHeader = {
     members = {
         DestinationAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "destinationAddressSet",
             },
         },
         DestinationPortRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.PortRange,
             traits = {
                 xml_name = "destinationPortRangeSet",
             },
@@ -2090,14 +1925,14 @@ M.AnalysisPacketHeader = {
         },
         SourceAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "sourceAddressSet",
             },
         },
         SourcePortRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.PortRange,
             traits = {
                 xml_name = "sourcePortRangeSet",
             },
@@ -2109,121 +1944,73 @@ M.PathComponent = {
     type = "structure",
     members = {
         SequenceNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "sequenceNumber",
             },
         },
-        AclRule = {
-            type = "structure",
-            traits = {
-                xml_name = "aclRule",
-            },
-        },
-        AttachedTo = {
-            type = "structure",
-            traits = {
-                xml_name = "attachedTo",
-            },
-        },
-        Component = {
-            type = "structure",
-            traits = {
-                xml_name = "component",
-            },
-        },
-        DestinationVpc = {
-            type = "structure",
-            traits = {
-                xml_name = "destinationVpc",
-            },
-        },
-        OutboundHeader = {
-            type = "structure",
-            traits = {
-                xml_name = "outboundHeader",
-            },
-        },
-        InboundHeader = {
-            type = "structure",
-            traits = {
-                xml_name = "inboundHeader",
-            },
-        },
-        RouteTableRoute = {
-            type = "structure",
-            traits = {
-                xml_name = "routeTableRoute",
-            },
-        },
-        SecurityGroupRule = {
-            type = "structure",
-            traits = {
-                xml_name = "securityGroupRule",
-            },
-        },
-        SourceVpc = {
-            type = "structure",
-            traits = {
-                xml_name = "sourceVpc",
-            },
-        },
-        Subnet = {
-            type = "structure",
-            traits = {
-                xml_name = "subnet",
-            },
-        },
-        Vpc = {
-            type = "structure",
-            traits = {
-                xml_name = "vpc",
-            },
-        },
+        AclRule = setmetatable({ traits = {
+            xml_name = "aclRule",
+        } }, { __index = M.AnalysisAclRule }),
+        AttachedTo = setmetatable({ traits = {
+            xml_name = "attachedTo",
+        } }, { __index = M.AnalysisComponent }),
+        Component = setmetatable({ traits = {
+            xml_name = "component",
+        } }, { __index = M.AnalysisComponent }),
+        DestinationVpc = setmetatable({ traits = {
+            xml_name = "destinationVpc",
+        } }, { __index = M.AnalysisComponent }),
+        OutboundHeader = setmetatable({ traits = {
+            xml_name = "outboundHeader",
+        } }, { __index = M.AnalysisPacketHeader }),
+        InboundHeader = setmetatable({ traits = {
+            xml_name = "inboundHeader",
+        } }, { __index = M.AnalysisPacketHeader }),
+        RouteTableRoute = setmetatable({ traits = {
+            xml_name = "routeTableRoute",
+        } }, { __index = M.AnalysisRouteTableRoute }),
+        SecurityGroupRule = setmetatable({ traits = {
+            xml_name = "securityGroupRule",
+        } }, { __index = M.AnalysisSecurityGroupRule }),
+        SourceVpc = setmetatable({ traits = {
+            xml_name = "sourceVpc",
+        } }, { __index = M.AnalysisComponent }),
+        Subnet = setmetatable({ traits = {
+            xml_name = "subnet",
+        } }, { __index = M.AnalysisComponent }),
+        Vpc = setmetatable({ traits = {
+            xml_name = "vpc",
+        } }, { __index = M.AnalysisComponent }),
         AdditionalDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.AdditionalDetail,
             traits = {
                 xml_name = "additionalDetailSet",
             },
         },
-        TransitGateway = {
-            type = "structure",
-            traits = {
-                xml_name = "transitGateway",
-            },
-        },
-        TransitGatewayRouteTableRoute = {
-            type = "structure",
-            traits = {
-                xml_name = "transitGatewayRouteTableRoute",
-            },
-        },
+        TransitGateway = setmetatable({ traits = {
+            xml_name = "transitGateway",
+        } }, { __index = M.AnalysisComponent }),
+        TransitGatewayRouteTableRoute = setmetatable({ traits = {
+            xml_name = "transitGatewayRouteTableRoute",
+        } }, { __index = M.TransitGatewayRouteTableRoute }),
         Explanations = {
             type = "list",
-            member_type = "structure",
+            member = M.Explanation,
             traits = {
                 xml_name = "explanationSet",
             },
         },
-        ElasticLoadBalancerListener = {
-            type = "structure",
-            traits = {
-                xml_name = "elasticLoadBalancerListener",
-            },
-        },
-        FirewallStatelessRule = {
-            type = "structure",
-            traits = {
-                xml_name = "firewallStatelessRule",
-            },
-        },
-        FirewallStatefulRule = {
-            type = "structure",
-            traits = {
-                xml_name = "firewallStatefulRule",
-            },
-        },
+        ElasticLoadBalancerListener = setmetatable({ traits = {
+            xml_name = "elasticLoadBalancerListener",
+        } }, { __index = M.AnalysisComponent }),
+        FirewallStatelessRule = setmetatable({ traits = {
+            xml_name = "firewallStatelessRule",
+        } }, { __index = M.FirewallStatelessRule }),
+        FirewallStatefulRule = setmetatable({ traits = {
+            xml_name = "firewallStatefulRule",
+        } }, { __index = M.FirewallStatefulRule }),
         ServiceName = {
             type = "string",
             traits = {
@@ -2256,7 +2043,7 @@ M.AccessScopeAnalysisFinding = {
         },
         FindingComponents = {
             type = "list",
-            member_type = "structure",
+            member = M.PathComponent,
             traits = {
                 xml_name = "findingComponentSet",
             },
@@ -2274,49 +2061,49 @@ M.PacketHeaderStatement = {
     members = {
         SourceAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "sourceAddressSet",
             },
         },
         DestinationAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "destinationAddressSet",
             },
         },
         SourcePorts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "sourcePortSet",
             },
         },
         DestinationPorts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "destinationPortSet",
             },
         },
         SourcePrefixLists = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "sourcePrefixListSet",
             },
         },
         DestinationPrefixLists = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "destinationPrefixListSet",
             },
         },
         Protocols = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "protocolSet",
             },
@@ -2329,14 +2116,14 @@ M.ResourceStatement = {
     members = {
         Resources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "resourceSet",
             },
         },
         ResourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "resourceTypeSet",
             },
@@ -2347,51 +2134,36 @@ M.ResourceStatement = {
 M.PathStatement = {
     type = "structure",
     members = {
-        PacketHeaderStatement = {
-            type = "structure",
-            traits = {
-                xml_name = "packetHeaderStatement",
-            },
-        },
-        ResourceStatement = {
-            type = "structure",
-            traits = {
-                xml_name = "resourceStatement",
-            },
-        },
+        PacketHeaderStatement = setmetatable({ traits = {
+            xml_name = "packetHeaderStatement",
+        } }, { __index = M.PacketHeaderStatement }),
+        ResourceStatement = setmetatable({ traits = {
+            xml_name = "resourceStatement",
+        } }, { __index = M.ResourceStatement }),
     },
 }
 
 M.ThroughResourcesStatement = {
     type = "structure",
     members = {
-        ResourceStatement = {
-            type = "structure",
-            traits = {
-                xml_name = "resourceStatement",
-            },
-        },
+        ResourceStatement = setmetatable({ traits = {
+            xml_name = "resourceStatement",
+        } }, { __index = M.ResourceStatement }),
     },
 }
 
 M.AccessScopePath = {
     type = "structure",
     members = {
-        Source = {
-            type = "structure",
-            traits = {
-                xml_name = "source",
-            },
-        },
-        Destination = {
-            type = "structure",
-            traits = {
-                xml_name = "destination",
-            },
-        },
+        Source = setmetatable({ traits = {
+            xml_name = "source",
+        } }, { __index = M.PathStatement }),
+        Destination = setmetatable({ traits = {
+            xml_name = "destination",
+        } }, { __index = M.PathStatement }),
         ThroughResources = {
             type = "list",
-            member_type = "structure",
+            member = M.ThroughResourcesStatement,
             traits = {
                 xml_name = "throughResourceSet",
             },
@@ -2404,49 +2176,49 @@ M.PacketHeaderStatementRequest = {
     members = {
         SourceAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "SourceAddress",
             },
         },
         DestinationAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "DestinationAddress",
             },
         },
         SourcePorts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "SourcePort",
             },
         },
         DestinationPorts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "DestinationPort",
             },
         },
         SourcePrefixLists = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "SourcePrefixList",
             },
         },
         DestinationPrefixLists = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "DestinationPrefixList",
             },
         },
         Protocols = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "Protocol",
             },
@@ -2459,14 +2231,14 @@ M.ResourceStatementRequest = {
     members = {
         Resources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "Resource",
             },
         },
         ResourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "ResourceType",
             },
@@ -2477,36 +2249,26 @@ M.ResourceStatementRequest = {
 M.PathStatementRequest = {
     type = "structure",
     members = {
-        PacketHeaderStatement = {
-            type = "structure",
-        },
-        ResourceStatement = {
-            type = "structure",
-        },
+        PacketHeaderStatement = M.PacketHeaderStatementRequest,
+        ResourceStatement = M.ResourceStatementRequest,
     },
 }
 
 M.ThroughResourcesStatementRequest = {
     type = "structure",
     members = {
-        ResourceStatement = {
-            type = "structure",
-        },
+        ResourceStatement = M.ResourceStatementRequest,
     },
 }
 
 M.AccessScopePathRequest = {
     type = "structure",
     members = {
-        Source = {
-            type = "structure",
-        },
-        Destination = {
-            type = "structure",
-        },
+        Source = M.PathStatementRequest,
+        Destination = M.PathStatementRequest,
         ThroughResources = {
             type = "list",
-            member_type = "structure",
+            member = M.ThroughResourcesStatementRequest,
             traits = {
                 xml_name = "ThroughResource",
             },
@@ -2537,7 +2299,7 @@ M.AccountAttribute = {
         },
         AttributeValues = {
             type = "list",
-            member_type = "structure",
+            member = M.AccountAttributeValue,
             traits = {
                 xml_name = "attributeValueSet",
             },
@@ -2619,13 +2381,13 @@ M.ActiveVpnTunnelStatus = {
             },
         },
         Phase1DHGroup = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "phase1DHGroup",
             },
         },
         Phase2DHGroup = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "phase2DHGroup",
             },
@@ -2783,7 +2545,7 @@ M.Address = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -2890,12 +2652,9 @@ M.AddressAttribute = {
                 xml_name = "ptrRecord",
             },
         },
-        PtrRecordUpdate = {
-            type = "structure",
-            traits = {
-                xml_name = "ptrRecordUpdate",
-            },
-        },
+        PtrRecordUpdate = setmetatable({ traits = {
+            xml_name = "ptrRecordUpdate",
+        } }, { __index = M.PtrUpdateStatus }),
     },
 }
 
@@ -2998,7 +2757,7 @@ M.ByoipCidr = {
         },
         AsnAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.AsnAssociation,
             traits = {
                 xml_name = "asnAssociationSet",
             },
@@ -3033,12 +2792,9 @@ M.ByoipCidr = {
 M.AdvertiseByoipCidrOutput = {
     type = "structure",
     members = {
-        ByoipCidr = {
-            type = "structure",
-            traits = {
-                xml_name = "byoipCidr",
-            },
-        },
+        ByoipCidr = setmetatable({ traits = {
+            xml_name = "byoipCidr",
+        } }, { __index = M.ByoipCidr }),
     },
 }
 
@@ -3067,7 +2823,7 @@ M.AllocateAddressInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -3161,7 +2917,7 @@ M.AllocateHostsInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -3177,7 +2933,7 @@ M.AllocateHostsInput = {
         },
         AssetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "AssetId",
             },
@@ -3204,7 +2960,7 @@ M.AllocateHostsInput = {
             },
         },
         Quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "quantity",
             },
@@ -3223,7 +2979,7 @@ M.AllocateHostsOutput = {
     members = {
         HostIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "hostIdSet",
             },
@@ -3247,7 +3003,7 @@ M.AllocateIpamPoolCidrInput = {
             type = "string",
         },
         NetmaskLength = {
-            type = "number",
+            type = "integer",
         },
         ClientToken = {
             type = "string",
@@ -3260,14 +3016,14 @@ M.AllocateIpamPoolCidrInput = {
         },
         AllowedCidrs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "AllowedCidr",
             },
         },
         DisallowedCidrs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "DisallowedCidr",
             },
@@ -3336,12 +3092,9 @@ M.IpamPoolAllocation = {
 M.AllocateIpamPoolCidrOutput = {
     type = "structure",
     members = {
-        IpamPoolAllocation = {
-            type = "structure",
-            traits = {
-                xml_name = "ipamPoolAllocation",
-            },
-        },
+        IpamPoolAllocation = setmetatable({ traits = {
+            xml_name = "ipamPoolAllocation",
+        } }, { __index = M.IpamPoolAllocation }),
     },
 }
 
@@ -3399,7 +3152,7 @@ M.AllowedPrincipal = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -3453,7 +3206,7 @@ M.ApplySecurityGroupsToClientVpnTargetNetworkInput = {
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "SecurityGroupId",
@@ -3470,7 +3223,7 @@ M.ApplySecurityGroupsToClientVpnTargetNetworkOutput = {
     members = {
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "securityGroupIds",
             },
@@ -3482,11 +3235,11 @@ M.AssignIpv6AddressesInput = {
     type = "structure",
     members = {
         Ipv6PrefixCount = {
-            type = "number",
+            type = "integer",
         },
         Ipv6Prefixes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "Ipv6Prefix",
             },
@@ -3500,13 +3253,13 @@ M.AssignIpv6AddressesInput = {
         },
         Ipv6Addresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "ipv6Addresses",
             },
         },
         Ipv6AddressCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "ipv6AddressCount",
             },
@@ -3519,14 +3272,14 @@ M.AssignIpv6AddressesOutput = {
     members = {
         AssignedIpv6Addresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "assignedIpv6Addresses",
             },
         },
         AssignedIpv6Prefixes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "assignedIpv6PrefixSet",
             },
@@ -3545,13 +3298,13 @@ M.AssignPrivateIpAddressesInput = {
     members = {
         Ipv4Prefixes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "Ipv4Prefix",
             },
         },
         Ipv4PrefixCount = {
-            type = "number",
+            type = "integer",
         },
         NetworkInterfaceId = {
             type = "string",
@@ -3562,13 +3315,13 @@ M.AssignPrivateIpAddressesInput = {
         },
         PrivateIpAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "privateIpAddress",
             },
         },
         SecondaryPrivateIpAddressCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "secondaryPrivateIpAddressCount",
             },
@@ -3617,14 +3370,14 @@ M.AssignPrivateIpAddressesOutput = {
         },
         AssignedPrivateIpAddresses = {
             type = "list",
-            member_type = "structure",
+            member = M.AssignedPrivateIpAddress,
             traits = {
                 xml_name = "assignedPrivateIpAddressesSet",
             },
         },
         AssignedIpv4Prefixes = {
             type = "list",
-            member_type = "structure",
+            member = M.Ipv4PrefixSpecification,
             traits = {
                 xml_name = "assignedIpv4PrefixSet",
             },
@@ -3643,13 +3396,13 @@ M.AssignPrivateNatGatewayAddressInput = {
         },
         PrivateIpAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "PrivateIpAddress",
             },
         },
         PrivateIpAddressCount = {
-            type = "number",
+            type = "integer",
         },
         DryRun = {
             type = "boolean",
@@ -3743,7 +3496,7 @@ M.AssignPrivateNatGatewayAddressOutput = {
         },
         NatGatewayAddresses = {
             type = "list",
-            member_type = "structure",
+            member = M.NatGatewayAddress,
             traits = {
                 xml_name = "natGatewayAddressSet",
             },
@@ -3897,12 +3650,9 @@ M.AssociateClientVpnTargetNetworkOutput = {
                 xml_name = "associationId",
             },
         },
-        Status = {
-            type = "structure",
-            traits = {
-                xml_name = "status",
-            },
-        },
+        Status = setmetatable({ traits = {
+            xml_name = "status",
+        } }, { __index = M.AssociationStatus }),
     },
 }
 
@@ -4000,12 +3750,9 @@ M.IamInstanceProfileSpecification = {
 M.AssociateIamInstanceProfileInput = {
     type = "structure",
     members = {
-        IamInstanceProfile = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        IamInstanceProfile = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IamInstanceProfileSpecification }),
         InstanceId = {
             type = "string",
             traits = {
@@ -4055,12 +3802,9 @@ M.IamInstanceProfileAssociation = {
                 xml_name = "instanceId",
             },
         },
-        IamInstanceProfile = {
-            type = "structure",
-            traits = {
-                xml_name = "iamInstanceProfile",
-            },
-        },
+        IamInstanceProfile = setmetatable({ traits = {
+            xml_name = "iamInstanceProfile",
+        } }, { __index = M.IamInstanceProfile }),
         State = {
             type = "string",
             traits = {
@@ -4079,12 +3823,9 @@ M.IamInstanceProfileAssociation = {
 M.AssociateIamInstanceProfileOutput = {
     type = "structure",
     members = {
-        IamInstanceProfileAssociation = {
-            type = "structure",
-            traits = {
-                xml_name = "iamInstanceProfileAssociation",
-            },
-        },
+        IamInstanceProfileAssociation = setmetatable({ traits = {
+            xml_name = "iamInstanceProfileAssociation",
+        } }, { __index = M.IamInstanceProfileAssociation }),
     },
 }
 
@@ -4093,21 +3834,21 @@ M.InstanceEventWindowAssociationRequest = {
     members = {
         InstanceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "InstanceId",
             },
         },
         InstanceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "InstanceTag",
             },
         },
         DedicatedHostIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "DedicatedHostId",
             },
@@ -4127,12 +3868,9 @@ M.AssociateInstanceEventWindowInput = {
                 required = true,
             },
         },
-        AssociationTarget = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AssociationTarget = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InstanceEventWindowAssociationRequest }),
     },
 }
 
@@ -4141,21 +3879,21 @@ M.InstanceEventWindowAssociationTarget = {
     members = {
         InstanceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "instanceIdSet",
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
         },
         DedicatedHostIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "dedicatedHostIdSet",
             },
@@ -4190,7 +3928,7 @@ M.InstanceEventWindowTimeRange = {
             },
         },
         StartHour = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "startHour",
             },
@@ -4202,7 +3940,7 @@ M.InstanceEventWindowTimeRange = {
             },
         },
         EndHour = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "endHour",
             },
@@ -4221,7 +3959,7 @@ M.InstanceEventWindow = {
         },
         TimeRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceEventWindowTimeRange,
             traits = {
                 xml_name = "timeRangeSet",
             },
@@ -4238,12 +3976,9 @@ M.InstanceEventWindow = {
                 xml_name = "cronExpression",
             },
         },
-        AssociationTarget = {
-            type = "structure",
-            traits = {
-                xml_name = "associationTarget",
-            },
-        },
+        AssociationTarget = setmetatable({ traits = {
+            xml_name = "associationTarget",
+        } }, { __index = M.InstanceEventWindowAssociationTarget }),
         State = {
             type = "string",
             traits = {
@@ -4252,7 +3987,7 @@ M.InstanceEventWindow = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -4263,12 +3998,9 @@ M.InstanceEventWindow = {
 M.AssociateInstanceEventWindowOutput = {
     type = "structure",
     members = {
-        InstanceEventWindow = {
-            type = "structure",
-            traits = {
-                xml_name = "instanceEventWindow",
-            },
-        },
+        InstanceEventWindow = setmetatable({ traits = {
+            xml_name = "instanceEventWindow",
+        } }, { __index = M.InstanceEventWindow }),
     },
 }
 
@@ -4296,12 +4028,9 @@ M.AssociateIpamByoasnInput = {
 M.AssociateIpamByoasnOutput = {
     type = "structure",
     members = {
-        AsnAssociation = {
-            type = "structure",
-            traits = {
-                xml_name = "asnAssociation",
-            },
-        },
+        AsnAssociation = setmetatable({ traits = {
+            xml_name = "asnAssociation",
+        } }, { __index = M.AsnAssociation }),
     },
 }
 
@@ -4325,7 +4054,7 @@ M.AssociateIpamResourceDiscoveryInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -4418,7 +4147,7 @@ M.IpamResourceDiscoveryAssociation = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -4429,12 +4158,9 @@ M.IpamResourceDiscoveryAssociation = {
 M.AssociateIpamResourceDiscoveryOutput = {
     type = "structure",
     members = {
-        IpamResourceDiscoveryAssociation = {
-            type = "structure",
-            traits = {
-                xml_name = "ipamResourceDiscoveryAssociation",
-            },
-        },
+        IpamResourceDiscoveryAssociation = setmetatable({ traits = {
+            xml_name = "ipamResourceDiscoveryAssociation",
+        } }, { __index = M.IpamResourceDiscoveryAssociation }),
     },
 }
 
@@ -4449,7 +4175,7 @@ M.AssociateNatGatewayAddressInput = {
         },
         AllocationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "AllocationId",
@@ -4457,7 +4183,7 @@ M.AssociateNatGatewayAddressInput = {
         },
         PrivateIpAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "PrivateIpAddress",
             },
@@ -4485,7 +4211,7 @@ M.AssociateNatGatewayAddressOutput = {
         },
         NatGatewayAddresses = {
             type = "list",
-            member_type = "structure",
+            member = M.NatGatewayAddress,
             traits = {
                 xml_name = "natGatewayAddressSet",
             },
@@ -4547,12 +4273,9 @@ M.RouteServerAssociation = {
 M.AssociateRouteServerOutput = {
     type = "structure",
     members = {
-        RouteServerAssociation = {
-            type = "structure",
-            traits = {
-                xml_name = "routeServerAssociation",
-            },
-        },
+        RouteServerAssociation = setmetatable({ traits = {
+            xml_name = "routeServerAssociation",
+        } }, { __index = M.RouteServerAssociation }),
     },
 }
 
@@ -4622,12 +4345,9 @@ M.AssociateRouteTableOutput = {
                 xml_name = "associationId",
             },
         },
-        AssociationState = {
-            type = "structure",
-            traits = {
-                xml_name = "associationState",
-            },
-        },
+        AssociationState = setmetatable({ traits = {
+            xml_name = "associationState",
+        } }, { __index = M.RouteTableAssociationState }),
     },
 }
 
@@ -4680,7 +4400,7 @@ M.AssociateSubnetCidrBlockInput = {
             type = "string",
         },
         Ipv6NetmaskLength = {
-            type = "number",
+            type = "integer",
         },
         SubnetId = {
             type = "string",
@@ -4751,12 +4471,9 @@ M.SubnetIpv6CidrBlockAssociation = {
                 xml_name = "ipv6CidrBlock",
             },
         },
-        Ipv6CidrBlockState = {
-            type = "structure",
-            traits = {
-                xml_name = "ipv6CidrBlockState",
-            },
-        },
+        Ipv6CidrBlockState = setmetatable({ traits = {
+            xml_name = "ipv6CidrBlockState",
+        } }, { __index = M.SubnetCidrBlockState }),
         Ipv6AddressAttribute = {
             type = "string",
             traits = {
@@ -4775,12 +4492,9 @@ M.SubnetIpv6CidrBlockAssociation = {
 M.AssociateSubnetCidrBlockOutput = {
     type = "structure",
     members = {
-        Ipv6CidrBlockAssociation = {
-            type = "structure",
-            traits = {
-                xml_name = "ipv6CidrBlockAssociation",
-            },
-        },
+        Ipv6CidrBlockAssociation = setmetatable({ traits = {
+            xml_name = "ipv6CidrBlockAssociation",
+        } }, { __index = M.SubnetIpv6CidrBlockAssociation }),
         SubnetId = {
             type = "string",
             traits = {
@@ -4807,7 +4521,7 @@ M.AssociateTransitGatewayMulticastDomainInput = {
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4821,12 +4535,9 @@ M.AssociateTransitGatewayMulticastDomainInput = {
 M.AssociateTransitGatewayMulticastDomainOutput = {
     type = "structure",
     members = {
-        Associations = {
-            type = "structure",
-            traits = {
-                xml_name = "associations",
-            },
-        },
+        Associations = setmetatable({ traits = {
+            xml_name = "associations",
+        } }, { __index = M.TransitGatewayMulticastDomainAssociations }),
     },
 }
 
@@ -4897,12 +4608,9 @@ M.TransitGatewayPolicyTableAssociation = {
 M.AssociateTransitGatewayPolicyTableOutput = {
     type = "structure",
     members = {
-        Association = {
-            type = "structure",
-            traits = {
-                xml_name = "association",
-            },
-        },
+        Association = setmetatable({ traits = {
+            xml_name = "association",
+        } }, { __index = M.TransitGatewayPolicyTableAssociation }),
     },
 }
 
@@ -4966,12 +4674,9 @@ M.TransitGatewayAssociation = {
 M.AssociateTransitGatewayRouteTableOutput = {
     type = "structure",
     members = {
-        Association = {
-            type = "structure",
-            traits = {
-                xml_name = "association",
-            },
-        },
+        Association = setmetatable({ traits = {
+            xml_name = "association",
+        } }, { __index = M.TransitGatewayAssociation }),
     },
 }
 
@@ -4991,10 +4696,10 @@ M.AssociateTrunkInterfaceInput = {
             },
         },
         VlanId = {
-            type = "number",
+            type = "integer",
         },
         GreKey = {
-            type = "number",
+            type = "integer",
         },
         ClientToken = {
             type = "string",
@@ -5038,20 +4743,20 @@ M.TrunkInterfaceAssociation = {
             },
         },
         VlanId = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "vlanId",
             },
         },
         GreKey = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "greKey",
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -5062,12 +4767,9 @@ M.TrunkInterfaceAssociation = {
 M.AssociateTrunkInterfaceOutput = {
     type = "structure",
     members = {
-        InterfaceAssociation = {
-            type = "structure",
-            traits = {
-                xml_name = "interfaceAssociation",
-            },
-        },
+        InterfaceAssociation = setmetatable({ traits = {
+            xml_name = "interfaceAssociation",
+        } }, { __index = M.TrunkInterfaceAssociation }),
         ClientToken = {
             type = "string",
             traits = {
@@ -5096,13 +4798,13 @@ M.AssociateVpcCidrBlockInput = {
             type = "string",
         },
         Ipv4NetmaskLength = {
-            type = "number",
+            type = "integer",
         },
         Ipv6IpamPoolId = {
             type = "string",
         },
         Ipv6NetmaskLength = {
-            type = "number",
+            type = "integer",
         },
         VpcId = {
             type = "string",
@@ -5162,12 +4864,9 @@ M.VpcCidrBlockAssociation = {
                 xml_name = "cidrBlock",
             },
         },
-        CidrBlockState = {
-            type = "structure",
-            traits = {
-                xml_name = "cidrBlockState",
-            },
-        },
+        CidrBlockState = setmetatable({ traits = {
+            xml_name = "cidrBlockState",
+        } }, { __index = M.VpcCidrBlockState }),
     },
 }
 
@@ -5186,12 +4885,9 @@ M.VpcIpv6CidrBlockAssociation = {
                 xml_name = "ipv6CidrBlock",
             },
         },
-        Ipv6CidrBlockState = {
-            type = "structure",
-            traits = {
-                xml_name = "ipv6CidrBlockState",
-            },
-        },
+        Ipv6CidrBlockState = setmetatable({ traits = {
+            xml_name = "ipv6CidrBlockState",
+        } }, { __index = M.VpcCidrBlockState }),
         NetworkBorderGroup = {
             type = "string",
             traits = {
@@ -5222,18 +4918,12 @@ M.VpcIpv6CidrBlockAssociation = {
 M.AssociateVpcCidrBlockOutput = {
     type = "structure",
     members = {
-        Ipv6CidrBlockAssociation = {
-            type = "structure",
-            traits = {
-                xml_name = "ipv6CidrBlockAssociation",
-            },
-        },
-        CidrBlockAssociation = {
-            type = "structure",
-            traits = {
-                xml_name = "cidrBlockAssociation",
-            },
-        },
+        Ipv6CidrBlockAssociation = setmetatable({ traits = {
+            xml_name = "ipv6CidrBlockAssociation",
+        } }, { __index = M.VpcIpv6CidrBlockAssociation }),
+        CidrBlockAssociation = setmetatable({ traits = {
+            xml_name = "cidrBlockAssociation",
+        } }, { __index = M.VpcCidrBlockAssociation }),
         VpcId = {
             type = "string",
             traits = {
@@ -5268,7 +4958,7 @@ M.AttachClassicLinkVpcInput = {
         },
         Groups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "SecurityGroupId",
@@ -5334,9 +5024,7 @@ M.EnaSrdSpecification = {
         EnaSrdEnabled = {
             type = "boolean",
         },
-        EnaSrdUdpSpecification = {
-            type = "structure",
-        },
+        EnaSrdUdpSpecification = M.EnaSrdUdpSpecification,
     },
 }
 
@@ -5344,13 +5032,11 @@ M.AttachNetworkInterfaceInput = {
     type = "structure",
     members = {
         NetworkCardIndex = {
-            type = "number",
+            type = "integer",
         },
-        EnaSrdSpecification = {
-            type = "structure",
-        },
+        EnaSrdSpecification = M.EnaSrdSpecification,
         EnaQueueCount = {
-            type = "number",
+            type = "integer",
         },
         DryRun = {
             type = "boolean",
@@ -5373,7 +5059,7 @@ M.AttachNetworkInterfaceInput = {
             },
         },
         DeviceIndex = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
                 xml_name = "deviceIndex",
@@ -5392,7 +5078,7 @@ M.AttachNetworkInterfaceOutput = {
             },
         },
         NetworkCardIndex = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "networkCardIndex",
             },
@@ -5435,7 +5121,7 @@ M.VerifiedAccessInstanceCustomSubDomain = {
         },
         Nameservers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "nameserverSet",
             },
@@ -5512,7 +5198,7 @@ M.VerifiedAccessInstance = {
         },
         VerifiedAccessTrustProviders = {
             type = "list",
-            member_type = "structure",
+            member = M.VerifiedAccessTrustProviderCondensed,
             traits = {
                 xml_name = "verifiedAccessTrustProviderSet",
             },
@@ -5531,7 +5217,7 @@ M.VerifiedAccessInstance = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -5542,12 +5228,9 @@ M.VerifiedAccessInstance = {
                 xml_name = "fipsEnabled",
             },
         },
-        CidrEndpointsCustomSubDomain = {
-            type = "structure",
-            traits = {
-                xml_name = "cidrEndpointsCustomSubDomain",
-            },
-        },
+        CidrEndpointsCustomSubDomain = setmetatable({ traits = {
+            xml_name = "cidrEndpointsCustomSubDomain",
+        } }, { __index = M.VerifiedAccessInstanceCustomSubDomain }),
     },
 }
 
@@ -5716,18 +5399,12 @@ M.VerifiedAccessTrustProvider = {
                 xml_name = "deviceTrustProviderType",
             },
         },
-        OidcOptions = {
-            type = "structure",
-            traits = {
-                xml_name = "oidcOptions",
-            },
-        },
-        DeviceOptions = {
-            type = "structure",
-            traits = {
-                xml_name = "deviceOptions",
-            },
-        },
+        OidcOptions = setmetatable({ traits = {
+            xml_name = "oidcOptions",
+        } }, { __index = M.OidcOptions }),
+        DeviceOptions = setmetatable({ traits = {
+            xml_name = "deviceOptions",
+        } }, { __index = M.DeviceOptions }),
         PolicyReferenceName = {
             type = "string",
             traits = {
@@ -5748,41 +5425,29 @@ M.VerifiedAccessTrustProvider = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
         },
-        SseSpecification = {
-            type = "structure",
-            traits = {
-                xml_name = "sseSpecification",
-            },
-        },
-        NativeApplicationOidcOptions = {
-            type = "structure",
-            traits = {
-                xml_name = "nativeApplicationOidcOptions",
-            },
-        },
+        SseSpecification = setmetatable({ traits = {
+            xml_name = "sseSpecification",
+        } }, { __index = M.VerifiedAccessSseSpecificationResponse }),
+        NativeApplicationOidcOptions = setmetatable({ traits = {
+            xml_name = "nativeApplicationOidcOptions",
+        } }, { __index = M.NativeApplicationOidcOptions }),
     },
 }
 
 M.AttachVerifiedAccessTrustProviderOutput = {
     type = "structure",
     members = {
-        VerifiedAccessTrustProvider = {
-            type = "structure",
-            traits = {
-                xml_name = "verifiedAccessTrustProvider",
-            },
-        },
-        VerifiedAccessInstance = {
-            type = "structure",
-            traits = {
-                xml_name = "verifiedAccessInstance",
-            },
-        },
+        VerifiedAccessTrustProvider = setmetatable({ traits = {
+            xml_name = "verifiedAccessTrustProvider",
+        } }, { __index = M.VerifiedAccessTrustProvider }),
+        VerifiedAccessInstance = setmetatable({ traits = {
+            xml_name = "verifiedAccessInstance",
+        } }, { __index = M.VerifiedAccessInstance }),
     },
 }
 
@@ -5808,7 +5473,7 @@ M.AttachVolumeInput = {
             },
         },
         EbsCardIndex = {
-            type = "number",
+            type = "integer",
         },
         DryRun = {
             type = "boolean",
@@ -5849,7 +5514,7 @@ M.AttachVolumeOutput = {
             },
         },
         EbsCardIndex = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "ebsCardIndex",
             },
@@ -5939,12 +5604,9 @@ M.VpcAttachment = {
 M.AttachVpnGatewayOutput = {
     type = "structure",
     members = {
-        VpcAttachment = {
-            type = "structure",
-            traits = {
-                xml_name = "attachment",
-            },
-        },
+        VpcAttachment = setmetatable({ traits = {
+            xml_name = "attachment",
+        } }, { __index = M.VpcAttachment }),
     },
 }
 
@@ -6009,12 +5671,9 @@ M.ClientVpnAuthorizationRuleStatus = {
 M.AuthorizeClientVpnIngressOutput = {
     type = "structure",
     members = {
-        Status = {
-            type = "structure",
-            traits = {
-                xml_name = "status",
-            },
-        },
+        Status = setmetatable({ traits = {
+            xml_name = "status",
+        } }, { __index = M.ClientVpnAuthorizationRuleStatus }),
     },
 }
 
@@ -6130,41 +5789,41 @@ M.IpPermission = {
             },
         },
         FromPort = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "fromPort",
             },
         },
         ToPort = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "toPort",
             },
         },
         UserIdGroupPairs = {
             type = "list",
-            member_type = "structure",
+            member = M.UserIdGroupPair,
             traits = {
                 xml_name = "groups",
             },
         },
         IpRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.IpRange,
             traits = {
                 xml_name = "ipRanges",
             },
         },
         Ipv6Ranges = {
             type = "list",
-            member_type = "structure",
+            member = M.Ipv6Range,
             traits = {
                 xml_name = "ipv6Ranges",
             },
         },
         PrefixListIds = {
             type = "list",
-            member_type = "structure",
+            member = M.PrefixListId,
             traits = {
                 xml_name = "prefixListIds",
             },
@@ -6177,7 +5836,7 @@ M.AuthorizeSecurityGroupEgressInput = {
     members = {
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -6214,13 +5873,13 @@ M.AuthorizeSecurityGroupEgressInput = {
             },
         },
         FromPort = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "fromPort",
             },
         },
         ToPort = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "toPort",
             },
@@ -6233,7 +5892,7 @@ M.AuthorizeSecurityGroupEgressInput = {
         },
         IpPermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.IpPermission,
             traits = {
                 xml_name = "ipPermissions",
             },
@@ -6311,13 +5970,13 @@ M.SecurityGroupRule = {
             },
         },
         FromPort = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "fromPort",
             },
         },
         ToPort = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "toPort",
             },
@@ -6340,12 +5999,9 @@ M.SecurityGroupRule = {
                 xml_name = "prefixListId",
             },
         },
-        ReferencedGroupInfo = {
-            type = "structure",
-            traits = {
-                xml_name = "referencedGroupInfo",
-            },
-        },
+        ReferencedGroupInfo = setmetatable({ traits = {
+            xml_name = "referencedGroupInfo",
+        } }, { __index = M.ReferencedSecurityGroup }),
         Description = {
             type = "string",
             traits = {
@@ -6354,7 +6010,7 @@ M.SecurityGroupRule = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -6379,7 +6035,7 @@ M.AuthorizeSecurityGroupEgressOutput = {
         },
         SecurityGroupRules = {
             type = "list",
-            member_type = "structure",
+            member = M.SecurityGroupRule,
             traits = {
                 xml_name = "securityGroupRuleSet",
             },
@@ -6394,7 +6050,7 @@ M.AuthorizeSecurityGroupIngressInput = {
             type = "string",
         },
         FromPort = {
-            type = "number",
+            type = "integer",
         },
         GroupId = {
             type = "string",
@@ -6404,7 +6060,7 @@ M.AuthorizeSecurityGroupIngressInput = {
         },
         IpPermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.IpPermission,
         },
         IpProtocol = {
             type = "string",
@@ -6416,11 +6072,11 @@ M.AuthorizeSecurityGroupIngressInput = {
             type = "string",
         },
         ToPort = {
-            type = "number",
+            type = "integer",
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -6445,7 +6101,7 @@ M.AuthorizeSecurityGroupIngressOutput = {
         },
         SecurityGroupRules = {
             type = "list",
-            member_type = "structure",
+            member = M.SecurityGroupRule,
             traits = {
                 xml_name = "securityGroupRuleSet",
             },
@@ -6489,12 +6145,9 @@ M.S3Storage = {
 M.Storage = {
     type = "structure",
     members = {
-        S3 = {
-            type = "structure",
-            traits = {
-                xml_name = "S3",
-            },
-        },
+        S3 = setmetatable({ traits = {
+            xml_name = "S3",
+        } }, { __index = M.S3Storage }),
     },
 }
 
@@ -6507,12 +6160,9 @@ M.BundleInstanceInput = {
                 required = true,
             },
         },
-        Storage = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Storage = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Storage }),
         DryRun = {
             type = "boolean",
             traits = {
@@ -6583,36 +6233,27 @@ M.BundleTask = {
                 xml_name = "updateTime",
             },
         },
-        Storage = {
-            type = "structure",
-            traits = {
-                xml_name = "storage",
-            },
-        },
+        Storage = setmetatable({ traits = {
+            xml_name = "storage",
+        } }, { __index = M.Storage }),
         Progress = {
             type = "string",
             traits = {
                 xml_name = "progress",
             },
         },
-        BundleTaskError = {
-            type = "structure",
-            traits = {
-                xml_name = "error",
-            },
-        },
+        BundleTaskError = setmetatable({ traits = {
+            xml_name = "error",
+        } }, { __index = M.BundleTaskError }),
     },
 }
 
 M.BundleInstanceOutput = {
     type = "structure",
     members = {
-        BundleTask = {
-            type = "structure",
-            traits = {
-                xml_name = "bundleInstanceTask",
-            },
-        },
+        BundleTask = setmetatable({ traits = {
+            xml_name = "bundleInstanceTask",
+        } }, { __index = M.BundleTask }),
     },
 }
 
@@ -6637,12 +6278,9 @@ M.CancelBundleTaskInput = {
 M.CancelBundleTaskOutput = {
     type = "structure",
     members = {
-        BundleTask = {
-            type = "structure",
-            traits = {
-                xml_name = "bundleInstanceTask",
-            },
-        },
+        BundleTask = setmetatable({ traits = {
+            xml_name = "bundleInstanceTask",
+        } }, { __index = M.BundleTask }),
     },
 }
 
@@ -6681,7 +6319,7 @@ M.CancelCapacityReservationFleetsInput = {
         },
         CapacityReservationFleetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "CapacityReservationFleetId",
@@ -6717,12 +6355,9 @@ M.FailedCapacityReservationFleetCancellationResult = {
                 xml_name = "capacityReservationFleetId",
             },
         },
-        CancelCapacityReservationFleetError = {
-            type = "structure",
-            traits = {
-                xml_name = "cancelCapacityReservationFleetError",
-            },
-        },
+        CancelCapacityReservationFleetError = setmetatable({ traits = {
+            xml_name = "cancelCapacityReservationFleetError",
+        } }, { __index = M.CancelCapacityReservationFleetError }),
     },
 }
 
@@ -6767,14 +6402,14 @@ M.CancelCapacityReservationFleetsOutput = {
     members = {
         SuccessfulFleetCancellations = {
             type = "list",
-            member_type = "structure",
+            member = M.CapacityReservationFleetCancellationState,
             traits = {
                 xml_name = "successfulFleetCancellationSet",
             },
         },
         FailedFleetCancellations = {
             type = "list",
-            member_type = "structure",
+            member = M.FailedCapacityReservationFleetCancellationResult,
             traits = {
                 xml_name = "failedFleetCancellationSet",
             },
@@ -6945,7 +6580,7 @@ M.InstanceCount = {
     type = "structure",
     members = {
         InstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "instanceCount",
             },
@@ -6979,13 +6614,13 @@ M.PriceSchedule = {
             },
         },
         Price = {
-            type = "number",
+            type = "double",
             traits = {
                 xml_name = "price",
             },
         },
         Term = {
-            type = "number",
+            type = "long",
             traits = {
                 xml_name = "term",
             },
@@ -7017,14 +6652,14 @@ M.ReservedInstancesListing = {
         },
         InstanceCounts = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceCount,
             traits = {
                 xml_name = "instanceCounts",
             },
         },
         PriceSchedules = {
             type = "list",
-            member_type = "structure",
+            member = M.PriceSchedule,
             traits = {
                 xml_name = "priceSchedules",
             },
@@ -7055,7 +6690,7 @@ M.ReservedInstancesListing = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -7074,7 +6709,7 @@ M.CancelReservedInstancesListingOutput = {
     members = {
         ReservedInstancesListings = {
             type = "list",
-            member_type = "structure",
+            member = M.ReservedInstancesListing,
             traits = {
                 xml_name = "reservedInstancesListingsSet",
             },
@@ -7093,7 +6728,7 @@ M.CancelSpotFleetRequestsInput = {
         },
         SpotFleetRequestIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "spotFleetRequestId",
@@ -7171,12 +6806,9 @@ M.CancelSpotFleetRequestsError = {
 M.CancelSpotFleetRequestsErrorItem = {
     type = "structure",
     members = {
-        Error = {
-            type = "structure",
-            traits = {
-                xml_name = "error",
-            },
-        },
+        Error = setmetatable({ traits = {
+            xml_name = "error",
+        } }, { __index = M.CancelSpotFleetRequestsError }),
         SpotFleetRequestId = {
             type = "string",
             traits = {
@@ -7191,14 +6823,14 @@ M.CancelSpotFleetRequestsOutput = {
     members = {
         SuccessfulFleetRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.CancelSpotFleetRequestsSuccessItem,
             traits = {
                 xml_name = "successfulFleetRequestSet",
             },
         },
         UnsuccessfulFleetRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.CancelSpotFleetRequestsErrorItem,
             traits = {
                 xml_name = "unsuccessfulFleetRequestSet",
             },
@@ -7217,7 +6849,7 @@ M.CancelSpotInstanceRequestsInput = {
         },
         SpotInstanceRequestIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "SpotInstanceRequestId",
@@ -7257,7 +6889,7 @@ M.CancelSpotInstanceRequestsOutput = {
     members = {
         CancelledSpotInstanceRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.CancelledSpotInstanceRequest,
             traits = {
                 xml_name = "spotInstanceRequestSet",
             },
@@ -7396,13 +7028,13 @@ M.CopyImageInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
         },
         SnapshotCopyCompletionDurationMinutes = {
-            type = "number",
+            type = "long",
         },
         DestinationAvailabilityZone = {
             type = "string",
@@ -7478,13 +7110,13 @@ M.CopySnapshotInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
         },
         CompletionDurationMinutes = {
-            type = "number",
+            type = "integer",
         },
         DestinationAvailabilityZone = {
             type = "string",
@@ -7503,7 +7135,7 @@ M.CopySnapshotOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -7537,10 +7169,10 @@ M.CopyVolumesInput = {
             },
         },
         Iops = {
-            type = "number",
+            type = "integer",
         },
         Size = {
-            type = "number",
+            type = "integer",
         },
         VolumeType = {
             type = "string",
@@ -7550,7 +7182,7 @@ M.CopyVolumesInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -7559,7 +7191,7 @@ M.CopyVolumesInput = {
             type = "boolean",
         },
         Throughput = {
-            type = "number",
+            type = "integer",
         },
         ClientToken = {
             type = "string",
@@ -7589,7 +7221,7 @@ M.VolumeAttachment = {
             },
         },
         EbsCardIndex = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "ebsCardIndex",
             },
@@ -7688,14 +7320,14 @@ M.Volume = {
             },
         },
         Iops = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "iops",
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -7719,7 +7351,7 @@ M.Volume = {
             },
         },
         Throughput = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "throughput",
             },
@@ -7730,14 +7362,11 @@ M.Volume = {
                 xml_name = "sseType",
             },
         },
-        Operator = {
-            type = "structure",
-            traits = {
-                xml_name = "operator",
-            },
-        },
+        Operator = setmetatable({ traits = {
+            xml_name = "operator",
+        } }, { __index = M.OperatorResponse }),
         VolumeInitializationRate = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "volumeInitializationRate",
             },
@@ -7749,7 +7378,7 @@ M.Volume = {
             },
         },
         Size = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "size",
             },
@@ -7780,7 +7409,7 @@ M.Volume = {
         },
         Attachments = {
             type = "list",
-            member_type = "structure",
+            member = M.VolumeAttachment,
             traits = {
                 xml_name = "attachmentSet",
             },
@@ -7805,7 +7434,7 @@ M.CopyVolumesOutput = {
     members = {
         Volumes = {
             type = "list",
-            member_type = "structure",
+            member = M.Volume,
             traits = {
                 xml_name = "volumeSet",
             },
@@ -7854,7 +7483,7 @@ M.CreateCapacityManagerDataExportInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -7943,7 +7572,7 @@ M.CreateCapacityReservationInput = {
             type = "string",
         },
         InstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -7965,7 +7594,7 @@ M.CreateCapacityReservationInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
         },
         DryRun = {
             type = "boolean",
@@ -7980,7 +7609,7 @@ M.CreateCapacityReservationInput = {
             type = "timestamp",
         },
         CommitmentDuration = {
-            type = "number",
+            type = "long",
         },
         DeliveryPreference = {
             type = "string",
@@ -8016,14 +7645,14 @@ M.CapacityAllocation = {
             },
         },
         Count = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "count",
             },
         },
         AllocationMetadata = {
             type = "list",
-            member_type = "structure",
+            member = M.CapacityAllocationMetadataEntry,
             traits = {
                 xml_name = "allocationMetadataList",
             },
@@ -8035,7 +7664,7 @@ M.CapacityReservationCommitmentInfo = {
     type = "structure",
     members = {
         CommittedInstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "committedInstanceCount",
             },
@@ -8066,13 +7695,13 @@ M.InterruptibleCapacityAllocation = {
     type = "structure",
     members = {
         InstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "instanceCount",
             },
         },
         TargetInstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "targetInstanceCount",
             },
@@ -8188,13 +7817,13 @@ M.CapacityReservation = {
             },
         },
         TotalInstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "totalInstanceCount",
             },
         },
         AvailableInstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "availableInstanceCount",
             },
@@ -8249,7 +7878,7 @@ M.CapacityReservation = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -8274,7 +7903,7 @@ M.CapacityReservation = {
         },
         CapacityAllocations = {
             type = "list",
-            member_type = "structure",
+            member = M.CapacityAllocation,
             traits = {
                 xml_name = "capacityAllocationSet",
             },
@@ -8291,12 +7920,9 @@ M.CapacityReservation = {
                 xml_name = "unusedReservationBillingOwnerId",
             },
         },
-        CommitmentInfo = {
-            type = "structure",
-            traits = {
-                xml_name = "commitmentInfo",
-            },
-        },
+        CommitmentInfo = setmetatable({ traits = {
+            xml_name = "commitmentInfo",
+        } }, { __index = M.CapacityReservationCommitmentInfo }),
         DeliveryPreference = {
             type = "string",
             traits = {
@@ -8315,30 +7941,21 @@ M.CapacityReservation = {
                 xml_name = "interruptible",
             },
         },
-        InterruptibleCapacityAllocation = {
-            type = "structure",
-            traits = {
-                xml_name = "interruptibleCapacityAllocation",
-            },
-        },
-        InterruptionInfo = {
-            type = "structure",
-            traits = {
-                xml_name = "interruptionInfo",
-            },
-        },
+        InterruptibleCapacityAllocation = setmetatable({ traits = {
+            xml_name = "interruptibleCapacityAllocation",
+        } }, { __index = M.InterruptibleCapacityAllocation }),
+        InterruptionInfo = setmetatable({ traits = {
+            xml_name = "interruptionInfo",
+        } }, { __index = M.InterruptionInfo }),
     },
 }
 
 M.CreateCapacityReservationOutput = {
     type = "structure",
     members = {
-        CapacityReservation = {
-            type = "structure",
-            traits = {
-                xml_name = "capacityReservation",
-            },
-        },
+        CapacityReservation = setmetatable({ traits = {
+            xml_name = "capacityReservation",
+        } }, { __index = M.CapacityReservation }),
     },
 }
 
@@ -8358,14 +7975,14 @@ M.CreateCapacityReservationBySplittingInput = {
             },
         },
         InstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -8376,20 +7993,14 @@ M.CreateCapacityReservationBySplittingInput = {
 M.CreateCapacityReservationBySplittingOutput = {
     type = "structure",
     members = {
-        SourceCapacityReservation = {
-            type = "structure",
-            traits = {
-                xml_name = "sourceCapacityReservation",
-            },
-        },
-        DestinationCapacityReservation = {
-            type = "structure",
-            traits = {
-                xml_name = "destinationCapacityReservation",
-            },
-        },
+        SourceCapacityReservation = setmetatable({ traits = {
+            xml_name = "sourceCapacityReservation",
+        } }, { __index = M.CapacityReservation }),
+        DestinationCapacityReservation = setmetatable({ traits = {
+            xml_name = "destinationCapacityReservation",
+        } }, { __index = M.CapacityReservation }),
         InstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "instanceCount",
             },
@@ -9626,7 +9237,7 @@ M.ReservationFleetInstanceSpecification = {
             type = "string",
         },
         Weight = {
-            type = "number",
+            type = "double",
         },
         AvailabilityZone = {
             type = "string",
@@ -9638,7 +9249,7 @@ M.ReservationFleetInstanceSpecification = {
             type = "boolean",
         },
         Priority = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -9658,7 +9269,7 @@ M.CreateCapacityReservationFleetInput = {
         },
         InstanceTypeSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.ReservationFleetInstanceSpecification,
             traits = {
                 required = true,
                 xml_name = "InstanceTypeSpecification",
@@ -9668,7 +9279,7 @@ M.CreateCapacityReservationFleetInput = {
             type = "string",
         },
         TotalTargetCapacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -9681,7 +9292,7 @@ M.CreateCapacityReservationFleetInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -9726,13 +9337,13 @@ M.FleetCapacityReservation = {
             },
         },
         TotalInstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "totalInstanceCount",
             },
         },
         FulfilledCapacity = {
-            type = "number",
+            type = "double",
             traits = {
                 xml_name = "fulfilledCapacity",
             },
@@ -9750,13 +9361,13 @@ M.FleetCapacityReservation = {
             },
         },
         Weight = {
-            type = "number",
+            type = "double",
             traits = {
                 xml_name = "weight",
             },
         },
         Priority = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "priority",
             },
@@ -9780,13 +9391,13 @@ M.CreateCapacityReservationFleetOutput = {
             },
         },
         TotalTargetCapacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "totalTargetCapacity",
             },
         },
         TotalFulfilledCapacity = {
-            type = "number",
+            type = "double",
             traits = {
                 xml_name = "totalFulfilledCapacity",
             },
@@ -9823,14 +9434,14 @@ M.CreateCapacityReservationFleetOutput = {
         },
         FleetCapacityReservations = {
             type = "list",
-            member_type = "structure",
+            member = M.FleetCapacityReservation,
             traits = {
                 xml_name = "fleetCapacityReservationSet",
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -9849,7 +9460,7 @@ M.CreateCarrierGatewayInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -9899,7 +9510,7 @@ M.CarrierGateway = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -9910,12 +9521,9 @@ M.CarrierGateway = {
 M.CreateCarrierGatewayOutput = {
     type = "structure",
     members = {
-        CarrierGateway = {
-            type = "structure",
-            traits = {
-                xml_name = "carrierGateway",
-            },
-        },
+        CarrierGateway = setmetatable({ traits = {
+            xml_name = "carrierGateway",
+        } }, { __index = M.CarrierGateway }),
     },
 }
 
@@ -9961,15 +9569,9 @@ M.ClientVpnAuthenticationRequest = {
         Type = {
             type = "string",
         },
-        ActiveDirectory = {
-            type = "structure",
-        },
-        MutualAuthentication = {
-            type = "structure",
-        },
-        FederatedAuthentication = {
-            type = "structure",
-        },
+        ActiveDirectory = M.DirectoryServiceAuthenticationRequest,
+        MutualAuthentication = M.CertificateAuthenticationRequest,
+        FederatedAuthentication = M.FederatedAuthenticationRequest,
     },
 }
 
@@ -10046,14 +9648,14 @@ M.TransitGatewayConfigurationInputStructure = {
         },
         AvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "AvailabilityZone",
             },
         },
         AvailabilityZoneIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "AvailabilityZoneId",
             },
@@ -10080,27 +9682,24 @@ M.CreateClientVpnEndpointInput = {
         },
         AuthenticationOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.ClientVpnAuthenticationRequest,
             traits = {
                 required = true,
                 xml_name = "Authentication",
             },
         },
-        ConnectionLogOptions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ConnectionLogOptions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConnectionLogOptions }),
         DnsServers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TransportProtocol = {
             type = "string",
         },
         VpnPort = {
-            type = "number",
+            type = "integer",
         },
         Description = {
             type = "string",
@@ -10116,14 +9715,14 @@ M.CreateClientVpnEndpointInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "SecurityGroupId",
             },
@@ -10134,18 +9733,12 @@ M.CreateClientVpnEndpointInput = {
         SelfServicePortal = {
             type = "string",
         },
-        ClientConnectOptions = {
-            type = "structure",
-        },
+        ClientConnectOptions = M.ClientConnectOptions,
         SessionTimeoutHours = {
-            type = "number",
+            type = "integer",
         },
-        ClientLoginBannerOptions = {
-            type = "structure",
-        },
-        ClientRouteEnforcementOptions = {
-            type = "structure",
-        },
+        ClientLoginBannerOptions = M.ClientLoginBannerOptions,
+        ClientRouteEnforcementOptions = M.ClientRouteEnforcementOptions,
         DisconnectOnSessionTimeout = {
             type = "boolean",
         },
@@ -10155,9 +9748,7 @@ M.CreateClientVpnEndpointInput = {
         TrafficIpAddressType = {
             type = "string",
         },
-        TransitGatewayConfiguration = {
-            type = "structure",
-        },
+        TransitGatewayConfiguration = M.TransitGatewayConfigurationInputStructure,
     },
 }
 
@@ -10196,12 +9787,9 @@ M.CreateClientVpnEndpointOutput = {
                 xml_name = "clientVpnEndpointId",
             },
         },
-        Status = {
-            type = "structure",
-            traits = {
-                xml_name = "status",
-            },
-        },
+        Status = setmetatable({ traits = {
+            xml_name = "status",
+        } }, { __index = M.ClientVpnEndpointStatus }),
         DnsName = {
             type = "string",
             traits = {
@@ -10269,12 +9857,9 @@ M.ClientVpnRouteStatus = {
 M.CreateClientVpnRouteOutput = {
     type = "structure",
     members = {
-        Status = {
-            type = "structure",
-            traits = {
-                xml_name = "status",
-            },
-        },
+        Status = setmetatable({ traits = {
+            xml_name = "status",
+        } }, { __index = M.ClientVpnRouteStatus }),
     },
 }
 
@@ -10326,12 +9911,9 @@ M.CoipCidr = {
 M.CreateCoipCidrOutput = {
     type = "structure",
     members = {
-        CoipCidr = {
-            type = "structure",
-            traits = {
-                xml_name = "coipCidr",
-            },
-        },
+        CoipCidr = setmetatable({ traits = {
+            xml_name = "coipCidr",
+        } }, { __index = M.CoipCidr }),
     },
 }
 
@@ -10346,7 +9928,7 @@ M.CreateCoipPoolInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -10368,7 +9950,7 @@ M.CoipPool = {
         },
         PoolCidrs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "poolCidrSet",
             },
@@ -10381,7 +9963,7 @@ M.CoipPool = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -10398,12 +9980,9 @@ M.CoipPool = {
 M.CreateCoipPoolOutput = {
     type = "structure",
     members = {
-        CoipPool = {
-            type = "structure",
-            traits = {
-                xml_name = "coipPool",
-            },
-        },
+        CoipPool = setmetatable({ traits = {
+            xml_name = "coipPool",
+        } }, { __index = M.CoipPool }),
     },
 }
 
@@ -10415,7 +9994,7 @@ M.CreateCustomerGatewayInput = {
     type = "structure",
     members = {
         BgpAsn = {
-            type = "number",
+            type = "integer",
         },
         PublicIp = {
             type = "string",
@@ -10431,7 +10010,7 @@ M.CreateCustomerGatewayInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -10443,7 +10022,7 @@ M.CreateCustomerGatewayInput = {
             type = "string",
         },
         BgpAsnExtended = {
-            type = "number",
+            type = "long",
         },
         DryRun = {
             type = "boolean",
@@ -10471,7 +10050,7 @@ M.CustomerGateway = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -10518,12 +10097,9 @@ M.CustomerGateway = {
 M.CreateCustomerGatewayOutput = {
     type = "structure",
     members = {
-        CustomerGateway = {
-            type = "structure",
-            traits = {
-                xml_name = "customerGateway",
-            },
-        },
+        CustomerGateway = setmetatable({ traits = {
+            xml_name = "customerGateway",
+        } }, { __index = M.CustomerGateway }),
     },
 }
 
@@ -10610,7 +10186,7 @@ M.Subnet = {
             },
         },
         EnableLniAtDeviceIndex = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "enableLniAtDeviceIndex",
             },
@@ -10641,14 +10217,14 @@ M.Subnet = {
         },
         Ipv6CidrBlockAssociationSet = {
             type = "list",
-            member_type = "structure",
+            member = M.SubnetIpv6CidrBlockAssociation,
             traits = {
                 xml_name = "ipv6CidrBlockAssociationSet",
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -10677,18 +10253,12 @@ M.Subnet = {
                 xml_name = "ipv6Native",
             },
         },
-        PrivateDnsNameOptionsOnLaunch = {
-            type = "structure",
-            traits = {
-                xml_name = "privateDnsNameOptionsOnLaunch",
-            },
-        },
-        BlockPublicAccessStates = {
-            type = "structure",
-            traits = {
-                xml_name = "blockPublicAccessStates",
-            },
-        },
+        PrivateDnsNameOptionsOnLaunch = setmetatable({ traits = {
+            xml_name = "privateDnsNameOptionsOnLaunch",
+        } }, { __index = M.PrivateDnsNameOptionsOnLaunch }),
+        BlockPublicAccessStates = setmetatable({ traits = {
+            xml_name = "blockPublicAccessStates",
+        } }, { __index = M.BlockPublicAccessStates }),
         Type = {
             type = "string",
             traits = {
@@ -10720,7 +10290,7 @@ M.Subnet = {
             },
         },
         AvailableIpAddressCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "availableIpAddressCount",
             },
@@ -10749,12 +10319,9 @@ M.Subnet = {
 M.CreateDefaultSubnetOutput = {
     type = "structure",
     members = {
-        Subnet = {
-            type = "structure",
-            traits = {
-                xml_name = "subnet",
-            },
-        },
+        Subnet = setmetatable({ traits = {
+            xml_name = "subnet",
+        } }, { __index = M.Subnet }),
     },
 }
 
@@ -10800,54 +10367,30 @@ M.VpcEncryptionControlExclusion = {
 M.VpcEncryptionControlExclusions = {
     type = "structure",
     members = {
-        InternetGateway = {
-            type = "structure",
-            traits = {
-                xml_name = "internetGateway",
-            },
-        },
-        EgressOnlyInternetGateway = {
-            type = "structure",
-            traits = {
-                xml_name = "egressOnlyInternetGateway",
-            },
-        },
-        NatGateway = {
-            type = "structure",
-            traits = {
-                xml_name = "natGateway",
-            },
-        },
-        VirtualPrivateGateway = {
-            type = "structure",
-            traits = {
-                xml_name = "virtualPrivateGateway",
-            },
-        },
-        VpcPeering = {
-            type = "structure",
-            traits = {
-                xml_name = "vpcPeering",
-            },
-        },
-        Lambda = {
-            type = "structure",
-            traits = {
-                xml_name = "lambda",
-            },
-        },
-        VpcLattice = {
-            type = "structure",
-            traits = {
-                xml_name = "vpcLattice",
-            },
-        },
-        ElasticFileSystem = {
-            type = "structure",
-            traits = {
-                xml_name = "elasticFileSystem",
-            },
-        },
+        InternetGateway = setmetatable({ traits = {
+            xml_name = "internetGateway",
+        } }, { __index = M.VpcEncryptionControlExclusion }),
+        EgressOnlyInternetGateway = setmetatable({ traits = {
+            xml_name = "egressOnlyInternetGateway",
+        } }, { __index = M.VpcEncryptionControlExclusion }),
+        NatGateway = setmetatable({ traits = {
+            xml_name = "natGateway",
+        } }, { __index = M.VpcEncryptionControlExclusion }),
+        VirtualPrivateGateway = setmetatable({ traits = {
+            xml_name = "virtualPrivateGateway",
+        } }, { __index = M.VpcEncryptionControlExclusion }),
+        VpcPeering = setmetatable({ traits = {
+            xml_name = "vpcPeering",
+        } }, { __index = M.VpcEncryptionControlExclusion }),
+        Lambda = setmetatable({ traits = {
+            xml_name = "lambda",
+        } }, { __index = M.VpcEncryptionControlExclusion }),
+        VpcLattice = setmetatable({ traits = {
+            xml_name = "vpcLattice",
+        } }, { __index = M.VpcEncryptionControlExclusion }),
+        ElasticFileSystem = setmetatable({ traits = {
+            xml_name = "elasticFileSystem",
+        } }, { __index = M.VpcEncryptionControlExclusion }),
     },
 }
 
@@ -10896,15 +10439,12 @@ M.VpcEncryptionControl = {
                 xml_name = "stateMessage",
             },
         },
-        ResourceExclusions = {
-            type = "structure",
-            traits = {
-                xml_name = "resourceExclusions",
-            },
-        },
+        ResourceExclusions = setmetatable({ traits = {
+            xml_name = "resourceExclusions",
+        } }, { __index = M.VpcEncryptionControlExclusions }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -10940,14 +10480,14 @@ M.Vpc = {
         },
         Ipv6CidrBlockAssociationSet = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcIpv6CidrBlockAssociation,
             traits = {
                 xml_name = "ipv6CidrBlockAssociationSet",
             },
         },
         CidrBlockAssociationSet = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcCidrBlockAssociation,
             traits = {
                 xml_name = "cidrBlockAssociationSet",
             },
@@ -10958,25 +10498,19 @@ M.Vpc = {
                 xml_name = "isDefault",
             },
         },
-        EncryptionControl = {
-            type = "structure",
-            traits = {
-                xml_name = "encryptionControl",
-            },
-        },
+        EncryptionControl = setmetatable({ traits = {
+            xml_name = "encryptionControl",
+        } }, { __index = M.VpcEncryptionControl }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
         },
-        BlockPublicAccessStates = {
-            type = "structure",
-            traits = {
-                xml_name = "blockPublicAccessStates",
-            },
-        },
+        BlockPublicAccessStates = setmetatable({ traits = {
+            xml_name = "blockPublicAccessStates",
+        } }, { __index = M.BlockPublicAccessStates }),
         VpcId = {
             type = "string",
             traits = {
@@ -11007,12 +10541,9 @@ M.Vpc = {
 M.CreateDefaultVpcOutput = {
     type = "structure",
     members = {
-        Vpc = {
-            type = "structure",
-            traits = {
-                xml_name = "vpc",
-            },
-        },
+        Vpc = setmetatable({ traits = {
+            xml_name = "vpc",
+        } }, { __index = M.Vpc }),
     },
 }
 
@@ -11039,7 +10570,7 @@ M.CreateDelegateMacVolumeOwnershipTaskInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -11133,12 +10664,9 @@ M.MacModificationTask = {
                 xml_name = "macModificationTaskId",
             },
         },
-        MacSystemIntegrityProtectionConfig = {
-            type = "structure",
-            traits = {
-                xml_name = "macSystemIntegrityProtectionConfig",
-            },
-        },
+        MacSystemIntegrityProtectionConfig = setmetatable({ traits = {
+            xml_name = "macSystemIntegrityProtectionConfig",
+        } }, { __index = M.MacSystemIntegrityProtectionConfiguration }),
         StartTime = {
             type = "timestamp",
             traits = {
@@ -11147,7 +10675,7 @@ M.MacModificationTask = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -11170,12 +10698,9 @@ M.MacModificationTask = {
 M.CreateDelegateMacVolumeOwnershipTaskOutput = {
     type = "structure",
     members = {
-        MacModificationTask = {
-            type = "structure",
-            traits = {
-                xml_name = "macModificationTask",
-            },
-        },
+        MacModificationTask = setmetatable({ traits = {
+            xml_name = "macModificationTask",
+        } }, { __index = M.MacModificationTask }),
     },
 }
 
@@ -11190,7 +10715,7 @@ M.NewDhcpConfiguration = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "Value",
             },
@@ -11203,7 +10728,7 @@ M.CreateDhcpOptionsInput = {
     members = {
         DhcpConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.NewDhcpConfiguration,
             traits = {
                 required = true,
                 xml_name = "dhcpConfiguration",
@@ -11211,7 +10736,7 @@ M.CreateDhcpOptionsInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -11248,7 +10773,7 @@ M.DhcpConfiguration = {
         },
         Values = {
             type = "list",
-            member_type = "structure",
+            member = M.AttributeValue,
             traits = {
                 xml_name = "valueSet",
             },
@@ -11267,7 +10792,7 @@ M.DhcpOptions = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -11280,7 +10805,7 @@ M.DhcpOptions = {
         },
         DhcpConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.DhcpConfiguration,
             traits = {
                 xml_name = "dhcpConfigurationSet",
             },
@@ -11291,12 +10816,9 @@ M.DhcpOptions = {
 M.CreateDhcpOptionsOutput = {
     type = "structure",
     members = {
-        DhcpOptions = {
-            type = "structure",
-            traits = {
-                xml_name = "dhcpOptions",
-            },
-        },
+        DhcpOptions = setmetatable({ traits = {
+            xml_name = "dhcpOptions",
+        } }, { __index = M.DhcpOptions }),
     },
 }
 
@@ -11317,7 +10839,7 @@ M.CreateEgressOnlyInternetGatewayInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -11348,7 +10870,7 @@ M.EgressOnlyInternetGateway = {
     members = {
         Attachments = {
             type = "list",
-            member_type = "structure",
+            member = M.InternetGatewayAttachment,
             traits = {
                 xml_name = "attachmentSet",
             },
@@ -11361,7 +10883,7 @@ M.EgressOnlyInternetGateway = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -11378,12 +10900,9 @@ M.CreateEgressOnlyInternetGatewayOutput = {
                 xml_name = "clientToken",
             },
         },
-        EgressOnlyInternetGateway = {
-            type = "structure",
-            traits = {
-                xml_name = "egressOnlyInternetGateway",
-            },
-        },
+        EgressOnlyInternetGateway = setmetatable({ traits = {
+            xml_name = "egressOnlyInternetGateway",
+        } }, { __index = M.EgressOnlyInternetGateway }),
     },
 }
 
@@ -11417,10 +10936,10 @@ M.FleetEbsBlockDeviceRequest = {
             type = "boolean",
         },
         Iops = {
-            type = "number",
+            type = "integer",
         },
         Throughput = {
-            type = "number",
+            type = "integer",
         },
         KmsKeyId = {
             type = "string",
@@ -11429,7 +10948,7 @@ M.FleetEbsBlockDeviceRequest = {
             type = "string",
         },
         VolumeSize = {
-            type = "number",
+            type = "integer",
         },
         VolumeType = {
             type = "string",
@@ -11446,9 +10965,7 @@ M.FleetBlockDeviceMappingRequest = {
         VirtualName = {
             type = "string",
         },
-        Ebs = {
-            type = "structure",
-        },
+        Ebs = M.FleetEbsBlockDeviceRequest,
         NoDevice = {
             type = "string",
         },
@@ -11465,10 +10982,10 @@ M.BaselineEbsBandwidthMbpsRequest = {
     type = "structure",
     members = {
         Min = {
-            type = "number",
+            type = "integer",
         },
         Max = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -11487,7 +11004,7 @@ M.CpuPerformanceFactorRequest = {
     members = {
         References = {
             type = "list",
-            member_type = "structure",
+            member = M.PerformanceFactorReferenceRequest,
             traits = {
                 xml_name = "Reference",
             },
@@ -11498,9 +11015,7 @@ M.CpuPerformanceFactorRequest = {
 M.BaselinePerformanceFactorsRequest = {
     type = "structure",
     members = {
-        Cpu = {
-            type = "structure",
-        },
+        Cpu = M.CpuPerformanceFactorRequest,
     },
 }
 
@@ -11537,10 +11052,10 @@ M.MemoryGiBPerVCpuRequest = {
     type = "structure",
     members = {
         Min = {
-            type = "number",
+            type = "double",
         },
         Max = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -11549,13 +11064,13 @@ M.MemoryMiBRequest = {
     type = "structure",
     members = {
         Min = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Max = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -11564,10 +11079,10 @@ M.NetworkBandwidthGbpsRequest = {
     type = "structure",
     members = {
         Min = {
-            type = "number",
+            type = "double",
         },
         Max = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -11576,10 +11091,10 @@ M.NetworkInterfaceCountRequest = {
     type = "structure",
     members = {
         Min = {
-            type = "number",
+            type = "integer",
         },
         Max = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -11588,10 +11103,10 @@ M.TotalLocalStorageGBRequest = {
     type = "structure",
     members = {
         Min = {
-            type = "number",
+            type = "double",
         },
         Max = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -11600,13 +11115,13 @@ M.VCpuCountRangeRequest = {
     type = "structure",
     members = {
         Min = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Max = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -11614,47 +11129,39 @@ M.VCpuCountRangeRequest = {
 M.InstanceRequirementsRequest = {
     type = "structure",
     members = {
-        VCpuCount = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        MemoryMiB = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        VCpuCount = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VCpuCountRangeRequest }),
+        MemoryMiB = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MemoryMiBRequest }),
         CpuManufacturers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "CpuManufacturer",
             },
         },
-        MemoryGiBPerVCpu = {
-            type = "structure",
-        },
+        MemoryGiBPerVCpu = M.MemoryGiBPerVCpuRequest,
         ExcludedInstanceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "ExcludedInstanceType",
             },
         },
         InstanceGenerations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "InstanceGeneration",
             },
         },
         SpotMaxPricePercentageOverLowestPrice = {
-            type = "number",
+            type = "integer",
         },
         OnDemandMaxPricePercentageOverLowestPrice = {
-            type = "number",
+            type = "integer",
         },
         BareMetal = {
             type = "string",
@@ -11665,68 +11172,54 @@ M.InstanceRequirementsRequest = {
         RequireHibernateSupport = {
             type = "boolean",
         },
-        NetworkInterfaceCount = {
-            type = "structure",
-        },
+        NetworkInterfaceCount = M.NetworkInterfaceCountRequest,
         LocalStorage = {
             type = "string",
         },
         LocalStorageTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "LocalStorageType",
             },
         },
-        TotalLocalStorageGB = {
-            type = "structure",
-        },
-        BaselineEbsBandwidthMbps = {
-            type = "structure",
-        },
+        TotalLocalStorageGB = M.TotalLocalStorageGBRequest,
+        BaselineEbsBandwidthMbps = M.BaselineEbsBandwidthMbpsRequest,
         AcceleratorTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "AcceleratorType",
             },
         },
-        AcceleratorCount = {
-            type = "structure",
-        },
+        AcceleratorCount = M.AcceleratorCountRequest,
         AcceleratorManufacturers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "AcceleratorManufacturer",
             },
         },
         AcceleratorNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "AcceleratorName",
             },
         },
-        AcceleratorTotalMemoryMiB = {
-            type = "structure",
-        },
-        NetworkBandwidthGbps = {
-            type = "structure",
-        },
+        AcceleratorTotalMemoryMiB = M.AcceleratorTotalMemoryMiBRequest,
+        NetworkBandwidthGbps = M.NetworkBandwidthGbpsRequest,
         AllowedInstanceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "AllowedInstanceType",
             },
         },
         MaxSpotPriceAsPercentageOfOptimalOnDemandPrice = {
-            type = "number",
+            type = "integer",
         },
-        BaselinePerformanceFactors = {
-            type = "structure",
-        },
+        BaselinePerformanceFactors = M.BaselinePerformanceFactorsRequest,
         RequireEncryptionInTransit = {
             type = "boolean",
         },
@@ -11755,7 +11248,7 @@ M.Placement = {
             },
         },
         PartitionNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "partitionNumber",
             },
@@ -11815,24 +11308,20 @@ M.FleetLaunchTemplateOverridesRequest = {
             type = "string",
         },
         WeightedCapacity = {
-            type = "number",
+            type = "double",
         },
         Priority = {
-            type = "number",
+            type = "double",
         },
-        Placement = {
-            type = "structure",
-        },
+        Placement = M.Placement,
         BlockDeviceMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.FleetBlockDeviceMappingRequest,
             traits = {
                 xml_name = "BlockDeviceMapping",
             },
         },
-        InstanceRequirements = {
-            type = "structure",
-        },
+        InstanceRequirements = M.InstanceRequirementsRequest,
         ImageId = {
             type = "string",
         },
@@ -11845,12 +11334,10 @@ M.FleetLaunchTemplateOverridesRequest = {
 M.FleetLaunchTemplateConfigRequest = {
     type = "structure",
     members = {
-        LaunchTemplateSpecification = {
-            type = "structure",
-        },
+        LaunchTemplateSpecification = M.FleetLaunchTemplateSpecificationRequest,
         Overrides = {
             type = "list",
-            member_type = "structure",
+            member = M.FleetLaunchTemplateOverridesRequest,
         },
     },
 }
@@ -11879,9 +11366,7 @@ M.OnDemandOptionsRequest = {
         AllocationStrategy = {
             type = "string",
         },
-        CapacityReservationOptions = {
-            type = "structure",
-        },
+        CapacityReservationOptions = M.CapacityReservationOptionsRequest,
         SingleInstanceType = {
             type = "boolean",
         },
@@ -11889,7 +11374,7 @@ M.OnDemandOptionsRequest = {
             type = "boolean",
         },
         MinTargetCapacity = {
-            type = "number",
+            type = "integer",
         },
         MaxTotalPrice = {
             type = "string",
@@ -11906,7 +11391,7 @@ M.ReservedCapacityOptionsRequest = {
     members = {
         ReservationTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "ReservationType",
             },
@@ -11940,7 +11425,7 @@ M.FleetSpotCapacityRebalanceRequest = {
             type = "string",
         },
         TerminationDelay = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -11948,9 +11433,7 @@ M.FleetSpotCapacityRebalanceRequest = {
 M.FleetSpotMaintenanceStrategiesRequest = {
     type = "structure",
     members = {
-        CapacityRebalance = {
-            type = "structure",
-        },
+        CapacityRebalance = M.FleetSpotCapacityRebalanceRequest,
     },
 }
 
@@ -11960,14 +11443,12 @@ M.SpotOptionsRequest = {
         AllocationStrategy = {
             type = "string",
         },
-        MaintenanceStrategies = {
-            type = "structure",
-        },
+        MaintenanceStrategies = M.FleetSpotMaintenanceStrategiesRequest,
         InstanceInterruptionBehavior = {
             type = "string",
         },
         InstancePoolsToUseCount = {
-            type = "number",
+            type = "integer",
         },
         SingleInstanceType = {
             type = "boolean",
@@ -11976,7 +11457,7 @@ M.SpotOptionsRequest = {
             type = "boolean",
         },
         MinTargetCapacity = {
-            type = "number",
+            type = "integer",
         },
         MaxTotalPrice = {
             type = "string",
@@ -12001,16 +11482,16 @@ M.TargetCapacitySpecificationRequest = {
     type = "structure",
     members = {
         TotalTargetCapacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         OnDemandTargetCapacity = {
-            type = "number",
+            type = "integer",
         },
         SpotTargetCapacity = {
-            type = "number",
+            type = "integer",
         },
         DefaultTargetCapacityType = {
             type = "string",
@@ -12036,31 +11517,22 @@ M.CreateFleetInput = {
         ClientToken = {
             type = "string",
         },
-        SpotOptions = {
-            type = "structure",
-        },
-        OnDemandOptions = {
-            type = "structure",
-        },
-        ReservedCapacityOptions = {
-            type = "structure",
-        },
+        SpotOptions = M.SpotOptionsRequest,
+        OnDemandOptions = M.OnDemandOptionsRequest,
+        ReservedCapacityOptions = M.ReservedCapacityOptionsRequest,
         ExcessCapacityTerminationPolicy = {
             type = "string",
         },
         LaunchTemplateConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.FleetLaunchTemplateConfigRequest,
             traits = {
                 required = true,
             },
         },
-        TargetCapacitySpecification = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TargetCapacitySpecification = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TargetCapacitySpecificationRequest }),
         TerminateInstancesWithExpiration = {
             type = "boolean",
         },
@@ -12078,7 +11550,7 @@ M.CreateFleetInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -12129,13 +11601,13 @@ M.EbsBlockDeviceResponse = {
             },
         },
         Iops = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "iops",
             },
         },
         Throughput = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "throughput",
             },
@@ -12153,7 +11625,7 @@ M.EbsBlockDeviceResponse = {
             },
         },
         VolumeSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "volumeSize",
             },
@@ -12182,12 +11654,9 @@ M.BlockDeviceMappingResponse = {
                 xml_name = "virtualName",
             },
         },
-        Ebs = {
-            type = "structure",
-            traits = {
-                xml_name = "ebs",
-            },
-        },
+        Ebs = setmetatable({ traits = {
+            xml_name = "ebs",
+        } }, { __index = M.EbsBlockDeviceResponse }),
         NoDevice = {
             type = "string",
             traits = {
@@ -12201,13 +11670,13 @@ M.BaselineEbsBandwidthMbps = {
     type = "structure",
     members = {
         Min = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "min",
             },
         },
         Max = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "max",
             },
@@ -12232,7 +11701,7 @@ M.CpuPerformanceFactor = {
     members = {
         References = {
             type = "list",
-            member_type = "structure",
+            member = M.PerformanceFactorReference,
             traits = {
                 xml_name = "referenceSet",
             },
@@ -12243,12 +11712,9 @@ M.CpuPerformanceFactor = {
 M.BaselinePerformanceFactors = {
     type = "structure",
     members = {
-        Cpu = {
-            type = "structure",
-            traits = {
-                xml_name = "cpu",
-            },
-        },
+        Cpu = setmetatable({ traits = {
+            xml_name = "cpu",
+        } }, { __index = M.CpuPerformanceFactor }),
     },
 }
 
@@ -12256,13 +11722,13 @@ M.MemoryGiBPerVCpu = {
     type = "structure",
     members = {
         Min = {
-            type = "number",
+            type = "double",
             traits = {
                 xml_name = "min",
             },
         },
         Max = {
-            type = "number",
+            type = "double",
             traits = {
                 xml_name = "max",
             },
@@ -12274,13 +11740,13 @@ M.MemoryMiB = {
     type = "structure",
     members = {
         Min = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "min",
             },
         },
         Max = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "max",
             },
@@ -12292,13 +11758,13 @@ M.NetworkBandwidthGbps = {
     type = "structure",
     members = {
         Min = {
-            type = "number",
+            type = "double",
             traits = {
                 xml_name = "min",
             },
         },
         Max = {
-            type = "number",
+            type = "double",
             traits = {
                 xml_name = "max",
             },
@@ -12310,13 +11776,13 @@ M.NetworkInterfaceCount = {
     type = "structure",
     members = {
         Min = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "min",
             },
         },
         Max = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "max",
             },
@@ -12328,13 +11794,13 @@ M.TotalLocalStorageGB = {
     type = "structure",
     members = {
         Min = {
-            type = "number",
+            type = "double",
             traits = {
                 xml_name = "min",
             },
         },
         Max = {
-            type = "number",
+            type = "double",
             traits = {
                 xml_name = "max",
             },
@@ -12346,13 +11812,13 @@ M.VCpuCountRange = {
     type = "structure",
     members = {
         Min = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "min",
             },
         },
         Max = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "max",
             },
@@ -12363,53 +11829,44 @@ M.VCpuCountRange = {
 M.InstanceRequirements = {
     type = "structure",
     members = {
-        VCpuCount = {
-            type = "structure",
-            traits = {
-                xml_name = "vCpuCount",
-            },
-        },
-        MemoryMiB = {
-            type = "structure",
-            traits = {
-                xml_name = "memoryMiB",
-            },
-        },
+        VCpuCount = setmetatable({ traits = {
+            xml_name = "vCpuCount",
+        } }, { __index = M.VCpuCountRange }),
+        MemoryMiB = setmetatable({ traits = {
+            xml_name = "memoryMiB",
+        } }, { __index = M.MemoryMiB }),
         CpuManufacturers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "cpuManufacturerSet",
             },
         },
-        MemoryGiBPerVCpu = {
-            type = "structure",
-            traits = {
-                xml_name = "memoryGiBPerVCpu",
-            },
-        },
+        MemoryGiBPerVCpu = setmetatable({ traits = {
+            xml_name = "memoryGiBPerVCpu",
+        } }, { __index = M.MemoryGiBPerVCpu }),
         ExcludedInstanceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "excludedInstanceTypeSet",
             },
         },
         InstanceGenerations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "instanceGenerationSet",
             },
         },
         SpotMaxPricePercentageOverLowestPrice = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "spotMaxPricePercentageOverLowestPrice",
             },
         },
         OnDemandMaxPricePercentageOverLowestPrice = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "onDemandMaxPricePercentageOverLowestPrice",
             },
@@ -12432,12 +11889,9 @@ M.InstanceRequirements = {
                 xml_name = "requireHibernateSupport",
             },
         },
-        NetworkInterfaceCount = {
-            type = "structure",
-            traits = {
-                xml_name = "networkInterfaceCount",
-            },
-        },
+        NetworkInterfaceCount = setmetatable({ traits = {
+            xml_name = "networkInterfaceCount",
+        } }, { __index = M.NetworkInterfaceCount }),
         LocalStorage = {
             type = "string",
             traits = {
@@ -12446,81 +11900,63 @@ M.InstanceRequirements = {
         },
         LocalStorageTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "localStorageTypeSet",
             },
         },
-        TotalLocalStorageGB = {
-            type = "structure",
-            traits = {
-                xml_name = "totalLocalStorageGB",
-            },
-        },
-        BaselineEbsBandwidthMbps = {
-            type = "structure",
-            traits = {
-                xml_name = "baselineEbsBandwidthMbps",
-            },
-        },
+        TotalLocalStorageGB = setmetatable({ traits = {
+            xml_name = "totalLocalStorageGB",
+        } }, { __index = M.TotalLocalStorageGB }),
+        BaselineEbsBandwidthMbps = setmetatable({ traits = {
+            xml_name = "baselineEbsBandwidthMbps",
+        } }, { __index = M.BaselineEbsBandwidthMbps }),
         AcceleratorTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "acceleratorTypeSet",
             },
         },
-        AcceleratorCount = {
-            type = "structure",
-            traits = {
-                xml_name = "acceleratorCount",
-            },
-        },
+        AcceleratorCount = setmetatable({ traits = {
+            xml_name = "acceleratorCount",
+        } }, { __index = M.AcceleratorCount }),
         AcceleratorManufacturers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "acceleratorManufacturerSet",
             },
         },
         AcceleratorNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "acceleratorNameSet",
             },
         },
-        AcceleratorTotalMemoryMiB = {
-            type = "structure",
-            traits = {
-                xml_name = "acceleratorTotalMemoryMiB",
-            },
-        },
-        NetworkBandwidthGbps = {
-            type = "structure",
-            traits = {
-                xml_name = "networkBandwidthGbps",
-            },
-        },
+        AcceleratorTotalMemoryMiB = setmetatable({ traits = {
+            xml_name = "acceleratorTotalMemoryMiB",
+        } }, { __index = M.AcceleratorTotalMemoryMiB }),
+        NetworkBandwidthGbps = setmetatable({ traits = {
+            xml_name = "networkBandwidthGbps",
+        } }, { __index = M.NetworkBandwidthGbps }),
         AllowedInstanceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "allowedInstanceTypeSet",
             },
         },
         MaxSpotPriceAsPercentageOfOptimalOnDemandPrice = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "maxSpotPriceAsPercentageOfOptimalOnDemandPrice",
             },
         },
-        BaselinePerformanceFactors = {
-            type = "structure",
-            traits = {
-                xml_name = "baselinePerformanceFactors",
-            },
-        },
+        BaselinePerformanceFactors = setmetatable({ traits = {
+            xml_name = "baselinePerformanceFactors",
+        } }, { __index = M.BaselinePerformanceFactors }),
         RequireEncryptionInTransit = {
             type = "boolean",
             traits = {
@@ -12570,29 +12006,23 @@ M.FleetLaunchTemplateOverrides = {
             },
         },
         WeightedCapacity = {
-            type = "number",
+            type = "double",
             traits = {
                 xml_name = "weightedCapacity",
             },
         },
         Priority = {
-            type = "number",
+            type = "double",
             traits = {
                 xml_name = "priority",
             },
         },
-        Placement = {
-            type = "structure",
-            traits = {
-                xml_name = "placement",
-            },
-        },
-        InstanceRequirements = {
-            type = "structure",
-            traits = {
-                xml_name = "instanceRequirements",
-            },
-        },
+        Placement = setmetatable({ traits = {
+            xml_name = "placement",
+        } }, { __index = M.PlacementResponse }),
+        InstanceRequirements = setmetatable({ traits = {
+            xml_name = "instanceRequirements",
+        } }, { __index = M.InstanceRequirements }),
         ImageId = {
             type = "string",
             traits = {
@@ -12601,7 +12031,7 @@ M.FleetLaunchTemplateOverrides = {
         },
         BlockDeviceMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.BlockDeviceMappingResponse,
             traits = {
                 xml_name = "blockDeviceMappingSet",
             },
@@ -12618,18 +12048,12 @@ M.FleetLaunchTemplateOverrides = {
 M.LaunchTemplateAndOverridesResponse = {
     type = "structure",
     members = {
-        LaunchTemplateSpecification = {
-            type = "structure",
-            traits = {
-                xml_name = "launchTemplateSpecification",
-            },
-        },
-        Overrides = {
-            type = "structure",
-            traits = {
-                xml_name = "overrides",
-            },
-        },
+        LaunchTemplateSpecification = setmetatable({ traits = {
+            xml_name = "launchTemplateSpecification",
+        } }, { __index = M.FleetLaunchTemplateSpecification }),
+        Overrides = setmetatable({ traits = {
+            xml_name = "overrides",
+        } }, { __index = M.FleetLaunchTemplateOverrides }),
     },
 }
 
@@ -12642,12 +12066,9 @@ M.InstanceLifecycle = {
 M.CreateFleetError = {
     type = "structure",
     members = {
-        LaunchTemplateAndOverrides = {
-            type = "structure",
-            traits = {
-                xml_name = "launchTemplateAndOverrides",
-            },
-        },
+        LaunchTemplateAndOverrides = setmetatable({ traits = {
+            xml_name = "launchTemplateAndOverrides",
+        } }, { __index = M.LaunchTemplateAndOverridesResponse }),
         Lifecycle = {
             type = "string",
             traits = {
@@ -12676,12 +12097,9 @@ M.PlatformValues = {
 M.CreateFleetInstance = {
     type = "structure",
     members = {
-        LaunchTemplateAndOverrides = {
-            type = "structure",
-            traits = {
-                xml_name = "launchTemplateAndOverrides",
-            },
-        },
+        LaunchTemplateAndOverrides = setmetatable({ traits = {
+            xml_name = "launchTemplateAndOverrides",
+        } }, { __index = M.LaunchTemplateAndOverridesResponse }),
         Lifecycle = {
             type = "string",
             traits = {
@@ -12690,7 +12108,7 @@ M.CreateFleetInstance = {
         },
         InstanceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "instanceIds",
             },
@@ -12721,14 +12139,14 @@ M.CreateFleetOutput = {
         },
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.CreateFleetError,
             traits = {
                 xml_name = "errorSet",
             },
         },
         Instances = {
             type = "list",
-            member_type = "structure",
+            member = M.CreateFleetInstance,
             traits = {
                 xml_name = "fleetInstanceSet",
             },
@@ -12797,7 +12215,7 @@ M.CreateFlowLogsInput = {
         },
         ResourceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "ResourceId",
@@ -12823,17 +12241,15 @@ M.CreateFlowLogsInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
         },
         MaxAggregationInterval = {
-            type = "number",
+            type = "integer",
         },
-        DestinationOptions = {
-            type = "structure",
-        },
+        DestinationOptions = M.DestinationOptionsRequest,
     },
 }
 
@@ -12848,14 +12264,14 @@ M.CreateFlowLogsOutput = {
         },
         FlowLogIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "flowLogIdSet",
             },
         },
         Unsuccessful = {
             type = "list",
-            member_type = "structure",
+            member = M.UnsuccessfulItem,
             traits = {
                 xml_name = "unsuccessful",
             },
@@ -12881,15 +12297,10 @@ M.CreateFpgaImageInput = {
         DryRun = {
             type = "boolean",
         },
-        InputStorageLocation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        LogsStorageLocation = {
-            type = "structure",
-        },
+        InputStorageLocation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.StorageLocation }),
+        LogsStorageLocation = M.StorageLocation,
         Description = {
             type = "string",
         },
@@ -12901,7 +12312,7 @@ M.CreateFpgaImageInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -12937,7 +12348,7 @@ M.EbsBlockDevice = {
             },
         },
         Iops = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "iops",
             },
@@ -12949,7 +12360,7 @@ M.EbsBlockDevice = {
             },
         },
         VolumeSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "volumeSize",
             },
@@ -12967,7 +12378,7 @@ M.EbsBlockDevice = {
             },
         },
         Throughput = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "throughput",
             },
@@ -12991,13 +12402,13 @@ M.EbsBlockDevice = {
             },
         },
         VolumeInitializationRate = {
-            type = "number",
+            type = "integer",
         },
         AvailabilityZoneId = {
             type = "string",
         },
         EbsCardIndex = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -13005,12 +12416,9 @@ M.EbsBlockDevice = {
 M.BlockDeviceMapping = {
     type = "structure",
     members = {
-        Ebs = {
-            type = "structure",
-            traits = {
-                xml_name = "ebs",
-            },
-        },
+        Ebs = setmetatable({ traits = {
+            xml_name = "ebs",
+        } }, { __index = M.EbsBlockDevice }),
         NoDevice = {
             type = "string",
             traits = {
@@ -13042,7 +12450,7 @@ M.CreateImageInput = {
     members = {
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -13084,7 +12492,7 @@ M.CreateImageInput = {
         },
         BlockDeviceMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.BlockDeviceMapping,
             traits = {
                 xml_name = "blockDeviceMapping",
             },
@@ -13112,7 +12520,7 @@ M.ImageUsageResourceTypeOptionRequest = {
         },
         OptionValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "OptionValue",
             },
@@ -13128,7 +12536,7 @@ M.ImageUsageResourceTypeRequest = {
         },
         ResourceTypeOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.ImageUsageResourceTypeOptionRequest,
             traits = {
                 xml_name = "ResourceTypeOption",
             },
@@ -13150,7 +12558,7 @@ M.CreateImageUsageReportInput = {
         },
         ResourceTypes = {
             type = "list",
-            member_type = "structure",
+            member = M.ImageUsageResourceTypeRequest,
             traits = {
                 required = true,
                 xml_name = "ResourceType",
@@ -13158,7 +12566,7 @@ M.CreateImageUsageReportInput = {
         },
         AccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "AccountId",
             },
@@ -13168,7 +12576,7 @@ M.CreateImageUsageReportInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -13208,7 +12616,7 @@ M.CreateInstanceConnectEndpointInput = {
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "SecurityGroupId",
             },
@@ -13221,7 +12629,7 @@ M.CreateInstanceConnectEndpointInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -13253,18 +12661,12 @@ M.InstanceConnectEndpointDnsNames = {
 M.InstanceConnectEndpointPublicDnsNames = {
     type = "structure",
     members = {
-        Ipv4 = {
-            type = "structure",
-            traits = {
-                xml_name = "ipv4",
-            },
-        },
-        Dualstack = {
-            type = "structure",
-            traits = {
-                xml_name = "dualstack",
-            },
-        },
+        Ipv4 = setmetatable({ traits = {
+            xml_name = "ipv4",
+        } }, { __index = M.InstanceConnectEndpointDnsNames }),
+        Dualstack = setmetatable({ traits = {
+            xml_name = "dualstack",
+        } }, { __index = M.InstanceConnectEndpointDnsNames }),
     },
 }
 
@@ -13327,7 +12729,7 @@ M.Ec2InstanceConnectEndpoint = {
         },
         NetworkInterfaceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "networkInterfaceIdSet",
             },
@@ -13364,14 +12766,14 @@ M.Ec2InstanceConnectEndpoint = {
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "securityGroupIdSet",
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -13382,12 +12784,9 @@ M.Ec2InstanceConnectEndpoint = {
                 xml_name = "ipAddressType",
             },
         },
-        PublicDnsNames = {
-            type = "structure",
-            traits = {
-                xml_name = "publicDnsNames",
-            },
-        },
+        PublicDnsNames = setmetatable({ traits = {
+            xml_name = "publicDnsNames",
+        } }, { __index = M.InstanceConnectEndpointPublicDnsNames }),
         AvailabilityZoneId = {
             type = "string",
             traits = {
@@ -13400,12 +12799,9 @@ M.Ec2InstanceConnectEndpoint = {
 M.CreateInstanceConnectEndpointOutput = {
     type = "structure",
     members = {
-        InstanceConnectEndpoint = {
-            type = "structure",
-            traits = {
-                xml_name = "instanceConnectEndpoint",
-            },
-        },
+        InstanceConnectEndpoint = setmetatable({ traits = {
+            xml_name = "instanceConnectEndpoint",
+        } }, { __index = M.Ec2InstanceConnectEndpoint }),
         ClientToken = {
             type = "string",
             traits = {
@@ -13422,13 +12818,13 @@ M.InstanceEventWindowTimeRangeRequest = {
             type = "string",
         },
         StartHour = {
-            type = "number",
+            type = "integer",
         },
         EndWeekDay = {
             type = "string",
         },
         EndHour = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -13444,7 +12840,7 @@ M.CreateInstanceEventWindowInput = {
         },
         TimeRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceEventWindowTimeRangeRequest,
             traits = {
                 xml_name = "TimeRange",
             },
@@ -13454,7 +12850,7 @@ M.CreateInstanceEventWindowInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -13465,12 +12861,9 @@ M.CreateInstanceEventWindowInput = {
 M.CreateInstanceEventWindowOutput = {
     type = "structure",
     members = {
-        InstanceEventWindow = {
-            type = "structure",
-            traits = {
-                xml_name = "instanceEventWindow",
-            },
-        },
+        InstanceEventWindow = setmetatable({ traits = {
+            xml_name = "instanceEventWindow",
+        } }, { __index = M.InstanceEventWindow }),
     },
 }
 
@@ -13525,7 +12918,7 @@ M.CreateInstanceExportTaskInput = {
     members = {
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -13550,13 +12943,10 @@ M.CreateInstanceExportTaskInput = {
                 xml_name = "targetEnvironment",
             },
         },
-        ExportToS3Task = {
-            type = "structure",
-            traits = {
-                required = true,
-                xml_name = "exportToS3",
-            },
-        },
+        ExportToS3Task = setmetatable({ traits = {
+            required = true,
+            xml_name = "exportToS3",
+        } }, { __index = M.ExportToS3TaskSpecification }),
     },
 }
 
@@ -13630,18 +13020,12 @@ M.ExportTask = {
                 xml_name = "exportTaskId",
             },
         },
-        ExportToS3Task = {
-            type = "structure",
-            traits = {
-                xml_name = "exportToS3",
-            },
-        },
-        InstanceExportDetails = {
-            type = "structure",
-            traits = {
-                xml_name = "instanceExport",
-            },
-        },
+        ExportToS3Task = setmetatable({ traits = {
+            xml_name = "exportToS3",
+        } }, { __index = M.ExportToS3Task }),
+        InstanceExportDetails = setmetatable({ traits = {
+            xml_name = "instanceExport",
+        } }, { __index = M.InstanceExportDetails }),
         State = {
             type = "string",
             traits = {
@@ -13656,7 +13040,7 @@ M.ExportTask = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -13667,12 +13051,9 @@ M.ExportTask = {
 M.CreateInstanceExportTaskOutput = {
     type = "structure",
     members = {
-        ExportTask = {
-            type = "structure",
-            traits = {
-                xml_name = "exportTask",
-            },
-        },
+        ExportTask = setmetatable({ traits = {
+            xml_name = "exportTask",
+        } }, { __index = M.ExportTask }),
     },
 }
 
@@ -13681,7 +13062,7 @@ M.CreateInternetGatewayInput = {
     members = {
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -13700,7 +13081,7 @@ M.InternetGateway = {
     members = {
         Attachments = {
             type = "list",
-            member_type = "structure",
+            member = M.InternetGatewayAttachment,
             traits = {
                 xml_name = "attachmentSet",
             },
@@ -13719,7 +13100,7 @@ M.InternetGateway = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -13730,12 +13111,9 @@ M.InternetGateway = {
 M.CreateInternetGatewayOutput = {
     type = "structure",
     members = {
-        InternetGateway = {
-            type = "structure",
-            traits = {
-                xml_name = "internetGateway",
-            },
-        },
+        InternetGateway = setmetatable({ traits = {
+            xml_name = "internetGateway",
+        } }, { __index = M.InternetGateway }),
     },
 }
 
@@ -13749,7 +13127,7 @@ M.CreateInterruptibleCapacityReservationAllocationInput = {
             },
         },
         InstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -13762,7 +13140,7 @@ M.CreateInterruptibleCapacityReservationAllocationInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -13780,7 +13158,7 @@ M.CreateInterruptibleCapacityReservationAllocationOutput = {
             },
         },
         TargetInstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "targetInstanceCount",
             },
@@ -13821,14 +13199,14 @@ M.CreateIpamInput = {
         },
         OperatingRegions = {
             type = "list",
-            member_type = "structure",
+            member = M.AddIpamOperatingRegion,
             traits = {
                 xml_name = "OperatingRegion",
             },
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -13915,7 +13293,7 @@ M.Ipam = {
             },
         },
         ScopeCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "scopeCount",
             },
@@ -13928,7 +13306,7 @@ M.Ipam = {
         },
         OperatingRegions = {
             type = "list",
-            member_type = "structure",
+            member = M.IpamOperatingRegion,
             traits = {
                 xml_name = "operatingRegionSet",
             },
@@ -13941,7 +13319,7 @@ M.Ipam = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -13959,7 +13337,7 @@ M.Ipam = {
             },
         },
         ResourceDiscoveryAssociationCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "resourceDiscoveryAssociationCount",
             },
@@ -13994,12 +13372,9 @@ M.Ipam = {
 M.CreateIpamOutput = {
     type = "structure",
     members = {
-        Ipam = {
-            type = "structure",
-            traits = {
-                xml_name = "ipam",
-            },
-        },
+        Ipam = setmetatable({ traits = {
+            xml_name = "ipam",
+        } }, { __index = M.Ipam }),
     },
 }
 
@@ -14017,7 +13392,7 @@ M.CreateIpamExternalResourceVerificationTokenInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -14101,7 +13476,7 @@ M.IpamExternalResourceVerificationToken = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -14118,12 +13493,9 @@ M.IpamExternalResourceVerificationToken = {
 M.CreateIpamExternalResourceVerificationTokenOutput = {
     type = "structure",
     members = {
-        IpamExternalResourceVerificationToken = {
-            type = "structure",
-            traits = {
-                xml_name = "ipamExternalResourceVerificationToken",
-            },
-        },
+        IpamExternalResourceVerificationToken = setmetatable({ traits = {
+            xml_name = "ipamExternalResourceVerificationToken",
+        } }, { __index = M.IpamExternalResourceVerificationToken }),
     },
 }
 
@@ -14135,7 +13507,7 @@ M.CreateIpamPolicyInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -14208,7 +13580,7 @@ M.IpamPolicy = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -14225,12 +13597,9 @@ M.IpamPolicy = {
 M.CreateIpamPolicyOutput = {
     type = "structure",
     members = {
-        IpamPolicy = {
-            type = "structure",
-            traits = {
-                xml_name = "ipamPolicy",
-            },
-        },
+        IpamPolicy = setmetatable({ traits = {
+            xml_name = "ipamPolicy",
+        } }, { __index = M.IpamPolicy }),
     },
 }
 
@@ -14312,24 +13681,24 @@ M.CreateIpamPoolInput = {
             type = "boolean",
         },
         AllocationMinNetmaskLength = {
-            type = "number",
+            type = "integer",
         },
         AllocationMaxNetmaskLength = {
-            type = "number",
+            type = "integer",
         },
         AllocationDefaultNetmaskLength = {
-            type = "number",
+            type = "integer",
         },
         AllocationResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.RequestIpamResourceTag,
             traits = {
                 xml_name = "AllocationResourceTag",
             },
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -14343,9 +13712,7 @@ M.CreateIpamPoolInput = {
         PublicIpSource = {
             type = "string",
         },
-        SourceResource = {
-            type = "structure",
-        },
+        SourceResource = M.IpamPoolSourceResourceRequest,
     },
 }
 
@@ -14475,7 +13842,7 @@ M.IpamPool = {
             },
         },
         PoolDepth = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "poolDepth",
             },
@@ -14517,33 +13884,33 @@ M.IpamPool = {
             },
         },
         AllocationMinNetmaskLength = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "allocationMinNetmaskLength",
             },
         },
         AllocationMaxNetmaskLength = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "allocationMaxNetmaskLength",
             },
         },
         AllocationDefaultNetmaskLength = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "allocationDefaultNetmaskLength",
             },
         },
         AllocationResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.IpamResourceTag,
             traits = {
                 xml_name = "allocationResourceTagSet",
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -14560,24 +13927,18 @@ M.IpamPool = {
                 xml_name = "publicIpSource",
             },
         },
-        SourceResource = {
-            type = "structure",
-            traits = {
-                xml_name = "sourceResource",
-            },
-        },
+        SourceResource = setmetatable({ traits = {
+            xml_name = "sourceResource",
+        } }, { __index = M.IpamPoolSourceResource }),
     },
 }
 
 M.CreateIpamPoolOutput = {
     type = "structure",
     members = {
-        IpamPool = {
-            type = "structure",
-            traits = {
-                xml_name = "ipamPool",
-            },
-        },
+        IpamPool = setmetatable({ traits = {
+            xml_name = "ipamPool",
+        } }, { __index = M.IpamPool }),
     },
 }
 
@@ -14608,9 +13969,7 @@ M.IpamPrefixListResolverRuleConditionRequest = {
         ResourceRegion = {
             type = "string",
         },
-        ResourceTag = {
-            type = "structure",
-        },
+        ResourceTag = M.RequestIpamResourceTag,
         Cidr = {
             type = "string",
         },
@@ -14653,7 +14012,7 @@ M.IpamPrefixListResolverRuleRequest = {
         },
         Conditions = {
             type = "list",
-            member_type = "structure",
+            member = M.IpamPrefixListResolverRuleConditionRequest,
             traits = {
                 xml_name = "Condition",
             },
@@ -14684,14 +14043,14 @@ M.CreateIpamPrefixListResolverInput = {
         },
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.IpamPrefixListResolverRuleRequest,
             traits = {
                 xml_name = "Rule",
             },
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -14776,7 +14135,7 @@ M.IpamPrefixListResolver = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -14799,12 +14158,9 @@ M.IpamPrefixListResolver = {
 M.CreateIpamPrefixListResolverOutput = {
     type = "structure",
     members = {
-        IpamPrefixListResolver = {
-            type = "structure",
-            traits = {
-                xml_name = "ipamPrefixListResolver",
-            },
-        },
+        IpamPrefixListResolver = setmetatable({ traits = {
+            xml_name = "ipamPrefixListResolver",
+        } }, { __index = M.IpamPrefixListResolver }),
     },
 }
 
@@ -14833,7 +14189,7 @@ M.CreateIpamPrefixListResolverTargetInput = {
             },
         },
         DesiredVersion = {
-            type = "number",
+            type = "long",
         },
         TrackLatestVersion = {
             type = "boolean",
@@ -14843,7 +14199,7 @@ M.CreateIpamPrefixListResolverTargetInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -14912,13 +14268,13 @@ M.IpamPrefixListResolverTarget = {
             },
         },
         DesiredVersion = {
-            type = "number",
+            type = "long",
             traits = {
                 xml_name = "desiredVersion",
             },
         },
         LastSyncedVersion = {
-            type = "number",
+            type = "long",
             traits = {
                 xml_name = "lastSyncedVersion",
             },
@@ -14943,7 +14299,7 @@ M.IpamPrefixListResolverTarget = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -14954,12 +14310,9 @@ M.IpamPrefixListResolverTarget = {
 M.CreateIpamPrefixListResolverTargetOutput = {
     type = "structure",
     members = {
-        IpamPrefixListResolverTarget = {
-            type = "structure",
-            traits = {
-                xml_name = "ipamPrefixListResolverTarget",
-            },
-        },
+        IpamPrefixListResolverTarget = setmetatable({ traits = {
+            xml_name = "ipamPrefixListResolverTarget",
+        } }, { __index = M.IpamPrefixListResolverTarget }),
     },
 }
 
@@ -14974,14 +14327,14 @@ M.CreateIpamResourceDiscoveryInput = {
         },
         OperatingRegions = {
             type = "list",
-            member_type = "structure",
+            member = M.AddIpamOperatingRegion,
             traits = {
                 xml_name = "OperatingRegion",
             },
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -15054,7 +14407,7 @@ M.IpamResourceDiscovery = {
         },
         OperatingRegions = {
             type = "list",
-            member_type = "structure",
+            member = M.IpamOperatingRegion,
             traits = {
                 xml_name = "operatingRegionSet",
             },
@@ -15073,14 +14426,14 @@ M.IpamResourceDiscovery = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
         },
         OrganizationalUnitExclusions = {
             type = "list",
-            member_type = "structure",
+            member = M.IpamOrganizationalUnitExclusion,
             traits = {
                 xml_name = "organizationalUnitExclusionSet",
             },
@@ -15091,12 +14444,9 @@ M.IpamResourceDiscovery = {
 M.CreateIpamResourceDiscoveryOutput = {
     type = "structure",
     members = {
-        IpamResourceDiscovery = {
-            type = "structure",
-            traits = {
-                xml_name = "ipamResourceDiscovery",
-            },
-        },
+        IpamResourceDiscovery = setmetatable({ traits = {
+            xml_name = "ipamResourceDiscovery",
+        } }, { __index = M.IpamResourceDiscovery }),
     },
 }
 
@@ -15133,7 +14483,7 @@ M.CreateIpamScopeInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -15141,9 +14491,7 @@ M.CreateIpamScopeInput = {
         ClientToken = {
             type = "string",
         },
-        ExternalAuthorityConfiguration = {
-            type = "structure",
-        },
+        ExternalAuthorityConfiguration = M.ExternalAuthorityConfiguration,
     },
 }
 
@@ -15232,7 +14580,7 @@ M.IpamScope = {
             },
         },
         PoolCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "poolCount",
             },
@@ -15245,29 +14593,23 @@ M.IpamScope = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
         },
-        ExternalAuthorityConfiguration = {
-            type = "structure",
-            traits = {
-                xml_name = "externalAuthorityConfiguration",
-            },
-        },
+        ExternalAuthorityConfiguration = setmetatable({ traits = {
+            xml_name = "externalAuthorityConfiguration",
+        } }, { __index = M.IpamScopeExternalAuthorityConfiguration }),
     },
 }
 
 M.CreateIpamScopeOutput = {
     type = "structure",
     members = {
-        IpamScope = {
-            type = "structure",
-            traits = {
-                xml_name = "ipamScope",
-            },
-        },
+        IpamScope = setmetatable({ traits = {
+            xml_name = "ipamScope",
+        } }, { __index = M.IpamScope }),
     },
 }
 
@@ -15295,7 +14637,7 @@ M.CreateKeyPairInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -15323,7 +14665,7 @@ M.CreateKeyPairOutput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -15359,7 +14701,7 @@ M.LaunchTemplateEbsBlockDeviceRequest = {
             type = "boolean",
         },
         Iops = {
-            type = "number",
+            type = "integer",
         },
         KmsKeyId = {
             type = "string",
@@ -15368,19 +14710,19 @@ M.LaunchTemplateEbsBlockDeviceRequest = {
             type = "string",
         },
         VolumeSize = {
-            type = "number",
+            type = "integer",
         },
         VolumeType = {
             type = "string",
         },
         Throughput = {
-            type = "number",
+            type = "integer",
         },
         VolumeInitializationRate = {
-            type = "number",
+            type = "integer",
         },
         EbsCardIndex = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -15394,9 +14736,7 @@ M.LaunchTemplateBlockDeviceMappingRequest = {
         VirtualName = {
             type = "string",
         },
-        Ebs = {
-            type = "structure",
-        },
+        Ebs = M.LaunchTemplateEbsBlockDeviceRequest,
         NoDevice = {
             type = "string",
         },
@@ -15427,9 +14767,7 @@ M.LaunchTemplateCapacityReservationSpecificationRequest = {
         CapacityReservationPreference = {
             type = "string",
         },
-        CapacityReservationTarget = {
-            type = "structure",
-        },
+        CapacityReservationTarget = M.CapacityReservationTarget,
     },
 }
 
@@ -15447,10 +14785,10 @@ M.LaunchTemplateCpuOptionsRequest = {
     type = "structure",
     members = {
         CoreCount = {
-            type = "number",
+            type = "integer",
         },
         ThreadsPerCore = {
-            type = "number",
+            type = "integer",
         },
         AmdSevSnp = {
             type = "string",
@@ -15495,7 +14833,7 @@ M.LaunchTemplateElasticInferenceAccelerator = {
             },
         },
         Count = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -15562,7 +14900,7 @@ M.LaunchTemplateSpotMarketOptionsRequest = {
             type = "string",
         },
         BlockDurationMinutes = {
-            type = "number",
+            type = "integer",
         },
         ValidUntil = {
             type = "timestamp",
@@ -15579,9 +14917,7 @@ M.LaunchTemplateInstanceMarketOptionsRequest = {
         MarketType = {
             type = "string",
         },
-        SpotOptions = {
-            type = "structure",
-        },
+        SpotOptions = M.LaunchTemplateSpotMarketOptionsRequest,
     },
 }
 
@@ -15635,7 +14971,7 @@ M.LaunchTemplateInstanceMetadataOptionsRequest = {
             type = "string",
         },
         HttpPutResponseHopLimit = {
-            type = "number",
+            type = "integer",
         },
         HttpEndpoint = {
             type = "string",
@@ -15662,13 +14998,13 @@ M.ConnectionTrackingSpecificationRequest = {
     type = "structure",
     members = {
         TcpEstablishedTimeout = {
-            type = "number",
+            type = "integer",
         },
         UdpStreamTimeout = {
-            type = "number",
+            type = "integer",
         },
         UdpTimeout = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -15688,9 +15024,7 @@ M.EnaSrdSpecificationRequest = {
         EnaSrdEnabled = {
             type = "boolean",
         },
-        EnaSrdUdpSpecification = {
-            type = "structure",
-        },
+        EnaSrdUdpSpecification = M.EnaSrdUdpSpecificationRequest,
     },
 }
 
@@ -15755,11 +15089,11 @@ M.LaunchTemplateInstanceNetworkInterfaceSpecificationRequest = {
             type = "string",
         },
         DeviceIndex = {
-            type = "number",
+            type = "integer",
         },
         Groups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "SecurityGroupId",
             },
@@ -15768,11 +15102,11 @@ M.LaunchTemplateInstanceNetworkInterfaceSpecificationRequest = {
             type = "string",
         },
         Ipv6AddressCount = {
-            type = "number",
+            type = "integer",
         },
         Ipv6Addresses = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceIpv6AddressRequest,
         },
         NetworkInterfaceId = {
             type = "string",
@@ -15782,48 +15116,44 @@ M.LaunchTemplateInstanceNetworkInterfaceSpecificationRequest = {
         },
         PrivateIpAddresses = {
             type = "list",
-            member_type = "structure",
+            member = M.PrivateIpAddressSpecification,
         },
         SecondaryPrivateIpAddressCount = {
-            type = "number",
+            type = "integer",
         },
         SubnetId = {
             type = "string",
         },
         NetworkCardIndex = {
-            type = "number",
+            type = "integer",
         },
         Ipv4Prefixes = {
             type = "list",
-            member_type = "structure",
+            member = M.Ipv4PrefixSpecificationRequest,
             traits = {
                 xml_name = "Ipv4Prefix",
             },
         },
         Ipv4PrefixCount = {
-            type = "number",
+            type = "integer",
         },
         Ipv6Prefixes = {
             type = "list",
-            member_type = "structure",
+            member = M.Ipv6PrefixSpecificationRequest,
             traits = {
                 xml_name = "Ipv6Prefix",
             },
         },
         Ipv6PrefixCount = {
-            type = "number",
+            type = "integer",
         },
         PrimaryIpv6 = {
             type = "boolean",
         },
-        EnaSrdSpecification = {
-            type = "structure",
-        },
-        ConnectionTrackingSpecification = {
-            type = "structure",
-        },
+        EnaSrdSpecification = M.EnaSrdSpecificationRequest,
+        ConnectionTrackingSpecification = M.ConnectionTrackingSpecificationRequest,
         EnaQueueCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -15880,7 +15210,7 @@ M.LaunchTemplatePlacementRequest = {
             type = "string",
         },
         PartitionNumber = {
-            type = "number",
+            type = "integer",
         },
         GroupId = {
             type = "string",
@@ -15923,17 +15253,17 @@ M.LaunchTemplateInstanceSecondaryInterfaceSpecificationRequest = {
             type = "boolean",
         },
         DeviceIndex = {
-            type = "number",
+            type = "integer",
         },
         PrivateIpAddresses = {
             type = "list",
-            member_type = "structure",
+            member = M.SecondaryInterfacePrivateIpAddressSpecificationRequest,
             traits = {
                 xml_name = "PrivateIpAddress",
             },
         },
         PrivateIpAddressCount = {
-            type = "number",
+            type = "integer",
         },
         SecondarySubnetId = {
             type = "string",
@@ -15942,7 +15272,7 @@ M.LaunchTemplateInstanceSecondaryInterfaceSpecificationRequest = {
             type = "string",
         },
         NetworkCardIndex = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -15955,7 +15285,7 @@ M.LaunchTemplateTagSpecificationRequest = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "Tag",
             },
@@ -15972,19 +15302,17 @@ M.RequestLaunchTemplateData = {
         EbsOptimized = {
             type = "boolean",
         },
-        IamInstanceProfile = {
-            type = "structure",
-        },
+        IamInstanceProfile = M.LaunchTemplateIamInstanceProfileSpecificationRequest,
         BlockDeviceMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.LaunchTemplateBlockDeviceMappingRequest,
             traits = {
                 xml_name = "BlockDeviceMapping",
             },
         },
         NetworkInterfaces = {
             type = "list",
-            member_type = "structure",
+            member = M.LaunchTemplateInstanceNetworkInterfaceSpecificationRequest,
             traits = {
                 xml_name = "NetworkInterface",
             },
@@ -15998,12 +15326,8 @@ M.RequestLaunchTemplateData = {
         KeyName = {
             type = "string",
         },
-        Monitoring = {
-            type = "structure",
-        },
-        Placement = {
-            type = "structure",
-        },
+        Monitoring = M.LaunchTemplatesMonitoringRequest,
+        Placement = M.LaunchTemplatePlacementRequest,
         RamDiskId = {
             type = "string",
         },
@@ -16018,88 +15342,64 @@ M.RequestLaunchTemplateData = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.LaunchTemplateTagSpecificationRequest,
             traits = {
                 xml_name = "TagSpecification",
             },
         },
         ElasticGpuSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.ElasticGpuSpecification,
             traits = {
                 xml_name = "ElasticGpuSpecification",
             },
         },
         ElasticInferenceAccelerators = {
             type = "list",
-            member_type = "structure",
+            member = M.LaunchTemplateElasticInferenceAccelerator,
             traits = {
                 xml_name = "ElasticInferenceAccelerator",
             },
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "SecurityGroupId",
             },
         },
         SecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "SecurityGroup",
             },
         },
-        InstanceMarketOptions = {
-            type = "structure",
-        },
-        CreditSpecification = {
-            type = "structure",
-        },
-        CpuOptions = {
-            type = "structure",
-        },
-        CapacityReservationSpecification = {
-            type = "structure",
-        },
+        InstanceMarketOptions = M.LaunchTemplateInstanceMarketOptionsRequest,
+        CreditSpecification = M.CreditSpecificationRequest,
+        CpuOptions = M.LaunchTemplateCpuOptionsRequest,
+        CapacityReservationSpecification = M.LaunchTemplateCapacityReservationSpecificationRequest,
         LicenseSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.LaunchTemplateLicenseConfigurationRequest,
             traits = {
                 xml_name = "LicenseSpecification",
             },
         },
-        HibernationOptions = {
-            type = "structure",
-        },
-        MetadataOptions = {
-            type = "structure",
-        },
-        EnclaveOptions = {
-            type = "structure",
-        },
-        InstanceRequirements = {
-            type = "structure",
-        },
-        PrivateDnsNameOptions = {
-            type = "structure",
-        },
-        MaintenanceOptions = {
-            type = "structure",
-        },
+        HibernationOptions = M.LaunchTemplateHibernationOptionsRequest,
+        MetadataOptions = M.LaunchTemplateInstanceMetadataOptionsRequest,
+        EnclaveOptions = M.LaunchTemplateEnclaveOptionsRequest,
+        InstanceRequirements = M.InstanceRequirementsRequest,
+        PrivateDnsNameOptions = M.LaunchTemplatePrivateDnsNameOptionsRequest,
+        MaintenanceOptions = M.LaunchTemplateInstanceMaintenanceOptionsRequest,
         DisableApiStop = {
             type = "boolean",
         },
-        Operator = {
-            type = "structure",
-        },
-        NetworkPerformanceOptions = {
-            type = "structure",
-        },
+        Operator = M.OperatorRequest,
+        NetworkPerformanceOptions = M.LaunchTemplateNetworkPerformanceOptionsRequest,
         SecondaryInterfaces = {
             type = "list",
-            member_type = "structure",
+            member = M.LaunchTemplateInstanceSecondaryInterfaceSpecificationRequest,
             traits = {
                 xml_name = "SecondaryInterface",
             },
@@ -16125,18 +15425,13 @@ M.CreateLaunchTemplateInput = {
         VersionDescription = {
             type = "string",
         },
-        LaunchTemplateData = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Operator = {
-            type = "structure",
-        },
+        LaunchTemplateData = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RequestLaunchTemplateData }),
+        Operator = M.OperatorRequest,
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -16172,30 +15467,27 @@ M.LaunchTemplate = {
             },
         },
         DefaultVersionNumber = {
-            type = "number",
+            type = "long",
             traits = {
                 xml_name = "defaultVersionNumber",
             },
         },
         LatestVersionNumber = {
-            type = "number",
+            type = "long",
             traits = {
                 xml_name = "latestVersionNumber",
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
         },
-        Operator = {
-            type = "structure",
-            traits = {
-                xml_name = "operator",
-            },
-        },
+        Operator = setmetatable({ traits = {
+            xml_name = "operator",
+        } }, { __index = M.OperatorResponse }),
     },
 }
 
@@ -16222,7 +15514,7 @@ M.ValidationWarning = {
     members = {
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationError,
             traits = {
                 xml_name = "errorSet",
             },
@@ -16233,18 +15525,12 @@ M.ValidationWarning = {
 M.CreateLaunchTemplateOutput = {
     type = "structure",
     members = {
-        LaunchTemplate = {
-            type = "structure",
-            traits = {
-                xml_name = "launchTemplate",
-            },
-        },
-        Warning = {
-            type = "structure",
-            traits = {
-                xml_name = "warning",
-            },
-        },
+        LaunchTemplate = setmetatable({ traits = {
+            xml_name = "launchTemplate",
+        } }, { __index = M.LaunchTemplate }),
+        Warning = setmetatable({ traits = {
+            xml_name = "warning",
+        } }, { __index = M.ValidationWarning }),
     },
 }
 
@@ -16269,12 +15555,9 @@ M.CreateLaunchTemplateVersionInput = {
         VersionDescription = {
             type = "string",
         },
-        LaunchTemplateData = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        LaunchTemplateData = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RequestLaunchTemplateData }),
         ResolveAlias = {
             type = "boolean",
         },
@@ -16297,7 +15580,7 @@ M.LaunchTemplateEbsBlockDevice = {
             },
         },
         Iops = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "iops",
             },
@@ -16315,7 +15598,7 @@ M.LaunchTemplateEbsBlockDevice = {
             },
         },
         VolumeSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "volumeSize",
             },
@@ -16327,19 +15610,19 @@ M.LaunchTemplateEbsBlockDevice = {
             },
         },
         Throughput = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "throughput",
             },
         },
         VolumeInitializationRate = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "volumeInitializationRate",
             },
         },
         EbsCardIndex = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "ebsCardIndex",
             },
@@ -16362,12 +15645,9 @@ M.LaunchTemplateBlockDeviceMapping = {
                 xml_name = "virtualName",
             },
         },
-        Ebs = {
-            type = "structure",
-            traits = {
-                xml_name = "ebs",
-            },
-        },
+        Ebs = setmetatable({ traits = {
+            xml_name = "ebs",
+        } }, { __index = M.LaunchTemplateEbsBlockDevice }),
         NoDevice = {
             type = "string",
             traits = {
@@ -16404,12 +15684,9 @@ M.LaunchTemplateCapacityReservationSpecificationResponse = {
                 xml_name = "capacityReservationPreference",
             },
         },
-        CapacityReservationTarget = {
-            type = "structure",
-            traits = {
-                xml_name = "capacityReservationTarget",
-            },
-        },
+        CapacityReservationTarget = setmetatable({ traits = {
+            xml_name = "capacityReservationTarget",
+        } }, { __index = M.CapacityReservationTargetResponse }),
     },
 }
 
@@ -16417,13 +15694,13 @@ M.LaunchTemplateCpuOptions = {
     type = "structure",
     members = {
         CoreCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "coreCount",
             },
         },
         ThreadsPerCore = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "threadsPerCore",
             },
@@ -16477,7 +15754,7 @@ M.LaunchTemplateElasticInferenceAcceleratorResponse = {
             },
         },
         Count = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "count",
             },
@@ -16543,7 +15820,7 @@ M.LaunchTemplateSpotMarketOptions = {
             },
         },
         BlockDurationMinutes = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "blockDurationMinutes",
             },
@@ -16572,12 +15849,9 @@ M.LaunchTemplateInstanceMarketOptions = {
                 xml_name = "marketType",
             },
         },
-        SpotOptions = {
-            type = "structure",
-            traits = {
-                xml_name = "spotOptions",
-            },
-        },
+        SpotOptions = setmetatable({ traits = {
+            xml_name = "spotOptions",
+        } }, { __index = M.LaunchTemplateSpotMarketOptions }),
     },
 }
 
@@ -16626,7 +15900,7 @@ M.LaunchTemplateInstanceMetadataOptions = {
             },
         },
         HttpPutResponseHopLimit = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "httpPutResponseHopLimit",
             },
@@ -16668,19 +15942,19 @@ M.ConnectionTrackingSpecification = {
     type = "structure",
     members = {
         TcpEstablishedTimeout = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "tcpEstablishedTimeout",
             },
         },
         UdpTimeout = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "udpTimeout",
             },
         },
         UdpStreamTimeout = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "udpStreamTimeout",
             },
@@ -16709,12 +15983,9 @@ M.LaunchTemplateEnaSrdSpecification = {
                 xml_name = "enaSrdEnabled",
             },
         },
-        EnaSrdUdpSpecification = {
-            type = "structure",
-            traits = {
-                xml_name = "enaSrdUdpSpecification",
-            },
-        },
+        EnaSrdUdpSpecification = setmetatable({ traits = {
+            xml_name = "enaSrdUdpSpecification",
+        } }, { __index = M.LaunchTemplateEnaSrdUdpSpecification }),
     },
 }
 
@@ -16788,14 +16059,14 @@ M.LaunchTemplateInstanceNetworkInterfaceSpecification = {
             },
         },
         DeviceIndex = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "deviceIndex",
             },
         },
         Groups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "groupSet",
             },
@@ -16807,14 +16078,14 @@ M.LaunchTemplateInstanceNetworkInterfaceSpecification = {
             },
         },
         Ipv6AddressCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "ipv6AddressCount",
             },
         },
         Ipv6Addresses = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceIpv6Address,
             traits = {
                 xml_name = "ipv6AddressesSet",
             },
@@ -16833,13 +16104,13 @@ M.LaunchTemplateInstanceNetworkInterfaceSpecification = {
         },
         PrivateIpAddresses = {
             type = "list",
-            member_type = "structure",
+            member = M.PrivateIpAddressSpecification,
             traits = {
                 xml_name = "privateIpAddressesSet",
             },
         },
         SecondaryPrivateIpAddressCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "secondaryPrivateIpAddressCount",
             },
@@ -16851,33 +16122,33 @@ M.LaunchTemplateInstanceNetworkInterfaceSpecification = {
             },
         },
         NetworkCardIndex = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "networkCardIndex",
             },
         },
         Ipv4Prefixes = {
             type = "list",
-            member_type = "structure",
+            member = M.Ipv4PrefixSpecificationResponse,
             traits = {
                 xml_name = "ipv4PrefixSet",
             },
         },
         Ipv4PrefixCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "ipv4PrefixCount",
             },
         },
         Ipv6Prefixes = {
             type = "list",
-            member_type = "structure",
+            member = M.Ipv6PrefixSpecificationResponse,
             traits = {
                 xml_name = "ipv6PrefixSet",
             },
         },
         Ipv6PrefixCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "ipv6PrefixCount",
             },
@@ -16888,20 +16159,14 @@ M.LaunchTemplateInstanceNetworkInterfaceSpecification = {
                 xml_name = "primaryIpv6",
             },
         },
-        EnaSrdSpecification = {
-            type = "structure",
-            traits = {
-                xml_name = "enaSrdSpecification",
-            },
-        },
-        ConnectionTrackingSpecification = {
-            type = "structure",
-            traits = {
-                xml_name = "connectionTrackingSpecification",
-            },
-        },
+        EnaSrdSpecification = setmetatable({ traits = {
+            xml_name = "enaSrdSpecification",
+        } }, { __index = M.LaunchTemplateEnaSrdSpecification }),
+        ConnectionTrackingSpecification = setmetatable({ traits = {
+            xml_name = "connectionTrackingSpecification",
+        } }, { __index = M.ConnectionTrackingSpecification }),
         EnaQueueCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "enaQueueCount",
             },
@@ -16973,7 +16238,7 @@ M.LaunchTemplatePlacement = {
             },
         },
         PartitionNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "partitionNumber",
             },
@@ -17033,20 +16298,20 @@ M.LaunchTemplateInstanceSecondaryInterfaceSpecification = {
             },
         },
         DeviceIndex = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "deviceIndex",
             },
         },
         PrivateIpAddresses = {
             type = "list",
-            member_type = "structure",
+            member = M.SecondaryInterfacePrivateIpAddressSpecification,
             traits = {
                 xml_name = "privateIpAddressesSet",
             },
         },
         PrivateIpAddressCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "privateIpAddressCount",
             },
@@ -17064,7 +16329,7 @@ M.LaunchTemplateInstanceSecondaryInterfaceSpecification = {
             },
         },
         NetworkCardIndex = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "networkCardIndex",
             },
@@ -17083,7 +16348,7 @@ M.LaunchTemplateTagSpecification = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -17106,22 +16371,19 @@ M.ResponseLaunchTemplateData = {
                 xml_name = "ebsOptimized",
             },
         },
-        IamInstanceProfile = {
-            type = "structure",
-            traits = {
-                xml_name = "iamInstanceProfile",
-            },
-        },
+        IamInstanceProfile = setmetatable({ traits = {
+            xml_name = "iamInstanceProfile",
+        } }, { __index = M.LaunchTemplateIamInstanceProfileSpecification }),
         BlockDeviceMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.LaunchTemplateBlockDeviceMapping,
             traits = {
                 xml_name = "blockDeviceMappingSet",
             },
         },
         NetworkInterfaces = {
             type = "list",
-            member_type = "structure",
+            member = M.LaunchTemplateInstanceNetworkInterfaceSpecification,
             traits = {
                 xml_name = "networkInterfaceSet",
             },
@@ -17144,18 +16406,12 @@ M.ResponseLaunchTemplateData = {
                 xml_name = "keyName",
             },
         },
-        Monitoring = {
-            type = "structure",
-            traits = {
-                xml_name = "monitoring",
-            },
-        },
-        Placement = {
-            type = "structure",
-            traits = {
-                xml_name = "placement",
-            },
-        },
+        Monitoring = setmetatable({ traits = {
+            xml_name = "monitoring",
+        } }, { __index = M.LaunchTemplatesMonitoring }),
+        Placement = setmetatable({ traits = {
+            xml_name = "placement",
+        } }, { __index = M.LaunchTemplatePlacement }),
         RamDiskId = {
             type = "string",
             traits = {
@@ -17182,127 +16438,91 @@ M.ResponseLaunchTemplateData = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.LaunchTemplateTagSpecification,
             traits = {
                 xml_name = "tagSpecificationSet",
             },
         },
         ElasticGpuSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.ElasticGpuSpecificationResponse,
             traits = {
                 xml_name = "elasticGpuSpecificationSet",
             },
         },
         ElasticInferenceAccelerators = {
             type = "list",
-            member_type = "structure",
+            member = M.LaunchTemplateElasticInferenceAcceleratorResponse,
             traits = {
                 xml_name = "elasticInferenceAcceleratorSet",
             },
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "securityGroupIdSet",
             },
         },
         SecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "securityGroupSet",
             },
         },
-        InstanceMarketOptions = {
-            type = "structure",
-            traits = {
-                xml_name = "instanceMarketOptions",
-            },
-        },
-        CreditSpecification = {
-            type = "structure",
-            traits = {
-                xml_name = "creditSpecification",
-            },
-        },
-        CpuOptions = {
-            type = "structure",
-            traits = {
-                xml_name = "cpuOptions",
-            },
-        },
-        CapacityReservationSpecification = {
-            type = "structure",
-            traits = {
-                xml_name = "capacityReservationSpecification",
-            },
-        },
+        InstanceMarketOptions = setmetatable({ traits = {
+            xml_name = "instanceMarketOptions",
+        } }, { __index = M.LaunchTemplateInstanceMarketOptions }),
+        CreditSpecification = setmetatable({ traits = {
+            xml_name = "creditSpecification",
+        } }, { __index = M.CreditSpecification }),
+        CpuOptions = setmetatable({ traits = {
+            xml_name = "cpuOptions",
+        } }, { __index = M.LaunchTemplateCpuOptions }),
+        CapacityReservationSpecification = setmetatable({ traits = {
+            xml_name = "capacityReservationSpecification",
+        } }, { __index = M.LaunchTemplateCapacityReservationSpecificationResponse }),
         LicenseSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.LaunchTemplateLicenseConfiguration,
             traits = {
                 xml_name = "licenseSet",
             },
         },
-        HibernationOptions = {
-            type = "structure",
-            traits = {
-                xml_name = "hibernationOptions",
-            },
-        },
-        MetadataOptions = {
-            type = "structure",
-            traits = {
-                xml_name = "metadataOptions",
-            },
-        },
-        EnclaveOptions = {
-            type = "structure",
-            traits = {
-                xml_name = "enclaveOptions",
-            },
-        },
-        InstanceRequirements = {
-            type = "structure",
-            traits = {
-                xml_name = "instanceRequirements",
-            },
-        },
-        PrivateDnsNameOptions = {
-            type = "structure",
-            traits = {
-                xml_name = "privateDnsNameOptions",
-            },
-        },
-        MaintenanceOptions = {
-            type = "structure",
-            traits = {
-                xml_name = "maintenanceOptions",
-            },
-        },
+        HibernationOptions = setmetatable({ traits = {
+            xml_name = "hibernationOptions",
+        } }, { __index = M.LaunchTemplateHibernationOptions }),
+        MetadataOptions = setmetatable({ traits = {
+            xml_name = "metadataOptions",
+        } }, { __index = M.LaunchTemplateInstanceMetadataOptions }),
+        EnclaveOptions = setmetatable({ traits = {
+            xml_name = "enclaveOptions",
+        } }, { __index = M.LaunchTemplateEnclaveOptions }),
+        InstanceRequirements = setmetatable({ traits = {
+            xml_name = "instanceRequirements",
+        } }, { __index = M.InstanceRequirements }),
+        PrivateDnsNameOptions = setmetatable({ traits = {
+            xml_name = "privateDnsNameOptions",
+        } }, { __index = M.LaunchTemplatePrivateDnsNameOptions }),
+        MaintenanceOptions = setmetatable({ traits = {
+            xml_name = "maintenanceOptions",
+        } }, { __index = M.LaunchTemplateInstanceMaintenanceOptions }),
         DisableApiStop = {
             type = "boolean",
             traits = {
                 xml_name = "disableApiStop",
             },
         },
-        Operator = {
-            type = "structure",
-            traits = {
-                xml_name = "operator",
-            },
-        },
-        NetworkPerformanceOptions = {
-            type = "structure",
-            traits = {
-                xml_name = "networkPerformanceOptions",
-            },
-        },
+        Operator = setmetatable({ traits = {
+            xml_name = "operator",
+        } }, { __index = M.OperatorResponse }),
+        NetworkPerformanceOptions = setmetatable({ traits = {
+            xml_name = "networkPerformanceOptions",
+        } }, { __index = M.LaunchTemplateNetworkPerformanceOptions }),
         SecondaryInterfaces = {
             type = "list",
-            member_type = "structure",
+            member = M.LaunchTemplateInstanceSecondaryInterfaceSpecification,
             traits = {
                 xml_name = "secondaryInterfaceSet",
             },
@@ -17326,7 +16546,7 @@ M.LaunchTemplateVersion = {
             },
         },
         VersionNumber = {
-            type = "number",
+            type = "long",
             traits = {
                 xml_name = "versionNumber",
             },
@@ -17355,36 +16575,24 @@ M.LaunchTemplateVersion = {
                 xml_name = "defaultVersion",
             },
         },
-        LaunchTemplateData = {
-            type = "structure",
-            traits = {
-                xml_name = "launchTemplateData",
-            },
-        },
-        Operator = {
-            type = "structure",
-            traits = {
-                xml_name = "operator",
-            },
-        },
+        LaunchTemplateData = setmetatable({ traits = {
+            xml_name = "launchTemplateData",
+        } }, { __index = M.ResponseLaunchTemplateData }),
+        Operator = setmetatable({ traits = {
+            xml_name = "operator",
+        } }, { __index = M.OperatorResponse }),
     },
 }
 
 M.CreateLaunchTemplateVersionOutput = {
     type = "structure",
     members = {
-        LaunchTemplateVersion = {
-            type = "structure",
-            traits = {
-                xml_name = "launchTemplateVersion",
-            },
-        },
-        Warning = {
-            type = "structure",
-            traits = {
-                xml_name = "warning",
-            },
-        },
+        LaunchTemplateVersion = setmetatable({ traits = {
+            xml_name = "launchTemplateVersion",
+        } }, { __index = M.LaunchTemplateVersion }),
+        Warning = setmetatable({ traits = {
+            xml_name = "warning",
+        } }, { __index = M.ValidationWarning }),
     },
 }
 
@@ -17503,12 +16711,9 @@ M.LocalGatewayRoute = {
 M.CreateLocalGatewayRouteOutput = {
     type = "structure",
     members = {
-        Route = {
-            type = "structure",
-            traits = {
-                xml_name = "route",
-            },
-        },
+        Route = setmetatable({ traits = {
+            xml_name = "route",
+        } }, { __index = M.LocalGatewayRoute }),
     },
 }
 
@@ -17531,7 +16736,7 @@ M.CreateLocalGatewayRouteTableInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -17601,7 +16806,7 @@ M.LocalGatewayRouteTable = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -17612,24 +16817,18 @@ M.LocalGatewayRouteTable = {
                 xml_name = "mode",
             },
         },
-        StateReason = {
-            type = "structure",
-            traits = {
-                xml_name = "stateReason",
-            },
-        },
+        StateReason = setmetatable({ traits = {
+            xml_name = "stateReason",
+        } }, { __index = M.StateReason }),
     },
 }
 
 M.CreateLocalGatewayRouteTableOutput = {
     type = "structure",
     members = {
-        LocalGatewayRouteTable = {
-            type = "structure",
-            traits = {
-                xml_name = "localGatewayRouteTable",
-            },
-        },
+        LocalGatewayRouteTable = setmetatable({ traits = {
+            xml_name = "localGatewayRouteTable",
+        } }, { __index = M.LocalGatewayRouteTable }),
     },
 }
 
@@ -17650,7 +16849,7 @@ M.CreateLocalGatewayRouteTableVirtualInterfaceGroupAssociationInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -17708,7 +16907,7 @@ M.LocalGatewayRouteTableVirtualInterfaceGroupAssociation = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -17719,12 +16918,9 @@ M.LocalGatewayRouteTableVirtualInterfaceGroupAssociation = {
 M.CreateLocalGatewayRouteTableVirtualInterfaceGroupAssociationOutput = {
     type = "structure",
     members = {
-        LocalGatewayRouteTableVirtualInterfaceGroupAssociation = {
-            type = "structure",
-            traits = {
-                xml_name = "localGatewayRouteTableVirtualInterfaceGroupAssociation",
-            },
-        },
+        LocalGatewayRouteTableVirtualInterfaceGroupAssociation = setmetatable({ traits = {
+            xml_name = "localGatewayRouteTableVirtualInterfaceGroupAssociation",
+        } }, { __index = M.LocalGatewayRouteTableVirtualInterfaceGroupAssociation }),
     },
 }
 
@@ -17745,7 +16941,7 @@ M.CreateLocalGatewayRouteTableVpcAssociationInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -17803,7 +16999,7 @@ M.LocalGatewayRouteTableVpcAssociation = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -17814,12 +17010,9 @@ M.LocalGatewayRouteTableVpcAssociation = {
 M.CreateLocalGatewayRouteTableVpcAssociationOutput = {
     type = "structure",
     members = {
-        LocalGatewayRouteTableVpcAssociation = {
-            type = "structure",
-            traits = {
-                xml_name = "localGatewayRouteTableVpcAssociation",
-            },
-        },
+        LocalGatewayRouteTableVpcAssociation = setmetatable({ traits = {
+            xml_name = "localGatewayRouteTableVpcAssociation",
+        } }, { __index = M.LocalGatewayRouteTableVpcAssociation }),
     },
 }
 
@@ -17839,7 +17032,7 @@ M.CreateLocalGatewayVirtualInterfaceInput = {
             },
         },
         Vlan = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -17857,11 +17050,11 @@ M.CreateLocalGatewayVirtualInterfaceInput = {
             },
         },
         PeerBgpAsn = {
-            type = "number",
+            type = "integer",
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -17870,7 +17063,7 @@ M.CreateLocalGatewayVirtualInterfaceInput = {
             type = "boolean",
         },
         PeerBgpAsnExtended = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -17916,7 +17109,7 @@ M.LocalGatewayVirtualInterface = {
             },
         },
         Vlan = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "vlan",
             },
@@ -17934,19 +17127,19 @@ M.LocalGatewayVirtualInterface = {
             },
         },
         LocalBgpAsn = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "localBgpAsn",
             },
         },
         PeerBgpAsn = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "peerBgpAsn",
             },
         },
         PeerBgpAsnExtended = {
-            type = "number",
+            type = "long",
             traits = {
                 xml_name = "peerBgpAsnExtended",
             },
@@ -17959,7 +17152,7 @@ M.LocalGatewayVirtualInterface = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -17976,12 +17169,9 @@ M.LocalGatewayVirtualInterface = {
 M.CreateLocalGatewayVirtualInterfaceOutput = {
     type = "structure",
     members = {
-        LocalGatewayVirtualInterface = {
-            type = "structure",
-            traits = {
-                xml_name = "localGatewayVirtualInterface",
-            },
-        },
+        LocalGatewayVirtualInterface = setmetatable({ traits = {
+            xml_name = "localGatewayVirtualInterface",
+        } }, { __index = M.LocalGatewayVirtualInterface }),
     },
 }
 
@@ -17995,14 +17185,14 @@ M.CreateLocalGatewayVirtualInterfaceGroupInput = {
             },
         },
         LocalBgpAsn = {
-            type = "number",
+            type = "integer",
         },
         LocalBgpAsnExtended = {
-            type = "number",
+            type = "long",
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -18032,7 +17222,7 @@ M.LocalGatewayVirtualInterfaceGroup = {
         },
         LocalGatewayVirtualInterfaceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "localGatewayVirtualInterfaceIdSet",
             },
@@ -18050,13 +17240,13 @@ M.LocalGatewayVirtualInterfaceGroup = {
             },
         },
         LocalBgpAsn = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "localBgpAsn",
             },
         },
         LocalBgpAsnExtended = {
-            type = "number",
+            type = "long",
             traits = {
                 xml_name = "localBgpAsnExtended",
             },
@@ -18069,7 +17259,7 @@ M.LocalGatewayVirtualInterfaceGroup = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -18086,12 +17276,9 @@ M.LocalGatewayVirtualInterfaceGroup = {
 M.CreateLocalGatewayVirtualInterfaceGroupOutput = {
     type = "structure",
     members = {
-        LocalGatewayVirtualInterfaceGroup = {
-            type = "structure",
-            traits = {
-                xml_name = "localGatewayVirtualInterfaceGroup",
-            },
-        },
+        LocalGatewayVirtualInterfaceGroup = setmetatable({ traits = {
+            xml_name = "localGatewayVirtualInterfaceGroup",
+        } }, { __index = M.LocalGatewayVirtualInterfaceGroup }),
     },
 }
 
@@ -18140,9 +17327,7 @@ M.CreateMacSystemIntegrityProtectionModificationTaskInput = {
         MacCredentials = {
             type = "string",
         },
-        MacSystemIntegrityProtectionConfiguration = {
-            type = "structure",
-        },
+        MacSystemIntegrityProtectionConfiguration = M.MacSystemIntegrityProtectionConfigurationRequest,
         MacSystemIntegrityProtectionStatus = {
             type = "string",
             traits = {
@@ -18151,7 +17336,7 @@ M.CreateMacSystemIntegrityProtectionModificationTaskInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -18162,12 +17347,9 @@ M.CreateMacSystemIntegrityProtectionModificationTaskInput = {
 M.CreateMacSystemIntegrityProtectionModificationTaskOutput = {
     type = "structure",
     members = {
-        MacModificationTask = {
-            type = "structure",
-            traits = {
-                xml_name = "macModificationTask",
-            },
-        },
+        MacModificationTask = setmetatable({ traits = {
+            xml_name = "macModificationTask",
+        } }, { __index = M.MacModificationTask }),
     },
 }
 
@@ -18185,20 +17367,20 @@ M.CreateManagedPrefixListInput = {
         },
         Entries = {
             type = "list",
-            member_type = "structure",
+            member = M.AddPrefixListEntry,
             traits = {
                 xml_name = "Entry",
             },
         },
         MaxEntries = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -18270,20 +17452,20 @@ M.ManagedPrefixList = {
             },
         },
         MaxEntries = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "maxEntries",
             },
         },
         Version = {
-            type = "number",
+            type = "long",
             traits = {
                 xml_name = "version",
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -18312,12 +17494,9 @@ M.ManagedPrefixList = {
 M.CreateManagedPrefixListOutput = {
     type = "structure",
     members = {
-        PrefixList = {
-            type = "structure",
-            traits = {
-                xml_name = "prefixList",
-            },
-        },
+        PrefixList = setmetatable({ traits = {
+            xml_name = "prefixList",
+        } }, { __index = M.ManagedPrefixList }),
     },
 }
 
@@ -18337,7 +17516,7 @@ M.AvailabilityZoneAddress = {
         },
         AllocationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "AllocationId",
             },
@@ -18373,14 +17552,14 @@ M.CreateNatGatewayInput = {
         },
         AvailabilityZoneAddresses = {
             type = "list",
-            member_type = "structure",
+            member = M.AvailabilityZoneAddress,
             traits = {
                 xml_name = "AvailabilityZoneAddress",
             },
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -18393,20 +17572,20 @@ M.CreateNatGatewayInput = {
         },
         SecondaryAllocationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "SecondaryAllocationId",
             },
         },
         SecondaryPrivateIpAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "SecondaryPrivateIpAddress",
             },
         },
         SecondaryPrivateIpAddressCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -18561,7 +17740,7 @@ M.NatGateway = {
         },
         NatGatewayAddresses = {
             type = "list",
-            member_type = "structure",
+            member = M.NatGatewayAddress,
             traits = {
                 xml_name = "natGatewayAddressSet",
             },
@@ -18572,12 +17751,9 @@ M.NatGateway = {
                 xml_name = "natGatewayId",
             },
         },
-        ProvisionedBandwidth = {
-            type = "structure",
-            traits = {
-                xml_name = "provisionedBandwidth",
-            },
-        },
+        ProvisionedBandwidth = setmetatable({ traits = {
+            xml_name = "provisionedBandwidth",
+        } }, { __index = M.ProvisionedBandwidth }),
         State = {
             type = "string",
             traits = {
@@ -18598,7 +17774,7 @@ M.NatGateway = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -18629,7 +17805,7 @@ M.NatGateway = {
         },
         AttachedAppliances = {
             type = "list",
-            member_type = "structure",
+            member = M.NatGatewayAttachedAppliance,
             traits = {
                 xml_name = "attachedApplianceSet",
             },
@@ -18652,12 +17828,9 @@ M.CreateNatGatewayOutput = {
                 xml_name = "clientToken",
             },
         },
-        NatGateway = {
-            type = "structure",
-            traits = {
-                xml_name = "natGateway",
-            },
-        },
+        NatGateway = setmetatable({ traits = {
+            xml_name = "natGateway",
+        } }, { __index = M.NatGateway }),
     },
 }
 
@@ -18666,7 +17839,7 @@ M.CreateNetworkAclInput = {
     members = {
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -18718,13 +17891,13 @@ M.IcmpTypeCode = {
     type = "structure",
     members = {
         Code = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "code",
             },
         },
         Type = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "type",
             },
@@ -18752,24 +17925,18 @@ M.NetworkAclEntry = {
                 xml_name = "egress",
             },
         },
-        IcmpTypeCode = {
-            type = "structure",
-            traits = {
-                xml_name = "icmpTypeCode",
-            },
-        },
+        IcmpTypeCode = setmetatable({ traits = {
+            xml_name = "icmpTypeCode",
+        } }, { __index = M.IcmpTypeCode }),
         Ipv6CidrBlock = {
             type = "string",
             traits = {
                 xml_name = "ipv6CidrBlock",
             },
         },
-        PortRange = {
-            type = "structure",
-            traits = {
-                xml_name = "portRange",
-            },
-        },
+        PortRange = setmetatable({ traits = {
+            xml_name = "portRange",
+        } }, { __index = M.PortRange }),
         Protocol = {
             type = "string",
             traits = {
@@ -18783,7 +17950,7 @@ M.NetworkAclEntry = {
             },
         },
         RuleNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "ruleNumber",
             },
@@ -18796,14 +17963,14 @@ M.NetworkAcl = {
     members = {
         Associations = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkAclAssociation,
             traits = {
                 xml_name = "associationSet",
             },
         },
         Entries = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkAclEntry,
             traits = {
                 xml_name = "entrySet",
             },
@@ -18822,7 +17989,7 @@ M.NetworkAcl = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -18845,12 +18012,9 @@ M.NetworkAcl = {
 M.CreateNetworkAclOutput = {
     type = "structure",
     members = {
-        NetworkAcl = {
-            type = "structure",
-            traits = {
-                xml_name = "networkAcl",
-            },
-        },
+        NetworkAcl = setmetatable({ traits = {
+            xml_name = "networkAcl",
+        } }, { __index = M.NetworkAcl }),
         ClientToken = {
             type = "string",
             traits = {
@@ -18877,7 +18041,7 @@ M.CreateNetworkAclEntryInput = {
             },
         },
         RuleNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
                 xml_name = "ruleNumber",
@@ -18916,18 +18080,12 @@ M.CreateNetworkAclEntryInput = {
                 xml_name = "ipv6CidrBlock",
             },
         },
-        IcmpTypeCode = {
-            type = "structure",
-            traits = {
-                xml_name = "Icmp",
-            },
-        },
-        PortRange = {
-            type = "structure",
-            traits = {
-                xml_name = "portRange",
-            },
-        },
+        IcmpTypeCode = setmetatable({ traits = {
+            xml_name = "Icmp",
+        } }, { __index = M.IcmpTypeCode }),
+        PortRange = setmetatable({ traits = {
+            xml_name = "portRange",
+        } }, { __index = M.PortRange }),
     },
 }
 
@@ -18940,14 +18098,14 @@ M.CreateNetworkInsightsAccessScopeInput = {
     members = {
         MatchPaths = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessScopePathRequest,
             traits = {
                 xml_name = "MatchPath",
             },
         },
         ExcludePaths = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessScopePathRequest,
             traits = {
                 xml_name = "ExcludePath",
             },
@@ -18960,7 +18118,7 @@ M.CreateNetworkInsightsAccessScopeInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -19000,7 +18158,7 @@ M.NetworkInsightsAccessScope = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -19019,14 +18177,14 @@ M.NetworkInsightsAccessScopeContent = {
         },
         MatchPaths = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessScopePath,
             traits = {
                 xml_name = "matchPathSet",
             },
         },
         ExcludePaths = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessScopePath,
             traits = {
                 xml_name = "excludePathSet",
             },
@@ -19037,18 +18195,12 @@ M.NetworkInsightsAccessScopeContent = {
 M.CreateNetworkInsightsAccessScopeOutput = {
     type = "structure",
     members = {
-        NetworkInsightsAccessScope = {
-            type = "structure",
-            traits = {
-                xml_name = "networkInsightsAccessScope",
-            },
-        },
-        NetworkInsightsAccessScopeContent = {
-            type = "structure",
-            traits = {
-                xml_name = "networkInsightsAccessScopeContent",
-            },
-        },
+        NetworkInsightsAccessScope = setmetatable({ traits = {
+            xml_name = "networkInsightsAccessScope",
+        } }, { __index = M.NetworkInsightsAccessScope }),
+        NetworkInsightsAccessScopeContent = setmetatable({ traits = {
+            xml_name = "networkInsightsAccessScopeContent",
+        } }, { __index = M.NetworkInsightsAccessScopeContent }),
     },
 }
 
@@ -19056,10 +18208,10 @@ M.RequestFilterPortRange = {
     type = "structure",
     members = {
         FromPort = {
-            type = "number",
+            type = "integer",
         },
         ToPort = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -19070,15 +18222,11 @@ M.PathRequestFilter = {
         SourceAddress = {
             type = "string",
         },
-        SourcePortRange = {
-            type = "structure",
-        },
+        SourcePortRange = M.RequestFilterPortRange,
         DestinationAddress = {
             type = "string",
         },
-        DestinationPortRange = {
-            type = "structure",
-        },
+        DestinationPortRange = M.RequestFilterPortRange,
     },
 }
 
@@ -19107,11 +18255,11 @@ M.CreateNetworkInsightsPathInput = {
             },
         },
         DestinationPort = {
-            type = "number",
+            type = "integer",
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -19125,12 +18273,8 @@ M.CreateNetworkInsightsPathInput = {
                 required = true,
             },
         },
-        FilterAtSource = {
-            type = "structure",
-        },
-        FilterAtDestination = {
-            type = "structure",
-        },
+        FilterAtSource = M.PathRequestFilter,
+        FilterAtDestination = M.PathRequestFilter,
     },
 }
 
@@ -19138,13 +18282,13 @@ M.FilterPortRange = {
     type = "structure",
     members = {
         FromPort = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "fromPort",
             },
         },
         ToPort = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "toPort",
             },
@@ -19161,24 +18305,18 @@ M.PathFilter = {
                 xml_name = "sourceAddress",
             },
         },
-        SourcePortRange = {
-            type = "structure",
-            traits = {
-                xml_name = "sourcePortRange",
-            },
-        },
+        SourcePortRange = setmetatable({ traits = {
+            xml_name = "sourcePortRange",
+        } }, { __index = M.FilterPortRange }),
         DestinationAddress = {
             type = "string",
             traits = {
                 xml_name = "destinationAddress",
             },
         },
-        DestinationPortRange = {
-            type = "structure",
-            traits = {
-                xml_name = "destinationPortRange",
-            },
-        },
+        DestinationPortRange = setmetatable({ traits = {
+            xml_name = "destinationPortRange",
+        } }, { __index = M.FilterPortRange }),
     },
 }
 
@@ -19246,42 +18384,33 @@ M.NetworkInsightsPath = {
             },
         },
         DestinationPort = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "destinationPort",
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
         },
-        FilterAtSource = {
-            type = "structure",
-            traits = {
-                xml_name = "filterAtSource",
-            },
-        },
-        FilterAtDestination = {
-            type = "structure",
-            traits = {
-                xml_name = "filterAtDestination",
-            },
-        },
+        FilterAtSource = setmetatable({ traits = {
+            xml_name = "filterAtSource",
+        } }, { __index = M.PathFilter }),
+        FilterAtDestination = setmetatable({ traits = {
+            xml_name = "filterAtDestination",
+        } }, { __index = M.PathFilter }),
     },
 }
 
 M.CreateNetworkInsightsPathOutput = {
     type = "structure",
     members = {
-        NetworkInsightsPath = {
-            type = "structure",
-            traits = {
-                xml_name = "networkInsightsPath",
-            },
-        },
+        NetworkInsightsPath = setmetatable({ traits = {
+            xml_name = "networkInsightsPath",
+        } }, { __index = M.NetworkInsightsPath }),
     },
 }
 
@@ -19297,30 +18426,30 @@ M.CreateNetworkInterfaceInput = {
     members = {
         Ipv4Prefixes = {
             type = "list",
-            member_type = "structure",
+            member = M.Ipv4PrefixSpecificationRequest,
             traits = {
                 xml_name = "Ipv4Prefix",
             },
         },
         Ipv4PrefixCount = {
-            type = "number",
+            type = "integer",
         },
         Ipv6Prefixes = {
             type = "list",
-            member_type = "structure",
+            member = M.Ipv6PrefixSpecificationRequest,
             traits = {
                 xml_name = "Ipv6Prefix",
             },
         },
         Ipv6PrefixCount = {
-            type = "number",
+            type = "integer",
         },
         InterfaceType = {
             type = "string",
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -19331,12 +18460,8 @@ M.CreateNetworkInterfaceInput = {
         EnablePrimaryIpv6 = {
             type = "boolean",
         },
-        ConnectionTrackingSpecification = {
-            type = "structure",
-        },
-        Operator = {
-            type = "structure",
-        },
+        ConnectionTrackingSpecification = M.ConnectionTrackingSpecificationRequest,
+        Operator = M.OperatorRequest,
         SubnetId = {
             type = "string",
             traits = {
@@ -19358,33 +18483,33 @@ M.CreateNetworkInterfaceInput = {
         },
         Groups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "SecurityGroupId",
             },
         },
         PrivateIpAddresses = {
             type = "list",
-            member_type = "structure",
+            member = M.PrivateIpAddressSpecification,
             traits = {
                 xml_name = "privateIpAddresses",
             },
         },
         SecondaryPrivateIpAddressCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "secondaryPrivateIpAddressCount",
             },
         },
         Ipv6Addresses = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceIpv6Address,
             traits = {
                 xml_name = "ipv6Addresses",
             },
         },
         Ipv6AddressCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "ipv6AddressCount",
             },
@@ -19467,12 +18592,9 @@ M.AttachmentEnaSrdSpecification = {
                 xml_name = "enaSrdEnabled",
             },
         },
-        EnaSrdUdpSpecification = {
-            type = "structure",
-            traits = {
-                xml_name = "enaSrdUdpSpecification",
-            },
-        },
+        EnaSrdUdpSpecification = setmetatable({ traits = {
+            xml_name = "enaSrdUdpSpecification",
+        } }, { __index = M.AttachmentEnaSrdUdpSpecification }),
     },
 }
 
@@ -19498,13 +18620,13 @@ M.NetworkInterfaceAttachment = {
             },
         },
         DeviceIndex = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "deviceIndex",
             },
         },
         NetworkCardIndex = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "networkCardIndex",
             },
@@ -19527,14 +18649,11 @@ M.NetworkInterfaceAttachment = {
                 xml_name = "status",
             },
         },
-        EnaSrdSpecification = {
-            type = "structure",
-            traits = {
-                xml_name = "enaSrdSpecification",
-            },
-        },
+        EnaSrdSpecification = setmetatable({ traits = {
+            xml_name = "enaSrdSpecification",
+        } }, { __index = M.AttachmentEnaSrdSpecification }),
         EnaQueueCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "enaQueueCount",
             },
@@ -19546,19 +18665,19 @@ M.ConnectionTrackingConfiguration = {
     type = "structure",
     members = {
         TcpEstablishedTimeout = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "tcpEstablishedTimeout",
             },
         },
         UdpStreamTimeout = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "udpStreamTimeout",
             },
         },
         UdpTimeout = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "udpTimeout",
             },
@@ -19644,12 +18763,9 @@ M.Ipv6PrefixSpecification = {
 M.NetworkInterfacePrivateIpAddress = {
     type = "structure",
     members = {
-        Association = {
-            type = "structure",
-            traits = {
-                xml_name = "association",
-            },
-        },
+        Association = setmetatable({ traits = {
+            xml_name = "association",
+        } }, { __index = M.NetworkInterfaceAssociation }),
         Primary = {
             type = "boolean",
             traits = {
@@ -19712,30 +18828,21 @@ M.NetworkInterfaceStatus = {
 M.NetworkInterface = {
     type = "structure",
     members = {
-        Association = {
-            type = "structure",
-            traits = {
-                xml_name = "association",
-            },
-        },
-        Attachment = {
-            type = "structure",
-            traits = {
-                xml_name = "attachment",
-            },
-        },
+        Association = setmetatable({ traits = {
+            xml_name = "association",
+        } }, { __index = M.NetworkInterfaceAssociation }),
+        Attachment = setmetatable({ traits = {
+            xml_name = "attachment",
+        } }, { __index = M.NetworkInterfaceAttachment }),
         AvailabilityZone = {
             type = "string",
             traits = {
                 xml_name = "availabilityZone",
             },
         },
-        ConnectionTrackingConfiguration = {
-            type = "structure",
-            traits = {
-                xml_name = "connectionTrackingConfiguration",
-            },
-        },
+        ConnectionTrackingConfiguration = setmetatable({ traits = {
+            xml_name = "connectionTrackingConfiguration",
+        } }, { __index = M.ConnectionTrackingConfiguration }),
         Description = {
             type = "string",
             traits = {
@@ -19744,7 +18851,7 @@ M.NetworkInterface = {
         },
         Groups = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupIdentifier,
             traits = {
                 xml_name = "groupSet",
             },
@@ -19757,7 +18864,7 @@ M.NetworkInterface = {
         },
         Ipv6Addresses = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkInterfaceIpv6Address,
             traits = {
                 xml_name = "ipv6AddressesSet",
             },
@@ -19798,12 +18905,9 @@ M.NetworkInterface = {
                 xml_name = "publicDnsName",
             },
         },
-        PublicIpDnsNameOptions = {
-            type = "structure",
-            traits = {
-                xml_name = "publicIpDnsNameOptions",
-            },
-        },
+        PublicIpDnsNameOptions = setmetatable({ traits = {
+            xml_name = "publicIpDnsNameOptions",
+        } }, { __index = M.PublicIpDnsNameOptions }),
         PrivateIpAddress = {
             type = "string",
             traits = {
@@ -19812,21 +18916,21 @@ M.NetworkInterface = {
         },
         PrivateIpAddresses = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkInterfacePrivateIpAddress,
             traits = {
                 xml_name = "privateIpAddressesSet",
             },
         },
         Ipv4Prefixes = {
             type = "list",
-            member_type = "structure",
+            member = M.Ipv4PrefixSpecification,
             traits = {
                 xml_name = "ipv4PrefixSet",
             },
         },
         Ipv6Prefixes = {
             type = "list",
-            member_type = "structure",
+            member = M.Ipv6PrefixSpecification,
             traits = {
                 xml_name = "ipv6PrefixSet",
             },
@@ -19863,7 +18967,7 @@ M.NetworkInterface = {
         },
         TagSet = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -19892,15 +18996,12 @@ M.NetworkInterface = {
                 xml_name = "ipv6Address",
             },
         },
-        Operator = {
-            type = "structure",
-            traits = {
-                xml_name = "operator",
-            },
-        },
+        Operator = setmetatable({ traits = {
+            xml_name = "operator",
+        } }, { __index = M.OperatorResponse }),
         AssociatedSubnets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "associatedSubnetSet",
             },
@@ -19917,12 +19018,9 @@ M.NetworkInterface = {
 M.CreateNetworkInterfaceOutput = {
     type = "structure",
     members = {
-        NetworkInterface = {
-            type = "structure",
-            traits = {
-                xml_name = "networkInterface",
-            },
-        },
+        NetworkInterface = setmetatable({ traits = {
+            xml_name = "networkInterface",
+        } }, { __index = M.NetworkInterface }),
         ClientToken = {
             type = "string",
             traits = {
@@ -20022,24 +19120,18 @@ M.NetworkInterfacePermission = {
                 xml_name = "permission",
             },
         },
-        PermissionState = {
-            type = "structure",
-            traits = {
-                xml_name = "permissionState",
-            },
-        },
+        PermissionState = setmetatable({ traits = {
+            xml_name = "permissionState",
+        } }, { __index = M.NetworkInterfacePermissionState }),
     },
 }
 
 M.CreateNetworkInterfacePermissionOutput = {
     type = "structure",
     members = {
-        InterfacePermission = {
-            type = "structure",
-            traits = {
-                xml_name = "interfacePermission",
-            },
-        },
+        InterfacePermission = setmetatable({ traits = {
+            xml_name = "interfacePermission",
+        } }, { __index = M.NetworkInterfacePermission }),
     },
 }
 
@@ -20058,11 +19150,11 @@ M.CreatePlacementGroupInput = {
     type = "structure",
     members = {
         PartitionCount = {
-            type = "number",
+            type = "integer",
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -20073,9 +19165,7 @@ M.CreatePlacementGroupInput = {
         LinkedGroupId = {
             type = "string",
         },
-        Operator = {
-            type = "structure",
-        },
+        Operator = M.OperatorRequest,
         DryRun = {
             type = "boolean",
             traits = {
@@ -20126,7 +19216,7 @@ M.PlacementGroup = {
             },
         },
         PartitionCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "partitionCount",
             },
@@ -20139,7 +19229,7 @@ M.PlacementGroup = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -20162,24 +19252,18 @@ M.PlacementGroup = {
                 xml_name = "linkedGroupId",
             },
         },
-        Operator = {
-            type = "structure",
-            traits = {
-                xml_name = "operator",
-            },
-        },
+        Operator = setmetatable({ traits = {
+            xml_name = "operator",
+        } }, { __index = M.OperatorResponse }),
     },
 }
 
 M.CreatePlacementGroupOutput = {
     type = "structure",
     members = {
-        PlacementGroup = {
-            type = "structure",
-            traits = {
-                xml_name = "placementGroup",
-            },
-        },
+        PlacementGroup = setmetatable({ traits = {
+            xml_name = "placementGroup",
+        } }, { __index = M.PlacementGroup }),
     },
 }
 
@@ -20191,7 +19275,7 @@ M.CreatePublicIpv4PoolInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -20234,7 +19318,7 @@ M.CreateReplaceRootVolumeTaskInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -20246,7 +19330,7 @@ M.CreateReplaceRootVolumeTaskInput = {
             type = "boolean",
         },
         VolumeInitializationRate = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -20295,7 +19379,7 @@ M.ReplaceRootVolumeTask = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -20324,12 +19408,9 @@ M.ReplaceRootVolumeTask = {
 M.CreateReplaceRootVolumeTaskOutput = {
     type = "structure",
     members = {
-        ReplaceRootVolumeTask = {
-            type = "structure",
-            traits = {
-                xml_name = "replaceRootVolumeTask",
-            },
-        },
+        ReplaceRootVolumeTask = setmetatable({ traits = {
+            xml_name = "replaceRootVolumeTask",
+        } }, { __index = M.ReplaceRootVolumeTask }),
     },
 }
 
@@ -20337,13 +19418,13 @@ M.PriceScheduleSpecification = {
     type = "structure",
     members = {
         Term = {
-            type = "number",
+            type = "long",
             traits = {
                 xml_name = "term",
             },
         },
         Price = {
-            type = "number",
+            type = "double",
             traits = {
                 xml_name = "price",
             },
@@ -20368,7 +19449,7 @@ M.CreateReservedInstancesListingInput = {
             },
         },
         InstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
                 xml_name = "instanceCount",
@@ -20376,7 +19457,7 @@ M.CreateReservedInstancesListingInput = {
         },
         PriceSchedules = {
             type = "list",
-            member_type = "structure",
+            member = M.PriceScheduleSpecification,
             traits = {
                 required = true,
                 xml_name = "priceSchedules",
@@ -20397,7 +19478,7 @@ M.CreateReservedInstancesListingOutput = {
     members = {
         ReservedInstancesListings = {
             type = "list",
-            member_type = "structure",
+            member = M.ReservedInstancesListing,
             traits = {
                 xml_name = "reservedInstancesListingsSet",
             },
@@ -20425,7 +19506,7 @@ M.CreateRestoreImageTaskInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -20558,7 +19639,7 @@ M.CreateRouteServerInput = {
     type = "structure",
     members = {
         AmazonSideAsn = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -20573,14 +19654,14 @@ M.CreateRouteServerInput = {
             type = "string",
         },
         PersistRoutesDuration = {
-            type = "number",
+            type = "long",
         },
         SnsNotificationsEnabled = {
             type = "boolean",
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -20615,7 +19696,7 @@ M.RouteServer = {
             },
         },
         AmazonSideAsn = {
-            type = "number",
+            type = "long",
             traits = {
                 xml_name = "amazonSideAsn",
             },
@@ -20628,7 +19709,7 @@ M.RouteServer = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -20640,7 +19721,7 @@ M.RouteServer = {
             },
         },
         PersistRoutesDuration = {
-            type = "number",
+            type = "long",
             traits = {
                 xml_name = "persistRoutesDuration",
             },
@@ -20663,12 +19744,9 @@ M.RouteServer = {
 M.CreateRouteServerOutput = {
     type = "structure",
     members = {
-        RouteServer = {
-            type = "structure",
-            traits = {
-                xml_name = "routeServer",
-            },
-        },
+        RouteServer = setmetatable({ traits = {
+            xml_name = "routeServer",
+        } }, { __index = M.RouteServer }),
     },
 }
 
@@ -20695,7 +19773,7 @@ M.CreateRouteServerEndpointInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -20766,7 +19844,7 @@ M.RouteServerEndpoint = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -20777,12 +19855,9 @@ M.RouteServerEndpoint = {
 M.CreateRouteServerEndpointOutput = {
     type = "structure",
     members = {
-        RouteServerEndpoint = {
-            type = "structure",
-            traits = {
-                xml_name = "routeServerEndpoint",
-            },
-        },
+        RouteServerEndpoint = setmetatable({ traits = {
+            xml_name = "routeServerEndpoint",
+        } }, { __index = M.RouteServerEndpoint }),
     },
 }
 
@@ -20795,7 +19870,7 @@ M.RouteServerBgpOptionsRequest = {
     type = "structure",
     members = {
         PeerAsn = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -20821,18 +19896,15 @@ M.CreateRouteServerPeerInput = {
                 required = true,
             },
         },
-        BgpOptions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        BgpOptions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RouteServerBgpOptionsRequest }),
         DryRun = {
             type = "boolean",
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -20861,7 +19933,7 @@ M.RouteServerBgpOptions = {
     type = "structure",
     members = {
         PeerAsn = {
-            type = "number",
+            type = "long",
             traits = {
                 xml_name = "peerAsn",
             },
@@ -20964,27 +20036,18 @@ M.RouteServerPeer = {
                 xml_name = "peerAddress",
             },
         },
-        BgpOptions = {
-            type = "structure",
-            traits = {
-                xml_name = "bgpOptions",
-            },
-        },
-        BgpStatus = {
-            type = "structure",
-            traits = {
-                xml_name = "bgpStatus",
-            },
-        },
-        BfdStatus = {
-            type = "structure",
-            traits = {
-                xml_name = "bfdStatus",
-            },
-        },
+        BgpOptions = setmetatable({ traits = {
+            xml_name = "bgpOptions",
+        } }, { __index = M.RouteServerBgpOptions }),
+        BgpStatus = setmetatable({ traits = {
+            xml_name = "bgpStatus",
+        } }, { __index = M.RouteServerBgpStatus }),
+        BfdStatus = setmetatable({ traits = {
+            xml_name = "bfdStatus",
+        } }, { __index = M.RouteServerBfdStatus }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -20995,12 +20058,9 @@ M.RouteServerPeer = {
 M.CreateRouteServerPeerOutput = {
     type = "structure",
     members = {
-        RouteServerPeer = {
-            type = "structure",
-            traits = {
-                xml_name = "routeServerPeer",
-            },
-        },
+        RouteServerPeer = setmetatable({ traits = {
+            xml_name = "routeServerPeer",
+        } }, { __index = M.RouteServerPeer }),
     },
 }
 
@@ -21009,7 +20069,7 @@ M.CreateRouteTableInput = {
     members = {
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -21072,12 +20132,9 @@ M.RouteTableAssociation = {
                 xml_name = "publicIpv4Pool",
             },
         },
-        AssociationState = {
-            type = "structure",
-            traits = {
-                xml_name = "associationState",
-            },
-        },
+        AssociationState = setmetatable({ traits = {
+            xml_name = "associationState",
+        } }, { __index = M.RouteTableAssociationState }),
     },
 }
 
@@ -21225,14 +20282,14 @@ M.RouteTable = {
     members = {
         Associations = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteTableAssociation,
             traits = {
                 xml_name = "associationSet",
             },
         },
         PropagatingVgws = {
             type = "list",
-            member_type = "structure",
+            member = M.PropagatingVgw,
             traits = {
                 xml_name = "propagatingVgwSet",
             },
@@ -21245,14 +20302,14 @@ M.RouteTable = {
         },
         Routes = {
             type = "list",
-            member_type = "structure",
+            member = M.Route,
             traits = {
                 xml_name = "routeSet",
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -21275,12 +20332,9 @@ M.RouteTable = {
 M.CreateRouteTableOutput = {
     type = "structure",
     members = {
-        RouteTable = {
-            type = "structure",
-            traits = {
-                xml_name = "routeTable",
-            },
-        },
+        RouteTable = setmetatable({ traits = {
+            xml_name = "routeTable",
+        } }, { __index = M.RouteTable }),
         ClientToken = {
             type = "string",
             traits = {
@@ -21317,7 +20371,7 @@ M.CreateSecondaryNetworkInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -21414,14 +20468,14 @@ M.SecondaryNetwork = {
         },
         Ipv4CidrBlockAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.SecondaryNetworkIpv4CidrBlockAssociation,
             traits = {
                 xml_name = "ipv4CidrBlockAssociationSet",
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -21432,12 +20486,9 @@ M.SecondaryNetwork = {
 M.CreateSecondaryNetworkOutput = {
     type = "structure",
     members = {
-        SecondaryNetwork = {
-            type = "structure",
-            traits = {
-                xml_name = "secondaryNetwork",
-            },
-        },
+        SecondaryNetwork = setmetatable({ traits = {
+            xml_name = "secondaryNetwork",
+        } }, { __index = M.SecondaryNetwork }),
         ClientToken = {
             type = "string",
             traits = {
@@ -21476,7 +20527,7 @@ M.CreateSecondarySubnetInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -21579,7 +20630,7 @@ M.SecondarySubnet = {
         },
         Ipv4CidrBlockAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.SecondarySubnetIpv4CidrBlockAssociation,
             traits = {
                 xml_name = "ipv4CidrBlockAssociationSet",
             },
@@ -21598,7 +20649,7 @@ M.SecondarySubnet = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -21609,12 +20660,9 @@ M.SecondarySubnet = {
 M.CreateSecondarySubnetOutput = {
     type = "structure",
     members = {
-        SecondarySubnet = {
-            type = "structure",
-            traits = {
-                xml_name = "secondarySubnet",
-            },
-        },
+        SecondarySubnet = setmetatable({ traits = {
+            xml_name = "secondarySubnet",
+        } }, { __index = M.SecondarySubnet }),
         ClientToken = {
             type = "string",
             traits = {
@@ -21645,7 +20693,7 @@ M.CreateSecurityGroupInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -21670,7 +20718,7 @@ M.CreateSecurityGroupOutput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -21701,7 +20749,7 @@ M.CreateSnapshotInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -21753,7 +20801,7 @@ M.CreateSnapshotOutput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -21789,7 +20837,7 @@ M.CreateSnapshotOutput = {
             },
         },
         CompletionDurationMinutes = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "completionDurationMinutes",
             },
@@ -21801,7 +20849,7 @@ M.CreateSnapshotOutput = {
             },
         },
         FullSnapshotSizeInBytes = {
-            type = "number",
+            type = "long",
             traits = {
                 xml_name = "fullSnapshotSizeInBytes",
             },
@@ -21855,7 +20903,7 @@ M.CreateSnapshotOutput = {
             },
         },
         VolumeSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "volumeSize",
             },
@@ -21899,7 +20947,7 @@ M.InstanceSpecification = {
         },
         ExcludeDataVolumeIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "ExcludeDataVolumeId",
             },
@@ -21913,18 +20961,15 @@ M.CreateSnapshotsInput = {
         Description = {
             type = "string",
         },
-        InstanceSpecification = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InstanceSpecification = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InstanceSpecification }),
         OutpostArn = {
             type = "string",
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -21952,7 +20997,7 @@ M.SnapshotInfo = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -21976,7 +21021,7 @@ M.SnapshotInfo = {
             },
         },
         VolumeSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "volumeSize",
             },
@@ -22031,7 +21076,7 @@ M.CreateSnapshotsOutput = {
     members = {
         Snapshots = {
             type = "list",
-            member_type = "structure",
+            member = M.SnapshotInfo,
             traits = {
                 xml_name = "snapshotSet",
             },
@@ -22096,12 +21141,9 @@ M.SpotDatafeedSubscription = {
                 xml_name = "bucket",
             },
         },
-        Fault = {
-            type = "structure",
-            traits = {
-                xml_name = "fault",
-            },
-        },
+        Fault = setmetatable({ traits = {
+            xml_name = "fault",
+        } }, { __index = M.SpotInstanceStateFault }),
         OwnerId = {
             type = "string",
             traits = {
@@ -22126,12 +21168,9 @@ M.SpotDatafeedSubscription = {
 M.CreateSpotDatafeedSubscriptionOutput = {
     type = "structure",
     members = {
-        SpotDatafeedSubscription = {
-            type = "structure",
-            traits = {
-                xml_name = "spotDatafeedSubscription",
-            },
-        },
+        SpotDatafeedSubscription = setmetatable({ traits = {
+            xml_name = "spotDatafeedSubscription",
+        } }, { __index = M.SpotDatafeedSubscription }),
     },
 }
 
@@ -22164,7 +21203,7 @@ M.CreateStoreImageTaskInput = {
         },
         S3ObjectTags = {
             type = "list",
-            member_type = "structure",
+            member = M.S3ObjectTag,
             traits = {
                 xml_name = "S3ObjectTag",
             },
@@ -22192,7 +21231,7 @@ M.CreateSubnetInput = {
     members = {
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -22225,13 +21264,13 @@ M.CreateSubnetInput = {
             type = "string",
         },
         Ipv4NetmaskLength = {
-            type = "number",
+            type = "integer",
         },
         Ipv6IpamPoolId = {
             type = "string",
         },
         Ipv6NetmaskLength = {
-            type = "number",
+            type = "integer",
         },
         DryRun = {
             type = "boolean",
@@ -22245,12 +21284,9 @@ M.CreateSubnetInput = {
 M.CreateSubnetOutput = {
     type = "structure",
     members = {
-        Subnet = {
-            type = "structure",
-            traits = {
-                xml_name = "subnet",
-            },
-        },
+        Subnet = setmetatable({ traits = {
+            xml_name = "subnet",
+        } }, { __index = M.Subnet }),
     },
 }
 
@@ -22288,7 +21324,7 @@ M.CreateSubnetCidrReservationInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -22337,7 +21373,7 @@ M.SubnetCidrReservation = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -22348,12 +21384,9 @@ M.SubnetCidrReservation = {
 M.CreateSubnetCidrReservationOutput = {
     type = "structure",
     members = {
-        SubnetCidrReservation = {
-            type = "structure",
-            traits = {
-                xml_name = "subnetCidrReservation",
-            },
-        },
+        SubnetCidrReservation = setmetatable({ traits = {
+            xml_name = "subnetCidrReservation",
+        } }, { __index = M.SubnetCidrReservation }),
     },
 }
 
@@ -22368,7 +21401,7 @@ M.CreateTagsInput = {
         },
         Resources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "ResourceId",
@@ -22376,7 +21409,7 @@ M.CreateTagsInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
                 xml_name = "Tag",
@@ -22397,7 +21430,7 @@ M.CreateTrafficMirrorFilterInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -22415,13 +21448,13 @@ M.TrafficMirrorPortRange = {
     type = "structure",
     members = {
         FromPort = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "fromPort",
             },
         },
         ToPort = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "toPort",
             },
@@ -22461,7 +21494,7 @@ M.TrafficMirrorFilterRule = {
             },
         },
         RuleNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "ruleNumber",
             },
@@ -22473,23 +21506,17 @@ M.TrafficMirrorFilterRule = {
             },
         },
         Protocol = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "protocol",
             },
         },
-        DestinationPortRange = {
-            type = "structure",
-            traits = {
-                xml_name = "destinationPortRange",
-            },
-        },
-        SourcePortRange = {
-            type = "structure",
-            traits = {
-                xml_name = "sourcePortRange",
-            },
-        },
+        DestinationPortRange = setmetatable({ traits = {
+            xml_name = "destinationPortRange",
+        } }, { __index = M.TrafficMirrorPortRange }),
+        SourcePortRange = setmetatable({ traits = {
+            xml_name = "sourcePortRange",
+        } }, { __index = M.TrafficMirrorPortRange }),
         DestinationCidrBlock = {
             type = "string",
             traits = {
@@ -22510,7 +21537,7 @@ M.TrafficMirrorFilterRule = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -22533,21 +21560,21 @@ M.TrafficMirrorFilter = {
         },
         IngressFilterRules = {
             type = "list",
-            member_type = "structure",
+            member = M.TrafficMirrorFilterRule,
             traits = {
                 xml_name = "ingressFilterRuleSet",
             },
         },
         EgressFilterRules = {
             type = "list",
-            member_type = "structure",
+            member = M.TrafficMirrorFilterRule,
             traits = {
                 xml_name = "egressFilterRuleSet",
             },
         },
         NetworkServices = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "networkServiceSet",
             },
@@ -22560,7 +21587,7 @@ M.TrafficMirrorFilter = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -22571,12 +21598,9 @@ M.TrafficMirrorFilter = {
 M.CreateTrafficMirrorFilterOutput = {
     type = "structure",
     members = {
-        TrafficMirrorFilter = {
-            type = "structure",
-            traits = {
-                xml_name = "trafficMirrorFilter",
-            },
-        },
+        TrafficMirrorFilter = setmetatable({ traits = {
+            xml_name = "trafficMirrorFilter",
+        } }, { __index = M.TrafficMirrorFilter }),
         ClientToken = {
             type = "string",
             traits = {
@@ -22590,10 +21614,10 @@ M.TrafficMirrorPortRangeRequest = {
     type = "structure",
     members = {
         FromPort = {
-            type = "number",
+            type = "integer",
         },
         ToPort = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -22614,7 +21638,7 @@ M.CreateTrafficMirrorFilterRuleInput = {
             },
         },
         RuleNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -22625,14 +21649,10 @@ M.CreateTrafficMirrorFilterRuleInput = {
                 required = true,
             },
         },
-        DestinationPortRange = {
-            type = "structure",
-        },
-        SourcePortRange = {
-            type = "structure",
-        },
+        DestinationPortRange = M.TrafficMirrorPortRangeRequest,
+        SourcePortRange = M.TrafficMirrorPortRangeRequest,
         Protocol = {
-            type = "number",
+            type = "integer",
         },
         DestinationCidrBlock = {
             type = "string",
@@ -22657,7 +21677,7 @@ M.CreateTrafficMirrorFilterRuleInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -22668,12 +21688,9 @@ M.CreateTrafficMirrorFilterRuleInput = {
 M.CreateTrafficMirrorFilterRuleOutput = {
     type = "structure",
     members = {
-        TrafficMirrorFilterRule = {
-            type = "structure",
-            traits = {
-                xml_name = "trafficMirrorFilterRule",
-            },
-        },
+        TrafficMirrorFilterRule = setmetatable({ traits = {
+            xml_name = "trafficMirrorFilterRule",
+        } }, { __index = M.TrafficMirrorFilterRule }),
         ClientToken = {
             type = "string",
             traits = {
@@ -22705,23 +21722,23 @@ M.CreateTrafficMirrorSessionInput = {
             },
         },
         PacketLength = {
-            type = "number",
+            type = "integer",
         },
         SessionNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         VirtualNetworkId = {
-            type = "number",
+            type = "integer",
         },
         Description = {
             type = "string",
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -22769,19 +21786,19 @@ M.TrafficMirrorSession = {
             },
         },
         PacketLength = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "packetLength",
             },
         },
         SessionNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "sessionNumber",
             },
         },
         VirtualNetworkId = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "virtualNetworkId",
             },
@@ -22794,7 +21811,7 @@ M.TrafficMirrorSession = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -22805,12 +21822,9 @@ M.TrafficMirrorSession = {
 M.CreateTrafficMirrorSessionOutput = {
     type = "structure",
     members = {
-        TrafficMirrorSession = {
-            type = "structure",
-            traits = {
-                xml_name = "trafficMirrorSession",
-            },
-        },
+        TrafficMirrorSession = setmetatable({ traits = {
+            xml_name = "trafficMirrorSession",
+        } }, { __index = M.TrafficMirrorSession }),
         ClientToken = {
             type = "string",
             traits = {
@@ -22834,7 +21848,7 @@ M.CreateTrafficMirrorTargetInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -22898,7 +21912,7 @@ M.TrafficMirrorTarget = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -22915,12 +21929,9 @@ M.TrafficMirrorTarget = {
 M.CreateTrafficMirrorTargetOutput = {
     type = "structure",
     members = {
-        TrafficMirrorTarget = {
-            type = "structure",
-            traits = {
-                xml_name = "trafficMirrorTarget",
-            },
-        },
+        TrafficMirrorTarget = setmetatable({ traits = {
+            xml_name = "trafficMirrorTarget",
+        } }, { __index = M.TrafficMirrorTarget }),
         ClientToken = {
             type = "string",
             traits = {
@@ -22959,7 +21970,7 @@ M.TransitGatewayRequestOptions = {
     type = "structure",
     members = {
         AmazonSideAsn = {
-            type = "number",
+            type = "long",
         },
         AutoAcceptSharedAttachments = {
             type = "string",
@@ -22984,7 +21995,7 @@ M.TransitGatewayRequestOptions = {
         },
         TransitGatewayCidrBlocks = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -22995,12 +22006,10 @@ M.CreateTransitGatewayInput = {
         Description = {
             type = "string",
         },
-        Options = {
-            type = "structure",
-        },
+        Options = M.TransitGatewayRequestOptions,
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -23040,14 +22049,14 @@ M.TransitGatewayOptions = {
     type = "structure",
     members = {
         AmazonSideAsn = {
-            type = "number",
+            type = "long",
             traits = {
                 xml_name = "amazonSideAsn",
             },
         },
         TransitGatewayCidrBlocks = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "transitGatewayCidrBlocks",
             },
@@ -23106,12 +22115,9 @@ M.TransitGatewayOptions = {
                 xml_name = "multicastSupport",
             },
         },
-        EncryptionSupport = {
-            type = "structure",
-            traits = {
-                xml_name = "encryptionSupport",
-            },
-        },
+        EncryptionSupport = setmetatable({ traits = {
+            xml_name = "encryptionSupport",
+        } }, { __index = M.EncryptionSupport }),
     },
 }
 
@@ -23162,15 +22168,12 @@ M.TransitGateway = {
                 xml_name = "creationTime",
             },
         },
-        Options = {
-            type = "structure",
-            traits = {
-                xml_name = "options",
-            },
-        },
+        Options = setmetatable({ traits = {
+            xml_name = "options",
+        } }, { __index = M.TransitGatewayOptions }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -23181,12 +22184,9 @@ M.TransitGateway = {
 M.CreateTransitGatewayOutput = {
     type = "structure",
     members = {
-        TransitGateway = {
-            type = "structure",
-            traits = {
-                xml_name = "transitGateway",
-            },
-        },
+        TransitGateway = setmetatable({ traits = {
+            xml_name = "transitGateway",
+        } }, { __index = M.TransitGateway }),
     },
 }
 
@@ -23215,15 +22215,12 @@ M.CreateTransitGatewayConnectInput = {
                 required = true,
             },
         },
-        Options = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Options = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CreateTransitGatewayConnectRequestOptions }),
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -23279,15 +22276,12 @@ M.TransitGatewayConnect = {
                 xml_name = "creationTime",
             },
         },
-        Options = {
-            type = "structure",
-            traits = {
-                xml_name = "options",
-            },
-        },
+        Options = setmetatable({ traits = {
+            xml_name = "options",
+        } }, { __index = M.TransitGatewayConnectOptions }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -23298,12 +22292,9 @@ M.TransitGatewayConnect = {
 M.CreateTransitGatewayConnectOutput = {
     type = "structure",
     members = {
-        TransitGatewayConnect = {
-            type = "structure",
-            traits = {
-                xml_name = "transitGatewayConnect",
-            },
-        },
+        TransitGatewayConnect = setmetatable({ traits = {
+            xml_name = "transitGatewayConnect",
+        } }, { __index = M.TransitGatewayConnect }),
     },
 }
 
@@ -23311,7 +22302,7 @@ M.TransitGatewayConnectRequestBgpOptions = {
     type = "structure",
     members = {
         PeerAsn = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -23334,19 +22325,17 @@ M.CreateTransitGatewayConnectPeerInput = {
                 required = true,
             },
         },
-        BgpOptions = {
-            type = "structure",
-        },
+        BgpOptions = M.TransitGatewayConnectRequestBgpOptions,
         InsideCidrBlocks = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -23366,13 +22355,13 @@ M.TransitGatewayAttachmentBgpConfiguration = {
     type = "structure",
     members = {
         TransitGatewayAsn = {
-            type = "number",
+            type = "long",
             traits = {
                 xml_name = "transitGatewayAsn",
             },
         },
         PeerAsn = {
-            type = "number",
+            type = "long",
             traits = {
                 xml_name = "peerAsn",
             },
@@ -23415,7 +22404,7 @@ M.TransitGatewayConnectPeerConfiguration = {
         },
         InsideCidrBlocks = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "insideCidrBlocks",
             },
@@ -23428,7 +22417,7 @@ M.TransitGatewayConnectPeerConfiguration = {
         },
         BgpConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.TransitGatewayAttachmentBgpConfiguration,
             traits = {
                 xml_name = "bgpConfigurations",
             },
@@ -23470,15 +22459,12 @@ M.TransitGatewayConnectPeer = {
                 xml_name = "creationTime",
             },
         },
-        ConnectPeerConfiguration = {
-            type = "structure",
-            traits = {
-                xml_name = "connectPeerConfiguration",
-            },
-        },
+        ConnectPeerConfiguration = setmetatable({ traits = {
+            xml_name = "connectPeerConfiguration",
+        } }, { __index = M.TransitGatewayConnectPeerConfiguration }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -23489,12 +22475,9 @@ M.TransitGatewayConnectPeer = {
 M.CreateTransitGatewayConnectPeerOutput = {
     type = "structure",
     members = {
-        TransitGatewayConnectPeer = {
-            type = "structure",
-            traits = {
-                xml_name = "transitGatewayConnectPeer",
-            },
-        },
+        TransitGatewayConnectPeer = setmetatable({ traits = {
+            xml_name = "transitGatewayConnectPeer",
+        } }, { __index = M.TransitGatewayConnectPeer }),
     },
 }
 
@@ -23509,14 +22492,14 @@ M.CreateTransitGatewayMeteringPolicyInput = {
         },
         MiddleboxAttachmentIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "MiddleboxAttachmentId",
             },
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
         },
         DryRun = {
             type = "boolean",
@@ -23549,7 +22532,7 @@ M.TransitGatewayMeteringPolicy = {
         },
         MiddleboxAttachmentIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "middleboxAttachmentIdSet",
             },
@@ -23568,7 +22551,7 @@ M.TransitGatewayMeteringPolicy = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -23579,12 +22562,9 @@ M.TransitGatewayMeteringPolicy = {
 M.CreateTransitGatewayMeteringPolicyOutput = {
     type = "structure",
     members = {
-        TransitGatewayMeteringPolicy = {
-            type = "structure",
-            traits = {
-                xml_name = "transitGatewayMeteringPolicy",
-            },
-        },
+        TransitGatewayMeteringPolicy = setmetatable({ traits = {
+            xml_name = "transitGatewayMeteringPolicy",
+        } }, { __index = M.TransitGatewayMeteringPolicy }),
     },
 }
 
@@ -23604,7 +22584,7 @@ M.CreateTransitGatewayMeteringPolicyEntryInput = {
             },
         },
         PolicyRuleNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -23746,24 +22726,18 @@ M.TransitGatewayMeteringPolicyEntry = {
                 xml_name = "updateEffectiveAt",
             },
         },
-        MeteringPolicyRule = {
-            type = "structure",
-            traits = {
-                xml_name = "meteringPolicyRule",
-            },
-        },
+        MeteringPolicyRule = setmetatable({ traits = {
+            xml_name = "meteringPolicyRule",
+        } }, { __index = M.TransitGatewayMeteringPolicyRule }),
     },
 }
 
 M.CreateTransitGatewayMeteringPolicyEntryOutput = {
     type = "structure",
     members = {
-        TransitGatewayMeteringPolicyEntry = {
-            type = "structure",
-            traits = {
-                xml_name = "transitGatewayMeteringPolicyEntry",
-            },
-        },
+        TransitGatewayMeteringPolicyEntry = setmetatable({ traits = {
+            xml_name = "transitGatewayMeteringPolicyEntry",
+        } }, { __index = M.TransitGatewayMeteringPolicyEntry }),
     },
 }
 
@@ -23806,12 +22780,10 @@ M.CreateTransitGatewayMulticastDomainInput = {
                 required = true,
             },
         },
-        Options = {
-            type = "structure",
-        },
+        Options = M.CreateTransitGatewayMulticastDomainRequestOptions,
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -23880,12 +22852,9 @@ M.TransitGatewayMulticastDomain = {
                 xml_name = "ownerId",
             },
         },
-        Options = {
-            type = "structure",
-            traits = {
-                xml_name = "options",
-            },
-        },
+        Options = setmetatable({ traits = {
+            xml_name = "options",
+        } }, { __index = M.TransitGatewayMulticastDomainOptions }),
         State = {
             type = "string",
             traits = {
@@ -23900,7 +22869,7 @@ M.TransitGatewayMulticastDomain = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -23911,12 +22880,9 @@ M.TransitGatewayMulticastDomain = {
 M.CreateTransitGatewayMulticastDomainOutput = {
     type = "structure",
     members = {
-        TransitGatewayMulticastDomain = {
-            type = "structure",
-            traits = {
-                xml_name = "transitGatewayMulticastDomain",
-            },
-        },
+        TransitGatewayMulticastDomain = setmetatable({ traits = {
+            xml_name = "transitGatewayMulticastDomain",
+        } }, { __index = M.TransitGatewayMulticastDomain }),
     },
 }
 
@@ -23956,12 +22922,10 @@ M.CreateTransitGatewayPeeringAttachmentInput = {
                 required = true,
             },
         },
-        Options = {
-            type = "structure",
-        },
+        Options = M.CreateTransitGatewayPeeringAttachmentRequestOptions,
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -23975,12 +22939,9 @@ M.CreateTransitGatewayPeeringAttachmentInput = {
 M.CreateTransitGatewayPeeringAttachmentOutput = {
     type = "structure",
     members = {
-        TransitGatewayPeeringAttachment = {
-            type = "structure",
-            traits = {
-                xml_name = "transitGatewayPeeringAttachment",
-            },
-        },
+        TransitGatewayPeeringAttachment = setmetatable({ traits = {
+            xml_name = "transitGatewayPeeringAttachment",
+        } }, { __index = M.TransitGatewayPeeringAttachment }),
     },
 }
 
@@ -23995,7 +22956,7 @@ M.CreateTransitGatewayPolicyTableInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
         },
         DryRun = {
             type = "boolean",
@@ -24039,7 +23000,7 @@ M.TransitGatewayPolicyTable = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -24050,12 +23011,9 @@ M.TransitGatewayPolicyTable = {
 M.CreateTransitGatewayPolicyTableOutput = {
     type = "structure",
     members = {
-        TransitGatewayPolicyTable = {
-            type = "structure",
-            traits = {
-                xml_name = "transitGatewayPolicyTable",
-            },
-        },
+        TransitGatewayPolicyTable = setmetatable({ traits = {
+            xml_name = "transitGatewayPolicyTable",
+        } }, { __index = M.TransitGatewayPolicyTable }),
     },
 }
 
@@ -24150,24 +23108,18 @@ M.TransitGatewayPrefixListReference = {
                 xml_name = "blackhole",
             },
         },
-        TransitGatewayAttachment = {
-            type = "structure",
-            traits = {
-                xml_name = "transitGatewayAttachment",
-            },
-        },
+        TransitGatewayAttachment = setmetatable({ traits = {
+            xml_name = "transitGatewayAttachment",
+        } }, { __index = M.TransitGatewayPrefixListAttachment }),
     },
 }
 
 M.CreateTransitGatewayPrefixListReferenceOutput = {
     type = "structure",
     members = {
-        TransitGatewayPrefixListReference = {
-            type = "structure",
-            traits = {
-                xml_name = "transitGatewayPrefixListReference",
-            },
-        },
+        TransitGatewayPrefixListReference = setmetatable({ traits = {
+            xml_name = "transitGatewayPrefixListReference",
+        } }, { __index = M.TransitGatewayPrefixListReference }),
     },
 }
 
@@ -24258,7 +23210,7 @@ M.TransitGatewayRoute = {
         },
         TransitGatewayAttachments = {
             type = "list",
-            member_type = "structure",
+            member = M.TransitGatewayRouteAttachment,
             traits = {
                 xml_name = "transitGatewayAttachments",
             },
@@ -24281,12 +23233,9 @@ M.TransitGatewayRoute = {
 M.CreateTransitGatewayRouteOutput = {
     type = "structure",
     members = {
-        Route = {
-            type = "structure",
-            traits = {
-                xml_name = "route",
-            },
-        },
+        Route = setmetatable({ traits = {
+            xml_name = "route",
+        } }, { __index = M.TransitGatewayRoute }),
     },
 }
 
@@ -24301,7 +23250,7 @@ M.CreateTransitGatewayRouteTableInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
         },
         DryRun = {
             type = "boolean",
@@ -24357,7 +23306,7 @@ M.TransitGatewayRouteTable = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -24368,12 +23317,9 @@ M.TransitGatewayRouteTable = {
 M.CreateTransitGatewayRouteTableOutput = {
     type = "structure",
     members = {
-        TransitGatewayRouteTable = {
-            type = "structure",
-            traits = {
-                xml_name = "transitGatewayRouteTable",
-            },
-        },
+        TransitGatewayRouteTable = setmetatable({ traits = {
+            xml_name = "transitGatewayRouteTable",
+        } }, { __index = M.TransitGatewayRouteTable }),
     },
 }
 
@@ -24394,7 +23340,7 @@ M.CreateTransitGatewayRouteTableAnnouncementInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -24484,7 +23430,7 @@ M.TransitGatewayRouteTableAnnouncement = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -24495,12 +23441,9 @@ M.TransitGatewayRouteTableAnnouncement = {
 M.CreateTransitGatewayRouteTableAnnouncementOutput = {
     type = "structure",
     members = {
-        TransitGatewayRouteTableAnnouncement = {
-            type = "structure",
-            traits = {
-                xml_name = "transitGatewayRouteTableAnnouncement",
-            },
-        },
+        TransitGatewayRouteTableAnnouncement = setmetatable({ traits = {
+            xml_name = "transitGatewayRouteTableAnnouncement",
+        } }, { __index = M.TransitGatewayRouteTableAnnouncement }),
     },
 }
 
@@ -24539,17 +23482,15 @@ M.CreateTransitGatewayVpcAttachmentInput = {
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        Options = {
-            type = "structure",
-        },
+        Options = M.CreateTransitGatewayVpcAttachmentRequestOptions,
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
         },
         DryRun = {
             type = "boolean",
@@ -24560,12 +23501,9 @@ M.CreateTransitGatewayVpcAttachmentInput = {
 M.CreateTransitGatewayVpcAttachmentOutput = {
     type = "structure",
     members = {
-        TransitGatewayVpcAttachment = {
-            type = "structure",
-            traits = {
-                xml_name = "transitGatewayVpcAttachment",
-            },
-        },
+        TransitGatewayVpcAttachment = setmetatable({ traits = {
+            xml_name = "transitGatewayVpcAttachment",
+        } }, { __index = M.TransitGatewayVpcAttachment }),
     },
 }
 
@@ -24577,10 +23515,10 @@ M.CreateVerifiedAccessEndpointPortRange = {
     type = "structure",
     members = {
         FromPort = {
-            type = "number",
+            type = "integer",
         },
         ToPort = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -24599,7 +23537,7 @@ M.CreateVerifiedAccessEndpointCidrOptions = {
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "SubnetId",
             },
@@ -24609,7 +23547,7 @@ M.CreateVerifiedAccessEndpointCidrOptions = {
         },
         PortRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.CreateVerifiedAccessEndpointPortRange,
             traits = {
                 xml_name = "PortRange",
             },
@@ -24631,21 +23569,21 @@ M.CreateVerifiedAccessEndpointLoadBalancerOptions = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         LoadBalancerArn = {
             type = "string",
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "SubnetId",
             },
         },
         PortRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.CreateVerifiedAccessEndpointPortRange,
             traits = {
                 xml_name = "PortRange",
             },
@@ -24663,11 +23601,11 @@ M.CreateVerifiedAccessEndpointEniOptions = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         PortRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.CreateVerifiedAccessEndpointPortRange,
             traits = {
                 xml_name = "PortRange",
             },
@@ -24682,7 +23620,7 @@ M.CreateVerifiedAccessEndpointRdsOptions = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         RdsDbInstanceArn = {
             type = "string",
@@ -24698,7 +23636,7 @@ M.CreateVerifiedAccessEndpointRdsOptions = {
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "SubnetId",
             },
@@ -24750,17 +23688,13 @@ M.CreateVerifiedAccessEndpointInput = {
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "SecurityGroupId",
             },
         },
-        LoadBalancerOptions = {
-            type = "structure",
-        },
-        NetworkInterfaceOptions = {
-            type = "structure",
-        },
+        LoadBalancerOptions = M.CreateVerifiedAccessEndpointLoadBalancerOptions,
+        NetworkInterfaceOptions = M.CreateVerifiedAccessEndpointEniOptions,
         Description = {
             type = "string",
         },
@@ -24769,7 +23703,7 @@ M.CreateVerifiedAccessEndpointInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -24780,15 +23714,9 @@ M.CreateVerifiedAccessEndpointInput = {
         DryRun = {
             type = "boolean",
         },
-        SseSpecification = {
-            type = "structure",
-        },
-        RdsOptions = {
-            type = "structure",
-        },
-        CidrOptions = {
-            type = "structure",
-        },
+        SseSpecification = M.VerifiedAccessSseSpecificationRequest,
+        RdsOptions = M.CreateVerifiedAccessEndpointRdsOptions,
+        CidrOptions = M.CreateVerifiedAccessEndpointCidrOptions,
     },
 }
 
@@ -24796,13 +23724,13 @@ M.VerifiedAccessEndpointPortRange = {
     type = "structure",
     members = {
         FromPort = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "fromPort",
             },
         },
         ToPort = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "toPort",
             },
@@ -24821,7 +23749,7 @@ M.VerifiedAccessEndpointCidrOptions = {
         },
         PortRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.VerifiedAccessEndpointPortRange,
             traits = {
                 xml_name = "portRangeSet",
             },
@@ -24834,7 +23762,7 @@ M.VerifiedAccessEndpointCidrOptions = {
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "subnetIdSet",
             },
@@ -24852,7 +23780,7 @@ M.VerifiedAccessEndpointLoadBalancerOptions = {
             },
         },
         Port = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "port",
             },
@@ -24865,14 +23793,14 @@ M.VerifiedAccessEndpointLoadBalancerOptions = {
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "subnetIdSet",
             },
         },
         PortRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.VerifiedAccessEndpointPortRange,
             traits = {
                 xml_name = "portRangeSet",
             },
@@ -24896,14 +23824,14 @@ M.VerifiedAccessEndpointEniOptions = {
             },
         },
         Port = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "port",
             },
         },
         PortRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.VerifiedAccessEndpointPortRange,
             traits = {
                 xml_name = "portRangeSet",
             },
@@ -24921,7 +23849,7 @@ M.VerifiedAccessEndpointRdsOptions = {
             },
         },
         Port = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "port",
             },
@@ -24952,7 +23880,7 @@ M.VerifiedAccessEndpointRdsOptions = {
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "subnetIdSet",
             },
@@ -25045,29 +23973,20 @@ M.VerifiedAccessEndpoint = {
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "securityGroupIdSet",
             },
         },
-        LoadBalancerOptions = {
-            type = "structure",
-            traits = {
-                xml_name = "loadBalancerOptions",
-            },
-        },
-        NetworkInterfaceOptions = {
-            type = "structure",
-            traits = {
-                xml_name = "networkInterfaceOptions",
-            },
-        },
-        Status = {
-            type = "structure",
-            traits = {
-                xml_name = "status",
-            },
-        },
+        LoadBalancerOptions = setmetatable({ traits = {
+            xml_name = "loadBalancerOptions",
+        } }, { __index = M.VerifiedAccessEndpointLoadBalancerOptions }),
+        NetworkInterfaceOptions = setmetatable({ traits = {
+            xml_name = "networkInterfaceOptions",
+        } }, { __index = M.VerifiedAccessEndpointEniOptions }),
+        Status = setmetatable({ traits = {
+            xml_name = "status",
+        } }, { __index = M.VerifiedAccessEndpointStatus }),
         Description = {
             type = "string",
             traits = {
@@ -25094,41 +24013,29 @@ M.VerifiedAccessEndpoint = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
         },
-        SseSpecification = {
-            type = "structure",
-            traits = {
-                xml_name = "sseSpecification",
-            },
-        },
-        RdsOptions = {
-            type = "structure",
-            traits = {
-                xml_name = "rdsOptions",
-            },
-        },
-        CidrOptions = {
-            type = "structure",
-            traits = {
-                xml_name = "cidrOptions",
-            },
-        },
+        SseSpecification = setmetatable({ traits = {
+            xml_name = "sseSpecification",
+        } }, { __index = M.VerifiedAccessSseSpecificationResponse }),
+        RdsOptions = setmetatable({ traits = {
+            xml_name = "rdsOptions",
+        } }, { __index = M.VerifiedAccessEndpointRdsOptions }),
+        CidrOptions = setmetatable({ traits = {
+            xml_name = "cidrOptions",
+        } }, { __index = M.VerifiedAccessEndpointCidrOptions }),
     },
 }
 
 M.CreateVerifiedAccessEndpointOutput = {
     type = "structure",
     members = {
-        VerifiedAccessEndpoint = {
-            type = "structure",
-            traits = {
-                xml_name = "verifiedAccessEndpoint",
-            },
-        },
+        VerifiedAccessEndpoint = setmetatable({ traits = {
+            xml_name = "verifiedAccessEndpoint",
+        } }, { __index = M.VerifiedAccessEndpoint }),
     },
 }
 
@@ -25149,7 +24056,7 @@ M.CreateVerifiedAccessGroupInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -25160,9 +24067,7 @@ M.CreateVerifiedAccessGroupInput = {
         DryRun = {
             type = "boolean",
         },
-        SseSpecification = {
-            type = "structure",
-        },
+        SseSpecification = M.VerifiedAccessSseSpecificationRequest,
     },
 }
 
@@ -25219,29 +24124,23 @@ M.VerifiedAccessGroup = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
         },
-        SseSpecification = {
-            type = "structure",
-            traits = {
-                xml_name = "sseSpecification",
-            },
-        },
+        SseSpecification = setmetatable({ traits = {
+            xml_name = "sseSpecification",
+        } }, { __index = M.VerifiedAccessSseSpecificationResponse }),
     },
 }
 
 M.CreateVerifiedAccessGroupOutput = {
     type = "structure",
     members = {
-        VerifiedAccessGroup = {
-            type = "structure",
-            traits = {
-                xml_name = "verifiedAccessGroup",
-            },
-        },
+        VerifiedAccessGroup = setmetatable({ traits = {
+            xml_name = "verifiedAccessGroup",
+        } }, { __index = M.VerifiedAccessGroup }),
     },
 }
 
@@ -25253,7 +24152,7 @@ M.CreateVerifiedAccessInstanceInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -25276,12 +24175,9 @@ M.CreateVerifiedAccessInstanceInput = {
 M.CreateVerifiedAccessInstanceOutput = {
     type = "structure",
     members = {
-        VerifiedAccessInstance = {
-            type = "structure",
-            traits = {
-                xml_name = "verifiedAccessInstance",
-            },
-        },
+        VerifiedAccessInstance = setmetatable({ traits = {
+            xml_name = "verifiedAccessInstance",
+        } }, { __index = M.VerifiedAccessInstance }),
     },
 }
 
@@ -25369,12 +24265,8 @@ M.CreateVerifiedAccessTrustProviderInput = {
         DeviceTrustProviderType = {
             type = "string",
         },
-        OidcOptions = {
-            type = "structure",
-        },
-        DeviceOptions = {
-            type = "structure",
-        },
+        OidcOptions = M.CreateVerifiedAccessTrustProviderOidcOptions,
+        DeviceOptions = M.CreateVerifiedAccessTrustProviderDeviceOptions,
         PolicyReferenceName = {
             type = "string",
             traits = {
@@ -25386,7 +24278,7 @@ M.CreateVerifiedAccessTrustProviderInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -25397,24 +24289,17 @@ M.CreateVerifiedAccessTrustProviderInput = {
         DryRun = {
             type = "boolean",
         },
-        SseSpecification = {
-            type = "structure",
-        },
-        NativeApplicationOidcOptions = {
-            type = "structure",
-        },
+        SseSpecification = M.VerifiedAccessSseSpecificationRequest,
+        NativeApplicationOidcOptions = M.CreateVerifiedAccessNativeApplicationOidcOptions,
     },
 }
 
 M.CreateVerifiedAccessTrustProviderOutput = {
     type = "structure",
     members = {
-        VerifiedAccessTrustProvider = {
-            type = "structure",
-            traits = {
-                xml_name = "verifiedAccessTrustProvider",
-            },
-        },
+        VerifiedAccessTrustProvider = setmetatable({ traits = {
+            xml_name = "verifiedAccessTrustProvider",
+        } }, { __index = M.VerifiedAccessTrustProvider }),
     },
 }
 
@@ -25434,7 +24319,7 @@ M.CreateVolumeInput = {
             },
         },
         Iops = {
-            type = "number",
+            type = "integer",
         },
         KmsKeyId = {
             type = "string",
@@ -25443,7 +24328,7 @@ M.CreateVolumeInput = {
             type = "string",
         },
         Size = {
-            type = "number",
+            type = "integer",
         },
         SnapshotId = {
             type = "string",
@@ -25453,7 +24338,7 @@ M.CreateVolumeInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -25462,17 +24347,15 @@ M.CreateVolumeInput = {
             type = "boolean",
         },
         Throughput = {
-            type = "number",
+            type = "integer",
         },
         ClientToken = {
             type = "string",
         },
         VolumeInitializationRate = {
-            type = "number",
+            type = "integer",
         },
-        Operator = {
-            type = "structure",
-        },
+        Operator = M.OperatorRequest,
         DryRun = {
             type = "boolean",
             traits = {
@@ -25504,14 +24387,14 @@ M.CreateVolumeOutput = {
             },
         },
         Iops = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "iops",
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -25535,7 +24418,7 @@ M.CreateVolumeOutput = {
             },
         },
         Throughput = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "throughput",
             },
@@ -25546,14 +24429,11 @@ M.CreateVolumeOutput = {
                 xml_name = "sseType",
             },
         },
-        Operator = {
-            type = "structure",
-            traits = {
-                xml_name = "operator",
-            },
-        },
+        Operator = setmetatable({ traits = {
+            xml_name = "operator",
+        } }, { __index = M.OperatorResponse }),
         VolumeInitializationRate = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "volumeInitializationRate",
             },
@@ -25565,7 +24445,7 @@ M.CreateVolumeOutput = {
             },
         },
         Size = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "size",
             },
@@ -25596,7 +24476,7 @@ M.CreateVolumeOutput = {
         },
         Attachments = {
             type = "list",
-            member_type = "structure",
+            member = M.VolumeAttachment,
             traits = {
                 xml_name = "attachmentSet",
             },
@@ -25673,23 +24553,21 @@ M.CreateVpcInput = {
             type = "string",
         },
         Ipv4NetmaskLength = {
-            type = "number",
+            type = "integer",
         },
         Ipv6IpamPoolId = {
             type = "string",
         },
         Ipv6NetmaskLength = {
-            type = "number",
+            type = "integer",
         },
         Ipv6CidrBlockNetworkBorderGroup = {
             type = "string",
         },
-        VpcEncryptionControl = {
-            type = "structure",
-        },
+        VpcEncryptionControl = M.VpcEncryptionControlConfiguration,
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -25718,12 +24596,9 @@ M.CreateVpcInput = {
 M.CreateVpcOutput = {
     type = "structure",
     members = {
-        Vpc = {
-            type = "structure",
-            traits = {
-                xml_name = "vpc",
-            },
-        },
+        Vpc = setmetatable({ traits = {
+            xml_name = "vpc",
+        } }, { __index = M.Vpc }),
     },
 }
 
@@ -25752,7 +24627,7 @@ M.CreateVpcBlockPublicAccessExclusionInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -25826,7 +24701,7 @@ M.VpcBlockPublicAccessExclusion = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -25837,12 +24712,9 @@ M.VpcBlockPublicAccessExclusion = {
 M.CreateVpcBlockPublicAccessExclusionOutput = {
     type = "structure",
     members = {
-        VpcBlockPublicAccessExclusion = {
-            type = "structure",
-            traits = {
-                xml_name = "vpcBlockPublicAccessExclusion",
-            },
-        },
+        VpcBlockPublicAccessExclusion = setmetatable({ traits = {
+            xml_name = "vpcBlockPublicAccessExclusion",
+        } }, { __index = M.VpcBlockPublicAccessExclusion }),
     },
 }
 
@@ -25860,7 +24732,7 @@ M.CreateVpcEncryptionControlInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -25871,12 +24743,9 @@ M.CreateVpcEncryptionControlInput = {
 M.CreateVpcEncryptionControlOutput = {
     type = "structure",
     members = {
-        VpcEncryptionControl = {
-            type = "structure",
-            traits = {
-                xml_name = "vpcEncryptionControl",
-            },
-        },
+        VpcEncryptionControl = setmetatable({ traits = {
+            xml_name = "vpcEncryptionControl",
+        } }, { __index = M.VpcEncryptionControl }),
     },
 }
 
@@ -25901,7 +24770,7 @@ M.DnsOptionsSpecification = {
         },
         PrivateDnsSpecifiedDomains = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "PrivateDnsSpecifiedDomain",
             },
@@ -25955,21 +24824,21 @@ M.CreateVpcEndpointInput = {
         },
         RouteTableIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "RouteTableId",
             },
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "SubnetId",
             },
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "SecurityGroupId",
             },
@@ -25977,9 +24846,7 @@ M.CreateVpcEndpointInput = {
         IpAddressType = {
             type = "string",
         },
-        DnsOptions = {
-            type = "structure",
-        },
+        DnsOptions = M.DnsOptionsSpecification,
         ClientToken = {
             type = "string",
         },
@@ -25988,14 +24855,14 @@ M.CreateVpcEndpointInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
         },
         SubnetConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.SubnetConfiguration,
             traits = {
                 xml_name = "SubnetConfiguration",
             },
@@ -26053,7 +24920,7 @@ M.DnsOptions = {
         },
         PrivateDnsSpecifiedDomains = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "privateDnsSpecifiedDomainSet",
             },
@@ -26090,7 +24957,7 @@ M.SubnetIpPrefixes = {
         },
         IpPrefixes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "ipPrefixSet",
             },
@@ -26169,21 +25036,21 @@ M.VpcEndpoint = {
         },
         RouteTableIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "routeTableIdSet",
             },
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "subnetIdSet",
             },
         },
         Groups = {
             type = "list",
-            member_type = "structure",
+            member = M.SecurityGroupIdentifier,
             traits = {
                 xml_name = "groupSet",
             },
@@ -26194,12 +25061,9 @@ M.VpcEndpoint = {
                 xml_name = "ipAddressType",
             },
         },
-        DnsOptions = {
-            type = "structure",
-            traits = {
-                xml_name = "dnsOptions",
-            },
-        },
+        DnsOptions = setmetatable({ traits = {
+            xml_name = "dnsOptions",
+        } }, { __index = M.DnsOptions }),
         PrivateDnsEnabled = {
             type = "boolean",
             traits = {
@@ -26214,14 +25078,14 @@ M.VpcEndpoint = {
         },
         NetworkInterfaceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "networkInterfaceIdSet",
             },
         },
         DnsEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.DnsEntry,
             traits = {
                 xml_name = "dnsEntrySet",
             },
@@ -26234,7 +25098,7 @@ M.VpcEndpoint = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -26245,22 +25109,19 @@ M.VpcEndpoint = {
                 xml_name = "ownerId",
             },
         },
-        LastError = {
-            type = "structure",
-            traits = {
-                xml_name = "lastError",
-            },
-        },
+        LastError = setmetatable({ traits = {
+            xml_name = "lastError",
+        } }, { __index = M.LastError }),
         Ipv4Prefixes = {
             type = "list",
-            member_type = "structure",
+            member = M.SubnetIpPrefixes,
             traits = {
                 xml_name = "ipv4PrefixSet",
             },
         },
         Ipv6Prefixes = {
             type = "list",
-            member_type = "structure",
+            member = M.SubnetIpPrefixes,
             traits = {
                 xml_name = "ipv6PrefixSet",
             },
@@ -26295,12 +25156,9 @@ M.VpcEndpoint = {
 M.CreateVpcEndpointOutput = {
     type = "structure",
     members = {
-        VpcEndpoint = {
-            type = "structure",
-            traits = {
-                xml_name = "vpcEndpoint",
-            },
-        },
+        VpcEndpoint = setmetatable({ traits = {
+            xml_name = "vpcEndpoint",
+        } }, { __index = M.VpcEndpoint }),
         ClientToken = {
             type = "string",
             traits = {
@@ -26330,7 +25188,7 @@ M.CreateVpcEndpointConnectionNotificationInput = {
         },
         ConnectionEvents = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -26385,7 +25243,7 @@ M.ConnectionNotification = {
         },
         ConnectionEvents = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "connectionEvents",
             },
@@ -26408,12 +25266,9 @@ M.ConnectionNotification = {
 M.CreateVpcEndpointConnectionNotificationOutput = {
     type = "structure",
     members = {
-        ConnectionNotification = {
-            type = "structure",
-            traits = {
-                xml_name = "connectionNotification",
-            },
-        },
+        ConnectionNotification = setmetatable({ traits = {
+            xml_name = "connectionNotification",
+        } }, { __index = M.ConnectionNotification }),
         ClientToken = {
             type = "string",
             traits = {
@@ -26437,28 +25292,28 @@ M.CreateVpcEndpointServiceConfigurationInput = {
         },
         NetworkLoadBalancerArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "NetworkLoadBalancerArn",
             },
         },
         GatewayLoadBalancerArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "GatewayLoadBalancerArn",
             },
         },
         SupportedIpAddressTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "SupportedIpAddressType",
             },
         },
         SupportedRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "SupportedRegion",
             },
@@ -26468,7 +25323,7 @@ M.CreateVpcEndpointServiceConfigurationInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -26570,7 +25425,7 @@ M.ServiceConfiguration = {
     members = {
         ServiceType = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceTypeDetail,
             traits = {
                 xml_name = "serviceType",
             },
@@ -26595,14 +25450,14 @@ M.ServiceConfiguration = {
         },
         AvailabilityZoneIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "availabilityZoneIdSet",
             },
         },
         AvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "availabilityZoneSet",
             },
@@ -26621,28 +25476,28 @@ M.ServiceConfiguration = {
         },
         NetworkLoadBalancerArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "networkLoadBalancerArnSet",
             },
         },
         GatewayLoadBalancerArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "gatewayLoadBalancerArnSet",
             },
         },
         SupportedIpAddressTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "supportedIpAddressTypeSet",
             },
         },
         BaseEndpointDnsNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "baseEndpointDnsNameSet",
             },
@@ -26653,12 +25508,9 @@ M.ServiceConfiguration = {
                 xml_name = "privateDnsName",
             },
         },
-        PrivateDnsNameConfiguration = {
-            type = "structure",
-            traits = {
-                xml_name = "privateDnsNameConfiguration",
-            },
-        },
+        PrivateDnsNameConfiguration = setmetatable({ traits = {
+            xml_name = "privateDnsNameConfiguration",
+        } }, { __index = M.PrivateDnsNameConfiguration }),
         PayerResponsibility = {
             type = "string",
             traits = {
@@ -26667,14 +25519,14 @@ M.ServiceConfiguration = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
         },
         SupportedRegions = {
             type = "list",
-            member_type = "structure",
+            member = M.SupportedRegionDetail,
             traits = {
                 xml_name = "supportedRegionSet",
             },
@@ -26691,12 +25543,9 @@ M.ServiceConfiguration = {
 M.CreateVpcEndpointServiceConfigurationOutput = {
     type = "structure",
     members = {
-        ServiceConfiguration = {
-            type = "structure",
-            traits = {
-                xml_name = "serviceConfiguration",
-            },
-        },
+        ServiceConfiguration = setmetatable({ traits = {
+            xml_name = "serviceConfiguration",
+        } }, { __index = M.ServiceConfiguration }),
         ClientToken = {
             type = "string",
             traits = {
@@ -26714,7 +25563,7 @@ M.CreateVpcPeeringConnectionInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -26750,12 +25599,9 @@ M.CreateVpcPeeringConnectionInput = {
 M.CreateVpcPeeringConnectionOutput = {
     type = "structure",
     members = {
-        VpcPeeringConnection = {
-            type = "structure",
-            traits = {
-                xml_name = "vpcPeeringConnection",
-            },
-        },
+        VpcPeeringConnection = setmetatable({ traits = {
+            xml_name = "vpcPeeringConnection",
+        } }, { __index = M.VpcPeeringConnection }),
     },
 }
 
@@ -26777,7 +25623,7 @@ M.CreateVpnConcentratorInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -26823,7 +25669,7 @@ M.VpnConcentrator = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -26834,12 +25680,9 @@ M.VpnConcentrator = {
 M.CreateVpnConcentratorOutput = {
     type = "structure",
     members = {
-        VpnConcentrator = {
-            type = "structure",
-            traits = {
-                xml_name = "vpnConcentrator",
-            },
-        },
+        VpnConcentrator = setmetatable({ traits = {
+            xml_name = "vpnConcentrator",
+        } }, { __index = M.VpnConcentrator }),
     },
 }
 
@@ -26889,9 +25732,7 @@ M.CloudWatchLogOptionsSpecification = {
 M.VpnTunnelLogOptionsSpecification = {
     type = "structure",
     members = {
-        CloudWatchLogOptions = {
-            type = "structure",
-        },
+        CloudWatchLogOptions = M.CloudWatchLogOptionsSpecification,
     },
 }
 
@@ -26899,7 +25740,7 @@ M.Phase1DHGroupNumbersRequestListValue = {
     type = "structure",
     members = {
         Value = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -26926,7 +25767,7 @@ M.Phase2DHGroupNumbersRequestListValue = {
     type = "structure",
     members = {
         Value = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -26962,71 +25803,71 @@ M.VpnTunnelOptionsSpecification = {
             type = "string",
         },
         Phase1LifetimeSeconds = {
-            type = "number",
+            type = "integer",
         },
         Phase2LifetimeSeconds = {
-            type = "number",
+            type = "integer",
         },
         RekeyMarginTimeSeconds = {
-            type = "number",
+            type = "integer",
         },
         RekeyFuzzPercentage = {
-            type = "number",
+            type = "integer",
         },
         ReplayWindowSize = {
-            type = "number",
+            type = "integer",
         },
         DPDTimeoutSeconds = {
-            type = "number",
+            type = "integer",
         },
         DPDTimeoutAction = {
             type = "string",
         },
         Phase1EncryptionAlgorithms = {
             type = "list",
-            member_type = "structure",
+            member = M.Phase1EncryptionAlgorithmsRequestListValue,
             traits = {
                 xml_name = "Phase1EncryptionAlgorithm",
             },
         },
         Phase2EncryptionAlgorithms = {
             type = "list",
-            member_type = "structure",
+            member = M.Phase2EncryptionAlgorithmsRequestListValue,
             traits = {
                 xml_name = "Phase2EncryptionAlgorithm",
             },
         },
         Phase1IntegrityAlgorithms = {
             type = "list",
-            member_type = "structure",
+            member = M.Phase1IntegrityAlgorithmsRequestListValue,
             traits = {
                 xml_name = "Phase1IntegrityAlgorithm",
             },
         },
         Phase2IntegrityAlgorithms = {
             type = "list",
-            member_type = "structure",
+            member = M.Phase2IntegrityAlgorithmsRequestListValue,
             traits = {
                 xml_name = "Phase2IntegrityAlgorithm",
             },
         },
         Phase1DHGroupNumbers = {
             type = "list",
-            member_type = "structure",
+            member = M.Phase1DHGroupNumbersRequestListValue,
             traits = {
                 xml_name = "Phase1DHGroupNumber",
             },
         },
         Phase2DHGroupNumbers = {
             type = "list",
-            member_type = "structure",
+            member = M.Phase2DHGroupNumbersRequestListValue,
             traits = {
                 xml_name = "Phase2DHGroupNumber",
             },
         },
         IKEVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.IKEVersionsRequestListValue,
             traits = {
                 xml_name = "IKEVersion",
             },
@@ -27034,9 +25875,7 @@ M.VpnTunnelOptionsSpecification = {
         StartupAction = {
             type = "string",
         },
-        LogOptions = {
-            type = "structure",
-        },
+        LogOptions = M.VpnTunnelLogOptionsSpecification,
         EnableTunnelLifecycleControl = {
             type = "boolean",
         },
@@ -27054,7 +25893,7 @@ M.VpnConnectionOptionsSpecification = {
         },
         TunnelOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.VpnTunnelOptionsSpecification,
         },
         LocalIpv4NetworkCidr = {
             type = "string",
@@ -27112,7 +25951,7 @@ M.CreateVpnConnectionInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -27126,12 +25965,9 @@ M.CreateVpnConnectionInput = {
                 xml_name = "dryRun",
             },
         },
-        Options = {
-            type = "structure",
-            traits = {
-                xml_name = "options",
-            },
-        },
+        Options = setmetatable({ traits = {
+            xml_name = "options",
+        } }, { __index = M.VpnConnectionOptionsSpecification }),
     },
 }
 
@@ -27199,12 +26035,9 @@ M.CloudWatchLogOptions = {
 M.VpnTunnelLogOptions = {
     type = "structure",
     members = {
-        CloudWatchLogOptions = {
-            type = "structure",
-            traits = {
-                xml_name = "cloudWatchLogOptions",
-            },
-        },
+        CloudWatchLogOptions = setmetatable({ traits = {
+            xml_name = "cloudWatchLogOptions",
+        } }, { __index = M.CloudWatchLogOptions }),
     },
 }
 
@@ -27212,7 +26045,7 @@ M.Phase1DHGroupNumbersListValue = {
     type = "structure",
     members = {
         Value = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "value",
             },
@@ -27248,7 +26081,7 @@ M.Phase2DHGroupNumbersListValue = {
     type = "structure",
     members = {
         Value = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "value",
             },
@@ -27308,37 +26141,37 @@ M.TunnelOption = {
             },
         },
         Phase1LifetimeSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "phase1LifetimeSeconds",
             },
         },
         Phase2LifetimeSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "phase2LifetimeSeconds",
             },
         },
         RekeyMarginTimeSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "rekeyMarginTimeSeconds",
             },
         },
         RekeyFuzzPercentage = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "rekeyFuzzPercentage",
             },
         },
         ReplayWindowSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "replayWindowSize",
             },
         },
         DpdTimeoutSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "dpdTimeoutSeconds",
             },
@@ -27351,49 +26184,49 @@ M.TunnelOption = {
         },
         Phase1EncryptionAlgorithms = {
             type = "list",
-            member_type = "structure",
+            member = M.Phase1EncryptionAlgorithmsListValue,
             traits = {
                 xml_name = "phase1EncryptionAlgorithmSet",
             },
         },
         Phase2EncryptionAlgorithms = {
             type = "list",
-            member_type = "structure",
+            member = M.Phase2EncryptionAlgorithmsListValue,
             traits = {
                 xml_name = "phase2EncryptionAlgorithmSet",
             },
         },
         Phase1IntegrityAlgorithms = {
             type = "list",
-            member_type = "structure",
+            member = M.Phase1IntegrityAlgorithmsListValue,
             traits = {
                 xml_name = "phase1IntegrityAlgorithmSet",
             },
         },
         Phase2IntegrityAlgorithms = {
             type = "list",
-            member_type = "structure",
+            member = M.Phase2IntegrityAlgorithmsListValue,
             traits = {
                 xml_name = "phase2IntegrityAlgorithmSet",
             },
         },
         Phase1DHGroupNumbers = {
             type = "list",
-            member_type = "structure",
+            member = M.Phase1DHGroupNumbersListValue,
             traits = {
                 xml_name = "phase1DHGroupNumberSet",
             },
         },
         Phase2DHGroupNumbers = {
             type = "list",
-            member_type = "structure",
+            member = M.Phase2DHGroupNumbersListValue,
             traits = {
                 xml_name = "phase2DHGroupNumberSet",
             },
         },
         IkeVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.IKEVersionsListValue,
             traits = {
                 xml_name = "ikeVersionSet",
             },
@@ -27404,12 +26237,9 @@ M.TunnelOption = {
                 xml_name = "startupAction",
             },
         },
-        LogOptions = {
-            type = "structure",
-            traits = {
-                xml_name = "logOptions",
-            },
-        },
+        LogOptions = setmetatable({ traits = {
+            xml_name = "logOptions",
+        } }, { __index = M.VpnTunnelLogOptions }),
         EnableTunnelLifecycleControl = {
             type = "boolean",
             traits = {
@@ -27478,7 +26308,7 @@ M.VpnConnectionOptions = {
         },
         TunnelOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.TunnelOption,
             traits = {
                 xml_name = "tunnelOptionSet",
             },
@@ -27536,7 +26366,7 @@ M.VgwTelemetry = {
     type = "structure",
     members = {
         AcceptedRouteCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "acceptedRouteCount",
             },
@@ -27613,29 +26443,26 @@ M.VpnConnection = {
                 xml_name = "gatewayAssociationState",
             },
         },
-        Options = {
-            type = "structure",
-            traits = {
-                xml_name = "options",
-            },
-        },
+        Options = setmetatable({ traits = {
+            xml_name = "options",
+        } }, { __index = M.VpnConnectionOptions }),
         Routes = {
             type = "list",
-            member_type = "structure",
+            member = M.VpnStaticRoute,
             traits = {
                 xml_name = "routes",
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
         },
         VgwTelemetry = {
             type = "list",
-            member_type = "structure",
+            member = M.VgwTelemetry,
             traits = {
                 xml_name = "vgwTelemetry",
             },
@@ -27688,12 +26515,9 @@ M.VpnConnection = {
 M.CreateVpnConnectionOutput = {
     type = "structure",
     members = {
-        VpnConnection = {
-            type = "structure",
-            traits = {
-                xml_name = "vpnConnection",
-            },
-        },
+        VpnConnection = setmetatable({ traits = {
+            xml_name = "vpnConnection",
+        } }, { __index = M.VpnConnection }),
     },
 }
 
@@ -27733,13 +26557,13 @@ M.CreateVpnGatewayInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
         },
         AmazonSideAsn = {
-            type = "number",
+            type = "long",
         },
         DryRun = {
             type = "boolean",
@@ -27754,14 +26578,14 @@ M.VpnGateway = {
     type = "structure",
     members = {
         AmazonSideAsn = {
-            type = "number",
+            type = "long",
             traits = {
                 xml_name = "amazonSideAsn",
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -27792,7 +26616,7 @@ M.VpnGateway = {
         },
         VpcAttachments = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcAttachment,
             traits = {
                 xml_name = "attachments",
             },
@@ -27803,12 +26627,9 @@ M.VpnGateway = {
 M.CreateVpnGatewayOutput = {
     type = "structure",
     members = {
-        VpnGateway = {
-            type = "structure",
-            traits = {
-                xml_name = "vpnGateway",
-            },
-        },
+        VpnGateway = setmetatable({ traits = {
+            xml_name = "vpnGateway",
+        } }, { __index = M.VpnGateway }),
     },
 }
 
@@ -27857,12 +26678,9 @@ M.DeleteCarrierGatewayInput = {
 M.DeleteCarrierGatewayOutput = {
     type = "structure",
     members = {
-        CarrierGateway = {
-            type = "structure",
-            traits = {
-                xml_name = "carrierGateway",
-            },
-        },
+        CarrierGateway = setmetatable({ traits = {
+            xml_name = "carrierGateway",
+        } }, { __index = M.CarrierGateway }),
     },
 }
 
@@ -27884,12 +26702,9 @@ M.DeleteClientVpnEndpointInput = {
 M.DeleteClientVpnEndpointOutput = {
     type = "structure",
     members = {
-        Status = {
-            type = "structure",
-            traits = {
-                xml_name = "status",
-            },
-        },
+        Status = setmetatable({ traits = {
+            xml_name = "status",
+        } }, { __index = M.ClientVpnEndpointStatus }),
     },
 }
 
@@ -27920,12 +26735,9 @@ M.DeleteClientVpnRouteInput = {
 M.DeleteClientVpnRouteOutput = {
     type = "structure",
     members = {
-        Status = {
-            type = "structure",
-            traits = {
-                xml_name = "status",
-            },
-        },
+        Status = setmetatable({ traits = {
+            xml_name = "status",
+        } }, { __index = M.ClientVpnRouteStatus }),
     },
 }
 
@@ -27953,12 +26765,9 @@ M.DeleteCoipCidrInput = {
 M.DeleteCoipCidrOutput = {
     type = "structure",
     members = {
-        CoipCidr = {
-            type = "structure",
-            traits = {
-                xml_name = "coipCidr",
-            },
-        },
+        CoipCidr = setmetatable({ traits = {
+            xml_name = "coipCidr",
+        } }, { __index = M.CoipCidr }),
     },
 }
 
@@ -27980,12 +26789,9 @@ M.DeleteCoipPoolInput = {
 M.DeleteCoipPoolOutput = {
     type = "structure",
     members = {
-        CoipPool = {
-            type = "structure",
-            traits = {
-                xml_name = "coipPool",
-            },
-        },
+        CoipPool = setmetatable({ traits = {
+            xml_name = "coipPool",
+        } }, { __index = M.CoipPool }),
     },
 }
 
@@ -28068,7 +26874,7 @@ M.DeleteFleetsInput = {
         },
         FleetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "FleetId",
@@ -28145,12 +26951,9 @@ M.DeleteFleetError = {
 M.DeleteFleetErrorItem = {
     type = "structure",
     members = {
-        Error = {
-            type = "structure",
-            traits = {
-                xml_name = "error",
-            },
-        },
+        Error = setmetatable({ traits = {
+            xml_name = "error",
+        } }, { __index = M.DeleteFleetError }),
         FleetId = {
             type = "string",
             traits = {
@@ -28165,14 +26968,14 @@ M.DeleteFleetsOutput = {
     members = {
         SuccessfulFleetDeletions = {
             type = "list",
-            member_type = "structure",
+            member = M.DeleteFleetSuccessItem,
             traits = {
                 xml_name = "successfulFleetDeletionSet",
             },
         },
         UnsuccessfulFleetDeletions = {
             type = "list",
-            member_type = "structure",
+            member = M.DeleteFleetErrorItem,
             traits = {
                 xml_name = "unsuccessfulFleetDeletionSet",
             },
@@ -28188,7 +26991,7 @@ M.DeleteFlowLogsInput = {
         },
         FlowLogIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "FlowLogId",
@@ -28202,7 +27005,7 @@ M.DeleteFlowLogsOutput = {
     members = {
         Unsuccessful = {
             type = "list",
-            member_type = "structure",
+            member = M.UnsuccessfulItem,
             traits = {
                 xml_name = "unsuccessful",
             },
@@ -28282,12 +27085,9 @@ M.DeleteInstanceConnectEndpointInput = {
 M.DeleteInstanceConnectEndpointOutput = {
     type = "structure",
     members = {
-        InstanceConnectEndpoint = {
-            type = "structure",
-            traits = {
-                xml_name = "instanceConnectEndpoint",
-            },
-        },
+        InstanceConnectEndpoint = setmetatable({ traits = {
+            xml_name = "instanceConnectEndpoint",
+        } }, { __index = M.Ec2InstanceConnectEndpoint }),
     },
 }
 
@@ -28331,12 +27131,9 @@ M.InstanceEventWindowStateChange = {
 M.DeleteInstanceEventWindowOutput = {
     type = "structure",
     members = {
-        InstanceEventWindowState = {
-            type = "structure",
-            traits = {
-                xml_name = "instanceEventWindowState",
-            },
-        },
+        InstanceEventWindowState = setmetatable({ traits = {
+            xml_name = "instanceEventWindowState",
+        } }, { __index = M.InstanceEventWindowStateChange }),
     },
 }
 
@@ -28384,12 +27181,9 @@ M.DeleteIpamInput = {
 M.DeleteIpamOutput = {
     type = "structure",
     members = {
-        Ipam = {
-            type = "structure",
-            traits = {
-                xml_name = "ipam",
-            },
-        },
+        Ipam = setmetatable({ traits = {
+            xml_name = "ipam",
+        } }, { __index = M.Ipam }),
     },
 }
 
@@ -28411,12 +27205,9 @@ M.DeleteIpamExternalResourceVerificationTokenInput = {
 M.DeleteIpamExternalResourceVerificationTokenOutput = {
     type = "structure",
     members = {
-        IpamExternalResourceVerificationToken = {
-            type = "structure",
-            traits = {
-                xml_name = "ipamExternalResourceVerificationToken",
-            },
-        },
+        IpamExternalResourceVerificationToken = setmetatable({ traits = {
+            xml_name = "ipamExternalResourceVerificationToken",
+        } }, { __index = M.IpamExternalResourceVerificationToken }),
     },
 }
 
@@ -28438,12 +27229,9 @@ M.DeleteIpamPolicyInput = {
 M.DeleteIpamPolicyOutput = {
     type = "structure",
     members = {
-        IpamPolicy = {
-            type = "structure",
-            traits = {
-                xml_name = "ipamPolicy",
-            },
-        },
+        IpamPolicy = setmetatable({ traits = {
+            xml_name = "ipamPolicy",
+        } }, { __index = M.IpamPolicy }),
     },
 }
 
@@ -28468,12 +27256,9 @@ M.DeleteIpamPoolInput = {
 M.DeleteIpamPoolOutput = {
     type = "structure",
     members = {
-        IpamPool = {
-            type = "structure",
-            traits = {
-                xml_name = "ipamPool",
-            },
-        },
+        IpamPool = setmetatable({ traits = {
+            xml_name = "ipamPool",
+        } }, { __index = M.IpamPool }),
     },
 }
 
@@ -28495,12 +27280,9 @@ M.DeleteIpamPrefixListResolverInput = {
 M.DeleteIpamPrefixListResolverOutput = {
     type = "structure",
     members = {
-        IpamPrefixListResolver = {
-            type = "structure",
-            traits = {
-                xml_name = "ipamPrefixListResolver",
-            },
-        },
+        IpamPrefixListResolver = setmetatable({ traits = {
+            xml_name = "ipamPrefixListResolver",
+        } }, { __index = M.IpamPrefixListResolver }),
     },
 }
 
@@ -28522,12 +27304,9 @@ M.DeleteIpamPrefixListResolverTargetInput = {
 M.DeleteIpamPrefixListResolverTargetOutput = {
     type = "structure",
     members = {
-        IpamPrefixListResolverTarget = {
-            type = "structure",
-            traits = {
-                xml_name = "ipamPrefixListResolverTarget",
-            },
-        },
+        IpamPrefixListResolverTarget = setmetatable({ traits = {
+            xml_name = "ipamPrefixListResolverTarget",
+        } }, { __index = M.IpamPrefixListResolverTarget }),
     },
 }
 
@@ -28549,12 +27328,9 @@ M.DeleteIpamResourceDiscoveryInput = {
 M.DeleteIpamResourceDiscoveryOutput = {
     type = "structure",
     members = {
-        IpamResourceDiscovery = {
-            type = "structure",
-            traits = {
-                xml_name = "ipamResourceDiscovery",
-            },
-        },
+        IpamResourceDiscovery = setmetatable({ traits = {
+            xml_name = "ipamResourceDiscovery",
+        } }, { __index = M.IpamResourceDiscovery }),
     },
 }
 
@@ -28576,12 +27352,9 @@ M.DeleteIpamScopeInput = {
 M.DeleteIpamScopeOutput = {
     type = "structure",
     members = {
-        IpamScope = {
-            type = "structure",
-            traits = {
-                xml_name = "ipamScope",
-            },
-        },
+        IpamScope = setmetatable({ traits = {
+            xml_name = "ipamScope",
+        } }, { __index = M.IpamScope }),
     },
 }
 
@@ -28639,12 +27412,9 @@ M.DeleteLaunchTemplateInput = {
 M.DeleteLaunchTemplateOutput = {
     type = "structure",
     members = {
-        LaunchTemplate = {
-            type = "structure",
-            traits = {
-                xml_name = "launchTemplate",
-            },
-        },
+        LaunchTemplate = setmetatable({ traits = {
+            xml_name = "launchTemplate",
+        } }, { __index = M.LaunchTemplate }),
     },
 }
 
@@ -28662,7 +27432,7 @@ M.DeleteLaunchTemplateVersionsInput = {
         },
         Versions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "LaunchTemplateVersion",
@@ -28687,7 +27457,7 @@ M.DeleteLaunchTemplateVersionsResponseSuccessItem = {
             },
         },
         VersionNumber = {
-            type = "number",
+            type = "long",
             traits = {
                 xml_name = "versionNumber",
             },
@@ -28738,17 +27508,14 @@ M.DeleteLaunchTemplateVersionsResponseErrorItem = {
             },
         },
         VersionNumber = {
-            type = "number",
+            type = "long",
             traits = {
                 xml_name = "versionNumber",
             },
         },
-        ResponseError = {
-            type = "structure",
-            traits = {
-                xml_name = "responseError",
-            },
-        },
+        ResponseError = setmetatable({ traits = {
+            xml_name = "responseError",
+        } }, { __index = M.ResponseError }),
     },
 }
 
@@ -28757,14 +27524,14 @@ M.DeleteLaunchTemplateVersionsOutput = {
     members = {
         SuccessfullyDeletedLaunchTemplateVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.DeleteLaunchTemplateVersionsResponseSuccessItem,
             traits = {
                 xml_name = "successfullyDeletedLaunchTemplateVersionSet",
             },
         },
         UnsuccessfullyDeletedLaunchTemplateVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.DeleteLaunchTemplateVersionsResponseErrorItem,
             traits = {
                 xml_name = "unsuccessfullyDeletedLaunchTemplateVersionSet",
             },
@@ -28796,12 +27563,9 @@ M.DeleteLocalGatewayRouteInput = {
 M.DeleteLocalGatewayRouteOutput = {
     type = "structure",
     members = {
-        Route = {
-            type = "structure",
-            traits = {
-                xml_name = "route",
-            },
-        },
+        Route = setmetatable({ traits = {
+            xml_name = "route",
+        } }, { __index = M.LocalGatewayRoute }),
     },
 }
 
@@ -28823,12 +27587,9 @@ M.DeleteLocalGatewayRouteTableInput = {
 M.DeleteLocalGatewayRouteTableOutput = {
     type = "structure",
     members = {
-        LocalGatewayRouteTable = {
-            type = "structure",
-            traits = {
-                xml_name = "localGatewayRouteTable",
-            },
-        },
+        LocalGatewayRouteTable = setmetatable({ traits = {
+            xml_name = "localGatewayRouteTable",
+        } }, { __index = M.LocalGatewayRouteTable }),
     },
 }
 
@@ -28850,12 +27611,9 @@ M.DeleteLocalGatewayRouteTableVirtualInterfaceGroupAssociationInput = {
 M.DeleteLocalGatewayRouteTableVirtualInterfaceGroupAssociationOutput = {
     type = "structure",
     members = {
-        LocalGatewayRouteTableVirtualInterfaceGroupAssociation = {
-            type = "structure",
-            traits = {
-                xml_name = "localGatewayRouteTableVirtualInterfaceGroupAssociation",
-            },
-        },
+        LocalGatewayRouteTableVirtualInterfaceGroupAssociation = setmetatable({ traits = {
+            xml_name = "localGatewayRouteTableVirtualInterfaceGroupAssociation",
+        } }, { __index = M.LocalGatewayRouteTableVirtualInterfaceGroupAssociation }),
     },
 }
 
@@ -28877,12 +27635,9 @@ M.DeleteLocalGatewayRouteTableVpcAssociationInput = {
 M.DeleteLocalGatewayRouteTableVpcAssociationOutput = {
     type = "structure",
     members = {
-        LocalGatewayRouteTableVpcAssociation = {
-            type = "structure",
-            traits = {
-                xml_name = "localGatewayRouteTableVpcAssociation",
-            },
-        },
+        LocalGatewayRouteTableVpcAssociation = setmetatable({ traits = {
+            xml_name = "localGatewayRouteTableVpcAssociation",
+        } }, { __index = M.LocalGatewayRouteTableVpcAssociation }),
     },
 }
 
@@ -28904,12 +27659,9 @@ M.DeleteLocalGatewayVirtualInterfaceInput = {
 M.DeleteLocalGatewayVirtualInterfaceOutput = {
     type = "structure",
     members = {
-        LocalGatewayVirtualInterface = {
-            type = "structure",
-            traits = {
-                xml_name = "localGatewayVirtualInterface",
-            },
-        },
+        LocalGatewayVirtualInterface = setmetatable({ traits = {
+            xml_name = "localGatewayVirtualInterface",
+        } }, { __index = M.LocalGatewayVirtualInterface }),
     },
 }
 
@@ -28931,12 +27683,9 @@ M.DeleteLocalGatewayVirtualInterfaceGroupInput = {
 M.DeleteLocalGatewayVirtualInterfaceGroupOutput = {
     type = "structure",
     members = {
-        LocalGatewayVirtualInterfaceGroup = {
-            type = "structure",
-            traits = {
-                xml_name = "localGatewayVirtualInterfaceGroup",
-            },
-        },
+        LocalGatewayVirtualInterfaceGroup = setmetatable({ traits = {
+            xml_name = "localGatewayVirtualInterfaceGroup",
+        } }, { __index = M.LocalGatewayVirtualInterfaceGroup }),
     },
 }
 
@@ -28958,12 +27707,9 @@ M.DeleteManagedPrefixListInput = {
 M.DeleteManagedPrefixListOutput = {
     type = "structure",
     members = {
-        PrefixList = {
-            type = "structure",
-            traits = {
-                xml_name = "prefixList",
-            },
-        },
+        PrefixList = setmetatable({ traits = {
+            xml_name = "prefixList",
+        } }, { __index = M.ManagedPrefixList }),
     },
 }
 
@@ -29035,7 +27781,7 @@ M.DeleteNetworkAclEntryInput = {
             },
         },
         RuleNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
                 xml_name = "ruleNumber",
@@ -29277,7 +28023,7 @@ M.DeleteQueuedReservedInstancesInput = {
         },
         ReservedInstancesIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "ReservedInstancesId",
@@ -29313,12 +28059,9 @@ M.DeleteQueuedReservedInstancesError = {
 M.FailedQueuedPurchaseDeletion = {
     type = "structure",
     members = {
-        Error = {
-            type = "structure",
-            traits = {
-                xml_name = "error",
-            },
-        },
+        Error = setmetatable({ traits = {
+            xml_name = "error",
+        } }, { __index = M.DeleteQueuedReservedInstancesError }),
         ReservedInstancesId = {
             type = "string",
             traits = {
@@ -29345,14 +28088,14 @@ M.DeleteQueuedReservedInstancesOutput = {
     members = {
         SuccessfulQueuedPurchaseDeletions = {
             type = "list",
-            member_type = "structure",
+            member = M.SuccessfulQueuedPurchaseDeletion,
             traits = {
                 xml_name = "successfulQueuedPurchaseDeletionSet",
             },
         },
         FailedQueuedPurchaseDeletions = {
             type = "list",
-            member_type = "structure",
+            member = M.FailedQueuedPurchaseDeletion,
             traits = {
                 xml_name = "failedQueuedPurchaseDeletionSet",
             },
@@ -29416,12 +28159,9 @@ M.DeleteRouteServerInput = {
 M.DeleteRouteServerOutput = {
     type = "structure",
     members = {
-        RouteServer = {
-            type = "structure",
-            traits = {
-                xml_name = "routeServer",
-            },
-        },
+        RouteServer = setmetatable({ traits = {
+            xml_name = "routeServer",
+        } }, { __index = M.RouteServer }),
     },
 }
 
@@ -29443,12 +28183,9 @@ M.DeleteRouteServerEndpointInput = {
 M.DeleteRouteServerEndpointOutput = {
     type = "structure",
     members = {
-        RouteServerEndpoint = {
-            type = "structure",
-            traits = {
-                xml_name = "routeServerEndpoint",
-            },
-        },
+        RouteServerEndpoint = setmetatable({ traits = {
+            xml_name = "routeServerEndpoint",
+        } }, { __index = M.RouteServerEndpoint }),
     },
 }
 
@@ -29470,12 +28207,9 @@ M.DeleteRouteServerPeerInput = {
 M.DeleteRouteServerPeerOutput = {
     type = "structure",
     members = {
-        RouteServerPeer = {
-            type = "structure",
-            traits = {
-                xml_name = "routeServerPeer",
-            },
-        },
+        RouteServerPeer = setmetatable({ traits = {
+            xml_name = "routeServerPeer",
+        } }, { __index = M.RouteServerPeer }),
     },
 }
 
@@ -29523,12 +28257,9 @@ M.DeleteSecondaryNetworkInput = {
 M.DeleteSecondaryNetworkOutput = {
     type = "structure",
     members = {
-        SecondaryNetwork = {
-            type = "structure",
-            traits = {
-                xml_name = "secondaryNetwork",
-            },
-        },
+        SecondaryNetwork = setmetatable({ traits = {
+            xml_name = "secondaryNetwork",
+        } }, { __index = M.SecondaryNetwork }),
         ClientToken = {
             type = "string",
             traits = {
@@ -29559,12 +28290,9 @@ M.DeleteSecondarySubnetInput = {
 M.DeleteSecondarySubnetOutput = {
     type = "structure",
     members = {
-        SecondarySubnet = {
-            type = "structure",
-            traits = {
-                xml_name = "secondarySubnet",
-            },
-        },
+        SecondarySubnet = setmetatable({ traits = {
+            xml_name = "secondarySubnet",
+        } }, { __index = M.SecondarySubnet }),
         ClientToken = {
             type = "string",
             traits = {
@@ -29688,12 +28416,9 @@ M.DeleteSubnetCidrReservationInput = {
 M.DeleteSubnetCidrReservationOutput = {
     type = "structure",
     members = {
-        DeletedSubnetCidrReservation = {
-            type = "structure",
-            traits = {
-                xml_name = "deletedSubnetCidrReservation",
-            },
-        },
+        DeletedSubnetCidrReservation = setmetatable({ traits = {
+            xml_name = "deletedSubnetCidrReservation",
+        } }, { __index = M.SubnetCidrReservation }),
     },
 }
 
@@ -29708,7 +28433,7 @@ M.DeleteTagsInput = {
         },
         Resources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "resourceId",
@@ -29716,7 +28441,7 @@ M.DeleteTagsInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tag",
             },
@@ -29854,12 +28579,9 @@ M.DeleteTransitGatewayInput = {
 M.DeleteTransitGatewayOutput = {
     type = "structure",
     members = {
-        TransitGateway = {
-            type = "structure",
-            traits = {
-                xml_name = "transitGateway",
-            },
-        },
+        TransitGateway = setmetatable({ traits = {
+            xml_name = "transitGateway",
+        } }, { __index = M.TransitGateway }),
     },
 }
 
@@ -29881,12 +28603,9 @@ M.DeleteTransitGatewayClientVpnAttachmentInput = {
 M.DeleteTransitGatewayClientVpnAttachmentOutput = {
     type = "structure",
     members = {
-        TransitGatewayClientVpnAttachment = {
-            type = "structure",
-            traits = {
-                xml_name = "transitGatewayClientVpnAttachment",
-            },
-        },
+        TransitGatewayClientVpnAttachment = setmetatable({ traits = {
+            xml_name = "transitGatewayClientVpnAttachment",
+        } }, { __index = M.TransitGatewayClientVpnAttachment }),
     },
 }
 
@@ -29908,12 +28627,9 @@ M.DeleteTransitGatewayConnectInput = {
 M.DeleteTransitGatewayConnectOutput = {
     type = "structure",
     members = {
-        TransitGatewayConnect = {
-            type = "structure",
-            traits = {
-                xml_name = "transitGatewayConnect",
-            },
-        },
+        TransitGatewayConnect = setmetatable({ traits = {
+            xml_name = "transitGatewayConnect",
+        } }, { __index = M.TransitGatewayConnect }),
     },
 }
 
@@ -29935,12 +28651,9 @@ M.DeleteTransitGatewayConnectPeerInput = {
 M.DeleteTransitGatewayConnectPeerOutput = {
     type = "structure",
     members = {
-        TransitGatewayConnectPeer = {
-            type = "structure",
-            traits = {
-                xml_name = "transitGatewayConnectPeer",
-            },
-        },
+        TransitGatewayConnectPeer = setmetatable({ traits = {
+            xml_name = "transitGatewayConnectPeer",
+        } }, { __index = M.TransitGatewayConnectPeer }),
     },
 }
 
@@ -29962,12 +28675,9 @@ M.DeleteTransitGatewayMeteringPolicyInput = {
 M.DeleteTransitGatewayMeteringPolicyOutput = {
     type = "structure",
     members = {
-        TransitGatewayMeteringPolicy = {
-            type = "structure",
-            traits = {
-                xml_name = "transitGatewayMeteringPolicy",
-            },
-        },
+        TransitGatewayMeteringPolicy = setmetatable({ traits = {
+            xml_name = "transitGatewayMeteringPolicy",
+        } }, { __index = M.TransitGatewayMeteringPolicy }),
     },
 }
 
@@ -29981,7 +28691,7 @@ M.DeleteTransitGatewayMeteringPolicyEntryInput = {
             },
         },
         PolicyRuleNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -29995,12 +28705,9 @@ M.DeleteTransitGatewayMeteringPolicyEntryInput = {
 M.DeleteTransitGatewayMeteringPolicyEntryOutput = {
     type = "structure",
     members = {
-        TransitGatewayMeteringPolicyEntry = {
-            type = "structure",
-            traits = {
-                xml_name = "transitGatewayMeteringPolicyEntry",
-            },
-        },
+        TransitGatewayMeteringPolicyEntry = setmetatable({ traits = {
+            xml_name = "transitGatewayMeteringPolicyEntry",
+        } }, { __index = M.TransitGatewayMeteringPolicyEntry }),
     },
 }
 
@@ -30022,12 +28729,9 @@ M.DeleteTransitGatewayMulticastDomainInput = {
 M.DeleteTransitGatewayMulticastDomainOutput = {
     type = "structure",
     members = {
-        TransitGatewayMulticastDomain = {
-            type = "structure",
-            traits = {
-                xml_name = "transitGatewayMulticastDomain",
-            },
-        },
+        TransitGatewayMulticastDomain = setmetatable({ traits = {
+            xml_name = "transitGatewayMulticastDomain",
+        } }, { __index = M.TransitGatewayMulticastDomain }),
     },
 }
 
@@ -30049,12 +28753,9 @@ M.DeleteTransitGatewayPeeringAttachmentInput = {
 M.DeleteTransitGatewayPeeringAttachmentOutput = {
     type = "structure",
     members = {
-        TransitGatewayPeeringAttachment = {
-            type = "structure",
-            traits = {
-                xml_name = "transitGatewayPeeringAttachment",
-            },
-        },
+        TransitGatewayPeeringAttachment = setmetatable({ traits = {
+            xml_name = "transitGatewayPeeringAttachment",
+        } }, { __index = M.TransitGatewayPeeringAttachment }),
     },
 }
 
@@ -30076,12 +28777,9 @@ M.DeleteTransitGatewayPolicyTableInput = {
 M.DeleteTransitGatewayPolicyTableOutput = {
     type = "structure",
     members = {
-        TransitGatewayPolicyTable = {
-            type = "structure",
-            traits = {
-                xml_name = "transitGatewayPolicyTable",
-            },
-        },
+        TransitGatewayPolicyTable = setmetatable({ traits = {
+            xml_name = "transitGatewayPolicyTable",
+        } }, { __index = M.TransitGatewayPolicyTable }),
     },
 }
 
@@ -30109,12 +28807,9 @@ M.DeleteTransitGatewayPrefixListReferenceInput = {
 M.DeleteTransitGatewayPrefixListReferenceOutput = {
     type = "structure",
     members = {
-        TransitGatewayPrefixListReference = {
-            type = "structure",
-            traits = {
-                xml_name = "transitGatewayPrefixListReference",
-            },
-        },
+        TransitGatewayPrefixListReference = setmetatable({ traits = {
+            xml_name = "transitGatewayPrefixListReference",
+        } }, { __index = M.TransitGatewayPrefixListReference }),
     },
 }
 
@@ -30142,12 +28837,9 @@ M.DeleteTransitGatewayRouteInput = {
 M.DeleteTransitGatewayRouteOutput = {
     type = "structure",
     members = {
-        Route = {
-            type = "structure",
-            traits = {
-                xml_name = "route",
-            },
-        },
+        Route = setmetatable({ traits = {
+            xml_name = "route",
+        } }, { __index = M.TransitGatewayRoute }),
     },
 }
 
@@ -30169,12 +28861,9 @@ M.DeleteTransitGatewayRouteTableInput = {
 M.DeleteTransitGatewayRouteTableOutput = {
     type = "structure",
     members = {
-        TransitGatewayRouteTable = {
-            type = "structure",
-            traits = {
-                xml_name = "transitGatewayRouteTable",
-            },
-        },
+        TransitGatewayRouteTable = setmetatable({ traits = {
+            xml_name = "transitGatewayRouteTable",
+        } }, { __index = M.TransitGatewayRouteTable }),
     },
 }
 
@@ -30196,12 +28885,9 @@ M.DeleteTransitGatewayRouteTableAnnouncementInput = {
 M.DeleteTransitGatewayRouteTableAnnouncementOutput = {
     type = "structure",
     members = {
-        TransitGatewayRouteTableAnnouncement = {
-            type = "structure",
-            traits = {
-                xml_name = "transitGatewayRouteTableAnnouncement",
-            },
-        },
+        TransitGatewayRouteTableAnnouncement = setmetatable({ traits = {
+            xml_name = "transitGatewayRouteTableAnnouncement",
+        } }, { __index = M.TransitGatewayRouteTableAnnouncement }),
     },
 }
 
@@ -30223,12 +28909,9 @@ M.DeleteTransitGatewayVpcAttachmentInput = {
 M.DeleteTransitGatewayVpcAttachmentOutput = {
     type = "structure",
     members = {
-        TransitGatewayVpcAttachment = {
-            type = "structure",
-            traits = {
-                xml_name = "transitGatewayVpcAttachment",
-            },
-        },
+        TransitGatewayVpcAttachment = setmetatable({ traits = {
+            xml_name = "transitGatewayVpcAttachment",
+        } }, { __index = M.TransitGatewayVpcAttachment }),
     },
 }
 
@@ -30253,12 +28936,9 @@ M.DeleteVerifiedAccessEndpointInput = {
 M.DeleteVerifiedAccessEndpointOutput = {
     type = "structure",
     members = {
-        VerifiedAccessEndpoint = {
-            type = "structure",
-            traits = {
-                xml_name = "verifiedAccessEndpoint",
-            },
-        },
+        VerifiedAccessEndpoint = setmetatable({ traits = {
+            xml_name = "verifiedAccessEndpoint",
+        } }, { __index = M.VerifiedAccessEndpoint }),
     },
 }
 
@@ -30283,12 +28963,9 @@ M.DeleteVerifiedAccessGroupInput = {
 M.DeleteVerifiedAccessGroupOutput = {
     type = "structure",
     members = {
-        VerifiedAccessGroup = {
-            type = "structure",
-            traits = {
-                xml_name = "verifiedAccessGroup",
-            },
-        },
+        VerifiedAccessGroup = setmetatable({ traits = {
+            xml_name = "verifiedAccessGroup",
+        } }, { __index = M.VerifiedAccessGroup }),
     },
 }
 
@@ -30313,12 +28990,9 @@ M.DeleteVerifiedAccessInstanceInput = {
 M.DeleteVerifiedAccessInstanceOutput = {
     type = "structure",
     members = {
-        VerifiedAccessInstance = {
-            type = "structure",
-            traits = {
-                xml_name = "verifiedAccessInstance",
-            },
-        },
+        VerifiedAccessInstance = setmetatable({ traits = {
+            xml_name = "verifiedAccessInstance",
+        } }, { __index = M.VerifiedAccessInstance }),
     },
 }
 
@@ -30343,12 +29017,9 @@ M.DeleteVerifiedAccessTrustProviderInput = {
 M.DeleteVerifiedAccessTrustProviderOutput = {
     type = "structure",
     members = {
-        VerifiedAccessTrustProvider = {
-            type = "structure",
-            traits = {
-                xml_name = "verifiedAccessTrustProvider",
-            },
-        },
+        VerifiedAccessTrustProvider = setmetatable({ traits = {
+            xml_name = "verifiedAccessTrustProvider",
+        } }, { __index = M.VerifiedAccessTrustProvider }),
     },
 }
 
@@ -30414,12 +29085,9 @@ M.DeleteVpcBlockPublicAccessExclusionInput = {
 M.DeleteVpcBlockPublicAccessExclusionOutput = {
     type = "structure",
     members = {
-        VpcBlockPublicAccessExclusion = {
-            type = "structure",
-            traits = {
-                xml_name = "vpcBlockPublicAccessExclusion",
-            },
-        },
+        VpcBlockPublicAccessExclusion = setmetatable({ traits = {
+            xml_name = "vpcBlockPublicAccessExclusion",
+        } }, { __index = M.VpcBlockPublicAccessExclusion }),
     },
 }
 
@@ -30441,12 +29109,9 @@ M.DeleteVpcEncryptionControlInput = {
 M.DeleteVpcEncryptionControlOutput = {
     type = "structure",
     members = {
-        VpcEncryptionControl = {
-            type = "structure",
-            traits = {
-                xml_name = "vpcEncryptionControl",
-            },
-        },
+        VpcEncryptionControl = setmetatable({ traits = {
+            xml_name = "vpcEncryptionControl",
+        } }, { __index = M.VpcEncryptionControl }),
     },
 }
 
@@ -30458,7 +29123,7 @@ M.DeleteVpcEndpointConnectionNotificationsInput = {
         },
         ConnectionNotificationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "ConnectionNotificationId",
@@ -30472,7 +29137,7 @@ M.DeleteVpcEndpointConnectionNotificationsOutput = {
     members = {
         Unsuccessful = {
             type = "list",
-            member_type = "structure",
+            member = M.UnsuccessfulItem,
             traits = {
                 xml_name = "unsuccessful",
             },
@@ -30488,7 +29153,7 @@ M.DeleteVpcEndpointsInput = {
         },
         VpcEndpointIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "VpcEndpointId",
@@ -30502,7 +29167,7 @@ M.DeleteVpcEndpointsOutput = {
     members = {
         Unsuccessful = {
             type = "list",
-            member_type = "structure",
+            member = M.UnsuccessfulItem,
             traits = {
                 xml_name = "unsuccessful",
             },
@@ -30518,7 +29183,7 @@ M.DeleteVpcEndpointServiceConfigurationsInput = {
         },
         ServiceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "ServiceId",
@@ -30532,7 +29197,7 @@ M.DeleteVpcEndpointServiceConfigurationsOutput = {
     members = {
         Unsuccessful = {
             type = "list",
-            member_type = "structure",
+            member = M.UnsuccessfulItem,
             traits = {
                 xml_name = "unsuccessful",
             },
@@ -30682,12 +29347,9 @@ M.DeprovisionByoipCidrInput = {
 M.DeprovisionByoipCidrOutput = {
     type = "structure",
     members = {
-        ByoipCidr = {
-            type = "structure",
-            traits = {
-                xml_name = "byoipCidr",
-            },
-        },
+        ByoipCidr = setmetatable({ traits = {
+            xml_name = "byoipCidr",
+        } }, { __index = M.ByoipCidr }),
     },
 }
 
@@ -30754,12 +29416,9 @@ M.Byoasn = {
 M.DeprovisionIpamByoasnOutput = {
     type = "structure",
     members = {
-        Byoasn = {
-            type = "structure",
-            traits = {
-                xml_name = "byoasn",
-            },
-        },
+        Byoasn = setmetatable({ traits = {
+            xml_name = "byoasn",
+        } }, { __index = M.Byoasn }),
     },
 }
 
@@ -30830,12 +29489,9 @@ M.IpamPoolCidr = {
                 xml_name = "state",
             },
         },
-        FailureReason = {
-            type = "structure",
-            traits = {
-                xml_name = "failureReason",
-            },
-        },
+        FailureReason = setmetatable({ traits = {
+            xml_name = "failureReason",
+        } }, { __index = M.IpamPoolCidrFailureReason }),
         IpamPoolCidrId = {
             type = "string",
             traits = {
@@ -30843,7 +29499,7 @@ M.IpamPoolCidr = {
             },
         },
         NetmaskLength = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "netmaskLength",
             },
@@ -30854,12 +29510,9 @@ M.IpamPoolCidr = {
 M.DeprovisionIpamPoolCidrOutput = {
     type = "structure",
     members = {
-        IpamPoolCidr = {
-            type = "structure",
-            traits = {
-                xml_name = "ipamPoolCidr",
-            },
-        },
+        IpamPoolCidr = setmetatable({ traits = {
+            xml_name = "ipamPoolCidr",
+        } }, { __index = M.IpamPoolCidr }),
     },
 }
 
@@ -30895,7 +29548,7 @@ M.DeprovisionPublicIpv4PoolCidrOutput = {
         },
         DeprovisionedAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "deprovisionedAddressSet",
             },
@@ -30961,7 +29614,7 @@ M.DeregisterImageOutput = {
         },
         DeleteSnapshotResults = {
             type = "list",
-            member_type = "structure",
+            member = M.DeleteSnapshotReturnCode,
             traits = {
                 xml_name = "deleteSnapshotResultSet",
             },
@@ -30977,7 +29630,7 @@ M.DeregisterInstanceTagAttributeRequest = {
         },
         InstanceTagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "InstanceTagKey",
             },
@@ -30991,12 +29644,9 @@ M.DeregisterInstanceEventNotificationAttributesInput = {
         DryRun = {
             type = "boolean",
         },
-        InstanceTagAttribute = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InstanceTagAttribute = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DeregisterInstanceTagAttributeRequest }),
     },
 }
 
@@ -31005,7 +29655,7 @@ M.InstanceTagNotificationAttribute = {
     members = {
         InstanceTagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "instanceTagKeySet",
             },
@@ -31022,12 +29672,9 @@ M.InstanceTagNotificationAttribute = {
 M.DeregisterInstanceEventNotificationAttributesOutput = {
     type = "structure",
     members = {
-        InstanceTagAttribute = {
-            type = "structure",
-            traits = {
-                xml_name = "instanceTagAttribute",
-            },
-        },
+        InstanceTagAttribute = setmetatable({ traits = {
+            xml_name = "instanceTagAttribute",
+        } }, { __index = M.InstanceTagNotificationAttribute }),
     },
 }
 
@@ -31042,7 +29689,7 @@ M.DeregisterTransitGatewayMulticastGroupMembersInput = {
         },
         NetworkInterfaceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DryRun = {
             type = "boolean",
@@ -31061,7 +29708,7 @@ M.TransitGatewayMulticastDeregisteredGroupMembers = {
         },
         DeregisteredNetworkInterfaceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "deregisteredNetworkInterfaceIds",
             },
@@ -31078,12 +29725,9 @@ M.TransitGatewayMulticastDeregisteredGroupMembers = {
 M.DeregisterTransitGatewayMulticastGroupMembersOutput = {
     type = "structure",
     members = {
-        DeregisteredMulticastGroupMembers = {
-            type = "structure",
-            traits = {
-                xml_name = "deregisteredMulticastGroupMembers",
-            },
-        },
+        DeregisteredMulticastGroupMembers = setmetatable({ traits = {
+            xml_name = "deregisteredMulticastGroupMembers",
+        } }, { __index = M.TransitGatewayMulticastDeregisteredGroupMembers }),
     },
 }
 
@@ -31098,7 +29742,7 @@ M.DeregisterTransitGatewayMulticastGroupSourcesInput = {
         },
         NetworkInterfaceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DryRun = {
             type = "boolean",
@@ -31117,7 +29761,7 @@ M.TransitGatewayMulticastDeregisteredGroupSources = {
         },
         DeregisteredNetworkInterfaceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "deregisteredNetworkInterfaceIds",
             },
@@ -31134,12 +29778,9 @@ M.TransitGatewayMulticastDeregisteredGroupSources = {
 M.DeregisterTransitGatewayMulticastGroupSourcesOutput = {
     type = "structure",
     members = {
-        DeregisteredMulticastGroupSources = {
-            type = "structure",
-            traits = {
-                xml_name = "deregisteredMulticastGroupSources",
-            },
-        },
+        DeregisteredMulticastGroupSources = setmetatable({ traits = {
+            xml_name = "deregisteredMulticastGroupSources",
+        } }, { __index = M.TransitGatewayMulticastDeregisteredGroupSources }),
     },
 }
 
@@ -31154,7 +29795,7 @@ M.DescribeAccountAttributesInput = {
         },
         AttributeNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "attributeName",
             },
@@ -31167,7 +29808,7 @@ M.DescribeAccountAttributesOutput = {
     members = {
         AccountAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.AccountAttribute,
             traits = {
                 xml_name = "accountAttributeSet",
             },
@@ -31183,7 +29824,7 @@ M.Filter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "Value",
             },
@@ -31196,7 +29837,7 @@ M.DescribeAddressesInput = {
     members = {
         PublicIps = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "PublicIp",
             },
@@ -31209,14 +29850,14 @@ M.DescribeAddressesInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         AllocationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "AllocationId",
             },
@@ -31229,7 +29870,7 @@ M.DescribeAddressesOutput = {
     members = {
         Addresses = {
             type = "list",
-            member_type = "structure",
+            member = M.Address,
             traits = {
                 xml_name = "addressesSet",
             },
@@ -31242,7 +29883,7 @@ M.DescribeAddressesAttributeInput = {
     members = {
         AllocationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "AllocationId",
             },
@@ -31254,7 +29895,7 @@ M.DescribeAddressesAttributeInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         DryRun = {
             type = "boolean",
@@ -31267,7 +29908,7 @@ M.DescribeAddressesAttributeOutput = {
     members = {
         Addresses = {
             type = "list",
-            member_type = "structure",
+            member = M.AddressAttribute,
             traits = {
                 xml_name = "addressSet",
             },
@@ -31286,7 +29927,7 @@ M.DescribeAddressTransfersInput = {
     members = {
         AllocationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "AllocationId",
             },
@@ -31295,7 +29936,7 @@ M.DescribeAddressTransfersInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         DryRun = {
             type = "boolean",
@@ -31308,7 +29949,7 @@ M.DescribeAddressTransfersOutput = {
     members = {
         AddressTransfers = {
             type = "list",
-            member_type = "structure",
+            member = M.AddressTransfer,
             traits = {
                 xml_name = "addressTransferSet",
             },
@@ -31366,7 +30007,7 @@ M.DescribeAggregateIdFormatOutput = {
         },
         Statuses = {
             type = "list",
-            member_type = "structure",
+            member = M.IdFormat,
             traits = {
                 xml_name = "statusSet",
             },
@@ -31379,14 +30020,14 @@ M.DescribeAvailabilityZonesInput = {
     members = {
         ZoneNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "ZoneName",
             },
         },
         ZoneIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "ZoneId",
             },
@@ -31402,7 +30043,7 @@ M.DescribeAvailabilityZonesInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -31471,7 +30112,7 @@ M.AvailabilityZone = {
         },
         Messages = {
             type = "list",
-            member_type = "structure",
+            member = M.AvailabilityZoneMessage,
             traits = {
                 xml_name = "messageSet",
             },
@@ -31532,14 +30173,14 @@ M.AvailabilityZone = {
         },
         Geography = {
             type = "list",
-            member_type = "structure",
+            member = M.AvailabilityZoneGeography,
             traits = {
                 xml_name = "geographySet",
             },
         },
         SubGeography = {
             type = "list",
-            member_type = "structure",
+            member = M.AvailabilityZoneSubGeography,
             traits = {
                 xml_name = "subGeographySet",
             },
@@ -31558,7 +30199,7 @@ M.DescribeAvailabilityZonesOutput = {
     members = {
         AvailabilityZones = {
             type = "list",
-            member_type = "structure",
+            member = M.AvailabilityZone,
             traits = {
                 xml_name = "availabilityZoneInfo",
             },
@@ -31570,14 +30211,14 @@ M.DescribeAwsNetworkPerformanceMetricSubscriptionsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -31652,7 +30293,7 @@ M.DescribeAwsNetworkPerformanceMetricSubscriptionsOutput = {
         },
         Subscriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.Subscription,
             traits = {
                 xml_name = "subscriptionSet",
             },
@@ -31665,7 +30306,7 @@ M.DescribeBundleTasksInput = {
     members = {
         BundleIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "BundleId",
             },
@@ -31678,7 +30319,7 @@ M.DescribeBundleTasksInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -31691,7 +30332,7 @@ M.DescribeBundleTasksOutput = {
     members = {
         BundleTasks = {
             type = "list",
-            member_type = "structure",
+            member = M.BundleTask,
             traits = {
                 xml_name = "bundleInstanceTasksSet",
             },
@@ -31706,7 +30347,7 @@ M.DescribeByoipCidrsInput = {
             type = "boolean",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -31722,7 +30363,7 @@ M.DescribeByoipCidrsOutput = {
     members = {
         ByoipCidrs = {
             type = "list",
-            member_type = "structure",
+            member = M.ByoipCidr,
             traits = {
                 xml_name = "byoipCidrSet",
             },
@@ -31741,7 +30382,7 @@ M.DescribeCapacityBlockExtensionHistoryInput = {
     members = {
         CapacityReservationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "CapacityReservationId",
             },
@@ -31750,11 +30391,11 @@ M.DescribeCapacityBlockExtensionHistoryInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -31787,7 +30428,7 @@ M.CapacityBlockExtension = {
             },
         },
         InstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "instanceCount",
             },
@@ -31811,7 +30452,7 @@ M.CapacityBlockExtension = {
             },
         },
         CapacityBlockExtensionDurationHours = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "capacityBlockExtensionDurationHours",
             },
@@ -31866,7 +30507,7 @@ M.DescribeCapacityBlockExtensionHistoryOutput = {
     members = {
         CapacityBlockExtensions = {
             type = "list",
-            member_type = "structure",
+            member = M.CapacityBlockExtension,
             traits = {
                 xml_name = "capacityBlockExtensionSet",
             },
@@ -31887,7 +30528,7 @@ M.DescribeCapacityBlockExtensionOfferingsInput = {
             type = "boolean",
         },
         CapacityBlockExtensionDurationHours = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -31902,7 +30543,7 @@ M.DescribeCapacityBlockExtensionOfferingsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -31923,7 +30564,7 @@ M.CapacityBlockExtensionOffering = {
             },
         },
         InstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "instanceCount",
             },
@@ -31959,7 +30600,7 @@ M.CapacityBlockExtensionOffering = {
             },
         },
         CapacityBlockExtensionDurationHours = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "capacityBlockExtensionDurationHours",
             },
@@ -31996,7 +30637,7 @@ M.DescribeCapacityBlockExtensionOfferingsOutput = {
     members = {
         CapacityBlockExtensionOfferings = {
             type = "list",
-            member_type = "structure",
+            member = M.CapacityBlockExtensionOffering,
             traits = {
                 xml_name = "capacityBlockExtensionOfferingSet",
             },
@@ -32020,7 +30661,7 @@ M.DescribeCapacityBlockOfferingsInput = {
             type = "string",
         },
         InstanceCount = {
-            type = "number",
+            type = "integer",
         },
         StartDateRange = {
             type = "timestamp",
@@ -32029,7 +30670,7 @@ M.DescribeCapacityBlockOfferingsInput = {
             type = "timestamp",
         },
         CapacityDurationHours = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -32038,13 +30679,13 @@ M.DescribeCapacityBlockOfferingsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         UltraserverType = {
             type = "string",
         },
         UltraserverCount = {
-            type = "number",
+            type = "integer",
         },
         AllAvailabilityZones = {
             type = "boolean",
@@ -32074,7 +30715,7 @@ M.CapacityBlockOffering = {
             },
         },
         InstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "instanceCount",
             },
@@ -32092,7 +30733,7 @@ M.CapacityBlockOffering = {
             },
         },
         CapacityBlockDurationHours = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "capacityBlockDurationHours",
             },
@@ -32122,13 +30763,13 @@ M.CapacityBlockOffering = {
             },
         },
         UltraserverCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "ultraserverCount",
             },
         },
         CapacityBlockDurationMinutes = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "capacityBlockDurationMinutes",
             },
@@ -32147,7 +30788,7 @@ M.DescribeCapacityBlockOfferingsOutput = {
     members = {
         CapacityBlockOfferings = {
             type = "list",
-            member_type = "structure",
+            member = M.CapacityBlockOffering,
             traits = {
                 xml_name = "capacityBlockOfferingSet",
             },
@@ -32166,7 +30807,7 @@ M.DescribeCapacityBlocksInput = {
     members = {
         CapacityBlockIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "CapacityBlockId",
             },
@@ -32175,11 +30816,11 @@ M.DescribeCapacityBlocksInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -32230,7 +30871,7 @@ M.CapacityBlock = {
         },
         CapacityReservationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "capacityReservationIdSet",
             },
@@ -32261,7 +30902,7 @@ M.CapacityBlock = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -32274,7 +30915,7 @@ M.DescribeCapacityBlocksOutput = {
     members = {
         CapacityBlocks = {
             type = "list",
-            member_type = "structure",
+            member = M.CapacityBlock,
             traits = {
                 xml_name = "capacityBlockSet",
             },
@@ -32293,7 +30934,7 @@ M.DescribeCapacityBlockStatusInput = {
     members = {
         CapacityBlockIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "CapacityBlockId",
             },
@@ -32302,11 +30943,11 @@ M.DescribeCapacityBlockStatusInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -32327,19 +30968,19 @@ M.CapacityReservationStatus = {
             },
         },
         TotalCapacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "totalCapacity",
             },
         },
         TotalAvailableCapacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "totalAvailableCapacity",
             },
         },
         TotalUnavailableCapacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "totalUnavailableCapacity",
             },
@@ -32369,26 +31010,26 @@ M.CapacityBlockStatus = {
             },
         },
         TotalCapacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "totalCapacity",
             },
         },
         TotalAvailableCapacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "totalAvailableCapacity",
             },
         },
         TotalUnavailableCapacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "totalUnavailableCapacity",
             },
         },
         CapacityReservationStatuses = {
             type = "list",
-            member_type = "structure",
+            member = M.CapacityReservationStatus,
             traits = {
                 xml_name = "capacityReservationStatusSet",
             },
@@ -32401,7 +31042,7 @@ M.DescribeCapacityBlockStatusOutput = {
     members = {
         CapacityBlockStatuses = {
             type = "list",
-            member_type = "structure",
+            member = M.CapacityBlockStatus,
             traits = {
                 xml_name = "capacityBlockStatusSet",
             },
@@ -32420,13 +31061,13 @@ M.DescribeCapacityManagerDataExportsInput = {
     members = {
         CapacityManagerDataExportIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "CapacityManagerDataExportId",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -32436,7 +31077,7 @@ M.DescribeCapacityManagerDataExportsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -32516,7 +31157,7 @@ M.CapacityManagerDataExportResponse = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -32529,7 +31170,7 @@ M.DescribeCapacityManagerDataExportsOutput = {
     members = {
         CapacityManagerDataExports = {
             type = "list",
-            member_type = "structure",
+            member = M.CapacityManagerDataExportResponse,
             traits = {
                 xml_name = "capacityManagerDataExportSet",
             },
@@ -32553,7 +31194,7 @@ M.DescribeCapacityReservationBillingRequestsInput = {
     members = {
         CapacityReservationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "CapacityReservationId",
             },
@@ -32568,11 +31209,11 @@ M.DescribeCapacityReservationBillingRequestsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -32661,12 +31302,9 @@ M.CapacityReservationBillingRequest = {
                 xml_name = "statusMessage",
             },
         },
-        CapacityReservationInfo = {
-            type = "structure",
-            traits = {
-                xml_name = "capacityReservationInfo",
-            },
-        },
+        CapacityReservationInfo = setmetatable({ traits = {
+            xml_name = "capacityReservationInfo",
+        } }, { __index = M.CapacityReservationInfo }),
     },
 }
 
@@ -32681,7 +31319,7 @@ M.DescribeCapacityReservationBillingRequestsOutput = {
         },
         CapacityReservationBillingRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.CapacityReservationBillingRequest,
             traits = {
                 xml_name = "capacityReservationBillingRequestSet",
             },
@@ -32694,7 +31332,7 @@ M.DescribeCapacityReservationFleetsInput = {
     members = {
         CapacityReservationFleetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "CapacityReservationFleetId",
             },
@@ -32703,11 +31341,11 @@ M.DescribeCapacityReservationFleetsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -32740,13 +31378,13 @@ M.CapacityReservationFleet = {
             },
         },
         TotalTargetCapacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "totalTargetCapacity",
             },
         },
         TotalFulfilledCapacity = {
-            type = "number",
+            type = "double",
             traits = {
                 xml_name = "totalFulfilledCapacity",
             },
@@ -32783,14 +31421,14 @@ M.CapacityReservationFleet = {
         },
         InstanceTypeSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.FleetCapacityReservation,
             traits = {
                 xml_name = "instanceTypeSpecificationSet",
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -32803,7 +31441,7 @@ M.DescribeCapacityReservationFleetsOutput = {
     members = {
         CapacityReservationFleets = {
             type = "list",
-            member_type = "structure",
+            member = M.CapacityReservationFleet,
             traits = {
                 xml_name = "capacityReservationFleetSet",
             },
@@ -32822,7 +31460,7 @@ M.DescribeCapacityReservationsInput = {
     members = {
         CapacityReservationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "CapacityReservationId",
             },
@@ -32831,11 +31469,11 @@ M.DescribeCapacityReservationsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -32857,7 +31495,7 @@ M.DescribeCapacityReservationsOutput = {
         },
         CapacityReservations = {
             type = "list",
-            member_type = "structure",
+            member = M.CapacityReservation,
             traits = {
                 xml_name = "capacityReservationSet",
             },
@@ -32875,18 +31513,18 @@ M.DescribeCapacityReservationTopologyInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         CapacityReservationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "CapacityReservationId",
             },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -32929,7 +31567,7 @@ M.CapacityReservationTopology = {
         },
         NetworkNodes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "networkNodeSet",
             },
@@ -32960,7 +31598,7 @@ M.DescribeCapacityReservationTopologyOutput = {
         },
         CapacityReservations = {
             type = "list",
-            member_type = "structure",
+            member = M.CapacityReservationTopology,
             traits = {
                 xml_name = "capacityReservationSet",
             },
@@ -32973,20 +31611,20 @@ M.DescribeCarrierGatewaysInput = {
     members = {
         CarrierGatewayIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "CarrierGatewayId",
             },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -33002,7 +31640,7 @@ M.DescribeCarrierGatewaysOutput = {
     members = {
         CarrierGateways = {
             type = "list",
-            member_type = "structure",
+            member = M.CarrierGateway,
             traits = {
                 xml_name = "carrierGatewaySet",
             },
@@ -33027,14 +31665,14 @@ M.DescribeClassicLinkInstancesInput = {
         },
         InstanceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "InstanceId",
             },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -33046,7 +31684,7 @@ M.DescribeClassicLinkInstancesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "maxResults",
             },
@@ -33059,7 +31697,7 @@ M.ClassicLinkInstance = {
     members = {
         Groups = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupIdentifier,
             traits = {
                 xml_name = "groupSet",
             },
@@ -33072,7 +31710,7 @@ M.ClassicLinkInstance = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -33091,7 +31729,7 @@ M.DescribeClassicLinkInstancesOutput = {
     members = {
         Instances = {
             type = "list",
-            member_type = "structure",
+            member = M.ClassicLinkInstance,
             traits = {
                 xml_name = "instancesSet",
             },
@@ -33122,13 +31760,13 @@ M.DescribeClientVpnAuthorizationRulesInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -33166,12 +31804,9 @@ M.AuthorizationRule = {
                 xml_name = "destinationCidr",
             },
         },
-        Status = {
-            type = "structure",
-            traits = {
-                xml_name = "status",
-            },
-        },
+        Status = setmetatable({ traits = {
+            xml_name = "status",
+        } }, { __index = M.ClientVpnAuthorizationRuleStatus }),
     },
 }
 
@@ -33180,7 +31815,7 @@ M.DescribeClientVpnAuthorizationRulesOutput = {
     members = {
         AuthorizationRules = {
             type = "list",
-            member_type = "structure",
+            member = M.AuthorizationRule,
             traits = {
                 xml_name = "authorizationRule",
             },
@@ -33205,7 +31840,7 @@ M.DescribeClientVpnConnectionsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -33214,7 +31849,7 @@ M.DescribeClientVpnConnectionsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         DryRun = {
             type = "boolean",
@@ -33322,12 +31957,9 @@ M.ClientVpnConnection = {
                 xml_name = "commonName",
             },
         },
-        Status = {
-            type = "structure",
-            traits = {
-                xml_name = "status",
-            },
-        },
+        Status = setmetatable({ traits = {
+            xml_name = "status",
+        } }, { __index = M.ClientVpnConnectionStatus }),
         ConnectionEndTime = {
             type = "string",
             traits = {
@@ -33336,7 +31968,7 @@ M.ClientVpnConnection = {
         },
         PostureComplianceStatuses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "postureComplianceStatusSet",
             },
@@ -33349,7 +31981,7 @@ M.DescribeClientVpnConnectionsOutput = {
     members = {
         Connections = {
             type = "list",
-            member_type = "structure",
+            member = M.ClientVpnConnection,
             traits = {
                 xml_name = "connections",
             },
@@ -33368,20 +32000,20 @@ M.DescribeClientVpnEndpointsInput = {
     members = {
         ClientVpnEndpointIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "ClientVpnEndpointId",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -33465,24 +32097,15 @@ M.ClientVpnAuthentication = {
                 xml_name = "type",
             },
         },
-        ActiveDirectory = {
-            type = "structure",
-            traits = {
-                xml_name = "activeDirectory",
-            },
-        },
-        MutualAuthentication = {
-            type = "structure",
-            traits = {
-                xml_name = "mutualAuthentication",
-            },
-        },
-        FederatedAuthentication = {
-            type = "structure",
-            traits = {
-                xml_name = "federatedAuthentication",
-            },
-        },
+        ActiveDirectory = setmetatable({ traits = {
+            xml_name = "activeDirectory",
+        } }, { __index = M.DirectoryServiceAuthentication }),
+        MutualAuthentication = setmetatable({ traits = {
+            xml_name = "mutualAuthentication",
+        } }, { __index = M.CertificateAuthentication }),
+        FederatedAuthentication = setmetatable({ traits = {
+            xml_name = "federatedAuthentication",
+        } }, { __index = M.FederatedAuthentication }),
     },
 }
 
@@ -33524,12 +32147,9 @@ M.ClientConnectResponseOptions = {
                 xml_name = "lambdaFunctionArn",
             },
         },
-        Status = {
-            type = "structure",
-            traits = {
-                xml_name = "status",
-            },
-        },
+        Status = setmetatable({ traits = {
+            xml_name = "status",
+        } }, { __index = M.ClientVpnEndpointAttributeStatus }),
     },
 }
 
@@ -33595,14 +32215,14 @@ M.TransitGatewayConfigurationDescribeEndpointStructure = {
         },
         AvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "availabilityZoneSet",
             },
         },
         AvailabilityZoneIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "availabilityZoneIdSet",
             },
@@ -33629,12 +32249,9 @@ M.ClientVpnEndpoint = {
                 xml_name = "description",
             },
         },
-        Status = {
-            type = "structure",
-            traits = {
-                xml_name = "status",
-            },
-        },
+        Status = setmetatable({ traits = {
+            xml_name = "status",
+        } }, { __index = M.ClientVpnEndpointStatus }),
         CreationTime = {
             type = "string",
             traits = {
@@ -33661,7 +32278,7 @@ M.ClientVpnEndpoint = {
         },
         DnsServers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "dnsServer",
             },
@@ -33685,14 +32302,14 @@ M.ClientVpnEndpoint = {
             },
         },
         VpnPort = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "vpnPort",
             },
         },
         AssociatedTargetNetworks = {
             type = "list",
-            member_type = "structure",
+            member = M.AssociatedTargetNetwork,
             traits = {
                 xml_name = "associatedTargetNetwork",
             },
@@ -33705,27 +32322,24 @@ M.ClientVpnEndpoint = {
         },
         AuthenticationOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.ClientVpnAuthentication,
             traits = {
                 xml_name = "authenticationOptions",
             },
         },
-        ConnectionLogOptions = {
-            type = "structure",
-            traits = {
-                xml_name = "connectionLogOptions",
-            },
-        },
+        ConnectionLogOptions = setmetatable({ traits = {
+            xml_name = "connectionLogOptions",
+        } }, { __index = M.ConnectionLogResponseOptions }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "securityGroupIdSet",
             },
@@ -33742,30 +32356,21 @@ M.ClientVpnEndpoint = {
                 xml_name = "selfServicePortalUrl",
             },
         },
-        ClientConnectOptions = {
-            type = "structure",
-            traits = {
-                xml_name = "clientConnectOptions",
-            },
-        },
+        ClientConnectOptions = setmetatable({ traits = {
+            xml_name = "clientConnectOptions",
+        } }, { __index = M.ClientConnectResponseOptions }),
         SessionTimeoutHours = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "sessionTimeoutHours",
             },
         },
-        ClientLoginBannerOptions = {
-            type = "structure",
-            traits = {
-                xml_name = "clientLoginBannerOptions",
-            },
-        },
-        ClientRouteEnforcementOptions = {
-            type = "structure",
-            traits = {
-                xml_name = "clientRouteEnforcementOptions",
-            },
-        },
+        ClientLoginBannerOptions = setmetatable({ traits = {
+            xml_name = "clientLoginBannerOptions",
+        } }, { __index = M.ClientLoginBannerResponseOptions }),
+        ClientRouteEnforcementOptions = setmetatable({ traits = {
+            xml_name = "clientRouteEnforcementOptions",
+        } }, { __index = M.ClientRouteEnforcementResponseOptions }),
         DisconnectOnSessionTimeout = {
             type = "boolean",
             traits = {
@@ -33784,12 +32389,9 @@ M.ClientVpnEndpoint = {
                 xml_name = "trafficIpAddressType",
             },
         },
-        TransitGatewayConfiguration = {
-            type = "structure",
-            traits = {
-                xml_name = "transitGatewayConfiguration",
-            },
-        },
+        TransitGatewayConfiguration = setmetatable({ traits = {
+            xml_name = "transitGatewayConfiguration",
+        } }, { __index = M.TransitGatewayConfigurationDescribeEndpointStructure }),
     },
 }
 
@@ -33798,7 +32400,7 @@ M.DescribeClientVpnEndpointsOutput = {
     members = {
         ClientVpnEndpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.ClientVpnEndpoint,
             traits = {
                 xml_name = "clientVpnEndpoint",
             },
@@ -33823,13 +32425,13 @@ M.DescribeClientVpnRoutesInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -33873,12 +32475,9 @@ M.ClientVpnRoute = {
                 xml_name = "origin",
             },
         },
-        Status = {
-            type = "structure",
-            traits = {
-                xml_name = "status",
-            },
-        },
+        Status = setmetatable({ traits = {
+            xml_name = "status",
+        } }, { __index = M.ClientVpnRouteStatus }),
         Description = {
             type = "string",
             traits = {
@@ -33899,7 +32498,7 @@ M.DescribeClientVpnRoutesOutput = {
     members = {
         Routes = {
             type = "list",
-            member_type = "structure",
+            member = M.ClientVpnRoute,
             traits = {
                 xml_name = "routes",
             },
@@ -33924,17 +32523,17 @@ M.DescribeClientVpnTargetNetworksInput = {
         },
         AssociationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -33972,29 +32571,26 @@ M.TargetNetwork = {
                 xml_name = "clientVpnEndpointId",
             },
         },
-        Status = {
-            type = "structure",
-            traits = {
-                xml_name = "status",
-            },
-        },
+        Status = setmetatable({ traits = {
+            xml_name = "status",
+        } }, { __index = M.AssociationStatus }),
         SecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "securityGroups",
             },
         },
         AvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "availabilityZoneSet",
             },
         },
         AvailabilityZoneIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "availabilityZoneIdSet",
             },
@@ -34007,7 +32603,7 @@ M.DescribeClientVpnTargetNetworksOutput = {
     members = {
         ClientVpnTargetNetworks = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetNetwork,
             traits = {
                 xml_name = "clientVpnTargetNetworks",
             },
@@ -34026,20 +32622,20 @@ M.DescribeCoipPoolsInput = {
     members = {
         PoolIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "PoolId",
             },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -34055,7 +32651,7 @@ M.DescribeCoipPoolsOutput = {
     members = {
         CoipPools = {
             type = "list",
-            member_type = "structure",
+            member = M.CoipPool,
             traits = {
                 xml_name = "coipPoolSet",
             },
@@ -34080,7 +32676,7 @@ M.DescribeConversionTasksInput = {
         },
         ConversionTaskIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "conversionTaskId",
             },
@@ -34110,7 +32706,7 @@ M.DiskImageDescription = {
             },
         },
         Size = {
-            type = "number",
+            type = "long",
             traits = {
                 xml_name = "size",
             },
@@ -34128,7 +32724,7 @@ M.DiskImageVolumeDescription = {
             },
         },
         Size = {
-            type = "number",
+            type = "long",
             traits = {
                 xml_name = "size",
             },
@@ -34152,7 +32748,7 @@ M.ImportInstanceVolumeDetailItem = {
             },
         },
         BytesConverted = {
-            type = "number",
+            type = "long",
             traits = {
                 xml_name = "bytesConverted",
             },
@@ -34163,12 +32759,9 @@ M.ImportInstanceVolumeDetailItem = {
                 xml_name = "description",
             },
         },
-        Image = {
-            type = "structure",
-            traits = {
-                xml_name = "image",
-            },
-        },
+        Image = setmetatable({ traits = {
+            xml_name = "image",
+        } }, { __index = M.DiskImageDescription }),
         Status = {
             type = "string",
             traits = {
@@ -34181,12 +32774,9 @@ M.ImportInstanceVolumeDetailItem = {
                 xml_name = "statusMessage",
             },
         },
-        Volume = {
-            type = "structure",
-            traits = {
-                xml_name = "volume",
-            },
-        },
+        Volume = setmetatable({ traits = {
+            xml_name = "volume",
+        } }, { __index = M.DiskImageVolumeDescription }),
     },
 }
 
@@ -34213,7 +32803,7 @@ M.ImportInstanceTaskDetails = {
         },
         Volumes = {
             type = "list",
-            member_type = "structure",
+            member = M.ImportInstanceVolumeDetailItem,
             traits = {
                 xml_name = "volumes",
             },
@@ -34237,7 +32827,7 @@ M.ImportVolumeTaskDetails = {
             },
         },
         BytesConverted = {
-            type = "number",
+            type = "long",
             traits = {
                 xml_name = "bytesConverted",
             },
@@ -34248,18 +32838,12 @@ M.ImportVolumeTaskDetails = {
                 xml_name = "description",
             },
         },
-        Image = {
-            type = "structure",
-            traits = {
-                xml_name = "image",
-            },
-        },
-        Volume = {
-            type = "structure",
-            traits = {
-                xml_name = "volume",
-            },
-        },
+        Image = setmetatable({ traits = {
+            xml_name = "image",
+        } }, { __index = M.DiskImageDescription }),
+        Volume = setmetatable({ traits = {
+            xml_name = "volume",
+        } }, { __index = M.DiskImageVolumeDescription }),
     },
 }
 
@@ -34285,18 +32869,12 @@ M.ConversionTask = {
                 xml_name = "expirationTime",
             },
         },
-        ImportInstance = {
-            type = "structure",
-            traits = {
-                xml_name = "importInstance",
-            },
-        },
-        ImportVolume = {
-            type = "structure",
-            traits = {
-                xml_name = "importVolume",
-            },
-        },
+        ImportInstance = setmetatable({ traits = {
+            xml_name = "importInstance",
+        } }, { __index = M.ImportInstanceTaskDetails }),
+        ImportVolume = setmetatable({ traits = {
+            xml_name = "importVolume",
+        } }, { __index = M.ImportVolumeTaskDetails }),
         State = {
             type = "string",
             traits = {
@@ -34311,7 +32889,7 @@ M.ConversionTask = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -34324,7 +32902,7 @@ M.DescribeConversionTasksOutput = {
     members = {
         ConversionTasks = {
             type = "list",
-            member_type = "structure",
+            member = M.ConversionTask,
             traits = {
                 xml_name = "conversionTasks",
             },
@@ -34337,14 +32915,14 @@ M.DescribeCustomerGatewaysInput = {
     members = {
         CustomerGatewayIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "CustomerGatewayId",
             },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -34363,7 +32941,7 @@ M.DescribeCustomerGatewaysOutput = {
     members = {
         CustomerGateways = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomerGateway,
             traits = {
                 xml_name = "customerGatewaySet",
             },
@@ -34381,11 +32959,11 @@ M.DescribeDeclarativePoliciesReportsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         ReportIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "ReportId",
             },
@@ -34447,7 +33025,7 @@ M.DeclarativePoliciesReport = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -34466,7 +33044,7 @@ M.DescribeDeclarativePoliciesReportsOutput = {
         },
         Reports = {
             type = "list",
-            member_type = "structure",
+            member = M.DeclarativePoliciesReport,
             traits = {
                 xml_name = "reportSet",
             },
@@ -34479,7 +33057,7 @@ M.DescribeDhcpOptionsInput = {
     members = {
         DhcpOptionsIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "DhcpOptionsId",
             },
@@ -34488,7 +33066,7 @@ M.DescribeDhcpOptionsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         DryRun = {
             type = "boolean",
@@ -34498,7 +33076,7 @@ M.DescribeDhcpOptionsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -34517,7 +33095,7 @@ M.DescribeDhcpOptionsOutput = {
         },
         DhcpOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.DhcpOptions,
             traits = {
                 xml_name = "dhcpOptionsSet",
             },
@@ -34533,20 +33111,20 @@ M.DescribeEgressOnlyInternetGatewaysInput = {
         },
         EgressOnlyInternetGatewayIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "EgressOnlyInternetGatewayId",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -34559,7 +33137,7 @@ M.DescribeEgressOnlyInternetGatewaysOutput = {
     members = {
         EgressOnlyInternetGateways = {
             type = "list",
-            member_type = "structure",
+            member = M.EgressOnlyInternetGateway,
             traits = {
                 xml_name = "egressOnlyInternetGatewaySet",
             },
@@ -34578,7 +33156,7 @@ M.DescribeElasticGpusInput = {
     members = {
         ElasticGpuIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "ElasticGpuId",
             },
@@ -34588,13 +33166,13 @@ M.DescribeElasticGpusInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -34644,12 +33222,9 @@ M.ElasticGpus = {
                 xml_name = "elasticGpuType",
             },
         },
-        ElasticGpuHealth = {
-            type = "structure",
-            traits = {
-                xml_name = "elasticGpuHealth",
-            },
-        },
+        ElasticGpuHealth = setmetatable({ traits = {
+            xml_name = "elasticGpuHealth",
+        } }, { __index = M.ElasticGpuHealth }),
         ElasticGpuState = {
             type = "string",
             traits = {
@@ -34664,7 +33239,7 @@ M.ElasticGpus = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -34677,13 +33252,13 @@ M.DescribeElasticGpusOutput = {
     members = {
         ElasticGpuSet = {
             type = "list",
-            member_type = "structure",
+            member = M.ElasticGpus,
             traits = {
                 xml_name = "elasticGpuSet",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "maxResults",
             },
@@ -34705,20 +33280,20 @@ M.DescribeExportImageTasksInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         ExportImageTaskIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "ExportImageTaskId",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -34771,12 +33346,9 @@ M.ExportImageTask = {
                 xml_name = "progress",
             },
         },
-        S3ExportLocation = {
-            type = "structure",
-            traits = {
-                xml_name = "s3ExportLocation",
-            },
-        },
+        S3ExportLocation = setmetatable({ traits = {
+            xml_name = "s3ExportLocation",
+        } }, { __index = M.ExportTaskS3Location }),
         Status = {
             type = "string",
             traits = {
@@ -34791,7 +33363,7 @@ M.ExportImageTask = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -34804,7 +33376,7 @@ M.DescribeExportImageTasksOutput = {
     members = {
         ExportImageTasks = {
             type = "list",
-            member_type = "structure",
+            member = M.ExportImageTask,
             traits = {
                 xml_name = "exportImageTaskSet",
             },
@@ -34823,14 +33395,14 @@ M.DescribeExportTasksInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         ExportTaskIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "exportTaskId",
             },
@@ -34843,7 +33415,7 @@ M.DescribeExportTasksOutput = {
     members = {
         ExportTasks = {
             type = "list",
-            member_type = "structure",
+            member = M.ExportTask,
             traits = {
                 xml_name = "exportTaskSet",
             },
@@ -34856,20 +33428,20 @@ M.DescribeFastLaunchImagesInput = {
     members = {
         ImageIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "ImageId",
             },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -34912,7 +33484,7 @@ M.FastLaunchSnapshotConfigurationResponse = {
     type = "structure",
     members = {
         TargetResourceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "targetResourceCount",
             },
@@ -34944,20 +33516,14 @@ M.DescribeFastLaunchImagesSuccessItem = {
                 xml_name = "resourceType",
             },
         },
-        SnapshotConfiguration = {
-            type = "structure",
-            traits = {
-                xml_name = "snapshotConfiguration",
-            },
-        },
-        LaunchTemplate = {
-            type = "structure",
-            traits = {
-                xml_name = "launchTemplate",
-            },
-        },
+        SnapshotConfiguration = setmetatable({ traits = {
+            xml_name = "snapshotConfiguration",
+        } }, { __index = M.FastLaunchSnapshotConfigurationResponse }),
+        LaunchTemplate = setmetatable({ traits = {
+            xml_name = "launchTemplate",
+        } }, { __index = M.FastLaunchLaunchTemplateSpecificationResponse }),
         MaxParallelLaunches = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "maxParallelLaunches",
             },
@@ -34994,7 +33560,7 @@ M.DescribeFastLaunchImagesOutput = {
     members = {
         FastLaunchImages = {
             type = "list",
-            member_type = "structure",
+            member = M.DescribeFastLaunchImagesSuccessItem,
             traits = {
                 xml_name = "fastLaunchImageSet",
             },
@@ -35013,13 +33579,13 @@ M.DescribeFastSnapshotRestoresInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -35121,7 +33687,7 @@ M.DescribeFastSnapshotRestoresOutput = {
     members = {
         FastSnapshotRestores = {
             type = "list",
-            member_type = "structure",
+            member = M.DescribeFastSnapshotRestoreSuccessItem,
             traits = {
                 xml_name = "fastSnapshotRestoreSet",
             },
@@ -35151,7 +33717,7 @@ M.DescribeFleetHistoryInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -35198,12 +33764,9 @@ M.EventInformation = {
 M.HistoryRecordEntry = {
     type = "structure",
     members = {
-        EventInformation = {
-            type = "structure",
-            traits = {
-                xml_name = "eventInformation",
-            },
-        },
+        EventInformation = setmetatable({ traits = {
+            xml_name = "eventInformation",
+        } }, { __index = M.EventInformation }),
         EventType = {
             type = "string",
             traits = {
@@ -35224,7 +33787,7 @@ M.DescribeFleetHistoryOutput = {
     members = {
         HistoryRecords = {
             type = "list",
-            member_type = "structure",
+            member = M.HistoryRecordEntry,
             traits = {
                 xml_name = "historyRecordSet",
             },
@@ -35263,7 +33826,7 @@ M.DescribeFleetInstancesInput = {
             type = "boolean",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -35276,7 +33839,7 @@ M.DescribeFleetInstancesInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -35289,7 +33852,7 @@ M.DescribeFleetInstancesOutput = {
     members = {
         ActiveInstances = {
             type = "list",
-            member_type = "structure",
+            member = M.ActiveInstance,
             traits = {
                 xml_name = "activeInstanceSet",
             },
@@ -35316,21 +33879,21 @@ M.DescribeFleetsInput = {
             type = "boolean",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         FleetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "FleetId",
             },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -35348,12 +33911,9 @@ M.FleetActivityStatus = {
 M.DescribeFleetError = {
     type = "structure",
     members = {
-        LaunchTemplateAndOverrides = {
-            type = "structure",
-            traits = {
-                xml_name = "launchTemplateAndOverrides",
-            },
-        },
+        LaunchTemplateAndOverrides = setmetatable({ traits = {
+            xml_name = "launchTemplateAndOverrides",
+        } }, { __index = M.LaunchTemplateAndOverridesResponse }),
         Lifecycle = {
             type = "string",
             traits = {
@@ -35378,12 +33938,9 @@ M.DescribeFleetError = {
 M.DescribeFleetsInstances = {
     type = "structure",
     members = {
-        LaunchTemplateAndOverrides = {
-            type = "structure",
-            traits = {
-                xml_name = "launchTemplateAndOverrides",
-            },
-        },
+        LaunchTemplateAndOverrides = setmetatable({ traits = {
+            xml_name = "launchTemplateAndOverrides",
+        } }, { __index = M.LaunchTemplateAndOverridesResponse }),
         Lifecycle = {
             type = "string",
             traits = {
@@ -35392,7 +33949,7 @@ M.DescribeFleetsInstances = {
         },
         InstanceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "instanceIds",
             },
@@ -35415,15 +33972,12 @@ M.DescribeFleetsInstances = {
 M.FleetLaunchTemplateConfig = {
     type = "structure",
     members = {
-        LaunchTemplateSpecification = {
-            type = "structure",
-            traits = {
-                xml_name = "launchTemplateSpecification",
-            },
-        },
+        LaunchTemplateSpecification = setmetatable({ traits = {
+            xml_name = "launchTemplateSpecification",
+        } }, { __index = M.FleetLaunchTemplateSpecification }),
         Overrides = {
             type = "list",
-            member_type = "structure",
+            member = M.FleetLaunchTemplateOverrides,
             traits = {
                 xml_name = "overrides",
             },
@@ -35452,12 +34006,9 @@ M.OnDemandOptions = {
                 xml_name = "allocationStrategy",
             },
         },
-        CapacityReservationOptions = {
-            type = "structure",
-            traits = {
-                xml_name = "capacityReservationOptions",
-            },
-        },
+        CapacityReservationOptions = setmetatable({ traits = {
+            xml_name = "capacityReservationOptions",
+        } }, { __index = M.CapacityReservationOptions }),
         SingleInstanceType = {
             type = "boolean",
             traits = {
@@ -35471,7 +34022,7 @@ M.OnDemandOptions = {
             },
         },
         MinTargetCapacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "minTargetCapacity",
             },
@@ -35490,7 +34041,7 @@ M.ReservedCapacityOptions = {
     members = {
         ReservationTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "reservationTypeSet",
             },
@@ -35508,7 +34059,7 @@ M.FleetSpotCapacityRebalance = {
             },
         },
         TerminationDelay = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "terminationDelay",
             },
@@ -35519,12 +34070,9 @@ M.FleetSpotCapacityRebalance = {
 M.FleetSpotMaintenanceStrategies = {
     type = "structure",
     members = {
-        CapacityRebalance = {
-            type = "structure",
-            traits = {
-                xml_name = "capacityRebalance",
-            },
-        },
+        CapacityRebalance = setmetatable({ traits = {
+            xml_name = "capacityRebalance",
+        } }, { __index = M.FleetSpotCapacityRebalance }),
     },
 }
 
@@ -35537,12 +34085,9 @@ M.SpotOptions = {
                 xml_name = "allocationStrategy",
             },
         },
-        MaintenanceStrategies = {
-            type = "structure",
-            traits = {
-                xml_name = "maintenanceStrategies",
-            },
-        },
+        MaintenanceStrategies = setmetatable({ traits = {
+            xml_name = "maintenanceStrategies",
+        } }, { __index = M.FleetSpotMaintenanceStrategies }),
         InstanceInterruptionBehavior = {
             type = "string",
             traits = {
@@ -35550,7 +34095,7 @@ M.SpotOptions = {
             },
         },
         InstancePoolsToUseCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "instancePoolsToUseCount",
             },
@@ -35568,7 +34113,7 @@ M.SpotOptions = {
             },
         },
         MinTargetCapacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "minTargetCapacity",
             },
@@ -35586,19 +34131,19 @@ M.TargetCapacitySpecification = {
     type = "structure",
     members = {
         TotalTargetCapacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "totalTargetCapacity",
             },
         },
         OnDemandTargetCapacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "onDemandTargetCapacity",
             },
         },
         SpotTargetCapacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "spotTargetCapacity",
             },
@@ -35658,30 +34203,27 @@ M.FleetData = {
             },
         },
         FulfilledCapacity = {
-            type = "number",
+            type = "double",
             traits = {
                 xml_name = "fulfilledCapacity",
             },
         },
         FulfilledOnDemandCapacity = {
-            type = "number",
+            type = "double",
             traits = {
                 xml_name = "fulfilledOnDemandCapacity",
             },
         },
         LaunchTemplateConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.FleetLaunchTemplateConfig,
             traits = {
                 xml_name = "launchTemplateConfigs",
             },
         },
-        TargetCapacitySpecification = {
-            type = "structure",
-            traits = {
-                xml_name = "targetCapacitySpecification",
-            },
-        },
+        TargetCapacitySpecification = setmetatable({ traits = {
+            xml_name = "targetCapacitySpecification",
+        } }, { __index = M.TargetCapacitySpecification }),
         TerminateInstancesWithExpiration = {
             type = "boolean",
             traits = {
@@ -35712,41 +34254,32 @@ M.FleetData = {
                 xml_name = "replaceUnhealthyInstances",
             },
         },
-        SpotOptions = {
-            type = "structure",
-            traits = {
-                xml_name = "spotOptions",
-            },
-        },
-        OnDemandOptions = {
-            type = "structure",
-            traits = {
-                xml_name = "onDemandOptions",
-            },
-        },
-        ReservedCapacityOptions = {
-            type = "structure",
-            traits = {
-                xml_name = "reservedCapacityOptions",
-            },
-        },
+        SpotOptions = setmetatable({ traits = {
+            xml_name = "spotOptions",
+        } }, { __index = M.SpotOptions }),
+        OnDemandOptions = setmetatable({ traits = {
+            xml_name = "onDemandOptions",
+        } }, { __index = M.OnDemandOptions }),
+        ReservedCapacityOptions = setmetatable({ traits = {
+            xml_name = "reservedCapacityOptions",
+        } }, { __index = M.ReservedCapacityOptions }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
         },
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.DescribeFleetError,
             traits = {
                 xml_name = "errorSet",
             },
         },
         Instances = {
             type = "list",
-            member_type = "structure",
+            member = M.DescribeFleetsInstances,
             traits = {
                 xml_name = "fleetInstanceSet",
             },
@@ -35771,7 +34304,7 @@ M.DescribeFleetsOutput = {
         },
         Fleets = {
             type = "list",
-            member_type = "structure",
+            member = M.FleetData,
             traits = {
                 xml_name = "fleetSet",
             },
@@ -35787,17 +34320,17 @@ M.DescribeFlowLogsInput = {
         },
         Filter = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         FlowLogIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "FlowLogId",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -35912,23 +34445,20 @@ M.FlowLog = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
         },
         MaxAggregationInterval = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "maxAggregationInterval",
             },
         },
-        DestinationOptions = {
-            type = "structure",
-            traits = {
-                xml_name = "destinationOptions",
-            },
-        },
+        DestinationOptions = setmetatable({ traits = {
+            xml_name = "destinationOptions",
+        } }, { __index = M.DestinationOptionsResponse }),
     },
 }
 
@@ -35937,7 +34467,7 @@ M.DescribeFlowLogsOutput = {
     members = {
         FlowLogs = {
             type = "list",
-            member_type = "structure",
+            member = M.FlowLog,
             traits = {
                 xml_name = "flowLogSet",
             },
@@ -36047,14 +34577,14 @@ M.FpgaImageAttribute = {
         },
         LoadPermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.LoadPermission,
             traits = {
                 xml_name = "loadPermissions",
             },
         },
         ProductCodes = {
             type = "list",
-            member_type = "structure",
+            member = M.ProductCode,
             traits = {
                 xml_name = "productCodes",
             },
@@ -36065,12 +34595,9 @@ M.FpgaImageAttribute = {
 M.DescribeFpgaImageAttributeOutput = {
     type = "structure",
     members = {
-        FpgaImageAttribute = {
-            type = "structure",
-            traits = {
-                xml_name = "fpgaImageAttribute",
-            },
-        },
+        FpgaImageAttribute = setmetatable({ traits = {
+            xml_name = "fpgaImageAttribute",
+        } }, { __index = M.FpgaImageAttribute }),
     },
 }
 
@@ -36082,21 +34609,21 @@ M.DescribeFpgaImagesInput = {
         },
         FpgaImageIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "FpgaImageId",
             },
         },
         Owners = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "Owner",
             },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -36105,7 +34632,7 @@ M.DescribeFpgaImagesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -36186,18 +34713,12 @@ M.FpgaImage = {
                 xml_name = "shellVersion",
             },
         },
-        PciId = {
-            type = "structure",
-            traits = {
-                xml_name = "pciId",
-            },
-        },
-        State = {
-            type = "structure",
-            traits = {
-                xml_name = "state",
-            },
-        },
+        PciId = setmetatable({ traits = {
+            xml_name = "pciId",
+        } }, { __index = M.PciId }),
+        State = setmetatable({ traits = {
+            xml_name = "state",
+        } }, { __index = M.FpgaImageState }),
         CreateTime = {
             type = "timestamp",
             traits = {
@@ -36224,14 +34745,14 @@ M.FpgaImage = {
         },
         ProductCodes = {
             type = "list",
-            member_type = "structure",
+            member = M.ProductCode,
             traits = {
                 xml_name = "productCodes",
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tags",
             },
@@ -36250,7 +34771,7 @@ M.FpgaImage = {
         },
         InstanceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "instanceTypes",
             },
@@ -36263,7 +34784,7 @@ M.DescribeFpgaImagesOutput = {
     members = {
         FpgaImages = {
             type = "list",
-            member_type = "structure",
+            member = M.FpgaImage,
             traits = {
                 xml_name = "fpgaImageSet",
             },
@@ -36282,16 +34803,16 @@ M.DescribeHostReservationOfferingsInput = {
     members = {
         Filter = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         MaxDuration = {
-            type = "number",
+            type = "integer",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         MinDuration = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -36318,7 +34839,7 @@ M.HostOffering = {
             },
         },
         Duration = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "duration",
             },
@@ -36367,7 +34888,7 @@ M.DescribeHostReservationOfferingsOutput = {
         },
         OfferingSet = {
             type = "list",
-            member_type = "structure",
+            member = M.HostOffering,
             traits = {
                 xml_name = "offeringSet",
             },
@@ -36380,14 +34901,14 @@ M.DescribeHostReservationsInput = {
     members = {
         Filter = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         HostReservationIdSet = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -36413,7 +34934,7 @@ M.HostReservation = {
     type = "structure",
     members = {
         Count = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "count",
             },
@@ -36425,7 +34946,7 @@ M.HostReservation = {
             },
         },
         Duration = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "duration",
             },
@@ -36438,7 +34959,7 @@ M.HostReservation = {
         },
         HostIdSet = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "hostIdSet",
             },
@@ -36493,7 +35014,7 @@ M.HostReservation = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -36506,7 +35027,7 @@ M.DescribeHostReservationsOutput = {
     members = {
         HostReservationSet = {
             type = "list",
-            member_type = "structure",
+            member = M.HostReservation,
             traits = {
                 xml_name = "hostReservationSet",
             },
@@ -36525,7 +35046,7 @@ M.DescribeHostsInput = {
     members = {
         HostIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "hostId",
             },
@@ -36537,14 +35058,14 @@ M.DescribeHostsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "maxResults",
             },
         },
         Filter = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "filter",
             },
@@ -36556,7 +35077,7 @@ M.InstanceCapacity = {
     type = "structure",
     members = {
         AvailableCapacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "availableCapacity",
             },
@@ -36568,7 +35089,7 @@ M.InstanceCapacity = {
             },
         },
         TotalCapacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "totalCapacity",
             },
@@ -36581,13 +35102,13 @@ M.AvailableCapacity = {
     members = {
         AvailableInstanceCapacity = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceCapacity,
             traits = {
                 xml_name = "availableInstanceCapacity",
             },
         },
         AvailableVCpus = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "availableVCpus",
             },
@@ -36599,7 +35120,7 @@ M.HostProperties = {
     type = "structure",
     members = {
         Cores = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "cores",
             },
@@ -36617,13 +35138,13 @@ M.HostProperties = {
             },
         },
         Sockets = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "sockets",
             },
         },
         TotalVCpus = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "totalVCpus",
             },
@@ -36670,12 +35191,9 @@ M.Host = {
                 xml_name = "availabilityZone",
             },
         },
-        AvailableCapacity = {
-            type = "structure",
-            traits = {
-                xml_name = "availableCapacity",
-            },
-        },
+        AvailableCapacity = setmetatable({ traits = {
+            xml_name = "availableCapacity",
+        } }, { __index = M.AvailableCapacity }),
         ClientToken = {
             type = "string",
             traits = {
@@ -36688,12 +35206,9 @@ M.Host = {
                 xml_name = "hostId",
             },
         },
-        HostProperties = {
-            type = "structure",
-            traits = {
-                xml_name = "hostProperties",
-            },
-        },
+        HostProperties = setmetatable({ traits = {
+            xml_name = "hostProperties",
+        } }, { __index = M.HostProperties }),
         HostReservationId = {
             type = "string",
             traits = {
@@ -36702,7 +35217,7 @@ M.Host = {
         },
         Instances = {
             type = "list",
-            member_type = "structure",
+            member = M.HostInstance,
             traits = {
                 xml_name = "instances",
             },
@@ -36727,7 +35242,7 @@ M.Host = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -36788,7 +35303,7 @@ M.DescribeHostsOutput = {
     members = {
         Hosts = {
             type = "list",
-            member_type = "structure",
+            member = M.Host,
             traits = {
                 xml_name = "hostSet",
             },
@@ -36807,20 +35322,20 @@ M.DescribeIamInstanceProfileAssociationsInput = {
     members = {
         AssociationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "AssociationId",
             },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -36833,7 +35348,7 @@ M.DescribeIamInstanceProfileAssociationsOutput = {
     members = {
         IamInstanceProfileAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.IamInstanceProfileAssociation,
             traits = {
                 xml_name = "iamInstanceProfileAssociationSet",
             },
@@ -36871,7 +35386,7 @@ M.DescribeIdentityIdFormatOutput = {
     members = {
         Statuses = {
             type = "list",
-            member_type = "structure",
+            member = M.IdFormat,
             traits = {
                 xml_name = "statusSet",
             },
@@ -36893,7 +35408,7 @@ M.DescribeIdFormatOutput = {
     members = {
         Statuses = {
             type = "list",
-            member_type = "structure",
+            member = M.IdFormat,
             traits = {
                 xml_name = "statusSet",
             },
@@ -36974,66 +35489,36 @@ M.LaunchPermission = {
 M.DescribeImageAttributeOutput = {
     type = "structure",
     members = {
-        Description = {
-            type = "structure",
-            traits = {
-                xml_name = "description",
-            },
-        },
-        KernelId = {
-            type = "structure",
-            traits = {
-                xml_name = "kernel",
-            },
-        },
-        RamdiskId = {
-            type = "structure",
-            traits = {
-                xml_name = "ramdisk",
-            },
-        },
-        SriovNetSupport = {
-            type = "structure",
-            traits = {
-                xml_name = "sriovNetSupport",
-            },
-        },
-        BootMode = {
-            type = "structure",
-            traits = {
-                xml_name = "bootMode",
-            },
-        },
-        TpmSupport = {
-            type = "structure",
-            traits = {
-                xml_name = "tpmSupport",
-            },
-        },
-        UefiData = {
-            type = "structure",
-            traits = {
-                xml_name = "uefiData",
-            },
-        },
-        LastLaunchedTime = {
-            type = "structure",
-            traits = {
-                xml_name = "lastLaunchedTime",
-            },
-        },
-        ImdsSupport = {
-            type = "structure",
-            traits = {
-                xml_name = "imdsSupport",
-            },
-        },
-        DeregistrationProtection = {
-            type = "structure",
-            traits = {
-                xml_name = "deregistrationProtection",
-            },
-        },
+        Description = setmetatable({ traits = {
+            xml_name = "description",
+        } }, { __index = M.AttributeValue }),
+        KernelId = setmetatable({ traits = {
+            xml_name = "kernel",
+        } }, { __index = M.AttributeValue }),
+        RamdiskId = setmetatable({ traits = {
+            xml_name = "ramdisk",
+        } }, { __index = M.AttributeValue }),
+        SriovNetSupport = setmetatable({ traits = {
+            xml_name = "sriovNetSupport",
+        } }, { __index = M.AttributeValue }),
+        BootMode = setmetatable({ traits = {
+            xml_name = "bootMode",
+        } }, { __index = M.AttributeValue }),
+        TpmSupport = setmetatable({ traits = {
+            xml_name = "tpmSupport",
+        } }, { __index = M.AttributeValue }),
+        UefiData = setmetatable({ traits = {
+            xml_name = "uefiData",
+        } }, { __index = M.AttributeValue }),
+        LastLaunchedTime = setmetatable({ traits = {
+            xml_name = "lastLaunchedTime",
+        } }, { __index = M.AttributeValue }),
+        ImdsSupport = setmetatable({ traits = {
+            xml_name = "imdsSupport",
+        } }, { __index = M.AttributeValue }),
+        DeregistrationProtection = setmetatable({ traits = {
+            xml_name = "deregistrationProtection",
+        } }, { __index = M.AttributeValue }),
         ImageId = {
             type = "string",
             traits = {
@@ -37042,21 +35527,21 @@ M.DescribeImageAttributeOutput = {
         },
         LaunchPermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.LaunchPermission,
             traits = {
                 xml_name = "launchPermission",
             },
         },
         ProductCodes = {
             type = "list",
-            member_type = "structure",
+            member = M.ProductCode,
             traits = {
                 xml_name = "productCodes",
             },
         },
         BlockDeviceMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.BlockDeviceMapping,
             traits = {
                 xml_name = "blockDeviceMapping",
             },
@@ -37085,7 +35570,7 @@ M.ResourceTypeOption = {
         },
         OptionValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "OptionValue",
             },
@@ -37101,7 +35586,7 @@ M.ResourceTypeRequest = {
         },
         ResourceTypeOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTypeOption,
             traits = {
                 xml_name = "ResourceTypeOption",
             },
@@ -37114,7 +35599,7 @@ M.DescribeImageReferencesInput = {
     members = {
         ImageIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "ImageId",
@@ -37125,7 +35610,7 @@ M.DescribeImageReferencesInput = {
         },
         ResourceTypes = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTypeRequest,
             traits = {
                 xml_name = "ResourceType",
             },
@@ -37137,7 +35622,7 @@ M.DescribeImageReferencesInput = {
             type = "boolean",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -37177,7 +35662,7 @@ M.DescribeImageReferencesOutput = {
         },
         ImageReferences = {
             type = "list",
-            member_type = "structure",
+            member = M.ImageReference,
             traits = {
                 xml_name = "imageReferenceSet",
             },
@@ -37190,21 +35675,21 @@ M.DescribeImagesInput = {
     members = {
         ExecutableUsers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "ExecutableBy",
             },
         },
         ImageIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "ImageId",
             },
         },
         Owners = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "Owner",
             },
@@ -37216,7 +35701,7 @@ M.DescribeImagesInput = {
             type = "boolean",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -37229,7 +35714,7 @@ M.DescribeImagesInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -37308,7 +35793,7 @@ M.Image = {
         },
         BlockDeviceMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.BlockDeviceMapping,
             traits = {
                 xml_name = "blockDeviceMapping",
             },
@@ -37361,15 +35846,12 @@ M.Image = {
                 xml_name = "sriovNetSupport",
             },
         },
-        StateReason = {
-            type = "structure",
-            traits = {
-                xml_name = "stateReason",
-            },
-        },
+        StateReason = setmetatable({ traits = {
+            xml_name = "stateReason",
+        } }, { __index = M.StateReason }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -37484,7 +35966,7 @@ M.Image = {
         },
         ProductCodes = {
             type = "list",
-            member_type = "structure",
+            member = M.ProductCode,
             traits = {
                 xml_name = "productCodes",
             },
@@ -37533,7 +36015,7 @@ M.DescribeImagesOutput = {
         },
         Images = {
             type = "list",
-            member_type = "structure",
+            member = M.Image,
             traits = {
                 xml_name = "imagesSet",
             },
@@ -37546,14 +36028,14 @@ M.DescribeImageUsageReportEntriesInput = {
     members = {
         ImageIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "ImageId",
             },
         },
         ReportIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "ReportId",
             },
@@ -37563,7 +36045,7 @@ M.DescribeImageUsageReportEntriesInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -37572,7 +36054,7 @@ M.DescribeImageUsageReportEntriesInput = {
             type = "boolean",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -37593,7 +36075,7 @@ M.ImageUsageReportEntry = {
             },
         },
         UsageCount = {
-            type = "number",
+            type = "long",
             traits = {
                 xml_name = "usageCount",
             },
@@ -37630,7 +36112,7 @@ M.DescribeImageUsageReportEntriesOutput = {
         },
         ImageUsageReportEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.ImageUsageReportEntry,
             traits = {
                 xml_name = "imageUsageReportEntrySet",
             },
@@ -37643,14 +36125,14 @@ M.DescribeImageUsageReportsInput = {
     members = {
         ImageIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "ImageId",
             },
         },
         ReportIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "ReportId",
             },
@@ -37660,7 +36142,7 @@ M.DescribeImageUsageReportsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -37669,7 +36151,7 @@ M.DescribeImageUsageReportsInput = {
             type = "boolean",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -37685,7 +36167,7 @@ M.ImageUsageResourceTypeOption = {
         },
         OptionValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "optionValueSet",
             },
@@ -37704,7 +36186,7 @@ M.ImageUsageResourceType = {
         },
         ResourceTypeOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.ImageUsageResourceTypeOption,
             traits = {
                 xml_name = "resourceTypeOptionSet",
             },
@@ -37729,14 +36211,14 @@ M.ImageUsageReport = {
         },
         ResourceTypes = {
             type = "list",
-            member_type = "structure",
+            member = M.ImageUsageResourceType,
             traits = {
                 xml_name = "resourceTypeSet",
             },
         },
         AccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "accountIdSet",
             },
@@ -37767,7 +36249,7 @@ M.ImageUsageReport = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -37786,7 +36268,7 @@ M.DescribeImageUsageReportsOutput = {
         },
         ImageUsageReports = {
             type = "list",
-            member_type = "structure",
+            member = M.ImageUsageReport,
             traits = {
                 xml_name = "imageUsageReportSet",
             },
@@ -37802,20 +36284,20 @@ M.DescribeImportImageTasksInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filters",
             },
         },
         ImportTaskIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "ImportTaskId",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -37869,7 +36351,7 @@ M.SnapshotDetail = {
             },
         },
         DiskImageSize = {
-            type = "number",
+            type = "double",
             traits = {
                 xml_name = "diskImageSize",
             },
@@ -37910,12 +36392,9 @@ M.SnapshotDetail = {
                 xml_name = "url",
             },
         },
-        UserBucket = {
-            type = "structure",
-            traits = {
-                xml_name = "userBucket",
-            },
-        },
+        UserBucket = setmetatable({ traits = {
+            xml_name = "userBucket",
+        } }, { __index = M.UserBucketDetails }),
     },
 }
 
@@ -37984,7 +36463,7 @@ M.ImportImageTask = {
         },
         SnapshotDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.SnapshotDetail,
             traits = {
                 xml_name = "snapshotDetailSet",
             },
@@ -38003,14 +36482,14 @@ M.ImportImageTask = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
         },
         LicenseSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.ImportImageLicenseConfigurationResponse,
             traits = {
                 xml_name = "licenseSpecifications",
             },
@@ -38035,7 +36514,7 @@ M.DescribeImportImageTasksOutput = {
     members = {
         ImportImageTasks = {
             type = "list",
-            member_type = "structure",
+            member = M.ImportImageTask,
             traits = {
                 xml_name = "importImageTaskSet",
             },
@@ -38057,20 +36536,20 @@ M.DescribeImportSnapshotTasksInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filters",
             },
         },
         ImportTaskIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "ImportTaskId",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -38088,7 +36567,7 @@ M.SnapshotTaskDetail = {
             },
         },
         DiskImageSize = {
-            type = "number",
+            type = "double",
             traits = {
                 xml_name = "diskImageSize",
             },
@@ -38141,12 +36620,9 @@ M.SnapshotTaskDetail = {
                 xml_name = "url",
             },
         },
-        UserBucket = {
-            type = "structure",
-            traits = {
-                xml_name = "userBucket",
-            },
-        },
+        UserBucket = setmetatable({ traits = {
+            xml_name = "userBucket",
+        } }, { __index = M.UserBucketDetails }),
     },
 }
 
@@ -38165,15 +36641,12 @@ M.ImportSnapshotTask = {
                 xml_name = "importTaskId",
             },
         },
-        SnapshotTaskDetail = {
-            type = "structure",
-            traits = {
-                xml_name = "snapshotTaskDetail",
-            },
-        },
+        SnapshotTaskDetail = setmetatable({ traits = {
+            xml_name = "snapshotTaskDetail",
+        } }, { __index = M.SnapshotTaskDetail }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -38186,7 +36659,7 @@ M.DescribeImportSnapshotTasksOutput = {
     members = {
         ImportSnapshotTasks = {
             type = "list",
-            member_type = "structure",
+            member = M.ImportSnapshotTask,
             traits = {
                 xml_name = "importSnapshotTaskSet",
             },
@@ -38284,14 +36757,11 @@ M.EbsInstanceBlockDevice = {
                 xml_name = "volumeOwnerId",
             },
         },
-        Operator = {
-            type = "structure",
-            traits = {
-                xml_name = "operator",
-            },
-        },
+        Operator = setmetatable({ traits = {
+            xml_name = "operator",
+        } }, { __index = M.OperatorResponse }),
         EbsCardIndex = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "ebsCardIndex",
             },
@@ -38308,12 +36778,9 @@ M.InstanceBlockDeviceMapping = {
                 xml_name = "deviceName",
             },
         },
-        Ebs = {
-            type = "structure",
-            traits = {
-                xml_name = "ebs",
-            },
-        },
+        Ebs = setmetatable({ traits = {
+            xml_name = "ebs",
+        } }, { __index = M.EbsInstanceBlockDevice }),
     },
 }
 
@@ -38346,105 +36813,66 @@ M.DescribeInstanceAttributeOutput = {
     members = {
         BlockDeviceMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceBlockDeviceMapping,
             traits = {
                 xml_name = "blockDeviceMapping",
             },
         },
-        DisableApiTermination = {
-            type = "structure",
-            traits = {
-                xml_name = "disableApiTermination",
-            },
-        },
-        EnaSupport = {
-            type = "structure",
-            traits = {
-                xml_name = "enaSupport",
-            },
-        },
-        EnclaveOptions = {
-            type = "structure",
-            traits = {
-                xml_name = "enclaveOptions",
-            },
-        },
-        EbsOptimized = {
-            type = "structure",
-            traits = {
-                xml_name = "ebsOptimized",
-            },
-        },
+        DisableApiTermination = setmetatable({ traits = {
+            xml_name = "disableApiTermination",
+        } }, { __index = M.AttributeBooleanValue }),
+        EnaSupport = setmetatable({ traits = {
+            xml_name = "enaSupport",
+        } }, { __index = M.AttributeBooleanValue }),
+        EnclaveOptions = setmetatable({ traits = {
+            xml_name = "enclaveOptions",
+        } }, { __index = M.EnclaveOptions }),
+        EbsOptimized = setmetatable({ traits = {
+            xml_name = "ebsOptimized",
+        } }, { __index = M.AttributeBooleanValue }),
         InstanceId = {
             type = "string",
             traits = {
                 xml_name = "instanceId",
             },
         },
-        InstanceInitiatedShutdownBehavior = {
-            type = "structure",
-            traits = {
-                xml_name = "instanceInitiatedShutdownBehavior",
-            },
-        },
-        InstanceType = {
-            type = "structure",
-            traits = {
-                xml_name = "instanceType",
-            },
-        },
-        KernelId = {
-            type = "structure",
-            traits = {
-                xml_name = "kernel",
-            },
-        },
+        InstanceInitiatedShutdownBehavior = setmetatable({ traits = {
+            xml_name = "instanceInitiatedShutdownBehavior",
+        } }, { __index = M.AttributeValue }),
+        InstanceType = setmetatable({ traits = {
+            xml_name = "instanceType",
+        } }, { __index = M.AttributeValue }),
+        KernelId = setmetatable({ traits = {
+            xml_name = "kernel",
+        } }, { __index = M.AttributeValue }),
         ProductCodes = {
             type = "list",
-            member_type = "structure",
+            member = M.ProductCode,
             traits = {
                 xml_name = "productCodes",
             },
         },
-        RamdiskId = {
-            type = "structure",
-            traits = {
-                xml_name = "ramdisk",
-            },
-        },
-        RootDeviceName = {
-            type = "structure",
-            traits = {
-                xml_name = "rootDeviceName",
-            },
-        },
-        SourceDestCheck = {
-            type = "structure",
-            traits = {
-                xml_name = "sourceDestCheck",
-            },
-        },
-        SriovNetSupport = {
-            type = "structure",
-            traits = {
-                xml_name = "sriovNetSupport",
-            },
-        },
-        UserData = {
-            type = "structure",
-            traits = {
-                xml_name = "userData",
-            },
-        },
-        DisableApiStop = {
-            type = "structure",
-            traits = {
-                xml_name = "disableApiStop",
-            },
-        },
+        RamdiskId = setmetatable({ traits = {
+            xml_name = "ramdisk",
+        } }, { __index = M.AttributeValue }),
+        RootDeviceName = setmetatable({ traits = {
+            xml_name = "rootDeviceName",
+        } }, { __index = M.AttributeValue }),
+        SourceDestCheck = setmetatable({ traits = {
+            xml_name = "sourceDestCheck",
+        } }, { __index = M.AttributeBooleanValue }),
+        SriovNetSupport = setmetatable({ traits = {
+            xml_name = "sriovNetSupport",
+        } }, { __index = M.AttributeValue }),
+        UserData = setmetatable({ traits = {
+            xml_name = "userData",
+        } }, { __index = M.AttributeValue }),
+        DisableApiStop = setmetatable({ traits = {
+            xml_name = "disableApiStop",
+        } }, { __index = M.AttributeBooleanValue }),
         Groups = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupIdentifier,
             traits = {
                 xml_name = "groupSet",
             },
@@ -38459,21 +36887,21 @@ M.DescribeInstanceConnectEndpointsInput = {
             type = "boolean",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         InstanceConnectEndpointIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "InstanceConnectEndpointId",
             },
@@ -38486,7 +36914,7 @@ M.DescribeInstanceConnectEndpointsOutput = {
     members = {
         InstanceConnectEndpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.Ec2InstanceConnectEndpoint,
             traits = {
                 xml_name = "instanceConnectEndpointSet",
             },
@@ -38508,20 +36936,20 @@ M.DescribeInstanceCreditSpecificationsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         InstanceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "InstanceId",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -38552,7 +36980,7 @@ M.DescribeInstanceCreditSpecificationsOutput = {
     members = {
         InstanceCreditSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceCreditSpecification,
             traits = {
                 xml_name = "instanceCreditSpecificationSet",
             },
@@ -38578,12 +37006,9 @@ M.DescribeInstanceEventNotificationAttributesInput = {
 M.DescribeInstanceEventNotificationAttributesOutput = {
     type = "structure",
     members = {
-        InstanceTagAttribute = {
-            type = "structure",
-            traits = {
-                xml_name = "instanceTagAttribute",
-            },
-        },
+        InstanceTagAttribute = setmetatable({ traits = {
+            xml_name = "instanceTagAttribute",
+        } }, { __index = M.InstanceTagNotificationAttribute }),
     },
 }
 
@@ -38595,20 +37020,20 @@ M.DescribeInstanceEventWindowsInput = {
         },
         InstanceEventWindowIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "InstanceEventWindowId",
             },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -38621,7 +37046,7 @@ M.DescribeInstanceEventWindowsOutput = {
     members = {
         InstanceEventWindows = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceEventWindow,
             traits = {
                 xml_name = "instanceEventWindowSet",
             },
@@ -38640,20 +37065,20 @@ M.DescribeInstanceImageMetadataInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         InstanceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "InstanceId",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -38737,7 +37162,7 @@ M.InstanceState = {
     type = "structure",
     members = {
         Code = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "code",
             },
@@ -38784,12 +37209,9 @@ M.InstanceImageMetadata = {
                 xml_name = "zoneId",
             },
         },
-        State = {
-            type = "structure",
-            traits = {
-                xml_name = "instanceState",
-            },
-        },
+        State = setmetatable({ traits = {
+            xml_name = "instanceState",
+        } }, { __index = M.InstanceState }),
         OwnerId = {
             type = "string",
             traits = {
@@ -38798,23 +37220,17 @@ M.InstanceImageMetadata = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
         },
-        ImageMetadata = {
-            type = "structure",
-            traits = {
-                xml_name = "imageMetadata",
-            },
-        },
-        Operator = {
-            type = "structure",
-            traits = {
-                xml_name = "operator",
-            },
-        },
+        ImageMetadata = setmetatable({ traits = {
+            xml_name = "imageMetadata",
+        } }, { __index = M.ImageMetadata }),
+        Operator = setmetatable({ traits = {
+            xml_name = "operator",
+        } }, { __index = M.OperatorResponse }),
     },
 }
 
@@ -38823,7 +37239,7 @@ M.DescribeInstanceImageMetadataOutput = {
     members = {
         InstanceImageMetadata = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceImageMetadata,
             traits = {
                 xml_name = "instanceImageMetadataSet",
             },
@@ -38842,7 +37258,7 @@ M.DescribeInstancesInput = {
     members = {
         InstanceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "InstanceId",
             },
@@ -38858,7 +37274,7 @@ M.DescribeInstancesInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -38870,7 +37286,7 @@ M.DescribeInstancesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "maxResults",
             },
@@ -38887,12 +37303,9 @@ M.CapacityReservationSpecificationResponse = {
                 xml_name = "capacityReservationPreference",
             },
         },
-        CapacityReservationTarget = {
-            type = "structure",
-            traits = {
-                xml_name = "capacityReservationTarget",
-            },
-        },
+        CapacityReservationTarget = setmetatable({ traits = {
+            xml_name = "capacityReservationTarget",
+        } }, { __index = M.CapacityReservationTargetResponse }),
     },
 }
 
@@ -38900,13 +37313,13 @@ M.CpuOptions = {
     type = "structure",
     members = {
         CoreCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "coreCount",
             },
         },
         ThreadsPerCore = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "threadsPerCore",
             },
@@ -39091,7 +37504,7 @@ M.InstanceMetadataOptionsResponse = {
             },
         },
         HttpPutResponseHopLimit = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "httpPutResponseHopLimit",
             },
@@ -39193,12 +37606,9 @@ M.InstanceAttachmentEnaSrdSpecification = {
                 xml_name = "enaSrdEnabled",
             },
         },
-        EnaSrdUdpSpecification = {
-            type = "structure",
-            traits = {
-                xml_name = "enaSrdUdpSpecification",
-            },
-        },
+        EnaSrdUdpSpecification = setmetatable({ traits = {
+            xml_name = "enaSrdUdpSpecification",
+        } }, { __index = M.InstanceAttachmentEnaSrdUdpSpecification }),
     },
 }
 
@@ -39224,7 +37634,7 @@ M.InstanceNetworkInterfaceAttachment = {
             },
         },
         DeviceIndex = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "deviceIndex",
             },
@@ -39236,19 +37646,16 @@ M.InstanceNetworkInterfaceAttachment = {
             },
         },
         NetworkCardIndex = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "networkCardIndex",
             },
         },
-        EnaSrdSpecification = {
-            type = "structure",
-            traits = {
-                xml_name = "enaSrdSpecification",
-            },
-        },
+        EnaSrdSpecification = setmetatable({ traits = {
+            xml_name = "enaSrdSpecification",
+        } }, { __index = M.InstanceAttachmentEnaSrdSpecification }),
         EnaQueueCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "enaQueueCount",
             },
@@ -39260,19 +37667,19 @@ M.ConnectionTrackingSpecificationResponse = {
     type = "structure",
     members = {
         TcpEstablishedTimeout = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "tcpEstablishedTimeout",
             },
         },
         UdpStreamTimeout = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "udpStreamTimeout",
             },
         },
         UdpTimeout = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "udpTimeout",
             },
@@ -39307,12 +37714,9 @@ M.InstanceIpv6Prefix = {
 M.InstancePrivateIpAddress = {
     type = "structure",
     members = {
-        Association = {
-            type = "structure",
-            traits = {
-                xml_name = "association",
-            },
-        },
+        Association = setmetatable({ traits = {
+            xml_name = "association",
+        } }, { __index = M.InstanceNetworkInterfaceAssociation }),
         Primary = {
             type = "boolean",
             traits = {
@@ -39337,18 +37741,12 @@ M.InstancePrivateIpAddress = {
 M.InstanceNetworkInterface = {
     type = "structure",
     members = {
-        Association = {
-            type = "structure",
-            traits = {
-                xml_name = "association",
-            },
-        },
-        Attachment = {
-            type = "structure",
-            traits = {
-                xml_name = "attachment",
-            },
-        },
+        Association = setmetatable({ traits = {
+            xml_name = "association",
+        } }, { __index = M.InstanceNetworkInterfaceAssociation }),
+        Attachment = setmetatable({ traits = {
+            xml_name = "attachment",
+        } }, { __index = M.InstanceNetworkInterfaceAttachment }),
         Description = {
             type = "string",
             traits = {
@@ -39357,14 +37755,14 @@ M.InstanceNetworkInterface = {
         },
         Groups = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupIdentifier,
             traits = {
                 xml_name = "groupSet",
             },
         },
         Ipv6Addresses = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceIpv6Address,
             traits = {
                 xml_name = "ipv6AddressesSet",
             },
@@ -39401,7 +37799,7 @@ M.InstanceNetworkInterface = {
         },
         PrivateIpAddresses = {
             type = "list",
-            member_type = "structure",
+            member = M.InstancePrivateIpAddress,
             traits = {
                 xml_name = "privateIpAddressesSet",
             },
@@ -39438,30 +37836,24 @@ M.InstanceNetworkInterface = {
         },
         Ipv4Prefixes = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceIpv4Prefix,
             traits = {
                 xml_name = "ipv4PrefixSet",
             },
         },
         Ipv6Prefixes = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceIpv6Prefix,
             traits = {
                 xml_name = "ipv6PrefixSet",
             },
         },
-        ConnectionTrackingConfiguration = {
-            type = "structure",
-            traits = {
-                xml_name = "connectionTrackingConfiguration",
-            },
-        },
-        Operator = {
-            type = "structure",
-            traits = {
-                xml_name = "operator",
-            },
-        },
+        ConnectionTrackingConfiguration = setmetatable({ traits = {
+            xml_name = "connectionTrackingConfiguration",
+        } }, { __index = M.ConnectionTrackingSpecificationResponse }),
+        Operator = setmetatable({ traits = {
+            xml_name = "operator",
+        } }, { __index = M.OperatorResponse }),
     },
 }
 
@@ -39523,7 +37915,7 @@ M.InstanceSecondaryInterfaceAttachment = {
             },
         },
         DeviceIndex = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "deviceIndex",
             },
@@ -39535,7 +37927,7 @@ M.InstanceSecondaryInterfaceAttachment = {
             },
         },
         NetworkCardIndex = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "networkCardIndex",
             },
@@ -39563,12 +37955,9 @@ M.SecondaryInterfaceStatus = {
 M.InstanceSecondaryInterface = {
     type = "structure",
     members = {
-        Attachment = {
-            type = "structure",
-            traits = {
-                xml_name = "attachment",
-            },
-        },
+        Attachment = setmetatable({ traits = {
+            xml_name = "attachment",
+        } }, { __index = M.InstanceSecondaryInterfaceAttachment }),
         MacAddress = {
             type = "string",
             traits = {
@@ -39589,7 +37978,7 @@ M.InstanceSecondaryInterface = {
         },
         PrivateIpAddresses = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceSecondaryInterfacePrivateIpAddress,
             traits = {
                 xml_name = "privateIpAddressSet",
             },
@@ -39638,7 +38027,7 @@ M.Instance = {
         },
         BlockDeviceMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceBlockDeviceMapping,
             traits = {
                 xml_name = "blockDeviceMapping",
             },
@@ -39667,12 +38056,9 @@ M.Instance = {
                 xml_name = "hypervisor",
             },
         },
-        IamInstanceProfile = {
-            type = "structure",
-            traits = {
-                xml_name = "iamInstanceProfile",
-            },
-        },
+        IamInstanceProfile = setmetatable({ traits = {
+            xml_name = "iamInstanceProfile",
+        } }, { __index = M.IamInstanceProfile }),
         InstanceLifecycle = {
             type = "string",
             traits = {
@@ -39681,21 +38067,21 @@ M.Instance = {
         },
         ElasticGpuAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.ElasticGpuAssociation,
             traits = {
                 xml_name = "elasticGpuAssociationSet",
             },
         },
         ElasticInferenceAcceleratorAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.ElasticInferenceAcceleratorAssociation,
             traits = {
                 xml_name = "elasticInferenceAcceleratorAssociationSet",
             },
         },
         NetworkInterfaces = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceNetworkInterface,
             traits = {
                 xml_name = "networkInterfaceSet",
             },
@@ -39720,7 +38106,7 @@ M.Instance = {
         },
         SecurityGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupIdentifier,
             traits = {
                 xml_name = "groupSet",
             },
@@ -39743,15 +38129,12 @@ M.Instance = {
                 xml_name = "sriovNetSupport",
             },
         },
-        StateReason = {
-            type = "structure",
-            traits = {
-                xml_name = "stateReason",
-            },
-        },
+        StateReason = setmetatable({ traits = {
+            xml_name = "stateReason",
+        } }, { __index = M.StateReason }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -39762,12 +38145,9 @@ M.Instance = {
                 xml_name = "virtualizationType",
             },
         },
-        CpuOptions = {
-            type = "structure",
-            traits = {
-                xml_name = "cpuOptions",
-            },
-        },
+        CpuOptions = setmetatable({ traits = {
+            xml_name = "cpuOptions",
+        } }, { __index = M.CpuOptions }),
         CapacityBlockId = {
             type = "string",
             traits = {
@@ -39780,37 +38160,25 @@ M.Instance = {
                 xml_name = "capacityReservationId",
             },
         },
-        CapacityReservationSpecification = {
-            type = "structure",
-            traits = {
-                xml_name = "capacityReservationSpecification",
-            },
-        },
-        HibernationOptions = {
-            type = "structure",
-            traits = {
-                xml_name = "hibernationOptions",
-            },
-        },
+        CapacityReservationSpecification = setmetatable({ traits = {
+            xml_name = "capacityReservationSpecification",
+        } }, { __index = M.CapacityReservationSpecificationResponse }),
+        HibernationOptions = setmetatable({ traits = {
+            xml_name = "hibernationOptions",
+        } }, { __index = M.HibernationOptions }),
         Licenses = {
             type = "list",
-            member_type = "structure",
+            member = M.LicenseConfiguration,
             traits = {
                 xml_name = "licenseSet",
             },
         },
-        MetadataOptions = {
-            type = "structure",
-            traits = {
-                xml_name = "metadataOptions",
-            },
-        },
-        EnclaveOptions = {
-            type = "structure",
-            traits = {
-                xml_name = "enclaveOptions",
-            },
-        },
+        MetadataOptions = setmetatable({ traits = {
+            xml_name = "metadataOptions",
+        } }, { __index = M.InstanceMetadataOptionsResponse }),
+        EnclaveOptions = setmetatable({ traits = {
+            xml_name = "enclaveOptions",
+        } }, { __index = M.EnclaveOptions }),
         BootMode = {
             type = "string",
             traits = {
@@ -39835,12 +38203,9 @@ M.Instance = {
                 xml_name = "usageOperationUpdateTime",
             },
         },
-        PrivateDnsNameOptions = {
-            type = "structure",
-            traits = {
-                xml_name = "privateDnsNameOptions",
-            },
-        },
+        PrivateDnsNameOptions = setmetatable({ traits = {
+            xml_name = "privateDnsNameOptions",
+        } }, { __index = M.PrivateDnsNameOptionsResponse }),
         Ipv6Address = {
             type = "string",
             traits = {
@@ -39853,33 +38218,24 @@ M.Instance = {
                 xml_name = "tpmSupport",
             },
         },
-        MaintenanceOptions = {
-            type = "structure",
-            traits = {
-                xml_name = "maintenanceOptions",
-            },
-        },
+        MaintenanceOptions = setmetatable({ traits = {
+            xml_name = "maintenanceOptions",
+        } }, { __index = M.InstanceMaintenanceOptions }),
         CurrentInstanceBootMode = {
             type = "string",
             traits = {
                 xml_name = "currentInstanceBootMode",
             },
         },
-        NetworkPerformanceOptions = {
-            type = "structure",
-            traits = {
-                xml_name = "networkPerformanceOptions",
-            },
-        },
-        Operator = {
-            type = "structure",
-            traits = {
-                xml_name = "operator",
-            },
-        },
+        NetworkPerformanceOptions = setmetatable({ traits = {
+            xml_name = "networkPerformanceOptions",
+        } }, { __index = M.InstanceNetworkPerformanceOptions }),
+        Operator = setmetatable({ traits = {
+            xml_name = "operator",
+        } }, { __index = M.OperatorResponse }),
         SecondaryInterfaces = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceSecondaryInterface,
             traits = {
                 xml_name = "secondaryInterfaceSet",
             },
@@ -39896,12 +38252,9 @@ M.Instance = {
                 xml_name = "imageId",
             },
         },
-        State = {
-            type = "structure",
-            traits = {
-                xml_name = "instanceState",
-            },
-        },
+        State = setmetatable({ traits = {
+            xml_name = "instanceState",
+        } }, { __index = M.InstanceState }),
         PrivateDnsName = {
             type = "string",
             traits = {
@@ -39927,14 +38280,14 @@ M.Instance = {
             },
         },
         AmiLaunchIndex = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "amiLaunchIndex",
             },
         },
         ProductCodes = {
             type = "list",
-            member_type = "structure",
+            member = M.ProductCode,
             traits = {
                 xml_name = "productCodes",
             },
@@ -39951,12 +38304,9 @@ M.Instance = {
                 xml_name = "launchTime",
             },
         },
-        Placement = {
-            type = "structure",
-            traits = {
-                xml_name = "placement",
-            },
-        },
+        Placement = setmetatable({ traits = {
+            xml_name = "placement",
+        } }, { __index = M.Placement }),
         KernelId = {
             type = "string",
             traits = {
@@ -39975,12 +38325,9 @@ M.Instance = {
                 xml_name = "platform",
             },
         },
-        Monitoring = {
-            type = "structure",
-            traits = {
-                xml_name = "monitoring",
-            },
-        },
+        Monitoring = setmetatable({ traits = {
+            xml_name = "monitoring",
+        } }, { __index = M.Monitoring }),
         SubnetId = {
             type = "string",
             traits = {
@@ -40031,14 +38378,14 @@ M.Reservation = {
         },
         Groups = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupIdentifier,
             traits = {
                 xml_name = "groupSet",
             },
         },
         Instances = {
             type = "list",
-            member_type = "structure",
+            member = M.Instance,
             traits = {
                 xml_name = "instancesSet",
             },
@@ -40057,7 +38404,7 @@ M.DescribeInstancesOutput = {
         },
         Reservations = {
             type = "list",
-            member_type = "structure",
+            member = M.Reservation,
             traits = {
                 xml_name = "reservationSet",
             },
@@ -40070,7 +38417,7 @@ M.DescribeInstanceSqlHaHistoryStatesInput = {
     members = {
         InstanceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "InstanceId",
             },
@@ -40085,11 +38432,11 @@ M.DescribeInstanceSqlHaHistoryStatesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -40153,7 +38500,7 @@ M.RegisteredInstance = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -40166,7 +38513,7 @@ M.DescribeInstanceSqlHaHistoryStatesOutput = {
     members = {
         Instances = {
             type = "list",
-            member_type = "structure",
+            member = M.RegisteredInstance,
             traits = {
                 xml_name = "instanceSet",
             },
@@ -40185,7 +38532,7 @@ M.DescribeInstanceSqlHaStatesInput = {
     members = {
         InstanceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "InstanceId",
             },
@@ -40194,11 +38541,11 @@ M.DescribeInstanceSqlHaStatesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -40214,7 +38561,7 @@ M.DescribeInstanceSqlHaStatesOutput = {
     members = {
         Instances = {
             type = "list",
-            member_type = "structure",
+            member = M.RegisteredInstance,
             traits = {
                 xml_name = "instanceSet",
             },
@@ -40233,13 +38580,13 @@ M.DescribeInstanceStatusInput = {
     members = {
         InstanceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "InstanceId",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -40255,7 +38602,7 @@ M.DescribeInstanceStatusInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -40317,7 +38664,7 @@ M.EbsStatusSummary = {
     members = {
         Details = {
             type = "list",
-            member_type = "structure",
+            member = M.EbsStatusDetails,
             traits = {
                 xml_name = "details",
             },
@@ -40410,7 +38757,7 @@ M.InstanceStatusSummary = {
     members = {
         Details = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceStatusDetails,
             traits = {
                 xml_name = "details",
             },
@@ -40445,15 +38792,12 @@ M.InstanceStatus = {
                 xml_name = "outpostArn",
             },
         },
-        Operator = {
-            type = "structure",
-            traits = {
-                xml_name = "operator",
-            },
-        },
+        Operator = setmetatable({ traits = {
+            xml_name = "operator",
+        } }, { __index = M.OperatorResponse }),
         Events = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceStatusEvent,
             traits = {
                 xml_name = "eventsSet",
             },
@@ -40464,30 +38808,18 @@ M.InstanceStatus = {
                 xml_name = "instanceId",
             },
         },
-        InstanceState = {
-            type = "structure",
-            traits = {
-                xml_name = "instanceState",
-            },
-        },
-        InstanceStatus = {
-            type = "structure",
-            traits = {
-                xml_name = "instanceStatus",
-            },
-        },
-        SystemStatus = {
-            type = "structure",
-            traits = {
-                xml_name = "systemStatus",
-            },
-        },
-        AttachedEbsStatus = {
-            type = "structure",
-            traits = {
-                xml_name = "attachedEbsStatus",
-            },
-        },
+        InstanceState = setmetatable({ traits = {
+            xml_name = "instanceState",
+        } }, { __index = M.InstanceState }),
+        InstanceStatus = setmetatable({ traits = {
+            xml_name = "instanceStatus",
+        } }, { __index = M.InstanceStatusSummary }),
+        SystemStatus = setmetatable({ traits = {
+            xml_name = "systemStatus",
+        } }, { __index = M.InstanceStatusSummary }),
+        AttachedEbsStatus = setmetatable({ traits = {
+            xml_name = "attachedEbsStatus",
+        } }, { __index = M.EbsStatusSummary }),
     },
 }
 
@@ -40496,7 +38828,7 @@ M.DescribeInstanceStatusOutput = {
     members = {
         InstanceStatuses = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceStatus,
             traits = {
                 xml_name = "instanceStatusSet",
             },
@@ -40520,25 +38852,25 @@ M.DescribeInstanceTopologyInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         InstanceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "InstanceId",
             },
         },
         GroupNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "GroupName",
             },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -40569,7 +38901,7 @@ M.InstanceTopology = {
         },
         NetworkNodes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "networkNodeSet",
             },
@@ -40600,7 +38932,7 @@ M.DescribeInstanceTopologyOutput = {
     members = {
         Instances = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceTopology,
             traits = {
                 xml_name = "instanceSet",
             },
@@ -40632,13 +38964,13 @@ M.DescribeInstanceTypeOfferingsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -40675,7 +39007,7 @@ M.DescribeInstanceTypeOfferingsOutput = {
     members = {
         InstanceTypeOfferings = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceTypeOffering,
             traits = {
                 xml_name = "instanceTypeOfferingSet",
             },
@@ -40697,20 +39029,20 @@ M.DescribeInstanceTypesInput = {
         },
         InstanceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "InstanceType",
             },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -40727,43 +39059,43 @@ M.EbsCardInfo = {
     type = "structure",
     members = {
         EbsCardIndex = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "ebsCardIndex",
             },
         },
         BaselineBandwidthInMbps = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "baselineBandwidthInMbps",
             },
         },
         BaselineThroughputInMBps = {
-            type = "number",
+            type = "double",
             traits = {
                 xml_name = "baselineThroughputInMBps",
             },
         },
         BaselineIops = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "baselineIops",
             },
         },
         MaximumBandwidthInMbps = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "maximumBandwidthInMbps",
             },
         },
         MaximumThroughputInMBps = {
-            type = "number",
+            type = "double",
             traits = {
                 xml_name = "maximumThroughputInMBps",
             },
         },
         MaximumIops = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "maximumIops",
             },
@@ -40775,37 +39107,37 @@ M.EbsOptimizedInfo = {
     type = "structure",
     members = {
         BaselineBandwidthInMbps = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "baselineBandwidthInMbps",
             },
         },
         BaselineThroughputInMBps = {
-            type = "number",
+            type = "double",
             traits = {
                 xml_name = "baselineThroughputInMBps",
             },
         },
         BaselineIops = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "baselineIops",
             },
         },
         MaximumBandwidthInMbps = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "maximumBandwidthInMbps",
             },
         },
         MaximumThroughputInMBps = {
-            type = "number",
+            type = "double",
             traits = {
                 xml_name = "maximumThroughputInMBps",
             },
         },
         MaximumIops = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "maximumIops",
             },
@@ -40845,12 +39177,9 @@ M.EbsInfo = {
                 xml_name = "encryptionSupport",
             },
         },
-        EbsOptimizedInfo = {
-            type = "structure",
-            traits = {
-                xml_name = "ebsOptimizedInfo",
-            },
-        },
+        EbsOptimizedInfo = setmetatable({ traits = {
+            xml_name = "ebsOptimizedInfo",
+        } }, { __index = M.EbsOptimizedInfo }),
         NvmeSupport = {
             type = "string",
             traits = {
@@ -40858,7 +39187,7 @@ M.EbsInfo = {
             },
         },
         MaximumEbsAttachments = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "maximumEbsAttachments",
             },
@@ -40870,14 +39199,14 @@ M.EbsInfo = {
             },
         },
         MaximumEbsCards = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "maximumEbsCards",
             },
         },
         EbsCards = {
             type = "list",
-            member_type = "structure",
+            member = M.EbsCardInfo,
             traits = {
                 xml_name = "ebsCardSet",
             },
@@ -40889,7 +39218,7 @@ M.FpgaDeviceMemoryInfo = {
     type = "structure",
     members = {
         SizeInMiB = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "sizeInMiB",
             },
@@ -40913,17 +39242,14 @@ M.FpgaDeviceInfo = {
             },
         },
         Count = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "count",
             },
         },
-        MemoryInfo = {
-            type = "structure",
-            traits = {
-                xml_name = "memoryInfo",
-            },
-        },
+        MemoryInfo = setmetatable({ traits = {
+            xml_name = "memoryInfo",
+        } }, { __index = M.FpgaDeviceMemoryInfo }),
     },
 }
 
@@ -40932,13 +39258,13 @@ M.FpgaInfo = {
     members = {
         Fpgas = {
             type = "list",
-            member_type = "structure",
+            member = M.FpgaDeviceInfo,
             traits = {
                 xml_name = "fpgas",
             },
         },
         TotalFpgaMemoryInMiB = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "totalFpgaMemoryInMiB",
             },
@@ -40950,7 +39276,7 @@ M.GpuDeviceMemoryInfo = {
     type = "structure",
     members = {
         SizeInMiB = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "sizeInMiB",
             },
@@ -40974,36 +39300,33 @@ M.GpuDeviceInfo = {
             },
         },
         Count = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "count",
             },
         },
         LogicalGpuCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "logicalGpuCount",
             },
         },
         GpuPartitionSize = {
-            type = "number",
+            type = "double",
             traits = {
                 xml_name = "gpuPartitionSize",
             },
         },
         Workloads = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "workloadSet",
             },
         },
-        MemoryInfo = {
-            type = "structure",
-            traits = {
-                xml_name = "memoryInfo",
-            },
-        },
+        MemoryInfo = setmetatable({ traits = {
+            xml_name = "memoryInfo",
+        } }, { __index = M.GpuDeviceMemoryInfo }),
     },
 }
 
@@ -41012,13 +39335,13 @@ M.GpuInfo = {
     members = {
         Gpus = {
             type = "list",
-            member_type = "structure",
+            member = M.GpuDeviceInfo,
             traits = {
                 xml_name = "gpus",
             },
         },
         TotalGpuMemoryInMiB = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "totalGpuMemoryInMiB",
             },
@@ -41035,7 +39358,7 @@ M.InferenceDeviceMemoryInfo = {
     type = "structure",
     members = {
         SizeInMiB = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "sizeInMiB",
             },
@@ -41047,7 +39370,7 @@ M.InferenceDeviceInfo = {
     type = "structure",
     members = {
         Count = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "count",
             },
@@ -41064,12 +39387,9 @@ M.InferenceDeviceInfo = {
                 xml_name = "manufacturer",
             },
         },
-        MemoryInfo = {
-            type = "structure",
-            traits = {
-                xml_name = "memoryInfo",
-            },
-        },
+        MemoryInfo = setmetatable({ traits = {
+            xml_name = "memoryInfo",
+        } }, { __index = M.InferenceDeviceMemoryInfo }),
     },
 }
 
@@ -41078,13 +39398,13 @@ M.InferenceAcceleratorInfo = {
     members = {
         Accelerators = {
             type = "list",
-            member_type = "structure",
+            member = M.InferenceDeviceInfo,
             traits = {
                 xml_name = "accelerators",
             },
         },
         TotalInferenceMemoryInMiB = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "totalInferenceMemoryInMiB",
             },
@@ -41101,13 +39421,13 @@ M.DiskInfo = {
     type = "structure",
     members = {
         SizeInGB = {
-            type = "number",
+            type = "long",
             traits = {
                 xml_name = "sizeInGB",
             },
         },
         Count = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "count",
             },
@@ -41136,14 +39456,14 @@ M.InstanceStorageInfo = {
     type = "structure",
     members = {
         TotalSizeInGB = {
-            type = "number",
+            type = "long",
             traits = {
                 xml_name = "totalSizeInGB",
             },
         },
         Disks = {
             type = "list",
-            member_type = "structure",
+            member = M.DiskInfo,
             traits = {
                 xml_name = "disks",
             },
@@ -41167,7 +39487,7 @@ M.MediaDeviceMemoryInfo = {
     type = "structure",
     members = {
         SizeInMiB = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "sizeInMiB",
             },
@@ -41179,7 +39499,7 @@ M.MediaDeviceInfo = {
     type = "structure",
     members = {
         Count = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "count",
             },
@@ -41196,12 +39516,9 @@ M.MediaDeviceInfo = {
                 xml_name = "manufacturer",
             },
         },
-        MemoryInfo = {
-            type = "structure",
-            traits = {
-                xml_name = "memoryInfo",
-            },
-        },
+        MemoryInfo = setmetatable({ traits = {
+            xml_name = "memoryInfo",
+        } }, { __index = M.MediaDeviceMemoryInfo }),
     },
 }
 
@@ -41210,13 +39527,13 @@ M.MediaAcceleratorInfo = {
     members = {
         Accelerators = {
             type = "list",
-            member_type = "structure",
+            member = M.MediaDeviceInfo,
             traits = {
                 xml_name = "accelerators",
             },
         },
         TotalMediaMemoryInMiB = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "totalMediaMemoryInMiB",
             },
@@ -41228,7 +39545,7 @@ M.MemoryInfo = {
     type = "structure",
     members = {
         SizeInMiB = {
-            type = "number",
+            type = "long",
             traits = {
                 xml_name = "sizeInMiB",
             },
@@ -41246,19 +39563,19 @@ M.DefaultConnectionTrackingConfiguration = {
     type = "structure",
     members = {
         DefaultTcpEstablishedTimeout = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "defaultTcpEstablishedTimeout",
             },
         },
         DefaultUdpTimeout = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "defaultUdpTimeout",
             },
         },
         DefaultUdpStreamTimeout = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "defaultUdpStreamTimeout",
             },
@@ -41270,7 +39587,7 @@ M.EfaInfo = {
     type = "structure",
     members = {
         MaximumEfaInterfaces = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "maximumEfaInterfaces",
             },
@@ -41293,7 +39610,7 @@ M.NetworkCardInfo = {
     type = "structure",
     members = {
         NetworkCardIndex = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "networkCardIndex",
             },
@@ -41305,43 +39622,43 @@ M.NetworkCardInfo = {
             },
         },
         MaximumNetworkInterfaces = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "maximumNetworkInterfaces",
             },
         },
         AdditionalFlexibleNetworkInterfaces = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "additionalFlexibleNetworkInterfaces",
             },
         },
         BaselineBandwidthInGbps = {
-            type = "number",
+            type = "double",
             traits = {
                 xml_name = "baselineBandwidthInGbps",
             },
         },
         PeakBandwidthInGbps = {
-            type = "number",
+            type = "double",
             traits = {
                 xml_name = "peakBandwidthInGbps",
             },
         },
         DefaultEnaQueueCountPerInterface = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "defaultEnaQueueCountPerInterface",
             },
         },
         MaximumEnaQueueCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "maximumEnaQueueCount",
             },
         },
         MaximumEnaQueueCountPerInterface = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "maximumEnaQueueCountPerInterface",
             },
@@ -41359,38 +39676,38 @@ M.NetworkInfo = {
             },
         },
         MaximumNetworkInterfaces = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "maximumNetworkInterfaces",
             },
         },
         MaximumNetworkCards = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "maximumNetworkCards",
             },
         },
         DefaultNetworkCardIndex = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "defaultNetworkCardIndex",
             },
         },
         NetworkCards = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkCardInfo,
             traits = {
                 xml_name = "networkCards",
             },
         },
         Ipv4AddressesPerInterface = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "ipv4AddressesPerInterface",
             },
         },
         Ipv6AddressesPerInterface = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "ipv6AddressesPerInterface",
             },
@@ -41413,12 +39730,9 @@ M.NetworkInfo = {
                 xml_name = "efaSupported",
             },
         },
-        EfaInfo = {
-            type = "structure",
-            traits = {
-                xml_name = "efaInfo",
-            },
-        },
+        EfaInfo = setmetatable({ traits = {
+            xml_name = "efaInfo",
+        } }, { __index = M.EfaInfo }),
         EncryptionInTransitSupported = {
             type = "boolean",
             traits = {
@@ -41433,7 +39747,7 @@ M.NetworkInfo = {
         },
         BandwidthWeightings = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "bandwidthWeightings",
             },
@@ -41444,12 +39758,9 @@ M.NetworkInfo = {
                 xml_name = "flexibleEnaQueuesSupport",
             },
         },
-        ConnectionTrackingConfiguration = {
-            type = "structure",
-            traits = {
-                xml_name = "connectionTrackingConfiguration",
-            },
-        },
+        ConnectionTrackingConfiguration = setmetatable({ traits = {
+            xml_name = "connectionTrackingConfiguration",
+        } }, { __index = M.DefaultConnectionTrackingConfiguration }),
         SecondaryNetworkSupported = {
             type = "boolean",
             traits = {
@@ -41457,13 +39768,13 @@ M.NetworkInfo = {
             },
         },
         MaximumSecondaryNetworkInterfaces = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "maximumSecondaryNetworkInterfaces",
             },
         },
         Ipv4AddressesPerSecondaryInterface = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "ipv4AddressesPerSecondaryInterface",
             },
@@ -41475,13 +39786,13 @@ M.NeuronDeviceCoreInfo = {
     type = "structure",
     members = {
         Count = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "count",
             },
         },
         Version = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "version",
             },
@@ -41493,7 +39804,7 @@ M.NeuronDeviceMemoryInfo = {
     type = "structure",
     members = {
         SizeInMiB = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "sizeInMiB",
             },
@@ -41505,7 +39816,7 @@ M.NeuronDeviceInfo = {
     type = "structure",
     members = {
         Count = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "count",
             },
@@ -41516,18 +39827,12 @@ M.NeuronDeviceInfo = {
                 xml_name = "name",
             },
         },
-        CoreInfo = {
-            type = "structure",
-            traits = {
-                xml_name = "coreInfo",
-            },
-        },
-        MemoryInfo = {
-            type = "structure",
-            traits = {
-                xml_name = "memoryInfo",
-            },
-        },
+        CoreInfo = setmetatable({ traits = {
+            xml_name = "coreInfo",
+        } }, { __index = M.NeuronDeviceCoreInfo }),
+        MemoryInfo = setmetatable({ traits = {
+            xml_name = "memoryInfo",
+        } }, { __index = M.NeuronDeviceMemoryInfo }),
     },
 }
 
@@ -41536,13 +39841,13 @@ M.NeuronInfo = {
     members = {
         NeuronDevices = {
             type = "list",
-            member_type = "structure",
+            member = M.NeuronDeviceInfo,
             traits = {
                 xml_name = "neuronDevices",
             },
         },
         TotalNeuronDeviceMemoryInMiB = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "totalNeuronDeviceMemoryInMiB",
             },
@@ -41560,7 +39865,7 @@ M.NitroTpmInfo = {
     members = {
         SupportedVersions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "supportedVersions",
             },
@@ -41589,7 +39894,7 @@ M.PlacementGroupInfo = {
     members = {
         SupportedStrategies = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "supportedStrategies",
             },
@@ -41615,20 +39920,20 @@ M.ProcessorInfo = {
     members = {
         SupportedArchitectures = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "supportedArchitectures",
             },
         },
         SustainedClockSpeedInGhz = {
-            type = "number",
+            type = "double",
             traits = {
                 xml_name = "sustainedClockSpeedInGhz",
             },
         },
         SupportedFeatures = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "supportedFeatures",
             },
@@ -41667,33 +39972,33 @@ M.VCpuInfo = {
     type = "structure",
     members = {
         DefaultVCpus = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "defaultVCpus",
             },
         },
         DefaultCores = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "defaultCores",
             },
         },
         DefaultThreadsPerCore = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "defaultThreadsPerCore",
             },
         },
         ValidCores = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
             traits = {
                 xml_name = "validCores",
             },
         },
         ValidThreadsPerCore = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
             traits = {
                 xml_name = "validThreadsPerCore",
             },
@@ -41724,21 +40029,21 @@ M.InstanceTypeInfo = {
         },
         SupportedUsageClasses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "supportedUsageClasses",
             },
         },
         SupportedRootDeviceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "supportedRootDeviceTypes",
             },
         },
         SupportedVirtualizationTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "supportedVirtualizationTypes",
             },
@@ -41755,72 +40060,42 @@ M.InstanceTypeInfo = {
                 xml_name = "hypervisor",
             },
         },
-        ProcessorInfo = {
-            type = "structure",
-            traits = {
-                xml_name = "processorInfo",
-            },
-        },
-        VCpuInfo = {
-            type = "structure",
-            traits = {
-                xml_name = "vCpuInfo",
-            },
-        },
-        MemoryInfo = {
-            type = "structure",
-            traits = {
-                xml_name = "memoryInfo",
-            },
-        },
+        ProcessorInfo = setmetatable({ traits = {
+            xml_name = "processorInfo",
+        } }, { __index = M.ProcessorInfo }),
+        VCpuInfo = setmetatable({ traits = {
+            xml_name = "vCpuInfo",
+        } }, { __index = M.VCpuInfo }),
+        MemoryInfo = setmetatable({ traits = {
+            xml_name = "memoryInfo",
+        } }, { __index = M.MemoryInfo }),
         InstanceStorageSupported = {
             type = "boolean",
             traits = {
                 xml_name = "instanceStorageSupported",
             },
         },
-        InstanceStorageInfo = {
-            type = "structure",
-            traits = {
-                xml_name = "instanceStorageInfo",
-            },
-        },
-        EbsInfo = {
-            type = "structure",
-            traits = {
-                xml_name = "ebsInfo",
-            },
-        },
-        NetworkInfo = {
-            type = "structure",
-            traits = {
-                xml_name = "networkInfo",
-            },
-        },
-        GpuInfo = {
-            type = "structure",
-            traits = {
-                xml_name = "gpuInfo",
-            },
-        },
-        FpgaInfo = {
-            type = "structure",
-            traits = {
-                xml_name = "fpgaInfo",
-            },
-        },
-        PlacementGroupInfo = {
-            type = "structure",
-            traits = {
-                xml_name = "placementGroupInfo",
-            },
-        },
-        InferenceAcceleratorInfo = {
-            type = "structure",
-            traits = {
-                xml_name = "inferenceAcceleratorInfo",
-            },
-        },
+        InstanceStorageInfo = setmetatable({ traits = {
+            xml_name = "instanceStorageInfo",
+        } }, { __index = M.InstanceStorageInfo }),
+        EbsInfo = setmetatable({ traits = {
+            xml_name = "ebsInfo",
+        } }, { __index = M.EbsInfo }),
+        NetworkInfo = setmetatable({ traits = {
+            xml_name = "networkInfo",
+        } }, { __index = M.NetworkInfo }),
+        GpuInfo = setmetatable({ traits = {
+            xml_name = "gpuInfo",
+        } }, { __index = M.GpuInfo }),
+        FpgaInfo = setmetatable({ traits = {
+            xml_name = "fpgaInfo",
+        } }, { __index = M.FpgaInfo }),
+        PlacementGroupInfo = setmetatable({ traits = {
+            xml_name = "placementGroupInfo",
+        } }, { __index = M.PlacementGroupInfo }),
+        InferenceAcceleratorInfo = setmetatable({ traits = {
+            xml_name = "inferenceAcceleratorInfo",
+        } }, { __index = M.InferenceAcceleratorInfo }),
         HibernationSupported = {
             type = "boolean",
             traits = {
@@ -41847,7 +40122,7 @@ M.InstanceTypeInfo = {
         },
         SupportedBootModes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "supportedBootModes",
             },
@@ -41864,24 +40139,15 @@ M.InstanceTypeInfo = {
                 xml_name = "nitroTpmSupport",
             },
         },
-        NitroTpmInfo = {
-            type = "structure",
-            traits = {
-                xml_name = "nitroTpmInfo",
-            },
-        },
-        MediaAcceleratorInfo = {
-            type = "structure",
-            traits = {
-                xml_name = "mediaAcceleratorInfo",
-            },
-        },
-        NeuronInfo = {
-            type = "structure",
-            traits = {
-                xml_name = "neuronInfo",
-            },
-        },
+        NitroTpmInfo = setmetatable({ traits = {
+            xml_name = "nitroTpmInfo",
+        } }, { __index = M.NitroTpmInfo }),
+        MediaAcceleratorInfo = setmetatable({ traits = {
+            xml_name = "mediaAcceleratorInfo",
+        } }, { __index = M.MediaAcceleratorInfo }),
+        NeuronInfo = setmetatable({ traits = {
+            xml_name = "neuronInfo",
+        } }, { __index = M.NeuronInfo }),
         PhcSupport = {
             type = "string",
             traits = {
@@ -41902,7 +40168,7 @@ M.DescribeInstanceTypesOutput = {
     members = {
         InstanceTypes = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceTypeInfo,
             traits = {
                 xml_name = "instanceTypeSet",
             },
@@ -41923,7 +40189,7 @@ M.DescribeInternetGatewaysInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         DryRun = {
             type = "boolean",
@@ -41933,14 +40199,14 @@ M.DescribeInternetGatewaysInput = {
         },
         InternetGatewayIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "internetGatewayId",
             },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -41953,7 +40219,7 @@ M.DescribeInternetGatewaysOutput = {
     members = {
         InternetGateways = {
             type = "list",
-            member_type = "structure",
+            member = M.InternetGateway,
             traits = {
                 xml_name = "internetGatewaySet",
             },
@@ -41974,7 +40240,7 @@ M.DescribeIpamByoasnInput = {
             type = "boolean",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -41987,7 +40253,7 @@ M.DescribeIpamByoasnOutput = {
     members = {
         Byoasns = {
             type = "list",
-            member_type = "structure",
+            member = M.Byoasn,
             traits = {
                 xml_name = "byoasnSet",
             },
@@ -42009,7 +40275,7 @@ M.DescribeIpamExternalResourceVerificationTokensInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -42018,11 +40284,11 @@ M.DescribeIpamExternalResourceVerificationTokensInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         IpamExternalResourceVerificationTokenIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "IpamExternalResourceVerificationTokenId",
             },
@@ -42041,7 +40307,7 @@ M.DescribeIpamExternalResourceVerificationTokensOutput = {
         },
         IpamExternalResourceVerificationTokens = {
             type = "list",
-            member_type = "structure",
+            member = M.IpamExternalResourceVerificationToken,
             traits = {
                 xml_name = "ipamExternalResourceVerificationTokenSet",
             },
@@ -42057,20 +40323,20 @@ M.DescribeIpamPoliciesInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         IpamPolicyIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "IpamPolicyId",
             },
@@ -42089,7 +40355,7 @@ M.DescribeIpamPoliciesOutput = {
         },
         IpamPolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.IpamPolicy,
             traits = {
                 xml_name = "ipamPolicySet",
             },
@@ -42105,20 +40371,20 @@ M.DescribeIpamPoolsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         IpamPoolIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "IpamPoolId",
             },
@@ -42137,7 +40403,7 @@ M.DescribeIpamPoolsOutput = {
         },
         IpamPools = {
             type = "list",
-            member_type = "structure",
+            member = M.IpamPool,
             traits = {
                 xml_name = "ipamPoolSet",
             },
@@ -42153,20 +40419,20 @@ M.DescribeIpamPrefixListResolversInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         IpamPrefixListResolverIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "IpamPrefixListResolverId",
             },
@@ -42185,7 +40451,7 @@ M.DescribeIpamPrefixListResolversOutput = {
         },
         IpamPrefixListResolvers = {
             type = "list",
-            member_type = "structure",
+            member = M.IpamPrefixListResolver,
             traits = {
                 xml_name = "ipamPrefixListResolverSet",
             },
@@ -42201,20 +40467,20 @@ M.DescribeIpamPrefixListResolverTargetsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         IpamPrefixListResolverTargetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "IpamPrefixListResolverTargetId",
             },
@@ -42236,7 +40502,7 @@ M.DescribeIpamPrefixListResolverTargetsOutput = {
         },
         IpamPrefixListResolverTargets = {
             type = "list",
-            member_type = "structure",
+            member = M.IpamPrefixListResolverTarget,
             traits = {
                 xml_name = "ipamPrefixListResolverTargetSet",
             },
@@ -42252,7 +40518,7 @@ M.DescribeIpamResourceDiscoveriesInput = {
         },
         IpamResourceDiscoveryIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "IpamResourceDiscoveryId",
             },
@@ -42261,11 +40527,11 @@ M.DescribeIpamResourceDiscoveriesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -42278,7 +40544,7 @@ M.DescribeIpamResourceDiscoveriesOutput = {
     members = {
         IpamResourceDiscoveries = {
             type = "list",
-            member_type = "structure",
+            member = M.IpamResourceDiscovery,
             traits = {
                 xml_name = "ipamResourceDiscoverySet",
             },
@@ -42300,7 +40566,7 @@ M.DescribeIpamResourceDiscoveryAssociationsInput = {
         },
         IpamResourceDiscoveryAssociationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "IpamResourceDiscoveryAssociationId",
             },
@@ -42309,11 +40575,11 @@ M.DescribeIpamResourceDiscoveryAssociationsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -42326,7 +40592,7 @@ M.DescribeIpamResourceDiscoveryAssociationsOutput = {
     members = {
         IpamResourceDiscoveryAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.IpamResourceDiscoveryAssociation,
             traits = {
                 xml_name = "ipamResourceDiscoveryAssociationSet",
             },
@@ -42348,20 +40614,20 @@ M.DescribeIpamsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         IpamIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "IpamId",
             },
@@ -42380,7 +40646,7 @@ M.DescribeIpamsOutput = {
         },
         Ipams = {
             type = "list",
-            member_type = "structure",
+            member = M.Ipam,
             traits = {
                 xml_name = "ipamSet",
             },
@@ -42396,20 +40662,20 @@ M.DescribeIpamScopesInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         IpamScopeIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "IpamScopeId",
             },
@@ -42428,7 +40694,7 @@ M.DescribeIpamScopesOutput = {
         },
         IpamScopes = {
             type = "list",
-            member_type = "structure",
+            member = M.IpamScope,
             traits = {
                 xml_name = "ipamScopeSet",
             },
@@ -42441,7 +40707,7 @@ M.DescribeIpv6PoolsInput = {
     members = {
         PoolIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "PoolId",
             },
@@ -42450,14 +40716,14 @@ M.DescribeIpv6PoolsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         DryRun = {
             type = "boolean",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -42494,14 +40760,14 @@ M.Ipv6Pool = {
         },
         PoolCidrBlocks = {
             type = "list",
-            member_type = "structure",
+            member = M.PoolCidrBlock,
             traits = {
                 xml_name = "poolCidrBlockSet",
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -42514,7 +40780,7 @@ M.DescribeIpv6PoolsOutput = {
     members = {
         Ipv6Pools = {
             type = "list",
-            member_type = "structure",
+            member = M.Ipv6Pool,
             traits = {
                 xml_name = "ipv6PoolSet",
             },
@@ -42533,14 +40799,14 @@ M.DescribeKeyPairsInput = {
     members = {
         KeyNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "KeyName",
             },
         },
         KeyPairIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "KeyPairId",
             },
@@ -42556,7 +40822,7 @@ M.DescribeKeyPairsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -42581,7 +40847,7 @@ M.KeyPairInfo = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -42618,7 +40884,7 @@ M.DescribeKeyPairsOutput = {
     members = {
         KeyPairs = {
             type = "list",
-            member_type = "structure",
+            member = M.KeyPairInfo,
             traits = {
                 xml_name = "keySet",
             },
@@ -42634,21 +40900,21 @@ M.DescribeLaunchTemplatesInput = {
         },
         LaunchTemplateIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "LaunchTemplateId",
             },
         },
         LaunchTemplateNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "LaunchTemplateName",
             },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -42657,7 +40923,7 @@ M.DescribeLaunchTemplatesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         IncludeManagedResources = {
             type = "boolean",
@@ -42670,7 +40936,7 @@ M.DescribeLaunchTemplatesOutput = {
     members = {
         LaunchTemplates = {
             type = "list",
-            member_type = "structure",
+            member = M.LaunchTemplate,
             traits = {
                 xml_name = "launchTemplates",
             },
@@ -42698,7 +40964,7 @@ M.DescribeLaunchTemplateVersionsInput = {
         },
         Versions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "LaunchTemplateVersion",
             },
@@ -42713,11 +40979,11 @@ M.DescribeLaunchTemplateVersionsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -42736,7 +41002,7 @@ M.DescribeLaunchTemplateVersionsOutput = {
     members = {
         LaunchTemplateVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.LaunchTemplateVersion,
             traits = {
                 xml_name = "launchTemplateVersionSet",
             },
@@ -42755,20 +41021,20 @@ M.DescribeLocalGatewayRouteTablesInput = {
     members = {
         LocalGatewayRouteTableIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "LocalGatewayRouteTableId",
             },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -42784,7 +41050,7 @@ M.DescribeLocalGatewayRouteTablesOutput = {
     members = {
         LocalGatewayRouteTables = {
             type = "list",
-            member_type = "structure",
+            member = M.LocalGatewayRouteTable,
             traits = {
                 xml_name = "localGatewayRouteTableSet",
             },
@@ -42803,20 +41069,20 @@ M.DescribeLocalGatewayRouteTableVirtualInterfaceGroupAssociationsInput = {
     members = {
         LocalGatewayRouteTableVirtualInterfaceGroupAssociationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "LocalGatewayRouteTableVirtualInterfaceGroupAssociationId",
             },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -42832,7 +41098,7 @@ M.DescribeLocalGatewayRouteTableVirtualInterfaceGroupAssociationsOutput = {
     members = {
         LocalGatewayRouteTableVirtualInterfaceGroupAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.LocalGatewayRouteTableVirtualInterfaceGroupAssociation,
             traits = {
                 xml_name = "localGatewayRouteTableVirtualInterfaceGroupAssociationSet",
             },
@@ -42851,20 +41117,20 @@ M.DescribeLocalGatewayRouteTableVpcAssociationsInput = {
     members = {
         LocalGatewayRouteTableVpcAssociationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "LocalGatewayRouteTableVpcAssociationId",
             },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -42880,7 +41146,7 @@ M.DescribeLocalGatewayRouteTableVpcAssociationsOutput = {
     members = {
         LocalGatewayRouteTableVpcAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.LocalGatewayRouteTableVpcAssociation,
             traits = {
                 xml_name = "localGatewayRouteTableVpcAssociationSet",
             },
@@ -42899,20 +41165,20 @@ M.DescribeLocalGatewaysInput = {
     members = {
         LocalGatewayIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "LocalGatewayId",
             },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -42952,7 +41218,7 @@ M.LocalGateway = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -42965,7 +41231,7 @@ M.DescribeLocalGatewaysOutput = {
     members = {
         LocalGateways = {
             type = "list",
-            member_type = "structure",
+            member = M.LocalGateway,
             traits = {
                 xml_name = "localGatewaySet",
             },
@@ -42984,20 +41250,20 @@ M.DescribeLocalGatewayVirtualInterfaceGroupsInput = {
     members = {
         LocalGatewayVirtualInterfaceGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "LocalGatewayVirtualInterfaceGroupId",
             },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -43013,7 +41279,7 @@ M.DescribeLocalGatewayVirtualInterfaceGroupsOutput = {
     members = {
         LocalGatewayVirtualInterfaceGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.LocalGatewayVirtualInterfaceGroup,
             traits = {
                 xml_name = "localGatewayVirtualInterfaceGroupSet",
             },
@@ -43032,20 +41298,20 @@ M.DescribeLocalGatewayVirtualInterfacesInput = {
     members = {
         LocalGatewayVirtualInterfaceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "LocalGatewayVirtualInterfaceId",
             },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -43061,7 +41327,7 @@ M.DescribeLocalGatewayVirtualInterfacesOutput = {
     members = {
         LocalGatewayVirtualInterfaces = {
             type = "list",
-            member_type = "structure",
+            member = M.LocalGatewayVirtualInterface,
             traits = {
                 xml_name = "localGatewayVirtualInterfaceSet",
             },
@@ -43080,20 +41346,20 @@ M.DescribeLockedSnapshotsInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         SnapshotIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "SnapshotId",
             },
@@ -43133,13 +41399,13 @@ M.LockedSnapshotsInfo = {
             },
         },
         LockDuration = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "lockDuration",
             },
         },
         CoolOffPeriod = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "coolOffPeriod",
             },
@@ -43176,7 +41442,7 @@ M.DescribeLockedSnapshotsOutput = {
     members = {
         Snapshots = {
             type = "list",
-            member_type = "structure",
+            member = M.LockedSnapshotsInfo,
             traits = {
                 xml_name = "snapshotSet",
             },
@@ -43195,20 +41461,20 @@ M.DescribeMacHostsInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         HostIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "HostId",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -43227,7 +41493,7 @@ M.MacHost = {
         },
         MacOSLatestSupportedVersions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "macOSLatestSupportedVersionSet",
             },
@@ -43240,7 +41506,7 @@ M.DescribeMacHostsOutput = {
     members = {
         MacHosts = {
             type = "list",
-            member_type = "structure",
+            member = M.MacHost,
             traits = {
                 xml_name = "macHostSet",
             },
@@ -43262,20 +41528,20 @@ M.DescribeMacModificationTasksInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MacModificationTaskIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "MacModificationTaskId",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -43288,7 +41554,7 @@ M.DescribeMacModificationTasksOutput = {
     members = {
         MacModificationTasks = {
             type = "list",
-            member_type = "structure",
+            member = M.MacModificationTask,
             traits = {
                 xml_name = "macModificationTaskSet",
             },
@@ -43310,20 +41576,20 @@ M.DescribeManagedPrefixListsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         PrefixListIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "PrefixListId",
             },
@@ -43342,7 +41608,7 @@ M.DescribeManagedPrefixListsOutput = {
         },
         PrefixLists = {
             type = "list",
-            member_type = "structure",
+            member = M.ManagedPrefixList,
             traits = {
                 xml_name = "prefixListSet",
             },
@@ -43361,7 +41627,7 @@ M.DescribeMovingAddressesInput = {
         },
         PublicIps = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "publicIp",
             },
@@ -43374,13 +41640,13 @@ M.DescribeMovingAddressesInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "maxResults",
             },
@@ -43416,7 +41682,7 @@ M.DescribeMovingAddressesOutput = {
     members = {
         MovingAddressStatuses = {
             type = "list",
-            member_type = "structure",
+            member = M.MovingAddressStatus,
             traits = {
                 xml_name = "movingAddressStatusSet",
             },
@@ -43438,14 +41704,14 @@ M.DescribeNatGatewaysInput = {
         },
         Filter = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NatGatewayIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "NatGatewayId",
             },
@@ -43461,7 +41727,7 @@ M.DescribeNatGatewaysOutput = {
     members = {
         NatGateways = {
             type = "list",
-            member_type = "structure",
+            member = M.NatGateway,
             traits = {
                 xml_name = "natGatewaySet",
             },
@@ -43482,7 +41748,7 @@ M.DescribeNetworkAclsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         DryRun = {
             type = "boolean",
@@ -43492,14 +41758,14 @@ M.DescribeNetworkAclsInput = {
         },
         NetworkAclIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "NetworkAclId",
             },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -43512,7 +41778,7 @@ M.DescribeNetworkAclsOutput = {
     members = {
         NetworkAcls = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkAcl,
             traits = {
                 xml_name = "networkAclSet",
             },
@@ -43531,7 +41797,7 @@ M.DescribeNetworkInsightsAccessScopeAnalysesInput = {
     members = {
         NetworkInsightsAccessScopeAnalysisIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "NetworkInsightsAccessScopeAnalysisId",
             },
@@ -43547,13 +41813,13 @@ M.DescribeNetworkInsightsAccessScopeAnalysesInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         DryRun = {
             type = "boolean",
@@ -43634,14 +41900,14 @@ M.NetworkInsightsAccessScopeAnalysis = {
             },
         },
         AnalyzedEniCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "analyzedEniCount",
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -43654,7 +41920,7 @@ M.DescribeNetworkInsightsAccessScopeAnalysesOutput = {
     members = {
         NetworkInsightsAccessScopeAnalyses = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkInsightsAccessScopeAnalysis,
             traits = {
                 xml_name = "networkInsightsAccessScopeAnalysisSet",
             },
@@ -43673,20 +41939,20 @@ M.DescribeNetworkInsightsAccessScopesInput = {
     members = {
         NetworkInsightsAccessScopeIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "NetworkInsightsAccessScopeId",
             },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         DryRun = {
             type = "boolean",
@@ -43702,7 +41968,7 @@ M.DescribeNetworkInsightsAccessScopesOutput = {
     members = {
         NetworkInsightsAccessScopes = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkInsightsAccessScope,
             traits = {
                 xml_name = "networkInsightsAccessScopeSet",
             },
@@ -43721,7 +41987,7 @@ M.DescribeNetworkInsightsAnalysesInput = {
     members = {
         NetworkInsightsAnalysisIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "NetworkInsightsAnalysisId",
             },
@@ -43737,13 +42003,13 @@ M.DescribeNetworkInsightsAnalysesInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         DryRun = {
             type = "boolean",
@@ -43777,21 +42043,21 @@ M.NetworkInsightsAnalysis = {
         },
         AdditionalAccounts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "additionalAccountSet",
             },
         },
         FilterInArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "filterInArnSet",
             },
         },
         FilterOutArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "filterOutArnSet",
             },
@@ -43828,42 +42094,42 @@ M.NetworkInsightsAnalysis = {
         },
         ForwardPathComponents = {
             type = "list",
-            member_type = "structure",
+            member = M.PathComponent,
             traits = {
                 xml_name = "forwardPathComponentSet",
             },
         },
         ReturnPathComponents = {
             type = "list",
-            member_type = "structure",
+            member = M.PathComponent,
             traits = {
                 xml_name = "returnPathComponentSet",
             },
         },
         Explanations = {
             type = "list",
-            member_type = "structure",
+            member = M.Explanation,
             traits = {
                 xml_name = "explanationSet",
             },
         },
         AlternatePathHints = {
             type = "list",
-            member_type = "structure",
+            member = M.AlternatePathHint,
             traits = {
                 xml_name = "alternatePathHintSet",
             },
         },
         SuggestedAccounts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "suggestedAccountSet",
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -43876,7 +42142,7 @@ M.DescribeNetworkInsightsAnalysesOutput = {
     members = {
         NetworkInsightsAnalyses = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkInsightsAnalysis,
             traits = {
                 xml_name = "networkInsightsAnalysisSet",
             },
@@ -43895,20 +42161,20 @@ M.DescribeNetworkInsightsPathsInput = {
     members = {
         NetworkInsightsPathIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "NetworkInsightsPathId",
             },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         DryRun = {
             type = "boolean",
@@ -43924,7 +42190,7 @@ M.DescribeNetworkInsightsPathsOutput = {
     members = {
         NetworkInsightsPaths = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkInsightsPath,
             traits = {
                 xml_name = "networkInsightsPathSet",
             },
@@ -43974,21 +42240,15 @@ M.DescribeNetworkInterfaceAttributeInput = {
 M.DescribeNetworkInterfaceAttributeOutput = {
     type = "structure",
     members = {
-        Attachment = {
-            type = "structure",
-            traits = {
-                xml_name = "attachment",
-            },
-        },
-        Description = {
-            type = "structure",
-            traits = {
-                xml_name = "description",
-            },
-        },
+        Attachment = setmetatable({ traits = {
+            xml_name = "attachment",
+        } }, { __index = M.NetworkInterfaceAttachment }),
+        Description = setmetatable({ traits = {
+            xml_name = "description",
+        } }, { __index = M.AttributeValue }),
         Groups = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupIdentifier,
             traits = {
                 xml_name = "groupSet",
             },
@@ -43999,12 +42259,9 @@ M.DescribeNetworkInterfaceAttributeOutput = {
                 xml_name = "networkInterfaceId",
             },
         },
-        SourceDestCheck = {
-            type = "structure",
-            traits = {
-                xml_name = "sourceDestCheck",
-            },
-        },
+        SourceDestCheck = setmetatable({ traits = {
+            xml_name = "sourceDestCheck",
+        } }, { __index = M.AttributeBooleanValue }),
         AssociatePublicIpAddress = {
             type = "boolean",
             traits = {
@@ -44019,14 +42276,14 @@ M.DescribeNetworkInterfacePermissionsInput = {
     members = {
         NetworkInterfacePermissionIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "NetworkInterfacePermissionId",
             },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -44035,7 +42292,7 @@ M.DescribeNetworkInterfacePermissionsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -44045,7 +42302,7 @@ M.DescribeNetworkInterfacePermissionsOutput = {
     members = {
         NetworkInterfacePermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkInterfacePermission,
             traits = {
                 xml_name = "networkInterfacePermissions",
             },
@@ -44066,7 +42323,7 @@ M.DescribeNetworkInterfacesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         IncludeManagedResources = {
             type = "boolean",
@@ -44079,14 +42336,14 @@ M.DescribeNetworkInterfacesInput = {
         },
         NetworkInterfaceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "NetworkInterfaceId",
             },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "filter",
             },
@@ -44099,7 +42356,7 @@ M.DescribeNetworkInterfacesOutput = {
     members = {
         NetworkInterfaces = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkInterface,
             traits = {
                 xml_name = "networkInterfaceSet",
             },
@@ -44118,20 +42375,20 @@ M.DescribeOutpostLagsInput = {
     members = {
         OutpostLagIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "OutpostLagId",
             },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -44171,21 +42428,21 @@ M.OutpostLag = {
         },
         LocalGatewayVirtualInterfaceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "localGatewayVirtualInterfaceIdSet",
             },
         },
         ServiceLinkVirtualInterfaceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "serviceLinkVirtualInterfaceIdSet",
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -44198,7 +42455,7 @@ M.DescribeOutpostLagsOutput = {
     members = {
         OutpostLags = {
             type = "list",
-            member_type = "structure",
+            member = M.OutpostLag,
             traits = {
                 xml_name = "outpostLagSet",
             },
@@ -44217,7 +42474,7 @@ M.DescribePlacementGroupsInput = {
     members = {
         GroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "GroupId",
             },
@@ -44230,14 +42487,14 @@ M.DescribePlacementGroupsInput = {
         },
         GroupNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "groupName",
             },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -44250,7 +42507,7 @@ M.DescribePlacementGroupsOutput = {
     members = {
         PlacementGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.PlacementGroup,
             traits = {
                 xml_name = "placementGroupSet",
             },
@@ -44266,20 +42523,20 @@ M.DescribePrefixListsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         PrefixListIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "PrefixListId",
             },
@@ -44292,7 +42549,7 @@ M.PrefixList = {
     members = {
         Cidrs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "cidrSet",
             },
@@ -44323,7 +42580,7 @@ M.DescribePrefixListsOutput = {
         },
         PrefixLists = {
             type = "list",
-            member_type = "structure",
+            member = M.PrefixList,
             traits = {
                 xml_name = "prefixListSet",
             },
@@ -44339,13 +42596,13 @@ M.DescribePrincipalIdFormatInput = {
         },
         Resources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "Resource",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -44364,7 +42621,7 @@ M.PrincipalIdFormat = {
         },
         Statuses = {
             type = "list",
-            member_type = "structure",
+            member = M.IdFormat,
             traits = {
                 xml_name = "statusSet",
             },
@@ -44377,7 +42634,7 @@ M.DescribePrincipalIdFormatOutput = {
     members = {
         Principals = {
             type = "list",
-            member_type = "structure",
+            member = M.PrincipalIdFormat,
             traits = {
                 xml_name = "principalSet",
             },
@@ -44396,7 +42653,7 @@ M.DescribePublicIpv4PoolsInput = {
     members = {
         PoolIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "PoolId",
             },
@@ -44405,11 +42662,11 @@ M.DescribePublicIpv4PoolsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -44433,13 +42690,13 @@ M.PublicIpv4PoolRange = {
             },
         },
         AddressCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "addressCount",
             },
         },
         AvailableAddressCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "availableAddressCount",
             },
@@ -44464,19 +42721,19 @@ M.PublicIpv4Pool = {
         },
         PoolAddressRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.PublicIpv4PoolRange,
             traits = {
                 xml_name = "poolAddressRangeSet",
             },
         },
         TotalAddressCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "totalAddressCount",
             },
         },
         TotalAvailableAddressCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "totalAvailableAddressCount",
             },
@@ -44489,7 +42746,7 @@ M.PublicIpv4Pool = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -44502,7 +42759,7 @@ M.DescribePublicIpv4PoolsOutput = {
     members = {
         PublicIpv4Pools = {
             type = "list",
-            member_type = "structure",
+            member = M.PublicIpv4Pool,
             traits = {
                 xml_name = "publicIpv4PoolSet",
             },
@@ -44521,7 +42778,7 @@ M.DescribeRegionsInput = {
     members = {
         RegionNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "RegionName",
             },
@@ -44537,7 +42794,7 @@ M.DescribeRegionsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -44568,7 +42825,7 @@ M.Region = {
         },
         Geography = {
             type = "list",
-            member_type = "structure",
+            member = M.RegionGeography,
             traits = {
                 xml_name = "geographySet",
             },
@@ -44593,7 +42850,7 @@ M.DescribeRegionsOutput = {
     members = {
         Regions = {
             type = "list",
-            member_type = "structure",
+            member = M.Region,
             traits = {
                 xml_name = "regionInfo",
             },
@@ -44606,20 +42863,20 @@ M.DescribeReplaceRootVolumeTasksInput = {
     members = {
         ReplaceRootVolumeTaskIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "ReplaceRootVolumeTaskId",
             },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -44635,7 +42892,7 @@ M.DescribeReplaceRootVolumeTasksOutput = {
     members = {
         ReplaceRootVolumeTasks = {
             type = "list",
-            member_type = "structure",
+            member = M.ReplaceRootVolumeTask,
             traits = {
                 xml_name = "replaceRootVolumeTaskSet",
             },
@@ -44671,7 +42928,7 @@ M.DescribeReservedInstancesInput = {
         },
         ReservedInstancesIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "ReservedInstancesId",
             },
@@ -44684,7 +42941,7 @@ M.DescribeReservedInstancesInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -44713,7 +42970,7 @@ M.RecurringCharge = {
     type = "structure",
     members = {
         Amount = {
-            type = "number",
+            type = "double",
             traits = {
                 xml_name = "amount",
             },
@@ -44770,7 +43027,7 @@ M.ReservedInstances = {
         },
         RecurringCharges = {
             type = "list",
-            member_type = "structure",
+            member = M.RecurringCharge,
             traits = {
                 xml_name = "recurringCharges",
             },
@@ -44783,7 +43040,7 @@ M.ReservedInstances = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -44825,25 +43082,25 @@ M.ReservedInstances = {
             },
         },
         Duration = {
-            type = "number",
+            type = "long",
             traits = {
                 xml_name = "duration",
             },
         },
         UsagePrice = {
-            type = "number",
+            type = "float",
             traits = {
                 xml_name = "usagePrice",
             },
         },
         FixedPrice = {
-            type = "number",
+            type = "float",
             traits = {
                 xml_name = "fixedPrice",
             },
         },
         InstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "instanceCount",
             },
@@ -44868,7 +43125,7 @@ M.DescribeReservedInstancesOutput = {
     members = {
         ReservedInstances = {
             type = "list",
-            member_type = "structure",
+            member = M.ReservedInstances,
             traits = {
                 xml_name = "reservedInstancesSet",
             },
@@ -44893,7 +43150,7 @@ M.DescribeReservedInstancesListingsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -44906,7 +43163,7 @@ M.DescribeReservedInstancesListingsOutput = {
     members = {
         ReservedInstancesListings = {
             type = "list",
-            member_type = "structure",
+            member = M.ReservedInstancesListing,
             traits = {
                 xml_name = "reservedInstancesListingsSet",
             },
@@ -44919,7 +43176,7 @@ M.DescribeReservedInstancesModificationsInput = {
     members = {
         ReservedInstancesModificationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "ReservedInstancesModificationId",
             },
@@ -44932,7 +43189,7 @@ M.DescribeReservedInstancesModificationsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -44950,7 +43207,7 @@ M.ReservedInstancesConfiguration = {
             },
         },
         InstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "instanceCount",
             },
@@ -44991,12 +43248,9 @@ M.ReservedInstancesModificationResult = {
                 xml_name = "reservedInstancesId",
             },
         },
-        TargetConfiguration = {
-            type = "structure",
-            traits = {
-                xml_name = "targetConfiguration",
-            },
-        },
+        TargetConfiguration = setmetatable({ traits = {
+            xml_name = "targetConfiguration",
+        } }, { __index = M.ReservedInstancesConfiguration }),
     },
 }
 
@@ -45035,14 +43289,14 @@ M.ReservedInstancesModification = {
         },
         ModificationResults = {
             type = "list",
-            member_type = "structure",
+            member = M.ReservedInstancesModificationResult,
             traits = {
                 xml_name = "modificationResultSet",
             },
         },
         ReservedInstancesIds = {
             type = "list",
-            member_type = "structure",
+            member = M.ReservedInstancesId,
             traits = {
                 xml_name = "reservedInstancesSet",
             },
@@ -45085,7 +43339,7 @@ M.DescribeReservedInstancesModificationsOutput = {
         },
         ReservedInstancesModifications = {
             type = "list",
-            member_type = "structure",
+            member = M.ReservedInstancesModification,
             traits = {
                 xml_name = "reservedInstancesModificationsSet",
             },
@@ -45106,13 +43360,13 @@ M.DescribeReservedInstancesOfferingsInput = {
             type = "string",
         },
         MaxDuration = {
-            type = "number",
+            type = "long",
         },
         MaxInstanceCount = {
-            type = "number",
+            type = "integer",
         },
         MinDuration = {
-            type = "number",
+            type = "long",
         },
         OfferingClass = {
             type = "string",
@@ -45122,7 +43376,7 @@ M.DescribeReservedInstancesOfferingsInput = {
         },
         ReservedInstancesOfferingIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "ReservedInstancesOfferingId",
             },
@@ -45138,7 +43392,7 @@ M.DescribeReservedInstancesOfferingsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -45162,7 +43416,7 @@ M.DescribeReservedInstancesOfferingsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "maxResults",
             },
@@ -45174,13 +43428,13 @@ M.PricingDetail = {
     type = "structure",
     members = {
         Count = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "count",
             },
         },
         Price = {
-            type = "number",
+            type = "double",
             traits = {
                 xml_name = "price",
             },
@@ -45223,14 +43477,14 @@ M.ReservedInstancesOffering = {
         },
         PricingDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.PricingDetail,
             traits = {
                 xml_name = "pricingDetailsSet",
             },
         },
         RecurringCharges = {
             type = "list",
-            member_type = "structure",
+            member = M.RecurringCharge,
             traits = {
                 xml_name = "recurringCharges",
             },
@@ -45266,19 +43520,19 @@ M.ReservedInstancesOffering = {
             },
         },
         Duration = {
-            type = "number",
+            type = "long",
             traits = {
                 xml_name = "duration",
             },
         },
         UsagePrice = {
-            type = "number",
+            type = "float",
             traits = {
                 xml_name = "usagePrice",
             },
         },
         FixedPrice = {
-            type = "number",
+            type = "float",
             traits = {
                 xml_name = "fixedPrice",
             },
@@ -45303,7 +43557,7 @@ M.DescribeReservedInstancesOfferingsOutput = {
         },
         ReservedInstancesOfferings = {
             type = "list",
-            member_type = "structure",
+            member = M.ReservedInstancesOffering,
             traits = {
                 xml_name = "reservedInstancesOfferingsSet",
             },
@@ -45316,7 +43570,7 @@ M.DescribeRouteServerEndpointsInput = {
     members = {
         RouteServerEndpointIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "RouteServerEndpointId",
             },
@@ -45325,11 +43579,11 @@ M.DescribeRouteServerEndpointsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -45345,7 +43599,7 @@ M.DescribeRouteServerEndpointsOutput = {
     members = {
         RouteServerEndpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteServerEndpoint,
             traits = {
                 xml_name = "routeServerEndpointSet",
             },
@@ -45364,7 +43618,7 @@ M.DescribeRouteServerPeersInput = {
     members = {
         RouteServerPeerIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "RouteServerPeerId",
             },
@@ -45373,11 +43627,11 @@ M.DescribeRouteServerPeersInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -45393,7 +43647,7 @@ M.DescribeRouteServerPeersOutput = {
     members = {
         RouteServerPeers = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteServerPeer,
             traits = {
                 xml_name = "routeServerPeerSet",
             },
@@ -45412,7 +43666,7 @@ M.DescribeRouteServersInput = {
     members = {
         RouteServerIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "RouteServerId",
             },
@@ -45421,11 +43675,11 @@ M.DescribeRouteServersInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -45441,7 +43695,7 @@ M.DescribeRouteServersOutput = {
     members = {
         RouteServers = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteServer,
             traits = {
                 xml_name = "routeServerSet",
             },
@@ -45462,7 +43716,7 @@ M.DescribeRouteTablesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         DryRun = {
             type = "boolean",
@@ -45472,14 +43726,14 @@ M.DescribeRouteTablesInput = {
         },
         RouteTableIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "RouteTableId",
             },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -45492,7 +43746,7 @@ M.DescribeRouteTablesOutput = {
     members = {
         RouteTables = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteTable,
             traits = {
                 xml_name = "routeTableSet",
             },
@@ -45531,11 +43785,11 @@ M.ScheduledInstanceRecurrenceRequest = {
             type = "string",
         },
         Interval = {
-            type = "number",
+            type = "integer",
         },
         OccurrenceDays = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
             traits = {
                 xml_name = "OccurrenceDay",
             },
@@ -45557,35 +43811,29 @@ M.DescribeScheduledInstanceAvailabilityInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
-        FirstSlotStartTimeRange = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        FirstSlotStartTimeRange = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SlotDateTimeRangeRequest }),
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         MaxSlotDurationInHours = {
-            type = "number",
+            type = "integer",
         },
         MinSlotDurationInHours = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
-        Recurrence = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Recurrence = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ScheduledInstanceRecurrenceRequest }),
     },
 }
 
@@ -45599,14 +43847,14 @@ M.ScheduledInstanceRecurrence = {
             },
         },
         Interval = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "interval",
             },
         },
         OccurrenceDaySet = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
             traits = {
                 xml_name = "occurrenceDaySet",
             },
@@ -45636,7 +43884,7 @@ M.ScheduledInstanceAvailability = {
             },
         },
         AvailableInstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "availableInstanceCount",
             },
@@ -45660,13 +43908,13 @@ M.ScheduledInstanceAvailability = {
             },
         },
         MaxTermDurationInDays = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "maxTermDurationInDays",
             },
         },
         MinTermDurationInDays = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "minTermDurationInDays",
             },
@@ -45689,20 +43937,17 @@ M.ScheduledInstanceAvailability = {
                 xml_name = "purchaseToken",
             },
         },
-        Recurrence = {
-            type = "structure",
-            traits = {
-                xml_name = "recurrence",
-            },
-        },
+        Recurrence = setmetatable({ traits = {
+            xml_name = "recurrence",
+        } }, { __index = M.ScheduledInstanceRecurrence }),
         SlotDurationInHours = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "slotDurationInHours",
             },
         },
         TotalScheduledInstanceHours = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "totalScheduledInstanceHours",
             },
@@ -45721,7 +43966,7 @@ M.DescribeScheduledInstanceAvailabilityOutput = {
         },
         ScheduledInstanceAvailabilitySet = {
             type = "list",
-            member_type = "structure",
+            member = M.ScheduledInstanceAvailability,
             traits = {
                 xml_name = "scheduledInstanceAvailabilitySet",
             },
@@ -45749,27 +43994,25 @@ M.DescribeScheduledInstancesInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         ScheduledInstanceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "ScheduledInstanceId",
             },
         },
-        SlotStartTimeRange = {
-            type = "structure",
-        },
+        SlotStartTimeRange = M.SlotStartTimeRangeRequest,
     },
 }
 
@@ -45795,7 +44038,7 @@ M.ScheduledInstance = {
             },
         },
         InstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "instanceCount",
             },
@@ -45830,12 +44073,9 @@ M.ScheduledInstance = {
                 xml_name = "previousSlotEndTime",
             },
         },
-        Recurrence = {
-            type = "structure",
-            traits = {
-                xml_name = "recurrence",
-            },
-        },
+        Recurrence = setmetatable({ traits = {
+            xml_name = "recurrence",
+        } }, { __index = M.ScheduledInstanceRecurrence }),
         ScheduledInstanceId = {
             type = "string",
             traits = {
@@ -45843,7 +44083,7 @@ M.ScheduledInstance = {
             },
         },
         SlotDurationInHours = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "slotDurationInHours",
             },
@@ -45861,7 +44101,7 @@ M.ScheduledInstance = {
             },
         },
         TotalScheduledInstanceHours = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "totalScheduledInstanceHours",
             },
@@ -45880,7 +44120,7 @@ M.DescribeScheduledInstancesOutput = {
         },
         ScheduledInstanceSet = {
             type = "list",
-            member_type = "structure",
+            member = M.ScheduledInstance,
             traits = {
                 xml_name = "scheduledInstanceSet",
             },
@@ -45896,20 +44136,20 @@ M.DescribeSecondaryInterfacesInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         SecondaryInterfaceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "SecondaryInterfaceId",
             },
@@ -45939,7 +44179,7 @@ M.SecondaryInterfaceAttachment = {
             },
         },
         DeviceIndex = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "deviceIndex",
             },
@@ -45957,7 +44197,7 @@ M.SecondaryInterfaceAttachment = {
             },
         },
         NetworkCardIndex = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "networkCardIndex",
             },
@@ -45998,12 +44238,9 @@ M.SecondaryInterface = {
                 xml_name = "availabilityZoneId",
             },
         },
-        Attachment = {
-            type = "structure",
-            traits = {
-                xml_name = "attachment",
-            },
-        },
+        Attachment = setmetatable({ traits = {
+            xml_name = "attachment",
+        } }, { __index = M.SecondaryInterfaceAttachment }),
         MacAddress = {
             type = "string",
             traits = {
@@ -46018,7 +44255,7 @@ M.SecondaryInterface = {
         },
         PrivateIpv4Addresses = {
             type = "list",
-            member_type = "structure",
+            member = M.SecondaryInterfaceIpv4Address,
             traits = {
                 xml_name = "privateIpv4AddressSet",
             },
@@ -46073,7 +44310,7 @@ M.SecondaryInterface = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -46086,7 +44323,7 @@ M.DescribeSecondaryInterfacesOutput = {
     members = {
         SecondaryInterfaces = {
             type = "list",
-            member_type = "structure",
+            member = M.SecondaryInterface,
             traits = {
                 xml_name = "secondaryInterfaceSet",
             },
@@ -46108,20 +44345,20 @@ M.DescribeSecondaryNetworksInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         SecondaryNetworkIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "SecondaryNetworkId",
             },
@@ -46134,7 +44371,7 @@ M.DescribeSecondaryNetworksOutput = {
     members = {
         SecondaryNetworks = {
             type = "list",
-            member_type = "structure",
+            member = M.SecondaryNetwork,
             traits = {
                 xml_name = "secondaryNetworkSet",
             },
@@ -46156,20 +44393,20 @@ M.DescribeSecondarySubnetsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         SecondarySubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "SecondarySubnetId",
             },
@@ -46182,7 +44419,7 @@ M.DescribeSecondarySubnetsOutput = {
     members = {
         SecondarySubnets = {
             type = "list",
-            member_type = "structure",
+            member = M.SecondarySubnet,
             traits = {
                 xml_name = "secondarySubnetSet",
             },
@@ -46204,7 +44441,7 @@ M.DescribeSecurityGroupReferencesInput = {
         },
         GroupId = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -46247,7 +44484,7 @@ M.DescribeSecurityGroupReferencesOutput = {
     members = {
         SecurityGroupReferenceSet = {
             type = "list",
-            member_type = "structure",
+            member = M.SecurityGroupReference,
             traits = {
                 xml_name = "securityGroupReferenceSet",
             },
@@ -46260,14 +44497,14 @@ M.DescribeSecurityGroupRulesInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         SecurityGroupRuleIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "SecurityGroupRuleId",
             },
@@ -46279,7 +44516,7 @@ M.DescribeSecurityGroupRulesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -46289,7 +44526,7 @@ M.DescribeSecurityGroupRulesOutput = {
     members = {
         SecurityGroupRules = {
             type = "list",
-            member_type = "structure",
+            member = M.SecurityGroupRule,
             traits = {
                 xml_name = "securityGroupRuleSet",
             },
@@ -46308,14 +44545,14 @@ M.DescribeSecurityGroupsInput = {
     members = {
         GroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "GroupId",
             },
         },
         GroupNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "GroupName",
             },
@@ -46324,7 +44561,7 @@ M.DescribeSecurityGroupsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         DryRun = {
             type = "boolean",
@@ -46334,7 +44571,7 @@ M.DescribeSecurityGroupsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -46353,14 +44590,14 @@ M.SecurityGroup = {
         },
         IpPermissionsEgress = {
             type = "list",
-            member_type = "structure",
+            member = M.IpPermission,
             traits = {
                 xml_name = "ipPermissionsEgress",
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -46397,7 +44634,7 @@ M.SecurityGroup = {
         },
         IpPermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.IpPermission,
             traits = {
                 xml_name = "ipPermissions",
             },
@@ -46416,7 +44653,7 @@ M.DescribeSecurityGroupsOutput = {
         },
         SecurityGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.SecurityGroup,
             traits = {
                 xml_name = "securityGroupInfo",
             },
@@ -46429,7 +44666,7 @@ M.DescribeSecurityGroupVpcAssociationsInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -46438,7 +44675,7 @@ M.DescribeSecurityGroupVpcAssociationsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         DryRun = {
             type = "boolean",
@@ -46493,7 +44730,7 @@ M.DescribeSecurityGroupVpcAssociationsOutput = {
     members = {
         SecurityGroupVpcAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.SecurityGroupVpcAssociation,
             traits = {
                 xml_name = "securityGroupVpcAssociationSet",
             },
@@ -46512,20 +44749,20 @@ M.DescribeServiceLinkVirtualInterfacesInput = {
     members = {
         ServiceLinkVirtualInterfaceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "ServiceLinkVirtualInterfaceId",
             },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -46589,13 +44826,13 @@ M.ServiceLinkVirtualInterface = {
             },
         },
         PeerBgpAsn = {
-            type = "number",
+            type = "long",
             traits = {
                 xml_name = "peerBgpAsn",
             },
         },
         Vlan = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "vlan",
             },
@@ -46608,7 +44845,7 @@ M.ServiceLinkVirtualInterface = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -46627,7 +44864,7 @@ M.DescribeServiceLinkVirtualInterfacesOutput = {
     members = {
         ServiceLinkVirtualInterfaces = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceLinkVirtualInterface,
             traits = {
                 xml_name = "serviceLinkVirtualInterfaceSet",
             },
@@ -46693,7 +44930,7 @@ M.DescribeSnapshotAttributeOutput = {
     members = {
         ProductCodes = {
             type = "list",
-            member_type = "structure",
+            member = M.ProductCode,
             traits = {
                 xml_name = "productCodes",
             },
@@ -46706,7 +44943,7 @@ M.DescribeSnapshotAttributeOutput = {
         },
         CreateVolumePermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.CreateVolumePermission,
             traits = {
                 xml_name = "createVolumePermission",
             },
@@ -46718,28 +44955,28 @@ M.DescribeSnapshotsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         OwnerIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "Owner",
             },
         },
         RestorableByUserIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "RestorableBy",
             },
         },
         SnapshotIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "SnapshotId",
             },
@@ -46752,7 +44989,7 @@ M.DescribeSnapshotsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -46777,7 +45014,7 @@ M.Snapshot = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -46813,7 +45050,7 @@ M.Snapshot = {
             },
         },
         CompletionDurationMinutes = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "completionDurationMinutes",
             },
@@ -46825,7 +45062,7 @@ M.Snapshot = {
             },
         },
         FullSnapshotSizeInBytes = {
-            type = "number",
+            type = "long",
             traits = {
                 xml_name = "fullSnapshotSizeInBytes",
             },
@@ -46879,7 +45116,7 @@ M.Snapshot = {
             },
         },
         VolumeSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "volumeSize",
             },
@@ -46916,7 +45153,7 @@ M.DescribeSnapshotsOutput = {
         },
         Snapshots = {
             type = "list",
-            member_type = "structure",
+            member = M.Snapshot,
             traits = {
                 xml_name = "snapshotSet",
             },
@@ -46929,7 +45166,7 @@ M.DescribeSnapshotTierStatusInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -46941,7 +45178,7 @@ M.DescribeSnapshotTierStatusInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -46987,7 +45224,7 @@ M.SnapshotTierStatus = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -47005,7 +45242,7 @@ M.SnapshotTierStatus = {
             },
         },
         LastTieringProgress = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "lastTieringProgress",
             },
@@ -47042,7 +45279,7 @@ M.DescribeSnapshotTierStatusOutput = {
     members = {
         SnapshotTierStatuses = {
             type = "list",
-            member_type = "structure",
+            member = M.SnapshotTierStatus,
             traits = {
                 xml_name = "snapshotTierStatusSet",
             },
@@ -47071,12 +45308,9 @@ M.DescribeSpotDatafeedSubscriptionInput = {
 M.DescribeSpotDatafeedSubscriptionOutput = {
     type = "structure",
     members = {
-        SpotDatafeedSubscription = {
-            type = "structure",
-            traits = {
-                xml_name = "spotDatafeedSubscription",
-            },
-        },
+        SpotDatafeedSubscription = setmetatable({ traits = {
+            xml_name = "spotDatafeedSubscription",
+        } }, { __index = M.SpotDatafeedSubscription }),
     },
 }
 
@@ -47103,7 +45337,7 @@ M.DescribeSpotFleetInstancesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "maxResults",
             },
@@ -47116,7 +45350,7 @@ M.DescribeSpotFleetInstancesOutput = {
     members = {
         ActiveInstances = {
             type = "list",
-            member_type = "structure",
+            member = M.ActiveInstance,
             traits = {
                 xml_name = "activeInstanceSet",
             },
@@ -47179,7 +45413,7 @@ M.DescribeSpotFleetRequestHistoryInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "maxResults",
             },
@@ -47190,12 +45424,9 @@ M.DescribeSpotFleetRequestHistoryInput = {
 M.HistoryRecord = {
     type = "structure",
     members = {
-        EventInformation = {
-            type = "structure",
-            traits = {
-                xml_name = "eventInformation",
-            },
-        },
+        EventInformation = setmetatable({ traits = {
+            xml_name = "eventInformation",
+        } }, { __index = M.EventInformation }),
         EventType = {
             type = "string",
             traits = {
@@ -47216,7 +45447,7 @@ M.DescribeSpotFleetRequestHistoryOutput = {
     members = {
         HistoryRecords = {
             type = "list",
-            member_type = "structure",
+            member = M.HistoryRecord,
             traits = {
                 xml_name = "historyRecordSet",
             },
@@ -47259,7 +45490,7 @@ M.DescribeSpotFleetRequestsInput = {
         },
         SpotFleetRequestIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "spotFleetRequestId",
             },
@@ -47271,7 +45502,7 @@ M.DescribeSpotFleetRequestsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "maxResults",
             },
@@ -47318,27 +45549,27 @@ M.InstanceNetworkInterfaceSpecification = {
             },
         },
         DeviceIndex = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "deviceIndex",
             },
         },
         Groups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "SecurityGroupId",
             },
         },
         Ipv6AddressCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "ipv6AddressCount",
             },
         },
         Ipv6Addresses = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceIpv6Address,
             traits = {
                 xml_name = "ipv6AddressesSet",
             },
@@ -47357,13 +45588,13 @@ M.InstanceNetworkInterfaceSpecification = {
         },
         PrivateIpAddresses = {
             type = "list",
-            member_type = "structure",
+            member = M.PrivateIpAddressSpecification,
             traits = {
                 xml_name = "privateIpAddressesSet",
             },
         },
         SecondaryPrivateIpAddressCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "secondaryPrivateIpAddressCount",
             },
@@ -47381,39 +45612,35 @@ M.InstanceNetworkInterfaceSpecification = {
             type = "string",
         },
         NetworkCardIndex = {
-            type = "number",
+            type = "integer",
         },
         Ipv4Prefixes = {
             type = "list",
-            member_type = "structure",
+            member = M.Ipv4PrefixSpecificationRequest,
             traits = {
                 xml_name = "Ipv4Prefix",
             },
         },
         Ipv4PrefixCount = {
-            type = "number",
+            type = "integer",
         },
         Ipv6Prefixes = {
             type = "list",
-            member_type = "structure",
+            member = M.Ipv6PrefixSpecificationRequest,
             traits = {
                 xml_name = "Ipv6Prefix",
             },
         },
         Ipv6PrefixCount = {
-            type = "number",
+            type = "integer",
         },
         PrimaryIpv6 = {
             type = "boolean",
         },
-        EnaSrdSpecification = {
-            type = "structure",
-        },
-        ConnectionTrackingSpecification = {
-            type = "structure",
-        },
+        EnaSrdSpecification = M.EnaSrdSpecificationRequest,
+        ConnectionTrackingSpecification = M.ConnectionTrackingSpecificationRequest,
         EnaQueueCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -47459,7 +45686,7 @@ M.SpotFleetTagSpecification = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tag",
             },
@@ -47478,7 +45705,7 @@ M.SpotFleetLaunchSpecification = {
         },
         BlockDeviceMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.BlockDeviceMapping,
             traits = {
                 xml_name = "blockDeviceMapping",
             },
@@ -47489,12 +45716,9 @@ M.SpotFleetLaunchSpecification = {
                 xml_name = "ebsOptimized",
             },
         },
-        IamInstanceProfile = {
-            type = "structure",
-            traits = {
-                xml_name = "iamInstanceProfile",
-            },
-        },
+        IamInstanceProfile = setmetatable({ traits = {
+            xml_name = "iamInstanceProfile",
+        } }, { __index = M.IamInstanceProfileSpecification }),
         ImageId = {
             type = "string",
             traits = {
@@ -47519,25 +45743,19 @@ M.SpotFleetLaunchSpecification = {
                 xml_name = "keyName",
             },
         },
-        Monitoring = {
-            type = "structure",
-            traits = {
-                xml_name = "monitoring",
-            },
-        },
+        Monitoring = setmetatable({ traits = {
+            xml_name = "monitoring",
+        } }, { __index = M.SpotFleetMonitoring }),
         NetworkInterfaces = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceNetworkInterfaceSpecification,
             traits = {
                 xml_name = "networkInterfaceSet",
             },
         },
-        Placement = {
-            type = "structure",
-            traits = {
-                xml_name = "placement",
-            },
-        },
+        Placement = setmetatable({ traits = {
+            xml_name = "placement",
+        } }, { __index = M.SpotPlacement }),
         RamdiskId = {
             type = "string",
             traits = {
@@ -47563,27 +45781,24 @@ M.SpotFleetLaunchSpecification = {
             },
         },
         WeightedCapacity = {
-            type = "number",
+            type = "double",
             traits = {
                 xml_name = "weightedCapacity",
             },
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.SpotFleetTagSpecification,
             traits = {
                 xml_name = "tagSpecificationSet",
             },
         },
-        InstanceRequirements = {
-            type = "structure",
-            traits = {
-                xml_name = "instanceRequirements",
-            },
-        },
+        InstanceRequirements = setmetatable({ traits = {
+            xml_name = "instanceRequirements",
+        } }, { __index = M.InstanceRequirements }),
         SecurityGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupIdentifier,
             traits = {
                 xml_name = "groupSet",
             },
@@ -47619,23 +45834,20 @@ M.LaunchTemplateOverrides = {
             },
         },
         WeightedCapacity = {
-            type = "number",
+            type = "double",
             traits = {
                 xml_name = "weightedCapacity",
             },
         },
         Priority = {
-            type = "number",
+            type = "double",
             traits = {
                 xml_name = "priority",
             },
         },
-        InstanceRequirements = {
-            type = "structure",
-            traits = {
-                xml_name = "instanceRequirements",
-            },
-        },
+        InstanceRequirements = setmetatable({ traits = {
+            xml_name = "instanceRequirements",
+        } }, { __index = M.InstanceRequirements }),
         AvailabilityZoneId = {
             type = "string",
             traits = {
@@ -47648,15 +45860,12 @@ M.LaunchTemplateOverrides = {
 M.LaunchTemplateConfig = {
     type = "structure",
     members = {
-        LaunchTemplateSpecification = {
-            type = "structure",
-            traits = {
-                xml_name = "launchTemplateSpecification",
-            },
-        },
+        LaunchTemplateSpecification = setmetatable({ traits = {
+            xml_name = "launchTemplateSpecification",
+        } }, { __index = M.FleetLaunchTemplateSpecification }),
         Overrides = {
             type = "list",
-            member_type = "structure",
+            member = M.LaunchTemplateOverrides,
             traits = {
                 xml_name = "overrides",
             },
@@ -47681,7 +45890,7 @@ M.ClassicLoadBalancersConfig = {
     members = {
         ClassicLoadBalancers = {
             type = "list",
-            member_type = "structure",
+            member = M.ClassicLoadBalancer,
             traits = {
                 xml_name = "classicLoadBalancers",
             },
@@ -47706,7 +45915,7 @@ M.TargetGroupsConfig = {
     members = {
         TargetGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetGroup,
             traits = {
                 xml_name = "targetGroups",
             },
@@ -47717,18 +45926,12 @@ M.TargetGroupsConfig = {
 M.LoadBalancersConfig = {
     type = "structure",
     members = {
-        ClassicLoadBalancersConfig = {
-            type = "structure",
-            traits = {
-                xml_name = "classicLoadBalancersConfig",
-            },
-        },
-        TargetGroupsConfig = {
-            type = "structure",
-            traits = {
-                xml_name = "targetGroupsConfig",
-            },
-        },
+        ClassicLoadBalancersConfig = setmetatable({ traits = {
+            xml_name = "classicLoadBalancersConfig",
+        } }, { __index = M.ClassicLoadBalancersConfig }),
+        TargetGroupsConfig = setmetatable({ traits = {
+            xml_name = "targetGroupsConfig",
+        } }, { __index = M.TargetGroupsConfig }),
     },
 }
 
@@ -47752,7 +45955,7 @@ M.SpotCapacityRebalance = {
             },
         },
         TerminationDelay = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "terminationDelay",
             },
@@ -47763,12 +45966,9 @@ M.SpotCapacityRebalance = {
 M.SpotMaintenanceStrategies = {
     type = "structure",
     members = {
-        CapacityRebalance = {
-            type = "structure",
-            traits = {
-                xml_name = "capacityRebalance",
-            },
-        },
+        CapacityRebalance = setmetatable({ traits = {
+            xml_name = "capacityRebalance",
+        } }, { __index = M.SpotCapacityRebalance }),
     },
 }
 
@@ -47787,12 +45987,9 @@ M.SpotFleetRequestConfigData = {
                 xml_name = "onDemandAllocationStrategy",
             },
         },
-        SpotMaintenanceStrategies = {
-            type = "structure",
-            traits = {
-                xml_name = "spotMaintenanceStrategies",
-            },
-        },
+        SpotMaintenanceStrategies = setmetatable({ traits = {
+            xml_name = "spotMaintenanceStrategies",
+        } }, { __index = M.SpotMaintenanceStrategies }),
         ClientToken = {
             type = "string",
             traits = {
@@ -47806,13 +46003,13 @@ M.SpotFleetRequestConfigData = {
             },
         },
         FulfilledCapacity = {
-            type = "number",
+            type = "double",
             traits = {
                 xml_name = "fulfilledCapacity",
             },
         },
         OnDemandFulfilledCapacity = {
-            type = "number",
+            type = "double",
             traits = {
                 xml_name = "onDemandFulfilledCapacity",
             },
@@ -47826,14 +46023,14 @@ M.SpotFleetRequestConfigData = {
         },
         LaunchSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.SpotFleetLaunchSpecification,
             traits = {
                 xml_name = "launchSpecifications",
             },
         },
         LaunchTemplateConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.LaunchTemplateConfig,
             traits = {
                 xml_name = "launchTemplateConfigs",
             },
@@ -47845,14 +46042,14 @@ M.SpotFleetRequestConfigData = {
             },
         },
         TargetCapacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
                 xml_name = "targetCapacity",
             },
         },
         OnDemandTargetCapacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "onDemandTargetCapacity",
             },
@@ -47905,14 +46102,11 @@ M.SpotFleetRequestConfigData = {
                 xml_name = "instanceInterruptionBehavior",
             },
         },
-        LoadBalancersConfig = {
-            type = "structure",
-            traits = {
-                xml_name = "loadBalancersConfig",
-            },
-        },
+        LoadBalancersConfig = setmetatable({ traits = {
+            xml_name = "loadBalancersConfig",
+        } }, { __index = M.LoadBalancersConfig }),
         InstancePoolsToUseCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "instancePoolsToUseCount",
             },
@@ -47931,7 +46125,7 @@ M.SpotFleetRequestConfigData = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -47954,12 +46148,9 @@ M.SpotFleetRequestConfig = {
                 xml_name = "createTime",
             },
         },
-        SpotFleetRequestConfig = {
-            type = "structure",
-            traits = {
-                xml_name = "spotFleetRequestConfig",
-            },
-        },
+        SpotFleetRequestConfig = setmetatable({ traits = {
+            xml_name = "spotFleetRequestConfig",
+        } }, { __index = M.SpotFleetRequestConfigData }),
         SpotFleetRequestId = {
             type = "string",
             traits = {
@@ -47974,7 +46165,7 @@ M.SpotFleetRequestConfig = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -47993,7 +46184,7 @@ M.DescribeSpotFleetRequestsOutput = {
         },
         SpotFleetRequestConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.SpotFleetRequestConfig,
             traits = {
                 xml_name = "spotFleetRequestConfigSet",
             },
@@ -48008,7 +46199,7 @@ M.DescribeSpotInstanceRequestsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         DryRun = {
             type = "boolean",
@@ -48018,14 +46209,14 @@ M.DescribeSpotInstanceRequestsInput = {
         },
         SpotInstanceRequestIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "SpotInstanceRequestId",
             },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -48063,7 +46254,7 @@ M.LaunchSpecification = {
         },
         BlockDeviceMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.BlockDeviceMapping,
             traits = {
                 xml_name = "blockDeviceMapping",
             },
@@ -48074,12 +46265,9 @@ M.LaunchSpecification = {
                 xml_name = "ebsOptimized",
             },
         },
-        IamInstanceProfile = {
-            type = "structure",
-            traits = {
-                xml_name = "iamInstanceProfile",
-            },
-        },
+        IamInstanceProfile = setmetatable({ traits = {
+            xml_name = "iamInstanceProfile",
+        } }, { __index = M.IamInstanceProfileSpecification }),
         ImageId = {
             type = "string",
             traits = {
@@ -48106,17 +46294,14 @@ M.LaunchSpecification = {
         },
         NetworkInterfaces = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceNetworkInterfaceSpecification,
             traits = {
                 xml_name = "networkInterfaceSet",
             },
         },
-        Placement = {
-            type = "structure",
-            traits = {
-                xml_name = "placement",
-            },
-        },
+        Placement = setmetatable({ traits = {
+            xml_name = "placement",
+        } }, { __index = M.SpotPlacement }),
         RamdiskId = {
             type = "string",
             traits = {
@@ -48131,17 +46316,14 @@ M.LaunchSpecification = {
         },
         SecurityGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupIdentifier,
             traits = {
                 xml_name = "groupSet",
             },
         },
-        Monitoring = {
-            type = "structure",
-            traits = {
-                xml_name = "monitoring",
-            },
-        },
+        Monitoring = setmetatable({ traits = {
+            xml_name = "monitoring",
+        } }, { __index = M.RunInstancesMonitoringEnabled }),
     },
 }
 
@@ -48194,7 +46376,7 @@ M.SpotInstanceRequest = {
             },
         },
         BlockDurationMinutes = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "blockDurationMinutes",
             },
@@ -48205,12 +46387,9 @@ M.SpotInstanceRequest = {
                 xml_name = "createTime",
             },
         },
-        Fault = {
-            type = "structure",
-            traits = {
-                xml_name = "fault",
-            },
-        },
+        Fault = setmetatable({ traits = {
+            xml_name = "fault",
+        } }, { __index = M.SpotInstanceStateFault }),
         InstanceId = {
             type = "string",
             traits = {
@@ -48223,12 +46402,9 @@ M.SpotInstanceRequest = {
                 xml_name = "launchGroup",
             },
         },
-        LaunchSpecification = {
-            type = "structure",
-            traits = {
-                xml_name = "launchSpecification",
-            },
-        },
+        LaunchSpecification = setmetatable({ traits = {
+            xml_name = "launchSpecification",
+        } }, { __index = M.LaunchSpecification }),
         LaunchedAvailabilityZone = {
             type = "string",
             traits = {
@@ -48265,15 +46441,12 @@ M.SpotInstanceRequest = {
                 xml_name = "state",
             },
         },
-        Status = {
-            type = "structure",
-            traits = {
-                xml_name = "status",
-            },
-        },
+        Status = setmetatable({ traits = {
+            xml_name = "status",
+        } }, { __index = M.SpotInstanceStatus }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -48310,7 +46483,7 @@ M.DescribeSpotInstanceRequestsOutput = {
     members = {
         SpotInstanceRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.SpotInstanceRequest,
             traits = {
                 xml_name = "spotInstanceRequestSet",
             },
@@ -48350,21 +46523,21 @@ M.DescribeSpotPriceHistoryInput = {
         },
         InstanceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "InstanceType",
             },
         },
         ProductDescriptions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "ProductDescription",
             },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -48376,7 +46549,7 @@ M.DescribeSpotPriceHistoryInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "maxResults",
             },
@@ -48443,7 +46616,7 @@ M.DescribeSpotPriceHistoryOutput = {
         },
         SpotPriceHistory = {
             type = "list",
-            member_type = "structure",
+            member = M.SpotPrice,
             traits = {
                 xml_name = "spotPriceHistorySet",
             },
@@ -48458,7 +46631,7 @@ M.DescribeStaleSecurityGroupsInput = {
             type = "boolean",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -48476,7 +46649,7 @@ M.StaleIpPermission = {
     type = "structure",
     members = {
         FromPort = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "fromPort",
             },
@@ -48489,27 +46662,27 @@ M.StaleIpPermission = {
         },
         IpRanges = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "ipRanges",
             },
         },
         PrefixListIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "prefixListIds",
             },
         },
         ToPort = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "toPort",
             },
         },
         UserIdGroupPairs = {
             type = "list",
-            member_type = "structure",
+            member = M.UserIdGroupPair,
             traits = {
                 xml_name = "groups",
             },
@@ -48540,14 +46713,14 @@ M.StaleSecurityGroup = {
         },
         StaleIpPermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.StaleIpPermission,
             traits = {
                 xml_name = "staleIpPermissions",
             },
         },
         StaleIpPermissionsEgress = {
             type = "list",
-            member_type = "structure",
+            member = M.StaleIpPermission,
             traits = {
                 xml_name = "staleIpPermissionsEgress",
             },
@@ -48572,7 +46745,7 @@ M.DescribeStaleSecurityGroupsOutput = {
         },
         StaleSecurityGroupSet = {
             type = "list",
-            member_type = "structure",
+            member = M.StaleSecurityGroup,
             traits = {
                 xml_name = "staleSecurityGroupSet",
             },
@@ -48585,7 +46758,7 @@ M.DescribeStoreImageTasksInput = {
     members = {
         ImageIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "ImageId",
             },
@@ -48595,7 +46768,7 @@ M.DescribeStoreImageTasksInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -48604,7 +46777,7 @@ M.DescribeStoreImageTasksInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -48637,7 +46810,7 @@ M.StoreImageTaskResult = {
             },
         },
         ProgressPercentage = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "progressPercentage",
             },
@@ -48662,7 +46835,7 @@ M.DescribeStoreImageTasksOutput = {
     members = {
         StoreImageTaskResults = {
             type = "list",
-            member_type = "structure",
+            member = M.StoreImageTaskResult,
             traits = {
                 xml_name = "storeImageTaskResultSet",
             },
@@ -48681,14 +46854,14 @@ M.DescribeSubnetsInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "SubnetId",
             },
@@ -48697,7 +46870,7 @@ M.DescribeSubnetsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         DryRun = {
             type = "boolean",
@@ -48719,7 +46892,7 @@ M.DescribeSubnetsOutput = {
         },
         Subnets = {
             type = "list",
-            member_type = "structure",
+            member = M.Subnet,
             traits = {
                 xml_name = "subnetSet",
             },
@@ -48738,13 +46911,13 @@ M.DescribeTagsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "maxResults",
             },
@@ -48799,7 +46972,7 @@ M.DescribeTagsOutput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.TagDescription,
             traits = {
                 xml_name = "tagSet",
             },
@@ -48812,7 +46985,7 @@ M.DescribeTrafficMirrorFilterRulesInput = {
     members = {
         TrafficMirrorFilterRuleIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "TrafficMirrorFilterRuleId",
             },
@@ -48825,13 +46998,13 @@ M.DescribeTrafficMirrorFilterRulesInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -48844,7 +47017,7 @@ M.DescribeTrafficMirrorFilterRulesOutput = {
     members = {
         TrafficMirrorFilterRules = {
             type = "list",
-            member_type = "structure",
+            member = M.TrafficMirrorFilterRule,
             traits = {
                 xml_name = "trafficMirrorFilterRuleSet",
             },
@@ -48863,7 +47036,7 @@ M.DescribeTrafficMirrorFiltersInput = {
     members = {
         TrafficMirrorFilterIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "TrafficMirrorFilterId",
             },
@@ -48873,13 +47046,13 @@ M.DescribeTrafficMirrorFiltersInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -48892,7 +47065,7 @@ M.DescribeTrafficMirrorFiltersOutput = {
     members = {
         TrafficMirrorFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.TrafficMirrorFilter,
             traits = {
                 xml_name = "trafficMirrorFilterSet",
             },
@@ -48911,7 +47084,7 @@ M.DescribeTrafficMirrorSessionsInput = {
     members = {
         TrafficMirrorSessionIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "TrafficMirrorSessionId",
             },
@@ -48921,13 +47094,13 @@ M.DescribeTrafficMirrorSessionsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -48940,7 +47113,7 @@ M.DescribeTrafficMirrorSessionsOutput = {
     members = {
         TrafficMirrorSessions = {
             type = "list",
-            member_type = "structure",
+            member = M.TrafficMirrorSession,
             traits = {
                 xml_name = "trafficMirrorSessionSet",
             },
@@ -48959,7 +47132,7 @@ M.DescribeTrafficMirrorTargetsInput = {
     members = {
         TrafficMirrorTargetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "TrafficMirrorTargetId",
             },
@@ -48969,13 +47142,13 @@ M.DescribeTrafficMirrorTargetsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -48988,7 +47161,7 @@ M.DescribeTrafficMirrorTargetsOutput = {
     members = {
         TrafficMirrorTargets = {
             type = "list",
-            member_type = "structure",
+            member = M.TrafficMirrorTarget,
             traits = {
                 xml_name = "trafficMirrorTargetSet",
             },
@@ -49007,17 +47180,17 @@ M.DescribeTransitGatewayAttachmentsInput = {
     members = {
         TransitGatewayAttachmentIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -49091,12 +47264,9 @@ M.TransitGatewayAttachment = {
                 xml_name = "state",
             },
         },
-        Association = {
-            type = "structure",
-            traits = {
-                xml_name = "association",
-            },
-        },
+        Association = setmetatable({ traits = {
+            xml_name = "association",
+        } }, { __index = M.TransitGatewayAttachmentAssociation }),
         CreationTime = {
             type = "timestamp",
             traits = {
@@ -49105,7 +47275,7 @@ M.TransitGatewayAttachment = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -49118,7 +47288,7 @@ M.DescribeTransitGatewayAttachmentsOutput = {
     members = {
         TransitGatewayAttachments = {
             type = "list",
-            member_type = "structure",
+            member = M.TransitGatewayAttachment,
             traits = {
                 xml_name = "transitGatewayAttachments",
             },
@@ -49137,17 +47307,17 @@ M.DescribeTransitGatewayConnectPeersInput = {
     members = {
         TransitGatewayConnectPeerIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -49163,7 +47333,7 @@ M.DescribeTransitGatewayConnectPeersOutput = {
     members = {
         TransitGatewayConnectPeers = {
             type = "list",
-            member_type = "structure",
+            member = M.TransitGatewayConnectPeer,
             traits = {
                 xml_name = "transitGatewayConnectPeerSet",
             },
@@ -49182,17 +47352,17 @@ M.DescribeTransitGatewayConnectsInput = {
     members = {
         TransitGatewayAttachmentIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -49208,7 +47378,7 @@ M.DescribeTransitGatewayConnectsOutput = {
     members = {
         TransitGatewayConnects = {
             type = "list",
-            member_type = "structure",
+            member = M.TransitGatewayConnect,
             traits = {
                 xml_name = "transitGatewayConnectSet",
             },
@@ -49227,17 +47397,17 @@ M.DescribeTransitGatewayMeteringPoliciesInput = {
     members = {
         TransitGatewayMeteringPolicyIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -49253,7 +47423,7 @@ M.DescribeTransitGatewayMeteringPoliciesOutput = {
     members = {
         TransitGatewayMeteringPolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.TransitGatewayMeteringPolicy,
             traits = {
                 xml_name = "transitGatewayMeteringPolicies",
             },
@@ -49272,17 +47442,17 @@ M.DescribeTransitGatewayMulticastDomainsInput = {
     members = {
         TransitGatewayMulticastDomainIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -49298,7 +47468,7 @@ M.DescribeTransitGatewayMulticastDomainsOutput = {
     members = {
         TransitGatewayMulticastDomains = {
             type = "list",
-            member_type = "structure",
+            member = M.TransitGatewayMulticastDomain,
             traits = {
                 xml_name = "transitGatewayMulticastDomains",
             },
@@ -49317,17 +47487,17 @@ M.DescribeTransitGatewayPeeringAttachmentsInput = {
     members = {
         TransitGatewayAttachmentIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -49343,7 +47513,7 @@ M.DescribeTransitGatewayPeeringAttachmentsOutput = {
     members = {
         TransitGatewayPeeringAttachments = {
             type = "list",
-            member_type = "structure",
+            member = M.TransitGatewayPeeringAttachment,
             traits = {
                 xml_name = "transitGatewayPeeringAttachments",
             },
@@ -49362,17 +47532,17 @@ M.DescribeTransitGatewayPolicyTablesInput = {
     members = {
         TransitGatewayPolicyTableIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -49388,7 +47558,7 @@ M.DescribeTransitGatewayPolicyTablesOutput = {
     members = {
         TransitGatewayPolicyTables = {
             type = "list",
-            member_type = "structure",
+            member = M.TransitGatewayPolicyTable,
             traits = {
                 xml_name = "transitGatewayPolicyTables",
             },
@@ -49407,17 +47577,17 @@ M.DescribeTransitGatewayRouteTableAnnouncementsInput = {
     members = {
         TransitGatewayRouteTableAnnouncementIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -49433,7 +47603,7 @@ M.DescribeTransitGatewayRouteTableAnnouncementsOutput = {
     members = {
         TransitGatewayRouteTableAnnouncements = {
             type = "list",
-            member_type = "structure",
+            member = M.TransitGatewayRouteTableAnnouncement,
             traits = {
                 xml_name = "transitGatewayRouteTableAnnouncements",
             },
@@ -49452,17 +47622,17 @@ M.DescribeTransitGatewayRouteTablesInput = {
     members = {
         TransitGatewayRouteTableIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -49478,7 +47648,7 @@ M.DescribeTransitGatewayRouteTablesOutput = {
     members = {
         TransitGatewayRouteTables = {
             type = "list",
-            member_type = "structure",
+            member = M.TransitGatewayRouteTable,
             traits = {
                 xml_name = "transitGatewayRouteTables",
             },
@@ -49497,17 +47667,17 @@ M.DescribeTransitGatewaysInput = {
     members = {
         TransitGatewayIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -49523,7 +47693,7 @@ M.DescribeTransitGatewaysOutput = {
     members = {
         TransitGateways = {
             type = "list",
-            member_type = "structure",
+            member = M.TransitGateway,
             traits = {
                 xml_name = "transitGatewaySet",
             },
@@ -49542,17 +47712,17 @@ M.DescribeTransitGatewayVpcAttachmentsInput = {
     members = {
         TransitGatewayAttachmentIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -49568,7 +47738,7 @@ M.DescribeTransitGatewayVpcAttachmentsOutput = {
     members = {
         TransitGatewayVpcAttachments = {
             type = "list",
-            member_type = "structure",
+            member = M.TransitGatewayVpcAttachment,
             traits = {
                 xml_name = "transitGatewayVpcAttachments",
             },
@@ -49587,7 +47757,7 @@ M.DescribeTrunkInterfaceAssociationsInput = {
     members = {
         AssociationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "AssociationId",
             },
@@ -49597,7 +47767,7 @@ M.DescribeTrunkInterfaceAssociationsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -49606,7 +47776,7 @@ M.DescribeTrunkInterfaceAssociationsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -49616,7 +47786,7 @@ M.DescribeTrunkInterfaceAssociationsOutput = {
     members = {
         InterfaceAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.TrunkInterfaceAssociation,
             traits = {
                 xml_name = "interfaceAssociationSet",
             },
@@ -49635,7 +47805,7 @@ M.DescribeVerifiedAccessEndpointsInput = {
     members = {
         VerifiedAccessEndpointIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "VerifiedAccessEndpointId",
             },
@@ -49647,14 +47817,14 @@ M.DescribeVerifiedAccessEndpointsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -49670,7 +47840,7 @@ M.DescribeVerifiedAccessEndpointsOutput = {
     members = {
         VerifiedAccessEndpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.VerifiedAccessEndpoint,
             traits = {
                 xml_name = "verifiedAccessEndpointSet",
             },
@@ -49689,7 +47859,7 @@ M.DescribeVerifiedAccessGroupsInput = {
     members = {
         VerifiedAccessGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "VerifiedAccessGroupId",
             },
@@ -49698,14 +47868,14 @@ M.DescribeVerifiedAccessGroupsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -49721,7 +47891,7 @@ M.DescribeVerifiedAccessGroupsOutput = {
     members = {
         VerifiedAccessGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.VerifiedAccessGroup,
             traits = {
                 xml_name = "verifiedAccessGroupSet",
             },
@@ -49740,20 +47910,20 @@ M.DescribeVerifiedAccessInstanceLoggingConfigurationsInput = {
     members = {
         VerifiedAccessInstanceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "VerifiedAccessInstanceId",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -49796,12 +47966,9 @@ M.VerifiedAccessLogCloudWatchLogsDestination = {
                 xml_name = "enabled",
             },
         },
-        DeliveryStatus = {
-            type = "structure",
-            traits = {
-                xml_name = "deliveryStatus",
-            },
-        },
+        DeliveryStatus = setmetatable({ traits = {
+            xml_name = "deliveryStatus",
+        } }, { __index = M.VerifiedAccessLogDeliveryStatus }),
         LogGroup = {
             type = "string",
             traits = {
@@ -49820,12 +47987,9 @@ M.VerifiedAccessLogKinesisDataFirehoseDestination = {
                 xml_name = "enabled",
             },
         },
-        DeliveryStatus = {
-            type = "structure",
-            traits = {
-                xml_name = "deliveryStatus",
-            },
-        },
+        DeliveryStatus = setmetatable({ traits = {
+            xml_name = "deliveryStatus",
+        } }, { __index = M.VerifiedAccessLogDeliveryStatus }),
         DeliveryStream = {
             type = "string",
             traits = {
@@ -49844,12 +48008,9 @@ M.VerifiedAccessLogS3Destination = {
                 xml_name = "enabled",
             },
         },
-        DeliveryStatus = {
-            type = "structure",
-            traits = {
-                xml_name = "deliveryStatus",
-            },
-        },
+        DeliveryStatus = setmetatable({ traits = {
+            xml_name = "deliveryStatus",
+        } }, { __index = M.VerifiedAccessLogDeliveryStatus }),
         BucketName = {
             type = "string",
             traits = {
@@ -49874,24 +48035,15 @@ M.VerifiedAccessLogS3Destination = {
 M.VerifiedAccessLogs = {
     type = "structure",
     members = {
-        S3 = {
-            type = "structure",
-            traits = {
-                xml_name = "s3",
-            },
-        },
-        CloudWatchLogs = {
-            type = "structure",
-            traits = {
-                xml_name = "cloudWatchLogs",
-            },
-        },
-        KinesisDataFirehose = {
-            type = "structure",
-            traits = {
-                xml_name = "kinesisDataFirehose",
-            },
-        },
+        S3 = setmetatable({ traits = {
+            xml_name = "s3",
+        } }, { __index = M.VerifiedAccessLogS3Destination }),
+        CloudWatchLogs = setmetatable({ traits = {
+            xml_name = "cloudWatchLogs",
+        } }, { __index = M.VerifiedAccessLogCloudWatchLogsDestination }),
+        KinesisDataFirehose = setmetatable({ traits = {
+            xml_name = "kinesisDataFirehose",
+        } }, { __index = M.VerifiedAccessLogKinesisDataFirehoseDestination }),
         LogVersion = {
             type = "string",
             traits = {
@@ -49916,12 +48068,9 @@ M.VerifiedAccessInstanceLoggingConfiguration = {
                 xml_name = "verifiedAccessInstanceId",
             },
         },
-        AccessLogs = {
-            type = "structure",
-            traits = {
-                xml_name = "accessLogs",
-            },
-        },
+        AccessLogs = setmetatable({ traits = {
+            xml_name = "accessLogs",
+        } }, { __index = M.VerifiedAccessLogs }),
     },
 }
 
@@ -49930,7 +48079,7 @@ M.DescribeVerifiedAccessInstanceLoggingConfigurationsOutput = {
     members = {
         LoggingConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.VerifiedAccessInstanceLoggingConfiguration,
             traits = {
                 xml_name = "loggingConfigurationSet",
             },
@@ -49949,20 +48098,20 @@ M.DescribeVerifiedAccessInstancesInput = {
     members = {
         VerifiedAccessInstanceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "VerifiedAccessInstanceId",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -49978,7 +48127,7 @@ M.DescribeVerifiedAccessInstancesOutput = {
     members = {
         VerifiedAccessInstances = {
             type = "list",
-            member_type = "structure",
+            member = M.VerifiedAccessInstance,
             traits = {
                 xml_name = "verifiedAccessInstanceSet",
             },
@@ -49997,20 +48146,20 @@ M.DescribeVerifiedAccessTrustProvidersInput = {
     members = {
         VerifiedAccessTrustProviderIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "VerifiedAccessTrustProviderId",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -50026,7 +48175,7 @@ M.DescribeVerifiedAccessTrustProvidersOutput = {
     members = {
         VerifiedAccessTrustProviders = {
             type = "list",
-            member_type = "structure",
+            member = M.VerifiedAccessTrustProvider,
             traits = {
                 xml_name = "verifiedAccessTrustProviderSet",
             },
@@ -50072,15 +48221,12 @@ M.DescribeVolumeAttributeInput = {
 M.DescribeVolumeAttributeOutput = {
     type = "structure",
     members = {
-        AutoEnableIO = {
-            type = "structure",
-            traits = {
-                xml_name = "autoEnableIO",
-            },
-        },
+        AutoEnableIO = setmetatable({ traits = {
+            xml_name = "autoEnableIO",
+        } }, { __index = M.AttributeBooleanValue }),
         ProductCodes = {
             type = "list",
-            member_type = "structure",
+            member = M.ProductCode,
             traits = {
                 xml_name = "productCodes",
             },
@@ -50099,7 +48245,7 @@ M.DescribeVolumesInput = {
     members = {
         VolumeIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "VolumeId",
             },
@@ -50115,7 +48261,7 @@ M.DescribeVolumesInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -50127,7 +48273,7 @@ M.DescribeVolumesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "maxResults",
             },
@@ -50146,7 +48292,7 @@ M.DescribeVolumesOutput = {
         },
         Volumes = {
             type = "list",
-            member_type = "structure",
+            member = M.Volume,
             traits = {
                 xml_name = "volumeSet",
             },
@@ -50162,14 +48308,14 @@ M.DescribeVolumesModificationsInput = {
         },
         VolumeIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "VolumeId",
             },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -50178,7 +48324,7 @@ M.DescribeVolumesModificationsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -50212,13 +48358,13 @@ M.VolumeModification = {
             },
         },
         TargetSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "targetSize",
             },
         },
         TargetIops = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "targetIops",
             },
@@ -50230,7 +48376,7 @@ M.VolumeModification = {
             },
         },
         TargetThroughput = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "targetThroughput",
             },
@@ -50242,13 +48388,13 @@ M.VolumeModification = {
             },
         },
         OriginalSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "originalSize",
             },
         },
         OriginalIops = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "originalIops",
             },
@@ -50260,7 +48406,7 @@ M.VolumeModification = {
             },
         },
         OriginalThroughput = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "originalThroughput",
             },
@@ -50272,7 +48418,7 @@ M.VolumeModification = {
             },
         },
         Progress = {
-            type = "number",
+            type = "long",
             traits = {
                 xml_name = "progress",
             },
@@ -50289,12 +48435,9 @@ M.VolumeModification = {
                 xml_name = "endTime",
             },
         },
-        Operator = {
-            type = "structure",
-            traits = {
-                xml_name = "operator",
-            },
-        },
+        Operator = setmetatable({ traits = {
+            xml_name = "operator",
+        } }, { __index = M.OperatorResponse }),
     },
 }
 
@@ -50309,7 +48452,7 @@ M.DescribeVolumesModificationsOutput = {
         },
         VolumesModifications = {
             type = "list",
-            member_type = "structure",
+            member = M.VolumeModification,
             traits = {
                 xml_name = "volumeModificationSet",
             },
@@ -50321,14 +48464,14 @@ M.DescribeVolumeStatusInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         VolumeIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "VolumeId",
             },
@@ -50344,7 +48487,7 @@ M.DescribeVolumeStatusInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -50458,13 +48601,13 @@ M.InitializationStatusDetails = {
             },
         },
         Progress = {
-            type = "number",
+            type = "long",
             traits = {
                 xml_name = "progress",
             },
         },
         EstimatedTimeToCompleteInSeconds = {
-            type = "number",
+            type = "long",
             traits = {
                 xml_name = "estimatedTimeToCompleteInSeconds",
             },
@@ -50508,7 +48651,7 @@ M.VolumeStatusInfo = {
     members = {
         Details = {
             type = "list",
-            member_type = "structure",
+            member = M.VolumeStatusDetails,
             traits = {
                 xml_name = "details",
             },
@@ -50527,7 +48670,7 @@ M.VolumeStatusItem = {
     members = {
         Actions = {
             type = "list",
-            member_type = "structure",
+            member = M.VolumeStatusAction,
             traits = {
                 xml_name = "actionsSet",
             },
@@ -50546,7 +48689,7 @@ M.VolumeStatusItem = {
         },
         Events = {
             type = "list",
-            member_type = "structure",
+            member = M.VolumeStatusEvent,
             traits = {
                 xml_name = "eventsSet",
             },
@@ -50557,37 +48700,28 @@ M.VolumeStatusItem = {
                 xml_name = "volumeId",
             },
         },
-        VolumeStatus = {
-            type = "structure",
-            traits = {
-                xml_name = "volumeStatus",
-            },
-        },
+        VolumeStatus = setmetatable({ traits = {
+            xml_name = "volumeStatus",
+        } }, { __index = M.VolumeStatusInfo }),
         AttachmentStatuses = {
             type = "list",
-            member_type = "structure",
+            member = M.VolumeStatusAttachmentStatus,
             traits = {
                 xml_name = "attachmentStatuses",
             },
         },
-        InitializationStatusDetails = {
-            type = "structure",
-            traits = {
-                xml_name = "initializationStatusDetails",
-            },
-        },
+        InitializationStatusDetails = setmetatable({ traits = {
+            xml_name = "initializationStatusDetails",
+        } }, { __index = M.InitializationStatusDetails }),
         AvailabilityZoneId = {
             type = "string",
             traits = {
                 xml_name = "availabilityZoneId",
             },
         },
-        Operator = {
-            type = "structure",
-            traits = {
-                xml_name = "operator",
-            },
-        },
+        Operator = setmetatable({ traits = {
+            xml_name = "operator",
+        } }, { __index = M.OperatorResponse }),
     },
 }
 
@@ -50602,7 +48736,7 @@ M.DescribeVolumeStatusOutput = {
         },
         VolumeStatuses = {
             type = "list",
-            member_type = "structure",
+            member = M.VolumeStatusItem,
             traits = {
                 xml_name = "volumeStatusSet",
             },
@@ -50643,24 +48777,15 @@ M.DescribeVpcAttributeInput = {
 M.DescribeVpcAttributeOutput = {
     type = "structure",
     members = {
-        EnableDnsHostnames = {
-            type = "structure",
-            traits = {
-                xml_name = "enableDnsHostnames",
-            },
-        },
-        EnableDnsSupport = {
-            type = "structure",
-            traits = {
-                xml_name = "enableDnsSupport",
-            },
-        },
-        EnableNetworkAddressUsageMetrics = {
-            type = "structure",
-            traits = {
-                xml_name = "enableNetworkAddressUsageMetrics",
-            },
-        },
+        EnableDnsHostnames = setmetatable({ traits = {
+            xml_name = "enableDnsHostnames",
+        } }, { __index = M.AttributeBooleanValue }),
+        EnableDnsSupport = setmetatable({ traits = {
+            xml_name = "enableDnsSupport",
+        } }, { __index = M.AttributeBooleanValue }),
+        EnableNetworkAddressUsageMetrics = setmetatable({ traits = {
+            xml_name = "enableNetworkAddressUsageMetrics",
+        } }, { __index = M.AttributeBooleanValue }),
         VpcId = {
             type = "string",
             traits = {
@@ -50678,14 +48803,14 @@ M.DescribeVpcBlockPublicAccessExclusionsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         ExclusionIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "ExclusionId",
             },
@@ -50694,7 +48819,7 @@ M.DescribeVpcBlockPublicAccessExclusionsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -50704,7 +48829,7 @@ M.DescribeVpcBlockPublicAccessExclusionsOutput = {
     members = {
         VpcBlockPublicAccessExclusions = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcBlockPublicAccessExclusion,
             traits = {
                 xml_name = "vpcBlockPublicAccessExclusionSet",
             },
@@ -50806,12 +48931,9 @@ M.VpcBlockPublicAccessOptions = {
 M.DescribeVpcBlockPublicAccessOptionsOutput = {
     type = "structure",
     members = {
-        VpcBlockPublicAccessOptions = {
-            type = "structure",
-            traits = {
-                xml_name = "vpcBlockPublicAccessOptions",
-            },
-        },
+        VpcBlockPublicAccessOptions = setmetatable({ traits = {
+            xml_name = "vpcBlockPublicAccessOptions",
+        } }, { __index = M.VpcBlockPublicAccessOptions }),
     },
 }
 
@@ -50826,14 +48948,14 @@ M.DescribeVpcClassicLinkInput = {
         },
         VpcIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "VpcId",
             },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -50852,7 +48974,7 @@ M.VpcClassicLink = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -50871,7 +48993,7 @@ M.DescribeVpcClassicLinkOutput = {
     members = {
         Vpcs = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcClassicLink,
             traits = {
                 xml_name = "vpcSet",
             },
@@ -50884,13 +49006,13 @@ M.DescribeVpcClassicLinkDnsSupportInput = {
     members = {
         VpcIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "VpcIds",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "maxResults",
             },
@@ -50933,7 +49055,7 @@ M.DescribeVpcClassicLinkDnsSupportOutput = {
         },
         Vpcs = {
             type = "list",
-            member_type = "structure",
+            member = M.ClassicLinkDnsSupport,
             traits = {
                 xml_name = "vpcs",
             },
@@ -50949,21 +49071,21 @@ M.DescribeVpcEncryptionControlsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         VpcEncryptionControlIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "VpcEncryptionControlId",
             },
         },
         VpcIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "VpcId",
             },
@@ -50972,7 +49094,7 @@ M.DescribeVpcEncryptionControlsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -50982,7 +49104,7 @@ M.DescribeVpcEncryptionControlsOutput = {
     members = {
         VpcEncryptionControls = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcEncryptionControl,
             traits = {
                 xml_name = "vpcEncryptionControlSet",
             },
@@ -51004,20 +49126,20 @@ M.DescribeVpcEndpointAssociationsInput = {
         },
         VpcEndpointIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "VpcEndpointId",
             },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -51070,18 +49192,12 @@ M.VpcEndpointAssociation = {
                 xml_name = "failureCode",
             },
         },
-        DnsEntry = {
-            type = "structure",
-            traits = {
-                xml_name = "dnsEntry",
-            },
-        },
-        PrivateDnsEntry = {
-            type = "structure",
-            traits = {
-                xml_name = "privateDnsEntry",
-            },
-        },
+        DnsEntry = setmetatable({ traits = {
+            xml_name = "dnsEntry",
+        } }, { __index = M.DnsEntry }),
+        PrivateDnsEntry = setmetatable({ traits = {
+            xml_name = "privateDnsEntry",
+        } }, { __index = M.DnsEntry }),
         AssociatedResourceArn = {
             type = "string",
             traits = {
@@ -51096,7 +49212,7 @@ M.VpcEndpointAssociation = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -51109,7 +49225,7 @@ M.DescribeVpcEndpointAssociationsOutput = {
     members = {
         VpcEndpointAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcEndpointAssociation,
             traits = {
                 xml_name = "vpcEndpointAssociationSet",
             },
@@ -51134,13 +49250,13 @@ M.DescribeVpcEndpointConnectionNotificationsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -51153,7 +49269,7 @@ M.DescribeVpcEndpointConnectionNotificationsOutput = {
     members = {
         ConnectionNotificationSet = {
             type = "list",
-            member_type = "structure",
+            member = M.ConnectionNotification,
             traits = {
                 xml_name = "connectionNotificationSet",
             },
@@ -51175,13 +49291,13 @@ M.DescribeVpcEndpointConnectionsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -51224,21 +49340,21 @@ M.VpcEndpointConnection = {
         },
         DnsEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.DnsEntry,
             traits = {
                 xml_name = "dnsEntrySet",
             },
         },
         NetworkLoadBalancerArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "networkLoadBalancerArnSet",
             },
         },
         GatewayLoadBalancerArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "gatewayLoadBalancerArnSet",
             },
@@ -51257,7 +49373,7 @@ M.VpcEndpointConnection = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -51276,7 +49392,7 @@ M.DescribeVpcEndpointConnectionsOutput = {
     members = {
         VpcEndpointConnections = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcEndpointConnection,
             traits = {
                 xml_name = "vpcEndpointConnectionSet",
             },
@@ -51298,20 +49414,20 @@ M.DescribeVpcEndpointsInput = {
         },
         VpcEndpointIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "VpcEndpointId",
             },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -51324,7 +49440,7 @@ M.DescribeVpcEndpointsOutput = {
     members = {
         VpcEndpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcEndpoint,
             traits = {
                 xml_name = "vpcEndpointSet",
             },
@@ -51346,20 +49462,20 @@ M.DescribeVpcEndpointServiceConfigurationsInput = {
         },
         ServiceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "ServiceId",
             },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -51372,7 +49488,7 @@ M.DescribeVpcEndpointServiceConfigurationsOutput = {
     members = {
         ServiceConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceConfiguration,
             traits = {
                 xml_name = "serviceConfigurationSet",
             },
@@ -51400,13 +49516,13 @@ M.DescribeVpcEndpointServicePermissionsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -51419,7 +49535,7 @@ M.DescribeVpcEndpointServicePermissionsOutput = {
     members = {
         AllowedPrincipals = {
             type = "list",
-            member_type = "structure",
+            member = M.AllowedPrincipal,
             traits = {
                 xml_name = "allowedPrincipals",
             },
@@ -51441,27 +49557,27 @@ M.DescribeVpcEndpointServicesInput = {
         },
         ServiceNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "ServiceName",
             },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         ServiceRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "ServiceRegion",
             },
@@ -51498,7 +49614,7 @@ M.ServiceDetail = {
         },
         ServiceType = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceTypeDetail,
             traits = {
                 xml_name = "serviceType",
             },
@@ -51511,14 +49627,14 @@ M.ServiceDetail = {
         },
         AvailabilityZoneIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "availabilityZoneIdSet",
             },
         },
         AvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "availabilityZoneSet",
             },
@@ -51531,7 +49647,7 @@ M.ServiceDetail = {
         },
         BaseEndpointDnsNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "baseEndpointDnsNameSet",
             },
@@ -51544,7 +49660,7 @@ M.ServiceDetail = {
         },
         PrivateDnsNames = {
             type = "list",
-            member_type = "structure",
+            member = M.PrivateDnsDetails,
             traits = {
                 xml_name = "privateDnsNameSet",
             },
@@ -51575,7 +49691,7 @@ M.ServiceDetail = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -51588,7 +49704,7 @@ M.ServiceDetail = {
         },
         SupportedIpAddressTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "supportedIpAddressTypeSet",
             },
@@ -51601,14 +49717,14 @@ M.DescribeVpcEndpointServicesOutput = {
     members = {
         ServiceNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "serviceNameSet",
             },
         },
         ServiceDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceDetail,
             traits = {
                 xml_name = "serviceDetailSet",
             },
@@ -51629,7 +49745,7 @@ M.DescribeVpcPeeringConnectionsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         DryRun = {
             type = "boolean",
@@ -51639,14 +49755,14 @@ M.DescribeVpcPeeringConnectionsInput = {
         },
         VpcPeeringConnectionIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "VpcPeeringConnectionId",
             },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -51659,7 +49775,7 @@ M.DescribeVpcPeeringConnectionsOutput = {
     members = {
         VpcPeeringConnections = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcPeeringConnection,
             traits = {
                 xml_name = "vpcPeeringConnectionSet",
             },
@@ -51678,14 +49794,14 @@ M.DescribeVpcsInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         VpcIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "VpcId",
             },
@@ -51694,7 +49810,7 @@ M.DescribeVpcsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         DryRun = {
             type = "boolean",
@@ -51716,7 +49832,7 @@ M.DescribeVpcsOutput = {
         },
         Vpcs = {
             type = "list",
-            member_type = "structure",
+            member = M.Vpc,
             traits = {
                 xml_name = "vpcSet",
             },
@@ -51729,20 +49845,20 @@ M.DescribeVpnConcentratorsInput = {
     members = {
         VpnConcentratorIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "VpnConcentratorId",
             },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -51758,7 +49874,7 @@ M.DescribeVpnConcentratorsOutput = {
     members = {
         VpnConcentrators = {
             type = "list",
-            member_type = "structure",
+            member = M.VpnConcentrator,
             traits = {
                 xml_name = "vpnConcentratorSet",
             },
@@ -51777,14 +49893,14 @@ M.DescribeVpnConnectionsInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         VpnConnectionIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "VpnConnectionId",
             },
@@ -51803,7 +49919,7 @@ M.DescribeVpnConnectionsOutput = {
     members = {
         VpnConnections = {
             type = "list",
-            member_type = "structure",
+            member = M.VpnConnection,
             traits = {
                 xml_name = "vpnConnectionSet",
             },
@@ -51816,14 +49932,14 @@ M.DescribeVpnGatewaysInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         VpnGatewayIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "VpnGatewayId",
             },
@@ -51842,7 +49958,7 @@ M.DescribeVpnGatewaysOutput = {
     members = {
         VpnGateways = {
             type = "list",
-            member_type = "structure",
+            member = M.VpnGateway,
             traits = {
                 xml_name = "vpnGatewaySet",
             },
@@ -51974,18 +50090,12 @@ M.DetachVerifiedAccessTrustProviderInput = {
 M.DetachVerifiedAccessTrustProviderOutput = {
     type = "structure",
     members = {
-        VerifiedAccessTrustProvider = {
-            type = "structure",
-            traits = {
-                xml_name = "verifiedAccessTrustProvider",
-            },
-        },
-        VerifiedAccessInstance = {
-            type = "structure",
-            traits = {
-                xml_name = "verifiedAccessInstance",
-            },
-        },
+        VerifiedAccessTrustProvider = setmetatable({ traits = {
+            xml_name = "verifiedAccessTrustProvider",
+        } }, { __index = M.VerifiedAccessTrustProvider }),
+        VerifiedAccessInstance = setmetatable({ traits = {
+            xml_name = "verifiedAccessInstance",
+        } }, { __index = M.VerifiedAccessInstance }),
     },
 }
 
@@ -52038,7 +50148,7 @@ M.DetachVolumeOutput = {
             },
         },
         EbsCardIndex = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "ebsCardIndex",
             },
@@ -52122,12 +50232,9 @@ M.DisableAddressTransferInput = {
 M.DisableAddressTransferOutput = {
     type = "structure",
     members = {
-        AddressTransfer = {
-            type = "structure",
-            traits = {
-                xml_name = "addressTransfer",
-            },
-        },
+        AddressTransfer = setmetatable({ traits = {
+            xml_name = "addressTransfer",
+        } }, { __index = M.AddressTransfer }),
     },
 }
 
@@ -52274,20 +50381,14 @@ M.DisableFastLaunchOutput = {
                 xml_name = "resourceType",
             },
         },
-        SnapshotConfiguration = {
-            type = "structure",
-            traits = {
-                xml_name = "snapshotConfiguration",
-            },
-        },
-        LaunchTemplate = {
-            type = "structure",
-            traits = {
-                xml_name = "launchTemplate",
-            },
-        },
+        SnapshotConfiguration = setmetatable({ traits = {
+            xml_name = "snapshotConfiguration",
+        } }, { __index = M.FastLaunchSnapshotConfigurationResponse }),
+        LaunchTemplate = setmetatable({ traits = {
+            xml_name = "launchTemplate",
+        } }, { __index = M.FastLaunchLaunchTemplateSpecificationResponse }),
         MaxParallelLaunches = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "maxParallelLaunches",
             },
@@ -52324,21 +50425,21 @@ M.DisableFastSnapshotRestoresInput = {
     members = {
         AvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "AvailabilityZone",
             },
         },
         AvailabilityZoneIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "AvailabilityZoneId",
             },
         },
         SourceSnapshotIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "SourceSnapshotId",
@@ -52461,12 +50562,9 @@ M.DisableFastSnapshotRestoreStateErrorItem = {
                 xml_name = "availabilityZoneId",
             },
         },
-        Error = {
-            type = "structure",
-            traits = {
-                xml_name = "error",
-            },
-        },
+        Error = setmetatable({ traits = {
+            xml_name = "error",
+        } }, { __index = M.DisableFastSnapshotRestoreStateError }),
     },
 }
 
@@ -52481,7 +50579,7 @@ M.DisableFastSnapshotRestoreErrorItem = {
         },
         FastSnapshotRestoreStateErrors = {
             type = "list",
-            member_type = "structure",
+            member = M.DisableFastSnapshotRestoreStateErrorItem,
             traits = {
                 xml_name = "fastSnapshotRestoreStateErrorSet",
             },
@@ -52494,14 +50592,14 @@ M.DisableFastSnapshotRestoresOutput = {
     members = {
         Successful = {
             type = "list",
-            member_type = "structure",
+            member = M.DisableFastSnapshotRestoreSuccessItem,
             traits = {
                 xml_name = "successful",
             },
         },
         Unsuccessful = {
             type = "list",
-            member_type = "structure",
+            member = M.DisableFastSnapshotRestoreErrorItem,
             traits = {
                 xml_name = "unsuccessful",
             },
@@ -52620,7 +50718,7 @@ M.DisableInstanceSqlHaStandbyDetectionsInput = {
     members = {
         InstanceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "InstanceId",
@@ -52637,7 +50735,7 @@ M.DisableInstanceSqlHaStandbyDetectionsOutput = {
     members = {
         Instances = {
             type = "list",
-            member_type = "structure",
+            member = M.RegisteredInstance,
             traits = {
                 xml_name = "instanceSet",
             },
@@ -52756,12 +50854,9 @@ M.RouteServerPropagation = {
 M.DisableRouteServerPropagationOutput = {
     type = "structure",
     members = {
-        RouteServerPropagation = {
-            type = "structure",
-            traits = {
-                xml_name = "routeServerPropagation",
-            },
-        },
+        RouteServerPropagation = setmetatable({ traits = {
+            xml_name = "routeServerPropagation",
+        } }, { __index = M.RouteServerPropagation }),
     },
 }
 
@@ -52886,12 +50981,9 @@ M.TransitGatewayPropagation = {
 M.DisableTransitGatewayRouteTablePropagationOutput = {
     type = "structure",
     members = {
-        Propagation = {
-            type = "structure",
-            traits = {
-                xml_name = "propagation",
-            },
-        },
+        Propagation = setmetatable({ traits = {
+            xml_name = "propagation",
+        } }, { __index = M.TransitGatewayPropagation }),
     },
 }
 
@@ -53060,12 +51152,9 @@ M.DisassociateClientVpnTargetNetworkOutput = {
                 xml_name = "associationId",
             },
         },
-        Status = {
-            type = "structure",
-            traits = {
-                xml_name = "status",
-            },
-        },
+        Status = setmetatable({ traits = {
+            xml_name = "status",
+        } }, { __index = M.AssociationStatus }),
     },
 }
 
@@ -53117,12 +51206,9 @@ M.DisassociateIamInstanceProfileInput = {
 M.DisassociateIamInstanceProfileOutput = {
     type = "structure",
     members = {
-        IamInstanceProfileAssociation = {
-            type = "structure",
-            traits = {
-                xml_name = "iamInstanceProfileAssociation",
-            },
-        },
+        IamInstanceProfileAssociation = setmetatable({ traits = {
+            xml_name = "iamInstanceProfileAssociation",
+        } }, { __index = M.IamInstanceProfileAssociation }),
     },
 }
 
@@ -53131,21 +51217,21 @@ M.InstanceEventWindowDisassociationRequest = {
     members = {
         InstanceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "InstanceId",
             },
         },
         InstanceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "InstanceTag",
             },
         },
         DedicatedHostIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "DedicatedHostId",
             },
@@ -53165,24 +51251,18 @@ M.DisassociateInstanceEventWindowInput = {
                 required = true,
             },
         },
-        AssociationTarget = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AssociationTarget = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InstanceEventWindowDisassociationRequest }),
     },
 }
 
 M.DisassociateInstanceEventWindowOutput = {
     type = "structure",
     members = {
-        InstanceEventWindow = {
-            type = "structure",
-            traits = {
-                xml_name = "instanceEventWindow",
-            },
-        },
+        InstanceEventWindow = setmetatable({ traits = {
+            xml_name = "instanceEventWindow",
+        } }, { __index = M.InstanceEventWindow }),
     },
 }
 
@@ -53210,12 +51290,9 @@ M.DisassociateIpamByoasnInput = {
 M.DisassociateIpamByoasnOutput = {
     type = "structure",
     members = {
-        AsnAssociation = {
-            type = "structure",
-            traits = {
-                xml_name = "asnAssociation",
-            },
-        },
+        AsnAssociation = setmetatable({ traits = {
+            xml_name = "asnAssociation",
+        } }, { __index = M.AsnAssociation }),
     },
 }
 
@@ -53237,12 +51314,9 @@ M.DisassociateIpamResourceDiscoveryInput = {
 M.DisassociateIpamResourceDiscoveryOutput = {
     type = "structure",
     members = {
-        IpamResourceDiscoveryAssociation = {
-            type = "structure",
-            traits = {
-                xml_name = "ipamResourceDiscoveryAssociation",
-            },
-        },
+        IpamResourceDiscoveryAssociation = setmetatable({ traits = {
+            xml_name = "ipamResourceDiscoveryAssociation",
+        } }, { __index = M.IpamResourceDiscoveryAssociation }),
     },
 }
 
@@ -53257,14 +51331,14 @@ M.DisassociateNatGatewayAddressInput = {
         },
         AssociationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "AssociationId",
             },
         },
         MaxDrainDurationSeconds = {
-            type = "number",
+            type = "integer",
         },
         DryRun = {
             type = "boolean",
@@ -53283,7 +51357,7 @@ M.DisassociateNatGatewayAddressOutput = {
         },
         NatGatewayAddresses = {
             type = "list",
-            member_type = "structure",
+            member = M.NatGatewayAddress,
             traits = {
                 xml_name = "natGatewayAddressSet",
             },
@@ -53315,12 +51389,9 @@ M.DisassociateRouteServerInput = {
 M.DisassociateRouteServerOutput = {
     type = "structure",
     members = {
-        RouteServerAssociation = {
-            type = "structure",
-            traits = {
-                xml_name = "routeServerAssociation",
-            },
-        },
+        RouteServerAssociation = setmetatable({ traits = {
+            xml_name = "routeServerAssociation",
+        } }, { __index = M.RouteServerAssociation }),
     },
 }
 
@@ -53396,12 +51467,9 @@ M.DisassociateSubnetCidrBlockInput = {
 M.DisassociateSubnetCidrBlockOutput = {
     type = "structure",
     members = {
-        Ipv6CidrBlockAssociation = {
-            type = "structure",
-            traits = {
-                xml_name = "ipv6CidrBlockAssociation",
-            },
-        },
+        Ipv6CidrBlockAssociation = setmetatable({ traits = {
+            xml_name = "ipv6CidrBlockAssociation",
+        } }, { __index = M.SubnetIpv6CidrBlockAssociation }),
         SubnetId = {
             type = "string",
             traits = {
@@ -53428,7 +51496,7 @@ M.DisassociateTransitGatewayMulticastDomainInput = {
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -53442,12 +51510,9 @@ M.DisassociateTransitGatewayMulticastDomainInput = {
 M.DisassociateTransitGatewayMulticastDomainOutput = {
     type = "structure",
     members = {
-        Associations = {
-            type = "structure",
-            traits = {
-                xml_name = "associations",
-            },
-        },
+        Associations = setmetatable({ traits = {
+            xml_name = "associations",
+        } }, { __index = M.TransitGatewayMulticastDomainAssociations }),
     },
 }
 
@@ -53475,12 +51540,9 @@ M.DisassociateTransitGatewayPolicyTableInput = {
 M.DisassociateTransitGatewayPolicyTableOutput = {
     type = "structure",
     members = {
-        Association = {
-            type = "structure",
-            traits = {
-                xml_name = "association",
-            },
-        },
+        Association = setmetatable({ traits = {
+            xml_name = "association",
+        } }, { __index = M.TransitGatewayPolicyTableAssociation }),
     },
 }
 
@@ -53508,12 +51570,9 @@ M.DisassociateTransitGatewayRouteTableInput = {
 M.DisassociateTransitGatewayRouteTableOutput = {
     type = "structure",
     members = {
-        Association = {
-            type = "structure",
-            traits = {
-                xml_name = "association",
-            },
-        },
+        Association = setmetatable({ traits = {
+            xml_name = "association",
+        } }, { __index = M.TransitGatewayAssociation }),
     },
 }
 
@@ -53569,18 +51628,12 @@ M.DisassociateVpcCidrBlockInput = {
 M.DisassociateVpcCidrBlockOutput = {
     type = "structure",
     members = {
-        Ipv6CidrBlockAssociation = {
-            type = "structure",
-            traits = {
-                xml_name = "ipv6CidrBlockAssociation",
-            },
-        },
-        CidrBlockAssociation = {
-            type = "structure",
-            traits = {
-                xml_name = "cidrBlockAssociation",
-            },
-        },
+        Ipv6CidrBlockAssociation = setmetatable({ traits = {
+            xml_name = "ipv6CidrBlockAssociation",
+        } }, { __index = M.VpcIpv6CidrBlockAssociation }),
+        CidrBlockAssociation = setmetatable({ traits = {
+            xml_name = "cidrBlockAssociation",
+        } }, { __index = M.VpcCidrBlockAssociation }),
         VpcId = {
             type = "string",
             traits = {
@@ -53614,12 +51667,9 @@ M.EnableAddressTransferInput = {
 M.EnableAddressTransferOutput = {
     type = "structure",
     members = {
-        AddressTransfer = {
-            type = "structure",
-            traits = {
-                xml_name = "addressTransfer",
-            },
-        },
+        AddressTransfer = setmetatable({ traits = {
+            xml_name = "addressTransfer",
+        } }, { __index = M.AddressTransfer }),
     },
 }
 
@@ -53759,7 +51809,7 @@ M.FastLaunchSnapshotConfigurationRequest = {
     type = "structure",
     members = {
         TargetResourceCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -53776,14 +51826,10 @@ M.EnableFastLaunchInput = {
         ResourceType = {
             type = "string",
         },
-        SnapshotConfiguration = {
-            type = "structure",
-        },
-        LaunchTemplate = {
-            type = "structure",
-        },
+        SnapshotConfiguration = M.FastLaunchSnapshotConfigurationRequest,
+        LaunchTemplate = M.FastLaunchLaunchTemplateSpecificationRequest,
         MaxParallelLaunches = {
-            type = "number",
+            type = "integer",
         },
         DryRun = {
             type = "boolean",
@@ -53806,20 +51852,14 @@ M.EnableFastLaunchOutput = {
                 xml_name = "resourceType",
             },
         },
-        SnapshotConfiguration = {
-            type = "structure",
-            traits = {
-                xml_name = "snapshotConfiguration",
-            },
-        },
-        LaunchTemplate = {
-            type = "structure",
-            traits = {
-                xml_name = "launchTemplate",
-            },
-        },
+        SnapshotConfiguration = setmetatable({ traits = {
+            xml_name = "snapshotConfiguration",
+        } }, { __index = M.FastLaunchSnapshotConfigurationResponse }),
+        LaunchTemplate = setmetatable({ traits = {
+            xml_name = "launchTemplate",
+        } }, { __index = M.FastLaunchLaunchTemplateSpecificationResponse }),
         MaxParallelLaunches = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "maxParallelLaunches",
             },
@@ -53856,21 +51896,21 @@ M.EnableFastSnapshotRestoresInput = {
     members = {
         AvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "AvailabilityZone",
             },
         },
         AvailabilityZoneIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "AvailabilityZoneId",
             },
         },
         SourceSnapshotIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "SourceSnapshotId",
@@ -53993,12 +52033,9 @@ M.EnableFastSnapshotRestoreStateErrorItem = {
                 xml_name = "availabilityZoneId",
             },
         },
-        Error = {
-            type = "structure",
-            traits = {
-                xml_name = "error",
-            },
-        },
+        Error = setmetatable({ traits = {
+            xml_name = "error",
+        } }, { __index = M.EnableFastSnapshotRestoreStateError }),
     },
 }
 
@@ -54013,7 +52050,7 @@ M.EnableFastSnapshotRestoreErrorItem = {
         },
         FastSnapshotRestoreStateErrors = {
             type = "list",
-            member_type = "structure",
+            member = M.EnableFastSnapshotRestoreStateErrorItem,
             traits = {
                 xml_name = "fastSnapshotRestoreStateErrorSet",
             },
@@ -54026,14 +52063,14 @@ M.EnableFastSnapshotRestoresOutput = {
     members = {
         Successful = {
             type = "list",
-            member_type = "structure",
+            member = M.EnableFastSnapshotRestoreSuccessItem,
             traits = {
                 xml_name = "successful",
             },
         },
         Unsuccessful = {
             type = "list",
-            member_type = "structure",
+            member = M.EnableFastSnapshotRestoreErrorItem,
             traits = {
                 xml_name = "unsuccessful",
             },
@@ -54167,7 +52204,7 @@ M.EnableInstanceSqlHaStandbyDetectionsInput = {
     members = {
         InstanceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "InstanceId",
@@ -54187,7 +52224,7 @@ M.EnableInstanceSqlHaStandbyDetectionsOutput = {
     members = {
         Instances = {
             type = "list",
-            member_type = "structure",
+            member = M.RegisteredInstance,
             traits = {
                 xml_name = "instanceSet",
             },
@@ -54297,12 +52334,9 @@ M.EnableRouteServerPropagationInput = {
 M.EnableRouteServerPropagationOutput = {
     type = "structure",
     members = {
-        RouteServerPropagation = {
-            type = "structure",
-            traits = {
-                xml_name = "routeServerPropagation",
-            },
-        },
+        RouteServerPropagation = setmetatable({ traits = {
+            xml_name = "routeServerPropagation",
+        } }, { __index = M.RouteServerPropagation }),
     },
 }
 
@@ -54378,12 +52412,9 @@ M.EnableTransitGatewayRouteTablePropagationInput = {
 M.EnableTransitGatewayRouteTablePropagationOutput = {
     type = "structure",
     members = {
-        Propagation = {
-            type = "structure",
-            traits = {
-                xml_name = "propagation",
-            },
-        },
+        Propagation = setmetatable({ traits = {
+            xml_name = "propagation",
+        } }, { __index = M.TransitGatewayPropagation }),
     },
 }
 
@@ -54537,12 +52568,9 @@ M.ExportClientVpnClientCertificateRevocationListOutput = {
                 xml_name = "certificateRevocationList",
             },
         },
-        Status = {
-            type = "structure",
-            traits = {
-                xml_name = "status",
-            },
-        },
+        Status = setmetatable({ traits = {
+            xml_name = "status",
+        } }, { __index = M.ClientCertificateRevocationListStatus }),
     },
 }
 
@@ -54612,18 +52640,15 @@ M.ExportImageInput = {
                 required = true,
             },
         },
-        S3ExportLocation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        S3ExportLocation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ExportTaskS3LocationRequest }),
         RoleName = {
             type = "string",
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -54670,12 +52695,9 @@ M.ExportImageOutput = {
                 xml_name = "progress",
             },
         },
-        S3ExportLocation = {
-            type = "structure",
-            traits = {
-                xml_name = "s3ExportLocation",
-            },
-        },
+        S3ExportLocation = setmetatable({ traits = {
+            xml_name = "s3ExportLocation",
+        } }, { __index = M.ExportTaskS3Location }),
         Status = {
             type = "string",
             traits = {
@@ -54690,7 +52712,7 @@ M.ExportImageOutput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -54709,7 +52731,7 @@ M.ExportTransitGatewayRoutesInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -54776,7 +52798,7 @@ M.VerifiedAccessInstanceOpenVpnClientConfiguration = {
         },
         Routes = {
             type = "list",
-            member_type = "structure",
+            member = M.VerifiedAccessInstanceOpenVpnClientConfigurationRoute,
             traits = {
                 xml_name = "routeSet",
             },
@@ -54873,20 +52895,17 @@ M.ExportVerifiedAccessInstanceClientConfigurationOutput = {
         },
         DeviceTrustProviders = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "deviceTrustProviderSet",
             },
         },
-        UserTrustProvider = {
-            type = "structure",
-            traits = {
-                xml_name = "userTrustProvider",
-            },
-        },
+        UserTrustProvider = setmetatable({ traits = {
+            xml_name = "userTrustProvider",
+        } }, { __index = M.VerifiedAccessInstanceUserTrustProviderClientConfiguration }),
         OpenVpnConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.VerifiedAccessInstanceOpenVpnClientConfiguration,
             traits = {
                 xml_name = "openVpnConfigurationSet",
             },
@@ -54918,12 +52937,9 @@ M.GetActiveVpnTunnelStatusInput = {
 M.GetActiveVpnTunnelStatusOutput = {
     type = "structure",
     members = {
-        ActiveVpnTunnelStatus = {
-            type = "structure",
-            traits = {
-                xml_name = "activeVpnTunnelStatus",
-            },
-        },
+        ActiveVpnTunnelStatus = setmetatable({ traits = {
+            xml_name = "activeVpnTunnelStatus",
+        } }, { __index = M.ActiveVpnTunnelStatus }),
     },
 }
 
@@ -54940,7 +52956,7 @@ M.CreationDateCondition = {
     type = "structure",
     members = {
         MaximumDaysSinceCreated = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "maximumDaysSinceCreated",
             },
@@ -54952,7 +52968,7 @@ M.DeprecationTimeCondition = {
     type = "structure",
     members = {
         MaximumDaysSinceDeprecated = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "maximumDaysSinceDeprecated",
             },
@@ -54965,37 +52981,31 @@ M.ImageCriterion = {
     members = {
         ImageProviders = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "imageProviderSet",
             },
         },
         MarketplaceProductCodes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "marketplaceProductCodeSet",
             },
         },
         ImageNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "imageNameSet",
             },
         },
-        DeprecationTimeCondition = {
-            type = "structure",
-            traits = {
-                xml_name = "deprecationTimeCondition",
-            },
-        },
-        CreationDateCondition = {
-            type = "structure",
-            traits = {
-                xml_name = "creationDateCondition",
-            },
-        },
+        DeprecationTimeCondition = setmetatable({ traits = {
+            xml_name = "deprecationTimeCondition",
+        } }, { __index = M.DeprecationTimeCondition }),
+        CreationDateCondition = setmetatable({ traits = {
+            xml_name = "creationDateCondition",
+        } }, { __index = M.CreationDateCondition }),
     },
 }
 
@@ -55010,7 +53020,7 @@ M.GetAllowedImagesSettingsOutput = {
         },
         ImageCriteria = {
             type = "list",
-            member_type = "structure",
+            member = M.ImageCriterion,
             traits = {
                 xml_name = "imageCriterionSet",
             },
@@ -55074,7 +53084,7 @@ M.GetAssociatedEnclaveCertificateIamRolesOutput = {
     members = {
         AssociatedRoles = {
             type = "list",
-            member_type = "structure",
+            member = M.AssociatedRole,
             traits = {
                 xml_name = "associatedRoleSet",
             },
@@ -55095,7 +53105,7 @@ M.GetAssociatedIpv6PoolCidrsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         DryRun = {
             type = "boolean",
@@ -55126,7 +53136,7 @@ M.GetAssociatedIpv6PoolCidrsOutput = {
     members = {
         Ipv6CidrAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.Ipv6CidrAssociation,
             traits = {
                 xml_name = "ipv6CidrAssociationSet",
             },
@@ -55169,7 +53179,7 @@ M.GetAwsNetworkPerformanceDataInput = {
     members = {
         DataQueries = {
             type = "list",
-            member_type = "structure",
+            member = M.DataQuery,
             traits = {
                 xml_name = "DataQuery",
             },
@@ -55181,7 +53191,7 @@ M.GetAwsNetworkPerformanceDataInput = {
             type = "timestamp",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -55208,7 +53218,7 @@ M.MetricPoint = {
             },
         },
         Value = {
-            type = "number",
+            type = "float",
             traits = {
                 xml_name = "value",
             },
@@ -55263,7 +53273,7 @@ M.DataResponse = {
         },
         MetricPoints = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricPoint,
             traits = {
                 xml_name = "metricPointSet",
             },
@@ -55276,7 +53286,7 @@ M.GetAwsNetworkPerformanceDataOutput = {
     members = {
         DataResponses = {
             type = "list",
-            member_type = "structure",
+            member = M.DataResponse,
             traits = {
                 xml_name = "dataResponseSet",
             },
@@ -55321,7 +53331,7 @@ M.GetCapacityManagerAttributesOutput = {
             },
         },
         DataExportCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "dataExportCount",
             },
@@ -55390,7 +53400,7 @@ M.DimensionCondition = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "Value",
             },
@@ -55401,9 +53411,7 @@ M.DimensionCondition = {
 M.CapacityManagerCondition = {
     type = "structure",
     members = {
-        DimensionCondition = {
-            type = "structure",
-        },
+        DimensionCondition = M.DimensionCondition,
     },
 }
 
@@ -55485,7 +53493,7 @@ M.GetCapacityManagerMetricDataInput = {
     members = {
         MetricNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "MetricName",
@@ -55504,24 +53512,24 @@ M.GetCapacityManagerMetricDataInput = {
             },
         },
         Period = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         GroupBy = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "GroupBy",
             },
         },
         FilterBy = {
             type = "list",
-            member_type = "structure",
+            member = M.CapacityManagerCondition,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -55678,7 +53686,7 @@ M.CapacityManagerDimension = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.CapacityManagerTagDimension,
             traits = {
                 xml_name = "tagSet",
             },
@@ -55696,7 +53704,7 @@ M.MetricValue = {
             },
         },
         Value = {
-            type = "number",
+            type = "double",
             traits = {
                 xml_name = "value",
             },
@@ -55707,12 +53715,9 @@ M.MetricValue = {
 M.MetricDataResult = {
     type = "structure",
     members = {
-        Dimension = {
-            type = "structure",
-            traits = {
-                xml_name = "dimension",
-            },
-        },
+        Dimension = setmetatable({ traits = {
+            xml_name = "dimension",
+        } }, { __index = M.CapacityManagerDimension }),
         Timestamp = {
             type = "timestamp",
             traits = {
@@ -55721,7 +53726,7 @@ M.MetricDataResult = {
         },
         MetricValues = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricValue,
             traits = {
                 xml_name = "metricValueSet",
             },
@@ -55734,7 +53739,7 @@ M.GetCapacityManagerMetricDataOutput = {
     members = {
         MetricDataResults = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricDataResult,
             traits = {
                 xml_name = "metricDataResultSet",
             },
@@ -55753,7 +53758,7 @@ M.GetCapacityManagerMetricDimensionsInput = {
     members = {
         GroupBy = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "GroupBy",
@@ -55761,7 +53766,7 @@ M.GetCapacityManagerMetricDimensionsInput = {
         },
         FilterBy = {
             type = "list",
-            member_type = "structure",
+            member = M.CapacityManagerCondition,
         },
         StartTime = {
             type = "timestamp",
@@ -55777,14 +53782,14 @@ M.GetCapacityManagerMetricDimensionsInput = {
         },
         MetricNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "MetricName",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -55800,7 +53805,7 @@ M.GetCapacityManagerMetricDimensionsOutput = {
     members = {
         MetricDimensionResults = {
             type = "list",
-            member_type = "structure",
+            member = M.CapacityManagerDimension,
             traits = {
                 xml_name = "metricDimensionResultSet",
             },
@@ -55818,7 +53823,7 @@ M.GetCapacityManagerMonitoredTagKeysInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -55877,7 +53882,7 @@ M.GetCapacityManagerMonitoredTagKeysOutput = {
     members = {
         CapacityManagerTagKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.CapacityManagerMonitoredTagKey,
             traits = {
                 xml_name = "capacityManagerTagKeySet",
             },
@@ -55904,7 +53909,7 @@ M.GetCapacityReservationUsageInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         DryRun = {
             type = "boolean",
@@ -55922,7 +53927,7 @@ M.InstanceUsage = {
             },
         },
         UsedInstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "usedInstanceCount",
             },
@@ -55952,13 +53957,13 @@ M.GetCapacityReservationUsageOutput = {
             },
         },
         TotalInstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "totalInstanceCount",
             },
         },
         AvailableInstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "availableInstanceCount",
             },
@@ -55971,7 +53976,7 @@ M.GetCapacityReservationUsageOutput = {
         },
         InstanceUsages = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceUsage,
             traits = {
                 xml_name = "instanceUsageSet",
             },
@@ -55982,18 +53987,12 @@ M.GetCapacityReservationUsageOutput = {
                 xml_name = "interruptible",
             },
         },
-        InterruptibleCapacityAllocation = {
-            type = "structure",
-            traits = {
-                xml_name = "interruptibleCapacityAllocation",
-            },
-        },
-        InterruptionInfo = {
-            type = "structure",
-            traits = {
-                xml_name = "interruptionInfo",
-            },
-        },
+        InterruptibleCapacityAllocation = setmetatable({ traits = {
+            xml_name = "interruptibleCapacityAllocation",
+        } }, { __index = M.InterruptibleCapacityAllocation }),
+        InterruptionInfo = setmetatable({ traits = {
+            xml_name = "interruptionInfo",
+        } }, { __index = M.InterruptionInfo }),
     },
 }
 
@@ -56008,13 +54007,13 @@ M.GetCoipPoolUsageInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -56066,7 +54065,7 @@ M.GetCoipPoolUsageOutput = {
         },
         CoipAddressUsages = {
             type = "list",
-            member_type = "structure",
+            member = M.CoipAddressUsage,
             traits = {
                 xml_name = "coipAddressUsageSet",
             },
@@ -56192,13 +54191,13 @@ M.RegionalSummary = {
             },
         },
         NumberOfMatchedAccounts = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "numberOfMatchedAccounts",
             },
         },
         NumberOfUnmatchedAccounts = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "numberOfUnmatchedAccounts",
             },
@@ -56222,20 +54221,20 @@ M.AttributeSummary = {
             },
         },
         NumberOfMatchedAccounts = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "numberOfMatchedAccounts",
             },
         },
         NumberOfUnmatchedAccounts = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "numberOfUnmatchedAccounts",
             },
         },
         RegionalSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.RegionalSummary,
             traits = {
                 xml_name = "regionalSummarySet",
             },
@@ -56283,20 +54282,20 @@ M.GetDeclarativePoliciesReportSummaryOutput = {
             },
         },
         NumberOfAccounts = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "numberOfAccounts",
             },
         },
         NumberOfFailedAccounts = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "numberOfFailedAccounts",
             },
         },
         AttributeSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.AttributeSummary,
             traits = {
                 xml_name = "attributeSummarySet",
             },
@@ -56347,12 +54346,9 @@ M.InstanceFamilyCreditSpecification = {
 M.GetDefaultCreditSpecificationOutput = {
     type = "structure",
     members = {
-        InstanceFamilyCreditSpecification = {
-            type = "structure",
-            traits = {
-                xml_name = "instanceFamilyCreditSpecification",
-            },
-        },
+        InstanceFamilyCreditSpecification = setmetatable({ traits = {
+            xml_name = "instanceFamilyCreditSpecification",
+        } }, { __index = M.InstanceFamilyCreditSpecification }),
     },
 }
 
@@ -56478,7 +54474,7 @@ M.IntegrateServices = {
     members = {
         AthenaIntegrations = {
             type = "list",
-            member_type = "structure",
+            member = M.AthenaIntegration,
             traits = {
                 xml_name = "AthenaIntegration",
             },
@@ -56504,13 +54500,10 @@ M.GetFlowLogsIntegrationTemplateInput = {
                 required = true,
             },
         },
-        IntegrateServices = {
-            type = "structure",
-            traits = {
-                required = true,
-                xml_name = "IntegrateService",
-            },
-        },
+        IntegrateServices = setmetatable({ traits = {
+            required = true,
+            xml_name = "IntegrateService",
+        } }, { __index = M.IntegrateServices }),
     },
 }
 
@@ -56539,7 +54532,7 @@ M.GetGroupsForCapacityReservationInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         DryRun = {
             type = "boolean",
@@ -56576,7 +54569,7 @@ M.GetGroupsForCapacityReservationOutput = {
         },
         CapacityReservationGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.CapacityReservationGroup,
             traits = {
                 xml_name = "capacityReservationGroupSet",
             },
@@ -56589,7 +54582,7 @@ M.GetHostReservationPurchasePreviewInput = {
     members = {
         HostIdSet = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -56613,14 +54606,14 @@ M.Purchase = {
             },
         },
         Duration = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "duration",
             },
         },
         HostIdSet = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "hostIdSet",
             },
@@ -56669,7 +54662,7 @@ M.GetHostReservationPurchasePreviewOutput = {
         },
         Purchase = {
             type = "list",
-            member_type = "structure",
+            member = M.Purchase,
             traits = {
                 xml_name = "purchase",
             },
@@ -56745,7 +54738,7 @@ M.GetImageAncestryOutput = {
     members = {
         ImageAncestryEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.ImageAncestryEntry,
             traits = {
                 xml_name = "imageAncestryEntrySet",
             },
@@ -56804,7 +54797,7 @@ M.InstanceMetadataDefaultsResponse = {
             },
         },
         HttpPutResponseHopLimit = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "httpPutResponseHopLimit",
             },
@@ -56845,12 +54838,9 @@ M.InstanceMetadataDefaultsResponse = {
 M.GetInstanceMetadataDefaultsOutput = {
     type = "structure",
     members = {
-        AccountLevel = {
-            type = "structure",
-            traits = {
-                xml_name = "accountLevel",
-            },
-        },
+        AccountLevel = setmetatable({ traits = {
+            xml_name = "accountLevel",
+        } }, { __index = M.InstanceMetadataDefaultsResponse }),
     },
 }
 
@@ -56930,7 +54920,7 @@ M.GetInstanceTypesFromInstanceRequirementsInput = {
         },
         ArchitectureTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "ArchitectureType",
@@ -56938,20 +54928,17 @@ M.GetInstanceTypesFromInstanceRequirementsInput = {
         },
         VirtualizationTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "VirtualizationType",
             },
         },
-        InstanceRequirements = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InstanceRequirements = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InstanceRequirementsRequest }),
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -56979,7 +54966,7 @@ M.GetInstanceTypesFromInstanceRequirementsOutput = {
     members = {
         InstanceTypes = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceTypeInfoFromInstanceRequirements,
             traits = {
                 xml_name = "instanceTypeSet",
             },
@@ -57055,7 +55042,7 @@ M.GetIpamAddressHistoryInput = {
             type = "timestamp",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -57161,7 +55148,7 @@ M.GetIpamAddressHistoryOutput = {
     members = {
         HistoryRecords = {
             type = "list",
-            member_type = "structure",
+            member = M.IpamAddressHistoryRecord,
             traits = {
                 xml_name = "historyRecordSet",
             },
@@ -57195,7 +55182,7 @@ M.GetIpamDiscoveredAccountsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -57204,7 +55191,7 @@ M.GetIpamDiscoveredAccountsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -57248,12 +55235,9 @@ M.IpamDiscoveredAccount = {
                 xml_name = "discoveryRegion",
             },
         },
-        FailureReason = {
-            type = "structure",
-            traits = {
-                xml_name = "failureReason",
-            },
-        },
+        FailureReason = setmetatable({ traits = {
+            xml_name = "failureReason",
+        } }, { __index = M.IpamDiscoveryFailureReason }),
         LastAttemptedDiscoveryTime = {
             type = "timestamp",
             traits = {
@@ -57280,7 +55264,7 @@ M.GetIpamDiscoveredAccountsOutput = {
     members = {
         IpamDiscoveredAccounts = {
             type = "list",
-            member_type = "structure",
+            member = M.IpamDiscoveredAccount,
             traits = {
                 xml_name = "ipamDiscoveredAccountSet",
             },
@@ -57314,7 +55298,7 @@ M.GetIpamDiscoveredPublicAddressesInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -57323,7 +55307,7 @@ M.GetIpamDiscoveredPublicAddressesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -57397,7 +55381,7 @@ M.IpamPublicAddressTags = {
     members = {
         EipTags = {
             type = "list",
-            member_type = "structure",
+            member = M.IpamPublicAddressTag,
             traits = {
                 xml_name = "eipTagSet",
             },
@@ -57498,12 +55482,9 @@ M.IpamDiscoveredPublicAddress = {
                 xml_name = "instanceId",
             },
         },
-        Tags = {
-            type = "structure",
-            traits = {
-                xml_name = "tags",
-            },
-        },
+        Tags = setmetatable({ traits = {
+            xml_name = "tags",
+        } }, { __index = M.IpamPublicAddressTags }),
         NetworkBorderGroup = {
             type = "string",
             traits = {
@@ -57512,7 +55493,7 @@ M.IpamDiscoveredPublicAddress = {
         },
         SecurityGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.IpamPublicAddressSecurityGroup,
             traits = {
                 xml_name = "securityGroupSet",
             },
@@ -57531,7 +55512,7 @@ M.GetIpamDiscoveredPublicAddressesOutput = {
     members = {
         IpamDiscoveredPublicAddresses = {
             type = "list",
-            member_type = "structure",
+            member = M.IpamDiscoveredPublicAddress,
             traits = {
                 xml_name = "ipamDiscoveredPublicAddressSet",
             },
@@ -57571,7 +55552,7 @@ M.GetIpamDiscoveredResourceCidrsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -57580,7 +55561,7 @@ M.GetIpamDiscoveredResourceCidrsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -57643,13 +55624,13 @@ M.IpamDiscoveredResourceCidr = {
         },
         ResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.IpamResourceTag,
             traits = {
                 xml_name = "resourceTagSet",
             },
         },
         IpUsage = {
-            type = "number",
+            type = "double",
             traits = {
                 xml_name = "ipUsage",
             },
@@ -57692,7 +55673,7 @@ M.GetIpamDiscoveredResourceCidrsOutput = {
     members = {
         IpamDiscoveredResourceCidrs = {
             type = "list",
-            member_type = "structure",
+            member = M.IpamDiscoveredResourceCidr,
             traits = {
                 xml_name = "ipamDiscoveredResourceCidrSet",
             },
@@ -57727,7 +55708,7 @@ M.GetIpamPolicyAllocationRulesInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -57739,7 +55720,7 @@ M.GetIpamPolicyAllocationRulesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -57782,7 +55763,7 @@ M.IpamPolicyDocument = {
         },
         AllocationRules = {
             type = "list",
-            member_type = "structure",
+            member = M.IpamPolicyAllocationRule,
             traits = {
                 xml_name = "allocationRuleSet",
             },
@@ -57795,7 +55776,7 @@ M.GetIpamPolicyAllocationRulesOutput = {
     members = {
         IpamPolicyDocuments = {
             type = "list",
-            member_type = "structure",
+            member = M.IpamPolicyDocument,
             traits = {
                 xml_name = "ipamPolicyDocumentSet",
             },
@@ -57816,7 +55797,7 @@ M.GetIpamPolicyOrganizationTargetsInput = {
             type = "boolean",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -57829,7 +55810,7 @@ M.GetIpamPolicyOrganizationTargetsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -57854,7 +55835,7 @@ M.GetIpamPolicyOrganizationTargetsOutput = {
     members = {
         OrganizationTargets = {
             type = "list",
-            member_type = "structure",
+            member = M.IpamPolicyOrganizationTarget,
             traits = {
                 xml_name = "organizationTargetSet",
             },
@@ -57885,13 +55866,13 @@ M.GetIpamPoolAllocationsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -57904,7 +55885,7 @@ M.GetIpamPoolAllocationsOutput = {
     members = {
         IpamPoolAllocations = {
             type = "list",
-            member_type = "structure",
+            member = M.IpamPoolAllocation,
             traits = {
                 xml_name = "ipamPoolAllocationSet",
             },
@@ -57932,13 +55913,13 @@ M.GetIpamPoolCidrsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -57951,7 +55932,7 @@ M.GetIpamPoolCidrsOutput = {
     members = {
         IpamPoolCidrs = {
             type = "list",
-            member_type = "structure",
+            member = M.IpamPoolCidr,
             traits = {
                 xml_name = "ipamPoolCidrSet",
             },
@@ -57979,13 +55960,13 @@ M.GetIpamPrefixListResolverRulesInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -58026,12 +56007,9 @@ M.IpamPrefixListResolverRuleCondition = {
                 xml_name = "resourceRegion",
             },
         },
-        ResourceTag = {
-            type = "structure",
-            traits = {
-                xml_name = "resourceTag",
-            },
-        },
+        ResourceTag = setmetatable({ traits = {
+            xml_name = "resourceTag",
+        } }, { __index = M.IpamResourceTag }),
         Cidr = {
             type = "string",
             traits = {
@@ -58070,7 +56048,7 @@ M.IpamPrefixListResolverRule = {
         },
         Conditions = {
             type = "list",
-            member_type = "structure",
+            member = M.IpamPrefixListResolverRuleCondition,
             traits = {
                 xml_name = "conditionSet",
             },
@@ -58083,7 +56061,7 @@ M.GetIpamPrefixListResolverRulesOutput = {
     members = {
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.IpamPrefixListResolverRule,
             traits = {
                 xml_name = "ruleSet",
             },
@@ -58110,13 +56088,13 @@ M.GetIpamPrefixListResolverVersionEntriesInput = {
             },
         },
         IpamPrefixListResolverVersion = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -58141,7 +56119,7 @@ M.GetIpamPrefixListResolverVersionEntriesOutput = {
     members = {
         Entries = {
             type = "list",
-            member_type = "structure",
+            member = M.IpamPrefixListResolverVersionEntry,
             traits = {
                 xml_name = "entrySet",
             },
@@ -58169,17 +56147,17 @@ M.GetIpamPrefixListResolverVersionsInput = {
         },
         IpamPrefixListResolverVersions = {
             type = "list",
-            member_type = "number",
+            member = { type = "long" },
             traits = {
                 xml_name = "IpamPrefixListResolverVersion",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -58194,7 +56172,7 @@ M.IpamPrefixListResolverVersion = {
     type = "structure",
     members = {
         Version = {
-            type = "number",
+            type = "long",
             traits = {
                 xml_name = "version",
             },
@@ -58207,7 +56185,7 @@ M.GetIpamPrefixListResolverVersionsOutput = {
     members = {
         IpamPrefixListResolverVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.IpamPrefixListResolverVersion,
             traits = {
                 xml_name = "ipamPrefixListResolverVersionSet",
             },
@@ -58229,13 +56207,13 @@ M.GetIpamResourceCidrsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -58255,9 +56233,7 @@ M.GetIpamResourceCidrsInput = {
         ResourceType = {
             type = "string",
         },
-        ResourceTag = {
-            type = "structure",
-        },
+        ResourceTag = M.RequestIpamResourceTag,
         ResourceOwner = {
             type = "string",
         },
@@ -58329,13 +56305,13 @@ M.IpamResourceCidr = {
         },
         ResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.IpamResourceTag,
             traits = {
                 xml_name = "resourceTagSet",
             },
         },
         IpUsage = {
-            type = "number",
+            type = "double",
             traits = {
                 xml_name = "ipUsage",
             },
@@ -58384,7 +56360,7 @@ M.GetIpamResourceCidrsOutput = {
         },
         IpamResourceCidrs = {
             type = "list",
-            member_type = "structure",
+            member = M.IpamResourceCidr,
             traits = {
                 xml_name = "ipamResourceCidrSet",
             },
@@ -58410,12 +56386,9 @@ M.GetLaunchTemplateDataInput = {
 M.GetLaunchTemplateDataOutput = {
     type = "structure",
     members = {
-        LaunchTemplateData = {
-            type = "structure",
-            traits = {
-                xml_name = "launchTemplateData",
-            },
-        },
+        LaunchTemplateData = setmetatable({ traits = {
+            xml_name = "launchTemplateData",
+        } }, { __index = M.ResponseLaunchTemplateData }),
     },
 }
 
@@ -58432,7 +56405,7 @@ M.GetManagedPrefixListAssociationsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -58463,7 +56436,7 @@ M.GetManagedPrefixListAssociationsOutput = {
     members = {
         PrefixListAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.PrefixListAssociation,
             traits = {
                 xml_name = "prefixListAssociationSet",
             },
@@ -58490,10 +56463,10 @@ M.GetManagedPrefixListEntriesInput = {
             },
         },
         TargetVersion = {
-            type = "number",
+            type = "long",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -58524,7 +56497,7 @@ M.GetManagedPrefixListEntriesOutput = {
     members = {
         Entries = {
             type = "list",
-            member_type = "structure",
+            member = M.PrefixListEntry,
             traits = {
                 xml_name = "entrySet",
             },
@@ -58567,12 +56540,9 @@ M.ManagedResourceVisibilitySettings = {
 M.GetManagedResourceVisibilityOutput = {
     type = "structure",
     members = {
-        Visibility = {
-            type = "structure",
-            traits = {
-                xml_name = "visibility",
-            },
-        },
+        Visibility = setmetatable({ traits = {
+            xml_name = "visibility",
+        } }, { __index = M.ManagedResourceVisibilitySettings }),
     },
 }
 
@@ -58586,7 +56556,7 @@ M.GetNetworkInsightsAccessScopeAnalysisFindingsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -58614,7 +56584,7 @@ M.GetNetworkInsightsAccessScopeAnalysisFindingsOutput = {
         },
         AnalysisFindings = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessScopeAnalysisFinding,
             traits = {
                 xml_name = "analysisFindingSet",
             },
@@ -58646,12 +56616,9 @@ M.GetNetworkInsightsAccessScopeContentInput = {
 M.GetNetworkInsightsAccessScopeContentOutput = {
     type = "structure",
     members = {
-        NetworkInsightsAccessScopeContent = {
-            type = "structure",
-            traits = {
-                xml_name = "networkInsightsAccessScopeContent",
-            },
-        },
+        NetworkInsightsAccessScopeContent = setmetatable({ traits = {
+            xml_name = "networkInsightsAccessScopeContent",
+        } }, { __index = M.NetworkInsightsAccessScopeContent }),
     },
 }
 
@@ -58705,7 +56672,7 @@ M.GetReservedInstancesExchangeQuoteInput = {
         },
         ReservedInstanceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "ReservedInstanceId",
@@ -58713,7 +56680,7 @@ M.GetReservedInstancesExchangeQuoteInput = {
         },
         TargetConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetConfigurationRequest,
             traits = {
                 xml_name = "TargetConfiguration",
             },
@@ -58748,12 +56715,9 @@ M.ReservationValue = {
 M.ReservedInstanceReservationValue = {
     type = "structure",
     members = {
-        ReservationValue = {
-            type = "structure",
-            traits = {
-                xml_name = "reservationValue",
-            },
-        },
+        ReservationValue = setmetatable({ traits = {
+            xml_name = "reservationValue",
+        } }, { __index = M.ReservationValue }),
         ReservedInstanceId = {
             type = "string",
             traits = {
@@ -58767,7 +56731,7 @@ M.TargetConfiguration = {
     type = "structure",
     members = {
         InstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "instanceCount",
             },
@@ -58784,18 +56748,12 @@ M.TargetConfiguration = {
 M.TargetReservationValue = {
     type = "structure",
     members = {
-        ReservationValue = {
-            type = "structure",
-            traits = {
-                xml_name = "reservationValue",
-            },
-        },
-        TargetConfiguration = {
-            type = "structure",
-            traits = {
-                xml_name = "targetConfiguration",
-            },
-        },
+        ReservationValue = setmetatable({ traits = {
+            xml_name = "reservationValue",
+        } }, { __index = M.ReservationValue }),
+        TargetConfiguration = setmetatable({ traits = {
+            xml_name = "targetConfiguration",
+        } }, { __index = M.TargetConfiguration }),
     },
 }
 
@@ -58826,28 +56784,22 @@ M.GetReservedInstancesExchangeQuoteOutput = {
                 xml_name = "paymentDue",
             },
         },
-        ReservedInstanceValueRollup = {
-            type = "structure",
-            traits = {
-                xml_name = "reservedInstanceValueRollup",
-            },
-        },
+        ReservedInstanceValueRollup = setmetatable({ traits = {
+            xml_name = "reservedInstanceValueRollup",
+        } }, { __index = M.ReservationValue }),
         ReservedInstanceValueSet = {
             type = "list",
-            member_type = "structure",
+            member = M.ReservedInstanceReservationValue,
             traits = {
                 xml_name = "reservedInstanceValueSet",
             },
         },
-        TargetConfigurationValueRollup = {
-            type = "structure",
-            traits = {
-                xml_name = "targetConfigurationValueRollup",
-            },
-        },
+        TargetConfigurationValueRollup = setmetatable({ traits = {
+            xml_name = "targetConfigurationValueRollup",
+        } }, { __index = M.ReservationValue }),
         TargetConfigurationValueSet = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetReservationValue,
             traits = {
                 xml_name = "targetConfigurationValueSet",
             },
@@ -58881,7 +56833,7 @@ M.GetRouteServerAssociationsOutput = {
     members = {
         RouteServerAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteServerAssociation,
             traits = {
                 xml_name = "routeServerAssociationSet",
             },
@@ -58912,7 +56864,7 @@ M.GetRouteServerPropagationsOutput = {
     members = {
         RouteServerPropagations = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteServerPropagation,
             traits = {
                 xml_name = "routeServerPropagationSet",
             },
@@ -58933,14 +56885,14 @@ M.GetRouteServerRoutingDatabaseInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         DryRun = {
             type = "boolean",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -58999,7 +56951,7 @@ M.RouteServerRoute = {
         },
         RouteInstallationDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteServerRouteInstallationDetail,
             traits = {
                 xml_name = "routeInstallationDetailSet",
             },
@@ -59018,13 +56970,13 @@ M.RouteServerRoute = {
         },
         AsPaths = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "asPathSet",
             },
         },
         Med = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "med",
             },
@@ -59049,7 +57001,7 @@ M.GetRouteServerRoutingDatabaseOutput = {
         },
         Routes = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteServerRoute,
             traits = {
                 xml_name = "routeSet",
             },
@@ -59076,11 +57028,11 @@ M.GetSecurityGroupsForVpcInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -59120,7 +57072,7 @@ M.SecurityGroupForVpc = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -59145,7 +57097,7 @@ M.GetSecurityGroupsForVpcOutput = {
         },
         SecurityGroupForVpcs = {
             type = "list",
-            member_type = "structure",
+            member = M.SecurityGroupForVpc,
             traits = {
                 xml_name = "securityGroupForVpcSet",
             },
@@ -59212,21 +57164,19 @@ M.InstanceRequirementsWithMetadataRequest = {
     members = {
         ArchitectureTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "ArchitectureType",
             },
         },
         VirtualizationTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "VirtualizationType",
             },
         },
-        InstanceRequirements = {
-            type = "structure",
-        },
+        InstanceRequirements = M.InstanceRequirementsRequest,
     },
 }
 
@@ -59235,13 +57185,13 @@ M.GetSpotPlacementScoresInput = {
     members = {
         InstanceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "InstanceType",
             },
         },
         TargetCapacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -59254,19 +57204,17 @@ M.GetSpotPlacementScoresInput = {
         },
         RegionNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "RegionName",
             },
         },
-        InstanceRequirementsWithMetadata = {
-            type = "structure",
-        },
+        InstanceRequirementsWithMetadata = M.InstanceRequirementsWithMetadataRequest,
         DryRun = {
             type = "boolean",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -59290,7 +57238,7 @@ M.SpotPlacementScore = {
             },
         },
         Score = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "score",
             },
@@ -59303,7 +57251,7 @@ M.GetSpotPlacementScoresOutput = {
     members = {
         SpotPlacementScores = {
             type = "list",
-            member_type = "structure",
+            member = M.SpotPlacementScore,
             traits = {
                 xml_name = "spotPlacementScoreSet",
             },
@@ -59322,7 +57270,7 @@ M.GetSubnetCidrReservationsInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
@@ -59340,7 +57288,7 @@ M.GetSubnetCidrReservationsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -59350,14 +57298,14 @@ M.GetSubnetCidrReservationsOutput = {
     members = {
         SubnetIpv4CidrReservations = {
             type = "list",
-            member_type = "structure",
+            member = M.SubnetCidrReservation,
             traits = {
                 xml_name = "subnetIpv4CidrReservationSet",
             },
         },
         SubnetIpv6CidrReservations = {
             type = "list",
-            member_type = "structure",
+            member = M.SubnetCidrReservation,
             traits = {
                 xml_name = "subnetIpv6CidrReservationSet",
             },
@@ -59382,13 +57330,13 @@ M.GetTransitGatewayAttachmentPropagationsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -59422,7 +57370,7 @@ M.GetTransitGatewayAttachmentPropagationsOutput = {
     members = {
         TransitGatewayAttachmentPropagations = {
             type = "list",
-            member_type = "structure",
+            member = M.TransitGatewayAttachmentPropagation,
             traits = {
                 xml_name = "transitGatewayAttachmentPropagations",
             },
@@ -59447,13 +57395,13 @@ M.GetTransitGatewayMeteringPolicyEntriesInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -59469,7 +57417,7 @@ M.GetTransitGatewayMeteringPolicyEntriesOutput = {
     members = {
         TransitGatewayMeteringPolicyEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.TransitGatewayMeteringPolicyEntry,
             traits = {
                 xml_name = "transitGatewayMeteringPolicyEntries",
             },
@@ -59494,13 +57442,13 @@ M.GetTransitGatewayMulticastDomainAssociationsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -59538,12 +57486,9 @@ M.TransitGatewayMulticastDomainAssociation = {
                 xml_name = "resourceOwnerId",
             },
         },
-        Subnet = {
-            type = "structure",
-            traits = {
-                xml_name = "subnet",
-            },
-        },
+        Subnet = setmetatable({ traits = {
+            xml_name = "subnet",
+        } }, { __index = M.SubnetAssociation }),
     },
 }
 
@@ -59552,7 +57497,7 @@ M.GetTransitGatewayMulticastDomainAssociationsOutput = {
     members = {
         MulticastDomainAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.TransitGatewayMulticastDomainAssociation,
             traits = {
                 xml_name = "multicastDomainAssociations",
             },
@@ -59577,13 +57522,13 @@ M.GetTransitGatewayPolicyTableAssociationsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -59599,7 +57544,7 @@ M.GetTransitGatewayPolicyTableAssociationsOutput = {
     members = {
         Associations = {
             type = "list",
-            member_type = "structure",
+            member = M.TransitGatewayPolicyTableAssociation,
             traits = {
                 xml_name = "associations",
             },
@@ -59624,13 +57569,13 @@ M.GetTransitGatewayPolicyTableEntriesInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -59692,12 +57637,9 @@ M.TransitGatewayPolicyRule = {
                 xml_name = "protocol",
             },
         },
-        MetaData = {
-            type = "structure",
-            traits = {
-                xml_name = "metaData",
-            },
-        },
+        MetaData = setmetatable({ traits = {
+            xml_name = "metaData",
+        } }, { __index = M.TransitGatewayPolicyRuleMetaData }),
     },
 }
 
@@ -59710,12 +57652,9 @@ M.TransitGatewayPolicyTableEntry = {
                 xml_name = "policyRuleNumber",
             },
         },
-        PolicyRule = {
-            type = "structure",
-            traits = {
-                xml_name = "policyRule",
-            },
-        },
+        PolicyRule = setmetatable({ traits = {
+            xml_name = "policyRule",
+        } }, { __index = M.TransitGatewayPolicyRule }),
         TargetRouteTableId = {
             type = "string",
             traits = {
@@ -59730,7 +57669,7 @@ M.GetTransitGatewayPolicyTableEntriesOutput = {
     members = {
         TransitGatewayPolicyTableEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.TransitGatewayPolicyTableEntry,
             traits = {
                 xml_name = "transitGatewayPolicyTableEntries",
             },
@@ -59749,13 +57688,13 @@ M.GetTransitGatewayPrefixListReferencesInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -59771,7 +57710,7 @@ M.GetTransitGatewayPrefixListReferencesOutput = {
     members = {
         TransitGatewayPrefixListReferences = {
             type = "list",
-            member_type = "structure",
+            member = M.TransitGatewayPrefixListReference,
             traits = {
                 xml_name = "transitGatewayPrefixListReferenceSet",
             },
@@ -59796,13 +57735,13 @@ M.GetTransitGatewayRouteTableAssociationsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -59848,7 +57787,7 @@ M.GetTransitGatewayRouteTableAssociationsOutput = {
     members = {
         Associations = {
             type = "list",
-            member_type = "structure",
+            member = M.TransitGatewayRouteTableAssociation,
             traits = {
                 xml_name = "associations",
             },
@@ -59873,13 +57812,13 @@ M.GetTransitGatewayRouteTablePropagationsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -59931,7 +57870,7 @@ M.GetTransitGatewayRouteTablePropagationsOutput = {
     members = {
         TransitGatewayRouteTablePropagations = {
             type = "list",
-            member_type = "structure",
+            member = M.TransitGatewayRouteTablePropagation,
             traits = {
                 xml_name = "transitGatewayRouteTablePropagations",
             },
@@ -59989,7 +57928,7 @@ M.GetVerifiedAccessEndpointTargetsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -60029,7 +57968,7 @@ M.GetVerifiedAccessEndpointTargetsOutput = {
     members = {
         VerifiedAccessEndpointTargets = {
             type = "list",
-            member_type = "structure",
+            member = M.VerifiedAccessEndpointTarget,
             traits = {
                 xml_name = "verifiedAccessEndpointTargetSet",
             },
@@ -60086,7 +58025,7 @@ M.GetVpcResourcesBlockingEncryptionEnforcementInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -60132,7 +58071,7 @@ M.GetVpcResourcesBlockingEncryptionEnforcementOutput = {
     members = {
         NonCompliantResources = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcEncryptionNonCompliantResource,
             traits = {
                 xml_name = "nonCompliantResourceSet",
             },
@@ -60189,7 +58128,7 @@ M.GetVpnConnectionDeviceTypesInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -60235,7 +58174,7 @@ M.GetVpnConnectionDeviceTypesOutput = {
     members = {
         VpnConnectionDeviceTypes = {
             type = "list",
-            member_type = "structure",
+            member = M.VpnConnectionDeviceType,
             traits = {
                 xml_name = "vpnConnectionDeviceTypeSet",
             },
@@ -60327,12 +58266,9 @@ M.GetVpnTunnelReplacementStatusOutput = {
                 xml_name = "vpnTunnelOutsideIpAddress",
             },
         },
-        MaintenanceDetails = {
-            type = "structure",
-            traits = {
-                xml_name = "maintenanceDetails",
-            },
-        },
+        MaintenanceDetails = setmetatable({ traits = {
+            xml_name = "maintenanceDetails",
+        } }, { __index = M.MaintenanceDetails }),
     },
 }
 
@@ -60379,7 +58315,7 @@ M.ClientData = {
             type = "timestamp",
         },
         UploadSize = {
-            type = "number",
+            type = "double",
         },
         UploadStart = {
             type = "timestamp",
@@ -60417,9 +58353,7 @@ M.ImageDiskContainer = {
         Url = {
             type = "string",
         },
-        UserBucket = {
-            type = "structure",
-        },
+        UserBucket = M.UserBucket,
     },
 }
 
@@ -60438,9 +58372,7 @@ M.ImportImageInput = {
         Architecture = {
             type = "string",
         },
-        ClientData = {
-            type = "structure",
-        },
+        ClientData = M.ClientData,
         ClientToken = {
             type = "string",
         },
@@ -60449,7 +58381,7 @@ M.ImportImageInput = {
         },
         DiskContainers = {
             type = "list",
-            member_type = "structure",
+            member = M.ImageDiskContainer,
             traits = {
                 xml_name = "DiskContainer",
             },
@@ -60477,11 +58409,11 @@ M.ImportImageInput = {
         },
         LicenseSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.ImportImageLicenseConfigurationRequest,
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -60560,7 +58492,7 @@ M.ImportImageOutput = {
         },
         SnapshotDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.SnapshotDetail,
             traits = {
                 xml_name = "snapshotDetailSet",
             },
@@ -60579,14 +58511,14 @@ M.ImportImageOutput = {
         },
         LicenseSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.ImportImageLicenseConfigurationResponse,
             traits = {
                 xml_name = "licenseSpecifications",
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -60611,7 +58543,7 @@ M.DiskImageDetail = {
             },
         },
         Bytes = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
                 xml_name = "bytes",
@@ -60631,7 +58563,7 @@ M.VolumeDetail = {
     type = "structure",
     members = {
         Size = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
                 xml_name = "size",
@@ -60646,12 +58578,8 @@ M.DiskImage = {
         Description = {
             type = "string",
         },
-        Image = {
-            type = "structure",
-        },
-        Volume = {
-            type = "structure",
-        },
+        Image = M.DiskImageDetail,
+        Volume = M.VolumeDetail,
     },
 }
 
@@ -60678,14 +58606,14 @@ M.ImportInstanceLaunchSpecification = {
         },
         GroupNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "GroupName",
             },
         },
         GroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "GroupId",
             },
@@ -60696,24 +58624,18 @@ M.ImportInstanceLaunchSpecification = {
                 xml_name = "additionalInfo",
             },
         },
-        UserData = {
-            type = "structure",
-            traits = {
-                xml_name = "userData",
-            },
-        },
+        UserData = setmetatable({ traits = {
+            xml_name = "userData",
+        } }, { __index = M.UserData }),
         InstanceType = {
             type = "string",
             traits = {
                 xml_name = "instanceType",
             },
         },
-        Placement = {
-            type = "structure",
-            traits = {
-                xml_name = "placement",
-            },
-        },
+        Placement = setmetatable({ traits = {
+            xml_name = "placement",
+        } }, { __index = M.Placement }),
         Monitoring = {
             type = "boolean",
             traits = {
@@ -60756,15 +58678,12 @@ M.ImportInstanceInput = {
                 xml_name = "description",
             },
         },
-        LaunchSpecification = {
-            type = "structure",
-            traits = {
-                xml_name = "launchSpecification",
-            },
-        },
+        LaunchSpecification = setmetatable({ traits = {
+            xml_name = "launchSpecification",
+        } }, { __index = M.ImportInstanceLaunchSpecification }),
         DiskImages = {
             type = "list",
-            member_type = "structure",
+            member = M.DiskImage,
             traits = {
                 xml_name = "diskImage",
             },
@@ -60782,12 +58701,9 @@ M.ImportInstanceInput = {
 M.ImportInstanceOutput = {
     type = "structure",
     members = {
-        ConversionTask = {
-            type = "structure",
-            traits = {
-                xml_name = "conversionTask",
-            },
-        },
+        ConversionTask = setmetatable({ traits = {
+            xml_name = "conversionTask",
+        } }, { __index = M.ConversionTask }),
     },
 }
 
@@ -60796,7 +58712,7 @@ M.ImportKeyPairInput = {
     members = {
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -60847,7 +58763,7 @@ M.ImportKeyPairOutput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -60867,27 +58783,21 @@ M.SnapshotDiskContainer = {
         Url = {
             type = "string",
         },
-        UserBucket = {
-            type = "structure",
-        },
+        UserBucket = M.UserBucket,
     },
 }
 
 M.ImportSnapshotInput = {
     type = "structure",
     members = {
-        ClientData = {
-            type = "structure",
-        },
+        ClientData = M.ClientData,
         ClientToken = {
             type = "string",
         },
         Description = {
             type = "string",
         },
-        DiskContainer = {
-            type = "structure",
-        },
+        DiskContainer = M.SnapshotDiskContainer,
         DryRun = {
             type = "boolean",
         },
@@ -60902,7 +58812,7 @@ M.ImportSnapshotInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -60925,15 +58835,12 @@ M.ImportSnapshotOutput = {
                 xml_name = "importTaskId",
             },
         },
-        SnapshotTaskDetail = {
-            type = "structure",
-            traits = {
-                xml_name = "snapshotTaskDetail",
-            },
-        },
+        SnapshotTaskDetail = setmetatable({ traits = {
+            xml_name = "snapshotTaskDetail",
+        } }, { __index = M.SnapshotTaskDetail }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 xml_name = "tagSet",
             },
@@ -60959,38 +58866,29 @@ M.ImportVolumeInput = {
                 xml_name = "availabilityZone",
             },
         },
-        Image = {
-            type = "structure",
-            traits = {
-                required = true,
-                xml_name = "image",
-            },
-        },
+        Image = setmetatable({ traits = {
+            required = true,
+            xml_name = "image",
+        } }, { __index = M.DiskImageDetail }),
         Description = {
             type = "string",
             traits = {
                 xml_name = "description",
             },
         },
-        Volume = {
-            type = "structure",
-            traits = {
-                required = true,
-                xml_name = "volume",
-            },
-        },
+        Volume = setmetatable({ traits = {
+            required = true,
+            xml_name = "volume",
+        } }, { __index = M.VolumeDetail }),
     },
 }
 
 M.ImportVolumeOutput = {
     type = "structure",
     members = {
-        ConversionTask = {
-            type = "structure",
-            traits = {
-                xml_name = "conversionTask",
-            },
-        },
+        ConversionTask = setmetatable({ traits = {
+            xml_name = "conversionTask",
+        } }, { __index = M.ConversionTask }),
     },
 }
 
@@ -60999,7 +58897,7 @@ M.ListImagesInRecycleBinInput = {
     members = {
         ImageIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "ImageId",
             },
@@ -61008,7 +58906,7 @@ M.ListImagesInRecycleBinInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         DryRun = {
             type = "boolean",
@@ -61057,7 +58955,7 @@ M.ListImagesInRecycleBinOutput = {
     members = {
         Images = {
             type = "list",
-            member_type = "structure",
+            member = M.ImageRecycleBinInfo,
             traits = {
                 xml_name = "imageSet",
             },
@@ -61075,14 +58973,14 @@ M.ListSnapshotsInRecycleBinInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         SnapshotIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "SnapshotId",
             },
@@ -61134,7 +59032,7 @@ M.ListSnapshotsInRecycleBinOutput = {
     members = {
         Snapshots = {
             type = "list",
-            member_type = "structure",
+            member = M.SnapshotRecycleBinInfo,
             traits = {
                 xml_name = "snapshotSet",
             },
@@ -61153,7 +59051,7 @@ M.ListVolumesInRecycleBinInput = {
     members = {
         VolumeIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "VolumeId",
             },
@@ -61162,7 +59060,7 @@ M.ListVolumesInRecycleBinInput = {
             type = "boolean",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -61192,19 +59090,19 @@ M.VolumeRecycleBinInfo = {
             },
         },
         Size = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "size",
             },
         },
         Iops = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "iops",
             },
         },
         Throughput = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "throughput",
             },
@@ -61239,12 +59137,9 @@ M.VolumeRecycleBinInfo = {
                 xml_name = "snapshotId",
             },
         },
-        Operator = {
-            type = "structure",
-            traits = {
-                xml_name = "operator",
-            },
-        },
+        Operator = setmetatable({ traits = {
+            xml_name = "operator",
+        } }, { __index = M.OperatorResponse }),
         CreateTime = {
             type = "timestamp",
             traits = {
@@ -61271,7 +59166,7 @@ M.ListVolumesInRecycleBinOutput = {
     members = {
         Volumes = {
             type = "list",
-            member_type = "structure",
+            member = M.VolumeRecycleBinInfo,
             traits = {
                 xml_name = "volumeSet",
             },
@@ -61309,10 +59204,10 @@ M.LockSnapshotInput = {
             },
         },
         CoolOffPeriod = {
-            type = "number",
+            type = "integer",
         },
         LockDuration = {
-            type = "number",
+            type = "integer",
         },
         ExpirationDate = {
             type = "timestamp",
@@ -61336,13 +59231,13 @@ M.LockSnapshotOutput = {
             },
         },
         LockDuration = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "lockDuration",
             },
         },
         CoolOffPeriod = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "coolOffPeriod",
             },
@@ -61395,12 +59290,9 @@ M.ModifyAddressAttributeInput = {
 M.ModifyAddressAttributeOutput = {
     type = "structure",
     members = {
-        Address = {
-            type = "structure",
-            traits = {
-                xml_name = "address",
-            },
-        },
+        Address = setmetatable({ traits = {
+            xml_name = "address",
+        } }, { __index = M.AddressAttribute }),
     },
 }
 
@@ -61452,7 +59344,7 @@ M.ModifyCapacityReservationInput = {
             },
         },
         InstanceCount = {
-            type = "number",
+            type = "integer",
         },
         EndDate = {
             type = "timestamp",
@@ -61497,7 +59389,7 @@ M.ModifyCapacityReservationFleetInput = {
             },
         },
         TotalTargetCapacity = {
-            type = "number",
+            type = "integer",
         },
         EndDate = {
             type = "timestamp",
@@ -61528,7 +59420,7 @@ M.DnsServersOptionsModifyStructure = {
     members = {
         CustomDnsServers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Enabled = {
             type = "boolean",
@@ -61548,14 +59440,10 @@ M.ModifyClientVpnEndpointInput = {
         ServerCertificateArn = {
             type = "string",
         },
-        ConnectionLogOptions = {
-            type = "structure",
-        },
-        DnsServers = {
-            type = "structure",
-        },
+        ConnectionLogOptions = M.ConnectionLogOptions,
+        DnsServers = M.DnsServersOptionsModifyStructure,
         VpnPort = {
-            type = "number",
+            type = "integer",
         },
         Description = {
             type = "string",
@@ -61568,7 +59456,7 @@ M.ModifyClientVpnEndpointInput = {
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "SecurityGroupId",
             },
@@ -61579,24 +59467,16 @@ M.ModifyClientVpnEndpointInput = {
         SelfServicePortal = {
             type = "string",
         },
-        ClientConnectOptions = {
-            type = "structure",
-        },
+        ClientConnectOptions = M.ClientConnectOptions,
         SessionTimeoutHours = {
-            type = "number",
+            type = "integer",
         },
-        ClientLoginBannerOptions = {
-            type = "structure",
-        },
-        ClientRouteEnforcementOptions = {
-            type = "structure",
-        },
+        ClientLoginBannerOptions = M.ClientLoginBannerOptions,
+        ClientRouteEnforcementOptions = M.ClientRouteEnforcementOptions,
         DisconnectOnSessionTimeout = {
             type = "boolean",
         },
-        TransitGatewayConfiguration = {
-            type = "structure",
-        },
+        TransitGatewayConfiguration = M.TransitGatewayConfigurationInputStructure,
     },
 }
 
@@ -61636,12 +59516,9 @@ M.ModifyDefaultCreditSpecificationInput = {
 M.ModifyDefaultCreditSpecificationOutput = {
     type = "structure",
     members = {
-        InstanceFamilyCreditSpecification = {
-            type = "structure",
-            traits = {
-                xml_name = "instanceFamilyCreditSpecification",
-            },
-        },
+        InstanceFamilyCreditSpecification = setmetatable({ traits = {
+            xml_name = "instanceFamilyCreditSpecification",
+        } }, { __index = M.InstanceFamilyCreditSpecification }),
     },
 }
 
@@ -61683,7 +59560,7 @@ M.ModifyFleetInput = {
         },
         LaunchTemplateConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.FleetLaunchTemplateConfigRequest,
             traits = {
                 xml_name = "LaunchTemplateConfig",
             },
@@ -61694,9 +59571,7 @@ M.ModifyFleetInput = {
                 required = true,
             },
         },
-        TargetCapacitySpecification = {
-            type = "structure",
-        },
+        TargetCapacitySpecification = M.TargetCapacitySpecificationRequest,
         Context = {
             type = "string",
         },
@@ -61732,11 +59607,11 @@ M.LoadPermissionModifications = {
     members = {
         Add = {
             type = "list",
-            member_type = "structure",
+            member = M.LoadPermissionRequest,
         },
         Remove = {
             type = "list",
-            member_type = "structure",
+            member = M.LoadPermissionRequest,
         },
     },
 }
@@ -61766,28 +59641,26 @@ M.ModifyFpgaImageAttributeInput = {
         },
         UserIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "UserId",
             },
         },
         UserGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "UserGroup",
             },
         },
         ProductCodes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "ProductCode",
             },
         },
-        LoadPermission = {
-            type = "structure",
-        },
+        LoadPermission = M.LoadPermissionModifications,
         Description = {
             type = "string",
         },
@@ -61800,12 +59673,9 @@ M.ModifyFpgaImageAttributeInput = {
 M.ModifyFpgaImageAttributeOutput = {
     type = "structure",
     members = {
-        FpgaImageAttribute = {
-            type = "structure",
-            traits = {
-                xml_name = "fpgaImageAttribute",
-            },
-        },
+        FpgaImageAttribute = setmetatable({ traits = {
+            xml_name = "fpgaImageAttribute",
+        } }, { __index = M.FpgaImageAttribute }),
     },
 }
 
@@ -61826,7 +59696,7 @@ M.ModifyHostsInput = {
         },
         HostIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "hostId",
@@ -61846,14 +59716,14 @@ M.ModifyHostsOutput = {
     members = {
         Successful = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "successful",
             },
         },
         Unsuccessful = {
             type = "list",
-            member_type = "structure",
+            member = M.UnsuccessfulItem,
             traits = {
                 xml_name = "unsuccessful",
             },
@@ -61919,11 +59789,11 @@ M.LaunchPermissionModifications = {
     members = {
         Add = {
             type = "list",
-            member_type = "structure",
+            member = M.LaunchPermission,
         },
         Remove = {
             type = "list",
-            member_type = "structure",
+            member = M.LaunchPermission,
         },
     },
 }
@@ -61934,38 +59804,34 @@ M.ModifyImageAttributeInput = {
         Attribute = {
             type = "string",
         },
-        Description = {
-            type = "structure",
-        },
+        Description = M.AttributeValue,
         ImageId = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        LaunchPermission = {
-            type = "structure",
-        },
+        LaunchPermission = M.LaunchPermissionModifications,
         OperationType = {
             type = "string",
         },
         ProductCodes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "ProductCode",
             },
         },
         UserGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "UserGroup",
             },
         },
         UserIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "UserId",
             },
@@ -61975,21 +59841,19 @@ M.ModifyImageAttributeInput = {
         },
         OrganizationArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "OrganizationArn",
             },
         },
         OrganizationalUnitArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "OrganizationalUnitArn",
             },
         },
-        ImdsSupport = {
-            type = "structure",
-        },
+        ImdsSupport = M.AttributeValue,
         DryRun = {
             type = "boolean",
             traits = {
@@ -62030,12 +59894,9 @@ M.InstanceBlockDeviceMappingSpecification = {
                 xml_name = "deviceName",
             },
         },
-        Ebs = {
-            type = "structure",
-            traits = {
-                xml_name = "ebs",
-            },
-        },
+        Ebs = setmetatable({ traits = {
+            xml_name = "ebs",
+        } }, { __index = M.EbsInstanceBlockDeviceSpecification }),
         VirtualName = {
             type = "string",
             traits = {
@@ -62066,12 +59927,8 @@ M.BlobAttributeValue = {
 M.ModifyInstanceAttributeInput = {
     type = "structure",
     members = {
-        SourceDestCheck = {
-            type = "structure",
-        },
-        DisableApiStop = {
-            type = "structure",
-        },
+        SourceDestCheck = M.AttributeBooleanValue,
+        DisableApiStop = M.AttributeBooleanValue,
         DryRun = {
             type = "boolean",
             traits = {
@@ -62099,72 +59956,45 @@ M.ModifyInstanceAttributeInput = {
         },
         BlockDeviceMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceBlockDeviceMappingSpecification,
             traits = {
                 xml_name = "blockDeviceMapping",
             },
         },
-        DisableApiTermination = {
-            type = "structure",
-            traits = {
-                xml_name = "disableApiTermination",
-            },
-        },
-        InstanceType = {
-            type = "structure",
-            traits = {
-                xml_name = "instanceType",
-            },
-        },
-        Kernel = {
-            type = "structure",
-            traits = {
-                xml_name = "kernel",
-            },
-        },
-        Ramdisk = {
-            type = "structure",
-            traits = {
-                xml_name = "ramdisk",
-            },
-        },
-        UserData = {
-            type = "structure",
-            traits = {
-                xml_name = "userData",
-            },
-        },
-        InstanceInitiatedShutdownBehavior = {
-            type = "structure",
-            traits = {
-                xml_name = "instanceInitiatedShutdownBehavior",
-            },
-        },
+        DisableApiTermination = setmetatable({ traits = {
+            xml_name = "disableApiTermination",
+        } }, { __index = M.AttributeBooleanValue }),
+        InstanceType = setmetatable({ traits = {
+            xml_name = "instanceType",
+        } }, { __index = M.AttributeValue }),
+        Kernel = setmetatable({ traits = {
+            xml_name = "kernel",
+        } }, { __index = M.AttributeValue }),
+        Ramdisk = setmetatable({ traits = {
+            xml_name = "ramdisk",
+        } }, { __index = M.AttributeValue }),
+        UserData = setmetatable({ traits = {
+            xml_name = "userData",
+        } }, { __index = M.BlobAttributeValue }),
+        InstanceInitiatedShutdownBehavior = setmetatable({ traits = {
+            xml_name = "instanceInitiatedShutdownBehavior",
+        } }, { __index = M.AttributeValue }),
         Groups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "GroupId",
             },
         },
-        EbsOptimized = {
-            type = "structure",
-            traits = {
-                xml_name = "ebsOptimized",
-            },
-        },
-        SriovNetSupport = {
-            type = "structure",
-            traits = {
-                xml_name = "sriovNetSupport",
-            },
-        },
-        EnaSupport = {
-            type = "structure",
-            traits = {
-                xml_name = "enaSupport",
-            },
-        },
+        EbsOptimized = setmetatable({ traits = {
+            xml_name = "ebsOptimized",
+        } }, { __index = M.AttributeBooleanValue }),
+        SriovNetSupport = setmetatable({ traits = {
+            xml_name = "sriovNetSupport",
+        } }, { __index = M.AttributeValue }),
+        EnaSupport = setmetatable({ traits = {
+            xml_name = "enaSupport",
+        } }, { __index = M.AttributeBooleanValue }),
     },
 }
 
@@ -62178,9 +60008,7 @@ M.CapacityReservationSpecification = {
         CapacityReservationPreference = {
             type = "string",
         },
-        CapacityReservationTarget = {
-            type = "structure",
-        },
+        CapacityReservationTarget = M.CapacityReservationTarget,
     },
 }
 
@@ -62193,12 +60021,9 @@ M.ModifyInstanceCapacityReservationAttributesInput = {
                 required = true,
             },
         },
-        CapacityReservationSpecification = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        CapacityReservationSpecification = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CapacityReservationSpecification }),
         DryRun = {
             type = "boolean",
         },
@@ -62234,7 +60059,7 @@ M.ModifyInstanceConnectEndpointInput = {
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "SecurityGroupId",
             },
@@ -62267,10 +60092,10 @@ M.ModifyInstanceCpuOptionsInput = {
             },
         },
         CoreCount = {
-            type = "number",
+            type = "integer",
         },
         ThreadsPerCore = {
-            type = "number",
+            type = "integer",
         },
         NestedVirtualization = {
             type = "string",
@@ -62291,13 +60116,13 @@ M.ModifyInstanceCpuOptionsOutput = {
             },
         },
         CoreCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "coreCount",
             },
         },
         ThreadsPerCore = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "threadsPerCore",
             },
@@ -62337,7 +60162,7 @@ M.ModifyInstanceCreditSpecificationInput = {
         },
         InstanceCreditSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceCreditSpecificationRequest,
             traits = {
                 required = true,
                 xml_name = "InstanceCreditSpecification",
@@ -62392,12 +60217,9 @@ M.UnsuccessfulInstanceCreditSpecificationItem = {
                 xml_name = "instanceId",
             },
         },
-        Error = {
-            type = "structure",
-            traits = {
-                xml_name = "error",
-            },
-        },
+        Error = setmetatable({ traits = {
+            xml_name = "error",
+        } }, { __index = M.UnsuccessfulInstanceCreditSpecificationItemError }),
     },
 }
 
@@ -62406,14 +60228,14 @@ M.ModifyInstanceCreditSpecificationOutput = {
     members = {
         SuccessfulInstanceCreditSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.SuccessfulInstanceCreditSpecificationItem,
             traits = {
                 xml_name = "successfulInstanceCreditSpecificationSet",
             },
         },
         UnsuccessfulInstanceCreditSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.UnsuccessfulInstanceCreditSpecificationItem,
             traits = {
                 xml_name = "unsuccessfulInstanceCreditSpecificationSet",
             },
@@ -62451,12 +60273,9 @@ M.ModifyInstanceEventStartTimeInput = {
 M.ModifyInstanceEventStartTimeOutput = {
     type = "structure",
     members = {
-        Event = {
-            type = "structure",
-            traits = {
-                xml_name = "event",
-            },
-        },
+        Event = setmetatable({ traits = {
+            xml_name = "event",
+        } }, { __index = M.InstanceStatusEvent }),
     },
 }
 
@@ -62477,7 +60296,7 @@ M.ModifyInstanceEventWindowInput = {
         },
         TimeRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceEventWindowTimeRangeRequest,
             traits = {
                 xml_name = "TimeRange",
             },
@@ -62491,12 +60310,9 @@ M.ModifyInstanceEventWindowInput = {
 M.ModifyInstanceEventWindowOutput = {
     type = "structure",
     members = {
-        InstanceEventWindow = {
-            type = "structure",
-            traits = {
-                xml_name = "instanceEventWindow",
-            },
-        },
+        InstanceEventWindow = setmetatable({ traits = {
+            xml_name = "instanceEventWindow",
+        } }, { __index = M.InstanceEventWindow }),
     },
 }
 
@@ -62576,7 +60392,7 @@ M.ModifyInstanceMetadataDefaultsInput = {
             type = "string",
         },
         HttpPutResponseHopLimit = {
-            type = "number",
+            type = "integer",
         },
         HttpEndpoint = {
             type = "string",
@@ -62618,7 +60434,7 @@ M.ModifyInstanceMetadataOptionsInput = {
             type = "string",
         },
         HttpPutResponseHopLimit = {
-            type = "number",
+            type = "integer",
         },
         HttpEndpoint = {
             type = "string",
@@ -62644,12 +60460,9 @@ M.ModifyInstanceMetadataOptionsOutput = {
                 xml_name = "instanceId",
             },
         },
-        InstanceMetadataOptions = {
-            type = "structure",
-            traits = {
-                xml_name = "instanceMetadataOptions",
-            },
-        },
+        InstanceMetadataOptions = setmetatable({ traits = {
+            xml_name = "instanceMetadataOptions",
+        } }, { __index = M.InstanceMetadataOptionsResponse }),
     },
 }
 
@@ -62705,7 +60518,7 @@ M.ModifyInstancePlacementInput = {
             type = "string",
         },
         PartitionNumber = {
-            type = "number",
+            type = "integer",
         },
         HostResourceGroupArn = {
             type = "string",
@@ -62779,14 +60592,14 @@ M.ModifyIpamInput = {
         },
         AddOperatingRegions = {
             type = "list",
-            member_type = "structure",
+            member = M.AddIpamOperatingRegion,
             traits = {
                 xml_name = "AddOperatingRegion",
             },
         },
         RemoveOperatingRegions = {
             type = "list",
-            member_type = "structure",
+            member = M.RemoveIpamOperatingRegion,
             traits = {
                 xml_name = "RemoveOperatingRegion",
             },
@@ -62806,12 +60619,9 @@ M.ModifyIpamInput = {
 M.ModifyIpamOutput = {
     type = "structure",
     members = {
-        Ipam = {
-            type = "structure",
-            traits = {
-                xml_name = "ipam",
-            },
-        },
+        Ipam = setmetatable({ traits = {
+            xml_name = "ipam",
+        } }, { __index = M.Ipam }),
     },
 }
 
@@ -62850,7 +60660,7 @@ M.ModifyIpamPolicyAllocationRulesInput = {
         },
         AllocationRules = {
             type = "list",
-            member_type = "structure",
+            member = M.IpamPolicyAllocationRuleRequest,
             traits = {
                 xml_name = "AllocationRule",
             },
@@ -62861,12 +60671,9 @@ M.ModifyIpamPolicyAllocationRulesInput = {
 M.ModifyIpamPolicyAllocationRulesOutput = {
     type = "structure",
     members = {
-        IpamPolicyDocument = {
-            type = "structure",
-            traits = {
-                xml_name = "ipamPolicyDocument",
-            },
-        },
+        IpamPolicyDocument = setmetatable({ traits = {
+            xml_name = "ipamPolicyDocument",
+        } }, { __index = M.IpamPolicyDocument }),
     },
 }
 
@@ -62889,27 +60696,27 @@ M.ModifyIpamPoolInput = {
             type = "boolean",
         },
         AllocationMinNetmaskLength = {
-            type = "number",
+            type = "integer",
         },
         AllocationMaxNetmaskLength = {
-            type = "number",
+            type = "integer",
         },
         AllocationDefaultNetmaskLength = {
-            type = "number",
+            type = "integer",
         },
         ClearAllocationDefaultNetmaskLength = {
             type = "boolean",
         },
         AddAllocationResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.RequestIpamResourceTag,
             traits = {
                 xml_name = "AddAllocationResourceTag",
             },
         },
         RemoveAllocationResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.RequestIpamResourceTag,
             traits = {
                 xml_name = "RemoveAllocationResourceTag",
             },
@@ -62920,12 +60727,9 @@ M.ModifyIpamPoolInput = {
 M.ModifyIpamPoolOutput = {
     type = "structure",
     members = {
-        IpamPool = {
-            type = "structure",
-            traits = {
-                xml_name = "ipamPool",
-            },
-        },
+        IpamPool = setmetatable({ traits = {
+            xml_name = "ipamPool",
+        } }, { __index = M.IpamPool }),
     },
 }
 
@@ -62946,7 +60750,7 @@ M.ModifyIpamPrefixListResolverInput = {
         },
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.IpamPrefixListResolverRuleRequest,
             traits = {
                 xml_name = "Rule",
             },
@@ -62957,12 +60761,9 @@ M.ModifyIpamPrefixListResolverInput = {
 M.ModifyIpamPrefixListResolverOutput = {
     type = "structure",
     members = {
-        IpamPrefixListResolver = {
-            type = "structure",
-            traits = {
-                xml_name = "ipamPrefixListResolver",
-            },
-        },
+        IpamPrefixListResolver = setmetatable({ traits = {
+            xml_name = "ipamPrefixListResolver",
+        } }, { __index = M.IpamPrefixListResolver }),
     },
 }
 
@@ -62979,7 +60780,7 @@ M.ModifyIpamPrefixListResolverTargetInput = {
             },
         },
         DesiredVersion = {
-            type = "number",
+            type = "long",
         },
         TrackLatestVersion = {
             type = "boolean",
@@ -62993,12 +60794,9 @@ M.ModifyIpamPrefixListResolverTargetInput = {
 M.ModifyIpamPrefixListResolverTargetOutput = {
     type = "structure",
     members = {
-        IpamPrefixListResolverTarget = {
-            type = "structure",
-            traits = {
-                xml_name = "ipamPrefixListResolverTarget",
-            },
-        },
+        IpamPrefixListResolverTarget = setmetatable({ traits = {
+            xml_name = "ipamPrefixListResolverTarget",
+        } }, { __index = M.IpamPrefixListResolverTarget }),
     },
 }
 
@@ -63047,12 +60845,9 @@ M.ModifyIpamResourceCidrInput = {
 M.ModifyIpamResourceCidrOutput = {
     type = "structure",
     members = {
-        IpamResourceCidr = {
-            type = "structure",
-            traits = {
-                xml_name = "ipamResourceCidr",
-            },
-        },
+        IpamResourceCidr = setmetatable({ traits = {
+            xml_name = "ipamResourceCidr",
+        } }, { __index = M.IpamResourceCidr }),
     },
 }
 
@@ -63082,28 +60877,28 @@ M.ModifyIpamResourceDiscoveryInput = {
         },
         AddOperatingRegions = {
             type = "list",
-            member_type = "structure",
+            member = M.AddIpamOperatingRegion,
             traits = {
                 xml_name = "AddOperatingRegion",
             },
         },
         RemoveOperatingRegions = {
             type = "list",
-            member_type = "structure",
+            member = M.RemoveIpamOperatingRegion,
             traits = {
                 xml_name = "RemoveOperatingRegion",
             },
         },
         AddOrganizationalUnitExclusions = {
             type = "list",
-            member_type = "structure",
+            member = M.AddIpamOrganizationalUnitExclusion,
             traits = {
                 xml_name = "AddOrganizationalUnitExclusion",
             },
         },
         RemoveOrganizationalUnitExclusions = {
             type = "list",
-            member_type = "structure",
+            member = M.RemoveIpamOrganizationalUnitExclusion,
             traits = {
                 xml_name = "RemoveOrganizationalUnitExclusion",
             },
@@ -63114,12 +60909,9 @@ M.ModifyIpamResourceDiscoveryInput = {
 M.ModifyIpamResourceDiscoveryOutput = {
     type = "structure",
     members = {
-        IpamResourceDiscovery = {
-            type = "structure",
-            traits = {
-                xml_name = "ipamResourceDiscovery",
-            },
-        },
+        IpamResourceDiscovery = setmetatable({ traits = {
+            xml_name = "ipamResourceDiscovery",
+        } }, { __index = M.IpamResourceDiscovery }),
     },
 }
 
@@ -63138,9 +60930,7 @@ M.ModifyIpamScopeInput = {
         Description = {
             type = "string",
         },
-        ExternalAuthorityConfiguration = {
-            type = "structure",
-        },
+        ExternalAuthorityConfiguration = M.ExternalAuthorityConfiguration,
         RemoveExternalAuthorityConfiguration = {
             type = "boolean",
         },
@@ -63150,12 +60940,9 @@ M.ModifyIpamScopeInput = {
 M.ModifyIpamScopeOutput = {
     type = "structure",
     members = {
-        IpamScope = {
-            type = "structure",
-            traits = {
-                xml_name = "ipamScope",
-            },
-        },
+        IpamScope = setmetatable({ traits = {
+            xml_name = "ipamScope",
+        } }, { __index = M.IpamScope }),
     },
 }
 
@@ -63186,12 +60973,9 @@ M.ModifyLaunchTemplateInput = {
 M.ModifyLaunchTemplateOutput = {
     type = "structure",
     members = {
-        LaunchTemplate = {
-            type = "structure",
-            traits = {
-                xml_name = "launchTemplate",
-            },
-        },
+        LaunchTemplate = setmetatable({ traits = {
+            xml_name = "launchTemplate",
+        } }, { __index = M.LaunchTemplate }),
     },
 }
 
@@ -63225,12 +61009,9 @@ M.ModifyLocalGatewayRouteInput = {
 M.ModifyLocalGatewayRouteOutput = {
     type = "structure",
     members = {
-        Route = {
-            type = "structure",
-            traits = {
-                xml_name = "route",
-            },
-        },
+        Route = setmetatable({ traits = {
+            xml_name = "route",
+        } }, { __index = M.LocalGatewayRoute }),
     },
 }
 
@@ -63259,27 +61040,27 @@ M.ModifyManagedPrefixListInput = {
             },
         },
         CurrentVersion = {
-            type = "number",
+            type = "long",
         },
         PrefixListName = {
             type = "string",
         },
         AddEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.AddPrefixListEntry,
             traits = {
                 xml_name = "AddEntry",
             },
         },
         RemoveEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.RemovePrefixListEntry,
             traits = {
                 xml_name = "RemoveEntry",
             },
         },
         MaxEntries = {
-            type = "number",
+            type = "integer",
         },
         IpamPrefixListResolverSyncEnabled = {
             type = "boolean",
@@ -63290,12 +61071,9 @@ M.ModifyManagedPrefixListInput = {
 M.ModifyManagedPrefixListOutput = {
     type = "structure",
     members = {
-        PrefixList = {
-            type = "structure",
-            traits = {
-                xml_name = "prefixList",
-            },
-        },
+        PrefixList = setmetatable({ traits = {
+            xml_name = "prefixList",
+        } }, { __index = M.ManagedPrefixList }),
     },
 }
 
@@ -63314,12 +61092,9 @@ M.ModifyManagedResourceVisibilityInput = {
 M.ModifyManagedResourceVisibilityOutput = {
     type = "structure",
     members = {
-        Visibility = {
-            type = "structure",
-            traits = {
-                xml_name = "visibility",
-            },
-        },
+        Visibility = setmetatable({ traits = {
+            xml_name = "visibility",
+        } }, { __index = M.ManagedResourceVisibilitySettings }),
     },
 }
 
@@ -63330,7 +61105,7 @@ M.NetworkInterfaceAttachmentChanges = {
             type = "boolean",
         },
         EnaQueueCount = {
-            type = "number",
+            type = "integer",
         },
         AttachmentId = {
             type = "string",
@@ -63350,21 +61125,17 @@ M.NetworkInterfaceAttachmentChanges = {
 M.ModifyNetworkInterfaceAttributeInput = {
     type = "structure",
     members = {
-        EnaSrdSpecification = {
-            type = "structure",
-        },
+        EnaSrdSpecification = M.EnaSrdSpecification,
         EnablePrimaryIpv6 = {
             type = "boolean",
         },
-        ConnectionTrackingSpecification = {
-            type = "structure",
-        },
+        ConnectionTrackingSpecification = M.ConnectionTrackingSpecificationRequest,
         AssociatePublicIpAddress = {
             type = "boolean",
         },
         AssociatedSubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "AssociatedSubnetId",
             },
@@ -63382,31 +61153,22 @@ M.ModifyNetworkInterfaceAttributeInput = {
                 xml_name = "networkInterfaceId",
             },
         },
-        Description = {
-            type = "structure",
-            traits = {
-                xml_name = "description",
-            },
-        },
-        SourceDestCheck = {
-            type = "structure",
-            traits = {
-                xml_name = "sourceDestCheck",
-            },
-        },
+        Description = setmetatable({ traits = {
+            xml_name = "description",
+        } }, { __index = M.AttributeValue }),
+        SourceDestCheck = setmetatable({ traits = {
+            xml_name = "sourceDestCheck",
+        } }, { __index = M.AttributeBooleanValue }),
         Groups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "SecurityGroupId",
             },
         },
-        Attachment = {
-            type = "structure",
-            traits = {
-                xml_name = "attachment",
-            },
-        },
+        Attachment = setmetatable({ traits = {
+            xml_name = "attachment",
+        } }, { __index = M.NetworkInterfaceAttachmentChanges }),
     },
 }
 
@@ -63494,7 +61256,7 @@ M.ModifyReservedInstancesInput = {
     members = {
         ReservedInstancesIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "ReservedInstancesId",
@@ -63508,7 +61270,7 @@ M.ModifyReservedInstancesInput = {
         },
         TargetConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.ReservedInstancesConfiguration,
             traits = {
                 required = true,
                 xml_name = "ReservedInstancesConfigurationSetItemType",
@@ -63542,7 +61304,7 @@ M.ModifyRouteServerInput = {
             type = "string",
         },
         PersistRoutesDuration = {
-            type = "number",
+            type = "long",
         },
         SnsNotificationsEnabled = {
             type = "boolean",
@@ -63556,12 +61318,9 @@ M.ModifyRouteServerInput = {
 M.ModifyRouteServerOutput = {
     type = "structure",
     members = {
-        RouteServer = {
-            type = "structure",
-            traits = {
-                xml_name = "routeServer",
-            },
-        },
+        RouteServer = setmetatable({ traits = {
+            xml_name = "routeServer",
+        } }, { __index = M.RouteServer }),
     },
 }
 
@@ -63572,10 +61331,10 @@ M.SecurityGroupRuleRequest = {
             type = "string",
         },
         FromPort = {
-            type = "number",
+            type = "integer",
         },
         ToPort = {
-            type = "number",
+            type = "integer",
         },
         CidrIpv4 = {
             type = "string",
@@ -63604,9 +61363,7 @@ M.SecurityGroupRuleUpdate = {
                 required = true,
             },
         },
-        SecurityGroupRule = {
-            type = "structure",
-        },
+        SecurityGroupRule = M.SecurityGroupRuleRequest,
     },
 }
 
@@ -63621,7 +61378,7 @@ M.ModifySecurityGroupRulesInput = {
         },
         SecurityGroupRules = {
             type = "list",
-            member_type = "structure",
+            member = M.SecurityGroupRuleUpdate,
             traits = {
                 required = true,
                 xml_name = "SecurityGroupRule",
@@ -63650,11 +61407,11 @@ M.CreateVolumePermissionModifications = {
     members = {
         Add = {
             type = "list",
-            member_type = "structure",
+            member = M.CreateVolumePermission,
         },
         Remove = {
             type = "list",
-            member_type = "structure",
+            member = M.CreateVolumePermission,
         },
     },
 }
@@ -63665,12 +61422,10 @@ M.ModifySnapshotAttributeInput = {
         Attribute = {
             type = "string",
         },
-        CreateVolumePermission = {
-            type = "structure",
-        },
+        CreateVolumePermission = M.CreateVolumePermissionModifications,
         GroupNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "UserGroup",
             },
@@ -63686,7 +61441,7 @@ M.ModifySnapshotAttributeInput = {
         },
         UserIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "UserId",
             },
@@ -63749,13 +61504,13 @@ M.ModifySpotFleetRequestInput = {
     members = {
         LaunchTemplateConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.LaunchTemplateConfig,
             traits = {
                 xml_name = "LaunchTemplateConfig",
             },
         },
         OnDemandTargetCapacity = {
-            type = "number",
+            type = "integer",
         },
         Context = {
             type = "string",
@@ -63768,7 +61523,7 @@ M.ModifySpotFleetRequestInput = {
             },
         },
         TargetCapacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "targetCapacity",
             },
@@ -63797,12 +61552,8 @@ M.ModifySpotFleetRequestOutput = {
 M.ModifySubnetAttributeInput = {
     type = "structure",
     members = {
-        AssignIpv6AddressOnCreation = {
-            type = "structure",
-        },
-        MapPublicIpOnLaunch = {
-            type = "structure",
-        },
+        AssignIpv6AddressOnCreation = M.AttributeBooleanValue,
+        MapPublicIpOnLaunch = M.AttributeBooleanValue,
         SubnetId = {
             type = "string",
             traits = {
@@ -63810,30 +61561,20 @@ M.ModifySubnetAttributeInput = {
                 xml_name = "subnetId",
             },
         },
-        MapCustomerOwnedIpOnLaunch = {
-            type = "structure",
-        },
+        MapCustomerOwnedIpOnLaunch = M.AttributeBooleanValue,
         CustomerOwnedIpv4Pool = {
             type = "string",
         },
-        EnableDns64 = {
-            type = "structure",
-        },
+        EnableDns64 = M.AttributeBooleanValue,
         PrivateDnsHostnameTypeOnLaunch = {
             type = "string",
         },
-        EnableResourceNameDnsARecordOnLaunch = {
-            type = "structure",
-        },
-        EnableResourceNameDnsAAAARecordOnLaunch = {
-            type = "structure",
-        },
+        EnableResourceNameDnsARecordOnLaunch = M.AttributeBooleanValue,
+        EnableResourceNameDnsAAAARecordOnLaunch = M.AttributeBooleanValue,
         EnableLniAtDeviceIndex = {
-            type = "number",
+            type = "integer",
         },
-        DisableLniAtDeviceIndex = {
-            type = "structure",
-        },
+        DisableLniAtDeviceIndex = M.AttributeBooleanValue,
     },
 }
 
@@ -63852,14 +61593,14 @@ M.ModifyTrafficMirrorFilterNetworkServicesInput = {
         },
         AddNetworkServices = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "AddNetworkService",
             },
         },
         RemoveNetworkServices = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "RemoveNetworkService",
             },
@@ -63873,12 +61614,9 @@ M.ModifyTrafficMirrorFilterNetworkServicesInput = {
 M.ModifyTrafficMirrorFilterNetworkServicesOutput = {
     type = "structure",
     members = {
-        TrafficMirrorFilter = {
-            type = "structure",
-            traits = {
-                xml_name = "trafficMirrorFilter",
-            },
-        },
+        TrafficMirrorFilter = setmetatable({ traits = {
+            xml_name = "trafficMirrorFilter",
+        } }, { __index = M.TrafficMirrorFilter }),
     },
 }
 
@@ -63902,19 +61640,15 @@ M.ModifyTrafficMirrorFilterRuleInput = {
             type = "string",
         },
         RuleNumber = {
-            type = "number",
+            type = "integer",
         },
         RuleAction = {
             type = "string",
         },
-        DestinationPortRange = {
-            type = "structure",
-        },
-        SourcePortRange = {
-            type = "structure",
-        },
+        DestinationPortRange = M.TrafficMirrorPortRangeRequest,
+        SourcePortRange = M.TrafficMirrorPortRangeRequest,
         Protocol = {
-            type = "number",
+            type = "integer",
         },
         DestinationCidrBlock = {
             type = "string",
@@ -63927,7 +61661,7 @@ M.ModifyTrafficMirrorFilterRuleInput = {
         },
         RemoveFields = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "RemoveField",
             },
@@ -63941,12 +61675,9 @@ M.ModifyTrafficMirrorFilterRuleInput = {
 M.ModifyTrafficMirrorFilterRuleOutput = {
     type = "structure",
     members = {
-        TrafficMirrorFilterRule = {
-            type = "structure",
-            traits = {
-                xml_name = "trafficMirrorFilterRule",
-            },
-        },
+        TrafficMirrorFilterRule = setmetatable({ traits = {
+            xml_name = "trafficMirrorFilterRule",
+        } }, { __index = M.TrafficMirrorFilterRule }),
     },
 }
 
@@ -63972,20 +61703,20 @@ M.ModifyTrafficMirrorSessionInput = {
             type = "string",
         },
         PacketLength = {
-            type = "number",
+            type = "integer",
         },
         SessionNumber = {
-            type = "number",
+            type = "integer",
         },
         VirtualNetworkId = {
-            type = "number",
+            type = "integer",
         },
         Description = {
             type = "string",
         },
         RemoveFields = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "RemoveField",
             },
@@ -63999,12 +61730,9 @@ M.ModifyTrafficMirrorSessionInput = {
 M.ModifyTrafficMirrorSessionOutput = {
     type = "structure",
     members = {
-        TrafficMirrorSession = {
-            type = "structure",
-            traits = {
-                xml_name = "trafficMirrorSession",
-            },
-        },
+        TrafficMirrorSession = setmetatable({ traits = {
+            xml_name = "trafficMirrorSession",
+        } }, { __index = M.TrafficMirrorSession }),
     },
 }
 
@@ -64018,11 +61746,11 @@ M.ModifyTransitGatewayOptions = {
     members = {
         AddTransitGatewayCidrBlocks = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RemoveTransitGatewayCidrBlocks = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         VpnEcmpSupport = {
             type = "string",
@@ -64049,7 +61777,7 @@ M.ModifyTransitGatewayOptions = {
             type = "string",
         },
         AmazonSideAsn = {
-            type = "number",
+            type = "long",
         },
         EncryptionSupport = {
             type = "string",
@@ -64069,9 +61797,7 @@ M.ModifyTransitGatewayInput = {
         Description = {
             type = "string",
         },
-        Options = {
-            type = "structure",
-        },
+        Options = M.ModifyTransitGatewayOptions,
         DryRun = {
             type = "boolean",
         },
@@ -64081,12 +61807,9 @@ M.ModifyTransitGatewayInput = {
 M.ModifyTransitGatewayOutput = {
     type = "structure",
     members = {
-        TransitGateway = {
-            type = "structure",
-            traits = {
-                xml_name = "transitGateway",
-            },
-        },
+        TransitGateway = setmetatable({ traits = {
+            xml_name = "transitGateway",
+        } }, { __index = M.TransitGateway }),
     },
 }
 
@@ -64101,14 +61824,14 @@ M.ModifyTransitGatewayMeteringPolicyInput = {
         },
         AddMiddleboxAttachmentIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "AddMiddleboxAttachmentId",
             },
         },
         RemoveMiddleboxAttachmentIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "RemoveMiddleboxAttachmentId",
             },
@@ -64122,12 +61845,9 @@ M.ModifyTransitGatewayMeteringPolicyInput = {
 M.ModifyTransitGatewayMeteringPolicyOutput = {
     type = "structure",
     members = {
-        TransitGatewayMeteringPolicy = {
-            type = "structure",
-            traits = {
-                xml_name = "transitGatewayMeteringPolicy",
-            },
-        },
+        TransitGatewayMeteringPolicy = setmetatable({ traits = {
+            xml_name = "transitGatewayMeteringPolicy",
+        } }, { __index = M.TransitGatewayMeteringPolicy }),
     },
 }
 
@@ -64161,12 +61881,9 @@ M.ModifyTransitGatewayPrefixListReferenceInput = {
 M.ModifyTransitGatewayPrefixListReferenceOutput = {
     type = "structure",
     members = {
-        TransitGatewayPrefixListReference = {
-            type = "structure",
-            traits = {
-                xml_name = "transitGatewayPrefixListReference",
-            },
-        },
+        TransitGatewayPrefixListReference = setmetatable({ traits = {
+            xml_name = "transitGatewayPrefixListReference",
+        } }, { __index = M.TransitGatewayPrefixListReference }),
     },
 }
 
@@ -64199,15 +61916,13 @@ M.ModifyTransitGatewayVpcAttachmentInput = {
         },
         AddSubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RemoveSubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        Options = {
-            type = "structure",
-        },
+        Options = M.ModifyTransitGatewayVpcAttachmentRequestOptions,
         DryRun = {
             type = "boolean",
         },
@@ -64217,12 +61932,9 @@ M.ModifyTransitGatewayVpcAttachmentInput = {
 M.ModifyTransitGatewayVpcAttachmentOutput = {
     type = "structure",
     members = {
-        TransitGatewayVpcAttachment = {
-            type = "structure",
-            traits = {
-                xml_name = "transitGatewayVpcAttachment",
-            },
-        },
+        TransitGatewayVpcAttachment = setmetatable({ traits = {
+            xml_name = "transitGatewayVpcAttachment",
+        } }, { __index = M.TransitGatewayVpcAttachment }),
     },
 }
 
@@ -64230,10 +61942,10 @@ M.ModifyVerifiedAccessEndpointPortRange = {
     type = "structure",
     members = {
         FromPort = {
-            type = "number",
+            type = "integer",
         },
         ToPort = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -64243,7 +61955,7 @@ M.ModifyVerifiedAccessEndpointCidrOptions = {
     members = {
         PortRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.ModifyVerifiedAccessEndpointPortRange,
             traits = {
                 xml_name = "PortRange",
             },
@@ -64256,7 +61968,7 @@ M.ModifyVerifiedAccessEndpointLoadBalancerOptions = {
     members = {
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "SubnetId",
             },
@@ -64265,11 +61977,11 @@ M.ModifyVerifiedAccessEndpointLoadBalancerOptions = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         PortRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.ModifyVerifiedAccessEndpointPortRange,
             traits = {
                 xml_name = "PortRange",
             },
@@ -64284,11 +61996,11 @@ M.ModifyVerifiedAccessEndpointEniOptions = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         PortRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.ModifyVerifiedAccessEndpointPortRange,
             traits = {
                 xml_name = "PortRange",
             },
@@ -64301,13 +62013,13 @@ M.ModifyVerifiedAccessEndpointRdsOptions = {
     members = {
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "SubnetId",
             },
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         RdsEndpoint = {
             type = "string",
@@ -64327,12 +62039,8 @@ M.ModifyVerifiedAccessEndpointInput = {
         VerifiedAccessGroupId = {
             type = "string",
         },
-        LoadBalancerOptions = {
-            type = "structure",
-        },
-        NetworkInterfaceOptions = {
-            type = "structure",
-        },
+        LoadBalancerOptions = M.ModifyVerifiedAccessEndpointLoadBalancerOptions,
+        NetworkInterfaceOptions = M.ModifyVerifiedAccessEndpointEniOptions,
         Description = {
             type = "string",
         },
@@ -64342,24 +62050,17 @@ M.ModifyVerifiedAccessEndpointInput = {
         DryRun = {
             type = "boolean",
         },
-        RdsOptions = {
-            type = "structure",
-        },
-        CidrOptions = {
-            type = "structure",
-        },
+        RdsOptions = M.ModifyVerifiedAccessEndpointRdsOptions,
+        CidrOptions = M.ModifyVerifiedAccessEndpointCidrOptions,
     },
 }
 
 M.ModifyVerifiedAccessEndpointOutput = {
     type = "structure",
     members = {
-        VerifiedAccessEndpoint = {
-            type = "structure",
-            traits = {
-                xml_name = "verifiedAccessEndpoint",
-            },
-        },
+        VerifiedAccessEndpoint = setmetatable({ traits = {
+            xml_name = "verifiedAccessEndpoint",
+        } }, { __index = M.VerifiedAccessEndpoint }),
     },
 }
 
@@ -64384,9 +62085,7 @@ M.ModifyVerifiedAccessEndpointPolicyInput = {
         DryRun = {
             type = "boolean",
         },
-        SseSpecification = {
-            type = "structure",
-        },
+        SseSpecification = M.VerifiedAccessSseSpecificationRequest,
     },
 }
 
@@ -64405,12 +62104,9 @@ M.ModifyVerifiedAccessEndpointPolicyOutput = {
                 xml_name = "policyDocument",
             },
         },
-        SseSpecification = {
-            type = "structure",
-            traits = {
-                xml_name = "sseSpecification",
-            },
-        },
+        SseSpecification = setmetatable({ traits = {
+            xml_name = "sseSpecification",
+        } }, { __index = M.VerifiedAccessSseSpecificationResponse }),
     },
 }
 
@@ -64441,12 +62137,9 @@ M.ModifyVerifiedAccessGroupInput = {
 M.ModifyVerifiedAccessGroupOutput = {
     type = "structure",
     members = {
-        VerifiedAccessGroup = {
-            type = "structure",
-            traits = {
-                xml_name = "verifiedAccessGroup",
-            },
-        },
+        VerifiedAccessGroup = setmetatable({ traits = {
+            xml_name = "verifiedAccessGroup",
+        } }, { __index = M.VerifiedAccessGroup }),
     },
 }
 
@@ -64471,9 +62164,7 @@ M.ModifyVerifiedAccessGroupPolicyInput = {
         DryRun = {
             type = "boolean",
         },
-        SseSpecification = {
-            type = "structure",
-        },
+        SseSpecification = M.VerifiedAccessSseSpecificationRequest,
     },
 }
 
@@ -64492,12 +62183,9 @@ M.ModifyVerifiedAccessGroupPolicyOutput = {
                 xml_name = "policyDocument",
             },
         },
-        SseSpecification = {
-            type = "structure",
-            traits = {
-                xml_name = "sseSpecification",
-            },
-        },
+        SseSpecification = setmetatable({ traits = {
+            xml_name = "sseSpecification",
+        } }, { __index = M.VerifiedAccessSseSpecificationResponse }),
     },
 }
 
@@ -64528,12 +62216,9 @@ M.ModifyVerifiedAccessInstanceInput = {
 M.ModifyVerifiedAccessInstanceOutput = {
     type = "structure",
     members = {
-        VerifiedAccessInstance = {
-            type = "structure",
-            traits = {
-                xml_name = "verifiedAccessInstance",
-            },
-        },
+        VerifiedAccessInstance = setmetatable({ traits = {
+            xml_name = "verifiedAccessInstance",
+        } }, { __index = M.VerifiedAccessInstance }),
     },
 }
 
@@ -64591,15 +62276,9 @@ M.VerifiedAccessLogS3DestinationOptions = {
 M.VerifiedAccessLogOptions = {
     type = "structure",
     members = {
-        S3 = {
-            type = "structure",
-        },
-        CloudWatchLogs = {
-            type = "structure",
-        },
-        KinesisDataFirehose = {
-            type = "structure",
-        },
+        S3 = M.VerifiedAccessLogS3DestinationOptions,
+        CloudWatchLogs = M.VerifiedAccessLogCloudWatchLogsDestinationOptions,
+        KinesisDataFirehose = M.VerifiedAccessLogKinesisDataFirehoseDestinationOptions,
         LogVersion = {
             type = "string",
         },
@@ -64618,12 +62297,9 @@ M.ModifyVerifiedAccessInstanceLoggingConfigurationInput = {
                 required = true,
             },
         },
-        AccessLogs = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AccessLogs = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VerifiedAccessLogOptions }),
         DryRun = {
             type = "boolean",
         },
@@ -64636,12 +62312,9 @@ M.ModifyVerifiedAccessInstanceLoggingConfigurationInput = {
 M.ModifyVerifiedAccessInstanceLoggingConfigurationOutput = {
     type = "structure",
     members = {
-        LoggingConfiguration = {
-            type = "structure",
-            traits = {
-                xml_name = "loggingConfiguration",
-            },
-        },
+        LoggingConfiguration = setmetatable({ traits = {
+            xml_name = "loggingConfiguration",
+        } }, { __index = M.VerifiedAccessInstanceLoggingConfiguration }),
     },
 }
 
@@ -64720,12 +62393,8 @@ M.ModifyVerifiedAccessTrustProviderInput = {
                 required = true,
             },
         },
-        OidcOptions = {
-            type = "structure",
-        },
-        DeviceOptions = {
-            type = "structure",
-        },
+        OidcOptions = M.ModifyVerifiedAccessTrustProviderOidcOptions,
+        DeviceOptions = M.ModifyVerifiedAccessTrustProviderDeviceOptions,
         Description = {
             type = "string",
         },
@@ -64735,24 +62404,17 @@ M.ModifyVerifiedAccessTrustProviderInput = {
         ClientToken = {
             type = "string",
         },
-        SseSpecification = {
-            type = "structure",
-        },
-        NativeApplicationOidcOptions = {
-            type = "structure",
-        },
+        SseSpecification = M.VerifiedAccessSseSpecificationRequest,
+        NativeApplicationOidcOptions = M.ModifyVerifiedAccessNativeApplicationOidcOptions,
     },
 }
 
 M.ModifyVerifiedAccessTrustProviderOutput = {
     type = "structure",
     members = {
-        VerifiedAccessTrustProvider = {
-            type = "structure",
-            traits = {
-                xml_name = "verifiedAccessTrustProvider",
-            },
-        },
+        VerifiedAccessTrustProvider = setmetatable({ traits = {
+            xml_name = "verifiedAccessTrustProvider",
+        } }, { __index = M.VerifiedAccessTrustProvider }),
     },
 }
 
@@ -64769,16 +62431,16 @@ M.ModifyVolumeInput = {
             },
         },
         Size = {
-            type = "number",
+            type = "integer",
         },
         VolumeType = {
             type = "string",
         },
         Iops = {
-            type = "number",
+            type = "integer",
         },
         Throughput = {
-            type = "number",
+            type = "integer",
         },
         MultiAttachEnabled = {
             type = "boolean",
@@ -64789,21 +62451,16 @@ M.ModifyVolumeInput = {
 M.ModifyVolumeOutput = {
     type = "structure",
     members = {
-        VolumeModification = {
-            type = "structure",
-            traits = {
-                xml_name = "volumeModification",
-            },
-        },
+        VolumeModification = setmetatable({ traits = {
+            xml_name = "volumeModification",
+        } }, { __index = M.VolumeModification }),
     },
 }
 
 M.ModifyVolumeAttributeInput = {
     type = "structure",
     members = {
-        AutoEnableIO = {
-            type = "structure",
-        },
+        AutoEnableIO = M.AttributeBooleanValue,
         VolumeId = {
             type = "string",
             traits = {
@@ -64826,12 +62483,8 @@ M.ModifyVolumeAttributeOutput = {
 M.ModifyVpcAttributeInput = {
     type = "structure",
     members = {
-        EnableDnsHostnames = {
-            type = "structure",
-        },
-        EnableDnsSupport = {
-            type = "structure",
-        },
+        EnableDnsHostnames = M.AttributeBooleanValue,
+        EnableDnsSupport = M.AttributeBooleanValue,
         VpcId = {
             type = "string",
             traits = {
@@ -64839,9 +62492,7 @@ M.ModifyVpcAttributeInput = {
                 xml_name = "vpcId",
             },
         },
-        EnableNetworkAddressUsageMetrics = {
-            type = "structure",
-        },
+        EnableNetworkAddressUsageMetrics = M.AttributeBooleanValue,
     },
 }
 
@@ -64873,12 +62524,9 @@ M.ModifyVpcBlockPublicAccessExclusionInput = {
 M.ModifyVpcBlockPublicAccessExclusionOutput = {
     type = "structure",
     members = {
-        VpcBlockPublicAccessExclusion = {
-            type = "structure",
-            traits = {
-                xml_name = "vpcBlockPublicAccessExclusion",
-            },
-        },
+        VpcBlockPublicAccessExclusion = setmetatable({ traits = {
+            xml_name = "vpcBlockPublicAccessExclusion",
+        } }, { __index = M.VpcBlockPublicAccessExclusion }),
     },
 }
 
@@ -64900,12 +62548,9 @@ M.ModifyVpcBlockPublicAccessOptionsInput = {
 M.ModifyVpcBlockPublicAccessOptionsOutput = {
     type = "structure",
     members = {
-        VpcBlockPublicAccessOptions = {
-            type = "structure",
-            traits = {
-                xml_name = "vpcBlockPublicAccessOptions",
-            },
-        },
+        VpcBlockPublicAccessOptions = setmetatable({ traits = {
+            xml_name = "vpcBlockPublicAccessOptions",
+        } }, { __index = M.VpcBlockPublicAccessOptions }),
     },
 }
 
@@ -64954,12 +62599,9 @@ M.ModifyVpcEncryptionControlInput = {
 M.ModifyVpcEncryptionControlOutput = {
     type = "structure",
     members = {
-        VpcEncryptionControl = {
-            type = "structure",
-            traits = {
-                xml_name = "vpcEncryptionControl",
-            },
-        },
+        VpcEncryptionControl = setmetatable({ traits = {
+            xml_name = "vpcEncryptionControl",
+        } }, { __index = M.VpcEncryptionControl }),
     },
 }
 
@@ -64983,42 +62625,42 @@ M.ModifyVpcEndpointInput = {
         },
         AddRouteTableIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "AddRouteTableId",
             },
         },
         RemoveRouteTableIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "RemoveRouteTableId",
             },
         },
         AddSubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "AddSubnetId",
             },
         },
         RemoveSubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "RemoveSubnetId",
             },
         },
         AddSecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "AddSecurityGroupId",
             },
         },
         RemoveSecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "RemoveSecurityGroupId",
             },
@@ -65026,15 +62668,13 @@ M.ModifyVpcEndpointInput = {
         IpAddressType = {
             type = "string",
         },
-        DnsOptions = {
-            type = "structure",
-        },
+        DnsOptions = M.DnsOptionsSpecification,
         PrivateDnsEnabled = {
             type = "boolean",
         },
         SubnetConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.SubnetConfiguration,
             traits = {
                 xml_name = "SubnetConfiguration",
             },
@@ -65071,7 +62711,7 @@ M.ModifyVpcEndpointConnectionNotificationInput = {
         },
         ConnectionEvents = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -65111,56 +62751,56 @@ M.ModifyVpcEndpointServiceConfigurationInput = {
         },
         AddNetworkLoadBalancerArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "AddNetworkLoadBalancerArn",
             },
         },
         RemoveNetworkLoadBalancerArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "RemoveNetworkLoadBalancerArn",
             },
         },
         AddGatewayLoadBalancerArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "AddGatewayLoadBalancerArn",
             },
         },
         RemoveGatewayLoadBalancerArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "RemoveGatewayLoadBalancerArn",
             },
         },
         AddSupportedIpAddressTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "AddSupportedIpAddressType",
             },
         },
         RemoveSupportedIpAddressTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "RemoveSupportedIpAddressType",
             },
         },
         AddSupportedRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "AddSupportedRegion",
             },
         },
         RemoveSupportedRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "RemoveSupportedRegion",
             },
@@ -65227,11 +62867,11 @@ M.ModifyVpcEndpointServicePermissionsInput = {
         },
         AddAllowedPrincipals = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RemoveAllowedPrincipals = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -65241,7 +62881,7 @@ M.ModifyVpcEndpointServicePermissionsOutput = {
     members = {
         AddedPrincipals = {
             type = "list",
-            member_type = "structure",
+            member = M.AddedPrincipal,
             traits = {
                 xml_name = "addedPrincipalSet",
             },
@@ -65273,15 +62913,11 @@ M.PeeringConnectionOptionsRequest = {
 M.ModifyVpcPeeringConnectionOptionsInput = {
     type = "structure",
     members = {
-        AccepterPeeringConnectionOptions = {
-            type = "structure",
-        },
+        AccepterPeeringConnectionOptions = M.PeeringConnectionOptionsRequest,
         DryRun = {
             type = "boolean",
         },
-        RequesterPeeringConnectionOptions = {
-            type = "structure",
-        },
+        RequesterPeeringConnectionOptions = M.PeeringConnectionOptionsRequest,
         VpcPeeringConnectionId = {
             type = "string",
             traits = {
@@ -65318,18 +62954,12 @@ M.PeeringConnectionOptions = {
 M.ModifyVpcPeeringConnectionOptionsOutput = {
     type = "structure",
     members = {
-        AccepterPeeringConnectionOptions = {
-            type = "structure",
-            traits = {
-                xml_name = "accepterPeeringConnectionOptions",
-            },
-        },
-        RequesterPeeringConnectionOptions = {
-            type = "structure",
-            traits = {
-                xml_name = "requesterPeeringConnectionOptions",
-            },
-        },
+        AccepterPeeringConnectionOptions = setmetatable({ traits = {
+            xml_name = "accepterPeeringConnectionOptions",
+        } }, { __index = M.PeeringConnectionOptions }),
+        RequesterPeeringConnectionOptions = setmetatable({ traits = {
+            xml_name = "requesterPeeringConnectionOptions",
+        } }, { __index = M.PeeringConnectionOptions }),
     },
 }
 
@@ -65397,12 +63027,9 @@ M.ModifyVpnConnectionInput = {
 M.ModifyVpnConnectionOutput = {
     type = "structure",
     members = {
-        VpnConnection = {
-            type = "structure",
-            traits = {
-                xml_name = "vpnConnection",
-            },
-        },
+        VpnConnection = setmetatable({ traits = {
+            xml_name = "vpnConnection",
+        } }, { __index = M.VpnConnection }),
     },
 }
 
@@ -65436,12 +63063,9 @@ M.ModifyVpnConnectionOptionsInput = {
 M.ModifyVpnConnectionOptionsOutput = {
     type = "structure",
     members = {
-        VpnConnection = {
-            type = "structure",
-            traits = {
-                xml_name = "vpnConnection",
-            },
-        },
+        VpnConnection = setmetatable({ traits = {
+            xml_name = "vpnConnection",
+        } }, { __index = M.VpnConnection }),
     },
 }
 
@@ -65469,12 +63093,9 @@ M.ModifyVpnTunnelCertificateInput = {
 M.ModifyVpnTunnelCertificateOutput = {
     type = "structure",
     members = {
-        VpnConnection = {
-            type = "structure",
-            traits = {
-                xml_name = "vpnConnection",
-            },
-        },
+        VpnConnection = setmetatable({ traits = {
+            xml_name = "vpnConnection",
+        } }, { __index = M.VpnConnection }),
     },
 }
 
@@ -65491,71 +63112,71 @@ M.ModifyVpnTunnelOptionsSpecification = {
             type = "string",
         },
         Phase1LifetimeSeconds = {
-            type = "number",
+            type = "integer",
         },
         Phase2LifetimeSeconds = {
-            type = "number",
+            type = "integer",
         },
         RekeyMarginTimeSeconds = {
-            type = "number",
+            type = "integer",
         },
         RekeyFuzzPercentage = {
-            type = "number",
+            type = "integer",
         },
         ReplayWindowSize = {
-            type = "number",
+            type = "integer",
         },
         DPDTimeoutSeconds = {
-            type = "number",
+            type = "integer",
         },
         DPDTimeoutAction = {
             type = "string",
         },
         Phase1EncryptionAlgorithms = {
             type = "list",
-            member_type = "structure",
+            member = M.Phase1EncryptionAlgorithmsRequestListValue,
             traits = {
                 xml_name = "Phase1EncryptionAlgorithm",
             },
         },
         Phase2EncryptionAlgorithms = {
             type = "list",
-            member_type = "structure",
+            member = M.Phase2EncryptionAlgorithmsRequestListValue,
             traits = {
                 xml_name = "Phase2EncryptionAlgorithm",
             },
         },
         Phase1IntegrityAlgorithms = {
             type = "list",
-            member_type = "structure",
+            member = M.Phase1IntegrityAlgorithmsRequestListValue,
             traits = {
                 xml_name = "Phase1IntegrityAlgorithm",
             },
         },
         Phase2IntegrityAlgorithms = {
             type = "list",
-            member_type = "structure",
+            member = M.Phase2IntegrityAlgorithmsRequestListValue,
             traits = {
                 xml_name = "Phase2IntegrityAlgorithm",
             },
         },
         Phase1DHGroupNumbers = {
             type = "list",
-            member_type = "structure",
+            member = M.Phase1DHGroupNumbersRequestListValue,
             traits = {
                 xml_name = "Phase1DHGroupNumber",
             },
         },
         Phase2DHGroupNumbers = {
             type = "list",
-            member_type = "structure",
+            member = M.Phase2DHGroupNumbersRequestListValue,
             traits = {
                 xml_name = "Phase2DHGroupNumber",
             },
         },
         IKEVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.IKEVersionsRequestListValue,
             traits = {
                 xml_name = "IKEVersion",
             },
@@ -65563,9 +63184,7 @@ M.ModifyVpnTunnelOptionsSpecification = {
         StartupAction = {
             type = "string",
         },
-        LogOptions = {
-            type = "structure",
-        },
+        LogOptions = M.VpnTunnelLogOptionsSpecification,
         EnableTunnelLifecycleControl = {
             type = "boolean",
         },
@@ -65587,12 +63206,9 @@ M.ModifyVpnTunnelOptionsInput = {
                 required = true,
             },
         },
-        TunnelOptions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TunnelOptions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ModifyVpnTunnelOptionsSpecification }),
         DryRun = {
             type = "boolean",
         },
@@ -65608,12 +63224,9 @@ M.ModifyVpnTunnelOptionsInput = {
 M.ModifyVpnTunnelOptionsOutput = {
     type = "structure",
     members = {
-        VpnConnection = {
-            type = "structure",
-            traits = {
-                xml_name = "vpnConnection",
-            },
-        },
+        VpnConnection = setmetatable({ traits = {
+            xml_name = "vpnConnection",
+        } }, { __index = M.VpnConnection }),
     },
 }
 
@@ -65622,7 +63235,7 @@ M.MonitorInstancesInput = {
     members = {
         InstanceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "InstanceId",
@@ -65646,12 +63259,9 @@ M.InstanceMonitoring = {
                 xml_name = "instanceId",
             },
         },
-        Monitoring = {
-            type = "structure",
-            traits = {
-                xml_name = "monitoring",
-            },
-        },
+        Monitoring = setmetatable({ traits = {
+            xml_name = "monitoring",
+        } }, { __index = M.Monitoring }),
     },
 }
 
@@ -65660,7 +63270,7 @@ M.MonitorInstancesOutput = {
     members = {
         InstanceMonitorings = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceMonitoring,
             traits = {
                 xml_name = "instancesSet",
             },
@@ -65741,12 +63351,9 @@ M.MoveByoipCidrToIpamInput = {
 M.MoveByoipCidrToIpamOutput = {
     type = "structure",
     members = {
-        ByoipCidr = {
-            type = "structure",
-            traits = {
-                xml_name = "byoipCidr",
-            },
-        },
+        ByoipCidr = setmetatable({ traits = {
+            xml_name = "byoipCidr",
+        } }, { __index = M.ByoipCidr }),
     },
 }
 
@@ -65772,7 +63379,7 @@ M.MoveCapacityReservationInstancesInput = {
             },
         },
         InstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -65783,20 +63390,14 @@ M.MoveCapacityReservationInstancesInput = {
 M.MoveCapacityReservationInstancesOutput = {
     type = "structure",
     members = {
-        SourceCapacityReservation = {
-            type = "structure",
-            traits = {
-                xml_name = "sourceCapacityReservation",
-            },
-        },
-        DestinationCapacityReservation = {
-            type = "structure",
-            traits = {
-                xml_name = "destinationCapacityReservation",
-            },
-        },
+        SourceCapacityReservation = setmetatable({ traits = {
+            xml_name = "sourceCapacityReservation",
+        } }, { __index = M.CapacityReservation }),
+        DestinationCapacityReservation = setmetatable({ traits = {
+            xml_name = "destinationCapacityReservation",
+        } }, { __index = M.CapacityReservation }),
         InstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "instanceCount",
             },
@@ -65831,9 +63432,7 @@ M.ProvisionByoipCidrInput = {
                 required = true,
             },
         },
-        CidrAuthorizationContext = {
-            type = "structure",
-        },
+        CidrAuthorizationContext = M.CidrAuthorizationContext,
         PubliclyAdvertisable = {
             type = "boolean",
         },
@@ -65845,7 +63444,7 @@ M.ProvisionByoipCidrInput = {
         },
         PoolTagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "PoolTagSpecification",
             },
@@ -65862,12 +63461,9 @@ M.ProvisionByoipCidrInput = {
 M.ProvisionByoipCidrOutput = {
     type = "structure",
     members = {
-        ByoipCidr = {
-            type = "structure",
-            traits = {
-                xml_name = "byoipCidr",
-            },
-        },
+        ByoipCidr = setmetatable({ traits = {
+            xml_name = "byoipCidr",
+        } }, { __index = M.ByoipCidr }),
     },
 }
 
@@ -65907,24 +63503,18 @@ M.ProvisionIpamByoasnInput = {
                 required = true,
             },
         },
-        AsnAuthorizationContext = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AsnAuthorizationContext = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AsnAuthorizationContext }),
     },
 }
 
 M.ProvisionIpamByoasnOutput = {
     type = "structure",
     members = {
-        Byoasn = {
-            type = "structure",
-            traits = {
-                xml_name = "byoasn",
-            },
-        },
+        Byoasn = setmetatable({ traits = {
+            xml_name = "byoasn",
+        } }, { __index = M.Byoasn }),
     },
 }
 
@@ -65960,11 +63550,9 @@ M.ProvisionIpamPoolCidrInput = {
         Cidr = {
             type = "string",
         },
-        CidrAuthorizationContext = {
-            type = "structure",
-        },
+        CidrAuthorizationContext = M.IpamCidrAuthorizationContext,
         NetmaskLength = {
-            type = "number",
+            type = "integer",
         },
         ClientToken = {
             type = "string",
@@ -65981,12 +63569,9 @@ M.ProvisionIpamPoolCidrInput = {
 M.ProvisionIpamPoolCidrOutput = {
     type = "structure",
     members = {
-        IpamPoolCidr = {
-            type = "structure",
-            traits = {
-                xml_name = "ipamPoolCidr",
-            },
-        },
+        IpamPoolCidr = setmetatable({ traits = {
+            xml_name = "ipamPoolCidr",
+        } }, { __index = M.IpamPoolCidr }),
     },
 }
 
@@ -66009,7 +63594,7 @@ M.ProvisionPublicIpv4PoolCidrInput = {
             },
         },
         NetmaskLength = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -66029,12 +63614,9 @@ M.ProvisionPublicIpv4PoolCidrOutput = {
                 xml_name = "poolId",
             },
         },
-        PoolAddressRange = {
-            type = "structure",
-            traits = {
-                xml_name = "poolAddressRange",
-            },
-        },
+        PoolAddressRange = setmetatable({ traits = {
+            xml_name = "poolAddressRange",
+        } }, { __index = M.PublicIpv4PoolRange }),
     },
 }
 
@@ -66046,7 +63628,7 @@ M.PurchaseCapacityBlockInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -66069,15 +63651,12 @@ M.PurchaseCapacityBlockInput = {
 M.PurchaseCapacityBlockOutput = {
     type = "structure",
     members = {
-        CapacityReservation = {
-            type = "structure",
-            traits = {
-                xml_name = "capacityReservation",
-            },
-        },
+        CapacityReservation = setmetatable({ traits = {
+            xml_name = "capacityReservation",
+        } }, { __index = M.CapacityReservation }),
         CapacityBlocks = {
             type = "list",
-            member_type = "structure",
+            member = M.CapacityBlock,
             traits = {
                 xml_name = "capacityBlockSet",
             },
@@ -66111,7 +63690,7 @@ M.PurchaseCapacityBlockExtensionOutput = {
     members = {
         CapacityBlockExtensions = {
             type = "list",
-            member_type = "structure",
+            member = M.CapacityBlockExtension,
             traits = {
                 xml_name = "capacityBlockExtensionSet",
             },
@@ -66130,7 +63709,7 @@ M.PurchaseHostReservationInput = {
         },
         HostIdSet = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -66146,7 +63725,7 @@ M.PurchaseHostReservationInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -66171,7 +63750,7 @@ M.PurchaseHostReservationOutput = {
         },
         Purchase = {
             type = "list",
-            member_type = "structure",
+            member = M.Purchase,
             traits = {
                 xml_name = "purchase",
             },
@@ -66195,7 +63774,7 @@ M.ReservedInstanceLimitPrice = {
     type = "structure",
     members = {
         Amount = {
-            type = "number",
+            type = "double",
             traits = {
                 xml_name = "amount",
             },
@@ -66213,7 +63792,7 @@ M.PurchaseReservedInstancesOfferingInput = {
     type = "structure",
     members = {
         InstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -66233,12 +63812,9 @@ M.PurchaseReservedInstancesOfferingInput = {
                 xml_name = "dryRun",
             },
         },
-        LimitPrice = {
-            type = "structure",
-            traits = {
-                xml_name = "limitPrice",
-            },
-        },
+        LimitPrice = setmetatable({ traits = {
+            xml_name = "limitPrice",
+        } }, { __index = M.ReservedInstanceLimitPrice }),
     },
 }
 
@@ -66258,7 +63834,7 @@ M.PurchaseRequest = {
     type = "structure",
     members = {
         InstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -66283,7 +63859,7 @@ M.PurchaseScheduledInstancesInput = {
         },
         PurchaseRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.PurchaseRequest,
             traits = {
                 required = true,
                 xml_name = "PurchaseRequest",
@@ -66297,7 +63873,7 @@ M.PurchaseScheduledInstancesOutput = {
     members = {
         ScheduledInstanceSet = {
             type = "list",
-            member_type = "structure",
+            member = M.ScheduledInstance,
             traits = {
                 xml_name = "scheduledInstanceSet",
             },
@@ -66310,7 +63886,7 @@ M.RebootInstancesInput = {
     members = {
         InstanceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "InstanceId",
@@ -66337,7 +63913,7 @@ M.RegisterImageInput = {
         },
         BillingProducts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "BillingProduct",
             },
@@ -66356,7 +63932,7 @@ M.RegisterImageInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -66406,7 +63982,7 @@ M.RegisterImageInput = {
         },
         BlockDeviceMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.BlockDeviceMapping,
             traits = {
                 xml_name = "BlockDeviceMapping",
             },
@@ -66452,7 +64028,7 @@ M.RegisterInstanceTagAttributeRequest = {
         },
         InstanceTagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "InstanceTagKey",
             },
@@ -66466,24 +64042,18 @@ M.RegisterInstanceEventNotificationAttributesInput = {
         DryRun = {
             type = "boolean",
         },
-        InstanceTagAttribute = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InstanceTagAttribute = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RegisterInstanceTagAttributeRequest }),
     },
 }
 
 M.RegisterInstanceEventNotificationAttributesOutput = {
     type = "structure",
     members = {
-        InstanceTagAttribute = {
-            type = "structure",
-            traits = {
-                xml_name = "instanceTagAttribute",
-            },
-        },
+        InstanceTagAttribute = setmetatable({ traits = {
+            xml_name = "instanceTagAttribute",
+        } }, { __index = M.InstanceTagNotificationAttribute }),
     },
 }
 
@@ -66501,7 +64071,7 @@ M.RegisterTransitGatewayMulticastGroupMembersInput = {
         },
         NetworkInterfaceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -66523,7 +64093,7 @@ M.TransitGatewayMulticastRegisteredGroupMembers = {
         },
         RegisteredNetworkInterfaceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "registeredNetworkInterfaceIds",
             },
@@ -66540,12 +64110,9 @@ M.TransitGatewayMulticastRegisteredGroupMembers = {
 M.RegisterTransitGatewayMulticastGroupMembersOutput = {
     type = "structure",
     members = {
-        RegisteredMulticastGroupMembers = {
-            type = "structure",
-            traits = {
-                xml_name = "registeredMulticastGroupMembers",
-            },
-        },
+        RegisteredMulticastGroupMembers = setmetatable({ traits = {
+            xml_name = "registeredMulticastGroupMembers",
+        } }, { __index = M.TransitGatewayMulticastRegisteredGroupMembers }),
     },
 }
 
@@ -66563,7 +64130,7 @@ M.RegisterTransitGatewayMulticastGroupSourcesInput = {
         },
         NetworkInterfaceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -66585,7 +64152,7 @@ M.TransitGatewayMulticastRegisteredGroupSources = {
         },
         RegisteredNetworkInterfaceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "registeredNetworkInterfaceIds",
             },
@@ -66602,12 +64169,9 @@ M.TransitGatewayMulticastRegisteredGroupSources = {
 M.RegisterTransitGatewayMulticastGroupSourcesOutput = {
     type = "structure",
     members = {
-        RegisteredMulticastGroupSources = {
-            type = "structure",
-            traits = {
-                xml_name = "registeredMulticastGroupSources",
-            },
-        },
+        RegisteredMulticastGroupSources = setmetatable({ traits = {
+            xml_name = "registeredMulticastGroupSources",
+        } }, { __index = M.TransitGatewayMulticastRegisteredGroupSources }),
     },
 }
 
@@ -66656,12 +64220,9 @@ M.RejectTransitGatewayClientVpnAttachmentInput = {
 M.RejectTransitGatewayClientVpnAttachmentOutput = {
     type = "structure",
     members = {
-        TransitGatewayClientVpnAttachment = {
-            type = "structure",
-            traits = {
-                xml_name = "transitGatewayClientVpnAttachment",
-            },
-        },
+        TransitGatewayClientVpnAttachment = setmetatable({ traits = {
+            xml_name = "transitGatewayClientVpnAttachment",
+        } }, { __index = M.TransitGatewayClientVpnAttachment }),
     },
 }
 
@@ -66676,7 +64237,7 @@ M.RejectTransitGatewayMulticastDomainAssociationsInput = {
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DryRun = {
             type = "boolean",
@@ -66687,12 +64248,9 @@ M.RejectTransitGatewayMulticastDomainAssociationsInput = {
 M.RejectTransitGatewayMulticastDomainAssociationsOutput = {
     type = "structure",
     members = {
-        Associations = {
-            type = "structure",
-            traits = {
-                xml_name = "associations",
-            },
-        },
+        Associations = setmetatable({ traits = {
+            xml_name = "associations",
+        } }, { __index = M.TransitGatewayMulticastDomainAssociations }),
     },
 }
 
@@ -66714,12 +64272,9 @@ M.RejectTransitGatewayPeeringAttachmentInput = {
 M.RejectTransitGatewayPeeringAttachmentOutput = {
     type = "structure",
     members = {
-        TransitGatewayPeeringAttachment = {
-            type = "structure",
-            traits = {
-                xml_name = "transitGatewayPeeringAttachment",
-            },
-        },
+        TransitGatewayPeeringAttachment = setmetatable({ traits = {
+            xml_name = "transitGatewayPeeringAttachment",
+        } }, { __index = M.TransitGatewayPeeringAttachment }),
     },
 }
 
@@ -66741,12 +64296,9 @@ M.RejectTransitGatewayVpcAttachmentInput = {
 M.RejectTransitGatewayVpcAttachmentOutput = {
     type = "structure",
     members = {
-        TransitGatewayVpcAttachment = {
-            type = "structure",
-            traits = {
-                xml_name = "transitGatewayVpcAttachment",
-            },
-        },
+        TransitGatewayVpcAttachment = setmetatable({ traits = {
+            xml_name = "transitGatewayVpcAttachment",
+        } }, { __index = M.TransitGatewayVpcAttachment }),
     },
 }
 
@@ -66764,7 +64316,7 @@ M.RejectVpcEndpointConnectionsInput = {
         },
         VpcEndpointIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "VpcEndpointId",
@@ -66778,7 +64330,7 @@ M.RejectVpcEndpointConnectionsOutput = {
     members = {
         Unsuccessful = {
             type = "list",
-            member_type = "structure",
+            member = M.UnsuccessfulItem,
             traits = {
                 xml_name = "unsuccessful",
             },
@@ -66847,7 +64399,7 @@ M.ReleaseHostsInput = {
     members = {
         HostIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "hostId",
@@ -66861,14 +64413,14 @@ M.ReleaseHostsOutput = {
     members = {
         Successful = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "successful",
             },
         },
         Unsuccessful = {
             type = "list",
-            member_type = "structure",
+            member = M.UnsuccessfulItem,
             traits = {
                 xml_name = "unsuccessful",
             },
@@ -66918,12 +64470,9 @@ M.ReleaseIpamPoolAllocationOutput = {
 M.ReplaceIamInstanceProfileAssociationInput = {
     type = "structure",
     members = {
-        IamInstanceProfile = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        IamInstanceProfile = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IamInstanceProfileSpecification }),
         AssociationId = {
             type = "string",
             traits = {
@@ -66936,12 +64485,9 @@ M.ReplaceIamInstanceProfileAssociationInput = {
 M.ReplaceIamInstanceProfileAssociationOutput = {
     type = "structure",
     members = {
-        IamInstanceProfileAssociation = {
-            type = "structure",
-            traits = {
-                xml_name = "iamInstanceProfileAssociation",
-            },
-        },
+        IamInstanceProfileAssociation = setmetatable({ traits = {
+            xml_name = "iamInstanceProfileAssociation",
+        } }, { __index = M.IamInstanceProfileAssociation }),
     },
 }
 
@@ -66949,7 +64495,7 @@ M.CreationDateConditionRequest = {
     type = "structure",
     members = {
         MaximumDaysSinceCreated = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -66958,7 +64504,7 @@ M.DeprecationTimeConditionRequest = {
     type = "structure",
     members = {
         MaximumDaysSinceDeprecated = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -66968,31 +64514,27 @@ M.ImageCriterionRequest = {
     members = {
         ImageProviders = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "ImageProvider",
             },
         },
         MarketplaceProductCodes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "MarketplaceProductCode",
             },
         },
         ImageNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "ImageName",
             },
         },
-        DeprecationTimeCondition = {
-            type = "structure",
-        },
-        CreationDateCondition = {
-            type = "structure",
-        },
+        DeprecationTimeCondition = M.DeprecationTimeConditionRequest,
+        CreationDateCondition = M.CreationDateConditionRequest,
     },
 }
 
@@ -67001,7 +64543,7 @@ M.ReplaceImageCriteriaInAllowedImagesSettingsInput = {
     members = {
         ImageCriteria = {
             type = "list",
-            member_type = "structure",
+            member = M.ImageCriterionRequest,
             traits = {
                 xml_name = "ImageCriterion",
             },
@@ -67079,7 +64621,7 @@ M.ReplaceNetworkAclEntryInput = {
             },
         },
         RuleNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
                 xml_name = "ruleNumber",
@@ -67118,18 +64660,12 @@ M.ReplaceNetworkAclEntryInput = {
                 xml_name = "ipv6CidrBlock",
             },
         },
-        IcmpTypeCode = {
-            type = "structure",
-            traits = {
-                xml_name = "Icmp",
-            },
-        },
-        PortRange = {
-            type = "structure",
-            traits = {
-                xml_name = "portRange",
-            },
-        },
+        IcmpTypeCode = setmetatable({ traits = {
+            xml_name = "Icmp",
+        } }, { __index = M.IcmpTypeCode }),
+        PortRange = setmetatable({ traits = {
+            xml_name = "portRange",
+        } }, { __index = M.PortRange }),
     },
 }
 
@@ -67267,12 +64803,9 @@ M.ReplaceRouteTableAssociationOutput = {
                 xml_name = "newAssociationId",
             },
         },
-        AssociationState = {
-            type = "structure",
-            traits = {
-                xml_name = "associationState",
-            },
-        },
+        AssociationState = setmetatable({ traits = {
+            xml_name = "associationState",
+        } }, { __index = M.RouteTableAssociationState }),
     },
 }
 
@@ -67306,12 +64839,9 @@ M.ReplaceTransitGatewayRouteInput = {
 M.ReplaceTransitGatewayRouteOutput = {
     type = "structure",
     members = {
-        Route = {
-            type = "structure",
-            traits = {
-                xml_name = "route",
-            },
-        },
+        Route = setmetatable({ traits = {
+            xml_name = "route",
+        } }, { __index = M.TransitGatewayRoute }),
     },
 }
 
@@ -67379,7 +64909,7 @@ M.ReportInstanceStatusInput = {
         },
         Instances = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "instanceId",
@@ -67406,7 +64936,7 @@ M.ReportInstanceStatusInput = {
         },
         ReasonCodes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "reasonCode",
@@ -67434,13 +64964,10 @@ M.RequestSpotFleetInput = {
                 xml_name = "dryRun",
             },
         },
-        SpotFleetRequestConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-                xml_name = "spotFleetRequestConfig",
-            },
-        },
+        SpotFleetRequestConfig = setmetatable({ traits = {
+            required = true,
+            xml_name = "spotFleetRequestConfig",
+        } }, { __index = M.SpotFleetRequestConfigData }),
     },
 }
 
@@ -67461,14 +64988,14 @@ M.RequestSpotLaunchSpecification = {
     members = {
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "SecurityGroupId",
             },
         },
         SecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "SecurityGroup",
             },
@@ -67481,7 +65008,7 @@ M.RequestSpotLaunchSpecification = {
         },
         BlockDeviceMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.BlockDeviceMapping,
             traits = {
                 xml_name = "blockDeviceMapping",
             },
@@ -67492,12 +65019,9 @@ M.RequestSpotLaunchSpecification = {
                 xml_name = "ebsOptimized",
             },
         },
-        IamInstanceProfile = {
-            type = "structure",
-            traits = {
-                xml_name = "iamInstanceProfile",
-            },
-        },
+        IamInstanceProfile = setmetatable({ traits = {
+            xml_name = "iamInstanceProfile",
+        } }, { __index = M.IamInstanceProfileSpecification }),
         ImageId = {
             type = "string",
             traits = {
@@ -67522,25 +65046,19 @@ M.RequestSpotLaunchSpecification = {
                 xml_name = "keyName",
             },
         },
-        Monitoring = {
-            type = "structure",
-            traits = {
-                xml_name = "monitoring",
-            },
-        },
+        Monitoring = setmetatable({ traits = {
+            xml_name = "monitoring",
+        } }, { __index = M.RunInstancesMonitoringEnabled }),
         NetworkInterfaces = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceNetworkInterfaceSpecification,
             traits = {
                 xml_name = "NetworkInterface",
             },
         },
-        Placement = {
-            type = "structure",
-            traits = {
-                xml_name = "placement",
-            },
-        },
+        Placement = setmetatable({ traits = {
+            xml_name = "placement",
+        } }, { __index = M.SpotPlacement }),
         RamdiskId = {
             type = "string",
             traits = {
@@ -67565,12 +65083,10 @@ M.RequestSpotLaunchSpecification = {
 M.RequestSpotInstancesInput = {
     type = "structure",
     members = {
-        LaunchSpecification = {
-            type = "structure",
-        },
+        LaunchSpecification = M.RequestSpotLaunchSpecification,
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -67597,7 +65113,7 @@ M.RequestSpotInstancesInput = {
             },
         },
         InstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "instanceCount",
             },
@@ -67633,7 +65149,7 @@ M.RequestSpotInstancesInput = {
             },
         },
         BlockDurationMinutes = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "blockDurationMinutes",
             },
@@ -67646,7 +65162,7 @@ M.RequestSpotInstancesOutput = {
     members = {
         SpotInstanceRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.SpotInstanceRequest,
             traits = {
                 xml_name = "spotInstanceRequestSet",
             },
@@ -67678,12 +65194,9 @@ M.ResetAddressAttributeInput = {
 M.ResetAddressAttributeOutput = {
     type = "structure",
     members = {
-        Address = {
-            type = "structure",
-            traits = {
-                xml_name = "address",
-            },
-        },
+        Address = setmetatable({ traits = {
+            xml_name = "address",
+        } }, { __index = M.AddressAttribute }),
     },
 }
 
@@ -67938,13 +65451,13 @@ M.RestoreManagedPrefixListVersionInput = {
             },
         },
         PreviousVersion = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         CurrentVersion = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -67955,12 +65468,9 @@ M.RestoreManagedPrefixListVersionInput = {
 M.RestoreManagedPrefixListVersionOutput = {
     type = "structure",
     members = {
-        PrefixList = {
-            type = "structure",
-            traits = {
-                xml_name = "prefixList",
-            },
-        },
+        PrefixList = setmetatable({ traits = {
+            xml_name = "prefixList",
+        } }, { __index = M.ManagedPrefixList }),
     },
 }
 
@@ -68037,7 +65547,7 @@ M.RestoreSnapshotFromRecycleBinOutput = {
             },
         },
         VolumeSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "volumeSize",
             },
@@ -68061,7 +65571,7 @@ M.RestoreSnapshotTierInput = {
             },
         },
         TemporaryRestoreDays = {
-            type = "number",
+            type = "integer",
         },
         PermanentRestore = {
             type = "boolean",
@@ -68088,7 +65598,7 @@ M.RestoreSnapshotTierOutput = {
             },
         },
         RestoreDuration = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "restoreDuration",
             },
@@ -68159,12 +65669,9 @@ M.RevokeClientVpnIngressInput = {
 M.RevokeClientVpnIngressOutput = {
     type = "structure",
     members = {
-        Status = {
-            type = "structure",
-            traits = {
-                xml_name = "status",
-            },
-        },
+        Status = setmetatable({ traits = {
+            xml_name = "status",
+        } }, { __index = M.ClientVpnAuthorizationRuleStatus }),
     },
 }
 
@@ -68173,7 +65680,7 @@ M.RevokeSecurityGroupEgressInput = {
     members = {
         SecurityGroupRuleIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "SecurityGroupRuleId",
             },
@@ -68210,13 +65717,13 @@ M.RevokeSecurityGroupEgressInput = {
             },
         },
         FromPort = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "fromPort",
             },
         },
         ToPort = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "toPort",
             },
@@ -68229,7 +65736,7 @@ M.RevokeSecurityGroupEgressInput = {
         },
         IpPermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.IpPermission,
             traits = {
                 xml_name = "ipPermissions",
             },
@@ -68265,13 +65772,13 @@ M.RevokedSecurityGroupRule = {
             },
         },
         FromPort = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "fromPort",
             },
         },
         ToPort = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "toPort",
             },
@@ -68320,14 +65827,14 @@ M.RevokeSecurityGroupEgressOutput = {
         },
         UnknownIpPermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.IpPermission,
             traits = {
                 xml_name = "unknownIpPermissionSet",
             },
         },
         RevokedSecurityGroupRules = {
             type = "list",
-            member_type = "structure",
+            member = M.RevokedSecurityGroupRule,
             traits = {
                 xml_name = "revokedSecurityGroupRuleSet",
             },
@@ -68342,7 +65849,7 @@ M.RevokeSecurityGroupIngressInput = {
             type = "string",
         },
         FromPort = {
-            type = "number",
+            type = "integer",
         },
         GroupId = {
             type = "string",
@@ -68352,7 +65859,7 @@ M.RevokeSecurityGroupIngressInput = {
         },
         IpPermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.IpPermission,
         },
         IpProtocol = {
             type = "string",
@@ -68364,11 +65871,11 @@ M.RevokeSecurityGroupIngressInput = {
             type = "string",
         },
         ToPort = {
-            type = "number",
+            type = "integer",
         },
         SecurityGroupRuleIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "SecurityGroupRuleId",
             },
@@ -68393,14 +65900,14 @@ M.RevokeSecurityGroupIngressOutput = {
         },
         UnknownIpPermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.IpPermission,
             traits = {
                 xml_name = "unknownIpPermissionSet",
             },
         },
         RevokedSecurityGroupRules = {
             type = "list",
-            member_type = "structure",
+            member = M.RevokedSecurityGroupRule,
             traits = {
                 xml_name = "revokedSecurityGroupRuleSet",
             },
@@ -68412,10 +65919,10 @@ M.CpuOptionsRequest = {
     type = "structure",
     members = {
         CoreCount = {
-            type = "number",
+            type = "integer",
         },
         ThreadsPerCore = {
-            type = "number",
+            type = "integer",
         },
         AmdSevSnp = {
             type = "string",
@@ -68436,7 +65943,7 @@ M.ElasticInferenceAccelerator = {
             },
         },
         Count = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -68469,7 +65976,7 @@ M.SpotMarketOptions = {
             type = "string",
         },
         BlockDurationMinutes = {
-            type = "number",
+            type = "integer",
         },
         ValidUntil = {
             type = "timestamp",
@@ -68486,9 +65993,7 @@ M.InstanceMarketOptionsRequest = {
         MarketType = {
             type = "string",
         },
-        SpotOptions = {
-            type = "structure",
-        },
+        SpotOptions = M.SpotMarketOptions,
     },
 }
 
@@ -68532,7 +66037,7 @@ M.InstanceMetadataOptionsRequest = {
             type = "string",
         },
         HttpPutResponseHopLimit = {
-            type = "number",
+            type = "integer",
         },
         HttpEndpoint = {
             type = "string",
@@ -68589,17 +66094,17 @@ M.InstanceSecondaryInterfaceSpecificationRequest = {
             type = "boolean",
         },
         DeviceIndex = {
-            type = "number",
+            type = "integer",
         },
         PrivateIpAddresses = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceSecondaryInterfacePrivateIpAddressRequest,
             traits = {
                 xml_name = "PrivateIpAddress",
             },
         },
         PrivateIpAddressCount = {
-            type = "number",
+            type = "integer",
         },
         SecondarySubnetId = {
             type = "string",
@@ -68608,7 +66113,7 @@ M.InstanceSecondaryInterfaceSpecificationRequest = {
             type = "string",
         },
         NetworkCardIndex = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -68618,7 +66123,7 @@ M.RunInstancesInput = {
     members = {
         BlockDeviceMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.BlockDeviceMapping,
             traits = {
                 xml_name = "BlockDeviceMapping",
             },
@@ -68630,11 +66135,11 @@ M.RunInstancesInput = {
             type = "string",
         },
         Ipv6AddressCount = {
-            type = "number",
+            type = "integer",
         },
         Ipv6Addresses = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceIpv6Address,
             traits = {
                 xml_name = "Ipv6Address",
             },
@@ -68646,36 +66151,32 @@ M.RunInstancesInput = {
             type = "string",
         },
         MaxCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         MinCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
-        Monitoring = {
-            type = "structure",
-        },
-        Placement = {
-            type = "structure",
-        },
+        Monitoring = M.RunInstancesMonitoringEnabled,
+        Placement = M.Placement,
         RamdiskId = {
             type = "string",
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "SecurityGroupId",
             },
         },
         SecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "SecurityGroup",
             },
@@ -68688,74 +66189,50 @@ M.RunInstancesInput = {
         },
         ElasticGpuSpecification = {
             type = "list",
-            member_type = "structure",
+            member = M.ElasticGpuSpecification,
         },
         ElasticInferenceAccelerators = {
             type = "list",
-            member_type = "structure",
+            member = M.ElasticInferenceAccelerator,
             traits = {
                 xml_name = "ElasticInferenceAccelerator",
             },
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
         },
-        LaunchTemplate = {
-            type = "structure",
-        },
-        InstanceMarketOptions = {
-            type = "structure",
-        },
-        CreditSpecification = {
-            type = "structure",
-        },
-        CpuOptions = {
-            type = "structure",
-        },
-        CapacityReservationSpecification = {
-            type = "structure",
-        },
-        HibernationOptions = {
-            type = "structure",
-        },
+        LaunchTemplate = M.LaunchTemplateSpecification,
+        InstanceMarketOptions = M.InstanceMarketOptionsRequest,
+        CreditSpecification = M.CreditSpecificationRequest,
+        CpuOptions = M.CpuOptionsRequest,
+        CapacityReservationSpecification = M.CapacityReservationSpecification,
+        HibernationOptions = M.HibernationOptionsRequest,
         LicenseSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.LicenseConfigurationRequest,
             traits = {
                 xml_name = "LicenseSpecification",
             },
         },
-        MetadataOptions = {
-            type = "structure",
-        },
-        EnclaveOptions = {
-            type = "structure",
-        },
-        PrivateDnsNameOptions = {
-            type = "structure",
-        },
-        MaintenanceOptions = {
-            type = "structure",
-        },
+        MetadataOptions = M.InstanceMetadataOptionsRequest,
+        EnclaveOptions = M.EnclaveOptionsRequest,
+        PrivateDnsNameOptions = M.PrivateDnsNameOptionsRequest,
+        MaintenanceOptions = M.InstanceMaintenanceOptionsRequest,
         DisableApiStop = {
             type = "boolean",
         },
         EnablePrimaryIpv6 = {
             type = "boolean",
         },
-        NetworkPerformanceOptions = {
-            type = "structure",
-        },
-        Operator = {
-            type = "structure",
-        },
+        NetworkPerformanceOptions = M.InstanceNetworkPerformanceOptionsRequest,
+        Operator = M.OperatorRequest,
         SecondaryInterfaces = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceSecondaryInterfaceSpecificationRequest,
             traits = {
                 xml_name = "SecondaryInterface",
             },
@@ -68798,17 +66275,14 @@ M.RunInstancesInput = {
         },
         NetworkInterfaces = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceNetworkInterfaceSpecification,
             traits = {
                 xml_name = "networkInterface",
             },
         },
-        IamInstanceProfile = {
-            type = "structure",
-            traits = {
-                xml_name = "iamInstanceProfile",
-            },
-        },
+        IamInstanceProfile = setmetatable({ traits = {
+            xml_name = "iamInstanceProfile",
+        } }, { __index = M.IamInstanceProfileSpecification }),
         EbsOptimized = {
             type = "boolean",
             traits = {
@@ -68841,14 +66315,14 @@ M.RunInstancesOutput = {
         },
         Groups = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupIdentifier,
             traits = {
                 xml_name = "groupSet",
             },
         },
         Instances = {
             type = "list",
-            member_type = "structure",
+            member = M.Instance,
             traits = {
                 xml_name = "instancesSet",
             },
@@ -68866,13 +66340,13 @@ M.ScheduledInstancesEbs = {
             type = "boolean",
         },
         Iops = {
-            type = "number",
+            type = "integer",
         },
         SnapshotId = {
             type = "string",
         },
         VolumeSize = {
-            type = "number",
+            type = "integer",
         },
         VolumeType = {
             type = "string",
@@ -68886,9 +66360,7 @@ M.ScheduledInstancesBlockDeviceMapping = {
         DeviceName = {
             type = "string",
         },
-        Ebs = {
-            type = "structure",
-        },
+        Ebs = M.ScheduledInstancesEbs,
         NoDevice = {
             type = "string",
         },
@@ -68953,21 +66425,21 @@ M.ScheduledInstancesNetworkInterface = {
             type = "string",
         },
         DeviceIndex = {
-            type = "number",
+            type = "integer",
         },
         Groups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "Group",
             },
         },
         Ipv6AddressCount = {
-            type = "number",
+            type = "integer",
         },
         Ipv6Addresses = {
             type = "list",
-            member_type = "structure",
+            member = M.ScheduledInstancesIpv6Address,
             traits = {
                 xml_name = "Ipv6Address",
             },
@@ -68980,13 +66452,13 @@ M.ScheduledInstancesNetworkInterface = {
         },
         PrivateIpAddressConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.ScheduledInstancesPrivateIpAddressConfig,
             traits = {
                 xml_name = "PrivateIpAddressConfig",
             },
         },
         SecondaryPrivateIpAddressCount = {
-            type = "number",
+            type = "integer",
         },
         SubnetId = {
             type = "string",
@@ -69011,7 +66483,7 @@ M.ScheduledInstancesLaunchSpecification = {
     members = {
         BlockDeviceMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.ScheduledInstancesBlockDeviceMapping,
             traits = {
                 xml_name = "BlockDeviceMapping",
             },
@@ -69019,9 +66491,7 @@ M.ScheduledInstancesLaunchSpecification = {
         EbsOptimized = {
             type = "boolean",
         },
-        IamInstanceProfile = {
-            type = "structure",
-        },
+        IamInstanceProfile = M.ScheduledInstancesIamInstanceProfile,
         ImageId = {
             type = "string",
             traits = {
@@ -69037,25 +66507,21 @@ M.ScheduledInstancesLaunchSpecification = {
         KeyName = {
             type = "string",
         },
-        Monitoring = {
-            type = "structure",
-        },
+        Monitoring = M.ScheduledInstancesMonitoring,
         NetworkInterfaces = {
             type = "list",
-            member_type = "structure",
+            member = M.ScheduledInstancesNetworkInterface,
             traits = {
                 xml_name = "NetworkInterface",
             },
         },
-        Placement = {
-            type = "structure",
-        },
+        Placement = M.ScheduledInstancesPlacement,
         RamdiskId = {
             type = "string",
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "SecurityGroupId",
             },
@@ -69079,14 +66545,11 @@ M.RunScheduledInstancesInput = {
             type = "boolean",
         },
         InstanceCount = {
-            type = "number",
+            type = "integer",
         },
-        LaunchSpecification = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        LaunchSpecification = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ScheduledInstancesLaunchSpecification }),
         ScheduledInstanceId = {
             type = "string",
             traits = {
@@ -69101,7 +66564,7 @@ M.RunScheduledInstancesOutput = {
     members = {
         InstanceIdSet = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "instanceIdSet",
             },
@@ -69120,13 +66583,13 @@ M.SearchLocalGatewayRoutesInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -69142,7 +66605,7 @@ M.SearchLocalGatewayRoutesOutput = {
     members = {
         Routes = {
             type = "list",
-            member_type = "structure",
+            member = M.LocalGatewayRoute,
             traits = {
                 xml_name = "routeSet",
             },
@@ -69167,13 +66630,13 @@ M.SearchTransitGatewayMulticastGroupsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -69266,7 +66729,7 @@ M.SearchTransitGatewayMulticastGroupsOutput = {
     members = {
         MulticastGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.TransitGatewayMulticastGroup,
             traits = {
                 xml_name = "multicastGroups",
             },
@@ -69291,14 +66754,14 @@ M.SearchTransitGatewayRoutesInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 required = true,
                 xml_name = "Filter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         DryRun = {
             type = "boolean",
@@ -69314,7 +66777,7 @@ M.SearchTransitGatewayRoutesOutput = {
     members = {
         Routes = {
             type = "list",
-            member_type = "structure",
+            member = M.TransitGatewayRoute,
             traits = {
                 xml_name = "routeSet",
             },
@@ -69376,7 +66839,7 @@ M.StartDeclarativePoliciesReportInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -69401,7 +66864,7 @@ M.StartInstancesInput = {
     members = {
         InstanceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "InstanceId",
@@ -69431,18 +66894,12 @@ M.InstanceStateChange = {
                 xml_name = "instanceId",
             },
         },
-        CurrentState = {
-            type = "structure",
-            traits = {
-                xml_name = "currentState",
-            },
-        },
-        PreviousState = {
-            type = "structure",
-            traits = {
-                xml_name = "previousState",
-            },
-        },
+        CurrentState = setmetatable({ traits = {
+            xml_name = "currentState",
+        } }, { __index = M.InstanceState }),
+        PreviousState = setmetatable({ traits = {
+            xml_name = "previousState",
+        } }, { __index = M.InstanceState }),
     },
 }
 
@@ -69451,7 +66908,7 @@ M.StartInstancesOutput = {
     members = {
         StartingInstances = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceStateChange,
             traits = {
                 xml_name = "instancesSet",
             },
@@ -69473,7 +66930,7 @@ M.StartNetworkInsightsAccessScopeAnalysisInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -69490,12 +66947,9 @@ M.StartNetworkInsightsAccessScopeAnalysisInput = {
 M.StartNetworkInsightsAccessScopeAnalysisOutput = {
     type = "structure",
     members = {
-        NetworkInsightsAccessScopeAnalysis = {
-            type = "structure",
-            traits = {
-                xml_name = "networkInsightsAccessScopeAnalysis",
-            },
-        },
+        NetworkInsightsAccessScopeAnalysis = setmetatable({ traits = {
+            xml_name = "networkInsightsAccessScopeAnalysis",
+        } }, { __index = M.NetworkInsightsAccessScopeAnalysis }),
     },
 }
 
@@ -69510,21 +66964,21 @@ M.StartNetworkInsightsAnalysisInput = {
         },
         AdditionalAccounts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "AdditionalAccount",
             },
         },
         FilterInArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "FilterInArn",
             },
         },
         FilterOutArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "FilterOutArn",
             },
@@ -69534,7 +66988,7 @@ M.StartNetworkInsightsAnalysisInput = {
         },
         TagSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.TagSpecification,
             traits = {
                 xml_name = "TagSpecification",
             },
@@ -69551,12 +67005,9 @@ M.StartNetworkInsightsAnalysisInput = {
 M.StartNetworkInsightsAnalysisOutput = {
     type = "structure",
     members = {
-        NetworkInsightsAnalysis = {
-            type = "structure",
-            traits = {
-                xml_name = "networkInsightsAnalysis",
-            },
-        },
+        NetworkInsightsAnalysis = setmetatable({ traits = {
+            xml_name = "networkInsightsAnalysis",
+        } }, { __index = M.NetworkInsightsAnalysis }),
     },
 }
 
@@ -69592,7 +67043,7 @@ M.StopInstancesInput = {
     members = {
         InstanceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "InstanceId",
@@ -69624,7 +67075,7 @@ M.StopInstancesOutput = {
     members = {
         StoppingInstances = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceStateChange,
             traits = {
                 xml_name = "instancesSet",
             },
@@ -69662,18 +67113,12 @@ M.TerminateConnectionStatus = {
                 xml_name = "connectionId",
             },
         },
-        PreviousStatus = {
-            type = "structure",
-            traits = {
-                xml_name = "previousStatus",
-            },
-        },
-        CurrentStatus = {
-            type = "structure",
-            traits = {
-                xml_name = "currentStatus",
-            },
-        },
+        PreviousStatus = setmetatable({ traits = {
+            xml_name = "previousStatus",
+        } }, { __index = M.ClientVpnConnectionStatus }),
+        CurrentStatus = setmetatable({ traits = {
+            xml_name = "currentStatus",
+        } }, { __index = M.ClientVpnConnectionStatus }),
     },
 }
 
@@ -69694,7 +67139,7 @@ M.TerminateClientVpnConnectionsOutput = {
         },
         ConnectionStatuses = {
             type = "list",
-            member_type = "structure",
+            member = M.TerminateConnectionStatus,
             traits = {
                 xml_name = "connectionStatuses",
             },
@@ -69707,7 +67152,7 @@ M.TerminateInstancesInput = {
     members = {
         InstanceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "InstanceId",
@@ -69733,7 +67178,7 @@ M.TerminateInstancesOutput = {
     members = {
         TerminatingInstances = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceStateChange,
             traits = {
                 xml_name = "instancesSet",
             },
@@ -69746,7 +67191,7 @@ M.UnassignIpv6AddressesInput = {
     members = {
         Ipv6Prefixes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "Ipv6Prefix",
             },
@@ -69760,7 +67205,7 @@ M.UnassignIpv6AddressesInput = {
         },
         Ipv6Addresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "ipv6Addresses",
             },
@@ -69779,14 +67224,14 @@ M.UnassignIpv6AddressesOutput = {
         },
         UnassignedIpv6Addresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "unassignedIpv6Addresses",
             },
         },
         UnassignedIpv6Prefixes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "unassignedIpv6PrefixSet",
             },
@@ -69799,7 +67244,7 @@ M.UnassignPrivateIpAddressesInput = {
     members = {
         Ipv4Prefixes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "Ipv4Prefix",
             },
@@ -69813,7 +67258,7 @@ M.UnassignPrivateIpAddressesInput = {
         },
         PrivateIpAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "privateIpAddress",
             },
@@ -69836,14 +67281,14 @@ M.UnassignPrivateNatGatewayAddressInput = {
         },
         PrivateIpAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "PrivateIpAddress",
             },
         },
         MaxDrainDurationSeconds = {
-            type = "number",
+            type = "integer",
         },
         DryRun = {
             type = "boolean",
@@ -69862,7 +67307,7 @@ M.UnassignPrivateNatGatewayAddressOutput = {
         },
         NatGatewayAddresses = {
             type = "list",
-            member_type = "structure",
+            member = M.NatGatewayAddress,
             traits = {
                 xml_name = "natGatewayAddressSet",
             },
@@ -69902,7 +67347,7 @@ M.UnmonitorInstancesInput = {
     members = {
         InstanceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
                 xml_name = "InstanceId",
@@ -69922,7 +67367,7 @@ M.UnmonitorInstancesOutput = {
     members = {
         InstanceMonitorings = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceMonitoring,
             traits = {
                 xml_name = "instancesSet",
             },
@@ -69935,14 +67380,14 @@ M.UpdateCapacityManagerMonitoredTagKeysInput = {
     members = {
         ActivateTagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "ActivateTagKey",
             },
         },
         DeactivateTagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "DeactivateTagKey",
             },
@@ -69961,7 +67406,7 @@ M.UpdateCapacityManagerMonitoredTagKeysOutput = {
     members = {
         CapacityManagerTagKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.CapacityManagerMonitoredTagKey,
             traits = {
                 xml_name = "capacityManagerTagKeySet",
             },
@@ -70015,7 +67460,7 @@ M.UpdateInterruptibleCapacityReservationAllocationInput = {
             },
         },
         TargetInstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -70042,13 +67487,13 @@ M.UpdateInterruptibleCapacityReservationAllocationOutput = {
             },
         },
         InstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "instanceCount",
             },
         },
         TargetInstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 xml_name = "targetInstanceCount",
             },
@@ -70094,11 +67539,11 @@ M.UpdateSecurityGroupRuleDescriptionsEgressInput = {
         },
         IpPermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.IpPermission,
         },
         SecurityGroupRuleDescriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.SecurityGroupRuleDescription,
             traits = {
                 xml_name = "SecurityGroupRuleDescription",
             },
@@ -70132,11 +67577,11 @@ M.UpdateSecurityGroupRuleDescriptionsIngressInput = {
         },
         IpPermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.IpPermission,
         },
         SecurityGroupRuleDescriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.SecurityGroupRuleDescription,
             traits = {
                 xml_name = "SecurityGroupRuleDescription",
             },
@@ -70174,12 +67619,9 @@ M.WithdrawByoipCidrInput = {
 M.WithdrawByoipCidrOutput = {
     type = "structure",
     members = {
-        ByoipCidr = {
-            type = "structure",
-            traits = {
-                xml_name = "byoipCidr",
-            },
-        },
+        ByoipCidr = setmetatable({ traits = {
+            xml_name = "byoipCidr",
+        } }, { __index = M.ByoipCidr }),
     },
 }
 

@@ -1,0 +1,125 @@
+local waiter = require("waiter")
+
+local M = {}
+
+--- Wait until BatchPredictionAvailable.
+function M.wait_until_batch_prediction_available(client, input, options)
+    return waiter.wait(client, "describeBatchPredictions", input, {
+        min_delay = 30,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "Results[].Status",
+                        expected = "COMPLETED",
+                        comparator = "allStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Results[].Status",
+                        expected = "FAILED",
+                        comparator = "anyStringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until DataSourceAvailable.
+function M.wait_until_data_source_available(client, input, options)
+    return waiter.wait(client, "describeDataSources", input, {
+        min_delay = 30,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "Results[].Status",
+                        expected = "COMPLETED",
+                        comparator = "allStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Results[].Status",
+                        expected = "FAILED",
+                        comparator = "anyStringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until EvaluationAvailable.
+function M.wait_until_evaluation_available(client, input, options)
+    return waiter.wait(client, "describeEvaluations", input, {
+        min_delay = 30,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "Results[].Status",
+                        expected = "COMPLETED",
+                        comparator = "allStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Results[].Status",
+                        expected = "FAILED",
+                        comparator = "anyStringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until MLModelAvailable.
+function M.wait_until_m_l_model_available(client, input, options)
+    return waiter.wait(client, "describeMLModels", input, {
+        min_delay = 30,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "Results[].Status",
+                        expected = "COMPLETED",
+                        comparator = "allStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Results[].Status",
+                        expected = "FAILED",
+                        comparator = "anyStringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+return M

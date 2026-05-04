@@ -6,6 +6,7 @@ M.AccessLog = {
         Enabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -13,7 +14,7 @@ M.AccessLog = {
             type = "string",
         },
         EmitInterval = {
-            type = "number",
+            type = "integer",
         },
         S3BucketPrefix = {
             type = "string",
@@ -63,14 +64,14 @@ M.AddTagsInput = {
     members = {
         LoadBalancerNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -125,7 +126,7 @@ M.ApplySecurityGroupsToLoadBalancerInput = {
         },
         SecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -138,7 +139,7 @@ M.ApplySecurityGroupsToLoadBalancerOutput = {
     members = {
         SecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -174,7 +175,7 @@ M.AttachLoadBalancerToSubnetsInput = {
         },
         Subnets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -187,7 +188,7 @@ M.AttachLoadBalancerToSubnetsOutput = {
     members = {
         Subnets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -216,11 +217,11 @@ M.BackendServerDescription = {
     type = "structure",
     members = {
         InstancePort = {
-            type = "number",
+            type = "integer",
         },
         PolicyNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -245,25 +246,25 @@ M.HealthCheck = {
             },
         },
         Interval = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Timeout = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         UnhealthyThreshold = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         HealthyThreshold = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -280,21 +281,16 @@ M.ConfigureHealthCheckInput = {
                 required = true,
             },
         },
-        HealthCheck = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        HealthCheck = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HealthCheck }),
     },
 }
 
 M.ConfigureHealthCheckOutput = {
     type = "structure",
     members = {
-        HealthCheck = {
-            type = "structure",
-        },
+        HealthCheck = M.HealthCheck,
     },
 }
 
@@ -304,11 +300,12 @@ M.ConnectionDraining = {
         Enabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
         Timeout = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -317,7 +314,7 @@ M.ConnectionSettings = {
     type = "structure",
     members = {
         IdleTimeout = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -389,7 +386,7 @@ M.CreateLBCookieStickinessPolicyInput = {
             },
         },
         CookieExpirationPeriod = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -408,8 +405,9 @@ M.Listener = {
             },
         },
         LoadBalancerPort = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -417,7 +415,7 @@ M.Listener = {
             type = "string",
         },
         InstancePort = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -439,29 +437,29 @@ M.CreateLoadBalancerInput = {
         },
         Listeners = {
             type = "list",
-            member_type = "structure",
+            member = M.Listener,
             traits = {
                 required = true,
             },
         },
         AvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Subnets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Scheme = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -536,7 +534,7 @@ M.CreateLoadBalancerListenersInput = {
         },
         Listeners = {
             type = "list",
-            member_type = "structure",
+            member = M.Listener,
             traits = {
                 required = true,
             },
@@ -593,7 +591,7 @@ M.CreateLoadBalancerPolicyInput = {
         },
         PolicyAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.PolicyAttribute,
         },
     },
 }
@@ -618,6 +616,7 @@ M.CrossZoneLoadBalancing = {
         Enabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -651,7 +650,7 @@ M.DeleteLoadBalancerListenersInput = {
         },
         LoadBalancerPorts = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
             traits = {
                 required = true,
             },
@@ -715,7 +714,7 @@ M.DeregisterInstancesFromLoadBalancerInput = {
         },
         Instances = {
             type = "list",
-            member_type = "structure",
+            member = M.Instance,
             traits = {
                 required = true,
             },
@@ -728,7 +727,7 @@ M.DeregisterInstancesFromLoadBalancerOutput = {
     members = {
         Instances = {
             type = "list",
-            member_type = "structure",
+            member = M.Instance,
         },
     },
 }
@@ -750,7 +749,7 @@ M.DescribeAccountLimitsInput = {
             type = "string",
         },
         PageSize = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -772,7 +771,7 @@ M.DescribeAccountLimitsOutput = {
     members = {
         Limits = {
             type = "list",
-            member_type = "structure",
+            member = M.Limit,
         },
         NextMarker = {
             type = "string",
@@ -791,7 +790,7 @@ M.DescribeInstanceHealthInput = {
         },
         Instances = {
             type = "list",
-            member_type = "structure",
+            member = M.Instance,
         },
     },
 }
@@ -819,7 +818,7 @@ M.DescribeInstanceHealthOutput = {
     members = {
         InstanceStates = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceState,
         },
     },
 }
@@ -839,21 +838,13 @@ M.DescribeLoadBalancerAttributesInput = {
 M.LoadBalancerAttributes = {
     type = "structure",
     members = {
-        CrossZoneLoadBalancing = {
-            type = "structure",
-        },
-        AccessLog = {
-            type = "structure",
-        },
-        ConnectionDraining = {
-            type = "structure",
-        },
-        ConnectionSettings = {
-            type = "structure",
-        },
+        CrossZoneLoadBalancing = M.CrossZoneLoadBalancing,
+        AccessLog = M.AccessLog,
+        ConnectionDraining = M.ConnectionDraining,
+        ConnectionSettings = M.ConnectionSettings,
         AdditionalAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.AdditionalAttribute,
         },
     },
 }
@@ -861,9 +852,7 @@ M.LoadBalancerAttributes = {
 M.DescribeLoadBalancerAttributesOutput = {
     type = "structure",
     members = {
-        LoadBalancerAttributes = {
-            type = "structure",
-        },
+        LoadBalancerAttributes = M.LoadBalancerAttributes,
     },
 }
 
@@ -885,7 +874,7 @@ M.DescribeLoadBalancerPoliciesInput = {
         },
         PolicyNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -913,7 +902,7 @@ M.PolicyDescription = {
         },
         PolicyAttributeDescriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.PolicyAttributeDescription,
         },
     },
 }
@@ -923,7 +912,7 @@ M.DescribeLoadBalancerPoliciesOutput = {
     members = {
         PolicyDescriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.PolicyDescription,
         },
     },
 }
@@ -943,7 +932,7 @@ M.DescribeLoadBalancerPolicyTypesInput = {
     members = {
         PolicyTypeNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -980,7 +969,7 @@ M.PolicyTypeDescription = {
         },
         PolicyAttributeTypeDescriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.PolicyAttributeTypeDescription,
         },
     },
 }
@@ -990,7 +979,7 @@ M.DescribeLoadBalancerPolicyTypesOutput = {
     members = {
         PolicyTypeDescriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.PolicyTypeDescription,
         },
     },
 }
@@ -1000,13 +989,13 @@ M.DescribeLoadBalancersInput = {
     members = {
         LoadBalancerNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Marker = {
             type = "string",
         },
         PageSize = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1014,12 +1003,10 @@ M.DescribeLoadBalancersInput = {
 M.ListenerDescription = {
     type = "structure",
     members = {
-        Listener = {
-            type = "structure",
-        },
+        Listener = M.Listener,
         PolicyNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1031,7 +1018,7 @@ M.LBCookieStickinessPolicy = {
             type = "string",
         },
         CookieExpirationPeriod = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1041,15 +1028,15 @@ M.Policies = {
     members = {
         AppCookieStickinessPolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.AppCookieStickinessPolicy,
         },
         LBCookieStickinessPolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.LBCookieStickinessPolicy,
         },
         OtherPolicies = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1083,39 +1070,33 @@ M.LoadBalancerDescription = {
         },
         ListenerDescriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.ListenerDescription,
         },
-        Policies = {
-            type = "structure",
-        },
+        Policies = M.Policies,
         BackendServerDescriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.BackendServerDescription,
         },
         AvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Subnets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         VPCId = {
             type = "string",
         },
         Instances = {
             type = "list",
-            member_type = "structure",
+            member = M.Instance,
         },
-        HealthCheck = {
-            type = "structure",
-        },
-        SourceSecurityGroup = {
-            type = "structure",
-        },
+        HealthCheck = M.HealthCheck,
+        SourceSecurityGroup = M.SourceSecurityGroup,
         SecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CreatedTime = {
             type = "timestamp",
@@ -1131,7 +1112,7 @@ M.DescribeLoadBalancersOutput = {
     members = {
         LoadBalancerDescriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.LoadBalancerDescription,
         },
         NextMarker = {
             type = "string",
@@ -1144,7 +1125,7 @@ M.DescribeTagsInput = {
     members = {
         LoadBalancerNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1160,7 +1141,7 @@ M.TagDescription = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1170,7 +1151,7 @@ M.DescribeTagsOutput = {
     members = {
         TagDescriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.TagDescription,
         },
     },
 }
@@ -1186,7 +1167,7 @@ M.DetachLoadBalancerFromSubnetsInput = {
         },
         Subnets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1199,7 +1180,7 @@ M.DetachLoadBalancerFromSubnetsOutput = {
     members = {
         Subnets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1215,7 +1196,7 @@ M.DisableAvailabilityZonesForLoadBalancerInput = {
         },
         AvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1228,7 +1209,7 @@ M.DisableAvailabilityZonesForLoadBalancerOutput = {
     members = {
         AvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1244,7 +1225,7 @@ M.EnableAvailabilityZonesForLoadBalancerInput = {
         },
         AvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1257,7 +1238,7 @@ M.EnableAvailabilityZonesForLoadBalancerOutput = {
     members = {
         AvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1271,12 +1252,9 @@ M.ModifyLoadBalancerAttributesInput = {
                 required = true,
             },
         },
-        LoadBalancerAttributes = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        LoadBalancerAttributes = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LoadBalancerAttributes }),
     },
 }
 
@@ -1286,9 +1264,7 @@ M.ModifyLoadBalancerAttributesOutput = {
         LoadBalancerName = {
             type = "string",
         },
-        LoadBalancerAttributes = {
-            type = "structure",
-        },
+        LoadBalancerAttributes = M.LoadBalancerAttributes,
     },
 }
 
@@ -1303,7 +1279,7 @@ M.RegisterInstancesWithLoadBalancerInput = {
         },
         Instances = {
             type = "list",
-            member_type = "structure",
+            member = M.Instance,
             traits = {
                 required = true,
             },
@@ -1316,7 +1292,7 @@ M.RegisterInstancesWithLoadBalancerOutput = {
     members = {
         Instances = {
             type = "list",
-            member_type = "structure",
+            member = M.Instance,
         },
     },
 }
@@ -1335,14 +1311,14 @@ M.RemoveTagsInput = {
     members = {
         LoadBalancerNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.TagKeyOnly,
             traits = {
                 required = true,
             },
@@ -1374,8 +1350,9 @@ M.SetLoadBalancerListenerSSLCertificateInput = {
             },
         },
         LoadBalancerPort = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -1402,14 +1379,14 @@ M.SetLoadBalancerPoliciesForBackendServerInput = {
             },
         },
         InstancePort = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         PolicyNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1431,14 +1408,15 @@ M.SetLoadBalancerPoliciesOfListenerInput = {
             },
         },
         LoadBalancerPort = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         PolicyNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },

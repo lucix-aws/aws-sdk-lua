@@ -2912,37 +2912,37 @@ local record ValidationException
     Fields: {ValidationExceptionField}
 end
 
-local type ShareInvitationAction = "ACCEPT" | "REJECT"
-
-local type IntegratingService = "JIRA"
-
-local type WorkloadEnvironment = "PRODUCTION" | "PREPRODUCTION"
-
-local type ProfileOwnerType = "SELF" | "SHARED"
-
-local type LensType = "AWS_OFFICIAL" | "CUSTOM_SHARED" | "CUSTOM_SELF"
-
-local type PermissionType = "READONLY" | "CONTRIBUTOR"
-
-local type AnswerReason = "OUT_OF_SCOPE" | "BUSINESS_PRIORITIES" | "ARCHITECTURE_CONSTRAINTS" | "OTHER" | "NONE"
-
-local type OrganizationSharingStatus = "ENABLED" | "DISABLED"
+local type ShareStatus = "ACCEPTED" | "REJECTED" | "PENDING" | "REVOKED" | "EXPIRED" | "ASSOCIATING" | "ASSOCIATED" | "FAILED"
 
 local type ShareResourceType = "WORKLOAD" | "LENS" | "PROFILE" | "TEMPLATE"
-
-local type ShareStatus = "ACCEPTED" | "REJECTED" | "PENDING" | "REVOKED" | "EXPIRED" | "ASSOCIATING" | "ASSOCIATED" | "FAILED"
 
 local type QuestionPriority = "PRIORITIZED" | "NONE"
 
 local type ImportLensStatus = "IN_PROGRESS" | "COMPLETE" | "ERROR"
 
+local type ReportFormat = "PDF" | "JSON"
+
 local type DiscoveryIntegrationStatus = "ENABLED" | "DISABLED"
+
+local type LensStatusType = "ALL" | "DRAFT" | "PUBLISHED"
 
 local type WorkloadImprovementStatus = "NOT_APPLICABLE" | "NOT_STARTED" | "IN_PROGRESS" | "COMPLETE" | "RISK_ACKNOWLEDGED"
 
-local type ReportFormat = "PDF" | "JSON"
+local type IntegratingService = "JIRA"
 
-local type LensStatusType = "ALL" | "DRAFT" | "PUBLISHED"
+local type ShareInvitationAction = "ACCEPT" | "REJECT"
+
+local type PermissionType = "READONLY" | "CONTRIBUTOR"
+
+local type OrganizationSharingStatus = "ENABLED" | "DISABLED"
+
+local type LensType = "AWS_OFFICIAL" | "CUSTOM_SHARED" | "CUSTOM_SELF"
+
+local type AnswerReason = "OUT_OF_SCOPE" | "BUSINESS_PRIORITIES" | "ARCHITECTURE_CONSTRAINTS" | "OTHER" | "NONE"
+
+local type WorkloadEnvironment = "PRODUCTION" | "PREPRODUCTION"
+
+local type ProfileOwnerType = "SELF" | "SHARED"
 
 local record M
     AssociateLensesInput: AssociateLensesInput

@@ -117,7 +117,7 @@ M.CreateAgreementInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         PreserveFilename = {
             type = "string",
@@ -125,9 +125,7 @@ M.CreateAgreementInput = {
         EnforceMessageSigning = {
             type = "string",
         },
-        CustomDirectories = {
-            type = "structure",
-        },
+        CustomDirectories = M.CustomDirectoriesType,
     },
 }
 
@@ -317,7 +315,7 @@ M.DescribedAgreement = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         PreserveFilename = {
             type = "string",
@@ -325,21 +323,16 @@ M.DescribedAgreement = {
         EnforceMessageSigning = {
             type = "string",
         },
-        CustomDirectories = {
-            type = "structure",
-        },
+        CustomDirectories = M.CustomDirectoriesType,
     },
 }
 
 M.DescribeAgreementOutput = {
     type = "structure",
     members = {
-        Agreement = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Agreement = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DescribedAgreement }),
     },
 }
 
@@ -360,7 +353,7 @@ M.ListAgreementsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -409,7 +402,7 @@ M.ListAgreementsOutput = {
         },
         Agreements = {
             type = "list",
-            member_type = "structure",
+            member = M.ListedAgreement,
             traits = {
                 required = true,
             },
@@ -456,9 +449,7 @@ M.UpdateAgreementInput = {
         EnforceMessageSigning = {
             type = "string",
         },
-        CustomDirectories = {
-            type = "structure",
-        },
+        CustomDirectories = M.CustomDirectoriesType,
     },
 }
 
@@ -482,7 +473,7 @@ M.As2AsyncMdnConnectorConfig = {
         },
         ServerIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -561,9 +552,7 @@ M.As2ConnectorConfig = {
         PreserveContentType = {
             type = "string",
         },
-        AsyncMdnConfig = {
-            type = "structure",
-        },
+        AsyncMdnConfig = M.As2AsyncMdnConnectorConfig,
     },
 }
 
@@ -663,7 +652,7 @@ M.DescribedCertificate = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -671,12 +660,9 @@ M.DescribedCertificate = {
 M.DescribeCertificateOutput = {
     type = "structure",
     members = {
-        Certificate = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Certificate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DescribedCertificate }),
     },
 }
 
@@ -712,7 +698,7 @@ M.ImportCertificateInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -733,7 +719,7 @@ M.ListCertificatesInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -779,7 +765,7 @@ M.ListCertificatesOutput = {
         },
         Certificates = {
             type = "list",
-            member_type = "structure",
+            member = M.ListedCertificate,
             traits = {
                 required = true,
             },
@@ -843,7 +829,7 @@ M.ConnectorVpcLatticeEgressConfig = {
             },
         },
         PortNumber = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -851,9 +837,7 @@ M.ConnectorVpcLatticeEgressConfig = {
 M.ConnectorEgressConfig = {
     type = "union",
     members = {
-        VpcLattice = {
-            type = "structure",
-        },
+        VpcLattice = M.ConnectorVpcLatticeEgressConfig,
     },
 }
 
@@ -906,10 +890,13 @@ M.SftpConnectorConfig = {
         },
         TrustedHostKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MaxConcurrentConnections = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 1,
+            },
         },
     },
 }
@@ -920,9 +907,7 @@ M.CreateConnectorInput = {
         Url = {
             type = "string",
         },
-        As2Config = {
-            type = "structure",
-        },
+        As2Config = M.As2ConnectorConfig,
         AccessRole = {
             type = "string",
             traits = {
@@ -934,17 +919,13 @@ M.CreateConnectorInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        SftpConfig = {
-            type = "structure",
-        },
+        SftpConfig = M.SftpConnectorConfig,
         SecurityPolicyName = {
             type = "string",
         },
-        EgressConfig = {
-            type = "union",
-        },
+        EgressConfig = M.ConnectorEgressConfig,
         IpAddressType = {
             type = "string",
         },
@@ -1001,7 +982,7 @@ M.DescribedConnectorVpcLatticeEgressConfig = {
             },
         },
         PortNumber = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1009,9 +990,7 @@ M.DescribedConnectorVpcLatticeEgressConfig = {
 M.DescribedConnectorEgressConfig = {
     type = "union",
     members = {
-        VpcLattice = {
-            type = "structure",
-        },
+        VpcLattice = M.DescribedConnectorVpcLatticeEgressConfig,
     },
 }
 
@@ -1036,9 +1015,7 @@ M.DescribedConnector = {
         Url = {
             type = "string",
         },
-        As2Config = {
-            type = "structure",
-        },
+        As2Config = M.As2ConnectorConfig,
         AccessRole = {
             type = "string",
         },
@@ -1047,24 +1024,21 @@ M.DescribedConnector = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        SftpConfig = {
-            type = "structure",
-        },
+        SftpConfig = M.SftpConnectorConfig,
         ServiceManagedEgressIpAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SecurityPolicyName = {
             type = "string",
         },
-        EgressConfig = {
-            type = "union",
-        },
+        EgressConfig = M.DescribedConnectorEgressConfig,
         EgressType = {
             type = "string",
             traits = {
+                default = "SERVICE_MANAGED",
                 required = true,
             },
         },
@@ -1074,6 +1048,7 @@ M.DescribedConnector = {
         Status = {
             type = "string",
             traits = {
+                default = "ACTIVE",
                 required = true,
             },
         },
@@ -1086,12 +1061,9 @@ M.DescribedConnector = {
 M.DescribeConnectorOutput = {
     type = "structure",
     members = {
-        Connector = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Connector = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DescribedConnector }),
     },
 }
 
@@ -1099,7 +1071,7 @@ M.ListConnectorsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1130,7 +1102,7 @@ M.ListConnectorsOutput = {
         },
         Connectors = {
             type = "list",
-            member_type = "structure",
+            member = M.ListedConnector,
             traits = {
                 required = true,
             },
@@ -1145,7 +1117,7 @@ M.UpdateConnectorVpcLatticeEgressConfig = {
             type = "string",
         },
         PortNumber = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1153,9 +1125,7 @@ M.UpdateConnectorVpcLatticeEgressConfig = {
 M.UpdateConnectorEgressConfig = {
     type = "union",
     members = {
-        VpcLattice = {
-            type = "structure",
-        },
+        VpcLattice = M.UpdateConnectorVpcLatticeEgressConfig,
     },
 }
 
@@ -1171,24 +1141,18 @@ M.UpdateConnectorInput = {
         Url = {
             type = "string",
         },
-        As2Config = {
-            type = "structure",
-        },
+        As2Config = M.As2ConnectorConfig,
         AccessRole = {
             type = "string",
         },
         LoggingRole = {
             type = "string",
         },
-        SftpConfig = {
-            type = "structure",
-        },
+        SftpConfig = M.SftpConnectorConfig,
         SecurityPolicyName = {
             type = "string",
         },
-        EgressConfig = {
-            type = "union",
-        },
+        EgressConfig = M.UpdateConnectorEgressConfig,
         IpAddressType = {
             type = "string",
         },
@@ -1234,12 +1198,8 @@ M.S3InputFileLocation = {
 M.InputFileLocation = {
     type = "structure",
     members = {
-        S3FileLocation = {
-            type = "structure",
-        },
-        EfsFileLocation = {
-            type = "structure",
-        },
+        S3FileLocation = M.S3InputFileLocation,
+        EfsFileLocation = M.EfsFileLocation,
     },
 }
 
@@ -1254,9 +1214,7 @@ M.CopyStepDetails = {
         Name = {
             type = "string",
         },
-        DestinationFileLocation = {
-            type = "structure",
-        },
+        DestinationFileLocation = M.InputFileLocation,
         OverwriteExisting = {
             type = "string",
         },
@@ -1301,20 +1259,20 @@ M.PosixProfile = {
     type = "structure",
     members = {
         Uid = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         Gid = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         SecondaryGids = {
             type = "list",
-            member_type = "number",
+            member = { type = "long" },
         },
     },
 }
@@ -1330,14 +1288,12 @@ M.CreateAccessInput = {
         },
         HomeDirectoryMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.HomeDirectoryMapEntry,
         },
         Policy = {
             type = "string",
         },
-        PosixProfile = {
-            type = "structure",
-        },
+        PosixProfile = M.PosixProfile,
         Role = {
             type = "string",
             traits = {
@@ -1399,11 +1355,11 @@ M.CreateProfileInput = {
         },
         CertificateIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1430,11 +1386,11 @@ M.EndpointDetails = {
     members = {
         AddressAllocationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         VpcEndpointId = {
             type = "string",
@@ -1444,7 +1400,7 @@ M.EndpointDetails = {
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1520,7 +1476,7 @@ M.ProtocolDetails = {
         },
         As2Transports = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1569,11 +1525,11 @@ M.WorkflowDetails = {
     members = {
         OnUpload = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkflowDetail,
         },
         OnPartialUpload = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkflowDetail,
         },
     },
 }
@@ -1587,18 +1543,14 @@ M.CreateServerInput = {
         Domain = {
             type = "string",
         },
-        EndpointDetails = {
-            type = "structure",
-        },
+        EndpointDetails = M.EndpointDetails,
         EndpointType = {
             type = "string",
         },
         HostKey = {
             type = "string",
         },
-        IdentityProviderDetails = {
-            type = "structure",
-        },
+        IdentityProviderDetails = M.IdentityProviderDetails,
         IdentityProviderType = {
             type = "string",
         },
@@ -1613,28 +1565,22 @@ M.CreateServerInput = {
         },
         Protocols = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        ProtocolDetails = {
-            type = "structure",
-        },
+        ProtocolDetails = M.ProtocolDetails,
         SecurityPolicyName = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        WorkflowDetails = {
-            type = "structure",
-        },
+        WorkflowDetails = M.WorkflowDetails,
         StructuredLogDestinations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        S3StorageOptions = {
-            type = "structure",
-        },
+        S3StorageOptions = M.S3StorageOptions,
         IpAddressType = {
             type = "string",
         },
@@ -1664,14 +1610,12 @@ M.CreateUserInput = {
         },
         HomeDirectoryMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.HomeDirectoryMapEntry,
         },
         Policy = {
             type = "string",
         },
-        PosixProfile = {
-            type = "structure",
-        },
+        PosixProfile = M.PosixProfile,
         Role = {
             type = "string",
             traits = {
@@ -1689,7 +1633,7 @@ M.CreateUserInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         UserName = {
             type = "string",
@@ -1728,14 +1672,14 @@ M.WebAppVpcConfig = {
     members = {
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         VpcId = {
             type = "string",
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IpAddressType = {
             type = "string",
@@ -1746,9 +1690,7 @@ M.WebAppVpcConfig = {
 M.WebAppEndpointDetails = {
     type = "union",
     members = {
-        Vpc = {
-            type = "structure",
-        },
+        Vpc = M.WebAppVpcConfig,
     },
 }
 
@@ -1767,9 +1709,7 @@ M.IdentityCenterConfig = {
 M.WebAppIdentityProviderDetails = {
     type = "union",
     members = {
-        IdentityCenterConfig = {
-            type = "structure",
-        },
+        IdentityCenterConfig = M.IdentityCenterConfig,
     },
 }
 
@@ -1782,7 +1722,7 @@ M.WebAppUnits = {
     type = "union",
     members = {
         Provisioned = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1790,28 +1730,21 @@ M.WebAppUnits = {
 M.CreateWebAppInput = {
     type = "structure",
     members = {
-        IdentityProviderDetails = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        IdentityProviderDetails = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WebAppIdentityProviderDetails }),
         AccessEndpoint = {
             type = "string",
         },
-        WebAppUnits = {
-            type = "union",
-        },
+        WebAppUnits = M.WebAppUnits,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         WebAppEndpointPolicy = {
             type = "string",
         },
-        EndpointDetails = {
-            type = "union",
-        },
+        EndpointDetails = M.WebAppEndpointDetails,
     },
 }
 
@@ -1837,7 +1770,7 @@ M.CustomStepDetails = {
             type = "string",
         },
         TimeoutSeconds = {
-            type = "number",
+            type = "integer",
         },
         SourceFileLocation = {
             type = "string",
@@ -1867,12 +1800,9 @@ M.DecryptStepDetails = {
         OverwriteExisting = {
             type = "string",
         },
-        DestinationFileLocation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DestinationFileLocation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InputFileLocation }),
     },
 }
 
@@ -1914,7 +1844,7 @@ M.TagStepDetails = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.S3Tag,
         },
         SourceFileLocation = {
             type = "string",
@@ -1936,21 +1866,11 @@ M.WorkflowStep = {
         Type = {
             type = "string",
         },
-        CopyStepDetails = {
-            type = "structure",
-        },
-        CustomStepDetails = {
-            type = "structure",
-        },
-        DeleteStepDetails = {
-            type = "structure",
-        },
-        TagStepDetails = {
-            type = "structure",
-        },
-        DecryptStepDetails = {
-            type = "structure",
-        },
+        CopyStepDetails = M.CopyStepDetails,
+        CustomStepDetails = M.CustomStepDetails,
+        DeleteStepDetails = M.DeleteStepDetails,
+        TagStepDetails = M.TagStepDetails,
+        DecryptStepDetails = M.DecryptStepDetails,
     },
 }
 
@@ -1962,18 +1882,18 @@ M.CreateWorkflowInput = {
         },
         Steps = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkflowStep,
             traits = {
                 required = true,
             },
         },
         OnExceptionSteps = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkflowStep,
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2207,7 +2127,7 @@ M.DescribedAccess = {
         },
         HomeDirectoryMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.HomeDirectoryMapEntry,
         },
         HomeDirectoryType = {
             type = "string",
@@ -2215,9 +2135,7 @@ M.DescribedAccess = {
         Policy = {
             type = "string",
         },
-        PosixProfile = {
-            type = "structure",
-        },
+        PosixProfile = M.PosixProfile,
         Role = {
             type = "string",
         },
@@ -2236,12 +2154,9 @@ M.DescribeAccessOutput = {
                 required = true,
             },
         },
-        Access = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Access = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DescribedAccess }),
     },
 }
 
@@ -2266,12 +2181,8 @@ M.S3FileLocation = {
 M.FileLocation = {
     type = "structure",
     members = {
-        S3FileLocation = {
-            type = "structure",
-        },
-        EfsFileLocation = {
-            type = "structure",
-        },
+        S3FileLocation = M.S3FileLocation,
+        EfsFileLocation = M.EfsFileLocation,
     },
 }
 
@@ -2325,9 +2236,7 @@ M.ExecutionStepResult = {
         Outputs = {
             type = "string",
         },
-        Error = {
-            type = "structure",
-        },
+        Error = M.ExecutionError,
     },
 }
 
@@ -2336,11 +2245,11 @@ M.ExecutionResults = {
     members = {
         Steps = {
             type = "list",
-            member_type = "structure",
+            member = M.ExecutionStepResult,
         },
         OnExceptionSteps = {
             type = "list",
-            member_type = "structure",
+            member = M.ExecutionStepResult,
         },
     },
 }
@@ -2369,12 +2278,9 @@ M.UserDetails = {
 M.ServiceMetadata = {
     type = "structure",
     members = {
-        UserDetails = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        UserDetails = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.UserDetails }),
     },
 }
 
@@ -2391,27 +2297,17 @@ M.DescribedExecution = {
         ExecutionId = {
             type = "string",
         },
-        InitialFileLocation = {
-            type = "structure",
-        },
-        ServiceMetadata = {
-            type = "structure",
-        },
+        InitialFileLocation = M.FileLocation,
+        ServiceMetadata = M.ServiceMetadata,
         ExecutionRole = {
             type = "string",
         },
-        LoggingConfiguration = {
-            type = "structure",
-        },
-        PosixProfile = {
-            type = "structure",
-        },
+        LoggingConfiguration = M.LoggingConfiguration,
+        PosixProfile = M.PosixProfile,
         Status = {
             type = "string",
         },
-        Results = {
-            type = "structure",
-        },
+        Results = M.ExecutionResults,
     },
 }
 
@@ -2441,7 +2337,7 @@ M.DescribedHostKey = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2481,11 +2377,11 @@ M.DescribedProfile = {
         },
         CertificateIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2514,30 +2410,30 @@ M.DescribedSecurityPolicy = {
         },
         SshCiphers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SshKexs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SshMacs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TlsCiphers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SshHostKeyAlgorithms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Type = {
             type = "string",
         },
         Protocols = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2563,24 +2459,18 @@ M.DescribedServer = {
         Certificate = {
             type = "string",
         },
-        ProtocolDetails = {
-            type = "structure",
-        },
+        ProtocolDetails = M.ProtocolDetails,
         Domain = {
             type = "string",
         },
-        EndpointDetails = {
-            type = "structure",
-        },
+        EndpointDetails = M.EndpointDetails,
         EndpointType = {
             type = "string",
         },
         HostKeyFingerprint = {
             type = "string",
         },
-        IdentityProviderDetails = {
-            type = "structure",
-        },
+        IdentityProviderDetails = M.IdentityProviderDetails,
         IdentityProviderType = {
             type = "string",
         },
@@ -2595,7 +2485,7 @@ M.DescribedServer = {
         },
         Protocols = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SecurityPolicyName = {
             type = "string",
@@ -2608,24 +2498,20 @@ M.DescribedServer = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         UserCount = {
-            type = "number",
+            type = "integer",
         },
-        WorkflowDetails = {
-            type = "structure",
-        },
+        WorkflowDetails = M.WorkflowDetails,
         StructuredLogDestinations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        S3StorageOptions = {
-            type = "structure",
-        },
+        S3StorageOptions = M.S3StorageOptions,
         As2ServiceManagedEgressIpAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IpAddressType = {
             type = "string",
@@ -2671,7 +2557,7 @@ M.DescribedUser = {
         },
         HomeDirectoryMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.HomeDirectoryMapEntry,
         },
         HomeDirectoryType = {
             type = "string",
@@ -2679,19 +2565,17 @@ M.DescribedUser = {
         Policy = {
             type = "string",
         },
-        PosixProfile = {
-            type = "structure",
-        },
+        PosixProfile = M.PosixProfile,
         Role = {
             type = "string",
         },
         SshPublicKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.SshPublicKey,
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         UserName = {
             type = "string",
@@ -2704,7 +2588,7 @@ M.DescribedWebAppVpcConfig = {
     members = {
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         VpcId = {
             type = "string",
@@ -2718,18 +2602,14 @@ M.DescribedWebAppVpcConfig = {
 M.DescribedWebAppEndpointDetails = {
     type = "union",
     members = {
-        Vpc = {
-            type = "structure",
-        },
+        Vpc = M.DescribedWebAppVpcConfig,
     },
 }
 
 M.DescribedWebAppIdentityProviderDetails = {
     type = "union",
     members = {
-        IdentityCenterConfig = {
-            type = "structure",
-        },
+        IdentityCenterConfig = M.DescribedIdentityCenterConfig,
     },
 }
 
@@ -2753,21 +2633,17 @@ M.DescribedWebApp = {
                 required = true,
             },
         },
-        DescribedIdentityProviderDetails = {
-            type = "union",
-        },
+        DescribedIdentityProviderDetails = M.DescribedWebAppIdentityProviderDetails,
         AccessEndpoint = {
             type = "string",
         },
         WebAppEndpoint = {
             type = "string",
         },
-        WebAppUnits = {
-            type = "union",
-        },
+        WebAppUnits = M.WebAppUnits,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         WebAppEndpointPolicy = {
             type = "string",
@@ -2775,9 +2651,7 @@ M.DescribedWebApp = {
         EndpointType = {
             type = "string",
         },
-        DescribedEndpointDetails = {
-            type = "union",
-        },
+        DescribedEndpointDetails = M.DescribedWebAppEndpointDetails,
     },
 }
 
@@ -2822,18 +2696,18 @@ M.DescribedWorkflow = {
         },
         Steps = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkflowStep,
         },
         OnExceptionSteps = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkflowStep,
         },
         WorkflowId = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2865,12 +2739,9 @@ M.DescribeExecutionOutput = {
                 required = true,
             },
         },
-        Execution = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Execution = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DescribedExecution }),
     },
 }
 
@@ -2895,12 +2766,9 @@ M.DescribeHostKeyInput = {
 M.DescribeHostKeyOutput = {
     type = "structure",
     members = {
-        HostKey = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        HostKey = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DescribedHostKey }),
     },
 }
 
@@ -2919,12 +2787,9 @@ M.DescribeProfileInput = {
 M.DescribeProfileOutput = {
     type = "structure",
     members = {
-        Profile = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Profile = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DescribedProfile }),
     },
 }
 
@@ -2943,12 +2808,9 @@ M.DescribeSecurityPolicyInput = {
 M.DescribeSecurityPolicyOutput = {
     type = "structure",
     members = {
-        SecurityPolicy = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SecurityPolicy = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DescribedSecurityPolicy }),
     },
 }
 
@@ -2967,12 +2829,9 @@ M.DescribeServerInput = {
 M.DescribeServerOutput = {
     type = "structure",
     members = {
-        Server = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Server = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DescribedServer }),
     },
 }
 
@@ -3003,12 +2862,9 @@ M.DescribeUserOutput = {
                 required = true,
             },
         },
-        User = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        User = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DescribedUser }),
     },
 }
 
@@ -3027,12 +2883,9 @@ M.DescribeWebAppInput = {
 M.DescribeWebAppOutput = {
     type = "structure",
     members = {
-        WebApp = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        WebApp = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DescribedWebApp }),
     },
 }
 
@@ -3051,12 +2904,9 @@ M.DescribeWebAppCustomizationInput = {
 M.DescribeWebAppCustomizationOutput = {
     type = "structure",
     members = {
-        WebAppCustomization = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        WebAppCustomization = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DescribedWebAppCustomization }),
     },
 }
 
@@ -3075,12 +2925,9 @@ M.DescribeWorkflowInput = {
 M.DescribeWorkflowOutput = {
     type = "structure",
     members = {
-        Workflow = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Workflow = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DescribedWorkflow }),
     },
 }
 
@@ -3104,7 +2951,7 @@ M.ImportHostKeyInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3179,7 +3026,7 @@ M.ListAccessesInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3225,7 +3072,7 @@ M.ListAccessesOutput = {
         },
         Accesses = {
             type = "list",
-            member_type = "structure",
+            member = M.ListedAccess,
             traits = {
                 required = true,
             },
@@ -3239,12 +3086,8 @@ M.ListedExecution = {
         ExecutionId = {
             type = "string",
         },
-        InitialFileLocation = {
-            type = "structure",
-        },
-        ServiceMetadata = {
-            type = "structure",
-        },
+        InitialFileLocation = M.FileLocation,
+        ServiceMetadata = M.ServiceMetadata,
         Status = {
             type = "string",
         },
@@ -3324,7 +3167,7 @@ M.ListedServer = {
             type = "string",
         },
         UserCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3348,7 +3191,7 @@ M.ListedUser = {
             type = "string",
         },
         SshPublicKeyCount = {
-            type = "number",
+            type = "integer",
         },
         UserName = {
             type = "string",
@@ -3402,7 +3245,7 @@ M.ListExecutionsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3430,7 +3273,7 @@ M.ListExecutionsOutput = {
         },
         Executions = {
             type = "list",
-            member_type = "structure",
+            member = M.ListedExecution,
             traits = {
                 required = true,
             },
@@ -3457,7 +3300,7 @@ M.ListFileTransferResultsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3467,7 +3310,7 @@ M.ListFileTransferResultsOutput = {
     members = {
         FileTransferResults = {
             type = "list",
-            member_type = "structure",
+            member = M.ConnectorFileTransferResult,
             traits = {
                 required = true,
             },
@@ -3482,7 +3325,7 @@ M.ListHostKeysInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3510,7 +3353,7 @@ M.ListHostKeysOutput = {
         },
         HostKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.ListedHostKey,
             traits = {
                 required = true,
             },
@@ -3522,7 +3365,7 @@ M.ListProfilesInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3541,7 +3384,7 @@ M.ListProfilesOutput = {
         },
         Profiles = {
             type = "list",
-            member_type = "structure",
+            member = M.ListedProfile,
             traits = {
                 required = true,
             },
@@ -3553,7 +3396,7 @@ M.ListSecurityPoliciesInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3569,7 +3412,7 @@ M.ListSecurityPoliciesOutput = {
         },
         SecurityPolicyNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3581,7 +3424,7 @@ M.ListServersInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3597,7 +3440,7 @@ M.ListServersOutput = {
         },
         Servers = {
             type = "list",
-            member_type = "structure",
+            member = M.ListedServer,
             traits = {
                 required = true,
             },
@@ -3615,7 +3458,7 @@ M.ListTagsForResourceInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3634,7 +3477,7 @@ M.ListTagsForResourceOutput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3643,7 +3486,7 @@ M.ListUsersInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3671,7 +3514,7 @@ M.ListUsersOutput = {
         },
         Users = {
             type = "list",
-            member_type = "structure",
+            member = M.ListedUser,
             traits = {
                 required = true,
             },
@@ -3683,7 +3526,7 @@ M.ListWebAppsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3699,7 +3542,7 @@ M.ListWebAppsOutput = {
         },
         WebApps = {
             type = "list",
-            member_type = "structure",
+            member = M.ListedWebApp,
             traits = {
                 required = true,
             },
@@ -3711,7 +3554,7 @@ M.ListWorkflowsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3727,7 +3570,7 @@ M.ListWorkflowsOutput = {
         },
         Workflows = {
             type = "list",
-            member_type = "structure",
+            member = M.ListedWorkflow,
             traits = {
                 required = true,
             },
@@ -3746,7 +3589,7 @@ M.UpdateProfileInput = {
         },
         CertificateIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3803,21 +3646,15 @@ M.UpdateServerInput = {
         Certificate = {
             type = "string",
         },
-        ProtocolDetails = {
-            type = "structure",
-        },
-        EndpointDetails = {
-            type = "structure",
-        },
+        ProtocolDetails = M.ProtocolDetails,
+        EndpointDetails = M.EndpointDetails,
         EndpointType = {
             type = "string",
         },
         HostKey = {
             type = "string",
         },
-        IdentityProviderDetails = {
-            type = "structure",
-        },
+        IdentityProviderDetails = M.IdentityProviderDetails,
         LoggingRole = {
             type = "string",
         },
@@ -3829,7 +3666,7 @@ M.UpdateServerInput = {
         },
         Protocols = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SecurityPolicyName = {
             type = "string",
@@ -3840,16 +3677,12 @@ M.UpdateServerInput = {
                 required = true,
             },
         },
-        WorkflowDetails = {
-            type = "structure",
-        },
+        WorkflowDetails = M.WorkflowDetails,
         StructuredLogDestinations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        S3StorageOptions = {
-            type = "structure",
-        },
+        S3StorageOptions = M.S3StorageOptions,
         IpAddressType = {
             type = "string",
         },
@@ -3896,7 +3729,7 @@ M.StartDirectoryListingInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
         OutputDirectoryPath = {
             type = "string",
@@ -3936,11 +3769,11 @@ M.StartFileTransferInput = {
         },
         SendFilePaths = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RetrieveFilePaths = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         LocalDirectoryPath = {
             type = "string",
@@ -3950,7 +3783,7 @@ M.StartFileTransferInput = {
         },
         CustomHttpHeaders = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomHttpHeader,
         },
     },
 }
@@ -4076,7 +3909,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -4112,9 +3945,7 @@ M.TestConnectionOutput = {
         StatusMessage = {
             type = "string",
         },
-        SftpConnectionDetails = {
-            type = "structure",
-        },
+        SftpConnectionDetails = M.SftpConnectorConnectionDetails,
     },
 }
 
@@ -4152,8 +3983,9 @@ M.TestIdentityProviderOutput = {
             type = "string",
         },
         StatusCode = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -4180,7 +4012,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4203,14 +4035,12 @@ M.UpdateAccessInput = {
         },
         HomeDirectoryMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.HomeDirectoryMapEntry,
         },
         Policy = {
             type = "string",
         },
-        PosixProfile = {
-            type = "structure",
-        },
+        PosixProfile = M.PosixProfile,
         Role = {
             type = "string",
         },
@@ -4300,14 +4130,12 @@ M.UpdateUserInput = {
         },
         HomeDirectoryMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.HomeDirectoryMapEntry,
         },
         Policy = {
             type = "string",
         },
-        PosixProfile = {
-            type = "structure",
-        },
+        PosixProfile = M.PosixProfile,
         Role = {
             type = "string",
         },
@@ -4382,7 +4210,7 @@ M.UpdateWebAppVpcConfig = {
     members = {
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IpAddressType = {
             type = "string",
@@ -4393,9 +4221,7 @@ M.UpdateWebAppVpcConfig = {
 M.UpdateWebAppEndpointDetails = {
     type = "union",
     members = {
-        Vpc = {
-            type = "structure",
-        },
+        Vpc = M.UpdateWebAppVpcConfig,
     },
 }
 
@@ -4411,9 +4237,7 @@ M.UpdateWebAppIdentityCenterConfig = {
 M.UpdateWebAppIdentityProviderDetails = {
     type = "union",
     members = {
-        IdentityCenterConfig = {
-            type = "structure",
-        },
+        IdentityCenterConfig = M.UpdateWebAppIdentityCenterConfig,
     },
 }
 
@@ -4426,18 +4250,12 @@ M.UpdateWebAppInput = {
                 required = true,
             },
         },
-        IdentityProviderDetails = {
-            type = "union",
-        },
+        IdentityProviderDetails = M.UpdateWebAppIdentityProviderDetails,
         AccessEndpoint = {
             type = "string",
         },
-        WebAppUnits = {
-            type = "union",
-        },
-        EndpointDetails = {
-            type = "union",
-        },
+        WebAppUnits = M.WebAppUnits,
+        EndpointDetails = M.UpdateWebAppEndpointDetails,
     },
 }
 

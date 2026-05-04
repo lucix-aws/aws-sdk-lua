@@ -21,7 +21,7 @@ M.BatchGetNamedQueryInput = {
     members = {
         NamedQueryIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -82,11 +82,11 @@ M.BatchGetNamedQueryOutput = {
     members = {
         NamedQueries = {
             type = "list",
-            member_type = "structure",
+            member = M.NamedQuery,
         },
         UnprocessedNamedQueryIds = {
             type = "list",
-            member_type = "structure",
+            member = M.UnprocessedNamedQueryId,
         },
     },
 }
@@ -119,7 +119,7 @@ M.BatchGetPreparedStatementInput = {
     members = {
         PreparedStatementNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -174,11 +174,11 @@ M.BatchGetPreparedStatementOutput = {
     members = {
         PreparedStatements = {
             type = "list",
-            member_type = "structure",
+            member = M.PreparedStatement,
         },
         UnprocessedPreparedStatementNames = {
             type = "list",
-            member_type = "structure",
+            member = M.UnprocessedPreparedStatementName,
         },
     },
 }
@@ -188,7 +188,7 @@ M.BatchGetQueryExecutionInput = {
     members = {
         QueryExecutionIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -226,12 +226,11 @@ M.ManagedQueryResultsConfiguration = {
         Enabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
-        EncryptionConfiguration = {
-            type = "structure",
-        },
+        EncryptionConfiguration = M.ManagedQueryResultsEncryptionConfiguration,
     },
 }
 
@@ -299,15 +298,11 @@ M.ResultConfiguration = {
         OutputLocation = {
             type = "string",
         },
-        EncryptionConfiguration = {
-            type = "structure",
-        },
+        EncryptionConfiguration = M.EncryptionConfiguration,
         ExpectedBucketOwner = {
             type = "string",
         },
-        AclConfiguration = {
-            type = "structure",
-        },
+        AclConfiguration = M.AclConfiguration,
     },
 }
 
@@ -317,11 +312,12 @@ M.ResultReuseByAgeConfiguration = {
         Enabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
         MaxAgeInMinutes = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -329,9 +325,7 @@ M.ResultReuseByAgeConfiguration = {
 M.ResultReuseConfiguration = {
     type = "structure",
     members = {
-        ResultReuseByAgeConfiguration = {
-            type = "structure",
-        },
+        ResultReuseByAgeConfiguration = M.ResultReuseByAgeConfiguration,
     },
 }
 
@@ -347,6 +341,7 @@ M.ResultReuseInformation = {
         ReusedPreviousResult = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -357,34 +352,32 @@ M.QueryExecutionStatistics = {
     type = "structure",
     members = {
         EngineExecutionTimeInMillis = {
-            type = "number",
+            type = "long",
         },
         DataScannedInBytes = {
-            type = "number",
+            type = "long",
         },
         DataManifestLocation = {
             type = "string",
         },
         TotalExecutionTimeInMillis = {
-            type = "number",
+            type = "long",
         },
         QueryQueueTimeInMillis = {
-            type = "number",
+            type = "long",
         },
         ServicePreProcessingTimeInMillis = {
-            type = "number",
+            type = "long",
         },
         QueryPlanningTimeInMillis = {
-            type = "number",
+            type = "long",
         },
         ServiceProcessingTimeInMillis = {
-            type = "number",
+            type = "long",
         },
-        ResultReuseInformation = {
-            type = "structure",
-        },
+        ResultReuseInformation = M.ResultReuseInformation,
         DpuCount = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -393,13 +386,16 @@ M.AthenaError = {
     type = "structure",
     members = {
         ErrorCategory = {
-            type = "number",
+            type = "integer",
         },
         ErrorType = {
-            type = "number",
+            type = "integer",
         },
         Retryable = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         ErrorMessage = {
             type = "string",
@@ -430,9 +426,7 @@ M.QueryExecutionStatus = {
         CompletionDateTime = {
             type = "timestamp",
         },
-        AthenaError = {
-            type = "structure",
-        },
+        AthenaError = M.AthenaError,
     },
 }
 
@@ -448,40 +442,24 @@ M.QueryExecution = {
         StatementType = {
             type = "string",
         },
-        ManagedQueryResultsConfiguration = {
-            type = "structure",
-        },
-        ResultConfiguration = {
-            type = "structure",
-        },
-        ResultReuseConfiguration = {
-            type = "structure",
-        },
-        QueryExecutionContext = {
-            type = "structure",
-        },
-        Status = {
-            type = "structure",
-        },
-        Statistics = {
-            type = "structure",
-        },
+        ManagedQueryResultsConfiguration = M.ManagedQueryResultsConfiguration,
+        ResultConfiguration = M.ResultConfiguration,
+        ResultReuseConfiguration = M.ResultReuseConfiguration,
+        QueryExecutionContext = M.QueryExecutionContext,
+        Status = M.QueryExecutionStatus,
+        Statistics = M.QueryExecutionStatistics,
         WorkGroup = {
             type = "string",
         },
-        EngineVersion = {
-            type = "structure",
-        },
+        EngineVersion = M.EngineVersion,
         ExecutionParameters = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SubstatementType = {
             type = "string",
         },
-        QueryResultsS3AccessGrantsConfiguration = {
-            type = "structure",
-        },
+        QueryResultsS3AccessGrantsConfiguration = M.QueryResultsS3AccessGrantsConfiguration,
     },
 }
 
@@ -505,11 +483,11 @@ M.BatchGetQueryExecutionOutput = {
     members = {
         QueryExecutions = {
             type = "list",
-            member_type = "structure",
+            member = M.QueryExecution,
         },
         UnprocessedQueryExecutionIds = {
             type = "list",
-            member_type = "structure",
+            member = M.UnprocessedQueryExecutionId,
         },
     },
 }
@@ -546,7 +524,7 @@ M.CreateCapacityReservationInput = {
     type = "structure",
     members = {
         TargetDpus = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -559,7 +537,7 @@ M.CreateCapacityReservationInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -595,12 +573,12 @@ M.CreateDataCatalogInput = {
         },
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -660,8 +638,8 @@ M.DataCatalog = {
         },
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Status = {
             type = "string",
@@ -678,9 +656,7 @@ M.DataCatalog = {
 M.CreateDataCatalogOutput = {
     type = "structure",
     members = {
-        DataCatalog = {
-            type = "structure",
-        },
+        DataCatalog = M.DataCatalog,
     },
 }
 
@@ -832,7 +808,7 @@ M.CreatePresignedNotebookUrlOutput = {
             },
         },
         AuthTokenExpirationTime = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -873,8 +849,8 @@ M.Classification = {
         },
         Properties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -883,27 +859,30 @@ M.EngineConfiguration = {
     type = "structure",
     members = {
         CoordinatorDpuSize = {
-            type = "number",
+            type = "integer",
         },
         MaxConcurrentDpus = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 20,
+            },
         },
         DefaultExecutorDpuSize = {
-            type = "number",
+            type = "integer",
         },
         AdditionalConfigs = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         SparkProperties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Classifications = {
             type = "list",
-            member_type = "structure",
+            member = M.Classification,
         },
     },
 }
@@ -937,8 +916,8 @@ M.CloudWatchLoggingConfiguration = {
         },
         LogTypes = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
     },
 }
@@ -979,27 +958,17 @@ M.S3LoggingConfiguration = {
 M.MonitoringConfiguration = {
     type = "structure",
     members = {
-        CloudWatchLoggingConfiguration = {
-            type = "structure",
-        },
-        ManagedLoggingConfiguration = {
-            type = "structure",
-        },
-        S3LoggingConfiguration = {
-            type = "structure",
-        },
+        CloudWatchLoggingConfiguration = M.CloudWatchLoggingConfiguration,
+        ManagedLoggingConfiguration = M.ManagedLoggingConfiguration,
+        S3LoggingConfiguration = M.S3LoggingConfiguration,
     },
 }
 
 M.WorkGroupConfiguration = {
     type = "structure",
     members = {
-        ResultConfiguration = {
-            type = "structure",
-        },
-        ManagedQueryResultsConfiguration = {
-            type = "structure",
-        },
+        ResultConfiguration = M.ResultConfiguration,
+        ManagedQueryResultsConfiguration = M.ManagedQueryResultsConfiguration,
         EnforceWorkGroupConfiguration = {
             type = "boolean",
         },
@@ -1007,38 +976,26 @@ M.WorkGroupConfiguration = {
             type = "boolean",
         },
         BytesScannedCutoffPerQuery = {
-            type = "number",
+            type = "long",
         },
         RequesterPaysEnabled = {
             type = "boolean",
         },
-        EngineVersion = {
-            type = "structure",
-        },
+        EngineVersion = M.EngineVersion,
         AdditionalConfiguration = {
             type = "string",
         },
         ExecutionRole = {
             type = "string",
         },
-        MonitoringConfiguration = {
-            type = "structure",
-        },
-        EngineConfiguration = {
-            type = "structure",
-        },
-        CustomerContentEncryptionConfiguration = {
-            type = "structure",
-        },
+        MonitoringConfiguration = M.MonitoringConfiguration,
+        EngineConfiguration = M.EngineConfiguration,
+        CustomerContentEncryptionConfiguration = M.CustomerContentEncryptionConfiguration,
         EnableMinimumEncryptionConfiguration = {
             type = "boolean",
         },
-        IdentityCenterConfiguration = {
-            type = "structure",
-        },
-        QueryResultsS3AccessGrantsConfiguration = {
-            type = "structure",
-        },
+        IdentityCenterConfiguration = M.IdentityCenterConfiguration,
+        QueryResultsS3AccessGrantsConfiguration = M.QueryResultsS3AccessGrantsConfiguration,
     },
 }
 
@@ -1051,15 +1008,13 @@ M.CreateWorkGroupInput = {
                 required = true,
             },
         },
-        Configuration = {
-            type = "structure",
-        },
+        Configuration = M.WorkGroupConfiguration,
         Description = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1095,6 +1050,9 @@ M.DeleteDataCatalogInput = {
         },
         DeleteCatalogOnly = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1102,9 +1060,7 @@ M.DeleteDataCatalogInput = {
 M.DeleteDataCatalogOutput = {
     type = "structure",
     members = {
-        DataCatalog = {
-            type = "structure",
-        },
+        DataCatalog = M.DataCatalog,
     },
 }
 
@@ -1224,9 +1180,7 @@ M.NotebookMetadata = {
 M.ExportNotebookOutput = {
     type = "structure",
     members = {
-        NotebookMetadata = {
-            type = "structure",
-        },
+        NotebookMetadata = M.NotebookMetadata,
         Payload = {
             type = "string",
         },
@@ -1267,7 +1221,7 @@ M.CalculationStatistics = {
     type = "structure",
     members = {
         DpuExecutionInMillis = {
-            type = "number",
+            type = "long",
         },
         Progress = {
             type = "string",
@@ -1319,15 +1273,9 @@ M.GetCalculationExecutionOutput = {
         WorkingDirectory = {
             type = "string",
         },
-        Status = {
-            type = "structure",
-        },
-        Statistics = {
-            type = "structure",
-        },
-        Result = {
-            type = "structure",
-        },
+        Status = M.CalculationStatus,
+        Statistics = M.CalculationStatistics,
+        Result = M.CalculationResult,
     },
 }
 
@@ -1367,12 +1315,8 @@ M.GetCalculationExecutionStatusInput = {
 M.GetCalculationExecutionStatusOutput = {
     type = "structure",
     members = {
-        Status = {
-            type = "structure",
-        },
-        Statistics = {
-            type = "structure",
-        },
+        Status = M.CalculationStatus,
+        Statistics = M.CalculationStatistics,
     },
 }
 
@@ -1393,7 +1337,7 @@ M.CapacityAssignment = {
     members = {
         WorkGroupNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1406,7 +1350,7 @@ M.CapacityAssignmentConfiguration = {
         },
         CapacityAssignments = {
             type = "list",
-            member_type = "structure",
+            member = M.CapacityAssignment,
         },
     },
 }
@@ -1414,12 +1358,9 @@ M.CapacityAssignmentConfiguration = {
 M.GetCapacityAssignmentConfigurationOutput = {
     type = "structure",
     members = {
-        CapacityAssignmentConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        CapacityAssignmentConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CapacityAssignmentConfiguration }),
     },
 }
 
@@ -1490,20 +1431,18 @@ M.CapacityReservation = {
             },
         },
         TargetDpus = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         AllocatedDpus = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
-        LastAllocation = {
-            type = "structure",
-        },
+        LastAllocation = M.CapacityAllocation,
         LastSuccessfulAllocationTime = {
             type = "timestamp",
         },
@@ -1519,12 +1458,9 @@ M.CapacityReservation = {
 M.GetCapacityReservationOutput = {
     type = "structure",
     members = {
-        CapacityReservation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        CapacityReservation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CapacityReservation }),
     },
 }
 
@@ -1563,8 +1499,8 @@ M.Database = {
         },
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1572,9 +1508,7 @@ M.Database = {
 M.GetDatabaseOutput = {
     type = "structure",
     members = {
-        Database = {
-            type = "structure",
-        },
+        Database = M.Database,
     },
 }
 
@@ -1606,9 +1540,7 @@ M.GetDataCatalogInput = {
 M.GetDataCatalogOutput = {
     type = "structure",
     members = {
-        DataCatalog = {
-            type = "structure",
-        },
+        DataCatalog = M.DataCatalog,
     },
 }
 
@@ -1627,9 +1559,7 @@ M.GetNamedQueryInput = {
 M.GetNamedQueryOutput = {
     type = "structure",
     members = {
-        NamedQuery = {
-            type = "structure",
-        },
+        NamedQuery = M.NamedQuery,
     },
 }
 
@@ -1648,9 +1578,7 @@ M.GetNotebookMetadataInput = {
 M.GetNotebookMetadataOutput = {
     type = "structure",
     members = {
-        NotebookMetadata = {
-            type = "structure",
-        },
+        NotebookMetadata = M.NotebookMetadata,
     },
 }
 
@@ -1675,9 +1603,7 @@ M.GetPreparedStatementInput = {
 M.GetPreparedStatementOutput = {
     type = "structure",
     members = {
-        PreparedStatement = {
-            type = "structure",
-        },
+        PreparedStatement = M.PreparedStatement,
     },
 }
 
@@ -1696,9 +1622,7 @@ M.GetQueryExecutionInput = {
 M.GetQueryExecutionOutput = {
     type = "structure",
     members = {
-        QueryExecution = {
-            type = "structure",
-        },
+        QueryExecution = M.QueryExecution,
     },
 }
 
@@ -1720,7 +1644,7 @@ M.GetQueryResultsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         QueryResultType = {
             type = "string",
@@ -1762,16 +1686,25 @@ M.ColumnInfo = {
             },
         },
         Precision = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         Scale = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         Nullable = {
             type = "string",
         },
         CaseSensitive = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1781,7 +1714,7 @@ M.ResultSetMetadata = {
     members = {
         ColumnInfo = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnInfo,
         },
     },
 }
@@ -1800,7 +1733,7 @@ M.Row = {
     members = {
         Data = {
             type = "list",
-            member_type = "structure",
+            member = M.Datum,
         },
     },
 }
@@ -1810,11 +1743,9 @@ M.ResultSet = {
     members = {
         Rows = {
             type = "list",
-            member_type = "structure",
+            member = M.Row,
         },
-        ResultSetMetadata = {
-            type = "structure",
-        },
+        ResultSetMetadata = M.ResultSetMetadata,
     },
 }
 
@@ -1822,11 +1753,9 @@ M.GetQueryResultsOutput = {
     type = "structure",
     members = {
         UpdateCount = {
-            type = "number",
+            type = "long",
         },
-        ResultSet = {
-            type = "structure",
-        },
+        ResultSet = M.ResultSet,
         NextToken = {
             type = "string",
         },
@@ -1849,16 +1778,16 @@ M.QueryRuntimeStatisticsRows = {
     type = "structure",
     members = {
         InputRows = {
-            type = "number",
+            type = "long",
         },
         InputBytes = {
-            type = "number",
+            type = "long",
         },
         OutputBytes = {
-            type = "number",
+            type = "long",
         },
         OutputRows = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1867,22 +1796,22 @@ M.QueryRuntimeStatisticsTimeline = {
     type = "structure",
     members = {
         QueryQueueTimeInMillis = {
-            type = "number",
+            type = "long",
         },
         ServicePreProcessingTimeInMillis = {
-            type = "number",
+            type = "long",
         },
         QueryPlanningTimeInMillis = {
-            type = "number",
+            type = "long",
         },
         EngineExecutionTimeInMillis = {
-            type = "number",
+            type = "long",
         },
         ServiceProcessingTimeInMillis = {
-            type = "number",
+            type = "long",
         },
         TotalExecutionTimeInMillis = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1933,14 +1862,12 @@ M.SessionConfiguration = {
             type = "string",
         },
         IdleTimeoutSeconds = {
-            type = "number",
+            type = "long",
         },
         SessionIdleTimeoutInMinutes = {
-            type = "number",
+            type = "integer",
         },
-        EncryptionConfiguration = {
-            type = "structure",
-        },
+        EncryptionConfiguration = M.EncryptionConfiguration,
     },
 }
 
@@ -1948,7 +1875,7 @@ M.SessionStatistics = {
     type = "structure",
     members = {
         DpuExecutionInMillis = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -2003,24 +1930,14 @@ M.GetSessionOutput = {
         EngineVersion = {
             type = "string",
         },
-        EngineConfiguration = {
-            type = "structure",
-        },
+        EngineConfiguration = M.EngineConfiguration,
         NotebookVersion = {
             type = "string",
         },
-        MonitoringConfiguration = {
-            type = "structure",
-        },
-        SessionConfiguration = {
-            type = "structure",
-        },
-        Status = {
-            type = "structure",
-        },
-        Statistics = {
-            type = "structure",
-        },
+        MonitoringConfiguration = M.MonitoringConfiguration,
+        SessionConfiguration = M.SessionConfiguration,
+        Status = M.SessionStatus,
+        Statistics = M.SessionStatistics,
     },
 }
 
@@ -2078,9 +1995,7 @@ M.GetSessionStatusOutput = {
         SessionId = {
             type = "string",
         },
-        Status = {
-            type = "structure",
-        },
+        Status = M.SessionStatus,
     },
 }
 
@@ -2149,16 +2064,16 @@ M.TableMetadata = {
         },
         Columns = {
             type = "list",
-            member_type = "structure",
+            member = M.Column,
         },
         PartitionKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.Column,
         },
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2166,9 +2081,7 @@ M.TableMetadata = {
 M.GetTableMetadataOutput = {
     type = "structure",
     members = {
-        TableMetadata = {
-            type = "structure",
-        },
+        TableMetadata = M.TableMetadata,
     },
 }
 
@@ -2201,9 +2114,7 @@ M.WorkGroup = {
         State = {
             type = "string",
         },
-        Configuration = {
-            type = "structure",
-        },
+        Configuration = M.WorkGroupConfiguration,
         Description = {
             type = "string",
         },
@@ -2219,9 +2130,7 @@ M.WorkGroup = {
 M.GetWorkGroupOutput = {
     type = "structure",
     members = {
-        WorkGroup = {
-            type = "structure",
-        },
+        WorkGroup = M.WorkGroup,
     },
 }
 
@@ -2271,7 +2180,7 @@ M.ListApplicationDPUSizesInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2287,7 +2196,7 @@ M.ApplicationDPUSizes = {
         },
         SupportedDPUSizes = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
         },
     },
 }
@@ -2297,7 +2206,7 @@ M.ListApplicationDPUSizesOutput = {
     members = {
         ApplicationDPUSizes = {
             type = "list",
-            member_type = "structure",
+            member = M.ApplicationDPUSizes,
         },
         NextToken = {
             type = "string",
@@ -2318,7 +2227,7 @@ M.ListCalculationExecutionsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2335,9 +2244,7 @@ M.CalculationSummary = {
         Description = {
             type = "string",
         },
-        Status = {
-            type = "structure",
-        },
+        Status = M.CalculationStatus,
     },
 }
 
@@ -2349,7 +2256,7 @@ M.ListCalculationExecutionsOutput = {
         },
         Calculations = {
             type = "list",
-            member_type = "structure",
+            member = M.CalculationSummary,
         },
     },
 }
@@ -2361,7 +2268,7 @@ M.ListCapacityReservationsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2374,7 +2281,7 @@ M.ListCapacityReservationsOutput = {
         },
         CapacityReservations = {
             type = "list",
-            member_type = "structure",
+            member = M.CapacityReservation,
             traits = {
                 required = true,
             },
@@ -2395,7 +2302,7 @@ M.ListDatabasesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         WorkGroup = {
             type = "string",
@@ -2408,7 +2315,7 @@ M.ListDatabasesOutput = {
     members = {
         DatabaseList = {
             type = "list",
-            member_type = "structure",
+            member = M.Database,
         },
         NextToken = {
             type = "string",
@@ -2423,7 +2330,7 @@ M.ListDataCatalogsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         WorkGroup = {
             type = "string",
@@ -2457,7 +2364,7 @@ M.ListDataCatalogsOutput = {
     members = {
         DataCatalogsSummary = {
             type = "list",
-            member_type = "structure",
+            member = M.DataCatalogSummary,
         },
         NextToken = {
             type = "string",
@@ -2472,7 +2379,7 @@ M.ListEngineVersionsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2482,7 +2389,7 @@ M.ListEngineVersionsOutput = {
     members = {
         EngineVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.EngineVersion,
         },
         NextToken = {
             type = "string",
@@ -2512,7 +2419,7 @@ M.ListExecutorsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2539,16 +2446,16 @@ M.ExecutorsSummary = {
             type = "string",
         },
         StartDateTime = {
-            type = "number",
+            type = "long",
         },
         TerminationDateTime = {
-            type = "number",
+            type = "long",
         },
         ExecutorState = {
             type = "string",
         },
         ExecutorSize = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -2567,7 +2474,7 @@ M.ListExecutorsOutput = {
         },
         ExecutorsSummary = {
             type = "list",
-            member_type = "structure",
+            member = M.ExecutorsSummary,
         },
     },
 }
@@ -2579,7 +2486,7 @@ M.ListNamedQueriesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         WorkGroup = {
             type = "string",
@@ -2592,7 +2499,7 @@ M.ListNamedQueriesOutput = {
     members = {
         NamedQueryIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -2612,14 +2519,12 @@ M.FilterDefinition = {
 M.ListNotebookMetadataInput = {
     type = "structure",
     members = {
-        Filters = {
-            type = "structure",
-        },
+        Filters = M.FilterDefinition,
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         WorkGroup = {
             type = "string",
@@ -2638,7 +2543,7 @@ M.ListNotebookMetadataOutput = {
         },
         NotebookMetadataList = {
             type = "list",
-            member_type = "structure",
+            member = M.NotebookMetadata,
         },
     },
 }
@@ -2653,7 +2558,7 @@ M.ListNotebookSessionsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2678,7 +2583,7 @@ M.ListNotebookSessionsOutput = {
     members = {
         NotebookSessionsList = {
             type = "list",
-            member_type = "structure",
+            member = M.NotebookSessionSummary,
             traits = {
                 required = true,
             },
@@ -2702,7 +2607,7 @@ M.ListPreparedStatementsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2724,7 +2629,7 @@ M.ListPreparedStatementsOutput = {
     members = {
         PreparedStatements = {
             type = "list",
-            member_type = "structure",
+            member = M.PreparedStatementSummary,
         },
         NextToken = {
             type = "string",
@@ -2739,7 +2644,7 @@ M.ListQueryExecutionsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         WorkGroup = {
             type = "string",
@@ -2752,7 +2657,7 @@ M.ListQueryExecutionsOutput = {
     members = {
         QueryExecutionIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -2773,7 +2678,7 @@ M.ListSessionsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2790,15 +2695,11 @@ M.SessionSummary = {
         Description = {
             type = "string",
         },
-        EngineVersion = {
-            type = "structure",
-        },
+        EngineVersion = M.EngineVersion,
         NotebookVersion = {
             type = "string",
         },
-        Status = {
-            type = "structure",
-        },
+        Status = M.SessionStatus,
     },
 }
 
@@ -2810,7 +2711,7 @@ M.ListSessionsOutput = {
         },
         Sessions = {
             type = "list",
-            member_type = "structure",
+            member = M.SessionSummary,
         },
     },
 }
@@ -2837,7 +2738,7 @@ M.ListTableMetadataInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         WorkGroup = {
             type = "string",
@@ -2850,7 +2751,7 @@ M.ListTableMetadataOutput = {
     members = {
         TableMetadataList = {
             type = "list",
-            member_type = "structure",
+            member = M.TableMetadata,
         },
         NextToken = {
             type = "string",
@@ -2871,7 +2772,7 @@ M.ListTagsForResourceInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2881,7 +2782,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         NextToken = {
             type = "string",
@@ -2896,7 +2797,7 @@ M.ListWorkGroupsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2916,9 +2817,7 @@ M.WorkGroupSummary = {
         CreationTime = {
             type = "timestamp",
         },
-        EngineVersion = {
-            type = "structure",
-        },
+        EngineVersion = M.EngineVersion,
         IdentityCenterApplicationArn = {
             type = "string",
         },
@@ -2930,7 +2829,7 @@ M.ListWorkGroupsOutput = {
     members = {
         WorkGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkGroupSummary,
         },
         NextToken = {
             type = "string",
@@ -2949,7 +2848,7 @@ M.PutCapacityAssignmentConfigurationInput = {
         },
         CapacityAssignments = {
             type = "list",
-            member_type = "structure",
+            member = M.CapacityAssignment,
             traits = {
                 required = true,
             },
@@ -2982,9 +2881,7 @@ M.StartCalculationExecutionInput = {
         Description = {
             type = "string",
         },
-        CalculationConfiguration = {
-            type = "structure",
-        },
+        CalculationConfiguration = M.CalculationConfiguration,
         CodeBlock = {
             type = "string",
         },
@@ -3018,25 +2915,17 @@ M.StartQueryExecutionInput = {
         ClientRequestToken = {
             type = "string",
         },
-        QueryExecutionContext = {
-            type = "structure",
-        },
-        ResultConfiguration = {
-            type = "structure",
-        },
+        QueryExecutionContext = M.QueryExecutionContext,
+        ResultConfiguration = M.ResultConfiguration,
         WorkGroup = {
             type = "string",
         },
         ExecutionParameters = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        ResultReuseConfiguration = {
-            type = "structure",
-        },
-        EngineConfiguration = {
-            type = "structure",
-        },
+        ResultReuseConfiguration = M.ResultReuseConfiguration,
+        EngineConfiguration = M.EngineConfiguration,
     },
 }
 
@@ -3071,30 +2960,25 @@ M.StartSessionInput = {
                 required = true,
             },
         },
-        EngineConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        EngineConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EngineConfiguration }),
         ExecutionRole = {
             type = "string",
         },
-        MonitoringConfiguration = {
-            type = "structure",
-        },
+        MonitoringConfiguration = M.MonitoringConfiguration,
         NotebookVersion = {
             type = "string",
         },
         SessionIdleTimeoutInMinutes = {
-            type = "number",
+            type = "integer",
         },
         ClientRequestToken = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         CopyWorkGroupTags = {
             type = "boolean",
@@ -3162,7 +3046,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -3206,7 +3090,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3222,7 +3106,7 @@ M.UpdateCapacityReservationInput = {
     type = "structure",
     members = {
         TargetDpus = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -3260,8 +3144,8 @@ M.UpdateDataCatalogInput = {
         },
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3397,9 +3281,7 @@ M.ManagedQueryResultsConfigurationUpdates = {
         Enabled = {
             type = "boolean",
         },
-        EncryptionConfiguration = {
-            type = "structure",
-        },
+        EncryptionConfiguration = M.ManagedQueryResultsEncryptionConfiguration,
         RemoveEncryptionConfiguration = {
             type = "boolean",
         },
@@ -3415,9 +3297,7 @@ M.ResultConfigurationUpdates = {
         RemoveOutputLocation = {
             type = "boolean",
         },
-        EncryptionConfiguration = {
-            type = "structure",
-        },
+        EncryptionConfiguration = M.EncryptionConfiguration,
         RemoveEncryptionConfiguration = {
             type = "boolean",
         },
@@ -3427,9 +3307,7 @@ M.ResultConfigurationUpdates = {
         RemoveExpectedBucketOwner = {
             type = "boolean",
         },
-        AclConfiguration = {
-            type = "structure",
-        },
+        AclConfiguration = M.AclConfiguration,
         RemoveAclConfiguration = {
             type = "boolean",
         },
@@ -3442,17 +3320,13 @@ M.WorkGroupConfigurationUpdates = {
         EnforceWorkGroupConfiguration = {
             type = "boolean",
         },
-        ResultConfigurationUpdates = {
-            type = "structure",
-        },
-        ManagedQueryResultsConfigurationUpdates = {
-            type = "structure",
-        },
+        ResultConfigurationUpdates = M.ResultConfigurationUpdates,
+        ManagedQueryResultsConfigurationUpdates = M.ManagedQueryResultsConfigurationUpdates,
         PublishCloudWatchMetricsEnabled = {
             type = "boolean",
         },
         BytesScannedCutoffPerQuery = {
-            type = "number",
+            type = "long",
         },
         RemoveBytesScannedCutoffPerQuery = {
             type = "boolean",
@@ -3460,9 +3334,7 @@ M.WorkGroupConfigurationUpdates = {
         RequesterPaysEnabled = {
             type = "boolean",
         },
-        EngineVersion = {
-            type = "structure",
-        },
+        EngineVersion = M.EngineVersion,
         RemoveCustomerContentEncryptionConfiguration = {
             type = "boolean",
         },
@@ -3472,21 +3344,13 @@ M.WorkGroupConfigurationUpdates = {
         ExecutionRole = {
             type = "string",
         },
-        CustomerContentEncryptionConfiguration = {
-            type = "structure",
-        },
+        CustomerContentEncryptionConfiguration = M.CustomerContentEncryptionConfiguration,
         EnableMinimumEncryptionConfiguration = {
             type = "boolean",
         },
-        QueryResultsS3AccessGrantsConfiguration = {
-            type = "structure",
-        },
-        MonitoringConfiguration = {
-            type = "structure",
-        },
-        EngineConfiguration = {
-            type = "structure",
-        },
+        QueryResultsS3AccessGrantsConfiguration = M.QueryResultsS3AccessGrantsConfiguration,
+        MonitoringConfiguration = M.MonitoringConfiguration,
+        EngineConfiguration = M.EngineConfiguration,
     },
 }
 
@@ -3502,9 +3366,7 @@ M.UpdateWorkGroupInput = {
         Description = {
             type = "string",
         },
-        ConfigurationUpdates = {
-            type = "structure",
-        },
+        ConfigurationUpdates = M.WorkGroupConfigurationUpdates,
         State = {
             type = "string",
         },
@@ -3526,11 +3388,11 @@ M.QueryStagePlanNode = {
         },
         Children = {
             type = "list",
-            member_type = "structure",
+            member = M.QueryStagePlanNode,
         },
         RemoteSources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3539,32 +3401,30 @@ M.QueryStage = {
     type = "structure",
     members = {
         StageId = {
-            type = "number",
+            type = "long",
         },
         State = {
             type = "string",
         },
         OutputBytes = {
-            type = "number",
+            type = "long",
         },
         OutputRows = {
-            type = "number",
+            type = "long",
         },
         InputBytes = {
-            type = "number",
+            type = "long",
         },
         InputRows = {
-            type = "number",
+            type = "long",
         },
         ExecutionTime = {
-            type = "number",
+            type = "long",
         },
-        QueryStagePlan = {
-            type = "structure",
-        },
+        QueryStagePlan = M.QueryStagePlanNode,
         SubStages = {
             type = "list",
-            member_type = "structure",
+            member = M.QueryStage,
         },
     },
 }
@@ -3572,24 +3432,16 @@ M.QueryStage = {
 M.QueryRuntimeStatistics = {
     type = "structure",
     members = {
-        Timeline = {
-            type = "structure",
-        },
-        Rows = {
-            type = "structure",
-        },
-        OutputStage = {
-            type = "structure",
-        },
+        Timeline = M.QueryRuntimeStatisticsTimeline,
+        Rows = M.QueryRuntimeStatisticsRows,
+        OutputStage = M.QueryStage,
     },
 }
 
 M.GetQueryRuntimeStatisticsOutput = {
     type = "structure",
     members = {
-        QueryRuntimeStatistics = {
-            type = "structure",
-        },
+        QueryRuntimeStatistics = M.QueryRuntimeStatistics,
     },
 }
 

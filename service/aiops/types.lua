@@ -81,32 +81,30 @@ M.CreateInvestigationGroupInput = {
                 required = true,
             },
         },
-        encryptionConfiguration = {
-            type = "structure",
-        },
+        encryptionConfiguration = M.EncryptionConfiguration,
         retentionInDays = {
-            type = "number",
+            type = "long",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         tagKeyBoundaries = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         chatbotNotificationChannel = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         isCloudTrailEventHistoryEnabled = {
             type = "boolean",
         },
         crossAccountConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.CrossAccountConfiguration,
         },
     },
 }
@@ -209,13 +207,13 @@ M.GetInvestigationGroupOutput = {
             type = "string",
         },
         createdAt = {
-            type = "number",
+            type = "long",
         },
         lastModifiedBy = {
             type = "string",
         },
         lastModifiedAt = {
-            type = "number",
+            type = "long",
         },
         name = {
             type = "string",
@@ -226,27 +224,25 @@ M.GetInvestigationGroupOutput = {
         roleArn = {
             type = "string",
         },
-        encryptionConfiguration = {
-            type = "structure",
-        },
+        encryptionConfiguration = M.EncryptionConfiguration,
         retentionInDays = {
-            type = "number",
+            type = "long",
         },
         chatbotNotificationChannel = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         tagKeyBoundaries = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         isCloudTrailEventHistoryEnabled = {
             type = "boolean",
         },
         crossAccountConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.CrossAccountConfiguration,
         },
     },
 }
@@ -261,7 +257,7 @@ M.ListInvestigationGroupsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -289,7 +285,7 @@ M.ListInvestigationGroupsOutput = {
         },
         investigationGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.ListInvestigationGroupsModel,
         },
     },
 }
@@ -307,24 +303,22 @@ M.UpdateInvestigationGroupInput = {
         roleArn = {
             type = "string",
         },
-        encryptionConfiguration = {
-            type = "structure",
-        },
+        encryptionConfiguration = M.EncryptionConfiguration,
         tagKeyBoundaries = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         chatbotNotificationChannel = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         isCloudTrailEventHistoryEnabled = {
             type = "boolean",
         },
         crossAccountConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.CrossAccountConfiguration,
         },
     },
 }
@@ -421,8 +415,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -439,8 +433,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -464,7 +458,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,

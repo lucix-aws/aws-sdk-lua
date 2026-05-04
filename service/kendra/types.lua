@@ -52,19 +52,22 @@ M.Highlight = {
     type = "structure",
     members = {
         BeginOffset = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         EndOffset = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         TopAnswer = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Type = {
             type = "string",
@@ -80,7 +83,7 @@ M.TextWithHighlights = {
         },
         Highlights = {
             type = "list",
-            member_type = "structure",
+            member = M.Highlight,
         },
     },
 }
@@ -88,9 +91,7 @@ M.TextWithHighlights = {
 M.AdditionalResultAttributeValue = {
     type = "structure",
     members = {
-        TextWithHighlightsValue = {
-            type = "structure",
-        },
+        TextWithHighlightsValue = M.TextWithHighlights,
     },
 }
 
@@ -113,12 +114,9 @@ M.AdditionalResultAttribute = {
                 required = true,
             },
         },
-        Value = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Value = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AdditionalResultAttributeValue }),
     },
 }
 
@@ -172,14 +170,14 @@ M.DataSourceVpcConfiguration = {
     members = {
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -208,45 +206,46 @@ M.AlfrescoConfiguration = {
                 required = true,
             },
         },
-        SslCertificateS3Path = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SslCertificateS3Path = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3Path }),
         CrawlSystemFolders = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         CrawlComments = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         EntityFilter = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DocumentLibraryFieldMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceToIndexFieldMapping,
         },
         BlogFieldMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceToIndexFieldMapping,
         },
         WikiFieldMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceToIndexFieldMapping,
         },
         InclusionPatterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ExclusionPatterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        VpcConfiguration = {
-            type = "structure",
-        },
+        VpcConfiguration = M.DataSourceVpcConfiguration,
     },
 }
 
@@ -290,7 +289,7 @@ M.AssociateEntitiesToExperienceInput = {
         },
         EntityList = {
             type = "list",
-            member_type = "structure",
+            member = M.EntityConfiguration,
             traits = {
                 required = true,
             },
@@ -315,7 +314,7 @@ M.AssociateEntitiesToExperienceOutput = {
     members = {
         FailedEntityList = {
             type = "list",
-            member_type = "structure",
+            member = M.FailedEntity,
         },
     },
 }
@@ -410,7 +409,7 @@ M.AssociatePersonasToEntitiesInput = {
         },
         Personas = {
             type = "list",
-            member_type = "structure",
+            member = M.EntityPersonaConfiguration,
             traits = {
                 required = true,
             },
@@ -423,7 +422,7 @@ M.AssociatePersonasToEntitiesOutput = {
     members = {
         FailedEntityList = {
             type = "list",
-            member_type = "structure",
+            member = M.FailedEntity,
         },
     },
 }
@@ -436,10 +435,10 @@ M.DocumentAttributeValue = {
         },
         StringListValue = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         LongValue = {
-            type = "number",
+            type = "long",
         },
         DateValue = {
             type = "timestamp",
@@ -456,12 +455,9 @@ M.DocumentAttribute = {
                 required = true,
             },
         },
-        Value = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Value = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DocumentAttributeValue }),
     },
 }
 
@@ -487,7 +483,7 @@ M.AttributeSuggestionsDescribeConfig = {
     members = {
         SuggestableConfigList = {
             type = "list",
-            member_type = "structure",
+            member = M.SuggestableConfig,
         },
         AttributeSuggestionsMode = {
             type = "string",
@@ -524,11 +520,11 @@ M.UserContext = {
         },
         Groups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DataSourceGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceGroup,
         },
     },
 }
@@ -538,7 +534,7 @@ M.AttributeSuggestionsUpdateConfig = {
     members = {
         SuggestableConfigList = {
             type = "list",
-            member_type = "structure",
+            member = M.SuggestableConfig,
         },
         AttributeSuggestionsMode = {
             type = "string",
@@ -556,7 +552,7 @@ M.BasicAuthenticationConfiguration = {
             },
         },
         Port = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -575,7 +571,7 @@ M.AuthenticationConfiguration = {
     members = {
         BasicAuthentication = {
             type = "list",
-            member_type = "structure",
+            member = M.BasicAuthenticationConfiguration,
         },
     },
 }
@@ -606,14 +602,12 @@ M.BatchDeleteDocumentInput = {
         },
         DocumentIdList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        DataSourceSyncJobMetricTarget = {
-            type = "structure",
-        },
+        DataSourceSyncJobMetricTarget = M.DataSourceSyncJobMetricTarget,
     },
 }
 
@@ -645,7 +639,7 @@ M.BatchDeleteDocumentOutput = {
     members = {
         FailedDocuments = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchDeleteDocumentResponseFailedDocument,
         },
     },
 }
@@ -671,7 +665,7 @@ M.BatchDeleteFeaturedResultsSetInput = {
         },
         FeaturedResultsSetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -708,7 +702,7 @@ M.BatchDeleteFeaturedResultsSetOutput = {
     members = {
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchDeleteFeaturedResultsSetError,
             traits = {
                 required = true,
             },
@@ -727,7 +721,7 @@ M.DocumentInfo = {
         },
         Attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.DocumentAttribute,
         },
     },
 }
@@ -743,7 +737,7 @@ M.BatchGetDocumentStatusInput = {
         },
         DocumentInfoList = {
             type = "list",
-            member_type = "structure",
+            member = M.DocumentInfo,
             traits = {
                 required = true,
             },
@@ -801,11 +795,11 @@ M.BatchGetDocumentStatusOutput = {
     members = {
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetDocumentStatusResponseError,
         },
         DocumentStatusList = {
             type = "list",
-            member_type = "structure",
+            member = M.Status,
         },
     },
 }
@@ -839,9 +833,7 @@ M.DocumentAttributeCondition = {
                 required = true,
             },
         },
-        ConditionOnValue = {
-            type = "structure",
-        },
+        ConditionOnValue = M.DocumentAttributeValue,
     },
 }
 
@@ -853,24 +845,24 @@ M.DocumentAttributeTarget = {
         },
         TargetDocumentAttributeValueDeletion = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        TargetDocumentAttributeValue = {
-            type = "structure",
-        },
+        TargetDocumentAttributeValue = M.DocumentAttributeValue,
     },
 }
 
 M.InlineCustomDocumentEnrichmentConfiguration = {
     type = "structure",
     members = {
-        Condition = {
-            type = "structure",
-        },
-        Target = {
-            type = "structure",
-        },
+        Condition = M.DocumentAttributeCondition,
+        Target = M.DocumentAttributeTarget,
         DocumentContentDeletion = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -878,9 +870,7 @@ M.InlineCustomDocumentEnrichmentConfiguration = {
 M.HookConfiguration = {
     type = "structure",
     members = {
-        InvocationCondition = {
-            type = "structure",
-        },
+        InvocationCondition = M.DocumentAttributeCondition,
         LambdaArn = {
             type = "string",
             traits = {
@@ -901,14 +891,10 @@ M.CustomDocumentEnrichmentConfiguration = {
     members = {
         InlineConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.InlineCustomDocumentEnrichmentConfiguration,
         },
-        PreExtractionHookConfiguration = {
-            type = "structure",
-        },
-        PostExtractionHookConfiguration = {
-            type = "structure",
-        },
+        PreExtractionHookConfiguration = M.HookConfiguration,
+        PostExtractionHookConfiguration = M.HookConfiguration,
         RoleArn = {
             type = "string",
         },
@@ -972,7 +958,7 @@ M.HierarchicalPrincipal = {
     members = {
         PrincipalList = {
             type = "list",
-            member_type = "structure",
+            member = M.Principal,
             traits = {
                 required = true,
             },
@@ -995,20 +981,18 @@ M.Document = {
         Blob = {
             type = "blob",
         },
-        S3Path = {
-            type = "structure",
-        },
+        S3Path = M.S3Path,
         Attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.DocumentAttribute,
         },
         AccessControlList = {
             type = "list",
-            member_type = "structure",
+            member = M.Principal,
         },
         HierarchicalAccessControlList = {
             type = "list",
-            member_type = "structure",
+            member = M.HierarchicalPrincipal,
         },
         ContentType = {
             type = "string",
@@ -1033,14 +1017,12 @@ M.BatchPutDocumentInput = {
         },
         Documents = {
             type = "list",
-            member_type = "structure",
+            member = M.Document,
             traits = {
                 required = true,
             },
         },
-        CustomDocumentEnrichmentConfiguration = {
-            type = "structure",
-        },
+        CustomDocumentEnrichmentConfiguration = M.CustomDocumentEnrichmentConfiguration,
     },
 }
 
@@ -1067,7 +1049,7 @@ M.BatchPutDocumentOutput = {
     members = {
         FailedDocuments = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchPutDocumentResponseFailedDocument,
         },
     },
 }
@@ -1118,11 +1100,11 @@ M.CreateAccessControlConfigurationInput = {
         },
         AccessControlList = {
             type = "list",
-            member_type = "structure",
+            member = M.Principal,
         },
         HierarchicalAccessControlList = {
             type = "list",
-            member_type = "structure",
+            member = M.HierarchicalPrincipal,
         },
         ClientToken = {
             type = "string",
@@ -1159,43 +1141,53 @@ M.BoxConfiguration = {
         },
         UseChangeLog = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         CrawlComments = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         CrawlTasks = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         CrawlWebLinks = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         FileFieldMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceToIndexFieldMapping,
         },
         TaskFieldMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceToIndexFieldMapping,
         },
         CommentFieldMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceToIndexFieldMapping,
         },
         WebLinkFieldMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceToIndexFieldMapping,
         },
         InclusionPatterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ExclusionPatterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        VpcConfiguration = {
-            type = "structure",
-        },
+        VpcConfiguration = M.DataSourceVpcConfiguration,
     },
 }
 
@@ -1233,10 +1225,13 @@ M.ConfluenceAttachmentConfiguration = {
     members = {
         CrawlAttachments = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         AttachmentFieldMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfluenceAttachmentToIndexFieldMapping,
         },
     },
 }
@@ -1278,7 +1273,7 @@ M.ConfluenceBlogConfiguration = {
     members = {
         BlogFieldMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfluenceBlogToIndexFieldMapping,
         },
     },
 }
@@ -1318,7 +1313,7 @@ M.ConfluencePageConfiguration = {
     members = {
         PageFieldMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfluencePageToIndexFieldMapping,
         },
     },
 }
@@ -1333,7 +1328,7 @@ M.ProxyConfiguration = {
             },
         },
         Port = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1371,21 +1366,27 @@ M.ConfluenceSpaceConfiguration = {
     members = {
         CrawlPersonalSpaces = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         CrawlArchivedSpaces = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         IncludeSpaces = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ExcludeSpaces = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SpaceFieldMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfluenceSpaceToIndexFieldMapping,
         },
     },
 }
@@ -1416,32 +1417,20 @@ M.ConfluenceConfiguration = {
                 required = true,
             },
         },
-        SpaceConfiguration = {
-            type = "structure",
-        },
-        PageConfiguration = {
-            type = "structure",
-        },
-        BlogConfiguration = {
-            type = "structure",
-        },
-        AttachmentConfiguration = {
-            type = "structure",
-        },
-        VpcConfiguration = {
-            type = "structure",
-        },
+        SpaceConfiguration = M.ConfluenceSpaceConfiguration,
+        PageConfiguration = M.ConfluencePageConfiguration,
+        BlogConfiguration = M.ConfluenceBlogConfiguration,
+        AttachmentConfiguration = M.ConfluenceAttachmentConfiguration,
+        VpcConfiguration = M.DataSourceVpcConfiguration,
         InclusionPatterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ExclusionPatterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        ProxyConfiguration = {
-            type = "structure",
-        },
+        ProxyConfiguration = M.ProxyConfiguration,
         AuthenticationType = {
             type = "string",
         },
@@ -1468,11 +1457,11 @@ M.ColumnConfiguration = {
         },
         FieldMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceToIndexFieldMapping,
         },
         ChangeDetectingColumns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1490,7 +1479,7 @@ M.ConnectionConfiguration = {
             },
         },
         DatabasePort = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1546,27 +1535,15 @@ M.DatabaseConfiguration = {
                 required = true,
             },
         },
-        ConnectionConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        VpcConfiguration = {
-            type = "structure",
-        },
-        ColumnConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        AclConfiguration = {
-            type = "structure",
-        },
-        SqlConfiguration = {
-            type = "structure",
-        },
+        ConnectionConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConnectionConfiguration }),
+        VpcConfiguration = M.DataSourceVpcConfiguration,
+        ColumnConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ColumnConfiguration }),
+        AclConfiguration = M.AclConfiguration,
+        SqlConfiguration = M.SqlConfiguration,
     },
 }
 
@@ -1589,26 +1566,23 @@ M.FsxConfiguration = {
                 required = true,
             },
         },
-        VpcConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        VpcConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataSourceVpcConfiguration }),
         SecretArn = {
             type = "string",
         },
         InclusionPatterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ExclusionPatterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         FieldMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceToIndexFieldMapping,
         },
     },
 }
@@ -1618,24 +1592,45 @@ M.GitHubDocumentCrawlProperties = {
     members = {
         CrawlRepositoryDocuments = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         CrawlIssue = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         CrawlIssueComment = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         CrawlIssueCommentAttachment = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         CrawlPullRequest = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         CrawlPullRequestComment = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         CrawlPullRequestCommentAttachment = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1655,12 +1650,9 @@ M.OnPremiseConfiguration = {
                 required = true,
             },
         },
-        SslCertificateS3Path = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SslCertificateS3Path = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3Path }),
     },
 }
 
@@ -1690,12 +1682,8 @@ M.Type = {
 M.GitHubConfiguration = {
     type = "structure",
     members = {
-        SaaSConfiguration = {
-            type = "structure",
-        },
-        OnPremiseConfiguration = {
-            type = "structure",
-        },
+        SaaSConfiguration = M.SaaSConfiguration,
+        OnPremiseConfiguration = M.OnPremiseConfiguration,
         Type = {
             type = "string",
         },
@@ -1707,72 +1695,71 @@ M.GitHubConfiguration = {
         },
         UseChangeLog = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        GitHubDocumentCrawlProperties = {
-            type = "structure",
-        },
+        GitHubDocumentCrawlProperties = M.GitHubDocumentCrawlProperties,
         RepositoryFilter = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         InclusionFolderNamePatterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         InclusionFileTypePatterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         InclusionFileNamePatterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ExclusionFolderNamePatterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ExclusionFileTypePatterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ExclusionFileNamePatterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        VpcConfiguration = {
-            type = "structure",
-        },
+        VpcConfiguration = M.DataSourceVpcConfiguration,
         GitHubRepositoryConfigurationFieldMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceToIndexFieldMapping,
         },
         GitHubCommitConfigurationFieldMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceToIndexFieldMapping,
         },
         GitHubIssueDocumentConfigurationFieldMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceToIndexFieldMapping,
         },
         GitHubIssueCommentConfigurationFieldMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceToIndexFieldMapping,
         },
         GitHubIssueAttachmentConfigurationFieldMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceToIndexFieldMapping,
         },
         GitHubPullRequestCommentConfigurationFieldMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceToIndexFieldMapping,
         },
         GitHubPullRequestDocumentConfigurationFieldMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceToIndexFieldMapping,
         },
         GitHubPullRequestDocumentAttachmentConfigurationFieldMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceToIndexFieldMapping,
         },
     },
 }
@@ -1788,27 +1775,27 @@ M.GoogleDriveConfiguration = {
         },
         InclusionPatterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ExclusionPatterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         FieldMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceToIndexFieldMapping,
         },
         ExcludeMimeTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ExcludeUserAccounts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ExcludeSharedDrives = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1836,54 +1823,55 @@ M.JiraConfiguration = {
         },
         UseChangeLog = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Project = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IssueType = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Status = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IssueSubEntityFilter = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AttachmentFieldMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceToIndexFieldMapping,
         },
         CommentFieldMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceToIndexFieldMapping,
         },
         IssueFieldMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceToIndexFieldMapping,
         },
         ProjectFieldMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceToIndexFieldMapping,
         },
         WorkLogFieldMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceToIndexFieldMapping,
         },
         InclusionPatterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ExclusionPatterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        VpcConfiguration = {
-            type = "structure",
-        },
+        VpcConfiguration = M.DataSourceVpcConfiguration,
     },
 }
 
@@ -1892,11 +1880,9 @@ M.OneDriveUsers = {
     members = {
         OneDriveUserList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        OneDriveUserS3Path = {
-            type = "structure",
-        },
+        OneDriveUserS3Path = M.S3Path,
     },
 }
 
@@ -1915,26 +1901,26 @@ M.OneDriveConfiguration = {
                 required = true,
             },
         },
-        OneDriveUsers = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        OneDriveUsers = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OneDriveUsers }),
         InclusionPatterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ExclusionPatterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         FieldMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceToIndexFieldMapping,
         },
         DisableLocalGroups = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1956,40 +1942,47 @@ M.QuipConfiguration = {
         },
         CrawlFileComments = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         CrawlChatRooms = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         CrawlAttachments = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         FolderIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ThreadFieldMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceToIndexFieldMapping,
         },
         MessageFieldMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceToIndexFieldMapping,
         },
         AttachmentFieldMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceToIndexFieldMapping,
         },
         InclusionPatterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ExclusionPatterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        VpcConfiguration = {
-            type = "structure",
-        },
+        VpcConfiguration = M.DataSourceVpcConfiguration,
     },
 }
 
@@ -2013,22 +2006,18 @@ M.S3DataSourceConfiguration = {
         },
         InclusionPrefixes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         InclusionPatterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ExclusionPatterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        DocumentsMetadataConfiguration = {
-            type = "structure",
-        },
-        AccessControlListConfiguration = {
-            type = "structure",
-        },
+        DocumentsMetadataConfiguration = M.DocumentsMetadataConfiguration,
+        AccessControlListConfiguration = M.AccessControlListConfiguration,
     },
 }
 
@@ -2051,11 +2040,11 @@ M.SalesforceChatterFeedConfiguration = {
         },
         FieldMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceToIndexFieldMapping,
         },
         IncludeFilterTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2080,7 +2069,7 @@ M.SalesforceCustomKnowledgeArticleTypeConfiguration = {
         },
         FieldMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceToIndexFieldMapping,
         },
     },
 }
@@ -2105,7 +2094,7 @@ M.SalesforceStandardKnowledgeArticleTypeConfiguration = {
         },
         FieldMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceToIndexFieldMapping,
         },
     },
 }
@@ -2115,17 +2104,15 @@ M.SalesforceKnowledgeArticleConfiguration = {
     members = {
         IncludedStates = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        StandardKnowledgeArticleTypeConfiguration = {
-            type = "structure",
-        },
+        StandardKnowledgeArticleTypeConfiguration = M.SalesforceStandardKnowledgeArticleTypeConfiguration,
         CustomKnowledgeArticleTypeConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.SalesforceCustomKnowledgeArticleTypeConfiguration,
         },
     },
 }
@@ -2138,7 +2125,7 @@ M.SalesforceStandardObjectAttachmentConfiguration = {
         },
         FieldMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceToIndexFieldMapping,
         },
     },
 }
@@ -2183,7 +2170,7 @@ M.SalesforceStandardObjectConfiguration = {
         },
         FieldMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceToIndexFieldMapping,
         },
     },
 }
@@ -2205,27 +2192,24 @@ M.SalesforceConfiguration = {
         },
         StandardObjectConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.SalesforceStandardObjectConfiguration,
         },
-        KnowledgeArticleConfiguration = {
-            type = "structure",
-        },
-        ChatterFeedConfiguration = {
-            type = "structure",
-        },
+        KnowledgeArticleConfiguration = M.SalesforceKnowledgeArticleConfiguration,
+        ChatterFeedConfiguration = M.SalesforceChatterFeedConfiguration,
         CrawlAttachments = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        StandardObjectAttachmentConfiguration = {
-            type = "structure",
-        },
+        StandardObjectAttachmentConfiguration = M.SalesforceStandardObjectAttachmentConfiguration,
         IncludeAttachmentFilePatterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ExcludeAttachmentFilePatterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2240,14 +2224,17 @@ M.ServiceNowKnowledgeArticleConfiguration = {
     members = {
         CrawlAttachments = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         IncludeAttachmentFilePatterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ExcludeAttachmentFilePatterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DocumentDataFieldName = {
             type = "string",
@@ -2260,7 +2247,7 @@ M.ServiceNowKnowledgeArticleConfiguration = {
         },
         FieldMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceToIndexFieldMapping,
         },
         FilterQuery = {
             type = "string",
@@ -2273,14 +2260,17 @@ M.ServiceNowServiceCatalogConfiguration = {
     members = {
         CrawlAttachments = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         IncludeAttachmentFilePatterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ExcludeAttachmentFilePatterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DocumentDataFieldName = {
             type = "string",
@@ -2293,7 +2283,7 @@ M.ServiceNowServiceCatalogConfiguration = {
         },
         FieldMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceToIndexFieldMapping,
         },
     },
 }
@@ -2324,12 +2314,8 @@ M.ServiceNowConfiguration = {
                 required = true,
             },
         },
-        KnowledgeArticleConfiguration = {
-            type = "structure",
-        },
-        ServiceCatalogConfiguration = {
-            type = "structure",
-        },
+        KnowledgeArticleConfiguration = M.ServiceNowKnowledgeArticleConfiguration,
+        ServiceCatalogConfiguration = M.ServiceNowServiceCatalogConfiguration,
         AuthenticationType = {
             type = "string",
         },
@@ -2359,7 +2345,7 @@ M.SharePointConfiguration = {
         },
         Urls = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2372,40 +2358,43 @@ M.SharePointConfiguration = {
         },
         CrawlAttachments = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         UseChangeLog = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         InclusionPatterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ExclusionPatterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        VpcConfiguration = {
-            type = "structure",
-        },
+        VpcConfiguration = M.DataSourceVpcConfiguration,
         FieldMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceToIndexFieldMapping,
         },
         DocumentTitleFieldName = {
             type = "string",
         },
         DisableLocalGroups = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        SslCertificateS3Path = {
-            type = "structure",
-        },
+        SslCertificateS3Path = M.S3Path,
         AuthenticationType = {
             type = "string",
         },
-        ProxyConfiguration = {
-            type = "structure",
-        },
+        ProxyConfiguration = M.ProxyConfiguration,
     },
 }
 
@@ -2431,24 +2420,31 @@ M.SlackConfiguration = {
                 required = true,
             },
         },
-        VpcConfiguration = {
-            type = "structure",
-        },
+        VpcConfiguration = M.DataSourceVpcConfiguration,
         SlackEntityList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         UseChangeLog = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         CrawlBotMessage = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         ExcludeArchived = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         SinceCrawlDate = {
             type = "string",
@@ -2457,27 +2453,27 @@ M.SlackConfiguration = {
             },
         },
         LookBackPeriod = {
-            type = "number",
+            type = "integer",
         },
         PrivateChannelFilter = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         PublicChannelFilter = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         InclusionPatterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ExclusionPatterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         FieldMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceToIndexFieldMapping,
         },
     },
 }
@@ -2502,7 +2498,7 @@ M.SeedUrlConfiguration = {
     members = {
         SeedUrls = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2518,7 +2514,7 @@ M.SiteMapsConfiguration = {
     members = {
         SiteMaps = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2529,50 +2525,39 @@ M.SiteMapsConfiguration = {
 M.Urls = {
     type = "structure",
     members = {
-        SeedUrlConfiguration = {
-            type = "structure",
-        },
-        SiteMapsConfiguration = {
-            type = "structure",
-        },
+        SeedUrlConfiguration = M.SeedUrlConfiguration,
+        SiteMapsConfiguration = M.SiteMapsConfiguration,
     },
 }
 
 M.WebCrawlerConfiguration = {
     type = "structure",
     members = {
-        Urls = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Urls = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Urls }),
         CrawlDepth = {
-            type = "number",
+            type = "integer",
         },
         MaxLinksPerPage = {
-            type = "number",
+            type = "integer",
         },
         MaxContentSizePerPageInMegaBytes = {
-            type = "number",
+            type = "float",
         },
         MaxUrlsPerMinuteCrawlRate = {
-            type = "number",
+            type = "integer",
         },
         UrlInclusionPatterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         UrlExclusionPatterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        ProxyConfiguration = {
-            type = "structure",
-        },
-        AuthenticationConfiguration = {
-            type = "structure",
-        },
+        ProxyConfiguration = M.ProxyConfiguration,
+        AuthenticationConfiguration = M.AuthenticationConfiguration,
     },
 }
 
@@ -2587,21 +2572,27 @@ M.WorkDocsConfiguration = {
         },
         CrawlComments = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         UseChangeLog = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         InclusionPatterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ExclusionPatterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         FieldMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceToIndexFieldMapping,
         },
     },
 }
@@ -2609,60 +2600,24 @@ M.WorkDocsConfiguration = {
 M.DataSourceConfiguration = {
     type = "structure",
     members = {
-        S3Configuration = {
-            type = "structure",
-        },
-        SharePointConfiguration = {
-            type = "structure",
-        },
-        DatabaseConfiguration = {
-            type = "structure",
-        },
-        SalesforceConfiguration = {
-            type = "structure",
-        },
-        OneDriveConfiguration = {
-            type = "structure",
-        },
-        ServiceNowConfiguration = {
-            type = "structure",
-        },
-        ConfluenceConfiguration = {
-            type = "structure",
-        },
-        GoogleDriveConfiguration = {
-            type = "structure",
-        },
-        WebCrawlerConfiguration = {
-            type = "structure",
-        },
-        WorkDocsConfiguration = {
-            type = "structure",
-        },
-        FsxConfiguration = {
-            type = "structure",
-        },
-        SlackConfiguration = {
-            type = "structure",
-        },
-        BoxConfiguration = {
-            type = "structure",
-        },
-        QuipConfiguration = {
-            type = "structure",
-        },
-        JiraConfiguration = {
-            type = "structure",
-        },
-        GitHubConfiguration = {
-            type = "structure",
-        },
-        AlfrescoConfiguration = {
-            type = "structure",
-        },
-        TemplateConfiguration = {
-            type = "structure",
-        },
+        S3Configuration = M.S3DataSourceConfiguration,
+        SharePointConfiguration = M.SharePointConfiguration,
+        DatabaseConfiguration = M.DatabaseConfiguration,
+        SalesforceConfiguration = M.SalesforceConfiguration,
+        OneDriveConfiguration = M.OneDriveConfiguration,
+        ServiceNowConfiguration = M.ServiceNowConfiguration,
+        ConfluenceConfiguration = M.ConfluenceConfiguration,
+        GoogleDriveConfiguration = M.GoogleDriveConfiguration,
+        WebCrawlerConfiguration = M.WebCrawlerConfiguration,
+        WorkDocsConfiguration = M.WorkDocsConfiguration,
+        FsxConfiguration = M.FsxConfiguration,
+        SlackConfiguration = M.SlackConfiguration,
+        BoxConfiguration = M.BoxConfiguration,
+        QuipConfiguration = M.QuipConfiguration,
+        JiraConfiguration = M.JiraConfiguration,
+        GitHubConfiguration = M.GitHubConfiguration,
+        AlfrescoConfiguration = M.AlfrescoConfiguration,
+        TemplateConfiguration = M.TemplateConfiguration,
     },
 }
 
@@ -2727,12 +2682,8 @@ M.CreateDataSourceInput = {
                 required = true,
             },
         },
-        Configuration = {
-            type = "structure",
-        },
-        VpcConfiguration = {
-            type = "structure",
-        },
+        Configuration = M.DataSourceConfiguration,
+        VpcConfiguration = M.DataSourceVpcConfiguration,
         Description = {
             type = "string",
         },
@@ -2744,7 +2695,7 @@ M.CreateDataSourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ClientToken = {
             type = "string",
@@ -2752,9 +2703,7 @@ M.CreateDataSourceInput = {
         LanguageCode = {
             type = "string",
         },
-        CustomDocumentEnrichmentConfiguration = {
-            type = "structure",
-        },
+        CustomDocumentEnrichmentConfiguration = M.CustomDocumentEnrichmentConfiguration,
     },
 }
 
@@ -2775,14 +2724,17 @@ M.ContentSourceConfiguration = {
     members = {
         DataSourceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         FaqIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DirectPutContent = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -2799,12 +2751,8 @@ M.UserIdentityConfiguration = {
 M.ExperienceConfiguration = {
     type = "structure",
     members = {
-        ContentSourceConfiguration = {
-            type = "structure",
-        },
-        UserIdentityConfiguration = {
-            type = "structure",
-        },
+        ContentSourceConfiguration = M.ContentSourceConfiguration,
+        UserIdentityConfiguration = M.UserIdentityConfiguration,
     },
 }
 
@@ -2826,9 +2774,7 @@ M.CreateExperienceInput = {
         RoleArn = {
             type = "string",
         },
-        Configuration = {
-            type = "structure",
-        },
+        Configuration = M.ExperienceConfiguration,
         Description = {
             type = "string",
         },
@@ -2874,12 +2820,9 @@ M.CreateFaqInput = {
         Description = {
             type = "string",
         },
-        S3Path = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        S3Path = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3Path }),
         RoleArn = {
             type = "string",
             traits = {
@@ -2888,7 +2831,7 @@ M.CreateFaqInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         FileFormat = {
             type = "string",
@@ -2951,15 +2894,15 @@ M.CreateFeaturedResultsSetInput = {
         },
         QueryTexts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         FeaturedDocuments = {
             type = "list",
-            member_type = "structure",
+            member = M.FeaturedDocument,
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2981,17 +2924,17 @@ M.FeaturedResultsSet = {
         },
         QueryTexts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         FeaturedDocuments = {
             type = "list",
-            member_type = "structure",
+            member = M.FeaturedDocument,
         },
         LastUpdatedTimestamp = {
-            type = "number",
+            type = "long",
         },
         CreationTimestamp = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -2999,9 +2942,7 @@ M.FeaturedResultsSet = {
 M.CreateFeaturedResultsSetOutput = {
     type = "structure",
     members = {
-        FeaturedResultsSet = {
-            type = "structure",
-        },
+        FeaturedResultsSet = M.FeaturedResultsSet,
     },
 }
 
@@ -3029,7 +2970,7 @@ M.FeaturedResultsConflictException = {
         },
         ConflictingItems = {
             type = "list",
-            member_type = "structure",
+            member = M.ConflictingItem,
         },
     },
 }
@@ -3127,12 +3068,8 @@ M.JwtTokenTypeConfiguration = {
 M.UserTokenConfiguration = {
     type = "structure",
     members = {
-        JwtTokenTypeConfiguration = {
-            type = "structure",
-        },
-        JsonTokenTypeConfiguration = {
-            type = "structure",
-        },
+        JwtTokenTypeConfiguration = M.JwtTokenTypeConfiguration,
+        JsonTokenTypeConfiguration = M.JsonTokenTypeConfiguration,
     },
 }
 
@@ -3154,9 +3091,7 @@ M.CreateIndexInput = {
                 required = true,
             },
         },
-        ServerSideEncryptionConfiguration = {
-            type = "structure",
-        },
+        ServerSideEncryptionConfiguration = M.ServerSideEncryptionConfiguration,
         Description = {
             type = "string",
         },
@@ -3165,18 +3100,16 @@ M.CreateIndexInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         UserTokenConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.UserTokenConfiguration,
         },
         UserContextPolicy = {
             type = "string",
         },
-        UserGroupResolutionConfiguration = {
-            type = "structure",
-        },
+        UserGroupResolutionConfiguration = M.UserGroupResolutionConfiguration,
     },
 }
 
@@ -3207,12 +3140,9 @@ M.CreateQuerySuggestionsBlockListInput = {
         Description = {
             type = "string",
         },
-        SourceS3Path = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SourceS3Path = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3Path }),
         ClientToken = {
             type = "string",
         },
@@ -3224,7 +3154,7 @@ M.CreateQuerySuggestionsBlockListInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3264,14 +3194,11 @@ M.CreateThesaurusInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        SourceS3Path = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SourceS3Path = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3Path }),
         ClientToken = {
             type = "string",
         },
@@ -3410,7 +3337,7 @@ M.DeletePrincipalMappingInput = {
             },
         },
         OrderingId = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -3498,11 +3425,11 @@ M.DescribeAccessControlConfigurationOutput = {
         },
         AccessControlList = {
             type = "list",
-            member_type = "structure",
+            member = M.Principal,
         },
         HierarchicalAccessControlList = {
             type = "list",
-            member_type = "structure",
+            member = M.HierarchicalPrincipal,
         },
     },
 }
@@ -3548,12 +3475,8 @@ M.DescribeDataSourceOutput = {
         Type = {
             type = "string",
         },
-        Configuration = {
-            type = "structure",
-        },
-        VpcConfiguration = {
-            type = "structure",
-        },
+        Configuration = M.DataSourceConfiguration,
+        VpcConfiguration = M.DataSourceVpcConfiguration,
         CreatedAt = {
             type = "timestamp",
         },
@@ -3578,9 +3501,7 @@ M.DescribeDataSourceOutput = {
         LanguageCode = {
             type = "string",
         },
-        CustomDocumentEnrichmentConfiguration = {
-            type = "structure",
-        },
+        CustomDocumentEnrichmentConfiguration = M.CustomDocumentEnrichmentConfiguration,
     },
 }
 
@@ -3639,11 +3560,9 @@ M.DescribeExperienceOutput = {
         },
         Endpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.ExperienceEndpoint,
         },
-        Configuration = {
-            type = "structure",
-        },
+        Configuration = M.ExperienceConfiguration,
         CreatedAt = {
             type = "timestamp",
         },
@@ -3712,9 +3631,7 @@ M.DescribeFaqOutput = {
         UpdatedAt = {
             type = "timestamp",
         },
-        S3Path = {
-            type = "structure",
-        },
+        S3Path = M.S3Path,
         Status = {
             type = "string",
         },
@@ -3792,21 +3709,21 @@ M.DescribeFeaturedResultsSetOutput = {
         },
         QueryTexts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         FeaturedDocumentsWithMetadata = {
             type = "list",
-            member_type = "structure",
+            member = M.FeaturedDocumentWithMetadata,
         },
         FeaturedDocumentsMissing = {
             type = "list",
-            member_type = "structure",
+            member = M.FeaturedDocumentMissing,
         },
         LastUpdatedTimestamp = {
-            type = "number",
+            type = "long",
         },
         CreationTimestamp = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -3827,13 +3744,13 @@ M.CapacityUnitsConfiguration = {
     type = "structure",
     members = {
         StorageCapacityUnits = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         QueryCapacityUnits = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -3853,7 +3770,7 @@ M.Relevance = {
             type = "boolean",
         },
         Importance = {
-            type = "number",
+            type = "integer",
         },
         Duration = {
             type = "string",
@@ -3863,8 +3780,8 @@ M.Relevance = {
         },
         ValueImportanceMap = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
         },
     },
 }
@@ -3874,15 +3791,27 @@ M.Search = {
     members = {
         Facetable = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Searchable = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Displayable = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Sortable = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -3909,12 +3838,8 @@ M.DocumentMetadataConfiguration = {
                 required = true,
             },
         },
-        Relevance = {
-            type = "structure",
-        },
-        Search = {
-            type = "structure",
-        },
+        Relevance = M.Relevance,
+        Search = M.Search,
     },
 }
 
@@ -3922,8 +3847,9 @@ M.FaqStatistics = {
     type = "structure",
     members = {
         IndexedQuestionAnswersCount = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -3934,14 +3860,16 @@ M.TextDocumentStatistics = {
     type = "structure",
     members = {
         IndexedTextDocumentsCount = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         IndexedTextBytes = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -3951,18 +3879,12 @@ M.TextDocumentStatistics = {
 M.IndexStatistics = {
     type = "structure",
     members = {
-        FaqStatistics = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        TextDocumentStatistics = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        FaqStatistics = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FaqStatistics }),
+        TextDocumentStatistics = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TextDocumentStatistics }),
     },
 }
 
@@ -3990,9 +3912,7 @@ M.DescribeIndexOutput = {
         RoleArn = {
             type = "string",
         },
-        ServerSideEncryptionConfiguration = {
-            type = "structure",
-        },
+        ServerSideEncryptionConfiguration = M.ServerSideEncryptionConfiguration,
         Status = {
             type = "string",
         },
@@ -4007,27 +3927,21 @@ M.DescribeIndexOutput = {
         },
         DocumentMetadataConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.DocumentMetadataConfiguration,
         },
-        IndexStatistics = {
-            type = "structure",
-        },
+        IndexStatistics = M.IndexStatistics,
         ErrorMessage = {
             type = "string",
         },
-        CapacityUnits = {
-            type = "structure",
-        },
+        CapacityUnits = M.CapacityUnitsConfiguration,
         UserTokenConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.UserTokenConfiguration,
         },
         UserContextPolicy = {
             type = "string",
         },
-        UserGroupResolutionConfiguration = {
-            type = "structure",
-        },
+        UserGroupResolutionConfiguration = M.UserGroupResolutionConfiguration,
     },
 }
 
@@ -4073,7 +3987,7 @@ M.GroupOrderingIdSummary = {
             type = "timestamp",
         },
         OrderingId = {
-            type = "number",
+            type = "long",
         },
         FailureReason = {
             type = "string",
@@ -4095,7 +4009,7 @@ M.DescribePrincipalMappingOutput = {
         },
         GroupOrderingIdSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupOrderingIdSummary,
         },
     },
 }
@@ -4154,14 +4068,12 @@ M.DescribeQuerySuggestionsBlockListOutput = {
         UpdatedAt = {
             type = "timestamp",
         },
-        SourceS3Path = {
-            type = "structure",
-        },
+        SourceS3Path = M.S3Path,
         ItemCount = {
-            type = "number",
+            type = "integer",
         },
         FileSizeBytes = {
-            type = "number",
+            type = "long",
         },
         RoleArn = {
             type = "string",
@@ -4201,16 +4113,16 @@ M.DescribeQuerySuggestionsConfigOutput = {
             type = "string",
         },
         QueryLogLookBackWindowInDays = {
-            type = "number",
+            type = "integer",
         },
         IncludeQueriesWithoutUserInformation = {
             type = "boolean",
         },
         MinimumNumberOfQueryingUsers = {
-            type = "number",
+            type = "integer",
         },
         MinimumQueryCount = {
-            type = "number",
+            type = "integer",
         },
         LastSuggestionsBuildTime = {
             type = "timestamp",
@@ -4219,11 +4131,9 @@ M.DescribeQuerySuggestionsConfigOutput = {
             type = "timestamp",
         },
         TotalSuggestionsCount = {
-            type = "number",
+            type = "integer",
         },
-        AttributeSuggestionsConfig = {
-            type = "structure",
-        },
+        AttributeSuggestionsConfig = M.AttributeSuggestionsDescribeConfig,
     },
 }
 
@@ -4284,17 +4194,15 @@ M.DescribeThesaurusOutput = {
         RoleArn = {
             type = "string",
         },
-        SourceS3Path = {
-            type = "structure",
-        },
+        SourceS3Path = M.S3Path,
         FileSizeBytes = {
-            type = "number",
+            type = "long",
         },
         TermCount = {
-            type = "number",
+            type = "long",
         },
         SynonymRuleCount = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -4316,7 +4224,7 @@ M.DisassociateEntitiesFromExperienceInput = {
         },
         EntityList = {
             type = "list",
-            member_type = "structure",
+            member = M.EntityConfiguration,
             traits = {
                 required = true,
             },
@@ -4329,7 +4237,7 @@ M.DisassociateEntitiesFromExperienceOutput = {
     members = {
         FailedEntityList = {
             type = "list",
-            member_type = "structure",
+            member = M.FailedEntity,
         },
     },
 }
@@ -4351,7 +4259,7 @@ M.DisassociatePersonasFromEntitiesInput = {
         },
         EntityIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4364,7 +4272,7 @@ M.DisassociatePersonasFromEntitiesOutput = {
     members = {
         FailedEntityList = {
             type = "list",
-            member_type = "structure",
+            member = M.FailedEntity,
         },
     },
 }
@@ -4382,11 +4290,11 @@ M.SourceDocument = {
         },
         SuggestionAttributes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AdditionalAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.DocumentAttribute,
         },
     },
 }
@@ -4395,10 +4303,10 @@ M.SuggestionHighlight = {
     type = "structure",
     members = {
         BeginOffset = {
-            type = "number",
+            type = "integer",
         },
         EndOffset = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4411,7 +4319,7 @@ M.SuggestionTextWithHighlights = {
         },
         Highlights = {
             type = "list",
-            member_type = "structure",
+            member = M.SuggestionHighlight,
         },
     },
 }
@@ -4419,9 +4327,7 @@ M.SuggestionTextWithHighlights = {
 M.SuggestionValue = {
     type = "structure",
     members = {
-        Text = {
-            type = "structure",
-        },
+        Text = M.SuggestionTextWithHighlights,
     },
 }
 
@@ -4431,12 +4337,10 @@ M.Suggestion = {
         Id = {
             type = "string",
         },
-        Value = {
-            type = "structure",
-        },
+        Value = M.SuggestionValue,
         SourceDocuments = {
             type = "list",
-            member_type = "structure",
+            member = M.SourceDocument,
         },
     },
 }
@@ -4449,7 +4353,7 @@ M.GetQuerySuggestionsOutput = {
         },
         Suggestions = {
             type = "list",
-            member_type = "structure",
+            member = M.Suggestion,
         },
     },
 }
@@ -4497,7 +4401,7 @@ M.GetSnapshotsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4517,16 +4421,14 @@ M.TimeRange = {
 M.GetSnapshotsOutput = {
     type = "structure",
     members = {
-        SnapShotTimeFilter = {
-            type = "structure",
-        },
+        SnapShotTimeFilter = M.TimeRange,
         SnapshotsDataHeader = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SnapshotsData = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
         },
         NextToken = {
             type = "string",
@@ -4557,7 +4459,7 @@ M.ListAccessControlConfigurationsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4570,7 +4472,7 @@ M.ListAccessControlConfigurationsOutput = {
         },
         AccessControlConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessControlConfigurationSummary,
             traits = {
                 required = true,
             },
@@ -4591,7 +4493,7 @@ M.ListDataSourcesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4628,7 +4530,7 @@ M.ListDataSourcesOutput = {
     members = {
         SummaryItems = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceSummary,
         },
         NextToken = {
             type = "string",
@@ -4665,11 +4567,9 @@ M.ListDataSourceSyncJobsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
-        StartTimeFilter = {
-            type = "structure",
-        },
+        StartTimeFilter = M.TimeRange,
         StatusFilter = {
             type = "string",
         },
@@ -4721,9 +4621,7 @@ M.DataSourceSyncJob = {
         DataSourceErrorCode = {
             type = "string",
         },
-        Metrics = {
-            type = "structure",
-        },
+        Metrics = M.DataSourceSyncJobMetrics,
     },
 }
 
@@ -4732,7 +4630,7 @@ M.ListDataSourceSyncJobsOutput = {
     members = {
         History = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceSyncJob,
         },
         NextToken = {
             type = "string",
@@ -4759,7 +4657,7 @@ M.ListEntityPersonasInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4787,7 +4685,7 @@ M.ListEntityPersonasOutput = {
     members = {
         SummaryItems = {
             type = "list",
-            member_type = "structure",
+            member = M.PersonasSummary,
         },
         NextToken = {
             type = "string",
@@ -4846,9 +4744,7 @@ M.ExperienceEntitiesSummary = {
         EntityType = {
             type = "string",
         },
-        DisplayData = {
-            type = "structure",
-        },
+        DisplayData = M.EntityDisplayData,
     },
 }
 
@@ -4857,7 +4753,7 @@ M.ListExperienceEntitiesOutput = {
     members = {
         SummaryItems = {
             type = "list",
-            member_type = "structure",
+            member = M.ExperienceEntitiesSummary,
         },
         NextToken = {
             type = "string",
@@ -4878,7 +4774,7 @@ M.ListExperiencesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4900,7 +4796,7 @@ M.ExperiencesSummary = {
         },
         Endpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.ExperienceEndpoint,
         },
     },
 }
@@ -4910,7 +4806,7 @@ M.ListExperiencesOutput = {
     members = {
         SummaryItems = {
             type = "list",
-            member_type = "structure",
+            member = M.ExperiencesSummary,
         },
         NextToken = {
             type = "string",
@@ -4931,7 +4827,7 @@ M.ListFaqsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4971,7 +4867,7 @@ M.ListFaqsOutput = {
         },
         FaqSummaryItems = {
             type = "list",
-            member_type = "structure",
+            member = M.FaqSummary,
         },
     },
 }
@@ -4989,7 +4885,7 @@ M.ListFeaturedResultsSetsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5007,10 +4903,10 @@ M.FeaturedResultsSetSummary = {
             type = "string",
         },
         LastUpdatedTimestamp = {
-            type = "number",
+            type = "long",
         },
         CreationTimestamp = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -5020,7 +4916,7 @@ M.ListFeaturedResultsSetsOutput = {
     members = {
         FeaturedResultsSetSummaryItems = {
             type = "list",
-            member_type = "structure",
+            member = M.FeaturedResultsSetSummary,
         },
         NextToken = {
             type = "string",
@@ -5041,7 +4937,7 @@ M.ListGroupsOlderThanOrderingIdInput = {
             type = "string",
         },
         OrderingId = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -5050,7 +4946,7 @@ M.ListGroupsOlderThanOrderingIdInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5062,7 +4958,7 @@ M.GroupSummary = {
             type = "string",
         },
         OrderingId = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -5072,7 +4968,7 @@ M.ListGroupsOlderThanOrderingIdOutput = {
     members = {
         GroupsSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupSummary,
         },
         NextToken = {
             type = "string",
@@ -5087,7 +4983,7 @@ M.ListIndicesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5130,7 +5026,7 @@ M.ListIndicesOutput = {
     members = {
         IndexConfigurationSummaryItems = {
             type = "list",
-            member_type = "structure",
+            member = M.IndexConfigurationSummary,
         },
         NextToken = {
             type = "string",
@@ -5151,7 +5047,7 @@ M.ListQuerySuggestionsBlockListsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5175,7 +5071,7 @@ M.QuerySuggestionsBlockListSummary = {
             type = "timestamp",
         },
         ItemCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5185,7 +5081,7 @@ M.ListQuerySuggestionsBlockListsOutput = {
     members = {
         BlockListSummaryItems = {
             type = "list",
-            member_type = "structure",
+            member = M.QuerySuggestionsBlockListSummary,
         },
         NextToken = {
             type = "string",
@@ -5210,7 +5106,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -5238,7 +5134,7 @@ M.ListThesauriInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5272,7 +5168,7 @@ M.ListThesauriOutput = {
         },
         ThesaurusSummaryItems = {
             type = "list",
-            member_type = "structure",
+            member = M.ThesaurusSummary,
         },
     },
 }
@@ -5309,15 +5205,13 @@ M.GroupMembers = {
     members = {
         MemberGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.MemberGroup,
         },
         MemberUsers = {
             type = "list",
-            member_type = "structure",
+            member = M.MemberUser,
         },
-        S3PathforGroupMembers = {
-            type = "structure",
-        },
+        S3PathforGroupMembers = M.S3Path,
     },
 }
 
@@ -5339,14 +5233,11 @@ M.PutPrincipalMappingInput = {
                 required = true,
             },
         },
-        GroupMembers = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        GroupMembers = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.GroupMembers }),
         OrderingId = {
-            type = "number",
+            type = "long",
         },
         RoleArn = {
             type = "string",
@@ -5362,10 +5253,10 @@ M.ExpandConfiguration = {
     type = "structure",
     members = {
         MaxResultItemsToExpand = {
-            type = "number",
+            type = "integer",
         },
         MaxExpandedResultsPerItem = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5410,17 +5301,18 @@ M.CollapseConfiguration = {
         },
         SortingConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.SortingConfiguration,
         },
         MissingAttributeKeyStrategy = {
             type = "string",
         },
         Expand = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        ExpandConfiguration = {
-            type = "structure",
-        },
+        ExpandConfiguration = M.ExpandConfiguration,
     },
 }
 
@@ -5433,12 +5325,9 @@ M.DocumentRelevanceConfiguration = {
                 required = true,
             },
         },
-        Relevance = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Relevance = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Relevance }),
     },
 }
 
@@ -5454,6 +5343,7 @@ M.SpellCorrectionConfiguration = {
         IncludeQuerySpellCheckSuggestions = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -5471,23 +5361,19 @@ M.FeaturedResultsItem = {
         },
         AdditionalAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.AdditionalResultAttribute,
         },
         DocumentId = {
             type = "string",
         },
-        DocumentTitle = {
-            type = "structure",
-        },
-        DocumentExcerpt = {
-            type = "structure",
-        },
+        DocumentTitle = M.TextWithHighlights,
+        DocumentExcerpt = M.TextWithHighlights,
         DocumentURI = {
             type = "string",
         },
         DocumentAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.DocumentAttribute,
         },
         FeedbackToken = {
             type = "string",
@@ -5504,18 +5390,14 @@ M.ExpandedResultItem = {
         DocumentId = {
             type = "string",
         },
-        DocumentTitle = {
-            type = "structure",
-        },
-        DocumentExcerpt = {
-            type = "structure",
-        },
+        DocumentTitle = M.TextWithHighlights,
+        DocumentExcerpt = M.TextWithHighlights,
         DocumentURI = {
             type = "string",
         },
         DocumentAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.DocumentAttribute,
         },
     },
 }
@@ -5523,15 +5405,12 @@ M.ExpandedResultItem = {
 M.CollapsedResultDetail = {
     type = "structure",
     members = {
-        DocumentAttribute = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DocumentAttribute = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DocumentAttribute }),
         ExpandedResults = {
             type = "list",
-            member_type = "structure",
+            member = M.ExpandedResultItem,
         },
     },
 }
@@ -5566,12 +5445,21 @@ M.TableCell = {
         },
         TopAnswer = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Highlighted = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Header = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -5581,7 +5469,7 @@ M.TableRow = {
     members = {
         Cells = {
             type = "list",
-            member_type = "structure",
+            member = M.TableCell,
         },
     },
 }
@@ -5591,10 +5479,10 @@ M.TableExcerpt = {
     members = {
         Rows = {
             type = "list",
-            member_type = "structure",
+            member = M.TableRow,
         },
         TotalNumberOfRows = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5613,36 +5501,26 @@ M.QueryResultItem = {
         },
         AdditionalAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.AdditionalResultAttribute,
         },
         DocumentId = {
             type = "string",
         },
-        DocumentTitle = {
-            type = "structure",
-        },
-        DocumentExcerpt = {
-            type = "structure",
-        },
+        DocumentTitle = M.TextWithHighlights,
+        DocumentExcerpt = M.TextWithHighlights,
         DocumentURI = {
             type = "string",
         },
         DocumentAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.DocumentAttribute,
         },
-        ScoreAttributes = {
-            type = "structure",
-        },
+        ScoreAttributes = M.ScoreAttributes,
         FeedbackToken = {
             type = "string",
         },
-        TableExcerpt = {
-            type = "structure",
-        },
-        CollapsedResultDetail = {
-            type = "structure",
-        },
+        TableExcerpt = M.TableExcerpt,
+        CollapsedResultDetail = M.CollapsedResultDetail,
     },
 }
 
@@ -5650,10 +5528,10 @@ M.Correction = {
     type = "structure",
     members = {
         BeginOffset = {
-            type = "number",
+            type = "integer",
         },
         EndOffset = {
-            type = "number",
+            type = "integer",
         },
         Term = {
             type = "string",
@@ -5672,7 +5550,7 @@ M.SpellCorrectedQuery = {
         },
         Corrections = {
             type = "list",
-            member_type = "structure",
+            member = M.Correction,
         },
     },
 }
@@ -5713,11 +5591,9 @@ M.RetrieveResultItem = {
         },
         DocumentAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.DocumentAttribute,
         },
-        ScoreAttributes = {
-            type = "structure",
-        },
+        ScoreAttributes = M.ScoreAttributes,
     },
 }
 
@@ -5729,7 +5605,7 @@ M.RetrieveOutput = {
         },
         ResultItems = {
             type = "list",
-            member_type = "structure",
+            member = M.RetrieveResultItem,
         },
     },
 }
@@ -5851,11 +5727,11 @@ M.SubmitFeedbackInput = {
         },
         ClickFeedbackItems = {
             type = "list",
-            member_type = "structure",
+            member = M.ClickFeedback,
         },
         RelevanceFeedbackItems = {
             type = "list",
-            member_type = "structure",
+            member = M.RelevanceFeedback,
         },
     },
 }
@@ -5875,7 +5751,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -5898,7 +5774,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -5933,11 +5809,11 @@ M.UpdateAccessControlConfigurationInput = {
         },
         AccessControlList = {
             type = "list",
-            member_type = "structure",
+            member = M.Principal,
         },
         HierarchicalAccessControlList = {
             type = "list",
-            member_type = "structure",
+            member = M.HierarchicalPrincipal,
         },
     },
 }
@@ -5964,12 +5840,8 @@ M.UpdateDataSourceInput = {
                 required = true,
             },
         },
-        Configuration = {
-            type = "structure",
-        },
-        VpcConfiguration = {
-            type = "structure",
-        },
+        Configuration = M.DataSourceConfiguration,
+        VpcConfiguration = M.DataSourceVpcConfiguration,
         Description = {
             type = "string",
         },
@@ -5982,9 +5854,7 @@ M.UpdateDataSourceInput = {
         LanguageCode = {
             type = "string",
         },
-        CustomDocumentEnrichmentConfiguration = {
-            type = "structure",
-        },
+        CustomDocumentEnrichmentConfiguration = M.CustomDocumentEnrichmentConfiguration,
     },
 }
 
@@ -6013,9 +5883,7 @@ M.UpdateExperienceInput = {
         RoleArn = {
             type = "string",
         },
-        Configuration = {
-            type = "structure",
-        },
+        Configuration = M.ExperienceConfiguration,
         Description = {
             type = "string",
         },
@@ -6052,11 +5920,11 @@ M.UpdateFeaturedResultsSetInput = {
         },
         QueryTexts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         FeaturedDocuments = {
             type = "list",
-            member_type = "structure",
+            member = M.FeaturedDocument,
         },
     },
 }
@@ -6064,9 +5932,7 @@ M.UpdateFeaturedResultsSetInput = {
 M.UpdateFeaturedResultsSetOutput = {
     type = "structure",
     members = {
-        FeaturedResultsSet = {
-            type = "structure",
-        },
+        FeaturedResultsSet = M.FeaturedResultsSet,
     },
 }
 
@@ -6090,21 +5956,17 @@ M.UpdateIndexInput = {
         },
         DocumentMetadataConfigurationUpdates = {
             type = "list",
-            member_type = "structure",
+            member = M.DocumentMetadataConfiguration,
         },
-        CapacityUnits = {
-            type = "structure",
-        },
+        CapacityUnits = M.CapacityUnitsConfiguration,
         UserTokenConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.UserTokenConfiguration,
         },
         UserContextPolicy = {
             type = "string",
         },
-        UserGroupResolutionConfiguration = {
-            type = "structure",
-        },
+        UserGroupResolutionConfiguration = M.UserGroupResolutionConfiguration,
     },
 }
 
@@ -6133,9 +5995,7 @@ M.UpdateQuerySuggestionsBlockListInput = {
         Description = {
             type = "string",
         },
-        SourceS3Path = {
-            type = "structure",
-        },
+        SourceS3Path = M.S3Path,
         RoleArn = {
             type = "string",
         },
@@ -6159,20 +6019,18 @@ M.UpdateQuerySuggestionsConfigInput = {
             type = "string",
         },
         QueryLogLookBackWindowInDays = {
-            type = "number",
+            type = "integer",
         },
         IncludeQueriesWithoutUserInformation = {
             type = "boolean",
         },
         MinimumNumberOfQueryingUsers = {
-            type = "number",
+            type = "integer",
         },
         MinimumQueryCount = {
-            type = "number",
+            type = "integer",
         },
-        AttributeSuggestionsConfig = {
-            type = "structure",
-        },
+        AttributeSuggestionsConfig = M.AttributeSuggestionsUpdateConfig,
     },
 }
 
@@ -6204,9 +6062,7 @@ M.UpdateThesaurusInput = {
         RoleArn = {
             type = "string",
         },
-        SourceS3Path = {
-            type = "structure",
-        },
+        SourceS3Path = M.S3Path,
     },
 }
 
@@ -6222,10 +6078,13 @@ M.Facet = {
         },
         Facets = {
             type = "list",
-            member_type = "structure",
+            member = M.Facet,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -6233,15 +6092,13 @@ M.Facet = {
 M.DocumentAttributeValueCountPair = {
     type = "structure",
     members = {
-        DocumentAttributeValue = {
-            type = "structure",
-        },
+        DocumentAttributeValue = M.DocumentAttributeValue,
         Count = {
-            type = "number",
+            type = "integer",
         },
         FacetResults = {
             type = "list",
-            member_type = "structure",
+            member = M.FacetResult,
         },
     },
 }
@@ -6257,7 +6114,7 @@ M.FacetResult = {
         },
         DocumentAttributeValueCountPairs = {
             type = "list",
-            member_type = "structure",
+            member = M.DocumentAttributeValueCountPair,
         },
     },
 }
@@ -6267,36 +6124,20 @@ M.AttributeFilter = {
     members = {
         AndAllFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.AttributeFilter,
         },
         OrAllFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.AttributeFilter,
         },
-        NotFilter = {
-            type = "structure",
-        },
-        EqualsTo = {
-            type = "structure",
-        },
-        ContainsAll = {
-            type = "structure",
-        },
-        ContainsAny = {
-            type = "structure",
-        },
-        GreaterThan = {
-            type = "structure",
-        },
-        GreaterThanOrEquals = {
-            type = "structure",
-        },
-        LessThan = {
-            type = "structure",
-        },
-        LessThanOrEquals = {
-            type = "structure",
-        },
+        NotFilter = M.AttributeFilter,
+        EqualsTo = M.DocumentAttribute,
+        ContainsAll = M.DocumentAttribute,
+        ContainsAny = M.DocumentAttribute,
+        GreaterThan = M.DocumentAttribute,
+        GreaterThanOrEquals = M.DocumentAttribute,
+        LessThan = M.DocumentAttribute,
+        LessThanOrEquals = M.DocumentAttribute,
     },
 }
 
@@ -6308,26 +6149,26 @@ M.QueryOutput = {
         },
         ResultItems = {
             type = "list",
-            member_type = "structure",
+            member = M.QueryResultItem,
         },
         FacetResults = {
             type = "list",
-            member_type = "structure",
+            member = M.FacetResult,
         },
         TotalNumberOfResults = {
-            type = "number",
+            type = "integer",
         },
         Warnings = {
             type = "list",
-            member_type = "structure",
+            member = M.Warning,
         },
         SpellCorrectedQueries = {
             type = "list",
-            member_type = "structure",
+            member = M.SpellCorrectedQuery,
         },
         FeaturedResultsItems = {
             type = "list",
-            member_type = "structure",
+            member = M.FeaturedResultsItem,
         },
     },
 }
@@ -6337,18 +6178,14 @@ M.AttributeSuggestionsGetConfig = {
     members = {
         SuggestionAttributes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AdditionalResponseAttributes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        AttributeFilter = {
-            type = "structure",
-        },
-        UserContext = {
-            type = "structure",
-        },
+        AttributeFilter = M.AttributeFilter,
+        UserContext = M.UserContext,
     },
 }
 
@@ -6367,26 +6204,22 @@ M.RetrieveInput = {
                 required = true,
             },
         },
-        AttributeFilter = {
-            type = "structure",
-        },
+        AttributeFilter = M.AttributeFilter,
         RequestedDocumentAttributes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DocumentRelevanceOverrideConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.DocumentRelevanceConfiguration,
         },
         PageNumber = {
-            type = "number",
+            type = "integer",
         },
         PageSize = {
-            type = "number",
+            type = "integer",
         },
-        UserContext = {
-            type = "structure",
-        },
+        UserContext = M.UserContext,
     },
 }
 
@@ -6406,15 +6239,13 @@ M.GetQuerySuggestionsInput = {
             },
         },
         MaxSuggestionsCount = {
-            type = "number",
+            type = "integer",
         },
         SuggestionTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        AttributeSuggestionsConfig = {
-            type = "structure",
-        },
+        AttributeSuggestionsConfig = M.AttributeSuggestionsGetConfig,
     },
 }
 
@@ -6430,49 +6261,39 @@ M.QueryInput = {
         QueryText = {
             type = "string",
         },
-        AttributeFilter = {
-            type = "structure",
-        },
+        AttributeFilter = M.AttributeFilter,
         Facets = {
             type = "list",
-            member_type = "structure",
+            member = M.Facet,
         },
         RequestedDocumentAttributes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         QueryResultTypeFilter = {
             type = "string",
         },
         DocumentRelevanceOverrideConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.DocumentRelevanceConfiguration,
         },
         PageNumber = {
-            type = "number",
+            type = "integer",
         },
         PageSize = {
-            type = "number",
+            type = "integer",
         },
-        SortingConfiguration = {
-            type = "structure",
-        },
+        SortingConfiguration = M.SortingConfiguration,
         SortingConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.SortingConfiguration,
         },
-        UserContext = {
-            type = "structure",
-        },
+        UserContext = M.UserContext,
         VisitorId = {
             type = "string",
         },
-        SpellCorrectionConfiguration = {
-            type = "structure",
-        },
-        CollapseConfiguration = {
-            type = "structure",
-        },
+        SpellCorrectionConfiguration = M.SpellCorrectionConfiguration,
+        CollapseConfiguration = M.CollapseConfiguration,
     },
 }
 

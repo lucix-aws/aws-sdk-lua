@@ -34,12 +34,12 @@ M.AuthenticateCognitoActionConfig = {
             type = "string",
         },
         SessionTimeout = {
-            type = "number",
+            type = "long",
         },
         AuthenticationRequestExtraParams = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         OnUnauthenticatedRequest = {
             type = "string",
@@ -96,12 +96,12 @@ M.AuthenticateOidcActionConfig = {
             type = "string",
         },
         SessionTimeout = {
-            type = "number",
+            type = "long",
         },
         AuthenticationRequestExtraParams = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         OnUnauthenticatedRequest = {
             type = "string",
@@ -137,7 +137,7 @@ M.TargetGroupTuple = {
             type = "string",
         },
         Weight = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -149,7 +149,7 @@ M.TargetGroupStickinessConfig = {
             type = "boolean",
         },
         DurationSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -159,11 +159,9 @@ M.ForwardActionConfig = {
     members = {
         TargetGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetGroupTuple,
         },
-        TargetGroupStickinessConfig = {
-            type = "structure",
-        },
+        TargetGroupStickinessConfig = M.TargetGroupStickinessConfig,
     },
 }
 
@@ -190,7 +188,7 @@ M.JwtValidationActionAdditionalClaim = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -215,7 +213,7 @@ M.JwtValidationActionConfig = {
         },
         AdditionalClaims = {
             type = "list",
-            member_type = "structure",
+            member = M.JwtValidationActionAdditionalClaim,
         },
     },
 }
@@ -273,27 +271,15 @@ M.Action = {
         TargetGroupArn = {
             type = "string",
         },
-        AuthenticateOidcConfig = {
-            type = "structure",
-        },
-        AuthenticateCognitoConfig = {
-            type = "structure",
-        },
+        AuthenticateOidcConfig = M.AuthenticateOidcActionConfig,
+        AuthenticateCognitoConfig = M.AuthenticateCognitoActionConfig,
         Order = {
-            type = "number",
+            type = "integer",
         },
-        RedirectConfig = {
-            type = "structure",
-        },
-        FixedResponseConfig = {
-            type = "structure",
-        },
-        ForwardConfig = {
-            type = "structure",
-        },
-        JwtValidationConfig = {
-            type = "structure",
-        },
+        RedirectConfig = M.RedirectActionConfig,
+        FixedResponseConfig = M.FixedResponseActionConfig,
+        ForwardConfig = M.ForwardActionConfig,
+        JwtValidationConfig = M.JwtValidationActionConfig,
     },
 }
 
@@ -320,7 +306,7 @@ M.AddListenerCertificatesInput = {
         },
         Certificates = {
             type = "list",
-            member_type = "structure",
+            member = M.Certificate,
             traits = {
                 required = true,
             },
@@ -333,7 +319,7 @@ M.AddListenerCertificatesOutput = {
     members = {
         Certificates = {
             type = "list",
-            member_type = "structure",
+            member = M.Certificate,
         },
     },
 }
@@ -388,14 +374,14 @@ M.AddTagsInput = {
     members = {
         ResourceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -500,7 +486,7 @@ M.AddTrustStoreRevocationsInput = {
         },
         RevocationContents = {
             type = "list",
-            member_type = "structure",
+            member = M.RevocationContent,
         },
     },
 }
@@ -512,13 +498,13 @@ M.TrustStoreRevocation = {
             type = "string",
         },
         RevocationId = {
-            type = "number",
+            type = "long",
         },
         RevocationType = {
             type = "string",
         },
         NumberOfRevokedEntries = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -528,7 +514,7 @@ M.AddTrustStoreRevocationsOutput = {
     members = {
         TrustStoreRevocations = {
             type = "list",
-            member_type = "structure",
+            member = M.TrustStoreRevocation,
         },
     },
 }
@@ -671,11 +657,11 @@ M.AvailabilityZone = {
         },
         LoadBalancerAddresses = {
             type = "list",
-            member_type = "structure",
+            member = M.LoadBalancerAddress,
         },
         SourceNatIpv6Prefixes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -756,7 +742,7 @@ M.Cipher = {
             type = "string",
         },
         Priority = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -812,33 +798,31 @@ M.CreateListenerInput = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         SslPolicy = {
             type = "string",
         },
         Certificates = {
             type = "list",
-            member_type = "structure",
+            member = M.Certificate,
         },
         DefaultActions = {
             type = "list",
-            member_type = "structure",
+            member = M.Action,
             traits = {
                 required = true,
             },
         },
         AlpnPolicy = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        MutualAuthentication = {
-            type = "structure",
-        },
+        MutualAuthentication = M.MutualAuthenticationAttributes,
     },
 }
 
@@ -852,29 +836,27 @@ M.Listener = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         Protocol = {
             type = "string",
         },
         Certificates = {
             type = "list",
-            member_type = "structure",
+            member = M.Certificate,
         },
         SslPolicy = {
             type = "string",
         },
         DefaultActions = {
             type = "list",
-            member_type = "structure",
+            member = M.Action,
         },
         AlpnPolicy = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        MutualAuthentication = {
-            type = "structure",
-        },
+        MutualAuthentication = M.MutualAuthenticationAttributes,
     },
 }
 
@@ -883,7 +865,7 @@ M.CreateListenerOutput = {
     members = {
         Listeners = {
             type = "list",
-            member_type = "structure",
+            member = M.Listener,
         },
     },
 }
@@ -1081,22 +1063,22 @@ M.CreateLoadBalancerInput = {
         },
         Subnets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SubnetMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.SubnetMapping,
         },
         SecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Scheme = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         Type = {
             type = "string",
@@ -1110,9 +1092,7 @@ M.CreateLoadBalancerInput = {
         EnablePrefixForIpv6SourceNat = {
             type = "string",
         },
-        IpamPools = {
-            type = "structure",
-        },
+        IpamPools = M.IpamPools,
     },
 }
 
@@ -1159,19 +1139,17 @@ M.LoadBalancer = {
         VpcId = {
             type = "string",
         },
-        State = {
-            type = "structure",
-        },
+        State = M.LoadBalancerState,
         Type = {
             type = "string",
         },
         AvailabilityZones = {
             type = "list",
-            member_type = "structure",
+            member = M.AvailabilityZone,
         },
         SecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IpAddressType = {
             type = "string",
@@ -1185,9 +1163,7 @@ M.LoadBalancer = {
         EnablePrefixForIpv6SourceNat = {
             type = "string",
         },
-        IpamPools = {
-            type = "structure",
-        },
+        IpamPools = M.IpamPools,
     },
 }
 
@@ -1196,7 +1172,7 @@ M.CreateLoadBalancerOutput = {
     members = {
         LoadBalancers = {
             type = "list",
-            member_type = "structure",
+            member = M.LoadBalancer,
         },
     },
 }
@@ -1286,11 +1262,11 @@ M.HostHeaderConditionConfig = {
     members = {
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RegexValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1303,11 +1279,11 @@ M.HttpHeaderConditionConfig = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RegexValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1317,7 +1293,7 @@ M.HttpRequestMethodConditionConfig = {
     members = {
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1327,11 +1303,11 @@ M.PathPatternConditionConfig = {
     members = {
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RegexValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1353,7 +1329,7 @@ M.QueryStringConditionConfig = {
     members = {
         Values = {
             type = "list",
-            member_type = "structure",
+            member = M.QueryStringKeyValuePair,
         },
     },
 }
@@ -1363,7 +1339,7 @@ M.SourceIpConditionConfig = {
     members = {
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1376,29 +1352,17 @@ M.RuleCondition = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        HostHeaderConfig = {
-            type = "structure",
-        },
-        PathPatternConfig = {
-            type = "structure",
-        },
-        HttpHeaderConfig = {
-            type = "structure",
-        },
-        QueryStringConfig = {
-            type = "structure",
-        },
-        HttpRequestMethodConfig = {
-            type = "structure",
-        },
-        SourceIpConfig = {
-            type = "structure",
-        },
+        HostHeaderConfig = M.HostHeaderConditionConfig,
+        PathPatternConfig = M.PathPatternConditionConfig,
+        HttpHeaderConfig = M.HttpHeaderConditionConfig,
+        QueryStringConfig = M.QueryStringConditionConfig,
+        HttpRequestMethodConfig = M.HttpRequestMethodConditionConfig,
+        SourceIpConfig = M.SourceIpConditionConfig,
         RegexValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1426,7 +1390,7 @@ M.HostHeaderRewriteConfig = {
     members = {
         Rewrites = {
             type = "list",
-            member_type = "structure",
+            member = M.RewriteConfig,
         },
     },
 }
@@ -1441,7 +1405,7 @@ M.UrlRewriteConfig = {
     members = {
         Rewrites = {
             type = "list",
-            member_type = "structure",
+            member = M.RewriteConfig,
         },
     },
 }
@@ -1455,12 +1419,8 @@ M.RuleTransform = {
                 required = true,
             },
         },
-        HostHeaderRewriteConfig = {
-            type = "structure",
-        },
-        UrlRewriteConfig = {
-            type = "structure",
-        },
+        HostHeaderRewriteConfig = M.HostHeaderRewriteConfig,
+        UrlRewriteConfig = M.UrlRewriteConfig,
     },
 }
 
@@ -1475,31 +1435,31 @@ M.CreateRuleInput = {
         },
         Conditions = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleCondition,
             traits = {
                 required = true,
             },
         },
         Priority = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Actions = {
             type = "list",
-            member_type = "structure",
+            member = M.Action,
             traits = {
                 required = true,
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         Transforms = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleTransform,
         },
     },
 }
@@ -1515,18 +1475,18 @@ M.Rule = {
         },
         Conditions = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleCondition,
         },
         Actions = {
             type = "list",
-            member_type = "structure",
+            member = M.Action,
         },
         IsDefault = {
             type = "boolean",
         },
         Transforms = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleTransform,
         },
     },
 }
@@ -1536,7 +1496,7 @@ M.CreateRuleOutput = {
     members = {
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.Rule,
         },
     },
 }
@@ -1611,7 +1571,7 @@ M.CreateTargetGroupInput = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         VpcId = {
             type = "string",
@@ -1629,32 +1589,30 @@ M.CreateTargetGroupInput = {
             type = "string",
         },
         HealthCheckIntervalSeconds = {
-            type = "number",
+            type = "integer",
         },
         HealthCheckTimeoutSeconds = {
-            type = "number",
+            type = "integer",
         },
         HealthyThresholdCount = {
-            type = "number",
+            type = "integer",
         },
         UnhealthyThresholdCount = {
-            type = "number",
+            type = "integer",
         },
-        Matcher = {
-            type = "structure",
-        },
+        Matcher = M.Matcher,
         TargetType = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         IpAddressType = {
             type = "string",
         },
         TargetControlPort = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1672,7 +1630,7 @@ M.TargetGroup = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         VpcId = {
             type = "string",
@@ -1687,26 +1645,24 @@ M.TargetGroup = {
             type = "boolean",
         },
         HealthCheckIntervalSeconds = {
-            type = "number",
+            type = "integer",
         },
         HealthCheckTimeoutSeconds = {
-            type = "number",
+            type = "integer",
         },
         HealthyThresholdCount = {
-            type = "number",
+            type = "integer",
         },
         UnhealthyThresholdCount = {
-            type = "number",
+            type = "integer",
         },
         HealthCheckPath = {
             type = "string",
         },
-        Matcher = {
-            type = "structure",
-        },
+        Matcher = M.Matcher,
         LoadBalancerArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TargetType = {
             type = "string",
@@ -1718,7 +1674,7 @@ M.TargetGroup = {
             type = "string",
         },
         TargetControlPort = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1728,7 +1684,7 @@ M.CreateTargetGroupOutput = {
     members = {
         TargetGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetGroup,
         },
     },
 }
@@ -1769,7 +1725,7 @@ M.CreateTrustStoreInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1792,10 +1748,10 @@ M.TrustStore = {
             type = "string",
         },
         NumberOfCaCertificates = {
-            type = "number",
+            type = "integer",
         },
         TotalRevokedEntries = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1805,7 +1761,7 @@ M.CreateTrustStoreOutput = {
     members = {
         TrustStores = {
             type = "list",
-            member_type = "structure",
+            member = M.TrustStore,
         },
     },
 }
@@ -1982,7 +1938,7 @@ M.TargetDescription = {
             },
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         AvailabilityZone = {
             type = "string",
@@ -2004,7 +1960,7 @@ M.DeregisterTargetsInput = {
         },
         Targets = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetDescription,
             traits = {
                 required = true,
             },
@@ -2033,7 +1989,7 @@ M.DescribeAccountLimitsInput = {
             type = "string",
         },
         PageSize = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2055,7 +2011,7 @@ M.DescribeAccountLimitsOutput = {
     members = {
         Limits = {
             type = "list",
-            member_type = "structure",
+            member = M.Limit,
         },
         NextMarker = {
             type = "string",
@@ -2078,14 +2034,12 @@ M.DescribeCapacityReservationInput = {
 M.ZonalCapacityReservationState = {
     type = "structure",
     members = {
-        State = {
-            type = "structure",
-        },
+        State = M.CapacityReservationStatus,
         AvailabilityZone = {
             type = "string",
         },
         EffectiveCapacityUnits = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -2094,7 +2048,7 @@ M.MinimumLoadBalancerCapacity = {
     type = "structure",
     members = {
         CapacityUnits = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2106,14 +2060,12 @@ M.DescribeCapacityReservationOutput = {
             type = "timestamp",
         },
         DecreaseRequestsRemaining = {
-            type = "number",
+            type = "integer",
         },
-        MinimumLoadBalancerCapacity = {
-            type = "structure",
-        },
+        MinimumLoadBalancerCapacity = M.MinimumLoadBalancerCapacity,
         CapacityReservationState = {
             type = "list",
-            member_type = "structure",
+            member = M.ZonalCapacityReservationState,
         },
     },
 }
@@ -2147,7 +2099,7 @@ M.DescribeListenerAttributesOutput = {
     members = {
         Attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.ListenerAttribute,
         },
     },
 }
@@ -2165,7 +2117,7 @@ M.DescribeListenerCertificatesInput = {
             type = "string",
         },
         PageSize = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2175,7 +2127,7 @@ M.DescribeListenerCertificatesOutput = {
     members = {
         Certificates = {
             type = "list",
-            member_type = "structure",
+            member = M.Certificate,
         },
         NextMarker = {
             type = "string",
@@ -2191,13 +2143,13 @@ M.DescribeListenersInput = {
         },
         ListenerArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Marker = {
             type = "string",
         },
         PageSize = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2207,7 +2159,7 @@ M.DescribeListenersOutput = {
     members = {
         Listeners = {
             type = "list",
-            member_type = "structure",
+            member = M.Listener,
         },
         NextMarker = {
             type = "string",
@@ -2244,7 +2196,7 @@ M.DescribeLoadBalancerAttributesOutput = {
     members = {
         Attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.LoadBalancerAttribute,
         },
     },
 }
@@ -2254,17 +2206,17 @@ M.DescribeLoadBalancersInput = {
     members = {
         LoadBalancerArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Names = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Marker = {
             type = "string",
         },
         PageSize = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2274,7 +2226,7 @@ M.DescribeLoadBalancersOutput = {
     members = {
         LoadBalancers = {
             type = "list",
-            member_type = "structure",
+            member = M.LoadBalancer,
         },
         NextMarker = {
             type = "string",
@@ -2290,13 +2242,13 @@ M.DescribeRulesInput = {
         },
         RuleArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Marker = {
             type = "string",
         },
         PageSize = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2306,7 +2258,7 @@ M.DescribeRulesOutput = {
     members = {
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.Rule,
         },
         NextMarker = {
             type = "string",
@@ -2319,13 +2271,13 @@ M.DescribeSSLPoliciesInput = {
     members = {
         Names = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Marker = {
             type = "string",
         },
         PageSize = {
-            type = "number",
+            type = "integer",
         },
         LoadBalancerType = {
             type = "string",
@@ -2338,18 +2290,18 @@ M.SslPolicy = {
     members = {
         SslProtocols = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Ciphers = {
             type = "list",
-            member_type = "structure",
+            member = M.Cipher,
         },
         Name = {
             type = "string",
         },
         SupportedLoadBalancerTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2359,7 +2311,7 @@ M.DescribeSSLPoliciesOutput = {
     members = {
         SslPolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.SslPolicy,
         },
         NextMarker = {
             type = "string",
@@ -2372,7 +2324,7 @@ M.DescribeTagsInput = {
     members = {
         ResourceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2388,7 +2340,7 @@ M.TagDescription = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2398,7 +2350,7 @@ M.DescribeTagsOutput = {
     members = {
         TagDescriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.TagDescription,
         },
     },
 }
@@ -2432,7 +2384,7 @@ M.DescribeTargetGroupAttributesOutput = {
     members = {
         Attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetGroupAttribute,
         },
     },
 }
@@ -2445,17 +2397,17 @@ M.DescribeTargetGroupsInput = {
         },
         TargetGroupArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Names = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Marker = {
             type = "string",
         },
         PageSize = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2465,7 +2417,7 @@ M.DescribeTargetGroupsOutput = {
     members = {
         TargetGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetGroup,
         },
         NextMarker = {
             type = "string",
@@ -2489,11 +2441,11 @@ M.DescribeTargetHealthInput = {
         },
         Targets = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetDescription,
         },
         Include = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2541,21 +2493,13 @@ M.TargetHealth = {
 M.TargetHealthDescription = {
     type = "structure",
     members = {
-        Target = {
-            type = "structure",
-        },
+        Target = M.TargetDescription,
         HealthCheckPort = {
             type = "string",
         },
-        TargetHealth = {
-            type = "structure",
-        },
-        AnomalyDetection = {
-            type = "structure",
-        },
-        AdministrativeOverride = {
-            type = "structure",
-        },
+        TargetHealth = M.TargetHealth,
+        AnomalyDetection = M.AnomalyDetection,
+        AdministrativeOverride = M.AdministrativeOverride,
     },
 }
 
@@ -2564,7 +2508,7 @@ M.DescribeTargetHealthOutput = {
     members = {
         TargetHealthDescriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetHealthDescription,
         },
     },
 }
@@ -2592,7 +2536,7 @@ M.DescribeTrustStoreAssociationsInput = {
             type = "string",
         },
         PageSize = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2611,7 +2555,7 @@ M.DescribeTrustStoreAssociationsOutput = {
     members = {
         TrustStoreAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.TrustStoreAssociation,
         },
         NextMarker = {
             type = "string",
@@ -2626,13 +2570,13 @@ M.DescribeTrustStoreRevocation = {
             type = "string",
         },
         RevocationId = {
-            type = "number",
+            type = "long",
         },
         RevocationType = {
             type = "string",
         },
         NumberOfRevokedEntries = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -2648,13 +2592,13 @@ M.DescribeTrustStoreRevocationsInput = {
         },
         RevocationIds = {
             type = "list",
-            member_type = "number",
+            member = { type = "long" },
         },
         Marker = {
             type = "string",
         },
         PageSize = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2664,7 +2608,7 @@ M.DescribeTrustStoreRevocationsOutput = {
     members = {
         TrustStoreRevocations = {
             type = "list",
-            member_type = "structure",
+            member = M.DescribeTrustStoreRevocation,
         },
         NextMarker = {
             type = "string",
@@ -2687,17 +2631,17 @@ M.DescribeTrustStoresInput = {
     members = {
         TrustStoreArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Names = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Marker = {
             type = "string",
         },
         PageSize = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2707,7 +2651,7 @@ M.DescribeTrustStoresOutput = {
     members = {
         TrustStores = {
             type = "list",
-            member_type = "structure",
+            member = M.TrustStore,
         },
         NextMarker = {
             type = "string",
@@ -2777,7 +2721,7 @@ M.GetTrustStoreRevocationContentInput = {
             },
         },
         RevocationId = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -2813,9 +2757,7 @@ M.ModifyCapacityReservationInput = {
                 required = true,
             },
         },
-        MinimumLoadBalancerCapacity = {
-            type = "structure",
-        },
+        MinimumLoadBalancerCapacity = M.MinimumLoadBalancerCapacity,
         ResetCapacityReservation = {
             type = "boolean",
         },
@@ -2829,14 +2771,12 @@ M.ModifyCapacityReservationOutput = {
             type = "timestamp",
         },
         DecreaseRequestsRemaining = {
-            type = "number",
+            type = "integer",
         },
-        MinimumLoadBalancerCapacity = {
-            type = "structure",
-        },
+        MinimumLoadBalancerCapacity = M.MinimumLoadBalancerCapacity,
         CapacityReservationState = {
             type = "list",
-            member_type = "structure",
+            member = M.ZonalCapacityReservationState,
         },
     },
 }
@@ -2864,12 +2804,10 @@ M.ModifyIpPoolsInput = {
                 required = true,
             },
         },
-        IpamPools = {
-            type = "structure",
-        },
+        IpamPools = M.IpamPools,
         RemoveIpamPools = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2877,9 +2815,7 @@ M.ModifyIpPoolsInput = {
 M.ModifyIpPoolsOutput = {
     type = "structure",
     members = {
-        IpamPools = {
-            type = "structure",
-        },
+        IpamPools = M.IpamPools,
     },
 }
 
@@ -2893,7 +2829,7 @@ M.ModifyListenerInput = {
             },
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         Protocol = {
             type = "string",
@@ -2903,19 +2839,17 @@ M.ModifyListenerInput = {
         },
         Certificates = {
             type = "list",
-            member_type = "structure",
+            member = M.Certificate,
         },
         DefaultActions = {
             type = "list",
-            member_type = "structure",
+            member = M.Action,
         },
         AlpnPolicy = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        MutualAuthentication = {
-            type = "structure",
-        },
+        MutualAuthentication = M.MutualAuthenticationAttributes,
     },
 }
 
@@ -2924,7 +2858,7 @@ M.ModifyListenerOutput = {
     members = {
         Listeners = {
             type = "list",
-            member_type = "structure",
+            member = M.Listener,
         },
     },
 }
@@ -2940,7 +2874,7 @@ M.ModifyListenerAttributesInput = {
         },
         Attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.ListenerAttribute,
             traits = {
                 required = true,
             },
@@ -2953,7 +2887,7 @@ M.ModifyListenerAttributesOutput = {
     members = {
         Attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.ListenerAttribute,
         },
     },
 }
@@ -2969,7 +2903,7 @@ M.ModifyLoadBalancerAttributesInput = {
         },
         Attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.LoadBalancerAttribute,
             traits = {
                 required = true,
             },
@@ -2982,7 +2916,7 @@ M.ModifyLoadBalancerAttributesOutput = {
     members = {
         Attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.LoadBalancerAttribute,
         },
     },
 }
@@ -2998,15 +2932,15 @@ M.ModifyRuleInput = {
         },
         Conditions = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleCondition,
         },
         Actions = {
             type = "list",
-            member_type = "structure",
+            member = M.Action,
         },
         Transforms = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleTransform,
         },
         ResetTransforms = {
             type = "boolean",
@@ -3019,7 +2953,7 @@ M.ModifyRuleOutput = {
     members = {
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.Rule,
         },
     },
 }
@@ -3046,20 +2980,18 @@ M.ModifyTargetGroupInput = {
             type = "boolean",
         },
         HealthCheckIntervalSeconds = {
-            type = "number",
+            type = "integer",
         },
         HealthCheckTimeoutSeconds = {
-            type = "number",
+            type = "integer",
         },
         HealthyThresholdCount = {
-            type = "number",
+            type = "integer",
         },
         UnhealthyThresholdCount = {
-            type = "number",
+            type = "integer",
         },
-        Matcher = {
-            type = "structure",
-        },
+        Matcher = M.Matcher,
     },
 }
 
@@ -3068,7 +3000,7 @@ M.ModifyTargetGroupOutput = {
     members = {
         TargetGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetGroup,
         },
     },
 }
@@ -3084,7 +3016,7 @@ M.ModifyTargetGroupAttributesInput = {
         },
         Attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetGroupAttribute,
             traits = {
                 required = true,
             },
@@ -3097,7 +3029,7 @@ M.ModifyTargetGroupAttributesOutput = {
     members = {
         Attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetGroupAttribute,
         },
     },
 }
@@ -3134,7 +3066,7 @@ M.ModifyTrustStoreOutput = {
     members = {
         TrustStores = {
             type = "list",
-            member_type = "structure",
+            member = M.TrustStore,
         },
     },
 }
@@ -3150,7 +3082,7 @@ M.RegisterTargetsInput = {
         },
         Targets = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetDescription,
             traits = {
                 required = true,
             },
@@ -3173,7 +3105,7 @@ M.RemoveListenerCertificatesInput = {
         },
         Certificates = {
             type = "list",
-            member_type = "structure",
+            member = M.Certificate,
             traits = {
                 required = true,
             },
@@ -3190,14 +3122,14 @@ M.RemoveTagsInput = {
     members = {
         ResourceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3220,7 +3152,7 @@ M.RemoveTrustStoreRevocationsInput = {
         },
         RevocationIds = {
             type = "list",
-            member_type = "number",
+            member = { type = "long" },
             traits = {
                 required = true,
             },
@@ -3266,7 +3198,7 @@ M.RulePriorityPair = {
             type = "string",
         },
         Priority = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3276,7 +3208,7 @@ M.SetRulePrioritiesInput = {
     members = {
         RulePriorities = {
             type = "list",
-            member_type = "structure",
+            member = M.RulePriorityPair,
             traits = {
                 required = true,
             },
@@ -3289,7 +3221,7 @@ M.SetRulePrioritiesOutput = {
     members = {
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.Rule,
         },
     },
 }
@@ -3310,7 +3242,7 @@ M.SetSecurityGroupsInput = {
         },
         SecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3326,7 +3258,7 @@ M.SetSecurityGroupsOutput = {
     members = {
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         EnforceSecurityGroupInboundRulesOnPrivateLinkTraffic = {
             type = "string",
@@ -3345,11 +3277,11 @@ M.SetSubnetsInput = {
         },
         Subnets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SubnetMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.SubnetMapping,
         },
         IpAddressType = {
             type = "string",
@@ -3365,7 +3297,7 @@ M.SetSubnetsOutput = {
     members = {
         AvailabilityZones = {
             type = "list",
-            member_type = "structure",
+            member = M.AvailabilityZone,
         },
         IpAddressType = {
             type = "string",

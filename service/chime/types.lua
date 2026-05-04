@@ -91,14 +91,14 @@ M.Account = {
         },
         SupportedLicenses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AccountStatus = {
             type = "string",
         },
         SigninDelegateGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.SigninDelegateGroup,
         },
     },
 }
@@ -260,7 +260,7 @@ M.AssociateSigninDelegateGroupsWithAccountInput = {
         },
         SigninDelegateGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.SigninDelegateGroup,
             traits = {
                 required = true,
             },
@@ -308,7 +308,7 @@ M.BatchCreateRoomMembershipInput = {
         },
         MembershipItemList = {
             type = "list",
-            member_type = "structure",
+            member = M.MembershipItem,
             traits = {
                 required = true,
             },
@@ -336,7 +336,7 @@ M.BatchCreateRoomMembershipOutput = {
     members = {
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.MemberError,
         },
     },
 }
@@ -346,7 +346,7 @@ M.BatchDeletePhoneNumberInput = {
     members = {
         PhoneNumberIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -374,7 +374,7 @@ M.BatchDeletePhoneNumberOutput = {
     members = {
         PhoneNumberErrors = {
             type = "list",
-            member_type = "structure",
+            member = M.PhoneNumberError,
         },
     },
 }
@@ -391,7 +391,7 @@ M.BatchSuspendUserInput = {
         },
         UserIdList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -419,7 +419,7 @@ M.BatchSuspendUserOutput = {
     members = {
         UserErrors = {
             type = "list",
-            member_type = "structure",
+            member = M.UserError,
         },
     },
 }
@@ -436,7 +436,7 @@ M.BatchUnsuspendUserInput = {
         },
         UserIdList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -449,7 +449,7 @@ M.BatchUnsuspendUserOutput = {
     members = {
         UserErrors = {
             type = "list",
-            member_type = "structure",
+            member = M.UserError,
         },
     },
 }
@@ -483,7 +483,7 @@ M.BatchUpdatePhoneNumberInput = {
     members = {
         UpdatePhoneNumberRequestItems = {
             type = "list",
-            member_type = "structure",
+            member = M.UpdatePhoneNumberRequestItem,
             traits = {
                 required = true,
             },
@@ -496,7 +496,7 @@ M.BatchUpdatePhoneNumberOutput = {
     members = {
         PhoneNumberErrors = {
             type = "list",
-            member_type = "structure",
+            member = M.PhoneNumberError,
         },
     },
 }
@@ -521,9 +521,7 @@ M.UpdateUserRequestItem = {
         UserType = {
             type = "string",
         },
-        AlexaForBusinessMetadata = {
-            type = "structure",
-        },
+        AlexaForBusinessMetadata = M.AlexaForBusinessMetadata,
     },
 }
 
@@ -539,7 +537,7 @@ M.BatchUpdateUserInput = {
         },
         UpdateUserRequestItems = {
             type = "list",
-            member_type = "structure",
+            member = M.UpdateUserRequestItem,
             traits = {
                 required = true,
             },
@@ -552,7 +550,7 @@ M.BatchUpdateUserOutput = {
     members = {
         UserErrors = {
             type = "list",
-            member_type = "structure",
+            member = M.UserError,
         },
     },
 }
@@ -627,7 +625,7 @@ M.ConversationRetentionSettings = {
     type = "structure",
     members = {
         RetentionDays = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -647,9 +645,7 @@ M.CreateAccountInput = {
 M.CreateAccountOutput = {
     type = "structure",
     members = {
-        Account = {
-            type = "structure",
-        },
+        Account = M.Account,
     },
 }
 
@@ -678,9 +674,7 @@ M.CreateBotInput = {
 M.CreateBotOutput = {
     type = "structure",
     members = {
-        Bot = {
-            type = "structure",
-        },
+        Bot = M.Bot,
     },
 }
 
@@ -748,7 +742,7 @@ M.CreatePhoneNumberOrderInput = {
         },
         E164PhoneNumbers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -795,7 +789,7 @@ M.PhoneNumberOrder = {
         },
         OrderedPhoneNumbers = {
             type = "list",
-            member_type = "structure",
+            member = M.OrderedPhoneNumber,
         },
         CreatedTimestamp = {
             type = "timestamp",
@@ -809,9 +803,7 @@ M.PhoneNumberOrder = {
 M.CreatePhoneNumberOrderOutput = {
     type = "structure",
     members = {
-        PhoneNumberOrder = {
-            type = "structure",
-        },
+        PhoneNumberOrder = M.PhoneNumberOrder,
     },
 }
 
@@ -864,9 +856,7 @@ M.Room = {
 M.CreateRoomOutput = {
     type = "structure",
     members = {
-        Room = {
-            type = "structure",
-        },
+        Room = M.Room,
     },
 }
 
@@ -932,9 +922,7 @@ M.RoomMembership = {
         RoomId = {
             type = "string",
         },
-        Member = {
-            type = "structure",
-        },
+        Member = M.Member,
         Role = {
             type = "string",
         },
@@ -950,9 +938,7 @@ M.RoomMembership = {
 M.CreateRoomMembershipOutput = {
     type = "structure",
     members = {
-        RoomMembership = {
-            type = "structure",
-        },
+        RoomMembership = M.RoomMembership,
     },
 }
 
@@ -1029,9 +1015,7 @@ M.User = {
         InvitedOn = {
             type = "timestamp",
         },
-        AlexaForBusinessMetadata = {
-            type = "structure",
-        },
+        AlexaForBusinessMetadata = M.AlexaForBusinessMetadata,
         PersonalPIN = {
             type = "string",
         },
@@ -1041,9 +1025,7 @@ M.User = {
 M.CreateUserOutput = {
     type = "structure",
     members = {
-        User = {
-            type = "structure",
-        },
+        User = M.User,
     },
 }
 
@@ -1209,7 +1191,7 @@ M.DisassociateSigninDelegateGroupsFromAccountInput = {
         },
         GroupNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1258,9 +1240,7 @@ M.GetAccountInput = {
 M.GetAccountOutput = {
     type = "structure",
     members = {
-        Account = {
-            type = "structure",
-        },
+        Account = M.Account,
     },
 }
 
@@ -1280,9 +1260,7 @@ M.GetAccountSettingsInput = {
 M.GetAccountSettingsOutput = {
     type = "structure",
     members = {
-        AccountSettings = {
-            type = "structure",
-        },
+        AccountSettings = M.AccountSettings,
     },
 }
 
@@ -1309,9 +1287,7 @@ M.GetBotInput = {
 M.GetBotOutput = {
     type = "structure",
     members = {
-        Bot = {
-            type = "structure",
-        },
+        Bot = M.Bot,
     },
 }
 
@@ -1338,9 +1314,7 @@ M.GetEventsConfigurationInput = {
 M.GetEventsConfigurationOutput = {
     type = "structure",
     members = {
-        EventsConfiguration = {
-            type = "structure",
-        },
+        EventsConfiguration = M.EventsConfiguration,
     },
 }
 
@@ -1360,12 +1334,8 @@ M.VoiceConnectorSettings = {
 M.GetGlobalSettingsOutput = {
     type = "structure",
     members = {
-        BusinessCalling = {
-            type = "structure",
-        },
-        VoiceConnector = {
-            type = "structure",
-        },
+        BusinessCalling = M.BusinessCallingSettings,
+        VoiceConnector = M.VoiceConnectorSettings,
     },
 }
 
@@ -1466,12 +1436,10 @@ M.PhoneNumber = {
         Status = {
             type = "string",
         },
-        Capabilities = {
-            type = "structure",
-        },
+        Capabilities = M.PhoneNumberCapabilities,
         Associations = {
             type = "list",
-            member_type = "structure",
+            member = M.PhoneNumberAssociation,
         },
         CallingName = {
             type = "string",
@@ -1494,9 +1462,7 @@ M.PhoneNumber = {
 M.GetPhoneNumberOutput = {
     type = "structure",
     members = {
-        PhoneNumber = {
-            type = "structure",
-        },
+        PhoneNumber = M.PhoneNumber,
     },
 }
 
@@ -1516,9 +1482,7 @@ M.GetPhoneNumberOrderInput = {
 M.GetPhoneNumberOrderOutput = {
     type = "structure",
     members = {
-        PhoneNumberOrder = {
-            type = "structure",
-        },
+        PhoneNumberOrder = M.PhoneNumberOrder,
     },
 }
 
@@ -1555,7 +1519,7 @@ M.RoomRetentionSettings = {
     type = "structure",
     members = {
         RetentionDays = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1563,21 +1527,15 @@ M.RoomRetentionSettings = {
 M.RetentionSettings = {
     type = "structure",
     members = {
-        RoomRetentionSettings = {
-            type = "structure",
-        },
-        ConversationRetentionSettings = {
-            type = "structure",
-        },
+        RoomRetentionSettings = M.RoomRetentionSettings,
+        ConversationRetentionSettings = M.ConversationRetentionSettings,
     },
 }
 
 M.GetRetentionSettingsOutput = {
     type = "structure",
     members = {
-        RetentionSettings = {
-            type = "structure",
-        },
+        RetentionSettings = M.RetentionSettings,
         InitiateDeletionTimestamp = {
             type = "timestamp",
         },
@@ -1607,9 +1565,7 @@ M.GetRoomInput = {
 M.GetRoomOutput = {
     type = "structure",
     members = {
-        Room = {
-            type = "structure",
-        },
+        Room = M.Room,
     },
 }
 
@@ -1636,9 +1592,7 @@ M.GetUserInput = {
 M.GetUserOutput = {
     type = "structure",
     members = {
-        User = {
-            type = "structure",
-        },
+        User = M.User,
     },
 }
 
@@ -1689,21 +1643,16 @@ M.TelephonySettings = {
 M.UserSettings = {
     type = "structure",
     members = {
-        Telephony = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Telephony = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TelephonySettings }),
     },
 }
 
 M.GetUserSettingsOutput = {
     type = "structure",
     members = {
-        UserSettings = {
-            type = "structure",
-        },
+        UserSettings = M.UserSettings,
     },
 }
 
@@ -1737,7 +1686,7 @@ M.InviteUsersInput = {
         },
         UserEmailList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1753,7 +1702,7 @@ M.InviteUsersOutput = {
     members = {
         Invites = {
             type = "list",
-            member_type = "structure",
+            member = M.Invite,
         },
     },
 }
@@ -1780,7 +1729,7 @@ M.ListAccountsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -1793,7 +1742,7 @@ M.ListAccountsOutput = {
     members = {
         Accounts = {
             type = "list",
-            member_type = "structure",
+            member = M.Account,
         },
         NextToken = {
             type = "string",
@@ -1812,7 +1761,7 @@ M.ListBotsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -1831,7 +1780,7 @@ M.ListBotsOutput = {
     members = {
         Bots = {
             type = "list",
-            member_type = "structure",
+            member = M.Bot,
         },
         NextToken = {
             type = "string",
@@ -1849,7 +1798,7 @@ M.ListPhoneNumberOrdersInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -1862,7 +1811,7 @@ M.ListPhoneNumberOrdersOutput = {
     members = {
         PhoneNumberOrders = {
             type = "list",
-            member_type = "structure",
+            member = M.PhoneNumberOrder,
         },
         NextToken = {
             type = "string",
@@ -1898,7 +1847,7 @@ M.ListPhoneNumbersInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -1917,7 +1866,7 @@ M.ListPhoneNumbersOutput = {
     members = {
         PhoneNumbers = {
             type = "list",
-            member_type = "structure",
+            member = M.PhoneNumber,
         },
         NextToken = {
             type = "string",
@@ -1943,7 +1892,7 @@ M.ListRoomMembershipsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -1962,7 +1911,7 @@ M.ListRoomMembershipsOutput = {
     members = {
         RoomMemberships = {
             type = "list",
-            member_type = "structure",
+            member = M.RoomMembership,
         },
         NextToken = {
             type = "string",
@@ -1987,7 +1936,7 @@ M.ListRoomsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -2006,7 +1955,7 @@ M.ListRoomsOutput = {
     members = {
         Rooms = {
             type = "list",
-            member_type = "structure",
+            member = M.Room,
         },
         NextToken = {
             type = "string",
@@ -2035,7 +1984,7 @@ M.PhoneNumberCountry = {
         },
         SupportedPhoneNumberTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2045,7 +1994,7 @@ M.ListSupportedPhoneNumberCountriesOutput = {
     members = {
         PhoneNumberCountries = {
             type = "list",
-            member_type = "structure",
+            member = M.PhoneNumberCountry,
         },
     },
 }
@@ -2073,7 +2022,7 @@ M.ListUsersInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -2092,7 +2041,7 @@ M.ListUsersOutput = {
     members = {
         Users = {
             type = "list",
-            member_type = "structure",
+            member = M.User,
         },
         NextToken = {
             type = "string",
@@ -2153,9 +2102,7 @@ M.PutEventsConfigurationInput = {
 M.PutEventsConfigurationOutput = {
     type = "structure",
     members = {
-        EventsConfiguration = {
-            type = "structure",
-        },
+        EventsConfiguration = M.EventsConfiguration,
     },
 }
 
@@ -2169,21 +2116,16 @@ M.PutRetentionSettingsInput = {
                 required = true,
             },
         },
-        RetentionSettings = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RetentionSettings = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RetentionSettings }),
     },
 }
 
 M.PutRetentionSettingsOutput = {
     type = "structure",
     members = {
-        RetentionSettings = {
-            type = "structure",
-        },
+        RetentionSettings = M.RetentionSettings,
         InitiateDeletionTimestamp = {
             type = "timestamp",
         },
@@ -2275,9 +2217,7 @@ M.RegenerateSecurityTokenInput = {
 M.RegenerateSecurityTokenOutput = {
     type = "structure",
     members = {
-        Bot = {
-            type = "structure",
-        },
+        Bot = M.Bot,
     },
 }
 
@@ -2304,9 +2244,7 @@ M.ResetPersonalPINInput = {
 M.ResetPersonalPINOutput = {
     type = "structure",
     members = {
-        User = {
-            type = "structure",
-        },
+        User = M.User,
     },
 }
 
@@ -2326,9 +2264,7 @@ M.RestorePhoneNumberInput = {
 M.RestorePhoneNumberOutput = {
     type = "structure",
     members = {
-        PhoneNumber = {
-            type = "structure",
-        },
+        PhoneNumber = M.PhoneNumber,
     },
 }
 
@@ -2372,7 +2308,7 @@ M.SearchAvailablePhoneNumbersInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -2391,7 +2327,7 @@ M.SearchAvailablePhoneNumbersOutput = {
     members = {
         E164PhoneNumbers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -2421,9 +2357,7 @@ M.UpdateAccountInput = {
 M.UpdateAccountOutput = {
     type = "structure",
     members = {
-        Account = {
-            type = "structure",
-        },
+        Account = M.Account,
     },
 }
 
@@ -2437,12 +2371,9 @@ M.UpdateAccountSettingsInput = {
                 required = true,
             },
         },
-        AccountSettings = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AccountSettings = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AccountSettings }),
     },
 }
 
@@ -2476,21 +2407,15 @@ M.UpdateBotInput = {
 M.UpdateBotOutput = {
     type = "structure",
     members = {
-        Bot = {
-            type = "structure",
-        },
+        Bot = M.Bot,
     },
 }
 
 M.UpdateGlobalSettingsInput = {
     type = "structure",
     members = {
-        BusinessCalling = {
-            type = "structure",
-        },
-        VoiceConnector = {
-            type = "structure",
-        },
+        BusinessCalling = M.BusinessCallingSettings,
+        VoiceConnector = M.VoiceConnectorSettings,
     },
 }
 
@@ -2520,9 +2445,7 @@ M.UpdatePhoneNumberInput = {
 M.UpdatePhoneNumberOutput = {
     type = "structure",
     members = {
-        PhoneNumber = {
-            type = "structure",
-        },
+        PhoneNumber = M.PhoneNumber,
     },
 }
 
@@ -2568,9 +2491,7 @@ M.UpdateRoomInput = {
 M.UpdateRoomOutput = {
     type = "structure",
     members = {
-        Room = {
-            type = "structure",
-        },
+        Room = M.Room,
     },
 }
 
@@ -2607,9 +2528,7 @@ M.UpdateRoomMembershipInput = {
 M.UpdateRoomMembershipOutput = {
     type = "structure",
     members = {
-        RoomMembership = {
-            type = "structure",
-        },
+        RoomMembership = M.RoomMembership,
     },
 }
 
@@ -2636,18 +2555,14 @@ M.UpdateUserInput = {
         UserType = {
             type = "string",
         },
-        AlexaForBusinessMetadata = {
-            type = "structure",
-        },
+        AlexaForBusinessMetadata = M.AlexaForBusinessMetadata,
     },
 }
 
 M.UpdateUserOutput = {
     type = "structure",
     members = {
-        User = {
-            type = "structure",
-        },
+        User = M.User,
     },
 }
 
@@ -2668,12 +2583,9 @@ M.UpdateUserSettingsInput = {
                 required = true,
             },
         },
-        UserSettings = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        UserSettings = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.UserSettings }),
     },
 }
 

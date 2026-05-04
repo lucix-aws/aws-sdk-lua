@@ -45,6 +45,9 @@ M.EncryptionConfiguration = {
     members = {
         sseType = {
             type = "string",
+            traits = {
+                default = "AES256",
+            },
         },
         kmsKeyArn = {
             type = "string",
@@ -57,7 +60,7 @@ M.MetadataConfiguration = {
     members = {
         nonFilterableMetadataKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -87,7 +90,7 @@ M.CreateIndexInput = {
             },
         },
         dimension = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -98,16 +101,12 @@ M.CreateIndexInput = {
                 required = true,
             },
         },
-        metadataConfiguration = {
-            type = "structure",
-        },
-        encryptionConfiguration = {
-            type = "structure",
-        },
+        metadataConfiguration = M.MetadataConfiguration,
+        encryptionConfiguration = M.EncryptionConfiguration,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -232,7 +231,7 @@ M.ValidationException = {
         },
         fieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -246,13 +245,11 @@ M.CreateVectorBucketInput = {
                 required = true,
             },
         },
-        encryptionConfiguration = {
-            type = "structure",
-        },
+        encryptionConfiguration = M.EncryptionConfiguration,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -334,7 +331,7 @@ M.DeleteVectorsInput = {
         },
         keys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -447,7 +444,7 @@ M.Index = {
             },
         },
         dimension = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -458,24 +455,17 @@ M.Index = {
                 required = true,
             },
         },
-        metadataConfiguration = {
-            type = "structure",
-        },
-        encryptionConfiguration = {
-            type = "structure",
-        },
+        metadataConfiguration = M.MetadataConfiguration,
+        encryptionConfiguration = M.EncryptionConfiguration,
     },
 }
 
 M.GetIndexOutput = {
     type = "structure",
     members = {
-        index = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        index = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Index }),
     },
 }
 
@@ -484,7 +474,7 @@ M.VectorData = {
     members = {
         float32 = {
             type = "list",
-            member_type = "number",
+            member = { type = "float" },
         },
     },
 }
@@ -498,9 +488,7 @@ M.GetOutputVector = {
                 required = true,
             },
         },
-        data = {
-            type = "union",
-        },
+        data = M.VectorData,
         metadata = {
             type = "document",
         },
@@ -540,21 +528,16 @@ M.VectorBucket = {
                 required = true,
             },
         },
-        encryptionConfiguration = {
-            type = "structure",
-        },
+        encryptionConfiguration = M.EncryptionConfiguration,
     },
 }
 
 M.GetVectorBucketOutput = {
     type = "structure",
     members = {
-        vectorBucket = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        vectorBucket = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VectorBucket }),
     },
 }
 
@@ -593,16 +576,22 @@ M.GetVectorsInput = {
         },
         keys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         returnData = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         returnMetadata = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -612,7 +601,7 @@ M.GetVectorsOutput = {
     members = {
         vectors = {
             type = "list",
-            member_type = "structure",
+            member = M.GetOutputVector,
             traits = {
                 required = true,
             },
@@ -630,7 +619,7 @@ M.ListIndexesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -679,7 +668,7 @@ M.ListIndexesOutput = {
         },
         indexes = {
             type = "list",
-            member_type = "structure",
+            member = M.IndexSummary,
             traits = {
                 required = true,
             },
@@ -700,22 +689,37 @@ M.ListVectorsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 500,
+            },
         },
         nextToken = {
             type = "string",
         },
         segmentCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 1,
+            },
         },
         segmentIndex = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         returnData = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         returnMetadata = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -729,9 +733,7 @@ M.ListOutputVector = {
                 required = true,
             },
         },
-        data = {
-            type = "union",
-        },
+        data = M.VectorData,
         metadata = {
             type = "document",
         },
@@ -746,7 +748,7 @@ M.ListVectorsOutput = {
         },
         vectors = {
             type = "list",
-            member_type = "structure",
+            member = M.ListOutputVector,
             traits = {
                 required = true,
             },
@@ -763,14 +765,14 @@ M.PutInputVector = {
                 required = true,
             },
         },
-        data = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        data = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VectorData }),
         metadata = {
             type = "document",
+            traits = {
+                default = {},
+            },
         },
     },
 }
@@ -789,7 +791,7 @@ M.PutVectorsInput = {
         },
         vectors = {
             type = "list",
-            member_type = "structure",
+            member = M.PutInputVector,
             traits = {
                 required = true,
             },
@@ -814,25 +816,28 @@ M.QueryVectorsInput = {
             type = "string",
         },
         topK = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
-        queryVector = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        queryVector = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VectorData }),
         filter = {
             type = "document",
         },
         returnMetadata = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         returnDistance = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -841,7 +846,7 @@ M.QueryOutputVector = {
     type = "structure",
     members = {
         distance = {
-            type = "number",
+            type = "float",
         },
         key = {
             type = "string",
@@ -860,7 +865,7 @@ M.QueryVectorsOutput = {
     members = {
         vectors = {
             type = "list",
-            member_type = "structure",
+            member = M.QueryOutputVector,
             traits = {
                 required = true,
             },
@@ -892,8 +897,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -905,7 +910,7 @@ M.ListVectorBucketsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -948,7 +953,7 @@ M.ListVectorBucketsOutput = {
         },
         vectorBuckets = {
             type = "list",
-            member_type = "structure",
+            member = M.VectorBucketSummary,
             traits = {
                 required = true,
             },
@@ -990,8 +995,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1015,7 +1020,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,

@@ -1,0 +1,367 @@
+local waiter = require("waiter")
+
+local M = {}
+
+--- Wait until ComponentDeleted.
+function M.wait_until_component_deleted(client, input, options)
+    return waiter.wait(client, "getComponent", input, {
+        min_delay = 5,
+        max_delay = 4999,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    errorType = "ResourceNotFoundException",
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "component.deploymentStatus",
+                        expected = "DELETE_FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until ComponentDeployed.
+function M.wait_until_component_deployed(client, input, options)
+    return waiter.wait(client, "getComponent", input, {
+        min_delay = 5,
+        max_delay = 4999,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "component.deploymentStatus",
+                        expected = "SUCCEEDED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "component.deploymentStatus",
+                        expected = "FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until EnvironmentDeployed.
+function M.wait_until_environment_deployed(client, input, options)
+    return waiter.wait(client, "getEnvironment", input, {
+        min_delay = 5,
+        max_delay = 4999,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "environment.deploymentStatus",
+                        expected = "SUCCEEDED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "environment.deploymentStatus",
+                        expected = "FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until EnvironmentTemplateVersionRegistered.
+function M.wait_until_environment_template_version_registered(client, input, options)
+    return waiter.wait(client, "getEnvironmentTemplateVersion", input, {
+        min_delay = 2,
+        max_delay = 300,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "environmentTemplateVersion.status",
+                        expected = "DRAFT",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "environmentTemplateVersion.status",
+                        expected = "PUBLISHED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "environmentTemplateVersion.status",
+                        expected = "REGISTRATION_FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until ServiceCreated.
+function M.wait_until_service_created(client, input, options)
+    return waiter.wait(client, "getService", input, {
+        min_delay = 5,
+        max_delay = 4999,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "service.status",
+                        expected = "ACTIVE",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "service.status",
+                        expected = "CREATE_FAILED_CLEANUP_COMPLETE",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "service.status",
+                        expected = "CREATE_FAILED_CLEANUP_FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "service.status",
+                        expected = "CREATE_FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until ServiceDeleted.
+function M.wait_until_service_deleted(client, input, options)
+    return waiter.wait(client, "getService", input, {
+        min_delay = 5,
+        max_delay = 4999,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    errorType = "ResourceNotFoundException",
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "service.status",
+                        expected = "DELETE_FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until ServiceInstanceDeployed.
+function M.wait_until_service_instance_deployed(client, input, options)
+    return waiter.wait(client, "getServiceInstance", input, {
+        min_delay = 5,
+        max_delay = 4999,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "serviceInstance.deploymentStatus",
+                        expected = "SUCCEEDED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "serviceInstance.deploymentStatus",
+                        expected = "FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until ServicePipelineDeployed.
+function M.wait_until_service_pipeline_deployed(client, input, options)
+    return waiter.wait(client, "getService", input, {
+        min_delay = 10,
+        max_delay = 3600,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "service.pipeline.deploymentStatus",
+                        expected = "SUCCEEDED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "service.pipeline.deploymentStatus",
+                        expected = "FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until ServiceTemplateVersionRegistered.
+function M.wait_until_service_template_version_registered(client, input, options)
+    return waiter.wait(client, "getServiceTemplateVersion", input, {
+        min_delay = 2,
+        max_delay = 300,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "serviceTemplateVersion.status",
+                        expected = "DRAFT",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "serviceTemplateVersion.status",
+                        expected = "PUBLISHED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "serviceTemplateVersion.status",
+                        expected = "REGISTRATION_FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until ServiceUpdated.
+function M.wait_until_service_updated(client, input, options)
+    return waiter.wait(client, "getService", input, {
+        min_delay = 5,
+        max_delay = 4999,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "service.status",
+                        expected = "ACTIVE",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "service.status",
+                        expected = "UPDATE_FAILED_CLEANUP_COMPLETE",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "service.status",
+                        expected = "UPDATE_FAILED_CLEANUP_FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "service.status",
+                        expected = "UPDATE_FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "service.status",
+                        expected = "UPDATE_COMPLETE_CLEANUP_FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+return M

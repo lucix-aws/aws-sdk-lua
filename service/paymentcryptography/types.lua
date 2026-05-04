@@ -21,7 +21,7 @@ M.AddKeyReplicationRegionsInput = {
         },
         ReplicationRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -81,30 +81,57 @@ M.KeyModesOfUse = {
     members = {
         Encrypt = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Decrypt = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Wrap = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Unwrap = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Generate = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Sign = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Verify = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         DeriveKey = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         NoRestrictions = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -157,12 +184,9 @@ M.KeyAttributes = {
                 required = true,
             },
         },
-        KeyModesOfUse = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        KeyModesOfUse = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.KeyModesOfUse }),
     },
 }
 
@@ -255,12 +279,9 @@ M.Key = {
                 required = true,
             },
         },
-        KeyAttributes = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        KeyAttributes = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.KeyAttributes }),
         KeyCheckValue = {
             type = "string",
             traits = {
@@ -326,27 +347,22 @@ M.Key = {
         },
         ReplicationStatus = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ReplicationStatusType,
         },
         UsingDefaultReplicationRegions = {
             type = "boolean",
         },
-        MpaStatus = {
-            type = "structure",
-        },
+        MpaStatus = M.MpaStatus,
     },
 }
 
 M.AddKeyReplicationRegionsOutput = {
     type = "structure",
     members = {
-        Key = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Key = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Key }),
     },
 }
 
@@ -443,12 +459,9 @@ M.CreateAliasInput = {
 M.CreateAliasOutput = {
     type = "structure",
     members = {
-        Alias = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Alias = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Alias }),
     },
 }
 
@@ -493,12 +506,9 @@ M.GetAliasInput = {
 M.GetAliasOutput = {
     type = "structure",
     members = {
-        Alias = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Alias = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Alias }),
     },
 }
 
@@ -512,7 +522,7 @@ M.ListAliasesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -522,7 +532,7 @@ M.ListAliasesOutput = {
     members = {
         Aliases = {
             type = "list",
-            member_type = "structure",
+            member = M.Alias,
             traits = {
                 required = true,
             },
@@ -551,12 +561,9 @@ M.UpdateAliasInput = {
 M.UpdateAliasOutput = {
     type = "structure",
     members = {
-        Alias = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Alias = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Alias }),
     },
 }
 
@@ -619,21 +626,16 @@ M.MpaTeamAssociation = {
                 required = true,
             },
         },
-        MpaStatus = {
-            type = "structure",
-        },
+        MpaStatus = M.MpaStatus,
     },
 }
 
 M.AssociateMpaTeamOutput = {
     type = "structure",
     members = {
-        MpaTeamAssociation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        MpaTeamAssociation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MpaTeamAssociation }),
     },
 }
 
@@ -688,12 +690,9 @@ M.Tag = {
 M.CreateKeyInput = {
     type = "structure",
     members = {
-        KeyAttributes = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        KeyAttributes = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.KeyAttributes }),
         KeyCheckValueAlgorithm = {
             type = "string",
         },
@@ -708,14 +707,14 @@ M.CreateKeyInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         DeriveKeyUsage = {
             type = "string",
         },
         ReplicationRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -723,12 +722,9 @@ M.CreateKeyInput = {
 M.CreateKeyOutput = {
     type = "structure",
     members = {
-        Key = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Key = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Key }),
     },
 }
 
@@ -742,7 +738,7 @@ M.DeleteKeyInput = {
             },
         },
         DeleteKeyInDays = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -750,12 +746,9 @@ M.DeleteKeyInput = {
 M.DeleteKeyOutput = {
     type = "structure",
     members = {
-        Key = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Key = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Key }),
     },
 }
 
@@ -789,7 +782,7 @@ M.DisableDefaultKeyReplicationRegionsInput = {
     members = {
         ReplicationRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -802,7 +795,7 @@ M.DisableDefaultKeyReplicationRegionsOutput = {
     members = {
         EnabledReplicationRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -828,12 +821,9 @@ M.DisassociateMpaTeamInput = {
 M.DisassociateMpaTeamOutput = {
     type = "structure",
     members = {
-        MpaTeamAssociation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        MpaTeamAssociation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MpaTeamAssociation }),
     },
 }
 
@@ -842,7 +832,7 @@ M.EnableDefaultKeyReplicationRegionsInput = {
     members = {
         ReplicationRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -855,7 +845,7 @@ M.EnableDefaultKeyReplicationRegionsOutput = {
     members = {
         EnabledReplicationRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -896,9 +886,7 @@ M.ExportDukptInitialKey = {
 M.ExportAttributes = {
     type = "structure",
     members = {
-        ExportDukptInitialKey = {
-            type = "structure",
-        },
+        ExportDukptInitialKey = M.ExportDukptInitialKey,
         KeyCheckValueAlgorithm = {
             type = "string",
         },
@@ -926,9 +914,7 @@ M.KeyExportability = {
 M.KeyBlockHeaders = {
     type = "structure",
     members = {
-        KeyModesOfUse = {
-            type = "structure",
-        },
+        KeyModesOfUse = M.KeyModesOfUse,
         KeyExportability = {
             type = "string",
         },
@@ -937,8 +923,8 @@ M.KeyBlockHeaders = {
         },
         OptionalBlocks = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -993,15 +979,10 @@ M.ExportDiffieHellmanTr31KeyBlock = {
                 required = true,
             },
         },
-        DerivationData = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        KeyBlockHeaders = {
-            type = "structure",
-        },
+        DerivationData = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DiffieHellmanDerivationData }),
+        KeyBlockHeaders = M.KeyBlockHeaders,
     },
 }
 
@@ -1040,9 +1021,7 @@ M.ExportTr31KeyBlock = {
                 required = true,
             },
         },
-        KeyBlockHeaders = {
-            type = "structure",
-        },
+        KeyBlockHeaders = M.KeyBlockHeaders,
     },
 }
 
@@ -1067,6 +1046,9 @@ M.ExportTr34KeyBlock = {
         },
         ExportToken = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
         SigningKeyIdentifier = {
             type = "string",
@@ -1083,51 +1065,34 @@ M.ExportTr34KeyBlock = {
         RandomNonce = {
             type = "string",
         },
-        KeyBlockHeaders = {
-            type = "structure",
-        },
+        KeyBlockHeaders = M.KeyBlockHeaders,
     },
 }
 
 M.ExportKeyMaterial = {
     type = "union",
     members = {
-        Tr31KeyBlock = {
-            type = "structure",
-        },
-        Tr34KeyBlock = {
-            type = "structure",
-        },
-        KeyCryptogram = {
-            type = "structure",
-        },
-        DiffieHellmanTr31KeyBlock = {
-            type = "structure",
-        },
-        As2805KeyCryptogram = {
-            type = "structure",
-        },
+        Tr31KeyBlock = M.ExportTr31KeyBlock,
+        Tr34KeyBlock = M.ExportTr34KeyBlock,
+        KeyCryptogram = M.ExportKeyCryptogram,
+        DiffieHellmanTr31KeyBlock = M.ExportDiffieHellmanTr31KeyBlock,
+        As2805KeyCryptogram = M.ExportAs2805KeyCryptogram,
     },
 }
 
 M.ExportKeyInput = {
     type = "structure",
     members = {
-        KeyMaterial = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        KeyMaterial = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ExportKeyMaterial }),
         ExportKeyIdentifier = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        ExportAttributes = {
-            type = "structure",
-        },
+        ExportAttributes = M.ExportAttributes,
     },
 }
 
@@ -1170,9 +1135,7 @@ M.WrappedKey = {
 M.ExportKeyOutput = {
     type = "structure",
     members = {
-        WrappedKey = {
-            type = "structure",
-        },
+        WrappedKey = M.WrappedKey,
     },
 }
 
@@ -1198,12 +1161,9 @@ M.GetCertificateSigningRequestInput = {
                 required = true,
             },
         },
-        CertificateSubject = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        CertificateSubject = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CertificateSubjectType }),
     },
 }
 
@@ -1228,7 +1188,7 @@ M.GetDefaultKeyReplicationRegionsOutput = {
     members = {
         EnabledReplicationRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1251,12 +1211,9 @@ M.GetKeyInput = {
 M.GetKeyOutput = {
     type = "structure",
     members = {
-        Key = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Key = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Key }),
     },
 }
 
@@ -1275,12 +1232,9 @@ M.GetMpaTeamAssociationInput = {
 M.GetMpaTeamAssociationOutput = {
     type = "structure",
     members = {
-        MpaTeamAssociation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        MpaTeamAssociation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MpaTeamAssociation }),
     },
 }
 
@@ -1475,12 +1429,9 @@ M.ImportAs2805KeyCryptogram = {
                 required = true,
             },
         },
-        KeyModesOfUse = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        KeyModesOfUse = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.KeyModesOfUse }),
         KeyAlgorithm = {
             type = "string",
             traits = {
@@ -1547,12 +1498,9 @@ M.ImportDiffieHellmanTr31KeyBlock = {
                 required = true,
             },
         },
-        DerivationData = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        DerivationData = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DiffieHellmanDerivationData }),
         WrappedKeyBlock = {
             type = "string",
             traits = {
@@ -1565,12 +1513,9 @@ M.ImportDiffieHellmanTr31KeyBlock = {
 M.ImportKeyCryptogram = {
     type = "structure",
     members = {
-        KeyAttributes = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        KeyAttributes = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.KeyAttributes }),
         Exportable = {
             type = "boolean",
             traits = {
@@ -1598,12 +1543,9 @@ M.ImportKeyCryptogram = {
 M.RootCertificatePublicKey = {
     type = "structure",
     members = {
-        KeyAttributes = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        KeyAttributes = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.KeyAttributes }),
         PublicKeyCertificate = {
             type = "string",
             traits = {
@@ -1648,6 +1590,9 @@ M.ImportTr34KeyBlock = {
         },
         ImportToken = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
         WrappingKeyIdentifier = {
             type = "string",
@@ -1676,12 +1621,9 @@ M.ImportTr34KeyBlock = {
 M.TrustedCertificatePublicKey = {
     type = "structure",
     members = {
-        KeyAttributes = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        KeyAttributes = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.KeyAttributes }),
         PublicKeyCertificate = {
             type = "string",
             traits = {
@@ -1700,39 +1642,22 @@ M.TrustedCertificatePublicKey = {
 M.ImportKeyMaterial = {
     type = "union",
     members = {
-        RootCertificatePublicKey = {
-            type = "structure",
-        },
-        TrustedCertificatePublicKey = {
-            type = "structure",
-        },
-        Tr31KeyBlock = {
-            type = "structure",
-        },
-        Tr34KeyBlock = {
-            type = "structure",
-        },
-        KeyCryptogram = {
-            type = "structure",
-        },
-        DiffieHellmanTr31KeyBlock = {
-            type = "structure",
-        },
-        As2805KeyCryptogram = {
-            type = "structure",
-        },
+        RootCertificatePublicKey = M.RootCertificatePublicKey,
+        TrustedCertificatePublicKey = M.TrustedCertificatePublicKey,
+        Tr31KeyBlock = M.ImportTr31KeyBlock,
+        Tr34KeyBlock = M.ImportTr34KeyBlock,
+        KeyCryptogram = M.ImportKeyCryptogram,
+        DiffieHellmanTr31KeyBlock = M.ImportDiffieHellmanTr31KeyBlock,
+        As2805KeyCryptogram = M.ImportAs2805KeyCryptogram,
     },
 }
 
 M.ImportKeyInput = {
     type = "structure",
     members = {
-        KeyMaterial = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        KeyMaterial = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ImportKeyMaterial }),
         KeyCheckValueAlgorithm = {
             type = "string",
         },
@@ -1741,11 +1666,11 @@ M.ImportKeyInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ReplicationRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RequesterComment = {
             type = "string",
@@ -1756,12 +1681,9 @@ M.ImportKeyInput = {
 M.ImportKeyOutput = {
     type = "structure",
     members = {
-        Key = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Key = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Key }),
     },
 }
 
@@ -1775,7 +1697,7 @@ M.ListKeysInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1795,12 +1717,9 @@ M.KeySummary = {
                 required = true,
             },
         },
-        KeyAttributes = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        KeyAttributes = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.KeyAttributes }),
         KeyCheckValue = {
             type = "string",
             traits = {
@@ -1833,7 +1752,7 @@ M.ListKeysOutput = {
     members = {
         Keys = {
             type = "list",
-            member_type = "structure",
+            member = M.KeySummary,
             traits = {
                 required = true,
             },
@@ -1855,7 +1774,7 @@ M.RemoveKeyReplicationRegionsInput = {
         },
         ReplicationRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1866,12 +1785,9 @@ M.RemoveKeyReplicationRegionsInput = {
 M.RemoveKeyReplicationRegionsOutput = {
     type = "structure",
     members = {
-        Key = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Key = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Key }),
     },
 }
 
@@ -1890,12 +1806,9 @@ M.RestoreKeyInput = {
 M.RestoreKeyOutput = {
     type = "structure",
     members = {
-        Key = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Key = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Key }),
     },
 }
 
@@ -1914,12 +1827,9 @@ M.StartKeyUsageInput = {
 M.StartKeyUsageOutput = {
     type = "structure",
     members = {
-        Key = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Key = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Key }),
     },
 }
 
@@ -1938,12 +1848,9 @@ M.StopKeyUsageInput = {
 M.StopKeyUsageOutput = {
     type = "structure",
     members = {
-        Key = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Key = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Key }),
     },
 }
 
@@ -1960,7 +1867,7 @@ M.ListTagsForResourceInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1970,7 +1877,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -2038,7 +1945,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -2061,7 +1968,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },

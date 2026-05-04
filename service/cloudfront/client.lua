@@ -16,7 +16,7 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "Cloudfront2020_05_31"
-    cfg.signing_name = "cloudfront2020_05_31"
+    cfg.signing_name = "cloudfront"
     if not cfg.protocol then
         cfg.protocol = restxml_protocol.new()
     end

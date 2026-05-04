@@ -66,8 +66,8 @@ M.GenerateDataSetInput = {
         },
         customerDefinedValues = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -134,8 +134,8 @@ M.StartSupportDataExportInput = {
         },
         customerDefinedValues = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }

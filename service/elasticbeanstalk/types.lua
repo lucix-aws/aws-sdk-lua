@@ -55,7 +55,7 @@ M.MaxAgeRule = {
             },
         },
         MaxAgeInDays = {
-            type = "number",
+            type = "integer",
         },
         DeleteSourceFromS3 = {
             type = "boolean",
@@ -73,7 +73,7 @@ M.MaxCountRule = {
             },
         },
         MaxCount = {
-            type = "number",
+            type = "integer",
         },
         DeleteSourceFromS3 = {
             type = "boolean",
@@ -84,12 +84,8 @@ M.MaxCountRule = {
 M.ApplicationVersionLifecycleConfig = {
     type = "structure",
     members = {
-        MaxCountRule = {
-            type = "structure",
-        },
-        MaxAgeRule = {
-            type = "structure",
-        },
+        MaxCountRule = M.MaxCountRule,
+        MaxAgeRule = M.MaxAgeRule,
     },
 }
 
@@ -99,9 +95,7 @@ M.ApplicationResourceLifecycleConfig = {
         ServiceRole = {
             type = "string",
         },
-        VersionLifecycleConfig = {
-            type = "structure",
-        },
+        VersionLifecycleConfig = M.ApplicationVersionLifecycleConfig,
     },
 }
 
@@ -125,15 +119,13 @@ M.ApplicationDescription = {
         },
         Versions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ConfigurationTemplates = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        ResourceLifecycleConfig = {
-            type = "structure",
-        },
+        ResourceLifecycleConfig = M.ApplicationResourceLifecycleConfig,
     },
 }
 
@@ -141,28 +133,28 @@ M.Latency = {
     type = "structure",
     members = {
         P999 = {
-            type = "number",
+            type = "double",
         },
         P99 = {
-            type = "number",
+            type = "double",
         },
         P95 = {
-            type = "number",
+            type = "double",
         },
         P90 = {
-            type = "number",
+            type = "double",
         },
         P85 = {
-            type = "number",
+            type = "double",
         },
         P75 = {
-            type = "number",
+            type = "double",
         },
         P50 = {
-            type = "number",
+            type = "double",
         },
         P10 = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -171,16 +163,16 @@ M.StatusCodes = {
     type = "structure",
     members = {
         Status2xx = {
-            type = "number",
+            type = "integer",
         },
         Status3xx = {
-            type = "number",
+            type = "integer",
         },
         Status4xx = {
-            type = "number",
+            type = "integer",
         },
         Status5xx = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -189,17 +181,16 @@ M.ApplicationMetrics = {
     type = "structure",
     members = {
         Duration = {
-            type = "number",
+            type = "integer",
         },
         RequestCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
-        StatusCodes = {
-            type = "structure",
-        },
-        Latency = {
-            type = "structure",
-        },
+        StatusCodes = M.StatusCodes,
+        Latency = M.Latency,
     },
 }
 
@@ -272,15 +263,11 @@ M.ApplicationVersionDescription = {
         VersionLabel = {
             type = "string",
         },
-        SourceBuildInformation = {
-            type = "structure",
-        },
+        SourceBuildInformation = M.SourceBuildInformation,
         BuildArn = {
             type = "string",
         },
-        SourceBundle = {
-            type = "structure",
-        },
+        SourceBundle = M.S3Location,
         DateCreated = {
             type = "timestamp",
         },
@@ -388,7 +375,7 @@ M.SolutionStackDescription = {
         },
         PermittedFileTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -428,7 +415,7 @@ M.ComposeEnvironmentsInput = {
         },
         VersionLabels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -471,7 +458,10 @@ M.Listener = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -487,7 +477,7 @@ M.LoadBalancerDescription = {
         },
         Listeners = {
             type = "list",
-            member_type = "structure",
+            member = M.Listener,
         },
     },
 }
@@ -495,9 +485,7 @@ M.LoadBalancerDescription = {
 M.EnvironmentResourcesDescription = {
     type = "structure",
     members = {
-        LoadBalancer = {
-            type = "structure",
-        },
+        LoadBalancer = M.LoadBalancerDescription,
     },
 }
 
@@ -578,15 +566,11 @@ M.EnvironmentDescription = {
         HealthStatus = {
             type = "string",
         },
-        Resources = {
-            type = "structure",
-        },
-        Tier = {
-            type = "structure",
-        },
+        Resources = M.EnvironmentResourcesDescription,
+        Tier = M.EnvironmentTier,
         EnvironmentLinks = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentLink,
         },
         EnvironmentArn = {
             type = "string",
@@ -602,7 +586,7 @@ M.ComposeEnvironmentsOutput = {
     members = {
         Environments = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentDescription,
         },
         NextToken = {
             type = "string",
@@ -644,12 +628,10 @@ M.CreateApplicationInput = {
         Description = {
             type = "string",
         },
-        ResourceLifecycleConfig = {
-            type = "structure",
-        },
+        ResourceLifecycleConfig = M.ApplicationResourceLifecycleConfig,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -657,9 +639,7 @@ M.CreateApplicationInput = {
 M.CreateApplicationOutput = {
     type = "structure",
     members = {
-        Application = {
-            type = "structure",
-        },
+        Application = M.ApplicationDescription,
     },
 }
 
@@ -711,7 +691,7 @@ M.BuildConfiguration = {
             },
         },
         TimeoutInMinutes = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -734,15 +714,9 @@ M.CreateApplicationVersionInput = {
         Description = {
             type = "string",
         },
-        SourceBuildInformation = {
-            type = "structure",
-        },
-        SourceBundle = {
-            type = "structure",
-        },
-        BuildConfiguration = {
-            type = "structure",
-        },
+        SourceBuildInformation = M.SourceBuildInformation,
+        SourceBundle = M.S3Location,
+        BuildConfiguration = M.BuildConfiguration,
         AutoCreateApplication = {
             type = "boolean",
         },
@@ -751,7 +725,7 @@ M.CreateApplicationVersionInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -759,9 +733,7 @@ M.CreateApplicationVersionInput = {
 M.CreateApplicationVersionOutput = {
     type = "structure",
     members = {
-        ApplicationVersion = {
-            type = "structure",
-        },
+        ApplicationVersion = M.ApplicationVersionDescription,
     },
 }
 
@@ -836,9 +808,7 @@ M.CreateConfigurationTemplateInput = {
         PlatformArn = {
             type = "string",
         },
-        SourceConfiguration = {
-            type = "structure",
-        },
+        SourceConfiguration = M.SourceConfiguration,
         EnvironmentId = {
             type = "string",
         },
@@ -847,11 +817,11 @@ M.CreateConfigurationTemplateInput = {
         },
         OptionSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigurationOptionSetting,
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -894,7 +864,7 @@ M.CreateConfigurationTemplateOutput = {
         },
         OptionSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigurationOptionSetting,
         },
     },
 }
@@ -955,12 +925,10 @@ M.CreateEnvironmentInput = {
         CNAMEPrefix = {
             type = "string",
         },
-        Tier = {
-            type = "structure",
-        },
+        Tier = M.EnvironmentTier,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         VersionLabel = {
             type = "string",
@@ -976,11 +944,11 @@ M.CreateEnvironmentInput = {
         },
         OptionSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigurationOptionSetting,
         },
         OptionsToRemove = {
             type = "list",
-            member_type = "structure",
+            member = M.OptionSpecification,
         },
         OperationsRole = {
             type = "string",
@@ -1039,15 +1007,11 @@ M.CreateEnvironmentOutput = {
         HealthStatus = {
             type = "string",
         },
-        Resources = {
-            type = "structure",
-        },
-        Tier = {
-            type = "structure",
-        },
+        Resources = M.EnvironmentResourcesDescription,
+        Tier = M.EnvironmentTier,
         EnvironmentLinks = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentLink,
         },
         EnvironmentArn = {
             type = "string",
@@ -1073,22 +1037,19 @@ M.CreatePlatformVersionInput = {
                 required = true,
             },
         },
-        PlatformDefinitionBundle = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        PlatformDefinitionBundle = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3Location }),
         EnvironmentName = {
             type = "string",
         },
         OptionSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigurationOptionSetting,
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1133,11 +1094,11 @@ M.PlatformSummary = {
         },
         SupportedTierList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SupportedAddonList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         PlatformLifecycleState = {
             type = "string",
@@ -1157,12 +1118,8 @@ M.PlatformSummary = {
 M.CreatePlatformVersionOutput = {
     type = "structure",
     members = {
-        PlatformSummary = {
-            type = "structure",
-        },
-        Builder = {
-            type = "structure",
-        },
+        PlatformSummary = M.PlatformSummary,
+        Builder = M.Builder,
     },
 }
 
@@ -1319,9 +1276,7 @@ M.DeletePlatformVersionInput = {
 M.DeletePlatformVersionOutput = {
     type = "structure",
     members = {
-        PlatformSummary = {
-            type = "structure",
-        },
+        PlatformSummary = M.PlatformSummary,
     },
 }
 
@@ -1343,7 +1298,7 @@ M.ResourceQuota = {
     type = "structure",
     members = {
         Maximum = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1351,30 +1306,18 @@ M.ResourceQuota = {
 M.ResourceQuotas = {
     type = "structure",
     members = {
-        ApplicationQuota = {
-            type = "structure",
-        },
-        ApplicationVersionQuota = {
-            type = "structure",
-        },
-        EnvironmentQuota = {
-            type = "structure",
-        },
-        ConfigurationTemplateQuota = {
-            type = "structure",
-        },
-        CustomPlatformQuota = {
-            type = "structure",
-        },
+        ApplicationQuota = M.ResourceQuota,
+        ApplicationVersionQuota = M.ResourceQuota,
+        EnvironmentQuota = M.ResourceQuota,
+        ConfigurationTemplateQuota = M.ResourceQuota,
+        CustomPlatformQuota = M.ResourceQuota,
     },
 }
 
 M.DescribeAccountAttributesOutput = {
     type = "structure",
     members = {
-        ResourceQuotas = {
-            type = "structure",
-        },
+        ResourceQuotas = M.ResourceQuotas,
     },
 }
 
@@ -1383,7 +1326,7 @@ M.DescribeApplicationsInput = {
     members = {
         ApplicationNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1393,7 +1336,7 @@ M.DescribeApplicationsOutput = {
     members = {
         Applications = {
             type = "list",
-            member_type = "structure",
+            member = M.ApplicationDescription,
         },
     },
 }
@@ -1406,10 +1349,10 @@ M.DescribeApplicationVersionsInput = {
         },
         VersionLabels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1422,7 +1365,7 @@ M.DescribeApplicationVersionsOutput = {
     members = {
         ApplicationVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.ApplicationVersionDescription,
         },
         NextToken = {
             type = "string",
@@ -1450,7 +1393,7 @@ M.DescribeConfigurationOptionsInput = {
         },
         Options = {
             type = "list",
-            member_type = "structure",
+            member = M.OptionSpecification,
         },
     },
 }
@@ -1495,20 +1438,18 @@ M.ConfigurationOptionDescription = {
         },
         ValueOptions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MinValue = {
-            type = "number",
+            type = "integer",
         },
         MaxValue = {
-            type = "number",
+            type = "integer",
         },
         MaxLength = {
-            type = "number",
+            type = "integer",
         },
-        Regex = {
-            type = "structure",
-        },
+        Regex = M.OptionRestrictionRegex,
     },
 }
 
@@ -1523,7 +1464,7 @@ M.DescribeConfigurationOptionsOutput = {
         },
         Options = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigurationOptionDescription,
         },
     },
 }
@@ -1578,7 +1519,7 @@ M.ConfigurationSettingsDescription = {
         },
         OptionSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigurationOptionSetting,
         },
     },
 }
@@ -1588,7 +1529,7 @@ M.DescribeConfigurationSettingsOutput = {
     members = {
         ConfigurationSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigurationSettingsDescription,
         },
     },
 }
@@ -1615,7 +1556,7 @@ M.DescribeEnvironmentHealthInput = {
         },
         AttributeNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1624,28 +1565,28 @@ M.InstanceHealthSummary = {
     type = "structure",
     members = {
         NoData = {
-            type = "number",
+            type = "integer",
         },
         Unknown = {
-            type = "number",
+            type = "integer",
         },
         Pending = {
-            type = "number",
+            type = "integer",
         },
         Ok = {
-            type = "number",
+            type = "integer",
         },
         Info = {
-            type = "number",
+            type = "integer",
         },
         Warning = {
-            type = "number",
+            type = "integer",
         },
         Degraded = {
-            type = "number",
+            type = "integer",
         },
         Severe = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1667,14 +1608,10 @@ M.DescribeEnvironmentHealthOutput = {
         },
         Causes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        ApplicationMetrics = {
-            type = "structure",
-        },
-        InstancesHealth = {
-            type = "structure",
-        },
+        ApplicationMetrics = M.ApplicationMetrics,
+        InstancesHealth = M.InstanceHealthSummary,
         RefreshedAt = {
             type = "timestamp",
         },
@@ -1704,7 +1641,7 @@ M.DescribeEnvironmentManagedActionHistoryInput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1754,7 +1691,7 @@ M.DescribeEnvironmentManagedActionHistoryOutput = {
     members = {
         ManagedActionHistoryItems = {
             type = "list",
-            member_type = "structure",
+            member = M.ManagedActionHistoryItem,
         },
         NextToken = {
             type = "string",
@@ -1803,7 +1740,7 @@ M.DescribeEnvironmentManagedActionsOutput = {
     members = {
         ManagedActions = {
             type = "list",
-            member_type = "structure",
+            member = M.ManagedAction,
         },
     },
 }
@@ -1885,31 +1822,31 @@ M.EnvironmentResourceDescription = {
         },
         AutoScalingGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.AutoScalingGroup,
         },
         Instances = {
             type = "list",
-            member_type = "structure",
+            member = M.Instance,
         },
         LaunchConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.LaunchConfiguration,
         },
         LaunchTemplates = {
             type = "list",
-            member_type = "structure",
+            member = M.LaunchTemplate,
         },
         LoadBalancers = {
             type = "list",
-            member_type = "structure",
+            member = M.LoadBalancer,
         },
         Triggers = {
             type = "list",
-            member_type = "structure",
+            member = M.Trigger,
         },
         Queues = {
             type = "list",
-            member_type = "structure",
+            member = M.Queue,
         },
     },
 }
@@ -1917,9 +1854,7 @@ M.EnvironmentResourceDescription = {
 M.DescribeEnvironmentResourcesOutput = {
     type = "structure",
     members = {
-        EnvironmentResources = {
-            type = "structure",
-        },
+        EnvironmentResources = M.EnvironmentResourceDescription,
     },
 }
 
@@ -1934,11 +1869,11 @@ M.DescribeEnvironmentsInput = {
         },
         EnvironmentIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         EnvironmentNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IncludeDeleted = {
             type = "boolean",
@@ -1947,7 +1882,7 @@ M.DescribeEnvironmentsInput = {
             type = "timestamp",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1960,7 +1895,7 @@ M.DescribeEnvironmentsOutput = {
     members = {
         Environments = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentDescription,
         },
         NextToken = {
             type = "string",
@@ -2011,7 +1946,7 @@ M.DescribeEventsInput = {
             type = "timestamp",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2057,7 +1992,7 @@ M.DescribeEventsOutput = {
     members = {
         Events = {
             type = "list",
-            member_type = "structure",
+            member = M.EventDescription,
         },
         NextToken = {
             type = "string",
@@ -2090,7 +2025,7 @@ M.DescribeInstancesHealthInput = {
         },
         AttributeNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -2105,7 +2040,7 @@ M.Deployment = {
             type = "string",
         },
         DeploymentId = {
-            type = "number",
+            type = "long",
         },
         Status = {
             type = "string",
@@ -2120,28 +2055,28 @@ M.CPUUtilization = {
     type = "structure",
     members = {
         User = {
-            type = "number",
+            type = "double",
         },
         Nice = {
-            type = "number",
+            type = "double",
         },
         System = {
-            type = "number",
+            type = "double",
         },
         Idle = {
-            type = "number",
+            type = "double",
         },
         IOWait = {
-            type = "number",
+            type = "double",
         },
         IRQ = {
-            type = "number",
+            type = "double",
         },
         SoftIRQ = {
-            type = "number",
+            type = "double",
         },
         Privileged = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -2149,12 +2084,10 @@ M.CPUUtilization = {
 M.SystemStatus = {
     type = "structure",
     members = {
-        CPUUtilization = {
-            type = "structure",
-        },
+        CPUUtilization = M.CPUUtilization,
         LoadAverage = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
     },
 }
@@ -2173,20 +2106,14 @@ M.SingleInstanceHealth = {
         },
         Causes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         LaunchedAt = {
             type = "timestamp",
         },
-        ApplicationMetrics = {
-            type = "structure",
-        },
-        System = {
-            type = "structure",
-        },
-        Deployment = {
-            type = "structure",
-        },
+        ApplicationMetrics = M.ApplicationMetrics,
+        System = M.SystemStatus,
+        Deployment = M.Deployment,
         AvailabilityZone = {
             type = "string",
         },
@@ -2201,7 +2128,7 @@ M.DescribeInstancesHealthOutput = {
     members = {
         InstanceHealthList = {
             type = "list",
-            member_type = "structure",
+            member = M.SingleInstanceHealth,
         },
         RefreshedAt = {
             type = "timestamp",
@@ -2301,23 +2228,23 @@ M.PlatformDescription = {
         },
         ProgrammingLanguages = {
             type = "list",
-            member_type = "structure",
+            member = M.PlatformProgrammingLanguage,
         },
         Frameworks = {
             type = "list",
-            member_type = "structure",
+            member = M.PlatformFramework,
         },
         CustomAmiList = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomAmi,
         },
         SupportedTierList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SupportedAddonList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         PlatformLifecycleState = {
             type = "string",
@@ -2334,9 +2261,7 @@ M.PlatformDescription = {
 M.DescribePlatformVersionOutput = {
     type = "structure",
     members = {
-        PlatformDescription = {
-            type = "structure",
-        },
+        PlatformDescription = M.PlatformDescription,
     },
 }
 
@@ -2365,11 +2290,11 @@ M.ListAvailableSolutionStacksOutput = {
     members = {
         SolutionStacks = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SolutionStackDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.SolutionStackDescription,
         },
     },
 }
@@ -2385,7 +2310,7 @@ M.SearchFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2395,10 +2320,10 @@ M.ListPlatformBranchesInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.SearchFilter,
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2419,11 +2344,14 @@ M.PlatformBranchSummary = {
             type = "string",
         },
         BranchOrder = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         SupportedTierList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2433,7 +2361,7 @@ M.ListPlatformBranchesOutput = {
     members = {
         PlatformBranchSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.PlatformBranchSummary,
         },
         NextToken = {
             type = "string",
@@ -2452,7 +2380,7 @@ M.PlatformFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2462,10 +2390,10 @@ M.ListPlatformVersionsInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.PlatformFilter,
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2478,7 +2406,7 @@ M.ListPlatformVersionsOutput = {
     members = {
         PlatformSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.PlatformSummary,
         },
         NextToken = {
             type = "string",
@@ -2506,7 +2434,7 @@ M.ListTagsForResourceOutput = {
         },
         ResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2632,7 +2560,7 @@ M.RetrieveEnvironmentInfoOutput = {
     members = {
         EnvironmentInfo = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentInfoDescription,
         },
     },
 }
@@ -2728,15 +2656,11 @@ M.TerminateEnvironmentOutput = {
         HealthStatus = {
             type = "string",
         },
-        Resources = {
-            type = "structure",
-        },
-        Tier = {
-            type = "structure",
-        },
+        Resources = M.EnvironmentResourcesDescription,
+        Tier = M.EnvironmentTier,
         EnvironmentLinks = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentLink,
         },
         EnvironmentArn = {
             type = "string",
@@ -2765,9 +2689,7 @@ M.UpdateApplicationInput = {
 M.UpdateApplicationOutput = {
     type = "structure",
     members = {
-        Application = {
-            type = "structure",
-        },
+        Application = M.ApplicationDescription,
     },
 }
 
@@ -2780,12 +2702,9 @@ M.UpdateApplicationResourceLifecycleInput = {
                 required = true,
             },
         },
-        ResourceLifecycleConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ResourceLifecycleConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ApplicationResourceLifecycleConfig }),
     },
 }
 
@@ -2795,9 +2714,7 @@ M.UpdateApplicationResourceLifecycleOutput = {
         ApplicationName = {
             type = "string",
         },
-        ResourceLifecycleConfig = {
-            type = "structure",
-        },
+        ResourceLifecycleConfig = M.ApplicationResourceLifecycleConfig,
     },
 }
 
@@ -2825,9 +2742,7 @@ M.UpdateApplicationVersionInput = {
 M.UpdateApplicationVersionOutput = {
     type = "structure",
     members = {
-        ApplicationVersion = {
-            type = "structure",
-        },
+        ApplicationVersion = M.ApplicationVersionDescription,
     },
 }
 
@@ -2851,11 +2766,11 @@ M.UpdateConfigurationTemplateInput = {
         },
         OptionSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigurationOptionSetting,
         },
         OptionsToRemove = {
             type = "list",
-            member_type = "structure",
+            member = M.OptionSpecification,
         },
     },
 }
@@ -2892,7 +2807,7 @@ M.UpdateConfigurationTemplateOutput = {
         },
         OptionSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigurationOptionSetting,
         },
     },
 }
@@ -2915,9 +2830,7 @@ M.UpdateEnvironmentInput = {
         Description = {
             type = "string",
         },
-        Tier = {
-            type = "structure",
-        },
+        Tier = M.EnvironmentTier,
         VersionLabel = {
             type = "string",
         },
@@ -2932,11 +2845,11 @@ M.UpdateEnvironmentInput = {
         },
         OptionSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigurationOptionSetting,
         },
         OptionsToRemove = {
             type = "list",
-            member_type = "structure",
+            member = M.OptionSpecification,
         },
     },
 }
@@ -2992,15 +2905,11 @@ M.UpdateEnvironmentOutput = {
         HealthStatus = {
             type = "string",
         },
-        Resources = {
-            type = "structure",
-        },
-        Tier = {
-            type = "structure",
-        },
+        Resources = M.EnvironmentResourcesDescription,
+        Tier = M.EnvironmentTier,
         EnvironmentLinks = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentLink,
         },
         EnvironmentArn = {
             type = "string",
@@ -3032,11 +2941,11 @@ M.UpdateTagsForResourceInput = {
         },
         TagsToAdd = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         TagsToRemove = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3062,7 +2971,7 @@ M.ValidateConfigurationSettingsInput = {
         },
         OptionSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigurationOptionSetting,
             traits = {
                 required = true,
             },
@@ -3098,7 +3007,7 @@ M.ValidateConfigurationSettingsOutput = {
     members = {
         Messages = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationMessage,
         },
     },
 }

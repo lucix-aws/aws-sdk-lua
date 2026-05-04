@@ -1,0 +1,209 @@
+local waiter = require("waiter")
+
+local M = {}
+
+--- Wait until ClusterCreated.
+function M.wait_until_cluster_created(client, input, options)
+    return waiter.wait(client, "describeCluster", input, {
+        min_delay = 5,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "Cluster.Status",
+                        expected = "DEPLOYED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "Cluster.Status",
+                        expected = "PENDING",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "InternalServerException",
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until ClusterDeleted.
+function M.wait_until_cluster_deleted(client, input, options)
+    return waiter.wait(client, "describeCluster", input, {
+        min_delay = 5,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    errorType = "ResourceNotFoundException",
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "Cluster.Status",
+                        expected = "PENDING_DELETION",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "InternalServerException",
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until ControlPanelCreated.
+function M.wait_until_control_panel_created(client, input, options)
+    return waiter.wait(client, "describeControlPanel", input, {
+        min_delay = 5,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "ControlPanel.Status",
+                        expected = "DEPLOYED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "ControlPanel.Status",
+                        expected = "PENDING",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "InternalServerException",
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until ControlPanelDeleted.
+function M.wait_until_control_panel_deleted(client, input, options)
+    return waiter.wait(client, "describeControlPanel", input, {
+        min_delay = 5,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    errorType = "ResourceNotFoundException",
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "ControlPanel.Status",
+                        expected = "PENDING_DELETION",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "InternalServerException",
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until RoutingControlCreated.
+function M.wait_until_routing_control_created(client, input, options)
+    return waiter.wait(client, "describeRoutingControl", input, {
+        min_delay = 5,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "RoutingControl.Status",
+                        expected = "DEPLOYED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "RoutingControl.Status",
+                        expected = "PENDING",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "InternalServerException",
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until RoutingControlDeleted.
+function M.wait_until_routing_control_deleted(client, input, options)
+    return waiter.wait(client, "describeRoutingControl", input, {
+        min_delay = 5,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    errorType = "ResourceNotFoundException",
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "RoutingControl.Status",
+                        expected = "PENDING_DELETION",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "InternalServerException",
+                },
+            },
+        },
+    }, options)
+end
+
+return M

@@ -1043,25 +1043,25 @@ end
 
 local type NsdOperationalState = "ENABLED" | "DISABLED"
 
-local type NsLcmOperationState = "PROCESSING" | "COMPLETED" | "FAILED" | "CANCELLING" | "CANCELLED"
-
 local type VnfInstantiationState = "INSTANTIATED" | "NOT_INSTANTIATED"
+
+local type NsLcmOperationState = "PROCESSING" | "COMPLETED" | "FAILED" | "CANCELLING" | "CANCELLED"
 
 local type DescriptorContentType = "text/plain"
 
-local type OperationalState = "ENABLED" | "DISABLED"
-
 local type UsageState = "IN_USE" | "NOT_IN_USE"
+
+local type OperationalState = "ENABLED" | "DISABLED"
 
 local type PackageContentType = "application/zip"
 
-local type LcmOperationType = "INSTANTIATE" | "UPDATE" | "TERMINATE"
+local type NsdUsageState = "IN_USE" | "NOT_IN_USE"
 
 local type NsState = "INSTANTIATED" | "NOT_INSTANTIATED" | "UPDATED" | "IMPAIRED" | "UPDATE_FAILED" | "STOPPED" | "DELETED" | "INSTANTIATE_IN_PROGRESS" | "INTENT_TO_UPDATE_IN_PROGRESS" | "UPDATE_IN_PROGRESS" | "TERMINATE_IN_PROGRESS"
 
-local type OnboardingState = "CREATED" | "ONBOARDED" | "ERROR"
+local type LcmOperationType = "INSTANTIATE" | "UPDATE" | "TERMINATE"
 
-local type NsdUsageState = "IN_USE" | "NOT_IN_USE"
+local type OnboardingState = "CREATED" | "ONBOARDED" | "ERROR"
 
 local type UpdateSolNetworkType = "MODIFY_VNF_INFORMATION" | "UPDATE_NS"
 

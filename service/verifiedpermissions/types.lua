@@ -77,7 +77,7 @@ M.BatchGetPolicyInput = {
     members = {
         requests = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetPolicyInputItem,
             traits = {
                 required = true,
             },
@@ -145,24 +145,16 @@ M.TemplateLinkedPolicyDefinitionDetail = {
                 required = true,
             },
         },
-        principal = {
-            type = "structure",
-        },
-        resource = {
-            type = "structure",
-        },
+        principal = M.EntityIdentifier,
+        resource = M.EntityIdentifier,
     },
 }
 
 M.PolicyDefinitionDetail = {
     type = "union",
     members = {
-        static = {
-            type = "structure",
-        },
-        templateLinked = {
-            type = "structure",
-        },
+        static = M.StaticPolicyDefinitionDetail,
+        templateLinked = M.TemplateLinkedPolicyDefinitionDetail,
     },
 }
 
@@ -192,12 +184,9 @@ M.BatchGetPolicyOutputItem = {
                 required = true,
             },
         },
-        definition = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        definition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PolicyDefinitionDetail }),
         createdDate = {
             type = "timestamp",
             traits = {
@@ -221,14 +210,14 @@ M.BatchGetPolicyOutput = {
     members = {
         results = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetPolicyOutputItem,
             traits = {
                 required = true,
             },
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetPolicyErrorItem,
             traits = {
                 required = true,
             },
@@ -298,7 +287,7 @@ M.ValidationException = {
         },
         fieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -412,11 +401,9 @@ M.CognitoUserPoolConfiguration = {
         },
         clientIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        groupConfiguration = {
-            type = "structure",
-        },
+        groupConfiguration = M.CognitoGroupConfiguration,
     },
 }
 
@@ -431,7 +418,7 @@ M.CognitoUserPoolConfigurationDetail = {
         },
         clientIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -442,9 +429,7 @@ M.CognitoUserPoolConfigurationDetail = {
                 required = true,
             },
         },
-        groupConfiguration = {
-            type = "structure",
-        },
+        groupConfiguration = M.CognitoGroupConfigurationDetail,
     },
 }
 
@@ -459,7 +444,7 @@ M.CognitoUserPoolConfigurationItem = {
         },
         clientIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -470,9 +455,7 @@ M.CognitoUserPoolConfigurationItem = {
                 required = true,
             },
         },
-        groupConfiguration = {
-            type = "structure",
-        },
+        groupConfiguration = M.CognitoGroupConfigurationItem,
     },
 }
 
@@ -499,10 +482,13 @@ M.OpenIdConnectAccessTokenConfiguration = {
     members = {
         principalIdClaim = {
             type = "string",
+            traits = {
+                default = "sub",
+            },
         },
         audiences = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -512,10 +498,13 @@ M.OpenIdConnectIdentityTokenConfiguration = {
     members = {
         principalIdClaim = {
             type = "string",
+            traits = {
+                default = "sub",
+            },
         },
         clientIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -523,12 +512,8 @@ M.OpenIdConnectIdentityTokenConfiguration = {
 M.OpenIdConnectTokenSelection = {
     type = "union",
     members = {
-        accessTokenOnly = {
-            type = "structure",
-        },
-        identityTokenOnly = {
-            type = "structure",
-        },
+        accessTokenOnly = M.OpenIdConnectAccessTokenConfiguration,
+        identityTokenOnly = M.OpenIdConnectIdentityTokenConfiguration,
     },
 }
 
@@ -544,27 +529,18 @@ M.OpenIdConnectConfiguration = {
         entityIdPrefix = {
             type = "string",
         },
-        groupConfiguration = {
-            type = "structure",
-        },
-        tokenSelection = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        groupConfiguration = M.OpenIdConnectGroupConfiguration,
+        tokenSelection = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OpenIdConnectTokenSelection }),
     },
 }
 
 M.Configuration = {
     type = "union",
     members = {
-        cognitoUserPoolConfiguration = {
-            type = "structure",
-        },
-        openIdConnectConfiguration = {
-            type = "structure",
-        },
+        cognitoUserPoolConfiguration = M.CognitoUserPoolConfiguration,
+        openIdConnectConfiguration = M.OpenIdConnectConfiguration,
     },
 }
 
@@ -591,10 +567,13 @@ M.OpenIdConnectAccessTokenConfigurationDetail = {
     members = {
         principalIdClaim = {
             type = "string",
+            traits = {
+                default = "sub",
+            },
         },
         audiences = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -604,10 +583,13 @@ M.OpenIdConnectIdentityTokenConfigurationDetail = {
     members = {
         principalIdClaim = {
             type = "string",
+            traits = {
+                default = "sub",
+            },
         },
         clientIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -615,12 +597,8 @@ M.OpenIdConnectIdentityTokenConfigurationDetail = {
 M.OpenIdConnectTokenSelectionDetail = {
     type = "union",
     members = {
-        accessTokenOnly = {
-            type = "structure",
-        },
-        identityTokenOnly = {
-            type = "structure",
-        },
+        accessTokenOnly = M.OpenIdConnectAccessTokenConfigurationDetail,
+        identityTokenOnly = M.OpenIdConnectIdentityTokenConfigurationDetail,
     },
 }
 
@@ -636,27 +614,18 @@ M.OpenIdConnectConfigurationDetail = {
         entityIdPrefix = {
             type = "string",
         },
-        groupConfiguration = {
-            type = "structure",
-        },
-        tokenSelection = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        groupConfiguration = M.OpenIdConnectGroupConfigurationDetail,
+        tokenSelection = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OpenIdConnectTokenSelectionDetail }),
     },
 }
 
 M.ConfigurationDetail = {
     type = "union",
     members = {
-        cognitoUserPoolConfiguration = {
-            type = "structure",
-        },
-        openIdConnectConfiguration = {
-            type = "structure",
-        },
+        cognitoUserPoolConfiguration = M.CognitoUserPoolConfigurationDetail,
+        openIdConnectConfiguration = M.OpenIdConnectConfigurationDetail,
     },
 }
 
@@ -683,10 +652,13 @@ M.OpenIdConnectAccessTokenConfigurationItem = {
     members = {
         principalIdClaim = {
             type = "string",
+            traits = {
+                default = "sub",
+            },
         },
         audiences = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -696,10 +668,13 @@ M.OpenIdConnectIdentityTokenConfigurationItem = {
     members = {
         principalIdClaim = {
             type = "string",
+            traits = {
+                default = "sub",
+            },
         },
         clientIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -707,12 +682,8 @@ M.OpenIdConnectIdentityTokenConfigurationItem = {
 M.OpenIdConnectTokenSelectionItem = {
     type = "union",
     members = {
-        accessTokenOnly = {
-            type = "structure",
-        },
-        identityTokenOnly = {
-            type = "structure",
-        },
+        accessTokenOnly = M.OpenIdConnectAccessTokenConfigurationItem,
+        identityTokenOnly = M.OpenIdConnectIdentityTokenConfigurationItem,
     },
 }
 
@@ -728,27 +699,18 @@ M.OpenIdConnectConfigurationItem = {
         entityIdPrefix = {
             type = "string",
         },
-        groupConfiguration = {
-            type = "structure",
-        },
-        tokenSelection = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        groupConfiguration = M.OpenIdConnectGroupConfigurationItem,
+        tokenSelection = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OpenIdConnectTokenSelectionItem }),
     },
 }
 
 M.ConfigurationItem = {
     type = "union",
     members = {
-        cognitoUserPoolConfiguration = {
-            type = "structure",
-        },
-        openIdConnectConfiguration = {
-            type = "structure",
-        },
+        cognitoUserPoolConfiguration = M.CognitoUserPoolConfigurationItem,
+        openIdConnectConfiguration = M.OpenIdConnectConfigurationItem,
     },
 }
 
@@ -782,7 +744,7 @@ M.ConflictException = {
         },
         resources = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceConflict,
             traits = {
                 required = true,
             },
@@ -802,12 +764,9 @@ M.CreateIdentitySourceInput = {
                 required = true,
             },
         },
-        configuration = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Configuration }),
         principalEntityType = {
             type = "string",
         },
@@ -896,24 +855,16 @@ M.TemplateLinkedPolicyDefinition = {
                 required = true,
             },
         },
-        principal = {
-            type = "structure",
-        },
-        resource = {
-            type = "structure",
-        },
+        principal = M.EntityIdentifier,
+        resource = M.EntityIdentifier,
     },
 }
 
 M.PolicyDefinition = {
     type = "union",
     members = {
-        static = {
-            type = "structure",
-        },
-        templateLinked = {
-            type = "structure",
-        },
+        static = M.StaticPolicyDefinition,
+        templateLinked = M.TemplateLinkedPolicyDefinition,
     },
 }
 
@@ -929,12 +880,9 @@ M.CreatePolicyInput = {
                 required = true,
             },
         },
-        definition = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        definition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PolicyDefinition }),
         name = {
             type = "string",
         },
@@ -967,15 +915,11 @@ M.CreatePolicyOutput = {
                 required = true,
             },
         },
-        principal = {
-            type = "structure",
-        },
-        resource = {
-            type = "structure",
-        },
+        principal = M.EntityIdentifier,
+        resource = M.EntityIdentifier,
         actions = {
             type = "list",
-            member_type = "structure",
+            member = M.ActionIdentifier,
         },
         createdDate = {
             type = "timestamp",
@@ -1015,8 +959,8 @@ M.KmsEncryptionSettings = {
         },
         encryptionContext = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1024,12 +968,8 @@ M.KmsEncryptionSettings = {
 M.EncryptionSettings = {
     type = "union",
     members = {
-        kmsEncryptionSettings = {
-            type = "structure",
-        },
-        default = {
-            type = "structure",
-        },
+        kmsEncryptionSettings = M.KmsEncryptionSettings,
+        default = M.Unit,
     },
 }
 
@@ -1056,25 +996,20 @@ M.CreatePolicyStoreInput = {
         clientToken = {
             type = "string",
         },
-        validationSettings = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        validationSettings = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ValidationSettings }),
         description = {
             type = "string",
         },
         deletionProtection = {
             type = "string",
         },
-        encryptionSettings = {
-            type = "union",
-        },
+        encryptionSettings = M.EncryptionSettings,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1336,8 +1271,8 @@ M.KmsEncryptionState = {
         },
         encryptionContext = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1348,12 +1283,8 @@ M.KmsEncryptionState = {
 M.EncryptionState = {
     type = "union",
     members = {
-        kmsEncryptionState = {
-            type = "structure",
-        },
-        default = {
-            type = "structure",
-        },
+        kmsEncryptionState = M.KmsEncryptionState,
+        default = M.Unit,
     },
 }
 
@@ -1363,9 +1294,7 @@ M.EntityReference = {
         unspecified = {
             type = "boolean",
         },
-        identifier = {
-            type = "structure",
-        },
+        identifier = M.EntityIdentifier,
     },
 }
 
@@ -1396,7 +1325,7 @@ M.IdentitySourceDetails = {
     members = {
         clientIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         userPoolArn = {
             type = "string",
@@ -1419,9 +1348,7 @@ M.GetIdentitySourceOutput = {
                 required = true,
             },
         },
-        details = {
-            type = "structure",
-        },
+        details = M.IdentitySourceDetails,
         identitySourceId = {
             type = "string",
             traits = {
@@ -1446,9 +1373,7 @@ M.GetIdentitySourceOutput = {
                 required = true,
             },
         },
-        configuration = {
-            type = "union",
-        },
+        configuration = M.ConfigurationDetail,
     },
 }
 
@@ -1491,22 +1416,15 @@ M.GetPolicyOutput = {
                 required = true,
             },
         },
-        principal = {
-            type = "structure",
-        },
-        resource = {
-            type = "structure",
-        },
+        principal = M.EntityIdentifier,
+        resource = M.EntityIdentifier,
         actions = {
             type = "list",
-            member_type = "structure",
+            member = M.ActionIdentifier,
         },
-        definition = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        definition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PolicyDefinitionDetail }),
         createdDate = {
             type = "timestamp",
             traits = {
@@ -1539,6 +1457,9 @@ M.GetPolicyStoreInput = {
         },
         tags = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1558,12 +1479,9 @@ M.GetPolicyStoreOutput = {
                 required = true,
             },
         },
-        validationSettings = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        validationSettings = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ValidationSettings }),
         createdDate = {
             type = "timestamp",
             traits = {
@@ -1582,16 +1500,14 @@ M.GetPolicyStoreOutput = {
         deletionProtection = {
             type = "string",
         },
-        encryptionState = {
-            type = "union",
-        },
+        encryptionState = M.EncryptionState,
         cedarVersion = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1745,7 +1661,7 @@ M.GetSchemaOutput = {
         },
         namespaces = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1772,11 +1688,11 @@ M.ListIdentitySourcesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.IdentitySourceFilter,
         },
     },
 }
@@ -1786,7 +1702,7 @@ M.IdentitySourceItemDetails = {
     members = {
         clientIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         userPoolArn = {
             type = "string",
@@ -1809,9 +1725,7 @@ M.IdentitySourceItem = {
                 required = true,
             },
         },
-        details = {
-            type = "structure",
-        },
+        details = M.IdentitySourceItemDetails,
         identitySourceId = {
             type = "string",
             traits = {
@@ -1836,9 +1750,7 @@ M.IdentitySourceItem = {
                 required = true,
             },
         },
-        configuration = {
-            type = "union",
-        },
+        configuration = M.ConfigurationItem,
     },
 }
 
@@ -1850,7 +1762,7 @@ M.ListIdentitySourcesOutput = {
         },
         identitySources = {
             type = "list",
-            member_type = "structure",
+            member = M.IdentitySourceItem,
             traits = {
                 required = true,
             },
@@ -1881,11 +1793,9 @@ M.UpdateCognitoUserPoolConfiguration = {
         },
         clientIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        groupConfiguration = {
-            type = "structure",
-        },
+        groupConfiguration = M.UpdateCognitoGroupConfiguration,
     },
 }
 
@@ -1912,10 +1822,13 @@ M.UpdateOpenIdConnectAccessTokenConfiguration = {
     members = {
         principalIdClaim = {
             type = "string",
+            traits = {
+                default = "sub",
+            },
         },
         audiences = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1925,10 +1838,13 @@ M.UpdateOpenIdConnectIdentityTokenConfiguration = {
     members = {
         principalIdClaim = {
             type = "string",
+            traits = {
+                default = "sub",
+            },
         },
         clientIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1936,12 +1852,8 @@ M.UpdateOpenIdConnectIdentityTokenConfiguration = {
 M.UpdateOpenIdConnectTokenSelection = {
     type = "union",
     members = {
-        accessTokenOnly = {
-            type = "structure",
-        },
-        identityTokenOnly = {
-            type = "structure",
-        },
+        accessTokenOnly = M.UpdateOpenIdConnectAccessTokenConfiguration,
+        identityTokenOnly = M.UpdateOpenIdConnectIdentityTokenConfiguration,
     },
 }
 
@@ -1957,27 +1869,18 @@ M.UpdateOpenIdConnectConfiguration = {
         entityIdPrefix = {
             type = "string",
         },
-        groupConfiguration = {
-            type = "structure",
-        },
-        tokenSelection = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        groupConfiguration = M.UpdateOpenIdConnectGroupConfiguration,
+        tokenSelection = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.UpdateOpenIdConnectTokenSelection }),
     },
 }
 
 M.UpdateConfiguration = {
     type = "union",
     members = {
-        cognitoUserPoolConfiguration = {
-            type = "structure",
-        },
-        openIdConnectConfiguration = {
-            type = "structure",
-        },
+        cognitoUserPoolConfiguration = M.UpdateCognitoUserPoolConfiguration,
+        openIdConnectConfiguration = M.UpdateOpenIdConnectConfiguration,
     },
 }
 
@@ -1996,12 +1899,9 @@ M.UpdateIdentitySourceInput = {
                 required = true,
             },
         },
-        updateConfiguration = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        updateConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.UpdateConfiguration }),
         principalEntityType = {
             type = "string",
         },
@@ -2049,14 +1949,14 @@ M.IsAuthorizedOutput = {
         },
         determiningPolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.DeterminingPolicyItem,
             traits = {
                 required = true,
             },
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.EvaluationErrorItem,
             traits = {
                 required = true,
             },
@@ -2075,33 +1975,27 @@ M.IsAuthorizedWithTokenOutput = {
         },
         determiningPolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.DeterminingPolicyItem,
             traits = {
                 required = true,
             },
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.EvaluationErrorItem,
             traits = {
                 required = true,
             },
         },
-        principal = {
-            type = "structure",
-        },
+        principal = M.EntityIdentifier,
     },
 }
 
 M.PolicyFilter = {
     type = "structure",
     members = {
-        principal = {
-            type = "union",
-        },
-        resource = {
-            type = "union",
-        },
+        principal = M.EntityReference,
+        resource = M.EntityReference,
         policyType = {
             type = "string",
         },
@@ -2124,11 +2018,9 @@ M.ListPoliciesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
-        filter = {
-            type = "structure",
-        },
+        filter = M.PolicyFilter,
     },
 }
 
@@ -2150,24 +2042,16 @@ M.TemplateLinkedPolicyDefinitionItem = {
                 required = true,
             },
         },
-        principal = {
-            type = "structure",
-        },
-        resource = {
-            type = "structure",
-        },
+        principal = M.EntityIdentifier,
+        resource = M.EntityIdentifier,
     },
 }
 
 M.PolicyDefinitionItem = {
     type = "union",
     members = {
-        static = {
-            type = "structure",
-        },
-        templateLinked = {
-            type = "structure",
-        },
+        static = M.StaticPolicyDefinitionItem,
+        templateLinked = M.TemplateLinkedPolicyDefinitionItem,
     },
 }
 
@@ -2192,22 +2076,15 @@ M.PolicyItem = {
                 required = true,
             },
         },
-        principal = {
-            type = "structure",
-        },
-        resource = {
-            type = "structure",
-        },
+        principal = M.EntityIdentifier,
+        resource = M.EntityIdentifier,
         actions = {
             type = "list",
-            member_type = "structure",
+            member = M.ActionIdentifier,
         },
-        definition = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        definition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PolicyDefinitionItem }),
         createdDate = {
             type = "timestamp",
             traits = {
@@ -2237,7 +2114,7 @@ M.ListPoliciesOutput = {
         },
         policies = {
             type = "list",
-            member_type = "structure",
+            member = M.PolicyItem,
             traits = {
                 required = true,
             },
@@ -2261,11 +2138,12 @@ M.ListPolicyStoreAliasesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 5,
+            },
         },
-        filter = {
-            type = "structure",
-        },
+        filter = M.PolicyStoreAliasFilter,
     },
 }
 
@@ -2313,7 +2191,7 @@ M.ListPolicyStoreAliasesOutput = {
         },
         policyStoreAliases = {
             type = "list",
-            member_type = "structure",
+            member = M.PolicyStoreAliasItem,
             traits = {
                 required = true,
             },
@@ -2328,7 +2206,7 @@ M.ListPolicyStoresInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2371,7 +2249,7 @@ M.ListPolicyStoresOutput = {
         },
         policyStores = {
             type = "list",
-            member_type = "structure",
+            member = M.PolicyStoreItem,
             traits = {
                 required = true,
             },
@@ -2392,7 +2270,7 @@ M.ListPolicyTemplatesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2441,7 +2319,7 @@ M.ListPolicyTemplatesOutput = {
         },
         policyTemplates = {
             type = "list",
-            member_type = "structure",
+            member = M.PolicyTemplateItem,
             traits = {
                 required = true,
             },
@@ -2466,8 +2344,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2490,9 +2368,7 @@ M.UpdateStaticPolicyDefinition = {
 M.UpdatePolicyDefinition = {
     type = "union",
     members = {
-        static = {
-            type = "structure",
-        },
+        static = M.UpdateStaticPolicyDefinition,
     },
 }
 
@@ -2511,9 +2387,7 @@ M.UpdatePolicyInput = {
                 required = true,
             },
         },
-        definition = {
-            type = "union",
-        },
+        definition = M.UpdatePolicyDefinition,
         name = {
             type = "string",
         },
@@ -2541,15 +2415,11 @@ M.UpdatePolicyOutput = {
                 required = true,
             },
         },
-        principal = {
-            type = "structure",
-        },
-        resource = {
-            type = "structure",
-        },
+        principal = M.EntityIdentifier,
+        resource = M.EntityIdentifier,
         actions = {
             type = "list",
-            member_type = "structure",
+            member = M.ActionIdentifier,
         },
         createdDate = {
             type = "timestamp",
@@ -2647,12 +2517,9 @@ M.PutSchemaInput = {
                 required = true,
             },
         },
-        definition = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        definition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SchemaDefinition }),
     },
 }
 
@@ -2667,7 +2534,7 @@ M.PutSchemaOutput = {
         },
         namespaces = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2696,12 +2563,9 @@ M.UpdatePolicyStoreInput = {
                 required = true,
             },
         },
-        validationSettings = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        validationSettings = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ValidationSettings }),
         deletionProtection = {
             type = "string",
         },
@@ -2752,8 +2616,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2789,7 +2653,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2807,23 +2671,21 @@ M.AttributeValue = {
         boolean = {
             type = "boolean",
         },
-        entityIdentifier = {
-            type = "structure",
-        },
+        entityIdentifier = M.EntityIdentifier,
         long = {
-            type = "number",
+            type = "long",
         },
         string = {
             type = "string",
         },
         set = {
             type = "list",
-            member_type = "union",
+            member = M.AttributeValue,
         },
         record = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.AttributeValue,
         },
         ipaddr = {
             type = "string",
@@ -2846,23 +2708,21 @@ M.CedarTagValue = {
         boolean = {
             type = "boolean",
         },
-        entityIdentifier = {
-            type = "structure",
-        },
+        entityIdentifier = M.EntityIdentifier,
         long = {
-            type = "number",
+            type = "long",
         },
         string = {
             type = "string",
         },
         set = {
             type = "list",
-            member_type = "union",
+            member = M.CedarTagValue,
         },
         record = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.CedarTagValue,
         },
         ipaddr = {
             type = "string",
@@ -2884,8 +2744,8 @@ M.ContextDefinition = {
     members = {
         contextMap = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.AttributeValue,
         },
         cedarJson = {
             type = "string",
@@ -2896,45 +2756,28 @@ M.ContextDefinition = {
 M.BatchIsAuthorizedInputItem = {
     type = "structure",
     members = {
-        principal = {
-            type = "structure",
-        },
-        action = {
-            type = "structure",
-        },
-        resource = {
-            type = "structure",
-        },
-        context = {
-            type = "union",
-        },
+        principal = M.EntityIdentifier,
+        action = M.ActionIdentifier,
+        resource = M.EntityIdentifier,
+        context = M.ContextDefinition,
     },
 }
 
 M.BatchIsAuthorizedWithTokenInputItem = {
     type = "structure",
     members = {
-        action = {
-            type = "structure",
-        },
-        resource = {
-            type = "structure",
-        },
-        context = {
-            type = "union",
-        },
+        action = M.ActionIdentifier,
+        resource = M.EntityIdentifier,
+        context = M.ContextDefinition,
     },
 }
 
 M.BatchIsAuthorizedOutputItem = {
     type = "structure",
     members = {
-        request = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        request = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BatchIsAuthorizedInputItem }),
         decision = {
             type = "string",
             traits = {
@@ -2943,14 +2786,14 @@ M.BatchIsAuthorizedOutputItem = {
         },
         determiningPolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.DeterminingPolicyItem,
             traits = {
                 required = true,
             },
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.EvaluationErrorItem,
             traits = {
                 required = true,
             },
@@ -2961,12 +2804,9 @@ M.BatchIsAuthorizedOutputItem = {
 M.BatchIsAuthorizedWithTokenOutputItem = {
     type = "structure",
     members = {
-        request = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        request = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BatchIsAuthorizedWithTokenInputItem }),
         decision = {
             type = "string",
             traits = {
@@ -2975,14 +2815,14 @@ M.BatchIsAuthorizedWithTokenOutputItem = {
         },
         determiningPolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.DeterminingPolicyItem,
             traits = {
                 required = true,
             },
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.EvaluationErrorItem,
             traits = {
                 required = true,
             },
@@ -2995,7 +2835,7 @@ M.BatchIsAuthorizedOutput = {
     members = {
         results = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchIsAuthorizedOutputItem,
             traits = {
                 required = true,
             },
@@ -3006,12 +2846,10 @@ M.BatchIsAuthorizedOutput = {
 M.BatchIsAuthorizedWithTokenOutput = {
     type = "structure",
     members = {
-        principal = {
-            type = "structure",
-        },
+        principal = M.EntityIdentifier,
         results = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchIsAuthorizedWithTokenOutputItem,
             traits = {
                 required = true,
             },
@@ -3022,25 +2860,22 @@ M.BatchIsAuthorizedWithTokenOutput = {
 M.EntityItem = {
     type = "structure",
     members = {
-        identifier = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        identifier = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EntityIdentifier }),
         attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.AttributeValue,
         },
         parents = {
             type = "list",
-            member_type = "structure",
+            member = M.EntityIdentifier,
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.CedarTagValue,
         },
     },
 }
@@ -3050,7 +2885,7 @@ M.EntitiesDefinition = {
     members = {
         entityList = {
             type = "list",
-            member_type = "structure",
+            member = M.EntityItem,
         },
         cedarJson = {
             type = "string",
@@ -3067,21 +2902,11 @@ M.IsAuthorizedInput = {
                 required = true,
             },
         },
-        principal = {
-            type = "structure",
-        },
-        action = {
-            type = "structure",
-        },
-        resource = {
-            type = "structure",
-        },
-        context = {
-            type = "union",
-        },
-        entities = {
-            type = "union",
-        },
+        principal = M.EntityIdentifier,
+        action = M.ActionIdentifier,
+        resource = M.EntityIdentifier,
+        context = M.ContextDefinition,
+        entities = M.EntitiesDefinition,
     },
 }
 
@@ -3100,18 +2925,10 @@ M.IsAuthorizedWithTokenInput = {
         accessToken = {
             type = "string",
         },
-        action = {
-            type = "structure",
-        },
-        resource = {
-            type = "structure",
-        },
-        context = {
-            type = "union",
-        },
-        entities = {
-            type = "union",
-        },
+        action = M.ActionIdentifier,
+        resource = M.EntityIdentifier,
+        context = M.ContextDefinition,
+        entities = M.EntitiesDefinition,
     },
 }
 
@@ -3124,12 +2941,10 @@ M.BatchIsAuthorizedInput = {
                 required = true,
             },
         },
-        entities = {
-            type = "union",
-        },
+        entities = M.EntitiesDefinition,
         requests = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchIsAuthorizedInputItem,
             traits = {
                 required = true,
             },
@@ -3152,12 +2967,10 @@ M.BatchIsAuthorizedWithTokenInput = {
         accessToken = {
             type = "string",
         },
-        entities = {
-            type = "union",
-        },
+        entities = M.EntitiesDefinition,
         requests = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchIsAuthorizedWithTokenInputItem,
             traits = {
                 required = true,
             },

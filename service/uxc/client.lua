@@ -16,7 +16,7 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AWSAccountUXSetting"
-    cfg.signing_name = "awsaccountuxsetting"
+    cfg.signing_name = "uxc"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end

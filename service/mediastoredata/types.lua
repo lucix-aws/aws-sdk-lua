@@ -76,7 +76,7 @@ M.DescribeObjectOutput = {
             },
         },
         ContentLength = {
-            type = "number",
+            type = "long",
             traits = {
                 http_header = "Content-Length",
             },
@@ -121,6 +121,7 @@ M.GetObjectOutput = {
         Body = {
             type = "blob",
             traits = {
+                default = "",
                 http_payload = true,
             },
         },
@@ -137,7 +138,7 @@ M.GetObjectOutput = {
             },
         },
         ContentLength = {
-            type = "number",
+            type = "long",
             traits = {
                 http_header = "Content-Length",
             },
@@ -161,8 +162,9 @@ M.GetObjectOutput = {
             },
         },
         StatusCode = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
                 required = true,
             },
@@ -204,7 +206,7 @@ M.Item = {
             type = "string",
         },
         ContentLength = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -219,7 +221,7 @@ M.ListItemsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -238,7 +240,7 @@ M.ListItemsOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.Item,
         },
         NextToken = {
             type = "string",

@@ -26,7 +26,7 @@ M.CrossRegionCopyRetainRule = {
     type = "structure",
     members = {
         Interval = {
-            type = "number",
+            type = "integer",
         },
         IntervalUnit = {
             type = "string",
@@ -43,15 +43,10 @@ M.CrossRegionCopyAction = {
                 required = true,
             },
         },
-        EncryptionConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        RetainRule = {
-            type = "structure",
-        },
+        EncryptionConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EncryptionConfiguration }),
+        RetainRule = M.CrossRegionCopyRetainRule,
     },
 }
 
@@ -66,7 +61,7 @@ M.Action = {
         },
         CrossRegionCopy = {
             type = "list",
-            member_type = "structure",
+            member = M.CrossRegionCopyAction,
             traits = {
                 required = true,
             },
@@ -78,10 +73,10 @@ M.RetentionArchiveTier = {
     type = "structure",
     members = {
         Count = {
-            type = "number",
+            type = "integer",
         },
         Interval = {
-            type = "number",
+            type = "integer",
         },
         IntervalUnit = {
             type = "string",
@@ -92,24 +87,18 @@ M.RetentionArchiveTier = {
 M.ArchiveRetainRule = {
     type = "structure",
     members = {
-        RetentionArchiveTier = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RetentionArchiveTier = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RetentionArchiveTier }),
     },
 }
 
 M.ArchiveRule = {
     type = "structure",
     members = {
-        RetainRule = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RetainRule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ArchiveRetainRule }),
     },
 }
 
@@ -153,11 +142,11 @@ M.Exclusions = {
         },
         ExcludeVolumeTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ExcludeTags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -177,7 +166,7 @@ M.EventParameters = {
         },
         SnapshotOwner = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -204,9 +193,7 @@ M.EventSource = {
                 required = true,
             },
         },
-        Parameters = {
-            type = "structure",
-        },
+        Parameters = M.EventParameters,
     },
 }
 
@@ -221,7 +208,7 @@ M.Parameters = {
         },
         ExcludeDataVolumeTags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -272,7 +259,7 @@ M.Script = {
     members = {
         Stages = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ExecutionHandlerService = {
             type = "string",
@@ -287,10 +274,10 @@ M.Script = {
             type = "boolean",
         },
         ExecutionTimeout = {
-            type = "number",
+            type = "integer",
         },
         MaximumRetryCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -302,21 +289,21 @@ M.CreateRule = {
             type = "string",
         },
         Interval = {
-            type = "number",
+            type = "integer",
         },
         IntervalUnit = {
             type = "string",
         },
         Times = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CronExpression = {
             type = "string",
         },
         Scripts = {
             type = "list",
-            member_type = "structure",
+            member = M.Script,
         },
     },
 }
@@ -325,7 +312,7 @@ M.CrossRegionCopyDeprecateRule = {
     type = "structure",
     members = {
         Interval = {
-            type = "number",
+            type = "integer",
         },
         IntervalUnit = {
             type = "string",
@@ -354,12 +341,8 @@ M.CrossRegionCopyRule = {
         CopyTags = {
             type = "boolean",
         },
-        RetainRule = {
-            type = "structure",
-        },
-        DeprecateRule = {
-            type = "structure",
-        },
+        RetainRule = M.CrossRegionCopyRetainRule,
+        DeprecateRule = M.CrossRegionCopyDeprecateRule,
     },
 }
 
@@ -367,10 +350,10 @@ M.DeprecateRule = {
     type = "structure",
     members = {
         Count = {
-            type = "number",
+            type = "integer",
         },
         Interval = {
-            type = "number",
+            type = "integer",
         },
         IntervalUnit = {
             type = "string",
@@ -382,21 +365,21 @@ M.FastRestoreRule = {
     type = "structure",
     members = {
         Count = {
-            type = "number",
+            type = "integer",
         },
         Interval = {
-            type = "number",
+            type = "integer",
         },
         IntervalUnit = {
             type = "string",
         },
         AvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AvailabilityZoneIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -405,10 +388,10 @@ M.RetainRule = {
     type = "structure",
     members = {
         Count = {
-            type = "number",
+            type = "integer",
         },
         Interval = {
-            type = "number",
+            type = "integer",
         },
         IntervalUnit = {
             type = "string",
@@ -421,13 +404,13 @@ M.ShareRule = {
     members = {
         TargetAccounts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         UnshareInterval = {
-            type = "number",
+            type = "integer",
         },
         UnshareIntervalUnit = {
             type = "string",
@@ -446,35 +429,25 @@ M.Schedule = {
         },
         TagsToAdd = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         VariableTags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        CreateRule = {
-            type = "structure",
-        },
-        RetainRule = {
-            type = "structure",
-        },
-        FastRestoreRule = {
-            type = "structure",
-        },
+        CreateRule = M.CreateRule,
+        RetainRule = M.RetainRule,
+        FastRestoreRule = M.FastRestoreRule,
         CrossRegionCopyRules = {
             type = "list",
-            member_type = "structure",
+            member = M.CrossRegionCopyRule,
         },
         ShareRules = {
             type = "list",
-            member_type = "structure",
+            member = M.ShareRule,
         },
-        DeprecateRule = {
-            type = "structure",
-        },
-        ArchiveRule = {
-            type = "structure",
-        },
+        DeprecateRule = M.DeprecateRule,
+        ArchiveRule = M.ArchiveRule,
     },
 }
 
@@ -486,29 +459,25 @@ M.PolicyDetails = {
         },
         ResourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ResourceLocations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TargetTags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         Schedules = {
             type = "list",
-            member_type = "structure",
+            member = M.Schedule,
         },
-        Parameters = {
-            type = "structure",
-        },
-        EventSource = {
-            type = "structure",
-        },
+        Parameters = M.Parameters,
+        EventSource = M.EventSource,
         Actions = {
             type = "list",
-            member_type = "structure",
+            member = M.Action,
         },
         PolicyLanguage = {
             type = "string",
@@ -517,24 +486,22 @@ M.PolicyDetails = {
             type = "string",
         },
         CreateInterval = {
-            type = "number",
+            type = "integer",
         },
         RetainInterval = {
-            type = "number",
+            type = "integer",
         },
         CopyTags = {
             type = "boolean",
         },
         CrossRegionCopyTargets = {
             type = "list",
-            member_type = "structure",
+            member = M.CrossRegionCopyTarget,
         },
         ExtendDeletion = {
             type = "boolean",
         },
-        Exclusions = {
-            type = "structure",
-        },
+        Exclusions = M.Exclusions,
     },
 }
 
@@ -564,22 +531,20 @@ M.CreateLifecyclePolicyInput = {
                 required = true,
             },
         },
-        PolicyDetails = {
-            type = "structure",
-        },
+        PolicyDetails = M.PolicyDetails,
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         DefaultPolicy = {
             type = "string",
         },
         CreateInterval = {
-            type = "number",
+            type = "integer",
         },
         RetainInterval = {
-            type = "number",
+            type = "integer",
         },
         CopyTags = {
             type = "boolean",
@@ -589,11 +554,9 @@ M.CreateLifecyclePolicyInput = {
         },
         CrossRegionCopyTargets = {
             type = "list",
-            member_type = "structure",
+            member = M.CrossRegionCopyTarget,
         },
-        Exclusions = {
-            type = "structure",
-        },
+        Exclusions = M.Exclusions,
     },
 }
 
@@ -631,11 +594,11 @@ M.InvalidRequestException = {
         },
         RequiredParameters = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MutuallyExclusiveParameters = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -694,7 +657,7 @@ M.ResourceNotFoundException = {
         },
         ResourceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -710,7 +673,7 @@ M.GetLifecyclePoliciesInput = {
     members = {
         PolicyIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "policyIds",
             },
@@ -723,21 +686,21 @@ M.GetLifecyclePoliciesInput = {
         },
         ResourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "resourceTypes",
             },
         },
         TargetTags = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "targetTags",
             },
         },
         TagsToAdd = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagsToAdd",
             },
@@ -765,8 +728,8 @@ M.LifecyclePolicySummary = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         PolicyType = {
             type = "string",
@@ -782,7 +745,7 @@ M.GetLifecyclePoliciesOutput = {
     members = {
         Policies = {
             type = "list",
-            member_type = "structure",
+            member = M.LifecyclePolicySummary,
         },
     },
 }
@@ -824,13 +787,11 @@ M.LifecyclePolicy = {
         DateModified = {
             type = "timestamp",
         },
-        PolicyDetails = {
-            type = "structure",
-        },
+        PolicyDetails = M.PolicyDetails,
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         PolicyArn = {
             type = "string",
@@ -844,9 +805,7 @@ M.LifecyclePolicy = {
 M.GetLifecyclePolicyOutput = {
     type = "structure",
     members = {
-        Policy = {
-            type = "structure",
-        },
+        Policy = M.LifecyclePolicy,
     },
 }
 
@@ -868,8 +827,8 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -886,8 +845,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -911,7 +870,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -943,14 +902,12 @@ M.UpdateLifecyclePolicyInput = {
         Description = {
             type = "string",
         },
-        PolicyDetails = {
-            type = "structure",
-        },
+        PolicyDetails = M.PolicyDetails,
         CreateInterval = {
-            type = "number",
+            type = "integer",
         },
         RetainInterval = {
-            type = "number",
+            type = "integer",
         },
         CopyTags = {
             type = "boolean",
@@ -960,11 +917,9 @@ M.UpdateLifecyclePolicyInput = {
         },
         CrossRegionCopyTargets = {
             type = "list",
-            member_type = "structure",
+            member = M.CrossRegionCopyTarget,
         },
-        Exclusions = {
-            type = "structure",
-        },
+        Exclusions = M.Exclusions,
     },
 }
 

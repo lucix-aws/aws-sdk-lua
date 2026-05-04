@@ -1,0 +1,10 @@
+local types = require("machinelearning.types")
+
+local record M
+    wait_until_batch_prediction_available: function(client: table, input: table, options: table): table, table
+    wait_until_data_source_available: function(client: table, input: table, options: table): table, table
+    wait_until_evaluation_available: function(client: table, input: table, options: table): table, table
+    wait_until_m_l_model_available: function(client: table, input: table, options: table): table, table
+end
+
+return M

@@ -93,17 +93,23 @@ M.AssessmentControl = {
         },
         comments = {
             type = "list",
-            member_type = "structure",
+            member = M.ControlComment,
         },
         evidenceSources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         evidenceCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         assessmentReportEvidenceCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -196,21 +202,27 @@ M.AssessmentControlSet = {
         },
         roles = {
             type = "list",
-            member_type = "structure",
+            member = M.Role,
         },
         controls = {
             type = "list",
-            member_type = "structure",
+            member = M.AssessmentControl,
         },
         delegations = {
             type = "list",
-            member_type = "structure",
+            member = M.Delegation,
         },
         systemEvidenceCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         manualEvidenceCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -242,12 +254,10 @@ M.AssessmentFramework = {
         arn = {
             type = "string",
         },
-        metadata = {
-            type = "structure",
-        },
+        metadata = M.FrameworkMetadata,
         controlSets = {
             type = "list",
-            member_type = "structure",
+            member = M.AssessmentControlSet,
         },
     },
 }
@@ -282,11 +292,11 @@ M.Scope = {
     members = {
         awsAccounts = {
             type = "list",
-            member_type = "structure",
+            member = M.AWSAccount,
         },
         awsServices = {
             type = "list",
-            member_type = "structure",
+            member = M.AWSService,
         },
     },
 }
@@ -314,19 +324,15 @@ M.AssessmentMetadata = {
         status = {
             type = "string",
         },
-        assessmentReportsDestination = {
-            type = "structure",
-        },
-        scope = {
-            type = "structure",
-        },
+        assessmentReportsDestination = M.AssessmentReportsDestination,
+        scope = M.Scope,
         roles = {
             type = "list",
-            member_type = "structure",
+            member = M.Role,
         },
         delegations = {
             type = "list",
-            member_type = "structure",
+            member = M.Delegation,
         },
         creationTime = {
             type = "timestamp",
@@ -343,19 +349,13 @@ M.Assessment = {
         arn = {
             type = "string",
         },
-        awsAccount = {
-            type = "structure",
-        },
-        metadata = {
-            type = "structure",
-        },
-        framework = {
-            type = "structure",
-        },
+        awsAccount = M.AWSAccount,
+        metadata = M.AssessmentMetadata,
+        framework = M.AssessmentFramework,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -388,34 +388,61 @@ M.AssessmentEvidenceFolder = {
             type = "string",
         },
         totalEvidence = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         assessmentReportSelectionCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         controlName = {
             type = "string",
         },
         evidenceResourcesIncludedCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         evidenceByTypeConfigurationDataCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         evidenceByTypeManualCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         evidenceByTypeComplianceCheckCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         evidenceByTypeComplianceCheckIssuesCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         evidenceByTypeUserActivityCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         evidenceAwsServiceSourceCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -450,10 +477,16 @@ M.AssessmentFrameworkMetadata = {
             type = "string",
         },
         controlsCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         controlSetsCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         createdAt = {
             type = "timestamp",
@@ -515,10 +548,10 @@ M.AssessmentFrameworkShareRequest = {
             type = "string",
         },
         standardControlsCount = {
-            type = "number",
+            type = "integer",
         },
         customControlsCount = {
-            type = "number",
+            type = "integer",
         },
         complianceType = {
             type = "string",
@@ -543,11 +576,11 @@ M.AssessmentMetadataItem = {
         },
         roles = {
             type = "list",
-            member_type = "structure",
+            member = M.Role,
         },
         delegations = {
             type = "list",
-            member_type = "structure",
+            member = M.Delegation,
         },
         creationTime = {
             type = "timestamp",
@@ -743,7 +776,7 @@ M.ValidationException = {
         },
         fields = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -766,7 +799,7 @@ M.BatchAssociateAssessmentReportEvidenceInput = {
         },
         evidenceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -779,11 +812,11 @@ M.BatchAssociateAssessmentReportEvidenceOutput = {
     members = {
         evidenceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.AssessmentReportEvidenceError,
         },
     },
 }
@@ -811,7 +844,7 @@ M.BatchCreateDelegationByAssessmentInput = {
     members = {
         createDelegationRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.CreateDelegationRequest,
             traits = {
                 required = true,
             },
@@ -829,9 +862,7 @@ M.BatchCreateDelegationByAssessmentInput = {
 M.BatchCreateDelegationByAssessmentError = {
     type = "structure",
     members = {
-        createDelegationRequest = {
-            type = "structure",
-        },
+        createDelegationRequest = M.CreateDelegationRequest,
         errorCode = {
             type = "string",
         },
@@ -846,11 +877,11 @@ M.BatchCreateDelegationByAssessmentOutput = {
     members = {
         delegations = {
             type = "list",
-            member_type = "structure",
+            member = M.Delegation,
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchCreateDelegationByAssessmentError,
         },
     },
 }
@@ -860,7 +891,7 @@ M.BatchDeleteDelegationByAssessmentInput = {
     members = {
         delegationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -895,7 +926,7 @@ M.BatchDeleteDelegationByAssessmentOutput = {
     members = {
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchDeleteDelegationByAssessmentError,
         },
     },
 }
@@ -918,7 +949,7 @@ M.BatchDisassociateAssessmentReportEvidenceInput = {
         },
         evidenceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -931,11 +962,11 @@ M.BatchDisassociateAssessmentReportEvidenceOutput = {
     members = {
         evidenceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.AssessmentReportEvidenceError,
         },
     },
 }
@@ -981,7 +1012,7 @@ M.BatchImportEvidenceToAssessmentControlInput = {
         },
         manualEvidence = {
             type = "list",
-            member_type = "structure",
+            member = M.ManualEvidence,
             traits = {
                 required = true,
             },
@@ -992,9 +1023,7 @@ M.BatchImportEvidenceToAssessmentControlInput = {
 M.BatchImportEvidenceToAssessmentControlError = {
     type = "structure",
     members = {
-        manualEvidence = {
-            type = "structure",
-        },
+        manualEvidence = M.ManualEvidence,
         errorCode = {
             type = "string",
         },
@@ -1009,7 +1038,7 @@ M.BatchImportEvidenceToAssessmentControlOutput = {
     members = {
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchImportEvidenceToAssessmentControlError,
         },
     },
 }
@@ -1039,21 +1068,15 @@ M.CreateAssessmentInput = {
         description = {
             type = "string",
         },
-        assessmentReportsDestination = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        scope = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        assessmentReportsDestination = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AssessmentReportsDestination }),
+        scope = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Scope }),
         roles = {
             type = "list",
-            member_type = "structure",
+            member = M.Role,
             traits = {
                 required = true,
             },
@@ -1066,8 +1089,8 @@ M.CreateAssessmentInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1075,9 +1098,7 @@ M.CreateAssessmentInput = {
 M.CreateAssessmentOutput = {
     type = "structure",
     members = {
-        assessment = {
-            type = "structure",
-        },
+        assessment = M.Assessment,
     },
 }
 
@@ -1117,7 +1138,7 @@ M.CreateAssessmentFrameworkControlSet = {
         },
         controls = {
             type = "list",
-            member_type = "structure",
+            member = M.CreateAssessmentFrameworkControl,
         },
     },
 }
@@ -1139,15 +1160,15 @@ M.CreateAssessmentFrameworkInput = {
         },
         controlSets = {
             type = "list",
-            member_type = "structure",
+            member = M.CreateAssessmentFrameworkControlSet,
             traits = {
                 required = true,
             },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1209,9 +1230,7 @@ M.ControlMappingSource = {
         sourceType = {
             type = "string",
         },
-        sourceKeyword = {
-            type = "structure",
-        },
+        sourceKeyword = M.SourceKeyword,
         sourceFrequency = {
             type = "string",
         },
@@ -1264,7 +1283,7 @@ M.Control = {
         },
         controlMappingSources = {
             type = "list",
-            member_type = "structure",
+            member = M.ControlMappingSource,
         },
         createdAt = {
             type = "timestamp",
@@ -1280,8 +1299,8 @@ M.Control = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         state = {
             type = "string",
@@ -1300,7 +1319,7 @@ M.ControlSet = {
         },
         controls = {
             type = "list",
-            member_type = "structure",
+            member = M.Control,
         },
     },
 }
@@ -1334,7 +1353,7 @@ M.Framework = {
         },
         controlSets = {
             type = "list",
-            member_type = "structure",
+            member = M.ControlSet,
         },
         createdAt = {
             type = "timestamp",
@@ -1350,8 +1369,8 @@ M.Framework = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1359,9 +1378,7 @@ M.Framework = {
 M.CreateAssessmentFrameworkOutput = {
     type = "structure",
     members = {
-        framework = {
-            type = "structure",
-        },
+        framework = M.Framework,
     },
 }
 
@@ -1393,9 +1410,7 @@ M.CreateAssessmentReportInput = {
 M.CreateAssessmentReportOutput = {
     type = "structure",
     members = {
-        assessmentReport = {
-            type = "structure",
-        },
+        assessmentReport = M.AssessmentReport,
     },
 }
 
@@ -1414,9 +1429,7 @@ M.CreateControlMappingSource = {
         sourceType = {
             type = "string",
         },
-        sourceKeyword = {
-            type = "structure",
-        },
+        sourceKeyword = M.SourceKeyword,
         sourceFrequency = {
             type = "string",
         },
@@ -1449,15 +1462,15 @@ M.CreateControlInput = {
         },
         controlMappingSources = {
             type = "list",
-            member_type = "structure",
+            member = M.CreateControlMappingSource,
             traits = {
                 required = true,
             },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1465,9 +1478,7 @@ M.CreateControlInput = {
 M.CreateControlOutput = {
     type = "structure",
     members = {
-        control = {
-            type = "structure",
-        },
+        control = M.Control,
     },
 }
 
@@ -1653,12 +1664,8 @@ M.GetAssessmentInput = {
 M.GetAssessmentOutput = {
     type = "structure",
     members = {
-        assessment = {
-            type = "structure",
-        },
-        userRole = {
-            type = "structure",
-        },
+        assessment = M.Assessment,
+        userRole = M.Role,
     },
 }
 
@@ -1678,9 +1685,7 @@ M.GetAssessmentFrameworkInput = {
 M.GetAssessmentFrameworkOutput = {
     type = "structure",
     members = {
-        framework = {
-            type = "structure",
-        },
+        framework = M.Framework,
     },
 }
 
@@ -1719,9 +1724,7 @@ M.URL = {
 M.GetAssessmentReportUrlOutput = {
     type = "structure",
     members = {
-        preSignedUrl = {
-            type = "structure",
-        },
+        preSignedUrl = M.URL,
     },
 }
 
@@ -1754,7 +1757,7 @@ M.GetChangeLogsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1796,7 +1799,7 @@ M.GetChangeLogsOutput = {
     members = {
         changeLogs = {
             type = "list",
-            member_type = "structure",
+            member = M.ChangeLog,
         },
         nextToken = {
             type = "string",
@@ -1820,9 +1823,7 @@ M.GetControlInput = {
 M.GetControlOutput = {
     type = "structure",
     members = {
-        control = {
-            type = "structure",
-        },
+        control = M.Control,
     },
 }
 
@@ -1836,7 +1837,7 @@ M.GetDelegationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1876,7 +1877,7 @@ M.GetDelegationsOutput = {
     members = {
         delegations = {
             type = "list",
-            member_type = "structure",
+            member = M.DelegationMetadata,
         },
         nextToken = {
             type = "string",
@@ -1956,12 +1957,12 @@ M.Evidence = {
         },
         resourcesIncluded = {
             type = "list",
-            member_type = "structure",
+            member = M.Resource,
         },
         attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         iamId = {
             type = "string",
@@ -1990,9 +1991,7 @@ M.Evidence = {
 M.GetEvidenceOutput = {
     type = "structure",
     members = {
-        evidence = {
-            type = "structure",
-        },
+        evidence = M.Evidence,
     },
 }
 
@@ -2027,7 +2026,7 @@ M.GetEvidenceByEvidenceFolderInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2040,7 +2039,7 @@ M.GetEvidenceByEvidenceFolderOutput = {
     members = {
         evidence = {
             type = "list",
-            member_type = "structure",
+            member = M.Evidence,
         },
         nextToken = {
             type = "string",
@@ -2103,9 +2102,7 @@ M.GetEvidenceFolderInput = {
 M.GetEvidenceFolderOutput = {
     type = "structure",
     members = {
-        evidenceFolder = {
-            type = "structure",
-        },
+        evidenceFolder = M.AssessmentEvidenceFolder,
     },
 }
 
@@ -2126,7 +2123,7 @@ M.GetEvidenceFoldersByAssessmentInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2139,7 +2136,7 @@ M.GetEvidenceFoldersByAssessmentOutput = {
     members = {
         evidenceFolders = {
             type = "list",
-            member_type = "structure",
+            member = M.AssessmentEvidenceFolder,
         },
         nextToken = {
             type = "string",
@@ -2178,7 +2175,7 @@ M.GetEvidenceFoldersByAssessmentControlInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2191,7 +2188,7 @@ M.GetEvidenceFoldersByAssessmentControlOutput = {
     members = {
         evidenceFolders = {
             type = "list",
-            member_type = "structure",
+            member = M.AssessmentEvidenceFolder,
         },
         nextToken = {
             type = "string",
@@ -2207,22 +2204,22 @@ M.Insights = {
     type = "structure",
     members = {
         activeAssessmentsCount = {
-            type = "number",
+            type = "integer",
         },
         noncompliantEvidenceCount = {
-            type = "number",
+            type = "integer",
         },
         compliantEvidenceCount = {
-            type = "number",
+            type = "integer",
         },
         inconclusiveEvidenceCount = {
-            type = "number",
+            type = "integer",
         },
         assessmentControlsCountByNoncompliantEvidence = {
-            type = "number",
+            type = "integer",
         },
         totalAssessmentControlsCount = {
-            type = "number",
+            type = "integer",
         },
         lastUpdated = {
             type = "timestamp",
@@ -2233,9 +2230,7 @@ M.Insights = {
 M.GetInsightsOutput = {
     type = "structure",
     members = {
-        insights = {
-            type = "structure",
-        },
+        insights = M.Insights,
     },
 }
 
@@ -2256,19 +2251,19 @@ M.InsightsByAssessment = {
     type = "structure",
     members = {
         noncompliantEvidenceCount = {
-            type = "number",
+            type = "integer",
         },
         compliantEvidenceCount = {
-            type = "number",
+            type = "integer",
         },
         inconclusiveEvidenceCount = {
-            type = "number",
+            type = "integer",
         },
         assessmentControlsCountByNoncompliantEvidence = {
-            type = "number",
+            type = "integer",
         },
         totalAssessmentControlsCount = {
-            type = "number",
+            type = "integer",
         },
         lastUpdated = {
             type = "timestamp",
@@ -2279,9 +2274,7 @@ M.InsightsByAssessment = {
 M.GetInsightsByAssessmentOutput = {
     type = "structure",
     members = {
-        insights = {
-            type = "structure",
-        },
+        insights = M.InsightsByAssessment,
     },
 }
 
@@ -2328,7 +2321,7 @@ M.GetServicesInScopeOutput = {
     members = {
         serviceMetadata = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceMetadata,
         },
     },
 }
@@ -2427,34 +2420,24 @@ M.Settings = {
         snsTopic = {
             type = "string",
         },
-        defaultAssessmentReportsDestination = {
-            type = "structure",
-        },
+        defaultAssessmentReportsDestination = M.AssessmentReportsDestination,
         defaultProcessOwners = {
             type = "list",
-            member_type = "structure",
+            member = M.Role,
         },
         kmsKey = {
             type = "string",
         },
-        evidenceFinderEnablement = {
-            type = "structure",
-        },
-        deregistrationPolicy = {
-            type = "structure",
-        },
-        defaultExportDestination = {
-            type = "structure",
-        },
+        evidenceFinderEnablement = M.EvidenceFinderEnablement,
+        deregistrationPolicy = M.DeregistrationPolicy,
+        defaultExportDestination = M.DefaultExportDestination,
     },
 }
 
 M.GetSettingsOutput = {
     type = "structure",
     members = {
-        settings = {
-            type = "structure",
-        },
+        settings = M.Settings,
     },
 }
 
@@ -2482,7 +2465,7 @@ M.ListAssessmentControlInsightsByControlDomainInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2494,13 +2477,13 @@ M.EvidenceInsights = {
     type = "structure",
     members = {
         noncompliantEvidenceCount = {
-            type = "number",
+            type = "integer",
         },
         compliantEvidenceCount = {
-            type = "number",
+            type = "integer",
         },
         inconclusiveEvidenceCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2514,9 +2497,7 @@ M.ControlInsightsMetadataByAssessmentItem = {
         id = {
             type = "string",
         },
-        evidenceInsights = {
-            type = "structure",
-        },
+        evidenceInsights = M.EvidenceInsights,
         controlSetName = {
             type = "string",
         },
@@ -2531,7 +2512,7 @@ M.ListAssessmentControlInsightsByControlDomainOutput = {
     members = {
         controlInsightsByAssessment = {
             type = "list",
-            member_type = "structure",
+            member = M.ControlInsightsMetadataByAssessmentItem,
         },
         nextToken = {
             type = "string",
@@ -2556,7 +2537,7 @@ M.ListAssessmentFrameworksInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2569,7 +2550,7 @@ M.ListAssessmentFrameworksOutput = {
     members = {
         frameworkMetadataList = {
             type = "list",
-            member_type = "structure",
+            member = M.AssessmentFrameworkMetadata,
         },
         nextToken = {
             type = "string",
@@ -2594,7 +2575,7 @@ M.ListAssessmentFrameworkShareRequestsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2607,7 +2588,7 @@ M.ListAssessmentFrameworkShareRequestsOutput = {
     members = {
         assessmentFrameworkShareRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.AssessmentFrameworkShareRequest,
         },
         nextToken = {
             type = "string",
@@ -2625,7 +2606,7 @@ M.ListAssessmentReportsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2638,7 +2619,7 @@ M.ListAssessmentReportsOutput = {
     members = {
         assessmentReports = {
             type = "list",
-            member_type = "structure",
+            member = M.AssessmentReportMetadata,
         },
         nextToken = {
             type = "string",
@@ -2662,7 +2643,7 @@ M.ListAssessmentsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2675,7 +2656,7 @@ M.ListAssessmentsOutput = {
     members = {
         assessmentMetadata = {
             type = "list",
-            member_type = "structure",
+            member = M.AssessmentMetadataItem,
         },
         nextToken = {
             type = "string",
@@ -2693,7 +2674,7 @@ M.ListControlDomainInsightsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2711,14 +2692,12 @@ M.ControlDomainInsights = {
             type = "string",
         },
         controlsCountByNoncompliantEvidence = {
-            type = "number",
+            type = "integer",
         },
         totalControlsCount = {
-            type = "number",
+            type = "integer",
         },
-        evidenceInsights = {
-            type = "structure",
-        },
+        evidenceInsights = M.EvidenceInsights,
         lastUpdated = {
             type = "timestamp",
         },
@@ -2730,7 +2709,7 @@ M.ListControlDomainInsightsOutput = {
     members = {
         controlDomainInsights = {
             type = "list",
-            member_type = "structure",
+            member = M.ControlDomainInsights,
         },
         nextToken = {
             type = "string",
@@ -2755,7 +2734,7 @@ M.ListControlDomainInsightsByAssessmentInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2768,7 +2747,7 @@ M.ListControlDomainInsightsByAssessmentOutput = {
     members = {
         controlDomainInsights = {
             type = "list",
-            member_type = "structure",
+            member = M.ControlDomainInsights,
         },
         nextToken = {
             type = "string",
@@ -2793,7 +2772,7 @@ M.ListControlInsightsByControlDomainInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2810,9 +2789,7 @@ M.ControlInsightsMetadataItem = {
         id = {
             type = "string",
         },
-        evidenceInsights = {
-            type = "structure",
-        },
+        evidenceInsights = M.EvidenceInsights,
         lastUpdated = {
             type = "timestamp",
         },
@@ -2824,7 +2801,7 @@ M.ListControlInsightsByControlDomainOutput = {
     members = {
         controlInsightsMetadata = {
             type = "list",
-            member_type = "structure",
+            member = M.ControlInsightsMetadataItem,
         },
         nextToken = {
             type = "string",
@@ -2849,7 +2826,7 @@ M.ListControlsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2892,7 +2869,7 @@ M.ListControlsOutput = {
     members = {
         controlMetadataList = {
             type = "list",
-            member_type = "structure",
+            member = M.ControlMetadata,
         },
         nextToken = {
             type = "string",
@@ -2925,7 +2902,7 @@ M.ListKeywordsForDataSourceInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2938,7 +2915,7 @@ M.ListKeywordsForDataSourceOutput = {
     members = {
         keywords = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -2956,7 +2933,7 @@ M.ListNotificationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2999,7 +2976,7 @@ M.ListNotificationsOutput = {
     members = {
         notifications = {
             type = "list",
-            member_type = "structure",
+            member = M.Notification,
         },
         nextToken = {
             type = "string",
@@ -3025,8 +3002,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3107,9 +3084,7 @@ M.StartAssessmentFrameworkShareInput = {
 M.StartAssessmentFrameworkShareOutput = {
     type = "structure",
     members = {
-        assessmentFrameworkShareRequest = {
-            type = "structure",
-        },
+        assessmentFrameworkShareRequest = M.AssessmentFrameworkShareRequest,
     },
 }
 
@@ -3125,8 +3100,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3150,7 +3125,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -3179,18 +3154,13 @@ M.UpdateAssessmentInput = {
         assessmentDescription = {
             type = "string",
         },
-        scope = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        assessmentReportsDestination = {
-            type = "structure",
-        },
+        scope = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Scope }),
+        assessmentReportsDestination = M.AssessmentReportsDestination,
         roles = {
             type = "list",
-            member_type = "structure",
+            member = M.Role,
         },
     },
 }
@@ -3198,9 +3168,7 @@ M.UpdateAssessmentInput = {
 M.UpdateAssessmentOutput = {
     type = "structure",
     members = {
-        assessment = {
-            type = "structure",
-        },
+        assessment = M.Assessment,
     },
 }
 
@@ -3240,9 +3208,7 @@ M.UpdateAssessmentControlInput = {
 M.UpdateAssessmentControlOutput = {
     type = "structure",
     members = {
-        control = {
-            type = "structure",
-        },
+        control = M.AssessmentControl,
     },
 }
 
@@ -3281,9 +3247,7 @@ M.UpdateAssessmentControlSetStatusInput = {
 M.UpdateAssessmentControlSetStatusOutput = {
     type = "structure",
     members = {
-        controlSet = {
-            type = "structure",
-        },
+        controlSet = M.AssessmentControlSet,
     },
 }
 
@@ -3301,7 +3265,7 @@ M.UpdateAssessmentFrameworkControlSet = {
         },
         controls = {
             type = "list",
-            member_type = "structure",
+            member = M.CreateAssessmentFrameworkControl,
             traits = {
                 required = true,
             },
@@ -3333,7 +3297,7 @@ M.UpdateAssessmentFrameworkInput = {
         },
         controlSets = {
             type = "list",
-            member_type = "structure",
+            member = M.UpdateAssessmentFrameworkControlSet,
             traits = {
                 required = true,
             },
@@ -3344,9 +3308,7 @@ M.UpdateAssessmentFrameworkInput = {
 M.UpdateAssessmentFrameworkOutput = {
     type = "structure",
     members = {
-        framework = {
-            type = "structure",
-        },
+        framework = M.Framework,
     },
 }
 
@@ -3384,9 +3346,7 @@ M.UpdateAssessmentFrameworkShareInput = {
 M.UpdateAssessmentFrameworkShareOutput = {
     type = "structure",
     members = {
-        assessmentFrameworkShareRequest = {
-            type = "structure",
-        },
+        assessmentFrameworkShareRequest = M.AssessmentFrameworkShareRequest,
     },
 }
 
@@ -3412,9 +3372,7 @@ M.UpdateAssessmentStatusInput = {
 M.UpdateAssessmentStatusOutput = {
     type = "structure",
     members = {
-        assessment = {
-            type = "structure",
-        },
+        assessment = M.Assessment,
     },
 }
 
@@ -3448,7 +3406,7 @@ M.UpdateControlInput = {
         },
         controlMappingSources = {
             type = "list",
-            member_type = "structure",
+            member = M.ControlMappingSource,
             traits = {
                 required = true,
             },
@@ -3459,9 +3417,7 @@ M.UpdateControlInput = {
 M.UpdateControlOutput = {
     type = "structure",
     members = {
-        control = {
-            type = "structure",
-        },
+        control = M.Control,
     },
 }
 
@@ -3471,12 +3427,10 @@ M.UpdateSettingsInput = {
         snsTopic = {
             type = "string",
         },
-        defaultAssessmentReportsDestination = {
-            type = "structure",
-        },
+        defaultAssessmentReportsDestination = M.AssessmentReportsDestination,
         defaultProcessOwners = {
             type = "list",
-            member_type = "structure",
+            member = M.Role,
         },
         kmsKey = {
             type = "string",
@@ -3484,21 +3438,15 @@ M.UpdateSettingsInput = {
         evidenceFinderEnabled = {
             type = "boolean",
         },
-        deregistrationPolicy = {
-            type = "structure",
-        },
-        defaultExportDestination = {
-            type = "structure",
-        },
+        deregistrationPolicy = M.DeregistrationPolicy,
+        defaultExportDestination = M.DefaultExportDestination,
     },
 }
 
 M.UpdateSettingsOutput = {
     type = "structure",
     members = {
-        settings = {
-            type = "structure",
-        },
+        settings = M.Settings,
     },
 }
 
@@ -3531,7 +3479,7 @@ M.ValidateAssessmentReportIntegrityOutput = {
         },
         validationErrors = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }

@@ -99,7 +99,7 @@ M.PublishMetricAction = {
     members = {
         Dimensions = {
             type = "list",
-            member_type = "structure",
+            member = M.Dimension,
             traits = {
                 required = true,
             },
@@ -110,9 +110,7 @@ M.PublishMetricAction = {
 M.ActionDefinition = {
     type = "structure",
     members = {
-        PublishMetricAction = {
-            type = "structure",
-        },
+        PublishMetricAction = M.PublishMetricAction,
     },
 }
 
@@ -155,7 +153,10 @@ M.Hits = {
     type = "structure",
     members = {
         Count = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -164,7 +165,10 @@ M.UniqueSources = {
     type = "structure",
     members = {
         Count = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -184,12 +188,8 @@ M.AnalysisTypeReportResult = {
         Domain = {
             type = "string",
         },
-        Hits = {
-            type = "structure",
-        },
-        UniqueSources = {
-            type = "structure",
-        },
+        Hits = M.Hits,
+        UniqueSources = M.UniqueSources,
     },
 }
 
@@ -203,7 +203,7 @@ M.AnalysisResult = {
     members = {
         IdentifiedRuleIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IdentifiedType = {
             type = "string",
@@ -240,7 +240,7 @@ M.AssociateAvailabilityZonesInput = {
         },
         AvailabilityZoneMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.AvailabilityZoneMapping,
             traits = {
                 required = true,
             },
@@ -259,7 +259,7 @@ M.AssociateAvailabilityZonesOutput = {
         },
         AvailabilityZoneMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.AvailabilityZoneMapping,
         },
         UpdateToken = {
             type = "string",
@@ -371,7 +371,7 @@ M.AssociateSubnetsInput = {
         },
         SubnetMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.SubnetMapping,
             traits = {
                 required = true,
             },
@@ -390,7 +390,7 @@ M.AssociateSubnetsOutput = {
         },
         SubnetMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.SubnetMapping,
         },
         UpdateToken = {
             type = "string",
@@ -428,9 +428,7 @@ M.Attachment = {
 M.AZSyncState = {
     type = "structure",
     members = {
-        Attachment = {
-            type = "structure",
-        },
+        Attachment = M.Attachment,
     },
 }
 
@@ -441,7 +439,7 @@ M.ProxyRuleGroupAttachment = {
             type = "string",
         },
         InsertPosition = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -457,7 +455,7 @@ M.AttachRuleGroupsToProxyConfigurationInput = {
         },
         RuleGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.ProxyRuleGroupAttachment,
             traits = {
                 required = true,
             },
@@ -505,7 +503,7 @@ M.ProxyConfigRuleGroup = {
             type = "string",
         },
         Priority = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -548,14 +546,12 @@ M.ProxyConfiguration = {
         },
         RuleGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.ProxyConfigRuleGroup,
         },
-        DefaultRulePhaseActions = {
-            type = "structure",
-        },
+        DefaultRulePhaseActions = M.ProxyConfigDefaultRulePhaseActionsRequest,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -563,9 +559,7 @@ M.ProxyConfiguration = {
 M.AttachRuleGroupsToProxyConfigurationOutput = {
     type = "structure",
     members = {
-        ProxyConfiguration = {
-            type = "structure",
-        },
+        ProxyConfiguration = M.ProxyConfiguration,
         UpdateToken = {
             type = "string",
         },
@@ -585,7 +579,7 @@ M.IPSetMetadata = {
     type = "structure",
     members = {
         ResolvedCIDRCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -594,15 +588,15 @@ M.CIDRSummary = {
     type = "structure",
     members = {
         AvailableCIDRCount = {
-            type = "number",
+            type = "integer",
         },
         UtilizedCIDRCount = {
-            type = "number",
+            type = "integer",
         },
         IPSetReferences = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.IPSetMetadata,
         },
     },
 }
@@ -610,9 +604,7 @@ M.CIDRSummary = {
 M.CapacityUsageSummary = {
     type = "structure",
     members = {
-        CIDRs = {
-            type = "structure",
-        },
+        CIDRs = M.CIDRSummary,
     },
 }
 
@@ -698,40 +690,50 @@ M.CreateFirewallInput = {
         },
         SubnetMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.SubnetMapping,
         },
         DeleteProtection = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         SubnetChangeProtection = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         FirewallPolicyChangeProtection = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Description = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        EncryptionConfiguration = {
-            type = "structure",
-        },
+        EncryptionConfiguration = M.EncryptionConfiguration,
         EnabledAnalysisTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TransitGatewayId = {
             type = "string",
         },
         AvailabilityZoneMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.AvailabilityZoneMapping,
         },
         AvailabilityZoneChangeProtection = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -759,19 +761,28 @@ M.Firewall = {
         },
         SubnetMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.SubnetMapping,
             traits = {
                 required = true,
             },
         },
         DeleteProtection = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         SubnetChangeProtection = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         FirewallPolicyChangeProtection = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Description = {
             type = "string",
@@ -784,17 +795,15 @@ M.Firewall = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        EncryptionConfiguration = {
-            type = "structure",
-        },
+        EncryptionConfiguration = M.EncryptionConfiguration,
         NumberOfAssociations = {
-            type = "number",
+            type = "integer",
         },
         EnabledAnalysisTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TransitGatewayId = {
             type = "string",
@@ -804,10 +813,13 @@ M.Firewall = {
         },
         AvailabilityZoneMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.AvailabilityZoneMapping,
         },
         AvailabilityZoneChangeProtection = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -841,13 +853,11 @@ M.PerObjectStatus = {
 M.SyncState = {
     type = "structure",
     members = {
-        Attachment = {
-            type = "structure",
-        },
+        Attachment = M.Attachment,
         Config = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.PerObjectStatus,
         },
     },
 }
@@ -884,27 +894,19 @@ M.FirewallStatus = {
         },
         SyncStates = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.SyncState,
         },
-        CapacityUsageSummary = {
-            type = "structure",
-        },
-        TransitGatewayAttachmentSyncState = {
-            type = "structure",
-        },
+        CapacityUsageSummary = M.CapacityUsageSummary,
+        TransitGatewayAttachmentSyncState = M.TransitGatewayAttachmentSyncState,
     },
 }
 
 M.CreateFirewallOutput = {
     type = "structure",
     members = {
-        Firewall = {
-            type = "structure",
-        },
-        FirewallStatus = {
-            type = "structure",
-        },
+        Firewall = M.Firewall,
+        FirewallStatus = M.FirewallStatus,
     },
 }
 
@@ -923,7 +925,7 @@ M.IPSet = {
     members = {
         Definition = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -936,8 +938,8 @@ M.PolicyVariables = {
     members = {
         RuleVariables = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.IPSet,
         },
     },
 }
@@ -946,7 +948,7 @@ M.FlowTimeouts = {
     type = "structure",
     members = {
         TcpIdleTimeoutSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -971,9 +973,7 @@ M.StatefulEngineOptions = {
         StreamExceptionPolicy = {
             type = "string",
         },
-        FlowTimeouts = {
-            type = "structure",
-        },
+        FlowTimeouts = M.FlowTimeouts,
     },
 }
 
@@ -1000,11 +1000,9 @@ M.StatefulRuleGroupReference = {
             },
         },
         Priority = {
-            type = "number",
+            type = "integer",
         },
-        Override = {
-            type = "structure",
-        },
+        Override = M.StatefulRuleGroupOverride,
         DeepThreatInspection = {
             type = "boolean",
         },
@@ -1020,12 +1018,9 @@ M.CustomAction = {
                 required = true,
             },
         },
-        ActionDefinition = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ActionDefinition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActionDefinition }),
     },
 }
 
@@ -1039,7 +1034,7 @@ M.StatelessRuleGroupReference = {
             },
         },
         Priority = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1052,43 +1047,39 @@ M.FirewallPolicy = {
     members = {
         StatelessRuleGroupReferences = {
             type = "list",
-            member_type = "structure",
+            member = M.StatelessRuleGroupReference,
         },
         StatelessDefaultActions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         StatelessFragmentDefaultActions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         StatelessCustomActions = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomAction,
         },
         StatefulRuleGroupReferences = {
             type = "list",
-            member_type = "structure",
+            member = M.StatefulRuleGroupReference,
         },
         StatefulDefaultActions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        StatefulEngineOptions = {
-            type = "structure",
-        },
+        StatefulEngineOptions = M.StatefulEngineOptions,
         TLSInspectionConfigurationArn = {
             type = "string",
         },
-        PolicyVariables = {
-            type = "structure",
-        },
+        PolicyVariables = M.PolicyVariables,
         EnableTLSSessionHolding = {
             type = "boolean",
         },
@@ -1104,25 +1095,23 @@ M.CreateFirewallPolicyInput = {
                 required = true,
             },
         },
-        FirewallPolicy = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        FirewallPolicy = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FirewallPolicy }),
         Description = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         DryRun = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        EncryptionConfiguration = {
-            type = "structure",
-        },
+        EncryptionConfiguration = M.EncryptionConfiguration,
     },
 }
 
@@ -1161,23 +1150,21 @@ M.FirewallPolicyResponse = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ConsumedStatelessRuleCapacity = {
-            type = "number",
+            type = "integer",
         },
         ConsumedStatefulRuleCapacity = {
-            type = "number",
+            type = "integer",
         },
         ConsumedStatefulDomainCapacity = {
-            type = "number",
+            type = "integer",
         },
         NumberOfAssociations = {
-            type = "number",
+            type = "integer",
         },
-        EncryptionConfiguration = {
-            type = "structure",
-        },
+        EncryptionConfiguration = M.EncryptionConfiguration,
         LastModifiedTime = {
             type = "timestamp",
         },
@@ -1193,12 +1180,9 @@ M.CreateFirewallPolicyOutput = {
                 required = true,
             },
         },
-        FirewallPolicyResponse = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        FirewallPolicyResponse = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FirewallPolicyResponse }),
     },
 }
 
@@ -1211,7 +1195,7 @@ M.ListenerPropertyRequest = {
     type = "structure",
     members = {
         Port = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1265,17 +1249,14 @@ M.CreateProxyInput = {
         },
         ListenerProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.ListenerPropertyRequest,
         },
-        TlsInterceptProperties = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TlsInterceptProperties = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TlsInterceptPropertiesRequest }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1284,7 +1265,7 @@ M.ListenerProperty = {
     type = "structure",
     members = {
         Port = {
-            type = "number",
+            type = "integer",
         },
         Type = {
             type = "string",
@@ -1360,14 +1341,12 @@ M.Proxy = {
         },
         ListenerProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.ListenerProperty,
         },
-        TlsInterceptProperties = {
-            type = "structure",
-        },
+        TlsInterceptProperties = M.TlsInterceptProperties,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1375,9 +1354,7 @@ M.Proxy = {
 M.CreateProxyOutput = {
     type = "structure",
     members = {
-        Proxy = {
-            type = "structure",
-        },
+        Proxy = M.Proxy,
         UpdateToken = {
             type = "string",
         },
@@ -1408,21 +1385,18 @@ M.CreateProxyConfigurationInput = {
         },
         RuleGroupNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RuleGroupArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        DefaultRulePhaseActions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DefaultRulePhaseActions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProxyConfigDefaultRulePhaseActionsRequest }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1430,9 +1404,7 @@ M.CreateProxyConfigurationInput = {
 M.CreateProxyConfigurationOutput = {
     type = "structure",
     members = {
-        ProxyConfiguration = {
-            type = "structure",
-        },
+        ProxyConfiguration = M.ProxyConfiguration,
         UpdateToken = {
             type = "string",
         },
@@ -1450,7 +1422,7 @@ M.ProxyRuleCondition = {
         },
         ConditionValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1469,10 +1441,10 @@ M.CreateProxyRule = {
         },
         Conditions = {
             type = "list",
-            member_type = "structure",
+            member = M.ProxyRuleCondition,
         },
         InsertPosition = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1491,7 +1463,7 @@ M.ProxyRule = {
         },
         Conditions = {
             type = "list",
-            member_type = "structure",
+            member = M.ProxyRuleCondition,
         },
     },
 }
@@ -1501,15 +1473,15 @@ M.ProxyRulesByRequestPhase = {
     members = {
         PreDNS = {
             type = "list",
-            member_type = "structure",
+            member = M.ProxyRule,
         },
         PreREQUEST = {
             type = "list",
-            member_type = "structure",
+            member = M.ProxyRule,
         },
         PostRESPONSE = {
             type = "list",
-            member_type = "structure",
+            member = M.ProxyRule,
         },
     },
 }
@@ -1526,12 +1498,10 @@ M.CreateProxyRuleGroupInput = {
         Description = {
             type = "string",
         },
-        Rules = {
-            type = "structure",
-        },
+        Rules = M.ProxyRulesByRequestPhase,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1551,15 +1521,13 @@ M.ProxyRuleGroup = {
         DeleteTime = {
             type = "timestamp",
         },
-        Rules = {
-            type = "structure",
-        },
+        Rules = M.ProxyRulesByRequestPhase,
         Description = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1567,9 +1535,7 @@ M.ProxyRuleGroup = {
 M.CreateProxyRuleGroupOutput = {
     type = "structure",
     members = {
-        ProxyRuleGroup = {
-            type = "structure",
-        },
+        ProxyRuleGroup = M.ProxyRuleGroup,
         UpdateToken = {
             type = "string",
         },
@@ -1581,15 +1547,15 @@ M.CreateProxyRulesByRequestPhase = {
     members = {
         PreDNS = {
             type = "list",
-            member_type = "structure",
+            member = M.CreateProxyRule,
         },
         PreREQUEST = {
             type = "list",
-            member_type = "structure",
+            member = M.CreateProxyRule,
         },
         PostRESPONSE = {
             type = "list",
-            member_type = "structure",
+            member = M.CreateProxyRule,
         },
     },
 }
@@ -1603,21 +1569,16 @@ M.CreateProxyRulesInput = {
         ProxyRuleGroupName = {
             type = "string",
         },
-        Rules = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Rules = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CreateProxyRulesByRequestPhase }),
     },
 }
 
 M.CreateProxyRulesOutput = {
     type = "structure",
     members = {
-        ProxyRuleGroup = {
-            type = "structure",
-        },
+        ProxyRuleGroup = M.ProxyRuleGroup,
         UpdateToken = {
             type = "string",
         },
@@ -1638,8 +1599,8 @@ M.ReferenceSets = {
     members = {
         IPSetReferences = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.IPSetReference,
         },
     },
 }
@@ -1661,14 +1622,14 @@ M.RulesSourceList = {
     members = {
         Targets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         TargetTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1771,7 +1732,7 @@ M.RuleOption = {
         },
         Settings = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1785,15 +1746,12 @@ M.StatefulRule = {
                 required = true,
             },
         },
-        Header = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Header = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Header }),
         RuleOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleOption,
             traits = {
                 required = true,
             },
@@ -1805,14 +1763,16 @@ M.PortRange = {
     type = "structure",
     members = {
         FromPort = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         ToPort = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -1835,14 +1795,14 @@ M.TCPFlagField = {
     members = {
         Flags = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         Masks = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1852,27 +1812,27 @@ M.MatchAttributes = {
     members = {
         Sources = {
             type = "list",
-            member_type = "structure",
+            member = M.Address,
         },
         Destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.Address,
         },
         SourcePorts = {
             type = "list",
-            member_type = "structure",
+            member = M.PortRange,
         },
         DestinationPorts = {
             type = "list",
-            member_type = "structure",
+            member = M.PortRange,
         },
         Protocols = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
         },
         TCPFlags = {
             type = "list",
-            member_type = "structure",
+            member = M.TCPFlagField,
         },
     },
 }
@@ -1880,15 +1840,12 @@ M.MatchAttributes = {
 M.RuleDefinition = {
     type = "structure",
     members = {
-        MatchAttributes = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        MatchAttributes = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MatchAttributes }),
         Actions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1899,14 +1856,11 @@ M.RuleDefinition = {
 M.StatelessRule = {
     type = "structure",
     members = {
-        RuleDefinition = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RuleDefinition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RuleDefinition }),
         Priority = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1919,14 +1873,14 @@ M.StatelessRulesAndCustomActions = {
     members = {
         StatelessRules = {
             type = "list",
-            member_type = "structure",
+            member = M.StatelessRule,
             traits = {
                 required = true,
             },
         },
         CustomActions = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomAction,
         },
     },
 }
@@ -1937,16 +1891,12 @@ M.RulesSource = {
         RulesString = {
             type = "string",
         },
-        RulesSourceList = {
-            type = "structure",
-        },
+        RulesSourceList = M.RulesSourceList,
         StatefulRules = {
             type = "list",
-            member_type = "structure",
+            member = M.StatefulRule,
         },
-        StatelessRulesAndCustomActions = {
-            type = "structure",
-        },
+        StatelessRulesAndCustomActions = M.StatelessRulesAndCustomActions,
     },
 }
 
@@ -1955,7 +1905,7 @@ M.PortSet = {
     members = {
         Definition = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1965,13 +1915,13 @@ M.RuleVariables = {
     members = {
         IPSets = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.IPSet,
         },
         PortSets = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.PortSet,
         },
     },
 }
@@ -1988,21 +1938,12 @@ M.StatefulRuleOptions = {
 M.RuleGroup = {
     type = "structure",
     members = {
-        RuleVariables = {
-            type = "structure",
-        },
-        ReferenceSets = {
-            type = "structure",
-        },
-        RulesSource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        StatefulRuleOptions = {
-            type = "structure",
-        },
+        RuleVariables = M.RuleVariables,
+        ReferenceSets = M.ReferenceSets,
+        RulesSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RulesSource }),
+        StatefulRuleOptions = M.StatefulRuleOptions,
     },
 }
 
@@ -2029,7 +1970,7 @@ M.SummaryConfiguration = {
     members = {
         RuleOptions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2049,9 +1990,7 @@ M.CreateRuleGroupInput = {
                 required = true,
             },
         },
-        RuleGroup = {
-            type = "structure",
-        },
+        RuleGroup = M.RuleGroup,
         Rules = {
             type = "string",
         },
@@ -2065,30 +2004,30 @@ M.CreateRuleGroupInput = {
             type = "string",
         },
         Capacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         DryRun = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        EncryptionConfiguration = {
-            type = "structure",
-        },
-        SourceMetadata = {
-            type = "structure",
-        },
+        EncryptionConfiguration = M.EncryptionConfiguration,
+        SourceMetadata = M.SourceMetadata,
         AnalyzeRuleGroup = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        SummaryConfiguration = {
-            type = "structure",
-        },
+        SummaryConfiguration = M.SummaryConfiguration,
     },
 }
 
@@ -2120,27 +2059,23 @@ M.RuleGroupResponse = {
             type = "string",
         },
         Capacity = {
-            type = "number",
+            type = "integer",
         },
         RuleGroupStatus = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ConsumedCapacity = {
-            type = "number",
+            type = "integer",
         },
         NumberOfAssociations = {
-            type = "number",
+            type = "integer",
         },
-        EncryptionConfiguration = {
-            type = "structure",
-        },
-        SourceMetadata = {
-            type = "structure",
-        },
+        EncryptionConfiguration = M.EncryptionConfiguration,
+        SourceMetadata = M.SourceMetadata,
         SnsTopic = {
             type = "string",
         },
@@ -2149,11 +2084,9 @@ M.RuleGroupResponse = {
         },
         AnalysisResults = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalysisResult,
         },
-        SummaryConfiguration = {
-            type = "structure",
-        },
+        SummaryConfiguration = M.SummaryConfiguration,
     },
 }
 
@@ -2166,12 +2099,9 @@ M.CreateRuleGroupOutput = {
                 required = true,
             },
         },
-        RuleGroupResponse = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RuleGroupResponse = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RuleGroupResponse }),
     },
 }
 
@@ -2180,23 +2110,23 @@ M.ServerCertificateScope = {
     members = {
         Sources = {
             type = "list",
-            member_type = "structure",
+            member = M.Address,
         },
         Destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.Address,
         },
         SourcePorts = {
             type = "list",
-            member_type = "structure",
+            member = M.PortRange,
         },
         DestinationPorts = {
             type = "list",
-            member_type = "structure",
+            member = M.PortRange,
         },
         Protocols = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
         },
     },
 }
@@ -2215,18 +2145,16 @@ M.ServerCertificateConfiguration = {
     members = {
         ServerCertificates = {
             type = "list",
-            member_type = "structure",
+            member = M.ServerCertificate,
         },
         Scopes = {
             type = "list",
-            member_type = "structure",
+            member = M.ServerCertificateScope,
         },
         CertificateAuthorityArn = {
             type = "string",
         },
-        CheckCertificateRevocationStatus = {
-            type = "structure",
-        },
+        CheckCertificateRevocationStatus = M.CheckCertificateRevocationStatusActions,
     },
 }
 
@@ -2235,7 +2163,7 @@ M.TLSInspectionConfiguration = {
     members = {
         ServerCertificateConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.ServerCertificateConfiguration,
         },
     },
 }
@@ -2249,22 +2177,17 @@ M.CreateTLSInspectionConfigurationInput = {
                 required = true,
             },
         },
-        TLSInspectionConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TLSInspectionConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TLSInspectionConfiguration }),
         Description = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        EncryptionConfiguration = {
-            type = "structure",
-        },
+        EncryptionConfiguration = M.EncryptionConfiguration,
     },
 }
 
@@ -2297,24 +2220,20 @@ M.TLSInspectionConfigurationResponse = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         LastModifiedTime = {
             type = "timestamp",
         },
         NumberOfAssociations = {
-            type = "number",
+            type = "integer",
         },
-        EncryptionConfiguration = {
-            type = "structure",
-        },
+        EncryptionConfiguration = M.EncryptionConfiguration,
         Certificates = {
             type = "list",
-            member_type = "structure",
+            member = M.TlsCertificateData,
         },
-        CertificateAuthority = {
-            type = "structure",
-        },
+        CertificateAuthority = M.TlsCertificateData,
     },
 }
 
@@ -2327,12 +2246,9 @@ M.CreateTLSInspectionConfigurationOutput = {
                 required = true,
             },
         },
-        TLSInspectionConfigurationResponse = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TLSInspectionConfigurationResponse = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TLSInspectionConfigurationResponse }),
     },
 }
 
@@ -2351,18 +2267,15 @@ M.CreateVpcEndpointAssociationInput = {
                 required = true,
             },
         },
-        SubnetMapping = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SubnetMapping = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SubnetMapping }),
         Description = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2391,18 +2304,15 @@ M.VpcEndpointAssociation = {
                 required = true,
             },
         },
-        SubnetMapping = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SubnetMapping = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SubnetMapping }),
         Description = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2418,8 +2328,8 @@ M.VpcEndpointAssociationStatus = {
         },
         AssociationSyncState = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.AZSyncState,
         },
     },
 }
@@ -2427,12 +2337,8 @@ M.VpcEndpointAssociationStatus = {
 M.CreateVpcEndpointAssociationOutput = {
     type = "structure",
     members = {
-        VpcEndpointAssociation = {
-            type = "structure",
-        },
-        VpcEndpointAssociationStatus = {
-            type = "structure",
-        },
+        VpcEndpointAssociation = M.VpcEndpointAssociation,
+        VpcEndpointAssociationStatus = M.VpcEndpointAssociationStatus,
     },
 }
 
@@ -2451,12 +2357,8 @@ M.DeleteFirewallInput = {
 M.DeleteFirewallOutput = {
     type = "structure",
     members = {
-        Firewall = {
-            type = "structure",
-        },
-        FirewallStatus = {
-            type = "structure",
-        },
+        Firewall = M.Firewall,
+        FirewallStatus = M.FirewallStatus,
     },
 }
 
@@ -2475,12 +2377,9 @@ M.DeleteFirewallPolicyInput = {
 M.DeleteFirewallPolicyOutput = {
     type = "structure",
     members = {
-        FirewallPolicyResponse = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        FirewallPolicyResponse = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FirewallPolicyResponse }),
     },
 }
 
@@ -2606,7 +2505,7 @@ M.DeleteProxyRulesInput = {
         },
         Rules = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2617,9 +2516,7 @@ M.DeleteProxyRulesInput = {
 M.DeleteProxyRulesOutput = {
     type = "structure",
     members = {
-        ProxyRuleGroup = {
-            type = "structure",
-        },
+        ProxyRuleGroup = M.ProxyRuleGroup,
     },
 }
 
@@ -2667,12 +2564,9 @@ M.DeleteRuleGroupInput = {
 M.DeleteRuleGroupOutput = {
     type = "structure",
     members = {
-        RuleGroupResponse = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RuleGroupResponse = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RuleGroupResponse }),
     },
 }
 
@@ -2691,12 +2585,9 @@ M.DeleteTLSInspectionConfigurationInput = {
 M.DeleteTLSInspectionConfigurationOutput = {
     type = "structure",
     members = {
-        TLSInspectionConfigurationResponse = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TLSInspectionConfigurationResponse = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TLSInspectionConfigurationResponse }),
     },
 }
 
@@ -2715,12 +2606,8 @@ M.DeleteVpcEndpointAssociationInput = {
 M.DeleteVpcEndpointAssociationOutput = {
     type = "structure",
     members = {
-        VpcEndpointAssociation = {
-            type = "structure",
-        },
-        VpcEndpointAssociationStatus = {
-            type = "structure",
-        },
+        VpcEndpointAssociation = M.VpcEndpointAssociation,
+        VpcEndpointAssociationStatus = M.VpcEndpointAssociationStatus,
     },
 }
 
@@ -2742,12 +2629,8 @@ M.DescribeFirewallOutput = {
         UpdateToken = {
             type = "string",
         },
-        Firewall = {
-            type = "structure",
-        },
-        FirewallStatus = {
-            type = "structure",
-        },
+        Firewall = M.Firewall,
+        FirewallStatus = M.FirewallStatus,
     },
 }
 
@@ -2777,8 +2660,8 @@ M.DescribeFirewallMetadataOutput = {
         },
         SupportedAvailabilityZones = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.AvailabilityZoneMetadata,
         },
         TransitGatewayAttachmentId = {
             type = "string",
@@ -2807,15 +2690,10 @@ M.DescribeFirewallPolicyOutput = {
                 required = true,
             },
         },
-        FirewallPolicyResponse = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        FirewallPolicy = {
-            type = "structure",
-        },
+        FirewallPolicyResponse = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FirewallPolicyResponse }),
+        FirewallPolicy = M.FirewallPolicy,
     },
 }
 
@@ -2849,12 +2727,8 @@ M.DescribeFlowOperationInput = {
 M.FlowFilter = {
     type = "structure",
     members = {
-        SourceAddress = {
-            type = "structure",
-        },
-        DestinationAddress = {
-            type = "structure",
-        },
+        SourceAddress = M.Address,
+        DestinationAddress = M.Address,
         SourcePort = {
             type = "string",
         },
@@ -2863,7 +2737,7 @@ M.FlowFilter = {
         },
         Protocols = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2872,11 +2746,11 @@ M.FlowOperation = {
     type = "structure",
     members = {
         MinimumFlowAgeInSeconds = {
-            type = "number",
+            type = "integer",
         },
         FlowFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.FlowFilter,
         },
     },
 }
@@ -2923,9 +2797,7 @@ M.DescribeFlowOperationOutput = {
         FlowRequestTimestamp = {
             type = "timestamp",
         },
-        FlowOperation = {
-            type = "structure",
-        },
+        FlowOperation = M.FlowOperation,
     },
 }
 
@@ -2970,8 +2842,8 @@ M.LogDestinationConfig = {
         },
         LogDestination = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2984,7 +2856,7 @@ M.LoggingConfiguration = {
     members = {
         LogDestinationConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.LogDestinationConfig,
             traits = {
                 required = true,
             },
@@ -2998,9 +2870,7 @@ M.DescribeLoggingConfigurationOutput = {
         FirewallArn = {
             type = "string",
         },
-        LoggingConfiguration = {
-            type = "structure",
-        },
+        LoggingConfiguration = M.LoggingConfiguration,
         EnableMonitoringDashboard = {
             type = "boolean",
         },
@@ -3045,11 +2915,9 @@ M.DescribeProxyResource = {
         },
         ListenerProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.ListenerProperty,
         },
-        TlsInterceptProperties = {
-            type = "structure",
-        },
+        TlsInterceptProperties = M.TlsInterceptProperties,
         VpcEndpointServiceName = {
             type = "string",
         },
@@ -3073,7 +2941,7 @@ M.DescribeProxyResource = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3081,9 +2949,7 @@ M.DescribeProxyResource = {
 M.DescribeProxyOutput = {
     type = "structure",
     members = {
-        Proxy = {
-            type = "structure",
-        },
+        Proxy = M.DescribeProxyResource,
         UpdateToken = {
             type = "string",
         },
@@ -3105,9 +2971,7 @@ M.DescribeProxyConfigurationInput = {
 M.DescribeProxyConfigurationOutput = {
     type = "structure",
     members = {
-        ProxyConfiguration = {
-            type = "structure",
-        },
+        ProxyConfiguration = M.ProxyConfiguration,
         UpdateToken = {
             type = "string",
         },
@@ -3135,9 +2999,7 @@ M.DescribeProxyRuleInput = {
 M.DescribeProxyRuleOutput = {
     type = "structure",
     members = {
-        ProxyRule = {
-            type = "structure",
-        },
+        ProxyRule = M.ProxyRule,
         UpdateToken = {
             type = "string",
         },
@@ -3159,9 +3021,7 @@ M.DescribeProxyRuleGroupInput = {
 M.DescribeProxyRuleGroupOutput = {
     type = "structure",
     members = {
-        ProxyRuleGroup = {
-            type = "structure",
-        },
+        ProxyRuleGroup = M.ProxyRuleGroup,
         UpdateToken = {
             type = "string",
         },
@@ -3203,6 +3063,9 @@ M.DescribeRuleGroupInput = {
         },
         AnalyzeRuleGroup = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -3216,15 +3079,10 @@ M.DescribeRuleGroupOutput = {
                 required = true,
             },
         },
-        RuleGroup = {
-            type = "structure",
-        },
-        RuleGroupResponse = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RuleGroup = M.RuleGroup,
+        RuleGroupResponse = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RuleGroupResponse }),
     },
 }
 
@@ -3265,11 +3123,9 @@ M.DescribeRuleGroupMetadataOutput = {
             type = "string",
         },
         Capacity = {
-            type = "number",
+            type = "integer",
         },
-        StatefulRuleOptions = {
-            type = "structure",
-        },
+        StatefulRuleOptions = M.StatefulRuleOptions,
         LastModifiedTime = {
             type = "timestamp",
         },
@@ -3320,7 +3176,7 @@ M.Summary = {
     members = {
         RuleSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleSummary,
         },
     },
 }
@@ -3337,9 +3193,7 @@ M.DescribeRuleGroupSummaryOutput = {
         Description = {
             type = "string",
         },
-        Summary = {
-            type = "structure",
-        },
+        Summary = M.Summary,
     },
 }
 
@@ -3364,15 +3218,10 @@ M.DescribeTLSInspectionConfigurationOutput = {
                 required = true,
             },
         },
-        TLSInspectionConfiguration = {
-            type = "structure",
-        },
-        TLSInspectionConfigurationResponse = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TLSInspectionConfiguration = M.TLSInspectionConfiguration,
+        TLSInspectionConfigurationResponse = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TLSInspectionConfigurationResponse }),
     },
 }
 
@@ -3391,12 +3240,8 @@ M.DescribeVpcEndpointAssociationInput = {
 M.DescribeVpcEndpointAssociationOutput = {
     type = "structure",
     members = {
-        VpcEndpointAssociation = {
-            type = "structure",
-        },
-        VpcEndpointAssociationStatus = {
-            type = "structure",
-        },
+        VpcEndpointAssociation = M.VpcEndpointAssociation,
+        VpcEndpointAssociationStatus = M.VpcEndpointAssociationStatus,
     },
 }
 
@@ -3411,11 +3256,11 @@ M.DetachRuleGroupsFromProxyConfigurationInput = {
         },
         RuleGroupNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RuleGroupArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         UpdateToken = {
             type = "string",
@@ -3429,9 +3274,7 @@ M.DetachRuleGroupsFromProxyConfigurationInput = {
 M.DetachRuleGroupsFromProxyConfigurationOutput = {
     type = "structure",
     members = {
-        ProxyConfiguration = {
-            type = "structure",
-        },
+        ProxyConfiguration = M.ProxyConfiguration,
         UpdateToken = {
             type = "string",
         },
@@ -3452,7 +3295,7 @@ M.DisassociateAvailabilityZonesInput = {
         },
         AvailabilityZoneMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.AvailabilityZoneMapping,
             traits = {
                 required = true,
             },
@@ -3471,7 +3314,7 @@ M.DisassociateAvailabilityZonesOutput = {
         },
         AvailabilityZoneMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.AvailabilityZoneMapping,
         },
         UpdateToken = {
             type = "string",
@@ -3493,7 +3336,7 @@ M.DisassociateSubnetsInput = {
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3512,7 +3355,7 @@ M.DisassociateSubnetsOutput = {
         },
         SubnetMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.SubnetMapping,
         },
         UpdateToken = {
             type = "string",
@@ -3550,12 +3393,8 @@ M.FirewallPolicyMetadata = {
 M.Flow = {
     type = "structure",
     members = {
-        SourceAddress = {
-            type = "structure",
-        },
-        DestinationAddress = {
-            type = "structure",
-        },
+        SourceAddress = M.Address,
+        DestinationAddress = M.Address,
         SourcePort = {
             type = "string",
         },
@@ -3566,13 +3405,16 @@ M.Flow = {
             type = "string",
         },
         Age = {
-            type = "number",
+            type = "integer",
         },
         PacketCount = {
-            type = "number",
+            type = "integer",
         },
         ByteCount = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -3614,7 +3456,7 @@ M.GetAnalysisReportResultsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3642,7 +3484,7 @@ M.GetAnalysisReportResultsOutput = {
         },
         AnalysisReportResults = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalysisTypeReportResult,
         },
     },
 }
@@ -3660,7 +3502,7 @@ M.ListAnalysisReportsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3670,7 +3512,7 @@ M.ListAnalysisReportsOutput = {
     members = {
         AnalysisReports = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalysisReport,
         },
         NextToken = {
             type = "string",
@@ -3685,7 +3527,7 @@ M.ListFirewallPoliciesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3698,7 +3540,7 @@ M.ListFirewallPoliciesOutput = {
         },
         FirewallPolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.FirewallPolicyMetadata,
         },
     },
 }
@@ -3711,10 +3553,10 @@ M.ListFirewallsInput = {
         },
         VpcIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3727,7 +3569,7 @@ M.ListFirewallsOutput = {
         },
         Firewalls = {
             type = "list",
-            member_type = "structure",
+            member = M.FirewallMetadata,
         },
     },
 }
@@ -3751,7 +3593,7 @@ M.ListFlowOperationResultsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         AvailabilityZone = {
             type = "string",
@@ -3794,7 +3636,7 @@ M.ListFlowOperationResultsOutput = {
         },
         Flows = {
             type = "list",
-            member_type = "structure",
+            member = M.Flow,
         },
         NextToken = {
             type = "string",
@@ -3827,7 +3669,7 @@ M.ListFlowOperationsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3837,7 +3679,7 @@ M.ListFlowOperationsOutput = {
     members = {
         FlowOperations = {
             type = "list",
-            member_type = "structure",
+            member = M.FlowOperationMetadata,
         },
         NextToken = {
             type = "string",
@@ -3852,7 +3694,7 @@ M.ListProxiesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3874,7 +3716,7 @@ M.ListProxiesOutput = {
     members = {
         Proxies = {
             type = "list",
-            member_type = "structure",
+            member = M.ProxyMetadata,
         },
         NextToken = {
             type = "string",
@@ -3889,7 +3731,7 @@ M.ListProxyConfigurationsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3911,7 +3753,7 @@ M.ListProxyConfigurationsOutput = {
     members = {
         ProxyConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.ProxyConfigurationMetadata,
         },
         NextToken = {
             type = "string",
@@ -3926,7 +3768,7 @@ M.ListProxyRuleGroupsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3948,7 +3790,7 @@ M.ListProxyRuleGroupsOutput = {
     members = {
         ProxyRuleGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.ProxyRuleGroupMetadata,
         },
         NextToken = {
             type = "string",
@@ -3980,7 +3822,7 @@ M.ListRuleGroupsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Scope = {
             type = "string",
@@ -4020,7 +3862,7 @@ M.ListRuleGroupsOutput = {
         },
         RuleGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleGroupMetadata,
         },
     },
 }
@@ -4032,7 +3874,7 @@ M.ListTagsForResourceInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         ResourceArn = {
             type = "string",
@@ -4051,7 +3893,7 @@ M.ListTagsForResourceOutput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -4063,7 +3905,7 @@ M.ListTLSInspectionConfigurationsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4088,7 +3930,7 @@ M.ListTLSInspectionConfigurationsOutput = {
         },
         TLSInspectionConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.TLSInspectionConfigurationMetadata,
         },
     },
 }
@@ -4100,7 +3942,7 @@ M.ListVpcEndpointAssociationsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         FirewallArn = {
             type = "string",
@@ -4125,7 +3967,7 @@ M.ListVpcEndpointAssociationsOutput = {
         },
         VpcEndpointAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcEndpointAssociationMetadata,
         },
     },
 }
@@ -4241,11 +4083,11 @@ M.StartFlowCaptureInput = {
             type = "string",
         },
         MinimumFlowAgeInSeconds = {
-            type = "number",
+            type = "integer",
         },
         FlowFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.FlowFilter,
             traits = {
                 required = true,
             },
@@ -4287,11 +4129,11 @@ M.StartFlowFlushInput = {
             type = "string",
         },
         MinimumFlowAgeInSeconds = {
-            type = "number",
+            type = "integer",
         },
         FlowFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.FlowFilter,
             traits = {
                 required = true,
             },
@@ -4325,7 +4167,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -4348,7 +4190,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4385,6 +4227,7 @@ M.UpdateAvailabilityZoneChangeProtectionInput = {
         AvailabilityZoneChangeProtection = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -4405,6 +4248,9 @@ M.UpdateAvailabilityZoneChangeProtectionOutput = {
         },
         AvailabilityZoneChangeProtection = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -4414,7 +4260,7 @@ M.UpdateFirewallAnalysisSettingsInput = {
     members = {
         EnabledAnalysisTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         FirewallArn = {
             type = "string",
@@ -4433,7 +4279,7 @@ M.UpdateFirewallAnalysisSettingsOutput = {
     members = {
         EnabledAnalysisTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         FirewallArn = {
             type = "string",
@@ -4462,6 +4308,7 @@ M.UpdateFirewallDeleteProtectionInput = {
         DeleteProtection = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -4479,6 +4326,9 @@ M.UpdateFirewallDeleteProtectionOutput = {
         },
         DeleteProtection = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         UpdateToken = {
             type = "string",
@@ -4534,9 +4384,7 @@ M.UpdateFirewallEncryptionConfigurationInput = {
         FirewallName = {
             type = "string",
         },
-        EncryptionConfiguration = {
-            type = "structure",
-        },
+        EncryptionConfiguration = M.EncryptionConfiguration,
     },
 }
 
@@ -4552,9 +4400,7 @@ M.UpdateFirewallEncryptionConfigurationOutput = {
         UpdateToken = {
             type = "string",
         },
-        EncryptionConfiguration = {
-            type = "structure",
-        },
+        EncryptionConfiguration = M.EncryptionConfiguration,
     },
 }
 
@@ -4573,21 +4419,19 @@ M.UpdateFirewallPolicyInput = {
         FirewallPolicyName = {
             type = "string",
         },
-        FirewallPolicy = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        FirewallPolicy = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FirewallPolicy }),
         Description = {
             type = "string",
         },
         DryRun = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        EncryptionConfiguration = {
-            type = "structure",
-        },
+        EncryptionConfiguration = M.EncryptionConfiguration,
     },
 }
 
@@ -4600,12 +4444,9 @@ M.UpdateFirewallPolicyOutput = {
                 required = true,
             },
         },
-        FirewallPolicyResponse = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        FirewallPolicyResponse = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FirewallPolicyResponse }),
     },
 }
 
@@ -4624,6 +4465,7 @@ M.UpdateFirewallPolicyChangeProtectionInput = {
         FirewallPolicyChangeProtection = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -4644,6 +4486,9 @@ M.UpdateFirewallPolicyChangeProtectionOutput = {
         },
         FirewallPolicyChangeProtection = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -4657,9 +4502,7 @@ M.UpdateLoggingConfigurationInput = {
         FirewallName = {
             type = "string",
         },
-        LoggingConfiguration = {
-            type = "structure",
-        },
+        LoggingConfiguration = M.LoggingConfiguration,
         EnableMonitoringDashboard = {
             type = "boolean",
         },
@@ -4675,9 +4518,7 @@ M.UpdateLoggingConfigurationOutput = {
         FirewallName = {
             type = "string",
         },
-        LoggingConfiguration = {
-            type = "structure",
-        },
+        LoggingConfiguration = M.LoggingConfiguration,
         EnableMonitoringDashboard = {
             type = "boolean",
         },
@@ -4701,15 +4542,13 @@ M.UpdateProxyInput = {
         },
         ListenerPropertiesToAdd = {
             type = "list",
-            member_type = "structure",
+            member = M.ListenerPropertyRequest,
         },
         ListenerPropertiesToRemove = {
             type = "list",
-            member_type = "structure",
+            member = M.ListenerPropertyRequest,
         },
-        TlsInterceptProperties = {
-            type = "structure",
-        },
+        TlsInterceptProperties = M.TlsInterceptPropertiesRequest,
         UpdateToken = {
             type = "string",
             traits = {
@@ -4722,9 +4561,7 @@ M.UpdateProxyInput = {
 M.UpdateProxyOutput = {
     type = "structure",
     members = {
-        Proxy = {
-            type = "structure",
-        },
+        Proxy = M.Proxy,
         UpdateToken = {
             type = "string",
         },
@@ -4740,12 +4577,9 @@ M.UpdateProxyConfigurationInput = {
         ProxyConfigurationArn = {
             type = "string",
         },
-        DefaultRulePhaseActions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DefaultRulePhaseActions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProxyConfigDefaultRulePhaseActionsRequest }),
         UpdateToken = {
             type = "string",
             traits = {
@@ -4758,9 +4592,7 @@ M.UpdateProxyConfigurationInput = {
 M.UpdateProxyConfigurationOutput = {
     type = "structure",
     members = {
-        ProxyConfiguration = {
-            type = "structure",
-        },
+        ProxyConfiguration = M.ProxyConfiguration,
         UpdateToken = {
             type = "string",
         },
@@ -4790,11 +4622,11 @@ M.UpdateProxyRuleInput = {
         },
         AddConditions = {
             type = "list",
-            member_type = "structure",
+            member = M.ProxyRuleCondition,
         },
         RemoveConditions = {
             type = "list",
-            member_type = "structure",
+            member = M.ProxyRuleCondition,
         },
         UpdateToken = {
             type = "string",
@@ -4808,12 +4640,10 @@ M.UpdateProxyRuleInput = {
 M.UpdateProxyRuleOutput = {
     type = "structure",
     members = {
-        ProxyRule = {
-            type = "structure",
-        },
+        ProxyRule = M.ProxyRule,
         RemovedConditions = {
             type = "list",
-            member_type = "structure",
+            member = M.ProxyRuleCondition,
         },
         UpdateToken = {
             type = "string",
@@ -4828,7 +4658,7 @@ M.ProxyRuleGroupPriority = {
             type = "string",
         },
         NewPosition = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4844,7 +4674,7 @@ M.UpdateProxyRuleGroupPrioritiesInput = {
         },
         RuleGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.ProxyRuleGroupPriority,
             traits = {
                 required = true,
             },
@@ -4865,7 +4695,7 @@ M.ProxyRuleGroupPriorityResult = {
             type = "string",
         },
         Priority = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4875,7 +4705,7 @@ M.UpdateProxyRuleGroupPrioritiesOutput = {
     members = {
         ProxyRuleGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.ProxyRuleGroupPriorityResult,
         },
         UpdateToken = {
             type = "string",
@@ -4896,7 +4726,7 @@ M.ProxyRulePriority = {
             type = "string",
         },
         NewPosition = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4918,7 +4748,7 @@ M.UpdateProxyRulePrioritiesInput = {
         },
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.ProxyRulePriority,
             traits = {
                 required = true,
             },
@@ -4946,7 +4776,7 @@ M.UpdateProxyRulePrioritiesOutput = {
         },
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.ProxyRulePriority,
         },
         UpdateToken = {
             type = "string",
@@ -4969,9 +4799,7 @@ M.UpdateRuleGroupInput = {
         RuleGroupName = {
             type = "string",
         },
-        RuleGroup = {
-            type = "structure",
-        },
+        RuleGroup = M.RuleGroup,
         Rules = {
             type = "string",
         },
@@ -4983,19 +4811,19 @@ M.UpdateRuleGroupInput = {
         },
         DryRun = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        EncryptionConfiguration = {
-            type = "structure",
-        },
-        SourceMetadata = {
-            type = "structure",
-        },
+        EncryptionConfiguration = M.EncryptionConfiguration,
+        SourceMetadata = M.SourceMetadata,
         AnalyzeRuleGroup = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        SummaryConfiguration = {
-            type = "structure",
-        },
+        SummaryConfiguration = M.SummaryConfiguration,
     },
 }
 
@@ -5008,12 +4836,9 @@ M.UpdateRuleGroupOutput = {
                 required = true,
             },
         },
-        RuleGroupResponse = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RuleGroupResponse = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RuleGroupResponse }),
     },
 }
 
@@ -5032,6 +4857,7 @@ M.UpdateSubnetChangeProtectionInput = {
         SubnetChangeProtection = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -5052,6 +4878,9 @@ M.UpdateSubnetChangeProtectionOutput = {
         },
         SubnetChangeProtection = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -5065,18 +4894,13 @@ M.UpdateTLSInspectionConfigurationInput = {
         TLSInspectionConfigurationName = {
             type = "string",
         },
-        TLSInspectionConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TLSInspectionConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TLSInspectionConfiguration }),
         Description = {
             type = "string",
         },
-        EncryptionConfiguration = {
-            type = "structure",
-        },
+        EncryptionConfiguration = M.EncryptionConfiguration,
         UpdateToken = {
             type = "string",
             traits = {
@@ -5095,12 +4919,9 @@ M.UpdateTLSInspectionConfigurationOutput = {
                 required = true,
             },
         },
-        TLSInspectionConfigurationResponse = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TLSInspectionConfigurationResponse = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TLSInspectionConfigurationResponse }),
     },
 }
 

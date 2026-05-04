@@ -107,7 +107,7 @@ M.AdditionalResources = {
         },
         Content = {
             type = "list",
-            member_type = "structure",
+            member = M.ChoiceContent,
         },
     },
 }
@@ -156,15 +156,11 @@ M.Choice = {
         Description = {
             type = "string",
         },
-        HelpfulResource = {
-            type = "structure",
-        },
-        ImprovementPlan = {
-            type = "structure",
-        },
+        HelpfulResource = M.ChoiceContent,
+        ImprovementPlan = M.ChoiceContent,
         AdditionalResources = {
             type = "list",
-            member_type = "structure",
+            member = M.AdditionalResources,
         },
     },
 }
@@ -223,15 +219,15 @@ M.Answer = {
         },
         Choices = {
             type = "list",
-            member_type = "structure",
+            member = M.Choice,
         },
         SelectedChoices = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ChoiceAnswers = {
             type = "list",
-            member_type = "structure",
+            member = M.ChoiceAnswer,
         },
         IsApplicable = {
             type = "boolean",
@@ -245,9 +241,7 @@ M.Answer = {
         Reason = {
             type = "string",
         },
-        JiraConfiguration = {
-            type = "structure",
-        },
+        JiraConfiguration = M.JiraConfiguration,
     },
 }
 
@@ -285,15 +279,15 @@ M.AnswerSummary = {
         },
         Choices = {
             type = "list",
-            member_type = "structure",
+            member = M.Choice,
         },
         SelectedChoices = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ChoiceAnswerSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ChoiceAnswerSummary,
         },
         IsApplicable = {
             type = "boolean",
@@ -307,9 +301,7 @@ M.AnswerSummary = {
         QuestionType = {
             type = "string",
         },
-        JiraConfiguration = {
-            type = "structure",
-        },
+        JiraConfiguration = M.JiraConfiguration,
     },
 }
 
@@ -325,7 +317,7 @@ M.AssociateLensesInput = {
         },
         LensAliases = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -459,7 +451,7 @@ M.ValidationException = {
         },
         Fields = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -476,7 +468,7 @@ M.AssociateProfilesInput = {
         },
         ProfileArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -545,7 +537,7 @@ M.CheckDetail = {
             type = "string",
         },
         FlaggedResources = {
-            type = "number",
+            type = "integer",
         },
         Reason = {
             type = "string",
@@ -591,8 +583,8 @@ M.CheckSummary = {
         },
         AccountSummary = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
         },
     },
 }
@@ -641,7 +633,7 @@ M.QuestionMetric = {
         },
         BestPractices = {
             type = "list",
-            member_type = "structure",
+            member = M.BestPractice,
         },
     },
 }
@@ -654,12 +646,12 @@ M.PillarMetric = {
         },
         RiskCounts = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
         },
         Questions = {
             type = "list",
-            member_type = "structure",
+            member = M.QuestionMetric,
         },
     },
 }
@@ -672,12 +664,12 @@ M.LensMetric = {
         },
         Pillars = {
             type = "list",
-            member_type = "structure",
+            member = M.PillarMetric,
         },
         RiskCounts = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
         },
     },
 }
@@ -694,8 +686,8 @@ M.ConsolidatedReportMetric = {
         },
         RiskCounts = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
         },
         WorkloadId = {
             type = "string",
@@ -711,10 +703,10 @@ M.ConsolidatedReportMetric = {
         },
         Lenses = {
             type = "list",
-            member_type = "structure",
+            member = M.LensMetric,
         },
         LensesAppliedCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -856,7 +848,7 @@ M.CreateMilestoneOutput = {
             type = "string",
         },
         MilestoneNumber = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -869,7 +861,7 @@ M.ProfileQuestionUpdate = {
         },
         SelectedChoiceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -891,7 +883,7 @@ M.CreateProfileInput = {
         },
         ProfileQuestions = {
             type = "list",
-            member_type = "structure",
+            member = M.ProfileQuestionUpdate,
             traits = {
                 required = true,
             },
@@ -904,8 +896,8 @@ M.CreateProfileInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -976,7 +968,7 @@ M.CreateReviewTemplateInput = {
         },
         Lenses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -986,8 +978,8 @@ M.CreateReviewTemplateInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ClientRequestToken = {
             type = "string",
@@ -1062,7 +1054,7 @@ M.WorkloadDiscoveryConfig = {
         },
         WorkloadResourceDefinition = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1116,19 +1108,19 @@ M.CreateWorkloadInput = {
         },
         AccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AwsRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NonAwsRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         PillarPriorities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ArchitecturalDesign = {
             type = "string",
@@ -1144,7 +1136,7 @@ M.CreateWorkloadInput = {
         },
         Lenses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1160,27 +1152,23 @@ M.CreateWorkloadInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        DiscoveryConfig = {
-            type = "structure",
-        },
+        DiscoveryConfig = M.WorkloadDiscoveryConfig,
         Applications = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ProfileArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ReviewTemplateArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        JiraConfiguration = {
-            type = "structure",
-        },
+        JiraConfiguration = M.WorkloadJiraConfigurationInput,
     },
 }
 
@@ -1495,7 +1483,7 @@ M.DisassociateLensesInput = {
         },
         LensAliases = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1519,7 +1507,7 @@ M.DisassociateProfilesInput = {
         },
         ProfileArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1589,7 +1577,7 @@ M.GetAnswerInput = {
             },
         },
         MilestoneNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MilestoneNumber",
             },
@@ -1604,7 +1592,7 @@ M.GetAnswerOutput = {
             type = "string",
         },
         MilestoneNumber = {
-            type = "number",
+            type = "integer",
         },
         LensAlias = {
             type = "string",
@@ -1612,9 +1600,7 @@ M.GetAnswerOutput = {
         LensArn = {
             type = "string",
         },
-        Answer = {
-            type = "structure",
-        },
+        Answer = M.Answer,
     },
 }
 
@@ -1646,7 +1632,7 @@ M.GetConsolidatedReportInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -1659,7 +1645,7 @@ M.GetConsolidatedReportOutput = {
     members = {
         Metrics = {
             type = "list",
-            member_type = "structure",
+            member = M.ConsolidatedReportMetric,
         },
         NextToken = {
             type = "string",
@@ -1688,9 +1674,7 @@ M.GetGlobalSettingsOutput = {
         DiscoveryIntegrationStatus = {
             type = "string",
         },
-        JiraConfiguration = {
-            type = "structure",
-        },
+        JiraConfiguration = M.AccountJiraConfigurationOutput,
     },
 }
 
@@ -1736,8 +1720,8 @@ M.Lens = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1745,9 +1729,7 @@ M.Lens = {
 M.GetLensOutput = {
     type = "structure",
     members = {
-        Lens = {
-            type = "structure",
-        },
+        Lens = M.Lens,
     },
 }
 
@@ -1769,7 +1751,7 @@ M.GetLensReviewInput = {
             },
         },
         MilestoneNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MilestoneNumber",
             },
@@ -1785,7 +1767,7 @@ M.SelectedPillar = {
         },
         SelectedQuestionIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1795,7 +1777,7 @@ M.JiraSelectedQuestionConfiguration = {
     members = {
         SelectedPillars = {
             type = "list",
-            member_type = "structure",
+            member = M.SelectedPillar,
         },
     },
 }
@@ -1822,13 +1804,13 @@ M.PillarReviewSummary = {
         },
         RiskCounts = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
         },
         PrioritizedRiskCounts = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
         },
     },
 }
@@ -1865,11 +1847,9 @@ M.LensReview = {
         },
         PillarReviewSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.PillarReviewSummary,
         },
-        JiraConfiguration = {
-            type = "structure",
-        },
+        JiraConfiguration = M.JiraSelectedQuestionConfiguration,
         UpdatedAt = {
             type = "timestamp",
         },
@@ -1878,20 +1858,20 @@ M.LensReview = {
         },
         RiskCounts = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
         },
         NextToken = {
             type = "string",
         },
         Profiles = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkloadProfile,
         },
         PrioritizedRiskCounts = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
         },
     },
 }
@@ -1903,11 +1883,9 @@ M.GetLensReviewOutput = {
             type = "string",
         },
         MilestoneNumber = {
-            type = "number",
+            type = "integer",
         },
-        LensReview = {
-            type = "structure",
-        },
+        LensReview = M.LensReview,
     },
 }
 
@@ -1929,7 +1907,7 @@ M.GetLensReviewReportInput = {
             },
         },
         MilestoneNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MilestoneNumber",
             },
@@ -1959,11 +1937,9 @@ M.GetLensReviewReportOutput = {
             type = "string",
         },
         MilestoneNumber = {
-            type = "number",
+            type = "integer",
         },
-        LensReviewReport = {
-            type = "structure",
-        },
+        LensReviewReport = M.LensReviewReport,
     },
 }
 
@@ -2021,7 +1997,7 @@ M.PillarDifference = {
         },
         QuestionDifferences = {
             type = "list",
-            member_type = "structure",
+            member = M.QuestionDifference,
         },
     },
 }
@@ -2031,7 +2007,7 @@ M.VersionDifferences = {
     members = {
         PillarDifferences = {
             type = "list",
-            member_type = "structure",
+            member = M.PillarDifference,
         },
     },
 }
@@ -2054,9 +2030,7 @@ M.GetLensVersionDifferenceOutput = {
         LatestLensVersion = {
             type = "string",
         },
-        VersionDifferences = {
-            type = "structure",
-        },
+        VersionDifferences = M.VersionDifferences,
     },
 }
 
@@ -2071,7 +2045,7 @@ M.GetMilestoneInput = {
             },
         },
         MilestoneNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_label = true,
                 required = true,
@@ -2129,15 +2103,15 @@ M.Workload = {
         },
         AccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AwsRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NonAwsRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ArchitecturalDesign = {
             type = "string",
@@ -2165,16 +2139,16 @@ M.Workload = {
         },
         RiskCounts = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
         },
         PillarPriorities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Lenses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Owner = {
             type = "string",
@@ -2184,28 +2158,24 @@ M.Workload = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        DiscoveryConfig = {
-            type = "structure",
-        },
+        DiscoveryConfig = M.WorkloadDiscoveryConfig,
         Applications = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Profiles = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkloadProfile,
         },
         PrioritizedRiskCounts = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
         },
-        JiraConfiguration = {
-            type = "structure",
-        },
+        JiraConfiguration = M.WorkloadJiraConfigurationOutput,
     },
 }
 
@@ -2213,7 +2183,7 @@ M.Milestone = {
     type = "structure",
     members = {
         MilestoneNumber = {
-            type = "number",
+            type = "integer",
         },
         MilestoneName = {
             type = "string",
@@ -2221,9 +2191,7 @@ M.Milestone = {
         RecordedAt = {
             type = "timestamp",
         },
-        Workload = {
-            type = "structure",
-        },
+        Workload = M.Workload,
     },
 }
 
@@ -2233,9 +2201,7 @@ M.GetMilestoneOutput = {
         WorkloadId = {
             type = "string",
         },
-        Milestone = {
-            type = "structure",
-        },
+        Milestone = M.Milestone,
     },
 }
 
@@ -2287,17 +2253,17 @@ M.ProfileQuestion = {
         },
         QuestionChoices = {
             type = "list",
-            member_type = "structure",
+            member = M.ProfileChoice,
         },
         SelectedChoiceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MinSelectedChoices = {
-            type = "number",
+            type = "integer",
         },
         MaxSelectedChoices = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2319,7 +2285,7 @@ M.Profile = {
         },
         ProfileQuestions = {
             type = "list",
-            member_type = "structure",
+            member = M.ProfileQuestion,
         },
         Owner = {
             type = "string",
@@ -2335,8 +2301,8 @@ M.Profile = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2344,9 +2310,7 @@ M.Profile = {
 M.GetProfileOutput = {
     type = "structure",
     members = {
-        Profile = {
-            type = "structure",
-        },
+        Profile = M.Profile,
     },
 }
 
@@ -2383,13 +2347,13 @@ M.ProfileTemplateQuestion = {
         },
         QuestionChoices = {
             type = "list",
-            member_type = "structure",
+            member = M.ProfileTemplateChoice,
         },
         MinSelectedChoices = {
-            type = "number",
+            type = "integer",
         },
         MaxSelectedChoices = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2402,7 +2366,7 @@ M.ProfileTemplate = {
         },
         TemplateQuestions = {
             type = "list",
-            member_type = "structure",
+            member = M.ProfileTemplateQuestion,
         },
         CreatedAt = {
             type = "timestamp",
@@ -2416,9 +2380,7 @@ M.ProfileTemplate = {
 M.GetProfileTemplateOutput = {
     type = "structure",
     members = {
-        ProfileTemplate = {
-            type = "structure",
-        },
+        ProfileTemplate = M.ProfileTemplate,
     },
 }
 
@@ -2453,15 +2415,15 @@ M.ReviewTemplate = {
         },
         Lenses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Notes = {
             type = "string",
         },
         QuestionCounts = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
         },
         Owner = {
             type = "string",
@@ -2477,8 +2439,8 @@ M.ReviewTemplate = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         UpdateStatus = {
             type = "string",
@@ -2492,9 +2454,7 @@ M.ReviewTemplate = {
 M.GetReviewTemplateOutput = {
     type = "structure",
     members = {
-        ReviewTemplate = {
-            type = "structure",
-        },
+        ReviewTemplate = M.ReviewTemplate,
     },
 }
 
@@ -2556,15 +2516,15 @@ M.ReviewTemplateAnswer = {
         },
         Choices = {
             type = "list",
-            member_type = "structure",
+            member = M.Choice,
         },
         SelectedChoices = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ChoiceAnswers = {
             type = "list",
-            member_type = "structure",
+            member = M.ChoiceAnswer,
         },
         IsApplicable = {
             type = "boolean",
@@ -2590,9 +2550,7 @@ M.GetReviewTemplateAnswerOutput = {
         LensAlias = {
             type = "string",
         },
-        Answer = {
-            type = "structure",
-        },
+        Answer = M.ReviewTemplateAnswer,
     },
 }
 
@@ -2630,8 +2588,8 @@ M.ReviewTemplatePillarReviewSummary = {
         },
         QuestionCounts = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
         },
     },
 }
@@ -2656,7 +2614,7 @@ M.ReviewTemplateLensReview = {
         },
         PillarReviewSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ReviewTemplatePillarReviewSummary,
         },
         UpdatedAt = {
             type = "timestamp",
@@ -2666,8 +2624,8 @@ M.ReviewTemplateLensReview = {
         },
         QuestionCounts = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
         },
         NextToken = {
             type = "string",
@@ -2681,9 +2639,7 @@ M.GetReviewTemplateLensReviewOutput = {
         TemplateArn = {
             type = "string",
         },
-        LensReview = {
-            type = "structure",
-        },
+        LensReview = M.ReviewTemplateLensReview,
     },
 }
 
@@ -2703,9 +2659,7 @@ M.GetWorkloadInput = {
 M.GetWorkloadOutput = {
     type = "structure",
     members = {
-        Workload = {
-            type = "structure",
-        },
+        Workload = M.Workload,
     },
 }
 
@@ -2729,8 +2683,8 @@ M.ImportLensInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2773,11 +2727,9 @@ M.ImprovementSummary = {
         },
         ImprovementPlans = {
             type = "list",
-            member_type = "structure",
+            member = M.ChoiceImprovementPlan,
         },
-        JiraConfiguration = {
-            type = "structure",
-        },
+        JiraConfiguration = M.JiraConfiguration,
     },
 }
 
@@ -2808,17 +2760,17 @@ M.LensReviewSummary = {
         },
         RiskCounts = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
         },
         Profiles = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkloadProfile,
         },
         PrioritizedRiskCounts = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
         },
     },
 }
@@ -2953,7 +2905,7 @@ M.ListAnswersInput = {
             },
         },
         MilestoneNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MilestoneNumber",
             },
@@ -2965,7 +2917,7 @@ M.ListAnswersInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -2986,7 +2938,7 @@ M.ListAnswersOutput = {
             type = "string",
         },
         MilestoneNumber = {
-            type = "number",
+            type = "integer",
         },
         LensAlias = {
             type = "string",
@@ -2996,7 +2948,7 @@ M.ListAnswersOutput = {
         },
         AnswerSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.AnswerSummary,
         },
         NextToken = {
             type = "string",
@@ -3018,7 +2970,7 @@ M.ListCheckDetailsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         LensArn = {
             type = "string",
@@ -3052,7 +3004,7 @@ M.ListCheckDetailsOutput = {
     members = {
         CheckDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.CheckDetail,
         },
         NextToken = {
             type = "string",
@@ -3074,7 +3026,7 @@ M.ListCheckSummariesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         LensArn = {
             type = "string",
@@ -3108,7 +3060,7 @@ M.ListCheckSummariesOutput = {
     members = {
         CheckSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.CheckSummary,
         },
         NextToken = {
             type = "string",
@@ -3126,7 +3078,7 @@ M.ListLensesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -3157,7 +3109,7 @@ M.ListLensesOutput = {
     members = {
         LensSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.LensSummary,
         },
         NextToken = {
             type = "string",
@@ -3189,7 +3141,7 @@ M.ListLensReviewImprovementsInput = {
             },
         },
         MilestoneNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MilestoneNumber",
             },
@@ -3201,7 +3153,7 @@ M.ListLensReviewImprovementsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -3222,7 +3174,7 @@ M.ListLensReviewImprovementsOutput = {
             type = "string",
         },
         MilestoneNumber = {
-            type = "number",
+            type = "integer",
         },
         LensAlias = {
             type = "string",
@@ -3232,7 +3184,7 @@ M.ListLensReviewImprovementsOutput = {
         },
         ImprovementSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ImprovementSummary,
         },
         NextToken = {
             type = "string",
@@ -3251,7 +3203,7 @@ M.ListLensReviewsInput = {
             },
         },
         MilestoneNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MilestoneNumber",
             },
@@ -3263,7 +3215,7 @@ M.ListLensReviewsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -3278,11 +3230,11 @@ M.ListLensReviewsOutput = {
             type = "string",
         },
         MilestoneNumber = {
-            type = "number",
+            type = "integer",
         },
         LensReviewSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.LensReviewSummary,
         },
         NextToken = {
             type = "string",
@@ -3313,7 +3265,7 @@ M.ListLensSharesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -3332,7 +3284,7 @@ M.ListLensSharesOutput = {
     members = {
         LensShareSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.LensShareSummary,
         },
         NextToken = {
             type = "string",
@@ -3354,7 +3306,7 @@ M.ListMilestonesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3379,24 +3331,24 @@ M.WorkloadSummary = {
         },
         Lenses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RiskCounts = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
         },
         ImprovementStatus = {
             type = "string",
         },
         Profiles = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkloadProfile,
         },
         PrioritizedRiskCounts = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
         },
     },
 }
@@ -3405,7 +3357,7 @@ M.MilestoneSummary = {
     type = "structure",
     members = {
         MilestoneNumber = {
-            type = "number",
+            type = "integer",
         },
         MilestoneName = {
             type = "string",
@@ -3413,9 +3365,7 @@ M.MilestoneSummary = {
         RecordedAt = {
             type = "timestamp",
         },
-        WorkloadSummary = {
-            type = "structure",
-        },
+        WorkloadSummary = M.WorkloadSummary,
     },
 }
 
@@ -3427,7 +3377,7 @@ M.ListMilestonesOutput = {
         },
         MilestoneSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.MilestoneSummary,
         },
         NextToken = {
             type = "string",
@@ -3445,7 +3395,7 @@ M.ListNotificationsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         ResourceArn = {
             type = "string",
@@ -3464,9 +3414,7 @@ M.NotificationSummary = {
         Type = {
             type = "string",
         },
-        LensUpgradeSummary = {
-            type = "structure",
-        },
+        LensUpgradeSummary = M.LensUpgradeSummary,
     },
 }
 
@@ -3475,7 +3423,7 @@ M.ListNotificationsOutput = {
     members = {
         NotificationSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.NotificationSummary,
         },
         NextToken = {
             type = "string",
@@ -3499,7 +3447,7 @@ M.ListProfileNotificationsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -3544,7 +3492,7 @@ M.ListProfileNotificationsOutput = {
     members = {
         NotificationSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ProfileNotificationSummary,
         },
         NextToken = {
             type = "string",
@@ -3579,7 +3527,7 @@ M.ListProfilesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -3619,7 +3567,7 @@ M.ListProfilesOutput = {
     members = {
         ProfileSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ProfileSummary,
         },
         NextToken = {
             type = "string",
@@ -3650,7 +3598,7 @@ M.ListProfileSharesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -3687,7 +3635,7 @@ M.ListProfileSharesOutput = {
     members = {
         ProfileShareSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ProfileShareSummary,
         },
         NextToken = {
             type = "string",
@@ -3725,7 +3673,7 @@ M.ListReviewTemplateAnswersInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -3747,15 +3695,15 @@ M.ReviewTemplateAnswerSummary = {
         },
         Choices = {
             type = "list",
-            member_type = "structure",
+            member = M.Choice,
         },
         SelectedChoices = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ChoiceAnswerSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ChoiceAnswerSummary,
         },
         IsApplicable = {
             type = "boolean",
@@ -3783,7 +3731,7 @@ M.ListReviewTemplateAnswersOutput = {
         },
         AnswerSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ReviewTemplateAnswerSummary,
         },
         NextToken = {
             type = "string",
@@ -3801,7 +3749,7 @@ M.ListReviewTemplatesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -3817,7 +3765,7 @@ M.ReviewTemplateSummary = {
         },
         Lenses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Owner = {
             type = "string",
@@ -3842,7 +3790,7 @@ M.ListReviewTemplatesOutput = {
     members = {
         ReviewTemplates = {
             type = "list",
-            member_type = "structure",
+            member = M.ReviewTemplateSummary,
         },
         NextToken = {
             type = "string",
@@ -3885,7 +3833,7 @@ M.ListShareInvitationsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -3955,7 +3903,7 @@ M.ListShareInvitationsOutput = {
     members = {
         ShareInvitationSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ShareInvitationSummary,
         },
         NextToken = {
             type = "string",
@@ -3981,8 +3929,8 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -4010,7 +3958,7 @@ M.ListTemplateSharesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -4050,7 +3998,7 @@ M.ListTemplateSharesOutput = {
         },
         TemplateShareSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.TemplateShareSummary,
         },
         NextToken = {
             type = "string",
@@ -4068,7 +4016,7 @@ M.ListWorkloadsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4078,7 +4026,7 @@ M.ListWorkloadsOutput = {
     members = {
         WorkloadSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkloadSummary,
         },
         NextToken = {
             type = "string",
@@ -4109,7 +4057,7 @@ M.ListWorkloadSharesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -4152,7 +4100,7 @@ M.ListWorkloadSharesOutput = {
         },
         WorkloadShareSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkloadShareSummary,
         },
         NextToken = {
             type = "string",
@@ -4204,8 +4152,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4229,7 +4177,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -4268,12 +4216,12 @@ M.UpdateAnswerInput = {
         },
         SelectedChoices = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ChoiceUpdates = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ChoiceUpdate,
         },
         Notes = {
             type = "string",
@@ -4299,9 +4247,7 @@ M.UpdateAnswerOutput = {
         LensArn = {
             type = "string",
         },
-        Answer = {
-            type = "structure",
-        },
+        Answer = M.Answer,
     },
 }
 
@@ -4314,9 +4260,7 @@ M.UpdateGlobalSettingsInput = {
         DiscoveryIntegrationStatus = {
             type = "string",
         },
-        JiraConfiguration = {
-            type = "structure",
-        },
+        JiraConfiguration = M.AccountJiraConfigurationInput,
     },
 }
 
@@ -4375,12 +4319,10 @@ M.UpdateLensReviewInput = {
         },
         PillarNotes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        JiraConfiguration = {
-            type = "structure",
-        },
+        JiraConfiguration = M.JiraSelectedQuestionConfiguration,
     },
 }
 
@@ -4390,9 +4332,7 @@ M.UpdateLensReviewOutput = {
         WorkloadId = {
             type = "string",
         },
-        LensReview = {
-            type = "structure",
-        },
+        LensReview = M.LensReview,
     },
 }
 
@@ -4411,7 +4351,7 @@ M.UpdateProfileInput = {
         },
         ProfileQuestions = {
             type = "list",
-            member_type = "structure",
+            member = M.ProfileQuestionUpdate,
         },
     },
 }
@@ -4419,9 +4359,7 @@ M.UpdateProfileInput = {
 M.UpdateProfileOutput = {
     type = "structure",
     members = {
-        Profile = {
-            type = "structure",
-        },
+        Profile = M.Profile,
     },
 }
 
@@ -4446,11 +4384,11 @@ M.UpdateReviewTemplateInput = {
         },
         LensesToAssociate = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         LensesToDisassociate = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4458,9 +4396,7 @@ M.UpdateReviewTemplateInput = {
 M.UpdateReviewTemplateOutput = {
     type = "structure",
     members = {
-        ReviewTemplate = {
-            type = "structure",
-        },
+        ReviewTemplate = M.ReviewTemplate,
     },
 }
 
@@ -4490,12 +4426,12 @@ M.UpdateReviewTemplateAnswerInput = {
         },
         SelectedChoices = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ChoiceUpdates = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ChoiceUpdate,
         },
         Notes = {
             type = "string",
@@ -4518,9 +4454,7 @@ M.UpdateReviewTemplateAnswerOutput = {
         LensAlias = {
             type = "string",
         },
-        Answer = {
-            type = "structure",
-        },
+        Answer = M.ReviewTemplateAnswer,
     },
 }
 
@@ -4546,8 +4480,8 @@ M.UpdateReviewTemplateLensReviewInput = {
         },
         PillarNotes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -4558,9 +4492,7 @@ M.UpdateReviewTemplateLensReviewOutput = {
         TemplateArn = {
             type = "string",
         },
-        LensReview = {
-            type = "structure",
-        },
+        LensReview = M.ReviewTemplateLensReview,
     },
 }
 
@@ -4586,9 +4518,7 @@ M.UpdateShareInvitationInput = {
 M.UpdateShareInvitationOutput = {
     type = "structure",
     members = {
-        ShareInvitation = {
-            type = "structure",
-        },
+        ShareInvitation = M.ShareInvitation,
     },
 }
 
@@ -4613,19 +4543,19 @@ M.UpdateWorkloadInput = {
         },
         AccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AwsRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NonAwsRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         PillarPriorities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ArchitecturalDesign = {
             type = "string",
@@ -4648,25 +4578,19 @@ M.UpdateWorkloadInput = {
         ImprovementStatus = {
             type = "string",
         },
-        DiscoveryConfig = {
-            type = "structure",
-        },
+        DiscoveryConfig = M.WorkloadDiscoveryConfig,
         Applications = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        JiraConfiguration = {
-            type = "structure",
-        },
+        JiraConfiguration = M.WorkloadJiraConfigurationInput,
     },
 }
 
 M.UpdateWorkloadOutput = {
     type = "structure",
     members = {
-        Workload = {
-            type = "structure",
-        },
+        Workload = M.Workload,
     },
 }
 
@@ -4729,9 +4653,7 @@ M.UpdateWorkloadShareOutput = {
         WorkloadId = {
             type = "string",
         },
-        WorkloadShare = {
-            type = "structure",
-        },
+        WorkloadShare = M.WorkloadShare,
     },
 }
 

@@ -77,29 +77,29 @@ M.ApiKeyRestrictions = {
     members = {
         AllowActions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         AllowResources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         AllowReferers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AllowAndroidApps = {
             type = "list",
-            member_type = "structure",
+            member = M.AndroidApp,
         },
         AllowAppleApps = {
             type = "list",
-            member_type = "structure",
+            member = M.AppleApp,
         },
     },
 }
@@ -113,12 +113,9 @@ M.CreateKeyInput = {
                 required = true,
             },
         },
-        Restrictions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Restrictions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ApiKeyRestrictions }),
         Description = {
             type = "string",
         },
@@ -130,8 +127,8 @@ M.CreateKeyInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -257,7 +254,7 @@ M.ValidationException = {
         },
         FieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
             traits = {
                 json_name = "fieldList",
                 required = true,
@@ -337,12 +334,9 @@ M.DescribeKeyOutput = {
                 required = true,
             },
         },
-        Restrictions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Restrictions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ApiKeyRestrictions }),
         CreateTime = {
             type = "timestamp",
             traits = {
@@ -366,8 +360,8 @@ M.DescribeKeyOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -376,14 +370,15 @@ M.ListKeysInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         NextToken = {
             type = "string",
         },
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.ApiKeyFilter,
     },
 }
 
@@ -405,12 +400,9 @@ M.ListKeysResponseEntry = {
         Description = {
             type = "string",
         },
-        Restrictions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Restrictions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ApiKeyRestrictions }),
         CreateTime = {
             type = "timestamp",
             traits = {
@@ -431,7 +423,7 @@ M.ListKeysOutput = {
     members = {
         Entries = {
             type = "list",
-            member_type = "structure",
+            member = M.ListKeysResponseEntry,
             traits = {
                 required = true,
             },
@@ -464,9 +456,7 @@ M.UpdateKeyInput = {
         ForceUpdate = {
             type = "boolean",
         },
-        Restrictions = {
-            type = "structure",
-        },
+        Restrictions = M.ApiKeyRestrictions,
     },
 }
 
@@ -529,7 +519,7 @@ M.BatchDeleteDevicePositionHistoryInput = {
         },
         DeviceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -567,12 +557,9 @@ M.BatchDeleteDevicePositionHistoryError = {
                 required = true,
             },
         },
-        Error = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Error = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BatchItemError }),
     },
 }
 
@@ -581,7 +568,7 @@ M.BatchDeleteDevicePositionHistoryOutput = {
     members = {
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchDeleteDevicePositionHistoryError,
             traits = {
                 required = true,
             },
@@ -601,7 +588,7 @@ M.BatchDeleteGeofenceInput = {
         },
         GeofenceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -618,12 +605,9 @@ M.BatchDeleteGeofenceError = {
                 required = true,
             },
         },
-        Error = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Error = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BatchItemError }),
     },
 }
 
@@ -632,7 +616,7 @@ M.BatchDeleteGeofenceOutput = {
     members = {
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchDeleteGeofenceError,
             traits = {
                 required = true,
             },
@@ -644,7 +628,7 @@ M.PositionalAccuracy = {
     type = "structure",
     members = {
         Horizontal = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -669,18 +653,16 @@ M.DevicePositionUpdate = {
         },
         Position = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
         },
-        Accuracy = {
-            type = "structure",
-        },
+        Accuracy = M.PositionalAccuracy,
         PositionProperties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -697,7 +679,7 @@ M.BatchEvaluateGeofencesInput = {
         },
         DevicePositionUpdates = {
             type = "list",
-            member_type = "structure",
+            member = M.DevicePositionUpdate,
             traits = {
                 required = true,
             },
@@ -720,12 +702,9 @@ M.BatchEvaluateGeofencesError = {
                 required = true,
             },
         },
-        Error = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Error = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BatchItemError }),
     },
 }
 
@@ -734,7 +713,7 @@ M.BatchEvaluateGeofencesOutput = {
     members = {
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchEvaluateGeofencesError,
             traits = {
                 required = true,
             },
@@ -754,7 +733,7 @@ M.BatchGetDevicePositionInput = {
         },
         DeviceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -782,18 +761,16 @@ M.DevicePosition = {
         },
         Position = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
         },
-        Accuracy = {
-            type = "structure",
-        },
+        Accuracy = M.PositionalAccuracy,
         PositionProperties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -807,12 +784,9 @@ M.BatchGetDevicePositionError = {
                 required = true,
             },
         },
-        Error = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Error = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BatchItemError }),
     },
 }
 
@@ -821,14 +795,14 @@ M.BatchGetDevicePositionOutput = {
     members = {
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetDevicePositionError,
             traits = {
                 required = true,
             },
         },
         DevicePositions = {
             type = "list",
-            member_type = "structure",
+            member = M.DevicePosition,
             traits = {
                 required = true,
             },
@@ -841,13 +815,13 @@ M.Circle = {
     members = {
         Center = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
         },
         Radius = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -860,17 +834,15 @@ M.GeofenceGeometry = {
     members = {
         Polygon = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
         },
-        Circle = {
-            type = "structure",
-        },
+        Circle = M.Circle,
         Geobuf = {
             type = "blob",
         },
         MultiPolygon = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
         },
     },
 }
@@ -884,16 +856,13 @@ M.BatchPutGeofenceRequestEntry = {
                 required = true,
             },
         },
-        Geometry = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Geometry = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.GeofenceGeometry }),
         GeofenceProperties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -910,7 +879,7 @@ M.BatchPutGeofenceInput = {
         },
         Entries = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchPutGeofenceRequestEntry,
             traits = {
                 required = true,
             },
@@ -927,12 +896,9 @@ M.BatchPutGeofenceError = {
                 required = true,
             },
         },
-        Error = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Error = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BatchItemError }),
     },
 }
 
@@ -965,14 +931,14 @@ M.BatchPutGeofenceOutput = {
     members = {
         Successes = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchPutGeofenceSuccess,
             traits = {
                 required = true,
             },
         },
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchPutGeofenceError,
             traits = {
                 required = true,
             },
@@ -992,7 +958,7 @@ M.BatchUpdateDevicePositionInput = {
         },
         Updates = {
             type = "list",
-            member_type = "structure",
+            member = M.DevicePositionUpdate,
             traits = {
                 required = true,
             },
@@ -1015,12 +981,9 @@ M.BatchUpdateDevicePositionError = {
                 required = true,
             },
         },
-        Error = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Error = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BatchItemError }),
     },
 }
 
@@ -1029,7 +992,7 @@ M.BatchUpdateDevicePositionOutput = {
     members = {
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchUpdateDevicePositionError,
             traits = {
                 required = true,
             },
@@ -1076,13 +1039,13 @@ M.TruckDimensions = {
     type = "structure",
     members = {
         Length = {
-            type = "number",
+            type = "double",
         },
         Height = {
-            type = "number",
+            type = "double",
         },
         Width = {
-            type = "number",
+            type = "double",
         },
         Unit = {
             type = "string",
@@ -1099,7 +1062,7 @@ M.TruckWeight = {
     type = "structure",
     members = {
         Total = {
-            type = "number",
+            type = "double",
         },
         Unit = {
             type = "string",
@@ -1116,12 +1079,8 @@ M.CalculateRouteTruckModeOptions = {
         AvoidTolls = {
             type = "boolean",
         },
-        Dimensions = {
-            type = "structure",
-        },
-        Weight = {
-            type = "structure",
-        },
+        Dimensions = M.TruckDimensions,
+        Weight = M.TruckWeight,
     },
 }
 
@@ -1137,21 +1096,21 @@ M.CalculateRouteInput = {
         },
         DeparturePosition = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
         },
         DestinationPosition = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
         },
         WaypointPositions = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
         },
         TravelMode = {
             type = "string",
@@ -1168,12 +1127,8 @@ M.CalculateRouteInput = {
         IncludeLegGeometry = {
             type = "boolean",
         },
-        CarModeOptions = {
-            type = "structure",
-        },
-        TruckModeOptions = {
-            type = "structure",
-        },
+        CarModeOptions = M.CalculateRouteCarModeOptions,
+        TruckModeOptions = M.CalculateRouteTruckModeOptions,
         ArrivalTime = {
             type = "timestamp",
         },
@@ -1194,7 +1149,7 @@ M.LegGeometry = {
     members = {
         LineString = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
         },
     },
 }
@@ -1204,32 +1159,32 @@ M.Step = {
     members = {
         StartPosition = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
         },
         EndPosition = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
         },
         Distance = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
         DurationSeconds = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
         GeometryOffset = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1239,36 +1194,34 @@ M.Leg = {
     members = {
         StartPosition = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
         },
         EndPosition = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
         },
         Distance = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
         DurationSeconds = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
-        Geometry = {
-            type = "structure",
-        },
+        Geometry = M.LegGeometry,
         Steps = {
             type = "list",
-            member_type = "structure",
+            member = M.Step,
             traits = {
                 required = true,
             },
@@ -1281,7 +1234,7 @@ M.CalculateRouteSummary = {
     members = {
         RouteBBox = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
@@ -1293,13 +1246,13 @@ M.CalculateRouteSummary = {
             },
         },
         Distance = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
         DurationSeconds = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -1318,17 +1271,14 @@ M.CalculateRouteOutput = {
     members = {
         Legs = {
             type = "list",
-            member_type = "structure",
+            member = M.Leg,
             traits = {
                 required = true,
             },
         },
-        Summary = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Summary = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CalculateRouteSummary }),
     },
 }
 
@@ -1344,14 +1294,14 @@ M.CalculateRouteMatrixInput = {
         },
         DeparturePositions = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
             traits = {
                 required = true,
             },
         },
         DestinationPositions = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
             traits = {
                 required = true,
             },
@@ -1368,12 +1318,8 @@ M.CalculateRouteMatrixInput = {
         DistanceUnit = {
             type = "string",
         },
-        CarModeOptions = {
-            type = "structure",
-        },
-        TruckModeOptions = {
-            type = "structure",
-        },
+        CarModeOptions = M.CalculateRouteCarModeOptions,
+        TruckModeOptions = M.CalculateRouteTruckModeOptions,
         Key = {
             type = "string",
             traits = {
@@ -1411,14 +1357,12 @@ M.RouteMatrixEntry = {
     type = "structure",
     members = {
         Distance = {
-            type = "number",
+            type = "double",
         },
         DurationSeconds = {
-            type = "number",
+            type = "double",
         },
-        Error = {
-            type = "structure",
-        },
+        Error = M.RouteMatrixEntryError,
     },
 }
 
@@ -1432,13 +1376,13 @@ M.CalculateRouteMatrixSummary = {
             },
         },
         RouteCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         ErrorCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1457,25 +1401,22 @@ M.CalculateRouteMatrixOutput = {
     members = {
         RouteMatrix = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
             traits = {
                 required = true,
             },
         },
         SnappedDeparturePositions = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
         },
         SnappedDestinationPositions = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
         },
-        Summary = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Summary = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CalculateRouteMatrixSummary }),
     },
 }
 
@@ -1528,14 +1469,16 @@ M.LteLocalId = {
     type = "structure",
     members = {
         Earfcn = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         Pci = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -1546,28 +1489,31 @@ M.LteNetworkMeasurements = {
     type = "structure",
     members = {
         Earfcn = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         CellId = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         Pci = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         Rsrp = {
-            type = "number",
+            type = "integer",
         },
         Rsrq = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -1576,44 +1522,43 @@ M.LteCellDetails = {
     type = "structure",
     members = {
         CellId = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         Mcc = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Mnc = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
-        LocalId = {
-            type = "structure",
-        },
+        LocalId = M.LteLocalId,
         NetworkMeasurements = {
             type = "list",
-            member_type = "structure",
+            member = M.LteNetworkMeasurements,
         },
         TimingAdvance = {
-            type = "number",
+            type = "integer",
         },
         NrCapable = {
             type = "boolean",
         },
         Rsrp = {
-            type = "number",
+            type = "integer",
         },
         Rsrq = {
-            type = "number",
+            type = "float",
         },
         Tac = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1623,7 +1568,7 @@ M.CellSignals = {
     members = {
         LteCellDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.LteCellDetails,
             traits = {
                 required = true,
             },
@@ -1657,8 +1602,8 @@ M.CreateGeofenceCollectionInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         KmsKeyId = {
             type = "string",
@@ -1704,7 +1649,7 @@ M.MapConfiguration = {
         },
         CustomLayers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1718,12 +1663,9 @@ M.CreateMapInput = {
                 required = true,
             },
         },
-        Configuration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MapConfiguration }),
         PricingPlan = {
             type = "string",
         },
@@ -1732,8 +1674,8 @@ M.CreateMapInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1797,13 +1739,11 @@ M.CreatePlaceIndexInput = {
         Description = {
             type = "string",
         },
-        DataSourceConfiguration = {
-            type = "structure",
-        },
+        DataSourceConfiguration = M.DataSourceConfiguration,
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1855,8 +1795,8 @@ M.CreateRouteCalculatorInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1914,8 +1854,8 @@ M.CreateTrackerInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         PositionFiltering = {
             type = "string",
@@ -2083,8 +2023,8 @@ M.DescribeGeofenceCollectionOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         CreateTime = {
             type = "timestamp",
@@ -2099,7 +2039,7 @@ M.DescribeGeofenceCollectionOutput = {
             },
         },
         GeofenceCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2141,12 +2081,9 @@ M.DescribeMapOutput = {
                 required = true,
             },
         },
-        Configuration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MapConfiguration }),
         Description = {
             type = "string",
             traits = {
@@ -2155,8 +2092,8 @@ M.DescribeMapOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         CreateTime = {
             type = "timestamp",
@@ -2228,16 +2165,13 @@ M.DescribePlaceIndexOutput = {
                 required = true,
             },
         },
-        DataSourceConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DataSourceConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataSourceConfiguration }),
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2299,8 +2233,8 @@ M.DescribeRouteCalculatorOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2347,8 +2281,8 @@ M.DescribeTrackerOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         CreateTime = {
             type = "timestamp",
@@ -2387,7 +2321,7 @@ M.WiFiAccessPoint = {
             },
         },
         Rss = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -2412,24 +2346,20 @@ M.DeviceState = {
         },
         Position = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
         },
-        Accuracy = {
-            type = "structure",
-        },
+        Accuracy = M.PositionalAccuracy,
         Ipv4Address = {
             type = "string",
         },
         WiFiAccessPoints = {
             type = "list",
-            member_type = "structure",
+            member = M.WiFiAccessPoint,
         },
-        CellSignals = {
-            type = "structure",
-        },
+        CellSignals = M.CellSignals,
     },
 }
 
@@ -2485,8 +2415,9 @@ M.ForecastedEvent = {
             },
         },
         NearestDistance = {
-            type = "number",
+            type = "double",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -2501,8 +2432,8 @@ M.ForecastedEvent = {
         },
         GeofenceProperties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2512,13 +2443,13 @@ M.ForecastGeofenceEventsDeviceState = {
     members = {
         Position = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
         },
         Speed = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -2538,14 +2469,11 @@ M.ForecastGeofenceEventsInput = {
                 required = true,
             },
         },
-        DeviceState = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DeviceState = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ForecastGeofenceEventsDeviceState }),
         TimeHorizonMinutes = {
-            type = "number",
+            type = "double",
         },
         DistanceUnit = {
             type = "string",
@@ -2557,7 +2485,10 @@ M.ForecastGeofenceEventsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -2567,7 +2498,7 @@ M.ForecastGeofenceEventsOutput = {
     members = {
         ForecastedEvents = {
             type = "list",
-            member_type = "structure",
+            member = M.ForecastedEvent,
             traits = {
                 required = true,
             },
@@ -2608,8 +2539,8 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2626,8 +2557,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2651,7 +2582,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -2693,12 +2624,9 @@ M.GetGeofenceOutput = {
                 required = true,
             },
         },
-        Geometry = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Geometry = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.GeofenceGeometry }),
         Status = {
             type = "string",
             traits = {
@@ -2719,8 +2647,8 @@ M.GetGeofenceOutput = {
         },
         GeofenceProperties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2729,7 +2657,10 @@ M.ListGeofenceCollectionsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         NextToken = {
             type = "string",
@@ -2778,7 +2709,7 @@ M.ListGeofenceCollectionsOutput = {
     members = {
         Entries = {
             type = "list",
-            member_type = "structure",
+            member = M.ListGeofenceCollectionsResponseEntry,
             traits = {
                 required = true,
             },
@@ -2803,7 +2734,10 @@ M.ListGeofencesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -2817,12 +2751,9 @@ M.ListGeofenceResponseEntry = {
                 required = true,
             },
         },
-        Geometry = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Geometry = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.GeofenceGeometry }),
         Status = {
             type = "string",
             traits = {
@@ -2843,8 +2774,8 @@ M.ListGeofenceResponseEntry = {
         },
         GeofenceProperties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2854,7 +2785,7 @@ M.ListGeofencesOutput = {
     members = {
         Entries = {
             type = "list",
-            member_type = "structure",
+            member = M.ListGeofenceResponseEntry,
             traits = {
                 required = true,
             },
@@ -2882,16 +2813,13 @@ M.PutGeofenceInput = {
                 required = true,
             },
         },
-        Geometry = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Geometry = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.GeofenceGeometry }),
         GeofenceProperties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3006,18 +2934,16 @@ M.GetDevicePositionOutput = {
         },
         Position = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
         },
-        Accuracy = {
-            type = "structure",
-        },
+        Accuracy = M.PositionalAccuracy,
         PositionProperties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3049,7 +2975,10 @@ M.GetDevicePositionHistoryInput = {
             type = "timestamp",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -3059,7 +2988,7 @@ M.GetDevicePositionHistoryOutput = {
     members = {
         DevicePositions = {
             type = "list",
-            member_type = "structure",
+            member = M.DevicePosition,
             traits = {
                 required = true,
             },
@@ -3097,7 +3026,7 @@ M.ValidateAddressActionOptions = {
     members = {
         AdditionalFeatures = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3105,9 +3034,7 @@ M.ValidateAddressActionOptions = {
 M.JobActionOptions = {
     type = "structure",
     members = {
-        ValidateAddress = {
-            type = "structure",
-        },
+        ValidateAddress = M.ValidateAddressActionOptions,
     },
 }
 
@@ -3127,7 +3054,7 @@ M.JobError = {
         },
         Messages = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3185,9 +3112,7 @@ M.GetJobOutput = {
                 required = true,
             },
         },
-        ActionOptions = {
-            type = "structure",
-        },
+        ActionOptions = M.JobActionOptions,
         CreatedAt = {
             type = "timestamp",
             traits = {
@@ -3197,21 +3122,16 @@ M.GetJobOutput = {
         EndedAt = {
             type = "timestamp",
         },
-        Error = {
-            type = "structure",
-        },
+        Error = M.JobError,
         ExecutionRoleArn = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        InputOptions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InputOptions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.JobInputOptions }),
         JobArn = {
             type = "string",
             traits = {
@@ -3227,12 +3147,9 @@ M.GetJobOutput = {
         Name = {
             type = "string",
         },
-        OutputOptions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        OutputOptions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.JobOutputOptions }),
         Status = {
             type = "string",
             traits = {
@@ -3247,8 +3164,8 @@ M.GetJobOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3504,7 +3421,7 @@ M.PlaceGeometry = {
     members = {
         Point = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
     },
 }
@@ -3519,7 +3436,7 @@ M.TimeZone = {
             },
         },
         Offset = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3530,12 +3447,9 @@ M.Place = {
         Label = {
             type = "string",
         },
-        Geometry = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Geometry = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PlaceGeometry }),
         AddressNumber = {
             type = "string",
         },
@@ -3563,9 +3477,7 @@ M.Place = {
         Interpolated = {
             type = "boolean",
         },
-        TimeZone = {
-            type = "structure",
-        },
+        TimeZone = M.TimeZone,
         UnitType = {
             type = "string",
         },
@@ -3574,11 +3486,11 @@ M.Place = {
         },
         Categories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SupplementalCategories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SubMunicipality = {
             type = "string",
@@ -3589,12 +3501,9 @@ M.Place = {
 M.GetPlaceOutput = {
     type = "structure",
     members = {
-        Place = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Place = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Place }),
     },
 }
 
@@ -3603,13 +3512,11 @@ M.InferredState = {
     members = {
         Position = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
-        Accuracy = {
-            type = "structure",
-        },
+        Accuracy = M.PositionalAccuracy,
         DeviationDistance = {
-            type = "number",
+            type = "double",
         },
         ProxyDetected = {
             type = "boolean",
@@ -3632,11 +3539,12 @@ M.JobsFilter = {
 M.ListJobsInput = {
     type = "structure",
     members = {
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.JobsFilter,
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         NextToken = {
             type = "string",
@@ -3653,9 +3561,7 @@ M.ListJobsResponseEntry = {
                 required = true,
             },
         },
-        ActionOptions = {
-            type = "structure",
-        },
+        ActionOptions = M.JobActionOptions,
         CreatedAt = {
             type = "timestamp",
             traits = {
@@ -3671,15 +3577,10 @@ M.ListJobsResponseEntry = {
         EndedAt = {
             type = "timestamp",
         },
-        Error = {
-            type = "structure",
-        },
-        InputOptions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Error = M.JobError,
+        InputOptions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.JobInputOptions }),
         JobId = {
             type = "string",
             traits = {
@@ -3695,12 +3596,9 @@ M.ListJobsResponseEntry = {
         Name = {
             type = "string",
         },
-        OutputOptions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        OutputOptions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.JobOutputOptions }),
         Status = {
             type = "string",
             traits = {
@@ -3721,7 +3619,7 @@ M.ListJobsOutput = {
     members = {
         Entries = {
             type = "list",
-            member_type = "structure",
+            member = M.ListJobsResponseEntry,
             traits = {
                 required = true,
             },
@@ -3744,34 +3642,26 @@ M.StartJobInput = {
                 required = true,
             },
         },
-        ActionOptions = {
-            type = "structure",
-        },
+        ActionOptions = M.JobActionOptions,
         ExecutionRoleArn = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        InputOptions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InputOptions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.JobInputOptions }),
         Name = {
             type = "string",
         },
-        OutputOptions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        OutputOptions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.JobOutputOptions }),
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3811,7 +3701,7 @@ M.TrackingFilterGeometry = {
     members = {
         Polygon = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
         },
     },
 }
@@ -3827,14 +3717,15 @@ M.ListDevicePositionsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         NextToken = {
             type = "string",
         },
-        FilterGeometry = {
-            type = "structure",
-        },
+        FilterGeometry = M.TrackingFilterGeometry,
     },
 }
 
@@ -3855,18 +3746,16 @@ M.ListDevicePositionsResponseEntry = {
         },
         Position = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
         },
-        Accuracy = {
-            type = "structure",
-        },
+        Accuracy = M.PositionalAccuracy,
         PositionProperties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3876,7 +3765,7 @@ M.ListDevicePositionsOutput = {
     members = {
         Entries = {
             type = "list",
-            member_type = "structure",
+            member = M.ListDevicePositionsResponseEntry,
             traits = {
                 required = true,
             },
@@ -3891,7 +3780,10 @@ M.ListMapsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         NextToken = {
             type = "string",
@@ -3943,7 +3835,7 @@ M.ListMapsOutput = {
     members = {
         Entries = {
             type = "list",
-            member_type = "structure",
+            member = M.ListMapsResponseEntry,
             traits = {
                 required = true,
             },
@@ -3958,7 +3850,10 @@ M.ListPlaceIndexesInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         NextToken = {
             type = "string",
@@ -4010,7 +3905,7 @@ M.ListPlaceIndexesOutput = {
     members = {
         Entries = {
             type = "list",
-            member_type = "structure",
+            member = M.ListPlaceIndexesResponseEntry,
             traits = {
                 required = true,
             },
@@ -4025,7 +3920,10 @@ M.ListRouteCalculatorsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         NextToken = {
             type = "string",
@@ -4077,7 +3975,7 @@ M.ListRouteCalculatorsOutput = {
     members = {
         Entries = {
             type = "list",
-            member_type = "structure",
+            member = M.ListRouteCalculatorsResponseEntry,
             traits = {
                 required = true,
             },
@@ -4099,7 +3997,10 @@ M.ListTrackerConsumersInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         NextToken = {
             type = "string",
@@ -4112,7 +4013,7 @@ M.ListTrackerConsumersOutput = {
     members = {
         ConsumerArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4127,7 +4028,10 @@ M.ListTrackersInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         NextToken = {
             type = "string",
@@ -4176,7 +4080,7 @@ M.ListTrackersOutput = {
     members = {
         Entries = {
             type = "list",
-            member_type = "structure",
+            member = M.ListTrackersResponseEntry,
             traits = {
                 required = true,
             },
@@ -4195,7 +4099,7 @@ M.MapConfigurationUpdate = {
         },
         CustomLayers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4216,9 +4120,7 @@ M.UpdateMapInput = {
         Description = {
             type = "string",
         },
-        ConfigurationUpdate = {
-            type = "structure",
-        },
+        ConfigurationUpdate = M.MapConfigurationUpdate,
     },
 }
 
@@ -4258,13 +4160,13 @@ M.SearchPlaceIndexForPositionInput = {
         },
         Position = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Language = {
             type = "string",
@@ -4281,14 +4183,11 @@ M.SearchPlaceIndexForPositionInput = {
 M.SearchForPositionResult = {
     type = "structure",
     members = {
-        Place = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Place = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Place }),
         Distance = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -4304,13 +4203,13 @@ M.SearchPlaceIndexForPositionSummary = {
     members = {
         Position = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         DataSource = {
             type = "string",
@@ -4327,15 +4226,12 @@ M.SearchPlaceIndexForPositionSummary = {
 M.SearchPlaceIndexForPositionOutput = {
     type = "structure",
     members = {
-        Summary = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Summary = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SearchPlaceIndexForPositionSummary }),
         Results = {
             type = "list",
-            member_type = "structure",
+            member = M.SearchForPositionResult,
             traits = {
                 required = true,
             },
@@ -4361,25 +4257,28 @@ M.SearchPlaceIndexForSuggestionsInput = {
         },
         BiasPosition = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
         FilterBBox = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
         FilterCountries = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         Language = {
             type = "string",
         },
         FilterCategories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Key = {
             type = "string",
@@ -4404,11 +4303,11 @@ M.SearchForSuggestionsResult = {
         },
         Categories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SupplementalCategories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4424,18 +4323,18 @@ M.SearchPlaceIndexForSuggestionsSummary = {
         },
         BiasPosition = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
         FilterBBox = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
         FilterCountries = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         DataSource = {
             type = "string",
@@ -4448,7 +4347,7 @@ M.SearchPlaceIndexForSuggestionsSummary = {
         },
         FilterCategories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4456,15 +4355,12 @@ M.SearchPlaceIndexForSuggestionsSummary = {
 M.SearchPlaceIndexForSuggestionsOutput = {
     type = "structure",
     members = {
-        Summary = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Summary = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SearchPlaceIndexForSuggestionsSummary }),
         Results = {
             type = "list",
-            member_type = "structure",
+            member = M.SearchForSuggestionsResult,
             traits = {
                 required = true,
             },
@@ -4490,25 +4386,25 @@ M.SearchPlaceIndexForTextInput = {
         },
         BiasPosition = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
         FilterBBox = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
         FilterCountries = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Language = {
             type = "string",
         },
         FilterCategories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Key = {
             type = "string",
@@ -4522,17 +4418,14 @@ M.SearchPlaceIndexForTextInput = {
 M.SearchForTextResult = {
     type = "structure",
     members = {
-        Place = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Place = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Place }),
         Distance = {
-            type = "number",
+            type = "double",
         },
         Relevance = {
-            type = "number",
+            type = "double",
         },
         PlaceId = {
             type = "string",
@@ -4551,22 +4444,22 @@ M.SearchPlaceIndexForTextSummary = {
         },
         BiasPosition = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
         FilterBBox = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
         FilterCountries = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         ResultBBox = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
         DataSource = {
             type = "string",
@@ -4579,7 +4472,7 @@ M.SearchPlaceIndexForTextSummary = {
         },
         FilterCategories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4587,15 +4480,12 @@ M.SearchPlaceIndexForTextSummary = {
 M.SearchPlaceIndexForTextOutput = {
     type = "structure",
     members = {
-        Summary = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Summary = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SearchPlaceIndexForTextSummary }),
         Results = {
             type = "list",
-            member_type = "structure",
+            member = M.SearchForTextResult,
             traits = {
                 required = true,
             },
@@ -4619,9 +4509,7 @@ M.UpdatePlaceIndexInput = {
         Description = {
             type = "string",
         },
-        DataSourceConfiguration = {
-            type = "structure",
-        },
+        DataSourceConfiguration = M.DataSourceConfiguration,
     },
 }
 
@@ -4757,12 +4645,9 @@ M.VerifyDevicePositionInput = {
                 required = true,
             },
         },
-        DeviceState = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DeviceState = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DeviceState }),
         DistanceUnit = {
             type = "string",
         },
@@ -4772,12 +4657,9 @@ M.VerifyDevicePositionInput = {
 M.VerifyDevicePositionOutput = {
     type = "structure",
     members = {
-        InferredState = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InferredState = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InferredState }),
         DeviceId = {
             type = "string",
             traits = {

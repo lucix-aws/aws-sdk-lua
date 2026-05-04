@@ -26,8 +26,8 @@ M.CreateSavingsPlanInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -128,7 +128,7 @@ M.SavingsPlanRateFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -144,13 +144,13 @@ M.DescribeSavingsPlanRatesInput = {
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.SavingsPlanRateFilter,
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -262,7 +262,7 @@ M.SavingsPlanRate = {
         },
         properties = {
             type = "list",
-            member_type = "structure",
+            member = M.SavingsPlanRateProperty,
         },
     },
 }
@@ -275,7 +275,7 @@ M.DescribeSavingsPlanRatesOutput = {
         },
         searchResults = {
             type = "list",
-            member_type = "structure",
+            member = M.SavingsPlanRate,
         },
         nextToken = {
             type = "string",
@@ -304,7 +304,7 @@ M.SavingsPlanFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -325,25 +325,25 @@ M.DescribeSavingsPlansInput = {
     members = {
         savingsPlanArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         savingsPlanIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         states = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.SavingsPlanFilter,
         },
     },
 }
@@ -399,7 +399,7 @@ M.SavingsPlan = {
         },
         productTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         currency = {
             type = "string",
@@ -414,12 +414,15 @@ M.SavingsPlan = {
             type = "string",
         },
         termDurationInSeconds = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         returnableUntil = {
             type = "string",
@@ -432,7 +435,7 @@ M.DescribeSavingsPlansOutput = {
     members = {
         savingsPlans = {
             type = "list",
-            member_type = "structure",
+            member = M.SavingsPlan,
         },
         nextToken = {
             type = "string",
@@ -457,7 +460,7 @@ M.SavingsPlanOfferingRateFilterElement = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -467,41 +470,44 @@ M.DescribeSavingsPlansOfferingRatesInput = {
     members = {
         savingsPlanOfferingIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         savingsPlanPaymentOptions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         savingsPlanTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         products = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         serviceCodes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         usageTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         operations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.SavingsPlanOfferingRateFilterElement,
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -531,7 +537,10 @@ M.ParentSavingsPlanOffering = {
             type = "string",
         },
         durationSeconds = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         currency = {
             type = "string",
@@ -545,9 +554,7 @@ M.ParentSavingsPlanOffering = {
 M.SavingsPlanOfferingRate = {
     type = "structure",
     members = {
-        savingsPlanOffering = {
-            type = "structure",
-        },
+        savingsPlanOffering = M.ParentSavingsPlanOffering,
         rate = {
             type = "string",
         },
@@ -568,7 +575,7 @@ M.SavingsPlanOfferingRate = {
         },
         properties = {
             type = "list",
-            member_type = "structure",
+            member = M.SavingsPlanOfferingRateProperty,
         },
     },
 }
@@ -578,7 +585,7 @@ M.DescribeSavingsPlansOfferingRatesOutput = {
     members = {
         searchResults = {
             type = "list",
-            member_type = "structure",
+            member = M.SavingsPlanOfferingRate,
         },
         nextToken = {
             type = "string",
@@ -599,7 +606,7 @@ M.SavingsPlanOfferingFilterElement = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -609,52 +616,55 @@ M.DescribeSavingsPlansOfferingsInput = {
     members = {
         offeringIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         paymentOptions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         productType = {
             type = "string",
         },
         planTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         durations = {
             type = "list",
-            member_type = "number",
+            member = { type = "long" },
         },
         currencies = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         descriptions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         serviceCodes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         usageTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         operations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.SavingsPlanOfferingFilterElement,
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -684,7 +694,7 @@ M.SavingsPlanOffering = {
         },
         productTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         planType = {
             type = "string",
@@ -696,7 +706,10 @@ M.SavingsPlanOffering = {
             type = "string",
         },
         durationSeconds = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         currency = {
             type = "string",
@@ -712,7 +725,7 @@ M.SavingsPlanOffering = {
         },
         properties = {
             type = "list",
-            member_type = "structure",
+            member = M.SavingsPlanOfferingProperty,
         },
     },
 }
@@ -722,7 +735,7 @@ M.DescribeSavingsPlansOfferingsOutput = {
     members = {
         searchResults = {
             type = "list",
-            member_type = "structure",
+            member = M.SavingsPlanOffering,
         },
         nextToken = {
             type = "string",
@@ -747,8 +760,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -788,8 +801,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -812,7 +825,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },

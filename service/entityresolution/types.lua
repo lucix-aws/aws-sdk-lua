@@ -40,14 +40,14 @@ M.AddPolicyStatementInput = {
         },
         action = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         principal = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -152,7 +152,7 @@ M.BatchDeleteUniqueIdInput = {
         },
         uniqueIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_header = "uniqueIds",
                 required = true,
@@ -212,21 +212,21 @@ M.BatchDeleteUniqueIdOutput = {
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.DeleteUniqueIdError,
             traits = {
                 required = true,
             },
         },
         deleted = {
             type = "list",
-            member_type = "structure",
+            member = M.DeletedUniqueId,
             traits = {
                 required = true,
             },
         },
         disconnectedUniqueIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -263,9 +263,7 @@ M.ProviderProperties = {
         providerConfiguration = {
             type = "document",
         },
-        intermediateSourceConfiguration = {
-            type = "structure",
-        },
+        intermediateSourceConfiguration = M.IntermediateSourceConfiguration,
     },
 }
 
@@ -290,7 +288,7 @@ M.Rule = {
         },
         matchingKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -303,7 +301,7 @@ M.IdMappingRuleBasedProperties = {
     members = {
         rules = {
             type = "list",
-            member_type = "structure",
+            member = M.Rule,
         },
         ruleDefinitionType = {
             type = "string",
@@ -335,12 +333,8 @@ M.IdMappingTechniques = {
                 required = true,
             },
         },
-        ruleBasedProperties = {
-            type = "structure",
-        },
-        providerProperties = {
-            type = "structure",
-        },
+        ruleBasedProperties = M.IdMappingRuleBasedProperties,
+        providerProperties = M.ProviderProperties,
     },
 }
 
@@ -409,31 +403,29 @@ M.CreateIdMappingWorkflowInput = {
         },
         inputSourceConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.IdMappingWorkflowInputSource,
             traits = {
                 required = true,
             },
         },
         outputSourceConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.IdMappingWorkflowOutputSource,
         },
-        idMappingTechniques = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        incrementalRunConfig = {
-            type = "structure",
-        },
+        idMappingTechniques = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IdMappingTechniques }),
+        incrementalRunConfig = M.IdMappingIncrementalRunConfig,
         roleArn = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -458,26 +450,24 @@ M.CreateIdMappingWorkflowOutput = {
         },
         inputSourceConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.IdMappingWorkflowInputSource,
             traits = {
                 required = true,
             },
         },
         outputSourceConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.IdMappingWorkflowOutputSource,
         },
-        idMappingTechniques = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        incrementalRunConfig = {
-            type = "structure",
-        },
+        idMappingTechniques = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IdMappingTechniques }),
+        incrementalRunConfig = M.IdMappingIncrementalRunConfig,
         roleArn = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
     },
 }
@@ -493,7 +483,7 @@ M.ExceedsLimitException = {
             type = "string",
         },
         quotaValue = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -518,18 +508,18 @@ M.NamespaceRuleBasedProperties = {
     members = {
         rules = {
             type = "list",
-            member_type = "structure",
+            member = M.Rule,
         },
         ruleDefinitionTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         attributeMatchingModel = {
             type = "string",
         },
         recordMatchingModels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -543,12 +533,8 @@ M.IdNamespaceIdMappingWorkflowProperties = {
                 required = true,
             },
         },
-        ruleBasedProperties = {
-            type = "structure",
-        },
-        providerProperties = {
-            type = "structure",
-        },
+        ruleBasedProperties = M.NamespaceRuleBasedProperties,
+        providerProperties = M.NamespaceProviderProperties,
     },
 }
 
@@ -581,11 +567,11 @@ M.CreateIdNamespaceInput = {
         },
         inputSourceConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.IdNamespaceInputSource,
         },
         idMappingWorkflowProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.IdNamespaceIdMappingWorkflowProperties,
         },
         type = {
             type = "string",
@@ -598,8 +584,8 @@ M.CreateIdNamespaceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -624,11 +610,11 @@ M.CreateIdNamespaceOutput = {
         },
         inputSourceConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.IdNamespaceInputSource,
         },
         idMappingWorkflowProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.IdNamespaceIdMappingWorkflowProperties,
         },
         type = {
             type = "string",
@@ -653,8 +639,8 @@ M.CreateIdNamespaceOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -734,10 +720,13 @@ M.OutputSource = {
         },
         outputS3Path = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
         output = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputAttribute,
             traits = {
                 required = true,
             },
@@ -745,9 +734,7 @@ M.OutputSource = {
         applyNormalization = {
             type = "boolean",
         },
-        customerProfilesIntegrationConfig = {
-            type = "structure",
-        },
+        customerProfilesIntegrationConfig = M.CustomerProfilesIntegrationConfig,
     },
 }
 
@@ -767,7 +754,7 @@ M.RuleBasedProperties = {
     members = {
         rules = {
             type = "list",
-            member_type = "structure",
+            member = M.Rule,
             traits = {
                 required = true,
             },
@@ -816,14 +803,12 @@ M.RuleConditionProperties = {
     members = {
         rules = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleCondition,
             traits = {
                 required = true,
             },
         },
-        matchingConfig = {
-            type = "structure",
-        },
+        matchingConfig = M.MatchingConfig,
     },
 }
 
@@ -836,15 +821,9 @@ M.ResolutionTechniques = {
                 required = true,
             },
         },
-        ruleBasedProperties = {
-            type = "structure",
-        },
-        ruleConditionProperties = {
-            type = "structure",
-        },
-        providerProperties = {
-            type = "structure",
-        },
+        ruleBasedProperties = M.RuleBasedProperties,
+        ruleConditionProperties = M.RuleConditionProperties,
+        providerProperties = M.ProviderProperties,
     },
 }
 
@@ -862,27 +841,22 @@ M.CreateMatchingWorkflowInput = {
         },
         inputSourceConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.InputSource,
             traits = {
                 required = true,
             },
         },
         outputSourceConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputSource,
             traits = {
                 required = true,
             },
         },
-        resolutionTechniques = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        incrementalRunConfig = {
-            type = "structure",
-        },
+        resolutionTechniques = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResolutionTechniques }),
+        incrementalRunConfig = M.IncrementalRunConfig,
         roleArn = {
             type = "string",
             traits = {
@@ -891,8 +865,8 @@ M.CreateMatchingWorkflowInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -917,27 +891,22 @@ M.CreateMatchingWorkflowOutput = {
         },
         inputSourceConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.InputSource,
             traits = {
                 required = true,
             },
         },
         outputSourceConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputSource,
             traits = {
                 required = true,
             },
         },
-        resolutionTechniques = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        incrementalRunConfig = {
-            type = "structure",
-        },
+        resolutionTechniques = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResolutionTechniques }),
+        incrementalRunConfig = M.IncrementalRunConfig,
         roleArn = {
             type = "string",
             traits = {
@@ -1017,15 +986,15 @@ M.CreateSchemaMappingInput = {
         },
         mappedInputFields = {
             type = "list",
-            member_type = "structure",
+            member = M.SchemaInputAttribute,
             traits = {
                 required = true,
             },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1053,7 +1022,7 @@ M.CreateSchemaMappingOutput = {
         },
         mappedInputFields = {
             type = "list",
-            member_type = "structure",
+            member = M.SchemaInputAttribute,
             traits = {
                 required = true,
             },
@@ -1225,8 +1194,8 @@ M.Record = {
         },
         recordAttributeMap = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1246,7 +1215,7 @@ M.GenerateMatchIdInput = {
         },
         records = {
             type = "list",
-            member_type = "structure",
+            member = M.Record,
             traits = {
                 required = true,
             },
@@ -1304,7 +1273,7 @@ M.MatchGroup = {
     members = {
         records = {
             type = "list",
-            member_type = "structure",
+            member = M.MatchedRecord,
             traits = {
                 required = true,
             },
@@ -1329,14 +1298,14 @@ M.GenerateMatchIdOutput = {
     members = {
         matchGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.MatchGroup,
             traits = {
                 required = true,
             },
         },
         failedRecords = {
             type = "list",
-            member_type = "structure",
+            member = M.FailedRecord,
             traits = {
                 required = true,
             },
@@ -1383,49 +1352,49 @@ M.IdMappingJobMetrics = {
     type = "structure",
     members = {
         inputRecords = {
-            type = "number",
+            type = "integer",
         },
         totalRecordsProcessed = {
-            type = "number",
+            type = "integer",
         },
         recordsNotProcessed = {
-            type = "number",
+            type = "integer",
         },
         deleteRecordsProcessed = {
-            type = "number",
+            type = "integer",
         },
         totalMappedRecords = {
-            type = "number",
+            type = "integer",
         },
         totalMappedSourceRecords = {
-            type = "number",
+            type = "integer",
         },
         totalMappedTargetRecords = {
-            type = "number",
+            type = "integer",
         },
         uniqueRecordsLoaded = {
-            type = "number",
+            type = "integer",
         },
         newMappedRecords = {
-            type = "number",
+            type = "integer",
         },
         newMappedSourceRecords = {
-            type = "number",
+            type = "integer",
         },
         newMappedTargetRecords = {
-            type = "number",
+            type = "integer",
         },
         newUniqueRecordsLoaded = {
-            type = "number",
+            type = "integer",
         },
         mappedRecordsRemoved = {
-            type = "number",
+            type = "integer",
         },
         mappedSourceRecordsRemoved = {
-            type = "number",
+            type = "integer",
         },
         mappedTargetRecordsRemoved = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1482,15 +1451,11 @@ M.GetIdMappingJobOutput = {
         endTime = {
             type = "timestamp",
         },
-        metrics = {
-            type = "structure",
-        },
-        errorDetails = {
-            type = "structure",
-        },
+        metrics = M.IdMappingJobMetrics,
+        errorDetails = M.ErrorDetails,
         outputSourceConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.IdMappingJobOutputSource,
         },
         jobType = {
             type = "string",
@@ -1531,21 +1496,18 @@ M.GetIdMappingWorkflowOutput = {
         },
         inputSourceConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.IdMappingWorkflowInputSource,
             traits = {
                 required = true,
             },
         },
         outputSourceConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.IdMappingWorkflowOutputSource,
         },
-        idMappingTechniques = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        idMappingTechniques = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IdMappingTechniques }),
         createdAt = {
             type = "timestamp",
             traits = {
@@ -1558,16 +1520,17 @@ M.GetIdMappingWorkflowOutput = {
                 required = true,
             },
         },
-        incrementalRunConfig = {
-            type = "structure",
-        },
+        incrementalRunConfig = M.IdMappingIncrementalRunConfig,
         roleArn = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1605,11 +1568,11 @@ M.GetIdNamespaceOutput = {
         },
         inputSourceConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.IdNamespaceInputSource,
         },
         idMappingWorkflowProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.IdNamespaceIdMappingWorkflowProperties,
         },
         type = {
             type = "string",
@@ -1634,8 +1597,8 @@ M.GetIdNamespaceOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1652,14 +1615,17 @@ M.GetMatchIdInput = {
         },
         record = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
         },
         applyNormalization = {
             type = "boolean",
+            traits = {
+                default = true,
+            },
         },
     },
 }
@@ -1700,19 +1666,19 @@ M.JobMetrics = {
     type = "structure",
     members = {
         inputRecords = {
-            type = "number",
+            type = "integer",
         },
         totalRecordsProcessed = {
-            type = "number",
+            type = "integer",
         },
         recordsNotProcessed = {
-            type = "number",
+            type = "integer",
         },
         deleteRecordsProcessed = {
-            type = "number",
+            type = "integer",
         },
         matchIDs = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1762,15 +1728,11 @@ M.GetMatchingJobOutput = {
         endTime = {
             type = "timestamp",
         },
-        metrics = {
-            type = "structure",
-        },
-        errorDetails = {
-            type = "structure",
-        },
+        metrics = M.JobMetrics,
+        errorDetails = M.ErrorDetails,
         outputSourceConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.JobOutputSource,
         },
     },
 }
@@ -1808,24 +1770,21 @@ M.GetMatchingWorkflowOutput = {
         },
         inputSourceConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.InputSource,
             traits = {
                 required = true,
             },
         },
         outputSourceConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputSource,
             traits = {
                 required = true,
             },
         },
-        resolutionTechniques = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        resolutionTechniques = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResolutionTechniques }),
         createdAt = {
             type = "timestamp",
             traits = {
@@ -1838,9 +1797,7 @@ M.GetMatchingWorkflowOutput = {
                 required = true,
             },
         },
-        incrementalRunConfig = {
-            type = "structure",
-        },
+        incrementalRunConfig = M.IncrementalRunConfig,
         roleArn = {
             type = "string",
             traits = {
@@ -1849,8 +1806,8 @@ M.GetMatchingWorkflowOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1938,11 +1895,11 @@ M.ProviderComponentSchema = {
     members = {
         schemas = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
         },
         providerSchemaAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.ProviderSchemaAttribute,
         },
     },
 }
@@ -1980,9 +1937,7 @@ M.ProviderMarketplaceConfiguration = {
 M.ProviderEndpointConfiguration = {
     type = "union",
     members = {
-        marketplaceConfiguration = {
-            type = "structure",
-        },
+        marketplaceConfiguration = M.ProviderMarketplaceConfiguration,
     },
 }
 
@@ -2006,11 +1961,11 @@ M.ProviderIntermediateDataAccessConfiguration = {
     members = {
         awsAccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         requiredBucketActions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2056,18 +2011,13 @@ M.GetProviderServiceOutput = {
         providerConfigurationDefinition = {
             type = "document",
         },
-        providerIdNameSpaceConfiguration = {
-            type = "structure",
-        },
+        providerIdNameSpaceConfiguration = M.ProviderIdNameSpaceConfiguration,
         providerJobConfiguration = {
             type = "document",
         },
-        providerEndpointConfiguration = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        providerEndpointConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProviderEndpointConfiguration }),
         anonymizedOutput = {
             type = "boolean",
             traits = {
@@ -2080,12 +2030,8 @@ M.GetProviderServiceOutput = {
                 required = true,
             },
         },
-        providerIntermediateDataAccessConfiguration = {
-            type = "structure",
-        },
-        providerComponentSchema = {
-            type = "structure",
-        },
+        providerIntermediateDataAccessConfiguration = M.ProviderIntermediateDataAccessConfiguration,
+        providerComponentSchema = M.ProviderComponentSchema,
     },
 }
 
@@ -2122,7 +2068,7 @@ M.GetSchemaMappingOutput = {
         },
         mappedInputFields = {
             type = "list",
-            member_type = "structure",
+            member = M.SchemaInputAttribute,
             traits = {
                 required = true,
             },
@@ -2141,8 +2087,8 @@ M.GetSchemaMappingOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         hasWorkflows = {
             type = "boolean",
@@ -2170,7 +2116,7 @@ M.ListIdMappingJobsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2210,7 +2156,7 @@ M.ListIdMappingJobsOutput = {
     members = {
         jobs = {
             type = "list",
-            member_type = "structure",
+            member = M.JobSummary,
         },
         nextToken = {
             type = "string",
@@ -2228,7 +2174,7 @@ M.ListIdMappingWorkflowsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2271,7 +2217,7 @@ M.ListIdMappingWorkflowsOutput = {
     members = {
         workflowSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.IdMappingWorkflowSummary,
         },
         nextToken = {
             type = "string",
@@ -2289,7 +2235,7 @@ M.ListIdNamespacesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2329,7 +2275,7 @@ M.IdNamespaceSummary = {
         },
         idMappingWorkflowProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.IdNamespaceIdMappingWorkflowMetadata,
         },
         type = {
             type = "string",
@@ -2357,7 +2303,7 @@ M.ListIdNamespacesOutput = {
     members = {
         idNamespaceSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.IdNamespaceSummary,
         },
         nextToken = {
             type = "string",
@@ -2382,7 +2328,7 @@ M.ListMatchingJobsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2395,7 +2341,7 @@ M.ListMatchingJobsOutput = {
     members = {
         jobs = {
             type = "list",
-            member_type = "structure",
+            member = M.JobSummary,
         },
         nextToken = {
             type = "string",
@@ -2413,7 +2359,7 @@ M.ListMatchingWorkflowsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2462,7 +2408,7 @@ M.ListMatchingWorkflowsOutput = {
     members = {
         workflowSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.MatchingWorkflowSummary,
         },
         nextToken = {
             type = "string",
@@ -2480,7 +2426,7 @@ M.ListProviderServicesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2535,7 +2481,7 @@ M.ListProviderServicesOutput = {
     members = {
         providerServiceSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ProviderServiceSummary,
         },
         nextToken = {
             type = "string",
@@ -2553,7 +2499,7 @@ M.ListSchemaMappingsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2602,7 +2548,7 @@ M.ListSchemaMappingsOutput = {
     members = {
         schemaList = {
             type = "list",
-            member_type = "structure",
+            member = M.SchemaMappingSummary,
         },
         nextToken = {
             type = "string",
@@ -2628,8 +2574,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2692,7 +2638,7 @@ M.StartIdMappingJobInput = {
         },
         outputSourceConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.IdMappingJobOutputSource,
         },
         jobType = {
             type = "string",
@@ -2711,7 +2657,7 @@ M.StartIdMappingJobOutput = {
         },
         outputSourceConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.IdMappingJobOutputSource,
         },
         jobType = {
             type = "string",
@@ -2756,8 +2702,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2781,7 +2727,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -2809,26 +2755,24 @@ M.UpdateIdMappingWorkflowInput = {
         },
         inputSourceConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.IdMappingWorkflowInputSource,
             traits = {
                 required = true,
             },
         },
         outputSourceConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.IdMappingWorkflowOutputSource,
         },
-        idMappingTechniques = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        incrementalRunConfig = {
-            type = "structure",
-        },
+        idMappingTechniques = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IdMappingTechniques }),
+        incrementalRunConfig = M.IdMappingIncrementalRunConfig,
         roleArn = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
     },
 }
@@ -2853,26 +2797,24 @@ M.UpdateIdMappingWorkflowOutput = {
         },
         inputSourceConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.IdMappingWorkflowInputSource,
             traits = {
                 required = true,
             },
         },
         outputSourceConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.IdMappingWorkflowOutputSource,
         },
-        idMappingTechniques = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        incrementalRunConfig = {
-            type = "structure",
-        },
+        idMappingTechniques = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IdMappingTechniques }),
+        incrementalRunConfig = M.IdMappingIncrementalRunConfig,
         roleArn = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
     },
 }
@@ -2892,11 +2834,11 @@ M.UpdateIdNamespaceInput = {
         },
         inputSourceConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.IdNamespaceInputSource,
         },
         idMappingWorkflowProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.IdNamespaceIdMappingWorkflowProperties,
         },
         roleArn = {
             type = "string",
@@ -2924,11 +2866,11 @@ M.UpdateIdNamespaceOutput = {
         },
         inputSourceConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.IdNamespaceInputSource,
         },
         idMappingWorkflowProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.IdNamespaceIdMappingWorkflowProperties,
         },
         type = {
             type = "string",
@@ -2969,27 +2911,22 @@ M.UpdateMatchingWorkflowInput = {
         },
         inputSourceConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.InputSource,
             traits = {
                 required = true,
             },
         },
         outputSourceConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputSource,
             traits = {
                 required = true,
             },
         },
-        resolutionTechniques = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        incrementalRunConfig = {
-            type = "structure",
-        },
+        resolutionTechniques = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResolutionTechniques }),
+        incrementalRunConfig = M.IncrementalRunConfig,
         roleArn = {
             type = "string",
             traits = {
@@ -3013,27 +2950,22 @@ M.UpdateMatchingWorkflowOutput = {
         },
         inputSourceConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.InputSource,
             traits = {
                 required = true,
             },
         },
         outputSourceConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputSource,
             traits = {
                 required = true,
             },
         },
-        resolutionTechniques = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        incrementalRunConfig = {
-            type = "structure",
-        },
+        resolutionTechniques = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResolutionTechniques }),
+        incrementalRunConfig = M.IncrementalRunConfig,
         roleArn = {
             type = "string",
             traits = {
@@ -3058,7 +2990,7 @@ M.UpdateSchemaMappingInput = {
         },
         mappedInputFields = {
             type = "list",
-            member_type = "structure",
+            member = M.SchemaInputAttribute,
             traits = {
                 required = true,
             },
@@ -3086,7 +3018,7 @@ M.UpdateSchemaMappingOutput = {
         },
         mappedInputFields = {
             type = "list",
-            member_type = "structure",
+            member = M.SchemaInputAttribute,
             traits = {
                 required = true,
             },

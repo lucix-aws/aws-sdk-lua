@@ -23,7 +23,7 @@ M.AddTagsToResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -36,7 +36,7 @@ M.AddTagsToResourceOutput = {
     members = {
         TagList = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -264,7 +264,7 @@ M.CacheSecurityGroup = {
         },
         EC2SecurityGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.EC2SecurityGroup,
         },
         ARN = {
             type = "string",
@@ -275,9 +275,7 @@ M.CacheSecurityGroup = {
 M.AuthorizeCacheSecurityGroupIngressOutput = {
     type = "structure",
     members = {
-        CacheSecurityGroup = {
-            type = "structure",
-        },
+        CacheSecurityGroup = M.CacheSecurityGroup,
     },
 }
 
@@ -316,11 +314,11 @@ M.BatchApplyUpdateActionInput = {
     members = {
         ReplicationGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CacheClusterIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ServiceUpdateName = {
             type = "string",
@@ -387,11 +385,11 @@ M.BatchApplyUpdateActionOutput = {
     members = {
         ProcessedUpdateActions = {
             type = "list",
-            member_type = "structure",
+            member = M.ProcessedUpdateAction,
         },
         UnprocessedUpdateActions = {
             type = "list",
-            member_type = "structure",
+            member = M.UnprocessedUpdateAction,
         },
     },
 }
@@ -411,11 +409,11 @@ M.BatchStopUpdateActionInput = {
     members = {
         ReplicationGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CacheClusterIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ServiceUpdateName = {
             type = "string",
@@ -431,11 +429,11 @@ M.BatchStopUpdateActionOutput = {
     members = {
         ProcessedUpdateActions = {
             type = "list",
-            member_type = "structure",
+            member = M.ProcessedUpdateAction,
         },
         UnprocessedUpdateActions = {
             type = "list",
-            member_type = "structure",
+            member = M.UnprocessedUpdateAction,
         },
     },
 }
@@ -475,7 +473,7 @@ M.Endpoint = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -523,12 +521,8 @@ M.KinesisFirehoseDestinationDetails = {
 M.DestinationDetails = {
     type = "structure",
     members = {
-        CloudWatchLogsDetails = {
-            type = "structure",
-        },
-        KinesisFirehoseDetails = {
-            type = "structure",
-        },
+        CloudWatchLogsDetails = M.CloudWatchLogsDestinationDetails,
+        KinesisFirehoseDetails = M.KinesisFirehoseDestinationDetails,
     },
 }
 
@@ -564,9 +558,7 @@ M.LogDeliveryConfiguration = {
         DestinationType = {
             type = "string",
         },
-        DestinationDetails = {
-            type = "structure",
-        },
+        DestinationDetails = M.DestinationDetails,
         LogFormat = {
             type = "string",
         },
@@ -599,9 +591,7 @@ M.NodeGroupMember = {
         CacheNodeId = {
             type = "string",
         },
-        ReadEndpoint = {
-            type = "structure",
-        },
+        ReadEndpoint = M.Endpoint,
         PreferredAvailabilityZone = {
             type = "string",
         },
@@ -623,18 +613,14 @@ M.NodeGroup = {
         Status = {
             type = "string",
         },
-        PrimaryEndpoint = {
-            type = "structure",
-        },
-        ReaderEndpoint = {
-            type = "structure",
-        },
+        PrimaryEndpoint = M.Endpoint,
+        ReaderEndpoint = M.Endpoint,
         Slots = {
             type = "string",
         },
         NodeGroupMembers = {
             type = "list",
-            member_type = "structure",
+            member = M.NodeGroupMember,
         },
     },
 }
@@ -658,9 +644,7 @@ M.PendingLogDeliveryConfiguration = {
         DestinationType = {
             type = "string",
         },
-        DestinationDetails = {
-            type = "structure",
-        },
+        DestinationDetails = M.DestinationDetails,
         LogFormat = {
             type = "string",
         },
@@ -671,7 +655,7 @@ M.SlotMigration = {
     type = "structure",
     members = {
         ProgressPercentage = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -679,9 +663,7 @@ M.SlotMigration = {
 M.ReshardingStatus = {
     type = "structure",
     members = {
-        SlotMigration = {
-            type = "structure",
-        },
+        SlotMigration = M.SlotMigration,
     },
 }
 
@@ -695,11 +677,11 @@ M.UserGroupsUpdateStatus = {
     members = {
         UserGroupIdsToAdd = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         UserGroupIdsToRemove = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -713,18 +695,14 @@ M.ReplicationGroupPendingModifiedValues = {
         AutomaticFailoverStatus = {
             type = "string",
         },
-        Resharding = {
-            type = "structure",
-        },
+        Resharding = M.ReshardingStatus,
         AuthTokenStatus = {
             type = "string",
         },
-        UserGroups = {
-            type = "structure",
-        },
+        UserGroups = M.UserGroupsUpdateStatus,
         LogDeliveryConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.PendingLogDeliveryConfiguration,
         },
         TransitEncryptionEnabled = {
             type = "boolean",
@@ -747,22 +725,18 @@ M.ReplicationGroup = {
         Description = {
             type = "string",
         },
-        GlobalReplicationGroupInfo = {
-            type = "structure",
-        },
+        GlobalReplicationGroupInfo = M.GlobalReplicationGroupInfo,
         Status = {
             type = "string",
         },
-        PendingModifiedValues = {
-            type = "structure",
-        },
+        PendingModifiedValues = M.ReplicationGroupPendingModifiedValues,
         MemberClusters = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NodeGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.NodeGroup,
         },
         SnapshottingClusterId = {
             type = "string",
@@ -773,11 +747,9 @@ M.ReplicationGroup = {
         MultiAZ = {
             type = "string",
         },
-        ConfigurationEndpoint = {
-            type = "structure",
-        },
+        ConfigurationEndpoint = M.Endpoint,
         SnapshotRetentionLimit = {
-            type = "number",
+            type = "integer",
         },
         SnapshotWindow = {
             type = "string",
@@ -802,7 +774,7 @@ M.ReplicationGroup = {
         },
         MemberClustersOutpostArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         KmsKeyId = {
             type = "string",
@@ -812,11 +784,11 @@ M.ReplicationGroup = {
         },
         UserGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         LogDeliveryConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.LogDeliveryConfiguration,
         },
         ReplicationGroupCreateTime = {
             type = "timestamp",
@@ -848,9 +820,7 @@ M.ReplicationGroup = {
 M.CompleteMigrationOutput = {
     type = "structure",
     members = {
-        ReplicationGroup = {
-            type = "structure",
-        },
+        ReplicationGroup = M.ReplicationGroup,
     },
 }
 
@@ -884,7 +854,7 @@ M.CopyServerlessCacheSnapshotInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -931,18 +901,14 @@ M.ServerlessCacheSnapshot = {
         BytesUsedForCache = {
             type = "string",
         },
-        ServerlessCacheConfiguration = {
-            type = "structure",
-        },
+        ServerlessCacheConfiguration = M.ServerlessCacheConfiguration,
     },
 }
 
 M.CopyServerlessCacheSnapshotOutput = {
     type = "structure",
     members = {
-        ServerlessCacheSnapshot = {
-            type = "structure",
-        },
+        ServerlessCacheSnapshot = M.ServerlessCacheSnapshot,
     },
 }
 
@@ -999,7 +965,7 @@ M.CopySnapshotInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1014,21 +980,21 @@ M.NodeGroupConfiguration = {
             type = "string",
         },
         ReplicaCount = {
-            type = "number",
+            type = "integer",
         },
         PrimaryAvailabilityZone = {
             type = "string",
         },
         ReplicaAvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         PrimaryOutpostArn = {
             type = "string",
         },
         ReplicaOutpostArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1045,9 +1011,7 @@ M.NodeSnapshot = {
         CacheNodeId = {
             type = "string",
         },
-        NodeGroupConfiguration = {
-            type = "structure",
-        },
+        NodeGroupConfiguration = M.NodeGroupConfiguration,
         CacheSize = {
             type = "string",
         },
@@ -1091,7 +1055,7 @@ M.Snapshot = {
             type = "string",
         },
         NumCacheNodes = {
-            type = "number",
+            type = "integer",
         },
         PreferredAvailabilityZone = {
             type = "string",
@@ -1109,7 +1073,7 @@ M.Snapshot = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         CacheParameterGroupName = {
             type = "string",
@@ -1124,20 +1088,20 @@ M.Snapshot = {
             type = "boolean",
         },
         SnapshotRetentionLimit = {
-            type = "number",
+            type = "integer",
         },
         SnapshotWindow = {
             type = "string",
         },
         NumNodeGroups = {
-            type = "number",
+            type = "integer",
         },
         AutomaticFailover = {
             type = "string",
         },
         NodeSnapshots = {
             type = "list",
-            member_type = "structure",
+            member = M.NodeSnapshot,
         },
         KmsKeyId = {
             type = "string",
@@ -1154,9 +1118,7 @@ M.Snapshot = {
 M.CopySnapshotOutput = {
     type = "structure",
     members = {
-        Snapshot = {
-            type = "structure",
-        },
+        Snapshot = M.Snapshot,
     },
 }
 
@@ -1224,9 +1186,7 @@ M.LogDeliveryConfigurationRequest = {
         DestinationType = {
             type = "string",
         },
-        DestinationDetails = {
-            type = "structure",
-        },
+        DestinationDetails = M.DestinationDetails,
         LogFormat = {
             type = "string",
         },
@@ -1261,10 +1221,10 @@ M.CreateCacheClusterInput = {
         },
         PreferredAvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NumCacheNodes = {
-            type = "number",
+            type = "integer",
         },
         CacheNodeType = {
             type = "string",
@@ -1283,19 +1243,19 @@ M.CreateCacheClusterInput = {
         },
         CacheSecurityGroupNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         SnapshotArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SnapshotName = {
             type = "string",
@@ -1304,7 +1264,7 @@ M.CreateCacheClusterInput = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         NotificationTopicArn = {
             type = "string",
@@ -1313,7 +1273,7 @@ M.CreateCacheClusterInput = {
             type = "boolean",
         },
         SnapshotRetentionLimit = {
-            type = "number",
+            type = "integer",
         },
         SnapshotWindow = {
             type = "string",
@@ -1329,11 +1289,11 @@ M.CreateCacheClusterInput = {
         },
         PreferredOutpostArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         LogDeliveryConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.LogDeliveryConfigurationRequest,
         },
         TransitEncryptionEnabled = {
             type = "boolean",
@@ -1359,9 +1319,7 @@ M.CacheNode = {
         CacheNodeCreateTime = {
             type = "timestamp",
         },
-        Endpoint = {
-            type = "structure",
-        },
+        Endpoint = M.Endpoint,
         ParameterGroupStatus = {
             type = "string",
         },
@@ -1388,7 +1346,7 @@ M.CacheParameterGroupStatus = {
         },
         CacheNodeIdsToReboot = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1421,10 +1379,10 @@ M.ScaleConfig = {
     type = "structure",
     members = {
         ScalePercentage = {
-            type = "number",
+            type = "integer",
         },
         ScaleIntervalMinutes = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1433,11 +1391,11 @@ M.PendingModifiedValues = {
     type = "structure",
     members = {
         NumCacheNodes = {
-            type = "number",
+            type = "integer",
         },
         CacheNodeIdsToRemove = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         EngineVersion = {
             type = "string",
@@ -1450,7 +1408,7 @@ M.PendingModifiedValues = {
         },
         LogDeliveryConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.PendingLogDeliveryConfiguration,
         },
         TransitEncryptionEnabled = {
             type = "boolean",
@@ -1458,9 +1416,7 @@ M.PendingModifiedValues = {
         TransitEncryptionMode = {
             type = "string",
         },
-        ScaleConfig = {
-            type = "structure",
-        },
+        ScaleConfig = M.ScaleConfig,
     },
 }
 
@@ -1482,9 +1438,7 @@ M.CacheCluster = {
         CacheClusterId = {
             type = "string",
         },
-        ConfigurationEndpoint = {
-            type = "structure",
-        },
+        ConfigurationEndpoint = M.Endpoint,
         ClientDownloadLandingPage = {
             type = "string",
         },
@@ -1501,7 +1455,7 @@ M.CacheCluster = {
             type = "string",
         },
         NumCacheNodes = {
-            type = "number",
+            type = "integer",
         },
         PreferredAvailabilityZone = {
             type = "string",
@@ -1515,38 +1469,32 @@ M.CacheCluster = {
         PreferredMaintenanceWindow = {
             type = "string",
         },
-        PendingModifiedValues = {
-            type = "structure",
-        },
-        NotificationConfiguration = {
-            type = "structure",
-        },
+        PendingModifiedValues = M.PendingModifiedValues,
+        NotificationConfiguration = M.NotificationConfiguration,
         CacheSecurityGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.CacheSecurityGroupMembership,
         },
-        CacheParameterGroup = {
-            type = "structure",
-        },
+        CacheParameterGroup = M.CacheParameterGroupStatus,
         CacheSubnetGroupName = {
             type = "string",
         },
         CacheNodes = {
             type = "list",
-            member_type = "structure",
+            member = M.CacheNode,
         },
         AutoMinorVersionUpgrade = {
             type = "boolean",
         },
         SecurityGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.SecurityGroupMembership,
         },
         ReplicationGroupId = {
             type = "string",
         },
         SnapshotRetentionLimit = {
-            type = "number",
+            type = "integer",
         },
         SnapshotWindow = {
             type = "string",
@@ -1571,7 +1519,7 @@ M.CacheCluster = {
         },
         LogDeliveryConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.LogDeliveryConfiguration,
         },
         NetworkType = {
             type = "string",
@@ -1588,9 +1536,7 @@ M.CacheCluster = {
 M.CreateCacheClusterOutput = {
     type = "structure",
     members = {
-        CacheCluster = {
-            type = "structure",
-        },
+        CacheCluster = M.CacheCluster,
     },
 }
 
@@ -1677,7 +1623,7 @@ M.CreateCacheParameterGroupInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1706,9 +1652,7 @@ M.CacheParameterGroup = {
 M.CreateCacheParameterGroupOutput = {
     type = "structure",
     members = {
-        CacheParameterGroup = {
-            type = "structure",
-        },
+        CacheParameterGroup = M.CacheParameterGroup,
     },
 }
 
@@ -1759,7 +1703,7 @@ M.CreateCacheSecurityGroupInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1767,9 +1711,7 @@ M.CreateCacheSecurityGroupInput = {
 M.CreateCacheSecurityGroupOutput = {
     type = "structure",
     members = {
-        CacheSecurityGroup = {
-            type = "structure",
-        },
+        CacheSecurityGroup = M.CacheSecurityGroup,
     },
 }
 
@@ -1820,14 +1762,14 @@ M.CreateCacheSubnetGroupInput = {
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1856,15 +1798,11 @@ M.Subnet = {
         SubnetIdentifier = {
             type = "string",
         },
-        SubnetAvailabilityZone = {
-            type = "structure",
-        },
-        SubnetOutpost = {
-            type = "structure",
-        },
+        SubnetAvailabilityZone = M.AvailabilityZone,
+        SubnetOutpost = M.SubnetOutpost,
         SupportedNetworkTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1883,14 +1821,14 @@ M.CacheSubnetGroup = {
         },
         Subnets = {
             type = "list",
-            member_type = "structure",
+            member = M.Subnet,
         },
         ARN = {
             type = "string",
         },
         SupportedNetworkTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1898,9 +1836,7 @@ M.CacheSubnetGroup = {
 M.CreateCacheSubnetGroupOutput = {
     type = "structure",
     members = {
-        CacheSubnetGroup = {
-            type = "structure",
-        },
+        CacheSubnetGroup = M.CacheSubnetGroup,
     },
 }
 
@@ -2001,14 +1937,14 @@ M.GlobalReplicationGroup = {
         },
         Members = {
             type = "list",
-            member_type = "structure",
+            member = M.GlobalReplicationGroupMember,
         },
         ClusterEnabled = {
             type = "boolean",
         },
         GlobalNodeGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.GlobalNodeGroup,
         },
         AuthTokenEnabled = {
             type = "boolean",
@@ -2028,9 +1964,7 @@ M.GlobalReplicationGroup = {
 M.CreateGlobalReplicationGroupOutput = {
     type = "structure",
     members = {
-        GlobalReplicationGroup = {
-            type = "structure",
-        },
+        GlobalReplicationGroup = M.GlobalReplicationGroup,
     },
 }
 
@@ -2072,21 +2006,21 @@ M.CreateReplicationGroupInput = {
             type = "boolean",
         },
         NumCacheClusters = {
-            type = "number",
+            type = "integer",
         },
         PreferredCacheClusterAZs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NumNodeGroups = {
-            type = "number",
+            type = "integer",
         },
         ReplicasPerNodeGroup = {
-            type = "number",
+            type = "integer",
         },
         NodeGroupConfiguration = {
             type = "list",
-            member_type = "structure",
+            member = M.NodeGroupConfiguration,
         },
         CacheNodeType = {
             type = "string",
@@ -2105,19 +2039,19 @@ M.CreateReplicationGroupInput = {
         },
         CacheSecurityGroupNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         SnapshotArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SnapshotName = {
             type = "string",
@@ -2126,7 +2060,7 @@ M.CreateReplicationGroupInput = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         NotificationTopicArn = {
             type = "string",
@@ -2135,7 +2069,7 @@ M.CreateReplicationGroupInput = {
             type = "boolean",
         },
         SnapshotRetentionLimit = {
-            type = "number",
+            type = "integer",
         },
         SnapshotWindow = {
             type = "string",
@@ -2154,11 +2088,11 @@ M.CreateReplicationGroupInput = {
         },
         UserGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         LogDeliveryConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.LogDeliveryConfigurationRequest,
         },
         DataTieringEnabled = {
             type = "boolean",
@@ -2184,9 +2118,7 @@ M.CreateReplicationGroupInput = {
 M.CreateReplicationGroupOutput = {
     type = "structure",
     members = {
-        ReplicationGroup = {
-            type = "structure",
-        },
+        ReplicationGroup = M.ReplicationGroup,
     },
 }
 
@@ -2258,10 +2190,10 @@ M.DataStorage = {
     type = "structure",
     members = {
         Maximum = {
-            type = "number",
+            type = "integer",
         },
         Minimum = {
-            type = "number",
+            type = "integer",
         },
         Unit = {
             type = "string",
@@ -2276,10 +2208,10 @@ M.ECPUPerSecond = {
     type = "structure",
     members = {
         Maximum = {
-            type = "number",
+            type = "integer",
         },
         Minimum = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2287,12 +2219,8 @@ M.ECPUPerSecond = {
 M.CacheUsageLimits = {
     type = "structure",
     members = {
-        DataStorage = {
-            type = "structure",
-        },
-        ECPUPerSecond = {
-            type = "structure",
-        },
+        DataStorage = M.DataStorage,
+        ECPUPerSecond = M.ECPUPerSecond,
     },
 }
 
@@ -2317,33 +2245,31 @@ M.CreateServerlessCacheInput = {
         MajorEngineVersion = {
             type = "string",
         },
-        CacheUsageLimits = {
-            type = "structure",
-        },
+        CacheUsageLimits = M.CacheUsageLimits,
         KmsKeyId = {
             type = "string",
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SnapshotArnsToRestore = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         UserGroupId = {
             type = "string",
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SnapshotRetentionLimit = {
-            type = "number",
+            type = "integer",
         },
         DailySnapshotTime = {
             type = "string",
@@ -2378,22 +2304,16 @@ M.ServerlessCache = {
         FullEngineVersion = {
             type = "string",
         },
-        CacheUsageLimits = {
-            type = "structure",
-        },
+        CacheUsageLimits = M.CacheUsageLimits,
         KmsKeyId = {
             type = "string",
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        Endpoint = {
-            type = "structure",
-        },
-        ReaderEndpoint = {
-            type = "structure",
-        },
+        Endpoint = M.Endpoint,
+        ReaderEndpoint = M.Endpoint,
         ARN = {
             type = "string",
         },
@@ -2402,10 +2322,10 @@ M.ServerlessCache = {
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SnapshotRetentionLimit = {
-            type = "number",
+            type = "integer",
         },
         DailySnapshotTime = {
             type = "string",
@@ -2419,9 +2339,7 @@ M.ServerlessCache = {
 M.CreateServerlessCacheOutput = {
     type = "structure",
     members = {
-        ServerlessCache = {
-            type = "structure",
-        },
+        ServerlessCache = M.ServerlessCache,
     },
 }
 
@@ -2475,7 +2393,7 @@ M.CreateServerlessCacheSnapshotInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2483,9 +2401,7 @@ M.CreateServerlessCacheSnapshotInput = {
 M.CreateServerlessCacheSnapshotOutput = {
     type = "structure",
     members = {
-        ServerlessCacheSnapshot = {
-            type = "structure",
-        },
+        ServerlessCacheSnapshot = M.ServerlessCacheSnapshot,
     },
 }
 
@@ -2509,7 +2425,7 @@ M.CreateSnapshotInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2517,9 +2433,7 @@ M.CreateSnapshotInput = {
 M.CreateSnapshotOutput = {
     type = "structure",
     members = {
-        Snapshot = {
-            type = "structure",
-        },
+        Snapshot = M.Snapshot,
     },
 }
 
@@ -2547,7 +2461,7 @@ M.AuthenticationMode = {
         },
         Passwords = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2575,7 +2489,7 @@ M.CreateUserInput = {
         },
         Passwords = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AccessString = {
             type = "string",
@@ -2588,11 +2502,9 @@ M.CreateUserInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        AuthenticationMode = {
-            type = "structure",
-        },
+        AuthenticationMode = M.AuthenticationMode,
     },
 }
 
@@ -2609,7 +2521,7 @@ M.Authentication = {
             type = "string",
         },
         PasswordCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2637,11 +2549,9 @@ M.CreateUserOutput = {
         },
         UserGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        Authentication = {
-            type = "structure",
-        },
+        Authentication = M.Authentication,
         ARN = {
             type = "string",
         },
@@ -2695,11 +2605,11 @@ M.CreateUserGroupInput = {
         },
         UserIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2709,11 +2619,11 @@ M.UserGroupPendingChanges = {
     members = {
         UserIdsToRemove = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         UserIdsToAdd = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2732,21 +2642,19 @@ M.CreateUserGroupOutput = {
         },
         UserIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MinimumEngineVersion = {
             type = "string",
         },
-        PendingChanges = {
-            type = "structure",
-        },
+        PendingChanges = M.UserGroupPendingChanges,
         ReplicationGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ServerlessCaches = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ARN = {
             type = "string",
@@ -2794,18 +2702,18 @@ M.DecreaseNodeGroupsInGlobalReplicationGroupInput = {
             },
         },
         NodeGroupCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         GlobalNodeGroupsToRemove = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         GlobalNodeGroupsToRetain = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ApplyImmediately = {
             type = "boolean",
@@ -2819,9 +2727,7 @@ M.DecreaseNodeGroupsInGlobalReplicationGroupInput = {
 M.DecreaseNodeGroupsInGlobalReplicationGroupOutput = {
     type = "structure",
     members = {
-        GlobalReplicationGroup = {
-            type = "structure",
-        },
+        GlobalReplicationGroup = M.GlobalReplicationGroup,
     },
 }
 
@@ -2835,18 +2741,18 @@ M.ConfigureShard = {
             },
         },
         NewReplicaCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         PreferredAvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         PreferredOutpostArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2861,15 +2767,15 @@ M.DecreaseReplicaCountInput = {
             },
         },
         NewReplicaCount = {
-            type = "number",
+            type = "integer",
         },
         ReplicaConfiguration = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigureShard,
         },
         ReplicasToRemove = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ApplyImmediately = {
             type = "boolean",
@@ -2883,9 +2789,7 @@ M.DecreaseReplicaCountInput = {
 M.DecreaseReplicaCountOutput = {
     type = "structure",
     members = {
-        ReplicationGroup = {
-            type = "structure",
-        },
+        ReplicationGroup = M.ReplicationGroup,
     },
 }
 
@@ -2917,9 +2821,7 @@ M.DeleteCacheClusterInput = {
 M.DeleteCacheClusterOutput = {
     type = "structure",
     members = {
-        CacheCluster = {
-            type = "structure",
-        },
+        CacheCluster = M.CacheCluster,
     },
 }
 
@@ -3002,9 +2904,7 @@ M.DeleteGlobalReplicationGroupInput = {
 M.DeleteGlobalReplicationGroupOutput = {
     type = "structure",
     members = {
-        GlobalReplicationGroup = {
-            type = "structure",
-        },
+        GlobalReplicationGroup = M.GlobalReplicationGroup,
     },
 }
 
@@ -3029,9 +2929,7 @@ M.DeleteReplicationGroupInput = {
 M.DeleteReplicationGroupOutput = {
     type = "structure",
     members = {
-        ReplicationGroup = {
-            type = "structure",
-        },
+        ReplicationGroup = M.ReplicationGroup,
     },
 }
 
@@ -3053,9 +2951,7 @@ M.DeleteServerlessCacheInput = {
 M.DeleteServerlessCacheOutput = {
     type = "structure",
     members = {
-        ServerlessCache = {
-            type = "structure",
-        },
+        ServerlessCache = M.ServerlessCache,
     },
 }
 
@@ -3074,9 +2970,7 @@ M.DeleteServerlessCacheSnapshotInput = {
 M.DeleteServerlessCacheSnapshotOutput = {
     type = "structure",
     members = {
-        ServerlessCacheSnapshot = {
-            type = "structure",
-        },
+        ServerlessCacheSnapshot = M.ServerlessCacheSnapshot,
     },
 }
 
@@ -3095,9 +2989,7 @@ M.DeleteSnapshotInput = {
 M.DeleteSnapshotOutput = {
     type = "structure",
     members = {
-        Snapshot = {
-            type = "structure",
-        },
+        Snapshot = M.Snapshot,
     },
 }
 
@@ -3146,11 +3038,9 @@ M.DeleteUserOutput = {
         },
         UserGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        Authentication = {
-            type = "structure",
-        },
+        Authentication = M.Authentication,
         ARN = {
             type = "string",
         },
@@ -3193,21 +3083,19 @@ M.DeleteUserGroupOutput = {
         },
         UserIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MinimumEngineVersion = {
             type = "string",
         },
-        PendingChanges = {
-            type = "structure",
-        },
+        PendingChanges = M.UserGroupPendingChanges,
         ReplicationGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ServerlessCaches = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ARN = {
             type = "string",
@@ -3222,7 +3110,7 @@ M.DescribeCacheClustersInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -3244,7 +3132,7 @@ M.DescribeCacheClustersOutput = {
         },
         CacheClusters = {
             type = "list",
-            member_type = "structure",
+            member = M.CacheCluster,
         },
     },
 }
@@ -3262,7 +3150,7 @@ M.DescribeCacheEngineVersionsInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -3302,7 +3190,7 @@ M.DescribeCacheEngineVersionsOutput = {
         },
         CacheEngineVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.CacheEngineVersion,
         },
     },
 }
@@ -3314,7 +3202,7 @@ M.DescribeCacheParameterGroupsInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -3330,7 +3218,7 @@ M.DescribeCacheParameterGroupsOutput = {
         },
         CacheParameterGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.CacheParameterGroup,
         },
     },
 }
@@ -3348,7 +3236,7 @@ M.DescribeCacheParametersInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -3399,7 +3287,7 @@ M.CacheNodeTypeSpecificParameter = {
         },
         CacheNodeTypeSpecificValues = {
             type = "list",
-            member_type = "structure",
+            member = M.CacheNodeTypeSpecificValue,
         },
         ChangeType = {
             type = "string",
@@ -3448,11 +3336,11 @@ M.DescribeCacheParametersOutput = {
         },
         Parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.Parameter,
         },
         CacheNodeTypeSpecificParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.CacheNodeTypeSpecificParameter,
         },
     },
 }
@@ -3464,7 +3352,7 @@ M.DescribeCacheSecurityGroupsInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -3480,7 +3368,7 @@ M.DescribeCacheSecurityGroupsOutput = {
         },
         CacheSecurityGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.CacheSecurityGroup,
         },
     },
 }
@@ -3492,7 +3380,7 @@ M.DescribeCacheSubnetGroupsInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -3508,7 +3396,7 @@ M.DescribeCacheSubnetGroupsOutput = {
         },
         CacheSubnetGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.CacheSubnetGroup,
         },
     },
 }
@@ -3523,7 +3411,7 @@ M.DescribeEngineDefaultParametersInput = {
             },
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -3542,11 +3430,11 @@ M.EngineDefaults = {
         },
         Parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.Parameter,
         },
         CacheNodeTypeSpecificParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.CacheNodeTypeSpecificParameter,
         },
     },
 }
@@ -3554,9 +3442,7 @@ M.EngineDefaults = {
 M.DescribeEngineDefaultParametersOutput = {
     type = "structure",
     members = {
-        EngineDefaults = {
-            type = "structure",
-        },
+        EngineDefaults = M.EngineDefaults,
     },
 }
 
@@ -3588,10 +3474,10 @@ M.DescribeEventsInput = {
             type = "timestamp",
         },
         Duration = {
-            type = "number",
+            type = "integer",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -3625,7 +3511,7 @@ M.DescribeEventsOutput = {
         },
         Events = {
             type = "list",
-            member_type = "structure",
+            member = M.Event,
         },
     },
 }
@@ -3637,7 +3523,7 @@ M.DescribeGlobalReplicationGroupsInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -3656,7 +3542,7 @@ M.DescribeGlobalReplicationGroupsOutput = {
         },
         GlobalReplicationGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.GlobalReplicationGroup,
         },
     },
 }
@@ -3668,7 +3554,7 @@ M.DescribeReplicationGroupsInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -3684,7 +3570,7 @@ M.DescribeReplicationGroupsOutput = {
         },
         ReplicationGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.ReplicationGroup,
         },
     },
 }
@@ -3711,7 +3597,7 @@ M.DescribeReservedCacheNodesInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -3723,7 +3609,7 @@ M.RecurringCharge = {
     type = "structure",
     members = {
         RecurringChargeAmount = {
-            type = "number",
+            type = "double",
         },
         RecurringChargeFrequency = {
             type = "string",
@@ -3747,16 +3633,16 @@ M.ReservedCacheNode = {
             type = "timestamp",
         },
         Duration = {
-            type = "number",
+            type = "integer",
         },
         FixedPrice = {
-            type = "number",
+            type = "double",
         },
         UsagePrice = {
-            type = "number",
+            type = "double",
         },
         CacheNodeCount = {
-            type = "number",
+            type = "integer",
         },
         ProductDescription = {
             type = "string",
@@ -3769,7 +3655,7 @@ M.ReservedCacheNode = {
         },
         RecurringCharges = {
             type = "list",
-            member_type = "structure",
+            member = M.RecurringCharge,
         },
         ReservationARN = {
             type = "string",
@@ -3785,7 +3671,7 @@ M.DescribeReservedCacheNodesOutput = {
         },
         ReservedCacheNodes = {
             type = "list",
-            member_type = "structure",
+            member = M.ReservedCacheNode,
         },
     },
 }
@@ -3809,7 +3695,7 @@ M.DescribeReservedCacheNodesOfferingsInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -3827,13 +3713,13 @@ M.ReservedCacheNodesOffering = {
             type = "string",
         },
         Duration = {
-            type = "number",
+            type = "integer",
         },
         FixedPrice = {
-            type = "number",
+            type = "double",
         },
         UsagePrice = {
-            type = "number",
+            type = "double",
         },
         ProductDescription = {
             type = "string",
@@ -3843,7 +3729,7 @@ M.ReservedCacheNodesOffering = {
         },
         RecurringCharges = {
             type = "list",
-            member_type = "structure",
+            member = M.RecurringCharge,
         },
     },
 }
@@ -3856,7 +3742,7 @@ M.DescribeReservedCacheNodesOfferingsOutput = {
         },
         ReservedCacheNodesOfferings = {
             type = "list",
-            member_type = "structure",
+            member = M.ReservedCacheNodesOffering,
         },
     },
 }
@@ -3878,7 +3764,7 @@ M.DescribeServerlessCachesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3894,7 +3780,7 @@ M.DescribeServerlessCachesOutput = {
         },
         ServerlessCaches = {
             type = "list",
-            member_type = "structure",
+            member = M.ServerlessCache,
         },
     },
 }
@@ -3915,7 +3801,7 @@ M.DescribeServerlessCacheSnapshotsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3928,7 +3814,7 @@ M.DescribeServerlessCacheSnapshotsOutput = {
         },
         ServerlessCacheSnapshots = {
             type = "list",
-            member_type = "structure",
+            member = M.ServerlessCacheSnapshot,
         },
     },
 }
@@ -3947,10 +3833,10 @@ M.DescribeServiceUpdatesInput = {
         },
         ServiceUpdateStatus = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -4019,7 +3905,7 @@ M.DescribeServiceUpdatesOutput = {
         },
         ServiceUpdates = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceUpdate,
         },
     },
 }
@@ -4043,7 +3929,7 @@ M.DescribeSnapshotsInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         ShowNodeGroupConfig = {
             type = "boolean",
@@ -4059,7 +3945,7 @@ M.DescribeSnapshotsOutput = {
         },
         Snapshots = {
             type = "list",
-            member_type = "structure",
+            member = M.Snapshot,
         },
     },
 }
@@ -4084,31 +3970,29 @@ M.DescribeUpdateActionsInput = {
         },
         ReplicationGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CacheClusterIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Engine = {
             type = "string",
         },
         ServiceUpdateStatus = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        ServiceUpdateTimeRange = {
-            type = "structure",
-        },
+        ServiceUpdateTimeRange = M.TimeRangeFilter,
         UpdateActionStatus = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ShowNodeLevelUpdateStatus = {
             type = "boolean",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -4201,7 +4085,7 @@ M.NodeGroupUpdateStatus = {
         },
         NodeGroupMemberUpdateStatus = {
             type = "list",
-            member_type = "structure",
+            member = M.NodeGroupMemberUpdateStatus,
         },
     },
 }
@@ -4256,11 +4140,11 @@ M.UpdateAction = {
         },
         NodeGroupUpdateStatus = {
             type = "list",
-            member_type = "structure",
+            member = M.NodeGroupUpdateStatus,
         },
         CacheNodeUpdateStatus = {
             type = "list",
-            member_type = "structure",
+            member = M.CacheNodeUpdateStatus,
         },
         EstimatedUpdateTime = {
             type = "string",
@@ -4279,7 +4163,7 @@ M.DescribeUpdateActionsOutput = {
         },
         UpdateActions = {
             type = "list",
-            member_type = "structure",
+            member = M.UpdateAction,
         },
     },
 }
@@ -4291,7 +4175,7 @@ M.DescribeUserGroupsInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -4313,21 +4197,19 @@ M.UserGroup = {
         },
         UserIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MinimumEngineVersion = {
             type = "string",
         },
-        PendingChanges = {
-            type = "structure",
-        },
+        PendingChanges = M.UserGroupPendingChanges,
         ReplicationGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ServerlessCaches = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ARN = {
             type = "string",
@@ -4340,7 +4222,7 @@ M.DescribeUserGroupsOutput = {
     members = {
         UserGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.UserGroup,
         },
         Marker = {
             type = "string",
@@ -4359,7 +4241,7 @@ M.Filter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4378,10 +4260,10 @@ M.DescribeUsersInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -4412,11 +4294,9 @@ M.User = {
         },
         UserGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        Authentication = {
-            type = "structure",
-        },
+        Authentication = M.Authentication,
         ARN = {
             type = "string",
         },
@@ -4428,7 +4308,7 @@ M.DescribeUsersOutput = {
     members = {
         Users = {
             type = "list",
-            member_type = "structure",
+            member = M.User,
         },
         Marker = {
             type = "string",
@@ -4463,9 +4343,7 @@ M.DisassociateGlobalReplicationGroupInput = {
 M.DisassociateGlobalReplicationGroupOutput = {
     type = "structure",
     members = {
-        GlobalReplicationGroup = {
-            type = "structure",
-        },
+        GlobalReplicationGroup = M.GlobalReplicationGroup,
     },
 }
 
@@ -4490,9 +4368,7 @@ M.ExportServerlessCacheSnapshotInput = {
 M.ExportServerlessCacheSnapshotOutput = {
     type = "structure",
     members = {
-        ServerlessCacheSnapshot = {
-            type = "structure",
-        },
+        ServerlessCacheSnapshot = M.ServerlessCacheSnapshot,
     },
 }
 
@@ -4523,9 +4399,7 @@ M.FailoverGlobalReplicationGroupInput = {
 M.FailoverGlobalReplicationGroupOutput = {
     type = "structure",
     members = {
-        GlobalReplicationGroup = {
-            type = "structure",
-        },
+        GlobalReplicationGroup = M.GlobalReplicationGroup,
     },
 }
 
@@ -4537,7 +4411,7 @@ M.ReshardingConfiguration = {
         },
         PreferredAvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4559,7 +4433,7 @@ M.RegionalConfiguration = {
         },
         ReshardingConfiguration = {
             type = "list",
-            member_type = "structure",
+            member = M.ReshardingConfiguration,
             traits = {
                 required = true,
             },
@@ -4577,14 +4451,14 @@ M.IncreaseNodeGroupsInGlobalReplicationGroupInput = {
             },
         },
         NodeGroupCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         RegionalConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.RegionalConfiguration,
         },
         ApplyImmediately = {
             type = "boolean",
@@ -4598,9 +4472,7 @@ M.IncreaseNodeGroupsInGlobalReplicationGroupInput = {
 M.IncreaseNodeGroupsInGlobalReplicationGroupOutput = {
     type = "structure",
     members = {
-        GlobalReplicationGroup = {
-            type = "structure",
-        },
+        GlobalReplicationGroup = M.GlobalReplicationGroup,
     },
 }
 
@@ -4614,11 +4486,11 @@ M.IncreaseReplicaCountInput = {
             },
         },
         NewReplicaCount = {
-            type = "number",
+            type = "integer",
         },
         ReplicaConfiguration = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigureShard,
         },
         ApplyImmediately = {
             type = "boolean",
@@ -4632,9 +4504,7 @@ M.IncreaseReplicaCountInput = {
 M.IncreaseReplicaCountOutput = {
     type = "structure",
     members = {
-        ReplicationGroup = {
-            type = "structure",
-        },
+        ReplicationGroup = M.ReplicationGroup,
     },
 }
 
@@ -4665,11 +4535,11 @@ M.ListAllowedNodeTypeModificationsOutput = {
     members = {
         ScaleUpModifications = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ScaleDownModifications = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4691,7 +4561,7 @@ M.ListTagsForResourceOutput = {
     members = {
         TagList = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -4712,26 +4582,26 @@ M.ModifyCacheClusterInput = {
             },
         },
         NumCacheNodes = {
-            type = "number",
+            type = "integer",
         },
         CacheNodeIdsToRemove = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AZMode = {
             type = "string",
         },
         NewAvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CacheSecurityGroupNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         PreferredMaintenanceWindow = {
             type = "string",
@@ -4758,7 +4628,7 @@ M.ModifyCacheClusterInput = {
             type = "boolean",
         },
         SnapshotRetentionLimit = {
-            type = "number",
+            type = "integer",
         },
         SnapshotWindow = {
             type = "string",
@@ -4774,23 +4644,19 @@ M.ModifyCacheClusterInput = {
         },
         LogDeliveryConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.LogDeliveryConfigurationRequest,
         },
         IpDiscovery = {
             type = "string",
         },
-        ScaleConfig = {
-            type = "structure",
-        },
+        ScaleConfig = M.ScaleConfig,
     },
 }
 
 M.ModifyCacheClusterOutput = {
     type = "structure",
     members = {
-        CacheCluster = {
-            type = "structure",
-        },
+        CacheCluster = M.CacheCluster,
     },
 }
 
@@ -4817,7 +4683,7 @@ M.ModifyCacheParameterGroupInput = {
         },
         ParameterNameValues = {
             type = "list",
-            member_type = "structure",
+            member = M.ParameterNameValue,
             traits = {
                 required = true,
             },
@@ -4848,7 +4714,7 @@ M.ModifyCacheSubnetGroupInput = {
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4856,9 +4722,7 @@ M.ModifyCacheSubnetGroupInput = {
 M.ModifyCacheSubnetGroupOutput = {
     type = "structure",
     members = {
-        CacheSubnetGroup = {
-            type = "structure",
-        },
+        CacheSubnetGroup = M.CacheSubnetGroup,
     },
 }
 
@@ -4911,9 +4775,7 @@ M.ModifyGlobalReplicationGroupInput = {
 M.ModifyGlobalReplicationGroupOutput = {
     type = "structure",
     members = {
-        GlobalReplicationGroup = {
-            type = "structure",
-        },
+        GlobalReplicationGroup = M.GlobalReplicationGroup,
     },
 }
 
@@ -4946,11 +4808,11 @@ M.ModifyReplicationGroupInput = {
         },
         CacheSecurityGroupNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         PreferredMaintenanceWindow = {
             type = "string",
@@ -4977,7 +4839,7 @@ M.ModifyReplicationGroupInput = {
             type = "boolean",
         },
         SnapshotRetentionLimit = {
-            type = "number",
+            type = "integer",
         },
         SnapshotWindow = {
             type = "string",
@@ -4993,18 +4855,18 @@ M.ModifyReplicationGroupInput = {
         },
         UserGroupIdsToAdd = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         UserGroupIdsToRemove = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RemoveUserGroups = {
             type = "boolean",
         },
         LogDeliveryConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.LogDeliveryConfigurationRequest,
         },
         IpDiscovery = {
             type = "string",
@@ -5024,9 +4886,7 @@ M.ModifyReplicationGroupInput = {
 M.ModifyReplicationGroupOutput = {
     type = "structure",
     members = {
-        ReplicationGroup = {
-            type = "structure",
-        },
+        ReplicationGroup = M.ReplicationGroup,
     },
 }
 
@@ -5040,7 +4900,7 @@ M.ModifyReplicationGroupShardConfigurationInput = {
             },
         },
         NodeGroupCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -5053,15 +4913,15 @@ M.ModifyReplicationGroupShardConfigurationInput = {
         },
         ReshardingConfiguration = {
             type = "list",
-            member_type = "structure",
+            member = M.ReshardingConfiguration,
         },
         NodeGroupsToRemove = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NodeGroupsToRetain = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -5069,9 +4929,7 @@ M.ModifyReplicationGroupShardConfigurationInput = {
 M.ModifyReplicationGroupShardConfigurationOutput = {
     type = "structure",
     members = {
-        ReplicationGroup = {
-            type = "structure",
-        },
+        ReplicationGroup = M.ReplicationGroup,
     },
 }
 
@@ -5087,9 +4945,7 @@ M.ModifyServerlessCacheInput = {
         Description = {
             type = "string",
         },
-        CacheUsageLimits = {
-            type = "structure",
-        },
+        CacheUsageLimits = M.CacheUsageLimits,
         RemoveUserGroup = {
             type = "boolean",
         },
@@ -5098,10 +4954,10 @@ M.ModifyServerlessCacheInput = {
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SnapshotRetentionLimit = {
-            type = "number",
+            type = "integer",
         },
         DailySnapshotTime = {
             type = "string",
@@ -5118,9 +4974,7 @@ M.ModifyServerlessCacheInput = {
 M.ModifyServerlessCacheOutput = {
     type = "structure",
     members = {
-        ServerlessCache = {
-            type = "structure",
-        },
+        ServerlessCache = M.ServerlessCache,
     },
 }
 
@@ -5141,14 +4995,12 @@ M.ModifyUserInput = {
         },
         Passwords = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NoPasswordRequired = {
             type = "boolean",
         },
-        AuthenticationMode = {
-            type = "structure",
-        },
+        AuthenticationMode = M.AuthenticationMode,
         Engine = {
             type = "string",
         },
@@ -5178,11 +5030,9 @@ M.ModifyUserOutput = {
         },
         UserGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        Authentication = {
-            type = "structure",
-        },
+        Authentication = M.Authentication,
         ARN = {
             type = "string",
         },
@@ -5200,11 +5050,11 @@ M.ModifyUserGroupInput = {
         },
         UserIdsToAdd = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         UserIdsToRemove = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Engine = {
             type = "string",
@@ -5226,21 +5076,19 @@ M.ModifyUserGroupOutput = {
         },
         UserIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MinimumEngineVersion = {
             type = "string",
         },
-        PendingChanges = {
-            type = "structure",
-        },
+        PendingChanges = M.UserGroupPendingChanges,
         ReplicationGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ServerlessCaches = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ARN = {
             type = "string",
@@ -5261,11 +5109,11 @@ M.PurchaseReservedCacheNodesOfferingInput = {
             type = "string",
         },
         CacheNodeCount = {
-            type = "number",
+            type = "integer",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -5273,9 +5121,7 @@ M.PurchaseReservedCacheNodesOfferingInput = {
 M.PurchaseReservedCacheNodesOfferingOutput = {
     type = "structure",
     members = {
-        ReservedCacheNode = {
-            type = "structure",
-        },
+        ReservedCacheNode = M.ReservedCacheNode,
     },
 }
 
@@ -5320,9 +5166,7 @@ M.RebalanceSlotsInGlobalReplicationGroupInput = {
 M.RebalanceSlotsInGlobalReplicationGroupOutput = {
     type = "structure",
     members = {
-        GlobalReplicationGroup = {
-            type = "structure",
-        },
+        GlobalReplicationGroup = M.GlobalReplicationGroup,
     },
 }
 
@@ -5337,7 +5181,7 @@ M.RebootCacheClusterInput = {
         },
         CacheNodeIdsToReboot = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -5348,9 +5192,7 @@ M.RebootCacheClusterInput = {
 M.RebootCacheClusterOutput = {
     type = "structure",
     members = {
-        CacheCluster = {
-            type = "structure",
-        },
+        CacheCluster = M.CacheCluster,
     },
 }
 
@@ -5365,7 +5207,7 @@ M.RemoveTagsFromResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -5378,7 +5220,7 @@ M.RemoveTagsFromResourceOutput = {
     members = {
         TagList = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -5407,7 +5249,7 @@ M.ResetCacheParameterGroupInput = {
         },
         ParameterNameValues = {
             type = "list",
-            member_type = "structure",
+            member = M.ParameterNameValue,
         },
     },
 }
@@ -5458,9 +5300,7 @@ M.RevokeCacheSecurityGroupIngressInput = {
 M.RevokeCacheSecurityGroupIngressOutput = {
     type = "structure",
     members = {
-        CacheSecurityGroup = {
-            type = "structure",
-        },
+        CacheSecurityGroup = M.CacheSecurityGroup,
     },
 }
 
@@ -5481,7 +5321,7 @@ M.CustomerNodeEndpoint = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5497,7 +5337,7 @@ M.StartMigrationInput = {
         },
         CustomerNodeEndpointList = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomerNodeEndpoint,
             traits = {
                 required = true,
             },
@@ -5508,9 +5348,7 @@ M.StartMigrationInput = {
 M.StartMigrationOutput = {
     type = "structure",
     members = {
-        ReplicationGroup = {
-            type = "structure",
-        },
+        ReplicationGroup = M.ReplicationGroup,
     },
 }
 
@@ -5565,9 +5403,7 @@ M.TestFailoverNotAvailableFault = {
 M.TestFailoverOutput = {
     type = "structure",
     members = {
-        ReplicationGroup = {
-            type = "structure",
-        },
+        ReplicationGroup = M.ReplicationGroup,
     },
 }
 
@@ -5582,7 +5418,7 @@ M.TestMigrationInput = {
         },
         CustomerNodeEndpointList = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomerNodeEndpoint,
             traits = {
                 required = true,
             },
@@ -5593,9 +5429,7 @@ M.TestMigrationInput = {
 M.TestMigrationOutput = {
     type = "structure",
     members = {
-        ReplicationGroup = {
-            type = "structure",
-        },
+        ReplicationGroup = M.ReplicationGroup,
     },
 }
 

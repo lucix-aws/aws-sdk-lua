@@ -48,10 +48,10 @@ M.AutoRetryConfig = {
     type = "structure",
     members = {
         autoRetryLimit = {
-            type = "number",
+            type = "integer",
         },
         autoRetryNumber = {
-            type = "number",
+            type = "integer",
         },
         nextAutoRetry = {
             type = "string",
@@ -67,7 +67,7 @@ M.BatchDeleteBuildsInput = {
     members = {
         ids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -92,11 +92,11 @@ M.BatchDeleteBuildsOutput = {
     members = {
         buildsDeleted = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         buildsNotDeleted = {
             type = "list",
-            member_type = "structure",
+            member = M.BuildNotDeleted,
         },
     },
 }
@@ -116,7 +116,7 @@ M.BatchGetBuildBatchesInput = {
     members = {
         ids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -166,15 +166,15 @@ M.BatchRestrictions = {
     type = "structure",
     members = {
         maximumBuildsAllowed = {
-            type = "number",
+            type = "integer",
         },
         computeTypesAllowed = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         fleetsAllowed = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -188,11 +188,9 @@ M.ProjectBuildBatchConfig = {
         combineArtifacts = {
             type = "boolean",
         },
-        restrictions = {
-            type = "structure",
-        },
+        restrictions = M.BatchRestrictions,
         timeoutInMins = {
-            type = "number",
+            type = "integer",
         },
         batchReportMode = {
             type = "string",
@@ -236,12 +234,10 @@ M.BuildSummary = {
         buildStatus = {
             type = "string",
         },
-        primaryArtifact = {
-            type = "structure",
-        },
+        primaryArtifact = M.ResolvedArtifact,
         secondaryArtifacts = {
             type = "list",
-            member_type = "structure",
+            member = M.ResolvedArtifact,
         },
     },
 }
@@ -254,17 +250,18 @@ M.BuildGroup = {
         },
         dependsOn = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ignoreFailure = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        currentBuildSummary = {
-            type = "structure",
-        },
+        currentBuildSummary = M.BuildSummary,
         priorBuildSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.BuildSummary,
         },
     },
 }
@@ -295,7 +292,7 @@ M.ProjectCache = {
         },
         modes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         cacheNamespace = {
             type = "string",
@@ -312,13 +309,13 @@ M.ComputeConfiguration = {
     type = "structure",
     members = {
         vCpu = {
-            type = "number",
+            type = "long",
         },
         memory = {
-            type = "number",
+            type = "long",
         },
         disk = {
-            type = "number",
+            type = "long",
         },
         machineType = {
             type = "string",
@@ -367,11 +364,9 @@ M.DockerServer = {
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        status = {
-            type = "structure",
-        },
+        status = M.DockerServerStatus,
     },
 }
 
@@ -474,15 +469,11 @@ M.ProjectEnvironment = {
                 required = true,
             },
         },
-        computeConfiguration = {
-            type = "structure",
-        },
-        fleet = {
-            type = "structure",
-        },
+        computeConfiguration = M.ComputeConfiguration,
+        fleet = M.ProjectFleet,
         environmentVariables = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentVariable,
         },
         privilegedMode = {
             type = "boolean",
@@ -490,15 +481,11 @@ M.ProjectEnvironment = {
         certificate = {
             type = "string",
         },
-        registryCredential = {
-            type = "structure",
-        },
+        registryCredential = M.RegistryCredential,
         imagePullCredentialsType = {
             type = "string",
         },
-        dockerServer = {
-            type = "structure",
-        },
+        dockerServer = M.DockerServer,
     },
 }
 
@@ -574,12 +561,8 @@ M.S3LogsConfig = {
 M.LogsConfig = {
     type = "structure",
     members = {
-        cloudWatchLogs = {
-            type = "structure",
-        },
-        s3Logs = {
-            type = "structure",
-        },
+        cloudWatchLogs = M.CloudWatchLogsConfig,
+        s3Logs = M.S3LogsConfig,
     },
 }
 
@@ -621,11 +604,11 @@ M.BuildBatchPhase = {
             type = "timestamp",
         },
         durationInSeconds = {
-            type = "number",
+            type = "long",
         },
         contexts = {
             type = "list",
-            member_type = "structure",
+            member = M.PhaseContext,
         },
     },
 }
@@ -700,23 +683,17 @@ M.ProjectSource = {
             type = "string",
         },
         gitCloneDepth = {
-            type = "number",
+            type = "integer",
         },
-        gitSubmodulesConfig = {
-            type = "structure",
-        },
+        gitSubmodulesConfig = M.GitSubmodulesConfig,
         buildspec = {
             type = "string",
         },
-        auth = {
-            type = "structure",
-        },
+        auth = M.SourceAuth,
         reportBuildStatus = {
             type = "boolean",
         },
-        buildStatusConfig = {
-            type = "structure",
-        },
+        buildStatusConfig = M.BuildStatusConfig,
         insecureSsl = {
             type = "boolean",
         },
@@ -752,11 +729,11 @@ M.VpcConfig = {
         },
         subnets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -793,76 +770,65 @@ M.BuildBatch = {
         },
         phases = {
             type = "list",
-            member_type = "structure",
+            member = M.BuildBatchPhase,
         },
-        source = {
-            type = "structure",
-        },
+        source = M.ProjectSource,
         secondarySources = {
             type = "list",
-            member_type = "structure",
+            member = M.ProjectSource,
         },
         secondarySourceVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.ProjectSourceVersion,
         },
-        artifacts = {
-            type = "structure",
-        },
+        artifacts = M.BuildArtifacts,
         secondaryArtifacts = {
             type = "list",
-            member_type = "structure",
+            member = M.BuildArtifacts,
         },
-        cache = {
-            type = "structure",
-        },
-        environment = {
-            type = "structure",
-        },
+        cache = M.ProjectCache,
+        environment = M.ProjectEnvironment,
         serviceRole = {
             type = "string",
         },
-        logConfig = {
-            type = "structure",
-        },
+        logConfig = M.LogsConfig,
         buildTimeoutInMinutes = {
-            type = "number",
+            type = "integer",
         },
         queuedTimeoutInMinutes = {
-            type = "number",
+            type = "integer",
         },
         complete = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         initiator = {
             type = "string",
         },
-        vpcConfig = {
-            type = "structure",
-        },
+        vpcConfig = M.VpcConfig,
         encryptionKey = {
             type = "string",
         },
         buildBatchNumber = {
-            type = "number",
+            type = "long",
         },
         fileSystemLocations = {
             type = "list",
-            member_type = "structure",
+            member = M.ProjectFileSystemLocation,
         },
-        buildBatchConfig = {
-            type = "structure",
-        },
+        buildBatchConfig = M.ProjectBuildBatchConfig,
         buildGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.BuildGroup,
         },
         debugSessionEnabled = {
             type = "boolean",
         },
         reportArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -872,11 +838,11 @@ M.BatchGetBuildBatchesOutput = {
     members = {
         buildBatches = {
             type = "list",
-            member_type = "structure",
+            member = M.BuildBatch,
         },
         buildBatchesNotFound = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -886,7 +852,7 @@ M.BatchGetBuildsInput = {
     members = {
         ids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -939,12 +905,8 @@ M.LogsLocation = {
         s3LogsArn = {
             type = "string",
         },
-        cloudWatchLogs = {
-            type = "structure",
-        },
-        s3Logs = {
-            type = "structure",
-        },
+        cloudWatchLogs = M.CloudWatchLogsConfig,
+        s3Logs = M.S3LogsConfig,
     },
 }
 
@@ -990,11 +952,11 @@ M.BuildPhase = {
             type = "timestamp",
         },
         durationInSeconds = {
-            type = "number",
+            type = "long",
         },
         contexts = {
             type = "list",
-            member_type = "structure",
+            member = M.PhaseContext,
         },
     },
 }
@@ -1009,7 +971,7 @@ M.Build = {
             type = "string",
         },
         buildNumber = {
-            type = "number",
+            type = "long",
         },
         startTime = {
             type = "timestamp",
@@ -1034,80 +996,65 @@ M.Build = {
         },
         phases = {
             type = "list",
-            member_type = "structure",
+            member = M.BuildPhase,
         },
-        source = {
-            type = "structure",
-        },
+        source = M.ProjectSource,
         secondarySources = {
             type = "list",
-            member_type = "structure",
+            member = M.ProjectSource,
         },
         secondarySourceVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.ProjectSourceVersion,
         },
-        artifacts = {
-            type = "structure",
-        },
+        artifacts = M.BuildArtifacts,
         secondaryArtifacts = {
             type = "list",
-            member_type = "structure",
+            member = M.BuildArtifacts,
         },
-        cache = {
-            type = "structure",
-        },
-        environment = {
-            type = "structure",
-        },
+        cache = M.ProjectCache,
+        environment = M.ProjectEnvironment,
         serviceRole = {
             type = "string",
         },
-        logs = {
-            type = "structure",
-        },
+        logs = M.LogsLocation,
         timeoutInMinutes = {
-            type = "number",
+            type = "integer",
         },
         queuedTimeoutInMinutes = {
-            type = "number",
+            type = "integer",
         },
         buildComplete = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         initiator = {
             type = "string",
         },
-        vpcConfig = {
-            type = "structure",
-        },
-        networkInterface = {
-            type = "structure",
-        },
+        vpcConfig = M.VpcConfig,
+        networkInterface = M.NetworkInterface,
         encryptionKey = {
             type = "string",
         },
         exportedEnvironmentVariables = {
             type = "list",
-            member_type = "structure",
+            member = M.ExportedEnvironmentVariable,
         },
         reportArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         fileSystemLocations = {
             type = "list",
-            member_type = "structure",
+            member = M.ProjectFileSystemLocation,
         },
-        debugSession = {
-            type = "structure",
-        },
+        debugSession = M.DebugSession,
         buildBatchArn = {
             type = "string",
         },
-        autoRetryConfig = {
-            type = "structure",
-        },
+        autoRetryConfig = M.AutoRetryConfig,
     },
 }
 
@@ -1116,11 +1063,11 @@ M.BatchGetBuildsOutput = {
     members = {
         builds = {
             type = "list",
-            member_type = "structure",
+            member = M.Build,
         },
         buildsNotFound = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1136,7 +1083,7 @@ M.BatchGetCommandExecutionsInput = {
         },
         commandExecutionIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1184,9 +1131,7 @@ M.CommandExecution = {
         standardErrContent = {
             type = "string",
         },
-        logs = {
-            type = "structure",
-        },
+        logs = M.LogsLocation,
         sandboxArn = {
             type = "string",
         },
@@ -1198,11 +1143,11 @@ M.BatchGetCommandExecutionsOutput = {
     members = {
         commandExecutions = {
             type = "list",
-            member_type = "structure",
+            member = M.CommandExecution,
         },
         commandExecutionsNotFound = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1212,7 +1157,7 @@ M.BatchGetFleetsInput = {
     members = {
         names = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1257,7 +1202,7 @@ M.FleetProxyRule = {
         },
         entities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1273,7 +1218,7 @@ M.ProxyConfiguration = {
         },
         orderedProxyRules = {
             type = "list",
-            member_type = "structure",
+            member = M.FleetProxyRule,
         },
     },
 }
@@ -1293,7 +1238,7 @@ M.TargetTrackingScalingConfiguration = {
             type = "string",
         },
         targetValue = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -1306,13 +1251,13 @@ M.ScalingConfigurationOutput = {
         },
         targetTrackingScalingConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetTrackingScalingConfiguration,
         },
         maxCapacity = {
-            type = "number",
+            type = "integer",
         },
         desiredCapacity = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1381,11 +1326,9 @@ M.Fleet = {
         lastModified = {
             type = "timestamp",
         },
-        status = {
-            type = "structure",
-        },
+        status = M.FleetStatus,
         baseCapacity = {
-            type = "number",
+            type = "integer",
         },
         environmentType = {
             type = "string",
@@ -1393,21 +1336,13 @@ M.Fleet = {
         computeType = {
             type = "string",
         },
-        computeConfiguration = {
-            type = "structure",
-        },
-        scalingConfiguration = {
-            type = "structure",
-        },
+        computeConfiguration = M.ComputeConfiguration,
+        scalingConfiguration = M.ScalingConfigurationOutput,
         overflowBehavior = {
             type = "string",
         },
-        vpcConfig = {
-            type = "structure",
-        },
-        proxyConfiguration = {
-            type = "structure",
-        },
+        vpcConfig = M.VpcConfig,
+        proxyConfiguration = M.ProxyConfiguration,
         imageId = {
             type = "string",
         },
@@ -1416,7 +1351,7 @@ M.Fleet = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1426,11 +1361,11 @@ M.BatchGetFleetsOutput = {
     members = {
         fleets = {
             type = "list",
-            member_type = "structure",
+            member = M.Fleet,
         },
         fleetsNotFound = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1440,7 +1375,7 @@ M.BatchGetProjectsInput = {
     members = {
         names = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1492,6 +1427,9 @@ M.ProjectBadge = {
     members = {
         badgeEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         badgeRequestUrl = {
             type = "string",
@@ -1579,7 +1517,7 @@ M.PullRequestBuildPolicy = {
         },
         approverRoles = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1635,7 +1573,7 @@ M.Webhook = {
         },
         filterGroups = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
         },
         buildType = {
             type = "string",
@@ -1646,18 +1584,14 @@ M.Webhook = {
         lastModifiedSecret = {
             type = "timestamp",
         },
-        scopeConfiguration = {
-            type = "structure",
-        },
+        scopeConfiguration = M.ScopeConfiguration,
         status = {
             type = "string",
         },
         statusMessage = {
             type = "string",
         },
-        pullRequestBuildPolicy = {
-            type = "structure",
-        },
+        pullRequestBuildPolicy = M.PullRequestBuildPolicy,
     },
 }
 
@@ -1673,48 +1607,40 @@ M.Project = {
         description = {
             type = "string",
         },
-        source = {
-            type = "structure",
-        },
+        source = M.ProjectSource,
         secondarySources = {
             type = "list",
-            member_type = "structure",
+            member = M.ProjectSource,
         },
         sourceVersion = {
             type = "string",
         },
         secondarySourceVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.ProjectSourceVersion,
         },
-        artifacts = {
-            type = "structure",
-        },
+        artifacts = M.ProjectArtifacts,
         secondaryArtifacts = {
             type = "list",
-            member_type = "structure",
+            member = M.ProjectArtifacts,
         },
-        cache = {
-            type = "structure",
-        },
-        environment = {
-            type = "structure",
-        },
+        cache = M.ProjectCache,
+        environment = M.ProjectEnvironment,
         serviceRole = {
             type = "string",
         },
         timeoutInMinutes = {
-            type = "number",
+            type = "integer",
         },
         queuedTimeoutInMinutes = {
-            type = "number",
+            type = "integer",
         },
         encryptionKey = {
             type = "string",
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         created = {
             type = "timestamp",
@@ -1722,27 +1648,17 @@ M.Project = {
         lastModified = {
             type = "timestamp",
         },
-        webhook = {
-            type = "structure",
-        },
-        vpcConfig = {
-            type = "structure",
-        },
-        badge = {
-            type = "structure",
-        },
-        logsConfig = {
-            type = "structure",
-        },
+        webhook = M.Webhook,
+        vpcConfig = M.VpcConfig,
+        badge = M.ProjectBadge,
+        logsConfig = M.LogsConfig,
         fileSystemLocations = {
             type = "list",
-            member_type = "structure",
+            member = M.ProjectFileSystemLocation,
         },
-        buildBatchConfig = {
-            type = "structure",
-        },
+        buildBatchConfig = M.ProjectBuildBatchConfig,
         concurrentBuildLimit = {
-            type = "number",
+            type = "integer",
         },
         projectVisibility = {
             type = "string",
@@ -1754,7 +1670,7 @@ M.Project = {
             type = "string",
         },
         autoRetryLimit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1764,11 +1680,11 @@ M.BatchGetProjectsOutput = {
     members = {
         projects = {
             type = "list",
-            member_type = "structure",
+            member = M.Project,
         },
         projectsNotFound = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1778,7 +1694,7 @@ M.BatchGetReportGroupsInput = {
     members = {
         reportGroupArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1826,9 +1742,7 @@ M.ReportExportConfig = {
         exportConfigType = {
             type = "string",
         },
-        s3Destination = {
-            type = "structure",
-        },
+        s3Destination = M.S3ReportExportConfig,
     },
 }
 
@@ -1854,9 +1768,7 @@ M.ReportGroup = {
         type = {
             type = "string",
         },
-        exportConfig = {
-            type = "structure",
-        },
+        exportConfig = M.ReportExportConfig,
         created = {
             type = "timestamp",
         },
@@ -1865,7 +1777,7 @@ M.ReportGroup = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         status = {
             type = "string",
@@ -1878,11 +1790,11 @@ M.BatchGetReportGroupsOutput = {
     members = {
         reportGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.ReportGroup,
         },
         reportGroupsNotFound = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1892,7 +1804,7 @@ M.BatchGetReportsInput = {
     members = {
         reportArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1904,22 +1816,22 @@ M.CodeCoverageReportSummary = {
     type = "structure",
     members = {
         lineCoveragePercentage = {
-            type = "number",
+            type = "double",
         },
         linesCovered = {
-            type = "number",
+            type = "integer",
         },
         linesMissed = {
-            type = "number",
+            type = "integer",
         },
         branchCoveragePercentage = {
-            type = "number",
+            type = "double",
         },
         branchesCovered = {
-            type = "number",
+            type = "integer",
         },
         branchesMissed = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1936,21 +1848,21 @@ M.TestReportSummary = {
     type = "structure",
     members = {
         total = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         statusCounts = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
             traits = {
                 required = true,
             },
         },
         durationInNanoSeconds = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -1985,18 +1897,12 @@ M.Report = {
         expired = {
             type = "timestamp",
         },
-        exportConfig = {
-            type = "structure",
-        },
+        exportConfig = M.ReportExportConfig,
         truncated = {
             type = "boolean",
         },
-        testSummary = {
-            type = "structure",
-        },
-        codeCoverageSummary = {
-            type = "structure",
-        },
+        testSummary = M.TestReportSummary,
+        codeCoverageSummary = M.CodeCoverageReportSummary,
     },
 }
 
@@ -2005,11 +1911,11 @@ M.BatchGetReportsOutput = {
     members = {
         reports = {
             type = "list",
-            member_type = "structure",
+            member = M.Report,
         },
         reportsNotFound = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2019,7 +1925,7 @@ M.BatchGetSandboxesInput = {
     members = {
         ids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2043,11 +1949,11 @@ M.SandboxSessionPhase = {
             type = "timestamp",
         },
         durationInSeconds = {
-            type = "number",
+            type = "long",
         },
         contexts = {
             type = "list",
-            member_type = "structure",
+            member = M.PhaseContext,
         },
     },
 }
@@ -2072,17 +1978,13 @@ M.SandboxSession = {
         },
         phases = {
             type = "list",
-            member_type = "structure",
+            member = M.SandboxSessionPhase,
         },
         resolvedSourceVersion = {
             type = "string",
         },
-        logs = {
-            type = "structure",
-        },
-        networkInterface = {
-            type = "structure",
-        },
+        logs = M.LogsLocation,
+        networkInterface = M.NetworkInterface,
     },
 }
 
@@ -2110,48 +2012,38 @@ M.Sandbox = {
         status = {
             type = "string",
         },
-        source = {
-            type = "structure",
-        },
+        source = M.ProjectSource,
         sourceVersion = {
             type = "string",
         },
         secondarySources = {
             type = "list",
-            member_type = "structure",
+            member = M.ProjectSource,
         },
         secondarySourceVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.ProjectSourceVersion,
         },
-        environment = {
-            type = "structure",
-        },
+        environment = M.ProjectEnvironment,
         fileSystemLocations = {
             type = "list",
-            member_type = "structure",
+            member = M.ProjectFileSystemLocation,
         },
         timeoutInMinutes = {
-            type = "number",
+            type = "integer",
         },
         queuedTimeoutInMinutes = {
-            type = "number",
+            type = "integer",
         },
-        vpcConfig = {
-            type = "structure",
-        },
-        logConfig = {
-            type = "structure",
-        },
+        vpcConfig = M.VpcConfig,
+        logConfig = M.LogsConfig,
         encryptionKey = {
             type = "string",
         },
         serviceRole = {
             type = "string",
         },
-        currentSession = {
-            type = "structure",
-        },
+        currentSession = M.SandboxSession,
     },
 }
 
@@ -2160,11 +2052,11 @@ M.BatchGetSandboxesOutput = {
     members = {
         sandboxes = {
             type = "list",
-            member_type = "structure",
+            member = M.Sandbox,
         },
         sandboxesNotFound = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2186,10 +2078,10 @@ M.ScalingConfigurationInput = {
         },
         targetTrackingScalingConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetTrackingScalingConfiguration,
         },
         maxCapacity = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2204,7 +2096,7 @@ M.CreateFleetInput = {
             },
         },
         baseCapacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -2221,21 +2113,13 @@ M.CreateFleetInput = {
                 required = true,
             },
         },
-        computeConfiguration = {
-            type = "structure",
-        },
-        scalingConfiguration = {
-            type = "structure",
-        },
+        computeConfiguration = M.ComputeConfiguration,
+        scalingConfiguration = M.ScalingConfigurationInput,
         overflowBehavior = {
             type = "string",
         },
-        vpcConfig = {
-            type = "structure",
-        },
-        proxyConfiguration = {
-            type = "structure",
-        },
+        vpcConfig = M.VpcConfig,
+        proxyConfiguration = M.ProxyConfiguration,
         imageId = {
             type = "string",
         },
@@ -2244,7 +2128,7 @@ M.CreateFleetInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2252,9 +2136,7 @@ M.CreateFleetInput = {
 M.CreateFleetOutput = {
     type = "structure",
     members = {
-        fleet = {
-            type = "structure",
-        },
+        fleet = M.Fleet,
     },
 }
 
@@ -2280,42 +2162,31 @@ M.CreateProjectInput = {
         description = {
             type = "string",
         },
-        source = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        source = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProjectSource }),
         secondarySources = {
             type = "list",
-            member_type = "structure",
+            member = M.ProjectSource,
         },
         sourceVersion = {
             type = "string",
         },
         secondarySourceVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.ProjectSourceVersion,
         },
-        artifacts = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        artifacts = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProjectArtifacts }),
         secondaryArtifacts = {
             type = "list",
-            member_type = "structure",
+            member = M.ProjectArtifacts,
         },
-        cache = {
-            type = "structure",
-        },
-        environment = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        cache = M.ProjectCache,
+        environment = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProjectEnvironment }),
         serviceRole = {
             type = "string",
             traits = {
@@ -2323,39 +2194,33 @@ M.CreateProjectInput = {
             },
         },
         timeoutInMinutes = {
-            type = "number",
+            type = "integer",
         },
         queuedTimeoutInMinutes = {
-            type = "number",
+            type = "integer",
         },
         encryptionKey = {
             type = "string",
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        vpcConfig = {
-            type = "structure",
-        },
+        vpcConfig = M.VpcConfig,
         badgeEnabled = {
             type = "boolean",
         },
-        logsConfig = {
-            type = "structure",
-        },
+        logsConfig = M.LogsConfig,
         fileSystemLocations = {
             type = "list",
-            member_type = "structure",
+            member = M.ProjectFileSystemLocation,
         },
-        buildBatchConfig = {
-            type = "structure",
-        },
+        buildBatchConfig = M.ProjectBuildBatchConfig,
         concurrentBuildLimit = {
-            type = "number",
+            type = "integer",
         },
         autoRetryLimit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2363,9 +2228,7 @@ M.CreateProjectInput = {
 M.CreateProjectOutput = {
     type = "structure",
     members = {
-        project = {
-            type = "structure",
-        },
+        project = M.Project,
     },
 }
 
@@ -2384,15 +2247,12 @@ M.CreateReportGroupInput = {
                 required = true,
             },
         },
-        exportConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        exportConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ReportExportConfig }),
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2400,9 +2260,7 @@ M.CreateReportGroupInput = {
 M.CreateReportGroupOutput = {
     type = "structure",
     members = {
-        reportGroup = {
-            type = "structure",
-        },
+        reportGroup = M.ReportGroup,
     },
 }
 
@@ -2420,7 +2278,7 @@ M.CreateWebhookInput = {
         },
         filterGroups = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
         },
         buildType = {
             type = "string",
@@ -2428,21 +2286,15 @@ M.CreateWebhookInput = {
         manualCreation = {
             type = "boolean",
         },
-        scopeConfiguration = {
-            type = "structure",
-        },
-        pullRequestBuildPolicy = {
-            type = "structure",
-        },
+        scopeConfiguration = M.ScopeConfiguration,
+        pullRequestBuildPolicy = M.PullRequestBuildPolicy,
     },
 }
 
 M.CreateWebhookOutput = {
     type = "structure",
     members = {
-        webhook = {
-            type = "structure",
-        },
+        webhook = M.Webhook,
     },
 }
 
@@ -2486,11 +2338,11 @@ M.DeleteBuildBatchOutput = {
         },
         buildsDeleted = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         buildsNotDeleted = {
             type = "list",
-            member_type = "structure",
+            member = M.BuildNotDeleted,
         },
     },
 }
@@ -2554,6 +2406,9 @@ M.DeleteReportGroupInput = {
         },
         deleteReports = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -2638,7 +2493,7 @@ M.DescribeCodeCoveragesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         sortOrder = {
             type = "string",
@@ -2647,10 +2502,10 @@ M.DescribeCodeCoveragesInput = {
             type = "string",
         },
         minLineCoveragePercentage = {
-            type = "number",
+            type = "double",
         },
         maxLineCoveragePercentage = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -2668,22 +2523,22 @@ M.CodeCoverage = {
             type = "string",
         },
         lineCoveragePercentage = {
-            type = "number",
+            type = "double",
         },
         linesCovered = {
-            type = "number",
+            type = "integer",
         },
         linesMissed = {
-            type = "number",
+            type = "integer",
         },
         branchCoveragePercentage = {
-            type = "number",
+            type = "double",
         },
         branchesCovered = {
-            type = "number",
+            type = "integer",
         },
         branchesMissed = {
-            type = "number",
+            type = "integer",
         },
         expired = {
             type = "timestamp",
@@ -2699,7 +2554,7 @@ M.DescribeCodeCoveragesOutput = {
         },
         codeCoverages = {
             type = "list",
-            member_type = "structure",
+            member = M.CodeCoverage,
         },
     },
 }
@@ -2729,11 +2584,9 @@ M.DescribeTestCasesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
-        filter = {
-            type = "structure",
-        },
+        filter = M.TestCaseFilter,
     },
 }
 
@@ -2756,7 +2609,7 @@ M.TestCase = {
             type = "string",
         },
         durationInNanoSeconds = {
-            type = "number",
+            type = "long",
         },
         message = {
             type = "string",
@@ -2778,7 +2631,7 @@ M.DescribeTestCasesOutput = {
         },
         testCases = {
             type = "list",
-            member_type = "structure",
+            member = M.TestCase,
         },
     },
 }
@@ -2805,7 +2658,7 @@ M.GetReportGroupTrendInput = {
             },
         },
         numOfReports = {
-            type = "number",
+            type = "integer",
         },
         trendField = {
             type = "string",
@@ -2846,12 +2699,10 @@ M.ReportGroupTrendStats = {
 M.GetReportGroupTrendOutput = {
     type = "structure",
     members = {
-        stats = {
-            type = "structure",
-        },
+        stats = M.ReportGroupTrendStats,
         rawData = {
             type = "list",
-            member_type = "structure",
+            member = M.ReportWithRawData,
         },
     },
 }
@@ -2943,11 +2794,9 @@ M.InvalidateProjectCacheOutput = {
 M.ListBuildBatchesInput = {
     type = "structure",
     members = {
-        filter = {
-            type = "structure",
-        },
+        filter = M.BuildBatchFilter,
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         sortOrder = {
             type = "string",
@@ -2963,7 +2812,7 @@ M.ListBuildBatchesOutput = {
     members = {
         ids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -2977,11 +2826,9 @@ M.ListBuildBatchesForProjectInput = {
         projectName = {
             type = "string",
         },
-        filter = {
-            type = "structure",
-        },
+        filter = M.BuildBatchFilter,
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         sortOrder = {
             type = "string",
@@ -2997,7 +2844,7 @@ M.ListBuildBatchesForProjectOutput = {
     members = {
         ids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -3022,7 +2869,7 @@ M.ListBuildsOutput = {
     members = {
         ids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -3053,7 +2900,7 @@ M.ListBuildsForProjectOutput = {
     members = {
         ids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -3071,7 +2918,7 @@ M.ListCommandExecutionsForSandboxInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         sortOrder = {
             type = "string",
@@ -3087,7 +2934,7 @@ M.ListCommandExecutionsForSandboxOutput = {
     members = {
         commandExecutions = {
             type = "list",
-            member_type = "structure",
+            member = M.CommandExecution,
         },
         nextToken = {
             type = "string",
@@ -3110,7 +2957,7 @@ M.EnvironmentImage = {
         },
         versions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3136,7 +2983,7 @@ M.EnvironmentLanguage = {
         },
         images = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentImage,
         },
     },
 }
@@ -3156,7 +3003,7 @@ M.EnvironmentPlatform = {
         },
         languages = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentLanguage,
         },
     },
 }
@@ -3166,7 +3013,7 @@ M.ListCuratedEnvironmentImagesOutput = {
     members = {
         platforms = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentPlatform,
         },
     },
 }
@@ -3184,7 +3031,7 @@ M.ListFleetsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         sortOrder = {
             type = "string",
@@ -3203,7 +3050,7 @@ M.ListFleetsOutput = {
         },
         fleets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3237,7 +3084,7 @@ M.ListProjectsOutput = {
         },
         projects = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3261,7 +3108,7 @@ M.ListReportGroupsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3274,7 +3121,7 @@ M.ListReportGroupsOutput = {
         },
         reportGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3298,11 +3145,9 @@ M.ListReportsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
-        filter = {
-            type = "structure",
-        },
+        filter = M.ReportFilter,
     },
 }
 
@@ -3314,7 +3159,7 @@ M.ListReportsOutput = {
         },
         reports = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3335,11 +3180,9 @@ M.ListReportsForReportGroupInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
-        filter = {
-            type = "structure",
-        },
+        filter = M.ReportFilter,
     },
 }
 
@@ -3351,7 +3194,7 @@ M.ListReportsForReportGroupOutput = {
         },
         reports = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3360,7 +3203,7 @@ M.ListSandboxesInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         sortOrder = {
             type = "string",
@@ -3376,7 +3219,7 @@ M.ListSandboxesOutput = {
     members = {
         ids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -3394,7 +3237,7 @@ M.ListSandboxesForProjectInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         sortOrder = {
             type = "string",
@@ -3410,7 +3253,7 @@ M.ListSandboxesForProjectOutput = {
     members = {
         ids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -3433,7 +3276,7 @@ M.ListSharedProjectsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -3449,7 +3292,7 @@ M.ListSharedProjectsOutput = {
         },
         projects = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3467,7 +3310,7 @@ M.ListSharedReportGroupsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3480,7 +3323,7 @@ M.ListSharedReportGroupsOutput = {
         },
         reportGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3512,7 +3355,7 @@ M.ListSourceCredentialsOutput = {
     members = {
         sourceCredentialsInfos = {
             type = "list",
-            member_type = "structure",
+            member = M.SourceCredentialsInfo,
         },
     },
 }
@@ -3559,9 +3402,7 @@ M.RetryBuildInput = {
 M.RetryBuildOutput = {
     type = "structure",
     members = {
-        build = {
-            type = "structure",
-        },
+        build = M.Build,
     },
 }
 
@@ -3588,9 +3429,7 @@ M.RetryBuildBatchInput = {
 M.RetryBuildBatchOutput = {
     type = "structure",
     members = {
-        buildBatch = {
-            type = "structure",
-        },
+        buildBatch = M.BuildBatch,
     },
 }
 
@@ -3605,25 +3444,23 @@ M.StartBuildInput = {
         },
         secondarySourcesOverride = {
             type = "list",
-            member_type = "structure",
+            member = M.ProjectSource,
         },
         secondarySourcesVersionOverride = {
             type = "list",
-            member_type = "structure",
+            member = M.ProjectSourceVersion,
         },
         sourceVersion = {
             type = "string",
         },
-        artifactsOverride = {
-            type = "structure",
-        },
+        artifactsOverride = M.ProjectArtifacts,
         secondaryArtifactsOverride = {
             type = "list",
-            member_type = "structure",
+            member = M.ProjectArtifacts,
         },
         environmentVariablesOverride = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentVariable,
         },
         sourceTypeOverride = {
             type = "string",
@@ -3631,15 +3468,11 @@ M.StartBuildInput = {
         sourceLocationOverride = {
             type = "string",
         },
-        sourceAuthOverride = {
-            type = "structure",
-        },
+        sourceAuthOverride = M.SourceAuth,
         gitCloneDepthOverride = {
-            type = "number",
+            type = "integer",
         },
-        gitSubmodulesConfigOverride = {
-            type = "structure",
-        },
+        gitSubmodulesConfigOverride = M.GitSubmodulesConfig,
         buildspecOverride = {
             type = "string",
         },
@@ -3649,9 +3482,7 @@ M.StartBuildInput = {
         reportBuildStatusOverride = {
             type = "boolean",
         },
-        buildStatusConfigOverride = {
-            type = "structure",
-        },
+        buildStatusConfigOverride = M.BuildStatusConfig,
         environmentTypeOverride = {
             type = "string",
         },
@@ -3664,9 +3495,7 @@ M.StartBuildInput = {
         certificateOverride = {
             type = "string",
         },
-        cacheOverride = {
-            type = "structure",
-        },
+        cacheOverride = M.ProjectCache,
         serviceRoleOverride = {
             type = "string",
         },
@@ -3674,10 +3503,10 @@ M.StartBuildInput = {
             type = "boolean",
         },
         timeoutInMinutesOverride = {
-            type = "number",
+            type = "integer",
         },
         queuedTimeoutInMinutesOverride = {
-            type = "number",
+            type = "integer",
         },
         encryptionKeyOverride = {
             type = "string",
@@ -3685,23 +3514,17 @@ M.StartBuildInput = {
         idempotencyToken = {
             type = "string",
         },
-        logsConfigOverride = {
-            type = "structure",
-        },
-        registryCredentialOverride = {
-            type = "structure",
-        },
+        logsConfigOverride = M.LogsConfig,
+        registryCredentialOverride = M.RegistryCredential,
         imagePullCredentialsTypeOverride = {
             type = "string",
         },
         debugSessionEnabled = {
             type = "boolean",
         },
-        fleetOverride = {
-            type = "structure",
-        },
+        fleetOverride = M.ProjectFleet,
         autoRetryLimitOverride = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3709,9 +3532,7 @@ M.StartBuildInput = {
 M.StartBuildOutput = {
     type = "structure",
     members = {
-        build = {
-            type = "structure",
-        },
+        build = M.Build,
     },
 }
 
@@ -3726,25 +3547,23 @@ M.StartBuildBatchInput = {
         },
         secondarySourcesOverride = {
             type = "list",
-            member_type = "structure",
+            member = M.ProjectSource,
         },
         secondarySourcesVersionOverride = {
             type = "list",
-            member_type = "structure",
+            member = M.ProjectSourceVersion,
         },
         sourceVersion = {
             type = "string",
         },
-        artifactsOverride = {
-            type = "structure",
-        },
+        artifactsOverride = M.ProjectArtifacts,
         secondaryArtifactsOverride = {
             type = "list",
-            member_type = "structure",
+            member = M.ProjectArtifacts,
         },
         environmentVariablesOverride = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentVariable,
         },
         sourceTypeOverride = {
             type = "string",
@@ -3752,15 +3571,11 @@ M.StartBuildBatchInput = {
         sourceLocationOverride = {
             type = "string",
         },
-        sourceAuthOverride = {
-            type = "structure",
-        },
+        sourceAuthOverride = M.SourceAuth,
         gitCloneDepthOverride = {
-            type = "number",
+            type = "integer",
         },
-        gitSubmodulesConfigOverride = {
-            type = "structure",
-        },
+        gitSubmodulesConfigOverride = M.GitSubmodulesConfig,
         buildspecOverride = {
             type = "string",
         },
@@ -3782,9 +3597,7 @@ M.StartBuildBatchInput = {
         certificateOverride = {
             type = "string",
         },
-        cacheOverride = {
-            type = "structure",
-        },
+        cacheOverride = M.ProjectCache,
         serviceRoleOverride = {
             type = "string",
         },
@@ -3792,10 +3605,10 @@ M.StartBuildBatchInput = {
             type = "boolean",
         },
         buildTimeoutInMinutesOverride = {
-            type = "number",
+            type = "integer",
         },
         queuedTimeoutInMinutesOverride = {
-            type = "number",
+            type = "integer",
         },
         encryptionKeyOverride = {
             type = "string",
@@ -3803,18 +3616,12 @@ M.StartBuildBatchInput = {
         idempotencyToken = {
             type = "string",
         },
-        logsConfigOverride = {
-            type = "structure",
-        },
-        registryCredentialOverride = {
-            type = "structure",
-        },
+        logsConfigOverride = M.LogsConfig,
+        registryCredentialOverride = M.RegistryCredential,
         imagePullCredentialsTypeOverride = {
             type = "string",
         },
-        buildBatchConfigOverride = {
-            type = "structure",
-        },
+        buildBatchConfigOverride = M.ProjectBuildBatchConfig,
         debugSessionEnabled = {
             type = "boolean",
         },
@@ -3824,9 +3631,7 @@ M.StartBuildBatchInput = {
 M.StartBuildBatchOutput = {
     type = "structure",
     members = {
-        buildBatch = {
-            type = "structure",
-        },
+        buildBatch = M.BuildBatch,
     },
 }
 
@@ -3854,9 +3659,7 @@ M.StartCommandExecutionInput = {
 M.StartCommandExecutionOutput = {
     type = "structure",
     members = {
-        commandExecution = {
-            type = "structure",
-        },
+        commandExecution = M.CommandExecution,
     },
 }
 
@@ -3875,9 +3678,7 @@ M.StartSandboxInput = {
 M.StartSandboxOutput = {
     type = "structure",
     members = {
-        sandbox = {
-            type = "structure",
-        },
+        sandbox = M.Sandbox,
     },
 }
 
@@ -3911,9 +3712,7 @@ M.SSMSession = {
 M.StartSandboxConnectionOutput = {
     type = "structure",
     members = {
-        ssmSession = {
-            type = "structure",
-        },
+        ssmSession = M.SSMSession,
     },
 }
 
@@ -3932,9 +3731,7 @@ M.StopBuildInput = {
 M.StopBuildOutput = {
     type = "structure",
     members = {
-        build = {
-            type = "structure",
-        },
+        build = M.Build,
     },
 }
 
@@ -3953,9 +3750,7 @@ M.StopBuildBatchInput = {
 M.StopBuildBatchOutput = {
     type = "structure",
     members = {
-        buildBatch = {
-            type = "structure",
-        },
+        buildBatch = M.BuildBatch,
     },
 }
 
@@ -3974,9 +3769,7 @@ M.StopSandboxInput = {
 M.StopSandboxOutput = {
     type = "structure",
     members = {
-        sandbox = {
-            type = "structure",
-        },
+        sandbox = M.Sandbox,
     },
 }
 
@@ -3990,7 +3783,7 @@ M.UpdateFleetInput = {
             },
         },
         baseCapacity = {
-            type = "number",
+            type = "integer",
         },
         environmentType = {
             type = "string",
@@ -3998,21 +3791,13 @@ M.UpdateFleetInput = {
         computeType = {
             type = "string",
         },
-        computeConfiguration = {
-            type = "structure",
-        },
-        scalingConfiguration = {
-            type = "structure",
-        },
+        computeConfiguration = M.ComputeConfiguration,
+        scalingConfiguration = M.ScalingConfigurationInput,
         overflowBehavior = {
             type = "string",
         },
-        vpcConfig = {
-            type = "structure",
-        },
-        proxyConfiguration = {
-            type = "structure",
-        },
+        vpcConfig = M.VpcConfig,
+        proxyConfiguration = M.ProxyConfiguration,
         imageId = {
             type = "string",
         },
@@ -4021,7 +3806,7 @@ M.UpdateFleetInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -4029,9 +3814,7 @@ M.UpdateFleetInput = {
 M.UpdateFleetOutput = {
     type = "structure",
     members = {
-        fleet = {
-            type = "structure",
-        },
+        fleet = M.Fleet,
     },
 }
 
@@ -4047,70 +3830,56 @@ M.UpdateProjectInput = {
         description = {
             type = "string",
         },
-        source = {
-            type = "structure",
-        },
+        source = M.ProjectSource,
         secondarySources = {
             type = "list",
-            member_type = "structure",
+            member = M.ProjectSource,
         },
         sourceVersion = {
             type = "string",
         },
         secondarySourceVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.ProjectSourceVersion,
         },
-        artifacts = {
-            type = "structure",
-        },
+        artifacts = M.ProjectArtifacts,
         secondaryArtifacts = {
             type = "list",
-            member_type = "structure",
+            member = M.ProjectArtifacts,
         },
-        cache = {
-            type = "structure",
-        },
-        environment = {
-            type = "structure",
-        },
+        cache = M.ProjectCache,
+        environment = M.ProjectEnvironment,
         serviceRole = {
             type = "string",
         },
         timeoutInMinutes = {
-            type = "number",
+            type = "integer",
         },
         queuedTimeoutInMinutes = {
-            type = "number",
+            type = "integer",
         },
         encryptionKey = {
             type = "string",
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        vpcConfig = {
-            type = "structure",
-        },
+        vpcConfig = M.VpcConfig,
         badgeEnabled = {
             type = "boolean",
         },
-        logsConfig = {
-            type = "structure",
-        },
+        logsConfig = M.LogsConfig,
         fileSystemLocations = {
             type = "list",
-            member_type = "structure",
+            member = M.ProjectFileSystemLocation,
         },
-        buildBatchConfig = {
-            type = "structure",
-        },
+        buildBatchConfig = M.ProjectBuildBatchConfig,
         concurrentBuildLimit = {
-            type = "number",
+            type = "integer",
         },
         autoRetryLimit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4118,9 +3887,7 @@ M.UpdateProjectInput = {
 M.UpdateProjectOutput = {
     type = "structure",
     members = {
-        project = {
-            type = "structure",
-        },
+        project = M.Project,
     },
 }
 
@@ -4169,12 +3936,10 @@ M.UpdateReportGroupInput = {
                 required = true,
             },
         },
-        exportConfig = {
-            type = "structure",
-        },
+        exportConfig = M.ReportExportConfig,
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -4182,9 +3947,7 @@ M.UpdateReportGroupInput = {
 M.UpdateReportGroupOutput = {
     type = "structure",
     members = {
-        reportGroup = {
-            type = "structure",
-        },
+        reportGroup = M.ReportGroup,
     },
 }
 
@@ -4202,26 +3965,25 @@ M.UpdateWebhookInput = {
         },
         rotateSecret = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         filterGroups = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
         },
         buildType = {
             type = "string",
         },
-        pullRequestBuildPolicy = {
-            type = "structure",
-        },
+        pullRequestBuildPolicy = M.PullRequestBuildPolicy,
     },
 }
 
 M.UpdateWebhookOutput = {
     type = "structure",
     members = {
-        webhook = {
-            type = "structure",
-        },
+        webhook = M.Webhook,
     },
 }
 

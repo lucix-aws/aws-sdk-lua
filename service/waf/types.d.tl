@@ -2229,9 +2229,9 @@ local record WAFStaleDataException
     message: string
 end
 
-local type RateKey = "IP"
-
 local type ChangeTokenStatus = "PROVISIONED" | "PENDING" | "INSYNC"
+
+local type RateKey = "IP"
 
 local record M
     CreateByteMatchSetInput: CreateByteMatchSetInput

@@ -8,7 +8,7 @@ M.Alias = {
         },
         Names = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Type = {
             type = "string",
@@ -20,7 +20,7 @@ M.AnnotationValue = {
     type = "union",
     members = {
         NumberValue = {
-            type = "number",
+            type = "double",
         },
         BooleanValue = {
             type = "boolean",
@@ -39,7 +39,7 @@ M.ServiceId = {
         },
         Names = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AccountId = {
             type = "string",
@@ -53,12 +53,10 @@ M.ServiceId = {
 M.ValueWithServiceIds = {
     type = "structure",
     members = {
-        AnnotationValue = {
-            type = "union",
-        },
+        AnnotationValue = M.AnnotationValue,
         ServiceIds = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceId,
         },
     },
 }
@@ -66,9 +64,7 @@ M.ValueWithServiceIds = {
 M.AnomalousService = {
     type = "structure",
     members = {
-        ServiceId = {
-            type = "structure",
-        },
+        ServiceId = M.ServiceId,
     },
 }
 
@@ -86,7 +82,7 @@ M.BatchGetTracesInput = {
     members = {
         TraceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -116,14 +112,14 @@ M.Trace = {
             type = "string",
         },
         Duration = {
-            type = "number",
+            type = "double",
         },
         LimitExceeded = {
             type = "boolean",
         },
         Segments = {
             type = "list",
-            member_type = "structure",
+            member = M.Segment,
         },
     },
 }
@@ -133,11 +129,11 @@ M.BatchGetTracesOutput = {
     members = {
         Traces = {
             type = "list",
-            member_type = "structure",
+            member = M.Trace,
         },
         UnprocessedTraceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -236,12 +232,10 @@ M.CreateGroupInput = {
         FilterExpression = {
             type = "string",
         },
-        InsightsConfiguration = {
-            type = "structure",
-        },
+        InsightsConfiguration = M.InsightsConfiguration,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -258,18 +252,14 @@ M.Group = {
         FilterExpression = {
             type = "string",
         },
-        InsightsConfiguration = {
-            type = "structure",
-        },
+        InsightsConfiguration = M.InsightsConfiguration,
     },
 }
 
 M.CreateGroupOutput = {
     type = "structure",
     members = {
-        Group = {
-            type = "structure",
-        },
+        Group = M.Group,
     },
 }
 
@@ -277,14 +267,16 @@ M.SamplingRateBoost = {
     type = "structure",
     members = {
         MaxRate = {
-            type = "number",
+            type = "double",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         CooldownWindowMinutes = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -307,20 +299,22 @@ M.SamplingRule = {
             },
         },
         Priority = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         FixedRate = {
-            type = "number",
+            type = "double",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         ReservoirSize = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -355,34 +349,29 @@ M.SamplingRule = {
             },
         },
         Version = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        SamplingRateBoost = {
-            type = "structure",
-        },
+        SamplingRateBoost = M.SamplingRateBoost,
     },
 }
 
 M.CreateSamplingRuleInput = {
     type = "structure",
     members = {
-        SamplingRule = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SamplingRule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SamplingRule }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -390,9 +379,7 @@ M.CreateSamplingRuleInput = {
 M.SamplingRuleRecord = {
     type = "structure",
     members = {
-        SamplingRule = {
-            type = "structure",
-        },
+        SamplingRule = M.SamplingRule,
         CreatedAt = {
             type = "timestamp",
         },
@@ -405,9 +392,7 @@ M.SamplingRuleRecord = {
 M.CreateSamplingRuleOutput = {
     type = "structure",
     members = {
-        SamplingRuleRecord = {
-            type = "structure",
-        },
+        SamplingRuleRecord = M.SamplingRuleRecord,
     },
 }
 
@@ -481,9 +466,7 @@ M.DeleteSamplingRuleInput = {
 M.DeleteSamplingRuleOutput = {
     type = "structure",
     members = {
-        SamplingRuleRecord = {
-            type = "structure",
-        },
+        SamplingRuleRecord = M.SamplingRuleRecord,
     },
 }
 
@@ -519,9 +502,7 @@ M.EncryptionConfig = {
 M.GetEncryptionConfigOutput = {
     type = "structure",
     members = {
-        EncryptionConfig = {
-            type = "structure",
-        },
+        EncryptionConfig = M.EncryptionConfig,
     },
 }
 
@@ -540,9 +521,7 @@ M.GetGroupInput = {
 M.GetGroupOutput = {
     type = "structure",
     members = {
-        Group = {
-            type = "structure",
-        },
+        Group = M.Group,
     },
 }
 
@@ -567,9 +546,7 @@ M.GroupSummary = {
         FilterExpression = {
             type = "string",
         },
-        InsightsConfiguration = {
-            type = "structure",
-        },
+        InsightsConfiguration = M.InsightsConfiguration,
     },
 }
 
@@ -578,7 +555,7 @@ M.GetGroupsOutput = {
     members = {
         Groups = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupSummary,
         },
         NextToken = {
             type = "string",
@@ -599,13 +576,13 @@ M.ProbabilisticRuleValue = {
     type = "structure",
     members = {
         DesiredSamplingPercentage = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
         ActualSamplingPercentage = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -613,9 +590,7 @@ M.ProbabilisticRuleValue = {
 M.IndexingRuleValue = {
     type = "union",
     members = {
-        Probabilistic = {
-            type = "structure",
-        },
+        Probabilistic = M.ProbabilisticRuleValue,
     },
 }
 
@@ -628,9 +603,7 @@ M.IndexingRule = {
         ModifiedAt = {
             type = "timestamp",
         },
-        Rule = {
-            type = "union",
-        },
+        Rule = M.IndexingRuleValue,
     },
 }
 
@@ -639,7 +612,7 @@ M.GetIndexingRulesOutput = {
     members = {
         IndexingRules = {
             type = "list",
-            member_type = "structure",
+            member = M.IndexingRule,
         },
         NextToken = {
             type = "string",
@@ -667,13 +640,13 @@ M.RequestImpactStatistics = {
     type = "structure",
     members = {
         FaultCount = {
-            type = "number",
+            type = "long",
         },
         OkCount = {
-            type = "number",
+            type = "long",
         },
         TotalCount = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -695,12 +668,10 @@ M.Insight = {
         GroupName = {
             type = "string",
         },
-        RootCauseServiceId = {
-            type = "structure",
-        },
+        RootCauseServiceId = M.ServiceId,
         Categories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         State = {
             type = "string",
@@ -714,15 +685,11 @@ M.Insight = {
         Summary = {
             type = "string",
         },
-        ClientRequestImpactStatistics = {
-            type = "structure",
-        },
-        RootCauseServiceRequestImpactStatistics = {
-            type = "structure",
-        },
+        ClientRequestImpactStatistics = M.RequestImpactStatistics,
+        RootCauseServiceRequestImpactStatistics = M.RequestImpactStatistics,
         TopAnomalousServices = {
             type = "list",
-            member_type = "structure",
+            member = M.AnomalousService,
         },
     },
 }
@@ -730,9 +697,7 @@ M.Insight = {
 M.GetInsightOutput = {
     type = "structure",
     members = {
-        Insight = {
-            type = "structure",
-        },
+        Insight = M.Insight,
     },
 }
 
@@ -746,7 +711,7 @@ M.GetInsightEventsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -763,15 +728,11 @@ M.InsightEvent = {
         EventTime = {
             type = "timestamp",
         },
-        ClientRequestImpactStatistics = {
-            type = "structure",
-        },
-        RootCauseServiceRequestImpactStatistics = {
-            type = "structure",
-        },
+        ClientRequestImpactStatistics = M.RequestImpactStatistics,
+        RootCauseServiceRequestImpactStatistics = M.RequestImpactStatistics,
         TopAnomalousServices = {
             type = "list",
-            member_type = "structure",
+            member = M.AnomalousService,
         },
     },
 }
@@ -781,7 +742,7 @@ M.GetInsightEventsOutput = {
     members = {
         InsightEvents = {
             type = "list",
-            member_type = "structure",
+            member = M.InsightEvent,
         },
         NextToken = {
             type = "string",
@@ -820,7 +781,7 @@ M.InsightImpactGraphEdge = {
     type = "structure",
     members = {
         ReferenceId = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -829,7 +790,7 @@ M.InsightImpactGraphService = {
     type = "structure",
     members = {
         ReferenceId = {
-            type = "number",
+            type = "integer",
         },
         Type = {
             type = "string",
@@ -839,14 +800,14 @@ M.InsightImpactGraphService = {
         },
         Names = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AccountId = {
             type = "string",
         },
         Edges = {
             type = "list",
-            member_type = "structure",
+            member = M.InsightImpactGraphEdge,
         },
     },
 }
@@ -871,7 +832,7 @@ M.GetInsightImpactGraphOutput = {
         },
         Services = {
             type = "list",
-            member_type = "structure",
+            member = M.InsightImpactGraphService,
         },
         NextToken = {
             type = "string",
@@ -884,7 +845,7 @@ M.GetInsightSummariesInput = {
     members = {
         States = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         GroupARN = {
             type = "string",
@@ -905,7 +866,7 @@ M.GetInsightSummariesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -925,12 +886,10 @@ M.InsightSummary = {
         GroupName = {
             type = "string",
         },
-        RootCauseServiceId = {
-            type = "structure",
-        },
+        RootCauseServiceId = M.ServiceId,
         Categories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         State = {
             type = "string",
@@ -944,15 +903,11 @@ M.InsightSummary = {
         Summary = {
             type = "string",
         },
-        ClientRequestImpactStatistics = {
-            type = "structure",
-        },
-        RootCauseServiceRequestImpactStatistics = {
-            type = "structure",
-        },
+        ClientRequestImpactStatistics = M.RequestImpactStatistics,
+        RootCauseServiceRequestImpactStatistics = M.RequestImpactStatistics,
         TopAnomalousServices = {
             type = "list",
-            member_type = "structure",
+            member = M.AnomalousService,
         },
         LastUpdateTime = {
             type = "timestamp",
@@ -965,7 +920,7 @@ M.GetInsightSummariesOutput = {
     members = {
         InsightSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.InsightSummary,
         },
         NextToken = {
             type = "string",
@@ -1008,7 +963,7 @@ M.GraphLink = {
         },
         DestinationTraceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1017,10 +972,16 @@ M.HistogramEntry = {
     type = "structure",
     members = {
         Value = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         Count = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1029,13 +990,13 @@ M.ErrorStatistics = {
     type = "structure",
     members = {
         ThrottleCount = {
-            type = "number",
+            type = "long",
         },
         OtherCount = {
-            type = "number",
+            type = "long",
         },
         TotalCount = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1044,10 +1005,10 @@ M.FaultStatistics = {
     type = "structure",
     members = {
         OtherCount = {
-            type = "number",
+            type = "long",
         },
         TotalCount = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1056,19 +1017,15 @@ M.EdgeStatistics = {
     type = "structure",
     members = {
         OkCount = {
-            type = "number",
+            type = "long",
         },
-        ErrorStatistics = {
-            type = "structure",
-        },
-        FaultStatistics = {
-            type = "structure",
-        },
+        ErrorStatistics = M.ErrorStatistics,
+        FaultStatistics = M.FaultStatistics,
         TotalCount = {
-            type = "number",
+            type = "long",
         },
         TotalResponseTime = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -1077,7 +1034,7 @@ M.Edge = {
     type = "structure",
     members = {
         ReferenceId = {
-            type = "number",
+            type = "integer",
         },
         StartTime = {
             type = "timestamp",
@@ -1085,23 +1042,21 @@ M.Edge = {
         EndTime = {
             type = "timestamp",
         },
-        SummaryStatistics = {
-            type = "structure",
-        },
+        SummaryStatistics = M.EdgeStatistics,
         ResponseTimeHistogram = {
             type = "list",
-            member_type = "structure",
+            member = M.HistogramEntry,
         },
         Aliases = {
             type = "list",
-            member_type = "structure",
+            member = M.Alias,
         },
         EdgeType = {
             type = "string",
         },
         ReceivedEventAgeHistogram = {
             type = "list",
-            member_type = "structure",
+            member = M.HistogramEntry,
         },
     },
 }
@@ -1110,19 +1065,15 @@ M.ServiceStatistics = {
     type = "structure",
     members = {
         OkCount = {
-            type = "number",
+            type = "long",
         },
-        ErrorStatistics = {
-            type = "structure",
-        },
-        FaultStatistics = {
-            type = "structure",
-        },
+        ErrorStatistics = M.ErrorStatistics,
+        FaultStatistics = M.FaultStatistics,
         TotalCount = {
-            type = "number",
+            type = "long",
         },
         TotalResponseTime = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -1131,14 +1082,14 @@ M.Service = {
     type = "structure",
     members = {
         ReferenceId = {
-            type = "number",
+            type = "integer",
         },
         Name = {
             type = "string",
         },
         Names = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Root = {
             type = "boolean",
@@ -1160,18 +1111,16 @@ M.Service = {
         },
         Edges = {
             type = "list",
-            member_type = "structure",
+            member = M.Edge,
         },
-        SummaryStatistics = {
-            type = "structure",
-        },
+        SummaryStatistics = M.ServiceStatistics,
         DurationHistogram = {
             type = "list",
-            member_type = "structure",
+            member = M.HistogramEntry,
         },
         ResponseTimeHistogram = {
             type = "list",
-            member_type = "structure",
+            member = M.HistogramEntry,
         },
     },
 }
@@ -1179,12 +1128,10 @@ M.Service = {
 M.RetrievedService = {
     type = "structure",
     members = {
-        Service = {
-            type = "structure",
-        },
+        Service = M.Service,
         Links = {
             type = "list",
-            member_type = "structure",
+            member = M.GraphLink,
         },
     },
 }
@@ -1197,7 +1144,7 @@ M.GetRetrievedTracesGraphOutput = {
         },
         Services = {
             type = "list",
-            member_type = "structure",
+            member = M.RetrievedService,
         },
         NextToken = {
             type = "string",
@@ -1219,7 +1166,7 @@ M.GetSamplingRulesOutput = {
     members = {
         SamplingRuleRecords = {
             type = "list",
-            member_type = "structure",
+            member = M.SamplingRuleRecord,
         },
         NextToken = {
             type = "string",
@@ -1246,13 +1193,22 @@ M.SamplingStatisticSummary = {
             type = "timestamp",
         },
         RequestCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         BorrowCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         SampledCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1262,7 +1218,7 @@ M.GetSamplingStatisticSummariesOutput = {
     members = {
         SamplingStatisticSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.SamplingStatisticSummary,
         },
         NextToken = {
             type = "string",
@@ -1292,20 +1248,23 @@ M.SamplingBoostStatisticsDocument = {
             },
         },
         AnomalyCount = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         TotalCount = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         SampledAnomalyCount = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -1334,19 +1293,24 @@ M.SamplingStatisticsDocument = {
             },
         },
         RequestCount = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         SampledCount = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         BorrowCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1356,14 +1320,14 @@ M.GetSamplingTargetsInput = {
     members = {
         SamplingStatisticsDocuments = {
             type = "list",
-            member_type = "structure",
+            member = M.SamplingStatisticsDocument,
             traits = {
                 required = true,
             },
         },
         SamplingBoostStatisticsDocuments = {
             type = "list",
-            member_type = "structure",
+            member = M.SamplingBoostStatisticsDocument,
         },
     },
 }
@@ -1372,8 +1336,9 @@ M.SamplingBoost = {
     type = "structure",
     members = {
         BoostRate = {
-            type = "number",
+            type = "double",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -1393,20 +1358,21 @@ M.SamplingTargetDocument = {
             type = "string",
         },
         FixedRate = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         ReservoirQuota = {
-            type = "number",
+            type = "integer",
         },
         ReservoirQuotaTTL = {
             type = "timestamp",
         },
         Interval = {
-            type = "number",
+            type = "integer",
         },
-        SamplingBoost = {
-            type = "structure",
-        },
+        SamplingBoost = M.SamplingBoost,
     },
 }
 
@@ -1430,18 +1396,18 @@ M.GetSamplingTargetsOutput = {
     members = {
         SamplingTargetDocuments = {
             type = "list",
-            member_type = "structure",
+            member = M.SamplingTargetDocument,
         },
         LastRuleModification = {
             type = "timestamp",
         },
         UnprocessedStatistics = {
             type = "list",
-            member_type = "structure",
+            member = M.UnprocessedStatistics,
         },
         UnprocessedBoostStatistics = {
             type = "list",
-            member_type = "structure",
+            member = M.UnprocessedStatistics,
         },
     },
 }
@@ -1484,10 +1450,13 @@ M.GetServiceGraphOutput = {
         },
         Services = {
             type = "list",
-            member_type = "structure",
+            member = M.Service,
         },
         ContainsOldGroupVersions = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         NextToken = {
             type = "string",
@@ -1520,7 +1489,7 @@ M.GetTimeSeriesServiceStatisticsInput = {
             type = "string",
         },
         Period = {
-            type = "number",
+            type = "integer",
         },
         ForecastStatistics = {
             type = "boolean",
@@ -1535,10 +1504,10 @@ M.ForecastStatistics = {
     type = "structure",
     members = {
         FaultCountHigh = {
-            type = "number",
+            type = "long",
         },
         FaultCountLow = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1549,18 +1518,12 @@ M.TimeSeriesServiceStatistics = {
         Timestamp = {
             type = "timestamp",
         },
-        EdgeSummaryStatistics = {
-            type = "structure",
-        },
-        ServiceSummaryStatistics = {
-            type = "structure",
-        },
-        ServiceForecastStatistics = {
-            type = "structure",
-        },
+        EdgeSummaryStatistics = M.EdgeStatistics,
+        ServiceSummaryStatistics = M.ServiceStatistics,
+        ServiceForecastStatistics = M.ForecastStatistics,
         ResponseTimeHistogram = {
             type = "list",
-            member_type = "structure",
+            member = M.HistogramEntry,
         },
     },
 }
@@ -1570,10 +1533,13 @@ M.GetTimeSeriesServiceStatisticsOutput = {
     members = {
         TimeSeriesServiceStatistics = {
             type = "list",
-            member_type = "structure",
+            member = M.TimeSeriesServiceStatistics,
         },
         ContainsOldGroupVersions = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         NextToken = {
             type = "string",
@@ -1586,7 +1552,7 @@ M.GetTraceGraphInput = {
     members = {
         TraceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1602,7 +1568,7 @@ M.GetTraceGraphOutput = {
     members = {
         Services = {
             type = "list",
-            member_type = "structure",
+            member = M.Service,
         },
         NextToken = {
             type = "string",
@@ -1648,7 +1614,7 @@ M.SamplingStrategy = {
             type = "string",
         },
         Value = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -1680,9 +1646,7 @@ M.GetTraceSummariesInput = {
         Sampling = {
             type = "boolean",
         },
-        SamplingStrategy = {
-            type = "structure",
-        },
+        SamplingStrategy = M.SamplingStrategy,
         FilterExpression = {
             type = "string",
         },
@@ -1712,7 +1676,7 @@ M.ErrorRootCauseEntity = {
         },
         Exceptions = {
             type = "list",
-            member_type = "structure",
+            member = M.RootCauseException,
         },
         Remote = {
             type = "boolean",
@@ -1728,7 +1692,7 @@ M.ErrorRootCauseService = {
         },
         Names = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Type = {
             type = "string",
@@ -1738,7 +1702,7 @@ M.ErrorRootCauseService = {
         },
         EntityPath = {
             type = "list",
-            member_type = "structure",
+            member = M.ErrorRootCauseEntity,
         },
         Inferred = {
             type = "boolean",
@@ -1751,7 +1715,7 @@ M.ErrorRootCause = {
     members = {
         Services = {
             type = "list",
-            member_type = "structure",
+            member = M.ErrorRootCauseService,
         },
         ClientImpacting = {
             type = "boolean",
@@ -1767,7 +1731,7 @@ M.FaultRootCauseEntity = {
         },
         Exceptions = {
             type = "list",
-            member_type = "structure",
+            member = M.RootCauseException,
         },
         Remote = {
             type = "boolean",
@@ -1783,7 +1747,7 @@ M.FaultRootCauseService = {
         },
         Names = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Type = {
             type = "string",
@@ -1793,7 +1757,7 @@ M.FaultRootCauseService = {
         },
         EntityPath = {
             type = "list",
-            member_type = "structure",
+            member = M.FaultRootCauseEntity,
         },
         Inferred = {
             type = "boolean",
@@ -1806,7 +1770,7 @@ M.FaultRootCause = {
     members = {
         Services = {
             type = "list",
-            member_type = "structure",
+            member = M.FaultRootCauseService,
         },
         ClientImpacting = {
             type = "boolean",
@@ -1821,7 +1785,7 @@ M.Http = {
             type = "string",
         },
         HttpStatus = {
-            type = "number",
+            type = "integer",
         },
         HttpMethod = {
             type = "string",
@@ -1860,7 +1824,7 @@ M.ResponseTimeRootCauseEntity = {
             type = "string",
         },
         Coverage = {
-            type = "number",
+            type = "double",
         },
         Remote = {
             type = "boolean",
@@ -1876,7 +1840,7 @@ M.ResponseTimeRootCauseService = {
         },
         Names = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Type = {
             type = "string",
@@ -1886,7 +1850,7 @@ M.ResponseTimeRootCauseService = {
         },
         EntityPath = {
             type = "list",
-            member_type = "structure",
+            member = M.ResponseTimeRootCauseEntity,
         },
         Inferred = {
             type = "boolean",
@@ -1899,7 +1863,7 @@ M.ResponseTimeRootCause = {
     members = {
         Services = {
             type = "list",
-            member_type = "structure",
+            member = M.ResponseTimeRootCauseService,
         },
         ClientImpacting = {
             type = "boolean",
@@ -1915,7 +1879,7 @@ M.TraceUser = {
         },
         ServiceIds = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceId,
         },
     },
 }
@@ -1930,10 +1894,10 @@ M.TraceSummary = {
             type = "timestamp",
         },
         Duration = {
-            type = "number",
+            type = "double",
         },
         ResponseTime = {
-            type = "number",
+            type = "double",
         },
         HasFault = {
             type = "boolean",
@@ -1947,51 +1911,50 @@ M.TraceSummary = {
         IsPartial = {
             type = "boolean",
         },
-        Http = {
-            type = "structure",
-        },
+        Http = M.Http,
         Annotations = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         Users = {
             type = "list",
-            member_type = "structure",
+            member = M.TraceUser,
         },
         ServiceIds = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceId,
         },
         ResourceARNs = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceARNDetail,
         },
         InstanceIds = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceIdDetail,
         },
         AvailabilityZones = {
             type = "list",
-            member_type = "structure",
+            member = M.AvailabilityZoneDetail,
         },
-        EntryPoint = {
-            type = "structure",
-        },
+        EntryPoint = M.ServiceId,
         FaultRootCauses = {
             type = "list",
-            member_type = "structure",
+            member = M.FaultRootCause,
         },
         ErrorRootCauses = {
             type = "list",
-            member_type = "structure",
+            member = M.ErrorRootCause,
         },
         ResponseTimeRootCauses = {
             type = "list",
-            member_type = "structure",
+            member = M.ResponseTimeRootCause,
         },
         Revision = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         MatchedEventTime = {
             type = "timestamp",
@@ -2004,13 +1967,13 @@ M.GetTraceSummariesOutput = {
     members = {
         TraceSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.TraceSummary,
         },
         ApproximateTime = {
             type = "timestamp",
         },
         TracesProcessedCount = {
-            type = "number",
+            type = "long",
         },
         NextToken = {
             type = "string",
@@ -2050,7 +2013,7 @@ M.ListResourcePoliciesOutput = {
     members = {
         ResourcePolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePolicy,
         },
         NextToken = {
             type = "string",
@@ -2100,11 +2063,11 @@ M.RetrievedTrace = {
             type = "string",
         },
         Duration = {
-            type = "number",
+            type = "double",
         },
         Spans = {
             type = "list",
-            member_type = "structure",
+            member = M.Span,
         },
     },
 }
@@ -2120,7 +2083,7 @@ M.ListRetrievedTracesOutput = {
         },
         Traces = {
             type = "list",
-            member_type = "structure",
+            member = M.RetrievedTrace,
         },
         NextToken = {
             type = "string",
@@ -2148,7 +2111,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         NextToken = {
             type = "string",
@@ -2174,9 +2137,7 @@ M.PutEncryptionConfigInput = {
 M.PutEncryptionConfigOutput = {
     type = "structure",
     members = {
-        EncryptionConfig = {
-            type = "structure",
-        },
+        EncryptionConfig = M.EncryptionConfig,
     },
 }
 
@@ -2240,6 +2201,9 @@ M.PutResourcePolicyInput = {
         },
         BypassPolicyLockoutCheck = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -2247,9 +2211,7 @@ M.PutResourcePolicyInput = {
 M.PutResourcePolicyOutput = {
     type = "structure",
     members = {
-        ResourcePolicy = {
-            type = "structure",
-        },
+        ResourcePolicy = M.ResourcePolicy,
     },
 }
 
@@ -2257,22 +2219,22 @@ M.BackendConnectionErrors = {
     type = "structure",
     members = {
         TimeoutCount = {
-            type = "number",
+            type = "integer",
         },
         ConnectionRefusedCount = {
-            type = "number",
+            type = "integer",
         },
         HTTPCode4XXCount = {
-            type = "number",
+            type = "integer",
         },
         HTTPCode5XXCount = {
-            type = "number",
+            type = "integer",
         },
         UnknownHostCount = {
-            type = "number",
+            type = "integer",
         },
         OtherCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2287,20 +2249,18 @@ M.TelemetryRecord = {
             },
         },
         SegmentsReceivedCount = {
-            type = "number",
+            type = "integer",
         },
         SegmentsSentCount = {
-            type = "number",
+            type = "integer",
         },
         SegmentsSpilloverCount = {
-            type = "number",
+            type = "integer",
         },
         SegmentsRejectedCount = {
-            type = "number",
+            type = "integer",
         },
-        BackendConnectionErrors = {
-            type = "structure",
-        },
+        BackendConnectionErrors = M.BackendConnectionErrors,
     },
 }
 
@@ -2309,7 +2269,7 @@ M.PutTelemetryRecordsInput = {
     members = {
         TelemetryRecords = {
             type = "list",
-            member_type = "structure",
+            member = M.TelemetryRecord,
             traits = {
                 required = true,
             },
@@ -2335,7 +2295,7 @@ M.PutTraceSegmentsInput = {
     members = {
         TraceSegmentDocuments = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2363,7 +2323,7 @@ M.PutTraceSegmentsOutput = {
     members = {
         UnprocessedTraceSegments = {
             type = "list",
-            member_type = "structure",
+            member = M.UnprocessedTraceSegment,
         },
     },
 }
@@ -2373,7 +2333,7 @@ M.StartTraceRetrievalInput = {
     members = {
         TraceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2413,7 +2373,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -2449,7 +2409,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2473,18 +2433,14 @@ M.UpdateGroupInput = {
         FilterExpression = {
             type = "string",
         },
-        InsightsConfiguration = {
-            type = "structure",
-        },
+        InsightsConfiguration = M.InsightsConfiguration,
     },
 }
 
 M.UpdateGroupOutput = {
     type = "structure",
     members = {
-        Group = {
-            type = "structure",
-        },
+        Group = M.Group,
     },
 }
 
@@ -2492,7 +2448,7 @@ M.ProbabilisticRuleValueUpdate = {
     type = "structure",
     members = {
         DesiredSamplingPercentage = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -2503,9 +2459,7 @@ M.ProbabilisticRuleValueUpdate = {
 M.IndexingRuleValueUpdate = {
     type = "union",
     members = {
-        Probabilistic = {
-            type = "structure",
-        },
+        Probabilistic = M.ProbabilisticRuleValueUpdate,
     },
 }
 
@@ -2518,21 +2472,16 @@ M.UpdateIndexingRuleInput = {
                 required = true,
             },
         },
-        Rule = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        Rule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IndexingRuleValueUpdate }),
     },
 }
 
 M.UpdateIndexingRuleOutput = {
     type = "structure",
     members = {
-        IndexingRule = {
-            type = "structure",
-        },
+        IndexingRule = M.IndexingRule,
     },
 }
 
@@ -2549,13 +2498,13 @@ M.SamplingRuleUpdate = {
             type = "string",
         },
         Priority = {
-            type = "number",
+            type = "integer",
         },
         FixedRate = {
-            type = "number",
+            type = "double",
         },
         ReservoirSize = {
-            type = "number",
+            type = "integer",
         },
         Host = {
             type = "string",
@@ -2574,33 +2523,26 @@ M.SamplingRuleUpdate = {
         },
         Attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        SamplingRateBoost = {
-            type = "structure",
-        },
+        SamplingRateBoost = M.SamplingRateBoost,
     },
 }
 
 M.UpdateSamplingRuleInput = {
     type = "structure",
     members = {
-        SamplingRuleUpdate = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SamplingRuleUpdate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SamplingRuleUpdate }),
     },
 }
 
 M.UpdateSamplingRuleOutput = {
     type = "structure",
     members = {
-        SamplingRuleRecord = {
-            type = "structure",
-        },
+        SamplingRuleRecord = M.SamplingRuleRecord,
     },
 }
 

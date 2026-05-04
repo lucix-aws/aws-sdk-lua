@@ -940,9 +940,9 @@ local record ThrottlingException
     Message: string
 end
 
-local type NotificationType = "ACTUAL" | "FORECASTED"
-
 local type ApprovalModel = "AUTOMATIC" | "MANUAL"
+
+local type NotificationType = "ACTUAL" | "FORECASTED"
 
 local type ExecutionType = "APPROVE_BUDGET_ACTION" | "RETRY_BUDGET_ACTION" | "REVERSE_BUDGET_ACTION" | "RESET_BUDGET_ACTION"
 

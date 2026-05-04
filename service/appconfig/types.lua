@@ -5,9 +5,12 @@ M.DeletionProtectionSettings = {
     members = {
         Enabled = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
         ProtectionPeriodInMinutes = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -94,7 +97,7 @@ M.BadRequestDetails = {
     members = {
         InvalidConfiguration = {
             type = "list",
-            member_type = "structure",
+            member = M.InvalidConfigurationDetail,
         },
     },
 }
@@ -113,9 +116,7 @@ M.BadRequestException = {
         Reason = {
             type = "string",
         },
-        Details = {
-            type = "union",
-        },
+        Details = M.BadRequestDetails,
     },
 }
 
@@ -133,8 +134,8 @@ M.CreateApplicationInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -227,12 +228,12 @@ M.CreateConfigurationProfileInput = {
         },
         Validators = {
             type = "list",
-            member_type = "structure",
+            member = M.Validator,
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Type = {
             type = "string",
@@ -266,7 +267,7 @@ M.CreateConfigurationProfileOutput = {
         },
         Validators = {
             type = "list",
-            member_type = "structure",
+            member = M.Validator,
         },
         Type = {
             type = "string",
@@ -316,16 +317,20 @@ M.CreateDeploymentStrategyInput = {
             type = "string",
         },
         DeploymentDurationInMinutes = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 required = true,
             },
         },
         FinalBakeTimeInMinutes = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         GrowthFactor = {
-            type = "number",
+            type = "float",
             traits = {
                 required = true,
             },
@@ -338,8 +343,8 @@ M.CreateDeploymentStrategyInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -357,16 +362,22 @@ M.CreateDeploymentStrategyOutput = {
             type = "string",
         },
         DeploymentDurationInMinutes = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         GrowthType = {
             type = "string",
         },
         GrowthFactor = {
-            type = "number",
+            type = "float",
         },
         FinalBakeTimeInMinutes = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         ReplicateTo = {
             type = "string",
@@ -410,12 +421,12 @@ M.CreateEnvironmentInput = {
         },
         Monitors = {
             type = "list",
-            member_type = "structure",
+            member = M.Monitor,
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -448,7 +459,7 @@ M.CreateEnvironmentOutput = {
         },
         Monitors = {
             type = "list",
-            member_type = "structure",
+            member = M.Monitor,
         },
     },
 }
@@ -471,9 +482,15 @@ M.Parameter = {
         },
         Required = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Dynamic = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -492,25 +509,26 @@ M.CreateExtensionInput = {
         },
         Actions = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
             traits = {
                 required = true,
             },
         },
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.Parameter,
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         LatestVersionNumber = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_header = "Latest-Version-Number",
             },
         },
@@ -527,7 +545,10 @@ M.CreateExtensionOutput = {
             type = "string",
         },
         VersionNumber = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         Arn = {
             type = "string",
@@ -537,13 +558,13 @@ M.CreateExtensionOutput = {
         },
         Actions = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.Parameter,
         },
     },
 }
@@ -558,7 +579,10 @@ M.CreateExtensionAssociationInput = {
             },
         },
         ExtensionVersionNumber = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         ResourceIdentifier = {
             type = "string",
@@ -568,13 +592,13 @@ M.CreateExtensionAssociationInput = {
         },
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -596,11 +620,14 @@ M.CreateExtensionAssociationOutput = {
         },
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ExtensionVersionNumber = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -643,8 +670,9 @@ M.CreateHostedConfigurationVersionInput = {
             },
         },
         LatestVersionNumber = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_header = "Latest-Version-Number",
             },
         },
@@ -673,8 +701,9 @@ M.CreateHostedConfigurationVersionOutput = {
             },
         },
         VersionNumber = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_header = "Version-Number",
             },
         },
@@ -726,10 +755,16 @@ M.PayloadTooLargeException = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "float",
+            traits = {
+                default = 0,
+            },
         },
         Size = {
-            type = "number",
+            type = "float",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -845,8 +880,9 @@ M.DeleteExtensionInput = {
             },
         },
         VersionNumber = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_query = "version",
             },
         },
@@ -892,8 +928,9 @@ M.DeleteHostedConfigurationVersionInput = {
             },
         },
         VersionNumber = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_label = true,
                 required = true,
             },
@@ -912,9 +949,7 @@ M.GetAccountSettingsInput = {
 M.GetAccountSettingsOutput = {
     type = "structure",
     members = {
-        DeletionProtection = {
-            type = "structure",
-        },
+        DeletionProtection = M.DeletionProtectionSettings,
     },
 }
 
@@ -1053,7 +1088,7 @@ M.GetConfigurationProfileOutput = {
         },
         Validators = {
             type = "list",
-            member_type = "structure",
+            member = M.Validator,
         },
         Type = {
             type = "string",
@@ -1085,8 +1120,9 @@ M.GetDeploymentInput = {
             },
         },
         DeploymentNumber = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_label = true,
                 required = true,
             },
@@ -1104,12 +1140,15 @@ M.AppliedExtension = {
             type = "string",
         },
         VersionNumber = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1145,7 +1184,7 @@ M.DeploymentEvent = {
         },
         ActionInvocations = {
             type = "list",
-            member_type = "structure",
+            member = M.ActionInvocation,
         },
         OccurredAt = {
             type = "timestamp",
@@ -1179,7 +1218,10 @@ M.GetDeploymentOutput = {
             type = "string",
         },
         DeploymentNumber = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         ConfigurationName = {
             type = "string",
@@ -1194,26 +1236,32 @@ M.GetDeploymentOutput = {
             type = "string",
         },
         DeploymentDurationInMinutes = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         GrowthType = {
             type = "string",
         },
         GrowthFactor = {
-            type = "number",
+            type = "float",
         },
         FinalBakeTimeInMinutes = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         State = {
             type = "string",
         },
         EventLog = {
             type = "list",
-            member_type = "structure",
+            member = M.DeploymentEvent,
         },
         PercentageComplete = {
-            type = "number",
+            type = "float",
         },
         StartedAt = {
             type = "timestamp",
@@ -1223,7 +1271,7 @@ M.GetDeploymentOutput = {
         },
         AppliedExtensions = {
             type = "list",
-            member_type = "structure",
+            member = M.AppliedExtension,
         },
         KmsKeyArn = {
             type = "string",
@@ -1263,16 +1311,22 @@ M.GetDeploymentStrategyOutput = {
             type = "string",
         },
         DeploymentDurationInMinutes = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         GrowthType = {
             type = "string",
         },
         GrowthFactor = {
-            type = "number",
+            type = "float",
         },
         FinalBakeTimeInMinutes = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         ReplicateTo = {
             type = "string",
@@ -1320,7 +1374,7 @@ M.GetEnvironmentOutput = {
         },
         Monitors = {
             type = "list",
-            member_type = "structure",
+            member = M.Monitor,
         },
     },
 }
@@ -1336,8 +1390,9 @@ M.GetExtensionInput = {
             },
         },
         VersionNumber = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_query = "version_number",
             },
         },
@@ -1354,7 +1409,10 @@ M.GetExtensionOutput = {
             type = "string",
         },
         VersionNumber = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         Arn = {
             type = "string",
@@ -1364,13 +1422,13 @@ M.GetExtensionOutput = {
         },
         Actions = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.Parameter,
         },
     },
 }
@@ -1405,11 +1463,14 @@ M.GetExtensionAssociationOutput = {
         },
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ExtensionVersionNumber = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1432,8 +1493,9 @@ M.GetHostedConfigurationVersionInput = {
             },
         },
         VersionNumber = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_label = true,
                 required = true,
             },
@@ -1457,8 +1519,9 @@ M.GetHostedConfigurationVersionOutput = {
             },
         },
         VersionNumber = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_header = "Version-Number",
             },
         },
@@ -1499,7 +1562,7 @@ M.ListApplicationsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max_results",
             },
@@ -1533,7 +1596,7 @@ M.ListApplicationsOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.Application,
         },
         NextToken = {
             type = "string",
@@ -1552,7 +1615,7 @@ M.ListConfigurationProfilesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max_results",
             },
@@ -1589,7 +1652,7 @@ M.ConfigurationProfileSummary = {
         },
         ValidatorTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Type = {
             type = "string",
@@ -1602,7 +1665,7 @@ M.ListConfigurationProfilesOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigurationProfileSummary,
         },
         NextToken = {
             type = "string",
@@ -1628,7 +1691,7 @@ M.ListDeploymentsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max_results",
             },
@@ -1646,7 +1709,10 @@ M.DeploymentSummary = {
     type = "structure",
     members = {
         DeploymentNumber = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         ConfigurationName = {
             type = "string",
@@ -1655,22 +1721,28 @@ M.DeploymentSummary = {
             type = "string",
         },
         DeploymentDurationInMinutes = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         GrowthType = {
             type = "string",
         },
         GrowthFactor = {
-            type = "number",
+            type = "float",
         },
         FinalBakeTimeInMinutes = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         State = {
             type = "string",
         },
         PercentageComplete = {
-            type = "number",
+            type = "float",
         },
         StartedAt = {
             type = "timestamp",
@@ -1689,7 +1761,7 @@ M.ListDeploymentsOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.DeploymentSummary,
         },
         NextToken = {
             type = "string",
@@ -1701,7 +1773,7 @@ M.ListDeploymentStrategiesInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max_results",
             },
@@ -1728,16 +1800,22 @@ M.DeploymentStrategy = {
             type = "string",
         },
         DeploymentDurationInMinutes = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         GrowthType = {
             type = "string",
         },
         GrowthFactor = {
-            type = "number",
+            type = "float",
         },
         FinalBakeTimeInMinutes = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         ReplicateTo = {
             type = "string",
@@ -1750,7 +1828,7 @@ M.ListDeploymentStrategiesOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.DeploymentStrategy,
         },
         NextToken = {
             type = "string",
@@ -1769,7 +1847,7 @@ M.ListEnvironmentsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max_results",
             },
@@ -1803,7 +1881,7 @@ M.Environment = {
         },
         Monitors = {
             type = "list",
-            member_type = "structure",
+            member = M.Monitor,
         },
     },
 }
@@ -1813,7 +1891,7 @@ M.ListEnvironmentsOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.Environment,
         },
         NextToken = {
             type = "string",
@@ -1837,13 +1915,14 @@ M.ListExtensionAssociationsInput = {
             },
         },
         ExtensionVersionNumber = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_query = "extension_version_number",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max_results",
             },
@@ -1877,7 +1956,7 @@ M.ListExtensionAssociationsOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.ExtensionAssociationSummary,
         },
         NextToken = {
             type = "string",
@@ -1889,7 +1968,7 @@ M.ListExtensionsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max_results",
             },
@@ -1919,7 +1998,10 @@ M.ExtensionSummary = {
             type = "string",
         },
         VersionNumber = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         Arn = {
             type = "string",
@@ -1935,7 +2017,7 @@ M.ListExtensionsOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.ExtensionSummary,
         },
         NextToken = {
             type = "string",
@@ -1961,7 +2043,7 @@ M.ListHostedConfigurationVersionsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max_results",
             },
@@ -1991,7 +2073,10 @@ M.HostedConfigurationVersionSummary = {
             type = "string",
         },
         VersionNumber = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         Description = {
             type = "string",
@@ -2013,7 +2098,7 @@ M.ListHostedConfigurationVersionsOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.HostedConfigurationVersionSummary,
         },
         NextToken = {
             type = "string",
@@ -2039,8 +2124,8 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2085,16 +2170,16 @@ M.StartDeploymentInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         KmsKeyIdentifier = {
             type = "string",
         },
         DynamicExtensionParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2115,7 +2200,10 @@ M.StartDeploymentOutput = {
             type = "string",
         },
         DeploymentNumber = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         ConfigurationName = {
             type = "string",
@@ -2130,26 +2218,32 @@ M.StartDeploymentOutput = {
             type = "string",
         },
         DeploymentDurationInMinutes = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         GrowthType = {
             type = "string",
         },
         GrowthFactor = {
-            type = "number",
+            type = "float",
         },
         FinalBakeTimeInMinutes = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         State = {
             type = "string",
         },
         EventLog = {
             type = "list",
-            member_type = "structure",
+            member = M.DeploymentEvent,
         },
         PercentageComplete = {
-            type = "number",
+            type = "float",
         },
         StartedAt = {
             type = "timestamp",
@@ -2159,7 +2253,7 @@ M.StartDeploymentOutput = {
         },
         AppliedExtensions = {
             type = "list",
-            member_type = "structure",
+            member = M.AppliedExtension,
         },
         KmsKeyArn = {
             type = "string",
@@ -2191,8 +2285,9 @@ M.StopDeploymentInput = {
             },
         },
         DeploymentNumber = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_label = true,
                 required = true,
             },
@@ -2200,6 +2295,7 @@ M.StopDeploymentInput = {
         AllowRevert = {
             type = "boolean",
             traits = {
+                default = nil,
                 http_header = "Allow-Revert",
             },
         },
@@ -2222,7 +2318,10 @@ M.StopDeploymentOutput = {
             type = "string",
         },
         DeploymentNumber = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         ConfigurationName = {
             type = "string",
@@ -2237,26 +2336,32 @@ M.StopDeploymentOutput = {
             type = "string",
         },
         DeploymentDurationInMinutes = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         GrowthType = {
             type = "string",
         },
         GrowthFactor = {
-            type = "number",
+            type = "float",
         },
         FinalBakeTimeInMinutes = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         State = {
             type = "string",
         },
         EventLog = {
             type = "list",
-            member_type = "structure",
+            member = M.DeploymentEvent,
         },
         PercentageComplete = {
-            type = "number",
+            type = "float",
         },
         StartedAt = {
             type = "timestamp",
@@ -2266,7 +2371,7 @@ M.StopDeploymentOutput = {
         },
         AppliedExtensions = {
             type = "list",
-            member_type = "structure",
+            member = M.AppliedExtension,
         },
         KmsKeyArn = {
             type = "string",
@@ -2292,8 +2397,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2317,7 +2422,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -2333,18 +2438,14 @@ M.UntagResourceOutput = {
 M.UpdateAccountSettingsInput = {
     type = "structure",
     members = {
-        DeletionProtection = {
-            type = "structure",
-        },
+        DeletionProtection = M.DeletionProtectionSettings,
     },
 }
 
 M.UpdateAccountSettingsOutput = {
     type = "structure",
     members = {
-        DeletionProtection = {
-            type = "structure",
-        },
+        DeletionProtection = M.DeletionProtectionSettings,
     },
 }
 
@@ -2410,7 +2511,7 @@ M.UpdateConfigurationProfileInput = {
         },
         Validators = {
             type = "list",
-            member_type = "structure",
+            member = M.Validator,
         },
         KmsKeyIdentifier = {
             type = "string",
@@ -2441,7 +2542,7 @@ M.UpdateConfigurationProfileOutput = {
         },
         Validators = {
             type = "list",
-            member_type = "structure",
+            member = M.Validator,
         },
         Type = {
             type = "string",
@@ -2469,13 +2570,19 @@ M.UpdateDeploymentStrategyInput = {
             type = "string",
         },
         DeploymentDurationInMinutes = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         FinalBakeTimeInMinutes = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         GrowthFactor = {
-            type = "number",
+            type = "float",
         },
         GrowthType = {
             type = "string",
@@ -2496,16 +2603,22 @@ M.UpdateDeploymentStrategyOutput = {
             type = "string",
         },
         DeploymentDurationInMinutes = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         GrowthType = {
             type = "string",
         },
         GrowthFactor = {
-            type = "number",
+            type = "float",
         },
         FinalBakeTimeInMinutes = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         ReplicateTo = {
             type = "string",
@@ -2538,7 +2651,7 @@ M.UpdateEnvironmentInput = {
         },
         Monitors = {
             type = "list",
-            member_type = "structure",
+            member = M.Monitor,
         },
     },
 }
@@ -2563,7 +2676,7 @@ M.UpdateEnvironmentOutput = {
         },
         Monitors = {
             type = "list",
-            member_type = "structure",
+            member = M.Monitor,
         },
     },
 }
@@ -2583,16 +2696,19 @@ M.UpdateExtensionInput = {
         },
         Actions = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.Parameter,
         },
         VersionNumber = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -2607,7 +2723,10 @@ M.UpdateExtensionOutput = {
             type = "string",
         },
         VersionNumber = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         Arn = {
             type = "string",
@@ -2617,13 +2736,13 @@ M.UpdateExtensionOutput = {
         },
         Actions = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.Parameter,
         },
     },
 }
@@ -2640,8 +2759,8 @@ M.UpdateExtensionAssociationInput = {
         },
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2663,11 +2782,14 @@ M.UpdateExtensionAssociationOutput = {
         },
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ExtensionVersionNumber = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }

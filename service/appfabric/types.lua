@@ -81,12 +81,9 @@ M.AppAuthorization = {
                 required = true,
             },
         },
-        tenant = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        tenant = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Tenant }),
         authType = {
             type = "string",
             traits = {
@@ -141,12 +138,9 @@ M.AppAuthorizationSummary = {
                 required = true,
             },
         },
-        tenant = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        tenant = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Tenant }),
         status = {
             type = "string",
             traits = {
@@ -219,24 +213,17 @@ M.S3Bucket = {
 M.Destination = {
     type = "union",
     members = {
-        s3Bucket = {
-            type = "structure",
-        },
-        firehoseStream = {
-            type = "structure",
-        },
+        s3Bucket = M.S3Bucket,
+        firehoseStream = M.FirehoseStream,
     },
 }
 
 M.AuditLogDestinationConfiguration = {
     type = "structure",
     members = {
-        destination = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        destination = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Destination }),
     },
 }
 
@@ -297,7 +284,7 @@ M.BatchGetUserAccessTasksInput = {
         },
         taskIdList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -360,9 +347,7 @@ M.UserAccessResultItem = {
         userStatus = {
             type = "string",
         },
-        taskError = {
-            type = "structure",
-        },
+        taskError = M.TaskError,
     },
 }
 
@@ -371,7 +356,7 @@ M.BatchGetUserAccessTasksOutput = {
     members = {
         userAccessResultsList = {
             type = "list",
-            member_type = "structure",
+            member = M.UserAccessResultItem,
         },
     },
 }
@@ -387,7 +372,7 @@ M.InternalServerException = {
             },
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -437,7 +422,7 @@ M.ThrottlingException = {
             type = "string",
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -488,7 +473,7 @@ M.ValidationException = {
         },
         fieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -535,21 +520,16 @@ M.ConnectAppAuthorizationInput = {
                 required = true,
             },
         },
-        authRequest = {
-            type = "structure",
-        },
+        authRequest = M.AuthRequest,
     },
 }
 
 M.ConnectAppAuthorizationOutput = {
     type = "structure",
     members = {
-        appAuthorizationSummary = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        appAuthorizationSummary = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AppAuthorizationSummary }),
     },
 }
 
@@ -574,12 +554,8 @@ M.Oauth2Credential = {
 M.Credential = {
     type = "union",
     members = {
-        oauth2Credential = {
-            type = "structure",
-        },
-        apiKeyCredential = {
-            type = "structure",
-        },
+        oauth2Credential = M.Oauth2Credential,
+        apiKeyCredential = M.ApiKeyCredential,
     },
 }
 
@@ -617,18 +593,12 @@ M.CreateAppAuthorizationInput = {
                 required = true,
             },
         },
-        credential = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        tenant = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        credential = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Credential }),
+        tenant = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Tenant }),
         authType = {
             type = "string",
             traits = {
@@ -640,7 +610,7 @@ M.CreateAppAuthorizationInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -648,12 +618,9 @@ M.CreateAppAuthorizationInput = {
 M.CreateAppAuthorizationOutput = {
     type = "structure",
     members = {
-        appAuthorization = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        appAuthorization = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AppAuthorization }),
     },
 }
 
@@ -705,7 +672,7 @@ M.CreateAppBundleInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -713,12 +680,9 @@ M.CreateAppBundleInput = {
 M.CreateAppBundleOutput = {
     type = "structure",
     members = {
-        appBundle = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        appBundle = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AppBundle }),
     },
 }
 
@@ -759,7 +723,7 @@ M.CreateIngestionInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -826,30 +790,23 @@ M.Ingestion = {
 M.CreateIngestionOutput = {
     type = "structure",
     members = {
-        ingestion = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ingestion = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Ingestion }),
     },
 }
 
 M.DestinationConfiguration = {
     type = "union",
     members = {
-        auditLog = {
-            type = "structure",
-        },
+        auditLog = M.AuditLogDestinationConfiguration,
     },
 }
 
 M.ProcessingConfiguration = {
     type = "union",
     members = {
-        auditLog = {
-            type = "structure",
-        },
+        auditLog = M.AuditLogProcessingConfiguration,
     },
 }
 
@@ -870,24 +827,18 @@ M.CreateIngestionDestinationInput = {
                 required = true,
             },
         },
-        processingConfiguration = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        destinationConfiguration = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        processingConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProcessingConfiguration }),
+        destinationConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DestinationConfiguration }),
         clientToken = {
             type = "string",
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -912,18 +863,12 @@ M.IngestionDestination = {
                 required = true,
             },
         },
-        processingConfiguration = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        destinationConfiguration = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        processingConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProcessingConfiguration }),
+        destinationConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DestinationConfiguration }),
         status = {
             type = "string",
         },
@@ -942,12 +887,9 @@ M.IngestionDestination = {
 M.CreateIngestionDestinationOutput = {
     type = "structure",
     members = {
-        ingestionDestination = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ingestionDestination = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IngestionDestination }),
     },
 }
 
@@ -1070,12 +1012,9 @@ M.GetAppAuthorizationInput = {
 M.GetAppAuthorizationOutput = {
     type = "structure",
     members = {
-        appAuthorization = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        appAuthorization = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AppAuthorization }),
     },
 }
 
@@ -1095,12 +1034,9 @@ M.GetAppBundleInput = {
 M.GetAppBundleOutput = {
     type = "structure",
     members = {
-        appBundle = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        appBundle = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AppBundle }),
     },
 }
 
@@ -1127,12 +1063,9 @@ M.GetIngestionInput = {
 M.GetIngestionOutput = {
     type = "structure",
     members = {
-        ingestion = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ingestion = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Ingestion }),
     },
 }
 
@@ -1166,12 +1099,9 @@ M.GetIngestionDestinationInput = {
 M.GetIngestionDestinationOutput = {
     type = "structure",
     members = {
-        ingestionDestination = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ingestionDestination = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IngestionDestination }),
     },
 }
 
@@ -1186,7 +1116,7 @@ M.ListAppAuthorizationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1205,7 +1135,7 @@ M.ListAppAuthorizationsOutput = {
     members = {
         appAuthorizationSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.AppAuthorizationSummary,
             traits = {
                 required = true,
             },
@@ -1220,7 +1150,7 @@ M.ListAppBundlesInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1239,7 +1169,7 @@ M.ListAppBundlesOutput = {
     members = {
         appBundleSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.AppBundleSummary,
             traits = {
                 required = true,
             },
@@ -1268,7 +1198,7 @@ M.ListIngestionDestinationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1299,7 +1229,7 @@ M.ListIngestionDestinationsOutput = {
     members = {
         ingestionDestinations = {
             type = "list",
-            member_type = "structure",
+            member = M.IngestionDestinationSummary,
             traits = {
                 required = true,
             },
@@ -1321,7 +1251,7 @@ M.ListIngestionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1370,7 +1300,7 @@ M.ListIngestionsOutput = {
     members = {
         ingestions = {
             type = "list",
-            member_type = "structure",
+            member = M.IngestionSummary,
             traits = {
                 required = true,
             },
@@ -1399,7 +1329,7 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1464,9 +1394,7 @@ M.UserAccessTaskItem = {
         taskId = {
             type = "string",
         },
-        error = {
-            type = "structure",
-        },
+        error = M.TaskError,
     },
 }
 
@@ -1475,7 +1403,7 @@ M.StartUserAccessTasksOutput = {
     members = {
         userAccessTasksList = {
             type = "list",
-            member_type = "structure",
+            member = M.UserAccessTaskItem,
         },
     },
 }
@@ -1516,7 +1444,7 @@ M.TagResourceInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -1540,7 +1468,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -1570,24 +1498,17 @@ M.UpdateAppAuthorizationInput = {
                 required = true,
             },
         },
-        credential = {
-            type = "union",
-        },
-        tenant = {
-            type = "structure",
-        },
+        credential = M.Credential,
+        tenant = M.Tenant,
     },
 }
 
 M.UpdateAppAuthorizationOutput = {
     type = "structure",
     members = {
-        appAuthorization = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        appAuthorization = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AppAuthorization }),
     },
 }
 
@@ -1615,24 +1536,18 @@ M.UpdateIngestionDestinationInput = {
                 required = true,
             },
         },
-        destinationConfiguration = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        destinationConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DestinationConfiguration }),
     },
 }
 
 M.UpdateIngestionDestinationOutput = {
     type = "structure",
     members = {
-        ingestionDestination = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ingestionDestination = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IngestionDestination }),
     },
 }
 

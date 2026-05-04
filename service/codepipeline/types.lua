@@ -125,8 +125,8 @@ M.ActionConfiguration = {
     members = {
         configuration = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -149,23 +149,29 @@ M.ActionConfigurationProperty = {
         required = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
         key = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
         secret = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
         queryable = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         description = {
             type = "string",
@@ -273,7 +279,7 @@ M.OutputArtifact = {
         },
         files = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -287,35 +293,32 @@ M.ActionDeclaration = {
                 required = true,
             },
         },
-        actionTypeId = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        actionTypeId = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActionTypeId }),
         runOrder = {
-            type = "number",
+            type = "integer",
         },
         configuration = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         commands = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         outputArtifacts = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputArtifact,
         },
         inputArtifacts = {
             type = "list",
-            member_type = "structure",
+            member = M.InputArtifact,
         },
         outputVariables = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         roleArn = {
             type = "string",
@@ -327,11 +330,11 @@ M.ActionDeclaration = {
             type = "string",
         },
         timeoutInMinutes = {
-            type = "number",
+            type = "integer",
         },
         environmentVariables = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentVariable,
         },
     },
 }
@@ -383,11 +386,9 @@ M.ActionExecution = {
             type = "string",
         },
         percentComplete = {
-            type = "number",
+            type = "integer",
         },
-        errorDetails = {
-            type = "structure",
-        },
+        errorDetails = M.ErrorDetails,
         logStreamARN = {
             type = "string",
         },
@@ -412,27 +413,23 @@ M.ArtifactDetail = {
         name = {
             type = "string",
         },
-        s3location = {
-            type = "structure",
-        },
+        s3location = M.S3Location,
     },
 }
 
 M.ActionExecutionInput = {
     type = "structure",
     members = {
-        actionTypeId = {
-            type = "structure",
-        },
+        actionTypeId = M.ActionTypeId,
         configuration = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         resolvedConfiguration = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         roleArn = {
             type = "string",
@@ -442,7 +439,7 @@ M.ActionExecutionInput = {
         },
         inputArtifacts = {
             type = "list",
-            member_type = "structure",
+            member = M.ArtifactDetail,
         },
         namespace = {
             type = "string",
@@ -462,9 +459,7 @@ M.ActionExecutionResult = {
         externalExecutionUrl = {
             type = "string",
         },
-        errorDetails = {
-            type = "structure",
-        },
+        errorDetails = M.ErrorDetails,
         logStreamARN = {
             type = "string",
         },
@@ -476,15 +471,13 @@ M.ActionExecutionOutput = {
     members = {
         outputArtifacts = {
             type = "list",
-            member_type = "structure",
+            member = M.ArtifactDetail,
         },
-        executionResult = {
-            type = "structure",
-        },
+        executionResult = M.ActionExecutionResult,
         outputVariables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -499,7 +492,7 @@ M.ActionExecutionDetail = {
             type = "string",
         },
         pipelineVersion = {
-            type = "number",
+            type = "integer",
         },
         stageName = {
             type = "string",
@@ -519,12 +512,8 @@ M.ActionExecutionDetail = {
         status = {
             type = "string",
         },
-        input = {
-            type = "structure",
-        },
-        output = {
-            type = "structure",
-        },
+        input = M.ActionExecutionInput,
+        output = M.ActionExecutionOutput,
     },
 }
 
@@ -557,9 +546,7 @@ M.ActionExecutionFilter = {
         pipelineExecutionId = {
             type = "string",
         },
-        latestInPipelineExecution = {
-            type = "structure",
-        },
+        latestInPipelineExecution = M.LatestInPipelineExecutionFilter,
     },
 }
 
@@ -613,12 +600,8 @@ M.ActionState = {
         actionName = {
             type = "string",
         },
-        currentRevision = {
-            type = "structure",
-        },
-        latestExecution = {
-            type = "structure",
-        },
+        currentRevision = M.ActionRevision,
+        latestExecution = M.ActionExecution,
         entityUrl = {
             type = "string",
         },
@@ -632,14 +615,16 @@ M.ArtifactDetails = {
     type = "structure",
     members = {
         minimumCount = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         maximumCount = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -667,31 +652,20 @@ M.ActionTypeSettings = {
 M.ActionType = {
     type = "structure",
     members = {
-        id = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        settings = {
-            type = "structure",
-        },
+        id = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActionTypeId }),
+        settings = M.ActionTypeSettings,
         actionConfigurationProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.ActionConfigurationProperty,
         },
-        inputArtifactDetails = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        outputArtifactDetails = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        inputArtifactDetails = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ArtifactDetails }),
+        outputArtifactDetails = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ArtifactDetails }),
     },
 }
 
@@ -699,14 +673,16 @@ M.ActionTypeArtifactDetails = {
     type = "structure",
     members = {
         minimumCount = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         maximumCount = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -718,11 +694,11 @@ M.JobWorkerExecutorConfiguration = {
     members = {
         pollingAccounts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         pollingServicePrincipals = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -742,12 +718,8 @@ M.LambdaExecutorConfiguration = {
 M.ExecutorConfiguration = {
     type = "structure",
     members = {
-        lambdaExecutorConfiguration = {
-            type = "structure",
-        },
-        jobWorkerExecutorConfiguration = {
-            type = "structure",
-        },
+        lambdaExecutorConfiguration = M.LambdaExecutorConfiguration,
+        jobWorkerExecutorConfiguration = M.JobWorkerExecutorConfiguration,
     },
 }
 
@@ -759,12 +731,9 @@ M.ExecutorType = {
 M.ActionTypeExecutor = {
     type = "structure",
     members = {
-        configuration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ExecutorConfiguration }),
         type = {
             type = "string",
             traits = {
@@ -775,7 +744,7 @@ M.ActionTypeExecutor = {
             type = "string",
         },
         jobTimeout = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -815,7 +784,7 @@ M.ActionTypePermissions = {
     members = {
         allowedAccounts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -835,23 +804,29 @@ M.ActionTypeProperty = {
         optional = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
         key = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
         noEcho = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
         queryable = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         description = {
             type = "string",
@@ -883,40 +858,24 @@ M.ActionTypeDeclaration = {
         description = {
             type = "string",
         },
-        executor = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        id = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        inputArtifactDetails = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        outputArtifactDetails = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        permissions = {
-            type = "structure",
-        },
+        executor = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActionTypeExecutor }),
+        id = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActionTypeIdentifier }),
+        inputArtifactDetails = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActionTypeArtifactDetails }),
+        outputArtifactDetails = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActionTypeArtifactDetails }),
+        permissions = M.ActionTypePermissions,
         properties = {
             type = "list",
-            member_type = "structure",
+            member = M.ActionTypeProperty,
         },
-        urls = {
-            type = "structure",
-        },
+        urls = M.ActionTypeUrls,
     },
 }
 
@@ -991,9 +950,7 @@ M.ArtifactLocation = {
         type = {
             type = "string",
         },
-        s3Location = {
-            type = "structure",
-        },
+        s3Location = M.S3ArtifactLocation,
     },
 }
 
@@ -1006,9 +963,7 @@ M.Artifact = {
         revision = {
             type = "string",
         },
-        location = {
-            type = "structure",
-        },
+        location = M.ArtifactLocation,
     },
 }
 
@@ -1077,9 +1032,7 @@ M.ArtifactStore = {
                 required = true,
             },
         },
-        encryptionKey = {
-            type = "structure",
-        },
+        encryptionKey = M.EncryptionKey,
     },
 }
 
@@ -1155,24 +1108,21 @@ M.RuleDeclaration = {
                 required = true,
             },
         },
-        ruleTypeId = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ruleTypeId = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RuleTypeId }),
         configuration = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         commands = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         inputArtifacts = {
             type = "list",
-            member_type = "structure",
+            member = M.InputArtifact,
         },
         roleArn = {
             type = "string",
@@ -1181,7 +1131,7 @@ M.RuleDeclaration = {
             type = "string",
         },
         timeoutInMinutes = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1194,7 +1144,7 @@ M.Condition = {
         },
         rules = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleDeclaration,
         },
     },
 }
@@ -1204,7 +1154,7 @@ M.BeforeEntryConditions = {
     members = {
         conditions = {
             type = "list",
-            member_type = "structure",
+            member = M.Condition,
             traits = {
                 required = true,
             },
@@ -1283,28 +1233,20 @@ M.CreateCustomActionTypeInput = {
                 required = true,
             },
         },
-        settings = {
-            type = "structure",
-        },
+        settings = M.ActionTypeSettings,
         configurationProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.ActionConfigurationProperty,
         },
-        inputArtifactDetails = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        outputArtifactDetails = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        inputArtifactDetails = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ArtifactDetails }),
+        outputArtifactDetails = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ArtifactDetails }),
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1312,15 +1254,12 @@ M.CreateCustomActionTypeInput = {
 M.CreateCustomActionTypeOutput = {
     type = "structure",
     members = {
-        actionType = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        actionType = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActionType }),
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1386,12 +1325,10 @@ M.FailureConditions = {
         result = {
             type = "string",
         },
-        retryConfiguration = {
-            type = "structure",
-        },
+        retryConfiguration = M.RetryConfiguration,
         conditions = {
             type = "list",
-            member_type = "structure",
+            member = M.Condition,
         },
     },
 }
@@ -1401,7 +1338,7 @@ M.SuccessConditions = {
     members = {
         conditions = {
             type = "list",
-            member_type = "structure",
+            member = M.Condition,
             traits = {
                 required = true,
             },
@@ -1420,24 +1357,18 @@ M.StageDeclaration = {
         },
         blockers = {
             type = "list",
-            member_type = "structure",
+            member = M.BlockerDeclaration,
         },
         actions = {
             type = "list",
-            member_type = "structure",
+            member = M.ActionDeclaration,
             traits = {
                 required = true,
             },
         },
-        onFailure = {
-            type = "structure",
-        },
-        onSuccess = {
-            type = "structure",
-        },
-        beforeEntry = {
-            type = "structure",
-        },
+        onFailure = M.FailureConditions,
+        onSuccess = M.SuccessConditions,
+        beforeEntry = M.BeforeEntryConditions,
     },
 }
 
@@ -1446,11 +1377,11 @@ M.GitBranchFilterCriteria = {
     members = {
         includes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         excludes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1466,11 +1397,11 @@ M.GitFilePathFilterCriteria = {
     members = {
         includes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         excludes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1480,14 +1411,10 @@ M.GitPullRequestFilter = {
     members = {
         events = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        branches = {
-            type = "structure",
-        },
-        filePaths = {
-            type = "structure",
-        },
+        branches = M.GitBranchFilterCriteria,
+        filePaths = M.GitFilePathFilterCriteria,
     },
 }
 
@@ -1496,11 +1423,11 @@ M.GitTagFilterCriteria = {
     members = {
         includes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         excludes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1508,15 +1435,9 @@ M.GitTagFilterCriteria = {
 M.GitPushFilter = {
     type = "structure",
     members = {
-        tags = {
-            type = "structure",
-        },
-        branches = {
-            type = "structure",
-        },
-        filePaths = {
-            type = "structure",
-        },
+        tags = M.GitTagFilterCriteria,
+        branches = M.GitBranchFilterCriteria,
+        filePaths = M.GitFilePathFilterCriteria,
     },
 }
 
@@ -1531,11 +1452,11 @@ M.GitConfiguration = {
         },
         push = {
             type = "list",
-            member_type = "structure",
+            member = M.GitPushFilter,
         },
         pullRequest = {
             type = "list",
-            member_type = "structure",
+            member = M.GitPullRequestFilter,
         },
     },
 }
@@ -1553,12 +1474,9 @@ M.PipelineTriggerDeclaration = {
                 required = true,
             },
         },
-        gitConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        gitConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.GitConfiguration }),
     },
 }
 
@@ -1595,23 +1513,21 @@ M.PipelineDeclaration = {
                 required = true,
             },
         },
-        artifactStore = {
-            type = "structure",
-        },
+        artifactStore = M.ArtifactStore,
         artifactStores = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ArtifactStore,
         },
         stages = {
             type = "list",
-            member_type = "structure",
+            member = M.StageDeclaration,
             traits = {
                 required = true,
             },
         },
         version = {
-            type = "number",
+            type = "integer",
         },
         executionMode = {
             type = "string",
@@ -1621,11 +1537,11 @@ M.PipelineDeclaration = {
         },
         variables = {
             type = "list",
-            member_type = "structure",
+            member = M.PipelineVariableDeclaration,
         },
         triggers = {
             type = "list",
-            member_type = "structure",
+            member = M.PipelineTriggerDeclaration,
         },
     },
 }
@@ -1633,15 +1549,12 @@ M.PipelineDeclaration = {
 M.CreatePipelineInput = {
     type = "structure",
     members = {
-        pipeline = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        pipeline = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PipelineDeclaration }),
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1649,12 +1562,10 @@ M.CreatePipelineInput = {
 M.CreatePipelineOutput = {
     type = "structure",
     members = {
-        pipeline = {
-            type = "structure",
-        },
+        pipeline = M.PipelineDeclaration,
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1907,9 +1818,7 @@ M.GetActionTypeInput = {
 M.GetActionTypeOutput = {
     type = "structure",
     members = {
-        actionType = {
-            type = "structure",
-        },
+        actionType = M.ActionTypeDeclaration,
     },
 }
 
@@ -1940,12 +1849,8 @@ M.PipelineContext = {
         pipelineName = {
             type = "string",
         },
-        stage = {
-            type = "structure",
-        },
-        action = {
-            type = "structure",
-        },
+        stage = M.StageContext,
+        action = M.ActionContext,
         pipelineArn = {
             type = "string",
         },
@@ -1958,32 +1863,22 @@ M.PipelineContext = {
 M.JobData = {
     type = "structure",
     members = {
-        actionTypeId = {
-            type = "structure",
-        },
-        actionConfiguration = {
-            type = "structure",
-        },
-        pipelineContext = {
-            type = "structure",
-        },
+        actionTypeId = M.ActionTypeId,
+        actionConfiguration = M.ActionConfiguration,
+        pipelineContext = M.PipelineContext,
         inputArtifacts = {
             type = "list",
-            member_type = "structure",
+            member = M.Artifact,
         },
         outputArtifacts = {
             type = "list",
-            member_type = "structure",
+            member = M.Artifact,
         },
-        artifactCredentials = {
-            type = "structure",
-        },
+        artifactCredentials = M.AWSSessionCredentials,
         continuationToken = {
             type = "string",
         },
-        encryptionKey = {
-            type = "structure",
-        },
+        encryptionKey = M.EncryptionKey,
     },
 }
 
@@ -1993,9 +1888,7 @@ M.JobDetails = {
         id = {
             type = "string",
         },
-        data = {
-            type = "structure",
-        },
+        data = M.JobData,
         accountId = {
             type = "string",
         },
@@ -2005,9 +1898,7 @@ M.JobDetails = {
 M.GetJobDetailsOutput = {
     type = "structure",
     members = {
-        jobDetails = {
-            type = "structure",
-        },
+        jobDetails = M.JobDetails,
     },
 }
 
@@ -2021,7 +1912,7 @@ M.GetPipelineInput = {
             },
         },
         version = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2047,12 +1938,8 @@ M.PipelineMetadata = {
 M.GetPipelineOutput = {
     type = "structure",
     members = {
-        pipeline = {
-            type = "structure",
-        },
-        metadata = {
-            type = "structure",
-        },
+        pipeline = M.PipelineDeclaration,
+        metadata = M.PipelineMetadata,
     },
 }
 
@@ -2151,7 +2038,7 @@ M.PipelineExecution = {
             type = "string",
         },
         pipelineVersion = {
-            type = "number",
+            type = "integer",
         },
         pipelineExecutionId = {
             type = "string",
@@ -2164,33 +2051,27 @@ M.PipelineExecution = {
         },
         artifactRevisions = {
             type = "list",
-            member_type = "structure",
+            member = M.ArtifactRevision,
         },
         variables = {
             type = "list",
-            member_type = "structure",
+            member = M.ResolvedPipelineVariable,
         },
-        trigger = {
-            type = "structure",
-        },
+        trigger = M.ExecutionTrigger,
         executionMode = {
             type = "string",
         },
         executionType = {
             type = "string",
         },
-        rollbackMetadata = {
-            type = "structure",
-        },
+        rollbackMetadata = M.PipelineRollbackMetadata,
     },
 }
 
 M.GetPipelineExecutionOutput = {
     type = "structure",
     members = {
-        pipelineExecution = {
-            type = "structure",
-        },
+        pipelineExecution = M.PipelineExecution,
     },
 }
 
@@ -2299,9 +2180,7 @@ M.RuleExecution = {
         externalExecutionUrl = {
             type = "string",
         },
-        errorDetails = {
-            type = "structure",
-        },
+        errorDetails = M.ErrorDetails,
     },
 }
 
@@ -2311,12 +2190,8 @@ M.RuleState = {
         ruleName = {
             type = "string",
         },
-        currentRevision = {
-            type = "structure",
-        },
-        latestExecution = {
-            type = "structure",
-        },
+        currentRevision = M.RuleRevision,
+        latestExecution = M.RuleExecution,
         entityUrl = {
             type = "string",
         },
@@ -2329,12 +2204,10 @@ M.RuleState = {
 M.ConditionState = {
     type = "structure",
     members = {
-        latestExecution = {
-            type = "structure",
-        },
+        latestExecution = M.ConditionExecution,
         ruleStates = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleState,
         },
     },
 }
@@ -2354,12 +2227,10 @@ M.StageConditionsExecution = {
 M.StageConditionState = {
     type = "structure",
     members = {
-        latestExecution = {
-            type = "structure",
-        },
+        latestExecution = M.StageConditionsExecution,
         conditionStates = {
             type = "list",
-            member_type = "structure",
+            member = M.ConditionState,
         },
     },
 }
@@ -2400,6 +2271,9 @@ M.TransitionState = {
     members = {
         enabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         lastChangedBy = {
             type = "string",
@@ -2422,10 +2296,10 @@ M.RetryStageMetadata = {
     type = "structure",
     members = {
         autoStageRetryAttempt = {
-            type = "number",
+            type = "integer",
         },
         manualStageRetryAttempt = {
-            type = "number",
+            type = "integer",
         },
         latestRetryTrigger = {
             type = "string",
@@ -2439,35 +2313,21 @@ M.StageState = {
         stageName = {
             type = "string",
         },
-        inboundExecution = {
-            type = "structure",
-        },
+        inboundExecution = M.StageExecution,
         inboundExecutions = {
             type = "list",
-            member_type = "structure",
+            member = M.StageExecution,
         },
-        inboundTransitionState = {
-            type = "structure",
-        },
+        inboundTransitionState = M.TransitionState,
         actionStates = {
             type = "list",
-            member_type = "structure",
+            member = M.ActionState,
         },
-        latestExecution = {
-            type = "structure",
-        },
-        beforeEntryConditionState = {
-            type = "structure",
-        },
-        onSuccessConditionState = {
-            type = "structure",
-        },
-        onFailureConditionState = {
-            type = "structure",
-        },
-        retryStageMetadata = {
-            type = "structure",
-        },
+        latestExecution = M.StageExecution,
+        beforeEntryConditionState = M.StageConditionState,
+        onSuccessConditionState = M.StageConditionState,
+        onFailureConditionState = M.StageConditionState,
+        retryStageMetadata = M.RetryStageMetadata,
     },
 }
 
@@ -2478,11 +2338,11 @@ M.GetPipelineStateOutput = {
             type = "string",
         },
         pipelineVersion = {
-            type = "number",
+            type = "integer",
         },
         stageStates = {
             type = "list",
-            member_type = "structure",
+            member = M.StageState,
         },
         created = {
             type = "timestamp",
@@ -2514,32 +2374,22 @@ M.GetThirdPartyJobDetailsInput = {
 M.ThirdPartyJobData = {
     type = "structure",
     members = {
-        actionTypeId = {
-            type = "structure",
-        },
-        actionConfiguration = {
-            type = "structure",
-        },
-        pipelineContext = {
-            type = "structure",
-        },
+        actionTypeId = M.ActionTypeId,
+        actionConfiguration = M.ActionConfiguration,
+        pipelineContext = M.PipelineContext,
         inputArtifacts = {
             type = "list",
-            member_type = "structure",
+            member = M.Artifact,
         },
         outputArtifacts = {
             type = "list",
-            member_type = "structure",
+            member = M.Artifact,
         },
-        artifactCredentials = {
-            type = "structure",
-        },
+        artifactCredentials = M.AWSSessionCredentials,
         continuationToken = {
             type = "string",
         },
-        encryptionKey = {
-            type = "structure",
-        },
+        encryptionKey = M.EncryptionKey,
     },
 }
 
@@ -2549,9 +2399,7 @@ M.ThirdPartyJobDetails = {
         id = {
             type = "string",
         },
-        data = {
-            type = "structure",
-        },
+        data = M.ThirdPartyJobData,
         nonce = {
             type = "string",
         },
@@ -2561,9 +2409,7 @@ M.ThirdPartyJobDetails = {
 M.GetThirdPartyJobDetailsOutput = {
     type = "structure",
     members = {
-        jobDetails = {
-            type = "structure",
-        },
+        jobDetails = M.ThirdPartyJobDetails,
     },
 }
 
@@ -2596,11 +2442,9 @@ M.ListActionExecutionsInput = {
                 required = true,
             },
         },
-        filter = {
-            type = "structure",
-        },
+        filter = M.ActionExecutionFilter,
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -2613,7 +2457,7 @@ M.ListActionExecutionsOutput = {
     members = {
         actionExecutionDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.ActionExecutionDetail,
         },
         nextToken = {
             type = "string",
@@ -2641,7 +2485,7 @@ M.ListActionTypesOutput = {
     members = {
         actionTypes = {
             type = "list",
-            member_type = "structure",
+            member = M.ActionType,
             traits = {
                 required = true,
             },
@@ -2664,7 +2508,7 @@ M.TargetFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2683,10 +2527,10 @@ M.ListDeployActionExecutionTargetsInput = {
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetFilter,
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -2721,9 +2565,7 @@ M.DeployTargetEvent = {
         endTime = {
             type = "timestamp",
         },
-        context = {
-            type = "structure",
-        },
+        context = M.DeployTargetEventContext,
     },
 }
 
@@ -2747,7 +2589,7 @@ M.DeployActionExecutionTarget = {
         },
         events = {
             type = "list",
-            member_type = "structure",
+            member = M.DeployTargetEvent,
         },
     },
 }
@@ -2757,7 +2599,7 @@ M.ListDeployActionExecutionTargetsOutput = {
     members = {
         targets = {
             type = "list",
-            member_type = "structure",
+            member = M.DeployActionExecutionTarget,
         },
         nextToken = {
             type = "string",
@@ -2777,9 +2619,7 @@ M.SucceededInStageFilter = {
 M.PipelineExecutionFilter = {
     type = "structure",
     members = {
-        succeededInStage = {
-            type = "structure",
-        },
+        succeededInStage = M.SucceededInStageFilter,
     },
 }
 
@@ -2793,11 +2633,9 @@ M.ListPipelineExecutionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
-        filter = {
-            type = "structure",
-        },
+        filter = M.PipelineExecutionFilter,
         nextToken = {
             type = "string",
         },
@@ -2854,23 +2692,17 @@ M.PipelineExecutionSummary = {
         },
         sourceRevisions = {
             type = "list",
-            member_type = "structure",
+            member = M.SourceRevision,
         },
-        trigger = {
-            type = "structure",
-        },
-        stopTrigger = {
-            type = "structure",
-        },
+        trigger = M.ExecutionTrigger,
+        stopTrigger = M.StopExecutionTrigger,
         executionMode = {
             type = "string",
         },
         executionType = {
             type = "string",
         },
-        rollbackMetadata = {
-            type = "structure",
-        },
+        rollbackMetadata = M.PipelineRollbackMetadata,
     },
 }
 
@@ -2879,7 +2711,7 @@ M.ListPipelineExecutionsOutput = {
     members = {
         pipelineExecutionSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.PipelineExecutionSummary,
         },
         nextToken = {
             type = "string",
@@ -2894,7 +2726,7 @@ M.ListPipelinesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2906,7 +2738,7 @@ M.PipelineSummary = {
             type = "string",
         },
         version = {
-            type = "number",
+            type = "integer",
         },
         pipelineType = {
             type = "string",
@@ -2928,7 +2760,7 @@ M.ListPipelinesOutput = {
     members = {
         pipelines = {
             type = "list",
-            member_type = "structure",
+            member = M.PipelineSummary,
         },
         nextToken = {
             type = "string",
@@ -2942,9 +2774,7 @@ M.RuleExecutionFilter = {
         pipelineExecutionId = {
             type = "string",
         },
-        latestInPipelineExecution = {
-            type = "structure",
-        },
+        latestInPipelineExecution = M.LatestInPipelineExecutionFilter,
     },
 }
 
@@ -2957,11 +2787,9 @@ M.ListRuleExecutionsInput = {
                 required = true,
             },
         },
-        filter = {
-            type = "structure",
-        },
+        filter = M.RuleExecutionFilter,
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -2972,18 +2800,16 @@ M.ListRuleExecutionsInput = {
 M.RuleExecutionInput = {
     type = "structure",
     members = {
-        ruleTypeId = {
-            type = "structure",
-        },
+        ruleTypeId = M.RuleTypeId,
         configuration = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         resolvedConfiguration = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         roleArn = {
             type = "string",
@@ -2993,7 +2819,7 @@ M.RuleExecutionInput = {
         },
         inputArtifacts = {
             type = "list",
-            member_type = "structure",
+            member = M.ArtifactDetail,
         },
     },
 }
@@ -3010,18 +2836,14 @@ M.RuleExecutionResult = {
         externalExecutionUrl = {
             type = "string",
         },
-        errorDetails = {
-            type = "structure",
-        },
+        errorDetails = M.ErrorDetails,
     },
 }
 
 M.RuleExecutionOutput = {
     type = "structure",
     members = {
-        executionResult = {
-            type = "structure",
-        },
+        executionResult = M.RuleExecutionResult,
     },
 }
 
@@ -3035,7 +2857,7 @@ M.RuleExecutionDetail = {
             type = "string",
         },
         pipelineVersion = {
-            type = "number",
+            type = "integer",
         },
         stageName = {
             type = "string",
@@ -3055,12 +2877,8 @@ M.RuleExecutionDetail = {
         status = {
             type = "string",
         },
-        input = {
-            type = "structure",
-        },
-        output = {
-            type = "structure",
-        },
+        input = M.RuleExecutionInput,
+        output = M.RuleExecutionOutput,
     },
 }
 
@@ -3069,7 +2887,7 @@ M.ListRuleExecutionsOutput = {
     members = {
         ruleExecutionDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleExecutionDetail,
         },
         nextToken = {
             type = "string",
@@ -3107,23 +2925,29 @@ M.RuleConfigurationProperty = {
         required = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
         key = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
         secret = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
         queryable = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         description = {
             type = "string",
@@ -3155,25 +2979,17 @@ M.RuleTypeSettings = {
 M.RuleType = {
     type = "structure",
     members = {
-        id = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        settings = {
-            type = "structure",
-        },
+        id = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RuleTypeId }),
+        settings = M.RuleTypeSettings,
         ruleConfigurationProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleConfigurationProperty,
         },
-        inputArtifactDetails = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        inputArtifactDetails = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ArtifactDetails }),
     },
 }
 
@@ -3182,7 +2998,7 @@ M.ListRuleTypesOutput = {
     members = {
         ruleTypes = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleType,
             traits = {
                 required = true,
             },
@@ -3213,7 +3029,7 @@ M.ListTagsForResourceInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3223,7 +3039,7 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         nextToken = {
             type = "string",
@@ -3248,7 +3064,7 @@ M.ListWebhooksInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3309,7 +3125,7 @@ M.WebhookDefinition = {
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.WebhookFilterRule,
             traits = {
                 required = true,
             },
@@ -3320,24 +3136,18 @@ M.WebhookDefinition = {
                 required = true,
             },
         },
-        authenticationConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        authenticationConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WebhookAuthConfiguration }),
     },
 }
 
 M.ListWebhookItem = {
     type = "structure",
     members = {
-        definition = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        definition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WebhookDefinition }),
         url = {
             type = "string",
             traits = {
@@ -3358,7 +3168,7 @@ M.ListWebhookItem = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3368,7 +3178,7 @@ M.ListWebhooksOutput = {
     members = {
         webhooks = {
             type = "list",
-            member_type = "structure",
+            member = M.ListWebhookItem,
         },
         NextToken = {
             type = "string",
@@ -3458,19 +3268,16 @@ M.OverrideStageConditionOutput = {
 M.PollForJobsInput = {
     type = "structure",
     members = {
-        actionTypeId = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        actionTypeId = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActionTypeId }),
         maxBatchSize = {
-            type = "number",
+            type = "integer",
         },
         queryParam = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3481,9 +3288,7 @@ M.Job = {
         id = {
             type = "string",
         },
-        data = {
-            type = "structure",
-        },
+        data = M.JobData,
         nonce = {
             type = "string",
         },
@@ -3498,7 +3303,7 @@ M.PollForJobsOutput = {
     members = {
         jobs = {
             type = "list",
-            member_type = "structure",
+            member = M.Job,
         },
     },
 }
@@ -3506,14 +3311,11 @@ M.PollForJobsOutput = {
 M.PollForThirdPartyJobsInput = {
     type = "structure",
     members = {
-        actionTypeId = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        actionTypeId = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActionTypeId }),
         maxBatchSize = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3535,7 +3337,7 @@ M.PollForThirdPartyJobsOutput = {
     members = {
         jobs = {
             type = "list",
-            member_type = "structure",
+            member = M.ThirdPartyJob,
         },
     },
 }
@@ -3561,12 +3363,9 @@ M.PutActionRevisionInput = {
                 required = true,
             },
         },
-        actionRevision = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        actionRevision = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActionRevision }),
     },
 }
 
@@ -3575,6 +3374,9 @@ M.PutActionRevisionOutput = {
     members = {
         newRevision = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         pipelineExecutionId = {
             type = "string",
@@ -3613,12 +3415,9 @@ M.PutApprovalResultInput = {
                 required = true,
             },
         },
-        result = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        result = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ApprovalResult }),
         token = {
             type = "string",
             traits = {
@@ -3686,12 +3485,9 @@ M.PutJobFailureResultInput = {
                 required = true,
             },
         },
-        failureDetails = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        failureDetails = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FailureDetails }),
     },
 }
 
@@ -3743,7 +3539,7 @@ M.ExecutionDetails = {
             type = "string",
         },
         percentComplete = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3757,19 +3553,15 @@ M.PutJobSuccessResultInput = {
                 required = true,
             },
         },
-        currentRevision = {
-            type = "structure",
-        },
+        currentRevision = M.CurrentRevision,
         continuationToken = {
             type = "string",
         },
-        executionDetails = {
-            type = "structure",
-        },
+        executionDetails = M.ExecutionDetails,
         outputVariables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3793,12 +3585,9 @@ M.PutThirdPartyJobFailureResultInput = {
                 required = true,
             },
         },
-        failureDetails = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        failureDetails = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FailureDetails }),
     },
 }
 
@@ -3821,15 +3610,11 @@ M.PutThirdPartyJobSuccessResultInput = {
                 required = true,
             },
         },
-        currentRevision = {
-            type = "structure",
-        },
+        currentRevision = M.CurrentRevision,
         continuationToken = {
             type = "string",
         },
-        executionDetails = {
-            type = "structure",
-        },
+        executionDetails = M.ExecutionDetails,
     },
 }
 
@@ -3860,15 +3645,12 @@ M.InvalidWebhookFilterPatternException = {
 M.PutWebhookInput = {
     type = "structure",
     members = {
-        webhook = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        webhook = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WebhookDefinition }),
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3876,9 +3658,7 @@ M.PutWebhookInput = {
 M.PutWebhookOutput = {
     type = "structure",
     members = {
-        webhook = {
-            type = "structure",
-        },
+        webhook = M.ListWebhookItem,
     },
 }
 
@@ -4060,14 +3840,14 @@ M.StartPipelineExecutionInput = {
         },
         variables = {
             type = "list",
-            member_type = "structure",
+            member = M.PipelineVariable,
         },
         clientRequestToken = {
             type = "string",
         },
         sourceRevisions = {
             type = "list",
-            member_type = "structure",
+            member = M.SourceRevisionOverride,
         },
     },
 }
@@ -4118,6 +3898,9 @@ M.StopPipelineExecutionInput = {
         },
         abandon = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         reason = {
             type = "string",
@@ -4145,7 +3928,7 @@ M.TagResourceInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -4168,7 +3951,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4193,12 +3976,9 @@ M.RequestFailedException = {
 M.UpdateActionTypeInput = {
     type = "structure",
     members = {
-        actionType = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        actionType = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActionTypeDeclaration }),
     },
 }
 
@@ -4209,21 +3989,16 @@ M.UpdateActionTypeOutput = {
 M.UpdatePipelineInput = {
     type = "structure",
     members = {
-        pipeline = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        pipeline = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PipelineDeclaration }),
     },
 }
 
 M.UpdatePipelineOutput = {
     type = "structure",
     members = {
-        pipeline = {
-            type = "structure",
-        },
+        pipeline = M.PipelineDeclaration,
     },
 }
 

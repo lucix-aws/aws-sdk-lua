@@ -16,7 +16,7 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AmazonBedrockAgentCore"
-    cfg.signing_name = "amazonbedrockagentcore"
+    cfg.signing_name = "bedrock-agentcore"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end

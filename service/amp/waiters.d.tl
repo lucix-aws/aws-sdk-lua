@@ -1,0 +1,12 @@
+local types = require("amp.types")
+
+local record M
+    wait_until_anomaly_detector_active: function(client: table, input: table, options: table): table, table
+    wait_until_anomaly_detector_deleted: function(client: table, input: table, options: table): table, table
+    wait_until_scraper_active: function(client: table, input: table, options: table): table, table
+    wait_until_scraper_deleted: function(client: table, input: table, options: table): table, table
+    wait_until_workspace_active: function(client: table, input: table, options: table): table, table
+    wait_until_workspace_deleted: function(client: table, input: table, options: table): table, table
+end
+
+return M

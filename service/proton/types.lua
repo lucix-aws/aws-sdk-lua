@@ -87,12 +87,9 @@ M.EnvironmentAccountConnection = {
 M.AcceptEnvironmentAccountConnectionOutput = {
     type = "structure",
     members = {
-        environmentAccountConnection = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        environmentAccountConnection = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EnvironmentAccountConnection }),
     },
 }
 
@@ -216,9 +213,7 @@ M.AccountSettings = {
         pipelineServiceRoleArn = {
             type = "string",
         },
-        pipelineProvisioningRepository = {
-            type = "structure",
-        },
+        pipelineProvisioningRepository = M.RepositoryBranch,
         pipelineCodebuildRoleArn = {
             type = "string",
         },
@@ -232,9 +227,7 @@ M.GetAccountSettingsInput = {
 M.GetAccountSettingsOutput = {
     type = "structure",
     members = {
-        accountSettings = {
-            type = "structure",
-        },
+        accountSettings = M.AccountSettings,
     },
 }
 
@@ -268,9 +261,7 @@ M.UpdateAccountSettingsInput = {
         pipelineServiceRoleArn = {
             type = "string",
         },
-        pipelineProvisioningRepository = {
-            type = "structure",
-        },
+        pipelineProvisioningRepository = M.RepositoryBranchInput,
         deletePipelineProvisioningRepository = {
             type = "boolean",
         },
@@ -283,12 +274,9 @@ M.UpdateAccountSettingsInput = {
 M.UpdateAccountSettingsOutput = {
     type = "structure",
     members = {
-        accountSettings = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        accountSettings = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AccountSettings }),
     },
 }
 
@@ -390,12 +378,9 @@ M.Component = {
 M.CancelComponentDeploymentOutput = {
     type = "structure",
     members = {
-        component = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        component = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Component }),
     },
 }
 
@@ -493,9 +478,7 @@ M.Environment = {
         provisioning = {
             type = "string",
         },
-        provisioningRepository = {
-            type = "structure",
-        },
+        provisioningRepository = M.RepositoryBranch,
         componentRoleArn = {
             type = "string",
         },
@@ -514,12 +497,9 @@ M.Environment = {
 M.CancelEnvironmentDeploymentOutput = {
     type = "structure",
     members = {
-        environment = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        environment = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Environment }),
     },
 }
 
@@ -631,12 +611,9 @@ M.ServiceInstance = {
 M.CancelServiceInstanceDeploymentOutput = {
     type = "structure",
     members = {
-        serviceInstance = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        serviceInstance = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ServiceInstance }),
     },
 }
 
@@ -721,12 +698,9 @@ M.ServicePipeline = {
 M.CancelServicePipelineDeploymentOutput = {
     type = "structure",
     members = {
-        pipeline = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        pipeline = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ServicePipeline }),
     },
 }
 
@@ -768,7 +742,7 @@ M.ListComponentOutputsOutput = {
         },
         outputs = {
             type = "list",
-            member_type = "structure",
+            member = M.Output,
             traits = {
                 required = true,
             },
@@ -819,7 +793,7 @@ M.ListComponentProvisionedResourcesOutput = {
         },
         provisionedResources = {
             type = "list",
-            member_type = "structure",
+            member = M.ProvisionedResource,
             traits = {
                 required = true,
             },
@@ -883,7 +857,7 @@ M.CreateComponentInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         clientToken = {
             type = "string",
@@ -894,12 +868,9 @@ M.CreateComponentInput = {
 M.CreateComponentOutput = {
     type = "structure",
     members = {
-        component = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        component = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Component }),
     },
 }
 
@@ -931,9 +902,7 @@ M.DeleteComponentInput = {
 M.DeleteComponentOutput = {
     type = "structure",
     members = {
-        component = {
-            type = "structure",
-        },
+        component = M.Component,
     },
 }
 
@@ -952,9 +921,7 @@ M.GetComponentInput = {
 M.GetComponentOutput = {
     type = "structure",
     members = {
-        component = {
-            type = "structure",
-        },
+        component = M.Component,
     },
 }
 
@@ -974,7 +941,7 @@ M.ListComponentsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1050,7 +1017,7 @@ M.ListComponentsOutput = {
         },
         components = {
             type = "list",
-            member_type = "structure",
+            member = M.ComponentSummary,
             traits = {
                 required = true,
             },
@@ -1102,12 +1069,9 @@ M.UpdateComponentInput = {
 M.UpdateComponentOutput = {
     type = "structure",
     members = {
-        component = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        component = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Component }),
     },
 }
 
@@ -1197,7 +1161,7 @@ M.ServiceInstanceState = {
         },
         lastSuccessfulComponentDeploymentIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         lastSuccessfulEnvironmentDeploymentId = {
             type = "string",
@@ -1238,18 +1202,10 @@ M.ServicePipelineState = {
 M.DeploymentState = {
     type = "union",
     members = {
-        serviceInstance = {
-            type = "structure",
-        },
-        environment = {
-            type = "structure",
-        },
-        servicePipeline = {
-            type = "structure",
-        },
-        component = {
-            type = "structure",
-        },
+        serviceInstance = M.ServiceInstanceState,
+        environment = M.EnvironmentState,
+        servicePipeline = M.ServicePipelineState,
+        component = M.ComponentState,
     },
 }
 
@@ -1338,21 +1294,15 @@ M.Deployment = {
         lastSucceededDeploymentId = {
             type = "string",
         },
-        initialState = {
-            type = "union",
-        },
-        targetState = {
-            type = "union",
-        },
+        initialState = M.DeploymentState,
+        targetState = M.DeploymentState,
     },
 }
 
 M.DeleteDeploymentOutput = {
     type = "structure",
     members = {
-        deployment = {
-            type = "structure",
-        },
+        deployment = M.Deployment,
     },
 }
 
@@ -1383,9 +1333,7 @@ M.GetDeploymentInput = {
 M.GetDeploymentOutput = {
     type = "structure",
     members = {
-        deployment = {
-            type = "structure",
-        },
+        deployment = M.Deployment,
     },
 }
 
@@ -1408,7 +1356,7 @@ M.ListDeploymentsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1499,7 +1447,7 @@ M.ListDeploymentsOutput = {
         },
         deployments = {
             type = "list",
-            member_type = "structure",
+            member = M.DeploymentSummary,
             traits = {
                 required = true,
             },
@@ -1530,7 +1478,7 @@ M.CreateEnvironmentAccountConnectionInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         componentRoleArn = {
             type = "string",
@@ -1544,12 +1492,9 @@ M.CreateEnvironmentAccountConnectionInput = {
 M.CreateEnvironmentAccountConnectionOutput = {
     type = "structure",
     members = {
-        environmentAccountConnection = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        environmentAccountConnection = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EnvironmentAccountConnection }),
     },
 }
 
@@ -1568,9 +1513,7 @@ M.DeleteEnvironmentAccountConnectionInput = {
 M.DeleteEnvironmentAccountConnectionOutput = {
     type = "structure",
     members = {
-        environmentAccountConnection = {
-            type = "structure",
-        },
+        environmentAccountConnection = M.EnvironmentAccountConnection,
     },
 }
 
@@ -1589,12 +1532,9 @@ M.GetEnvironmentAccountConnectionInput = {
 M.GetEnvironmentAccountConnectionOutput = {
     type = "structure",
     members = {
-        environmentAccountConnection = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        environmentAccountConnection = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EnvironmentAccountConnection }),
     },
 }
 
@@ -1617,13 +1557,13 @@ M.ListEnvironmentAccountConnectionsInput = {
         },
         statuses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1696,7 +1636,7 @@ M.ListEnvironmentAccountConnectionsOutput = {
     members = {
         environmentAccountConnections = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentAccountConnectionSummary,
             traits = {
                 required = true,
             },
@@ -1722,12 +1662,9 @@ M.RejectEnvironmentAccountConnectionInput = {
 M.RejectEnvironmentAccountConnectionOutput = {
     type = "structure",
     members = {
-        environmentAccountConnection = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        environmentAccountConnection = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EnvironmentAccountConnection }),
     },
 }
 
@@ -1755,12 +1692,9 @@ M.UpdateEnvironmentAccountConnectionInput = {
 M.UpdateEnvironmentAccountConnectionOutput = {
     type = "structure",
     members = {
-        environmentAccountConnection = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        environmentAccountConnection = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EnvironmentAccountConnection }),
     },
 }
 
@@ -1790,7 +1724,7 @@ M.ListEnvironmentOutputsOutput = {
         },
         outputs = {
             type = "list",
-            member_type = "structure",
+            member = M.Output,
             traits = {
                 required = true,
             },
@@ -1821,7 +1755,7 @@ M.ListEnvironmentProvisionedResourcesOutput = {
         },
         provisionedResources = {
             type = "list",
-            member_type = "structure",
+            member = M.ProvisionedResource,
             traits = {
                 required = true,
             },
@@ -1870,11 +1804,9 @@ M.CreateEnvironmentInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        provisioningRepository = {
-            type = "structure",
-        },
+        provisioningRepository = M.RepositoryBranchInput,
         componentRoleArn = {
             type = "string",
         },
@@ -1887,12 +1819,9 @@ M.CreateEnvironmentInput = {
 M.CreateEnvironmentOutput = {
     type = "structure",
     members = {
-        environment = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        environment = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Environment }),
     },
 }
 
@@ -1911,9 +1840,7 @@ M.DeleteEnvironmentInput = {
 M.DeleteEnvironmentOutput = {
     type = "structure",
     members = {
-        environment = {
-            type = "structure",
-        },
+        environment = M.Environment,
     },
 }
 
@@ -1932,12 +1859,9 @@ M.GetEnvironmentInput = {
 M.GetEnvironmentOutput = {
     type = "structure",
     members = {
-        environment = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        environment = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Environment }),
     },
 }
 
@@ -1966,11 +1890,11 @@ M.ListEnvironmentsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         environmentTemplates = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentTemplateFilter,
         },
     },
 }
@@ -2070,7 +1994,7 @@ M.ListEnvironmentsOutput = {
         },
         environments = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentSummary,
             traits = {
                 required = true,
             },
@@ -2118,9 +2042,7 @@ M.UpdateEnvironmentInput = {
         environmentAccountConnectionId = {
             type = "string",
         },
-        provisioningRepository = {
-            type = "structure",
-        },
+        provisioningRepository = M.RepositoryBranchInput,
         componentRoleArn = {
             type = "string",
         },
@@ -2133,12 +2055,9 @@ M.UpdateEnvironmentInput = {
 M.UpdateEnvironmentOutput = {
     type = "structure",
     members = {
-        environment = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        environment = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Environment }),
     },
 }
 
@@ -2165,7 +2084,7 @@ M.CreateEnvironmentTemplateInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2218,12 +2137,9 @@ M.EnvironmentTemplate = {
 M.CreateEnvironmentTemplateOutput = {
     type = "structure",
     members = {
-        environmentTemplate = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        environmentTemplate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EnvironmentTemplate }),
     },
 }
 
@@ -2242,9 +2158,7 @@ M.DeleteEnvironmentTemplateInput = {
 M.DeleteEnvironmentTemplateOutput = {
     type = "structure",
     members = {
-        environmentTemplate = {
-            type = "structure",
-        },
+        environmentTemplate = M.EnvironmentTemplate,
     },
 }
 
@@ -2263,12 +2177,9 @@ M.GetEnvironmentTemplateInput = {
 M.GetEnvironmentTemplateOutput = {
     type = "structure",
     members = {
-        environmentTemplate = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        environmentTemplate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EnvironmentTemplate }),
     },
 }
 
@@ -2279,7 +2190,7 @@ M.ListEnvironmentTemplatesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2334,7 +2245,7 @@ M.ListEnvironmentTemplatesOutput = {
         },
         templates = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentTemplateSummary,
             traits = {
                 required = true,
             },
@@ -2363,12 +2274,9 @@ M.UpdateEnvironmentTemplateInput = {
 M.UpdateEnvironmentTemplateOutput = {
     type = "structure",
     members = {
-        environmentTemplate = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        environmentTemplate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EnvironmentTemplate }),
     },
 }
 
@@ -2393,9 +2301,7 @@ M.S3ObjectSource = {
 M.TemplateVersionSourceInput = {
     type = "union",
     members = {
-        s3 = {
-            type = "structure",
-        },
+        s3 = M.S3ObjectSource,
     },
 }
 
@@ -2417,15 +2323,12 @@ M.CreateEnvironmentTemplateVersionInput = {
         majorVersion = {
             type = "string",
         },
-        source = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        source = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TemplateVersionSourceInput }),
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2500,12 +2403,9 @@ M.EnvironmentTemplateVersion = {
 M.CreateEnvironmentTemplateVersionOutput = {
     type = "structure",
     members = {
-        environmentTemplateVersion = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        environmentTemplateVersion = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EnvironmentTemplateVersion }),
     },
 }
 
@@ -2536,9 +2436,7 @@ M.DeleteEnvironmentTemplateVersionInput = {
 M.DeleteEnvironmentTemplateVersionOutput = {
     type = "structure",
     members = {
-        environmentTemplateVersion = {
-            type = "structure",
-        },
+        environmentTemplateVersion = M.EnvironmentTemplateVersion,
     },
 }
 
@@ -2569,12 +2467,9 @@ M.GetEnvironmentTemplateVersionInput = {
 M.GetEnvironmentTemplateVersionOutput = {
     type = "structure",
     members = {
-        environmentTemplateVersion = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        environmentTemplateVersion = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EnvironmentTemplateVersion }),
     },
 }
 
@@ -2585,7 +2480,7 @@ M.ListEnvironmentTemplateVersionsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         templateName = {
             type = "string",
@@ -2664,7 +2559,7 @@ M.ListEnvironmentTemplateVersionsOutput = {
         },
         templateVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentTemplateVersionSummary,
             traits = {
                 required = true,
             },
@@ -2705,12 +2600,9 @@ M.UpdateEnvironmentTemplateVersionInput = {
 M.UpdateEnvironmentTemplateVersionOutput = {
     type = "structure",
     members = {
-        environmentTemplateVersion = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        environmentTemplateVersion = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EnvironmentTemplateVersion }),
     },
 }
 
@@ -2801,7 +2693,7 @@ M.RepositorySyncAttempt = {
         },
         events = {
             type = "list",
-            member_type = "structure",
+            member = M.RepositorySyncEvent,
             traits = {
                 required = true,
             },
@@ -2812,9 +2704,7 @@ M.RepositorySyncAttempt = {
 M.GetRepositorySyncStatusOutput = {
     type = "structure",
     members = {
-        latestSync = {
-            type = "structure",
-        },
+        latestSync = M.RepositorySyncAttempt,
     },
 }
 
@@ -2826,22 +2716,22 @@ M.ResourceCountsSummary = {
     type = "structure",
     members = {
         total = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         failed = {
-            type = "number",
+            type = "integer",
         },
         upToDate = {
-            type = "number",
+            type = "integer",
         },
         behindMajor = {
-            type = "number",
+            type = "integer",
         },
         behindMinor = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2849,39 +2739,22 @@ M.ResourceCountsSummary = {
 M.CountsSummary = {
     type = "structure",
     members = {
-        components = {
-            type = "structure",
-        },
-        environments = {
-            type = "structure",
-        },
-        environmentTemplates = {
-            type = "structure",
-        },
-        serviceInstances = {
-            type = "structure",
-        },
-        services = {
-            type = "structure",
-        },
-        serviceTemplates = {
-            type = "structure",
-        },
-        pipelines = {
-            type = "structure",
-        },
+        components = M.ResourceCountsSummary,
+        environments = M.ResourceCountsSummary,
+        environmentTemplates = M.ResourceCountsSummary,
+        serviceInstances = M.ResourceCountsSummary,
+        services = M.ResourceCountsSummary,
+        serviceTemplates = M.ResourceCountsSummary,
+        pipelines = M.ResourceCountsSummary,
     },
 }
 
 M.GetResourcesSummaryOutput = {
     type = "structure",
     members = {
-        counts = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        counts = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CountsSummary }),
     },
 }
 
@@ -2976,18 +2849,12 @@ M.ResourceSyncStatus = {
 M.ResourceSyncAttempt = {
     type = "structure",
     members = {
-        initialRevision = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        targetRevision = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        initialRevision = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Revision }),
+        targetRevision = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Revision }),
         target = {
             type = "string",
             traits = {
@@ -3008,7 +2875,7 @@ M.ResourceSyncAttempt = {
         },
         events = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceSyncEvent,
             traits = {
                 required = true,
             },
@@ -3019,15 +2886,9 @@ M.ResourceSyncAttempt = {
 M.GetServiceInstanceSyncStatusOutput = {
     type = "structure",
     members = {
-        latestSync = {
-            type = "structure",
-        },
-        latestSuccessfulSync = {
-            type = "structure",
-        },
-        desiredState = {
-            type = "structure",
-        },
+        latestSync = M.ResourceSyncAttempt,
+        latestSuccessfulSync = M.ResourceSyncAttempt,
+        desiredState = M.Revision,
     },
 }
 
@@ -3063,15 +2924,9 @@ M.GetTemplateSyncStatusInput = {
 M.GetTemplateSyncStatusOutput = {
     type = "structure",
     members = {
-        latestSync = {
-            type = "structure",
-        },
-        latestSuccessfulSync = {
-            type = "structure",
-        },
-        desiredState = {
-            type = "structure",
-        },
+        latestSync = M.ResourceSyncAttempt,
+        latestSuccessfulSync = M.ResourceSyncAttempt,
+        desiredState = M.Revision,
     },
 }
 
@@ -3140,7 +2995,7 @@ M.ListRepositorySyncDefinitionsOutput = {
         },
         syncDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.RepositorySyncDefinition,
             traits = {
                 required = true,
             },
@@ -3165,7 +3020,7 @@ M.ListTagsForResourceInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3178,7 +3033,7 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -3209,7 +3064,7 @@ M.NotifyResourceDeploymentStatusChangeInput = {
         },
         outputs = {
             type = "list",
-            member_type = "structure",
+            member = M.Output,
         },
         deploymentId = {
             type = "string",
@@ -3250,7 +3105,7 @@ M.CreateRepositoryInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3291,12 +3146,9 @@ M.Repository = {
 M.CreateRepositoryOutput = {
     type = "structure",
     members = {
-        repository = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        repository = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Repository }),
     },
 }
 
@@ -3321,9 +3173,7 @@ M.DeleteRepositoryInput = {
 M.DeleteRepositoryOutput = {
     type = "structure",
     members = {
-        repository = {
-            type = "structure",
-        },
+        repository = M.Repository,
     },
 }
 
@@ -3348,12 +3198,9 @@ M.GetRepositoryInput = {
 M.GetRepositoryOutput = {
     type = "structure",
     members = {
-        repository = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        repository = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Repository }),
     },
 }
 
@@ -3364,7 +3211,7 @@ M.ListRepositoriesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3407,7 +3254,7 @@ M.ListRepositoriesOutput = {
         },
         repositories = {
             type = "list",
-            member_type = "structure",
+            member = M.RepositorySummary,
             traits = {
                 required = true,
             },
@@ -3447,7 +3294,7 @@ M.ListServiceInstanceOutputsOutput = {
         },
         outputs = {
             type = "list",
-            member_type = "structure",
+            member = M.Output,
             traits = {
                 required = true,
             },
@@ -3484,7 +3331,7 @@ M.ListServiceInstanceProvisionedResourcesOutput = {
         },
         provisionedResources = {
             type = "list",
-            member_type = "structure",
+            member = M.ProvisionedResource,
             traits = {
                 required = true,
             },
@@ -3521,7 +3368,7 @@ M.CreateServiceInstanceInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         clientToken = {
             type = "string",
@@ -3532,12 +3379,9 @@ M.CreateServiceInstanceInput = {
 M.CreateServiceInstanceOutput = {
     type = "structure",
     members = {
-        serviceInstance = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        serviceInstance = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ServiceInstance }),
     },
 }
 
@@ -3562,12 +3406,9 @@ M.GetServiceInstanceInput = {
 M.GetServiceInstanceOutput = {
     type = "structure",
     members = {
-        serviceInstance = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        serviceInstance = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ServiceInstance }),
     },
 }
 
@@ -3621,11 +3462,11 @@ M.ListServiceInstancesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.ListServiceInstancesFilter,
         },
         sortBy = {
             type = "string",
@@ -3725,7 +3566,7 @@ M.ListServiceInstancesOutput = {
         },
         serviceInstances = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceInstanceSummary,
             traits = {
                 required = true,
             },
@@ -3772,12 +3613,9 @@ M.UpdateServiceInstanceInput = {
 M.UpdateServiceInstanceOutput = {
     type = "structure",
     members = {
-        serviceInstance = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        serviceInstance = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ServiceInstance }),
     },
 }
 
@@ -3807,7 +3645,7 @@ M.ListServicePipelineOutputsOutput = {
         },
         outputs = {
             type = "list",
-            member_type = "structure",
+            member = M.Output,
             traits = {
                 required = true,
             },
@@ -3838,7 +3676,7 @@ M.ListServicePipelineProvisionedResourcesOutput = {
         },
         provisionedResources = {
             type = "list",
-            member_type = "structure",
+            member = M.ProvisionedResource,
             traits = {
                 required = true,
             },
@@ -3879,12 +3717,9 @@ M.UpdateServicePipelineInput = {
 M.UpdateServicePipelineOutput = {
     type = "structure",
     members = {
-        pipeline = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        pipeline = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ServicePipeline }),
     },
 }
 
@@ -3932,7 +3767,7 @@ M.CreateServiceInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -4005,9 +3840,7 @@ M.Service = {
                 required = true,
             },
         },
-        pipeline = {
-            type = "structure",
-        },
+        pipeline = M.ServicePipeline,
         repositoryConnectionArn = {
             type = "string",
         },
@@ -4023,12 +3856,9 @@ M.Service = {
 M.CreateServiceOutput = {
     type = "structure",
     members = {
-        service = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        service = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Service }),
     },
 }
 
@@ -4047,9 +3877,7 @@ M.DeleteServiceInput = {
 M.DeleteServiceOutput = {
     type = "structure",
     members = {
-        service = {
-            type = "structure",
-        },
+        service = M.Service,
     },
 }
 
@@ -4068,9 +3896,7 @@ M.GetServiceInput = {
 M.GetServiceOutput = {
     type = "structure",
     members = {
-        service = {
-            type = "structure",
-        },
+        service = M.Service,
     },
 }
 
@@ -4081,7 +3907,7 @@ M.ListServicesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4142,7 +3968,7 @@ M.ListServicesOutput = {
         },
         services = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceSummary,
             traits = {
                 required = true,
             },
@@ -4171,12 +3997,9 @@ M.UpdateServiceInput = {
 M.UpdateServiceOutput = {
     type = "structure",
     members = {
-        service = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        service = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Service }),
     },
 }
 
@@ -4257,7 +4080,7 @@ M.SyncBlocker = {
         },
         contexts = {
             type = "list",
-            member_type = "structure",
+            member = M.SyncBlockerContext,
         },
         resolvedReason = {
             type = "string",
@@ -4282,7 +4105,7 @@ M.ServiceSyncBlockerSummary = {
         },
         latestBlockers = {
             type = "list",
-            member_type = "structure",
+            member = M.SyncBlocker,
         },
     },
 }
@@ -4290,9 +4113,7 @@ M.ServiceSyncBlockerSummary = {
 M.GetServiceSyncBlockerSummaryOutput = {
     type = "structure",
     members = {
-        serviceSyncBlockerSummary = {
-            type = "structure",
-        },
+        serviceSyncBlockerSummary = M.ServiceSyncBlockerSummary,
     },
 }
 
@@ -4326,12 +4147,9 @@ M.UpdateServiceSyncBlockerOutput = {
         serviceInstanceName = {
             type = "string",
         },
-        serviceSyncBlocker = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        serviceSyncBlocker = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SyncBlocker }),
     },
 }
 
@@ -4410,9 +4228,7 @@ M.ServiceSyncConfig = {
 M.CreateServiceSyncConfigOutput = {
     type = "structure",
     members = {
-        serviceSyncConfig = {
-            type = "structure",
-        },
+        serviceSyncConfig = M.ServiceSyncConfig,
     },
 }
 
@@ -4431,9 +4247,7 @@ M.DeleteServiceSyncConfigInput = {
 M.DeleteServiceSyncConfigOutput = {
     type = "structure",
     members = {
-        serviceSyncConfig = {
-            type = "structure",
-        },
+        serviceSyncConfig = M.ServiceSyncConfig,
     },
 }
 
@@ -4452,9 +4266,7 @@ M.GetServiceSyncConfigInput = {
 M.GetServiceSyncConfigOutput = {
     type = "structure",
     members = {
-        serviceSyncConfig = {
-            type = "structure",
-        },
+        serviceSyncConfig = M.ServiceSyncConfig,
     },
 }
 
@@ -4497,9 +4309,7 @@ M.UpdateServiceSyncConfigInput = {
 M.UpdateServiceSyncConfigOutput = {
     type = "structure",
     members = {
-        serviceSyncConfig = {
-            type = "structure",
-        },
+        serviceSyncConfig = M.ServiceSyncConfig,
     },
 }
 
@@ -4526,7 +4336,7 @@ M.CreateServiceTemplateInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -4579,12 +4389,9 @@ M.ServiceTemplate = {
 M.CreateServiceTemplateOutput = {
     type = "structure",
     members = {
-        serviceTemplate = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        serviceTemplate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ServiceTemplate }),
     },
 }
 
@@ -4603,9 +4410,7 @@ M.DeleteServiceTemplateInput = {
 M.DeleteServiceTemplateOutput = {
     type = "structure",
     members = {
-        serviceTemplate = {
-            type = "structure",
-        },
+        serviceTemplate = M.ServiceTemplate,
     },
 }
 
@@ -4624,12 +4429,9 @@ M.GetServiceTemplateInput = {
 M.GetServiceTemplateOutput = {
     type = "structure",
     members = {
-        serviceTemplate = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        serviceTemplate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ServiceTemplate }),
     },
 }
 
@@ -4640,7 +4442,7 @@ M.ListServiceTemplatesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4695,7 +4497,7 @@ M.ListServiceTemplatesOutput = {
         },
         templates = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceTemplateSummary,
             traits = {
                 required = true,
             },
@@ -4724,12 +4526,9 @@ M.UpdateServiceTemplateInput = {
 M.UpdateServiceTemplateOutput = {
     type = "structure",
     members = {
-        serviceTemplate = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        serviceTemplate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ServiceTemplate }),
     },
 }
 
@@ -4773,26 +4572,23 @@ M.CreateServiceTemplateVersionInput = {
         majorVersion = {
             type = "string",
         },
-        source = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        source = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TemplateVersionSourceInput }),
         compatibleEnvironmentTemplates = {
             type = "list",
-            member_type = "structure",
+            member = M.CompatibleEnvironmentTemplateInput,
             traits = {
                 required = true,
             },
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         supportedComponentSources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4871,7 +4667,7 @@ M.ServiceTemplateVersion = {
         },
         compatibleEnvironmentTemplates = {
             type = "list",
-            member_type = "structure",
+            member = M.CompatibleEnvironmentTemplate,
             traits = {
                 required = true,
             },
@@ -4881,7 +4677,7 @@ M.ServiceTemplateVersion = {
         },
         supportedComponentSources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4889,12 +4685,9 @@ M.ServiceTemplateVersion = {
 M.CreateServiceTemplateVersionOutput = {
     type = "structure",
     members = {
-        serviceTemplateVersion = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        serviceTemplateVersion = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ServiceTemplateVersion }),
     },
 }
 
@@ -4925,9 +4718,7 @@ M.DeleteServiceTemplateVersionInput = {
 M.DeleteServiceTemplateVersionOutput = {
     type = "structure",
     members = {
-        serviceTemplateVersion = {
-            type = "structure",
-        },
+        serviceTemplateVersion = M.ServiceTemplateVersion,
     },
 }
 
@@ -4958,12 +4749,9 @@ M.GetServiceTemplateVersionInput = {
 M.GetServiceTemplateVersionOutput = {
     type = "structure",
     members = {
-        serviceTemplateVersion = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        serviceTemplateVersion = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ServiceTemplateVersion }),
     },
 }
 
@@ -4974,7 +4762,7 @@ M.ListServiceTemplateVersionsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         templateName = {
             type = "string",
@@ -5053,7 +4841,7 @@ M.ListServiceTemplateVersionsOutput = {
         },
         templateVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceTemplateVersionSummary,
             traits = {
                 required = true,
             },
@@ -5090,11 +4878,11 @@ M.UpdateServiceTemplateVersionInput = {
         },
         compatibleEnvironmentTemplates = {
             type = "list",
-            member_type = "structure",
+            member = M.CompatibleEnvironmentTemplateInput,
         },
         supportedComponentSources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -5102,12 +4890,9 @@ M.UpdateServiceTemplateVersionInput = {
 M.UpdateServiceTemplateVersionOutput = {
     type = "structure",
     members = {
-        serviceTemplateVersion = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        serviceTemplateVersion = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ServiceTemplateVersion }),
     },
 }
 
@@ -5123,7 +4908,7 @@ M.TagResourceInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -5216,9 +5001,7 @@ M.TemplateSyncConfig = {
 M.CreateTemplateSyncConfigOutput = {
     type = "structure",
     members = {
-        templateSyncConfig = {
-            type = "structure",
-        },
+        templateSyncConfig = M.TemplateSyncConfig,
     },
 }
 
@@ -5243,9 +5026,7 @@ M.DeleteTemplateSyncConfigInput = {
 M.DeleteTemplateSyncConfigOutput = {
     type = "structure",
     members = {
-        templateSyncConfig = {
-            type = "structure",
-        },
+        templateSyncConfig = M.TemplateSyncConfig,
     },
 }
 
@@ -5270,9 +5051,7 @@ M.GetTemplateSyncConfigInput = {
 M.GetTemplateSyncConfigOutput = {
     type = "structure",
     members = {
-        templateSyncConfig = {
-            type = "structure",
-        },
+        templateSyncConfig = M.TemplateSyncConfig,
     },
 }
 
@@ -5318,9 +5097,7 @@ M.UpdateTemplateSyncConfigInput = {
 M.UpdateTemplateSyncConfigOutput = {
     type = "structure",
     members = {
-        templateSyncConfig = {
-            type = "structure",
-        },
+        templateSyncConfig = M.TemplateSyncConfig,
     },
 }
 
@@ -5336,7 +5113,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },

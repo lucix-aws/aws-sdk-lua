@@ -20,7 +20,7 @@ M.RecoveryOptionType = {
     type = "structure",
     members = {
         Priority = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -39,7 +39,7 @@ M.AccountRecoverySettingType = {
     members = {
         RecoveryMechanisms = {
             type = "list",
-            member_type = "structure",
+            member = M.RecoveryOptionType,
         },
     },
 }
@@ -57,6 +57,7 @@ M.AccountTakeoverActionType = {
         Notify = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -72,15 +73,9 @@ M.AccountTakeoverActionType = {
 M.AccountTakeoverActionsType = {
     type = "structure",
     members = {
-        LowAction = {
-            type = "structure",
-        },
-        MediumAction = {
-            type = "structure",
-        },
-        HighAction = {
-            type = "structure",
-        },
+        LowAction = M.AccountTakeoverActionType,
+        MediumAction = M.AccountTakeoverActionType,
+        HighAction = M.AccountTakeoverActionType,
     },
 }
 
@@ -117,30 +112,19 @@ M.NotifyConfigurationType = {
                 required = true,
             },
         },
-        BlockEmail = {
-            type = "structure",
-        },
-        NoActionEmail = {
-            type = "structure",
-        },
-        MfaEmail = {
-            type = "structure",
-        },
+        BlockEmail = M.NotifyEmailType,
+        NoActionEmail = M.NotifyEmailType,
+        MfaEmail = M.NotifyEmailType,
     },
 }
 
 M.AccountTakeoverRiskConfigurationType = {
     type = "structure",
     members = {
-        NotifyConfiguration = {
-            type = "structure",
-        },
-        Actions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        NotifyConfiguration = M.NotifyConfigurationType,
+        Actions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AccountTakeoverActionsType }),
     },
 }
 
@@ -186,19 +170,24 @@ M.SchemaAttributeType = {
         },
         DeveloperOnlyAttribute = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
         Mutable = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
         Required = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
-        NumberAttributeConstraints = {
-            type = "structure",
-        },
-        StringAttributeConstraints = {
-            type = "structure",
-        },
+        NumberAttributeConstraints = M.NumberAttributeConstraintsType,
+        StringAttributeConstraints = M.StringAttributeConstraintsType,
     },
 }
 
@@ -213,7 +202,7 @@ M.AddCustomAttributesInput = {
         },
         CustomAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.SchemaAttributeType,
             traits = {
                 required = true,
             },
@@ -327,9 +316,7 @@ M.ClientSecretDescriptorType = {
 M.AddUserPoolClientSecretOutput = {
     type = "structure",
     members = {
-        ClientSecretDescriptor = {
-            type = "structure",
-        },
+        ClientSecretDescriptor = M.ClientSecretDescriptorType,
     },
 }
 
@@ -408,8 +395,8 @@ M.AdminConfirmSignUpInput = {
         },
         ClientMetadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -500,29 +487,32 @@ M.AdminCreateUserInput = {
         },
         UserAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.AttributeType,
         },
         ValidationData = {
             type = "list",
-            member_type = "structure",
+            member = M.AttributeType,
         },
         TemporaryPassword = {
             type = "string",
         },
         ForceAliasCreation = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         MessageAction = {
             type = "string",
         },
         DesiredDeliveryMediums = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ClientMetadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -558,7 +548,7 @@ M.UserType = {
         },
         Attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.AttributeType,
         },
         UserCreateDate = {
             type = "timestamp",
@@ -568,13 +558,16 @@ M.UserType = {
         },
         Enabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         UserStatus = {
             type = "string",
         },
         MFAOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.MFAOptionType,
         },
     },
 }
@@ -582,9 +575,7 @@ M.UserType = {
 M.AdminCreateUserOutput = {
     type = "structure",
     members = {
-        User = {
-            type = "structure",
-        },
+        User = M.UserType,
     },
 }
 
@@ -678,13 +669,17 @@ M.AdminCreateUserConfigType = {
     members = {
         AllowAdminCreateUserOnly = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         UnusedAccountValidityDays = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
-        InviteMessageTemplate = {
-            type = "structure",
-        },
+        InviteMessageTemplate = M.MessageTemplateType,
     },
 }
 
@@ -727,7 +722,7 @@ M.AdminDeleteUserAttributesInput = {
         },
         UserAttributeNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -763,12 +758,9 @@ M.AdminDisableProviderForUserInput = {
                 required = true,
             },
         },
-        User = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        User = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProviderUserIdentifierType }),
     },
 }
 
@@ -900,7 +892,7 @@ M.DeviceType = {
         },
         DeviceAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.AttributeType,
         },
         DeviceCreateDate = {
             type = "timestamp",
@@ -917,12 +909,9 @@ M.DeviceType = {
 M.AdminGetDeviceOutput = {
     type = "structure",
     members = {
-        Device = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Device = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DeviceType }),
     },
 }
 
@@ -955,7 +944,7 @@ M.AdminGetUserOutput = {
         },
         UserAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.AttributeType,
         },
         UserCreateDate = {
             type = "timestamp",
@@ -965,20 +954,23 @@ M.AdminGetUserOutput = {
         },
         Enabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         UserStatus = {
             type = "string",
         },
         MFAOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.MFAOptionType,
         },
         PreferredMfaSetting = {
             type = "string",
         },
         UserMFASettingList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1038,7 +1030,7 @@ M.ContextDataType = {
         },
         HttpHeaders = {
             type = "list",
-            member_type = "structure",
+            member = M.HttpHeader,
             traits = {
                 required = true,
             },
@@ -1072,20 +1064,16 @@ M.AdminInitiateAuthInput = {
         },
         AuthParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ClientMetadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        AnalyticsMetadata = {
-            type = "structure",
-        },
-        ContextData = {
-            type = "structure",
-        },
+        AnalyticsMetadata = M.AnalyticsMetadataType,
+        ContextData = M.ContextDataType,
         Session = {
             type = "string",
         },
@@ -1111,7 +1099,10 @@ M.AuthenticationResultType = {
             type = "string",
         },
         ExpiresIn = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         TokenType = {
             type = "string",
@@ -1122,9 +1113,7 @@ M.AuthenticationResultType = {
         IdToken = {
             type = "string",
         },
-        NewDeviceMetadata = {
-            type = "structure",
-        },
+        NewDeviceMetadata = M.NewDeviceMetadataType,
     },
 }
 
@@ -1158,15 +1147,13 @@ M.AdminInitiateAuthOutput = {
         },
         ChallengeParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        AuthenticationResult = {
-            type = "structure",
-        },
+        AuthenticationResult = M.AuthenticationResultType,
         AvailableChallenges = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1230,18 +1217,12 @@ M.AdminLinkProviderForUserInput = {
                 required = true,
             },
         },
-        DestinationUser = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        SourceUser = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DestinationUser = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProviderUserIdentifierType }),
+        SourceUser = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProviderUserIdentifierType }),
     },
 }
 
@@ -1265,7 +1246,7 @@ M.AdminListDevicesInput = {
             },
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         PaginationToken = {
             type = "string",
@@ -1278,7 +1259,7 @@ M.AdminListDevicesOutput = {
     members = {
         Devices = {
             type = "list",
-            member_type = "structure",
+            member = M.DeviceType,
         },
         PaginationToken = {
             type = "string",
@@ -1302,7 +1283,7 @@ M.AdminListGroupsForUserInput = {
             },
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1326,7 +1307,7 @@ M.GroupType = {
             type = "string",
         },
         Precedence = {
-            type = "number",
+            type = "integer",
         },
         LastModifiedDate = {
             type = "timestamp",
@@ -1342,7 +1323,7 @@ M.AdminListGroupsForUserOutput = {
     members = {
         Groups = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupType,
         },
         NextToken = {
             type = "string",
@@ -1366,7 +1347,7 @@ M.AdminListUserAuthEventsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1499,19 +1480,13 @@ M.AuthEventType = {
         EventResponse = {
             type = "string",
         },
-        EventRisk = {
-            type = "structure",
-        },
+        EventRisk = M.EventRiskType,
         ChallengeResponses = {
             type = "list",
-            member_type = "structure",
+            member = M.ChallengeResponseType,
         },
-        EventContextData = {
-            type = "structure",
-        },
-        EventFeedback = {
-            type = "structure",
-        },
+        EventContextData = M.EventContextDataType,
+        EventFeedback = M.EventFeedbackType,
     },
 }
 
@@ -1520,7 +1495,7 @@ M.AdminListUserAuthEventsOutput = {
     members = {
         AuthEvents = {
             type = "list",
-            member_type = "structure",
+            member = M.AuthEventType,
         },
         NextToken = {
             type = "string",
@@ -1583,8 +1558,8 @@ M.AdminResetUserPasswordInput = {
         },
         ClientMetadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1616,22 +1591,18 @@ M.AdminRespondToAuthChallengeInput = {
         },
         ChallengeResponses = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Session = {
             type = "string",
         },
-        AnalyticsMetadata = {
-            type = "structure",
-        },
-        ContextData = {
-            type = "structure",
-        },
+        AnalyticsMetadata = M.AnalyticsMetadataType,
+        ContextData = M.ContextDataType,
         ClientMetadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1647,12 +1618,10 @@ M.AdminRespondToAuthChallengeOutput = {
         },
         ChallengeParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        AuthenticationResult = {
-            type = "structure",
-        },
+        AuthenticationResult = M.AuthenticationResultType,
     },
 }
 
@@ -1701,9 +1670,15 @@ M.EmailMfaSettingsType = {
     members = {
         Enabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         PreferredMfa = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1713,9 +1688,15 @@ M.SMSMfaSettingsType = {
     members = {
         Enabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         PreferredMfa = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1725,9 +1706,15 @@ M.SoftwareTokenMfaSettingsType = {
     members = {
         Enabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         PreferredMfa = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1737,6 +1724,9 @@ M.WebAuthnMfaSettingsType = {
     members = {
         Enabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1744,18 +1734,10 @@ M.WebAuthnMfaSettingsType = {
 M.AdminSetUserMFAPreferenceInput = {
     type = "structure",
     members = {
-        SMSMfaSettings = {
-            type = "structure",
-        },
-        SoftwareTokenMfaSettings = {
-            type = "structure",
-        },
-        EmailMfaSettings = {
-            type = "structure",
-        },
-        WebAuthnMfaSettings = {
-            type = "structure",
-        },
+        SMSMfaSettings = M.SMSMfaSettingsType,
+        SoftwareTokenMfaSettings = M.SoftwareTokenMfaSettingsType,
+        EmailMfaSettings = M.EmailMfaSettingsType,
+        WebAuthnMfaSettings = M.WebAuthnMfaSettingsType,
         Username = {
             type = "string",
             traits = {
@@ -1798,6 +1780,9 @@ M.AdminSetUserPasswordInput = {
         },
         Permanent = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1823,7 +1808,7 @@ M.AdminSetUserSettingsInput = {
         },
         MFAOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.MFAOptionType,
             traits = {
                 required = true,
             },
@@ -1922,15 +1907,15 @@ M.AdminUpdateUserAttributesInput = {
         },
         UserAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.AttributeType,
             traits = {
                 required = true,
             },
         },
         ClientMetadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2011,6 +1996,9 @@ M.AnalyticsConfigurationType = {
         },
         UserDataShared = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -2260,9 +2248,7 @@ M.ConfirmDeviceInput = {
                 required = true,
             },
         },
-        DeviceSecretVerifierConfig = {
-            type = "structure",
-        },
+        DeviceSecretVerifierConfig = M.DeviceSecretVerifierConfigType,
         DeviceName = {
             type = "string",
         },
@@ -2274,6 +2260,9 @@ M.ConfirmDeviceOutput = {
     members = {
         UserConfirmationNecessary = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -2330,16 +2319,12 @@ M.ConfirmForgotPasswordInput = {
                 required = true,
             },
         },
-        AnalyticsMetadata = {
-            type = "structure",
-        },
-        UserContextData = {
-            type = "structure",
-        },
+        AnalyticsMetadata = M.AnalyticsMetadataType,
+        UserContextData = M.UserContextDataType,
         ClientMetadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2374,17 +2359,16 @@ M.ConfirmSignUpInput = {
         },
         ForceAliasCreation = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        AnalyticsMetadata = {
-            type = "structure",
-        },
-        UserContextData = {
-            type = "structure",
-        },
+        AnalyticsMetadata = M.AnalyticsMetadataType,
+        UserContextData = M.UserContextDataType,
         ClientMetadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Session = {
             type = "string",
@@ -2423,7 +2407,7 @@ M.CreateGroupInput = {
             type = "string",
         },
         Precedence = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2431,9 +2415,7 @@ M.CreateGroupInput = {
 M.CreateGroupOutput = {
     type = "structure",
     members = {
-        Group = {
-            type = "structure",
-        },
+        Group = M.GroupType,
     },
 }
 
@@ -2479,20 +2461,20 @@ M.CreateIdentityProviderInput = {
         },
         ProviderDetails = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
         },
         AttributeMapping = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         IdpIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2511,17 +2493,17 @@ M.IdentityProviderType = {
         },
         ProviderDetails = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         AttributeMapping = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         IdpIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         LastModifiedDate = {
             type = "timestamp",
@@ -2535,12 +2517,9 @@ M.IdentityProviderType = {
 M.CreateIdentityProviderOutput = {
     type = "structure",
     members = {
-        IdentityProvider = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        IdentityProvider = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IdentityProviderType }),
     },
 }
 
@@ -2571,13 +2550,16 @@ M.CreateManagedLoginBrandingInput = {
         },
         UseCognitoProvidedValues = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Settings = {
             type = "document",
         },
         Assets = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetType,
         },
     },
 }
@@ -2593,13 +2575,16 @@ M.ManagedLoginBrandingType = {
         },
         UseCognitoProvidedValues = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Settings = {
             type = "document",
         },
         Assets = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetType,
         },
         CreationDate = {
             type = "timestamp",
@@ -2613,9 +2598,7 @@ M.ManagedLoginBrandingType = {
 M.CreateManagedLoginBrandingOutput = {
     type = "structure",
     members = {
-        ManagedLoginBranding = {
-            type = "structure",
-        },
+        ManagedLoginBranding = M.ManagedLoginBrandingType,
     },
 }
 
@@ -2670,7 +2653,7 @@ M.CreateResourceServerInput = {
         },
         Scopes = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceServerScopeType,
         },
     },
 }
@@ -2689,7 +2672,7 @@ M.ResourceServerType = {
         },
         Scopes = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceServerScopeType,
         },
     },
 }
@@ -2697,12 +2680,9 @@ M.ResourceServerType = {
 M.CreateResourceServerOutput = {
     type = "structure",
     members = {
-        ResourceServer = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ResourceServer = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResourceServerType }),
     },
 }
 
@@ -2749,8 +2729,8 @@ M.CreateTermsInput = {
         },
         Links = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2796,8 +2776,8 @@ M.TermsType = {
         },
         Links = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2820,9 +2800,7 @@ M.TermsType = {
 M.CreateTermsOutput = {
     type = "structure",
     members = {
-        Terms = {
-            type = "structure",
-        },
+        Terms = M.TermsType,
     },
 }
 
@@ -2902,13 +2880,22 @@ M.UserImportJobType = {
             type = "string",
         },
         ImportedUsers = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         SkippedUsers = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         FailedUsers = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         CompletionMessage = {
             type = "string",
@@ -2919,9 +2906,7 @@ M.UserImportJobType = {
 M.CreateUserImportJobOutput = {
     type = "structure",
     members = {
-        UserImportJob = {
-            type = "structure",
-        },
+        UserImportJob = M.UserImportJobType,
     },
 }
 
@@ -2935,9 +2920,15 @@ M.DeviceConfigurationType = {
     members = {
         ChallengeRequiredOnNewDevice = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         DeviceOnlyRememberedOnUserPrompt = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -3091,21 +3082,13 @@ M.LambdaConfigType = {
         UserMigration = {
             type = "string",
         },
-        PreTokenGenerationConfig = {
-            type = "structure",
-        },
-        CustomSMSSender = {
-            type = "structure",
-        },
-        CustomEmailSender = {
-            type = "structure",
-        },
+        PreTokenGenerationConfig = M.PreTokenGenerationVersionConfigType,
+        CustomSMSSender = M.CustomSMSLambdaVersionConfigType,
+        CustomEmailSender = M.CustomEmailLambdaVersionConfigType,
         KMSKeyID = {
             type = "string",
         },
-        InboundFederation = {
-            type = "structure",
-        },
+        InboundFederation = M.InboundFederationLambdaType,
     },
 }
 
@@ -3119,25 +3102,40 @@ M.PasswordPolicyType = {
     type = "structure",
     members = {
         MinimumLength = {
-            type = "number",
+            type = "integer",
         },
         RequireUppercase = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         RequireLowercase = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         RequireNumbers = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         RequireSymbols = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         PasswordHistorySize = {
-            type = "number",
+            type = "integer",
         },
         TemporaryPasswordValidityDays = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -3147,7 +3145,7 @@ M.SignInPolicyType = {
     members = {
         AllowedFirstAuthFactors = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3155,12 +3153,8 @@ M.SignInPolicyType = {
 M.UserPoolPolicyType = {
     type = "structure",
     members = {
-        PasswordPolicy = {
-            type = "structure",
-        },
-        SignInPolicy = {
-            type = "structure",
-        },
+        PasswordPolicy = M.PasswordPolicyType,
+        SignInPolicy = M.SignInPolicyType,
     },
 }
 
@@ -3187,7 +3181,7 @@ M.UserAttributeUpdateSettingsType = {
     members = {
         AttributesRequireVerificationBeforeUpdate = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3218,9 +3212,7 @@ M.UserPoolAddOnsType = {
                 required = true,
             },
         },
-        AdvancedSecurityAdditionalFlows = {
-            type = "structure",
-        },
+        AdvancedSecurityAdditionalFlows = M.AdvancedSecurityAdditionalFlowsType,
     },
 }
 
@@ -3268,26 +3260,22 @@ M.CreateUserPoolInput = {
                 required = true,
             },
         },
-        Policies = {
-            type = "structure",
-        },
+        Policies = M.UserPoolPolicyType,
         DeletionProtection = {
             type = "string",
         },
-        LambdaConfig = {
-            type = "structure",
-        },
+        LambdaConfig = M.LambdaConfigType,
         AutoVerifiedAttributes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AliasAttributes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         UsernameAttributes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SmsVerificationMessage = {
             type = "string",
@@ -3298,48 +3286,30 @@ M.CreateUserPoolInput = {
         EmailVerificationSubject = {
             type = "string",
         },
-        VerificationMessageTemplate = {
-            type = "structure",
-        },
+        VerificationMessageTemplate = M.VerificationMessageTemplateType,
         SmsAuthenticationMessage = {
             type = "string",
         },
         MfaConfiguration = {
             type = "string",
         },
-        UserAttributeUpdateSettings = {
-            type = "structure",
-        },
-        DeviceConfiguration = {
-            type = "structure",
-        },
-        EmailConfiguration = {
-            type = "structure",
-        },
-        SmsConfiguration = {
-            type = "structure",
-        },
+        UserAttributeUpdateSettings = M.UserAttributeUpdateSettingsType,
+        DeviceConfiguration = M.DeviceConfigurationType,
+        EmailConfiguration = M.EmailConfigurationType,
+        SmsConfiguration = M.SmsConfigurationType,
         UserPoolTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        AdminCreateUserConfig = {
-            type = "structure",
-        },
+        AdminCreateUserConfig = M.AdminCreateUserConfigType,
         Schema = {
             type = "list",
-            member_type = "structure",
+            member = M.SchemaAttributeType,
         },
-        UserPoolAddOns = {
-            type = "structure",
-        },
-        UsernameConfiguration = {
-            type = "structure",
-        },
-        AccountRecoverySetting = {
-            type = "structure",
-        },
+        UserPoolAddOns = M.UserPoolAddOnsType,
+        UsernameConfiguration = M.UsernameConfigurationType,
+        AccountRecoverySetting = M.AccountRecoverySettingType,
         UserPoolTier = {
             type = "string",
         },
@@ -3360,15 +3330,11 @@ M.UserPoolType = {
         Name = {
             type = "string",
         },
-        Policies = {
-            type = "structure",
-        },
+        Policies = M.UserPoolPolicyType,
         DeletionProtection = {
             type = "string",
         },
-        LambdaConfig = {
-            type = "structure",
-        },
+        LambdaConfig = M.LambdaConfigType,
         Status = {
             type = "string",
         },
@@ -3380,19 +3346,19 @@ M.UserPoolType = {
         },
         SchemaAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.SchemaAttributeType,
         },
         AutoVerifiedAttributes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AliasAttributes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         UsernameAttributes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SmsVerificationMessage = {
             type = "string",
@@ -3403,34 +3369,27 @@ M.UserPoolType = {
         EmailVerificationSubject = {
             type = "string",
         },
-        VerificationMessageTemplate = {
-            type = "structure",
-        },
+        VerificationMessageTemplate = M.VerificationMessageTemplateType,
         SmsAuthenticationMessage = {
             type = "string",
         },
-        UserAttributeUpdateSettings = {
-            type = "structure",
-        },
+        UserAttributeUpdateSettings = M.UserAttributeUpdateSettingsType,
         MfaConfiguration = {
             type = "string",
         },
-        DeviceConfiguration = {
-            type = "structure",
-        },
+        DeviceConfiguration = M.DeviceConfigurationType,
         EstimatedNumberOfUsers = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
-        EmailConfiguration = {
-            type = "structure",
-        },
-        SmsConfiguration = {
-            type = "structure",
-        },
+        EmailConfiguration = M.EmailConfigurationType,
+        SmsConfiguration = M.SmsConfigurationType,
         UserPoolTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         SmsConfigurationFailure = {
             type = "string",
@@ -3444,21 +3403,13 @@ M.UserPoolType = {
         CustomDomain = {
             type = "string",
         },
-        AdminCreateUserConfig = {
-            type = "structure",
-        },
-        UserPoolAddOns = {
-            type = "structure",
-        },
-        UsernameConfiguration = {
-            type = "structure",
-        },
+        AdminCreateUserConfig = M.AdminCreateUserConfigType,
+        UserPoolAddOns = M.UserPoolAddOnsType,
+        UsernameConfiguration = M.UsernameConfigurationType,
         Arn = {
             type = "string",
         },
-        AccountRecoverySetting = {
-            type = "structure",
-        },
+        AccountRecoverySetting = M.AccountRecoverySettingType,
         UserPoolTier = {
             type = "string",
         },
@@ -3468,9 +3419,7 @@ M.UserPoolType = {
 M.CreateUserPoolOutput = {
     type = "structure",
     members = {
-        UserPool = {
-            type = "structure",
-        },
+        UserPool = M.UserPoolType,
     },
 }
 
@@ -3542,7 +3491,7 @@ M.RefreshTokenRotationType = {
             },
         },
         RetryGracePeriodSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3586,63 +3535,68 @@ M.CreateUserPoolClientInput = {
         },
         GenerateSecret = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         ClientSecret = {
             type = "string",
         },
         RefreshTokenValidity = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         AccessTokenValidity = {
-            type = "number",
+            type = "integer",
         },
         IdTokenValidity = {
-            type = "number",
+            type = "integer",
         },
-        TokenValidityUnits = {
-            type = "structure",
-        },
+        TokenValidityUnits = M.TokenValidityUnitsType,
         ReadAttributes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         WriteAttributes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ExplicitAuthFlows = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SupportedIdentityProviders = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CallbackURLs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         LogoutURLs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DefaultRedirectURI = {
             type = "string",
         },
         AllowedOAuthFlows = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AllowedOAuthScopes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AllowedOAuthFlowsUserPoolClient = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        AnalyticsConfiguration = {
-            type = "structure",
-        },
+        AnalyticsConfiguration = M.AnalyticsConfigurationType,
         PreventUserExistenceErrors = {
             type = "string",
         },
@@ -3653,11 +3607,9 @@ M.CreateUserPoolClientInput = {
             type = "boolean",
         },
         AuthSessionValidity = {
-            type = "number",
+            type = "integer",
         },
-        RefreshTokenRotation = {
-            type = "structure",
-        },
+        RefreshTokenRotation = M.RefreshTokenRotationType,
     },
 }
 
@@ -3683,58 +3635,60 @@ M.UserPoolClientType = {
             type = "timestamp",
         },
         RefreshTokenValidity = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         AccessTokenValidity = {
-            type = "number",
+            type = "integer",
         },
         IdTokenValidity = {
-            type = "number",
+            type = "integer",
         },
-        TokenValidityUnits = {
-            type = "structure",
-        },
+        TokenValidityUnits = M.TokenValidityUnitsType,
         ReadAttributes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         WriteAttributes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ExplicitAuthFlows = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SupportedIdentityProviders = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CallbackURLs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         LogoutURLs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DefaultRedirectURI = {
             type = "string",
         },
         AllowedOAuthFlows = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AllowedOAuthScopes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AllowedOAuthFlowsUserPoolClient = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
-        AnalyticsConfiguration = {
-            type = "structure",
-        },
+        AnalyticsConfiguration = M.AnalyticsConfigurationType,
         PreventUserExistenceErrors = {
             type = "string",
         },
@@ -3745,20 +3699,16 @@ M.UserPoolClientType = {
             type = "boolean",
         },
         AuthSessionValidity = {
-            type = "number",
+            type = "integer",
         },
-        RefreshTokenRotation = {
-            type = "structure",
-        },
+        RefreshTokenRotation = M.RefreshTokenRotationType,
     },
 }
 
 M.CreateUserPoolClientOutput = {
     type = "structure",
     members = {
-        UserPoolClient = {
-            type = "structure",
-        },
+        UserPoolClient = M.UserPoolClientType,
     },
 }
 
@@ -3810,11 +3760,9 @@ M.CreateUserPoolDomainInput = {
             },
         },
         ManagedLoginVersion = {
-            type = "number",
+            type = "integer",
         },
-        CustomDomainConfig = {
-            type = "structure",
-        },
+        CustomDomainConfig = M.CustomDomainConfigType,
     },
 }
 
@@ -3822,7 +3770,7 @@ M.CreateUserPoolDomainOutput = {
     type = "structure",
     members = {
         ManagedLoginVersion = {
-            type = "number",
+            type = "integer",
         },
         CloudFrontDomain = {
             type = "string",
@@ -3971,7 +3919,7 @@ M.DeleteUserAttributesInput = {
     members = {
         UserAttributeNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4120,12 +4068,9 @@ M.DescribeIdentityProviderInput = {
 M.DescribeIdentityProviderOutput = {
     type = "structure",
     members = {
-        IdentityProvider = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        IdentityProvider = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IdentityProviderType }),
     },
 }
 
@@ -4146,6 +4091,9 @@ M.DescribeManagedLoginBrandingInput = {
         },
         ReturnMergedResources = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -4153,9 +4101,7 @@ M.DescribeManagedLoginBrandingInput = {
 M.DescribeManagedLoginBrandingOutput = {
     type = "structure",
     members = {
-        ManagedLoginBranding = {
-            type = "structure",
-        },
+        ManagedLoginBranding = M.ManagedLoginBrandingType,
     },
 }
 
@@ -4176,6 +4122,9 @@ M.DescribeManagedLoginBrandingByClientInput = {
         },
         ReturnMergedResources = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -4183,9 +4132,7 @@ M.DescribeManagedLoginBrandingByClientInput = {
 M.DescribeManagedLoginBrandingByClientOutput = {
     type = "structure",
     members = {
-        ManagedLoginBranding = {
-            type = "structure",
-        },
+        ManagedLoginBranding = M.ManagedLoginBrandingType,
     },
 }
 
@@ -4210,12 +4157,9 @@ M.DescribeResourceServerInput = {
 M.DescribeResourceServerOutput = {
     type = "structure",
     members = {
-        ResourceServer = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ResourceServer = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResourceServerType }),
     },
 }
 
@@ -4262,14 +4206,11 @@ M.CompromisedCredentialsRiskConfigurationType = {
     members = {
         EventFilter = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        Actions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Actions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CompromisedCredentialsActionsType }),
     },
 }
 
@@ -4278,11 +4219,11 @@ M.RiskExceptionConfigurationType = {
     members = {
         BlockedIPRangeList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SkippedIPRangeList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4296,15 +4237,9 @@ M.RiskConfigurationType = {
         ClientId = {
             type = "string",
         },
-        CompromisedCredentialsRiskConfiguration = {
-            type = "structure",
-        },
-        AccountTakeoverRiskConfiguration = {
-            type = "structure",
-        },
-        RiskExceptionConfiguration = {
-            type = "structure",
-        },
+        CompromisedCredentialsRiskConfiguration = M.CompromisedCredentialsRiskConfigurationType,
+        AccountTakeoverRiskConfiguration = M.AccountTakeoverRiskConfigurationType,
+        RiskExceptionConfiguration = M.RiskExceptionConfigurationType,
         LastModifiedDate = {
             type = "timestamp",
         },
@@ -4314,12 +4249,9 @@ M.RiskConfigurationType = {
 M.DescribeRiskConfigurationOutput = {
     type = "structure",
     members = {
-        RiskConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RiskConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RiskConfigurationType }),
     },
 }
 
@@ -4344,9 +4276,7 @@ M.DescribeTermsInput = {
 M.DescribeTermsOutput = {
     type = "structure",
     members = {
-        Terms = {
-            type = "structure",
-        },
+        Terms = M.TermsType,
     },
 }
 
@@ -4371,9 +4301,7 @@ M.DescribeUserImportJobInput = {
 M.DescribeUserImportJobOutput = {
     type = "structure",
     members = {
-        UserImportJob = {
-            type = "structure",
-        },
+        UserImportJob = M.UserImportJobType,
     },
 }
 
@@ -4392,9 +4320,7 @@ M.DescribeUserPoolInput = {
 M.DescribeUserPoolOutput = {
     type = "structure",
     members = {
-        UserPool = {
-            type = "structure",
-        },
+        UserPool = M.UserPoolType,
     },
 }
 
@@ -4419,9 +4345,7 @@ M.DescribeUserPoolClientInput = {
 M.DescribeUserPoolClientOutput = {
     type = "structure",
     members = {
-        UserPoolClient = {
-            type = "structure",
-        },
+        UserPoolClient = M.UserPoolClientType,
     },
 }
 
@@ -4469,11 +4393,9 @@ M.DomainDescriptionType = {
         Status = {
             type = "string",
         },
-        CustomDomainConfig = {
-            type = "structure",
-        },
+        CustomDomainConfig = M.CustomDomainConfigType,
         ManagedLoginVersion = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4481,9 +4403,7 @@ M.DomainDescriptionType = {
 M.DescribeUserPoolDomainOutput = {
     type = "structure",
     members = {
-        DomainDescription = {
-            type = "structure",
-        },
+        DomainDescription = M.DomainDescriptionType,
     },
 }
 
@@ -4518,22 +4438,18 @@ M.ForgotPasswordInput = {
         SecretHash = {
             type = "string",
         },
-        UserContextData = {
-            type = "structure",
-        },
+        UserContextData = M.UserContextDataType,
         Username = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        AnalyticsMetadata = {
-            type = "structure",
-        },
+        AnalyticsMetadata = M.AnalyticsMetadataType,
         ClientMetadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -4556,9 +4472,7 @@ M.CodeDeliveryDetailsType = {
 M.ForgotPasswordOutput = {
     type = "structure",
     members = {
-        CodeDeliveryDetails = {
-            type = "structure",
-        },
+        CodeDeliveryDetails = M.CodeDeliveryDetailsType,
     },
 }
 
@@ -4582,7 +4496,7 @@ M.GetCSVHeaderOutput = {
         },
         CSVHeader = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4605,12 +4519,9 @@ M.GetDeviceInput = {
 M.GetDeviceOutput = {
     type = "structure",
     members = {
-        Device = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Device = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DeviceType }),
     },
 }
 
@@ -4635,9 +4546,7 @@ M.GetGroupInput = {
 M.GetGroupOutput = {
     type = "structure",
     members = {
-        Group = {
-            type = "structure",
-        },
+        Group = M.GroupType,
     },
 }
 
@@ -4662,12 +4571,9 @@ M.GetIdentityProviderByIdentifierInput = {
 M.GetIdentityProviderByIdentifierOutput = {
     type = "structure",
     members = {
-        IdentityProvider = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        IdentityProvider = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IdentityProviderType }),
     },
 }
 
@@ -4735,15 +4641,9 @@ M.LogConfigurationType = {
                 required = true,
             },
         },
-        CloudWatchLogsConfiguration = {
-            type = "structure",
-        },
-        S3Configuration = {
-            type = "structure",
-        },
-        FirehoseConfiguration = {
-            type = "structure",
-        },
+        CloudWatchLogsConfiguration = M.CloudWatchLogsConfigurationType,
+        S3Configuration = M.S3ConfigurationType,
+        FirehoseConfiguration = M.FirehoseConfigurationType,
     },
 }
 
@@ -4758,7 +4658,7 @@ M.LogDeliveryConfigurationType = {
         },
         LogConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.LogConfigurationType,
             traits = {
                 required = true,
             },
@@ -4769,9 +4669,7 @@ M.LogDeliveryConfigurationType = {
 M.GetLogDeliveryConfigurationOutput = {
     type = "structure",
     members = {
-        LogDeliveryConfiguration = {
-            type = "structure",
-        },
+        LogDeliveryConfiguration = M.LogDeliveryConfigurationType,
     },
 }
 
@@ -4819,8 +4717,8 @@ M.GetTokensFromRefreshTokenInput = {
         },
         ClientMetadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -4828,9 +4726,7 @@ M.GetTokensFromRefreshTokenInput = {
 M.GetTokensFromRefreshTokenOutput = {
     type = "structure",
     members = {
-        AuthenticationResult = {
-            type = "structure",
-        },
+        AuthenticationResult = M.AuthenticationResultType,
     },
 }
 
@@ -4889,12 +4785,9 @@ M.UICustomizationType = {
 M.GetUICustomizationOutput = {
     type = "structure",
     members = {
-        UICustomization = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        UICustomization = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.UICustomizationType }),
     },
 }
 
@@ -4921,21 +4814,21 @@ M.GetUserOutput = {
         },
         UserAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.AttributeType,
             traits = {
                 required = true,
             },
         },
         MFAOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.MFAOptionType,
         },
         PreferredMfaSetting = {
             type = "string",
         },
         UserMFASettingList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4957,8 +4850,8 @@ M.GetUserAttributeVerificationCodeInput = {
         },
         ClientMetadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -4966,9 +4859,7 @@ M.GetUserAttributeVerificationCodeInput = {
 M.GetUserAttributeVerificationCodeOutput = {
     type = "structure",
     members = {
-        CodeDeliveryDetails = {
-            type = "structure",
-        },
+        CodeDeliveryDetails = M.CodeDeliveryDetailsType,
     },
 }
 
@@ -4998,11 +4889,11 @@ M.GetUserAuthFactorsOutput = {
         },
         UserMFASettingList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ConfiguredUserAuthFactors = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -5037,9 +4928,7 @@ M.SmsMfaConfigType = {
         SmsAuthenticationMessage = {
             type = "string",
         },
-        SmsConfiguration = {
-            type = "structure",
-        },
+        SmsConfiguration = M.SmsConfigurationType,
     },
 }
 
@@ -5048,6 +4937,9 @@ M.SoftwareTokenMfaConfigType = {
     members = {
         Enabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -5080,21 +4972,13 @@ M.WebAuthnConfigurationType = {
 M.GetUserPoolMfaConfigOutput = {
     type = "structure",
     members = {
-        SmsMfaConfiguration = {
-            type = "structure",
-        },
-        SoftwareTokenMfaConfiguration = {
-            type = "structure",
-        },
-        EmailMfaConfiguration = {
-            type = "structure",
-        },
+        SmsMfaConfiguration = M.SmsMfaConfigType,
+        SoftwareTokenMfaConfiguration = M.SoftwareTokenMfaConfigType,
+        EmailMfaConfiguration = M.EmailMfaConfigType,
         MfaConfiguration = {
             type = "string",
         },
-        WebAuthnConfiguration = {
-            type = "structure",
-        },
+        WebAuthnConfiguration = M.WebAuthnConfigurationType,
     },
 }
 
@@ -5125,13 +5009,13 @@ M.InitiateAuthInput = {
         },
         AuthParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ClientMetadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ClientId = {
             type = "string",
@@ -5139,12 +5023,8 @@ M.InitiateAuthInput = {
                 required = true,
             },
         },
-        AnalyticsMetadata = {
-            type = "structure",
-        },
-        UserContextData = {
-            type = "structure",
-        },
+        AnalyticsMetadata = M.AnalyticsMetadataType,
+        UserContextData = M.UserContextDataType,
         Session = {
             type = "string",
         },
@@ -5162,15 +5042,13 @@ M.InitiateAuthOutput = {
         },
         ChallengeParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        AuthenticationResult = {
-            type = "structure",
-        },
+        AuthenticationResult = M.AuthenticationResultType,
         AvailableChallenges = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -5185,7 +5063,7 @@ M.ListDevicesInput = {
             },
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         PaginationToken = {
             type = "string",
@@ -5198,7 +5076,7 @@ M.ListDevicesOutput = {
     members = {
         Devices = {
             type = "list",
-            member_type = "structure",
+            member = M.DeviceType,
         },
         PaginationToken = {
             type = "string",
@@ -5216,7 +5094,7 @@ M.ListGroupsInput = {
             },
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -5229,7 +5107,7 @@ M.ListGroupsOutput = {
     members = {
         Groups = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupType,
         },
         NextToken = {
             type = "string",
@@ -5247,7 +5125,7 @@ M.ListIdentityProvidersInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -5278,7 +5156,7 @@ M.ListIdentityProvidersOutput = {
     members = {
         Providers = {
             type = "list",
-            member_type = "structure",
+            member = M.ProviderDescription,
             traits = {
                 required = true,
             },
@@ -5299,7 +5177,7 @@ M.ListResourceServersInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -5312,7 +5190,7 @@ M.ListResourceServersOutput = {
     members = {
         ResourceServers = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceServerType,
             traits = {
                 required = true,
             },
@@ -5340,8 +5218,8 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -5356,7 +5234,7 @@ M.ListTermsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -5405,7 +5283,7 @@ M.ListTermsOutput = {
     members = {
         Terms = {
             type = "list",
-            member_type = "structure",
+            member = M.TermsDescriptionType,
             traits = {
                 required = true,
             },
@@ -5426,7 +5304,7 @@ M.ListUserImportJobsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -5442,7 +5320,7 @@ M.ListUserImportJobsOutput = {
     members = {
         UserImportJobs = {
             type = "list",
-            member_type = "structure",
+            member = M.UserImportJobType,
         },
         PaginationToken = {
             type = "string",
@@ -5460,7 +5338,7 @@ M.ListUserPoolClientsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -5488,7 +5366,7 @@ M.ListUserPoolClientsOutput = {
     members = {
         UserPoolClients = {
             type = "list",
-            member_type = "structure",
+            member = M.UserPoolClientDescription,
         },
         NextToken = {
             type = "string",
@@ -5522,7 +5400,7 @@ M.ListUserPoolClientSecretsOutput = {
     members = {
         ClientSecrets = {
             type = "list",
-            member_type = "structure",
+            member = M.ClientSecretDescriptorType,
         },
         NextToken = {
             type = "string",
@@ -5537,7 +5415,7 @@ M.ListUserPoolsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -5554,9 +5432,7 @@ M.UserPoolDescriptionType = {
         Name = {
             type = "string",
         },
-        LambdaConfig = {
-            type = "structure",
-        },
+        LambdaConfig = M.LambdaConfigType,
         Status = {
             type = "string",
         },
@@ -5574,7 +5450,7 @@ M.ListUserPoolsOutput = {
     members = {
         UserPools = {
             type = "list",
-            member_type = "structure",
+            member = M.UserPoolDescriptionType,
         },
         NextToken = {
             type = "string",
@@ -5593,10 +5469,10 @@ M.ListUsersInput = {
         },
         AttributesToGet = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         PaginationToken = {
             type = "string",
@@ -5612,7 +5488,7 @@ M.ListUsersOutput = {
     members = {
         Users = {
             type = "list",
-            member_type = "structure",
+            member = M.UserType,
         },
         PaginationToken = {
             type = "string",
@@ -5636,7 +5512,7 @@ M.ListUsersInGroupInput = {
             },
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -5649,7 +5525,7 @@ M.ListUsersInGroupOutput = {
     members = {
         Users = {
             type = "list",
-            member_type = "structure",
+            member = M.UserType,
         },
         NextToken = {
             type = "string",
@@ -5670,7 +5546,7 @@ M.ListWebAuthnCredentialsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5701,7 +5577,7 @@ M.WebAuthnCredentialDescription = {
         },
         AuthenticatorTransports = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -5720,7 +5596,7 @@ M.ListWebAuthnCredentialsOutput = {
     members = {
         Credentials = {
             type = "list",
-            member_type = "structure",
+            member = M.WebAuthnCredentialDescription,
             traits = {
                 required = true,
             },
@@ -5743,22 +5619,18 @@ M.ResendConfirmationCodeInput = {
         SecretHash = {
             type = "string",
         },
-        UserContextData = {
-            type = "structure",
-        },
+        UserContextData = M.UserContextDataType,
         Username = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        AnalyticsMetadata = {
-            type = "structure",
-        },
+        AnalyticsMetadata = M.AnalyticsMetadataType,
         ClientMetadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -5766,9 +5638,7 @@ M.ResendConfirmationCodeInput = {
 M.ResendConfirmationCodeOutput = {
     type = "structure",
     members = {
-        CodeDeliveryDetails = {
-            type = "structure",
-        },
+        CodeDeliveryDetails = M.CodeDeliveryDetailsType,
     },
 }
 
@@ -5792,19 +5662,15 @@ M.RespondToAuthChallengeInput = {
         },
         ChallengeResponses = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        AnalyticsMetadata = {
-            type = "structure",
-        },
-        UserContextData = {
-            type = "structure",
-        },
+        AnalyticsMetadata = M.AnalyticsMetadataType,
+        UserContextData = M.UserContextDataType,
         ClientMetadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -5820,12 +5686,10 @@ M.RespondToAuthChallengeOutput = {
         },
         ChallengeParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        AuthenticationResult = {
-            type = "structure",
-        },
+        AuthenticationResult = M.AuthenticationResultType,
     },
 }
 
@@ -5885,7 +5749,7 @@ M.SetLogDeliveryConfigurationInput = {
         },
         LogConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.LogConfigurationType,
             traits = {
                 required = true,
             },
@@ -5896,9 +5760,7 @@ M.SetLogDeliveryConfigurationInput = {
 M.SetLogDeliveryConfigurationOutput = {
     type = "structure",
     members = {
-        LogDeliveryConfiguration = {
-            type = "structure",
-        },
+        LogDeliveryConfiguration = M.LogDeliveryConfigurationType,
     },
 }
 
@@ -5914,27 +5776,18 @@ M.SetRiskConfigurationInput = {
         ClientId = {
             type = "string",
         },
-        CompromisedCredentialsRiskConfiguration = {
-            type = "structure",
-        },
-        AccountTakeoverRiskConfiguration = {
-            type = "structure",
-        },
-        RiskExceptionConfiguration = {
-            type = "structure",
-        },
+        CompromisedCredentialsRiskConfiguration = M.CompromisedCredentialsRiskConfigurationType,
+        AccountTakeoverRiskConfiguration = M.AccountTakeoverRiskConfigurationType,
+        RiskExceptionConfiguration = M.RiskExceptionConfigurationType,
     },
 }
 
 M.SetRiskConfigurationOutput = {
     type = "structure",
     members = {
-        RiskConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RiskConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RiskConfigurationType }),
     },
 }
 
@@ -5962,30 +5815,19 @@ M.SetUICustomizationInput = {
 M.SetUICustomizationOutput = {
     type = "structure",
     members = {
-        UICustomization = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        UICustomization = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.UICustomizationType }),
     },
 }
 
 M.SetUserMFAPreferenceInput = {
     type = "structure",
     members = {
-        SMSMfaSettings = {
-            type = "structure",
-        },
-        SoftwareTokenMfaSettings = {
-            type = "structure",
-        },
-        EmailMfaSettings = {
-            type = "structure",
-        },
-        WebAuthnMfaSettings = {
-            type = "structure",
-        },
+        SMSMfaSettings = M.SMSMfaSettingsType,
+        SoftwareTokenMfaSettings = M.SoftwareTokenMfaSettingsType,
+        EmailMfaSettings = M.EmailMfaSettingsType,
+        WebAuthnMfaSettings = M.WebAuthnMfaSettingsType,
         AccessToken = {
             type = "string",
             traits = {
@@ -6008,42 +5850,26 @@ M.SetUserPoolMfaConfigInput = {
                 required = true,
             },
         },
-        SmsMfaConfiguration = {
-            type = "structure",
-        },
-        SoftwareTokenMfaConfiguration = {
-            type = "structure",
-        },
-        EmailMfaConfiguration = {
-            type = "structure",
-        },
+        SmsMfaConfiguration = M.SmsMfaConfigType,
+        SoftwareTokenMfaConfiguration = M.SoftwareTokenMfaConfigType,
+        EmailMfaConfiguration = M.EmailMfaConfigType,
         MfaConfiguration = {
             type = "string",
         },
-        WebAuthnConfiguration = {
-            type = "structure",
-        },
+        WebAuthnConfiguration = M.WebAuthnConfigurationType,
     },
 }
 
 M.SetUserPoolMfaConfigOutput = {
     type = "structure",
     members = {
-        SmsMfaConfiguration = {
-            type = "structure",
-        },
-        SoftwareTokenMfaConfiguration = {
-            type = "structure",
-        },
-        EmailMfaConfiguration = {
-            type = "structure",
-        },
+        SmsMfaConfiguration = M.SmsMfaConfigType,
+        SoftwareTokenMfaConfiguration = M.SoftwareTokenMfaConfigType,
+        EmailMfaConfiguration = M.EmailMfaConfigType,
         MfaConfiguration = {
             type = "string",
         },
-        WebAuthnConfiguration = {
-            type = "structure",
-        },
+        WebAuthnConfiguration = M.WebAuthnConfigurationType,
     },
 }
 
@@ -6058,7 +5884,7 @@ M.SetUserSettingsInput = {
         },
         MFAOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.MFAOptionType,
             traits = {
                 required = true,
             },
@@ -6093,22 +5919,18 @@ M.SignUpInput = {
         },
         UserAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.AttributeType,
         },
         ValidationData = {
             type = "list",
-            member_type = "structure",
+            member = M.AttributeType,
         },
-        AnalyticsMetadata = {
-            type = "structure",
-        },
-        UserContextData = {
-            type = "structure",
-        },
+        AnalyticsMetadata = M.AnalyticsMetadataType,
+        UserContextData = M.UserContextDataType,
         ClientMetadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -6119,12 +5941,11 @@ M.SignUpOutput = {
         UserConfirmed = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
-        CodeDeliveryDetails = {
-            type = "structure",
-        },
+        CodeDeliveryDetails = M.CodeDeliveryDetailsType,
         UserSub = {
             type = "string",
             traits = {
@@ -6158,9 +5979,7 @@ M.StartUserImportJobInput = {
 M.StartUserImportJobOutput = {
     type = "structure",
     members = {
-        UserImportJob = {
-            type = "structure",
-        },
+        UserImportJob = M.UserImportJobType,
     },
 }
 
@@ -6219,9 +6038,7 @@ M.StopUserImportJobInput = {
 M.StopUserImportJobOutput = {
     type = "structure",
     members = {
-        UserImportJob = {
-            type = "structure",
-        },
+        UserImportJob = M.UserImportJobType,
     },
 }
 
@@ -6236,8 +6053,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -6260,7 +6077,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -6359,7 +6176,7 @@ M.UpdateGroupInput = {
             type = "string",
         },
         Precedence = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -6367,9 +6184,7 @@ M.UpdateGroupInput = {
 M.UpdateGroupOutput = {
     type = "structure",
     members = {
-        Group = {
-            type = "structure",
-        },
+        Group = M.GroupType,
     },
 }
 
@@ -6390,17 +6205,17 @@ M.UpdateIdentityProviderInput = {
         },
         ProviderDetails = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         AttributeMapping = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         IdpIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -6408,12 +6223,9 @@ M.UpdateIdentityProviderInput = {
 M.UpdateIdentityProviderOutput = {
     type = "structure",
     members = {
-        IdentityProvider = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        IdentityProvider = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IdentityProviderType }),
     },
 }
 
@@ -6428,13 +6240,16 @@ M.UpdateManagedLoginBrandingInput = {
         },
         UseCognitoProvidedValues = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Settings = {
             type = "document",
         },
         Assets = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetType,
         },
     },
 }
@@ -6442,9 +6257,7 @@ M.UpdateManagedLoginBrandingInput = {
 M.UpdateManagedLoginBrandingOutput = {
     type = "structure",
     members = {
-        ManagedLoginBranding = {
-            type = "structure",
-        },
+        ManagedLoginBranding = M.ManagedLoginBrandingType,
     },
 }
 
@@ -6471,7 +6284,7 @@ M.UpdateResourceServerInput = {
         },
         Scopes = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceServerScopeType,
         },
     },
 }
@@ -6479,12 +6292,9 @@ M.UpdateResourceServerInput = {
 M.UpdateResourceServerOutput = {
     type = "structure",
     members = {
-        ResourceServer = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ResourceServer = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResourceServerType }),
     },
 }
 
@@ -6514,8 +6324,8 @@ M.UpdateTermsInput = {
         },
         Links = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -6523,9 +6333,7 @@ M.UpdateTermsInput = {
 M.UpdateTermsOutput = {
     type = "structure",
     members = {
-        Terms = {
-            type = "structure",
-        },
+        Terms = M.TermsType,
     },
 }
 
@@ -6534,7 +6342,7 @@ M.UpdateUserAttributesInput = {
     members = {
         UserAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.AttributeType,
             traits = {
                 required = true,
             },
@@ -6547,8 +6355,8 @@ M.UpdateUserAttributesInput = {
         },
         ClientMetadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -6558,7 +6366,7 @@ M.UpdateUserAttributesOutput = {
     members = {
         CodeDeliveryDetailsList = {
             type = "list",
-            member_type = "structure",
+            member = M.CodeDeliveryDetailsType,
         },
     },
 }
@@ -6572,18 +6380,14 @@ M.UpdateUserPoolInput = {
                 required = true,
             },
         },
-        Policies = {
-            type = "structure",
-        },
+        Policies = M.UserPoolPolicyType,
         DeletionProtection = {
             type = "string",
         },
-        LambdaConfig = {
-            type = "structure",
-        },
+        LambdaConfig = M.LambdaConfigType,
         AutoVerifiedAttributes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SmsVerificationMessage = {
             type = "string",
@@ -6594,41 +6398,25 @@ M.UpdateUserPoolInput = {
         EmailVerificationSubject = {
             type = "string",
         },
-        VerificationMessageTemplate = {
-            type = "structure",
-        },
+        VerificationMessageTemplate = M.VerificationMessageTemplateType,
         SmsAuthenticationMessage = {
             type = "string",
         },
-        UserAttributeUpdateSettings = {
-            type = "structure",
-        },
+        UserAttributeUpdateSettings = M.UserAttributeUpdateSettingsType,
         MfaConfiguration = {
             type = "string",
         },
-        DeviceConfiguration = {
-            type = "structure",
-        },
-        EmailConfiguration = {
-            type = "structure",
-        },
-        SmsConfiguration = {
-            type = "structure",
-        },
+        DeviceConfiguration = M.DeviceConfigurationType,
+        EmailConfiguration = M.EmailConfigurationType,
+        SmsConfiguration = M.SmsConfigurationType,
         UserPoolTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        AdminCreateUserConfig = {
-            type = "structure",
-        },
-        UserPoolAddOns = {
-            type = "structure",
-        },
-        AccountRecoverySetting = {
-            type = "structure",
-        },
+        AdminCreateUserConfig = M.AdminCreateUserConfigType,
+        UserPoolAddOns = M.UserPoolAddOnsType,
+        AccountRecoverySetting = M.AccountRecoverySettingType,
         PoolName = {
             type = "string",
         },
@@ -6661,58 +6449,60 @@ M.UpdateUserPoolClientInput = {
             type = "string",
         },
         RefreshTokenValidity = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         AccessTokenValidity = {
-            type = "number",
+            type = "integer",
         },
         IdTokenValidity = {
-            type = "number",
+            type = "integer",
         },
-        TokenValidityUnits = {
-            type = "structure",
-        },
+        TokenValidityUnits = M.TokenValidityUnitsType,
         ReadAttributes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         WriteAttributes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ExplicitAuthFlows = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SupportedIdentityProviders = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CallbackURLs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         LogoutURLs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DefaultRedirectURI = {
             type = "string",
         },
         AllowedOAuthFlows = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AllowedOAuthScopes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AllowedOAuthFlowsUserPoolClient = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        AnalyticsConfiguration = {
-            type = "structure",
-        },
+        AnalyticsConfiguration = M.AnalyticsConfigurationType,
         PreventUserExistenceErrors = {
             type = "string",
         },
@@ -6723,20 +6513,16 @@ M.UpdateUserPoolClientInput = {
             type = "boolean",
         },
         AuthSessionValidity = {
-            type = "number",
+            type = "integer",
         },
-        RefreshTokenRotation = {
-            type = "structure",
-        },
+        RefreshTokenRotation = M.RefreshTokenRotationType,
     },
 }
 
 M.UpdateUserPoolClientOutput = {
     type = "structure",
     members = {
-        UserPoolClient = {
-            type = "structure",
-        },
+        UserPoolClient = M.UserPoolClientType,
     },
 }
 
@@ -6756,11 +6542,9 @@ M.UpdateUserPoolDomainInput = {
             },
         },
         ManagedLoginVersion = {
-            type = "number",
+            type = "integer",
         },
-        CustomDomainConfig = {
-            type = "structure",
-        },
+        CustomDomainConfig = M.CustomDomainConfigType,
     },
 }
 
@@ -6768,7 +6552,7 @@ M.UpdateUserPoolDomainOutput = {
     type = "structure",
     members = {
         ManagedLoginVersion = {
-            type = "number",
+            type = "integer",
         },
         CloudFrontDomain = {
             type = "string",

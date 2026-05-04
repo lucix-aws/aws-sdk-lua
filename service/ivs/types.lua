@@ -81,15 +81,15 @@ M.AdConfiguration = {
         },
         mediaTailorPlaybackConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.MediaTailorPlaybackConfiguration,
             traits = {
                 required = true,
             },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -108,15 +108,15 @@ M.AdConfigurationSummary = {
         },
         mediaTailorPlaybackConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.MediaTailorPlaybackConfiguration,
             traits = {
                 required = true,
             },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -126,7 +126,7 @@ M.BatchGetChannelInput = {
     members = {
         arns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -160,6 +160,9 @@ M.MultitrackInputConfiguration = {
     members = {
         enabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         policy = {
             type = "string",
@@ -220,27 +223,29 @@ M.Channel = {
         },
         authorized = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         insecureIngest = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         preset = {
             type = "string",
         },
-        srt = {
-            type = "structure",
-        },
+        srt = M.Srt,
         playbackRestrictionPolicyArn = {
             type = "string",
         },
-        multitrackInputConfiguration = {
-            type = "structure",
-        },
+        multitrackInputConfiguration = M.MultitrackInputConfiguration,
         containerFormat = {
             type = "string",
         },
@@ -312,11 +317,11 @@ M.BatchGetChannelOutput = {
         },
         channels = {
             type = "list",
-            member_type = "structure",
+            member = M.Channel,
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchError,
         },
     },
 }
@@ -442,7 +447,7 @@ M.BatchGetStreamKeyInput = {
     members = {
         arns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -464,8 +469,8 @@ M.StreamKey = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -517,11 +522,11 @@ M.BatchGetStreamKeyOutput = {
         },
         streamKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.StreamKey,
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchError,
         },
     },
 }
@@ -542,7 +547,10 @@ M.BatchStartViewerSessionRevocationViewerSession = {
             },
         },
         viewerSessionVersionsLessThanOrEqualTo = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -552,7 +560,7 @@ M.BatchStartViewerSessionRevocationInput = {
     members = {
         viewerSessions = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchStartViewerSessionRevocationViewerSession,
             traits = {
                 required = true,
             },
@@ -631,7 +639,7 @@ M.BatchStartViewerSessionRevocationOutput = {
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchStartViewerSessionRevocationError,
         },
     },
 }
@@ -818,15 +826,15 @@ M.CreateAdConfigurationInput = {
         },
         mediaTailorPlaybackConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.MediaTailorPlaybackConfiguration,
             traits = {
                 required = true,
             },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -834,12 +842,9 @@ M.CreateAdConfigurationInput = {
 M.CreateAdConfigurationOutput = {
     type = "structure",
     members = {
-        adConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        adConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AdConfiguration }),
     },
 }
 
@@ -1031,17 +1036,23 @@ M.CreateChannelInput = {
         },
         authorized = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         recordingConfigurationArn = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         insecureIngest = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         preset = {
             type = "string",
@@ -1049,9 +1060,7 @@ M.CreateChannelInput = {
         playbackRestrictionPolicyArn = {
             type = "string",
         },
-        multitrackInputConfiguration = {
-            type = "structure",
-        },
+        multitrackInputConfiguration = M.MultitrackInputConfiguration,
         containerFormat = {
             type = "string",
         },
@@ -1064,12 +1073,8 @@ M.CreateChannelInput = {
 M.CreateChannelOutput = {
     type = "structure",
     members = {
-        channel = {
-            type = "structure",
-        },
-        streamKey = {
-            type = "structure",
-        },
+        channel = M.Channel,
+        streamKey = M.StreamKey,
     },
 }
 
@@ -1078,11 +1083,11 @@ M.CreatePlaybackRestrictionPolicyInput = {
     members = {
         allowedCountries = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         allowedOrigins = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         enableStrictOriginEnforcement = {
             type = "boolean",
@@ -1092,8 +1097,8 @@ M.CreatePlaybackRestrictionPolicyInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1109,14 +1114,14 @@ M.PlaybackRestrictionPolicy = {
         },
         allowedCountries = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         allowedOrigins = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1129,8 +1134,8 @@ M.PlaybackRestrictionPolicy = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1138,9 +1143,7 @@ M.PlaybackRestrictionPolicy = {
 M.CreatePlaybackRestrictionPolicyOutput = {
     type = "structure",
     members = {
-        playbackRestrictionPolicy = {
-            type = "structure",
-        },
+        playbackRestrictionPolicy = M.PlaybackRestrictionPolicy,
     },
 }
 
@@ -1159,9 +1162,7 @@ M.S3DestinationConfiguration = {
 M.DestinationConfiguration = {
     type = "structure",
     members = {
-        s3 = {
-            type = "structure",
-        },
+        s3 = M.S3DestinationConfiguration,
     },
 }
 
@@ -1186,7 +1187,7 @@ M.RenditionConfiguration = {
         },
         renditions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1215,14 +1216,14 @@ M.ThumbnailConfiguration = {
             type = "string",
         },
         targetIntervalSeconds = {
-            type = "number",
+            type = "long",
         },
         resolution = {
             type = "string",
         },
         storage = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1233,26 +1234,22 @@ M.CreateRecordingConfigurationInput = {
         name = {
             type = "string",
         },
-        destinationConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        destinationConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DestinationConfiguration }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        thumbnailConfiguration = {
-            type = "structure",
-        },
+        thumbnailConfiguration = M.ThumbnailConfiguration,
         recordingReconnectWindowSeconds = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
-        renditionConfiguration = {
-            type = "structure",
-        },
+        renditionConfiguration = M.RenditionConfiguration,
     },
 }
 
@@ -1274,12 +1271,9 @@ M.RecordingConfiguration = {
         name = {
             type = "string",
         },
-        destinationConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        destinationConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DestinationConfiguration }),
         state = {
             type = "string",
             traits = {
@@ -1288,27 +1282,24 @@ M.RecordingConfiguration = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        thumbnailConfiguration = {
-            type = "structure",
-        },
+        thumbnailConfiguration = M.ThumbnailConfiguration,
         recordingReconnectWindowSeconds = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
-        renditionConfiguration = {
-            type = "structure",
-        },
+        renditionConfiguration = M.RenditionConfiguration,
     },
 }
 
 M.CreateRecordingConfigurationOutput = {
     type = "structure",
     members = {
-        recordingConfiguration = {
-            type = "structure",
-        },
+        recordingConfiguration = M.RecordingConfiguration,
     },
 }
 
@@ -1323,8 +1314,8 @@ M.CreateStreamKeyInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1332,9 +1323,7 @@ M.CreateStreamKeyInput = {
 M.CreateStreamKeyOutput = {
     type = "structure",
     members = {
-        streamKey = {
-            type = "structure",
-        },
+        streamKey = M.StreamKey,
     },
 }
 
@@ -1449,9 +1438,7 @@ M.GetAdConfigurationInput = {
 M.GetAdConfigurationOutput = {
     type = "structure",
     members = {
-        adConfiguration = {
-            type = "structure",
-        },
+        adConfiguration = M.AdConfiguration,
     },
 }
 
@@ -1470,9 +1457,7 @@ M.GetChannelInput = {
 M.GetChannelOutput = {
     type = "structure",
     members = {
-        channel = {
-            type = "structure",
-        },
+        channel = M.Channel,
     },
 }
 
@@ -1502,8 +1487,8 @@ M.PlaybackKeyPair = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1511,9 +1496,7 @@ M.PlaybackKeyPair = {
 M.GetPlaybackKeyPairOutput = {
     type = "structure",
     members = {
-        keyPair = {
-            type = "structure",
-        },
+        keyPair = M.PlaybackKeyPair,
     },
 }
 
@@ -1532,9 +1515,7 @@ M.GetPlaybackRestrictionPolicyInput = {
 M.GetPlaybackRestrictionPolicyOutput = {
     type = "structure",
     members = {
-        playbackRestrictionPolicy = {
-            type = "structure",
-        },
+        playbackRestrictionPolicy = M.PlaybackRestrictionPolicy,
     },
 }
 
@@ -1553,9 +1534,7 @@ M.GetRecordingConfigurationInput = {
 M.GetRecordingConfigurationOutput = {
     type = "structure",
     members = {
-        recordingConfiguration = {
-            type = "structure",
-        },
+        recordingConfiguration = M.RecordingConfiguration,
     },
 }
 
@@ -1662,7 +1641,10 @@ M.Stream = {
             type = "string",
         },
         viewerCount = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1670,9 +1652,7 @@ M.Stream = {
 M.GetStreamOutput = {
     type = "structure",
     members = {
-        stream = {
-            type = "structure",
-        },
+        stream = M.Stream,
     },
 }
 
@@ -1691,9 +1671,7 @@ M.GetStreamKeyInput = {
 M.GetStreamKeyOutput = {
     type = "structure",
     members = {
-        streamKey = {
-            type = "structure",
-        },
+        streamKey = M.StreamKey,
     },
 }
 
@@ -1719,13 +1697,22 @@ M.AudioConfiguration = {
             type = "string",
         },
         targetBitrate = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         sampleRate = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         channels = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         track = {
             type = "string",
@@ -1749,16 +1736,28 @@ M.VideoConfiguration = {
             type = "string",
         },
         targetBitrate = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         targetFramerate = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         videoHeight = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         videoWidth = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         level = {
             type = "string",
@@ -1775,12 +1774,8 @@ M.VideoConfiguration = {
 M.IngestConfiguration = {
     type = "structure",
     members = {
-        video = {
-            type = "structure",
-        },
-        audio = {
-            type = "structure",
-        },
+        video = M.VideoConfiguration,
+        audio = M.AudioConfiguration,
     },
 }
 
@@ -1789,14 +1784,14 @@ M.IngestConfigurations = {
     members = {
         videoConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.VideoConfiguration,
             traits = {
                 required = true,
             },
         },
         audioConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.AudioConfiguration,
             traits = {
                 required = true,
             },
@@ -1834,21 +1829,13 @@ M.StreamSession = {
         endTime = {
             type = "timestamp",
         },
-        channel = {
-            type = "structure",
-        },
-        ingestConfiguration = {
-            type = "structure",
-        },
-        ingestConfigurations = {
-            type = "structure",
-        },
-        recordingConfiguration = {
-            type = "structure",
-        },
+        channel = M.Channel,
+        ingestConfiguration = M.IngestConfiguration,
+        ingestConfigurations = M.IngestConfigurations,
+        recordingConfiguration = M.RecordingConfiguration,
         truncatedEvents = {
             type = "list",
-            member_type = "structure",
+            member = M.StreamEvent,
         },
     },
 }
@@ -1856,9 +1843,7 @@ M.StreamSession = {
 M.GetStreamSessionOutput = {
     type = "structure",
     members = {
-        streamSession = {
-            type = "structure",
-        },
+        streamSession = M.StreamSession,
     },
 }
 
@@ -1876,8 +1861,8 @@ M.ImportPlaybackKeyPairInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1885,9 +1870,7 @@ M.ImportPlaybackKeyPairInput = {
 M.ImportPlaybackKeyPairOutput = {
     type = "structure",
     members = {
-        keyPair = {
-            type = "structure",
-        },
+        keyPair = M.PlaybackKeyPair,
     },
 }
 
@@ -1901,7 +1884,7 @@ M.InsertAdBreakInput = {
             },
         },
         durationSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1925,7 +1908,7 @@ M.ListAdConfigurationsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1935,7 +1918,7 @@ M.ListAdConfigurationsOutput = {
     members = {
         adConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.AdConfigurationSummary,
             traits = {
                 required = true,
             },
@@ -1965,7 +1948,7 @@ M.ListChannelsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1984,17 +1967,23 @@ M.ChannelSummary = {
         },
         authorized = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         recordingConfigurationArn = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         insecureIngest = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         type = {
             type = "string",
@@ -2016,7 +2005,7 @@ M.ListChannelsOutput = {
     members = {
         channels = {
             type = "list",
-            member_type = "structure",
+            member = M.ChannelSummary,
             traits = {
                 required = true,
             },
@@ -2034,7 +2023,7 @@ M.ListPlaybackKeyPairsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2050,8 +2039,8 @@ M.PlaybackKeyPairSummary = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2061,7 +2050,7 @@ M.ListPlaybackKeyPairsOutput = {
     members = {
         keyPairs = {
             type = "list",
-            member_type = "structure",
+            member = M.PlaybackKeyPairSummary,
             traits = {
                 required = true,
             },
@@ -2079,7 +2068,7 @@ M.ListPlaybackRestrictionPoliciesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2095,14 +2084,14 @@ M.PlaybackRestrictionPolicySummary = {
         },
         allowedCountries = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         allowedOrigins = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2115,8 +2104,8 @@ M.PlaybackRestrictionPolicySummary = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2126,7 +2115,7 @@ M.ListPlaybackRestrictionPoliciesOutput = {
     members = {
         playbackRestrictionPolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.PlaybackRestrictionPolicySummary,
             traits = {
                 required = true,
             },
@@ -2144,7 +2133,7 @@ M.ListRecordingConfigurationsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2161,12 +2150,9 @@ M.RecordingConfigurationSummary = {
         name = {
             type = "string",
         },
-        destinationConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        destinationConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DestinationConfiguration }),
         state = {
             type = "string",
             traits = {
@@ -2175,8 +2161,8 @@ M.RecordingConfigurationSummary = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2186,7 +2172,7 @@ M.ListRecordingConfigurationsOutput = {
     members = {
         recordingConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.RecordingConfigurationSummary,
             traits = {
                 required = true,
             },
@@ -2210,7 +2196,7 @@ M.ListStreamKeysInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2226,8 +2212,8 @@ M.StreamKeySummary = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2237,7 +2223,7 @@ M.ListStreamKeysOutput = {
     members = {
         streamKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.StreamKeySummary,
             traits = {
                 required = true,
             },
@@ -2260,14 +2246,12 @@ M.StreamFilters = {
 M.ListStreamsInput = {
     type = "structure",
     members = {
-        filterBy = {
-            type = "structure",
-        },
+        filterBy = M.StreamFilters,
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2288,7 +2272,10 @@ M.StreamSummary = {
             type = "string",
         },
         viewerCount = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         startTime = {
             type = "timestamp",
@@ -2301,7 +2288,7 @@ M.ListStreamsOutput = {
     members = {
         streams = {
             type = "list",
-            member_type = "structure",
+            member = M.StreamSummary,
             traits = {
                 required = true,
             },
@@ -2325,7 +2312,7 @@ M.ListStreamSessionsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2344,6 +2331,9 @@ M.StreamSessionSummary = {
         },
         hasErrorEvent = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -2353,7 +2343,7 @@ M.ListStreamSessionsOutput = {
     members = {
         streamSessions = {
             type = "list",
-            member_type = "structure",
+            member = M.StreamSessionSummary,
             traits = {
                 required = true,
             },
@@ -2382,8 +2372,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2429,7 +2419,10 @@ M.StartViewerSessionRevocationInput = {
             },
         },
         viewerSessionVersionsLessThanOrEqualTo = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2524,8 +2517,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2549,7 +2542,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -2582,12 +2575,18 @@ M.UpdateChannelInput = {
         },
         authorized = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         recordingConfigurationArn = {
             type = "string",
         },
         insecureIngest = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         preset = {
             type = "string",
@@ -2595,9 +2594,7 @@ M.UpdateChannelInput = {
         playbackRestrictionPolicyArn = {
             type = "string",
         },
-        multitrackInputConfiguration = {
-            type = "structure",
-        },
+        multitrackInputConfiguration = M.MultitrackInputConfiguration,
         containerFormat = {
             type = "string",
         },
@@ -2610,9 +2607,7 @@ M.UpdateChannelInput = {
 M.UpdateChannelOutput = {
     type = "structure",
     members = {
-        channel = {
-            type = "structure",
-        },
+        channel = M.Channel,
     },
 }
 
@@ -2627,11 +2622,11 @@ M.UpdatePlaybackRestrictionPolicyInput = {
         },
         allowedCountries = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         allowedOrigins = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         enableStrictOriginEnforcement = {
             type = "boolean",
@@ -2645,9 +2640,7 @@ M.UpdatePlaybackRestrictionPolicyInput = {
 M.UpdatePlaybackRestrictionPolicyOutput = {
     type = "structure",
     members = {
-        playbackRestrictionPolicy = {
-            type = "structure",
-        },
+        playbackRestrictionPolicy = M.PlaybackRestrictionPolicy,
     },
 }
 

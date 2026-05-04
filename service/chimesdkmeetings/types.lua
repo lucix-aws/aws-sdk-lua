@@ -43,9 +43,7 @@ M.Attendee = {
         JoinToken = {
             type = "string",
         },
-        Capabilities = {
-            type = "structure",
-        },
+        Capabilities = M.AttendeeCapabilities,
     },
 }
 
@@ -53,7 +51,7 @@ M.AttendeeFeatures = {
     type = "structure",
     members = {
         MaxCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -109,9 +107,7 @@ M.CreateAttendeeRequestItem = {
                 required = true,
             },
         },
-        Capabilities = {
-            type = "structure",
-        },
+        Capabilities = M.AttendeeCapabilities,
     },
 }
 
@@ -127,7 +123,7 @@ M.BatchCreateAttendeeInput = {
         },
         Attendees = {
             type = "list",
-            member_type = "structure",
+            member = M.CreateAttendeeRequestItem,
             traits = {
                 required = true,
             },
@@ -155,11 +151,11 @@ M.BatchCreateAttendeeOutput = {
     members = {
         Attendees = {
             type = "list",
-            member_type = "structure",
+            member = M.Attendee,
         },
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.CreateAttendeeError,
         },
     },
 }
@@ -310,17 +306,14 @@ M.BatchUpdateAttendeeCapabilitiesExceptInput = {
         },
         ExcludedAttendeeIds = {
             type = "list",
-            member_type = "structure",
+            member = M.AttendeeIdItem,
             traits = {
                 required = true,
             },
         },
-        Capabilities = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Capabilities = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AttendeeCapabilities }),
     },
 }
 
@@ -360,18 +353,14 @@ M.CreateAttendeeInput = {
                 required = true,
             },
         },
-        Capabilities = {
-            type = "structure",
-        },
+        Capabilities = M.AttendeeCapabilities,
     },
 }
 
 M.CreateAttendeeOutput = {
     type = "structure",
     members = {
-        Attendee = {
-            type = "structure",
-        },
+        Attendee = M.Attendee,
     },
 }
 
@@ -413,18 +402,10 @@ M.VideoFeatures = {
 M.MeetingFeaturesConfiguration = {
     type = "structure",
     members = {
-        Audio = {
-            type = "structure",
-        },
-        Video = {
-            type = "structure",
-        },
-        Content = {
-            type = "structure",
-        },
-        Attendee = {
-            type = "structure",
-        },
+        Audio = M.AudioFeatures,
+        Video = M.VideoFeatures,
+        Content = M.ContentFeatures,
+        Attendee = M.AttendeeFeatures,
     },
 }
 
@@ -485,22 +466,18 @@ M.CreateMeetingInput = {
                 required = true,
             },
         },
-        NotificationsConfiguration = {
-            type = "structure",
-        },
-        MeetingFeatures = {
-            type = "structure",
-        },
+        NotificationsConfiguration = M.NotificationsConfiguration,
+        MeetingFeatures = M.MeetingFeaturesConfiguration,
         PrimaryMeetingId = {
             type = "string",
         },
         TenantIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         MediaPlacementNetworkType = {
             type = "string",
@@ -553,18 +530,14 @@ M.Meeting = {
         MediaRegion = {
             type = "string",
         },
-        MediaPlacement = {
-            type = "structure",
-        },
-        MeetingFeatures = {
-            type = "structure",
-        },
+        MediaPlacement = M.MediaPlacement,
+        MeetingFeatures = M.MeetingFeaturesConfiguration,
         PrimaryMeetingId = {
             type = "string",
         },
         TenantIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MeetingArn = {
             type = "string",
@@ -575,9 +548,7 @@ M.Meeting = {
 M.CreateMeetingOutput = {
     type = "structure",
     members = {
-        Meeting = {
-            type = "structure",
-        },
+        Meeting = M.Meeting,
     },
 }
 
@@ -605,15 +576,11 @@ M.CreateMeetingWithAttendeesInput = {
                 required = true,
             },
         },
-        MeetingFeatures = {
-            type = "structure",
-        },
-        NotificationsConfiguration = {
-            type = "structure",
-        },
+        MeetingFeatures = M.MeetingFeaturesConfiguration,
+        NotificationsConfiguration = M.NotificationsConfiguration,
         Attendees = {
             type = "list",
-            member_type = "structure",
+            member = M.CreateAttendeeRequestItem,
             traits = {
                 required = true,
             },
@@ -623,11 +590,11 @@ M.CreateMeetingWithAttendeesInput = {
         },
         TenantIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         MediaPlacementNetworkType = {
             type = "string",
@@ -638,16 +605,14 @@ M.CreateMeetingWithAttendeesInput = {
 M.CreateMeetingWithAttendeesOutput = {
     type = "structure",
     members = {
-        Meeting = {
-            type = "structure",
-        },
+        Meeting = M.Meeting,
         Attendees = {
             type = "list",
-            member_type = "structure",
+            member = M.Attendee,
         },
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.CreateAttendeeError,
         },
     },
 }
@@ -716,9 +681,7 @@ M.GetAttendeeInput = {
 M.GetAttendeeOutput = {
     type = "structure",
     members = {
-        Attendee = {
-            type = "structure",
-        },
+        Attendee = M.Attendee,
     },
 }
 
@@ -738,9 +701,7 @@ M.GetMeetingInput = {
 M.GetMeetingOutput = {
     type = "structure",
     members = {
-        Meeting = {
-            type = "structure",
-        },
+        Meeting = M.Meeting,
     },
 }
 
@@ -761,7 +722,7 @@ M.ListAttendeesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -774,7 +735,7 @@ M.ListAttendeesOutput = {
     members = {
         Attendees = {
             type = "list",
-            member_type = "structure",
+            member = M.Attendee,
         },
         NextToken = {
             type = "string",
@@ -800,7 +761,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -962,6 +923,9 @@ M.EngineTranscribeSettings = {
         },
         EnablePartialResultsStabilization = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         PartialResultsStability = {
             type = "string",
@@ -980,6 +944,9 @@ M.EngineTranscribeSettings = {
         },
         IdentifyLanguage = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         LanguageOptions = {
             type = "string",
@@ -999,12 +966,8 @@ M.EngineTranscribeSettings = {
 M.TranscriptionConfiguration = {
     type = "structure",
     members = {
-        EngineTranscribeSettings = {
-            type = "structure",
-        },
-        EngineTranscribeMedicalSettings = {
-            type = "structure",
-        },
+        EngineTranscribeSettings = M.EngineTranscribeSettings,
+        EngineTranscribeMedicalSettings = M.EngineTranscribeMedicalSettings,
     },
 }
 
@@ -1018,12 +981,9 @@ M.StartMeetingTranscriptionInput = {
                 required = true,
             },
         },
-        TranscriptionConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TranscriptionConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TranscriptionConfiguration }),
     },
 }
 
@@ -1059,7 +1019,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -1101,7 +1061,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1130,21 +1090,16 @@ M.UpdateAttendeeCapabilitiesInput = {
                 required = true,
             },
         },
-        Capabilities = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Capabilities = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AttendeeCapabilities }),
     },
 }
 
 M.UpdateAttendeeCapabilitiesOutput = {
     type = "structure",
     members = {
-        Attendee = {
-            type = "structure",
-        },
+        Attendee = M.Attendee,
     },
 }
 

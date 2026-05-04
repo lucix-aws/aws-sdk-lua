@@ -49,6 +49,9 @@ M.Address = {
         },
         IsRestricted = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Type = {
             type = "string",
@@ -124,12 +127,9 @@ M.CancelJobOutput = {
 M.CreateAddressInput = {
     type = "structure",
     members = {
-        Address = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Address = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Address }),
     },
 }
 
@@ -192,10 +192,13 @@ M.Notification = {
         },
         JobStatesToNotify = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NotifyAll = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         DevicePickupSnsTopicARN = {
             type = "string",
@@ -223,7 +226,10 @@ M.NFSOnDeviceServiceConfiguration = {
     type = "structure",
     members = {
         StorageLimit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         StorageUnit = {
             type = "string",
@@ -235,16 +241,16 @@ M.S3OnDeviceServiceConfiguration = {
     type = "structure",
     members = {
         StorageLimit = {
-            type = "number",
+            type = "double",
         },
         StorageUnit = {
             type = "string",
         },
         ServiceSize = {
-            type = "number",
+            type = "integer",
         },
         FaultTolerance = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -253,7 +259,10 @@ M.TGWOnDeviceServiceConfiguration = {
     type = "structure",
     members = {
         StorageLimit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         StorageUnit = {
             type = "string",
@@ -264,18 +273,10 @@ M.TGWOnDeviceServiceConfiguration = {
 M.OnDeviceServiceConfiguration = {
     type = "structure",
     members = {
-        NFSOnDeviceService = {
-            type = "structure",
-        },
-        TGWOnDeviceService = {
-            type = "structure",
-        },
-        EKSOnDeviceService = {
-            type = "structure",
-        },
-        S3OnDeviceService = {
-            type = "structure",
-        },
+        NFSOnDeviceService = M.NFSOnDeviceServiceConfiguration,
+        TGWOnDeviceService = M.TGWOnDeviceServiceConfiguration,
+        EKSOnDeviceService = M.EKSOnDeviceServiceConfiguration,
+        S3OnDeviceService = M.S3OnDeviceServiceConfiguration,
     },
 }
 
@@ -317,7 +318,7 @@ M.LambdaResource = {
         },
         EventTriggers = {
             type = "list",
-            member_type = "structure",
+            member = M.EventTriggerDefinition,
         },
     },
 }
@@ -363,12 +364,10 @@ M.S3Resource = {
         BucketArn = {
             type = "string",
         },
-        KeyRange = {
-            type = "structure",
-        },
+        KeyRange = M.KeyRange,
         TargetOnDeviceServices = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetOnDeviceService,
         },
     },
 }
@@ -378,15 +377,15 @@ M.JobResource = {
     members = {
         S3Resources = {
             type = "list",
-            member_type = "structure",
+            member = M.S3Resource,
         },
         LambdaResources = {
             type = "list",
-            member_type = "structure",
+            member = M.LambdaResource,
         },
         Ec2AmiResources = {
             type = "list",
-            member_type = "structure",
+            member = M.Ec2AmiResource,
         },
     },
 }
@@ -437,9 +436,7 @@ M.INDTaxDocuments = {
 M.TaxDocuments = {
     type = "structure",
     members = {
-        IND = {
-            type = "structure",
-        },
+        IND = M.INDTaxDocuments,
     },
 }
 
@@ -452,12 +449,8 @@ M.CreateClusterInput = {
                 required = true,
             },
         },
-        Resources = {
-            type = "structure",
-        },
-        OnDeviceServiceConfiguration = {
-            type = "structure",
-        },
+        Resources = M.JobResource,
+        OnDeviceServiceConfiguration = M.OnDeviceServiceConfiguration,
         Description = {
             type = "string",
         },
@@ -485,27 +478,26 @@ M.CreateClusterInput = {
                 required = true,
             },
         },
-        Notification = {
-            type = "structure",
-        },
+        Notification = M.Notification,
         ForwardingAddressId = {
             type = "string",
         },
-        TaxDocuments = {
-            type = "structure",
-        },
+        TaxDocuments = M.TaxDocuments,
         RemoteManagement = {
             type = "string",
         },
         InitialClusterSize = {
-            type = "number",
+            type = "integer",
         },
         ForceCreateJobs = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         LongTermPricingIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SnowballCapacityPreference = {
             type = "string",
@@ -524,6 +516,9 @@ M.JobListEntry = {
         },
         IsMaster = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         JobType = {
             type = "string",
@@ -548,7 +543,7 @@ M.CreateClusterOutput = {
         },
         JobListEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.JobListEntry,
         },
     },
 }
@@ -588,6 +583,9 @@ M.WirelessConnection = {
     members = {
         IsWifiEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -595,18 +593,14 @@ M.WirelessConnection = {
 M.SnowconeDeviceConfiguration = {
     type = "structure",
     members = {
-        WirelessConnection = {
-            type = "structure",
-        },
+        WirelessConnection = M.WirelessConnection,
     },
 }
 
 M.DeviceConfiguration = {
     type = "structure",
     members = {
-        SnowconeDeviceConfiguration = {
-            type = "structure",
-        },
+        SnowconeDeviceConfiguration = M.SnowconeDeviceConfiguration,
     },
 }
 
@@ -651,12 +645,8 @@ M.CreateJobInput = {
         JobType = {
             type = "string",
         },
-        Resources = {
-            type = "structure",
-        },
-        OnDeviceServiceConfiguration = {
-            type = "structure",
-        },
+        Resources = M.JobResource,
+        OnDeviceServiceConfiguration = M.OnDeviceServiceConfiguration,
         Description = {
             type = "string",
         },
@@ -675,9 +665,7 @@ M.CreateJobInput = {
         ShippingOption = {
             type = "string",
         },
-        Notification = {
-            type = "structure",
-        },
+        Notification = M.Notification,
         ClusterId = {
             type = "string",
         },
@@ -687,12 +675,8 @@ M.CreateJobInput = {
         ForwardingAddressId = {
             type = "string",
         },
-        TaxDocuments = {
-            type = "structure",
-        },
-        DeviceConfiguration = {
-            type = "structure",
-        },
+        TaxDocuments = M.TaxDocuments,
+        DeviceConfiguration = M.DeviceConfiguration,
         RemoteManagement = {
             type = "string",
         },
@@ -702,9 +686,7 @@ M.CreateJobInput = {
         ImpactLevel = {
             type = "string",
         },
-        PickupDetails = {
-            type = "structure",
-        },
+        PickupDetails = M.PickupDetails,
     },
 }
 
@@ -822,9 +804,7 @@ M.DescribeAddressInput = {
 M.DescribeAddressOutput = {
     type = "structure",
     members = {
-        Address = {
-            type = "structure",
-        },
+        Address = M.Address,
     },
 }
 
@@ -832,7 +812,7 @@ M.DescribeAddressesInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -845,7 +825,7 @@ M.DescribeAddressesOutput = {
     members = {
         Addresses = {
             type = "list",
-            member_type = "structure",
+            member = M.Address,
         },
         NextToken = {
             type = "string",
@@ -910,36 +890,26 @@ M.ClusterMetadata = {
         CreationDate = {
             type = "timestamp",
         },
-        Resources = {
-            type = "structure",
-        },
+        Resources = M.JobResource,
         AddressId = {
             type = "string",
         },
         ShippingOption = {
             type = "string",
         },
-        Notification = {
-            type = "structure",
-        },
+        Notification = M.Notification,
         ForwardingAddressId = {
             type = "string",
         },
-        TaxDocuments = {
-            type = "structure",
-        },
-        OnDeviceServiceConfiguration = {
-            type = "structure",
-        },
+        TaxDocuments = M.TaxDocuments,
+        OnDeviceServiceConfiguration = M.OnDeviceServiceConfiguration,
     },
 }
 
 M.DescribeClusterOutput = {
     type = "structure",
     members = {
-        ClusterMetadata = {
-            type = "structure",
-        },
+        ClusterMetadata = M.ClusterMetadata,
     },
 }
 
@@ -959,16 +929,28 @@ M.DataTransfer = {
     type = "structure",
     members = {
         BytesTransferred = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         ObjectsTransferred = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         TotalBytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         TotalObjects = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1006,12 +988,8 @@ M.ShippingDetails = {
         ShippingOption = {
             type = "string",
         },
-        InboundShipment = {
-            type = "structure",
-        },
-        OutboundShipment = {
-            type = "structure",
-        },
+        InboundShipment = M.Shipment,
+        OutboundShipment = M.Shipment,
     },
 }
 
@@ -1033,9 +1011,7 @@ M.JobMetadata = {
         CreationDate = {
             type = "timestamp",
         },
-        Resources = {
-            type = "structure",
-        },
+        Resources = M.JobResource,
         Description = {
             type = "string",
         },
@@ -1048,48 +1024,32 @@ M.JobMetadata = {
         AddressId = {
             type = "string",
         },
-        ShippingDetails = {
-            type = "structure",
-        },
+        ShippingDetails = M.ShippingDetails,
         SnowballCapacityPreference = {
             type = "string",
         },
-        Notification = {
-            type = "structure",
-        },
-        DataTransferProgress = {
-            type = "structure",
-        },
-        JobLogInfo = {
-            type = "structure",
-        },
+        Notification = M.Notification,
+        DataTransferProgress = M.DataTransfer,
+        JobLogInfo = M.JobLogs,
         ClusterId = {
             type = "string",
         },
         ForwardingAddressId = {
             type = "string",
         },
-        TaxDocuments = {
-            type = "structure",
-        },
-        DeviceConfiguration = {
-            type = "structure",
-        },
+        TaxDocuments = M.TaxDocuments,
+        DeviceConfiguration = M.DeviceConfiguration,
         RemoteManagement = {
             type = "string",
         },
         LongTermPricingId = {
             type = "string",
         },
-        OnDeviceServiceConfiguration = {
-            type = "structure",
-        },
+        OnDeviceServiceConfiguration = M.OnDeviceServiceConfiguration,
         ImpactLevel = {
             type = "string",
         },
-        PickupDetails = {
-            type = "structure",
-        },
+        PickupDetails = M.PickupDetails,
         SnowballId = {
             type = "string",
         },
@@ -1099,12 +1059,10 @@ M.JobMetadata = {
 M.DescribeJobOutput = {
     type = "structure",
     members = {
-        JobMetadata = {
-            type = "structure",
-        },
+        JobMetadata = M.JobMetadata,
         SubJobMetadata = {
             type = "list",
-            member_type = "structure",
+            member = M.JobMetadata,
         },
     },
 }
@@ -1186,10 +1144,10 @@ M.GetSnowballUsageOutput = {
     type = "structure",
     members = {
         SnowballLimit = {
-            type = "number",
+            type = "integer",
         },
         SnowballsInUse = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1225,7 +1183,7 @@ M.ListClusterJobsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1238,7 +1196,7 @@ M.ListClusterJobsOutput = {
     members = {
         JobListEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.JobListEntry,
         },
         NextToken = {
             type = "string",
@@ -1250,7 +1208,7 @@ M.ListClustersInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1281,7 +1239,7 @@ M.ListClustersOutput = {
     members = {
         ClusterListEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.ClusterListEntry,
         },
         NextToken = {
             type = "string",
@@ -1293,7 +1251,7 @@ M.ListCompatibleImagesInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1318,7 +1276,7 @@ M.ListCompatibleImagesOutput = {
     members = {
         CompatibleImages = {
             type = "list",
-            member_type = "structure",
+            member = M.CompatibleImage,
         },
         NextToken = {
             type = "string",
@@ -1330,7 +1288,7 @@ M.ListJobsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1343,7 +1301,7 @@ M.ListJobsOutput = {
     members = {
         JobListEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.JobListEntry,
         },
         NextToken = {
             type = "string",
@@ -1355,7 +1313,7 @@ M.ListLongTermPricingInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1395,7 +1353,7 @@ M.LongTermPricingListEntry = {
         },
         JobIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1405,7 +1363,7 @@ M.ListLongTermPricingOutput = {
     members = {
         LongTermPricingEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.LongTermPricingListEntry,
         },
         NextToken = {
             type = "string",
@@ -1417,7 +1375,7 @@ M.ListPickupLocationsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1430,7 +1388,7 @@ M.ListPickupLocationsOutput = {
     members = {
         Addresses = {
             type = "list",
-            member_type = "structure",
+            member = M.Address,
         },
         NextToken = {
             type = "string",
@@ -1458,9 +1416,7 @@ M.DependentService = {
         ServiceName = {
             type = "string",
         },
-        ServiceVersion = {
-            type = "structure",
-        },
+        ServiceVersion = M.ServiceVersion,
     },
 }
 
@@ -1475,10 +1431,10 @@ M.ListServiceVersionsInput = {
         },
         DependentServices = {
             type = "list",
-            member_type = "structure",
+            member = M.DependentService,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1491,7 +1447,7 @@ M.ListServiceVersionsOutput = {
     members = {
         ServiceVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceVersion,
             traits = {
                 required = true,
             },
@@ -1504,7 +1460,7 @@ M.ListServiceVersionsOutput = {
         },
         DependentServices = {
             type = "list",
-            member_type = "structure",
+            member = M.DependentService,
         },
         NextToken = {
             type = "string",
@@ -1527,21 +1483,15 @@ M.UpdateClusterInput = {
         Description = {
             type = "string",
         },
-        Resources = {
-            type = "structure",
-        },
-        OnDeviceServiceConfiguration = {
-            type = "structure",
-        },
+        Resources = M.JobResource,
+        OnDeviceServiceConfiguration = M.OnDeviceServiceConfiguration,
         AddressId = {
             type = "string",
         },
         ShippingOption = {
             type = "string",
         },
-        Notification = {
-            type = "structure",
-        },
+        Notification = M.Notification,
         ForwardingAddressId = {
             type = "string",
         },
@@ -1564,15 +1514,9 @@ M.UpdateJobInput = {
         RoleARN = {
             type = "string",
         },
-        Notification = {
-            type = "structure",
-        },
-        Resources = {
-            type = "structure",
-        },
-        OnDeviceServiceConfiguration = {
-            type = "structure",
-        },
+        Notification = M.Notification,
+        Resources = M.JobResource,
+        OnDeviceServiceConfiguration = M.OnDeviceServiceConfiguration,
         AddressId = {
             type = "string",
         },
@@ -1588,9 +1532,7 @@ M.UpdateJobInput = {
         ForwardingAddressId = {
             type = "string",
         },
-        PickupDetails = {
-            type = "structure",
-        },
+        PickupDetails = M.PickupDetails,
     },
 }
 

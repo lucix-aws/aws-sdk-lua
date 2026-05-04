@@ -72,9 +72,15 @@ M.AccountSettings = {
         },
         PublicSharingEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         TerminationProtectionEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -125,9 +131,7 @@ M.ReadAuthorizationCodeGrantDetails = {
 M.ReadAuthorizationCodeGrantCredentialsDetails = {
     type = "union",
     members = {
-        ReadAuthorizationCodeGrantDetails = {
-            type = "structure",
-        },
+        ReadAuthorizationCodeGrantDetails = M.ReadAuthorizationCodeGrantDetails,
     },
 }
 
@@ -146,9 +150,7 @@ M.ReadAuthorizationCodeGrantMetadata = {
                 required = true,
             },
         },
-        ReadAuthorizationCodeGrantCredentialsDetails = {
-            type = "union",
-        },
+        ReadAuthorizationCodeGrantCredentialsDetails = M.ReadAuthorizationCodeGrantCredentialsDetails,
         AuthorizationCodeGrantCredentialsSource = {
             type = "string",
         },
@@ -198,9 +200,7 @@ M.ReadClientCredentialsGrantDetails = {
 M.ReadClientCredentialsDetails = {
     type = "union",
     members = {
-        ReadClientCredentialsGrantDetails = {
-            type = "structure",
-        },
+        ReadClientCredentialsGrantDetails = M.ReadClientCredentialsGrantDetails,
     },
 }
 
@@ -213,9 +213,7 @@ M.ReadClientCredentialsGrantMetadata = {
                 required = true,
             },
         },
-        ReadClientCredentialsDetails = {
-            type = "union",
-        },
+        ReadClientCredentialsDetails = M.ReadClientCredentialsDetails,
         ClientCredentialsSource = {
             type = "string",
         },
@@ -255,24 +253,12 @@ M.ReadNoneConnectionMetadata = {
 M.ReadAuthenticationMetadata = {
     type = "union",
     members = {
-        AuthorizationCodeGrantMetadata = {
-            type = "structure",
-        },
-        ClientCredentialsGrantMetadata = {
-            type = "structure",
-        },
-        BasicAuthConnectionMetadata = {
-            type = "structure",
-        },
-        ApiKeyConnectionMetadata = {
-            type = "structure",
-        },
-        NoneConnectionMetadata = {
-            type = "structure",
-        },
-        IamConnectionMetadata = {
-            type = "structure",
-        },
+        AuthorizationCodeGrantMetadata = M.ReadAuthorizationCodeGrantMetadata,
+        ClientCredentialsGrantMetadata = M.ReadClientCredentialsGrantMetadata,
+        BasicAuthConnectionMetadata = M.ReadBasicAuthConnectionMetadata,
+        ApiKeyConnectionMetadata = M.ReadAPIKeyConnectionMetadata,
+        NoneConnectionMetadata = M.ReadNoneConnectionMetadata,
+        IamConnectionMetadata = M.ReadIamConnectionMetadata,
     },
 }
 
@@ -294,12 +280,9 @@ M.ReadAuthConfig = {
                 required = true,
             },
         },
-        AuthenticationMetadata = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        AuthenticationMetadata = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ReadAuthenticationMetadata }),
     },
 }
 
@@ -398,18 +381,14 @@ M.ActionConnector = {
         Status = {
             type = "string",
         },
-        Error = {
-            type = "structure",
-        },
+        Error = M.ActionConnectorError,
         Description = {
             type = "string",
         },
-        AuthenticationConfig = {
-            type = "structure",
-        },
+        AuthenticationConfig = M.ReadAuthConfig,
         EnabledActions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         VpcConnectionArn = {
             type = "string",
@@ -495,9 +474,7 @@ M.ActionConnectorSummary = {
         Status = {
             type = "string",
         },
-        Error = {
-            type = "structure",
-        },
+        Error = M.ActionConnectorError,
     },
 }
 
@@ -569,8 +546,8 @@ M.AggFunction = {
         },
         AggregationFunctionParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Period = {
             type = "string",
@@ -596,6 +573,7 @@ M.DataPrepListAggregationFunction = {
         Distinct = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -629,24 +607,17 @@ M.DataPrepSimpleAggregationFunction = {
 M.DataPrepAggregationFunction = {
     type = "structure",
     members = {
-        SimpleAggregation = {
-            type = "structure",
-        },
-        ListAggregation = {
-            type = "structure",
-        },
+        SimpleAggregation = M.DataPrepSimpleAggregationFunction,
+        ListAggregation = M.DataPrepListAggregationFunction,
     },
 }
 
 M.Aggregation = {
     type = "structure",
     members = {
-        AggregationFunction = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AggregationFunction = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataPrepAggregationFunction }),
         NewColumnName = {
             type = "string",
             traits = {
@@ -691,7 +662,7 @@ M.TransformOperationSource = {
         },
         ColumnIdMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSetColumnIdMapping,
         },
     },
 }
@@ -705,19 +676,16 @@ M.AggregateOperation = {
                 required = true,
             },
         },
-        Source = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Source = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TransformOperationSource }),
         GroupByColumnNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Aggregations = {
             type = "list",
-            member_type = "structure",
+            member = M.Aggregation,
             traits = {
                 required = true,
             },
@@ -757,7 +725,7 @@ M.PercentileAggregation = {
     type = "structure",
     members = {
         PercentileValue = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -782,27 +750,21 @@ M.NumericalAggregationFunction = {
         SimpleNumericalAggregation = {
             type = "string",
         },
-        PercentileAggregation = {
-            type = "structure",
-        },
+        PercentileAggregation = M.PercentileAggregation,
     },
 }
 
 M.AggregationFunction = {
     type = "structure",
     members = {
-        NumericalAggregationFunction = {
-            type = "structure",
-        },
+        NumericalAggregationFunction = M.NumericalAggregationFunction,
         CategoricalAggregationFunction = {
             type = "string",
         },
         DateAggregationFunction = {
             type = "string",
         },
-        AttributeAggregationFunction = {
-            type = "structure",
-        },
+        AttributeAggregationFunction = M.AttributeAggregationFunction,
     },
 }
 
@@ -856,21 +818,16 @@ M.SortDirection = {
 M.AggregationSortConfiguration = {
     type = "structure",
     members = {
-        Column = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Column = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ColumnIdentifier }),
         SortDirection = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        AggregationFunction = {
-            type = "structure",
-        },
+        AggregationFunction = M.AggregationFunction,
     },
 }
 
@@ -908,6 +865,7 @@ M.DataQnAConfigurations = {
         Enabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -920,6 +878,7 @@ M.DataStoriesConfigurations = {
         Enabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -932,6 +891,7 @@ M.ExecutiveSummaryConfigurations = {
         Enabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -944,6 +904,7 @@ M.GenerativeAuthoringConfigurations = {
         Enabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -953,27 +914,17 @@ M.GenerativeAuthoringConfigurations = {
 M.AmazonQInQuickSightConsoleConfigurations = {
     type = "structure",
     members = {
-        DataQnA = {
-            type = "structure",
-        },
-        GenerativeAuthoring = {
-            type = "structure",
-        },
-        ExecutiveSummary = {
-            type = "structure",
-        },
-        DataStories = {
-            type = "structure",
-        },
+        DataQnA = M.DataQnAConfigurations,
+        GenerativeAuthoring = M.GenerativeAuthoringConfigurations,
+        ExecutiveSummary = M.ExecutiveSummaryConfigurations,
+        DataStories = M.DataStoriesConfigurations,
     },
 }
 
 M.AmazonQInQuickSightDashboardConfigurations = {
     type = "structure",
     members = {
-        ExecutiveSummary = {
-            type = "structure",
-        },
+        ExecutiveSummary = M.ExecutiveSummaryConfigurations,
     },
 }
 
@@ -1010,7 +961,7 @@ M.AnalysisError = {
         },
         ViolatedEntities = {
             type = "list",
-            member_type = "structure",
+            member = M.Entity,
         },
     },
 }
@@ -1030,9 +981,7 @@ M.LocalNavigationConfiguration = {
 M.CustomActionNavigationOperation = {
     type = "structure",
     members = {
-        LocalNavigationConfiguration = {
-            type = "structure",
-        },
+        LocalNavigationConfiguration = M.LocalNavigationConfiguration,
     },
 }
 
@@ -1041,19 +990,19 @@ M.CustomParameterValues = {
     members = {
         StringValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IntegerValues = {
             type = "list",
-            member_type = "number",
+            member = { type = "long" },
         },
         DecimalValues = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
         DateTimeValues = {
             type = "list",
-            member_type = "timestamp",
+            member = { type = "timestamp" },
         },
     },
 }
@@ -1064,12 +1013,9 @@ M.CustomValuesConfiguration = {
         IncludeNullValue = {
             type = "boolean",
         },
-        CustomValues = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        CustomValues = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CustomParameterValues }),
     },
 }
 
@@ -1080,9 +1026,7 @@ M.SelectAllValueOptions = {
 M.DestinationParameterValueConfiguration = {
     type = "structure",
     members = {
-        CustomValuesConfiguration = {
-            type = "structure",
-        },
+        CustomValuesConfiguration = M.CustomValuesConfiguration,
         SelectAllValueOptions = {
             type = "string",
         },
@@ -1092,9 +1036,7 @@ M.DestinationParameterValueConfiguration = {
         SourceField = {
             type = "string",
         },
-        SourceColumn = {
-            type = "structure",
-        },
+        SourceColumn = M.ColumnIdentifier,
     },
 }
 
@@ -1107,12 +1049,9 @@ M.SetParameterValueConfiguration = {
                 required = true,
             },
         },
-        Value = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Value = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DestinationParameterValueConfiguration }),
     },
 }
 
@@ -1121,7 +1060,7 @@ M.CustomActionSetParametersOperation = {
     members = {
         ParameterValueConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.SetParameterValueConfiguration,
             traits = {
                 required = true,
             },
@@ -1156,15 +1095,9 @@ M.CustomActionURLOperation = {
 M.ImageCustomActionOperation = {
     type = "structure",
     members = {
-        NavigationOperation = {
-            type = "structure",
-        },
-        URLOperation = {
-            type = "structure",
-        },
-        SetParametersOperation = {
-            type = "structure",
-        },
+        NavigationOperation = M.CustomActionNavigationOperation,
+        URLOperation = M.CustomActionURLOperation,
+        SetParametersOperation = M.CustomActionSetParametersOperation,
     },
 }
 
@@ -1204,7 +1137,7 @@ M.ImageCustomAction = {
         },
         ActionOperations = {
             type = "list",
-            member_type = "structure",
+            member = M.ImageCustomActionOperation,
             traits = {
                 required = true,
             },
@@ -1224,9 +1157,7 @@ M.ImageMenuOption = {
 M.ImageInteractionOptions = {
     type = "structure",
     members = {
-        ImageMenuOption = {
-            type = "structure",
-        },
+        ImageMenuOption = M.ImageMenuOption,
     },
 }
 
@@ -1261,9 +1192,7 @@ M.SheetImageStaticFileSource = {
 M.SheetImageSource = {
     type = "structure",
     members = {
-        SheetImageStaticFileSource = {
-            type = "structure",
-        },
+        SheetImageStaticFileSource = M.SheetImageStaticFileSource,
     },
 }
 
@@ -1284,9 +1213,7 @@ M.Visibility = {
 M.SheetImageTooltipConfiguration = {
     type = "structure",
     members = {
-        TooltipText = {
-            type = "structure",
-        },
+        TooltipText = M.SheetImageTooltipText,
         Visibility = {
             type = "string",
         },
@@ -1302,27 +1229,18 @@ M.SheetImage = {
                 required = true,
             },
         },
-        Source = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Scaling = {
-            type = "structure",
-        },
-        Tooltip = {
-            type = "structure",
-        },
+        Source = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SheetImageSource }),
+        Scaling = M.SheetImageScalingConfiguration,
+        Tooltip = M.SheetImageTooltipConfiguration,
         ImageContentAltText = {
             type = "string",
         },
-        Interactions = {
-            type = "structure",
-        },
+        Interactions = M.ImageInteractionOptions,
         Actions = {
             type = "list",
-            member_type = "structure",
+            member = M.ImageCustomAction,
         },
     },
 }
@@ -1338,7 +1256,7 @@ M.Sheet = {
         },
         Images = {
             type = "list",
-            member_type = "structure",
+            member = M.SheetImage,
         },
     },
 }
@@ -1360,11 +1278,11 @@ M.Analysis = {
         },
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalysisError,
         },
         DataSetArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ThemeArn = {
             type = "string",
@@ -1377,7 +1295,7 @@ M.Analysis = {
         },
         Sheets = {
             type = "list",
-            member_type = "structure",
+            member = M.Sheet,
         },
     },
 }
@@ -1397,21 +1315,16 @@ M.FreeFormLayoutScreenCanvasSizeOptions = {
 M.FreeFormLayoutCanvasSizeOptions = {
     type = "structure",
     members = {
-        ScreenCanvasSizeOptions = {
-            type = "structure",
-        },
+        ScreenCanvasSizeOptions = M.FreeFormLayoutScreenCanvasSizeOptions,
     },
 }
 
 M.DefaultFreeFormLayoutConfiguration = {
     type = "structure",
     members = {
-        CanvasSizeOptions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        CanvasSizeOptions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FreeFormLayoutCanvasSizeOptions }),
     },
 }
 
@@ -1438,33 +1351,24 @@ M.GridLayoutScreenCanvasSizeOptions = {
 M.GridLayoutCanvasSizeOptions = {
     type = "structure",
     members = {
-        ScreenCanvasSizeOptions = {
-            type = "structure",
-        },
+        ScreenCanvasSizeOptions = M.GridLayoutScreenCanvasSizeOptions,
     },
 }
 
 M.DefaultGridLayoutConfiguration = {
     type = "structure",
     members = {
-        CanvasSizeOptions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        CanvasSizeOptions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.GridLayoutCanvasSizeOptions }),
     },
 }
 
 M.DefaultInteractiveLayoutConfiguration = {
     type = "structure",
     members = {
-        Grid = {
-            type = "structure",
-        },
-        FreeForm = {
-            type = "structure",
-        },
+        Grid = M.DefaultGridLayoutConfiguration,
+        FreeForm = M.DefaultFreeFormLayoutConfiguration,
     },
 }
 
@@ -1514,39 +1418,30 @@ M.SectionBasedLayoutPaperCanvasSizeOptions = {
         PaperOrientation = {
             type = "string",
         },
-        PaperMargin = {
-            type = "structure",
-        },
+        PaperMargin = M.Spacing,
     },
 }
 
 M.SectionBasedLayoutCanvasSizeOptions = {
     type = "structure",
     members = {
-        PaperCanvasSizeOptions = {
-            type = "structure",
-        },
+        PaperCanvasSizeOptions = M.SectionBasedLayoutPaperCanvasSizeOptions,
     },
 }
 
 M.DefaultSectionBasedLayoutConfiguration = {
     type = "structure",
     members = {
-        CanvasSizeOptions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        CanvasSizeOptions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SectionBasedLayoutCanvasSizeOptions }),
     },
 }
 
 M.DefaultPaginatedLayoutConfiguration = {
     type = "structure",
     members = {
-        SectionBased = {
-            type = "structure",
-        },
+        SectionBased = M.DefaultSectionBasedLayoutConfiguration,
     },
 }
 
@@ -1558,12 +1453,8 @@ M.SheetContentType = {
 M.DefaultNewSheetConfiguration = {
     type = "structure",
     members = {
-        InteractiveLayoutConfiguration = {
-            type = "structure",
-        },
-        PaginatedLayoutConfiguration = {
-            type = "structure",
-        },
+        InteractiveLayoutConfiguration = M.DefaultInteractiveLayoutConfiguration,
+        PaginatedLayoutConfiguration = M.DefaultPaginatedLayoutConfiguration,
         SheetContentType = {
             type = "string",
         },
@@ -1573,12 +1464,9 @@ M.DefaultNewSheetConfiguration = {
 M.AnalysisDefaults = {
     type = "structure",
     members = {
-        DefaultNewSheetConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DefaultNewSheetConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DefaultNewSheetConfiguration }),
     },
 }
 
@@ -1635,7 +1523,7 @@ M.ColorsConfiguration = {
     members = {
         CustomColors = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomColor,
         },
     },
 }
@@ -1696,7 +1584,7 @@ M.DecalSettingsConfiguration = {
     members = {
         CustomDecalSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.DecalSettings,
         },
     },
 }
@@ -1717,7 +1605,7 @@ M.DecimalPlacesConfiguration = {
     type = "structure",
     members = {
         DecimalPlaces = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -1785,9 +1673,7 @@ M.NumericSeparatorConfiguration = {
         DecimalSeparator = {
             type = "string",
         },
-        ThousandsSeparator = {
-            type = "structure",
-        },
+        ThousandsSeparator = M.ThousandSeparatorOptions,
     },
 }
 
@@ -1800,24 +1686,16 @@ M.CurrencyDisplayFormatConfiguration = {
         Suffix = {
             type = "string",
         },
-        SeparatorConfiguration = {
-            type = "structure",
-        },
+        SeparatorConfiguration = M.NumericSeparatorConfiguration,
         Symbol = {
             type = "string",
         },
-        DecimalPlacesConfiguration = {
-            type = "structure",
-        },
+        DecimalPlacesConfiguration = M.DecimalPlacesConfiguration,
         NumberScale = {
             type = "string",
         },
-        NegativeValueConfiguration = {
-            type = "structure",
-        },
-        NullValueFormatConfiguration = {
-            type = "structure",
-        },
+        NegativeValueConfiguration = M.NegativeValueConfiguration,
+        NullValueFormatConfiguration = M.NullValueFormatConfiguration,
     },
 }
 
@@ -1830,21 +1708,13 @@ M.NumberDisplayFormatConfiguration = {
         Suffix = {
             type = "string",
         },
-        SeparatorConfiguration = {
-            type = "structure",
-        },
-        DecimalPlacesConfiguration = {
-            type = "structure",
-        },
+        SeparatorConfiguration = M.NumericSeparatorConfiguration,
+        DecimalPlacesConfiguration = M.DecimalPlacesConfiguration,
         NumberScale = {
             type = "string",
         },
-        NegativeValueConfiguration = {
-            type = "structure",
-        },
-        NullValueFormatConfiguration = {
-            type = "structure",
-        },
+        NegativeValueConfiguration = M.NegativeValueConfiguration,
+        NullValueFormatConfiguration = M.NullValueFormatConfiguration,
     },
 }
 
@@ -1857,33 +1727,19 @@ M.PercentageDisplayFormatConfiguration = {
         Suffix = {
             type = "string",
         },
-        SeparatorConfiguration = {
-            type = "structure",
-        },
-        DecimalPlacesConfiguration = {
-            type = "structure",
-        },
-        NegativeValueConfiguration = {
-            type = "structure",
-        },
-        NullValueFormatConfiguration = {
-            type = "structure",
-        },
+        SeparatorConfiguration = M.NumericSeparatorConfiguration,
+        DecimalPlacesConfiguration = M.DecimalPlacesConfiguration,
+        NegativeValueConfiguration = M.NegativeValueConfiguration,
+        NullValueFormatConfiguration = M.NullValueFormatConfiguration,
     },
 }
 
 M.NumericFormatConfiguration = {
     type = "structure",
     members = {
-        NumberDisplayFormatConfiguration = {
-            type = "structure",
-        },
-        CurrencyDisplayFormatConfiguration = {
-            type = "structure",
-        },
-        PercentageDisplayFormatConfiguration = {
-            type = "structure",
-        },
+        NumberDisplayFormatConfiguration = M.NumberDisplayFormatConfiguration,
+        CurrencyDisplayFormatConfiguration = M.CurrencyDisplayFormatConfiguration,
+        PercentageDisplayFormatConfiguration = M.PercentageDisplayFormatConfiguration,
     },
 }
 
@@ -1893,48 +1749,32 @@ M.DateTimeFormatConfiguration = {
         DateTimeFormat = {
             type = "string",
         },
-        NullValueFormatConfiguration = {
-            type = "structure",
-        },
-        NumericFormatConfiguration = {
-            type = "structure",
-        },
+        NullValueFormatConfiguration = M.NullValueFormatConfiguration,
+        NumericFormatConfiguration = M.NumericFormatConfiguration,
     },
 }
 
 M.NumberFormatConfiguration = {
     type = "structure",
     members = {
-        FormatConfiguration = {
-            type = "structure",
-        },
+        FormatConfiguration = M.NumericFormatConfiguration,
     },
 }
 
 M.StringFormatConfiguration = {
     type = "structure",
     members = {
-        NullValueFormatConfiguration = {
-            type = "structure",
-        },
-        NumericFormatConfiguration = {
-            type = "structure",
-        },
+        NullValueFormatConfiguration = M.NullValueFormatConfiguration,
+        NumericFormatConfiguration = M.NumericFormatConfiguration,
     },
 }
 
 M.FormatConfiguration = {
     type = "structure",
     members = {
-        StringFormatConfiguration = {
-            type = "structure",
-        },
-        NumberFormatConfiguration = {
-            type = "structure",
-        },
-        DateTimeFormatConfiguration = {
-            type = "structure",
-        },
+        StringFormatConfiguration = M.StringFormatConfiguration,
+        NumberFormatConfiguration = M.NumberFormatConfiguration,
+        DateTimeFormatConfiguration = M.DateTimeFormatConfiguration,
     },
 }
 
@@ -1946,24 +1786,15 @@ M.ColumnRole = {
 M.ColumnConfiguration = {
     type = "structure",
     members = {
-        Column = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        FormatConfiguration = {
-            type = "structure",
-        },
+        Column = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ColumnIdentifier }),
+        FormatConfiguration = M.FormatConfiguration,
         Role = {
             type = "string",
         },
-        ColorsConfiguration = {
-            type = "structure",
-        },
-        DecalSettingsConfiguration = {
-            type = "structure",
-        },
+        ColorsConfiguration = M.ColorsConfiguration,
+        DecalSettingsConfiguration = M.DecalSettingsConfiguration,
     },
 }
 
@@ -2047,7 +1878,7 @@ M.CustomFilterListConfiguration = {
         },
         CategoryValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SelectAllOptions = {
             type = "string",
@@ -2072,7 +1903,7 @@ M.FilterListConfiguration = {
         },
         CategoryValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SelectAllOptions = {
             type = "string",
@@ -2086,15 +1917,9 @@ M.FilterListConfiguration = {
 M.CategoryFilterConfiguration = {
     type = "structure",
     members = {
-        FilterListConfiguration = {
-            type = "structure",
-        },
-        CustomFilterListConfiguration = {
-            type = "structure",
-        },
-        CustomFilterConfiguration = {
-            type = "structure",
-        },
+        FilterListConfiguration = M.FilterListConfiguration,
+        CustomFilterListConfiguration = M.CustomFilterListConfiguration,
+        CustomFilterConfiguration = M.CustomFilterConfiguration,
     },
 }
 
@@ -2162,18 +1987,14 @@ M.FontWeight = {
 M.FontConfiguration = {
     type = "structure",
     members = {
-        FontSize = {
-            type = "structure",
-        },
+        FontSize = M.FontSize,
         FontDecoration = {
             type = "string",
         },
         FontColor = {
             type = "string",
         },
-        FontWeight = {
-            type = "structure",
-        },
+        FontWeight = M.FontWeight,
         FontStyle = {
             type = "string",
         },
@@ -2189,9 +2010,7 @@ M.LabelOptions = {
         Visibility = {
             type = "string",
         },
-        FontConfiguration = {
-            type = "structure",
-        },
+        FontConfiguration = M.FontConfiguration,
         CustomLabel = {
             type = "string",
         },
@@ -2201,15 +2020,11 @@ M.LabelOptions = {
 M.DateTimePickerControlDisplayOptions = {
     type = "structure",
     members = {
-        TitleOptions = {
-            type = "structure",
-        },
+        TitleOptions = M.LabelOptions,
         DateTimeFormat = {
             type = "string",
         },
-        InfoIconLabelOptions = {
-            type = "structure",
-        },
+        InfoIconLabelOptions = M.SheetControlInfoIconLabelOptions,
         HelperTextVisibility = {
             type = "string",
         },
@@ -2230,9 +2045,7 @@ M.DefaultDateTimePickerControlOptions = {
         Type = {
             type = "string",
         },
-        DisplayOptions = {
-            type = "structure",
-        },
+        DisplayOptions = M.DateTimePickerControlDisplayOptions,
         CommitMode = {
             type = "string",
         },
@@ -2260,12 +2073,8 @@ M.SelectableValuesSort = {
 M.ControlSortConfiguration = {
     type = "structure",
     members = {
-        SelectableValuesSort = {
-            type = "structure",
-        },
-        ControlColumnSort = {
-            type = "structure",
-        },
+        SelectableValuesSort = M.SelectableValuesSort,
+        ControlColumnSort = M.AggregationSortConfiguration,
     },
 }
 
@@ -2281,15 +2090,9 @@ M.ListControlSelectAllOptions = {
 M.DropDownControlDisplayOptions = {
     type = "structure",
     members = {
-        SelectAllOptions = {
-            type = "structure",
-        },
-        TitleOptions = {
-            type = "structure",
-        },
-        InfoIconLabelOptions = {
-            type = "structure",
-        },
+        SelectAllOptions = M.ListControlSelectAllOptions,
+        TitleOptions = M.LabelOptions,
+        InfoIconLabelOptions = M.SheetControlInfoIconLabelOptions,
     },
 }
 
@@ -2298,7 +2101,7 @@ M.FilterSelectableValues = {
     members = {
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2311,21 +2114,17 @@ M.SheetControlListType = {
 M.DefaultFilterDropDownControlOptions = {
     type = "structure",
     members = {
-        DisplayOptions = {
-            type = "structure",
-        },
+        DisplayOptions = M.DropDownControlDisplayOptions,
         Type = {
             type = "string",
         },
-        SelectableValues = {
-            type = "structure",
-        },
+        SelectableValues = M.FilterSelectableValues,
         CommitMode = {
             type = "string",
         },
         ControlSortConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.ControlSortConfiguration,
         },
     },
 }
@@ -2342,36 +2141,24 @@ M.ListControlSearchOptions = {
 M.ListControlDisplayOptions = {
     type = "structure",
     members = {
-        SearchOptions = {
-            type = "structure",
-        },
-        SelectAllOptions = {
-            type = "structure",
-        },
-        TitleOptions = {
-            type = "structure",
-        },
-        InfoIconLabelOptions = {
-            type = "structure",
-        },
+        SearchOptions = M.ListControlSearchOptions,
+        SelectAllOptions = M.ListControlSelectAllOptions,
+        TitleOptions = M.LabelOptions,
+        InfoIconLabelOptions = M.SheetControlInfoIconLabelOptions,
     },
 }
 
 M.DefaultFilterListControlOptions = {
     type = "structure",
     members = {
-        DisplayOptions = {
-            type = "structure",
-        },
+        DisplayOptions = M.ListControlDisplayOptions,
         Type = {
             type = "string",
         },
-        SelectableValues = {
-            type = "structure",
-        },
+        SelectableValues = M.FilterSelectableValues,
         ControlSortConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.ControlSortConfiguration,
         },
     },
 }
@@ -2379,24 +2166,18 @@ M.DefaultFilterListControlOptions = {
 M.RelativeDateTimeControlDisplayOptions = {
     type = "structure",
     members = {
-        TitleOptions = {
-            type = "structure",
-        },
+        TitleOptions = M.LabelOptions,
         DateTimeFormat = {
             type = "string",
         },
-        InfoIconLabelOptions = {
-            type = "structure",
-        },
+        InfoIconLabelOptions = M.SheetControlInfoIconLabelOptions,
     },
 }
 
 M.DefaultRelativeDateTimeControlOptions = {
     type = "structure",
     members = {
-        DisplayOptions = {
-            type = "structure",
-        },
+        DisplayOptions = M.RelativeDateTimeControlDisplayOptions,
         CommitMode = {
             type = "string",
         },
@@ -2406,12 +2187,8 @@ M.DefaultRelativeDateTimeControlOptions = {
 M.SliderControlDisplayOptions = {
     type = "structure",
     members = {
-        TitleOptions = {
-            type = "structure",
-        },
-        InfoIconLabelOptions = {
-            type = "structure",
-        },
+        TitleOptions = M.LabelOptions,
+        InfoIconLabelOptions = M.SheetControlInfoIconLabelOptions,
     },
 }
 
@@ -2423,27 +2200,28 @@ M.SheetControlSliderType = {
 M.DefaultSliderControlOptions = {
     type = "structure",
     members = {
-        DisplayOptions = {
-            type = "structure",
-        },
+        DisplayOptions = M.SliderControlDisplayOptions,
         Type = {
             type = "string",
         },
         MaximumValue = {
-            type = "number",
+            type = "double",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         MinimumValue = {
-            type = "number",
+            type = "double",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         StepSize = {
-            type = "number",
+            type = "double",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -2462,15 +2240,9 @@ M.TextControlPlaceholderOptions = {
 M.TextAreaControlDisplayOptions = {
     type = "structure",
     members = {
-        TitleOptions = {
-            type = "structure",
-        },
-        PlaceholderOptions = {
-            type = "structure",
-        },
-        InfoIconLabelOptions = {
-            type = "structure",
-        },
+        TitleOptions = M.LabelOptions,
+        PlaceholderOptions = M.TextControlPlaceholderOptions,
+        InfoIconLabelOptions = M.SheetControlInfoIconLabelOptions,
     },
 }
 
@@ -2480,60 +2252,36 @@ M.DefaultTextAreaControlOptions = {
         Delimiter = {
             type = "string",
         },
-        DisplayOptions = {
-            type = "structure",
-        },
+        DisplayOptions = M.TextAreaControlDisplayOptions,
     },
 }
 
 M.TextFieldControlDisplayOptions = {
     type = "structure",
     members = {
-        TitleOptions = {
-            type = "structure",
-        },
-        PlaceholderOptions = {
-            type = "structure",
-        },
-        InfoIconLabelOptions = {
-            type = "structure",
-        },
+        TitleOptions = M.LabelOptions,
+        PlaceholderOptions = M.TextControlPlaceholderOptions,
+        InfoIconLabelOptions = M.SheetControlInfoIconLabelOptions,
     },
 }
 
 M.DefaultTextFieldControlOptions = {
     type = "structure",
     members = {
-        DisplayOptions = {
-            type = "structure",
-        },
+        DisplayOptions = M.TextFieldControlDisplayOptions,
     },
 }
 
 M.DefaultFilterControlOptions = {
     type = "structure",
     members = {
-        DefaultDateTimePickerOptions = {
-            type = "structure",
-        },
-        DefaultListOptions = {
-            type = "structure",
-        },
-        DefaultDropdownOptions = {
-            type = "structure",
-        },
-        DefaultTextFieldOptions = {
-            type = "structure",
-        },
-        DefaultTextAreaOptions = {
-            type = "structure",
-        },
-        DefaultSliderOptions = {
-            type = "structure",
-        },
-        DefaultRelativeDateTimeOptions = {
-            type = "structure",
-        },
+        DefaultDateTimePickerOptions = M.DefaultDateTimePickerControlOptions,
+        DefaultListOptions = M.DefaultFilterListControlOptions,
+        DefaultDropdownOptions = M.DefaultFilterDropDownControlOptions,
+        DefaultTextFieldOptions = M.DefaultTextFieldControlOptions,
+        DefaultTextAreaOptions = M.DefaultTextAreaControlOptions,
+        DefaultSliderOptions = M.DefaultSliderControlOptions,
+        DefaultRelativeDateTimeOptions = M.DefaultRelativeDateTimeControlOptions,
     },
 }
 
@@ -2554,16 +2302,14 @@ M.DefaultFilterControlConfiguration = {
     members = {
         Title = {
             type = "string",
-        },
-        ControlOptions = {
-            type = "structure",
             traits = {
-                required = true,
+                default = "",
             },
         },
-        ControlTitleFormatText = {
-            type = "structure",
-        },
+        ControlOptions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DefaultFilterControlOptions }),
+        ControlTitleFormatText = M.ControlTitleFormatText,
     },
 }
 
@@ -2576,51 +2322,33 @@ M.CategoryFilter = {
                 required = true,
             },
         },
-        Column = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Configuration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        DefaultFilterControlConfiguration = {
-            type = "structure",
-        },
+        Column = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ColumnIdentifier }),
+        Configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CategoryFilterConfiguration }),
+        DefaultFilterControlConfiguration = M.DefaultFilterControlConfiguration,
     },
 }
 
 M.CategoryInnerFilter = {
     type = "structure",
     members = {
-        Column = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Configuration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        DefaultFilterControlConfiguration = {
-            type = "structure",
-        },
+        Column = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ColumnIdentifier }),
+        Configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CategoryFilterConfiguration }),
+        DefaultFilterControlConfiguration = M.DefaultFilterControlConfiguration,
     },
 }
 
 M.InnerFilter = {
     type = "structure",
     members = {
-        CategoryInnerFilter = {
-            type = "structure",
-        },
+        CategoryInnerFilter = M.CategoryInnerFilter,
     },
 }
 
@@ -2633,24 +2361,19 @@ M.NestedFilter = {
                 required = true,
             },
         },
-        Column = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Column = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ColumnIdentifier }),
         IncludeInnerSet = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
-        InnerFilter = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InnerFilter = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InnerFilter }),
     },
 }
 
@@ -2672,14 +2395,14 @@ M.NumericEqualityFilter = {
                 required = true,
             },
         },
-        Column = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Column = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ColumnIdentifier }),
         Value = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = nil,
+            },
         },
         SelectAllOptions = {
             type = "string",
@@ -2690,9 +2413,7 @@ M.NumericEqualityFilter = {
                 required = true,
             },
         },
-        AggregationFunction = {
-            type = "structure",
-        },
+        AggregationFunction = M.AggregationFunction,
         ParameterName = {
             type = "string",
         },
@@ -2702,9 +2423,7 @@ M.NumericEqualityFilter = {
                 required = true,
             },
         },
-        DefaultFilterControlConfiguration = {
-            type = "structure",
-        },
+        DefaultFilterControlConfiguration = M.DefaultFilterControlConfiguration,
     },
 }
 
@@ -2712,7 +2431,10 @@ M.NumericRangeFilterValue = {
     type = "structure",
     members = {
         StaticValue = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = nil,
+            },
         },
         Parameter = {
             type = "string",
@@ -2729,39 +2451,34 @@ M.NumericRangeFilter = {
                 required = true,
             },
         },
-        Column = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Column = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ColumnIdentifier }),
         IncludeMinimum = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
         IncludeMaximum = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
-        RangeMinimum = {
-            type = "structure",
-        },
-        RangeMaximum = {
-            type = "structure",
-        },
+        RangeMinimum = M.NumericRangeFilterValue,
+        RangeMaximum = M.NumericRangeFilterValue,
         SelectAllOptions = {
             type = "string",
         },
-        AggregationFunction = {
-            type = "structure",
-        },
+        AggregationFunction = M.AggregationFunction,
         NullOption = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        DefaultFilterControlConfiguration = {
-            type = "structure",
-        },
+        DefaultFilterControlConfiguration = M.DefaultFilterControlConfiguration,
     },
 }
 
@@ -2785,8 +2502,9 @@ M.ExcludePeriodConfiguration = {
     type = "structure",
     members = {
         Amount = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 required = true,
             },
         },
@@ -2819,18 +2537,12 @@ M.RelativeDatesFilter = {
                 required = true,
             },
         },
-        Column = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        AnchorDateConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Column = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ColumnIdentifier }),
+        AnchorDateConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AnchorDateConfiguration }),
         MinimumGranularity = {
             type = "string",
         },
@@ -2847,7 +2559,10 @@ M.RelativeDatesFilter = {
             },
         },
         RelativeDateValue = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         ParameterName = {
             type = "string",
@@ -2858,12 +2573,8 @@ M.RelativeDatesFilter = {
                 required = true,
             },
         },
-        ExcludePeriodConfiguration = {
-            type = "structure",
-        },
-        DefaultFilterControlConfiguration = {
-            type = "structure",
-        },
+        ExcludePeriodConfiguration = M.ExcludePeriodConfiguration,
+        DefaultFilterControlConfiguration = M.DefaultFilterControlConfiguration,
     },
 }
 
@@ -2891,12 +2602,9 @@ M.TimeEqualityFilter = {
                 required = true,
             },
         },
-        Column = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Column = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ColumnIdentifier }),
         Value = {
             type = "timestamp",
         },
@@ -2906,12 +2614,8 @@ M.TimeEqualityFilter = {
         TimeGranularity = {
             type = "string",
         },
-        RollingDate = {
-            type = "structure",
-        },
-        DefaultFilterControlConfiguration = {
-            type = "structure",
-        },
+        RollingDate = M.RollingDateConfiguration,
+        DefaultFilterControlConfiguration = M.DefaultFilterControlConfiguration,
     },
 }
 
@@ -2921,9 +2625,7 @@ M.TimeRangeFilterValue = {
         StaticValue = {
             type = "timestamp",
         },
-        RollingDate = {
-            type = "structure",
-        },
+        RollingDate = M.RollingDateConfiguration,
         Parameter = {
             type = "string",
         },
@@ -2939,39 +2641,34 @@ M.TimeRangeFilter = {
                 required = true,
             },
         },
-        Column = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Column = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ColumnIdentifier }),
         IncludeMinimum = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
         IncludeMaximum = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
-        RangeMinimumValue = {
-            type = "structure",
-        },
-        RangeMaximumValue = {
-            type = "structure",
-        },
+        RangeMinimumValue = M.TimeRangeFilterValue,
+        RangeMaximumValue = M.TimeRangeFilterValue,
         NullOption = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        ExcludePeriodConfiguration = {
-            type = "structure",
-        },
+        ExcludePeriodConfiguration = M.ExcludePeriodConfiguration,
         TimeGranularity = {
             type = "string",
         },
-        DefaultFilterControlConfiguration = {
-            type = "structure",
-        },
+        DefaultFilterControlConfiguration = M.DefaultFilterControlConfiguration,
     },
 }
 
@@ -2984,18 +2681,18 @@ M.TopBottomFilter = {
                 required = true,
             },
         },
-        Column = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Column = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ColumnIdentifier }),
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         AggregationSortConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.AggregationSortConfiguration,
             traits = {
                 required = true,
             },
@@ -3006,39 +2703,21 @@ M.TopBottomFilter = {
         ParameterName = {
             type = "string",
         },
-        DefaultFilterControlConfiguration = {
-            type = "structure",
-        },
+        DefaultFilterControlConfiguration = M.DefaultFilterControlConfiguration,
     },
 }
 
 M.Filter = {
     type = "structure",
     members = {
-        CategoryFilter = {
-            type = "structure",
-        },
-        NumericRangeFilter = {
-            type = "structure",
-        },
-        NumericEqualityFilter = {
-            type = "structure",
-        },
-        TimeEqualityFilter = {
-            type = "structure",
-        },
-        TimeRangeFilter = {
-            type = "structure",
-        },
-        RelativeDatesFilter = {
-            type = "structure",
-        },
-        TopBottomFilter = {
-            type = "structure",
-        },
-        NestedFilter = {
-            type = "structure",
-        },
+        CategoryFilter = M.CategoryFilter,
+        NumericRangeFilter = M.NumericRangeFilter,
+        NumericEqualityFilter = M.NumericEqualityFilter,
+        TimeEqualityFilter = M.TimeEqualityFilter,
+        TimeRangeFilter = M.TimeRangeFilter,
+        RelativeDatesFilter = M.RelativeDatesFilter,
+        TopBottomFilter = M.TopBottomFilter,
+        NestedFilter = M.NestedFilter,
     },
 }
 
@@ -3064,7 +2743,7 @@ M.SheetVisualScopingConfiguration = {
         },
         VisualIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3074,7 +2753,7 @@ M.SelectedSheetsFilterScopeConfiguration = {
     members = {
         SheetVisualScopingConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.SheetVisualScopingConfiguration,
         },
     },
 }
@@ -3082,12 +2761,8 @@ M.SelectedSheetsFilterScopeConfiguration = {
 M.FilterScopeConfiguration = {
     type = "structure",
     members = {
-        SelectedSheets = {
-            type = "structure",
-        },
-        AllSheets = {
-            type = "structure",
-        },
+        SelectedSheets = M.SelectedSheetsFilterScopeConfiguration,
+        AllSheets = M.AllSheetsFilterScopeConfiguration,
     },
 }
 
@@ -3102,17 +2777,14 @@ M.FilterGroup = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 required = true,
             },
         },
-        ScopeConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ScopeConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FilterScopeConfiguration }),
         Status = {
             type = "string",
         },
@@ -3146,9 +2818,7 @@ M.VisualHighlightOperation = {
 M.VisualCustomActionDefaults = {
     type = "structure",
     members = {
-        highlightOperation = {
-            type = "structure",
-        },
+        highlightOperation = M.VisualHighlightOperation,
     },
 }
 
@@ -3181,45 +2851,32 @@ M.AssetOptions = {
         },
         ExcludedDataSetArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        CustomActionDefaults = {
-            type = "structure",
-        },
+        CustomActionDefaults = M.VisualCustomActionDefaults,
     },
 }
 
 M.DynamicDefaultValue = {
     type = "structure",
     members = {
-        UserNameColumn = {
-            type = "structure",
-        },
-        GroupNameColumn = {
-            type = "structure",
-        },
-        DefaultValueColumn = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        UserNameColumn = M.ColumnIdentifier,
+        GroupNameColumn = M.ColumnIdentifier,
+        DefaultValueColumn = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ColumnIdentifier }),
     },
 }
 
 M.DateTimeDefaultValues = {
     type = "structure",
     members = {
-        DynamicValue = {
-            type = "structure",
-        },
+        DynamicValue = M.DynamicDefaultValue,
         StaticValues = {
             type = "list",
-            member_type = "timestamp",
+            member = { type = "timestamp" },
         },
-        RollingDate = {
-            type = "structure",
-        },
+        RollingDate = M.RollingDateConfiguration,
     },
 }
 
@@ -3267,18 +2924,14 @@ M.DateTimeParameterDeclaration = {
                 required = true,
             },
         },
-        DefaultValues = {
-            type = "structure",
-        },
+        DefaultValues = M.DateTimeDefaultValues,
         TimeGranularity = {
             type = "string",
         },
-        ValueWhenUnset = {
-            type = "structure",
-        },
+        ValueWhenUnset = M.DateTimeValueWhenUnsetConfiguration,
         MappedDataSetParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.MappedDataSetParameter,
         },
     },
 }
@@ -3286,12 +2939,10 @@ M.DateTimeParameterDeclaration = {
 M.DecimalDefaultValues = {
     type = "structure",
     members = {
-        DynamicValue = {
-            type = "structure",
-        },
+        DynamicValue = M.DynamicDefaultValue,
         StaticValues = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
     },
 }
@@ -3308,7 +2959,10 @@ M.DecimalValueWhenUnsetConfiguration = {
             type = "string",
         },
         CustomValue = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -3328,15 +2982,11 @@ M.DecimalParameterDeclaration = {
                 required = true,
             },
         },
-        DefaultValues = {
-            type = "structure",
-        },
-        ValueWhenUnset = {
-            type = "structure",
-        },
+        DefaultValues = M.DecimalDefaultValues,
+        ValueWhenUnset = M.DecimalValueWhenUnsetConfiguration,
         MappedDataSetParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.MappedDataSetParameter,
         },
     },
 }
@@ -3344,12 +2994,10 @@ M.DecimalParameterDeclaration = {
 M.IntegerDefaultValues = {
     type = "structure",
     members = {
-        DynamicValue = {
-            type = "structure",
-        },
+        DynamicValue = M.DynamicDefaultValue,
         StaticValues = {
             type = "list",
-            member_type = "number",
+            member = { type = "long" },
         },
     },
 }
@@ -3361,7 +3009,10 @@ M.IntegerValueWhenUnsetConfiguration = {
             type = "string",
         },
         CustomValue = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -3381,15 +3032,11 @@ M.IntegerParameterDeclaration = {
                 required = true,
             },
         },
-        DefaultValues = {
-            type = "structure",
-        },
-        ValueWhenUnset = {
-            type = "structure",
-        },
+        DefaultValues = M.IntegerDefaultValues,
+        ValueWhenUnset = M.IntegerValueWhenUnsetConfiguration,
         MappedDataSetParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.MappedDataSetParameter,
         },
     },
 }
@@ -3397,12 +3044,10 @@ M.IntegerParameterDeclaration = {
 M.StringDefaultValues = {
     type = "structure",
     members = {
-        DynamicValue = {
-            type = "structure",
-        },
+        DynamicValue = M.DynamicDefaultValue,
         StaticValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3434,15 +3079,11 @@ M.StringParameterDeclaration = {
                 required = true,
             },
         },
-        DefaultValues = {
-            type = "structure",
-        },
-        ValueWhenUnset = {
-            type = "structure",
-        },
+        DefaultValues = M.StringDefaultValues,
+        ValueWhenUnset = M.StringValueWhenUnsetConfiguration,
         MappedDataSetParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.MappedDataSetParameter,
         },
     },
 }
@@ -3450,18 +3091,10 @@ M.StringParameterDeclaration = {
 M.ParameterDeclaration = {
     type = "structure",
     members = {
-        StringParameterDeclaration = {
-            type = "structure",
-        },
-        DecimalParameterDeclaration = {
-            type = "structure",
-        },
-        IntegerParameterDeclaration = {
-            type = "structure",
-        },
-        DateTimeParameterDeclaration = {
-            type = "structure",
-        },
+        StringParameterDeclaration = M.StringParameterDeclaration,
+        DecimalParameterDeclaration = M.DecimalParameterDeclaration,
+        IntegerParameterDeclaration = M.IntegerParameterDeclaration,
+        DateTimeParameterDeclaration = M.DateTimeParameterDeclaration,
     },
 }
 
@@ -3485,9 +3118,7 @@ M.CascadingControlSource = {
         SourceSheetControlId = {
             type = "string",
         },
-        ColumnToMatch = {
-            type = "structure",
-        },
+        ColumnToMatch = M.ColumnIdentifier,
     },
 }
 
@@ -3496,7 +3127,7 @@ M.CascadingControlConfiguration = {
     members = {
         SourceControls = {
             type = "list",
-            member_type = "structure",
+            member = M.CascadingControlSource,
         },
     },
 }
@@ -3516,9 +3147,7 @@ M.FilterCrossSheetControl = {
                 required = true,
             },
         },
-        CascadingControlConfiguration = {
-            type = "structure",
-        },
+        CascadingControlConfiguration = M.CascadingControlConfiguration,
     },
 }
 
@@ -3533,6 +3162,9 @@ M.FilterDateTimePickerControl = {
         },
         Title = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
         SourceFilterId = {
             type = "string",
@@ -3540,18 +3172,14 @@ M.FilterDateTimePickerControl = {
                 required = true,
             },
         },
-        DisplayOptions = {
-            type = "structure",
-        },
+        DisplayOptions = M.DateTimePickerControlDisplayOptions,
         Type = {
             type = "string",
         },
         CommitMode = {
             type = "string",
         },
-        ControlTitleFormatText = {
-            type = "structure",
-        },
+        ControlTitleFormatText = M.ControlTitleFormatText,
     },
 }
 
@@ -3566,6 +3194,9 @@ M.FilterDropDownControl = {
         },
         Title = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
         SourceFilterId = {
             type = "string",
@@ -3573,28 +3204,20 @@ M.FilterDropDownControl = {
                 required = true,
             },
         },
-        DisplayOptions = {
-            type = "structure",
-        },
+        DisplayOptions = M.DropDownControlDisplayOptions,
         Type = {
             type = "string",
         },
-        SelectableValues = {
-            type = "structure",
-        },
-        CascadingControlConfiguration = {
-            type = "structure",
-        },
+        SelectableValues = M.FilterSelectableValues,
+        CascadingControlConfiguration = M.CascadingControlConfiguration,
         CommitMode = {
             type = "string",
         },
         ControlSortConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.ControlSortConfiguration,
         },
-        ControlTitleFormatText = {
-            type = "structure",
-        },
+        ControlTitleFormatText = M.ControlTitleFormatText,
     },
 }
 
@@ -3609,6 +3232,9 @@ M.FilterListControl = {
         },
         Title = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
         SourceFilterId = {
             type = "string",
@@ -3616,25 +3242,17 @@ M.FilterListControl = {
                 required = true,
             },
         },
-        DisplayOptions = {
-            type = "structure",
-        },
+        DisplayOptions = M.ListControlDisplayOptions,
         Type = {
             type = "string",
         },
-        SelectableValues = {
-            type = "structure",
-        },
-        CascadingControlConfiguration = {
-            type = "structure",
-        },
+        SelectableValues = M.FilterSelectableValues,
+        CascadingControlConfiguration = M.CascadingControlConfiguration,
         ControlSortConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.ControlSortConfiguration,
         },
-        ControlTitleFormatText = {
-            type = "structure",
-        },
+        ControlTitleFormatText = M.ControlTitleFormatText,
     },
 }
 
@@ -3649,6 +3267,9 @@ M.FilterRelativeDateTimeControl = {
         },
         Title = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
         SourceFilterId = {
             type = "string",
@@ -3656,15 +3277,11 @@ M.FilterRelativeDateTimeControl = {
                 required = true,
             },
         },
-        DisplayOptions = {
-            type = "structure",
-        },
+        DisplayOptions = M.RelativeDateTimeControlDisplayOptions,
         CommitMode = {
             type = "string",
         },
-        ControlTitleFormatText = {
-            type = "structure",
-        },
+        ControlTitleFormatText = M.ControlTitleFormatText,
     },
 }
 
@@ -3679,6 +3296,9 @@ M.FilterSliderControl = {
         },
         Title = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
         SourceFilterId = {
             type = "string",
@@ -3686,33 +3306,32 @@ M.FilterSliderControl = {
                 required = true,
             },
         },
-        DisplayOptions = {
-            type = "structure",
-        },
+        DisplayOptions = M.SliderControlDisplayOptions,
         Type = {
             type = "string",
         },
         MaximumValue = {
-            type = "number",
+            type = "double",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         MinimumValue = {
-            type = "number",
+            type = "double",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         StepSize = {
-            type = "number",
+            type = "double",
             traits = {
+                default = 0,
                 required = true,
             },
         },
-        ControlTitleFormatText = {
-            type = "structure",
-        },
+        ControlTitleFormatText = M.ControlTitleFormatText,
     },
 }
 
@@ -3727,6 +3346,9 @@ M.FilterTextAreaControl = {
         },
         Title = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
         SourceFilterId = {
             type = "string",
@@ -3737,12 +3359,8 @@ M.FilterTextAreaControl = {
         Delimiter = {
             type = "string",
         },
-        DisplayOptions = {
-            type = "structure",
-        },
-        ControlTitleFormatText = {
-            type = "structure",
-        },
+        DisplayOptions = M.TextAreaControlDisplayOptions,
+        ControlTitleFormatText = M.ControlTitleFormatText,
     },
 }
 
@@ -3757,6 +3375,9 @@ M.FilterTextFieldControl = {
         },
         Title = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
         SourceFilterId = {
             type = "string",
@@ -3764,42 +3385,22 @@ M.FilterTextFieldControl = {
                 required = true,
             },
         },
-        DisplayOptions = {
-            type = "structure",
-        },
-        ControlTitleFormatText = {
-            type = "structure",
-        },
+        DisplayOptions = M.TextFieldControlDisplayOptions,
+        ControlTitleFormatText = M.ControlTitleFormatText,
     },
 }
 
 M.FilterControl = {
     type = "structure",
     members = {
-        DateTimePicker = {
-            type = "structure",
-        },
-        List = {
-            type = "structure",
-        },
-        Dropdown = {
-            type = "structure",
-        },
-        TextField = {
-            type = "structure",
-        },
-        TextArea = {
-            type = "structure",
-        },
-        Slider = {
-            type = "structure",
-        },
-        RelativeDateTime = {
-            type = "structure",
-        },
-        CrossSheet = {
-            type = "structure",
-        },
+        DateTimePicker = M.FilterDateTimePickerControl,
+        List = M.FilterListControl,
+        Dropdown = M.FilterDropDownControl,
+        TextField = M.FilterTextFieldControl,
+        TextArea = M.FilterTextAreaControl,
+        Slider = M.FilterSliderControl,
+        RelativeDateTime = M.FilterRelativeDateTimeControl,
+        CrossSheet = M.FilterCrossSheetControl,
     },
 }
 
@@ -3865,12 +3466,9 @@ M.SheetElementRenderingRule = {
                 required = true,
             },
         },
-        ConfigurationOverrides = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ConfigurationOverrides = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SheetElementConfigurationOverrides }),
     },
 }
 
@@ -3918,20 +3516,12 @@ M.FreeFormLayoutElement = {
         },
         RenderingRules = {
             type = "list",
-            member_type = "structure",
+            member = M.SheetElementRenderingRule,
         },
-        BorderStyle = {
-            type = "structure",
-        },
-        SelectedBorderStyle = {
-            type = "structure",
-        },
-        BackgroundStyle = {
-            type = "structure",
-        },
-        LoadingAnimation = {
-            type = "structure",
-        },
+        BorderStyle = M.FreeFormLayoutElementBorderStyle,
+        SelectedBorderStyle = M.FreeFormLayoutElementBorderStyle,
+        BackgroundStyle = M.FreeFormLayoutElementBackgroundStyle,
+        LoadingAnimation = M.LoadingAnimation,
         BorderRadius = {
             type = "string",
         },
@@ -3975,7 +3565,7 @@ M.SheetLayoutGroup = {
         },
         Members = {
             type = "list",
-            member_type = "structure",
+            member = M.SheetLayoutGroupMember,
             traits = {
                 required = true,
             },
@@ -3988,17 +3578,15 @@ M.FreeFormLayoutConfiguration = {
     members = {
         Elements = {
             type = "list",
-            member_type = "structure",
+            member = M.FreeFormLayoutElement,
             traits = {
                 required = true,
             },
         },
-        CanvasSizeOptions = {
-            type = "structure",
-        },
+        CanvasSizeOptions = M.FreeFormLayoutCanvasSizeOptions,
         Groups = {
             type = "list",
-            member_type = "structure",
+            member = M.SheetLayoutGroup,
         },
     },
 }
@@ -4046,35 +3634,27 @@ M.GridLayoutElement = {
             },
         },
         ColumnIndex = {
-            type = "number",
+            type = "integer",
         },
         ColumnSpan = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         RowIndex = {
-            type = "number",
+            type = "integer",
         },
         RowSpan = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
-        BorderStyle = {
-            type = "structure",
-        },
-        SelectedBorderStyle = {
-            type = "structure",
-        },
-        BackgroundStyle = {
-            type = "structure",
-        },
-        LoadingAnimation = {
-            type = "structure",
-        },
+        BorderStyle = M.GridLayoutElementBorderStyle,
+        SelectedBorderStyle = M.GridLayoutElementBorderStyle,
+        BackgroundStyle = M.GridLayoutElementBackgroundStyle,
+        LoadingAnimation = M.LoadingAnimation,
         BorderRadius = {
             type = "string",
         },
@@ -4089,14 +3669,12 @@ M.GridLayoutConfiguration = {
     members = {
         Elements = {
             type = "list",
-            member_type = "structure",
+            member = M.GridLayoutElement,
             traits = {
                 required = true,
             },
         },
-        CanvasSizeOptions = {
-            type = "structure",
-        },
+        CanvasSizeOptions = M.GridLayoutCanvasSizeOptions,
     },
 }
 
@@ -4105,7 +3683,7 @@ M.FreeFormSectionLayoutConfiguration = {
     members = {
         Elements = {
             type = "list",
-            member_type = "structure",
+            member = M.FreeFormLayoutElement,
             traits = {
                 required = true,
             },
@@ -4116,21 +3694,16 @@ M.FreeFormSectionLayoutConfiguration = {
 M.SectionLayoutConfiguration = {
     type = "structure",
     members = {
-        FreeFormLayout = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        FreeFormLayout = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FreeFormSectionLayoutConfiguration }),
     },
 }
 
 M.BodySectionContent = {
     type = "structure",
     members = {
-        Layout = {
-            type = "structure",
-        },
+        Layout = M.SectionLayoutConfiguration,
     },
 }
 
@@ -4151,48 +3724,38 @@ M.SectionAfterPageBreak = {
 M.SectionPageBreakConfiguration = {
     type = "structure",
     members = {
-        After = {
-            type = "structure",
-        },
+        After = M.SectionAfterPageBreak,
     },
 }
 
 M.ColumnSort = {
     type = "structure",
     members = {
-        SortBy = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SortBy = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ColumnIdentifier }),
         Direction = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        AggregationFunction = {
-            type = "structure",
-        },
+        AggregationFunction = M.AggregationFunction,
     },
 }
 
 M.BodySectionDynamicCategoryDimensionConfiguration = {
     type = "structure",
     members = {
-        Column = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Column = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ColumnIdentifier }),
         Limit = {
-            type = "number",
+            type = "integer",
         },
         SortByMetrics = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnSort,
         },
     },
 }
@@ -4200,18 +3763,15 @@ M.BodySectionDynamicCategoryDimensionConfiguration = {
 M.BodySectionDynamicNumericDimensionConfiguration = {
     type = "structure",
     members = {
-        Column = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Column = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ColumnIdentifier }),
         Limit = {
-            type = "number",
+            type = "integer",
         },
         SortByMetrics = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnSort,
         },
     },
 }
@@ -4219,21 +3779,15 @@ M.BodySectionDynamicNumericDimensionConfiguration = {
 M.BodySectionRepeatDimensionConfiguration = {
     type = "structure",
     members = {
-        DynamicCategoryDimensionConfiguration = {
-            type = "structure",
-        },
-        DynamicNumericDimensionConfiguration = {
-            type = "structure",
-        },
+        DynamicCategoryDimensionConfiguration = M.BodySectionDynamicCategoryDimensionConfiguration,
+        DynamicNumericDimensionConfiguration = M.BodySectionDynamicNumericDimensionConfiguration,
     },
 }
 
 M.BodySectionRepeatPageBreakConfiguration = {
     type = "structure",
     members = {
-        After = {
-            type = "structure",
-        },
+        After = M.SectionAfterPageBreak,
     },
 }
 
@@ -4242,14 +3796,12 @@ M.BodySectionRepeatConfiguration = {
     members = {
         DimensionConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.BodySectionRepeatDimensionConfiguration,
         },
-        PageBreakConfiguration = {
-            type = "structure",
-        },
+        PageBreakConfiguration = M.BodySectionRepeatPageBreakConfiguration,
         NonRepeatingVisuals = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4260,9 +3812,7 @@ M.SectionStyle = {
         Height = {
             type = "string",
         },
-        Padding = {
-            type = "structure",
-        },
+        Padding = M.Spacing,
     },
 }
 
@@ -4275,21 +3825,12 @@ M.BodySectionConfiguration = {
                 required = true,
             },
         },
-        Content = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Style = {
-            type = "structure",
-        },
-        PageBreakConfiguration = {
-            type = "structure",
-        },
-        RepeatConfiguration = {
-            type = "structure",
-        },
+        Content = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BodySectionContent }),
+        Style = M.SectionStyle,
+        PageBreakConfiguration = M.SectionPageBreakConfiguration,
+        RepeatConfiguration = M.BodySectionRepeatConfiguration,
     },
 }
 
@@ -4302,15 +3843,10 @@ M.HeaderFooterSectionConfiguration = {
                 required = true,
             },
         },
-        Layout = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Style = {
-            type = "structure",
-        },
+        Layout = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SectionLayoutConfiguration }),
+        Style = M.SectionStyle,
     },
 }
 
@@ -4319,58 +3855,46 @@ M.SectionBasedLayoutConfiguration = {
     members = {
         HeaderSections = {
             type = "list",
-            member_type = "structure",
+            member = M.HeaderFooterSectionConfiguration,
             traits = {
                 required = true,
             },
         },
         BodySections = {
             type = "list",
-            member_type = "structure",
+            member = M.BodySectionConfiguration,
             traits = {
                 required = true,
             },
         },
         FooterSections = {
             type = "list",
-            member_type = "structure",
+            member = M.HeaderFooterSectionConfiguration,
             traits = {
                 required = true,
             },
         },
-        CanvasSizeOptions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        CanvasSizeOptions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SectionBasedLayoutCanvasSizeOptions }),
     },
 }
 
 M.LayoutConfiguration = {
     type = "structure",
     members = {
-        GridLayout = {
-            type = "structure",
-        },
-        FreeFormLayout = {
-            type = "structure",
-        },
-        SectionBasedLayout = {
-            type = "structure",
-        },
+        GridLayout = M.GridLayoutConfiguration,
+        FreeFormLayout = M.FreeFormLayoutConfiguration,
+        SectionBasedLayout = M.SectionBasedLayoutConfiguration,
     },
 }
 
 M.Layout = {
     type = "structure",
     members = {
-        Configuration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LayoutConfiguration }),
     },
 }
 
@@ -4385,6 +3909,9 @@ M.ParameterDateTimePickerControl = {
         },
         Title = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
         SourceParameterName = {
             type = "string",
@@ -4392,12 +3919,8 @@ M.ParameterDateTimePickerControl = {
                 required = true,
             },
         },
-        DisplayOptions = {
-            type = "structure",
-        },
-        ControlTitleFormatText = {
-            type = "structure",
-        },
+        DisplayOptions = M.DateTimePickerControlDisplayOptions,
+        ControlTitleFormatText = M.ControlTitleFormatText,
     },
 }
 
@@ -4406,11 +3929,9 @@ M.ParameterSelectableValues = {
     members = {
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        LinkToDataSetColumn = {
-            type = "structure",
-        },
+        LinkToDataSetColumn = M.ColumnIdentifier,
     },
 }
 
@@ -4425,6 +3946,9 @@ M.ParameterDropDownControl = {
         },
         Title = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
         SourceParameterName = {
             type = "string",
@@ -4432,28 +3956,20 @@ M.ParameterDropDownControl = {
                 required = true,
             },
         },
-        DisplayOptions = {
-            type = "structure",
-        },
+        DisplayOptions = M.DropDownControlDisplayOptions,
         Type = {
             type = "string",
         },
-        SelectableValues = {
-            type = "structure",
-        },
-        CascadingControlConfiguration = {
-            type = "structure",
-        },
+        SelectableValues = M.ParameterSelectableValues,
+        CascadingControlConfiguration = M.CascadingControlConfiguration,
         CommitMode = {
             type = "string",
         },
         ControlSortConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.ControlSortConfiguration,
         },
-        ControlTitleFormatText = {
-            type = "structure",
-        },
+        ControlTitleFormatText = M.ControlTitleFormatText,
     },
 }
 
@@ -4468,6 +3984,9 @@ M.ParameterListControl = {
         },
         Title = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
         SourceParameterName = {
             type = "string",
@@ -4475,25 +3994,17 @@ M.ParameterListControl = {
                 required = true,
             },
         },
-        DisplayOptions = {
-            type = "structure",
-        },
+        DisplayOptions = M.ListControlDisplayOptions,
         Type = {
             type = "string",
         },
-        SelectableValues = {
-            type = "structure",
-        },
-        CascadingControlConfiguration = {
-            type = "structure",
-        },
+        SelectableValues = M.ParameterSelectableValues,
+        CascadingControlConfiguration = M.CascadingControlConfiguration,
         ControlSortConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.ControlSortConfiguration,
         },
-        ControlTitleFormatText = {
-            type = "structure",
-        },
+        ControlTitleFormatText = M.ControlTitleFormatText,
     },
 }
 
@@ -4508,6 +4019,9 @@ M.ParameterSliderControl = {
         },
         Title = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
         SourceParameterName = {
             type = "string",
@@ -4515,30 +4029,29 @@ M.ParameterSliderControl = {
                 required = true,
             },
         },
-        DisplayOptions = {
-            type = "structure",
-        },
+        DisplayOptions = M.SliderControlDisplayOptions,
         MaximumValue = {
-            type = "number",
+            type = "double",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         MinimumValue = {
-            type = "number",
+            type = "double",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         StepSize = {
-            type = "number",
+            type = "double",
             traits = {
+                default = 0,
                 required = true,
             },
         },
-        ControlTitleFormatText = {
-            type = "structure",
-        },
+        ControlTitleFormatText = M.ControlTitleFormatText,
     },
 }
 
@@ -4553,6 +4066,9 @@ M.ParameterTextAreaControl = {
         },
         Title = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
         SourceParameterName = {
             type = "string",
@@ -4563,12 +4079,8 @@ M.ParameterTextAreaControl = {
         Delimiter = {
             type = "string",
         },
-        DisplayOptions = {
-            type = "structure",
-        },
-        ControlTitleFormatText = {
-            type = "structure",
-        },
+        DisplayOptions = M.TextAreaControlDisplayOptions,
+        ControlTitleFormatText = M.ControlTitleFormatText,
     },
 }
 
@@ -4583,6 +4095,9 @@ M.ParameterTextFieldControl = {
         },
         Title = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
         SourceParameterName = {
             type = "string",
@@ -4590,57 +4105,36 @@ M.ParameterTextFieldControl = {
                 required = true,
             },
         },
-        DisplayOptions = {
-            type = "structure",
-        },
-        ControlTitleFormatText = {
-            type = "structure",
-        },
+        DisplayOptions = M.TextFieldControlDisplayOptions,
+        ControlTitleFormatText = M.ControlTitleFormatText,
     },
 }
 
 M.ParameterControl = {
     type = "structure",
     members = {
-        DateTimePicker = {
-            type = "structure",
-        },
-        List = {
-            type = "structure",
-        },
-        Dropdown = {
-            type = "structure",
-        },
-        TextField = {
-            type = "structure",
-        },
-        TextArea = {
-            type = "structure",
-        },
-        Slider = {
-            type = "structure",
-        },
+        DateTimePicker = M.ParameterDateTimePickerControl,
+        List = M.ParameterListControl,
+        Dropdown = M.ParameterDropDownControl,
+        TextField = M.ParameterTextFieldControl,
+        TextArea = M.ParameterTextAreaControl,
+        Slider = M.ParameterSliderControl,
     },
 }
 
 M.SheetControlLayoutConfiguration = {
     type = "structure",
     members = {
-        GridLayout = {
-            type = "structure",
-        },
+        GridLayout = M.GridLayoutConfiguration,
     },
 }
 
 M.SheetControlLayout = {
     type = "structure",
     members = {
-        Configuration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SheetControlLayoutConfiguration }),
     },
 }
 
@@ -4656,9 +4150,7 @@ M.TextBoxMenuOption = {
 M.TextBoxInteractionOptions = {
     type = "structure",
     members = {
-        TextBoxMenuOption = {
-            type = "structure",
-        },
+        TextBoxMenuOption = M.TextBoxMenuOption,
     },
 }
 
@@ -4674,9 +4166,7 @@ M.SheetTextBox = {
         Content = {
             type = "string",
         },
-        Interactions = {
-            type = "structure",
-        },
+        Interactions = M.TextBoxInteractionOptions,
     },
 }
 
@@ -4689,14 +4179,14 @@ M.FilterOperationSelectedFieldsConfiguration = {
     members = {
         SelectedFields = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SelectedFieldOptions = {
             type = "string",
         },
         SelectedColumns = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnIdentifier,
         },
     },
 }
@@ -4710,7 +4200,7 @@ M.SameSheetTargetVisualConfiguration = {
     members = {
         TargetVisuals = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TargetVisualOptions = {
             type = "string",
@@ -4721,45 +4211,29 @@ M.SameSheetTargetVisualConfiguration = {
 M.FilterOperationTargetVisualsConfiguration = {
     type = "structure",
     members = {
-        SameSheetTargetVisualConfiguration = {
-            type = "structure",
-        },
+        SameSheetTargetVisualConfiguration = M.SameSheetTargetVisualConfiguration,
     },
 }
 
 M.CustomActionFilterOperation = {
     type = "structure",
     members = {
-        SelectedFieldsConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        TargetVisualsConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SelectedFieldsConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FilterOperationSelectedFieldsConfiguration }),
+        TargetVisualsConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FilterOperationTargetVisualsConfiguration }),
     },
 }
 
 M.VisualCustomActionOperation = {
     type = "structure",
     members = {
-        FilterOperation = {
-            type = "structure",
-        },
-        NavigationOperation = {
-            type = "structure",
-        },
-        URLOperation = {
-            type = "structure",
-        },
-        SetParametersOperation = {
-            type = "structure",
-        },
+        FilterOperation = M.CustomActionFilterOperation,
+        NavigationOperation = M.CustomActionNavigationOperation,
+        URLOperation = M.CustomActionURLOperation,
+        SetParametersOperation = M.CustomActionSetParametersOperation,
     },
 }
 
@@ -4794,7 +4268,7 @@ M.VisualCustomAction = {
         },
         ActionOperations = {
             type = "list",
-            member_type = "structure",
+            member = M.VisualCustomActionOperation,
             traits = {
                 required = true,
             },
@@ -4825,10 +4299,16 @@ M.AxisDisplayMinMaxRange = {
     type = "structure",
     members = {
         Minimum = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = nil,
+            },
         },
         Maximum = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -4836,12 +4316,8 @@ M.AxisDisplayMinMaxRange = {
 M.AxisDisplayRange = {
     type = "structure",
     members = {
-        MinMax = {
-            type = "structure",
-        },
-        DataDriven = {
-            type = "structure",
-        },
+        MinMax = M.AxisDisplayMinMaxRange,
+        DataDriven = M.AxisDisplayDataDrivenRange,
     },
 }
 
@@ -4849,10 +4325,16 @@ M.AxisLinearScale = {
     type = "structure",
     members = {
         StepCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         StepSize = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -4861,7 +4343,10 @@ M.AxisLogarithmicScale = {
     type = "structure",
     members = {
         Base = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -4869,36 +4354,24 @@ M.AxisLogarithmicScale = {
 M.AxisScale = {
     type = "structure",
     members = {
-        Linear = {
-            type = "structure",
-        },
-        Logarithmic = {
-            type = "structure",
-        },
+        Linear = M.AxisLinearScale,
+        Logarithmic = M.AxisLogarithmicScale,
     },
 }
 
 M.NumericAxisOptions = {
     type = "structure",
     members = {
-        Scale = {
-            type = "structure",
-        },
-        Range = {
-            type = "structure",
-        },
+        Scale = M.AxisScale,
+        Range = M.AxisDisplayRange,
     },
 }
 
 M.AxisDataOptions = {
     type = "structure",
     members = {
-        NumericAxisOptions = {
-            type = "structure",
-        },
-        DateAxisOptions = {
-            type = "structure",
-        },
+        NumericAxisOptions = M.NumericAxisOptions,
+        DateAxisOptions = M.DateAxisOptions,
     },
 }
 
@@ -4906,10 +4379,16 @@ M.PercentVisibleRange = {
     type = "structure",
     members = {
         From = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = nil,
+            },
         },
         To = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -4917,9 +4396,7 @@ M.PercentVisibleRange = {
 M.VisibleRangeOptions = {
     type = "structure",
     members = {
-        PercentRange = {
-            type = "structure",
-        },
+        PercentRange = M.PercentVisibleRange,
     },
 }
 
@@ -4929,20 +4406,19 @@ M.ScrollBarOptions = {
         Visibility = {
             type = "string",
         },
-        VisibleRange = {
-            type = "structure",
-        },
+        VisibleRange = M.VisibleRangeOptions,
     },
 }
 
 M.AxisTickLabelOptions = {
     type = "structure",
     members = {
-        LabelOptions = {
-            type = "structure",
-        },
+        LabelOptions = M.LabelOptions,
         RotationAngle = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -4950,21 +4426,15 @@ M.AxisTickLabelOptions = {
 M.AxisDisplayOptions = {
     type = "structure",
     members = {
-        TickLabelOptions = {
-            type = "structure",
-        },
+        TickLabelOptions = M.AxisTickLabelOptions,
         AxisLineVisibility = {
             type = "string",
         },
         GridLineVisibility = {
             type = "string",
         },
-        DataOptions = {
-            type = "structure",
-        },
-        ScrollbarOptions = {
-            type = "structure",
-        },
+        DataOptions = M.AxisDataOptions,
+        ScrollbarOptions = M.ScrollBarOptions,
         AxisOffset = {
             type = "string",
         },
@@ -4980,27 +4450,20 @@ M.AxisLabelReferenceOptions = {
                 required = true,
             },
         },
-        Column = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Column = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ColumnIdentifier }),
     },
 }
 
 M.AxisLabelOptions = {
     type = "structure",
     members = {
-        FontConfiguration = {
-            type = "structure",
-        },
+        FontConfiguration = M.FontConfiguration,
         CustomLabel = {
             type = "string",
         },
-        ApplyTo = {
-            type = "structure",
-        },
+        ApplyTo = M.AxisLabelReferenceOptions,
     },
 }
 
@@ -5015,7 +4478,7 @@ M.ChartAxisLabelOptions = {
         },
         AxisLabelOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.AxisLabelOptions,
         },
     },
 }
@@ -5031,7 +4494,7 @@ M.ContributionAnalysisDefault = {
         },
         ContributorDimensions = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnIdentifier,
             traits = {
                 required = true,
             },
@@ -5096,21 +4559,11 @@ M.RangeEndsLabelType = {
 M.DataLabelType = {
     type = "structure",
     members = {
-        FieldLabelType = {
-            type = "structure",
-        },
-        DataPathLabelType = {
-            type = "structure",
-        },
-        RangeEndsLabelType = {
-            type = "structure",
-        },
-        MinimumLabelType = {
-            type = "structure",
-        },
-        MaximumLabelType = {
-            type = "structure",
-        },
+        FieldLabelType = M.FieldLabelType,
+        DataPathLabelType = M.DataPathLabelType,
+        RangeEndsLabelType = M.RangeEndsLabelType,
+        MinimumLabelType = M.MinimumLabelType,
+        MaximumLabelType = M.MaximumLabelType,
     },
 }
 
@@ -5148,7 +4601,7 @@ M.DataLabelOptions = {
         },
         DataLabelTypes = {
             type = "list",
-            member_type = "structure",
+            member = M.DataLabelType,
         },
         Position = {
             type = "string",
@@ -5156,9 +4609,7 @@ M.DataLabelOptions = {
         LabelContent = {
             type = "string",
         },
-        LabelFontConfiguration = {
-            type = "structure",
-        },
+        LabelFontConfiguration = M.FontConfiguration,
         LabelColor = {
             type = "string",
         },
@@ -5189,12 +4640,8 @@ M.BorderSettings = {
 M.BarChartDefaultSeriesSettings = {
     type = "structure",
     members = {
-        DecalSettings = {
-            type = "structure",
-        },
-        BorderSettings = {
-            type = "structure",
-        },
+        DecalSettings = M.DecalSettings,
+        BorderSettings = M.BorderSettings,
     },
 }
 
@@ -5207,18 +4654,13 @@ M.CategoricalDimensionField = {
                 required = true,
             },
         },
-        Column = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Column = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ColumnIdentifier }),
         HierarchyId = {
             type = "string",
         },
-        FormatConfiguration = {
-            type = "structure",
-        },
+        FormatConfiguration = M.StringFormatConfiguration,
     },
 }
 
@@ -5231,21 +4673,16 @@ M.DateDimensionField = {
                 required = true,
             },
         },
-        Column = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Column = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ColumnIdentifier }),
         DateGranularity = {
             type = "string",
         },
         HierarchyId = {
             type = "string",
         },
-        FormatConfiguration = {
-            type = "structure",
-        },
+        FormatConfiguration = M.DateTimeFormatConfiguration,
     },
 }
 
@@ -5258,33 +4695,22 @@ M.NumericalDimensionField = {
                 required = true,
             },
         },
-        Column = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Column = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ColumnIdentifier }),
         HierarchyId = {
             type = "string",
         },
-        FormatConfiguration = {
-            type = "structure",
-        },
+        FormatConfiguration = M.NumberFormatConfiguration,
     },
 }
 
 M.DimensionField = {
     type = "structure",
     members = {
-        NumericalDimensionField = {
-            type = "structure",
-        },
-        CategoricalDimensionField = {
-            type = "structure",
-        },
-        DateDimensionField = {
-            type = "structure",
-        },
+        NumericalDimensionField = M.NumericalDimensionField,
+        CategoricalDimensionField = M.CategoricalDimensionField,
+        DateDimensionField = M.DateDimensionField,
     },
 }
 
@@ -5315,18 +4741,13 @@ M.CategoricalMeasureField = {
                 required = true,
             },
         },
-        Column = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Column = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ColumnIdentifier }),
         AggregationFunction = {
             type = "string",
         },
-        FormatConfiguration = {
-            type = "structure",
-        },
+        FormatConfiguration = M.StringFormatConfiguration,
     },
 }
 
@@ -5339,18 +4760,13 @@ M.DateMeasureField = {
                 required = true,
             },
         },
-        Column = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Column = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ColumnIdentifier }),
         AggregationFunction = {
             type = "string",
         },
-        FormatConfiguration = {
-            type = "structure",
-        },
+        FormatConfiguration = M.DateTimeFormatConfiguration,
     },
 }
 
@@ -5363,36 +4779,21 @@ M.NumericalMeasureField = {
                 required = true,
             },
         },
-        Column = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        AggregationFunction = {
-            type = "structure",
-        },
-        FormatConfiguration = {
-            type = "structure",
-        },
+        Column = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ColumnIdentifier }),
+        AggregationFunction = M.NumericalAggregationFunction,
+        FormatConfiguration = M.NumberFormatConfiguration,
     },
 }
 
 M.MeasureField = {
     type = "structure",
     members = {
-        NumericalMeasureField = {
-            type = "structure",
-        },
-        CategoricalMeasureField = {
-            type = "structure",
-        },
-        DateMeasureField = {
-            type = "structure",
-        },
-        CalculatedMeasureField = {
-            type = "structure",
-        },
+        NumericalMeasureField = M.NumericalMeasureField,
+        CategoricalMeasureField = M.CategoricalMeasureField,
+        DateMeasureField = M.DateMeasureField,
+        CalculatedMeasureField = M.CalculatedMeasureField,
     },
 }
 
@@ -5401,19 +4802,19 @@ M.BarChartAggregatedFieldWells = {
     members = {
         Category = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionField,
         },
         Values = {
             type = "list",
-            member_type = "structure",
+            member = M.MeasureField,
         },
         Colors = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionField,
         },
         SmallMultiples = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionField,
         },
     },
 }
@@ -5421,9 +4822,7 @@ M.BarChartAggregatedFieldWells = {
 M.BarChartFieldWells = {
     type = "structure",
     members = {
-        BarChartAggregatedFieldWells = {
-            type = "structure",
-        },
+        BarChartAggregatedFieldWells = M.BarChartAggregatedFieldWells,
     },
 }
 
@@ -5448,12 +4847,8 @@ M.VisualMenuOption = {
 M.VisualInteractionOptions = {
     type = "structure",
     members = {
-        VisualMenuOption = {
-            type = "structure",
-        },
-        ContextMenuOption = {
-            type = "structure",
-        },
+        VisualMenuOption = M.VisualMenuOption,
+        ContextMenuOption = M.ContextMenuOption,
     },
 }
 
@@ -5470,9 +4865,7 @@ M.LegendOptions = {
         Visibility = {
             type = "string",
         },
-        Title = {
-            type = "structure",
-        },
+        Title = M.LabelOptions,
         Position = {
             type = "string",
         },
@@ -5482,9 +4875,7 @@ M.LegendOptions = {
         Height = {
             type = "string",
         },
-        ValueFontConfiguration = {
-            type = "structure",
-        },
+        ValueFontConfiguration = M.FontConfiguration,
     },
 }
 
@@ -5501,21 +4892,13 @@ M.AxisBinding = {
 M.ReferenceLineDynamicDataConfiguration = {
     type = "structure",
     members = {
-        Column = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        MeasureAggregationFunction = {
-            type = "structure",
-        },
-        Calculation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Column = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ColumnIdentifier }),
+        MeasureAggregationFunction = M.AggregationFunction,
+        Calculation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.NumericalAggregationFunction }),
     },
 }
 
@@ -5528,8 +4911,9 @@ M.ReferenceLineStaticDataConfiguration = {
     type = "structure",
     members = {
         Value = {
-            type = "number",
+            type = "double",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -5539,12 +4923,8 @@ M.ReferenceLineStaticDataConfiguration = {
 M.ReferenceLineDataConfiguration = {
     type = "structure",
     members = {
-        StaticConfiguration = {
-            type = "structure",
-        },
-        DynamicConfiguration = {
-            type = "structure",
-        },
+        StaticConfiguration = M.ReferenceLineStaticDataConfiguration,
+        DynamicConfiguration = M.ReferenceLineDynamicDataConfiguration,
         AxisBinding = {
             type = "string",
         },
@@ -5583,9 +4963,7 @@ M.ReferenceLineValueLabelConfiguration = {
         RelativePosition = {
             type = "string",
         },
-        FormatConfiguration = {
-            type = "structure",
-        },
+        FormatConfiguration = M.NumericFormatConfiguration,
     },
 }
 
@@ -5597,15 +4975,9 @@ M.ReferenceLineLabelVerticalPosition = {
 M.ReferenceLineLabelConfiguration = {
     type = "structure",
     members = {
-        ValueLabelConfiguration = {
-            type = "structure",
-        },
-        CustomLabelConfiguration = {
-            type = "structure",
-        },
-        FontConfiguration = {
-            type = "structure",
-        },
+        ValueLabelConfiguration = M.ReferenceLineValueLabelConfiguration,
+        CustomLabelConfiguration = M.ReferenceLineCustomLabelConfiguration,
+        FontConfiguration = M.FontConfiguration,
         FontColor = {
             type = "string",
         },
@@ -5642,30 +5014,19 @@ M.ReferenceLine = {
         Status = {
             type = "string",
         },
-        DataConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        StyleConfiguration = {
-            type = "structure",
-        },
-        LabelConfiguration = {
-            type = "structure",
-        },
+        DataConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ReferenceLineDataConfiguration }),
+        StyleConfiguration = M.ReferenceLineStyleConfiguration,
+        LabelConfiguration = M.ReferenceLineLabelConfiguration,
     },
 }
 
 M.BarChartSeriesSettings = {
     type = "structure",
     members = {
-        DecalSettings = {
-            type = "structure",
-        },
-        BorderSettings = {
-            type = "structure",
-        },
+        DecalSettings = M.DecalSettings,
+        BorderSettings = M.BorderSettings,
     },
 }
 
@@ -5681,9 +5042,7 @@ M.DataFieldBarSeriesItem = {
         FieldValue = {
             type = "string",
         },
-        Settings = {
-            type = "structure",
-        },
+        Settings = M.BarChartSeriesSettings,
     },
 }
 
@@ -5696,21 +5055,15 @@ M.FieldBarSeriesItem = {
                 required = true,
             },
         },
-        Settings = {
-            type = "structure",
-        },
+        Settings = M.BarChartSeriesSettings,
     },
 }
 
 M.BarSeriesItem = {
     type = "structure",
     members = {
-        FieldBarSeriesItem = {
-            type = "structure",
-        },
-        DataFieldBarSeriesItem = {
-            type = "structure",
-        },
+        FieldBarSeriesItem = M.FieldBarSeriesItem,
+        DataFieldBarSeriesItem = M.DataFieldBarSeriesItem,
     },
 }
 
@@ -5733,9 +5086,7 @@ M.PanelTitleOptions = {
         Visibility = {
             type = "string",
         },
-        FontConfiguration = {
-            type = "structure",
-        },
+        FontConfiguration = M.FontConfiguration,
         HorizontalTextAlignment = {
             type = "string",
         },
@@ -5745,9 +5096,7 @@ M.PanelTitleOptions = {
 M.PanelConfiguration = {
     type = "structure",
     members = {
-        Title = {
-            type = "structure",
-        },
+        Title = M.PanelTitleOptions,
         BorderVisibility = {
             type = "string",
         },
@@ -5801,20 +5150,14 @@ M.SmallMultiplesOptions = {
     type = "structure",
     members = {
         MaxVisibleRows = {
-            type = "number",
+            type = "long",
         },
         MaxVisibleColumns = {
-            type = "number",
+            type = "long",
         },
-        PanelConfiguration = {
-            type = "structure",
-        },
-        XAxis = {
-            type = "structure",
-        },
-        YAxis = {
-            type = "structure",
-        },
+        PanelConfiguration = M.PanelConfiguration,
+        XAxis = M.SmallMultiplesAxisProperties,
+        YAxis = M.SmallMultiplesAxisProperties,
     },
 }
 
@@ -5827,7 +5170,10 @@ M.ItemsLimitConfiguration = {
     type = "structure",
     members = {
         ItemsLimit = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
         OtherCategories = {
             type = "string",
@@ -5856,12 +5202,8 @@ M.FieldSort = {
 M.FieldSortOptions = {
     type = "structure",
     members = {
-        FieldSort = {
-            type = "structure",
-        },
-        ColumnSort = {
-            type = "structure",
-        },
+        FieldSort = M.FieldSort,
+        ColumnSort = M.ColumnSort,
     },
 }
 
@@ -5870,25 +5212,19 @@ M.BarChartSortConfiguration = {
     members = {
         CategorySort = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldSortOptions,
         },
-        CategoryItemsLimit = {
-            type = "structure",
-        },
+        CategoryItemsLimit = M.ItemsLimitConfiguration,
         ColorSort = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldSortOptions,
         },
-        ColorItemsLimit = {
-            type = "structure",
-        },
+        ColorItemsLimit = M.ItemsLimitConfiguration,
         SmallMultiplesSort = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldSortOptions,
         },
-        SmallMultiplesLimitConfiguration = {
-            type = "structure",
-        },
+        SmallMultiplesLimitConfiguration = M.ItemsLimitConfiguration,
     },
 }
 
@@ -5901,21 +5237,16 @@ M.TooltipTarget = {
 M.ColumnTooltipItem = {
     type = "structure",
     members = {
-        Column = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Column = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ColumnIdentifier }),
         Label = {
             type = "string",
         },
         Visibility = {
             type = "string",
         },
-        Aggregation = {
-            type = "structure",
-        },
+        Aggregation = M.AggregationFunction,
         TooltipTarget = {
             type = "string",
         },
@@ -5946,12 +5277,8 @@ M.FieldTooltipItem = {
 M.TooltipItem = {
     type = "structure",
     members = {
-        FieldTooltipItem = {
-            type = "structure",
-        },
-        ColumnTooltipItem = {
-            type = "structure",
-        },
+        FieldTooltipItem = M.FieldTooltipItem,
+        ColumnTooltipItem = M.ColumnTooltipItem,
     },
 }
 
@@ -5971,7 +5298,7 @@ M.FieldBasedTooltip = {
         },
         TooltipFields = {
             type = "list",
-            member_type = "structure",
+            member = M.TooltipItem,
         },
     },
 }
@@ -6000,12 +5327,8 @@ M.TooltipOptions = {
         SelectedTooltipType = {
             type = "string",
         },
-        FieldBasedTooltip = {
-            type = "structure",
-        },
-        SheetTooltip = {
-            type = "structure",
-        },
+        FieldBasedTooltip = M.FieldBasedTooltip,
+        SheetTooltip = M.SheetTooltip,
     },
 }
 
@@ -6034,21 +5357,16 @@ M.DataPathValue = {
         FieldValue = {
             type = "string",
         },
-        DataPathType = {
-            type = "structure",
-        },
+        DataPathType = M.DataPathType,
     },
 }
 
 M.DataPathColor = {
     type = "structure",
     members = {
-        Element = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Element = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataPathValue }),
         Color = {
             type = "string",
             traits = {
@@ -6069,7 +5387,7 @@ M.VisualPalette = {
         },
         ColorMap = {
             type = "list",
-            member_type = "structure",
+            member = M.DataPathColor,
         },
     },
 }
@@ -6077,81 +5395,50 @@ M.VisualPalette = {
 M.BarChartConfiguration = {
     type = "structure",
     members = {
-        FieldWells = {
-            type = "structure",
-        },
-        SortConfiguration = {
-            type = "structure",
-        },
+        FieldWells = M.BarChartFieldWells,
+        SortConfiguration = M.BarChartSortConfiguration,
         Orientation = {
             type = "string",
         },
         BarsArrangement = {
             type = "string",
         },
-        VisualPalette = {
-            type = "structure",
-        },
-        SmallMultiplesOptions = {
-            type = "structure",
-        },
-        CategoryAxis = {
-            type = "structure",
-        },
-        CategoryLabelOptions = {
-            type = "structure",
-        },
-        ValueAxis = {
-            type = "structure",
-        },
-        ValueLabelOptions = {
-            type = "structure",
-        },
-        ColorLabelOptions = {
-            type = "structure",
-        },
-        DefaultSeriesSettings = {
-            type = "structure",
-        },
+        VisualPalette = M.VisualPalette,
+        SmallMultiplesOptions = M.SmallMultiplesOptions,
+        CategoryAxis = M.AxisDisplayOptions,
+        CategoryLabelOptions = M.ChartAxisLabelOptions,
+        ValueAxis = M.AxisDisplayOptions,
+        ValueLabelOptions = M.ChartAxisLabelOptions,
+        ColorLabelOptions = M.ChartAxisLabelOptions,
+        DefaultSeriesSettings = M.BarChartDefaultSeriesSettings,
         Series = {
             type = "list",
-            member_type = "structure",
+            member = M.BarSeriesItem,
         },
-        Legend = {
-            type = "structure",
-        },
-        DataLabels = {
-            type = "structure",
-        },
-        Tooltip = {
-            type = "structure",
-        },
+        Legend = M.LegendOptions,
+        DataLabels = M.DataLabelOptions,
+        Tooltip = M.TooltipOptions,
         ReferenceLines = {
             type = "list",
-            member_type = "structure",
+            member = M.ReferenceLine,
         },
         ContributionAnalysisDefaults = {
             type = "list",
-            member_type = "structure",
+            member = M.ContributionAnalysisDefault,
         },
-        Interactions = {
-            type = "structure",
-        },
+        Interactions = M.VisualInteractionOptions,
     },
 }
 
 M.CategoryDrillDownFilter = {
     type = "structure",
     members = {
-        Column = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Column = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ColumnIdentifier }),
         CategoryValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -6162,15 +5449,13 @@ M.CategoryDrillDownFilter = {
 M.NumericEqualityDrillDownFilter = {
     type = "structure",
     members = {
-        Column = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Column = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ColumnIdentifier }),
         Value = {
-            type = "number",
+            type = "double",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -6180,12 +5465,9 @@ M.NumericEqualityDrillDownFilter = {
 M.TimeRangeDrillDownFilter = {
     type = "structure",
     members = {
-        Column = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Column = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ColumnIdentifier }),
         RangeMinimum = {
             type = "timestamp",
             traits = {
@@ -6210,15 +5492,9 @@ M.TimeRangeDrillDownFilter = {
 M.DrillDownFilter = {
     type = "structure",
     members = {
-        NumericEqualityFilter = {
-            type = "structure",
-        },
-        CategoryFilter = {
-            type = "structure",
-        },
-        TimeRangeFilter = {
-            type = "structure",
-        },
+        NumericEqualityFilter = M.NumericEqualityDrillDownFilter,
+        CategoryFilter = M.CategoryDrillDownFilter,
+        TimeRangeFilter = M.TimeRangeDrillDownFilter,
     },
 }
 
@@ -6233,7 +5509,7 @@ M.DateTimeHierarchy = {
         },
         DrillDownFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.DrillDownFilter,
         },
     },
 }
@@ -6249,14 +5525,14 @@ M.ExplicitHierarchy = {
         },
         Columns = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnIdentifier,
             traits = {
                 required = true,
             },
         },
         DrillDownFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.DrillDownFilter,
         },
     },
 }
@@ -6272,14 +5548,14 @@ M.PredefinedHierarchy = {
         },
         Columns = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnIdentifier,
             traits = {
                 required = true,
             },
         },
         DrillDownFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.DrillDownFilter,
         },
     },
 }
@@ -6287,15 +5563,9 @@ M.PredefinedHierarchy = {
 M.ColumnHierarchy = {
     type = "structure",
     members = {
-        ExplicitHierarchy = {
-            type = "structure",
-        },
-        DateTimeHierarchy = {
-            type = "structure",
-        },
-        PredefinedHierarchy = {
-            type = "structure",
-        },
+        ExplicitHierarchy = M.ExplicitHierarchy,
+        DateTimeHierarchy = M.DateTimeHierarchy,
+        PredefinedHierarchy = M.PredefinedHierarchy,
     },
 }
 
@@ -6317,9 +5587,7 @@ M.VisualSubtitleLabelOptions = {
         Visibility = {
             type = "string",
         },
-        FormatText = {
-            type = "structure",
-        },
+        FormatText = M.LongFormatText,
     },
 }
 
@@ -6341,9 +5609,7 @@ M.VisualTitleLabelOptions = {
         Visibility = {
             type = "string",
         },
-        FormatText = {
-            type = "structure",
-        },
+        FormatText = M.ShortFormatText,
     },
 }
 
@@ -6356,22 +5622,16 @@ M.BarChartVisual = {
                 required = true,
             },
         },
-        Title = {
-            type = "structure",
-        },
-        Subtitle = {
-            type = "structure",
-        },
-        ChartConfiguration = {
-            type = "structure",
-        },
+        Title = M.VisualTitleLabelOptions,
+        Subtitle = M.VisualSubtitleLabelOptions,
+        ChartConfiguration = M.BarChartConfiguration,
         Actions = {
             type = "list",
-            member_type = "structure",
+            member = M.VisualCustomAction,
         },
         ColumnHierarchies = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnHierarchy,
         },
         VisualContentAltText = {
             type = "string",
@@ -6396,9 +5656,7 @@ M.BoxPlotStyleOptions = {
 M.BoxPlotOptions = {
     type = "structure",
     members = {
-        StyleOptions = {
-            type = "structure",
-        },
+        StyleOptions = M.BoxPlotStyleOptions,
         OutlierVisibility = {
             type = "string",
         },
@@ -6413,11 +5671,11 @@ M.BoxPlotAggregatedFieldWells = {
     members = {
         GroupBy = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionField,
         },
         Values = {
             type = "list",
-            member_type = "structure",
+            member = M.MeasureField,
         },
     },
 }
@@ -6425,9 +5683,7 @@ M.BoxPlotAggregatedFieldWells = {
 M.BoxPlotFieldWells = {
     type = "structure",
     members = {
-        BoxPlotAggregatedFieldWells = {
-            type = "structure",
-        },
+        BoxPlotAggregatedFieldWells = M.BoxPlotAggregatedFieldWells,
     },
 }
 
@@ -6435,13 +5691,14 @@ M.PaginationConfiguration = {
     type = "structure",
     members = {
         PageSize = {
-            type = "number",
+            type = "long",
             traits = {
+                default = nil,
                 required = true,
             },
         },
         PageNumber = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -6454,54 +5711,30 @@ M.BoxPlotSortConfiguration = {
     members = {
         CategorySort = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldSortOptions,
         },
-        PaginationConfiguration = {
-            type = "structure",
-        },
+        PaginationConfiguration = M.PaginationConfiguration,
     },
 }
 
 M.BoxPlotChartConfiguration = {
     type = "structure",
     members = {
-        FieldWells = {
-            type = "structure",
-        },
-        SortConfiguration = {
-            type = "structure",
-        },
-        BoxPlotOptions = {
-            type = "structure",
-        },
-        CategoryAxis = {
-            type = "structure",
-        },
-        CategoryLabelOptions = {
-            type = "structure",
-        },
-        PrimaryYAxisDisplayOptions = {
-            type = "structure",
-        },
-        PrimaryYAxisLabelOptions = {
-            type = "structure",
-        },
-        Legend = {
-            type = "structure",
-        },
-        Tooltip = {
-            type = "structure",
-        },
+        FieldWells = M.BoxPlotFieldWells,
+        SortConfiguration = M.BoxPlotSortConfiguration,
+        BoxPlotOptions = M.BoxPlotOptions,
+        CategoryAxis = M.AxisDisplayOptions,
+        CategoryLabelOptions = M.ChartAxisLabelOptions,
+        PrimaryYAxisDisplayOptions = M.AxisDisplayOptions,
+        PrimaryYAxisLabelOptions = M.ChartAxisLabelOptions,
+        Legend = M.LegendOptions,
+        Tooltip = M.TooltipOptions,
         ReferenceLines = {
             type = "list",
-            member_type = "structure",
+            member = M.ReferenceLine,
         },
-        VisualPalette = {
-            type = "structure",
-        },
-        Interactions = {
-            type = "structure",
-        },
+        VisualPalette = M.VisualPalette,
+        Interactions = M.VisualInteractionOptions,
     },
 }
 
@@ -6514,22 +5747,16 @@ M.BoxPlotVisual = {
                 required = true,
             },
         },
-        Title = {
-            type = "structure",
-        },
-        Subtitle = {
-            type = "structure",
-        },
-        ChartConfiguration = {
-            type = "structure",
-        },
+        Title = M.VisualTitleLabelOptions,
+        Subtitle = M.VisualSubtitleLabelOptions,
+        ChartConfiguration = M.BoxPlotChartConfiguration,
         Actions = {
             type = "list",
-            member_type = "structure",
+            member = M.VisualCustomAction,
         },
         ColumnHierarchies = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnHierarchy,
         },
         VisualContentAltText = {
             type = "string",
@@ -6596,18 +5823,10 @@ M.LineChartMarkerStyleSettings = {
 M.ComboChartDefaultSeriesSettings = {
     type = "structure",
     members = {
-        LineStyleSettings = {
-            type = "structure",
-        },
-        MarkerStyleSettings = {
-            type = "structure",
-        },
-        DecalSettings = {
-            type = "structure",
-        },
-        BorderSettings = {
-            type = "structure",
-        },
+        LineStyleSettings = M.LineChartLineStyleSettings,
+        MarkerStyleSettings = M.LineChartMarkerStyleSettings,
+        DecalSettings = M.DecalSettings,
+        BorderSettings = M.BorderSettings,
     },
 }
 
@@ -6616,19 +5835,19 @@ M.ComboChartAggregatedFieldWells = {
     members = {
         Category = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionField,
         },
         BarValues = {
             type = "list",
-            member_type = "structure",
+            member = M.MeasureField,
         },
         Colors = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionField,
         },
         LineValues = {
             type = "list",
-            member_type = "structure",
+            member = M.MeasureField,
         },
     },
 }
@@ -6636,27 +5855,17 @@ M.ComboChartAggregatedFieldWells = {
 M.ComboChartFieldWells = {
     type = "structure",
     members = {
-        ComboChartAggregatedFieldWells = {
-            type = "structure",
-        },
+        ComboChartAggregatedFieldWells = M.ComboChartAggregatedFieldWells,
     },
 }
 
 M.ComboChartSeriesSettings = {
     type = "structure",
     members = {
-        LineStyleSettings = {
-            type = "structure",
-        },
-        MarkerStyleSettings = {
-            type = "structure",
-        },
-        DecalSettings = {
-            type = "structure",
-        },
-        BorderSettings = {
-            type = "structure",
-        },
+        LineStyleSettings = M.LineChartLineStyleSettings,
+        MarkerStyleSettings = M.LineChartMarkerStyleSettings,
+        DecalSettings = M.DecalSettings,
+        BorderSettings = M.BorderSettings,
     },
 }
 
@@ -6672,9 +5881,7 @@ M.DataFieldComboSeriesItem = {
         FieldValue = {
             type = "string",
         },
-        Settings = {
-            type = "structure",
-        },
+        Settings = M.ComboChartSeriesSettings,
     },
 }
 
@@ -6687,21 +5894,15 @@ M.FieldComboSeriesItem = {
                 required = true,
             },
         },
-        Settings = {
-            type = "structure",
-        },
+        Settings = M.ComboChartSeriesSettings,
     },
 }
 
 M.ComboSeriesItem = {
     type = "structure",
     members = {
-        FieldComboSeriesItem = {
-            type = "structure",
-        },
-        DataFieldComboSeriesItem = {
-            type = "structure",
-        },
+        FieldComboSeriesItem = M.FieldComboSeriesItem,
+        DataFieldComboSeriesItem = M.DataFieldComboSeriesItem,
     },
 }
 
@@ -6724,9 +5925,7 @@ M.YAxisOptions = {
 M.SingleAxisOptions = {
     type = "structure",
     members = {
-        YAxisOptions = {
-            type = "structure",
-        },
+        YAxisOptions = M.YAxisOptions,
     },
 }
 
@@ -6735,86 +5934,48 @@ M.ComboChartSortConfiguration = {
     members = {
         CategorySort = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldSortOptions,
         },
-        CategoryItemsLimit = {
-            type = "structure",
-        },
+        CategoryItemsLimit = M.ItemsLimitConfiguration,
         ColorSort = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldSortOptions,
         },
-        ColorItemsLimit = {
-            type = "structure",
-        },
+        ColorItemsLimit = M.ItemsLimitConfiguration,
     },
 }
 
 M.ComboChartConfiguration = {
     type = "structure",
     members = {
-        FieldWells = {
-            type = "structure",
-        },
-        SortConfiguration = {
-            type = "structure",
-        },
+        FieldWells = M.ComboChartFieldWells,
+        SortConfiguration = M.ComboChartSortConfiguration,
         BarsArrangement = {
             type = "string",
         },
-        CategoryAxis = {
-            type = "structure",
-        },
-        CategoryLabelOptions = {
-            type = "structure",
-        },
-        PrimaryYAxisDisplayOptions = {
-            type = "structure",
-        },
-        PrimaryYAxisLabelOptions = {
-            type = "structure",
-        },
-        SecondaryYAxisDisplayOptions = {
-            type = "structure",
-        },
-        SecondaryYAxisLabelOptions = {
-            type = "structure",
-        },
-        SingleAxisOptions = {
-            type = "structure",
-        },
-        ColorLabelOptions = {
-            type = "structure",
-        },
-        DefaultSeriesSettings = {
-            type = "structure",
-        },
+        CategoryAxis = M.AxisDisplayOptions,
+        CategoryLabelOptions = M.ChartAxisLabelOptions,
+        PrimaryYAxisDisplayOptions = M.AxisDisplayOptions,
+        PrimaryYAxisLabelOptions = M.ChartAxisLabelOptions,
+        SecondaryYAxisDisplayOptions = M.AxisDisplayOptions,
+        SecondaryYAxisLabelOptions = M.ChartAxisLabelOptions,
+        SingleAxisOptions = M.SingleAxisOptions,
+        ColorLabelOptions = M.ChartAxisLabelOptions,
+        DefaultSeriesSettings = M.ComboChartDefaultSeriesSettings,
         Series = {
             type = "list",
-            member_type = "structure",
+            member = M.ComboSeriesItem,
         },
-        Legend = {
-            type = "structure",
-        },
-        BarDataLabels = {
-            type = "structure",
-        },
-        LineDataLabels = {
-            type = "structure",
-        },
-        Tooltip = {
-            type = "structure",
-        },
+        Legend = M.LegendOptions,
+        BarDataLabels = M.DataLabelOptions,
+        LineDataLabels = M.DataLabelOptions,
+        Tooltip = M.TooltipOptions,
         ReferenceLines = {
             type = "list",
-            member_type = "structure",
+            member = M.ReferenceLine,
         },
-        VisualPalette = {
-            type = "structure",
-        },
-        Interactions = {
-            type = "structure",
-        },
+        VisualPalette = M.VisualPalette,
+        Interactions = M.VisualInteractionOptions,
     },
 }
 
@@ -6827,22 +5988,16 @@ M.ComboChartVisual = {
                 required = true,
             },
         },
-        Title = {
-            type = "structure",
-        },
-        Subtitle = {
-            type = "structure",
-        },
-        ChartConfiguration = {
-            type = "structure",
-        },
+        Title = M.VisualTitleLabelOptions,
+        Subtitle = M.VisualSubtitleLabelOptions,
+        ChartConfiguration = M.ComboChartConfiguration,
         Actions = {
             type = "list",
-            member_type = "structure",
+            member = M.VisualCustomAction,
         },
         ColumnHierarchies = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnHierarchy,
         },
         VisualContentAltText = {
             type = "string",
@@ -6874,9 +6029,7 @@ M.CustomContentConfiguration = {
         ImageScaling = {
             type = "string",
         },
-        Interactions = {
-            type = "structure",
-        },
+        Interactions = M.VisualInteractionOptions,
     },
 }
 
@@ -6889,18 +6042,12 @@ M.CustomContentVisual = {
                 required = true,
             },
         },
-        Title = {
-            type = "structure",
-        },
-        Subtitle = {
-            type = "structure",
-        },
-        ChartConfiguration = {
-            type = "structure",
-        },
+        Title = M.VisualTitleLabelOptions,
+        Subtitle = M.VisualSubtitleLabelOptions,
+        ChartConfiguration = M.CustomContentConfiguration,
         Actions = {
             type = "list",
-            member_type = "structure",
+            member = M.VisualCustomAction,
         },
         DataSetIdentifier = {
             type = "string",
@@ -6931,7 +6078,7 @@ M.EmptyVisual = {
         },
         Actions = {
             type = "list",
-            member_type = "structure",
+            member = M.VisualCustomAction,
         },
     },
 }
@@ -6941,11 +6088,11 @@ M.FilledMapAggregatedFieldWells = {
     members = {
         Geospatial = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionField,
         },
         Values = {
             type = "list",
-            member_type = "structure",
+            member = M.MeasureField,
         },
     },
 }
@@ -6953,9 +6100,7 @@ M.FilledMapAggregatedFieldWells = {
 M.FilledMapFieldWells = {
     type = "structure",
     members = {
-        FilledMapAggregatedFieldWells = {
-            type = "structure",
-        },
+        FilledMapAggregatedFieldWells = M.FilledMapAggregatedFieldWells,
     },
 }
 
@@ -6980,7 +6125,7 @@ M.FilledMapSortConfiguration = {
     members = {
         CategorySort = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldSortOptions,
         },
     },
 }
@@ -6989,25 +6134,25 @@ M.GeospatialCoordinateBounds = {
     type = "structure",
     members = {
         North = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
         South = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
         West = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
         East = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -7023,9 +6168,7 @@ M.MapZoomMode = {
 M.GeospatialWindowOptions = {
     type = "structure",
     members = {
-        Bounds = {
-            type = "structure",
-        },
+        Bounds = M.GeospatialCoordinateBounds,
         MapZoomMode = {
             type = "string",
         },
@@ -7035,27 +6178,13 @@ M.GeospatialWindowOptions = {
 M.FilledMapConfiguration = {
     type = "structure",
     members = {
-        FieldWells = {
-            type = "structure",
-        },
-        SortConfiguration = {
-            type = "structure",
-        },
-        Legend = {
-            type = "structure",
-        },
-        Tooltip = {
-            type = "structure",
-        },
-        WindowOptions = {
-            type = "structure",
-        },
-        MapStyleOptions = {
-            type = "structure",
-        },
-        Interactions = {
-            type = "structure",
-        },
+        FieldWells = M.FilledMapFieldWells,
+        SortConfiguration = M.FilledMapSortConfiguration,
+        Legend = M.LegendOptions,
+        Tooltip = M.TooltipOptions,
+        WindowOptions = M.GeospatialWindowOptions,
+        MapStyleOptions = M.GeospatialMapStyleOptions,
+        Interactions = M.VisualInteractionOptions,
     },
 }
 
@@ -7063,13 +6192,17 @@ M.GradientStop = {
     type = "structure",
     members = {
         GradientOffset = {
-            type = "number",
+            type = "double",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         DataValue = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = nil,
+            },
         },
         Color = {
             type = "string",
@@ -7082,7 +6215,7 @@ M.GradientColor = {
     members = {
         Stops = {
             type = "list",
-            member_type = "structure",
+            member = M.GradientStop,
         },
     },
 }
@@ -7096,12 +6229,9 @@ M.ConditionalFormattingGradientColor = {
                 required = true,
             },
         },
-        Color = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Color = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.GradientColor }),
     },
 }
 
@@ -7123,24 +6253,17 @@ M.ConditionalFormattingSolidColor = {
 M.ConditionalFormattingColor = {
     type = "structure",
     members = {
-        Solid = {
-            type = "structure",
-        },
-        Gradient = {
-            type = "structure",
-        },
+        Solid = M.ConditionalFormattingSolidColor,
+        Gradient = M.ConditionalFormattingGradientColor,
     },
 }
 
 M.ShapeConditionalFormat = {
     type = "structure",
     members = {
-        BackgroundColor = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        BackgroundColor = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConditionalFormattingColor }),
     },
 }
 
@@ -7153,21 +6276,16 @@ M.FilledMapShapeConditionalFormatting = {
                 required = true,
             },
         },
-        Format = {
-            type = "structure",
-        },
+        Format = M.ShapeConditionalFormat,
     },
 }
 
 M.FilledMapConditionalFormattingOption = {
     type = "structure",
     members = {
-        Shape = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Shape = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FilledMapShapeConditionalFormatting }),
     },
 }
 
@@ -7176,7 +6294,7 @@ M.FilledMapConditionalFormatting = {
     members = {
         ConditionalFormattingOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.FilledMapConditionalFormattingOption,
             traits = {
                 required = true,
             },
@@ -7188,13 +6306,13 @@ M.Coordinate = {
     type = "structure",
     members = {
         Latitude = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
         Longitude = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -7226,30 +6344,20 @@ M.GeocoderHierarchy = {
 M.GeocodePreferenceValue = {
     type = "union",
     members = {
-        GeocoderHierarchy = {
-            type = "structure",
-        },
-        Coordinate = {
-            type = "structure",
-        },
+        GeocoderHierarchy = M.GeocoderHierarchy,
+        Coordinate = M.Coordinate,
     },
 }
 
 M.GeocodePreference = {
     type = "structure",
     members = {
-        RequestKey = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Preference = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        RequestKey = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.GeocoderHierarchy }),
+        Preference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.GeocodePreferenceValue }),
     },
 }
 
@@ -7262,32 +6370,24 @@ M.FilledMapVisual = {
                 required = true,
             },
         },
-        Title = {
-            type = "structure",
-        },
-        Subtitle = {
-            type = "structure",
-        },
-        ChartConfiguration = {
-            type = "structure",
-        },
-        ConditionalFormatting = {
-            type = "structure",
-        },
+        Title = M.VisualTitleLabelOptions,
+        Subtitle = M.VisualSubtitleLabelOptions,
+        ChartConfiguration = M.FilledMapConfiguration,
+        ConditionalFormatting = M.FilledMapConditionalFormatting,
         ColumnHierarchies = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnHierarchy,
         },
         Actions = {
             type = "list",
-            member_type = "structure",
+            member = M.VisualCustomAction,
         },
         VisualContentAltText = {
             type = "string",
         },
         GeocodingPreferences = {
             type = "list",
-            member_type = "structure",
+            member = M.GeocodePreference,
         },
     },
 }
@@ -7315,9 +6415,7 @@ M.FunnelChartDataLabelOptions = {
         Position = {
             type = "string",
         },
-        LabelFontConfiguration = {
-            type = "structure",
-        },
+        LabelFontConfiguration = M.FontConfiguration,
         LabelColor = {
             type = "string",
         },
@@ -7332,11 +6430,11 @@ M.FunnelChartAggregatedFieldWells = {
     members = {
         Category = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionField,
         },
         Values = {
             type = "list",
-            member_type = "structure",
+            member = M.MeasureField,
         },
     },
 }
@@ -7344,9 +6442,7 @@ M.FunnelChartAggregatedFieldWells = {
 M.FunnelChartFieldWells = {
     type = "structure",
     members = {
-        FunnelChartAggregatedFieldWells = {
-            type = "structure",
-        },
+        FunnelChartAggregatedFieldWells = M.FunnelChartAggregatedFieldWells,
     },
 }
 
@@ -7355,41 +6451,23 @@ M.FunnelChartSortConfiguration = {
     members = {
         CategorySort = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldSortOptions,
         },
-        CategoryItemsLimit = {
-            type = "structure",
-        },
+        CategoryItemsLimit = M.ItemsLimitConfiguration,
     },
 }
 
 M.FunnelChartConfiguration = {
     type = "structure",
     members = {
-        FieldWells = {
-            type = "structure",
-        },
-        SortConfiguration = {
-            type = "structure",
-        },
-        CategoryLabelOptions = {
-            type = "structure",
-        },
-        ValueLabelOptions = {
-            type = "structure",
-        },
-        Tooltip = {
-            type = "structure",
-        },
-        DataLabelOptions = {
-            type = "structure",
-        },
-        VisualPalette = {
-            type = "structure",
-        },
-        Interactions = {
-            type = "structure",
-        },
+        FieldWells = M.FunnelChartFieldWells,
+        SortConfiguration = M.FunnelChartSortConfiguration,
+        CategoryLabelOptions = M.ChartAxisLabelOptions,
+        ValueLabelOptions = M.ChartAxisLabelOptions,
+        Tooltip = M.TooltipOptions,
+        DataLabelOptions = M.FunnelChartDataLabelOptions,
+        VisualPalette = M.VisualPalette,
+        Interactions = M.VisualInteractionOptions,
     },
 }
 
@@ -7402,22 +6480,16 @@ M.FunnelChartVisual = {
                 required = true,
             },
         },
-        Title = {
-            type = "structure",
-        },
-        Subtitle = {
-            type = "structure",
-        },
-        ChartConfiguration = {
-            type = "structure",
-        },
+        Title = M.VisualTitleLabelOptions,
+        Subtitle = M.VisualSubtitleLabelOptions,
+        ChartConfiguration = M.FunnelChartConfiguration,
         Actions = {
             type = "list",
-            member_type = "structure",
+            member = M.VisualCustomAction,
         },
         ColumnHierarchies = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnHierarchy,
         },
         VisualContentAltText = {
             type = "string",
@@ -7442,11 +6514,11 @@ M.GaugeChartFieldWells = {
     members = {
         Values = {
             type = "list",
-            member_type = "structure",
+            member = M.MeasureField,
         },
         TargetValues = {
             type = "list",
-            member_type = "structure",
+            member = M.MeasureField,
         },
     },
 }
@@ -7461,7 +6533,10 @@ M.ArcConfiguration = {
     type = "structure",
     members = {
         ArcAngle = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = nil,
+            },
         },
         ArcThickness = {
             type = "string",
@@ -7473,10 +6548,16 @@ M.ArcAxisDisplayRange = {
     type = "structure",
     members = {
         Min = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = nil,
+            },
         },
         Max = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -7484,11 +6565,12 @@ M.ArcAxisDisplayRange = {
 M.ArcAxisConfiguration = {
     type = "structure",
     members = {
-        Range = {
-            type = "structure",
-        },
+        Range = M.ArcAxisDisplayRange,
         ReserveRange = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -7496,12 +6578,8 @@ M.ArcAxisConfiguration = {
 M.ComparisonFormatConfiguration = {
     type = "structure",
     members = {
-        NumberDisplayFormatConfiguration = {
-            type = "structure",
-        },
-        PercentageDisplayFormatConfiguration = {
-            type = "structure",
-        },
+        NumberDisplayFormatConfiguration = M.NumberDisplayFormatConfiguration,
+        PercentageDisplayFormatConfiguration = M.PercentageDisplayFormatConfiguration,
     },
 }
 
@@ -7517,9 +6595,7 @@ M.ComparisonConfiguration = {
         ComparisonMethod = {
             type = "string",
         },
-        ComparisonFormat = {
-            type = "structure",
-        },
+        ComparisonFormat = M.ComparisonFormatConfiguration,
     },
 }
 
@@ -7535,54 +6611,30 @@ M.GaugeChartOptions = {
         PrimaryValueDisplayType = {
             type = "string",
         },
-        Comparison = {
-            type = "structure",
-        },
-        ArcAxis = {
-            type = "structure",
-        },
-        Arc = {
-            type = "structure",
-        },
-        PrimaryValueFontConfiguration = {
-            type = "structure",
-        },
+        Comparison = M.ComparisonConfiguration,
+        ArcAxis = M.ArcAxisConfiguration,
+        Arc = M.ArcConfiguration,
+        PrimaryValueFontConfiguration = M.FontConfiguration,
     },
 }
 
 M.GaugeChartConfiguration = {
     type = "structure",
     members = {
-        FieldWells = {
-            type = "structure",
-        },
-        GaugeChartOptions = {
-            type = "structure",
-        },
-        DataLabels = {
-            type = "structure",
-        },
-        TooltipOptions = {
-            type = "structure",
-        },
-        VisualPalette = {
-            type = "structure",
-        },
-        ColorConfiguration = {
-            type = "structure",
-        },
-        Interactions = {
-            type = "structure",
-        },
+        FieldWells = M.GaugeChartFieldWells,
+        GaugeChartOptions = M.GaugeChartOptions,
+        DataLabels = M.DataLabelOptions,
+        TooltipOptions = M.TooltipOptions,
+        VisualPalette = M.VisualPalette,
+        ColorConfiguration = M.GaugeChartColorConfiguration,
+        Interactions = M.VisualInteractionOptions,
     },
 }
 
 M.GaugeChartArcConditionalFormatting = {
     type = "structure",
     members = {
-        ForegroundColor = {
-            type = "structure",
-        },
+        ForegroundColor = M.ConditionalFormattingColor,
     },
 }
 
@@ -7649,18 +6701,13 @@ M.ConditionalFormattingCustomIconCondition = {
                 required = true,
             },
         },
-        IconOptions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        IconOptions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConditionalFormattingCustomIconOptions }),
         Color = {
             type = "string",
         },
-        DisplayConfiguration = {
-            type = "structure",
-        },
+        DisplayConfiguration = M.ConditionalFormattingIconDisplayConfiguration,
     },
 }
 
@@ -7696,36 +6743,24 @@ M.ConditionalFormattingIconSet = {
 M.ConditionalFormattingIcon = {
     type = "structure",
     members = {
-        IconSet = {
-            type = "structure",
-        },
-        CustomCondition = {
-            type = "structure",
-        },
+        IconSet = M.ConditionalFormattingIconSet,
+        CustomCondition = M.ConditionalFormattingCustomIconCondition,
     },
 }
 
 M.GaugeChartPrimaryValueConditionalFormatting = {
     type = "structure",
     members = {
-        TextColor = {
-            type = "structure",
-        },
-        Icon = {
-            type = "structure",
-        },
+        TextColor = M.ConditionalFormattingColor,
+        Icon = M.ConditionalFormattingIcon,
     },
 }
 
 M.GaugeChartConditionalFormattingOption = {
     type = "structure",
     members = {
-        PrimaryValue = {
-            type = "structure",
-        },
-        Arc = {
-            type = "structure",
-        },
+        PrimaryValue = M.GaugeChartPrimaryValueConditionalFormatting,
+        Arc = M.GaugeChartArcConditionalFormatting,
     },
 }
 
@@ -7734,7 +6769,7 @@ M.GaugeChartConditionalFormatting = {
     members = {
         ConditionalFormattingOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.GaugeChartConditionalFormattingOption,
         },
     },
 }
@@ -7748,21 +6783,13 @@ M.GaugeChartVisual = {
                 required = true,
             },
         },
-        Title = {
-            type = "structure",
-        },
-        Subtitle = {
-            type = "structure",
-        },
-        ChartConfiguration = {
-            type = "structure",
-        },
-        ConditionalFormatting = {
-            type = "structure",
-        },
+        Title = M.VisualTitleLabelOptions,
+        Subtitle = M.VisualSubtitleLabelOptions,
+        ChartConfiguration = M.GaugeChartConfiguration,
+        ConditionalFormatting = M.GaugeChartConditionalFormatting,
         Actions = {
             type = "list",
-            member_type = "structure",
+            member = M.VisualCustomAction,
         },
         VisualContentAltText = {
             type = "string",
@@ -7775,15 +6802,15 @@ M.GeospatialMapAggregatedFieldWells = {
     members = {
         Geospatial = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionField,
         },
         Values = {
             type = "list",
-            member_type = "structure",
+            member = M.MeasureField,
         },
         Colors = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionField,
         },
     },
 }
@@ -7791,9 +6818,7 @@ M.GeospatialMapAggregatedFieldWells = {
 M.GeospatialMapFieldWells = {
     type = "structure",
     members = {
-        GeospatialMapAggregatedFieldWells = {
-            type = "structure",
-        },
+        GeospatialMapAggregatedFieldWells = M.GeospatialMapAggregatedFieldWells,
     },
 }
 
@@ -7809,18 +6834,14 @@ M.SimpleClusterMarker = {
 M.ClusterMarker = {
     type = "structure",
     members = {
-        SimpleClusterMarker = {
-            type = "structure",
-        },
+        SimpleClusterMarker = M.SimpleClusterMarker,
     },
 }
 
 M.ClusterMarkerConfiguration = {
     type = "structure",
     members = {
-        ClusterMarker = {
-            type = "structure",
-        },
+        ClusterMarker = M.ClusterMarker,
     },
 }
 
@@ -7841,7 +6862,7 @@ M.GeospatialHeatmapColorScale = {
     members = {
         Colors = {
             type = "list",
-            member_type = "structure",
+            member = M.GeospatialHeatmapDataColor,
         },
     },
 }
@@ -7849,9 +6870,7 @@ M.GeospatialHeatmapColorScale = {
 M.GeospatialHeatmapConfiguration = {
     type = "structure",
     members = {
-        HeatmapColor = {
-            type = "structure",
-        },
+        HeatmapColor = M.GeospatialHeatmapColorScale,
     },
 }
 
@@ -7867,42 +6886,22 @@ M.GeospatialPointStyleOptions = {
         SelectedPointStyle = {
             type = "string",
         },
-        ClusterMarkerConfiguration = {
-            type = "structure",
-        },
-        HeatmapConfiguration = {
-            type = "structure",
-        },
+        ClusterMarkerConfiguration = M.ClusterMarkerConfiguration,
+        HeatmapConfiguration = M.GeospatialHeatmapConfiguration,
     },
 }
 
 M.GeospatialMapConfiguration = {
     type = "structure",
     members = {
-        FieldWells = {
-            type = "structure",
-        },
-        Legend = {
-            type = "structure",
-        },
-        Tooltip = {
-            type = "structure",
-        },
-        WindowOptions = {
-            type = "structure",
-        },
-        MapStyleOptions = {
-            type = "structure",
-        },
-        PointStyleOptions = {
-            type = "structure",
-        },
-        VisualPalette = {
-            type = "structure",
-        },
-        Interactions = {
-            type = "structure",
-        },
+        FieldWells = M.GeospatialMapFieldWells,
+        Legend = M.LegendOptions,
+        Tooltip = M.TooltipOptions,
+        WindowOptions = M.GeospatialWindowOptions,
+        MapStyleOptions = M.GeospatialMapStyleOptions,
+        PointStyleOptions = M.GeospatialPointStyleOptions,
+        VisualPalette = M.VisualPalette,
+        Interactions = M.VisualInteractionOptions,
     },
 }
 
@@ -7915,29 +6914,23 @@ M.GeospatialMapVisual = {
                 required = true,
             },
         },
-        Title = {
-            type = "structure",
-        },
-        Subtitle = {
-            type = "structure",
-        },
-        ChartConfiguration = {
-            type = "structure",
-        },
+        Title = M.VisualTitleLabelOptions,
+        Subtitle = M.VisualSubtitleLabelOptions,
+        ChartConfiguration = M.GeospatialMapConfiguration,
         ColumnHierarchies = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnHierarchy,
         },
         Actions = {
             type = "list",
-            member_type = "structure",
+            member = M.VisualCustomAction,
         },
         VisualContentAltText = {
             type = "string",
         },
         GeocodingPreferences = {
             type = "list",
-            member_type = "structure",
+            member = M.GeocodePreference,
         },
     },
 }
@@ -7954,7 +6947,10 @@ M.DataColor = {
             type = "string",
         },
         DataValue = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -7964,7 +6960,7 @@ M.ColorScale = {
     members = {
         Colors = {
             type = "list",
-            member_type = "structure",
+            member = M.DataColor,
             traits = {
                 required = true,
             },
@@ -7975,9 +6971,7 @@ M.ColorScale = {
                 required = true,
             },
         },
-        NullValueColor = {
-            type = "structure",
-        },
+        NullValueColor = M.DataColor,
     },
 }
 
@@ -7986,15 +6980,15 @@ M.HeatMapAggregatedFieldWells = {
     members = {
         Rows = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionField,
         },
         Columns = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionField,
         },
         Values = {
             type = "list",
-            member_type = "structure",
+            member = M.MeasureField,
         },
     },
 }
@@ -8002,9 +6996,7 @@ M.HeatMapAggregatedFieldWells = {
 M.HeatMapFieldWells = {
     type = "structure",
     members = {
-        HeatMapAggregatedFieldWells = {
-            type = "structure",
-        },
+        HeatMapAggregatedFieldWells = M.HeatMapAggregatedFieldWells,
     },
 }
 
@@ -8013,57 +7005,31 @@ M.HeatMapSortConfiguration = {
     members = {
         HeatMapRowSort = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldSortOptions,
         },
         HeatMapColumnSort = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldSortOptions,
         },
-        HeatMapRowItemsLimitConfiguration = {
-            type = "structure",
-        },
-        HeatMapColumnItemsLimitConfiguration = {
-            type = "structure",
-        },
+        HeatMapRowItemsLimitConfiguration = M.ItemsLimitConfiguration,
+        HeatMapColumnItemsLimitConfiguration = M.ItemsLimitConfiguration,
     },
 }
 
 M.HeatMapConfiguration = {
     type = "structure",
     members = {
-        FieldWells = {
-            type = "structure",
-        },
-        SortConfiguration = {
-            type = "structure",
-        },
-        RowAxisDisplayOptions = {
-            type = "structure",
-        },
-        RowLabelOptions = {
-            type = "structure",
-        },
-        ColumnAxisDisplayOptions = {
-            type = "structure",
-        },
-        ColumnLabelOptions = {
-            type = "structure",
-        },
-        ColorScale = {
-            type = "structure",
-        },
-        Legend = {
-            type = "structure",
-        },
-        DataLabels = {
-            type = "structure",
-        },
-        Tooltip = {
-            type = "structure",
-        },
-        Interactions = {
-            type = "structure",
-        },
+        FieldWells = M.HeatMapFieldWells,
+        SortConfiguration = M.HeatMapSortConfiguration,
+        RowAxisDisplayOptions = M.AxisDisplayOptions,
+        RowLabelOptions = M.ChartAxisLabelOptions,
+        ColumnAxisDisplayOptions = M.AxisDisplayOptions,
+        ColumnLabelOptions = M.ChartAxisLabelOptions,
+        ColorScale = M.ColorScale,
+        Legend = M.LegendOptions,
+        DataLabels = M.DataLabelOptions,
+        Tooltip = M.TooltipOptions,
+        Interactions = M.VisualInteractionOptions,
     },
 }
 
@@ -8076,22 +7042,16 @@ M.HeatMapVisual = {
                 required = true,
             },
         },
-        Title = {
-            type = "structure",
-        },
-        Subtitle = {
-            type = "structure",
-        },
-        ChartConfiguration = {
-            type = "structure",
-        },
+        Title = M.VisualTitleLabelOptions,
+        Subtitle = M.VisualSubtitleLabelOptions,
+        ChartConfiguration = M.HeatMapConfiguration,
         ColumnHierarchies = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnHierarchy,
         },
         Actions = {
             type = "list",
-            member_type = "structure",
+            member = M.VisualCustomAction,
         },
         VisualContentAltText = {
             type = "string",
@@ -8103,7 +7063,7 @@ M.BinCountOptions = {
     type = "structure",
     members = {
         Value = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -8112,10 +7072,10 @@ M.BinWidthOptions = {
     type = "structure",
     members = {
         Value = {
-            type = "number",
+            type = "double",
         },
         BinCountLimit = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -8131,14 +7091,13 @@ M.HistogramBinOptions = {
         SelectedBinType = {
             type = "string",
         },
-        BinCount = {
-            type = "structure",
-        },
-        BinWidth = {
-            type = "structure",
-        },
+        BinCount = M.BinCountOptions,
+        BinWidth = M.BinWidthOptions,
         StartValue = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -8148,7 +7107,7 @@ M.HistogramAggregatedFieldWells = {
     members = {
         Values = {
             type = "list",
-            member_type = "structure",
+            member = M.MeasureField,
         },
     },
 }
@@ -8156,42 +7115,22 @@ M.HistogramAggregatedFieldWells = {
 M.HistogramFieldWells = {
     type = "structure",
     members = {
-        HistogramAggregatedFieldWells = {
-            type = "structure",
-        },
+        HistogramAggregatedFieldWells = M.HistogramAggregatedFieldWells,
     },
 }
 
 M.HistogramConfiguration = {
     type = "structure",
     members = {
-        FieldWells = {
-            type = "structure",
-        },
-        XAxisDisplayOptions = {
-            type = "structure",
-        },
-        XAxisLabelOptions = {
-            type = "structure",
-        },
-        YAxisDisplayOptions = {
-            type = "structure",
-        },
-        BinOptions = {
-            type = "structure",
-        },
-        DataLabels = {
-            type = "structure",
-        },
-        Tooltip = {
-            type = "structure",
-        },
-        VisualPalette = {
-            type = "structure",
-        },
-        Interactions = {
-            type = "structure",
-        },
+        FieldWells = M.HistogramFieldWells,
+        XAxisDisplayOptions = M.AxisDisplayOptions,
+        XAxisLabelOptions = M.ChartAxisLabelOptions,
+        YAxisDisplayOptions = M.AxisDisplayOptions,
+        BinOptions = M.HistogramBinOptions,
+        DataLabels = M.DataLabelOptions,
+        Tooltip = M.TooltipOptions,
+        VisualPalette = M.VisualPalette,
+        Interactions = M.VisualInteractionOptions,
     },
 }
 
@@ -8204,18 +7143,12 @@ M.HistogramVisual = {
                 required = true,
             },
         },
-        Title = {
-            type = "structure",
-        },
-        Subtitle = {
-            type = "structure",
-        },
-        ChartConfiguration = {
-            type = "structure",
-        },
+        Title = M.VisualTitleLabelOptions,
+        Subtitle = M.VisualSubtitleLabelOptions,
+        ChartConfiguration = M.HistogramConfiguration,
         Actions = {
             type = "list",
-            member_type = "structure",
+            member = M.VisualCustomAction,
         },
         VisualContentAltText = {
             type = "string",
@@ -8240,32 +7173,34 @@ M.ForecastComputation = {
         Name = {
             type = "string",
         },
-        Time = {
-            type = "structure",
-        },
-        Value = {
-            type = "structure",
-        },
+        Time = M.DimensionField,
+        Value = M.MeasureField,
         PeriodsForward = {
-            type = "number",
+            type = "integer",
         },
         PeriodsBackward = {
-            type = "number",
+            type = "integer",
         },
         UpperBoundary = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = nil,
+            },
         },
         LowerBoundary = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = nil,
+            },
         },
         PredictionInterval = {
-            type = "number",
+            type = "integer",
         },
         Seasonality = {
             type = "string",
         },
         CustomSeasonalityValue = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -8282,14 +7217,10 @@ M.GrowthRateComputation = {
         Name = {
             type = "string",
         },
-        Time = {
-            type = "structure",
-        },
-        Value = {
-            type = "structure",
-        },
+        Time = M.DimensionField,
+        Value = M.MeasureField,
         PeriodSize = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -8311,12 +7242,8 @@ M.MaximumMinimumComputation = {
         Name = {
             type = "string",
         },
-        Time = {
-            type = "structure",
-        },
-        Value = {
-            type = "structure",
-        },
+        Time = M.DimensionField,
+        Value = M.MeasureField,
         Type = {
             type = "string",
             traits = {
@@ -8338,15 +7265,9 @@ M.MetricComparisonComputation = {
         Name = {
             type = "string",
         },
-        Time = {
-            type = "structure",
-        },
-        FromValue = {
-            type = "structure",
-        },
-        TargetValue = {
-            type = "structure",
-        },
+        Time = M.DimensionField,
+        FromValue = M.MeasureField,
+        TargetValue = M.MeasureField,
     },
 }
 
@@ -8362,12 +7283,8 @@ M.PeriodOverPeriodComputation = {
         Name = {
             type = "string",
         },
-        Time = {
-            type = "structure",
-        },
-        Value = {
-            type = "structure",
-        },
+        Time = M.DimensionField,
+        Value = M.MeasureField,
     },
 }
 
@@ -8383,12 +7300,8 @@ M.PeriodToDateComputation = {
         Name = {
             type = "string",
         },
-        Time = {
-            type = "structure",
-        },
-        Value = {
-            type = "structure",
-        },
+        Time = M.DimensionField,
+        Value = M.MeasureField,
         PeriodTimeGranularity = {
             type = "string",
         },
@@ -8417,17 +7330,11 @@ M.TopBottomMoversComputation = {
         Name = {
             type = "string",
         },
-        Time = {
-            type = "structure",
-        },
-        Category = {
-            type = "structure",
-        },
-        Value = {
-            type = "structure",
-        },
+        Time = M.DimensionField,
+        Category = M.DimensionField,
+        Value = M.MeasureField,
         MoverSize = {
-            type = "number",
+            type = "integer",
         },
         SortOrder = {
             type = "string",
@@ -8453,14 +7360,10 @@ M.TopBottomRankedComputation = {
         Name = {
             type = "string",
         },
-        Category = {
-            type = "structure",
-        },
-        Value = {
-            type = "structure",
-        },
+        Category = M.DimensionField,
+        Value = M.MeasureField,
         ResultSize = {
-            type = "number",
+            type = "integer",
         },
         Type = {
             type = "string",
@@ -8483,9 +7386,7 @@ M.TotalAggregationComputation = {
         Name = {
             type = "string",
         },
-        Value = {
-            type = "structure",
-        },
+        Value = M.MeasureField,
     },
 }
 
@@ -8501,45 +7402,23 @@ M.UniqueValuesComputation = {
         Name = {
             type = "string",
         },
-        Category = {
-            type = "structure",
-        },
+        Category = M.DimensionField,
     },
 }
 
 M.Computation = {
     type = "structure",
     members = {
-        TopBottomRanked = {
-            type = "structure",
-        },
-        TopBottomMovers = {
-            type = "structure",
-        },
-        TotalAggregation = {
-            type = "structure",
-        },
-        MaximumMinimum = {
-            type = "structure",
-        },
-        MetricComparison = {
-            type = "structure",
-        },
-        PeriodOverPeriod = {
-            type = "structure",
-        },
-        PeriodToDate = {
-            type = "structure",
-        },
-        GrowthRate = {
-            type = "structure",
-        },
-        UniqueValues = {
-            type = "structure",
-        },
-        Forecast = {
-            type = "structure",
-        },
+        TopBottomRanked = M.TopBottomRankedComputation,
+        TopBottomMovers = M.TopBottomMoversComputation,
+        TotalAggregation = M.TotalAggregationComputation,
+        MaximumMinimum = M.MaximumMinimumComputation,
+        MetricComparison = M.MetricComparisonComputation,
+        PeriodOverPeriod = M.PeriodOverPeriodComputation,
+        PeriodToDate = M.PeriodToDateComputation,
+        GrowthRate = M.GrowthRateComputation,
+        UniqueValues = M.UniqueValuesComputation,
+        Forecast = M.ForecastComputation,
     },
 }
 
@@ -8560,14 +7439,10 @@ M.InsightConfiguration = {
     members = {
         Computations = {
             type = "list",
-            member_type = "structure",
+            member = M.Computation,
         },
-        CustomNarrative = {
-            type = "structure",
-        },
-        Interactions = {
-            type = "structure",
-        },
+        CustomNarrative = M.CustomNarrativeOptions,
+        Interactions = M.VisualInteractionOptions,
     },
 }
 
@@ -8580,18 +7455,12 @@ M.InsightVisual = {
                 required = true,
             },
         },
-        Title = {
-            type = "structure",
-        },
-        Subtitle = {
-            type = "structure",
-        },
-        InsightConfiguration = {
-            type = "structure",
-        },
+        Title = M.VisualTitleLabelOptions,
+        Subtitle = M.VisualSubtitleLabelOptions,
+        InsightConfiguration = M.InsightConfiguration,
         Actions = {
             type = "list",
-            member_type = "structure",
+            member = M.VisualCustomAction,
         },
         DataSetIdentifier = {
             type = "string",
@@ -8610,15 +7479,15 @@ M.KPIFieldWells = {
     members = {
         Values = {
             type = "list",
-            member_type = "structure",
+            member = M.MeasureField,
         },
         TargetValues = {
             type = "list",
-            member_type = "structure",
+            member = M.MeasureField,
         },
         TrendGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionField,
         },
     },
 }
@@ -8696,42 +7565,24 @@ M.KPIVisualStandardLayout = {
 M.KPIVisualLayoutOptions = {
     type = "structure",
     members = {
-        StandardLayout = {
-            type = "structure",
-        },
+        StandardLayout = M.KPIVisualStandardLayout,
     },
 }
 
 M.KPIOptions = {
     type = "structure",
     members = {
-        ProgressBar = {
-            type = "structure",
-        },
-        TrendArrows = {
-            type = "structure",
-        },
-        SecondaryValue = {
-            type = "structure",
-        },
-        Comparison = {
-            type = "structure",
-        },
+        ProgressBar = M.ProgressBarOptions,
+        TrendArrows = M.TrendArrowOptions,
+        SecondaryValue = M.SecondaryValueOptions,
+        Comparison = M.ComparisonConfiguration,
         PrimaryValueDisplayType = {
             type = "string",
         },
-        PrimaryValueFontConfiguration = {
-            type = "structure",
-        },
-        SecondaryValueFontConfiguration = {
-            type = "structure",
-        },
-        Sparkline = {
-            type = "structure",
-        },
-        VisualLayoutOptions = {
-            type = "structure",
-        },
+        PrimaryValueFontConfiguration = M.FontConfiguration,
+        SecondaryValueFontConfiguration = M.FontConfiguration,
+        Sparkline = M.KPISparklineOptions,
+        VisualLayoutOptions = M.KPIVisualLayoutOptions,
     },
 }
 
@@ -8740,7 +7591,7 @@ M.KPISortConfiguration = {
     members = {
         TrendGroupSort = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldSortOptions,
         },
     },
 }
@@ -8748,81 +7599,51 @@ M.KPISortConfiguration = {
 M.KPIConfiguration = {
     type = "structure",
     members = {
-        FieldWells = {
-            type = "structure",
-        },
-        SortConfiguration = {
-            type = "structure",
-        },
-        KPIOptions = {
-            type = "structure",
-        },
-        Interactions = {
-            type = "structure",
-        },
+        FieldWells = M.KPIFieldWells,
+        SortConfiguration = M.KPISortConfiguration,
+        KPIOptions = M.KPIOptions,
+        Interactions = M.VisualInteractionOptions,
     },
 }
 
 M.KPIActualValueConditionalFormatting = {
     type = "structure",
     members = {
-        TextColor = {
-            type = "structure",
-        },
-        Icon = {
-            type = "structure",
-        },
+        TextColor = M.ConditionalFormattingColor,
+        Icon = M.ConditionalFormattingIcon,
     },
 }
 
 M.KPIComparisonValueConditionalFormatting = {
     type = "structure",
     members = {
-        TextColor = {
-            type = "structure",
-        },
-        Icon = {
-            type = "structure",
-        },
+        TextColor = M.ConditionalFormattingColor,
+        Icon = M.ConditionalFormattingIcon,
     },
 }
 
 M.KPIPrimaryValueConditionalFormatting = {
     type = "structure",
     members = {
-        TextColor = {
-            type = "structure",
-        },
-        Icon = {
-            type = "structure",
-        },
+        TextColor = M.ConditionalFormattingColor,
+        Icon = M.ConditionalFormattingIcon,
     },
 }
 
 M.KPIProgressBarConditionalFormatting = {
     type = "structure",
     members = {
-        ForegroundColor = {
-            type = "structure",
-        },
+        ForegroundColor = M.ConditionalFormattingColor,
     },
 }
 
 M.KPIConditionalFormattingOption = {
     type = "structure",
     members = {
-        PrimaryValue = {
-            type = "structure",
-        },
-        ProgressBar = {
-            type = "structure",
-        },
-        ActualValue = {
-            type = "structure",
-        },
-        ComparisonValue = {
-            type = "structure",
-        },
+        PrimaryValue = M.KPIPrimaryValueConditionalFormatting,
+        ProgressBar = M.KPIProgressBarConditionalFormatting,
+        ActualValue = M.KPIActualValueConditionalFormatting,
+        ComparisonValue = M.KPIComparisonValueConditionalFormatting,
     },
 }
 
@@ -8831,7 +7652,7 @@ M.KPIConditionalFormatting = {
     members = {
         ConditionalFormattingOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.KPIConditionalFormattingOption,
         },
     },
 }
@@ -8845,25 +7666,17 @@ M.KPIVisual = {
                 required = true,
             },
         },
-        Title = {
-            type = "structure",
-        },
-        Subtitle = {
-            type = "structure",
-        },
-        ChartConfiguration = {
-            type = "structure",
-        },
-        ConditionalFormatting = {
-            type = "structure",
-        },
+        Title = M.VisualTitleLabelOptions,
+        Subtitle = M.VisualSubtitleLabelOptions,
+        ChartConfiguration = M.KPIConfiguration,
+        ConditionalFormatting = M.KPIConditionalFormatting,
         Actions = {
             type = "list",
-            member_type = "structure",
+            member = M.VisualCustomAction,
         },
         ColumnHierarchies = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnHierarchy,
         },
         VisualContentAltText = {
             type = "string",
@@ -8874,18 +7687,10 @@ M.KPIVisual = {
 M.LayerCustomActionOperation = {
     type = "structure",
     members = {
-        FilterOperation = {
-            type = "structure",
-        },
-        NavigationOperation = {
-            type = "structure",
-        },
-        URLOperation = {
-            type = "structure",
-        },
-        SetParametersOperation = {
-            type = "structure",
-        },
+        FilterOperation = M.CustomActionFilterOperation,
+        NavigationOperation = M.CustomActionNavigationOperation,
+        URLOperation = M.CustomActionURLOperation,
+        SetParametersOperation = M.CustomActionSetParametersOperation,
     },
 }
 
@@ -8920,7 +7725,7 @@ M.LayerCustomAction = {
         },
         ActionOperations = {
             type = "list",
-            member_type = "structure",
+            member = M.LayerCustomActionOperation,
             traits = {
                 required = true,
             },
@@ -8943,9 +7748,7 @@ M.GeospatialStaticFileSource = {
 M.GeospatialDataSourceItem = {
     type = "structure",
     members = {
-        StaticFileDataSource = {
-            type = "structure",
-        },
+        StaticFileDataSource = M.GeospatialStaticFileSource,
     },
 }
 
@@ -8954,11 +7757,11 @@ M.GeospatialLayerColorField = {
     members = {
         ColorDimensionsFields = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionField,
         },
         ColorValuesFields = {
             type = "list",
-            member_type = "structure",
+            member = M.MeasureField,
         },
     },
 }
@@ -8972,15 +7775,10 @@ M.UnaggregatedField = {
                 required = true,
             },
         },
-        Column = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        FormatConfiguration = {
-            type = "structure",
-        },
+        Column = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ColumnIdentifier }),
+        FormatConfiguration = M.FormatConfiguration,
     },
 }
 
@@ -8990,12 +7788,8 @@ M.GeospatialLayerJoinDefinition = {
         ShapeKeyField = {
             type = "string",
         },
-        DatasetKeyField = {
-            type = "structure",
-        },
-        ColorField = {
-            type = "structure",
-        },
+        DatasetKeyField = M.UnaggregatedField,
+        ColorField = M.GeospatialLayerColorField,
     },
 }
 
@@ -9027,7 +7821,7 @@ M.GeospatialNullSymbolStyle = {
             type = "string",
         },
         StrokeWidth = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -9035,12 +7829,9 @@ M.GeospatialNullSymbolStyle = {
 M.GeospatialNullDataSettings = {
     type = "structure",
     members = {
-        SymbolStyle = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SymbolStyle = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.GeospatialNullSymbolStyle }),
     },
 }
 
@@ -9049,7 +7840,7 @@ M.GeospatialCategoricalColor = {
     members = {
         CategoryDataColors = {
             type = "list",
-            member_type = "structure",
+            member = M.GeospatialCategoricalDataColor,
             traits = {
                 required = true,
             },
@@ -9057,11 +7848,9 @@ M.GeospatialCategoricalColor = {
         NullDataVisibility = {
             type = "string",
         },
-        NullDataSettings = {
-            type = "structure",
-        },
+        NullDataSettings = M.GeospatialNullDataSettings,
         DefaultOpacity = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -9076,8 +7865,9 @@ M.GeospatialGradientStepColor = {
             },
         },
         DataValue = {
-            type = "number",
+            type = "double",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -9089,7 +7879,7 @@ M.GeospatialGradientColor = {
     members = {
         StepColors = {
             type = "list",
-            member_type = "structure",
+            member = M.GeospatialGradientStepColor,
             traits = {
                 required = true,
             },
@@ -9097,11 +7887,9 @@ M.GeospatialGradientColor = {
         NullDataVisibility = {
             type = "string",
         },
-        NullDataSettings = {
-            type = "structure",
-        },
+        NullDataSettings = M.GeospatialNullDataSettings,
         DefaultOpacity = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -9129,15 +7917,9 @@ M.GeospatialSolidColor = {
 M.GeospatialColor = {
     type = "structure",
     members = {
-        Solid = {
-            type = "structure",
-        },
-        Gradient = {
-            type = "structure",
-        },
-        Categorical = {
-            type = "structure",
-        },
+        Solid = M.GeospatialSolidColor,
+        Gradient = M.GeospatialGradientColor,
+        Categorical = M.GeospatialCategoricalColor,
     },
 }
 
@@ -9145,7 +7927,7 @@ M.GeospatialLineWidth = {
     type = "structure",
     members = {
         LineWidth = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -9153,33 +7935,24 @@ M.GeospatialLineWidth = {
 M.GeospatialLineSymbolStyle = {
     type = "structure",
     members = {
-        FillColor = {
-            type = "structure",
-        },
-        LineWidth = {
-            type = "structure",
-        },
+        FillColor = M.GeospatialColor,
+        LineWidth = M.GeospatialLineWidth,
     },
 }
 
 M.GeospatialLineStyle = {
     type = "structure",
     members = {
-        LineSymbolStyle = {
-            type = "structure",
-        },
+        LineSymbolStyle = M.GeospatialLineSymbolStyle,
     },
 }
 
 M.GeospatialLineLayer = {
     type = "structure",
     members = {
-        Style = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Style = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.GeospatialLineStyle }),
     },
 }
 
@@ -9187,7 +7960,7 @@ M.GeospatialCircleRadius = {
     type = "structure",
     members = {
         Radius = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -9195,90 +7968,60 @@ M.GeospatialCircleRadius = {
 M.GeospatialCircleSymbolStyle = {
     type = "structure",
     members = {
-        FillColor = {
-            type = "structure",
-        },
-        StrokeColor = {
-            type = "structure",
-        },
-        StrokeWidth = {
-            type = "structure",
-        },
-        CircleRadius = {
-            type = "structure",
-        },
+        FillColor = M.GeospatialColor,
+        StrokeColor = M.GeospatialColor,
+        StrokeWidth = M.GeospatialLineWidth,
+        CircleRadius = M.GeospatialCircleRadius,
     },
 }
 
 M.GeospatialPointStyle = {
     type = "structure",
     members = {
-        CircleSymbolStyle = {
-            type = "structure",
-        },
+        CircleSymbolStyle = M.GeospatialCircleSymbolStyle,
     },
 }
 
 M.GeospatialPointLayer = {
     type = "structure",
     members = {
-        Style = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Style = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.GeospatialPointStyle }),
     },
 }
 
 M.GeospatialPolygonSymbolStyle = {
     type = "structure",
     members = {
-        FillColor = {
-            type = "structure",
-        },
-        StrokeColor = {
-            type = "structure",
-        },
-        StrokeWidth = {
-            type = "structure",
-        },
+        FillColor = M.GeospatialColor,
+        StrokeColor = M.GeospatialColor,
+        StrokeWidth = M.GeospatialLineWidth,
     },
 }
 
 M.GeospatialPolygonStyle = {
     type = "structure",
     members = {
-        PolygonSymbolStyle = {
-            type = "structure",
-        },
+        PolygonSymbolStyle = M.GeospatialPolygonSymbolStyle,
     },
 }
 
 M.GeospatialPolygonLayer = {
     type = "structure",
     members = {
-        Style = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Style = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.GeospatialPolygonStyle }),
     },
 }
 
 M.GeospatialLayerDefinition = {
     type = "structure",
     members = {
-        PointLayer = {
-            type = "structure",
-        },
-        LineLayer = {
-            type = "structure",
-        },
-        PolygonLayer = {
-            type = "structure",
-        },
+        PointLayer = M.GeospatialPointLayer,
+        LineLayer = M.GeospatialLineLayer,
+        PolygonLayer = M.GeospatialPolygonLayer,
     },
 }
 
@@ -9300,27 +8043,19 @@ M.GeospatialLayerItem = {
         LayerType = {
             type = "string",
         },
-        DataSource = {
-            type = "structure",
-        },
+        DataSource = M.GeospatialDataSourceItem,
         Label = {
             type = "string",
         },
         Visibility = {
             type = "string",
         },
-        LayerDefinition = {
-            type = "structure",
-        },
-        Tooltip = {
-            type = "structure",
-        },
-        JoinDefinition = {
-            type = "structure",
-        },
+        LayerDefinition = M.GeospatialLayerDefinition,
+        Tooltip = M.TooltipOptions,
+        JoinDefinition = M.GeospatialLayerJoinDefinition,
         Actions = {
             type = "list",
-            member_type = "structure",
+            member = M.LayerCustomAction,
         },
     },
 }
@@ -9333,9 +8068,7 @@ M.GeospatialMapNavigation = {
 M.GeospatialMapState = {
     type = "structure",
     members = {
-        Bounds = {
-            type = "structure",
-        },
+        Bounds = M.GeospatialCoordinateBounds,
         MapNavigation = {
             type = "string",
         },
@@ -9360,22 +8093,14 @@ M.GeospatialMapStyle = {
 M.GeospatialLayerMapConfiguration = {
     type = "structure",
     members = {
-        Legend = {
-            type = "structure",
-        },
+        Legend = M.LegendOptions,
         MapLayers = {
             type = "list",
-            member_type = "structure",
+            member = M.GeospatialLayerItem,
         },
-        MapState = {
-            type = "structure",
-        },
-        MapStyle = {
-            type = "structure",
-        },
-        Interactions = {
-            type = "structure",
-        },
+        MapState = M.GeospatialMapState,
+        MapStyle = M.GeospatialMapStyle,
+        Interactions = M.VisualInteractionOptions,
     },
 }
 
@@ -9388,15 +8113,9 @@ M.LayerMapVisual = {
                 required = true,
             },
         },
-        Title = {
-            type = "structure",
-        },
-        Subtitle = {
-            type = "structure",
-        },
-        ChartConfiguration = {
-            type = "structure",
-        },
+        Title = M.VisualTitleLabelOptions,
+        Subtitle = M.VisualSubtitleLabelOptions,
+        ChartConfiguration = M.GeospatialLayerMapConfiguration,
         DataSetIdentifier = {
             type = "string",
             traits = {
@@ -9415,15 +8134,9 @@ M.LineChartDefaultSeriesSettings = {
         AxisBinding = {
             type = "string",
         },
-        LineStyleSettings = {
-            type = "structure",
-        },
-        MarkerStyleSettings = {
-            type = "structure",
-        },
-        DecalSettings = {
-            type = "structure",
-        },
+        LineStyleSettings = M.LineChartLineStyleSettings,
+        MarkerStyleSettings = M.LineChartMarkerStyleSettings,
+        DecalSettings = M.DecalSettings,
     },
 }
 
@@ -9432,19 +8145,19 @@ M.LineChartAggregatedFieldWells = {
     members = {
         Category = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionField,
         },
         Values = {
             type = "list",
-            member_type = "structure",
+            member = M.MeasureField,
         },
         Colors = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionField,
         },
         SmallMultiples = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionField,
         },
     },
 }
@@ -9452,9 +8165,7 @@ M.LineChartAggregatedFieldWells = {
 M.LineChartFieldWells = {
     type = "structure",
     members = {
-        LineChartAggregatedFieldWells = {
-            type = "structure",
-        },
+        LineChartAggregatedFieldWells = M.LineChartAggregatedFieldWells,
     },
 }
 
@@ -9462,22 +8173,28 @@ M.TimeBasedForecastProperties = {
     type = "structure",
     members = {
         PeriodsForward = {
-            type = "number",
+            type = "integer",
         },
         PeriodsBackward = {
-            type = "number",
+            type = "integer",
         },
         UpperBoundary = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = nil,
+            },
         },
         LowerBoundary = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = nil,
+            },
         },
         PredictionInterval = {
-            type = "number",
+            type = "integer",
         },
         Seasonality = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -9492,8 +8209,9 @@ M.WhatIfPointScenario = {
             },
         },
         Value = {
-            type = "number",
+            type = "double",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -9516,8 +8234,9 @@ M.WhatIfRangeScenario = {
             },
         },
         Value = {
-            type = "number",
+            type = "double",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -9527,24 +8246,16 @@ M.WhatIfRangeScenario = {
 M.ForecastScenario = {
     type = "structure",
     members = {
-        WhatIfPointScenario = {
-            type = "structure",
-        },
-        WhatIfRangeScenario = {
-            type = "structure",
-        },
+        WhatIfPointScenario = M.WhatIfPointScenario,
+        WhatIfRangeScenario = M.WhatIfRangeScenario,
     },
 }
 
 M.ForecastConfiguration = {
     type = "structure",
     members = {
-        ForecastProperties = {
-            type = "structure",
-        },
-        Scenario = {
-            type = "structure",
-        },
+        ForecastProperties = M.TimeBasedForecastProperties,
+        Scenario = M.ForecastScenario,
     },
 }
 
@@ -9566,12 +8277,10 @@ M.MissingDataConfiguration = {
 M.LineSeriesAxisDisplayOptions = {
     type = "structure",
     members = {
-        AxisOptions = {
-            type = "structure",
-        },
+        AxisOptions = M.AxisDisplayOptions,
         MissingDataConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.MissingDataConfiguration,
         },
     },
 }
@@ -9579,15 +8288,9 @@ M.LineSeriesAxisDisplayOptions = {
 M.LineChartSeriesSettings = {
     type = "structure",
     members = {
-        LineStyleSettings = {
-            type = "structure",
-        },
-        MarkerStyleSettings = {
-            type = "structure",
-        },
-        DecalSettings = {
-            type = "structure",
-        },
+        LineStyleSettings = M.LineChartLineStyleSettings,
+        MarkerStyleSettings = M.LineChartMarkerStyleSettings,
+        DecalSettings = M.DecalSettings,
     },
 }
 
@@ -9609,9 +8312,7 @@ M.DataFieldSeriesItem = {
                 required = true,
             },
         },
-        Settings = {
-            type = "structure",
-        },
+        Settings = M.LineChartSeriesSettings,
     },
 }
 
@@ -9630,21 +8331,15 @@ M.FieldSeriesItem = {
                 required = true,
             },
         },
-        Settings = {
-            type = "structure",
-        },
+        Settings = M.LineChartSeriesSettings,
     },
 }
 
 M.SeriesItem = {
     type = "structure",
     members = {
-        FieldSeriesItem = {
-            type = "structure",
-        },
-        DataFieldSeriesItem = {
-            type = "structure",
-        },
+        FieldSeriesItem = M.FieldSeriesItem,
+        DataFieldSeriesItem = M.DataFieldSeriesItem,
     },
 }
 
@@ -9653,21 +8348,15 @@ M.LineChartSortConfiguration = {
     members = {
         CategorySort = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldSortOptions,
         },
-        CategoryItemsLimitConfiguration = {
-            type = "structure",
-        },
-        ColorItemsLimitConfiguration = {
-            type = "structure",
-        },
+        CategoryItemsLimitConfiguration = M.ItemsLimitConfiguration,
+        ColorItemsLimitConfiguration = M.ItemsLimitConfiguration,
         SmallMultiplesSort = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldSortOptions,
         },
-        SmallMultiplesLimitConfiguration = {
-            type = "structure",
-        },
+        SmallMultiplesLimitConfiguration = M.ItemsLimitConfiguration,
     },
 }
 
@@ -9680,73 +8369,41 @@ M.LineChartType = {
 M.LineChartConfiguration = {
     type = "structure",
     members = {
-        FieldWells = {
-            type = "structure",
-        },
-        SortConfiguration = {
-            type = "structure",
-        },
+        FieldWells = M.LineChartFieldWells,
+        SortConfiguration = M.LineChartSortConfiguration,
         ForecastConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.ForecastConfiguration,
         },
         Type = {
             type = "string",
         },
-        SmallMultiplesOptions = {
-            type = "structure",
-        },
-        XAxisDisplayOptions = {
-            type = "structure",
-        },
-        XAxisLabelOptions = {
-            type = "structure",
-        },
-        PrimaryYAxisDisplayOptions = {
-            type = "structure",
-        },
-        PrimaryYAxisLabelOptions = {
-            type = "structure",
-        },
-        SecondaryYAxisDisplayOptions = {
-            type = "structure",
-        },
-        SecondaryYAxisLabelOptions = {
-            type = "structure",
-        },
-        SingleAxisOptions = {
-            type = "structure",
-        },
-        DefaultSeriesSettings = {
-            type = "structure",
-        },
+        SmallMultiplesOptions = M.SmallMultiplesOptions,
+        XAxisDisplayOptions = M.AxisDisplayOptions,
+        XAxisLabelOptions = M.ChartAxisLabelOptions,
+        PrimaryYAxisDisplayOptions = M.LineSeriesAxisDisplayOptions,
+        PrimaryYAxisLabelOptions = M.ChartAxisLabelOptions,
+        SecondaryYAxisDisplayOptions = M.LineSeriesAxisDisplayOptions,
+        SecondaryYAxisLabelOptions = M.ChartAxisLabelOptions,
+        SingleAxisOptions = M.SingleAxisOptions,
+        DefaultSeriesSettings = M.LineChartDefaultSeriesSettings,
         Series = {
             type = "list",
-            member_type = "structure",
+            member = M.SeriesItem,
         },
-        Legend = {
-            type = "structure",
-        },
-        DataLabels = {
-            type = "structure",
-        },
+        Legend = M.LegendOptions,
+        DataLabels = M.DataLabelOptions,
         ReferenceLines = {
             type = "list",
-            member_type = "structure",
+            member = M.ReferenceLine,
         },
-        Tooltip = {
-            type = "structure",
-        },
+        Tooltip = M.TooltipOptions,
         ContributionAnalysisDefaults = {
             type = "list",
-            member_type = "structure",
+            member = M.ContributionAnalysisDefault,
         },
-        VisualPalette = {
-            type = "structure",
-        },
-        Interactions = {
-            type = "structure",
-        },
+        VisualPalette = M.VisualPalette,
+        Interactions = M.VisualInteractionOptions,
     },
 }
 
@@ -9759,22 +8416,16 @@ M.LineChartVisual = {
                 required = true,
             },
         },
-        Title = {
-            type = "structure",
-        },
-        Subtitle = {
-            type = "structure",
-        },
-        ChartConfiguration = {
-            type = "structure",
-        },
+        Title = M.VisualTitleLabelOptions,
+        Subtitle = M.VisualSubtitleLabelOptions,
+        ChartConfiguration = M.LineChartConfiguration,
         Actions = {
             type = "list",
-            member_type = "structure",
+            member = M.VisualCustomAction,
         },
         ColumnHierarchies = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnHierarchy,
         },
         VisualContentAltText = {
             type = "string",
@@ -9810,12 +8461,8 @@ M.DonutCenterOptions = {
 M.DonutOptions = {
     type = "structure",
     members = {
-        ArcOptions = {
-            type = "structure",
-        },
-        DonutCenterOptions = {
-            type = "structure",
-        },
+        ArcOptions = M.ArcOptions,
+        DonutCenterOptions = M.DonutCenterOptions,
     },
 }
 
@@ -9824,15 +8471,15 @@ M.PieChartAggregatedFieldWells = {
     members = {
         Category = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionField,
         },
         Values = {
             type = "list",
-            member_type = "structure",
+            member = M.MeasureField,
         },
         SmallMultiples = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionField,
         },
     },
 }
@@ -9840,9 +8487,7 @@ M.PieChartAggregatedFieldWells = {
 M.PieChartFieldWells = {
     type = "structure",
     members = {
-        PieChartAggregatedFieldWells = {
-            type = "structure",
-        },
+        PieChartAggregatedFieldWells = M.PieChartAggregatedFieldWells,
     },
 }
 
@@ -9851,61 +8496,35 @@ M.PieChartSortConfiguration = {
     members = {
         CategorySort = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldSortOptions,
         },
-        CategoryItemsLimit = {
-            type = "structure",
-        },
+        CategoryItemsLimit = M.ItemsLimitConfiguration,
         SmallMultiplesSort = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldSortOptions,
         },
-        SmallMultiplesLimitConfiguration = {
-            type = "structure",
-        },
+        SmallMultiplesLimitConfiguration = M.ItemsLimitConfiguration,
     },
 }
 
 M.PieChartConfiguration = {
     type = "structure",
     members = {
-        FieldWells = {
-            type = "structure",
-        },
-        SortConfiguration = {
-            type = "structure",
-        },
-        DonutOptions = {
-            type = "structure",
-        },
-        SmallMultiplesOptions = {
-            type = "structure",
-        },
-        CategoryLabelOptions = {
-            type = "structure",
-        },
-        ValueLabelOptions = {
-            type = "structure",
-        },
-        Legend = {
-            type = "structure",
-        },
-        DataLabels = {
-            type = "structure",
-        },
-        Tooltip = {
-            type = "structure",
-        },
-        VisualPalette = {
-            type = "structure",
-        },
+        FieldWells = M.PieChartFieldWells,
+        SortConfiguration = M.PieChartSortConfiguration,
+        DonutOptions = M.DonutOptions,
+        SmallMultiplesOptions = M.SmallMultiplesOptions,
+        CategoryLabelOptions = M.ChartAxisLabelOptions,
+        ValueLabelOptions = M.ChartAxisLabelOptions,
+        Legend = M.LegendOptions,
+        DataLabels = M.DataLabelOptions,
+        Tooltip = M.TooltipOptions,
+        VisualPalette = M.VisualPalette,
         ContributionAnalysisDefaults = {
             type = "list",
-            member_type = "structure",
+            member = M.ContributionAnalysisDefault,
         },
-        Interactions = {
-            type = "structure",
-        },
+        Interactions = M.VisualInteractionOptions,
     },
 }
 
@@ -9918,22 +8537,16 @@ M.PieChartVisual = {
                 required = true,
             },
         },
-        Title = {
-            type = "structure",
-        },
-        Subtitle = {
-            type = "structure",
-        },
-        ChartConfiguration = {
-            type = "structure",
-        },
+        Title = M.VisualTitleLabelOptions,
+        Subtitle = M.VisualSubtitleLabelOptions,
+        ChartConfiguration = M.PieChartConfiguration,
         Actions = {
             type = "list",
-            member_type = "structure",
+            member = M.VisualCustomAction,
         },
         ColumnHierarchies = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnHierarchy,
         },
         VisualContentAltText = {
             type = "string",
@@ -9954,7 +8567,7 @@ M.VisualCustomizationFieldsConfiguration = {
         },
         AdditionalFields = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnIdentifier,
         },
     },
 }
@@ -9962,9 +8575,7 @@ M.VisualCustomizationFieldsConfiguration = {
 M.DashboardCustomizationVisualOptions = {
     type = "structure",
     members = {
-        FieldsConfiguration = {
-            type = "structure",
-        },
+        FieldsConfiguration = M.VisualCustomizationFieldsConfiguration,
     },
 }
 
@@ -9981,7 +8592,7 @@ M.PivotTableFieldCollapseStateTarget = {
         },
         FieldDataPathValues = {
             type = "list",
-            member_type = "structure",
+            member = M.DataPathValue,
         },
     },
 }
@@ -9989,12 +8600,9 @@ M.PivotTableFieldCollapseStateTarget = {
 M.PivotTableFieldCollapseStateOption = {
     type = "structure",
     members = {
-        Target = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Target = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PivotTableFieldCollapseStateTarget }),
         State = {
             type = "string",
         },
@@ -10006,7 +8614,7 @@ M.PivotTableDataPathOption = {
     members = {
         DataPathList = {
             type = "list",
-            member_type = "structure",
+            member = M.DataPathValue,
             traits = {
                 required = true,
             },
@@ -10040,15 +8648,15 @@ M.PivotTableFieldOptions = {
     members = {
         SelectedFieldOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.PivotTableFieldOption,
         },
         DataPathOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.PivotTableDataPathOption,
         },
         CollapseStateOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.PivotTableFieldCollapseStateOption,
         },
     },
 }
@@ -10058,15 +8666,15 @@ M.PivotTableAggregatedFieldWells = {
     members = {
         Rows = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionField,
         },
         Columns = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionField,
         },
         Values = {
             type = "list",
-            member_type = "structure",
+            member = M.MeasureField,
         },
     },
 }
@@ -10074,9 +8682,7 @@ M.PivotTableAggregatedFieldWells = {
 M.PivotTableFieldWells = {
     type = "structure",
     members = {
-        PivotTableAggregatedFieldWells = {
-            type = "structure",
-        },
+        PivotTableAggregatedFieldWells = M.PivotTableAggregatedFieldWells,
     },
 }
 
@@ -10103,7 +8709,7 @@ M.DataPathSort = {
         },
         SortPaths = {
             type = "list",
-            member_type = "structure",
+            member = M.DataPathValue,
             traits = {
                 required = true,
             },
@@ -10114,15 +8720,9 @@ M.DataPathSort = {
 M.PivotTableSortBy = {
     type = "structure",
     members = {
-        Field = {
-            type = "structure",
-        },
-        Column = {
-            type = "structure",
-        },
-        DataPath = {
-            type = "structure",
-        },
+        Field = M.FieldSort,
+        Column = M.ColumnSort,
+        DataPath = M.DataPathSort,
     },
 }
 
@@ -10135,12 +8735,9 @@ M.PivotFieldSortOptions = {
                 required = true,
             },
         },
-        SortBy = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SortBy = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PivotTableSortBy }),
     },
 }
 
@@ -10149,7 +8746,7 @@ M.PivotTableSortConfiguration = {
     members = {
         FieldSortOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.PivotFieldSortOptions,
         },
     },
 }
@@ -10166,7 +8763,7 @@ M.TableBorderOptions = {
             type = "string",
         },
         Thickness = {
-            type = "number",
+            type = "integer",
         },
         Style = {
             type = "string",
@@ -10177,36 +8774,20 @@ M.TableBorderOptions = {
 M.TableSideBorderOptions = {
     type = "structure",
     members = {
-        InnerVertical = {
-            type = "structure",
-        },
-        InnerHorizontal = {
-            type = "structure",
-        },
-        Left = {
-            type = "structure",
-        },
-        Right = {
-            type = "structure",
-        },
-        Top = {
-            type = "structure",
-        },
-        Bottom = {
-            type = "structure",
-        },
+        InnerVertical = M.TableBorderOptions,
+        InnerHorizontal = M.TableBorderOptions,
+        Left = M.TableBorderOptions,
+        Right = M.TableBorderOptions,
+        Top = M.TableBorderOptions,
+        Bottom = M.TableBorderOptions,
     },
 }
 
 M.GlobalTableBorderOptions = {
     type = "structure",
     members = {
-        UniformBorder = {
-            type = "structure",
-        },
-        SideSpecificBorder = {
-            type = "structure",
-        },
+        UniformBorder = M.TableBorderOptions,
+        SideSpecificBorder = M.TableSideBorderOptions,
     },
 }
 
@@ -10228,9 +8809,7 @@ M.TableCellStyle = {
         Visibility = {
             type = "string",
         },
-        FontConfiguration = {
-            type = "structure",
-        },
+        FontConfiguration = M.FontConfiguration,
         TextWrap = {
             type = "string",
         },
@@ -10244,11 +8823,9 @@ M.TableCellStyle = {
             type = "string",
         },
         Height = {
-            type = "number",
+            type = "integer",
         },
-        Border = {
-            type = "structure",
-        },
+        Border = M.GlobalTableBorderOptions,
     },
 }
 
@@ -10265,7 +8842,7 @@ M.RowAlternateColorOptions = {
         },
         RowAlternateColors = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         UsePrimaryBackgroundColor = {
             type = "string",
@@ -10305,30 +8882,18 @@ M.PivotTableOptions = {
         ToggleButtonsVisibility = {
             type = "string",
         },
-        ColumnHeaderStyle = {
-            type = "structure",
-        },
-        RowHeaderStyle = {
-            type = "structure",
-        },
-        CellStyle = {
-            type = "structure",
-        },
-        RowFieldNamesStyle = {
-            type = "structure",
-        },
-        RowAlternateColorOptions = {
-            type = "structure",
-        },
+        ColumnHeaderStyle = M.TableCellStyle,
+        RowHeaderStyle = M.TableCellStyle,
+        CellStyle = M.TableCellStyle,
+        RowFieldNamesStyle = M.TableCellStyle,
+        RowAlternateColorOptions = M.RowAlternateColorOptions,
         CollapsedRowDimensionsVisibility = {
             type = "string",
         },
         RowsLayout = {
             type = "string",
         },
-        RowsLabelOptions = {
-            type = "structure",
-        },
+        RowsLabelOptions = M.PivotTableRowsLabelOptions,
         DefaultCellWidth = {
             type = "string",
         },
@@ -10382,20 +8947,14 @@ M.SubtotalOptions = {
         },
         FieldLevelOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.PivotTableFieldSubtotalOptions,
         },
-        TotalCellStyle = {
-            type = "structure",
-        },
-        ValueCellStyle = {
-            type = "structure",
-        },
-        MetricHeaderCellStyle = {
-            type = "structure",
-        },
+        TotalCellStyle = M.TableCellStyle,
+        ValueCellStyle = M.TableCellStyle,
+        MetricHeaderCellStyle = M.TableCellStyle,
         StyleTargets = {
             type = "list",
-            member_type = "structure",
+            member = M.TableStyleTarget,
         },
     },
 }
@@ -10438,12 +8997,9 @@ M.TotalAggregationOption = {
                 required = true,
             },
         },
-        TotalAggregationFunction = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TotalAggregationFunction = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TotalAggregationFunction }),
     },
 }
 
@@ -10462,18 +9018,12 @@ M.PivotTotalOptions = {
         CustomLabel = {
             type = "string",
         },
-        TotalCellStyle = {
-            type = "structure",
-        },
-        ValueCellStyle = {
-            type = "structure",
-        },
-        MetricHeaderCellStyle = {
-            type = "structure",
-        },
+        TotalCellStyle = M.TableCellStyle,
+        ValueCellStyle = M.TableCellStyle,
+        MetricHeaderCellStyle = M.TableCellStyle,
         TotalAggregationOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.TotalAggregationOption,
         },
     },
 }
@@ -10481,51 +9031,25 @@ M.PivotTotalOptions = {
 M.PivotTableTotalOptions = {
     type = "structure",
     members = {
-        RowSubtotalOptions = {
-            type = "structure",
-        },
-        ColumnSubtotalOptions = {
-            type = "structure",
-        },
-        RowTotalOptions = {
-            type = "structure",
-        },
-        ColumnTotalOptions = {
-            type = "structure",
-        },
+        RowSubtotalOptions = M.SubtotalOptions,
+        ColumnSubtotalOptions = M.SubtotalOptions,
+        RowTotalOptions = M.PivotTotalOptions,
+        ColumnTotalOptions = M.PivotTotalOptions,
     },
 }
 
 M.PivotTableConfiguration = {
     type = "structure",
     members = {
-        FieldWells = {
-            type = "structure",
-        },
-        SortConfiguration = {
-            type = "structure",
-        },
-        TableOptions = {
-            type = "structure",
-        },
-        TotalOptions = {
-            type = "structure",
-        },
-        FieldOptions = {
-            type = "structure",
-        },
-        PaginatedReportOptions = {
-            type = "structure",
-        },
-        Tooltip = {
-            type = "structure",
-        },
-        DashboardCustomizationVisualOptions = {
-            type = "structure",
-        },
-        Interactions = {
-            type = "structure",
-        },
+        FieldWells = M.PivotTableFieldWells,
+        SortConfiguration = M.PivotTableSortConfiguration,
+        TableOptions = M.PivotTableOptions,
+        TotalOptions = M.PivotTableTotalOptions,
+        FieldOptions = M.PivotTableFieldOptions,
+        PaginatedReportOptions = M.PivotTablePaginatedReportOptions,
+        Tooltip = M.TooltipOptions,
+        DashboardCustomizationVisualOptions = M.DashboardCustomizationVisualOptions,
+        Interactions = M.VisualInteractionOptions,
     },
 }
 
@@ -10547,15 +9071,9 @@ M.PivotTableConditionalFormattingScope = {
 M.TextConditionalFormat = {
     type = "structure",
     members = {
-        BackgroundColor = {
-            type = "structure",
-        },
-        TextColor = {
-            type = "structure",
-        },
-        Icon = {
-            type = "structure",
-        },
+        BackgroundColor = M.ConditionalFormattingColor,
+        TextColor = M.ConditionalFormattingColor,
+        Icon = M.ConditionalFormattingIcon,
     },
 }
 
@@ -10568,15 +9086,11 @@ M.PivotTableCellConditionalFormatting = {
                 required = true,
             },
         },
-        TextFormat = {
-            type = "structure",
-        },
-        Scope = {
-            type = "structure",
-        },
+        TextFormat = M.TextConditionalFormat,
+        Scope = M.PivotTableConditionalFormattingScope,
         Scopes = {
             type = "list",
-            member_type = "structure",
+            member = M.PivotTableConditionalFormattingScope,
         },
     },
 }
@@ -10584,9 +9098,7 @@ M.PivotTableCellConditionalFormatting = {
 M.PivotTableConditionalFormattingOption = {
     type = "structure",
     members = {
-        Cell = {
-            type = "structure",
-        },
+        Cell = M.PivotTableCellConditionalFormatting,
     },
 }
 
@@ -10595,7 +9107,7 @@ M.PivotTableConditionalFormatting = {
     members = {
         ConditionalFormattingOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.PivotTableConditionalFormattingOption,
         },
     },
 }
@@ -10609,21 +9121,13 @@ M.PivotTableVisual = {
                 required = true,
             },
         },
-        Title = {
-            type = "structure",
-        },
-        Subtitle = {
-            type = "structure",
-        },
-        ChartConfiguration = {
-            type = "structure",
-        },
-        ConditionalFormatting = {
-            type = "structure",
-        },
+        Title = M.VisualTitleLabelOptions,
+        Subtitle = M.VisualSubtitleLabelOptions,
+        ChartConfiguration = M.PivotTableConfiguration,
+        ConditionalFormatting = M.PivotTableConditionalFormatting,
         Actions = {
             type = "list",
-            member_type = "structure",
+            member = M.VisualCustomAction,
         },
         VisualContentAltText = {
             type = "string",
@@ -10644,15 +9148,15 @@ M.PluginVisualFieldWell = {
         },
         Dimensions = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionField,
         },
         Measures = {
             type = "list",
-            member_type = "structure",
+            member = M.MeasureField,
         },
         Unaggregated = {
             type = "list",
-            member_type = "structure",
+            member = M.UnaggregatedField,
         },
     },
 }
@@ -10661,7 +9165,10 @@ M.PluginVisualItemsLimitConfiguration = {
     type = "structure",
     members = {
         ItemsLimit = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -10671,20 +9178,16 @@ M.PluginVisualTableQuerySort = {
     members = {
         RowSort = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldSortOptions,
         },
-        ItemsLimitConfiguration = {
-            type = "structure",
-        },
+        ItemsLimitConfiguration = M.PluginVisualItemsLimitConfiguration,
     },
 }
 
 M.PluginVisualSortConfiguration = {
     type = "structure",
     members = {
-        PluginVisualTableQuerySort = {
-            type = "structure",
-        },
+        PluginVisualTableQuerySort = M.PluginVisualTableQuerySort,
     },
 }
 
@@ -10705,7 +9208,7 @@ M.PluginVisualOptions = {
     members = {
         VisualProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.PluginVisualProperty,
         },
     },
 }
@@ -10715,14 +9218,10 @@ M.PluginVisualConfiguration = {
     members = {
         FieldWells = {
             type = "list",
-            member_type = "structure",
+            member = M.PluginVisualFieldWell,
         },
-        VisualOptions = {
-            type = "structure",
-        },
-        SortConfiguration = {
-            type = "structure",
-        },
+        VisualOptions = M.PluginVisualOptions,
+        SortConfiguration = M.PluginVisualSortConfiguration,
     },
 }
 
@@ -10741,18 +9240,12 @@ M.PluginVisual = {
                 required = true,
             },
         },
-        Title = {
-            type = "structure",
-        },
-        Subtitle = {
-            type = "structure",
-        },
-        ChartConfiguration = {
-            type = "structure",
-        },
+        Title = M.VisualTitleLabelOptions,
+        Subtitle = M.VisualSubtitleLabelOptions,
+        ChartConfiguration = M.PluginVisualConfiguration,
         Actions = {
             type = "list",
-            member_type = "structure",
+            member = M.VisualCustomAction,
         },
         VisualContentAltText = {
             type = "string",
@@ -10778,9 +9271,7 @@ M.RadarChartAreaStyleSettings = {
 M.RadarChartSeriesSettings = {
     type = "structure",
     members = {
-        AreaStyleSettings = {
-            type = "structure",
-        },
+        AreaStyleSettings = M.RadarChartAreaStyleSettings,
     },
 }
 
@@ -10789,15 +9280,15 @@ M.RadarChartAggregatedFieldWells = {
     members = {
         Category = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionField,
         },
         Color = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionField,
         },
         Values = {
             type = "list",
-            member_type = "structure",
+            member = M.MeasureField,
         },
     },
 }
@@ -10805,9 +9296,7 @@ M.RadarChartAggregatedFieldWells = {
 M.RadarChartFieldWells = {
     type = "structure",
     members = {
-        RadarChartAggregatedFieldWells = {
-            type = "structure",
-        },
+        RadarChartAggregatedFieldWells = M.RadarChartAggregatedFieldWells,
     },
 }
 
@@ -10821,42 +9310,30 @@ M.RadarChartSortConfiguration = {
     members = {
         CategorySort = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldSortOptions,
         },
-        CategoryItemsLimit = {
-            type = "structure",
-        },
+        CategoryItemsLimit = M.ItemsLimitConfiguration,
         ColorSort = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldSortOptions,
         },
-        ColorItemsLimit = {
-            type = "structure",
-        },
+        ColorItemsLimit = M.ItemsLimitConfiguration,
     },
 }
 
 M.RadarChartConfiguration = {
     type = "structure",
     members = {
-        FieldWells = {
-            type = "structure",
-        },
-        SortConfiguration = {
-            type = "structure",
-        },
+        FieldWells = M.RadarChartFieldWells,
+        SortConfiguration = M.RadarChartSortConfiguration,
         Shape = {
             type = "string",
         },
-        BaseSeriesSettings = {
-            type = "structure",
-        },
+        BaseSeriesSettings = M.RadarChartSeriesSettings,
         StartAngle = {
-            type = "number",
+            type = "double",
         },
-        VisualPalette = {
-            type = "structure",
-        },
+        VisualPalette = M.VisualPalette,
         AlternateBandColorsVisibility = {
             type = "string",
         },
@@ -10866,27 +9343,15 @@ M.RadarChartConfiguration = {
         AlternateBandOddColor = {
             type = "string",
         },
-        CategoryAxis = {
-            type = "structure",
-        },
-        CategoryLabelOptions = {
-            type = "structure",
-        },
-        ColorAxis = {
-            type = "structure",
-        },
-        ColorLabelOptions = {
-            type = "structure",
-        },
-        Legend = {
-            type = "structure",
-        },
+        CategoryAxis = M.AxisDisplayOptions,
+        CategoryLabelOptions = M.ChartAxisLabelOptions,
+        ColorAxis = M.AxisDisplayOptions,
+        ColorLabelOptions = M.ChartAxisLabelOptions,
+        Legend = M.LegendOptions,
         AxesRangeScale = {
             type = "string",
         },
-        Interactions = {
-            type = "structure",
-        },
+        Interactions = M.VisualInteractionOptions,
     },
 }
 
@@ -10899,22 +9364,16 @@ M.RadarChartVisual = {
                 required = true,
             },
         },
-        Title = {
-            type = "structure",
-        },
-        Subtitle = {
-            type = "structure",
-        },
-        ChartConfiguration = {
-            type = "structure",
-        },
+        Title = M.VisualTitleLabelOptions,
+        Subtitle = M.VisualSubtitleLabelOptions,
+        ChartConfiguration = M.RadarChartConfiguration,
         Actions = {
             type = "list",
-            member_type = "structure",
+            member = M.VisualCustomAction,
         },
         ColumnHierarchies = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnHierarchy,
         },
         VisualContentAltText = {
             type = "string",
@@ -10927,15 +9386,15 @@ M.SankeyDiagramAggregatedFieldWells = {
     members = {
         Source = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionField,
         },
         Destination = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionField,
         },
         Weight = {
             type = "list",
-            member_type = "structure",
+            member = M.MeasureField,
         },
     },
 }
@@ -10943,9 +9402,7 @@ M.SankeyDiagramAggregatedFieldWells = {
 M.SankeyDiagramFieldWells = {
     type = "structure",
     members = {
-        SankeyDiagramAggregatedFieldWells = {
-            type = "structure",
-        },
+        SankeyDiagramAggregatedFieldWells = M.SankeyDiagramAggregatedFieldWells,
     },
 }
 
@@ -10954,32 +9411,20 @@ M.SankeyDiagramSortConfiguration = {
     members = {
         WeightSort = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldSortOptions,
         },
-        SourceItemsLimit = {
-            type = "structure",
-        },
-        DestinationItemsLimit = {
-            type = "structure",
-        },
+        SourceItemsLimit = M.ItemsLimitConfiguration,
+        DestinationItemsLimit = M.ItemsLimitConfiguration,
     },
 }
 
 M.SankeyDiagramChartConfiguration = {
     type = "structure",
     members = {
-        FieldWells = {
-            type = "structure",
-        },
-        SortConfiguration = {
-            type = "structure",
-        },
-        DataLabels = {
-            type = "structure",
-        },
-        Interactions = {
-            type = "structure",
-        },
+        FieldWells = M.SankeyDiagramFieldWells,
+        SortConfiguration = M.SankeyDiagramSortConfiguration,
+        DataLabels = M.DataLabelOptions,
+        Interactions = M.VisualInteractionOptions,
     },
 }
 
@@ -10992,18 +9437,12 @@ M.SankeyDiagramVisual = {
                 required = true,
             },
         },
-        Title = {
-            type = "structure",
-        },
-        Subtitle = {
-            type = "structure",
-        },
-        ChartConfiguration = {
-            type = "structure",
-        },
+        Title = M.VisualTitleLabelOptions,
+        Subtitle = M.VisualSubtitleLabelOptions,
+        ChartConfiguration = M.SankeyDiagramChartConfiguration,
         Actions = {
             type = "list",
-            member_type = "structure",
+            member = M.VisualCustomAction,
         },
         VisualContentAltText = {
             type = "string",
@@ -11016,23 +9455,23 @@ M.ScatterPlotCategoricallyAggregatedFieldWells = {
     members = {
         XAxis = {
             type = "list",
-            member_type = "structure",
+            member = M.MeasureField,
         },
         YAxis = {
             type = "list",
-            member_type = "structure",
+            member = M.MeasureField,
         },
         Category = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionField,
         },
         Size = {
             type = "list",
-            member_type = "structure",
+            member = M.MeasureField,
         },
         Label = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionField,
         },
     },
 }
@@ -11042,23 +9481,23 @@ M.ScatterPlotUnaggregatedFieldWells = {
     members = {
         XAxis = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionField,
         },
         YAxis = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionField,
         },
         Size = {
             type = "list",
-            member_type = "structure",
+            member = M.MeasureField,
         },
         Category = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionField,
         },
         Label = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionField,
         },
     },
 }
@@ -11066,60 +9505,32 @@ M.ScatterPlotUnaggregatedFieldWells = {
 M.ScatterPlotFieldWells = {
     type = "structure",
     members = {
-        ScatterPlotCategoricallyAggregatedFieldWells = {
-            type = "structure",
-        },
-        ScatterPlotUnaggregatedFieldWells = {
-            type = "structure",
-        },
+        ScatterPlotCategoricallyAggregatedFieldWells = M.ScatterPlotCategoricallyAggregatedFieldWells,
+        ScatterPlotUnaggregatedFieldWells = M.ScatterPlotUnaggregatedFieldWells,
     },
 }
 
 M.ScatterPlotSortConfiguration = {
     type = "structure",
     members = {
-        ScatterPlotLimitConfiguration = {
-            type = "structure",
-        },
+        ScatterPlotLimitConfiguration = M.ItemsLimitConfiguration,
     },
 }
 
 M.ScatterPlotConfiguration = {
     type = "structure",
     members = {
-        FieldWells = {
-            type = "structure",
-        },
-        SortConfiguration = {
-            type = "structure",
-        },
-        XAxisLabelOptions = {
-            type = "structure",
-        },
-        XAxisDisplayOptions = {
-            type = "structure",
-        },
-        YAxisLabelOptions = {
-            type = "structure",
-        },
-        YAxisDisplayOptions = {
-            type = "structure",
-        },
-        Legend = {
-            type = "structure",
-        },
-        DataLabels = {
-            type = "structure",
-        },
-        Tooltip = {
-            type = "structure",
-        },
-        VisualPalette = {
-            type = "structure",
-        },
-        Interactions = {
-            type = "structure",
-        },
+        FieldWells = M.ScatterPlotFieldWells,
+        SortConfiguration = M.ScatterPlotSortConfiguration,
+        XAxisLabelOptions = M.ChartAxisLabelOptions,
+        XAxisDisplayOptions = M.AxisDisplayOptions,
+        YAxisLabelOptions = M.ChartAxisLabelOptions,
+        YAxisDisplayOptions = M.AxisDisplayOptions,
+        Legend = M.LegendOptions,
+        DataLabels = M.DataLabelOptions,
+        Tooltip = M.TooltipOptions,
+        VisualPalette = M.VisualPalette,
+        Interactions = M.VisualInteractionOptions,
     },
 }
 
@@ -11132,22 +9543,16 @@ M.ScatterPlotVisual = {
                 required = true,
             },
         },
-        Title = {
-            type = "structure",
-        },
-        Subtitle = {
-            type = "structure",
-        },
-        ChartConfiguration = {
-            type = "structure",
-        },
+        Title = M.VisualTitleLabelOptions,
+        Subtitle = M.VisualSubtitleLabelOptions,
+        ChartConfiguration = M.ScatterPlotConfiguration,
         Actions = {
             type = "list",
-            member_type = "structure",
+            member = M.VisualCustomAction,
         },
         ColumnHierarchies = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnHierarchy,
         },
         VisualContentAltText = {
             type = "string",
@@ -11160,7 +9565,7 @@ M.TablePinnedFieldOptions = {
     members = {
         PinnedLeftFields = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -11183,9 +9588,7 @@ M.TableCellImageSizingConfiguration = {
 M.TableFieldImageConfiguration = {
     type = "structure",
     members = {
-        SizingOptions = {
-            type = "structure",
-        },
+        SizingOptions = M.TableCellImageSizingConfiguration,
     },
 }
 
@@ -11208,24 +9611,17 @@ M.TableFieldCustomTextContent = {
         Value = {
             type = "string",
         },
-        FontConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        FontConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FontConfiguration }),
     },
 }
 
 M.TableFieldLinkContentConfiguration = {
     type = "structure",
     members = {
-        CustomTextContent = {
-            type = "structure",
-        },
-        CustomIconContent = {
-            type = "structure",
-        },
+        CustomTextContent = M.TableFieldCustomTextContent,
+        CustomIconContent = M.TableFieldCustomIconContent,
     },
 }
 
@@ -11238,24 +9634,17 @@ M.TableFieldLinkConfiguration = {
                 required = true,
             },
         },
-        Content = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Content = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TableFieldLinkContentConfiguration }),
     },
 }
 
 M.TableFieldURLConfiguration = {
     type = "structure",
     members = {
-        LinkConfiguration = {
-            type = "structure",
-        },
-        ImageConfiguration = {
-            type = "structure",
-        },
+        LinkConfiguration = M.TableFieldLinkConfiguration,
+        ImageConfiguration = M.TableFieldImageConfiguration,
     },
 }
 
@@ -11277,9 +9666,7 @@ M.TableFieldOption = {
         Visibility = {
             type = "string",
         },
-        URLStyling = {
-            type = "structure",
-        },
+        URLStyling = M.TableFieldURLConfiguration,
     },
 }
 
@@ -11292,7 +9679,7 @@ M.TransposedTableOption = {
     type = "structure",
     members = {
         ColumnIndex = {
-            type = "number",
+            type = "integer",
         },
         ColumnWidth = {
             type = "string",
@@ -11311,18 +9698,16 @@ M.TableFieldOptions = {
     members = {
         SelectedFieldOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.TableFieldOption,
         },
         Order = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        PinnedFieldOptions = {
-            type = "structure",
-        },
+        PinnedFieldOptions = M.TablePinnedFieldOptions,
         TransposedTableOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.TransposedTableOption,
         },
     },
 }
@@ -11332,11 +9717,11 @@ M.TableAggregatedFieldWells = {
     members = {
         GroupBy = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionField,
         },
         Values = {
             type = "list",
-            member_type = "structure",
+            member = M.MeasureField,
         },
     },
 }
@@ -11346,7 +9731,7 @@ M.TableUnaggregatedFieldWells = {
     members = {
         Values = {
             type = "list",
-            member_type = "structure",
+            member = M.UnaggregatedField,
         },
     },
 }
@@ -11354,12 +9739,8 @@ M.TableUnaggregatedFieldWells = {
 M.TableFieldWells = {
     type = "structure",
     members = {
-        TableAggregatedFieldWells = {
-            type = "structure",
-        },
-        TableUnaggregatedFieldWells = {
-            type = "structure",
-        },
+        TableAggregatedFieldWells = M.TableAggregatedFieldWells,
+        TableUnaggregatedFieldWells = M.TableUnaggregatedFieldWells,
     },
 }
 
@@ -11380,11 +9761,9 @@ M.TableSortConfiguration = {
     members = {
         RowSort = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldSortOptions,
         },
-        PaginationConfiguration = {
-            type = "structure",
-        },
+        PaginationConfiguration = M.PaginationConfiguration,
     },
 }
 
@@ -11425,12 +9804,9 @@ M.SparklinesOptions = {
                 required = true,
             },
         },
-        XAxisField = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        XAxisField = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DimensionField }),
         YAxisBehavior = {
             type = "string",
         },
@@ -11443,27 +9819,17 @@ M.SparklinesOptions = {
         LineInterpolation = {
             type = "string",
         },
-        AllPointsMarker = {
-            type = "structure",
-        },
-        MaxValueMarker = {
-            type = "structure",
-        },
-        MinValueMarker = {
-            type = "structure",
-        },
+        AllPointsMarker = M.LineChartMarkerStyleSettings,
+        MaxValueMarker = M.LineChartMarkerStyleSettings,
+        MinValueMarker = M.LineChartMarkerStyleSettings,
     },
 }
 
 M.TableInlineVisualization = {
     type = "structure",
     members = {
-        DataBars = {
-            type = "structure",
-        },
-        Sparklines = {
-            type = "structure",
-        },
+        DataBars = M.DataBarsOptions,
+        Sparklines = M.SparklinesOptions,
     },
 }
 
@@ -11478,15 +9844,9 @@ M.TableOptions = {
         Orientation = {
             type = "string",
         },
-        HeaderStyle = {
-            type = "structure",
-        },
-        CellStyle = {
-            type = "structure",
-        },
-        RowAlternateColorOptions = {
-            type = "structure",
-        },
+        HeaderStyle = M.TableCellStyle,
+        CellStyle = M.TableCellStyle,
+        RowAlternateColorOptions = M.RowAlternateColorOptions,
     },
 }
 
@@ -11505,12 +9865,10 @@ M.TotalOptions = {
         CustomLabel = {
             type = "string",
         },
-        TotalCellStyle = {
-            type = "structure",
-        },
+        TotalCellStyle = M.TableCellStyle,
         TotalAggregationOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.TotalAggregationOption,
         },
     },
 }
@@ -11518,37 +9876,19 @@ M.TotalOptions = {
 M.TableConfiguration = {
     type = "structure",
     members = {
-        FieldWells = {
-            type = "structure",
-        },
-        SortConfiguration = {
-            type = "structure",
-        },
-        TableOptions = {
-            type = "structure",
-        },
-        TotalOptions = {
-            type = "structure",
-        },
-        FieldOptions = {
-            type = "structure",
-        },
-        PaginatedReportOptions = {
-            type = "structure",
-        },
+        FieldWells = M.TableFieldWells,
+        SortConfiguration = M.TableSortConfiguration,
+        TableOptions = M.TableOptions,
+        TotalOptions = M.TotalOptions,
+        FieldOptions = M.TableFieldOptions,
+        PaginatedReportOptions = M.TablePaginatedReportOptions,
         TableInlineVisualizations = {
             type = "list",
-            member_type = "structure",
+            member = M.TableInlineVisualization,
         },
-        Tooltip = {
-            type = "structure",
-        },
-        DashboardCustomizationVisualOptions = {
-            type = "structure",
-        },
-        Interactions = {
-            type = "structure",
-        },
+        Tooltip = M.TooltipOptions,
+        DashboardCustomizationVisualOptions = M.DashboardCustomizationVisualOptions,
+        Interactions = M.VisualInteractionOptions,
     },
 }
 
@@ -11561,33 +9901,23 @@ M.TableCellConditionalFormatting = {
                 required = true,
             },
         },
-        TextFormat = {
-            type = "structure",
-        },
+        TextFormat = M.TextConditionalFormat,
     },
 }
 
 M.TableRowConditionalFormatting = {
     type = "structure",
     members = {
-        BackgroundColor = {
-            type = "structure",
-        },
-        TextColor = {
-            type = "structure",
-        },
+        BackgroundColor = M.ConditionalFormattingColor,
+        TextColor = M.ConditionalFormattingColor,
     },
 }
 
 M.TableConditionalFormattingOption = {
     type = "structure",
     members = {
-        Cell = {
-            type = "structure",
-        },
-        Row = {
-            type = "structure",
-        },
+        Cell = M.TableCellConditionalFormatting,
+        Row = M.TableRowConditionalFormatting,
     },
 }
 
@@ -11596,7 +9926,7 @@ M.TableConditionalFormatting = {
     members = {
         ConditionalFormattingOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.TableConditionalFormattingOption,
         },
     },
 }
@@ -11610,21 +9940,13 @@ M.TableVisual = {
                 required = true,
             },
         },
-        Title = {
-            type = "structure",
-        },
-        Subtitle = {
-            type = "structure",
-        },
-        ChartConfiguration = {
-            type = "structure",
-        },
-        ConditionalFormatting = {
-            type = "structure",
-        },
+        Title = M.VisualTitleLabelOptions,
+        Subtitle = M.VisualSubtitleLabelOptions,
+        ChartConfiguration = M.TableConfiguration,
+        ConditionalFormatting = M.TableConditionalFormatting,
         Actions = {
             type = "list",
-            member_type = "structure",
+            member = M.VisualCustomAction,
         },
         VisualContentAltText = {
             type = "string",
@@ -11637,15 +9959,15 @@ M.TreeMapAggregatedFieldWells = {
     members = {
         Groups = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionField,
         },
         Sizes = {
             type = "list",
-            member_type = "structure",
+            member = M.MeasureField,
         },
         Colors = {
             type = "list",
-            member_type = "structure",
+            member = M.MeasureField,
         },
     },
 }
@@ -11653,9 +9975,7 @@ M.TreeMapAggregatedFieldWells = {
 M.TreeMapFieldWells = {
     type = "structure",
     members = {
-        TreeMapAggregatedFieldWells = {
-            type = "structure",
-        },
+        TreeMapAggregatedFieldWells = M.TreeMapAggregatedFieldWells,
     },
 }
 
@@ -11664,47 +9984,25 @@ M.TreeMapSortConfiguration = {
     members = {
         TreeMapSort = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldSortOptions,
         },
-        TreeMapGroupItemsLimitConfiguration = {
-            type = "structure",
-        },
+        TreeMapGroupItemsLimitConfiguration = M.ItemsLimitConfiguration,
     },
 }
 
 M.TreeMapConfiguration = {
     type = "structure",
     members = {
-        FieldWells = {
-            type = "structure",
-        },
-        SortConfiguration = {
-            type = "structure",
-        },
-        GroupLabelOptions = {
-            type = "structure",
-        },
-        SizeLabelOptions = {
-            type = "structure",
-        },
-        ColorLabelOptions = {
-            type = "structure",
-        },
-        ColorScale = {
-            type = "structure",
-        },
-        Legend = {
-            type = "structure",
-        },
-        DataLabels = {
-            type = "structure",
-        },
-        Tooltip = {
-            type = "structure",
-        },
-        Interactions = {
-            type = "structure",
-        },
+        FieldWells = M.TreeMapFieldWells,
+        SortConfiguration = M.TreeMapSortConfiguration,
+        GroupLabelOptions = M.ChartAxisLabelOptions,
+        SizeLabelOptions = M.ChartAxisLabelOptions,
+        ColorLabelOptions = M.ChartAxisLabelOptions,
+        ColorScale = M.ColorScale,
+        Legend = M.LegendOptions,
+        DataLabels = M.DataLabelOptions,
+        Tooltip = M.TooltipOptions,
+        Interactions = M.VisualInteractionOptions,
     },
 }
 
@@ -11717,22 +10015,16 @@ M.TreeMapVisual = {
                 required = true,
             },
         },
-        Title = {
-            type = "structure",
-        },
-        Subtitle = {
-            type = "structure",
-        },
-        ChartConfiguration = {
-            type = "structure",
-        },
+        Title = M.VisualTitleLabelOptions,
+        Subtitle = M.VisualSubtitleLabelOptions,
+        ChartConfiguration = M.TreeMapConfiguration,
         Actions = {
             type = "list",
-            member_type = "structure",
+            member = M.VisualCustomAction,
         },
         ColumnHierarchies = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnHierarchy,
         },
         VisualContentAltText = {
             type = "string",
@@ -11758,9 +10050,7 @@ M.WaterfallChartGroupColorConfiguration = {
 M.WaterfallChartColorConfiguration = {
     type = "structure",
     members = {
-        GroupColorConfiguration = {
-            type = "structure",
-        },
+        GroupColorConfiguration = M.WaterfallChartGroupColorConfiguration,
     },
 }
 
@@ -11769,15 +10059,15 @@ M.WaterfallChartAggregatedFieldWells = {
     members = {
         Categories = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionField,
         },
         Values = {
             type = "list",
-            member_type = "structure",
+            member = M.MeasureField,
         },
         Breakdowns = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionField,
         },
     },
 }
@@ -11785,9 +10075,7 @@ M.WaterfallChartAggregatedFieldWells = {
 M.WaterfallChartFieldWells = {
     type = "structure",
     members = {
-        WaterfallChartAggregatedFieldWells = {
-            type = "structure",
-        },
+        WaterfallChartAggregatedFieldWells = M.WaterfallChartAggregatedFieldWells,
     },
 }
 
@@ -11796,11 +10084,9 @@ M.WaterfallChartSortConfiguration = {
     members = {
         CategorySort = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldSortOptions,
         },
-        BreakdownItemsLimit = {
-            type = "structure",
-        },
+        BreakdownItemsLimit = M.ItemsLimitConfiguration,
     },
 }
 
@@ -11816,42 +10102,18 @@ M.WaterfallChartOptions = {
 M.WaterfallChartConfiguration = {
     type = "structure",
     members = {
-        FieldWells = {
-            type = "structure",
-        },
-        SortConfiguration = {
-            type = "structure",
-        },
-        WaterfallChartOptions = {
-            type = "structure",
-        },
-        CategoryAxisLabelOptions = {
-            type = "structure",
-        },
-        CategoryAxisDisplayOptions = {
-            type = "structure",
-        },
-        PrimaryYAxisLabelOptions = {
-            type = "structure",
-        },
-        PrimaryYAxisDisplayOptions = {
-            type = "structure",
-        },
-        Legend = {
-            type = "structure",
-        },
-        DataLabels = {
-            type = "structure",
-        },
-        VisualPalette = {
-            type = "structure",
-        },
-        ColorConfiguration = {
-            type = "structure",
-        },
-        Interactions = {
-            type = "structure",
-        },
+        FieldWells = M.WaterfallChartFieldWells,
+        SortConfiguration = M.WaterfallChartSortConfiguration,
+        WaterfallChartOptions = M.WaterfallChartOptions,
+        CategoryAxisLabelOptions = M.ChartAxisLabelOptions,
+        CategoryAxisDisplayOptions = M.AxisDisplayOptions,
+        PrimaryYAxisLabelOptions = M.ChartAxisLabelOptions,
+        PrimaryYAxisDisplayOptions = M.AxisDisplayOptions,
+        Legend = M.LegendOptions,
+        DataLabels = M.DataLabelOptions,
+        VisualPalette = M.VisualPalette,
+        ColorConfiguration = M.WaterfallChartColorConfiguration,
+        Interactions = M.VisualInteractionOptions,
     },
 }
 
@@ -11864,22 +10126,16 @@ M.WaterfallVisual = {
                 required = true,
             },
         },
-        Title = {
-            type = "structure",
-        },
-        Subtitle = {
-            type = "structure",
-        },
-        ChartConfiguration = {
-            type = "structure",
-        },
+        Title = M.VisualTitleLabelOptions,
+        Subtitle = M.VisualSubtitleLabelOptions,
+        ChartConfiguration = M.WaterfallChartConfiguration,
         Actions = {
             type = "list",
-            member_type = "structure",
+            member = M.VisualCustomAction,
         },
         ColumnHierarchies = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnHierarchy,
         },
         VisualContentAltText = {
             type = "string",
@@ -11892,11 +10148,11 @@ M.WordCloudAggregatedFieldWells = {
     members = {
         GroupBy = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionField,
         },
         Size = {
             type = "list",
-            member_type = "structure",
+            member = M.MeasureField,
         },
     },
 }
@@ -11904,21 +10160,17 @@ M.WordCloudAggregatedFieldWells = {
 M.WordCloudFieldWells = {
     type = "structure",
     members = {
-        WordCloudAggregatedFieldWells = {
-            type = "structure",
-        },
+        WordCloudAggregatedFieldWells = M.WordCloudAggregatedFieldWells,
     },
 }
 
 M.WordCloudSortConfiguration = {
     type = "structure",
     members = {
-        CategoryItemsLimit = {
-            type = "structure",
-        },
+        CategoryItemsLimit = M.ItemsLimitConfiguration,
         CategorySort = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldSortOptions,
         },
     },
 }
@@ -11969,7 +10221,7 @@ M.WordCloudOptions = {
             type = "string",
         },
         MaximumStringLength = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -11977,21 +10229,11 @@ M.WordCloudOptions = {
 M.WordCloudChartConfiguration = {
     type = "structure",
     members = {
-        FieldWells = {
-            type = "structure",
-        },
-        SortConfiguration = {
-            type = "structure",
-        },
-        CategoryLabelOptions = {
-            type = "structure",
-        },
-        WordCloudOptions = {
-            type = "structure",
-        },
-        Interactions = {
-            type = "structure",
-        },
+        FieldWells = M.WordCloudFieldWells,
+        SortConfiguration = M.WordCloudSortConfiguration,
+        CategoryLabelOptions = M.ChartAxisLabelOptions,
+        WordCloudOptions = M.WordCloudOptions,
+        Interactions = M.VisualInteractionOptions,
     },
 }
 
@@ -12004,22 +10246,16 @@ M.WordCloudVisual = {
                 required = true,
             },
         },
-        Title = {
-            type = "structure",
-        },
-        Subtitle = {
-            type = "structure",
-        },
-        ChartConfiguration = {
-            type = "structure",
-        },
+        Title = M.VisualTitleLabelOptions,
+        Subtitle = M.VisualSubtitleLabelOptions,
+        ChartConfiguration = M.WordCloudChartConfiguration,
         Actions = {
             type = "list",
-            member_type = "structure",
+            member = M.VisualCustomAction,
         },
         ColumnHierarchies = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnHierarchy,
         },
         VisualContentAltText = {
             type = "string",
@@ -12030,81 +10266,31 @@ M.WordCloudVisual = {
 M.Visual = {
     type = "structure",
     members = {
-        TableVisual = {
-            type = "structure",
-        },
-        PivotTableVisual = {
-            type = "structure",
-        },
-        BarChartVisual = {
-            type = "structure",
-        },
-        KPIVisual = {
-            type = "structure",
-        },
-        PieChartVisual = {
-            type = "structure",
-        },
-        GaugeChartVisual = {
-            type = "structure",
-        },
-        LineChartVisual = {
-            type = "structure",
-        },
-        HeatMapVisual = {
-            type = "structure",
-        },
-        TreeMapVisual = {
-            type = "structure",
-        },
-        GeospatialMapVisual = {
-            type = "structure",
-        },
-        FilledMapVisual = {
-            type = "structure",
-        },
-        LayerMapVisual = {
-            type = "structure",
-        },
-        FunnelChartVisual = {
-            type = "structure",
-        },
-        ScatterPlotVisual = {
-            type = "structure",
-        },
-        ComboChartVisual = {
-            type = "structure",
-        },
-        BoxPlotVisual = {
-            type = "structure",
-        },
-        WaterfallVisual = {
-            type = "structure",
-        },
-        HistogramVisual = {
-            type = "structure",
-        },
-        WordCloudVisual = {
-            type = "structure",
-        },
-        InsightVisual = {
-            type = "structure",
-        },
-        SankeyDiagramVisual = {
-            type = "structure",
-        },
-        CustomContentVisual = {
-            type = "structure",
-        },
-        EmptyVisual = {
-            type = "structure",
-        },
-        RadarChartVisual = {
-            type = "structure",
-        },
-        PluginVisual = {
-            type = "structure",
-        },
+        TableVisual = M.TableVisual,
+        PivotTableVisual = M.PivotTableVisual,
+        BarChartVisual = M.BarChartVisual,
+        KPIVisual = M.KPIVisual,
+        PieChartVisual = M.PieChartVisual,
+        GaugeChartVisual = M.GaugeChartVisual,
+        LineChartVisual = M.LineChartVisual,
+        HeatMapVisual = M.HeatMapVisual,
+        TreeMapVisual = M.TreeMapVisual,
+        GeospatialMapVisual = M.GeospatialMapVisual,
+        FilledMapVisual = M.FilledMapVisual,
+        LayerMapVisual = M.LayerMapVisual,
+        FunnelChartVisual = M.FunnelChartVisual,
+        ScatterPlotVisual = M.ScatterPlotVisual,
+        ComboChartVisual = M.ComboChartVisual,
+        BoxPlotVisual = M.BoxPlotVisual,
+        WaterfallVisual = M.WaterfallVisual,
+        HistogramVisual = M.HistogramVisual,
+        WordCloudVisual = M.WordCloudVisual,
+        InsightVisual = M.InsightVisual,
+        SankeyDiagramVisual = M.SankeyDiagramVisual,
+        CustomContentVisual = M.CustomContentVisual,
+        EmptyVisual = M.EmptyVisual,
+        RadarChartVisual = M.RadarChartVisual,
+        PluginVisual = M.PluginVisual,
     },
 }
 
@@ -12128,38 +10314,36 @@ M.SheetDefinition = {
         },
         ParameterControls = {
             type = "list",
-            member_type = "structure",
+            member = M.ParameterControl,
         },
         FilterControls = {
             type = "list",
-            member_type = "structure",
+            member = M.FilterControl,
         },
         Visuals = {
             type = "list",
-            member_type = "structure",
+            member = M.Visual,
         },
         TextBoxes = {
             type = "list",
-            member_type = "structure",
+            member = M.SheetTextBox,
         },
         Images = {
             type = "list",
-            member_type = "structure",
+            member = M.SheetImage,
         },
         Layouts = {
             type = "list",
-            member_type = "structure",
+            member = M.Layout,
         },
         SheetControlLayouts = {
             type = "list",
-            member_type = "structure",
+            member = M.SheetControlLayout,
         },
         ContentType = {
             type = "string",
         },
-        CustomActionDefaults = {
-            type = "structure",
-        },
+        CustomActionDefaults = M.VisualCustomActionDefaults,
     },
 }
 
@@ -12202,12 +10386,8 @@ M.StaticFileUrlSourceOptions = {
 M.StaticFileSource = {
     type = "structure",
     members = {
-        UrlOptions = {
-            type = "structure",
-        },
-        S3Options = {
-            type = "structure",
-        },
+        UrlOptions = M.StaticFileUrlSourceOptions,
+        S3Options = M.StaticFileS3SourceOptions,
     },
 }
 
@@ -12220,9 +10400,7 @@ M.ImageStaticFile = {
                 required = true,
             },
         },
-        Source = {
-            type = "structure",
-        },
+        Source = M.StaticFileSource,
     },
 }
 
@@ -12235,21 +10413,15 @@ M.SpatialStaticFile = {
                 required = true,
             },
         },
-        Source = {
-            type = "structure",
-        },
+        Source = M.StaticFileSource,
     },
 }
 
 M.StaticFile = {
     type = "structure",
     members = {
-        ImageStaticFile = {
-            type = "structure",
-        },
-        SpatialStaticFile = {
-            type = "structure",
-        },
+        ImageStaticFile = M.ImageStaticFile,
+        SpatialStaticFile = M.SpatialStaticFile,
     },
 }
 
@@ -12267,19 +10439,19 @@ M.TooltipSheetDefinition = {
         },
         Visuals = {
             type = "list",
-            member_type = "structure",
+            member = M.Visual,
         },
         TextBoxes = {
             type = "list",
-            member_type = "structure",
+            member = M.SheetTextBox,
         },
         Images = {
             type = "list",
-            member_type = "structure",
+            member = M.SheetImage,
         },
         Layouts = {
             type = "list",
-            member_type = "structure",
+            member = M.Layout,
         },
     },
 }
@@ -12289,47 +10461,41 @@ M.AnalysisDefinition = {
     members = {
         DataSetIdentifierDeclarations = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSetIdentifierDeclaration,
             traits = {
                 required = true,
             },
         },
         Sheets = {
             type = "list",
-            member_type = "structure",
+            member = M.SheetDefinition,
         },
         TooltipSheets = {
             type = "list",
-            member_type = "structure",
+            member = M.TooltipSheetDefinition,
         },
         CalculatedFields = {
             type = "list",
-            member_type = "structure",
+            member = M.CalculatedField,
         },
         ParameterDeclarations = {
             type = "list",
-            member_type = "structure",
+            member = M.ParameterDeclaration,
         },
         FilterGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.FilterGroup,
         },
         ColumnConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnConfiguration,
         },
-        AnalysisDefaults = {
-            type = "structure",
-        },
-        Options = {
-            type = "structure",
-        },
-        QueryExecutionOptions = {
-            type = "structure",
-        },
+        AnalysisDefaults = M.AnalysisDefaults,
+        Options = M.AssetOptions,
+        QueryExecutionOptions = M.QueryExecutionOptions,
         StaticFiles = {
             type = "list",
-            member_type = "structure",
+            member = M.StaticFile,
         },
     },
 }
@@ -12382,7 +10548,7 @@ M.AnalysisSourceTemplate = {
     members = {
         DataSetReferences = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSetReference,
             traits = {
                 required = true,
             },
@@ -12399,9 +10565,7 @@ M.AnalysisSourceTemplate = {
 M.AnalysisSourceEntity = {
     type = "structure",
     members = {
-        SourceTemplate = {
-            type = "structure",
-        },
+        SourceTemplate = M.AnalysisSourceTemplate,
     },
 }
 
@@ -12443,7 +10607,10 @@ M.Anchor = {
             type = "string",
         },
         Offset = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -12462,6 +10629,7 @@ M.SharedViewConfigurations = {
         Enabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -12471,9 +10639,7 @@ M.SharedViewConfigurations = {
 M.AnonymousUserDashboardFeatureConfigurations = {
     type = "structure",
     members = {
-        SharedView = {
-            type = "structure",
-        },
+        SharedView = M.SharedViewConfigurations,
     },
 }
 
@@ -12488,15 +10654,13 @@ M.AnonymousUserDashboardEmbeddingConfiguration = {
         },
         EnabledFeatures = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DisabledFeatures = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        FeatureConfigurations = {
-            type = "structure",
-        },
+        FeatureConfigurations = M.AnonymousUserDashboardFeatureConfigurations,
     },
 }
 
@@ -12527,12 +10691,9 @@ M.DashboardVisualId = {
 M.AnonymousUserDashboardVisualEmbeddingConfiguration = {
     type = "structure",
     members = {
-        InitialDashboardVisualId = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InitialDashboardVisualId = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DashboardVisualId }),
     },
 }
 
@@ -12563,18 +10724,10 @@ M.AnonymousUserQSearchBarEmbeddingConfiguration = {
 M.AnonymousUserEmbeddingExperienceConfiguration = {
     type = "structure",
     members = {
-        Dashboard = {
-            type = "structure",
-        },
-        DashboardVisual = {
-            type = "structure",
-        },
-        QSearchBar = {
-            type = "structure",
-        },
-        GenerativeQnA = {
-            type = "structure",
-        },
+        Dashboard = M.AnonymousUserDashboardEmbeddingConfiguration,
+        DashboardVisual = M.AnonymousUserDashboardVisualEmbeddingConfiguration,
+        QSearchBar = M.AnonymousUserQSearchBarEmbeddingConfiguration,
+        GenerativeQnA = M.AnonymousUserGenerativeQnAEmbeddingConfiguration,
     },
 }
 
@@ -12606,7 +10759,7 @@ M.SnapshotFileSheetSelection = {
         },
         VisualIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -12616,7 +10769,7 @@ M.SnapshotFile = {
     members = {
         SheetSelections = {
             type = "list",
-            member_type = "structure",
+            member = M.SnapshotFileSheetSelection,
             traits = {
                 required = true,
             },
@@ -12669,27 +10822,22 @@ M.S3BucketConfiguration = {
 M.SnapshotS3DestinationConfiguration = {
     type = "structure",
     members = {
-        BucketConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        BucketConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3BucketConfiguration }),
     },
 }
 
 M.SnapshotJobS3Result = {
     type = "structure",
     members = {
-        S3DestinationConfiguration = {
-            type = "structure",
-        },
+        S3DestinationConfiguration = M.SnapshotS3DestinationConfiguration,
         S3Uri = {
             type = "string",
         },
         ErrorInfo = {
             type = "list",
-            member_type = "structure",
+            member = M.SnapshotJobResultErrorInfo,
         },
     },
 }
@@ -12699,11 +10847,11 @@ M.SnapshotJobResultFileGroup = {
     members = {
         Files = {
             type = "list",
-            member_type = "structure",
+            member = M.SnapshotFile,
         },
         S3Results = {
             type = "list",
-            member_type = "structure",
+            member = M.SnapshotJobS3Result,
         },
     },
 }
@@ -12713,7 +10861,7 @@ M.AnonymousUserSnapshotJobResult = {
     members = {
         FileGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.SnapshotJobResultFileGroup,
         },
     },
 }
@@ -12766,15 +10914,11 @@ M.AppendOperation = {
                 required = true,
             },
         },
-        FirstSource = {
-            type = "structure",
-        },
-        SecondSource = {
-            type = "structure",
-        },
+        FirstSource = M.TransformOperationSource,
+        SecondSource = M.TransformOperationSource,
         AppendedColumns = {
             type = "list",
-            member_type = "structure",
+            member = M.AppendedColumn,
             traits = {
                 required = true,
             },
@@ -12797,87 +10941,49 @@ M.Palette = {
 M.BrandColorPalette = {
     type = "structure",
     members = {
-        Primary = {
-            type = "structure",
-        },
-        Secondary = {
-            type = "structure",
-        },
-        Accent = {
-            type = "structure",
-        },
-        Measure = {
-            type = "structure",
-        },
-        Dimension = {
-            type = "structure",
-        },
-        Success = {
-            type = "structure",
-        },
-        Info = {
-            type = "structure",
-        },
-        Warning = {
-            type = "structure",
-        },
-        Danger = {
-            type = "structure",
-        },
+        Primary = M.Palette,
+        Secondary = M.Palette,
+        Accent = M.Palette,
+        Measure = M.Palette,
+        Dimension = M.Palette,
+        Success = M.Palette,
+        Info = M.Palette,
+        Warning = M.Palette,
+        Danger = M.Palette,
     },
 }
 
 M.NavbarStyle = {
     type = "structure",
     members = {
-        GlobalNavbar = {
-            type = "structure",
-        },
-        ContextualNavbar = {
-            type = "structure",
-        },
+        GlobalNavbar = M.Palette,
+        ContextualNavbar = M.Palette,
     },
 }
 
 M.BrandElementStyle = {
     type = "structure",
     members = {
-        NavbarStyle = {
-            type = "structure",
-        },
+        NavbarStyle = M.NavbarStyle,
     },
 }
 
 M.ContextualAccentPalette = {
     type = "structure",
     members = {
-        Connection = {
-            type = "structure",
-        },
-        Visualization = {
-            type = "structure",
-        },
-        Insight = {
-            type = "structure",
-        },
-        Automation = {
-            type = "structure",
-        },
+        Connection = M.Palette,
+        Visualization = M.Palette,
+        Insight = M.Palette,
+        Automation = M.Palette,
     },
 }
 
 M.ApplicationTheme = {
     type = "structure",
     members = {
-        BrandColorPalette = {
-            type = "structure",
-        },
-        ContextualAccentPalette = {
-            type = "structure",
-        },
-        BrandElementStyle = {
-            type = "structure",
-        },
+        BrandColorPalette = M.BrandColorPalette,
+        ContextualAccentPalette = M.ContextualAccentPalette,
+        BrandElementStyle = M.BrandElementStyle,
     },
 }
 
@@ -12896,7 +11002,7 @@ M.AssetBundleExportJobAnalysisOverrideProperties = {
         },
         Properties = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -12919,7 +11025,7 @@ M.AssetBundleExportJobDashboardOverrideProperties = {
         },
         Properties = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -12943,7 +11049,7 @@ M.AssetBundleExportJobDataSetOverrideProperties = {
         },
         Properties = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -12983,7 +11089,7 @@ M.AssetBundleExportJobDataSourceOverrideProperties = {
         },
         Properties = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -13007,7 +11113,7 @@ M.AssetBundleExportJobFolderOverrideProperties = {
         },
         Properties = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -13030,7 +11136,7 @@ M.AssetBundleExportJobRefreshScheduleOverrideProperties = {
         },
         Properties = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -13043,6 +11149,9 @@ M.AssetBundleExportJobResourceIdOverrideConfiguration = {
     members = {
         PrefixForAllResources = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -13062,7 +11171,7 @@ M.AssetBundleExportJobThemeOverrideProperties = {
         },
         Properties = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -13087,7 +11196,7 @@ M.AssetBundleExportJobVPCConnectionOverrideProperties = {
         },
         Properties = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -13098,40 +11207,38 @@ M.AssetBundleExportJobVPCConnectionOverrideProperties = {
 M.AssetBundleCloudFormationOverridePropertyConfiguration = {
     type = "structure",
     members = {
-        ResourceIdOverrideConfiguration = {
-            type = "structure",
-        },
+        ResourceIdOverrideConfiguration = M.AssetBundleExportJobResourceIdOverrideConfiguration,
         VPCConnections = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetBundleExportJobVPCConnectionOverrideProperties,
         },
         RefreshSchedules = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetBundleExportJobRefreshScheduleOverrideProperties,
         },
         DataSources = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetBundleExportJobDataSourceOverrideProperties,
         },
         DataSets = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetBundleExportJobDataSetOverrideProperties,
         },
         Themes = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetBundleExportJobThemeOverrideProperties,
         },
         Analyses = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetBundleExportJobAnalysisOverrideProperties,
         },
         Dashboards = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetBundleExportJobDashboardOverrideProperties,
         },
         Folders = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetBundleExportJobFolderOverrideProperties,
         },
     },
 }
@@ -13180,15 +11287,24 @@ M.AssetBundleExportJobSummary = {
         },
         IncludeAllDependencies = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         ExportFormat = {
             type = "string",
         },
         IncludePermissions = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         IncludeTags = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -13198,6 +11314,9 @@ M.AssetBundleExportJobValidationStrategy = {
     members = {
         StrictModeForAllResources = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -13239,14 +11358,14 @@ M.AssetBundleResourcePermissions = {
     members = {
         Principals = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         Actions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -13259,17 +11378,14 @@ M.AssetBundleImportJobAnalysisOverridePermissions = {
     members = {
         AnalysisIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        Permissions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Permissions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AssetBundleResourcePermissions }),
     },
 }
 
@@ -13296,14 +11412,14 @@ M.AssetBundleImportJobAnalysisOverrideTags = {
     members = {
         AnalysisIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -13329,9 +11445,7 @@ M.AssetBundleImportJobDashboardOverrideParameters = {
 M.AssetBundleResourceLinkSharingConfiguration = {
     type = "structure",
     members = {
-        Permissions = {
-            type = "structure",
-        },
+        Permissions = M.AssetBundleResourcePermissions,
     },
 }
 
@@ -13340,17 +11454,13 @@ M.AssetBundleImportJobDashboardOverridePermissions = {
     members = {
         DashboardIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        Permissions = {
-            type = "structure",
-        },
-        LinkSharingConfiguration = {
-            type = "structure",
-        },
+        Permissions = M.AssetBundleResourcePermissions,
+        LinkSharingConfiguration = M.AssetBundleResourceLinkSharingConfiguration,
     },
 }
 
@@ -13359,14 +11469,14 @@ M.AssetBundleImportJobDashboardOverrideTags = {
     members = {
         DashboardIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -13391,9 +11501,7 @@ M.RefreshFailureEmailAlert = {
 M.RefreshFailureConfiguration = {
     type = "structure",
     members = {
-        EmailAlert = {
-            type = "structure",
-        },
+        EmailAlert = M.RefreshFailureEmailAlert,
     },
 }
 
@@ -13413,7 +11521,7 @@ M.LookbackWindow = {
             },
         },
         Size = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -13430,36 +11538,26 @@ M.LookbackWindow = {
 M.IncrementalRefresh = {
     type = "structure",
     members = {
-        LookbackWindow = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        LookbackWindow = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LookbackWindow }),
     },
 }
 
 M.RefreshConfiguration = {
     type = "structure",
     members = {
-        IncrementalRefresh = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        IncrementalRefresh = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IncrementalRefresh }),
     },
 }
 
 M.DataSetRefreshProperties = {
     type = "structure",
     members = {
-        RefreshConfiguration = {
-            type = "structure",
-        },
-        FailureConfiguration = {
-            type = "structure",
-        },
+        RefreshConfiguration = M.RefreshConfiguration,
+        FailureConfiguration = M.RefreshFailureConfiguration,
     },
 }
 
@@ -13475,9 +11573,7 @@ M.AssetBundleImportJobDataSetOverrideParameters = {
         Name = {
             type = "string",
         },
-        DataSetRefreshProperties = {
-            type = "structure",
-        },
+        DataSetRefreshProperties = M.DataSetRefreshProperties,
     },
 }
 
@@ -13486,17 +11582,14 @@ M.AssetBundleImportJobDataSetOverridePermissions = {
     members = {
         DataSetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        Permissions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Permissions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AssetBundleResourcePermissions }),
     },
 }
 
@@ -13505,14 +11598,14 @@ M.AssetBundleImportJobDataSetOverrideTags = {
     members = {
         DataSetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -13541,9 +11634,7 @@ M.AssetBundleImportJobDataSourceCredentialPair = {
 M.AssetBundleImportJobDataSourceCredentials = {
     type = "structure",
     members = {
-        CredentialPair = {
-            type = "structure",
-        },
+        CredentialPair = M.AssetBundleImportJobDataSourceCredentialPair,
         SecretArn = {
             type = "string",
         },
@@ -13555,6 +11646,9 @@ M.IdentityCenterConfiguration = {
     members = {
         EnableIdentityPropagation = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -13571,9 +11665,7 @@ M.AthenaParameters = {
         ConsumerAccountRoleArn = {
             type = "string",
         },
-        IdentityCenterConfiguration = {
-            type = "structure",
-        },
+        IdentityCenterConfiguration = M.IdentityCenterConfiguration,
     },
 }
 
@@ -13587,7 +11679,7 @@ M.AuroraParameters = {
             },
         },
         Port = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -13611,7 +11703,7 @@ M.AuroraPostgreSqlParameters = {
             },
         },
         Port = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -13683,7 +11775,7 @@ M.DatabricksParameters = {
             },
         },
         Port = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -13707,7 +11799,7 @@ M.ExasolParameters = {
             },
         },
         Port = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -13725,7 +11817,7 @@ M.ImpalaParameters = {
             },
         },
         Port = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -13764,7 +11856,7 @@ M.MariaDbParameters = {
             },
         },
         Port = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -13788,7 +11880,7 @@ M.MySqlParameters = {
             },
         },
         Port = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -13812,7 +11904,7 @@ M.OracleParameters = {
             },
         },
         Port = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -13825,6 +11917,9 @@ M.OracleParameters = {
         },
         UseServiceName = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -13839,7 +11934,7 @@ M.PostgreSqlParameters = {
             },
         },
         Port = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -13863,7 +11958,7 @@ M.PrestoParameters = {
             },
         },
         Port = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -13921,10 +12016,13 @@ M.RedshiftIAMParameters = {
         },
         DatabaseGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AutoCreateDatabaseUser = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -13936,7 +12034,10 @@ M.RedshiftParameters = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         Database = {
             type = "string",
@@ -13947,12 +12048,8 @@ M.RedshiftParameters = {
         ClusterId = {
             type = "string",
         },
-        IAMParameters = {
-            type = "structure",
-        },
-        IdentityCenterConfiguration = {
-            type = "structure",
-        },
+        IAMParameters = M.RedshiftIAMParameters,
+        IdentityCenterConfiguration = M.IdentityCenterConfiguration,
     },
 }
 
@@ -13995,12 +12092,9 @@ M.ManifestFileLocation = {
 M.S3Parameters = {
     type = "structure",
     members = {
-        ManifestFileLocation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ManifestFileLocation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ManifestFileLocation }),
         RoleArn = {
             type = "string",
         },
@@ -14059,9 +12153,7 @@ M.OAuthParameters = {
         OAuthScope = {
             type = "string",
         },
-        IdentityProviderVpcConnectionProperties = {
-            type = "structure",
-        },
+        IdentityProviderVpcConnectionProperties = M.VpcConnectionProperties,
         IdentityProviderResourceUri = {
             type = "string",
         },
@@ -14098,9 +12190,7 @@ M.SnowflakeParameters = {
         DatabaseAccessControlRole = {
             type = "string",
         },
-        OAuthParameters = {
-            type = "structure",
-        },
+        OAuthParameters = M.OAuthParameters,
     },
 }
 
@@ -14114,7 +12204,7 @@ M.SparkParameters = {
             },
         },
         Port = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -14132,7 +12222,7 @@ M.SqlServerParameters = {
             },
         },
         Port = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -14161,7 +12251,7 @@ M.StarburstParameters = {
             },
         },
         Port = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -14181,9 +12271,7 @@ M.StarburstParameters = {
         AuthenticationType = {
             type = "string",
         },
-        OAuthParameters = {
-            type = "structure",
-        },
+        OAuthParameters = M.OAuthParameters,
     },
 }
 
@@ -14197,7 +12285,7 @@ M.TeradataParameters = {
             },
         },
         Port = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -14221,7 +12309,7 @@ M.TrinoParameters = {
             },
         },
         Port = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -14245,7 +12333,7 @@ M.TwitterParameters = {
             },
         },
         MaxRows = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -14288,7 +12376,10 @@ M.WebCrawlerParameters = {
             type = "string",
         },
         WebProxyPortNumber = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -14296,105 +12387,39 @@ M.WebCrawlerParameters = {
 M.DataSourceParameters = {
     type = "union",
     members = {
-        AmazonElasticsearchParameters = {
-            type = "structure",
-        },
-        AthenaParameters = {
-            type = "structure",
-        },
-        AuroraParameters = {
-            type = "structure",
-        },
-        AuroraPostgreSqlParameters = {
-            type = "structure",
-        },
-        AwsIotAnalyticsParameters = {
-            type = "structure",
-        },
-        JiraParameters = {
-            type = "structure",
-        },
-        MariaDbParameters = {
-            type = "structure",
-        },
-        MySqlParameters = {
-            type = "structure",
-        },
-        OracleParameters = {
-            type = "structure",
-        },
-        PostgreSqlParameters = {
-            type = "structure",
-        },
-        PrestoParameters = {
-            type = "structure",
-        },
-        RdsParameters = {
-            type = "structure",
-        },
-        RedshiftParameters = {
-            type = "structure",
-        },
-        S3Parameters = {
-            type = "structure",
-        },
-        S3TablesParameters = {
-            type = "structure",
-        },
-        S3KnowledgeBaseParameters = {
-            type = "structure",
-        },
-        ServiceNowParameters = {
-            type = "structure",
-        },
-        SnowflakeParameters = {
-            type = "structure",
-        },
-        SparkParameters = {
-            type = "structure",
-        },
-        SqlServerParameters = {
-            type = "structure",
-        },
-        TeradataParameters = {
-            type = "structure",
-        },
-        TwitterParameters = {
-            type = "structure",
-        },
-        AmazonOpenSearchParameters = {
-            type = "structure",
-        },
-        ExasolParameters = {
-            type = "structure",
-        },
-        DatabricksParameters = {
-            type = "structure",
-        },
-        StarburstParameters = {
-            type = "structure",
-        },
-        TrinoParameters = {
-            type = "structure",
-        },
-        BigQueryParameters = {
-            type = "structure",
-        },
-        ImpalaParameters = {
-            type = "structure",
-        },
-        CustomConnectionParameters = {
-            type = "structure",
-        },
-        WebCrawlerParameters = {
-            type = "structure",
-        },
-        ConfluenceParameters = {
-            type = "structure",
-        },
-        QBusinessParameters = {
-            type = "structure",
-        },
+        AmazonElasticsearchParameters = M.AmazonElasticsearchParameters,
+        AthenaParameters = M.AthenaParameters,
+        AuroraParameters = M.AuroraParameters,
+        AuroraPostgreSqlParameters = M.AuroraPostgreSqlParameters,
+        AwsIotAnalyticsParameters = M.AwsIotAnalyticsParameters,
+        JiraParameters = M.JiraParameters,
+        MariaDbParameters = M.MariaDbParameters,
+        MySqlParameters = M.MySqlParameters,
+        OracleParameters = M.OracleParameters,
+        PostgreSqlParameters = M.PostgreSqlParameters,
+        PrestoParameters = M.PrestoParameters,
+        RdsParameters = M.RdsParameters,
+        RedshiftParameters = M.RedshiftParameters,
+        S3Parameters = M.S3Parameters,
+        S3TablesParameters = M.S3TablesParameters,
+        S3KnowledgeBaseParameters = M.S3KnowledgeBaseParameters,
+        ServiceNowParameters = M.ServiceNowParameters,
+        SnowflakeParameters = M.SnowflakeParameters,
+        SparkParameters = M.SparkParameters,
+        SqlServerParameters = M.SqlServerParameters,
+        TeradataParameters = M.TeradataParameters,
+        TwitterParameters = M.TwitterParameters,
+        AmazonOpenSearchParameters = M.AmazonOpenSearchParameters,
+        ExasolParameters = M.ExasolParameters,
+        DatabricksParameters = M.DatabricksParameters,
+        StarburstParameters = M.StarburstParameters,
+        TrinoParameters = M.TrinoParameters,
+        BigQueryParameters = M.BigQueryParameters,
+        ImpalaParameters = M.ImpalaParameters,
+        CustomConnectionParameters = M.CustomConnectionParameters,
+        WebCrawlerParameters = M.WebCrawlerParameters,
+        ConfluenceParameters = M.ConfluenceParameters,
+        QBusinessParameters = M.QBusinessParameters,
     },
 }
 
@@ -14403,6 +12428,9 @@ M.SslProperties = {
     members = {
         DisableSsl = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -14419,18 +12447,10 @@ M.AssetBundleImportJobDataSourceOverrideParameters = {
         Name = {
             type = "string",
         },
-        DataSourceParameters = {
-            type = "union",
-        },
-        VpcConnectionProperties = {
-            type = "structure",
-        },
-        SslProperties = {
-            type = "structure",
-        },
-        Credentials = {
-            type = "structure",
-        },
+        DataSourceParameters = M.DataSourceParameters,
+        VpcConnectionProperties = M.VpcConnectionProperties,
+        SslProperties = M.SslProperties,
+        Credentials = M.AssetBundleImportJobDataSourceCredentials,
     },
 }
 
@@ -14439,17 +12459,14 @@ M.AssetBundleImportJobDataSourceOverridePermissions = {
     members = {
         DataSourceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        Permissions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Permissions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AssetBundleResourcePermissions }),
     },
 }
 
@@ -14458,14 +12475,14 @@ M.AssetBundleImportJobDataSourceOverrideTags = {
     members = {
         DataSourceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -14511,14 +12528,12 @@ M.AssetBundleImportJobFolderOverridePermissions = {
     members = {
         FolderIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        Permissions = {
-            type = "structure",
-        },
+        Permissions = M.AssetBundleResourcePermissions,
     },
 }
 
@@ -14527,14 +12542,14 @@ M.AssetBundleImportJobFolderOverrideTags = {
     members = {
         FolderIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -14601,15 +12616,15 @@ M.AssetBundleImportJobVPCConnectionOverrideParameters = {
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DnsResolvers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RoleArn = {
             type = "string",
@@ -14620,40 +12635,38 @@ M.AssetBundleImportJobVPCConnectionOverrideParameters = {
 M.AssetBundleImportJobOverrideParameters = {
     type = "structure",
     members = {
-        ResourceIdOverrideConfiguration = {
-            type = "structure",
-        },
+        ResourceIdOverrideConfiguration = M.AssetBundleImportJobResourceIdOverrideConfiguration,
         VPCConnections = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetBundleImportJobVPCConnectionOverrideParameters,
         },
         RefreshSchedules = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetBundleImportJobRefreshScheduleOverrideParameters,
         },
         DataSources = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetBundleImportJobDataSourceOverrideParameters,
         },
         DataSets = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetBundleImportJobDataSetOverrideParameters,
         },
         Themes = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetBundleImportJobThemeOverrideParameters,
         },
         Analyses = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetBundleImportJobAnalysisOverrideParameters,
         },
         Dashboards = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetBundleImportJobDashboardOverrideParameters,
         },
         Folders = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetBundleImportJobFolderOverrideParameters,
         },
     },
 }
@@ -14663,17 +12676,14 @@ M.AssetBundleImportJobThemeOverridePermissions = {
     members = {
         ThemeIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        Permissions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Permissions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AssetBundleResourcePermissions }),
     },
 }
 
@@ -14682,27 +12692,27 @@ M.AssetBundleImportJobOverridePermissions = {
     members = {
         DataSources = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetBundleImportJobDataSourceOverridePermissions,
         },
         DataSets = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetBundleImportJobDataSetOverridePermissions,
         },
         Themes = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetBundleImportJobThemeOverridePermissions,
         },
         Analyses = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetBundleImportJobAnalysisOverridePermissions,
         },
         Dashboards = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetBundleImportJobDashboardOverridePermissions,
         },
         Folders = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetBundleImportJobFolderOverridePermissions,
         },
     },
 }
@@ -14712,14 +12722,14 @@ M.AssetBundleImportJobThemeOverrideTags = {
     members = {
         ThemeIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -14732,14 +12742,14 @@ M.AssetBundleImportJobVPCConnectionOverrideTags = {
     members = {
         VPCConnectionIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -14752,31 +12762,31 @@ M.AssetBundleImportJobOverrideTags = {
     members = {
         VPCConnections = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetBundleImportJobVPCConnectionOverrideTags,
         },
         DataSources = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetBundleImportJobDataSourceOverrideTags,
         },
         DataSets = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetBundleImportJobDataSetOverrideTags,
         },
         Themes = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetBundleImportJobThemeOverrideTags,
         },
         Analyses = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetBundleImportJobAnalysisOverrideTags,
         },
         Dashboards = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetBundleImportJobDashboardOverrideTags,
         },
         Folders = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetBundleImportJobFolderOverrideTags,
         },
     },
 }
@@ -14786,6 +12796,9 @@ M.AssetBundleImportJobOverrideValidationStrategy = {
     members = {
         StrictModeForAllResources = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -14896,9 +12909,7 @@ M.AuthorizationCodeGrantDetails = {
 M.AuthorizationCodeGrantCredentialsDetails = {
     type = "union",
     members = {
-        AuthorizationCodeGrantDetails = {
-            type = "structure",
-        },
+        AuthorizationCodeGrantDetails = M.AuthorizationCodeGrantDetails,
     },
 }
 
@@ -14920,9 +12931,7 @@ M.AuthorizationCodeGrantMetadata = {
         AuthorizationCodeGrantCredentialsSource = {
             type = "string",
         },
-        AuthorizationCodeGrantCredentialsDetails = {
-            type = "union",
-        },
+        AuthorizationCodeGrantCredentialsDetails = M.AuthorizationCodeGrantCredentialsDetails,
     },
 }
 
@@ -14977,9 +12986,7 @@ M.ClientCredentialsGrantDetails = {
 M.ClientCredentialsDetails = {
     type = "union",
     members = {
-        ClientCredentialsGrantDetails = {
-            type = "structure",
-        },
+        ClientCredentialsGrantDetails = M.ClientCredentialsGrantDetails,
     },
 }
 
@@ -14995,9 +13002,7 @@ M.ClientCredentialsGrantMetadata = {
         ClientCredentialsSource = {
             type = "string",
         },
-        ClientCredentialsDetails = {
-            type = "union",
-        },
+        ClientCredentialsDetails = M.ClientCredentialsDetails,
     },
 }
 
@@ -15028,24 +13033,12 @@ M.NoneConnectionMetadata = {
 M.AuthenticationMetadata = {
     type = "union",
     members = {
-        AuthorizationCodeGrantMetadata = {
-            type = "structure",
-        },
-        ClientCredentialsGrantMetadata = {
-            type = "structure",
-        },
-        BasicAuthConnectionMetadata = {
-            type = "structure",
-        },
-        ApiKeyConnectionMetadata = {
-            type = "structure",
-        },
-        NoneConnectionMetadata = {
-            type = "structure",
-        },
-        IamConnectionMetadata = {
-            type = "structure",
-        },
+        AuthorizationCodeGrantMetadata = M.AuthorizationCodeGrantMetadata,
+        ClientCredentialsGrantMetadata = M.ClientCredentialsGrantMetadata,
+        BasicAuthConnectionMetadata = M.BasicAuthConnectionMetadata,
+        ApiKeyConnectionMetadata = M.APIKeyConnectionMetadata,
+        NoneConnectionMetadata = M.NoneConnectionMetadata,
+        IamConnectionMetadata = M.IAMConnectionMetadata,
     },
 }
 
@@ -15058,12 +13051,9 @@ M.AuthConfig = {
                 required = true,
             },
         },
-        AuthenticationMetadata = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        AuthenticationMetadata = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AuthenticationMetadata }),
     },
 }
 
@@ -15088,7 +13078,7 @@ M.AuthorizedTargetsByService = {
         },
         AuthorizedTargets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -15158,9 +13148,7 @@ M.TopicSortDirection = {
 M.FilterAggMetrics = {
     type = "structure",
     members = {
-        MetricOperand = {
-            type = "structure",
-        },
+        MetricOperand = M.Identifier,
         Function = {
             type = "string",
         },
@@ -15205,7 +13193,7 @@ M.TopicConstantValue = {
         },
         ValueList = {
             type = "list",
-            member_type = "structure",
+            member = M.CollectiveConstantEntry,
         },
     },
 }
@@ -15256,17 +13244,16 @@ M.TopicIRFilterOption = {
         FilterClass = {
             type = "string",
         },
-        OperandField = {
-            type = "structure",
-        },
+        OperandField = M.Identifier,
         Function = {
             type = "string",
         },
-        Constant = {
-            type = "structure",
-        },
+        Constant = M.TopicConstantValue,
         Inverse = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         NullFilter = {
             type = "string",
@@ -15276,50 +13263,41 @@ M.TopicIRFilterOption = {
         },
         AggregationFunctionParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         AggregationPartitionBy = {
             type = "list",
-            member_type = "structure",
+            member = M.AggregationPartitionBy,
         },
-        Range = {
-            type = "structure",
-        },
+        Range = M.TopicConstantValue,
         Inclusive = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         TimeGranularity = {
             type = "string",
         },
-        LastNextOffset = {
-            type = "structure",
-        },
+        LastNextOffset = M.TopicConstantValue,
         AggMetrics = {
             type = "list",
-            member_type = "structure",
+            member = M.FilterAggMetrics,
         },
-        TopBottomLimit = {
-            type = "structure",
-        },
+        TopBottomLimit = M.TopicConstantValue,
         SortDirection = {
             type = "string",
         },
-        Anchor = {
-            type = "structure",
-        },
+        Anchor = M.Anchor,
     },
 }
 
 M.ContributionAnalysisTimeRanges = {
     type = "structure",
     members = {
-        StartRange = {
-            type = "structure",
-        },
-        EndRange = {
-            type = "structure",
-        },
+        StartRange = M.TopicIRFilterOption,
+        EndRange = M.TopicIRFilterOption,
     },
 }
 
@@ -15328,11 +13306,9 @@ M.TopicIRContributionAnalysis = {
     members = {
         Factors = {
             type = "list",
-            member_type = "structure",
+            member = M.ContributionAnalysisFactor,
         },
-        TimeRanges = {
-            type = "structure",
-        },
+        TimeRanges = M.ContributionAnalysisTimeRanges,
         Direction = {
             type = "string",
         },
@@ -15373,6 +13349,9 @@ M.DisplayFormatOptions = {
     members = {
         UseBlankCellFormat = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         BlankCellFormat = {
             type = "string",
@@ -15388,9 +13367,15 @@ M.DisplayFormatOptions = {
         },
         UseGrouping = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         FractionDigits = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         Prefix = {
             type = "string",
@@ -15401,9 +13386,7 @@ M.DisplayFormatOptions = {
         UnitScaler = {
             type = "string",
         },
-        NegativeFormat = {
-            type = "structure",
-        },
+        NegativeFormat = M.NegativeFormat,
         CurrencySymbol = {
             type = "string",
         },
@@ -15422,9 +13405,7 @@ M.NamedEntityRef = {
 M.TopicSortClause = {
     type = "structure",
     members = {
-        Operand = {
-            type = "structure",
-        },
+        Operand = M.Identifier,
         SortDirection = {
             type = "string",
         },
@@ -15434,24 +13415,16 @@ M.TopicSortClause = {
 M.TopicIRGroupBy = {
     type = "structure",
     members = {
-        FieldName = {
-            type = "structure",
-        },
+        FieldName = M.Identifier,
         TimeGranularity = {
             type = "string",
         },
-        Sort = {
-            type = "structure",
-        },
+        Sort = M.TopicSortClause,
         DisplayFormat = {
             type = "string",
         },
-        DisplayFormatOptions = {
-            type = "structure",
-        },
-        NamedEntity = {
-            type = "structure",
-        },
+        DisplayFormatOptions = M.DisplayFormatOptions,
+        NamedEntity = M.NamedEntityRef,
     },
 }
 
@@ -15478,7 +13451,10 @@ M.TopicIRComparisonMethod = {
             type = "string",
         },
         WindowSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -15486,35 +13462,25 @@ M.TopicIRComparisonMethod = {
 M.TopicIRMetric = {
     type = "structure",
     members = {
-        MetricId = {
-            type = "structure",
-        },
-        Function = {
-            type = "structure",
-        },
+        MetricId = M.Identifier,
+        Function = M.AggFunction,
         Operands = {
             type = "list",
-            member_type = "structure",
+            member = M.Identifier,
         },
-        ComparisonMethod = {
-            type = "structure",
-        },
+        ComparisonMethod = M.TopicIRComparisonMethod,
         Expression = {
             type = "string",
         },
         CalculatedFieldReferences = {
             type = "list",
-            member_type = "structure",
+            member = M.Identifier,
         },
         DisplayFormat = {
             type = "string",
         },
-        DisplayFormatOptions = {
-            type = "structure",
-        },
-        NamedEntity = {
-            type = "structure",
-        },
+        DisplayFormatOptions = M.DisplayFormatOptions,
+        NamedEntity = M.NamedEntityRef,
     },
 }
 
@@ -15532,25 +13498,19 @@ M.TopicIR = {
     members = {
         Metrics = {
             type = "list",
-            member_type = "structure",
+            member = M.TopicIRMetric,
         },
         GroupByList = {
             type = "list",
-            member_type = "structure",
+            member = M.TopicIRGroupBy,
         },
         Filters = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
         },
-        Sort = {
-            type = "structure",
-        },
-        ContributionAnalysis = {
-            type = "structure",
-        },
-        Visual = {
-            type = "structure",
-        },
+        Sort = M.TopicSortClause,
+        ContributionAnalysis = M.TopicIRContributionAnalysis,
+        Visual = M.VisualOptions,
     },
 }
 
@@ -15582,7 +13542,7 @@ M.TopicTemplate = {
         },
         Slots = {
             type = "list",
-            member_type = "structure",
+            member = M.Slot,
         },
     },
 }
@@ -15629,15 +13589,16 @@ M.BatchCreateTopicReviewedAnswerOutput = {
         },
         SucceededAnswers = {
             type = "list",
-            member_type = "structure",
+            member = M.SucceededTopicReviewedAnswer,
         },
         InvalidAnswers = {
             type = "list",
-            member_type = "structure",
+            member = M.InvalidTopicReviewedAnswer,
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -15733,7 +13694,7 @@ M.BatchDeleteTopicReviewedAnswerInput = {
         },
         AnswerIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -15749,18 +13710,19 @@ M.BatchDeleteTopicReviewedAnswerOutput = {
         },
         SucceededAnswers = {
             type = "list",
-            member_type = "structure",
+            member = M.SucceededTopicReviewedAnswer,
         },
         InvalidAnswers = {
             type = "list",
-            member_type = "structure",
+            member = M.InvalidTopicReviewedAnswer,
         },
         RequestId = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -15786,6 +13748,7 @@ M.BookmarksConfigurations = {
         Enabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -15800,6 +13763,9 @@ M.BorderStyle = {
         },
         Show = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
         Width = {
             type = "string",
@@ -15822,36 +13788,26 @@ M.ImageSource = {
 M.ImageConfiguration = {
     type = "structure",
     members = {
-        Source = {
-            type = "union",
-        },
+        Source = M.ImageSource,
     },
 }
 
 M.ImageSetConfiguration = {
     type = "structure",
     members = {
-        Original = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Original = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ImageConfiguration }),
     },
 }
 
 M.LogoSetConfiguration = {
     type = "structure",
     members = {
-        Primary = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Favicon = {
-            type = "structure",
-        },
+        Primary = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ImageSetConfiguration }),
+        Favicon = M.ImageSetConfiguration,
     },
 }
 
@@ -15864,12 +13820,9 @@ M.LogoConfiguration = {
                 required = true,
             },
         },
-        LogoSet = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        LogoSet = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LogoSetConfiguration }),
     },
 }
 
@@ -15885,12 +13838,8 @@ M.BrandDefinition = {
         Description = {
             type = "string",
         },
-        ApplicationTheme = {
-            type = "structure",
-        },
-        LogoConfiguration = {
-            type = "structure",
-        },
+        ApplicationTheme = M.ApplicationTheme,
+        LogoConfiguration = M.LogoConfiguration,
     },
 }
 
@@ -15905,9 +13854,7 @@ M.BrandStatus = {
 M.Image = {
     type = "structure",
     members = {
-        Source = {
-            type = "union",
-        },
+        Source = M.ImageSource,
         GeneratedImageUrl = {
             type = "string",
         },
@@ -15917,33 +13864,21 @@ M.Image = {
 M.ImageSet = {
     type = "structure",
     members = {
-        Original = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Height64 = {
-            type = "structure",
-        },
-        Height32 = {
-            type = "structure",
-        },
+        Original = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Image }),
+        Height64 = M.Image,
+        Height32 = M.Image,
     },
 }
 
 M.LogoSet = {
     type = "structure",
     members = {
-        Primary = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Favicon = {
-            type = "structure",
-        },
+        Primary = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ImageSet }),
+        Favicon = M.ImageSet,
     },
 }
 
@@ -15956,12 +13891,9 @@ M.Logo = {
                 required = true,
             },
         },
-        LogoSet = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        LogoSet = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LogoSet }),
     },
 }
 
@@ -16000,11 +13932,9 @@ M.BrandDetail = {
         },
         Errors = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        Logo = {
-            type = "structure",
-        },
+        Logo = M.Logo,
     },
 }
 
@@ -16099,8 +14029,9 @@ M.CancelIngestionOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -16847,15 +14778,12 @@ M.CastColumnTypesOperation = {
                 required = true,
             },
         },
-        Source = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Source = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TransformOperationSource }),
         CastColumnTypeOperations = {
             type = "list",
-            member_type = "structure",
+            member = M.CastColumnTypeOperation,
             traits = {
                 required = true,
             },
@@ -16882,7 +14810,7 @@ M.CellValueSynonym = {
         },
         Synonyms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -16892,7 +14820,7 @@ M.CollectiveConstant = {
     members = {
         ValueList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -16929,7 +14857,7 @@ M.GeoSpatialColumnGroup = {
         },
         Columns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -16940,9 +14868,7 @@ M.GeoSpatialColumnGroup = {
 M.ColumnGroup = {
     type = "structure",
     members = {
-        GeoSpatialColumnGroup = {
-            type = "structure",
-        },
+        GeoSpatialColumnGroup = M.GeoSpatialColumnGroup,
     },
 }
 
@@ -16963,7 +14889,7 @@ M.ColumnGroupSchema = {
         },
         ColumnGroupColumnSchemaList = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnGroupColumnSchema,
         },
     },
 }
@@ -16973,11 +14899,11 @@ M.ColumnLevelPermissionRule = {
     members = {
         Principals = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ColumnNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -17019,9 +14945,7 @@ M.ColumnTag = {
         ColumnGeographicRole = {
             type = "string",
         },
-        ColumnDescription = {
-            type = "structure",
-        },
+        ColumnDescription = M.ColumnDescription,
     },
 }
 
@@ -17055,7 +14979,7 @@ M.ComparativeOrder = {
         },
         SpecifedOrder = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TreatUndefinedSpecifiedValues = {
             type = "string",
@@ -17079,9 +15003,7 @@ M.ConcurrentUpdatingException = {
 M.ControlTitleFontConfiguration = {
     type = "structure",
     members = {
-        FontConfiguration = {
-            type = "structure",
-        },
+        FontConfiguration = M.FontConfiguration,
         TextAlignment = {
             type = "string",
         },
@@ -17104,15 +15026,12 @@ M.CreateAccountCustomizationInput = {
                 http_query = "namespace",
             },
         },
-        AccountCustomization = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AccountCustomization = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AccountCustomization }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -17129,15 +15048,14 @@ M.CreateAccountCustomizationOutput = {
         Namespace = {
             type = "string",
         },
-        AccountCustomization = {
-            type = "structure",
-        },
+        AccountCustomization = M.AccountCustomization,
         RequestId = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -17202,27 +15120,27 @@ M.CreateAccountSubscriptionInput = {
         },
         AdminGroup = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AuthorGroup = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ReaderGroup = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AdminProGroup = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AuthorProGroup = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ReaderProGroup = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         FirstName = {
             type = "string",
@@ -17247,6 +15165,9 @@ M.SignupResponse = {
     members = {
         IAMUser = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         userLoginName = {
             type = "string",
@@ -17263,12 +15184,11 @@ M.SignupResponse = {
 M.CreateAccountSubscriptionOutput = {
     type = "structure",
     members = {
-        SignupResponse = {
-            type = "structure",
-        },
+        SignupResponse = M.SignupResponse,
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -17302,7 +15222,7 @@ M.ResourcePermission = {
         },
         Actions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -17338,25 +15258,22 @@ M.CreateActionConnectorInput = {
                 required = true,
             },
         },
-        AuthenticationConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AuthenticationConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AuthConfig }),
         Description = {
             type = "string",
         },
         Permissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePermission,
         },
         VpcConnectionArn = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -17377,8 +15294,9 @@ M.CreateActionConnectorOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -17396,7 +15314,7 @@ M.DateTimeParameter = {
         },
         Values = {
             type = "list",
-            member_type = "timestamp",
+            member = { type = "timestamp" },
             traits = {
                 required = true,
             },
@@ -17415,7 +15333,7 @@ M.DecimalParameter = {
         },
         Values = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
@@ -17434,7 +15352,7 @@ M.IntegerParameter = {
         },
         Values = {
             type = "list",
-            member_type = "number",
+            member = { type = "long" },
             traits = {
                 required = true,
             },
@@ -17453,7 +15371,7 @@ M.StringParameter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -17466,19 +15384,19 @@ M.Parameters = {
     members = {
         StringParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.StringParameter,
         },
         IntegerParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.IntegerParameter,
         },
         DecimalParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.DecimalParameter,
         },
         DateTimeParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.DateTimeParameter,
         },
     },
 }
@@ -17523,32 +15441,24 @@ M.CreateAnalysisInput = {
                 required = true,
             },
         },
-        Parameters = {
-            type = "structure",
-        },
+        Parameters = M.Parameters,
         Permissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePermission,
         },
-        SourceEntity = {
-            type = "structure",
-        },
+        SourceEntity = M.AnalysisSourceEntity,
         ThemeArn = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        Definition = {
-            type = "structure",
-        },
-        ValidationStrategy = {
-            type = "structure",
-        },
+        Definition = M.AnalysisDefinition,
+        ValidationStrategy = M.ValidationStrategy,
         FolderArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -17566,8 +15476,9 @@ M.CreateAnalysisOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -17623,12 +15534,10 @@ M.CreateBrandInput = {
                 required = true,
             },
         },
-        BrandDefinition = {
-            type = "structure",
-        },
+        BrandDefinition = M.BrandDefinition,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -17639,12 +15548,8 @@ M.CreateBrandOutput = {
         RequestId = {
             type = "string",
         },
-        BrandDetail = {
-            type = "structure",
-        },
-        BrandDefinition = {
-            type = "structure",
-        },
+        BrandDetail = M.BrandDetail,
+        BrandDefinition = M.BrandDefinition,
     },
 }
 
@@ -17680,12 +15585,10 @@ M.CreateColumnsOperation = {
         Alias = {
             type = "string",
         },
-        Source = {
-            type = "structure",
-        },
+        Source = M.TransformOperationSource,
         Columns = {
             type = "list",
-            member_type = "structure",
+            member = M.CalculatedColumn,
             traits = {
                 required = true,
             },
@@ -17709,12 +15612,10 @@ M.CreateCustomPermissionsInput = {
                 required = true,
             },
         },
-        Capabilities = {
-            type = "structure",
-        },
+        Capabilities = M.Capabilities,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -17723,7 +15624,10 @@ M.CreateCustomPermissionsOutput = {
     type = "structure",
     members = {
         Status = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         Arn = {
             type = "string",
@@ -17859,60 +15763,28 @@ M.ExportHiddenFieldsOption = {
 M.DashboardVisualPublishOptions = {
     type = "structure",
     members = {
-        ExportHiddenFieldsOption = {
-            type = "structure",
-        },
+        ExportHiddenFieldsOption = M.ExportHiddenFieldsOption,
     },
 }
 
 M.DashboardPublishOptions = {
     type = "structure",
     members = {
-        AdHocFilteringOption = {
-            type = "structure",
-        },
-        ExportToCSVOption = {
-            type = "structure",
-        },
-        SheetControlsOption = {
-            type = "structure",
-        },
-        VisualPublishOptions = {
-            type = "structure",
-        },
-        SheetLayoutElementMaximizationOption = {
-            type = "structure",
-        },
-        VisualMenuOption = {
-            type = "structure",
-        },
-        VisualAxisSortOption = {
-            type = "structure",
-        },
-        ExportWithHiddenFieldsOption = {
-            type = "structure",
-        },
-        DataPointDrillUpDownOption = {
-            type = "structure",
-        },
-        DataPointMenuLabelOption = {
-            type = "structure",
-        },
-        DataPointTooltipOption = {
-            type = "structure",
-        },
-        DataQAEnabledOption = {
-            type = "structure",
-        },
-        QuickSuiteActionsOption = {
-            type = "structure",
-        },
-        ExecutiveSummaryOption = {
-            type = "structure",
-        },
-        DataStoriesSharingOption = {
-            type = "structure",
-        },
+        AdHocFilteringOption = M.AdHocFilteringOption,
+        ExportToCSVOption = M.ExportToCSVOption,
+        SheetControlsOption = M.SheetControlsOption,
+        VisualPublishOptions = M.DashboardVisualPublishOptions,
+        SheetLayoutElementMaximizationOption = M.SheetLayoutElementMaximizationOption,
+        VisualMenuOption = M.VisualMenuOption,
+        VisualAxisSortOption = M.VisualAxisSortOption,
+        ExportWithHiddenFieldsOption = M.ExportWithHiddenFieldsOption,
+        DataPointDrillUpDownOption = M.DataPointDrillUpDownOption,
+        DataPointMenuLabelOption = M.DataPointMenuLabelOption,
+        DataPointTooltipOption = M.DataPointTooltipOption,
+        DataQAEnabledOption = M.DataQAEnabledOption,
+        QuickSuiteActionsOption = M.QuickSuiteActionsOption,
+        ExecutiveSummaryOption = M.ExecutiveSummaryOption,
+        DataStoriesSharingOption = M.DataStoriesSharingOption,
     },
 }
 
@@ -17921,44 +15793,40 @@ M.DashboardVersionDefinition = {
     members = {
         DataSetIdentifierDeclarations = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSetIdentifierDeclaration,
             traits = {
                 required = true,
             },
         },
         Sheets = {
             type = "list",
-            member_type = "structure",
+            member = M.SheetDefinition,
         },
         TooltipSheets = {
             type = "list",
-            member_type = "structure",
+            member = M.TooltipSheetDefinition,
         },
         CalculatedFields = {
             type = "list",
-            member_type = "structure",
+            member = M.CalculatedField,
         },
         ParameterDeclarations = {
             type = "list",
-            member_type = "structure",
+            member = M.ParameterDeclaration,
         },
         FilterGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.FilterGroup,
         },
         ColumnConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnConfiguration,
         },
-        AnalysisDefaults = {
-            type = "structure",
-        },
-        Options = {
-            type = "structure",
-        },
+        AnalysisDefaults = M.AnalysisDefaults,
+        Options = M.AssetOptions,
         StaticFiles = {
             type = "list",
-            member_type = "structure",
+            member = M.StaticFile,
         },
     },
 }
@@ -17968,7 +15836,7 @@ M.LinkSharingConfiguration = {
     members = {
         Permissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePermission,
         },
     },
 }
@@ -17978,7 +15846,7 @@ M.DashboardSourceTemplate = {
     members = {
         DataSetReferences = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSetReference,
             traits = {
                 required = true,
             },
@@ -17995,9 +15863,7 @@ M.DashboardSourceTemplate = {
 M.DashboardSourceEntity = {
     type = "structure",
     members = {
-        SourceTemplate = {
-            type = "structure",
-        },
+        SourceTemplate = M.DashboardSourceTemplate,
     },
 }
 
@@ -18024,45 +15890,33 @@ M.CreateDashboardInput = {
                 required = true,
             },
         },
-        Parameters = {
-            type = "structure",
-        },
+        Parameters = M.Parameters,
         Permissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePermission,
         },
-        SourceEntity = {
-            type = "structure",
-        },
+        SourceEntity = M.DashboardSourceEntity,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         VersionDescription = {
             type = "string",
         },
-        DashboardPublishOptions = {
-            type = "structure",
-        },
+        DashboardPublishOptions = M.DashboardPublishOptions,
         ThemeArn = {
             type = "string",
         },
-        Definition = {
-            type = "structure",
-        },
-        ValidationStrategy = {
-            type = "structure",
-        },
+        Definition = M.DashboardVersionDefinition,
+        ValidationStrategy = M.ValidationStrategy,
         FolderArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        LinkSharingConfiguration = {
-            type = "structure",
-        },
+        LinkSharingConfiguration = M.LinkSharingConfiguration,
         LinkEntities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -18083,8 +15937,9 @@ M.CreateDashboardOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -18115,12 +15970,9 @@ M.DestinationTable = {
                 required = true,
             },
         },
-        Source = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Source = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DestinationTableSource }),
     },
 }
 
@@ -18170,7 +16022,7 @@ M.ParentDataSet = {
         },
         InputColumns = {
             type = "list",
-            member_type = "structure",
+            member = M.InputColumn,
             traits = {
                 required = true,
             },
@@ -18184,9 +16036,7 @@ M.SourceTable = {
         PhysicalTableId = {
             type = "string",
         },
-        DataSet = {
-            type = "structure",
-        },
+        DataSet = M.ParentDataSet,
     },
 }
 
@@ -18215,26 +16065,26 @@ M.DataSetDateComparisonFilterCondition = {
                 required = true,
             },
         },
-        Value = {
-            type = "structure",
-        },
+        Value = M.DataSetDateFilterValue,
     },
 }
 
 M.DataSetDateRangeFilterCondition = {
     type = "structure",
     members = {
-        RangeMinimum = {
-            type = "structure",
-        },
-        RangeMaximum = {
-            type = "structure",
-        },
+        RangeMinimum = M.DataSetDateFilterValue,
+        RangeMaximum = M.DataSetDateFilterValue,
         IncludeMinimum = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
         IncludeMaximum = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -18245,12 +16095,8 @@ M.DataSetDateFilterCondition = {
         ColumnName = {
             type = "string",
         },
-        ComparisonFilterCondition = {
-            type = "structure",
-        },
-        RangeFilterCondition = {
-            type = "structure",
-        },
+        ComparisonFilterCondition = M.DataSetDateComparisonFilterCondition,
+        RangeFilterCondition = M.DataSetDateRangeFilterCondition,
     },
 }
 
@@ -18267,7 +16113,10 @@ M.DataSetNumericFilterValue = {
     type = "structure",
     members = {
         StaticValue = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -18281,26 +16130,26 @@ M.DataSetNumericComparisonFilterCondition = {
                 required = true,
             },
         },
-        Value = {
-            type = "structure",
-        },
+        Value = M.DataSetNumericFilterValue,
     },
 }
 
 M.DataSetNumericRangeFilterCondition = {
     type = "structure",
     members = {
-        RangeMinimum = {
-            type = "structure",
-        },
-        RangeMaximum = {
-            type = "structure",
-        },
+        RangeMinimum = M.DataSetNumericFilterValue,
+        RangeMaximum = M.DataSetNumericFilterValue,
         IncludeMinimum = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
         IncludeMaximum = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -18311,12 +16160,8 @@ M.DataSetNumericFilterCondition = {
         ColumnName = {
             type = "string",
         },
-        ComparisonFilterCondition = {
-            type = "structure",
-        },
-        RangeFilterCondition = {
-            type = "structure",
-        },
+        ComparisonFilterCondition = M.DataSetNumericComparisonFilterCondition,
+        RangeFilterCondition = M.DataSetNumericRangeFilterCondition,
     },
 }
 
@@ -18347,9 +16192,7 @@ M.DataSetStringComparisonFilterCondition = {
                 required = true,
             },
         },
-        Value = {
-            type = "structure",
-        },
+        Value = M.DataSetStringFilterValue,
     },
 }
 
@@ -18363,7 +16206,7 @@ M.DataSetStringListFilterValue = {
     members = {
         StaticValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -18377,9 +16220,7 @@ M.DataSetStringListFilterCondition = {
                 required = true,
             },
         },
-        Values = {
-            type = "structure",
-        },
+        Values = M.DataSetStringListFilterValue,
     },
 }
 
@@ -18389,12 +16230,8 @@ M.DataSetStringFilterCondition = {
         ColumnName = {
             type = "string",
         },
-        ComparisonFilterCondition = {
-            type = "structure",
-        },
-        ListFilterCondition = {
-            type = "structure",
-        },
+        ComparisonFilterCondition = M.DataSetStringComparisonFilterCondition,
+        ListFilterCondition = M.DataSetStringListFilterCondition,
     },
 }
 
@@ -18404,15 +16241,9 @@ M.FilterOperation = {
         ConditionExpression = {
             type = "string",
         },
-        StringFilterCondition = {
-            type = "structure",
-        },
-        NumericFilterCondition = {
-            type = "structure",
-        },
-        DateFilterCondition = {
-            type = "structure",
-        },
+        StringFilterCondition = M.DataSetStringFilterCondition,
+        NumericFilterCondition = M.DataSetNumericFilterCondition,
+        DateFilterCondition = M.DataSetDateFilterCondition,
     },
 }
 
@@ -18425,15 +16256,12 @@ M.FiltersOperation = {
                 required = true,
             },
         },
-        Source = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Source = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TransformOperationSource }),
         FilterOperations = {
             type = "list",
-            member_type = "structure",
+            member = M.FilterOperation,
             traits = {
                 required = true,
             },
@@ -18452,7 +16280,7 @@ M.ImportTableOperationSource = {
         },
         ColumnIdMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSetColumnIdMapping,
         },
     },
 }
@@ -18466,12 +16294,9 @@ M.ImportTableOperation = {
                 required = true,
             },
         },
-        Source = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Source = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ImportTableOperationSource }),
     },
 }
 
@@ -18495,7 +16320,7 @@ M.JoinOperandProperties = {
     members = {
         OutputColumnNameOverrides = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputColumnNameOverride,
             traits = {
                 required = true,
             },
@@ -18519,18 +16344,12 @@ M.JoinOperation = {
                 required = true,
             },
         },
-        LeftOperand = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        RightOperand = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        LeftOperand = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TransformOperationSource }),
+        RightOperand = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TransformOperationSource }),
         Type = {
             type = "string",
             traits = {
@@ -18543,12 +16362,8 @@ M.JoinOperation = {
                 required = true,
             },
         },
-        LeftOperandProperties = {
-            type = "structure",
-        },
-        RightOperandProperties = {
-            type = "structure",
-        },
+        LeftOperandProperties = M.JoinOperandProperties,
+        RightOperandProperties = M.JoinOperandProperties,
     },
 }
 
@@ -18584,7 +16399,7 @@ M.PivotConfiguration = {
         },
         PivotedLabels = {
             type = "list",
-            member_type = "structure",
+            member = M.PivotedLabel,
             traits = {
                 required = true,
             },
@@ -18595,9 +16410,7 @@ M.PivotConfiguration = {
 M.ValueColumnConfiguration = {
     type = "structure",
     members = {
-        AggregationFunction = {
-            type = "structure",
-        },
+        AggregationFunction = M.DataPrepAggregationFunction,
     },
 }
 
@@ -18610,28 +16423,19 @@ M.PivotOperation = {
                 required = true,
             },
         },
-        Source = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Source = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TransformOperationSource }),
         GroupByColumnNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        ValueColumnConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        PivotConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ValueColumnConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ValueColumnConfiguration }),
+        PivotConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PivotConfiguration }),
     },
 }
 
@@ -18641,12 +16445,10 @@ M.ProjectOperation = {
         Alias = {
             type = "string",
         },
-        Source = {
-            type = "structure",
-        },
+        Source = M.TransformOperationSource,
         ProjectedColumns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -18681,15 +16483,12 @@ M.RenameColumnsOperation = {
                 required = true,
             },
         },
-        Source = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Source = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TransformOperationSource }),
         RenameColumnOperations = {
             type = "list",
-            member_type = "structure",
+            member = M.RenameColumnOperation,
             traits = {
                 required = true,
             },
@@ -18706,15 +16505,12 @@ M.UnpivotOperation = {
                 required = true,
             },
         },
-        Source = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Source = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TransformOperationSource }),
         ColumnsToUnpivot = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnToUnpivot,
             traits = {
                 required = true,
             },
@@ -18749,39 +16545,17 @@ M.UnpivotOperation = {
 M.TransformStep = {
     type = "structure",
     members = {
-        ImportTableStep = {
-            type = "structure",
-        },
-        ProjectStep = {
-            type = "structure",
-        },
-        FiltersStep = {
-            type = "structure",
-        },
-        CreateColumnsStep = {
-            type = "structure",
-        },
-        RenameColumnsStep = {
-            type = "structure",
-        },
-        CastColumnTypesStep = {
-            type = "structure",
-        },
-        JoinStep = {
-            type = "structure",
-        },
-        AggregateStep = {
-            type = "structure",
-        },
-        PivotStep = {
-            type = "structure",
-        },
-        UnpivotStep = {
-            type = "structure",
-        },
-        AppendStep = {
-            type = "structure",
-        },
+        ImportTableStep = M.ImportTableOperation,
+        ProjectStep = M.ProjectOperation,
+        FiltersStep = M.FiltersOperation,
+        CreateColumnsStep = M.CreateColumnsOperation,
+        RenameColumnsStep = M.RenameColumnsOperation,
+        CastColumnTypesStep = M.CastColumnTypesOperation,
+        JoinStep = M.JoinOperation,
+        AggregateStep = M.AggregateOperation,
+        PivotStep = M.PivotOperation,
+        UnpivotStep = M.UnpivotOperation,
+        AppendStep = M.AppendOperation,
     },
 }
 
@@ -18790,24 +16564,24 @@ M.DataPrepConfiguration = {
     members = {
         SourceTableMap = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.SourceTable,
             traits = {
                 required = true,
             },
         },
         TransformStepMap = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.TransformStep,
             traits = {
                 required = true,
             },
         },
         DestinationTableMap = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.DestinationTable,
             traits = {
                 required = true,
             },
@@ -18820,7 +16594,7 @@ M.DateTimeDatasetParameterDefaultValues = {
     members = {
         StaticValues = {
             type = "list",
-            member_type = "timestamp",
+            member = { type = "timestamp" },
         },
     },
 }
@@ -18854,9 +16628,7 @@ M.DateTimeDatasetParameter = {
         TimeGranularity = {
             type = "string",
         },
-        DefaultValues = {
-            type = "structure",
-        },
+        DefaultValues = M.DateTimeDatasetParameterDefaultValues,
     },
 }
 
@@ -18865,7 +16637,7 @@ M.DecimalDatasetParameterDefaultValues = {
     members = {
         StaticValues = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
     },
 }
@@ -18891,9 +16663,7 @@ M.DecimalDatasetParameter = {
                 required = true,
             },
         },
-        DefaultValues = {
-            type = "structure",
-        },
+        DefaultValues = M.DecimalDatasetParameterDefaultValues,
     },
 }
 
@@ -18902,7 +16672,7 @@ M.IntegerDatasetParameterDefaultValues = {
     members = {
         StaticValues = {
             type = "list",
-            member_type = "number",
+            member = { type = "long" },
         },
     },
 }
@@ -18928,9 +16698,7 @@ M.IntegerDatasetParameter = {
                 required = true,
             },
         },
-        DefaultValues = {
-            type = "structure",
-        },
+        DefaultValues = M.IntegerDatasetParameterDefaultValues,
     },
 }
 
@@ -18939,7 +16707,7 @@ M.StringDatasetParameterDefaultValues = {
     members = {
         StaticValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -18965,27 +16733,17 @@ M.StringDatasetParameter = {
                 required = true,
             },
         },
-        DefaultValues = {
-            type = "structure",
-        },
+        DefaultValues = M.StringDatasetParameterDefaultValues,
     },
 }
 
 M.DatasetParameter = {
     type = "structure",
     members = {
-        StringDatasetParameter = {
-            type = "structure",
-        },
-        DecimalDatasetParameter = {
-            type = "structure",
-        },
-        IntegerDatasetParameter = {
-            type = "structure",
-        },
-        DateTimeDatasetParameter = {
-            type = "structure",
-        },
+        StringDatasetParameter = M.StringDatasetParameter,
+        DecimalDatasetParameter = M.DecimalDatasetParameter,
+        IntegerDatasetParameter = M.IntegerDatasetParameter,
+        DateTimeDatasetParameter = M.DateTimeDatasetParameter,
     },
 }
 
@@ -18994,9 +16752,15 @@ M.DataSetUsageConfiguration = {
     members = {
         DisableUseAsDirectQuerySource = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         DisableUseAsImportedSource = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -19009,7 +16773,7 @@ M.FieldFolder = {
         },
         columns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -19024,19 +16788,19 @@ M.NewDefaultValues = {
     members = {
         StringStaticValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DecimalStaticValues = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
         DateTimeStaticValues = {
             type = "list",
-            member_type = "timestamp",
+            member = { type = "timestamp" },
         },
         IntegerStaticValues = {
             type = "list",
-            member_type = "number",
+            member = { type = "long" },
         },
     },
 }
@@ -19053,9 +16817,7 @@ M.OverrideDatasetParameterOperation = {
         NewParameterName = {
             type = "string",
         },
-        NewDefaultValues = {
-            type = "structure",
-        },
+        NewDefaultValues = M.NewDefaultValues,
     },
 }
 
@@ -19070,7 +16832,7 @@ M.TagColumnOperation = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnTag,
             traits = {
                 required = true,
             },
@@ -19089,7 +16851,7 @@ M.UntagColumnOperation = {
         },
         TagNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -19100,30 +16862,14 @@ M.UntagColumnOperation = {
 M.TransformOperation = {
     type = "union",
     members = {
-        ProjectOperation = {
-            type = "structure",
-        },
-        FilterOperation = {
-            type = "structure",
-        },
-        CreateColumnsOperation = {
-            type = "structure",
-        },
-        RenameColumnOperation = {
-            type = "structure",
-        },
-        CastColumnTypeOperation = {
-            type = "structure",
-        },
-        TagColumnOperation = {
-            type = "structure",
-        },
-        UntagColumnOperation = {
-            type = "structure",
-        },
-        OverrideDatasetParameterOperation = {
-            type = "structure",
-        },
+        ProjectOperation = M.ProjectOperation,
+        FilterOperation = M.FilterOperation,
+        CreateColumnsOperation = M.CreateColumnsOperation,
+        RenameColumnOperation = M.RenameColumnOperation,
+        CastColumnTypeOperation = M.CastColumnTypeOperation,
+        TagColumnOperation = M.TagColumnOperation,
+        UntagColumnOperation = M.UntagColumnOperation,
+        OverrideDatasetParameterOperation = M.OverrideDatasetParameterOperation,
     },
 }
 
@@ -19132,6 +16878,9 @@ M.JoinKeyProperties = {
     members = {
         UniqueKey = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -19158,12 +16907,8 @@ M.JoinInstruction = {
                 required = true,
             },
         },
-        LeftJoinKeyProperties = {
-            type = "structure",
-        },
-        RightJoinKeyProperties = {
-            type = "structure",
-        },
+        LeftJoinKeyProperties = M.JoinKeyProperties,
+        RightJoinKeyProperties = M.JoinKeyProperties,
         Type = {
             type = "string",
             traits = {
@@ -19182,9 +16927,7 @@ M.JoinInstruction = {
 M.LogicalTableSource = {
     type = "structure",
     members = {
-        JoinInstruction = {
-            type = "structure",
-        },
+        JoinInstruction = M.JoinInstruction,
         PhysicalTableId = {
             type = "string",
         },
@@ -19205,14 +16948,11 @@ M.LogicalTable = {
         },
         DataTransforms = {
             type = "list",
-            member_type = "union",
+            member = M.TransformOperation,
         },
-        Source = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Source = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LogicalTableSource }),
     },
 }
 
@@ -19221,7 +16961,7 @@ M.UniqueKey = {
     members = {
         ColumnNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -19234,7 +16974,7 @@ M.PerformanceConfiguration = {
     members = {
         UniqueKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.UniqueKey,
         },
     },
 }
@@ -19262,7 +17002,7 @@ M.CustomSql = {
         },
         Columns = {
             type = "list",
-            member_type = "structure",
+            member = M.InputColumn,
         },
     },
 }
@@ -19290,7 +17030,7 @@ M.RelationalTable = {
         },
         InputColumns = {
             type = "list",
-            member_type = "structure",
+            member = M.InputColumn,
             traits = {
                 required = true,
             },
@@ -19319,10 +17059,13 @@ M.UploadSettings = {
             type = "string",
         },
         StartFromRow = {
-            type = "number",
+            type = "integer",
         },
         ContainsHeader = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
         TextQualifier = {
             type = "string",
@@ -19345,12 +17088,10 @@ M.S3Source = {
                 required = true,
             },
         },
-        UploadSettings = {
-            type = "structure",
-        },
+        UploadSettings = M.UploadSettings,
         InputColumns = {
             type = "list",
-            member_type = "structure",
+            member = M.InputColumn,
             traits = {
                 required = true,
             },
@@ -19381,14 +17122,14 @@ M.SaaSTable = {
         },
         TablePath = {
             type = "list",
-            member_type = "structure",
+            member = M.TablePathElement,
             traits = {
                 required = true,
             },
         },
         InputColumns = {
             type = "list",
-            member_type = "structure",
+            member = M.InputColumn,
             traits = {
                 required = true,
             },
@@ -19399,18 +17140,10 @@ M.SaaSTable = {
 M.PhysicalTable = {
     type = "union",
     members = {
-        RelationalTable = {
-            type = "structure",
-        },
-        CustomSql = {
-            type = "structure",
-        },
-        S3Source = {
-            type = "structure",
-        },
-        SaaSTable = {
-            type = "structure",
-        },
+        RelationalTable = M.RelationalTable,
+        CustomSql = M.CustomSql,
+        S3Source = M.S3Source,
+        SaaSTable = M.SaaSTable,
     },
 }
 
@@ -19488,14 +17221,14 @@ M.RowLevelPermissionTagConfiguration = {
         },
         TagRules = {
             type = "list",
-            member_type = "structure",
+            member = M.RowLevelPermissionTagRule,
             traits = {
                 required = true,
             },
         },
         TagRuleConfigurations = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
         },
     },
 }
@@ -19503,12 +17236,8 @@ M.RowLevelPermissionTagConfiguration = {
 M.RowLevelPermissionConfiguration = {
     type = "structure",
     members = {
-        TagConfiguration = {
-            type = "structure",
-        },
-        RowLevelPermissionDataSet = {
-            type = "structure",
-        },
+        TagConfiguration = M.RowLevelPermissionTagConfiguration,
+        RowLevelPermissionDataSet = M.RowLevelPermissionDataSet,
     },
 }
 
@@ -19527,9 +17256,7 @@ M.SemanticTable = {
                 required = true,
             },
         },
-        RowLevelPermissionConfiguration = {
-            type = "structure",
-        },
+        RowLevelPermissionConfiguration = M.RowLevelPermissionConfiguration,
     },
 }
 
@@ -19538,8 +17265,8 @@ M.SemanticModelConfiguration = {
     members = {
         TableMap = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.SemanticTable,
         },
     },
 }
@@ -19572,16 +17299,16 @@ M.CreateDataSetInput = {
         },
         PhysicalTableMap = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.PhysicalTable,
             traits = {
                 required = true,
             },
         },
         LogicalTableMap = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.LogicalTable,
         },
         ImportMode = {
             type = "string",
@@ -19591,54 +17318,42 @@ M.CreateDataSetInput = {
         },
         ColumnGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnGroup,
         },
         FieldFolders = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.FieldFolder,
         },
         Permissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePermission,
         },
-        RowLevelPermissionDataSet = {
-            type = "structure",
-        },
-        RowLevelPermissionTagConfiguration = {
-            type = "structure",
-        },
+        RowLevelPermissionDataSet = M.RowLevelPermissionDataSet,
+        RowLevelPermissionTagConfiguration = M.RowLevelPermissionTagConfiguration,
         ColumnLevelPermissionRules = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnLevelPermissionRule,
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        DataSetUsageConfiguration = {
-            type = "structure",
-        },
+        DataSetUsageConfiguration = M.DataSetUsageConfiguration,
         DatasetParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.DatasetParameter,
         },
         FolderArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        PerformanceConfiguration = {
-            type = "structure",
-        },
+        PerformanceConfiguration = M.PerformanceConfiguration,
         UseAs = {
             type = "string",
         },
-        DataPrepConfiguration = {
-            type = "structure",
-        },
-        SemanticModelConfiguration = {
-            type = "structure",
-        },
+        DataPrepConfiguration = M.DataPrepConfiguration,
+        SemanticModelConfiguration = M.SemanticModelConfiguration,
     },
 }
 
@@ -19661,8 +17376,9 @@ M.CreateDataSetOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -19699,7 +17415,7 @@ M.CredentialPair = {
         },
         AlternateDataSourceParameters = {
             type = "list",
-            member_type = "union",
+            member = M.DataSourceParameters,
         },
     },
 }
@@ -19761,24 +17477,16 @@ M.WebProxyCredentials = {
 M.DataSourceCredentials = {
     type = "structure",
     members = {
-        CredentialPair = {
-            type = "structure",
-        },
+        CredentialPair = M.CredentialPair,
         CopySourceArn = {
             type = "string",
         },
         SecretArn = {
             type = "string",
         },
-        KeyPairCredentials = {
-            type = "structure",
-        },
-        WebProxyCredentials = {
-            type = "structure",
-        },
-        OAuthClientCredentials = {
-            type = "structure",
-        },
+        KeyPairCredentials = M.KeyPairCredentials,
+        WebProxyCredentials = M.WebProxyCredentials,
+        OAuthClientCredentials = M.OAuthClientCredentials,
     },
 }
 
@@ -19851,29 +17559,21 @@ M.CreateDataSourceInput = {
                 required = true,
             },
         },
-        DataSourceParameters = {
-            type = "union",
-        },
-        Credentials = {
-            type = "structure",
-        },
+        DataSourceParameters = M.DataSourceParameters,
+        Credentials = M.DataSourceCredentials,
         Permissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePermission,
         },
-        VpcConnectionProperties = {
-            type = "structure",
-        },
-        SslProperties = {
-            type = "structure",
-        },
+        VpcConnectionProperties = M.VpcConnectionProperties,
+        SslProperties = M.SslProperties,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         FolderArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -19894,8 +17594,9 @@ M.CreateDataSourceOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -19953,11 +17654,11 @@ M.CreateFolderInput = {
         },
         Permissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePermission,
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         SharingModel = {
             type = "string",
@@ -19969,8 +17670,9 @@ M.CreateFolderOutput = {
     type = "structure",
     members = {
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -20044,11 +17746,12 @@ M.CreateFolderMembershipOutput = {
     type = "structure",
     members = {
         Status = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
-        FolderMember = {
-            type = "structure",
-        },
+        FolderMember = M.FolderMember,
         RequestId = {
             type = "string",
         },
@@ -20105,15 +17808,14 @@ M.Group = {
 M.CreateGroupOutput = {
     type = "structure",
     members = {
-        Group = {
-            type = "structure",
-        },
+        Group = M.Group,
         RequestId = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -20169,15 +17871,14 @@ M.GroupMember = {
 M.CreateGroupMembershipOutput = {
     type = "structure",
     members = {
-        GroupMember = {
-            type = "structure",
-        },
+        GroupMember = M.GroupMember,
         RequestId = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -20211,8 +17912,8 @@ M.CreateIAMPolicyAssignmentInput = {
         },
         Identities = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         Namespace = {
             type = "string",
@@ -20241,15 +17942,16 @@ M.CreateIAMPolicyAssignmentOutput = {
         },
         Identities = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         RequestId = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -20316,8 +18018,9 @@ M.CreateIngestionOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -20352,7 +18055,7 @@ M.CreateNamespaceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -20387,8 +18090,9 @@ M.CreateNamespaceOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -20435,9 +18139,7 @@ M.RefreshFrequency = {
                 required = true,
             },
         },
-        RefreshOnDay = {
-            type = "structure",
-        },
+        RefreshOnDay = M.ScheduleRefreshOnEntity,
         Timezone = {
             type = "string",
         },
@@ -20456,12 +18158,9 @@ M.RefreshSchedule = {
                 required = true,
             },
         },
-        ScheduleFrequency = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ScheduleFrequency = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RefreshFrequency }),
         StartAfterDateTime = {
             type = "timestamp",
         },
@@ -20494,12 +18193,9 @@ M.CreateRefreshScheduleInput = {
                 required = true,
             },
         },
-        Schedule = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Schedule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RefreshSchedule }),
     },
 }
 
@@ -20507,8 +18203,9 @@ M.CreateRefreshScheduleOutput = {
     type = "structure",
     members = {
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -20574,8 +18271,9 @@ M.CreateRoleMembershipOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -20587,7 +18285,7 @@ M.DataSetSchema = {
     members = {
         ColumnSchemaList = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnSchema,
         },
     },
 }
@@ -20598,12 +18296,10 @@ M.DataSetConfiguration = {
         Placeholder = {
             type = "string",
         },
-        DataSetSchema = {
-            type = "structure",
-        },
+        DataSetSchema = M.DataSetSchema,
         ColumnGroupSchemaList = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnGroupSchema,
         },
     },
 }
@@ -20613,47 +18309,41 @@ M.TemplateVersionDefinition = {
     members = {
         DataSetConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSetConfiguration,
             traits = {
                 required = true,
             },
         },
         Sheets = {
             type = "list",
-            member_type = "structure",
+            member = M.SheetDefinition,
         },
         TooltipSheets = {
             type = "list",
-            member_type = "structure",
+            member = M.TooltipSheetDefinition,
         },
         CalculatedFields = {
             type = "list",
-            member_type = "structure",
+            member = M.CalculatedField,
         },
         ParameterDeclarations = {
             type = "list",
-            member_type = "structure",
+            member = M.ParameterDeclaration,
         },
         FilterGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.FilterGroup,
         },
         ColumnConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnConfiguration,
         },
-        AnalysisDefaults = {
-            type = "structure",
-        },
-        Options = {
-            type = "structure",
-        },
-        QueryExecutionOptions = {
-            type = "structure",
-        },
+        AnalysisDefaults = M.AnalysisDefaults,
+        Options = M.AssetOptions,
+        QueryExecutionOptions = M.QueryExecutionOptions,
         StaticFiles = {
             type = "list",
-            member_type = "structure",
+            member = M.StaticFile,
         },
     },
 }
@@ -20669,7 +18359,7 @@ M.TemplateSourceAnalysis = {
         },
         DataSetReferences = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSetReference,
             traits = {
                 required = true,
             },
@@ -20692,12 +18382,8 @@ M.TemplateSourceTemplate = {
 M.TemplateSourceEntity = {
     type = "structure",
     members = {
-        SourceAnalysis = {
-            type = "structure",
-        },
-        SourceTemplate = {
-            type = "structure",
-        },
+        SourceAnalysis = M.TemplateSourceAnalysis,
+        SourceTemplate = M.TemplateSourceTemplate,
     },
 }
 
@@ -20723,24 +18409,18 @@ M.CreateTemplateInput = {
         },
         Permissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePermission,
         },
-        SourceEntity = {
-            type = "structure",
-        },
+        SourceEntity = M.TemplateSourceEntity,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         VersionDescription = {
             type = "string",
         },
-        Definition = {
-            type = "structure",
-        },
-        ValidationStrategy = {
-            type = "structure",
-        },
+        Definition = M.TemplateVersionDefinition,
+        ValidationStrategy = M.ValidationStrategy,
     },
 }
 
@@ -20760,8 +18440,9 @@ M.CreateTemplateOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -20796,7 +18477,7 @@ M.CreateTemplateAliasInput = {
             },
         },
         TemplateVersionNumber = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -20814,7 +18495,7 @@ M.TemplateAlias = {
             type = "string",
         },
         TemplateVersionNumber = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -20822,12 +18503,11 @@ M.TemplateAlias = {
 M.CreateTemplateAliasOutput = {
     type = "structure",
     members = {
-        TemplateAlias = {
-            type = "structure",
-        },
+        TemplateAlias = M.TemplateAlias,
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -20842,11 +18522,11 @@ M.DataColorPalette = {
     members = {
         Colors = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MinMaxGradient = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         EmptyFillColor = {
             type = "string",
@@ -20872,9 +18552,7 @@ M.TileStyle = {
         BackgroundColor = {
             type = "string",
         },
-        Border = {
-            type = "structure",
-        },
+        Border = M.BorderStyle,
         BorderRadius = {
             type = "string",
         },
@@ -20889,6 +18567,9 @@ M.GutterStyle = {
     members = {
         Show = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -20898,6 +18579,9 @@ M.MarginStyle = {
     members = {
         Show = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -20905,27 +18589,17 @@ M.MarginStyle = {
 M.TileLayoutStyle = {
     type = "structure",
     members = {
-        Gutter = {
-            type = "structure",
-        },
-        Margin = {
-            type = "structure",
-        },
+        Gutter = M.GutterStyle,
+        Margin = M.MarginStyle,
     },
 }
 
 M.SheetStyle = {
     type = "structure",
     members = {
-        Tile = {
-            type = "structure",
-        },
-        TileLayout = {
-            type = "structure",
-        },
-        Background = {
-            type = "structure",
-        },
+        Tile = M.TileStyle,
+        TileLayout = M.TileLayoutStyle,
+        Background = M.SheetBackgroundStyle,
     },
 }
 
@@ -20945,9 +18619,7 @@ M.TextTransform = {
 M.VisualSubtitleFontConfiguration = {
     type = "structure",
     members = {
-        FontConfiguration = {
-            type = "structure",
-        },
+        FontConfiguration = M.FontConfiguration,
         TextAlignment = {
             type = "string",
         },
@@ -20960,9 +18632,7 @@ M.VisualSubtitleFontConfiguration = {
 M.VisualTitleFontConfiguration = {
     type = "structure",
     members = {
-        FontConfiguration = {
-            type = "structure",
-        },
+        FontConfiguration = M.FontConfiguration,
         TextAlignment = {
             type = "string",
         },
@@ -20977,32 +18647,16 @@ M.Typography = {
     members = {
         FontFamilies = {
             type = "list",
-            member_type = "structure",
+            member = M.Font,
         },
-        AxisTitleFontConfiguration = {
-            type = "structure",
-        },
-        AxisLabelFontConfiguration = {
-            type = "structure",
-        },
-        LegendTitleFontConfiguration = {
-            type = "structure",
-        },
-        LegendValueFontConfiguration = {
-            type = "structure",
-        },
-        DataLabelFontConfiguration = {
-            type = "structure",
-        },
-        VisualTitleFontConfiguration = {
-            type = "structure",
-        },
-        VisualSubtitleFontConfiguration = {
-            type = "structure",
-        },
-        ControlTitleFontConfiguration = {
-            type = "structure",
-        },
+        AxisTitleFontConfiguration = M.FontConfiguration,
+        AxisLabelFontConfiguration = M.FontConfiguration,
+        LegendTitleFontConfiguration = M.FontConfiguration,
+        LegendValueFontConfiguration = M.FontConfiguration,
+        DataLabelFontConfiguration = M.FontConfiguration,
+        VisualTitleFontConfiguration = M.VisualTitleFontConfiguration,
+        VisualSubtitleFontConfiguration = M.VisualSubtitleFontConfiguration,
+        ControlTitleFontConfiguration = M.ControlTitleFontConfiguration,
     },
 }
 
@@ -21063,18 +18717,10 @@ M.UIColorPalette = {
 M.ThemeConfiguration = {
     type = "structure",
     members = {
-        DataColorPalette = {
-            type = "structure",
-        },
-        UIColorPalette = {
-            type = "structure",
-        },
-        Sheet = {
-            type = "structure",
-        },
-        Typography = {
-            type = "structure",
-        },
+        DataColorPalette = M.DataColorPalette,
+        UIColorPalette = M.UIColorPalette,
+        Sheet = M.SheetStyle,
+        Typography = M.Typography,
     },
 }
 
@@ -21110,19 +18756,16 @@ M.CreateThemeInput = {
         VersionDescription = {
             type = "string",
         },
-        Configuration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ThemeConfiguration }),
         Permissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePermission,
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -21143,8 +18786,9 @@ M.CreateThemeOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -21179,7 +18823,7 @@ M.CreateThemeAliasInput = {
             },
         },
         ThemeVersionNumber = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -21197,7 +18841,7 @@ M.ThemeAlias = {
             type = "string",
         },
         ThemeVersionNumber = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -21205,12 +18849,11 @@ M.ThemeAlias = {
 M.CreateThemeAliasOutput = {
     type = "structure",
     members = {
-        ThemeAlias = {
-            type = "structure",
-        },
+        ThemeAlias = M.ThemeAlias,
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -21261,9 +18904,7 @@ M.DefaultFormatting = {
         DisplayFormat = {
             type = "string",
         },
-        DisplayFormatOptions = {
-            type = "structure",
-        },
+        DisplayFormatOptions = M.DisplayFormatOptions,
     },
 }
 
@@ -21278,22 +18919,22 @@ M.SemanticType = {
         },
         TypeParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         TruthyCellValue = {
             type = "string",
         },
         TruthyCellValueSynonyms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         FalseyCellValue = {
             type = "string",
         },
         FalseyCellValueSynonyms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -21318,10 +18959,13 @@ M.TopicCalculatedField = {
         },
         CalculatedFieldSynonyms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IsIncludedInTopic = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         DisableIndexing = {
             type = "boolean",
@@ -21332,32 +18976,29 @@ M.TopicCalculatedField = {
         TimeGranularity = {
             type = "string",
         },
-        DefaultFormatting = {
-            type = "structure",
-        },
+        DefaultFormatting = M.DefaultFormatting,
         Aggregation = {
             type = "string",
         },
-        ComparativeOrder = {
-            type = "structure",
-        },
-        SemanticType = {
-            type = "structure",
-        },
+        ComparativeOrder = M.ComparativeOrder,
+        SemanticType = M.SemanticType,
         AllowedAggregations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NotAllowedAggregations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NeverAggregateInFilter = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         CellValueSynonyms = {
             type = "list",
-            member_type = "structure",
+            member = M.CellValueSynonym,
         },
         NonAdditive = {
             type = "boolean",
@@ -21382,7 +19023,7 @@ M.TopicColumn = {
         },
         ColumnSynonyms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ColumnDataRole = {
             type = "string",
@@ -21392,36 +19033,36 @@ M.TopicColumn = {
         },
         IsIncludedInTopic = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         DisableIndexing = {
             type = "boolean",
         },
-        ComparativeOrder = {
-            type = "structure",
-        },
-        SemanticType = {
-            type = "structure",
-        },
+        ComparativeOrder = M.ComparativeOrder,
+        SemanticType = M.SemanticType,
         TimeGranularity = {
             type = "string",
         },
         AllowedAggregations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NotAllowedAggregations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        DefaultFormatting = {
-            type = "structure",
-        },
+        DefaultFormatting = M.DefaultFormatting,
         NeverAggregateInFilter = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         CellValueSynonyms = {
             type = "list",
-            member_type = "structure",
+            member = M.CellValueSynonym,
         },
         NonAdditive = {
             type = "boolean",
@@ -21450,9 +19091,7 @@ M.TopicCategoryFilterConstant = {
         SingularConstant = {
             type = "string",
         },
-        CollectiveConstant = {
-            type = "structure",
-        },
+        CollectiveConstant = M.CollectiveConstant,
     },
 }
 
@@ -21465,11 +19104,12 @@ M.TopicCategoryFilter = {
         CategoryFilterType = {
             type = "string",
         },
-        Constant = {
-            type = "structure",
-        },
+        Constant = M.TopicCategoryFilterConstant,
         Inverse = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -21492,9 +19132,7 @@ M.TopicRangeFilterConstant = {
         ConstantType = {
             type = "string",
         },
-        RangeConstant = {
-            type = "structure",
-        },
+        RangeConstant = M.RangeConstant,
     },
 }
 
@@ -21503,10 +19141,11 @@ M.TopicDateRangeFilter = {
     members = {
         Inclusive = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        Constant = {
-            type = "structure",
-        },
+        Constant = M.TopicRangeFilterConstant,
     },
 }
 
@@ -21543,11 +19182,12 @@ M.TopicNullFilter = {
         NullFilterType = {
             type = "string",
         },
-        Constant = {
-            type = "structure",
-        },
+        Constant = M.TopicSingularFilterConstant,
         Inverse = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -21570,9 +19210,7 @@ M.NamedFilterAggType = {
 M.TopicNumericEqualityFilter = {
     type = "structure",
     members = {
-        Constant = {
-            type = "structure",
-        },
+        Constant = M.TopicSingularFilterConstant,
         Aggregation = {
             type = "string",
         },
@@ -21584,10 +19222,11 @@ M.TopicNumericRangeFilter = {
     members = {
         Inclusive = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        Constant = {
-            type = "structure",
-        },
+        Constant = M.TopicRangeFilterConstant,
         Aggregation = {
             type = "string",
         },
@@ -21611,9 +19250,7 @@ M.TopicRelativeDateFilter = {
         RelativeDateFilterFunction = {
             type = "string",
         },
-        Constant = {
-            type = "structure",
-        },
+        Constant = M.TopicSingularFilterConstant,
     },
 }
 
@@ -21634,7 +19271,7 @@ M.TopicFilter = {
         },
         FilterSynonyms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         OperandFieldName = {
             type = "string",
@@ -21645,24 +19282,12 @@ M.TopicFilter = {
         FilterType = {
             type = "string",
         },
-        CategoryFilter = {
-            type = "structure",
-        },
-        NumericEqualityFilter = {
-            type = "structure",
-        },
-        NumericRangeFilter = {
-            type = "structure",
-        },
-        DateRangeFilter = {
-            type = "structure",
-        },
-        RelativeDateFilter = {
-            type = "structure",
-        },
-        NullFilter = {
-            type = "structure",
-        },
+        CategoryFilter = M.TopicCategoryFilter,
+        NumericEqualityFilter = M.TopicNumericEqualityFilter,
+        NumericRangeFilter = M.TopicNumericRangeFilter,
+        DateRangeFilter = M.TopicDateRangeFilter,
+        RelativeDateFilter = M.TopicRelativeDateFilter,
+        NullFilter = M.TopicNullFilter,
     },
 }
 
@@ -21690,8 +19315,8 @@ M.NamedEntityDefinitionMetric = {
         },
         AggregationFunctionParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -21722,9 +19347,7 @@ M.NamedEntityDefinition = {
         PropertyUsage = {
             type = "string",
         },
-        Metric = {
-            type = "structure",
-        },
+        Metric = M.NamedEntityDefinitionMetric,
     },
 }
 
@@ -21739,8 +19362,8 @@ M.SemanticEntityType = {
         },
         TypeParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -21759,14 +19382,12 @@ M.TopicNamedEntity = {
         },
         EntitySynonyms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        SemanticEntityType = {
-            type = "structure",
-        },
+        SemanticEntityType = M.SemanticEntityType,
         Definition = {
             type = "list",
-            member_type = "structure",
+            member = M.NamedEntityDefinition,
         },
     },
 }
@@ -21786,24 +19407,22 @@ M.DatasetMetadata = {
         DatasetDescription = {
             type = "string",
         },
-        DataAggregation = {
-            type = "structure",
-        },
+        DataAggregation = M.DataAggregation,
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.TopicFilter,
         },
         Columns = {
             type = "list",
-            member_type = "structure",
+            member = M.TopicColumn,
         },
         CalculatedFields = {
             type = "list",
-            member_type = "structure",
+            member = M.TopicCalculatedField,
         },
         NamedEntities = {
             type = "list",
-            member_type = "structure",
+            member = M.TopicNamedEntity,
         },
     },
 }
@@ -21827,11 +19446,9 @@ M.TopicDetails = {
         },
         DataSets = {
             type = "list",
-            member_type = "structure",
+            member = M.DatasetMetadata,
         },
-        ConfigOptions = {
-            type = "structure",
-        },
+        ConfigOptions = M.TopicConfigOptions,
     },
 }
 
@@ -21851,23 +19468,18 @@ M.CreateTopicInput = {
                 required = true,
             },
         },
-        Topic = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Topic = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TopicDetails }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         FolderArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        CustomInstructions = {
-            type = "structure",
-        },
+        CustomInstructions = M.CustomInstructions,
     },
 }
 
@@ -21887,8 +19499,9 @@ M.CreateTopicOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -21914,6 +19527,7 @@ M.TopicRefreshSchedule = {
         BasedOnSpiceSchedule = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -21958,12 +19572,9 @@ M.CreateTopicRefreshScheduleInput = {
         DatasetName = {
             type = "string",
         },
-        RefreshSchedule = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RefreshSchedule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TopicRefreshSchedule }),
     },
 }
 
@@ -21980,8 +19591,9 @@ M.CreateTopicRefreshScheduleOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -22015,21 +19627,21 @@ M.CreateVPCConnectionInput = {
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         DnsResolvers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RoleArn = {
             type = "string",
@@ -22039,7 +19651,7 @@ M.CreateVPCConnectionInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -22081,8 +19693,9 @@ M.CreateVPCConnectionOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -22098,9 +19711,7 @@ M.CustomPermissions = {
         CustomPermissionsName = {
             type = "string",
         },
-        Capabilities = {
-            type = "structure",
-        },
+        Capabilities = M.Capabilities,
     },
 }
 
@@ -22128,7 +19739,7 @@ M.DashboardError = {
         },
         ViolatedEntities = {
             type = "list",
-            member_type = "structure",
+            member = M.Entity,
         },
     },
 }
@@ -22141,10 +19752,10 @@ M.DashboardVersion = {
         },
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.DashboardError,
         },
         VersionNumber = {
-            type = "number",
+            type = "long",
         },
         Status = {
             type = "string",
@@ -22157,7 +19768,7 @@ M.DashboardVersion = {
         },
         DataSetArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Description = {
             type = "string",
@@ -22167,7 +19778,7 @@ M.DashboardVersion = {
         },
         Sheets = {
             type = "list",
-            member_type = "structure",
+            member = M.Sheet,
         },
     },
 }
@@ -22184,9 +19795,7 @@ M.Dashboard = {
         Name = {
             type = "string",
         },
-        Version = {
-            type = "structure",
-        },
+        Version = M.DashboardVersion,
         CreatedTime = {
             type = "timestamp",
         },
@@ -22198,7 +19807,7 @@ M.Dashboard = {
         },
         LinkEntities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -22209,6 +19818,7 @@ M.DashboardCustomizationSummaryConfigurations = {
         Enabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -22267,7 +19877,7 @@ M.DashboardSummary = {
             type = "timestamp",
         },
         PublishedVersionNumber = {
-            type = "number",
+            type = "long",
         },
         LastPublishedTime = {
             type = "timestamp",
@@ -22285,7 +19895,7 @@ M.DashboardVersionSummary = {
             type = "timestamp",
         },
         VersionNumber = {
-            type = "number",
+            type = "long",
         },
         Status = {
             type = "string",
@@ -22370,62 +19980,53 @@ M.DataSet = {
         },
         PhysicalTableMap = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.PhysicalTable,
         },
         LogicalTableMap = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.LogicalTable,
         },
         OutputColumns = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputColumn,
         },
         ImportMode = {
             type = "string",
         },
         ConsumedSpiceCapacityInBytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         ColumnGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnGroup,
         },
         FieldFolders = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.FieldFolder,
         },
-        RowLevelPermissionDataSet = {
-            type = "structure",
-        },
-        RowLevelPermissionTagConfiguration = {
-            type = "structure",
-        },
+        RowLevelPermissionDataSet = M.RowLevelPermissionDataSet,
+        RowLevelPermissionTagConfiguration = M.RowLevelPermissionTagConfiguration,
         ColumnLevelPermissionRules = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnLevelPermissionRule,
         },
-        DataSetUsageConfiguration = {
-            type = "structure",
-        },
+        DataSetUsageConfiguration = M.DataSetUsageConfiguration,
         DatasetParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.DatasetParameter,
         },
-        PerformanceConfiguration = {
-            type = "structure",
-        },
+        PerformanceConfiguration = M.PerformanceConfiguration,
         UseAs = {
             type = "string",
         },
-        DataPrepConfiguration = {
-            type = "structure",
-        },
-        SemanticModelConfiguration = {
-            type = "structure",
-        },
+        DataPrepConfiguration = M.DataPrepConfiguration,
+        SemanticModelConfiguration = M.SemanticModelConfiguration,
     },
 }
 
@@ -22483,19 +20084,23 @@ M.DataSetSummary = {
         ImportMode = {
             type = "string",
         },
-        RowLevelPermissionDataSet = {
-            type = "structure",
-        },
+        RowLevelPermissionDataSet = M.RowLevelPermissionDataSet,
         RowLevelPermissionDataSetMap = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.RowLevelPermissionDataSet,
         },
         RowLevelPermissionTagConfigurationApplied = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         ColumnLevelPermissionRulesApplied = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         UseAs = {
             type = "string",
@@ -22550,22 +20155,14 @@ M.DataSource = {
         LastUpdatedTime = {
             type = "timestamp",
         },
-        DataSourceParameters = {
-            type = "union",
-        },
+        DataSourceParameters = M.DataSourceParameters,
         AlternateDataSourceParameters = {
             type = "list",
-            member_type = "union",
+            member = M.DataSourceParameters,
         },
-        VpcConnectionProperties = {
-            type = "structure",
-        },
-        SslProperties = {
-            type = "structure",
-        },
-        ErrorInfo = {
-            type = "structure",
-        },
+        VpcConnectionProperties = M.VpcConnectionProperties,
+        SslProperties = M.SslProperties,
+        ErrorInfo = M.DataSourceErrorInfo,
         SecretArn = {
             type = "string",
         },
@@ -22653,8 +20250,9 @@ M.DeleteAccountCustomizationOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -22681,7 +20279,10 @@ M.DeleteAccountCustomPermissionOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -22706,8 +20307,9 @@ M.DeleteAccountSubscriptionOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -22747,8 +20349,9 @@ M.DeleteActionConnectorOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -22773,7 +20376,7 @@ M.DeleteAnalysisInput = {
             },
         },
         RecoveryWindowInDays = {
-            type = "number",
+            type = "long",
             traits = {
                 http_query = "recovery-window-in-days",
             },
@@ -22781,6 +20384,7 @@ M.DeleteAnalysisInput = {
         ForceDeleteWithoutRecovery = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "force-delete-without-recovery",
             },
         },
@@ -22791,8 +20395,9 @@ M.DeleteAnalysisOutput = {
     type = "structure",
     members = {
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -22886,7 +20491,10 @@ M.DeleteCustomPermissionsOutput = {
     type = "structure",
     members = {
         Status = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         Arn = {
             type = "string",
@@ -22915,7 +20523,7 @@ M.DeleteDashboardInput = {
             },
         },
         VersionNumber = {
-            type = "number",
+            type = "long",
             traits = {
                 http_query = "version-number",
             },
@@ -22927,8 +20535,9 @@ M.DeleteDashboardOutput = {
     type = "structure",
     members = {
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -22977,8 +20586,9 @@ M.DeleteDataSetOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -23012,8 +20622,9 @@ M.DeleteDataSetRefreshPropertiesOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -23053,8 +20664,9 @@ M.DeleteDataSourceOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -23087,8 +20699,9 @@ M.DeleteDefaultQBusinessApplicationOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -23119,8 +20732,9 @@ M.DeleteFolderOutput = {
     type = "structure",
     members = {
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -23174,7 +20788,10 @@ M.DeleteFolderMembershipOutput = {
     type = "structure",
     members = {
         Status = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         RequestId = {
             type = "string",
@@ -23216,8 +20833,9 @@ M.DeleteGroupOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -23265,8 +20883,9 @@ M.DeleteGroupMembershipOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -23310,8 +20929,9 @@ M.DeleteIAMPolicyAssignmentOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -23345,8 +20965,9 @@ M.DeleteIdentityPropagationConfigOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -23380,8 +21001,9 @@ M.DeleteNamespaceOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -23419,8 +21041,9 @@ M.DeleteRefreshScheduleOutput = {
     type = "structure",
     members = {
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -23470,7 +21093,10 @@ M.DeleteRoleCustomPermissionOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -23516,8 +21142,9 @@ M.DeleteRoleMembershipOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -23542,7 +21169,7 @@ M.DeleteTemplateInput = {
             },
         },
         VersionNumber = {
-            type = "number",
+            type = "long",
             traits = {
                 http_query = "version-number",
             },
@@ -23563,8 +21190,9 @@ M.DeleteTemplateOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -23602,8 +21230,9 @@ M.DeleteTemplateAliasOutput = {
     type = "structure",
     members = {
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -23640,7 +21269,7 @@ M.DeleteThemeInput = {
             },
         },
         VersionNumber = {
-            type = "number",
+            type = "long",
             traits = {
                 http_query = "version-number",
             },
@@ -23658,8 +21287,9 @@ M.DeleteThemeOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -23709,8 +21339,9 @@ M.DeleteThemeAliasOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -23753,8 +21384,9 @@ M.DeleteTopicOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -23801,8 +21433,9 @@ M.DeleteTopicRefreshScheduleOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -23846,8 +21479,9 @@ M.DeleteUserOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -23888,8 +21522,9 @@ M.DeleteUserByPrincipalIdOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -23930,8 +21565,9 @@ M.DeleteUserCustomPermissionOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -23977,8 +21613,9 @@ M.DeleteVPCConnectionOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -24004,6 +21641,7 @@ M.DescribeAccountCustomizationInput = {
         Resolved = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "resolved",
             },
         },
@@ -24022,15 +21660,14 @@ M.DescribeAccountCustomizationOutput = {
         Namespace = {
             type = "string",
         },
-        AccountCustomization = {
-            type = "structure",
-        },
+        AccountCustomization = M.AccountCustomization,
         RequestId = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -24060,7 +21697,10 @@ M.DescribeAccountCustomPermissionOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -24081,15 +21721,14 @@ M.DescribeAccountSettingsInput = {
 M.DescribeAccountSettingsOutput = {
     type = "structure",
     members = {
-        AccountSettings = {
-            type = "structure",
-        },
+        AccountSettings = M.AccountSettings,
         RequestId = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -24112,12 +21751,11 @@ M.DescribeAccountSubscriptionInput = {
 M.DescribeAccountSubscriptionOutput = {
     type = "structure",
     members = {
-        AccountInfo = {
-            type = "structure",
-        },
+        AccountInfo = M.AccountInfo,
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -24150,15 +21788,14 @@ M.DescribeActionConnectorInput = {
 M.DescribeActionConnectorOutput = {
     type = "structure",
     members = {
-        ActionConnector = {
-            type = "structure",
-        },
+        ActionConnector = M.ActionConnector,
         RequestId = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -24196,14 +21833,15 @@ M.DescribeActionConnectorPermissionsOutput = {
         },
         Permissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePermission,
         },
         RequestId = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -24233,12 +21871,11 @@ M.DescribeAnalysisInput = {
 M.DescribeAnalysisOutput = {
     type = "structure",
     members = {
-        Analysis = {
-            type = "structure",
-        },
+        Analysis = M.Analysis,
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -24279,7 +21916,7 @@ M.DescribeAnalysisDefinitionOutput = {
         },
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalysisError,
         },
         ResourceStatus = {
             type = "string",
@@ -24287,12 +21924,11 @@ M.DescribeAnalysisDefinitionOutput = {
         ThemeArn = {
             type = "string",
         },
-        Definition = {
-            type = "structure",
-        },
+        Definition = M.AnalysisDefinition,
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -24333,11 +21969,12 @@ M.DescribeAnalysisPermissionsOutput = {
         },
         Permissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePermission,
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -24384,7 +22021,7 @@ M.DescribeAssetBundleExportJobOutput = {
         },
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetBundleExportJobError,
         },
         Arn = {
             type = "string",
@@ -24400,41 +22037,50 @@ M.DescribeAssetBundleExportJobOutput = {
         },
         ResourceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IncludeAllDependencies = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         ExportFormat = {
             type = "string",
         },
-        CloudFormationOverridePropertyConfiguration = {
-            type = "structure",
-        },
+        CloudFormationOverridePropertyConfiguration = M.AssetBundleCloudFormationOverridePropertyConfiguration,
         RequestId = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
         IncludePermissions = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         IncludeTags = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        ValidationStrategy = {
-            type = "structure",
-        },
+        ValidationStrategy = M.AssetBundleExportJobValidationStrategy,
         Warnings = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetBundleExportJobWarning,
         },
         IncludeFolderMemberships = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         IncludeFolderMembers = {
             type = "string",
@@ -24470,11 +22116,11 @@ M.DescribeAssetBundleImportJobOutput = {
         },
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetBundleImportJobError,
         },
         RollbackErrors = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetBundleImportJobError,
         },
         Arn = {
             type = "string",
@@ -24488,12 +22134,8 @@ M.DescribeAssetBundleImportJobOutput = {
         AwsAccountId = {
             type = "string",
         },
-        AssetBundleImportSource = {
-            type = "structure",
-        },
-        OverrideParameters = {
-            type = "structure",
-        },
+        AssetBundleImportSource = M.AssetBundleImportSourceDescription,
+        OverrideParameters = M.AssetBundleImportJobOverrideParameters,
         FailureAction = {
             type = "string",
         },
@@ -24501,23 +22143,18 @@ M.DescribeAssetBundleImportJobOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
-        OverridePermissions = {
-            type = "structure",
-        },
-        OverrideTags = {
-            type = "structure",
-        },
-        OverrideValidationStrategy = {
-            type = "structure",
-        },
+        OverridePermissions = M.AssetBundleImportJobOverridePermissions,
+        OverrideTags = M.AssetBundleImportJobOverrideTags,
+        OverrideValidationStrategy = M.AssetBundleImportJobOverrideValidationStrategy,
         Warnings = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetBundleImportJobWarning,
         },
     },
 }
@@ -24549,12 +22186,14 @@ M.DescribeAutomationJobInput = {
         IncludeInputPayload = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "includeInputPayload",
             },
         },
         IncludeOutputPayload = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "includeOutputPayload",
             },
         },
@@ -24636,12 +22275,8 @@ M.DescribeBrandOutput = {
         RequestId = {
             type = "string",
         },
-        BrandDetail = {
-            type = "structure",
-        },
-        BrandDefinition = {
-            type = "structure",
-        },
+        BrandDetail = M.BrandDetail,
+        BrandDefinition = M.BrandDefinition,
     },
 }
 
@@ -24696,12 +22331,8 @@ M.DescribeBrandPublishedVersionOutput = {
         RequestId = {
             type = "string",
         },
-        BrandDetail = {
-            type = "structure",
-        },
-        BrandDefinition = {
-            type = "structure",
-        },
+        BrandDetail = M.BrandDetail,
+        BrandDefinition = M.BrandDefinition,
     },
 }
 
@@ -24729,11 +22360,12 @@ M.DescribeCustomPermissionsOutput = {
     type = "structure",
     members = {
         Status = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
-        CustomPermissions = {
-            type = "structure",
-        },
+        CustomPermissions = M.CustomPermissions,
         RequestId = {
             type = "string",
         },
@@ -24758,7 +22390,7 @@ M.DescribeDashboardInput = {
             },
         },
         VersionNumber = {
-            type = "number",
+            type = "long",
             traits = {
                 http_query = "version-number",
             },
@@ -24775,12 +22407,11 @@ M.DescribeDashboardInput = {
 M.DescribeDashboardOutput = {
     type = "structure",
     members = {
-        Dashboard = {
-            type = "structure",
-        },
+        Dashboard = M.Dashboard,
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -24808,7 +22439,7 @@ M.DescribeDashboardDefinitionInput = {
             },
         },
         VersionNumber = {
-            type = "number",
+            type = "long",
             traits = {
                 http_query = "version-number",
             },
@@ -24830,7 +22461,7 @@ M.DescribeDashboardDefinitionOutput = {
         },
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.DashboardError,
         },
         Name = {
             type = "string",
@@ -24841,21 +22472,18 @@ M.DescribeDashboardDefinitionOutput = {
         ThemeArn = {
             type = "string",
         },
-        Definition = {
-            type = "structure",
-        },
+        Definition = M.DashboardVersionDefinition,
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
         RequestId = {
             type = "string",
         },
-        DashboardPublishOptions = {
-            type = "structure",
-        },
+        DashboardPublishOptions = M.DashboardPublishOptions,
     },
 }
 
@@ -24890,20 +22518,19 @@ M.DescribeDashboardPermissionsOutput = {
         },
         Permissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePermission,
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
         RequestId = {
             type = "string",
         },
-        LinkSharingConfiguration = {
-            type = "structure",
-        },
+        LinkSharingConfiguration = M.LinkSharingConfiguration,
     },
 }
 
@@ -24946,7 +22573,7 @@ M.SnapshotDestinationConfiguration = {
     members = {
         S3Destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.SnapshotS3DestinationConfiguration,
         },
     },
 }
@@ -24956,7 +22583,7 @@ M.SnapshotFileGroup = {
     members = {
         Files = {
             type = "list",
-            member_type = "structure",
+            member = M.SnapshotFile,
         },
     },
 }
@@ -24966,17 +22593,13 @@ M.SnapshotConfiguration = {
     members = {
         FileGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.SnapshotFileGroup,
             traits = {
                 required = true,
             },
         },
-        DestinationConfiguration = {
-            type = "structure",
-        },
-        Parameters = {
-            type = "structure",
-        },
+        DestinationConfiguration = M.SnapshotDestinationConfiguration,
+        Parameters = M.Parameters,
     },
 }
 
@@ -24985,7 +22608,7 @@ M.SnapshotAnonymousUserRedacted = {
     members = {
         RowLevelPermissionTagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -24995,7 +22618,7 @@ M.SnapshotUserConfigurationRedacted = {
     members = {
         AnonymousUsers = {
             type = "list",
-            member_type = "structure",
+            member = M.SnapshotAnonymousUserRedacted,
         },
     },
 }
@@ -25012,12 +22635,8 @@ M.DescribeDashboardSnapshotJobOutput = {
         SnapshotJobId = {
             type = "string",
         },
-        UserConfiguration = {
-            type = "structure",
-        },
-        SnapshotConfiguration = {
-            type = "structure",
-        },
+        UserConfiguration = M.SnapshotUserConfigurationRedacted,
+        SnapshotConfiguration = M.SnapshotConfiguration,
         Arn = {
             type = "string",
         },
@@ -25034,7 +22653,10 @@ M.DescribeDashboardSnapshotJobOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -25083,7 +22705,7 @@ M.RegisteredUserSnapshotJobResult = {
     members = {
         FileGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.SnapshotJobResultFileGroup,
         },
     },
 }
@@ -25093,11 +22715,11 @@ M.SnapshotJobResult = {
     members = {
         AnonymousUsers = {
             type = "list",
-            member_type = "structure",
+            member = M.AnonymousUserSnapshotJobResult,
         },
         RegisteredUsers = {
             type = "list",
-            member_type = "structure",
+            member = M.RegisteredUserSnapshotJobResult,
         },
     },
 }
@@ -25117,18 +22739,15 @@ M.DescribeDashboardSnapshotJobResultOutput = {
         LastUpdatedTime = {
             type = "timestamp",
         },
-        Result = {
-            type = "structure",
-        },
-        ErrorInfo = {
-            type = "structure",
-        },
+        Result = M.SnapshotJobResult,
+        ErrorInfo = M.SnapshotJobErrorInfo,
         RequestId = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -25158,8 +22777,9 @@ M.DescribeDashboardsQAConfigurationOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -25189,15 +22809,14 @@ M.DescribeDataSetInput = {
 M.DescribeDataSetOutput = {
     type = "structure",
     members = {
-        DataSet = {
-            type = "structure",
-        },
+        DataSet = M.DataSet,
         RequestId = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -25235,14 +22854,15 @@ M.DescribeDataSetPermissionsOutput = {
         },
         Permissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePermission,
         },
         RequestId = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -25276,14 +22896,13 @@ M.DescribeDataSetRefreshPropertiesOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
-        DataSetRefreshProperties = {
-            type = "structure",
-        },
+        DataSetRefreshProperties = M.DataSetRefreshProperties,
     },
 }
 
@@ -25310,15 +22929,14 @@ M.DescribeDataSourceInput = {
 M.DescribeDataSourceOutput = {
     type = "structure",
     members = {
-        DataSource = {
-            type = "structure",
-        },
+        DataSource = M.DataSource,
         RequestId = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -25356,14 +22974,15 @@ M.DescribeDataSourcePermissionsOutput = {
         },
         Permissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePermission,
         },
         RequestId = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -25396,8 +23015,9 @@ M.DescribeDefaultQBusinessApplicationOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -25444,7 +23064,7 @@ M.Folder = {
         },
         FolderPath = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CreatedTime = {
             type = "timestamp",
@@ -25462,14 +23082,13 @@ M.DescribeFolderOutput = {
     type = "structure",
     members = {
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
-        Folder = {
-            type = "structure",
-        },
+        Folder = M.Folder,
         RequestId = {
             type = "string",
         },
@@ -25500,7 +23119,7 @@ M.DescribeFolderPermissionsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -25518,8 +23137,9 @@ M.DescribeFolderPermissionsOutput = {
     type = "structure",
     members = {
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -25531,7 +23151,7 @@ M.DescribeFolderPermissionsOutput = {
         },
         Permissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePermission,
         },
         RequestId = {
             type = "string",
@@ -25579,7 +23199,7 @@ M.DescribeFolderResolvedPermissionsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -25597,8 +23217,9 @@ M.DescribeFolderResolvedPermissionsOutput = {
     type = "structure",
     members = {
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -25610,7 +23231,7 @@ M.DescribeFolderResolvedPermissionsOutput = {
         },
         Permissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePermission,
         },
         RequestId = {
             type = "string",
@@ -25651,15 +23272,14 @@ M.DescribeGroupInput = {
 M.DescribeGroupOutput = {
     type = "structure",
     members = {
-        Group = {
-            type = "structure",
-        },
+        Group = M.Group,
         RequestId = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -25703,15 +23323,14 @@ M.DescribeGroupMembershipInput = {
 M.DescribeGroupMembershipOutput = {
     type = "structure",
     members = {
-        GroupMember = {
-            type = "structure",
-        },
+        GroupMember = M.GroupMember,
         RequestId = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -25762,8 +23381,8 @@ M.IAMPolicyAssignment = {
         },
         Identities = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         AssignmentStatus = {
             type = "string",
@@ -25774,15 +23393,14 @@ M.IAMPolicyAssignment = {
 M.DescribeIAMPolicyAssignmentOutput = {
     type = "structure",
     members = {
-        IAMPolicyAssignment = {
-            type = "structure",
-        },
+        IAMPolicyAssignment = M.IAMPolicyAssignment,
         RequestId = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -25910,13 +23528,22 @@ M.RowInfo = {
     type = "structure",
     members = {
         RowsIngested = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
         RowsDropped = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
         TotalRowsInDataset = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -25939,15 +23566,9 @@ M.Ingestion = {
                 required = true,
             },
         },
-        ErrorInfo = {
-            type = "structure",
-        },
-        RowInfo = {
-            type = "structure",
-        },
-        QueueInfo = {
-            type = "structure",
-        },
+        ErrorInfo = M.ErrorInfo,
+        RowInfo = M.RowInfo,
+        QueueInfo = M.QueueInfo,
         CreatedTime = {
             type = "timestamp",
             traits = {
@@ -25955,10 +23576,16 @@ M.Ingestion = {
             },
         },
         IngestionTimeInSeconds = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
         IngestionSizeInBytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
         RequestSource = {
             type = "string",
@@ -25972,15 +23599,14 @@ M.Ingestion = {
 M.DescribeIngestionOutput = {
     type = "structure",
     members = {
-        Ingestion = {
-            type = "structure",
-        },
+        Ingestion = M.Ingestion,
         RequestId = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -26008,18 +23634,18 @@ M.DescribeIpRestrictionOutput = {
         },
         IpRestrictionRuleMap = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         VpcIdRestrictionRuleMap = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         VpcEndpointIdRestrictionRuleMap = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Enabled = {
             type = "boolean",
@@ -26028,8 +23654,9 @@ M.DescribeIpRestrictionOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -26049,6 +23676,7 @@ M.DescribeKeyRegistrationInput = {
         DefaultKeyOnly = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "default-key-only",
             },
         },
@@ -26063,6 +23691,9 @@ M.RegisteredCustomerManagedKey = {
         },
         DefaultKey = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -26092,16 +23723,17 @@ M.DescribeKeyRegistrationOutput = {
         },
         KeyRegistration = {
             type = "list",
-            member_type = "structure",
+            member = M.RegisteredCustomerManagedKey,
         },
-        QDataKey = {
-            type = "structure",
-        },
+        QDataKey = M.QDataKey,
         RequestId = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -26161,9 +23793,7 @@ M.NamespaceInfoV2 = {
         IdentityStore = {
             type = "string",
         },
-        NamespaceError = {
-            type = "structure",
-        },
+        NamespaceError = M.NamespaceError,
         IamIdentityCenterApplicationArn = {
             type = "string",
         },
@@ -26176,15 +23806,14 @@ M.NamespaceInfoV2 = {
 M.DescribeNamespaceOutput = {
     type = "structure",
     members = {
-        Namespace = {
-            type = "structure",
-        },
+        Namespace = M.NamespaceInfoV2,
         RequestId = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -26219,8 +23848,9 @@ M.DescribeQPersonalizationConfigurationOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -26255,8 +23885,9 @@ M.DescribeQuickSightQSearchConfigurationOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -26293,12 +23924,11 @@ M.DescribeRefreshScheduleInput = {
 M.DescribeRefreshScheduleOutput = {
     type = "structure",
     members = {
-        RefreshSchedule = {
-            type = "structure",
-        },
+        RefreshSchedule = M.RefreshSchedule,
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -26348,7 +23978,10 @@ M.DescribeRoleCustomPermissionOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -26390,15 +24023,14 @@ M.SelfUpgradeConfiguration = {
 M.DescribeSelfUpgradeConfigurationOutput = {
     type = "structure",
     members = {
-        SelfUpgradeConfiguration = {
-            type = "structure",
-        },
+        SelfUpgradeConfiguration = M.SelfUpgradeConfiguration,
         RequestId = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -26436,7 +24068,7 @@ M.DescribeTemplateInput = {
             },
         },
         VersionNumber = {
-            type = "number",
+            type = "long",
             traits = {
                 http_query = "version-number",
             },
@@ -26468,7 +24100,7 @@ M.TemplateError = {
         },
         ViolatedEntities = {
             type = "list",
-            member_type = "structure",
+            member = M.Entity,
         },
     },
 }
@@ -26481,17 +24113,17 @@ M.TemplateVersion = {
         },
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.TemplateError,
         },
         VersionNumber = {
-            type = "number",
+            type = "long",
         },
         Status = {
             type = "string",
         },
         DataSetConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSetConfiguration,
         },
         Description = {
             type = "string",
@@ -26504,7 +24136,7 @@ M.TemplateVersion = {
         },
         Sheets = {
             type = "list",
-            member_type = "structure",
+            member = M.Sheet,
         },
     },
 }
@@ -26518,9 +24150,7 @@ M.Template = {
         Name = {
             type = "string",
         },
-        Version = {
-            type = "structure",
-        },
+        Version = M.TemplateVersion,
         TemplateId = {
             type = "string",
         },
@@ -26536,12 +24166,11 @@ M.Template = {
 M.DescribeTemplateOutput = {
     type = "structure",
     members = {
-        Template = {
-            type = "structure",
-        },
+        Template = M.Template,
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -26581,12 +24210,11 @@ M.DescribeTemplateAliasInput = {
 M.DescribeTemplateAliasOutput = {
     type = "structure",
     members = {
-        TemplateAlias = {
-            type = "structure",
-        },
+        TemplateAlias = M.TemplateAlias,
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -26614,7 +24242,7 @@ M.DescribeTemplateDefinitionInput = {
             },
         },
         VersionNumber = {
-            type = "number",
+            type = "long",
             traits = {
                 http_query = "version-number",
             },
@@ -26639,7 +24267,7 @@ M.DescribeTemplateDefinitionOutput = {
         },
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.TemplateError,
         },
         ResourceStatus = {
             type = "string",
@@ -26647,12 +24275,11 @@ M.DescribeTemplateDefinitionOutput = {
         ThemeArn = {
             type = "string",
         },
-        Definition = {
-            type = "structure",
-        },
+        Definition = M.TemplateVersionDefinition,
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -26693,14 +24320,15 @@ M.DescribeTemplatePermissionsOutput = {
         },
         Permissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePermission,
         },
         RequestId = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -26725,7 +24353,7 @@ M.DescribeThemeInput = {
             },
         },
         VersionNumber = {
-            type = "number",
+            type = "long",
             traits = {
                 http_query = "version-number",
             },
@@ -26765,7 +24393,7 @@ M.ThemeVersion = {
     type = "structure",
     members = {
         VersionNumber = {
-            type = "number",
+            type = "long",
         },
         Arn = {
             type = "string",
@@ -26779,12 +24407,10 @@ M.ThemeVersion = {
         CreatedTime = {
             type = "timestamp",
         },
-        Configuration = {
-            type = "structure",
-        },
+        Configuration = M.ThemeConfiguration,
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.ThemeError,
         },
         Status = {
             type = "string",
@@ -26804,9 +24430,7 @@ M.Theme = {
         ThemeId = {
             type = "string",
         },
-        Version = {
-            type = "structure",
-        },
+        Version = M.ThemeVersion,
         CreatedTime = {
             type = "timestamp",
         },
@@ -26822,12 +24446,11 @@ M.Theme = {
 M.DescribeThemeOutput = {
     type = "structure",
     members = {
-        Theme = {
-            type = "structure",
-        },
+        Theme = M.Theme,
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -26867,12 +24490,11 @@ M.DescribeThemeAliasInput = {
 M.DescribeThemeAliasOutput = {
     type = "structure",
     members = {
-        ThemeAlias = {
-            type = "structure",
-        },
+        ThemeAlias = M.ThemeAlias,
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -26913,14 +24535,15 @@ M.DescribeThemePermissionsOutput = {
         },
         Permissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePermission,
         },
         RequestId = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -26956,21 +24579,18 @@ M.DescribeTopicOutput = {
         TopicId = {
             type = "string",
         },
-        Topic = {
-            type = "structure",
-        },
+        Topic = M.TopicDetails,
         RequestId = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
-        CustomInstructions = {
-            type = "structure",
-        },
+        CustomInstructions = M.CustomInstructions,
     },
 }
 
@@ -27005,11 +24625,12 @@ M.DescribeTopicPermissionsOutput = {
         },
         Permissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePermission,
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -27072,15 +24693,14 @@ M.TopicRefreshDetails = {
 M.DescribeTopicRefreshOutput = {
     type = "structure",
     members = {
-        RefreshDetails = {
-            type = "structure",
-        },
+        RefreshDetails = M.TopicRefreshDetails,
         RequestId = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -27126,12 +24746,11 @@ M.DescribeTopicRefreshScheduleOutput = {
         DatasetArn = {
             type = "string",
         },
-        RefreshSchedule = {
-            type = "structure",
-        },
+        RefreshSchedule = M.TopicRefreshSchedule,
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -27205,6 +24824,9 @@ M.User = {
         },
         Active = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         PrincipalId = {
             type = "string",
@@ -27227,15 +24849,14 @@ M.User = {
 M.DescribeUserOutput = {
     type = "structure",
     members = {
-        User = {
-            type = "structure",
-        },
+        User = M.User,
         RequestId = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -27313,11 +24934,11 @@ M.VPCConnection = {
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DnsResolvers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Status = {
             type = "string",
@@ -27327,7 +24948,7 @@ M.VPCConnection = {
         },
         NetworkInterfaces = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkInterface,
         },
         RoleArn = {
             type = "string",
@@ -27344,14 +24965,15 @@ M.VPCConnection = {
 M.DescribeVPCConnectionOutput = {
     type = "structure",
     members = {
-        VPCConnection = {
-            type = "structure",
-        },
+        VPCConnection = M.VPCConnection,
         RequestId = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -27388,14 +25010,16 @@ M.FailedKeyRegistrationEntry = {
             },
         },
         StatusCode = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         SenderFault = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -27459,10 +25083,16 @@ M.FlowSummary = {
             type = "string",
         },
         RunCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         UserCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         LastPublishedBy = {
             type = "string",
@@ -27602,7 +25232,7 @@ M.GenerateEmbedUrlForAnonymousUserInput = {
             },
         },
         SessionLifetimeInMinutes = {
-            type = "number",
+            type = "long",
         },
         Namespace = {
             type = "string",
@@ -27612,24 +25242,21 @@ M.GenerateEmbedUrlForAnonymousUserInput = {
         },
         SessionTags = {
             type = "list",
-            member_type = "structure",
+            member = M.SessionTag,
         },
         AuthorizedResourceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        ExperienceConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ExperienceConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AnonymousUserEmbeddingExperienceConfiguration }),
         AllowedDomains = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -27644,8 +25271,9 @@ M.GenerateEmbedUrlForAnonymousUserOutput = {
             },
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
                 required = true,
             },
@@ -27697,6 +25325,7 @@ M.RecentSnapshotsConfigurations = {
         Enabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -27709,6 +25338,7 @@ M.SchedulesConfigurations = {
         Enabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -27721,6 +25351,7 @@ M.StatePersistenceConfigurations = {
         Enabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -27733,6 +25364,7 @@ M.ThresholdAlertsConfigurations = {
         Enabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -27742,30 +25374,14 @@ M.ThresholdAlertsConfigurations = {
 M.RegisteredUserDashboardFeatureConfigurations = {
     type = "structure",
     members = {
-        StatePersistence = {
-            type = "structure",
-        },
-        Bookmarks = {
-            type = "structure",
-        },
-        SharedView = {
-            type = "structure",
-        },
-        AmazonQInQuickSight = {
-            type = "structure",
-        },
-        Schedules = {
-            type = "structure",
-        },
-        RecentSnapshots = {
-            type = "structure",
-        },
-        ThresholdAlerts = {
-            type = "structure",
-        },
-        DashboardCustomizationSummary = {
-            type = "structure",
-        },
+        StatePersistence = M.StatePersistenceConfigurations,
+        Bookmarks = M.BookmarksConfigurations,
+        SharedView = M.SharedViewConfigurations,
+        AmazonQInQuickSight = M.AmazonQInQuickSightDashboardConfigurations,
+        Schedules = M.SchedulesConfigurations,
+        RecentSnapshots = M.RecentSnapshotsConfigurations,
+        ThresholdAlerts = M.ThresholdAlertsConfigurations,
+        DashboardCustomizationSummary = M.DashboardCustomizationSummaryConfigurations,
     },
 }
 
@@ -27778,21 +25394,16 @@ M.RegisteredUserDashboardEmbeddingConfiguration = {
                 required = true,
             },
         },
-        FeatureConfigurations = {
-            type = "structure",
-        },
+        FeatureConfigurations = M.RegisteredUserDashboardFeatureConfigurations,
     },
 }
 
 M.RegisteredUserDashboardVisualEmbeddingConfiguration = {
     type = "structure",
     members = {
-        InitialDashboardVisualId = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InitialDashboardVisualId = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DashboardVisualId }),
     },
 }
 
@@ -27821,27 +25432,13 @@ M.RegisteredUserQuickChatEmbeddingConfiguration = {
 M.RegisteredUserConsoleFeatureConfigurations = {
     type = "structure",
     members = {
-        StatePersistence = {
-            type = "structure",
-        },
-        SharedView = {
-            type = "structure",
-        },
-        AmazonQInQuickSight = {
-            type = "structure",
-        },
-        Schedules = {
-            type = "structure",
-        },
-        RecentSnapshots = {
-            type = "structure",
-        },
-        ThresholdAlerts = {
-            type = "structure",
-        },
-        DashboardCustomizationSummary = {
-            type = "structure",
-        },
+        StatePersistence = M.StatePersistenceConfigurations,
+        SharedView = M.SharedViewConfigurations,
+        AmazonQInQuickSight = M.AmazonQInQuickSightConsoleConfigurations,
+        Schedules = M.SchedulesConfigurations,
+        RecentSnapshots = M.RecentSnapshotsConfigurations,
+        ThresholdAlerts = M.ThresholdAlertsConfigurations,
+        DashboardCustomizationSummary = M.DashboardCustomizationSummaryConfigurations,
     },
 }
 
@@ -27851,33 +25448,19 @@ M.RegisteredUserQuickSightConsoleEmbeddingConfiguration = {
         InitialPath = {
             type = "string",
         },
-        FeatureConfigurations = {
-            type = "structure",
-        },
+        FeatureConfigurations = M.RegisteredUserConsoleFeatureConfigurations,
     },
 }
 
 M.RegisteredUserEmbeddingExperienceConfiguration = {
     type = "structure",
     members = {
-        Dashboard = {
-            type = "structure",
-        },
-        QuickSightConsole = {
-            type = "structure",
-        },
-        QSearchBar = {
-            type = "structure",
-        },
-        DashboardVisual = {
-            type = "structure",
-        },
-        GenerativeQnA = {
-            type = "structure",
-        },
-        QuickChat = {
-            type = "structure",
-        },
+        Dashboard = M.RegisteredUserDashboardEmbeddingConfiguration,
+        QuickSightConsole = M.RegisteredUserQuickSightConsoleEmbeddingConfiguration,
+        QSearchBar = M.RegisteredUserQSearchBarEmbeddingConfiguration,
+        DashboardVisual = M.RegisteredUserDashboardVisualEmbeddingConfiguration,
+        GenerativeQnA = M.RegisteredUserGenerativeQnAEmbeddingConfiguration,
+        QuickChat = M.RegisteredUserQuickChatEmbeddingConfiguration,
     },
 }
 
@@ -27892,7 +25475,7 @@ M.GenerateEmbedUrlForRegisteredUserInput = {
             },
         },
         SessionLifetimeInMinutes = {
-            type = "number",
+            type = "long",
         },
         UserArn = {
             type = "string",
@@ -27900,15 +25483,12 @@ M.GenerateEmbedUrlForRegisteredUserInput = {
                 required = true,
             },
         },
-        ExperienceConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ExperienceConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RegisteredUserEmbeddingExperienceConfiguration }),
         AllowedDomains = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -27923,8 +25503,9 @@ M.GenerateEmbedUrlForRegisteredUserOutput = {
             },
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
                 required = true,
             },
@@ -27962,17 +25543,14 @@ M.GenerateEmbedUrlForRegisteredUserWithIdentityInput = {
             },
         },
         SessionLifetimeInMinutes = {
-            type = "number",
+            type = "long",
         },
-        ExperienceConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ExperienceConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RegisteredUserEmbeddingExperienceConfiguration }),
         AllowedDomains = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -27987,8 +25565,9 @@ M.GenerateEmbedUrlForRegisteredUserWithIdentityOutput = {
             },
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
                 required = true,
             },
@@ -28027,7 +25606,7 @@ M.GetDashboardEmbedUrlInput = {
             },
         },
         SessionLifetimeInMinutes = {
-            type = "number",
+            type = "long",
             traits = {
                 http_query = "session-lifetime",
             },
@@ -28035,18 +25614,21 @@ M.GetDashboardEmbedUrlInput = {
         UndoRedoDisabled = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "undo-redo-disabled",
             },
         },
         ResetDisabled = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "reset-disabled",
             },
         },
         StatePersistenceEnabled = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "state-persistence-enabled",
             },
         },
@@ -28064,7 +25646,7 @@ M.GetDashboardEmbedUrlInput = {
         },
         AdditionalDashboardIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "additional-dashboard-ids",
             },
@@ -28079,8 +25661,9 @@ M.GetDashboardEmbedUrlOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -28151,10 +25734,16 @@ M.GetFlowMetadataOutput = {
             type = "string",
         },
         UserCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         RunCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         CreatedTime = {
             type = "timestamp",
@@ -28169,8 +25758,9 @@ M.GetFlowMetadataOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -28202,7 +25792,7 @@ M.Permission = {
     members = {
         Actions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -28233,7 +25823,7 @@ M.GetFlowPermissionsOutput = {
         },
         Permissions = {
             type = "list",
-            member_type = "structure",
+            member = M.Permission,
             traits = {
                 required = true,
             },
@@ -28242,8 +25832,9 @@ M.GetFlowPermissionsOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -28275,12 +25866,9 @@ M.GetIdentityContextInput = {
                 required = true,
             },
         },
-        UserIdentifier = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        UserIdentifier = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.UserIdentifier }),
         Namespace = {
             type = "string",
         },
@@ -28297,7 +25885,7 @@ M.GetIdentityContextOutput = {
     type = "structure",
     members = {
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_response_code = true,
                 required = true,
@@ -28332,7 +25920,7 @@ M.GetSessionEmbedUrlInput = {
             },
         },
         SessionLifetimeInMinutes = {
-            type = "number",
+            type = "long",
             traits = {
                 http_query = "session-lifetime",
             },
@@ -28353,8 +25941,9 @@ M.GetSessionEmbedUrlOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -28429,7 +26018,7 @@ M.ListActionConnectorsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -28448,7 +26037,7 @@ M.ListActionConnectorsOutput = {
     members = {
         ActionConnectorSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ActionConnectorSummary,
             traits = {
                 required = true,
             },
@@ -28460,8 +26049,9 @@ M.ListActionConnectorsOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -28485,7 +26075,7 @@ M.ListAnalysesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -28498,14 +26088,15 @@ M.ListAnalysesOutput = {
     members = {
         AnalysisSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalysisSummary,
         },
         NextToken = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -28532,7 +26123,7 @@ M.ListAssetBundleExportJobsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -28545,7 +26136,7 @@ M.ListAssetBundleExportJobsOutput = {
     members = {
         AssetBundleExportJobSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetBundleExportJobSummary,
         },
         NextToken = {
             type = "string",
@@ -28554,8 +26145,9 @@ M.ListAssetBundleExportJobsOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -28579,7 +26171,7 @@ M.ListAssetBundleImportJobsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -28592,7 +26184,7 @@ M.ListAssetBundleImportJobsOutput = {
     members = {
         AssetBundleImportJobSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetBundleImportJobSummary,
         },
         NextToken = {
             type = "string",
@@ -28601,8 +26193,9 @@ M.ListAssetBundleImportJobsOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -28620,7 +26213,7 @@ M.ListBrandsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -28642,7 +26235,7 @@ M.ListBrandsOutput = {
         },
         Brands = {
             type = "list",
-            member_type = "structure",
+            member = M.BrandSummary,
         },
     },
 }
@@ -28658,7 +26251,7 @@ M.ListCustomPermissionsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -28676,14 +26269,15 @@ M.ListCustomPermissionsOutput = {
     type = "structure",
     members = {
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
         CustomPermissionsList = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomPermissions,
         },
         NextToken = {
             type = "string",
@@ -28711,7 +26305,7 @@ M.ListDashboardsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -28724,14 +26318,15 @@ M.ListDashboardsOutput = {
     members = {
         DashboardSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.DashboardSummary,
         },
         NextToken = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -28765,7 +26360,7 @@ M.ListDashboardVersionsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -28778,14 +26373,15 @@ M.ListDashboardVersionsOutput = {
     members = {
         DashboardVersionSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.DashboardVersionSummary,
         },
         NextToken = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -28812,7 +26408,7 @@ M.ListDataSetsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -28825,7 +26421,7 @@ M.ListDataSetsOutput = {
     members = {
         DataSetSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSetSummary,
         },
         NextToken = {
             type = "string",
@@ -28834,8 +26430,9 @@ M.ListDataSetsOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -28859,7 +26456,7 @@ M.ListDataSourcesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -28872,7 +26469,7 @@ M.ListDataSourcesOutput = {
     members = {
         DataSources = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSource,
         },
         NextToken = {
             type = "string",
@@ -28881,8 +26478,9 @@ M.ListDataSourcesOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -28906,7 +26504,7 @@ M.ListFlowsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -28919,7 +26517,7 @@ M.ListFlowsOutput = {
     members = {
         FlowSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.FlowSummary,
         },
         NextToken = {
             type = "string",
@@ -28928,8 +26526,9 @@ M.ListFlowsOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -28960,7 +26559,7 @@ M.ListFolderMembersInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -28972,14 +26571,15 @@ M.ListFolderMembersOutput = {
     type = "structure",
     members = {
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
         FolderMemberList = {
             type = "list",
-            member_type = "structure",
+            member = M.MemberIdArnPair,
         },
         NextToken = {
             type = "string",
@@ -29007,7 +26607,7 @@ M.ListFoldersInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -29019,14 +26619,15 @@ M.ListFoldersOutput = {
     type = "structure",
     members = {
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
         FolderSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.FolderSummary,
         },
         NextToken = {
             type = "string",
@@ -29061,7 +26662,7 @@ M.ListFoldersForResourceInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -29073,14 +26674,15 @@ M.ListFoldersForResourceOutput = {
     type = "structure",
     members = {
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
         Folders = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -29108,7 +26710,7 @@ M.ListGroupMembershipsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -29135,7 +26737,7 @@ M.ListGroupMembershipsOutput = {
     members = {
         GroupMemberList = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupMember,
         },
         NextToken = {
             type = "string",
@@ -29144,8 +26746,9 @@ M.ListGroupMembershipsOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -29169,7 +26772,7 @@ M.ListGroupsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -29189,7 +26792,7 @@ M.ListGroupsOutput = {
     members = {
         GroupList = {
             type = "list",
-            member_type = "structure",
+            member = M.Group,
         },
         NextToken = {
             type = "string",
@@ -29198,8 +26801,9 @@ M.ListGroupsOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -29236,7 +26840,7 @@ M.ListIAMPolicyAssignmentsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -29249,7 +26853,7 @@ M.ListIAMPolicyAssignmentsOutput = {
     members = {
         IAMPolicyAssignments = {
             type = "list",
-            member_type = "structure",
+            member = M.IAMPolicyAssignmentSummary,
         },
         NextToken = {
             type = "string",
@@ -29258,8 +26862,9 @@ M.ListIAMPolicyAssignmentsOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -29290,7 +26895,7 @@ M.ListIAMPolicyAssignmentsForUserInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -29310,7 +26915,7 @@ M.ListIAMPolicyAssignmentsForUserOutput = {
     members = {
         ActiveAssignments = {
             type = "list",
-            member_type = "structure",
+            member = M.ActiveIAMPolicyAssignment,
         },
         RequestId = {
             type = "string",
@@ -29319,8 +26924,9 @@ M.ListIAMPolicyAssignmentsForUserOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -29338,8 +26944,9 @@ M.ListIdentityPropagationConfigsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_query = "max-results",
             },
         },
@@ -29357,14 +26964,15 @@ M.ListIdentityPropagationConfigsOutput = {
     members = {
         Services = {
             type = "list",
-            member_type = "structure",
+            member = M.AuthorizedTargetsByService,
         },
         NextToken = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -29398,7 +27006,7 @@ M.ListIngestionsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -29411,7 +27019,7 @@ M.ListIngestionsOutput = {
     members = {
         Ingestions = {
             type = "list",
-            member_type = "structure",
+            member = M.Ingestion,
         },
         NextToken = {
             type = "string",
@@ -29420,8 +27028,9 @@ M.ListIngestionsOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -29445,7 +27054,7 @@ M.ListNamespacesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -29458,7 +27067,7 @@ M.ListNamespacesOutput = {
     members = {
         Namespaces = {
             type = "list",
-            member_type = "structure",
+            member = M.NamespaceInfoV2,
         },
         NextToken = {
             type = "string",
@@ -29467,8 +27076,9 @@ M.ListNamespacesOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -29500,11 +27110,12 @@ M.ListRefreshSchedulesOutput = {
     members = {
         RefreshSchedules = {
             type = "list",
-            member_type = "structure",
+            member = M.RefreshSchedule,
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -29531,7 +27142,7 @@ M.ListRoleMembershipsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -29558,7 +27169,7 @@ M.ListRoleMembershipsOutput = {
     members = {
         MembersList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -29567,8 +27178,9 @@ M.ListRoleMembershipsOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -29599,7 +27211,7 @@ M.ListSelfUpgradesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -29634,13 +27246,19 @@ M.SelfUpgradeRequestDetail = {
             type = "string",
         },
         CreationTime = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         RequestStatus = {
             type = "string",
         },
         lastUpdateAttemptTime = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         lastUpdateFailureReason = {
             type = "string",
@@ -29653,7 +27271,7 @@ M.ListSelfUpgradesOutput = {
     members = {
         SelfUpgradeRequestDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.SelfUpgradeRequestDetail,
         },
         NextToken = {
             type = "string",
@@ -29662,8 +27280,9 @@ M.ListSelfUpgradesOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -29688,14 +27307,15 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         RequestId = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -29726,7 +27346,7 @@ M.ListTemplateAliasesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-result",
             },
@@ -29739,11 +27359,12 @@ M.ListTemplateAliasesOutput = {
     members = {
         TemplateAliasList = {
             type = "list",
-            member_type = "structure",
+            member = M.TemplateAlias,
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -29773,7 +27394,7 @@ M.ListTemplatesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-result",
             },
@@ -29794,7 +27415,7 @@ M.TemplateSummary = {
             type = "string",
         },
         LatestVersionNumber = {
-            type = "number",
+            type = "long",
         },
         CreatedTime = {
             type = "timestamp",
@@ -29810,14 +27431,15 @@ M.ListTemplatesOutput = {
     members = {
         TemplateSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.TemplateSummary,
         },
         NextToken = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -29851,7 +27473,7 @@ M.ListTemplateVersionsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -29866,7 +27488,7 @@ M.TemplateVersionSummary = {
             type = "string",
         },
         VersionNumber = {
-            type = "number",
+            type = "long",
         },
         CreatedTime = {
             type = "timestamp",
@@ -29885,14 +27507,15 @@ M.ListTemplateVersionsOutput = {
     members = {
         TemplateVersionSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.TemplateVersionSummary,
         },
         NextToken = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -29926,7 +27549,7 @@ M.ListThemeAliasesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-result",
             },
@@ -29939,11 +27562,12 @@ M.ListThemeAliasesOutput = {
     members = {
         ThemeAliasList = {
             type = "list",
-            member_type = "structure",
+            member = M.ThemeAlias,
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -29973,7 +27597,7 @@ M.ListThemesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -30000,7 +27624,7 @@ M.ThemeSummary = {
             type = "string",
         },
         LatestVersionNumber = {
-            type = "number",
+            type = "long",
         },
         CreatedTime = {
             type = "timestamp",
@@ -30016,14 +27640,15 @@ M.ListThemesOutput = {
     members = {
         ThemeSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.ThemeSummary,
         },
         NextToken = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -30057,7 +27682,7 @@ M.ListThemeVersionsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -30069,7 +27694,7 @@ M.ThemeVersionSummary = {
     type = "structure",
     members = {
         VersionNumber = {
-            type = "number",
+            type = "long",
         },
         Arn = {
             type = "string",
@@ -30091,14 +27716,15 @@ M.ListThemeVersionsOutput = {
     members = {
         ThemeVersionSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.ThemeVersionSummary,
         },
         NextToken = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -30140,9 +27766,7 @@ M.TopicRefreshScheduleSummary = {
         DatasetName = {
             type = "string",
         },
-        RefreshSchedule = {
-            type = "structure",
-        },
+        RefreshSchedule = M.TopicRefreshSchedule,
     },
 }
 
@@ -30157,11 +27781,12 @@ M.ListTopicRefreshSchedulesOutput = {
         },
         RefreshSchedules = {
             type = "list",
-            member_type = "structure",
+            member = M.TopicRefreshScheduleSummary,
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -30208,7 +27833,7 @@ M.ListTopicsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -30239,7 +27864,7 @@ M.ListTopicsOutput = {
     members = {
         TopicsSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.TopicSummary,
         },
         NextToken = {
             type = "string",
@@ -30248,8 +27873,9 @@ M.ListTopicsOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -30287,7 +27913,7 @@ M.ListUserGroupsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -30300,7 +27926,7 @@ M.ListUserGroupsOutput = {
     members = {
         GroupList = {
             type = "list",
-            member_type = "structure",
+            member = M.Group,
         },
         NextToken = {
             type = "string",
@@ -30309,8 +27935,9 @@ M.ListUserGroupsOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -30334,7 +27961,7 @@ M.ListUsersInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -30354,7 +27981,7 @@ M.ListUsersOutput = {
     members = {
         UserList = {
             type = "list",
-            member_type = "structure",
+            member = M.User,
         },
         NextToken = {
             type = "string",
@@ -30363,8 +27990,9 @@ M.ListUsersOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -30388,7 +28016,7 @@ M.ListVPCConnectionsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -30413,11 +28041,11 @@ M.VPCConnectionSummary = {
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DnsResolvers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Status = {
             type = "string",
@@ -30427,7 +28055,7 @@ M.VPCConnectionSummary = {
         },
         NetworkInterfaces = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkInterface,
         },
         RoleArn = {
             type = "string",
@@ -30446,7 +28074,7 @@ M.ListVPCConnectionsOutput = {
     members = {
         VPCConnectionSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.VPCConnectionSummary,
         },
         NextToken = {
             type = "string",
@@ -30455,8 +28083,9 @@ M.ListVPCConnectionsOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -30486,7 +28115,7 @@ M.PredictQAResultsInput = {
             type = "string",
         },
         MaxTopicsToConsider = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -30503,31 +28132,26 @@ M.QAResult = {
         ResultType = {
             type = "string",
         },
-        DashboardVisual = {
-            type = "structure",
-        },
-        GeneratedAnswer = {
-            type = "structure",
-        },
+        DashboardVisual = M.DashboardVisualResult,
+        GeneratedAnswer = M.GeneratedAnswerResult,
     },
 }
 
 M.PredictQAResultsOutput = {
     type = "structure",
     members = {
-        PrimaryResult = {
-            type = "structure",
-        },
+        PrimaryResult = M.QAResult,
         AdditionalResults = {
             type = "list",
-            member_type = "structure",
+            member = M.QAResult,
         },
         RequestId = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -30556,12 +28180,9 @@ M.PutDataSetRefreshPropertiesInput = {
                 required = true,
             },
         },
-        DataSetRefreshProperties = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DataSetRefreshProperties = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataSetRefreshProperties }),
     },
 }
 
@@ -30572,8 +28193,9 @@ M.PutDataSetRefreshPropertiesOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -30638,7 +28260,7 @@ M.RegisterUserInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -30646,9 +28268,7 @@ M.RegisterUserInput = {
 M.RegisterUserOutput = {
     type = "structure",
     members = {
-        User = {
-            type = "structure",
-        },
+        User = M.User,
         UserInvitationUrl = {
             type = "string",
         },
@@ -30656,8 +28276,9 @@ M.RegisterUserOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -30684,6 +28305,7 @@ M.RestoreAnalysisInput = {
         RestoreToFolders = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "restore-to-folders",
             },
         },
@@ -30694,8 +28316,9 @@ M.RestoreAnalysisOutput = {
     type = "structure",
     members = {
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -30710,7 +28333,7 @@ M.RestoreAnalysisOutput = {
         },
         RestorationFailedFolderArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -30726,8 +28349,9 @@ M.SearchActionConnectorsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "max-results",
             },
         },
@@ -30739,7 +28363,7 @@ M.SearchActionConnectorsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.ActionConnectorSearchFilter,
             traits = {
                 required = true,
             },
@@ -30757,14 +28381,15 @@ M.SearchActionConnectorsOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
         ActionConnectorSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ActionConnectorSummary,
         },
     },
 }
@@ -30781,7 +28406,7 @@ M.SearchAnalysesInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalysisSearchFilter,
             traits = {
                 required = true,
             },
@@ -30790,7 +28415,7 @@ M.SearchAnalysesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -30800,14 +28425,15 @@ M.SearchAnalysesOutput = {
     members = {
         AnalysisSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalysisSummary,
         },
         NextToken = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -30829,7 +28455,7 @@ M.SearchDashboardsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.DashboardSearchFilter,
             traits = {
                 required = true,
             },
@@ -30838,7 +28464,7 @@ M.SearchDashboardsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -30848,14 +28474,15 @@ M.SearchDashboardsOutput = {
     members = {
         DashboardSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.DashboardSummary,
         },
         NextToken = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -30877,7 +28504,7 @@ M.SearchDataSetsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSetSearchFilter,
             traits = {
                 required = true,
             },
@@ -30886,7 +28513,7 @@ M.SearchDataSetsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -30896,14 +28523,15 @@ M.SearchDataSetsOutput = {
     members = {
         DataSetSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSetSummary,
         },
         NextToken = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -30925,7 +28553,7 @@ M.SearchDataSourcesInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceSearchFilter,
             traits = {
                 required = true,
             },
@@ -30934,7 +28562,7 @@ M.SearchDataSourcesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -30944,14 +28572,15 @@ M.SearchDataSourcesOutput = {
     members = {
         DataSourceSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceSummary,
         },
         NextToken = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -31002,7 +28631,7 @@ M.SearchFlowsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.SearchFlowsFilter,
             traits = {
                 required = true,
             },
@@ -31011,7 +28640,7 @@ M.SearchFlowsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -31021,7 +28650,7 @@ M.SearchFlowsOutput = {
     members = {
         FlowSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.FlowSummary,
             traits = {
                 required = true,
             },
@@ -31033,8 +28662,9 @@ M.SearchFlowsOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -31053,7 +28683,7 @@ M.SearchFoldersInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.FolderSearchFilter,
             traits = {
                 required = true,
             },
@@ -31062,7 +28692,7 @@ M.SearchFoldersInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -31071,14 +28701,15 @@ M.SearchFoldersOutput = {
     type = "structure",
     members = {
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
         FolderSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.FolderSummary,
         },
         NextToken = {
             type = "string",
@@ -31106,7 +28737,7 @@ M.SearchGroupsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -31120,7 +28751,7 @@ M.SearchGroupsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupSearchFilter,
             traits = {
                 required = true,
             },
@@ -31133,7 +28764,7 @@ M.SearchGroupsOutput = {
     members = {
         GroupList = {
             type = "list",
-            member_type = "structure",
+            member = M.Group,
         },
         NextToken = {
             type = "string",
@@ -31142,8 +28773,9 @@ M.SearchGroupsOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -31201,7 +28833,7 @@ M.SearchTopicsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.TopicSearchFilter,
             traits = {
                 required = true,
             },
@@ -31210,7 +28842,7 @@ M.SearchTopicsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -31220,14 +28852,15 @@ M.SearchTopicsOutput = {
     members = {
         TopicSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.TopicSummary,
         },
         NextToken = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -31255,13 +28888,16 @@ M.StartAssetBundleExportJobInput = {
         },
         ResourceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         IncludeAllDependencies = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         ExportFormat = {
             type = "string",
@@ -31269,20 +28905,25 @@ M.StartAssetBundleExportJobInput = {
                 required = true,
             },
         },
-        CloudFormationOverridePropertyConfiguration = {
-            type = "structure",
-        },
+        CloudFormationOverridePropertyConfiguration = M.AssetBundleCloudFormationOverridePropertyConfiguration,
         IncludePermissions = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         IncludeTags = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        ValidationStrategy = {
-            type = "structure",
-        },
+        ValidationStrategy = M.AssetBundleExportJobValidationStrategy,
         IncludeFolderMemberships = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         IncludeFolderMembers = {
             type = "string",
@@ -31303,8 +28944,9 @@ M.StartAssetBundleExportJobOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -31327,27 +28969,16 @@ M.StartAssetBundleImportJobInput = {
                 required = true,
             },
         },
-        AssetBundleImportSource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        OverrideParameters = {
-            type = "structure",
-        },
+        AssetBundleImportSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AssetBundleImportSource }),
+        OverrideParameters = M.AssetBundleImportJobOverrideParameters,
         FailureAction = {
             type = "string",
         },
-        OverridePermissions = {
-            type = "structure",
-        },
-        OverrideTags = {
-            type = "structure",
-        },
-        OverrideValidationStrategy = {
-            type = "structure",
-        },
+        OverridePermissions = M.AssetBundleImportJobOverridePermissions,
+        OverrideTags = M.AssetBundleImportJobOverrideTags,
+        OverrideValidationStrategy = M.AssetBundleImportJobOverrideValidationStrategy,
     },
 }
 
@@ -31364,8 +28995,9 @@ M.StartAssetBundleImportJobOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -31418,8 +29050,9 @@ M.StartAutomationJobOutput = {
             },
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -31434,7 +29067,7 @@ M.SnapshotAnonymousUser = {
     members = {
         RowLevelPermissionTags = {
             type = "list",
-            member_type = "structure",
+            member = M.SessionTag,
         },
     },
 }
@@ -31444,7 +29077,7 @@ M.SnapshotUserConfiguration = {
     members = {
         AnonymousUsers = {
             type = "list",
-            member_type = "structure",
+            member = M.SnapshotAnonymousUser,
         },
     },
 }
@@ -31472,15 +29105,10 @@ M.StartDashboardSnapshotJobInput = {
                 required = true,
             },
         },
-        UserConfiguration = {
-            type = "structure",
-        },
-        SnapshotConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        UserConfiguration = M.SnapshotUserConfiguration,
+        SnapshotConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SnapshotConfiguration }),
     },
 }
 
@@ -31497,8 +29125,9 @@ M.StartDashboardSnapshotJobOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -31539,8 +29168,9 @@ M.StartDashboardSnapshotJobScheduleOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -31559,7 +29189,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -31574,8 +29204,9 @@ M.TagResourceOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -31594,7 +29225,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "keys",
                 required = true,
@@ -31610,8 +29241,9 @@ M.UntagResourceOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -31634,12 +29266,9 @@ M.UpdateAccountCustomizationInput = {
                 http_query = "namespace",
             },
         },
-        AccountCustomization = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AccountCustomization = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AccountCustomization }),
     },
 }
 
@@ -31655,15 +29284,14 @@ M.UpdateAccountCustomizationOutput = {
         Namespace = {
             type = "string",
         },
-        AccountCustomization = {
-            type = "structure",
-        },
+        AccountCustomization = M.AccountCustomization,
         RequestId = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -31696,7 +29324,10 @@ M.UpdateAccountCustomPermissionOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -31722,6 +29353,9 @@ M.UpdateAccountSettingsInput = {
         },
         TerminationProtectionEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -31733,8 +29367,9 @@ M.UpdateAccountSettingsOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -31764,12 +29399,9 @@ M.UpdateActionConnectorInput = {
                 required = true,
             },
         },
-        AuthenticationConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AuthenticationConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AuthConfig }),
         Description = {
             type = "string",
         },
@@ -31795,8 +29427,9 @@ M.UpdateActionConnectorOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -31822,11 +29455,11 @@ M.UpdateActionConnectorPermissionsInput = {
         },
         GrantPermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePermission,
         },
         RevokePermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePermission,
         },
     },
 }
@@ -31844,14 +29477,15 @@ M.UpdateActionConnectorPermissionsOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
         Permissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePermission,
         },
     },
 }
@@ -31879,21 +29513,13 @@ M.UpdateAnalysisInput = {
                 required = true,
             },
         },
-        Parameters = {
-            type = "structure",
-        },
-        SourceEntity = {
-            type = "structure",
-        },
+        Parameters = M.Parameters,
+        SourceEntity = M.AnalysisSourceEntity,
         ThemeArn = {
             type = "string",
         },
-        Definition = {
-            type = "structure",
-        },
-        ValidationStrategy = {
-            type = "structure",
-        },
+        Definition = M.AnalysisDefinition,
+        ValidationStrategy = M.ValidationStrategy,
     },
 }
 
@@ -31910,8 +29536,9 @@ M.UpdateAnalysisOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -31940,11 +29567,11 @@ M.UpdateAnalysisPermissionsInput = {
         },
         GrantPermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePermission,
         },
         RevokePermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePermission,
         },
     },
 }
@@ -31960,14 +29587,15 @@ M.UpdateAnalysisPermissionsOutput = {
         },
         Permissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePermission,
         },
         RequestId = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -31998,8 +29626,9 @@ M.UpdateApplicationWithTokenExchangeGrantOutput = {
     type = "structure",
     members = {
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -32026,9 +29655,7 @@ M.UpdateBrandInput = {
                 required = true,
             },
         },
-        BrandDefinition = {
-            type = "structure",
-        },
+        BrandDefinition = M.BrandDefinition,
     },
 }
 
@@ -32038,12 +29665,8 @@ M.UpdateBrandOutput = {
         RequestId = {
             type = "string",
         },
-        BrandDetail = {
-            type = "structure",
-        },
-        BrandDefinition = {
-            type = "structure",
-        },
+        BrandDetail = M.BrandDetail,
+        BrandDefinition = M.BrandDefinition,
     },
 }
 
@@ -32133,9 +29756,7 @@ M.UpdateCustomPermissionsInput = {
                 required = true,
             },
         },
-        Capabilities = {
-            type = "structure",
-        },
+        Capabilities = M.Capabilities,
     },
 }
 
@@ -32143,7 +29764,10 @@ M.UpdateCustomPermissionsOutput = {
     type = "structure",
     members = {
         Status = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         Arn = {
             type = "string",
@@ -32177,27 +29801,17 @@ M.UpdateDashboardInput = {
                 required = true,
             },
         },
-        SourceEntity = {
-            type = "structure",
-        },
-        Parameters = {
-            type = "structure",
-        },
+        SourceEntity = M.DashboardSourceEntity,
+        Parameters = M.Parameters,
         VersionDescription = {
             type = "string",
         },
-        DashboardPublishOptions = {
-            type = "structure",
-        },
+        DashboardPublishOptions = M.DashboardPublishOptions,
         ThemeArn = {
             type = "string",
         },
-        Definition = {
-            type = "structure",
-        },
-        ValidationStrategy = {
-            type = "structure",
-        },
+        Definition = M.DashboardVersionDefinition,
+        ValidationStrategy = M.ValidationStrategy,
     },
 }
 
@@ -32217,7 +29831,10 @@ M.UpdateDashboardOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         RequestId = {
             type = "string",
@@ -32244,7 +29861,7 @@ M.UpdateDashboardLinksInput = {
         },
         LinkEntities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -32259,8 +29876,9 @@ M.UpdateDashboardLinksOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -32269,7 +29887,7 @@ M.UpdateDashboardLinksOutput = {
         },
         LinkEntities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -32293,19 +29911,19 @@ M.UpdateDashboardPermissionsInput = {
         },
         GrantPermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePermission,
         },
         RevokePermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePermission,
         },
         GrantLinkPermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePermission,
         },
         RevokeLinkPermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePermission,
         },
     },
 }
@@ -32321,20 +29939,19 @@ M.UpdateDashboardPermissionsOutput = {
         },
         Permissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePermission,
         },
         RequestId = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
-        LinkSharingConfiguration = {
-            type = "structure",
-        },
+        LinkSharingConfiguration = M.LinkSharingConfiguration,
     },
 }
 
@@ -32356,7 +29973,7 @@ M.UpdateDashboardPublishedVersionInput = {
             },
         },
         VersionNumber = {
-            type = "number",
+            type = "long",
             traits = {
                 http_label = true,
                 required = true,
@@ -32375,8 +29992,9 @@ M.UpdateDashboardPublishedVersionOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -32415,8 +30033,9 @@ M.UpdateDashboardsQAConfigurationOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -32448,16 +30067,16 @@ M.UpdateDataSetInput = {
         },
         PhysicalTableMap = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.PhysicalTable,
             traits = {
                 required = true,
             },
         },
         LogicalTableMap = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.LogicalTable,
         },
         ImportMode = {
             type = "string",
@@ -32467,39 +30086,27 @@ M.UpdateDataSetInput = {
         },
         ColumnGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnGroup,
         },
         FieldFolders = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.FieldFolder,
         },
-        RowLevelPermissionDataSet = {
-            type = "structure",
-        },
-        RowLevelPermissionTagConfiguration = {
-            type = "structure",
-        },
+        RowLevelPermissionDataSet = M.RowLevelPermissionDataSet,
+        RowLevelPermissionTagConfiguration = M.RowLevelPermissionTagConfiguration,
         ColumnLevelPermissionRules = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnLevelPermissionRule,
         },
-        DataSetUsageConfiguration = {
-            type = "structure",
-        },
+        DataSetUsageConfiguration = M.DataSetUsageConfiguration,
         DatasetParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.DatasetParameter,
         },
-        PerformanceConfiguration = {
-            type = "structure",
-        },
-        DataPrepConfiguration = {
-            type = "structure",
-        },
-        SemanticModelConfiguration = {
-            type = "structure",
-        },
+        PerformanceConfiguration = M.PerformanceConfiguration,
+        DataPrepConfiguration = M.DataPrepConfiguration,
+        SemanticModelConfiguration = M.SemanticModelConfiguration,
     },
 }
 
@@ -32522,8 +30129,9 @@ M.UpdateDataSetOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -32549,11 +30157,11 @@ M.UpdateDataSetPermissionsInput = {
         },
         GrantPermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePermission,
         },
         RevokePermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePermission,
         },
     },
 }
@@ -32571,8 +30179,9 @@ M.UpdateDataSetPermissionsOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -32602,18 +30211,10 @@ M.UpdateDataSourceInput = {
                 required = true,
             },
         },
-        DataSourceParameters = {
-            type = "union",
-        },
-        Credentials = {
-            type = "structure",
-        },
-        VpcConnectionProperties = {
-            type = "structure",
-        },
-        SslProperties = {
-            type = "structure",
-        },
+        DataSourceParameters = M.DataSourceParameters,
+        Credentials = M.DataSourceCredentials,
+        VpcConnectionProperties = M.VpcConnectionProperties,
+        SslProperties = M.SslProperties,
     },
 }
 
@@ -32633,8 +30234,9 @@ M.UpdateDataSourceOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -32660,11 +30262,11 @@ M.UpdateDataSourcePermissionsInput = {
         },
         GrantPermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePermission,
         },
         RevokePermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePermission,
         },
     },
 }
@@ -32682,8 +30284,9 @@ M.UpdateDataSourcePermissionsOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -32722,8 +30325,9 @@ M.UpdateDefaultQBusinessApplicationOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -32749,11 +30353,11 @@ M.UpdateFlowPermissionsInput = {
         },
         GrantPermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.Permission,
         },
         RevokePermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.Permission,
         },
     },
 }
@@ -32762,8 +30366,9 @@ M.UpdateFlowPermissionsOutput = {
     type = "structure",
     members = {
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -32775,7 +30380,7 @@ M.UpdateFlowPermissionsOutput = {
         },
         Permissions = {
             type = "list",
-            member_type = "structure",
+            member = M.Permission,
             traits = {
                 required = true,
             },
@@ -32825,8 +30430,9 @@ M.UpdateFolderOutput = {
     type = "structure",
     members = {
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -32861,11 +30467,11 @@ M.UpdateFolderPermissionsInput = {
         },
         GrantPermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePermission,
         },
         RevokePermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePermission,
         },
     },
 }
@@ -32874,7 +30480,10 @@ M.UpdateFolderPermissionsOutput = {
     type = "structure",
     members = {
         Status = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         Arn = {
             type = "string",
@@ -32884,7 +30493,7 @@ M.UpdateFolderPermissionsOutput = {
         },
         Permissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePermission,
         },
         RequestId = {
             type = "string",
@@ -32925,15 +30534,14 @@ M.UpdateGroupInput = {
 M.UpdateGroupOutput = {
     type = "structure",
     members = {
-        Group = {
-            type = "structure",
-        },
+        Group = M.Group,
         RequestId = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -32972,8 +30580,8 @@ M.UpdateIAMPolicyAssignmentInput = {
         },
         Identities = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
     },
 }
@@ -32992,8 +30600,8 @@ M.UpdateIAMPolicyAssignmentOutput = {
         },
         Identities = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         AssignmentStatus = {
             type = "string",
@@ -33002,8 +30610,9 @@ M.UpdateIAMPolicyAssignmentOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -33029,7 +30638,7 @@ M.UpdateIdentityPropagationConfigInput = {
         },
         AuthorizedTargets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -33041,8 +30650,9 @@ M.UpdateIdentityPropagationConfigOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -33061,18 +30671,18 @@ M.UpdateIpRestrictionInput = {
         },
         IpRestrictionRuleMap = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         VpcIdRestrictionRuleMap = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         VpcEndpointIdRestrictionRuleMap = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Enabled = {
             type = "boolean",
@@ -33090,8 +30700,9 @@ M.UpdateIpRestrictionOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -33110,7 +30721,7 @@ M.UpdateKeyRegistrationInput = {
         },
         KeyRegistration = {
             type = "list",
-            member_type = "structure",
+            member = M.RegisteredCustomerManagedKey,
             traits = {
                 required = true,
             },
@@ -33128,8 +30739,9 @@ M.SuccessfulKeyRegistrationEntry = {
             },
         },
         StatusCode = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -33141,11 +30753,11 @@ M.UpdateKeyRegistrationOutput = {
     members = {
         FailedKeyRegistration = {
             type = "list",
-            member_type = "structure",
+            member = M.FailedKeyRegistrationEntry,
         },
         SuccessfulKeyRegistration = {
             type = "list",
-            member_type = "structure",
+            member = M.SuccessfulKeyRegistrationEntry,
         },
         RequestId = {
             type = "string",
@@ -33165,6 +30777,9 @@ M.UpdatePublicSharingSettingsInput = {
         },
         PublicSharingEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -33176,8 +30791,9 @@ M.UpdatePublicSharingSettingsOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -33213,8 +30829,9 @@ M.UpdateQPersonalizationConfigurationOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -33250,8 +30867,9 @@ M.UpdateQuickSightQSearchConfigurationOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -33275,12 +30893,9 @@ M.UpdateRefreshScheduleInput = {
                 required = true,
             },
         },
-        Schedule = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Schedule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RefreshSchedule }),
     },
 }
 
@@ -33288,8 +30903,9 @@ M.UpdateRefreshScheduleOutput = {
     type = "structure",
     members = {
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -33345,7 +30961,10 @@ M.UpdateRoleCustomPermissionOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -33391,15 +31010,14 @@ M.UpdateSelfUpgradeInput = {
 M.UpdateSelfUpgradeOutput = {
     type = "structure",
     members = {
-        SelfUpgradeRequestDetail = {
-            type = "structure",
-        },
+        SelfUpgradeRequestDetail = M.SelfUpgradeRequestDetail,
         RequestId = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -33439,8 +31057,9 @@ M.UpdateSelfUpgradeConfigurationOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -33473,8 +31092,9 @@ M.UpdateSPICECapacityConfigurationOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -33498,21 +31118,15 @@ M.UpdateTemplateInput = {
                 required = true,
             },
         },
-        SourceEntity = {
-            type = "structure",
-        },
+        SourceEntity = M.TemplateSourceEntity,
         VersionDescription = {
             type = "string",
         },
         Name = {
             type = "string",
         },
-        Definition = {
-            type = "structure",
-        },
-        ValidationStrategy = {
-            type = "structure",
-        },
+        Definition = M.TemplateVersionDefinition,
+        ValidationStrategy = M.ValidationStrategy,
     },
 }
 
@@ -33532,8 +31146,9 @@ M.UpdateTemplateOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -33568,7 +31183,7 @@ M.UpdateTemplateAliasInput = {
             },
         },
         TemplateVersionNumber = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -33579,12 +31194,11 @@ M.UpdateTemplateAliasInput = {
 M.UpdateTemplateAliasOutput = {
     type = "structure",
     members = {
-        TemplateAlias = {
-            type = "structure",
-        },
+        TemplateAlias = M.TemplateAlias,
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -33613,11 +31227,11 @@ M.UpdateTemplatePermissionsInput = {
         },
         GrantPermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePermission,
         },
         RevokePermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePermission,
         },
     },
 }
@@ -33633,14 +31247,15 @@ M.UpdateTemplatePermissionsOutput = {
         },
         Permissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePermission,
         },
         RequestId = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -33676,9 +31291,7 @@ M.UpdateThemeInput = {
         VersionDescription = {
             type = "string",
         },
-        Configuration = {
-            type = "structure",
-        },
+        Configuration = M.ThemeConfiguration,
     },
 }
 
@@ -33698,8 +31311,9 @@ M.UpdateThemeOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -33734,7 +31348,7 @@ M.UpdateThemeAliasInput = {
             },
         },
         ThemeVersionNumber = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -33745,12 +31359,11 @@ M.UpdateThemeAliasInput = {
 M.UpdateThemeAliasOutput = {
     type = "structure",
     members = {
-        ThemeAlias = {
-            type = "structure",
-        },
+        ThemeAlias = M.ThemeAlias,
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -33779,11 +31392,11 @@ M.UpdateThemePermissionsInput = {
         },
         GrantPermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePermission,
         },
         RevokePermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePermission,
         },
     },
 }
@@ -33799,14 +31412,15 @@ M.UpdateThemePermissionsOutput = {
         },
         Permissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePermission,
         },
         RequestId = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -33830,15 +31444,10 @@ M.UpdateTopicInput = {
                 required = true,
             },
         },
-        Topic = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        CustomInstructions = {
-            type = "structure",
-        },
+        Topic = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TopicDetails }),
+        CustomInstructions = M.CustomInstructions,
     },
 }
 
@@ -33858,8 +31467,9 @@ M.UpdateTopicOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -33885,11 +31495,11 @@ M.UpdateTopicPermissionsInput = {
         },
         GrantPermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePermission,
         },
         RevokePermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePermission,
         },
     },
 }
@@ -33905,11 +31515,12 @@ M.UpdateTopicPermissionsOutput = {
         },
         Permissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePermission,
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -33943,12 +31554,9 @@ M.UpdateTopicRefreshScheduleInput = {
                 required = true,
             },
         },
-        RefreshSchedule = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RefreshSchedule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TopicRefreshSchedule }),
     },
 }
 
@@ -33965,8 +31573,9 @@ M.UpdateTopicRefreshScheduleOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -34017,6 +31626,9 @@ M.UpdateUserInput = {
         },
         UnapplyCustomPermissions = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         ExternalLoginFederationProviderType = {
             type = "string",
@@ -34033,15 +31645,14 @@ M.UpdateUserInput = {
 M.UpdateUserOutput = {
     type = "structure",
     members = {
-        User = {
-            type = "structure",
-        },
+        User = M.User,
         RequestId = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -34088,8 +31699,9 @@ M.UpdateUserCustomPermissionOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -34121,21 +31733,21 @@ M.UpdateVPCConnectionInput = {
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         DnsResolvers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RoleArn = {
             type = "string",
@@ -34165,8 +31777,9 @@ M.UpdateVPCConnectionOutput = {
             type = "string",
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -34182,12 +31795,10 @@ M.TopicVisual = {
         Role = {
             type = "string",
         },
-        Ir = {
-            type = "structure",
-        },
+        Ir = M.TopicIR,
         SupportingVisuals = {
             type = "list",
-            member_type = "structure",
+            member = M.TopicVisual,
         },
     },
 }
@@ -34213,15 +31824,9 @@ M.CreateTopicReviewedAnswer = {
                 required = true,
             },
         },
-        Mir = {
-            type = "structure",
-        },
-        PrimaryVisual = {
-            type = "structure",
-        },
-        Template = {
-            type = "structure",
-        },
+        Mir = M.TopicIR,
+        PrimaryVisual = M.TopicVisual,
+        Template = M.TopicTemplate,
     },
 }
 
@@ -34249,15 +31854,9 @@ M.TopicReviewedAnswer = {
                 required = true,
             },
         },
-        Mir = {
-            type = "structure",
-        },
-        PrimaryVisual = {
-            type = "structure",
-        },
-        Template = {
-            type = "structure",
-        },
+        Mir = M.TopicIR,
+        PrimaryVisual = M.TopicVisual,
+        Template = M.TopicTemplate,
     },
 }
 
@@ -34280,7 +31879,7 @@ M.BatchCreateTopicReviewedAnswerInput = {
         },
         Answers = {
             type = "list",
-            member_type = "structure",
+            member = M.CreateTopicReviewedAnswer,
             traits = {
                 required = true,
             },
@@ -34299,11 +31898,12 @@ M.ListTopicReviewedAnswersOutput = {
         },
         Answers = {
             type = "list",
-            member_type = "structure",
+            member = M.TopicReviewedAnswer,
         },
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },

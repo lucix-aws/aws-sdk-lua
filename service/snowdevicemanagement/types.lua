@@ -104,13 +104,13 @@ M.Capacity = {
             type = "string",
         },
         total = {
-            type = "number",
+            type = "long",
         },
         used = {
-            type = "number",
+            type = "long",
         },
         available = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -126,12 +126,8 @@ M.Unlock = {
 M.Command = {
     type = "union",
     members = {
-        unlock = {
-            type = "structure",
-        },
-        reboot = {
-            type = "structure",
-        },
+        unlock = M.Unlock,
+        reboot = M.Reboot,
     },
 }
 
@@ -139,10 +135,10 @@ M.CpuOptions = {
     type = "structure",
     members = {
         coreCount = {
-            type = "number",
+            type = "integer",
         },
         threadsPerCore = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -152,24 +148,21 @@ M.CreateTaskInput = {
     members = {
         targets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        command = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        command = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Command }),
         description = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         clientToken = {
             type = "string",
@@ -287,8 +280,8 @@ M.DescribeDeviceOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         managedDeviceId = {
             type = "string",
@@ -307,15 +300,13 @@ M.DescribeDeviceOutput = {
         },
         physicalNetworkInterfaces = {
             type = "list",
-            member_type = "structure",
+            member = M.PhysicalNetworkInterface,
         },
         deviceCapacities = {
             type = "list",
-            member_type = "structure",
+            member = M.Capacity,
         },
-        software = {
-            type = "structure",
-        },
+        software = M.SoftwareInformation,
     },
 }
 
@@ -331,7 +322,7 @@ M.DescribeDeviceEc2InstancesInput = {
         },
         instanceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -363,9 +354,7 @@ M.InstanceBlockDeviceMapping = {
         deviceName = {
             type = "string",
         },
-        ebs = {
-            type = "structure",
-        },
+        ebs = M.EbsInstanceBlockDevice,
     },
 }
 
@@ -394,7 +383,7 @@ M.InstanceState = {
     type = "structure",
     members = {
         code = {
-            type = "number",
+            type = "integer",
         },
         name = {
             type = "string",
@@ -409,14 +398,12 @@ M.Instance = {
             type = "string",
         },
         amiLaunchIndex = {
-            type = "number",
+            type = "integer",
         },
         instanceId = {
             type = "string",
         },
-        state = {
-            type = "structure",
-        },
+        state = M.InstanceState,
         instanceType = {
             type = "string",
         },
@@ -434,15 +421,13 @@ M.Instance = {
         },
         blockDeviceMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceBlockDeviceMapping,
         },
         securityGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.SecurityGroupIdentifier,
         },
-        cpuOptions = {
-            type = "structure",
-        },
+        cpuOptions = M.CpuOptions,
         rootDeviceName = {
             type = "string",
         },
@@ -452,9 +437,7 @@ M.Instance = {
 M.InstanceSummary = {
     type = "structure",
     members = {
-        instance = {
-            type = "structure",
-        },
+        instance = M.Instance,
         lastUpdatedAt = {
             type = "timestamp",
         },
@@ -466,7 +449,7 @@ M.DescribeDeviceEc2InstancesOutput = {
     members = {
         instances = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceSummary,
         },
     },
 }
@@ -555,7 +538,7 @@ M.DescribeTaskOutput = {
         },
         targets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         state = {
             type = "string",
@@ -574,8 +557,8 @@ M.DescribeTaskOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -594,8 +577,8 @@ M.DeviceSummary = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -617,7 +600,7 @@ M.ListExecutionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -654,7 +637,7 @@ M.ListExecutionsOutput = {
     members = {
         executions = {
             type = "list",
-            member_type = "structure",
+            member = M.ExecutionSummary,
         },
         nextToken = {
             type = "string",
@@ -679,7 +662,7 @@ M.ListDeviceResourcesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -716,7 +699,7 @@ M.ListDeviceResourcesOutput = {
     members = {
         resources = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceSummary,
         },
         nextToken = {
             type = "string",
@@ -734,7 +717,7 @@ M.ListDevicesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -753,7 +736,7 @@ M.ListDevicesOutput = {
     members = {
         devices = {
             type = "list",
-            member_type = "structure",
+            member = M.DeviceSummary,
         },
         nextToken = {
             type = "string",
@@ -779,8 +762,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -795,7 +778,7 @@ M.ListTasksInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -826,8 +809,8 @@ M.TaskSummary = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -837,7 +820,7 @@ M.ListTasksOutput = {
     members = {
         tasks = {
             type = "list",
-            member_type = "structure",
+            member = M.TaskSummary,
         },
         nextToken = {
             type = "string",
@@ -857,8 +840,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -882,7 +865,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,

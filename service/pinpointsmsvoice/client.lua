@@ -16,7 +16,7 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "PinpointSMSVoice"
-    cfg.signing_name = "pinpointsmsvoice"
+    cfg.signing_name = "sms-voice"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end

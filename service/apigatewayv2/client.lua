@@ -16,7 +16,7 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "ApiGatewayV2"
-    cfg.signing_name = "apigatewayv2"
+    cfg.signing_name = "apigateway"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end

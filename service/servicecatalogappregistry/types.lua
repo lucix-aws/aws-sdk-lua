@@ -23,13 +23,13 @@ M.Application = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         applicationTag = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -93,7 +93,7 @@ M.ApplicationTagResult = {
         },
         resources = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcesListItem,
         },
         nextToken = {
             type = "string",
@@ -113,9 +113,7 @@ M.TagQueryConfiguration = {
 M.AppRegistryConfiguration = {
     type = "structure",
     members = {
-        tagQueryConfiguration = {
-            type = "structure",
-        },
+        tagQueryConfiguration = M.TagQueryConfiguration,
     },
 }
 
@@ -237,7 +235,7 @@ M.AssociateResourceInput = {
         },
         options = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -253,7 +251,7 @@ M.AssociateResourceOutput = {
         },
         options = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -297,8 +295,8 @@ M.AttributeGroup = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -362,8 +360,8 @@ M.CreateApplicationInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         clientToken = {
             type = "string",
@@ -377,9 +375,7 @@ M.CreateApplicationInput = {
 M.CreateApplicationOutput = {
     type = "structure",
     members = {
-        application = {
-            type = "structure",
-        },
+        application = M.Application,
     },
 }
 
@@ -403,8 +399,8 @@ M.CreateAttributeGroupInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         clientToken = {
             type = "string",
@@ -418,9 +414,7 @@ M.CreateAttributeGroupInput = {
 M.CreateAttributeGroupOutput = {
     type = "structure",
     members = {
-        attributeGroup = {
-            type = "structure",
-        },
+        attributeGroup = M.AttributeGroup,
     },
 }
 
@@ -440,9 +434,7 @@ M.DeleteApplicationInput = {
 M.DeleteApplicationOutput = {
     type = "structure",
     members = {
-        application = {
-            type = "structure",
-        },
+        application = M.ApplicationSummary,
     },
 }
 
@@ -462,9 +454,7 @@ M.DeleteAttributeGroupInput = {
 M.DeleteAttributeGroupOutput = {
     type = "structure",
     members = {
-        attributeGroup = {
-            type = "structure",
-        },
+        attributeGroup = M.AttributeGroupSummary,
     },
 }
 
@@ -579,12 +569,8 @@ M.ResourceGroup = {
 M.Integrations = {
     type = "structure",
     members = {
-        resourceGroup = {
-            type = "structure",
-        },
-        applicationTagResourceGroup = {
-            type = "structure",
-        },
+        resourceGroup = M.ResourceGroup,
+        applicationTagResourceGroup = M.ResourceGroup,
     },
 }
 
@@ -610,20 +596,21 @@ M.GetApplicationOutput = {
             type = "timestamp",
         },
         associatedResourceCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        integrations = {
-            type = "structure",
-        },
+        integrations = M.Integrations,
         applicationTag = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -667,13 +654,13 @@ M.GetAssociatedResourceInput = {
         },
         resourceTagStatus = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "resourceTagStatus",
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -684,9 +671,7 @@ M.GetAssociatedResourceInput = {
 M.ResourceIntegrations = {
     type = "structure",
     members = {
-        resourceGroup = {
-            type = "structure",
-        },
+        resourceGroup = M.ResourceGroup,
     },
 }
 
@@ -702,25 +687,19 @@ M.Resource = {
         associationTime = {
             type = "timestamp",
         },
-        integrations = {
-            type = "structure",
-        },
+        integrations = M.ResourceIntegrations,
     },
 }
 
 M.GetAssociatedResourceOutput = {
     type = "structure",
     members = {
-        resource = {
-            type = "structure",
-        },
+        resource = M.Resource,
         options = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        applicationTagResult = {
-            type = "structure",
-        },
+        applicationTagResult = M.ApplicationTagResult,
     },
 }
 
@@ -763,8 +742,8 @@ M.GetAttributeGroupOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         createdBy = {
             type = "string",
@@ -779,9 +758,7 @@ M.GetConfigurationInput = {
 M.GetConfigurationOutput = {
     type = "structure",
     members = {
-        configuration = {
-            type = "structure",
-        },
+        configuration = M.AppRegistryConfiguration,
     },
 }
 
@@ -795,7 +772,7 @@ M.ListApplicationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -808,7 +785,7 @@ M.ListApplicationsOutput = {
     members = {
         applications = {
             type = "list",
-            member_type = "structure",
+            member = M.ApplicationSummary,
         },
         nextToken = {
             type = "string",
@@ -833,7 +810,7 @@ M.ListAssociatedAttributeGroupsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -846,7 +823,7 @@ M.ListAssociatedAttributeGroupsOutput = {
     members = {
         attributeGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -871,7 +848,7 @@ M.ListAssociatedResourcesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -900,12 +877,10 @@ M.ResourceInfo = {
         resourceType = {
             type = "string",
         },
-        resourceDetails = {
-            type = "structure",
-        },
+        resourceDetails = M.ResourceDetails,
         options = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -915,7 +890,7 @@ M.ListAssociatedResourcesOutput = {
     members = {
         resources = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceInfo,
         },
         nextToken = {
             type = "string",
@@ -933,7 +908,7 @@ M.ListAttributeGroupsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -946,7 +921,7 @@ M.ListAttributeGroupsOutput = {
     members = {
         attributeGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.AttributeGroupSummary,
         },
         nextToken = {
             type = "string",
@@ -971,7 +946,7 @@ M.ListAttributeGroupsForApplicationInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -984,7 +959,7 @@ M.ListAttributeGroupsForApplicationOutput = {
     members = {
         attributeGroupsDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.AttributeGroupDetails,
         },
         nextToken = {
             type = "string",
@@ -1010,8 +985,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1019,12 +994,9 @@ M.ListTagsForResourceOutput = {
 M.PutConfigurationInput = {
     type = "structure",
     members = {
-        configuration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AppRegistryConfiguration }),
     },
 }
 
@@ -1084,8 +1056,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1109,7 +1081,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -1144,9 +1116,7 @@ M.UpdateApplicationInput = {
 M.UpdateApplicationOutput = {
     type = "structure",
     members = {
-        application = {
-            type = "structure",
-        },
+        application = M.Application,
     },
 }
 
@@ -1175,9 +1145,7 @@ M.UpdateAttributeGroupInput = {
 M.UpdateAttributeGroupOutput = {
     type = "structure",
     members = {
-        attributeGroup = {
-            type = "structure",
-        },
+        attributeGroup = M.AttributeGroup,
     },
 }
 

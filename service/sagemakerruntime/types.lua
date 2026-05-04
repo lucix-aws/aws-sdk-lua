@@ -151,7 +151,7 @@ M.ModelError = {
             type = "string",
         },
         OriginalStatusCode = {
-            type = "number",
+            type = "integer",
         },
         OriginalMessage = {
             type = "string",
@@ -246,13 +246,13 @@ M.InvokeEndpointAsyncInput = {
             },
         },
         RequestTTLSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "X-Amzn-SageMaker-RequestTTLSeconds",
             },
         },
         InvocationTimeoutSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "X-Amzn-SageMaker-InvocationTimeoutSeconds",
             },
@@ -384,28 +384,19 @@ M.PayloadPart = {
 M.ResponseStream = {
     type = "union",
     members = {
-        PayloadPart = {
-            type = "structure",
-        },
-        ModelStreamError = {
-            type = "structure",
-        },
-        InternalStreamFailure = {
-            type = "structure",
-        },
+        PayloadPart = M.PayloadPart,
+        ModelStreamError = M.ModelStreamError,
+        InternalStreamFailure = M.InternalStreamFailure,
     },
 }
 
 M.InvokeEndpointWithResponseStreamOutput = {
     type = "structure",
     members = {
-        Body = {
-            type = "union",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        Body = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.ResponseStream }),
         ContentType = {
             type = "string",
             traits = {

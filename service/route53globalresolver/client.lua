@@ -16,7 +16,7 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "EC2DNSGlobalResolverCustomerAPI"
-    cfg.signing_name = "ec2dnsglobalresolvercustomerapi"
+    cfg.signing_name = "route53globalresolver"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end

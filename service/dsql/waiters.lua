@@ -1,0 +1,41 @@
+local waiter = require("waiter")
+
+local M = {}
+
+--- Wait until ClusterActive.
+function M.wait_until_cluster_active(client, input, options)
+    return waiter.wait(client, "getCluster", input, {
+        min_delay = 2,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "status",
+                        expected = "ACTIVE",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until ClusterNotExists.
+function M.wait_until_cluster_not_exists(client, input, options)
+    return waiter.wait(client, "getCluster", input, {
+        min_delay = 2,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    errorType = "ResourceNotFoundException",
+                },
+            },
+        },
+    }, options)
+end
+
+return M

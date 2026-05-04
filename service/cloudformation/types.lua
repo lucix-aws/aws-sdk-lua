@@ -32,7 +32,7 @@ M.AccountLimit = {
             type = "string",
         },
         Value = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -115,9 +115,7 @@ M.ActivateTypeInput = {
         AutoUpdate = {
             type = "boolean",
         },
-        LoggingConfig = {
-            type = "structure",
-        },
+        LoggingConfig = M.LoggingConfig,
         ExecutionRoleArn = {
             type = "string",
         },
@@ -125,7 +123,7 @@ M.ActivateTypeInput = {
             type = "string",
         },
         MajorVersion = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -229,7 +227,7 @@ M.AutoDeployment = {
         },
         DependsOn = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -260,7 +258,7 @@ M.BatchDescribeTypeConfigurationsInput = {
     members = {
         TypeConfigurationIdentifiers = {
             type = "list",
-            member_type = "structure",
+            member = M.TypeConfigurationIdentifier,
             traits = {
                 required = true,
             },
@@ -277,9 +275,7 @@ M.BatchDescribeTypeConfigurationsError = {
         ErrorMessage = {
             type = "string",
         },
-        TypeConfigurationIdentifier = {
-            type = "structure",
-        },
+        TypeConfigurationIdentifier = M.TypeConfigurationIdentifier,
     },
 }
 
@@ -315,15 +311,15 @@ M.BatchDescribeTypeConfigurationsOutput = {
     members = {
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchDescribeTypeConfigurationsError,
         },
         UnprocessedTypeConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.TypeConfigurationIdentifier,
         },
         TypeConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.TypeConfigurationDetails,
         },
     },
 }
@@ -477,9 +473,7 @@ M.ResourceTargetDefinition = {
         AfterValueFrom = {
             type = "string",
         },
-        Drift = {
-            type = "structure",
-        },
+        Drift = M.LiveResourceDrift,
         AttributeChangeType = {
             type = "string",
         },
@@ -489,9 +483,7 @@ M.ResourceTargetDefinition = {
 M.ResourceChangeDetail = {
     type = "structure",
     members = {
-        Target = {
-            type = "structure",
-        },
+        Target = M.ResourceTargetDefinition,
         Evaluation = {
             type = "string",
         },
@@ -580,25 +572,23 @@ M.ResourceChange = {
         },
         Scope = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ResourceDriftStatus = {
             type = "string",
         },
         ResourceDriftIgnoredAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceDriftIgnoredAttribute,
         },
         Details = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceChangeDetail,
         },
         ChangeSetId = {
             type = "string",
         },
-        ModuleInfo = {
-            type = "structure",
-        },
+        ModuleInfo = M.ModuleInfo,
         BeforeContext = {
             type = "string",
         },
@@ -622,11 +612,9 @@ M.Change = {
             type = "string",
         },
         HookInvocationCount = {
-            type = "number",
+            type = "integer",
         },
-        ResourceChange = {
-            type = "structure",
-        },
+        ResourceChange = M.ResourceChange,
     },
 }
 
@@ -664,9 +652,7 @@ M.ChangeSetHookTargetDetails = {
         TargetType = {
             type = "string",
         },
-        ResourceTargetDetails = {
-            type = "structure",
-        },
+        ResourceTargetDetails = M.ChangeSetHookResourceTargetDetails,
     },
 }
 
@@ -688,9 +674,7 @@ M.ChangeSetHook = {
         TypeConfigurationVersionId = {
             type = "string",
         },
-        TargetDetails = {
-            type = "structure",
-        },
+        TargetDetails = M.ChangeSetHookTargetDetails,
     },
 }
 
@@ -795,7 +779,7 @@ M.ContinueUpdateRollbackInput = {
         },
         ResourcesToSkip = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ClientRequestToken = {
             type = "string",
@@ -852,8 +836,8 @@ M.ResourceToImport = {
         },
         ResourceIdentifier = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -884,10 +868,10 @@ M.RollbackConfiguration = {
     members = {
         RollbackTriggers = {
             type = "list",
-            member_type = "structure",
+            member = M.RollbackTrigger,
         },
         MonitoringTimeInMinutes = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -930,29 +914,27 @@ M.CreateChangeSetInput = {
         },
         Parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.Parameter,
         },
         Capabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ResourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RoleARN = {
             type = "string",
         },
-        RollbackConfiguration = {
-            type = "structure",
-        },
+        RollbackConfiguration = M.RollbackConfiguration,
         NotificationARNs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ChangeSetName = {
             type = "string",
@@ -971,7 +953,7 @@ M.CreateChangeSetInput = {
         },
         ResourcesToImport = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceToImport,
         },
         IncludeNestedStacks = {
             type = "boolean",
@@ -1044,8 +1026,8 @@ M.ResourceDefinition = {
         },
         ResourceIdentifier = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1080,7 +1062,7 @@ M.CreateGeneratedTemplateInput = {
     members = {
         Resources = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceDefinition,
         },
         GeneratedTemplateName = {
             type = "string",
@@ -1091,9 +1073,7 @@ M.CreateGeneratedTemplateInput = {
         StackName = {
             type = "string",
         },
-        TemplateConfiguration = {
-            type = "structure",
-        },
+        TemplateConfiguration = M.TemplateConfiguration,
     },
 }
 
@@ -1129,28 +1109,26 @@ M.CreateStackInput = {
         },
         Parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.Parameter,
         },
         DisableRollback = {
             type = "boolean",
         },
-        RollbackConfiguration = {
-            type = "structure",
-        },
+        RollbackConfiguration = M.RollbackConfiguration,
         TimeoutInMinutes = {
-            type = "number",
+            type = "integer",
         },
         NotificationARNs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Capabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ResourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RoleARN = {
             type = "string",
@@ -1166,7 +1144,7 @@ M.CreateStackInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ClientRequestToken = {
             type = "string",
@@ -1197,14 +1175,14 @@ M.DeploymentTargets = {
     members = {
         Accounts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AccountsUrl = {
             type = "string",
         },
         OrganizationalUnitIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AccountFilterType = {
             type = "string",
@@ -1230,19 +1208,19 @@ M.StackSetOperationPreferences = {
         },
         RegionOrder = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         FailureToleranceCount = {
-            type = "number",
+            type = "integer",
         },
         FailureTolerancePercentage = {
-            type = "number",
+            type = "integer",
         },
         MaxConcurrentCount = {
-            type = "number",
+            type = "integer",
         },
         MaxConcurrentPercentage = {
-            type = "number",
+            type = "integer",
         },
         ConcurrencyMode = {
             type = "string",
@@ -1261,25 +1239,21 @@ M.CreateStackInstancesInput = {
         },
         Accounts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        DeploymentTargets = {
-            type = "structure",
-        },
+        DeploymentTargets = M.DeploymentTargets,
         Regions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         ParameterOverrides = {
             type = "list",
-            member_type = "structure",
+            member = M.Parameter,
         },
-        OperationPreferences = {
-            type = "structure",
-        },
+        OperationPreferences = M.StackSetOperationPreferences,
         OperationId = {
             type = "string",
         },
@@ -1359,18 +1333,12 @@ M.ResourceLocation = {
 M.ResourceMapping = {
     type = "structure",
     members = {
-        Source = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Destination = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Source = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResourceLocation }),
+        Destination = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResourceLocation }),
     },
 }
 
@@ -1400,11 +1368,11 @@ M.CreateStackRefactorInput = {
         },
         ResourceMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceMapping,
         },
         StackDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.StackDefinition,
             traits = {
                 required = true,
             },
@@ -1471,15 +1439,15 @@ M.CreateStackSetInput = {
         },
         Parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.Parameter,
         },
         Capabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         AdministrationRoleARN = {
             type = "string",
@@ -1490,18 +1458,14 @@ M.CreateStackSetInput = {
         PermissionModel = {
             type = "string",
         },
-        AutoDeployment = {
-            type = "structure",
-        },
+        AutoDeployment = M.AutoDeployment,
         CallAs = {
             type = "string",
         },
         ClientRequestToken = {
             type = "string",
         },
-        ManagedExecution = {
-            type = "structure",
-        },
+        ManagedExecution = M.ManagedExecution,
     },
 }
 
@@ -1622,7 +1586,7 @@ M.DeleteStackInput = {
         },
         RetainResources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RoleARN = {
             type = "string",
@@ -1651,21 +1615,17 @@ M.DeleteStackInstancesInput = {
         },
         Accounts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        DeploymentTargets = {
-            type = "structure",
-        },
+        DeploymentTargets = M.DeploymentTargets,
         Regions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        OperationPreferences = {
-            type = "structure",
-        },
+        OperationPreferences = M.StackSetOperationPreferences,
         RetainStacks = {
             type = "boolean",
             traits = {
@@ -1761,7 +1721,7 @@ M.DescribeAccountLimitsOutput = {
     members = {
         AccountLimits = {
             type = "list",
-            member_type = "structure",
+            member = M.AccountLimit,
         },
         NextToken = {
             type = "string",
@@ -1817,7 +1777,7 @@ M.DescribeChangeSetOutput = {
         },
         Parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.Parameter,
         },
         CreationTime = {
             type = "timestamp",
@@ -1836,22 +1796,20 @@ M.DescribeChangeSetOutput = {
         },
         NotificationARNs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        RollbackConfiguration = {
-            type = "structure",
-        },
+        RollbackConfiguration = M.RollbackConfiguration,
         Capabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         Changes = {
             type = "list",
-            member_type = "structure",
+            member = M.Change,
         },
         NextToken = {
             type = "string",
@@ -1909,7 +1867,7 @@ M.DescribeChangeSetHooksOutput = {
         },
         Hooks = {
             type = "list",
-            member_type = "structure",
+            member = M.ChangeSetHook,
         },
         Status = {
             type = "string",
@@ -1947,9 +1905,7 @@ M.DescribeEventsInput = {
         OperationId = {
             type = "string",
         },
-        Filters = {
-            type = "structure",
-        },
+        Filters = M.EventFilter,
         NextToken = {
             type = "string",
         },
@@ -2113,7 +2069,7 @@ M.DescribeEventsOutput = {
     members = {
         OperationEvents = {
             type = "list",
-            member_type = "structure",
+            member = M.OperationEvent,
         },
         NextToken = {
             type = "string",
@@ -2137,16 +2093,16 @@ M.TemplateProgress = {
     type = "structure",
     members = {
         ResourcesSucceeded = {
-            type = "number",
+            type = "integer",
         },
         ResourcesFailed = {
-            type = "number",
+            type = "integer",
         },
         ResourcesProcessing = {
-            type = "number",
+            type = "integer",
         },
         ResourcesPending = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2189,7 +2145,7 @@ M.WarningDetail = {
         },
         Properties = {
             type = "list",
-            member_type = "structure",
+            member = M.WarningProperty,
         },
     },
 }
@@ -2205,8 +2161,8 @@ M.ResourceDetail = {
         },
         ResourceIdentifier = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ResourceStatus = {
             type = "string",
@@ -2216,7 +2172,7 @@ M.ResourceDetail = {
         },
         Warnings = {
             type = "list",
-            member_type = "structure",
+            member = M.WarningDetail,
         },
     },
 }
@@ -2243,7 +2199,7 @@ M.DescribeGeneratedTemplateOutput = {
         },
         Resources = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceDetail,
         },
         Status = {
             type = "string",
@@ -2257,17 +2213,13 @@ M.DescribeGeneratedTemplateOutput = {
         LastUpdatedTime = {
             type = "timestamp",
         },
-        Progress = {
-            type = "structure",
-        },
+        Progress = M.TemplateProgress,
         StackId = {
             type = "string",
         },
-        TemplateConfiguration = {
-            type = "structure",
-        },
+        TemplateConfiguration = M.TemplateConfiguration,
         TotalWarnings = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2351,7 +2303,7 @@ M.ScanFilter = {
     members = {
         Types = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2382,21 +2334,21 @@ M.DescribeResourceScanOutput = {
             type = "timestamp",
         },
         PercentageCompleted = {
-            type = "number",
+            type = "double",
         },
         ResourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ResourcesScanned = {
-            type = "number",
+            type = "integer",
         },
         ResourcesRead = {
-            type = "number",
+            type = "integer",
         },
         ScanFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.ScanFilter,
         },
     },
 }
@@ -2457,7 +2409,7 @@ M.DescribeStackDriftDetectionStatusOutput = {
             type = "string",
         },
         DriftedStackResourceCount = {
-            type = "number",
+            type = "integer",
         },
         Timestamp = {
             type = "timestamp",
@@ -2563,7 +2515,7 @@ M.DescribeStackEventsOutput = {
     members = {
         StackEvents = {
             type = "list",
-            member_type = "structure",
+            member = M.StackEvent,
         },
         NextToken = {
             type = "string",
@@ -2641,14 +2593,12 @@ M.StackInstance = {
         },
         ParameterOverrides = {
             type = "list",
-            member_type = "structure",
+            member = M.Parameter,
         },
         Status = {
             type = "string",
         },
-        StackInstanceStatus = {
-            type = "structure",
-        },
+        StackInstanceStatus = M.StackInstanceComprehensiveStatus,
         StatusReason = {
             type = "string",
         },
@@ -2670,9 +2620,7 @@ M.StackInstance = {
 M.DescribeStackInstanceOutput = {
     type = "structure",
     members = {
-        StackInstance = {
-            type = "structure",
-        },
+        StackInstance = M.StackInstance,
     },
 }
 
@@ -2730,7 +2678,7 @@ M.DescribeStackRefactorOutput = {
         },
         StackIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ExecutionStatus = {
             type = "string",
@@ -2835,21 +2783,15 @@ M.StackResourceDetail = {
         Metadata = {
             type = "string",
         },
-        DriftInformation = {
-            type = "structure",
-        },
-        ModuleInfo = {
-            type = "structure",
-        },
+        DriftInformation = M.StackResourceDriftInformation,
+        ModuleInfo = M.ModuleInfo,
     },
 }
 
 M.DescribeStackResourceOutput = {
     type = "structure",
     members = {
-        StackResourceDetail = {
-            type = "structure",
-        },
+        StackResourceDetail = M.StackResourceDetail,
     },
 }
 
@@ -2864,13 +2806,13 @@ M.DescribeStackResourceDriftsInput = {
         },
         StackResourceDriftStatusFilters = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2949,7 +2891,7 @@ M.StackResourceDrift = {
         },
         PhysicalResourceIdContext = {
             type = "list",
-            member_type = "structure",
+            member = M.PhysicalResourceIdContextKeyValuePair,
         },
         ResourceType = {
             type = "string",
@@ -2965,7 +2907,7 @@ M.StackResourceDrift = {
         },
         PropertyDifferences = {
             type = "list",
-            member_type = "structure",
+            member = M.PropertyDifference,
         },
         StackResourceDriftStatus = {
             type = "string",
@@ -2979,9 +2921,7 @@ M.StackResourceDrift = {
                 required = true,
             },
         },
-        ModuleInfo = {
-            type = "structure",
-        },
+        ModuleInfo = M.ModuleInfo,
         DriftStatusReason = {
             type = "string",
         },
@@ -2993,7 +2933,7 @@ M.DescribeStackResourceDriftsOutput = {
     members = {
         StackResourceDrifts = {
             type = "list",
-            member_type = "structure",
+            member = M.StackResourceDrift,
             traits = {
                 required = true,
             },
@@ -3061,12 +3001,8 @@ M.StackResource = {
         Description = {
             type = "string",
         },
-        DriftInformation = {
-            type = "structure",
-        },
-        ModuleInfo = {
-            type = "structure",
-        },
+        DriftInformation = M.StackResourceDriftInformation,
+        ModuleInfo = M.ModuleInfo,
     },
 }
 
@@ -3075,7 +3011,7 @@ M.DescribeStackResourcesOutput = {
     members = {
         StackResources = {
             type = "list",
-            member_type = "structure",
+            member = M.StackResource,
         },
     },
 }
@@ -3183,7 +3119,7 @@ M.Stack = {
         },
         Parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.Parameter,
         },
         CreationTime = {
             type = "timestamp",
@@ -3197,9 +3133,7 @@ M.Stack = {
         LastUpdatedTime = {
             type = "timestamp",
         },
-        RollbackConfiguration = {
-            type = "structure",
-        },
+        RollbackConfiguration = M.RollbackConfiguration,
         StackStatus = {
             type = "string",
             traits = {
@@ -3214,25 +3148,25 @@ M.Stack = {
         },
         NotificationARNs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TimeoutInMinutes = {
-            type = "number",
+            type = "integer",
         },
         Capabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Outputs = {
             type = "list",
-            member_type = "structure",
+            member = M.Output,
         },
         RoleARN = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         EnableTerminationProtection = {
             type = "boolean",
@@ -3243,9 +3177,7 @@ M.Stack = {
         RootId = {
             type = "string",
         },
-        DriftInformation = {
-            type = "structure",
-        },
+        DriftInformation = M.StackDriftInformation,
         RetainExceptOnCreate = {
             type = "boolean",
         },
@@ -3257,7 +3189,7 @@ M.Stack = {
         },
         LastOperations = {
             type = "list",
-            member_type = "structure",
+            member = M.OperationEntry,
         },
     },
 }
@@ -3267,7 +3199,7 @@ M.DescribeStacksOutput = {
     members = {
         Stacks = {
             type = "list",
-            member_type = "structure",
+            member = M.Stack,
         },
         NextToken = {
             type = "string",
@@ -3317,19 +3249,19 @@ M.StackSetDriftDetectionDetails = {
             type = "timestamp",
         },
         TotalStackInstancesCount = {
-            type = "number",
+            type = "integer",
         },
         DriftedStackInstancesCount = {
-            type = "number",
+            type = "integer",
         },
         InSyncStackInstancesCount = {
-            type = "number",
+            type = "integer",
         },
         InProgressStackInstancesCount = {
-            type = "number",
+            type = "integer",
         },
         FailedStackInstancesCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3359,15 +3291,15 @@ M.StackSet = {
         },
         Parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.Parameter,
         },
         Capabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         StackSetARN = {
             type = "string",
@@ -3378,25 +3310,19 @@ M.StackSet = {
         ExecutionRoleName = {
             type = "string",
         },
-        StackSetDriftDetectionDetails = {
-            type = "structure",
-        },
-        AutoDeployment = {
-            type = "structure",
-        },
+        StackSetDriftDetectionDetails = M.StackSetDriftDetectionDetails,
+        AutoDeployment = M.AutoDeployment,
         PermissionModel = {
             type = "string",
         },
         OrganizationalUnitIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        ManagedExecution = {
-            type = "structure",
-        },
+        ManagedExecution = M.ManagedExecution,
         Regions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3404,9 +3330,7 @@ M.StackSet = {
 M.DescribeStackSetOutput = {
     type = "structure",
     members = {
-        StackSet = {
-            type = "structure",
-        },
+        StackSet = M.StackSet,
     },
 }
 
@@ -3451,7 +3375,7 @@ M.StackSetOperationStatusDetails = {
     type = "structure",
     members = {
         FailedStackInstancesCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3471,9 +3395,7 @@ M.StackSetOperation = {
         Status = {
             type = "string",
         },
-        OperationPreferences = {
-            type = "structure",
-        },
+        OperationPreferences = M.StackSetOperationPreferences,
         RetainStacks = {
             type = "boolean",
         },
@@ -3489,27 +3411,19 @@ M.StackSetOperation = {
         EndTimestamp = {
             type = "timestamp",
         },
-        DeploymentTargets = {
-            type = "structure",
-        },
-        StackSetDriftDetectionDetails = {
-            type = "structure",
-        },
+        DeploymentTargets = M.DeploymentTargets,
+        StackSetDriftDetectionDetails = M.StackSetDriftDetectionDetails,
         StatusReason = {
             type = "string",
         },
-        StatusDetails = {
-            type = "structure",
-        },
+        StatusDetails = M.StackSetOperationStatusDetails,
     },
 }
 
 M.DescribeStackSetOperationOutput = {
     type = "structure",
     members = {
-        StackSetOperation = {
-            type = "structure",
-        },
+        StackSetOperation = M.StackSetOperation,
     },
 }
 
@@ -3562,7 +3476,7 @@ M.RequiredActivatedType = {
         },
         SupportedMajorVersions = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
         },
     },
 }
@@ -3615,12 +3529,10 @@ M.DescribeTypeOutput = {
         DeprecatedStatus = {
             type = "string",
         },
-        LoggingConfig = {
-            type = "structure",
-        },
+        LoggingConfig = M.LoggingConfig,
         RequiredActivatedTypes = {
             type = "list",
-            member_type = "structure",
+            member = M.RequiredActivatedType,
         },
         ExecutionRoleArn = {
             type = "string",
@@ -3714,7 +3626,7 @@ M.DetectStackDriftInput = {
         },
         LogicalResourceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3752,12 +3664,9 @@ M.DetectStackResourceDriftInput = {
 M.DetectStackResourceDriftOutput = {
     type = "structure",
     members = {
-        StackResourceDrift = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        StackResourceDrift = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.StackResourceDrift }),
     },
 }
 
@@ -3770,9 +3679,7 @@ M.DetectStackSetDriftInput = {
                 required = true,
             },
         },
-        OperationPreferences = {
-            type = "structure",
-        },
+        OperationPreferences = M.StackSetOperationPreferences,
         OperationId = {
             type = "string",
         },
@@ -3802,7 +3709,7 @@ M.EstimateTemplateCostInput = {
         },
         Parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.Parameter,
         },
     },
 }
@@ -3974,12 +3881,10 @@ M.GetHookResultOutput = {
         InvokedAt = {
             type = "timestamp",
         },
-        Target = {
-            type = "structure",
-        },
+        Target = M.HookTarget,
         Annotations = {
             type = "list",
-            member_type = "structure",
+            member = M.Annotation,
         },
     },
 }
@@ -4043,7 +3948,7 @@ M.GetTemplateOutput = {
         },
         StagesAvailable = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4075,9 +3980,7 @@ M.GetTemplateSummaryInput = {
         CallAs = {
             type = "string",
         },
-        TemplateSummaryConfig = {
-            type = "structure",
-        },
+        TemplateSummaryConfig = M.TemplateSummaryConfig,
     },
 }
 
@@ -4086,7 +3989,7 @@ M.ParameterConstraints = {
     members = {
         AllowedValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4109,9 +4012,7 @@ M.ParameterDeclaration = {
         Description = {
             type = "string",
         },
-        ParameterConstraints = {
-            type = "structure",
-        },
+        ParameterConstraints = M.ParameterConstraints,
     },
 }
 
@@ -4123,11 +4024,11 @@ M.ResourceIdentifierSummary = {
         },
         LogicalResourceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ResourceIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4137,7 +4038,7 @@ M.Warnings = {
     members = {
         UnrecognizedResourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4147,21 +4048,21 @@ M.GetTemplateSummaryOutput = {
     members = {
         Parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.ParameterDeclaration,
         },
         Description = {
             type = "string",
         },
         Capabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CapabilitiesReason = {
             type = "string",
         },
         ResourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Version = {
             type = "string",
@@ -4171,15 +4072,13 @@ M.GetTemplateSummaryOutput = {
         },
         DeclaredTransforms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ResourceIdentifierSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceIdentifierSummary,
         },
-        Warnings = {
-            type = "structure",
-        },
+        Warnings = M.Warnings,
     },
 }
 
@@ -4194,18 +4093,16 @@ M.ImportStacksToStackSetInput = {
         },
         StackIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         StackIdsUrl = {
             type = "string",
         },
         OrganizationalUnitIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        OperationPreferences = {
-            type = "structure",
-        },
+        OperationPreferences = M.StackSetOperationPreferences,
         OperationId = {
             type = "string",
         },
@@ -4254,7 +4151,7 @@ M.ListChangeSetsOutput = {
     members = {
         Summaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ChangeSetSummary,
         },
         NextToken = {
             type = "string",
@@ -4291,7 +4188,7 @@ M.ListExportsOutput = {
     members = {
         Exports = {
             type = "list",
-            member_type = "structure",
+            member = M.Export,
         },
         NextToken = {
             type = "string",
@@ -4306,7 +4203,7 @@ M.ListGeneratedTemplatesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4333,7 +4230,7 @@ M.TemplateSummary = {
             type = "timestamp",
         },
         NumberOfResources = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4343,7 +4240,7 @@ M.ListGeneratedTemplatesOutput = {
     members = {
         Summaries = {
             type = "list",
-            member_type = "structure",
+            member = M.TemplateSummary,
         },
         NextToken = {
             type = "string",
@@ -4435,7 +4332,7 @@ M.ListHookResultsOutput = {
         },
         HookResults = {
             type = "list",
-            member_type = "structure",
+            member = M.HookResultSummary,
         },
         NextToken = {
             type = "string",
@@ -4463,7 +4360,7 @@ M.ListImportsOutput = {
     members = {
         Imports = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -4482,8 +4379,8 @@ M.ScannedResourceIdentifier = {
         },
         ResourceIdentifier = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4502,7 +4399,7 @@ M.ListResourceScanRelatedResourcesInput = {
         },
         Resources = {
             type = "list",
-            member_type = "structure",
+            member = M.ScannedResourceIdentifier,
             traits = {
                 required = true,
             },
@@ -4511,7 +4408,7 @@ M.ListResourceScanRelatedResourcesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4524,8 +4421,8 @@ M.ScannedResource = {
         },
         ResourceIdentifier = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ManagedByStack = {
             type = "boolean",
@@ -4538,7 +4435,7 @@ M.ListResourceScanRelatedResourcesOutput = {
     members = {
         RelatedResources = {
             type = "list",
-            member_type = "structure",
+            member = M.ScannedResource,
         },
         NextToken = {
             type = "string",
@@ -4581,7 +4478,7 @@ M.ListResourceScanResourcesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4591,7 +4488,7 @@ M.ListResourceScanResourcesOutput = {
     members = {
         Resources = {
             type = "list",
-            member_type = "structure",
+            member = M.ScannedResource,
         },
         NextToken = {
             type = "string",
@@ -4611,7 +4508,7 @@ M.ListResourceScansInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         ScanTypeFilter = {
             type = "string",
@@ -4638,7 +4535,7 @@ M.ResourceScanSummary = {
             type = "timestamp",
         },
         PercentageCompleted = {
-            type = "number",
+            type = "double",
         },
         ScanType = {
             type = "string",
@@ -4651,7 +4548,7 @@ M.ListResourceScansOutput = {
     members = {
         ResourceScanSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceScanSummary,
         },
         NextToken = {
             type = "string",
@@ -4672,11 +4569,11 @@ M.ListStackInstanceResourceDriftsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         StackInstanceResourceDriftStatuses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         StackInstanceAccount = {
             type = "string",
@@ -4722,7 +4619,7 @@ M.StackInstanceResourceDriftsSummary = {
         },
         PhysicalResourceIdContext = {
             type = "list",
-            member_type = "structure",
+            member = M.PhysicalResourceIdContextKeyValuePair,
         },
         ResourceType = {
             type = "string",
@@ -4732,7 +4629,7 @@ M.StackInstanceResourceDriftsSummary = {
         },
         PropertyDifferences = {
             type = "list",
-            member_type = "structure",
+            member = M.PropertyDifference,
         },
         StackResourceDriftStatus = {
             type = "string",
@@ -4754,7 +4651,7 @@ M.ListStackInstanceResourceDriftsOutput = {
     members = {
         Summaries = {
             type = "list",
-            member_type = "structure",
+            member = M.StackInstanceResourceDriftsSummary,
         },
         NextToken = {
             type = "string",
@@ -4793,11 +4690,11 @@ M.ListStackInstancesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.StackInstanceFilter,
         },
         StackInstanceAccount = {
             type = "string",
@@ -4832,9 +4729,7 @@ M.StackInstanceSummary = {
         StatusReason = {
             type = "string",
         },
-        StackInstanceStatus = {
-            type = "structure",
-        },
+        StackInstanceStatus = M.StackInstanceComprehensiveStatus,
         OrganizationalUnitId = {
             type = "string",
         },
@@ -4855,7 +4750,7 @@ M.ListStackInstancesOutput = {
     members = {
         Summaries = {
             type = "list",
-            member_type = "structure",
+            member = M.StackInstanceSummary,
         },
         NextToken = {
             type = "string",
@@ -4876,7 +4771,7 @@ M.ListStackRefactorActionsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4922,15 +4817,13 @@ M.StackRefactorAction = {
         },
         TagResources = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         UntagResources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        ResourceMapping = {
-            type = "structure",
-        },
+        ResourceMapping = M.ResourceMapping,
     },
 }
 
@@ -4939,7 +4832,7 @@ M.ListStackRefactorActionsOutput = {
     members = {
         StackRefactorActions = {
             type = "list",
-            member_type = "structure",
+            member = M.StackRefactorAction,
             traits = {
                 required = true,
             },
@@ -4955,13 +4848,13 @@ M.ListStackRefactorsInput = {
     members = {
         ExecutionStatusFilter = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4995,7 +4888,7 @@ M.ListStackRefactorsOutput = {
     members = {
         StackRefactorSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.StackRefactorSummary,
             traits = {
                 required = true,
             },
@@ -5069,12 +4962,8 @@ M.StackResourceSummary = {
         ResourceStatusReason = {
             type = "string",
         },
-        DriftInformation = {
-            type = "structure",
-        },
-        ModuleInfo = {
-            type = "structure",
-        },
+        DriftInformation = M.StackResourceDriftInformationSummary,
+        ModuleInfo = M.ModuleInfo,
     },
 }
 
@@ -5083,7 +4972,7 @@ M.ListStackResourcesOutput = {
     members = {
         StackResourceSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.StackResourceSummary,
         },
         NextToken = {
             type = "string",
@@ -5099,7 +4988,7 @@ M.ListStacksInput = {
         },
         StackStatusFilter = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -5161,12 +5050,10 @@ M.StackSummary = {
         RootId = {
             type = "string",
         },
-        DriftInformation = {
-            type = "structure",
-        },
+        DriftInformation = M.StackDriftInformationSummary,
         LastOperations = {
             type = "list",
-            member_type = "structure",
+            member = M.OperationEntry,
         },
     },
 }
@@ -5176,7 +5063,7 @@ M.ListStacksOutput = {
     members = {
         StackSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.StackSummary,
         },
         NextToken = {
             type = "string",
@@ -5197,7 +5084,7 @@ M.ListStackSetAutoDeploymentTargetsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         CallAs = {
             type = "string",
@@ -5213,7 +5100,7 @@ M.StackSetAutoDeploymentTargetSummary = {
         },
         Regions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -5223,7 +5110,7 @@ M.ListStackSetAutoDeploymentTargetsOutput = {
     members = {
         Summaries = {
             type = "list",
-            member_type = "structure",
+            member = M.StackSetAutoDeploymentTargetSummary,
         },
         NextToken = {
             type = "string",
@@ -5266,14 +5153,14 @@ M.ListStackSetOperationResultsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         CallAs = {
             type = "string",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.OperationResultFilter,
         },
     },
 }
@@ -5301,9 +5188,7 @@ M.StackSetOperationResultSummary = {
         StatusReason = {
             type = "string",
         },
-        AccountGateResult = {
-            type = "structure",
-        },
+        AccountGateResult = M.AccountGateResult,
         OrganizationalUnitId = {
             type = "string",
         },
@@ -5315,7 +5200,7 @@ M.ListStackSetOperationResultsOutput = {
     members = {
         Summaries = {
             type = "list",
-            member_type = "structure",
+            member = M.StackSetOperationResultSummary,
         },
         NextToken = {
             type = "string",
@@ -5336,7 +5221,7 @@ M.ListStackSetOperationsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         CallAs = {
             type = "string",
@@ -5365,12 +5250,8 @@ M.StackSetOperationSummary = {
         StatusReason = {
             type = "string",
         },
-        StatusDetails = {
-            type = "structure",
-        },
-        OperationPreferences = {
-            type = "structure",
-        },
+        StatusDetails = M.StackSetOperationStatusDetails,
+        OperationPreferences = M.StackSetOperationPreferences,
     },
 }
 
@@ -5379,7 +5260,7 @@ M.ListStackSetOperationsOutput = {
     members = {
         Summaries = {
             type = "list",
-            member_type = "structure",
+            member = M.StackSetOperationSummary,
         },
         NextToken = {
             type = "string",
@@ -5394,7 +5275,7 @@ M.ListStackSetsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Status = {
             type = "string",
@@ -5420,9 +5301,7 @@ M.StackSetSummary = {
         Status = {
             type = "string",
         },
-        AutoDeployment = {
-            type = "structure",
-        },
+        AutoDeployment = M.AutoDeployment,
         PermissionModel = {
             type = "string",
         },
@@ -5432,9 +5311,7 @@ M.StackSetSummary = {
         LastDriftCheckTimestamp = {
             type = "timestamp",
         },
-        ManagedExecution = {
-            type = "structure",
-        },
+        ManagedExecution = M.ManagedExecution,
     },
 }
 
@@ -5443,7 +5320,7 @@ M.ListStackSetsOutput = {
     members = {
         Summaries = {
             type = "list",
-            member_type = "structure",
+            member = M.StackSetSummary,
         },
         NextToken = {
             type = "string",
@@ -5467,7 +5344,7 @@ M.ListTypeRegistrationsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -5480,7 +5357,7 @@ M.ListTypeRegistrationsOutput = {
     members = {
         RegistrationTokenList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -5518,11 +5395,9 @@ M.ListTypesInput = {
         Type = {
             type = "string",
         },
-        Filters = {
-            type = "structure",
-        },
+        Filters = M.TypeFilters,
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -5580,7 +5455,7 @@ M.ListTypesOutput = {
     members = {
         TypeSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.TypeSummary,
         },
         NextToken = {
             type = "string",
@@ -5601,7 +5476,7 @@ M.ListTypeVersionsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -5650,7 +5525,7 @@ M.ListTypeVersionsOutput = {
     members = {
         TypeVersionSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.TypeVersionSummary,
         },
         NextToken = {
             type = "string",
@@ -5810,9 +5685,7 @@ M.RegisterTypeInput = {
                 required = true,
             },
         },
-        LoggingConfig = {
-            type = "structure",
-        },
+        LoggingConfig = M.LoggingConfig,
         ExecutionRoleArn = {
             type = "string",
         },
@@ -5998,7 +5871,7 @@ M.StartResourceScanInput = {
         },
         ScanFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.ScanFilter,
         },
     },
 }
@@ -6081,18 +5954,16 @@ M.UpdateGeneratedTemplateInput = {
         },
         AddResources = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceDefinition,
         },
         RemoveResources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RefreshAllResources = {
             type = "boolean",
         },
-        TemplateConfiguration = {
-            type = "structure",
-        },
+        TemplateConfiguration = M.TemplateConfiguration,
     },
 }
 
@@ -6131,22 +6002,20 @@ M.UpdateStackInput = {
         },
         Parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.Parameter,
         },
         Capabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ResourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RoleARN = {
             type = "string",
         },
-        RollbackConfiguration = {
-            type = "structure",
-        },
+        RollbackConfiguration = M.RollbackConfiguration,
         StackPolicyBody = {
             type = "string",
         },
@@ -6155,11 +6024,11 @@ M.UpdateStackInput = {
         },
         NotificationARNs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         DisableRollback = {
             type = "boolean",
@@ -6196,25 +6065,21 @@ M.UpdateStackInstancesInput = {
         },
         Accounts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        DeploymentTargets = {
-            type = "structure",
-        },
+        DeploymentTargets = M.DeploymentTargets,
         Regions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         ParameterOverrides = {
             type = "list",
-            member_type = "structure",
+            member = M.Parameter,
         },
-        OperationPreferences = {
-            type = "structure",
-        },
+        OperationPreferences = M.StackSetOperationPreferences,
         OperationId = {
             type = "string",
         },
@@ -6256,51 +6121,43 @@ M.UpdateStackSetInput = {
         },
         Parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.Parameter,
         },
         Capabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        OperationPreferences = {
-            type = "structure",
-        },
+        OperationPreferences = M.StackSetOperationPreferences,
         AdministrationRoleARN = {
             type = "string",
         },
         ExecutionRoleName = {
             type = "string",
         },
-        DeploymentTargets = {
-            type = "structure",
-        },
+        DeploymentTargets = M.DeploymentTargets,
         PermissionModel = {
             type = "string",
         },
-        AutoDeployment = {
-            type = "structure",
-        },
+        AutoDeployment = M.AutoDeployment,
         OperationId = {
             type = "string",
         },
         Accounts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Regions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CallAs = {
             type = "string",
         },
-        ManagedExecution = {
-            type = "structure",
-        },
+        ManagedExecution = M.ManagedExecution,
     },
 }
 
@@ -6375,21 +6232,21 @@ M.ValidateTemplateOutput = {
     members = {
         Parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.TemplateParameter,
         },
         Description = {
             type = "string",
         },
         Capabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CapabilitiesReason = {
             type = "string",
         },
         DeclaredTransforms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }

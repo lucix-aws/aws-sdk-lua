@@ -5,11 +5,17 @@ M.Access = {
     members = {
         actions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
+            traits = {
+                default = {},
+            },
         },
         resources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
+            traits = {
+                default = {},
+            },
         },
     },
 }
@@ -57,15 +63,15 @@ M.Criterion = {
     members = {
         eq = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         neq = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         contains = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         exists = {
             type = "boolean",
@@ -91,8 +97,8 @@ M.CreateArchiveRuleInput = {
         },
         filter = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.Criterion,
             traits = {
                 required = true,
             },
@@ -118,7 +124,7 @@ M.InternalServerException = {
             },
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -187,7 +193,7 @@ M.ThrottlingException = {
             },
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -239,7 +245,7 @@ M.ValidationException = {
         },
         fieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -305,8 +311,8 @@ M.ArchiveRuleSummary = {
         },
         filter = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.Criterion,
             traits = {
                 required = true,
             },
@@ -329,12 +335,9 @@ M.ArchiveRuleSummary = {
 M.GetArchiveRuleOutput = {
     type = "structure",
     members = {
-        archiveRule = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        archiveRule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ArchiveRuleSummary }),
     },
 }
 
@@ -355,7 +358,7 @@ M.ListArchiveRulesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -368,7 +371,7 @@ M.ListArchiveRulesOutput = {
     members = {
         archiveRules = {
             type = "list",
-            member_type = "structure",
+            member = M.ArchiveRuleSummary,
             traits = {
                 required = true,
             },
@@ -398,8 +401,8 @@ M.UpdateArchiveRuleInput = {
         },
         filter = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.Criterion,
             traits = {
                 required = true,
             },
@@ -425,8 +428,8 @@ M.InlineArchiveRule = {
         },
         filter = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.Criterion,
             traits = {
                 required = true,
             },
@@ -459,15 +462,15 @@ M.InternalAccessAnalysisRuleCriteria = {
     members = {
         accountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         resourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         resourceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -477,7 +480,7 @@ M.InternalAccessAnalysisRule = {
     members = {
         inclusions = {
             type = "list",
-            member_type = "structure",
+            member = M.InternalAccessAnalysisRuleCriteria,
         },
     },
 }
@@ -485,9 +488,7 @@ M.InternalAccessAnalysisRule = {
 M.InternalAccessConfiguration = {
     type = "structure",
     members = {
-        analysisRule = {
-            type = "structure",
-        },
+        analysisRule = M.InternalAccessAnalysisRule,
     },
 }
 
@@ -496,11 +497,11 @@ M.AnalysisRuleCriteria = {
     members = {
         accountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         resourceTags = {
             type = "list",
-            member_type = "map",
+            member = { type = "map" },
         },
     },
 }
@@ -510,7 +511,7 @@ M.AnalysisRule = {
     members = {
         exclusions = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalysisRuleCriteria,
         },
     },
 }
@@ -519,23 +520,17 @@ M.UnusedAccessConfiguration = {
     type = "structure",
     members = {
         unusedAccessAge = {
-            type = "number",
+            type = "integer",
         },
-        analysisRule = {
-            type = "structure",
-        },
+        analysisRule = M.AnalysisRule,
     },
 }
 
 M.AnalyzerConfiguration = {
     type = "union",
     members = {
-        unusedAccess = {
-            type = "structure",
-        },
-        internalAccess = {
-            type = "structure",
-        },
+        unusedAccess = M.UnusedAccessConfiguration,
+        internalAccess = M.InternalAccessConfiguration,
     },
 }
 
@@ -565,19 +560,17 @@ M.CreateAnalyzerInput = {
         },
         archiveRules = {
             type = "list",
-            member_type = "structure",
+            member = M.InlineArchiveRule,
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         clientToken = {
             type = "string",
         },
-        configuration = {
-            type = "union",
-        },
+        configuration = M.AnalyzerConfiguration,
     },
 }
 
@@ -687,8 +680,8 @@ M.AnalyzerSummary = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         status = {
             type = "string",
@@ -696,24 +689,17 @@ M.AnalyzerSummary = {
                 required = true,
             },
         },
-        statusReason = {
-            type = "structure",
-        },
-        configuration = {
-            type = "union",
-        },
+        statusReason = M.StatusReason,
+        configuration = M.AnalyzerConfiguration,
     },
 }
 
 M.GetAnalyzerOutput = {
     type = "structure",
     members = {
-        analyzer = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        analyzer = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AnalyzerSummary }),
     },
 }
 
@@ -727,7 +713,7 @@ M.ListAnalyzersInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -746,7 +732,7 @@ M.ListAnalyzersOutput = {
     members = {
         analyzers = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalyzerSummary,
             traits = {
                 required = true,
             },
@@ -767,18 +753,14 @@ M.UpdateAnalyzerInput = {
                 required = true,
             },
         },
-        configuration = {
-            type = "union",
-        },
+        configuration = M.AnalyzerConfiguration,
     },
 }
 
 M.UpdateAnalyzerOutput = {
     type = "structure",
     members = {
-        configuration = {
-            type = "union",
-        },
+        configuration = M.AnalyzerConfiguration,
     },
 }
 
@@ -840,7 +822,7 @@ M.CheckAccessNotGrantedInput = {
         },
         access = {
             type = "list",
-            member_type = "structure",
+            member = M.Access,
             traits = {
                 required = true,
             },
@@ -861,7 +843,7 @@ M.ReasonSummary = {
             type = "string",
         },
         statementIndex = {
-            type = "number",
+            type = "integer",
         },
         statementId = {
             type = "string",
@@ -885,7 +867,7 @@ M.CheckAccessNotGrantedOutput = {
         },
         reasons = {
             type = "list",
-            member_type = "structure",
+            member = M.ReasonSummary,
         },
     },
 }
@@ -956,7 +938,7 @@ M.CheckNoNewAccessOutput = {
         },
         reasons = {
             type = "list",
-            member_type = "structure",
+            member = M.ReasonSummary,
         },
     },
 }
@@ -1024,7 +1006,7 @@ M.CheckNoPublicAccessOutput = {
         },
         reasons = {
             type = "list",
-            member_type = "structure",
+            member = M.ReasonSummary,
         },
     },
 }
@@ -1052,11 +1034,11 @@ M.EbsSnapshotConfiguration = {
     members = {
         userIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         groups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         kmsKeyId = {
             type = "string",
@@ -1096,13 +1078,13 @@ M.KmsGrantConstraints = {
     members = {
         encryptionContextEquals = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         encryptionContextSubset = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1129,7 +1111,7 @@ M.KmsGrantConfiguration = {
     members = {
         operations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1143,9 +1125,7 @@ M.KmsGrantConfiguration = {
         retiringPrincipal = {
             type = "string",
         },
-        constraints = {
-            type = "structure",
-        },
+        constraints = M.KmsGrantConstraints,
         issuingAccount = {
             type = "string",
             traits = {
@@ -1160,12 +1140,12 @@ M.KmsKeyConfiguration = {
     members = {
         keyPolicies = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         grants = {
             type = "list",
-            member_type = "structure",
+            member = M.KmsGrantConfiguration,
         },
     },
 }
@@ -1175,7 +1155,7 @@ M.RdsDbClusterSnapshotAttributeValue = {
     members = {
         accountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1185,8 +1165,8 @@ M.RdsDbClusterSnapshotConfiguration = {
     members = {
         attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.RdsDbClusterSnapshotAttributeValue,
         },
         kmsKeyId = {
             type = "string",
@@ -1199,7 +1179,7 @@ M.RdsDbSnapshotAttributeValue = {
     members = {
         accountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1209,8 +1189,8 @@ M.RdsDbSnapshotConfiguration = {
     members = {
         attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.RdsDbSnapshotAttributeValue,
         },
         kmsKeyId = {
             type = "string",
@@ -1237,12 +1217,8 @@ M.VpcConfiguration = {
 M.NetworkOriginConfiguration = {
     type = "union",
     members = {
-        vpcConfiguration = {
-            type = "structure",
-        },
-        internetConfiguration = {
-            type = "structure",
-        },
+        vpcConfiguration = M.VpcConfiguration,
+        internetConfiguration = M.InternetConfiguration,
     },
 }
 
@@ -1270,12 +1246,8 @@ M.S3AccessPointConfiguration = {
         accessPointPolicy = {
             type = "string",
         },
-        publicAccessBlock = {
-            type = "structure",
-        },
-        networkOrigin = {
-            type = "union",
-        },
+        publicAccessBlock = M.S3PublicAccessBlockConfiguration,
+        networkOrigin = M.NetworkOriginConfiguration,
     },
 }
 
@@ -1308,12 +1280,9 @@ M.S3BucketAclGrantConfiguration = {
                 required = true,
             },
         },
-        grantee = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        grantee = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AclGrantee }),
     },
 }
 
@@ -1325,15 +1294,13 @@ M.S3BucketConfiguration = {
         },
         bucketAclGrants = {
             type = "list",
-            member_type = "structure",
+            member = M.S3BucketAclGrantConfiguration,
         },
-        bucketPublicAccessBlock = {
-            type = "structure",
-        },
+        bucketPublicAccessBlock = M.S3PublicAccessBlockConfiguration,
         accessPoints = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.S3AccessPointConfiguration,
         },
     },
 }
@@ -1344,9 +1311,7 @@ M.S3ExpressDirectoryAccessPointConfiguration = {
         accessPointPolicy = {
             type = "string",
         },
-        networkOrigin = {
-            type = "union",
-        },
+        networkOrigin = M.NetworkOriginConfiguration,
     },
 }
 
@@ -1358,8 +1323,8 @@ M.S3ExpressDirectoryBucketConfiguration = {
         },
         accessPoints = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.S3ExpressDirectoryAccessPointConfiguration,
         },
     },
 }
@@ -1397,48 +1362,20 @@ M.SqsQueueConfiguration = {
 M.Configuration = {
     type = "union",
     members = {
-        ebsSnapshot = {
-            type = "structure",
-        },
-        ecrRepository = {
-            type = "structure",
-        },
-        iamRole = {
-            type = "structure",
-        },
-        efsFileSystem = {
-            type = "structure",
-        },
-        kmsKey = {
-            type = "structure",
-        },
-        rdsDbClusterSnapshot = {
-            type = "structure",
-        },
-        rdsDbSnapshot = {
-            type = "structure",
-        },
-        secretsManagerSecret = {
-            type = "structure",
-        },
-        s3Bucket = {
-            type = "structure",
-        },
-        snsTopic = {
-            type = "structure",
-        },
-        sqsQueue = {
-            type = "structure",
-        },
-        s3ExpressDirectoryBucket = {
-            type = "structure",
-        },
-        dynamodbStream = {
-            type = "structure",
-        },
-        dynamodbTable = {
-            type = "structure",
-        },
+        ebsSnapshot = M.EbsSnapshotConfiguration,
+        ecrRepository = M.EcrRepositoryConfiguration,
+        iamRole = M.IamRoleConfiguration,
+        efsFileSystem = M.EfsFileSystemConfiguration,
+        kmsKey = M.KmsKeyConfiguration,
+        rdsDbClusterSnapshot = M.RdsDbClusterSnapshotConfiguration,
+        rdsDbSnapshot = M.RdsDbSnapshotConfiguration,
+        secretsManagerSecret = M.SecretsManagerSecretConfiguration,
+        s3Bucket = M.S3BucketConfiguration,
+        snsTopic = M.SnsTopicConfiguration,
+        sqsQueue = M.SqsQueueConfiguration,
+        s3ExpressDirectoryBucket = M.S3ExpressDirectoryBucketConfiguration,
+        dynamodbStream = M.DynamodbStreamConfiguration,
+        dynamodbTable = M.DynamodbTableConfiguration,
     },
 }
 
@@ -1453,8 +1390,8 @@ M.CreateAccessPreviewInput = {
         },
         configurations = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.Configuration,
             traits = {
                 required = true,
             },
@@ -1561,8 +1498,8 @@ M.AccessPreview = {
         },
         configurations = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.Configuration,
             traits = {
                 required = true,
             },
@@ -1579,21 +1516,16 @@ M.AccessPreview = {
                 required = true,
             },
         },
-        statusReason = {
-            type = "structure",
-        },
+        statusReason = M.AccessPreviewStatusReason,
     },
 }
 
 M.GetAccessPreviewOutput = {
     type = "structure",
     members = {
-        accessPreview = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        accessPreview = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AccessPreview }),
     },
 }
 
@@ -1664,11 +1596,11 @@ M.AnalyzedResource = {
         },
         actions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         sharedVia = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         status = {
             type = "string",
@@ -1688,9 +1620,7 @@ M.AnalyzedResource = {
 M.GetAnalyzedResourceOutput = {
     type = "structure",
     members = {
-        resource = {
-            type = "structure",
-        },
+        resource = M.AnalyzedResource,
     },
 }
 
@@ -1749,9 +1679,7 @@ M.FindingSource = {
                 required = true,
             },
         },
-        detail = {
-            type = "structure",
-        },
+        detail = M.FindingSourceDetail,
     },
 }
 
@@ -1766,12 +1694,12 @@ M.Finding = {
         },
         principal = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         action = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         resource = {
             type = "string",
@@ -1787,8 +1715,8 @@ M.Finding = {
         },
         condition = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1828,7 +1756,7 @@ M.Finding = {
         },
         sources = {
             type = "list",
-            member_type = "structure",
+            member = M.FindingSource,
         },
         resourceControlPolicyRestriction = {
             type = "string",
@@ -1839,9 +1767,7 @@ M.Finding = {
 M.GetFindingOutput = {
     type = "structure",
     members = {
-        finding = {
-            type = "structure",
-        },
+        finding = M.Finding,
     },
 }
 
@@ -1863,7 +1789,7 @@ M.GetFindingRecommendationInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1928,9 +1854,7 @@ M.UnusedPermissionsRecommendedStep = {
 M.RecommendedStep = {
     type = "union",
     members = {
-        unusedPermissionsRecommendedStep = {
-            type = "structure",
-        },
+        unusedPermissionsRecommendedStep = M.UnusedPermissionsRecommendedStep,
     },
 }
 
@@ -1955,9 +1879,7 @@ M.GetFindingRecommendationOutput = {
         nextToken = {
             type = "string",
         },
-        error = {
-            type = "structure",
-        },
+        error = M.RecommendationError,
         resourceArn = {
             type = "string",
             traits = {
@@ -1966,7 +1888,7 @@ M.GetFindingRecommendationOutput = {
         },
         recommendedSteps = {
             type = "list",
-            member_type = "union",
+            member = M.RecommendedStep,
         },
         recommendationType = {
             type = "string",
@@ -1999,13 +1921,13 @@ M.ResourceTypeDetails = {
     type = "structure",
     members = {
         totalActivePublic = {
-            type = "number",
+            type = "integer",
         },
         totalActiveCrossAccount = {
-            type = "number",
+            type = "integer",
         },
         totalActiveErrors = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2015,17 +1937,17 @@ M.ExternalAccessFindingsStatistics = {
     members = {
         resourceTypeStatistics = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ResourceTypeDetails,
         },
         totalActiveFindings = {
-            type = "number",
+            type = "integer",
         },
         totalArchivedFindings = {
-            type = "number",
+            type = "integer",
         },
         totalResolvedFindings = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2034,13 +1956,13 @@ M.InternalAccessResourceTypeDetails = {
     type = "structure",
     members = {
         totalActiveFindings = {
-            type = "number",
+            type = "integer",
         },
         totalResolvedFindings = {
-            type = "number",
+            type = "integer",
         },
         totalArchivedFindings = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2050,17 +1972,17 @@ M.InternalAccessFindingsStatistics = {
     members = {
         resourceTypeStatistics = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.InternalAccessResourceTypeDetails,
         },
         totalActiveFindings = {
-            type = "number",
+            type = "integer",
         },
         totalArchivedFindings = {
-            type = "number",
+            type = "integer",
         },
         totalResolvedFindings = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2072,12 +1994,12 @@ M.FindingAggregationAccountDetails = {
             type = "string",
         },
         numberOfActiveFindings = {
-            type = "number",
+            type = "integer",
         },
         details = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
         },
     },
 }
@@ -2089,7 +2011,7 @@ M.UnusedAccessTypeStatistics = {
             type = "string",
         },
         total = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2099,20 +2021,20 @@ M.UnusedAccessFindingsStatistics = {
     members = {
         unusedAccessTypeStatistics = {
             type = "list",
-            member_type = "structure",
+            member = M.UnusedAccessTypeStatistics,
         },
         topAccounts = {
             type = "list",
-            member_type = "structure",
+            member = M.FindingAggregationAccountDetails,
         },
         totalActiveFindings = {
-            type = "number",
+            type = "integer",
         },
         totalArchivedFindings = {
-            type = "number",
+            type = "integer",
         },
         totalResolvedFindings = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2120,15 +2042,9 @@ M.UnusedAccessFindingsStatistics = {
 M.FindingsStatistics = {
     type = "union",
     members = {
-        externalAccessFindingsStatistics = {
-            type = "structure",
-        },
-        internalAccessFindingsStatistics = {
-            type = "structure",
-        },
-        unusedAccessFindingsStatistics = {
-            type = "structure",
-        },
+        externalAccessFindingsStatistics = M.ExternalAccessFindingsStatistics,
+        internalAccessFindingsStatistics = M.InternalAccessFindingsStatistics,
+        unusedAccessFindingsStatistics = M.UnusedAccessFindingsStatistics,
     },
 }
 
@@ -2137,7 +2053,7 @@ M.GetFindingsStatisticsOutput = {
     members = {
         findingsStatistics = {
             type = "list",
-            member_type = "union",
+            member = M.FindingsStatistics,
         },
         lastUpdatedAt = {
             type = "timestamp",
@@ -2163,7 +2079,7 @@ M.GetFindingV2Input = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2182,12 +2098,12 @@ M.ExternalAccessDetails = {
     members = {
         action = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         condition = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2197,12 +2113,12 @@ M.ExternalAccessDetails = {
         },
         principal = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         sources = {
             type = "list",
-            member_type = "structure",
+            member = M.FindingSource,
         },
         resourceControlPolicyRestriction = {
             type = "string",
@@ -2232,17 +2148,17 @@ M.InternalAccessDetails = {
     members = {
         action = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         condition = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         principal = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         principalOwnerAccount = {
             type = "string",
@@ -2255,7 +2171,7 @@ M.InternalAccessDetails = {
         },
         sources = {
             type = "list",
-            member_type = "structure",
+            member = M.FindingSource,
         },
         resourceControlPolicyRestriction = {
             type = "string",
@@ -2319,7 +2235,7 @@ M.UnusedPermissionDetails = {
     members = {
         actions = {
             type = "list",
-            member_type = "structure",
+            member = M.UnusedAction,
         },
         serviceNamespace = {
             type = "string",
@@ -2336,24 +2252,12 @@ M.UnusedPermissionDetails = {
 M.FindingDetails = {
     type = "union",
     members = {
-        internalAccessDetails = {
-            type = "structure",
-        },
-        externalAccessDetails = {
-            type = "structure",
-        },
-        unusedPermissionDetails = {
-            type = "structure",
-        },
-        unusedIamUserAccessKeyDetails = {
-            type = "structure",
-        },
-        unusedIamRoleDetails = {
-            type = "structure",
-        },
-        unusedIamUserPasswordDetails = {
-            type = "structure",
-        },
+        internalAccessDetails = M.InternalAccessDetails,
+        externalAccessDetails = M.ExternalAccessDetails,
+        unusedPermissionDetails = M.UnusedPermissionDetails,
+        unusedIamUserAccessKeyDetails = M.UnusedIamUserAccessKeyDetails,
+        unusedIamRoleDetails = M.UnusedIamRoleDetails,
+        unusedIamUserPasswordDetails = M.UnusedIamUserPasswordDetails,
     },
 }
 
@@ -2422,7 +2326,7 @@ M.GetFindingV2Output = {
         },
         findingDetails = {
             type = "list",
-            member_type = "union",
+            member = M.FindingDetails,
             traits = {
                 required = true,
             },
@@ -2481,7 +2385,7 @@ M.TrailProperties = {
         },
         regions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         allRegions = {
             type = "boolean",
@@ -2494,7 +2398,7 @@ M.CloudTrailProperties = {
     members = {
         trailProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.TrailProperties,
             traits = {
                 required = true,
             },
@@ -2526,24 +2430,19 @@ M.GeneratedPolicyProperties = {
                 required = true,
             },
         },
-        cloudTrailProperties = {
-            type = "structure",
-        },
+        cloudTrailProperties = M.CloudTrailProperties,
     },
 }
 
 M.GeneratedPolicyResult = {
     type = "structure",
     members = {
-        properties = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        properties = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.GeneratedPolicyProperties }),
         generatedPolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.GeneratedPolicy,
         },
     },
 }
@@ -2604,27 +2503,19 @@ M.JobDetails = {
         completedOn = {
             type = "timestamp",
         },
-        jobError = {
-            type = "structure",
-        },
+        jobError = M.JobError,
     },
 }
 
 M.GetGeneratedPolicyOutput = {
     type = "structure",
     members = {
-        jobDetails = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        generatedPolicyResult = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        jobDetails = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.JobDetails }),
+        generatedPolicyResult = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.GeneratedPolicyResult }),
     },
 }
 
@@ -2646,14 +2537,14 @@ M.ListAccessPreviewFindingsInput = {
         },
         filter = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.Criterion,
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2681,17 +2572,17 @@ M.AccessPreviewFinding = {
         },
         principal = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         action = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         condition = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         resource = {
             type = "string",
@@ -2734,7 +2625,7 @@ M.AccessPreviewFinding = {
         },
         sources = {
             type = "list",
-            member_type = "structure",
+            member = M.FindingSource,
         },
         resourceControlPolicyRestriction = {
             type = "string",
@@ -2747,7 +2638,7 @@ M.ListAccessPreviewFindingsOutput = {
     members = {
         findings = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessPreviewFinding,
             traits = {
                 required = true,
             },
@@ -2775,7 +2666,7 @@ M.ListAccessPreviewsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2810,9 +2701,7 @@ M.AccessPreviewSummary = {
                 required = true,
             },
         },
-        statusReason = {
-            type = "structure",
-        },
+        statusReason = M.AccessPreviewStatusReason,
     },
 }
 
@@ -2821,7 +2710,7 @@ M.ListAccessPreviewsOutput = {
     members = {
         accessPreviews = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessPreviewSummary,
             traits = {
                 required = true,
             },
@@ -2848,7 +2737,7 @@ M.ListAnalyzedResourcesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2882,7 +2771,7 @@ M.ListAnalyzedResourcesOutput = {
     members = {
         analyzedResources = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalyzedResourceSummary,
             traits = {
                 required = true,
             },
@@ -2921,17 +2810,15 @@ M.ListFindingsInput = {
         },
         filter = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.Criterion,
         },
-        sort = {
-            type = "structure",
-        },
+        sort = M.SortCriteria,
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2947,12 +2834,12 @@ M.FindingSummary = {
         },
         principal = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         action = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         resource = {
             type = "string",
@@ -2968,8 +2855,8 @@ M.FindingSummary = {
         },
         condition = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3009,7 +2896,7 @@ M.FindingSummary = {
         },
         sources = {
             type = "list",
-            member_type = "structure",
+            member = M.FindingSource,
         },
         resourceControlPolicyRestriction = {
             type = "string",
@@ -3022,7 +2909,7 @@ M.ListFindingsOutput = {
     members = {
         findings = {
             type = "list",
-            member_type = "structure",
+            member = M.FindingSummary,
             traits = {
                 required = true,
             },
@@ -3044,18 +2931,16 @@ M.ListFindingsV2Input = {
         },
         filter = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.Criterion,
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
         },
-        sort = {
-            type = "structure",
-        },
+        sort = M.SortCriteria,
     },
 }
 
@@ -3121,7 +3006,7 @@ M.ListFindingsV2Output = {
     members = {
         findings = {
             type = "list",
-            member_type = "structure",
+            member = M.FindingSummaryV2,
             traits = {
                 required = true,
             },
@@ -3142,7 +3027,7 @@ M.ListPolicyGenerationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3194,7 +3079,7 @@ M.ListPolicyGenerationsOutput = {
     members = {
         policyGenerations = {
             type = "list",
-            member_type = "structure",
+            member = M.PolicyGeneration,
             traits = {
                 required = true,
             },
@@ -3223,8 +3108,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3240,7 +3125,7 @@ M.Trail = {
         },
         regions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         allRegions = {
             type = "boolean",
@@ -3253,7 +3138,7 @@ M.CloudTrailDetails = {
     members = {
         trails = {
             type = "list",
-            member_type = "structure",
+            member = M.Trail,
             traits = {
                 required = true,
             },
@@ -3291,15 +3176,10 @@ M.PolicyGenerationDetails = {
 M.StartPolicyGenerationInput = {
     type = "structure",
     members = {
-        policyGenerationDetails = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        cloudTrailDetails = {
-            type = "structure",
-        },
+        policyGenerationDetails = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PolicyGenerationDetails }),
+        cloudTrailDetails = M.CloudTrailDetails,
         clientToken = {
             type = "string",
         },
@@ -3355,8 +3235,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3380,7 +3260,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -3415,7 +3295,7 @@ M.UpdateFindingsInput = {
         },
         ids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         resourceArn = {
             type = "string",
@@ -3466,7 +3346,7 @@ M.ValidatePolicyInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3506,13 +3386,13 @@ M.Substring = {
     type = "structure",
     members = {
         start = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         length = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -3524,14 +3404,12 @@ M.PathElement = {
     type = "union",
     members = {
         index = {
-            type = "number",
+            type = "integer",
         },
         key = {
             type = "string",
         },
-        substring = {
-            type = "structure",
-        },
+        substring = M.Substring,
         value = {
             type = "string",
         },
@@ -3542,19 +3420,19 @@ M.Position = {
     type = "structure",
     members = {
         line = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         column = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         offset = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -3565,18 +3443,12 @@ M.Position = {
 M.Span = {
     type = "structure",
     members = {
-        start = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        end = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        start = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Position }),
+        end = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Position }),
     },
 }
 
@@ -3585,17 +3457,14 @@ M.Location = {
     members = {
         path = {
             type = "list",
-            member_type = "union",
+            member = M.PathElement,
             traits = {
                 required = true,
             },
         },
-        span = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        span = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Span }),
     },
 }
 
@@ -3628,7 +3497,7 @@ M.ValidatePolicyFinding = {
         },
         locations = {
             type = "list",
-            member_type = "structure",
+            member = M.Location,
             traits = {
                 required = true,
             },
@@ -3641,7 +3510,7 @@ M.ValidatePolicyOutput = {
     members = {
         findings = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidatePolicyFinding,
             traits = {
                 required = true,
             },

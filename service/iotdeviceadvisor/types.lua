@@ -48,7 +48,7 @@ M.SuiteDefinitionConfiguration = {
         },
         devices = {
             type = "list",
-            member_type = "structure",
+            member = M.DeviceUnderTest,
         },
         intendedForQualification = {
             type = "boolean",
@@ -77,16 +77,13 @@ M.SuiteDefinitionConfiguration = {
 M.CreateSuiteDefinitionInput = {
     type = "structure",
     members = {
-        suiteDefinitionConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        suiteDefinitionConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SuiteDefinitionConfiguration }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         clientToken = {
             type = "string",
@@ -232,9 +229,7 @@ M.GetSuiteDefinitionOutput = {
         latestVersion = {
             type = "string",
         },
-        suiteDefinitionConfiguration = {
-            type = "structure",
-        },
+        suiteDefinitionConfiguration = M.SuiteDefinitionConfiguration,
         createdAt = {
             type = "timestamp",
         },
@@ -243,8 +238,8 @@ M.GetSuiteDefinitionOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -284,15 +279,12 @@ M.SuiteRunStatus = {
 M.SuiteRunConfiguration = {
     type = "structure",
     members = {
-        primaryDevice = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        primaryDevice = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DeviceUnderTest }),
         selectedTestList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         parallelRun = {
             type = "boolean",
@@ -382,7 +374,7 @@ M.TestCaseRun = {
         },
         testScenarios = {
             type = "list",
-            member_type = "structure",
+            member = M.TestCaseScenario,
         },
     },
 }
@@ -398,7 +390,7 @@ M.GroupResult = {
         },
         tests = {
             type = "list",
-            member_type = "structure",
+            member = M.TestCaseRun,
         },
     },
 }
@@ -408,7 +400,7 @@ M.TestResult = {
     members = {
         groups = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupResult,
         },
     },
 }
@@ -428,12 +420,8 @@ M.GetSuiteRunOutput = {
         suiteRunArn = {
             type = "string",
         },
-        suiteRunConfiguration = {
-            type = "structure",
-        },
-        testResult = {
-            type = "structure",
-        },
+        suiteRunConfiguration = M.SuiteRunConfiguration,
+        testResult = M.TestResult,
         startTime = {
             type = "timestamp",
         },
@@ -448,8 +436,8 @@ M.GetSuiteRunOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -487,7 +475,7 @@ M.ListSuiteDefinitionsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -512,7 +500,7 @@ M.SuiteDefinitionInformation = {
         },
         defaultDevices = {
             type = "list",
-            member_type = "structure",
+            member = M.DeviceUnderTest,
         },
         intendedForQualification = {
             type = "boolean",
@@ -534,7 +522,7 @@ M.ListSuiteDefinitionsOutput = {
     members = {
         suiteDefinitionInformationList = {
             type = "list",
-            member_type = "structure",
+            member = M.SuiteDefinitionInformation,
         },
         nextToken = {
             type = "string",
@@ -558,7 +546,7 @@ M.ListSuiteRunsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -600,10 +588,10 @@ M.SuiteRunInformation = {
             type = "string",
         },
         passed = {
-            type = "number",
+            type = "integer",
         },
         failed = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -613,7 +601,7 @@ M.ListSuiteRunsOutput = {
     members = {
         suiteRunsList = {
             type = "list",
-            member_type = "structure",
+            member = M.SuiteRunInformation,
         },
         nextToken = {
             type = "string",
@@ -639,8 +627,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -658,16 +646,13 @@ M.StartSuiteRunInput = {
         suiteDefinitionVersion = {
             type = "string",
         },
-        suiteRunConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        suiteRunConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SuiteRunConfiguration }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -726,8 +711,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -751,7 +736,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -774,12 +759,9 @@ M.UpdateSuiteDefinitionInput = {
                 required = true,
             },
         },
-        suiteDefinitionConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        suiteDefinitionConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SuiteDefinitionConfiguration }),
     },
 }
 

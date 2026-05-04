@@ -7,7 +7,7 @@ M.PredictedAction = {
             type = "string",
         },
         score = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -22,15 +22,18 @@ M.GetActionRecommendationsInput = {
             type = "string",
         },
         numResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         filterArn = {
             type = "string",
         },
         filterValues = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -40,7 +43,7 @@ M.GetActionRecommendationsOutput = {
     members = {
         actionList = {
             type = "list",
-            member_type = "structure",
+            member = M.PredictedAction,
         },
         recommendationId = {
             type = "string",
@@ -79,7 +82,7 @@ M.GetPersonalizedRankingInput = {
         },
         inputList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -92,21 +95,21 @@ M.GetPersonalizedRankingInput = {
         },
         context = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         filterArn = {
             type = "string",
         },
         filterValues = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         metadataColumns = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
     },
 }
@@ -118,19 +121,19 @@ M.PredictedItem = {
             type = "string",
         },
         score = {
-            type = "number",
+            type = "double",
         },
         promotionName = {
             type = "string",
         },
         metadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         reason = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -140,7 +143,7 @@ M.GetPersonalizedRankingOutput = {
     members = {
         personalizedRanking = {
             type = "list",
-            member_type = "structure",
+            member = M.PredictedItem,
         },
         recommendationId = {
             type = "string",
@@ -155,15 +158,15 @@ M.Promotion = {
             type = "string",
         },
         percentPromotedItems = {
-            type = "number",
+            type = "integer",
         },
         filterArn = {
             type = "string",
         },
         filterValues = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -181,32 +184,35 @@ M.GetRecommendationsInput = {
             type = "string",
         },
         numResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         context = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         filterArn = {
             type = "string",
         },
         filterValues = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         recommenderArn = {
             type = "string",
         },
         promotions = {
             type = "list",
-            member_type = "structure",
+            member = M.Promotion,
         },
         metadataColumns = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
     },
 }
@@ -216,7 +222,7 @@ M.GetRecommendationsOutput = {
     members = {
         itemList = {
             type = "list",
-            member_type = "structure",
+            member = M.PredictedItem,
         },
         recommendationId = {
             type = "string",

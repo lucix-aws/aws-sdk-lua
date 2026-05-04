@@ -22,7 +22,7 @@ M.Channel = {
         },
         eventPublishers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -42,7 +42,7 @@ M.AddNotificationChannelsInput = {
         },
         channels = {
             type = "list",
-            member_type = "structure",
+            member = M.Channel,
             traits = {
                 required = true,
             },
@@ -55,7 +55,7 @@ M.NotificationConfiguration = {
     members = {
         channels = {
             type = "list",
-            member_type = "structure",
+            member = M.Channel,
         },
     },
 }
@@ -63,9 +63,7 @@ M.NotificationConfiguration = {
 M.AddNotificationChannelsOutput = {
     type = "structure",
     members = {
-        notificationConfiguration = {
-            type = "structure",
-        },
+        notificationConfiguration = M.NotificationConfiguration,
     },
 }
 
@@ -165,15 +163,15 @@ M.AgentConfiguration = {
             },
         },
         periodInSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         agentParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -243,9 +241,7 @@ M.AnomalyInstance = {
         endTime = {
             type = "timestamp",
         },
-        userFeedback = {
-            type = "structure",
-        },
+        userFeedback = M.UserFeedback,
     },
 }
 
@@ -270,7 +266,7 @@ M.Metric = {
         },
         threadStates = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -281,12 +277,9 @@ M.Metric = {
 M.Anomaly = {
     type = "structure",
     members = {
-        metric = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        metric = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Metric }),
         reason = {
             type = "string",
             traits = {
@@ -295,7 +288,7 @@ M.Anomaly = {
         },
         instances = {
             type = "list",
-            member_type = "structure",
+            member = M.AnomalyInstance,
             traits = {
                 required = true,
             },
@@ -320,7 +313,7 @@ M.FrameMetric = {
         },
         threadStates = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -364,7 +357,7 @@ M.BatchGetFrameMetricDataInput = {
         },
         frameMetrics = {
             type = "list",
-            member_type = "structure",
+            member = M.FrameMetric,
         },
     },
 }
@@ -384,15 +377,12 @@ M.TimestampStructure = {
 M.FrameMetricDatum = {
     type = "structure",
     members = {
-        frameMetric = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        frameMetric = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FrameMetric }),
         values = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
@@ -423,22 +413,22 @@ M.BatchGetFrameMetricDataOutput = {
         },
         endTimes = {
             type = "list",
-            member_type = "structure",
+            member = M.TimestampStructure,
             traits = {
                 required = true,
             },
         },
         unprocessedEndTimes = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
             traits = {
                 required = true,
             },
         },
         frameMetricData = {
             type = "list",
-            member_type = "structure",
+            member = M.FrameMetricDatum,
             traits = {
                 required = true,
             },
@@ -456,7 +446,7 @@ M.GetFindingsReportAccountSummaryInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -486,7 +476,7 @@ M.FindingsReportSummary = {
             type = "timestamp",
         },
         totalNumberOfFindings = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -496,7 +486,7 @@ M.GetFindingsReportAccountSummaryOutput = {
     members = {
         reportSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.FindingsReportSummary,
             traits = {
                 required = true,
             },
@@ -525,8 +515,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -558,8 +548,8 @@ M.ConfigureAgentInput = {
         },
         metadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -567,13 +557,10 @@ M.ConfigureAgentInput = {
 M.ConfigureAgentOutput = {
     type = "structure",
     members = {
-        configuration = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        configuration = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.AgentConfiguration }),
     },
 }
 
@@ -601,13 +588,11 @@ M.CreateProfilingGroupInput = {
                 required = true,
             },
         },
-        agentOrchestrationConfig = {
-            type = "structure",
-        },
+        agentOrchestrationConfig = M.AgentOrchestrationConfig,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -618,9 +603,7 @@ M.ProfilingStatus = {
         latestAgentProfileReportedAt = {
             type = "timestamp",
         },
-        latestAggregatedProfile = {
-            type = "structure",
-        },
+        latestAggregatedProfile = M.AggregatedProfileTime,
         latestAgentOrchestratedAt = {
             type = "timestamp",
         },
@@ -633,9 +616,7 @@ M.ProfilingGroupDescription = {
         name = {
             type = "string",
         },
-        agentOrchestrationConfig = {
-            type = "structure",
-        },
+        agentOrchestrationConfig = M.AgentOrchestrationConfig,
         arn = {
             type = "string",
         },
@@ -645,16 +626,14 @@ M.ProfilingGroupDescription = {
         updatedAt = {
             type = "timestamp",
         },
-        profilingStatus = {
-            type = "structure",
-        },
+        profilingStatus = M.ProfilingStatus,
         computePlatform = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -662,13 +641,10 @@ M.ProfilingGroupDescription = {
 M.CreateProfilingGroupOutput = {
     type = "structure",
     members = {
-        profilingGroup = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        profilingGroup = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.ProfilingGroupDescription }),
     },
 }
 
@@ -705,13 +681,10 @@ M.DescribeProfilingGroupInput = {
 M.DescribeProfilingGroupOutput = {
     type = "structure",
     members = {
-        profilingGroup = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        profilingGroup = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.ProfilingGroupDescription }),
     },
 }
 
@@ -731,12 +704,9 @@ M.GetNotificationConfigurationInput = {
 M.GetNotificationConfigurationOutput = {
     type = "structure",
     members = {
-        notificationConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        notificationConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.NotificationConfiguration }),
     },
 }
 
@@ -800,7 +770,7 @@ M.GetProfileInput = {
             },
         },
         maxDepth = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxDepth",
             },
@@ -890,14 +860,17 @@ M.Pattern = {
         },
         targetFrames = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
         },
         thresholdPercent = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         countersToAggregate = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -906,13 +879,13 @@ M.Match = {
     type = "structure",
     members = {
         targetFramesIndex = {
-            type = "number",
+            type = "integer",
         },
         frameAddress = {
             type = "string",
         },
         thresholdBreachValue = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -921,26 +894,23 @@ M.Recommendation = {
     type = "structure",
     members = {
         allMatchesCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         allMatchesSum = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
-        pattern = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        pattern = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Pattern }),
         topMatches = {
             type = "list",
-            member_type = "structure",
+            member = M.Match,
             traits = {
                 required = true,
             },
@@ -983,14 +953,14 @@ M.GetRecommendationsOutput = {
         },
         recommendations = {
             type = "list",
-            member_type = "structure",
+            member = M.Recommendation,
             traits = {
                 required = true,
             },
         },
         anomalies = {
             type = "list",
-            member_type = "structure",
+            member = M.Anomaly,
             traits = {
                 required = true,
             },
@@ -1029,7 +999,7 @@ M.ListFindingsReportsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1048,7 +1018,7 @@ M.ListFindingsReportsOutput = {
     members = {
         findingsReportSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.FindingsReportSummary,
             traits = {
                 required = true,
             },
@@ -1102,7 +1072,7 @@ M.ListProfileTimesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1130,7 +1100,7 @@ M.ListProfileTimesOutput = {
     members = {
         profileTimes = {
             type = "list",
-            member_type = "structure",
+            member = M.ProfileTime,
             traits = {
                 required = true,
             },
@@ -1151,7 +1121,7 @@ M.ListProfilingGroupsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1170,14 +1140,14 @@ M.ListProfilingGroupsOutput = {
     members = {
         profilingGroupNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         profilingGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.ProfilingGroupDescription,
         },
         nextToken = {
             type = "string",
@@ -1241,7 +1211,7 @@ M.PutPermissionInput = {
         },
         principals = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1293,9 +1263,7 @@ M.RemoveNotificationChannelInput = {
 M.RemoveNotificationChannelOutput = {
     type = "structure",
     members = {
-        notificationConfiguration = {
-            type = "structure",
-        },
+        notificationConfiguration = M.NotificationConfiguration,
     },
 }
 
@@ -1387,25 +1355,19 @@ M.UpdateProfilingGroupInput = {
                 required = true,
             },
         },
-        agentOrchestrationConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        agentOrchestrationConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AgentOrchestrationConfig }),
     },
 }
 
 M.UpdateProfilingGroupOutput = {
     type = "structure",
     members = {
-        profilingGroup = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        profilingGroup = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.ProfilingGroupDescription }),
     },
 }
 
@@ -1421,8 +1383,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1446,7 +1408,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,

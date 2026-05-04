@@ -215,9 +215,7 @@ M.ImageFormat = {
 M.SigningPlatformOverrides = {
     type = "structure",
     members = {
-        signingConfiguration = {
-            type = "structure",
-        },
+        signingConfiguration = M.SigningConfigurationOverrides,
         signingImageFormat = {
             type = "string",
         },
@@ -254,9 +252,7 @@ M.S3SignedObject = {
 M.SignedObject = {
     type = "structure",
     members = {
-        s3 = {
-            type = "structure",
-        },
+        s3 = M.S3SignedObject,
     },
 }
 
@@ -299,9 +295,7 @@ M.S3Source = {
 M.Source = {
     type = "structure",
     members = {
-        s3 = {
-            type = "structure",
-        },
+        s3 = M.S3Source,
     },
 }
 
@@ -317,12 +311,8 @@ M.DescribeSigningJobOutput = {
         jobId = {
             type = "string",
         },
-        source = {
-            type = "structure",
-        },
-        signingMaterial = {
-            type = "structure",
-        },
+        source = M.Source,
+        signingMaterial = M.SigningMaterial,
         platformId = {
             type = "string",
         },
@@ -335,13 +325,11 @@ M.DescribeSigningJobOutput = {
         profileVersion = {
             type = "string",
         },
-        overrides = {
-            type = "structure",
-        },
+        overrides = M.SigningPlatformOverrides,
         signingParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         createdAt = {
             type = "timestamp",
@@ -361,12 +349,8 @@ M.DescribeSigningJobOutput = {
         statusReason = {
             type = "string",
         },
-        revocationRecord = {
-            type = "structure",
-        },
-        signedObject = {
-            type = "structure",
-        },
+        revocationRecord = M.SigningJobRevocationRecord,
+        signedObject = M.SignedObject,
         jobOwner = {
             type = "string",
         },
@@ -391,9 +375,7 @@ M.S3Destination = {
 M.Destination = {
     type = "structure",
     members = {
-        s3 = {
-            type = "structure",
-        },
+        s3 = M.S3Destination,
     },
 }
 
@@ -402,7 +384,7 @@ M.EncryptionAlgorithmOptions = {
     members = {
         allowedValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -449,7 +431,7 @@ M.GetRevocationStatusInput = {
         },
         certificateHashes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "certificateHashes",
                 required = true,
@@ -463,7 +445,7 @@ M.GetRevocationStatusOutput = {
     members = {
         revokedEntities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -486,7 +468,7 @@ M.HashAlgorithmOptions = {
     members = {
         allowedValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -503,18 +485,12 @@ M.HashAlgorithmOptions = {
 M.SigningConfiguration = {
     type = "structure",
     members = {
-        encryptionAlgorithmOptions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        hashAlgorithmOptions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        encryptionAlgorithmOptions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EncryptionAlgorithmOptions }),
+        hashAlgorithmOptions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HashAlgorithmOptions }),
     },
 }
 
@@ -523,7 +499,7 @@ M.SigningImageFormat = {
     members = {
         supportedFormats = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -555,17 +531,19 @@ M.GetSigningPlatformOutput = {
         category = {
             type = "string",
         },
-        signingConfiguration = {
-            type = "structure",
-        },
-        signingImageFormat = {
-            type = "structure",
-        },
+        signingConfiguration = M.SigningConfiguration,
+        signingImageFormat = M.SigningImageFormat,
         maxSizeInMB = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         revocationSupported = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -614,7 +592,10 @@ M.SignatureValidityPeriod = {
     type = "structure",
     members = {
         value = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         type = {
             type = "string",
@@ -640,28 +621,20 @@ M.GetSigningProfileOutput = {
         profileVersionArn = {
             type = "string",
         },
-        revocationRecord = {
-            type = "structure",
-        },
-        signingMaterial = {
-            type = "structure",
-        },
+        revocationRecord = M.SigningProfileRevocationRecord,
+        signingMaterial = M.SigningMaterial,
         platformId = {
             type = "string",
         },
         platformDisplayName = {
             type = "string",
         },
-        signatureValidityPeriod = {
-            type = "structure",
-        },
-        overrides = {
-            type = "structure",
-        },
+        signatureValidityPeriod = M.SignatureValidityPeriod,
+        overrides = M.SigningPlatformOverrides,
         signingParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         status = {
             type = "string",
@@ -674,8 +647,8 @@ M.GetSigningProfileOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -724,11 +697,14 @@ M.ListProfilePermissionsOutput = {
             type = "string",
         },
         policySizeBytes = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         permissions = {
             type = "list",
-            member_type = "structure",
+            member = M.Permission,
         },
         nextToken = {
             type = "string",
@@ -758,7 +734,7 @@ M.ListSigningJobsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -772,6 +748,7 @@ M.ListSigningJobsInput = {
         isRevoked = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "isRevoked",
             },
         },
@@ -802,15 +779,9 @@ M.SigningJob = {
         jobId = {
             type = "string",
         },
-        source = {
-            type = "structure",
-        },
-        signedObject = {
-            type = "structure",
-        },
-        signingMaterial = {
-            type = "structure",
-        },
+        source = M.Source,
+        signedObject = M.SignedObject,
+        signingMaterial = M.SigningMaterial,
         createdAt = {
             type = "timestamp",
         },
@@ -819,6 +790,9 @@ M.SigningJob = {
         },
         isRevoked = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         profileName = {
             type = "string",
@@ -849,7 +823,7 @@ M.ListSigningJobsOutput = {
     members = {
         jobs = {
             type = "list",
-            member_type = "structure",
+            member = M.SigningJob,
         },
         nextToken = {
             type = "string",
@@ -879,7 +853,7 @@ M.ListSigningPlatformsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -911,17 +885,19 @@ M.SigningPlatform = {
         category = {
             type = "string",
         },
-        signingConfiguration = {
-            type = "structure",
-        },
-        signingImageFormat = {
-            type = "structure",
-        },
+        signingConfiguration = M.SigningConfiguration,
+        signingImageFormat = M.SigningImageFormat,
         maxSizeInMB = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         revocationSupported = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -931,7 +907,7 @@ M.ListSigningPlatformsOutput = {
     members = {
         platforms = {
             type = "list",
-            member_type = "structure",
+            member = M.SigningPlatform,
         },
         nextToken = {
             type = "string",
@@ -945,11 +921,12 @@ M.ListSigningProfilesInput = {
         includeCanceled = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "includeCanceled",
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -968,7 +945,7 @@ M.ListSigningProfilesInput = {
         },
         statuses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "statuses",
             },
@@ -988,12 +965,8 @@ M.SigningProfile = {
         profileVersionArn = {
             type = "string",
         },
-        signingMaterial = {
-            type = "structure",
-        },
-        signatureValidityPeriod = {
-            type = "structure",
-        },
+        signingMaterial = M.SigningMaterial,
+        signatureValidityPeriod = M.SignatureValidityPeriod,
         platformId = {
             type = "string",
         },
@@ -1002,8 +975,8 @@ M.SigningProfile = {
         },
         signingParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         status = {
             type = "string",
@@ -1013,8 +986,8 @@ M.SigningProfile = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1024,7 +997,7 @@ M.ListSigningProfilesOutput = {
     members = {
         profiles = {
             type = "list",
-            member_type = "structure",
+            member = M.SigningProfile,
         },
         nextToken = {
             type = "string",
@@ -1050,8 +1023,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1079,30 +1052,24 @@ M.PutSigningProfileInput = {
                 required = true,
             },
         },
-        signingMaterial = {
-            type = "structure",
-        },
-        signatureValidityPeriod = {
-            type = "structure",
-        },
+        signingMaterial = M.SigningMaterial,
+        signatureValidityPeriod = M.SignatureValidityPeriod,
         platformId = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        overrides = {
-            type = "structure",
-        },
+        overrides = M.SigningPlatformOverrides,
         signingParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1257,8 +1224,8 @@ M.SignPayloadOutput = {
         },
         metadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         signature = {
             type = "blob",
@@ -1269,18 +1236,12 @@ M.SignPayloadOutput = {
 M.StartSigningJobInput = {
     type = "structure",
     members = {
-        source = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        destination = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        source = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Source }),
+        destination = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Destination }),
         profileName = {
             type = "string",
             traits = {
@@ -1336,8 +1297,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1361,7 +1322,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,

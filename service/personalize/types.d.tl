@@ -1576,11 +1576,11 @@ local type IngestionMode = "BULK" | "PUT" | "ALL"
 
 local type ImportMode = "FULL" | "INCREMENTAL"
 
+local type TrainingMode = "FULL" | "UPDATE" | "AUTOTRAIN"
+
 local type RecipeProvider = "SERVICE"
 
 local type BatchInferenceJobMode = "BATCH_INFERENCE" | "THEME_GENERATION"
-
-local type TrainingMode = "FULL" | "UPDATE" | "AUTOTRAIN"
 
 local record M
     CreateBatchInferenceJobInput: CreateBatchInferenceJobInput

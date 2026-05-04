@@ -35,7 +35,7 @@ M.CreateHttpNamespaceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -115,7 +115,7 @@ M.SOA = {
     type = "structure",
     members = {
         TTL = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -126,24 +126,18 @@ M.SOA = {
 M.PrivateDnsPropertiesMutable = {
     type = "structure",
     members = {
-        SOA = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SOA = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SOA }),
     },
 }
 
 M.PrivateDnsNamespaceProperties = {
     type = "structure",
     members = {
-        DnsProperties = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DnsProperties = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PrivateDnsPropertiesMutable }),
     },
 }
 
@@ -170,11 +164,9 @@ M.CreatePrivateDnsNamespaceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        Properties = {
-            type = "structure",
-        },
+        Properties = M.PrivateDnsNamespaceProperties,
     },
 }
 
@@ -190,24 +182,18 @@ M.CreatePrivateDnsNamespaceOutput = {
 M.PublicDnsPropertiesMutable = {
     type = "structure",
     members = {
-        SOA = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SOA = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SOA }),
     },
 }
 
 M.PublicDnsNamespaceProperties = {
     type = "structure",
     members = {
-        DnsProperties = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DnsProperties = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PublicDnsPropertiesMutable }),
     },
 }
 
@@ -228,11 +214,9 @@ M.CreatePublicDnsNamespaceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        Properties = {
-            type = "structure",
-        },
+        Properties = M.PublicDnsNamespaceProperties,
     },
 }
 
@@ -262,7 +246,7 @@ M.DnsRecord = {
             },
         },
         TTL = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -286,7 +270,7 @@ M.DnsConfig = {
         },
         DnsRecords = {
             type = "list",
-            member_type = "structure",
+            member = M.DnsRecord,
             traits = {
                 required = true,
             },
@@ -313,7 +297,7 @@ M.HealthCheckConfig = {
             type = "string",
         },
         FailureThreshold = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -322,7 +306,7 @@ M.HealthCheckCustomConfig = {
     type = "structure",
     members = {
         FailureThreshold = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -349,18 +333,12 @@ M.CreateServiceInput = {
         Description = {
             type = "string",
         },
-        DnsConfig = {
-            type = "structure",
-        },
-        HealthCheckConfig = {
-            type = "structure",
-        },
-        HealthCheckCustomConfig = {
-            type = "structure",
-        },
+        DnsConfig = M.DnsConfig,
+        HealthCheckConfig = M.HealthCheckConfig,
+        HealthCheckCustomConfig = M.HealthCheckCustomConfig,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         Type = {
             type = "string",
@@ -396,20 +374,14 @@ M.Service = {
             type = "string",
         },
         InstanceCount = {
-            type = "number",
+            type = "integer",
         },
-        DnsConfig = {
-            type = "structure",
-        },
+        DnsConfig = M.DnsConfig,
         Type = {
             type = "string",
         },
-        HealthCheckConfig = {
-            type = "structure",
-        },
-        HealthCheckCustomConfig = {
-            type = "structure",
-        },
+        HealthCheckConfig = M.HealthCheckConfig,
+        HealthCheckCustomConfig = M.HealthCheckCustomConfig,
         CreateDate = {
             type = "timestamp",
         },
@@ -425,9 +397,7 @@ M.Service = {
 M.CreateServiceOutput = {
     type = "structure",
     members = {
-        Service = {
-            type = "structure",
-        },
+        Service = M.Service,
     },
 }
 
@@ -543,7 +513,7 @@ M.DeleteServiceAttributesInput = {
         },
         Attributes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -615,17 +585,17 @@ M.DiscoverInstancesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         QueryParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         OptionalParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         HealthStatus = {
             type = "string",
@@ -659,8 +629,8 @@ M.HttpInstanceSummary = {
         },
         Attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -670,10 +640,10 @@ M.DiscoverInstancesOutput = {
     members = {
         Instances = {
             type = "list",
-            member_type = "structure",
+            member = M.HttpInstanceSummary,
         },
         InstancesRevision = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -713,7 +683,7 @@ M.DiscoverInstancesRevisionOutput = {
     type = "structure",
     members = {
         InstancesRevision = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -723,7 +693,7 @@ M.DnsConfigChange = {
     members = {
         DnsRecords = {
             type = "list",
-            member_type = "structure",
+            member = M.DnsRecord,
             traits = {
                 required = true,
             },
@@ -737,9 +707,7 @@ M.DnsProperties = {
         HostedZoneId = {
             type = "string",
         },
-        SOA = {
-            type = "structure",
-        },
+        SOA = M.SOA,
     },
 }
 
@@ -782,8 +750,8 @@ M.Instance = {
         },
         Attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         CreatedByAccount = {
             type = "string",
@@ -797,9 +765,7 @@ M.GetInstanceOutput = {
         ResourceOwner = {
             type = "string",
         },
-        Instance = {
-            type = "structure",
-        },
+        Instance = M.Instance,
     },
 }
 
@@ -814,10 +780,10 @@ M.GetInstancesHealthStatusInput = {
         },
         Instances = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -830,8 +796,8 @@ M.GetInstancesHealthStatusOutput = {
     members = {
         Status = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -863,12 +829,8 @@ M.HttpProperties = {
 M.NamespaceProperties = {
     type = "structure",
     members = {
-        DnsProperties = {
-            type = "structure",
-        },
-        HttpProperties = {
-            type = "structure",
-        },
+        DnsProperties = M.DnsProperties,
+        HttpProperties = M.HttpProperties,
     },
 }
 
@@ -900,11 +862,9 @@ M.Namespace = {
             type = "string",
         },
         ServiceCount = {
-            type = "number",
+            type = "integer",
         },
-        Properties = {
-            type = "structure",
-        },
+        Properties = M.NamespaceProperties,
         CreateDate = {
             type = "timestamp",
         },
@@ -917,9 +877,7 @@ M.Namespace = {
 M.GetNamespaceOutput = {
     type = "structure",
     members = {
-        Namespace = {
-            type = "structure",
-        },
+        Namespace = M.Namespace,
     },
 }
 
@@ -989,8 +947,8 @@ M.Operation = {
         },
         Targets = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -998,9 +956,7 @@ M.Operation = {
 M.GetOperationOutput = {
     type = "structure",
     members = {
-        Operation = {
-            type = "structure",
-        },
+        Operation = M.Operation,
     },
 }
 
@@ -1029,9 +985,7 @@ M.GetServiceInput = {
 M.GetServiceOutput = {
     type = "structure",
     members = {
-        Service = {
-            type = "structure",
-        },
+        Service = M.Service,
     },
 }
 
@@ -1058,8 +1012,8 @@ M.ServiceAttributes = {
         },
         Attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1067,9 +1021,7 @@ M.ServiceAttributes = {
 M.GetServiceAttributesOutput = {
     type = "structure",
     members = {
-        ServiceAttributes = {
-            type = "structure",
-        },
+        ServiceAttributes = M.ServiceAttributes,
     },
 }
 
@@ -1093,8 +1045,8 @@ M.InstanceSummary = {
         },
         Attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         CreatedByAccount = {
             type = "string",
@@ -1115,7 +1067,7 @@ M.ListInstancesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1128,7 +1080,7 @@ M.ListInstancesOutput = {
         },
         Instances = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceSummary,
         },
         NextToken = {
             type = "string",
@@ -1154,7 +1106,7 @@ M.NamespaceFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1172,11 +1124,11 @@ M.ListNamespacesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.NamespaceFilter,
         },
     },
 }
@@ -1203,11 +1155,9 @@ M.NamespaceSummary = {
             type = "string",
         },
         ServiceCount = {
-            type = "number",
+            type = "integer",
         },
-        Properties = {
-            type = "structure",
-        },
+        Properties = M.NamespaceProperties,
         CreateDate = {
             type = "timestamp",
         },
@@ -1219,7 +1169,7 @@ M.ListNamespacesOutput = {
     members = {
         Namespaces = {
             type = "list",
-            member_type = "structure",
+            member = M.NamespaceSummary,
         },
         NextToken = {
             type = "string",
@@ -1246,7 +1196,7 @@ M.OperationFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1264,11 +1214,11 @@ M.ListOperationsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.OperationFilter,
         },
     },
 }
@@ -1290,7 +1240,7 @@ M.ListOperationsOutput = {
     members = {
         Operations = {
             type = "list",
-            member_type = "structure",
+            member = M.OperationSummary,
         },
         NextToken = {
             type = "string",
@@ -1314,7 +1264,7 @@ M.ServiceFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1332,11 +1282,11 @@ M.ListServicesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceFilter,
         },
     },
 }
@@ -1363,17 +1313,11 @@ M.ServiceSummary = {
             type = "string",
         },
         InstanceCount = {
-            type = "number",
+            type = "integer",
         },
-        DnsConfig = {
-            type = "structure",
-        },
-        HealthCheckConfig = {
-            type = "structure",
-        },
-        HealthCheckCustomConfig = {
-            type = "structure",
-        },
+        DnsConfig = M.DnsConfig,
+        HealthCheckConfig = M.HealthCheckConfig,
+        HealthCheckCustomConfig = M.HealthCheckCustomConfig,
         CreateDate = {
             type = "timestamp",
         },
@@ -1388,7 +1332,7 @@ M.ListServicesOutput = {
     members = {
         Services = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceSummary,
         },
         NextToken = {
             type = "string",
@@ -1413,7 +1357,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1432,7 +1376,7 @@ M.SOAChange = {
     type = "structure",
     members = {
         TTL = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -1443,24 +1387,18 @@ M.SOAChange = {
 M.PrivateDnsPropertiesMutableChange = {
     type = "structure",
     members = {
-        SOA = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SOA = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SOAChange }),
     },
 }
 
 M.PrivateDnsNamespacePropertiesChange = {
     type = "structure",
     members = {
-        DnsProperties = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DnsProperties = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PrivateDnsPropertiesMutableChange }),
     },
 }
 
@@ -1470,33 +1408,25 @@ M.PrivateDnsNamespaceChange = {
         Description = {
             type = "string",
         },
-        Properties = {
-            type = "structure",
-        },
+        Properties = M.PrivateDnsNamespacePropertiesChange,
     },
 }
 
 M.PublicDnsPropertiesMutableChange = {
     type = "structure",
     members = {
-        SOA = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SOA = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SOAChange }),
     },
 }
 
 M.PublicDnsNamespacePropertiesChange = {
     type = "structure",
     members = {
-        DnsProperties = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DnsProperties = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PublicDnsPropertiesMutableChange }),
     },
 }
 
@@ -1506,9 +1436,7 @@ M.PublicDnsNamespaceChange = {
         Description = {
             type = "string",
         },
-        Properties = {
-            type = "structure",
-        },
+        Properties = M.PublicDnsNamespacePropertiesChange,
     },
 }
 
@@ -1532,8 +1460,8 @@ M.RegisterInstanceInput = {
         },
         Attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1561,7 +1489,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -1584,7 +1512,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1608,12 +1536,9 @@ M.UpdateHttpNamespaceInput = {
         UpdaterRequestId = {
             type = "string",
         },
-        Namespace = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Namespace = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HttpNamespaceChange }),
     },
 }
 
@@ -1666,12 +1591,9 @@ M.UpdatePrivateDnsNamespaceInput = {
         UpdaterRequestId = {
             type = "string",
         },
-        Namespace = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Namespace = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PrivateDnsNamespaceChange }),
     },
 }
 
@@ -1696,12 +1618,9 @@ M.UpdatePublicDnsNamespaceInput = {
         UpdaterRequestId = {
             type = "string",
         },
-        Namespace = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Namespace = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PublicDnsNamespaceChange }),
     },
 }
 
@@ -1720,12 +1639,8 @@ M.ServiceChange = {
         Description = {
             type = "string",
         },
-        DnsConfig = {
-            type = "structure",
-        },
-        HealthCheckConfig = {
-            type = "structure",
-        },
+        DnsConfig = M.DnsConfigChange,
+        HealthCheckConfig = M.HealthCheckConfig,
     },
 }
 
@@ -1738,12 +1653,9 @@ M.UpdateServiceInput = {
                 required = true,
             },
         },
-        Service = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Service = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ServiceChange }),
     },
 }
 
@@ -1777,8 +1689,8 @@ M.UpdateServiceAttributesInput = {
         },
         Attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },

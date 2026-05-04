@@ -60,7 +60,7 @@ M.CustomRequestHandling = {
     members = {
         InsertHeaders = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomHTTPHeader,
             traits = {
                 required = true,
             },
@@ -71,9 +71,7 @@ M.CustomRequestHandling = {
 M.AllowAction = {
     type = "structure",
     members = {
-        CustomRequestHandling = {
-            type = "structure",
-        },
+        CustomRequestHandling = M.CustomRequestHandling,
     },
 }
 
@@ -109,14 +107,12 @@ M.AsnMatchStatement = {
     members = {
         AsnList = {
             type = "list",
-            member_type = "number",
+            member = { type = "long" },
             traits = {
                 required = true,
             },
         },
-        ForwardedIPConfig = {
-            type = "structure",
-        },
+        ForwardedIPConfig = M.ForwardedIPConfig,
     },
 }
 
@@ -138,16 +134,14 @@ M.Body = {
 M.CookieMatchPattern = {
     type = "structure",
     members = {
-        All = {
-            type = "structure",
-        },
+        All = M.All,
         IncludedCookies = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ExcludedCookies = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -161,12 +155,9 @@ M.MapMatchScope = {
 M.Cookies = {
     type = "structure",
     members = {
-        MatchPattern = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        MatchPattern = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CookieMatchPattern }),
         MatchScope = {
             type = "string",
             traits = {
@@ -197,16 +188,14 @@ M.HeaderOrder = {
 M.HeaderMatchPattern = {
     type = "structure",
     members = {
-        All = {
-            type = "structure",
-        },
+        All = M.All,
         IncludedHeaders = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ExcludedHeaders = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -214,12 +203,9 @@ M.HeaderMatchPattern = {
 M.Headers = {
     type = "structure",
     members = {
-        MatchPattern = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        MatchPattern = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HeaderMatchPattern }),
         MatchScope = {
             type = "string",
             traits = {
@@ -268,12 +254,10 @@ M.BodyParsingFallbackBehavior = {
 M.JsonMatchPattern = {
     type = "structure",
     members = {
-        All = {
-            type = "structure",
-        },
+        All = M.All,
         IncludedPaths = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -287,12 +271,9 @@ M.JsonMatchScope = {
 M.JsonBody = {
     type = "structure",
     members = {
-        MatchPattern = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        MatchPattern = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.JsonMatchPattern }),
         MatchScope = {
             type = "string",
             traits = {
@@ -356,48 +337,20 @@ M.UriPath = {
 M.FieldToMatch = {
     type = "structure",
     members = {
-        SingleHeader = {
-            type = "structure",
-        },
-        SingleQueryArgument = {
-            type = "structure",
-        },
-        AllQueryArguments = {
-            type = "structure",
-        },
-        UriPath = {
-            type = "structure",
-        },
-        QueryString = {
-            type = "structure",
-        },
-        Body = {
-            type = "structure",
-        },
-        Method = {
-            type = "structure",
-        },
-        JsonBody = {
-            type = "structure",
-        },
-        Headers = {
-            type = "structure",
-        },
-        Cookies = {
-            type = "structure",
-        },
-        HeaderOrder = {
-            type = "structure",
-        },
-        JA3Fingerprint = {
-            type = "structure",
-        },
-        JA4Fingerprint = {
-            type = "structure",
-        },
-        UriFragment = {
-            type = "structure",
-        },
+        SingleHeader = M.SingleHeader,
+        SingleQueryArgument = M.SingleQueryArgument,
+        AllQueryArguments = M.AllQueryArguments,
+        UriPath = M.UriPath,
+        QueryString = M.QueryString,
+        Body = M.Body,
+        Method = M.Method,
+        JsonBody = M.JsonBody,
+        Headers = M.Headers,
+        Cookies = M.Cookies,
+        HeaderOrder = M.HeaderOrder,
+        JA3Fingerprint = M.JA3Fingerprint,
+        JA4Fingerprint = M.JA4Fingerprint,
+        UriFragment = M.UriFragment,
     },
 }
 
@@ -437,8 +390,9 @@ M.TextTransformation = {
     type = "structure",
     members = {
         Priority = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -460,15 +414,12 @@ M.ByteMatchStatement = {
                 required = true,
             },
         },
-        FieldToMatch = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        FieldToMatch = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FieldToMatch }),
         TextTransformations = {
             type = "list",
-            member_type = "structure",
+            member = M.TextTransformation,
             traits = {
                 required = true,
             },
@@ -740,11 +691,9 @@ M.GeoMatchStatement = {
     members = {
         CountryCodes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        ForwardedIPConfig = {
-            type = "structure",
-        },
+        ForwardedIPConfig = M.ForwardedIPConfig,
     },
 }
 
@@ -787,9 +736,7 @@ M.IPSetReferenceStatement = {
                 required = true,
             },
         },
-        IPSetForwardedIPConfig = {
-            type = "structure",
-        },
+        IPSetForwardedIPConfig = M.IPSetForwardedIPConfig,
     },
 }
 
@@ -890,22 +837,16 @@ M.RequestInspectionACFP = {
                 required = true,
             },
         },
-        UsernameField = {
-            type = "structure",
-        },
-        PasswordField = {
-            type = "structure",
-        },
-        EmailField = {
-            type = "structure",
-        },
+        UsernameField = M.UsernameField,
+        PasswordField = M.PasswordField,
+        EmailField = M.EmailField,
         PhoneNumberFields = {
             type = "list",
-            member_type = "structure",
+            member = M.PhoneNumberField,
         },
         AddressFields = {
             type = "list",
-            member_type = "structure",
+            member = M.AddressField,
         },
     },
 }
@@ -915,14 +856,14 @@ M.ResponseInspectionBodyContains = {
     members = {
         SuccessStrings = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         FailureStrings = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -941,14 +882,14 @@ M.ResponseInspectionHeader = {
         },
         SuccessValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         FailureValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -967,14 +908,14 @@ M.ResponseInspectionJson = {
         },
         SuccessValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         FailureValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -987,14 +928,14 @@ M.ResponseInspectionStatusCode = {
     members = {
         SuccessCodes = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
             traits = {
                 required = true,
             },
         },
         FailureCodes = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
             traits = {
                 required = true,
             },
@@ -1005,18 +946,10 @@ M.ResponseInspectionStatusCode = {
 M.ResponseInspection = {
     type = "structure",
     members = {
-        StatusCode = {
-            type = "structure",
-        },
-        Header = {
-            type = "structure",
-        },
-        BodyContains = {
-            type = "structure",
-        },
-        Json = {
-            type = "structure",
-        },
+        StatusCode = M.ResponseInspectionStatusCode,
+        Header = M.ResponseInspectionHeader,
+        BodyContains = M.ResponseInspectionBodyContains,
+        Json = M.ResponseInspectionJson,
     },
 }
 
@@ -1035,17 +968,15 @@ M.AWSManagedRulesACFPRuleSet = {
                 required = true,
             },
         },
-        RequestInspection = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ResponseInspection = {
-            type = "structure",
-        },
+        RequestInspection = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RequestInspectionACFP }),
+        ResponseInspection = M.ResponseInspection,
         EnableRegexInPath = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1084,7 +1015,7 @@ M.ClientSideAction = {
         },
         ExemptUriRegularExpressions = {
             type = "list",
-            member_type = "structure",
+            member = M.Regex,
         },
     },
 }
@@ -1092,24 +1023,18 @@ M.ClientSideAction = {
 M.ClientSideActionConfig = {
     type = "structure",
     members = {
-        Challenge = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Challenge = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ClientSideAction }),
     },
 }
 
 M.AWSManagedRulesAntiDDoSRuleSet = {
     type = "structure",
     members = {
-        ClientSideActionConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ClientSideActionConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ClientSideActionConfig }),
         SensitivityToBlock = {
             type = "string",
         },
@@ -1125,18 +1050,12 @@ M.RequestInspection = {
                 required = true,
             },
         },
-        UsernameField = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        PasswordField = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        UsernameField = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.UsernameField }),
+        PasswordField = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PasswordField }),
     },
 }
 
@@ -1149,14 +1068,13 @@ M.AWSManagedRulesATPRuleSet = {
                 required = true,
             },
         },
-        RequestInspection = {
-            type = "structure",
-        },
-        ResponseInspection = {
-            type = "structure",
-        },
+        RequestInspection = M.RequestInspection,
+        ResponseInspection = M.ResponseInspection,
         EnableRegexInPath = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1177,6 +1095,9 @@ M.AWSManagedRulesBotControlRuleSet = {
         },
         EnableMachineLearning = {
             type = "boolean",
+            traits = {
+                default = true,
+            },
         },
     },
 }
@@ -1190,24 +1111,12 @@ M.ManagedRuleGroupConfig = {
         PayloadType = {
             type = "string",
         },
-        UsernameField = {
-            type = "structure",
-        },
-        PasswordField = {
-            type = "structure",
-        },
-        AWSManagedRulesBotControlRuleSet = {
-            type = "structure",
-        },
-        AWSManagedRulesATPRuleSet = {
-            type = "structure",
-        },
-        AWSManagedRulesACFPRuleSet = {
-            type = "structure",
-        },
-        AWSManagedRulesAntiDDoSRuleSet = {
-            type = "structure",
-        },
+        UsernameField = M.UsernameField,
+        PasswordField = M.PasswordField,
+        AWSManagedRulesBotControlRuleSet = M.AWSManagedRulesBotControlRuleSet,
+        AWSManagedRulesATPRuleSet = M.AWSManagedRulesATPRuleSet,
+        AWSManagedRulesACFPRuleSet = M.AWSManagedRulesACFPRuleSet,
+        AWSManagedRulesAntiDDoSRuleSet = M.AWSManagedRulesAntiDDoSRuleSet,
     },
 }
 
@@ -1215,7 +1124,7 @@ M.CustomResponse = {
     type = "structure",
     members = {
         ResponseCode = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1225,7 +1134,7 @@ M.CustomResponse = {
         },
         ResponseHeaders = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomHTTPHeader,
         },
     },
 }
@@ -1233,57 +1142,39 @@ M.CustomResponse = {
 M.BlockAction = {
     type = "structure",
     members = {
-        CustomResponse = {
-            type = "structure",
-        },
+        CustomResponse = M.CustomResponse,
     },
 }
 
 M.CaptchaAction = {
     type = "structure",
     members = {
-        CustomRequestHandling = {
-            type = "structure",
-        },
+        CustomRequestHandling = M.CustomRequestHandling,
     },
 }
 
 M.ChallengeAction = {
     type = "structure",
     members = {
-        CustomRequestHandling = {
-            type = "structure",
-        },
+        CustomRequestHandling = M.CustomRequestHandling,
     },
 }
 
 M.CountAction = {
     type = "structure",
     members = {
-        CustomRequestHandling = {
-            type = "structure",
-        },
+        CustomRequestHandling = M.CustomRequestHandling,
     },
 }
 
 M.RuleAction = {
     type = "structure",
     members = {
-        Block = {
-            type = "structure",
-        },
-        Allow = {
-            type = "structure",
-        },
-        Count = {
-            type = "structure",
-        },
-        Captcha = {
-            type = "structure",
-        },
-        Challenge = {
-            type = "structure",
-        },
+        Block = M.BlockAction,
+        Allow = M.AllowAction,
+        Count = M.CountAction,
+        Captcha = M.CaptchaAction,
+        Challenge = M.ChallengeAction,
     },
 }
 
@@ -1296,12 +1187,9 @@ M.RuleActionOverride = {
                 required = true,
             },
         },
-        ActionToUse = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ActionToUse = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RuleAction }),
     },
 }
 
@@ -1327,7 +1215,7 @@ M.RateLimitCookie = {
         },
         TextTransformations = {
             type = "list",
-            member_type = "structure",
+            member = M.TextTransformation,
             traits = {
                 required = true,
             },
@@ -1350,7 +1238,7 @@ M.RateLimitHeader = {
         },
         TextTransformations = {
             type = "list",
-            member_type = "structure",
+            member = M.TextTransformation,
             traits = {
                 required = true,
             },
@@ -1413,7 +1301,7 @@ M.RateLimitQueryArgument = {
         },
         TextTransformations = {
             type = "list",
-            member_type = "structure",
+            member = M.TextTransformation,
             traits = {
                 required = true,
             },
@@ -1426,7 +1314,7 @@ M.RateLimitQueryString = {
     members = {
         TextTransformations = {
             type = "list",
-            member_type = "structure",
+            member = M.TextTransformation,
             traits = {
                 required = true,
             },
@@ -1439,7 +1327,7 @@ M.RateLimitUriPath = {
     members = {
         TextTransformations = {
             type = "list",
-            member_type = "structure",
+            member = M.TextTransformation,
             traits = {
                 required = true,
             },
@@ -1450,42 +1338,18 @@ M.RateLimitUriPath = {
 M.RateBasedStatementCustomKey = {
     type = "structure",
     members = {
-        Header = {
-            type = "structure",
-        },
-        Cookie = {
-            type = "structure",
-        },
-        QueryArgument = {
-            type = "structure",
-        },
-        QueryString = {
-            type = "structure",
-        },
-        HTTPMethod = {
-            type = "structure",
-        },
-        ForwardedIP = {
-            type = "structure",
-        },
-        IP = {
-            type = "structure",
-        },
-        LabelNamespace = {
-            type = "structure",
-        },
-        UriPath = {
-            type = "structure",
-        },
-        JA3Fingerprint = {
-            type = "structure",
-        },
-        JA4Fingerprint = {
-            type = "structure",
-        },
-        ASN = {
-            type = "structure",
-        },
+        Header = M.RateLimitHeader,
+        Cookie = M.RateLimitCookie,
+        QueryArgument = M.RateLimitQueryArgument,
+        QueryString = M.RateLimitQueryString,
+        HTTPMethod = M.RateLimitHTTPMethod,
+        ForwardedIP = M.RateLimitForwardedIP,
+        IP = M.RateLimitIP,
+        LabelNamespace = M.RateLimitLabelNamespace,
+        UriPath = M.RateLimitUriPath,
+        JA3Fingerprint = M.RateLimitJA3Fingerprint,
+        JA4Fingerprint = M.RateLimitJA4Fingerprint,
+        ASN = M.RateLimitAsn,
     },
 }
 
@@ -1498,15 +1362,12 @@ M.RegexMatchStatement = {
                 required = true,
             },
         },
-        FieldToMatch = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        FieldToMatch = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FieldToMatch }),
         TextTransformations = {
             type = "list",
-            member_type = "structure",
+            member = M.TextTransformation,
             traits = {
                 required = true,
             },
@@ -1523,15 +1384,12 @@ M.RegexPatternSetReferenceStatement = {
                 required = true,
             },
         },
-        FieldToMatch = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        FieldToMatch = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FieldToMatch }),
         TextTransformations = {
             type = "list",
-            member_type = "structure",
+            member = M.TextTransformation,
             traits = {
                 required = true,
             },
@@ -1550,11 +1408,11 @@ M.RuleGroupReferenceStatement = {
         },
         ExcludedRules = {
             type = "list",
-            member_type = "structure",
+            member = M.ExcludedRule,
         },
         RuleActionOverrides = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleActionOverride,
         },
     },
 }
@@ -1571,12 +1429,9 @@ M.ComparisonOperator = {
 M.SizeConstraintStatement = {
     type = "structure",
     members = {
-        FieldToMatch = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        FieldToMatch = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FieldToMatch }),
         ComparisonOperator = {
             type = "string",
             traits = {
@@ -1584,14 +1439,15 @@ M.SizeConstraintStatement = {
             },
         },
         Size = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         TextTransformations = {
             type = "list",
-            member_type = "structure",
+            member = M.TextTransformation,
             traits = {
                 required = true,
             },
@@ -1607,15 +1463,12 @@ M.SensitivityLevel = {
 M.SqliMatchStatement = {
     type = "structure",
     members = {
-        FieldToMatch = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        FieldToMatch = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FieldToMatch }),
         TextTransformations = {
             type = "list",
-            member_type = "structure",
+            member = M.TextTransformation,
             traits = {
                 required = true,
             },
@@ -1629,15 +1482,12 @@ M.SqliMatchStatement = {
 M.XssMatchStatement = {
     type = "structure",
     members = {
-        FieldToMatch = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        FieldToMatch = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FieldToMatch }),
         TextTransformations = {
             type = "list",
-            member_type = "structure",
+            member = M.TextTransformation,
             traits = {
                 required = true,
             },
@@ -1650,7 +1500,7 @@ M.APIKeySummary = {
     members = {
         TokenDomains = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         APIKey = {
             type = "string",
@@ -1659,7 +1509,10 @@ M.APIKeySummary = {
             type = "timestamp",
         },
         Version = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1672,7 +1525,7 @@ M.ApplicationAttribute = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1682,7 +1535,7 @@ M.ApplicationConfig = {
     members = {
         Attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.ApplicationAttribute,
         },
     },
 }
@@ -1738,7 +1591,7 @@ M.WAFFeatureNotIncludedInPricingPlanException = {
         },
         DisallowedFeatures = {
             type = "list",
-            member_type = "structure",
+            member = M.DisallowedFeature,
         },
     },
 }
@@ -1914,8 +1767,8 @@ M.AssociationConfig = {
     members = {
         RequestBody = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.RequestBodyAssociatedResourceTypeConfig,
         },
     },
 }
@@ -1924,7 +1777,7 @@ M.ImmunityTimeProperty = {
     type = "structure",
     members = {
         ImmunityTime = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -1935,18 +1788,14 @@ M.ImmunityTimeProperty = {
 M.CaptchaConfig = {
     type = "structure",
     members = {
-        ImmunityTimeProperty = {
-            type = "structure",
-        },
+        ImmunityTimeProperty = M.ImmunityTimeProperty,
     },
 }
 
 M.ChallengeConfig = {
     type = "structure",
     members = {
-        ImmunityTimeProperty = {
-            type = "structure",
-        },
+        ImmunityTimeProperty = M.ImmunityTimeProperty,
     },
 }
 
@@ -1957,12 +1806,8 @@ M.NoneAction = {
 M.OverrideAction = {
     type = "structure",
     members = {
-        Count = {
-            type = "structure",
-        },
-        None = {
-            type = "structure",
-        },
+        Count = M.CountAction,
+        None = M.NoneAction,
     },
 }
 
@@ -1984,12 +1829,14 @@ M.VisibilityConfig = {
         SampledRequestsEnabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
         CloudWatchMetricsEnabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -2011,7 +1858,10 @@ M.CheckCapacityOutput = {
     type = "structure",
     members = {
         Capacity = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2057,7 +1907,7 @@ M.CreateAPIKeyInput = {
         },
         TokenDomains = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2123,14 +1973,14 @@ M.CreateIPSetInput = {
         },
         Addresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2159,9 +2009,7 @@ M.IPSetSummary = {
 M.CreateIPSetOutput = {
     type = "structure",
     members = {
-        Summary = {
-            type = "structure",
-        },
+        Summary = M.IPSetSummary,
     },
 }
 
@@ -2225,14 +2073,14 @@ M.CreateRegexPatternSetInput = {
         },
         RegularExpressionList = {
             type = "list",
-            member_type = "structure",
+            member = M.Regex,
             traits = {
                 required = true,
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2261,9 +2109,7 @@ M.RegexPatternSetSummary = {
 M.CreateRegexPatternSetOutput = {
     type = "structure",
     members = {
-        Summary = {
-            type = "structure",
-        },
+        Summary = M.RegexPatternSetSummary,
     },
 }
 
@@ -2315,9 +2161,7 @@ M.RuleGroupSummary = {
 M.CreateRuleGroupOutput = {
     type = "structure",
     members = {
-        Summary = {
-            type = "structure",
-        },
+        Summary = M.RuleGroupSummary,
     },
 }
 
@@ -2345,7 +2189,7 @@ M.FieldToProtect = {
         },
         FieldKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2353,12 +2197,9 @@ M.FieldToProtect = {
 M.DataProtection = {
     type = "structure",
     members = {
-        Field = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Field = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FieldToProtect }),
         Action = {
             type = "string",
             traits = {
@@ -2367,9 +2208,15 @@ M.DataProtection = {
         },
         ExcludeRuleMatchDetails = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         ExcludeRateBasedDetails = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -2379,7 +2226,7 @@ M.DataProtectionConfig = {
     members = {
         DataProtections = {
             type = "list",
-            member_type = "structure",
+            member = M.DataProtection,
             traits = {
                 required = true,
             },
@@ -2390,12 +2237,8 @@ M.DataProtectionConfig = {
 M.DefaultAction = {
     type = "structure",
     members = {
-        Block = {
-            type = "structure",
-        },
-        Allow = {
-            type = "structure",
-        },
+        Block = M.BlockAction,
+        Allow = M.AllowAction,
     },
 }
 
@@ -2440,9 +2283,7 @@ M.WebACLSummary = {
 M.CreateWebACLOutput = {
     type = "structure",
     members = {
-        Summary = {
-            type = "structure",
-        },
+        Summary = M.WebACLSummary,
     },
 }
 
@@ -2737,9 +2578,15 @@ M.ManagedProductDescriptor = {
         },
         IsVersioningSupported = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         IsAdvancedManagedRuleSet = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -2749,7 +2596,7 @@ M.DescribeAllManagedProductsOutput = {
     members = {
         ManagedProducts = {
             type = "list",
-            member_type = "structure",
+            member = M.ManagedProductDescriptor,
         },
     },
 }
@@ -2777,7 +2624,7 @@ M.DescribeManagedProductsByVendorOutput = {
     members = {
         ManagedProducts = {
             type = "list",
-            member_type = "structure",
+            member = M.ManagedProductDescriptor,
         },
     },
 }
@@ -2824,9 +2671,7 @@ M.RuleSummary = {
         Name = {
             type = "string",
         },
-        Action = {
-            type = "structure",
-        },
+        Action = M.RuleAction,
     },
 }
 
@@ -2840,22 +2685,22 @@ M.DescribeManagedRuleGroupOutput = {
             type = "string",
         },
         Capacity = {
-            type = "number",
+            type = "long",
         },
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleSummary,
         },
         LabelNamespace = {
             type = "string",
         },
         AvailableLabels = {
             type = "list",
-            member_type = "structure",
+            member = M.LabelSummary,
         },
         ConsumedLabels = {
             type = "list",
-            member_type = "structure",
+            member = M.LabelSummary,
         },
     },
 }
@@ -2931,7 +2776,7 @@ M.GetDecryptedAPIKeyOutput = {
     members = {
         TokenDomains = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CreationTimestamp = {
             type = "timestamp",
@@ -2995,7 +2840,7 @@ M.IPSet = {
         },
         Addresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3006,9 +2851,7 @@ M.IPSet = {
 M.GetIPSetOutput = {
     type = "structure",
     members = {
-        IPSet = {
-            type = "structure",
-        },
+        IPSet = M.IPSet,
         LockToken = {
             type = "string",
         },
@@ -3053,12 +2896,8 @@ M.LabelNameCondition = {
 M.Condition = {
     type = "structure",
     members = {
-        ActionCondition = {
-            type = "structure",
-        },
-        LabelNameCondition = {
-            type = "structure",
-        },
+        ActionCondition = M.ActionCondition,
+        LabelNameCondition = M.LabelNameCondition,
     },
 }
 
@@ -3084,7 +2923,7 @@ M.Filter = {
         },
         Conditions = {
             type = "list",
-            member_type = "structure",
+            member = M.Condition,
             traits = {
                 required = true,
             },
@@ -3097,7 +2936,7 @@ M.LoggingFilter = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
             traits = {
                 required = true,
             },
@@ -3122,21 +2961,22 @@ M.LoggingConfiguration = {
         },
         LogDestinationConfigs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         RedactedFields = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldToMatch,
         },
         ManagedByFirewallManager = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        LoggingFilter = {
-            type = "structure",
-        },
+        LoggingFilter = M.LoggingFilter,
         LogType = {
             type = "string",
         },
@@ -3149,9 +2989,7 @@ M.LoggingConfiguration = {
 M.GetLoggingConfigurationOutput = {
     type = "structure",
     members = {
-        LoggingConfiguration = {
-            type = "structure",
-        },
+        LoggingConfiguration = M.LoggingConfiguration,
     },
 }
 
@@ -3186,10 +3024,10 @@ M.ManagedRuleSetVersion = {
             type = "string",
         },
         Capacity = {
-            type = "number",
+            type = "long",
         },
         ForecastedLifetime = {
-            type = "number",
+            type = "integer",
         },
         PublishTimestamp = {
             type = "timestamp",
@@ -3229,8 +3067,8 @@ M.ManagedRuleSet = {
         },
         PublishedVersions = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ManagedRuleSetVersion,
         },
         RecommendedVersion = {
             type = "string",
@@ -3244,9 +3082,7 @@ M.ManagedRuleSet = {
 M.GetManagedRuleSetOutput = {
     type = "structure",
     members = {
-        ManagedRuleSet = {
-            type = "structure",
-        },
+        ManagedRuleSet = M.ManagedRuleSet,
         LockToken = {
             type = "string",
         },
@@ -3285,7 +3121,7 @@ M.MobileSdkRelease = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3293,9 +3129,7 @@ M.MobileSdkRelease = {
 M.GetMobileSdkReleaseOutput = {
     type = "structure",
     members = {
-        MobileSdkRelease = {
-            type = "structure",
-        },
+        MobileSdkRelease = M.MobileSdkRelease,
     },
 }
 
@@ -3361,7 +3195,7 @@ M.RateBasedStatementManagedKeysIPSet = {
         },
         Addresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3369,12 +3203,8 @@ M.RateBasedStatementManagedKeysIPSet = {
 M.GetRateBasedStatementManagedKeysOutput = {
     type = "structure",
     members = {
-        ManagedKeysIPV4 = {
-            type = "structure",
-        },
-        ManagedKeysIPV6 = {
-            type = "structure",
-        },
+        ManagedKeysIPV4 = M.RateBasedStatementManagedKeysIPSet,
+        ManagedKeysIPV6 = M.RateBasedStatementManagedKeysIPSet,
     },
 }
 
@@ -3429,7 +3259,7 @@ M.RegexPatternSet = {
         },
         RegularExpressionList = {
             type = "list",
-            member_type = "structure",
+            member = M.Regex,
         },
     },
 }
@@ -3437,9 +3267,7 @@ M.RegexPatternSet = {
 M.GetRegexPatternSetOutput = {
     type = "structure",
     members = {
-        RegexPatternSet = {
-            type = "structure",
-        },
+        RegexPatternSet = M.RegexPatternSet,
         LockToken = {
             type = "string",
         },
@@ -3503,14 +3331,11 @@ M.GetSampledRequestsInput = {
                 required = true,
             },
         },
-        TimeWindow = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TimeWindow = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TimeWindow }),
         MaxItems = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -3529,10 +3354,10 @@ M.CaptchaResponse = {
     type = "structure",
     members = {
         ResponseCode = {
-            type = "number",
+            type = "integer",
         },
         SolveTimestamp = {
-            type = "number",
+            type = "long",
         },
         FailureReason = {
             type = "string",
@@ -3544,10 +3369,10 @@ M.ChallengeResponse = {
     type = "structure",
     members = {
         ResponseCode = {
-            type = "number",
+            type = "integer",
         },
         SolveTimestamp = {
-            type = "number",
+            type = "long",
         },
         FailureReason = {
             type = "string",
@@ -3587,7 +3412,7 @@ M.HTTPRequest = {
         },
         Headers = {
             type = "list",
-            member_type = "structure",
+            member = M.HTTPHeader,
         },
     },
 }
@@ -3595,15 +3420,13 @@ M.HTTPRequest = {
 M.SampledHTTPRequest = {
     type = "structure",
     members = {
-        Request = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Request = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HTTPRequest }),
         Weight = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -3618,21 +3441,17 @@ M.SampledHTTPRequest = {
         },
         RequestHeadersInserted = {
             type = "list",
-            member_type = "structure",
+            member = M.HTTPHeader,
         },
         ResponseCodeSent = {
-            type = "number",
+            type = "integer",
         },
         Labels = {
             type = "list",
-            member_type = "structure",
+            member = M.Label,
         },
-        CaptchaResponse = {
-            type = "structure",
-        },
-        ChallengeResponse = {
-            type = "structure",
-        },
+        CaptchaResponse = M.CaptchaResponse,
+        ChallengeResponse = M.ChallengeResponse,
         OverriddenAction = {
             type = "string",
         },
@@ -3644,14 +3463,15 @@ M.GetSampledRequestsOutput = {
     members = {
         SampledRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.SampledHTTPRequest,
         },
         PopulationSize = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
-        TimeWindow = {
-            type = "structure",
-        },
+        TimeWindow = M.TimeWindow,
     },
 }
 
@@ -3673,12 +3493,9 @@ M.GetTopPathStatisticsByTrafficInput = {
         UriPathPrefix = {
             type = "string",
         },
-        TimeWindow = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TimeWindow = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TimeWindow }),
         BotCategory = {
             type = "string",
         },
@@ -3689,13 +3506,13 @@ M.GetTopPathStatisticsByTrafficInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         NumberOfTopTrafficBotsPerPath = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -3731,14 +3548,16 @@ M.BotStatistics = {
             },
         },
         RequestCount = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         Percentage = {
-            type = "number",
+            type = "double",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -3748,9 +3567,7 @@ M.BotStatistics = {
 M.PathStatistics = {
     type = "structure",
     members = {
-        Source = {
-            type = "structure",
-        },
+        Source = M.FilterSource,
         Path = {
             type = "string",
             traits = {
@@ -3758,20 +3575,22 @@ M.PathStatistics = {
             },
         },
         RequestCount = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         Percentage = {
-            type = "number",
+            type = "double",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         TopBots = {
             type = "list",
-            member_type = "structure",
+            member = M.BotStatistics,
         },
     },
 }
@@ -3781,14 +3600,15 @@ M.GetTopPathStatisticsByTrafficOutput = {
     members = {
         PathStatistics = {
             type = "list",
-            member_type = "structure",
+            member = M.PathStatistics,
             traits = {
                 required = true,
             },
         },
         TotalRequestCount = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -3797,7 +3617,7 @@ M.GetTopPathStatisticsByTrafficOutput = {
         },
         TopCategories = {
             type = "list",
-            member_type = "structure",
+            member = M.PathStatistics,
         },
     },
 }
@@ -3845,7 +3665,7 @@ M.ListAPIKeysInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3858,7 +3678,7 @@ M.ListAPIKeysOutput = {
         },
         APIKeySummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.APIKeySummary,
         },
         ApplicationIntegrationURL = {
             type = "string",
@@ -3879,7 +3699,7 @@ M.ListAvailableManagedRuleGroupsInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3895,6 +3715,9 @@ M.ManagedRuleGroupSummary = {
         },
         VersioningSupported = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Description = {
             type = "string",
@@ -3910,7 +3733,7 @@ M.ListAvailableManagedRuleGroupsOutput = {
         },
         ManagedRuleGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.ManagedRuleGroupSummary,
         },
     },
 }
@@ -3940,7 +3763,7 @@ M.ListAvailableManagedRuleGroupVersionsInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3965,7 +3788,7 @@ M.ListAvailableManagedRuleGroupVersionsOutput = {
         },
         Versions = {
             type = "list",
-            member_type = "structure",
+            member = M.ManagedRuleGroupVersion,
         },
         CurrentDefaultVersion = {
             type = "string",
@@ -3986,7 +3809,7 @@ M.ListIPSetsInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3999,7 +3822,7 @@ M.ListIPSetsOutput = {
         },
         IPSets = {
             type = "list",
-            member_type = "structure",
+            member = M.IPSetSummary,
         },
     },
 }
@@ -4017,7 +3840,7 @@ M.ListLoggingConfigurationsInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         LogScope = {
             type = "string",
@@ -4030,7 +3853,7 @@ M.ListLoggingConfigurationsOutput = {
     members = {
         LoggingConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.LoggingConfiguration,
         },
         NextMarker = {
             type = "string",
@@ -4051,7 +3874,7 @@ M.ListManagedRuleSetsInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4088,7 +3911,7 @@ M.ListManagedRuleSetsOutput = {
         },
         ManagedRuleSets = {
             type = "list",
-            member_type = "structure",
+            member = M.ManagedRuleSetSummary,
         },
     },
 }
@@ -4106,7 +3929,7 @@ M.ListMobileSdkReleasesInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4128,7 +3951,7 @@ M.ListMobileSdkReleasesOutput = {
     members = {
         ReleaseSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ReleaseSummary,
         },
         NextMarker = {
             type = "string",
@@ -4149,7 +3972,7 @@ M.ListRegexPatternSetsInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4162,7 +3985,7 @@ M.ListRegexPatternSetsOutput = {
         },
         RegexPatternSets = {
             type = "list",
-            member_type = "structure",
+            member = M.RegexPatternSetSummary,
         },
     },
 }
@@ -4197,7 +4020,7 @@ M.ListResourcesForWebACLOutput = {
     members = {
         ResourceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4215,7 +4038,7 @@ M.ListRuleGroupsInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4228,7 +4051,7 @@ M.ListRuleGroupsOutput = {
         },
         RuleGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleGroupSummary,
         },
     },
 }
@@ -4240,7 +4063,7 @@ M.ListTagsForResourceInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         ResourceARN = {
             type = "string",
@@ -4259,7 +4082,7 @@ M.TagInfoForResource = {
         },
         TagList = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -4270,9 +4093,7 @@ M.ListTagsForResourceOutput = {
         NextMarker = {
             type = "string",
         },
-        TagInfoForResource = {
-            type = "structure",
-        },
+        TagInfoForResource = M.TagInfoForResource,
     },
 }
 
@@ -4289,7 +4110,7 @@ M.ListWebACLsInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4302,7 +4123,7 @@ M.ListWebACLsOutput = {
         },
         WebACLs = {
             type = "list",
-            member_type = "structure",
+            member = M.WebACLSummary,
         },
     },
 }
@@ -4310,21 +4131,16 @@ M.ListWebACLsOutput = {
 M.PutLoggingConfigurationInput = {
     type = "structure",
     members = {
-        LoggingConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        LoggingConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LoggingConfiguration }),
     },
 }
 
 M.PutLoggingConfigurationOutput = {
     type = "structure",
     members = {
-        LoggingConfiguration = {
-            type = "structure",
-        },
+        LoggingConfiguration = M.LoggingConfiguration,
     },
 }
 
@@ -4355,7 +4171,7 @@ M.VersionToPublish = {
             type = "string",
         },
         ForecastedLifetime = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4392,8 +4208,8 @@ M.PutManagedRuleSetVersionsInput = {
         },
         VersionsToPublish = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.VersionToPublish,
         },
     },
 }
@@ -4450,7 +4266,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -4473,7 +4289,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4511,7 +4327,7 @@ M.UpdateIPSetInput = {
         },
         Addresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4617,7 +4433,7 @@ M.UpdateRegexPatternSetInput = {
         },
         RegularExpressionList = {
             type = "list",
-            member_type = "structure",
+            member = M.Regex,
             traits = {
                 required = true,
             },
@@ -4661,54 +4477,22 @@ M.UpdateWebACLOutput = {
 M.Statement = {
     type = "structure",
     members = {
-        ByteMatchStatement = {
-            type = "structure",
-        },
-        SqliMatchStatement = {
-            type = "structure",
-        },
-        XssMatchStatement = {
-            type = "structure",
-        },
-        SizeConstraintStatement = {
-            type = "structure",
-        },
-        GeoMatchStatement = {
-            type = "structure",
-        },
-        RuleGroupReferenceStatement = {
-            type = "structure",
-        },
-        IPSetReferenceStatement = {
-            type = "structure",
-        },
-        RegexPatternSetReferenceStatement = {
-            type = "structure",
-        },
-        RateBasedStatement = {
-            type = "structure",
-        },
-        AndStatement = {
-            type = "structure",
-        },
-        OrStatement = {
-            type = "structure",
-        },
-        NotStatement = {
-            type = "structure",
-        },
-        ManagedRuleGroupStatement = {
-            type = "structure",
-        },
-        LabelMatchStatement = {
-            type = "structure",
-        },
-        RegexMatchStatement = {
-            type = "structure",
-        },
-        AsnMatchStatement = {
-            type = "structure",
-        },
+        ByteMatchStatement = M.ByteMatchStatement,
+        SqliMatchStatement = M.SqliMatchStatement,
+        XssMatchStatement = M.XssMatchStatement,
+        SizeConstraintStatement = M.SizeConstraintStatement,
+        GeoMatchStatement = M.GeoMatchStatement,
+        RuleGroupReferenceStatement = M.RuleGroupReferenceStatement,
+        IPSetReferenceStatement = M.IPSetReferenceStatement,
+        RegexPatternSetReferenceStatement = M.RegexPatternSetReferenceStatement,
+        RateBasedStatement = M.RateBasedStatement,
+        AndStatement = M.AndStatement,
+        OrStatement = M.OrStatement,
+        NotStatement = M.NotStatement,
+        ManagedRuleGroupStatement = M.ManagedRuleGroupStatement,
+        LabelMatchStatement = M.LabelMatchStatement,
+        RegexMatchStatement = M.RegexMatchStatement,
+        AsnMatchStatement = M.AsnMatchStatement,
     },
 }
 
@@ -4732,18 +4516,16 @@ M.ManagedRuleGroupStatement = {
         },
         ExcludedRules = {
             type = "list",
-            member_type = "structure",
+            member = M.ExcludedRule,
         },
-        ScopeDownStatement = {
-            type = "structure",
-        },
+        ScopeDownStatement = M.Statement,
         ManagedRuleGroupConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.ManagedRuleGroupConfig,
         },
         RuleActionOverrides = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleActionOverride,
         },
     },
 }
@@ -4751,12 +4533,9 @@ M.ManagedRuleGroupStatement = {
 M.NotStatement = {
     type = "structure",
     members = {
-        Statement = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Statement = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Statement }),
     },
 }
 
@@ -4764,13 +4543,16 @@ M.RateBasedStatement = {
     type = "structure",
     members = {
         Limit = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         EvaluationWindowSec = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         AggregateKeyType = {
             type = "string",
@@ -4778,15 +4560,11 @@ M.RateBasedStatement = {
                 required = true,
             },
         },
-        ScopeDownStatement = {
-            type = "structure",
-        },
-        ForwardedIPConfig = {
-            type = "structure",
-        },
+        ScopeDownStatement = M.Statement,
+        ForwardedIPConfig = M.ForwardedIPConfig,
         CustomKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.RateBasedStatementCustomKey,
         },
     },
 }
@@ -4801,39 +4579,26 @@ M.Rule = {
             },
         },
         Priority = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
-        Statement = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Action = {
-            type = "structure",
-        },
-        OverrideAction = {
-            type = "structure",
-        },
+        Statement = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Statement }),
+        Action = M.RuleAction,
+        OverrideAction = M.OverrideAction,
         RuleLabels = {
             type = "list",
-            member_type = "structure",
+            member = M.Label,
         },
-        VisibilityConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        CaptchaConfig = {
-            type = "structure",
-        },
-        ChallengeConfig = {
-            type = "structure",
-        },
+        VisibilityConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VisibilityConfig }),
+        CaptchaConfig = M.CaptchaConfig,
+        ChallengeConfig = M.ChallengeConfig,
     },
 }
 
@@ -4842,7 +4607,7 @@ M.AndStatement = {
     members = {
         Statements = {
             type = "list",
-            member_type = "structure",
+            member = M.Statement,
             traits = {
                 required = true,
             },
@@ -4855,7 +4620,7 @@ M.OrStatement = {
     members = {
         Statements = {
             type = "list",
-            member_type = "structure",
+            member = M.Statement,
             traits = {
                 required = true,
             },
@@ -4866,12 +4631,8 @@ M.OrStatement = {
 M.FirewallManagerStatement = {
     type = "structure",
     members = {
-        ManagedRuleGroupStatement = {
-            type = "structure",
-        },
-        RuleGroupReferenceStatement = {
-            type = "structure",
-        },
+        ManagedRuleGroupStatement = M.ManagedRuleGroupStatement,
+        RuleGroupReferenceStatement = M.RuleGroupReferenceStatement,
     },
 }
 
@@ -4885,29 +4646,21 @@ M.FirewallManagerRuleGroup = {
             },
         },
         Priority = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
-        FirewallManagerStatement = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        OverrideAction = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        VisibilityConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        FirewallManagerStatement = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FirewallManagerStatement }),
+        OverrideAction = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OverrideAction }),
+        VisibilityConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VisibilityConfig }),
     },
 }
 
@@ -4922,7 +4675,7 @@ M.CheckCapacityInput = {
         },
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.Rule,
             traits = {
                 required = true,
             },
@@ -4946,7 +4699,7 @@ M.CreateRuleGroupInput = {
             },
         },
         Capacity = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -4956,22 +4709,19 @@ M.CreateRuleGroupInput = {
         },
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.Rule,
         },
-        VisibilityConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        VisibilityConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VisibilityConfig }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         CustomResponseBodies = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.CustomResponseBody,
         },
     },
 }
@@ -4991,56 +4741,38 @@ M.CreateWebACLInput = {
                 required = true,
             },
         },
-        DefaultAction = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DefaultAction = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DefaultAction }),
         Description = {
             type = "string",
         },
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.Rule,
         },
-        VisibilityConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        DataProtectionConfig = {
-            type = "structure",
-        },
+        VisibilityConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VisibilityConfig }),
+        DataProtectionConfig = M.DataProtectionConfig,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         CustomResponseBodies = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.CustomResponseBody,
         },
-        CaptchaConfig = {
-            type = "structure",
-        },
-        ChallengeConfig = {
-            type = "structure",
-        },
+        CaptchaConfig = M.CaptchaConfig,
+        ChallengeConfig = M.ChallengeConfig,
         TokenDomains = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        AssociationConfig = {
-            type = "structure",
-        },
-        OnSourceDDoSProtectionConfig = {
-            type = "structure",
-        },
-        ApplicationConfig = {
-            type = "structure",
-        },
+        AssociationConfig = M.AssociationConfig,
+        OnSourceDDoSProtectionConfig = M.OnSourceDDoSProtectionConfig,
+        ApplicationConfig = M.ApplicationConfig,
     },
 }
 
@@ -5060,7 +4792,7 @@ M.RuleGroup = {
             },
         },
         Capacity = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -5076,29 +4808,26 @@ M.RuleGroup = {
         },
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.Rule,
         },
-        VisibilityConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        VisibilityConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VisibilityConfig }),
         LabelNamespace = {
             type = "string",
         },
         CustomResponseBodies = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.CustomResponseBody,
         },
         AvailableLabels = {
             type = "list",
-            member_type = "structure",
+            member = M.LabelSummary,
         },
         ConsumedLabels = {
             type = "list",
-            member_type = "structure",
+            member = M.LabelSummary,
         },
     },
 }
@@ -5129,14 +4858,11 @@ M.UpdateRuleGroupInput = {
         },
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.Rule,
         },
-        VisibilityConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        VisibilityConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VisibilityConfig }),
         LockToken = {
             type = "string",
             traits = {
@@ -5145,8 +4871,8 @@ M.UpdateRuleGroupInput = {
         },
         CustomResponseBodies = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.CustomResponseBody,
         },
     },
 }
@@ -5172,28 +4898,20 @@ M.UpdateWebACLInput = {
                 required = true,
             },
         },
-        DefaultAction = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DefaultAction = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DefaultAction }),
         Description = {
             type = "string",
         },
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.Rule,
         },
-        VisibilityConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        DataProtectionConfig = {
-            type = "structure",
-        },
+        VisibilityConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VisibilityConfig }),
+        DataProtectionConfig = M.DataProtectionConfig,
         LockToken = {
             type = "string",
             traits = {
@@ -5202,37 +4920,25 @@ M.UpdateWebACLInput = {
         },
         CustomResponseBodies = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.CustomResponseBody,
         },
-        CaptchaConfig = {
-            type = "structure",
-        },
-        ChallengeConfig = {
-            type = "structure",
-        },
+        CaptchaConfig = M.CaptchaConfig,
+        ChallengeConfig = M.ChallengeConfig,
         TokenDomains = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        AssociationConfig = {
-            type = "structure",
-        },
-        OnSourceDDoSProtectionConfig = {
-            type = "structure",
-        },
-        ApplicationConfig = {
-            type = "structure",
-        },
+        AssociationConfig = M.AssociationConfig,
+        OnSourceDDoSProtectionConfig = M.OnSourceDDoSProtectionConfig,
+        ApplicationConfig = M.ApplicationConfig,
     },
 }
 
 M.GetRuleGroupOutput = {
     type = "structure",
     members = {
-        RuleGroup = {
-            type = "structure",
-        },
+        RuleGroup = M.RuleGroup,
         LockToken = {
             type = "string",
         },
@@ -5260,90 +4966,77 @@ M.WebACL = {
                 required = true,
             },
         },
-        DefaultAction = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DefaultAction = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DefaultAction }),
         Description = {
             type = "string",
         },
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.Rule,
         },
-        VisibilityConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        DataProtectionConfig = {
-            type = "structure",
-        },
+        VisibilityConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VisibilityConfig }),
+        DataProtectionConfig = M.DataProtectionConfig,
         Capacity = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         PreProcessFirewallManagerRuleGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.FirewallManagerRuleGroup,
         },
         PostProcessFirewallManagerRuleGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.FirewallManagerRuleGroup,
         },
         ManagedByFirewallManager = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         LabelNamespace = {
             type = "string",
         },
         CustomResponseBodies = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.CustomResponseBody,
         },
-        CaptchaConfig = {
-            type = "structure",
-        },
-        ChallengeConfig = {
-            type = "structure",
-        },
+        CaptchaConfig = M.CaptchaConfig,
+        ChallengeConfig = M.ChallengeConfig,
         TokenDomains = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        AssociationConfig = {
-            type = "structure",
-        },
+        AssociationConfig = M.AssociationConfig,
         RetrofittedByFirewallManager = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        OnSourceDDoSProtectionConfig = {
-            type = "structure",
-        },
-        ApplicationConfig = {
-            type = "structure",
-        },
+        OnSourceDDoSProtectionConfig = M.OnSourceDDoSProtectionConfig,
+        ApplicationConfig = M.ApplicationConfig,
     },
 }
 
 M.GetWebACLForResourceOutput = {
     type = "structure",
     members = {
-        WebACL = {
-            type = "structure",
-        },
+        WebACL = M.WebACL,
     },
 }
 
 M.GetWebACLOutput = {
     type = "structure",
     members = {
-        WebACL = {
-            type = "structure",
-        },
+        WebACL = M.WebACL,
         LockToken = {
             type = "string",
         },

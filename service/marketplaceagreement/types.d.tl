@@ -679,13 +679,13 @@ local type PaymentRequestStatus = "VALIDATING" | "VALIDATION_FAILED" | "PENDING_
 
 local type AgreementCancellationRequestStatus = "PENDING_APPROVAL" | "APPROVED" | "REJECTED" | "CANCELLED" | "VALIDATION_FAILED"
 
+local type InvoiceType = "INVOICE" | "CREDIT_MEMO"
+
 local type LineItemGroupBy = "INVOICE_ID"
 
 local type BillingAdjustmentStatus = "PENDING" | "VALIDATION_FAILED" | "COMPLETED"
 
 local type AgreementStatus = "ACTIVE" | "ARCHIVED" | "CANCELLED" | "EXPIRED" | "RENEWED" | "REPLACED" | "ROLLED_BACK" | "SUPERSEDED" | "TERMINATED"
-
-local type InvoiceType = "INVOICE" | "CREDIT_MEMO"
 
 local record M
     BatchCreateBillingAdjustmentRequestInput: BatchCreateBillingAdjustmentRequestInput

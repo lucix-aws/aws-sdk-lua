@@ -65,7 +65,7 @@ M.InternalServerException = {
             },
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -84,7 +84,7 @@ M.ThrottlingException = {
             },
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -135,7 +135,7 @@ M.ValidationException = {
         },
         fieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -234,13 +234,13 @@ M.AutonomousVirtualMachineSummary = {
             type = "string",
         },
         cpuCoreCount = {
-            type = "number",
+            type = "integer",
         },
         memorySizeInGBs = {
-            type = "number",
+            type = "integer",
         },
         dbNodeStorageSizeInGBs = {
-            type = "number",
+            type = "integer",
         },
         clientIpAddress = {
             type = "string",
@@ -352,25 +352,25 @@ M.MaintenanceWindow = {
     type = "structure",
     members = {
         customActionTimeoutInMins = {
-            type = "number",
+            type = "integer",
         },
         daysOfWeek = {
             type = "list",
-            member_type = "structure",
+            member = M.DayOfWeek,
         },
         hoursOfDay = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
         },
         isCustomActionTimeoutEnabled = {
             type = "boolean",
         },
         leadTimeInWeeks = {
-            type = "number",
+            type = "integer",
         },
         months = {
             type = "list",
-            member_type = "structure",
+            member = M.Month,
         },
         patchingMode = {
             type = "string",
@@ -383,7 +383,7 @@ M.MaintenanceWindow = {
         },
         weeksOfMonth = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
         },
     },
 }
@@ -410,7 +410,7 @@ M.CloudAutonomousVmCluster = {
             type = "string",
         },
         percentProgress = {
-            type = "number",
+            type = "float",
         },
         displayName = {
             type = "string",
@@ -428,44 +428,44 @@ M.CloudAutonomousVmCluster = {
             type = "string",
         },
         autonomousDataStoragePercentage = {
-            type = "number",
+            type = "float",
         },
         autonomousDataStorageSizeInTBs = {
-            type = "number",
+            type = "double",
         },
         availableAutonomousDataStorageSizeInTBs = {
-            type = "number",
+            type = "double",
         },
         availableContainerDatabases = {
-            type = "number",
+            type = "integer",
         },
         availableCpus = {
-            type = "number",
+            type = "float",
         },
         computeModel = {
             type = "string",
         },
         cpuCoreCount = {
-            type = "number",
+            type = "integer",
         },
         cpuCoreCountPerNode = {
-            type = "number",
+            type = "integer",
         },
         cpuPercentage = {
-            type = "number",
+            type = "float",
         },
         dataStorageSizeInGBs = {
-            type = "number",
+            type = "double",
         },
         dataStorageSizeInTBs = {
-            type = "number",
+            type = "double",
         },
         dbNodeStorageSizeInGBs = {
-            type = "number",
+            type = "integer",
         },
         dbServers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         description = {
             type = "string",
@@ -474,7 +474,7 @@ M.CloudAutonomousVmCluster = {
             type = "string",
         },
         exadataStorageInTBsLowestScaledValue = {
-            type = "number",
+            type = "double",
         },
         hostname = {
             type = "string",
@@ -491,44 +491,42 @@ M.CloudAutonomousVmCluster = {
         licenseModel = {
             type = "string",
         },
-        maintenanceWindow = {
-            type = "structure",
-        },
+        maintenanceWindow = M.MaintenanceWindow,
         maxAcdsLowestScaledValue = {
-            type = "number",
+            type = "integer",
         },
         memoryPerOracleComputeUnitInGBs = {
-            type = "number",
+            type = "integer",
         },
         memorySizeInGBs = {
-            type = "number",
+            type = "integer",
         },
         nodeCount = {
-            type = "number",
+            type = "integer",
         },
         nonProvisionableAutonomousContainerDatabases = {
-            type = "number",
+            type = "integer",
         },
         provisionableAutonomousContainerDatabases = {
-            type = "number",
+            type = "integer",
         },
         provisionedAutonomousContainerDatabases = {
-            type = "number",
+            type = "integer",
         },
         provisionedCpus = {
-            type = "number",
+            type = "float",
         },
         reclaimableCpus = {
-            type = "number",
+            type = "float",
         },
         reservedCpus = {
-            type = "number",
+            type = "float",
         },
         scanListenerPortNonTls = {
-            type = "number",
+            type = "integer",
         },
         scanListenerPortTls = {
-            type = "number",
+            type = "integer",
         },
         shape = {
             type = "string",
@@ -555,11 +553,11 @@ M.CloudAutonomousVmCluster = {
             type = "string",
         },
         totalContainerDatabases = {
-            type = "number",
+            type = "integer",
         },
         iamRoles = {
             type = "list",
-            member_type = "structure",
+            member = M.IamRole,
         },
     },
 }
@@ -586,7 +584,7 @@ M.CloudAutonomousVmClusterSummary = {
             type = "string",
         },
         percentProgress = {
-            type = "number",
+            type = "float",
         },
         displayName = {
             type = "string",
@@ -604,44 +602,44 @@ M.CloudAutonomousVmClusterSummary = {
             type = "string",
         },
         autonomousDataStoragePercentage = {
-            type = "number",
+            type = "float",
         },
         autonomousDataStorageSizeInTBs = {
-            type = "number",
+            type = "double",
         },
         availableAutonomousDataStorageSizeInTBs = {
-            type = "number",
+            type = "double",
         },
         availableContainerDatabases = {
-            type = "number",
+            type = "integer",
         },
         availableCpus = {
-            type = "number",
+            type = "float",
         },
         computeModel = {
             type = "string",
         },
         cpuCoreCount = {
-            type = "number",
+            type = "integer",
         },
         cpuCoreCountPerNode = {
-            type = "number",
+            type = "integer",
         },
         cpuPercentage = {
-            type = "number",
+            type = "float",
         },
         dataStorageSizeInGBs = {
-            type = "number",
+            type = "double",
         },
         dataStorageSizeInTBs = {
-            type = "number",
+            type = "double",
         },
         dbNodeStorageSizeInGBs = {
-            type = "number",
+            type = "integer",
         },
         dbServers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         description = {
             type = "string",
@@ -650,7 +648,7 @@ M.CloudAutonomousVmClusterSummary = {
             type = "string",
         },
         exadataStorageInTBsLowestScaledValue = {
-            type = "number",
+            type = "double",
         },
         hostname = {
             type = "string",
@@ -667,44 +665,42 @@ M.CloudAutonomousVmClusterSummary = {
         licenseModel = {
             type = "string",
         },
-        maintenanceWindow = {
-            type = "structure",
-        },
+        maintenanceWindow = M.MaintenanceWindow,
         maxAcdsLowestScaledValue = {
-            type = "number",
+            type = "integer",
         },
         memoryPerOracleComputeUnitInGBs = {
-            type = "number",
+            type = "integer",
         },
         memorySizeInGBs = {
-            type = "number",
+            type = "integer",
         },
         nodeCount = {
-            type = "number",
+            type = "integer",
         },
         nonProvisionableAutonomousContainerDatabases = {
-            type = "number",
+            type = "integer",
         },
         provisionableAutonomousContainerDatabases = {
-            type = "number",
+            type = "integer",
         },
         provisionedAutonomousContainerDatabases = {
-            type = "number",
+            type = "integer",
         },
         provisionedCpus = {
-            type = "number",
+            type = "float",
         },
         reclaimableCpus = {
-            type = "number",
+            type = "float",
         },
         reservedCpus = {
-            type = "number",
+            type = "float",
         },
         scanListenerPortNonTls = {
-            type = "number",
+            type = "integer",
         },
         scanListenerPortTls = {
-            type = "number",
+            type = "integer",
         },
         shape = {
             type = "string",
@@ -731,11 +727,11 @@ M.CloudAutonomousVmClusterSummary = {
             type = "string",
         },
         totalContainerDatabases = {
-            type = "number",
+            type = "integer",
         },
         iamRoles = {
             type = "list",
-            member_type = "structure",
+            member = M.IamRole,
         },
     },
 }
@@ -765,20 +761,20 @@ M.CreateCloudAutonomousVmClusterInput = {
             type = "string",
         },
         autonomousDataStorageSizeInTBs = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
         cpuCoreCountPerNode = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         dbServers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         description = {
             type = "string",
@@ -789,31 +785,35 @@ M.CreateCloudAutonomousVmClusterInput = {
         licenseModel = {
             type = "string",
         },
-        maintenanceWindow = {
-            type = "structure",
-        },
+        maintenanceWindow = M.MaintenanceWindow,
         memoryPerOracleComputeUnitInGBs = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         scanListenerPortNonTls = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 1521,
+            },
         },
         scanListenerPortTls = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 2484,
+            },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         timeZone = {
             type = "string",
         },
         totalContainerDatabases = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -906,9 +906,7 @@ M.GetCloudAutonomousVmClusterInput = {
 M.GetCloudAutonomousVmClusterOutput = {
     type = "structure",
     members = {
-        cloudAutonomousVmCluster = {
-            type = "structure",
-        },
+        cloudAutonomousVmCluster = M.CloudAutonomousVmCluster,
     },
 }
 
@@ -916,7 +914,7 @@ M.ListAutonomousVirtualMachinesInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -945,7 +943,7 @@ M.ListAutonomousVirtualMachinesOutput = {
         },
         autonomousVirtualMachines = {
             type = "list",
-            member_type = "structure",
+            member = M.AutonomousVirtualMachineSummary,
             traits = {
                 required = true,
             },
@@ -957,7 +955,7 @@ M.ListCloudAutonomousVmClustersInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -982,7 +980,7 @@ M.ListCloudAutonomousVmClustersOutput = {
         },
         cloudAutonomousVmClusters = {
             type = "list",
-            member_type = "structure",
+            member = M.CloudAutonomousVmClusterSummary,
             traits = {
                 required = true,
             },
@@ -997,7 +995,7 @@ M.CloudAutonomousVmClusterResourceDetails = {
             type = "string",
         },
         unallocatedAdbStorageInTBs = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -1033,13 +1031,13 @@ M.CloudExadataInfrastructure = {
             type = "string",
         },
         activatedStorageCount = {
-            type = "number",
+            type = "integer",
         },
         additionalStorageCount = {
-            type = "number",
+            type = "integer",
         },
         availableStorageSizeInGBs = {
-            type = "number",
+            type = "integer",
         },
         availabilityZone = {
             type = "string",
@@ -1048,20 +1046,20 @@ M.CloudExadataInfrastructure = {
             type = "string",
         },
         computeCount = {
-            type = "number",
+            type = "integer",
         },
         cpuCount = {
-            type = "number",
+            type = "integer",
         },
         customerContactsToSendToOCI = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomerContact,
         },
         dataStorageSizeInTBs = {
-            type = "number",
+            type = "double",
         },
         dbNodeStorageSizeInGBs = {
-            type = "number",
+            type = "integer",
         },
         dbServerVersion = {
             type = "string",
@@ -1069,23 +1067,21 @@ M.CloudExadataInfrastructure = {
         lastMaintenanceRunId = {
             type = "string",
         },
-        maintenanceWindow = {
-            type = "structure",
-        },
+        maintenanceWindow = M.MaintenanceWindow,
         maxCpuCount = {
-            type = "number",
+            type = "integer",
         },
         maxDataStorageInTBs = {
-            type = "number",
+            type = "double",
         },
         maxDbNodeStorageSizeInGBs = {
-            type = "number",
+            type = "integer",
         },
         maxMemoryInGBs = {
-            type = "number",
+            type = "integer",
         },
         memorySizeInGBs = {
-            type = "number",
+            type = "integer",
         },
         monthlyDbServerVersion = {
             type = "string",
@@ -1109,7 +1105,7 @@ M.CloudExadataInfrastructure = {
             type = "string",
         },
         storageCount = {
-            type = "number",
+            type = "integer",
         },
         storageServerVersion = {
             type = "string",
@@ -1121,10 +1117,10 @@ M.CloudExadataInfrastructure = {
             },
         },
         totalStorageSizeInGBs = {
-            type = "number",
+            type = "integer",
         },
         percentProgress = {
-            type = "number",
+            type = "float",
         },
         databaseServerType = {
             type = "string",
@@ -1160,13 +1156,13 @@ M.CloudExadataInfrastructureSummary = {
             type = "string",
         },
         activatedStorageCount = {
-            type = "number",
+            type = "integer",
         },
         additionalStorageCount = {
-            type = "number",
+            type = "integer",
         },
         availableStorageSizeInGBs = {
-            type = "number",
+            type = "integer",
         },
         availabilityZone = {
             type = "string",
@@ -1175,20 +1171,20 @@ M.CloudExadataInfrastructureSummary = {
             type = "string",
         },
         computeCount = {
-            type = "number",
+            type = "integer",
         },
         cpuCount = {
-            type = "number",
+            type = "integer",
         },
         customerContactsToSendToOCI = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomerContact,
         },
         dataStorageSizeInTBs = {
-            type = "number",
+            type = "double",
         },
         dbNodeStorageSizeInGBs = {
-            type = "number",
+            type = "integer",
         },
         dbServerVersion = {
             type = "string",
@@ -1196,23 +1192,21 @@ M.CloudExadataInfrastructureSummary = {
         lastMaintenanceRunId = {
             type = "string",
         },
-        maintenanceWindow = {
-            type = "structure",
-        },
+        maintenanceWindow = M.MaintenanceWindow,
         maxCpuCount = {
-            type = "number",
+            type = "integer",
         },
         maxDataStorageInTBs = {
-            type = "number",
+            type = "double",
         },
         maxDbNodeStorageSizeInGBs = {
-            type = "number",
+            type = "integer",
         },
         maxMemoryInGBs = {
-            type = "number",
+            type = "integer",
         },
         memorySizeInGBs = {
-            type = "number",
+            type = "integer",
         },
         monthlyDbServerVersion = {
             type = "string",
@@ -1236,7 +1230,7 @@ M.CloudExadataInfrastructureSummary = {
             type = "string",
         },
         storageCount = {
-            type = "number",
+            type = "integer",
         },
         storageServerVersion = {
             type = "string",
@@ -1248,10 +1242,10 @@ M.CloudExadataInfrastructureSummary = {
             },
         },
         totalStorageSizeInGBs = {
-            type = "number",
+            type = "integer",
         },
         percentProgress = {
-            type = "number",
+            type = "float",
         },
         databaseServerType = {
             type = "string",
@@ -1288,24 +1282,22 @@ M.CreateCloudExadataInfrastructureInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         computeCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         customerContactsToSendToOCI = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomerContact,
         },
-        maintenanceWindow = {
-            type = "structure",
-        },
+        maintenanceWindow = M.MaintenanceWindow,
         storageCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1376,9 +1368,7 @@ M.GetCloudExadataInfrastructureInput = {
 M.GetCloudExadataInfrastructureOutput = {
     type = "structure",
     members = {
-        cloudExadataInfrastructure = {
-            type = "structure",
-        },
+        cloudExadataInfrastructure = M.CloudExadataInfrastructure,
     },
 }
 
@@ -1394,7 +1384,7 @@ M.GetCloudExadataInfrastructureUnallocatedResourcesInput = {
         },
         dbServers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1404,25 +1394,25 @@ M.CloudExadataInfrastructureUnallocatedResources = {
     members = {
         cloudAutonomousVmClusters = {
             type = "list",
-            member_type = "structure",
+            member = M.CloudAutonomousVmClusterResourceDetails,
         },
         cloudExadataInfrastructureDisplayName = {
             type = "string",
         },
         exadataStorageInTBs = {
-            type = "number",
+            type = "double",
         },
         cloudExadataInfrastructureId = {
             type = "string",
         },
         localStorageInGBs = {
-            type = "number",
+            type = "integer",
         },
         memoryInGBs = {
-            type = "number",
+            type = "integer",
         },
         ocpus = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1430,9 +1420,7 @@ M.CloudExadataInfrastructureUnallocatedResources = {
 M.GetCloudExadataInfrastructureUnallocatedResourcesOutput = {
     type = "structure",
     members = {
-        cloudExadataInfrastructureUnallocatedResources = {
-            type = "structure",
-        },
+        cloudExadataInfrastructureUnallocatedResources = M.CloudExadataInfrastructureUnallocatedResources,
     },
 }
 
@@ -1467,7 +1455,7 @@ M.DbServerPatchingDetails = {
     type = "structure",
     members = {
         estimatedPatchDuration = {
-            type = "number",
+            type = "integer",
         },
         patchingStatus = {
             type = "string",
@@ -1494,14 +1482,12 @@ M.DbServer = {
             type = "string",
         },
         cpuCoreCount = {
-            type = "number",
+            type = "integer",
         },
         dbNodeStorageSizeInGBs = {
-            type = "number",
+            type = "integer",
         },
-        dbServerPatchingDetails = {
-            type = "structure",
-        },
+        dbServerPatchingDetails = M.DbServerPatchingDetails,
         displayName = {
             type = "string",
         },
@@ -1515,16 +1501,16 @@ M.DbServer = {
             type = "string",
         },
         maxCpuCount = {
-            type = "number",
+            type = "integer",
         },
         maxDbNodeStorageInGBs = {
-            type = "number",
+            type = "integer",
         },
         maxMemoryInGBs = {
-            type = "number",
+            type = "integer",
         },
         memorySizeInGBs = {
-            type = "number",
+            type = "integer",
         },
         shape = {
             type = "string",
@@ -1537,18 +1523,18 @@ M.DbServer = {
         },
         vmClusterIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         computeModel = {
             type = "string",
         },
         autonomousVmClusterIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         autonomousVirtualMachineIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1556,9 +1542,7 @@ M.DbServer = {
 M.GetDbServerOutput = {
     type = "structure",
     members = {
-        dbServer = {
-            type = "structure",
-        },
+        dbServer = M.DbServer,
     },
 }
 
@@ -1566,7 +1550,7 @@ M.ListCloudExadataInfrastructuresInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1588,7 +1572,7 @@ M.ListCloudExadataInfrastructuresOutput = {
         },
         cloudExadataInfrastructures = {
             type = "list",
-            member_type = "structure",
+            member = M.CloudExadataInfrastructureSummary,
             traits = {
                 required = true,
             },
@@ -1607,7 +1591,7 @@ M.ListDbServersInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1634,14 +1618,12 @@ M.DbServerSummary = {
             type = "string",
         },
         cpuCoreCount = {
-            type = "number",
+            type = "integer",
         },
         dbNodeStorageSizeInGBs = {
-            type = "number",
+            type = "integer",
         },
-        dbServerPatchingDetails = {
-            type = "structure",
-        },
+        dbServerPatchingDetails = M.DbServerPatchingDetails,
         displayName = {
             type = "string",
         },
@@ -1655,16 +1637,16 @@ M.DbServerSummary = {
             type = "string",
         },
         maxCpuCount = {
-            type = "number",
+            type = "integer",
         },
         maxDbNodeStorageInGBs = {
-            type = "number",
+            type = "integer",
         },
         maxMemoryInGBs = {
-            type = "number",
+            type = "integer",
         },
         memorySizeInGBs = {
-            type = "number",
+            type = "integer",
         },
         shape = {
             type = "string",
@@ -1677,18 +1659,18 @@ M.DbServerSummary = {
         },
         vmClusterIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         computeModel = {
             type = "string",
         },
         autonomousVmClusterIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         autonomousVirtualMachineIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1701,7 +1683,7 @@ M.ListDbServersOutput = {
         },
         dbServers = {
             type = "list",
-            member_type = "structure",
+            member = M.DbServerSummary,
             traits = {
                 required = true,
             },
@@ -1719,9 +1701,7 @@ M.UpdateCloudExadataInfrastructureInput = {
                 required = true,
             },
         },
-        maintenanceWindow = {
-            type = "structure",
-        },
+        maintenanceWindow = M.MaintenanceWindow,
     },
 }
 
@@ -1776,7 +1756,7 @@ M.DbIormConfig = {
             type = "string",
         },
         share = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1802,7 +1782,7 @@ M.ExadataIormConfig = {
     members = {
         dbPlans = {
             type = "list",
-            member_type = "structure",
+            member = M.DbIormConfig,
         },
         lifecycleDetails = {
             type = "string",
@@ -1847,20 +1827,18 @@ M.CloudVmCluster = {
             type = "string",
         },
         cpuCoreCount = {
-            type = "number",
+            type = "integer",
         },
-        dataCollectionOptions = {
-            type = "structure",
-        },
+        dataCollectionOptions = M.DataCollectionOptions,
         dataStorageSizeInTBs = {
-            type = "number",
+            type = "double",
         },
         dbNodeStorageSizeInGBs = {
-            type = "number",
+            type = "integer",
         },
         dbServers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         diskRedundancy = {
             type = "string",
@@ -1871,9 +1849,7 @@ M.CloudVmCluster = {
         hostname = {
             type = "string",
         },
-        iormConfigCache = {
-            type = "structure",
-        },
+        iormConfigCache = M.ExadataIormConfig,
         isLocalBackupEnabled = {
             type = "boolean",
         },
@@ -1887,13 +1863,13 @@ M.CloudVmCluster = {
             type = "string",
         },
         listenerPort = {
-            type = "number",
+            type = "integer",
         },
         memorySizeInGBs = {
-            type = "number",
+            type = "integer",
         },
         nodeCount = {
-            type = "number",
+            type = "integer",
         },
         ocid = {
             type = "string",
@@ -1915,17 +1891,17 @@ M.CloudVmCluster = {
         },
         scanIpIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         shape = {
             type = "string",
         },
         sshPublicKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         storageSizeInGBs = {
-            type = "number",
+            type = "integer",
         },
         systemVersion = {
             type = "string",
@@ -1941,7 +1917,7 @@ M.CloudVmCluster = {
         },
         vipIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         odbNetworkId = {
             type = "string",
@@ -1950,14 +1926,14 @@ M.CloudVmCluster = {
             type = "string",
         },
         percentProgress = {
-            type = "number",
+            type = "float",
         },
         computeModel = {
             type = "string",
         },
         iamRoles = {
             type = "list",
-            member_type = "structure",
+            member = M.IamRole,
         },
     },
 }
@@ -1993,20 +1969,18 @@ M.CloudVmClusterSummary = {
             type = "string",
         },
         cpuCoreCount = {
-            type = "number",
+            type = "integer",
         },
-        dataCollectionOptions = {
-            type = "structure",
-        },
+        dataCollectionOptions = M.DataCollectionOptions,
         dataStorageSizeInTBs = {
-            type = "number",
+            type = "double",
         },
         dbNodeStorageSizeInGBs = {
-            type = "number",
+            type = "integer",
         },
         dbServers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         diskRedundancy = {
             type = "string",
@@ -2017,9 +1991,7 @@ M.CloudVmClusterSummary = {
         hostname = {
             type = "string",
         },
-        iormConfigCache = {
-            type = "structure",
-        },
+        iormConfigCache = M.ExadataIormConfig,
         isLocalBackupEnabled = {
             type = "boolean",
         },
@@ -2033,13 +2005,13 @@ M.CloudVmClusterSummary = {
             type = "string",
         },
         listenerPort = {
-            type = "number",
+            type = "integer",
         },
         memorySizeInGBs = {
-            type = "number",
+            type = "integer",
         },
         nodeCount = {
-            type = "number",
+            type = "integer",
         },
         ocid = {
             type = "string",
@@ -2061,17 +2033,17 @@ M.CloudVmClusterSummary = {
         },
         scanIpIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         shape = {
             type = "string",
         },
         sshPublicKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         storageSizeInGBs = {
-            type = "number",
+            type = "integer",
         },
         systemVersion = {
             type = "string",
@@ -2087,7 +2059,7 @@ M.CloudVmClusterSummary = {
         },
         vipIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         odbNetworkId = {
             type = "string",
@@ -2096,14 +2068,14 @@ M.CloudVmClusterSummary = {
             type = "string",
         },
         percentProgress = {
-            type = "number",
+            type = "float",
         },
         computeModel = {
             type = "string",
         },
         iamRoles = {
             type = "list",
-            member_type = "structure",
+            member = M.IamRole,
         },
     },
 }
@@ -2118,7 +2090,7 @@ M.CreateCloudVmClusterInput = {
             },
         },
         cpuCoreCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -2143,7 +2115,7 @@ M.CreateCloudVmClusterInput = {
         },
         sshPublicKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2157,23 +2129,21 @@ M.CreateCloudVmClusterInput = {
         clusterName = {
             type = "string",
         },
-        dataCollectionOptions = {
-            type = "structure",
-        },
+        dataCollectionOptions = M.DataCollectionOptions,
         dataStorageSizeInTBs = {
-            type = "number",
+            type = "double",
         },
         dbNodeStorageSizeInGBs = {
-            type = "number",
+            type = "integer",
         },
         dbServers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         isLocalBackupEnabled = {
             type = "boolean",
@@ -2185,7 +2155,7 @@ M.CreateCloudVmClusterInput = {
             type = "string",
         },
         memorySizeInGBs = {
-            type = "number",
+            type = "integer",
         },
         systemVersion = {
             type = "string",
@@ -2197,7 +2167,7 @@ M.CreateCloudVmClusterInput = {
             type = "string",
         },
         scanListenerPortTcp = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2256,9 +2226,7 @@ M.GetCloudVmClusterInput = {
 M.GetCloudVmClusterOutput = {
     type = "structure",
     members = {
-        cloudVmCluster = {
-            type = "structure",
-        },
+        cloudVmCluster = M.CloudVmCluster,
     },
 }
 
@@ -2266,7 +2234,7 @@ M.ListCloudVmClustersInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2291,7 +2259,7 @@ M.ListCloudVmClustersOutput = {
         },
         cloudVmClusters = {
             type = "list",
-            member_type = "structure",
+            member = M.CloudVmClusterSummary,
             traits = {
                 required = true,
             },
@@ -2355,12 +2323,12 @@ M.CreateOdbNetworkInput = {
         },
         crossRegionS3RestoreSourcesToEnable = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2406,19 +2374,19 @@ M.CreateOdbPeeringConnectionInput = {
         },
         peerNetworkCidrsToBeAdded = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         peerNetworkRouteTableIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         clientToken = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2459,7 +2427,7 @@ M.CrossRegionS3RestoreSourcesAccess = {
         },
         ipv4Addresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         status = {
             type = "string",
@@ -2511,10 +2479,10 @@ M.DbNode = {
             type = "string",
         },
         cpuCoreCount = {
-            type = "number",
+            type = "integer",
         },
         dbNodeStorageSizeInGBs = {
-            type = "number",
+            type = "integer",
         },
         dbServerId = {
             type = "string",
@@ -2541,10 +2509,10 @@ M.DbNode = {
             type = "string",
         },
         memorySizeInGBs = {
-            type = "number",
+            type = "integer",
         },
         softwareStorageSizeInGB = {
-            type = "number",
+            type = "integer",
         },
         createdAt = {
             type = "timestamp",
@@ -2559,7 +2527,7 @@ M.DbNode = {
             type = "string",
         },
         totalCpuCoreCount = {
-            type = "number",
+            type = "integer",
         },
         vnic2Id = {
             type = "string",
@@ -2604,10 +2572,10 @@ M.DbNodeSummary = {
             type = "string",
         },
         cpuCoreCount = {
-            type = "number",
+            type = "integer",
         },
         dbNodeStorageSizeInGBs = {
-            type = "number",
+            type = "integer",
         },
         dbServerId = {
             type = "string",
@@ -2634,10 +2602,10 @@ M.DbNodeSummary = {
             type = "string",
         },
         memorySizeInGBs = {
-            type = "number",
+            type = "integer",
         },
         softwareStorageSizeInGB = {
-            type = "number",
+            type = "integer",
         },
         createdAt = {
             type = "timestamp",
@@ -2652,7 +2620,7 @@ M.DbNodeSummary = {
             type = "string",
         },
         totalCpuCoreCount = {
-            type = "number",
+            type = "integer",
         },
         vnic2Id = {
             type = "string",
@@ -2686,9 +2654,7 @@ M.GetDbNodeInput = {
 M.GetDbNodeOutput = {
     type = "structure",
     members = {
-        dbNode = {
-            type = "structure",
-        },
+        dbNode = M.DbNode,
     },
 }
 
@@ -2696,7 +2662,7 @@ M.ListDbNodesInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2725,7 +2691,7 @@ M.ListDbNodesOutput = {
         },
         dbNodes = {
             type = "list",
-            member_type = "structure",
+            member = M.DbNodeSummary,
             traits = {
                 required = true,
             },
@@ -2858,61 +2824,61 @@ M.DbSystemShapeSummary = {
     type = "structure",
     members = {
         availableCoreCount = {
-            type = "number",
+            type = "integer",
         },
         availableCoreCountPerNode = {
-            type = "number",
+            type = "integer",
         },
         availableDataStorageInTBs = {
-            type = "number",
+            type = "integer",
         },
         availableDataStoragePerServerInTBs = {
-            type = "number",
+            type = "integer",
         },
         availableDbNodePerNodeInGBs = {
-            type = "number",
+            type = "integer",
         },
         availableDbNodeStorageInGBs = {
-            type = "number",
+            type = "integer",
         },
         availableMemoryInGBs = {
-            type = "number",
+            type = "integer",
         },
         availableMemoryPerNodeInGBs = {
-            type = "number",
+            type = "integer",
         },
         coreCountIncrement = {
-            type = "number",
+            type = "integer",
         },
         maxStorageCount = {
-            type = "number",
+            type = "integer",
         },
         maximumNodeCount = {
-            type = "number",
+            type = "integer",
         },
         minCoreCountPerNode = {
-            type = "number",
+            type = "integer",
         },
         minDataStorageInTBs = {
-            type = "number",
+            type = "integer",
         },
         minDbNodeStoragePerNodeInGBs = {
-            type = "number",
+            type = "integer",
         },
         minMemoryPerNodeInGBs = {
-            type = "number",
+            type = "integer",
         },
         minStorageCount = {
-            type = "number",
+            type = "integer",
         },
         minimumCoreCount = {
-            type = "number",
+            type = "integer",
         },
         minimumNodeCount = {
-            type = "number",
+            type = "integer",
         },
         runtimeMinimumCoreCount = {
-            type = "number",
+            type = "integer",
         },
         shapeFamily = {
             type = "string",
@@ -3055,9 +3021,7 @@ M.GetOciOnboardingStatusOutput = {
         newTenancyActivationLink = {
             type = "string",
         },
-        ociIdentityDomain = {
-            type = "structure",
-        },
+        ociIdentityDomain = M.OciIdentityDomain,
     },
 }
 
@@ -3082,7 +3046,7 @@ M.KmsAccess = {
         },
         ipv4Addresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         domainName = {
             type = "string",
@@ -3101,7 +3065,7 @@ M.ManagedS3BackupAccess = {
         },
         ipv4Addresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3114,7 +3078,7 @@ M.S3Access = {
         },
         ipv4Addresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         domainName = {
             type = "string",
@@ -3149,7 +3113,7 @@ M.StsAccess = {
         },
         ipv4Addresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         domainName = {
             type = "string",
@@ -3183,29 +3147,17 @@ M.ManagedServices = {
         },
         managedServicesIpv4Cidrs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        serviceNetworkEndpoint = {
-            type = "structure",
-        },
-        managedS3BackupAccess = {
-            type = "structure",
-        },
-        zeroEtlAccess = {
-            type = "structure",
-        },
-        s3Access = {
-            type = "structure",
-        },
-        stsAccess = {
-            type = "structure",
-        },
-        kmsAccess = {
-            type = "structure",
-        },
+        serviceNetworkEndpoint = M.ServiceNetworkEndpoint,
+        managedS3BackupAccess = M.ManagedS3BackupAccess,
+        zeroEtlAccess = M.ZeroEtlAccess,
+        s3Access = M.S3Access,
+        stsAccess = M.StsAccess,
+        kmsAccess = M.KmsAccess,
         crossRegionS3RestoreSourcesAccess = {
             type = "list",
-            member_type = "structure",
+            member = M.CrossRegionS3RestoreSourcesAccess,
         },
     },
 }
@@ -3263,7 +3215,7 @@ M.OdbNetwork = {
         },
         peeredCidrs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ociNetworkAnchorId = {
             type = "string",
@@ -3282,7 +3234,7 @@ M.OdbNetwork = {
         },
         ociDnsForwardingConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.OciDnsForwardingConfig,
         },
         createdAt = {
             type = "timestamp",
@@ -3291,14 +3243,12 @@ M.OdbNetwork = {
             },
         },
         percentProgress = {
-            type = "number",
+            type = "float",
         },
-        managedServices = {
-            type = "structure",
-        },
+        managedServices = M.ManagedServices,
         ec2PlacementGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3306,9 +3256,7 @@ M.OdbNetwork = {
 M.GetOdbNetworkOutput = {
     type = "structure",
     members = {
-        odbNetwork = {
-            type = "structure",
-        },
+        odbNetwork = M.OdbNetwork,
     },
 }
 
@@ -3357,7 +3305,7 @@ M.OdbPeeringConnection = {
         },
         peerNetworkCidrs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         createdAt = {
             type = "timestamp",
@@ -3366,7 +3314,7 @@ M.OdbPeeringConnection = {
             },
         },
         percentProgress = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -3374,9 +3322,7 @@ M.OdbPeeringConnection = {
 M.GetOdbPeeringConnectionOutput = {
     type = "structure",
     members = {
-        odbPeeringConnection = {
-            type = "structure",
-        },
+        odbPeeringConnection = M.OdbPeeringConnection,
     },
 }
 
@@ -3394,6 +3340,9 @@ M.InitializeServiceInput = {
     members = {
         ociIdentityDomain = {
             type = "boolean",
+            traits = {
+                default = true,
+            },
         },
     },
 }
@@ -3406,7 +3355,7 @@ M.ListDbSystemShapesInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3434,7 +3383,7 @@ M.ListDbSystemShapesOutput = {
         },
         dbSystemShapes = {
             type = "list",
-            member_type = "structure",
+            member = M.DbSystemShapeSummary,
             traits = {
                 required = true,
             },
@@ -3446,7 +3395,7 @@ M.ListGiVersionsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3471,7 +3420,7 @@ M.ListGiVersionsOutput = {
         },
         giVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.GiVersionSummary,
             traits = {
                 required = true,
             },
@@ -3483,7 +3432,7 @@ M.ListOdbNetworksInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3538,7 +3487,7 @@ M.OdbNetworkSummary = {
         },
         peeredCidrs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ociNetworkAnchorId = {
             type = "string",
@@ -3557,7 +3506,7 @@ M.OdbNetworkSummary = {
         },
         ociDnsForwardingConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.OciDnsForwardingConfig,
         },
         createdAt = {
             type = "timestamp",
@@ -3566,14 +3515,12 @@ M.OdbNetworkSummary = {
             },
         },
         percentProgress = {
-            type = "number",
+            type = "float",
         },
-        managedServices = {
-            type = "structure",
-        },
+        managedServices = M.ManagedServices,
         ec2PlacementGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3586,7 +3533,7 @@ M.ListOdbNetworksOutput = {
         },
         odbNetworks = {
             type = "list",
-            member_type = "structure",
+            member = M.OdbNetworkSummary,
             traits = {
                 required = true,
             },
@@ -3598,7 +3545,7 @@ M.ListOdbPeeringConnectionsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3647,7 +3594,7 @@ M.OdbPeeringConnectionSummary = {
         },
         peerNetworkCidrs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         createdAt = {
             type = "timestamp",
@@ -3656,7 +3603,7 @@ M.OdbPeeringConnectionSummary = {
             },
         },
         percentProgress = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -3669,7 +3616,7 @@ M.ListOdbPeeringConnectionsOutput = {
         },
         odbPeeringConnections = {
             type = "list",
-            member_type = "structure",
+            member = M.OdbPeeringConnectionSummary,
             traits = {
                 required = true,
             },
@@ -3681,7 +3628,7 @@ M.ListSystemVersionsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3718,7 +3665,7 @@ M.SystemVersionSummary = {
         },
         systemVersions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3731,7 +3678,7 @@ M.ListSystemVersionsOutput = {
         },
         systemVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.SystemVersionSummary,
             traits = {
                 required = true,
             },
@@ -3756,8 +3703,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3777,11 +3724,11 @@ M.UpdateOdbNetworkInput = {
         },
         peeredCidrsToBeAdded = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         peeredCidrsToBeRemoved = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         s3Access = {
             type = "string",
@@ -3806,11 +3753,11 @@ M.UpdateOdbNetworkInput = {
         },
         crossRegionS3RestoreSourcesToEnable = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         crossRegionS3RestoreSourcesToDisable = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3851,11 +3798,11 @@ M.UpdateOdbPeeringConnectionInput = {
         },
         peerNetworkCidrsToBeAdded = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         peerNetworkCidrsToBeRemoved = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3892,8 +3839,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3917,7 +3864,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },

@@ -25,7 +25,7 @@ M.ApplicationPolicyStatement = {
     members = {
         Actions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "actions",
                 required = true,
@@ -33,14 +33,14 @@ M.ApplicationPolicyStatement = {
         },
         PrincipalOrgIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "principalOrgIDs",
             },
         },
         Principals = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "principals",
                 required = true,
@@ -93,7 +93,7 @@ M.ApplicationSummary = {
         },
         Labels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "labels",
             },
@@ -132,7 +132,7 @@ M.ParameterDefinition = {
         },
         AllowedValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "allowedValues",
             },
@@ -156,25 +156,25 @@ M.ParameterDefinition = {
             },
         },
         MaxLength = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxLength",
             },
         },
         MaxValue = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxValue",
             },
         },
         MinLength = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "minLength",
             },
         },
         MinValue = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "minValue",
             },
@@ -194,7 +194,7 @@ M.ParameterDefinition = {
         },
         ReferencedByResources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "referencedByResources",
                 required = true,
@@ -365,7 +365,7 @@ M.CreateApplicationInput = {
         },
         Labels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "labels",
             },
@@ -459,7 +459,7 @@ M.Version = {
         },
         ParameterDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.ParameterDefinition,
             traits = {
                 json_name = "parameterDefinitions",
                 required = true,
@@ -467,7 +467,7 @@ M.Version = {
         },
         RequiredCapabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "requiredCapabilities",
                 required = true,
@@ -550,7 +550,7 @@ M.CreateApplicationOutput = {
         },
         Labels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "labels",
             },
@@ -585,12 +585,9 @@ M.CreateApplicationOutput = {
                 json_name = "verifiedAuthorUrl",
             },
         },
-        Version = {
-            type = "structure",
-            traits = {
-                json_name = "version",
-            },
-        },
+        Version = setmetatable({ traits = {
+            json_name = "version",
+        } }, { __index = M.Version }),
     },
 }
 
@@ -712,14 +709,14 @@ M.CreateApplicationVersionOutput = {
         },
         ParameterDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.ParameterDefinition,
             traits = {
                 json_name = "parameterDefinitions",
             },
         },
         RequiredCapabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "requiredCapabilities",
             },
@@ -761,14 +758,14 @@ M.RollbackConfiguration = {
     type = "structure",
     members = {
         MonitoringTimeInMinutes = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "monitoringTimeInMinutes",
             },
         },
         RollbackTriggers = {
             type = "list",
-            member_type = "structure",
+            member = M.RollbackTrigger,
             traits = {
                 json_name = "rollbackTriggers",
             },
@@ -788,7 +785,7 @@ M.CreateCloudFormationChangeSetInput = {
         },
         Capabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "capabilities",
             },
@@ -813,31 +810,28 @@ M.CreateCloudFormationChangeSetInput = {
         },
         NotificationArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "notificationArns",
             },
         },
         ParameterOverrides = {
             type = "list",
-            member_type = "structure",
+            member = M.ParameterValue,
             traits = {
                 json_name = "parameterOverrides",
             },
         },
         ResourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "resourceTypes",
             },
         },
-        RollbackConfiguration = {
-            type = "structure",
-            traits = {
-                json_name = "rollbackConfiguration",
-            },
-        },
+        RollbackConfiguration = setmetatable({ traits = {
+            json_name = "rollbackConfiguration",
+        } }, { __index = M.RollbackConfiguration }),
         SemanticVersion = {
             type = "string",
             traits = {
@@ -853,7 +847,7 @@ M.CreateCloudFormationChangeSetInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 json_name = "tags",
             },
@@ -1066,7 +1060,7 @@ M.GetApplicationOutput = {
         },
         Labels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "labels",
             },
@@ -1101,12 +1095,9 @@ M.GetApplicationOutput = {
                 json_name = "verifiedAuthorUrl",
             },
         },
-        Version = {
-            type = "structure",
-            traits = {
-                json_name = "version",
-            },
-        },
+        Version = setmetatable({ traits = {
+            json_name = "version",
+        } }, { __index = M.Version }),
     },
 }
 
@@ -1128,7 +1119,7 @@ M.GetApplicationPolicyOutput = {
     members = {
         Statements = {
             type = "list",
-            member_type = "structure",
+            member = M.ApplicationPolicyStatement,
             traits = {
                 json_name = "statements",
             },
@@ -1215,7 +1206,7 @@ M.ListApplicationDependenciesInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxItems",
             },
@@ -1240,7 +1231,7 @@ M.ListApplicationDependenciesOutput = {
     members = {
         Dependencies = {
             type = "list",
-            member_type = "structure",
+            member = M.ApplicationDependencySummary,
             traits = {
                 json_name = "dependencies",
             },
@@ -1258,7 +1249,7 @@ M.ListApplicationsInput = {
     type = "structure",
     members = {
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxItems",
             },
@@ -1277,7 +1268,7 @@ M.ListApplicationsOutput = {
     members = {
         Applications = {
             type = "list",
-            member_type = "structure",
+            member = M.ApplicationSummary,
             traits = {
                 json_name = "applications",
             },
@@ -1302,7 +1293,7 @@ M.ListApplicationVersionsInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxItems",
             },
@@ -1327,7 +1318,7 @@ M.ListApplicationVersionsOutput = {
         },
         Versions = {
             type = "list",
-            member_type = "structure",
+            member = M.VersionSummary,
             traits = {
                 json_name = "versions",
             },
@@ -1347,7 +1338,7 @@ M.PutApplicationPolicyInput = {
         },
         Statements = {
             type = "list",
-            member_type = "structure",
+            member = M.ApplicationPolicyStatement,
             traits = {
                 json_name = "statements",
                 required = true,
@@ -1361,7 +1352,7 @@ M.PutApplicationPolicyOutput = {
     members = {
         Statements = {
             type = "list",
-            member_type = "structure",
+            member = M.ApplicationPolicyStatement,
             traits = {
                 json_name = "statements",
             },
@@ -1423,7 +1414,7 @@ M.UpdateApplicationInput = {
         },
         Labels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "labels",
             },
@@ -1484,7 +1475,7 @@ M.UpdateApplicationOutput = {
         },
         Labels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "labels",
             },
@@ -1519,12 +1510,9 @@ M.UpdateApplicationOutput = {
                 json_name = "verifiedAuthorUrl",
             },
         },
-        Version = {
-            type = "structure",
-            traits = {
-                json_name = "version",
-            },
-        },
+        Version = setmetatable({ traits = {
+            json_name = "version",
+        } }, { __index = M.Version }),
     },
 }
 

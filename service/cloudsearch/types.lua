@@ -30,7 +30,7 @@ M.BuildSuggestersOutput = {
     members = {
         FieldNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -99,13 +99,13 @@ M.Limits = {
     type = "structure",
     members = {
         MaximumReplicationCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         MaximumPartitionCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -137,12 +137,8 @@ M.DomainStatus = {
         Deleted = {
             type = "boolean",
         },
-        DocService = {
-            type = "structure",
-        },
-        SearchService = {
-            type = "structure",
-        },
+        DocService = M.ServiceEndpoint,
+        SearchService = M.ServiceEndpoint,
         RequiresIndexDocuments = {
             type = "boolean",
             traits = {
@@ -156,23 +152,19 @@ M.DomainStatus = {
             type = "string",
         },
         SearchPartitionCount = {
-            type = "number",
+            type = "integer",
         },
         SearchInstanceCount = {
-            type = "number",
+            type = "integer",
         },
-        Limits = {
-            type = "structure",
-        },
+        Limits = M.Limits,
     },
 }
 
 M.CreateDomainOutput = {
     type = "structure",
     members = {
-        DomainStatus = {
-            type = "structure",
-        },
+        DomainStatus = M.DomainStatus,
     },
 }
 
@@ -283,9 +275,7 @@ M.AnalysisScheme = {
                 required = true,
             },
         },
-        AnalysisOptions = {
-            type = "structure",
-        },
+        AnalysisOptions = M.AnalysisOptions,
     },
 }
 
@@ -298,12 +288,9 @@ M.DefineAnalysisSchemeInput = {
                 required = true,
             },
         },
-        AnalysisScheme = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AnalysisScheme = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AnalysisScheme }),
     },
 }
 
@@ -330,7 +317,10 @@ M.OptionStatus = {
             },
         },
         UpdateVersion = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         State = {
             type = "string",
@@ -347,30 +337,21 @@ M.OptionStatus = {
 M.AnalysisSchemeStatus = {
     type = "structure",
     members = {
-        Options = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Options = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AnalysisScheme }),
+        Status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OptionStatus }),
     },
 }
 
 M.DefineAnalysisSchemeOutput = {
     type = "structure",
     members = {
-        AnalysisScheme = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AnalysisScheme = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AnalysisSchemeStatus }),
     },
 }
 
@@ -414,42 +395,30 @@ M.DefineExpressionInput = {
                 required = true,
             },
         },
-        Expression = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Expression = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Expression }),
     },
 }
 
 M.ExpressionStatus = {
     type = "structure",
     members = {
-        Options = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Options = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Expression }),
+        Status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OptionStatus }),
     },
 }
 
 M.DefineExpressionOutput = {
     type = "structure",
     members = {
-        Expression = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Expression = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ExpressionStatus }),
     },
 }
 
@@ -502,7 +471,7 @@ M.DoubleArrayOptions = {
     type = "structure",
     members = {
         DefaultValue = {
-            type = "number",
+            type = "double",
         },
         SourceFields = {
             type = "string",
@@ -523,7 +492,7 @@ M.DoubleOptions = {
     type = "structure",
     members = {
         DefaultValue = {
-            type = "number",
+            type = "double",
         },
         SourceField = {
             type = "string",
@@ -561,7 +530,7 @@ M.IntArrayOptions = {
     type = "structure",
     members = {
         DefaultValue = {
-            type = "number",
+            type = "long",
         },
         SourceFields = {
             type = "string",
@@ -582,7 +551,7 @@ M.IntOptions = {
     type = "structure",
     members = {
         DefaultValue = {
-            type = "number",
+            type = "long",
         },
         SourceField = {
             type = "string",
@@ -731,39 +700,17 @@ M.IndexField = {
                 required = true,
             },
         },
-        IntOptions = {
-            type = "structure",
-        },
-        DoubleOptions = {
-            type = "structure",
-        },
-        LiteralOptions = {
-            type = "structure",
-        },
-        TextOptions = {
-            type = "structure",
-        },
-        DateOptions = {
-            type = "structure",
-        },
-        LatLonOptions = {
-            type = "structure",
-        },
-        IntArrayOptions = {
-            type = "structure",
-        },
-        DoubleArrayOptions = {
-            type = "structure",
-        },
-        LiteralArrayOptions = {
-            type = "structure",
-        },
-        TextArrayOptions = {
-            type = "structure",
-        },
-        DateArrayOptions = {
-            type = "structure",
-        },
+        IntOptions = M.IntOptions,
+        DoubleOptions = M.DoubleOptions,
+        LiteralOptions = M.LiteralOptions,
+        TextOptions = M.TextOptions,
+        DateOptions = M.DateOptions,
+        LatLonOptions = M.LatLonOptions,
+        IntArrayOptions = M.IntArrayOptions,
+        DoubleArrayOptions = M.DoubleArrayOptions,
+        LiteralArrayOptions = M.LiteralArrayOptions,
+        TextArrayOptions = M.TextArrayOptions,
+        DateArrayOptions = M.DateArrayOptions,
     },
 }
 
@@ -776,42 +723,30 @@ M.DefineIndexFieldInput = {
                 required = true,
             },
         },
-        IndexField = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        IndexField = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IndexField }),
     },
 }
 
 M.IndexFieldStatus = {
     type = "structure",
     members = {
-        Options = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Options = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IndexField }),
+        Status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OptionStatus }),
     },
 }
 
 M.DefineIndexFieldOutput = {
     type = "structure",
     members = {
-        IndexField = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        IndexField = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IndexFieldStatus }),
     },
 }
 
@@ -848,12 +783,9 @@ M.Suggester = {
                 required = true,
             },
         },
-        DocumentSuggesterOptions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DocumentSuggesterOptions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DocumentSuggesterOptions }),
     },
 }
 
@@ -866,42 +798,30 @@ M.DefineSuggesterInput = {
                 required = true,
             },
         },
-        Suggester = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Suggester = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Suggester }),
     },
 }
 
 M.SuggesterStatus = {
     type = "structure",
     members = {
-        Options = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Options = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Suggester }),
+        Status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OptionStatus }),
     },
 }
 
 M.DefineSuggesterOutput = {
     type = "structure",
     members = {
-        Suggester = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Suggester = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SuggesterStatus }),
     },
 }
 
@@ -926,12 +846,9 @@ M.DeleteAnalysisSchemeInput = {
 M.DeleteAnalysisSchemeOutput = {
     type = "structure",
     members = {
-        AnalysisScheme = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AnalysisScheme = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AnalysisSchemeStatus }),
     },
 }
 
@@ -950,9 +867,7 @@ M.DeleteDomainInput = {
 M.DeleteDomainOutput = {
     type = "structure",
     members = {
-        DomainStatus = {
-            type = "structure",
-        },
+        DomainStatus = M.DomainStatus,
     },
 }
 
@@ -977,12 +892,9 @@ M.DeleteExpressionInput = {
 M.DeleteExpressionOutput = {
     type = "structure",
     members = {
-        Expression = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Expression = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ExpressionStatus }),
     },
 }
 
@@ -1007,12 +919,9 @@ M.DeleteIndexFieldInput = {
 M.DeleteIndexFieldOutput = {
     type = "structure",
     members = {
-        IndexField = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        IndexField = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IndexFieldStatus }),
     },
 }
 
@@ -1037,12 +946,9 @@ M.DeleteSuggesterInput = {
 M.DeleteSuggesterOutput = {
     type = "structure",
     members = {
-        Suggester = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Suggester = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SuggesterStatus }),
     },
 }
 
@@ -1057,7 +963,7 @@ M.DescribeAnalysisSchemesInput = {
         },
         AnalysisSchemeNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Deployed = {
             type = "boolean",
@@ -1070,7 +976,7 @@ M.DescribeAnalysisSchemesOutput = {
     members = {
         AnalysisSchemes = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalysisSchemeStatus,
             traits = {
                 required = true,
             },
@@ -1099,24 +1005,20 @@ M.AvailabilityOptionsStatus = {
         Options = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
-        Status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OptionStatus }),
     },
 }
 
 M.DescribeAvailabilityOptionsOutput = {
     type = "structure",
     members = {
-        AvailabilityOptions = {
-            type = "structure",
-        },
+        AvailabilityOptions = M.AvailabilityOptionsStatus,
     },
 }
 
@@ -1168,27 +1070,19 @@ M.DomainEndpointOptions = {
 M.DomainEndpointOptionsStatus = {
     type = "structure",
     members = {
-        Options = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Options = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DomainEndpointOptions }),
+        Status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OptionStatus }),
     },
 }
 
 M.DescribeDomainEndpointOptionsOutput = {
     type = "structure",
     members = {
-        DomainEndpointOptions = {
-            type = "structure",
-        },
+        DomainEndpointOptions = M.DomainEndpointOptionsStatus,
     },
 }
 
@@ -1197,7 +1091,7 @@ M.DescribeDomainsInput = {
     members = {
         DomainNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1207,7 +1101,7 @@ M.DescribeDomainsOutput = {
     members = {
         DomainStatusList = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainStatus,
             traits = {
                 required = true,
             },
@@ -1226,7 +1120,7 @@ M.DescribeExpressionsInput = {
         },
         ExpressionNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Deployed = {
             type = "boolean",
@@ -1239,7 +1133,7 @@ M.DescribeExpressionsOutput = {
     members = {
         Expressions = {
             type = "list",
-            member_type = "structure",
+            member = M.ExpressionStatus,
             traits = {
                 required = true,
             },
@@ -1258,7 +1152,7 @@ M.DescribeIndexFieldsInput = {
         },
         FieldNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Deployed = {
             type = "boolean",
@@ -1271,7 +1165,7 @@ M.DescribeIndexFieldsOutput = {
     members = {
         IndexFields = {
             type = "list",
-            member_type = "structure",
+            member = M.IndexFieldStatus,
             traits = {
                 required = true,
             },
@@ -1318,10 +1212,16 @@ M.ScalingParameters = {
             type = "string",
         },
         DesiredReplicationCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         DesiredPartitionCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1329,30 +1229,21 @@ M.ScalingParameters = {
 M.ScalingParametersStatus = {
     type = "structure",
     members = {
-        Options = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Options = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ScalingParameters }),
+        Status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OptionStatus }),
     },
 }
 
 M.DescribeScalingParametersOutput = {
     type = "structure",
     members = {
-        ScalingParameters = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ScalingParameters = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ScalingParametersStatus }),
     },
 }
 
@@ -1380,24 +1271,18 @@ M.AccessPoliciesStatus = {
                 required = true,
             },
         },
-        Status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OptionStatus }),
     },
 }
 
 M.DescribeServiceAccessPoliciesOutput = {
     type = "structure",
     members = {
-        AccessPolicies = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AccessPolicies = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AccessPoliciesStatus }),
     },
 }
 
@@ -1412,7 +1297,7 @@ M.DescribeSuggestersInput = {
         },
         SuggesterNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Deployed = {
             type = "boolean",
@@ -1425,7 +1310,7 @@ M.DescribeSuggestersOutput = {
     members = {
         Suggesters = {
             type = "list",
-            member_type = "structure",
+            member = M.SuggesterStatus,
             traits = {
                 required = true,
             },
@@ -1450,7 +1335,7 @@ M.IndexDocumentsOutput = {
     members = {
         FieldNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1464,8 +1349,8 @@ M.ListDomainNamesOutput = {
     members = {
         DomainNames = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1491,9 +1376,7 @@ M.UpdateAvailabilityOptionsInput = {
 M.UpdateAvailabilityOptionsOutput = {
     type = "structure",
     members = {
-        AvailabilityOptions = {
-            type = "structure",
-        },
+        AvailabilityOptions = M.AvailabilityOptionsStatus,
     },
 }
 
@@ -1506,21 +1389,16 @@ M.UpdateDomainEndpointOptionsInput = {
                 required = true,
             },
         },
-        DomainEndpointOptions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DomainEndpointOptions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DomainEndpointOptions }),
     },
 }
 
 M.UpdateDomainEndpointOptionsOutput = {
     type = "structure",
     members = {
-        DomainEndpointOptions = {
-            type = "structure",
-        },
+        DomainEndpointOptions = M.DomainEndpointOptionsStatus,
     },
 }
 
@@ -1533,24 +1411,18 @@ M.UpdateScalingParametersInput = {
                 required = true,
             },
         },
-        ScalingParameters = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ScalingParameters = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ScalingParameters }),
     },
 }
 
 M.UpdateScalingParametersOutput = {
     type = "structure",
     members = {
-        ScalingParameters = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ScalingParameters = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ScalingParametersStatus }),
     },
 }
 
@@ -1575,12 +1447,9 @@ M.UpdateServiceAccessPoliciesInput = {
 M.UpdateServiceAccessPoliciesOutput = {
     type = "structure",
     members = {
-        AccessPolicies = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AccessPolicies = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AccessPoliciesStatus }),
     },
 }
 

@@ -62,6 +62,9 @@ M.ReputationOptions = {
     members = {
         ReputationMetricsEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         LastFreshStart = {
             type = "timestamp",
@@ -74,6 +77,9 @@ M.SendingOptions = {
     members = {
         SendingEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -117,21 +123,13 @@ M.CreateConfigurationSetInput = {
                 required = true,
             },
         },
-        TrackingOptions = {
-            type = "structure",
-        },
-        DeliveryOptions = {
-            type = "structure",
-        },
-        ReputationOptions = {
-            type = "structure",
-        },
-        SendingOptions = {
-            type = "structure",
-        },
+        TrackingOptions = M.TrackingOptions,
+        DeliveryOptions = M.DeliveryOptions,
+        ReputationOptions = M.ReputationOptions,
+        SendingOptions = M.SendingOptions,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -205,7 +203,7 @@ M.CloudWatchDestination = {
     members = {
         DimensionConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.CloudWatchDimensionConfiguration,
             traits = {
                 required = true,
             },
@@ -268,23 +266,18 @@ M.EventDestinationDefinition = {
     members = {
         Enabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         MatchingEventTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        KinesisFirehoseDestination = {
-            type = "structure",
-        },
-        CloudWatchDestination = {
-            type = "structure",
-        },
-        SnsDestination = {
-            type = "structure",
-        },
-        PinpointDestination = {
-            type = "structure",
-        },
+        KinesisFirehoseDestination = M.KinesisFirehoseDestination,
+        CloudWatchDestination = M.CloudWatchDestination,
+        SnsDestination = M.SnsDestination,
+        PinpointDestination = M.PinpointDestination,
     },
 }
 
@@ -304,12 +297,9 @@ M.CreateConfigurationSetEventDestinationInput = {
                 required = true,
             },
         },
-        EventDestination = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        EventDestination = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EventDestinationDefinition }),
     },
 }
 
@@ -328,7 +318,7 @@ M.CreateDedicatedIpPoolInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -367,30 +357,20 @@ M.Content = {
 M.Body = {
     type = "structure",
     members = {
-        Text = {
-            type = "structure",
-        },
-        Html = {
-            type = "structure",
-        },
+        Text = M.Content,
+        Html = M.Content,
     },
 }
 
 M.Message = {
     type = "structure",
     members = {
-        Subject = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Body = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Subject = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Content }),
+        Body = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Body }),
     },
 }
 
@@ -409,15 +389,9 @@ M.Template = {
 M.EmailContent = {
     type = "structure",
     members = {
-        Simple = {
-            type = "structure",
-        },
-        Raw = {
-            type = "structure",
-        },
-        Template = {
-            type = "structure",
-        },
+        Simple = M.Message,
+        Raw = M.RawMessage,
+        Template = M.Template,
     },
 }
 
@@ -433,15 +407,12 @@ M.CreateDeliverabilityTestReportInput = {
                 required = true,
             },
         },
-        Content = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Content = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EmailContent }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -510,7 +481,7 @@ M.CreateEmailIdentityInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -528,13 +499,16 @@ M.DkimAttributes = {
     members = {
         SigningEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Status = {
             type = "string",
         },
         Tokens = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -553,10 +527,11 @@ M.CreateEmailIdentityOutput = {
         },
         VerifiedForSendingStatus = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        DkimAttributes = {
-            type = "structure",
-        },
+        DkimAttributes = M.DkimAttributes,
     },
 }
 
@@ -643,13 +618,22 @@ M.SendQuota = {
     type = "structure",
     members = {
         Max24HourSend = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         MaxSendRate = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         SentLast24Hours = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -657,20 +641,27 @@ M.SendQuota = {
 M.GetAccountOutput = {
     type = "structure",
     members = {
-        SendQuota = {
-            type = "structure",
-        },
+        SendQuota = M.SendQuota,
         SendingEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         DedicatedIpAutoWarmupEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         EnforcementStatus = {
             type = "string",
         },
         ProductionAccessEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -680,7 +671,7 @@ M.GetBlacklistReportsInput = {
     members = {
         BlacklistItemNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "BlacklistItemNames",
                 required = true,
@@ -709,8 +700,8 @@ M.GetBlacklistReportsOutput = {
     members = {
         BlacklistReport = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
             traits = {
                 required = true,
             },
@@ -737,21 +728,13 @@ M.GetConfigurationSetOutput = {
         ConfigurationSetName = {
             type = "string",
         },
-        TrackingOptions = {
-            type = "structure",
-        },
-        DeliveryOptions = {
-            type = "structure",
-        },
-        ReputationOptions = {
-            type = "structure",
-        },
-        SendingOptions = {
-            type = "structure",
-        },
+        TrackingOptions = M.TrackingOptions,
+        DeliveryOptions = M.DeliveryOptions,
+        ReputationOptions = M.ReputationOptions,
+        SendingOptions = M.SendingOptions,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -780,26 +763,21 @@ M.EventDestination = {
         },
         Enabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         MatchingEventTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        KinesisFirehoseDestination = {
-            type = "structure",
-        },
-        CloudWatchDestination = {
-            type = "structure",
-        },
-        SnsDestination = {
-            type = "structure",
-        },
-        PinpointDestination = {
-            type = "structure",
-        },
+        KinesisFirehoseDestination = M.KinesisFirehoseDestination,
+        CloudWatchDestination = M.CloudWatchDestination,
+        SnsDestination = M.SnsDestination,
+        PinpointDestination = M.PinpointDestination,
     },
 }
 
@@ -808,7 +786,7 @@ M.GetConfigurationSetEventDestinationsOutput = {
     members = {
         EventDestinations = {
             type = "list",
-            member_type = "structure",
+            member = M.EventDestination,
         },
     },
 }
@@ -847,7 +825,7 @@ M.DedicatedIp = {
             },
         },
         WarmupPercentage = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -861,9 +839,7 @@ M.DedicatedIp = {
 M.GetDedicatedIpOutput = {
     type = "structure",
     members = {
-        DedicatedIp = {
-            type = "structure",
-        },
+        DedicatedIp = M.DedicatedIp,
     },
 }
 
@@ -883,7 +859,7 @@ M.GetDedicatedIpsInput = {
             },
         },
         PageSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "PageSize",
             },
@@ -896,7 +872,7 @@ M.GetDedicatedIpsOutput = {
     members = {
         DedicatedIps = {
             type = "list",
-            member_type = "structure",
+            member = M.DedicatedIp,
         },
         NextToken = {
             type = "string",
@@ -919,10 +895,13 @@ M.InboxPlacementTrackingOption = {
     members = {
         Global = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         TrackedIsps = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -936,9 +915,7 @@ M.DomainDeliverabilityTrackingOption = {
         SubscriptionStartDate = {
             type = "timestamp",
         },
-        InboxPlacementTrackingOption = {
-            type = "structure",
-        },
+        InboxPlacementTrackingOption = M.InboxPlacementTrackingOption,
     },
 }
 
@@ -948,6 +925,7 @@ M.GetDeliverabilityDashboardOptionsOutput = {
         DashboardEnabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -959,11 +937,11 @@ M.GetDeliverabilityDashboardOptionsOutput = {
         },
         ActiveSubscribedDomains = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainDeliverabilityTrackingOption,
         },
         PendingExpirationSubscribedDomains = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainDeliverabilityTrackingOption,
         },
     },
 }
@@ -1009,19 +987,19 @@ M.PlacementStatistics = {
     type = "structure",
     members = {
         InboxPercentage = {
-            type = "number",
+            type = "double",
         },
         SpamPercentage = {
-            type = "number",
+            type = "double",
         },
         MissingPercentage = {
-            type = "number",
+            type = "double",
         },
         SpfPercentage = {
-            type = "number",
+            type = "double",
         },
         DkimPercentage = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -1032,30 +1010,22 @@ M.IspPlacement = {
         IspName = {
             type = "string",
         },
-        PlacementStatistics = {
-            type = "structure",
-        },
+        PlacementStatistics = M.PlacementStatistics,
     },
 }
 
 M.GetDeliverabilityTestReportOutput = {
     type = "structure",
     members = {
-        DeliverabilityTestReport = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        OverallPlacement = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DeliverabilityTestReport = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DeliverabilityTestReport }),
+        OverallPlacement = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PlacementStatistics }),
         IspPlacements = {
             type = "list",
-            member_type = "structure",
+            member = M.IspPlacement,
             traits = {
                 required = true,
             },
@@ -1065,7 +1035,7 @@ M.GetDeliverabilityTestReportOutput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1100,7 +1070,7 @@ M.DomainDeliverabilityCampaign = {
         },
         SendingIps = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         FirstSeenDateTime = {
             type = "timestamp",
@@ -1109,26 +1079,26 @@ M.DomainDeliverabilityCampaign = {
             type = "timestamp",
         },
         InboxCount = {
-            type = "number",
+            type = "long",
         },
         SpamCount = {
-            type = "number",
+            type = "long",
         },
         ReadRate = {
-            type = "number",
+            type = "double",
         },
         DeleteRate = {
-            type = "number",
+            type = "double",
         },
         ReadDeleteRate = {
-            type = "number",
+            type = "double",
         },
         ProjectedVolume = {
-            type = "number",
+            type = "long",
         },
         Esps = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1136,12 +1106,9 @@ M.DomainDeliverabilityCampaign = {
 M.GetDomainDeliverabilityCampaignOutput = {
     type = "structure",
     members = {
-        DomainDeliverabilityCampaign = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DomainDeliverabilityCampaign = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DomainDeliverabilityCampaign }),
     },
 }
 
@@ -1179,16 +1146,16 @@ M.DomainIspPlacement = {
             type = "string",
         },
         InboxRawCount = {
-            type = "number",
+            type = "long",
         },
         SpamRawCount = {
-            type = "number",
+            type = "long",
         },
         InboxPercentage = {
-            type = "number",
+            type = "double",
         },
         SpamPercentage = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -1197,16 +1164,16 @@ M.VolumeStatistics = {
     type = "structure",
     members = {
         InboxRawCount = {
-            type = "number",
+            type = "long",
         },
         SpamRawCount = {
-            type = "number",
+            type = "long",
         },
         ProjectedInbox = {
-            type = "number",
+            type = "long",
         },
         ProjectedSpam = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1217,12 +1184,10 @@ M.DailyVolume = {
         StartDate = {
             type = "timestamp",
         },
-        VolumeStatistics = {
-            type = "structure",
-        },
+        VolumeStatistics = M.VolumeStatistics,
         DomainIspPlacements = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainIspPlacement,
         },
     },
 }
@@ -1230,15 +1195,13 @@ M.DailyVolume = {
 M.OverallVolume = {
     type = "structure",
     members = {
-        VolumeStatistics = {
-            type = "structure",
-        },
+        VolumeStatistics = M.VolumeStatistics,
         ReadRatePercent = {
-            type = "number",
+            type = "double",
         },
         DomainIspPlacements = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainIspPlacement,
         },
     },
 }
@@ -1246,15 +1209,12 @@ M.OverallVolume = {
 M.GetDomainStatisticsReportOutput = {
     type = "structure",
     members = {
-        OverallVolume = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        OverallVolume = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OverallVolume }),
         DailyVolumes = {
             type = "list",
-            member_type = "structure",
+            member = M.DailyVolume,
             traits = {
                 required = true,
             },
@@ -1319,19 +1279,21 @@ M.GetEmailIdentityOutput = {
         },
         FeedbackForwardingStatus = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         VerifiedForSendingStatus = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        DkimAttributes = {
-            type = "structure",
-        },
-        MailFromAttributes = {
-            type = "structure",
-        },
+        DkimAttributes = M.DkimAttributes,
+        MailFromAttributes = M.MailFromAttributes,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1346,7 +1308,7 @@ M.ListConfigurationSetsInput = {
             },
         },
         PageSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "PageSize",
             },
@@ -1359,7 +1321,7 @@ M.ListConfigurationSetsOutput = {
     members = {
         ConfigurationSets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -1377,7 +1339,7 @@ M.ListDedicatedIpPoolsInput = {
             },
         },
         PageSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "PageSize",
             },
@@ -1390,7 +1352,7 @@ M.ListDedicatedIpPoolsOutput = {
     members = {
         DedicatedIpPools = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -1408,7 +1370,7 @@ M.ListDeliverabilityTestReportsInput = {
             },
         },
         PageSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "PageSize",
             },
@@ -1421,7 +1383,7 @@ M.ListDeliverabilityTestReportsOutput = {
     members = {
         DeliverabilityTestReports = {
             type = "list",
-            member_type = "structure",
+            member = M.DeliverabilityTestReport,
             traits = {
                 required = true,
             },
@@ -1463,7 +1425,7 @@ M.ListDomainDeliverabilityCampaignsInput = {
             },
         },
         PageSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "PageSize",
             },
@@ -1476,7 +1438,7 @@ M.ListDomainDeliverabilityCampaignsOutput = {
     members = {
         DomainDeliverabilityCampaigns = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainDeliverabilityCampaign,
             traits = {
                 required = true,
             },
@@ -1497,7 +1459,7 @@ M.ListEmailIdentitiesInput = {
             },
         },
         PageSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "PageSize",
             },
@@ -1516,6 +1478,9 @@ M.IdentityInfo = {
         },
         SendingEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1525,7 +1490,7 @@ M.ListEmailIdentitiesOutput = {
     members = {
         EmailIdentities = {
             type = "list",
-            member_type = "structure",
+            member = M.IdentityInfo,
         },
         NextToken = {
             type = "string",
@@ -1551,7 +1516,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -1564,6 +1529,9 @@ M.PutAccountDedicatedIpWarmupAttributesInput = {
     members = {
         AutoWarmupEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1577,6 +1545,9 @@ M.PutAccountSendingAttributesInput = {
     members = {
         SendingEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1620,6 +1591,9 @@ M.PutConfigurationSetReputationOptionsInput = {
         },
         ReputationMetricsEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1640,6 +1614,9 @@ M.PutConfigurationSetSendingOptionsInput = {
         },
         SendingEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1702,7 +1679,7 @@ M.PutDedicatedIpWarmupAttributesInput = {
             },
         },
         WarmupPercentage = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1720,12 +1697,13 @@ M.PutDeliverabilityDashboardOptionInput = {
         DashboardEnabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
         SubscribedDomains = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainDeliverabilityTrackingOption,
         },
     },
 }
@@ -1746,6 +1724,9 @@ M.PutEmailIdentityDkimAttributesInput = {
         },
         SigningEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1766,6 +1747,9 @@ M.PutEmailIdentityFeedbackAttributesInput = {
         },
         EmailForwardingEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1802,15 +1786,15 @@ M.Destination = {
     members = {
         ToAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CcAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         BccAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1839,28 +1823,22 @@ M.SendEmailInput = {
         FromEmailAddress = {
             type = "string",
         },
-        Destination = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Destination = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Destination }),
         ReplyToAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         FeedbackForwardingEmailAddress = {
             type = "string",
         },
-        Content = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Content = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EmailContent }),
         EmailTags = {
             type = "list",
-            member_type = "structure",
+            member = M.MessageTag,
         },
         ConfigurationSetName = {
             type = "string",
@@ -1888,7 +1866,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -1912,7 +1890,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "TagKeys",
                 required = true,
@@ -1942,12 +1920,9 @@ M.UpdateConfigurationSetEventDestinationInput = {
                 required = true,
             },
         },
-        EventDestination = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        EventDestination = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EventDestinationDefinition }),
     },
 }
 

@@ -18,22 +18,22 @@ M.AutoScalingConfiguration = {
     type = "structure",
     members = {
         minNodeCount = {
-            type = "number",
+            type = "integer",
         },
         maxNodeCount = {
-            type = "number",
+            type = "integer",
         },
         autoScalingMetric = {
             type = "string",
         },
         metricTarget = {
-            type = "number",
+            type = "double",
         },
         scaleInCooldownSeconds = {
-            type = "number",
+            type = "double",
         },
         scaleOutCooldownSeconds = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -63,8 +63,8 @@ M.FederationParameters = {
         },
         attributeMap = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -110,21 +110,17 @@ M.CreateEnvironmentInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         federationMode = {
             type = "string",
         },
-        federationParameters = {
-            type = "structure",
-        },
-        superuserParameters = {
-            type = "structure",
-        },
+        federationParameters = M.FederationParameters,
+        superuserParameters = M.SuperuserParameters,
         dataBundles = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -252,7 +248,7 @@ M.CreateKxChangesetInput = {
         },
         changeRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.ChangeRequest,
             traits = {
                 required = true,
             },
@@ -310,7 +306,7 @@ M.CreateKxChangesetOutput = {
         },
         changeRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.ChangeRequest,
         },
         createdTimestamp = {
             type = "timestamp",
@@ -321,9 +317,7 @@ M.CreateKxChangesetOutput = {
         status = {
             type = "string",
         },
-        errorInfo = {
-            type = "structure",
-        },
+        errorInfo = M.ErrorInfo,
     },
 }
 
@@ -352,7 +346,7 @@ M.KxCacheStorageConfiguration = {
             },
         },
         size = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -367,7 +361,7 @@ M.CapacityConfiguration = {
             type = "string",
         },
         nodeCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -418,7 +412,7 @@ M.KxDatabaseCacheConfiguration = {
         },
         dbPaths = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -434,7 +428,7 @@ M.KxDataviewSegmentConfiguration = {
     members = {
         dbPaths = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -447,6 +441,9 @@ M.KxDataviewSegmentConfiguration = {
         },
         onDemand = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -465,7 +462,7 @@ M.KxDataviewConfiguration = {
         },
         segmentConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.KxDataviewSegmentConfiguration,
         },
     },
 }
@@ -481,7 +478,7 @@ M.KxDatabaseConfiguration = {
         },
         cacheConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.KxDatabaseCacheConfiguration,
         },
         changesetId = {
             type = "string",
@@ -489,9 +486,7 @@ M.KxDatabaseConfiguration = {
         dataviewName = {
             type = "string",
         },
-        dataviewConfiguration = {
-            type = "structure",
-        },
+        dataviewConfiguration = M.KxDataviewConfiguration,
     },
 }
 
@@ -506,7 +501,7 @@ M.KxSavedownStorageConfiguration = {
             type = "string",
         },
         size = {
-            type = "number",
+            type = "integer",
         },
         volumeName = {
             type = "string",
@@ -524,22 +519,22 @@ M.KxScalingGroupConfiguration = {
             },
         },
         memoryLimit = {
-            type = "number",
+            type = "integer",
         },
         memoryReservation = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         nodeCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         cpu = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -549,7 +544,7 @@ M.TickerplantLogConfiguration = {
     members = {
         tickerplantLogVolumes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -566,11 +561,11 @@ M.VpcConfiguration = {
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ipAddressType = {
             type = "string",
@@ -603,54 +598,41 @@ M.CreateKxClusterInput = {
                 required = true,
             },
         },
-        tickerplantLogConfiguration = {
-            type = "structure",
-        },
+        tickerplantLogConfiguration = M.TickerplantLogConfiguration,
         databases = {
             type = "list",
-            member_type = "structure",
+            member = M.KxDatabaseConfiguration,
         },
         cacheStorageConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.KxCacheStorageConfiguration,
         },
-        autoScalingConfiguration = {
-            type = "structure",
-        },
+        autoScalingConfiguration = M.AutoScalingConfiguration,
         clusterDescription = {
             type = "string",
         },
-        capacityConfiguration = {
-            type = "structure",
-        },
+        capacityConfiguration = M.CapacityConfiguration,
         releaseLabel = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        vpcConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        vpcConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VpcConfiguration }),
         initializationScript = {
             type = "string",
         },
         commandLineArguments = {
             type = "list",
-            member_type = "structure",
+            member = M.KxCommandLineArgument,
         },
-        code = {
-            type = "structure",
-        },
+        code = M.CodeConfiguration,
         executionRole = {
             type = "string",
         },
-        savedownStorageConfiguration = {
-            type = "structure",
-        },
+        savedownStorageConfiguration = M.KxSavedownStorageConfiguration,
         azMode = {
             type = "string",
             traits = {
@@ -662,12 +644,10 @@ M.CreateKxClusterInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        scalingGroupConfiguration = {
-            type = "structure",
-        },
+        scalingGroupConfiguration = M.KxScalingGroupConfiguration,
     },
 }
 
@@ -716,55 +696,43 @@ M.CreateKxClusterOutput = {
         clusterType = {
             type = "string",
         },
-        tickerplantLogConfiguration = {
-            type = "structure",
-        },
+        tickerplantLogConfiguration = M.TickerplantLogConfiguration,
         volumes = {
             type = "list",
-            member_type = "structure",
+            member = M.Volume,
         },
         databases = {
             type = "list",
-            member_type = "structure",
+            member = M.KxDatabaseConfiguration,
         },
         cacheStorageConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.KxCacheStorageConfiguration,
         },
-        autoScalingConfiguration = {
-            type = "structure",
-        },
+        autoScalingConfiguration = M.AutoScalingConfiguration,
         clusterDescription = {
             type = "string",
         },
-        capacityConfiguration = {
-            type = "structure",
-        },
+        capacityConfiguration = M.CapacityConfiguration,
         releaseLabel = {
             type = "string",
         },
-        vpcConfiguration = {
-            type = "structure",
-        },
+        vpcConfiguration = M.VpcConfiguration,
         initializationScript = {
             type = "string",
         },
         commandLineArguments = {
             type = "list",
-            member_type = "structure",
+            member = M.KxCommandLineArgument,
         },
-        code = {
-            type = "structure",
-        },
+        code = M.CodeConfiguration,
         executionRole = {
             type = "string",
         },
         lastModifiedTimestamp = {
             type = "timestamp",
         },
-        savedownStorageConfiguration = {
-            type = "structure",
-        },
+        savedownStorageConfiguration = M.KxSavedownStorageConfiguration,
         azMode = {
             type = "string",
         },
@@ -774,9 +742,7 @@ M.CreateKxClusterOutput = {
         createdTimestamp = {
             type = "timestamp",
         },
-        scalingGroupConfiguration = {
-            type = "structure",
-        },
+        scalingGroupConfiguration = M.KxScalingGroupConfiguration,
     },
 }
 
@@ -801,8 +767,8 @@ M.CreateKxDatabaseInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         clientToken = {
             type = "string",
@@ -884,21 +850,27 @@ M.CreateKxDataviewInput = {
         },
         segmentConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.KxDataviewSegmentConfiguration,
         },
         autoUpdate = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         readWrite = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         description = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         clientToken = {
             type = "string",
@@ -940,16 +912,22 @@ M.CreateKxDataviewOutput = {
         },
         segmentConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.KxDataviewSegmentConfiguration,
         },
         description = {
             type = "string",
         },
         autoUpdate = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         readWrite = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         createdTimestamp = {
             type = "timestamp",
@@ -983,8 +961,8 @@ M.CreateKxEnvironmentInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         clientToken = {
             type = "string",
@@ -1071,8 +1049,8 @@ M.CreateKxScalingGroupInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1137,8 +1115,8 @@ M.CreateKxUserInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         clientToken = {
             type = "string",
@@ -1177,7 +1155,7 @@ M.KxNAS1Configuration = {
             type = "string",
         },
         size = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1214,9 +1192,7 @@ M.CreateKxVolumeInput = {
         description = {
             type = "string",
         },
-        nas1Configuration = {
-            type = "structure",
-        },
+        nas1Configuration = M.KxNAS1Configuration,
         azMode = {
             type = "string",
             traits = {
@@ -1225,15 +1201,15 @@ M.CreateKxVolumeInput = {
         },
         availabilityZoneIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1265,9 +1241,7 @@ M.CreateKxVolumeOutput = {
         volumeArn = {
             type = "string",
         },
-        nas1Configuration = {
-            type = "structure",
-        },
+        nas1Configuration = M.KxNAS1Configuration,
         status = {
             type = "string",
         },
@@ -1282,7 +1256,7 @@ M.CreateKxVolumeOutput = {
         },
         availabilityZoneIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         createdTimestamp = {
             type = "timestamp",
@@ -1599,18 +1573,14 @@ M.Environment = {
         federationMode = {
             type = "string",
         },
-        federationParameters = {
-            type = "structure",
-        },
+        federationParameters = M.FederationParameters,
     },
 }
 
 M.GetEnvironmentOutput = {
     type = "structure",
     members = {
-        environment = {
-            type = "structure",
-        },
+        environment = M.Environment,
     },
 }
 
@@ -1655,7 +1625,7 @@ M.GetKxChangesetOutput = {
         },
         changeRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.ChangeRequest,
         },
         createdTimestamp = {
             type = "timestamp",
@@ -1669,9 +1639,7 @@ M.GetKxChangesetOutput = {
         status = {
             type = "string",
         },
-        errorInfo = {
-            type = "structure",
-        },
+        errorInfo = M.ErrorInfo,
     },
 }
 
@@ -1710,55 +1678,43 @@ M.GetKxClusterOutput = {
         clusterType = {
             type = "string",
         },
-        tickerplantLogConfiguration = {
-            type = "structure",
-        },
+        tickerplantLogConfiguration = M.TickerplantLogConfiguration,
         volumes = {
             type = "list",
-            member_type = "structure",
+            member = M.Volume,
         },
         databases = {
             type = "list",
-            member_type = "structure",
+            member = M.KxDatabaseConfiguration,
         },
         cacheStorageConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.KxCacheStorageConfiguration,
         },
-        autoScalingConfiguration = {
-            type = "structure",
-        },
+        autoScalingConfiguration = M.AutoScalingConfiguration,
         clusterDescription = {
             type = "string",
         },
-        capacityConfiguration = {
-            type = "structure",
-        },
+        capacityConfiguration = M.CapacityConfiguration,
         releaseLabel = {
             type = "string",
         },
-        vpcConfiguration = {
-            type = "structure",
-        },
+        vpcConfiguration = M.VpcConfiguration,
         initializationScript = {
             type = "string",
         },
         commandLineArguments = {
             type = "list",
-            member_type = "structure",
+            member = M.KxCommandLineArgument,
         },
-        code = {
-            type = "structure",
-        },
+        code = M.CodeConfiguration,
         executionRole = {
             type = "string",
         },
         lastModifiedTimestamp = {
             type = "timestamp",
         },
-        savedownStorageConfiguration = {
-            type = "structure",
-        },
+        savedownStorageConfiguration = M.KxSavedownStorageConfiguration,
         azMode = {
             type = "string",
         },
@@ -1768,9 +1724,7 @@ M.GetKxClusterOutput = {
         createdTimestamp = {
             type = "timestamp",
         },
-        scalingGroupConfiguration = {
-            type = "structure",
-        },
+        scalingGroupConfiguration = M.KxScalingGroupConfiguration,
     },
 }
 
@@ -1855,13 +1809,22 @@ M.GetKxDatabaseOutput = {
             type = "string",
         },
         numBytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         numChangesets = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         numFiles = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1901,11 +1864,11 @@ M.KxDataviewActiveVersion = {
         },
         segmentConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.KxDataviewSegmentConfiguration,
         },
         attachedClusters = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         createdTimestamp = {
             type = "timestamp",
@@ -1936,20 +1899,26 @@ M.GetKxDataviewOutput = {
         },
         segmentConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.KxDataviewSegmentConfiguration,
         },
         activeVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.KxDataviewActiveVersion,
         },
         description = {
             type = "string",
         },
         autoUpdate = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         readWrite = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         environmentId = {
             type = "string",
@@ -2020,14 +1989,16 @@ M.IcmpTypeCode = {
     type = "structure",
     members = {
         type = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         code = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -2038,14 +2009,16 @@ M.PortRange = {
     type = "structure",
     members = {
         from = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         to = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -2061,7 +2034,7 @@ M.NetworkACLEntry = {
     type = "structure",
     members = {
         ruleNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -2078,12 +2051,8 @@ M.NetworkACLEntry = {
                 required = true,
             },
         },
-        portRange = {
-            type = "structure",
-        },
-        icmpTypeCode = {
-            type = "structure",
-        },
+        portRange = M.PortRange,
+        icmpTypeCode = M.IcmpTypeCode,
         cidrBlock = {
             type = "string",
             traits = {
@@ -2110,7 +2079,7 @@ M.TransitGatewayConfiguration = {
         },
         attachmentNetworkAclConfiguration = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkACLEntry,
         },
     },
 }
@@ -2151,12 +2120,10 @@ M.GetKxEnvironmentOutput = {
         dedicatedServiceAccountId = {
             type = "string",
         },
-        transitGatewayConfiguration = {
-            type = "structure",
-        },
+        transitGatewayConfiguration = M.TransitGatewayConfiguration,
         customDNSConfiguration = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomDNSServer,
         },
         creationTimestamp = {
             type = "timestamp",
@@ -2166,7 +2133,7 @@ M.GetKxEnvironmentOutput = {
         },
         availabilityZoneIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         certificateAuthorityArn = {
             type = "string",
@@ -2208,7 +2175,7 @@ M.GetKxScalingGroupOutput = {
         },
         clusters = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         availabilityZoneId = {
             type = "string",
@@ -2316,9 +2283,7 @@ M.GetKxVolumeOutput = {
         volumeArn = {
             type = "string",
         },
-        nas1Configuration = {
-            type = "structure",
-        },
+        nas1Configuration = M.KxNAS1Configuration,
         status = {
             type = "string",
         },
@@ -2336,14 +2301,14 @@ M.GetKxVolumeOutput = {
         },
         availabilityZoneIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         lastModifiedTimestamp = {
             type = "timestamp",
         },
         attachedClusters = {
             type = "list",
-            member_type = "structure",
+            member = M.KxAttachedCluster,
         },
     },
 }
@@ -2358,8 +2323,9 @@ M.ListEnvironmentsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -2371,7 +2337,7 @@ M.ListEnvironmentsOutput = {
     members = {
         environments = {
             type = "list",
-            member_type = "structure",
+            member = M.Environment,
         },
         nextToken = {
             type = "string",
@@ -2403,8 +2369,9 @@ M.ListKxChangesetsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -2437,7 +2404,7 @@ M.ListKxChangesetsOutput = {
     members = {
         kxChangesets = {
             type = "list",
-            member_type = "structure",
+            member = M.KxChangesetListEntry,
         },
         nextToken = {
             type = "string",
@@ -2469,8 +2436,9 @@ M.ListKxClusterNodesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -2505,7 +2473,7 @@ M.ListKxClusterNodesOutput = {
     members = {
         nodes = {
             type = "list",
-            member_type = "structure",
+            member = M.KxNode,
         },
         nextToken = {
             type = "string",
@@ -2530,8 +2498,9 @@ M.ListKxClustersInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -2567,7 +2536,7 @@ M.KxCluster = {
         },
         volumes = {
             type = "list",
-            member_type = "structure",
+            member = M.Volume,
         },
         initializationScript = {
             type = "string",
@@ -2595,7 +2564,7 @@ M.ListKxClustersOutput = {
     members = {
         kxClusterSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.KxCluster,
         },
         nextToken = {
             type = "string",
@@ -2620,8 +2589,9 @@ M.ListKxDatabasesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -2648,7 +2618,7 @@ M.ListKxDatabasesOutput = {
     members = {
         kxDatabases = {
             type = "list",
-            member_type = "structure",
+            member = M.KxDatabaseListEntry,
         },
         nextToken = {
             type = "string",
@@ -2680,8 +2650,9 @@ M.ListKxDataviewsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -2711,11 +2682,11 @@ M.KxDataviewListEntry = {
         },
         segmentConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.KxDataviewSegmentConfiguration,
         },
         activeVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.KxDataviewActiveVersion,
         },
         status = {
             type = "string",
@@ -2725,9 +2696,15 @@ M.KxDataviewListEntry = {
         },
         autoUpdate = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         readWrite = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         createdTimestamp = {
             type = "timestamp",
@@ -2746,7 +2723,7 @@ M.ListKxDataviewsOutput = {
     members = {
         kxDataviews = {
             type = "list",
-            member_type = "structure",
+            member = M.KxDataviewListEntry,
         },
         nextToken = {
             type = "string",
@@ -2764,7 +2741,7 @@ M.ListKxEnvironmentsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2808,12 +2785,10 @@ M.KxEnvironment = {
         dedicatedServiceAccountId = {
             type = "string",
         },
-        transitGatewayConfiguration = {
-            type = "structure",
-        },
+        transitGatewayConfiguration = M.TransitGatewayConfiguration,
         customDNSConfiguration = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomDNSServer,
         },
         creationTimestamp = {
             type = "timestamp",
@@ -2823,7 +2798,7 @@ M.KxEnvironment = {
         },
         availabilityZoneIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         certificateAuthorityArn = {
             type = "string",
@@ -2836,7 +2811,7 @@ M.ListKxEnvironmentsOutput = {
     members = {
         environments = {
             type = "list",
-            member_type = "structure",
+            member = M.KxEnvironment,
         },
         nextToken = {
             type = "string",
@@ -2855,8 +2830,9 @@ M.ListKxScalingGroupsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -2880,7 +2856,7 @@ M.KxScalingGroup = {
         },
         clusters = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         availabilityZoneId = {
             type = "string",
@@ -2905,7 +2881,7 @@ M.ListKxScalingGroupsOutput = {
     members = {
         scalingGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.KxScalingGroup,
         },
         nextToken = {
             type = "string",
@@ -2930,8 +2906,9 @@ M.ListKxUsersInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -2964,7 +2941,7 @@ M.ListKxUsersOutput = {
     members = {
         users = {
             type = "list",
-            member_type = "structure",
+            member = M.KxUser,
         },
         nextToken = {
             type = "string",
@@ -2983,8 +2960,9 @@ M.ListKxVolumesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -3026,7 +3004,7 @@ M.KxVolume = {
         },
         availabilityZoneIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         createdTimestamp = {
             type = "timestamp",
@@ -3042,7 +3020,7 @@ M.ListKxVolumesOutput = {
     members = {
         kxVolumeSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.KxVolume,
         },
         nextToken = {
             type = "string",
@@ -3078,8 +3056,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3096,8 +3074,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3121,7 +3099,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -3153,18 +3131,14 @@ M.UpdateEnvironmentInput = {
         federationMode = {
             type = "string",
         },
-        federationParameters = {
-            type = "structure",
-        },
+        federationParameters = M.FederationParameters,
     },
 }
 
 M.UpdateEnvironmentOutput = {
     type = "structure",
     members = {
-        environment = {
-            type = "structure",
-        },
+        environment = M.Environment,
     },
 }
 
@@ -3206,22 +3180,17 @@ M.UpdateKxClusterCodeConfigurationInput = {
         clientToken = {
             type = "string",
         },
-        code = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        code = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CodeConfiguration }),
         initializationScript = {
             type = "string",
         },
         commandLineArguments = {
             type = "list",
-            member_type = "structure",
+            member = M.KxCommandLineArgument,
         },
-        deploymentConfiguration = {
-            type = "structure",
-        },
+        deploymentConfiguration = M.KxClusterCodeDeploymentConfiguration,
     },
 }
 
@@ -3268,14 +3237,12 @@ M.UpdateKxClusterDatabasesInput = {
         },
         databases = {
             type = "list",
-            member_type = "structure",
+            member = M.KxDatabaseConfiguration,
             traits = {
                 required = true,
             },
         },
-        deploymentConfiguration = {
-            type = "structure",
-        },
+        deploymentConfiguration = M.KxDeploymentConfiguration,
     },
 }
 
@@ -3362,7 +3329,7 @@ M.UpdateKxDataviewInput = {
         },
         segmentConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.KxDataviewSegmentConfiguration,
         },
         clientToken = {
             type = "string",
@@ -3396,20 +3363,26 @@ M.UpdateKxDataviewOutput = {
         },
         segmentConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.KxDataviewSegmentConfiguration,
         },
         activeVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.KxDataviewActiveVersion,
         },
         status = {
             type = "string",
         },
         autoUpdate = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         readWrite = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         description = {
             type = "string",
@@ -3481,12 +3454,10 @@ M.UpdateKxEnvironmentOutput = {
         dedicatedServiceAccountId = {
             type = "string",
         },
-        transitGatewayConfiguration = {
-            type = "structure",
-        },
+        transitGatewayConfiguration = M.TransitGatewayConfiguration,
         customDNSConfiguration = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomDNSServer,
         },
         creationTimestamp = {
             type = "timestamp",
@@ -3496,7 +3467,7 @@ M.UpdateKxEnvironmentOutput = {
         },
         availabilityZoneIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3511,12 +3482,10 @@ M.UpdateKxEnvironmentNetworkInput = {
                 required = true,
             },
         },
-        transitGatewayConfiguration = {
-            type = "structure",
-        },
+        transitGatewayConfiguration = M.TransitGatewayConfiguration,
         customDNSConfiguration = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomDNSServer,
         },
         clientToken = {
             type = "string",
@@ -3560,12 +3529,10 @@ M.UpdateKxEnvironmentNetworkOutput = {
         dedicatedServiceAccountId = {
             type = "string",
         },
-        transitGatewayConfiguration = {
-            type = "structure",
-        },
+        transitGatewayConfiguration = M.TransitGatewayConfiguration,
         customDNSConfiguration = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomDNSServer,
         },
         creationTimestamp = {
             type = "timestamp",
@@ -3575,7 +3542,7 @@ M.UpdateKxEnvironmentNetworkOutput = {
         },
         availabilityZoneIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3650,9 +3617,7 @@ M.UpdateKxVolumeInput = {
         clientToken = {
             type = "string",
         },
-        nas1Configuration = {
-            type = "structure",
-        },
+        nas1Configuration = M.KxNAS1Configuration,
     },
 }
 
@@ -3671,9 +3636,7 @@ M.UpdateKxVolumeOutput = {
         volumeArn = {
             type = "string",
         },
-        nas1Configuration = {
-            type = "structure",
-        },
+        nas1Configuration = M.KxNAS1Configuration,
         status = {
             type = "string",
         },
@@ -3691,14 +3654,14 @@ M.UpdateKxVolumeOutput = {
         },
         availabilityZoneIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         lastModifiedTimestamp = {
             type = "timestamp",
         },
         attachedClusters = {
             type = "list",
-            member_type = "structure",
+            member = M.KxAttachedCluster,
         },
     },
 }

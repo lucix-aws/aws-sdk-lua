@@ -16,7 +16,7 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AmazonEC2"
-    cfg.signing_name = "amazonec2"
+    cfg.signing_name = "ec2"
     if not cfg.protocol then
         cfg.protocol = query_protocol.new("ec2Query")
     end

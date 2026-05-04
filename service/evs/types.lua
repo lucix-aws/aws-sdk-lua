@@ -54,7 +54,7 @@ M.Vlan = {
     type = "structure",
     members = {
         vlanId = {
-            type = "number",
+            type = "integer",
         },
         cidr = {
             type = "string",
@@ -82,7 +82,7 @@ M.Vlan = {
         },
         eipAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.EipAssociation,
         },
         isPublic = {
             type = "boolean",
@@ -96,9 +96,7 @@ M.Vlan = {
 M.AssociateEipToVlanOutput = {
     type = "structure",
     members = {
-        vlan = {
-            type = "structure",
-        },
+        vlan = M.Vlan,
     },
 }
 
@@ -138,7 +136,7 @@ M.ThrottlingException = {
             },
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -189,7 +187,7 @@ M.ValidationException = {
         },
         fieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -224,7 +222,7 @@ M.CreateEntitlementInput = {
         },
         vmIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -289,9 +287,7 @@ M.VmEntitlement = {
         stoppedAt = {
             type = "timestamp",
         },
-        errorDetail = {
-            type = "structure",
-        },
+        errorDetail = M.ErrorDetail,
     },
 }
 
@@ -300,7 +296,7 @@ M.CreateEntitlementOutput = {
     members = {
         entitlements = {
             type = "list",
-            member_type = "structure",
+            member = M.VmEntitlement,
         },
     },
 }
@@ -310,7 +306,7 @@ M.ConnectivityInfo = {
     members = {
         privateRouteServerPeerings = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -368,68 +364,41 @@ M.InitialVlanInfo = {
 M.InitialVlans = {
     type = "structure",
     members = {
-        vmkManagement = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        vmManagement = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        vMotion = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        vSan = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        vTep = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        edgeVTep = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        nsxUplink = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        hcx = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        expansionVlan1 = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        expansionVlan2 = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        vmkManagement = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InitialVlanInfo }),
+        vmManagement = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InitialVlanInfo }),
+        vMotion = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InitialVlanInfo }),
+        vSan = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InitialVlanInfo }),
+        vTep = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InitialVlanInfo }),
+        edgeVTep = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InitialVlanInfo }),
+        nsxUplink = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InitialVlanInfo }),
+        hcx = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InitialVlanInfo }),
+        expansionVlan1 = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InitialVlanInfo }),
+        expansionVlan2 = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InitialVlanInfo }),
         isHcxPublic = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         hcxNetworkAclId = {
             type = "string",
@@ -460,7 +429,7 @@ M.ServiceAccessSecurityGroups = {
     members = {
         securityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -544,12 +513,10 @@ M.CreateEnvironmentInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        serviceAccessSecurityGroups = {
-            type = "structure",
-        },
+        serviceAccessSecurityGroups = M.ServiceAccessSecurityGroups,
         vpcId = {
             type = "string",
             traits = {
@@ -576,36 +543,27 @@ M.CreateEnvironmentInput = {
         },
         licenseInfo = {
             type = "list",
-            member_type = "structure",
+            member = M.LicenseInfo,
             traits = {
                 required = true,
             },
         },
-        initialVlans = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        initialVlans = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InitialVlans }),
         hosts = {
             type = "list",
-            member_type = "structure",
+            member = M.HostInfoForCreate,
             traits = {
                 required = true,
             },
         },
-        connectivityInfo = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        vcfHostnames = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        connectivityInfo = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConnectivityInfo }),
+        vcfHostnames = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VcfHostnames }),
         siteId = {
             type = "string",
             traits = {
@@ -701,7 +659,7 @@ M.Environment = {
         },
         licenseInfo = {
             type = "list",
-            member_type = "structure",
+            member = M.LicenseInfo,
         },
         siteId = {
             type = "string",
@@ -711,23 +669,17 @@ M.Environment = {
         },
         checks = {
             type = "list",
-            member_type = "structure",
+            member = M.Check,
         },
-        connectivityInfo = {
-            type = "structure",
-        },
-        vcfHostnames = {
-            type = "structure",
-        },
+        connectivityInfo = M.ConnectivityInfo,
+        vcfHostnames = M.VcfHostnames,
         kmsKeyId = {
             type = "string",
         },
-        serviceAccessSecurityGroups = {
-            type = "structure",
-        },
+        serviceAccessSecurityGroups = M.ServiceAccessSecurityGroups,
         credentials = {
             type = "list",
-            member_type = "structure",
+            member = M.Secret,
         },
     },
 }
@@ -735,9 +687,7 @@ M.Environment = {
 M.CreateEnvironmentOutput = {
     type = "structure",
     members = {
-        environment = {
-            type = "structure",
-        },
+        environment = M.Environment,
     },
 }
 
@@ -836,7 +786,7 @@ M.Connector = {
         },
         checks = {
             type = "list",
-            member_type = "structure",
+            member = M.ConnectorCheck,
         },
         createdAt = {
             type = "timestamp",
@@ -850,9 +800,7 @@ M.Connector = {
 M.CreateEnvironmentConnectorOutput = {
     type = "structure",
     members = {
-        connector = {
-            type = "structure",
-        },
+        connector = M.Connector,
     },
 }
 
@@ -868,12 +816,9 @@ M.CreateEnvironmentHostInput = {
                 required = true,
             },
         },
-        host = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        host = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HostInfoForCreate }),
         esxVersion = {
             type = "string",
         },
@@ -967,7 +912,7 @@ M.Host = {
         },
         networkInterfaces = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkInterface,
         },
     },
 }
@@ -975,12 +920,8 @@ M.Host = {
 M.CreateEnvironmentHostOutput = {
     type = "structure",
     members = {
-        environmentSummary = {
-            type = "structure",
-        },
-        host = {
-            type = "structure",
-        },
+        environmentSummary = M.EnvironmentSummary,
+        host = M.Host,
     },
 }
 
@@ -1010,7 +951,7 @@ M.DeleteEntitlementInput = {
         },
         vmIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1023,7 +964,7 @@ M.DeleteEntitlementOutput = {
     members = {
         entitlements = {
             type = "list",
-            member_type = "structure",
+            member = M.VmEntitlement,
         },
     },
 }
@@ -1047,9 +988,7 @@ M.DeleteEnvironmentInput = {
 M.DeleteEnvironmentOutput = {
     type = "structure",
     members = {
-        environment = {
-            type = "structure",
-        },
+        environment = M.Environment,
     },
 }
 
@@ -1079,12 +1018,8 @@ M.DeleteEnvironmentConnectorInput = {
 M.DeleteEnvironmentConnectorOutput = {
     type = "structure",
     members = {
-        connector = {
-            type = "structure",
-        },
-        environmentSummary = {
-            type = "structure",
-        },
+        connector = M.Connector,
+        environmentSummary = M.EnvironmentSummary,
     },
 }
 
@@ -1112,12 +1047,8 @@ M.DeleteEnvironmentHostInput = {
 M.DeleteEnvironmentHostOutput = {
     type = "structure",
     members = {
-        environmentSummary = {
-            type = "structure",
-        },
-        host = {
-            type = "structure",
-        },
+        environmentSummary = M.EnvironmentSummary,
+        host = M.Host,
     },
 }
 
@@ -1151,9 +1082,7 @@ M.DisassociateEipFromVlanInput = {
 M.DisassociateEipFromVlanOutput = {
     type = "structure",
     members = {
-        vlan = {
-            type = "structure",
-        },
+        vlan = M.Vlan,
     },
 }
 
@@ -1173,9 +1102,7 @@ M.GetEnvironmentInput = {
 M.GetEnvironmentOutput = {
     type = "structure",
     members = {
-        environment = {
-            type = "structure",
-        },
+        environment = M.Environment,
     },
 }
 
@@ -1189,7 +1116,7 @@ M.ListEnvironmentConnectorsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1212,7 +1139,7 @@ M.ListEnvironmentConnectorsOutput = {
         },
         connectors = {
             type = "list",
-            member_type = "structure",
+            member = M.Connector,
         },
     },
 }
@@ -1227,7 +1154,7 @@ M.ListEnvironmentHostsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1250,7 +1177,7 @@ M.ListEnvironmentHostsOutput = {
         },
         environmentHosts = {
             type = "list",
-            member_type = "structure",
+            member = M.Host,
         },
     },
 }
@@ -1265,14 +1192,14 @@ M.ListEnvironmentsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
         },
         state = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "state",
             },
@@ -1288,7 +1215,7 @@ M.ListEnvironmentsOutput = {
         },
         environmentSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentSummary,
         },
     },
 }
@@ -1303,7 +1230,7 @@ M.ListEnvironmentVlansInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1326,7 +1253,7 @@ M.ListEnvironmentVlansOutput = {
         },
         environmentVlans = {
             type = "list",
-            member_type = "structure",
+            member = M.Vlan,
         },
     },
 }
@@ -1341,7 +1268,7 @@ M.ListVmEntitlementsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1375,7 +1302,7 @@ M.ListVmEntitlementsOutput = {
         },
         entitlements = {
             type = "list",
-            member_type = "structure",
+            member = M.VmEntitlement,
         },
     },
 }
@@ -1412,9 +1339,7 @@ M.UpdateEnvironmentConnectorInput = {
 M.UpdateEnvironmentConnectorOutput = {
     type = "structure",
     members = {
-        connector = {
-            type = "structure",
-        },
+        connector = M.Connector,
     },
 }
 
@@ -1433,7 +1358,7 @@ M.InstanceTypeEsxVersionsInfo = {
         },
         esxVersions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1464,7 +1389,7 @@ M.VcfVersionInfo = {
         },
         instanceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1477,14 +1402,14 @@ M.GetVersionsOutput = {
     members = {
         vcfVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.VcfVersionInfo,
             traits = {
                 required = true,
             },
         },
         instanceTypeEsxVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceTypeEsxVersionsInfo,
             traits = {
                 required = true,
             },
@@ -1522,8 +1447,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1565,8 +1490,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1602,7 +1527,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },

@@ -3522,67 +3522,41 @@ local record ValidationException
     message: string
 end
 
-local type CustomizationType = "FINE_TUNING" | "CONTINUED_PRE_TRAINING" | "DISTILLATION" | "REINFORCEMENT_FINE_TUNING" | "IMPORTED"
+local type AutomatedReasoningCheckResult = "VALID" | "INVALID" | "SATISFIABLE" | "IMPOSSIBLE" | "TRANSLATION_AMBIGUOUS" | "TOO_COMPLEX" | "NO_TRANSLATION"
 
-local type InferenceProfileStatus = "ACTIVE"
-
-local type SortByProvisionedModels = "CreationTime"
-
-local type AutomatedReasoningPolicyBuildDocumentContentType = "pdf" | "txt"
-
-local type CustomModelDeploymentStatus = "Creating" | "Active" | "Failed"
-
-local type OfferType = "ALL" | "PUBLIC"
-
-local type ModelModality = "TEXT" | "IMAGE" | "EMBEDDING"
-
-local type AutomatedReasoningPolicyBuildWorkflowStatus = "SCHEDULED" | "CANCEL_REQUESTED" | "PREPROCESSING" | "BUILDING" | "TESTING" | "COMPLETED" | "FAILED" | "CANCELLED"
-
-local type AuthorizationStatus = "AUTHORIZED" | "NOT_AUTHORIZED"
-
-local type EvaluationJobStatus = "InProgress" | "Completed" | "Failed" | "Stopping" | "Stopped" | "Deleting"
-
-local type EntitlementAvailability = "AVAILABLE" | "NOT_AVAILABLE"
-
-local type PromptRouterStatus = "AVAILABLE"
-
-local type CommitmentDuration = "OneMonth" | "SixMonths"
-
-local type RegionAvailability = "AVAILABLE" | "NOT_AVAILABLE"
-
-local type ModelCopyJobStatus = "InProgress" | "Completed" | "Failed"
-
-local type InferenceType = "ON_DEMAND" | "PROVISIONED"
-
-local type EvaluationJobType = "Human" | "Automated"
+local type ModelInvocationJobStatus = "Submitted" | "InProgress" | "Completed" | "Failed" | "Stopping" | "Stopped" | "PartiallyCompleted" | "Expired" | "Validating" | "Scheduled"
 
 local type ModelCustomization = "FINE_TUNING" | "CONTINUED_PRE_TRAINING" | "DISTILLATION"
 
-local type SortModelsBy = "CreationTime"
+local type GuardrailStatus = "CREATING" | "UPDATING" | "VERSIONING" | "READY" | "FAILED" | "DELETING"
 
 local type SortJobsBy = "CreationTime"
 
-local type GuardrailStatus = "CREATING" | "UPDATING" | "VERSIONING" | "READY" | "FAILED" | "DELETING"
+local type EvaluationJobType = "Human" | "Automated"
+
+local type SortModelsBy = "CreationTime"
 
 local type InferenceProfileType = "SYSTEM_DEFINED" | "APPLICATION"
 
 local type ModelInvocationType = "InvokeModel" | "Converse"
 
-local type AutomatedReasoningPolicyBuildWorkflowType = "INGEST_CONTENT" | "REFINE_POLICY" | "IMPORT_POLICY" | "GENERATE_FIDELITY_REPORT" | "GENERATE_POLICY_SCENARIOS"
+local type AutomatedReasoningPolicyBuildWorkflowStatus = "SCHEDULED" | "CANCEL_REQUESTED" | "PREPROCESSING" | "BUILDING" | "TESTING" | "COMPLETED" | "FAILED" | "CANCELLED"
+
+local type InferenceType = "ON_DEMAND" | "PROVISIONED"
 
 local type AutomatedReasoningPolicyBuildResultAssetType = "BUILD_LOG" | "QUALITY_REPORT" | "POLICY_DEFINITION" | "GENERATED_TEST_CASES" | "POLICY_SCENARIOS" | "FIDELITY_REPORT" | "ASSET_MANIFEST" | "SOURCE_DOCUMENT"
 
-local type AutomatedReasoningCheckResult = "VALID" | "INVALID" | "SATISFIABLE" | "IMPOSSIBLE" | "TRANSLATION_AMBIGUOUS" | "TOO_COMPLEX" | "NO_TRANSLATION"
+local type OfferType = "ALL" | "PUBLIC"
+
+local type SortOrder = "Ascending" | "Descending"
 
 local type FineTuningJobStatus = "InProgress" | "Completed" | "Failed" | "Stopping" | "Stopped"
 
-local type SortOrder = "Ascending" | "Descending"
+local type CustomModelDeploymentStatus = "Creating" | "Active" | "Failed"
 
 local type PromptRouterType = "custom" | "default"
 
 local type ModelCustomizationJobStatus = "InProgress" | "Completed" | "Failed" | "Stopping" | "Stopped"
-
-local type ApplicationType = "ModelEvaluation" | "RagEvaluation"
 
 local type ModelImportJobStatus = "InProgress" | "Completed" | "Failed"
 
@@ -3590,7 +3564,33 @@ local type ProvisionedModelStatus = "Creating" | "InService" | "Updating" | "Fai
 
 local type ModelStatus = "Active" | "Creating" | "Failed"
 
-local type ModelInvocationJobStatus = "Submitted" | "InProgress" | "Completed" | "Failed" | "Stopping" | "Stopped" | "PartiallyCompleted" | "Expired" | "Validating" | "Scheduled"
+local type InferenceProfileStatus = "ACTIVE"
+
+local type CustomizationType = "FINE_TUNING" | "CONTINUED_PRE_TRAINING" | "DISTILLATION" | "REINFORCEMENT_FINE_TUNING" | "IMPORTED"
+
+local type CommitmentDuration = "OneMonth" | "SixMonths"
+
+local type SortByProvisionedModels = "CreationTime"
+
+local type ApplicationType = "ModelEvaluation" | "RagEvaluation"
+
+local type ModelModality = "TEXT" | "IMAGE" | "EMBEDDING"
+
+local type AutomatedReasoningPolicyBuildDocumentContentType = "pdf" | "txt"
+
+local type AutomatedReasoningPolicyBuildWorkflowType = "INGEST_CONTENT" | "REFINE_POLICY" | "IMPORT_POLICY" | "GENERATE_FIDELITY_REPORT" | "GENERATE_POLICY_SCENARIOS"
+
+local type AuthorizationStatus = "AUTHORIZED" | "NOT_AUTHORIZED"
+
+local type EvaluationJobStatus = "InProgress" | "Completed" | "Failed" | "Stopping" | "Stopped" | "Deleting"
+
+local type ModelCopyJobStatus = "InProgress" | "Completed" | "Failed"
+
+local type EntitlementAvailability = "AVAILABLE" | "NOT_AVAILABLE"
+
+local type PromptRouterStatus = "AVAILABLE"
+
+local type RegionAvailability = "AVAILABLE" | "NOT_AVAILABLE"
 
 local record M
     BatchDeleteEvaluationJobInput: BatchDeleteEvaluationJobInput

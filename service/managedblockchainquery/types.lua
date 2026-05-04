@@ -18,7 +18,7 @@ M.AddressIdentifierFilter = {
     members = {
         transactionEventToAddress = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -60,12 +60,9 @@ M.QueryTokenStandard = {
 M.AssetContract = {
     type = "structure",
     members = {
-        contractIdentifier = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        contractIdentifier = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ContractIdentifier }),
         tokenStandard = {
             type = "string",
             traits = {
@@ -123,21 +120,13 @@ M.TokenIdentifier = {
 M.BatchGetTokenBalanceInputItem = {
     type = "structure",
     members = {
-        tokenIdentifier = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ownerIdentifier = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        atBlockchainInstant = {
-            type = "structure",
-        },
+        tokenIdentifier = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TokenIdentifier }),
+        ownerIdentifier = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OwnerIdentifier }),
+        atBlockchainInstant = M.BlockchainInstant,
     },
 }
 
@@ -146,7 +135,7 @@ M.BatchGetTokenBalanceInput = {
     members = {
         getTokenBalanceInputs = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetTokenBalanceInputItem,
         },
     },
 }
@@ -159,15 +148,9 @@ M.ErrorType = {
 M.BatchGetTokenBalanceErrorItem = {
     type = "structure",
     members = {
-        tokenIdentifier = {
-            type = "structure",
-        },
-        ownerIdentifier = {
-            type = "structure",
-        },
-        atBlockchainInstant = {
-            type = "structure",
-        },
+        tokenIdentifier = M.TokenIdentifier,
+        ownerIdentifier = M.OwnerIdentifier,
+        atBlockchainInstant = M.BlockchainInstant,
         errorCode = {
             type = "string",
             traits = {
@@ -192,27 +175,18 @@ M.BatchGetTokenBalanceErrorItem = {
 M.BatchGetTokenBalanceOutputItem = {
     type = "structure",
     members = {
-        ownerIdentifier = {
-            type = "structure",
-        },
-        tokenIdentifier = {
-            type = "structure",
-        },
+        ownerIdentifier = M.OwnerIdentifier,
+        tokenIdentifier = M.TokenIdentifier,
         balance = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        atBlockchainInstant = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        lastUpdatedTime = {
-            type = "structure",
-        },
+        atBlockchainInstant = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BlockchainInstant }),
+        lastUpdatedTime = M.BlockchainInstant,
     },
 }
 
@@ -221,14 +195,14 @@ M.BatchGetTokenBalanceOutput = {
     members = {
         tokenBalances = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetTokenBalanceOutputItem,
             traits = {
                 required = true,
             },
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetTokenBalanceErrorItem,
             traits = {
                 required = true,
             },
@@ -247,7 +221,7 @@ M.InternalServerException = {
             },
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -344,7 +318,7 @@ M.ThrottlingException = {
             },
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -395,7 +369,7 @@ M.ValidationException = {
         },
         fieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -410,7 +384,7 @@ M.ConfirmationStatusFilter = {
     members = {
         include = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -452,7 +426,7 @@ M.ContractMetadata = {
             type = "string",
         },
         decimals = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -465,24 +439,18 @@ M.ExecutionStatus = {
 M.GetAssetContractInput = {
     type = "structure",
     members = {
-        contractIdentifier = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        contractIdentifier = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ContractIdentifier }),
     },
 }
 
 M.GetAssetContractOutput = {
     type = "structure",
     members = {
-        contractIdentifier = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        contractIdentifier = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ContractIdentifier }),
         tokenStandard = {
             type = "string",
             traits = {
@@ -495,57 +463,38 @@ M.GetAssetContractOutput = {
                 required = true,
             },
         },
-        metadata = {
-            type = "structure",
-        },
+        metadata = M.ContractMetadata,
     },
 }
 
 M.GetTokenBalanceInput = {
     type = "structure",
     members = {
-        tokenIdentifier = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ownerIdentifier = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        atBlockchainInstant = {
-            type = "structure",
-        },
+        tokenIdentifier = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TokenIdentifier }),
+        ownerIdentifier = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OwnerIdentifier }),
+        atBlockchainInstant = M.BlockchainInstant,
     },
 }
 
 M.GetTokenBalanceOutput = {
     type = "structure",
     members = {
-        ownerIdentifier = {
-            type = "structure",
-        },
-        tokenIdentifier = {
-            type = "structure",
-        },
+        ownerIdentifier = M.OwnerIdentifier,
+        tokenIdentifier = M.TokenIdentifier,
         balance = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        atBlockchainInstant = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        lastUpdatedTime = {
-            type = "structure",
-        },
+        atBlockchainInstant = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BlockchainInstant }),
+        lastUpdatedTime = M.BlockchainInstant,
     },
 }
 
@@ -595,13 +544,13 @@ M.Transaction = {
             },
         },
         transactionIndex = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         numberOfTransactions = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -628,7 +577,7 @@ M.Transaction = {
             type = "string",
         },
         signatureV = {
-            type = "number",
+            type = "integer",
         },
         signatureR = {
             type = "string",
@@ -654,29 +603,23 @@ M.Transaction = {
 M.GetTransactionOutput = {
     type = "structure",
     members = {
-        transaction = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        transaction = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Transaction }),
     },
 }
 
 M.ListAssetContractsInput = {
     type = "structure",
     members = {
-        contractFilter = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        contractFilter = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ContractFilter }),
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -686,7 +629,7 @@ M.ListAssetContractsOutput = {
     members = {
         contracts = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetContract,
             traits = {
                 required = true,
             },
@@ -721,12 +664,8 @@ M.ListFilteredTransactionEventsSort = {
 M.TimeFilter = {
     type = "structure",
     members = {
-        from = {
-            type = "structure",
-        },
-        to = {
-            type = "structure",
-        },
+        from = M.BlockchainInstant,
+        to = M.BlockchainInstant,
     },
 }
 
@@ -751,29 +690,18 @@ M.ListFilteredTransactionEventsInput = {
                 required = true,
             },
         },
-        addressIdentifierFilter = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        timeFilter = {
-            type = "structure",
-        },
-        voutFilter = {
-            type = "structure",
-        },
-        confirmationStatusFilter = {
-            type = "structure",
-        },
-        sort = {
-            type = "structure",
-        },
+        addressIdentifierFilter = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AddressIdentifierFilter }),
+        timeFilter = M.TimeFilter,
+        voutFilter = M.VoutFilter,
+        confirmationStatusFilter = M.ConfirmationStatusFilter,
+        sort = M.ListFilteredTransactionEventsSort,
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -832,7 +760,7 @@ M.TransactionEvent = {
             type = "string",
         },
         voutIndex = {
-            type = "number",
+            type = "integer",
         },
         voutSpent = {
             type = "boolean",
@@ -844,11 +772,9 @@ M.TransactionEvent = {
             type = "string",
         },
         spentVoutIndex = {
-            type = "number",
+            type = "integer",
         },
-        blockchainInstant = {
-            type = "structure",
-        },
+        blockchainInstant = M.BlockchainInstant,
         confirmationStatus = {
             type = "string",
         },
@@ -860,7 +786,7 @@ M.ListFilteredTransactionEventsOutput = {
     members = {
         events = {
             type = "list",
-            member_type = "structure",
+            member = M.TransactionEvent,
             traits = {
                 required = true,
             },
@@ -904,20 +830,15 @@ M.TokenFilter = {
 M.ListTokenBalancesInput = {
     type = "structure",
     members = {
-        ownerFilter = {
-            type = "structure",
-        },
-        tokenFilter = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ownerFilter = M.OwnerFilter,
+        tokenFilter = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TokenFilter }),
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -925,27 +846,18 @@ M.ListTokenBalancesInput = {
 M.TokenBalance = {
     type = "structure",
     members = {
-        ownerIdentifier = {
-            type = "structure",
-        },
-        tokenIdentifier = {
-            type = "structure",
-        },
+        ownerIdentifier = M.OwnerIdentifier,
+        tokenIdentifier = M.TokenIdentifier,
         balance = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        atBlockchainInstant = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        lastUpdatedTime = {
-            type = "structure",
-        },
+        atBlockchainInstant = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BlockchainInstant }),
+        lastUpdatedTime = M.BlockchainInstant,
     },
 }
 
@@ -954,7 +866,7 @@ M.ListTokenBalancesOutput = {
     members = {
         tokenBalances = {
             type = "list",
-            member_type = "structure",
+            member = M.TokenBalance,
             traits = {
                 required = true,
             },
@@ -984,7 +896,7 @@ M.ListTransactionEventsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -994,7 +906,7 @@ M.ListTransactionEventsOutput = {
     members = {
         events = {
             type = "list",
-            member_type = "structure",
+            member = M.TransactionEvent,
             traits = {
                 required = true,
             },
@@ -1036,24 +948,16 @@ M.ListTransactionsInput = {
                 required = true,
             },
         },
-        fromBlockchainInstant = {
-            type = "structure",
-        },
-        toBlockchainInstant = {
-            type = "structure",
-        },
-        sort = {
-            type = "structure",
-        },
+        fromBlockchainInstant = M.BlockchainInstant,
+        toBlockchainInstant = M.BlockchainInstant,
+        sort = M.ListTransactionsSort,
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
-        confirmationStatusFilter = {
-            type = "structure",
-        },
+        confirmationStatusFilter = M.ConfirmationStatusFilter,
     },
 }
 
@@ -1092,7 +996,7 @@ M.ListTransactionsOutput = {
     members = {
         transactions = {
             type = "list",
-            member_type = "structure",
+            member = M.TransactionOutputItem,
             traits = {
                 required = true,
             },

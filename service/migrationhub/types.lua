@@ -61,14 +61,14 @@ M.AssociateCreatedArtifactInput = {
                 required = true,
             },
         },
-        CreatedArtifact = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        CreatedArtifact = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CreatedArtifact }),
         DryRun = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -148,8 +148,9 @@ M.ThrottlingException = {
             },
         },
         RetryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_header = "Retry-After",
             },
         },
@@ -196,14 +197,14 @@ M.AssociateDiscoveredResourceInput = {
                 required = true,
             },
         },
-        DiscoveredResource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DiscoveredResource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DiscoveredResource }),
         DryRun = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -255,14 +256,14 @@ M.AssociateSourceResourceInput = {
                 required = true,
             },
         },
-        SourceResource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SourceResource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SourceResource }),
         DryRun = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -282,6 +283,9 @@ M.CreateProgressUpdateStreamInput = {
         },
         DryRun = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -301,6 +305,9 @@ M.DeleteProgressUpdateStreamInput = {
         },
         DryRun = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -402,7 +409,7 @@ M.Task = {
             type = "string",
         },
         ProgressPercent = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -416,15 +423,13 @@ M.MigrationTask = {
         MigrationTaskName = {
             type = "string",
         },
-        Task = {
-            type = "structure",
-        },
+        Task = M.Task,
         UpdateDateTime = {
             type = "timestamp",
         },
         ResourceAttributeList = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceAttribute,
         },
     },
 }
@@ -432,9 +437,7 @@ M.MigrationTask = {
 M.DescribeMigrationTaskOutput = {
     type = "structure",
     members = {
-        MigrationTask = {
-            type = "structure",
-        },
+        MigrationTask = M.MigrationTask,
     },
 }
 
@@ -461,6 +464,9 @@ M.DisassociateCreatedArtifactInput = {
         },
         DryRun = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -492,6 +498,9 @@ M.DisassociateDiscoveredResourceInput = {
         },
         DryRun = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -523,6 +532,9 @@ M.DisassociateSourceResourceInput = {
         },
         DryRun = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -548,6 +560,9 @@ M.ImportMigrationTaskInput = {
         },
         DryRun = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -561,13 +576,13 @@ M.ListApplicationStatesInput = {
     members = {
         ApplicationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -577,7 +592,7 @@ M.ListApplicationStatesOutput = {
     members = {
         ApplicationStateList = {
             type = "list",
-            member_type = "structure",
+            member = M.ApplicationState,
         },
         NextToken = {
             type = "string",
@@ -604,7 +619,7 @@ M.ListCreatedArtifactsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -617,7 +632,7 @@ M.ListCreatedArtifactsOutput = {
         },
         CreatedArtifactList = {
             type = "list",
-            member_type = "structure",
+            member = M.CreatedArtifact,
         },
     },
 }
@@ -641,7 +656,7 @@ M.ListDiscoveredResourcesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -654,7 +669,7 @@ M.ListDiscoveredResourcesOutput = {
         },
         DiscoveredResourceList = {
             type = "list",
-            member_type = "structure",
+            member = M.DiscoveredResource,
         },
     },
 }
@@ -666,7 +681,7 @@ M.ListMigrationTasksInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         ResourceName = {
             type = "string",
@@ -687,7 +702,7 @@ M.MigrationTaskSummary = {
             type = "string",
         },
         ProgressPercent = {
-            type = "number",
+            type = "integer",
         },
         StatusDetail = {
             type = "string",
@@ -706,7 +721,7 @@ M.ListMigrationTasksOutput = {
         },
         MigrationTaskSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.MigrationTaskSummary,
         },
     },
 }
@@ -730,7 +745,7 @@ M.ListMigrationTaskUpdatesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -748,9 +763,7 @@ M.MigrationTaskUpdate = {
         UpdateType = {
             type = "string",
         },
-        MigrationTaskState = {
-            type = "structure",
-        },
+        MigrationTaskState = M.Task,
     },
 }
 
@@ -762,7 +775,7 @@ M.ListMigrationTaskUpdatesOutput = {
         },
         MigrationTaskUpdateList = {
             type = "list",
-            member_type = "structure",
+            member = M.MigrationTaskUpdate,
         },
     },
 }
@@ -774,7 +787,7 @@ M.ListProgressUpdateStreamsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -793,7 +806,7 @@ M.ListProgressUpdateStreamsOutput = {
     members = {
         ProgressUpdateStreamSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.ProgressUpdateStreamSummary,
         },
         NextToken = {
             type = "string",
@@ -820,7 +833,7 @@ M.ListSourceResourcesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -833,7 +846,7 @@ M.ListSourceResourcesOutput = {
         },
         SourceResourceList = {
             type = "list",
-            member_type = "structure",
+            member = M.SourceResource,
         },
     },
 }
@@ -858,6 +871,9 @@ M.NotifyApplicationStateInput = {
         },
         DryRun = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -881,12 +897,9 @@ M.NotifyMigrationTaskStateInput = {
                 required = true,
             },
         },
-        Task = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Task = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Task }),
         UpdateDateTime = {
             type = "timestamp",
             traits = {
@@ -894,13 +907,17 @@ M.NotifyMigrationTaskStateInput = {
             },
         },
         NextUpdateSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         DryRun = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -926,13 +943,16 @@ M.PutResourceAttributesInput = {
         },
         ResourceAttributeList = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceAttribute,
             traits = {
                 required = true,
             },
         },
         DryRun = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }

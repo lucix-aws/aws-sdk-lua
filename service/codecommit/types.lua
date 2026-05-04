@@ -63,9 +63,7 @@ M.ApprovalRule = {
         lastModifiedUser = {
             type = "string",
         },
-        originApprovalRuleTemplate = {
-            type = "structure",
-        },
+        originApprovalRuleTemplate = M.OriginApprovalRuleTemplate,
     },
 }
 
@@ -386,7 +384,7 @@ M.BatchAssociateApprovalRuleTemplateWithRepositoriesInput = {
         },
         repositoryNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -414,14 +412,14 @@ M.BatchAssociateApprovalRuleTemplateWithRepositoriesOutput = {
     members = {
         associatedRepositoryNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchAssociateApprovalRuleTemplateWithRepositoriesError,
             traits = {
                 required = true,
             },
@@ -495,14 +493,14 @@ M.BatchDescribeMergeConflictsInput = {
             },
         },
         maxMergeHunks = {
-            type = "number",
+            type = "integer",
         },
         maxConflictFiles = {
-            type = "number",
+            type = "integer",
         },
         filePaths = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         conflictDetailLevel = {
             type = "string",
@@ -541,13 +539,22 @@ M.FileSizes = {
     type = "structure",
     members = {
         source = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         destination = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         base = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -613,33 +620,35 @@ M.ConflictMetadata = {
         filePath = {
             type = "string",
         },
-        fileSizes = {
-            type = "structure",
-        },
-        fileModes = {
-            type = "structure",
-        },
-        objectTypes = {
-            type = "structure",
-        },
+        fileSizes = M.FileSizes,
+        fileModes = M.FileModes,
+        objectTypes = M.ObjectTypes,
         numberOfConflicts = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
-        isBinaryFile = {
-            type = "structure",
-        },
+        isBinaryFile = M.IsBinaryFile,
         contentConflict = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         fileModeConflict = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         objectTypeConflict = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        mergeOperations = {
-            type = "structure",
-        },
+        mergeOperations = M.MergeOperations,
     },
 }
 
@@ -647,10 +656,10 @@ M.MergeHunkDetail = {
     type = "structure",
     members = {
         startLine = {
-            type = "number",
+            type = "integer",
         },
         endLine = {
-            type = "number",
+            type = "integer",
         },
         hunkContent = {
             type = "string",
@@ -663,28 +672,23 @@ M.MergeHunk = {
     members = {
         isConflict = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        source = {
-            type = "structure",
-        },
-        destination = {
-            type = "structure",
-        },
-        base = {
-            type = "structure",
-        },
+        source = M.MergeHunkDetail,
+        destination = M.MergeHunkDetail,
+        base = M.MergeHunkDetail,
     },
 }
 
 M.Conflict = {
     type = "structure",
     members = {
-        conflictMetadata = {
-            type = "structure",
-        },
+        conflictMetadata = M.ConflictMetadata,
         mergeHunks = {
             type = "list",
-            member_type = "structure",
+            member = M.MergeHunk,
         },
     },
 }
@@ -718,7 +722,7 @@ M.BatchDescribeMergeConflictsOutput = {
     members = {
         conflicts = {
             type = "list",
-            member_type = "structure",
+            member = M.Conflict,
             traits = {
                 required = true,
             },
@@ -728,7 +732,7 @@ M.BatchDescribeMergeConflictsOutput = {
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchDescribeMergeConflictsError,
         },
         destinationCommitId = {
             type = "string",
@@ -889,7 +893,7 @@ M.BatchDisassociateApprovalRuleTemplateFromRepositoriesInput = {
         },
         repositoryNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -917,14 +921,14 @@ M.BatchDisassociateApprovalRuleTemplateFromRepositoriesOutput = {
     members = {
         disassociatedRepositoryNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchDisassociateApprovalRuleTemplateFromRepositoriesError,
             traits = {
                 required = true,
             },
@@ -937,7 +941,7 @@ M.BatchGetCommitsInput = {
     members = {
         commitIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -977,17 +981,13 @@ M.Commit = {
         },
         parents = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         message = {
             type = "string",
         },
-        author = {
-            type = "structure",
-        },
-        committer = {
-            type = "structure",
-        },
+        author = M.UserInfo,
+        committer = M.UserInfo,
         additionalData = {
             type = "string",
         },
@@ -1014,11 +1014,11 @@ M.BatchGetCommitsOutput = {
     members = {
         commits = {
             type = "list",
-            member_type = "structure",
+            member = M.Commit,
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetCommitsError,
         },
     },
 }
@@ -1048,7 +1048,7 @@ M.BatchGetRepositoriesInput = {
     members = {
         repositoryNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1127,15 +1127,15 @@ M.BatchGetRepositoriesOutput = {
     members = {
         repositories = {
             type = "list",
-            member_type = "structure",
+            member = M.RepositoryMetadata,
         },
         repositoriesNotFound = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetRepositoriesError,
         },
     },
 }
@@ -1291,12 +1291,9 @@ M.CreateApprovalRuleTemplateInput = {
 M.CreateApprovalRuleTemplateOutput = {
     type = "structure",
     members = {
-        approvalRuleTemplate = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        approvalRuleTemplate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ApprovalRuleTemplate }),
     },
 }
 
@@ -1421,6 +1418,9 @@ M.SourceFileSpecifier = {
         },
         isMove = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1440,9 +1440,7 @@ M.PutFileEntry = {
         fileContent = {
             type = "blob",
         },
-        sourceFile = {
-            type = "structure",
-        },
+        sourceFile = M.SourceFileSpecifier,
     },
 }
 
@@ -1493,18 +1491,21 @@ M.CreateCommitInput = {
         },
         keepEmptyFolders = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         putFiles = {
             type = "list",
-            member_type = "structure",
+            member = M.PutFileEntry,
         },
         deleteFiles = {
             type = "list",
-            member_type = "structure",
+            member = M.DeleteFileEntry,
         },
         setFileModes = {
             type = "list",
-            member_type = "structure",
+            member = M.SetFileModeEntry,
         },
     },
 }
@@ -1535,15 +1536,15 @@ M.CreateCommitOutput = {
         },
         filesAdded = {
             type = "list",
-            member_type = "structure",
+            member = M.FileMetadata,
         },
         filesUpdated = {
             type = "list",
-            member_type = "structure",
+            member = M.FileMetadata,
         },
         filesDeleted = {
             type = "list",
-            member_type = "structure",
+            member = M.FileMetadata,
         },
     },
 }
@@ -1833,7 +1834,7 @@ M.CreatePullRequestInput = {
         },
         targets = {
             type = "list",
-            member_type = "structure",
+            member = M.Target,
             traits = {
                 required = true,
             },
@@ -1854,6 +1855,9 @@ M.MergeMetadata = {
     members = {
         isMerged = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         mergedBy = {
             type = "string",
@@ -1888,9 +1892,7 @@ M.PullRequestTarget = {
         mergeBase = {
             type = "string",
         },
-        mergeMetadata = {
-            type = "structure",
-        },
+        mergeMetadata = M.MergeMetadata,
     },
 }
 
@@ -1920,7 +1922,7 @@ M.PullRequest = {
         },
         pullRequestTargets = {
             type = "list",
-            member_type = "structure",
+            member = M.PullRequestTarget,
         },
         clientRequestToken = {
             type = "string",
@@ -1930,7 +1932,7 @@ M.PullRequest = {
         },
         approvalRules = {
             type = "list",
-            member_type = "structure",
+            member = M.ApprovalRule,
         },
     },
 }
@@ -1938,12 +1940,9 @@ M.PullRequest = {
 M.CreatePullRequestOutput = {
     type = "structure",
     members = {
-        pullRequest = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        pullRequest = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PullRequest }),
     },
 }
 
@@ -2134,12 +2133,9 @@ M.CreatePullRequestApprovalRuleInput = {
 M.CreatePullRequestApprovalRuleOutput = {
     type = "structure",
     members = {
-        approvalRule = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        approvalRule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ApprovalRule }),
     },
 }
 
@@ -2227,8 +2223,8 @@ M.CreateRepositoryInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         kmsKeyId = {
             type = "string",
@@ -2239,9 +2235,7 @@ M.CreateRepositoryInput = {
 M.CreateRepositoryOutput = {
     type = "structure",
     members = {
-        repositoryMetadata = {
-            type = "structure",
-        },
+        repositoryMetadata = M.RepositoryMetadata,
     },
 }
 
@@ -2391,15 +2385,15 @@ M.ConflictResolution = {
     members = {
         replaceContents = {
             type = "list",
-            member_type = "structure",
+            member = M.ReplaceContentEntry,
         },
         deleteFiles = {
             type = "list",
-            member_type = "structure",
+            member = M.DeleteFileEntry,
         },
         setFileModes = {
             type = "list",
-            member_type = "structure",
+            member = M.SetFileModeEntry,
         },
     },
 }
@@ -2448,10 +2442,11 @@ M.CreateUnreferencedMergeCommitInput = {
         },
         keepEmptyFolders = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        conflictResolution = {
-            type = "structure",
-        },
+        conflictResolution = M.ConflictResolution,
     },
 }
 
@@ -2602,9 +2597,7 @@ M.DeleteBranchInput = {
 M.DeleteBranchOutput = {
     type = "structure",
     members = {
-        deletedBranch = {
-            type = "structure",
-        },
+        deletedBranch = M.BranchInfo,
     },
 }
 
@@ -2673,18 +2666,21 @@ M.Comment = {
         },
         deleted = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         clientRequestToken = {
             type = "string",
         },
         callerReactions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         reactionCounts = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
         },
     },
 }
@@ -2692,9 +2688,7 @@ M.Comment = {
 M.DeleteCommentContentOutput = {
     type = "structure",
     members = {
-        comment = {
-            type = "structure",
-        },
+        comment = M.Comment,
     },
 }
 
@@ -2737,6 +2731,9 @@ M.DeleteFileInput = {
         },
         keepEmptyFolders = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         commitMessage = {
             type = "string",
@@ -2859,7 +2856,7 @@ M.DescribeMergeConflictsInput = {
             },
         },
         maxMergeHunks = {
-            type = "number",
+            type = "integer",
         },
         filePath = {
             type = "string",
@@ -2882,15 +2879,12 @@ M.DescribeMergeConflictsInput = {
 M.DescribeMergeConflictsOutput = {
     type = "structure",
     members = {
-        conflictMetadata = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        conflictMetadata = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConflictMetadata }),
         mergeHunks = {
             type = "list",
-            member_type = "structure",
+            member = M.MergeHunk,
             traits = {
                 required = true,
             },
@@ -2947,7 +2941,7 @@ M.DescribePullRequestEventsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2979,9 +2973,7 @@ M.PullRequestMergedStateChangedEventMetadata = {
         destinationReference = {
             type = "string",
         },
-        mergeMetadata = {
-            type = "structure",
-        },
+        mergeMetadata = M.MergeMetadata,
     },
 }
 
@@ -3027,27 +3019,13 @@ M.PullRequestEvent = {
         actorArn = {
             type = "string",
         },
-        pullRequestCreatedEventMetadata = {
-            type = "structure",
-        },
-        pullRequestStatusChangedEventMetadata = {
-            type = "structure",
-        },
-        pullRequestSourceReferenceUpdatedEventMetadata = {
-            type = "structure",
-        },
-        pullRequestMergedStateChangedEventMetadata = {
-            type = "structure",
-        },
-        approvalRuleEventMetadata = {
-            type = "structure",
-        },
-        approvalStateChangedEventMetadata = {
-            type = "structure",
-        },
-        approvalRuleOverriddenEventMetadata = {
-            type = "structure",
-        },
+        pullRequestCreatedEventMetadata = M.PullRequestCreatedEventMetadata,
+        pullRequestStatusChangedEventMetadata = M.PullRequestStatusChangedEventMetadata,
+        pullRequestSourceReferenceUpdatedEventMetadata = M.PullRequestSourceReferenceUpdatedEventMetadata,
+        pullRequestMergedStateChangedEventMetadata = M.PullRequestMergedStateChangedEventMetadata,
+        approvalRuleEventMetadata = M.ApprovalRuleEventMetadata,
+        approvalStateChangedEventMetadata = M.ApprovalStateChangedEventMetadata,
+        approvalRuleOverriddenEventMetadata = M.ApprovalRuleOverriddenEventMetadata,
     },
 }
 
@@ -3056,7 +3034,7 @@ M.DescribePullRequestEventsOutput = {
     members = {
         pullRequestEvents = {
             type = "list",
-            member_type = "structure",
+            member = M.PullRequestEvent,
             traits = {
                 required = true,
             },
@@ -3142,17 +3120,23 @@ M.Evaluation = {
     members = {
         approved = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         overridden = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         approvalRulesSatisfied = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         approvalRulesNotSatisfied = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3160,12 +3144,9 @@ M.Evaluation = {
 M.EvaluatePullRequestApprovalRulesOutput = {
     type = "structure",
     members = {
-        evaluation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        evaluation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Evaluation }),
     },
 }
 
@@ -3214,12 +3195,9 @@ M.GetApprovalRuleTemplateInput = {
 M.GetApprovalRuleTemplateOutput = {
     type = "structure",
     members = {
-        approvalRuleTemplate = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        approvalRuleTemplate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ApprovalRuleTemplate }),
     },
 }
 
@@ -3288,9 +3266,7 @@ M.GetBranchInput = {
 M.GetBranchOutput = {
     type = "structure",
     members = {
-        branch = {
-            type = "structure",
-        },
+        branch = M.BranchInfo,
     },
 }
 
@@ -3309,9 +3285,7 @@ M.GetCommentInput = {
 M.GetCommentOutput = {
     type = "structure",
     members = {
-        comment = {
-            type = "structure",
-        },
+        comment = M.Comment,
     },
 }
 
@@ -3331,7 +3305,7 @@ M.GetCommentReactionsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3354,15 +3328,13 @@ M.ReactionValueFormats = {
 M.ReactionForComment = {
     type = "structure",
     members = {
-        reaction = {
-            type = "structure",
-        },
+        reaction = M.ReactionValueFormats,
         reactionUsers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         reactionsFromDeletedUsersCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3372,7 +3344,7 @@ M.GetCommentReactionsOutput = {
     members = {
         reactionsForComment = {
             type = "list",
-            member_type = "structure",
+            member = M.ReactionForComment,
             traits = {
                 required = true,
             },
@@ -3415,7 +3387,7 @@ M.GetCommentsForComparedCommitInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3432,7 +3404,7 @@ M.Location = {
             type = "string",
         },
         filePosition = {
-            type = "number",
+            type = "long",
         },
         relativeFileVersion = {
             type = "string",
@@ -3458,12 +3430,10 @@ M.CommentsForComparedCommit = {
         afterBlobId = {
             type = "string",
         },
-        location = {
-            type = "structure",
-        },
+        location = M.Location,
         comments = {
             type = "list",
-            member_type = "structure",
+            member = M.Comment,
         },
     },
 }
@@ -3473,7 +3443,7 @@ M.GetCommentsForComparedCommitOutput = {
     members = {
         commentsForComparedCommitData = {
             type = "list",
-            member_type = "structure",
+            member = M.CommentsForComparedCommit,
         },
         nextToken = {
             type = "string",
@@ -3503,7 +3473,7 @@ M.GetCommentsForPullRequestInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3529,12 +3499,10 @@ M.CommentsForPullRequest = {
         afterBlobId = {
             type = "string",
         },
-        location = {
-            type = "structure",
-        },
+        location = M.Location,
         comments = {
             type = "list",
-            member_type = "structure",
+            member = M.Comment,
         },
     },
 }
@@ -3544,7 +3512,7 @@ M.GetCommentsForPullRequestOutput = {
     members = {
         commentsForPullRequestData = {
             type = "list",
-            member_type = "structure",
+            member = M.CommentsForPullRequest,
         },
         nextToken = {
             type = "string",
@@ -3593,12 +3561,9 @@ M.GetCommitInput = {
 M.GetCommitOutput = {
     type = "structure",
     members = {
-        commit = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        commit = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Commit }),
     },
 }
 
@@ -3627,7 +3592,7 @@ M.GetDifferencesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3638,12 +3603,8 @@ M.GetDifferencesInput = {
 M.Difference = {
     type = "structure",
     members = {
-        beforeBlob = {
-            type = "structure",
-        },
-        afterBlob = {
-            type = "structure",
-        },
+        beforeBlob = M.BlobMetadata,
+        afterBlob = M.BlobMetadata,
         changeType = {
             type = "string",
         },
@@ -3655,7 +3616,7 @@ M.GetDifferencesOutput = {
     members = {
         differences = {
             type = "list",
-            member_type = "structure",
+            member = M.Difference,
         },
         NextToken = {
             type = "string",
@@ -3722,8 +3683,9 @@ M.GetFileOutput = {
             },
         },
         fileSize = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -3853,19 +3815,19 @@ M.GetFolderOutput = {
         },
         subFolders = {
             type = "list",
-            member_type = "structure",
+            member = M.Folder,
         },
         files = {
             type = "list",
-            member_type = "structure",
+            member = M.File,
         },
         symbolicLinks = {
             type = "list",
-            member_type = "structure",
+            member = M.SymbolicLink,
         },
         subModules = {
             type = "list",
-            member_type = "structure",
+            member = M.SubModule,
         },
     },
 }
@@ -3949,7 +3911,7 @@ M.GetMergeConflictsInput = {
             type = "string",
         },
         maxConflictFiles = {
-            type = "number",
+            type = "integer",
         },
         conflictResolutionStrategy = {
             type = "string",
@@ -3966,6 +3928,7 @@ M.GetMergeConflictsOutput = {
         mergeable = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -3986,7 +3949,7 @@ M.GetMergeConflictsOutput = {
         },
         conflictMetadataList = {
             type = "list",
-            member_type = "structure",
+            member = M.ConflictMetadata,
             traits = {
                 required = true,
             },
@@ -4052,7 +4015,7 @@ M.GetMergeOptionsOutput = {
     members = {
         mergeOptions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4093,12 +4056,9 @@ M.GetPullRequestInput = {
 M.GetPullRequestOutput = {
     type = "structure",
     members = {
-        pullRequest = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        pullRequest = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PullRequest }),
     },
 }
 
@@ -4125,7 +4085,7 @@ M.GetPullRequestApprovalStatesOutput = {
     members = {
         approvals = {
             type = "list",
-            member_type = "structure",
+            member = M.Approval,
         },
     },
 }
@@ -4153,6 +4113,9 @@ M.GetPullRequestOverrideStateOutput = {
     members = {
         overridden = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         overrider = {
             type = "string",
@@ -4175,9 +4138,7 @@ M.GetRepositoryInput = {
 M.GetRepositoryOutput = {
     type = "structure",
     members = {
-        repositoryMetadata = {
-            type = "structure",
-        },
+        repositoryMetadata = M.RepositoryMetadata,
     },
 }
 
@@ -4220,11 +4181,11 @@ M.RepositoryTrigger = {
         },
         branches = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         events = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4240,7 +4201,7 @@ M.GetRepositoryTriggersOutput = {
         },
         triggers = {
             type = "list",
-            member_type = "structure",
+            member = M.RepositoryTrigger,
         },
     },
 }
@@ -4252,7 +4213,7 @@ M.ListApprovalRuleTemplatesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4262,7 +4223,7 @@ M.ListApprovalRuleTemplatesOutput = {
     members = {
         approvalRuleTemplateNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -4283,7 +4244,7 @@ M.ListAssociatedApprovalRuleTemplatesForRepositoryInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4293,7 +4254,7 @@ M.ListAssociatedApprovalRuleTemplatesForRepositoryOutput = {
     members = {
         approvalRuleTemplateNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -4321,7 +4282,7 @@ M.ListBranchesOutput = {
     members = {
         branches = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -4348,7 +4309,7 @@ M.ListFileCommitHistoryInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -4359,9 +4320,7 @@ M.ListFileCommitHistoryInput = {
 M.FileVersion = {
     type = "structure",
     members = {
-        commit = {
-            type = "structure",
-        },
+        commit = M.Commit,
         blobId = {
             type = "string",
         },
@@ -4370,7 +4329,7 @@ M.FileVersion = {
         },
         revisionChildren = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4380,7 +4339,7 @@ M.ListFileCommitHistoryOutput = {
     members = {
         revisionDag = {
             type = "list",
-            member_type = "structure",
+            member = M.FileVersion,
             traits = {
                 required = true,
             },
@@ -4430,7 +4389,7 @@ M.ListPullRequestsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4440,7 +4399,7 @@ M.ListPullRequestsOutput = {
     members = {
         pullRequestIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4513,7 +4472,7 @@ M.ListRepositoriesOutput = {
     members = {
         repositories = {
             type = "list",
-            member_type = "structure",
+            member = M.RepositoryNameIdPair,
         },
         nextToken = {
             type = "string",
@@ -4534,7 +4493,7 @@ M.ListRepositoriesForApprovalRuleTemplateInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4544,7 +4503,7 @@ M.ListRepositoriesForApprovalRuleTemplateOutput = {
     members = {
         repositoryNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -4582,8 +4541,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -4691,10 +4650,11 @@ M.MergeBranchesBySquashInput = {
         },
         keepEmptyFolders = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        conflictResolution = {
-            type = "structure",
-        },
+        conflictResolution = M.ConflictResolution,
     },
 }
 
@@ -4751,10 +4711,11 @@ M.MergeBranchesByThreeWayInput = {
         },
         keepEmptyFolders = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        conflictResolution = {
-            type = "structure",
-        },
+        conflictResolution = M.ConflictResolution,
     },
 }
 
@@ -4794,9 +4755,7 @@ M.MergePullRequestByFastForwardInput = {
 M.MergePullRequestByFastForwardOutput = {
     type = "structure",
     members = {
-        pullRequest = {
-            type = "structure",
-        },
+        pullRequest = M.PullRequest,
     },
 }
 
@@ -4855,19 +4814,18 @@ M.MergePullRequestBySquashInput = {
         },
         keepEmptyFolders = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        conflictResolution = {
-            type = "structure",
-        },
+        conflictResolution = M.ConflictResolution,
     },
 }
 
 M.MergePullRequestBySquashOutput = {
     type = "structure",
     members = {
-        pullRequest = {
-            type = "structure",
-        },
+        pullRequest = M.PullRequest,
     },
 }
 
@@ -4906,19 +4864,18 @@ M.MergePullRequestByThreeWayInput = {
         },
         keepEmptyFolders = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        conflictResolution = {
-            type = "structure",
-        },
+        conflictResolution = M.ConflictResolution,
     },
 }
 
 M.MergePullRequestByThreeWayOutput = {
     type = "structure",
     members = {
-        pullRequest = {
-            type = "structure",
-        },
+        pullRequest = M.PullRequest,
     },
 }
 
@@ -5048,9 +5005,7 @@ M.PostCommentForComparedCommitInput = {
                 required = true,
             },
         },
-        location = {
-            type = "structure",
-        },
+        location = M.Location,
         content = {
             type = "string",
             traits = {
@@ -5081,12 +5036,8 @@ M.PostCommentForComparedCommitOutput = {
         afterBlobId = {
             type = "string",
         },
-        location = {
-            type = "structure",
-        },
-        comment = {
-            type = "structure",
-        },
+        location = M.Location,
+        comment = M.Comment,
     },
 }
 
@@ -5117,9 +5068,7 @@ M.PostCommentForPullRequestInput = {
                 required = true,
             },
         },
-        location = {
-            type = "structure",
-        },
+        location = M.Location,
         content = {
             type = "string",
             traits = {
@@ -5153,12 +5102,8 @@ M.PostCommentForPullRequestOutput = {
         afterBlobId = {
             type = "string",
         },
-        location = {
-            type = "structure",
-        },
-        comment = {
-            type = "structure",
-        },
+        location = M.Location,
+        comment = M.Comment,
     },
 }
 
@@ -5186,9 +5131,7 @@ M.PostCommentReplyInput = {
 M.PostCommentReplyOutput = {
     type = "structure",
     members = {
-        comment = {
-            type = "structure",
-        },
+        comment = M.Comment,
     },
 }
 
@@ -5424,7 +5367,7 @@ M.PutRepositoryTriggersInput = {
         },
         triggers = {
             type = "list",
-            member_type = "structure",
+            member = M.RepositoryTrigger,
             traits = {
                 required = true,
             },
@@ -5502,8 +5445,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -5536,7 +5479,7 @@ M.TestRepositoryTriggersInput = {
         },
         triggers = {
             type = "list",
-            member_type = "structure",
+            member = M.RepositoryTrigger,
             traits = {
                 required = true,
             },
@@ -5561,11 +5504,11 @@ M.TestRepositoryTriggersOutput = {
     members = {
         successfulExecutions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         failedExecutions = {
             type = "list",
-            member_type = "structure",
+            member = M.RepositoryTriggerExecutionFailure,
         },
     },
 }
@@ -5601,7 +5544,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -5647,12 +5590,9 @@ M.UpdateApprovalRuleTemplateContentInput = {
 M.UpdateApprovalRuleTemplateContentOutput = {
     type = "structure",
     members = {
-        approvalRuleTemplate = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        approvalRuleTemplate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ApprovalRuleTemplate }),
     },
 }
 
@@ -5677,12 +5617,9 @@ M.UpdateApprovalRuleTemplateDescriptionInput = {
 M.UpdateApprovalRuleTemplateDescriptionOutput = {
     type = "structure",
     members = {
-        approvalRuleTemplate = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        approvalRuleTemplate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ApprovalRuleTemplate }),
     },
 }
 
@@ -5707,12 +5644,9 @@ M.UpdateApprovalRuleTemplateNameInput = {
 M.UpdateApprovalRuleTemplateNameOutput = {
     type = "structure",
     members = {
-        approvalRuleTemplate = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        approvalRuleTemplate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ApprovalRuleTemplate }),
     },
 }
 
@@ -5747,9 +5681,7 @@ M.UpdateCommentInput = {
 M.UpdateCommentOutput = {
     type = "structure",
     members = {
-        comment = {
-            type = "structure",
-        },
+        comment = M.Comment,
     },
 }
 
@@ -5805,12 +5737,9 @@ M.UpdatePullRequestApprovalRuleContentInput = {
 M.UpdatePullRequestApprovalRuleContentOutput = {
     type = "structure",
     members = {
-        approvalRule = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        approvalRule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ApprovalRule }),
     },
 }
 
@@ -5893,12 +5822,9 @@ M.UpdatePullRequestDescriptionInput = {
 M.UpdatePullRequestDescriptionOutput = {
     type = "structure",
     members = {
-        pullRequest = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        pullRequest = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PullRequest }),
     },
 }
 
@@ -5943,12 +5869,9 @@ M.UpdatePullRequestStatusInput = {
 M.UpdatePullRequestStatusOutput = {
     type = "structure",
     members = {
-        pullRequest = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        pullRequest = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PullRequest }),
     },
 }
 
@@ -5973,12 +5896,9 @@ M.UpdatePullRequestTitleInput = {
 M.UpdatePullRequestTitleOutput = {
     type = "structure",
     members = {
-        pullRequest = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        pullRequest = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PullRequest }),
     },
 }
 

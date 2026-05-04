@@ -88,8 +88,9 @@ M.InternalServerException = {
             },
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_header = "Retry-After",
             },
         },
@@ -136,7 +137,7 @@ M.ValidationException = {
         },
         fields = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -146,7 +147,7 @@ M.BatchAssociateClientDeviceWithCoreDeviceInput = {
     members = {
         entries = {
             type = "list",
-            member_type = "structure",
+            member = M.AssociateClientDeviceWithCoreDeviceEntry,
         },
         coreDeviceThingName = {
             type = "string",
@@ -163,7 +164,7 @@ M.BatchAssociateClientDeviceWithCoreDeviceOutput = {
     members = {
         errorEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.AssociateClientDeviceWithCoreDeviceErrorEntry,
         },
     },
 }
@@ -210,8 +211,9 @@ M.ThrottlingException = {
             type = "string",
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_header = "Retry-After",
             },
         },
@@ -235,7 +237,7 @@ M.BatchDisassociateClientDeviceFromCoreDeviceInput = {
     members = {
         entries = {
             type = "list",
-            member_type = "structure",
+            member = M.DisassociateClientDeviceFromCoreDeviceEntry,
         },
         coreDeviceThingName = {
             type = "string",
@@ -267,7 +269,7 @@ M.BatchDisassociateClientDeviceFromCoreDeviceOutput = {
     members = {
         errorEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.DisassociateClientDeviceFromCoreDeviceErrorEntry,
         },
     },
 }
@@ -344,8 +346,8 @@ M.CloudComponentStatus = {
         },
         errors = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         vendorGuidance = {
             type = "string",
@@ -364,8 +366,8 @@ M.ComponentPlatform = {
         },
         attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -390,7 +392,7 @@ M.ComponentLatestVersion = {
         },
         platforms = {
             type = "list",
-            member_type = "structure",
+            member = M.ComponentPlatform,
         },
     },
 }
@@ -404,9 +406,7 @@ M.Component = {
         componentName = {
             type = "string",
         },
-        latestVersion = {
-            type = "structure",
-        },
+        latestVersion = M.ComponentLatestVersion,
     },
 }
 
@@ -421,8 +421,8 @@ M.ComponentCandidate = {
         },
         versionRequirements = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -435,7 +435,7 @@ M.ComponentConfigurationUpdate = {
         },
         reset = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -461,10 +461,16 @@ M.SystemResourceLimits = {
     type = "structure",
     members = {
         memory = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         cpus = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -475,9 +481,7 @@ M.ComponentRunWith = {
         posixUser = {
             type = "string",
         },
-        systemResourceLimits = {
-            type = "structure",
-        },
+        systemResourceLimits = M.SystemResourceLimits,
         windowsUser = {
             type = "string",
         },
@@ -493,12 +497,8 @@ M.ComponentDeploymentSpecification = {
                 required = true,
             },
         },
-        configurationUpdate = {
-            type = "structure",
-        },
-        runWith = {
-            type = "structure",
-        },
+        configurationUpdate = M.ComponentConfigurationUpdate,
+        runWith = M.ComponentRunWith,
     },
 }
 
@@ -538,8 +538,9 @@ M.ConnectivityInfo = {
             },
         },
         portNumber = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 json_name = "PortNumber",
             },
         },
@@ -628,6 +629,9 @@ M.LambdaDeviceMount = {
         },
         addGroupOwner = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -652,6 +656,9 @@ M.LambdaVolumeMount = {
         },
         addGroupOwner = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -660,18 +667,24 @@ M.LambdaContainerParams = {
     type = "structure",
     members = {
         memorySizeInKB = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         mountROSysfs = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
         volumes = {
             type = "list",
-            member_type = "structure",
+            member = M.LambdaVolumeMount,
         },
         devices = {
             type = "list",
-            member_type = "structure",
+            member = M.LambdaDeviceMount,
         },
     },
 }
@@ -687,9 +700,7 @@ M.LambdaLinuxProcessParams = {
         isolationMode = {
             type = "string",
         },
-        containerParams = {
-            type = "structure",
-        },
+        containerParams = M.LambdaContainerParams,
     },
 }
 
@@ -698,41 +709,57 @@ M.LambdaExecutionParameters = {
     members = {
         eventSources = {
             type = "list",
-            member_type = "structure",
+            member = M.LambdaEventSource,
         },
         maxQueueSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         maxInstancesCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         maxIdleTimeInSeconds = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         timeoutInSeconds = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         statusTimeoutInSeconds = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         pinned = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
         inputPayloadEncodingType = {
             type = "string",
         },
         execArgs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         environmentVariables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        linuxProcessParams = {
-            type = "structure",
-        },
+        linuxProcessParams = M.LambdaLinuxProcessParams,
     },
 }
 
@@ -753,16 +780,14 @@ M.LambdaFunctionRecipeSource = {
         },
         componentPlatforms = {
             type = "list",
-            member_type = "structure",
+            member = M.ComponentPlatform,
         },
         componentDependencies = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ComponentDependencyRequirement,
         },
-        componentLambdaParameters = {
-            type = "structure",
-        },
+        componentLambdaParameters = M.LambdaExecutionParameters,
     },
 }
 
@@ -772,13 +797,11 @@ M.CreateComponentVersionInput = {
         inlineRecipe = {
             type = "blob",
         },
-        lambdaFunction = {
-            type = "structure",
-        },
+        lambdaFunction = M.LambdaFunctionRecipeSource,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         clientToken = {
             type = "string",
@@ -810,12 +833,9 @@ M.CreateComponentVersionOutput = {
                 required = true,
             },
         },
-        status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CloudComponentStatus }),
     },
 }
 
@@ -872,7 +892,10 @@ M.DeploymentComponentUpdatePolicy = {
     type = "structure",
     members = {
         timeoutInSeconds = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         action = {
             type = "string",
@@ -884,7 +907,10 @@ M.DeploymentConfigurationValidationPolicy = {
     type = "structure",
     members = {
         timeoutInSeconds = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -900,12 +926,8 @@ M.DeploymentPolicies = {
         failureHandlingPolicy = {
             type = "string",
         },
-        componentUpdatePolicy = {
-            type = "structure",
-        },
-        configurationValidationPolicy = {
-            type = "structure",
-        },
+        componentUpdatePolicy = M.DeploymentComponentUpdatePolicy,
+        configurationValidationPolicy = M.DeploymentConfigurationValidationPolicy,
     },
 }
 
@@ -936,13 +958,14 @@ M.IoTJobAbortCriteria = {
             },
         },
         thresholdPercentage = {
-            type = "number",
+            type = "double",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         minNumberOfExecutedThings = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -955,7 +978,7 @@ M.IoTJobAbortConfig = {
     members = {
         criteriaList = {
             type = "list",
-            member_type = "structure",
+            member = M.IoTJobAbortCriteria,
             traits = {
                 required = true,
             },
@@ -967,10 +990,10 @@ M.IoTJobRateIncreaseCriteria = {
     type = "structure",
     members = {
         numberOfNotifiedThings = {
-            type = "number",
+            type = "integer",
         },
         numberOfSucceededThings = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -979,34 +1002,29 @@ M.IoTJobExponentialRolloutRate = {
     type = "structure",
     members = {
         baseRatePerMinute = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         incrementFactor = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
-        rateIncreaseCriteria = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        rateIncreaseCriteria = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IoTJobRateIncreaseCriteria }),
     },
 }
 
 M.IoTJobExecutionsRolloutConfig = {
     type = "structure",
     members = {
-        exponentialRate = {
-            type = "structure",
-        },
+        exponentialRate = M.IoTJobExponentialRolloutRate,
         maximumPerMinute = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1015,7 +1033,10 @@ M.IoTJobTimeoutConfig = {
     type = "structure",
     members = {
         inProgressTimeoutInMinutes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -1023,15 +1044,9 @@ M.IoTJobTimeoutConfig = {
 M.DeploymentIoTJobConfiguration = {
     type = "structure",
     members = {
-        jobExecutionsRolloutConfig = {
-            type = "structure",
-        },
-        abortConfig = {
-            type = "structure",
-        },
-        timeoutConfig = {
-            type = "structure",
-        },
+        jobExecutionsRolloutConfig = M.IoTJobExecutionsRolloutConfig,
+        abortConfig = M.IoTJobAbortConfig,
+        timeoutConfig = M.IoTJobTimeoutConfig,
     },
 }
 
@@ -1049,22 +1064,18 @@ M.CreateDeploymentInput = {
         },
         components = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ComponentDeploymentSpecification,
         },
-        iotJobConfiguration = {
-            type = "structure",
-        },
-        deploymentPolicies = {
-            type = "structure",
-        },
+        iotJobConfiguration = M.DeploymentIoTJobConfiguration,
+        deploymentPolicies = M.DeploymentPolicies,
         parentTargetArn = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         clientToken = {
             type = "string",
@@ -1169,6 +1180,9 @@ M.Deployment = {
         },
         isLatestForTarget = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         parentTargetArn = {
             type = "string",
@@ -1215,17 +1229,15 @@ M.DescribeComponentOutput = {
         description = {
             type = "string",
         },
-        status = {
-            type = "structure",
-        },
+        status = M.CloudComponentStatus,
         platforms = {
             type = "list",
-            member_type = "structure",
+            member = M.ComponentPlatform,
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1262,11 +1274,11 @@ M.EffectiveDeploymentStatusDetails = {
     members = {
         errorStack = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         errorTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1322,9 +1334,7 @@ M.EffectiveDeployment = {
                 required = true,
             },
         },
-        statusDetails = {
-            type = "structure",
-        },
+        statusDetails = M.EffectiveDeploymentStatusDetails,
     },
 }
 
@@ -1369,8 +1379,8 @@ M.GetComponentOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1447,7 +1457,7 @@ M.GetConnectivityInfoOutput = {
     members = {
         connectivityInfo = {
             type = "list",
-            member_type = "structure",
+            member = M.ConnectivityInfo,
             traits = {
                 json_name = "ConnectivityInfo",
             },
@@ -1500,8 +1510,8 @@ M.GetCoreDeviceOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1545,28 +1555,27 @@ M.GetDeploymentOutput = {
         },
         components = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ComponentDeploymentSpecification,
         },
-        deploymentPolicies = {
-            type = "structure",
-        },
-        iotJobConfiguration = {
-            type = "structure",
-        },
+        deploymentPolicies = M.DeploymentPolicies,
+        iotJobConfiguration = M.DeploymentIoTJobConfiguration,
         creationTimestamp = {
             type = "timestamp",
         },
         isLatestForTarget = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         parentTargetArn = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1604,7 +1613,7 @@ M.ListClientDevicesAssociatedWithCoreDeviceInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1623,7 +1632,7 @@ M.ListClientDevicesAssociatedWithCoreDeviceOutput = {
     members = {
         associatedClientDevices = {
             type = "list",
-            member_type = "structure",
+            member = M.AssociatedClientDevice,
         },
         nextToken = {
             type = "string",
@@ -1641,7 +1650,7 @@ M.ListComponentsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1660,7 +1669,7 @@ M.ListComponentsOutput = {
     members = {
         components = {
             type = "list",
-            member_type = "structure",
+            member = M.Component,
         },
         nextToken = {
             type = "string",
@@ -1679,7 +1688,7 @@ M.ListComponentVersionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1698,7 +1707,7 @@ M.ListComponentVersionsOutput = {
     members = {
         componentVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.ComponentVersionListItem,
         },
         nextToken = {
             type = "string",
@@ -1722,7 +1731,7 @@ M.ListCoreDevicesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1747,7 +1756,7 @@ M.ListCoreDevicesOutput = {
     members = {
         coreDevices = {
             type = "list",
-            member_type = "structure",
+            member = M.CoreDevice,
         },
         nextToken = {
             type = "string",
@@ -1777,7 +1786,7 @@ M.ListDeploymentsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1796,7 +1805,7 @@ M.ListDeploymentsOutput = {
     members = {
         deployments = {
             type = "list",
-            member_type = "structure",
+            member = M.Deployment,
         },
         nextToken = {
             type = "string",
@@ -1815,7 +1824,7 @@ M.ListEffectiveDeploymentsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1834,7 +1843,7 @@ M.ListEffectiveDeploymentsOutput = {
     members = {
         effectiveDeployments = {
             type = "list",
-            member_type = "structure",
+            member = M.EffectiveDeployment,
         },
         nextToken = {
             type = "string",
@@ -1858,7 +1867,7 @@ M.ListInstalledComponentsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1906,6 +1915,9 @@ M.InstalledComponent = {
         },
         isRoot = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         lastStatusChangeTimestamp = {
             type = "timestamp",
@@ -1918,7 +1930,7 @@ M.InstalledComponent = {
         },
         lifecycleStatusCodes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1928,7 +1940,7 @@ M.ListInstalledComponentsOutput = {
     members = {
         installedComponents = {
             type = "list",
-            member_type = "structure",
+            member = M.InstalledComponent,
         },
         nextToken = {
             type = "string",
@@ -1954,8 +1966,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1963,12 +1975,10 @@ M.ListTagsForResourceOutput = {
 M.ResolveComponentCandidatesInput = {
     type = "structure",
     members = {
-        platform = {
-            type = "structure",
-        },
+        platform = M.ComponentPlatform,
         componentCandidates = {
             type = "list",
-            member_type = "structure",
+            member = M.ComponentCandidate,
         },
     },
 }
@@ -2002,7 +2012,7 @@ M.ResolveComponentCandidatesOutput = {
     members = {
         resolvedComponentVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResolvedComponentVersion,
         },
     },
 }
@@ -2019,8 +2029,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2044,7 +2054,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -2070,7 +2080,7 @@ M.UpdateConnectivityInfoInput = {
         },
         connectivityInfo = {
             type = "list",
-            member_type = "structure",
+            member = M.ConnectivityInfo,
             traits = {
                 json_name = "ConnectivityInfo",
                 required = true,

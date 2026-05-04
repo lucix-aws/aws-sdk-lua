@@ -19,8 +19,9 @@ M.ActionThreshold = {
     type = "structure",
     members = {
         ActionThresholdValue = {
-            type = "number",
+            type = "double",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -55,15 +56,15 @@ M.IamActionDefinition = {
         },
         Roles = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Groups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Users = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -79,7 +80,7 @@ M.ScpActionDefinition = {
         },
         TargetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -109,7 +110,7 @@ M.SsmActionDefinition = {
         },
         InstanceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -120,15 +121,9 @@ M.SsmActionDefinition = {
 M.Definition = {
     type = "structure",
     members = {
-        IamActionDefinition = {
-            type = "structure",
-        },
-        ScpActionDefinition = {
-            type = "structure",
-        },
-        SsmActionDefinition = {
-            type = "structure",
-        },
+        IamActionDefinition = M.IamActionDefinition,
+        ScpActionDefinition = M.ScpActionDefinition,
+        SsmActionDefinition = M.SsmActionDefinition,
     },
 }
 
@@ -200,18 +195,12 @@ M.Action = {
                 required = true,
             },
         },
-        ActionThreshold = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Definition = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ActionThreshold = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActionThreshold }),
+        Definition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Definition }),
         ExecutionRoleArn = {
             type = "string",
             traits = {
@@ -232,7 +221,7 @@ M.Action = {
         },
         Subscribers = {
             type = "list",
-            member_type = "structure",
+            member = M.Subscriber,
             traits = {
                 required = true,
             },
@@ -249,12 +238,9 @@ M.ActionHistoryDetails = {
                 required = true,
             },
         },
-        Action = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Action = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Action }),
     },
 }
 
@@ -287,12 +273,9 @@ M.ActionHistory = {
                 required = true,
             },
         },
-        ActionHistoryDetails = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ActionHistoryDetails = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActionHistoryDetails }),
     },
 }
 
@@ -305,13 +288,13 @@ M.HistoricalOptions = {
     type = "structure",
     members = {
         BudgetAdjustmentPeriod = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         LookBackAvailablePeriods = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -325,9 +308,7 @@ M.AutoAdjustData = {
                 required = true,
             },
         },
-        HistoricalOptions = {
-            type = "structure",
-        },
+        HistoricalOptions = M.HistoricalOptions,
         LastAutoAdjustTime = {
             type = "timestamp",
         },
@@ -374,15 +355,10 @@ M.BudgetType = {
 M.CalculatedSpend = {
     type = "structure",
     members = {
-        ActualSpend = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ForecastedSpend = {
-            type = "structure",
-        },
+        ActualSpend = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Spend }),
+        ForecastedSpend = M.Spend,
     },
 }
 
@@ -444,11 +420,11 @@ M.CostCategoryValues = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MatchOptions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -500,14 +476,14 @@ M.ExpressionDimensionValues = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         MatchOptions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -520,11 +496,11 @@ M.TagValues = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MatchOptions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -614,8 +590,9 @@ M.Notification = {
             },
         },
         Threshold = {
-            type = "number",
+            type = "double",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -631,15 +608,12 @@ M.Notification = {
 M.NotificationWithSubscribers = {
     type = "structure",
     members = {
-        Notification = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Notification = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Notification }),
         Subscribers = {
             type = "list",
-            member_type = "structure",
+            member = M.Subscriber,
             traits = {
                 required = true,
             },
@@ -766,18 +740,12 @@ M.CreateBudgetActionInput = {
                 required = true,
             },
         },
-        ActionThreshold = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Definition = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ActionThreshold = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActionThreshold }),
+        Definition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Definition }),
         ExecutionRoleArn = {
             type = "string",
             traits = {
@@ -792,14 +760,14 @@ M.CreateBudgetActionInput = {
         },
         Subscribers = {
             type = "list",
-            member_type = "structure",
+            member = M.Subscriber,
             traits = {
                 required = true,
             },
         },
         ResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
         },
     },
 }
@@ -843,15 +811,12 @@ M.CreateNotificationInput = {
                 required = true,
             },
         },
-        Notification = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Notification = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Notification }),
         Subscribers = {
             type = "list",
-            member_type = "structure",
+            member = M.Subscriber,
             traits = {
                 required = true,
             },
@@ -878,18 +843,12 @@ M.CreateSubscriberInput = {
                 required = true,
             },
         },
-        Notification = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Subscriber = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Notification = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Notification }),
+        Subscriber = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Subscriber }),
     },
 }
 
@@ -958,12 +917,9 @@ M.DeleteBudgetActionOutput = {
                 required = true,
             },
         },
-        Action = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Action = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Action }),
     },
 }
 
@@ -992,12 +948,9 @@ M.DeleteNotificationInput = {
                 required = true,
             },
         },
-        Notification = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Notification = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Notification }),
     },
 }
 
@@ -1020,18 +973,12 @@ M.DeleteSubscriberInput = {
                 required = true,
             },
         },
-        Notification = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Subscriber = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Notification = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Notification }),
+        Subscriber = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Subscriber }),
     },
 }
 
@@ -1099,12 +1046,9 @@ M.DescribeBudgetActionOutput = {
                 required = true,
             },
         },
-        Action = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Action = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Action }),
     },
 }
 
@@ -1129,11 +1073,9 @@ M.DescribeBudgetActionHistoriesInput = {
                 required = true,
             },
         },
-        TimePeriod = {
-            type = "structure",
-        },
+        TimePeriod = M.TimePeriod,
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1146,7 +1088,7 @@ M.DescribeBudgetActionHistoriesOutput = {
     members = {
         ActionHistories = {
             type = "list",
-            member_type = "structure",
+            member = M.ActionHistory,
             traits = {
                 required = true,
             },
@@ -1177,7 +1119,7 @@ M.DescribeBudgetActionsForAccountInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1190,7 +1132,7 @@ M.DescribeBudgetActionsForAccountOutput = {
     members = {
         Actions = {
             type = "list",
-            member_type = "structure",
+            member = M.Action,
             traits = {
                 required = true,
             },
@@ -1217,7 +1159,7 @@ M.DescribeBudgetActionsForBudgetInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1230,7 +1172,7 @@ M.DescribeBudgetActionsForBudgetOutput = {
     members = {
         Actions = {
             type = "list",
-            member_type = "structure",
+            member = M.Action,
             traits = {
                 required = true,
             },
@@ -1251,7 +1193,7 @@ M.DescribeBudgetNotificationsForAccountInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1264,7 +1206,7 @@ M.BudgetNotificationsForAccount = {
     members = {
         Notifications = {
             type = "list",
-            member_type = "structure",
+            member = M.Notification,
         },
         BudgetName = {
             type = "string",
@@ -1277,7 +1219,7 @@ M.DescribeBudgetNotificationsForAccountOutput = {
     members = {
         BudgetNotificationsForAccount = {
             type = "list",
-            member_type = "structure",
+            member = M.BudgetNotificationsForAccount,
         },
         NextToken = {
             type = "string",
@@ -1310,11 +1252,9 @@ M.DescribeBudgetPerformanceHistoryInput = {
                 required = true,
             },
         },
-        TimePeriod = {
-            type = "structure",
-        },
+        TimePeriod = M.TimePeriod,
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1325,15 +1265,9 @@ M.DescribeBudgetPerformanceHistoryInput = {
 M.BudgetedAndActualAmounts = {
     type = "structure",
     members = {
-        BudgetedAmount = {
-            type = "structure",
-        },
-        ActualAmount = {
-            type = "structure",
-        },
-        TimePeriod = {
-            type = "structure",
-        },
+        BudgetedAmount = M.Spend,
+        ActualAmount = M.Spend,
+        TimePeriod = M.TimePeriod,
     },
 }
 
@@ -1347,7 +1281,7 @@ M.DescribeBudgetsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1374,7 +1308,7 @@ M.DescribeNotificationsForBudgetInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1387,7 +1321,7 @@ M.DescribeNotificationsForBudgetOutput = {
     members = {
         Notifications = {
             type = "list",
-            member_type = "structure",
+            member = M.Notification,
         },
         NextToken = {
             type = "string",
@@ -1410,14 +1344,11 @@ M.DescribeSubscribersForNotificationInput = {
                 required = true,
             },
         },
-        Notification = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Notification = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Notification }),
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1430,7 +1361,7 @@ M.DescribeSubscribersForNotificationOutput = {
     members = {
         Subscribers = {
             type = "list",
-            member_type = "structure",
+            member = M.Subscriber,
         },
         NextToken = {
             type = "string",
@@ -1522,7 +1453,7 @@ M.ListTagsForResourceOutput = {
     members = {
         ResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
         },
     },
 }
@@ -1538,7 +1469,7 @@ M.TagResourceInput = {
         },
         ResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
             traits = {
                 required = true,
             },
@@ -1561,7 +1492,7 @@ M.UntagResourceInput = {
         },
         ResourceTagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1601,12 +1532,8 @@ M.UpdateBudgetActionInput = {
         NotificationType = {
             type = "string",
         },
-        ActionThreshold = {
-            type = "structure",
-        },
-        Definition = {
-            type = "structure",
-        },
+        ActionThreshold = M.ActionThreshold,
+        Definition = M.Definition,
         ExecutionRoleArn = {
             type = "string",
         },
@@ -1615,7 +1542,7 @@ M.UpdateBudgetActionInput = {
         },
         Subscribers = {
             type = "list",
-            member_type = "structure",
+            member = M.Subscriber,
         },
     },
 }
@@ -1635,18 +1562,12 @@ M.UpdateBudgetActionOutput = {
                 required = true,
             },
         },
-        OldAction = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        NewAction = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        OldAction = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Action }),
+        NewAction = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Action }),
     },
 }
 
@@ -1665,18 +1586,12 @@ M.UpdateNotificationInput = {
                 required = true,
             },
         },
-        OldNotification = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        NewNotification = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        OldNotification = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Notification }),
+        NewNotification = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Notification }),
     },
 }
 
@@ -1699,24 +1614,15 @@ M.UpdateSubscriberInput = {
                 required = true,
             },
         },
-        Notification = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        OldSubscriber = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        NewSubscriber = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Notification = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Notification }),
+        OldSubscriber = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Subscriber }),
+        NewSubscriber = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Subscriber }),
     },
 }
 
@@ -1729,24 +1635,16 @@ M.Expression = {
     members = {
         Or = {
             type = "list",
-            member_type = "structure",
+            member = M.Expression,
         },
         And = {
             type = "list",
-            member_type = "structure",
+            member = M.Expression,
         },
-        Not = {
-            type = "structure",
-        },
-        Dimensions = {
-            type = "structure",
-        },
-        Tags = {
-            type = "structure",
-        },
-        CostCategories = {
-            type = "structure",
-        },
+        Not = M.Expression,
+        Dimensions = M.ExpressionDimensionValues,
+        Tags = M.TagValues,
+        CostCategories = M.CostCategoryValues,
     },
 }
 
@@ -1759,34 +1657,26 @@ M.Budget = {
                 required = true,
             },
         },
-        BudgetLimit = {
-            type = "structure",
-        },
+        BudgetLimit = M.Spend,
         PlannedBudgetLimits = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.Spend,
         },
         CostFilters = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
-        CostTypes = {
-            type = "structure",
-        },
+        CostTypes = M.CostTypes,
         TimeUnit = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        TimePeriod = {
-            type = "structure",
-        },
-        CalculatedSpend = {
-            type = "structure",
-        },
+        TimePeriod = M.TimePeriod,
+        CalculatedSpend = M.CalculatedSpend,
         BudgetType = {
             type = "string",
             traits = {
@@ -1796,22 +1686,16 @@ M.Budget = {
         LastUpdatedTime = {
             type = "timestamp",
         },
-        AutoAdjustData = {
-            type = "structure",
-        },
-        FilterExpression = {
-            type = "structure",
-        },
+        AutoAdjustData = M.AutoAdjustData,
+        FilterExpression = M.Expression,
         Metrics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         BillingViewArn = {
             type = "string",
         },
-        HealthStatus = {
-            type = "structure",
-        },
+        HealthStatus = M.HealthStatus,
     },
 }
 
@@ -1826,12 +1710,10 @@ M.BudgetPerformanceHistory = {
         },
         CostFilters = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
-        CostTypes = {
-            type = "structure",
-        },
+        CostTypes = M.CostTypes,
         TimeUnit = {
             type = "string",
         },
@@ -1840,14 +1722,12 @@ M.BudgetPerformanceHistory = {
         },
         BudgetedAndActualAmountsList = {
             type = "list",
-            member_type = "structure",
+            member = M.BudgetedAndActualAmounts,
         },
-        FilterExpression = {
-            type = "structure",
-        },
+        FilterExpression = M.Expression,
         Metrics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1861,19 +1741,16 @@ M.CreateBudgetInput = {
                 required = true,
             },
         },
-        Budget = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Budget = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Budget }),
         NotificationsWithSubscribers = {
             type = "list",
-            member_type = "structure",
+            member = M.NotificationWithSubscribers,
         },
         ResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
         },
     },
 }
@@ -1881,18 +1758,14 @@ M.CreateBudgetInput = {
 M.DescribeBudgetOutput = {
     type = "structure",
     members = {
-        Budget = {
-            type = "structure",
-        },
+        Budget = M.Budget,
     },
 }
 
 M.DescribeBudgetPerformanceHistoryOutput = {
     type = "structure",
     members = {
-        BudgetPerformanceHistory = {
-            type = "structure",
-        },
+        BudgetPerformanceHistory = M.BudgetPerformanceHistory,
         NextToken = {
             type = "string",
         },
@@ -1908,12 +1781,9 @@ M.UpdateBudgetInput = {
                 required = true,
             },
         },
-        NewBudget = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        NewBudget = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Budget }),
     },
 }
 
@@ -1922,7 +1792,7 @@ M.DescribeBudgetsOutput = {
     members = {
         Budgets = {
             type = "list",
-            member_type = "structure",
+            member = M.Budget,
         },
         NextToken = {
             type = "string",

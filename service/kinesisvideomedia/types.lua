@@ -59,12 +59,9 @@ M.GetMediaInput = {
         StreamARN = {
             type = "string",
         },
-        StartSelector = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        StartSelector = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.StartSelector }),
     },
 }
 
@@ -80,6 +77,7 @@ M.GetMediaOutput = {
         Payload = {
             type = "blob",
             traits = {
+                default = "",
                 http_payload = true,
             },
         },

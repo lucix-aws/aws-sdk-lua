@@ -484,9 +484,9 @@ local record ValidationException
     message: string
 end
 
-local type ExportJobStatus = "RUNNING" | "FAILED" | "COMPLETED"
-
 local type SearchJobState = "RUNNING" | "COMPLETED" | "STOPPING" | "STOPPED" | "FAILED"
+
+local type ExportJobStatus = "RUNNING" | "FAILED" | "COMPLETED"
 
 local record M
     GetSearchJobInput: GetSearchJobInput

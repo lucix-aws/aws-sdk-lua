@@ -11,34 +11,34 @@ M.Cors = {
         },
         AllowHeaders = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "allowHeaders",
             },
         },
         AllowMethods = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "allowMethods",
             },
         },
         AllowOrigins = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "allowOrigins",
             },
         },
         ExposeHeaders = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "exposeHeaders",
             },
         },
         MaxAge = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxAge",
             },
@@ -83,12 +83,9 @@ M.Api = {
                 json_name = "apiKeySelectionExpression",
             },
         },
-        CorsConfiguration = {
-            type = "structure",
-            traits = {
-                json_name = "corsConfiguration",
-            },
-        },
+        CorsConfiguration = setmetatable({ traits = {
+            json_name = "corsConfiguration",
+        } }, { __index = M.Cors }),
         CreatedDate = {
             type = "timestamp",
             traits = {
@@ -115,7 +112,7 @@ M.Api = {
         },
         ImportInfo = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "importInfo",
             },
@@ -149,8 +146,8 @@ M.Api = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -163,7 +160,7 @@ M.Api = {
         },
         Warnings = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "warnings",
             },
@@ -213,7 +210,7 @@ M.JWTConfiguration = {
     members = {
         Audience = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "audience",
             },
@@ -249,7 +246,7 @@ M.Authorizer = {
             },
         },
         AuthorizerResultTtlInSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "authorizerResultTtlInSeconds",
             },
@@ -274,7 +271,7 @@ M.Authorizer = {
         },
         IdentitySource = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "identitySource",
             },
@@ -285,12 +282,9 @@ M.Authorizer = {
                 json_name = "identityValidationExpression",
             },
         },
-        JwtConfiguration = {
-            type = "structure",
-            traits = {
-                json_name = "jwtConfiguration",
-            },
-        },
+        JwtConfiguration = setmetatable({ traits = {
+            json_name = "jwtConfiguration",
+        } }, { __index = M.JWTConfiguration }),
         Name = {
             type = "string",
             traits = {
@@ -455,7 +449,7 @@ M.MutualTlsAuthentication = {
         },
         TruststoreWarnings = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "truststoreWarnings",
             },
@@ -493,17 +487,14 @@ M.DomainName = {
         },
         DomainNameConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainNameConfiguration,
             traits = {
                 json_name = "domainNameConfigurations",
             },
         },
-        MutualTlsAuthentication = {
-            type = "structure",
-            traits = {
-                json_name = "mutualTlsAuthentication",
-            },
-        },
+        MutualTlsAuthentication = setmetatable({ traits = {
+            json_name = "mutualTlsAuthentication",
+        } }, { __index = M.MutualTlsAuthentication }),
         RoutingMode = {
             type = "string",
             traits = {
@@ -512,8 +503,8 @@ M.DomainName = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -646,24 +637,24 @@ M.Integration = {
         },
         RequestParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "requestParameters",
             },
         },
         RequestTemplates = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "requestTemplates",
             },
         },
         ResponseParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "map",
+            key = { type = "string" },
+            value = { type = "map" },
             traits = {
                 json_name = "responseParameters",
             },
@@ -675,17 +666,14 @@ M.Integration = {
             },
         },
         TimeoutInMillis = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "timeoutInMillis",
             },
         },
-        TlsConfig = {
-            type = "structure",
-            traits = {
-                json_name = "tlsConfig",
-            },
-        },
+        TlsConfig = setmetatable({ traits = {
+            json_name = "tlsConfig",
+        } }, { __index = M.TlsConfig }),
     },
 }
 
@@ -713,16 +701,16 @@ M.IntegrationResponse = {
         },
         ResponseParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "responseParameters",
             },
         },
         ResponseTemplates = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "responseTemplates",
             },
@@ -813,8 +801,8 @@ M.PortalProductSummary = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -856,18 +844,12 @@ M.None = {
 M.Authorization = {
     type = "structure",
     members = {
-        CognitoConfig = {
-            type = "structure",
-            traits = {
-                json_name = "cognitoConfig",
-            },
-        },
-        None = {
-            type = "structure",
-            traits = {
-                json_name = "none",
-            },
-        },
+        CognitoConfig = setmetatable({ traits = {
+            json_name = "cognitoConfig",
+        } }, { __index = M.CognitoConfig }),
+        None = setmetatable({ traits = {
+            json_name = "none",
+        } }, { __index = M.None }),
     },
 }
 
@@ -954,13 +936,10 @@ M.CustomColors = {
 M.PortalTheme = {
     type = "structure",
     members = {
-        CustomColors = {
-            type = "structure",
-            traits = {
-                json_name = "customColors",
-                required = true,
-            },
-        },
+        CustomColors = setmetatable({ traits = {
+            json_name = "customColors",
+            required = true,
+        } }, { __index = M.CustomColors }),
         LogoLastUploaded = {
             type = "timestamp",
             traits = {
@@ -986,13 +965,10 @@ M.PortalContent = {
                 required = true,
             },
         },
-        Theme = {
-            type = "structure",
-            traits = {
-                json_name = "theme",
-                required = true,
-            },
-        },
+        Theme = setmetatable({ traits = {
+            json_name = "theme",
+            required = true,
+        } }, { __index = M.PortalTheme }),
     },
 }
 
@@ -1036,12 +1012,9 @@ M.Preview = {
                 json_name = "previewUrl",
             },
         },
-        StatusException = {
-            type = "structure",
-            traits = {
-                json_name = "statusException",
-            },
-        },
+        StatusException = setmetatable({ traits = {
+            json_name = "statusException",
+        } }, { __index = M.StatusException }),
     },
 }
 
@@ -1057,23 +1030,17 @@ M.PublishStatus = {
 M.PortalSummary = {
     type = "structure",
     members = {
-        Authorization = {
-            type = "structure",
-            traits = {
-                json_name = "authorization",
-                required = true,
-            },
-        },
-        EndpointConfiguration = {
-            type = "structure",
-            traits = {
-                json_name = "endpointConfiguration",
-                required = true,
-            },
-        },
+        Authorization = setmetatable({ traits = {
+            json_name = "authorization",
+            required = true,
+        } }, { __index = M.Authorization }),
+        EndpointConfiguration = setmetatable({ traits = {
+            json_name = "endpointConfiguration",
+            required = true,
+        } }, { __index = M.EndpointConfigurationResponse }),
         IncludedPortalProductArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "includedPortalProductArns",
                 required = true,
@@ -1105,13 +1072,10 @@ M.PortalSummary = {
                 required = true,
             },
         },
-        PortalContent = {
-            type = "structure",
-            traits = {
-                json_name = "portalContent",
-                required = true,
-            },
-        },
+        PortalContent = setmetatable({ traits = {
+            json_name = "portalContent",
+            required = true,
+        } }, { __index = M.PortalContent }),
         PortalId = {
             type = "string",
             traits = {
@@ -1119,12 +1083,9 @@ M.PortalSummary = {
                 required = true,
             },
         },
-        Preview = {
-            type = "structure",
-            traits = {
-                json_name = "preview",
-            },
-        },
+        Preview = setmetatable({ traits = {
+            json_name = "preview",
+        } }, { __index = M.Preview }),
         PublishStatus = {
             type = "string",
             traits = {
@@ -1137,16 +1098,13 @@ M.PortalSummary = {
                 json_name = "rumAppMonitorName",
             },
         },
-        StatusException = {
-            type = "structure",
-            traits = {
-                json_name = "statusException",
-            },
-        },
+        StatusException = setmetatable({ traits = {
+            json_name = "statusException",
+        } }, { __index = M.StatusException }),
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -1225,12 +1183,9 @@ M.IdentifierParts = {
 M.RestEndpointIdentifier = {
     type = "structure",
     members = {
-        IdentifierParts = {
-            type = "structure",
-            traits = {
-                json_name = "identifierParts",
-            },
-        },
+        IdentifierParts = setmetatable({ traits = {
+            json_name = "identifierParts",
+        } }, { __index = M.IdentifierParts }),
     },
 }
 
@@ -1282,13 +1237,10 @@ M.ProductRestEndpointPageSummaryNoBody = {
                 required = true,
             },
         },
-        RestEndpointIdentifier = {
-            type = "structure",
-            traits = {
-                json_name = "restEndpointIdentifier",
-                required = true,
-            },
-        },
+        RestEndpointIdentifier = setmetatable({ traits = {
+            json_name = "restEndpointIdentifier",
+            required = true,
+        } }, { __index = M.RestEndpointIdentifier }),
         Status = {
             type = "string",
             traits = {
@@ -1296,12 +1248,9 @@ M.ProductRestEndpointPageSummaryNoBody = {
                 required = true,
             },
         },
-        StatusException = {
-            type = "structure",
-            traits = {
-                json_name = "statusException",
-            },
-        },
+        StatusException = setmetatable({ traits = {
+            json_name = "statusException",
+        } }, { __index = M.StatusException }),
         TryItState = {
             type = "string",
             traits = {
@@ -1348,7 +1297,7 @@ M.Route = {
         },
         AuthorizationScopes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "authorizationScopes",
             },
@@ -1379,16 +1328,16 @@ M.Route = {
         },
         RequestModels = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "requestModels",
             },
         },
         RequestParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ParameterConstraints,
             traits = {
                 json_name = "requestParameters",
             },
@@ -1432,16 +1381,16 @@ M.RouteResponse = {
         },
         ResponseModels = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "responseModels",
             },
         },
         ResponseParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ParameterConstraints,
             traits = {
                 json_name = "responseParameters",
             },
@@ -1491,13 +1440,10 @@ M.RoutingRuleActionInvokeApi = {
 M.RoutingRuleAction = {
     type = "structure",
     members = {
-        InvokeApi = {
-            type = "structure",
-            traits = {
-                json_name = "invokeApi",
-                required = true,
-            },
-        },
+        InvokeApi = setmetatable({ traits = {
+            json_name = "invokeApi",
+            required = true,
+        } }, { __index = M.RoutingRuleActionInvokeApi }),
     },
 }
 
@@ -1506,7 +1452,7 @@ M.RoutingRuleMatchBasePaths = {
     members = {
         AnyOf = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "anyOf",
                 required = true,
@@ -1540,7 +1486,7 @@ M.RoutingRuleMatchHeaders = {
     members = {
         AnyOf = {
             type = "list",
-            member_type = "structure",
+            member = M.RoutingRuleMatchHeaderValue,
             traits = {
                 json_name = "anyOf",
                 required = true,
@@ -1552,18 +1498,12 @@ M.RoutingRuleMatchHeaders = {
 M.RoutingRuleCondition = {
     type = "structure",
     members = {
-        MatchBasePaths = {
-            type = "structure",
-            traits = {
-                json_name = "matchBasePaths",
-            },
-        },
-        MatchHeaders = {
-            type = "structure",
-            traits = {
-                json_name = "matchHeaders",
-            },
-        },
+        MatchBasePaths = setmetatable({ traits = {
+            json_name = "matchBasePaths",
+        } }, { __index = M.RoutingRuleMatchBasePaths }),
+        MatchHeaders = setmetatable({ traits = {
+            json_name = "matchHeaders",
+        } }, { __index = M.RoutingRuleMatchHeaders }),
     },
 }
 
@@ -1572,20 +1512,20 @@ M.RoutingRule = {
     members = {
         Actions = {
             type = "list",
-            member_type = "structure",
+            member = M.RoutingRuleAction,
             traits = {
                 json_name = "actions",
             },
         },
         Conditions = {
             type = "list",
-            member_type = "structure",
+            member = M.RoutingRuleCondition,
             traits = {
                 json_name = "conditions",
             },
         },
         Priority = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "priority",
             },
@@ -1610,7 +1550,7 @@ M.Section = {
     members = {
         ProductRestEndpointPageArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "productRestEndpointPageArns",
                 required = true,
@@ -1672,13 +1612,13 @@ M.RouteSettings = {
             },
         },
         ThrottlingBurstLimit = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "throttlingBurstLimit",
             },
         },
         ThrottlingRateLimit = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "throttlingRateLimit",
             },
@@ -1689,12 +1629,9 @@ M.RouteSettings = {
 M.Stage = {
     type = "structure",
     members = {
-        AccessLogSettings = {
-            type = "structure",
-            traits = {
-                json_name = "accessLogSettings",
-            },
-        },
+        AccessLogSettings = setmetatable({ traits = {
+            json_name = "accessLogSettings",
+        } }, { __index = M.AccessLogSettings }),
         ApiGatewayManaged = {
             type = "boolean",
             traits = {
@@ -1719,12 +1656,9 @@ M.Stage = {
                 json_name = "createdDate",
             },
         },
-        DefaultRouteSettings = {
-            type = "structure",
-            traits = {
-                json_name = "defaultRouteSettings",
-            },
-        },
+        DefaultRouteSettings = setmetatable({ traits = {
+            json_name = "defaultRouteSettings",
+        } }, { __index = M.RouteSettings }),
         DeploymentId = {
             type = "string",
             traits = {
@@ -1751,8 +1685,8 @@ M.Stage = {
         },
         RouteSettings = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.RouteSettings,
             traits = {
                 json_name = "routeSettings",
             },
@@ -1766,16 +1700,16 @@ M.Stage = {
         },
         StageVariables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "stageVariables",
             },
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -1813,7 +1747,7 @@ M.VpcLink = {
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "securityGroupIds",
                 required = true,
@@ -1821,7 +1755,7 @@ M.VpcLink = {
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "subnetIds",
                 required = true,
@@ -1829,8 +1763,8 @@ M.VpcLink = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -1931,12 +1865,9 @@ M.CreateApiInput = {
                 json_name = "apiKeySelectionExpression",
             },
         },
-        CorsConfiguration = {
-            type = "structure",
-            traits = {
-                json_name = "corsConfiguration",
-            },
-        },
+        CorsConfiguration = setmetatable({ traits = {
+            json_name = "corsConfiguration",
+        } }, { __index = M.Cors }),
         CredentialsArn = {
             type = "string",
             traits = {
@@ -1995,8 +1926,8 @@ M.CreateApiInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -2043,12 +1974,9 @@ M.CreateApiOutput = {
                 json_name = "apiKeySelectionExpression",
             },
         },
-        CorsConfiguration = {
-            type = "structure",
-            traits = {
-                json_name = "corsConfiguration",
-            },
-        },
+        CorsConfiguration = setmetatable({ traits = {
+            json_name = "corsConfiguration",
+        } }, { __index = M.Cors }),
         CreatedDate = {
             type = "timestamp",
             traits = {
@@ -2075,7 +2003,7 @@ M.CreateApiOutput = {
         },
         ImportInfo = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "importInfo",
             },
@@ -2106,8 +2034,8 @@ M.CreateApiOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -2120,7 +2048,7 @@ M.CreateApiOutput = {
         },
         Warnings = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "warnings",
             },
@@ -2252,7 +2180,7 @@ M.CreateAuthorizerInput = {
             },
         },
         AuthorizerResultTtlInSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "authorizerResultTtlInSeconds",
             },
@@ -2278,7 +2206,7 @@ M.CreateAuthorizerInput = {
         },
         IdentitySource = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "identitySource",
                 required = true,
@@ -2290,12 +2218,9 @@ M.CreateAuthorizerInput = {
                 json_name = "identityValidationExpression",
             },
         },
-        JwtConfiguration = {
-            type = "structure",
-            traits = {
-                json_name = "jwtConfiguration",
-            },
-        },
+        JwtConfiguration = setmetatable({ traits = {
+            json_name = "jwtConfiguration",
+        } }, { __index = M.JWTConfiguration }),
         Name = {
             type = "string",
             traits = {
@@ -2328,7 +2253,7 @@ M.CreateAuthorizerOutput = {
             },
         },
         AuthorizerResultTtlInSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "authorizerResultTtlInSeconds",
             },
@@ -2353,7 +2278,7 @@ M.CreateAuthorizerOutput = {
         },
         IdentitySource = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "identitySource",
             },
@@ -2364,12 +2289,9 @@ M.CreateAuthorizerOutput = {
                 json_name = "identityValidationExpression",
             },
         },
-        JwtConfiguration = {
-            type = "structure",
-            traits = {
-                json_name = "jwtConfiguration",
-            },
-        },
+        JwtConfiguration = setmetatable({ traits = {
+            json_name = "jwtConfiguration",
+        } }, { __index = M.JWTConfiguration }),
         Name = {
             type = "string",
             traits = {
@@ -2476,17 +2398,14 @@ M.CreateDomainNameInput = {
         },
         DomainNameConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainNameConfiguration,
             traits = {
                 json_name = "domainNameConfigurations",
             },
         },
-        MutualTlsAuthentication = {
-            type = "structure",
-            traits = {
-                json_name = "mutualTlsAuthentication",
-            },
-        },
+        MutualTlsAuthentication = setmetatable({ traits = {
+            json_name = "mutualTlsAuthentication",
+        } }, { __index = M.MutualTlsAuthenticationInput }),
         RoutingMode = {
             type = "string",
             traits = {
@@ -2495,8 +2414,8 @@ M.CreateDomainNameInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -2527,17 +2446,14 @@ M.CreateDomainNameOutput = {
         },
         DomainNameConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainNameConfiguration,
             traits = {
                 json_name = "domainNameConfigurations",
             },
         },
-        MutualTlsAuthentication = {
-            type = "structure",
-            traits = {
-                json_name = "mutualTlsAuthentication",
-            },
-        },
+        MutualTlsAuthentication = setmetatable({ traits = {
+            json_name = "mutualTlsAuthentication",
+        } }, { __index = M.MutualTlsAuthentication }),
         RoutingMode = {
             type = "string",
             traits = {
@@ -2546,8 +2462,8 @@ M.CreateDomainNameOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -2646,24 +2562,24 @@ M.CreateIntegrationInput = {
         },
         RequestParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "requestParameters",
             },
         },
         RequestTemplates = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "requestTemplates",
             },
         },
         ResponseParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "map",
+            key = { type = "string" },
+            value = { type = "map" },
             traits = {
                 json_name = "responseParameters",
             },
@@ -2675,17 +2591,14 @@ M.CreateIntegrationInput = {
             },
         },
         TimeoutInMillis = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "timeoutInMillis",
             },
         },
-        TlsConfig = {
-            type = "structure",
-            traits = {
-                json_name = "tlsConfig",
-            },
-        },
+        TlsConfig = setmetatable({ traits = {
+            json_name = "tlsConfig",
+        } }, { __index = M.TlsConfigInput }),
     },
 }
 
@@ -2778,24 +2691,24 @@ M.CreateIntegrationOutput = {
         },
         RequestParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "requestParameters",
             },
         },
         RequestTemplates = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "requestTemplates",
             },
         },
         ResponseParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "map",
+            key = { type = "string" },
+            value = { type = "map" },
             traits = {
                 json_name = "responseParameters",
             },
@@ -2807,17 +2720,14 @@ M.CreateIntegrationOutput = {
             },
         },
         TimeoutInMillis = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "timeoutInMillis",
             },
         },
-        TlsConfig = {
-            type = "structure",
-            traits = {
-                json_name = "tlsConfig",
-            },
-        },
+        TlsConfig = setmetatable({ traits = {
+            json_name = "tlsConfig",
+        } }, { __index = M.TlsConfig }),
     },
 }
 
@@ -2853,16 +2763,16 @@ M.CreateIntegrationResponseInput = {
         },
         ResponseParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "responseParameters",
             },
         },
         ResponseTemplates = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "responseTemplates",
             },
@@ -2899,16 +2809,16 @@ M.CreateIntegrationResponseOutput = {
         },
         ResponseParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "responseParameters",
             },
         },
         ResponseTemplates = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "responseTemplates",
             },
@@ -3000,41 +2910,29 @@ M.CreateModelOutput = {
 M.EndpointConfigurationRequest = {
     type = "structure",
     members = {
-        AcmManaged = {
-            type = "structure",
-            traits = {
-                json_name = "acmManaged",
-            },
-        },
-        None = {
-            type = "structure",
-            traits = {
-                json_name = "none",
-            },
-        },
+        AcmManaged = setmetatable({ traits = {
+            json_name = "acmManaged",
+        } }, { __index = M.ACMManaged }),
+        None = setmetatable({ traits = {
+            json_name = "none",
+        } }, { __index = M.None }),
     },
 }
 
 M.CreatePortalInput = {
     type = "structure",
     members = {
-        Authorization = {
-            type = "structure",
-            traits = {
-                json_name = "authorization",
-                required = true,
-            },
-        },
-        EndpointConfiguration = {
-            type = "structure",
-            traits = {
-                json_name = "endpointConfiguration",
-                required = true,
-            },
-        },
+        Authorization = setmetatable({ traits = {
+            json_name = "authorization",
+            required = true,
+        } }, { __index = M.Authorization }),
+        EndpointConfiguration = setmetatable({ traits = {
+            json_name = "endpointConfiguration",
+            required = true,
+        } }, { __index = M.EndpointConfigurationRequest }),
         IncludedPortalProductArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "includedPortalProductArns",
             },
@@ -3045,13 +2943,10 @@ M.CreatePortalInput = {
                 json_name = "logoUri",
             },
         },
-        PortalContent = {
-            type = "structure",
-            traits = {
-                json_name = "portalContent",
-                required = true,
-            },
-        },
+        PortalContent = setmetatable({ traits = {
+            json_name = "portalContent",
+            required = true,
+        } }, { __index = M.PortalContent }),
         RumAppMonitorName = {
             type = "string",
             traits = {
@@ -3060,8 +2955,8 @@ M.CreatePortalInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -3072,21 +2967,15 @@ M.CreatePortalInput = {
 M.CreatePortalOutput = {
     type = "structure",
     members = {
-        Authorization = {
-            type = "structure",
-            traits = {
-                json_name = "authorization",
-            },
-        },
-        EndpointConfiguration = {
-            type = "structure",
-            traits = {
-                json_name = "endpointConfiguration",
-            },
-        },
+        Authorization = setmetatable({ traits = {
+            json_name = "authorization",
+        } }, { __index = M.Authorization }),
+        EndpointConfiguration = setmetatable({ traits = {
+            json_name = "endpointConfiguration",
+        } }, { __index = M.EndpointConfigurationResponse }),
         IncludedPortalProductArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "includedPortalProductArns",
             },
@@ -3115,12 +3004,9 @@ M.CreatePortalOutput = {
                 json_name = "portalArn",
             },
         },
-        PortalContent = {
-            type = "structure",
-            traits = {
-                json_name = "portalContent",
-            },
-        },
+        PortalContent = setmetatable({ traits = {
+            json_name = "portalContent",
+        } }, { __index = M.PortalContent }),
         PortalId = {
             type = "string",
             traits = {
@@ -3139,16 +3025,13 @@ M.CreatePortalOutput = {
                 json_name = "rumAppMonitorName",
             },
         },
-        StatusException = {
-            type = "structure",
-            traits = {
-                json_name = "statusException",
-            },
-        },
+        StatusException = setmetatable({ traits = {
+            json_name = "statusException",
+        } }, { __index = M.StatusException }),
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -3174,8 +3057,8 @@ M.CreatePortalProductInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -3188,7 +3071,7 @@ M.DisplayOrder = {
     members = {
         Contents = {
             type = "list",
-            member_type = "structure",
+            member = M.Section,
             traits = {
                 json_name = "contents",
             },
@@ -3201,7 +3084,7 @@ M.DisplayOrder = {
         },
         ProductPageArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "productPageArns",
             },
@@ -3224,12 +3107,9 @@ M.CreatePortalProductOutput = {
                 json_name = "displayName",
             },
         },
-        DisplayOrder = {
-            type = "structure",
-            traits = {
-                json_name = "displayOrder",
-            },
-        },
+        DisplayOrder = setmetatable({ traits = {
+            json_name = "displayOrder",
+        } }, { __index = M.DisplayOrder }),
         LastModified = {
             type = "timestamp",
             traits = {
@@ -3250,8 +3130,8 @@ M.CreatePortalProductOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -3282,13 +3162,10 @@ M.DisplayContent = {
 M.CreateProductPageInput = {
     type = "structure",
     members = {
-        DisplayContent = {
-            type = "structure",
-            traits = {
-                json_name = "displayContent",
-                required = true,
-            },
-        },
+        DisplayContent = setmetatable({ traits = {
+            json_name = "displayContent",
+            required = true,
+        } }, { __index = M.DisplayContent }),
         PortalProductId = {
             type = "string",
             traits = {
@@ -3302,12 +3179,9 @@ M.CreateProductPageInput = {
 M.CreateProductPageOutput = {
     type = "structure",
     members = {
-        DisplayContent = {
-            type = "structure",
-            traits = {
-                json_name = "displayContent",
-            },
-        },
+        DisplayContent = setmetatable({ traits = {
+            json_name = "displayContent",
+        } }, { __index = M.DisplayContent }),
         LastModified = {
             type = "timestamp",
             traits = {
@@ -3356,30 +3230,21 @@ M.DisplayContentOverrides = {
 M.EndpointDisplayContent = {
     type = "structure",
     members = {
-        None = {
-            type = "structure",
-            traits = {
-                json_name = "none",
-            },
-        },
-        Overrides = {
-            type = "structure",
-            traits = {
-                json_name = "overrides",
-            },
-        },
+        None = setmetatable({ traits = {
+            json_name = "none",
+        } }, { __index = M.None }),
+        Overrides = setmetatable({ traits = {
+            json_name = "overrides",
+        } }, { __index = M.DisplayContentOverrides }),
     },
 }
 
 M.CreateProductRestEndpointPageInput = {
     type = "structure",
     members = {
-        DisplayContent = {
-            type = "structure",
-            traits = {
-                json_name = "displayContent",
-            },
-        },
+        DisplayContent = setmetatable({ traits = {
+            json_name = "displayContent",
+        } }, { __index = M.EndpointDisplayContent }),
         PortalProductId = {
             type = "string",
             traits = {
@@ -3387,13 +3252,10 @@ M.CreateProductRestEndpointPageInput = {
                 required = true,
             },
         },
-        RestEndpointIdentifier = {
-            type = "structure",
-            traits = {
-                json_name = "restEndpointIdentifier",
-                required = true,
-            },
-        },
+        RestEndpointIdentifier = setmetatable({ traits = {
+            json_name = "restEndpointIdentifier",
+            required = true,
+        } }, { __index = M.RestEndpointIdentifier }),
         TryItState = {
             type = "string",
             traits = {
@@ -3431,12 +3293,9 @@ M.EndpointDisplayContentResponse = {
 M.CreateProductRestEndpointPageOutput = {
     type = "structure",
     members = {
-        DisplayContent = {
-            type = "structure",
-            traits = {
-                json_name = "displayContent",
-            },
-        },
+        DisplayContent = setmetatable({ traits = {
+            json_name = "displayContent",
+        } }, { __index = M.EndpointDisplayContentResponse }),
         LastModified = {
             type = "timestamp",
             traits = {
@@ -3455,24 +3314,18 @@ M.CreateProductRestEndpointPageOutput = {
                 json_name = "productRestEndpointPageId",
             },
         },
-        RestEndpointIdentifier = {
-            type = "structure",
-            traits = {
-                json_name = "restEndpointIdentifier",
-            },
-        },
+        RestEndpointIdentifier = setmetatable({ traits = {
+            json_name = "restEndpointIdentifier",
+        } }, { __index = M.RestEndpointIdentifier }),
         Status = {
             type = "string",
             traits = {
                 json_name = "status",
             },
         },
-        StatusException = {
-            type = "structure",
-            traits = {
-                json_name = "statusException",
-            },
-        },
+        StatusException = setmetatable({ traits = {
+            json_name = "statusException",
+        } }, { __index = M.StatusException }),
         TryItState = {
             type = "string",
             traits = {
@@ -3500,7 +3353,7 @@ M.CreateRouteInput = {
         },
         AuthorizationScopes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "authorizationScopes",
             },
@@ -3531,16 +3384,16 @@ M.CreateRouteInput = {
         },
         RequestModels = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "requestModels",
             },
         },
         RequestParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ParameterConstraints,
             traits = {
                 json_name = "requestParameters",
             },
@@ -3584,7 +3437,7 @@ M.CreateRouteOutput = {
         },
         AuthorizationScopes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "authorizationScopes",
             },
@@ -3615,16 +3468,16 @@ M.CreateRouteOutput = {
         },
         RequestModels = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "requestModels",
             },
         },
         RequestParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ParameterConstraints,
             traits = {
                 json_name = "requestParameters",
             },
@@ -3674,16 +3527,16 @@ M.CreateRouteResponseInput = {
         },
         ResponseModels = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "responseModels",
             },
         },
         ResponseParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ParameterConstraints,
             traits = {
                 json_name = "responseParameters",
             },
@@ -3716,16 +3569,16 @@ M.CreateRouteResponseOutput = {
         },
         ResponseModels = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "responseModels",
             },
         },
         ResponseParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ParameterConstraints,
             traits = {
                 json_name = "responseParameters",
             },
@@ -3750,7 +3603,7 @@ M.CreateRoutingRuleInput = {
     members = {
         Actions = {
             type = "list",
-            member_type = "structure",
+            member = M.RoutingRuleAction,
             traits = {
                 json_name = "actions",
                 required = true,
@@ -3758,7 +3611,7 @@ M.CreateRoutingRuleInput = {
         },
         Conditions = {
             type = "list",
-            member_type = "structure",
+            member = M.RoutingRuleCondition,
             traits = {
                 json_name = "conditions",
                 required = true,
@@ -3778,7 +3631,7 @@ M.CreateRoutingRuleInput = {
             },
         },
         Priority = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "priority",
                 required = true,
@@ -3792,20 +3645,20 @@ M.CreateRoutingRuleOutput = {
     members = {
         Actions = {
             type = "list",
-            member_type = "structure",
+            member = M.RoutingRuleAction,
             traits = {
                 json_name = "actions",
             },
         },
         Conditions = {
             type = "list",
-            member_type = "structure",
+            member = M.RoutingRuleCondition,
             traits = {
                 json_name = "conditions",
             },
         },
         Priority = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "priority",
             },
@@ -3828,12 +3681,9 @@ M.CreateRoutingRuleOutput = {
 M.CreateStageInput = {
     type = "structure",
     members = {
-        AccessLogSettings = {
-            type = "structure",
-            traits = {
-                json_name = "accessLogSettings",
-            },
-        },
+        AccessLogSettings = setmetatable({ traits = {
+            json_name = "accessLogSettings",
+        } }, { __index = M.AccessLogSettings }),
         ApiId = {
             type = "string",
             traits = {
@@ -3853,12 +3703,9 @@ M.CreateStageInput = {
                 json_name = "clientCertificateId",
             },
         },
-        DefaultRouteSettings = {
-            type = "structure",
-            traits = {
-                json_name = "defaultRouteSettings",
-            },
-        },
+        DefaultRouteSettings = setmetatable({ traits = {
+            json_name = "defaultRouteSettings",
+        } }, { __index = M.RouteSettings }),
         DeploymentId = {
             type = "string",
             traits = {
@@ -3873,8 +3720,8 @@ M.CreateStageInput = {
         },
         RouteSettings = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.RouteSettings,
             traits = {
                 json_name = "routeSettings",
             },
@@ -3888,16 +3735,16 @@ M.CreateStageInput = {
         },
         StageVariables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "stageVariables",
             },
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -3908,12 +3755,9 @@ M.CreateStageInput = {
 M.CreateStageOutput = {
     type = "structure",
     members = {
-        AccessLogSettings = {
-            type = "structure",
-            traits = {
-                json_name = "accessLogSettings",
-            },
-        },
+        AccessLogSettings = setmetatable({ traits = {
+            json_name = "accessLogSettings",
+        } }, { __index = M.AccessLogSettings }),
         ApiGatewayManaged = {
             type = "boolean",
             traits = {
@@ -3938,12 +3782,9 @@ M.CreateStageOutput = {
                 json_name = "createdDate",
             },
         },
-        DefaultRouteSettings = {
-            type = "structure",
-            traits = {
-                json_name = "defaultRouteSettings",
-            },
-        },
+        DefaultRouteSettings = setmetatable({ traits = {
+            json_name = "defaultRouteSettings",
+        } }, { __index = M.RouteSettings }),
         DeploymentId = {
             type = "string",
             traits = {
@@ -3970,8 +3811,8 @@ M.CreateStageOutput = {
         },
         RouteSettings = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.RouteSettings,
             traits = {
                 json_name = "routeSettings",
             },
@@ -3984,16 +3825,16 @@ M.CreateStageOutput = {
         },
         StageVariables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "stageVariables",
             },
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -4013,14 +3854,14 @@ M.CreateVpcLinkInput = {
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "securityGroupIds",
             },
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "subnetIds",
                 required = true,
@@ -4028,8 +3869,8 @@ M.CreateVpcLinkInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -4054,22 +3895,22 @@ M.CreateVpcLinkOutput = {
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "securityGroupIds",
             },
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "subnetIds",
             },
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -4728,12 +4569,9 @@ M.GetApiOutput = {
                 json_name = "apiKeySelectionExpression",
             },
         },
-        CorsConfiguration = {
-            type = "structure",
-            traits = {
-                json_name = "corsConfiguration",
-            },
-        },
+        CorsConfiguration = setmetatable({ traits = {
+            json_name = "corsConfiguration",
+        } }, { __index = M.Cors }),
         CreatedDate = {
             type = "timestamp",
             traits = {
@@ -4760,7 +4598,7 @@ M.GetApiOutput = {
         },
         ImportInfo = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "importInfo",
             },
@@ -4791,8 +4629,8 @@ M.GetApiOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -4805,7 +4643,7 @@ M.GetApiOutput = {
         },
         Warnings = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "warnings",
             },
@@ -4893,7 +4731,7 @@ M.GetApiMappingsOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.ApiMapping,
             traits = {
                 json_name = "items",
             },
@@ -4930,7 +4768,7 @@ M.GetApisOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.Api,
             traits = {
                 json_name = "items",
             },
@@ -4986,7 +4824,7 @@ M.GetAuthorizerOutput = {
             },
         },
         AuthorizerResultTtlInSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "authorizerResultTtlInSeconds",
             },
@@ -5011,7 +4849,7 @@ M.GetAuthorizerOutput = {
         },
         IdentitySource = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "identitySource",
             },
@@ -5022,12 +4860,9 @@ M.GetAuthorizerOutput = {
                 json_name = "identityValidationExpression",
             },
         },
-        JwtConfiguration = {
-            type = "structure",
-            traits = {
-                json_name = "jwtConfiguration",
-            },
-        },
+        JwtConfiguration = setmetatable({ traits = {
+            json_name = "jwtConfiguration",
+        } }, { __index = M.JWTConfiguration }),
         Name = {
             type = "string",
             traits = {
@@ -5067,7 +4902,7 @@ M.GetAuthorizersOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.Authorizer,
             traits = {
                 json_name = "items",
             },
@@ -5173,7 +5008,7 @@ M.GetDeploymentsOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.Deployment,
             traits = {
                 json_name = "items",
             },
@@ -5223,17 +5058,14 @@ M.GetDomainNameOutput = {
         },
         DomainNameConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainNameConfiguration,
             traits = {
                 json_name = "domainNameConfigurations",
             },
         },
-        MutualTlsAuthentication = {
-            type = "structure",
-            traits = {
-                json_name = "mutualTlsAuthentication",
-            },
-        },
+        MutualTlsAuthentication = setmetatable({ traits = {
+            json_name = "mutualTlsAuthentication",
+        } }, { __index = M.MutualTlsAuthentication }),
         RoutingMode = {
             type = "string",
             traits = {
@@ -5242,8 +5074,8 @@ M.GetDomainNameOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -5274,7 +5106,7 @@ M.GetDomainNamesOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainName,
             traits = {
                 json_name = "items",
             },
@@ -5397,24 +5229,24 @@ M.GetIntegrationOutput = {
         },
         RequestParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "requestParameters",
             },
         },
         RequestTemplates = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "requestTemplates",
             },
         },
         ResponseParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "map",
+            key = { type = "string" },
+            value = { type = "map" },
             traits = {
                 json_name = "responseParameters",
             },
@@ -5426,17 +5258,14 @@ M.GetIntegrationOutput = {
             },
         },
         TimeoutInMillis = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "timeoutInMillis",
             },
         },
-        TlsConfig = {
-            type = "structure",
-            traits = {
-                json_name = "tlsConfig",
-            },
-        },
+        TlsConfig = setmetatable({ traits = {
+            json_name = "tlsConfig",
+        } }, { __index = M.TlsConfig }),
     },
 }
 
@@ -5490,16 +5319,16 @@ M.GetIntegrationResponseOutput = {
         },
         ResponseParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "responseParameters",
             },
         },
         ResponseTemplates = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "responseTemplates",
             },
@@ -5550,7 +5379,7 @@ M.GetIntegrationResponsesOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.IntegrationResponse,
             traits = {
                 json_name = "items",
             },
@@ -5594,7 +5423,7 @@ M.GetIntegrationsOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.Integration,
             traits = {
                 json_name = "items",
             },
@@ -5694,7 +5523,7 @@ M.GetModelsOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.Model,
             traits = {
                 json_name = "items",
             },
@@ -5756,21 +5585,15 @@ M.GetPortalInput = {
 M.GetPortalOutput = {
     type = "structure",
     members = {
-        Authorization = {
-            type = "structure",
-            traits = {
-                json_name = "authorization",
-            },
-        },
-        EndpointConfiguration = {
-            type = "structure",
-            traits = {
-                json_name = "endpointConfiguration",
-            },
-        },
+        Authorization = setmetatable({ traits = {
+            json_name = "authorization",
+        } }, { __index = M.Authorization }),
+        EndpointConfiguration = setmetatable({ traits = {
+            json_name = "endpointConfiguration",
+        } }, { __index = M.EndpointConfigurationResponse }),
         IncludedPortalProductArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "includedPortalProductArns",
             },
@@ -5799,24 +5622,18 @@ M.GetPortalOutput = {
                 json_name = "portalArn",
             },
         },
-        PortalContent = {
-            type = "structure",
-            traits = {
-                json_name = "portalContent",
-            },
-        },
+        PortalContent = setmetatable({ traits = {
+            json_name = "portalContent",
+        } }, { __index = M.PortalContent }),
         PortalId = {
             type = "string",
             traits = {
                 json_name = "portalId",
             },
         },
-        Preview = {
-            type = "structure",
-            traits = {
-                json_name = "preview",
-            },
-        },
+        Preview = setmetatable({ traits = {
+            json_name = "preview",
+        } }, { __index = M.Preview }),
         PublishStatus = {
             type = "string",
             traits = {
@@ -5829,16 +5646,13 @@ M.GetPortalOutput = {
                 json_name = "rumAppMonitorName",
             },
         },
-        StatusException = {
-            type = "structure",
-            traits = {
-                json_name = "statusException",
-            },
-        },
+        StatusException = setmetatable({ traits = {
+            json_name = "statusException",
+        } }, { __index = M.StatusException }),
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -5880,12 +5694,9 @@ M.GetPortalProductOutput = {
                 json_name = "displayName",
             },
         },
-        DisplayOrder = {
-            type = "structure",
-            traits = {
-                json_name = "displayOrder",
-            },
-        },
+        DisplayOrder = setmetatable({ traits = {
+            json_name = "displayOrder",
+        } }, { __index = M.DisplayOrder }),
         LastModified = {
             type = "timestamp",
             traits = {
@@ -5906,8 +5717,8 @@ M.GetPortalProductOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -5975,12 +5786,9 @@ M.GetProductPageInput = {
 M.GetProductPageOutput = {
     type = "structure",
     members = {
-        DisplayContent = {
-            type = "structure",
-            traits = {
-                json_name = "displayContent",
-            },
-        },
+        DisplayContent = setmetatable({ traits = {
+            json_name = "displayContent",
+        } }, { __index = M.DisplayContent }),
         LastModified = {
             type = "timestamp",
             traits = {
@@ -6037,12 +5845,9 @@ M.GetProductRestEndpointPageInput = {
 M.GetProductRestEndpointPageOutput = {
     type = "structure",
     members = {
-        DisplayContent = {
-            type = "structure",
-            traits = {
-                json_name = "displayContent",
-            },
-        },
+        DisplayContent = setmetatable({ traits = {
+            json_name = "displayContent",
+        } }, { __index = M.EndpointDisplayContentResponse }),
         LastModified = {
             type = "timestamp",
             traits = {
@@ -6067,24 +5872,18 @@ M.GetProductRestEndpointPageOutput = {
                 json_name = "rawDisplayContent",
             },
         },
-        RestEndpointIdentifier = {
-            type = "structure",
-            traits = {
-                json_name = "restEndpointIdentifier",
-            },
-        },
+        RestEndpointIdentifier = setmetatable({ traits = {
+            json_name = "restEndpointIdentifier",
+        } }, { __index = M.RestEndpointIdentifier }),
         Status = {
             type = "string",
             traits = {
                 json_name = "status",
             },
         },
-        StatusException = {
-            type = "structure",
-            traits = {
-                json_name = "statusException",
-            },
-        },
+        StatusException = setmetatable({ traits = {
+            json_name = "statusException",
+        } }, { __index = M.StatusException }),
         TryItState = {
             type = "string",
             traits = {
@@ -6131,7 +5930,7 @@ M.GetRouteOutput = {
         },
         AuthorizationScopes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "authorizationScopes",
             },
@@ -6162,16 +5961,16 @@ M.GetRouteOutput = {
         },
         RequestModels = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "requestModels",
             },
         },
         RequestParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ParameterConstraints,
             traits = {
                 json_name = "requestParameters",
             },
@@ -6241,16 +6040,16 @@ M.GetRouteResponseOutput = {
         },
         ResponseModels = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "responseModels",
             },
         },
         ResponseParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ParameterConstraints,
             traits = {
                 json_name = "responseParameters",
             },
@@ -6307,7 +6106,7 @@ M.GetRouteResponsesOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteResponse,
             traits = {
                 json_name = "items",
             },
@@ -6351,7 +6150,7 @@ M.GetRoutesOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.Route,
             traits = {
                 json_name = "items",
             },
@@ -6396,20 +6195,20 @@ M.GetRoutingRuleOutput = {
     members = {
         Actions = {
             type = "list",
-            member_type = "structure",
+            member = M.RoutingRuleAction,
             traits = {
                 json_name = "actions",
             },
         },
         Conditions = {
             type = "list",
-            member_type = "structure",
+            member = M.RoutingRuleCondition,
             traits = {
                 json_name = "conditions",
             },
         },
         Priority = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "priority",
             },
@@ -6452,12 +6251,9 @@ M.GetStageInput = {
 M.GetStageOutput = {
     type = "structure",
     members = {
-        AccessLogSettings = {
-            type = "structure",
-            traits = {
-                json_name = "accessLogSettings",
-            },
-        },
+        AccessLogSettings = setmetatable({ traits = {
+            json_name = "accessLogSettings",
+        } }, { __index = M.AccessLogSettings }),
         ApiGatewayManaged = {
             type = "boolean",
             traits = {
@@ -6482,12 +6278,9 @@ M.GetStageOutput = {
                 json_name = "createdDate",
             },
         },
-        DefaultRouteSettings = {
-            type = "structure",
-            traits = {
-                json_name = "defaultRouteSettings",
-            },
-        },
+        DefaultRouteSettings = setmetatable({ traits = {
+            json_name = "defaultRouteSettings",
+        } }, { __index = M.RouteSettings }),
         DeploymentId = {
             type = "string",
             traits = {
@@ -6514,8 +6307,8 @@ M.GetStageOutput = {
         },
         RouteSettings = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.RouteSettings,
             traits = {
                 json_name = "routeSettings",
             },
@@ -6528,16 +6321,16 @@ M.GetStageOutput = {
         },
         StageVariables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "stageVariables",
             },
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -6575,7 +6368,7 @@ M.GetStagesOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.Stage,
             traits = {
                 json_name = "items",
             },
@@ -6607,8 +6400,8 @@ M.GetTagsOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -6646,22 +6439,22 @@ M.GetVpcLinkOutput = {
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "securityGroupIds",
             },
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "subnetIds",
             },
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -6716,7 +6509,7 @@ M.GetVpcLinksOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcLink,
             traits = {
                 json_name = "items",
             },
@@ -6782,12 +6575,9 @@ M.ImportApiOutput = {
                 json_name = "apiKeySelectionExpression",
             },
         },
-        CorsConfiguration = {
-            type = "structure",
-            traits = {
-                json_name = "corsConfiguration",
-            },
-        },
+        CorsConfiguration = setmetatable({ traits = {
+            json_name = "corsConfiguration",
+        } }, { __index = M.Cors }),
         CreatedDate = {
             type = "timestamp",
             traits = {
@@ -6814,7 +6604,7 @@ M.ImportApiOutput = {
         },
         ImportInfo = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "importInfo",
             },
@@ -6845,8 +6635,8 @@ M.ImportApiOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -6859,7 +6649,7 @@ M.ImportApiOutput = {
         },
         Warnings = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "warnings",
             },
@@ -6896,7 +6686,7 @@ M.ListPortalProductsOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.PortalProductSummary,
             traits = {
                 json_name = "items",
             },
@@ -6933,7 +6723,7 @@ M.ListPortalsOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.PortalSummary,
             traits = {
                 json_name = "items",
             },
@@ -6983,7 +6773,7 @@ M.ListProductPagesOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.ProductPageSummaryNoBody,
             traits = {
                 json_name = "items",
             },
@@ -7033,7 +6823,7 @@ M.ListProductRestEndpointPagesOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.ProductRestEndpointPageSummaryNoBody,
             traits = {
                 json_name = "items",
             },
@@ -7064,7 +6854,7 @@ M.ListRoutingRulesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -7089,7 +6879,7 @@ M.ListRoutingRulesOutput = {
         },
         RoutingRules = {
             type = "list",
-            member_type = "structure",
+            member = M.RoutingRule,
             traits = {
                 json_name = "routingRules",
             },
@@ -7166,7 +6956,7 @@ M.PutRoutingRuleInput = {
     members = {
         Actions = {
             type = "list",
-            member_type = "structure",
+            member = M.RoutingRuleAction,
             traits = {
                 json_name = "actions",
                 required = true,
@@ -7174,7 +6964,7 @@ M.PutRoutingRuleInput = {
         },
         Conditions = {
             type = "list",
-            member_type = "structure",
+            member = M.RoutingRuleCondition,
             traits = {
                 json_name = "conditions",
                 required = true,
@@ -7194,7 +6984,7 @@ M.PutRoutingRuleInput = {
             },
         },
         Priority = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "priority",
                 required = true,
@@ -7215,20 +7005,20 @@ M.PutRoutingRuleOutput = {
     members = {
         Actions = {
             type = "list",
-            member_type = "structure",
+            member = M.RoutingRuleAction,
             traits = {
                 json_name = "actions",
             },
         },
         Conditions = {
             type = "list",
-            member_type = "structure",
+            member = M.RoutingRuleCondition,
             traits = {
                 json_name = "conditions",
             },
         },
         Priority = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "priority",
             },
@@ -7307,12 +7097,9 @@ M.ReimportApiOutput = {
                 json_name = "apiKeySelectionExpression",
             },
         },
-        CorsConfiguration = {
-            type = "structure",
-            traits = {
-                json_name = "corsConfiguration",
-            },
-        },
+        CorsConfiguration = setmetatable({ traits = {
+            json_name = "corsConfiguration",
+        } }, { __index = M.Cors }),
         CreatedDate = {
             type = "timestamp",
             traits = {
@@ -7339,7 +7126,7 @@ M.ReimportApiOutput = {
         },
         ImportInfo = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "importInfo",
             },
@@ -7370,8 +7157,8 @@ M.ReimportApiOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -7384,7 +7171,7 @@ M.ReimportApiOutput = {
         },
         Warnings = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "warnings",
             },
@@ -7428,8 +7215,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -7453,7 +7240,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -7482,12 +7269,9 @@ M.UpdateApiInput = {
                 json_name = "apiKeySelectionExpression",
             },
         },
-        CorsConfiguration = {
-            type = "structure",
-            traits = {
-                json_name = "corsConfiguration",
-            },
-        },
+        CorsConfiguration = setmetatable({ traits = {
+            json_name = "corsConfiguration",
+        } }, { __index = M.Cors }),
         CredentialsArn = {
             type = "string",
             traits = {
@@ -7578,12 +7362,9 @@ M.UpdateApiOutput = {
                 json_name = "apiKeySelectionExpression",
             },
         },
-        CorsConfiguration = {
-            type = "structure",
-            traits = {
-                json_name = "corsConfiguration",
-            },
-        },
+        CorsConfiguration = setmetatable({ traits = {
+            json_name = "corsConfiguration",
+        } }, { __index = M.Cors }),
         CreatedDate = {
             type = "timestamp",
             traits = {
@@ -7610,7 +7391,7 @@ M.UpdateApiOutput = {
         },
         ImportInfo = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "importInfo",
             },
@@ -7641,8 +7422,8 @@ M.UpdateApiOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -7655,7 +7436,7 @@ M.UpdateApiOutput = {
         },
         Warnings = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "warnings",
             },
@@ -7762,7 +7543,7 @@ M.UpdateAuthorizerInput = {
             },
         },
         AuthorizerResultTtlInSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "authorizerResultTtlInSeconds",
             },
@@ -7787,7 +7568,7 @@ M.UpdateAuthorizerInput = {
         },
         IdentitySource = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "identitySource",
             },
@@ -7798,12 +7579,9 @@ M.UpdateAuthorizerInput = {
                 json_name = "identityValidationExpression",
             },
         },
-        JwtConfiguration = {
-            type = "structure",
-            traits = {
-                json_name = "jwtConfiguration",
-            },
-        },
+        JwtConfiguration = setmetatable({ traits = {
+            json_name = "jwtConfiguration",
+        } }, { __index = M.JWTConfiguration }),
         Name = {
             type = "string",
             traits = {
@@ -7835,7 +7613,7 @@ M.UpdateAuthorizerOutput = {
             },
         },
         AuthorizerResultTtlInSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "authorizerResultTtlInSeconds",
             },
@@ -7860,7 +7638,7 @@ M.UpdateAuthorizerOutput = {
         },
         IdentitySource = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "identitySource",
             },
@@ -7871,12 +7649,9 @@ M.UpdateAuthorizerOutput = {
                 json_name = "identityValidationExpression",
             },
         },
-        JwtConfiguration = {
-            type = "structure",
-            traits = {
-                json_name = "jwtConfiguration",
-            },
-        },
+        JwtConfiguration = setmetatable({ traits = {
+            json_name = "jwtConfiguration",
+        } }, { __index = M.JWTConfiguration }),
         Name = {
             type = "string",
             traits = {
@@ -7966,17 +7741,14 @@ M.UpdateDomainNameInput = {
         },
         DomainNameConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainNameConfiguration,
             traits = {
                 json_name = "domainNameConfigurations",
             },
         },
-        MutualTlsAuthentication = {
-            type = "structure",
-            traits = {
-                json_name = "mutualTlsAuthentication",
-            },
-        },
+        MutualTlsAuthentication = setmetatable({ traits = {
+            json_name = "mutualTlsAuthentication",
+        } }, { __index = M.MutualTlsAuthenticationInput }),
         RoutingMode = {
             type = "string",
             traits = {
@@ -8009,17 +7781,14 @@ M.UpdateDomainNameOutput = {
         },
         DomainNameConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainNameConfiguration,
             traits = {
                 json_name = "domainNameConfigurations",
             },
         },
-        MutualTlsAuthentication = {
-            type = "structure",
-            traits = {
-                json_name = "mutualTlsAuthentication",
-            },
-        },
+        MutualTlsAuthentication = setmetatable({ traits = {
+            json_name = "mutualTlsAuthentication",
+        } }, { __index = M.MutualTlsAuthentication }),
         RoutingMode = {
             type = "string",
             traits = {
@@ -8028,8 +7797,8 @@ M.UpdateDomainNameOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -8122,24 +7891,24 @@ M.UpdateIntegrationInput = {
         },
         RequestParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "requestParameters",
             },
         },
         RequestTemplates = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "requestTemplates",
             },
         },
         ResponseParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "map",
+            key = { type = "string" },
+            value = { type = "map" },
             traits = {
                 json_name = "responseParameters",
             },
@@ -8151,17 +7920,14 @@ M.UpdateIntegrationInput = {
             },
         },
         TimeoutInMillis = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "timeoutInMillis",
             },
         },
-        TlsConfig = {
-            type = "structure",
-            traits = {
-                json_name = "tlsConfig",
-            },
-        },
+        TlsConfig = setmetatable({ traits = {
+            json_name = "tlsConfig",
+        } }, { __index = M.TlsConfigInput }),
     },
 }
 
@@ -8254,24 +8020,24 @@ M.UpdateIntegrationOutput = {
         },
         RequestParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "requestParameters",
             },
         },
         RequestTemplates = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "requestTemplates",
             },
         },
         ResponseParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "map",
+            key = { type = "string" },
+            value = { type = "map" },
             traits = {
                 json_name = "responseParameters",
             },
@@ -8283,17 +8049,14 @@ M.UpdateIntegrationOutput = {
             },
         },
         TimeoutInMillis = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "timeoutInMillis",
             },
         },
-        TlsConfig = {
-            type = "structure",
-            traits = {
-                json_name = "tlsConfig",
-            },
-        },
+        TlsConfig = setmetatable({ traits = {
+            json_name = "tlsConfig",
+        } }, { __index = M.TlsConfig }),
     },
 }
 
@@ -8335,16 +8098,16 @@ M.UpdateIntegrationResponseInput = {
         },
         ResponseParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "responseParameters",
             },
         },
         ResponseTemplates = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "responseTemplates",
             },
@@ -8381,16 +8144,16 @@ M.UpdateIntegrationResponseOutput = {
         },
         ResponseParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "responseParameters",
             },
         },
         ResponseTemplates = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "responseTemplates",
             },
@@ -8487,21 +8250,15 @@ M.UpdateModelOutput = {
 M.UpdatePortalInput = {
     type = "structure",
     members = {
-        Authorization = {
-            type = "structure",
-            traits = {
-                json_name = "authorization",
-            },
-        },
-        EndpointConfiguration = {
-            type = "structure",
-            traits = {
-                json_name = "endpointConfiguration",
-            },
-        },
+        Authorization = setmetatable({ traits = {
+            json_name = "authorization",
+        } }, { __index = M.Authorization }),
+        EndpointConfiguration = setmetatable({ traits = {
+            json_name = "endpointConfiguration",
+        } }, { __index = M.EndpointConfigurationRequest }),
         IncludedPortalProductArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "includedPortalProductArns",
             },
@@ -8512,12 +8269,9 @@ M.UpdatePortalInput = {
                 json_name = "logoUri",
             },
         },
-        PortalContent = {
-            type = "structure",
-            traits = {
-                json_name = "portalContent",
-            },
-        },
+        PortalContent = setmetatable({ traits = {
+            json_name = "portalContent",
+        } }, { __index = M.PortalContent }),
         PortalId = {
             type = "string",
             traits = {
@@ -8537,21 +8291,15 @@ M.UpdatePortalInput = {
 M.UpdatePortalOutput = {
     type = "structure",
     members = {
-        Authorization = {
-            type = "structure",
-            traits = {
-                json_name = "authorization",
-            },
-        },
-        EndpointConfiguration = {
-            type = "structure",
-            traits = {
-                json_name = "endpointConfiguration",
-            },
-        },
+        Authorization = setmetatable({ traits = {
+            json_name = "authorization",
+        } }, { __index = M.Authorization }),
+        EndpointConfiguration = setmetatable({ traits = {
+            json_name = "endpointConfiguration",
+        } }, { __index = M.EndpointConfigurationResponse }),
         IncludedPortalProductArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "includedPortalProductArns",
             },
@@ -8580,24 +8328,18 @@ M.UpdatePortalOutput = {
                 json_name = "portalArn",
             },
         },
-        PortalContent = {
-            type = "structure",
-            traits = {
-                json_name = "portalContent",
-            },
-        },
+        PortalContent = setmetatable({ traits = {
+            json_name = "portalContent",
+        } }, { __index = M.PortalContent }),
         PortalId = {
             type = "string",
             traits = {
                 json_name = "portalId",
             },
         },
-        Preview = {
-            type = "structure",
-            traits = {
-                json_name = "preview",
-            },
-        },
+        Preview = setmetatable({ traits = {
+            json_name = "preview",
+        } }, { __index = M.Preview }),
         PublishStatus = {
             type = "string",
             traits = {
@@ -8610,16 +8352,13 @@ M.UpdatePortalOutput = {
                 json_name = "rumAppMonitorName",
             },
         },
-        StatusException = {
-            type = "structure",
-            traits = {
-                json_name = "statusException",
-            },
-        },
+        StatusException = setmetatable({ traits = {
+            json_name = "statusException",
+        } }, { __index = M.StatusException }),
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -8642,12 +8381,9 @@ M.UpdatePortalProductInput = {
                 json_name = "displayName",
             },
         },
-        DisplayOrder = {
-            type = "structure",
-            traits = {
-                json_name = "displayOrder",
-            },
-        },
+        DisplayOrder = setmetatable({ traits = {
+            json_name = "displayOrder",
+        } }, { __index = M.DisplayOrder }),
         PortalProductId = {
             type = "string",
             traits = {
@@ -8673,12 +8409,9 @@ M.UpdatePortalProductOutput = {
                 json_name = "displayName",
             },
         },
-        DisplayOrder = {
-            type = "structure",
-            traits = {
-                json_name = "displayOrder",
-            },
-        },
+        DisplayOrder = setmetatable({ traits = {
+            json_name = "displayOrder",
+        } }, { __index = M.DisplayOrder }),
         LastModified = {
             type = "timestamp",
             traits = {
@@ -8699,8 +8432,8 @@ M.UpdatePortalProductOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -8711,12 +8444,9 @@ M.UpdatePortalProductOutput = {
 M.UpdateProductPageInput = {
     type = "structure",
     members = {
-        DisplayContent = {
-            type = "structure",
-            traits = {
-                json_name = "displayContent",
-            },
-        },
+        DisplayContent = setmetatable({ traits = {
+            json_name = "displayContent",
+        } }, { __index = M.DisplayContent }),
         PortalProductId = {
             type = "string",
             traits = {
@@ -8737,12 +8467,9 @@ M.UpdateProductPageInput = {
 M.UpdateProductPageOutput = {
     type = "structure",
     members = {
-        DisplayContent = {
-            type = "structure",
-            traits = {
-                json_name = "displayContent",
-            },
-        },
+        DisplayContent = setmetatable({ traits = {
+            json_name = "displayContent",
+        } }, { __index = M.DisplayContent }),
         LastModified = {
             type = "timestamp",
             traits = {
@@ -8767,12 +8494,9 @@ M.UpdateProductPageOutput = {
 M.UpdateProductRestEndpointPageInput = {
     type = "structure",
     members = {
-        DisplayContent = {
-            type = "structure",
-            traits = {
-                json_name = "displayContent",
-            },
-        },
+        DisplayContent = setmetatable({ traits = {
+            json_name = "displayContent",
+        } }, { __index = M.EndpointDisplayContent }),
         PortalProductId = {
             type = "string",
             traits = {
@@ -8799,12 +8523,9 @@ M.UpdateProductRestEndpointPageInput = {
 M.UpdateProductRestEndpointPageOutput = {
     type = "structure",
     members = {
-        DisplayContent = {
-            type = "structure",
-            traits = {
-                json_name = "displayContent",
-            },
-        },
+        DisplayContent = setmetatable({ traits = {
+            json_name = "displayContent",
+        } }, { __index = M.EndpointDisplayContentResponse }),
         LastModified = {
             type = "timestamp",
             traits = {
@@ -8823,24 +8544,18 @@ M.UpdateProductRestEndpointPageOutput = {
                 json_name = "productRestEndpointPageId",
             },
         },
-        RestEndpointIdentifier = {
-            type = "structure",
-            traits = {
-                json_name = "restEndpointIdentifier",
-            },
-        },
+        RestEndpointIdentifier = setmetatable({ traits = {
+            json_name = "restEndpointIdentifier",
+        } }, { __index = M.RestEndpointIdentifier }),
         Status = {
             type = "string",
             traits = {
                 json_name = "status",
             },
         },
-        StatusException = {
-            type = "structure",
-            traits = {
-                json_name = "statusException",
-            },
-        },
+        StatusException = setmetatable({ traits = {
+            json_name = "statusException",
+        } }, { __index = M.StatusException }),
         TryItState = {
             type = "string",
             traits = {
@@ -8868,7 +8583,7 @@ M.UpdateRouteInput = {
         },
         AuthorizationScopes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "authorizationScopes",
             },
@@ -8899,16 +8614,16 @@ M.UpdateRouteInput = {
         },
         RequestModels = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "requestModels",
             },
         },
         RequestParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ParameterConstraints,
             traits = {
                 json_name = "requestParameters",
             },
@@ -8958,7 +8673,7 @@ M.UpdateRouteOutput = {
         },
         AuthorizationScopes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "authorizationScopes",
             },
@@ -8989,16 +8704,16 @@ M.UpdateRouteOutput = {
         },
         RequestModels = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "requestModels",
             },
         },
         RequestParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ParameterConstraints,
             traits = {
                 json_name = "requestParameters",
             },
@@ -9048,16 +8763,16 @@ M.UpdateRouteResponseInput = {
         },
         ResponseModels = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "responseModels",
             },
         },
         ResponseParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ParameterConstraints,
             traits = {
                 json_name = "responseParameters",
             },
@@ -9096,16 +8811,16 @@ M.UpdateRouteResponseOutput = {
         },
         ResponseModels = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "responseModels",
             },
         },
         ResponseParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ParameterConstraints,
             traits = {
                 json_name = "responseParameters",
             },
@@ -9128,12 +8843,9 @@ M.UpdateRouteResponseOutput = {
 M.UpdateStageInput = {
     type = "structure",
     members = {
-        AccessLogSettings = {
-            type = "structure",
-            traits = {
-                json_name = "accessLogSettings",
-            },
-        },
+        AccessLogSettings = setmetatable({ traits = {
+            json_name = "accessLogSettings",
+        } }, { __index = M.AccessLogSettings }),
         ApiId = {
             type = "string",
             traits = {
@@ -9153,12 +8865,9 @@ M.UpdateStageInput = {
                 json_name = "clientCertificateId",
             },
         },
-        DefaultRouteSettings = {
-            type = "structure",
-            traits = {
-                json_name = "defaultRouteSettings",
-            },
-        },
+        DefaultRouteSettings = setmetatable({ traits = {
+            json_name = "defaultRouteSettings",
+        } }, { __index = M.RouteSettings }),
         DeploymentId = {
             type = "string",
             traits = {
@@ -9173,8 +8882,8 @@ M.UpdateStageInput = {
         },
         RouteSettings = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.RouteSettings,
             traits = {
                 json_name = "routeSettings",
             },
@@ -9188,8 +8897,8 @@ M.UpdateStageInput = {
         },
         StageVariables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "stageVariables",
             },
@@ -9200,12 +8909,9 @@ M.UpdateStageInput = {
 M.UpdateStageOutput = {
     type = "structure",
     members = {
-        AccessLogSettings = {
-            type = "structure",
-            traits = {
-                json_name = "accessLogSettings",
-            },
-        },
+        AccessLogSettings = setmetatable({ traits = {
+            json_name = "accessLogSettings",
+        } }, { __index = M.AccessLogSettings }),
         ApiGatewayManaged = {
             type = "boolean",
             traits = {
@@ -9230,12 +8936,9 @@ M.UpdateStageOutput = {
                 json_name = "createdDate",
             },
         },
-        DefaultRouteSettings = {
-            type = "structure",
-            traits = {
-                json_name = "defaultRouteSettings",
-            },
-        },
+        DefaultRouteSettings = setmetatable({ traits = {
+            json_name = "defaultRouteSettings",
+        } }, { __index = M.RouteSettings }),
         DeploymentId = {
             type = "string",
             traits = {
@@ -9262,8 +8965,8 @@ M.UpdateStageOutput = {
         },
         RouteSettings = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.RouteSettings,
             traits = {
                 json_name = "routeSettings",
             },
@@ -9276,16 +8979,16 @@ M.UpdateStageOutput = {
         },
         StageVariables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "stageVariables",
             },
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -9329,22 +9032,22 @@ M.UpdateVpcLinkOutput = {
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "securityGroupIds",
             },
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "subnetIds",
             },
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },

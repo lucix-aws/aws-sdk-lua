@@ -56,7 +56,10 @@ M.ApplicationAggregatedStatus = {
             type = "string",
         },
         totalSourceServers = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -79,9 +82,7 @@ M.Application = {
         isArchived = {
             type = "boolean",
         },
-        applicationAggregatedStatus = {
-            type = "structure",
-        },
+        applicationAggregatedStatus = M.ApplicationAggregatedStatus,
         creationDateTime = {
             type = "string",
         },
@@ -90,8 +91,8 @@ M.Application = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         waveID = {
             type = "string",
@@ -132,9 +133,7 @@ M.ArchiveApplicationOutput = {
         isArchived = {
             type = "boolean",
         },
-        applicationAggregatedStatus = {
-            type = "structure",
-        },
+        applicationAggregatedStatus = M.ApplicationAggregatedStatus,
         creationDateTime = {
             type = "string",
         },
@@ -143,8 +142,8 @@ M.ArchiveApplicationOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         waveID = {
             type = "string",
@@ -188,7 +187,7 @@ M.ConflictException = {
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.ErrorDetails,
         },
     },
 }
@@ -235,7 +234,7 @@ M.ServiceQuotaExceededException = {
             type = "string",
         },
         quotaValue = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -264,7 +263,7 @@ M.AssociateSourceServersInput = {
         },
         sourceServerIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -293,8 +292,8 @@ M.CreateApplicationInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         accountID = {
             type = "string",
@@ -320,9 +319,7 @@ M.CreateApplicationOutput = {
         isArchived = {
             type = "boolean",
         },
-        applicationAggregatedStatus = {
-            type = "structure",
-        },
+        applicationAggregatedStatus = M.ApplicationAggregatedStatus,
         creationDateTime = {
             type = "string",
         },
@@ -331,8 +328,8 @@ M.CreateApplicationOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         waveID = {
             type = "string",
@@ -370,7 +367,7 @@ M.DisassociateSourceServersInput = {
         },
         sourceServerIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -390,14 +387,14 @@ M.ListApplicationsRequestFilters = {
     members = {
         applicationIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         isArchived = {
             type = "boolean",
         },
         waveIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -405,11 +402,9 @@ M.ListApplicationsRequestFilters = {
 M.ListApplicationsInput = {
     type = "structure",
     members = {
-        filters = {
-            type = "structure",
-        },
+        filters = M.ListApplicationsRequestFilters,
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -425,7 +420,7 @@ M.ListApplicationsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.Application,
         },
         nextToken = {
             type = "string",
@@ -466,9 +461,7 @@ M.UnarchiveApplicationOutput = {
         isArchived = {
             type = "boolean",
         },
-        applicationAggregatedStatus = {
-            type = "structure",
-        },
+        applicationAggregatedStatus = M.ApplicationAggregatedStatus,
         creationDateTime = {
             type = "string",
         },
@@ -477,8 +470,8 @@ M.UnarchiveApplicationOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         waveID = {
             type = "string",
@@ -525,9 +518,7 @@ M.UpdateApplicationOutput = {
         isArchived = {
             type = "boolean",
         },
-        applicationAggregatedStatus = {
-            type = "structure",
-        },
+        applicationAggregatedStatus = M.ApplicationAggregatedStatus,
         creationDateTime = {
             type = "string",
         },
@@ -536,8 +527,8 @@ M.UpdateApplicationOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         waveID = {
             type = "string",
@@ -586,12 +577,10 @@ M.CreateConnectorInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        ssmCommandConfig = {
-            type = "structure",
-        },
+        ssmCommandConfig = M.ConnectorSsmCommandConfig,
     },
 }
 
@@ -612,12 +601,10 @@ M.CreateConnectorOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        ssmCommandConfig = {
-            type = "structure",
-        },
+        ssmCommandConfig = M.ConnectorSsmCommandConfig,
     },
 }
 
@@ -655,7 +642,7 @@ M.ValidationException = {
         },
         fieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -681,7 +668,7 @@ M.ListConnectorsRequestFilters = {
     members = {
         connectorIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -689,11 +676,9 @@ M.ListConnectorsRequestFilters = {
 M.ListConnectorsInput = {
     type = "structure",
     members = {
-        filters = {
-            type = "structure",
-        },
+        filters = M.ListConnectorsRequestFilters,
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -718,12 +703,10 @@ M.Connector = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        ssmCommandConfig = {
-            type = "structure",
-        },
+        ssmCommandConfig = M.ConnectorSsmCommandConfig,
     },
 }
 
@@ -732,7 +715,7 @@ M.ListConnectorsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.Connector,
         },
         nextToken = {
             type = "string",
@@ -752,9 +735,7 @@ M.UpdateConnectorInput = {
         name = {
             type = "string",
         },
-        ssmCommandConfig = {
-            type = "structure",
-        },
+        ssmCommandConfig = M.ConnectorSsmCommandConfig,
     },
 }
 
@@ -775,12 +756,10 @@ M.UpdateConnectorOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        ssmCommandConfig = {
-            type = "structure",
-        },
+        ssmCommandConfig = M.ConnectorSsmCommandConfig,
     },
 }
 
@@ -794,7 +773,7 @@ M.ListExportErrorsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -817,9 +796,7 @@ M.ExportTaskError = {
         errorDateTime = {
             type = "string",
         },
-        errorData = {
-            type = "structure",
-        },
+        errorData = M.ExportErrorData,
     },
 }
 
@@ -828,7 +805,7 @@ M.ListExportErrorsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.ExportTaskError,
         },
         nextToken = {
             type = "string",
@@ -841,7 +818,7 @@ M.ListExportsRequestFilters = {
     members = {
         exportIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -849,11 +826,9 @@ M.ListExportsRequestFilters = {
 M.ListExportsInput = {
     type = "structure",
     members = {
-        filters = {
-            type = "structure",
-        },
+        filters = M.ListExportsRequestFilters,
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -872,13 +847,22 @@ M.ExportTaskSummary = {
     type = "structure",
     members = {
         serversCount = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         applicationsCount = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         wavesCount = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -911,15 +895,13 @@ M.ExportTask = {
             type = "string",
         },
         progressPercentage = {
-            type = "number",
+            type = "float",
         },
-        summary = {
-            type = "structure",
-        },
+        summary = M.ExportTaskSummary,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -929,7 +911,7 @@ M.ListExportsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.ExportTask,
         },
         nextToken = {
             type = "string",
@@ -957,8 +939,8 @@ M.StartExportInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -966,9 +948,7 @@ M.StartExportInput = {
 M.StartExportOutput = {
     type = "structure",
     members = {
-        exportTask = {
-            type = "structure",
-        },
+        exportTask = M.ExportTask,
     },
 }
 
@@ -982,7 +962,7 @@ M.ListImportErrorsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -1006,7 +986,10 @@ M.ImportErrorData = {
             type = "string",
         },
         rowNumber = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         rawError = {
             type = "string",
@@ -1031,9 +1014,7 @@ M.ImportTaskError = {
         errorType = {
             type = "string",
         },
-        errorData = {
-            type = "structure",
-        },
+        errorData = M.ImportErrorData,
     },
 }
 
@@ -1042,7 +1023,7 @@ M.ListImportErrorsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.ImportTaskError,
         },
         nextToken = {
             type = "string",
@@ -1055,7 +1036,7 @@ M.ListImportsRequestFilters = {
     members = {
         importIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1063,11 +1044,9 @@ M.ListImportsRequestFilters = {
 M.ListImportsInput = {
     type = "structure",
     members = {
-        filters = {
-            type = "structure",
-        },
+        filters = M.ListImportsRequestFilters,
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -1107,10 +1086,16 @@ M.ImportTaskSummaryApplications = {
     type = "structure",
     members = {
         createdCount = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         modifiedCount = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1119,10 +1104,16 @@ M.ImportTaskSummaryServers = {
     type = "structure",
     members = {
         createdCount = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         modifiedCount = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1131,10 +1122,16 @@ M.ImportTaskSummaryWaves = {
     type = "structure",
     members = {
         createdCount = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         modifiedCount = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1142,15 +1139,9 @@ M.ImportTaskSummaryWaves = {
 M.ImportTaskSummary = {
     type = "structure",
     members = {
-        waves = {
-            type = "structure",
-        },
-        applications = {
-            type = "structure",
-        },
-        servers = {
-            type = "structure",
-        },
+        waves = M.ImportTaskSummaryWaves,
+        applications = M.ImportTaskSummaryApplications,
+        servers = M.ImportTaskSummaryServers,
     },
 }
 
@@ -1163,9 +1154,7 @@ M.ImportTask = {
         arn = {
             type = "string",
         },
-        s3BucketSource = {
-            type = "structure",
-        },
+        s3BucketSource = M.S3BucketSource,
         creationDateTime = {
             type = "string",
         },
@@ -1176,15 +1165,13 @@ M.ImportTask = {
             type = "string",
         },
         progressPercentage = {
-            type = "number",
+            type = "float",
         },
-        summary = {
-            type = "structure",
-        },
+        summary = M.ImportTaskSummary,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1194,7 +1181,7 @@ M.ListImportsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.ImportTask,
         },
         nextToken = {
             type = "string",
@@ -1208,16 +1195,13 @@ M.StartImportInput = {
         clientToken = {
             type = "string",
         },
-        s3BucketSource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        s3BucketSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3BucketSource }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1225,9 +1209,7 @@ M.StartImportInput = {
 M.StartImportOutput = {
     type = "structure",
     members = {
-        importTask = {
-            type = "structure",
-        },
+        importTask = M.ImportTask,
     },
 }
 
@@ -1268,7 +1250,7 @@ M.DescribeJobLogItemsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -1314,10 +1296,10 @@ M.JobLogEventData = {
             type = "string",
         },
         attemptCount = {
-            type = "number",
+            type = "integer",
         },
         maxAttemptsCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1331,9 +1313,7 @@ M.JobLog = {
         event = {
             type = "string",
         },
-        eventData = {
-            type = "structure",
-        },
+        eventData = M.JobLogEventData,
     },
 }
 
@@ -1342,7 +1322,7 @@ M.DescribeJobLogItemsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.JobLog,
         },
         nextToken = {
             type = "string",
@@ -1355,7 +1335,7 @@ M.DescribeJobsRequestFilters = {
     members = {
         jobIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         fromDate = {
             type = "string",
@@ -1369,11 +1349,9 @@ M.DescribeJobsRequestFilters = {
 M.DescribeJobsInput = {
     type = "structure",
     members = {
-        filters = {
-            type = "structure",
-        },
+        filters = M.DescribeJobsRequestFilters,
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -1453,20 +1431,20 @@ M.SsmDocument = {
             },
         },
         timeoutSeconds = {
-            type = "number",
+            type = "integer",
         },
         mustSucceedForCutover = {
             type = "boolean",
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         externalParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.SsmExternalParameter,
         },
     },
 }
@@ -1479,9 +1457,7 @@ M.SsmDocumentType = {
 M.JobPostLaunchActionsLaunchStatus = {
     type = "structure",
     members = {
-        ssmDocument = {
-            type = "structure",
-        },
+        ssmDocument = M.SsmDocument,
         ssmDocumentType = {
             type = "string",
         },
@@ -1505,7 +1481,7 @@ M.PostLaunchActionsStatus = {
         },
         postLaunchActionsLaunchStatusList = {
             type = "list",
-            member_type = "structure",
+            member = M.JobPostLaunchActionsLaunchStatus,
         },
     },
 }
@@ -1525,9 +1501,7 @@ M.ParticipatingServer = {
         launchedEc2InstanceID = {
             type = "string",
         },
-        postLaunchActionsStatus = {
-            type = "structure",
-        },
+        postLaunchActionsStatus = M.PostLaunchActionsStatus,
     },
 }
 
@@ -1571,12 +1545,12 @@ M.Job = {
         },
         participatingServers = {
             type = "list",
-            member_type = "structure",
+            member = M.ParticipatingServer,
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1586,7 +1560,7 @@ M.DescribeJobsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.Job,
         },
         nextToken = {
             type = "string",
@@ -1617,10 +1591,10 @@ M.LaunchTemplateDiskConf = {
             type = "string",
         },
         iops = {
-            type = "number",
+            type = "long",
         },
         throughput = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1662,7 +1636,7 @@ M.PostLaunchActions = {
         },
         ssmDocuments = {
             type = "list",
-            member_type = "structure",
+            member = M.SsmDocument,
         },
     },
 }
@@ -1675,9 +1649,7 @@ M.TargetInstanceTypeRightSizingMethod = {
 M.CreateLaunchConfigurationTemplateInput = {
     type = "structure",
     members = {
-        postLaunchActions = {
-            type = "structure",
-        },
+        postLaunchActions = M.PostLaunchActions,
         enableMapAutoTagging = {
             type = "boolean",
         },
@@ -1686,8 +1658,8 @@ M.CreateLaunchConfigurationTemplateInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         launchDisposition = {
             type = "string",
@@ -1704,21 +1676,18 @@ M.CreateLaunchConfigurationTemplateInput = {
         copyTags = {
             type = "boolean",
         },
-        licensing = {
-            type = "structure",
-        },
+        licensing = M.Licensing,
         bootMode = {
             type = "string",
         },
         smallVolumeMaxSize = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
-        smallVolumeConf = {
-            type = "structure",
-        },
-        largeVolumeConf = {
-            type = "structure",
-        },
+        smallVolumeConf = M.LaunchTemplateDiskConf,
+        largeVolumeConf = M.LaunchTemplateDiskConf,
         enableParametersEncryption = {
             type = "boolean",
         },
@@ -1740,9 +1709,7 @@ M.CreateLaunchConfigurationTemplateOutput = {
         arn = {
             type = "string",
         },
-        postLaunchActions = {
-            type = "structure",
-        },
+        postLaunchActions = M.PostLaunchActions,
         enableMapAutoTagging = {
             type = "boolean",
         },
@@ -1751,8 +1718,8 @@ M.CreateLaunchConfigurationTemplateOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ec2LaunchTemplateID = {
             type = "string",
@@ -1772,21 +1739,18 @@ M.CreateLaunchConfigurationTemplateOutput = {
         copyTags = {
             type = "boolean",
         },
-        licensing = {
-            type = "structure",
-        },
+        licensing = M.Licensing,
         bootMode = {
             type = "string",
         },
         smallVolumeMaxSize = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
-        smallVolumeConf = {
-            type = "structure",
-        },
-        largeVolumeConf = {
-            type = "structure",
-        },
+        smallVolumeConf = M.LaunchTemplateDiskConf,
+        largeVolumeConf = M.LaunchTemplateDiskConf,
         enableParametersEncryption = {
             type = "boolean",
         },
@@ -1817,10 +1781,10 @@ M.DescribeLaunchConfigurationTemplatesInput = {
     members = {
         launchConfigurationTemplateIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -1840,9 +1804,7 @@ M.LaunchConfigurationTemplate = {
         arn = {
             type = "string",
         },
-        postLaunchActions = {
-            type = "structure",
-        },
+        postLaunchActions = M.PostLaunchActions,
         enableMapAutoTagging = {
             type = "boolean",
         },
@@ -1851,8 +1813,8 @@ M.LaunchConfigurationTemplate = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ec2LaunchTemplateID = {
             type = "string",
@@ -1872,21 +1834,18 @@ M.LaunchConfigurationTemplate = {
         copyTags = {
             type = "boolean",
         },
-        licensing = {
-            type = "structure",
-        },
+        licensing = M.Licensing,
         bootMode = {
             type = "string",
         },
         smallVolumeMaxSize = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
-        smallVolumeConf = {
-            type = "structure",
-        },
-        largeVolumeConf = {
-            type = "structure",
-        },
+        smallVolumeConf = M.LaunchTemplateDiskConf,
+        largeVolumeConf = M.LaunchTemplateDiskConf,
         enableParametersEncryption = {
             type = "boolean",
         },
@@ -1901,7 +1860,7 @@ M.DescribeLaunchConfigurationTemplatesOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.LaunchConfigurationTemplate,
         },
         nextToken = {
             type = "string",
@@ -1914,7 +1873,7 @@ M.TemplateActionsRequestFilters = {
     members = {
         actionIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1928,11 +1887,9 @@ M.ListTemplateActionsInput = {
                 required = true,
             },
         },
-        filters = {
-            type = "structure",
-        },
+        filters = M.TemplateActionsRequestFilters,
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -1953,7 +1910,7 @@ M.TemplateActionDocument = {
             type = "string",
         },
         order = {
-            type = "number",
+            type = "integer",
         },
         documentVersion = {
             type = "string",
@@ -1962,23 +1919,23 @@ M.TemplateActionDocument = {
             type = "boolean",
         },
         timeoutSeconds = {
-            type = "number",
+            type = "integer",
         },
         mustSucceedForCutover = {
             type = "boolean",
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         operatingSystem = {
             type = "string",
         },
         externalParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.SsmExternalParameter,
         },
         description = {
             type = "string",
@@ -1994,7 +1951,7 @@ M.ListTemplateActionsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.TemplateActionDocument,
         },
         nextToken = {
             type = "string",
@@ -2024,7 +1981,7 @@ M.PutTemplateActionInput = {
             },
         },
         order = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -2042,23 +1999,23 @@ M.PutTemplateActionInput = {
             type = "boolean",
         },
         timeoutSeconds = {
-            type = "number",
+            type = "integer",
         },
         mustSucceedForCutover = {
             type = "boolean",
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         operatingSystem = {
             type = "string",
         },
         externalParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.SsmExternalParameter,
         },
         description = {
             type = "string",
@@ -2082,7 +2039,7 @@ M.PutTemplateActionOutput = {
             type = "string",
         },
         order = {
-            type = "number",
+            type = "integer",
         },
         documentVersion = {
             type = "string",
@@ -2091,23 +2048,23 @@ M.PutTemplateActionOutput = {
             type = "boolean",
         },
         timeoutSeconds = {
-            type = "number",
+            type = "integer",
         },
         mustSucceedForCutover = {
             type = "boolean",
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         operatingSystem = {
             type = "string",
         },
         externalParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.SsmExternalParameter,
         },
         description = {
             type = "string",
@@ -2149,9 +2106,7 @@ M.UpdateLaunchConfigurationTemplateInput = {
                 required = true,
             },
         },
-        postLaunchActions = {
-            type = "structure",
-        },
+        postLaunchActions = M.PostLaunchActions,
         enableMapAutoTagging = {
             type = "boolean",
         },
@@ -2173,21 +2128,18 @@ M.UpdateLaunchConfigurationTemplateInput = {
         copyTags = {
             type = "boolean",
         },
-        licensing = {
-            type = "structure",
-        },
+        licensing = M.Licensing,
         bootMode = {
             type = "string",
         },
         smallVolumeMaxSize = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
-        smallVolumeConf = {
-            type = "structure",
-        },
-        largeVolumeConf = {
-            type = "structure",
-        },
+        smallVolumeConf = M.LaunchTemplateDiskConf,
+        largeVolumeConf = M.LaunchTemplateDiskConf,
         enableParametersEncryption = {
             type = "boolean",
         },
@@ -2209,9 +2161,7 @@ M.UpdateLaunchConfigurationTemplateOutput = {
         arn = {
             type = "string",
         },
-        postLaunchActions = {
-            type = "structure",
-        },
+        postLaunchActions = M.PostLaunchActions,
         enableMapAutoTagging = {
             type = "boolean",
         },
@@ -2220,8 +2170,8 @@ M.UpdateLaunchConfigurationTemplateOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ec2LaunchTemplateID = {
             type = "string",
@@ -2241,21 +2191,18 @@ M.UpdateLaunchConfigurationTemplateOutput = {
         copyTags = {
             type = "boolean",
         },
-        licensing = {
-            type = "structure",
-        },
+        licensing = M.Licensing,
         bootMode = {
             type = "string",
         },
         smallVolumeMaxSize = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
-        smallVolumeConf = {
-            type = "structure",
-        },
-        largeVolumeConf = {
-            type = "structure",
-        },
+        smallVolumeConf = M.LaunchTemplateDiskConf,
+        largeVolumeConf = M.LaunchTemplateDiskConf,
         enableParametersEncryption = {
             type = "boolean",
         },
@@ -2270,7 +2217,7 @@ M.ListImportFileEnrichmentsFilters = {
     members = {
         jobIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2278,11 +2225,9 @@ M.ListImportFileEnrichmentsFilters = {
 M.ListImportFileEnrichmentsInput = {
     type = "structure",
     members = {
-        filters = {
-            type = "structure",
-        },
+        filters = M.ListImportFileEnrichmentsFilters,
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -2356,12 +2301,8 @@ M.ImportFileEnrichment = {
         statusDetails = {
             type = "string",
         },
-        checksum = {
-            type = "structure",
-        },
-        s3BucketTarget = {
-            type = "structure",
-        },
+        checksum = M.Checksum,
+        s3BucketTarget = M.EnrichmentTargetS3Configuration,
     },
 }
 
@@ -2370,7 +2311,7 @@ M.ListImportFileEnrichmentsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.ImportFileEnrichment,
         },
         nextToken = {
             type = "string",
@@ -2382,7 +2323,7 @@ M.ListManagedAccountsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -2404,7 +2345,7 @@ M.ListManagedAccountsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.ManagedAccount,
             traits = {
                 required = true,
             },
@@ -2426,8 +2367,9 @@ M.InternalServerException = {
             },
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 http_header = "Retry-After",
             },
         },
@@ -2452,8 +2394,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2526,12 +2468,9 @@ M.SourceConfiguration = {
                 required = true,
             },
         },
-        sourceS3Configuration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        sourceS3Configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SourceS3Configuration }),
     },
 }
 
@@ -2598,32 +2537,26 @@ M.CreateNetworkMigrationDefinitionInput = {
         },
         sourceConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.SourceConfiguration,
         },
-        targetS3Configuration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        targetNetwork = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        targetS3Configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TargetS3Configuration }),
+        targetNetwork = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TargetNetwork }),
         targetDeployment = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         scopeTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2645,14 +2578,10 @@ M.CreateNetworkMigrationDefinitionOutput = {
         },
         sourceConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.SourceConfiguration,
         },
-        targetS3Configuration = {
-            type = "structure",
-        },
-        targetNetwork = {
-            type = "structure",
-        },
+        targetS3Configuration = M.TargetS3Configuration,
+        targetNetwork = M.TargetNetwork,
         targetDeployment = {
             type = "string",
         },
@@ -2664,13 +2593,13 @@ M.CreateNetworkMigrationDefinitionOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         scopeTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2720,14 +2649,10 @@ M.GetNetworkMigrationDefinitionOutput = {
         },
         sourceConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.SourceConfiguration,
         },
-        targetS3Configuration = {
-            type = "structure",
-        },
-        targetNetwork = {
-            type = "structure",
-        },
+        targetS3Configuration = M.TargetS3Configuration,
+        targetNetwork = M.TargetNetwork,
         targetDeployment = {
             type = "string",
         },
@@ -2739,13 +2664,13 @@ M.GetNetworkMigrationDefinitionOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         scopeTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2809,8 +2734,8 @@ M.NetworkMigrationMapperSegmentConstruct = {
         },
         properties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2818,9 +2743,7 @@ M.NetworkMigrationMapperSegmentConstruct = {
 M.GetNetworkMigrationMapperSegmentConstructOutput = {
     type = "structure",
     members = {
-        construct = {
-            type = "structure",
-        },
+        construct = M.NetworkMigrationMapperSegmentConstruct,
     },
 }
 
@@ -2829,7 +2752,7 @@ M.ListNetworkMigrationAnalysesFilters = {
     members = {
         jobIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2849,11 +2772,9 @@ M.ListNetworkMigrationAnalysesInput = {
                 required = true,
             },
         },
-        filters = {
-            type = "structure",
-        },
+        filters = M.ListNetworkMigrationAnalysesFilters,
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -2900,7 +2821,7 @@ M.ListNetworkMigrationAnalysesOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkMigrationAnalysisJobDetails,
         },
         nextToken = {
             type = "string",
@@ -2913,7 +2834,7 @@ M.ListNetworkMigrationAnalysisResultsFilters = {
     members = {
         vpcIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2933,11 +2854,9 @@ M.ListNetworkMigrationAnalysisResultsInput = {
                 required = true,
             },
         },
-        filters = {
-            type = "structure",
-        },
+        filters = M.ListNetworkMigrationAnalysisResultsFilters,
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -2991,12 +2910,8 @@ M.NetworkMigrationAnalysisResult = {
         analyzerType = {
             type = "string",
         },
-        source = {
-            type = "structure",
-        },
-        target = {
-            type = "structure",
-        },
+        source = M.NetworkMigrationAnalysisResultSource,
+        target = M.NetworkMigrationAnalysisResultTarget,
         status = {
             type = "string",
         },
@@ -3011,7 +2926,7 @@ M.ListNetworkMigrationAnalysisResultsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkMigrationAnalysisResult,
         },
         nextToken = {
             type = "string",
@@ -3024,7 +2939,7 @@ M.ListNetworkMigrationCodeGenerationsFilters = {
     members = {
         jobIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3044,11 +2959,9 @@ M.ListNetworkMigrationCodeGenerationsInput = {
                 required = true,
             },
         },
-        filters = {
-            type = "structure",
-        },
+        filters = M.ListNetworkMigrationCodeGenerationsFilters,
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -3106,8 +3019,8 @@ M.NetworkMigrationCodeGenerationJobDetails = {
         },
         codeGenerationOutputFormatStatusDetailsMap = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.CodeGenerationOutputFormatStatusDetails,
         },
     },
 }
@@ -3117,7 +3030,7 @@ M.ListNetworkMigrationCodeGenerationsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkMigrationCodeGenerationJobDetails,
         },
         nextToken = {
             type = "string",
@@ -3130,7 +3043,7 @@ M.ListNetworkMigrationCodeGenerationSegmentsFilters = {
     members = {
         segmentIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3150,11 +3063,9 @@ M.ListNetworkMigrationCodeGenerationSegmentsInput = {
                 required = true,
             },
         },
-        filters = {
-            type = "structure",
-        },
+        filters = M.ListNetworkMigrationCodeGenerationSegmentsFilters,
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -3206,12 +3117,8 @@ M.NetworkMigrationCodeGenerationArtifact = {
         logicalID = {
             type = "string",
         },
-        outputS3Configuration = {
-            type = "structure",
-        },
-        checksum = {
-            type = "structure",
-        },
+        outputS3Configuration = M.S3Configuration,
+        checksum = M.Checksum,
         createdAt = {
             type = "timestamp",
         },
@@ -3250,7 +3157,7 @@ M.NetworkMigrationCodeGenerationSegment = {
         },
         artifacts = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkMigrationCodeGenerationArtifact,
         },
         createdAt = {
             type = "timestamp",
@@ -3263,7 +3170,7 @@ M.ListNetworkMigrationCodeGenerationSegmentsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkMigrationCodeGenerationSegment,
         },
         nextToken = {
             type = "string",
@@ -3276,7 +3183,7 @@ M.ListNetworkMigrationDefinitionsRequestFilters = {
     members = {
         networkMigrationDefinitionIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3284,14 +3191,12 @@ M.ListNetworkMigrationDefinitionsRequestFilters = {
 M.ListNetworkMigrationDefinitionsInput = {
     type = "structure",
     members = {
-        filters = {
-            type = "structure",
-        },
+        filters = M.ListNetworkMigrationDefinitionsRequestFilters,
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3313,13 +3218,13 @@ M.NetworkMigrationDefinitionSummary = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         scopeTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3329,7 +3234,7 @@ M.ListNetworkMigrationDefinitionsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkMigrationDefinitionSummary,
         },
         nextToken = {
             type = "string",
@@ -3353,7 +3258,7 @@ M.ListNetworkMigrationDeployedStacksInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -3410,7 +3315,7 @@ M.NetworkMigrationDeployedStackDetails = {
         },
         failedResources = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkMigrationFailedResourceDetails,
         },
     },
 }
@@ -3420,7 +3325,7 @@ M.ListNetworkMigrationDeployedStacksOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkMigrationDeployedStackDetails,
         },
         nextToken = {
             type = "string",
@@ -3433,7 +3338,7 @@ M.ListNetworkMigrationDeployerJobFilters = {
     members = {
         jobIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3453,11 +3358,9 @@ M.ListNetworkMigrationDeploymentsInput = {
                 required = true,
             },
         },
-        filters = {
-            type = "structure",
-        },
+        filters = M.ListNetworkMigrationDeployerJobFilters,
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -3497,7 +3400,7 @@ M.ListNetworkMigrationDeploymentsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkMigrationDeployerJobDetails,
         },
         nextToken = {
             type = "string",
@@ -3517,11 +3420,11 @@ M.ListNetworkMigrationExecutionRequestFilters = {
     members = {
         networkMigrationExecutionIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         networkMigrationExecutionStatuses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3535,14 +3438,12 @@ M.ListNetworkMigrationExecutionsInput = {
                 required = true,
             },
         },
-        filters = {
-            type = "structure",
-        },
+        filters = M.ListNetworkMigrationExecutionRequestFilters,
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3590,8 +3491,8 @@ M.NetworkMigrationExecution = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3601,7 +3502,7 @@ M.ListNetworkMigrationExecutionsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkMigrationExecution,
         },
         nextToken = {
             type = "string",
@@ -3614,11 +3515,11 @@ M.ListNetworkMigrationMapperSegmentConstructsFilters = {
     members = {
         constructIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         constructTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3644,11 +3545,9 @@ M.ListNetworkMigrationMapperSegmentConstructsInput = {
                 required = true,
             },
         },
-        filters = {
-            type = "structure",
-        },
+        filters = M.ListNetworkMigrationMapperSegmentConstructsFilters,
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -3661,7 +3560,7 @@ M.ListNetworkMigrationMapperSegmentConstructsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkMigrationMapperSegmentConstruct,
         },
         nextToken = {
             type = "string",
@@ -3674,7 +3573,7 @@ M.ListNetworkMigrationMapperSegmentsFilters = {
     members = {
         segmentIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3694,11 +3593,9 @@ M.ListNetworkMigrationMapperSegmentsInput = {
                 required = true,
             },
         },
-        filters = {
-            type = "structure",
-        },
+        filters = M.ListNetworkMigrationMapperSegmentsFilters,
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -3738,12 +3635,8 @@ M.NetworkMigrationMapperSegment = {
         logicalID = {
             type = "string",
         },
-        checksum = {
-            type = "structure",
-        },
-        outputS3Configuration = {
-            type = "structure",
-        },
+        checksum = M.Checksum,
+        outputS3Configuration = M.S3Configuration,
         createdAt = {
             type = "timestamp",
         },
@@ -3752,15 +3645,15 @@ M.NetworkMigrationMapperSegment = {
         },
         scopeTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         targetAccount = {
             type = "string",
         },
         referencedSegments = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3770,7 +3663,7 @@ M.ListNetworkMigrationMapperSegmentsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkMigrationMapperSegment,
         },
         nextToken = {
             type = "string",
@@ -3783,7 +3676,7 @@ M.ListNetworkMigrationMappingsFilters = {
     members = {
         jobIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3803,11 +3696,9 @@ M.ListNetworkMigrationMappingsInput = {
                 required = true,
             },
         },
-        filters = {
-            type = "structure",
-        },
+        filters = M.ListNetworkMigrationMappingsFilters,
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -3847,7 +3738,7 @@ M.ListNetworkMigrationMappingsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkMigrationMappingJobDetails,
         },
         nextToken = {
             type = "string",
@@ -3860,7 +3751,7 @@ M.ListNetworkMigrationMappingUpdatesFilters = {
     members = {
         jobIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3880,11 +3771,9 @@ M.ListNetworkMigrationMappingUpdatesInput = {
                 required = true,
             },
         },
-        filters = {
-            type = "structure",
-        },
+        filters = M.ListNetworkMigrationMappingUpdatesFilters,
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -3924,7 +3813,7 @@ M.ListNetworkMigrationMappingUpdatesOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkMigrationMappingUpdateJobDetails,
         },
         nextToken = {
             type = "string",
@@ -3976,7 +3865,7 @@ M.StartNetworkMigrationCodeGenerationInput = {
         },
         codeGenerationOutputFormatTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4073,7 +3962,7 @@ M.MergeOperation = {
     members = {
         mergeConstructs = {
             type = "list",
-            member_type = "structure",
+            member = M.MergeConstruct,
         },
     },
 }
@@ -4092,7 +3981,7 @@ M.SplitOperation = {
     members = {
         splitConstructs = {
             type = "list",
-            member_type = "structure",
+            member = M.SplitConstruct,
         },
     },
 }
@@ -4108,8 +3997,8 @@ M.UpdateOperation = {
         },
         properties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -4117,18 +4006,10 @@ M.UpdateOperation = {
 M.OperationUnion = {
     type = "union",
     members = {
-        merge = {
-            type = "structure",
-        },
-        split = {
-            type = "structure",
-        },
-        delete = {
-            type = "structure",
-        },
-        update = {
-            type = "structure",
-        },
+        merge = M.MergeOperation,
+        split = M.SplitOperation,
+        delete = M.DeleteOperation,
+        update = M.UpdateOperation,
     },
 }
 
@@ -4153,9 +4034,7 @@ M.StartNetworkMigrationMappingUpdateConstruct = {
                 required = true,
             },
         },
-        operation = {
-            type = "union",
-        },
+        operation = M.OperationUnion,
     },
 }
 
@@ -4173,8 +4052,8 @@ M.StartNetworkMigrationMappingUpdateSegment = {
         },
         scopeTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -4196,11 +4075,11 @@ M.StartNetworkMigrationMappingUpdateInput = {
         },
         constructs = {
             type = "list",
-            member_type = "structure",
+            member = M.StartNetworkMigrationMappingUpdateConstruct,
         },
         segments = {
             type = "list",
-            member_type = "structure",
+            member = M.StartNetworkMigrationMappingUpdateSegment,
         },
     },
 }
@@ -4261,21 +4140,17 @@ M.UpdateNetworkMigrationDefinitionInput = {
         },
         sourceConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.SourceConfiguration,
         },
-        targetS3Configuration = {
-            type = "structure",
-        },
-        targetNetwork = {
-            type = "structure",
-        },
+        targetS3Configuration = M.TargetS3ConfigurationUpdate,
+        targetNetwork = M.TargetNetworkUpdate,
         targetDeployment = {
             type = "string",
         },
         scopeTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -4297,14 +4172,10 @@ M.UpdateNetworkMigrationDefinitionOutput = {
         },
         sourceConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.SourceConfiguration,
         },
-        targetS3Configuration = {
-            type = "structure",
-        },
-        targetNetwork = {
-            type = "structure",
-        },
+        targetS3Configuration = M.TargetS3Configuration,
+        targetNetwork = M.TargetNetwork,
         targetDeployment = {
             type = "string",
         },
@@ -4316,13 +4187,13 @@ M.UpdateNetworkMigrationDefinitionOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         scopeTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -4350,8 +4221,8 @@ M.UpdateNetworkMigrationMapperSegmentInput = {
         },
         scopeTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -4383,12 +4254,8 @@ M.UpdateNetworkMigrationMapperSegmentOutput = {
         logicalID = {
             type = "string",
         },
-        checksum = {
-            type = "structure",
-        },
-        outputS3Configuration = {
-            type = "structure",
-        },
+        checksum = M.Checksum,
+        outputS3Configuration = M.S3Configuration,
         createdAt = {
             type = "timestamp",
         },
@@ -4397,15 +4264,15 @@ M.UpdateNetworkMigrationMapperSegmentOutput = {
         },
         scopeTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         targetAccount = {
             type = "string",
         },
         referencedSegments = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4448,7 +4315,7 @@ M.CreateReplicationConfigurationTemplateInput = {
         },
         replicationServersSecurityGroupsIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4481,8 +4348,9 @@ M.CreateReplicationConfigurationTemplateInput = {
             type = "string",
         },
         bandwidthThrottling = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -4500,8 +4368,8 @@ M.CreateReplicationConfigurationTemplateInput = {
         },
         stagingAreaTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4511,8 +4379,8 @@ M.CreateReplicationConfigurationTemplateInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         internetProtocol = {
             type = "string",
@@ -4543,7 +4411,7 @@ M.CreateReplicationConfigurationTemplateOutput = {
         },
         replicationServersSecurityGroupsIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         replicationServerInstanceType = {
             type = "string",
@@ -4561,7 +4429,10 @@ M.CreateReplicationConfigurationTemplateOutput = {
             type = "string",
         },
         bandwidthThrottling = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         dataPlaneRouting = {
             type = "string",
@@ -4571,16 +4442,16 @@ M.CreateReplicationConfigurationTemplateOutput = {
         },
         stagingAreaTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         useFipsEndpoint = {
             type = "boolean",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         internetProtocol = {
             type = "string",
@@ -4612,10 +4483,10 @@ M.DescribeReplicationConfigurationTemplatesInput = {
     members = {
         replicationConfigurationTemplateIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -4643,7 +4514,7 @@ M.ReplicationConfigurationTemplate = {
         },
         replicationServersSecurityGroupsIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         replicationServerInstanceType = {
             type = "string",
@@ -4661,7 +4532,10 @@ M.ReplicationConfigurationTemplate = {
             type = "string",
         },
         bandwidthThrottling = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         dataPlaneRouting = {
             type = "string",
@@ -4671,16 +4545,16 @@ M.ReplicationConfigurationTemplate = {
         },
         stagingAreaTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         useFipsEndpoint = {
             type = "boolean",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         internetProtocol = {
             type = "string",
@@ -4696,7 +4570,7 @@ M.DescribeReplicationConfigurationTemplatesOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.ReplicationConfigurationTemplate,
         },
         nextToken = {
             type = "string",
@@ -4724,7 +4598,7 @@ M.UpdateReplicationConfigurationTemplateInput = {
         },
         replicationServersSecurityGroupsIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         replicationServerInstanceType = {
             type = "string",
@@ -4742,7 +4616,10 @@ M.UpdateReplicationConfigurationTemplateInput = {
             type = "string",
         },
         bandwidthThrottling = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         dataPlaneRouting = {
             type = "string",
@@ -4752,8 +4629,8 @@ M.UpdateReplicationConfigurationTemplateInput = {
         },
         stagingAreaTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         useFipsEndpoint = {
             type = "boolean",
@@ -4787,7 +4664,7 @@ M.UpdateReplicationConfigurationTemplateOutput = {
         },
         replicationServersSecurityGroupsIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         replicationServerInstanceType = {
             type = "string",
@@ -4805,7 +4682,10 @@ M.UpdateReplicationConfigurationTemplateOutput = {
             type = "string",
         },
         bandwidthThrottling = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         dataPlaneRouting = {
             type = "string",
@@ -4815,16 +4695,16 @@ M.UpdateReplicationConfigurationTemplateOutput = {
         },
         stagingAreaTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         useFipsEndpoint = {
             type = "boolean",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         internetProtocol = {
             type = "string",
@@ -4862,12 +4742,9 @@ M.ChangeServerLifeCycleStateInput = {
                 required = true,
             },
         },
-        lifeCycle = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        lifeCycle = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ChangeServerLifeCycleStateSourceServerLifecycle }),
         accountID = {
             type = "string",
         },
@@ -4962,7 +4839,7 @@ M.DataReplicationInitiation = {
         },
         steps = {
             type = "list",
-            member_type = "structure",
+            member = M.DataReplicationInitiationStep,
         },
     },
 }
@@ -4989,16 +4866,28 @@ M.DataReplicationInfoReplicatedDisk = {
             type = "string",
         },
         totalStorageBytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         replicatedStorageBytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         rescannedStorageBytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         backloggedStorageBytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -5014,17 +4903,13 @@ M.DataReplicationInfo = {
         },
         replicatedDisks = {
             type = "list",
-            member_type = "structure",
+            member = M.DataReplicationInfoReplicatedDisk,
         },
         dataReplicationState = {
             type = "string",
         },
-        dataReplicationInitiation = {
-            type = "structure",
-        },
-        dataReplicationError = {
-            type = "structure",
-        },
+        dataReplicationInitiation = M.DataReplicationInitiation,
+        dataReplicationError = M.DataReplicationError,
         lastSnapshotDateTime = {
             type = "string",
         },
@@ -5089,15 +4974,9 @@ M.LifeCycleLastCutoverReverted = {
 M.LifeCycleLastCutover = {
     type = "structure",
     members = {
-        initiated = {
-            type = "structure",
-        },
-        reverted = {
-            type = "structure",
-        },
-        finalized = {
-            type = "structure",
-        },
+        initiated = M.LifeCycleLastCutoverInitiated,
+        reverted = M.LifeCycleLastCutoverReverted,
+        finalized = M.LifeCycleLastCutoverFinalized,
     },
 }
 
@@ -5134,15 +5013,9 @@ M.LifeCycleLastTestReverted = {
 M.LifeCycleLastTest = {
     type = "structure",
     members = {
-        initiated = {
-            type = "structure",
-        },
-        reverted = {
-            type = "structure",
-        },
-        finalized = {
-            type = "structure",
-        },
+        initiated = M.LifeCycleLastTestInitiated,
+        reverted = M.LifeCycleLastTestReverted,
+        finalized = M.LifeCycleLastTestFinalized,
     },
 }
 
@@ -5174,12 +5047,8 @@ M.LifeCycle = {
         lastSeenByServiceDateTime = {
             type = "string",
         },
-        lastTest = {
-            type = "structure",
-        },
-        lastCutover = {
-            type = "structure",
-        },
+        lastTest = M.LifeCycleLastTest,
+        lastCutover = M.LifeCycleLastCutover,
         state = {
             type = "string",
         },
@@ -5195,7 +5064,10 @@ M.CPU = {
     type = "structure",
     members = {
         cores = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         modelName = {
             type = "string",
@@ -5210,7 +5082,10 @@ M.Disk = {
             type = "string",
         },
         bytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -5244,7 +5119,7 @@ M.NetworkInterface = {
         },
         ips = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         isPrimary = {
             type = "boolean",
@@ -5270,27 +5145,26 @@ M.SourceProperties = {
         recommendedInstanceType = {
             type = "string",
         },
-        identificationHints = {
-            type = "structure",
-        },
+        identificationHints = M.IdentificationHints,
         networkInterfaces = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkInterface,
         },
         disks = {
             type = "list",
-            member_type = "structure",
+            member = M.Disk,
         },
         cpus = {
             type = "list",
-            member_type = "structure",
+            member = M.CPU,
         },
         ramBytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
-        os = {
-            type = "structure",
-        },
+        os = M.OS,
     },
 }
 
@@ -5308,21 +5182,13 @@ M.ChangeServerLifeCycleStateOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        launchedInstance = {
-            type = "structure",
-        },
-        dataReplicationInfo = {
-            type = "structure",
-        },
-        lifeCycle = {
-            type = "structure",
-        },
-        sourceProperties = {
-            type = "structure",
-        },
+        launchedInstance = M.LaunchedInstance,
+        dataReplicationInfo = M.DataReplicationInfo,
+        lifeCycle = M.LifeCycle,
+        sourceProperties = M.SourceProperties,
         replicationType = {
             type = "string",
         },
@@ -5338,9 +5204,7 @@ M.ChangeServerLifeCycleStateOutput = {
         fqdnForActionFramework = {
             type = "string",
         },
-        connectorAction = {
-            type = "structure",
-        },
+        connectorAction = M.SourceServerConnectorAction,
     },
 }
 
@@ -5368,22 +5232,22 @@ M.DescribeSourceServersRequestFilters = {
     members = {
         sourceServerIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         isArchived = {
             type = "boolean",
         },
         replicationTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         lifeCycleStates = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         applicationIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -5391,11 +5255,9 @@ M.DescribeSourceServersRequestFilters = {
 M.DescribeSourceServersInput = {
     type = "structure",
     members = {
-        filters = {
-            type = "structure",
-        },
+        filters = M.DescribeSourceServersRequestFilters,
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -5420,21 +5282,13 @@ M.SourceServer = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        launchedInstance = {
-            type = "structure",
-        },
-        dataReplicationInfo = {
-            type = "structure",
-        },
-        lifeCycle = {
-            type = "structure",
-        },
-        sourceProperties = {
-            type = "structure",
-        },
+        launchedInstance = M.LaunchedInstance,
+        dataReplicationInfo = M.DataReplicationInfo,
+        lifeCycle = M.LifeCycle,
+        sourceProperties = M.SourceProperties,
         replicationType = {
             type = "string",
         },
@@ -5450,9 +5304,7 @@ M.SourceServer = {
         fqdnForActionFramework = {
             type = "string",
         },
-        connectorAction = {
-            type = "structure",
-        },
+        connectorAction = M.SourceServerConnectorAction,
     },
 }
 
@@ -5461,7 +5313,7 @@ M.DescribeSourceServersOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.SourceServer,
         },
         nextToken = {
             type = "string",
@@ -5498,21 +5350,13 @@ M.DisconnectFromServiceOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        launchedInstance = {
-            type = "structure",
-        },
-        dataReplicationInfo = {
-            type = "structure",
-        },
-        lifeCycle = {
-            type = "structure",
-        },
-        sourceProperties = {
-            type = "structure",
-        },
+        launchedInstance = M.LaunchedInstance,
+        dataReplicationInfo = M.DataReplicationInfo,
+        lifeCycle = M.LifeCycle,
+        sourceProperties = M.SourceProperties,
         replicationType = {
             type = "string",
         },
@@ -5528,9 +5372,7 @@ M.DisconnectFromServiceOutput = {
         fqdnForActionFramework = {
             type = "string",
         },
-        connectorAction = {
-            type = "structure",
-        },
+        connectorAction = M.SourceServerConnectorAction,
     },
 }
 
@@ -5563,21 +5405,13 @@ M.FinalizeCutoverOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        launchedInstance = {
-            type = "structure",
-        },
-        dataReplicationInfo = {
-            type = "structure",
-        },
-        lifeCycle = {
-            type = "structure",
-        },
-        sourceProperties = {
-            type = "structure",
-        },
+        launchedInstance = M.LaunchedInstance,
+        dataReplicationInfo = M.DataReplicationInfo,
+        lifeCycle = M.LifeCycle,
+        sourceProperties = M.SourceProperties,
         replicationType = {
             type = "string",
         },
@@ -5593,9 +5427,7 @@ M.FinalizeCutoverOutput = {
         fqdnForActionFramework = {
             type = "string",
         },
-        connectorAction = {
-            type = "structure",
-        },
+        connectorAction = M.SourceServerConnectorAction,
     },
 }
 
@@ -5638,15 +5470,11 @@ M.GetLaunchConfigurationOutput = {
         copyTags = {
             type = "boolean",
         },
-        licensing = {
-            type = "structure",
-        },
+        licensing = M.Licensing,
         bootMode = {
             type = "string",
         },
-        postLaunchActions = {
-            type = "structure",
-        },
+        postLaunchActions = M.PostLaunchActions,
         enableMapAutoTagging = {
             type = "boolean",
         },
@@ -5695,10 +5523,16 @@ M.ReplicationConfigurationReplicatedDisk = {
             type = "string",
         },
         iops = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         throughput = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -5720,7 +5554,7 @@ M.GetReplicationConfigurationOutput = {
         },
         replicationServersSecurityGroupsIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         replicationServerInstanceType = {
             type = "string",
@@ -5733,7 +5567,7 @@ M.GetReplicationConfigurationOutput = {
         },
         replicatedDisks = {
             type = "list",
-            member_type = "structure",
+            member = M.ReplicationConfigurationReplicatedDisk,
         },
         ebsEncryption = {
             type = "string",
@@ -5742,7 +5576,10 @@ M.GetReplicationConfigurationOutput = {
             type = "string",
         },
         bandwidthThrottling = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         dataPlaneRouting = {
             type = "string",
@@ -5752,8 +5589,8 @@ M.GetReplicationConfigurationOutput = {
         },
         stagingAreaTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         useFipsEndpoint = {
             type = "boolean",
@@ -5772,7 +5609,7 @@ M.SourceServerActionsRequestFilters = {
     members = {
         actionIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -5786,11 +5623,9 @@ M.ListSourceServerActionsInput = {
                 required = true,
             },
         },
-        filters = {
-            type = "structure",
-        },
+        filters = M.SourceServerActionsRequestFilters,
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -5814,7 +5649,7 @@ M.SourceServerActionDocument = {
             type = "string",
         },
         order = {
-            type = "number",
+            type = "integer",
         },
         documentVersion = {
             type = "string",
@@ -5823,20 +5658,20 @@ M.SourceServerActionDocument = {
             type = "boolean",
         },
         timeoutSeconds = {
-            type = "number",
+            type = "integer",
         },
         mustSucceedForCutover = {
             type = "boolean",
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         externalParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.SsmExternalParameter,
         },
         description = {
             type = "string",
@@ -5852,7 +5687,7 @@ M.ListSourceServerActionsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.SourceServerActionDocument,
         },
         nextToken = {
             type = "string",
@@ -5889,21 +5724,13 @@ M.MarkAsArchivedOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        launchedInstance = {
-            type = "structure",
-        },
-        dataReplicationInfo = {
-            type = "structure",
-        },
-        lifeCycle = {
-            type = "structure",
-        },
-        sourceProperties = {
-            type = "structure",
-        },
+        launchedInstance = M.LaunchedInstance,
+        dataReplicationInfo = M.DataReplicationInfo,
+        lifeCycle = M.LifeCycle,
+        sourceProperties = M.SourceProperties,
         replicationType = {
             type = "string",
         },
@@ -5919,9 +5746,7 @@ M.MarkAsArchivedOutput = {
         fqdnForActionFramework = {
             type = "string",
         },
-        connectorAction = {
-            type = "structure",
-        },
+        connectorAction = M.SourceServerConnectorAction,
     },
 }
 
@@ -5954,21 +5779,13 @@ M.PauseReplicationOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        launchedInstance = {
-            type = "structure",
-        },
-        dataReplicationInfo = {
-            type = "structure",
-        },
-        lifeCycle = {
-            type = "structure",
-        },
-        sourceProperties = {
-            type = "structure",
-        },
+        launchedInstance = M.LaunchedInstance,
+        dataReplicationInfo = M.DataReplicationInfo,
+        lifeCycle = M.LifeCycle,
+        sourceProperties = M.SourceProperties,
         replicationType = {
             type = "string",
         },
@@ -5984,9 +5801,7 @@ M.PauseReplicationOutput = {
         fqdnForActionFramework = {
             type = "string",
         },
-        connectorAction = {
-            type = "structure",
-        },
+        connectorAction = M.SourceServerConnectorAction,
     },
 }
 
@@ -6012,7 +5827,7 @@ M.PutSourceServerActionInput = {
             },
         },
         order = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -6030,20 +5845,20 @@ M.PutSourceServerActionInput = {
             type = "boolean",
         },
         timeoutSeconds = {
-            type = "number",
+            type = "integer",
         },
         mustSucceedForCutover = {
             type = "boolean",
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         externalParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.SsmExternalParameter,
         },
         description = {
             type = "string",
@@ -6070,7 +5885,7 @@ M.PutSourceServerActionOutput = {
             type = "string",
         },
         order = {
-            type = "number",
+            type = "integer",
         },
         documentVersion = {
             type = "string",
@@ -6079,20 +5894,20 @@ M.PutSourceServerActionOutput = {
             type = "boolean",
         },
         timeoutSeconds = {
-            type = "number",
+            type = "integer",
         },
         mustSucceedForCutover = {
             type = "boolean",
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         externalParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.SsmExternalParameter,
         },
         description = {
             type = "string",
@@ -6157,21 +5972,13 @@ M.ResumeReplicationOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        launchedInstance = {
-            type = "structure",
-        },
-        dataReplicationInfo = {
-            type = "structure",
-        },
-        lifeCycle = {
-            type = "structure",
-        },
-        sourceProperties = {
-            type = "structure",
-        },
+        launchedInstance = M.LaunchedInstance,
+        dataReplicationInfo = M.DataReplicationInfo,
+        lifeCycle = M.LifeCycle,
+        sourceProperties = M.SourceProperties,
         replicationType = {
             type = "string",
         },
@@ -6187,9 +5994,7 @@ M.ResumeReplicationOutput = {
         fqdnForActionFramework = {
             type = "string",
         },
-        connectorAction = {
-            type = "structure",
-        },
+        connectorAction = M.SourceServerConnectorAction,
     },
 }
 
@@ -6222,21 +6027,13 @@ M.RetryDataReplicationOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        launchedInstance = {
-            type = "structure",
-        },
-        dataReplicationInfo = {
-            type = "structure",
-        },
-        lifeCycle = {
-            type = "structure",
-        },
-        sourceProperties = {
-            type = "structure",
-        },
+        launchedInstance = M.LaunchedInstance,
+        dataReplicationInfo = M.DataReplicationInfo,
+        lifeCycle = M.LifeCycle,
+        sourceProperties = M.SourceProperties,
         replicationType = {
             type = "string",
         },
@@ -6252,9 +6049,7 @@ M.RetryDataReplicationOutput = {
         fqdnForActionFramework = {
             type = "string",
         },
-        connectorAction = {
-            type = "structure",
-        },
+        connectorAction = M.SourceServerConnectorAction,
     },
 }
 
@@ -6263,15 +6058,15 @@ M.StartCutoverInput = {
     members = {
         sourceServerIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         accountID = {
             type = "string",
@@ -6282,9 +6077,7 @@ M.StartCutoverInput = {
 M.StartCutoverOutput = {
     type = "structure",
     members = {
-        job = {
-            type = "structure",
-        },
+        job = M.Job,
     },
 }
 
@@ -6317,21 +6110,13 @@ M.StartReplicationOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        launchedInstance = {
-            type = "structure",
-        },
-        dataReplicationInfo = {
-            type = "structure",
-        },
-        lifeCycle = {
-            type = "structure",
-        },
-        sourceProperties = {
-            type = "structure",
-        },
+        launchedInstance = M.LaunchedInstance,
+        dataReplicationInfo = M.DataReplicationInfo,
+        lifeCycle = M.LifeCycle,
+        sourceProperties = M.SourceProperties,
         replicationType = {
             type = "string",
         },
@@ -6347,9 +6132,7 @@ M.StartReplicationOutput = {
         fqdnForActionFramework = {
             type = "string",
         },
-        connectorAction = {
-            type = "structure",
-        },
+        connectorAction = M.SourceServerConnectorAction,
     },
 }
 
@@ -6358,15 +6141,15 @@ M.StartTestInput = {
     members = {
         sourceServerIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         accountID = {
             type = "string",
@@ -6377,9 +6160,7 @@ M.StartTestInput = {
 M.StartTestOutput = {
     type = "structure",
     members = {
-        job = {
-            type = "structure",
-        },
+        job = M.Job,
     },
 }
 
@@ -6412,21 +6193,13 @@ M.StopReplicationOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        launchedInstance = {
-            type = "structure",
-        },
-        dataReplicationInfo = {
-            type = "structure",
-        },
-        lifeCycle = {
-            type = "structure",
-        },
-        sourceProperties = {
-            type = "structure",
-        },
+        launchedInstance = M.LaunchedInstance,
+        dataReplicationInfo = M.DataReplicationInfo,
+        lifeCycle = M.LifeCycle,
+        sourceProperties = M.SourceProperties,
         replicationType = {
             type = "string",
         },
@@ -6442,9 +6215,7 @@ M.StopReplicationOutput = {
         fqdnForActionFramework = {
             type = "string",
         },
-        connectorAction = {
-            type = "structure",
-        },
+        connectorAction = M.SourceServerConnectorAction,
     },
 }
 
@@ -6453,15 +6224,15 @@ M.TerminateTargetInstancesInput = {
     members = {
         sourceServerIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         accountID = {
             type = "string",
@@ -6472,9 +6243,7 @@ M.TerminateTargetInstancesInput = {
 M.TerminateTargetInstancesOutput = {
     type = "structure",
     members = {
-        job = {
-            type = "structure",
-        },
+        job = M.Job,
     },
 }
 
@@ -6502,15 +6271,11 @@ M.UpdateLaunchConfigurationInput = {
         copyTags = {
             type = "boolean",
         },
-        licensing = {
-            type = "structure",
-        },
+        licensing = M.Licensing,
         bootMode = {
             type = "string",
         },
-        postLaunchActions = {
-            type = "structure",
-        },
+        postLaunchActions = M.PostLaunchActions,
         enableMapAutoTagging = {
             type = "boolean",
         },
@@ -6547,15 +6312,11 @@ M.UpdateLaunchConfigurationOutput = {
         copyTags = {
             type = "boolean",
         },
-        licensing = {
-            type = "structure",
-        },
+        licensing = M.Licensing,
         bootMode = {
             type = "string",
         },
-        postLaunchActions = {
-            type = "structure",
-        },
+        postLaunchActions = M.PostLaunchActions,
         enableMapAutoTagging = {
             type = "boolean",
         },
@@ -6585,7 +6346,7 @@ M.UpdateReplicationConfigurationInput = {
         },
         replicationServersSecurityGroupsIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         replicationServerInstanceType = {
             type = "string",
@@ -6598,7 +6359,7 @@ M.UpdateReplicationConfigurationInput = {
         },
         replicatedDisks = {
             type = "list",
-            member_type = "structure",
+            member = M.ReplicationConfigurationReplicatedDisk,
         },
         ebsEncryption = {
             type = "string",
@@ -6607,7 +6368,10 @@ M.UpdateReplicationConfigurationInput = {
             type = "string",
         },
         bandwidthThrottling = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         dataPlaneRouting = {
             type = "string",
@@ -6617,8 +6381,8 @@ M.UpdateReplicationConfigurationInput = {
         },
         stagingAreaTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         useFipsEndpoint = {
             type = "boolean",
@@ -6652,7 +6416,7 @@ M.UpdateReplicationConfigurationOutput = {
         },
         replicationServersSecurityGroupsIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         replicationServerInstanceType = {
             type = "string",
@@ -6665,7 +6429,7 @@ M.UpdateReplicationConfigurationOutput = {
         },
         replicatedDisks = {
             type = "list",
-            member_type = "structure",
+            member = M.ReplicationConfigurationReplicatedDisk,
         },
         ebsEncryption = {
             type = "string",
@@ -6674,7 +6438,10 @@ M.UpdateReplicationConfigurationOutput = {
             type = "string",
         },
         bandwidthThrottling = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         dataPlaneRouting = {
             type = "string",
@@ -6684,8 +6451,8 @@ M.UpdateReplicationConfigurationOutput = {
         },
         stagingAreaTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         useFipsEndpoint = {
             type = "boolean",
@@ -6711,9 +6478,7 @@ M.UpdateSourceServerInput = {
                 required = true,
             },
         },
-        connectorAction = {
-            type = "structure",
-        },
+        connectorAction = M.SourceServerConnectorAction,
     },
 }
 
@@ -6731,21 +6496,13 @@ M.UpdateSourceServerOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        launchedInstance = {
-            type = "structure",
-        },
-        dataReplicationInfo = {
-            type = "structure",
-        },
-        lifeCycle = {
-            type = "structure",
-        },
-        sourceProperties = {
-            type = "structure",
-        },
+        launchedInstance = M.LaunchedInstance,
+        dataReplicationInfo = M.DataReplicationInfo,
+        lifeCycle = M.LifeCycle,
+        sourceProperties = M.SourceProperties,
         replicationType = {
             type = "string",
         },
@@ -6761,9 +6518,7 @@ M.UpdateSourceServerOutput = {
         fqdnForActionFramework = {
             type = "string",
         },
-        connectorAction = {
-            type = "structure",
-        },
+        connectorAction = M.SourceServerConnectorAction,
     },
 }
 
@@ -6802,21 +6557,13 @@ M.UpdateSourceServerReplicationTypeOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        launchedInstance = {
-            type = "structure",
-        },
-        dataReplicationInfo = {
-            type = "structure",
-        },
-        lifeCycle = {
-            type = "structure",
-        },
-        sourceProperties = {
-            type = "structure",
-        },
+        launchedInstance = M.LaunchedInstance,
+        dataReplicationInfo = M.DataReplicationInfo,
+        lifeCycle = M.LifeCycle,
+        sourceProperties = M.SourceProperties,
         replicationType = {
             type = "string",
         },
@@ -6832,9 +6579,7 @@ M.UpdateSourceServerReplicationTypeOutput = {
         fqdnForActionFramework = {
             type = "string",
         },
-        connectorAction = {
-            type = "structure",
-        },
+        connectorAction = M.SourceServerConnectorAction,
     },
 }
 
@@ -6873,18 +6618,12 @@ M.StartImportFileEnrichmentInput = {
         clientToken = {
             type = "string",
         },
-        s3BucketSource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        s3BucketTarget = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        s3BucketSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EnrichmentSourceS3Configuration }),
+        s3BucketTarget = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EnrichmentTargetS3Configuration }),
         ipAssignmentStrategy = {
             type = "string",
         },
@@ -6912,8 +6651,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -6937,7 +6676,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -6970,7 +6709,7 @@ M.DescribeVcenterClientsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -7007,13 +6746,13 @@ M.VcenterClient = {
         },
         sourceServerTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -7023,7 +6762,7 @@ M.DescribeVcenterClientsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.VcenterClient,
         },
         nextToken = {
             type = "string",
@@ -7074,7 +6813,10 @@ M.WaveAggregatedStatus = {
             type = "string",
         },
         totalApplications = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -7097,9 +6839,7 @@ M.ArchiveWaveOutput = {
         isArchived = {
             type = "boolean",
         },
-        waveAggregatedStatus = {
-            type = "structure",
-        },
+        waveAggregatedStatus = M.WaveAggregatedStatus,
         creationDateTime = {
             type = "string",
         },
@@ -7108,8 +6848,8 @@ M.ArchiveWaveOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -7125,7 +6865,7 @@ M.AssociateApplicationsInput = {
         },
         applicationIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -7154,8 +6894,8 @@ M.CreateWaveInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         accountID = {
             type = "string",
@@ -7181,9 +6921,7 @@ M.CreateWaveOutput = {
         isArchived = {
             type = "boolean",
         },
-        waveAggregatedStatus = {
-            type = "structure",
-        },
+        waveAggregatedStatus = M.WaveAggregatedStatus,
         creationDateTime = {
             type = "string",
         },
@@ -7192,8 +6930,8 @@ M.CreateWaveOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -7228,7 +6966,7 @@ M.DisassociateApplicationsInput = {
         },
         applicationIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -7248,7 +6986,7 @@ M.ListWavesRequestFilters = {
     members = {
         waveIDs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         isArchived = {
             type = "boolean",
@@ -7259,11 +6997,9 @@ M.ListWavesRequestFilters = {
 M.ListWavesInput = {
     type = "structure",
     members = {
-        filters = {
-            type = "structure",
-        },
+        filters = M.ListWavesRequestFilters,
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -7292,9 +7028,7 @@ M.Wave = {
         isArchived = {
             type = "boolean",
         },
-        waveAggregatedStatus = {
-            type = "structure",
-        },
+        waveAggregatedStatus = M.WaveAggregatedStatus,
         creationDateTime = {
             type = "string",
         },
@@ -7303,8 +7037,8 @@ M.Wave = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -7314,7 +7048,7 @@ M.ListWavesOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.Wave,
         },
         nextToken = {
             type = "string",
@@ -7355,9 +7089,7 @@ M.UnarchiveWaveOutput = {
         isArchived = {
             type = "boolean",
         },
-        waveAggregatedStatus = {
-            type = "structure",
-        },
+        waveAggregatedStatus = M.WaveAggregatedStatus,
         creationDateTime = {
             type = "string",
         },
@@ -7366,8 +7098,8 @@ M.UnarchiveWaveOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -7411,9 +7143,7 @@ M.UpdateWaveOutput = {
         isArchived = {
             type = "boolean",
         },
-        waveAggregatedStatus = {
-            type = "structure",
-        },
+        waveAggregatedStatus = M.WaveAggregatedStatus,
         creationDateTime = {
             type = "string",
         },
@@ -7422,8 +7152,8 @@ M.UpdateWaveOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }

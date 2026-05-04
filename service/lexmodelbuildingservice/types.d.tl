@@ -1434,37 +1434,37 @@ local record NotFoundException
     message: string
 end
 
+local type ImportStatus = "IN_PROGRESS" | "COMPLETE" | "FAILED"
+
+local type MigrationStatus = "IN_PROGRESS" | "COMPLETED" | "FAILED"
+
+local type SlotValueSelectionStrategy = "ORIGINAL_VALUE" | "TOP_RESOLUTION"
+
 local type MigrationStrategy = "CREATE_NEW" | "UPDATE_EXISTING"
 
 local type Status = "BUILDING" | "READY" | "READY_BASIC_TESTING" | "FAILED" | "NOT_BUILT"
 
-local type ImportStatus = "IN_PROGRESS" | "COMPLETE" | "FAILED"
-
-local type SlotValueSelectionStrategy = "ORIGINAL_VALUE" | "TOP_RESOLUTION"
-
-local type MigrationStatus = "IN_PROGRESS" | "COMPLETED" | "FAILED"
-
 local type ResourceType = "BOT" | "INTENT" | "SLOT_TYPE"
 
+local type MergeStrategy = "OVERWRITE_LATEST" | "FAIL_ON_CONFLICT"
+
 local type ChannelType = "Facebook" | "Slack" | "Twilio-Sms" | "Kik"
-
-local type ExportStatus = "IN_PROGRESS" | "READY" | "FAILED"
-
-local type StatusType = "Detected" | "Missed"
-
-local type MigrationSortAttribute = "V1_BOT_NAME" | "MIGRATION_DATE_TIME"
 
 local type SortOrder = "ASCENDING" | "DESCENDING"
 
 local type Locale = "de-DE" | "en-AU" | "en-GB" | "en-IN" | "en-US" | "es-419" | "es-ES" | "es-US" | "fr-FR" | "fr-CA" | "it-IT" | "ja-JP" | "ko-KR"
 
+local type ExportStatus = "IN_PROGRESS" | "READY" | "FAILED"
+
+local type MigrationSortAttribute = "V1_BOT_NAME" | "MIGRATION_DATE_TIME"
+
 local type ExportType = "ALEXA_SKILLS_KIT" | "LEX"
+
+local type ProcessBehavior = "SAVE" | "BUILD"
 
 local type ChannelStatus = "IN_PROGRESS" | "CREATED" | "FAILED"
 
-local type MergeStrategy = "OVERWRITE_LATEST" | "FAIL_ON_CONFLICT"
-
-local type ProcessBehavior = "SAVE" | "BUILD"
+local type StatusType = "Detected" | "Missed"
 
 local record M
     CreateBotVersionInput: CreateBotVersionInput

@@ -49,7 +49,7 @@ M.EntityNotExistsException = {
         },
         EntityIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -155,7 +155,7 @@ M.StorageRuleType = {
     type = "structure",
     members = {
         StorageAllocatedInBytes = {
-            type = "number",
+            type = "long",
         },
         StorageType = {
             type = "string",
@@ -167,11 +167,9 @@ M.UserStorageMetadata = {
     type = "structure",
     members = {
         StorageUtilizedInBytes = {
-            type = "number",
+            type = "long",
         },
-        StorageRule = {
-            type = "structure",
-        },
+        StorageRule = M.StorageRuleType,
     },
 }
 
@@ -228,18 +226,14 @@ M.User = {
         Locale = {
             type = "string",
         },
-        Storage = {
-            type = "structure",
-        },
+        Storage = M.UserStorageMetadata,
     },
 }
 
 M.ActivateUserOutput = {
     type = "structure",
     members = {
-        User = {
-            type = "structure",
-        },
+        User = M.User,
     },
 }
 
@@ -255,9 +249,7 @@ M.CommentMetadata = {
         CommentId = {
             type = "string",
         },
-        Contributor = {
-            type = "structure",
-        },
+        Contributor = M.User,
         CreatedTimestamp = {
             type = "timestamp",
         },
@@ -317,9 +309,7 @@ M.ResourceMetadata = {
         VersionId = {
             type = "string",
         },
-        Owner = {
-            type = "structure",
-        },
+        Owner = M.UserMetadata,
         ParentId = {
             type = "string",
         },
@@ -343,11 +333,11 @@ M.Participants = {
     members = {
         Users = {
             type = "list",
-            member_type = "structure",
+            member = M.UserMetadata,
         },
         Groups = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupMetadata,
         },
     },
 }
@@ -399,25 +389,18 @@ M.Activity = {
         },
         IsIndirectActivity = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         OrganizationId = {
             type = "string",
         },
-        Initiator = {
-            type = "structure",
-        },
-        Participants = {
-            type = "structure",
-        },
-        ResourceMetadata = {
-            type = "structure",
-        },
-        OriginalParent = {
-            type = "structure",
-        },
-        CommentMetadata = {
-            type = "structure",
-        },
+        Initiator = M.UserMetadata,
+        Participants = M.Participants,
+        ResourceMetadata = M.ResourceMetadata,
+        OriginalParent = M.ResourceMetadata,
+        CommentMetadata = M.CommentMetadata,
     },
 }
 
@@ -430,6 +413,9 @@ M.NotificationOptions = {
     members = {
         SendEmail = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         EmailMessage = {
             type = "string",
@@ -494,14 +480,12 @@ M.AddResourcePermissionsInput = {
         },
         Principals = {
             type = "list",
-            member_type = "structure",
+            member = M.SharePrincipal,
             traits = {
                 required = true,
             },
         },
-        NotificationOptions = {
-            type = "structure",
-        },
+        NotificationOptions = M.NotificationOptions,
     },
 }
 
@@ -539,7 +523,7 @@ M.AddResourcePermissionsOutput = {
     members = {
         ShareResults = {
             type = "list",
-            member_type = "structure",
+            member = M.ShareResult,
         },
     },
 }
@@ -589,6 +573,9 @@ M.CreateCommentInput = {
         },
         NotifyCollaborators = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -611,9 +598,7 @@ M.Comment = {
         Text = {
             type = "string",
         },
-        Contributor = {
-            type = "structure",
-        },
+        Contributor = M.User,
         CreatedTimestamp = {
             type = "timestamp",
         },
@@ -632,9 +617,7 @@ M.Comment = {
 M.CreateCommentOutput = {
     type = "structure",
     members = {
-        Comment = {
-            type = "structure",
-        },
+        Comment = M.Comment,
     },
 }
 
@@ -682,8 +665,8 @@ M.CreateCustomMetadataInput = {
         },
         CustomMetadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -772,13 +755,13 @@ M.FolderMetadata = {
         },
         Labels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Size = {
-            type = "number",
+            type = "long",
         },
         LatestVersionSize = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -786,9 +769,7 @@ M.FolderMetadata = {
 M.CreateFolderOutput = {
     type = "structure",
     members = {
-        Metadata = {
-            type = "structure",
-        },
+        Metadata = M.FolderMetadata,
     },
 }
 
@@ -824,7 +805,7 @@ M.CreateLabelsInput = {
         },
         Labels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -910,9 +891,7 @@ M.Subscription = {
 M.CreateNotificationSubscriptionOutput = {
     type = "structure",
     members = {
-        Subscription = {
-            type = "structure",
-        },
+        Subscription = M.Subscription,
     },
 }
 
@@ -972,9 +951,7 @@ M.CreateUserInput = {
         TimeZoneId = {
             type = "string",
         },
-        StorageRule = {
-            type = "structure",
-        },
+        StorageRule = M.StorageRuleType,
         AuthenticationToken = {
             type = "string",
             traits = {
@@ -987,9 +964,7 @@ M.CreateUserInput = {
 M.CreateUserOutput = {
     type = "structure",
     members = {
-        User = {
-            type = "structure",
-        },
+        User = M.User,
     },
 }
 
@@ -1077,7 +1052,7 @@ M.DeleteCustomMetadataInput = {
         },
         Keys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "keys",
             },
@@ -1085,6 +1060,7 @@ M.DeleteCustomMetadataInput = {
         DeleteAll = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "deleteAll",
             },
         },
@@ -1144,6 +1120,7 @@ M.DeleteDocumentVersionInput = {
         DeletePriorVersions = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "deletePriorVersions",
                 required = true,
             },
@@ -1229,7 +1206,7 @@ M.DeleteLabelsInput = {
         },
         Labels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "labels",
             },
@@ -1237,6 +1214,7 @@ M.DeleteLabelsInput = {
         DeleteAll = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "deleteAll",
             },
         },
@@ -1342,11 +1320,12 @@ M.DescribeActivitiesInput = {
         IncludeIndirectActivities = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "includeIndirectActivities",
             },
         },
         Limit = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "limit",
             },
@@ -1365,7 +1344,7 @@ M.DescribeActivitiesOutput = {
     members = {
         UserActivities = {
             type = "list",
-            member_type = "structure",
+            member = M.Activity,
         },
         Marker = {
             type = "string",
@@ -1397,7 +1376,7 @@ M.DescribeCommentsInput = {
             },
         },
         Limit = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "limit",
             },
@@ -1416,7 +1395,7 @@ M.DescribeCommentsOutput = {
     members = {
         Comments = {
             type = "list",
-            member_type = "structure",
+            member = M.Comment,
         },
         Marker = {
             type = "string",
@@ -1447,7 +1426,7 @@ M.DescribeDocumentVersionsInput = {
             },
         },
         Limit = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "limit",
             },
@@ -1496,7 +1475,7 @@ M.DocumentVersionMetadata = {
             type = "string",
         },
         Size = {
-            type = "number",
+            type = "long",
         },
         Signature = {
             type = "string",
@@ -1521,13 +1500,13 @@ M.DocumentVersionMetadata = {
         },
         Thumbnail = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Source = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1537,7 +1516,7 @@ M.DescribeDocumentVersionsOutput = {
     members = {
         DocumentVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.DocumentVersionMetadata,
         },
         Marker = {
             type = "string",
@@ -1600,7 +1579,7 @@ M.DescribeFolderContentsInput = {
             },
         },
         Limit = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "limit",
             },
@@ -1644,15 +1623,13 @@ M.DocumentMetadata = {
         ModifiedTimestamp = {
             type = "timestamp",
         },
-        LatestVersionMetadata = {
-            type = "structure",
-        },
+        LatestVersionMetadata = M.DocumentVersionMetadata,
         ResourceState = {
             type = "string",
         },
         Labels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1662,11 +1639,11 @@ M.DescribeFolderContentsOutput = {
     members = {
         Folders = {
             type = "list",
-            member_type = "structure",
+            member = M.FolderMetadata,
         },
         Documents = {
             type = "list",
-            member_type = "structure",
+            member = M.DocumentMetadata,
         },
         Marker = {
             type = "string",
@@ -1703,7 +1680,7 @@ M.DescribeGroupsInput = {
             },
         },
         Limit = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "limit",
             },
@@ -1716,7 +1693,7 @@ M.DescribeGroupsOutput = {
     members = {
         Groups = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupMetadata,
         },
         Marker = {
             type = "string",
@@ -1741,7 +1718,7 @@ M.DescribeNotificationSubscriptionsInput = {
             },
         },
         Limit = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "limit",
             },
@@ -1754,7 +1731,7 @@ M.DescribeNotificationSubscriptionsOutput = {
     members = {
         Subscriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.Subscription,
         },
         Marker = {
             type = "string",
@@ -1785,7 +1762,7 @@ M.DescribeResourcePermissionsInput = {
             },
         },
         Limit = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "limit",
             },
@@ -1827,7 +1804,7 @@ M.Principal = {
         },
         Roles = {
             type = "list",
-            member_type = "structure",
+            member = M.PermissionInfo,
         },
     },
 }
@@ -1837,7 +1814,7 @@ M.DescribeResourcePermissionsOutput = {
     members = {
         Principals = {
             type = "list",
-            member_type = "structure",
+            member = M.Principal,
         },
         Marker = {
             type = "string",
@@ -1856,7 +1833,7 @@ M.DescribeRootFoldersInput = {
             },
         },
         Limit = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "limit",
             },
@@ -1875,7 +1852,7 @@ M.DescribeRootFoldersOutput = {
     members = {
         Folders = {
             type = "list",
-            member_type = "structure",
+            member = M.FolderMetadata,
         },
         Marker = {
             type = "string",
@@ -1948,7 +1925,7 @@ M.DescribeUsersInput = {
             },
         },
         Limit = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "limit",
             },
@@ -1967,10 +1944,10 @@ M.DescribeUsersOutput = {
     members = {
         Users = {
             type = "list",
-            member_type = "structure",
+            member = M.User,
         },
         TotalNumberOfUsers = {
-            type = "number",
+            type = "long",
         },
         Marker = {
             type = "string",
@@ -2004,9 +1981,7 @@ M.GetCurrentUserInput = {
 M.GetCurrentUserOutput = {
     type = "structure",
     members = {
-        User = {
-            type = "structure",
-        },
+        User = M.User,
     },
 }
 
@@ -2029,6 +2004,7 @@ M.GetDocumentInput = {
         IncludeCustomMetadata = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "includeCustomMetadata",
             },
         },
@@ -2038,13 +2014,11 @@ M.GetDocumentInput = {
 M.GetDocumentOutput = {
     type = "structure",
     members = {
-        Metadata = {
-            type = "structure",
-        },
+        Metadata = M.DocumentMetadata,
         CustomMetadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2066,7 +2040,7 @@ M.GetDocumentPathInput = {
             },
         },
         Limit = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "limit",
             },
@@ -2103,7 +2077,7 @@ M.ResourcePath = {
     members = {
         Components = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePathComponent,
         },
     },
 }
@@ -2111,9 +2085,7 @@ M.ResourcePath = {
 M.GetDocumentPathOutput = {
     type = "structure",
     members = {
-        Path = {
-            type = "structure",
-        },
+        Path = M.ResourcePath,
     },
 }
 
@@ -2149,6 +2121,7 @@ M.GetDocumentVersionInput = {
         IncludeCustomMetadata = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "includeCustomMetadata",
             },
         },
@@ -2158,13 +2131,11 @@ M.GetDocumentVersionInput = {
 M.GetDocumentVersionOutput = {
     type = "structure",
     members = {
-        Metadata = {
-            type = "structure",
-        },
+        Metadata = M.DocumentVersionMetadata,
         CustomMetadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2188,6 +2159,7 @@ M.GetFolderInput = {
         IncludeCustomMetadata = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "includeCustomMetadata",
             },
         },
@@ -2197,13 +2169,11 @@ M.GetFolderInput = {
 M.GetFolderOutput = {
     type = "structure",
     members = {
-        Metadata = {
-            type = "structure",
-        },
+        Metadata = M.FolderMetadata,
         CustomMetadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2225,7 +2195,7 @@ M.GetFolderPathInput = {
             },
         },
         Limit = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "limit",
             },
@@ -2248,9 +2218,7 @@ M.GetFolderPathInput = {
 M.GetFolderPathOutput = {
     type = "structure",
     members = {
-        Path = {
-            type = "structure",
-        },
+        Path = M.ResourcePath,
     },
 }
 
@@ -2280,7 +2248,7 @@ M.GetResourcesInput = {
             },
         },
         Limit = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "limit",
             },
@@ -2299,11 +2267,11 @@ M.GetResourcesOutput = {
     members = {
         Folders = {
             type = "list",
-            member_type = "structure",
+            member = M.FolderMetadata,
         },
         Documents = {
             type = "list",
-            member_type = "structure",
+            member = M.DocumentMetadata,
         },
         Marker = {
             type = "string",
@@ -2346,7 +2314,7 @@ M.InitiateDocumentVersionUploadInput = {
             type = "string",
         },
         DocumentSizeInBytes = {
-            type = "number",
+            type = "long",
         },
         ParentFolderId = {
             type = "string",
@@ -2362,8 +2330,8 @@ M.UploadMetadata = {
         },
         SignedHeaders = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2371,12 +2339,8 @@ M.UploadMetadata = {
 M.InitiateDocumentVersionUploadOutput = {
     type = "structure",
     members = {
-        Metadata = {
-            type = "structure",
-        },
-        UploadMetadata = {
-            type = "structure",
-        },
+        Metadata = M.DocumentMetadata,
+        UploadMetadata = M.UploadMetadata,
     },
 }
 
@@ -2534,7 +2498,7 @@ M.SearchPrincipalType = {
         },
         Roles = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2555,10 +2519,10 @@ M.LongRangeType = {
     type = "structure",
     members = {
         StartValue = {
-            type = "number",
+            type = "long",
         },
         EndValue = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -2602,41 +2566,35 @@ M.Filters = {
     members = {
         TextLocales = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ContentCategories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ResourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Labels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Principals = {
             type = "list",
-            member_type = "structure",
+            member = M.SearchPrincipalType,
         },
         AncestorIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SearchCollectionTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        SizeRange = {
-            type = "structure",
-        },
-        CreatedRange = {
-            type = "structure",
-        },
-        ModifiedRange = {
-            type = "structure",
-        },
+        SizeRange = M.LongRangeType,
+        CreatedRange = M.DateRangeType,
+        ModifiedRange = M.DateRangeType,
     },
 }
 
@@ -2684,24 +2642,22 @@ M.SearchResourcesInput = {
         },
         QueryScopes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         OrganizationId = {
             type = "string",
         },
         AdditionalResponseFields = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        Filters = {
-            type = "structure",
-        },
+        Filters = M.Filters,
         OrderBy = {
             type = "list",
-            member_type = "structure",
+            member = M.SearchSortResult,
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -2725,18 +2681,10 @@ M.ResponseItem = {
         WebUrl = {
             type = "string",
         },
-        DocumentMetadata = {
-            type = "structure",
-        },
-        FolderMetadata = {
-            type = "structure",
-        },
-        CommentMetadata = {
-            type = "structure",
-        },
-        DocumentVersionMetadata = {
-            type = "structure",
-        },
+        DocumentMetadata = M.DocumentMetadata,
+        FolderMetadata = M.FolderMetadata,
+        CommentMetadata = M.CommentMetadata,
+        DocumentVersionMetadata = M.DocumentVersionMetadata,
     },
 }
 
@@ -2745,7 +2693,7 @@ M.SearchResourcesOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.ResponseItem,
         },
         Marker = {
             type = "string",
@@ -2907,9 +2855,7 @@ M.UpdateUserInput = {
         Type = {
             type = "string",
         },
-        StorageRule = {
-            type = "structure",
-        },
+        StorageRule = M.StorageRuleType,
         TimeZoneId = {
             type = "string",
         },
@@ -2925,9 +2871,7 @@ M.UpdateUserInput = {
 M.UpdateUserOutput = {
     type = "structure",
     members = {
-        User = {
-            type = "structure",
-        },
+        User = M.User,
     },
 }
 

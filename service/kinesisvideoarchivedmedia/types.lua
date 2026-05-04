@@ -42,12 +42,9 @@ M.ClipFragmentSelector = {
                 required = true,
             },
         },
-        TimestampRange = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TimestampRange = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ClipTimestampRange }),
     },
 }
 
@@ -60,12 +57,9 @@ M.GetClipInput = {
         StreamARN = {
             type = "string",
         },
-        ClipFragmentSelector = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ClipFragmentSelector = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ClipFragmentSelector }),
     },
 }
 
@@ -81,6 +75,7 @@ M.GetClipOutput = {
         Payload = {
             type = "blob",
             traits = {
+                default = "",
                 http_payload = true,
             },
         },
@@ -190,9 +185,7 @@ M.DASHFragmentSelector = {
         FragmentSelectorType = {
             type = "string",
         },
-        TimestampRange = {
-            type = "structure",
-        },
+        TimestampRange = M.DASHTimestampRange,
     },
 }
 
@@ -230,14 +223,12 @@ M.GetDASHStreamingSessionURLInput = {
         DisplayFragmentNumber = {
             type = "string",
         },
-        DASHFragmentSelector = {
-            type = "structure",
-        },
+        DASHFragmentSelector = M.DASHFragmentSelector,
         Expires = {
-            type = "number",
+            type = "integer",
         },
         MaxManifestFragmentResults = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -290,9 +281,7 @@ M.HLSFragmentSelector = {
         FragmentSelectorType = {
             type = "string",
         },
-        TimestampRange = {
-            type = "structure",
-        },
+        TimestampRange = M.HLSTimestampRange,
     },
 }
 
@@ -314,9 +303,7 @@ M.GetHLSStreamingSessionURLInput = {
         PlaybackMode = {
             type = "string",
         },
-        HLSFragmentSelector = {
-            type = "structure",
-        },
+        HLSFragmentSelector = M.HLSFragmentSelector,
         ContainerFormat = {
             type = "string",
         },
@@ -327,10 +314,10 @@ M.GetHLSStreamingSessionURLInput = {
             type = "string",
         },
         Expires = {
-            type = "number",
+            type = "integer",
         },
         MaxMediaPlaylistFragmentResults = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -386,7 +373,7 @@ M.GetImagesInput = {
             },
         },
         SamplingInterval = {
-            type = "number",
+            type = "integer",
         },
         Format = {
             type = "string",
@@ -396,17 +383,17 @@ M.GetImagesInput = {
         },
         FormatConfig = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         WidthPixels = {
-            type = "number",
+            type = "integer",
         },
         HeightPixels = {
-            type = "number",
+            type = "integer",
         },
         MaxResults = {
-            type = "number",
+            type = "long",
         },
         NextToken = {
             type = "string",
@@ -439,7 +426,7 @@ M.GetImagesOutput = {
     members = {
         Images = {
             type = "list",
-            member_type = "structure",
+            member = M.Image,
         },
         NextToken = {
             type = "string",
@@ -458,7 +445,7 @@ M.GetMediaForFragmentListInput = {
         },
         Fragments = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -478,6 +465,7 @@ M.GetMediaForFragmentListOutput = {
         Payload = {
             type = "blob",
             traits = {
+                default = "",
                 http_payload = true,
             },
         },
@@ -516,12 +504,9 @@ M.FragmentSelector = {
                 required = true,
             },
         },
-        TimestampRange = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TimestampRange = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TimestampRange }),
     },
 }
 
@@ -535,14 +520,12 @@ M.ListFragmentsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "long",
         },
         NextToken = {
             type = "string",
         },
-        FragmentSelector = {
-            type = "structure",
-        },
+        FragmentSelector = M.FragmentSelector,
     },
 }
 
@@ -553,7 +536,10 @@ M.Fragment = {
             type = "string",
         },
         FragmentSizeInBytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         ProducerTimestamp = {
             type = "timestamp",
@@ -562,7 +548,10 @@ M.Fragment = {
             type = "timestamp",
         },
         FragmentLengthInMilliseconds = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -572,7 +561,7 @@ M.ListFragmentsOutput = {
     members = {
         Fragments = {
             type = "list",
-            member_type = "structure",
+            member = M.Fragment,
         },
         NextToken = {
             type = "string",

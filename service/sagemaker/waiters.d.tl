@@ -1,0 +1,19 @@
+local types = require("sagemaker.types")
+
+local record M
+    wait_until_endpoint_deleted: function(client: table, input: table, options: table): table, table
+    wait_until_endpoint_in_service: function(client: table, input: table, options: table): table, table
+    wait_until_image_created: function(client: table, input: table, options: table): table, table
+    wait_until_image_deleted: function(client: table, input: table, options: table): table, table
+    wait_until_image_updated: function(client: table, input: table, options: table): table, table
+    wait_until_image_version_created: function(client: table, input: table, options: table): table, table
+    wait_until_image_version_deleted: function(client: table, input: table, options: table): table, table
+    wait_until_notebook_instance_deleted: function(client: table, input: table, options: table): table, table
+    wait_until_notebook_instance_in_service: function(client: table, input: table, options: table): table, table
+    wait_until_notebook_instance_stopped: function(client: table, input: table, options: table): table, table
+    wait_until_processing_job_completed_or_stopped: function(client: table, input: table, options: table): table, table
+    wait_until_training_job_completed_or_stopped: function(client: table, input: table, options: table): table, table
+    wait_until_transform_job_completed_or_stopped: function(client: table, input: table, options: table): table, table
+end
+
+return M

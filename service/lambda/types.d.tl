@@ -3789,9 +3789,35 @@ local record TooManyRequestsException
     Reason: string
 end
 
-local type LogType = "None" | "Tail"
+local type FunctionVersion = "ALL"
+
+local type InvokeMode = "BUFFERED" | "RESPONSE_STREAM"
+
+local type LastUpdateStatusReasonCode = "EniLimitExceeded" | "InsufficientRolePermissions" | "InvalidConfiguration" | "InternalError" | "SubnetOutOfIPAddresses" | "InvalidSubnet" | "InvalidSecurityGroup" | "ImageDeleted" | "ImageAccessDenied" | "InvalidImage" | "KMSKeyAccessDenied" | "KMSKeyNotFound" | "InvalidStateKMSKey" | "DisabledKMSKey" | "EFSIOError" | "EFSMountConnectivityError" | "EFSMountFailure" | "EFSMountTimeout" | "InvalidRuntime" | "InvalidZipFileException" | "FunctionError" | "VcpuLimitExceeded" | "CapacityProviderScalingLimitExceeded" | "InsufficientCapacity" | "EC2RequestLimitExceeded" | "FunctionError.InitTimeout" | "FunctionError.RuntimeInitError" | "FunctionError.ExtensionInitError" | "FunctionError.InvalidEntryPoint" | "FunctionError.InvalidWorkingDirectory" | "FunctionError.PermissionDenied" | "FunctionError.TooManyExtensions" | "FunctionError.InitResourceExhausted" | "DisallowedByVpcEncryptionControl"
+
+local type CapacityProviderState = "Pending" | "Active" | "Failed" | "Deleting"
+
+local type StateReasonCode = "Idle" | "Creating" | "Restoring" | "EniLimitExceeded" | "InsufficientRolePermissions" | "InvalidConfiguration" | "InternalError" | "SubnetOutOfIPAddresses" | "InvalidSubnet" | "InvalidSecurityGroup" | "ImageDeleted" | "ImageAccessDenied" | "InvalidImage" | "KMSKeyAccessDenied" | "KMSKeyNotFound" | "InvalidStateKMSKey" | "DisabledKMSKey" | "EFSIOError" | "EFSMountConnectivityError" | "EFSMountFailure" | "EFSMountTimeout" | "InvalidRuntime" | "InvalidZipFileException" | "FunctionError" | "DrainingDurableExecutions" | "VcpuLimitExceeded" | "CapacityProviderScalingLimitExceeded" | "InsufficientCapacity" | "EC2RequestLimitExceeded" | "FunctionError.InitTimeout" | "FunctionError.RuntimeInitError" | "FunctionError.ExtensionInitError" | "FunctionError.InvalidEntryPoint" | "FunctionError.InvalidWorkingDirectory" | "FunctionError.PermissionDenied" | "FunctionError.TooManyExtensions" | "FunctionError.InitResourceExhausted" | "DisallowedByVpcEncryptionControl"
+
+local type ResponseStreamingInvocationType = "RequestResponse" | "DryRun"
+
+local type PackageType = "Zip" | "Image"
+
+local type ProvisionedConcurrencyStatusEnum = "IN_PROGRESS" | "READY" | "FAILED"
+
+local type Runtime = "nodejs" | "nodejs4.3" | "nodejs6.10" | "nodejs8.10" | "nodejs10.x" | "nodejs12.x" | "nodejs14.x" | "nodejs16.x" | "java8" | "java8.al2" | "java11" | "python2.7" | "python3.6" | "python3.7" | "python3.8" | "python3.9" | "dotnetcore1.0" | "dotnetcore2.0" | "dotnetcore2.1" | "dotnetcore3.1" | "dotnet6" | "dotnet8" | "nodejs4.3-edge" | "go1.x" | "ruby2.5" | "ruby2.7" | "provided" | "provided.al2" | "nodejs18.x" | "python3.10" | "java17" | "ruby3.2" | "ruby3.3" | "ruby3.4" | "python3.11" | "nodejs20.x" | "provided.al2023" | "python3.12" | "java21" | "python3.13" | "nodejs22.x" | "nodejs24.x" | "python3.14" | "java25" | "dotnet10" | "ruby4.0"
+
+local type FunctionVersionLatestPublished = "LATEST_PUBLISHED"
+
+local type EventSourcePosition = "TRIM_HORIZON" | "LATEST" | "AT_TIMESTAMP"
 
 local type Architecture = "x86_64" | "arm64"
+
+local type LogType = "None" | "Tail"
+
+local type UpdateRuntimeOn = "Auto" | "Manual" | "FunctionUpdate"
+
+local type State = "Pending" | "Active" | "Inactive" | "Failed" | "Deactivating" | "Deactivated" | "ActiveNonInvocable" | "Deleting"
 
 local type LastUpdateStatus = "Successful" | "Failed" | "InProgress"
 
@@ -3801,33 +3827,7 @@ local type InvocationType = "Event" | "RequestResponse" | "DryRun"
 
 local type RecursiveLoop = "Allow" | "Terminate"
 
-local type State = "Pending" | "Active" | "Inactive" | "Failed" | "Deactivating" | "Deactivated" | "ActiveNonInvocable" | "Deleting"
-
 local type ExecutionStatus = "RUNNING" | "SUCCEEDED" | "FAILED" | "TIMED_OUT" | "STOPPED"
-
-local type FunctionVersion = "ALL"
-
-local type LastUpdateStatusReasonCode = "EniLimitExceeded" | "InsufficientRolePermissions" | "InvalidConfiguration" | "InternalError" | "SubnetOutOfIPAddresses" | "InvalidSubnet" | "InvalidSecurityGroup" | "ImageDeleted" | "ImageAccessDenied" | "InvalidImage" | "KMSKeyAccessDenied" | "KMSKeyNotFound" | "InvalidStateKMSKey" | "DisabledKMSKey" | "EFSIOError" | "EFSMountConnectivityError" | "EFSMountFailure" | "EFSMountTimeout" | "InvalidRuntime" | "InvalidZipFileException" | "FunctionError" | "VcpuLimitExceeded" | "CapacityProviderScalingLimitExceeded" | "InsufficientCapacity" | "EC2RequestLimitExceeded" | "FunctionError.InitTimeout" | "FunctionError.RuntimeInitError" | "FunctionError.ExtensionInitError" | "FunctionError.InvalidEntryPoint" | "FunctionError.InvalidWorkingDirectory" | "FunctionError.PermissionDenied" | "FunctionError.TooManyExtensions" | "FunctionError.InitResourceExhausted" | "DisallowedByVpcEncryptionControl"
-
-local type InvokeMode = "BUFFERED" | "RESPONSE_STREAM"
-
-local type CapacityProviderState = "Pending" | "Active" | "Failed" | "Deleting"
-
-local type UpdateRuntimeOn = "Auto" | "Manual" | "FunctionUpdate"
-
-local type EventSourcePosition = "TRIM_HORIZON" | "LATEST" | "AT_TIMESTAMP"
-
-local type PackageType = "Zip" | "Image"
-
-local type ProvisionedConcurrencyStatusEnum = "IN_PROGRESS" | "READY" | "FAILED"
-
-local type ResponseStreamingInvocationType = "RequestResponse" | "DryRun"
-
-local type Runtime = "nodejs" | "nodejs4.3" | "nodejs6.10" | "nodejs8.10" | "nodejs10.x" | "nodejs12.x" | "nodejs14.x" | "nodejs16.x" | "java8" | "java8.al2" | "java11" | "python2.7" | "python3.6" | "python3.7" | "python3.8" | "python3.9" | "dotnetcore1.0" | "dotnetcore2.0" | "dotnetcore2.1" | "dotnetcore3.1" | "dotnet6" | "dotnet8" | "nodejs4.3-edge" | "go1.x" | "ruby2.5" | "ruby2.7" | "provided" | "provided.al2" | "nodejs18.x" | "python3.10" | "java17" | "ruby3.2" | "ruby3.3" | "ruby3.4" | "python3.11" | "nodejs20.x" | "provided.al2023" | "python3.12" | "java21" | "python3.13" | "nodejs22.x" | "nodejs24.x" | "python3.14" | "java25" | "dotnet10" | "ruby4.0"
-
-local type StateReasonCode = "Idle" | "Creating" | "Restoring" | "EniLimitExceeded" | "InsufficientRolePermissions" | "InvalidConfiguration" | "InternalError" | "SubnetOutOfIPAddresses" | "InvalidSubnet" | "InvalidSecurityGroup" | "ImageDeleted" | "ImageAccessDenied" | "InvalidImage" | "KMSKeyAccessDenied" | "KMSKeyNotFound" | "InvalidStateKMSKey" | "DisabledKMSKey" | "EFSIOError" | "EFSMountConnectivityError" | "EFSMountFailure" | "EFSMountTimeout" | "InvalidRuntime" | "InvalidZipFileException" | "FunctionError" | "DrainingDurableExecutions" | "VcpuLimitExceeded" | "CapacityProviderScalingLimitExceeded" | "InsufficientCapacity" | "EC2RequestLimitExceeded" | "FunctionError.InitTimeout" | "FunctionError.RuntimeInitError" | "FunctionError.ExtensionInitError" | "FunctionError.InvalidEntryPoint" | "FunctionError.InvalidWorkingDirectory" | "FunctionError.PermissionDenied" | "FunctionError.TooManyExtensions" | "FunctionError.InitResourceExhausted" | "DisallowedByVpcEncryptionControl"
-
-local type FunctionVersionLatestPublished = "LATEST_PUBLISHED"
 
 local record M
     AddLayerVersionPermissionInput: AddLayerVersionPermissionInput

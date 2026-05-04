@@ -16,7 +16,7 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AWSChronosService"
-    cfg.signing_name = "awschronosservice"
+    cfg.signing_name = "scheduler"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end

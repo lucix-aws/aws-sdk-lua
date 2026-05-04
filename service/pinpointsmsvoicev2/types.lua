@@ -62,14 +62,16 @@ M.AccountLimit = {
             },
         },
         Used = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         Max = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -364,7 +366,7 @@ M.ValidationException = {
         },
         Fields = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -545,7 +547,7 @@ M.ConfigurationSetFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -651,20 +653,14 @@ M.EventDestination = {
         },
         MatchingEventTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        CloudWatchLogsDestination = {
-            type = "structure",
-        },
-        KinesisFirehoseDestination = {
-            type = "structure",
-        },
-        SnsDestination = {
-            type = "structure",
-        },
+        CloudWatchLogsDestination = M.CloudWatchLogsDestination,
+        KinesisFirehoseDestination = M.KinesisFirehoseDestination,
+        SnsDestination = M.SnsDestination,
     },
 }
 
@@ -685,7 +681,7 @@ M.ConfigurationSetInformation = {
         },
         EventDestinations = {
             type = "list",
-            member_type = "structure",
+            member = M.EventDestination,
             traits = {
                 required = true,
             },
@@ -734,7 +730,7 @@ M.CountryLaunchStatusFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -768,7 +764,7 @@ M.CountryLaunchStatusInformation = {
         },
         CarrierStatus = {
             type = "list",
-            member_type = "structure",
+            member = M.CarrierStatusInformation,
             traits = {
                 required = true,
             },
@@ -805,7 +801,7 @@ M.CreateConfigurationSetInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ClientToken = {
             type = "string",
@@ -824,7 +820,7 @@ M.CreateConfigurationSetOutput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         CreatedTimestamp = {
             type = "timestamp",
@@ -849,20 +845,14 @@ M.CreateEventDestinationInput = {
         },
         MatchingEventTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        CloudWatchLogsDestination = {
-            type = "structure",
-        },
-        KinesisFirehoseDestination = {
-            type = "structure",
-        },
-        SnsDestination = {
-            type = "structure",
-        },
+        CloudWatchLogsDestination = M.CloudWatchLogsDestination,
+        KinesisFirehoseDestination = M.KinesisFirehoseDestination,
+        SnsDestination = M.SnsDestination,
         ClientToken = {
             type = "string",
         },
@@ -878,9 +868,7 @@ M.CreateEventDestinationOutput = {
         ConfigurationSetName = {
             type = "string",
         },
-        EventDestination = {
-            type = "structure",
-        },
+        EventDestination = M.EventDestination,
     },
 }
 
@@ -918,11 +906,11 @@ M.CreateNotifyConfigurationInput = {
         },
         EnabledCountries = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         EnabledChannels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -935,7 +923,7 @@ M.CreateNotifyConfigurationInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -994,11 +982,11 @@ M.CreateNotifyConfigurationOutput = {
         },
         EnabledCountries = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         EnabledChannels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1027,12 +1015,13 @@ M.CreateNotifyConfigurationOutput = {
         DeletionProtectionEnabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         CreatedTimestamp = {
             type = "timestamp",
@@ -1054,7 +1043,7 @@ M.CreateOptOutListInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ClientToken = {
             type = "string",
@@ -1073,7 +1062,7 @@ M.CreateOptOutListOutput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         CreatedTimestamp = {
             type = "timestamp",
@@ -1104,7 +1093,7 @@ M.CreatePoolInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ClientToken = {
             type = "string",
@@ -1135,6 +1124,9 @@ M.CreatePoolOutput = {
         },
         TwoWayEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         TwoWayChannelArn = {
             type = "string",
@@ -1144,19 +1136,28 @@ M.CreatePoolOutput = {
         },
         SelfManagedOptOutsEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         OptOutListName = {
             type = "string",
         },
         SharedRoutesEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         DeletionProtectionEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         CreatedTimestamp = {
             type = "timestamp",
@@ -1175,7 +1176,7 @@ M.CreateProtectConfigurationInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1204,18 +1205,20 @@ M.CreateProtectConfigurationOutput = {
         AccountDefault = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
         DeletionProtectionEnabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1231,7 +1234,7 @@ M.CreateRcsAgentInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ClientToken = {
             type = "string",
@@ -1272,6 +1275,7 @@ M.CreateRcsAgentOutput = {
         DeletionProtectionEnabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -1287,6 +1291,7 @@ M.CreateRcsAgentOutput = {
         SelfManagedOptOutsEnabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -1299,12 +1304,13 @@ M.CreateRcsAgentOutput = {
         TwoWayEnabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1320,7 +1326,7 @@ M.CreateRegistrationInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ClientToken = {
             type = "string",
@@ -1369,19 +1375,19 @@ M.CreateRegistrationOutput = {
             },
         },
         CurrentVersionNumber = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         AdditionalAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         CreatedTimestamp = {
             type = "timestamp",
@@ -1469,7 +1475,7 @@ M.CreateRegistrationAttachmentInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ClientToken = {
             type = "string",
@@ -1500,7 +1506,7 @@ M.CreateRegistrationAttachmentOutput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         CreatedTimestamp = {
             type = "timestamp",
@@ -1592,7 +1598,7 @@ M.CreateRegistrationVersionOutput = {
             },
         },
         VersionNumber = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -1603,12 +1609,9 @@ M.CreateRegistrationVersionOutput = {
                 required = true,
             },
         },
-        RegistrationVersionStatusHistory = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RegistrationVersionStatusHistory = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RegistrationVersionStatusHistory }),
     },
 }
 
@@ -1626,7 +1629,7 @@ M.CreateVerifiedDestinationNumberInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ClientToken = {
             type = "string",
@@ -1672,7 +1675,7 @@ M.CreateVerifiedDestinationNumberOutput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         CreatedTimestamp = {
             type = "timestamp",
@@ -1728,7 +1731,7 @@ M.DeleteConfigurationSetOutput = {
         },
         EventDestinations = {
             type = "list",
-            member_type = "structure",
+            member = M.EventDestination,
         },
         DefaultMessageType = {
             type = "string",
@@ -1826,9 +1829,7 @@ M.DeleteEventDestinationOutput = {
         ConfigurationSetName = {
             type = "string",
         },
-        EventDestination = {
-            type = "structure",
-        },
+        EventDestination = M.EventDestination,
     },
 }
 
@@ -1885,7 +1886,7 @@ M.DeleteMediaMessageSpendLimitOverrideOutput = {
     type = "structure",
     members = {
         MonthlyLimit = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1937,11 +1938,11 @@ M.DeleteNotifyConfigurationOutput = {
         },
         EnabledCountries = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         EnabledChannels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1970,6 +1971,7 @@ M.DeleteNotifyConfigurationOutput = {
         DeletionProtectionEnabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -1990,7 +1992,7 @@ M.DeleteNotifyMessageSpendLimitOverrideOutput = {
     type = "structure",
     members = {
         MonthlyLimit = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -2030,6 +2032,9 @@ M.DeleteOptedOutNumberOutput = {
         },
         EndUserOptedOut = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -2090,6 +2095,9 @@ M.DeletePoolOutput = {
         },
         TwoWayEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         TwoWayChannelArn = {
             type = "string",
@@ -2099,12 +2107,18 @@ M.DeletePoolOutput = {
         },
         SelfManagedOptOutsEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         OptOutListName = {
             type = "string",
         },
         SharedRoutesEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         CreatedTimestamp = {
             type = "timestamp",
@@ -2148,12 +2162,14 @@ M.DeleteProtectConfigurationOutput = {
         AccountDefault = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
         DeletionProtectionEnabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -2267,6 +2283,7 @@ M.DeleteRcsAgentOutput = {
         DeletionProtectionEnabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -2276,6 +2293,7 @@ M.DeleteRcsAgentOutput = {
         SelfManagedOptOutsEnabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -2288,6 +2306,7 @@ M.DeleteRcsAgentOutput = {
         TwoWayEnabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -2334,21 +2353,21 @@ M.DeleteRegistrationOutput = {
             },
         },
         CurrentVersionNumber = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         ApprovedVersionNumber = {
-            type = "number",
+            type = "long",
         },
         LatestDeniedVersionNumber = {
-            type = "number",
+            type = "long",
         },
         AdditionalAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         CreatedTimestamp = {
             type = "timestamp",
@@ -2438,7 +2457,7 @@ M.DeleteRegistrationFieldValueOutput = {
             },
         },
         VersionNumber = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -2451,7 +2470,7 @@ M.DeleteRegistrationFieldValueOutput = {
         },
         SelectChoices = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TextValue = {
             type = "string",
@@ -2497,7 +2516,7 @@ M.DeleteTextMessageSpendLimitOverrideOutput = {
     type = "structure",
     members = {
         MonthlyLimit = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -2552,7 +2571,7 @@ M.DeleteVoiceMessageSpendLimitOverrideOutput = {
     type = "structure",
     members = {
         MonthlyLimit = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -2564,7 +2583,7 @@ M.DescribeAccountAttributesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2574,7 +2593,7 @@ M.DescribeAccountAttributesOutput = {
     members = {
         AccountAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.AccountAttribute,
         },
         NextToken = {
             type = "string",
@@ -2589,7 +2608,7 @@ M.DescribeAccountLimitsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2599,7 +2618,7 @@ M.DescribeAccountLimitsOutput = {
     members = {
         AccountLimits = {
             type = "list",
-            member_type = "structure",
+            member = M.AccountLimit,
         },
         NextToken = {
             type = "string",
@@ -2612,17 +2631,17 @@ M.DescribeConfigurationSetsInput = {
     members = {
         ConfigurationSetNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigurationSetFilter,
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2632,7 +2651,7 @@ M.DescribeConfigurationSetsOutput = {
     members = {
         ConfigurationSets = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigurationSetInformation,
         },
         NextToken = {
             type = "string",
@@ -2655,7 +2674,7 @@ M.KeywordFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2674,17 +2693,17 @@ M.DescribeKeywordsInput = {
         },
         Keywords = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.KeywordFilter,
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2724,7 +2743,7 @@ M.DescribeKeywordsOutput = {
         },
         Keywords = {
             type = "list",
-            member_type = "structure",
+            member = M.KeywordInformation,
         },
         NextToken = {
             type = "string",
@@ -2755,7 +2774,7 @@ M.NotifyConfigurationFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2768,17 +2787,17 @@ M.DescribeNotifyConfigurationsInput = {
     members = {
         NotifyConfigurationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.NotifyConfigurationFilter,
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2818,11 +2837,11 @@ M.NotifyConfigurationInformation = {
         },
         EnabledCountries = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         EnabledChannels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2851,6 +2870,7 @@ M.NotifyConfigurationInformation = {
         DeletionProtectionEnabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -2868,7 +2888,7 @@ M.DescribeNotifyConfigurationsOutput = {
     members = {
         NotifyConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.NotifyConfigurationInformation,
         },
         NextToken = {
             type = "string",
@@ -2896,7 +2916,7 @@ M.NotifyTemplateFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2909,17 +2929,17 @@ M.DescribeNotifyTemplatesInput = {
     members = {
         TemplateIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.NotifyTemplateFilter,
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3018,6 +3038,7 @@ M.TemplateVariableMetadata = {
         Required = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -3025,13 +3046,13 @@ M.TemplateVariableMetadata = {
             type = "string",
         },
         MaxLength = {
-            type = "number",
+            type = "integer",
         },
         MinValue = {
-            type = "number",
+            type = "integer",
         },
         MaxValue = {
-            type = "number",
+            type = "integer",
         },
         DefaultValue = {
             type = "string",
@@ -3058,7 +3079,7 @@ M.NotifyTemplateInformation = {
             },
         },
         Version = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -3071,21 +3092,21 @@ M.NotifyTemplateInformation = {
         },
         Channels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         TierAccess = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Status = {
             type = "string",
         },
         SupportedCountries = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         LanguageCode = {
             type = "string",
@@ -3095,12 +3116,12 @@ M.NotifyTemplateInformation = {
         },
         Variables = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.TemplateVariableMetadata,
         },
         SupportedVoiceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CreatedTimestamp = {
             type = "timestamp",
@@ -3116,7 +3137,7 @@ M.DescribeNotifyTemplatesOutput = {
     members = {
         NotifyTemplates = {
             type = "list",
-            member_type = "structure",
+            member = M.NotifyTemplateInformation,
         },
         NextToken = {
             type = "string",
@@ -3139,7 +3160,7 @@ M.OptedOutFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3158,17 +3179,17 @@ M.DescribeOptedOutNumbersInput = {
         },
         OptedOutNumbers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.OptedOutFilter,
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3191,6 +3212,7 @@ M.OptedOutNumberInformation = {
         EndUserOptedOut = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -3208,7 +3230,7 @@ M.DescribeOptedOutNumbersOutput = {
         },
         OptedOutNumbers = {
             type = "list",
-            member_type = "structure",
+            member = M.OptedOutNumberInformation,
         },
         NextToken = {
             type = "string",
@@ -3226,13 +3248,13 @@ M.DescribeOptOutListsInput = {
     members = {
         OptOutListNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Owner = {
             type = "string",
@@ -3269,7 +3291,7 @@ M.DescribeOptOutListsOutput = {
     members = {
         OptOutLists = {
             type = "list",
-            member_type = "structure",
+            member = M.OptOutListInformation,
         },
         NextToken = {
             type = "string",
@@ -3301,7 +3323,7 @@ M.PhoneNumberFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3314,17 +3336,17 @@ M.DescribePhoneNumbersInput = {
     members = {
         PhoneNumberIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.PhoneNumberFilter,
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Owner = {
             type = "string",
@@ -3386,7 +3408,7 @@ M.PhoneNumberInformation = {
         },
         NumberCapabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3406,6 +3428,7 @@ M.PhoneNumberInformation = {
         TwoWayEnabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -3418,6 +3441,7 @@ M.PhoneNumberInformation = {
         SelfManagedOptOutsEnabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -3429,10 +3453,14 @@ M.PhoneNumberInformation = {
         },
         InternationalSendingEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         DeletionProtectionEnabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -3456,7 +3484,7 @@ M.DescribePhoneNumbersOutput = {
     members = {
         PhoneNumbers = {
             type = "list",
-            member_type = "structure",
+            member = M.PhoneNumberInformation,
         },
         NextToken = {
             type = "string",
@@ -3486,7 +3514,7 @@ M.PoolFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3499,17 +3527,17 @@ M.DescribePoolsInput = {
     members = {
         PoolIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.PoolFilter,
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Owner = {
             type = "string",
@@ -3547,6 +3575,7 @@ M.PoolInformation = {
         TwoWayEnabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -3559,6 +3588,7 @@ M.PoolInformation = {
         SelfManagedOptOutsEnabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -3571,12 +3601,14 @@ M.PoolInformation = {
         SharedRoutesEnabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
         DeletionProtectionEnabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -3594,7 +3626,7 @@ M.DescribePoolsOutput = {
     members = {
         Pools = {
             type = "list",
-            member_type = "structure",
+            member = M.PoolInformation,
         },
         NextToken = {
             type = "string",
@@ -3618,7 +3650,7 @@ M.ProtectConfigurationFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3631,17 +3663,17 @@ M.DescribeProtectConfigurationsInput = {
     members = {
         ProtectConfigurationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.ProtectConfigurationFilter,
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3670,12 +3702,14 @@ M.ProtectConfigurationInformation = {
         AccountDefault = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
         DeletionProtectionEnabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -3687,7 +3721,7 @@ M.DescribeProtectConfigurationsOutput = {
     members = {
         ProtectConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.ProtectConfigurationInformation,
         },
         NextToken = {
             type = "string",
@@ -3706,14 +3740,14 @@ M.DescribeRcsAgentCountryLaunchStatusInput = {
         },
         IsoCountryCodes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.CountryLaunchStatusFilter,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3738,7 +3772,7 @@ M.DescribeRcsAgentCountryLaunchStatusOutput = {
         },
         CountryLaunchStatus = {
             type = "list",
-            member_type = "structure",
+            member = M.CountryLaunchStatusInformation,
         },
         NextToken = {
             type = "string",
@@ -3766,7 +3800,7 @@ M.RcsAgentFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3779,20 +3813,20 @@ M.DescribeRcsAgentsInput = {
     members = {
         RcsAgentIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Owner = {
             type = "string",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.RcsAgentFilter,
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3854,6 +3888,7 @@ M.RcsAgentInformation = {
         DeletionProtectionEnabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -3863,6 +3898,7 @@ M.RcsAgentInformation = {
         SelfManagedOptOutsEnabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -3875,15 +3911,14 @@ M.RcsAgentInformation = {
         TwoWayEnabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
         PoolId = {
             type = "string",
         },
-        TestingAgent = {
-            type = "structure",
-        },
+        TestingAgent = M.TestingAgentInformation,
     },
 }
 
@@ -3892,7 +3927,7 @@ M.DescribeRcsAgentsOutput = {
     members = {
         RcsAgents = {
             type = "list",
-            member_type = "structure",
+            member = M.RcsAgentInformation,
         },
         NextToken = {
             type = "string",
@@ -3915,7 +3950,7 @@ M.RegistrationAttachmentFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3928,17 +3963,17 @@ M.DescribeRegistrationAttachmentsInput = {
     members = {
         RegistrationAttachmentIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.RegistrationAttachmentFilter,
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3984,7 +4019,7 @@ M.DescribeRegistrationAttachmentsOutput = {
     members = {
         RegistrationAttachments = {
             type = "list",
-            member_type = "structure",
+            member = M.RegistrationAttachmentsInformation,
             traits = {
                 required = true,
             },
@@ -4009,13 +4044,13 @@ M.DescribeRegistrationFieldDefinitionsInput = {
         },
         FieldPaths = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4064,7 +4099,7 @@ M.RegistrationFieldDisplayHints = {
         },
         SelectOptionDescriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.SelectOptionDescription,
         },
         TextValidationDescription = {
             type = "string",
@@ -4091,20 +4126,20 @@ M.SelectValidation = {
     type = "structure",
     members = {
         MinChoices = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         MaxChoices = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Options = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4116,13 +4151,13 @@ M.TextValidation = {
     type = "structure",
     members = {
         MinLength = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         MaxLength = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -4163,18 +4198,11 @@ M.RegistrationFieldDefinition = {
                 required = true,
             },
         },
-        SelectValidation = {
-            type = "structure",
-        },
-        TextValidation = {
-            type = "structure",
-        },
-        DisplayHints = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SelectValidation = M.SelectValidation,
+        TextValidation = M.TextValidation,
+        DisplayHints = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RegistrationFieldDisplayHints }),
     },
 }
 
@@ -4189,7 +4217,7 @@ M.DescribeRegistrationFieldDefinitionsOutput = {
         },
         RegistrationFieldDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.RegistrationFieldDefinition,
             traits = {
                 required = true,
             },
@@ -4210,20 +4238,20 @@ M.DescribeRegistrationFieldValuesInput = {
             },
         },
         VersionNumber = {
-            type = "number",
+            type = "long",
         },
         SectionPath = {
             type = "string",
         },
         FieldPaths = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4239,7 +4267,7 @@ M.RegistrationFieldValueInformation = {
         },
         SelectChoices = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TextValue = {
             type = "string",
@@ -4272,14 +4300,14 @@ M.DescribeRegistrationFieldValuesOutput = {
             },
         },
         VersionNumber = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         RegistrationFieldValues = {
             type = "list",
-            member_type = "structure",
+            member = M.RegistrationFieldValueInformation,
             traits = {
                 required = true,
             },
@@ -4306,7 +4334,7 @@ M.RegistrationFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4319,17 +4347,17 @@ M.DescribeRegistrationsInput = {
     members = {
         RegistrationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.RegistrationFilter,
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4362,21 +4390,21 @@ M.RegistrationInformation = {
             },
         },
         CurrentVersionNumber = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         ApprovedVersionNumber = {
-            type = "number",
+            type = "long",
         },
         LatestDeniedVersionNumber = {
-            type = "number",
+            type = "long",
         },
         AdditionalAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         CreatedTimestamp = {
             type = "timestamp",
@@ -4392,7 +4420,7 @@ M.DescribeRegistrationsOutput = {
     members = {
         Registrations = {
             type = "list",
-            member_type = "structure",
+            member = M.RegistrationInformation,
             traits = {
                 required = true,
             },
@@ -4414,13 +4442,13 @@ M.DescribeRegistrationSectionDefinitionsInput = {
         },
         SectionPaths = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4461,12 +4489,9 @@ M.RegistrationSectionDefinition = {
                 required = true,
             },
         },
-        DisplayHints = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DisplayHints = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RegistrationSectionDisplayHints }),
     },
 }
 
@@ -4481,7 +4506,7 @@ M.DescribeRegistrationSectionDefinitionsOutput = {
         },
         RegistrationSectionDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.RegistrationSectionDefinition,
             traits = {
                 required = true,
             },
@@ -4508,7 +4533,7 @@ M.RegistrationTypeFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4521,17 +4546,17 @@ M.DescribeRegistrationTypeDefinitionsInput = {
     members = {
         RegistrationTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.RegistrationTypeFilter,
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4610,14 +4635,11 @@ M.RegistrationTypeDefinition = {
         },
         SupportedAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.SupportedAssociation,
         },
-        DisplayHints = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DisplayHints = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RegistrationTypeDisplayHints }),
     },
 }
 
@@ -4626,7 +4648,7 @@ M.DescribeRegistrationTypeDefinitionsOutput = {
     members = {
         RegistrationTypeDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.RegistrationTypeDefinition,
             traits = {
                 required = true,
             },
@@ -4652,7 +4674,7 @@ M.RegistrationVersionFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4671,17 +4693,17 @@ M.DescribeRegistrationVersionsInput = {
         },
         VersionNumbers = {
             type = "list",
-            member_type = "number",
+            member = { type = "long" },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.RegistrationVersionFilter,
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4717,7 +4739,7 @@ M.RegistrationVersionInformation = {
     type = "structure",
     members = {
         VersionNumber = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -4728,15 +4750,12 @@ M.RegistrationVersionInformation = {
                 required = true,
             },
         },
-        RegistrationVersionStatusHistory = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RegistrationVersionStatusHistory = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RegistrationVersionStatusHistory }),
         DeniedReasons = {
             type = "list",
-            member_type = "structure",
+            member = M.RegistrationDeniedReasonInformation,
         },
         Feedback = {
             type = "string",
@@ -4761,7 +4780,7 @@ M.DescribeRegistrationVersionsOutput = {
         },
         RegistrationVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.RegistrationVersionInformation,
             traits = {
                 required = true,
             },
@@ -4791,7 +4810,7 @@ M.SenderIdFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4822,17 +4841,17 @@ M.DescribeSenderIdsInput = {
     members = {
         SenderIds = {
             type = "list",
-            member_type = "structure",
+            member = M.SenderIdAndCountry,
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.SenderIdFilter,
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Owner = {
             type = "string",
@@ -4863,7 +4882,7 @@ M.SenderIdInformation = {
         },
         MessageTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4877,12 +4896,14 @@ M.SenderIdInformation = {
         DeletionProtectionEnabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
         Registered = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -4897,7 +4918,7 @@ M.DescribeSenderIdsOutput = {
     members = {
         SenderIds = {
             type = "list",
-            member_type = "structure",
+            member = M.SenderIdInformation,
         },
         NextToken = {
             type = "string",
@@ -4912,7 +4933,7 @@ M.DescribeSpendLimitsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4934,20 +4955,23 @@ M.SpendLimit = {
             },
         },
         EnforcedLimit = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         MaxLimit = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         Overridden = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -4959,7 +4983,7 @@ M.DescribeSpendLimitsOutput = {
     members = {
         SpendLimits = {
             type = "list",
-            member_type = "structure",
+            member = M.SpendLimit,
         },
         NextToken = {
             type = "string",
@@ -4983,7 +5007,7 @@ M.VerifiedDestinationNumberFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4996,21 +5020,21 @@ M.DescribeVerifiedDestinationNumbersInput = {
     members = {
         VerifiedDestinationNumberIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DestinationPhoneNumbers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.VerifiedDestinationNumberFilter,
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5059,7 +5083,7 @@ M.DescribeVerifiedDestinationNumbersOutput = {
     members = {
         VerifiedDestinationNumbers = {
             type = "list",
-            member_type = "structure",
+            member = M.VerifiedDestinationNumberInformation,
             traits = {
                 required = true,
             },
@@ -5196,7 +5220,7 @@ M.DiscardRegistrationVersionOutput = {
             },
         },
         VersionNumber = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -5207,12 +5231,9 @@ M.DiscardRegistrationVersionOutput = {
                 required = true,
             },
         },
-        RegistrationVersionStatusHistory = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RegistrationVersionStatusHistory = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RegistrationVersionStatusHistory }),
     },
 }
 
@@ -5276,8 +5297,8 @@ M.GetProtectConfigurationCountryRuleSetOutput = {
         },
         CountryRuleSet = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ProtectConfigurationCountryRuleSetInformation,
             traits = {
                 required = true,
             },
@@ -5333,11 +5354,11 @@ M.ListNotifyCountriesInput = {
     members = {
         Channels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         UseCases = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Tier = {
             type = "string",
@@ -5346,7 +5367,7 @@ M.ListNotifyCountriesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5368,21 +5389,21 @@ M.NotifyCountryInformation = {
         },
         SupportedChannels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         SupportedUseCases = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         SupportedTiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -5390,6 +5411,7 @@ M.NotifyCountryInformation = {
         CustomerOwnedIdentityRequired = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -5401,7 +5423,7 @@ M.ListNotifyCountriesOutput = {
     members = {
         NotifyCountries = {
             type = "list",
-            member_type = "structure",
+            member = M.NotifyCountryInformation,
         },
         NextToken = {
             type = "string",
@@ -5425,7 +5447,7 @@ M.PoolOriginationIdentitiesFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -5444,13 +5466,13 @@ M.ListPoolOriginationIdentitiesInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.PoolOriginationIdentitiesFilter,
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5478,7 +5500,7 @@ M.OriginationIdentityMetadata = {
         },
         NumberCapabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -5500,7 +5522,7 @@ M.ListPoolOriginationIdentitiesOutput = {
         },
         OriginationIdentities = {
             type = "list",
-            member_type = "structure",
+            member = M.OriginationIdentityMetadata,
         },
         NextToken = {
             type = "string",
@@ -5529,7 +5551,7 @@ M.ProtectConfigurationRuleSetNumberOverrideFilterItem = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -5548,13 +5570,13 @@ M.ListProtectConfigurationRuleSetNumberOverridesInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.ProtectConfigurationRuleSetNumberOverrideFilterItem,
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5606,7 +5628,7 @@ M.ListProtectConfigurationRuleSetNumberOverridesOutput = {
         },
         RuleSetNumberOverrides = {
             type = "list",
-            member_type = "structure",
+            member = M.ProtectConfigurationRuleSetNumberOverride,
         },
         NextToken = {
             type = "string",
@@ -5630,7 +5652,7 @@ M.RegistrationAssociationFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -5649,13 +5671,13 @@ M.ListRegistrationAssociationsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.RegistrationAssociationFilter,
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5713,7 +5735,7 @@ M.ListRegistrationAssociationsOutput = {
         },
         RegistrationAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.RegistrationAssociationMetadata,
             traits = {
                 required = true,
             },
@@ -5744,7 +5766,7 @@ M.ListTagsForResourceOutput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -5873,6 +5895,9 @@ M.PutOptedOutNumberOutput = {
         },
         EndUserOptedOut = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -5966,7 +5991,7 @@ M.PutRegistrationFieldValueInput = {
         },
         SelectChoices = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TextValue = {
             type = "string",
@@ -5993,7 +6018,7 @@ M.PutRegistrationFieldValueOutput = {
             },
         },
         VersionNumber = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -6006,7 +6031,7 @@ M.PutRegistrationFieldValueOutput = {
         },
         SelectChoices = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TextValue = {
             type = "string",
@@ -6085,7 +6110,7 @@ M.ReleasePhoneNumberOutput = {
         },
         NumberCapabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NumberType = {
             type = "string",
@@ -6095,6 +6120,9 @@ M.ReleasePhoneNumberOutput = {
         },
         TwoWayEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         TwoWayChannelArn = {
             type = "string",
@@ -6104,6 +6132,9 @@ M.ReleasePhoneNumberOutput = {
         },
         SelfManagedOptOutsEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         OptOutListName = {
             type = "string",
@@ -6158,7 +6189,7 @@ M.ReleaseSenderIdOutput = {
         },
         MessageTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -6172,6 +6203,7 @@ M.ReleaseSenderIdOutput = {
         Registered = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -6205,7 +6237,7 @@ M.RequestPhoneNumberInput = {
         },
         NumberCapabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -6233,7 +6265,7 @@ M.RequestPhoneNumberInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ClientToken = {
             type = "string",
@@ -6264,7 +6296,7 @@ M.RequestPhoneNumberOutput = {
         },
         NumberCapabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NumberType = {
             type = "string",
@@ -6274,6 +6306,9 @@ M.RequestPhoneNumberOutput = {
         },
         TwoWayEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         TwoWayChannelArn = {
             type = "string",
@@ -6283,15 +6318,24 @@ M.RequestPhoneNumberOutput = {
         },
         SelfManagedOptOutsEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         OptOutListName = {
             type = "string",
         },
         InternationalSendingEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         DeletionProtectionEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         PoolId = {
             type = "string",
@@ -6301,7 +6345,7 @@ M.RequestPhoneNumberOutput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         CreatedTimestamp = {
             type = "timestamp",
@@ -6326,14 +6370,14 @@ M.RequestSenderIdInput = {
         },
         MessageTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DeletionProtectionEnabled = {
             type = "boolean",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ClientToken = {
             type = "string",
@@ -6364,7 +6408,7 @@ M.RequestSenderIdOutput = {
         },
         MessageTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -6378,18 +6422,20 @@ M.RequestSenderIdOutput = {
         DeletionProtectionEnabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
         Registered = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -6425,13 +6471,13 @@ M.SendDestinationNumberVerificationCodeInput = {
         },
         Context = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         DestinationCountryParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -6468,7 +6514,7 @@ M.SendMediaMessageInput = {
         },
         MediaUrls = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ConfigurationSetName = {
             type = "string",
@@ -6477,15 +6523,18 @@ M.SendMediaMessageInput = {
             type = "string",
         },
         TimeToLive = {
-            type = "number",
+            type = "integer",
         },
         Context = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         DryRun = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         ProtectConfigurationId = {
             type = "string",
@@ -6525,25 +6574,28 @@ M.SendNotifyTextMessageInput = {
         },
         TemplateVariables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
         },
         TimeToLive = {
-            type = "number",
+            type = "integer",
         },
         Context = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ConfigurationSetName = {
             type = "string",
         },
         DryRun = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         MessageFeedbackEnabled = {
             type = "boolean",
@@ -6586,8 +6638,8 @@ M.SendNotifyVoiceMessageInput = {
         },
         TemplateVariables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -6596,18 +6648,21 @@ M.SendNotifyVoiceMessageInput = {
             type = "string",
         },
         TimeToLive = {
-            type = "number",
+            type = "integer",
         },
         Context = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ConfigurationSetName = {
             type = "string",
         },
         DryRun = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         MessageFeedbackEnabled = {
             type = "boolean",
@@ -6658,20 +6713,23 @@ M.SendTextMessageInput = {
             type = "string",
         },
         TimeToLive = {
-            type = "number",
+            type = "integer",
         },
         Context = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         DestinationCountryParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         DryRun = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         ProtectConfigurationId = {
             type = "string",
@@ -6727,15 +6785,18 @@ M.SendVoiceMessageInput = {
             type = "string",
         },
         TimeToLive = {
-            type = "number",
+            type = "integer",
         },
         Context = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         DryRun = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         ProtectConfigurationId = {
             type = "string",
@@ -6888,7 +6949,7 @@ M.SetMediaMessageSpendLimitOverrideInput = {
     type = "structure",
     members = {
         MonthlyLimit = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -6900,7 +6961,7 @@ M.SetMediaMessageSpendLimitOverrideOutput = {
     type = "structure",
     members = {
         MonthlyLimit = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -6909,7 +6970,7 @@ M.SetNotifyMessageSpendLimitOverrideInput = {
     type = "structure",
     members = {
         MonthlyLimit = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -6921,7 +6982,7 @@ M.SetNotifyMessageSpendLimitOverrideOutput = {
     type = "structure",
     members = {
         MonthlyLimit = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -6930,7 +6991,7 @@ M.SetTextMessageSpendLimitOverrideInput = {
     type = "structure",
     members = {
         MonthlyLimit = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -6942,7 +7003,7 @@ M.SetTextMessageSpendLimitOverrideOutput = {
     type = "structure",
     members = {
         MonthlyLimit = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -6951,7 +7012,7 @@ M.SetVoiceMessageSpendLimitOverrideInput = {
     type = "structure",
     members = {
         MonthlyLimit = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -6963,7 +7024,7 @@ M.SetVoiceMessageSpendLimitOverrideOutput = {
     type = "structure",
     members = {
         MonthlyLimit = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -6979,6 +7040,9 @@ M.SubmitRegistrationVersionInput = {
         },
         AwsReview = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -6999,7 +7063,7 @@ M.SubmitRegistrationVersionOutput = {
             },
         },
         VersionNumber = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -7010,15 +7074,13 @@ M.SubmitRegistrationVersionOutput = {
                 required = true,
             },
         },
-        RegistrationVersionStatusHistory = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RegistrationVersionStatusHistory = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RegistrationVersionStatusHistory }),
         AwsReview = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -7036,7 +7098,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -7059,7 +7121,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -7091,17 +7153,11 @@ M.UpdateEventDestinationInput = {
         },
         MatchingEventTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        CloudWatchLogsDestination = {
-            type = "structure",
-        },
-        KinesisFirehoseDestination = {
-            type = "structure",
-        },
-        SnsDestination = {
-            type = "structure",
-        },
+        CloudWatchLogsDestination = M.CloudWatchLogsDestination,
+        KinesisFirehoseDestination = M.KinesisFirehoseDestination,
+        SnsDestination = M.SnsDestination,
     },
 }
 
@@ -7114,9 +7170,7 @@ M.UpdateEventDestinationOutput = {
         ConfigurationSetName = {
             type = "string",
         },
-        EventDestination = {
-            type = "structure",
-        },
+        EventDestination = M.EventDestination,
     },
 }
 
@@ -7137,11 +7191,11 @@ M.UpdateNotifyConfigurationInput = {
         },
         EnabledCountries = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         EnabledChannels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DeletionProtectionEnabled = {
             type = "boolean",
@@ -7184,11 +7238,11 @@ M.UpdateNotifyConfigurationOutput = {
         },
         EnabledCountries = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         EnabledChannels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -7217,6 +7271,7 @@ M.UpdateNotifyConfigurationOutput = {
         DeletionProtectionEnabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -7285,7 +7340,7 @@ M.UpdatePhoneNumberOutput = {
         },
         NumberCapabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NumberType = {
             type = "string",
@@ -7295,6 +7350,9 @@ M.UpdatePhoneNumberOutput = {
         },
         TwoWayEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         TwoWayChannelArn = {
             type = "string",
@@ -7304,15 +7362,24 @@ M.UpdatePhoneNumberOutput = {
         },
         SelfManagedOptOutsEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         OptOutListName = {
             type = "string",
         },
         InternationalSendingEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         DeletionProtectionEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         RegistrationId = {
             type = "string",
@@ -7373,6 +7440,9 @@ M.UpdatePoolOutput = {
         },
         TwoWayEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         TwoWayChannelArn = {
             type = "string",
@@ -7382,15 +7452,24 @@ M.UpdatePoolOutput = {
         },
         SelfManagedOptOutsEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         OptOutListName = {
             type = "string",
         },
         SharedRoutesEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         DeletionProtectionEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         CreatedTimestamp = {
             type = "timestamp",
@@ -7437,12 +7516,14 @@ M.UpdateProtectConfigurationOutput = {
         AccountDefault = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
         DeletionProtectionEnabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -7466,8 +7547,8 @@ M.UpdateProtectConfigurationCountryRuleSetInput = {
         },
         CountryRuleSetUpdates = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ProtectConfigurationCountryRuleSetInformation,
             traits = {
                 required = true,
             },
@@ -7498,8 +7579,8 @@ M.UpdateProtectConfigurationCountryRuleSetOutput = {
         },
         CountryRuleSet = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ProtectConfigurationCountryRuleSetInformation,
             traits = {
                 required = true,
             },
@@ -7567,6 +7648,7 @@ M.UpdateRcsAgentOutput = {
         DeletionProtectionEnabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -7576,6 +7658,7 @@ M.UpdateRcsAgentOutput = {
         SelfManagedOptOutsEnabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -7588,6 +7671,7 @@ M.UpdateRcsAgentOutput = {
         TwoWayEnabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -7638,7 +7722,7 @@ M.UpdateSenderIdOutput = {
         },
         MessageTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -7652,12 +7736,14 @@ M.UpdateSenderIdOutput = {
         DeletionProtectionEnabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
         Registered = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },

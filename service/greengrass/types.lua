@@ -13,7 +13,7 @@ M.ConnectivityInfo = {
             type = "string",
         },
         PortNumber = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -35,8 +35,8 @@ M.Connector = {
         },
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -94,8 +94,8 @@ M.DefinitionInformation = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -144,10 +144,10 @@ M.FunctionRunAsConfig = {
     type = "structure",
     members = {
         Gid = {
-            type = "number",
+            type = "integer",
         },
         Uid = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -158,9 +158,7 @@ M.FunctionExecutionConfig = {
         IsolationMode = {
             type = "string",
         },
-        RunAs = {
-            type = "structure",
-        },
+        RunAs = M.FunctionRunAsConfig,
     },
 }
 
@@ -190,17 +188,15 @@ M.FunctionConfigurationEnvironment = {
         AccessSysfs = {
             type = "boolean",
         },
-        Execution = {
-            type = "structure",
-        },
+        Execution = M.FunctionExecutionConfig,
         ResourceAccessPolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceAccessPolicy,
         },
         Variables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -211,9 +207,7 @@ M.FunctionConfiguration = {
         EncodingType = {
             type = "string",
         },
-        Environment = {
-            type = "structure",
-        },
+        Environment = M.FunctionConfigurationEnvironment,
         ExecArgs = {
             type = "string",
         },
@@ -221,13 +215,13 @@ M.FunctionConfiguration = {
             type = "string",
         },
         MemorySize = {
-            type = "number",
+            type = "integer",
         },
         Pinned = {
             type = "boolean",
         },
         Timeout = {
-            type = "number",
+            type = "integer",
         },
         FunctionRuntimeOverride = {
             type = "string",
@@ -241,9 +235,7 @@ M.Function = {
         FunctionArn = {
             type = "string",
         },
-        FunctionConfiguration = {
-            type = "structure",
-        },
+        FunctionConfiguration = M.FunctionConfiguration,
         Id = {
             type = "string",
             traits = {
@@ -332,7 +324,7 @@ M.Logger = {
             },
         },
         Space = {
-            type = "number",
+            type = "integer",
         },
         Type = {
             type = "string",
@@ -358,9 +350,7 @@ M.GroupOwnerSetting = {
 M.LocalDeviceResourceData = {
     type = "structure",
     members = {
-        GroupOwnerSetting = {
-            type = "structure",
-        },
+        GroupOwnerSetting = M.GroupOwnerSetting,
         SourcePath = {
             type = "string",
         },
@@ -373,9 +363,7 @@ M.LocalVolumeResourceData = {
         DestinationPath = {
             type = "string",
         },
-        GroupOwnerSetting = {
-            type = "structure",
-        },
+        GroupOwnerSetting = M.GroupOwnerSetting,
         SourcePath = {
             type = "string",
         },
@@ -406,9 +394,7 @@ M.S3MachineLearningModelResourceData = {
         DestinationPath = {
             type = "string",
         },
-        OwnerSetting = {
-            type = "structure",
-        },
+        OwnerSetting = M.ResourceDownloadOwnerSetting,
         S3Uri = {
             type = "string",
         },
@@ -421,9 +407,7 @@ M.SageMakerMachineLearningModelResourceData = {
         DestinationPath = {
             type = "string",
         },
-        OwnerSetting = {
-            type = "structure",
-        },
+        OwnerSetting = M.ResourceDownloadOwnerSetting,
         SageMakerJobArn = {
             type = "string",
         },
@@ -438,7 +422,7 @@ M.SecretsManagerSecretResourceData = {
         },
         AdditionalStagingLabelsToDownload = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -446,21 +430,11 @@ M.SecretsManagerSecretResourceData = {
 M.ResourceDataContainer = {
     type = "structure",
     members = {
-        LocalDeviceResourceData = {
-            type = "structure",
-        },
-        LocalVolumeResourceData = {
-            type = "structure",
-        },
-        S3MachineLearningModelResourceData = {
-            type = "structure",
-        },
-        SageMakerMachineLearningModelResourceData = {
-            type = "structure",
-        },
-        SecretsManagerSecretResourceData = {
-            type = "structure",
-        },
+        LocalDeviceResourceData = M.LocalDeviceResourceData,
+        LocalVolumeResourceData = M.LocalVolumeResourceData,
+        S3MachineLearningModelResourceData = M.S3MachineLearningModelResourceData,
+        SageMakerMachineLearningModelResourceData = M.SageMakerMachineLearningModelResourceData,
+        SecretsManagerSecretResourceData = M.SecretsManagerSecretResourceData,
     },
 }
 
@@ -479,12 +453,9 @@ M.Resource = {
                 required = true,
             },
         },
-        ResourceDataContainer = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ResourceDataContainer = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResourceDataContainer }),
     },
 }
 
@@ -582,7 +553,7 @@ M.BadRequestException = {
     members = {
         ErrorDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.ErrorDetail,
         },
         Message = {
             type = "string",
@@ -596,7 +567,7 @@ M.InternalServerErrorException = {
     members = {
         ErrorDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.ErrorDetail,
         },
         Message = {
             type = "string",
@@ -644,13 +615,13 @@ M.BulkDeploymentMetrics = {
     type = "structure",
     members = {
         InvalidInputRecords = {
-            type = "number",
+            type = "integer",
         },
         RecordsProcessed = {
-            type = "number",
+            type = "integer",
         },
         RetryAttempts = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -682,7 +653,7 @@ M.BulkDeploymentResult = {
         },
         ErrorDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.ErrorDetail,
         },
         ErrorMessage = {
             type = "string",
@@ -712,7 +683,7 @@ M.ConnectorDefinitionVersion = {
     members = {
         Connectors = {
             type = "list",
-            member_type = "structure",
+            member = M.Connector,
         },
     },
 }
@@ -722,7 +693,7 @@ M.CoreDefinitionVersion = {
     members = {
         Cores = {
             type = "list",
-            member_type = "structure",
+            member = M.Core,
         },
     },
 }
@@ -736,16 +707,14 @@ M.CreateConnectorDefinitionInput = {
                 http_header = "X-Amzn-Client-Token",
             },
         },
-        InitialVersion = {
-            type = "structure",
-        },
+        InitialVersion = M.ConnectorDefinitionVersion,
         Name = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -795,7 +764,7 @@ M.CreateConnectorDefinitionVersionInput = {
         },
         Connectors = {
             type = "list",
-            member_type = "structure",
+            member = M.Connector,
         },
     },
 }
@@ -827,16 +796,14 @@ M.CreateCoreDefinitionInput = {
                 http_header = "X-Amzn-Client-Token",
             },
         },
-        InitialVersion = {
-            type = "structure",
-        },
+        InitialVersion = M.CoreDefinitionVersion,
         Name = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -886,7 +853,7 @@ M.CreateCoreDefinitionVersionInput = {
         },
         Cores = {
             type = "list",
-            member_type = "structure",
+            member = M.Core,
         },
     },
 }
@@ -957,7 +924,7 @@ M.DeviceDefinitionVersion = {
     members = {
         Devices = {
             type = "list",
-            member_type = "structure",
+            member = M.Device,
         },
     },
 }
@@ -971,16 +938,14 @@ M.CreateDeviceDefinitionInput = {
                 http_header = "X-Amzn-Client-Token",
             },
         },
-        InitialVersion = {
-            type = "structure",
-        },
+        InitialVersion = M.DeviceDefinitionVersion,
         Name = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1030,7 +995,7 @@ M.CreateDeviceDefinitionVersionInput = {
         },
         Devices = {
             type = "list",
-            member_type = "structure",
+            member = M.Device,
         },
     },
 }
@@ -1059,30 +1024,24 @@ M.FunctionDefaultExecutionConfig = {
         IsolationMode = {
             type = "string",
         },
-        RunAs = {
-            type = "structure",
-        },
+        RunAs = M.FunctionRunAsConfig,
     },
 }
 
 M.FunctionDefaultConfig = {
     type = "structure",
     members = {
-        Execution = {
-            type = "structure",
-        },
+        Execution = M.FunctionDefaultExecutionConfig,
     },
 }
 
 M.FunctionDefinitionVersion = {
     type = "structure",
     members = {
-        DefaultConfig = {
-            type = "structure",
-        },
+        DefaultConfig = M.FunctionDefaultConfig,
         Functions = {
             type = "list",
-            member_type = "structure",
+            member = M.Function,
         },
     },
 }
@@ -1096,16 +1055,14 @@ M.CreateFunctionDefinitionInput = {
                 http_header = "X-Amzn-Client-Token",
             },
         },
-        InitialVersion = {
-            type = "structure",
-        },
+        InitialVersion = M.FunctionDefinitionVersion,
         Name = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1146,9 +1103,7 @@ M.CreateFunctionDefinitionVersionInput = {
                 http_header = "X-Amzn-Client-Token",
             },
         },
-        DefaultConfig = {
-            type = "structure",
-        },
+        DefaultConfig = M.FunctionDefaultConfig,
         FunctionDefinitionId = {
             type = "string",
             traits = {
@@ -1158,7 +1113,7 @@ M.CreateFunctionDefinitionVersionInput = {
         },
         Functions = {
             type = "list",
-            member_type = "structure",
+            member = M.Function,
         },
     },
 }
@@ -1217,9 +1172,7 @@ M.CreateGroupInput = {
                 http_header = "X-Amzn-Client-Token",
             },
         },
-        InitialVersion = {
-            type = "structure",
-        },
+        InitialVersion = M.GroupVersion,
         Name = {
             type = "string",
             traits = {
@@ -1228,8 +1181,8 @@ M.CreateGroupInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1352,7 +1305,7 @@ M.LoggerDefinitionVersion = {
     members = {
         Loggers = {
             type = "list",
-            member_type = "structure",
+            member = M.Logger,
         },
     },
 }
@@ -1366,16 +1319,14 @@ M.CreateLoggerDefinitionInput = {
                 http_header = "X-Amzn-Client-Token",
             },
         },
-        InitialVersion = {
-            type = "structure",
-        },
+        InitialVersion = M.LoggerDefinitionVersion,
         Name = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1425,7 +1376,7 @@ M.CreateLoggerDefinitionVersionInput = {
         },
         Loggers = {
             type = "list",
-            member_type = "structure",
+            member = M.Logger,
         },
     },
 }
@@ -1453,7 +1404,7 @@ M.ResourceDefinitionVersion = {
     members = {
         Resources = {
             type = "list",
-            member_type = "structure",
+            member = M.Resource,
         },
     },
 }
@@ -1467,16 +1418,14 @@ M.CreateResourceDefinitionInput = {
                 http_header = "X-Amzn-Client-Token",
             },
         },
-        InitialVersion = {
-            type = "structure",
-        },
+        InitialVersion = M.ResourceDefinitionVersion,
         Name = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1526,7 +1475,7 @@ M.CreateResourceDefinitionVersionInput = {
         },
         Resources = {
             type = "list",
-            member_type = "structure",
+            member = M.Resource,
         },
     },
 }
@@ -1605,7 +1554,7 @@ M.CreateSoftwareUpdateJobInput = {
         },
         UpdateTargets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1645,7 +1594,7 @@ M.SubscriptionDefinitionVersion = {
     members = {
         Subscriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.Subscription,
         },
     },
 }
@@ -1659,16 +1608,14 @@ M.CreateSubscriptionDefinitionInput = {
                 http_header = "X-Amzn-Client-Token",
             },
         },
-        InitialVersion = {
-            type = "structure",
-        },
+        InitialVersion = M.SubscriptionDefinitionVersion,
         Name = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1718,7 +1665,7 @@ M.CreateSubscriptionDefinitionVersionInput = {
         },
         Subscriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.Subscription,
         },
     },
 }
@@ -1974,9 +1921,7 @@ M.GetBulkDeploymentStatusInput = {
 M.GetBulkDeploymentStatusOutput = {
     type = "structure",
     members = {
-        BulkDeploymentMetrics = {
-            type = "structure",
-        },
+        BulkDeploymentMetrics = M.BulkDeploymentMetrics,
         BulkDeploymentStatus = {
             type = "string",
         },
@@ -1985,15 +1930,15 @@ M.GetBulkDeploymentStatusOutput = {
         },
         ErrorDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.ErrorDetail,
         },
         ErrorMessage = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2016,7 +1961,7 @@ M.GetConnectivityInfoOutput = {
     members = {
         ConnectivityInfo = {
             type = "list",
-            member_type = "structure",
+            member = M.ConnectivityInfo,
         },
         Message = {
             type = "string",
@@ -2066,8 +2011,8 @@ M.GetConnectorDefinitionOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2107,9 +2052,7 @@ M.GetConnectorDefinitionVersionOutput = {
         CreationTimestamp = {
             type = "string",
         },
-        Definition = {
-            type = "structure",
-        },
+        Definition = M.ConnectorDefinitionVersion,
         Id = {
             type = "string",
         },
@@ -2161,8 +2104,8 @@ M.GetCoreDefinitionOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2196,9 +2139,7 @@ M.GetCoreDefinitionVersionOutput = {
         CreationTimestamp = {
             type = "string",
         },
-        Definition = {
-            type = "structure",
-        },
+        Definition = M.CoreDefinitionVersion,
         Id = {
             type = "string",
         },
@@ -2242,7 +2183,7 @@ M.GetDeploymentStatusOutput = {
         },
         ErrorDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.ErrorDetail,
         },
         ErrorMessage = {
             type = "string",
@@ -2292,8 +2233,8 @@ M.GetDeviceDefinitionOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2333,9 +2274,7 @@ M.GetDeviceDefinitionVersionOutput = {
         CreationTimestamp = {
             type = "string",
         },
-        Definition = {
-            type = "structure",
-        },
+        Definition = M.DeviceDefinitionVersion,
         Id = {
             type = "string",
         },
@@ -2387,8 +2326,8 @@ M.GetFunctionDefinitionOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2428,9 +2367,7 @@ M.GetFunctionDefinitionVersionOutput = {
         CreationTimestamp = {
             type = "string",
         },
-        Definition = {
-            type = "structure",
-        },
+        Definition = M.FunctionDefinitionVersion,
         Id = {
             type = "string",
         },
@@ -2482,8 +2419,8 @@ M.GetGroupOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2580,9 +2517,7 @@ M.GetGroupVersionOutput = {
         CreationTimestamp = {
             type = "string",
         },
-        Definition = {
-            type = "structure",
-        },
+        Definition = M.GroupVersion,
         Id = {
             type = "string",
         },
@@ -2631,8 +2566,8 @@ M.GetLoggerDefinitionOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2672,9 +2607,7 @@ M.GetLoggerDefinitionVersionOutput = {
         CreationTimestamp = {
             type = "string",
         },
-        Definition = {
-            type = "structure",
-        },
+        Definition = M.LoggerDefinitionVersion,
         Id = {
             type = "string",
         },
@@ -2723,8 +2656,8 @@ M.GetResourceDefinitionOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2758,9 +2691,7 @@ M.GetResourceDefinitionVersionOutput = {
         CreationTimestamp = {
             type = "string",
         },
-        Definition = {
-            type = "structure",
-        },
+        Definition = M.ResourceDefinitionVersion,
         Id = {
             type = "string",
         },
@@ -2825,8 +2756,8 @@ M.GetSubscriptionDefinitionOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2866,9 +2797,7 @@ M.GetSubscriptionDefinitionVersionOutput = {
         CreationTimestamp = {
             type = "string",
         },
-        Definition = {
-            type = "structure",
-        },
+        Definition = M.SubscriptionDefinitionVersion,
         Id = {
             type = "string",
         },
@@ -2917,18 +2846,14 @@ M.TelemetryConfiguration = {
 M.RuntimeConfiguration = {
     type = "structure",
     members = {
-        TelemetryConfiguration = {
-            type = "structure",
-        },
+        TelemetryConfiguration = M.TelemetryConfiguration,
     },
 }
 
 M.GetThingRuntimeConfigurationOutput = {
     type = "structure",
     members = {
-        RuntimeConfiguration = {
-            type = "structure",
-        },
+        RuntimeConfiguration = M.RuntimeConfiguration,
     },
 }
 
@@ -2962,7 +2887,7 @@ M.ListBulkDeploymentDetailedReportsOutput = {
     members = {
         Deployments = {
             type = "list",
-            member_type = "structure",
+            member = M.BulkDeploymentResult,
         },
         NextToken = {
             type = "string",
@@ -2993,7 +2918,7 @@ M.ListBulkDeploymentsOutput = {
     members = {
         BulkDeployments = {
             type = "list",
-            member_type = "structure",
+            member = M.BulkDeployment,
         },
         NextToken = {
             type = "string",
@@ -3024,7 +2949,7 @@ M.ListConnectorDefinitionsOutput = {
     members = {
         Definitions = {
             type = "list",
-            member_type = "structure",
+            member = M.DefinitionInformation,
         },
         NextToken = {
             type = "string",
@@ -3065,7 +2990,7 @@ M.ListConnectorDefinitionVersionsOutput = {
         },
         Versions = {
             type = "list",
-            member_type = "structure",
+            member = M.VersionInformation,
         },
     },
 }
@@ -3093,7 +3018,7 @@ M.ListCoreDefinitionsOutput = {
     members = {
         Definitions = {
             type = "list",
-            member_type = "structure",
+            member = M.DefinitionInformation,
         },
         NextToken = {
             type = "string",
@@ -3134,7 +3059,7 @@ M.ListCoreDefinitionVersionsOutput = {
         },
         Versions = {
             type = "list",
-            member_type = "structure",
+            member = M.VersionInformation,
         },
     },
 }
@@ -3169,7 +3094,7 @@ M.ListDeploymentsOutput = {
     members = {
         Deployments = {
             type = "list",
-            member_type = "structure",
+            member = M.Deployment,
         },
         NextToken = {
             type = "string",
@@ -3200,7 +3125,7 @@ M.ListDeviceDefinitionsOutput = {
     members = {
         Definitions = {
             type = "list",
-            member_type = "structure",
+            member = M.DefinitionInformation,
         },
         NextToken = {
             type = "string",
@@ -3241,7 +3166,7 @@ M.ListDeviceDefinitionVersionsOutput = {
         },
         Versions = {
             type = "list",
-            member_type = "structure",
+            member = M.VersionInformation,
         },
     },
 }
@@ -3269,7 +3194,7 @@ M.ListFunctionDefinitionsOutput = {
     members = {
         Definitions = {
             type = "list",
-            member_type = "structure",
+            member = M.DefinitionInformation,
         },
         NextToken = {
             type = "string",
@@ -3310,7 +3235,7 @@ M.ListFunctionDefinitionVersionsOutput = {
         },
         Versions = {
             type = "list",
-            member_type = "structure",
+            member = M.VersionInformation,
         },
     },
 }
@@ -3333,7 +3258,7 @@ M.ListGroupCertificateAuthoritiesOutput = {
     members = {
         GroupCertificateAuthorities = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupCertificateAuthorityProperties,
         },
     },
 }
@@ -3361,7 +3286,7 @@ M.ListGroupsOutput = {
     members = {
         Groups = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupInformation,
         },
         NextToken = {
             type = "string",
@@ -3402,7 +3327,7 @@ M.ListGroupVersionsOutput = {
         },
         Versions = {
             type = "list",
-            member_type = "structure",
+            member = M.VersionInformation,
         },
     },
 }
@@ -3430,7 +3355,7 @@ M.ListLoggerDefinitionsOutput = {
     members = {
         Definitions = {
             type = "list",
-            member_type = "structure",
+            member = M.DefinitionInformation,
         },
         NextToken = {
             type = "string",
@@ -3471,7 +3396,7 @@ M.ListLoggerDefinitionVersionsOutput = {
         },
         Versions = {
             type = "list",
-            member_type = "structure",
+            member = M.VersionInformation,
         },
     },
 }
@@ -3499,7 +3424,7 @@ M.ListResourceDefinitionsOutput = {
     members = {
         Definitions = {
             type = "list",
-            member_type = "structure",
+            member = M.DefinitionInformation,
         },
         NextToken = {
             type = "string",
@@ -3540,7 +3465,7 @@ M.ListResourceDefinitionVersionsOutput = {
         },
         Versions = {
             type = "list",
-            member_type = "structure",
+            member = M.VersionInformation,
         },
     },
 }
@@ -3568,7 +3493,7 @@ M.ListSubscriptionDefinitionsOutput = {
     members = {
         Definitions = {
             type = "list",
-            member_type = "structure",
+            member = M.DefinitionInformation,
         },
         NextToken = {
             type = "string",
@@ -3609,7 +3534,7 @@ M.ListSubscriptionDefinitionVersionsOutput = {
         },
         Versions = {
             type = "list",
-            member_type = "structure",
+            member = M.VersionInformation,
         },
     },
 }
@@ -3632,8 +3557,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3695,8 +3620,8 @@ M.StartBulkDeploymentInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3742,8 +3667,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3764,7 +3689,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -3782,7 +3707,7 @@ M.UpdateConnectivityInfoInput = {
     members = {
         ConnectivityInfo = {
             type = "list",
-            member_type = "structure",
+            member = M.ConnectivityInfo,
         },
         ThingName = {
             type = "string",
@@ -4015,9 +3940,7 @@ M.TelemetryConfigurationUpdate = {
 M.UpdateThingRuntimeConfigurationInput = {
     type = "structure",
     members = {
-        TelemetryConfiguration = {
-            type = "structure",
-        },
+        TelemetryConfiguration = M.TelemetryConfigurationUpdate,
         ThingName = {
             type = "string",
             traits = {

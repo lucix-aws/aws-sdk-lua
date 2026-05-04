@@ -41,9 +41,7 @@ M.Identity = {
 M.AppInstanceAdmin = {
     type = "structure",
     members = {
-        Admin = {
-            type = "structure",
-        },
+        Admin = M.Identity,
         AppInstanceArn = {
             type = "string",
         },
@@ -56,9 +54,7 @@ M.AppInstanceAdmin = {
 M.AppInstanceAdminSummary = {
     type = "structure",
     members = {
-        Admin = {
-            type = "structure",
-        },
+        Admin = M.Identity,
     },
 }
 
@@ -102,9 +98,7 @@ M.LexConfiguration = {
         RespondsTo = {
             type = "string",
         },
-        InvokedBy = {
-            type = "structure",
-        },
+        InvokedBy = M.InvokedBy,
         LexBotAliasArn = {
             type = "string",
             traits = {
@@ -126,12 +120,9 @@ M.LexConfiguration = {
 M.Configuration = {
     type = "structure",
     members = {
-        Lex = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Lex = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LexConfiguration }),
     },
 }
 
@@ -144,9 +135,7 @@ M.AppInstanceBot = {
         Name = {
             type = "string",
         },
-        Configuration = {
-            type = "structure",
-        },
+        Configuration = M.Configuration,
         CreatedTimestamp = {
             type = "timestamp",
         },
@@ -193,7 +182,7 @@ M.ChannelRetentionSettings = {
     type = "structure",
     members = {
         RetentionDays = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -201,9 +190,7 @@ M.ChannelRetentionSettings = {
 M.AppInstanceRetentionSettings = {
     type = "structure",
     members = {
-        ChannelRetentionSettings = {
-            type = "structure",
-        },
+        ChannelRetentionSettings = M.ChannelRetentionSettings,
     },
 }
 
@@ -215,7 +202,7 @@ M.ExpirationSettings = {
     type = "structure",
     members = {
         ExpirationDays = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -247,9 +234,7 @@ M.AppInstanceUser = {
         LastUpdatedTimestamp = {
             type = "timestamp",
         },
-        ExpirationSettings = {
-            type = "structure",
-        },
+        ExpirationSettings = M.ExpirationSettings,
     },
 }
 
@@ -317,9 +302,7 @@ M.AppInstanceUserEndpoint = {
         ResourceArn = {
             type = "string",
         },
-        EndpointAttributes = {
-            type = "structure",
-        },
+        EndpointAttributes = M.EndpointAttributes,
         CreatedTimestamp = {
             type = "timestamp",
         },
@@ -329,9 +312,7 @@ M.AppInstanceUserEndpoint = {
         AllowMessages = {
             type = "string",
         },
-        EndpointState = {
-            type = "structure",
-        },
+        EndpointState = M.EndpointState,
     },
 }
 
@@ -353,9 +334,7 @@ M.AppInstanceUserEndpointSummary = {
         AllowMessages = {
             type = "string",
         },
-        EndpointState = {
-            type = "structure",
-        },
+        EndpointState = M.EndpointState,
     },
 }
 
@@ -456,7 +435,7 @@ M.CreateAppInstanceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -570,9 +549,7 @@ M.CreateAppInstanceAdminInput = {
 M.CreateAppInstanceAdminOutput = {
     type = "structure",
     members = {
-        AppInstanceAdmin = {
-            type = "structure",
-        },
+        AppInstanceAdmin = M.Identity,
         AppInstanceArn = {
             type = "string",
         },
@@ -602,14 +579,11 @@ M.CreateAppInstanceBotInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        Configuration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Configuration }),
     },
 }
 
@@ -654,11 +628,9 @@ M.CreateAppInstanceUserInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        ExpirationSettings = {
-            type = "structure",
-        },
+        ExpirationSettings = M.ExpirationSettings,
     },
 }
 
@@ -786,9 +758,7 @@ M.DescribeAppInstanceInput = {
 M.DescribeAppInstanceOutput = {
     type = "structure",
     members = {
-        AppInstance = {
-            type = "structure",
-        },
+        AppInstance = M.AppInstance,
     },
 }
 
@@ -815,9 +785,7 @@ M.DescribeAppInstanceAdminInput = {
 M.DescribeAppInstanceAdminOutput = {
     type = "structure",
     members = {
-        AppInstanceAdmin = {
-            type = "structure",
-        },
+        AppInstanceAdmin = M.AppInstanceAdmin,
     },
 }
 
@@ -837,9 +805,7 @@ M.DescribeAppInstanceBotInput = {
 M.DescribeAppInstanceBotOutput = {
     type = "structure",
     members = {
-        AppInstanceBot = {
-            type = "structure",
-        },
+        AppInstanceBot = M.AppInstanceBot,
     },
 }
 
@@ -872,9 +838,7 @@ M.DescribeAppInstanceUserInput = {
 M.DescribeAppInstanceUserOutput = {
     type = "structure",
     members = {
-        AppInstanceUser = {
-            type = "structure",
-        },
+        AppInstanceUser = M.AppInstanceUser,
     },
 }
 
@@ -901,9 +865,7 @@ M.DescribeAppInstanceUserEndpointInput = {
 M.DescribeAppInstanceUserEndpointOutput = {
     type = "structure",
     members = {
-        AppInstanceUserEndpoint = {
-            type = "structure",
-        },
+        AppInstanceUserEndpoint = M.AppInstanceUserEndpoint,
     },
 }
 
@@ -923,9 +885,7 @@ M.GetAppInstanceRetentionSettingsInput = {
 M.GetAppInstanceRetentionSettingsOutput = {
     type = "structure",
     members = {
-        AppInstanceRetentionSettings = {
-            type = "structure",
-        },
+        AppInstanceRetentionSettings = M.AppInstanceRetentionSettings,
         InitiateDeletionTimestamp = {
             type = "timestamp",
         },
@@ -943,7 +903,7 @@ M.ListAppInstanceAdminsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -965,7 +925,7 @@ M.ListAppInstanceAdminsOutput = {
         },
         AppInstanceAdmins = {
             type = "list",
-            member_type = "structure",
+            member = M.AppInstanceAdminSummary,
         },
         NextToken = {
             type = "string",
@@ -984,7 +944,7 @@ M.ListAppInstanceBotsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -1006,7 +966,7 @@ M.ListAppInstanceBotsOutput = {
         },
         AppInstanceBots = {
             type = "list",
-            member_type = "structure",
+            member = M.AppInstanceBotSummary,
         },
         NextToken = {
             type = "string",
@@ -1018,7 +978,7 @@ M.ListAppInstancesInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -1037,7 +997,7 @@ M.ListAppInstancesOutput = {
     members = {
         AppInstances = {
             type = "list",
-            member_type = "structure",
+            member = M.AppInstanceSummary,
         },
         NextToken = {
             type = "string",
@@ -1056,7 +1016,7 @@ M.ListAppInstanceUserEndpointsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -1075,7 +1035,7 @@ M.ListAppInstanceUserEndpointsOutput = {
     members = {
         AppInstanceUserEndpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.AppInstanceUserEndpointSummary,
         },
         NextToken = {
             type = "string",
@@ -1094,7 +1054,7 @@ M.ListAppInstanceUsersInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -1116,7 +1076,7 @@ M.ListAppInstanceUsersOutput = {
         },
         AppInstanceUsers = {
             type = "list",
-            member_type = "structure",
+            member = M.AppInstanceUserSummary,
         },
         NextToken = {
             type = "string",
@@ -1142,7 +1102,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1157,21 +1117,16 @@ M.PutAppInstanceRetentionSettingsInput = {
                 required = true,
             },
         },
-        AppInstanceRetentionSettings = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AppInstanceRetentionSettings = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AppInstanceRetentionSettings }),
     },
 }
 
 M.PutAppInstanceRetentionSettingsOutput = {
     type = "structure",
     members = {
-        AppInstanceRetentionSettings = {
-            type = "structure",
-        },
+        AppInstanceRetentionSettings = M.AppInstanceRetentionSettings,
         InitiateDeletionTimestamp = {
             type = "timestamp",
         },
@@ -1188,9 +1143,7 @@ M.PutAppInstanceUserExpirationSettingsInput = {
                 required = true,
             },
         },
-        ExpirationSettings = {
-            type = "structure",
-        },
+        ExpirationSettings = M.ExpirationSettings,
     },
 }
 
@@ -1200,9 +1153,7 @@ M.PutAppInstanceUserExpirationSettingsOutput = {
         AppInstanceUserArn = {
             type = "string",
         },
-        ExpirationSettings = {
-            type = "structure",
-        },
+        ExpirationSettings = M.ExpirationSettings,
     },
 }
 
@@ -1231,12 +1182,9 @@ M.RegisterAppInstanceUserEndpointInput = {
                 required = true,
             },
         },
-        EndpointAttributes = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        EndpointAttributes = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EndpointAttributes }),
         ClientRequestToken = {
             type = "string",
             traits = {
@@ -1272,7 +1220,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -1295,7 +1243,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1363,9 +1311,7 @@ M.UpdateAppInstanceBotInput = {
                 required = true,
             },
         },
-        Configuration = {
-            type = "structure",
-        },
+        Configuration = M.Configuration,
     },
 }
 

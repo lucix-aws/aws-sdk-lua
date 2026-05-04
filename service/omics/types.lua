@@ -355,18 +355,27 @@ M.ReadOptions = {
         },
         quoteAll = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         escape = {
             type = "string",
         },
         escapeQuotes = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         comment = {
             type = "string",
         },
         header = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         lineSep = {
             type = "string",
@@ -377,9 +386,7 @@ M.ReadOptions = {
 M.TsvOptions = {
     type = "structure",
     members = {
-        readOptions = {
-            type = "structure",
-        },
+        readOptions = M.ReadOptions,
     },
 }
 
@@ -398,12 +405,8 @@ M.VcfOptions = {
 M.FormatOptions = {
     type = "union",
     members = {
-        tsvOptions = {
-            type = "structure",
-        },
-        vcfOptions = {
-            type = "structure",
-        },
+        tsvOptions = M.TsvOptions,
+        vcfOptions = M.VcfOptions,
     },
 }
 
@@ -466,7 +469,7 @@ M.GetAnnotationImportJobOutput = {
         },
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.AnnotationImportItemDetail,
             traits = {
                 required = true,
             },
@@ -474,19 +477,17 @@ M.GetAnnotationImportJobOutput = {
         runLeftNormalization = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
-        formatOptions = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        formatOptions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FormatOptions }),
         annotationFields = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -507,14 +508,14 @@ M.ListAnnotationImportJobsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
         },
         ids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -522,9 +523,7 @@ M.ListAnnotationImportJobsInput = {
                 http_query = "nextToken",
             },
         },
-        filter = {
-            type = "structure",
-        },
+        filter = M.ListAnnotationImportJobsFilter,
     },
 }
 
@@ -578,11 +577,14 @@ M.AnnotationImportJobItem = {
         },
         runLeftNormalization = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         annotationFields = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -592,7 +594,7 @@ M.ListAnnotationImportJobsOutput = {
     members = {
         annotationImportJobs = {
             type = "list",
-            member_type = "structure",
+            member = M.AnnotationImportJobItem,
         },
         nextToken = {
             type = "string",
@@ -617,7 +619,7 @@ M.StartAnnotationImportJobInput = {
         },
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.AnnotationImportItemSource,
             traits = {
                 required = true,
             },
@@ -625,16 +627,17 @@ M.StartAnnotationImportJobInput = {
         versionName = {
             type = "string",
         },
-        formatOptions = {
-            type = "union",
-        },
+        formatOptions = M.FormatOptions,
         runLeftNormalization = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         annotationFields = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -721,12 +724,12 @@ M.TsvStoreOptions = {
         },
         formatToHeader = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         schema = {
             type = "list",
-            member_type = "map",
+            member = { type = "map" },
         },
     },
 }
@@ -734,18 +737,14 @@ M.TsvStoreOptions = {
 M.StoreOptions = {
     type = "union",
     members = {
-        tsvStoreOptions = {
-            type = "structure",
-        },
+        tsvStoreOptions = M.TsvStoreOptions,
     },
 }
 
 M.CreateAnnotationStoreInput = {
     type = "structure",
     members = {
-        reference = {
-            type = "union",
-        },
+        reference = M.ReferenceItem,
         name = {
             type = "string",
         },
@@ -754,24 +753,20 @@ M.CreateAnnotationStoreInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         versionName = {
             type = "string",
         },
-        sseConfig = {
-            type = "structure",
-        },
+        sseConfig = M.SseConfig,
         storeFormat = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        storeOptions = {
-            type = "union",
-        },
+        storeOptions = M.StoreOptions,
     },
 }
 
@@ -792,15 +787,11 @@ M.CreateAnnotationStoreOutput = {
                 required = true,
             },
         },
-        reference = {
-            type = "union",
-        },
+        reference = M.ReferenceItem,
         storeFormat = {
             type = "string",
         },
-        storeOptions = {
-            type = "union",
-        },
+        storeOptions = M.StoreOptions,
         status = {
             type = "string",
             traits = {
@@ -841,6 +832,7 @@ M.DeleteAnnotationStoreInput = {
         force = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "force",
             },
         },
@@ -881,12 +873,9 @@ M.GetAnnotationStoreOutput = {
                 required = true,
             },
         },
-        reference = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        reference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ReferenceItem }),
         status = {
             type = "string",
             traits = {
@@ -911,12 +900,9 @@ M.GetAnnotationStoreOutput = {
                 required = true,
             },
         },
-        sseConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        sseConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SseConfig }),
         creationTime = {
             type = "timestamp",
             traits = {
@@ -931,15 +917,13 @@ M.GetAnnotationStoreOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        storeOptions = {
-            type = "union",
-        },
+        storeOptions = M.StoreOptions,
         storeFormat = {
             type = "string",
         },
@@ -950,13 +934,13 @@ M.GetAnnotationStoreOutput = {
             },
         },
         storeSizeBytes = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         numVersions = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -978,10 +962,10 @@ M.ListAnnotationStoresInput = {
     members = {
         ids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -992,9 +976,7 @@ M.ListAnnotationStoresInput = {
                 http_query = "nextToken",
             },
         },
-        filter = {
-            type = "structure",
-        },
+        filter = M.ListAnnotationStoresFilter,
     },
 }
 
@@ -1007,12 +989,9 @@ M.AnnotationStoreItem = {
                 required = true,
             },
         },
-        reference = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        reference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ReferenceItem }),
         status = {
             type = "string",
             traits = {
@@ -1043,12 +1022,9 @@ M.AnnotationStoreItem = {
                 required = true,
             },
         },
-        sseConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        sseConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SseConfig }),
         creationTime = {
             type = "timestamp",
             traits = {
@@ -1068,7 +1044,7 @@ M.AnnotationStoreItem = {
             },
         },
         storeSizeBytes = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -1081,7 +1057,7 @@ M.ListAnnotationStoresOutput = {
     members = {
         annotationStores = {
             type = "list",
-            member_type = "structure",
+            member = M.AnnotationStoreItem,
         },
         nextToken = {
             type = "string",
@@ -1114,12 +1090,9 @@ M.UpdateAnnotationStoreOutput = {
                 required = true,
             },
         },
-        reference = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        reference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ReferenceItem }),
         status = {
             type = "string",
             traits = {
@@ -1150,9 +1123,7 @@ M.UpdateAnnotationStoreOutput = {
                 required = true,
             },
         },
-        storeOptions = {
-            type = "union",
-        },
+        storeOptions = M.StoreOptions,
         storeFormat = {
             type = "string",
         },
@@ -1167,12 +1138,12 @@ M.TsvVersionOptions = {
         },
         formatToHeader = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         schema = {
             type = "list",
-            member_type = "map",
+            member = { type = "map" },
         },
     },
 }
@@ -1180,9 +1151,7 @@ M.TsvVersionOptions = {
 M.VersionOptions = {
     type = "union",
     members = {
-        tsvVersionOptions = {
-            type = "structure",
-        },
+        tsvVersionOptions = M.TsvVersionOptions,
     },
 }
 
@@ -1205,13 +1174,11 @@ M.CreateAnnotationStoreVersionInput = {
         description = {
             type = "string",
         },
-        versionOptions = {
-            type = "union",
-        },
+        versionOptions = M.VersionOptions,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1245,9 +1212,7 @@ M.CreateAnnotationStoreVersionOutput = {
                 required = true,
             },
         },
-        versionOptions = {
-            type = "union",
-        },
+        versionOptions = M.VersionOptions,
         name = {
             type = "string",
             traits = {
@@ -1281,7 +1246,7 @@ M.DeleteAnnotationStoreVersionsInput = {
         },
         versions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1289,6 +1254,7 @@ M.DeleteAnnotationStoreVersionsInput = {
         force = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "force",
             },
         },
@@ -1318,7 +1284,7 @@ M.DeleteAnnotationStoreVersionsOutput = {
     members = {
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.VersionDeleteError,
         },
     },
 }
@@ -1402,15 +1368,13 @@ M.GetAnnotationStoreVersionOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        versionOptions = {
-            type = "union",
-        },
+        versionOptions = M.VersionOptions,
         statusMessage = {
             type = "string",
             traits = {
@@ -1418,7 +1382,7 @@ M.GetAnnotationStoreVersionOutput = {
             },
         },
         versionSizeBytes = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -1446,7 +1410,7 @@ M.ListAnnotationStoreVersionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1457,9 +1421,7 @@ M.ListAnnotationStoreVersionsInput = {
                 http_query = "nextToken",
             },
         },
-        filter = {
-            type = "structure",
-        },
+        filter = M.ListAnnotationStoreVersionsFilter,
     },
 }
 
@@ -1527,7 +1489,7 @@ M.AnnotationStoreVersionItem = {
             },
         },
         versionSizeBytes = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -1540,7 +1502,7 @@ M.ListAnnotationStoreVersionsOutput = {
     members = {
         annotationStoreVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.AnnotationStoreVersionItem,
         },
         nextToken = {
             type = "string",
@@ -1630,7 +1592,7 @@ M.BatchDeleteReadSetInput = {
     members = {
         ids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1674,7 +1636,7 @@ M.BatchDeleteReadSetOutput = {
     members = {
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.ReadSetBatchError,
         },
     },
 }
@@ -1708,7 +1670,7 @@ M.BatchListItem = {
             type = "timestamp",
         },
         totalRuns = {
-            type = "number",
+            type = "integer",
         },
         workflowId = {
             type = "string",
@@ -1732,7 +1694,7 @@ M.InlineSetting = {
             type = "string",
         },
         priority = {
-            type = "number",
+            type = "integer",
         },
         parameters = {
             type = "document",
@@ -1742,8 +1704,8 @@ M.InlineSetting = {
         },
         runTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1753,7 +1715,7 @@ M.BatchRunSettings = {
     members = {
         inlineSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.InlineSetting,
         },
         s3UriSettings = {
             type = "string",
@@ -1825,7 +1787,7 @@ M.CompleteReadSetUploadPartListItem = {
     type = "structure",
     members = {
         partNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1864,7 +1826,7 @@ M.CompleteMultipartReadSetUploadInput = {
         },
         parts = {
             type = "list",
-            member_type = "structure",
+            member = M.CompleteReadSetUploadPartListItem,
             traits = {
                 required = true,
             },
@@ -1934,11 +1896,11 @@ M.VpcConfig = {
     members = {
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1946,9 +1908,7 @@ M.VpcConfig = {
 M.RunConfigurations = {
     type = "structure",
     members = {
-        vpcConfig = {
-            type = "structure",
-        },
+        vpcConfig = M.VpcConfig,
     },
 }
 
@@ -1964,16 +1924,13 @@ M.CreateConfigurationInput = {
         description = {
             type = "string",
         },
-        runConfigurations = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        runConfigurations = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RunConfigurations }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         requestId = {
             type = "string",
@@ -1989,11 +1946,11 @@ M.VpcConfigResponse = {
     members = {
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         vpcId = {
             type = "string",
@@ -2004,9 +1961,7 @@ M.VpcConfigResponse = {
 M.RunConfigurationsResponse = {
     type = "structure",
     members = {
-        vpcConfig = {
-            type = "structure",
-        },
+        vpcConfig = M.VpcConfigResponse,
     },
 }
 
@@ -2025,9 +1980,7 @@ M.CreateConfigurationOutput = {
         description = {
             type = "string",
         },
-        runConfigurations = {
-            type = "structure",
-        },
+        runConfigurations = M.RunConfigurationsResponse,
         status = {
             type = "string",
         },
@@ -2036,8 +1989,8 @@ M.CreateConfigurationOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2087,9 +2040,7 @@ M.GetConfigurationOutput = {
         description = {
             type = "string",
         },
-        runConfigurations = {
-            type = "structure",
-        },
+        runConfigurations = M.RunConfigurationsResponse,
         status = {
             type = "string",
         },
@@ -2098,8 +2049,8 @@ M.GetConfigurationOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2108,7 +2059,7 @@ M.ListConfigurationsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2127,7 +2078,7 @@ M.ListConfigurationsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigurationListItem,
         },
         nextToken = {
             type = "string",
@@ -2170,11 +2121,11 @@ M.ContainerRegistryMap = {
     members = {
         registryMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.RegistryMapping,
         },
         imageMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.ImageMapping,
         },
     },
 }
@@ -2234,8 +2185,8 @@ M.CreateMultipartReadSetUploadInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2290,8 +2241,8 @@ M.CreateMultipartReadSetUploadOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         creationTime = {
             type = "timestamp",
@@ -2315,13 +2266,11 @@ M.CreateReferenceStoreInput = {
         description = {
             type = "string",
         },
-        sseConfig = {
-            type = "structure",
-        },
+        sseConfig = M.SseConfig,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         clientToken = {
             type = "string",
@@ -2350,9 +2299,7 @@ M.CreateReferenceStoreOutput = {
         description = {
             type = "string",
         },
-        sseConfig = {
-            type = "structure",
-        },
+        sseConfig = M.SseConfig,
         creationTime = {
             type = "timestamp",
             traits = {
@@ -2389,8 +2336,8 @@ M.CreateRunCacheInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         cacheBucketOwnerId = {
             type = "string",
@@ -2418,8 +2365,8 @@ M.CreateRunCacheOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2431,18 +2378,18 @@ M.CreateRunGroupInput = {
             type = "string",
         },
         maxCpus = {
-            type = "number",
+            type = "integer",
         },
         maxRuns = {
-            type = "number",
+            type = "integer",
         },
         maxDuration = {
-            type = "number",
+            type = "integer",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         requestId = {
             type = "string",
@@ -2451,7 +2398,7 @@ M.CreateRunGroupInput = {
             },
         },
         maxGpus = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2467,8 +2414,8 @@ M.CreateRunGroupOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2500,13 +2447,11 @@ M.CreateSequenceStoreInput = {
         description = {
             type = "string",
         },
-        sseConfig = {
-            type = "structure",
-        },
+        sseConfig = M.SseConfig,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         clientToken = {
             type = "string",
@@ -2519,11 +2464,9 @@ M.CreateSequenceStoreInput = {
         },
         propagatedSetLevelTags = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        s3AccessConfig = {
-            type = "structure",
-        },
+        s3AccessConfig = M.S3AccessConfig,
     },
 }
 
@@ -2571,9 +2514,7 @@ M.CreateSequenceStoreOutput = {
         description = {
             type = "string",
         },
-        sseConfig = {
-            type = "structure",
-        },
+        sseConfig = M.SseConfig,
         creationTime = {
             type = "timestamp",
             traits = {
@@ -2595,11 +2536,9 @@ M.CreateSequenceStoreOutput = {
         },
         propagatedSetLevelTags = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        s3Access = {
-            type = "structure",
-        },
+        s3Access = M.SequenceStoreS3Access,
     },
 }
 
@@ -2642,12 +2581,9 @@ M.CreateShareOutput = {
 M.CreateVariantStoreInput = {
     type = "structure",
     members = {
-        reference = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        reference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ReferenceItem }),
         name = {
             type = "string",
         },
@@ -2656,12 +2592,10 @@ M.CreateVariantStoreInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        sseConfig = {
-            type = "structure",
-        },
+        sseConfig = M.SseConfig,
     },
 }
 
@@ -2674,9 +2608,7 @@ M.CreateVariantStoreOutput = {
                 required = true,
             },
         },
-        reference = {
-            type = "union",
-        },
+        reference = M.ReferenceItem,
         status = {
             type = "string",
             traits = {
@@ -2737,12 +2669,10 @@ M.DefinitionRepository = {
                 required = true,
             },
         },
-        sourceReference = {
-            type = "structure",
-        },
+        sourceReference = M.SourceReference,
         excludeFilePatterns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2794,16 +2724,16 @@ M.CreateWorkflowInput = {
         },
         parameterTemplate = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.WorkflowParameter,
         },
         storageCapacity = {
-            type = "number",
+            type = "integer",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         requestId = {
             type = "string",
@@ -2817,9 +2747,7 @@ M.CreateWorkflowInput = {
         storageType = {
             type = "string",
         },
-        containerRegistryMap = {
-            type = "structure",
-        },
+        containerRegistryMap = M.ContainerRegistryMap,
         containerRegistryMapUri = {
             type = "string",
         },
@@ -2832,9 +2760,7 @@ M.CreateWorkflowInput = {
         readmePath = {
             type = "string",
         },
-        definitionRepository = {
-            type = "structure",
-        },
+        definitionRepository = M.DefinitionRepository,
         workflowBucketOwnerId = {
             type = "string",
         },
@@ -2867,8 +2793,8 @@ M.CreateWorkflowOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         uuid = {
             type = "string",
@@ -2912,8 +2838,8 @@ M.CreateWorkflowVersionInput = {
         },
         parameterTemplate = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.WorkflowParameter,
         },
         requestId = {
             type = "string",
@@ -2925,19 +2851,17 @@ M.CreateWorkflowVersionInput = {
             type = "string",
         },
         storageCapacity = {
-            type = "number",
+            type = "integer",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         workflowBucketOwnerId = {
             type = "string",
         },
-        containerRegistryMap = {
-            type = "structure",
-        },
+        containerRegistryMap = M.ContainerRegistryMap,
         containerRegistryMapUri = {
             type = "string",
         },
@@ -2950,9 +2874,7 @@ M.CreateWorkflowVersionInput = {
         readmePath = {
             type = "string",
         },
-        definitionRepository = {
-            type = "structure",
-        },
+        definitionRepository = M.DefinitionRepository,
         readmeUri = {
             type = "string",
         },
@@ -2976,8 +2898,8 @@ M.CreateWorkflowVersionOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         uuid = {
             type = "string",
@@ -3043,13 +2965,13 @@ M.DefaultRunSetting = {
             type = "string",
         },
         priority = {
-            type = "number",
+            type = "integer",
         },
         parameters = {
             type = "document",
         },
         storageCapacity = {
-            type = "number",
+            type = "integer",
         },
         outputUri = {
             type = "string",
@@ -3059,8 +2981,8 @@ M.DefaultRunSetting = {
         },
         runTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         retentionMode = {
             type = "string",
@@ -3095,9 +3017,7 @@ M.DefinitionRepositoryDetails = {
         fullRepositoryId = {
             type = "string",
         },
-        sourceReference = {
-            type = "structure",
-        },
+        sourceReference = M.SourceReference,
         providerType = {
             type = "string",
         },
@@ -3301,6 +3221,7 @@ M.DeleteVariantStoreInput = {
         force = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "force",
             },
         },
@@ -3514,17 +3435,15 @@ M.FileInformation = {
     type = "structure",
     members = {
         totalParts = {
-            type = "number",
+            type = "integer",
         },
         partSize = {
-            type = "number",
+            type = "long",
         },
         contentLength = {
-            type = "number",
+            type = "long",
         },
-        s3Access = {
-            type = "structure",
-        },
+        s3Access = M.ReadSetS3Access,
     },
 }
 
@@ -3539,15 +3458,15 @@ M.Filter = {
     members = {
         resourceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         status = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         type = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3569,28 +3488,28 @@ M.RunSummary = {
     type = "structure",
     members = {
         pendingRunCount = {
-            type = "number",
+            type = "integer",
         },
         startingRunCount = {
-            type = "number",
+            type = "integer",
         },
         runningRunCount = {
-            type = "number",
+            type = "integer",
         },
         stoppingRunCount = {
-            type = "number",
+            type = "integer",
         },
         completedRunCount = {
-            type = "number",
+            type = "integer",
         },
         deletedRunCount = {
-            type = "number",
+            type = "integer",
         },
         failedRunCount = {
-            type = "number",
+            type = "integer",
         },
         cancelledRunCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3599,25 +3518,25 @@ M.SubmissionSummary = {
     type = "structure",
     members = {
         successfulStartSubmissionCount = {
-            type = "number",
+            type = "integer",
         },
         failedStartSubmissionCount = {
-            type = "number",
+            type = "integer",
         },
         pendingStartSubmissionCount = {
-            type = "number",
+            type = "integer",
         },
         successfulCancelSubmissionCount = {
-            type = "number",
+            type = "integer",
         },
         failedCancelSubmissionCount = {
-            type = "number",
+            type = "integer",
         },
         successfulDeleteSubmissionCount = {
-            type = "number",
+            type = "integer",
         },
         failedDeleteSubmissionCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3642,21 +3561,15 @@ M.GetBatchOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         totalRuns = {
-            type = "number",
+            type = "integer",
         },
-        defaultRunSetting = {
-            type = "structure",
-        },
-        submissionSummary = {
-            type = "structure",
-        },
-        runSummary = {
-            type = "structure",
-        },
+        defaultRunSetting = M.DefaultRunSetting,
+        submissionSummary = M.SubmissionSummary,
+        runSummary = M.RunSummary,
         creationTime = {
             type = "timestamp",
         },
@@ -3705,7 +3618,7 @@ M.GetReadSetInput = {
             },
         },
         partNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "partNumber",
                 required = true,
@@ -3720,6 +3633,7 @@ M.GetReadSetOutput = {
         payload = {
             type = "blob",
             traits = {
+                default = "",
                 http_payload = true,
             },
         },
@@ -3798,7 +3712,7 @@ M.GetReadSetActivationJobOutput = {
         },
         sources = {
             type = "list",
-            member_type = "structure",
+            member = M.ActivateReadSetSourceItem,
         },
     },
 }
@@ -3868,7 +3782,7 @@ M.GetReadSetExportJobOutput = {
         },
         readSets = {
             type = "list",
-            member_type = "structure",
+            member = M.ExportReadSetDetail,
         },
     },
 }
@@ -3918,12 +3832,9 @@ M.ReadSetImportJobItemStatus = {
 M.ImportReadSetSourceItem = {
     type = "structure",
     members = {
-        sourceFiles = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        sourceFiles = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SourceFiles }),
         sourceFileType = {
             type = "string",
             traits = {
@@ -3965,8 +3876,8 @@ M.ImportReadSetSourceItem = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         readSetId = {
             type = "string",
@@ -4029,7 +3940,7 @@ M.GetReadSetImportJobOutput = {
         },
         sources = {
             type = "list",
-            member_type = "structure",
+            member = M.ImportReadSetSourceItem,
             traits = {
                 required = true,
             },
@@ -4060,15 +3971,9 @@ M.GetReadSetMetadataInput = {
 M.ReadSetFiles = {
     type = "structure",
     members = {
-        source1 = {
-            type = "structure",
-        },
-        source2 = {
-            type = "structure",
-        },
-        index = {
-            type = "structure",
-        },
+        source1 = M.FileInformation,
+        source2 = M.FileInformation,
+        index = M.FileInformation,
     },
 }
 
@@ -4076,10 +3981,10 @@ M.SequenceInformation = {
     type = "structure",
     members = {
         totalReadCount = {
-            type = "number",
+            type = "long",
         },
         totalBaseCount = {
-            type = "number",
+            type = "long",
         },
         generatedFrom = {
             type = "string",
@@ -4152,24 +4057,18 @@ M.GetReadSetMetadataOutput = {
                 timestamp_format = "date-time",
             },
         },
-        sequenceInformation = {
-            type = "structure",
-        },
+        sequenceInformation = M.SequenceInformation,
         referenceArn = {
             type = "string",
         },
-        files = {
-            type = "structure",
-        },
+        files = M.ReadSetFiles,
         statusMessage = {
             type = "string",
         },
         creationType = {
             type = "string",
         },
-        etag = {
-            type = "structure",
-        },
+        etag = M.ETag,
         creationJobId = {
             type = "string",
         },
@@ -4205,7 +4104,7 @@ M.GetReferenceInput = {
             },
         },
         partNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "partNumber",
                 required = true,
@@ -4226,6 +4125,7 @@ M.GetReferenceOutput = {
         payload = {
             type = "blob",
             traits = {
+                default = "",
                 http_payload = true,
             },
         },
@@ -4282,8 +4182,8 @@ M.ImportReferenceSourceItem = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         referenceId = {
             type = "string",
@@ -4346,7 +4246,7 @@ M.GetReferenceImportJobOutput = {
         },
         sources = {
             type = "list",
-            member_type = "structure",
+            member = M.ImportReferenceSourceItem,
             traits = {
                 required = true,
             },
@@ -4381,12 +4281,8 @@ M.ReferenceCreationType = {
 M.ReferenceFiles = {
     type = "structure",
     members = {
-        source = {
-            type = "structure",
-        },
-        index = {
-            type = "structure",
-        },
+        source = M.FileInformation,
+        index = M.FileInformation,
     },
 }
 
@@ -4446,9 +4342,7 @@ M.GetReferenceMetadataOutput = {
                 timestamp_format = "date-time",
             },
         },
-        files = {
-            type = "structure",
-        },
+        files = M.ReferenceFiles,
         creationType = {
             type = "string",
         },
@@ -4492,9 +4386,7 @@ M.GetReferenceStoreOutput = {
         description = {
             type = "string",
         },
-        sseConfig = {
-            type = "structure",
-        },
+        sseConfig = M.SseConfig,
         creationTime = {
             type = "timestamp",
             traits = {
@@ -4521,7 +4413,7 @@ M.GetRunInput = {
         },
         export = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "export",
             },
@@ -4595,7 +4487,7 @@ M.GetRunOutput = {
             type = "string",
         },
         priority = {
-            type = "number",
+            type = "integer",
         },
         definition = {
             type = "string",
@@ -4607,7 +4499,7 @@ M.GetRunOutput = {
             type = "document",
         },
         storageCapacity = {
-            type = "number",
+            type = "integer",
         },
         outputUri = {
             type = "string",
@@ -4617,8 +4509,8 @@ M.GetRunOutput = {
         },
         resourceDigests = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         startedBy = {
             type = "string",
@@ -4637,8 +4529,8 @@ M.GetRunOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         accelerators = {
             type = "string",
@@ -4649,9 +4541,7 @@ M.GetRunOutput = {
         failureReason = {
             type = "string",
         },
-        logLocation = {
-            type = "structure",
-        },
+        logLocation = M.RunLogLocation,
         uuid = {
             type = "string",
         },
@@ -4673,12 +4563,8 @@ M.GetRunOutput = {
         networkingMode = {
             type = "string",
         },
-        configuration = {
-            type = "structure",
-        },
-        vpcConfig = {
-            type = "structure",
-        },
+        configuration = M.ConfigurationDetails,
+        vpcConfig = M.VpcConfigResponse,
     },
 }
 
@@ -4727,8 +4613,8 @@ M.GetRunCacheOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -4759,24 +4645,24 @@ M.GetRunGroupOutput = {
             type = "string",
         },
         maxCpus = {
-            type = "number",
+            type = "integer",
         },
         maxRuns = {
-            type = "number",
+            type = "integer",
         },
         maxDuration = {
-            type = "number",
+            type = "integer",
         },
         creationTime = {
             type = "timestamp",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         maxGpus = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4839,7 +4725,7 @@ M.GetRunTaskOutput = {
             type = "string",
         },
         cpus = {
-            type = "number",
+            type = "integer",
         },
         cacheHit = {
             type = "boolean",
@@ -4848,7 +4734,7 @@ M.GetRunTaskOutput = {
             type = "string",
         },
         memory = {
-            type = "number",
+            type = "integer",
         },
         creationTime = {
             type = "timestamp",
@@ -4866,7 +4752,7 @@ M.GetRunTaskOutput = {
             type = "string",
         },
         gpus = {
-            type = "number",
+            type = "integer",
         },
         instanceType = {
             type = "string",
@@ -4874,9 +4760,7 @@ M.GetRunTaskOutput = {
         failureReason = {
             type = "string",
         },
-        imageDetails = {
-            type = "structure",
-        },
+        imageDetails = M.ImageDetails,
     },
 }
 
@@ -4959,9 +4843,7 @@ M.GetSequenceStoreOutput = {
         description = {
             type = "string",
         },
-        sseConfig = {
-            type = "structure",
-        },
+        sseConfig = M.SseConfig,
         creationTime = {
             type = "timestamp",
             traits = {
@@ -4972,9 +4854,7 @@ M.GetSequenceStoreOutput = {
         fallbackLocation = {
             type = "string",
         },
-        s3Access = {
-            type = "structure",
-        },
+        s3Access = M.SequenceStoreS3Access,
         eTagAlgorithmFamily = {
             type = "string",
         },
@@ -4986,7 +4866,7 @@ M.GetSequenceStoreOutput = {
         },
         propagatedSetLevelTags = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         updateTime = {
             type = "timestamp",
@@ -5049,9 +4929,7 @@ M.ShareDetails = {
 M.GetShareOutput = {
     type = "structure",
     members = {
-        share = {
-            type = "structure",
-        },
+        share = M.ShareDetails,
     },
 }
 
@@ -5139,7 +5017,7 @@ M.GetVariantImportJobOutput = {
         },
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.VariantImportItemDetail,
             traits = {
                 required = true,
             },
@@ -5147,13 +5025,14 @@ M.GetVariantImportJobOutput = {
         runLeftNormalization = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
         annotationFields = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -5180,12 +5059,9 @@ M.GetVariantStoreOutput = {
                 required = true,
             },
         },
-        reference = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        reference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ReferenceItem }),
         status = {
             type = "string",
             traits = {
@@ -5210,12 +5086,9 @@ M.GetVariantStoreOutput = {
                 required = true,
             },
         },
-        sseConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        sseConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SseConfig }),
         creationTime = {
             type = "timestamp",
             traits = {
@@ -5230,8 +5103,8 @@ M.GetVariantStoreOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -5243,7 +5116,7 @@ M.GetVariantStoreOutput = {
             },
         },
         storeSizeBytes = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -5274,7 +5147,7 @@ M.GetWorkflowInput = {
         },
         export = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "export",
             },
@@ -5323,11 +5196,11 @@ M.GetWorkflowOutput = {
         },
         parameterTemplate = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.WorkflowParameter,
         },
         storageCapacity = {
-            type = "number",
+            type = "integer",
         },
         creationTime = {
             type = "timestamp",
@@ -5337,13 +5210,13 @@ M.GetWorkflowOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         metadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         accelerators = {
             type = "string",
@@ -5354,15 +5227,11 @@ M.GetWorkflowOutput = {
         uuid = {
             type = "string",
         },
-        containerRegistryMap = {
-            type = "structure",
-        },
+        containerRegistryMap = M.ContainerRegistryMap,
         readme = {
             type = "string",
         },
-        definitionRepositoryDetails = {
-            type = "structure",
-        },
+        definitionRepositoryDetails = M.DefinitionRepositoryDetails,
         readmePath = {
             type = "string",
         },
@@ -5394,7 +5263,7 @@ M.GetWorkflowVersionInput = {
         },
         export = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "export",
             },
@@ -5443,13 +5312,13 @@ M.GetWorkflowVersionOutput = {
         },
         metadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         parameterTemplate = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.WorkflowParameter,
         },
         status = {
             type = "string",
@@ -5461,15 +5330,15 @@ M.GetWorkflowVersionOutput = {
             type = "string",
         },
         storageCapacity = {
-            type = "number",
+            type = "integer",
         },
         type = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         uuid = {
             type = "string",
@@ -5477,15 +5346,11 @@ M.GetWorkflowVersionOutput = {
         workflowBucketOwnerId = {
             type = "string",
         },
-        containerRegistryMap = {
-            type = "structure",
-        },
+        containerRegistryMap = M.ContainerRegistryMap,
         readme = {
             type = "string",
         },
-        definitionRepositoryDetails = {
-            type = "structure",
-        },
+        definitionRepositoryDetails = M.DefinitionRepositoryDetails,
         readmePath = {
             type = "string",
         },
@@ -5624,7 +5489,7 @@ M.ListBatchInput = {
     type = "structure",
     members = {
         maxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxItems",
             },
@@ -5661,7 +5526,7 @@ M.ListBatchOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchListItem,
         },
         nextToken = {
             type = "string",
@@ -5680,7 +5545,7 @@ M.ListMultipartReadSetUploadsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -5747,8 +5612,8 @@ M.MultipartReadSetUploadListItem = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         creationTime = {
             type = "timestamp",
@@ -5768,7 +5633,7 @@ M.ListMultipartReadSetUploadsOutput = {
         },
         uploads = {
             type = "list",
-            member_type = "structure",
+            member = M.MultipartReadSetUploadListItem,
         },
     },
 }
@@ -5784,7 +5649,7 @@ M.ListReadSetActivationJobsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -5795,9 +5660,7 @@ M.ListReadSetActivationJobsInput = {
                 http_query = "nextToken",
             },
         },
-        filter = {
-            type = "structure",
-        },
+        filter = M.ActivateReadSetFilter,
     },
 }
 
@@ -5809,7 +5672,7 @@ M.ListReadSetActivationJobsOutput = {
         },
         activationJobs = {
             type = "list",
-            member_type = "structure",
+            member = M.ActivateReadSetJobItem,
         },
     },
 }
@@ -5825,7 +5688,7 @@ M.ListReadSetExportJobsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -5836,9 +5699,7 @@ M.ListReadSetExportJobsInput = {
                 http_query = "nextToken",
             },
         },
-        filter = {
-            type = "structure",
-        },
+        filter = M.ExportReadSetFilter,
     },
 }
 
@@ -5850,7 +5711,7 @@ M.ListReadSetExportJobsOutput = {
         },
         exportJobs = {
             type = "list",
-            member_type = "structure",
+            member = M.ExportReadSetJobDetail,
         },
     },
 }
@@ -5859,7 +5720,7 @@ M.ListReadSetImportJobsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -5877,9 +5738,7 @@ M.ListReadSetImportJobsInput = {
                 required = true,
             },
         },
-        filter = {
-            type = "structure",
-        },
+        filter = M.ImportReadSetFilter,
     },
 }
 
@@ -5891,7 +5750,7 @@ M.ListReadSetImportJobsOutput = {
         },
         importJobs = {
             type = "list",
-            member_type = "structure",
+            member = M.ImportReadSetJobItem,
         },
     },
 }
@@ -5946,7 +5805,7 @@ M.ListReadSetsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -5957,9 +5816,7 @@ M.ListReadSetsInput = {
                 http_query = "nextToken",
             },
         },
-        filter = {
-            type = "structure",
-        },
+        filter = M.ReadSetFilter,
     },
 }
 
@@ -6011,9 +5868,7 @@ M.ReadSetListItem = {
                 required = true,
             },
         },
-        sequenceInformation = {
-            type = "structure",
-        },
+        sequenceInformation = M.SequenceInformation,
         creationTime = {
             type = "timestamp",
             traits = {
@@ -6027,9 +5882,7 @@ M.ReadSetListItem = {
         creationType = {
             type = "string",
         },
-        etag = {
-            type = "structure",
-        },
+        etag = M.ETag,
     },
 }
 
@@ -6041,7 +5894,7 @@ M.ListReadSetsOutput = {
         },
         readSets = {
             type = "list",
-            member_type = "structure",
+            member = M.ReadSetListItem,
             traits = {
                 required = true,
             },
@@ -6091,7 +5944,7 @@ M.ListReadSetUploadPartsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -6102,9 +5955,7 @@ M.ListReadSetUploadPartsInput = {
                 http_query = "nextToken",
             },
         },
-        filter = {
-            type = "structure",
-        },
+        filter = M.ReadSetUploadPartListFilter,
     },
 }
 
@@ -6112,13 +5963,13 @@ M.ReadSetUploadPartListItem = {
     type = "structure",
     members = {
         partNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         partSize = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -6158,7 +6009,7 @@ M.ListReadSetUploadPartsOutput = {
         },
         parts = {
             type = "list",
-            member_type = "structure",
+            member = M.ReadSetUploadPartListItem,
         },
     },
 }
@@ -6167,7 +6018,7 @@ M.ListReferenceImportJobsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -6185,9 +6036,7 @@ M.ListReferenceImportJobsInput = {
                 required = true,
             },
         },
-        filter = {
-            type = "structure",
-        },
+        filter = M.ImportReferenceFilter,
     },
 }
 
@@ -6199,7 +6048,7 @@ M.ListReferenceImportJobsOutput = {
         },
         importJobs = {
             type = "list",
-            member_type = "structure",
+            member = M.ImportReferenceJobItem,
         },
     },
 }
@@ -6239,7 +6088,7 @@ M.ListReferencesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -6250,9 +6099,7 @@ M.ListReferencesInput = {
                 http_query = "nextToken",
             },
         },
-        filter = {
-            type = "structure",
-        },
+        filter = M.ReferenceFilter,
     },
 }
 
@@ -6317,7 +6164,7 @@ M.ListReferencesOutput = {
         },
         references = {
             type = "list",
-            member_type = "structure",
+            member = M.ReferenceListItem,
             traits = {
                 required = true,
             },
@@ -6350,7 +6197,7 @@ M.ListReferenceStoresInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -6361,9 +6208,7 @@ M.ListReferenceStoresInput = {
                 http_query = "nextToken",
             },
         },
-        filter = {
-            type = "structure",
-        },
+        filter = M.ReferenceStoreFilter,
     },
 }
 
@@ -6388,9 +6233,7 @@ M.ReferenceStoreDetail = {
         description = {
             type = "string",
         },
-        sseConfig = {
-            type = "structure",
-        },
+        sseConfig = M.SseConfig,
         creationTime = {
             type = "timestamp",
             traits = {
@@ -6409,7 +6252,7 @@ M.ListReferenceStoresOutput = {
         },
         referenceStores = {
             type = "list",
-            member_type = "structure",
+            member = M.ReferenceStoreDetail,
             traits = {
                 required = true,
             },
@@ -6421,7 +6264,7 @@ M.ListRunCachesInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -6467,7 +6310,7 @@ M.ListRunCachesOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.RunCacheListItem,
         },
         nextToken = {
             type = "string",
@@ -6491,7 +6334,7 @@ M.ListRunGroupsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -6512,19 +6355,19 @@ M.RunGroupListItem = {
             type = "string",
         },
         maxCpus = {
-            type = "number",
+            type = "integer",
         },
         maxRuns = {
-            type = "number",
+            type = "integer",
         },
         maxDuration = {
-            type = "number",
+            type = "integer",
         },
         creationTime = {
             type = "timestamp",
         },
         maxGpus = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -6534,7 +6377,7 @@ M.ListRunGroupsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.RunGroupListItem,
         },
         nextToken = {
             type = "string",
@@ -6570,7 +6413,7 @@ M.ListRunsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -6606,10 +6449,10 @@ M.RunListItem = {
             type = "string",
         },
         priority = {
-            type = "number",
+            type = "integer",
         },
         storageCapacity = {
-            type = "number",
+            type = "integer",
         },
         creationTime = {
             type = "timestamp",
@@ -6634,7 +6477,7 @@ M.ListRunsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.RunListItem,
         },
         nextToken = {
             type = "string",
@@ -6662,7 +6505,7 @@ M.ListRunsInBatchInput = {
             },
         },
         maxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxItems",
             },
@@ -6726,7 +6569,7 @@ M.ListRunsInBatchOutput = {
     members = {
         runs = {
             type = "list",
-            member_type = "structure",
+            member = M.RunBatchListItem,
         },
         nextToken = {
             type = "string",
@@ -6757,7 +6600,7 @@ M.ListRunTasksInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -6778,7 +6621,7 @@ M.TaskListItem = {
             type = "string",
         },
         cpus = {
-            type = "number",
+            type = "integer",
         },
         cacheHit = {
             type = "boolean",
@@ -6787,7 +6630,7 @@ M.TaskListItem = {
             type = "string",
         },
         memory = {
-            type = "number",
+            type = "integer",
         },
         creationTime = {
             type = "timestamp",
@@ -6799,7 +6642,7 @@ M.TaskListItem = {
             type = "timestamp",
         },
         gpus = {
-            type = "number",
+            type = "integer",
         },
         instanceType = {
             type = "string",
@@ -6812,7 +6655,7 @@ M.ListRunTasksOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.TaskListItem,
         },
         nextToken = {
             type = "string",
@@ -6860,7 +6703,7 @@ M.ListSequenceStoresInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -6871,9 +6714,7 @@ M.ListSequenceStoresInput = {
                 http_query = "nextToken",
             },
         },
-        filter = {
-            type = "structure",
-        },
+        filter = M.SequenceStoreFilter,
     },
 }
 
@@ -6898,9 +6739,7 @@ M.SequenceStoreDetail = {
         description = {
             type = "string",
         },
-        sseConfig = {
-            type = "structure",
-        },
+        sseConfig = M.SseConfig,
         creationTime = {
             type = "timestamp",
             traits = {
@@ -6937,7 +6776,7 @@ M.ListSequenceStoresOutput = {
         },
         sequenceStores = {
             type = "list",
-            member_type = "structure",
+            member = M.SequenceStoreDetail,
             traits = {
                 required = true,
             },
@@ -6959,9 +6798,7 @@ M.ListSharesInput = {
                 required = true,
             },
         },
-        filter = {
-            type = "structure",
-        },
+        filter = M.Filter,
         nextToken = {
             type = "string",
             traits = {
@@ -6969,7 +6806,7 @@ M.ListSharesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -6982,7 +6819,7 @@ M.ListSharesOutput = {
     members = {
         shares = {
             type = "list",
-            member_type = "structure",
+            member = M.ShareDetails,
             traits = {
                 required = true,
             },
@@ -7011,8 +6848,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -7036,14 +6873,14 @@ M.ListVariantImportJobsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
         },
         ids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -7051,9 +6888,7 @@ M.ListVariantImportJobsInput = {
                 http_query = "nextToken",
             },
         },
-        filter = {
-            type = "structure",
-        },
+        filter = M.ListVariantImportJobsFilter,
     },
 }
 
@@ -7101,11 +6936,14 @@ M.VariantImportJobItem = {
         },
         runLeftNormalization = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         annotationFields = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -7115,7 +6953,7 @@ M.ListVariantImportJobsOutput = {
     members = {
         variantImportJobs = {
             type = "list",
-            member_type = "structure",
+            member = M.VariantImportJobItem,
         },
         nextToken = {
             type = "string",
@@ -7136,14 +6974,14 @@ M.ListVariantStoresInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
         },
         ids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -7151,9 +6989,7 @@ M.ListVariantStoresInput = {
                 http_query = "nextToken",
             },
         },
-        filter = {
-            type = "structure",
-        },
+        filter = M.ListVariantStoresFilter,
     },
 }
 
@@ -7166,12 +7002,9 @@ M.VariantStoreItem = {
                 required = true,
             },
         },
-        reference = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        reference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ReferenceItem }),
         status = {
             type = "string",
             traits = {
@@ -7196,12 +7029,9 @@ M.VariantStoreItem = {
                 required = true,
             },
         },
-        sseConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        sseConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SseConfig }),
         creationTime = {
             type = "timestamp",
             traits = {
@@ -7221,7 +7051,7 @@ M.VariantStoreItem = {
             },
         },
         storeSizeBytes = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -7234,7 +7064,7 @@ M.ListVariantStoresOutput = {
     members = {
         variantStores = {
             type = "list",
-            member_type = "structure",
+            member = M.VariantStoreItem,
         },
         nextToken = {
             type = "string",
@@ -7264,7 +7094,7 @@ M.ListWorkflowsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -7298,8 +7128,8 @@ M.WorkflowListItem = {
         },
         metadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -7309,7 +7139,7 @@ M.ListWorkflowsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkflowListItem,
         },
         nextToken = {
             type = "string",
@@ -7346,7 +7176,7 @@ M.ListWorkflowVersionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -7383,8 +7213,8 @@ M.WorkflowVersionListItem = {
         },
         metadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -7394,7 +7224,7 @@ M.ListWorkflowVersionsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkflowVersionListItem,
         },
         nextToken = {
             type = "string",
@@ -7456,8 +7286,8 @@ M.StartReferenceImportJobSourceItem = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -7483,7 +7313,7 @@ M.StartReferenceImportJobInput = {
         },
         sources = {
             type = "list",
-            member_type = "structure",
+            member = M.StartReferenceImportJobSourceItem,
             traits = {
                 required = true,
             },
@@ -7542,21 +7372,15 @@ M.StartRunBatchInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        defaultRunSetting = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        batchRunSettings = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        defaultRunSetting = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DefaultRunSetting }),
+        batchRunSettings = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BatchRunSettings }),
     },
 }
 
@@ -7577,8 +7401,8 @@ M.StartRunBatchOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -7623,16 +7447,16 @@ M.UpdateRunGroupInput = {
             type = "string",
         },
         maxCpus = {
-            type = "number",
+            type = "integer",
         },
         maxRuns = {
-            type = "number",
+            type = "integer",
         },
         maxDuration = {
-            type = "number",
+            type = "integer",
         },
         maxGpus = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -7672,13 +7496,13 @@ M.StartRunInput = {
             type = "string",
         },
         priority = {
-            type = "number",
+            type = "integer",
         },
         parameters = {
             type = "document",
         },
         storageCapacity = {
-            type = "number",
+            type = "integer",
         },
         outputUri = {
             type = "string",
@@ -7691,8 +7515,8 @@ M.StartRunInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         requestId = {
             type = "string",
@@ -7735,8 +7559,8 @@ M.StartRunOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         uuid = {
             type = "string",
@@ -7744,9 +7568,7 @@ M.StartRunOutput = {
         runOutputUri = {
             type = "string",
         },
-        configuration = {
-            type = "structure",
-        },
+        configuration = M.ConfigurationDetails,
         networkingMode = {
             type = "string",
         },
@@ -7780,7 +7602,7 @@ M.StartReadSetActivationJobInput = {
         },
         sources = {
             type = "list",
-            member_type = "structure",
+            member = M.StartReadSetActivationJobSourceItem,
             traits = {
                 required = true,
             },
@@ -7846,7 +7668,7 @@ M.StartReadSetExportJobInput = {
         },
         sources = {
             type = "list",
-            member_type = "structure",
+            member = M.ExportReadSet,
             traits = {
                 required = true,
             },
@@ -7894,12 +7716,9 @@ M.StartReadSetExportJobOutput = {
 M.StartReadSetImportJobSourceItem = {
     type = "structure",
     members = {
-        sourceFiles = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        sourceFiles = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SourceFiles }),
         sourceFileType = {
             type = "string",
             traits = {
@@ -7932,8 +7751,8 @@ M.StartReadSetImportJobSourceItem = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -7959,7 +7778,7 @@ M.StartReadSetImportJobInput = {
         },
         sources = {
             type = "list",
-            member_type = "structure",
+            member = M.StartReadSetImportJobSourceItem,
             traits = {
                 required = true,
             },
@@ -8028,11 +7847,9 @@ M.UpdateSequenceStoreInput = {
         },
         propagatedSetLevelTags = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        s3AccessConfig = {
-            type = "structure",
-        },
+        s3AccessConfig = M.S3AccessConfig,
     },
 }
 
@@ -8057,9 +7874,7 @@ M.UpdateSequenceStoreOutput = {
         description = {
             type = "string",
         },
-        sseConfig = {
-            type = "structure",
-        },
+        sseConfig = M.SseConfig,
         creationTime = {
             type = "timestamp",
             traits = {
@@ -8075,7 +7890,7 @@ M.UpdateSequenceStoreOutput = {
         },
         propagatedSetLevelTags = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         status = {
             type = "string",
@@ -8086,9 +7901,7 @@ M.UpdateSequenceStoreOutput = {
         fallbackLocation = {
             type = "string",
         },
-        s3Access = {
-            type = "structure",
-        },
+        s3Access = M.SequenceStoreS3Access,
         eTagAlgorithmFamily = {
             type = "string",
         },
@@ -8120,7 +7933,7 @@ M.UploadReadSetPartInput = {
             },
         },
         partNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "partNumber",
                 required = true,
@@ -8160,8 +7973,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -8185,7 +7998,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -8227,18 +8040,21 @@ M.StartVariantImportJobInput = {
         },
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.VariantImportItemSource,
             traits = {
                 required = true,
             },
         },
         runLeftNormalization = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         annotationFields = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -8280,12 +8096,9 @@ M.UpdateVariantStoreOutput = {
                 required = true,
             },
         },
-        reference = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        reference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ReferenceItem }),
         status = {
             type = "string",
             traits = {
@@ -8339,7 +8152,7 @@ M.UpdateWorkflowInput = {
             type = "string",
         },
         storageCapacity = {
-            type = "number",
+            type = "integer",
         },
         readmeMarkdown = {
             type = "string",
@@ -8375,7 +8188,7 @@ M.UpdateWorkflowVersionInput = {
             type = "string",
         },
         storageCapacity = {
-            type = "number",
+            type = "integer",
         },
         readmeMarkdown = {
             type = "string",

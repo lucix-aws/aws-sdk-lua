@@ -65,24 +65,17 @@ M.CopySourceImageSetInformation = {
                 required = true,
             },
         },
-        DICOMCopies = {
-            type = "structure",
-        },
+        DICOMCopies = M.MetadataCopies,
     },
 }
 
 M.CopyImageSetInformation = {
     type = "structure",
     members = {
-        sourceImageSet = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        destinationImageSet = {
-            type = "structure",
-        },
+        sourceImageSet = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CopySourceImageSetInformation }),
+        destinationImageSet = M.CopyDestinationImageSet,
     },
 }
 
@@ -103,13 +96,10 @@ M.CopyImageSetInput = {
                 required = true,
             },
         },
-        copyImageSetInformation = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        copyImageSetInformation = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.CopyImageSetInformation }),
         force = {
             type = "boolean",
             traits = {
@@ -223,18 +213,12 @@ M.CopyImageSetOutput = {
                 required = true,
             },
         },
-        sourceImageSetProperties = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        destinationImageSetProperties = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        sourceImageSetProperties = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CopySourceImageSetProperties }),
+        destinationImageSetProperties = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CopyDestinationImageSetProperties }),
     },
 }
 
@@ -322,8 +306,8 @@ M.CreateDatastoreInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         kmsKeyArn = {
             type = "string",
@@ -452,12 +436,9 @@ M.DatastoreProperties = {
 M.GetDatastoreOutput = {
     type = "structure",
     members = {
-        datastoreProperties = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        datastoreProperties = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DatastoreProperties }),
     },
 }
 
@@ -477,7 +458,7 @@ M.ListDatastoresInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -523,7 +504,7 @@ M.ListDatastoresOutput = {
     members = {
         datastoreSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.DatastoreSummary,
         },
         nextToken = {
             type = "string",
@@ -668,12 +649,9 @@ M.DICOMImportJobProperties = {
 M.GetDICOMImportJobOutput = {
     type = "structure",
     members = {
-        jobProperties = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        jobProperties = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DICOMImportJobProperties }),
     },
 }
 
@@ -719,13 +697,10 @@ M.GetImageFrameInput = {
                 required = true,
             },
         },
-        imageFrameInformation = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        imageFrameInformation = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.ImageFrameInformation }),
     },
 }
 
@@ -846,9 +821,7 @@ M.GetImageSetOutput = {
         imageSetArn = {
             type = "string",
         },
-        overrides = {
-            type = "structure",
-        },
+        overrides = M.Overrides,
         isPrimary = {
             type = "boolean",
         },
@@ -935,7 +908,7 @@ M.ListDICOMImportJobsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -990,7 +963,7 @@ M.ListDICOMImportJobsOutput = {
     members = {
         jobSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.DICOMImportJobSummary,
             traits = {
                 required = true,
             },
@@ -1025,7 +998,7 @@ M.ListImageSetVersionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1069,9 +1042,7 @@ M.ImageSetProperties = {
         message = {
             type = "string",
         },
-        overrides = {
-            type = "structure",
-        },
+        overrides = M.Overrides,
         isPrimary = {
             type = "boolean",
         },
@@ -1083,7 +1054,7 @@ M.ListImageSetVersionsOutput = {
     members = {
         imageSetPropertiesList = {
             type = "list",
-            member_type = "structure",
+            member = M.ImageSetProperties,
             traits = {
                 required = true,
             },
@@ -1112,8 +1083,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1165,9 +1136,7 @@ M.SearchByAttributeValue = {
         updatedAt = {
             type = "timestamp",
         },
-        DICOMStudyDateAndTime = {
-            type = "structure",
-        },
+        DICOMStudyDateAndTime = M.DICOMStudyDateAndTime,
         isPrimary = {
             type = "boolean",
         },
@@ -1179,7 +1148,7 @@ M.SearchFilter = {
     members = {
         values = {
             type = "list",
-            member_type = "union",
+            member = M.SearchByAttributeValue,
             traits = {
                 required = true,
             },
@@ -1227,11 +1196,9 @@ M.SearchCriteria = {
     members = {
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.SearchFilter,
         },
-        sort = {
-            type = "structure",
-        },
+        sort = M.Sort,
     },
 }
 
@@ -1245,14 +1212,11 @@ M.SearchImageSetsInput = {
                 required = true,
             },
         },
-        searchCriteria = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        searchCriteria = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.SearchCriteria }),
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1291,10 +1255,16 @@ M.DICOMTags = {
             type = "string",
         },
         DICOMNumberOfStudyRelatedSeries = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         DICOMNumberOfStudyRelatedInstances = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         DICOMAccessionNumber = {
             type = "string",
@@ -1309,7 +1279,7 @@ M.DICOMTags = {
             type = "string",
         },
         DICOMSeriesNumber = {
-            type = "number",
+            type = "integer",
         },
         DICOMStudyDate = {
             type = "string",
@@ -1330,7 +1300,7 @@ M.ImageSetsMetadataSummary = {
             },
         },
         version = {
-            type = "number",
+            type = "integer",
         },
         createdAt = {
             type = "timestamp",
@@ -1344,9 +1314,7 @@ M.ImageSetsMetadataSummary = {
         storageTier = {
             type = "string",
         },
-        DICOMTags = {
-            type = "structure",
-        },
+        DICOMTags = M.DICOMTags,
         isPrimary = {
             type = "boolean",
         },
@@ -1358,14 +1326,12 @@ M.SearchImageSetsOutput = {
     members = {
         imageSetsMetadataSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ImageSetsMetadataSummary,
             traits = {
                 required = true,
             },
         },
-        sort = {
-            type = "structure",
-        },
+        sort = M.Sort,
         nextToken = {
             type = "string",
         },
@@ -1457,8 +1423,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1482,7 +1448,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -1510,9 +1476,7 @@ M.DICOMUpdates = {
 M.MetadataUpdates = {
     type = "union",
     members = {
-        DICOMUpdates = {
-            type = "structure",
-        },
+        DICOMUpdates = M.DICOMUpdates,
         revertToVersionId = {
             type = "string",
         },
@@ -1555,13 +1519,10 @@ M.UpdateImageSetMetadataInput = {
                 http_query = "includeStudyImageSets",
             },
         },
-        updateImageSetMetadataUpdates = {
-            type = "union",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        updateImageSetMetadataUpdates = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.MetadataUpdates }),
     },
 }
 

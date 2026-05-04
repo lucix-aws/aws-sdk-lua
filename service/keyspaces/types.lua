@@ -15,16 +15,26 @@ M.TargetTrackingScalingPolicyConfiguration = {
     members = {
         disableScaleIn = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         scaleInCooldown = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         scaleOutCooldown = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         targetValue = {
-            type = "number",
+            type = "double",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -34,9 +44,7 @@ M.TargetTrackingScalingPolicyConfiguration = {
 M.AutoScalingPolicy = {
     type = "structure",
     members = {
-        targetTrackingScalingPolicyConfiguration = {
-            type = "structure",
-        },
+        targetTrackingScalingPolicyConfiguration = M.TargetTrackingScalingPolicyConfiguration,
     },
 }
 
@@ -45,28 +53,25 @@ M.AutoScalingSettings = {
     members = {
         autoScalingDisabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         minimumUnits = {
-            type = "number",
+            type = "long",
         },
         maximumUnits = {
-            type = "number",
+            type = "long",
         },
-        scalingPolicy = {
-            type = "structure",
-        },
+        scalingPolicy = M.AutoScalingPolicy,
     },
 }
 
 M.AutoScalingSpecification = {
     type = "structure",
     members = {
-        writeCapacityAutoScaling = {
-            type = "structure",
-        },
-        readCapacityAutoScaling = {
-            type = "structure",
-        },
+        writeCapacityAutoScaling = M.AutoScalingSettings,
+        readCapacityAutoScaling = M.AutoScalingSettings,
     },
 }
 
@@ -85,10 +90,10 @@ M.CapacitySpecification = {
             },
         },
         readCapacityUnits = {
-            type = "number",
+            type = "long",
         },
         writeCapacityUnits = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -103,10 +108,10 @@ M.CapacitySpecificationSummary = {
             },
         },
         readCapacityUnits = {
-            type = "number",
+            type = "long",
         },
         writeCapacityUnits = {
-            type = "number",
+            type = "long",
         },
         lastUpdateToPayPerRequestTimestamp = {
             type = "timestamp",
@@ -165,7 +170,7 @@ M.CdcSpecification = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         propagateTags = {
             type = "string",
@@ -283,7 +288,7 @@ M.ReplicationSpecification = {
         },
         regionList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -299,11 +304,9 @@ M.CreateKeyspaceInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        replicationSpecification = {
-            type = "structure",
-        },
+        replicationSpecification = M.ReplicationSpecification,
     },
 }
 
@@ -396,11 +399,9 @@ M.ReplicaSpecification = {
             },
         },
         readCapacityUnits = {
-            type = "number",
+            type = "long",
         },
-        readCapacityAutoScaling = {
-            type = "structure",
-        },
+        readCapacityAutoScaling = M.AutoScalingSettings,
     },
 }
 
@@ -433,25 +434,25 @@ M.SchemaDefinition = {
     members = {
         allColumns = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnDefinition,
             traits = {
                 required = true,
             },
         },
         partitionKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.PartitionKey,
             traits = {
                 required = true,
             },
         },
         clusteringKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.ClusteringKey,
         },
         staticColumns = {
             type = "list",
-            member_type = "structure",
+            member = M.StaticColumn,
         },
     },
 }
@@ -476,10 +477,16 @@ M.WarmThroughputSpecification = {
     type = "structure",
     members = {
         readUnitsPerSecond = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
         writeUnitsPerSecond = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -499,50 +506,29 @@ M.CreateTableInput = {
                 required = true,
             },
         },
-        schemaDefinition = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        comment = {
-            type = "structure",
-        },
-        capacitySpecification = {
-            type = "structure",
-        },
-        encryptionSpecification = {
-            type = "structure",
-        },
-        pointInTimeRecovery = {
-            type = "structure",
-        },
-        ttl = {
-            type = "structure",
-        },
+        schemaDefinition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SchemaDefinition }),
+        comment = M.Comment,
+        capacitySpecification = M.CapacitySpecification,
+        encryptionSpecification = M.EncryptionSpecification,
+        pointInTimeRecovery = M.PointInTimeRecovery,
+        ttl = M.TimeToLive,
         defaultTimeToLive = {
-            type = "number",
+            type = "integer",
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        clientSideTimestamps = {
-            type = "structure",
-        },
-        autoScalingSpecification = {
-            type = "structure",
-        },
+        clientSideTimestamps = M.ClientSideTimestamps,
+        autoScalingSpecification = M.AutoScalingSpecification,
         replicaSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.ReplicaSpecification,
         },
-        cdcSpecification = {
-            type = "structure",
-        },
-        warmThroughputSpecification = {
-            type = "structure",
-        },
+        cdcSpecification = M.CdcSpecification,
+        warmThroughputSpecification = M.WarmThroughputSpecification,
     },
 }
 
@@ -606,7 +592,7 @@ M.CreateTypeInput = {
         },
         fieldDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldDefinition,
             traits = {
                 required = true,
             },
@@ -769,11 +755,11 @@ M.GetKeyspaceOutput = {
         },
         replicationRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         replicationGroupStatuses = {
             type = "list",
-            member_type = "structure",
+            member = M.ReplicationGroupStatus,
         },
     },
 }
@@ -830,13 +816,13 @@ M.WarmThroughputSpecificationSummary = {
     type = "structure",
     members = {
         readUnitsPerSecond = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         writeUnitsPerSecond = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -859,12 +845,8 @@ M.ReplicaSpecificationSummary = {
         status = {
             type = "string",
         },
-        capacitySpecification = {
-            type = "structure",
-        },
-        warmThroughputSpecification = {
-            type = "structure",
-        },
+        capacitySpecification = M.CapacitySpecificationSummary,
+        warmThroughputSpecification = M.WarmThroughputSpecificationSummary,
     },
 }
 
@@ -895,43 +877,25 @@ M.GetTableOutput = {
         status = {
             type = "string",
         },
-        schemaDefinition = {
-            type = "structure",
-        },
-        capacitySpecification = {
-            type = "structure",
-        },
-        encryptionSpecification = {
-            type = "structure",
-        },
-        pointInTimeRecovery = {
-            type = "structure",
-        },
-        ttl = {
-            type = "structure",
-        },
+        schemaDefinition = M.SchemaDefinition,
+        capacitySpecification = M.CapacitySpecificationSummary,
+        encryptionSpecification = M.EncryptionSpecification,
+        pointInTimeRecovery = M.PointInTimeRecoverySummary,
+        ttl = M.TimeToLive,
         defaultTimeToLive = {
-            type = "number",
+            type = "integer",
         },
-        comment = {
-            type = "structure",
-        },
-        clientSideTimestamps = {
-            type = "structure",
-        },
+        comment = M.Comment,
+        clientSideTimestamps = M.ClientSideTimestamps,
         replicaSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.ReplicaSpecificationSummary,
         },
         latestStreamArn = {
             type = "string",
         },
-        cdcSpecification = {
-            type = "structure",
-        },
-        warmThroughputSpecification = {
-            type = "structure",
-        },
+        cdcSpecification = M.CdcSpecificationSummary,
+        warmThroughputSpecification = M.WarmThroughputSpecificationSummary,
     },
 }
 
@@ -959,9 +923,7 @@ M.ReplicaAutoScalingSpecification = {
         region = {
             type = "string",
         },
-        autoScalingSpecification = {
-            type = "structure",
-        },
+        autoScalingSpecification = M.AutoScalingSpecification,
     },
 }
 
@@ -986,12 +948,10 @@ M.GetTableAutoScalingSettingsOutput = {
                 required = true,
             },
         },
-        autoScalingSpecification = {
-            type = "structure",
-        },
+        autoScalingSpecification = M.AutoScalingSpecification,
         replicaSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.ReplicaAutoScalingSpecification,
         },
     },
 }
@@ -1038,7 +998,7 @@ M.GetTypeOutput = {
         },
         fieldDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldDefinition,
         },
         lastModifiedTimestamp = {
             type = "timestamp",
@@ -1048,14 +1008,17 @@ M.GetTypeOutput = {
         },
         directReferringTables = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         directParentTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         maxNestingDepth = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         keyspaceArn = {
             type = "string",
@@ -1073,7 +1036,7 @@ M.ListKeyspacesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1101,7 +1064,7 @@ M.KeyspaceSummary = {
         },
         replicationRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1114,7 +1077,7 @@ M.ListKeyspacesOutput = {
         },
         keyspaces = {
             type = "list",
-            member_type = "structure",
+            member = M.KeyspaceSummary,
             traits = {
                 required = true,
             },
@@ -1129,7 +1092,7 @@ M.ListTablesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         keyspaceName = {
             type = "string",
@@ -1172,7 +1135,7 @@ M.ListTablesOutput = {
         },
         tables = {
             type = "list",
-            member_type = "structure",
+            member = M.TableSummary,
         },
     },
 }
@@ -1190,7 +1153,7 @@ M.ListTagsForResourceInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1203,7 +1166,7 @@ M.ListTagsForResourceOutput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1215,7 +1178,7 @@ M.ListTypesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         keyspaceName = {
             type = "string",
@@ -1234,7 +1197,7 @@ M.ListTypesOutput = {
         },
         types = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1272,25 +1235,17 @@ M.RestoreTableInput = {
         restoreTimestamp = {
             type = "timestamp",
         },
-        capacitySpecificationOverride = {
-            type = "structure",
-        },
-        encryptionSpecificationOverride = {
-            type = "structure",
-        },
-        pointInTimeRecoveryOverride = {
-            type = "structure",
-        },
+        capacitySpecificationOverride = M.CapacitySpecification,
+        encryptionSpecificationOverride = M.EncryptionSpecification,
+        pointInTimeRecoveryOverride = M.PointInTimeRecovery,
         tagsOverride = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        autoScalingSpecification = {
-            type = "structure",
-        },
+        autoScalingSpecification = M.AutoScalingSpecification,
         replicaSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.ReplicaSpecification,
         },
     },
 }
@@ -1318,7 +1273,7 @@ M.TagResourceInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -1341,7 +1296,7 @@ M.UntagResourceInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -1362,15 +1317,10 @@ M.UpdateKeyspaceInput = {
                 required = true,
             },
         },
-        replicationSpecification = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        clientSideTimestamps = {
-            type = "structure",
-        },
+        replicationSpecification = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ReplicationSpecification }),
+        clientSideTimestamps = M.ClientSideTimestamps,
     },
 }
 
@@ -1403,39 +1353,23 @@ M.UpdateTableInput = {
         },
         addColumns = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnDefinition,
         },
-        capacitySpecification = {
-            type = "structure",
-        },
-        encryptionSpecification = {
-            type = "structure",
-        },
-        pointInTimeRecovery = {
-            type = "structure",
-        },
-        ttl = {
-            type = "structure",
-        },
+        capacitySpecification = M.CapacitySpecification,
+        encryptionSpecification = M.EncryptionSpecification,
+        pointInTimeRecovery = M.PointInTimeRecovery,
+        ttl = M.TimeToLive,
         defaultTimeToLive = {
-            type = "number",
+            type = "integer",
         },
-        clientSideTimestamps = {
-            type = "structure",
-        },
-        autoScalingSpecification = {
-            type = "structure",
-        },
+        clientSideTimestamps = M.ClientSideTimestamps,
+        autoScalingSpecification = M.AutoScalingSpecification,
         replicaSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.ReplicaSpecification,
         },
-        cdcSpecification = {
-            type = "structure",
-        },
-        warmThroughputSpecification = {
-            type = "structure",
-        },
+        cdcSpecification = M.CdcSpecification,
+        warmThroughputSpecification = M.WarmThroughputSpecification,
     },
 }
 

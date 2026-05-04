@@ -5,11 +5,11 @@ M.ACLPendingChanges = {
     members = {
         UserNamesToRemove = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         UserNamesToAdd = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -25,17 +25,15 @@ M.ACL = {
         },
         UserNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MinimumEngineVersion = {
             type = "string",
         },
-        PendingChanges = {
-            type = "structure",
-        },
+        PendingChanges = M.ACLPendingChanges,
         Clusters = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ARN = {
             type = "string",
@@ -96,14 +94,12 @@ M.BatchUpdateClusterInput = {
     members = {
         ClusterNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        ServiceUpdate = {
-            type = "structure",
-        },
+        ServiceUpdate = M.ServiceUpdateRequest,
     },
 }
 
@@ -119,7 +115,10 @@ M.Endpoint = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -144,7 +143,10 @@ M.SlotMigration = {
     type = "structure",
     members = {
         ProgressPercentage = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -152,9 +154,7 @@ M.SlotMigration = {
 M.ReshardingStatus = {
     type = "structure",
     members = {
-        SlotMigration = {
-            type = "structure",
-        },
+        SlotMigration = M.SlotMigration,
     },
 }
 
@@ -180,15 +180,11 @@ M.PendingModifiedServiceUpdate = {
 M.ClusterPendingUpdates = {
     type = "structure",
     members = {
-        Resharding = {
-            type = "structure",
-        },
-        ACLs = {
-            type = "structure",
-        },
+        Resharding = M.ReshardingStatus,
+        ACLs = M.ACLsUpdateStatus,
         ServiceUpdates = {
             type = "list",
-            member_type = "structure",
+            member = M.PendingModifiedServiceUpdate,
         },
     },
 }
@@ -220,9 +216,7 @@ M.Node = {
         CreateTime = {
             type = "timestamp",
         },
-        Endpoint = {
-            type = "structure",
-        },
+        Endpoint = M.Endpoint,
     },
 }
 
@@ -240,10 +234,10 @@ M.Shard = {
         },
         Nodes = {
             type = "list",
-            member_type = "structure",
+            member = M.Node,
         },
         NumberOfNodes = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -260,25 +254,21 @@ M.Cluster = {
         Status = {
             type = "string",
         },
-        PendingUpdates = {
-            type = "structure",
-        },
+        PendingUpdates = M.ClusterPendingUpdates,
         MultiRegionClusterName = {
             type = "string",
         },
         NumberOfShards = {
-            type = "number",
+            type = "integer",
         },
         Shards = {
             type = "list",
-            member_type = "structure",
+            member = M.Shard,
         },
         AvailabilityMode = {
             type = "string",
         },
-        ClusterEndpoint = {
-            type = "structure",
-        },
+        ClusterEndpoint = M.Endpoint,
         NodeType = {
             type = "string",
         },
@@ -299,7 +289,7 @@ M.Cluster = {
         },
         SecurityGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.SecurityGroupMembership,
         },
         SubnetGroupName = {
             type = "string",
@@ -320,7 +310,7 @@ M.Cluster = {
             type = "string",
         },
         SnapshotRetentionLimit = {
-            type = "number",
+            type = "integer",
         },
         MaintenanceWindow = {
             type = "string",
@@ -366,11 +356,11 @@ M.BatchUpdateClusterOutput = {
     members = {
         ProcessedClusters = {
             type = "list",
-            member_type = "structure",
+            member = M.Cluster,
         },
         UnprocessedClusters = {
             type = "list",
-            member_type = "structure",
+            member = M.UnprocessedCluster,
         },
     },
 }
@@ -430,7 +420,7 @@ M.CopySnapshotInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -442,7 +432,7 @@ M.ShardConfiguration = {
             type = "string",
         },
         ReplicaCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -453,9 +443,7 @@ M.ShardDetail = {
         Name = {
             type = "string",
         },
-        Configuration = {
-            type = "structure",
-        },
+        Configuration = M.ShardConfiguration,
         Size = {
             type = "string",
         },
@@ -490,7 +478,7 @@ M.ClusterConfiguration = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         ParameterGroupName = {
             type = "string",
@@ -502,17 +490,17 @@ M.ClusterConfiguration = {
             type = "string",
         },
         SnapshotRetentionLimit = {
-            type = "number",
+            type = "integer",
         },
         SnapshotWindow = {
             type = "string",
         },
         NumShards = {
-            type = "number",
+            type = "integer",
         },
         Shards = {
             type = "list",
-            member_type = "structure",
+            member = M.ShardDetail,
         },
         MultiRegionParameterGroupName = {
             type = "string",
@@ -541,9 +529,7 @@ M.Snapshot = {
         ARN = {
             type = "string",
         },
-        ClusterConfiguration = {
-            type = "structure",
-        },
+        ClusterConfiguration = M.ClusterConfiguration,
         DataTiering = {
             type = "string",
         },
@@ -553,9 +539,7 @@ M.Snapshot = {
 M.CopySnapshotOutput = {
     type = "structure",
     members = {
-        Snapshot = {
-            type = "structure",
-        },
+        Snapshot = M.Snapshot,
     },
 }
 
@@ -640,11 +624,11 @@ M.CreateACLInput = {
         },
         UserNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -652,9 +636,7 @@ M.CreateACLInput = {
 M.CreateACLOutput = {
     type = "structure",
     members = {
-        ACL = {
-            type = "structure",
-        },
+        ACL = M.ACL,
     },
 }
 
@@ -733,23 +715,23 @@ M.CreateClusterInput = {
             type = "string",
         },
         NumShards = {
-            type = "number",
+            type = "integer",
         },
         NumReplicasPerShard = {
-            type = "number",
+            type = "integer",
         },
         SubnetGroupName = {
             type = "string",
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MaintenanceWindow = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         SnsTopicArn = {
             type = "string",
@@ -762,17 +744,17 @@ M.CreateClusterInput = {
         },
         SnapshotArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SnapshotName = {
             type = "string",
         },
         SnapshotRetentionLimit = {
-            type = "number",
+            type = "integer",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         SnapshotWindow = {
             type = "string",
@@ -807,9 +789,7 @@ M.CreateClusterInput = {
 M.CreateClusterOutput = {
     type = "structure",
     members = {
-        Cluster = {
-            type = "structure",
-        },
+        Cluster = M.Cluster,
     },
 }
 
@@ -951,14 +931,14 @@ M.CreateMultiRegionClusterInput = {
             type = "string",
         },
         NumShards = {
-            type = "number",
+            type = "integer",
         },
         TLSEnabled = {
             type = "boolean",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1003,11 +983,11 @@ M.MultiRegionCluster = {
             type = "string",
         },
         NumberOfShards = {
-            type = "number",
+            type = "integer",
         },
         Clusters = {
             type = "list",
-            member_type = "structure",
+            member = M.RegionalCluster,
         },
         MultiRegionParameterGroupName = {
             type = "string",
@@ -1024,9 +1004,7 @@ M.MultiRegionCluster = {
 M.CreateMultiRegionClusterOutput = {
     type = "structure",
     members = {
-        MultiRegionCluster = {
-            type = "structure",
-        },
+        MultiRegionCluster = M.MultiRegionCluster,
     },
 }
 
@@ -1070,7 +1048,7 @@ M.CreateParameterGroupInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1096,9 +1074,7 @@ M.ParameterGroup = {
 M.CreateParameterGroupOutput = {
     type = "structure",
     members = {
-        ParameterGroup = {
-            type = "structure",
-        },
+        ParameterGroup = M.ParameterGroup,
     },
 }
 
@@ -1162,7 +1138,7 @@ M.CreateSnapshotInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1170,9 +1146,7 @@ M.CreateSnapshotInput = {
 M.CreateSnapshotOutput = {
     type = "structure",
     members = {
-        Snapshot = {
-            type = "structure",
-        },
+        Snapshot = M.Snapshot,
     },
 }
 
@@ -1200,14 +1174,14 @@ M.CreateSubnetGroupInput = {
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1227,12 +1201,10 @@ M.Subnet = {
         Identifier = {
             type = "string",
         },
-        AvailabilityZone = {
-            type = "structure",
-        },
+        AvailabilityZone = M.AvailabilityZone,
         SupportedNetworkTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1251,14 +1223,14 @@ M.SubnetGroup = {
         },
         Subnets = {
             type = "list",
-            member_type = "structure",
+            member = M.Subnet,
         },
         ARN = {
             type = "string",
         },
         SupportedNetworkTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1266,9 +1238,7 @@ M.SubnetGroup = {
 M.CreateSubnetGroupOutput = {
     type = "structure",
     members = {
-        SubnetGroup = {
-            type = "structure",
-        },
+        SubnetGroup = M.SubnetGroup,
     },
 }
 
@@ -1335,7 +1305,7 @@ M.AuthenticationMode = {
         },
         Passwords = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1349,12 +1319,9 @@ M.CreateUserInput = {
                 required = true,
             },
         },
-        AuthenticationMode = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AuthenticationMode = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AuthenticationMode }),
         AccessString = {
             type = "string",
             traits = {
@@ -1363,7 +1330,7 @@ M.CreateUserInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1381,7 +1348,7 @@ M.Authentication = {
             type = "string",
         },
         PasswordCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1400,14 +1367,12 @@ M.User = {
         },
         ACLNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MinimumEngineVersion = {
             type = "string",
         },
-        Authentication = {
-            type = "structure",
-        },
+        Authentication = M.Authentication,
         ARN = {
             type = "string",
         },
@@ -1417,9 +1382,7 @@ M.User = {
 M.CreateUserOutput = {
     type = "structure",
     members = {
-        User = {
-            type = "structure",
-        },
+        User = M.User,
     },
 }
 
@@ -1458,9 +1421,7 @@ M.DeleteACLInput = {
 M.DeleteACLOutput = {
     type = "structure",
     members = {
-        ACL = {
-            type = "structure",
-        },
+        ACL = M.ACL,
     },
 }
 
@@ -1485,9 +1446,7 @@ M.DeleteClusterInput = {
 M.DeleteClusterOutput = {
     type = "structure",
     members = {
-        Cluster = {
-            type = "structure",
-        },
+        Cluster = M.Cluster,
     },
 }
 
@@ -1506,9 +1465,7 @@ M.DeleteMultiRegionClusterInput = {
 M.DeleteMultiRegionClusterOutput = {
     type = "structure",
     members = {
-        MultiRegionCluster = {
-            type = "structure",
-        },
+        MultiRegionCluster = M.MultiRegionCluster,
     },
 }
 
@@ -1527,9 +1484,7 @@ M.DeleteParameterGroupInput = {
 M.DeleteParameterGroupOutput = {
     type = "structure",
     members = {
-        ParameterGroup = {
-            type = "structure",
-        },
+        ParameterGroup = M.ParameterGroup,
     },
 }
 
@@ -1548,9 +1503,7 @@ M.DeleteSnapshotInput = {
 M.DeleteSnapshotOutput = {
     type = "structure",
     members = {
-        Snapshot = {
-            type = "structure",
-        },
+        Snapshot = M.Snapshot,
     },
 }
 
@@ -1569,9 +1522,7 @@ M.DeleteSubnetGroupInput = {
 M.DeleteSubnetGroupOutput = {
     type = "structure",
     members = {
-        SubnetGroup = {
-            type = "structure",
-        },
+        SubnetGroup = M.SubnetGroup,
     },
 }
 
@@ -1600,9 +1551,7 @@ M.DeleteUserInput = {
 M.DeleteUserOutput = {
     type = "structure",
     members = {
-        User = {
-            type = "structure",
-        },
+        User = M.User,
     },
 }
 
@@ -1623,7 +1572,7 @@ M.DescribeACLsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1636,7 +1585,7 @@ M.DescribeACLsOutput = {
     members = {
         ACLs = {
             type = "list",
-            member_type = "structure",
+            member = M.ACL,
         },
         NextToken = {
             type = "string",
@@ -1651,7 +1600,7 @@ M.DescribeClustersInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1670,7 +1619,7 @@ M.DescribeClustersOutput = {
         },
         Clusters = {
             type = "list",
-            member_type = "structure",
+            member = M.Cluster,
         },
     },
 }
@@ -1688,13 +1637,16 @@ M.DescribeEngineVersionsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         DefaultOnly = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1725,7 +1677,7 @@ M.DescribeEngineVersionsOutput = {
         },
         EngineVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.EngineVersionInfo,
         },
     },
 }
@@ -1755,10 +1707,10 @@ M.DescribeEventsInput = {
             type = "timestamp",
         },
         Duration = {
-            type = "number",
+            type = "integer",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1792,7 +1744,7 @@ M.DescribeEventsOutput = {
         },
         Events = {
             type = "list",
-            member_type = "structure",
+            member = M.Event,
         },
     },
 }
@@ -1804,7 +1756,7 @@ M.DescribeMultiRegionClustersInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1823,7 +1775,7 @@ M.DescribeMultiRegionClustersOutput = {
         },
         MultiRegionClusters = {
             type = "list",
-            member_type = "structure",
+            member = M.MultiRegionCluster,
         },
     },
 }
@@ -1835,7 +1787,7 @@ M.DescribeMultiRegionParameterGroupsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1869,7 +1821,7 @@ M.DescribeMultiRegionParameterGroupsOutput = {
         },
         MultiRegionParameterGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.MultiRegionParameterGroup,
         },
     },
 }
@@ -1887,7 +1839,7 @@ M.DescribeMultiRegionParametersInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1930,7 +1882,7 @@ M.DescribeMultiRegionParametersOutput = {
         },
         MultiRegionParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.MultiRegionParameter,
         },
     },
 }
@@ -1942,7 +1894,7 @@ M.DescribeParameterGroupsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1958,7 +1910,7 @@ M.DescribeParameterGroupsOutput = {
         },
         ParameterGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.ParameterGroup,
         },
     },
 }
@@ -1973,7 +1925,7 @@ M.DescribeParametersInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2013,7 +1965,7 @@ M.DescribeParametersOutput = {
         },
         Parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.Parameter,
         },
     },
 }
@@ -2037,7 +1989,7 @@ M.DescribeReservedNodesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2049,7 +2001,10 @@ M.RecurringCharge = {
     type = "structure",
     members = {
         RecurringChargeAmount = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         RecurringChargeFrequency = {
             type = "string",
@@ -2073,13 +2028,22 @@ M.ReservedNode = {
             type = "timestamp",
         },
         Duration = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         FixedPrice = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         NodeCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         OfferingType = {
             type = "string",
@@ -2089,7 +2053,7 @@ M.ReservedNode = {
         },
         RecurringCharges = {
             type = "list",
-            member_type = "structure",
+            member = M.RecurringCharge,
         },
         ARN = {
             type = "string",
@@ -2105,7 +2069,7 @@ M.DescribeReservedNodesOutput = {
         },
         ReservedNodes = {
             type = "list",
-            member_type = "structure",
+            member = M.ReservedNode,
         },
     },
 }
@@ -2136,7 +2100,7 @@ M.DescribeReservedNodesOfferingsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2154,17 +2118,23 @@ M.ReservedNodesOffering = {
             type = "string",
         },
         Duration = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         FixedPrice = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         OfferingType = {
             type = "string",
         },
         RecurringCharges = {
             type = "list",
-            member_type = "structure",
+            member = M.RecurringCharge,
         },
     },
 }
@@ -2177,7 +2147,7 @@ M.DescribeReservedNodesOfferingsOutput = {
         },
         ReservedNodesOfferings = {
             type = "list",
-            member_type = "structure",
+            member = M.ReservedNodesOffering,
         },
     },
 }
@@ -2200,14 +2170,14 @@ M.DescribeServiceUpdatesInput = {
         },
         ClusterNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Status = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2260,7 +2230,7 @@ M.DescribeServiceUpdatesOutput = {
         },
         ServiceUpdates = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceUpdate,
         },
     },
 }
@@ -2281,7 +2251,7 @@ M.DescribeSnapshotsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         ShowDetail = {
             type = "boolean",
@@ -2297,7 +2267,7 @@ M.DescribeSnapshotsOutput = {
         },
         Snapshots = {
             type = "list",
-            member_type = "structure",
+            member = M.Snapshot,
         },
     },
 }
@@ -2309,7 +2279,7 @@ M.DescribeSubnetGroupsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2325,7 +2295,7 @@ M.DescribeSubnetGroupsOutput = {
         },
         SubnetGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.SubnetGroup,
         },
     },
 }
@@ -2341,7 +2311,7 @@ M.Filter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2357,10 +2327,10 @@ M.DescribeUsersInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2373,7 +2343,7 @@ M.DescribeUsersOutput = {
     members = {
         Users = {
             type = "list",
-            member_type = "structure",
+            member = M.User,
         },
         NextToken = {
             type = "string",
@@ -2412,9 +2382,7 @@ M.FailoverShardInput = {
 M.FailoverShardOutput = {
     type = "structure",
     members = {
-        Cluster = {
-            type = "structure",
-        },
+        Cluster = M.Cluster,
     },
 }
 
@@ -2465,11 +2433,11 @@ M.ListAllowedMultiRegionClusterUpdatesOutput = {
     members = {
         ScaleUpNodeTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ScaleDownNodeTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2491,11 +2459,11 @@ M.ListAllowedNodeTypeUpdatesOutput = {
     members = {
         ScaleUpNodeTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ScaleDownNodeTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2527,7 +2495,7 @@ M.ListTagsOutput = {
     members = {
         TagList = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2545,11 +2513,11 @@ M.PurchaseReservedNodesOfferingInput = {
             type = "string",
         },
         NodeCount = {
-            type = "number",
+            type = "integer",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2557,9 +2525,7 @@ M.PurchaseReservedNodesOfferingInput = {
 M.PurchaseReservedNodesOfferingOutput = {
     type = "structure",
     members = {
-        ReservedNode = {
-            type = "structure",
-        },
+        ReservedNode = M.ReservedNode,
     },
 }
 
@@ -2594,10 +2560,13 @@ M.ResetParameterGroupInput = {
         },
         AllParameters = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         ParameterNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2605,9 +2574,7 @@ M.ResetParameterGroupInput = {
 M.ResetParameterGroupOutput = {
     type = "structure",
     members = {
-        ParameterGroup = {
-            type = "structure",
-        },
+        ParameterGroup = M.ParameterGroup,
     },
 }
 
@@ -2622,7 +2589,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -2635,7 +2602,7 @@ M.TagResourceOutput = {
     members = {
         TagList = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2661,7 +2628,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2674,7 +2641,7 @@ M.UntagResourceOutput = {
     members = {
         TagList = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2690,11 +2657,11 @@ M.UpdateACLInput = {
         },
         UserNamesToAdd = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         UserNamesToRemove = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2702,9 +2669,7 @@ M.UpdateACLInput = {
 M.UpdateACLOutput = {
     type = "structure",
     members = {
-        ACL = {
-            type = "structure",
-        },
+        ACL = M.ACL,
     },
 }
 
@@ -2732,7 +2697,10 @@ M.ReplicaConfigurationRequest = {
     type = "structure",
     members = {
         ReplicaCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2741,7 +2709,10 @@ M.ShardConfigurationRequest = {
     type = "structure",
     members = {
         ShardCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2760,7 +2731,7 @@ M.UpdateClusterInput = {
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MaintenanceWindow = {
             type = "string",
@@ -2778,7 +2749,7 @@ M.UpdateClusterInput = {
             type = "string",
         },
         SnapshotRetentionLimit = {
-            type = "number",
+            type = "integer",
         },
         NodeType = {
             type = "string",
@@ -2789,12 +2760,8 @@ M.UpdateClusterInput = {
         EngineVersion = {
             type = "string",
         },
-        ReplicaConfiguration = {
-            type = "structure",
-        },
-        ShardConfiguration = {
-            type = "structure",
-        },
+        ReplicaConfiguration = M.ReplicaConfigurationRequest,
+        ShardConfiguration = M.ShardConfigurationRequest,
         ACLName = {
             type = "string",
         },
@@ -2807,9 +2774,7 @@ M.UpdateClusterInput = {
 M.UpdateClusterOutput = {
     type = "structure",
     members = {
-        Cluster = {
-            type = "structure",
-        },
+        Cluster = M.Cluster,
     },
 }
 
@@ -2836,9 +2801,7 @@ M.UpdateMultiRegionClusterInput = {
         EngineVersion = {
             type = "string",
         },
-        ShardConfiguration = {
-            type = "structure",
-        },
+        ShardConfiguration = M.ShardConfigurationRequest,
         MultiRegionParameterGroupName = {
             type = "string",
         },
@@ -2851,9 +2814,7 @@ M.UpdateMultiRegionClusterInput = {
 M.UpdateMultiRegionClusterOutput = {
     type = "structure",
     members = {
-        MultiRegionCluster = {
-            type = "structure",
-        },
+        MultiRegionCluster = M.MultiRegionCluster,
     },
 }
 
@@ -2880,7 +2841,7 @@ M.UpdateParameterGroupInput = {
         },
         ParameterNameValues = {
             type = "list",
-            member_type = "structure",
+            member = M.ParameterNameValue,
             traits = {
                 required = true,
             },
@@ -2891,9 +2852,7 @@ M.UpdateParameterGroupInput = {
 M.UpdateParameterGroupOutput = {
     type = "structure",
     members = {
-        ParameterGroup = {
-            type = "structure",
-        },
+        ParameterGroup = M.ParameterGroup,
     },
 }
 
@@ -2921,7 +2880,7 @@ M.UpdateSubnetGroupInput = {
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2929,9 +2888,7 @@ M.UpdateSubnetGroupInput = {
 M.UpdateSubnetGroupOutput = {
     type = "structure",
     members = {
-        SubnetGroup = {
-            type = "structure",
-        },
+        SubnetGroup = M.SubnetGroup,
     },
 }
 
@@ -2944,9 +2901,7 @@ M.UpdateUserInput = {
                 required = true,
             },
         },
-        AuthenticationMode = {
-            type = "structure",
-        },
+        AuthenticationMode = M.AuthenticationMode,
         AccessString = {
             type = "string",
         },
@@ -2956,9 +2911,7 @@ M.UpdateUserInput = {
 M.UpdateUserOutput = {
     type = "structure",
     members = {
-        User = {
-            type = "structure",
-        },
+        User = M.User,
     },
 }
 

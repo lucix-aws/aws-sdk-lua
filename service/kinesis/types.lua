@@ -18,8 +18,8 @@ M.AddTagsToStreamInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -106,17 +106,14 @@ M.ChildShard = {
         },
         ParentShards = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        HashKeyRange = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        HashKeyRange = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HashKeyRange }),
     },
 }
 
@@ -219,21 +216,19 @@ M.CreateStreamInput = {
             },
         },
         ShardCount = {
-            type = "number",
+            type = "integer",
         },
-        StreamModeDetails = {
-            type = "structure",
-        },
+        StreamModeDetails = M.StreamModeDetails,
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         WarmThroughputMiBps = {
-            type = "number",
+            type = "integer",
         },
         MaxRecordSizeInKiB = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -259,7 +254,7 @@ M.DecreaseStreamRetentionPeriodInput = {
             type = "string",
         },
         RetentionPeriodHours = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -374,9 +369,7 @@ M.MinimumThroughputBillingCommitmentOutput = {
 M.DescribeAccountSettingsOutput = {
     type = "structure",
     members = {
-        MinimumThroughputBillingCommitment = {
-            type = "structure",
-        },
+        MinimumThroughputBillingCommitment = M.MinimumThroughputBillingCommitmentOutput,
     },
 }
 
@@ -388,25 +381,25 @@ M.DescribeLimitsOutput = {
     type = "structure",
     members = {
         ShardLimit = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         OpenShardCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         OnDemandStreamCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         OnDemandStreamCountLimit = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -421,7 +414,7 @@ M.DescribeStreamInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         ExclusiveStartShardId = {
             type = "string",
@@ -456,7 +449,7 @@ M.EnhancedMetrics = {
     members = {
         ShardLevelMetrics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -491,18 +484,12 @@ M.Shard = {
         AdjacentParentShardId = {
             type = "string",
         },
-        HashKeyRange = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        SequenceNumberRange = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        HashKeyRange = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HashKeyRange }),
+        SequenceNumberRange = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SequenceNumberRange }),
     },
 }
 
@@ -534,12 +521,10 @@ M.StreamDescription = {
                 required = true,
             },
         },
-        StreamModeDetails = {
-            type = "structure",
-        },
+        StreamModeDetails = M.StreamModeDetails,
         Shards = {
             type = "list",
-            member_type = "structure",
+            member = M.Shard,
             traits = {
                 required = true,
             },
@@ -551,7 +536,7 @@ M.StreamDescription = {
             },
         },
         RetentionPeriodHours = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -564,7 +549,7 @@ M.StreamDescription = {
         },
         EnhancedMonitoring = {
             type = "list",
-            member_type = "structure",
+            member = M.EnhancedMetrics,
             traits = {
                 required = true,
             },
@@ -581,12 +566,9 @@ M.StreamDescription = {
 M.DescribeStreamOutput = {
     type = "structure",
     members = {
-        StreamDescription = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        StreamDescription = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.StreamDescription }),
     },
 }
 
@@ -611,12 +593,9 @@ M.DescribeStreamConsumerInput = {
 M.DescribeStreamConsumerOutput = {
     type = "structure",
     members = {
-        ConsumerDescription = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ConsumerDescription = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConsumerDescription }),
     },
 }
 
@@ -639,10 +618,10 @@ M.WarmThroughputObject = {
     type = "structure",
     members = {
         TargetMiBps = {
-            type = "number",
+            type = "integer",
         },
         CurrentMiBps = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -671,11 +650,9 @@ M.StreamDescriptionSummary = {
                 required = true,
             },
         },
-        StreamModeDetails = {
-            type = "structure",
-        },
+        StreamModeDetails = M.StreamModeDetails,
         RetentionPeriodHours = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -688,7 +665,7 @@ M.StreamDescriptionSummary = {
         },
         EnhancedMonitoring = {
             type = "list",
-            member_type = "structure",
+            member = M.EnhancedMetrics,
             traits = {
                 required = true,
             },
@@ -700,19 +677,17 @@ M.StreamDescriptionSummary = {
             type = "string",
         },
         OpenShardCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         ConsumerCount = {
-            type = "number",
+            type = "integer",
         },
-        WarmThroughput = {
-            type = "structure",
-        },
+        WarmThroughput = M.WarmThroughputObject,
         MaxRecordSizeInKiB = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -720,12 +695,9 @@ M.StreamDescriptionSummary = {
 M.DescribeStreamSummaryOutput = {
     type = "structure",
     members = {
-        StreamDescriptionSummary = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        StreamDescriptionSummary = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.StreamDescriptionSummary }),
     },
 }
 
@@ -737,7 +709,7 @@ M.DisableEnhancedMonitoringInput = {
         },
         ShardLevelMetrics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -759,11 +731,11 @@ M.DisableEnhancedMonitoringOutput = {
         },
         CurrentShardLevelMetrics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DesiredShardLevelMetrics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         StreamARN = {
             type = "string",
@@ -779,7 +751,7 @@ M.EnableEnhancedMonitoringInput = {
         },
         ShardLevelMetrics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -801,11 +773,11 @@ M.EnableEnhancedMonitoringOutput = {
         },
         CurrentShardLevelMetrics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DesiredShardLevelMetrics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         StreamARN = {
             type = "string",
@@ -843,7 +815,7 @@ M.GetRecordsInput = {
             },
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         StreamARN = {
             type = "string",
@@ -889,7 +861,7 @@ M.GetRecordsOutput = {
     members = {
         Records = {
             type = "list",
-            member_type = "structure",
+            member = M.Record,
             traits = {
                 required = true,
             },
@@ -898,11 +870,11 @@ M.GetRecordsOutput = {
             type = "string",
         },
         MillisBehindLatest = {
-            type = "number",
+            type = "long",
         },
         ChildShards = {
             type = "list",
-            member_type = "structure",
+            member = M.ChildShard,
         },
     },
 }
@@ -1071,7 +1043,7 @@ M.IncreaseStreamRetentionPeriodInput = {
             type = "string",
         },
         RetentionPeriodHours = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1129,14 +1101,12 @@ M.ListShardsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         StreamCreationTimestamp = {
             type = "timestamp",
         },
-        ShardFilter = {
-            type = "structure",
-        },
+        ShardFilter = M.ShardFilter,
         StreamARN = {
             type = "string",
         },
@@ -1151,7 +1121,7 @@ M.ListShardsOutput = {
     members = {
         Shards = {
             type = "list",
-            member_type = "structure",
+            member = M.Shard,
         },
         NextToken = {
             type = "string",
@@ -1172,7 +1142,7 @@ M.ListStreamConsumersInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         StreamCreationTimestamp = {
             type = "timestamp",
@@ -1188,7 +1158,7 @@ M.ListStreamConsumersOutput = {
     members = {
         Consumers = {
             type = "list",
-            member_type = "structure",
+            member = M.Consumer,
         },
         NextToken = {
             type = "string",
@@ -1200,7 +1170,7 @@ M.ListStreamsInput = {
     type = "structure",
     members = {
         Limit = {
-            type = "number",
+            type = "integer",
         },
         ExclusiveStartStreamName = {
             type = "string",
@@ -1232,9 +1202,7 @@ M.StreamSummary = {
                 required = true,
             },
         },
-        StreamModeDetails = {
-            type = "structure",
-        },
+        StreamModeDetails = M.StreamModeDetails,
         StreamCreationTimestamp = {
             type = "timestamp",
         },
@@ -1246,7 +1214,7 @@ M.ListStreamsOutput = {
     members = {
         StreamNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1262,7 +1230,7 @@ M.ListStreamsOutput = {
         },
         StreamSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.StreamSummary,
         },
     },
 }
@@ -1302,7 +1270,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1317,7 +1285,7 @@ M.ListTagsForStreamInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         StreamARN = {
             type = "string",
@@ -1333,7 +1301,7 @@ M.ListTagsForStreamOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -1458,7 +1426,7 @@ M.PutRecordsInput = {
     members = {
         Records = {
             type = "list",
-            member_type = "structure",
+            member = M.PutRecordsRequestEntry,
             traits = {
                 required = true,
             },
@@ -1497,11 +1465,11 @@ M.PutRecordsOutput = {
     type = "structure",
     members = {
         FailedRecordCount = {
-            type = "number",
+            type = "integer",
         },
         Records = {
             type = "list",
-            member_type = "structure",
+            member = M.PutRecordsResultEntry,
             traits = {
                 required = true,
             },
@@ -1557,8 +1525,8 @@ M.RegisterStreamConsumerInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1566,12 +1534,9 @@ M.RegisterStreamConsumerInput = {
 M.RegisterStreamConsumerOutput = {
     type = "structure",
     members = {
-        Consumer = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Consumer = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Consumer }),
     },
 }
 
@@ -1583,7 +1548,7 @@ M.RemoveTagsFromStreamInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1730,12 +1695,9 @@ M.SubscribeToShardInput = {
                 required = true,
             },
         },
-        StartingPosition = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        StartingPosition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.StartingPosition }),
     },
 }
 
@@ -1744,7 +1706,7 @@ M.SubscribeToShardEvent = {
     members = {
         Records = {
             type = "list",
-            member_type = "structure",
+            member = M.Record,
             traits = {
                 required = true,
             },
@@ -1756,14 +1718,14 @@ M.SubscribeToShardEvent = {
             },
         },
         MillisBehindLatest = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         ChildShards = {
             type = "list",
-            member_type = "structure",
+            member = M.ChildShard,
         },
     },
 }
@@ -1771,48 +1733,25 @@ M.SubscribeToShardEvent = {
 M.SubscribeToShardEventStream = {
     type = "union",
     members = {
-        SubscribeToShardEvent = {
-            type = "structure",
-        },
-        ResourceNotFoundException = {
-            type = "structure",
-        },
-        ResourceInUseException = {
-            type = "structure",
-        },
-        KMSDisabledException = {
-            type = "structure",
-        },
-        KMSInvalidStateException = {
-            type = "structure",
-        },
-        KMSAccessDeniedException = {
-            type = "structure",
-        },
-        KMSNotFoundException = {
-            type = "structure",
-        },
-        KMSOptInRequired = {
-            type = "structure",
-        },
-        KMSThrottlingException = {
-            type = "structure",
-        },
-        InternalFailureException = {
-            type = "structure",
-        },
+        SubscribeToShardEvent = M.SubscribeToShardEvent,
+        ResourceNotFoundException = M.ResourceNotFoundException,
+        ResourceInUseException = M.ResourceInUseException,
+        KMSDisabledException = M.KMSDisabledException,
+        KMSInvalidStateException = M.KMSInvalidStateException,
+        KMSAccessDeniedException = M.KMSAccessDeniedException,
+        KMSNotFoundException = M.KMSNotFoundException,
+        KMSOptInRequired = M.KMSOptInRequired,
+        KMSThrottlingException = M.KMSThrottlingException,
+        InternalFailureException = M.InternalFailureException,
     },
 }
 
 M.SubscribeToShardOutput = {
     type = "structure",
     members = {
-        EventStream = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        EventStream = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SubscribeToShardEventStream }),
     },
 }
 
@@ -1821,8 +1760,8 @@ M.TagResourceInput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1848,7 +1787,7 @@ M.UntagResourceInput = {
     members = {
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1889,21 +1828,16 @@ M.MinimumThroughputBillingCommitmentInput = {
 M.UpdateAccountSettingsInput = {
     type = "structure",
     members = {
-        MinimumThroughputBillingCommitment = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        MinimumThroughputBillingCommitment = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MinimumThroughputBillingCommitmentInput }),
     },
 }
 
 M.UpdateAccountSettingsOutput = {
     type = "structure",
     members = {
-        MinimumThroughputBillingCommitment = {
-            type = "structure",
-        },
+        MinimumThroughputBillingCommitment = M.MinimumThroughputBillingCommitmentOutput,
     },
 }
 
@@ -1917,7 +1851,7 @@ M.UpdateMaxRecordSizeInput = {
             type = "string",
         },
         MaxRecordSizeInKiB = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1940,7 +1874,7 @@ M.UpdateShardCountInput = {
             type = "string",
         },
         TargetShardCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1967,10 +1901,10 @@ M.UpdateShardCountOutput = {
             type = "string",
         },
         CurrentShardCount = {
-            type = "number",
+            type = "integer",
         },
         TargetShardCount = {
-            type = "number",
+            type = "integer",
         },
         StreamARN = {
             type = "string",
@@ -1990,14 +1924,11 @@ M.UpdateStreamModeInput = {
         StreamId = {
             type = "string",
         },
-        StreamModeDetails = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        StreamModeDetails = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.StreamModeDetails }),
         WarmThroughputMiBps = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2019,7 +1950,7 @@ M.UpdateStreamWarmThroughputInput = {
             type = "string",
         },
         WarmThroughputMiBps = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -2036,9 +1967,7 @@ M.UpdateStreamWarmThroughputOutput = {
         StreamName = {
             type = "string",
         },
-        WarmThroughput = {
-            type = "structure",
-        },
+        WarmThroughput = M.WarmThroughputObject,
     },
 }
 

@@ -24,7 +24,7 @@ M.InternalServerException = {
             },
         },
         RetryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -50,8 +50,8 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -114,7 +114,7 @@ M.ThrottlingException = {
             },
         },
         RetryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -165,7 +165,7 @@ M.ValidationException = {
         },
         FieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -182,8 +182,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -267,7 +267,7 @@ M.GetTaskInstanceOutput = {
             type = "string",
         },
         DurationInSeconds = {
-            type = "number",
+            type = "integer",
         },
         OperatorName = {
             type = "string",
@@ -282,7 +282,7 @@ M.GetTaskInstanceOutput = {
             type = "timestamp",
         },
         AttemptNumber = {
-            type = "number",
+            type = "integer",
         },
         ErrorMessage = {
             type = "string",
@@ -295,8 +295,8 @@ M.GetTaskInstanceOutput = {
         },
         Xcom = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -319,8 +319,9 @@ M.ListTaskInstancesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 20,
                 http_query = "maxResults",
             },
         },
@@ -352,7 +353,7 @@ M.TaskInstanceSummary = {
             type = "string",
         },
         DurationInSeconds = {
-            type = "number",
+            type = "integer",
         },
         OperatorName = {
             type = "string",
@@ -365,7 +366,7 @@ M.ListTaskInstancesOutput = {
     members = {
         TaskInstances = {
             type = "list",
-            member_type = "structure",
+            member = M.TaskInstanceSummary,
         },
         NextToken = {
             type = "string",
@@ -385,7 +386,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -485,11 +486,11 @@ M.NetworkConfiguration = {
     members = {
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -506,12 +507,9 @@ M.CreateWorkflowInput = {
         ClientToken = {
             type = "string",
         },
-        DefinitionS3Location = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DefinitionS3Location = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DefinitionS3Location }),
         RoleArn = {
             type = "string",
             traits = {
@@ -521,22 +519,16 @@ M.CreateWorkflowInput = {
         Description = {
             type = "string",
         },
-        EncryptionConfiguration = {
-            type = "structure",
-        },
-        LoggingConfiguration = {
-            type = "structure",
-        },
+        EncryptionConfiguration = M.EncryptionConfiguration,
+        LoggingConfiguration = M.LoggingConfiguration,
         EngineVersion = {
             type = "number",
         },
-        NetworkConfiguration = {
-            type = "structure",
-        },
+        NetworkConfiguration = M.NetworkConfiguration,
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         TriggerMode = {
             type = "string",
@@ -575,7 +567,7 @@ M.CreateWorkflowOutput = {
         },
         Warnings = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -703,30 +695,20 @@ M.GetWorkflowOutput = {
         ModifiedAt = {
             type = "timestamp",
         },
-        EncryptionConfiguration = {
-            type = "structure",
-        },
-        LoggingConfiguration = {
-            type = "structure",
-        },
+        EncryptionConfiguration = M.EncryptionConfiguration,
+        LoggingConfiguration = M.LoggingConfiguration,
         EngineVersion = {
             type = "number",
         },
         WorkflowStatus = {
             type = "string",
         },
-        DefinitionS3Location = {
-            type = "structure",
-        },
-        ScheduleConfiguration = {
-            type = "structure",
-        },
+        DefinitionS3Location = M.DefinitionS3Location,
+        ScheduleConfiguration = M.ScheduleConfiguration,
         RoleArn = {
             type = "string",
         },
-        NetworkConfiguration = {
-            type = "structure",
-        },
+        NetworkConfiguration = M.NetworkConfiguration,
         TriggerMode = {
             type = "string",
         },
@@ -740,8 +722,9 @@ M.ListWorkflowsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 20,
                 http_query = "maxResults",
             },
         },
@@ -792,7 +775,7 @@ M.ListWorkflowsOutput = {
     members = {
         Workflows = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkflowSummary,
             traits = {
                 required = true,
             },
@@ -813,12 +796,9 @@ M.UpdateWorkflowInput = {
                 required = true,
             },
         },
-        DefinitionS3Location = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DefinitionS3Location = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DefinitionS3Location }),
         RoleArn = {
             type = "string",
             traits = {
@@ -828,15 +808,11 @@ M.UpdateWorkflowInput = {
         Description = {
             type = "string",
         },
-        LoggingConfiguration = {
-            type = "structure",
-        },
+        LoggingConfiguration = M.LoggingConfiguration,
         EngineVersion = {
             type = "number",
         },
-        NetworkConfiguration = {
-            type = "structure",
-        },
+        NetworkConfiguration = M.NetworkConfiguration,
         TriggerMode = {
             type = "string",
         },
@@ -860,7 +836,7 @@ M.UpdateWorkflowOutput = {
         },
         Warnings = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -929,14 +905,14 @@ M.WorkflowRunDetail = {
             type = "timestamp",
         },
         Duration = {
-            type = "number",
+            type = "integer",
         },
         ErrorMessage = {
             type = "string",
         },
         TaskInstances = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RunState = {
             type = "string",
@@ -961,12 +937,10 @@ M.GetWorkflowRunOutput = {
         },
         OverrideParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "document",
+            key = { type = "string" },
+            value = { type = "document" },
         },
-        RunDetail = {
-            type = "structure",
-        },
+        RunDetail = M.WorkflowRunDetail,
     },
 }
 
@@ -974,8 +948,9 @@ M.ListWorkflowRunsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 20,
                 http_query = "maxResults",
             },
         },
@@ -1034,9 +1009,7 @@ M.WorkflowRunSummary = {
         RunType = {
             type = "string",
         },
-        RunDetailSummary = {
-            type = "structure",
-        },
+        RunDetailSummary = M.RunDetailSummary,
     },
 }
 
@@ -1045,7 +1018,7 @@ M.ListWorkflowRunsOutput = {
     members = {
         WorkflowRuns = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkflowRunSummary,
         },
         NextToken = {
             type = "string",
@@ -1068,8 +1041,8 @@ M.StartWorkflowRunInput = {
         },
         OverrideParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "document",
+            key = { type = "string" },
+            value = { type = "document" },
         },
         WorkflowVersion = {
             type = "string",
@@ -1134,8 +1107,9 @@ M.ListWorkflowVersionsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 20,
                 http_query = "maxResults",
             },
         },
@@ -1179,12 +1153,8 @@ M.WorkflowVersionSummary = {
         ModifiedAt = {
             type = "timestamp",
         },
-        DefinitionS3Location = {
-            type = "structure",
-        },
-        ScheduleConfiguration = {
-            type = "structure",
-        },
+        DefinitionS3Location = M.DefinitionS3Location,
+        ScheduleConfiguration = M.ScheduleConfiguration,
         TriggerMode = {
             type = "string",
         },
@@ -1196,7 +1166,7 @@ M.ListWorkflowVersionsOutput = {
     members = {
         WorkflowVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkflowVersionSummary,
         },
         NextToken = {
             type = "string",

@@ -7,19 +7,24 @@ M.ActivityTaskCanceledEventAttributes = {
             type = "string",
         },
         scheduledEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         startedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         latestCancelRequestedEventId = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -28,8 +33,9 @@ M.ActivityTaskCancelRequestedEventAttributes = {
     type = "structure",
     members = {
         decisionTaskCompletedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -49,14 +55,16 @@ M.ActivityTaskCompletedEventAttributes = {
             type = "string",
         },
         scheduledEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         startedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -73,14 +81,16 @@ M.ActivityTaskFailedEventAttributes = {
             type = "string",
         },
         scheduledEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         startedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -120,12 +130,9 @@ M.TaskList = {
 M.ActivityTaskScheduledEventAttributes = {
     type = "structure",
     members = {
-        activityType = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        activityType = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActivityType }),
         activityId = {
             type = "string",
             traits = {
@@ -147,18 +154,16 @@ M.ActivityTaskScheduledEventAttributes = {
         startToCloseTimeout = {
             type = "string",
         },
-        taskList = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        taskList = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TaskList }),
         taskPriority = {
             type = "string",
         },
         decisionTaskCompletedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -175,8 +180,9 @@ M.ActivityTaskStartedEventAttributes = {
             type = "string",
         },
         scheduledEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -200,14 +206,16 @@ M.ActivityTaskTimedOutEventAttributes = {
             },
         },
         scheduledEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         startedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -226,9 +234,7 @@ M.ActivityTypeConfiguration = {
         defaultTaskHeartbeatTimeout = {
             type = "string",
         },
-        defaultTaskList = {
-            type = "structure",
-        },
+        defaultTaskList = M.TaskList,
         defaultTaskPriority = {
             type = "string",
         },
@@ -249,12 +255,9 @@ M.RegistrationStatus = {
 M.ActivityTypeInfo = {
     type = "structure",
     members = {
-        activityType = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        activityType = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActivityType }),
         status = {
             type = "string",
             traits = {
@@ -309,8 +312,9 @@ M.CancelTimerFailedEventAttributes = {
             },
         },
         decisionTaskCompletedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -341,8 +345,9 @@ M.CancelWorkflowExecutionFailedEventAttributes = {
             },
         },
         decisionTaskCompletedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -394,30 +399,26 @@ M.WorkflowType = {
 M.ChildWorkflowExecutionCanceledEventAttributes = {
     type = "structure",
     members = {
-        workflowExecution = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        workflowType = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        workflowExecution = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkflowExecution }),
+        workflowType = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkflowType }),
         details = {
             type = "string",
         },
         initiatedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         startedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -427,30 +428,26 @@ M.ChildWorkflowExecutionCanceledEventAttributes = {
 M.ChildWorkflowExecutionCompletedEventAttributes = {
     type = "structure",
     members = {
-        workflowExecution = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        workflowType = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        workflowExecution = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkflowExecution }),
+        workflowType = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkflowType }),
         result = {
             type = "string",
         },
         initiatedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         startedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -460,18 +457,12 @@ M.ChildWorkflowExecutionCompletedEventAttributes = {
 M.ChildWorkflowExecutionFailedEventAttributes = {
     type = "structure",
     members = {
-        workflowExecution = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        workflowType = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        workflowExecution = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkflowExecution }),
+        workflowType = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkflowType }),
         reason = {
             type = "string",
         },
@@ -479,14 +470,16 @@ M.ChildWorkflowExecutionFailedEventAttributes = {
             type = "string",
         },
         initiatedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         startedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -496,21 +489,16 @@ M.ChildWorkflowExecutionFailedEventAttributes = {
 M.ChildWorkflowExecutionStartedEventAttributes = {
     type = "structure",
     members = {
-        workflowExecution = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        workflowType = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        workflowExecution = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkflowExecution }),
+        workflowType = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkflowType }),
         initiatedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -520,27 +508,23 @@ M.ChildWorkflowExecutionStartedEventAttributes = {
 M.ChildWorkflowExecutionTerminatedEventAttributes = {
     type = "structure",
     members = {
-        workflowExecution = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        workflowType = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        workflowExecution = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkflowExecution }),
+        workflowType = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkflowType }),
         initiatedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         startedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -554,18 +538,12 @@ M.WorkflowExecutionTimeoutType = {
 M.ChildWorkflowExecutionTimedOutEventAttributes = {
     type = "structure",
     members = {
-        workflowExecution = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        workflowType = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        workflowExecution = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkflowExecution }),
+        workflowType = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkflowType }),
         timeoutType = {
             type = "string",
             traits = {
@@ -573,14 +551,16 @@ M.ChildWorkflowExecutionTimedOutEventAttributes = {
             },
         },
         initiatedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         startedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -632,8 +612,9 @@ M.CompleteWorkflowExecutionFailedEventAttributes = {
             },
         },
         decisionTaskCompletedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -649,9 +630,7 @@ M.ContinueAsNewWorkflowExecutionDecisionAttributes = {
         executionStartToCloseTimeout = {
             type = "string",
         },
-        taskList = {
-            type = "structure",
-        },
+        taskList = M.TaskList,
         taskPriority = {
             type = "string",
         },
@@ -663,7 +642,7 @@ M.ContinueAsNewWorkflowExecutionDecisionAttributes = {
         },
         tagList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         workflowTypeVersion = {
             type = "string",
@@ -696,8 +675,9 @@ M.ContinueAsNewWorkflowExecutionFailedEventAttributes = {
             },
         },
         decisionTaskCompletedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -767,24 +747,12 @@ M.CountClosedWorkflowExecutionsInput = {
                 required = true,
             },
         },
-        startTimeFilter = {
-            type = "structure",
-        },
-        closeTimeFilter = {
-            type = "structure",
-        },
-        executionFilter = {
-            type = "structure",
-        },
-        typeFilter = {
-            type = "structure",
-        },
-        tagFilter = {
-            type = "structure",
-        },
-        closeStatusFilter = {
-            type = "structure",
-        },
+        startTimeFilter = M.ExecutionTimeFilter,
+        closeTimeFilter = M.ExecutionTimeFilter,
+        executionFilter = M.WorkflowExecutionFilter,
+        typeFilter = M.WorkflowTypeFilter,
+        tagFilter = M.TagFilter,
+        closeStatusFilter = M.CloseStatusFilter,
     },
 }
 
@@ -792,13 +760,17 @@ M.CountClosedWorkflowExecutionsOutput = {
     type = "structure",
     members = {
         count = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         truncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -832,21 +804,12 @@ M.CountOpenWorkflowExecutionsInput = {
                 required = true,
             },
         },
-        startTimeFilter = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        typeFilter = {
-            type = "structure",
-        },
-        tagFilter = {
-            type = "structure",
-        },
-        executionFilter = {
-            type = "structure",
-        },
+        startTimeFilter = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ExecutionTimeFilter }),
+        typeFilter = M.WorkflowTypeFilter,
+        tagFilter = M.TagFilter,
+        executionFilter = M.WorkflowExecutionFilter,
     },
 }
 
@@ -854,13 +817,17 @@ M.CountOpenWorkflowExecutionsOutput = {
     type = "structure",
     members = {
         count = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         truncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -874,12 +841,9 @@ M.CountPendingActivityTasksInput = {
                 required = true,
             },
         },
-        taskList = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        taskList = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TaskList }),
     },
 }
 
@@ -887,13 +851,17 @@ M.CountPendingActivityTasksOutput = {
     type = "structure",
     members = {
         count = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         truncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -907,12 +875,9 @@ M.CountPendingDecisionTasksInput = {
                 required = true,
             },
         },
-        taskList = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        taskList = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TaskList }),
     },
 }
 
@@ -920,13 +885,17 @@ M.CountPendingDecisionTasksOutput = {
     type = "structure",
     members = {
         count = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         truncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1007,12 +976,9 @@ M.RequestCancelExternalWorkflowExecutionDecisionAttributes = {
 M.ScheduleActivityTaskDecisionAttributes = {
     type = "structure",
     members = {
-        activityType = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        activityType = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActivityType }),
         activityId = {
             type = "string",
             traits = {
@@ -1028,9 +994,7 @@ M.ScheduleActivityTaskDecisionAttributes = {
         scheduleToCloseTimeout = {
             type = "string",
         },
-        taskList = {
-            type = "structure",
-        },
+        taskList = M.TaskList,
         taskPriority = {
             type = "string",
         },
@@ -1103,12 +1067,9 @@ M.SignalExternalWorkflowExecutionDecisionAttributes = {
 M.StartChildWorkflowExecutionDecisionAttributes = {
     type = "structure",
     members = {
-        workflowType = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        workflowType = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkflowType }),
         workflowId = {
             type = "string",
             traits = {
@@ -1124,9 +1085,7 @@ M.StartChildWorkflowExecutionDecisionAttributes = {
         executionStartToCloseTimeout = {
             type = "string",
         },
-        taskList = {
-            type = "structure",
-        },
+        taskList = M.TaskList,
         taskPriority = {
             type = "string",
         },
@@ -1138,7 +1097,7 @@ M.StartChildWorkflowExecutionDecisionAttributes = {
         },
         tagList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         lambdaRole = {
             type = "string",
@@ -1176,45 +1135,19 @@ M.Decision = {
                 required = true,
             },
         },
-        scheduleActivityTaskDecisionAttributes = {
-            type = "structure",
-        },
-        requestCancelActivityTaskDecisionAttributes = {
-            type = "structure",
-        },
-        completeWorkflowExecutionDecisionAttributes = {
-            type = "structure",
-        },
-        failWorkflowExecutionDecisionAttributes = {
-            type = "structure",
-        },
-        cancelWorkflowExecutionDecisionAttributes = {
-            type = "structure",
-        },
-        continueAsNewWorkflowExecutionDecisionAttributes = {
-            type = "structure",
-        },
-        recordMarkerDecisionAttributes = {
-            type = "structure",
-        },
-        startTimerDecisionAttributes = {
-            type = "structure",
-        },
-        cancelTimerDecisionAttributes = {
-            type = "structure",
-        },
-        signalExternalWorkflowExecutionDecisionAttributes = {
-            type = "structure",
-        },
-        requestCancelExternalWorkflowExecutionDecisionAttributes = {
-            type = "structure",
-        },
-        startChildWorkflowExecutionDecisionAttributes = {
-            type = "structure",
-        },
-        scheduleLambdaFunctionDecisionAttributes = {
-            type = "structure",
-        },
+        scheduleActivityTaskDecisionAttributes = M.ScheduleActivityTaskDecisionAttributes,
+        requestCancelActivityTaskDecisionAttributes = M.RequestCancelActivityTaskDecisionAttributes,
+        completeWorkflowExecutionDecisionAttributes = M.CompleteWorkflowExecutionDecisionAttributes,
+        failWorkflowExecutionDecisionAttributes = M.FailWorkflowExecutionDecisionAttributes,
+        cancelWorkflowExecutionDecisionAttributes = M.CancelWorkflowExecutionDecisionAttributes,
+        continueAsNewWorkflowExecutionDecisionAttributes = M.ContinueAsNewWorkflowExecutionDecisionAttributes,
+        recordMarkerDecisionAttributes = M.RecordMarkerDecisionAttributes,
+        startTimerDecisionAttributes = M.StartTimerDecisionAttributes,
+        cancelTimerDecisionAttributes = M.CancelTimerDecisionAttributes,
+        signalExternalWorkflowExecutionDecisionAttributes = M.SignalExternalWorkflowExecutionDecisionAttributes,
+        requestCancelExternalWorkflowExecutionDecisionAttributes = M.RequestCancelExternalWorkflowExecutionDecisionAttributes,
+        startChildWorkflowExecutionDecisionAttributes = M.StartChildWorkflowExecutionDecisionAttributes,
+        scheduleLambdaFunctionDecisionAttributes = M.ScheduleLambdaFunctionDecisionAttributes,
     },
 }
 
@@ -1225,20 +1158,20 @@ M.DecisionTaskCompletedEventAttributes = {
             type = "string",
         },
         scheduledEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         startedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
-        taskList = {
-            type = "structure",
-        },
+        taskList = M.TaskList,
         taskListScheduleToStartTimeout = {
             type = "string",
         },
@@ -1248,12 +1181,9 @@ M.DecisionTaskCompletedEventAttributes = {
 M.DecisionTaskScheduledEventAttributes = {
     type = "structure",
     members = {
-        taskList = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        taskList = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TaskList }),
         taskPriority = {
             type = "string",
         },
@@ -1273,8 +1203,9 @@ M.DecisionTaskStartedEventAttributes = {
             type = "string",
         },
         scheduledEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -1296,14 +1227,16 @@ M.DecisionTaskTimedOutEventAttributes = {
             },
         },
         scheduledEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         startedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -1329,12 +1262,9 @@ M.DeleteActivityTypeInput = {
                 required = true,
             },
         },
-        activityType = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        activityType = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActivityType }),
     },
 }
 
@@ -1361,12 +1291,9 @@ M.DeleteWorkflowTypeInput = {
                 required = true,
             },
         },
-        workflowType = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        workflowType = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkflowType }),
     },
 }
 
@@ -1383,12 +1310,9 @@ M.DeprecateActivityTypeInput = {
                 required = true,
             },
         },
-        activityType = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        activityType = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActivityType }),
     },
 }
 
@@ -1441,12 +1365,9 @@ M.DeprecateWorkflowTypeInput = {
                 required = true,
             },
         },
-        workflowType = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        workflowType = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkflowType }),
     },
 }
 
@@ -1463,30 +1384,21 @@ M.DescribeActivityTypeInput = {
                 required = true,
             },
         },
-        activityType = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        activityType = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActivityType }),
     },
 }
 
 M.DescribeActivityTypeOutput = {
     type = "structure",
     members = {
-        typeInfo = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        configuration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        typeInfo = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActivityTypeInfo }),
+        configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActivityTypeConfiguration }),
     },
 }
 
@@ -1541,18 +1453,12 @@ M.DomainInfo = {
 M.DescribeDomainOutput = {
     type = "structure",
     members = {
-        domainInfo = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        configuration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        domainInfo = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DomainInfo }),
+        configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DomainConfiguration }),
     },
 }
 
@@ -1565,12 +1471,9 @@ M.DescribeWorkflowExecutionInput = {
                 required = true,
             },
         },
-        execution = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        execution = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkflowExecution }),
     },
 }
 
@@ -1589,12 +1492,9 @@ M.WorkflowExecutionConfiguration = {
                 required = true,
             },
         },
-        taskList = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        taskList = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TaskList }),
         taskPriority = {
             type = "string",
         },
@@ -1618,18 +1518,12 @@ M.ExecutionStatus = {
 M.WorkflowExecutionInfo = {
     type = "structure",
     members = {
-        execution = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        workflowType = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        execution = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkflowExecution }),
+        workflowType = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkflowType }),
         startTimestamp = {
             type = "timestamp",
             traits = {
@@ -1648,15 +1542,16 @@ M.WorkflowExecutionInfo = {
         closeStatus = {
             type = "string",
         },
-        parent = {
-            type = "structure",
-        },
+        parent = M.WorkflowExecution,
         tagList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         cancelRequested = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1665,31 +1560,38 @@ M.WorkflowExecutionOpenCounts = {
     type = "structure",
     members = {
         openActivityTasks = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         openDecisionTasks = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         openTimers = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         openChildWorkflowExecutions = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         openLambdaFunctions = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1697,24 +1599,15 @@ M.WorkflowExecutionOpenCounts = {
 M.DescribeWorkflowExecutionOutput = {
     type = "structure",
     members = {
-        executionInfo = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        executionConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        openCounts = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        executionInfo = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkflowExecutionInfo }),
+        executionConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkflowExecutionConfiguration }),
+        openCounts = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkflowExecutionOpenCounts }),
         latestActivityTaskTimestamp = {
             type = "timestamp",
         },
@@ -1733,12 +1626,9 @@ M.DescribeWorkflowTypeInput = {
                 required = true,
             },
         },
-        workflowType = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        workflowType = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkflowType }),
     },
 }
 
@@ -1751,9 +1641,7 @@ M.WorkflowTypeConfiguration = {
         defaultExecutionStartToCloseTimeout = {
             type = "string",
         },
-        defaultTaskList = {
-            type = "structure",
-        },
+        defaultTaskList = M.TaskList,
         defaultTaskPriority = {
             type = "string",
         },
@@ -1769,12 +1657,9 @@ M.WorkflowTypeConfiguration = {
 M.WorkflowTypeInfo = {
     type = "structure",
     members = {
-        workflowType = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        workflowType = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkflowType }),
         status = {
             type = "string",
             traits = {
@@ -1799,18 +1684,12 @@ M.WorkflowTypeInfo = {
 M.DescribeWorkflowTypeOutput = {
     type = "structure",
     members = {
-        typeInfo = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        configuration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        typeInfo = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkflowTypeInfo }),
+        configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkflowTypeConfiguration }),
     },
 }
 
@@ -1884,15 +1763,13 @@ M.EventType = {
 M.ExternalWorkflowExecutionCancelRequestedEventAttributes = {
     type = "structure",
     members = {
-        workflowExecution = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        workflowExecution = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkflowExecution }),
         initiatedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -1902,15 +1779,13 @@ M.ExternalWorkflowExecutionCancelRequestedEventAttributes = {
 M.ExternalWorkflowExecutionSignaledEventAttributes = {
     type = "structure",
     members = {
-        workflowExecution = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        workflowExecution = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkflowExecution }),
         initiatedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -1932,8 +1807,9 @@ M.FailWorkflowExecutionFailedEventAttributes = {
             },
         },
         decisionTaskCompletedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -1949,20 +1825,23 @@ M.GetWorkflowExecutionHistoryInput = {
                 required = true,
             },
         },
-        execution = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        execution = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkflowExecution }),
         nextPageToken = {
             type = "string",
         },
         maximumPageSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         reverseOrder = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1971,14 +1850,16 @@ M.LambdaFunctionCompletedEventAttributes = {
     type = "structure",
     members = {
         scheduledEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         startedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -1992,14 +1873,16 @@ M.LambdaFunctionFailedEventAttributes = {
     type = "structure",
     members = {
         scheduledEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         startedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -2037,8 +1920,9 @@ M.LambdaFunctionScheduledEventAttributes = {
             type = "string",
         },
         decisionTaskCompletedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -2049,8 +1933,9 @@ M.LambdaFunctionStartedEventAttributes = {
     type = "structure",
     members = {
         scheduledEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -2065,14 +1950,16 @@ M.LambdaFunctionTimedOutEventAttributes = {
     type = "structure",
     members = {
         scheduledEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         startedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -2095,8 +1982,9 @@ M.MarkerRecordedEventAttributes = {
             type = "string",
         },
         decisionTaskCompletedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -2123,8 +2011,9 @@ M.RecordMarkerFailedEventAttributes = {
             },
         },
         decisionTaskCompletedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -2152,8 +2041,9 @@ M.RequestCancelActivityTaskFailedEventAttributes = {
             },
         },
         decisionTaskCompletedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -2185,14 +2075,16 @@ M.RequestCancelExternalWorkflowExecutionFailedEventAttributes = {
             },
         },
         initiatedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         decisionTaskCompletedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -2215,8 +2107,9 @@ M.RequestCancelExternalWorkflowExecutionInitiatedEventAttributes = {
             type = "string",
         },
         decisionTaskCompletedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -2243,12 +2136,9 @@ M.ScheduleActivityTaskFailedCause = {
 M.ScheduleActivityTaskFailedEventAttributes = {
     type = "structure",
     members = {
-        activityType = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        activityType = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActivityType }),
         activityId = {
             type = "string",
             traits = {
@@ -2262,8 +2152,9 @@ M.ScheduleActivityTaskFailedEventAttributes = {
             },
         },
         decisionTaskCompletedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -2299,8 +2190,9 @@ M.ScheduleLambdaFunctionFailedEventAttributes = {
             },
         },
         decisionTaskCompletedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -2332,14 +2224,16 @@ M.SignalExternalWorkflowExecutionFailedEventAttributes = {
             },
         },
         initiatedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         decisionTaskCompletedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -2371,8 +2265,9 @@ M.SignalExternalWorkflowExecutionInitiatedEventAttributes = {
             type = "string",
         },
         decisionTaskCompletedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -2399,12 +2294,9 @@ M.StartChildWorkflowExecutionFailedCause = {
 M.StartChildWorkflowExecutionFailedEventAttributes = {
     type = "structure",
     members = {
-        workflowType = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        workflowType = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkflowType }),
         cause = {
             type = "string",
             traits = {
@@ -2418,14 +2310,16 @@ M.StartChildWorkflowExecutionFailedEventAttributes = {
             },
         },
         initiatedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         decisionTaskCompletedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -2444,12 +2338,9 @@ M.StartChildWorkflowExecutionInitiatedEventAttributes = {
                 required = true,
             },
         },
-        workflowType = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        workflowType = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkflowType }),
         control = {
             type = "string",
         },
@@ -2459,18 +2350,16 @@ M.StartChildWorkflowExecutionInitiatedEventAttributes = {
         executionStartToCloseTimeout = {
             type = "string",
         },
-        taskList = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        taskList = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TaskList }),
         taskPriority = {
             type = "string",
         },
         decisionTaskCompletedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -2485,7 +2374,7 @@ M.StartChildWorkflowExecutionInitiatedEventAttributes = {
         },
         tagList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         lambdaRole = {
             type = "string",
@@ -2501,7 +2390,10 @@ M.StartLambdaFunctionFailedEventAttributes = {
     type = "structure",
     members = {
         scheduledEventId = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         cause = {
             type = "string",
@@ -2535,8 +2427,9 @@ M.StartTimerFailedEventAttributes = {
             },
         },
         decisionTaskCompletedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -2553,14 +2446,16 @@ M.TimerCanceledEventAttributes = {
             },
         },
         startedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         decisionTaskCompletedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -2577,8 +2472,9 @@ M.TimerFiredEventAttributes = {
             },
         },
         startedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -2604,8 +2500,9 @@ M.TimerStartedEventAttributes = {
             },
         },
         decisionTaskCompletedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -2619,8 +2516,9 @@ M.WorkflowExecutionCanceledEventAttributes = {
             type = "string",
         },
         decisionTaskCompletedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -2634,11 +2532,12 @@ M.WorkflowExecutionCancelRequestedCause = {
 M.WorkflowExecutionCancelRequestedEventAttributes = {
     type = "structure",
     members = {
-        externalWorkflowExecution = {
-            type = "structure",
-        },
+        externalWorkflowExecution = M.WorkflowExecution,
         externalInitiatedEventId = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         cause = {
             type = "string",
@@ -2653,8 +2552,9 @@ M.WorkflowExecutionCompletedEventAttributes = {
             type = "string",
         },
         decisionTaskCompletedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -2668,8 +2568,9 @@ M.WorkflowExecutionContinuedAsNewEventAttributes = {
             type = "string",
         },
         decisionTaskCompletedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -2682,12 +2583,9 @@ M.WorkflowExecutionContinuedAsNewEventAttributes = {
         executionStartToCloseTimeout = {
             type = "string",
         },
-        taskList = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        taskList = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TaskList }),
         taskPriority = {
             type = "string",
         },
@@ -2702,14 +2600,11 @@ M.WorkflowExecutionContinuedAsNewEventAttributes = {
         },
         tagList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        workflowType = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        workflowType = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkflowType }),
         lambdaRole = {
             type = "string",
         },
@@ -2726,8 +2621,9 @@ M.WorkflowExecutionFailedEventAttributes = {
             type = "string",
         },
         decisionTaskCompletedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -2746,11 +2642,12 @@ M.WorkflowExecutionSignaledEventAttributes = {
         input = {
             type = "string",
         },
-        externalWorkflowExecution = {
-            type = "structure",
-        },
+        externalWorkflowExecution = M.WorkflowExecution,
         externalInitiatedEventId = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2773,33 +2670,28 @@ M.WorkflowExecutionStartedEventAttributes = {
                 required = true,
             },
         },
-        taskList = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        taskList = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TaskList }),
         taskPriority = {
             type = "string",
         },
-        workflowType = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        workflowType = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkflowType }),
         tagList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         continuedExecutionRunId = {
             type = "string",
         },
-        parentWorkflowExecution = {
-            type = "structure",
-        },
+        parentWorkflowExecution = M.WorkflowExecution,
         parentInitiatedEventId = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         lambdaRole = {
             type = "string",
@@ -2868,173 +2760,66 @@ M.HistoryEvent = {
             },
         },
         eventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
-        workflowExecutionStartedEventAttributes = {
-            type = "structure",
-        },
-        workflowExecutionCompletedEventAttributes = {
-            type = "structure",
-        },
-        completeWorkflowExecutionFailedEventAttributes = {
-            type = "structure",
-        },
-        workflowExecutionFailedEventAttributes = {
-            type = "structure",
-        },
-        failWorkflowExecutionFailedEventAttributes = {
-            type = "structure",
-        },
-        workflowExecutionTimedOutEventAttributes = {
-            type = "structure",
-        },
-        workflowExecutionCanceledEventAttributes = {
-            type = "structure",
-        },
-        cancelWorkflowExecutionFailedEventAttributes = {
-            type = "structure",
-        },
-        workflowExecutionContinuedAsNewEventAttributes = {
-            type = "structure",
-        },
-        continueAsNewWorkflowExecutionFailedEventAttributes = {
-            type = "structure",
-        },
-        workflowExecutionTerminatedEventAttributes = {
-            type = "structure",
-        },
-        workflowExecutionCancelRequestedEventAttributes = {
-            type = "structure",
-        },
-        decisionTaskScheduledEventAttributes = {
-            type = "structure",
-        },
-        decisionTaskStartedEventAttributes = {
-            type = "structure",
-        },
-        decisionTaskCompletedEventAttributes = {
-            type = "structure",
-        },
-        decisionTaskTimedOutEventAttributes = {
-            type = "structure",
-        },
-        activityTaskScheduledEventAttributes = {
-            type = "structure",
-        },
-        activityTaskStartedEventAttributes = {
-            type = "structure",
-        },
-        activityTaskCompletedEventAttributes = {
-            type = "structure",
-        },
-        activityTaskFailedEventAttributes = {
-            type = "structure",
-        },
-        activityTaskTimedOutEventAttributes = {
-            type = "structure",
-        },
-        activityTaskCanceledEventAttributes = {
-            type = "structure",
-        },
-        activityTaskCancelRequestedEventAttributes = {
-            type = "structure",
-        },
-        workflowExecutionSignaledEventAttributes = {
-            type = "structure",
-        },
-        markerRecordedEventAttributes = {
-            type = "structure",
-        },
-        recordMarkerFailedEventAttributes = {
-            type = "structure",
-        },
-        timerStartedEventAttributes = {
-            type = "structure",
-        },
-        timerFiredEventAttributes = {
-            type = "structure",
-        },
-        timerCanceledEventAttributes = {
-            type = "structure",
-        },
-        startChildWorkflowExecutionInitiatedEventAttributes = {
-            type = "structure",
-        },
-        childWorkflowExecutionStartedEventAttributes = {
-            type = "structure",
-        },
-        childWorkflowExecutionCompletedEventAttributes = {
-            type = "structure",
-        },
-        childWorkflowExecutionFailedEventAttributes = {
-            type = "structure",
-        },
-        childWorkflowExecutionTimedOutEventAttributes = {
-            type = "structure",
-        },
-        childWorkflowExecutionCanceledEventAttributes = {
-            type = "structure",
-        },
-        childWorkflowExecutionTerminatedEventAttributes = {
-            type = "structure",
-        },
-        signalExternalWorkflowExecutionInitiatedEventAttributes = {
-            type = "structure",
-        },
-        externalWorkflowExecutionSignaledEventAttributes = {
-            type = "structure",
-        },
-        signalExternalWorkflowExecutionFailedEventAttributes = {
-            type = "structure",
-        },
-        externalWorkflowExecutionCancelRequestedEventAttributes = {
-            type = "structure",
-        },
-        requestCancelExternalWorkflowExecutionInitiatedEventAttributes = {
-            type = "structure",
-        },
-        requestCancelExternalWorkflowExecutionFailedEventAttributes = {
-            type = "structure",
-        },
-        scheduleActivityTaskFailedEventAttributes = {
-            type = "structure",
-        },
-        requestCancelActivityTaskFailedEventAttributes = {
-            type = "structure",
-        },
-        startTimerFailedEventAttributes = {
-            type = "structure",
-        },
-        cancelTimerFailedEventAttributes = {
-            type = "structure",
-        },
-        startChildWorkflowExecutionFailedEventAttributes = {
-            type = "structure",
-        },
-        lambdaFunctionScheduledEventAttributes = {
-            type = "structure",
-        },
-        lambdaFunctionStartedEventAttributes = {
-            type = "structure",
-        },
-        lambdaFunctionCompletedEventAttributes = {
-            type = "structure",
-        },
-        lambdaFunctionFailedEventAttributes = {
-            type = "structure",
-        },
-        lambdaFunctionTimedOutEventAttributes = {
-            type = "structure",
-        },
-        scheduleLambdaFunctionFailedEventAttributes = {
-            type = "structure",
-        },
-        startLambdaFunctionFailedEventAttributes = {
-            type = "structure",
-        },
+        workflowExecutionStartedEventAttributes = M.WorkflowExecutionStartedEventAttributes,
+        workflowExecutionCompletedEventAttributes = M.WorkflowExecutionCompletedEventAttributes,
+        completeWorkflowExecutionFailedEventAttributes = M.CompleteWorkflowExecutionFailedEventAttributes,
+        workflowExecutionFailedEventAttributes = M.WorkflowExecutionFailedEventAttributes,
+        failWorkflowExecutionFailedEventAttributes = M.FailWorkflowExecutionFailedEventAttributes,
+        workflowExecutionTimedOutEventAttributes = M.WorkflowExecutionTimedOutEventAttributes,
+        workflowExecutionCanceledEventAttributes = M.WorkflowExecutionCanceledEventAttributes,
+        cancelWorkflowExecutionFailedEventAttributes = M.CancelWorkflowExecutionFailedEventAttributes,
+        workflowExecutionContinuedAsNewEventAttributes = M.WorkflowExecutionContinuedAsNewEventAttributes,
+        continueAsNewWorkflowExecutionFailedEventAttributes = M.ContinueAsNewWorkflowExecutionFailedEventAttributes,
+        workflowExecutionTerminatedEventAttributes = M.WorkflowExecutionTerminatedEventAttributes,
+        workflowExecutionCancelRequestedEventAttributes = M.WorkflowExecutionCancelRequestedEventAttributes,
+        decisionTaskScheduledEventAttributes = M.DecisionTaskScheduledEventAttributes,
+        decisionTaskStartedEventAttributes = M.DecisionTaskStartedEventAttributes,
+        decisionTaskCompletedEventAttributes = M.DecisionTaskCompletedEventAttributes,
+        decisionTaskTimedOutEventAttributes = M.DecisionTaskTimedOutEventAttributes,
+        activityTaskScheduledEventAttributes = M.ActivityTaskScheduledEventAttributes,
+        activityTaskStartedEventAttributes = M.ActivityTaskStartedEventAttributes,
+        activityTaskCompletedEventAttributes = M.ActivityTaskCompletedEventAttributes,
+        activityTaskFailedEventAttributes = M.ActivityTaskFailedEventAttributes,
+        activityTaskTimedOutEventAttributes = M.ActivityTaskTimedOutEventAttributes,
+        activityTaskCanceledEventAttributes = M.ActivityTaskCanceledEventAttributes,
+        activityTaskCancelRequestedEventAttributes = M.ActivityTaskCancelRequestedEventAttributes,
+        workflowExecutionSignaledEventAttributes = M.WorkflowExecutionSignaledEventAttributes,
+        markerRecordedEventAttributes = M.MarkerRecordedEventAttributes,
+        recordMarkerFailedEventAttributes = M.RecordMarkerFailedEventAttributes,
+        timerStartedEventAttributes = M.TimerStartedEventAttributes,
+        timerFiredEventAttributes = M.TimerFiredEventAttributes,
+        timerCanceledEventAttributes = M.TimerCanceledEventAttributes,
+        startChildWorkflowExecutionInitiatedEventAttributes = M.StartChildWorkflowExecutionInitiatedEventAttributes,
+        childWorkflowExecutionStartedEventAttributes = M.ChildWorkflowExecutionStartedEventAttributes,
+        childWorkflowExecutionCompletedEventAttributes = M.ChildWorkflowExecutionCompletedEventAttributes,
+        childWorkflowExecutionFailedEventAttributes = M.ChildWorkflowExecutionFailedEventAttributes,
+        childWorkflowExecutionTimedOutEventAttributes = M.ChildWorkflowExecutionTimedOutEventAttributes,
+        childWorkflowExecutionCanceledEventAttributes = M.ChildWorkflowExecutionCanceledEventAttributes,
+        childWorkflowExecutionTerminatedEventAttributes = M.ChildWorkflowExecutionTerminatedEventAttributes,
+        signalExternalWorkflowExecutionInitiatedEventAttributes = M.SignalExternalWorkflowExecutionInitiatedEventAttributes,
+        externalWorkflowExecutionSignaledEventAttributes = M.ExternalWorkflowExecutionSignaledEventAttributes,
+        signalExternalWorkflowExecutionFailedEventAttributes = M.SignalExternalWorkflowExecutionFailedEventAttributes,
+        externalWorkflowExecutionCancelRequestedEventAttributes = M.ExternalWorkflowExecutionCancelRequestedEventAttributes,
+        requestCancelExternalWorkflowExecutionInitiatedEventAttributes = M.RequestCancelExternalWorkflowExecutionInitiatedEventAttributes,
+        requestCancelExternalWorkflowExecutionFailedEventAttributes = M.RequestCancelExternalWorkflowExecutionFailedEventAttributes,
+        scheduleActivityTaskFailedEventAttributes = M.ScheduleActivityTaskFailedEventAttributes,
+        requestCancelActivityTaskFailedEventAttributes = M.RequestCancelActivityTaskFailedEventAttributes,
+        startTimerFailedEventAttributes = M.StartTimerFailedEventAttributes,
+        cancelTimerFailedEventAttributes = M.CancelTimerFailedEventAttributes,
+        startChildWorkflowExecutionFailedEventAttributes = M.StartChildWorkflowExecutionFailedEventAttributes,
+        lambdaFunctionScheduledEventAttributes = M.LambdaFunctionScheduledEventAttributes,
+        lambdaFunctionStartedEventAttributes = M.LambdaFunctionStartedEventAttributes,
+        lambdaFunctionCompletedEventAttributes = M.LambdaFunctionCompletedEventAttributes,
+        lambdaFunctionFailedEventAttributes = M.LambdaFunctionFailedEventAttributes,
+        lambdaFunctionTimedOutEventAttributes = M.LambdaFunctionTimedOutEventAttributes,
+        scheduleLambdaFunctionFailedEventAttributes = M.ScheduleLambdaFunctionFailedEventAttributes,
+        startLambdaFunctionFailedEventAttributes = M.StartLambdaFunctionFailedEventAttributes,
     },
 }
 
@@ -3043,7 +2828,7 @@ M.GetWorkflowExecutionHistoryOutput = {
     members = {
         events = {
             type = "list",
-            member_type = "structure",
+            member = M.HistoryEvent,
             traits = {
                 required = true,
             },
@@ -3086,10 +2871,16 @@ M.ListActivityTypesInput = {
             type = "string",
         },
         maximumPageSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         reverseOrder = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -3099,7 +2890,7 @@ M.ListActivityTypesOutput = {
     members = {
         typeInfos = {
             type = "list",
-            member_type = "structure",
+            member = M.ActivityTypeInfo,
             traits = {
                 required = true,
             },
@@ -3119,32 +2910,26 @@ M.ListClosedWorkflowExecutionsInput = {
                 required = true,
             },
         },
-        startTimeFilter = {
-            type = "structure",
-        },
-        closeTimeFilter = {
-            type = "structure",
-        },
-        executionFilter = {
-            type = "structure",
-        },
-        closeStatusFilter = {
-            type = "structure",
-        },
-        typeFilter = {
-            type = "structure",
-        },
-        tagFilter = {
-            type = "structure",
-        },
+        startTimeFilter = M.ExecutionTimeFilter,
+        closeTimeFilter = M.ExecutionTimeFilter,
+        executionFilter = M.WorkflowExecutionFilter,
+        closeStatusFilter = M.CloseStatusFilter,
+        typeFilter = M.WorkflowTypeFilter,
+        tagFilter = M.TagFilter,
         nextPageToken = {
             type = "string",
         },
         maximumPageSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         reverseOrder = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -3154,7 +2939,7 @@ M.ListClosedWorkflowExecutionsOutput = {
     members = {
         executionInfos = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkflowExecutionInfo,
             traits = {
                 required = true,
             },
@@ -3178,10 +2963,16 @@ M.ListDomainsInput = {
             },
         },
         maximumPageSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         reverseOrder = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -3191,7 +2982,7 @@ M.ListDomainsOutput = {
     members = {
         domainInfos = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainInfo,
             traits = {
                 required = true,
             },
@@ -3211,30 +3002,27 @@ M.ListOpenWorkflowExecutionsInput = {
                 required = true,
             },
         },
-        startTimeFilter = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        typeFilter = {
-            type = "structure",
-        },
-        tagFilter = {
-            type = "structure",
-        },
+        startTimeFilter = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ExecutionTimeFilter }),
+        typeFilter = M.WorkflowTypeFilter,
+        tagFilter = M.TagFilter,
         nextPageToken = {
             type = "string",
         },
         maximumPageSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         reverseOrder = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        executionFilter = {
-            type = "structure",
-        },
+        executionFilter = M.WorkflowExecutionFilter,
     },
 }
 
@@ -3243,7 +3031,7 @@ M.ListOpenWorkflowExecutionsOutput = {
     members = {
         executionInfos = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkflowExecutionInfo,
             traits = {
                 required = true,
             },
@@ -3286,7 +3074,7 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
         },
     },
 }
@@ -3313,10 +3101,16 @@ M.ListWorkflowTypesInput = {
             type = "string",
         },
         maximumPageSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         reverseOrder = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -3326,7 +3120,7 @@ M.ListWorkflowTypesOutput = {
     members = {
         typeInfos = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkflowTypeInfo,
             traits = {
                 required = true,
             },
@@ -3346,12 +3140,9 @@ M.PollForActivityTaskInput = {
                 required = true,
             },
         },
-        taskList = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        taskList = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TaskList }),
         identity = {
             type = "string",
         },
@@ -3374,23 +3165,18 @@ M.PollForActivityTaskOutput = {
             },
         },
         startedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
-        workflowExecution = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        activityType = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        workflowExecution = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkflowExecution }),
+        activityType = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActivityType }),
         input = {
             type = "string",
         },
@@ -3406,12 +3192,9 @@ M.PollForDecisionTaskInput = {
                 required = true,
             },
         },
-        taskList = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        taskList = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TaskList }),
         identity = {
             type = "string",
         },
@@ -3419,13 +3202,22 @@ M.PollForDecisionTaskInput = {
             type = "string",
         },
         maximumPageSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         reverseOrder = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         startAtPreviousStartedEvent = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -3440,26 +3232,21 @@ M.PollForDecisionTaskOutput = {
             },
         },
         startedEventId = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
-        workflowExecution = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        workflowType = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        workflowExecution = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkflowExecution }),
+        workflowType = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkflowType }),
         events = {
             type = "list",
-            member_type = "structure",
+            member = M.HistoryEvent,
             traits = {
                 required = true,
             },
@@ -3468,7 +3255,10 @@ M.PollForDecisionTaskOutput = {
             type = "string",
         },
         previousStartedEventId = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -3494,6 +3284,7 @@ M.RecordActivityTaskHeartbeatOutput = {
         cancelRequested = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -3530,9 +3321,7 @@ M.RegisterActivityTypeInput = {
         defaultTaskHeartbeatTimeout = {
             type = "string",
         },
-        defaultTaskList = {
-            type = "structure",
-        },
+        defaultTaskList = M.TaskList,
         defaultTaskPriority = {
             type = "string",
         },
@@ -3579,7 +3368,7 @@ M.RegisterDomainInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
         },
     },
 }
@@ -3628,9 +3417,7 @@ M.RegisterWorkflowTypeInput = {
         defaultExecutionStartToCloseTimeout = {
             type = "string",
         },
-        defaultTaskList = {
-            type = "structure",
-        },
+        defaultTaskList = M.TaskList,
         defaultTaskPriority = {
             type = "string",
         },
@@ -3743,14 +3530,12 @@ M.RespondDecisionTaskCompletedInput = {
         },
         decisions = {
             type = "list",
-            member_type = "structure",
+            member = M.Decision,
         },
         executionContext = {
             type = "string",
         },
-        taskList = {
-            type = "structure",
-        },
+        taskList = M.TaskList,
         taskListScheduleToStartTimeout = {
             type = "string",
         },
@@ -3810,15 +3595,10 @@ M.StartWorkflowExecutionInput = {
                 required = true,
             },
         },
-        workflowType = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        taskList = {
-            type = "structure",
-        },
+        workflowType = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkflowType }),
+        taskList = M.TaskList,
         taskPriority = {
             type = "string",
         },
@@ -3830,7 +3610,7 @@ M.StartWorkflowExecutionInput = {
         },
         tagList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         taskStartToCloseTimeout = {
             type = "string",
@@ -3874,7 +3654,7 @@ M.TagResourceInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
             traits = {
                 required = true,
             },
@@ -3929,12 +3709,9 @@ M.UndeprecateActivityTypeInput = {
                 required = true,
             },
         },
-        activityType = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        activityType = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActivityType }),
     },
 }
 
@@ -3967,12 +3744,9 @@ M.UndeprecateWorkflowTypeInput = {
                 required = true,
             },
         },
-        workflowType = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        workflowType = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkflowType }),
     },
 }
 
@@ -3991,7 +3765,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },

@@ -9,7 +9,7 @@ M.ArrayProperties = {
     type = "structure",
     members = {
         size = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -19,17 +19,17 @@ M.ArrayPropertiesDetail = {
     members = {
         statusSummary = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
         },
         statusSummaryLastUpdatedAt = {
-            type = "number",
+            type = "long",
         },
         size = {
-            type = "number",
+            type = "integer",
         },
         index = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -38,18 +38,18 @@ M.ArrayPropertiesSummary = {
     type = "structure",
     members = {
         size = {
-            type = "number",
+            type = "integer",
         },
         index = {
-            type = "number",
+            type = "integer",
         },
         statusSummary = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
         },
         statusSummaryLastUpdatedAt = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -84,7 +84,7 @@ M.AttemptContainerDetail = {
             type = "string",
         },
         exitCode = {
-            type = "number",
+            type = "integer",
         },
         reason = {
             type = "string",
@@ -94,7 +94,7 @@ M.AttemptContainerDetail = {
         },
         networkInterfaces = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkInterface,
         },
     },
 }
@@ -103,7 +103,7 @@ M.AttemptTaskContainerDetails = {
     type = "structure",
     members = {
         exitCode = {
-            type = "number",
+            type = "integer",
         },
         name = {
             type = "string",
@@ -116,7 +116,7 @@ M.AttemptTaskContainerDetails = {
         },
         networkInterfaces = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkInterface,
         },
     },
 }
@@ -132,7 +132,7 @@ M.AttemptEcsTaskDetails = {
         },
         containers = {
             type = "list",
-            member_type = "structure",
+            member = M.AttemptTaskContainerDetails,
         },
     },
 }
@@ -140,21 +140,19 @@ M.AttemptEcsTaskDetails = {
 M.AttemptDetail = {
     type = "structure",
     members = {
-        container = {
-            type = "structure",
-        },
+        container = M.AttemptContainerDetail,
         startedAt = {
-            type = "number",
+            type = "long",
         },
         stoppedAt = {
-            type = "number",
+            type = "long",
         },
         statusReason = {
             type = "string",
         },
         taskProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.AttemptEcsTaskDetails,
         },
     },
 }
@@ -248,7 +246,7 @@ M.LaunchTemplateSpecificationOverride = {
         },
         targetInstanceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         userdataType = {
             type = "string",
@@ -270,7 +268,7 @@ M.LaunchTemplateSpecification = {
         },
         overrides = {
             type = "list",
-            member_type = "structure",
+            member = M.LaunchTemplateSpecificationOverride,
         },
         userdataType = {
             type = "string",
@@ -282,7 +280,7 @@ M.ComputeScalingPolicy = {
     type = "structure",
     members = {
         minScaleDownDelayMinutes = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -307,34 +305,34 @@ M.ComputeResource = {
             type = "string",
         },
         minvCpus = {
-            type = "number",
+            type = "integer",
         },
         maxvCpus = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         desiredvCpus = {
-            type = "number",
+            type = "integer",
         },
         instanceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         imageId = {
             type = "string",
         },
         subnets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ec2KeyPair = {
             type = "string",
@@ -344,28 +342,24 @@ M.ComputeResource = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         placementGroup = {
             type = "string",
         },
         bidPercentage = {
-            type = "number",
+            type = "integer",
         },
         spotIamFleetRole = {
             type = "string",
         },
-        launchTemplate = {
-            type = "structure",
-        },
+        launchTemplate = M.LaunchTemplateSpecification,
         ec2Configuration = {
             type = "list",
-            member_type = "structure",
+            member = M.Ec2Configuration,
         },
-        scalingPolicy = {
-            type = "structure",
-        },
+        scalingPolicy = M.ComputeScalingPolicy,
     },
 }
 
@@ -416,22 +410,18 @@ M.CreateComputeEnvironmentInput = {
             type = "string",
         },
         unmanagedvCpus = {
-            type = "number",
+            type = "integer",
         },
-        computeResources = {
-            type = "structure",
-        },
+        computeResources = M.ComputeResource,
         serviceRole = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        eksConfiguration = {
-            type = "structure",
-        },
+        eksConfiguration = M.EksConfiguration,
         context = {
             type = "string",
         },
@@ -460,15 +450,15 @@ M.CreateConsumableResourceInput = {
             },
         },
         totalQuantity = {
-            type = "number",
+            type = "long",
         },
         resourceType = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -495,7 +485,7 @@ M.ComputeEnvironmentOrder = {
     type = "structure",
     members = {
         order = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -541,7 +531,7 @@ M.JobStateTimeLimitAction = {
             },
         },
         maxTimeSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -559,7 +549,7 @@ M.ServiceEnvironmentOrder = {
     type = "structure",
     members = {
         order = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -594,30 +584,30 @@ M.CreateJobQueueInput = {
             type = "string",
         },
         priority = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         computeEnvironmentOrder = {
             type = "list",
-            member_type = "structure",
+            member = M.ComputeEnvironmentOrder,
         },
         serviceEnvironmentOrder = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceEnvironmentOrder,
         },
         jobQueueType = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         jobStateTimeLimitActions = {
             type = "list",
-            member_type = "structure",
+            member = M.JobStateTimeLimitAction,
         },
     },
 }
@@ -644,7 +634,7 @@ M.QuotaShareCapacityLimit = {
     type = "structure",
     members = {
         maxCapacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -691,7 +681,7 @@ M.QuotaShareResourceSharingConfiguration = {
             },
         },
         borrowLimit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -718,30 +708,24 @@ M.CreateQuotaShareInput = {
         },
         capacityLimits = {
             type = "list",
-            member_type = "structure",
+            member = M.QuotaShareCapacityLimit,
             traits = {
                 required = true,
             },
         },
-        resourceSharingConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        preemptionConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        resourceSharingConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.QuotaShareResourceSharingConfiguration }),
+        preemptionConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.QuotaSharePreemptionConfiguration }),
         state = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -768,7 +752,7 @@ M.ShareAttributes = {
             },
         },
         weightFactor = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -777,14 +761,14 @@ M.FairsharePolicy = {
     type = "structure",
     members = {
         shareDecaySeconds = {
-            type = "number",
+            type = "integer",
         },
         computeReservation = {
-            type = "number",
+            type = "integer",
         },
         shareDistribution = {
             type = "list",
-            member_type = "structure",
+            member = M.ShareAttributes,
         },
     },
 }
@@ -814,16 +798,12 @@ M.CreateSchedulingPolicyInput = {
                 required = true,
             },
         },
-        quotaSharePolicy = {
-            type = "structure",
-        },
-        fairsharePolicy = {
-            type = "structure",
-        },
+        quotaSharePolicy = M.QuotaSharePolicy,
+        fairsharePolicy = M.FairsharePolicy,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -850,7 +830,7 @@ M.CapacityLimit = {
     type = "structure",
     members = {
         maxCapacity = {
-            type = "number",
+            type = "integer",
         },
         capacityUnit = {
             type = "string",
@@ -887,15 +867,15 @@ M.CreateServiceEnvironmentInput = {
         },
         capacityLimits = {
             type = "list",
-            member_type = "structure",
+            member = M.CapacityLimit,
             traits = {
                 required = true,
             },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1035,10 +1015,10 @@ M.DescribeComputeEnvironmentsInput = {
     members = {
         computeEnvironments = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -1067,7 +1047,7 @@ M.UpdatePolicy = {
             type = "boolean",
         },
         jobExecutionTimeoutMinutes = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1088,15 +1068,15 @@ M.ComputeEnvironmentDetail = {
             },
         },
         unmanagedvCpus = {
-            type = "number",
+            type = "integer",
         },
         ecsClusterArn = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         type = {
             type = "string",
@@ -1110,18 +1090,12 @@ M.ComputeEnvironmentDetail = {
         statusReason = {
             type = "string",
         },
-        computeResources = {
-            type = "structure",
-        },
+        computeResources = M.ComputeResource,
         serviceRole = {
             type = "string",
         },
-        updatePolicy = {
-            type = "structure",
-        },
-        eksConfiguration = {
-            type = "structure",
-        },
+        updatePolicy = M.UpdatePolicy,
+        eksConfiguration = M.EksConfiguration,
         containerOrchestrationType = {
             type = "string",
         },
@@ -1139,7 +1113,7 @@ M.DescribeComputeEnvironmentsOutput = {
     members = {
         computeEnvironments = {
             type = "list",
-            member_type = "structure",
+            member = M.ComputeEnvironmentDetail,
         },
         nextToken = {
             type = "string",
@@ -1175,24 +1149,24 @@ M.DescribeConsumableResourceOutput = {
             },
         },
         totalQuantity = {
-            type = "number",
+            type = "long",
         },
         inUseQuantity = {
-            type = "number",
+            type = "long",
         },
         availableQuantity = {
-            type = "number",
+            type = "long",
         },
         resourceType = {
             type = "string",
         },
         createdAt = {
-            type = "number",
+            type = "long",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1202,10 +1176,10 @@ M.DescribeJobDefinitionsInput = {
     members = {
         jobDefinitions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         jobDefinitionName = {
             type = "string",
@@ -1226,7 +1200,7 @@ M.ConsumableResourceRequirement = {
             type = "string",
         },
         quantity = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1236,7 +1210,7 @@ M.ConsumableResourceProperties = {
     members = {
         consumableResourceList = {
             type = "list",
-            member_type = "structure",
+            member = M.ConsumableResourceRequirement,
         },
     },
 }
@@ -1257,7 +1231,7 @@ M.EphemeralStorage = {
     type = "structure",
     members = {
         sizeInGiB = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1294,7 +1268,7 @@ M.Device = {
         },
         permissions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1309,14 +1283,14 @@ M.Tmpfs = {
             },
         },
         size = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         mountOptions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1326,23 +1300,23 @@ M.LinuxParameters = {
     members = {
         devices = {
             type = "list",
-            member_type = "structure",
+            member = M.Device,
         },
         initProcessEnabled = {
             type = "boolean",
         },
         sharedMemorySize = {
-            type = "number",
+            type = "integer",
         },
         tmpfs = {
             type = "list",
-            member_type = "structure",
+            member = M.Tmpfs,
         },
         maxSwap = {
-            type = "number",
+            type = "integer",
         },
         swappiness = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1387,12 +1361,12 @@ M.LogConfiguration = {
         },
         options = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         secretOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.Secret,
         },
     },
 }
@@ -1473,7 +1447,7 @@ M.Ulimit = {
     type = "structure",
     members = {
         hardLimit = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1485,7 +1459,7 @@ M.Ulimit = {
             },
         },
         softLimit = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1531,11 +1505,9 @@ M.EFSVolumeConfiguration = {
             type = "string",
         },
         transitEncryptionPort = {
-            type = "number",
+            type = "integer",
         },
-        authorizationConfig = {
-            type = "structure",
-        },
+        authorizationConfig = M.EFSAuthorizationConfig,
     },
 }
 
@@ -1561,7 +1533,7 @@ M.S3FilesVolumeConfiguration = {
             type = "string",
         },
         transitEncryptionPort = {
-            type = "number",
+            type = "integer",
         },
         accessPointArn = {
             type = "string",
@@ -1572,18 +1544,12 @@ M.S3FilesVolumeConfiguration = {
 M.Volume = {
     type = "structure",
     members = {
-        host = {
-            type = "structure",
-        },
+        host = M.Host,
         name = {
             type = "string",
         },
-        efsVolumeConfiguration = {
-            type = "structure",
-        },
-        s3filesVolumeConfiguration = {
-            type = "structure",
-        },
+        efsVolumeConfiguration = M.EFSVolumeConfiguration,
+        s3filesVolumeConfiguration = M.S3FilesVolumeConfiguration,
     },
 }
 
@@ -1594,14 +1560,14 @@ M.ContainerProperties = {
             type = "string",
         },
         vcpus = {
-            type = "number",
+            type = "integer",
         },
         memory = {
-            type = "number",
+            type = "integer",
         },
         command = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         jobRoleArn = {
             type = "string",
@@ -1611,15 +1577,15 @@ M.ContainerProperties = {
         },
         volumes = {
             type = "list",
-            member_type = "structure",
+            member = M.Volume,
         },
         environment = {
             type = "list",
-            member_type = "structure",
+            member = M.KeyValuePair,
         },
         mountPoints = {
             type = "list",
-            member_type = "structure",
+            member = M.MountPoint,
         },
         readonlyRootFilesystem = {
             type = "boolean",
@@ -1629,7 +1595,7 @@ M.ContainerProperties = {
         },
         ulimits = {
             type = "list",
-            member_type = "structure",
+            member = M.Ulimit,
         },
         user = {
             type = "string",
@@ -1639,36 +1605,22 @@ M.ContainerProperties = {
         },
         resourceRequirements = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceRequirement,
         },
-        linuxParameters = {
-            type = "structure",
-        },
-        logConfiguration = {
-            type = "structure",
-        },
+        linuxParameters = M.LinuxParameters,
+        logConfiguration = M.LogConfiguration,
         secrets = {
             type = "list",
-            member_type = "structure",
+            member = M.Secret,
         },
-        networkConfiguration = {
-            type = "structure",
-        },
-        fargatePlatformConfiguration = {
-            type = "structure",
-        },
+        networkConfiguration = M.NetworkConfiguration,
+        fargatePlatformConfiguration = M.FargatePlatformConfiguration,
         enableExecuteCommand = {
             type = "boolean",
         },
-        ephemeralStorage = {
-            type = "structure",
-        },
-        runtimePlatform = {
-            type = "structure",
-        },
-        repositoryCredentials = {
-            type = "structure",
-        },
+        ephemeralStorage = M.EphemeralStorage,
+        runtimePlatform = M.RuntimePlatform,
+        repositoryCredentials = M.RepositoryCredentials,
     },
 }
 
@@ -1700,8 +1652,8 @@ M.FirelensConfiguration = {
         },
         options = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1711,37 +1663,31 @@ M.TaskContainerProperties = {
     members = {
         command = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         dependsOn = {
             type = "list",
-            member_type = "structure",
+            member = M.TaskContainerDependency,
         },
         environment = {
             type = "list",
-            member_type = "structure",
+            member = M.KeyValuePair,
         },
         essential = {
             type = "boolean",
         },
-        firelensConfiguration = {
-            type = "structure",
-        },
+        firelensConfiguration = M.FirelensConfiguration,
         image = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        linuxParameters = {
-            type = "structure",
-        },
-        logConfiguration = {
-            type = "structure",
-        },
+        linuxParameters = M.LinuxParameters,
+        logConfiguration = M.LogConfiguration,
         mountPoints = {
             type = "list",
-            member_type = "structure",
+            member = M.MountPoint,
         },
         name = {
             type = "string",
@@ -1752,29 +1698,27 @@ M.TaskContainerProperties = {
         readonlyRootFilesystem = {
             type = "boolean",
         },
-        repositoryCredentials = {
-            type = "structure",
-        },
+        repositoryCredentials = M.RepositoryCredentials,
         resourceRequirements = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceRequirement,
         },
         secrets = {
             type = "list",
-            member_type = "structure",
+            member = M.Secret,
         },
         ulimits = {
             type = "list",
-            member_type = "structure",
+            member = M.Ulimit,
         },
         user = {
             type = "string",
         },
         startTimeout = {
-            type = "number",
+            type = "integer",
         },
         stopTimeout = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1784,14 +1728,12 @@ M.EcsTaskProperties = {
     members = {
         containers = {
             type = "list",
-            member_type = "structure",
+            member = M.TaskContainerProperties,
             traits = {
                 required = true,
             },
         },
-        ephemeralStorage = {
-            type = "structure",
-        },
+        ephemeralStorage = M.EphemeralStorage,
         executionRoleArn = {
             type = "string",
         },
@@ -1807,15 +1749,11 @@ M.EcsTaskProperties = {
         pidMode = {
             type = "string",
         },
-        networkConfiguration = {
-            type = "structure",
-        },
-        runtimePlatform = {
-            type = "structure",
-        },
+        networkConfiguration = M.NetworkConfiguration,
+        runtimePlatform = M.RuntimePlatform,
         volumes = {
             type = "list",
-            member_type = "structure",
+            member = M.Volume,
         },
         enableExecuteCommand = {
             type = "boolean",
@@ -1828,7 +1766,7 @@ M.EcsProperties = {
     members = {
         taskProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.EcsTaskProperties,
             traits = {
                 required = true,
             },
@@ -1856,13 +1794,13 @@ M.EksContainerResourceRequirements = {
     members = {
         limits = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         requests = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1871,10 +1809,10 @@ M.EksContainerSecurityContext = {
     type = "structure",
     members = {
         runAsUser = {
-            type = "number",
+            type = "long",
         },
         runAsGroup = {
-            type = "number",
+            type = "long",
         },
         privileged = {
             type = "boolean",
@@ -1926,26 +1864,22 @@ M.EksContainer = {
         },
         command = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         args = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         env = {
             type = "list",
-            member_type = "structure",
+            member = M.EksContainerEnvironmentVariable,
         },
-        resources = {
-            type = "structure",
-        },
+        resources = M.EksContainerResourceRequirements,
         volumeMounts = {
             type = "list",
-            member_type = "structure",
+            member = M.EksContainerVolumeMount,
         },
-        securityContext = {
-            type = "structure",
-        },
+        securityContext = M.EksContainerSecurityContext,
     },
 }
 
@@ -1966,13 +1900,13 @@ M.EksMetadata = {
     members = {
         labels = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         annotations = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         namespace = {
             type = "string",
@@ -2040,18 +1974,10 @@ M.EksVolume = {
                 required = true,
             },
         },
-        hostPath = {
-            type = "structure",
-        },
-        emptyDir = {
-            type = "structure",
-        },
-        secret = {
-            type = "structure",
-        },
-        persistentVolumeClaim = {
-            type = "structure",
-        },
+        hostPath = M.EksHostPath,
+        emptyDir = M.EksEmptyDir,
+        secret = M.EksSecret,
+        persistentVolumeClaim = M.EksPersistentVolumeClaim,
     },
 }
 
@@ -2069,23 +1995,21 @@ M.EksPodProperties = {
         },
         imagePullSecrets = {
             type = "list",
-            member_type = "structure",
+            member = M.ImagePullSecret,
         },
         containers = {
             type = "list",
-            member_type = "structure",
+            member = M.EksContainer,
         },
         initContainers = {
             type = "list",
-            member_type = "structure",
+            member = M.EksContainer,
         },
         volumes = {
             type = "list",
-            member_type = "structure",
+            member = M.EksVolume,
         },
-        metadata = {
-            type = "structure",
-        },
+        metadata = M.EksMetadata,
         shareProcessNamespace = {
             type = "boolean",
         },
@@ -2095,9 +2019,7 @@ M.EksPodProperties = {
 M.EksProperties = {
     type = "structure",
     members = {
-        podProperties = {
-            type = "structure",
-        },
+        podProperties = M.EksPodProperties,
     },
 }
 
@@ -2110,22 +2032,14 @@ M.NodeRangeProperty = {
                 required = true,
             },
         },
-        container = {
-            type = "structure",
-        },
+        container = M.ContainerProperties,
         instanceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        ecsProperties = {
-            type = "structure",
-        },
-        eksProperties = {
-            type = "structure",
-        },
-        consumableResourceProperties = {
-            type = "structure",
-        },
+        ecsProperties = M.EcsProperties,
+        eksProperties = M.EksProperties,
+        consumableResourceProperties = M.ConsumableResourceProperties,
     },
 }
 
@@ -2133,20 +2047,20 @@ M.NodeProperties = {
     type = "structure",
     members = {
         numNodes = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         mainNode = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         nodeRangeProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.NodeRangeProperty,
             traits = {
                 required = true,
             },
@@ -2189,11 +2103,11 @@ M.RetryStrategy = {
     type = "structure",
     members = {
         attempts = {
-            type = "number",
+            type = "integer",
         },
         evaluateOnExit = {
             type = "list",
-            member_type = "structure",
+            member = M.EvaluateOnExit,
         },
     },
 }
@@ -2202,7 +2116,7 @@ M.JobTimeout = {
     type = "structure",
     members = {
         attemptDurationSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2223,7 +2137,7 @@ M.JobDefinition = {
             },
         },
         revision = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -2238,49 +2152,35 @@ M.JobDefinition = {
             },
         },
         schedulingPriority = {
-            type = "number",
+            type = "integer",
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        retryStrategy = {
-            type = "structure",
-        },
-        containerProperties = {
-            type = "structure",
-        },
-        timeout = {
-            type = "structure",
-        },
-        nodeProperties = {
-            type = "structure",
-        },
+        retryStrategy = M.RetryStrategy,
+        containerProperties = M.ContainerProperties,
+        timeout = M.JobTimeout,
+        nodeProperties = M.NodeProperties,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         propagateTags = {
             type = "boolean",
         },
         platformCapabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        ecsProperties = {
-            type = "structure",
-        },
-        eksProperties = {
-            type = "structure",
-        },
+        ecsProperties = M.EcsProperties,
+        eksProperties = M.EksProperties,
         containerOrchestrationType = {
             type = "string",
         },
-        consumableResourceProperties = {
-            type = "structure",
-        },
+        consumableResourceProperties = M.ConsumableResourceProperties,
     },
 }
 
@@ -2289,7 +2189,7 @@ M.DescribeJobDefinitionsOutput = {
     members = {
         jobDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.JobDefinition,
         },
         nextToken = {
             type = "string",
@@ -2302,10 +2202,10 @@ M.DescribeJobQueuesInput = {
     members = {
         jobQueues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -2353,33 +2253,33 @@ M.JobQueueDetail = {
             type = "string",
         },
         priority = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         computeEnvironmentOrder = {
             type = "list",
-            member_type = "structure",
+            member = M.ComputeEnvironmentOrder,
             traits = {
                 required = true,
             },
         },
         serviceEnvironmentOrder = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceEnvironmentOrder,
         },
         jobQueueType = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         jobStateTimeLimitActions = {
             type = "list",
-            member_type = "structure",
+            member = M.JobStateTimeLimitAction,
         },
     },
 }
@@ -2389,7 +2289,7 @@ M.DescribeJobQueuesOutput = {
     members = {
         jobQueues = {
             type = "list",
-            member_type = "structure",
+            member = M.JobQueueDetail,
         },
         nextToken = {
             type = "string",
@@ -2402,7 +2302,7 @@ M.DescribeJobsInput = {
     members = {
         jobs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2417,14 +2317,14 @@ M.ContainerDetail = {
             type = "string",
         },
         vcpus = {
-            type = "number",
+            type = "integer",
         },
         memory = {
-            type = "number",
+            type = "integer",
         },
         command = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         jobRoleArn = {
             type = "string",
@@ -2434,22 +2334,22 @@ M.ContainerDetail = {
         },
         volumes = {
             type = "list",
-            member_type = "structure",
+            member = M.Volume,
         },
         environment = {
             type = "list",
-            member_type = "structure",
+            member = M.KeyValuePair,
         },
         mountPoints = {
             type = "list",
-            member_type = "structure",
+            member = M.MountPoint,
         },
         readonlyRootFilesystem = {
             type = "boolean",
         },
         ulimits = {
             type = "list",
-            member_type = "structure",
+            member = M.Ulimit,
         },
         privileged = {
             type = "boolean",
@@ -2458,7 +2358,7 @@ M.ContainerDetail = {
             type = "string",
         },
         exitCode = {
-            type = "number",
+            type = "integer",
         },
         reason = {
             type = "string",
@@ -2477,37 +2377,23 @@ M.ContainerDetail = {
         },
         networkInterfaces = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkInterface,
         },
         resourceRequirements = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceRequirement,
         },
-        linuxParameters = {
-            type = "structure",
-        },
-        logConfiguration = {
-            type = "structure",
-        },
+        linuxParameters = M.LinuxParameters,
+        logConfiguration = M.LogConfiguration,
         secrets = {
             type = "list",
-            member_type = "structure",
+            member = M.Secret,
         },
-        networkConfiguration = {
-            type = "structure",
-        },
-        fargatePlatformConfiguration = {
-            type = "structure",
-        },
-        ephemeralStorage = {
-            type = "structure",
-        },
-        runtimePlatform = {
-            type = "structure",
-        },
-        repositoryCredentials = {
-            type = "structure",
-        },
+        networkConfiguration = M.NetworkConfiguration,
+        fargatePlatformConfiguration = M.FargatePlatformConfiguration,
+        ephemeralStorage = M.EphemeralStorage,
+        runtimePlatform = M.RuntimePlatform,
+        repositoryCredentials = M.RepositoryCredentials,
         enableExecuteCommand = {
             type = "boolean",
         },
@@ -2531,34 +2417,28 @@ M.TaskContainerDetails = {
     members = {
         command = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         dependsOn = {
             type = "list",
-            member_type = "structure",
+            member = M.TaskContainerDependency,
         },
         environment = {
             type = "list",
-            member_type = "structure",
+            member = M.KeyValuePair,
         },
         essential = {
             type = "boolean",
         },
-        firelensConfiguration = {
-            type = "structure",
-        },
+        firelensConfiguration = M.FirelensConfiguration,
         image = {
             type = "string",
         },
-        linuxParameters = {
-            type = "structure",
-        },
-        logConfiguration = {
-            type = "structure",
-        },
+        linuxParameters = M.LinuxParameters,
+        logConfiguration = M.LogConfiguration,
         mountPoints = {
             type = "list",
-            member_type = "structure",
+            member = M.MountPoint,
         },
         name = {
             type = "string",
@@ -2569,32 +2449,30 @@ M.TaskContainerDetails = {
         readonlyRootFilesystem = {
             type = "boolean",
         },
-        repositoryCredentials = {
-            type = "structure",
-        },
+        repositoryCredentials = M.RepositoryCredentials,
         resourceRequirements = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceRequirement,
         },
         secrets = {
             type = "list",
-            member_type = "structure",
+            member = M.Secret,
         },
         ulimits = {
             type = "list",
-            member_type = "structure",
+            member = M.Ulimit,
         },
         user = {
             type = "string",
         },
         startTimeout = {
-            type = "number",
+            type = "integer",
         },
         stopTimeout = {
-            type = "number",
+            type = "integer",
         },
         exitCode = {
-            type = "number",
+            type = "integer",
         },
         reason = {
             type = "string",
@@ -2604,7 +2482,7 @@ M.TaskContainerDetails = {
         },
         networkInterfaces = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkInterface,
         },
     },
 }
@@ -2614,7 +2492,7 @@ M.EcsTaskDetails = {
     members = {
         containers = {
             type = "list",
-            member_type = "structure",
+            member = M.TaskContainerDetails,
         },
         containerInstanceArn = {
             type = "string",
@@ -2622,9 +2500,7 @@ M.EcsTaskDetails = {
         taskArn = {
             type = "string",
         },
-        ephemeralStorage = {
-            type = "structure",
-        },
+        ephemeralStorage = M.EphemeralStorage,
         executionRoleArn = {
             type = "string",
         },
@@ -2640,15 +2516,11 @@ M.EcsTaskDetails = {
         pidMode = {
             type = "string",
         },
-        networkConfiguration = {
-            type = "structure",
-        },
-        runtimePlatform = {
-            type = "structure",
-        },
+        networkConfiguration = M.NetworkConfiguration,
+        runtimePlatform = M.RuntimePlatform,
         volumes = {
             type = "list",
-            member_type = "structure",
+            member = M.Volume,
         },
         enableExecuteCommand = {
             type = "boolean",
@@ -2661,7 +2533,7 @@ M.EcsPropertiesDetail = {
     members = {
         taskProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.EcsTaskDetails,
         },
     },
 }
@@ -2676,7 +2548,7 @@ M.EksAttemptContainerDetail = {
             type = "string",
         },
         exitCode = {
-            type = "number",
+            type = "integer",
         },
         reason = {
             type = "string",
@@ -2689,11 +2561,11 @@ M.EksAttemptDetail = {
     members = {
         containers = {
             type = "list",
-            member_type = "structure",
+            member = M.EksAttemptContainerDetail,
         },
         initContainers = {
             type = "list",
-            member_type = "structure",
+            member = M.EksAttemptContainerDetail,
         },
         eksClusterArn = {
             type = "string",
@@ -2708,10 +2580,10 @@ M.EksAttemptDetail = {
             type = "string",
         },
         startedAt = {
-            type = "number",
+            type = "long",
         },
         stoppedAt = {
-            type = "number",
+            type = "long",
         },
         statusReason = {
             type = "string",
@@ -2733,32 +2605,28 @@ M.EksContainerDetail = {
         },
         command = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         args = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         env = {
             type = "list",
-            member_type = "structure",
+            member = M.EksContainerEnvironmentVariable,
         },
-        resources = {
-            type = "structure",
-        },
+        resources = M.EksContainerResourceRequirements,
         exitCode = {
-            type = "number",
+            type = "integer",
         },
         reason = {
             type = "string",
         },
         volumeMounts = {
             type = "list",
-            member_type = "structure",
+            member = M.EksContainerVolumeMount,
         },
-        securityContext = {
-            type = "structure",
-        },
+        securityContext = M.EksContainerSecurityContext,
     },
 }
 
@@ -2776,19 +2644,19 @@ M.EksPodPropertiesDetail = {
         },
         imagePullSecrets = {
             type = "list",
-            member_type = "structure",
+            member = M.ImagePullSecret,
         },
         containers = {
             type = "list",
-            member_type = "structure",
+            member = M.EksContainerDetail,
         },
         initContainers = {
             type = "list",
-            member_type = "structure",
+            member = M.EksContainerDetail,
         },
         volumes = {
             type = "list",
-            member_type = "structure",
+            member = M.EksVolume,
         },
         podName = {
             type = "string",
@@ -2796,9 +2664,7 @@ M.EksPodPropertiesDetail = {
         nodeName = {
             type = "string",
         },
-        metadata = {
-            type = "structure",
-        },
+        metadata = M.EksMetadata,
         shareProcessNamespace = {
             type = "boolean",
         },
@@ -2808,9 +2674,7 @@ M.EksPodPropertiesDetail = {
 M.EksPropertiesDetail = {
     type = "structure",
     members = {
-        podProperties = {
-            type = "structure",
-        },
+        podProperties = M.EksPodPropertiesDetail,
     },
 }
 
@@ -2818,7 +2682,7 @@ M.NodeDetails = {
     type = "structure",
     members = {
         nodeIndex = {
-            type = "number",
+            type = "integer",
         },
         isMainNode = {
             type = "boolean",
@@ -2870,33 +2734,31 @@ M.JobDetail = {
             type = "string",
         },
         schedulingPriority = {
-            type = "number",
+            type = "integer",
         },
         attempts = {
             type = "list",
-            member_type = "structure",
+            member = M.AttemptDetail,
         },
         statusReason = {
             type = "string",
         },
         createdAt = {
-            type = "number",
+            type = "long",
         },
-        retryStrategy = {
-            type = "structure",
-        },
+        retryStrategy = M.RetryStrategy,
         startedAt = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         stoppedAt = {
-            type = "number",
+            type = "long",
         },
         dependsOn = {
             type = "list",
-            member_type = "structure",
+            member = M.JobDependency,
         },
         jobDefinition = {
             type = "string",
@@ -2906,55 +2768,39 @@ M.JobDetail = {
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        container = {
-            type = "structure",
-        },
-        nodeDetails = {
-            type = "structure",
-        },
-        nodeProperties = {
-            type = "structure",
-        },
-        arrayProperties = {
-            type = "structure",
-        },
-        timeout = {
-            type = "structure",
-        },
+        container = M.ContainerDetail,
+        nodeDetails = M.NodeDetails,
+        nodeProperties = M.NodeProperties,
+        arrayProperties = M.ArrayPropertiesDetail,
+        timeout = M.JobTimeout,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         propagateTags = {
             type = "boolean",
         },
         platformCapabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        eksProperties = {
-            type = "structure",
-        },
+        eksProperties = M.EksPropertiesDetail,
         eksAttempts = {
             type = "list",
-            member_type = "structure",
+            member = M.EksAttemptDetail,
         },
-        ecsProperties = {
-            type = "structure",
-        },
+        ecsProperties = M.EcsPropertiesDetail,
         isCancelled = {
             type = "boolean",
         },
         isTerminated = {
             type = "boolean",
         },
-        consumableResourceProperties = {
-            type = "structure",
-        },
+        consumableResourceProperties = M.ConsumableResourceProperties,
     },
 }
 
@@ -2963,7 +2809,7 @@ M.DescribeJobsOutput = {
     members = {
         jobs = {
             type = "list",
-            member_type = "structure",
+            member = M.JobDetail,
         },
     },
 }
@@ -3002,14 +2848,10 @@ M.DescribeQuotaShareOutput = {
         },
         capacityLimits = {
             type = "list",
-            member_type = "structure",
+            member = M.QuotaShareCapacityLimit,
         },
-        resourceSharingConfiguration = {
-            type = "structure",
-        },
-        preemptionConfiguration = {
-            type = "structure",
-        },
+        resourceSharingConfiguration = M.QuotaShareResourceSharingConfiguration,
+        preemptionConfiguration = M.QuotaSharePreemptionConfiguration,
         state = {
             type = "string",
         },
@@ -3018,8 +2860,8 @@ M.DescribeQuotaShareOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3029,7 +2871,7 @@ M.DescribeSchedulingPoliciesInput = {
     members = {
         arns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3052,16 +2894,12 @@ M.SchedulingPolicyDetail = {
                 required = true,
             },
         },
-        quotaSharePolicy = {
-            type = "structure",
-        },
-        fairsharePolicy = {
-            type = "structure",
-        },
+        quotaSharePolicy = M.QuotaSharePolicy,
+        fairsharePolicy = M.FairsharePolicy,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3071,7 +2909,7 @@ M.DescribeSchedulingPoliciesOutput = {
     members = {
         schedulingPolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.SchedulingPolicyDetail,
         },
     },
 }
@@ -3081,10 +2919,10 @@ M.DescribeServiceEnvironmentsInput = {
     members = {
         serviceEnvironments = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -3130,15 +2968,15 @@ M.ServiceEnvironmentDetail = {
         },
         capacityLimits = {
             type = "list",
-            member_type = "structure",
+            member = M.CapacityLimit,
             traits = {
                 required = true,
             },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3148,7 +2986,7 @@ M.DescribeServiceEnvironmentsOutput = {
     members = {
         serviceEnvironments = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceEnvironmentDetail,
         },
         nextToken = {
             type = "string",
@@ -3193,14 +3031,12 @@ M.ServiceResourceId = {
 M.ServiceJobAttemptDetail = {
     type = "structure",
     members = {
-        serviceResourceId = {
-            type = "structure",
-        },
+        serviceResourceId = M.ServiceResourceId,
         startedAt = {
-            type = "number",
+            type = "long",
         },
         stoppedAt = {
-            type = "number",
+            type = "long",
         },
         statusReason = {
             type = "string",
@@ -3215,7 +3051,7 @@ M.ServiceJobCapacityUsageDetail = {
             type = "string",
         },
         quantity = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -3223,9 +3059,7 @@ M.ServiceJobCapacityUsageDetail = {
 M.LatestServiceJobAttempt = {
     type = "structure",
     members = {
-        serviceResourceId = {
-            type = "structure",
-        },
+        serviceResourceId = M.ServiceResourceId,
     },
 }
 
@@ -3233,7 +3067,7 @@ M.ServiceJobPreemptionConfiguration = {
     type = "structure",
     members = {
         preemptionRetriesBeforeTermination = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3241,14 +3075,12 @@ M.ServiceJobPreemptionConfiguration = {
 M.ServiceJobPreemptedAttempt = {
     type = "structure",
     members = {
-        serviceResourceId = {
-            type = "structure",
-        },
+        serviceResourceId = M.ServiceResourceId,
         startedAt = {
-            type = "number",
+            type = "long",
         },
         stoppedAt = {
-            type = "number",
+            type = "long",
         },
         statusReason = {
             type = "string",
@@ -3260,11 +3092,11 @@ M.ServiceJobPreemptionSummary = {
     type = "structure",
     members = {
         preemptedAttemptCount = {
-            type = "number",
+            type = "integer",
         },
         recentPreemptedAttempts = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceJobPreemptedAttempt,
         },
     },
 }
@@ -3290,14 +3122,14 @@ M.ServiceJobRetryStrategy = {
     type = "structure",
     members = {
         attempts = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         evaluateOnExit = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceJobEvaluateOnExit,
         },
     },
 }
@@ -3321,7 +3153,7 @@ M.ServiceJobTimeout = {
     type = "structure",
     members = {
         attemptDurationSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3331,14 +3163,14 @@ M.DescribeServiceJobOutput = {
     members = {
         attempts = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceJobAttemptDetail,
         },
         capacityUsage = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceJobCapacityUsageDetail,
         },
         createdAt = {
-            type = "number",
+            type = "long",
         },
         isTerminated = {
             type = "boolean",
@@ -3364,17 +3196,13 @@ M.DescribeServiceJobOutput = {
                 required = true,
             },
         },
-        latestAttempt = {
-            type = "structure",
-        },
-        retryStrategy = {
-            type = "structure",
-        },
+        latestAttempt = M.LatestServiceJobAttempt,
+        retryStrategy = M.ServiceJobRetryStrategy,
         scheduledAt = {
-            type = "number",
+            type = "long",
         },
         schedulingPriority = {
-            type = "number",
+            type = "integer",
         },
         serviceRequestPayload = {
             type = "string",
@@ -3391,14 +3219,10 @@ M.DescribeServiceJobOutput = {
         quotaShareName = {
             type = "string",
         },
-        preemptionConfiguration = {
-            type = "structure",
-        },
-        preemptionSummary = {
-            type = "structure",
-        },
+        preemptionConfiguration = M.ServiceJobPreemptionConfiguration,
+        preemptionSummary = M.ServiceJobPreemptionSummary,
         startedAt = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -3413,16 +3237,14 @@ M.DescribeServiceJobOutput = {
             type = "string",
         },
         stoppedAt = {
-            type = "number",
+            type = "long",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        timeoutConfig = {
-            type = "structure",
-        },
+        timeoutConfig = M.ServiceJobTimeout,
     },
 }
 
@@ -3445,7 +3267,7 @@ M.FrontOfQueueJobSummary = {
             type = "string",
         },
         earliestTimeAtPosition = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -3455,10 +3277,10 @@ M.FrontOfQueueDetail = {
     members = {
         jobs = {
             type = "list",
-            member_type = "structure",
+            member = M.FrontOfQueueJobSummary,
         },
         lastUpdatedAt = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -3470,7 +3292,7 @@ M.FrontOfQuotaShareJobSummary = {
             type = "string",
         },
         earliestTimeAtPosition = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -3480,11 +3302,11 @@ M.FrontOfQuotaSharesDetail = {
     members = {
         quotaShares = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         lastUpdatedAt = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -3496,7 +3318,7 @@ M.FairshareCapacityUsage = {
             type = "string",
         },
         quantity = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -3509,7 +3331,7 @@ M.FairshareCapacityUtilization = {
         },
         capacityUsage = {
             type = "list",
-            member_type = "structure",
+            member = M.FairshareCapacityUsage,
         },
     },
 }
@@ -3518,11 +3340,11 @@ M.FairshareUtilizationDetail = {
     type = "structure",
     members = {
         activeShareCount = {
-            type = "number",
+            type = "long",
         },
         topCapacityUtilization = {
             type = "list",
-            member_type = "structure",
+            member = M.FairshareCapacityUtilization,
         },
     },
 }
@@ -3534,7 +3356,7 @@ M.QuotaShareCapacityUsage = {
             type = "string",
         },
         quantity = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -3547,7 +3369,7 @@ M.QuotaShareCapacityUtilization = {
         },
         capacityUsage = {
             type = "list",
-            member_type = "structure",
+            member = M.QuotaShareCapacityUsage,
         },
     },
 }
@@ -3557,7 +3379,7 @@ M.QuotaShareUtilizationDetail = {
     members = {
         topCapacityUtilization = {
             type = "list",
-            member_type = "structure",
+            member = M.QuotaShareCapacityUtilization,
         },
     },
 }
@@ -3569,7 +3391,7 @@ M.QueueSnapshotCapacityUsage = {
             type = "string",
         },
         quantity = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -3579,16 +3401,12 @@ M.QueueSnapshotUtilizationDetail = {
     members = {
         totalCapacityUsage = {
             type = "list",
-            member_type = "structure",
+            member = M.QueueSnapshotCapacityUsage,
         },
-        fairshareUtilization = {
-            type = "structure",
-        },
-        quotaShareUtilization = {
-            type = "structure",
-        },
+        fairshareUtilization = M.FairshareUtilizationDetail,
+        quotaShareUtilization = M.QuotaShareUtilizationDetail,
         lastUpdatedAt = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -3596,15 +3414,9 @@ M.QueueSnapshotUtilizationDetail = {
 M.GetJobQueueSnapshotOutput = {
     type = "structure",
     members = {
-        frontOfQueue = {
-            type = "structure",
-        },
-        frontOfQuotaShares = {
-            type = "structure",
-        },
-        queueUtilization = {
-            type = "structure",
-        },
+        frontOfQueue = M.FrontOfQueueDetail,
+        frontOfQuotaShares = M.FrontOfQuotaSharesDetail,
+        queueUtilization = M.QueueSnapshotUtilizationDetail,
     },
 }
 
@@ -3616,7 +3428,7 @@ M.KeyValuesPair = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3626,10 +3438,10 @@ M.ListConsumableResourcesInput = {
     members = {
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.KeyValuesPair,
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -3653,10 +3465,10 @@ M.ConsumableResourceSummary = {
             },
         },
         totalQuantity = {
-            type = "number",
+            type = "long",
         },
         inUseQuantity = {
-            type = "number",
+            type = "long",
         },
         resourceType = {
             type = "string",
@@ -3669,7 +3481,7 @@ M.ListConsumableResourcesOutput = {
     members = {
         consumableResources = {
             type = "list",
-            member_type = "structure",
+            member = M.ConsumableResourceSummary,
             traits = {
                 required = true,
             },
@@ -3696,14 +3508,14 @@ M.ListJobsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.KeyValuesPair,
         },
     },
 }
@@ -3715,7 +3527,7 @@ M.JobCapacityUsageSummary = {
             type = "string",
         },
         quantity = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -3724,7 +3536,7 @@ M.ContainerSummary = {
     type = "structure",
     members = {
         exitCode = {
-            type = "number",
+            type = "integer",
         },
         reason = {
             type = "string",
@@ -3739,10 +3551,10 @@ M.NodePropertiesSummary = {
             type = "boolean",
         },
         numNodes = {
-            type = "number",
+            type = "integer",
         },
         nodeIndex = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3767,13 +3579,13 @@ M.JobSummary = {
         },
         capacityUsage = {
             type = "list",
-            member_type = "structure",
+            member = M.JobCapacityUsageSummary,
         },
         createdAt = {
-            type = "number",
+            type = "long",
         },
         scheduledAt = {
-            type = "number",
+            type = "long",
         },
         shareIdentifier = {
             type = "string",
@@ -3785,20 +3597,14 @@ M.JobSummary = {
             type = "string",
         },
         startedAt = {
-            type = "number",
+            type = "long",
         },
         stoppedAt = {
-            type = "number",
+            type = "long",
         },
-        container = {
-            type = "structure",
-        },
-        arrayProperties = {
-            type = "structure",
-        },
-        nodeProperties = {
-            type = "structure",
-        },
+        container = M.ContainerSummary,
+        arrayProperties = M.ArrayPropertiesSummary,
+        nodeProperties = M.NodePropertiesSummary,
         jobDefinition = {
             type = "string",
         },
@@ -3810,7 +3616,7 @@ M.ListJobsOutput = {
     members = {
         jobSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.JobSummary,
             traits = {
                 required = true,
             },
@@ -3832,10 +3638,10 @@ M.ListJobsByConsumableResourceInput = {
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.KeyValuesPair,
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -3877,7 +3683,7 @@ M.ListJobsByConsumableResourceSummary = {
             },
         },
         quantity = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -3886,20 +3692,17 @@ M.ListJobsByConsumableResourceSummary = {
             type = "string",
         },
         startedAt = {
-            type = "number",
+            type = "long",
         },
         createdAt = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
-        consumableResourceProperties = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        consumableResourceProperties = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConsumableResourceProperties }),
     },
 }
 
@@ -3908,7 +3711,7 @@ M.ListJobsByConsumableResourceOutput = {
     members = {
         jobs = {
             type = "list",
-            member_type = "structure",
+            member = M.ListJobsByConsumableResourceSummary,
             traits = {
                 required = true,
             },
@@ -3929,7 +3732,7 @@ M.ListQuotaSharesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -3951,14 +3754,10 @@ M.QuotaShareDetail = {
         },
         capacityLimits = {
             type = "list",
-            member_type = "structure",
+            member = M.QuotaShareCapacityLimit,
         },
-        resourceSharingConfiguration = {
-            type = "structure",
-        },
-        preemptionConfiguration = {
-            type = "structure",
-        },
+        resourceSharingConfiguration = M.QuotaShareResourceSharingConfiguration,
+        preemptionConfiguration = M.QuotaSharePreemptionConfiguration,
         state = {
             type = "string",
         },
@@ -3973,7 +3772,7 @@ M.ListQuotaSharesOutput = {
     members = {
         quotaShares = {
             type = "list",
-            member_type = "structure",
+            member = M.QuotaShareDetail,
         },
         nextToken = {
             type = "string",
@@ -3985,7 +3784,7 @@ M.ListSchedulingPoliciesInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -4010,7 +3809,7 @@ M.ListSchedulingPoliciesOutput = {
     members = {
         schedulingPolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.SchedulingPolicyListingDetail,
         },
         nextToken = {
             type = "string",
@@ -4028,14 +3827,14 @@ M.ListServiceJobsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.KeyValuesPair,
         },
     },
 }
@@ -4047,7 +3846,7 @@ M.ServiceJobCapacityUsageSummary = {
             type = "string",
         },
         quantity = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -4055,15 +3854,13 @@ M.ServiceJobCapacityUsageSummary = {
 M.ServiceJobSummary = {
     type = "structure",
     members = {
-        latestAttempt = {
-            type = "structure",
-        },
+        latestAttempt = M.LatestServiceJobAttempt,
         capacityUsage = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceJobCapacityUsageSummary,
         },
         createdAt = {
-            type = "number",
+            type = "long",
         },
         jobArn = {
             type = "string",
@@ -4081,7 +3878,7 @@ M.ServiceJobSummary = {
             },
         },
         scheduledAt = {
-            type = "number",
+            type = "long",
         },
         serviceJobType = {
             type = "string",
@@ -4102,10 +3899,10 @@ M.ServiceJobSummary = {
             type = "string",
         },
         startedAt = {
-            type = "number",
+            type = "long",
         },
         stoppedAt = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -4115,7 +3912,7 @@ M.ListServiceJobsOutput = {
     members = {
         jobSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceJobSummary,
             traits = {
                 required = true,
             },
@@ -4144,8 +3941,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -4172,45 +3969,31 @@ M.RegisterJobDefinitionInput = {
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         schedulingPriority = {
-            type = "number",
+            type = "integer",
         },
-        containerProperties = {
-            type = "structure",
-        },
-        nodeProperties = {
-            type = "structure",
-        },
-        retryStrategy = {
-            type = "structure",
-        },
+        containerProperties = M.ContainerProperties,
+        nodeProperties = M.NodeProperties,
+        retryStrategy = M.RetryStrategy,
         propagateTags = {
             type = "boolean",
         },
-        timeout = {
-            type = "structure",
-        },
+        timeout = M.JobTimeout,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         platformCapabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        eksProperties = {
-            type = "structure",
-        },
-        ecsProperties = {
-            type = "structure",
-        },
-        consumableResourceProperties = {
-            type = "structure",
-        },
+        eksProperties = M.EksProperties,
+        ecsProperties = M.EcsProperties,
+        consumableResourceProperties = M.ConsumableResourceProperties,
     },
 }
 
@@ -4230,7 +4013,7 @@ M.RegisterJobDefinitionOutput = {
             },
         },
         revision = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -4242,25 +4025,25 @@ M.ContainerOverrides = {
     type = "structure",
     members = {
         vcpus = {
-            type = "number",
+            type = "integer",
         },
         memory = {
-            type = "number",
+            type = "integer",
         },
         command = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         instanceType = {
             type = "string",
         },
         environment = {
             type = "list",
-            member_type = "structure",
+            member = M.KeyValuePair,
         },
         resourceRequirements = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceRequirement,
         },
     },
 }
@@ -4270,18 +4053,18 @@ M.TaskContainerOverrides = {
     members = {
         command = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         environment = {
             type = "list",
-            member_type = "structure",
+            member = M.KeyValuePair,
         },
         name = {
             type = "string",
         },
         resourceRequirements = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceRequirement,
         },
     },
 }
@@ -4291,7 +4074,7 @@ M.TaskPropertiesOverride = {
     members = {
         containers = {
             type = "list",
-            member_type = "structure",
+            member = M.TaskContainerOverrides,
         },
     },
 }
@@ -4301,7 +4084,7 @@ M.EcsPropertiesOverride = {
     members = {
         taskProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.TaskPropertiesOverride,
         },
     },
 }
@@ -4317,19 +4100,17 @@ M.EksContainerOverride = {
         },
         command = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         args = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         env = {
             type = "list",
-            member_type = "structure",
+            member = M.EksContainerEnvironmentVariable,
         },
-        resources = {
-            type = "structure",
-        },
+        resources = M.EksContainerResourceRequirements,
     },
 }
 
@@ -4338,24 +4119,20 @@ M.EksPodPropertiesOverride = {
     members = {
         containers = {
             type = "list",
-            member_type = "structure",
+            member = M.EksContainerOverride,
         },
         initContainers = {
             type = "list",
-            member_type = "structure",
+            member = M.EksContainerOverride,
         },
-        metadata = {
-            type = "structure",
-        },
+        metadata = M.EksMetadata,
     },
 }
 
 M.EksPropertiesOverride = {
     type = "structure",
     members = {
-        podProperties = {
-            type = "structure",
-        },
+        podProperties = M.EksPodPropertiesOverride,
     },
 }
 
@@ -4368,22 +4145,14 @@ M.NodePropertyOverride = {
                 required = true,
             },
         },
-        containerOverrides = {
-            type = "structure",
-        },
-        ecsPropertiesOverride = {
-            type = "structure",
-        },
+        containerOverrides = M.ContainerOverrides,
+        ecsPropertiesOverride = M.EcsPropertiesOverride,
         instanceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        eksPropertiesOverride = {
-            type = "structure",
-        },
-        consumableResourcePropertiesOverride = {
-            type = "structure",
-        },
+        eksPropertiesOverride = M.EksPropertiesOverride,
+        consumableResourcePropertiesOverride = M.ConsumableResourceProperties,
     },
 }
 
@@ -4391,11 +4160,11 @@ M.NodeOverrides = {
     type = "structure",
     members = {
         numNodes = {
-            type = "number",
+            type = "integer",
         },
         nodePropertyOverrides = {
             type = "list",
-            member_type = "structure",
+            member = M.NodePropertyOverride,
         },
     },
 }
@@ -4419,14 +4188,12 @@ M.SubmitJobInput = {
             type = "string",
         },
         schedulingPriorityOverride = {
-            type = "number",
+            type = "integer",
         },
-        arrayProperties = {
-            type = "structure",
-        },
+        arrayProperties = M.ArrayProperties,
         dependsOn = {
             type = "list",
-            member_type = "structure",
+            member = M.JobDependency,
         },
         jobDefinition = {
             type = "string",
@@ -4436,38 +4203,24 @@ M.SubmitJobInput = {
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        containerOverrides = {
-            type = "structure",
-        },
-        nodeOverrides = {
-            type = "structure",
-        },
-        retryStrategy = {
-            type = "structure",
-        },
+        containerOverrides = M.ContainerOverrides,
+        nodeOverrides = M.NodeOverrides,
+        retryStrategy = M.RetryStrategy,
         propagateTags = {
             type = "boolean",
         },
-        timeout = {
-            type = "structure",
-        },
+        timeout = M.JobTimeout,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        eksPropertiesOverride = {
-            type = "structure",
-        },
-        ecsPropertiesOverride = {
-            type = "structure",
-        },
-        consumableResourcePropertiesOverride = {
-            type = "structure",
-        },
+        eksPropertiesOverride = M.EksPropertiesOverride,
+        ecsPropertiesOverride = M.EcsPropertiesOverride,
+        consumableResourcePropertiesOverride = M.ConsumableResourceProperties,
     },
 }
 
@@ -4507,11 +4260,9 @@ M.SubmitServiceJobInput = {
                 required = true,
             },
         },
-        retryStrategy = {
-            type = "structure",
-        },
+        retryStrategy = M.ServiceJobRetryStrategy,
         schedulingPriority = {
-            type = "number",
+            type = "integer",
         },
         serviceRequestPayload = {
             type = "string",
@@ -4531,16 +4282,12 @@ M.SubmitServiceJobInput = {
         quotaShareName = {
             type = "string",
         },
-        preemptionConfiguration = {
-            type = "structure",
-        },
-        timeoutConfig = {
-            type = "structure",
-        },
+        preemptionConfiguration = M.ServiceJobPreemptionConfiguration,
+        timeoutConfig = M.ServiceJobTimeout,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         clientToken = {
             type = "string",
@@ -4581,8 +4328,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4650,7 +4397,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -4673,28 +4420,28 @@ M.ComputeResourceUpdate = {
     type = "structure",
     members = {
         minvCpus = {
-            type = "number",
+            type = "integer",
         },
         maxvCpus = {
-            type = "number",
+            type = "integer",
         },
         desiredvCpus = {
-            type = "number",
+            type = "integer",
         },
         subnets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         allocationStrategy = {
             type = "string",
         },
         instanceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ec2KeyPair = {
             type = "string",
@@ -4704,21 +4451,19 @@ M.ComputeResourceUpdate = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         placementGroup = {
             type = "string",
         },
         bidPercentage = {
-            type = "number",
+            type = "integer",
         },
-        launchTemplate = {
-            type = "structure",
-        },
+        launchTemplate = M.LaunchTemplateSpecification,
         ec2Configuration = {
             type = "list",
-            member_type = "structure",
+            member = M.Ec2Configuration,
         },
         updateToLatestImageVersion = {
             type = "boolean",
@@ -4729,9 +4474,7 @@ M.ComputeResourceUpdate = {
         imageId = {
             type = "string",
         },
-        scalingPolicy = {
-            type = "structure",
-        },
+        scalingPolicy = M.ComputeScalingPolicy,
     },
 }
 
@@ -4748,17 +4491,13 @@ M.UpdateComputeEnvironmentInput = {
             type = "string",
         },
         unmanagedvCpus = {
-            type = "number",
+            type = "integer",
         },
-        computeResources = {
-            type = "structure",
-        },
+        computeResources = M.ComputeResourceUpdate,
         serviceRole = {
             type = "string",
         },
-        updatePolicy = {
-            type = "structure",
-        },
+        updatePolicy = M.UpdatePolicy,
         context = {
             type = "string",
         },
@@ -4790,7 +4529,7 @@ M.UpdateConsumableResourceInput = {
             type = "string",
         },
         quantity = {
-            type = "number",
+            type = "long",
         },
         clientToken = {
             type = "string",
@@ -4814,7 +4553,7 @@ M.UpdateConsumableResourceOutput = {
             },
         },
         totalQuantity = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -4835,19 +4574,19 @@ M.UpdateJobQueueInput = {
             type = "string",
         },
         priority = {
-            type = "number",
+            type = "integer",
         },
         computeEnvironmentOrder = {
             type = "list",
-            member_type = "structure",
+            member = M.ComputeEnvironmentOrder,
         },
         serviceEnvironmentOrder = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceEnvironmentOrder,
         },
         jobStateTimeLimitActions = {
             type = "list",
-            member_type = "structure",
+            member = M.JobStateTimeLimitAction,
         },
     },
 }
@@ -4875,14 +4614,10 @@ M.UpdateQuotaShareInput = {
         },
         capacityLimits = {
             type = "list",
-            member_type = "structure",
+            member = M.QuotaShareCapacityLimit,
         },
-        resourceSharingConfiguration = {
-            type = "structure",
-        },
-        preemptionConfiguration = {
-            type = "structure",
-        },
+        resourceSharingConfiguration = M.QuotaShareResourceSharingConfiguration,
+        preemptionConfiguration = M.QuotaSharePreemptionConfiguration,
         state = {
             type = "string",
         },
@@ -4910,12 +4645,8 @@ M.UpdateSchedulingPolicyInput = {
                 required = true,
             },
         },
-        quotaSharePolicy = {
-            type = "structure",
-        },
-        fairsharePolicy = {
-            type = "structure",
-        },
+        quotaSharePolicy = M.QuotaSharePolicy,
+        fairsharePolicy = M.FairsharePolicy,
     },
 }
 
@@ -4937,7 +4668,7 @@ M.UpdateServiceEnvironmentInput = {
         },
         capacityLimits = {
             type = "list",
-            member_type = "structure",
+            member = M.CapacityLimit,
         },
     },
 }
@@ -4970,7 +4701,7 @@ M.UpdateServiceJobInput = {
             },
         },
         schedulingPriority = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },

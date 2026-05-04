@@ -27,9 +27,7 @@ M.ContactHandling = {
 M.ApplicationConfig = {
     type = "structure",
     members = {
-        ContactHandling = {
-            type = "structure",
-        },
+        ContactHandling = M.ContactHandling,
     },
 }
 
@@ -44,7 +42,7 @@ M.ExternalUrlConfig = {
         },
         ApprovedOrigins = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -52,9 +50,7 @@ M.ExternalUrlConfig = {
 M.ApplicationSourceConfig = {
     type = "structure",
     members = {
-        ExternalUrlConfig = {
-            type = "structure",
-        },
+        ExternalUrlConfig = M.ExternalUrlConfig,
     },
 }
 
@@ -69,11 +65,11 @@ M.IframeConfig = {
     members = {
         Allow = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Sandbox = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -132,44 +128,40 @@ M.CreateApplicationInput = {
         Description = {
             type = "string",
         },
-        ApplicationSourceConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ApplicationSourceConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ApplicationSourceConfig }),
         Subscriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.Subscription,
         },
         Publications = {
             type = "list",
-            member_type = "structure",
+            member = M.Publication,
         },
         ClientToken = {
             type = "string",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Permissions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IsService = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         InitializationTimeout = {
-            type = "number",
+            type = "integer",
         },
-        ApplicationConfig = {
-            type = "structure",
-        },
-        IframeConfig = {
-            type = "structure",
-        },
+        ApplicationConfig = M.ApplicationConfig,
+        IframeConfig = M.IframeConfig,
         ApplicationType = {
             type = "string",
         },
@@ -253,15 +245,15 @@ M.FileConfiguration = {
     members = {
         Folders = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         Filters = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
     },
 }
@@ -305,24 +297,20 @@ M.CreateDataIntegrationInput = {
         SourceURI = {
             type = "string",
         },
-        ScheduleConfig = {
-            type = "structure",
-        },
+        ScheduleConfig = M.ScheduleConfiguration,
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ClientToken = {
             type = "string",
         },
-        FileConfiguration = {
-            type = "structure",
-        },
+        FileConfiguration = M.FileConfiguration,
         ObjectConfiguration = {
             type = "map",
-            key_type = "string",
-            value_type = "map",
+            key = { type = "string" },
+            value = { type = "map" },
         },
     },
 }
@@ -348,24 +336,20 @@ M.CreateDataIntegrationOutput = {
         SourceURI = {
             type = "string",
         },
-        ScheduleConfiguration = {
-            type = "structure",
-        },
+        ScheduleConfiguration = M.ScheduleConfiguration,
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ClientToken = {
             type = "string",
         },
-        FileConfiguration = {
-            type = "structure",
-        },
+        FileConfiguration = M.FileConfiguration,
         ObjectConfiguration = {
             type = "map",
-            key_type = "string",
-            value_type = "map",
+            key = { type = "string" },
+            value = { type = "map" },
         },
     },
 }
@@ -399,12 +383,8 @@ M.ExecutionConfiguration = {
                 required = true,
             },
         },
-        OnDemandConfiguration = {
-            type = "structure",
-        },
-        ScheduleConfiguration = {
-            type = "structure",
-        },
+        OnDemandConfiguration = M.OnDemandConfiguration,
+        ScheduleConfiguration = M.ScheduleConfiguration,
     },
 }
 
@@ -423,23 +403,21 @@ M.CreateDataIntegrationAssociationInput = {
         },
         ObjectConfiguration = {
             type = "map",
-            key_type = "string",
-            value_type = "map",
+            key = { type = "string" },
+            value = { type = "map" },
         },
         DestinationURI = {
             type = "string",
         },
         ClientAssociationMetadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ClientToken = {
             type = "string",
         },
-        ExecutionConfiguration = {
-            type = "structure",
-        },
+        ExecutionConfiguration = M.ExecutionConfiguration,
     },
 }
 
@@ -489,12 +467,9 @@ M.CreateEventIntegrationInput = {
         Description = {
             type = "string",
         },
-        EventFilter = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        EventFilter = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EventFilter }),
         EventBridgeBus = {
             type = "string",
             traits = {
@@ -506,8 +481,8 @@ M.CreateEventIntegrationInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -603,16 +578,14 @@ M.GetApplicationOutput = {
         Description = {
             type = "string",
         },
-        ApplicationSourceConfig = {
-            type = "structure",
-        },
+        ApplicationSourceConfig = M.ApplicationSourceConfig,
         Subscriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.Subscription,
         },
         Publications = {
             type = "list",
-            member_type = "structure",
+            member = M.Publication,
         },
         CreatedTime = {
             type = "timestamp",
@@ -622,25 +595,24 @@ M.GetApplicationOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Permissions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IsService = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         InitializationTimeout = {
-            type = "number",
+            type = "integer",
         },
-        ApplicationConfig = {
-            type = "structure",
-        },
-        IframeConfig = {
-            type = "structure",
-        },
+        ApplicationConfig = M.ApplicationConfig,
+        IframeConfig = M.IframeConfig,
         ApplicationType = {
             type = "string",
         },
@@ -681,21 +653,17 @@ M.GetDataIntegrationOutput = {
         SourceURI = {
             type = "string",
         },
-        ScheduleConfiguration = {
-            type = "structure",
-        },
+        ScheduleConfiguration = M.ScheduleConfiguration,
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        FileConfiguration = {
-            type = "structure",
-        },
+        FileConfiguration = M.FileConfiguration,
         ObjectConfiguration = {
             type = "map",
-            key_type = "string",
-            value_type = "map",
+            key = { type = "string" },
+            value = { type = "map" },
         },
     },
 }
@@ -728,13 +696,11 @@ M.GetEventIntegrationOutput = {
         EventBridgeBus = {
             type = "string",
         },
-        EventFilter = {
-            type = "structure",
-        },
+        EventFilter = M.EventFilter,
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -756,7 +722,7 @@ M.ListApplicationAssociationsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -784,7 +750,7 @@ M.ListApplicationAssociationsOutput = {
     members = {
         ApplicationAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.ApplicationAssociationSummary,
         },
         NextToken = {
             type = "string",
@@ -802,7 +768,7 @@ M.ListApplicationsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -839,6 +805,9 @@ M.ApplicationSummary = {
         },
         IsService = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         ApplicationType = {
             type = "string",
@@ -851,7 +820,7 @@ M.ListApplicationsOutput = {
     members = {
         Applications = {
             type = "list",
-            member_type = "structure",
+            member = M.ApplicationSummary,
         },
         NextToken = {
             type = "string",
@@ -876,7 +845,7 @@ M.ListDataIntegrationAssociationsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -917,12 +886,8 @@ M.DataIntegrationAssociationSummary = {
         DestinationURI = {
             type = "string",
         },
-        LastExecutionStatus = {
-            type = "structure",
-        },
-        ExecutionConfiguration = {
-            type = "structure",
-        },
+        LastExecutionStatus = M.LastExecutionStatus,
+        ExecutionConfiguration = M.ExecutionConfiguration,
     },
 }
 
@@ -931,7 +896,7 @@ M.ListDataIntegrationAssociationsOutput = {
     members = {
         DataIntegrationAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.DataIntegrationAssociationSummary,
         },
         NextToken = {
             type = "string",
@@ -949,7 +914,7 @@ M.ListDataIntegrationsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -977,7 +942,7 @@ M.ListDataIntegrationsOutput = {
     members = {
         DataIntegrations = {
             type = "list",
-            member_type = "structure",
+            member = M.DataIntegrationSummary,
         },
         NextToken = {
             type = "string",
@@ -1002,7 +967,7 @@ M.ListEventIntegrationAssociationsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1030,8 +995,8 @@ M.EventIntegrationAssociation = {
         },
         ClientAssociationMetadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1041,7 +1006,7 @@ M.ListEventIntegrationAssociationsOutput = {
     members = {
         EventIntegrationAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.EventIntegrationAssociation,
         },
         NextToken = {
             type = "string",
@@ -1059,7 +1024,7 @@ M.ListEventIntegrationsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1079,16 +1044,14 @@ M.EventIntegration = {
         Description = {
             type = "string",
         },
-        EventFilter = {
-            type = "structure",
-        },
+        EventFilter = M.EventFilter,
         EventBridgeBus = {
             type = "string",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1098,7 +1061,7 @@ M.ListEventIntegrationsOutput = {
     members = {
         EventIntegrations = {
             type = "list",
-            member_type = "structure",
+            member = M.EventIntegration,
         },
         NextToken = {
             type = "string",
@@ -1124,8 +1087,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1142,8 +1105,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1167,7 +1130,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -1196,33 +1159,30 @@ M.UpdateApplicationInput = {
         Description = {
             type = "string",
         },
-        ApplicationSourceConfig = {
-            type = "structure",
-        },
+        ApplicationSourceConfig = M.ApplicationSourceConfig,
         Subscriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.Subscription,
         },
         Publications = {
             type = "list",
-            member_type = "structure",
+            member = M.Publication,
         },
         Permissions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IsService = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
         InitializationTimeout = {
-            type = "number",
+            type = "integer",
         },
-        ApplicationConfig = {
-            type = "structure",
-        },
-        IframeConfig = {
-            type = "structure",
-        },
+        ApplicationConfig = M.ApplicationConfig,
+        IframeConfig = M.IframeConfig,
         ApplicationType = {
             type = "string",
         },
@@ -1273,12 +1233,9 @@ M.UpdateDataIntegrationAssociationInput = {
                 required = true,
             },
         },
-        ExecutionConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ExecutionConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ExecutionConfiguration }),
     },
 }
 

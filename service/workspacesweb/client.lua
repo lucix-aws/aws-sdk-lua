@@ -16,7 +16,7 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AWSErmineControlPlaneService"
-    cfg.signing_name = "awserminecontrolplaneservice"
+    cfg.signing_name = "workspaces-web"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end

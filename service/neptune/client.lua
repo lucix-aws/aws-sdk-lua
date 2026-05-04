@@ -16,7 +16,7 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AmazonRDSv19"
-    cfg.signing_name = "amazonrdsv19"
+    cfg.signing_name = "rds"
     if not cfg.protocol then
         cfg.protocol = query_protocol.new("awsQuery")
     end

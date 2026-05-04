@@ -16,7 +16,7 @@ M.AcceptMatchInput = {
         },
         PlayerIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -109,9 +109,7 @@ M.Alias = {
         Description = {
             type = "string",
         },
-        RoutingStrategy = {
-            type = "structure",
-        },
+        RoutingStrategy = M.RoutingStrategy,
         CreationTime = {
             type = "timestamp",
         },
@@ -140,16 +138,16 @@ M.AttributeValue = {
             type = "string",
         },
         N = {
-            type = "number",
+            type = "double",
         },
         SL = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SDM = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "double" },
         },
     },
 }
@@ -214,7 +212,7 @@ M.Build = {
             type = "string",
         },
         SizeOnDisk = {
-            type = "number",
+            type = "long",
         },
         OperatingSystem = {
             type = "string",
@@ -255,7 +253,7 @@ M.ClaimFilterOption = {
     members = {
         InstanceStatuses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -275,9 +273,7 @@ M.ClaimGameServerInput = {
         GameServerData = {
             type = "string",
         },
-        FilterOption = {
-            type = "structure",
-        },
+        FilterOption = M.ClaimFilterOption,
     },
 }
 
@@ -332,9 +328,7 @@ M.GameServer = {
 M.ClaimGameServerOutput = {
     type = "structure",
     members = {
-        GameServer = {
-            type = "structure",
-        },
+        GameServer = M.GameServer,
     },
 }
 
@@ -949,7 +943,7 @@ M.Compute = {
         },
         ContainerAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.ContainerAttribute,
         },
         GameServerContainerGroupDefinitionArn = {
             type = "string",
@@ -966,13 +960,13 @@ M.ConnectionPortRange = {
     type = "structure",
     members = {
         FromPort = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         ToPort = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1041,10 +1035,10 @@ M.GameSessionCreationLimitPolicy = {
     type = "structure",
     members = {
         NewGameSessionsPerCreator = {
-            type = "number",
+            type = "integer",
         },
         PolicyPeriodInMinutes = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1058,13 +1052,13 @@ M.IpPermission = {
     type = "structure",
     members = {
         FromPort = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         ToPort = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1180,18 +1174,16 @@ M.ContainerFleet = {
         PerInstanceContainerGroupDefinitionArn = {
             type = "string",
         },
-        InstanceConnectionPortRange = {
-            type = "structure",
-        },
+        InstanceConnectionPortRange = M.ConnectionPortRange,
         InstanceInboundPermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.IpPermission,
         },
         GameServerContainerGroupsPerInstance = {
-            type = "number",
+            type = "integer",
         },
         MaximumGameServerContainerGroupsPerInstance = {
-            type = "number",
+            type = "integer",
         },
         InstanceType = {
             type = "string",
@@ -1207,26 +1199,20 @@ M.ContainerFleet = {
         },
         MetricGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NewGameSessionProtectionPolicy = {
             type = "string",
         },
-        GameSessionCreationLimitPolicy = {
-            type = "structure",
-        },
+        GameSessionCreationLimitPolicy = M.GameSessionCreationLimitPolicy,
         Status = {
             type = "string",
         },
-        DeploymentDetails = {
-            type = "structure",
-        },
-        LogConfiguration = {
-            type = "structure",
-        },
+        DeploymentDetails = M.DeploymentDetails,
+        LogConfiguration = M.LogConfiguration,
         LocationAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.ContainerFleetLocationAttributes,
         },
         PlayerGatewayMode = {
             type = "string",
@@ -1270,13 +1256,13 @@ M.ContainerPortRange = {
     type = "structure",
     members = {
         FromPort = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         ToPort = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1295,7 +1281,7 @@ M.ContainerPortConfiguration = {
     members = {
         ContainerPortRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.ContainerPortRange,
             traits = {
                 required = true,
             },
@@ -1311,22 +1297,20 @@ M.GameServerContainerDefinition = {
         },
         DependsOn = {
             type = "list",
-            member_type = "structure",
+            member = M.ContainerDependency,
         },
         MountPoints = {
             type = "list",
-            member_type = "structure",
+            member = M.ContainerMountPoint,
         },
         EnvironmentOverride = {
             type = "list",
-            member_type = "structure",
+            member = M.ContainerEnvironment,
         },
         ImageUri = {
             type = "string",
         },
-        PortConfiguration = {
-            type = "structure",
-        },
+        PortConfiguration = M.ContainerPortConfiguration,
         ResolvedImageDigest = {
             type = "string",
         },
@@ -1351,22 +1335,22 @@ M.ContainerHealthCheck = {
     members = {
         Command = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         Interval = {
-            type = "number",
+            type = "integer",
         },
         Retries = {
-            type = "number",
+            type = "integer",
         },
         StartPeriod = {
-            type = "number",
+            type = "integer",
         },
         Timeout = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1379,36 +1363,32 @@ M.SupportContainerDefinition = {
         },
         DependsOn = {
             type = "list",
-            member_type = "structure",
+            member = M.ContainerDependency,
         },
         MountPoints = {
             type = "list",
-            member_type = "structure",
+            member = M.ContainerMountPoint,
         },
         EnvironmentOverride = {
             type = "list",
-            member_type = "structure",
+            member = M.ContainerEnvironment,
         },
         Essential = {
             type = "boolean",
         },
-        HealthCheck = {
-            type = "structure",
-        },
+        HealthCheck = M.ContainerHealthCheck,
         ImageUri = {
             type = "string",
         },
         MemoryHardLimitMebibytes = {
-            type = "number",
+            type = "integer",
         },
-        PortConfiguration = {
-            type = "structure",
-        },
+        PortConfiguration = M.ContainerPortConfiguration,
         ResolvedImageDigest = {
             type = "string",
         },
         Vcpu = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -1435,20 +1415,18 @@ M.ContainerGroupDefinition = {
             type = "string",
         },
         TotalMemoryLimitMebibytes = {
-            type = "number",
+            type = "integer",
         },
         TotalVcpuLimit = {
-            type = "number",
+            type = "double",
         },
-        GameServerContainerDefinition = {
-            type = "structure",
-        },
+        GameServerContainerDefinition = M.GameServerContainerDefinition,
         SupportContainerDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.SupportContainerDefinition,
         },
         VersionNumber = {
-            type = "number",
+            type = "integer",
         },
         VersionDescription = {
             type = "string",
@@ -1466,10 +1444,10 @@ M.ContainerPortMapping = {
     type = "structure",
     members = {
         ContainerPort = {
-            type = "number",
+            type = "integer",
         },
         ConnectionPort = {
-            type = "number",
+            type = "integer",
         },
         Protocol = {
             type = "string",
@@ -1488,7 +1466,7 @@ M.ContainerGroupPortMapping = {
         },
         ContainerPortMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.ContainerPortMapping,
         },
     },
 }
@@ -1535,15 +1513,12 @@ M.CreateAliasInput = {
         Description = {
             type = "string",
         },
-        RoutingStrategy = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RoutingStrategy = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RoutingStrategy }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1551,9 +1526,7 @@ M.CreateAliasInput = {
 M.CreateAliasOutput = {
     type = "structure",
     members = {
-        Alias = {
-            type = "structure",
-        },
+        Alias = M.Alias,
     },
 }
 
@@ -1604,15 +1577,13 @@ M.CreateBuildInput = {
         Version = {
             type = "string",
         },
-        StorageLocation = {
-            type = "structure",
-        },
+        StorageLocation = M.S3Location,
         OperatingSystem = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ServerSdkVersion = {
             type = "string",
@@ -1623,15 +1594,9 @@ M.CreateBuildInput = {
 M.CreateBuildOutput = {
     type = "structure",
     members = {
-        Build = {
-            type = "structure",
-        },
-        UploadCredentials = {
-            type = "structure",
-        },
-        StorageLocation = {
-            type = "structure",
-        },
+        Build = M.Build,
+        UploadCredentials = M.AwsCredentials,
+        StorageLocation = M.S3Location,
     },
 }
 
@@ -1665,15 +1630,13 @@ M.CreateContainerFleetInput = {
         PerInstanceContainerGroupDefinitionName = {
             type = "string",
         },
-        InstanceConnectionPortRange = {
-            type = "structure",
-        },
+        InstanceConnectionPortRange = M.ConnectionPortRange,
         InstanceInboundPermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.IpPermission,
         },
         GameServerContainerGroupsPerInstance = {
-            type = "number",
+            type = "integer",
         },
         InstanceType = {
             type = "string",
@@ -1683,24 +1646,20 @@ M.CreateContainerFleetInput = {
         },
         Locations = {
             type = "list",
-            member_type = "structure",
+            member = M.LocationConfiguration,
         },
         MetricGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NewGameSessionProtectionPolicy = {
             type = "string",
         },
-        GameSessionCreationLimitPolicy = {
-            type = "structure",
-        },
-        LogConfiguration = {
-            type = "structure",
-        },
+        GameSessionCreationLimitPolicy = M.GameSessionCreationLimitPolicy,
+        LogConfiguration = M.LogConfiguration,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         PlayerGatewayMode = {
             type = "string",
@@ -1711,9 +1670,7 @@ M.CreateContainerFleetInput = {
 M.CreateContainerFleetOutput = {
     type = "structure",
     members = {
-        ContainerFleet = {
-            type = "structure",
-        },
+        ContainerFleet = M.ContainerFleet,
     },
 }
 
@@ -1728,15 +1685,15 @@ M.GameServerContainerDefinitionInput = {
         },
         DependsOn = {
             type = "list",
-            member_type = "structure",
+            member = M.ContainerDependency,
         },
         MountPoints = {
             type = "list",
-            member_type = "structure",
+            member = M.ContainerMountPoint,
         },
         EnvironmentOverride = {
             type = "list",
-            member_type = "structure",
+            member = M.ContainerEnvironment,
         },
         ImageUri = {
             type = "string",
@@ -1744,12 +1701,9 @@ M.GameServerContainerDefinitionInput = {
                 required = true,
             },
         },
-        PortConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        PortConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ContainerPortConfiguration }),
         ServerSdkVersion = {
             type = "string",
             traits = {
@@ -1770,22 +1724,20 @@ M.SupportContainerDefinitionInput = {
         },
         DependsOn = {
             type = "list",
-            member_type = "structure",
+            member = M.ContainerDependency,
         },
         MountPoints = {
             type = "list",
-            member_type = "structure",
+            member = M.ContainerMountPoint,
         },
         EnvironmentOverride = {
             type = "list",
-            member_type = "structure",
+            member = M.ContainerEnvironment,
         },
         Essential = {
             type = "boolean",
         },
-        HealthCheck = {
-            type = "structure",
-        },
+        HealthCheck = M.ContainerHealthCheck,
         ImageUri = {
             type = "string",
             traits = {
@@ -1793,13 +1745,11 @@ M.SupportContainerDefinitionInput = {
             },
         },
         MemoryHardLimitMebibytes = {
-            type = "number",
+            type = "integer",
         },
-        PortConfiguration = {
-            type = "structure",
-        },
+        PortConfiguration = M.ContainerPortConfiguration,
         Vcpu = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -1817,23 +1767,21 @@ M.CreateContainerGroupDefinitionInput = {
             type = "string",
         },
         TotalMemoryLimitMebibytes = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         TotalVcpuLimit = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
-        GameServerContainerDefinition = {
-            type = "structure",
-        },
+        GameServerContainerDefinition = M.GameServerContainerDefinitionInput,
         SupportContainerDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.SupportContainerDefinitionInput,
         },
         OperatingSystem = {
             type = "string",
@@ -1846,7 +1794,7 @@ M.CreateContainerGroupDefinitionInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1854,9 +1802,7 @@ M.CreateContainerGroupDefinitionInput = {
 M.CreateContainerGroupDefinitionOutput = {
     type = "structure",
     members = {
-        ContainerGroupDefinition = {
-            type = "structure",
-        },
+        ContainerGroupDefinition = M.ContainerGroupDefinition,
     },
 }
 
@@ -1887,10 +1833,10 @@ M.ResourceCreationLimitPolicy = {
     type = "structure",
     members = {
         NewGameSessionsPerCreator = {
-            type = "number",
+            type = "integer",
         },
         PolicyPeriodInMinutes = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1908,7 +1854,7 @@ M.ServerProcess = {
             type = "string",
         },
         ConcurrentExecutions = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1921,13 +1867,13 @@ M.RuntimeConfiguration = {
     members = {
         ServerProcesses = {
             type = "list",
-            member_type = "structure",
+            member = M.ServerProcess,
         },
         MaxConcurrentGameSessionActivations = {
-            type = "number",
+            type = "integer",
         },
         GameSessionActivationTimeoutSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1958,27 +1904,23 @@ M.CreateFleetInput = {
         },
         LogPaths = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         EC2InstanceType = {
             type = "string",
         },
         EC2InboundPermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.IpPermission,
         },
         NewGameSessionProtectionPolicy = {
             type = "string",
         },
-        RuntimeConfiguration = {
-            type = "structure",
-        },
-        ResourceCreationLimitPolicy = {
-            type = "structure",
-        },
+        RuntimeConfiguration = M.RuntimeConfiguration,
+        ResourceCreationLimitPolicy = M.ResourceCreationLimitPolicy,
         MetricGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         PeerVpcAwsAccountId = {
             type = "string",
@@ -1992,32 +1934,26 @@ M.CreateFleetInput = {
         InstanceRoleArn = {
             type = "string",
         },
-        CertificateConfiguration = {
-            type = "structure",
-        },
+        CertificateConfiguration = M.CertificateConfiguration,
         Locations = {
             type = "list",
-            member_type = "structure",
+            member = M.LocationConfiguration,
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ComputeType = {
             type = "string",
         },
-        AnywhereConfiguration = {
-            type = "structure",
-        },
+        AnywhereConfiguration = M.AnywhereConfiguration,
         InstanceRoleCredentialsProvider = {
             type = "string",
         },
         PlayerGatewayMode = {
             type = "string",
         },
-        PlayerGatewayConfiguration = {
-            type = "structure",
-        },
+        PlayerGatewayConfiguration = M.PlayerGatewayConfiguration,
     },
 }
 
@@ -2088,7 +2024,7 @@ M.FleetAttributes = {
         },
         LogPaths = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NewGameSessionProtectionPolicy = {
             type = "string",
@@ -2096,38 +2032,30 @@ M.FleetAttributes = {
         OperatingSystem = {
             type = "string",
         },
-        ResourceCreationLimitPolicy = {
-            type = "structure",
-        },
+        ResourceCreationLimitPolicy = M.ResourceCreationLimitPolicy,
         MetricGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         StoppedActions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         InstanceRoleArn = {
             type = "string",
         },
-        CertificateConfiguration = {
-            type = "structure",
-        },
+        CertificateConfiguration = M.CertificateConfiguration,
         ComputeType = {
             type = "string",
         },
-        AnywhereConfiguration = {
-            type = "structure",
-        },
+        AnywhereConfiguration = M.AnywhereConfiguration,
         InstanceRoleCredentialsProvider = {
             type = "string",
         },
         PlayerGatewayMode = {
             type = "string",
         },
-        PlayerGatewayConfiguration = {
-            type = "structure",
-        },
+        PlayerGatewayConfiguration = M.PlayerGatewayConfiguration,
     },
 }
 
@@ -2149,12 +2077,10 @@ M.LocationState = {
 M.CreateFleetOutput = {
     type = "structure",
     members = {
-        FleetAttributes = {
-            type = "structure",
-        },
+        FleetAttributes = M.FleetAttributes,
         LocationStates = {
             type = "list",
-            member_type = "structure",
+            member = M.LocationState,
         },
     },
 }
@@ -2180,7 +2106,7 @@ M.CreateFleetLocationsInput = {
         },
         Locations = {
             type = "list",
-            member_type = "structure",
+            member = M.LocationConfiguration,
             traits = {
                 required = true,
             },
@@ -2199,7 +2125,7 @@ M.CreateFleetLocationsOutput = {
         },
         LocationStates = {
             type = "list",
-            member_type = "structure",
+            member = M.LocationState,
         },
     },
 }
@@ -2218,7 +2144,7 @@ M.TargetTrackingConfiguration = {
     type = "structure",
     members = {
         TargetValue = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -2230,14 +2156,11 @@ M.GameServerGroupAutoScalingPolicy = {
     type = "structure",
     members = {
         EstimatedInstanceWarmup = {
-            type = "number",
+            type = "integer",
         },
-        TargetTrackingConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TargetTrackingConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TargetTrackingConfiguration }),
     },
 }
 
@@ -2383,33 +2306,28 @@ M.CreateGameServerGroupInput = {
             },
         },
         MinSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         MaxSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
-        LaunchTemplate = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        LaunchTemplate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LaunchTemplateSpecification }),
         InstanceDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceDefinition,
             traits = {
                 required = true,
             },
         },
-        AutoScalingPolicy = {
-            type = "structure",
-        },
+        AutoScalingPolicy = M.GameServerGroupAutoScalingPolicy,
         BalancingStrategy = {
             type = "string",
         },
@@ -2418,11 +2336,11 @@ M.CreateGameServerGroupInput = {
         },
         VpcSubnets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2455,7 +2373,7 @@ M.GameServerGroup = {
         },
         InstanceDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceDefinition,
         },
         BalancingStrategy = {
             type = "string",
@@ -2474,7 +2392,7 @@ M.GameServerGroup = {
         },
         SuspendedActions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CreationTime = {
             type = "timestamp",
@@ -2488,9 +2406,7 @@ M.GameServerGroup = {
 M.CreateGameServerGroupOutput = {
     type = "structure",
     members = {
-        GameServerGroup = {
-            type = "structure",
-        },
+        GameServerGroup = M.GameServerGroup,
     },
 }
 
@@ -2522,7 +2438,7 @@ M.CreateGameSessionInput = {
             type = "string",
         },
         MaximumPlayerSessionCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -2532,7 +2448,7 @@ M.CreateGameSessionInput = {
         },
         GameProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.GameProperty,
         },
         CreatorId = {
             type = "string",
@@ -2593,10 +2509,10 @@ M.GameSession = {
             type = "timestamp",
         },
         CurrentPlayerSessionCount = {
-            type = "number",
+            type = "integer",
         },
         MaximumPlayerSessionCount = {
-            type = "number",
+            type = "integer",
         },
         Status = {
             type = "string",
@@ -2606,7 +2522,7 @@ M.GameSession = {
         },
         GameProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.GameProperty,
         },
         IpAddress = {
             type = "string",
@@ -2615,7 +2531,7 @@ M.GameSession = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         PlayerSessionCreationPolicy = {
             type = "string",
@@ -2644,9 +2560,7 @@ M.GameSession = {
 M.CreateGameSessionOutput = {
     type = "structure",
     members = {
-        GameSession = {
-            type = "structure",
-        },
+        GameSession = M.GameSession,
     },
 }
 
@@ -2694,7 +2608,7 @@ M.FilterConfiguration = {
     members = {
         AllowedLocations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2703,10 +2617,10 @@ M.PlayerLatencyPolicy = {
     type = "structure",
     members = {
         MaximumIndividualPlayerLatencyMilliseconds = {
-            type = "number",
+            type = "integer",
         },
         PolicyDurationSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2723,11 +2637,11 @@ M.PriorityConfiguration = {
     members = {
         PriorityOrder = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         LocationOrder = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2742,22 +2656,18 @@ M.CreateGameSessionQueueInput = {
             },
         },
         TimeoutInSeconds = {
-            type = "number",
+            type = "integer",
         },
         PlayerLatencyPolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.PlayerLatencyPolicy,
         },
         Destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.GameSessionQueueDestination,
         },
-        FilterConfiguration = {
-            type = "structure",
-        },
-        PriorityConfiguration = {
-            type = "structure",
-        },
+        FilterConfiguration = M.FilterConfiguration,
+        PriorityConfiguration = M.PriorityConfiguration,
         CustomEventData = {
             type = "string",
         },
@@ -2766,7 +2676,7 @@ M.CreateGameSessionQueueInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2781,22 +2691,18 @@ M.GameSessionQueue = {
             type = "string",
         },
         TimeoutInSeconds = {
-            type = "number",
+            type = "integer",
         },
         PlayerLatencyPolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.PlayerLatencyPolicy,
         },
         Destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.GameSessionQueueDestination,
         },
-        FilterConfiguration = {
-            type = "structure",
-        },
-        PriorityConfiguration = {
-            type = "structure",
-        },
+        FilterConfiguration = M.FilterConfiguration,
+        PriorityConfiguration = M.PriorityConfiguration,
         CustomEventData = {
             type = "string",
         },
@@ -2809,9 +2715,7 @@ M.GameSessionQueue = {
 M.CreateGameSessionQueueOutput = {
     type = "structure",
     members = {
-        GameSessionQueue = {
-            type = "structure",
-        },
+        GameSessionQueue = M.GameSessionQueue,
     },
 }
 
@@ -2826,7 +2730,7 @@ M.CreateLocationInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2838,7 +2742,7 @@ M.UDPEndpoint = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2846,9 +2750,7 @@ M.UDPEndpoint = {
 M.PingBeacon = {
     type = "structure",
     members = {
-        UDPEndpoint = {
-            type = "structure",
-        },
+        UDPEndpoint = M.UDPEndpoint,
     },
 }
 
@@ -2861,18 +2763,14 @@ M.LocationModel = {
         LocationArn = {
             type = "string",
         },
-        PingBeacon = {
-            type = "structure",
-        },
+        PingBeacon = M.PingBeacon,
     },
 }
 
 M.CreateLocationOutput = {
     type = "structure",
     members = {
-        Location = {
-            type = "structure",
-        },
+        Location = M.LocationModel,
     },
 }
 
@@ -2895,16 +2793,16 @@ M.CreateMatchmakingConfigurationInput = {
         },
         GameSessionQueueArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RequestTimeoutSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         AcceptanceTimeoutSeconds = {
-            type = "number",
+            type = "integer",
         },
         AcceptanceRequired = {
             type = "boolean",
@@ -2922,14 +2820,14 @@ M.CreateMatchmakingConfigurationInput = {
             type = "string",
         },
         AdditionalPlayerCount = {
-            type = "number",
+            type = "integer",
         },
         CustomEventData = {
             type = "string",
         },
         GameProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.GameProperty,
         },
         GameSessionData = {
             type = "string",
@@ -2942,7 +2840,7 @@ M.CreateMatchmakingConfigurationInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2961,13 +2859,13 @@ M.MatchmakingConfiguration = {
         },
         GameSessionQueueArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RequestTimeoutSeconds = {
-            type = "number",
+            type = "integer",
         },
         AcceptanceTimeoutSeconds = {
-            type = "number",
+            type = "integer",
         },
         AcceptanceRequired = {
             type = "boolean",
@@ -2982,7 +2880,7 @@ M.MatchmakingConfiguration = {
             type = "string",
         },
         AdditionalPlayerCount = {
-            type = "number",
+            type = "integer",
         },
         CustomEventData = {
             type = "string",
@@ -2992,7 +2890,7 @@ M.MatchmakingConfiguration = {
         },
         GameProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.GameProperty,
         },
         GameSessionData = {
             type = "string",
@@ -3009,9 +2907,7 @@ M.MatchmakingConfiguration = {
 M.CreateMatchmakingConfigurationOutput = {
     type = "structure",
     members = {
-        Configuration = {
-            type = "structure",
-        },
+        Configuration = M.MatchmakingConfiguration,
     },
 }
 
@@ -3032,7 +2928,7 @@ M.CreateMatchmakingRuleSetInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3061,12 +2957,9 @@ M.MatchmakingRuleSet = {
 M.CreateMatchmakingRuleSetOutput = {
     type = "structure",
     members = {
-        RuleSet = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RuleSet = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MatchmakingRuleSet }),
     },
 }
 
@@ -3132,7 +3025,7 @@ M.PlayerSession = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         PlayerData = {
             type = "string",
@@ -3143,9 +3036,7 @@ M.PlayerSession = {
 M.CreatePlayerSessionOutput = {
     type = "structure",
     members = {
-        PlayerSession = {
-            type = "structure",
-        },
+        PlayerSession = M.PlayerSession,
     },
 }
 
@@ -3180,15 +3071,15 @@ M.CreatePlayerSessionsInput = {
         },
         PlayerIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         PlayerDataMap = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3198,7 +3089,7 @@ M.CreatePlayerSessionsOutput = {
     members = {
         PlayerSessions = {
             type = "list",
-            member_type = "structure",
+            member = M.PlayerSession,
         },
     },
 }
@@ -3212,15 +3103,13 @@ M.CreateScriptInput = {
         Version = {
             type = "string",
         },
-        StorageLocation = {
-            type = "structure",
-        },
+        StorageLocation = M.S3Location,
         ZipFile = {
             type = "blob",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         NodeJsVersion = {
             type = "string",
@@ -3244,14 +3133,12 @@ M.Script = {
             type = "string",
         },
         SizeOnDisk = {
-            type = "number",
+            type = "long",
         },
         CreationTime = {
             type = "timestamp",
         },
-        StorageLocation = {
-            type = "structure",
-        },
+        StorageLocation = M.S3Location,
         NodeJsVersion = {
             type = "string",
         },
@@ -3261,9 +3148,7 @@ M.Script = {
 M.CreateScriptOutput = {
     type = "structure",
     members = {
-        Script = {
-            type = "structure",
-        },
+        Script = M.Script,
     },
 }
 
@@ -3309,9 +3194,7 @@ M.VpcPeeringAuthorization = {
 M.CreateVpcPeeringAuthorizationOutput = {
     type = "structure",
     members = {
-        VpcPeeringAuthorization = {
-            type = "structure",
-        },
+        VpcPeeringAuthorization = M.VpcPeeringAuthorization,
     },
 }
 
@@ -3401,10 +3284,10 @@ M.DeleteContainerGroupDefinitionInput = {
             },
         },
         VersionNumber = {
-            type = "number",
+            type = "integer",
         },
         VersionCountToRetain = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3440,7 +3323,7 @@ M.DeleteFleetLocationsInput = {
         },
         Locations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3459,7 +3342,7 @@ M.DeleteFleetLocationsOutput = {
         },
         LocationStates = {
             type = "list",
-            member_type = "structure",
+            member = M.LocationState,
         },
     },
 }
@@ -3488,9 +3371,7 @@ M.DeleteGameServerGroupInput = {
 M.DeleteGameServerGroupOutput = {
     type = "structure",
     members = {
-        GameServerGroup = {
-            type = "structure",
-        },
+        GameServerGroup = M.GameServerGroup,
     },
 }
 
@@ -3657,7 +3538,7 @@ M.DeploymentConfiguration = {
             type = "string",
         },
         MinimumHealthyPercentage = {
-            type = "number",
+            type = "integer",
         },
         ImpairmentStrategy = {
             type = "string",
@@ -3734,9 +3615,7 @@ M.DescribeAliasInput = {
 M.DescribeAliasOutput = {
     type = "structure",
     members = {
-        Alias = {
-            type = "structure",
-        },
+        Alias = M.Alias,
     },
 }
 
@@ -3755,9 +3634,7 @@ M.DescribeBuildInput = {
 M.DescribeBuildOutput = {
     type = "structure",
     members = {
-        Build = {
-            type = "structure",
-        },
+        Build = M.Build,
     },
 }
 
@@ -3782,9 +3659,7 @@ M.DescribeComputeInput = {
 M.DescribeComputeOutput = {
     type = "structure",
     members = {
-        Compute = {
-            type = "structure",
-        },
+        Compute = M.Compute,
     },
 }
 
@@ -3803,9 +3678,7 @@ M.DescribeContainerFleetInput = {
 M.DescribeContainerFleetOutput = {
     type = "structure",
     members = {
-        ContainerFleet = {
-            type = "structure",
-        },
+        ContainerFleet = M.ContainerFleet,
     },
 }
 
@@ -3819,7 +3692,7 @@ M.DescribeContainerGroupDefinitionInput = {
             },
         },
         VersionNumber = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3827,9 +3700,7 @@ M.DescribeContainerGroupDefinitionInput = {
 M.DescribeContainerGroupDefinitionOutput = {
     type = "structure",
     members = {
-        ContainerGroupDefinition = {
-            type = "structure",
-        },
+        ContainerGroupDefinition = M.ContainerGroupDefinition,
     },
 }
 
@@ -3883,7 +3754,7 @@ M.DescribeContainerGroupPortMappingsOutput = {
         },
         ContainerGroupPortMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.ContainerGroupPortMapping,
         },
     },
 }
@@ -3907,10 +3778,10 @@ M.EC2InstanceLimit = {
             type = "string",
         },
         CurrentInstances = {
-            type = "number",
+            type = "integer",
         },
         InstanceLimit = {
-            type = "number",
+            type = "integer",
         },
         Location = {
             type = "string",
@@ -3923,7 +3794,7 @@ M.DescribeEC2InstanceLimitsOutput = {
     members = {
         EC2InstanceLimits = {
             type = "list",
-            member_type = "structure",
+            member = M.EC2InstanceLimit,
         },
     },
 }
@@ -3933,10 +3804,10 @@ M.DescribeFleetAttributesInput = {
     members = {
         FleetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3949,7 +3820,7 @@ M.DescribeFleetAttributesOutput = {
     members = {
         FleetAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.FleetAttributes,
         },
         NextToken = {
             type = "string",
@@ -3962,10 +3833,10 @@ M.DescribeFleetCapacityInput = {
     members = {
         FleetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3977,16 +3848,16 @@ M.GameServerContainerGroupCounts = {
     type = "structure",
     members = {
         PENDING = {
-            type = "number",
+            type = "integer",
         },
         ACTIVE = {
-            type = "number",
+            type = "integer",
         },
         IDLE = {
-            type = "number",
+            type = "integer",
         },
         TERMINATING = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3995,25 +3866,25 @@ M.EC2InstanceCounts = {
     type = "structure",
     members = {
         DESIRED = {
-            type = "number",
+            type = "integer",
         },
         MINIMUM = {
-            type = "number",
+            type = "integer",
         },
         MAXIMUM = {
-            type = "number",
+            type = "integer",
         },
         PENDING = {
-            type = "number",
+            type = "integer",
         },
         ACTIVE = {
-            type = "number",
+            type = "integer",
         },
         IDLE = {
-            type = "number",
+            type = "integer",
         },
         TERMINATING = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4030,7 +3901,7 @@ M.ManagedCapacityConfiguration = {
             type = "string",
         },
         ScaleInAfterInactivityMinutes = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4047,18 +3918,12 @@ M.FleetCapacity = {
         InstanceType = {
             type = "string",
         },
-        InstanceCounts = {
-            type = "structure",
-        },
+        InstanceCounts = M.EC2InstanceCounts,
         Location = {
             type = "string",
         },
-        GameServerContainerGroupCounts = {
-            type = "structure",
-        },
-        ManagedCapacityConfiguration = {
-            type = "structure",
-        },
+        GameServerContainerGroupCounts = M.GameServerContainerGroupCounts,
+        ManagedCapacityConfiguration = M.ManagedCapacityConfiguration,
     },
 }
 
@@ -4067,7 +3932,7 @@ M.DescribeFleetCapacityOutput = {
     members = {
         FleetCapacity = {
             type = "list",
-            member_type = "structure",
+            member = M.FleetCapacity,
         },
         NextToken = {
             type = "string",
@@ -4114,9 +3979,7 @@ M.FleetDeployment = {
         DeploymentStatus = {
             type = "string",
         },
-        DeploymentConfiguration = {
-            type = "structure",
-        },
+        DeploymentConfiguration = M.DeploymentConfiguration,
         CreationTime = {
             type = "timestamp",
         },
@@ -4135,13 +3998,11 @@ M.LocationalDeployment = {
 M.DescribeFleetDeploymentOutput = {
     type = "structure",
     members = {
-        FleetDeployment = {
-            type = "structure",
-        },
+        FleetDeployment = M.FleetDeployment,
         LocationalDeployments = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.LocationalDeployment,
         },
     },
 }
@@ -4162,7 +4023,7 @@ M.DescribeFleetEventsInput = {
             type = "timestamp",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -4251,7 +4112,7 @@ M.Event = {
             type = "string",
         },
         Count = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -4261,7 +4122,7 @@ M.DescribeFleetEventsOutput = {
     members = {
         Events = {
             type = "list",
-            member_type = "structure",
+            member = M.Event,
         },
         NextToken = {
             type = "string",
@@ -4280,10 +4141,10 @@ M.DescribeFleetLocationAttributesInput = {
         },
         Locations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -4298,12 +4159,10 @@ M.LocationUpdateStatus = {
 M.LocationAttributes = {
     type = "structure",
     members = {
-        LocationState = {
-            type = "structure",
-        },
+        LocationState = M.LocationState,
         StoppedActions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         UpdateStatus = {
             type = "string",
@@ -4322,7 +4181,7 @@ M.DescribeFleetLocationAttributesOutput = {
         },
         LocationAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.LocationAttributes,
         },
         NextToken = {
             type = "string",
@@ -4351,9 +4210,7 @@ M.DescribeFleetLocationCapacityInput = {
 M.DescribeFleetLocationCapacityOutput = {
     type = "structure",
     members = {
-        FleetCapacity = {
-            type = "structure",
-        },
+        FleetCapacity = M.FleetCapacity,
     },
 }
 
@@ -4385,16 +4242,16 @@ M.FleetUtilization = {
             type = "string",
         },
         ActiveServerProcessCount = {
-            type = "number",
+            type = "integer",
         },
         ActiveGameSessionCount = {
-            type = "number",
+            type = "integer",
         },
         CurrentPlayerSessionCount = {
-            type = "number",
+            type = "integer",
         },
         MaximumPlayerSessionCount = {
-            type = "number",
+            type = "integer",
         },
         Location = {
             type = "string",
@@ -4405,9 +4262,7 @@ M.FleetUtilization = {
 M.DescribeFleetLocationUtilizationOutput = {
     type = "structure",
     members = {
-        FleetUtilization = {
-            type = "structure",
-        },
+        FleetUtilization = M.FleetUtilization,
     },
 }
 
@@ -4437,7 +4292,7 @@ M.DescribeFleetPortSettingsOutput = {
         },
         InboundPermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.IpPermission,
         },
         UpdateStatus = {
             type = "string",
@@ -4453,10 +4308,10 @@ M.DescribeFleetUtilizationInput = {
     members = {
         FleetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -4469,7 +4324,7 @@ M.DescribeFleetUtilizationOutput = {
     members = {
         FleetUtilization = {
             type = "list",
-            member_type = "structure",
+            member = M.FleetUtilization,
         },
         NextToken = {
             type = "string",
@@ -4498,9 +4353,7 @@ M.DescribeGameServerInput = {
 M.DescribeGameServerOutput = {
     type = "structure",
     members = {
-        GameServer = {
-            type = "structure",
-        },
+        GameServer = M.GameServer,
     },
 }
 
@@ -4519,9 +4372,7 @@ M.DescribeGameServerGroupInput = {
 M.DescribeGameServerGroupOutput = {
     type = "structure",
     members = {
-        GameServerGroup = {
-            type = "structure",
-        },
+        GameServerGroup = M.GameServerGroup,
     },
 }
 
@@ -4536,10 +4387,10 @@ M.DescribeGameServerInstancesInput = {
         },
         InstanceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -4576,7 +4427,7 @@ M.DescribeGameServerInstancesOutput = {
     members = {
         GameServerInstances = {
             type = "list",
-            member_type = "structure",
+            member = M.GameServerInstance,
         },
         NextToken = {
             type = "string",
@@ -4603,7 +4454,7 @@ M.DescribeGameSessionDetailsInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -4614,9 +4465,7 @@ M.DescribeGameSessionDetailsInput = {
 M.GameSessionDetail = {
     type = "structure",
     members = {
-        GameSession = {
-            type = "structure",
-        },
+        GameSession = M.GameSession,
         ProtectionPolicy = {
             type = "string",
         },
@@ -4628,7 +4477,7 @@ M.DescribeGameSessionDetailsOutput = {
     members = {
         GameSessionDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.GameSessionDetail,
         },
         NextToken = {
             type = "string",
@@ -4670,7 +4519,7 @@ M.PlayerLatency = {
             type = "string",
         },
         LatencyInMilliseconds = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -4688,7 +4537,7 @@ M.PriorityConfigurationOverride = {
         },
         LocationOrder = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4718,10 +4567,10 @@ M.GameSessionPlacement = {
         },
         GameProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.GameProperty,
         },
         MaximumPlayerSessionCount = {
-            type = "number",
+            type = "integer",
         },
         GameSessionName = {
             type = "string",
@@ -4737,7 +4586,7 @@ M.GameSessionPlacement = {
         },
         PlayerLatencies = {
             type = "list",
-            member_type = "structure",
+            member = M.PlayerLatency,
         },
         StartTime = {
             type = "timestamp",
@@ -4752,11 +4601,11 @@ M.GameSessionPlacement = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         PlacedPlayerSessions = {
             type = "list",
-            member_type = "structure",
+            member = M.PlacedPlayerSession,
         },
         GameSessionData = {
             type = "string",
@@ -4764,9 +4613,7 @@ M.GameSessionPlacement = {
         MatchmakerData = {
             type = "string",
         },
-        PriorityConfigurationOverride = {
-            type = "structure",
-        },
+        PriorityConfigurationOverride = M.PriorityConfigurationOverride,
         PlayerGatewayStatus = {
             type = "string",
         },
@@ -4776,9 +4623,7 @@ M.GameSessionPlacement = {
 M.DescribeGameSessionPlacementOutput = {
     type = "structure",
     members = {
-        GameSessionPlacement = {
-            type = "structure",
-        },
+        GameSessionPlacement = M.GameSessionPlacement,
     },
 }
 
@@ -4787,10 +4632,10 @@ M.DescribeGameSessionQueuesInput = {
     members = {
         Names = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -4803,7 +4648,7 @@ M.DescribeGameSessionQueuesOutput = {
     members = {
         GameSessionQueues = {
             type = "list",
-            member_type = "structure",
+            member = M.GameSessionQueue,
         },
         NextToken = {
             type = "string",
@@ -4830,7 +4675,7 @@ M.DescribeGameSessionsInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -4843,7 +4688,7 @@ M.DescribeGameSessionsOutput = {
     members = {
         GameSessions = {
             type = "list",
-            member_type = "structure",
+            member = M.GameSession,
         },
         NextToken = {
             type = "string",
@@ -4864,7 +4709,7 @@ M.DescribeInstancesInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -4922,7 +4767,7 @@ M.DescribeInstancesOutput = {
     members = {
         Instances = {
             type = "list",
-            member_type = "structure",
+            member = M.Instance,
         },
         NextToken = {
             type = "string",
@@ -4935,7 +4780,7 @@ M.DescribeMatchmakingInput = {
     members = {
         TicketIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4968,11 +4813,11 @@ M.GameSessionConnectionInfo = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         MatchedPlayerSessions = {
             type = "list",
-            member_type = "structure",
+            member = M.MatchedPlayerSession,
         },
         PlayerGatewayStatus = {
             type = "string",
@@ -4988,16 +4833,16 @@ M.Player = {
         },
         PlayerAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.AttributeValue,
         },
         Team = {
             type = "string",
         },
         LatencyInMs = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
         },
     },
 }
@@ -5042,13 +4887,11 @@ M.MatchmakingTicket = {
         },
         Players = {
             type = "list",
-            member_type = "structure",
+            member = M.Player,
         },
-        GameSessionConnectionInfo = {
-            type = "structure",
-        },
+        GameSessionConnectionInfo = M.GameSessionConnectionInfo,
         EstimatedWaitTime = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5058,7 +4901,7 @@ M.DescribeMatchmakingOutput = {
     members = {
         TicketList = {
             type = "list",
-            member_type = "structure",
+            member = M.MatchmakingTicket,
         },
     },
 }
@@ -5068,13 +4911,13 @@ M.DescribeMatchmakingConfigurationsInput = {
     members = {
         Names = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RuleSetName = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -5087,7 +4930,7 @@ M.DescribeMatchmakingConfigurationsOutput = {
     members = {
         Configurations = {
             type = "list",
-            member_type = "structure",
+            member = M.MatchmakingConfiguration,
         },
         NextToken = {
             type = "string",
@@ -5100,10 +4943,10 @@ M.DescribeMatchmakingRuleSetsInput = {
     members = {
         Names = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -5116,7 +4959,7 @@ M.DescribeMatchmakingRuleSetsOutput = {
     members = {
         RuleSets = {
             type = "list",
-            member_type = "structure",
+            member = M.MatchmakingRuleSet,
             traits = {
                 required = true,
             },
@@ -5143,7 +4986,7 @@ M.DescribePlayerSessionsInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -5156,7 +4999,7 @@ M.DescribePlayerSessionsOutput = {
     members = {
         PlayerSessions = {
             type = "list",
-            member_type = "structure",
+            member = M.PlayerSession,
         },
         NextToken = {
             type = "string",
@@ -5179,9 +5022,7 @@ M.DescribeRuntimeConfigurationInput = {
 M.DescribeRuntimeConfigurationOutput = {
     type = "structure",
     members = {
-        RuntimeConfiguration = {
-            type = "structure",
-        },
+        RuntimeConfiguration = M.RuntimeConfiguration,
     },
 }
 
@@ -5208,7 +5049,7 @@ M.DescribeScalingPoliciesInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -5249,7 +5090,7 @@ M.TargetConfiguration = {
     type = "structure",
     members = {
         TargetValue = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -5273,7 +5114,7 @@ M.ScalingPolicy = {
             type = "string",
         },
         ScalingAdjustment = {
-            type = "number",
+            type = "integer",
         },
         ScalingAdjustmentType = {
             type = "string",
@@ -5282,10 +5123,10 @@ M.ScalingPolicy = {
             type = "string",
         },
         Threshold = {
-            type = "number",
+            type = "double",
         },
         EvaluationPeriods = {
-            type = "number",
+            type = "integer",
         },
         MetricName = {
             type = "string",
@@ -5293,9 +5134,7 @@ M.ScalingPolicy = {
         PolicyType = {
             type = "string",
         },
-        TargetConfiguration = {
-            type = "structure",
-        },
+        TargetConfiguration = M.TargetConfiguration,
         UpdateStatus = {
             type = "string",
         },
@@ -5310,7 +5149,7 @@ M.DescribeScalingPoliciesOutput = {
     members = {
         ScalingPolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.ScalingPolicy,
         },
         NextToken = {
             type = "string",
@@ -5333,9 +5172,7 @@ M.DescribeScriptInput = {
 M.DescribeScriptOutput = {
     type = "structure",
     members = {
-        Script = {
-            type = "structure",
-        },
+        Script = M.Script,
     },
 }
 
@@ -5348,7 +5185,7 @@ M.DescribeVpcPeeringAuthorizationsOutput = {
     members = {
         VpcPeeringAuthorizations = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcPeeringAuthorization,
         },
     },
 }
@@ -5389,9 +5226,7 @@ M.VpcPeeringConnection = {
         VpcPeeringConnectionId = {
             type = "string",
         },
-        Status = {
-            type = "structure",
-        },
+        Status = M.VpcPeeringConnectionStatus,
         PeerVpcId = {
             type = "string",
         },
@@ -5406,7 +5241,7 @@ M.DescribeVpcPeeringConnectionsOutput = {
     members = {
         VpcPeeringConnections = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcPeeringConnection,
         },
     },
 }
@@ -5456,15 +5291,13 @@ M.GetComputeAccessOutput = {
         ComputeArn = {
             type = "string",
         },
-        Credentials = {
-            type = "structure",
-        },
+        Credentials = M.AwsCredentials,
         Target = {
             type = "string",
         },
         ContainerIdentifiers = {
             type = "list",
-            member_type = "structure",
+            member = M.ContainerIdentifier,
         },
     },
 }
@@ -5577,18 +5410,14 @@ M.InstanceAccess = {
         OperatingSystem = {
             type = "string",
         },
-        Credentials = {
-            type = "structure",
-        },
+        Credentials = M.InstanceCredentials,
     },
 }
 
 M.GetInstanceAccessOutput = {
     type = "structure",
     members = {
-        InstanceAccess = {
-            type = "structure",
-        },
+        InstanceAccess = M.InstanceAccess,
     },
 }
 
@@ -5603,7 +5432,7 @@ M.GetPlayerConnectionDetailsInput = {
         },
         PlayerIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -5618,7 +5447,7 @@ M.PlayerConnectionEndpoint = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5631,7 +5460,7 @@ M.PlayerConnectionDetail = {
         },
         Endpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.PlayerConnectionEndpoint,
         },
         PlayerGatewayToken = {
             type = "string",
@@ -5650,7 +5479,7 @@ M.GetPlayerConnectionDetailsOutput = {
         },
         PlayerConnectionDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.PlayerConnectionDetail,
         },
     },
 }
@@ -5665,7 +5494,7 @@ M.ListAliasesInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -5678,7 +5507,7 @@ M.ListAliasesOutput = {
     members = {
         Aliases = {
             type = "list",
-            member_type = "structure",
+            member = M.Alias,
         },
         NextToken = {
             type = "string",
@@ -5693,7 +5522,7 @@ M.ListBuildsInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -5706,7 +5535,7 @@ M.ListBuildsOutput = {
     members = {
         Builds = {
             type = "list",
-            member_type = "structure",
+            member = M.Build,
         },
         NextToken = {
             type = "string",
@@ -5738,7 +5567,7 @@ M.ListComputeInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -5751,7 +5580,7 @@ M.ListComputeOutput = {
     members = {
         ComputeList = {
             type = "list",
-            member_type = "structure",
+            member = M.Compute,
         },
         NextToken = {
             type = "string",
@@ -5766,7 +5595,7 @@ M.ListContainerFleetsInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -5779,7 +5608,7 @@ M.ListContainerFleetsOutput = {
     members = {
         ContainerFleets = {
             type = "list",
-            member_type = "structure",
+            member = M.ContainerFleet,
         },
         NextToken = {
             type = "string",
@@ -5794,7 +5623,7 @@ M.ListContainerGroupDefinitionsInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -5807,7 +5636,7 @@ M.ListContainerGroupDefinitionsOutput = {
     members = {
         ContainerGroupDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.ContainerGroupDefinition,
         },
         NextToken = {
             type = "string",
@@ -5825,7 +5654,7 @@ M.ListContainerGroupDefinitionVersionsInput = {
             },
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -5838,7 +5667,7 @@ M.ListContainerGroupDefinitionVersionsOutput = {
     members = {
         ContainerGroupDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.ContainerGroupDefinition,
         },
         NextToken = {
             type = "string",
@@ -5853,7 +5682,7 @@ M.ListFleetDeploymentsInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -5866,7 +5695,7 @@ M.ListFleetDeploymentsOutput = {
     members = {
         FleetDeployments = {
             type = "list",
-            member_type = "structure",
+            member = M.FleetDeployment,
         },
         NextToken = {
             type = "string",
@@ -5884,7 +5713,7 @@ M.ListFleetsInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -5897,7 +5726,7 @@ M.ListFleetsOutput = {
     members = {
         FleetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -5909,7 +5738,7 @@ M.ListGameServerGroupsInput = {
     type = "structure",
     members = {
         Limit = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -5922,7 +5751,7 @@ M.ListGameServerGroupsOutput = {
     members = {
         GameServerGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.GameServerGroup,
         },
         NextToken = {
             type = "string",
@@ -5948,7 +5777,7 @@ M.ListGameServersInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -5961,7 +5790,7 @@ M.ListGameServersOutput = {
     members = {
         GameServers = {
             type = "list",
-            member_type = "structure",
+            member = M.GameServer,
         },
         NextToken = {
             type = "string",
@@ -5979,10 +5808,10 @@ M.ListLocationsInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -5995,7 +5824,7 @@ M.ListLocationsOutput = {
     members = {
         Locations = {
             type = "list",
-            member_type = "structure",
+            member = M.LocationModel,
         },
         NextToken = {
             type = "string",
@@ -6007,7 +5836,7 @@ M.ListScriptsInput = {
     type = "structure",
     members = {
         Limit = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -6020,7 +5849,7 @@ M.ListScriptsOutput = {
     members = {
         Scripts = {
             type = "list",
-            member_type = "structure",
+            member = M.Script,
         },
         NextToken = {
             type = "string",
@@ -6045,7 +5874,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -6066,19 +5895,19 @@ M.PutScalingPolicyInput = {
             },
         },
         ScalingAdjustment = {
-            type = "number",
+            type = "integer",
         },
         ScalingAdjustmentType = {
             type = "string",
         },
         Threshold = {
-            type = "number",
+            type = "double",
         },
         ComparisonOperator = {
             type = "string",
         },
         EvaluationPeriods = {
-            type = "number",
+            type = "integer",
         },
         MetricName = {
             type = "string",
@@ -6089,9 +5918,7 @@ M.PutScalingPolicyInput = {
         PolicyType = {
             type = "string",
         },
-        TargetConfiguration = {
-            type = "structure",
-        },
+        TargetConfiguration = M.TargetConfiguration,
     },
 }
 
@@ -6137,9 +5964,7 @@ M.RegisterComputeInput = {
 M.RegisterComputeOutput = {
     type = "structure",
     members = {
-        Compute = {
-            type = "structure",
-        },
+        Compute = M.Compute,
     },
 }
 
@@ -6176,9 +6001,7 @@ M.RegisterGameServerInput = {
 M.RegisterGameServerOutput = {
     type = "structure",
     members = {
-        GameServer = {
-            type = "structure",
-        },
+        GameServer = M.GameServer,
     },
 }
 
@@ -6197,12 +6020,8 @@ M.RequestUploadCredentialsInput = {
 M.RequestUploadCredentialsOutput = {
     type = "structure",
     members = {
-        UploadCredentials = {
-            type = "structure",
-        },
-        StorageLocation = {
-            type = "structure",
-        },
+        UploadCredentials = M.AwsCredentials,
+        StorageLocation = M.S3Location,
     },
 }
 
@@ -6241,7 +6060,7 @@ M.ResumeGameServerGroupInput = {
         },
         ResumeActions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -6252,9 +6071,7 @@ M.ResumeGameServerGroupInput = {
 M.ResumeGameServerGroupOutput = {
     type = "structure",
     members = {
-        GameServerGroup = {
-            type = "structure",
-        },
+        GameServerGroup = M.GameServerGroup,
     },
 }
 
@@ -6277,7 +6094,7 @@ M.SearchGameSessionsInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -6290,7 +6107,7 @@ M.SearchGameSessionsOutput = {
     members = {
         GameSessions = {
             type = "list",
-            member_type = "structure",
+            member = M.GameSession,
         },
         NextToken = {
             type = "string",
@@ -6309,7 +6126,7 @@ M.StartFleetActionsInput = {
         },
         Actions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -6349,10 +6166,10 @@ M.StartGameSessionPlacementInput = {
         },
         GameProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.GameProperty,
         },
         MaximumPlayerSessionCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -6362,27 +6179,23 @@ M.StartGameSessionPlacementInput = {
         },
         PlayerLatencies = {
             type = "list",
-            member_type = "structure",
+            member = M.PlayerLatency,
         },
         DesiredPlayerSessions = {
             type = "list",
-            member_type = "structure",
+            member = M.DesiredPlayerSession,
         },
         GameSessionData = {
             type = "string",
         },
-        PriorityConfigurationOverride = {
-            type = "structure",
-        },
+        PriorityConfigurationOverride = M.PriorityConfigurationOverride,
     },
 }
 
 M.StartGameSessionPlacementOutput = {
     type = "structure",
     members = {
-        GameSessionPlacement = {
-            type = "structure",
-        },
+        GameSessionPlacement = M.GameSessionPlacement,
     },
 }
 
@@ -6403,7 +6216,7 @@ M.StartMatchBackfillInput = {
         },
         Players = {
             type = "list",
-            member_type = "structure",
+            member = M.Player,
             traits = {
                 required = true,
             },
@@ -6414,9 +6227,7 @@ M.StartMatchBackfillInput = {
 M.StartMatchBackfillOutput = {
     type = "structure",
     members = {
-        MatchmakingTicket = {
-            type = "structure",
-        },
+        MatchmakingTicket = M.MatchmakingTicket,
     },
 }
 
@@ -6434,7 +6245,7 @@ M.StartMatchmakingInput = {
         },
         Players = {
             type = "list",
-            member_type = "structure",
+            member = M.Player,
             traits = {
                 required = true,
             },
@@ -6445,9 +6256,7 @@ M.StartMatchmakingInput = {
 M.StartMatchmakingOutput = {
     type = "structure",
     members = {
-        MatchmakingTicket = {
-            type = "structure",
-        },
+        MatchmakingTicket = M.MatchmakingTicket,
     },
 }
 
@@ -6462,7 +6271,7 @@ M.StopFleetActionsInput = {
         },
         Actions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -6500,9 +6309,7 @@ M.StopGameSessionPlacementInput = {
 M.StopGameSessionPlacementOutput = {
     type = "structure",
     members = {
-        GameSessionPlacement = {
-            type = "structure",
-        },
+        GameSessionPlacement = M.GameSessionPlacement,
     },
 }
 
@@ -6533,7 +6340,7 @@ M.SuspendGameServerGroupInput = {
         },
         SuspendActions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -6544,9 +6351,7 @@ M.SuspendGameServerGroupInput = {
 M.SuspendGameServerGroupOutput = {
     type = "structure",
     members = {
-        GameServerGroup = {
-            type = "structure",
-        },
+        GameServerGroup = M.GameServerGroup,
     },
 }
 
@@ -6561,7 +6366,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -6599,9 +6404,7 @@ M.TerminateGameSessionInput = {
 M.TerminateGameSessionOutput = {
     type = "structure",
     members = {
-        GameSession = {
-            type = "structure",
-        },
+        GameSession = M.GameSession,
     },
 }
 
@@ -6616,7 +6419,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -6643,18 +6446,14 @@ M.UpdateAliasInput = {
         Description = {
             type = "string",
         },
-        RoutingStrategy = {
-            type = "structure",
-        },
+        RoutingStrategy = M.RoutingStrategy,
     },
 }
 
 M.UpdateAliasOutput = {
     type = "structure",
     members = {
-        Alias = {
-            type = "structure",
-        },
+        Alias = M.Alias,
     },
 }
 
@@ -6679,9 +6478,7 @@ M.UpdateBuildInput = {
 M.UpdateBuildOutput = {
     type = "structure",
     members = {
-        Build = {
-            type = "structure",
-        },
+        Build = M.Build,
     },
 }
 
@@ -6701,41 +6498,33 @@ M.UpdateContainerFleetInput = {
             type = "string",
         },
         GameServerContainerGroupsPerInstance = {
-            type = "number",
+            type = "integer",
         },
-        InstanceConnectionPortRange = {
-            type = "structure",
-        },
+        InstanceConnectionPortRange = M.ConnectionPortRange,
         InstanceInboundPermissionAuthorizations = {
             type = "list",
-            member_type = "structure",
+            member = M.IpPermission,
         },
         InstanceInboundPermissionRevocations = {
             type = "list",
-            member_type = "structure",
+            member = M.IpPermission,
         },
-        DeploymentConfiguration = {
-            type = "structure",
-        },
+        DeploymentConfiguration = M.DeploymentConfiguration,
         Description = {
             type = "string",
         },
         MetricGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NewGameSessionProtectionPolicy = {
             type = "string",
         },
-        GameSessionCreationLimitPolicy = {
-            type = "structure",
-        },
-        LogConfiguration = {
-            type = "structure",
-        },
+        GameSessionCreationLimitPolicy = M.GameSessionCreationLimitPolicy,
+        LogConfiguration = M.LogConfiguration,
         RemoveAttributes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -6743,9 +6532,7 @@ M.UpdateContainerFleetInput = {
 M.UpdateContainerFleetOutput = {
     type = "structure",
     members = {
-        ContainerFleet = {
-            type = "structure",
-        },
+        ContainerFleet = M.ContainerFleet,
     },
 }
 
@@ -6758,24 +6545,22 @@ M.UpdateContainerGroupDefinitionInput = {
                 required = true,
             },
         },
-        GameServerContainerDefinition = {
-            type = "structure",
-        },
+        GameServerContainerDefinition = M.GameServerContainerDefinitionInput,
         SupportContainerDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.SupportContainerDefinitionInput,
         },
         TotalMemoryLimitMebibytes = {
-            type = "number",
+            type = "integer",
         },
         TotalVcpuLimit = {
-            type = "number",
+            type = "double",
         },
         VersionDescription = {
             type = "string",
         },
         SourceVersionNumber = {
-            type = "number",
+            type = "integer",
         },
         OperatingSystem = {
             type = "string",
@@ -6786,9 +6571,7 @@ M.UpdateContainerGroupDefinitionInput = {
 M.UpdateContainerGroupDefinitionOutput = {
     type = "structure",
     members = {
-        ContainerGroupDefinition = {
-            type = "structure",
-        },
+        ContainerGroupDefinition = M.ContainerGroupDefinition,
     },
 }
 
@@ -6810,16 +6593,12 @@ M.UpdateFleetAttributesInput = {
         NewGameSessionProtectionPolicy = {
             type = "string",
         },
-        ResourceCreationLimitPolicy = {
-            type = "structure",
-        },
+        ResourceCreationLimitPolicy = M.ResourceCreationLimitPolicy,
         MetricGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        AnywhereConfiguration = {
-            type = "structure",
-        },
+        AnywhereConfiguration = M.AnywhereConfiguration,
     },
 }
 
@@ -6845,20 +6624,18 @@ M.UpdateFleetCapacityInput = {
             },
         },
         DesiredInstances = {
-            type = "number",
+            type = "integer",
         },
         MinSize = {
-            type = "number",
+            type = "integer",
         },
         MaxSize = {
-            type = "number",
+            type = "integer",
         },
         Location = {
             type = "string",
         },
-        ManagedCapacityConfiguration = {
-            type = "structure",
-        },
+        ManagedCapacityConfiguration = M.ManagedCapacityConfiguration,
     },
 }
 
@@ -6874,9 +6651,7 @@ M.UpdateFleetCapacityOutput = {
         Location = {
             type = "string",
         },
-        ManagedCapacityConfiguration = {
-            type = "structure",
-        },
+        ManagedCapacityConfiguration = M.ManagedCapacityConfiguration,
     },
 }
 
@@ -6891,11 +6666,11 @@ M.UpdateFleetPortSettingsInput = {
         },
         InboundPermissionAuthorizations = {
             type = "list",
-            member_type = "structure",
+            member = M.IpPermission,
         },
         InboundPermissionRevocations = {
             type = "list",
-            member_type = "structure",
+            member = M.IpPermission,
         },
     },
 }
@@ -6946,9 +6721,7 @@ M.UpdateGameServerInput = {
 M.UpdateGameServerOutput = {
     type = "structure",
     members = {
-        GameServer = {
-            type = "structure",
-        },
+        GameServer = M.GameServer,
     },
 }
 
@@ -6966,7 +6739,7 @@ M.UpdateGameServerGroupInput = {
         },
         InstanceDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceDefinition,
         },
         GameServerProtectionPolicy = {
             type = "string",
@@ -6980,9 +6753,7 @@ M.UpdateGameServerGroupInput = {
 M.UpdateGameServerGroupOutput = {
     type = "structure",
     members = {
-        GameServerGroup = {
-            type = "structure",
-        },
+        GameServerGroup = M.GameServerGroup,
     },
 }
 
@@ -6996,7 +6767,7 @@ M.UpdateGameSessionInput = {
             },
         },
         MaximumPlayerSessionCount = {
-            type = "number",
+            type = "integer",
         },
         Name = {
             type = "string",
@@ -7009,7 +6780,7 @@ M.UpdateGameSessionInput = {
         },
         GameProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.GameProperty,
         },
     },
 }
@@ -7017,9 +6788,7 @@ M.UpdateGameSessionInput = {
 M.UpdateGameSessionOutput = {
     type = "structure",
     members = {
-        GameSession = {
-            type = "structure",
-        },
+        GameSession = M.GameSession,
     },
 }
 
@@ -7033,22 +6802,18 @@ M.UpdateGameSessionQueueInput = {
             },
         },
         TimeoutInSeconds = {
-            type = "number",
+            type = "integer",
         },
         PlayerLatencyPolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.PlayerLatencyPolicy,
         },
         Destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.GameSessionQueueDestination,
         },
-        FilterConfiguration = {
-            type = "structure",
-        },
-        PriorityConfiguration = {
-            type = "structure",
-        },
+        FilterConfiguration = M.FilterConfiguration,
+        PriorityConfiguration = M.PriorityConfiguration,
         CustomEventData = {
             type = "string",
         },
@@ -7061,9 +6826,7 @@ M.UpdateGameSessionQueueInput = {
 M.UpdateGameSessionQueueOutput = {
     type = "structure",
     members = {
-        GameSessionQueue = {
-            type = "structure",
-        },
+        GameSessionQueue = M.GameSessionQueue,
     },
 }
 
@@ -7081,13 +6844,13 @@ M.UpdateMatchmakingConfigurationInput = {
         },
         GameSessionQueueArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RequestTimeoutSeconds = {
-            type = "number",
+            type = "integer",
         },
         AcceptanceTimeoutSeconds = {
-            type = "number",
+            type = "integer",
         },
         AcceptanceRequired = {
             type = "boolean",
@@ -7099,14 +6862,14 @@ M.UpdateMatchmakingConfigurationInput = {
             type = "string",
         },
         AdditionalPlayerCount = {
-            type = "number",
+            type = "integer",
         },
         CustomEventData = {
             type = "string",
         },
         GameProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.GameProperty,
         },
         GameSessionData = {
             type = "string",
@@ -7123,9 +6886,7 @@ M.UpdateMatchmakingConfigurationInput = {
 M.UpdateMatchmakingConfigurationOutput = {
     type = "structure",
     members = {
-        Configuration = {
-            type = "structure",
-        },
+        Configuration = M.MatchmakingConfiguration,
     },
 }
 
@@ -7138,21 +6899,16 @@ M.UpdateRuntimeConfigurationInput = {
                 required = true,
             },
         },
-        RuntimeConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RuntimeConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RuntimeConfiguration }),
     },
 }
 
 M.UpdateRuntimeConfigurationOutput = {
     type = "structure",
     members = {
-        RuntimeConfiguration = {
-            type = "structure",
-        },
+        RuntimeConfiguration = M.RuntimeConfiguration,
     },
 }
 
@@ -7171,9 +6927,7 @@ M.UpdateScriptInput = {
         Version = {
             type = "string",
         },
-        StorageLocation = {
-            type = "structure",
-        },
+        StorageLocation = M.S3Location,
         ZipFile = {
             type = "blob",
         },
@@ -7183,9 +6937,7 @@ M.UpdateScriptInput = {
 M.UpdateScriptOutput = {
     type = "structure",
     members = {
-        Script = {
-            type = "structure",
-        },
+        Script = M.Script,
     },
 }
 

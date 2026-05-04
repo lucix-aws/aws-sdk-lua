@@ -18,7 +18,7 @@ M.TagFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -31,7 +31,7 @@ M.ApplicationSource = {
         },
         TagFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.TagFilter,
         },
     },
 }
@@ -79,7 +79,7 @@ M.CustomizedLoadMetricSpecification = {
         },
         Dimensions = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricDimension,
         },
         Statistic = {
             type = "string",
@@ -167,7 +167,7 @@ M.CustomizedScalingMetricSpecification = {
         },
         Dimensions = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricDimension,
         },
         Statistic = {
             type = "string",
@@ -215,14 +215,10 @@ M.PredefinedScalingMetricSpecification = {
 M.TargetTrackingConfiguration = {
     type = "structure",
     members = {
-        PredefinedScalingMetricSpecification = {
-            type = "structure",
-        },
-        CustomizedScalingMetricSpecification = {
-            type = "structure",
-        },
+        PredefinedScalingMetricSpecification = M.PredefinedScalingMetricSpecification,
+        CustomizedScalingMetricSpecification = M.CustomizedScalingMetricSpecification,
         TargetValue = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -231,13 +227,13 @@ M.TargetTrackingConfiguration = {
             type = "boolean",
         },
         ScaleOutCooldown = {
-            type = "number",
+            type = "integer",
         },
         ScaleInCooldown = {
-            type = "number",
+            type = "integer",
         },
         EstimatedInstanceWarmup = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -264,38 +260,34 @@ M.ScalingInstruction = {
             },
         },
         MinCapacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         MaxCapacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         TargetTrackingConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetTrackingConfiguration,
             traits = {
                 required = true,
             },
         },
-        PredefinedLoadMetricSpecification = {
-            type = "structure",
-        },
-        CustomizedLoadMetricSpecification = {
-            type = "structure",
-        },
+        PredefinedLoadMetricSpecification = M.PredefinedLoadMetricSpecification,
+        CustomizedLoadMetricSpecification = M.CustomizedLoadMetricSpecification,
         ScheduledActionBufferTime = {
-            type = "number",
+            type = "integer",
         },
         PredictiveScalingMaxCapacityBehavior = {
             type = "string",
         },
         PredictiveScalingMaxCapacityBuffer = {
-            type = "number",
+            type = "integer",
         },
         PredictiveScalingMode = {
             type = "string",
@@ -318,15 +310,12 @@ M.CreateScalingPlanInput = {
                 required = true,
             },
         },
-        ApplicationSource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ApplicationSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ApplicationSource }),
         ScalingInstructions = {
             type = "list",
-            member_type = "structure",
+            member = M.ScalingInstruction,
             traits = {
                 required = true,
             },
@@ -338,7 +327,7 @@ M.CreateScalingPlanOutput = {
     type = "structure",
     members = {
         ScalingPlanVersion = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -386,7 +375,7 @@ M.DeleteScalingPlanInput = {
             },
         },
         ScalingPlanVersion = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -418,13 +407,13 @@ M.DescribeScalingPlanResourcesInput = {
             },
         },
         ScalingPlanVersion = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -451,9 +440,7 @@ M.ScalingPolicy = {
                 required = true,
             },
         },
-        TargetTrackingConfiguration = {
-            type = "structure",
-        },
+        TargetTrackingConfiguration = M.TargetTrackingConfiguration,
     },
 }
 
@@ -473,7 +460,7 @@ M.ScalingPlanResource = {
             },
         },
         ScalingPlanVersion = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -498,7 +485,7 @@ M.ScalingPlanResource = {
         },
         ScalingPolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.ScalingPolicy,
         },
         ScalingStatusCode = {
             type = "string",
@@ -517,7 +504,7 @@ M.DescribeScalingPlanResourcesOutput = {
     members = {
         ScalingPlanResources = {
             type = "list",
-            member_type = "structure",
+            member = M.ScalingPlanResource,
         },
         NextToken = {
             type = "string",
@@ -540,17 +527,17 @@ M.DescribeScalingPlansInput = {
     members = {
         ScalingPlanNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ScalingPlanVersion = {
-            type = "number",
+            type = "long",
         },
         ApplicationSources = {
             type = "list",
-            member_type = "structure",
+            member = M.ApplicationSource,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -579,20 +566,17 @@ M.ScalingPlan = {
             },
         },
         ScalingPlanVersion = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
-        ApplicationSource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ApplicationSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ApplicationSource }),
         ScalingInstructions = {
             type = "list",
-            member_type = "structure",
+            member = M.ScalingInstruction,
             traits = {
                 required = true,
             },
@@ -620,7 +604,7 @@ M.DescribeScalingPlansOutput = {
     members = {
         ScalingPlans = {
             type = "list",
-            member_type = "structure",
+            member = M.ScalingPlan,
         },
         NextToken = {
             type = "string",
@@ -645,7 +629,7 @@ M.GetScalingPlanResourceForecastDataInput = {
             },
         },
         ScalingPlanVersion = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -696,7 +680,7 @@ M.Datapoint = {
             type = "timestamp",
         },
         Value = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -706,7 +690,7 @@ M.GetScalingPlanResourceForecastDataOutput = {
     members = {
         Datapoints = {
             type = "list",
-            member_type = "structure",
+            member = M.Datapoint,
             traits = {
                 required = true,
             },
@@ -724,17 +708,15 @@ M.UpdateScalingPlanInput = {
             },
         },
         ScalingPlanVersion = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
-        ApplicationSource = {
-            type = "structure",
-        },
+        ApplicationSource = M.ApplicationSource,
         ScalingInstructions = {
             type = "list",
-            member_type = "structure",
+            member = M.ScalingInstruction,
         },
     },
 }

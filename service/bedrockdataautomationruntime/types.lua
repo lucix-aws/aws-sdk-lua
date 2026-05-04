@@ -55,9 +55,7 @@ M.GetDataAutomationStatusOutput = {
         errorMessage = {
             type = "string",
         },
-        outputConfiguration = {
-            type = "structure",
-        },
+        outputConfiguration = M.OutputConfiguration,
         jobSubmissionTime = {
             type = "timestamp",
             traits = {
@@ -71,7 +69,7 @@ M.GetDataAutomationStatusOutput = {
             },
         },
         jobDurationInSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -170,8 +168,8 @@ M.EncryptionConfiguration = {
         },
         kmsEncryptionContext = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -180,13 +178,13 @@ M.TimestampSegment = {
     type = "structure",
     members = {
         startTimeMillis = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         endTimeMillis = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -197,27 +195,21 @@ M.TimestampSegment = {
 M.VideoSegmentConfiguration = {
     type = "union",
     members = {
-        timestampSegment = {
-            type = "structure",
-        },
+        timestampSegment = M.TimestampSegment,
     },
 }
 
 M.VideoAssetProcessingConfiguration = {
     type = "structure",
     members = {
-        segmentConfiguration = {
-            type = "union",
-        },
+        segmentConfiguration = M.VideoSegmentConfiguration,
     },
 }
 
 M.AssetProcessingConfiguration = {
     type = "structure",
     members = {
-        video = {
-            type = "structure",
-        },
+        video = M.VideoAssetProcessingConfiguration,
     },
 }
 
@@ -230,9 +222,7 @@ M.InputConfiguration = {
                 required = true,
             },
         },
-        assetProcessingConfiguration = {
-            type = "structure",
-        },
+        assetProcessingConfiguration = M.AssetProcessingConfiguration,
     },
 }
 
@@ -251,12 +241,9 @@ M.EventBridgeConfiguration = {
 M.NotificationConfiguration = {
     type = "structure",
     members = {
-        eventBridgeConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        eventBridgeConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EventBridgeConfiguration }),
     },
 }
 
@@ -284,30 +271,18 @@ M.InvokeDataAutomationAsyncInput = {
         clientToken = {
             type = "string",
         },
-        inputConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        outputConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        dataAutomationConfiguration = {
-            type = "structure",
-        },
-        encryptionConfiguration = {
-            type = "structure",
-        },
-        notificationConfiguration = {
-            type = "structure",
-        },
+        inputConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InputConfiguration }),
+        outputConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OutputConfiguration }),
+        dataAutomationConfiguration = M.DataAutomationConfiguration,
+        encryptionConfiguration = M.EncryptionConfiguration,
+        notificationConfiguration = M.NotificationConfiguration,
         blueprints = {
             type = "list",
-            member_type = "structure",
+            member = M.Blueprint,
         },
         dataAutomationProfileArn = {
             type = "string",
@@ -317,7 +292,7 @@ M.InvokeDataAutomationAsyncInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -359,18 +334,13 @@ M.SyncInputConfiguration = {
 M.InvokeDataAutomationInput = {
     type = "structure",
     members = {
-        inputConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        dataAutomationConfiguration = {
-            type = "structure",
-        },
+        inputConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SyncInputConfiguration }),
+        dataAutomationConfiguration = M.DataAutomationConfiguration,
         blueprints = {
             type = "list",
-            member_type = "structure",
+            member = M.Blueprint,
         },
         dataAutomationProfileArn = {
             type = "string",
@@ -378,12 +348,8 @@ M.InvokeDataAutomationInput = {
                 required = true,
             },
         },
-        encryptionConfiguration = {
-            type = "structure",
-        },
-        outputConfiguration = {
-            type = "structure",
-        },
+        encryptionConfiguration = M.EncryptionConfiguration,
+        outputConfiguration = M.OutputConfiguration,
     },
 }
 
@@ -417,9 +383,7 @@ M.SemanticModality = {
 M.InvokeDataAutomationOutput = {
     type = "structure",
     members = {
-        outputConfiguration = {
-            type = "structure",
-        },
+        outputConfiguration = M.OutputConfiguration,
         semanticModality = {
             type = "string",
             traits = {
@@ -428,7 +392,10 @@ M.InvokeDataAutomationOutput = {
         },
         outputSegments = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputSegment,
+            traits = {
+                default = {},
+            },
         },
     },
 }
@@ -460,7 +427,7 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -476,7 +443,7 @@ M.TagResourceInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -499,7 +466,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },

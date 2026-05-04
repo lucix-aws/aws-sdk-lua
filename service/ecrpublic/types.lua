@@ -26,7 +26,7 @@ M.BatchCheckLayerAvailabilityInput = {
         },
         layerDigests = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -69,7 +69,7 @@ M.Layer = {
             type = "string",
         },
         layerSize = {
-            type = "number",
+            type = "long",
         },
         mediaType = {
             type = "string",
@@ -82,11 +82,11 @@ M.BatchCheckLayerAvailabilityOutput = {
     members = {
         layers = {
             type = "list",
-            member_type = "structure",
+            member = M.Layer,
         },
         failures = {
             type = "list",
-            member_type = "structure",
+            member = M.LayerFailure,
         },
     },
 }
@@ -167,7 +167,7 @@ M.BatchDeleteImageInput = {
         },
         imageIds = {
             type = "list",
-            member_type = "structure",
+            member = M.ImageIdentifier,
             traits = {
                 required = true,
             },
@@ -188,9 +188,7 @@ M.ImageFailureCode = {
 M.ImageFailure = {
     type = "structure",
     members = {
-        imageId = {
-            type = "structure",
-        },
+        imageId = M.ImageIdentifier,
         failureCode = {
             type = "string",
         },
@@ -205,11 +203,11 @@ M.BatchDeleteImageOutput = {
     members = {
         imageIds = {
             type = "list",
-            member_type = "structure",
+            member = M.ImageIdentifier,
         },
         failures = {
             type = "list",
-            member_type = "structure",
+            member = M.ImageFailure,
         },
     },
 }
@@ -234,7 +232,7 @@ M.CompleteLayerUploadInput = {
         },
         layerDigests = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -318,11 +316,11 @@ M.RepositoryCatalogDataInput = {
         },
         architectures = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         operatingSystems = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         logoImageBlob = {
             type = "blob",
@@ -357,12 +355,10 @@ M.CreateRepositoryInput = {
                 required = true,
             },
         },
-        catalogData = {
-            type = "structure",
-        },
+        catalogData = M.RepositoryCatalogDataInput,
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -375,11 +371,11 @@ M.RepositoryCatalogData = {
         },
         architectures = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         operatingSystems = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         logoUrl = {
             type = "string",
@@ -420,12 +416,8 @@ M.Repository = {
 M.CreateRepositoryOutput = {
     type = "structure",
     members = {
-        repository = {
-            type = "structure",
-        },
-        catalogData = {
-            type = "structure",
-        },
+        repository = M.Repository,
+        catalogData = M.RepositoryCatalogData,
     },
 }
 
@@ -483,6 +475,9 @@ M.DeleteRepositoryInput = {
         },
         force = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -490,9 +485,7 @@ M.DeleteRepositoryInput = {
 M.DeleteRepositoryOutput = {
     type = "structure",
     members = {
-        repository = {
-            type = "structure",
-        },
+        repository = M.Repository,
     },
 }
 
@@ -560,13 +553,13 @@ M.DescribeImagesInput = {
         },
         imageIds = {
             type = "list",
-            member_type = "structure",
+            member = M.ImageIdentifier,
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -585,10 +578,10 @@ M.ImageDetail = {
         },
         imageTags = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         imageSizeInBytes = {
-            type = "number",
+            type = "long",
         },
         imagePushedAt = {
             type = "timestamp",
@@ -607,7 +600,7 @@ M.DescribeImagesOutput = {
     members = {
         imageDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.ImageDetail,
         },
         nextToken = {
             type = "string",
@@ -641,7 +634,7 @@ M.DescribeImageTagsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -653,7 +646,7 @@ M.ReferencedImageDetail = {
             type = "string",
         },
         imageSizeInBytes = {
-            type = "number",
+            type = "long",
         },
         imagePushedAt = {
             type = "timestamp",
@@ -676,9 +669,7 @@ M.ImageTagDetail = {
         createdAt = {
             type = "timestamp",
         },
-        imageDetail = {
-            type = "structure",
-        },
+        imageDetail = M.ReferencedImageDetail,
     },
 }
 
@@ -687,7 +678,7 @@ M.DescribeImageTagsOutput = {
     members = {
         imageTagDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.ImageTagDetail,
         },
         nextToken = {
             type = "string",
@@ -702,7 +693,7 @@ M.DescribeRegistriesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -731,12 +722,14 @@ M.RegistryAlias = {
         primaryRegistryAlias = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
         defaultRegistryAlias = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -772,7 +765,7 @@ M.Registry = {
         },
         aliases = {
             type = "list",
-            member_type = "structure",
+            member = M.RegistryAlias,
             traits = {
                 required = true,
             },
@@ -785,7 +778,7 @@ M.DescribeRegistriesOutput = {
     members = {
         registries = {
             type = "list",
-            member_type = "structure",
+            member = M.Registry,
             traits = {
                 required = true,
             },
@@ -804,13 +797,13 @@ M.DescribeRepositoriesInput = {
         },
         repositoryNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -820,7 +813,7 @@ M.DescribeRepositoriesOutput = {
     members = {
         repositories = {
             type = "list",
-            member_type = "structure",
+            member = M.Repository,
         },
         nextToken = {
             type = "string",
@@ -835,9 +828,7 @@ M.GetAuthorizationTokenInput = {
 M.GetAuthorizationTokenOutput = {
     type = "structure",
     members = {
-        authorizationData = {
-            type = "structure",
-        },
+        authorizationData = M.AuthorizationData,
     },
 }
 
@@ -857,12 +848,9 @@ M.RegistryCatalogData = {
 M.GetRegistryCatalogDataOutput = {
     type = "structure",
     members = {
-        registryCatalogData = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        registryCatalogData = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RegistryCatalogData }),
     },
 }
 
@@ -884,9 +872,7 @@ M.GetRepositoryCatalogDataInput = {
 M.GetRepositoryCatalogDataOutput = {
     type = "structure",
     members = {
-        catalogData = {
-            type = "structure",
-        },
+        catalogData = M.RepositoryCatalogData,
     },
 }
 
@@ -939,9 +925,7 @@ M.Image = {
         repositoryName = {
             type = "string",
         },
-        imageId = {
-            type = "structure",
-        },
+        imageId = M.ImageIdentifier,
         imageManifest = {
             type = "string",
         },
@@ -1003,7 +987,7 @@ M.InitiateLayerUploadOutput = {
             type = "string",
         },
         partSize = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1022,7 +1006,7 @@ M.InvalidLayerPartException = {
             type = "string",
         },
         lastValidByteReceived = {
-            type = "number",
+            type = "long",
         },
         message = {
             type = "string",
@@ -1057,7 +1041,7 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1095,9 +1079,7 @@ M.PutImageInput = {
 M.PutImageOutput = {
     type = "structure",
     members = {
-        image = {
-            type = "structure",
-        },
+        image = M.Image,
     },
 }
 
@@ -1123,12 +1105,9 @@ M.PutRegistryCatalogDataInput = {
 M.PutRegistryCatalogDataOutput = {
     type = "structure",
     members = {
-        registryCatalogData = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        registryCatalogData = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RegistryCatalogData }),
     },
 }
 
@@ -1144,21 +1123,16 @@ M.PutRepositoryCatalogDataInput = {
                 required = true,
             },
         },
-        catalogData = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        catalogData = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RepositoryCatalogDataInput }),
     },
 }
 
 M.PutRepositoryCatalogDataOutput = {
     type = "structure",
     members = {
-        catalogData = {
-            type = "structure",
-        },
+        catalogData = M.RepositoryCatalogData,
     },
 }
 
@@ -1182,6 +1156,9 @@ M.SetRepositoryPolicyInput = {
         },
         force = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1212,7 +1189,7 @@ M.TagResourceInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -1235,7 +1212,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1266,13 +1243,13 @@ M.UploadLayerPartInput = {
             },
         },
         partFirstByte = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         partLastByte = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -1299,7 +1276,7 @@ M.UploadLayerPartOutput = {
             type = "string",
         },
         lastByteReceived = {
-            type = "number",
+            type = "long",
         },
     },
 }

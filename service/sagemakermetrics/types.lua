@@ -55,10 +55,10 @@ M.MetricQuery = {
             },
         },
         Start = {
-            type = "number",
+            type = "long",
         },
         End = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -68,7 +68,7 @@ M.BatchGetMetricsInput = {
     members = {
         MetricQueries = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricQuery,
             traits = {
                 required = true,
             },
@@ -97,14 +97,14 @@ M.MetricQueryResult = {
         },
         XAxisValues = {
             type = "list",
-            member_type = "number",
+            member = { type = "long" },
             traits = {
                 required = true,
             },
         },
         MetricValues = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
@@ -117,7 +117,7 @@ M.BatchGetMetricsOutput = {
     members = {
         MetricQueryResults = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricQueryResult,
         },
     },
 }
@@ -138,10 +138,10 @@ M.RawMetricData = {
             },
         },
         Step = {
-            type = "number",
+            type = "integer",
         },
         Value = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -160,7 +160,7 @@ M.BatchPutMetricsInput = {
         },
         MetricData = {
             type = "list",
-            member_type = "structure",
+            member = M.RawMetricData,
             traits = {
                 required = true,
             },
@@ -182,7 +182,7 @@ M.BatchPutMetricsError = {
             type = "string",
         },
         MetricIndex = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -192,7 +192,7 @@ M.BatchPutMetricsOutput = {
     members = {
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchPutMetricsError,
         },
     },
 }

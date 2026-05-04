@@ -55,9 +55,7 @@ M.AgentTurnResult = {
         actualAgentPrompt = {
             type = "string",
         },
-        errorDetails = {
-            type = "structure",
-        },
+        errorDetails = M.ExecutionErrorDetails,
         actualElicitedSlot = {
             type = "string",
         },
@@ -99,7 +97,7 @@ M.AggregatedUtterancesFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -148,10 +146,10 @@ M.AggregatedUtterancesSummary = {
             type = "string",
         },
         hitCount = {
-            type = "number",
+            type = "integer",
         },
         missedCount = {
-            type = "number",
+            type = "integer",
         },
         utteranceFirstRecordedInAggregationDuration = {
             type = "timestamp",
@@ -230,7 +228,7 @@ M.AnalyticsBinKey = {
             type = "string",
         },
         value = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -284,7 +282,7 @@ M.AnalyticsIntentFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -361,7 +359,7 @@ M.AnalyticsIntentMetricResult = {
             type = "string",
         },
         value = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -381,10 +379,10 @@ M.AnalyticsIntentNodeSummary = {
             type = "string",
         },
         intentCount = {
-            type = "number",
+            type = "integer",
         },
         intentLevel = {
-            type = "number",
+            type = "integer",
         },
         nodeType = {
             type = "string",
@@ -397,15 +395,15 @@ M.AnalyticsIntentResult = {
     members = {
         binKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalyticsBinKey,
         },
         groupByKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalyticsIntentGroupByKey,
         },
         metricsResults = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalyticsIntentMetricResult,
         },
     },
 }
@@ -444,7 +442,7 @@ M.AnalyticsIntentStageFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -515,7 +513,7 @@ M.AnalyticsIntentStageMetricResult = {
             type = "string",
         },
         value = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -525,15 +523,15 @@ M.AnalyticsIntentStageResult = {
     members = {
         binKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalyticsBinKey,
         },
         groupByKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalyticsIntentStageGroupByKey,
         },
         metricsResults = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalyticsIntentStageMetricResult,
         },
     },
 }
@@ -562,7 +560,7 @@ M.AnalyticsPathFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -605,7 +603,7 @@ M.AnalyticsSessionFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -678,7 +676,7 @@ M.AnalyticsSessionMetricResult = {
             type = "string",
         },
         value = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -688,15 +686,15 @@ M.AnalyticsSessionResult = {
     members = {
         binKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalyticsBinKey,
         },
         groupByKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalyticsSessionGroupByKey,
         },
         metricsResults = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalyticsSessionMetricResult,
         },
     },
 }
@@ -766,7 +764,7 @@ M.AnalyticsUtteranceFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -836,7 +834,7 @@ M.AnalyticsUtteranceMetricResult = {
             type = "string",
         },
         value = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -846,19 +844,19 @@ M.AnalyticsUtteranceResult = {
     members = {
         binKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalyticsBinKey,
         },
         groupByKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalyticsUtteranceGroupByKey,
         },
         metricsResults = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalyticsUtteranceMetricResult,
         },
         attributeResults = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalyticsUtteranceAttributeResult,
         },
     },
 }
@@ -897,7 +895,7 @@ M.AssociatedTranscriptFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -909,13 +907,13 @@ M.AudioSpecification = {
     type = "structure",
     members = {
         maxLengthMs = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         endTimeoutMs = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -927,13 +925,13 @@ M.DTMFSpecification = {
     type = "structure",
     members = {
         maxLength = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         endTimeoutMs = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -957,17 +955,13 @@ M.AudioAndDTMFInputSpecification = {
     type = "structure",
     members = {
         startTimeoutMs = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
-        audioSpecification = {
-            type = "structure",
-        },
-        dtmfSpecification = {
-            type = "structure",
-        },
+        audioSpecification = M.AudioSpecification,
+        dtmfSpecification = M.DTMFSpecification,
     },
 }
 
@@ -995,12 +989,9 @@ M.S3BucketLogDestination = {
 M.AudioLogDestination = {
     type = "structure",
     members = {
-        s3Bucket = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        s3Bucket = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3BucketLogDestination }),
     },
 }
 
@@ -1010,15 +1001,13 @@ M.AudioLogSetting = {
         enabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
-        destination = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        destination = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AudioLogDestination }),
         selectiveLoggingEnabled = {
             type = "boolean",
         },
@@ -1035,7 +1024,7 @@ M.NewCustomVocabularyItem = {
             },
         },
         weight = {
-            type = "number",
+            type = "integer",
         },
         displayAs = {
             type = "string",
@@ -1069,7 +1058,7 @@ M.BatchCreateCustomVocabularyItemInput = {
         },
         customVocabularyItemList = {
             type = "list",
-            member_type = "structure",
+            member = M.NewCustomVocabularyItem,
             traits = {
                 required = true,
             },
@@ -1115,7 +1104,7 @@ M.CustomVocabularyItem = {
             },
         },
         weight = {
-            type = "number",
+            type = "integer",
         },
         displayAs = {
             type = "string",
@@ -1137,11 +1126,11 @@ M.BatchCreateCustomVocabularyItemOutput = {
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.FailedCustomVocabularyItem,
         },
         resources = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomVocabularyItem,
         },
     },
 }
@@ -1181,8 +1170,9 @@ M.ThrottlingException = {
     error = "client",
     members = {
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_header = "Retry-After",
             },
         },
@@ -1240,7 +1230,7 @@ M.BatchDeleteCustomVocabularyItemInput = {
         },
         customVocabularyItemList = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomVocabularyEntryId,
             traits = {
                 required = true,
             },
@@ -1262,11 +1252,11 @@ M.BatchDeleteCustomVocabularyItemOutput = {
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.FailedCustomVocabularyItem,
         },
         resources = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomVocabularyItem,
         },
     },
 }
@@ -1297,7 +1287,7 @@ M.BatchUpdateCustomVocabularyItemInput = {
         },
         customVocabularyItemList = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomVocabularyItem,
             traits = {
                 required = true,
             },
@@ -1319,11 +1309,11 @@ M.BatchUpdateCustomVocabularyItemOutput = {
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.FailedCustomVocabularyItem,
         },
         resources = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomVocabularyItem,
         },
     },
 }
@@ -1366,10 +1356,11 @@ M.BedrockKnowledgeStoreConfiguration = {
         },
         exactResponse = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        exactResponseFields = {
-            type = "structure",
-        },
+        exactResponseFields = M.BedrockKnowledgeStoreExactResponseFields,
     },
 }
 
@@ -1387,9 +1378,7 @@ M.BedrockModelSpecification = {
                 required = true,
             },
         },
-        guardrail = {
-            type = "structure",
-        },
+        guardrail = M.BedrockGuardrailConfiguration,
         traceStatus = {
             type = "string",
         },
@@ -1435,12 +1424,9 @@ M.LambdaCodeHook = {
 M.CodeHookSpecification = {
     type = "structure",
     members = {
-        lambdaCodeHook = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        lambdaCodeHook = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LambdaCodeHook }),
     },
 }
 
@@ -1450,12 +1436,11 @@ M.BotAliasLocaleSettings = {
         enabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
-        codeHookSpecification = {
-            type = "structure",
-        },
+        codeHookSpecification = M.CodeHookSpecification,
     },
 }
 
@@ -1487,7 +1472,7 @@ M.BotAliasReplicaSummary = {
         },
         failureReasons = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1603,12 +1588,9 @@ M.Priority = {
 M.BotAnalyzerRecommendation = {
     type = "structure",
     members = {
-        issueLocation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        issueLocation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IssueLocation }),
         priority = {
             type = "string",
             traits = {
@@ -1670,7 +1652,7 @@ M.BotFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1690,6 +1672,7 @@ M.DataPrivacy = {
         childDirected = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -1723,27 +1706,22 @@ M.BotImportSpecification = {
                 required = true,
             },
         },
-        dataPrivacy = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        errorLogSettings = {
-            type = "structure",
-        },
+        dataPrivacy = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataPrivacy }),
+        errorLogSettings = M.ErrorLogSettings,
         idleSessionTTLInSeconds = {
-            type = "number",
+            type = "integer",
         },
         botTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         testBotAliasTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1792,7 +1770,7 @@ M.BotLocaleFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1848,9 +1826,7 @@ M.DeepgramSpeechModelConfig = {
 M.SpeechModelConfig = {
     type = "structure",
     members = {
-        deepgramConfig = {
-            type = "structure",
-        },
+        deepgramConfig = M.DeepgramSpeechModelConfig,
     },
 }
 
@@ -1866,9 +1842,7 @@ M.SpeechRecognitionSettings = {
         speechModelPreference = {
             type = "string",
         },
-        speechModelConfig = {
-            type = "structure",
-        },
+        speechModelConfig = M.SpeechModelConfig,
     },
 }
 
@@ -1890,12 +1864,9 @@ M.SpeechFoundationModel = {
 M.UnifiedSpeechSettings = {
     type = "structure",
     members = {
-        speechFoundationModel = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        speechFoundationModel = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SpeechFoundationModel }),
     },
 }
 
@@ -1943,20 +1914,14 @@ M.BotLocaleImportSpecification = {
             },
         },
         nluIntentConfidenceThreshold = {
-            type = "number",
+            type = "double",
         },
-        voiceSettings = {
-            type = "structure",
-        },
-        speechRecognitionSettings = {
-            type = "structure",
-        },
+        voiceSettings = M.VoiceSettings,
+        speechRecognitionSettings = M.SpeechRecognitionSettings,
         speechDetectionSensitivity = {
             type = "string",
         },
-        unifiedSpeechSettings = {
-            type = "structure",
-        },
+        unifiedSpeechSettings = M.UnifiedSpeechSettings,
     },
 }
 
@@ -2058,7 +2023,7 @@ M.IntentStatistics = {
     type = "structure",
     members = {
         discoveredIntentCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2067,7 +2032,7 @@ M.SlotTypeStatistics = {
     type = "structure",
     members = {
         discoveredSlotTypeCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2075,12 +2040,8 @@ M.SlotTypeStatistics = {
 M.BotRecommendationResultStatistics = {
     type = "structure",
     members = {
-        intents = {
-            type = "structure",
-        },
-        slotTypes = {
-            type = "structure",
-        },
+        intents = M.IntentStatistics,
+        slotTypes = M.SlotTypeStatistics,
     },
 }
 
@@ -2093,9 +2054,7 @@ M.BotRecommendationResults = {
         associatedTranscriptsUrl = {
             type = "string",
         },
-        statistics = {
-            type = "structure",
-        },
+        statistics = M.BotRecommendationResultStatistics,
     },
 }
 
@@ -2156,7 +2115,7 @@ M.BotReplicaSummary = {
         },
         failureReasons = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2281,7 +2240,7 @@ M.BotVersionReplicaSummary = {
         },
         failureReasons = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2403,12 +2362,11 @@ M.DescriptiveBotBuilderSpecification = {
         enabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
-        bedrockModelSpecification = {
-            type = "structure",
-        },
+        bedrockModelSpecification = M.BedrockModelSpecification,
     },
 }
 
@@ -2418,24 +2376,19 @@ M.SampleUtteranceGenerationSpecification = {
         enabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
-        bedrockModelSpecification = {
-            type = "structure",
-        },
+        bedrockModelSpecification = M.BedrockModelSpecification,
     },
 }
 
 M.BuildtimeSettings = {
     type = "structure",
     members = {
-        descriptiveBotBuilder = {
-            type = "structure",
-        },
-        sampleUtteranceGeneration = {
-            type = "structure",
-        },
+        descriptiveBotBuilder = M.DescriptiveBotBuilderSpecification,
+        sampleUtteranceGeneration = M.SampleUtteranceGenerationSpecification,
     },
 }
 
@@ -2566,7 +2519,7 @@ M.CompositeSlotTypeSetting = {
     members = {
         subSlots = {
             type = "list",
-            member_type = "structure",
+            member = M.SubSlotTypeComposition,
         },
     },
 }
@@ -2656,7 +2609,7 @@ M.ImageResponseCard = {
         },
         buttons = {
             type = "list",
-            member_type = "structure",
+            member = M.Button,
         },
     },
 }
@@ -2688,33 +2641,22 @@ M.SSMLMessage = {
 M.Message = {
     type = "structure",
     members = {
-        plainTextMessage = {
-            type = "structure",
-        },
-        customPayload = {
-            type = "structure",
-        },
-        ssmlMessage = {
-            type = "structure",
-        },
-        imageResponseCard = {
-            type = "structure",
-        },
+        plainTextMessage = M.PlainTextMessage,
+        customPayload = M.CustomPayload,
+        ssmlMessage = M.SSMLMessage,
+        imageResponseCard = M.ImageResponseCard,
     },
 }
 
 M.MessageGroup = {
     type = "structure",
     members = {
-        message = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        message = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Message }),
         variations = {
             type = "list",
-            member_type = "structure",
+            member = M.Message,
         },
     },
 }
@@ -2724,7 +2666,7 @@ M.ResponseSpecification = {
     members = {
         messageGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.MessageGroup,
             traits = {
                 required = true,
             },
@@ -2824,14 +2766,14 @@ M.ConversationLevelTestResultItem = {
         },
         intentClassificationResults = {
             type = "list",
-            member_type = "structure",
+            member = M.ConversationLevelIntentClassificationResultItem,
             traits = {
                 required = true,
             },
         },
         slotResolutionResults = {
             type = "list",
-            member_type = "structure",
+            member = M.ConversationLevelSlotResolutionResultItem,
             traits = {
                 required = true,
             },
@@ -2844,7 +2786,7 @@ M.ConversationLevelTestResults = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.ConversationLevelTestResultItem,
             traits = {
                 required = true,
             },
@@ -2911,24 +2853,18 @@ M.ConversationLogsDataSource = {
                 required = true,
             },
         },
-        filter = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        filter = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConversationLogsDataSourceFilterBy }),
     },
 }
 
 M.TextLogDestination = {
     type = "structure",
     members = {
-        cloudWatch = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        cloudWatch = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CloudWatchLogGroupLogDestination }),
     },
 }
 
@@ -2938,15 +2874,13 @@ M.TextLogSetting = {
         enabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
-        destination = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        destination = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TextLogDestination }),
         selectiveLoggingEnabled = {
             type = "boolean",
         },
@@ -2958,11 +2892,11 @@ M.ConversationLogSettings = {
     members = {
         textLogSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.TextLogSetting,
         },
         audioLogSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.AudioLogSetting,
         },
     },
 }
@@ -2985,38 +2919,33 @@ M.CreateBotInput = {
                 required = true,
             },
         },
-        dataPrivacy = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        dataPrivacy = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataPrivacy }),
         idleSessionTTLInSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         botTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         testBotAliasTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         botType = {
             type = "string",
         },
         botMembers = {
             type = "list",
-            member_type = "structure",
+            member = M.BotMember,
         },
-        errorLogSettings = {
-            type = "structure",
-        },
+        errorLogSettings = M.ErrorLogSettings,
     },
 }
 
@@ -3035,11 +2964,9 @@ M.CreateBotOutput = {
         roleArn = {
             type = "string",
         },
-        dataPrivacy = {
-            type = "structure",
-        },
+        dataPrivacy = M.DataPrivacy,
         idleSessionTTLInSeconds = {
-            type = "number",
+            type = "integer",
         },
         botStatus = {
             type = "string",
@@ -3049,24 +2976,22 @@ M.CreateBotOutput = {
         },
         botTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         testBotAliasTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         botType = {
             type = "string",
         },
         botMembers = {
             type = "list",
-            member_type = "structure",
+            member = M.BotMember,
         },
-        errorLogSettings = {
-            type = "structure",
-        },
+        errorLogSettings = M.ErrorLogSettings,
     },
 }
 
@@ -3076,6 +3001,7 @@ M.SentimentAnalysisSettings = {
         detectSentiment = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -3099,15 +3025,11 @@ M.CreateBotAliasInput = {
         },
         botAliasLocaleSettings = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.BotAliasLocaleSettings,
         },
-        conversationLogSettings = {
-            type = "structure",
-        },
-        sentimentAnalysisSettings = {
-            type = "structure",
-        },
+        conversationLogSettings = M.ConversationLogSettings,
+        sentimentAnalysisSettings = M.SentimentAnalysisSettings,
         botId = {
             type = "string",
             traits = {
@@ -3117,8 +3039,8 @@ M.CreateBotAliasInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3140,15 +3062,11 @@ M.CreateBotAliasOutput = {
         },
         botAliasLocaleSettings = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.BotAliasLocaleSettings,
         },
-        conversationLogSettings = {
-            type = "structure",
-        },
-        sentimentAnalysisSettings = {
-            type = "structure",
-        },
+        conversationLogSettings = M.ConversationLogSettings,
+        sentimentAnalysisSettings = M.SentimentAnalysisSettings,
         botAliasStatus = {
             type = "string",
         },
@@ -3160,8 +3078,8 @@ M.CreateBotAliasOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3172,11 +3090,12 @@ M.IntentDisambiguationSettings = {
         enabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
         maxDisambiguationIntents = {
-            type = "number",
+            type = "integer",
         },
         customDisambiguationMessage = {
             type = "string",
@@ -3190,15 +3109,14 @@ M.NluImprovementSpecification = {
         enabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
         assistedNluMode = {
             type = "string",
         },
-        intentDisambiguationSettings = {
-            type = "structure",
-        },
+        intentDisambiguationSettings = M.IntentDisambiguationSettings,
     },
 }
 
@@ -3208,36 +3126,27 @@ M.SlotResolutionImprovementSpecification = {
         enabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
-        bedrockModelSpecification = {
-            type = "structure",
-        },
+        bedrockModelSpecification = M.BedrockModelSpecification,
     },
 }
 
 M.RuntimeSettings = {
     type = "structure",
     members = {
-        slotResolutionImprovement = {
-            type = "structure",
-        },
-        nluImprovement = {
-            type = "structure",
-        },
+        slotResolutionImprovement = M.SlotResolutionImprovementSpecification,
+        nluImprovement = M.NluImprovementSpecification,
     },
 }
 
 M.GenerativeAISettings = {
     type = "structure",
     members = {
-        runtimeSettings = {
-            type = "structure",
-        },
-        buildtimeSettings = {
-            type = "structure",
-        },
+        runtimeSettings = M.RuntimeSettings,
+        buildtimeSettings = M.BuildtimeSettings,
     },
 }
 
@@ -3268,23 +3177,15 @@ M.CreateBotLocaleInput = {
             type = "string",
         },
         nluIntentConfidenceThreshold = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
-        voiceSettings = {
-            type = "structure",
-        },
-        unifiedSpeechSettings = {
-            type = "structure",
-        },
-        speechRecognitionSettings = {
-            type = "structure",
-        },
-        generativeAISettings = {
-            type = "structure",
-        },
+        voiceSettings = M.VoiceSettings,
+        unifiedSpeechSettings = M.UnifiedSpeechSettings,
+        speechRecognitionSettings = M.SpeechRecognitionSettings,
+        generativeAISettings = M.GenerativeAISettings,
         speechDetectionSensitivity = {
             type = "string",
         },
@@ -3310,26 +3211,18 @@ M.CreateBotLocaleOutput = {
             type = "string",
         },
         nluIntentConfidenceThreshold = {
-            type = "number",
+            type = "double",
         },
-        voiceSettings = {
-            type = "structure",
-        },
-        unifiedSpeechSettings = {
-            type = "structure",
-        },
-        speechRecognitionSettings = {
-            type = "structure",
-        },
+        voiceSettings = M.VoiceSettings,
+        unifiedSpeechSettings = M.UnifiedSpeechSettings,
+        speechRecognitionSettings = M.SpeechRecognitionSettings,
         botLocaleStatus = {
             type = "string",
         },
         creationDateTime = {
             type = "timestamp",
         },
-        generativeAISettings = {
-            type = "structure",
-        },
+        generativeAISettings = M.GenerativeAISettings,
         speechDetectionSensitivity = {
             type = "string",
         },
@@ -3391,8 +3284,8 @@ M.CreateBotVersionInput = {
         },
         botVersionLocaleSpecification = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.BotVersionLocaleDetails,
             traits = {
                 required = true,
             },
@@ -3414,8 +3307,8 @@ M.CreateBotVersionOutput = {
         },
         botVersionLocaleSpecification = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.BotVersionLocaleDetails,
         },
         botStatus = {
             type = "string",
@@ -3471,30 +3364,19 @@ M.TestSetExportSpecification = {
 M.ExportResourceSpecification = {
     type = "structure",
     members = {
-        botExportSpecification = {
-            type = "structure",
-        },
-        botLocaleExportSpecification = {
-            type = "structure",
-        },
-        customVocabularyExportSpecification = {
-            type = "structure",
-        },
-        testSetExportSpecification = {
-            type = "structure",
-        },
+        botExportSpecification = M.BotExportSpecification,
+        botLocaleExportSpecification = M.BotLocaleExportSpecification,
+        customVocabularyExportSpecification = M.CustomVocabularyExportSpecification,
+        testSetExportSpecification = M.TestSetExportSpecification,
     },
 }
 
 M.CreateExportInput = {
     type = "structure",
     members = {
-        resourceSpecification = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        resourceSpecification = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ExportResourceSpecification }),
         fileFormat = {
             type = "string",
             traits = {
@@ -3520,9 +3402,7 @@ M.CreateExportOutput = {
         exportId = {
             type = "string",
         },
-        resourceSpecification = {
-            type = "structure",
-        },
+        resourceSpecification = M.ExportResourceSpecification,
         fileFormat = {
             type = "string",
         },
@@ -3541,6 +3421,7 @@ M.DialogCodeHookSettings = {
         enabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -3551,14 +3432,14 @@ M.FulfillmentStartResponseSpecification = {
     type = "structure",
     members = {
         delayInSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         messageGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.MessageGroup,
             traits = {
                 required = true,
             },
@@ -3573,14 +3454,14 @@ M.FulfillmentUpdateResponseSpecification = {
     type = "structure",
     members = {
         frequencyInSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         messageGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.MessageGroup,
             traits = {
                 required = true,
             },
@@ -3600,14 +3481,10 @@ M.FulfillmentUpdatesSpecification = {
                 required = true,
             },
         },
-        startResponse = {
-            type = "structure",
-        },
-        updateResponse = {
-            type = "structure",
-        },
+        startResponse = M.FulfillmentStartResponseSpecification,
+        updateResponse = M.FulfillmentUpdateResponseSpecification,
         timeoutInSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3657,7 +3534,7 @@ M.TextInputSpecification = {
     type = "structure",
     members = {
         startTimeoutMs = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -3671,18 +3548,11 @@ M.PromptAttemptSpecification = {
         allowInterrupt = {
             type = "boolean",
         },
-        allowedInputTypes = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        audioAndDTMFInputSpecification = {
-            type = "structure",
-        },
-        textInputSpecification = {
-            type = "structure",
-        },
+        allowedInputTypes = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AllowedInputTypes }),
+        audioAndDTMFInputSpecification = M.AudioAndDTMFInputSpecification,
+        textInputSpecification = M.TextInputSpecification,
     },
 }
 
@@ -3691,13 +3561,13 @@ M.PromptSpecification = {
     members = {
         messageGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.MessageGroup,
             traits = {
                 required = true,
             },
         },
         maxRetries = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -3710,8 +3580,8 @@ M.PromptSpecification = {
         },
         promptAttemptsSpecification = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.PromptAttemptSpecification,
         },
     },
 }
@@ -3727,6 +3597,9 @@ M.KendraConfiguration = {
         },
         queryFilterStringEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         queryFilterString = {
             type = "string",
@@ -3744,13 +3617,13 @@ M.OutputContext = {
             },
         },
         timeToLiveInSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         turnsToLive = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -3773,9 +3646,7 @@ M.QInConnectAssistantConfiguration = {
 M.QInConnectIntentConfiguration = {
     type = "structure",
     members = {
-        qInConnectAssistantConfiguration = {
-            type = "structure",
-        },
+        qInConnectAssistantConfiguration = M.QInConnectAssistantConfiguration,
     },
 }
 
@@ -3790,12 +3661,18 @@ M.QnAKendraConfiguration = {
         },
         queryFilterStringEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         queryFilterString = {
             type = "string",
         },
         exactResponse = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -3835,13 +3712,14 @@ M.OpensearchConfiguration = {
         },
         exactResponse = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        exactResponseFields = {
-            type = "structure",
-        },
+        exactResponseFields = M.ExactResponseFields,
         includeFields = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3849,27 +3727,17 @@ M.OpensearchConfiguration = {
 M.DataSourceConfiguration = {
     type = "structure",
     members = {
-        opensearchConfiguration = {
-            type = "structure",
-        },
-        kendraConfiguration = {
-            type = "structure",
-        },
-        bedrockKnowledgeStoreConfiguration = {
-            type = "structure",
-        },
+        opensearchConfiguration = M.OpensearchConfiguration,
+        kendraConfiguration = M.QnAKendraConfiguration,
+        bedrockKnowledgeStoreConfiguration = M.BedrockKnowledgeStoreConfiguration,
     },
 }
 
 M.QnAIntentConfiguration = {
     type = "structure",
     members = {
-        dataSourceConfiguration = {
-            type = "structure",
-        },
-        bedrockModelConfiguration = {
-            type = "structure",
-        },
+        dataSourceConfiguration = M.DataSourceConfiguration,
+        bedrockModelConfiguration = M.BedrockModelSpecification,
     },
 }
 
@@ -3957,22 +3825,22 @@ M.CreateResourcePolicyStatementInput = {
         },
         principal = {
             type = "list",
-            member_type = "structure",
+            member = M.Principal,
             traits = {
                 required = true,
             },
         },
         action = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         condition = {
             type = "map",
-            key_type = "string",
-            value_type = "map",
+            key = { type = "string" },
+            value = { type = "map" },
         },
         expectedRevisionId = {
             type = "string",
@@ -4000,6 +3868,9 @@ M.MultipleValuesSetting = {
     members = {
         allowMultipleValues = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -4038,7 +3909,7 @@ M.SlotDefaultValueSpecification = {
     members = {
         defaultValueList = {
             type = "list",
-            member_type = "structure",
+            member = M.SlotDefaultValue,
             traits = {
                 required = true,
             },
@@ -4051,19 +3922,19 @@ M.StillWaitingResponseSpecification = {
     members = {
         messageGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.MessageGroup,
             traits = {
                 required = true,
             },
         },
         frequencyInSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         timeoutInSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -4077,21 +3948,13 @@ M.StillWaitingResponseSpecification = {
 M.WaitAndContinueSpecification = {
     type = "structure",
     members = {
-        waitingResponse = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        continueResponse = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        stillWaitingResponse = {
-            type = "structure",
-        },
+        waitingResponse = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResponseSpecification }),
+        continueResponse = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResponseSpecification }),
+        stillWaitingResponse = M.StillWaitingResponseSpecification,
         active = {
             type = "boolean",
         },
@@ -4101,22 +3964,15 @@ M.WaitAndContinueSpecification = {
 M.SubSlotValueElicitationSetting = {
     type = "structure",
     members = {
-        defaultValueSpecification = {
-            type = "structure",
-        },
-        promptSpecification = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        defaultValueSpecification = M.SlotDefaultValueSpecification,
+        promptSpecification = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PromptSpecification }),
         sampleUtterances = {
             type = "list",
-            member_type = "structure",
+            member = M.SampleUtterance,
         },
-        waitAndContinueSpecification = {
-            type = "structure",
-        },
+        waitAndContinueSpecification = M.WaitAndContinueSpecification,
     },
 }
 
@@ -4129,12 +3985,9 @@ M.Specifications = {
                 required = true,
             },
         },
-        valueElicitationSetting = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        valueElicitationSetting = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SubSlotValueElicitationSetting }),
     },
 }
 
@@ -4146,8 +3999,8 @@ M.SubSlotSetting = {
         },
         slotSpecifications = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.Specifications,
         },
     },
 }
@@ -4198,18 +4051,14 @@ M.GrammarSlotTypeSource = {
 M.GrammarSlotTypeSetting = {
     type = "structure",
     members = {
-        source = {
-            type = "structure",
-        },
+        source = M.GrammarSlotTypeSource,
     },
 }
 
 M.ExternalSourceSetting = {
     type = "structure",
     members = {
-        grammarSlotTypeSetting = {
-            type = "structure",
-        },
+        grammarSlotTypeSetting = M.GrammarSlotTypeSetting,
     },
 }
 
@@ -4228,12 +4077,10 @@ M.SampleValue = {
 M.SlotTypeValue = {
     type = "structure",
     members = {
-        sampleValue = {
-            type = "structure",
-        },
+        sampleValue = M.SampleValue,
         synonyms = {
             type = "list",
-            member_type = "structure",
+            member = M.SampleValue,
         },
     },
 }
@@ -4265,12 +4112,8 @@ M.SlotValueSelectionSetting = {
                 required = true,
             },
         },
-        regexFilter = {
-            type = "structure",
-        },
-        advancedRecognitionSetting = {
-            type = "structure",
-        },
+        regexFilter = M.SlotValueRegexFilter,
+        advancedRecognitionSetting = M.AdvancedRecognitionSetting,
     },
 }
 
@@ -4288,11 +4131,9 @@ M.CreateSlotTypeInput = {
         },
         slotTypeValues = {
             type = "list",
-            member_type = "structure",
+            member = M.SlotTypeValue,
         },
-        valueSelectionSetting = {
-            type = "structure",
-        },
+        valueSelectionSetting = M.SlotValueSelectionSetting,
         parentSlotTypeSignature = {
             type = "string",
         },
@@ -4317,12 +4158,8 @@ M.CreateSlotTypeInput = {
                 required = true,
             },
         },
-        externalSourceSetting = {
-            type = "structure",
-        },
-        compositeSlotTypeSetting = {
-            type = "structure",
-        },
+        externalSourceSetting = M.ExternalSourceSetting,
+        compositeSlotTypeSetting = M.CompositeSlotTypeSetting,
     },
 }
 
@@ -4340,11 +4177,9 @@ M.CreateSlotTypeOutput = {
         },
         slotTypeValues = {
             type = "list",
-            member_type = "structure",
+            member = M.SlotTypeValue,
         },
-        valueSelectionSetting = {
-            type = "structure",
-        },
+        valueSelectionSetting = M.SlotValueSelectionSetting,
         parentSlotTypeSignature = {
             type = "string",
         },
@@ -4360,12 +4195,8 @@ M.CreateSlotTypeOutput = {
         creationDateTime = {
             type = "timestamp",
         },
-        externalSourceSetting = {
-            type = "structure",
-        },
-        compositeSlotTypeSetting = {
-            type = "structure",
-        },
+        externalSourceSetting = M.ExternalSourceSetting,
+        compositeSlotTypeSetting = M.CompositeSlotTypeSetting,
     },
 }
 
@@ -4396,9 +4227,7 @@ M.TestSetDiscrepancyReportBotAliasTarget = {
 M.TestSetDiscrepancyReportResourceTarget = {
     type = "structure",
     members = {
-        botAliasTarget = {
-            type = "structure",
-        },
+        botAliasTarget = M.TestSetDiscrepancyReportBotAliasTarget,
     },
 }
 
@@ -4412,12 +4241,9 @@ M.CreateTestSetDiscrepancyReportInput = {
                 required = true,
             },
         },
-        target = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        target = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TestSetDiscrepancyReportResourceTarget }),
     },
 }
 
@@ -4433,9 +4259,7 @@ M.CreateTestSetDiscrepancyReportOutput = {
         testSetId = {
             type = "string",
         },
-        target = {
-            type = "structure",
-        },
+        target = M.TestSetDiscrepancyReportResourceTarget,
     },
 }
 
@@ -4518,6 +4342,7 @@ M.DeleteBotInput = {
         skipResourceInUseCheck = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "skipResourceInUseCheck",
             },
         },
@@ -4556,6 +4381,7 @@ M.DeleteBotAliasInput = {
         skipResourceInUseCheck = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "skipResourceInUseCheck",
             },
         },
@@ -4701,6 +4527,7 @@ M.DeleteBotVersionInput = {
         skipResourceInUseCheck = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "skipResourceInUseCheck",
             },
         },
@@ -5010,6 +4837,7 @@ M.DeleteSlotTypeInput = {
         skipResourceInUseCheck = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "skipResourceInUseCheck",
             },
         },
@@ -5094,11 +4922,9 @@ M.DescribeBotOutput = {
         roleArn = {
             type = "string",
         },
-        dataPrivacy = {
-            type = "structure",
-        },
+        dataPrivacy = M.DataPrivacy,
         idleSessionTTLInSeconds = {
-            type = "number",
+            type = "integer",
         },
         botStatus = {
             type = "string",
@@ -5114,15 +4940,13 @@ M.DescribeBotOutput = {
         },
         botMembers = {
             type = "list",
-            member_type = "structure",
+            member = M.BotMember,
         },
         failureReasons = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        errorLogSettings = {
-            type = "structure",
-        },
+        errorLogSettings = M.ErrorLogSettings,
     },
 }
 
@@ -5181,18 +5005,14 @@ M.DescribeBotAliasOutput = {
         },
         botAliasLocaleSettings = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.BotAliasLocaleSettings,
         },
-        conversationLogSettings = {
-            type = "structure",
-        },
-        sentimentAnalysisSettings = {
-            type = "structure",
-        },
+        conversationLogSettings = M.ConversationLogSettings,
+        sentimentAnalysisSettings = M.SentimentAnalysisSettings,
         botAliasHistoryEvents = {
             type = "list",
-            member_type = "structure",
+            member = M.BotAliasHistoryEvent,
         },
         botAliasStatus = {
             type = "string",
@@ -5208,7 +5028,7 @@ M.DescribeBotAliasOutput = {
         },
         parentBotNetworks = {
             type = "list",
-            member_type = "structure",
+            member = M.ParentBotNetwork,
         },
     },
 }
@@ -5234,7 +5054,7 @@ M.DescribeBotAnalyzerRecommendationInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5259,7 +5079,7 @@ M.DescribeBotAnalyzerRecommendationOutput = {
         },
         botAnalyzerRecommendationList = {
             type = "list",
-            member_type = "structure",
+            member = M.BotAnalyzerRecommendation,
         },
         nextToken = {
             type = "string",
@@ -5313,29 +5133,23 @@ M.DescribeBotLocaleOutput = {
             type = "string",
         },
         nluIntentConfidenceThreshold = {
-            type = "number",
+            type = "double",
         },
-        voiceSettings = {
-            type = "structure",
-        },
-        unifiedSpeechSettings = {
-            type = "structure",
-        },
-        speechRecognitionSettings = {
-            type = "structure",
-        },
+        voiceSettings = M.VoiceSettings,
+        unifiedSpeechSettings = M.UnifiedSpeechSettings,
+        speechRecognitionSettings = M.SpeechRecognitionSettings,
         intentsCount = {
-            type = "number",
+            type = "integer",
         },
         slotTypesCount = {
-            type = "number",
+            type = "integer",
         },
         botLocaleStatus = {
             type = "string",
         },
         failureReasons = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         creationDateTime = {
             type = "timestamp",
@@ -5348,15 +5162,13 @@ M.DescribeBotLocaleOutput = {
         },
         botLocaleHistoryEvents = {
             type = "list",
-            member_type = "structure",
+            member = M.BotLocaleHistoryEvent,
         },
         recommendedActions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        generativeAISettings = {
-            type = "structure",
-        },
+        generativeAISettings = M.GenerativeAISettings,
         speechDetectionSensitivity = {
             type = "string",
         },
@@ -5417,7 +5229,7 @@ M.PathFormat = {
     members = {
         objectPrefixes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -5425,18 +5237,14 @@ M.PathFormat = {
 M.LexTranscriptFilter = {
     type = "structure",
     members = {
-        dateRangeFilter = {
-            type = "structure",
-        },
+        dateRangeFilter = M.DateRangeFilter,
     },
 }
 
 M.TranscriptFilter = {
     type = "structure",
     members = {
-        lexTranscriptFilter = {
-            type = "structure",
-        },
+        lexTranscriptFilter = M.LexTranscriptFilter,
     },
 }
 
@@ -5453,18 +5261,14 @@ M.S3BucketTranscriptSource = {
                 required = true,
             },
         },
-        pathFormat = {
-            type = "structure",
-        },
+        pathFormat = M.PathFormat,
         transcriptFormat = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        transcriptFilter = {
-            type = "structure",
-        },
+        transcriptFilter = M.TranscriptFilter,
         kmsKeyArn = {
             type = "string",
         },
@@ -5474,9 +5278,7 @@ M.S3BucketTranscriptSource = {
 M.TranscriptSourceSetting = {
     type = "structure",
     members = {
-        s3BucketTranscriptSource = {
-            type = "structure",
-        },
+        s3BucketTranscriptSource = M.S3BucketTranscriptSource,
     },
 }
 
@@ -5500,7 +5302,7 @@ M.DescribeBotRecommendationOutput = {
         },
         failureReasons = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         creationDateTime = {
             type = "timestamp",
@@ -5508,15 +5310,9 @@ M.DescribeBotRecommendationOutput = {
         lastUpdatedDateTime = {
             type = "timestamp",
         },
-        transcriptSourceSetting = {
-            type = "structure",
-        },
-        encryptionSetting = {
-            type = "structure",
-        },
-        botRecommendationResults = {
-            type = "structure",
-        },
+        transcriptSourceSetting = M.TranscriptSourceSetting,
+        encryptionSetting = M.EncryptionSetting,
+        botRecommendationResults = M.BotRecommendationResults,
     },
 }
 
@@ -5560,7 +5356,7 @@ M.DescribeBotReplicaOutput = {
         },
         failureReasons = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -5622,7 +5418,7 @@ M.DescribeBotResourceGenerationOutput = {
         },
         failureReasons = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         generationStatus = {
             type = "string",
@@ -5683,32 +5479,30 @@ M.DescribeBotVersionOutput = {
         roleArn = {
             type = "string",
         },
-        dataPrivacy = {
-            type = "structure",
-        },
+        dataPrivacy = M.DataPrivacy,
         idleSessionTTLInSeconds = {
-            type = "number",
+            type = "integer",
         },
         botStatus = {
             type = "string",
         },
         failureReasons = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         creationDateTime = {
             type = "timestamp",
         },
         parentBotNetworks = {
             type = "list",
-            member_type = "structure",
+            member = M.ParentBotNetwork,
         },
         botType = {
             type = "string",
         },
         botMembers = {
             type = "list",
-            member_type = "structure",
+            member = M.BotMember,
         },
     },
 }
@@ -5783,9 +5577,7 @@ M.DescribeExportOutput = {
         exportId = {
             type = "string",
         },
-        resourceSpecification = {
-            type = "structure",
-        },
+        resourceSpecification = M.ExportResourceSpecification,
         fileFormat = {
             type = "string",
         },
@@ -5794,7 +5586,7 @@ M.DescribeExportOutput = {
         },
         failureReasons = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         downloadUrl = {
             type = "string",
@@ -5889,18 +5681,12 @@ M.TestSetImportResourceSpecification = {
                 required = true,
             },
         },
-        storageLocation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        importInputLocation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        storageLocation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TestSetStorageLocation }),
+        importInputLocation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TestSetImportInputLocation }),
         modality = {
             type = "string",
             traits = {
@@ -5909,8 +5695,8 @@ M.TestSetImportResourceSpecification = {
         },
         testSetTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -5918,18 +5704,10 @@ M.TestSetImportResourceSpecification = {
 M.ImportResourceSpecification = {
     type = "structure",
     members = {
-        botImportSpecification = {
-            type = "structure",
-        },
-        botLocaleImportSpecification = {
-            type = "structure",
-        },
-        customVocabularyImportSpecification = {
-            type = "structure",
-        },
-        testSetImportResourceSpecification = {
-            type = "structure",
-        },
+        botImportSpecification = M.BotImportSpecification,
+        botLocaleImportSpecification = M.BotLocaleImportSpecification,
+        customVocabularyImportSpecification = M.CustomVocabularyImportSpecification,
+        testSetImportResourceSpecification = M.TestSetImportResourceSpecification,
     },
 }
 
@@ -5939,9 +5717,7 @@ M.DescribeImportOutput = {
         importId = {
             type = "string",
         },
-        resourceSpecification = {
-            type = "structure",
-        },
+        resourceSpecification = M.ImportResourceSpecification,
         importedResourceId = {
             type = "string",
         },
@@ -5956,7 +5732,7 @@ M.DescribeImportOutput = {
         },
         failureReasons = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         creationDateTime = {
             type = "timestamp",
@@ -6005,7 +5781,7 @@ M.SlotPriority = {
     type = "structure",
     members = {
         priority = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -6136,11 +5912,9 @@ M.DescribeSlotTypeOutput = {
         },
         slotTypeValues = {
             type = "list",
-            member_type = "structure",
+            member = M.SlotTypeValue,
         },
-        valueSelectionSetting = {
-            type = "structure",
-        },
+        valueSelectionSetting = M.SlotValueSelectionSetting,
         parentSlotTypeSignature = {
             type = "string",
         },
@@ -6159,12 +5933,8 @@ M.DescribeSlotTypeOutput = {
         lastUpdatedDateTime = {
             type = "timestamp",
         },
-        externalSourceSetting = {
-            type = "structure",
-        },
-        compositeSlotTypeSetting = {
-            type = "structure",
-        },
+        externalSourceSetting = M.ExternalSourceSetting,
+        compositeSlotTypeSetting = M.CompositeSlotTypeSetting,
     },
 }
 
@@ -6189,9 +5959,7 @@ M.TestExecutionApiMode = {
 M.TestExecutionTarget = {
     type = "structure",
     members = {
-        botAliasTarget = {
-            type = "structure",
-        },
+        botAliasTarget = M.BotAliasTestExecutionTarget,
     },
 }
 
@@ -6231,9 +5999,7 @@ M.DescribeTestExecutionOutput = {
         testSetName = {
             type = "string",
         },
-        target = {
-            type = "structure",
-        },
+        target = M.TestExecutionTarget,
         apiMode = {
             type = "string",
         },
@@ -6242,7 +6008,7 @@ M.DescribeTestExecutionOutput = {
         },
         failureReasons = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -6290,11 +6056,9 @@ M.DescribeTestSetOutput = {
             type = "string",
         },
         numTurns = {
-            type = "number",
+            type = "integer",
         },
-        storageLocation = {
-            type = "structure",
-        },
+        storageLocation = M.TestSetStorageLocation,
         creationDateTime = {
             type = "timestamp",
         },
@@ -6370,14 +6134,14 @@ M.TestSetDiscrepancyErrors = {
     members = {
         intentDiscrepancies = {
             type = "list",
-            member_type = "structure",
+            member = M.TestSetIntentDiscrepancyItem,
             traits = {
                 required = true,
             },
         },
         slotDiscrepancies = {
             type = "list",
-            member_type = "structure",
+            member = M.TestSetSlotDiscrepancyItem,
             traits = {
                 required = true,
             },
@@ -6397,24 +6161,20 @@ M.DescribeTestSetDiscrepancyReportOutput = {
         creationDateTime = {
             type = "timestamp",
         },
-        target = {
-            type = "structure",
-        },
+        target = M.TestSetDiscrepancyReportResourceTarget,
         testSetDiscrepancyReportStatus = {
             type = "string",
         },
         lastUpdatedDataTime = {
             type = "timestamp",
         },
-        testSetDiscrepancyTopErrors = {
-            type = "structure",
-        },
+        testSetDiscrepancyTopErrors = M.TestSetDiscrepancyErrors,
         testSetDiscrepancyRawOutputUrl = {
             type = "string",
         },
         failureReasons = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -6435,9 +6195,7 @@ M.DescribeTestSetGenerationInput = {
 M.TestSetGenerationDataSource = {
     type = "structure",
     members = {
-        conversationLogsDataSource = {
-            type = "structure",
-        },
+        conversationLogsDataSource = M.ConversationLogsDataSource,
     },
 }
 
@@ -6459,7 +6217,7 @@ M.DescribeTestSetGenerationOutput = {
         },
         failureReasons = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         testSetId = {
             type = "string",
@@ -6470,12 +6228,8 @@ M.DescribeTestSetGenerationOutput = {
         description = {
             type = "string",
         },
-        storageLocation = {
-            type = "structure",
-        },
-        generationDataSource = {
-            type = "structure",
-        },
+        storageLocation = M.TestSetStorageLocation,
+        generationDataSource = M.TestSetGenerationDataSource,
         roleArn = {
             type = "string",
         },
@@ -6508,7 +6262,7 @@ M.ExportFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -6550,9 +6304,7 @@ M.ExportSummary = {
         exportId = {
             type = "string",
         },
-        resourceSpecification = {
-            type = "structure",
-        },
+        resourceSpecification = M.ExportResourceSpecification,
         fileFormat = {
             type = "string",
         },
@@ -6618,7 +6370,7 @@ M.GenerateBotElementOutput = {
         },
         sampleUtterances = {
             type = "list",
-            member_type = "structure",
+            member = M.SampleUtterance,
         },
     },
 }
@@ -6709,7 +6461,7 @@ M.ImportFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -6798,20 +6550,20 @@ M.IntentClassificationTestResultItemCounts = {
     type = "structure",
     members = {
         totalResultCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         speechTranscriptionResultCounts = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
         },
         intentMatchResultCounts = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
             traits = {
                 required = true,
             },
@@ -6831,15 +6583,13 @@ M.IntentClassificationTestResultItem = {
         multiTurnConversation = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
-        resultCounts = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        resultCounts = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IntentClassificationTestResultItemCounts }),
     },
 }
 
@@ -6848,7 +6598,7 @@ M.IntentClassificationTestResults = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.IntentClassificationTestResultItem,
             traits = {
                 required = true,
             },
@@ -6876,7 +6626,7 @@ M.IntentFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -6894,20 +6644,20 @@ M.SlotResolutionTestResultItemCounts = {
     type = "structure",
     members = {
         totalResultCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         speechTranscriptionResultCounts = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
         },
         slotMatchResultCounts = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
             traits = {
                 required = true,
             },
@@ -6924,12 +6674,9 @@ M.SlotResolutionTestResultItem = {
                 required = true,
             },
         },
-        resultCounts = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        resultCounts = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SlotResolutionTestResultItemCounts }),
     },
 }
 
@@ -6945,12 +6692,13 @@ M.IntentLevelSlotResolutionTestResultItem = {
         multiTurnConversation = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
         slotResolutionResults = {
             type = "list",
-            member_type = "structure",
+            member = M.SlotResolutionTestResultItem,
             traits = {
                 required = true,
             },
@@ -6963,7 +6711,7 @@ M.IntentLevelSlotResolutionTestResults = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.IntentLevelSlotResolutionTestResultItem,
             traits = {
                 required = true,
             },
@@ -7023,11 +6771,11 @@ M.IntentSummary = {
         },
         inputContexts = {
             type = "list",
-            member_type = "structure",
+            member = M.InputContext,
         },
         outputContexts = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputContext,
         },
         lastUpdatedDateTime = {
             type = "timestamp",
@@ -7060,7 +6808,7 @@ M.RelativeAggregationDuration = {
             },
         },
         timeValue = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -7071,12 +6819,9 @@ M.RelativeAggregationDuration = {
 M.UtteranceAggregationDuration = {
     type = "structure",
     members = {
-        relativeAggregationDuration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        relativeAggregationDuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RelativeAggregationDuration }),
     },
 }
 
@@ -7102,21 +6847,16 @@ M.ListAggregatedUtterancesInput = {
                 required = true,
             },
         },
-        aggregationDuration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        sortBy = {
-            type = "structure",
-        },
+        aggregationDuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.UtteranceAggregationDuration }),
+        sortBy = M.AggregatedUtterancesSortBy,
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.AggregatedUtterancesFilter,
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -7139,9 +6879,7 @@ M.ListAggregatedUtterancesOutput = {
         localeId = {
             type = "string",
         },
-        aggregationDuration = {
-            type = "structure",
-        },
+        aggregationDuration = M.UtteranceAggregationDuration,
         aggregationWindowStartTime = {
             type = "timestamp",
         },
@@ -7153,7 +6891,7 @@ M.ListAggregatedUtterancesOutput = {
         },
         aggregatedUtterancesSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.AggregatedUtterancesSummary,
         },
         nextToken = {
             type = "string",
@@ -7172,7 +6910,7 @@ M.ListBotAliasesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -7185,7 +6923,7 @@ M.ListBotAliasesOutput = {
     members = {
         botAliasSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.BotAliasSummary,
         },
         nextToken = {
             type = "string",
@@ -7214,7 +6952,7 @@ M.ListBotAliasReplicasInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -7236,7 +6974,7 @@ M.ListBotAliasReplicasOutput = {
         },
         botAliasReplicaSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.BotAliasReplicaSummary,
         },
         nextToken = {
             type = "string",
@@ -7264,7 +7002,7 @@ M.ListBotAnalyzerHistoryInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -7283,7 +7021,7 @@ M.ListBotAnalyzerHistoryOutput = {
         },
         botAnalyzerHistoryList = {
             type = "list",
-            member_type = "structure",
+            member = M.BotAnalyzerHistorySummary,
         },
         nextToken = {
             type = "string",
@@ -7308,15 +7046,13 @@ M.ListBotLocalesInput = {
                 required = true,
             },
         },
-        sortBy = {
-            type = "structure",
-        },
+        sortBy = M.BotLocaleSortBy,
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.BotLocaleFilter,
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -7338,7 +7074,7 @@ M.ListBotLocalesOutput = {
         },
         botLocaleSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.BotLocaleSummary,
         },
     },
 }
@@ -7368,7 +7104,7 @@ M.ListBotRecommendationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -7390,7 +7126,7 @@ M.ListBotRecommendationsOutput = {
         },
         botRecommendationSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.BotRecommendationSummary,
         },
         nextToken = {
             type = "string",
@@ -7422,7 +7158,7 @@ M.ListBotReplicasOutput = {
         },
         botReplicaSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.BotReplicaSummary,
         },
     },
 }
@@ -7451,11 +7187,9 @@ M.ListBotResourceGenerationsInput = {
                 required = true,
             },
         },
-        sortBy = {
-            type = "structure",
-        },
+        sortBy = M.GenerationSortBy,
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -7477,7 +7211,7 @@ M.ListBotResourceGenerationsOutput = {
         },
         generationSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.GenerationSummary,
         },
         nextToken = {
             type = "string",
@@ -7488,15 +7222,13 @@ M.ListBotResourceGenerationsOutput = {
 M.ListBotsInput = {
     type = "structure",
     members = {
-        sortBy = {
-            type = "structure",
-        },
+        sortBy = M.BotSortBy,
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.BotFilter,
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -7509,7 +7241,7 @@ M.ListBotsOutput = {
     members = {
         botSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.BotSummary,
         },
         nextToken = {
             type = "string",
@@ -7535,14 +7267,12 @@ M.ListBotVersionReplicasInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
         },
-        sortBy = {
-            type = "structure",
-        },
+        sortBy = M.BotVersionReplicaSortBy,
     },
 }
 
@@ -7560,7 +7290,7 @@ M.ListBotVersionReplicasOutput = {
         },
         botVersionReplicaSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.BotVersionReplicaSummary,
         },
         nextToken = {
             type = "string",
@@ -7578,11 +7308,9 @@ M.ListBotVersionsInput = {
                 required = true,
             },
         },
-        sortBy = {
-            type = "structure",
-        },
+        sortBy = M.BotVersionSortBy,
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -7598,7 +7326,7 @@ M.ListBotVersionsOutput = {
         },
         botVersionSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.BotVersionSummary,
         },
         nextToken = {
             type = "string",
@@ -7616,11 +7344,9 @@ M.ListBuiltInIntentsInput = {
                 required = true,
             },
         },
-        sortBy = {
-            type = "structure",
-        },
+        sortBy = M.BuiltInIntentSortBy,
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -7633,7 +7359,7 @@ M.ListBuiltInIntentsOutput = {
     members = {
         builtInIntentSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.BuiltInIntentSummary,
         },
         nextToken = {
             type = "string",
@@ -7654,11 +7380,9 @@ M.ListBuiltInSlotTypesInput = {
                 required = true,
             },
         },
-        sortBy = {
-            type = "structure",
-        },
+        sortBy = M.BuiltInSlotTypeSortBy,
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -7671,7 +7395,7 @@ M.ListBuiltInSlotTypesOutput = {
     members = {
         builtInSlotTypeSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.BuiltInSlotTypeSummary,
         },
         nextToken = {
             type = "string",
@@ -7707,7 +7431,7 @@ M.ListCustomVocabularyItemsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -7729,7 +7453,7 @@ M.ListCustomVocabularyItemsOutput = {
         },
         customVocabularyItems = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomVocabularyItem,
         },
         nextToken = {
             type = "string",
@@ -7746,15 +7470,13 @@ M.ListExportsInput = {
         botVersion = {
             type = "string",
         },
-        sortBy = {
-            type = "structure",
-        },
+        sortBy = M.ExportSortBy,
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.ExportFilter,
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -7776,7 +7498,7 @@ M.ListExportsOutput = {
         },
         exportSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ExportSummary,
         },
         nextToken = {
             type = "string",
@@ -7796,15 +7518,13 @@ M.ListImportsInput = {
         botVersion = {
             type = "string",
         },
-        sortBy = {
-            type = "structure",
-        },
+        sortBy = M.ImportSortBy,
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.ImportFilter,
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -7826,7 +7546,7 @@ M.ListImportsOutput = {
         },
         importSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ImportSummary,
         },
         nextToken = {
             type = "string",
@@ -7861,25 +7581,25 @@ M.ListIntentMetricsInput = {
         },
         metrics = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalyticsIntentMetric,
             traits = {
                 required = true,
             },
         },
         binBy = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalyticsBinBySpecification,
         },
         groupBy = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalyticsIntentGroupBySpecification,
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalyticsIntentFilter,
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -7895,7 +7615,7 @@ M.ListIntentMetricsOutput = {
         },
         results = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalyticsIntentResult,
         },
         nextToken = {
             type = "string",
@@ -7933,7 +7653,7 @@ M.ListIntentPathsInput = {
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalyticsPathFilter,
         },
     },
 }
@@ -7943,7 +7663,7 @@ M.ListIntentPathsOutput = {
     members = {
         nodeSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalyticsIntentNodeSummary,
         },
     },
 }
@@ -7972,15 +7692,13 @@ M.ListIntentsInput = {
                 required = true,
             },
         },
-        sortBy = {
-            type = "structure",
-        },
+        sortBy = M.IntentSortBy,
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.IntentFilter,
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -8002,7 +7720,7 @@ M.ListIntentsOutput = {
         },
         intentSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.IntentSummary,
         },
         nextToken = {
             type = "string",
@@ -8034,25 +7752,25 @@ M.ListIntentStageMetricsInput = {
         },
         metrics = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalyticsIntentStageMetric,
             traits = {
                 required = true,
             },
         },
         binBy = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalyticsBinBySpecification,
         },
         groupBy = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalyticsIntentStageGroupBySpecification,
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalyticsIntentStageFilter,
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -8068,7 +7786,7 @@ M.ListIntentStageMetricsOutput = {
         },
         results = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalyticsIntentStageResult,
         },
         nextToken = {
             type = "string",
@@ -8111,7 +7829,7 @@ M.ListRecommendedIntentsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -8126,7 +7844,7 @@ M.RecommendedIntentSummary = {
             type = "string",
         },
         sampleUtterancesCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -8148,7 +7866,7 @@ M.ListRecommendedIntentsOutput = {
         },
         summaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.RecommendedIntentSummary,
         },
         nextToken = {
             type = "string",
@@ -8196,15 +7914,13 @@ M.ListSessionAnalyticsDataInput = {
                 required = true,
             },
         },
-        sortBy = {
-            type = "structure",
-        },
+        sortBy = M.SessionDataSortBy,
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalyticsSessionFilter,
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -8237,7 +7953,7 @@ M.SessionSpecification = {
             type = "timestamp",
         },
         conversationDurationSeconds = {
-            type = "number",
+            type = "long",
         },
         conversationEndState = {
             type = "string",
@@ -8246,11 +7962,11 @@ M.SessionSpecification = {
             type = "string",
         },
         numberOfTurns = {
-            type = "number",
+            type = "long",
         },
         invokedIntentSamples = {
             type = "list",
-            member_type = "structure",
+            member = M.InvokedIntentSample,
         },
         originatingRequestId = {
             type = "string",
@@ -8269,7 +7985,7 @@ M.ListSessionAnalyticsDataOutput = {
         },
         sessions = {
             type = "list",
-            member_type = "structure",
+            member = M.SessionSpecification,
         },
     },
 }
@@ -8298,25 +8014,25 @@ M.ListSessionMetricsInput = {
         },
         metrics = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalyticsSessionMetric,
             traits = {
                 required = true,
             },
         },
         binBy = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalyticsBinBySpecification,
         },
         groupBy = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalyticsSessionGroupBySpecification,
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalyticsSessionFilter,
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -8332,7 +8048,7 @@ M.ListSessionMetricsOutput = {
         },
         results = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalyticsSessionResult,
         },
         nextToken = {
             type = "string",
@@ -8360,7 +8076,7 @@ M.SlotFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -8428,15 +8144,13 @@ M.ListSlotsInput = {
                 required = true,
             },
         },
-        sortBy = {
-            type = "structure",
-        },
+        sortBy = M.SlotSortBy,
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.SlotFilter,
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -8462,9 +8176,7 @@ M.SlotSummary = {
         slotTypeId = {
             type = "string",
         },
-        valueElicitationPromptSpecification = {
-            type = "structure",
-        },
+        valueElicitationPromptSpecification = M.PromptSpecification,
         lastUpdatedDateTime = {
             type = "timestamp",
         },
@@ -8488,7 +8200,7 @@ M.ListSlotsOutput = {
         },
         slotSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.SlotSummary,
         },
         nextToken = {
             type = "string",
@@ -8517,7 +8229,7 @@ M.SlotTypeFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -8578,15 +8290,13 @@ M.ListSlotTypesInput = {
                 required = true,
             },
         },
-        sortBy = {
-            type = "structure",
-        },
+        sortBy = M.SlotTypeSortBy,
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.SlotTypeFilter,
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -8639,7 +8349,7 @@ M.ListSlotTypesOutput = {
         },
         slotTypeSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.SlotTypeSummary,
         },
         nextToken = {
             type = "string",
@@ -8665,8 +8375,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -8688,9 +8398,7 @@ M.TestExecutionResultFilterBy = {
                 required = true,
             },
         },
-        conversationLevelTestResultsFilterBy = {
-            type = "structure",
-        },
+        conversationLevelTestResultsFilterBy = M.ConversationLevelTestResultsFilterBy,
     },
 }
 
@@ -8704,14 +8412,11 @@ M.ListTestExecutionResultItemsInput = {
                 required = true,
             },
         },
-        resultFilterBy = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        resultFilterBy = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TestExecutionResultFilterBy }),
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -8725,24 +8430,25 @@ M.OverallTestResultItem = {
         multiTurnConversation = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
         totalResultCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         speechTranscriptionResultCounts = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
         },
         endToEndResultCounts = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
             traits = {
                 required = true,
             },
@@ -8755,7 +8461,7 @@ M.OverallTestResults = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.OverallTestResultItem,
             traits = {
                 required = true,
             },
@@ -8781,9 +8487,7 @@ M.UtteranceInputSpecification = {
         textInput = {
             type = "string",
         },
-        audioInput = {
-            type = "structure",
-        },
+        audioInput = M.UtteranceAudioInputSpecification,
     },
 }
 
@@ -8813,11 +8517,9 @@ M.TestExecutionSortBy = {
 M.ListTestExecutionsInput = {
     type = "structure",
     members = {
-        sortBy = {
-            type = "structure",
-        },
+        sortBy = M.TestExecutionSortBy,
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -8846,9 +8548,7 @@ M.TestExecutionSummary = {
         testSetName = {
             type = "string",
         },
-        target = {
-            type = "structure",
-        },
+        target = M.TestExecutionTarget,
         apiMode = {
             type = "string",
         },
@@ -8863,7 +8563,7 @@ M.ListTestExecutionsOutput = {
     members = {
         testExecutions = {
             type = "list",
-            member_type = "structure",
+            member = M.TestExecutionSummary,
         },
         nextToken = {
             type = "string",
@@ -8882,7 +8582,7 @@ M.ListTestSetRecordsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -8916,11 +8616,9 @@ M.TestSetSortBy = {
 M.ListTestSetsInput = {
     type = "structure",
     members = {
-        sortBy = {
-            type = "structure",
-        },
+        sortBy = M.TestSetSortBy,
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -8950,11 +8648,9 @@ M.TestSetSummary = {
             type = "string",
         },
         numTurns = {
-            type = "number",
+            type = "integer",
         },
-        storageLocation = {
-            type = "structure",
-        },
+        storageLocation = M.TestSetStorageLocation,
         creationDateTime = {
             type = "timestamp",
         },
@@ -8969,7 +8665,7 @@ M.ListTestSetsOutput = {
     members = {
         testSets = {
             type = "list",
-            member_type = "structure",
+            member = M.TestSetSummary,
         },
         nextToken = {
             type = "string",
@@ -9017,15 +8713,13 @@ M.ListUtteranceAnalyticsDataInput = {
                 required = true,
             },
         },
-        sortBy = {
-            type = "structure",
-        },
+        sortBy = M.UtteranceDataSortBy,
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalyticsUtteranceFilter,
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -9049,9 +8743,7 @@ M.UtteranceBotResponse = {
         contentType = {
             type = "string",
         },
-        imageResponseCard = {
-            type = "structure",
-        },
+        imageResponseCard = M.ImageResponseCard,
     },
 }
 
@@ -9089,10 +8781,13 @@ M.UtteranceSpecification = {
             type = "timestamp",
         },
         audioVoiceDurationMillis = {
-            type = "number",
+            type = "long",
         },
         utteranceUnderstood = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         inputType = {
             type = "string",
@@ -9123,7 +8818,7 @@ M.UtteranceSpecification = {
         },
         botResponses = {
             type = "list",
-            member_type = "structure",
+            member = M.UtteranceBotResponse,
         },
     },
 }
@@ -9139,7 +8834,7 @@ M.ListUtteranceAnalyticsDataOutput = {
         },
         utterances = {
             type = "list",
-            member_type = "structure",
+            member = M.UtteranceSpecification,
         },
     },
 }
@@ -9168,29 +8863,29 @@ M.ListUtteranceMetricsInput = {
         },
         metrics = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalyticsUtteranceMetric,
             traits = {
                 required = true,
             },
         },
         binBy = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalyticsBinBySpecification,
         },
         groupBy = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalyticsUtteranceGroupBySpecification,
         },
         attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalyticsUtteranceAttribute,
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalyticsUtteranceFilter,
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -9206,7 +8901,7 @@ M.ListUtteranceMetricsOutput = {
         },
         results = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalyticsUtteranceResult,
         },
         nextToken = {
             type = "string",
@@ -9255,16 +8950,16 @@ M.SearchAssociatedTranscriptsInput = {
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.AssociatedTranscriptFilter,
             traits = {
                 required = true,
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextIndex = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -9285,14 +8980,14 @@ M.SearchAssociatedTranscriptsOutput = {
             type = "string",
         },
         nextIndex = {
-            type = "number",
+            type = "integer",
         },
         associatedTranscripts = {
             type = "list",
-            member_type = "structure",
+            member = M.AssociatedTranscript,
         },
         totalResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -9370,15 +9065,10 @@ M.StartBotRecommendationInput = {
                 required = true,
             },
         },
-        transcriptSourceSetting = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        encryptionSetting = {
-            type = "structure",
-        },
+        transcriptSourceSetting = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TranscriptSourceSetting }),
+        encryptionSetting = M.EncryptionSetting,
     },
 }
 
@@ -9403,12 +9093,8 @@ M.StartBotRecommendationOutput = {
         creationDateTime = {
             type = "timestamp",
         },
-        transcriptSourceSetting = {
-            type = "structure",
-        },
-        encryptionSetting = {
-            type = "structure",
-        },
+        transcriptSourceSetting = M.TranscriptSourceSetting,
+        encryptionSetting = M.EncryptionSetting,
     },
 }
 
@@ -9481,12 +9167,9 @@ M.StartImportInput = {
                 required = true,
             },
         },
-        resourceSpecification = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        resourceSpecification = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ImportResourceSpecification }),
         mergeStrategy = {
             type = "string",
             traits = {
@@ -9505,9 +9188,7 @@ M.StartImportOutput = {
         importId = {
             type = "string",
         },
-        resourceSpecification = {
-            type = "structure",
-        },
+        resourceSpecification = M.ImportResourceSpecification,
         mergeStrategy = {
             type = "string",
         },
@@ -9530,12 +9211,9 @@ M.StartTestExecutionInput = {
                 required = true,
             },
         },
-        target = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        target = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TestExecutionTarget }),
         apiMode = {
             type = "string",
             traits = {
@@ -9560,9 +9238,7 @@ M.StartTestExecutionOutput = {
         testSetId = {
             type = "string",
         },
-        target = {
-            type = "structure",
-        },
+        target = M.TestExecutionTarget,
         apiMode = {
             type = "string",
         },
@@ -9584,18 +9260,12 @@ M.StartTestSetGenerationInput = {
         description = {
             type = "string",
         },
-        storageLocation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        generationDataSource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        storageLocation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TestSetStorageLocation }),
+        generationDataSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TestSetGenerationDataSource }),
         roleArn = {
             type = "string",
             traits = {
@@ -9604,8 +9274,8 @@ M.StartTestSetGenerationInput = {
         },
         testSetTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -9628,19 +9298,15 @@ M.StartTestSetGenerationOutput = {
         description = {
             type = "string",
         },
-        storageLocation = {
-            type = "structure",
-        },
-        generationDataSource = {
-            type = "structure",
-        },
+        storageLocation = M.TestSetStorageLocation,
+        generationDataSource = M.TestSetGenerationDataSource,
         roleArn = {
             type = "string",
         },
         testSetTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -9753,8 +9419,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -9778,7 +9444,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -9816,14 +9482,11 @@ M.UpdateBotInput = {
                 required = true,
             },
         },
-        dataPrivacy = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        dataPrivacy = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataPrivacy }),
         idleSessionTTLInSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -9833,11 +9496,9 @@ M.UpdateBotInput = {
         },
         botMembers = {
             type = "list",
-            member_type = "structure",
+            member = M.BotMember,
         },
-        errorLogSettings = {
-            type = "structure",
-        },
+        errorLogSettings = M.ErrorLogSettings,
     },
 }
 
@@ -9856,11 +9517,9 @@ M.UpdateBotOutput = {
         roleArn = {
             type = "string",
         },
-        dataPrivacy = {
-            type = "structure",
-        },
+        dataPrivacy = M.DataPrivacy,
         idleSessionTTLInSeconds = {
-            type = "number",
+            type = "integer",
         },
         botStatus = {
             type = "string",
@@ -9876,11 +9535,9 @@ M.UpdateBotOutput = {
         },
         botMembers = {
             type = "list",
-            member_type = "structure",
+            member = M.BotMember,
         },
-        errorLogSettings = {
-            type = "structure",
-        },
+        errorLogSettings = M.ErrorLogSettings,
     },
 }
 
@@ -9908,15 +9565,11 @@ M.UpdateBotAliasInput = {
         },
         botAliasLocaleSettings = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.BotAliasLocaleSettings,
         },
-        conversationLogSettings = {
-            type = "structure",
-        },
-        sentimentAnalysisSettings = {
-            type = "structure",
-        },
+        conversationLogSettings = M.ConversationLogSettings,
+        sentimentAnalysisSettings = M.SentimentAnalysisSettings,
         botId = {
             type = "string",
             traits = {
@@ -9944,15 +9597,11 @@ M.UpdateBotAliasOutput = {
         },
         botAliasLocaleSettings = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.BotAliasLocaleSettings,
         },
-        conversationLogSettings = {
-            type = "structure",
-        },
-        sentimentAnalysisSettings = {
-            type = "structure",
-        },
+        conversationLogSettings = M.ConversationLogSettings,
+        sentimentAnalysisSettings = M.SentimentAnalysisSettings,
         botAliasStatus = {
             type = "string",
         },
@@ -9996,23 +9645,15 @@ M.UpdateBotLocaleInput = {
             type = "string",
         },
         nluIntentConfidenceThreshold = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
-        voiceSettings = {
-            type = "structure",
-        },
-        unifiedSpeechSettings = {
-            type = "structure",
-        },
-        speechRecognitionSettings = {
-            type = "structure",
-        },
-        generativeAISettings = {
-            type = "structure",
-        },
+        voiceSettings = M.VoiceSettings,
+        unifiedSpeechSettings = M.UnifiedSpeechSettings,
+        speechRecognitionSettings = M.SpeechRecognitionSettings,
+        generativeAISettings = M.GenerativeAISettings,
         speechDetectionSensitivity = {
             type = "string",
         },
@@ -10038,23 +9679,17 @@ M.UpdateBotLocaleOutput = {
             type = "string",
         },
         nluIntentConfidenceThreshold = {
-            type = "number",
+            type = "double",
         },
-        voiceSettings = {
-            type = "structure",
-        },
-        unifiedSpeechSettings = {
-            type = "structure",
-        },
-        speechRecognitionSettings = {
-            type = "structure",
-        },
+        voiceSettings = M.VoiceSettings,
+        unifiedSpeechSettings = M.UnifiedSpeechSettings,
+        speechRecognitionSettings = M.SpeechRecognitionSettings,
         botLocaleStatus = {
             type = "string",
         },
         failureReasons = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         creationDateTime = {
             type = "timestamp",
@@ -10064,11 +9699,9 @@ M.UpdateBotLocaleOutput = {
         },
         recommendedActions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        generativeAISettings = {
-            type = "structure",
-        },
+        generativeAISettings = M.GenerativeAISettings,
         speechDetectionSensitivity = {
             type = "string",
         },
@@ -10106,12 +9739,9 @@ M.UpdateBotRecommendationInput = {
                 required = true,
             },
         },
-        encryptionSetting = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        encryptionSetting = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EncryptionSetting }),
     },
 }
 
@@ -10139,12 +9769,8 @@ M.UpdateBotRecommendationOutput = {
         lastUpdatedDateTime = {
             type = "timestamp",
         },
-        transcriptSourceSetting = {
-            type = "structure",
-        },
-        encryptionSetting = {
-            type = "structure",
-        },
+        transcriptSourceSetting = M.TranscriptSourceSetting,
+        encryptionSetting = M.EncryptionSetting,
     },
 }
 
@@ -10170,9 +9796,7 @@ M.UpdateExportOutput = {
         exportId = {
             type = "string",
         },
-        resourceSpecification = {
-            type = "structure",
-        },
+        resourceSpecification = M.ExportResourceSpecification,
         fileFormat = {
             type = "string",
         },
@@ -10246,11 +9870,9 @@ M.UpdateSlotTypeInput = {
         },
         slotTypeValues = {
             type = "list",
-            member_type = "structure",
+            member = M.SlotTypeValue,
         },
-        valueSelectionSetting = {
-            type = "structure",
-        },
+        valueSelectionSetting = M.SlotValueSelectionSetting,
         parentSlotTypeSignature = {
             type = "string",
         },
@@ -10275,12 +9897,8 @@ M.UpdateSlotTypeInput = {
                 required = true,
             },
         },
-        externalSourceSetting = {
-            type = "structure",
-        },
-        compositeSlotTypeSetting = {
-            type = "structure",
-        },
+        externalSourceSetting = M.ExternalSourceSetting,
+        compositeSlotTypeSetting = M.CompositeSlotTypeSetting,
     },
 }
 
@@ -10298,11 +9916,9 @@ M.UpdateSlotTypeOutput = {
         },
         slotTypeValues = {
             type = "list",
-            member_type = "structure",
+            member = M.SlotTypeValue,
         },
-        valueSelectionSetting = {
-            type = "structure",
-        },
+        valueSelectionSetting = M.SlotValueSelectionSetting,
         parentSlotTypeSignature = {
             type = "string",
         },
@@ -10321,12 +9937,8 @@ M.UpdateSlotTypeOutput = {
         lastUpdatedDateTime = {
             type = "timestamp",
         },
-        externalSourceSetting = {
-            type = "structure",
-        },
-        compositeSlotTypeSetting = {
-            type = "structure",
-        },
+        externalSourceSetting = M.ExternalSourceSetting,
+        compositeSlotTypeSetting = M.CompositeSlotTypeSetting,
     },
 }
 
@@ -10374,11 +9986,9 @@ M.UpdateTestSetOutput = {
             type = "string",
         },
         numTurns = {
-            type = "number",
+            type = "integer",
         },
-        storageLocation = {
-            type = "structure",
-        },
+        storageLocation = M.TestSetStorageLocation,
         creationDateTime = {
             type = "timestamp",
         },
@@ -10393,12 +10003,12 @@ M.RuntimeHintDetails = {
     members = {
         runtimeHintValues = {
             type = "list",
-            member_type = "structure",
+            member = M.RuntimeHintValue,
         },
         subSlotHints = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.RuntimeHintDetails,
         },
     },
 }
@@ -10409,12 +10019,10 @@ M.SlotValueOverride = {
         shape = {
             type = "string",
         },
-        value = {
-            type = "structure",
-        },
+        value = M.SlotValue,
         values = {
             type = "list",
-            member_type = "structure",
+            member = M.SlotValueOverride,
         },
     },
 }
@@ -10427,8 +10035,8 @@ M.IntentOverride = {
         },
         slots = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.SlotValueOverride,
         },
     },
 }
@@ -10438,8 +10046,8 @@ M.RuntimeHints = {
     members = {
         slotHints = {
             type = "map",
-            key_type = "string",
-            value_type = "map",
+            key = { type = "string" },
+            value = { type = "map" },
         },
     },
 }
@@ -10452,12 +10060,12 @@ M.UserTurnSlotOutput = {
         },
         values = {
             type = "list",
-            member_type = "structure",
+            member = M.UserTurnSlotOutput,
         },
         subSlots = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.UserTurnSlotOutput,
         },
     },
 }
@@ -10465,16 +10073,12 @@ M.UserTurnSlotOutput = {
 M.DialogState = {
     type = "structure",
     members = {
-        dialogAction = {
-            type = "structure",
-        },
-        intent = {
-            type = "structure",
-        },
+        dialogAction = M.DialogAction,
+        intent = M.IntentOverride,
         sessionAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -10484,16 +10088,14 @@ M.InputSessionStateSpecification = {
     members = {
         sessionAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         activeContexts = {
             type = "list",
-            member_type = "structure",
+            member = M.ActiveContext,
         },
-        runtimeHints = {
-            type = "structure",
-        },
+        runtimeHints = M.RuntimeHints,
     },
 }
 
@@ -10506,53 +10108,36 @@ M.ConditionalBranch = {
                 required = true,
             },
         },
-        condition = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        nextStep = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        response = {
-            type = "structure",
-        },
+        condition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Condition }),
+        nextStep = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DialogState }),
+        response = M.ResponseSpecification,
     },
 }
 
 M.DefaultConditionalBranch = {
     type = "structure",
     members = {
-        nextStep = {
-            type = "structure",
-        },
-        response = {
-            type = "structure",
-        },
+        nextStep = M.DialogState,
+        response = M.ResponseSpecification,
     },
 }
 
 M.UserTurnInputSpecification = {
     type = "structure",
     members = {
-        utteranceInput = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        utteranceInput = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.UtteranceInputSpecification }),
         requestAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        sessionState = {
-            type = "structure",
-        },
+        sessionState = M.InputSessionStateSpecification,
     },
 }
 
@@ -10567,8 +10152,8 @@ M.UserTurnIntentOutput = {
         },
         slots = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.UserTurnSlotOutput,
         },
     },
 }
@@ -10576,15 +10161,12 @@ M.UserTurnIntentOutput = {
 M.UserTurnOutputSpecification = {
     type = "structure",
     members = {
-        intent = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        intent = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.UserTurnIntentOutput }),
         activeContexts = {
             type = "list",
-            member_type = "structure",
+            member = M.ActiveContext,
         },
         transcript = {
             type = "string",
@@ -10603,65 +10185,46 @@ M.ConditionalSpecification = {
         },
         conditionalBranches = {
             type = "list",
-            member_type = "structure",
+            member = M.ConditionalBranch,
             traits = {
                 required = true,
             },
         },
-        defaultBranch = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        defaultBranch = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DefaultConditionalBranch }),
     },
 }
 
 M.UserTurnSpecification = {
     type = "structure",
     members = {
-        input = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        expected = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        input = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.UserTurnInputSpecification }),
+        expected = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.UserTurnOutputSpecification }),
     },
 }
 
 M.TurnSpecification = {
     type = "structure",
     members = {
-        agentTurn = {
-            type = "structure",
-        },
-        userTurn = {
-            type = "structure",
-        },
+        agentTurn = M.AgentTurnSpecification,
+        userTurn = M.UserTurnSpecification,
     },
 }
 
 M.IntentClosingSetting = {
     type = "structure",
     members = {
-        closingResponse = {
-            type = "structure",
-        },
+        closingResponse = M.ResponseSpecification,
         active = {
             type = "boolean",
         },
-        nextStep = {
-            type = "structure",
-        },
-        conditional = {
-            type = "structure",
-        },
+        nextStep = M.DialogState,
+        conditional = M.ConditionalSpecification,
     },
 }
 
@@ -10669,7 +10232,7 @@ M.TestSetTurnRecord = {
     type = "structure",
     members = {
         recordNumber = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -10678,38 +10241,25 @@ M.TestSetTurnRecord = {
             type = "string",
         },
         turnNumber = {
-            type = "number",
+            type = "integer",
         },
-        turnSpecification = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        turnSpecification = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TurnSpecification }),
     },
 }
 
 M.UserTurnResult = {
     type = "structure",
     members = {
-        input = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        expectedOutput = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        actualOutput = {
-            type = "structure",
-        },
-        errorDetails = {
-            type = "structure",
-        },
+        input = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.UserTurnInputSpecification }),
+        expectedOutput = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.UserTurnOutputSpecification }),
+        actualOutput = M.UserTurnOutputSpecification,
+        errorDetails = M.ExecutionErrorDetails,
         endToEndResult = {
             type = "string",
         },
@@ -10722,9 +10272,7 @@ M.UserTurnResult = {
         speechTranscriptionResult = {
             type = "string",
         },
-        conversationLevelResult = {
-            type = "structure",
-        },
+        conversationLevelResult = M.ConversationLevelResultDetail,
     },
 }
 
@@ -10733,7 +10281,7 @@ M.ListTestSetRecordsOutput = {
     members = {
         testSetRecords = {
             type = "list",
-            member_type = "structure",
+            member = M.TestSetTurnRecord,
         },
         nextToken = {
             type = "string",
@@ -10744,12 +10292,8 @@ M.ListTestSetRecordsOutput = {
 M.TestSetTurnResult = {
     type = "structure",
     members = {
-        agent = {
-            type = "structure",
-        },
-        user = {
-            type = "structure",
-        },
+        agent = M.AgentTurnResult,
+        user = M.UserTurnResult,
     },
 }
 
@@ -10757,7 +10301,7 @@ M.UtteranceLevelTestResultItem = {
     type = "structure",
     members = {
         recordNumber = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -10765,12 +10309,9 @@ M.UtteranceLevelTestResultItem = {
         conversationId = {
             type = "string",
         },
-        turnResult = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        turnResult = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TestSetTurnResult }),
     },
 }
 
@@ -10779,7 +10320,7 @@ M.UtteranceLevelTestResults = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.UtteranceLevelTestResultItem,
             traits = {
                 required = true,
             },
@@ -10790,30 +10331,18 @@ M.UtteranceLevelTestResults = {
 M.TestExecutionResultItems = {
     type = "structure",
     members = {
-        overallTestResults = {
-            type = "structure",
-        },
-        conversationLevelTestResults = {
-            type = "structure",
-        },
-        intentClassificationTestResults = {
-            type = "structure",
-        },
-        intentLevelSlotResolutionTestResults = {
-            type = "structure",
-        },
-        utteranceLevelTestResults = {
-            type = "structure",
-        },
+        overallTestResults = M.OverallTestResults,
+        conversationLevelTestResults = M.ConversationLevelTestResults,
+        intentClassificationTestResults = M.IntentClassificationTestResults,
+        intentLevelSlotResolutionTestResults = M.IntentLevelSlotResolutionTestResults,
+        utteranceLevelTestResults = M.UtteranceLevelTestResults,
     },
 }
 
 M.ListTestExecutionResultItemsOutput = {
     type = "structure",
     members = {
-        testExecutionResults = {
-            type = "structure",
-        },
+        testExecutionResults = M.TestExecutionResultItems,
         nextToken = {
             type = "string",
         },
@@ -10823,66 +10352,30 @@ M.ListTestExecutionResultItemsOutput = {
 M.PostDialogCodeHookInvocationSpecification = {
     type = "structure",
     members = {
-        successResponse = {
-            type = "structure",
-        },
-        successNextStep = {
-            type = "structure",
-        },
-        successConditional = {
-            type = "structure",
-        },
-        failureResponse = {
-            type = "structure",
-        },
-        failureNextStep = {
-            type = "structure",
-        },
-        failureConditional = {
-            type = "structure",
-        },
-        timeoutResponse = {
-            type = "structure",
-        },
-        timeoutNextStep = {
-            type = "structure",
-        },
-        timeoutConditional = {
-            type = "structure",
-        },
+        successResponse = M.ResponseSpecification,
+        successNextStep = M.DialogState,
+        successConditional = M.ConditionalSpecification,
+        failureResponse = M.ResponseSpecification,
+        failureNextStep = M.DialogState,
+        failureConditional = M.ConditionalSpecification,
+        timeoutResponse = M.ResponseSpecification,
+        timeoutNextStep = M.DialogState,
+        timeoutConditional = M.ConditionalSpecification,
     },
 }
 
 M.PostFulfillmentStatusSpecification = {
     type = "structure",
     members = {
-        successResponse = {
-            type = "structure",
-        },
-        failureResponse = {
-            type = "structure",
-        },
-        timeoutResponse = {
-            type = "structure",
-        },
-        successNextStep = {
-            type = "structure",
-        },
-        successConditional = {
-            type = "structure",
-        },
-        failureNextStep = {
-            type = "structure",
-        },
-        failureConditional = {
-            type = "structure",
-        },
-        timeoutNextStep = {
-            type = "structure",
-        },
-        timeoutConditional = {
-            type = "structure",
-        },
+        successResponse = M.ResponseSpecification,
+        failureResponse = M.ResponseSpecification,
+        timeoutResponse = M.ResponseSpecification,
+        successNextStep = M.DialogState,
+        successConditional = M.ConditionalSpecification,
+        failureNextStep = M.DialogState,
+        failureConditional = M.ConditionalSpecification,
+        timeoutNextStep = M.DialogState,
+        timeoutConditional = M.ConditionalSpecification,
     },
 }
 
@@ -10904,12 +10397,9 @@ M.DialogCodeHookInvocationSetting = {
         invocationLabel = {
             type = "string",
         },
-        postCodeHookSpecification = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        postCodeHookSpecification = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PostDialogCodeHookInvocationSpecification }),
     },
 }
 
@@ -10919,15 +10409,12 @@ M.FulfillmentCodeHookSettings = {
         enabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
-        postFulfillmentStatusSpecification = {
-            type = "structure",
-        },
-        fulfillmentUpdatesSpecification = {
-            type = "structure",
-        },
+        postFulfillmentStatusSpecification = M.PostFulfillmentStatusSpecification,
+        fulfillmentUpdatesSpecification = M.FulfillmentUpdatesSpecification,
         active = {
             type = "boolean",
         },
@@ -10937,127 +10424,68 @@ M.FulfillmentCodeHookSettings = {
 M.InitialResponseSetting = {
     type = "structure",
     members = {
-        initialResponse = {
-            type = "structure",
-        },
-        nextStep = {
-            type = "structure",
-        },
-        conditional = {
-            type = "structure",
-        },
-        codeHook = {
-            type = "structure",
-        },
+        initialResponse = M.ResponseSpecification,
+        nextStep = M.DialogState,
+        conditional = M.ConditionalSpecification,
+        codeHook = M.DialogCodeHookInvocationSetting,
     },
 }
 
 M.SlotCaptureSetting = {
     type = "structure",
     members = {
-        captureResponse = {
-            type = "structure",
-        },
-        captureNextStep = {
-            type = "structure",
-        },
-        captureConditional = {
-            type = "structure",
-        },
-        failureResponse = {
-            type = "structure",
-        },
-        failureNextStep = {
-            type = "structure",
-        },
-        failureConditional = {
-            type = "structure",
-        },
-        codeHook = {
-            type = "structure",
-        },
-        elicitationCodeHook = {
-            type = "structure",
-        },
+        captureResponse = M.ResponseSpecification,
+        captureNextStep = M.DialogState,
+        captureConditional = M.ConditionalSpecification,
+        failureResponse = M.ResponseSpecification,
+        failureNextStep = M.DialogState,
+        failureConditional = M.ConditionalSpecification,
+        codeHook = M.DialogCodeHookInvocationSetting,
+        elicitationCodeHook = M.ElicitationCodeHookInvocationSetting,
     },
 }
 
 M.SlotValueElicitationSetting = {
     type = "structure",
     members = {
-        defaultValueSpecification = {
-            type = "structure",
-        },
+        defaultValueSpecification = M.SlotDefaultValueSpecification,
         slotConstraint = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        promptSpecification = {
-            type = "structure",
-        },
+        promptSpecification = M.PromptSpecification,
         sampleUtterances = {
             type = "list",
-            member_type = "structure",
+            member = M.SampleUtterance,
         },
-        waitAndContinueSpecification = {
-            type = "structure",
-        },
-        slotCaptureSetting = {
-            type = "structure",
-        },
-        slotResolutionSetting = {
-            type = "structure",
-        },
+        waitAndContinueSpecification = M.WaitAndContinueSpecification,
+        slotCaptureSetting = M.SlotCaptureSetting,
+        slotResolutionSetting = M.SlotResolutionSetting,
     },
 }
 
 M.IntentConfirmationSetting = {
     type = "structure",
     members = {
-        promptSpecification = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        declinationResponse = {
-            type = "structure",
-        },
+        promptSpecification = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PromptSpecification }),
+        declinationResponse = M.ResponseSpecification,
         active = {
             type = "boolean",
         },
-        confirmationResponse = {
-            type = "structure",
-        },
-        confirmationNextStep = {
-            type = "structure",
-        },
-        confirmationConditional = {
-            type = "structure",
-        },
-        declinationNextStep = {
-            type = "structure",
-        },
-        declinationConditional = {
-            type = "structure",
-        },
-        failureResponse = {
-            type = "structure",
-        },
-        failureNextStep = {
-            type = "structure",
-        },
-        failureConditional = {
-            type = "structure",
-        },
-        codeHook = {
-            type = "structure",
-        },
-        elicitationCodeHook = {
-            type = "structure",
-        },
+        confirmationResponse = M.ResponseSpecification,
+        confirmationNextStep = M.DialogState,
+        confirmationConditional = M.ConditionalSpecification,
+        declinationNextStep = M.DialogState,
+        declinationConditional = M.ConditionalSpecification,
+        failureResponse = M.ResponseSpecification,
+        failureNextStep = M.DialogState,
+        failureConditional = M.ConditionalSpecification,
+        codeHook = M.DialogCodeHookInvocationSetting,
+        elicitationCodeHook = M.ElicitationCodeHookInvocationSetting,
     },
 }
 
@@ -11076,15 +10504,10 @@ M.CreateSlotInput = {
         slotTypeId = {
             type = "string",
         },
-        valueElicitationSetting = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        obfuscationSetting = {
-            type = "structure",
-        },
+        valueElicitationSetting = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SlotValueElicitationSetting }),
+        obfuscationSetting = M.ObfuscationSetting,
         botId = {
             type = "string",
             traits = {
@@ -11113,12 +10536,8 @@ M.CreateSlotInput = {
                 required = true,
             },
         },
-        multipleValuesSetting = {
-            type = "structure",
-        },
-        subSlotSetting = {
-            type = "structure",
-        },
+        multipleValuesSetting = M.MultipleValuesSetting,
+        subSlotSetting = M.SubSlotSetting,
     },
 }
 
@@ -11137,12 +10556,8 @@ M.CreateSlotOutput = {
         slotTypeId = {
             type = "string",
         },
-        valueElicitationSetting = {
-            type = "structure",
-        },
-        obfuscationSetting = {
-            type = "structure",
-        },
+        valueElicitationSetting = M.SlotValueElicitationSetting,
+        obfuscationSetting = M.ObfuscationSetting,
         botId = {
             type = "string",
         },
@@ -11158,12 +10573,8 @@ M.CreateSlotOutput = {
         creationDateTime = {
             type = "timestamp",
         },
-        multipleValuesSetting = {
-            type = "structure",
-        },
-        subSlotSetting = {
-            type = "structure",
-        },
+        multipleValuesSetting = M.MultipleValuesSetting,
+        subSlotSetting = M.SubSlotSetting,
     },
 }
 
@@ -11182,12 +10593,8 @@ M.DescribeSlotOutput = {
         slotTypeId = {
             type = "string",
         },
-        valueElicitationSetting = {
-            type = "structure",
-        },
-        obfuscationSetting = {
-            type = "structure",
-        },
+        valueElicitationSetting = M.SlotValueElicitationSetting,
+        obfuscationSetting = M.ObfuscationSetting,
         botId = {
             type = "string",
         },
@@ -11206,12 +10613,8 @@ M.DescribeSlotOutput = {
         lastUpdatedDateTime = {
             type = "timestamp",
         },
-        multipleValuesSetting = {
-            type = "structure",
-        },
-        subSlotSetting = {
-            type = "structure",
-        },
+        multipleValuesSetting = M.MultipleValuesSetting,
+        subSlotSetting = M.SubSlotSetting,
     },
 }
 
@@ -11237,15 +10640,10 @@ M.UpdateSlotInput = {
         slotTypeId = {
             type = "string",
         },
-        valueElicitationSetting = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        obfuscationSetting = {
-            type = "structure",
-        },
+        valueElicitationSetting = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SlotValueElicitationSetting }),
+        obfuscationSetting = M.ObfuscationSetting,
         botId = {
             type = "string",
             traits = {
@@ -11274,12 +10672,8 @@ M.UpdateSlotInput = {
                 required = true,
             },
         },
-        multipleValuesSetting = {
-            type = "structure",
-        },
-        subSlotSetting = {
-            type = "structure",
-        },
+        multipleValuesSetting = M.MultipleValuesSetting,
+        subSlotSetting = M.SubSlotSetting,
     },
 }
 
@@ -11298,12 +10692,8 @@ M.UpdateSlotOutput = {
         slotTypeId = {
             type = "string",
         },
-        valueElicitationSetting = {
-            type = "structure",
-        },
-        obfuscationSetting = {
-            type = "structure",
-        },
+        valueElicitationSetting = M.SlotValueElicitationSetting,
+        obfuscationSetting = M.ObfuscationSetting,
         botId = {
             type = "string",
         },
@@ -11322,12 +10712,8 @@ M.UpdateSlotOutput = {
         lastUpdatedDateTime = {
             type = "timestamp",
         },
-        multipleValuesSetting = {
-            type = "structure",
-        },
-        subSlotSetting = {
-            type = "structure",
-        },
+        multipleValuesSetting = M.MultipleValuesSetting,
+        subSlotSetting = M.SubSlotSetting,
     },
 }
 
@@ -11351,31 +10737,21 @@ M.CreateIntentInput = {
         },
         sampleUtterances = {
             type = "list",
-            member_type = "structure",
+            member = M.SampleUtterance,
         },
-        dialogCodeHook = {
-            type = "structure",
-        },
-        fulfillmentCodeHook = {
-            type = "structure",
-        },
-        intentConfirmationSetting = {
-            type = "structure",
-        },
-        intentClosingSetting = {
-            type = "structure",
-        },
+        dialogCodeHook = M.DialogCodeHookSettings,
+        fulfillmentCodeHook = M.FulfillmentCodeHookSettings,
+        intentConfirmationSetting = M.IntentConfirmationSetting,
+        intentClosingSetting = M.IntentClosingSetting,
         inputContexts = {
             type = "list",
-            member_type = "structure",
+            member = M.InputContext,
         },
         outputContexts = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputContext,
         },
-        kendraConfiguration = {
-            type = "structure",
-        },
+        kendraConfiguration = M.KendraConfiguration,
         botId = {
             type = "string",
             traits = {
@@ -11397,15 +10773,9 @@ M.CreateIntentInput = {
                 required = true,
             },
         },
-        initialResponseSetting = {
-            type = "structure",
-        },
-        qnAIntentConfiguration = {
-            type = "structure",
-        },
-        qInConnectIntentConfiguration = {
-            type = "structure",
-        },
+        initialResponseSetting = M.InitialResponseSetting,
+        qnAIntentConfiguration = M.QnAIntentConfiguration,
+        qInConnectIntentConfiguration = M.QInConnectIntentConfiguration,
     },
 }
 
@@ -11429,31 +10799,21 @@ M.CreateIntentOutput = {
         },
         sampleUtterances = {
             type = "list",
-            member_type = "structure",
+            member = M.SampleUtterance,
         },
-        dialogCodeHook = {
-            type = "structure",
-        },
-        fulfillmentCodeHook = {
-            type = "structure",
-        },
-        intentConfirmationSetting = {
-            type = "structure",
-        },
-        intentClosingSetting = {
-            type = "structure",
-        },
+        dialogCodeHook = M.DialogCodeHookSettings,
+        fulfillmentCodeHook = M.FulfillmentCodeHookSettings,
+        intentConfirmationSetting = M.IntentConfirmationSetting,
+        intentClosingSetting = M.IntentClosingSetting,
         inputContexts = {
             type = "list",
-            member_type = "structure",
+            member = M.InputContext,
         },
         outputContexts = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputContext,
         },
-        kendraConfiguration = {
-            type = "structure",
-        },
+        kendraConfiguration = M.KendraConfiguration,
         botId = {
             type = "string",
         },
@@ -11466,15 +10826,9 @@ M.CreateIntentOutput = {
         creationDateTime = {
             type = "timestamp",
         },
-        initialResponseSetting = {
-            type = "structure",
-        },
-        qnAIntentConfiguration = {
-            type = "structure",
-        },
-        qInConnectIntentConfiguration = {
-            type = "structure",
-        },
+        initialResponseSetting = M.InitialResponseSetting,
+        qnAIntentConfiguration = M.QnAIntentConfiguration,
+        qInConnectIntentConfiguration = M.QInConnectIntentConfiguration,
     },
 }
 
@@ -11498,35 +10852,25 @@ M.DescribeIntentOutput = {
         },
         sampleUtterances = {
             type = "list",
-            member_type = "structure",
+            member = M.SampleUtterance,
         },
-        dialogCodeHook = {
-            type = "structure",
-        },
-        fulfillmentCodeHook = {
-            type = "structure",
-        },
+        dialogCodeHook = M.DialogCodeHookSettings,
+        fulfillmentCodeHook = M.FulfillmentCodeHookSettings,
         slotPriorities = {
             type = "list",
-            member_type = "structure",
+            member = M.SlotPriority,
         },
-        intentConfirmationSetting = {
-            type = "structure",
-        },
-        intentClosingSetting = {
-            type = "structure",
-        },
+        intentConfirmationSetting = M.IntentConfirmationSetting,
+        intentClosingSetting = M.IntentClosingSetting,
         inputContexts = {
             type = "list",
-            member_type = "structure",
+            member = M.InputContext,
         },
         outputContexts = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputContext,
         },
-        kendraConfiguration = {
-            type = "structure",
-        },
+        kendraConfiguration = M.KendraConfiguration,
         botId = {
             type = "string",
         },
@@ -11542,15 +10886,9 @@ M.DescribeIntentOutput = {
         lastUpdatedDateTime = {
             type = "timestamp",
         },
-        initialResponseSetting = {
-            type = "structure",
-        },
-        qnAIntentConfiguration = {
-            type = "structure",
-        },
-        qInConnectIntentConfiguration = {
-            type = "structure",
-        },
+        initialResponseSetting = M.InitialResponseSetting,
+        qnAIntentConfiguration = M.QnAIntentConfiguration,
+        qInConnectIntentConfiguration = M.QInConnectIntentConfiguration,
     },
 }
 
@@ -11581,35 +10919,25 @@ M.UpdateIntentInput = {
         },
         sampleUtterances = {
             type = "list",
-            member_type = "structure",
+            member = M.SampleUtterance,
         },
-        dialogCodeHook = {
-            type = "structure",
-        },
-        fulfillmentCodeHook = {
-            type = "structure",
-        },
+        dialogCodeHook = M.DialogCodeHookSettings,
+        fulfillmentCodeHook = M.FulfillmentCodeHookSettings,
         slotPriorities = {
             type = "list",
-            member_type = "structure",
+            member = M.SlotPriority,
         },
-        intentConfirmationSetting = {
-            type = "structure",
-        },
-        intentClosingSetting = {
-            type = "structure",
-        },
+        intentConfirmationSetting = M.IntentConfirmationSetting,
+        intentClosingSetting = M.IntentClosingSetting,
         inputContexts = {
             type = "list",
-            member_type = "structure",
+            member = M.InputContext,
         },
         outputContexts = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputContext,
         },
-        kendraConfiguration = {
-            type = "structure",
-        },
+        kendraConfiguration = M.KendraConfiguration,
         botId = {
             type = "string",
             traits = {
@@ -11631,15 +10959,9 @@ M.UpdateIntentInput = {
                 required = true,
             },
         },
-        initialResponseSetting = {
-            type = "structure",
-        },
-        qnAIntentConfiguration = {
-            type = "structure",
-        },
-        qInConnectIntentConfiguration = {
-            type = "structure",
-        },
+        initialResponseSetting = M.InitialResponseSetting,
+        qnAIntentConfiguration = M.QnAIntentConfiguration,
+        qInConnectIntentConfiguration = M.QInConnectIntentConfiguration,
     },
 }
 
@@ -11663,35 +10985,25 @@ M.UpdateIntentOutput = {
         },
         sampleUtterances = {
             type = "list",
-            member_type = "structure",
+            member = M.SampleUtterance,
         },
-        dialogCodeHook = {
-            type = "structure",
-        },
-        fulfillmentCodeHook = {
-            type = "structure",
-        },
+        dialogCodeHook = M.DialogCodeHookSettings,
+        fulfillmentCodeHook = M.FulfillmentCodeHookSettings,
         slotPriorities = {
             type = "list",
-            member_type = "structure",
+            member = M.SlotPriority,
         },
-        intentConfirmationSetting = {
-            type = "structure",
-        },
-        intentClosingSetting = {
-            type = "structure",
-        },
+        intentConfirmationSetting = M.IntentConfirmationSetting,
+        intentClosingSetting = M.IntentClosingSetting,
         inputContexts = {
             type = "list",
-            member_type = "structure",
+            member = M.InputContext,
         },
         outputContexts = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputContext,
         },
-        kendraConfiguration = {
-            type = "structure",
-        },
+        kendraConfiguration = M.KendraConfiguration,
         botId = {
             type = "string",
         },
@@ -11707,15 +11019,9 @@ M.UpdateIntentOutput = {
         lastUpdatedDateTime = {
             type = "timestamp",
         },
-        initialResponseSetting = {
-            type = "structure",
-        },
-        qnAIntentConfiguration = {
-            type = "structure",
-        },
-        qInConnectIntentConfiguration = {
-            type = "structure",
-        },
+        initialResponseSetting = M.InitialResponseSetting,
+        qnAIntentConfiguration = M.QnAIntentConfiguration,
+        qInConnectIntentConfiguration = M.QInConnectIntentConfiguration,
     },
 }
 

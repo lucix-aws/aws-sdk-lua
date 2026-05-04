@@ -1,0 +1,85 @@
+local waiter = require("waiter")
+
+local M = {}
+
+--- Wait until DistributionDeployed.
+function M.wait_until_distribution_deployed(client, input, options)
+    return waiter.wait(client, "getDistribution", input, {
+        min_delay = 60,
+        max_delay = 2100,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "Distribution.Status",
+                        expected = "Deployed",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until InvalidationCompleted.
+function M.wait_until_invalidation_completed(client, input, options)
+    return waiter.wait(client, "getInvalidation", input, {
+        min_delay = 20,
+        max_delay = 600,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "Invalidation.Status",
+                        expected = "Completed",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until InvalidationForDistributionTenantCompleted.
+function M.wait_until_invalidation_for_distribution_tenant_completed(client, input, options)
+    return waiter.wait(client, "getInvalidationForDistributionTenant", input, {
+        min_delay = 20,
+        max_delay = 600,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "Invalidation.Status",
+                        expected = "Completed",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until StreamingDistributionDeployed.
+function M.wait_until_streaming_distribution_deployed(client, input, options)
+    return waiter.wait(client, "getStreamingDistribution", input, {
+        min_delay = 60,
+        max_delay = 1500,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "StreamingDistribution.Status",
+                        expected = "Deployed",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+return M

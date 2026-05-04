@@ -16,7 +16,7 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AWSDnsV20130401"
-    cfg.signing_name = "awsdnsv20130401"
+    cfg.signing_name = "route53"
     if not cfg.protocol then
         cfg.protocol = restxml_protocol.new()
     end

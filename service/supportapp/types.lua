@@ -229,7 +229,7 @@ M.ListSlackChannelConfigurationsOutput = {
         },
         slackChannelConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.SlackChannelConfiguration,
             traits = {
                 required = true,
             },
@@ -272,7 +272,7 @@ M.ListSlackWorkspaceConfigurationsOutput = {
         },
         slackWorkspaceConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.SlackWorkspaceConfiguration,
         },
     },
 }

@@ -89,41 +89,28 @@ M.S3Repository = {
 M.Repository = {
     type = "structure",
     members = {
-        CodeCommit = {
-            type = "structure",
-        },
-        Bitbucket = {
-            type = "structure",
-        },
-        GitHubEnterpriseServer = {
-            type = "structure",
-        },
-        S3Bucket = {
-            type = "structure",
-        },
+        CodeCommit = M.CodeCommitRepository,
+        Bitbucket = M.ThirdPartySourceRepository,
+        GitHubEnterpriseServer = M.ThirdPartySourceRepository,
+        S3Bucket = M.S3Repository,
     },
 }
 
 M.AssociateRepositoryInput = {
     type = "structure",
     members = {
-        Repository = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Repository = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Repository }),
         ClientRequestToken = {
             type = "string",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        KMSKeyDetails = {
-            type = "structure",
-        },
+        KMSKeyDetails = M.KMSKeyDetails,
     },
 }
 
@@ -156,9 +143,7 @@ M.S3RepositoryDetails = {
         BucketName = {
             type = "string",
         },
-        CodeArtifacts = {
-            type = "structure",
-        },
+        CodeArtifacts = M.CodeArtifacts,
     },
 }
 
@@ -203,25 +188,19 @@ M.RepositoryAssociation = {
         CreatedTimeStamp = {
             type = "timestamp",
         },
-        KMSKeyDetails = {
-            type = "structure",
-        },
-        S3RepositoryDetails = {
-            type = "structure",
-        },
+        KMSKeyDetails = M.KMSKeyDetails,
+        S3RepositoryDetails = M.S3RepositoryDetails,
     },
 }
 
 M.AssociateRepositoryOutput = {
     type = "structure",
     members = {
-        RepositoryAssociation = {
-            type = "structure",
-        },
+        RepositoryAssociation = M.RepositoryAssociation,
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -338,9 +317,7 @@ M.RequestMetadata = {
         Requester = {
             type = "string",
         },
-        EventInfo = {
-            type = "structure",
-        },
+        EventInfo = M.EventInfo,
         VendorName = {
             type = "string",
         },
@@ -356,57 +333,38 @@ M.S3BucketRepository = {
                 required = true,
             },
         },
-        Details = {
-            type = "structure",
-        },
+        Details = M.S3RepositoryDetails,
     },
 }
 
 M.SourceCodeType = {
     type = "structure",
     members = {
-        CommitDiff = {
-            type = "structure",
-        },
-        RepositoryHead = {
-            type = "structure",
-        },
-        BranchDiff = {
-            type = "structure",
-        },
-        S3BucketRepository = {
-            type = "structure",
-        },
-        RequestMetadata = {
-            type = "structure",
-        },
+        CommitDiff = M.CommitDiffSourceCodeType,
+        RepositoryHead = M.RepositoryHeadSourceCodeType,
+        BranchDiff = M.BranchDiffSourceCodeType,
+        S3BucketRepository = M.S3BucketRepository,
+        RequestMetadata = M.RequestMetadata,
     },
 }
 
 M.RepositoryAnalysis = {
     type = "structure",
     members = {
-        RepositoryHead = {
-            type = "structure",
-        },
-        SourceCodeType = {
-            type = "structure",
-        },
+        RepositoryHead = M.RepositoryHeadSourceCodeType,
+        SourceCodeType = M.SourceCodeType,
     },
 }
 
 M.CodeReviewType = {
     type = "structure",
     members = {
-        RepositoryAnalysis = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RepositoryAnalysis = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RepositoryAnalysis }),
         AnalysisTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -426,12 +384,9 @@ M.CreateCodeReviewInput = {
                 required = true,
             },
         },
-        Type = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Type = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CodeReviewType }),
         ClientRequestToken = {
             type = "string",
         },
@@ -448,13 +403,13 @@ M.Metrics = {
     type = "structure",
     members = {
         MeteredLinesOfCodeCount = {
-            type = "number",
+            type = "long",
         },
         SuppressedLinesOfCodeCount = {
-            type = "number",
+            type = "long",
         },
         FindingsCount = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -507,18 +462,14 @@ M.CodeReview = {
         PullRequestId = {
             type = "string",
         },
-        SourceCodeType = {
-            type = "structure",
-        },
+        SourceCodeType = M.SourceCodeType,
         AssociationArn = {
             type = "string",
         },
-        Metrics = {
-            type = "structure",
-        },
+        Metrics = M.Metrics,
         AnalysisTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ConfigFileState = {
             type = "string",
@@ -529,9 +480,7 @@ M.CodeReview = {
 M.CreateCodeReviewOutput = {
     type = "structure",
     members = {
-        CodeReview = {
-            type = "structure",
-        },
+        CodeReview = M.CodeReview,
     },
 }
 
@@ -561,9 +510,7 @@ M.DescribeCodeReviewInput = {
 M.DescribeCodeReviewOutput = {
     type = "structure",
     members = {
-        CodeReview = {
-            type = "structure",
-        },
+        CodeReview = M.CodeReview,
     },
 }
 
@@ -609,7 +556,7 @@ M.RecommendationFeedback = {
         },
         Reactions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         UserId = {
             type = "string",
@@ -626,9 +573,7 @@ M.RecommendationFeedback = {
 M.DescribeRecommendationFeedbackOutput = {
     type = "structure",
     members = {
-        RecommendationFeedback = {
-            type = "structure",
-        },
+        RecommendationFeedback = M.RecommendationFeedback,
     },
 }
 
@@ -648,13 +593,11 @@ M.DescribeRepositoryAssociationInput = {
 M.DescribeRepositoryAssociationOutput = {
     type = "structure",
     members = {
-        RepositoryAssociation = {
-            type = "structure",
-        },
+        RepositoryAssociation = M.RepositoryAssociation,
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -685,13 +628,11 @@ M.DisassociateRepositoryInput = {
 M.DisassociateRepositoryOutput = {
     type = "structure",
     members = {
-        RepositoryAssociation = {
-            type = "structure",
-        },
+        RepositoryAssociation = M.RepositoryAssociation,
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -701,21 +642,21 @@ M.ListCodeReviewsInput = {
     members = {
         ProviderTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "ProviderTypes",
             },
         },
         States = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "States",
             },
         },
         RepositoryNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "RepositoryNames",
             },
@@ -728,7 +669,7 @@ M.ListCodeReviewsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -746,13 +687,13 @@ M.MetricsSummary = {
     type = "structure",
     members = {
         MeteredLinesOfCodeCount = {
-            type = "number",
+            type = "long",
         },
         SuppressedLinesOfCodeCount = {
-            type = "number",
+            type = "long",
         },
         FindingsCount = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -790,12 +731,8 @@ M.CodeReviewSummary = {
         PullRequestId = {
             type = "string",
         },
-        MetricsSummary = {
-            type = "structure",
-        },
-        SourceCodeType = {
-            type = "structure",
-        },
+        MetricsSummary = M.MetricsSummary,
+        SourceCodeType = M.SourceCodeType,
     },
 }
 
@@ -804,7 +741,7 @@ M.ListCodeReviewsOutput = {
     members = {
         CodeReviewSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.CodeReviewSummary,
         },
         NextToken = {
             type = "string",
@@ -822,7 +759,7 @@ M.ListRecommendationFeedbackInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -836,14 +773,14 @@ M.ListRecommendationFeedbackInput = {
         },
         UserIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "UserIds",
             },
         },
         RecommendationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "RecommendationIds",
             },
@@ -859,7 +796,7 @@ M.RecommendationFeedbackSummary = {
         },
         Reactions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         UserId = {
             type = "string",
@@ -872,7 +809,7 @@ M.ListRecommendationFeedbackOutput = {
     members = {
         RecommendationFeedbackSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.RecommendationFeedbackSummary,
         },
         NextToken = {
             type = "string",
@@ -890,7 +827,7 @@ M.ListRecommendationsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -936,7 +873,7 @@ M.RuleMetadata = {
         },
         RuleTags = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -959,10 +896,10 @@ M.RecommendationSummary = {
             type = "string",
         },
         StartLine = {
-            type = "number",
+            type = "integer",
         },
         EndLine = {
-            type = "number",
+            type = "integer",
         },
         Description = {
             type = "string",
@@ -970,9 +907,7 @@ M.RecommendationSummary = {
         RecommendationCategory = {
             type = "string",
         },
-        RuleMetadata = {
-            type = "structure",
-        },
+        RuleMetadata = M.RuleMetadata,
         Severity = {
             type = "string",
         },
@@ -984,7 +919,7 @@ M.ListRecommendationsOutput = {
     members = {
         RecommendationSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.RecommendationSummary,
         },
         NextToken = {
             type = "string",
@@ -997,34 +932,34 @@ M.ListRepositoryAssociationsInput = {
     members = {
         ProviderTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "ProviderType",
             },
         },
         States = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "State",
             },
         },
         Names = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "Name",
             },
         },
         Owners = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "Owner",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -1073,7 +1008,7 @@ M.ListRepositoryAssociationsOutput = {
     members = {
         RepositoryAssociationSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.RepositoryAssociationSummary,
         },
         NextToken = {
             type = "string",
@@ -1099,8 +1034,8 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1122,7 +1057,7 @@ M.PutRecommendationFeedbackInput = {
         },
         Reactions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1146,8 +1081,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1171,7 +1106,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,

@@ -72,23 +72,26 @@ M.Activation = {
             type = "string",
         },
         RegistrationLimit = {
-            type = "number",
+            type = "integer",
         },
         RegistrationsCount = {
-            type = "number",
+            type = "integer",
         },
         ExpirationDate = {
             type = "timestamp",
         },
         Expired = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         CreatedDate = {
             type = "timestamp",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -122,7 +125,7 @@ M.AddTagsToResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -186,10 +189,13 @@ M.AlarmConfiguration = {
     members = {
         IgnorePollAlarmFailure = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Alarms = {
             type = "list",
-            member_type = "structure",
+            member = M.Alarm,
             traits = {
                 required = true,
             },
@@ -285,7 +291,7 @@ M.OpsItemInvalidParameterException = {
     members = {
         ParameterNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Message = {
             type = "string",
@@ -299,10 +305,13 @@ M.OpsItemLimitExceededException = {
     members = {
         ResourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         LimitType = {
             type = "string",
@@ -350,7 +359,7 @@ M.CancelCommandInput = {
         },
         InstanceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -444,18 +453,18 @@ M.CreateActivationInput = {
             },
         },
         RegistrationLimit = {
-            type = "number",
+            type = "integer",
         },
         ExpirationDate = {
             type = "timestamp",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         RegistrationMetadata = {
             type = "list",
-            member_type = "structure",
+            member = M.RegistrationMetadataItem,
         },
     },
 }
@@ -518,9 +527,7 @@ M.S3OutputLocation = {
 M.InstanceAssociationOutputLocation = {
     type = "structure",
     members = {
-        S3Location = {
-            type = "structure",
-        },
+        S3Location = M.S3OutputLocation,
     },
 }
 
@@ -537,7 +544,7 @@ M.Target = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -547,11 +554,11 @@ M.TargetLocation = {
     members = {
         Accounts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Regions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TargetLocationMaxConcurrency = {
             type = "string",
@@ -562,19 +569,20 @@ M.TargetLocation = {
         ExecutionRoleName = {
             type = "string",
         },
-        TargetLocationAlarmConfiguration = {
-            type = "structure",
-        },
+        TargetLocationAlarmConfiguration = M.AlarmConfiguration,
         IncludeChildOrganizationUnits = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         ExcludeAccounts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Targets = {
             type = "list",
-            member_type = "structure",
+            member = M.Target,
         },
         TargetsMaxConcurrency = {
             type = "string",
@@ -602,19 +610,17 @@ M.CreateAssociationInput = {
         },
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         Targets = {
             type = "list",
-            member_type = "structure",
+            member = M.Target,
         },
         ScheduleExpression = {
             type = "string",
         },
-        OutputLocation = {
-            type = "structure",
-        },
+        OutputLocation = M.InstanceAssociationOutputLocation,
         AssociationName = {
             type = "string",
         },
@@ -635,32 +641,33 @@ M.CreateAssociationInput = {
         },
         ApplyOnlyAtCronInterval = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         CalendarNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TargetLocations = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetLocation,
         },
         ScheduleOffset = {
-            type = "number",
+            type = "integer",
         },
         Duration = {
-            type = "number",
+            type = "integer",
         },
         TargetMaps = {
             type = "list",
-            member_type = "map",
+            member = { type = "map" },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        AlarmConfiguration = {
-            type = "structure",
-        },
+        AlarmConfiguration = M.AlarmConfiguration,
         AssociationDispatchAssumeRole = {
             type = "string",
         },
@@ -678,8 +685,8 @@ M.AssociationOverview = {
         },
         AssociationStatusAggregatedCount = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
         },
     },
 }
@@ -735,12 +742,8 @@ M.AssociationDescription = {
         LastUpdateAssociationDate = {
             type = "timestamp",
         },
-        Status = {
-            type = "structure",
-        },
-        Overview = {
-            type = "structure",
-        },
+        Status = M.AssociationStatus,
+        Overview = M.AssociationOverview,
         DocumentVersion = {
             type = "string",
         },
@@ -749,22 +752,20 @@ M.AssociationDescription = {
         },
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         AssociationId = {
             type = "string",
         },
         Targets = {
             type = "list",
-            member_type = "structure",
+            member = M.Target,
         },
         ScheduleExpression = {
             type = "string",
         },
-        OutputLocation = {
-            type = "structure",
-        },
+        OutputLocation = M.InstanceAssociationOutputLocation,
         LastExecutionDate = {
             type = "timestamp",
         },
@@ -788,31 +789,32 @@ M.AssociationDescription = {
         },
         ApplyOnlyAtCronInterval = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         CalendarNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TargetLocations = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetLocation,
         },
         ScheduleOffset = {
-            type = "number",
+            type = "integer",
         },
         Duration = {
-            type = "number",
+            type = "integer",
         },
         TargetMaps = {
             type = "list",
-            member_type = "map",
+            member = { type = "map" },
         },
-        AlarmConfiguration = {
-            type = "structure",
-        },
+        AlarmConfiguration = M.AlarmConfiguration,
         TriggeredAlarms = {
             type = "list",
-            member_type = "structure",
+            member = M.AlarmStateInformation,
         },
         AssociationDispatchAssumeRole = {
             type = "string",
@@ -823,9 +825,7 @@ M.AssociationDescription = {
 M.CreateAssociationOutput = {
     type = "structure",
     members = {
-        AssociationDescription = {
-            type = "structure",
-        },
+        AssociationDescription = M.AssociationDescription,
     },
 }
 
@@ -918,8 +918,8 @@ M.CreateAssociationBatchRequestEntry = {
         },
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         AutomationTargetParameterName = {
             type = "string",
@@ -929,14 +929,12 @@ M.CreateAssociationBatchRequestEntry = {
         },
         Targets = {
             type = "list",
-            member_type = "structure",
+            member = M.Target,
         },
         ScheduleExpression = {
             type = "string",
         },
-        OutputLocation = {
-            type = "structure",
-        },
+        OutputLocation = M.InstanceAssociationOutputLocation,
         AssociationName = {
             type = "string",
         },
@@ -954,28 +952,29 @@ M.CreateAssociationBatchRequestEntry = {
         },
         ApplyOnlyAtCronInterval = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         CalendarNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TargetLocations = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetLocation,
         },
         ScheduleOffset = {
-            type = "number",
+            type = "integer",
         },
         Duration = {
-            type = "number",
+            type = "integer",
         },
         TargetMaps = {
             type = "list",
-            member_type = "map",
+            member = { type = "map" },
         },
-        AlarmConfiguration = {
-            type = "structure",
-        },
+        AlarmConfiguration = M.AlarmConfiguration,
     },
 }
 
@@ -984,7 +983,7 @@ M.CreateAssociationBatchInput = {
     members = {
         Entries = {
             type = "list",
-            member_type = "structure",
+            member = M.CreateAssociationBatchRequestEntry,
             traits = {
                 required = true,
             },
@@ -1004,9 +1003,7 @@ M.Fault = {
 M.FailedCreateAssociation = {
     type = "structure",
     members = {
-        Entry = {
-            type = "structure",
-        },
+        Entry = M.CreateAssociationBatchRequestEntry,
         Message = {
             type = "string",
         },
@@ -1021,11 +1018,11 @@ M.CreateAssociationBatchOutput = {
     members = {
         Successful = {
             type = "list",
-            member_type = "structure",
+            member = M.AssociationDescription,
         },
         Failed = {
             type = "list",
-            member_type = "structure",
+            member = M.FailedCreateAssociation,
         },
     },
 }
@@ -1044,7 +1041,7 @@ M.AttachmentsSource = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Name = {
             type = "string",
@@ -1110,11 +1107,11 @@ M.CreateDocumentInput = {
         },
         Requires = {
             type = "list",
-            member_type = "structure",
+            member = M.DocumentRequires,
         },
         Attachments = {
             type = "list",
-            member_type = "structure",
+            member = M.AttachmentsSource,
         },
         Name = {
             type = "string",
@@ -1139,7 +1136,7 @@ M.CreateDocumentInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1258,11 +1255,11 @@ M.DocumentDescription = {
         },
         Parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.DocumentParameter,
         },
         PlatformTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DocumentType = {
             type = "string",
@@ -1284,22 +1281,22 @@ M.DocumentDescription = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         AttachmentsInformation = {
             type = "list",
-            member_type = "structure",
+            member = M.AttachmentInformation,
         },
         Requires = {
             type = "list",
-            member_type = "structure",
+            member = M.DocumentRequires,
         },
         Author = {
             type = "string",
         },
         ReviewInformation = {
             type = "list",
-            member_type = "structure",
+            member = M.ReviewInformation,
         },
         ApprovedVersion = {
             type = "string",
@@ -1312,11 +1309,11 @@ M.DocumentDescription = {
         },
         Category = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CategoryEnum = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1324,9 +1321,7 @@ M.DocumentDescription = {
 M.CreateDocumentOutput = {
     type = "structure",
     members = {
-        DocumentDescription = {
-            type = "structure",
-        },
+        DocumentDescription = M.DocumentDescription,
     },
 }
 
@@ -1418,23 +1413,25 @@ M.CreateMaintenanceWindowInput = {
             type = "string",
         },
         ScheduleOffset = {
-            type = "number",
+            type = "integer",
         },
         Duration = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Cutoff = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         AllowUnassociatedTargets = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -1443,7 +1440,7 @@ M.CreateMaintenanceWindowInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1529,19 +1526,19 @@ M.CreateOpsItemInput = {
         },
         OperationalData = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.OpsItemDataValue,
         },
         Notifications = {
             type = "list",
-            member_type = "structure",
+            member = M.OpsItemNotification,
         },
         Priority = {
-            type = "number",
+            type = "integer",
         },
         RelatedOpsItems = {
             type = "list",
-            member_type = "structure",
+            member = M.RelatedOpsItem,
         },
         Source = {
             type = "string",
@@ -1557,7 +1554,7 @@ M.CreateOpsItemInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         Category = {
             type = "string",
@@ -1638,12 +1635,12 @@ M.CreateOpsMetadataInput = {
         },
         Metadata = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.MetadataValue,
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1739,7 +1736,7 @@ M.PatchFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1752,7 +1749,7 @@ M.PatchFilterGroup = {
     members = {
         PatchFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.PatchFilter,
             traits = {
                 required = true,
             },
@@ -1763,23 +1760,26 @@ M.PatchFilterGroup = {
 M.PatchRule = {
     type = "structure",
     members = {
-        PatchFilterGroup = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        PatchFilterGroup = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PatchFilterGroup }),
         ComplianceLevel = {
             type = "string",
         },
         ApproveAfterDays = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         ApproveUntilDate = {
             type = "string",
         },
         EnableNonSecurity = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -1789,7 +1789,7 @@ M.PatchRuleGroup = {
     members = {
         PatchRules = {
             type = "list",
-            member_type = "structure",
+            member = M.PatchRule,
             traits = {
                 required = true,
             },
@@ -1836,7 +1836,7 @@ M.PatchSource = {
         },
         Products = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1862,25 +1862,24 @@ M.CreatePatchBaselineInput = {
                 required = true,
             },
         },
-        GlobalFilters = {
-            type = "structure",
-        },
-        ApprovalRules = {
-            type = "structure",
-        },
+        GlobalFilters = M.PatchFilterGroup,
+        ApprovalRules = M.PatchRuleGroup,
         ApprovedPatches = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ApprovedPatchesComplianceLevel = {
             type = "string",
         },
         ApprovedPatchesEnableNonSecurity = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
         RejectedPatches = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RejectedPatchesAction = {
             type = "string",
@@ -1890,7 +1889,7 @@ M.CreatePatchBaselineInput = {
         },
         Sources = {
             type = "list",
-            member_type = "structure",
+            member = M.PatchSource,
         },
         AvailableSecurityUpdatesComplianceStatus = {
             type = "string",
@@ -1900,7 +1899,7 @@ M.CreatePatchBaselineInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1954,9 +1953,7 @@ M.ResourceDataSyncS3Destination = {
         AWSKMSKeyARN = {
             type = "string",
         },
-        DestinationDataSharing = {
-            type = "structure",
-        },
+        DestinationDataSharing = M.ResourceDataSyncDestinationDataSharing,
     },
 }
 
@@ -1980,7 +1977,7 @@ M.ResourceDataSyncAwsOrganizationsSource = {
         },
         OrganizationalUnits = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceDataSyncOrganizationalUnit,
         },
     },
 }
@@ -1994,21 +1991,25 @@ M.ResourceDataSyncSource = {
                 required = true,
             },
         },
-        AwsOrganizationsSource = {
-            type = "structure",
-        },
+        AwsOrganizationsSource = M.ResourceDataSyncAwsOrganizationsSource,
         SourceRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         IncludeFutureRegions = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         EnableAllOpsDataSources = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -2022,15 +2023,11 @@ M.CreateResourceDataSyncInput = {
                 required = true,
             },
         },
-        S3Destination = {
-            type = "structure",
-        },
+        S3Destination = M.ResourceDataSyncS3Destination,
         SyncType = {
             type = "string",
         },
-        SyncSource = {
-            type = "structure",
-        },
+        SyncSource = M.ResourceDataSyncSource,
     },
 }
 
@@ -2155,6 +2152,9 @@ M.DeleteDocumentInput = {
         },
         Force = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -2192,6 +2192,9 @@ M.DeleteInventoryInput = {
         },
         DryRun = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         ClientToken = {
             type = "string",
@@ -2206,10 +2209,16 @@ M.InventoryDeletionSummaryItem = {
             type = "string",
         },
         Count = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         RemainingCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2218,14 +2227,20 @@ M.InventoryDeletionSummary = {
     type = "structure",
     members = {
         TotalCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         RemainingCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         SummaryItems = {
             type = "list",
-            member_type = "structure",
+            member = M.InventoryDeletionSummaryItem,
         },
     },
 }
@@ -2239,9 +2254,7 @@ M.DeleteInventoryOutput = {
         TypeName = {
             type = "string",
         },
-        DeletionSummary = {
-            type = "structure",
-        },
+        DeletionSummary = M.InventoryDeletionSummary,
     },
 }
 
@@ -2379,7 +2392,7 @@ M.DeleteParametersInput = {
     members = {
         Names = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2392,11 +2405,11 @@ M.DeleteParametersOutput = {
     members = {
         DeletedParameters = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         InvalidParameters = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2531,7 +2544,7 @@ M.ResourcePolicyInvalidParameterException = {
     members = {
         ParameterNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Message = {
             type = "string",
@@ -2612,6 +2625,9 @@ M.DeregisterTargetFromMaintenanceWindowInput = {
         },
         Safe = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -2682,7 +2698,7 @@ M.DescribeActivationsFilter = {
         },
         FilterValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2692,10 +2708,10 @@ M.DescribeActivationsInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.DescribeActivationsFilter,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2708,7 +2724,7 @@ M.DescribeActivationsOutput = {
     members = {
         ActivationList = {
             type = "list",
-            member_type = "structure",
+            member = M.Activation,
         },
         NextToken = {
             type = "string",
@@ -2757,9 +2773,7 @@ M.DescribeAssociationInput = {
 M.DescribeAssociationOutput = {
     type = "structure",
     members = {
-        AssociationDescription = {
-            type = "structure",
-        },
+        AssociationDescription = M.AssociationDescription,
     },
 }
 
@@ -2820,10 +2834,10 @@ M.DescribeAssociationExecutionsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.AssociationExecutionFilter,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2858,12 +2872,10 @@ M.AssociationExecution = {
         ResourceCountByStatus = {
             type = "string",
         },
-        AlarmConfiguration = {
-            type = "structure",
-        },
+        AlarmConfiguration = M.AlarmConfiguration,
         TriggeredAlarms = {
             type = "list",
-            member_type = "structure",
+            member = M.AlarmStateInformation,
         },
     },
 }
@@ -2873,7 +2885,7 @@ M.DescribeAssociationExecutionsOutput = {
     members = {
         AssociationExecutions = {
             type = "list",
-            member_type = "structure",
+            member = M.AssociationExecution,
         },
         NextToken = {
             type = "string",
@@ -2932,10 +2944,10 @@ M.DescribeAssociationExecutionTargetsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.AssociationExecutionTargetsFilter,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2982,9 +2994,7 @@ M.AssociationExecutionTarget = {
         LastExecutionDate = {
             type = "timestamp",
         },
-        OutputSource = {
-            type = "structure",
-        },
+        OutputSource = M.OutputSource,
     },
 }
 
@@ -2993,7 +3003,7 @@ M.DescribeAssociationExecutionTargetsOutput = {
     members = {
         AssociationExecutionTargets = {
             type = "list",
-            member_type = "structure",
+            member = M.AssociationExecutionTarget,
         },
         NextToken = {
             type = "string",
@@ -3027,7 +3037,7 @@ M.AutomationExecutionFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3040,10 +3050,10 @@ M.DescribeAutomationExecutionsInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomationExecutionFilter,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3093,10 +3103,13 @@ M.ResolvedTargets = {
     members = {
         ParameterValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Truncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -3115,19 +3128,19 @@ M.Runbook = {
         },
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         TargetParameterName = {
             type = "string",
         },
         Targets = {
             type = "list",
-            member_type = "structure",
+            member = M.Target,
         },
         TargetMaps = {
             type = "list",
-            member_type = "map",
+            member = { type = "map" },
         },
         MaxConcurrency = {
             type = "string",
@@ -3137,7 +3150,7 @@ M.Runbook = {
         },
         TargetLocations = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetLocation,
         },
     },
 }
@@ -3171,8 +3184,8 @@ M.AutomationExecutionMetadata = {
         },
         Outputs = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         Mode = {
             type = "string",
@@ -3194,15 +3207,13 @@ M.AutomationExecutionMetadata = {
         },
         Targets = {
             type = "list",
-            member_type = "structure",
+            member = M.Target,
         },
         TargetMaps = {
             type = "list",
-            member_type = "map",
+            member = { type = "map" },
         },
-        ResolvedTargets = {
-            type = "structure",
-        },
+        ResolvedTargets = M.ResolvedTargets,
         MaxConcurrency = {
             type = "string",
         },
@@ -3215,12 +3226,10 @@ M.AutomationExecutionMetadata = {
         AutomationType = {
             type = "string",
         },
-        AlarmConfiguration = {
-            type = "structure",
-        },
+        AlarmConfiguration = M.AlarmConfiguration,
         TriggeredAlarms = {
             type = "list",
-            member_type = "structure",
+            member = M.AlarmStateInformation,
         },
         TargetLocationsURL = {
             type = "string",
@@ -3233,7 +3242,7 @@ M.AutomationExecutionMetadata = {
         },
         Runbooks = {
             type = "list",
-            member_type = "structure",
+            member = M.Runbook,
         },
         OpsItemId = {
             type = "string",
@@ -3252,7 +3261,7 @@ M.DescribeAutomationExecutionsOutput = {
     members = {
         AutomationExecutionMetadataList = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomationExecutionMetadata,
         },
         NextToken = {
             type = "string",
@@ -3308,7 +3317,7 @@ M.StepExecutionFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3327,16 +3336,19 @@ M.DescribeAutomationStepExecutionsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.StepExecutionFilter,
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         ReverseOrder = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -3352,8 +3364,8 @@ M.FailureDetails = {
         },
         Details = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
     },
 }
@@ -3371,7 +3383,10 @@ M.ParentStepDetails = {
             type = "string",
         },
         Iteration = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         IteratorValue = {
             type = "string",
@@ -3389,13 +3404,19 @@ M.StepExecution = {
             type = "string",
         },
         TimeoutSeconds = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
         OnFailure = {
             type = "string",
         },
         MaxAttempts = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         ExecutionStartTime = {
             type = "timestamp",
@@ -3411,13 +3432,13 @@ M.StepExecution = {
         },
         Inputs = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Outputs = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         Response = {
             type = "string",
@@ -3425,44 +3446,44 @@ M.StepExecution = {
         FailureMessage = {
             type = "string",
         },
-        FailureDetails = {
-            type = "structure",
-        },
+        FailureDetails = M.FailureDetails,
         StepExecutionId = {
             type = "string",
         },
         OverriddenParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         IsEnd = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
         NextStep = {
             type = "string",
         },
         IsCritical = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
         ValidNextSteps = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Targets = {
             type = "list",
-            member_type = "structure",
+            member = M.Target,
         },
-        TargetLocation = {
-            type = "structure",
-        },
+        TargetLocation = M.TargetLocation,
         TriggeredAlarms = {
             type = "list",
-            member_type = "structure",
+            member = M.AlarmStateInformation,
         },
-        ParentStepDetails = {
-            type = "structure",
-        },
+        ParentStepDetails = M.ParentStepDetails,
     },
 }
 
@@ -3471,7 +3492,7 @@ M.DescribeAutomationStepExecutionsOutput = {
     members = {
         StepExecutions = {
             type = "list",
-            member_type = "structure",
+            member = M.StepExecution,
         },
         NextToken = {
             type = "string",
@@ -3487,7 +3508,7 @@ M.PatchOrchestratorFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3497,10 +3518,10 @@ M.DescribeAvailablePatchesInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.PatchOrchestratorFilter,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3552,21 +3573,24 @@ M.Patch = {
         },
         AdvisoryIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         BugzillaIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CVEIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Name = {
             type = "string",
         },
         Epoch = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         Version = {
             type = "string",
@@ -3591,7 +3615,7 @@ M.DescribeAvailablePatchesOutput = {
     members = {
         Patches = {
             type = "list",
-            member_type = "structure",
+            member = M.Patch,
         },
         NextToken = {
             type = "string",
@@ -3620,9 +3644,7 @@ M.DescribeDocumentInput = {
 M.DescribeDocumentOutput = {
     type = "structure",
     members = {
-        Document = {
-            type = "structure",
-        },
+        Document = M.DocumentDescription,
     },
 }
 
@@ -3646,7 +3668,7 @@ M.DescribeDocumentPermissionInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3659,11 +3681,11 @@ M.DescribeDocumentPermissionOutput = {
     members = {
         AccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AccountSharingInfoList = {
             type = "list",
-            member_type = "structure",
+            member = M.AccountSharingInfo,
         },
         NextToken = {
             type = "string",
@@ -3691,7 +3713,7 @@ M.DescribeEffectiveInstanceAssociationsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3722,7 +3744,7 @@ M.DescribeEffectiveInstanceAssociationsOutput = {
     members = {
         Associations = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceAssociation,
         },
         NextToken = {
             type = "string",
@@ -3740,7 +3762,7 @@ M.DescribeEffectivePatchesForPatchBaselineInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3773,12 +3795,8 @@ M.PatchStatus = {
 M.EffectivePatch = {
     type = "structure",
     members = {
-        Patch = {
-            type = "structure",
-        },
-        PatchStatus = {
-            type = "structure",
-        },
+        Patch = M.Patch,
+        PatchStatus = M.PatchStatus,
     },
 }
 
@@ -3787,7 +3805,7 @@ M.DescribeEffectivePatchesForPatchBaselineOutput = {
     members = {
         EffectivePatches = {
             type = "list",
-            member_type = "structure",
+            member = M.EffectivePatch,
         },
         NextToken = {
             type = "string",
@@ -3815,7 +3833,7 @@ M.DescribeInstanceAssociationsStatusInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3835,9 +3853,7 @@ M.S3OutputUrl = {
 M.InstanceAssociationOutputUrl = {
     type = "structure",
     members = {
-        S3OutputUrl = {
-            type = "structure",
-        },
+        S3OutputUrl = M.S3OutputUrl,
     },
 }
 
@@ -3874,9 +3890,7 @@ M.InstanceAssociationStatusInfo = {
         ErrorCode = {
             type = "string",
         },
-        OutputUrl = {
-            type = "structure",
-        },
+        OutputUrl = M.InstanceAssociationOutputUrl,
         AssociationName = {
             type = "string",
         },
@@ -3888,7 +3902,7 @@ M.DescribeInstanceAssociationsStatusOutput = {
     members = {
         InstanceAssociationStatusInfos = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceAssociationStatusInfo,
         },
         NextToken = {
             type = "string",
@@ -3907,7 +3921,7 @@ M.InstanceInformationStringFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3937,7 +3951,7 @@ M.InstanceInformationFilter = {
         },
         valueSet = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3950,14 +3964,14 @@ M.DescribeInstanceInformationInput = {
     members = {
         InstanceInformationFilterList = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceInformationFilter,
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceInformationStringFilter,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3973,8 +3987,8 @@ M.InstanceAggregatedAssociationOverview = {
         },
         InstanceAssociationStatusAggregatedCount = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
         },
     },
 }
@@ -4013,6 +4027,9 @@ M.InstanceInformation = {
         },
         IsLatestVersion = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
         PlatformType = {
             type = "string",
@@ -4053,9 +4070,7 @@ M.InstanceInformation = {
         LastSuccessfulAssociationExecutionDate = {
             type = "timestamp",
         },
-        AssociationOverview = {
-            type = "structure",
-        },
+        AssociationOverview = M.InstanceAggregatedAssociationOverview,
         SourceId = {
             type = "string",
         },
@@ -4070,7 +4085,7 @@ M.DescribeInstanceInformationOutput = {
     members = {
         InstanceInformationList = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceInformation,
         },
         NextToken = {
             type = "string",
@@ -4099,13 +4114,13 @@ M.DescribeInstancePatchesInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.PatchOrchestratorFilter,
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4171,7 +4186,7 @@ M.DescribeInstancePatchesOutput = {
     members = {
         Patches = {
             type = "list",
-            member_type = "structure",
+            member = M.PatchComplianceData,
         },
         NextToken = {
             type = "string",
@@ -4184,7 +4199,7 @@ M.DescribeInstancePatchStatesInput = {
     members = {
         InstanceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4193,7 +4208,7 @@ M.DescribeInstancePatchStatesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4239,31 +4254,58 @@ M.InstancePatchState = {
             type = "string",
         },
         InstalledCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         InstalledOtherCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         InstalledPendingRebootCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         InstalledRejectedCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         MissingCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         FailedCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         UnreportedNotApplicableCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         NotApplicableCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         AvailableSecurityUpdateCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         OperationStartTime = {
             type = "timestamp",
@@ -4290,13 +4332,22 @@ M.InstancePatchState = {
             type = "string",
         },
         CriticalNonCompliantCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         SecurityNonCompliantCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         OtherNonCompliantCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -4306,7 +4357,7 @@ M.DescribeInstancePatchStatesOutput = {
     members = {
         InstancePatchStates = {
             type = "list",
-            member_type = "structure",
+            member = M.InstancePatchState,
         },
         NextToken = {
             type = "string",
@@ -4332,7 +4383,7 @@ M.InstancePatchStateFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4357,13 +4408,13 @@ M.DescribeInstancePatchStatesForPatchGroupInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.InstancePatchStateFilter,
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4373,7 +4424,7 @@ M.DescribeInstancePatchStatesForPatchGroupOutput = {
     members = {
         InstancePatchStates = {
             type = "list",
-            member_type = "structure",
+            member = M.InstancePatchState,
         },
         NextToken = {
             type = "string",
@@ -4400,7 +4451,7 @@ M.InstancePropertyStringFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4434,7 +4485,7 @@ M.InstancePropertyFilter = {
         },
         valueSet = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4447,14 +4498,14 @@ M.DescribeInstancePropertiesInput = {
     members = {
         InstancePropertyFilterList = {
             type = "list",
-            member_type = "structure",
+            member = M.InstancePropertyFilter,
         },
         FiltersWithOperator = {
             type = "list",
-            member_type = "structure",
+            member = M.InstancePropertyStringFilter,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -4534,9 +4585,7 @@ M.InstanceProperty = {
         LastSuccessfulAssociationExecutionDate = {
             type = "timestamp",
         },
-        AssociationOverview = {
-            type = "structure",
-        },
+        AssociationOverview = M.InstanceAggregatedAssociationOverview,
         SourceId = {
             type = "string",
         },
@@ -4551,7 +4600,7 @@ M.DescribeInstancePropertiesOutput = {
     members = {
         InstanceProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceProperty,
         },
         NextToken = {
             type = "string",
@@ -4579,7 +4628,7 @@ M.DescribeInventoryDeletionsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4607,9 +4656,7 @@ M.InventoryDeletionStatusItem = {
         LastStatusMessage = {
             type = "string",
         },
-        DeletionSummary = {
-            type = "structure",
-        },
+        DeletionSummary = M.InventoryDeletionSummary,
         LastStatusUpdateTime = {
             type = "timestamp",
         },
@@ -4621,7 +4668,7 @@ M.DescribeInventoryDeletionsOutput = {
     members = {
         InventoryDeletions = {
             type = "list",
-            member_type = "structure",
+            member = M.InventoryDeletionStatusItem,
         },
         NextToken = {
             type = "string",
@@ -4647,7 +4694,7 @@ M.MaintenanceWindowFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4663,10 +4710,10 @@ M.DescribeMaintenanceWindowExecutionsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.MaintenanceWindowFilter,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -4714,7 +4761,7 @@ M.DescribeMaintenanceWindowExecutionsOutput = {
     members = {
         WindowExecutions = {
             type = "list",
-            member_type = "structure",
+            member = M.MaintenanceWindowExecution,
         },
         NextToken = {
             type = "string",
@@ -4739,10 +4786,10 @@ M.DescribeMaintenanceWindowExecutionTaskInvocationsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.MaintenanceWindowFilter,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -4804,7 +4851,7 @@ M.DescribeMaintenanceWindowExecutionTaskInvocationsOutput = {
     members = {
         WindowExecutionTaskInvocationIdentities = {
             type = "list",
-            member_type = "structure",
+            member = M.MaintenanceWindowExecutionTaskInvocationIdentity,
         },
         NextToken = {
             type = "string",
@@ -4823,10 +4870,10 @@ M.DescribeMaintenanceWindowExecutionTasksInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.MaintenanceWindowFilter,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -4861,12 +4908,10 @@ M.MaintenanceWindowExecutionTaskIdentity = {
         TaskType = {
             type = "string",
         },
-        AlarmConfiguration = {
-            type = "structure",
-        },
+        AlarmConfiguration = M.AlarmConfiguration,
         TriggeredAlarms = {
             type = "list",
-            member_type = "structure",
+            member = M.AlarmStateInformation,
         },
     },
 }
@@ -4876,7 +4921,7 @@ M.DescribeMaintenanceWindowExecutionTasksOutput = {
     members = {
         WindowExecutionTaskIdentities = {
             type = "list",
-            member_type = "structure",
+            member = M.MaintenanceWindowExecutionTaskIdentity,
         },
         NextToken = {
             type = "string",
@@ -4889,10 +4934,10 @@ M.DescribeMaintenanceWindowsInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.MaintenanceWindowFilter,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -4914,12 +4959,18 @@ M.MaintenanceWindowIdentity = {
         },
         Enabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Duration = {
-            type = "number",
+            type = "integer",
         },
         Cutoff = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         Schedule = {
             type = "string",
@@ -4928,7 +4979,7 @@ M.MaintenanceWindowIdentity = {
             type = "string",
         },
         ScheduleOffset = {
-            type = "number",
+            type = "integer",
         },
         EndDate = {
             type = "string",
@@ -4947,7 +4998,7 @@ M.DescribeMaintenanceWindowsOutput = {
     members = {
         WindowIdentities = {
             type = "list",
-            member_type = "structure",
+            member = M.MaintenanceWindowIdentity,
         },
         NextToken = {
             type = "string",
@@ -4968,17 +5019,17 @@ M.DescribeMaintenanceWindowScheduleInput = {
         },
         Targets = {
             type = "list",
-            member_type = "structure",
+            member = M.Target,
         },
         ResourceType = {
             type = "string",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.PatchOrchestratorFilter,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -5006,7 +5057,7 @@ M.DescribeMaintenanceWindowScheduleOutput = {
     members = {
         ScheduledWindowExecutions = {
             type = "list",
-            member_type = "structure",
+            member = M.ScheduledWindowExecution,
         },
         NextToken = {
             type = "string",
@@ -5019,7 +5070,7 @@ M.DescribeMaintenanceWindowsForTargetInput = {
     members = {
         Targets = {
             type = "list",
-            member_type = "structure",
+            member = M.Target,
             traits = {
                 required = true,
             },
@@ -5031,7 +5082,7 @@ M.DescribeMaintenanceWindowsForTargetInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -5056,7 +5107,7 @@ M.DescribeMaintenanceWindowsForTargetOutput = {
     members = {
         WindowIdentities = {
             type = "list",
-            member_type = "structure",
+            member = M.MaintenanceWindowIdentityForTarget,
         },
         NextToken = {
             type = "string",
@@ -5075,10 +5126,10 @@ M.DescribeMaintenanceWindowTargetsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.MaintenanceWindowFilter,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -5100,7 +5151,7 @@ M.MaintenanceWindowTarget = {
         },
         Targets = {
             type = "list",
-            member_type = "structure",
+            member = M.Target,
         },
         OwnerInformation = {
             type = "string",
@@ -5119,7 +5170,7 @@ M.DescribeMaintenanceWindowTargetsOutput = {
     members = {
         Targets = {
             type = "list",
-            member_type = "structure",
+            member = M.MaintenanceWindowTarget,
         },
         NextToken = {
             type = "string",
@@ -5138,10 +5189,10 @@ M.DescribeMaintenanceWindowTasksInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.MaintenanceWindowFilter,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -5180,7 +5231,7 @@ M.MaintenanceWindowTaskParameterValueExpression = {
     members = {
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -5202,19 +5253,20 @@ M.MaintenanceWindowTask = {
         },
         Targets = {
             type = "list",
-            member_type = "structure",
+            member = M.Target,
         },
         TaskParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.MaintenanceWindowTaskParameterValueExpression,
         },
         Priority = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
-        LoggingInfo = {
-            type = "structure",
-        },
+        LoggingInfo = M.LoggingInfo,
         ServiceRoleArn = {
             type = "string",
         },
@@ -5233,9 +5285,7 @@ M.MaintenanceWindowTask = {
         CutoffBehavior = {
             type = "string",
         },
-        AlarmConfiguration = {
-            type = "structure",
-        },
+        AlarmConfiguration = M.AlarmConfiguration,
     },
 }
 
@@ -5244,7 +5294,7 @@ M.DescribeMaintenanceWindowTasksOutput = {
     members = {
         Tasks = {
             type = "list",
-            member_type = "structure",
+            member = M.MaintenanceWindowTask,
         },
         NextToken = {
             type = "string",
@@ -5310,7 +5360,7 @@ M.OpsItemFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -5329,10 +5379,10 @@ M.DescribeOpsItemsInput = {
     members = {
         OpsItemFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.OpsItemFilter,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -5379,7 +5429,7 @@ M.OpsItemSummary = {
             type = "timestamp",
         },
         Priority = {
-            type = "number",
+            type = "integer",
         },
         Source = {
             type = "string",
@@ -5395,8 +5445,8 @@ M.OpsItemSummary = {
         },
         OperationalData = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.OpsItemDataValue,
         },
         Category = {
             type = "string",
@@ -5430,7 +5480,7 @@ M.DescribeOpsItemsOutput = {
         },
         OpsItemSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.OpsItemSummary,
         },
     },
 }
@@ -5452,7 +5502,7 @@ M.ParametersFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -5474,7 +5524,7 @@ M.ParameterStringFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -5484,20 +5534,23 @@ M.DescribeParametersInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.ParametersFilter,
         },
         ParameterFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.ParameterStringFilter,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         Shared = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -5557,14 +5610,17 @@ M.ParameterMetadata = {
             type = "string",
         },
         Version = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Tier = {
             type = "string",
         },
         Policies = {
             type = "list",
-            member_type = "structure",
+            member = M.ParameterInlinePolicy,
         },
         DataType = {
             type = "string",
@@ -5577,7 +5633,7 @@ M.DescribeParametersOutput = {
     members = {
         Parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.ParameterMetadata,
         },
         NextToken = {
             type = "string",
@@ -5600,10 +5656,10 @@ M.DescribePatchBaselinesInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.PatchOrchestratorFilter,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -5628,6 +5684,9 @@ M.PatchBaselineIdentity = {
         },
         DefaultBaseline = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -5637,7 +5696,7 @@ M.DescribePatchBaselinesOutput = {
     members = {
         BaselineIdentities = {
             type = "list",
-            member_type = "structure",
+            member = M.PatchBaselineIdentity,
         },
         NextToken = {
             type = "string",
@@ -5649,11 +5708,11 @@ M.DescribePatchGroupsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.PatchOrchestratorFilter,
         },
         NextToken = {
             type = "string",
@@ -5667,9 +5726,7 @@ M.PatchGroupPatchBaselineMapping = {
         PatchGroup = {
             type = "string",
         },
-        BaselineIdentity = {
-            type = "structure",
-        },
+        BaselineIdentity = M.PatchBaselineIdentity,
     },
 }
 
@@ -5678,7 +5735,7 @@ M.DescribePatchGroupsOutput = {
     members = {
         Mappings = {
             type = "list",
-            member_type = "structure",
+            member = M.PatchGroupPatchBaselineMapping,
         },
         NextToken = {
             type = "string",
@@ -5702,43 +5759,82 @@ M.DescribePatchGroupStateOutput = {
     type = "structure",
     members = {
         Instances = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         InstancesWithInstalledPatches = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         InstancesWithInstalledOtherPatches = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         InstancesWithInstalledPendingRebootPatches = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         InstancesWithInstalledRejectedPatches = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         InstancesWithMissingPatches = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         InstancesWithFailedPatches = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         InstancesWithNotApplicablePatches = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         InstancesWithUnreportedNotApplicablePatches = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         InstancesWithCriticalNonCompliantPatches = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         InstancesWithSecurityNonCompliantPatches = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         InstancesWithOtherNonCompliantPatches = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         InstancesWithAvailableSecurityUpdates = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -5776,7 +5872,7 @@ M.DescribePatchPropertiesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -5789,7 +5885,7 @@ M.DescribePatchPropertiesOutput = {
     members = {
         Properties = {
             type = "list",
-            member_type = "map",
+            member = { type = "map" },
         },
         NextToken = {
             type = "string",
@@ -5840,14 +5936,14 @@ M.DescribeSessionsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.SessionFilter,
         },
     },
 }
@@ -5903,9 +5999,7 @@ M.Session = {
         Details = {
             type = "string",
         },
-        OutputUrl = {
-            type = "structure",
-        },
+        OutputUrl = M.SessionManagerOutputUrl,
         MaxSessionDuration = {
             type = "string",
         },
@@ -5920,7 +6014,7 @@ M.DescribeSessionsOutput = {
     members = {
         Sessions = {
             type = "list",
-            member_type = "structure",
+            member = M.Session,
         },
         NextToken = {
             type = "string",
@@ -6005,9 +6099,7 @@ M.Credentials = {
 M.GetAccessTokenOutput = {
     type = "structure",
     members = {
-        Credentials = {
-            type = "structure",
-        },
+        Credentials = M.Credentials,
         AccessRequestStatus = {
             type = "string",
         },
@@ -6062,19 +6154,34 @@ M.ProgressCounters = {
     type = "structure",
     members = {
         TotalSteps = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         SuccessSteps = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         FailedSteps = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         CancelledSteps = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         TimedOutSteps = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -6102,20 +6209,23 @@ M.AutomationExecution = {
         },
         StepExecutions = {
             type = "list",
-            member_type = "structure",
+            member = M.StepExecution,
         },
         StepExecutionsTruncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         Outputs = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         FailureMessage = {
             type = "string",
@@ -6140,15 +6250,13 @@ M.AutomationExecution = {
         },
         Targets = {
             type = "list",
-            member_type = "structure",
+            member = M.Target,
         },
         TargetMaps = {
             type = "list",
-            member_type = "map",
+            member = { type = "map" },
         },
-        ResolvedTargets = {
-            type = "structure",
-        },
+        ResolvedTargets = M.ResolvedTargets,
         MaxConcurrency = {
             type = "string",
         },
@@ -6160,17 +6268,13 @@ M.AutomationExecution = {
         },
         TargetLocations = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetLocation,
         },
-        ProgressCounters = {
-            type = "structure",
-        },
-        AlarmConfiguration = {
-            type = "structure",
-        },
+        ProgressCounters = M.ProgressCounters,
+        AlarmConfiguration = M.AlarmConfiguration,
         TriggeredAlarms = {
             type = "list",
-            member_type = "structure",
+            member = M.AlarmStateInformation,
         },
         TargetLocationsURL = {
             type = "string",
@@ -6183,7 +6287,7 @@ M.AutomationExecution = {
         },
         Runbooks = {
             type = "list",
-            member_type = "structure",
+            member = M.Runbook,
         },
         OpsItemId = {
             type = "string",
@@ -6196,8 +6300,8 @@ M.AutomationExecution = {
         },
         Variables = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
     },
 }
@@ -6205,9 +6309,7 @@ M.AutomationExecution = {
 M.GetAutomationExecutionOutput = {
     type = "structure",
     members = {
-        AutomationExecution = {
-            type = "structure",
-        },
+        AutomationExecution = M.AutomationExecution,
     },
 }
 
@@ -6216,7 +6318,7 @@ M.GetCalendarStateInput = {
     members = {
         CalendarNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -6296,6 +6398,9 @@ M.CloudWatchOutputConfig = {
         },
         CloudWatchOutputEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -6333,7 +6438,10 @@ M.GetCommandInvocationOutput = {
             type = "string",
         },
         ResponseCode = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         ExecutionStartDateTime = {
             type = "string",
@@ -6362,9 +6470,7 @@ M.GetCommandInvocationOutput = {
         StandardErrorUrl = {
             type = "string",
         },
-        CloudWatchOutputConfig = {
-            type = "structure",
-        },
+        CloudWatchOutputConfig = M.CloudWatchOutputConfig,
     },
 }
 
@@ -6434,32 +6540,31 @@ M.BaselineOverride = {
         OperatingSystem = {
             type = "string",
         },
-        GlobalFilters = {
-            type = "structure",
-        },
-        ApprovalRules = {
-            type = "structure",
-        },
+        GlobalFilters = M.PatchFilterGroup,
+        ApprovalRules = M.PatchRuleGroup,
         ApprovedPatches = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ApprovedPatchesComplianceLevel = {
             type = "string",
         },
         RejectedPatches = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RejectedPatchesAction = {
             type = "string",
         },
         ApprovedPatchesEnableNonSecurity = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Sources = {
             type = "list",
-            member_type = "structure",
+            member = M.PatchSource,
         },
         AvailableSecurityUpdatesComplianceStatus = {
             type = "string",
@@ -6482,11 +6587,12 @@ M.GetDeployablePatchSnapshotForInstanceInput = {
                 required = true,
             },
         },
-        BaselineOverride = {
-            type = "structure",
-        },
+        BaselineOverride = M.BaselineOverride,
         UseS3DualStackEndpoint = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -6551,7 +6657,10 @@ M.AttachmentContent = {
             type = "string",
         },
         Size = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Hash = {
             type = "string",
@@ -6600,11 +6709,11 @@ M.GetDocumentOutput = {
         },
         Requires = {
             type = "list",
-            member_type = "structure",
+            member = M.DocumentRequires,
         },
         AttachmentsContent = {
             type = "list",
-            member_type = "structure",
+            member = M.AttachmentContent,
         },
         ReviewStatus = {
             type = "string",
@@ -6634,7 +6743,10 @@ M.TargetPreview = {
     type = "structure",
     members = {
         Count = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         TargetType = {
             type = "string",
@@ -6647,19 +6759,22 @@ M.AutomationExecutionPreview = {
     members = {
         StepPreviews = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
         },
         Regions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TargetPreviews = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetPreview,
         },
         TotalAccounts = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -6667,9 +6782,7 @@ M.AutomationExecutionPreview = {
 M.ExecutionPreview = {
     type = "union",
     members = {
-        Automation = {
-            type = "structure",
-        },
+        Automation = M.AutomationExecutionPreview,
     },
 }
 
@@ -6695,9 +6808,7 @@ M.GetExecutionPreviewOutput = {
         StatusMessage = {
             type = "string",
         },
-        ExecutionPreview = {
-            type = "union",
-        },
+        ExecutionPreview = M.ExecutionPreview,
     },
 }
 
@@ -6721,7 +6832,7 @@ M.InventoryFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -6743,7 +6854,7 @@ M.InventoryGroup = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.InventoryFilter,
             traits = {
                 required = true,
             },
@@ -6786,7 +6897,7 @@ M.InventoryResultItem = {
         },
         Content = {
             type = "list",
-            member_type = "map",
+            member = { type = "map" },
             traits = {
                 required = true,
             },
@@ -6802,8 +6913,8 @@ M.InventoryResultEntity = {
         },
         Data = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.InventoryResultItem,
         },
     },
 }
@@ -6813,7 +6924,7 @@ M.GetInventoryOutput = {
     members = {
         Entities = {
             type = "list",
-            member_type = "structure",
+            member = M.InventoryResultEntity,
         },
         NextToken = {
             type = "string",
@@ -6861,13 +6972,19 @@ M.GetInventorySchemaInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Aggregator = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         SubType = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -6909,7 +7026,7 @@ M.InventoryItemSchema = {
         },
         Attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.InventoryItemAttribute,
             traits = {
                 required = true,
             },
@@ -6925,7 +7042,7 @@ M.GetInventorySchemaOutput = {
     members = {
         Schemas = {
             type = "list",
-            member_type = "structure",
+            member = M.InventoryItemSchema,
         },
         NextToken = {
             type = "string",
@@ -6970,22 +7087,31 @@ M.GetMaintenanceWindowOutput = {
             type = "string",
         },
         ScheduleOffset = {
-            type = "number",
+            type = "integer",
         },
         NextExecutionTime = {
             type = "string",
         },
         Duration = {
-            type = "number",
+            type = "integer",
         },
         Cutoff = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         AllowUnassociatedTargets = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Enabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         CreatedDate = {
             type = "timestamp",
@@ -7016,7 +7142,7 @@ M.GetMaintenanceWindowExecutionOutput = {
         },
         TaskIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Status = {
             type = "string",
@@ -7071,10 +7197,13 @@ M.GetMaintenanceWindowExecutionTaskOutput = {
         },
         TaskParameters = {
             type = "list",
-            member_type = "map",
+            member = { type = "map" },
         },
         Priority = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         MaxConcurrency = {
             type = "string",
@@ -7094,12 +7223,10 @@ M.GetMaintenanceWindowExecutionTaskOutput = {
         EndTime = {
             type = "timestamp",
         },
-        AlarmConfiguration = {
-            type = "structure",
-        },
+        AlarmConfiguration = M.AlarmConfiguration,
         TriggeredAlarms = {
             type = "list",
-            member_type = "structure",
+            member = M.AlarmStateInformation,
         },
     },
 }
@@ -7196,8 +7323,8 @@ M.MaintenanceWindowAutomationParameters = {
         },
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
     },
 }
@@ -7239,7 +7366,7 @@ M.NotificationConfig = {
         },
         NotificationEvents = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NotificationType = {
             type = "string",
@@ -7253,9 +7380,7 @@ M.MaintenanceWindowRunCommandParameters = {
         Comment = {
             type = "string",
         },
-        CloudWatchOutputConfig = {
-            type = "structure",
-        },
+        CloudWatchOutputConfig = M.CloudWatchOutputConfig,
         DocumentHash = {
             type = "string",
         },
@@ -7265,9 +7390,7 @@ M.MaintenanceWindowRunCommandParameters = {
         DocumentVersion = {
             type = "string",
         },
-        NotificationConfig = {
-            type = "structure",
-        },
+        NotificationConfig = M.NotificationConfig,
         OutputS3BucketName = {
             type = "string",
         },
@@ -7276,14 +7399,14 @@ M.MaintenanceWindowRunCommandParameters = {
         },
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         ServiceRoleArn = {
             type = "string",
         },
         TimeoutSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -7303,18 +7426,10 @@ M.MaintenanceWindowStepFunctionsParameters = {
 M.MaintenanceWindowTaskInvocationParameters = {
     type = "structure",
     members = {
-        RunCommand = {
-            type = "structure",
-        },
-        Automation = {
-            type = "structure",
-        },
-        StepFunctions = {
-            type = "structure",
-        },
-        Lambda = {
-            type = "structure",
-        },
+        RunCommand = M.MaintenanceWindowRunCommandParameters,
+        Automation = M.MaintenanceWindowAutomationParameters,
+        StepFunctions = M.MaintenanceWindowStepFunctionsParameters,
+        Lambda = M.MaintenanceWindowLambdaParameters,
     },
 }
 
@@ -7329,7 +7444,7 @@ M.GetMaintenanceWindowTaskOutput = {
         },
         Targets = {
             type = "list",
-            member_type = "structure",
+            member = M.Target,
         },
         TaskArn = {
             type = "string",
@@ -7342,14 +7457,15 @@ M.GetMaintenanceWindowTaskOutput = {
         },
         TaskParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.MaintenanceWindowTaskParameterValueExpression,
         },
-        TaskInvocationParameters = {
-            type = "structure",
-        },
+        TaskInvocationParameters = M.MaintenanceWindowTaskInvocationParameters,
         Priority = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         MaxConcurrency = {
             type = "string",
@@ -7357,9 +7473,7 @@ M.GetMaintenanceWindowTaskOutput = {
         MaxErrors = {
             type = "string",
         },
-        LoggingInfo = {
-            type = "structure",
-        },
+        LoggingInfo = M.LoggingInfo,
         Name = {
             type = "string",
         },
@@ -7369,9 +7483,7 @@ M.GetMaintenanceWindowTaskOutput = {
         CutoffBehavior = {
             type = "string",
         },
-        AlarmConfiguration = {
-            type = "structure",
-        },
+        AlarmConfiguration = M.AlarmConfiguration,
     },
 }
 
@@ -7413,14 +7525,14 @@ M.OpsItem = {
         },
         Notifications = {
             type = "list",
-            member_type = "structure",
+            member = M.OpsItemNotification,
         },
         Priority = {
-            type = "number",
+            type = "integer",
         },
         RelatedOpsItems = {
             type = "list",
-            member_type = "structure",
+            member = M.RelatedOpsItem,
         },
         Status = {
             type = "string",
@@ -7439,8 +7551,8 @@ M.OpsItem = {
         },
         OperationalData = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.OpsItemDataValue,
         },
         Category = {
             type = "string",
@@ -7469,9 +7581,7 @@ M.OpsItem = {
 M.GetOpsItemOutput = {
     type = "structure",
     members = {
-        OpsItem = {
-            type = "structure",
-        },
+        OpsItem = M.OpsItem,
     },
 }
 
@@ -7485,7 +7595,7 @@ M.GetOpsMetadataInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -7501,8 +7611,8 @@ M.GetOpsMetadataOutput = {
         },
         Metadata = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.MetadataValue,
         },
         NextToken = {
             type = "string",
@@ -7530,7 +7640,7 @@ M.OpsFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -7561,7 +7671,7 @@ M.OpsEntityItem = {
         },
         Content = {
             type = "list",
-            member_type = "map",
+            member = { type = "map" },
         },
     },
 }
@@ -7574,8 +7684,8 @@ M.OpsEntity = {
         },
         Data = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.OpsEntityItem,
         },
     },
 }
@@ -7585,7 +7695,7 @@ M.GetOpsSummaryOutput = {
     members = {
         Entities = {
             type = "list",
-            member_type = "structure",
+            member = M.OpsEntity,
         },
         NextToken = {
             type = "string",
@@ -7604,6 +7714,9 @@ M.GetParameterInput = {
         },
         WithDecryption = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -7621,7 +7734,10 @@ M.Parameter = {
             type = "string",
         },
         Version = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Selector = {
             type = "string",
@@ -7644,9 +7760,7 @@ M.Parameter = {
 M.GetParameterOutput = {
     type = "structure",
     members = {
-        Parameter = {
-            type = "structure",
-        },
+        Parameter = M.Parameter,
     },
 }
 
@@ -7681,9 +7795,12 @@ M.GetParameterHistoryInput = {
         },
         WithDecryption = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -7719,18 +7836,21 @@ M.ParameterHistory = {
             type = "string",
         },
         Version = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Labels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Tier = {
             type = "string",
         },
         Policies = {
             type = "list",
-            member_type = "structure",
+            member = M.ParameterInlinePolicy,
         },
         DataType = {
             type = "string",
@@ -7743,7 +7863,7 @@ M.GetParameterHistoryOutput = {
     members = {
         Parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.ParameterHistory,
         },
         NextToken = {
             type = "string",
@@ -7756,13 +7876,16 @@ M.GetParametersInput = {
     members = {
         Names = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         WithDecryption = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -7772,11 +7895,11 @@ M.GetParametersOutput = {
     members = {
         Parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.Parameter,
         },
         InvalidParameters = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -7792,16 +7915,22 @@ M.GetParametersByPathInput = {
         },
         Recursive = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
         ParameterFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.ParameterStringFilter,
         },
         WithDecryption = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -7814,7 +7943,7 @@ M.GetParametersByPathOutput = {
     members = {
         Parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.Parameter,
         },
         NextToken = {
             type = "string",
@@ -7846,32 +7975,31 @@ M.GetPatchBaselineOutput = {
         OperatingSystem = {
             type = "string",
         },
-        GlobalFilters = {
-            type = "structure",
-        },
-        ApprovalRules = {
-            type = "structure",
-        },
+        GlobalFilters = M.PatchFilterGroup,
+        ApprovalRules = M.PatchRuleGroup,
         ApprovedPatches = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ApprovedPatchesComplianceLevel = {
             type = "string",
         },
         ApprovedPatchesEnableNonSecurity = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
         RejectedPatches = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RejectedPatchesAction = {
             type = "string",
         },
         PatchGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CreatedDate = {
             type = "timestamp",
@@ -7884,7 +8012,7 @@ M.GetPatchBaselineOutput = {
         },
         Sources = {
             type = "list",
-            member_type = "structure",
+            member = M.PatchSource,
         },
         AvailableSecurityUpdatesComplianceStatus = {
             type = "string",
@@ -7935,7 +8063,7 @@ M.GetResourcePoliciesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -7963,7 +8091,7 @@ M.GetResourcePoliciesOutput = {
         },
         Policies = {
             type = "list",
-            member_type = "structure",
+            member = M.GetResourcePoliciesResponseEntry,
         },
     },
 }
@@ -8007,9 +8135,7 @@ M.ServiceSetting = {
 M.GetServiceSettingOutput = {
     type = "structure",
     members = {
-        ServiceSetting = {
-            type = "structure",
-        },
+        ServiceSetting = M.ServiceSetting,
     },
 }
 
@@ -8033,11 +8159,14 @@ M.LabelParameterVersionInput = {
             },
         },
         ParameterVersion = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
         Labels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -8050,10 +8179,13 @@ M.LabelParameterVersionOutput = {
     members = {
         InvalidLabels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ParameterVersion = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -8102,10 +8234,10 @@ M.ListAssociationsInput = {
     members = {
         AssociationFilterList = {
             type = "list",
-            member_type = "structure",
+            member = M.AssociationFilter,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -8133,14 +8265,12 @@ M.Association = {
         },
         Targets = {
             type = "list",
-            member_type = "structure",
+            member = M.Target,
         },
         LastExecutionDate = {
             type = "timestamp",
         },
-        Overview = {
-            type = "structure",
-        },
+        Overview = M.AssociationOverview,
         ScheduleExpression = {
             type = "string",
         },
@@ -8148,14 +8278,14 @@ M.Association = {
             type = "string",
         },
         ScheduleOffset = {
-            type = "number",
+            type = "integer",
         },
         Duration = {
-            type = "number",
+            type = "integer",
         },
         TargetMaps = {
             type = "list",
-            member_type = "map",
+            member = { type = "map" },
         },
     },
 }
@@ -8165,7 +8295,7 @@ M.ListAssociationsOutput = {
     members = {
         Associations = {
             type = "list",
-            member_type = "structure",
+            member = M.Association,
         },
         NextToken = {
             type = "string",
@@ -8183,7 +8313,7 @@ M.ListAssociationVersionsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -8211,19 +8341,17 @@ M.AssociationVersionInfo = {
         },
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         Targets = {
             type = "list",
-            member_type = "structure",
+            member = M.Target,
         },
         ScheduleExpression = {
             type = "string",
         },
-        OutputLocation = {
-            type = "structure",
-        },
+        OutputLocation = M.InstanceAssociationOutputLocation,
         AssociationName = {
             type = "string",
         },
@@ -8241,24 +8369,27 @@ M.AssociationVersionInfo = {
         },
         ApplyOnlyAtCronInterval = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         CalendarNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TargetLocations = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetLocation,
         },
         ScheduleOffset = {
-            type = "number",
+            type = "integer",
         },
         Duration = {
-            type = "number",
+            type = "integer",
         },
         TargetMaps = {
             type = "list",
-            member_type = "map",
+            member = { type = "map" },
         },
         AssociationDispatchAssumeRole = {
             type = "string",
@@ -8271,7 +8402,7 @@ M.ListAssociationVersionsOutput = {
     members = {
         AssociationVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.AssociationVersionInfo,
         },
         NextToken = {
             type = "string",
@@ -8315,17 +8446,20 @@ M.ListCommandInvocationsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.CommandFilter,
         },
         Details = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -8352,7 +8486,10 @@ M.CommandPlugin = {
             type = "string",
         },
         ResponseCode = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         ResponseStartDateTime = {
             type = "timestamp",
@@ -8422,17 +8559,13 @@ M.CommandInvocation = {
         },
         CommandPlugins = {
             type = "list",
-            member_type = "structure",
+            member = M.CommandPlugin,
         },
         ServiceRole = {
             type = "string",
         },
-        NotificationConfig = {
-            type = "structure",
-        },
-        CloudWatchOutputConfig = {
-            type = "structure",
-        },
+        NotificationConfig = M.NotificationConfig,
+        CloudWatchOutputConfig = M.CloudWatchOutputConfig,
     },
 }
 
@@ -8441,7 +8574,7 @@ M.ListCommandInvocationsOutput = {
     members = {
         CommandInvocations = {
             type = "list",
-            member_type = "structure",
+            member = M.CommandInvocation,
         },
         NextToken = {
             type = "string",
@@ -8459,14 +8592,14 @@ M.ListCommandsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.CommandFilter,
         },
     },
 }
@@ -8501,16 +8634,16 @@ M.Command = {
         },
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         InstanceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Targets = {
             type = "list",
-            member_type = "structure",
+            member = M.Target,
         },
         RequestedDateTime = {
             type = "timestamp",
@@ -8537,35 +8670,41 @@ M.Command = {
             type = "string",
         },
         TargetCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         CompletedCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         ErrorCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         DeliveryTimedOutCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         ServiceRole = {
             type = "string",
         },
-        NotificationConfig = {
-            type = "structure",
-        },
-        CloudWatchOutputConfig = {
-            type = "structure",
-        },
+        NotificationConfig = M.NotificationConfig,
+        CloudWatchOutputConfig = M.CloudWatchOutputConfig,
         TimeoutSeconds = {
-            type = "number",
+            type = "integer",
         },
-        AlarmConfiguration = {
-            type = "structure",
-        },
+        AlarmConfiguration = M.AlarmConfiguration,
         TriggeredAlarms = {
             type = "list",
-            member_type = "structure",
+            member = M.AlarmStateInformation,
         },
     },
 }
@@ -8575,7 +8714,7 @@ M.ListCommandsOutput = {
     members = {
         Commands = {
             type = "list",
-            member_type = "structure",
+            member = M.Command,
         },
         NextToken = {
             type = "string",
@@ -8599,7 +8738,7 @@ M.ComplianceStringFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Type = {
             type = "string",
@@ -8612,21 +8751,21 @@ M.ListComplianceItemsInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.ComplianceStringFilter,
         },
         ResourceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ResourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -8687,13 +8826,11 @@ M.ComplianceItem = {
         Severity = {
             type = "string",
         },
-        ExecutionSummary = {
-            type = "structure",
-        },
+        ExecutionSummary = M.ComplianceExecutionSummary,
         Details = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -8703,7 +8840,7 @@ M.ListComplianceItemsOutput = {
     members = {
         ComplianceItems = {
             type = "list",
-            member_type = "structure",
+            member = M.ComplianceItem,
         },
         NextToken = {
             type = "string",
@@ -8716,13 +8853,13 @@ M.ListComplianceSummariesInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.ComplianceStringFilter,
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -8731,22 +8868,40 @@ M.SeveritySummary = {
     type = "structure",
     members = {
         CriticalCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         HighCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         MediumCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         LowCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         InformationalCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         UnspecifiedCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -8755,11 +8910,12 @@ M.CompliantSummary = {
     type = "structure",
     members = {
         CompliantCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
-        SeveritySummary = {
-            type = "structure",
-        },
+        SeveritySummary = M.SeveritySummary,
     },
 }
 
@@ -8767,11 +8923,12 @@ M.NonCompliantSummary = {
     type = "structure",
     members = {
         NonCompliantCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
-        SeveritySummary = {
-            type = "structure",
-        },
+        SeveritySummary = M.SeveritySummary,
     },
 }
 
@@ -8781,12 +8938,8 @@ M.ComplianceSummaryItem = {
         ComplianceType = {
             type = "string",
         },
-        CompliantSummary = {
-            type = "structure",
-        },
-        NonCompliantSummary = {
-            type = "structure",
-        },
+        CompliantSummary = M.CompliantSummary,
+        NonCompliantSummary = M.NonCompliantSummary,
     },
 }
 
@@ -8795,7 +8948,7 @@ M.ListComplianceSummariesOutput = {
     members = {
         ComplianceSummaryItems = {
             type = "list",
-            member_type = "structure",
+            member = M.ComplianceSummaryItem,
         },
         NextToken = {
             type = "string",
@@ -8829,7 +8982,7 @@ M.ListDocumentMetadataHistoryInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -8864,7 +9017,7 @@ M.DocumentReviewerResponseSource = {
         },
         Comment = {
             type = "list",
-            member_type = "structure",
+            member = M.DocumentReviewCommentSource,
         },
         Reviewer = {
             type = "string",
@@ -8877,7 +9030,7 @@ M.DocumentMetadataResponseInfo = {
     members = {
         ReviewerResponse = {
             type = "list",
-            member_type = "structure",
+            member = M.DocumentReviewerResponseSource,
         },
     },
 }
@@ -8894,9 +9047,7 @@ M.ListDocumentMetadataHistoryOutput = {
         Author = {
             type = "string",
         },
-        Metadata = {
-            type = "structure",
-        },
+        Metadata = M.DocumentMetadataResponseInfo,
         NextToken = {
             type = "string",
         },
@@ -8936,7 +9087,7 @@ M.DocumentKeyValuesFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -8946,14 +9097,14 @@ M.ListDocumentsInput = {
     members = {
         DocumentFilterList = {
             type = "list",
-            member_type = "structure",
+            member = M.DocumentFilter,
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.DocumentKeyValuesFilter,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -8981,7 +9132,7 @@ M.DocumentIdentifier = {
         },
         PlatformTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DocumentVersion = {
             type = "string",
@@ -9000,11 +9151,11 @@ M.DocumentIdentifier = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         Requires = {
             type = "list",
-            member_type = "structure",
+            member = M.DocumentRequires,
         },
         ReviewStatus = {
             type = "string",
@@ -9020,7 +9171,7 @@ M.ListDocumentsOutput = {
     members = {
         DocumentIdentifiers = {
             type = "list",
-            member_type = "structure",
+            member = M.DocumentIdentifier,
         },
         NextToken = {
             type = "string",
@@ -9038,7 +9189,7 @@ M.ListDocumentVersionsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -9066,6 +9217,9 @@ M.DocumentVersionInfo = {
         },
         IsDefaultVersion = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         DocumentFormat = {
             type = "string",
@@ -9087,7 +9241,7 @@ M.ListDocumentVersionsOutput = {
     members = {
         DocumentVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.DocumentVersionInfo,
         },
         NextToken = {
             type = "string",
@@ -9112,13 +9266,13 @@ M.ListInventoryEntriesInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.InventoryFilter,
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -9140,7 +9294,7 @@ M.ListInventoryEntriesOutput = {
         },
         Entries = {
             type = "list",
-            member_type = "map",
+            member = { type = "map" },
         },
         NextToken = {
             type = "string",
@@ -9183,7 +9337,7 @@ M.NodeFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -9202,13 +9356,13 @@ M.ListNodesInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.NodeFilter,
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -9258,9 +9412,7 @@ M.InstanceInfo = {
 M.NodeType = {
     type = "union",
     members = {
-        Instance = {
-            type = "structure",
-        },
+        Instance = M.InstanceInfo,
     },
 }
 
@@ -9288,15 +9440,11 @@ M.Node = {
         Id = {
             type = "string",
         },
-        Owner = {
-            type = "structure",
-        },
+        Owner = M.NodeOwnerInfo,
         Region = {
             type = "string",
         },
-        NodeType = {
-            type = "union",
-        },
+        NodeType = M.NodeType,
     },
 }
 
@@ -9305,7 +9453,7 @@ M.ListNodesOutput = {
     members = {
         Nodes = {
             type = "list",
-            member_type = "structure",
+            member = M.Node,
         },
         NextToken = {
             type = "string",
@@ -9345,7 +9493,7 @@ M.ListNodesSummaryOutput = {
     members = {
         Summary = {
             type = "list",
-            member_type = "map",
+            member = { type = "map" },
         },
         NextToken = {
             type = "string",
@@ -9372,7 +9520,7 @@ M.OpsItemEventFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -9391,10 +9539,10 @@ M.ListOpsItemEventsInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.OpsItemEventFilter,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -9429,9 +9577,7 @@ M.OpsItemEventSummary = {
         Detail = {
             type = "string",
         },
-        CreatedBy = {
-            type = "structure",
-        },
+        CreatedBy = M.OpsItemIdentity,
         CreatedTime = {
             type = "timestamp",
         },
@@ -9446,7 +9592,7 @@ M.ListOpsItemEventsOutput = {
         },
         Summaries = {
             type = "list",
-            member_type = "structure",
+            member = M.OpsItemEventSummary,
         },
     },
 }
@@ -9472,7 +9618,7 @@ M.OpsItemRelatedItemsFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -9494,10 +9640,10 @@ M.ListOpsItemRelatedItemsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.OpsItemRelatedItemsFilter,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -9523,15 +9669,11 @@ M.OpsItemRelatedItemSummary = {
         ResourceUri = {
             type = "string",
         },
-        CreatedBy = {
-            type = "structure",
-        },
+        CreatedBy = M.OpsItemIdentity,
         CreatedTime = {
             type = "timestamp",
         },
-        LastModifiedBy = {
-            type = "structure",
-        },
+        LastModifiedBy = M.OpsItemIdentity,
         LastModifiedTime = {
             type = "timestamp",
         },
@@ -9546,7 +9688,7 @@ M.ListOpsItemRelatedItemsOutput = {
         },
         Summaries = {
             type = "list",
-            member_type = "structure",
+            member = M.OpsItemRelatedItemSummary,
         },
     },
 }
@@ -9562,7 +9704,7 @@ M.OpsMetadataFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -9575,10 +9717,10 @@ M.ListOpsMetadataInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.OpsMetadataFilter,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -9612,7 +9754,7 @@ M.ListOpsMetadataOutput = {
     members = {
         OpsMetadataList = {
             type = "list",
-            member_type = "structure",
+            member = M.OpsMetadata,
         },
         NextToken = {
             type = "string",
@@ -9625,13 +9767,13 @@ M.ListResourceComplianceSummariesInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.ComplianceStringFilter,
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -9654,15 +9796,9 @@ M.ResourceComplianceSummaryItem = {
         OverallSeverity = {
             type = "string",
         },
-        ExecutionSummary = {
-            type = "structure",
-        },
-        CompliantSummary = {
-            type = "structure",
-        },
-        NonCompliantSummary = {
-            type = "structure",
-        },
+        ExecutionSummary = M.ComplianceExecutionSummary,
+        CompliantSummary = M.CompliantSummary,
+        NonCompliantSummary = M.NonCompliantSummary,
     },
 }
 
@@ -9671,7 +9807,7 @@ M.ListResourceComplianceSummariesOutput = {
     members = {
         ResourceComplianceSummaryItems = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceComplianceSummaryItem,
         },
         NextToken = {
             type = "string",
@@ -9689,7 +9825,7 @@ M.ListResourceDataSyncInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -9706,21 +9842,25 @@ M.ResourceDataSyncSourceWithState = {
         SourceType = {
             type = "string",
         },
-        AwsOrganizationsSource = {
-            type = "structure",
-        },
+        AwsOrganizationsSource = M.ResourceDataSyncAwsOrganizationsSource,
         SourceRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IncludeFutureRegions = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         State = {
             type = "string",
         },
         EnableAllOpsDataSources = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -9734,12 +9874,8 @@ M.ResourceDataSyncItem = {
         SyncType = {
             type = "string",
         },
-        SyncSource = {
-            type = "structure",
-        },
-        S3Destination = {
-            type = "structure",
-        },
+        SyncSource = M.ResourceDataSyncSourceWithState,
+        S3Destination = M.ResourceDataSyncS3Destination,
         LastSyncTime = {
             type = "timestamp",
         },
@@ -9766,7 +9902,7 @@ M.ListResourceDataSyncOutput = {
     members = {
         ResourceDataSyncItems = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceDataSyncItem,
         },
         NextToken = {
             type = "string",
@@ -9797,7 +9933,7 @@ M.ListTagsForResourceOutput = {
     members = {
         TagList = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -9829,11 +9965,11 @@ M.ModifyDocumentPermissionInput = {
         },
         AccountIdsToAdd = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AccountIdsToRemove = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SharedDocumentVersion = {
             type = "string",
@@ -9904,8 +10040,8 @@ M.ComplianceItemEntry = {
         },
         Details = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -9936,15 +10072,12 @@ M.PutComplianceItemsInput = {
                 required = true,
             },
         },
-        ExecutionSummary = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ExecutionSummary = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ComplianceExecutionSummary }),
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.ComplianceItemEntry,
             traits = {
                 required = true,
             },
@@ -10031,12 +10164,12 @@ M.InventoryItem = {
         },
         Content = {
             type = "list",
-            member_type = "map",
+            member = { type = "map" },
         },
         Context = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -10052,7 +10185,7 @@ M.PutInventoryInput = {
         },
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.InventoryItem,
             traits = {
                 required = true,
             },
@@ -10238,13 +10371,16 @@ M.PutParameterInput = {
         },
         Overwrite = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
         AllowedPattern = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         Tier = {
             type = "string",
@@ -10262,7 +10398,10 @@ M.PutParameterOutput = {
     type = "structure",
     members = {
         Version = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Tier = {
             type = "string",
@@ -10321,7 +10460,10 @@ M.ResourcePolicyLimitExceededException = {
     error = "client",
     members = {
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         LimitType = {
             type = "string",
@@ -10400,7 +10542,7 @@ M.RegisterTargetWithMaintenanceWindowInput = {
         },
         Targets = {
             type = "list",
-            member_type = "structure",
+            member = M.Target,
             traits = {
                 required = true,
             },
@@ -10450,7 +10592,7 @@ M.RegisterTaskWithMaintenanceWindowInput = {
         },
         Targets = {
             type = "list",
-            member_type = "structure",
+            member = M.Target,
         },
         TaskArn = {
             type = "string",
@@ -10469,14 +10611,15 @@ M.RegisterTaskWithMaintenanceWindowInput = {
         },
         TaskParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.MaintenanceWindowTaskParameterValueExpression,
         },
-        TaskInvocationParameters = {
-            type = "structure",
-        },
+        TaskInvocationParameters = M.MaintenanceWindowTaskInvocationParameters,
         Priority = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         MaxConcurrency = {
             type = "string",
@@ -10484,9 +10627,7 @@ M.RegisterTaskWithMaintenanceWindowInput = {
         MaxErrors = {
             type = "string",
         },
-        LoggingInfo = {
-            type = "structure",
-        },
+        LoggingInfo = M.LoggingInfo,
         Name = {
             type = "string",
         },
@@ -10499,9 +10640,7 @@ M.RegisterTaskWithMaintenanceWindowInput = {
         CutoffBehavior = {
             type = "string",
         },
-        AlarmConfiguration = {
-            type = "structure",
-        },
+        AlarmConfiguration = M.AlarmConfiguration,
     },
 }
 
@@ -10531,7 +10670,7 @@ M.RemoveTagsFromResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -10558,9 +10697,7 @@ M.ResetServiceSettingInput = {
 M.ResetServiceSettingOutput = {
     type = "structure",
     members = {
-        ServiceSetting = {
-            type = "structure",
-        },
+        ServiceSetting = M.ServiceSetting,
     },
 }
 
@@ -10637,8 +10774,8 @@ M.SendAutomationSignalInput = {
         },
         Payload = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
     },
 }
@@ -10677,11 +10814,11 @@ M.SendCommandInput = {
     members = {
         InstanceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Targets = {
             type = "list",
-            member_type = "structure",
+            member = M.Target,
         },
         DocumentName = {
             type = "string",
@@ -10699,15 +10836,15 @@ M.SendCommandInput = {
             type = "string",
         },
         TimeoutSeconds = {
-            type = "number",
+            type = "integer",
         },
         Comment = {
             type = "string",
         },
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         OutputS3Region = {
             type = "string",
@@ -10727,24 +10864,16 @@ M.SendCommandInput = {
         ServiceRoleArn = {
             type = "string",
         },
-        NotificationConfig = {
-            type = "structure",
-        },
-        CloudWatchOutputConfig = {
-            type = "structure",
-        },
-        AlarmConfiguration = {
-            type = "structure",
-        },
+        NotificationConfig = M.NotificationConfig,
+        CloudWatchOutputConfig = M.CloudWatchOutputConfig,
+        AlarmConfiguration = M.AlarmConfiguration,
     },
 }
 
 M.SendCommandOutput = {
     type = "structure",
     members = {
-        Command = {
-            type = "structure",
-        },
+        Command = M.Command,
     },
 }
 
@@ -10790,14 +10919,14 @@ M.StartAccessRequestInput = {
         },
         Targets = {
             type = "list",
-            member_type = "structure",
+            member = M.Target,
             traits = {
                 required = true,
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -10826,7 +10955,7 @@ M.StartAssociationsOnceInput = {
     members = {
         AssociationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -10892,8 +11021,8 @@ M.StartAutomationExecutionInput = {
         },
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         ClientToken = {
             type = "string",
@@ -10906,11 +11035,11 @@ M.StartAutomationExecutionInput = {
         },
         Targets = {
             type = "list",
-            member_type = "structure",
+            member = M.Target,
         },
         TargetMaps = {
             type = "list",
-            member_type = "map",
+            member = { type = "map" },
         },
         MaxConcurrency = {
             type = "string",
@@ -10920,15 +11049,13 @@ M.StartAutomationExecutionInput = {
         },
         TargetLocations = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetLocation,
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        AlarmConfiguration = {
-            type = "structure",
-        },
+        AlarmConfiguration = M.AlarmConfiguration,
         TargetLocationsURL = {
             type = "string",
         },
@@ -10971,8 +11098,8 @@ M.StartChangeRequestExecutionInput = {
         },
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         ChangeRequestName = {
             type = "string",
@@ -10982,17 +11109,20 @@ M.StartChangeRequestExecutionInput = {
         },
         AutoApprove = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Runbooks = {
             type = "list",
-            member_type = "structure",
+            member = M.Runbook,
             traits = {
                 required = true,
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ScheduledEndTime = {
             type = "timestamp",
@@ -11017,23 +11147,23 @@ M.AutomationExecutionInputs = {
     members = {
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         TargetParameterName = {
             type = "string",
         },
         Targets = {
             type = "list",
-            member_type = "structure",
+            member = M.Target,
         },
         TargetMaps = {
             type = "list",
-            member_type = "map",
+            member = { type = "map" },
         },
         TargetLocations = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetLocation,
         },
         TargetLocationsURL = {
             type = "string",
@@ -11044,9 +11174,7 @@ M.AutomationExecutionInputs = {
 M.ExecutionInputs = {
     type = "union",
     members = {
-        Automation = {
-            type = "structure",
-        },
+        Automation = M.AutomationExecutionInputs,
     },
 }
 
@@ -11062,9 +11190,7 @@ M.StartExecutionPreviewInput = {
         DocumentVersion = {
             type = "string",
         },
-        ExecutionInputs = {
-            type = "union",
-        },
+        ExecutionInputs = M.ExecutionInputs,
     },
 }
 
@@ -11094,8 +11220,8 @@ M.StartSessionInput = {
         },
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
     },
 }
@@ -11190,14 +11316,15 @@ M.UnlabelParameterVersionInput = {
             },
         },
         ParameterVersion = {
-            type = "number",
+            type = "long",
             traits = {
+                default = nil,
                 required = true,
             },
         },
         Labels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -11210,11 +11337,11 @@ M.UnlabelParameterVersionOutput = {
     members = {
         RemovedLabels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         InvalidLabels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -11250,8 +11377,8 @@ M.UpdateAssociationInput = {
         },
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         DocumentVersion = {
             type = "string",
@@ -11259,15 +11386,13 @@ M.UpdateAssociationInput = {
         ScheduleExpression = {
             type = "string",
         },
-        OutputLocation = {
-            type = "structure",
-        },
+        OutputLocation = M.InstanceAssociationOutputLocation,
         Name = {
             type = "string",
         },
         Targets = {
             type = "list",
-            member_type = "structure",
+            member = M.Target,
         },
         AssociationName = {
             type = "string",
@@ -11292,28 +11417,29 @@ M.UpdateAssociationInput = {
         },
         ApplyOnlyAtCronInterval = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         CalendarNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TargetLocations = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetLocation,
         },
         ScheduleOffset = {
-            type = "number",
+            type = "integer",
         },
         Duration = {
-            type = "number",
+            type = "integer",
         },
         TargetMaps = {
             type = "list",
-            member_type = "map",
+            member = { type = "map" },
         },
-        AlarmConfiguration = {
-            type = "structure",
-        },
+        AlarmConfiguration = M.AlarmConfiguration,
         AssociationDispatchAssumeRole = {
             type = "string",
         },
@@ -11323,9 +11449,7 @@ M.UpdateAssociationInput = {
 M.UpdateAssociationOutput = {
     type = "structure",
     members = {
-        AssociationDescription = {
-            type = "structure",
-        },
+        AssociationDescription = M.AssociationDescription,
     },
 }
 
@@ -11349,21 +11473,16 @@ M.UpdateAssociationStatusInput = {
                 required = true,
             },
         },
-        AssociationStatus = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AssociationStatus = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AssociationStatus }),
     },
 }
 
 M.UpdateAssociationStatusOutput = {
     type = "structure",
     members = {
-        AssociationDescription = {
-            type = "structure",
-        },
+        AssociationDescription = M.AssociationDescription,
     },
 }
 
@@ -11408,7 +11527,7 @@ M.UpdateDocumentInput = {
         },
         Attachments = {
             type = "list",
-            member_type = "structure",
+            member = M.AttachmentsSource,
         },
         Name = {
             type = "string",
@@ -11437,9 +11556,7 @@ M.UpdateDocumentInput = {
 M.UpdateDocumentOutput = {
     type = "structure",
     members = {
-        DocumentDescription = {
-            type = "structure",
-        },
+        DocumentDescription = M.DocumentDescription,
     },
 }
 
@@ -11479,9 +11596,7 @@ M.DocumentDefaultVersionDescription = {
 M.UpdateDocumentDefaultVersionOutput = {
     type = "structure",
     members = {
-        Description = {
-            type = "structure",
-        },
+        Description = M.DocumentDefaultVersionDescription,
     },
 }
 
@@ -11503,7 +11618,7 @@ M.DocumentReviews = {
         },
         Comment = {
             type = "list",
-            member_type = "structure",
+            member = M.DocumentReviewCommentSource,
         },
     },
 }
@@ -11520,12 +11635,9 @@ M.UpdateDocumentMetadataInput = {
         DocumentVersion = {
             type = "string",
         },
-        DocumentReviews = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DocumentReviews = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DocumentReviews }),
     },
 }
 
@@ -11561,22 +11673,34 @@ M.UpdateMaintenanceWindowInput = {
             type = "string",
         },
         ScheduleOffset = {
-            type = "number",
+            type = "integer",
         },
         Duration = {
-            type = "number",
+            type = "integer",
         },
         Cutoff = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         AllowUnassociatedTargets = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
         Enabled = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
         Replace = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -11606,19 +11730,28 @@ M.UpdateMaintenanceWindowOutput = {
             type = "string",
         },
         ScheduleOffset = {
-            type = "number",
+            type = "integer",
         },
         Duration = {
-            type = "number",
+            type = "integer",
         },
         Cutoff = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         AllowUnassociatedTargets = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Enabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -11640,7 +11773,7 @@ M.UpdateMaintenanceWindowTargetInput = {
         },
         Targets = {
             type = "list",
-            member_type = "structure",
+            member = M.Target,
         },
         OwnerInformation = {
             type = "string",
@@ -11653,6 +11786,9 @@ M.UpdateMaintenanceWindowTargetInput = {
         },
         Replace = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -11668,7 +11804,7 @@ M.UpdateMaintenanceWindowTargetOutput = {
         },
         Targets = {
             type = "list",
-            member_type = "structure",
+            member = M.Target,
         },
         OwnerInformation = {
             type = "string",
@@ -11699,7 +11835,7 @@ M.UpdateMaintenanceWindowTaskInput = {
         },
         Targets = {
             type = "list",
-            member_type = "structure",
+            member = M.Target,
         },
         TaskArn = {
             type = "string",
@@ -11709,14 +11845,15 @@ M.UpdateMaintenanceWindowTaskInput = {
         },
         TaskParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.MaintenanceWindowTaskParameterValueExpression,
         },
-        TaskInvocationParameters = {
-            type = "structure",
-        },
+        TaskInvocationParameters = M.MaintenanceWindowTaskInvocationParameters,
         Priority = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         MaxConcurrency = {
             type = "string",
@@ -11724,9 +11861,7 @@ M.UpdateMaintenanceWindowTaskInput = {
         MaxErrors = {
             type = "string",
         },
-        LoggingInfo = {
-            type = "structure",
-        },
+        LoggingInfo = M.LoggingInfo,
         Name = {
             type = "string",
         },
@@ -11735,13 +11870,14 @@ M.UpdateMaintenanceWindowTaskInput = {
         },
         Replace = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
         CutoffBehavior = {
             type = "string",
         },
-        AlarmConfiguration = {
-            type = "structure",
-        },
+        AlarmConfiguration = M.AlarmConfiguration,
     },
 }
 
@@ -11756,7 +11892,7 @@ M.UpdateMaintenanceWindowTaskOutput = {
         },
         Targets = {
             type = "list",
-            member_type = "structure",
+            member = M.Target,
         },
         TaskArn = {
             type = "string",
@@ -11766,14 +11902,15 @@ M.UpdateMaintenanceWindowTaskOutput = {
         },
         TaskParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.MaintenanceWindowTaskParameterValueExpression,
         },
-        TaskInvocationParameters = {
-            type = "structure",
-        },
+        TaskInvocationParameters = M.MaintenanceWindowTaskInvocationParameters,
         Priority = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         MaxConcurrency = {
             type = "string",
@@ -11781,9 +11918,7 @@ M.UpdateMaintenanceWindowTaskOutput = {
         MaxErrors = {
             type = "string",
         },
-        LoggingInfo = {
-            type = "structure",
-        },
+        LoggingInfo = M.LoggingInfo,
         Name = {
             type = "string",
         },
@@ -11793,9 +11928,7 @@ M.UpdateMaintenanceWindowTaskOutput = {
         CutoffBehavior = {
             type = "string",
         },
-        AlarmConfiguration = {
-            type = "structure",
-        },
+        AlarmConfiguration = M.AlarmConfiguration,
     },
 }
 
@@ -11829,23 +11962,23 @@ M.UpdateOpsItemInput = {
         },
         OperationalData = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.OpsItemDataValue,
         },
         OperationalDataToDelete = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Notifications = {
             type = "list",
-            member_type = "structure",
+            member = M.OpsItemNotification,
         },
         Priority = {
-            type = "number",
+            type = "integer",
         },
         RelatedOpsItems = {
             type = "list",
-            member_type = "structure",
+            member = M.RelatedOpsItem,
         },
         Status = {
             type = "string",
@@ -11908,12 +12041,12 @@ M.UpdateOpsMetadataInput = {
         },
         MetadataToUpdate = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.MetadataValue,
         },
         KeysToDelete = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -11939,25 +12072,24 @@ M.UpdatePatchBaselineInput = {
         Name = {
             type = "string",
         },
-        GlobalFilters = {
-            type = "structure",
-        },
-        ApprovalRules = {
-            type = "structure",
-        },
+        GlobalFilters = M.PatchFilterGroup,
+        ApprovalRules = M.PatchRuleGroup,
         ApprovedPatches = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ApprovedPatchesComplianceLevel = {
             type = "string",
         },
         ApprovedPatchesEnableNonSecurity = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
         RejectedPatches = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RejectedPatchesAction = {
             type = "string",
@@ -11967,13 +12099,16 @@ M.UpdatePatchBaselineInput = {
         },
         Sources = {
             type = "list",
-            member_type = "structure",
+            member = M.PatchSource,
         },
         AvailableSecurityUpdatesComplianceStatus = {
             type = "string",
         },
         Replace = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -11990,25 +12125,24 @@ M.UpdatePatchBaselineOutput = {
         OperatingSystem = {
             type = "string",
         },
-        GlobalFilters = {
-            type = "structure",
-        },
-        ApprovalRules = {
-            type = "structure",
-        },
+        GlobalFilters = M.PatchFilterGroup,
+        ApprovalRules = M.PatchRuleGroup,
         ApprovedPatches = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ApprovedPatchesComplianceLevel = {
             type = "string",
         },
         ApprovedPatchesEnableNonSecurity = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
         RejectedPatches = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RejectedPatchesAction = {
             type = "string",
@@ -12024,7 +12158,7 @@ M.UpdatePatchBaselineOutput = {
         },
         Sources = {
             type = "list",
-            member_type = "structure",
+            member = M.PatchSource,
         },
         AvailableSecurityUpdatesComplianceStatus = {
             type = "string",
@@ -12057,12 +12191,9 @@ M.UpdateResourceDataSyncInput = {
                 required = true,
             },
         },
-        SyncSource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SyncSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResourceDataSyncSource }),
     },
 }
 
@@ -12100,11 +12231,11 @@ M.InventoryAggregator = {
         },
         Aggregators = {
             type = "list",
-            member_type = "structure",
+            member = M.InventoryAggregator,
         },
         Groups = {
             type = "list",
-            member_type = "structure",
+            member = M.InventoryGroup,
         },
     },
 }
@@ -12132,7 +12263,7 @@ M.NodeAggregator = {
         },
         Aggregators = {
             type = "list",
-            member_type = "structure",
+            member = M.NodeAggregator,
         },
     },
 }
@@ -12151,16 +12282,16 @@ M.OpsAggregator = {
         },
         Values = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.OpsFilter,
         },
         Aggregators = {
             type = "list",
-            member_type = "structure",
+            member = M.OpsAggregator,
         },
     },
 }
@@ -12170,21 +12301,21 @@ M.GetInventoryInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.InventoryFilter,
         },
         Aggregators = {
             type = "list",
-            member_type = "structure",
+            member = M.InventoryAggregator,
         },
         ResultAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.ResultAttribute,
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -12197,21 +12328,21 @@ M.GetOpsSummaryInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.OpsFilter,
         },
         Aggregators = {
             type = "list",
-            member_type = "structure",
+            member = M.OpsAggregator,
         },
         ResultAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.OpsResultAttribute,
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -12224,11 +12355,11 @@ M.ListNodesSummaryInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.NodeFilter,
         },
         Aggregators = {
             type = "list",
-            member_type = "structure",
+            member = M.NodeAggregator,
             traits = {
                 required = true,
             },
@@ -12237,7 +12368,7 @@ M.ListNodesSummaryInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }

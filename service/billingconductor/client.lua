@@ -16,7 +16,7 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AWSBillingConductor"
-    cfg.signing_name = "awsbillingconductor"
+    cfg.signing_name = "billingconductor"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end

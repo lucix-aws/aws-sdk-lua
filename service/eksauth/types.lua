@@ -116,36 +116,24 @@ M.Subject = {
 M.AssumeRoleForPodIdentityOutput = {
     type = "structure",
     members = {
-        subject = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        subject = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Subject }),
         audience = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        podIdentityAssociation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        assumedRoleUser = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        credentials = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        podIdentityAssociation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PodIdentityAssociation }),
+        assumedRoleUser = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AssumedRoleUser }),
+        credentials = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Credentials }),
     },
 }
 

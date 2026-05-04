@@ -14,10 +14,10 @@ M.SimulationAppPortMapping = {
     type = "structure",
     members = {
         Declared = {
-            type = "number",
+            type = "integer",
         },
         Actual = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -79,12 +79,9 @@ M.CreateSnapshotInput = {
                 required = true,
             },
         },
-        Destination = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Destination = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3Destination }),
     },
 }
 
@@ -205,7 +202,7 @@ M.SimulationAppEndpointInfo = {
         },
         IngressPortMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.SimulationAppPortMapping,
         },
     },
 }
@@ -215,7 +212,7 @@ M.LaunchOverrides = {
     members = {
         LaunchCommands = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -253,15 +250,11 @@ M.DescribeAppOutput = {
         TargetStatus = {
             type = "string",
         },
-        LaunchOverrides = {
-            type = "structure",
-        },
+        LaunchOverrides = M.LaunchOverrides,
         Description = {
             type = "string",
         },
-        EndpointInfo = {
-            type = "structure",
-        },
+        EndpointInfo = M.SimulationAppEndpointInfo,
     },
 }
 
@@ -314,11 +307,11 @@ M.LiveSimulationState = {
     members = {
         Domains = {
             type = "list",
-            member_type = "structure",
+            member = M.Domain,
         },
         Clocks = {
             type = "list",
-            member_type = "structure",
+            member = M.SimulationClock,
         },
     },
 }
@@ -326,9 +319,7 @@ M.LiveSimulationState = {
 M.LogDestination = {
     type = "structure",
     members = {
-        CloudWatchLogsLogGroup = {
-            type = "structure",
-        },
+        CloudWatchLogsLogGroup = M.CloudWatchLogsLogGroup,
     },
 }
 
@@ -337,7 +328,7 @@ M.LoggingConfiguration = {
     members = {
         Destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.LogDestination,
         },
     },
 }
@@ -406,24 +397,16 @@ M.DescribeSimulationOutput = {
         TargetStatus = {
             type = "string",
         },
-        SchemaS3Location = {
-            type = "structure",
-        },
+        SchemaS3Location = M.S3Location,
         SchemaError = {
             type = "string",
         },
-        LoggingConfiguration = {
-            type = "structure",
-        },
-        LiveSimulationState = {
-            type = "structure",
-        },
+        LoggingConfiguration = M.LoggingConfiguration,
+        LiveSimulationState = M.LiveSimulationState,
         MaximumDuration = {
             type = "string",
         },
-        SnapshotS3Location = {
-            type = "structure",
-        },
+        SnapshotS3Location = M.S3Location,
         StartError = {
             type = "string",
         },
@@ -447,7 +430,7 @@ M.ListAppsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -487,7 +470,7 @@ M.ListAppsOutput = {
     members = {
         Apps = {
             type = "list",
-            member_type = "structure",
+            member = M.SimulationAppMetadata,
         },
         NextToken = {
             type = "string",
@@ -499,7 +482,7 @@ M.ListSimulationsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -539,7 +522,7 @@ M.ListSimulationsOutput = {
     members = {
         Simulations = {
             type = "list",
-            member_type = "structure",
+            member = M.SimulationMetadata,
         },
         NextToken = {
             type = "string",
@@ -565,8 +548,8 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -608,9 +591,7 @@ M.StartAppInput = {
         Description = {
             type = "string",
         },
-        LaunchOverrides = {
-            type = "structure",
-        },
+        LaunchOverrides = M.LaunchOverrides,
     },
 }
 
@@ -666,20 +647,16 @@ M.StartSimulationInput = {
                 required = true,
             },
         },
-        SchemaS3Location = {
-            type = "structure",
-        },
+        SchemaS3Location = M.S3Location,
         MaximumDuration = {
             type = "string",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        SnapshotS3Location = {
-            type = "structure",
-        },
+        SnapshotS3Location = M.S3Location,
     },
 }
 
@@ -770,8 +747,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -805,7 +782,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,

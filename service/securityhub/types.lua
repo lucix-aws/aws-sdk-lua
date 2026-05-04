@@ -171,10 +171,10 @@ M.GeoLocation = {
     type = "structure",
     members = {
         Lon = {
-            type = "number",
+            type = "double",
         },
         Lat = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -183,7 +183,7 @@ M.IpOrganizationDetails = {
     type = "structure",
     members = {
         Asn = {
-            type = "number",
+            type = "integer",
         },
         AsnOrg = {
             type = "string",
@@ -203,18 +203,10 @@ M.ActionRemoteIpDetails = {
         IpAddressV4 = {
             type = "string",
         },
-        Organization = {
-            type = "structure",
-        },
-        Country = {
-            type = "structure",
-        },
-        City = {
-            type = "structure",
-        },
-        GeoLocation = {
-            type = "structure",
-        },
+        Organization = M.IpOrganizationDetails,
+        Country = M.Country,
+        City = M.City,
+        GeoLocation = M.GeoLocation,
     },
 }
 
@@ -230,16 +222,12 @@ M.AwsApiCallAction = {
         CallerType = {
             type = "string",
         },
-        RemoteIpDetails = {
-            type = "structure",
-        },
-        DomainDetails = {
-            type = "structure",
-        },
+        RemoteIpDetails = M.ActionRemoteIpDetails,
+        DomainDetails = M.AwsApiCallActionDomainDetails,
         AffectedResources = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         FirstSeen = {
             type = "string",
@@ -269,7 +257,7 @@ M.ActionLocalPortDetails = {
     type = "structure",
     members = {
         Port = {
-            type = "number",
+            type = "integer",
         },
         PortName = {
             type = "string",
@@ -281,7 +269,7 @@ M.ActionRemotePortDetails = {
     type = "structure",
     members = {
         Port = {
-            type = "number",
+            type = "integer",
         },
         PortName = {
             type = "string",
@@ -295,15 +283,9 @@ M.NetworkConnectionAction = {
         ConnectionDirection = {
             type = "string",
         },
-        RemoteIpDetails = {
-            type = "structure",
-        },
-        RemotePortDetails = {
-            type = "structure",
-        },
-        LocalPortDetails = {
-            type = "structure",
-        },
+        RemoteIpDetails = M.ActionRemoteIpDetails,
+        RemotePortDetails = M.ActionRemotePortDetails,
+        LocalPortDetails = M.ActionLocalPortDetails,
         Protocol = {
             type = "string",
         },
@@ -325,15 +307,9 @@ M.ActionLocalIpDetails = {
 M.PortProbeDetail = {
     type = "structure",
     members = {
-        LocalPortDetails = {
-            type = "structure",
-        },
-        LocalIpDetails = {
-            type = "structure",
-        },
-        RemoteIpDetails = {
-            type = "structure",
-        },
+        LocalPortDetails = M.ActionLocalPortDetails,
+        LocalIpDetails = M.ActionLocalIpDetails,
+        RemoteIpDetails = M.ActionRemoteIpDetails,
     },
 }
 
@@ -342,7 +318,7 @@ M.PortProbeAction = {
     members = {
         PortProbeDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.PortProbeDetail,
         },
         Blocked = {
             type = "boolean",
@@ -356,18 +332,10 @@ M.Action = {
         ActionType = {
             type = "string",
         },
-        NetworkConnectionAction = {
-            type = "structure",
-        },
-        AwsApiCallAction = {
-            type = "structure",
-        },
-        DnsRequestAction = {
-            type = "structure",
-        },
-        PortProbeAction = {
-            type = "structure",
-        },
+        NetworkConnectionAction = M.NetworkConnectionAction,
+        AwsApiCallAction = M.AwsApiCallAction,
+        DnsRequestAction = M.DnsRequestAction,
+        PortProbeAction = M.PortProbeAction,
     },
 }
 
@@ -419,10 +387,10 @@ M.SeverityUpdate = {
     type = "structure",
     members = {
         Normalized = {
-            type = "number",
+            type = "integer",
         },
         Product = {
-            type = "number",
+            type = "double",
         },
         Label = {
             type = "string",
@@ -456,36 +424,30 @@ M.WorkflowUpdate = {
 M.AutomationRulesFindingFieldsUpdate = {
     type = "structure",
     members = {
-        Note = {
-            type = "structure",
-        },
-        Severity = {
-            type = "structure",
-        },
+        Note = M.NoteUpdate,
+        Severity = M.SeverityUpdate,
         VerificationState = {
             type = "string",
         },
         Confidence = {
-            type = "number",
+            type = "integer",
         },
         Criticality = {
-            type = "number",
+            type = "integer",
         },
         Types = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         UserDefinedFields = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        Workflow = {
-            type = "structure",
-        },
+        Workflow = M.WorkflowUpdate,
         RelatedFindings = {
             type = "list",
-            member_type = "structure",
+            member = M.RelatedFinding,
         },
     },
 }
@@ -500,9 +462,7 @@ M.AutomationRulesAction = {
         Type = {
             type = "string",
         },
-        FindingFieldsUpdate = {
-            type = "structure",
-        },
+        FindingFieldsUpdate = M.AutomationRulesFindingFieldsUpdate,
     },
 }
 
@@ -545,7 +505,7 @@ M.ActorSession = {
             type = "string",
         },
         CreatedTime = {
-            type = "number",
+            type = "long",
         },
         Issuer = {
             type = "string",
@@ -580,9 +540,7 @@ M.ActorUser = {
         CredentialUid = {
             type = "string",
         },
-        Account = {
-            type = "structure",
-        },
+        Account = M.UserAccount,
     },
 }
 
@@ -592,12 +550,8 @@ M.Actor = {
         Id = {
             type = "string",
         },
-        User = {
-            type = "structure",
-        },
-        Session = {
-            type = "structure",
-        },
+        User = M.ActorUser,
+        Session = M.ActorSession,
     },
 }
 
@@ -694,9 +648,7 @@ M.AssociationStateDetails = {
 M.AssociationSetDetails = {
     type = "structure",
     members = {
-        AssociationState = {
-            type = "structure",
-        },
+        AssociationState = M.AssociationStateDetails,
         GatewayId = {
             type = "string",
         },
@@ -738,13 +690,13 @@ M.AutomationRulesFindingFieldsUpdateV2 = {
     type = "structure",
     members = {
         SeverityId = {
-            type = "number",
+            type = "integer",
         },
         Comment = {
             type = "string",
         },
         StatusId = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -763,12 +715,8 @@ M.AutomationRulesActionV2 = {
                 required = true,
             },
         },
-        FindingFieldsUpdate = {
-            type = "structure",
-        },
-        ExternalIntegrationConfiguration = {
-            type = "structure",
-        },
+        FindingFieldsUpdate = M.AutomationRulesFindingFieldsUpdateV2,
+        ExternalIntegrationConfiguration = M.ExternalIntegrationConfiguration,
     },
 }
 
@@ -807,19 +755,19 @@ M.NumberFilter = {
     type = "structure",
     members = {
         Gte = {
-            type = "number",
+            type = "double",
         },
         Lte = {
-            type = "number",
+            type = "double",
         },
         Eq = {
-            type = "number",
+            type = "double",
         },
         Gt = {
-            type = "number",
+            type = "double",
         },
         Lt = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -832,7 +780,7 @@ M.DateRange = {
     type = "structure",
     members = {
         Value = {
-            type = "number",
+            type = "integer",
         },
         Unit = {
             type = "string",
@@ -849,9 +797,7 @@ M.DateFilter = {
         End = {
             type = "string",
         },
-        DateRange = {
-            type = "structure",
-        },
+        DateRange = M.DateRange,
     },
 }
 
@@ -882,155 +828,155 @@ M.AutomationRulesFindingFilters = {
     members = {
         ProductArn = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         AwsAccountId = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         Id = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         GeneratorId = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         Type = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         FirstObservedAt = {
             type = "list",
-            member_type = "structure",
+            member = M.DateFilter,
         },
         LastObservedAt = {
             type = "list",
-            member_type = "structure",
+            member = M.DateFilter,
         },
         CreatedAt = {
             type = "list",
-            member_type = "structure",
+            member = M.DateFilter,
         },
         UpdatedAt = {
             type = "list",
-            member_type = "structure",
+            member = M.DateFilter,
         },
         Confidence = {
             type = "list",
-            member_type = "structure",
+            member = M.NumberFilter,
         },
         Criticality = {
             type = "list",
-            member_type = "structure",
+            member = M.NumberFilter,
         },
         Title = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         Description = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         SourceUrl = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         ProductName = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         CompanyName = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         SeverityLabel = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         ResourceType = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         ResourceId = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         ResourcePartition = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         ResourceRegion = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         ResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.MapFilter,
         },
         ResourceDetailsOther = {
             type = "list",
-            member_type = "structure",
+            member = M.MapFilter,
         },
         ComplianceStatus = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         ComplianceSecurityControlId = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         ComplianceAssociatedStandardsId = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         VerificationState = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         WorkflowStatus = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         RecordState = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         RelatedFindingsProductArn = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         RelatedFindingsId = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         NoteText = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         NoteUpdatedAt = {
             type = "list",
-            member_type = "structure",
+            member = M.DateFilter,
         },
         NoteUpdatedBy = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         UserDefinedFields = {
             type = "list",
-            member_type = "structure",
+            member = M.MapFilter,
         },
         ResourceApplicationArn = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         ResourceApplicationName = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         AwsAccountName = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
     },
 }
@@ -1050,7 +996,7 @@ M.AutomationRulesConfig = {
             type = "string",
         },
         RuleOrder = {
-            type = "number",
+            type = "integer",
         },
         RuleName = {
             type = "string",
@@ -1061,12 +1007,10 @@ M.AutomationRulesConfig = {
         IsTerminal = {
             type = "boolean",
         },
-        Criteria = {
-            type = "structure",
-        },
+        Criteria = M.AutomationRulesFindingFilters,
         Actions = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomationRulesAction,
         },
         CreatedAt = {
             type = "timestamp",
@@ -1090,7 +1034,7 @@ M.AutomationRulesMetadata = {
             type = "string",
         },
         RuleOrder = {
-            type = "number",
+            type = "integer",
         },
         RuleName = {
             type = "string",
@@ -1128,7 +1072,7 @@ M.AutomationRulesMetadataV2 = {
             type = "string",
         },
         RuleOrder = {
-            type = "number",
+            type = "float",
         },
         RuleName = {
             type = "string",
@@ -1141,7 +1085,7 @@ M.AutomationRulesMetadataV2 = {
         },
         Actions = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomationRulesActionTypeObjectV2,
         },
         CreatedAt = {
             type = "timestamp",
@@ -1181,7 +1125,7 @@ M.AwsAmazonMqBrokerLdapServerMetadataDetails = {
     members = {
         Hosts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RoleBase = {
             type = "string",
@@ -1240,9 +1184,7 @@ M.AwsAmazonMqBrokerLogsDetails = {
         GeneralLogGroup = {
             type = "string",
         },
-        Pending = {
-            type = "structure",
-        },
+        Pending = M.AwsAmazonMqBrokerLogsPendingDetails,
     },
 }
 
@@ -1291,9 +1233,7 @@ M.AwsAmazonMqBrokerDetails = {
         DeploymentMode = {
             type = "string",
         },
-        EncryptionOptions = {
-            type = "structure",
-        },
+        EncryptionOptions = M.AwsAmazonMqBrokerEncryptionOptionsDetails,
         EngineType = {
             type = "string",
         },
@@ -1306,32 +1246,26 @@ M.AwsAmazonMqBrokerDetails = {
         BrokerId = {
             type = "string",
         },
-        LdapServerMetadata = {
-            type = "structure",
-        },
-        Logs = {
-            type = "structure",
-        },
-        MaintenanceWindowStartTime = {
-            type = "structure",
-        },
+        LdapServerMetadata = M.AwsAmazonMqBrokerLdapServerMetadataDetails,
+        Logs = M.AwsAmazonMqBrokerLogsDetails,
+        MaintenanceWindowStartTime = M.AwsAmazonMqBrokerMaintenanceWindowStartTimeDetails,
         PubliclyAccessible = {
             type = "boolean",
         },
         SecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         StorageType = {
             type = "string",
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Users = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsAmazonMqBrokerUsersDetails,
         },
     },
 }
@@ -1352,15 +1286,15 @@ M.AwsApiGatewayCanarySettings = {
     type = "structure",
     members = {
         PercentTraffic = {
-            type = "number",
+            type = "double",
         },
         DeploymentId = {
             type = "string",
         },
         StageVariableOverrides = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         UseStageCache = {
             type = "boolean",
@@ -1373,7 +1307,7 @@ M.AwsApiGatewayEndpointConfiguration = {
     members = {
         Types = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1391,16 +1325,16 @@ M.AwsApiGatewayMethodSettings = {
             type = "boolean",
         },
         ThrottlingBurstLimit = {
-            type = "number",
+            type = "integer",
         },
         ThrottlingRateLimit = {
-            type = "number",
+            type = "double",
         },
         CachingEnabled = {
             type = "boolean",
         },
         CacheTtlInSeconds = {
-            type = "number",
+            type = "integer",
         },
         CacheDataEncrypted = {
             type = "boolean",
@@ -1440,17 +1374,15 @@ M.AwsApiGatewayRestApiDetails = {
         },
         BinaryMediaTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MinimumCompressionSize = {
-            type = "number",
+            type = "integer",
         },
         ApiKeySource = {
             type = "string",
         },
-        EndpointConfiguration = {
-            type = "structure",
-        },
+        EndpointConfiguration = M.AwsApiGatewayEndpointConfiguration,
     },
 }
 
@@ -1480,22 +1412,18 @@ M.AwsApiGatewayStageDetails = {
         },
         MethodSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsApiGatewayMethodSettings,
         },
         Variables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         DocumentationVersion = {
             type = "string",
         },
-        AccessLogSettings = {
-            type = "structure",
-        },
-        CanarySettings = {
-            type = "structure",
-        },
+        AccessLogSettings = M.AwsApiGatewayAccessLogSettings,
+        CanarySettings = M.AwsApiGatewayCanarySettings,
         TracingEnabled = {
             type = "boolean",
         },
@@ -1516,25 +1444,25 @@ M.AwsCorsConfiguration = {
     members = {
         AllowOrigins = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AllowCredentials = {
             type = "boolean",
         },
         ExposeHeaders = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MaxAge = {
-            type = "number",
+            type = "integer",
         },
         AllowMethods = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AllowHeaders = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1569,9 +1497,7 @@ M.AwsApiGatewayV2ApiDetails = {
         RouteSelectionExpression = {
             type = "string",
         },
-        CorsConfiguration = {
-            type = "structure",
-        },
+        CorsConfiguration = M.AwsCorsConfiguration,
     },
 }
 
@@ -1588,10 +1514,10 @@ M.AwsApiGatewayV2RouteSettings = {
             type = "boolean",
         },
         ThrottlingBurstLimit = {
-            type = "number",
+            type = "integer",
         },
         ThrottlingRateLimit = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -1608,29 +1534,23 @@ M.AwsApiGatewayV2StageDetails = {
         Description = {
             type = "string",
         },
-        DefaultRouteSettings = {
-            type = "structure",
-        },
+        DefaultRouteSettings = M.AwsApiGatewayV2RouteSettings,
         DeploymentId = {
             type = "string",
         },
         LastUpdatedDate = {
             type = "string",
         },
-        RouteSettings = {
-            type = "structure",
-        },
+        RouteSettings = M.AwsApiGatewayV2RouteSettings,
         StageName = {
             type = "string",
         },
         StageVariables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        AccessLogSettings = {
-            type = "structure",
-        },
+        AccessLogSettings = M.AwsApiGatewayAccessLogSettings,
         AutoDeploy = {
             type = "boolean",
         },
@@ -1647,7 +1567,7 @@ M.AwsAppSyncGraphQlApiLambdaAuthorizerConfigDetails = {
     type = "structure",
     members = {
         AuthorizerResultTtlInSeconds = {
-            type = "number",
+            type = "integer",
         },
         AuthorizerUri = {
             type = "string",
@@ -1662,13 +1582,13 @@ M.AwsAppSyncGraphQlApiOpenIdConnectConfigDetails = {
     type = "structure",
     members = {
         AuthTtL = {
-            type = "number",
+            type = "long",
         },
         ClientId = {
             type = "string",
         },
         IatTtL = {
-            type = "number",
+            type = "long",
         },
         Issuer = {
             type = "string",
@@ -1700,15 +1620,9 @@ M.AwsAppSyncGraphQlApiAdditionalAuthenticationProvidersDetails = {
         AuthenticationType = {
             type = "string",
         },
-        LambdaAuthorizerConfig = {
-            type = "structure",
-        },
-        OpenIdConnectConfig = {
-            type = "structure",
-        },
-        UserPoolConfig = {
-            type = "structure",
-        },
+        LambdaAuthorizerConfig = M.AwsAppSyncGraphQlApiLambdaAuthorizerConfigDetails,
+        OpenIdConnectConfig = M.AwsAppSyncGraphQlApiOpenIdConnectConfigDetails,
+        UserPoolConfig = M.AwsAppSyncGraphQlApiUserPoolConfigDetails,
     },
 }
 
@@ -1736,33 +1650,25 @@ M.AwsAppSyncGraphQlApiDetails = {
         Id = {
             type = "string",
         },
-        OpenIdConnectConfig = {
-            type = "structure",
-        },
+        OpenIdConnectConfig = M.AwsAppSyncGraphQlApiOpenIdConnectConfigDetails,
         Name = {
             type = "string",
         },
-        LambdaAuthorizerConfig = {
-            type = "structure",
-        },
+        LambdaAuthorizerConfig = M.AwsAppSyncGraphQlApiLambdaAuthorizerConfigDetails,
         XrayEnabled = {
             type = "boolean",
         },
         Arn = {
             type = "string",
         },
-        UserPoolConfig = {
-            type = "structure",
-        },
+        UserPoolConfig = M.AwsAppSyncGraphQlApiUserPoolConfigDetails,
         AuthenticationType = {
             type = "string",
         },
-        LogConfig = {
-            type = "structure",
-        },
+        LogConfig = M.AwsAppSyncGraphQlApiLogConfigDetails,
         AdditionalAuthenticationProviders = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsAppSyncGraphQlApiAdditionalAuthenticationProvidersDetails,
         },
         WafWebAclArn = {
             type = "string",
@@ -1785,18 +1691,14 @@ M.AwsAthenaWorkGroupConfigurationResultConfigurationEncryptionConfigurationDetai
 M.AwsAthenaWorkGroupConfigurationResultConfigurationDetails = {
     type = "structure",
     members = {
-        EncryptionConfiguration = {
-            type = "structure",
-        },
+        EncryptionConfiguration = M.AwsAthenaWorkGroupConfigurationResultConfigurationEncryptionConfigurationDetails,
     },
 }
 
 M.AwsAthenaWorkGroupConfigurationDetails = {
     type = "structure",
     members = {
-        ResultConfiguration = {
-            type = "structure",
-        },
+        ResultConfiguration = M.AwsAthenaWorkGroupConfigurationResultConfigurationDetails,
     },
 }
 
@@ -1812,9 +1714,7 @@ M.AwsAthenaWorkGroupDetails = {
         State = {
             type = "string",
         },
-        Configuration = {
-            type = "structure",
-        },
+        Configuration = M.AwsAthenaWorkGroupConfigurationDetails,
     },
 }
 
@@ -1849,16 +1749,16 @@ M.AwsAutoScalingAutoScalingGroupMixedInstancesPolicyInstancesDistributionDetails
             type = "string",
         },
         OnDemandBaseCapacity = {
-            type = "number",
+            type = "integer",
         },
         OnDemandPercentageAboveBaseCapacity = {
-            type = "number",
+            type = "integer",
         },
         SpotAllocationStrategy = {
             type = "string",
         },
         SpotInstancePools = {
-            type = "number",
+            type = "integer",
         },
         SpotMaxPrice = {
             type = "string",
@@ -1896,12 +1796,10 @@ M.AwsAutoScalingAutoScalingGroupMixedInstancesPolicyLaunchTemplateOverridesListD
 M.AwsAutoScalingAutoScalingGroupMixedInstancesPolicyLaunchTemplateDetails = {
     type = "structure",
     members = {
-        LaunchTemplateSpecification = {
-            type = "structure",
-        },
+        LaunchTemplateSpecification = M.AwsAutoScalingAutoScalingGroupMixedInstancesPolicyLaunchTemplateLaunchTemplateSpecification,
         Overrides = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsAutoScalingAutoScalingGroupMixedInstancesPolicyLaunchTemplateOverridesListDetails,
         },
     },
 }
@@ -1909,12 +1807,8 @@ M.AwsAutoScalingAutoScalingGroupMixedInstancesPolicyLaunchTemplateDetails = {
 M.AwsAutoScalingAutoScalingGroupMixedInstancesPolicyDetails = {
     type = "structure",
     members = {
-        InstancesDistribution = {
-            type = "structure",
-        },
-        LaunchTemplate = {
-            type = "structure",
-        },
+        InstancesDistribution = M.AwsAutoScalingAutoScalingGroupMixedInstancesPolicyInstancesDistributionDetails,
+        LaunchTemplate = M.AwsAutoScalingAutoScalingGroupMixedInstancesPolicyLaunchTemplateDetails,
     },
 }
 
@@ -1926,27 +1820,23 @@ M.AwsAutoScalingAutoScalingGroupDetails = {
         },
         LoadBalancerNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         HealthCheckType = {
             type = "string",
         },
         HealthCheckGracePeriod = {
-            type = "number",
+            type = "integer",
         },
         CreatedTime = {
             type = "string",
         },
-        MixedInstancesPolicy = {
-            type = "structure",
-        },
+        MixedInstancesPolicy = M.AwsAutoScalingAutoScalingGroupMixedInstancesPolicyDetails,
         AvailabilityZones = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsAutoScalingAutoScalingGroupAvailabilityZonesListDetails,
         },
-        LaunchTemplate = {
-            type = "structure",
-        },
+        LaunchTemplate = M.AwsAutoScalingAutoScalingGroupLaunchTemplateLaunchTemplateSpecification,
         CapacityRebalance = {
             type = "boolean",
         },
@@ -1963,13 +1853,13 @@ M.AwsAutoScalingLaunchConfigurationBlockDeviceMappingsEbsDetails = {
             type = "boolean",
         },
         Iops = {
-            type = "number",
+            type = "integer",
         },
         SnapshotId = {
             type = "string",
         },
         VolumeSize = {
-            type = "number",
+            type = "integer",
         },
         VolumeType = {
             type = "string",
@@ -1983,9 +1873,7 @@ M.AwsAutoScalingLaunchConfigurationBlockDeviceMappingsDetails = {
         DeviceName = {
             type = "string",
         },
-        Ebs = {
-            type = "structure",
-        },
+        Ebs = M.AwsAutoScalingLaunchConfigurationBlockDeviceMappingsEbsDetails,
         NoDevice = {
             type = "boolean",
         },
@@ -2011,7 +1899,7 @@ M.AwsAutoScalingLaunchConfigurationMetadataOptions = {
             type = "string",
         },
         HttpPutResponseHopLimit = {
-            type = "number",
+            type = "integer",
         },
         HttpTokens = {
             type = "string",
@@ -2027,14 +1915,14 @@ M.AwsAutoScalingLaunchConfigurationDetails = {
         },
         BlockDeviceMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsAutoScalingLaunchConfigurationBlockDeviceMappingsDetails,
         },
         ClassicLinkVpcId = {
             type = "string",
         },
         ClassicLinkVpcSecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CreatedTime = {
             type = "string",
@@ -2048,9 +1936,7 @@ M.AwsAutoScalingLaunchConfigurationDetails = {
         ImageId = {
             type = "string",
         },
-        InstanceMonitoring = {
-            type = "structure",
-        },
+        InstanceMonitoring = M.AwsAutoScalingLaunchConfigurationInstanceMonitoringDetails,
         InstanceType = {
             type = "string",
         },
@@ -2071,7 +1957,7 @@ M.AwsAutoScalingLaunchConfigurationDetails = {
         },
         SecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SpotPrice = {
             type = "string",
@@ -2079,9 +1965,7 @@ M.AwsAutoScalingLaunchConfigurationDetails = {
         UserData = {
             type = "string",
         },
-        MetadataOptions = {
-            type = "structure",
-        },
+        MetadataOptions = M.AwsAutoScalingLaunchConfigurationMetadataOptions,
     },
 }
 
@@ -2090,8 +1974,8 @@ M.AwsBackupBackupPlanAdvancedBackupSettingsDetails = {
     members = {
         BackupOptions = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ResourceType = {
             type = "string",
@@ -2103,10 +1987,10 @@ M.AwsBackupBackupPlanLifecycleDetails = {
     type = "structure",
     members = {
         DeleteAfterDays = {
-            type = "number",
+            type = "long",
         },
         MoveToColdStorageAfterDays = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -2117,9 +2001,7 @@ M.AwsBackupBackupPlanRuleCopyActionsDetails = {
         DestinationBackupVaultArn = {
             type = "string",
         },
-        Lifecycle = {
-            type = "structure",
-        },
+        Lifecycle = M.AwsBackupBackupPlanLifecycleDetails,
     },
 }
 
@@ -2130,7 +2012,7 @@ M.AwsBackupBackupPlanRuleDetails = {
             type = "string",
         },
         StartWindowMinutes = {
-            type = "number",
+            type = "long",
         },
         ScheduleExpression = {
             type = "string",
@@ -2145,15 +2027,13 @@ M.AwsBackupBackupPlanRuleDetails = {
             type = "boolean",
         },
         CompletionWindowMinutes = {
-            type = "number",
+            type = "long",
         },
         CopyActions = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsBackupBackupPlanRuleCopyActionsDetails,
         },
-        Lifecycle = {
-            type = "structure",
-        },
+        Lifecycle = M.AwsBackupBackupPlanLifecycleDetails,
     },
 }
 
@@ -2165,11 +2045,11 @@ M.AwsBackupBackupPlanBackupPlanDetails = {
         },
         AdvancedBackupSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsBackupBackupPlanAdvancedBackupSettingsDetails,
         },
         BackupPlanRule = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsBackupBackupPlanRuleDetails,
         },
     },
 }
@@ -2177,9 +2057,7 @@ M.AwsBackupBackupPlanBackupPlanDetails = {
 M.AwsBackupBackupPlanDetails = {
     type = "structure",
     members = {
-        BackupPlan = {
-            type = "structure",
-        },
+        BackupPlan = M.AwsBackupBackupPlanBackupPlanDetails,
         BackupPlanArn = {
             type = "string",
         },
@@ -2197,7 +2075,7 @@ M.AwsBackupBackupVaultNotificationsDetails = {
     members = {
         BackupVaultEvents = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SnsTopicArn = {
             type = "string",
@@ -2217,9 +2095,7 @@ M.AwsBackupBackupVaultDetails = {
         EncryptionKeyArn = {
             type = "string",
         },
-        Notifications = {
-            type = "structure",
-        },
+        Notifications = M.AwsBackupBackupVaultNotificationsDetails,
         AccessPolicy = {
             type = "string",
         },
@@ -2260,10 +2136,10 @@ M.AwsBackupRecoveryPointLifecycleDetails = {
     type = "structure",
     members = {
         DeleteAfterDays = {
-            type = "number",
+            type = "long",
         },
         MoveToColdStorageAfterDays = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -2272,7 +2148,7 @@ M.AwsBackupRecoveryPointDetails = {
     type = "structure",
     members = {
         BackupSizeInBytes = {
-            type = "number",
+            type = "long",
         },
         BackupVaultArn = {
             type = "string",
@@ -2280,15 +2156,11 @@ M.AwsBackupRecoveryPointDetails = {
         BackupVaultName = {
             type = "string",
         },
-        CalculatedLifecycle = {
-            type = "structure",
-        },
+        CalculatedLifecycle = M.AwsBackupRecoveryPointCalculatedLifecycleDetails,
         CompletionDate = {
             type = "string",
         },
-        CreatedBy = {
-            type = "structure",
-        },
+        CreatedBy = M.AwsBackupRecoveryPointCreatedByDetails,
         CreationDate = {
             type = "string",
         },
@@ -2304,9 +2176,7 @@ M.AwsBackupRecoveryPointDetails = {
         LastRestoreTime = {
             type = "string",
         },
-        Lifecycle = {
-            type = "structure",
-        },
+        Lifecycle = M.AwsBackupRecoveryPointLifecycleDetails,
         RecoveryPointArn = {
             type = "string",
         },
@@ -2352,15 +2222,13 @@ M.AwsCertificateManagerCertificateDomainValidationOption = {
         DomainName = {
             type = "string",
         },
-        ResourceRecord = {
-            type = "structure",
-        },
+        ResourceRecord = M.AwsCertificateManagerCertificateResourceRecord,
         ValidationDomain = {
             type = "string",
         },
         ValidationEmails = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ValidationMethod = {
             type = "string",
@@ -2406,7 +2274,7 @@ M.AwsCertificateManagerCertificateRenewalSummary = {
     members = {
         DomainValidationOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsCertificateManagerCertificateDomainValidationOption,
         },
         RenewalStatus = {
             type = "string",
@@ -2434,11 +2302,11 @@ M.AwsCertificateManagerCertificateDetails = {
         },
         DomainValidationOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsCertificateManagerCertificateDomainValidationOption,
         },
         ExtendedKeyUsages = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsCertificateManagerCertificateExtendedKeyUsage,
         },
         FailureReason = {
             type = "string",
@@ -2448,7 +2316,7 @@ M.AwsCertificateManagerCertificateDetails = {
         },
         InUseBy = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IssuedAt = {
             type = "string",
@@ -2461,7 +2329,7 @@ M.AwsCertificateManagerCertificateDetails = {
         },
         KeyUsages = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsCertificateManagerCertificateKeyUsage,
         },
         NotAfter = {
             type = "string",
@@ -2469,15 +2337,11 @@ M.AwsCertificateManagerCertificateDetails = {
         NotBefore = {
             type = "string",
         },
-        Options = {
-            type = "structure",
-        },
+        Options = M.AwsCertificateManagerCertificateOptions,
         RenewalEligibility = {
             type = "string",
         },
-        RenewalSummary = {
-            type = "structure",
-        },
+        RenewalSummary = M.AwsCertificateManagerCertificateRenewalSummary,
         Serial = {
             type = "string",
         },
@@ -2492,7 +2356,7 @@ M.AwsCertificateManagerCertificateDetails = {
         },
         SubjectAlternativeNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Type = {
             type = "string",
@@ -2529,7 +2393,7 @@ M.AwsCloudFormationStackDetails = {
     members = {
         Capabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CreationTime = {
             type = "string",
@@ -2540,9 +2404,7 @@ M.AwsCloudFormationStackDetails = {
         DisableRollback = {
             type = "boolean",
         },
-        DriftInformation = {
-            type = "structure",
-        },
+        DriftInformation = M.AwsCloudFormationStackDriftInformationDetails,
         EnableTerminationProtection = {
             type = "boolean",
         },
@@ -2551,11 +2413,11 @@ M.AwsCloudFormationStackDetails = {
         },
         NotificationArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Outputs = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsCloudFormationStackOutputsDetails,
         },
         RoleArn = {
             type = "string",
@@ -2573,7 +2435,7 @@ M.AwsCloudFormationStackDetails = {
             type = "string",
         },
         TimeoutInMinutes = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2592,7 +2454,7 @@ M.AwsCloudFrontDistributionCacheBehaviors = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsCloudFrontDistributionCacheBehavior,
         },
     },
 }
@@ -2629,10 +2491,10 @@ M.AwsCloudFrontDistributionOriginGroupFailoverStatusCodes = {
     members = {
         Items = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
         },
         Quantity = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2640,18 +2502,14 @@ M.AwsCloudFrontDistributionOriginGroupFailoverStatusCodes = {
 M.AwsCloudFrontDistributionOriginGroupFailover = {
     type = "structure",
     members = {
-        StatusCodes = {
-            type = "structure",
-        },
+        StatusCodes = M.AwsCloudFrontDistributionOriginGroupFailoverStatusCodes,
     },
 }
 
 M.AwsCloudFrontDistributionOriginGroup = {
     type = "structure",
     members = {
-        FailoverCriteria = {
-            type = "structure",
-        },
+        FailoverCriteria = M.AwsCloudFrontDistributionOriginGroupFailover,
     },
 }
 
@@ -2660,7 +2518,7 @@ M.AwsCloudFrontDistributionOriginGroups = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsCloudFrontDistributionOriginGroup,
         },
     },
 }
@@ -2670,10 +2528,10 @@ M.AwsCloudFrontDistributionOriginSslProtocols = {
     members = {
         Items = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Quantity = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2682,23 +2540,21 @@ M.AwsCloudFrontDistributionOriginCustomOriginConfig = {
     type = "structure",
     members = {
         HttpPort = {
-            type = "number",
+            type = "integer",
         },
         HttpsPort = {
-            type = "number",
+            type = "integer",
         },
         OriginKeepaliveTimeout = {
-            type = "number",
+            type = "integer",
         },
         OriginProtocolPolicy = {
             type = "string",
         },
         OriginReadTimeout = {
-            type = "number",
+            type = "integer",
         },
-        OriginSslProtocols = {
-            type = "structure",
-        },
+        OriginSslProtocols = M.AwsCloudFrontDistributionOriginSslProtocols,
     },
 }
 
@@ -2723,12 +2579,8 @@ M.AwsCloudFrontDistributionOriginItem = {
         OriginPath = {
             type = "string",
         },
-        S3OriginConfig = {
-            type = "structure",
-        },
-        CustomOriginConfig = {
-            type = "structure",
-        },
+        S3OriginConfig = M.AwsCloudFrontDistributionOriginS3OriginConfig,
+        CustomOriginConfig = M.AwsCloudFrontDistributionOriginCustomOriginConfig,
     },
 }
 
@@ -2737,7 +2589,7 @@ M.AwsCloudFrontDistributionOrigins = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsCloudFrontDistributionOriginItem,
         },
     },
 }
@@ -2772,12 +2624,8 @@ M.AwsCloudFrontDistributionViewerCertificate = {
 M.AwsCloudFrontDistributionDetails = {
     type = "structure",
     members = {
-        CacheBehaviors = {
-            type = "structure",
-        },
-        DefaultCacheBehavior = {
-            type = "structure",
-        },
+        CacheBehaviors = M.AwsCloudFrontDistributionCacheBehaviors,
+        DefaultCacheBehavior = M.AwsCloudFrontDistributionDefaultCacheBehavior,
         DefaultRootObject = {
             type = "string",
         },
@@ -2790,18 +2638,10 @@ M.AwsCloudFrontDistributionDetails = {
         LastModifiedTime = {
             type = "string",
         },
-        Logging = {
-            type = "structure",
-        },
-        Origins = {
-            type = "structure",
-        },
-        OriginGroups = {
-            type = "structure",
-        },
-        ViewerCertificate = {
-            type = "structure",
-        },
+        Logging = M.AwsCloudFrontDistributionLogging,
+        Origins = M.AwsCloudFrontDistributionOrigins,
+        OriginGroups = M.AwsCloudFrontDistributionOriginGroups,
+        ViewerCertificate = M.AwsCloudFrontDistributionViewerCertificate,
         Status = {
             type = "string",
         },
@@ -2882,7 +2722,7 @@ M.AwsCloudWatchAlarmDetails = {
         },
         AlarmActions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AlarmArn = {
             type = "string",
@@ -2900,24 +2740,24 @@ M.AwsCloudWatchAlarmDetails = {
             type = "string",
         },
         DatapointsToAlarm = {
-            type = "number",
+            type = "integer",
         },
         Dimensions = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsCloudWatchAlarmDimensionsDetails,
         },
         EvaluateLowSampleCountPercentile = {
             type = "string",
         },
         EvaluationPeriods = {
-            type = "number",
+            type = "integer",
         },
         ExtendedStatistic = {
             type = "string",
         },
         InsufficientDataActions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MetricName = {
             type = "string",
@@ -2927,16 +2767,16 @@ M.AwsCloudWatchAlarmDetails = {
         },
         OkActions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Period = {
-            type = "number",
+            type = "integer",
         },
         Statistic = {
             type = "string",
         },
         Threshold = {
-            type = "number",
+            type = "double",
         },
         ThresholdMetricId = {
             type = "string",
@@ -3018,7 +2858,7 @@ M.AwsCodeBuildProjectEnvironment = {
         },
         EnvironmentVariables = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsCodeBuildProjectEnvironmentEnvironmentVariablesDetails,
         },
         PrivilegedMode = {
             type = "boolean",
@@ -3026,9 +2866,7 @@ M.AwsCodeBuildProjectEnvironment = {
         ImagePullCredentialsType = {
             type = "string",
         },
-        RegistryCredential = {
-            type = "structure",
-        },
+        RegistryCredential = M.AwsCodeBuildProjectEnvironmentRegistryCredential,
         Type = {
             type = "string",
         },
@@ -3068,12 +2906,8 @@ M.AwsCodeBuildProjectLogsConfigS3LogsDetails = {
 M.AwsCodeBuildProjectLogsConfigDetails = {
     type = "structure",
     members = {
-        CloudWatchLogs = {
-            type = "structure",
-        },
-        S3Logs = {
-            type = "structure",
-        },
+        CloudWatchLogs = M.AwsCodeBuildProjectLogsConfigCloudWatchLogsDetails,
+        S3Logs = M.AwsCodeBuildProjectLogsConfigS3LogsDetails,
     },
 }
 
@@ -3087,7 +2921,7 @@ M.AwsCodeBuildProjectSource = {
             type = "string",
         },
         GitCloneDepth = {
-            type = "number",
+            type = "integer",
         },
         InsecureSsl = {
             type = "boolean",
@@ -3103,11 +2937,11 @@ M.AwsCodeBuildProjectVpcConfig = {
         },
         Subnets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3120,29 +2954,21 @@ M.AwsCodeBuildProjectDetails = {
         },
         Artifacts = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsCodeBuildProjectArtifactsDetails,
         },
-        Environment = {
-            type = "structure",
-        },
+        Environment = M.AwsCodeBuildProjectEnvironment,
         Name = {
             type = "string",
         },
-        Source = {
-            type = "structure",
-        },
+        Source = M.AwsCodeBuildProjectSource,
         ServiceRole = {
             type = "string",
         },
-        LogsConfig = {
-            type = "structure",
-        },
-        VpcConfig = {
-            type = "structure",
-        },
+        LogsConfig = M.AwsCodeBuildProjectLogsConfigDetails,
+        VpcConfig = M.AwsCodeBuildProjectVpcConfig,
         SecondaryArtifacts = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsCodeBuildProjectArtifactsDetails,
         },
     },
 }
@@ -3178,7 +3004,7 @@ M.AwsDmsEndpointDetails = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         ServerName = {
             type = "string",
@@ -3214,7 +3040,7 @@ M.AwsDmsReplicationInstanceDetails = {
     type = "structure",
     members = {
         AllocatedStorage = {
-            type = "number",
+            type = "integer",
         },
         AutoMinorVersionUpgrade = {
             type = "boolean",
@@ -3243,12 +3069,10 @@ M.AwsDmsReplicationInstanceDetails = {
         ReplicationInstanceIdentifier = {
             type = "string",
         },
-        ReplicationSubnetGroup = {
-            type = "structure",
-        },
+        ReplicationSubnetGroup = M.AwsDmsReplicationInstanceReplicationSubnetGroupDetails,
         VpcSecurityGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsDmsReplicationInstanceVpcSecurityGroupsDetails,
         },
     },
 }
@@ -3339,7 +3163,7 @@ M.AwsDynamoDbTableProjection = {
     members = {
         NonKeyAttributes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ProjectionType = {
             type = "string",
@@ -3357,13 +3181,13 @@ M.AwsDynamoDbTableProvisionedThroughput = {
             type = "string",
         },
         NumberOfDecreasesToday = {
-            type = "number",
+            type = "integer",
         },
         ReadCapacityUnits = {
-            type = "number",
+            type = "integer",
         },
         WriteCapacityUnits = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3381,24 +3205,20 @@ M.AwsDynamoDbTableGlobalSecondaryIndex = {
             type = "string",
         },
         IndexSizeBytes = {
-            type = "number",
+            type = "long",
         },
         IndexStatus = {
             type = "string",
         },
         ItemCount = {
-            type = "number",
+            type = "integer",
         },
         KeySchema = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsDynamoDbTableKeySchema,
         },
-        Projection = {
-            type = "structure",
-        },
-        ProvisionedThroughput = {
-            type = "structure",
-        },
+        Projection = M.AwsDynamoDbTableProjection,
+        ProvisionedThroughput = M.AwsDynamoDbTableProvisionedThroughput,
     },
 }
 
@@ -3413,11 +3233,9 @@ M.AwsDynamoDbTableLocalSecondaryIndex = {
         },
         KeySchema = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsDynamoDbTableKeySchema,
         },
-        Projection = {
-            type = "structure",
-        },
+        Projection = M.AwsDynamoDbTableProjection,
     },
 }
 
@@ -3425,7 +3243,7 @@ M.AwsDynamoDbTableProvisionedThroughputOverride = {
     type = "structure",
     members = {
         ReadCapacityUnits = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3436,9 +3254,7 @@ M.AwsDynamoDbTableReplicaGlobalSecondaryIndex = {
         IndexName = {
             type = "string",
         },
-        ProvisionedThroughputOverride = {
-            type = "structure",
-        },
+        ProvisionedThroughputOverride = M.AwsDynamoDbTableProvisionedThroughputOverride,
     },
 }
 
@@ -3447,14 +3263,12 @@ M.AwsDynamoDbTableReplica = {
     members = {
         GlobalSecondaryIndexes = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsDynamoDbTableReplicaGlobalSecondaryIndex,
         },
         KmsMasterKeyId = {
             type = "string",
         },
-        ProvisionedThroughputOverride = {
-            type = "structure",
-        },
+        ProvisionedThroughputOverride = M.AwsDynamoDbTableProvisionedThroughputOverride,
         RegionName = {
             type = "string",
         },
@@ -3520,27 +3334,25 @@ M.AwsDynamoDbTableDetails = {
     members = {
         AttributeDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsDynamoDbTableAttributeDefinition,
         },
-        BillingModeSummary = {
-            type = "structure",
-        },
+        BillingModeSummary = M.AwsDynamoDbTableBillingModeSummary,
         CreationDateTime = {
             type = "string",
         },
         GlobalSecondaryIndexes = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsDynamoDbTableGlobalSecondaryIndex,
         },
         GlobalTableVersion = {
             type = "string",
         },
         ItemCount = {
-            type = "number",
+            type = "integer",
         },
         KeySchema = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsDynamoDbTableKeySchema,
         },
         LatestStreamArn = {
             type = "string",
@@ -3550,24 +3362,16 @@ M.AwsDynamoDbTableDetails = {
         },
         LocalSecondaryIndexes = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsDynamoDbTableLocalSecondaryIndex,
         },
-        ProvisionedThroughput = {
-            type = "structure",
-        },
+        ProvisionedThroughput = M.AwsDynamoDbTableProvisionedThroughput,
         Replicas = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsDynamoDbTableReplica,
         },
-        RestoreSummary = {
-            type = "structure",
-        },
-        SseDescription = {
-            type = "structure",
-        },
-        StreamSpecification = {
-            type = "structure",
-        },
+        RestoreSummary = M.AwsDynamoDbTableRestoreSummary,
+        SseDescription = M.AwsDynamoDbTableSseDescription,
+        StreamSpecification = M.AwsDynamoDbTableStreamSpecification,
         TableId = {
             type = "string",
         },
@@ -3575,7 +3379,7 @@ M.AwsDynamoDbTableDetails = {
             type = "string",
         },
         TableSizeBytes = {
-            type = "number",
+            type = "long",
         },
         TableStatus = {
             type = "string",
@@ -3622,15 +3426,9 @@ M.AwsEc2ClientVpnEndpointAuthenticationOptionsDetails = {
         Type = {
             type = "string",
         },
-        ActiveDirectory = {
-            type = "structure",
-        },
-        MutualAuthentication = {
-            type = "structure",
-        },
-        FederatedAuthentication = {
-            type = "structure",
-        },
+        ActiveDirectory = M.AwsEc2ClientVpnEndpointAuthenticationOptionsActiveDirectoryDetails,
+        MutualAuthentication = M.AwsEc2ClientVpnEndpointAuthenticationOptionsMutualAuthenticationDetails,
+        FederatedAuthentication = M.AwsEc2ClientVpnEndpointAuthenticationOptionsFederatedAuthenticationDetails,
     },
 }
 
@@ -3655,9 +3453,7 @@ M.AwsEc2ClientVpnEndpointClientConnectOptionsDetails = {
         LambdaFunctionArn = {
             type = "string",
         },
-        Status = {
-            type = "structure",
-        },
+        Status = M.AwsEc2ClientVpnEndpointClientConnectOptionsStatusDetails,
     },
 }
 
@@ -3702,7 +3498,7 @@ M.AwsEc2ClientVpnEndpointDetails = {
         },
         DnsServer = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SplitTunnel = {
             type = "boolean",
@@ -3711,21 +3507,19 @@ M.AwsEc2ClientVpnEndpointDetails = {
             type = "string",
         },
         VpnPort = {
-            type = "number",
+            type = "integer",
         },
         ServerCertificateArn = {
             type = "string",
         },
         AuthenticationOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEc2ClientVpnEndpointAuthenticationOptionsDetails,
         },
-        ConnectionLogOptions = {
-            type = "structure",
-        },
+        ConnectionLogOptions = M.AwsEc2ClientVpnEndpointConnectionLogOptionsDetails,
         SecurityGroupIdSet = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         VpcId = {
             type = "string",
@@ -3733,15 +3527,11 @@ M.AwsEc2ClientVpnEndpointDetails = {
         SelfServicePortalUrl = {
             type = "string",
         },
-        ClientConnectOptions = {
-            type = "structure",
-        },
+        ClientConnectOptions = M.AwsEc2ClientVpnEndpointClientConnectOptionsDetails,
         SessionTimeoutHours = {
-            type = "number",
+            type = "integer",
         },
-        ClientLoginBannerOptions = {
-            type = "structure",
-        },
+        ClientLoginBannerOptions = M.AwsEc2ClientVpnEndpointClientLoginBannerOptionsDetails,
     },
 }
 
@@ -3791,7 +3581,7 @@ M.AwsEc2InstanceMetadataOptions = {
             type = "string",
         },
         HttpPutResponseHopLimit = {
-            type = "number",
+            type = "integer",
         },
         HttpTokens = {
             type = "string",
@@ -3831,11 +3621,11 @@ M.AwsEc2InstanceDetails = {
         },
         IpV4Addresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IpV6Addresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         KeyName = {
             type = "string",
@@ -3854,17 +3644,13 @@ M.AwsEc2InstanceDetails = {
         },
         NetworkInterfaces = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEc2InstanceNetworkInterfacesDetails,
         },
         VirtualizationType = {
             type = "string",
         },
-        MetadataOptions = {
-            type = "structure",
-        },
-        Monitoring = {
-            type = "structure",
-        },
+        MetadataOptions = M.AwsEc2InstanceMetadataOptions,
+        Monitoring = M.AwsEc2InstanceMonitoringDetails,
     },
 }
 
@@ -3878,7 +3664,7 @@ M.AwsEc2LaunchTemplateDataBlockDeviceMappingSetEbsDetails = {
             type = "boolean",
         },
         Iops = {
-            type = "number",
+            type = "integer",
         },
         KmsKeyId = {
             type = "string",
@@ -3887,10 +3673,10 @@ M.AwsEc2LaunchTemplateDataBlockDeviceMappingSetEbsDetails = {
             type = "string",
         },
         Throughput = {
-            type = "number",
+            type = "integer",
         },
         VolumeSize = {
-            type = "number",
+            type = "integer",
         },
         VolumeType = {
             type = "string",
@@ -3904,9 +3690,7 @@ M.AwsEc2LaunchTemplateDataBlockDeviceMappingSetDetails = {
         DeviceName = {
             type = "string",
         },
-        Ebs = {
-            type = "structure",
-        },
+        Ebs = M.AwsEc2LaunchTemplateDataBlockDeviceMappingSetEbsDetails,
         NoDevice = {
             type = "string",
         },
@@ -3934,9 +3718,7 @@ M.AwsEc2LaunchTemplateDataCapacityReservationSpecificationDetails = {
         CapacityReservationPreference = {
             type = "string",
         },
-        CapacityReservationTarget = {
-            type = "structure",
-        },
+        CapacityReservationTarget = M.AwsEc2LaunchTemplateDataCapacityReservationSpecificationCapacityReservationTargetDetails,
     },
 }
 
@@ -3944,10 +3726,10 @@ M.AwsEc2LaunchTemplateDataCpuOptionsDetails = {
     type = "structure",
     members = {
         CoreCount = {
-            type = "number",
+            type = "integer",
         },
         ThreadsPerCore = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3974,7 +3756,7 @@ M.AwsEc2LaunchTemplateDataElasticInferenceAcceleratorSetDetails = {
     type = "structure",
     members = {
         Count = {
-            type = "number",
+            type = "integer",
         },
         Type = {
             type = "string",
@@ -4016,7 +3798,7 @@ M.AwsEc2LaunchTemplateDataInstanceMarketOptionsSpotOptionsDetails = {
     type = "structure",
     members = {
         BlockDurationMinutes = {
-            type = "number",
+            type = "integer",
         },
         InstanceInterruptionBehavior = {
             type = "string",
@@ -4039,9 +3821,7 @@ M.AwsEc2LaunchTemplateDataInstanceMarketOptionsDetails = {
         MarketType = {
             type = "string",
         },
-        SpotOptions = {
-            type = "structure",
-        },
+        SpotOptions = M.AwsEc2LaunchTemplateDataInstanceMarketOptionsSpotOptionsDetails,
     },
 }
 
@@ -4049,10 +3829,10 @@ M.AwsEc2LaunchTemplateDataInstanceRequirementsAcceleratorCountDetails = {
     type = "structure",
     members = {
         Max = {
-            type = "number",
+            type = "integer",
         },
         Min = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4061,10 +3841,10 @@ M.AwsEc2LaunchTemplateDataInstanceRequirementsAcceleratorTotalMemoryMiBDetails =
     type = "structure",
     members = {
         Max = {
-            type = "number",
+            type = "integer",
         },
         Min = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4073,10 +3853,10 @@ M.AwsEc2LaunchTemplateDataInstanceRequirementsBaselineEbsBandwidthMbpsDetails = 
     type = "structure",
     members = {
         Max = {
-            type = "number",
+            type = "integer",
         },
         Min = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4085,10 +3865,10 @@ M.AwsEc2LaunchTemplateDataInstanceRequirementsMemoryGiBPerVCpuDetails = {
     type = "structure",
     members = {
         Max = {
-            type = "number",
+            type = "double",
         },
         Min = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -4097,10 +3877,10 @@ M.AwsEc2LaunchTemplateDataInstanceRequirementsMemoryMiBDetails = {
     type = "structure",
     members = {
         Max = {
-            type = "number",
+            type = "integer",
         },
         Min = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4109,10 +3889,10 @@ M.AwsEc2LaunchTemplateDataInstanceRequirementsNetworkInterfaceCountDetails = {
     type = "structure",
     members = {
         Max = {
-            type = "number",
+            type = "integer",
         },
         Min = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4121,10 +3901,10 @@ M.AwsEc2LaunchTemplateDataInstanceRequirementsTotalLocalStorageGBDetails = {
     type = "structure",
     members = {
         Max = {
-            type = "number",
+            type = "double",
         },
         Min = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -4133,10 +3913,10 @@ M.AwsEc2LaunchTemplateDataInstanceRequirementsVCpuCountDetails = {
     type = "structure",
     members = {
         Max = {
-            type = "number",
+            type = "integer",
         },
         Min = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4144,76 +3924,60 @@ M.AwsEc2LaunchTemplateDataInstanceRequirementsVCpuCountDetails = {
 M.AwsEc2LaunchTemplateDataInstanceRequirementsDetails = {
     type = "structure",
     members = {
-        AcceleratorCount = {
-            type = "structure",
-        },
+        AcceleratorCount = M.AwsEc2LaunchTemplateDataInstanceRequirementsAcceleratorCountDetails,
         AcceleratorManufacturers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AcceleratorNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        AcceleratorTotalMemoryMiB = {
-            type = "structure",
-        },
+        AcceleratorTotalMemoryMiB = M.AwsEc2LaunchTemplateDataInstanceRequirementsAcceleratorTotalMemoryMiBDetails,
         AcceleratorTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         BareMetal = {
             type = "string",
         },
-        BaselineEbsBandwidthMbps = {
-            type = "structure",
-        },
+        BaselineEbsBandwidthMbps = M.AwsEc2LaunchTemplateDataInstanceRequirementsBaselineEbsBandwidthMbpsDetails,
         BurstablePerformance = {
             type = "string",
         },
         CpuManufacturers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ExcludedInstanceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         InstanceGenerations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         LocalStorage = {
             type = "string",
         },
         LocalStorageTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        MemoryGiBPerVCpu = {
-            type = "structure",
-        },
-        MemoryMiB = {
-            type = "structure",
-        },
-        NetworkInterfaceCount = {
-            type = "structure",
-        },
+        MemoryGiBPerVCpu = M.AwsEc2LaunchTemplateDataInstanceRequirementsMemoryGiBPerVCpuDetails,
+        MemoryMiB = M.AwsEc2LaunchTemplateDataInstanceRequirementsMemoryMiBDetails,
+        NetworkInterfaceCount = M.AwsEc2LaunchTemplateDataInstanceRequirementsNetworkInterfaceCountDetails,
         OnDemandMaxPricePercentageOverLowestPrice = {
-            type = "number",
+            type = "integer",
         },
         RequireHibernateSupport = {
             type = "boolean",
         },
         SpotMaxPricePercentageOverLowestPrice = {
-            type = "number",
+            type = "integer",
         },
-        TotalLocalStorageGB = {
-            type = "structure",
-        },
-        VCpuCount = {
-            type = "structure",
-        },
+        TotalLocalStorageGB = M.AwsEc2LaunchTemplateDataInstanceRequirementsTotalLocalStorageGBDetails,
+        VCpuCount = M.AwsEc2LaunchTemplateDataInstanceRequirementsVCpuCountDetails,
     },
 }
 
@@ -4248,7 +4012,7 @@ M.AwsEc2LaunchTemplateDataMetadataOptionsDetails = {
             type = "string",
         },
         HttpPutResponseHopLimit = {
-            type = "number",
+            type = "integer",
         },
         InstanceMetadataTags = {
             type = "string",
@@ -4320,38 +4084,38 @@ M.AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails = {
             type = "string",
         },
         DeviceIndex = {
-            type = "number",
+            type = "integer",
         },
         Groups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         InterfaceType = {
             type = "string",
         },
         Ipv4PrefixCount = {
-            type = "number",
+            type = "integer",
         },
         Ipv4Prefixes = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv4PrefixesDetails,
         },
         Ipv6AddressCount = {
-            type = "number",
+            type = "integer",
         },
         Ipv6Addresses = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv6AddressesDetails,
         },
         Ipv6PrefixCount = {
-            type = "number",
+            type = "integer",
         },
         Ipv6Prefixes = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv6PrefixesDetails,
         },
         NetworkCardIndex = {
-            type = "number",
+            type = "integer",
         },
         NetworkInterfaceId = {
             type = "string",
@@ -4361,10 +4125,10 @@ M.AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails = {
         },
         PrivateIpAddresses = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEc2LaunchTemplateDataNetworkInterfaceSetPrivateIpAddressesDetails,
         },
         SecondaryPrivateIpAddressCount = {
-            type = "number",
+            type = "integer",
         },
         SubnetId = {
             type = "string",
@@ -4391,7 +4155,7 @@ M.AwsEc2LaunchTemplateDataPlacementDetails = {
             type = "string",
         },
         PartitionNumber = {
-            type = "number",
+            type = "integer",
         },
         SpreadDomain = {
             type = "string",
@@ -4422,17 +4186,11 @@ M.AwsEc2LaunchTemplateDataDetails = {
     members = {
         BlockDeviceMappingSet = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEc2LaunchTemplateDataBlockDeviceMappingSetDetails,
         },
-        CapacityReservationSpecification = {
-            type = "structure",
-        },
-        CpuOptions = {
-            type = "structure",
-        },
-        CreditSpecification = {
-            type = "structure",
-        },
+        CapacityReservationSpecification = M.AwsEc2LaunchTemplateDataCapacityReservationSpecificationDetails,
+        CpuOptions = M.AwsEc2LaunchTemplateDataCpuOptionsDetails,
+        CreditSpecification = M.AwsEc2LaunchTemplateDataCreditSpecificationDetails,
         DisableApiStop = {
             type = "boolean",
         },
@@ -4444,33 +4202,23 @@ M.AwsEc2LaunchTemplateDataDetails = {
         },
         ElasticGpuSpecificationSet = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEc2LaunchTemplateDataElasticGpuSpecificationSetDetails,
         },
         ElasticInferenceAcceleratorSet = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEc2LaunchTemplateDataElasticInferenceAcceleratorSetDetails,
         },
-        EnclaveOptions = {
-            type = "structure",
-        },
-        HibernationOptions = {
-            type = "structure",
-        },
-        IamInstanceProfile = {
-            type = "structure",
-        },
+        EnclaveOptions = M.AwsEc2LaunchTemplateDataEnclaveOptionsDetails,
+        HibernationOptions = M.AwsEc2LaunchTemplateDataHibernationOptionsDetails,
+        IamInstanceProfile = M.AwsEc2LaunchTemplateDataIamInstanceProfileDetails,
         ImageId = {
             type = "string",
         },
         InstanceInitiatedShutdownBehavior = {
             type = "string",
         },
-        InstanceMarketOptions = {
-            type = "structure",
-        },
-        InstanceRequirements = {
-            type = "structure",
-        },
+        InstanceMarketOptions = M.AwsEc2LaunchTemplateDataInstanceMarketOptionsDetails,
+        InstanceRequirements = M.AwsEc2LaunchTemplateDataInstanceRequirementsDetails,
         InstanceType = {
             type = "string",
         },
@@ -4482,37 +4230,27 @@ M.AwsEc2LaunchTemplateDataDetails = {
         },
         LicenseSet = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEc2LaunchTemplateDataLicenseSetDetails,
         },
-        MaintenanceOptions = {
-            type = "structure",
-        },
-        MetadataOptions = {
-            type = "structure",
-        },
-        Monitoring = {
-            type = "structure",
-        },
+        MaintenanceOptions = M.AwsEc2LaunchTemplateDataMaintenanceOptionsDetails,
+        MetadataOptions = M.AwsEc2LaunchTemplateDataMetadataOptionsDetails,
+        Monitoring = M.AwsEc2LaunchTemplateDataMonitoringDetails,
         NetworkInterfaceSet = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEc2LaunchTemplateDataNetworkInterfaceSetDetails,
         },
-        Placement = {
-            type = "structure",
-        },
-        PrivateDnsNameOptions = {
-            type = "structure",
-        },
+        Placement = M.AwsEc2LaunchTemplateDataPlacementDetails,
+        PrivateDnsNameOptions = M.AwsEc2LaunchTemplateDataPrivateDnsNameOptionsDetails,
         RamDiskId = {
             type = "string",
         },
         SecurityGroupIdSet = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SecurityGroupSet = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         UserData = {
             type = "string",
@@ -4529,14 +4267,12 @@ M.AwsEc2LaunchTemplateDetails = {
         Id = {
             type = "string",
         },
-        LaunchTemplateData = {
-            type = "structure",
-        },
+        LaunchTemplateData = M.AwsEc2LaunchTemplateDataDetails,
         DefaultVersionNumber = {
-            type = "number",
+            type = "long",
         },
         LatestVersionNumber = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -4560,10 +4296,10 @@ M.IcmpTypeCode = {
     type = "structure",
     members = {
         Code = {
-            type = "number",
+            type = "integer",
         },
         Type = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4572,10 +4308,10 @@ M.PortRangeFromTo = {
     type = "structure",
     members = {
         From = {
-            type = "number",
+            type = "integer",
         },
         To = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4589,15 +4325,11 @@ M.AwsEc2NetworkAclEntry = {
         Egress = {
             type = "boolean",
         },
-        IcmpTypeCode = {
-            type = "structure",
-        },
+        IcmpTypeCode = M.IcmpTypeCode,
         Ipv6CidrBlock = {
             type = "string",
         },
-        PortRange = {
-            type = "structure",
-        },
+        PortRange = M.PortRangeFromTo,
         Protocol = {
             type = "string",
         },
@@ -4605,7 +4337,7 @@ M.AwsEc2NetworkAclEntry = {
             type = "string",
         },
         RuleNumber = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4627,11 +4359,11 @@ M.AwsEc2NetworkAclDetails = {
         },
         Associations = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEc2NetworkAclAssociation,
         },
         Entries = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEc2NetworkAclEntry,
         },
     },
 }
@@ -4649,7 +4381,7 @@ M.AwsEc2NetworkInterfaceAttachment = {
             type = "boolean",
         },
         DeviceIndex = {
-            type = "number",
+            type = "integer",
         },
         InstanceId = {
             type = "string",
@@ -4699,26 +4431,24 @@ M.AwsEc2NetworkInterfaceSecurityGroup = {
 M.AwsEc2NetworkInterfaceDetails = {
     type = "structure",
     members = {
-        Attachment = {
-            type = "structure",
-        },
+        Attachment = M.AwsEc2NetworkInterfaceAttachment,
         NetworkInterfaceId = {
             type = "string",
         },
         SecurityGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEc2NetworkInterfaceSecurityGroup,
         },
         SourceDestCheck = {
             type = "boolean",
         },
         IpV6Addresses = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEc2NetworkInterfaceIpV6AddressDetail,
         },
         PrivateIpAddresses = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEc2NetworkInterfacePrivateIpAddressDetail,
         },
         PublicDnsName = {
             type = "string",
@@ -4797,21 +4527,21 @@ M.AwsEc2RouteTableDetails = {
     members = {
         AssociationSet = {
             type = "list",
-            member_type = "structure",
+            member = M.AssociationSetDetails,
         },
         OwnerId = {
             type = "string",
         },
         PropagatingVgwSet = {
             type = "list",
-            member_type = "structure",
+            member = M.PropagatingVgwSetDetails,
         },
         RouteTableId = {
             type = "string",
         },
         RouteSet = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteSetDetails,
         },
         VpcId = {
             type = "string",
@@ -4877,26 +4607,26 @@ M.AwsEc2SecurityGroupIpPermission = {
             type = "string",
         },
         FromPort = {
-            type = "number",
+            type = "integer",
         },
         ToPort = {
-            type = "number",
+            type = "integer",
         },
         UserIdGroupPairs = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEc2SecurityGroupUserIdGroupPair,
         },
         IpRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEc2SecurityGroupIpRange,
         },
         Ipv6Ranges = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEc2SecurityGroupIpv6Range,
         },
         PrefixListIds = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEc2SecurityGroupPrefixListId,
         },
     },
 }
@@ -4918,11 +4648,11 @@ M.AwsEc2SecurityGroupDetails = {
         },
         IpPermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEc2SecurityGroupIpPermission,
         },
         IpPermissionsEgress = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEc2SecurityGroupIpPermission,
         },
     },
 }
@@ -4955,7 +4685,7 @@ M.AwsEc2SubnetDetails = {
             type = "string",
         },
         AvailableIpAddressCount = {
-            type = "number",
+            type = "integer",
         },
         CidrBlock = {
             type = "string",
@@ -4983,7 +4713,7 @@ M.AwsEc2SubnetDetails = {
         },
         Ipv6CidrBlockAssociationSet = {
             type = "list",
-            member_type = "structure",
+            member = M.Ipv6CidrBlockAssociation,
         },
     },
 }
@@ -5008,7 +4738,7 @@ M.AwsEc2TransitGatewayDetails = {
         },
         TransitGatewayCidrBlocks = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AssociationDefaultRouteTableId = {
             type = "string",
@@ -5026,7 +4756,7 @@ M.AwsEc2TransitGatewayDetails = {
             type = "string",
         },
         AmazonSideAsn = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5062,7 +4792,7 @@ M.AwsEc2VolumeDetails = {
             type = "boolean",
         },
         Size = {
-            type = "number",
+            type = "integer",
         },
         SnapshotId = {
             type = "string",
@@ -5075,7 +4805,7 @@ M.AwsEc2VolumeDetails = {
         },
         Attachments = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEc2VolumeAttachment,
         },
         VolumeId = {
             type = "string",
@@ -5109,11 +4839,11 @@ M.AwsEc2VpcDetails = {
     members = {
         CidrBlockAssociationSet = {
             type = "list",
-            member_type = "structure",
+            member = M.CidrBlockAssociation,
         },
         Ipv6CidrBlockAssociationSet = {
             type = "list",
-            member_type = "structure",
+            member = M.Ipv6CidrBlockAssociation,
         },
         DhcpOptionsId = {
             type = "string",
@@ -5141,22 +4871,22 @@ M.AwsEc2VpcEndpointServiceDetails = {
         },
         AvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         BaseEndpointDnsNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ManagesVpcEndpoints = {
             type = "boolean",
         },
         GatewayLoadBalancerArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NetworkLoadBalancerArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         PrivateDnsName = {
             type = "string",
@@ -5172,7 +4902,7 @@ M.AwsEc2VpcEndpointServiceDetails = {
         },
         ServiceType = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEc2VpcEndpointServiceServiceTypeDetails,
         },
     },
 }
@@ -5218,18 +4948,16 @@ M.AwsEc2VpcPeeringConnectionVpcInfoDetails = {
         },
         CidrBlockSet = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcInfoCidrBlockSetDetails,
         },
         Ipv6CidrBlockSet = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcInfoIpv6CidrBlockSetDetails,
         },
         OwnerId = {
             type = "string",
         },
-        PeeringOptions = {
-            type = "structure",
-        },
+        PeeringOptions = M.VpcInfoPeeringOptionsDetails,
         Region = {
             type = "string",
         },
@@ -5254,18 +4982,12 @@ M.AwsEc2VpcPeeringConnectionStatusDetails = {
 M.AwsEc2VpcPeeringConnectionDetails = {
     type = "structure",
     members = {
-        AccepterVpcInfo = {
-            type = "structure",
-        },
+        AccepterVpcInfo = M.AwsEc2VpcPeeringConnectionVpcInfoDetails,
         ExpirationTime = {
             type = "string",
         },
-        RequesterVpcInfo = {
-            type = "structure",
-        },
-        Status = {
-            type = "structure",
-        },
+        RequesterVpcInfo = M.AwsEc2VpcPeeringConnectionVpcInfoDetails,
+        Status = M.AwsEc2VpcPeeringConnectionStatusDetails,
         VpcPeeringConnectionId = {
             type = "string",
         },
@@ -5276,56 +4998,56 @@ M.AwsEc2VpnConnectionOptionsTunnelOptionsDetails = {
     type = "structure",
     members = {
         DpdTimeoutSeconds = {
-            type = "number",
+            type = "integer",
         },
         IkeVersions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         OutsideIpAddress = {
             type = "string",
         },
         Phase1DhGroupNumbers = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
         },
         Phase1EncryptionAlgorithms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Phase1IntegrityAlgorithms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Phase1LifetimeSeconds = {
-            type = "number",
+            type = "integer",
         },
         Phase2DhGroupNumbers = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
         },
         Phase2EncryptionAlgorithms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Phase2IntegrityAlgorithms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Phase2LifetimeSeconds = {
-            type = "number",
+            type = "integer",
         },
         PreSharedKey = {
             type = "string",
         },
         RekeyFuzzPercentage = {
-            type = "number",
+            type = "integer",
         },
         RekeyMarginTimeSeconds = {
-            type = "number",
+            type = "integer",
         },
         ReplayWindowSize = {
-            type = "number",
+            type = "integer",
         },
         TunnelInsideCidr = {
             type = "string",
@@ -5341,7 +5063,7 @@ M.AwsEc2VpnConnectionOptionsDetails = {
         },
         TunnelOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEc2VpnConnectionOptionsTunnelOptionsDetails,
         },
     },
 }
@@ -5362,7 +5084,7 @@ M.AwsEc2VpnConnectionVgwTelemetryDetails = {
     type = "structure",
     members = {
         AcceptedRouteCount = {
-            type = "number",
+            type = "integer",
         },
         CertificateArn = {
             type = "string",
@@ -5408,14 +5130,12 @@ M.AwsEc2VpnConnectionDetails = {
         },
         VgwTelemetry = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEc2VpnConnectionVgwTelemetryDetails,
         },
-        Options = {
-            type = "structure",
-        },
+        Options = M.AwsEc2VpnConnectionOptionsDetails,
         Routes = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEc2VpnConnectionRoutesDetails,
         },
         TransitGatewayId = {
             type = "string",
@@ -5440,7 +5160,7 @@ M.AwsEcrContainerImageDetails = {
         },
         ImageTags = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ImagePublishedAt = {
             type = "string",
@@ -5475,15 +5195,11 @@ M.AwsEcrRepositoryDetails = {
         Arn = {
             type = "string",
         },
-        ImageScanningConfiguration = {
-            type = "structure",
-        },
+        ImageScanningConfiguration = M.AwsEcrRepositoryImageScanningConfigurationDetails,
         ImageTagMutability = {
             type = "string",
         },
-        LifecyclePolicy = {
-            type = "structure",
-        },
+        LifecyclePolicy = M.AwsEcrRepositoryLifecyclePolicyDetails,
         RepositoryName = {
             type = "string",
         },
@@ -5532,9 +5248,7 @@ M.AwsEcsClusterConfigurationExecuteCommandConfigurationDetails = {
         KmsKeyId = {
             type = "string",
         },
-        LogConfiguration = {
-            type = "structure",
-        },
+        LogConfiguration = M.AwsEcsClusterConfigurationExecuteCommandConfigurationLogConfigurationDetails,
         Logging = {
             type = "string",
         },
@@ -5544,9 +5258,7 @@ M.AwsEcsClusterConfigurationExecuteCommandConfigurationDetails = {
 M.AwsEcsClusterConfigurationDetails = {
     type = "structure",
     members = {
-        ExecuteCommandConfiguration = {
-            type = "structure",
-        },
+        ExecuteCommandConfiguration = M.AwsEcsClusterConfigurationExecuteCommandConfigurationDetails,
     },
 }
 
@@ -5554,13 +5266,13 @@ M.AwsEcsClusterDefaultCapacityProviderStrategyDetails = {
     type = "structure",
     members = {
         Base = {
-            type = "number",
+            type = "integer",
         },
         CapacityProvider = {
             type = "string",
         },
         Weight = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5572,31 +5284,29 @@ M.AwsEcsClusterDetails = {
             type = "string",
         },
         ActiveServicesCount = {
-            type = "number",
+            type = "integer",
         },
         CapacityProviders = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ClusterSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEcsClusterClusterSettingsDetails,
         },
-        Configuration = {
-            type = "structure",
-        },
+        Configuration = M.AwsEcsClusterConfigurationDetails,
         DefaultCapacityProviderStrategy = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEcsClusterDefaultCapacityProviderStrategyDetails,
         },
         ClusterName = {
             type = "string",
         },
         RegisteredContainerInstancesCount = {
-            type = "number",
+            type = "integer",
         },
         RunningTasksCount = {
-            type = "number",
+            type = "integer",
         },
         Status = {
             type = "string",
@@ -5627,7 +5337,7 @@ M.AwsEcsContainerDetails = {
         },
         MountPoints = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsMountPoint,
         },
         Privileged = {
             type = "boolean",
@@ -5639,13 +5349,13 @@ M.AwsEcsServiceCapacityProviderStrategyDetails = {
     type = "structure",
     members = {
         Base = {
-            type = "number",
+            type = "integer",
         },
         CapacityProvider = {
             type = "string",
         },
         Weight = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5665,14 +5375,12 @@ M.AwsEcsServiceDeploymentConfigurationDeploymentCircuitBreakerDetails = {
 M.AwsEcsServiceDeploymentConfigurationDetails = {
     type = "structure",
     members = {
-        DeploymentCircuitBreaker = {
-            type = "structure",
-        },
+        DeploymentCircuitBreaker = M.AwsEcsServiceDeploymentConfigurationDeploymentCircuitBreakerDetails,
         MaximumPercent = {
-            type = "number",
+            type = "integer",
         },
         MinimumHealthyPercent = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5693,7 +5401,7 @@ M.AwsEcsServiceLoadBalancersDetails = {
             type = "string",
         },
         ContainerPort = {
-            type = "number",
+            type = "integer",
         },
         LoadBalancerName = {
             type = "string",
@@ -5712,11 +5420,11 @@ M.AwsEcsServiceNetworkConfigurationAwsVpcConfigurationDetails = {
         },
         SecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Subnets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -5724,9 +5432,7 @@ M.AwsEcsServiceNetworkConfigurationAwsVpcConfigurationDetails = {
 M.AwsEcsServiceNetworkConfigurationDetails = {
     type = "structure",
     members = {
-        AwsVpcConfiguration = {
-            type = "structure",
-        },
+        AwsVpcConfiguration = M.AwsEcsServiceNetworkConfigurationAwsVpcConfigurationDetails,
     },
 }
 
@@ -5761,10 +5467,10 @@ M.AwsEcsServiceServiceRegistriesDetails = {
             type = "string",
         },
         ContainerPort = {
-            type = "number",
+            type = "integer",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         RegistryArn = {
             type = "string",
@@ -5777,19 +5483,15 @@ M.AwsEcsServiceDetails = {
     members = {
         CapacityProviderStrategy = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEcsServiceCapacityProviderStrategyDetails,
         },
         Cluster = {
             type = "string",
         },
-        DeploymentConfiguration = {
-            type = "structure",
-        },
-        DeploymentController = {
-            type = "structure",
-        },
+        DeploymentConfiguration = M.AwsEcsServiceDeploymentConfigurationDetails,
+        DeploymentController = M.AwsEcsServiceDeploymentControllerDetails,
         DesiredCount = {
-            type = "number",
+            type = "integer",
         },
         EnableEcsManagedTags = {
             type = "boolean",
@@ -5798,28 +5500,26 @@ M.AwsEcsServiceDetails = {
             type = "boolean",
         },
         HealthCheckGracePeriodSeconds = {
-            type = "number",
+            type = "integer",
         },
         LaunchType = {
             type = "string",
         },
         LoadBalancers = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEcsServiceLoadBalancersDetails,
         },
         Name = {
             type = "string",
         },
-        NetworkConfiguration = {
-            type = "structure",
-        },
+        NetworkConfiguration = M.AwsEcsServiceNetworkConfigurationDetails,
         PlacementConstraints = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEcsServicePlacementConstraintsDetails,
         },
         PlacementStrategies = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEcsServicePlacementStrategiesDetails,
         },
         PlatformVersion = {
             type = "string",
@@ -5841,7 +5541,7 @@ M.AwsEcsServiceDetails = {
         },
         ServiceRegistries = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEcsServiceServiceRegistriesDetails,
         },
         TaskDefinition = {
             type = "string",
@@ -5902,8 +5602,8 @@ M.AwsEcsTaskDefinitionContainerDefinitionsFirelensConfigurationDetails = {
     members = {
         Options = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Type = {
             type = "string",
@@ -5916,19 +5616,19 @@ M.AwsEcsTaskDefinitionContainerDefinitionsHealthCheckDetails = {
     members = {
         Command = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Interval = {
-            type = "number",
+            type = "integer",
         },
         Retries = {
-            type = "number",
+            type = "integer",
         },
         StartPeriod = {
-            type = "number",
+            type = "integer",
         },
         Timeout = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5938,11 +5638,11 @@ M.AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersCapabilitiesDetails = {
     members = {
         Add = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Drop = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -5958,7 +5658,7 @@ M.AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDevicesDetails = {
         },
         Permissions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -5971,10 +5671,10 @@ M.AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersTmpfsDetails = {
         },
         MountOptions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Size = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5982,28 +5682,26 @@ M.AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersTmpfsDetails = {
 M.AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDetails = {
     type = "structure",
     members = {
-        Capabilities = {
-            type = "structure",
-        },
+        Capabilities = M.AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersCapabilitiesDetails,
         Devices = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDevicesDetails,
         },
         InitProcessEnabled = {
             type = "boolean",
         },
         MaxSwap = {
-            type = "number",
+            type = "integer",
         },
         SharedMemorySize = {
-            type = "number",
+            type = "integer",
         },
         Swappiness = {
-            type = "number",
+            type = "integer",
         },
         Tmpfs = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersTmpfsDetails,
         },
     },
 }
@@ -6028,12 +5726,12 @@ M.AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationDetails = {
         },
         Options = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         SecretOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationSecretOptionsDetails,
         },
     },
 }
@@ -6057,10 +5755,10 @@ M.AwsEcsTaskDefinitionContainerDefinitionsPortMappingsDetails = {
     type = "structure",
     members = {
         ContainerPort = {
-            type = "number",
+            type = "integer",
         },
         HostPort = {
-            type = "number",
+            type = "integer",
         },
         Protocol = {
             type = "string",
@@ -6117,13 +5815,13 @@ M.AwsEcsTaskDefinitionContainerDefinitionsUlimitsDetails = {
     type = "structure",
     members = {
         HardLimit = {
-            type = "number",
+            type = "integer",
         },
         Name = {
             type = "string",
         },
         SoftLimit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -6145,60 +5843,56 @@ M.AwsEcsTaskDefinitionContainerDefinitionsDetails = {
     members = {
         Command = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Cpu = {
-            type = "number",
+            type = "integer",
         },
         DependsOn = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEcsTaskDefinitionContainerDefinitionsDependsOnDetails,
         },
         DisableNetworking = {
             type = "boolean",
         },
         DnsSearchDomains = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DnsServers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DockerLabels = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         DockerSecurityOptions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         EntryPoint = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Environment = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEcsTaskDefinitionContainerDefinitionsEnvironmentDetails,
         },
         EnvironmentFiles = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEcsTaskDefinitionContainerDefinitionsEnvironmentFilesDetails,
         },
         Essential = {
             type = "boolean",
         },
         ExtraHosts = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEcsTaskDefinitionContainerDefinitionsExtraHostsDetails,
         },
-        FirelensConfiguration = {
-            type = "structure",
-        },
-        HealthCheck = {
-            type = "structure",
-        },
+        FirelensConfiguration = M.AwsEcsTaskDefinitionContainerDefinitionsFirelensConfigurationDetails,
+        HealthCheck = M.AwsEcsTaskDefinitionContainerDefinitionsHealthCheckDetails,
         Hostname = {
             type = "string",
         },
@@ -6210,30 +5904,26 @@ M.AwsEcsTaskDefinitionContainerDefinitionsDetails = {
         },
         Links = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        LinuxParameters = {
-            type = "structure",
-        },
-        LogConfiguration = {
-            type = "structure",
-        },
+        LinuxParameters = M.AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDetails,
+        LogConfiguration = M.AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationDetails,
         Memory = {
-            type = "number",
+            type = "integer",
         },
         MemoryReservation = {
-            type = "number",
+            type = "integer",
         },
         MountPoints = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEcsTaskDefinitionContainerDefinitionsMountPointsDetails,
         },
         Name = {
             type = "string",
         },
         PortMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEcsTaskDefinitionContainerDefinitionsPortMappingsDetails,
         },
         Privileged = {
             type = "boolean",
@@ -6244,37 +5934,35 @@ M.AwsEcsTaskDefinitionContainerDefinitionsDetails = {
         ReadonlyRootFilesystem = {
             type = "boolean",
         },
-        RepositoryCredentials = {
-            type = "structure",
-        },
+        RepositoryCredentials = M.AwsEcsTaskDefinitionContainerDefinitionsRepositoryCredentialsDetails,
         ResourceRequirements = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEcsTaskDefinitionContainerDefinitionsResourceRequirementsDetails,
         },
         Secrets = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEcsTaskDefinitionContainerDefinitionsSecretsDetails,
         },
         StartTimeout = {
-            type = "number",
+            type = "integer",
         },
         StopTimeout = {
-            type = "number",
+            type = "integer",
         },
         SystemControls = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEcsTaskDefinitionContainerDefinitionsSystemControlsDetails,
         },
         Ulimits = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEcsTaskDefinitionContainerDefinitionsUlimitsDetails,
         },
         User = {
             type = "string",
         },
         VolumesFrom = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEcsTaskDefinitionContainerDefinitionsVolumesFromDetails,
         },
         WorkingDirectory = {
             type = "string",
@@ -6326,7 +6014,7 @@ M.AwsEcsTaskDefinitionProxyConfigurationDetails = {
         },
         ProxyConfigurationProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEcsTaskDefinitionProxyConfigurationProxyConfigurationPropertiesDetails,
         },
         Type = {
             type = "string",
@@ -6345,13 +6033,13 @@ M.AwsEcsTaskDefinitionVolumesDockerVolumeConfigurationDetails = {
         },
         DriverOpts = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Labels = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Scope = {
             type = "string",
@@ -6374,9 +6062,7 @@ M.AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationAuthorizationConfigDetails = 
 M.AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationDetails = {
     type = "structure",
     members = {
-        AuthorizationConfig = {
-            type = "structure",
-        },
+        AuthorizationConfig = M.AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationAuthorizationConfigDetails,
         FilesystemId = {
             type = "string",
         },
@@ -6387,7 +6073,7 @@ M.AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationDetails = {
             type = "string",
         },
         TransitEncryptionPort = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -6404,15 +6090,9 @@ M.AwsEcsTaskDefinitionVolumesHostDetails = {
 M.AwsEcsTaskDefinitionVolumesDetails = {
     type = "structure",
     members = {
-        DockerVolumeConfiguration = {
-            type = "structure",
-        },
-        EfsVolumeConfiguration = {
-            type = "structure",
-        },
-        Host = {
-            type = "structure",
-        },
+        DockerVolumeConfiguration = M.AwsEcsTaskDefinitionVolumesDockerVolumeConfigurationDetails,
+        EfsVolumeConfiguration = M.AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationDetails,
+        Host = M.AwsEcsTaskDefinitionVolumesHostDetails,
         Name = {
             type = "string",
         },
@@ -6424,7 +6104,7 @@ M.AwsEcsTaskDefinitionDetails = {
     members = {
         ContainerDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEcsTaskDefinitionContainerDefinitionsDetails,
         },
         Cpu = {
             type = "string",
@@ -6437,7 +6117,7 @@ M.AwsEcsTaskDefinitionDetails = {
         },
         InferenceAccelerators = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEcsTaskDefinitionInferenceAcceleratorsDetails,
         },
         IpcMode = {
             type = "string",
@@ -6453,21 +6133,19 @@ M.AwsEcsTaskDefinitionDetails = {
         },
         PlacementConstraints = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEcsTaskDefinitionPlacementConstraintsDetails,
         },
-        ProxyConfiguration = {
-            type = "structure",
-        },
+        ProxyConfiguration = M.AwsEcsTaskDefinitionProxyConfigurationDetails,
         RequiresCompatibilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TaskRoleArn = {
             type = "string",
         },
         Volumes = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEcsTaskDefinitionVolumesDetails,
         },
         Status = {
             type = "string",
@@ -6490,9 +6168,7 @@ M.AwsEcsTaskVolumeDetails = {
         Name = {
             type = "string",
         },
-        Host = {
-            type = "structure",
-        },
+        Host = M.AwsEcsTaskVolumeHostDetails,
     },
 }
 
@@ -6522,11 +6198,11 @@ M.AwsEcsTaskDetails = {
         },
         Volumes = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEcsTaskVolumeDetails,
         },
         Containers = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEcsContainerDetails,
         },
     },
 }
@@ -6539,7 +6215,7 @@ M.AwsEfsAccessPointPosixUserDetails = {
         },
         SecondaryGids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Uid = {
             type = "string",
@@ -6565,9 +6241,7 @@ M.AwsEfsAccessPointRootDirectoryCreationInfoDetails = {
 M.AwsEfsAccessPointRootDirectoryDetails = {
     type = "structure",
     members = {
-        CreationInfo = {
-            type = "structure",
-        },
+        CreationInfo = M.AwsEfsAccessPointRootDirectoryCreationInfoDetails,
         Path = {
             type = "string",
         },
@@ -6589,12 +6263,8 @@ M.AwsEfsAccessPointDetails = {
         FileSystemId = {
             type = "string",
         },
-        PosixUser = {
-            type = "structure",
-        },
-        RootDirectory = {
-            type = "structure",
-        },
+        PosixUser = M.AwsEfsAccessPointPosixUserDetails,
+        RootDirectory = M.AwsEfsAccessPointRootDirectoryDetails,
     },
 }
 
@@ -6606,7 +6276,7 @@ M.AwsEksClusterLoggingClusterLoggingDetails = {
         },
         Types = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -6616,7 +6286,7 @@ M.AwsEksClusterLoggingDetails = {
     members = {
         ClusterLogging = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEksClusterLoggingClusterLoggingDetails,
         },
     },
 }
@@ -6626,11 +6296,11 @@ M.AwsEksClusterResourcesVpcConfigDetails = {
     members = {
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         EndpointPublicAccess = {
             type = "boolean",
@@ -6656,18 +6326,14 @@ M.AwsEksClusterDetails = {
         Name = {
             type = "string",
         },
-        ResourcesVpcConfig = {
-            type = "structure",
-        },
+        ResourcesVpcConfig = M.AwsEksClusterResourcesVpcConfigDetails,
         RoleArn = {
             type = "string",
         },
         Version = {
             type = "string",
         },
-        Logging = {
-            type = "structure",
-        },
+        Logging = M.AwsEksClusterLoggingDetails,
     },
 }
 
@@ -6745,14 +6411,14 @@ M.AwsElasticBeanstalkEnvironmentDetails = {
         },
         EnvironmentLinks = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsElasticBeanstalkEnvironmentEnvironmentLink,
         },
         EnvironmentName = {
             type = "string",
         },
         OptionSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsElasticBeanstalkEnvironmentOptionSetting,
         },
         PlatformArn = {
             type = "string",
@@ -6763,9 +6429,7 @@ M.AwsElasticBeanstalkEnvironmentDetails = {
         Status = {
             type = "string",
         },
-        Tier = {
-            type = "structure",
-        },
+        Tier = M.AwsElasticBeanstalkEnvironmentTier,
         VersionLabel = {
             type = "string",
         },
@@ -6788,7 +6452,7 @@ M.AwsElasticsearchDomainElasticsearchClusterConfigZoneAwarenessConfigDetails = {
     type = "structure",
     members = {
         AvailabilityZoneCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -6797,7 +6461,7 @@ M.AwsElasticsearchDomainElasticsearchClusterConfigDetails = {
     type = "structure",
     members = {
         DedicatedMasterCount = {
-            type = "number",
+            type = "integer",
         },
         DedicatedMasterEnabled = {
             type = "boolean",
@@ -6806,14 +6470,12 @@ M.AwsElasticsearchDomainElasticsearchClusterConfigDetails = {
             type = "string",
         },
         InstanceCount = {
-            type = "number",
+            type = "integer",
         },
         InstanceType = {
             type = "string",
         },
-        ZoneAwarenessConfig = {
-            type = "structure",
-        },
+        ZoneAwarenessConfig = M.AwsElasticsearchDomainElasticsearchClusterConfigZoneAwarenessConfigDetails,
         ZoneAwarenessEnabled = {
             type = "boolean",
         },
@@ -6847,15 +6509,9 @@ M.AwsElasticsearchDomainLogPublishingOptionsLogConfig = {
 M.AwsElasticsearchDomainLogPublishingOptions = {
     type = "structure",
     members = {
-        IndexSlowLogs = {
-            type = "structure",
-        },
-        SearchSlowLogs = {
-            type = "structure",
-        },
-        AuditLogs = {
-            type = "structure",
-        },
+        IndexSlowLogs = M.AwsElasticsearchDomainLogPublishingOptionsLogConfig,
+        SearchSlowLogs = M.AwsElasticsearchDomainLogPublishingOptionsLogConfig,
+        AuditLogs = M.AwsElasticsearchDomainLogPublishingOptionsLogConfig,
     },
 }
 
@@ -6900,15 +6556,15 @@ M.AwsElasticsearchDomainVPCOptions = {
     members = {
         AvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         VPCId = {
             type = "string",
@@ -6922,9 +6578,7 @@ M.AwsElasticsearchDomainDetails = {
         AccessPolicies = {
             type = "string",
         },
-        DomainEndpointOptions = {
-            type = "structure",
-        },
+        DomainEndpointOptions = M.AwsElasticsearchDomainDomainEndpointOptions,
         DomainId = {
             type = "string",
         },
@@ -6936,30 +6590,18 @@ M.AwsElasticsearchDomainDetails = {
         },
         Endpoints = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ElasticsearchVersion = {
             type = "string",
         },
-        ElasticsearchClusterConfig = {
-            type = "structure",
-        },
-        EncryptionAtRestOptions = {
-            type = "structure",
-        },
-        LogPublishingOptions = {
-            type = "structure",
-        },
-        NodeToNodeEncryptionOptions = {
-            type = "structure",
-        },
-        ServiceSoftwareOptions = {
-            type = "structure",
-        },
-        VPCOptions = {
-            type = "structure",
-        },
+        ElasticsearchClusterConfig = M.AwsElasticsearchDomainElasticsearchClusterConfigDetails,
+        EncryptionAtRestOptions = M.AwsElasticsearchDomainEncryptionAtRestOptions,
+        LogPublishingOptions = M.AwsElasticsearchDomainLogPublishingOptions,
+        NodeToNodeEncryptionOptions = M.AwsElasticsearchDomainNodeToNodeEncryptionOptions,
+        ServiceSoftwareOptions = M.AwsElasticsearchDomainServiceSoftwareOptions,
+        VPCOptions = M.AwsElasticsearchDomainVPCOptions,
     },
 }
 
@@ -6979,7 +6621,7 @@ M.AwsElbLbCookieStickinessPolicy = {
     type = "structure",
     members = {
         CookieExpirationPeriod = {
-            type = "number",
+            type = "long",
         },
         PolicyName = {
             type = "string",
@@ -6991,7 +6633,7 @@ M.AwsElbLoadBalancerAccessLog = {
     type = "structure",
     members = {
         EmitInterval = {
-            type = "number",
+            type = "integer",
         },
         Enabled = {
             type = "boolean",
@@ -7024,7 +6666,7 @@ M.AwsElbLoadBalancerConnectionDraining = {
             type = "boolean",
         },
         Timeout = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -7033,7 +6675,7 @@ M.AwsElbLoadBalancerConnectionSettings = {
     type = "structure",
     members = {
         IdleTimeout = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -7050,21 +6692,13 @@ M.AwsElbLoadBalancerCrossZoneLoadBalancing = {
 M.AwsElbLoadBalancerAttributes = {
     type = "structure",
     members = {
-        AccessLog = {
-            type = "structure",
-        },
-        ConnectionDraining = {
-            type = "structure",
-        },
-        ConnectionSettings = {
-            type = "structure",
-        },
-        CrossZoneLoadBalancing = {
-            type = "structure",
-        },
+        AccessLog = M.AwsElbLoadBalancerAccessLog,
+        ConnectionDraining = M.AwsElbLoadBalancerConnectionDraining,
+        ConnectionSettings = M.AwsElbLoadBalancerConnectionSettings,
+        CrossZoneLoadBalancing = M.AwsElbLoadBalancerCrossZoneLoadBalancing,
         AdditionalAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsElbLoadBalancerAdditionalAttribute,
         },
     },
 }
@@ -7073,11 +6707,11 @@ M.AwsElbLoadBalancerBackendServerDescription = {
     type = "structure",
     members = {
         InstancePort = {
-            type = "number",
+            type = "integer",
         },
         PolicyNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -7086,19 +6720,19 @@ M.AwsElbLoadBalancerHealthCheck = {
     type = "structure",
     members = {
         HealthyThreshold = {
-            type = "number",
+            type = "integer",
         },
         Interval = {
-            type = "number",
+            type = "integer",
         },
         Target = {
             type = "string",
         },
         Timeout = {
-            type = "number",
+            type = "integer",
         },
         UnhealthyThreshold = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -7116,13 +6750,13 @@ M.AwsElbLoadBalancerListener = {
     type = "structure",
     members = {
         InstancePort = {
-            type = "number",
+            type = "integer",
         },
         InstanceProtocol = {
             type = "string",
         },
         LoadBalancerPort = {
-            type = "number",
+            type = "integer",
         },
         Protocol = {
             type = "string",
@@ -7136,12 +6770,10 @@ M.AwsElbLoadBalancerListener = {
 M.AwsElbLoadBalancerListenerDescription = {
     type = "structure",
     members = {
-        Listener = {
-            type = "structure",
-        },
+        Listener = M.AwsElbLoadBalancerListener,
         PolicyNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -7151,15 +6783,15 @@ M.AwsElbLoadBalancerPolicies = {
     members = {
         AppCookieStickinessPolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsElbAppCookieStickinessPolicy,
         },
         LbCookieStickinessPolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsElbLbCookieStickinessPolicy,
         },
         OtherPolicies = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -7181,11 +6813,11 @@ M.AwsElbLoadBalancerDetails = {
     members = {
         AvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         BackendServerDescriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsElbLoadBalancerBackendServerDescription,
         },
         CanonicalHostedZoneName = {
             type = "string",
@@ -7199,39 +6831,31 @@ M.AwsElbLoadBalancerDetails = {
         DnsName = {
             type = "string",
         },
-        HealthCheck = {
-            type = "structure",
-        },
+        HealthCheck = M.AwsElbLoadBalancerHealthCheck,
         Instances = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsElbLoadBalancerInstance,
         },
         ListenerDescriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsElbLoadBalancerListenerDescription,
         },
-        LoadBalancerAttributes = {
-            type = "structure",
-        },
+        LoadBalancerAttributes = M.AwsElbLoadBalancerAttributes,
         LoadBalancerName = {
             type = "string",
         },
-        Policies = {
-            type = "structure",
-        },
+        Policies = M.AwsElbLoadBalancerPolicies,
         Scheme = {
             type = "string",
         },
         SecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        SourceSecurityGroup = {
-            type = "structure",
-        },
+        SourceSecurityGroup = M.AwsElbLoadBalancerSourceSecurityGroup,
         Subnets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         VpcId = {
             type = "string",
@@ -7268,7 +6892,7 @@ M.AwsElbv2LoadBalancerDetails = {
     members = {
         AvailabilityZones = {
             type = "list",
-            member_type = "structure",
+            member = M.AvailabilityZone,
         },
         CanonicalHostedZoneId = {
             type = "string",
@@ -7287,11 +6911,9 @@ M.AwsElbv2LoadBalancerDetails = {
         },
         SecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        State = {
-            type = "structure",
-        },
+        State = M.LoadBalancerState,
         Type = {
             type = "string",
         },
@@ -7300,7 +6922,7 @@ M.AwsElbv2LoadBalancerDetails = {
         },
         LoadBalancerAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsElbv2LoadBalancerAttribute,
         },
     },
 }
@@ -7359,21 +6981,15 @@ M.AwsEventsEndpointRoutingConfigFailoverConfigSecondaryDetails = {
 M.AwsEventsEndpointRoutingConfigFailoverConfigDetails = {
     type = "structure",
     members = {
-        Primary = {
-            type = "structure",
-        },
-        Secondary = {
-            type = "structure",
-        },
+        Primary = M.AwsEventsEndpointRoutingConfigFailoverConfigPrimaryDetails,
+        Secondary = M.AwsEventsEndpointRoutingConfigFailoverConfigSecondaryDetails,
     },
 }
 
 M.AwsEventsEndpointRoutingConfigDetails = {
     type = "structure",
     members = {
-        FailoverConfig = {
-            type = "structure",
-        },
+        FailoverConfig = M.AwsEventsEndpointRoutingConfigFailoverConfigDetails,
     },
 }
 
@@ -7394,20 +7010,16 @@ M.AwsEventsEndpointDetails = {
         },
         EventBuses = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsEventsEndpointEventBusesDetails,
         },
         Name = {
             type = "string",
         },
-        ReplicationConfig = {
-            type = "structure",
-        },
+        ReplicationConfig = M.AwsEventsEndpointReplicationConfigDetails,
         RoleArn = {
             type = "string",
         },
-        RoutingConfig = {
-            type = "structure",
-        },
+        RoutingConfig = M.AwsEventsEndpointRoutingConfigDetails,
         State = {
             type = "string",
         },
@@ -7471,9 +7083,7 @@ M.AwsGuardDutyDetectorDataSourcesKubernetesAuditLogsDetails = {
 M.AwsGuardDutyDetectorDataSourcesKubernetesDetails = {
     type = "structure",
     members = {
-        AuditLogs = {
-            type = "structure",
-        },
+        AuditLogs = M.AwsGuardDutyDetectorDataSourcesKubernetesAuditLogsDetails,
     },
 }
 
@@ -7492,18 +7102,14 @@ M.AwsGuardDutyDetectorDataSourcesMalwareProtectionScanEc2InstanceWithFindingsEbs
 M.AwsGuardDutyDetectorDataSourcesMalwareProtectionScanEc2InstanceWithFindingsDetails = {
     type = "structure",
     members = {
-        EbsVolumes = {
-            type = "structure",
-        },
+        EbsVolumes = M.AwsGuardDutyDetectorDataSourcesMalwareProtectionScanEc2InstanceWithFindingsEbsVolumesDetails,
     },
 }
 
 M.AwsGuardDutyDetectorDataSourcesMalwareProtectionDetails = {
     type = "structure",
     members = {
-        ScanEc2InstanceWithFindings = {
-            type = "structure",
-        },
+        ScanEc2InstanceWithFindings = M.AwsGuardDutyDetectorDataSourcesMalwareProtectionScanEc2InstanceWithFindingsDetails,
         ServiceRole = {
             type = "string",
         },
@@ -7522,24 +7128,12 @@ M.AwsGuardDutyDetectorDataSourcesS3LogsDetails = {
 M.AwsGuardDutyDetectorDataSourcesDetails = {
     type = "structure",
     members = {
-        CloudTrail = {
-            type = "structure",
-        },
-        DnsLogs = {
-            type = "structure",
-        },
-        FlowLogs = {
-            type = "structure",
-        },
-        Kubernetes = {
-            type = "structure",
-        },
-        MalwareProtection = {
-            type = "structure",
-        },
-        S3Logs = {
-            type = "structure",
-        },
+        CloudTrail = M.AwsGuardDutyDetectorDataSourcesCloudTrailDetails,
+        DnsLogs = M.AwsGuardDutyDetectorDataSourcesDnsLogsDetails,
+        FlowLogs = M.AwsGuardDutyDetectorDataSourcesFlowLogsDetails,
+        Kubernetes = M.AwsGuardDutyDetectorDataSourcesKubernetesDetails,
+        MalwareProtection = M.AwsGuardDutyDetectorDataSourcesMalwareProtectionDetails,
+        S3Logs = M.AwsGuardDutyDetectorDataSourcesS3LogsDetails,
     },
 }
 
@@ -7558,12 +7152,10 @@ M.AwsGuardDutyDetectorFeaturesDetails = {
 M.AwsGuardDutyDetectorDetails = {
     type = "structure",
     members = {
-        DataSources = {
-            type = "structure",
-        },
+        DataSources = M.AwsGuardDutyDetectorDataSourcesDetails,
         Features = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsGuardDutyDetectorFeaturesDetails,
         },
         FindingPublishingFrequency = {
             type = "string",
@@ -7613,12 +7205,8 @@ M.AwsIamAccessKeySessionContextSessionIssuer = {
 M.AwsIamAccessKeySessionContext = {
     type = "structure",
     members = {
-        Attributes = {
-            type = "structure",
-        },
-        SessionIssuer = {
-            type = "structure",
-        },
+        Attributes = M.AwsIamAccessKeySessionContextAttributes,
+        SessionIssuer = M.AwsIamAccessKeySessionContextSessionIssuer,
     },
 }
 
@@ -7654,9 +7242,7 @@ M.AwsIamAccessKeyDetails = {
         AccessKeyId = {
             type = "string",
         },
-        SessionContext = {
-            type = "structure",
-        },
+        SessionContext = M.AwsIamAccessKeySessionContext,
     },
 }
 
@@ -7686,7 +7272,7 @@ M.AwsIamGroupDetails = {
     members = {
         AttachedManagedPolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsIamAttachedManagedPolicy,
         },
         CreateDate = {
             type = "string",
@@ -7699,7 +7285,7 @@ M.AwsIamGroupDetails = {
         },
         GroupPolicyList = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsIamGroupPolicy,
         },
         Path = {
             type = "string",
@@ -7751,7 +7337,7 @@ M.AwsIamInstanceProfile = {
         },
         Roles = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsIamInstanceProfileRole,
         },
     },
 }
@@ -7787,7 +7373,7 @@ M.AwsIamPolicyDetails = {
     type = "structure",
     members = {
         AttachmentCount = {
-            type = "number",
+            type = "integer",
         },
         CreateDate = {
             type = "string",
@@ -7805,7 +7391,7 @@ M.AwsIamPolicyDetails = {
             type = "string",
         },
         PermissionsBoundaryUsageCount = {
-            type = "number",
+            type = "integer",
         },
         PolicyId = {
             type = "string",
@@ -7815,7 +7401,7 @@ M.AwsIamPolicyDetails = {
         },
         PolicyVersionList = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsIamPolicyVersion,
         },
         UpdateDate = {
             type = "string",
@@ -7840,18 +7426,16 @@ M.AwsIamRoleDetails = {
         },
         AttachedManagedPolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsIamAttachedManagedPolicy,
         },
         CreateDate = {
             type = "string",
         },
         InstanceProfileList = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsIamInstanceProfile,
         },
-        PermissionsBoundary = {
-            type = "structure",
-        },
+        PermissionsBoundary = M.AwsIamPermissionsBoundary,
         RoleId = {
             type = "string",
         },
@@ -7860,10 +7444,10 @@ M.AwsIamRoleDetails = {
         },
         RolePolicyList = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsIamRolePolicy,
         },
         MaxSessionDuration = {
-            type = "number",
+            type = "integer",
         },
         Path = {
             type = "string",
@@ -7885,21 +7469,19 @@ M.AwsIamUserDetails = {
     members = {
         AttachedManagedPolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsIamAttachedManagedPolicy,
         },
         CreateDate = {
             type = "string",
         },
         GroupList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Path = {
             type = "string",
         },
-        PermissionsBoundary = {
-            type = "structure",
-        },
+        PermissionsBoundary = M.AwsIamPermissionsBoundary,
         UserId = {
             type = "string",
         },
@@ -7908,7 +7490,7 @@ M.AwsIamUserDetails = {
         },
         UserPolicyList = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsIamUserPolicy,
         },
     },
 }
@@ -7934,14 +7516,12 @@ M.AwsKinesisStreamDetails = {
         Arn = {
             type = "string",
         },
-        StreamEncryption = {
-            type = "structure",
-        },
+        StreamEncryption = M.AwsKinesisStreamStreamEncryptionDetails,
         ShardCount = {
-            type = "number",
+            type = "integer",
         },
         RetentionPeriodHours = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -7953,7 +7533,7 @@ M.AwsKmsKeyDetails = {
             type = "string",
         },
         CreationDate = {
-            type = "number",
+            type = "double",
         },
         KeyId = {
             type = "string",
@@ -8020,12 +7600,10 @@ M.AwsLambdaFunctionEnvironment = {
     members = {
         Variables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        Error = {
-            type = "structure",
-        },
+        Error = M.AwsLambdaFunctionEnvironmentError,
     },
 }
 
@@ -8036,7 +7614,7 @@ M.AwsLambdaFunctionLayer = {
             type = "string",
         },
         CodeSize = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -8055,11 +7633,11 @@ M.AwsLambdaFunctionVpcConfig = {
     members = {
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         VpcId = {
             type = "string",
@@ -8070,18 +7648,12 @@ M.AwsLambdaFunctionVpcConfig = {
 M.AwsLambdaFunctionDetails = {
     type = "structure",
     members = {
-        Code = {
-            type = "structure",
-        },
+        Code = M.AwsLambdaFunctionCode,
         CodeSha256 = {
             type = "string",
         },
-        DeadLetterConfig = {
-            type = "structure",
-        },
-        Environment = {
-            type = "structure",
-        },
+        DeadLetterConfig = M.AwsLambdaFunctionDeadLetterConfig,
+        Environment = M.AwsLambdaFunctionEnvironment,
         FunctionName = {
             type = "string",
         },
@@ -8096,13 +7668,13 @@ M.AwsLambdaFunctionDetails = {
         },
         Layers = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsLambdaFunctionLayer,
         },
         MasterArn = {
             type = "string",
         },
         MemorySize = {
-            type = "number",
+            type = "integer",
         },
         RevisionId = {
             type = "string",
@@ -8114,20 +7686,16 @@ M.AwsLambdaFunctionDetails = {
             type = "string",
         },
         Timeout = {
-            type = "number",
+            type = "integer",
         },
-        TracingConfig = {
-            type = "structure",
-        },
-        VpcConfig = {
-            type = "structure",
-        },
+        TracingConfig = M.AwsLambdaFunctionTracingConfig,
+        VpcConfig = M.AwsLambdaFunctionVpcConfig,
         Version = {
             type = "string",
         },
         Architectures = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         PackageType = {
             type = "string",
@@ -8139,11 +7707,11 @@ M.AwsLambdaLayerVersionDetails = {
     type = "structure",
     members = {
         Version = {
-            type = "number",
+            type = "long",
         },
         CompatibleRuntimes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CreatedDate = {
             type = "string",
@@ -8172,12 +7740,8 @@ M.AwsMskClusterClusterInfoClientAuthenticationSaslScramDetails = {
 M.AwsMskClusterClusterInfoClientAuthenticationSaslDetails = {
     type = "structure",
     members = {
-        Iam = {
-            type = "structure",
-        },
-        Scram = {
-            type = "structure",
-        },
+        Iam = M.AwsMskClusterClusterInfoClientAuthenticationSaslIamDetails,
+        Scram = M.AwsMskClusterClusterInfoClientAuthenticationSaslScramDetails,
     },
 }
 
@@ -8186,7 +7750,7 @@ M.AwsMskClusterClusterInfoClientAuthenticationTlsDetails = {
     members = {
         CertificateAuthorityArnList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Enabled = {
             type = "boolean",
@@ -8206,15 +7770,9 @@ M.AwsMskClusterClusterInfoClientAuthenticationUnauthenticatedDetails = {
 M.AwsMskClusterClusterInfoClientAuthenticationDetails = {
     type = "structure",
     members = {
-        Sasl = {
-            type = "structure",
-        },
-        Unauthenticated = {
-            type = "structure",
-        },
-        Tls = {
-            type = "structure",
-        },
+        Sasl = M.AwsMskClusterClusterInfoClientAuthenticationSaslDetails,
+        Unauthenticated = M.AwsMskClusterClusterInfoClientAuthenticationUnauthenticatedDetails,
+        Tls = M.AwsMskClusterClusterInfoClientAuthenticationTlsDetails,
     },
 }
 
@@ -8242,33 +7800,25 @@ M.AwsMskClusterClusterInfoEncryptionInfoEncryptionInTransitDetails = {
 M.AwsMskClusterClusterInfoEncryptionInfoDetails = {
     type = "structure",
     members = {
-        EncryptionInTransit = {
-            type = "structure",
-        },
-        EncryptionAtRest = {
-            type = "structure",
-        },
+        EncryptionInTransit = M.AwsMskClusterClusterInfoEncryptionInfoEncryptionInTransitDetails,
+        EncryptionAtRest = M.AwsMskClusterClusterInfoEncryptionInfoEncryptionAtRestDetails,
     },
 }
 
 M.AwsMskClusterClusterInfoDetails = {
     type = "structure",
     members = {
-        EncryptionInfo = {
-            type = "structure",
-        },
+        EncryptionInfo = M.AwsMskClusterClusterInfoEncryptionInfoDetails,
         CurrentVersion = {
             type = "string",
         },
         NumberOfBrokerNodes = {
-            type = "number",
+            type = "integer",
         },
         ClusterName = {
             type = "string",
         },
-        ClientAuthentication = {
-            type = "structure",
-        },
+        ClientAuthentication = M.AwsMskClusterClusterInfoClientAuthenticationDetails,
         EnhancedMonitoring = {
             type = "string",
         },
@@ -8278,9 +7828,7 @@ M.AwsMskClusterClusterInfoDetails = {
 M.AwsMskClusterDetails = {
     type = "structure",
     members = {
-        ClusterInfo = {
-            type = "structure",
-        },
+        ClusterInfo = M.AwsMskClusterClusterInfoDetails,
     },
 }
 
@@ -8322,7 +7870,7 @@ M.AwsNetworkFirewallFirewallDetails = {
         },
         SubnetMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsNetworkFirewallFirewallSubnetMappingsDetails,
         },
         VpcId = {
             type = "string",
@@ -8353,7 +7901,7 @@ M.StatelessCustomPublishMetricAction = {
     members = {
         Dimensions = {
             type = "list",
-            member_type = "structure",
+            member = M.StatelessCustomPublishMetricActionDimension,
         },
     },
 }
@@ -8361,18 +7909,14 @@ M.StatelessCustomPublishMetricAction = {
 M.StatelessCustomActionDefinition = {
     type = "structure",
     members = {
-        PublishMetricAction = {
-            type = "structure",
-        },
+        PublishMetricAction = M.StatelessCustomPublishMetricAction,
     },
 }
 
 M.FirewallPolicyStatelessCustomActionsDetails = {
     type = "structure",
     members = {
-        ActionDefinition = {
-            type = "structure",
-        },
+        ActionDefinition = M.StatelessCustomActionDefinition,
         ActionName = {
             type = "string",
         },
@@ -8383,7 +7927,7 @@ M.FirewallPolicyStatelessRuleGroupReferencesDetails = {
     type = "structure",
     members = {
         Priority = {
-            type = "number",
+            type = "integer",
         },
         ResourceArn = {
             type = "string",
@@ -8396,23 +7940,23 @@ M.FirewallPolicyDetails = {
     members = {
         StatefulRuleGroupReferences = {
             type = "list",
-            member_type = "structure",
+            member = M.FirewallPolicyStatefulRuleGroupReferencesDetails,
         },
         StatelessCustomActions = {
             type = "list",
-            member_type = "structure",
+            member = M.FirewallPolicyStatelessCustomActionsDetails,
         },
         StatelessDefaultActions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         StatelessFragmentDefaultActions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         StatelessRuleGroupReferences = {
             type = "list",
-            member_type = "structure",
+            member = M.FirewallPolicyStatelessRuleGroupReferencesDetails,
         },
     },
 }
@@ -8420,9 +7964,7 @@ M.FirewallPolicyDetails = {
 M.AwsNetworkFirewallFirewallPolicyDetails = {
     type = "structure",
     members = {
-        FirewallPolicy = {
-            type = "structure",
-        },
+        FirewallPolicy = M.FirewallPolicyDetails,
         FirewallPolicyArn = {
             type = "string",
         },
@@ -8446,11 +7988,11 @@ M.RuleGroupSourceListDetails = {
         },
         TargetTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Targets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -8487,7 +8029,7 @@ M.RuleGroupSourceStatefulRulesOptionsDetails = {
         },
         Settings = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -8498,12 +8040,10 @@ M.RuleGroupSourceStatefulRulesDetails = {
         Action = {
             type = "string",
         },
-        Header = {
-            type = "structure",
-        },
+        Header = M.RuleGroupSourceStatefulRulesHeaderDetails,
         RuleOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleGroupSourceStatefulRulesOptionsDetails,
         },
     },
 }
@@ -8511,9 +8051,7 @@ M.RuleGroupSourceStatefulRulesDetails = {
 M.RuleGroupSourceCustomActionsDetails = {
     type = "structure",
     members = {
-        ActionDefinition = {
-            type = "structure",
-        },
+        ActionDefinition = M.StatelessCustomActionDefinition,
         ActionName = {
             type = "string",
         },
@@ -8524,10 +8062,10 @@ M.RuleGroupSourceStatelessRuleMatchAttributesDestinationPorts = {
     type = "structure",
     members = {
         FromPort = {
-            type = "number",
+            type = "integer",
         },
         ToPort = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -8545,10 +8083,10 @@ M.RuleGroupSourceStatelessRuleMatchAttributesSourcePorts = {
     type = "structure",
     members = {
         FromPort = {
-            type = "number",
+            type = "integer",
         },
         ToPort = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -8567,11 +8105,11 @@ M.RuleGroupSourceStatelessRuleMatchAttributesTcpFlags = {
     members = {
         Flags = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Masks = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -8581,27 +8119,27 @@ M.RuleGroupSourceStatelessRuleMatchAttributes = {
     members = {
         DestinationPorts = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleGroupSourceStatelessRuleMatchAttributesDestinationPorts,
         },
         Destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleGroupSourceStatelessRuleMatchAttributesDestinations,
         },
         Protocols = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
         },
         SourcePorts = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleGroupSourceStatelessRuleMatchAttributesSourcePorts,
         },
         Sources = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleGroupSourceStatelessRuleMatchAttributesSources,
         },
         TcpFlags = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleGroupSourceStatelessRuleMatchAttributesTcpFlags,
         },
     },
 }
@@ -8611,11 +8149,9 @@ M.RuleGroupSourceStatelessRuleDefinition = {
     members = {
         Actions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        MatchAttributes = {
-            type = "structure",
-        },
+        MatchAttributes = M.RuleGroupSourceStatelessRuleMatchAttributes,
     },
 }
 
@@ -8623,11 +8159,9 @@ M.RuleGroupSourceStatelessRulesDetails = {
     type = "structure",
     members = {
         Priority = {
-            type = "number",
+            type = "integer",
         },
-        RuleDefinition = {
-            type = "structure",
-        },
+        RuleDefinition = M.RuleGroupSourceStatelessRuleDefinition,
     },
 }
 
@@ -8636,11 +8170,11 @@ M.RuleGroupSourceStatelessRulesAndCustomActionsDetails = {
     members = {
         CustomActions = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleGroupSourceCustomActionsDetails,
         },
         StatelessRules = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleGroupSourceStatelessRulesDetails,
         },
     },
 }
@@ -8648,19 +8182,15 @@ M.RuleGroupSourceStatelessRulesAndCustomActionsDetails = {
 M.RuleGroupSource = {
     type = "structure",
     members = {
-        RulesSourceList = {
-            type = "structure",
-        },
+        RulesSourceList = M.RuleGroupSourceListDetails,
         RulesString = {
             type = "string",
         },
         StatefulRules = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleGroupSourceStatefulRulesDetails,
         },
-        StatelessRulesAndCustomActions = {
-            type = "structure",
-        },
+        StatelessRulesAndCustomActions = M.RuleGroupSourceStatelessRulesAndCustomActionsDetails,
     },
 }
 
@@ -8669,7 +8199,7 @@ M.RuleGroupVariablesIpSetsDetails = {
     members = {
         Definition = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -8679,7 +8209,7 @@ M.RuleGroupVariablesPortSetsDetails = {
     members = {
         Definition = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -8687,24 +8217,16 @@ M.RuleGroupVariablesPortSetsDetails = {
 M.RuleGroupVariables = {
     type = "structure",
     members = {
-        IpSets = {
-            type = "structure",
-        },
-        PortSets = {
-            type = "structure",
-        },
+        IpSets = M.RuleGroupVariablesIpSetsDetails,
+        PortSets = M.RuleGroupVariablesPortSetsDetails,
     },
 }
 
 M.RuleGroupDetails = {
     type = "structure",
     members = {
-        RuleVariables = {
-            type = "structure",
-        },
-        RulesSource = {
-            type = "structure",
-        },
+        RuleVariables = M.RuleGroupVariables,
+        RulesSource = M.RuleGroupSource,
     },
 }
 
@@ -8712,14 +8234,12 @@ M.AwsNetworkFirewallRuleGroupDetails = {
     type = "structure",
     members = {
         Capacity = {
-            type = "number",
+            type = "integer",
         },
         Description = {
             type = "string",
         },
-        RuleGroup = {
-            type = "structure",
-        },
+        RuleGroup = M.RuleGroupDetails,
         RuleGroupArn = {
             type = "string",
         },
@@ -8759,9 +8279,7 @@ M.AwsOpenSearchServiceDomainAdvancedSecurityOptionsDetails = {
         InternalUserDatabaseEnabled = {
             type = "boolean",
         },
-        MasterUserOptions = {
-            type = "structure",
-        },
+        MasterUserOptions = M.AwsOpenSearchServiceDomainMasterUserOptionsDetails,
     },
 }
 
@@ -8769,7 +8287,7 @@ M.AwsOpenSearchServiceDomainClusterConfigZoneAwarenessConfigDetails = {
     type = "structure",
     members = {
         AvailabilityZoneCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -8778,22 +8296,20 @@ M.AwsOpenSearchServiceDomainClusterConfigDetails = {
     type = "structure",
     members = {
         InstanceCount = {
-            type = "number",
+            type = "integer",
         },
         WarmEnabled = {
             type = "boolean",
         },
         WarmCount = {
-            type = "number",
+            type = "integer",
         },
         DedicatedMasterEnabled = {
             type = "boolean",
         },
-        ZoneAwarenessConfig = {
-            type = "structure",
-        },
+        ZoneAwarenessConfig = M.AwsOpenSearchServiceDomainClusterConfigZoneAwarenessConfigDetails,
         DedicatedMasterCount = {
-            type = "number",
+            type = "integer",
         },
         InstanceType = {
             type = "string",
@@ -8858,15 +8374,9 @@ M.AwsOpenSearchServiceDomainLogPublishingOption = {
 M.AwsOpenSearchServiceDomainLogPublishingOptionsDetails = {
     type = "structure",
     members = {
-        IndexSlowLogs = {
-            type = "structure",
-        },
-        SearchSlowLogs = {
-            type = "structure",
-        },
-        AuditLogs = {
-            type = "structure",
-        },
+        IndexSlowLogs = M.AwsOpenSearchServiceDomainLogPublishingOption,
+        SearchSlowLogs = M.AwsOpenSearchServiceDomainLogPublishingOption,
+        AuditLogs = M.AwsOpenSearchServiceDomainLogPublishingOption,
     },
 }
 
@@ -8914,11 +8424,11 @@ M.AwsOpenSearchServiceDomainVpcOptionsDetails = {
     members = {
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -8944,35 +8454,19 @@ M.AwsOpenSearchServiceDomainDetails = {
         EngineVersion = {
             type = "string",
         },
-        EncryptionAtRestOptions = {
-            type = "structure",
-        },
-        NodeToNodeEncryptionOptions = {
-            type = "structure",
-        },
-        ServiceSoftwareOptions = {
-            type = "structure",
-        },
-        ClusterConfig = {
-            type = "structure",
-        },
-        DomainEndpointOptions = {
-            type = "structure",
-        },
-        VpcOptions = {
-            type = "structure",
-        },
-        LogPublishingOptions = {
-            type = "structure",
-        },
+        EncryptionAtRestOptions = M.AwsOpenSearchServiceDomainEncryptionAtRestOptionsDetails,
+        NodeToNodeEncryptionOptions = M.AwsOpenSearchServiceDomainNodeToNodeEncryptionOptionsDetails,
+        ServiceSoftwareOptions = M.AwsOpenSearchServiceDomainServiceSoftwareOptionsDetails,
+        ClusterConfig = M.AwsOpenSearchServiceDomainClusterConfigDetails,
+        DomainEndpointOptions = M.AwsOpenSearchServiceDomainDomainEndpointOptionsDetails,
+        VpcOptions = M.AwsOpenSearchServiceDomainVpcOptionsDetails,
+        LogPublishingOptions = M.AwsOpenSearchServiceDomainLogPublishingOptionsDetails,
         DomainEndpoints = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        AdvancedSecurityOptions = {
-            type = "structure",
-        },
+        AdvancedSecurityOptions = M.AwsOpenSearchServiceDomainAdvancedSecurityOptionsDetails,
     },
 }
 
@@ -9007,7 +8501,7 @@ M.AwsRdsDbClusterMember = {
             type = "boolean",
         },
         PromotionTier = {
-            type = "number",
+            type = "integer",
         },
         DbInstanceIdentifier = {
             type = "string",
@@ -9064,14 +8558,14 @@ M.AwsRdsDbClusterDetails = {
     type = "structure",
     members = {
         AllocatedStorage = {
-            type = "number",
+            type = "integer",
         },
         AvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         BackupRetentionPeriod = {
-            type = "number",
+            type = "integer",
         },
         DatabaseName = {
             type = "string",
@@ -9087,7 +8581,7 @@ M.AwsRdsDbClusterDetails = {
         },
         CustomEndpoints = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MultiAz = {
             type = "boolean",
@@ -9099,7 +8593,7 @@ M.AwsRdsDbClusterDetails = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         MasterUsername = {
             type = "string",
@@ -9112,11 +8606,11 @@ M.AwsRdsDbClusterDetails = {
         },
         ReadReplicaIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         VpcSecurityGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsRdsDbInstanceVpcSecurityGroup,
         },
         HostedZoneId = {
             type = "string",
@@ -9132,14 +8626,14 @@ M.AwsRdsDbClusterDetails = {
         },
         AssociatedRoles = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsRdsDbClusterAssociatedRole,
         },
         ClusterCreateTime = {
             type = "string",
         },
         EnabledCloudWatchLogsExports = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         EngineMode = {
             type = "string",
@@ -9161,7 +8655,7 @@ M.AwsRdsDbClusterDetails = {
         },
         DomainMemberships = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsRdsDbDomainMembership,
         },
         DbClusterParameterGroup = {
             type = "string",
@@ -9171,14 +8665,14 @@ M.AwsRdsDbClusterDetails = {
         },
         DbClusterOptionGroupMemberships = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsRdsDbClusterOptionGroupMembership,
         },
         DbClusterIdentifier = {
             type = "string",
         },
         DbClusterMembers = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsRdsDbClusterMember,
         },
         IamDatabaseAuthenticationEnabled = {
             type = "boolean",
@@ -9197,7 +8691,7 @@ M.AwsRdsDbClusterSnapshotDbClusterSnapshotAttribute = {
         },
         AttributeValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -9207,7 +8701,7 @@ M.AwsRdsDbClusterSnapshotDetails = {
     members = {
         AvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SnapshotCreateTime = {
             type = "string",
@@ -9216,13 +8710,13 @@ M.AwsRdsDbClusterSnapshotDetails = {
             type = "string",
         },
         AllocatedStorage = {
-            type = "number",
+            type = "integer",
         },
         Status = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         VpcId = {
             type = "string",
@@ -9243,7 +8737,7 @@ M.AwsRdsDbClusterSnapshotDetails = {
             type = "string",
         },
         PercentProgress = {
-            type = "number",
+            type = "integer",
         },
         StorageEncrypted = {
             type = "boolean",
@@ -9262,7 +8756,7 @@ M.AwsRdsDbClusterSnapshotDetails = {
         },
         DbClusterSnapshotAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsRdsDbClusterSnapshotDbClusterSnapshotAttribute,
         },
     },
 }
@@ -9309,9 +8803,7 @@ M.AwsRdsDbSubnetGroupSubnet = {
         SubnetIdentifier = {
             type = "string",
         },
-        SubnetAvailabilityZone = {
-            type = "structure",
-        },
+        SubnetAvailabilityZone = M.AwsRdsDbSubnetGroupSubnetAvailabilityZone,
         SubnetStatus = {
             type = "string",
         },
@@ -9335,7 +8827,7 @@ M.AwsRdsDbSubnetGroup = {
         },
         Subnets = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsRdsDbSubnetGroupSubnet,
         },
         DbSubnetGroupArn = {
             type = "string",
@@ -9350,7 +8842,7 @@ M.AwsRdsDbInstanceEndpoint = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         HostedZoneId = {
             type = "string",
@@ -9375,11 +8867,11 @@ M.AwsRdsPendingCloudWatchLogsExports = {
     members = {
         LogTypesToEnable = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         LogTypesToDisable = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -9403,16 +8895,16 @@ M.AwsRdsDbPendingModifiedValues = {
             type = "string",
         },
         AllocatedStorage = {
-            type = "number",
+            type = "integer",
         },
         MasterUserPassword = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         BackupRetentionPeriod = {
-            type = "number",
+            type = "integer",
         },
         MultiAZ = {
             type = "boolean",
@@ -9424,7 +8916,7 @@ M.AwsRdsDbPendingModifiedValues = {
             type = "string",
         },
         Iops = {
-            type = "number",
+            type = "integer",
         },
         DbInstanceIdentifier = {
             type = "string",
@@ -9438,12 +8930,10 @@ M.AwsRdsDbPendingModifiedValues = {
         DbSubnetGroupName = {
             type = "string",
         },
-        PendingCloudWatchLogsExports = {
-            type = "structure",
-        },
+        PendingCloudWatchLogsExports = M.AwsRdsPendingCloudWatchLogsExports,
         ProcessorFeatures = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsRdsDbProcessorFeature,
         },
     },
 }
@@ -9471,7 +8961,7 @@ M.AwsRdsDbInstanceDetails = {
     members = {
         AssociatedRoles = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsRdsDbInstanceAssociatedRole,
         },
         CACertificateIdentifier = {
             type = "string",
@@ -9486,7 +8976,7 @@ M.AwsRdsDbInstanceDetails = {
             type = "string",
         },
         DbInstancePort = {
-            type = "number",
+            type = "integer",
         },
         DbiResourceId = {
             type = "string",
@@ -9497,9 +8987,7 @@ M.AwsRdsDbInstanceDetails = {
         DeletionProtection = {
             type = "boolean",
         },
-        Endpoint = {
-            type = "structure",
-        },
+        Endpoint = M.AwsRdsDbInstanceEndpoint,
         Engine = {
             type = "string",
         },
@@ -9526,7 +9014,7 @@ M.AwsRdsDbInstanceDetails = {
         },
         VpcSecurityGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsRdsDbInstanceVpcSecurityGroup,
         },
         MultiAz = {
             type = "boolean",
@@ -9541,34 +9029,30 @@ M.AwsRdsDbInstanceDetails = {
             type = "string",
         },
         AllocatedStorage = {
-            type = "number",
+            type = "integer",
         },
         PreferredBackupWindow = {
             type = "string",
         },
         BackupRetentionPeriod = {
-            type = "number",
+            type = "integer",
         },
         DbSecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DbParameterGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsRdsDbParameterGroup,
         },
         AvailabilityZone = {
             type = "string",
         },
-        DbSubnetGroup = {
-            type = "structure",
-        },
+        DbSubnetGroup = M.AwsRdsDbSubnetGroup,
         PreferredMaintenanceWindow = {
             type = "string",
         },
-        PendingModifiedValues = {
-            type = "structure",
-        },
+        PendingModifiedValues = M.AwsRdsDbPendingModifiedValues,
         LatestRestorableTime = {
             type = "string",
         },
@@ -9580,21 +9064,21 @@ M.AwsRdsDbInstanceDetails = {
         },
         ReadReplicaDBInstanceIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ReadReplicaDBClusterIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         LicenseModel = {
             type = "string",
         },
         Iops = {
-            type = "number",
+            type = "integer",
         },
         OptionGroupMemberships = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsRdsDbOptionGroupMembership,
         },
         CharacterSetName = {
             type = "string",
@@ -9604,26 +9088,26 @@ M.AwsRdsDbInstanceDetails = {
         },
         StatusInfos = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsRdsDbStatusInfo,
         },
         StorageType = {
             type = "string",
         },
         DomainMemberships = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsRdsDbDomainMembership,
         },
         CopyTagsToSnapshot = {
             type = "boolean",
         },
         MonitoringInterval = {
-            type = "number",
+            type = "integer",
         },
         MonitoringRoleArn = {
             type = "string",
         },
         PromotionTier = {
-            type = "number",
+            type = "integer",
         },
         Timezone = {
             type = "string",
@@ -9635,21 +9119,19 @@ M.AwsRdsDbInstanceDetails = {
             type = "string",
         },
         PerformanceInsightsRetentionPeriod = {
-            type = "number",
+            type = "integer",
         },
         EnabledCloudWatchLogsExports = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ProcessorFeatures = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsRdsDbProcessorFeature,
         },
-        ListenerEndpoint = {
-            type = "structure",
-        },
+        ListenerEndpoint = M.AwsRdsDbInstanceEndpoint,
         MaxAllocatedStorage = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -9698,11 +9180,11 @@ M.AwsRdsDbSecurityGroupDetails = {
         },
         Ec2SecurityGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsRdsDbSecurityGroupEc2SecurityGroup,
         },
         IpRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsRdsDbSecurityGroupIpRange,
         },
         OwnerId = {
             type = "string",
@@ -9729,13 +9211,13 @@ M.AwsRdsDbSnapshotDetails = {
             type = "string",
         },
         AllocatedStorage = {
-            type = "number",
+            type = "integer",
         },
         Status = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         AvailabilityZone = {
             type = "string",
@@ -9759,13 +9241,13 @@ M.AwsRdsDbSnapshotDetails = {
             type = "string",
         },
         Iops = {
-            type = "number",
+            type = "integer",
         },
         OptionGroupName = {
             type = "string",
         },
         PercentProgress = {
-            type = "number",
+            type = "integer",
         },
         SourceRegion = {
             type = "string",
@@ -9793,7 +9275,7 @@ M.AwsRdsDbSnapshotDetails = {
         },
         ProcessorFeatures = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsRdsDbProcessorFeature,
         },
         DbiResourceId = {
             type = "string",
@@ -9815,7 +9297,7 @@ M.AwsRdsEventSubscriptionDetails = {
         },
         EventCategoriesList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         EventSubscriptionArn = {
             type = "string",
@@ -9825,7 +9307,7 @@ M.AwsRdsEventSubscriptionDetails = {
         },
         SourceIdsList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SourceType = {
             type = "string",
@@ -9874,7 +9356,7 @@ M.AwsRedshiftClusterClusterParameterGroup = {
     members = {
         ClusterParameterStatusList = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsRedshiftClusterClusterParameterStatus,
         },
         ParameterApplyStatus = {
             type = "string",
@@ -9904,10 +9386,10 @@ M.AwsRedshiftClusterClusterSnapshotCopyStatus = {
             type = "string",
         },
         ManualSnapshotRetentionPeriod = {
-            type = "number",
+            type = "integer",
         },
         RetentionPeriod = {
-            type = "number",
+            type = "integer",
         },
         SnapshotCopyGrantName = {
             type = "string",
@@ -9949,7 +9431,7 @@ M.AwsRedshiftClusterEndpoint = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -10009,7 +9491,7 @@ M.AwsRedshiftClusterPendingModifiedValues = {
     type = "structure",
     members = {
         AutomatedSnapshotRetentionPeriod = {
-            type = "number",
+            type = "integer",
         },
         ClusterIdentifier = {
             type = "string",
@@ -10036,7 +9518,7 @@ M.AwsRedshiftClusterPendingModifiedValues = {
             type = "string",
         },
         NumberOfNodes = {
-            type = "number",
+            type = "integer",
         },
         PubliclyAccessible = {
             type = "boolean",
@@ -10060,19 +9542,19 @@ M.AwsRedshiftClusterRestoreStatus = {
     type = "structure",
     members = {
         CurrentRestoreRateInMegaBytesPerSecond = {
-            type = "number",
+            type = "double",
         },
         ElapsedTimeInSeconds = {
-            type = "number",
+            type = "long",
         },
         EstimatedTimeToCompletionInSeconds = {
-            type = "number",
+            type = "long",
         },
         ProgressInMegaBytes = {
-            type = "number",
+            type = "long",
         },
         SnapshotSizeInMegaBytes = {
-            type = "number",
+            type = "long",
         },
         Status = {
             type = "string",
@@ -10099,7 +9581,7 @@ M.AwsRedshiftClusterDetails = {
             type = "boolean",
         },
         AutomatedSnapshotRetentionPeriod = {
-            type = "number",
+            type = "integer",
         },
         AvailabilityZone = {
             type = "string",
@@ -10115,11 +9597,11 @@ M.AwsRedshiftClusterDetails = {
         },
         ClusterNodes = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsRedshiftClusterClusterNode,
         },
         ClusterParameterGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsRedshiftClusterClusterParameterGroup,
         },
         ClusterPublicKey = {
             type = "string",
@@ -10129,11 +9611,9 @@ M.AwsRedshiftClusterDetails = {
         },
         ClusterSecurityGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsRedshiftClusterClusterSecurityGroup,
         },
-        ClusterSnapshotCopyStatus = {
-            type = "structure",
-        },
+        ClusterSnapshotCopyStatus = M.AwsRedshiftClusterClusterSnapshotCopyStatus,
         ClusterStatus = {
             type = "string",
         },
@@ -10148,20 +9628,16 @@ M.AwsRedshiftClusterDetails = {
         },
         DeferredMaintenanceWindows = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsRedshiftClusterDeferredMaintenanceWindow,
         },
-        ElasticIpStatus = {
-            type = "structure",
-        },
+        ElasticIpStatus = M.AwsRedshiftClusterElasticIpStatus,
         ElasticResizeNumberOfNodeOptions = {
             type = "string",
         },
         Encrypted = {
             type = "boolean",
         },
-        Endpoint = {
-            type = "structure",
-        },
+        Endpoint = M.AwsRedshiftClusterEndpoint,
         EnhancedVpcRouting = {
             type = "boolean",
         },
@@ -10171,12 +9647,10 @@ M.AwsRedshiftClusterDetails = {
         ExpectedNextSnapshotScheduleTimeStatus = {
             type = "string",
         },
-        HsmStatus = {
-            type = "structure",
-        },
+        HsmStatus = M.AwsRedshiftClusterHsmStatus,
         IamRoles = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsRedshiftClusterIamRole,
         },
         KmsKeyId = {
             type = "string",
@@ -10185,7 +9659,7 @@ M.AwsRedshiftClusterDetails = {
             type = "string",
         },
         ManualSnapshotRetentionPeriod = {
-            type = "number",
+            type = "integer",
         },
         MasterUsername = {
             type = "string",
@@ -10197,27 +9671,21 @@ M.AwsRedshiftClusterDetails = {
             type = "string",
         },
         NumberOfNodes = {
-            type = "number",
+            type = "integer",
         },
         PendingActions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        PendingModifiedValues = {
-            type = "structure",
-        },
+        PendingModifiedValues = M.AwsRedshiftClusterPendingModifiedValues,
         PreferredMaintenanceWindow = {
             type = "string",
         },
         PubliclyAccessible = {
             type = "boolean",
         },
-        ResizeInfo = {
-            type = "structure",
-        },
-        RestoreStatus = {
-            type = "structure",
-        },
+        ResizeInfo = M.AwsRedshiftClusterResizeInfo,
+        RestoreStatus = M.AwsRedshiftClusterRestoreStatus,
         SnapshotScheduleIdentifier = {
             type = "string",
         },
@@ -10229,11 +9697,9 @@ M.AwsRedshiftClusterDetails = {
         },
         VpcSecurityGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsRedshiftClusterVpcSecurityGroup,
         },
-        LoggingStatus = {
-            type = "structure",
-        },
+        LoggingStatus = M.AwsRedshiftClusterLoggingStatus,
     },
 }
 
@@ -10255,9 +9721,7 @@ M.AwsRoute53HostedZoneObjectDetails = {
         Name = {
             type = "string",
         },
-        Config = {
-            type = "structure",
-        },
+        Config = M.AwsRoute53HostedZoneConfigDetails,
     },
 }
 
@@ -10279,9 +9743,7 @@ M.CloudWatchLogsLogGroupArnConfigDetails = {
 M.AwsRoute53QueryLoggingConfigDetails = {
     type = "structure",
     members = {
-        CloudWatchLogsLogGroupArn = {
-            type = "structure",
-        },
+        CloudWatchLogsLogGroupArn = M.CloudWatchLogsLogGroupArnConfigDetails,
     },
 }
 
@@ -10300,20 +9762,16 @@ M.AwsRoute53HostedZoneVpcDetails = {
 M.AwsRoute53HostedZoneDetails = {
     type = "structure",
     members = {
-        HostedZone = {
-            type = "structure",
-        },
+        HostedZone = M.AwsRoute53HostedZoneObjectDetails,
         Vpcs = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsRoute53HostedZoneVpcDetails,
         },
         NameServers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        QueryLoggingConfig = {
-            type = "structure",
-        },
+        QueryLoggingConfig = M.AwsRoute53QueryLoggingConfigDetails,
     },
 }
 
@@ -10365,12 +9823,8 @@ M.AwsS3AccessPointDetails = {
         NetworkOrigin = {
             type = "string",
         },
-        PublicAccessBlockConfiguration = {
-            type = "structure",
-        },
-        VpcConfiguration = {
-            type = "structure",
-        },
+        PublicAccessBlockConfiguration = M.AwsS3AccountPublicAccessBlockDetails,
+        VpcConfiguration = M.AwsS3AccessPointVpcConfigurationDetails,
     },
 }
 
@@ -10378,7 +9832,7 @@ M.AwsS3BucketBucketLifecycleConfigurationRulesAbortIncompleteMultipartUploadDeta
     type = "structure",
     members = {
         DaysAfterInitiation = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -10401,9 +9855,7 @@ M.AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsDetails = {
         Prefix = {
             type = "string",
         },
-        Tag = {
-            type = "structure",
-        },
+        Tag = M.AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsTagDetails,
         Type = {
             type = "string",
         },
@@ -10427,14 +9879,12 @@ M.AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateDetails = {
     members = {
         Operands = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsDetails,
         },
         Prefix = {
             type = "string",
         },
-        Tag = {
-            type = "structure",
-        },
+        Tag = M.AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateTagDetails,
         Type = {
             type = "string",
         },
@@ -10444,9 +9894,7 @@ M.AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateDetails = {
 M.AwsS3BucketBucketLifecycleConfigurationRulesFilterDetails = {
     type = "structure",
     members = {
-        Predicate = {
-            type = "structure",
-        },
+        Predicate = M.AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateDetails,
     },
 }
 
@@ -10454,7 +9902,7 @@ M.AwsS3BucketBucketLifecycleConfigurationRulesNoncurrentVersionTransitionsDetail
     type = "structure",
     members = {
         Days = {
-            type = "number",
+            type = "integer",
         },
         StorageClass = {
             type = "string",
@@ -10469,7 +9917,7 @@ M.AwsS3BucketBucketLifecycleConfigurationRulesTransitionsDetails = {
             type = "string",
         },
         Days = {
-            type = "number",
+            type = "integer",
         },
         StorageClass = {
             type = "string",
@@ -10480,30 +9928,26 @@ M.AwsS3BucketBucketLifecycleConfigurationRulesTransitionsDetails = {
 M.AwsS3BucketBucketLifecycleConfigurationRulesDetails = {
     type = "structure",
     members = {
-        AbortIncompleteMultipartUpload = {
-            type = "structure",
-        },
+        AbortIncompleteMultipartUpload = M.AwsS3BucketBucketLifecycleConfigurationRulesAbortIncompleteMultipartUploadDetails,
         ExpirationDate = {
             type = "string",
         },
         ExpirationInDays = {
-            type = "number",
+            type = "integer",
         },
         ExpiredObjectDeleteMarker = {
             type = "boolean",
         },
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.AwsS3BucketBucketLifecycleConfigurationRulesFilterDetails,
         ID = {
             type = "string",
         },
         NoncurrentVersionExpirationInDays = {
-            type = "number",
+            type = "integer",
         },
         NoncurrentVersionTransitions = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsS3BucketBucketLifecycleConfigurationRulesNoncurrentVersionTransitionsDetails,
         },
         Prefix = {
             type = "string",
@@ -10513,7 +9957,7 @@ M.AwsS3BucketBucketLifecycleConfigurationRulesDetails = {
         },
         Transitions = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsS3BucketBucketLifecycleConfigurationRulesTransitionsDetails,
         },
     },
 }
@@ -10523,7 +9967,7 @@ M.AwsS3BucketBucketLifecycleConfigurationDetails = {
     members = {
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsS3BucketBucketLifecycleConfigurationRulesDetails,
         },
     },
 }
@@ -10574,7 +10018,7 @@ M.AwsS3BucketNotificationConfigurationS3KeyFilter = {
     members = {
         FilterRules = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsS3BucketNotificationConfigurationS3KeyFilterRule,
         },
     },
 }
@@ -10582,9 +10026,7 @@ M.AwsS3BucketNotificationConfigurationS3KeyFilter = {
 M.AwsS3BucketNotificationConfigurationFilter = {
     type = "structure",
     members = {
-        S3KeyFilter = {
-            type = "structure",
-        },
+        S3KeyFilter = M.AwsS3BucketNotificationConfigurationS3KeyFilter,
     },
 }
 
@@ -10593,11 +10035,9 @@ M.AwsS3BucketNotificationConfigurationDetail = {
     members = {
         Events = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.AwsS3BucketNotificationConfigurationFilter,
         Destination = {
             type = "string",
         },
@@ -10612,7 +10052,7 @@ M.AwsS3BucketNotificationConfiguration = {
     members = {
         Configurations = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsS3BucketNotificationConfigurationDetail,
         },
     },
 }
@@ -10665,12 +10105,8 @@ M.AwsS3BucketWebsiteConfigurationRoutingRuleRedirect = {
 M.AwsS3BucketWebsiteConfigurationRoutingRule = {
     type = "structure",
     members = {
-        Condition = {
-            type = "structure",
-        },
-        Redirect = {
-            type = "structure",
-        },
+        Condition = M.AwsS3BucketWebsiteConfigurationRoutingRuleCondition,
+        Redirect = M.AwsS3BucketWebsiteConfigurationRoutingRuleRedirect,
     },
 }
 
@@ -10683,12 +10119,10 @@ M.AwsS3BucketWebsiteConfiguration = {
         IndexDocumentSuffix = {
             type = "string",
         },
-        RedirectAllRequestsTo = {
-            type = "structure",
-        },
+        RedirectAllRequestsTo = M.AwsS3BucketWebsiteConfigurationRedirectTo,
         RoutingRules = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsS3BucketWebsiteConfigurationRoutingRule,
         },
     },
 }
@@ -10697,13 +10131,13 @@ M.AwsS3BucketObjectLockConfigurationRuleDefaultRetentionDetails = {
     type = "structure",
     members = {
         Days = {
-            type = "number",
+            type = "integer",
         },
         Mode = {
             type = "string",
         },
         Years = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -10711,9 +10145,7 @@ M.AwsS3BucketObjectLockConfigurationRuleDefaultRetentionDetails = {
 M.AwsS3BucketObjectLockConfigurationRuleDetails = {
     type = "structure",
     members = {
-        DefaultRetention = {
-            type = "structure",
-        },
+        DefaultRetention = M.AwsS3BucketObjectLockConfigurationRuleDefaultRetentionDetails,
     },
 }
 
@@ -10723,9 +10155,7 @@ M.AwsS3BucketObjectLockConfiguration = {
         ObjectLockEnabled = {
             type = "string",
         },
-        Rule = {
-            type = "structure",
-        },
+        Rule = M.AwsS3BucketObjectLockConfigurationRuleDetails,
     },
 }
 
@@ -10744,9 +10174,7 @@ M.AwsS3BucketServerSideEncryptionByDefault = {
 M.AwsS3BucketServerSideEncryptionRule = {
     type = "structure",
     members = {
-        ApplyServerSideEncryptionByDefault = {
-            type = "structure",
-        },
+        ApplyServerSideEncryptionByDefault = M.AwsS3BucketServerSideEncryptionByDefault,
     },
 }
 
@@ -10755,7 +10183,7 @@ M.AwsS3BucketServerSideEncryptionConfiguration = {
     members = {
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsS3BucketServerSideEncryptionRule,
         },
     },
 }
@@ -10775,33 +10203,17 @@ M.AwsS3BucketDetails = {
         CreatedAt = {
             type = "string",
         },
-        ServerSideEncryptionConfiguration = {
-            type = "structure",
-        },
-        BucketLifecycleConfiguration = {
-            type = "structure",
-        },
-        PublicAccessBlockConfiguration = {
-            type = "structure",
-        },
+        ServerSideEncryptionConfiguration = M.AwsS3BucketServerSideEncryptionConfiguration,
+        BucketLifecycleConfiguration = M.AwsS3BucketBucketLifecycleConfigurationDetails,
+        PublicAccessBlockConfiguration = M.AwsS3AccountPublicAccessBlockDetails,
         AccessControlList = {
             type = "string",
         },
-        BucketLoggingConfiguration = {
-            type = "structure",
-        },
-        BucketWebsiteConfiguration = {
-            type = "structure",
-        },
-        BucketNotificationConfiguration = {
-            type = "structure",
-        },
-        BucketVersioningConfiguration = {
-            type = "structure",
-        },
-        ObjectLockConfiguration = {
-            type = "structure",
-        },
+        BucketLoggingConfiguration = M.AwsS3BucketLoggingConfiguration,
+        BucketWebsiteConfiguration = M.AwsS3BucketWebsiteConfiguration,
+        BucketNotificationConfiguration = M.AwsS3BucketNotificationConfiguration,
+        BucketVersioningConfiguration = M.AwsS3BucketBucketVersioningConfiguration,
+        ObjectLockConfiguration = M.AwsS3BucketObjectLockConfiguration,
         Name = {
             type = "string",
         },
@@ -10846,11 +10258,11 @@ M.AwsSageMakerNotebookInstanceDetails = {
     members = {
         AcceleratorTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AdditionalCodeRepositories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DefaultCodeRepository = {
             type = "string",
@@ -10861,9 +10273,7 @@ M.AwsSageMakerNotebookInstanceDetails = {
         FailureReason = {
             type = "string",
         },
-        InstanceMetadataServiceConfiguration = {
-            type = "structure",
-        },
+        InstanceMetadataServiceConfiguration = M.AwsSageMakerNotebookInstanceMetadataServiceConfigurationDetails,
         InstanceType = {
             type = "string",
         },
@@ -10896,7 +10306,7 @@ M.AwsSageMakerNotebookInstanceDetails = {
         },
         SecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SubnetId = {
             type = "string",
@@ -10905,7 +10315,7 @@ M.AwsSageMakerNotebookInstanceDetails = {
             type = "string",
         },
         VolumeSizeInGB = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -10914,7 +10324,7 @@ M.AwsSecretsManagerSecretRotationRules = {
     type = "structure",
     members = {
         AutomaticallyAfterDays = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -10922,9 +10332,7 @@ M.AwsSecretsManagerSecretRotationRules = {
 M.AwsSecretsManagerSecretDetails = {
     type = "structure",
     members = {
-        RotationRules = {
-            type = "structure",
-        },
+        RotationRules = M.AwsSecretsManagerSecretRotationRules,
         RotationOccurredWithinFrequency = {
             type = "boolean",
         },
@@ -10957,7 +10365,7 @@ M.SecurityControlParameter = {
         },
         Value = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -10992,22 +10400,22 @@ M.Compliance = {
         },
         RelatedRequirements = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         StatusReasons = {
             type = "list",
-            member_type = "structure",
+            member = M.StatusReason,
         },
         SecurityControlId = {
             type = "string",
         },
         AssociatedStandards = {
             type = "list",
-            member_type = "structure",
+            member = M.AssociatedStandard,
         },
         SecurityControlParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.SecurityControlParameter,
         },
     },
 }
@@ -11019,7 +10427,7 @@ M.NetworkAutonomousSystem = {
             type = "string",
         },
         Number = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -11048,10 +10456,10 @@ M.NetworkGeoLocation = {
             type = "string",
         },
         Lat = {
-            type = "number",
+            type = "double",
         },
         Lon = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -11069,17 +10477,11 @@ M.NetworkEndpoint = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
-        Location = {
-            type = "structure",
-        },
-        AutonomousSystem = {
-            type = "structure",
-        },
-        Connection = {
-            type = "structure",
-        },
+        Location = M.NetworkGeoLocation,
+        AutonomousSystem = M.NetworkAutonomousSystem,
+        Connection = M.NetworkConnection,
     },
 }
 
@@ -11091,7 +10493,7 @@ M.Indicator = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Title = {
             type = "string",
@@ -11119,40 +10521,40 @@ M.Signal = {
         },
         ResourceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SignalIndicators = {
             type = "list",
-            member_type = "structure",
+            member = M.Indicator,
         },
         Name = {
             type = "string",
         },
         CreatedAt = {
-            type = "number",
+            type = "long",
         },
         UpdatedAt = {
-            type = "number",
+            type = "long",
         },
         FirstSeenAt = {
-            type = "number",
+            type = "long",
         },
         LastSeenAt = {
-            type = "number",
+            type = "long",
         },
         Severity = {
-            type = "number",
+            type = "double",
         },
         Count = {
-            type = "number",
+            type = "integer",
         },
         ActorIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         EndpointIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -11165,19 +10567,19 @@ M.Sequence = {
         },
         Actors = {
             type = "list",
-            member_type = "structure",
+            member = M.Actor,
         },
         Endpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkEndpoint,
         },
         Signals = {
             type = "list",
-            member_type = "structure",
+            member = M.Signal,
         },
         SequenceIndicators = {
             type = "list",
-            member_type = "structure",
+            member = M.Indicator,
         },
     },
 }
@@ -11185,9 +10587,7 @@ M.Sequence = {
 M.Detection = {
     type = "structure",
     members = {
-        Sequence = {
-            type = "structure",
-        },
+        Sequence = M.Sequence,
     },
 }
 
@@ -11207,21 +10607,19 @@ M.FindingProviderFields = {
     type = "structure",
     members = {
         Confidence = {
-            type = "number",
+            type = "integer",
         },
         Criticality = {
-            type = "number",
+            type = "integer",
         },
         RelatedFindings = {
             type = "list",
-            member_type = "structure",
+            member = M.RelatedFinding,
         },
-        Severity = {
-            type = "structure",
-        },
+        Severity = M.FindingProviderSeverity,
         Types = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -11237,7 +10635,7 @@ M.GeneratorDetails = {
         },
         Labels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -11296,10 +10694,10 @@ M.PortRange = {
     type = "structure",
     members = {
         Begin = {
-            type = "number",
+            type = "integer",
         },
         End = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -11313,9 +10711,7 @@ M.Network = {
         Protocol = {
             type = "string",
         },
-        OpenPortRange = {
-            type = "structure",
-        },
+        OpenPortRange = M.PortRange,
         SourceIpV4 = {
             type = "string",
         },
@@ -11323,7 +10719,7 @@ M.Network = {
             type = "string",
         },
         SourcePort = {
-            type = "number",
+            type = "integer",
         },
         SourceDomain = {
             type = "string",
@@ -11338,7 +10734,7 @@ M.Network = {
             type = "string",
         },
         DestinationPort = {
-            type = "number",
+            type = "integer",
         },
         DestinationDomain = {
             type = "string",
@@ -11351,11 +10747,11 @@ M.NetworkPathComponentDetails = {
     members = {
         Address = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         PortRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.PortRange,
         },
     },
 }
@@ -11366,12 +10762,8 @@ M.NetworkHeader = {
         Protocol = {
             type = "string",
         },
-        Destination = {
-            type = "structure",
-        },
-        Source = {
-            type = "structure",
-        },
+        Destination = M.NetworkPathComponentDetails,
+        Source = M.NetworkPathComponentDetails,
     },
 }
 
@@ -11384,12 +10776,8 @@ M.NetworkPathComponent = {
         ComponentType = {
             type = "string",
         },
-        Egress = {
-            type = "structure",
-        },
-        Ingress = {
-            type = "structure",
-        },
+        Egress = M.NetworkHeader,
+        Ingress = M.NetworkHeader,
     },
 }
 
@@ -11427,22 +10815,22 @@ M.PatchSummary = {
             },
         },
         InstalledCount = {
-            type = "number",
+            type = "integer",
         },
         MissingCount = {
-            type = "number",
+            type = "integer",
         },
         FailedCount = {
-            type = "number",
+            type = "integer",
         },
         InstalledOtherCount = {
-            type = "number",
+            type = "integer",
         },
         InstalledRejectedCount = {
-            type = "number",
+            type = "integer",
         },
         InstalledPendingReboot = {
-            type = "number",
+            type = "integer",
         },
         OperationStartTime = {
             type = "string",
@@ -11469,10 +10857,10 @@ M.ProcessDetails = {
             type = "string",
         },
         Pid = {
-            type = "number",
+            type = "integer",
         },
         ParentPid = {
-            type = "number",
+            type = "integer",
         },
         LaunchedAt = {
             type = "string",
@@ -11503,9 +10891,7 @@ M.Recommendation = {
 M.Remediation = {
     type = "structure",
     members = {
-        Recommendation = {
-            type = "structure",
-        },
+        Recommendation = M.Recommendation,
     },
 }
 
@@ -11513,10 +10899,10 @@ M.Cell = {
     type = "structure",
     members = {
         Column = {
-            type = "number",
+            type = "long",
         },
         Row = {
-            type = "number",
+            type = "long",
         },
         ColumnName = {
             type = "string",
@@ -11531,13 +10917,13 @@ M.Range = {
     type = "structure",
     members = {
         Start = {
-            type = "number",
+            type = "long",
         },
         End = {
-            type = "number",
+            type = "long",
         },
         StartColumn = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -11546,14 +10932,10 @@ M.Page = {
     type = "structure",
     members = {
         PageNumber = {
-            type = "number",
+            type = "long",
         },
-        LineRange = {
-            type = "structure",
-        },
-        OffsetRange = {
-            type = "structure",
-        },
+        LineRange = M.Range,
+        OffsetRange = M.Range,
     },
 }
 
@@ -11564,7 +10946,7 @@ M.Record = {
             type = "string",
         },
         RecordIndex = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -11574,23 +10956,23 @@ M.Occurrences = {
     members = {
         LineRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.Range,
         },
         OffsetRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.Range,
         },
         Pages = {
             type = "list",
-            member_type = "structure",
+            member = M.Page,
         },
         Records = {
             type = "list",
-            member_type = "structure",
+            member = M.Record,
         },
         Cells = {
             type = "list",
-            member_type = "structure",
+            member = M.Cell,
         },
     },
 }
@@ -11599,7 +10981,7 @@ M.CustomDataIdentifiersDetections = {
     type = "structure",
     members = {
         Count = {
-            type = "number",
+            type = "long",
         },
         Arn = {
             type = "string",
@@ -11607,9 +10989,7 @@ M.CustomDataIdentifiersDetections = {
         Name = {
             type = "string",
         },
-        Occurrences = {
-            type = "structure",
-        },
+        Occurrences = M.Occurrences,
     },
 }
 
@@ -11618,10 +10998,10 @@ M.CustomDataIdentifiersResult = {
     members = {
         Detections = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomDataIdentifiersDetections,
         },
         TotalCount = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -11630,14 +11010,12 @@ M.SensitiveDataDetections = {
     type = "structure",
     members = {
         Count = {
-            type = "number",
+            type = "long",
         },
         Type = {
             type = "string",
         },
-        Occurrences = {
-            type = "structure",
-        },
+        Occurrences = M.Occurrences,
     },
 }
 
@@ -11649,10 +11027,10 @@ M.SensitiveDataResult = {
         },
         Detections = {
             type = "list",
-            member_type = "structure",
+            member = M.SensitiveDataDetections,
         },
         TotalCount = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -11676,21 +11054,17 @@ M.ClassificationResult = {
             type = "string",
         },
         SizeClassified = {
-            type = "number",
+            type = "long",
         },
         AdditionalOccurrences = {
             type = "boolean",
         },
-        Status = {
-            type = "structure",
-        },
+        Status = M.ClassificationStatus,
         SensitiveData = {
             type = "list",
-            member_type = "structure",
+            member = M.SensitiveDataResult,
         },
-        CustomDataIdentifiers = {
-            type = "structure",
-        },
+        CustomDataIdentifiers = M.CustomDataIdentifiersResult,
     },
 }
 
@@ -11700,9 +11074,7 @@ M.DataClassificationDetails = {
         DetailedResultsLocation = {
             type = "string",
         },
-        Result = {
-            type = "structure",
-        },
+        Result = M.ClassificationResult,
     },
 }
 
@@ -11726,7 +11098,7 @@ M.AwsSnsTopicDetails = {
         },
         Subscription = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsSnsTopicSubscription,
         },
         TopicName = {
             type = "string",
@@ -11762,7 +11134,7 @@ M.AwsSqsQueueDetails = {
     type = "structure",
     members = {
         KmsDataKeyReusePeriodSeconds = {
-            type = "number",
+            type = "integer",
         },
         KmsMasterKeyId = {
             type = "string",
@@ -11783,37 +11155,37 @@ M.AwsSsmComplianceSummary = {
             type = "string",
         },
         CompliantCriticalCount = {
-            type = "number",
+            type = "integer",
         },
         CompliantHighCount = {
-            type = "number",
+            type = "integer",
         },
         CompliantMediumCount = {
-            type = "number",
+            type = "integer",
         },
         ExecutionType = {
             type = "string",
         },
         NonCompliantCriticalCount = {
-            type = "number",
+            type = "integer",
         },
         CompliantInformationalCount = {
-            type = "number",
+            type = "integer",
         },
         NonCompliantInformationalCount = {
-            type = "number",
+            type = "integer",
         },
         CompliantUnspecifiedCount = {
-            type = "number",
+            type = "integer",
         },
         NonCompliantLowCount = {
-            type = "number",
+            type = "integer",
         },
         NonCompliantHighCount = {
-            type = "number",
+            type = "integer",
         },
         CompliantLowCount = {
-            type = "number",
+            type = "integer",
         },
         ComplianceType = {
             type = "string",
@@ -11825,10 +11197,10 @@ M.AwsSsmComplianceSummary = {
             type = "string",
         },
         NonCompliantMediumCount = {
-            type = "number",
+            type = "integer",
         },
         NonCompliantUnspecifiedCount = {
-            type = "number",
+            type = "integer",
         },
         PatchGroup = {
             type = "string",
@@ -11839,18 +11211,14 @@ M.AwsSsmComplianceSummary = {
 M.AwsSsmPatch = {
     type = "structure",
     members = {
-        ComplianceSummary = {
-            type = "structure",
-        },
+        ComplianceSummary = M.AwsSsmComplianceSummary,
     },
 }
 
 M.AwsSsmPatchComplianceDetails = {
     type = "structure",
     members = {
-        Patch = {
-            type = "structure",
-        },
+        Patch = M.AwsSsmPatch,
     },
 }
 
@@ -11866,9 +11234,7 @@ M.AwsStepFunctionStateMachineLoggingConfigurationDestinationsCloudWatchLogsLogGr
 M.AwsStepFunctionStateMachineLoggingConfigurationDestinationsDetails = {
     type = "structure",
     members = {
-        CloudWatchLogsLogGroup = {
-            type = "structure",
-        },
+        CloudWatchLogsLogGroup = M.AwsStepFunctionStateMachineLoggingConfigurationDestinationsCloudWatchLogsLogGroupDetails,
     },
 }
 
@@ -11877,7 +11243,7 @@ M.AwsStepFunctionStateMachineLoggingConfigurationDetails = {
     members = {
         Destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsStepFunctionStateMachineLoggingConfigurationDestinationsDetails,
         },
         IncludeExecutionData = {
             type = "boolean",
@@ -11903,9 +11269,7 @@ M.AwsStepFunctionStateMachineDetails = {
         Label = {
             type = "string",
         },
-        LoggingConfiguration = {
-            type = "structure",
-        },
+        LoggingConfiguration = M.AwsStepFunctionStateMachineLoggingConfigurationDetails,
         Name = {
             type = "string",
         },
@@ -11918,9 +11282,7 @@ M.AwsStepFunctionStateMachineDetails = {
         Status = {
             type = "string",
         },
-        TracingConfiguration = {
-            type = "structure",
-        },
+        TracingConfiguration = M.AwsStepFunctionStateMachineTracingConfigurationDetails,
         Type = {
             type = "string",
         },
@@ -11955,14 +11317,14 @@ M.AwsWafRateBasedRuleDetails = {
             type = "string",
         },
         RateLimit = {
-            type = "number",
+            type = "long",
         },
         RuleId = {
             type = "string",
         },
         MatchPredicates = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsWafRateBasedRuleMatchPredicate,
         },
     },
 }
@@ -11995,14 +11357,14 @@ M.AwsWafRegionalRateBasedRuleDetails = {
             type = "string",
         },
         RateLimit = {
-            type = "number",
+            type = "long",
         },
         RuleId = {
             type = "string",
         },
         MatchPredicates = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsWafRegionalRateBasedRuleMatchPredicate,
         },
     },
 }
@@ -12033,7 +11395,7 @@ M.AwsWafRegionalRuleDetails = {
         },
         PredicateList = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsWafRegionalRulePredicateListDetails,
         },
         RuleId = {
             type = "string",
@@ -12053,11 +11415,9 @@ M.AwsWafRegionalRuleGroupRulesActionDetails = {
 M.AwsWafRegionalRuleGroupRulesDetails = {
     type = "structure",
     members = {
-        Action = {
-            type = "structure",
-        },
+        Action = M.AwsWafRegionalRuleGroupRulesActionDetails,
         Priority = {
-            type = "number",
+            type = "integer",
         },
         RuleId = {
             type = "string",
@@ -12082,7 +11442,7 @@ M.AwsWafRegionalRuleGroupDetails = {
         },
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsWafRegionalRuleGroupRulesDetails,
         },
     },
 }
@@ -12108,14 +11468,10 @@ M.AwsWafRegionalWebAclRulesListOverrideActionDetails = {
 M.AwsWafRegionalWebAclRulesListDetails = {
     type = "structure",
     members = {
-        Action = {
-            type = "structure",
-        },
-        OverrideAction = {
-            type = "structure",
-        },
+        Action = M.AwsWafRegionalWebAclRulesListActionDetails,
+        OverrideAction = M.AwsWafRegionalWebAclRulesListOverrideActionDetails,
         Priority = {
-            type = "number",
+            type = "integer",
         },
         RuleId = {
             type = "string",
@@ -12140,7 +11496,7 @@ M.AwsWafRegionalWebAclDetails = {
         },
         RulesList = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsWafRegionalWebAclRulesListDetails,
         },
         WebAclId = {
             type = "string",
@@ -12174,7 +11530,7 @@ M.AwsWafRuleDetails = {
         },
         PredicateList = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsWafRulePredicateListDetails,
         },
         RuleId = {
             type = "string",
@@ -12194,11 +11550,9 @@ M.AwsWafRuleGroupRulesActionDetails = {
 M.AwsWafRuleGroupRulesDetails = {
     type = "structure",
     members = {
-        Action = {
-            type = "structure",
-        },
+        Action = M.AwsWafRuleGroupRulesActionDetails,
         Priority = {
-            type = "number",
+            type = "integer",
         },
         RuleId = {
             type = "string",
@@ -12223,7 +11577,7 @@ M.AwsWafRuleGroupDetails = {
         },
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsWafRuleGroupRulesDetails,
         },
     },
 }
@@ -12245,7 +11599,7 @@ M.AwsWafv2CustomRequestHandlingDetails = {
     members = {
         InsertHeaders = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsWafv2CustomHttpHeader,
         },
     },
 }
@@ -12253,9 +11607,7 @@ M.AwsWafv2CustomRequestHandlingDetails = {
 M.AwsWafv2ActionAllowDetails = {
     type = "structure",
     members = {
-        CustomRequestHandling = {
-            type = "structure",
-        },
+        CustomRequestHandling = M.AwsWafv2CustomRequestHandlingDetails,
     },
 }
 
@@ -12266,11 +11618,11 @@ M.AwsWafv2CustomResponseDetails = {
             type = "string",
         },
         ResponseCode = {
-            type = "number",
+            type = "integer",
         },
         ResponseHeaders = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsWafv2CustomHttpHeader,
         },
     },
 }
@@ -12278,45 +11630,31 @@ M.AwsWafv2CustomResponseDetails = {
 M.AwsWafv2ActionBlockDetails = {
     type = "structure",
     members = {
-        CustomResponse = {
-            type = "structure",
-        },
+        CustomResponse = M.AwsWafv2CustomResponseDetails,
     },
 }
 
 M.AwsWafv2RulesActionCaptchaDetails = {
     type = "structure",
     members = {
-        CustomRequestHandling = {
-            type = "structure",
-        },
+        CustomRequestHandling = M.AwsWafv2CustomRequestHandlingDetails,
     },
 }
 
 M.AwsWafv2RulesActionCountDetails = {
     type = "structure",
     members = {
-        CustomRequestHandling = {
-            type = "structure",
-        },
+        CustomRequestHandling = M.AwsWafv2CustomRequestHandlingDetails,
     },
 }
 
 M.AwsWafv2RulesActionDetails = {
     type = "structure",
     members = {
-        Allow = {
-            type = "structure",
-        },
-        Block = {
-            type = "structure",
-        },
-        Captcha = {
-            type = "structure",
-        },
-        Count = {
-            type = "structure",
-        },
+        Allow = M.AwsWafv2ActionAllowDetails,
+        Block = M.AwsWafv2ActionBlockDetails,
+        Captcha = M.AwsWafv2RulesActionCaptchaDetails,
+        Count = M.AwsWafv2RulesActionCountDetails,
     },
 }
 
@@ -12338,9 +11676,7 @@ M.AwsWafv2VisibilityConfigDetails = {
 M.AwsWafv2RulesDetails = {
     type = "structure",
     members = {
-        Action = {
-            type = "structure",
-        },
+        Action = M.AwsWafv2RulesActionDetails,
         Name = {
             type = "string",
         },
@@ -12348,11 +11684,9 @@ M.AwsWafv2RulesDetails = {
             type = "string",
         },
         Priority = {
-            type = "number",
+            type = "integer",
         },
-        VisibilityConfig = {
-            type = "structure",
-        },
+        VisibilityConfig = M.AwsWafv2VisibilityConfigDetails,
     },
 }
 
@@ -12360,7 +11694,7 @@ M.AwsWafv2RuleGroupDetails = {
     type = "structure",
     members = {
         Capacity = {
-            type = "number",
+            type = "long",
         },
         Description = {
             type = "string",
@@ -12376,14 +11710,12 @@ M.AwsWafv2RuleGroupDetails = {
         },
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsWafv2RulesDetails,
         },
         Scope = {
             type = "string",
         },
-        VisibilityConfig = {
-            type = "structure",
-        },
+        VisibilityConfig = M.AwsWafv2VisibilityConfigDetails,
     },
 }
 
@@ -12391,7 +11723,7 @@ M.AwsWafv2WebAclCaptchaConfigImmunityTimePropertyDetails = {
     type = "structure",
     members = {
         ImmunityTime = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -12399,21 +11731,15 @@ M.AwsWafv2WebAclCaptchaConfigImmunityTimePropertyDetails = {
 M.AwsWafv2WebAclCaptchaConfigDetails = {
     type = "structure",
     members = {
-        ImmunityTimeProperty = {
-            type = "structure",
-        },
+        ImmunityTimeProperty = M.AwsWafv2WebAclCaptchaConfigImmunityTimePropertyDetails,
     },
 }
 
 M.AwsWafv2WebAclActionDetails = {
     type = "structure",
     members = {
-        Allow = {
-            type = "structure",
-        },
-        Block = {
-            type = "structure",
-        },
+        Allow = M.AwsWafv2ActionAllowDetails,
+        Block = M.AwsWafv2ActionBlockDetails,
     },
 }
 
@@ -12433,24 +11759,18 @@ M.AwsWafv2WebAclDetails = {
             type = "string",
         },
         Capacity = {
-            type = "number",
+            type = "long",
         },
-        CaptchaConfig = {
-            type = "structure",
-        },
-        DefaultAction = {
-            type = "structure",
-        },
+        CaptchaConfig = M.AwsWafv2WebAclCaptchaConfigDetails,
+        DefaultAction = M.AwsWafv2WebAclActionDetails,
         Description = {
             type = "string",
         },
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsWafv2RulesDetails,
         },
-        VisibilityConfig = {
-            type = "structure",
-        },
+        VisibilityConfig = M.AwsWafv2VisibilityConfigDetails,
     },
 }
 
@@ -12484,18 +11804,14 @@ M.WafOverrideAction = {
 M.AwsWafWebAclRule = {
     type = "structure",
     members = {
-        Action = {
-            type = "structure",
-        },
+        Action = M.WafAction,
         ExcludedRules = {
             type = "list",
-            member_type = "structure",
+            member = M.WafExcludedRule,
         },
-        OverrideAction = {
-            type = "structure",
-        },
+        OverrideAction = M.WafOverrideAction,
         Priority = {
-            type = "number",
+            type = "integer",
         },
         RuleId = {
             type = "string",
@@ -12517,7 +11833,7 @@ M.AwsWafWebAclDetails = {
         },
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsWafWebAclRule,
         },
         WebAclId = {
             type = "string",
@@ -12587,7 +11903,7 @@ M.ContainerDetails = {
         },
         VolumeMounts = {
             type = "list",
-            member_type = "structure",
+            member = M.VolumeMount,
         },
         Privileged = {
             type = "boolean",
@@ -12598,308 +11914,110 @@ M.ContainerDetails = {
 M.ResourceDetails = {
     type = "structure",
     members = {
-        AwsAutoScalingAutoScalingGroup = {
-            type = "structure",
-        },
-        AwsCodeBuildProject = {
-            type = "structure",
-        },
-        AwsCloudFrontDistribution = {
-            type = "structure",
-        },
-        AwsEc2Instance = {
-            type = "structure",
-        },
-        AwsEc2NetworkInterface = {
-            type = "structure",
-        },
-        AwsEc2SecurityGroup = {
-            type = "structure",
-        },
-        AwsEc2Volume = {
-            type = "structure",
-        },
-        AwsEc2Vpc = {
-            type = "structure",
-        },
-        AwsEc2Eip = {
-            type = "structure",
-        },
-        AwsEc2Subnet = {
-            type = "structure",
-        },
-        AwsEc2NetworkAcl = {
-            type = "structure",
-        },
-        AwsElbv2LoadBalancer = {
-            type = "structure",
-        },
-        AwsElasticBeanstalkEnvironment = {
-            type = "structure",
-        },
-        AwsElasticsearchDomain = {
-            type = "structure",
-        },
-        AwsS3Bucket = {
-            type = "structure",
-        },
-        AwsS3AccountPublicAccessBlock = {
-            type = "structure",
-        },
-        AwsS3Object = {
-            type = "structure",
-        },
-        AwsSecretsManagerSecret = {
-            type = "structure",
-        },
-        AwsIamAccessKey = {
-            type = "structure",
-        },
-        AwsIamUser = {
-            type = "structure",
-        },
-        AwsIamPolicy = {
-            type = "structure",
-        },
-        AwsApiGatewayV2Stage = {
-            type = "structure",
-        },
-        AwsApiGatewayV2Api = {
-            type = "structure",
-        },
-        AwsDynamoDbTable = {
-            type = "structure",
-        },
-        AwsApiGatewayStage = {
-            type = "structure",
-        },
-        AwsApiGatewayRestApi = {
-            type = "structure",
-        },
-        AwsCloudTrailTrail = {
-            type = "structure",
-        },
-        AwsSsmPatchCompliance = {
-            type = "structure",
-        },
-        AwsCertificateManagerCertificate = {
-            type = "structure",
-        },
-        AwsRedshiftCluster = {
-            type = "structure",
-        },
-        AwsElbLoadBalancer = {
-            type = "structure",
-        },
-        AwsIamGroup = {
-            type = "structure",
-        },
-        AwsIamRole = {
-            type = "structure",
-        },
-        AwsKmsKey = {
-            type = "structure",
-        },
-        AwsLambdaFunction = {
-            type = "structure",
-        },
-        AwsLambdaLayerVersion = {
-            type = "structure",
-        },
-        AwsRdsDbInstance = {
-            type = "structure",
-        },
-        AwsSnsTopic = {
-            type = "structure",
-        },
-        AwsSqsQueue = {
-            type = "structure",
-        },
-        AwsWafWebAcl = {
-            type = "structure",
-        },
-        AwsRdsDbSnapshot = {
-            type = "structure",
-        },
-        AwsRdsDbClusterSnapshot = {
-            type = "structure",
-        },
-        AwsRdsDbCluster = {
-            type = "structure",
-        },
-        AwsEcsCluster = {
-            type = "structure",
-        },
-        AwsEcsContainer = {
-            type = "structure",
-        },
-        AwsEcsTaskDefinition = {
-            type = "structure",
-        },
-        Container = {
-            type = "structure",
-        },
+        AwsAutoScalingAutoScalingGroup = M.AwsAutoScalingAutoScalingGroupDetails,
+        AwsCodeBuildProject = M.AwsCodeBuildProjectDetails,
+        AwsCloudFrontDistribution = M.AwsCloudFrontDistributionDetails,
+        AwsEc2Instance = M.AwsEc2InstanceDetails,
+        AwsEc2NetworkInterface = M.AwsEc2NetworkInterfaceDetails,
+        AwsEc2SecurityGroup = M.AwsEc2SecurityGroupDetails,
+        AwsEc2Volume = M.AwsEc2VolumeDetails,
+        AwsEc2Vpc = M.AwsEc2VpcDetails,
+        AwsEc2Eip = M.AwsEc2EipDetails,
+        AwsEc2Subnet = M.AwsEc2SubnetDetails,
+        AwsEc2NetworkAcl = M.AwsEc2NetworkAclDetails,
+        AwsElbv2LoadBalancer = M.AwsElbv2LoadBalancerDetails,
+        AwsElasticBeanstalkEnvironment = M.AwsElasticBeanstalkEnvironmentDetails,
+        AwsElasticsearchDomain = M.AwsElasticsearchDomainDetails,
+        AwsS3Bucket = M.AwsS3BucketDetails,
+        AwsS3AccountPublicAccessBlock = M.AwsS3AccountPublicAccessBlockDetails,
+        AwsS3Object = M.AwsS3ObjectDetails,
+        AwsSecretsManagerSecret = M.AwsSecretsManagerSecretDetails,
+        AwsIamAccessKey = M.AwsIamAccessKeyDetails,
+        AwsIamUser = M.AwsIamUserDetails,
+        AwsIamPolicy = M.AwsIamPolicyDetails,
+        AwsApiGatewayV2Stage = M.AwsApiGatewayV2StageDetails,
+        AwsApiGatewayV2Api = M.AwsApiGatewayV2ApiDetails,
+        AwsDynamoDbTable = M.AwsDynamoDbTableDetails,
+        AwsApiGatewayStage = M.AwsApiGatewayStageDetails,
+        AwsApiGatewayRestApi = M.AwsApiGatewayRestApiDetails,
+        AwsCloudTrailTrail = M.AwsCloudTrailTrailDetails,
+        AwsSsmPatchCompliance = M.AwsSsmPatchComplianceDetails,
+        AwsCertificateManagerCertificate = M.AwsCertificateManagerCertificateDetails,
+        AwsRedshiftCluster = M.AwsRedshiftClusterDetails,
+        AwsElbLoadBalancer = M.AwsElbLoadBalancerDetails,
+        AwsIamGroup = M.AwsIamGroupDetails,
+        AwsIamRole = M.AwsIamRoleDetails,
+        AwsKmsKey = M.AwsKmsKeyDetails,
+        AwsLambdaFunction = M.AwsLambdaFunctionDetails,
+        AwsLambdaLayerVersion = M.AwsLambdaLayerVersionDetails,
+        AwsRdsDbInstance = M.AwsRdsDbInstanceDetails,
+        AwsSnsTopic = M.AwsSnsTopicDetails,
+        AwsSqsQueue = M.AwsSqsQueueDetails,
+        AwsWafWebAcl = M.AwsWafWebAclDetails,
+        AwsRdsDbSnapshot = M.AwsRdsDbSnapshotDetails,
+        AwsRdsDbClusterSnapshot = M.AwsRdsDbClusterSnapshotDetails,
+        AwsRdsDbCluster = M.AwsRdsDbClusterDetails,
+        AwsEcsCluster = M.AwsEcsClusterDetails,
+        AwsEcsContainer = M.AwsEcsContainerDetails,
+        AwsEcsTaskDefinition = M.AwsEcsTaskDefinitionDetails,
+        Container = M.ContainerDetails,
         Other = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        AwsRdsEventSubscription = {
-            type = "structure",
-        },
-        AwsEcsService = {
-            type = "structure",
-        },
-        AwsAutoScalingLaunchConfiguration = {
-            type = "structure",
-        },
-        AwsEc2VpnConnection = {
-            type = "structure",
-        },
-        AwsEcrContainerImage = {
-            type = "structure",
-        },
-        AwsOpenSearchServiceDomain = {
-            type = "structure",
-        },
-        AwsEc2VpcEndpointService = {
-            type = "structure",
-        },
-        AwsXrayEncryptionConfig = {
-            type = "structure",
-        },
-        AwsWafRateBasedRule = {
-            type = "structure",
-        },
-        AwsWafRegionalRateBasedRule = {
-            type = "structure",
-        },
-        AwsEcrRepository = {
-            type = "structure",
-        },
-        AwsEksCluster = {
-            type = "structure",
-        },
-        AwsNetworkFirewallFirewallPolicy = {
-            type = "structure",
-        },
-        AwsNetworkFirewallFirewall = {
-            type = "structure",
-        },
-        AwsNetworkFirewallRuleGroup = {
-            type = "structure",
-        },
-        AwsRdsDbSecurityGroup = {
-            type = "structure",
-        },
-        AwsKinesisStream = {
-            type = "structure",
-        },
-        AwsEc2TransitGateway = {
-            type = "structure",
-        },
-        AwsEfsAccessPoint = {
-            type = "structure",
-        },
-        AwsCloudFormationStack = {
-            type = "structure",
-        },
-        AwsCloudWatchAlarm = {
-            type = "structure",
-        },
-        AwsEc2VpcPeeringConnection = {
-            type = "structure",
-        },
-        AwsWafRegionalRuleGroup = {
-            type = "structure",
-        },
-        AwsWafRegionalRule = {
-            type = "structure",
-        },
-        AwsWafRegionalWebAcl = {
-            type = "structure",
-        },
-        AwsWafRule = {
-            type = "structure",
-        },
-        AwsWafRuleGroup = {
-            type = "structure",
-        },
-        AwsEcsTask = {
-            type = "structure",
-        },
-        AwsBackupBackupVault = {
-            type = "structure",
-        },
-        AwsBackupBackupPlan = {
-            type = "structure",
-        },
-        AwsBackupRecoveryPoint = {
-            type = "structure",
-        },
-        AwsEc2LaunchTemplate = {
-            type = "structure",
-        },
-        AwsSageMakerNotebookInstance = {
-            type = "structure",
-        },
-        AwsWafv2WebAcl = {
-            type = "structure",
-        },
-        AwsWafv2RuleGroup = {
-            type = "structure",
-        },
-        AwsEc2RouteTable = {
-            type = "structure",
-        },
-        AwsAmazonMqBroker = {
-            type = "structure",
-        },
-        AwsAppSyncGraphQlApi = {
-            type = "structure",
-        },
-        AwsEventSchemasRegistry = {
-            type = "structure",
-        },
-        AwsGuardDutyDetector = {
-            type = "structure",
-        },
-        AwsStepFunctionStateMachine = {
-            type = "structure",
-        },
-        AwsAthenaWorkGroup = {
-            type = "structure",
-        },
-        AwsEventsEventbus = {
-            type = "structure",
-        },
-        AwsDmsEndpoint = {
-            type = "structure",
-        },
-        AwsEventsEndpoint = {
-            type = "structure",
-        },
-        AwsDmsReplicationTask = {
-            type = "structure",
-        },
-        AwsDmsReplicationInstance = {
-            type = "structure",
-        },
-        AwsRoute53HostedZone = {
-            type = "structure",
-        },
-        AwsMskCluster = {
-            type = "structure",
-        },
-        AwsS3AccessPoint = {
-            type = "structure",
-        },
-        AwsEc2ClientVpnEndpoint = {
-            type = "structure",
-        },
-        CodeRepository = {
-            type = "structure",
-        },
+        AwsRdsEventSubscription = M.AwsRdsEventSubscriptionDetails,
+        AwsEcsService = M.AwsEcsServiceDetails,
+        AwsAutoScalingLaunchConfiguration = M.AwsAutoScalingLaunchConfigurationDetails,
+        AwsEc2VpnConnection = M.AwsEc2VpnConnectionDetails,
+        AwsEcrContainerImage = M.AwsEcrContainerImageDetails,
+        AwsOpenSearchServiceDomain = M.AwsOpenSearchServiceDomainDetails,
+        AwsEc2VpcEndpointService = M.AwsEc2VpcEndpointServiceDetails,
+        AwsXrayEncryptionConfig = M.AwsXrayEncryptionConfigDetails,
+        AwsWafRateBasedRule = M.AwsWafRateBasedRuleDetails,
+        AwsWafRegionalRateBasedRule = M.AwsWafRegionalRateBasedRuleDetails,
+        AwsEcrRepository = M.AwsEcrRepositoryDetails,
+        AwsEksCluster = M.AwsEksClusterDetails,
+        AwsNetworkFirewallFirewallPolicy = M.AwsNetworkFirewallFirewallPolicyDetails,
+        AwsNetworkFirewallFirewall = M.AwsNetworkFirewallFirewallDetails,
+        AwsNetworkFirewallRuleGroup = M.AwsNetworkFirewallRuleGroupDetails,
+        AwsRdsDbSecurityGroup = M.AwsRdsDbSecurityGroupDetails,
+        AwsKinesisStream = M.AwsKinesisStreamDetails,
+        AwsEc2TransitGateway = M.AwsEc2TransitGatewayDetails,
+        AwsEfsAccessPoint = M.AwsEfsAccessPointDetails,
+        AwsCloudFormationStack = M.AwsCloudFormationStackDetails,
+        AwsCloudWatchAlarm = M.AwsCloudWatchAlarmDetails,
+        AwsEc2VpcPeeringConnection = M.AwsEc2VpcPeeringConnectionDetails,
+        AwsWafRegionalRuleGroup = M.AwsWafRegionalRuleGroupDetails,
+        AwsWafRegionalRule = M.AwsWafRegionalRuleDetails,
+        AwsWafRegionalWebAcl = M.AwsWafRegionalWebAclDetails,
+        AwsWafRule = M.AwsWafRuleDetails,
+        AwsWafRuleGroup = M.AwsWafRuleGroupDetails,
+        AwsEcsTask = M.AwsEcsTaskDetails,
+        AwsBackupBackupVault = M.AwsBackupBackupVaultDetails,
+        AwsBackupBackupPlan = M.AwsBackupBackupPlanDetails,
+        AwsBackupRecoveryPoint = M.AwsBackupRecoveryPointDetails,
+        AwsEc2LaunchTemplate = M.AwsEc2LaunchTemplateDetails,
+        AwsSageMakerNotebookInstance = M.AwsSageMakerNotebookInstanceDetails,
+        AwsWafv2WebAcl = M.AwsWafv2WebAclDetails,
+        AwsWafv2RuleGroup = M.AwsWafv2RuleGroupDetails,
+        AwsEc2RouteTable = M.AwsEc2RouteTableDetails,
+        AwsAmazonMqBroker = M.AwsAmazonMqBrokerDetails,
+        AwsAppSyncGraphQlApi = M.AwsAppSyncGraphQlApiDetails,
+        AwsEventSchemasRegistry = M.AwsEventSchemasRegistryDetails,
+        AwsGuardDutyDetector = M.AwsGuardDutyDetectorDetails,
+        AwsStepFunctionStateMachine = M.AwsStepFunctionStateMachineDetails,
+        AwsAthenaWorkGroup = M.AwsAthenaWorkGroupDetails,
+        AwsEventsEventbus = M.AwsEventsEventbusDetails,
+        AwsDmsEndpoint = M.AwsDmsEndpointDetails,
+        AwsEventsEndpoint = M.AwsEventsEndpointDetails,
+        AwsDmsReplicationTask = M.AwsDmsReplicationTaskDetails,
+        AwsDmsReplicationInstance = M.AwsDmsReplicationInstanceDetails,
+        AwsRoute53HostedZone = M.AwsRoute53HostedZoneDetails,
+        AwsMskCluster = M.AwsMskClusterDetails,
+        AwsS3AccessPoint = M.AwsS3AccessPointDetails,
+        AwsEc2ClientVpnEndpoint = M.AwsEc2ClientVpnEndpointDetails,
+        CodeRepository = M.CodeRepositoryDetails,
     },
 }
 
@@ -12935,15 +12053,11 @@ M.Resource = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        DataClassification = {
-            type = "structure",
-        },
-        Details = {
-            type = "structure",
-        },
+        DataClassification = M.DataClassificationDetails,
+        Details = M.ResourceDetails,
         ApplicationName = {
             type = "string",
         },
@@ -12957,13 +12071,13 @@ M.Severity = {
     type = "structure",
     members = {
         Product = {
-            type = "number",
+            type = "double",
         },
         Label = {
             type = "string",
         },
         Normalized = {
-            type = "number",
+            type = "integer",
         },
         Original = {
             type = "string",
@@ -13046,11 +12160,11 @@ M.Threat = {
             type = "string",
         },
         ItemCount = {
-            type = "number",
+            type = "integer",
         },
         FilePaths = {
             type = "list",
-            member_type = "structure",
+            member = M.FilePaths,
         },
     },
 }
@@ -13059,7 +12173,7 @@ M.CodeVulnerabilitiesFilePath = {
     type = "structure",
     members = {
         EndLine = {
-            type = "number",
+            type = "integer",
         },
         FileName = {
             type = "string",
@@ -13068,7 +12182,7 @@ M.CodeVulnerabilitiesFilePath = {
             type = "string",
         },
         StartLine = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -13078,11 +12192,9 @@ M.VulnerabilityCodeVulnerabilities = {
     members = {
         Cwes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        FilePath = {
-            type = "structure",
-        },
+        FilePath = M.CodeVulnerabilitiesFilePath,
         SourceArn = {
             type = "string",
         },
@@ -13096,7 +12208,7 @@ M.Cvss = {
             type = "string",
         },
         BaseScore = {
-            type = "number",
+            type = "double",
         },
         BaseVector = {
             type = "string",
@@ -13106,7 +12218,7 @@ M.Cvss = {
         },
         Adjustments = {
             type = "list",
-            member_type = "structure",
+            member = M.Adjustment,
         },
     },
 }
@@ -13196,28 +12308,26 @@ M.Vulnerability = {
         },
         VulnerablePackages = {
             type = "list",
-            member_type = "structure",
+            member = M.SoftwarePackage,
         },
         Cvss = {
             type = "list",
-            member_type = "structure",
+            member = M.Cvss,
         },
         RelatedVulnerabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        Vendor = {
-            type = "structure",
-        },
+        Vendor = M.VulnerabilityVendor,
         ReferenceUrls = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         FixAvailable = {
             type = "string",
         },
         EpssScore = {
-            type = "number",
+            type = "double",
         },
         ExploitAvailable = {
             type = "string",
@@ -13227,7 +12337,7 @@ M.Vulnerability = {
         },
         CodeVulnerabilities = {
             type = "list",
-            member_type = "structure",
+            member = M.VulnerabilityCodeVulnerabilities,
         },
     },
 }
@@ -13293,7 +12403,7 @@ M.AwsSecurityFinding = {
         },
         Types = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         FirstObservedAt = {
             type = "string",
@@ -13313,14 +12423,12 @@ M.AwsSecurityFinding = {
                 required = true,
             },
         },
-        Severity = {
-            type = "structure",
-        },
+        Severity = M.Severity,
         Confidence = {
-            type = "number",
+            type = "integer",
         },
         Criticality = {
-            type = "number",
+            type = "integer",
         },
         Title = {
             type = "string",
@@ -13334,101 +12442,79 @@ M.AwsSecurityFinding = {
                 required = true,
             },
         },
-        Remediation = {
-            type = "structure",
-        },
+        Remediation = M.Remediation,
         SourceUrl = {
             type = "string",
         },
         ProductFields = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         UserDefinedFields = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Malware = {
             type = "list",
-            member_type = "structure",
+            member = M.Malware,
         },
-        Network = {
-            type = "structure",
-        },
+        Network = M.Network,
         NetworkPath = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkPathComponent,
         },
-        Process = {
-            type = "structure",
-        },
+        Process = M.ProcessDetails,
         Threats = {
             type = "list",
-            member_type = "structure",
+            member = M.Threat,
         },
         ThreatIntelIndicators = {
             type = "list",
-            member_type = "structure",
+            member = M.ThreatIntelIndicator,
         },
         Resources = {
             type = "list",
-            member_type = "structure",
+            member = M.Resource,
             traits = {
                 required = true,
             },
         },
-        Compliance = {
-            type = "structure",
-        },
+        Compliance = M.Compliance,
         VerificationState = {
             type = "string",
         },
         WorkflowState = {
             type = "string",
         },
-        Workflow = {
-            type = "structure",
-        },
+        Workflow = M.Workflow,
         RecordState = {
             type = "string",
         },
         RelatedFindings = {
             type = "list",
-            member_type = "structure",
+            member = M.RelatedFinding,
         },
-        Note = {
-            type = "structure",
-        },
+        Note = M.Note,
         Vulnerabilities = {
             type = "list",
-            member_type = "structure",
+            member = M.Vulnerability,
         },
-        PatchSummary = {
-            type = "structure",
-        },
-        Action = {
-            type = "structure",
-        },
-        FindingProviderFields = {
-            type = "structure",
-        },
+        PatchSummary = M.PatchSummary,
+        Action = M.Action,
+        FindingProviderFields = M.FindingProviderFields,
         Sample = {
             type = "boolean",
         },
-        GeneratorDetails = {
-            type = "structure",
-        },
+        GeneratorDetails = M.GeneratorDetails,
         ProcessedAt = {
             type = "string",
         },
         AwsAccountName = {
             type = "string",
         },
-        Detection = {
-            type = "structure",
-        },
+        Detection = M.Detection,
     },
 }
 
@@ -13464,419 +12550,419 @@ M.AwsSecurityFindingFilters = {
     members = {
         ProductArn = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         AwsAccountId = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         Id = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         GeneratorId = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         Region = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         Type = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         FirstObservedAt = {
             type = "list",
-            member_type = "structure",
+            member = M.DateFilter,
         },
         LastObservedAt = {
             type = "list",
-            member_type = "structure",
+            member = M.DateFilter,
         },
         CreatedAt = {
             type = "list",
-            member_type = "structure",
+            member = M.DateFilter,
         },
         UpdatedAt = {
             type = "list",
-            member_type = "structure",
+            member = M.DateFilter,
         },
         SeverityProduct = {
             type = "list",
-            member_type = "structure",
+            member = M.NumberFilter,
         },
         SeverityNormalized = {
             type = "list",
-            member_type = "structure",
+            member = M.NumberFilter,
         },
         SeverityLabel = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         Confidence = {
             type = "list",
-            member_type = "structure",
+            member = M.NumberFilter,
         },
         Criticality = {
             type = "list",
-            member_type = "structure",
+            member = M.NumberFilter,
         },
         Title = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         Description = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         RecommendationText = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         SourceUrl = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         ProductFields = {
             type = "list",
-            member_type = "structure",
+            member = M.MapFilter,
         },
         ProductName = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         CompanyName = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         UserDefinedFields = {
             type = "list",
-            member_type = "structure",
+            member = M.MapFilter,
         },
         MalwareName = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         MalwareType = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         MalwarePath = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         MalwareState = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         NetworkDirection = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         NetworkProtocol = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         NetworkSourceIpV4 = {
             type = "list",
-            member_type = "structure",
+            member = M.IpFilter,
         },
         NetworkSourceIpV6 = {
             type = "list",
-            member_type = "structure",
+            member = M.IpFilter,
         },
         NetworkSourcePort = {
             type = "list",
-            member_type = "structure",
+            member = M.NumberFilter,
         },
         NetworkSourceDomain = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         NetworkSourceMac = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         NetworkDestinationIpV4 = {
             type = "list",
-            member_type = "structure",
+            member = M.IpFilter,
         },
         NetworkDestinationIpV6 = {
             type = "list",
-            member_type = "structure",
+            member = M.IpFilter,
         },
         NetworkDestinationPort = {
             type = "list",
-            member_type = "structure",
+            member = M.NumberFilter,
         },
         NetworkDestinationDomain = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         ProcessName = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         ProcessPath = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         ProcessPid = {
             type = "list",
-            member_type = "structure",
+            member = M.NumberFilter,
         },
         ProcessParentPid = {
             type = "list",
-            member_type = "structure",
+            member = M.NumberFilter,
         },
         ProcessLaunchedAt = {
             type = "list",
-            member_type = "structure",
+            member = M.DateFilter,
         },
         ProcessTerminatedAt = {
             type = "list",
-            member_type = "structure",
+            member = M.DateFilter,
         },
         ThreatIntelIndicatorType = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         ThreatIntelIndicatorValue = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         ThreatIntelIndicatorCategory = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         ThreatIntelIndicatorLastObservedAt = {
             type = "list",
-            member_type = "structure",
+            member = M.DateFilter,
         },
         ThreatIntelIndicatorSource = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         ThreatIntelIndicatorSourceUrl = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         ResourceType = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         ResourceId = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         ResourcePartition = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         ResourceRegion = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         ResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.MapFilter,
         },
         ResourceAwsEc2InstanceType = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         ResourceAwsEc2InstanceImageId = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         ResourceAwsEc2InstanceIpV4Addresses = {
             type = "list",
-            member_type = "structure",
+            member = M.IpFilter,
         },
         ResourceAwsEc2InstanceIpV6Addresses = {
             type = "list",
-            member_type = "structure",
+            member = M.IpFilter,
         },
         ResourceAwsEc2InstanceKeyName = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         ResourceAwsEc2InstanceIamInstanceProfileArn = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         ResourceAwsEc2InstanceVpcId = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         ResourceAwsEc2InstanceSubnetId = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         ResourceAwsEc2InstanceLaunchedAt = {
             type = "list",
-            member_type = "structure",
+            member = M.DateFilter,
         },
         ResourceAwsS3BucketOwnerId = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         ResourceAwsS3BucketOwnerName = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         ResourceAwsIamAccessKeyUserName = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         ResourceAwsIamAccessKeyPrincipalName = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         ResourceAwsIamAccessKeyStatus = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         ResourceAwsIamAccessKeyCreatedAt = {
             type = "list",
-            member_type = "structure",
+            member = M.DateFilter,
         },
         ResourceAwsIamUserUserName = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         ResourceContainerName = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         ResourceContainerImageId = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         ResourceContainerImageName = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         ResourceContainerLaunchedAt = {
             type = "list",
-            member_type = "structure",
+            member = M.DateFilter,
         },
         ResourceDetailsOther = {
             type = "list",
-            member_type = "structure",
+            member = M.MapFilter,
         },
         ComplianceStatus = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         VerificationState = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         WorkflowState = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         WorkflowStatus = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         RecordState = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         RelatedFindingsProductArn = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         RelatedFindingsId = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         NoteText = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         NoteUpdatedAt = {
             type = "list",
-            member_type = "structure",
+            member = M.DateFilter,
         },
         NoteUpdatedBy = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         Keyword = {
             type = "list",
-            member_type = "structure",
+            member = M.KeywordFilter,
         },
         FindingProviderFieldsConfidence = {
             type = "list",
-            member_type = "structure",
+            member = M.NumberFilter,
         },
         FindingProviderFieldsCriticality = {
             type = "list",
-            member_type = "structure",
+            member = M.NumberFilter,
         },
         FindingProviderFieldsRelatedFindingsId = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         FindingProviderFieldsRelatedFindingsProductArn = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         FindingProviderFieldsSeverityLabel = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         FindingProviderFieldsSeverityOriginal = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         FindingProviderFieldsTypes = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         Sample = {
             type = "list",
-            member_type = "structure",
+            member = M.BooleanFilter,
         },
         ComplianceSecurityControlId = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         ComplianceAssociatedStandardsId = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         VulnerabilitiesExploitAvailable = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         VulnerabilitiesFixAvailable = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         ComplianceSecurityControlParametersName = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         ComplianceSecurityControlParametersValue = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         AwsAccountName = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         ResourceApplicationName = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
         ResourceApplicationArn = {
             type = "list",
-            member_type = "structure",
+            member = M.StringFilter,
         },
     },
 }
@@ -13904,7 +12990,7 @@ M.BatchDeleteAutomationRulesInput = {
     members = {
         AutomationRulesArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -13919,7 +13005,7 @@ M.UnprocessedAutomationRule = {
             type = "string",
         },
         ErrorCode = {
-            type = "number",
+            type = "integer",
         },
         ErrorMessage = {
             type = "string",
@@ -13932,11 +13018,11 @@ M.BatchDeleteAutomationRulesOutput = {
     members = {
         ProcessedAutomationRules = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         UnprocessedAutomationRules = {
             type = "list",
-            member_type = "structure",
+            member = M.UnprocessedAutomationRule,
         },
     },
 }
@@ -13946,7 +13032,7 @@ M.BatchDisableStandardsInput = {
     members = {
         StandardsSubscriptionArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -14002,8 +13088,8 @@ M.StandardsSubscription = {
         },
         StandardsInput = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -14017,9 +13103,7 @@ M.StandardsSubscription = {
         StandardsControlsUpdatable = {
             type = "string",
         },
-        StandardsStatusReason = {
-            type = "structure",
-        },
+        StandardsStatusReason = M.StandardsStatusReason,
     },
 }
 
@@ -14028,7 +13112,7 @@ M.BatchDisableStandardsOutput = {
     members = {
         StandardsSubscriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.StandardsSubscription,
         },
     },
 }
@@ -14044,8 +13128,8 @@ M.StandardsSubscriptionRequest = {
         },
         StandardsInput = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -14055,7 +13139,7 @@ M.BatchEnableStandardsInput = {
     members = {
         StandardsSubscriptionRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.StandardsSubscriptionRequest,
             traits = {
                 required = true,
             },
@@ -14068,7 +13152,7 @@ M.BatchEnableStandardsOutput = {
     members = {
         StandardsSubscriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.StandardsSubscription,
         },
     },
 }
@@ -14078,7 +13162,7 @@ M.BatchGetAutomationRulesInput = {
     members = {
         AutomationRulesArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -14091,11 +13175,11 @@ M.BatchGetAutomationRulesOutput = {
     members = {
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomationRulesConfig,
         },
         UnprocessedAutomationRules = {
             type = "list",
-            member_type = "structure",
+            member = M.UnprocessedAutomationRule,
         },
     },
 }
@@ -14118,9 +13202,7 @@ M.Target = {
 M.ConfigurationPolicyAssociation = {
     type = "structure",
     members = {
-        Target = {
-            type = "union",
-        },
+        Target = M.Target,
     },
 }
 
@@ -14129,7 +13211,7 @@ M.BatchGetConfigurationPolicyAssociationsInput = {
     members = {
         ConfigurationPolicyAssociationIdentifiers = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigurationPolicyAssociation,
             traits = {
                 required = true,
             },
@@ -14173,9 +13255,7 @@ M.ConfigurationPolicyAssociationSummary = {
 M.UnprocessedConfigurationPolicyAssociation = {
     type = "structure",
     members = {
-        ConfigurationPolicyAssociationIdentifiers = {
-            type = "structure",
-        },
+        ConfigurationPolicyAssociationIdentifiers = M.ConfigurationPolicyAssociation,
         ErrorCode = {
             type = "string",
         },
@@ -14190,11 +13270,11 @@ M.BatchGetConfigurationPolicyAssociationsOutput = {
     members = {
         ConfigurationPolicyAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigurationPolicyAssociationSummary,
         },
         UnprocessedConfigurationPolicyAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.UnprocessedConfigurationPolicyAssociation,
         },
     },
 }
@@ -14204,7 +13284,7 @@ M.BatchGetSecurityControlsInput = {
     members = {
         SecurityControlIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -14216,21 +13296,21 @@ M.ParameterValue = {
     type = "union",
     members = {
         Integer = {
-            type = "number",
+            type = "integer",
         },
         IntegerList = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
         },
         Double = {
-            type = "number",
+            type = "double",
         },
         String = {
             type = "string",
         },
         StringList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Boolean = {
             type = "boolean",
@@ -14240,7 +13320,7 @@ M.ParameterValue = {
         },
         EnumList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -14259,9 +13339,7 @@ M.ParameterConfiguration = {
                 required = true,
             },
         },
-        Value = {
-            type = "union",
-        },
+        Value = M.ParameterValue,
     },
 }
 
@@ -14332,8 +13410,8 @@ M.SecurityControl = {
         },
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ParameterConfiguration,
         },
         LastUpdateReason = {
             type = "string",
@@ -14375,14 +13453,14 @@ M.BatchGetSecurityControlsOutput = {
     members = {
         SecurityControls = {
             type = "list",
-            member_type = "structure",
+            member = M.SecurityControl,
             traits = {
                 required = true,
             },
         },
         UnprocessedIds = {
             type = "list",
-            member_type = "structure",
+            member = M.UnprocessedSecurityControl,
         },
     },
 }
@@ -14410,7 +13488,7 @@ M.BatchGetStandardsControlAssociationsInput = {
     members = {
         StandardsControlAssociationIds = {
             type = "list",
-            member_type = "structure",
+            member = M.StandardsControlAssociationId,
             traits = {
                 required = true,
             },
@@ -14447,7 +13525,7 @@ M.StandardsControlAssociationDetail = {
         },
         RelatedRequirements = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         UpdatedAt = {
             type = "timestamp",
@@ -14463,7 +13541,7 @@ M.StandardsControlAssociationDetail = {
         },
         StandardsControlArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -14471,12 +13549,9 @@ M.StandardsControlAssociationDetail = {
 M.UnprocessedStandardsControlAssociation = {
     type = "structure",
     members = {
-        StandardsControlAssociationId = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        StandardsControlAssociationId = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.StandardsControlAssociationId }),
         ErrorCode = {
             type = "string",
             traits = {
@@ -14494,14 +13569,14 @@ M.BatchGetStandardsControlAssociationsOutput = {
     members = {
         StandardsControlAssociationDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.StandardsControlAssociationDetail,
             traits = {
                 required = true,
             },
         },
         UnprocessedAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.UnprocessedStandardsControlAssociation,
         },
     },
 }
@@ -14511,7 +13586,7 @@ M.BatchImportFindingsInput = {
     members = {
         Findings = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsSecurityFinding,
             traits = {
                 required = true,
             },
@@ -14547,20 +13622,20 @@ M.BatchImportFindingsOutput = {
     type = "structure",
     members = {
         FailedCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         SuccessCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         FailedFindings = {
             type = "list",
-            member_type = "structure",
+            member = M.ImportFindingsError,
         },
     },
 }
@@ -14578,7 +13653,7 @@ M.UpdateAutomationRulesRequestItem = {
             type = "string",
         },
         RuleOrder = {
-            type = "number",
+            type = "integer",
         },
         Description = {
             type = "string",
@@ -14589,12 +13664,10 @@ M.UpdateAutomationRulesRequestItem = {
         IsTerminal = {
             type = "boolean",
         },
-        Criteria = {
-            type = "structure",
-        },
+        Criteria = M.AutomationRulesFindingFilters,
         Actions = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomationRulesAction,
         },
     },
 }
@@ -14604,7 +13677,7 @@ M.BatchUpdateAutomationRulesInput = {
     members = {
         UpdateAutomationRulesRequestItems = {
             type = "list",
-            member_type = "structure",
+            member = M.UpdateAutomationRulesRequestItem,
             traits = {
                 required = true,
             },
@@ -14617,11 +13690,11 @@ M.BatchUpdateAutomationRulesOutput = {
     members = {
         ProcessedAutomationRules = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         UnprocessedAutomationRules = {
             type = "list",
-            member_type = "structure",
+            member = M.UnprocessedAutomationRule,
         },
     },
 }
@@ -14631,41 +13704,35 @@ M.BatchUpdateFindingsInput = {
     members = {
         FindingIdentifiers = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsSecurityFindingIdentifier,
             traits = {
                 required = true,
             },
         },
-        Note = {
-            type = "structure",
-        },
-        Severity = {
-            type = "structure",
-        },
+        Note = M.NoteUpdate,
+        Severity = M.SeverityUpdate,
         VerificationState = {
             type = "string",
         },
         Confidence = {
-            type = "number",
+            type = "integer",
         },
         Criticality = {
-            type = "number",
+            type = "integer",
         },
         Types = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         UserDefinedFields = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        Workflow = {
-            type = "structure",
-        },
+        Workflow = M.WorkflowUpdate,
         RelatedFindings = {
             type = "list",
-            member_type = "structure",
+            member = M.RelatedFinding,
         },
     },
 }
@@ -14673,12 +13740,9 @@ M.BatchUpdateFindingsInput = {
 M.BatchUpdateFindingsUnprocessedFinding = {
     type = "structure",
     members = {
-        FindingIdentifier = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        FindingIdentifier = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AwsSecurityFindingIdentifier }),
         ErrorCode = {
             type = "string",
             traits = {
@@ -14699,14 +13763,14 @@ M.BatchUpdateFindingsOutput = {
     members = {
         ProcessedFindings = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsSecurityFindingIdentifier,
             traits = {
                 required = true,
             },
         },
         UnprocessedFindings = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchUpdateFindingsUnprocessedFinding,
             traits = {
                 required = true,
             },
@@ -14743,20 +13807,20 @@ M.BatchUpdateFindingsV2Input = {
     members = {
         MetadataUids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         FindingIdentifiers = {
             type = "list",
-            member_type = "structure",
+            member = M.OcsfFindingIdentifier,
         },
         Comment = {
             type = "string",
         },
         SeverityId = {
-            type = "number",
+            type = "integer",
         },
         StatusId = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -14764,9 +13828,7 @@ M.BatchUpdateFindingsV2Input = {
 M.BatchUpdateFindingsV2ProcessedFinding = {
     type = "structure",
     members = {
-        FindingIdentifier = {
-            type = "structure",
-        },
+        FindingIdentifier = M.OcsfFindingIdentifier,
         MetadataUid = {
             type = "string",
         },
@@ -14783,9 +13845,7 @@ M.BatchUpdateFindingsV2UnprocessedFindingErrorCode = {
 M.BatchUpdateFindingsV2UnprocessedFinding = {
     type = "structure",
     members = {
-        FindingIdentifier = {
-            type = "structure",
-        },
+        FindingIdentifier = M.OcsfFindingIdentifier,
         MetadataUid = {
             type = "string",
         },
@@ -14803,14 +13863,14 @@ M.BatchUpdateFindingsV2Output = {
     members = {
         ProcessedFindings = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchUpdateFindingsV2ProcessedFinding,
             traits = {
                 required = true,
             },
         },
         UnprocessedFindings = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchUpdateFindingsV2UnprocessedFinding,
             traits = {
                 required = true,
             },
@@ -14902,7 +13962,7 @@ M.BatchUpdateStandardsControlAssociationsInput = {
     members = {
         StandardsControlAssociationUpdates = {
             type = "list",
-            member_type = "structure",
+            member = M.StandardsControlAssociationUpdate,
             traits = {
                 required = true,
             },
@@ -14913,12 +13973,9 @@ M.BatchUpdateStandardsControlAssociationsInput = {
 M.UnprocessedStandardsControlAssociationUpdate = {
     type = "structure",
     members = {
-        StandardsControlAssociationUpdate = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        StandardsControlAssociationUpdate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.StandardsControlAssociationUpdate }),
         ErrorCode = {
             type = "string",
             traits = {
@@ -14936,7 +13993,7 @@ M.BatchUpdateStandardsControlAssociationsOutput = {
     members = {
         UnprocessedAssociationUpdates = {
             type = "list",
-            member_type = "structure",
+            member = M.UnprocessedStandardsControlAssociationUpdate,
         },
     },
 }
@@ -14962,9 +14019,7 @@ M.OcsfBooleanFilter = {
         FieldName = {
             type = "string",
         },
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.BooleanFilter,
     },
 }
 
@@ -14984,9 +14039,7 @@ M.OcsfDateFilter = {
         FieldName = {
             type = "string",
         },
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.DateFilter,
     },
 }
 
@@ -15001,9 +14054,7 @@ M.OcsfIpFilter = {
         FieldName = {
             type = "string",
         },
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.IpFilter,
     },
 }
 
@@ -15020,9 +14071,7 @@ M.OcsfMapFilter = {
         FieldName = {
             type = "string",
         },
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.MapFilter,
     },
 }
 
@@ -15049,9 +14098,7 @@ M.OcsfNumberFilter = {
         FieldName = {
             type = "string",
         },
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.NumberFilter,
     },
 }
 
@@ -15135,9 +14182,7 @@ M.OcsfStringFilter = {
         FieldName = {
             type = "string",
         },
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.StringFilter,
     },
 }
 
@@ -15145,13 +14190,13 @@ M.DoubleConfigurationOptions = {
     type = "structure",
     members = {
         DefaultValue = {
-            type = "number",
+            type = "double",
         },
         Min = {
-            type = "number",
+            type = "double",
         },
         Max = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -15164,7 +14209,7 @@ M.EnumConfigurationOptions = {
         },
         AllowedValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -15174,14 +14219,14 @@ M.EnumListConfigurationOptions = {
     members = {
         DefaultValue = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
         AllowedValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -15190,13 +14235,13 @@ M.IntegerConfigurationOptions = {
     type = "structure",
     members = {
         DefaultValue = {
-            type = "number",
+            type = "integer",
         },
         Min = {
-            type = "number",
+            type = "integer",
         },
         Max = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -15206,16 +14251,16 @@ M.IntegerListConfigurationOptions = {
     members = {
         DefaultValue = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
         },
         Min = {
-            type = "number",
+            type = "integer",
         },
         Max = {
-            type = "number",
+            type = "integer",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -15240,13 +14285,13 @@ M.StringListConfigurationOptions = {
     members = {
         DefaultValue = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Re2Expression = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
         ExpressionDescription = {
             type = "string",
@@ -15257,30 +14302,14 @@ M.StringListConfigurationOptions = {
 M.ConfigurationOptions = {
     type = "union",
     members = {
-        Integer = {
-            type = "structure",
-        },
-        IntegerList = {
-            type = "structure",
-        },
-        Double = {
-            type = "structure",
-        },
-        String = {
-            type = "structure",
-        },
-        StringList = {
-            type = "structure",
-        },
-        Boolean = {
-            type = "structure",
-        },
-        Enum = {
-            type = "structure",
-        },
-        EnumList = {
-            type = "structure",
-        },
+        Integer = M.IntegerConfigurationOptions,
+        IntegerList = M.IntegerListConfigurationOptions,
+        Double = M.DoubleConfigurationOptions,
+        String = M.StringConfigurationOptions,
+        StringList = M.StringListConfigurationOptions,
+        Boolean = M.BooleanConfigurationOptions,
+        Enum = M.EnumConfigurationOptions,
+        EnumList = M.EnumListConfigurationOptions,
     },
 }
 
@@ -15358,12 +14387,9 @@ M.ConnectorSummary = {
         Description = {
             type = "string",
         },
-        ProviderSummary = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ProviderSummary = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProviderSummary }),
         CreatedAt = {
             type = "timestamp",
             traits = {
@@ -15438,12 +14464,12 @@ M.CreateAggregatorV2Input = {
         },
         LinkedRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ClientToken = {
             type = "string",
@@ -15465,7 +14491,7 @@ M.CreateAggregatorV2Output = {
         },
         LinkedRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -15488,14 +14514,14 @@ M.CreateAutomationRuleInput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         RuleStatus = {
             type = "string",
         },
         RuleOrder = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -15515,15 +14541,12 @@ M.CreateAutomationRuleInput = {
         IsTerminal = {
             type = "boolean",
         },
-        Criteria = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Criteria = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AutomationRulesFindingFilters }),
         Actions = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomationRulesAction,
             traits = {
                 required = true,
             },
@@ -15560,8 +14583,8 @@ M.SecurityControlCustomParameter = {
         },
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ParameterConfiguration,
         },
     },
 }
@@ -15571,15 +14594,15 @@ M.SecurityControlsConfiguration = {
     members = {
         EnabledSecurityControlIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DisabledSecurityControlIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SecurityControlCustomParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.SecurityControlCustomParameter,
         },
     },
 }
@@ -15592,20 +14615,16 @@ M.SecurityHubPolicy = {
         },
         EnabledStandardIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        SecurityControlsConfiguration = {
-            type = "structure",
-        },
+        SecurityControlsConfiguration = M.SecurityControlsConfiguration,
     },
 }
 
 M.Policy = {
     type = "union",
     members = {
-        SecurityHub = {
-            type = "structure",
-        },
+        SecurityHub = M.SecurityHubPolicy,
     },
 }
 
@@ -15621,16 +14640,13 @@ M.CreateConfigurationPolicyInput = {
         Description = {
             type = "string",
         },
-        ConfigurationPolicy = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        ConfigurationPolicy = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Policy }),
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -15656,9 +14672,7 @@ M.CreateConfigurationPolicyOutput = {
         CreatedAt = {
             type = "timestamp",
         },
-        ConfigurationPolicy = {
-            type = "union",
-        },
+        ConfigurationPolicy = M.Policy,
     },
 }
 
@@ -15692,12 +14706,8 @@ M.ServiceNowProviderConfiguration = {
 M.ProviderConfiguration = {
     type = "union",
     members = {
-        JiraCloud = {
-            type = "structure",
-        },
-        ServiceNow = {
-            type = "structure",
-        },
+        JiraCloud = M.JiraCloudProviderConfiguration,
+        ServiceNow = M.ServiceNowProviderConfiguration,
     },
 }
 
@@ -15713,19 +14723,16 @@ M.CreateConnectorV2Input = {
         Description = {
             type = "string",
         },
-        Provider = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        Provider = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProviderConfiguration }),
         KmsKeyArn = {
             type = "string",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ClientToken = {
             type = "string",
@@ -15768,7 +14775,7 @@ M.CreateFindingAggregatorInput = {
         },
         Regions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -15787,7 +14794,7 @@ M.CreateFindingAggregatorOutput = {
         },
         Regions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -15801,12 +14808,9 @@ M.CreateInsightInput = {
                 required = true,
             },
         },
-        Filters = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Filters = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AwsSecurityFindingFilters }),
         GroupByAttribute = {
             type = "string",
             traits = {
@@ -15833,7 +14837,7 @@ M.CreateMembersInput = {
     members = {
         AccountDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.AccountDetails,
             traits = {
                 required = true,
             },
@@ -15858,7 +14862,7 @@ M.CreateMembersOutput = {
     members = {
         UnprocessedAccounts = {
             type = "list",
-            member_type = "structure",
+            member = M.Result,
         },
     },
 }
@@ -15915,7 +14919,7 @@ M.DeclineInvitationsInput = {
     members = {
         AccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -15928,7 +14932,7 @@ M.DeclineInvitationsOutput = {
     members = {
         UnprocessedAccounts = {
             type = "list",
-            member_type = "structure",
+            member = M.Result,
         },
     },
 }
@@ -16073,7 +15077,7 @@ M.DeleteInvitationsInput = {
     members = {
         AccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -16086,7 +15090,7 @@ M.DeleteInvitationsOutput = {
     members = {
         UnprocessedAccounts = {
             type = "list",
-            member_type = "structure",
+            member = M.Result,
         },
     },
 }
@@ -16096,7 +15100,7 @@ M.DeleteMembersInput = {
     members = {
         AccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -16109,7 +15113,7 @@ M.DeleteMembersOutput = {
     members = {
         UnprocessedAccounts = {
             type = "list",
-            member_type = "structure",
+            member = M.Result,
         },
     },
 }
@@ -16119,13 +15123,13 @@ M.DescribeActionTargetsInput = {
     members = {
         ActionTargetArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -16135,7 +15139,7 @@ M.DescribeActionTargetsOutput = {
     members = {
         ActionTargets = {
             type = "list",
-            member_type = "structure",
+            member = M.ActionTarget,
             traits = {
                 required = true,
             },
@@ -16218,9 +15222,7 @@ M.DescribeOrganizationConfigurationOutput = {
         AutoEnableStandards = {
             type = "string",
         },
-        OrganizationConfiguration = {
-            type = "structure",
-        },
+        OrganizationConfiguration = M.OrganizationConfiguration,
     },
 }
 
@@ -16234,7 +15236,7 @@ M.DescribeProductsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -16274,11 +15276,11 @@ M.Product = {
         },
         Categories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IntegrationTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MarketplaceUrl = {
             type = "string",
@@ -16297,7 +15299,7 @@ M.DescribeProductsOutput = {
     members = {
         Products = {
             type = "list",
-            member_type = "structure",
+            member = M.Product,
             traits = {
                 required = true,
             },
@@ -16318,7 +15320,7 @@ M.DescribeProductsV2Input = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -16347,11 +15349,11 @@ M.ProductV2 = {
         },
         Categories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IntegrationV2Types = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MarketplaceUrl = {
             type = "string",
@@ -16370,7 +15372,7 @@ M.DescribeProductsV2Output = {
     members = {
         ProductsV2 = {
             type = "list",
-            member_type = "structure",
+            member = M.ProductV2,
             traits = {
                 required = true,
             },
@@ -16407,7 +15409,7 @@ M.DescribeStandardsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -16442,9 +15444,7 @@ M.Standard = {
         EnabledByDefault = {
             type = "boolean",
         },
-        StandardsManagedBy = {
-            type = "structure",
-        },
+        StandardsManagedBy = M.StandardsManagedBy,
     },
 }
 
@@ -16453,7 +15453,7 @@ M.DescribeStandardsOutput = {
     members = {
         Standards = {
             type = "list",
-            member_type = "structure",
+            member = M.Standard,
         },
         NextToken = {
             type = "string",
@@ -16478,7 +15478,7 @@ M.DescribeStandardsControlsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -16518,7 +15518,7 @@ M.StandardsControl = {
         },
         RelatedRequirements = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -16528,7 +15528,7 @@ M.DescribeStandardsControlsOutput = {
     members = {
         Controls = {
             type = "list",
-            member_type = "structure",
+            member = M.StandardsControl,
         },
         NextToken = {
             type = "string",
@@ -16614,7 +15614,7 @@ M.DisassociateMembersInput = {
     members = {
         AccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -16679,8 +15679,8 @@ M.EnableSecurityHubInput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         EnableDefaultStandards = {
             type = "boolean",
@@ -16700,8 +15700,8 @@ M.EnableSecurityHubV2Input = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -16759,21 +15759,17 @@ M.FindingHistoryUpdateSource = {
 M.FindingHistoryRecord = {
     type = "structure",
     members = {
-        FindingIdentifier = {
-            type = "structure",
-        },
+        FindingIdentifier = M.AwsSecurityFindingIdentifier,
         UpdateTime = {
             type = "timestamp",
         },
         FindingCreated = {
             type = "boolean",
         },
-        UpdateSource = {
-            type = "structure",
-        },
+        UpdateSource = M.FindingHistoryUpdateSource,
         Updates = {
             type = "list",
-            member_type = "structure",
+            member = M.FindingHistoryUpdate,
         },
         NextToken = {
             type = "string",
@@ -16786,7 +15782,7 @@ M.FindingScopes = {
     members = {
         AwsOrganizations = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsOrganizationScope,
         },
     },
 }
@@ -16810,9 +15806,7 @@ M.FindingsTrendsStringFilter = {
         FieldName = {
             type = "string",
         },
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.StringFilter,
     },
 }
 
@@ -16841,9 +15835,7 @@ M.Invitation = {
 M.GetAdministratorAccountOutput = {
     type = "structure",
     members = {
-        Administrator = {
-            type = "structure",
-        },
+        Administrator = M.Invitation,
     },
 }
 
@@ -16874,7 +15866,7 @@ M.GetAggregatorV2Output = {
         },
         LinkedRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -16926,21 +15918,16 @@ M.GetConfigurationPolicyOutput = {
         CreatedAt = {
             type = "timestamp",
         },
-        ConfigurationPolicy = {
-            type = "union",
-        },
+        ConfigurationPolicy = M.Policy,
     },
 }
 
 M.GetConfigurationPolicyAssociationInput = {
     type = "structure",
     members = {
-        Target = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        Target = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Target }),
     },
 }
 
@@ -17050,12 +16037,8 @@ M.ServiceNowDetail = {
 M.ProviderDetail = {
     type = "union",
     members = {
-        JiraCloud = {
-            type = "structure",
-        },
-        ServiceNow = {
-            type = "structure",
-        },
+        JiraCloud = M.JiraCloudDetail,
+        ServiceNow = M.ServiceNowDetail,
     },
 }
 
@@ -17095,18 +16078,12 @@ M.GetConnectorV2Output = {
                 required = true,
             },
         },
-        Health = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ProviderDetail = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        Health = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HealthCheck }),
+        ProviderDetail = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProviderDetail }),
     },
 }
 
@@ -17115,13 +16092,13 @@ M.GetEnabledStandardsInput = {
     members = {
         StandardsSubscriptionArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -17131,7 +16108,7 @@ M.GetEnabledStandardsOutput = {
     members = {
         StandardsSubscriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.StandardsSubscription,
         },
         NextToken = {
             type = "string",
@@ -17166,7 +16143,7 @@ M.GetFindingAggregatorOutput = {
         },
         Regions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -17174,12 +16151,9 @@ M.GetFindingAggregatorOutput = {
 M.GetFindingHistoryInput = {
     type = "structure",
     members = {
-        FindingIdentifier = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        FindingIdentifier = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AwsSecurityFindingIdentifier }),
         StartTime = {
             type = "timestamp",
         },
@@ -17190,7 +16164,7 @@ M.GetFindingHistoryInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -17200,7 +16174,7 @@ M.GetFindingHistoryOutput = {
     members = {
         Records = {
             type = "list",
-            member_type = "structure",
+            member = M.FindingHistoryRecord,
         },
         NextToken = {
             type = "string",
@@ -17228,18 +16202,16 @@ M.SortCriterion = {
 M.GetFindingsInput = {
     type = "structure",
     members = {
-        Filters = {
-            type = "structure",
-        },
+        Filters = M.AwsSecurityFindingFilters,
         SortCriteria = {
             type = "list",
-            member_type = "structure",
+            member = M.SortCriterion,
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -17249,7 +16221,7 @@ M.GetFindingsOutput = {
     members = {
         Findings = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsSecurityFinding,
             traits = {
                 required = true,
             },
@@ -17294,7 +16266,7 @@ M.GroupByValue = {
             type = "string",
         },
         Count = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -17307,7 +16279,7 @@ M.GroupByResult = {
         },
         GroupByValues = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupByValue,
         },
     },
 }
@@ -17317,7 +16289,7 @@ M.GetFindingStatisticsV2Output = {
     members = {
         GroupByResults = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupByResult,
         },
     },
 }
@@ -17358,49 +16330,49 @@ M.SeverityTrendsCount = {
     type = "structure",
     members = {
         Unknown = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         Informational = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         Low = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         Medium = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         High = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         Critical = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         Fatal = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         Other = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -17411,12 +16383,9 @@ M.SeverityTrendsCount = {
 M.TrendsValues = {
     type = "structure",
     members = {
-        SeverityTrends = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SeverityTrends = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SeverityTrendsCount }),
     },
 }
 
@@ -17429,12 +16398,9 @@ M.TrendsMetricsResult = {
                 required = true,
             },
         },
-        TrendsValues = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TrendsValues = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TrendsValues }),
     },
 }
 
@@ -17449,7 +16415,7 @@ M.GetFindingsTrendsV2Output = {
         },
         TrendsMetrics = {
             type = "list",
-            member_type = "structure",
+            member = M.TrendsMetricsResult,
             traits = {
                 required = true,
             },
@@ -17465,7 +16431,7 @@ M.GetFindingsV2Output = {
     members = {
         Findings = {
             type = "list",
-            member_type = "document",
+            member = { type = "document" },
         },
         NextToken = {
             type = "string",
@@ -17496,7 +16462,7 @@ M.InsightResultValue = {
             },
         },
         Count = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -17521,7 +16487,7 @@ M.InsightResults = {
         },
         ResultValues = {
             type = "list",
-            member_type = "structure",
+            member = M.InsightResultValue,
             traits = {
                 required = true,
             },
@@ -17532,12 +16498,9 @@ M.InsightResults = {
 M.GetInsightResultsOutput = {
     type = "structure",
     members = {
-        InsightResults = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InsightResults = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InsightResults }),
     },
 }
 
@@ -17546,13 +16509,13 @@ M.GetInsightsInput = {
     members = {
         InsightArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -17572,12 +16535,9 @@ M.Insight = {
                 required = true,
             },
         },
-        Filters = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Filters = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AwsSecurityFindingFilters }),
         GroupByAttribute = {
             type = "string",
             traits = {
@@ -17592,7 +16552,7 @@ M.GetInsightsOutput = {
     members = {
         Insights = {
             type = "list",
-            member_type = "structure",
+            member = M.Insight,
             traits = {
                 required = true,
             },
@@ -17611,7 +16571,7 @@ M.GetInvitationsCountOutput = {
     type = "structure",
     members = {
         InvitationsCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -17623,9 +16583,7 @@ M.GetMasterAccountInput = {
 M.GetMasterAccountOutput = {
     type = "structure",
     members = {
-        Master = {
-            type = "structure",
-        },
+        Master = M.Invitation,
     },
 }
 
@@ -17634,7 +16592,7 @@ M.GetMembersInput = {
     members = {
         AccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -17674,11 +16632,11 @@ M.GetMembersOutput = {
     members = {
         Members = {
             type = "list",
-            member_type = "structure",
+            member = M.Member,
         },
         UnprocessedAccounts = {
             type = "list",
-            member_type = "structure",
+            member = M.Result,
         },
     },
 }
@@ -17694,9 +16652,7 @@ M.ResourcesDateFilter = {
         FieldName = {
             type = "string",
         },
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.DateFilter,
     },
 }
 
@@ -17710,9 +16666,7 @@ M.ResourcesMapFilter = {
         FieldName = {
             type = "string",
         },
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.MapFilter,
     },
 }
 
@@ -17734,9 +16688,7 @@ M.ResourcesNumberFilter = {
         FieldName = {
             type = "string",
         },
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.NumberFilter,
     },
 }
 
@@ -17758,9 +16710,7 @@ M.ResourcesStringFilter = {
         FieldName = {
             type = "string",
         },
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.StringFilter,
     },
 }
 
@@ -17778,7 +16728,7 @@ M.ResourceScopes = {
     members = {
         AwsOrganizations = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsOrganizationScope,
         },
     },
 }
@@ -17788,7 +16738,7 @@ M.GetResourcesStatisticsV2Output = {
     members = {
         GroupByResults = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupByResult,
             traits = {
                 required = true,
             },
@@ -17809,9 +16759,7 @@ M.ResourcesTrendsStringFilter = {
         FieldName = {
             type = "string",
         },
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.StringFilter,
     },
 }
 
@@ -17819,7 +16767,7 @@ M.ResourcesCount = {
     type = "structure",
     members = {
         AllResources = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -17830,12 +16778,9 @@ M.ResourcesCount = {
 M.ResourcesTrendsValues = {
     type = "structure",
     members = {
-        ResourcesCount = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ResourcesCount = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResourcesCount }),
     },
 }
 
@@ -17848,12 +16793,9 @@ M.ResourcesTrendsMetricsResult = {
                 required = true,
             },
         },
-        TrendsValues = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TrendsValues = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResourcesTrendsValues }),
     },
 }
 
@@ -17868,7 +16810,7 @@ M.GetResourcesTrendsV2Output = {
         },
         TrendsMetrics = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcesTrendsMetricsResult,
             traits = {
                 required = true,
             },
@@ -17883,28 +16825,28 @@ M.ResourceSeverityBreakdown = {
     type = "structure",
     members = {
         Other = {
-            type = "number",
+            type = "integer",
         },
         Fatal = {
-            type = "number",
+            type = "integer",
         },
         Critical = {
-            type = "number",
+            type = "integer",
         },
         High = {
-            type = "number",
+            type = "integer",
         },
         Medium = {
-            type = "number",
+            type = "integer",
         },
         Low = {
-            type = "number",
+            type = "integer",
         },
         Informational = {
-            type = "number",
+            type = "integer",
         },
         Unknown = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -17925,14 +16867,12 @@ M.ResourceFindingsSummary = {
             },
         },
         TotalFindings = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
-        Severities = {
-            type = "structure",
-        },
+        Severities = M.ResourceSeverityBreakdown,
     },
 }
 
@@ -18009,11 +16949,11 @@ M.ResourceResult = {
         },
         FindingsSummary = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceFindingsSummary,
         },
         ResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
         },
         ResourceConfig = {
             type = "document",
@@ -18029,7 +16969,7 @@ M.GetResourcesV2Output = {
     members = {
         Resources = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceResult,
             traits = {
                 required = true,
             },
@@ -18067,12 +17007,9 @@ M.ParameterDefinition = {
                 required = true,
             },
         },
-        ConfigurationOptions = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        ConfigurationOptions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConfigurationOptions }),
     },
 }
 
@@ -18117,12 +17054,12 @@ M.SecurityControlDefinition = {
         },
         CustomizableProperties = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ParameterDefinitions = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ParameterDefinition,
         },
     },
 }
@@ -18130,12 +17067,9 @@ M.SecurityControlDefinition = {
 M.GetSecurityControlDefinitionOutput = {
     type = "structure",
     members = {
-        SecurityControlDefinition = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SecurityControlDefinition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SecurityControlDefinition }),
     },
 }
 
@@ -18144,7 +17078,7 @@ M.InviteMembersInput = {
     members = {
         AccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -18157,7 +17091,7 @@ M.InviteMembersOutput = {
     members = {
         UnprocessedAccounts = {
             type = "list",
-            member_type = "structure",
+            member = M.Result,
         },
     },
 }
@@ -18181,7 +17115,7 @@ M.ListAggregatorsV2Input = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -18194,7 +17128,7 @@ M.ListAggregatorsV2Output = {
     members = {
         AggregatorsV2 = {
             type = "list",
-            member_type = "structure",
+            member = M.AggregatorV2,
         },
         NextToken = {
             type = "string",
@@ -18212,7 +17146,7 @@ M.ListAutomationRulesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -18225,7 +17159,7 @@ M.ListAutomationRulesOutput = {
     members = {
         AutomationRulesMetadata = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomationRulesMetadata,
         },
         NextToken = {
             type = "string",
@@ -18243,7 +17177,7 @@ M.ListAutomationRulesV2Input = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -18256,7 +17190,7 @@ M.ListAutomationRulesV2Output = {
     members = {
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomationRulesMetadataV2,
         },
         NextToken = {
             type = "string",
@@ -18274,7 +17208,7 @@ M.ListConfigurationPoliciesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -18287,7 +17221,7 @@ M.ListConfigurationPoliciesOutput = {
     members = {
         ConfigurationPolicySummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigurationPolicySummary,
         },
         NextToken = {
             type = "string",
@@ -18302,11 +17236,9 @@ M.ListConfigurationPolicyAssociationsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
-        Filters = {
-            type = "structure",
-        },
+        Filters = M.AssociationFilters,
     },
 }
 
@@ -18315,7 +17247,7 @@ M.ListConfigurationPolicyAssociationsOutput = {
     members = {
         ConfigurationPolicyAssociationSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigurationPolicyAssociationSummary,
         },
         NextToken = {
             type = "string",
@@ -18333,7 +17265,7 @@ M.ListConnectorsV2Input = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -18361,7 +17293,7 @@ M.ListConnectorsV2Output = {
         },
         Connectors = {
             type = "list",
-            member_type = "structure",
+            member = M.ConnectorSummary,
             traits = {
                 required = true,
             },
@@ -18379,7 +17311,7 @@ M.ListEnabledProductsForImportInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -18392,7 +17324,7 @@ M.ListEnabledProductsForImportOutput = {
     members = {
         ProductSubscriptions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -18410,7 +17342,7 @@ M.ListFindingAggregatorsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -18423,7 +17355,7 @@ M.ListFindingAggregatorsOutput = {
     members = {
         FindingAggregators = {
             type = "list",
-            member_type = "structure",
+            member = M.FindingAggregator,
         },
         NextToken = {
             type = "string",
@@ -18435,7 +17367,7 @@ M.ListInvitationsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -18454,7 +17386,7 @@ M.ListInvitationsOutput = {
     members = {
         Invitations = {
             type = "list",
-            member_type = "structure",
+            member = M.Invitation,
         },
         NextToken = {
             type = "string",
@@ -18472,7 +17404,7 @@ M.ListMembersInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -18491,7 +17423,7 @@ M.ListMembersOutput = {
     members = {
         Members = {
             type = "list",
-            member_type = "structure",
+            member = M.Member,
         },
         NextToken = {
             type = "string",
@@ -18503,7 +17435,7 @@ M.ListOrganizationAdminAccountsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -18528,7 +17460,7 @@ M.ListOrganizationAdminAccountsOutput = {
     members = {
         AdminAccounts = {
             type = "list",
-            member_type = "structure",
+            member = M.AdminAccount,
         },
         NextToken = {
             type = "string",
@@ -18555,7 +17487,7 @@ M.ListSecurityControlDefinitionsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -18568,7 +17500,7 @@ M.ListSecurityControlDefinitionsOutput = {
     members = {
         SecurityControlDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.SecurityControlDefinition,
             traits = {
                 required = true,
             },
@@ -18596,7 +17528,7 @@ M.ListStandardsControlAssociationsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -18633,7 +17565,7 @@ M.StandardsControlAssociationSummary = {
         },
         RelatedRequirements = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         UpdatedAt = {
             type = "timestamp",
@@ -18655,7 +17587,7 @@ M.ListStandardsControlAssociationsOutput = {
     members = {
         StandardsControlAssociationSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.StandardsControlAssociationSummary,
             traits = {
                 required = true,
             },
@@ -18684,8 +17616,8 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -18702,12 +17634,8 @@ M.ServiceNowUpdateConfiguration = {
 M.ProviderUpdateConfiguration = {
     type = "union",
     members = {
-        JiraCloud = {
-            type = "structure",
-        },
-        ServiceNow = {
-            type = "structure",
-        },
+        JiraCloud = M.JiraCloudUpdateConfiguration,
+        ServiceNow = M.ServiceNowUpdateConfiguration,
     },
 }
 
@@ -18766,12 +17694,9 @@ M.StartConfigurationPolicyAssociationInput = {
                 required = true,
             },
         },
-        Target = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        Target = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Target }),
     },
 }
 
@@ -18805,9 +17730,7 @@ M.StartConfigurationPolicyAssociationOutput = {
 M.StartConfigurationPolicyDisassociationInput = {
     type = "structure",
     members = {
-        Target = {
-            type = "union",
-        },
+        Target = M.Target,
         ConfigurationPolicyIdentifier = {
             type = "string",
             traits = {
@@ -18833,8 +17756,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -18858,7 +17781,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -18912,7 +17835,7 @@ M.UpdateAggregatorV2Input = {
         },
         LinkedRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -18931,7 +17854,7 @@ M.UpdateAggregatorV2Output = {
         },
         LinkedRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -18959,9 +17882,7 @@ M.UpdateConfigurationPolicyInput = {
         UpdatedReason = {
             type = "string",
         },
-        ConfigurationPolicy = {
-            type = "union",
-        },
+        ConfigurationPolicy = M.Policy,
     },
 }
 
@@ -18986,9 +17907,7 @@ M.UpdateConfigurationPolicyOutput = {
         CreatedAt = {
             type = "timestamp",
         },
-        ConfigurationPolicy = {
-            type = "union",
-        },
+        ConfigurationPolicy = M.Policy,
     },
 }
 
@@ -19005,9 +17924,7 @@ M.UpdateConnectorV2Input = {
         Description = {
             type = "string",
         },
-        Provider = {
-            type = "union",
-        },
+        Provider = M.ProviderUpdateConfiguration,
     },
 }
 
@@ -19032,7 +17949,7 @@ M.UpdateFindingAggregatorInput = {
         },
         Regions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -19051,7 +17968,7 @@ M.UpdateFindingAggregatorOutput = {
         },
         Regions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -19059,15 +17976,10 @@ M.UpdateFindingAggregatorOutput = {
 M.UpdateFindingsInput = {
     type = "structure",
     members = {
-        Filters = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Note = {
-            type = "structure",
-        },
+        Filters = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AwsSecurityFindingFilters }),
+        Note = M.NoteUpdate,
         RecordState = {
             type = "string",
         },
@@ -19091,9 +18003,7 @@ M.UpdateInsightInput = {
         Name = {
             type = "string",
         },
-        Filters = {
-            type = "structure",
-        },
+        Filters = M.AwsSecurityFindingFilters,
         GroupByAttribute = {
             type = "string",
         },
@@ -19116,9 +18026,7 @@ M.UpdateOrganizationConfigurationInput = {
         AutoEnableStandards = {
             type = "string",
         },
-        OrganizationConfiguration = {
-            type = "structure",
-        },
+        OrganizationConfiguration = M.OrganizationConfiguration,
     },
 }
 
@@ -19137,8 +18045,8 @@ M.UpdateSecurityControlInput = {
         },
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ParameterConfiguration,
             traits = {
                 required = true,
             },
@@ -19197,31 +18105,31 @@ M.CompositeFilter = {
     members = {
         StringFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.OcsfStringFilter,
         },
         DateFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.OcsfDateFilter,
         },
         BooleanFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.OcsfBooleanFilter,
         },
         NumberFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.OcsfNumberFilter,
         },
         MapFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.OcsfMapFilter,
         },
         IpFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.OcsfIpFilter,
         },
         NestedCompositeFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.CompositeFilter,
         },
         Operator = {
             type = "string",
@@ -19234,11 +18142,11 @@ M.FindingsTrendsCompositeFilter = {
     members = {
         StringFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.FindingsTrendsStringFilter,
         },
         NestedCompositeFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.FindingsTrendsCompositeFilter,
         },
         Operator = {
             type = "string",
@@ -19251,23 +18159,23 @@ M.ResourcesCompositeFilter = {
     members = {
         StringFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcesStringFilter,
         },
         DateFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcesDateFilter,
         },
         NumberFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcesNumberFilter,
         },
         MapFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcesMapFilter,
         },
         NestedCompositeFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcesCompositeFilter,
         },
         Operator = {
             type = "string",
@@ -19280,11 +18188,11 @@ M.ResourcesTrendsCompositeFilter = {
     members = {
         StringFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcesTrendsStringFilter,
         },
         NestedCompositeFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcesTrendsCompositeFilter,
         },
         Operator = {
             type = "string",
@@ -19297,7 +18205,7 @@ M.FindingsTrendsFilters = {
     members = {
         CompositeFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.FindingsTrendsCompositeFilter,
         },
         CompositeOperator = {
             type = "string",
@@ -19310,7 +18218,7 @@ M.OcsfFindingFilters = {
     members = {
         CompositeFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.CompositeFilter,
         },
         CompositeOperator = {
             type = "string",
@@ -19323,7 +18231,7 @@ M.ResourcesFilters = {
     members = {
         CompositeFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcesCompositeFilter,
         },
         CompositeOperator = {
             type = "string",
@@ -19336,7 +18244,7 @@ M.ResourcesTrendsFilters = {
     members = {
         CompositeFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcesTrendsCompositeFilter,
         },
         CompositeOperator = {
             type = "string",
@@ -19347,18 +18255,14 @@ M.ResourcesTrendsFilters = {
 M.Criteria = {
     type = "union",
     members = {
-        OcsfFindingCriteria = {
-            type = "structure",
-        },
+        OcsfFindingCriteria = M.OcsfFindingFilters,
     },
 }
 
 M.GetFindingsTrendsV2Input = {
     type = "structure",
     members = {
-        Filters = {
-            type = "structure",
-        },
+        Filters = M.FindingsTrendsFilters,
         StartTime = {
             type = "timestamp",
             traits = {
@@ -19375,7 +18279,7 @@ M.GetFindingsTrendsV2Input = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -19383,21 +18287,17 @@ M.GetFindingsTrendsV2Input = {
 M.GetFindingsV2Input = {
     type = "structure",
     members = {
-        Filters = {
-            type = "structure",
-        },
-        Scopes = {
-            type = "structure",
-        },
+        Filters = M.OcsfFindingFilters,
+        Scopes = M.FindingScopes,
         SortCriteria = {
             type = "list",
-            member_type = "structure",
+            member = M.SortCriterion,
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -19405,9 +18305,7 @@ M.GetFindingsV2Input = {
 M.GetResourcesTrendsV2Input = {
     type = "structure",
     members = {
-        Filters = {
-            type = "structure",
-        },
+        Filters = M.ResourcesTrendsFilters,
         StartTime = {
             type = "timestamp",
             traits = {
@@ -19424,7 +18322,7 @@ M.GetResourcesTrendsV2Input = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -19432,21 +18330,17 @@ M.GetResourcesTrendsV2Input = {
 M.GetResourcesV2Input = {
     type = "structure",
     members = {
-        Filters = {
-            type = "structure",
-        },
-        Scopes = {
-            type = "structure",
-        },
+        Filters = M.ResourcesFilters,
+        Scopes = M.ResourceScopes,
         SortCriteria = {
             type = "list",
-            member_type = "structure",
+            member = M.SortCriterion,
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -19454,9 +18348,7 @@ M.GetResourcesV2Input = {
 M.GroupByRule = {
     type = "structure",
     members = {
-        Filters = {
-            type = "structure",
-        },
+        Filters = M.OcsfFindingFilters,
         GroupByField = {
             type = "string",
             traits = {
@@ -19475,9 +18367,7 @@ M.ResourceGroupByRule = {
                 required = true,
             },
         },
-        Filters = {
-            type = "structure",
-        },
+        Filters = M.ResourcesFilters,
     },
 }
 
@@ -19500,28 +18390,25 @@ M.CreateAutomationRuleV2Input = {
             },
         },
         RuleOrder = {
-            type = "number",
+            type = "float",
             traits = {
                 required = true,
             },
         },
-        Criteria = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        Criteria = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Criteria }),
         Actions = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomationRulesActionV2,
             traits = {
                 required = true,
             },
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ClientToken = {
             type = "string",
@@ -19539,7 +18426,7 @@ M.GetAutomationRuleV2Output = {
             type = "string",
         },
         RuleOrder = {
-            type = "number",
+            type = "float",
         },
         RuleName = {
             type = "string",
@@ -19550,12 +18437,10 @@ M.GetAutomationRuleV2Output = {
         Description = {
             type = "string",
         },
-        Criteria = {
-            type = "union",
-        },
+        Criteria = M.Criteria,
         Actions = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomationRulesActionV2,
         },
         CreatedAt = {
             type = "timestamp",
@@ -19580,7 +18465,7 @@ M.UpdateAutomationRuleV2Input = {
             type = "string",
         },
         RuleOrder = {
-            type = "number",
+            type = "float",
         },
         Description = {
             type = "string",
@@ -19588,12 +18473,10 @@ M.UpdateAutomationRuleV2Input = {
         RuleName = {
             type = "string",
         },
-        Criteria = {
-            type = "union",
-        },
+        Criteria = M.Criteria,
         Actions = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomationRulesActionV2,
         },
     },
 }
@@ -19603,19 +18486,17 @@ M.GetFindingStatisticsV2Input = {
     members = {
         GroupByRules = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupByRule,
             traits = {
                 required = true,
             },
         },
-        Scopes = {
-            type = "structure",
-        },
+        Scopes = M.FindingScopes,
         SortOrder = {
             type = "string",
         },
         MaxStatisticResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -19625,19 +18506,17 @@ M.GetResourcesStatisticsV2Input = {
     members = {
         GroupByRules = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceGroupByRule,
             traits = {
                 required = true,
             },
         },
-        Scopes = {
-            type = "structure",
-        },
+        Scopes = M.ResourceScopes,
         SortOrder = {
             type = "string",
         },
         MaxStatisticResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }

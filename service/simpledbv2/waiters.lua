@@ -1,0 +1,35 @@
+local waiter = require("waiter")
+
+local M = {}
+
+--- Wait until ExportSucceeded.
+function M.wait_until_export_succeeded(client, input, options)
+    return waiter.wait(client, "getExport", input, {
+        min_delay = 30,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "exportStatus",
+                        expected = "SUCCEEDED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "exportStatus",
+                        expected = "FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+return M

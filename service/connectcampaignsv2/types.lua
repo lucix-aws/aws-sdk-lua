@@ -70,9 +70,7 @@ M.EmailOutboundConfig = {
 M.EmailOutboundMode = {
     type = "union",
     members = {
-        agentless = {
-            type = "structure",
-        },
+        agentless = M.AgentlessConfig,
     },
 }
 
@@ -80,20 +78,14 @@ M.EmailChannelSubtypeConfig = {
     type = "structure",
     members = {
         capacity = {
-            type = "number",
+            type = "double",
         },
-        outboundMode = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        defaultOutboundConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        outboundMode = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EmailOutboundMode }),
+        defaultOutboundConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EmailOutboundConfig }),
     },
 }
 
@@ -118,9 +110,7 @@ M.SmsOutboundConfig = {
 M.SmsOutboundMode = {
     type = "union",
     members = {
-        agentless = {
-            type = "structure",
-        },
+        agentless = M.AgentlessConfig,
     },
 }
 
@@ -128,20 +118,14 @@ M.SmsChannelSubtypeConfig = {
     type = "structure",
     members = {
         capacity = {
-            type = "number",
+            type = "double",
         },
-        outboundMode = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        defaultOutboundConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        outboundMode = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SmsOutboundMode }),
+        defaultOutboundConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SmsOutboundConfig }),
     },
 }
 
@@ -156,6 +140,9 @@ M.AnswerMachineDetectionConfig = {
         },
         awaitAnswerMachinePrompt = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -172,11 +159,9 @@ M.TelephonyOutboundConfig = {
         connectSourcePhoneNumber = {
             type = "string",
         },
-        answerMachineDetectionConfig = {
-            type = "structure",
-        },
+        answerMachineDetectionConfig = M.AnswerMachineDetectionConfig,
         ringTimeout = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -185,7 +170,7 @@ M.PredictiveConfig = {
     type = "structure",
     members = {
         bandwidthAllocation = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -197,7 +182,7 @@ M.TimeoutConfig = {
     type = "structure",
     members = {
         durationInSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -209,20 +194,17 @@ M.PreviewConfig = {
     type = "structure",
     members = {
         bandwidthAllocation = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
-        timeoutConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        timeoutConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TimeoutConfig }),
         agentActions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -231,7 +213,7 @@ M.ProgressiveConfig = {
     type = "structure",
     members = {
         bandwidthAllocation = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -242,18 +224,10 @@ M.ProgressiveConfig = {
 M.TelephonyOutboundMode = {
     type = "union",
     members = {
-        progressive = {
-            type = "structure",
-        },
-        predictive = {
-            type = "structure",
-        },
-        agentless = {
-            type = "structure",
-        },
-        preview = {
-            type = "structure",
-        },
+        progressive = M.ProgressiveConfig,
+        predictive = M.PredictiveConfig,
+        agentless = M.AgentlessConfig,
+        preview = M.PreviewConfig,
     },
 }
 
@@ -261,23 +235,17 @@ M.TelephonyChannelSubtypeConfig = {
     type = "structure",
     members = {
         capacity = {
-            type = "number",
+            type = "double",
         },
         connectQueueId = {
             type = "string",
         },
-        outboundMode = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        defaultOutboundConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        outboundMode = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TelephonyOutboundMode }),
+        defaultOutboundConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TelephonyOutboundConfig }),
     },
 }
 
@@ -302,9 +270,7 @@ M.WhatsAppOutboundConfig = {
 M.WhatsAppOutboundMode = {
     type = "union",
     members = {
-        agentless = {
-            type = "structure",
-        },
+        agentless = M.AgentlessConfig,
     },
 }
 
@@ -312,38 +278,24 @@ M.WhatsAppChannelSubtypeConfig = {
     type = "structure",
     members = {
         capacity = {
-            type = "number",
+            type = "double",
         },
-        outboundMode = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        defaultOutboundConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        outboundMode = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WhatsAppOutboundMode }),
+        defaultOutboundConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WhatsAppOutboundConfig }),
     },
 }
 
 M.ChannelSubtypeConfig = {
     type = "structure",
     members = {
-        telephony = {
-            type = "structure",
-        },
-        sms = {
-            type = "structure",
-        },
-        email = {
-            type = "structure",
-        },
-        whatsApp = {
-            type = "structure",
-        },
+        telephony = M.TelephonyChannelSubtypeConfig,
+        sms = M.SmsChannelSubtypeConfig,
+        email = M.EmailChannelSubtypeConfig,
+        whatsApp = M.WhatsAppChannelSubtypeConfig,
     },
 }
 
@@ -355,13 +307,13 @@ M.CommunicationLimit = {
     type = "structure",
     members = {
         maxCountPerRecipient = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         frequency = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -380,7 +332,7 @@ M.CommunicationLimits = {
     members = {
         communicationLimitsList = {
             type = "list",
-            member_type = "structure",
+            member = M.CommunicationLimit,
         },
     },
 }
@@ -393,9 +345,7 @@ M.InstanceLimitsHandling = {
 M.CommunicationLimitsConfig = {
     type = "structure",
     members = {
-        allChannelSubtypes = {
-            type = "union",
-        },
+        allChannelSubtypes = M.CommunicationLimits,
         instanceLimitsHandling = {
             type = "string",
         },
@@ -435,8 +385,8 @@ M.OpenHours = {
     members = {
         dailyHours = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
     },
 }
@@ -467,7 +417,7 @@ M.RestrictedPeriods = {
     members = {
         restrictedPeriodList = {
             type = "list",
-            member_type = "structure",
+            member = M.RestrictedPeriod,
         },
     },
 }
@@ -475,15 +425,10 @@ M.RestrictedPeriods = {
 M.TimeWindow = {
     type = "structure",
     members = {
-        openHours = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        restrictedPeriods = {
-            type = "union",
-        },
+        openHours = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OpenHours }),
+        restrictedPeriods = M.RestrictedPeriods,
     },
 }
 
@@ -500,7 +445,7 @@ M.LocalTimeZoneConfig = {
         },
         localTimeZoneDetection = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -508,24 +453,13 @@ M.LocalTimeZoneConfig = {
 M.CommunicationTimeConfig = {
     type = "structure",
     members = {
-        localTimeZoneConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        telephony = {
-            type = "structure",
-        },
-        sms = {
-            type = "structure",
-        },
-        email = {
-            type = "structure",
-        },
-        whatsApp = {
-            type = "structure",
-        },
+        localTimeZoneConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LocalTimeZoneConfig }),
+        telephony = M.TimeWindow,
+        sms = M.TimeWindow,
+        email = M.TimeWindow,
+        whatsApp = M.TimeWindow,
     },
 }
 
@@ -533,7 +467,7 @@ M.EntryLimitsConfig = {
     type = "structure",
     members = {
         maxEntryCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -583,9 +517,7 @@ M.Source = {
         customerProfilesSegmentArn = {
             type = "string",
         },
-        eventTrigger = {
-            type = "structure",
-        },
+        eventTrigger = M.EventTrigger,
     },
 }
 
@@ -609,34 +541,22 @@ M.CreateCampaignInput = {
                 required = true,
             },
         },
-        channelSubtypeConfig = {
-            type = "structure",
-        },
+        channelSubtypeConfig = M.ChannelSubtypeConfig,
         type = {
             type = "string",
         },
-        source = {
-            type = "union",
-        },
+        source = M.Source,
         connectCampaignFlowArn = {
             type = "string",
         },
-        schedule = {
-            type = "structure",
-        },
-        entryLimitsConfig = {
-            type = "structure",
-        },
-        communicationTimeConfig = {
-            type = "structure",
-        },
-        communicationLimitsOverride = {
-            type = "structure",
-        },
+        schedule = M.Schedule,
+        entryLimitsConfig = M.EntryLimitsConfig,
+        communicationTimeConfig = M.CommunicationTimeConfig,
+        communicationLimitsOverride = M.CommunicationLimitsConfig,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -652,8 +572,8 @@ M.CreateCampaignOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -997,15 +917,9 @@ M.QConnectIntegrationIdentifier = {
 M.IntegrationIdentifier = {
     type = "union",
     members = {
-        customerProfiles = {
-            type = "structure",
-        },
-        qConnect = {
-            type = "structure",
-        },
-        lambda = {
-            type = "structure",
-        },
+        customerProfiles = M.CustomerProfilesIntegrationIdentifier,
+        qConnect = M.QConnectIntegrationIdentifier,
+        lambda = M.LambdaIntegrationIdentifier,
     },
 }
 
@@ -1019,12 +933,9 @@ M.DeleteConnectInstanceIntegrationInput = {
                 required = true,
             },
         },
-        integrationIdentifier = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        integrationIdentifier = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IntegrationIdentifier }),
     },
 }
 
@@ -1089,34 +1000,22 @@ M.Campaign = {
                 required = true,
             },
         },
-        channelSubtypeConfig = {
-            type = "structure",
-        },
+        channelSubtypeConfig = M.ChannelSubtypeConfig,
         type = {
             type = "string",
         },
-        source = {
-            type = "union",
-        },
+        source = M.Source,
         connectCampaignFlowArn = {
             type = "string",
         },
-        schedule = {
-            type = "structure",
-        },
-        entryLimitsConfig = {
-            type = "structure",
-        },
-        communicationTimeConfig = {
-            type = "structure",
-        },
-        communicationLimitsOverride = {
-            type = "structure",
-        },
+        schedule = M.Schedule,
+        entryLimitsConfig = M.EntryLimitsConfig,
+        communicationTimeConfig = M.CommunicationTimeConfig,
+        communicationLimitsOverride = M.CommunicationLimitsConfig,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1124,9 +1023,7 @@ M.Campaign = {
 M.DescribeCampaignOutput = {
     type = "structure",
     members = {
-        campaign = {
-            type = "structure",
-        },
+        campaign = M.Campaign,
     },
 }
 
@@ -1157,7 +1054,7 @@ M.GetCampaignStateBatchInput = {
     members = {
         campaignIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1199,11 +1096,11 @@ M.GetCampaignStateBatchOutput = {
     members = {
         successfulRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.SuccessfulCampaignStateResponse,
         },
         failedRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.FailedCampaignStateResponse,
         },
     },
 }
@@ -1231,6 +1128,7 @@ M.EncryptionConfig = {
         enabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -1258,21 +1156,16 @@ M.InstanceConfig = {
                 required = true,
             },
         },
-        encryptionConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        encryptionConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EncryptionConfig }),
     },
 }
 
 M.GetConnectInstanceConfigOutput = {
     type = "structure",
     members = {
-        connectInstanceConfig = {
-            type = "structure",
-        },
+        connectInstanceConfig = M.InstanceConfig,
     },
 }
 
@@ -1292,18 +1185,14 @@ M.GetInstanceCommunicationLimitsInput = {
 M.InstanceCommunicationLimitsConfig = {
     type = "structure",
     members = {
-        allChannelSubtypes = {
-            type = "union",
-        },
+        allChannelSubtypes = M.CommunicationLimits,
     },
 }
 
 M.GetInstanceCommunicationLimitsOutput = {
     type = "structure",
     members = {
-        communicationLimitsConfig = {
-            type = "structure",
-        },
+        communicationLimitsConfig = M.InstanceCommunicationLimitsConfig,
     },
 }
 
@@ -1359,9 +1248,7 @@ M.InstanceOnboardingJobStatus = {
 M.GetInstanceOnboardingJobStatusOutput = {
     type = "structure",
     members = {
-        connectInstanceOnboardingJobStatus = {
-            type = "structure",
-        },
+        connectInstanceOnboardingJobStatus = M.InstanceOnboardingJobStatus,
     },
 }
 
@@ -1390,9 +1277,7 @@ M.InstanceIdFilter = {
 M.CampaignFilters = {
     type = "structure",
     members = {
-        instanceIdFilter = {
-            type = "structure",
-        },
+        instanceIdFilter = M.InstanceIdFilter,
     },
 }
 
@@ -1400,14 +1285,12 @@ M.ListCampaignsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
         },
-        filters = {
-            type = "structure",
-        },
+        filters = M.CampaignFilters,
     },
 }
 
@@ -1440,7 +1323,7 @@ M.CampaignSummary = {
         },
         channelSubtypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1448,12 +1331,8 @@ M.CampaignSummary = {
         type = {
             type = "string",
         },
-        schedule = {
-            type = "structure",
-        },
-        entryLimitsConfig = {
-            type = "structure",
-        },
+        schedule = M.Schedule,
+        entryLimitsConfig = M.EntryLimitsConfig,
         connectCampaignFlowArn = {
             type = "string",
         },
@@ -1468,7 +1347,7 @@ M.ListCampaignsOutput = {
         },
         campaignSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.CampaignSummary,
         },
     },
 }
@@ -1484,7 +1363,7 @@ M.ListConnectInstanceIntegrationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1517,8 +1396,8 @@ M.CustomerProfilesIntegrationSummary = {
         },
         objectTypeNames = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1553,15 +1432,9 @@ M.QConnectIntegrationSummary = {
 M.IntegrationSummary = {
     type = "union",
     members = {
-        customerProfiles = {
-            type = "structure",
-        },
-        qConnect = {
-            type = "structure",
-        },
-        lambda = {
-            type = "structure",
-        },
+        customerProfiles = M.CustomerProfilesIntegrationSummary,
+        qConnect = M.QConnectIntegrationSummary,
+        lambda = M.LambdaIntegrationSummary,
     },
 }
 
@@ -1573,7 +1446,7 @@ M.ListConnectInstanceIntegrationsOutput = {
         },
         integrationSummaryList = {
             type = "list",
-            member_type = "union",
+            member = M.IntegrationSummary,
         },
     },
 }
@@ -1596,8 +1469,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1630,8 +1503,8 @@ M.CustomerProfilesIntegrationConfig = {
         },
         objectTypeNames = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1666,15 +1539,9 @@ M.QConnectIntegrationConfig = {
 M.IntegrationConfig = {
     type = "union",
     members = {
-        customerProfiles = {
-            type = "structure",
-        },
-        qConnect = {
-            type = "structure",
-        },
-        lambda = {
-            type = "structure",
-        },
+        customerProfiles = M.CustomerProfilesIntegrationConfig,
+        qConnect = M.QConnectIntegrationConfig,
+        lambda = M.LambdaIntegrationConfig,
     },
 }
 
@@ -1688,12 +1555,9 @@ M.PutConnectInstanceIntegrationInput = {
                 required = true,
             },
         },
-        integrationConfig = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        integrationConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IntegrationConfig }),
     },
 }
 
@@ -1711,12 +1575,9 @@ M.PutInstanceCommunicationLimitsInput = {
                 required = true,
             },
         },
-        communicationLimitsConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        communicationLimitsConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InstanceCommunicationLimitsConfig }),
     },
 }
 
@@ -1741,8 +1602,8 @@ M.EmailChannelSubtypeParameters = {
         },
         templateParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1767,8 +1628,8 @@ M.SmsChannelSubtypeParameters = {
         },
         templateParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1787,8 +1648,8 @@ M.TelephonyChannelSubtypeParameters = {
         },
         attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1796,11 +1657,9 @@ M.TelephonyChannelSubtypeParameters = {
         connectSourcePhoneNumber = {
             type = "string",
         },
-        answerMachineDetectionConfig = {
-            type = "structure",
-        },
+        answerMachineDetectionConfig = M.AnswerMachineDetectionConfig,
         ringTimeout = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1822,8 +1681,8 @@ M.WhatsAppChannelSubtypeParameters = {
         },
         templateParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1834,18 +1693,10 @@ M.WhatsAppChannelSubtypeParameters = {
 M.ChannelSubtypeParameters = {
     type = "union",
     members = {
-        telephony = {
-            type = "structure",
-        },
-        sms = {
-            type = "structure",
-        },
-        email = {
-            type = "structure",
-        },
-        whatsApp = {
-            type = "structure",
-        },
+        telephony = M.TelephonyChannelSubtypeParameters,
+        sms = M.SmsChannelSubtypeParameters,
+        email = M.EmailChannelSubtypeParameters,
+        whatsApp = M.WhatsAppChannelSubtypeParameters,
     },
 }
 
@@ -1864,12 +1715,9 @@ M.OutboundRequest = {
                 required = true,
             },
         },
-        channelSubtypeParameters = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        channelSubtypeParameters = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ChannelSubtypeParameters }),
     },
 }
 
@@ -1885,7 +1733,7 @@ M.PutOutboundRequestBatchInput = {
         },
         outboundRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.OutboundRequest,
             traits = {
                 required = true,
             },
@@ -1932,11 +1780,11 @@ M.PutOutboundRequestBatchOutput = {
     members = {
         successfulRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.SuccessfulRequest,
         },
         failedRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.FailedRequest,
         },
     },
 }
@@ -1974,7 +1822,7 @@ M.PutProfileOutboundRequestBatchInput = {
         },
         profileOutboundRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.ProfileOutboundRequest,
             traits = {
                 required = true,
             },
@@ -2022,11 +1870,11 @@ M.PutProfileOutboundRequestBatchOutput = {
     members = {
         successfulRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.SuccessfulProfileOutboundRequest,
         },
         failedRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.FailedProfileOutboundRequest,
         },
     },
 }
@@ -2075,21 +1923,16 @@ M.StartInstanceOnboardingJobInput = {
                 required = true,
             },
         },
-        encryptionConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        encryptionConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EncryptionConfig }),
     },
 }
 
 M.StartInstanceOnboardingJobOutput = {
     type = "structure",
     members = {
-        connectInstanceOnboardingJobStatus = {
-            type = "structure",
-        },
+        connectInstanceOnboardingJobStatus = M.InstanceOnboardingJobStatus,
     },
 }
 
@@ -2122,8 +1965,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2147,7 +1990,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -2170,12 +2013,9 @@ M.UpdateCampaignChannelSubtypeConfigInput = {
                 required = true,
             },
         },
-        channelSubtypeConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        channelSubtypeConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ChannelSubtypeConfig }),
     },
 }
 
@@ -2193,12 +2033,9 @@ M.UpdateCampaignCommunicationLimitsInput = {
                 required = true,
             },
         },
-        communicationLimitsOverride = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        communicationLimitsOverride = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CommunicationLimitsConfig }),
     },
 }
 
@@ -2216,12 +2053,9 @@ M.UpdateCampaignCommunicationTimeInput = {
                 required = true,
             },
         },
-        communicationTimeConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        communicationTimeConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CommunicationTimeConfig }),
     },
 }
 
@@ -2239,12 +2073,9 @@ M.UpdateCampaignEntryLimitsInput = {
                 required = true,
             },
         },
-        entryLimitsConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        entryLimitsConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EntryLimitsConfig }),
     },
 }
 
@@ -2308,12 +2139,9 @@ M.UpdateCampaignScheduleInput = {
                 required = true,
             },
         },
-        schedule = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        schedule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Schedule }),
     },
 }
 
@@ -2331,12 +2159,9 @@ M.UpdateCampaignSourceInput = {
                 required = true,
             },
         },
-        source = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        source = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Source }),
     },
 }
 

@@ -44,9 +44,7 @@ M.AccountLink = {
 M.AcceptAccountLinkInvitationOutput = {
     type = "structure",
     members = {
-        AccountLink = {
-            type = "structure",
-        },
+        AccountLink = M.AccountLink,
     },
 }
 
@@ -128,14 +126,14 @@ M.AccessEndpointConfig = {
     members = {
         AccessEndpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessEndpoint,
             traits = {
                 required = true,
             },
         },
         InternetFallbackProtocols = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -290,9 +288,7 @@ M.ApplicationResourceAssociation = {
         State = {
             type = "string",
         },
-        StateReason = {
-            type = "structure",
-        },
+        StateReason = M.AssociationStateReason,
     },
 }
 
@@ -415,7 +411,7 @@ M.AssociateIpGroupsInput = {
         },
         GroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -477,9 +473,7 @@ M.WorkspaceResourceAssociation = {
         State = {
             type = "string",
         },
-        StateReason = {
-            type = "structure",
-        },
+        StateReason = M.AssociationStateReason,
         WorkspaceId = {
             type = "string",
         },
@@ -489,9 +483,7 @@ M.WorkspaceResourceAssociation = {
 M.AssociateWorkspaceApplicationOutput = {
     type = "structure",
     members = {
-        Association = {
-            type = "structure",
-        },
+        Association = M.WorkspaceResourceAssociation,
     },
 }
 
@@ -568,7 +560,7 @@ M.AuthorizeIpRulesInput = {
         },
         UserRules = {
             type = "list",
-            member_type = "structure",
+            member = M.IpRuleItem,
             traits = {
                 required = true,
             },
@@ -672,15 +664,9 @@ M.WorkspaceBundle = {
         ImageId = {
             type = "string",
         },
-        RootStorage = {
-            type = "structure",
-        },
-        UserStorage = {
-            type = "structure",
-        },
-        ComputeType = {
-            type = "structure",
-        },
+        RootStorage = M.RootStorage,
+        UserStorage = M.UserStorage,
+        ComputeType = M.ComputeType,
         LastUpdatedTime = {
             type = "timestamp",
         },
@@ -717,9 +703,7 @@ M.BundleResourceAssociation = {
         State = {
             type = "string",
         },
-        StateReason = {
-            type = "structure",
-        },
+        StateReason = M.AssociationStateReason,
     },
 }
 
@@ -727,7 +711,7 @@ M.Capacity = {
     type = "structure",
     members = {
         DesiredUserSessions = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -739,25 +723,25 @@ M.CapacityStatus = {
     type = "structure",
     members = {
         AvailableUserSessions = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         DesiredUserSessions = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         ActualUserSessions = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         ActiveUserSessions = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -819,9 +803,7 @@ M.ClientPropertiesResult = {
         ResourceId = {
             type = "string",
         },
-        ClientProperties = {
-            type = "structure",
-        },
+        ClientProperties = M.ClientProperties,
     },
 }
 
@@ -884,7 +866,7 @@ M.ConnectionAlias = {
         },
         Associations = {
             type = "list",
-            member_type = "structure",
+            member = M.ConnectionAliasAssociation,
         },
     },
 }
@@ -954,7 +936,7 @@ M.CopyWorkspaceImageInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -999,9 +981,7 @@ M.CreateAccountLinkInvitationInput = {
 M.CreateAccountLinkInvitationOutput = {
     type = "structure",
     members = {
-        AccountLink = {
-            type = "structure",
-        },
+        AccountLink = M.AccountLink,
     },
 }
 
@@ -1059,7 +1039,7 @@ M.CreateConnectionAliasInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1087,11 +1067,11 @@ M.CreateIpGroupInput = {
         },
         UserRules = {
             type = "list",
-            member_type = "structure",
+            member = M.IpRuleItem,
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1130,7 +1110,7 @@ M.StandbyWorkspace = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         DataReplication = {
             type = "string",
@@ -1149,7 +1129,7 @@ M.CreateStandbyWorkspacesInput = {
         },
         StandbyWorkspaces = {
             type = "list",
-            member_type = "structure",
+            member = M.StandbyWorkspace,
             traits = {
                 required = true,
             },
@@ -1160,9 +1140,7 @@ M.CreateStandbyWorkspacesInput = {
 M.FailedCreateStandbyWorkspacesRequest = {
     type = "structure",
     members = {
-        StandbyWorkspaceRequest = {
-            type = "structure",
-        },
+        StandbyWorkspaceRequest = M.StandbyWorkspace,
         ErrorCode = {
             type = "string",
         },
@@ -1215,11 +1193,11 @@ M.CreateStandbyWorkspacesOutput = {
     members = {
         FailedStandbyRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.FailedCreateStandbyWorkspacesRequest,
         },
         PendingStandbyRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.PendingCreateStandbyWorkspacesRequest,
         },
     },
 }
@@ -1235,7 +1213,7 @@ M.CreateTagsInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -1270,7 +1248,7 @@ M.CreateUpdatedWorkspaceImageInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1305,24 +1283,16 @@ M.CreateWorkspaceBundleInput = {
                 required = true,
             },
         },
-        ComputeType = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        UserStorage = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        RootStorage = {
-            type = "structure",
-        },
+        ComputeType = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ComputeType }),
+        UserStorage = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.UserStorage }),
+        RootStorage = M.RootStorage,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1330,9 +1300,7 @@ M.CreateWorkspaceBundleInput = {
 M.CreateWorkspaceBundleOutput = {
     type = "structure",
     members = {
-        WorkspaceBundle = {
-            type = "structure",
-        },
+        WorkspaceBundle = M.WorkspaceBundle,
     },
 }
 
@@ -1359,7 +1327,7 @@ M.CreateWorkspaceImageInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1401,9 +1369,7 @@ M.CreateWorkspaceImageOutput = {
         Description = {
             type = "string",
         },
-        OperatingSystem = {
-            type = "structure",
-        },
+        OperatingSystem = M.OperatingSystem,
         State = {
             type = "string",
         },
@@ -1469,27 +1435,25 @@ M.WorkspaceProperties = {
             type = "string",
         },
         RunningModeAutoStopTimeoutInMinutes = {
-            type = "number",
+            type = "integer",
         },
         RootVolumeSizeGib = {
-            type = "number",
+            type = "integer",
         },
         UserVolumeSizeGib = {
-            type = "number",
+            type = "integer",
         },
         ComputeTypeName = {
             type = "string",
         },
         Protocols = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         OperatingSystemName = {
             type = "string",
         },
-        GlobalAccelerator = {
-            type = "structure",
-        },
+        GlobalAccelerator = M.GlobalAcceleratorForWorkSpace,
     },
 }
 
@@ -1523,12 +1487,10 @@ M.WorkspaceRequest = {
         RootVolumeEncryptionEnabled = {
             type = "boolean",
         },
-        WorkspaceProperties = {
-            type = "structure",
-        },
+        WorkspaceProperties = M.WorkspaceProperties,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         WorkspaceName = {
             type = "string",
@@ -1544,7 +1506,7 @@ M.CreateWorkspacesInput = {
     members = {
         Workspaces = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkspaceRequest,
             traits = {
                 required = true,
             },
@@ -1555,9 +1517,7 @@ M.CreateWorkspacesInput = {
 M.FailedCreateWorkspaceRequest = {
     type = "structure",
     members = {
-        WorkspaceRequest = {
-            type = "structure",
-        },
+        WorkspaceRequest = M.WorkspaceRequest,
         ErrorCode = {
             type = "string",
         },
@@ -1690,23 +1650,19 @@ M.Workspace = {
         WorkspaceName = {
             type = "string",
         },
-        WorkspaceProperties = {
-            type = "structure",
-        },
+        WorkspaceProperties = M.WorkspaceProperties,
         ModificationStates = {
             type = "list",
-            member_type = "structure",
+            member = M.ModificationState,
         },
         RelatedWorkspaces = {
             type = "list",
-            member_type = "structure",
+            member = M.RelatedWorkspaceProperties,
         },
-        DataReplicationSettings = {
-            type = "structure",
-        },
+        DataReplicationSettings = M.DataReplicationSettings,
         StandbyWorkspacesProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.StandbyWorkspacesProperties,
         },
     },
 }
@@ -1716,11 +1672,11 @@ M.CreateWorkspacesOutput = {
     members = {
         FailedRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.FailedCreateWorkspaceRequest,
         },
         PendingRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.Workspace,
         },
     },
 }
@@ -1734,13 +1690,13 @@ M.TimeoutSettings = {
     type = "structure",
     members = {
         DisconnectTimeoutInSeconds = {
-            type = "number",
+            type = "integer",
         },
         IdleDisconnectTimeoutInSeconds = {
-            type = "number",
+            type = "integer",
         },
         MaxUserDurationInSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1772,22 +1728,15 @@ M.CreateWorkspacesPoolInput = {
                 required = true,
             },
         },
-        Capacity = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Capacity = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Capacity }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        ApplicationSettings = {
-            type = "structure",
-        },
-        TimeoutSettings = {
-            type = "structure",
-        },
+        ApplicationSettings = M.ApplicationSettingsRequest,
+        TimeoutSettings = M.TimeoutSettings,
         RunningMode = {
             type = "string",
         },
@@ -1874,12 +1823,9 @@ M.WorkspacesPool = {
                 required = true,
             },
         },
-        CapacityStatus = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        CapacityStatus = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CapacityStatus }),
         PoolName = {
             type = "string",
             traits = {
@@ -1915,17 +1861,14 @@ M.WorkspacesPool = {
         },
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkspacesPoolError,
         },
-        ApplicationSettings = {
-            type = "structure",
-        },
-        TimeoutSettings = {
-            type = "structure",
-        },
+        ApplicationSettings = M.ApplicationSettingsResponse,
+        TimeoutSettings = M.TimeoutSettings,
         RunningMode = {
             type = "string",
             traits = {
+                default = "AUTO_STOP",
                 required = true,
             },
         },
@@ -1935,9 +1878,7 @@ M.WorkspacesPool = {
 M.CreateWorkspacesPoolOutput = {
     type = "structure",
     members = {
-        WorkspacesPool = {
-            type = "structure",
-        },
+        WorkspacesPool = M.WorkspacesPool,
     },
 }
 
@@ -2002,8 +1943,8 @@ M.DefaultClientBrandingAttributes = {
         },
         LoginMessage = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2025,8 +1966,8 @@ M.DefaultImportClientBrandingAttributes = {
         },
         LoginMessage = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2082,9 +2023,7 @@ M.DeleteAccountLinkInvitationInput = {
 M.DeleteAccountLinkInvitationOutput = {
     type = "structure",
     members = {
-        AccountLink = {
-            type = "structure",
-        },
+        AccountLink = M.AccountLink,
     },
 }
 
@@ -2099,7 +2038,7 @@ M.DeleteClientBrandingInput = {
         },
         Platforms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2176,7 +2115,7 @@ M.DeleteTagsInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2237,7 +2176,7 @@ M.WorkSpaceApplicationDeployment = {
     members = {
         Associations = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkspaceResourceAssociation,
         },
     },
 }
@@ -2245,9 +2184,7 @@ M.WorkSpaceApplicationDeployment = {
 M.DeployWorkspaceApplicationsOutput = {
     type = "structure",
     members = {
-        Deployment = {
-            type = "structure",
-        },
+        Deployment = M.WorkSpaceApplicationDeployment,
     },
 }
 
@@ -2303,7 +2240,7 @@ M.DescribeAccountModificationsOutput = {
     members = {
         AccountModifications = {
             type = "list",
-            member_type = "structure",
+            member = M.AccountModification,
         },
         NextToken = {
             type = "string",
@@ -2315,7 +2252,7 @@ M.DescribeApplicationAssociationsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2328,7 +2265,7 @@ M.DescribeApplicationAssociationsInput = {
         },
         AssociatedResourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2341,7 +2278,7 @@ M.DescribeApplicationAssociationsOutput = {
     members = {
         Associations = {
             type = "list",
-            member_type = "structure",
+            member = M.ApplicationResourceAssociation,
         },
         NextToken = {
             type = "string",
@@ -2359,24 +2296,24 @@ M.DescribeApplicationsInput = {
     members = {
         ApplicationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ComputeTypeNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         LicenseType = {
             type = "string",
         },
         OperatingSystemNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Owner = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2417,11 +2354,11 @@ M.WorkSpaceApplication = {
         },
         SupportedComputeTypeNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SupportedOperatingSystemNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2431,7 +2368,7 @@ M.DescribeApplicationsOutput = {
     members = {
         Applications = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkSpaceApplication,
         },
         NextToken = {
             type = "string",
@@ -2450,7 +2387,7 @@ M.DescribeBundleAssociationsInput = {
         },
         AssociatedResourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2463,7 +2400,7 @@ M.DescribeBundleAssociationsOutput = {
     members = {
         Associations = {
             type = "list",
-            member_type = "structure",
+            member = M.BundleResourceAssociation,
         },
     },
 }
@@ -2503,8 +2440,8 @@ M.IosClientBrandingAttributes = {
         },
         LoginMessage = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2512,24 +2449,12 @@ M.IosClientBrandingAttributes = {
 M.DescribeClientBrandingOutput = {
     type = "structure",
     members = {
-        DeviceTypeWindows = {
-            type = "structure",
-        },
-        DeviceTypeOsx = {
-            type = "structure",
-        },
-        DeviceTypeAndroid = {
-            type = "structure",
-        },
-        DeviceTypeIos = {
-            type = "structure",
-        },
-        DeviceTypeLinux = {
-            type = "structure",
-        },
-        DeviceTypeWeb = {
-            type = "structure",
-        },
+        DeviceTypeWindows = M.DefaultClientBrandingAttributes,
+        DeviceTypeOsx = M.DefaultClientBrandingAttributes,
+        DeviceTypeAndroid = M.DefaultClientBrandingAttributes,
+        DeviceTypeIos = M.IosClientBrandingAttributes,
+        DeviceTypeLinux = M.DefaultClientBrandingAttributes,
+        DeviceTypeWeb = M.DefaultClientBrandingAttributes,
     },
 }
 
@@ -2538,7 +2463,7 @@ M.DescribeClientPropertiesInput = {
     members = {
         ResourceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2551,7 +2476,7 @@ M.DescribeClientPropertiesOutput = {
     members = {
         ClientPropertiesList = {
             type = "list",
-            member_type = "structure",
+            member = M.ClientPropertiesResult,
         },
     },
 }
@@ -2569,7 +2494,7 @@ M.DescribeConnectClientAddInsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2579,7 +2504,7 @@ M.DescribeConnectClientAddInsOutput = {
     members = {
         AddIns = {
             type = "list",
-            member_type = "structure",
+            member = M.ConnectClientAddIn,
         },
         NextToken = {
             type = "string",
@@ -2592,13 +2517,13 @@ M.DescribeConnectionAliasesInput = {
     members = {
         AliasIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ResourceId = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2611,7 +2536,7 @@ M.DescribeConnectionAliasesOutput = {
     members = {
         ConnectionAliases = {
             type = "list",
-            member_type = "structure",
+            member = M.ConnectionAlias,
         },
         NextToken = {
             type = "string",
@@ -2632,7 +2557,7 @@ M.DescribeConnectionAliasPermissionsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2645,7 +2570,7 @@ M.DescribeConnectionAliasPermissionsOutput = {
         },
         ConnectionAliasPermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ConnectionAliasPermission,
         },
         NextToken = {
             type = "string",
@@ -2696,7 +2621,7 @@ M.DescribeCustomWorkspaceImageImportOutput = {
             type = "string",
         },
         ProgressPercentage = {
-            type = "number",
+            type = "integer",
         },
         Created = {
             type = "timestamp",
@@ -2704,15 +2629,13 @@ M.DescribeCustomWorkspaceImageImportOutput = {
         LastUpdatedTime = {
             type = "timestamp",
         },
-        ImageSource = {
-            type = "union",
-        },
+        ImageSource = M.ImageSourceIdentifier,
         ImageBuilderInstanceId = {
             type = "string",
         },
         ErrorDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomWorkspaceImageImportErrorDetails,
         },
     },
 }
@@ -2732,7 +2655,7 @@ M.DescribeImageAssociationsInput = {
         },
         AssociatedResourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2761,9 +2684,7 @@ M.ImageResourceAssociation = {
         State = {
             type = "string",
         },
-        StateReason = {
-            type = "structure",
-        },
+        StateReason = M.AssociationStateReason,
     },
 }
 
@@ -2772,7 +2693,7 @@ M.DescribeImageAssociationsOutput = {
     members = {
         Associations = {
             type = "list",
-            member_type = "structure",
+            member = M.ImageResourceAssociation,
         },
     },
 }
@@ -2782,13 +2703,13 @@ M.DescribeIpGroupsInput = {
     members = {
         GroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2807,7 +2728,7 @@ M.WorkspacesIpGroup = {
         },
         userRules = {
             type = "list",
-            member_type = "structure",
+            member = M.IpRuleItem,
         },
     },
 }
@@ -2817,7 +2738,7 @@ M.DescribeIpGroupsOutput = {
     members = {
         Result = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkspacesIpGroup,
         },
         NextToken = {
             type = "string",
@@ -2842,7 +2763,7 @@ M.DescribeTagsOutput = {
     members = {
         TagList = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2858,7 +2779,7 @@ M.DescribeWorkspaceAssociationsInput = {
         },
         AssociatedResourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2871,7 +2792,7 @@ M.DescribeWorkspaceAssociationsOutput = {
     members = {
         Associations = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkspaceResourceAssociation,
         },
     },
 }
@@ -2881,7 +2802,7 @@ M.DescribeWorkspaceBundlesInput = {
     members = {
         BundleIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Owner = {
             type = "string",
@@ -2897,7 +2818,7 @@ M.DescribeWorkspaceBundlesOutput = {
     members = {
         Bundles = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkspaceBundle,
         },
         NextToken = {
             type = "string",
@@ -2921,7 +2842,7 @@ M.DescribeWorkspaceDirectoriesFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2934,21 +2855,21 @@ M.DescribeWorkspaceDirectoriesInput = {
     members = {
         DirectoryIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         WorkspaceDirectoryNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.DescribeWorkspaceDirectoriesFilter,
         },
     },
 }
@@ -3114,7 +3035,7 @@ M.UserSetting = {
             },
         },
         MaximumLength = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3127,15 +3048,13 @@ M.StreamingProperties = {
         },
         UserSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.UserSetting,
         },
         StorageConnectors = {
             type = "list",
-            member_type = "structure",
+            member = M.StorageConnector,
         },
-        GlobalAccelerator = {
-            type = "structure",
-        },
+        GlobalAccelerator = M.GlobalAcceleratorForDirectory,
     },
 }
 
@@ -3180,9 +3099,7 @@ M.WorkspaceAccessProperties = {
         DeviceTypeWorkSpacesThinClient = {
             type = "string",
         },
-        AccessEndpointConfig = {
-            type = "structure",
-        },
+        AccessEndpointConfig = M.AccessEndpointConfig,
     },
 }
 
@@ -3208,15 +3125,15 @@ M.WorkspaceDirectory = {
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DnsIpAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DnsIpv6Addresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CustomerUserName = {
             type = "string",
@@ -3233,34 +3150,22 @@ M.WorkspaceDirectory = {
         State = {
             type = "string",
         },
-        WorkspaceCreationProperties = {
-            type = "structure",
-        },
+        WorkspaceCreationProperties = M.DefaultWorkspaceCreationProperties,
         ipGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        WorkspaceAccessProperties = {
-            type = "structure",
-        },
+        WorkspaceAccessProperties = M.WorkspaceAccessProperties,
         Tenancy = {
             type = "string",
         },
-        SelfservicePermissions = {
-            type = "structure",
-        },
-        SamlProperties = {
-            type = "structure",
-        },
-        CertificateBasedAuthProperties = {
-            type = "structure",
-        },
+        SelfservicePermissions = M.SelfservicePermissions,
+        SamlProperties = M.SamlProperties,
+        CertificateBasedAuthProperties = M.CertificateBasedAuthProperties,
         EndpointEncryptionMode = {
             type = "string",
         },
-        MicrosoftEntraConfig = {
-            type = "structure",
-        },
+        MicrosoftEntraConfig = M.MicrosoftEntraConfig,
         WorkspaceDirectoryName = {
             type = "string",
         },
@@ -3273,15 +3178,9 @@ M.WorkspaceDirectory = {
         WorkspaceType = {
             type = "string",
         },
-        IDCConfig = {
-            type = "structure",
-        },
-        ActiveDirectoryConfig = {
-            type = "structure",
-        },
-        StreamingProperties = {
-            type = "structure",
-        },
+        IDCConfig = M.IDCConfig,
+        ActiveDirectoryConfig = M.ActiveDirectoryConfig,
+        StreamingProperties = M.StreamingProperties,
         ErrorMessage = {
             type = "string",
         },
@@ -3293,7 +3192,7 @@ M.DescribeWorkspaceDirectoriesOutput = {
     members = {
         Directories = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkspaceDirectory,
         },
         NextToken = {
             type = "string",
@@ -3314,7 +3213,7 @@ M.DescribeWorkspaceImagePermissionsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3336,7 +3235,7 @@ M.DescribeWorkspaceImagePermissionsOutput = {
         },
         ImagePermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ImagePermission,
         },
         NextToken = {
             type = "string",
@@ -3354,7 +3253,7 @@ M.DescribeWorkspaceImagesInput = {
     members = {
         ImageIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ImageType = {
             type = "string",
@@ -3363,7 +3262,7 @@ M.DescribeWorkspaceImagesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3455,9 +3354,7 @@ M.WorkspaceImage = {
         Description = {
             type = "string",
         },
-        OperatingSystem = {
-            type = "structure",
-        },
+        OperatingSystem = M.OperatingSystem,
         State = {
             type = "string",
         },
@@ -3476,12 +3373,10 @@ M.WorkspaceImage = {
         OwnerAccountId = {
             type = "string",
         },
-        Updates = {
-            type = "structure",
-        },
+        Updates = M.UpdateResult,
         ErrorDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.ErrorDetails,
         },
     },
 }
@@ -3491,7 +3386,7 @@ M.DescribeWorkspaceImagesOutput = {
     members = {
         Images = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkspaceImage,
         },
         NextToken = {
             type = "string",
@@ -3504,7 +3399,7 @@ M.DescribeWorkspacesInput = {
     members = {
         WorkspaceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DirectoryId = {
             type = "string",
@@ -3516,7 +3411,7 @@ M.DescribeWorkspacesInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3532,7 +3427,7 @@ M.DescribeWorkspacesOutput = {
     members = {
         Workspaces = {
             type = "list",
-            member_type = "structure",
+            member = M.Workspace,
         },
         NextToken = {
             type = "string",
@@ -3545,7 +3440,7 @@ M.DescribeWorkspacesConnectionStatusInput = {
     members = {
         WorkspaceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -3576,7 +3471,7 @@ M.DescribeWorkspacesConnectionStatusOutput = {
     members = {
         WorkspacesConnectionStatus = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkspaceConnectionStatus,
         },
         NextToken = {
             type = "string",
@@ -3610,11 +3505,11 @@ M.DescribeWorkspaceSnapshotsOutput = {
     members = {
         RebuildSnapshots = {
             type = "list",
-            member_type = "structure",
+            member = M.Snapshot,
         },
         RestoreSnapshots = {
             type = "list",
-            member_type = "structure",
+            member = M.Snapshot,
         },
     },
 }
@@ -3641,7 +3536,7 @@ M.DescribeWorkspacesPoolsFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3660,14 +3555,14 @@ M.DescribeWorkspacesPoolsInput = {
     members = {
         PoolIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.DescribeWorkspacesPoolsFilter,
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3680,7 +3575,7 @@ M.DescribeWorkspacesPoolsOutput = {
     members = {
         WorkspacesPools = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkspacesPool,
         },
         NextToken = {
             type = "string",
@@ -3701,7 +3596,7 @@ M.DescribeWorkspacesPoolSessionsInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3753,9 +3648,7 @@ M.WorkspacesPoolSession = {
         ExpirationTime = {
             type = "timestamp",
         },
-        NetworkAccessConfiguration = {
-            type = "structure",
-        },
+        NetworkAccessConfiguration = M.NetworkAccessConfiguration,
         StartTime = {
             type = "timestamp",
         },
@@ -3773,7 +3666,7 @@ M.DescribeWorkspacesPoolSessionsOutput = {
     members = {
         Sessions = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkspacesPoolSession,
         },
         NextToken = {
             type = "string",
@@ -3808,7 +3701,7 @@ M.DisassociateIpGroupsInput = {
         },
         GroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3841,9 +3734,7 @@ M.DisassociateWorkspaceApplicationInput = {
 M.DisassociateWorkspaceApplicationOutput = {
     type = "structure",
     members = {
-        Association = {
-            type = "structure",
-        },
+        Association = M.WorkspaceResourceAssociation,
     },
 }
 
@@ -3877,9 +3768,7 @@ M.GetAccountLinkInput = {
 M.GetAccountLinkOutput = {
     type = "structure",
     members = {
-        AccountLink = {
-            type = "structure",
-        },
+        AccountLink = M.AccountLink,
     },
 }
 
@@ -3912,8 +3801,8 @@ M.IosImportClientBrandingAttributes = {
         },
         LoginMessage = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3927,48 +3816,24 @@ M.ImportClientBrandingInput = {
                 required = true,
             },
         },
-        DeviceTypeWindows = {
-            type = "structure",
-        },
-        DeviceTypeOsx = {
-            type = "structure",
-        },
-        DeviceTypeAndroid = {
-            type = "structure",
-        },
-        DeviceTypeIos = {
-            type = "structure",
-        },
-        DeviceTypeLinux = {
-            type = "structure",
-        },
-        DeviceTypeWeb = {
-            type = "structure",
-        },
+        DeviceTypeWindows = M.DefaultImportClientBrandingAttributes,
+        DeviceTypeOsx = M.DefaultImportClientBrandingAttributes,
+        DeviceTypeAndroid = M.DefaultImportClientBrandingAttributes,
+        DeviceTypeIos = M.IosImportClientBrandingAttributes,
+        DeviceTypeLinux = M.DefaultImportClientBrandingAttributes,
+        DeviceTypeWeb = M.DefaultImportClientBrandingAttributes,
     },
 }
 
 M.ImportClientBrandingOutput = {
     type = "structure",
     members = {
-        DeviceTypeWindows = {
-            type = "structure",
-        },
-        DeviceTypeOsx = {
-            type = "structure",
-        },
-        DeviceTypeAndroid = {
-            type = "structure",
-        },
-        DeviceTypeIos = {
-            type = "structure",
-        },
-        DeviceTypeLinux = {
-            type = "structure",
-        },
-        DeviceTypeWeb = {
-            type = "structure",
-        },
+        DeviceTypeWindows = M.DefaultClientBrandingAttributes,
+        DeviceTypeOsx = M.DefaultClientBrandingAttributes,
+        DeviceTypeAndroid = M.DefaultClientBrandingAttributes,
+        DeviceTypeIos = M.IosClientBrandingAttributes,
+        DeviceTypeLinux = M.DefaultClientBrandingAttributes,
+        DeviceTypeWeb = M.DefaultClientBrandingAttributes,
     },
 }
 
@@ -4008,12 +3873,9 @@ M.ImportCustomWorkspaceImageInput = {
                 required = true,
             },
         },
-        ImageSource = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        ImageSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ImageSourceIdentifier }),
         InfrastructureConfigurationArn = {
             type = "string",
             traits = {
@@ -4034,7 +3896,7 @@ M.ImportCustomWorkspaceImageInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -4091,11 +3953,11 @@ M.ImportWorkspaceImageInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         Applications = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4124,13 +3986,13 @@ M.ListAccountLinksInput = {
     members = {
         LinkStatusFilter = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4140,7 +4002,7 @@ M.ListAccountLinksOutput = {
     members = {
         AccountLinks = {
             type = "list",
-            member_type = "structure",
+            member = M.AccountLink,
         },
         NextToken = {
             type = "string",
@@ -4158,7 +4020,7 @@ M.ListAvailableManagementCidrRangesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -4171,7 +4033,7 @@ M.ListAvailableManagementCidrRangesOutput = {
     members = {
         ManagementCidrRanges = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -4249,12 +4111,10 @@ M.ModifyCertificateBasedAuthPropertiesInput = {
                 required = true,
             },
         },
-        CertificateBasedAuthProperties = {
-            type = "structure",
-        },
+        CertificateBasedAuthProperties = M.CertificateBasedAuthProperties,
         PropertiesToDelete = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4272,12 +4132,9 @@ M.ModifyClientPropertiesInput = {
                 required = true,
             },
         },
-        ClientProperties = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ClientProperties = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ClientProperties }),
     },
 }
 
@@ -4316,12 +4173,10 @@ M.ModifySamlPropertiesInput = {
                 required = true,
             },
         },
-        SamlProperties = {
-            type = "structure",
-        },
+        SamlProperties = M.SamlProperties,
         PropertiesToDelete = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4339,12 +4194,9 @@ M.ModifySelfservicePermissionsInput = {
                 required = true,
             },
         },
-        SelfservicePermissions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SelfservicePermissions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SelfservicePermissions }),
     },
 }
 
@@ -4361,9 +4213,7 @@ M.ModifyStreamingPropertiesInput = {
                 required = true,
             },
         },
-        StreamingProperties = {
-            type = "structure",
-        },
+        StreamingProperties = M.StreamingProperties,
     },
 }
 
@@ -4380,12 +4230,9 @@ M.ModifyWorkspaceAccessPropertiesInput = {
                 required = true,
             },
         },
-        WorkspaceAccessProperties = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        WorkspaceAccessProperties = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkspaceAccessProperties }),
     },
 }
 
@@ -4426,12 +4273,9 @@ M.ModifyWorkspaceCreationPropertiesInput = {
                 required = true,
             },
         },
-        WorkspaceCreationProperties = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        WorkspaceCreationProperties = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkspaceCreationProperties }),
     },
 }
 
@@ -4448,9 +4292,7 @@ M.ModifyWorkspacePropertiesInput = {
                 required = true,
             },
         },
-        WorkspaceProperties = {
-            type = "structure",
-        },
+        WorkspaceProperties = M.WorkspaceProperties,
         DataReplication = {
             type = "string",
         },
@@ -4515,7 +4357,7 @@ M.RebootWorkspacesInput = {
     members = {
         RebootWorkspaceRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.RebootRequest,
             traits = {
                 required = true,
             },
@@ -4528,7 +4370,7 @@ M.RebootWorkspacesOutput = {
     members = {
         FailedRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.FailedWorkspaceChangeRequest,
         },
     },
 }
@@ -4550,7 +4392,7 @@ M.RebuildWorkspacesInput = {
     members = {
         RebuildWorkspaceRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.RebuildRequest,
             traits = {
                 required = true,
             },
@@ -4563,7 +4405,7 @@ M.RebuildWorkspacesOutput = {
     members = {
         FailedRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.FailedWorkspaceChangeRequest,
         },
     },
 }
@@ -4576,7 +4418,7 @@ M.RegisterWorkspaceDirectoryInput = {
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         EnableSelfService = {
             type = "boolean",
@@ -4586,7 +4428,7 @@ M.RegisterWorkspaceDirectoryInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         WorkspaceDirectoryName = {
             type = "string",
@@ -4600,15 +4442,11 @@ M.RegisterWorkspaceDirectoryInput = {
         IdcInstanceArn = {
             type = "string",
         },
-        MicrosoftEntraConfig = {
-            type = "structure",
-        },
+        MicrosoftEntraConfig = M.MicrosoftEntraConfig,
         WorkspaceType = {
             type = "string",
         },
-        ActiveDirectoryConfig = {
-            type = "structure",
-        },
+        ActiveDirectoryConfig = M.ActiveDirectoryConfig,
     },
 }
 
@@ -4662,9 +4500,7 @@ M.RejectAccountLinkInvitationInput = {
 M.RejectAccountLinkInvitationOutput = {
     type = "structure",
     members = {
-        AccountLink = {
-            type = "structure",
-        },
+        AccountLink = M.AccountLink,
     },
 }
 
@@ -4695,7 +4531,7 @@ M.RevokeIpRulesInput = {
         },
         UserRules = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4721,7 +4557,7 @@ M.StartWorkspacesInput = {
     members = {
         StartWorkspaceRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.StartRequest,
             traits = {
                 required = true,
             },
@@ -4734,7 +4570,7 @@ M.StartWorkspacesOutput = {
     members = {
         FailedRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.FailedWorkspaceChangeRequest,
         },
     },
 }
@@ -4769,7 +4605,7 @@ M.StopWorkspacesInput = {
     members = {
         StopWorkspaceRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.StopRequest,
             traits = {
                 required = true,
             },
@@ -4782,7 +4618,7 @@ M.StopWorkspacesOutput = {
     members = {
         FailedRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.FailedWorkspaceChangeRequest,
         },
     },
 }
@@ -4820,7 +4656,7 @@ M.TerminateWorkspacesInput = {
     members = {
         TerminateWorkspaceRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.TerminateRequest,
             traits = {
                 required = true,
             },
@@ -4833,7 +4669,7 @@ M.TerminateWorkspacesOutput = {
     members = {
         FailedRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.FailedWorkspaceChangeRequest,
         },
     },
 }
@@ -4907,12 +4743,9 @@ M.UpdateConnectionAliasPermissionInput = {
                 required = true,
             },
         },
-        ConnectionAliasPermission = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ConnectionAliasPermission = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConnectionAliasPermission }),
     },
 }
 
@@ -4931,7 +4764,7 @@ M.UpdateRulesOfIpGroupInput = {
         },
         UserRules = {
             type = "list",
-            member_type = "structure",
+            member = M.IpRuleItem,
             traits = {
                 required = true,
             },
@@ -5005,15 +4838,9 @@ M.UpdateWorkspacesPoolInput = {
         DirectoryId = {
             type = "string",
         },
-        Capacity = {
-            type = "structure",
-        },
-        ApplicationSettings = {
-            type = "structure",
-        },
-        TimeoutSettings = {
-            type = "structure",
-        },
+        Capacity = M.Capacity,
+        ApplicationSettings = M.ApplicationSettingsRequest,
+        TimeoutSettings = M.TimeoutSettings,
         RunningMode = {
             type = "string",
         },
@@ -5023,9 +4850,7 @@ M.UpdateWorkspacesPoolInput = {
 M.UpdateWorkspacesPoolOutput = {
     type = "structure",
     members = {
-        WorkspacesPool = {
-            type = "structure",
-        },
+        WorkspacesPool = M.WorkspacesPool,
     },
 }
 

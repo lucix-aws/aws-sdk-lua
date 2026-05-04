@@ -76,7 +76,7 @@ M.AccessDetail = {
             type = "timestamp",
         },
         TotalAuthenticatedEntities = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -470,12 +470,9 @@ M.CreateAccessKeyInput = {
 M.CreateAccessKeyOutput = {
     type = "structure",
     members = {
-        AccessKey = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AccessKey = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AccessKey }),
     },
 }
 
@@ -508,7 +505,7 @@ M.PolicyParameter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Type = {
             type = "string",
@@ -524,7 +521,7 @@ M.DelegationPermission = {
         },
         Parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.PolicyParameter,
         },
     },
 }
@@ -541,12 +538,9 @@ M.CreateDelegationRequestInput = {
                 required = true,
             },
         },
-        Permissions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Permissions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DelegationPermission }),
         RequestMessage = {
             type = "string",
         },
@@ -566,13 +560,16 @@ M.CreateDelegationRequestInput = {
             },
         },
         SessionDuration = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         OnlySendByOwner = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -643,12 +640,9 @@ M.Group = {
 M.CreateGroupOutput = {
     type = "structure",
     members = {
-        Group = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Group = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Group }),
     },
 }
 
@@ -684,7 +678,7 @@ M.CreateInstanceProfileInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -741,18 +735,14 @@ M.Role = {
             type = "string",
         },
         MaxSessionDuration = {
-            type = "number",
+            type = "integer",
         },
-        PermissionsBoundary = {
-            type = "structure",
-        },
+        PermissionsBoundary = M.AttachedPermissionsBoundary,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        RoleLastUsed = {
-            type = "structure",
-        },
+        RoleLastUsed = M.RoleLastUsed,
     },
 }
 
@@ -791,14 +781,14 @@ M.InstanceProfile = {
         },
         Roles = {
             type = "list",
-            member_type = "structure",
+            member = M.Role,
             traits = {
                 required = true,
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -806,12 +796,9 @@ M.InstanceProfile = {
 M.CreateInstanceProfileOutput = {
     type = "structure",
     members = {
-        InstanceProfile = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InstanceProfile = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InstanceProfile }),
     },
 }
 
@@ -826,6 +813,9 @@ M.CreateLoginProfileInput = {
         },
         PasswordResetRequired = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -847,6 +837,9 @@ M.LoginProfile = {
         },
         PasswordResetRequired = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -854,12 +847,9 @@ M.LoginProfile = {
 M.CreateLoginProfileOutput = {
     type = "structure",
     members = {
-        LoginProfile = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        LoginProfile = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LoginProfile }),
     },
 }
 
@@ -874,15 +864,15 @@ M.CreateOpenIDConnectProviderInput = {
         },
         ClientIDList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ThumbprintList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -895,7 +885,7 @@ M.CreateOpenIDConnectProviderOutput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -933,7 +923,7 @@ M.CreatePolicyInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -957,13 +947,16 @@ M.Policy = {
             type = "string",
         },
         AttachmentCount = {
-            type = "number",
+            type = "integer",
         },
         PermissionsBoundaryUsageCount = {
-            type = "number",
+            type = "integer",
         },
         IsAttachable = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Description = {
             type = "string",
@@ -976,7 +969,7 @@ M.Policy = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -984,9 +977,7 @@ M.Policy = {
 M.CreatePolicyOutput = {
     type = "structure",
     members = {
-        Policy = {
-            type = "structure",
-        },
+        Policy = M.Policy,
     },
 }
 
@@ -1017,6 +1008,9 @@ M.CreatePolicyVersionInput = {
         },
         SetAsDefault = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1032,6 +1026,9 @@ M.PolicyVersion = {
         },
         IsDefaultVersion = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         CreateDate = {
             type = "timestamp",
@@ -1042,9 +1039,7 @@ M.PolicyVersion = {
 M.CreatePolicyVersionOutput = {
     type = "structure",
     members = {
-        PolicyVersion = {
-            type = "structure",
-        },
+        PolicyVersion = M.PolicyVersion,
     },
 }
 
@@ -1070,14 +1065,14 @@ M.CreateRoleInput = {
             type = "string",
         },
         MaxSessionDuration = {
-            type = "number",
+            type = "integer",
         },
         PermissionsBoundary = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1085,12 +1080,9 @@ M.CreateRoleInput = {
 M.CreateRoleOutput = {
     type = "structure",
     members = {
-        Role = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Role = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Role }),
     },
 }
 
@@ -1111,7 +1103,7 @@ M.CreateSAMLProviderInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         AssertionEncryptionMode = {
             type = "string",
@@ -1130,7 +1122,7 @@ M.CreateSAMLProviderOutput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1156,9 +1148,7 @@ M.CreateServiceLinkedRoleInput = {
 M.CreateServiceLinkedRoleOutput = {
     type = "structure",
     members = {
-        Role = {
-            type = "structure",
-        },
+        Role = M.Role,
     },
 }
 
@@ -1178,7 +1168,7 @@ M.CreateServiceSpecificCredentialInput = {
             },
         },
         CredentialAgeDays = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1203,9 +1193,15 @@ M.ServiceSpecificCredential = {
         },
         ServiceUserName = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
         ServicePassword = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
         ServiceCredentialAlias = {
             type = "string",
@@ -1237,9 +1233,7 @@ M.ServiceSpecificCredential = {
 M.CreateServiceSpecificCredentialOutput = {
     type = "structure",
     members = {
-        ServiceSpecificCredential = {
-            type = "structure",
-        },
+        ServiceSpecificCredential = M.ServiceSpecificCredential,
     },
 }
 
@@ -1270,7 +1264,7 @@ M.CreateUserInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1311,12 +1305,10 @@ M.User = {
         PasswordLastUsed = {
             type = "timestamp",
         },
-        PermissionsBoundary = {
-            type = "structure",
-        },
+        PermissionsBoundary = M.AttachedPermissionsBoundary,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1324,9 +1316,7 @@ M.User = {
 M.CreateUserOutput = {
     type = "structure",
     members = {
-        User = {
-            type = "structure",
-        },
+        User = M.User,
     },
 }
 
@@ -1344,7 +1334,7 @@ M.CreateVirtualMFADeviceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1364,15 +1354,13 @@ M.VirtualMFADevice = {
         QRCodePNG = {
             type = "blob",
         },
-        User = {
-            type = "structure",
-        },
+        User = M.User,
         EnableDate = {
             type = "timestamp",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1380,12 +1368,9 @@ M.VirtualMFADevice = {
 M.CreateVirtualMFADeviceOutput = {
     type = "structure",
     members = {
-        VirtualMFADevice = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        VirtualMFADevice = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VirtualMFADevice }),
     },
 }
 
@@ -1905,7 +1890,7 @@ M.DisableOrganizationsRootCredentialsManagementOutput = {
         },
         EnabledFeatures = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1952,7 +1937,7 @@ M.DisableOrganizationsRootSessionsOutput = {
         },
         EnabledFeatures = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2041,7 +2026,7 @@ M.EnableOrganizationsRootCredentialsManagementOutput = {
         },
         EnabledFeatures = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2058,7 +2043,7 @@ M.EnableOrganizationsRootSessionsOutput = {
         },
         EnabledFeatures = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2184,9 +2169,7 @@ M.GetAccessKeyLastUsedOutput = {
         UserName = {
             type = "string",
         },
-        AccessKeyLastUsed = {
-            type = "structure",
-        },
+        AccessKeyLastUsed = M.AccessKeyLastUsed,
     },
 }
 
@@ -2203,10 +2186,10 @@ M.GetAccountAuthorizationDetailsInput = {
     members = {
         Filter = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -2246,11 +2229,11 @@ M.GroupDetail = {
         },
         GroupPolicyList = {
             type = "list",
-            member_type = "structure",
+            member = M.PolicyDetail,
         },
         AttachedManagedPolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.AttachedPolicy,
         },
     },
 }
@@ -2274,13 +2257,16 @@ M.ManagedPolicyDetail = {
             type = "string",
         },
         AttachmentCount = {
-            type = "number",
+            type = "integer",
         },
         PermissionsBoundaryUsageCount = {
-            type = "number",
+            type = "integer",
         },
         IsAttachable = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Description = {
             type = "string",
@@ -2293,7 +2279,7 @@ M.ManagedPolicyDetail = {
         },
         PolicyVersionList = {
             type = "list",
-            member_type = "structure",
+            member = M.PolicyVersion,
         },
     },
 }
@@ -2321,26 +2307,22 @@ M.RoleDetail = {
         },
         InstanceProfileList = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceProfile,
         },
         RolePolicyList = {
             type = "list",
-            member_type = "structure",
+            member = M.PolicyDetail,
         },
         AttachedManagedPolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.AttachedPolicy,
         },
-        PermissionsBoundary = {
-            type = "structure",
-        },
+        PermissionsBoundary = M.AttachedPermissionsBoundary,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        RoleLastUsed = {
-            type = "structure",
-        },
+        RoleLastUsed = M.RoleLastUsed,
     },
 }
 
@@ -2364,22 +2346,20 @@ M.UserDetail = {
         },
         UserPolicyList = {
             type = "list",
-            member_type = "structure",
+            member = M.PolicyDetail,
         },
         GroupList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AttachedManagedPolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.AttachedPolicy,
         },
-        PermissionsBoundary = {
-            type = "structure",
-        },
+        PermissionsBoundary = M.AttachedPermissionsBoundary,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2389,22 +2369,25 @@ M.GetAccountAuthorizationDetailsOutput = {
     members = {
         UserDetailList = {
             type = "list",
-            member_type = "structure",
+            member = M.UserDetail,
         },
         GroupDetailList = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupDetail,
         },
         RoleDetailList = {
             type = "list",
-            member_type = "structure",
+            member = M.RoleDetail,
         },
         Policies = {
             type = "list",
-            member_type = "structure",
+            member = M.ManagedPolicyDetail,
         },
         IsTruncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Marker = {
             type = "string",
@@ -2420,31 +2403,49 @@ M.PasswordPolicy = {
     type = "structure",
     members = {
         MinimumPasswordLength = {
-            type = "number",
+            type = "integer",
         },
         RequireSymbols = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         RequireNumbers = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         RequireUppercaseCharacters = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         RequireLowercaseCharacters = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         AllowUsersToChangePassword = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         ExpirePasswords = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         MaxPasswordAge = {
-            type = "number",
+            type = "integer",
         },
         PasswordReusePrevention = {
-            type = "number",
+            type = "integer",
         },
         HardExpiry = {
             type = "boolean",
@@ -2455,12 +2456,9 @@ M.PasswordPolicy = {
 M.GetAccountPasswordPolicyOutput = {
     type = "structure",
     members = {
-        PasswordPolicy = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        PasswordPolicy = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PasswordPolicy }),
     },
 }
 
@@ -2510,8 +2508,8 @@ M.GetAccountSummaryOutput = {
     members = {
         SummaryMap = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
         },
     },
 }
@@ -2521,7 +2519,7 @@ M.GetContextKeysForCustomPolicyInput = {
     members = {
         PolicyInputList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2534,7 +2532,7 @@ M.GetContextKeysForCustomPolicyOutput = {
     members = {
         ContextKeyNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2550,7 +2548,7 @@ M.GetContextKeysForPrincipalPolicyInput = {
         },
         PolicyInputList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2560,7 +2558,7 @@ M.GetContextKeysForPrincipalPolicyOutput = {
     members = {
         ContextKeyNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2629,6 +2627,9 @@ M.GetDelegationRequestInput = {
         },
         DelegationPermissionCheck = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -2658,15 +2659,13 @@ M.DelegationRequest = {
         RequestMessage = {
             type = "string",
         },
-        Permissions = {
-            type = "structure",
-        },
+        Permissions = M.DelegationPermission,
         PermissionPolicy = {
             type = "string",
         },
         RolePermissionRestrictionArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         OwnerId = {
             type = "string",
@@ -2690,7 +2689,7 @@ M.DelegationRequest = {
             type = "timestamp",
         },
         SessionDuration = {
-            type = "number",
+            type = "integer",
         },
         RedirectUrl = {
             type = "string",
@@ -2703,6 +2702,9 @@ M.DelegationRequest = {
         },
         OnlySendByOwner = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         UpdatedTime = {
             type = "timestamp",
@@ -2725,9 +2727,7 @@ M.permissionCheckStatusType = {
 M.GetDelegationRequestOutput = {
     type = "structure",
     members = {
-        DelegationRequest = {
-            type = "structure",
-        },
+        DelegationRequest = M.DelegationRequest,
         PermissionCheckStatus = {
             type = "string",
         },
@@ -2750,7 +2750,7 @@ M.GetGroupInput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2758,21 +2758,21 @@ M.GetGroupInput = {
 M.GetGroupOutput = {
     type = "structure",
     members = {
-        Group = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Group = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Group }),
         Users = {
             type = "list",
-            member_type = "structure",
+            member = M.User,
             traits = {
                 required = true,
             },
         },
         IsTruncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Marker = {
             type = "string",
@@ -2874,12 +2874,9 @@ M.GetInstanceProfileInput = {
 M.GetInstanceProfileOutput = {
     type = "structure",
     members = {
-        InstanceProfile = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InstanceProfile = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InstanceProfile }),
     },
 }
 
@@ -2895,12 +2892,9 @@ M.GetLoginProfileInput = {
 M.GetLoginProfileOutput = {
     type = "structure",
     members = {
-        LoginProfile = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        LoginProfile = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LoginProfile }),
     },
 }
 
@@ -2936,8 +2930,8 @@ M.GetMFADeviceOutput = {
         },
         Certifications = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2962,18 +2956,18 @@ M.GetOpenIDConnectProviderOutput = {
         },
         ClientIDList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ThumbprintList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CreateDate = {
             type = "timestamp",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2995,7 +2989,7 @@ M.GetOrganizationsAccessReportInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -3049,24 +3043,25 @@ M.GetOrganizationsAccessReportOutput = {
             type = "timestamp",
         },
         NumberOfServicesAccessible = {
-            type = "number",
+            type = "integer",
         },
         NumberOfServicesNotAccessed = {
-            type = "number",
+            type = "integer",
         },
         AccessDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessDetail,
         },
         IsTruncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Marker = {
             type = "string",
         },
-        ErrorDetails = {
-            type = "structure",
-        },
+        ErrorDetails = M.ErrorDetails,
     },
 }
 
@@ -3082,6 +3077,9 @@ M.GetOutboundWebIdentityFederationInfoOutput = {
         },
         JwtVendingEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -3101,9 +3099,7 @@ M.GetPolicyInput = {
 M.GetPolicyOutput = {
     type = "structure",
     members = {
-        Policy = {
-            type = "structure",
-        },
+        Policy = M.Policy,
     },
 }
 
@@ -3128,9 +3124,7 @@ M.GetPolicyVersionInput = {
 M.GetPolicyVersionOutput = {
     type = "structure",
     members = {
-        PolicyVersion = {
-            type = "structure",
-        },
+        PolicyVersion = M.PolicyVersion,
     },
 }
 
@@ -3149,12 +3143,9 @@ M.GetRoleInput = {
 M.GetRoleOutput = {
     type = "structure",
     members = {
-        Role = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Role = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Role }),
     },
 }
 
@@ -3241,14 +3232,14 @@ M.GetSAMLProviderOutput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         AssertionEncryptionMode = {
             type = "string",
         },
         PrivateKeyList = {
             type = "list",
-            member_type = "structure",
+            member = M.SAMLPrivateKey,
         },
     },
 }
@@ -3304,12 +3295,9 @@ M.ServerCertificateMetadata = {
 M.ServerCertificate = {
     type = "structure",
     members = {
-        ServerCertificateMetadata = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ServerCertificateMetadata = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ServerCertificateMetadata }),
         CertificateBody = {
             type = "string",
             traits = {
@@ -3321,7 +3309,7 @@ M.ServerCertificate = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3329,12 +3317,9 @@ M.ServerCertificate = {
 M.GetServerCertificateOutput = {
     type = "structure",
     members = {
-        ServerCertificate = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ServerCertificate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ServerCertificate }),
     },
 }
 
@@ -3348,7 +3333,7 @@ M.GetServiceLastAccessedDetailsInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -3399,11 +3384,11 @@ M.ServiceLastAccessed = {
             type = "string",
         },
         TotalAuthenticatedEntities = {
-            type = "number",
+            type = "integer",
         },
         TrackedActionsLastAccessed = {
             type = "list",
-            member_type = "structure",
+            member = M.TrackedActionLastAccessed,
         },
     },
 }
@@ -3428,7 +3413,7 @@ M.GetServiceLastAccessedDetailsOutput = {
         },
         ServicesLastAccessed = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceLastAccessed,
             traits = {
                 required = true,
             },
@@ -3441,13 +3426,14 @@ M.GetServiceLastAccessedDetailsOutput = {
         },
         IsTruncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Marker = {
             type = "string",
         },
-        Error = {
-            type = "structure",
-        },
+        Error = M.ErrorDetails,
     },
 }
 
@@ -3467,7 +3453,7 @@ M.GetServiceLastAccessedDetailsWithEntitiesInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -3517,12 +3503,9 @@ M.EntityInfo = {
 M.EntityDetails = {
     type = "structure",
     members = {
-        EntityInfo = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        EntityInfo = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EntityInfo }),
         LastAuthenticated = {
             type = "timestamp",
         },
@@ -3552,20 +3535,21 @@ M.GetServiceLastAccessedDetailsWithEntitiesOutput = {
         },
         EntityDetailsList = {
             type = "list",
-            member_type = "structure",
+            member = M.EntityDetails,
             traits = {
                 required = true,
             },
         },
         IsTruncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Marker = {
             type = "string",
         },
-        Error = {
-            type = "structure",
-        },
+        Error = M.ErrorDetails,
     },
 }
 
@@ -3589,7 +3573,7 @@ M.RoleUsageType = {
         },
         Resources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3602,7 +3586,7 @@ M.DeletionTaskFailureReasonType = {
         },
         RoleUsageList = {
             type = "list",
-            member_type = "structure",
+            member = M.RoleUsageType,
         },
     },
 }
@@ -3623,9 +3607,7 @@ M.GetServiceLinkedRoleDeletionStatusOutput = {
                 required = true,
             },
         },
-        Reason = {
-            type = "structure",
-        },
+        Reason = M.DeletionTaskFailureReasonType,
     },
 }
 
@@ -3700,9 +3682,7 @@ M.SSHPublicKey = {
 M.GetSSHPublicKeyOutput = {
     type = "structure",
     members = {
-        SSHPublicKey = {
-            type = "structure",
-        },
+        SSHPublicKey = M.SSHPublicKey,
     },
 }
 
@@ -3728,12 +3708,9 @@ M.GetUserInput = {
 M.GetUserOutput = {
     type = "structure",
     members = {
-        User = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        User = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.User }),
     },
 }
 
@@ -3789,7 +3766,7 @@ M.ListAccessKeysInput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3799,13 +3776,16 @@ M.ListAccessKeysOutput = {
     members = {
         AccessKeyMetadata = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessKeyMetadata,
             traits = {
                 required = true,
             },
         },
         IsTruncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Marker = {
             type = "string",
@@ -3820,7 +3800,7 @@ M.ListAccountAliasesInput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3830,13 +3810,16 @@ M.ListAccountAliasesOutput = {
     members = {
         AccountAliases = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         IsTruncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Marker = {
             type = "string",
@@ -3860,7 +3843,7 @@ M.ListAttachedGroupPoliciesInput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3870,10 +3853,13 @@ M.ListAttachedGroupPoliciesOutput = {
     members = {
         AttachedPolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.AttachedPolicy,
         },
         IsTruncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Marker = {
             type = "string",
@@ -3897,7 +3883,7 @@ M.ListAttachedRolePoliciesInput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3907,10 +3893,13 @@ M.ListAttachedRolePoliciesOutput = {
     members = {
         AttachedPolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.AttachedPolicy,
         },
         IsTruncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Marker = {
             type = "string",
@@ -3934,7 +3923,7 @@ M.ListAttachedUserPoliciesInput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3944,10 +3933,13 @@ M.ListAttachedUserPoliciesOutput = {
     members = {
         AttachedPolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.AttachedPolicy,
         },
         IsTruncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Marker = {
             type = "string",
@@ -3965,7 +3957,7 @@ M.ListDelegationRequestsInput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3975,13 +3967,16 @@ M.ListDelegationRequestsOutput = {
     members = {
         DelegationRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.DelegationRequest,
         },
         Marker = {
             type = "string",
         },
         isTruncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -4013,7 +4008,7 @@ M.ListEntitiesForPolicyInput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4059,18 +4054,21 @@ M.ListEntitiesForPolicyOutput = {
     members = {
         PolicyGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.PolicyGroup,
         },
         PolicyUsers = {
             type = "list",
-            member_type = "structure",
+            member = M.PolicyUser,
         },
         PolicyRoles = {
             type = "list",
-            member_type = "structure",
+            member = M.PolicyRole,
         },
         IsTruncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Marker = {
             type = "string",
@@ -4091,7 +4089,7 @@ M.ListGroupPoliciesInput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4101,13 +4099,16 @@ M.ListGroupPoliciesOutput = {
     members = {
         PolicyNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         IsTruncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Marker = {
             type = "string",
@@ -4125,7 +4126,7 @@ M.ListGroupsInput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4135,13 +4136,16 @@ M.ListGroupsOutput = {
     members = {
         Groups = {
             type = "list",
-            member_type = "structure",
+            member = M.Group,
             traits = {
                 required = true,
             },
         },
         IsTruncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Marker = {
             type = "string",
@@ -4162,7 +4166,7 @@ M.ListGroupsForUserInput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4172,13 +4176,16 @@ M.ListGroupsForUserOutput = {
     members = {
         Groups = {
             type = "list",
-            member_type = "structure",
+            member = M.Group,
             traits = {
                 required = true,
             },
         },
         IsTruncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Marker = {
             type = "string",
@@ -4196,7 +4203,7 @@ M.ListInstanceProfilesInput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4206,13 +4213,16 @@ M.ListInstanceProfilesOutput = {
     members = {
         InstanceProfiles = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceProfile,
             traits = {
                 required = true,
             },
         },
         IsTruncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Marker = {
             type = "string",
@@ -4233,7 +4243,7 @@ M.ListInstanceProfilesForRoleInput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4243,13 +4253,16 @@ M.ListInstanceProfilesForRoleOutput = {
     members = {
         InstanceProfiles = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceProfile,
             traits = {
                 required = true,
             },
         },
         IsTruncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Marker = {
             type = "string",
@@ -4270,7 +4283,7 @@ M.ListInstanceProfileTagsInput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4280,13 +4293,16 @@ M.ListInstanceProfileTagsOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
         },
         IsTruncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Marker = {
             type = "string",
@@ -4304,7 +4320,7 @@ M.ListMFADevicesInput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4338,13 +4354,16 @@ M.ListMFADevicesOutput = {
     members = {
         MFADevices = {
             type = "list",
-            member_type = "structure",
+            member = M.MFADevice,
             traits = {
                 required = true,
             },
         },
         IsTruncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Marker = {
             type = "string",
@@ -4365,7 +4384,7 @@ M.ListMFADeviceTagsInput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4375,13 +4394,16 @@ M.ListMFADeviceTagsOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
         },
         IsTruncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Marker = {
             type = "string",
@@ -4407,7 +4429,7 @@ M.ListOpenIDConnectProvidersOutput = {
     members = {
         OpenIDConnectProviderList = {
             type = "list",
-            member_type = "structure",
+            member = M.OpenIDConnectProviderListEntry,
         },
     },
 }
@@ -4425,7 +4447,7 @@ M.ListOpenIDConnectProviderTagsInput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4435,13 +4457,16 @@ M.ListOpenIDConnectProviderTagsOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
         },
         IsTruncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Marker = {
             type = "string",
@@ -4461,7 +4486,7 @@ M.ListOrganizationsFeaturesOutput = {
         },
         EnabledFeatures = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4480,6 +4505,9 @@ M.ListPoliciesInput = {
         },
         OnlyAttached = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         PathPrefix = {
             type = "string",
@@ -4491,7 +4519,7 @@ M.ListPoliciesInput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4501,10 +4529,13 @@ M.ListPoliciesOutput = {
     members = {
         Policies = {
             type = "list",
-            member_type = "structure",
+            member = M.Policy,
         },
         IsTruncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Marker = {
             type = "string",
@@ -4526,7 +4557,7 @@ M.ListPoliciesGrantingServiceAccessInput = {
         },
         ServiceNamespaces = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4574,7 +4605,7 @@ M.ListPoliciesGrantingServiceAccessEntry = {
         },
         Policies = {
             type = "list",
-            member_type = "structure",
+            member = M.PolicyGrantingServiceAccess,
         },
     },
 }
@@ -4584,13 +4615,16 @@ M.ListPoliciesGrantingServiceAccessOutput = {
     members = {
         PoliciesGrantingServiceAccess = {
             type = "list",
-            member_type = "structure",
+            member = M.ListPoliciesGrantingServiceAccessEntry,
             traits = {
                 required = true,
             },
         },
         IsTruncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Marker = {
             type = "string",
@@ -4611,7 +4645,7 @@ M.ListPolicyTagsInput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4621,13 +4655,16 @@ M.ListPolicyTagsOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
         },
         IsTruncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Marker = {
             type = "string",
@@ -4648,7 +4685,7 @@ M.ListPolicyVersionsInput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4658,10 +4695,13 @@ M.ListPolicyVersionsOutput = {
     members = {
         Versions = {
             type = "list",
-            member_type = "structure",
+            member = M.PolicyVersion,
         },
         IsTruncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Marker = {
             type = "string",
@@ -4682,7 +4722,7 @@ M.ListRolePoliciesInput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4692,13 +4732,16 @@ M.ListRolePoliciesOutput = {
     members = {
         PolicyNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         IsTruncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Marker = {
             type = "string",
@@ -4716,7 +4759,7 @@ M.ListRolesInput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4726,13 +4769,16 @@ M.ListRolesOutput = {
     members = {
         Roles = {
             type = "list",
-            member_type = "structure",
+            member = M.Role,
             traits = {
                 required = true,
             },
         },
         IsTruncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Marker = {
             type = "string",
@@ -4753,7 +4799,7 @@ M.ListRoleTagsInput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4763,13 +4809,16 @@ M.ListRoleTagsOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
         },
         IsTruncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Marker = {
             type = "string",
@@ -4801,7 +4850,7 @@ M.ListSAMLProvidersOutput = {
     members = {
         SAMLProviderList = {
             type = "list",
-            member_type = "structure",
+            member = M.SAMLProviderListEntry,
         },
     },
 }
@@ -4819,7 +4868,7 @@ M.ListSAMLProviderTagsInput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4829,13 +4878,16 @@ M.ListSAMLProviderTagsOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
         },
         IsTruncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Marker = {
             type = "string",
@@ -4853,7 +4905,7 @@ M.ListServerCertificatesInput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4863,13 +4915,16 @@ M.ListServerCertificatesOutput = {
     members = {
         ServerCertificateMetadataList = {
             type = "list",
-            member_type = "structure",
+            member = M.ServerCertificateMetadata,
             traits = {
                 required = true,
             },
         },
         IsTruncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Marker = {
             type = "string",
@@ -4890,7 +4945,7 @@ M.ListServerCertificateTagsInput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4900,13 +4955,16 @@ M.ListServerCertificateTagsOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
         },
         IsTruncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Marker = {
             type = "string",
@@ -4930,7 +4988,7 @@ M.ListServiceSpecificCredentialsInput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4952,6 +5010,9 @@ M.ServiceSpecificCredentialMetadata = {
         },
         ServiceUserName = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
         ServiceCredentialAlias = {
             type = "string",
@@ -4985,13 +5046,16 @@ M.ListServiceSpecificCredentialsOutput = {
     members = {
         ServiceSpecificCredentials = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceSpecificCredentialMetadata,
         },
         Marker = {
             type = "string",
         },
         IsTruncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -5006,7 +5070,7 @@ M.ListSigningCertificatesInput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5049,13 +5113,16 @@ M.ListSigningCertificatesOutput = {
     members = {
         Certificates = {
             type = "list",
-            member_type = "structure",
+            member = M.SigningCertificate,
             traits = {
                 required = true,
             },
         },
         IsTruncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Marker = {
             type = "string",
@@ -5073,7 +5140,7 @@ M.ListSSHPublicKeysInput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5113,10 +5180,13 @@ M.ListSSHPublicKeysOutput = {
     members = {
         SSHPublicKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.SSHPublicKeyMetadata,
         },
         IsTruncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Marker = {
             type = "string",
@@ -5137,7 +5207,7 @@ M.ListUserPoliciesInput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5147,13 +5217,16 @@ M.ListUserPoliciesOutput = {
     members = {
         PolicyNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         IsTruncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Marker = {
             type = "string",
@@ -5171,7 +5244,7 @@ M.ListUsersInput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5181,13 +5254,16 @@ M.ListUsersOutput = {
     members = {
         Users = {
             type = "list",
-            member_type = "structure",
+            member = M.User,
             traits = {
                 required = true,
             },
         },
         IsTruncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Marker = {
             type = "string",
@@ -5208,7 +5284,7 @@ M.ListUserTagsInput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5218,13 +5294,16 @@ M.ListUserTagsOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
         },
         IsTruncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Marker = {
             type = "string",
@@ -5242,7 +5321,7 @@ M.ListVirtualMFADevicesInput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5252,13 +5331,16 @@ M.ListVirtualMFADevicesOutput = {
     members = {
         VirtualMFADevices = {
             type = "list",
-            member_type = "structure",
+            member = M.VirtualMFADevice,
             traits = {
                 required = true,
             },
         },
         IsTruncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Marker = {
             type = "string",
@@ -5497,9 +5579,7 @@ M.ResetServiceSpecificCredentialInput = {
 M.ResetServiceSpecificCredentialOutput = {
     type = "structure",
     members = {
-        ServiceSpecificCredential = {
-            type = "structure",
-        },
+        ServiceSpecificCredential = M.ServiceSpecificCredential,
     },
 }
 
@@ -5629,7 +5709,7 @@ M.ContextEntry = {
         },
         ContextKeyValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ContextKeyType = {
             type = "string",
@@ -5642,25 +5722,25 @@ M.SimulateCustomPolicyInput = {
     members = {
         PolicyInputList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         PermissionsBoundaryPolicyInputList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ActionNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         ResourceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ResourcePolicy = {
             type = "string",
@@ -5673,13 +5753,13 @@ M.SimulateCustomPolicyInput = {
         },
         ContextEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.ContextEntry,
         },
         ResourceHandlingOption = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -5697,10 +5777,16 @@ M.Position = {
     type = "structure",
     members = {
         Line = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         Column = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -5724,12 +5810,8 @@ M.Statement = {
         SourcePolicyType = {
             type = "string",
         },
-        StartPosition = {
-            type = "structure",
-        },
-        EndPosition = {
-            type = "structure",
-        },
+        StartPosition = M.Position,
+        EndPosition = M.Position,
     },
 }
 
@@ -5738,6 +5820,9 @@ M.OrganizationsDecisionDetail = {
     members = {
         AllowedByOrganizations = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -5747,6 +5832,9 @@ M.PermissionsBoundaryDecisionDetail = {
     members = {
         AllowedByPermissionsBoundary = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -5768,20 +5856,18 @@ M.ResourceSpecificResult = {
         },
         MatchedStatements = {
             type = "list",
-            member_type = "structure",
+            member = M.Statement,
         },
         MissingContextValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         EvalDecisionDetails = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        PermissionsBoundaryDecisionDetail = {
-            type = "structure",
-        },
+        PermissionsBoundaryDecisionDetail = M.PermissionsBoundaryDecisionDetail,
     },
 }
 
@@ -5805,26 +5891,22 @@ M.EvaluationResult = {
         },
         MatchedStatements = {
             type = "list",
-            member_type = "structure",
+            member = M.Statement,
         },
         MissingContextValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        OrganizationsDecisionDetail = {
-            type = "structure",
-        },
-        PermissionsBoundaryDecisionDetail = {
-            type = "structure",
-        },
+        OrganizationsDecisionDetail = M.OrganizationsDecisionDetail,
+        PermissionsBoundaryDecisionDetail = M.PermissionsBoundaryDecisionDetail,
         EvalDecisionDetails = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ResourceSpecificResults = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceSpecificResult,
         },
     },
 }
@@ -5834,10 +5916,13 @@ M.SimulateCustomPolicyOutput = {
     members = {
         EvaluationResults = {
             type = "list",
-            member_type = "structure",
+            member = M.EvaluationResult,
         },
         IsTruncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Marker = {
             type = "string",
@@ -5856,22 +5941,22 @@ M.SimulatePrincipalPolicyInput = {
         },
         PolicyInputList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         PermissionsBoundaryPolicyInputList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ActionNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         ResourceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ResourcePolicy = {
             type = "string",
@@ -5884,13 +5969,13 @@ M.SimulatePrincipalPolicyInput = {
         },
         ContextEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.ContextEntry,
         },
         ResourceHandlingOption = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -5903,10 +5988,13 @@ M.SimulatePrincipalPolicyOutput = {
     members = {
         EvaluationResults = {
             type = "list",
-            member_type = "structure",
+            member = M.EvaluationResult,
         },
         IsTruncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Marker = {
             type = "string",
@@ -5925,7 +6013,7 @@ M.TagInstanceProfileInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -5948,7 +6036,7 @@ M.TagMFADeviceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -5971,7 +6059,7 @@ M.TagOpenIDConnectProviderInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -5994,7 +6082,7 @@ M.TagPolicyInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -6017,7 +6105,7 @@ M.TagRoleInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -6040,7 +6128,7 @@ M.TagSAMLProviderInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -6063,7 +6151,7 @@ M.TagServerCertificateInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -6086,7 +6174,7 @@ M.TagUserInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -6109,7 +6197,7 @@ M.UntagInstanceProfileInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -6132,7 +6220,7 @@ M.UntagMFADeviceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -6155,7 +6243,7 @@ M.UntagOpenIDConnectProviderInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -6178,7 +6266,7 @@ M.UntagPolicyInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -6201,7 +6289,7 @@ M.UntagRoleInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -6224,7 +6312,7 @@ M.UntagSAMLProviderInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -6247,7 +6335,7 @@ M.UntagServerCertificateInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -6270,7 +6358,7 @@ M.UntagUserInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -6311,28 +6399,43 @@ M.UpdateAccountPasswordPolicyInput = {
     type = "structure",
     members = {
         MinimumPasswordLength = {
-            type = "number",
+            type = "integer",
         },
         RequireSymbols = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         RequireNumbers = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         RequireUppercaseCharacters = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         RequireLowercaseCharacters = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         AllowUsersToChangePassword = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         MaxPasswordAge = {
-            type = "number",
+            type = "integer",
         },
         PasswordReusePrevention = {
-            type = "number",
+            type = "integer",
         },
         HardExpiry = {
             type = "boolean",
@@ -6440,7 +6543,7 @@ M.UpdateOpenIDConnectProviderThumbprintInput = {
         },
         ThumbprintList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -6465,7 +6568,7 @@ M.UpdateRoleInput = {
             type = "string",
         },
         MaxSessionDuration = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -6495,9 +6598,7 @@ M.UpdateRoleDescriptionInput = {
 M.UpdateRoleDescriptionOutput = {
     type = "structure",
     members = {
-        Role = {
-            type = "structure",
-        },
+        Role = M.Role,
     },
 }
 
@@ -6705,7 +6806,7 @@ M.UploadServerCertificateInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -6713,12 +6814,10 @@ M.UploadServerCertificateInput = {
 M.UploadServerCertificateOutput = {
     type = "structure",
     members = {
-        ServerCertificateMetadata = {
-            type = "structure",
-        },
+        ServerCertificateMetadata = M.ServerCertificateMetadata,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -6761,12 +6860,9 @@ M.UploadSigningCertificateInput = {
 M.UploadSigningCertificateOutput = {
     type = "structure",
     members = {
-        Certificate = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Certificate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SigningCertificate }),
     },
 }
 
@@ -6811,9 +6907,7 @@ M.UploadSSHPublicKeyInput = {
 M.UploadSSHPublicKeyOutput = {
     type = "structure",
     members = {
-        SSHPublicKey = {
-            type = "structure",
-        },
+        SSHPublicKey = M.SSHPublicKey,
     },
 }
 

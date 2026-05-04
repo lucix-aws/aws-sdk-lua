@@ -4,10 +4,10 @@ M.ActiveContextTimeToLive = {
     type = "structure",
     members = {
         timeToLiveInSeconds = {
-            type = "number",
+            type = "integer",
         },
         turnsToLive = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -21,16 +21,13 @@ M.ActiveContext = {
                 required = true,
             },
         },
-        timeToLive = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        timeToLive = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActiveContextTimeToLive }),
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -207,8 +204,8 @@ M.DialogAction = {
         },
         slots = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         slotToElicit = {
             type = "string",
@@ -242,8 +239,8 @@ M.IntentSummary = {
         },
         slots = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         confirmationStatus = {
             type = "string",
@@ -268,22 +265,20 @@ M.GetSessionOutput = {
     members = {
         recentIntentSummaryView = {
             type = "list",
-            member_type = "structure",
+            member = M.IntentSummary,
         },
         sessionAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         sessionId = {
             type = "string",
         },
-        dialogAction = {
-            type = "structure",
-        },
+        dialogAction = M.DialogAction,
         activeContexts = {
             type = "list",
-            member_type = "structure",
+            member = M.ActiveContext,
         },
     },
 }
@@ -492,6 +487,7 @@ M.PostContentOutput = {
         audioStream = {
             type = "blob",
             traits = {
+                default = "",
                 http_payload = true,
             },
         },
@@ -562,13 +558,13 @@ M.PostTextInput = {
         },
         sessionAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         requestAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         inputText = {
             type = "string",
@@ -578,7 +574,7 @@ M.PostTextInput = {
         },
         activeContexts = {
             type = "list",
-            member_type = "structure",
+            member = M.ActiveContext,
         },
     },
 }
@@ -587,7 +583,10 @@ M.IntentConfidence = {
     type = "structure",
     members = {
         score = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -598,13 +597,11 @@ M.PredictedIntent = {
         intentName = {
             type = "string",
         },
-        nluIntentConfidence = {
-            type = "structure",
-        },
+        nluIntentConfidence = M.IntentConfidence,
         slots = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -648,7 +645,7 @@ M.GenericAttachment = {
         },
         buttons = {
             type = "list",
-            member_type = "structure",
+            member = M.Button,
         },
     },
 }
@@ -664,7 +661,7 @@ M.ResponseCard = {
         },
         genericAttachments = {
             type = "list",
-            member_type = "structure",
+            member = M.GenericAttachment,
         },
     },
 }
@@ -687,29 +684,25 @@ M.PostTextOutput = {
         intentName = {
             type = "string",
         },
-        nluIntentConfidence = {
-            type = "structure",
-        },
+        nluIntentConfidence = M.IntentConfidence,
         alternativeIntents = {
             type = "list",
-            member_type = "structure",
+            member = M.PredictedIntent,
         },
         slots = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         sessionAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         message = {
             type = "string",
         },
-        sentimentResponse = {
-            type = "structure",
-        },
+        sentimentResponse = M.SentimentResponse,
         messageFormat = {
             type = "string",
         },
@@ -719,9 +712,7 @@ M.PostTextOutput = {
         slotToElicit = {
             type = "string",
         },
-        responseCard = {
-            type = "structure",
-        },
+        responseCard = M.ResponseCard,
         sessionId = {
             type = "string",
         },
@@ -730,7 +721,7 @@ M.PostTextOutput = {
         },
         activeContexts = {
             type = "list",
-            member_type = "structure",
+            member = M.ActiveContext,
         },
     },
 }
@@ -761,15 +752,13 @@ M.PutSessionInput = {
         },
         sessionAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        dialogAction = {
-            type = "structure",
-        },
+        dialogAction = M.DialogAction,
         recentIntentSummaryView = {
             type = "list",
-            member_type = "structure",
+            member = M.IntentSummary,
         },
         accept = {
             type = "string",
@@ -779,7 +768,7 @@ M.PutSessionInput = {
         },
         activeContexts = {
             type = "list",
-            member_type = "structure",
+            member = M.ActiveContext,
         },
     },
 }
@@ -844,6 +833,7 @@ M.PutSessionOutput = {
         audioStream = {
             type = "blob",
             traits = {
+                default = "",
                 http_payload = true,
             },
         },

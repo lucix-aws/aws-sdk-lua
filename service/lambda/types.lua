@@ -4,19 +4,31 @@ M.AccountLimit = {
     type = "structure",
     members = {
         TotalCodeSize = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         CodeSizeUnzipped = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         CodeSizeZipped = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         ConcurrentExecutions = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         UnreservedConcurrentExecutions = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -25,10 +37,16 @@ M.AccountUsage = {
     type = "structure",
     members = {
         TotalCodeSize = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         FunctionCount = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -44,8 +62,9 @@ M.AddLayerVersionPermissionInput = {
             },
         },
         VersionNumber = {
-            type = "number",
+            type = "long",
             traits = {
+                default = nil,
                 http_label = true,
                 required = true,
             },
@@ -278,8 +297,8 @@ M.AliasRoutingConfiguration = {
     members = {
         AdditionalVersionWeights = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "double" },
         },
     },
 }
@@ -299,9 +318,7 @@ M.AliasConfiguration = {
         Description = {
             type = "string",
         },
-        RoutingConfig = {
-            type = "structure",
-        },
+        RoutingConfig = M.AliasRoutingConfiguration,
         RevisionId = {
             type = "string",
         },
@@ -313,7 +330,7 @@ M.AllowedPublishers = {
     members = {
         SigningProfileVersionArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -369,11 +386,11 @@ M.KafkaSchemaRegistryConfig = {
         },
         AccessConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.KafkaSchemaRegistryAccessConfig,
         },
         SchemaValidationConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.KafkaSchemaValidationConfig,
         },
     },
 }
@@ -384,9 +401,7 @@ M.AmazonManagedKafkaEventSourceConfig = {
         ConsumerGroupId = {
             type = "string",
         },
-        SchemaRegistryConfig = {
-            type = "structure",
-        },
+        SchemaRegistryConfig = M.KafkaSchemaRegistryConfig,
     },
 }
 
@@ -436,7 +451,7 @@ M.TargetTrackingScalingPolicy = {
             },
         },
         TargetValue = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -448,14 +463,14 @@ M.CapacityProviderScalingConfig = {
     type = "structure",
     members = {
         MaxVCpuCount = {
-            type = "number",
+            type = "integer",
         },
         ScalingMode = {
             type = "string",
         },
         ScalingPolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetTrackingScalingPolicy,
         },
     },
 }
@@ -465,15 +480,15 @@ M.InstanceRequirements = {
     members = {
         Architectures = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AllowedInstanceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ExcludedInstanceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -495,14 +510,14 @@ M.CapacityProviderVpcConfig = {
     members = {
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -519,31 +534,21 @@ M.CreateCapacityProviderInput = {
                 required = true,
             },
         },
-        VpcConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        PermissionsConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        InstanceRequirements = {
-            type = "structure",
-        },
-        CapacityProviderScalingConfig = {
-            type = "structure",
-        },
+        VpcConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CapacityProviderVpcConfig }),
+        PermissionsConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CapacityProviderPermissionsConfig }),
+        InstanceRequirements = M.InstanceRequirements,
+        CapacityProviderScalingConfig = M.CapacityProviderScalingConfig,
         KmsKeyArn = {
             type = "string",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -570,24 +575,14 @@ M.CapacityProvider = {
                 required = true,
             },
         },
-        VpcConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        PermissionsConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        InstanceRequirements = {
-            type = "structure",
-        },
-        CapacityProviderScalingConfig = {
-            type = "structure",
-        },
+        VpcConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CapacityProviderVpcConfig }),
+        PermissionsConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CapacityProviderPermissionsConfig }),
+        InstanceRequirements = M.InstanceRequirements,
+        CapacityProviderScalingConfig = M.CapacityProviderScalingConfig,
         KmsKeyArn = {
             type = "string",
         },
@@ -600,12 +595,9 @@ M.CapacityProvider = {
 M.CreateCapacityProviderOutput = {
     type = "structure",
     members = {
-        CapacityProvider = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        CapacityProvider = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CapacityProvider }),
     },
 }
 
@@ -625,12 +617,9 @@ M.DeleteCapacityProviderInput = {
 M.DeleteCapacityProviderOutput = {
     type = "structure",
     members = {
-        CapacityProvider = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        CapacityProvider = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CapacityProvider }),
     },
 }
 
@@ -650,12 +639,9 @@ M.GetCapacityProviderInput = {
 M.GetCapacityProviderOutput = {
     type = "structure",
     members = {
-        CapacityProvider = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        CapacityProvider = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CapacityProvider }),
     },
 }
 
@@ -675,7 +661,7 @@ M.ListCapacityProvidersInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxItems",
             },
@@ -688,7 +674,7 @@ M.ListCapacityProvidersOutput = {
     members = {
         CapacityProviders = {
             type = "list",
-            member_type = "structure",
+            member = M.CapacityProvider,
             traits = {
                 required = true,
             },
@@ -716,7 +702,7 @@ M.ListFunctionVersionsByCapacityProviderInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxItems",
             },
@@ -764,7 +750,7 @@ M.ListFunctionVersionsByCapacityProviderOutput = {
         },
         FunctionVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.FunctionVersionsByCapacityProviderListItem,
             traits = {
                 required = true,
             },
@@ -785,21 +771,16 @@ M.UpdateCapacityProviderInput = {
                 required = true,
             },
         },
-        CapacityProviderScalingConfig = {
-            type = "structure",
-        },
+        CapacityProviderScalingConfig = M.CapacityProviderScalingConfig,
     },
 }
 
 M.UpdateCapacityProviderOutput = {
     type = "structure",
     members = {
-        CapacityProvider = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        CapacityProvider = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CapacityProvider }),
     },
 }
 
@@ -815,10 +796,16 @@ M.CallbackOptions = {
     type = "structure",
     members = {
         TimeoutSeconds = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         HeartbeatTimeoutSeconds = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -861,7 +848,7 @@ M.ErrorObject = {
         },
         StackTrace = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -870,7 +857,7 @@ M.StepOptions = {
     type = "structure",
     members = {
         NextAttemptDelaySeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -888,7 +875,7 @@ M.WaitOptions = {
     type = "structure",
     members = {
         WaitSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -926,24 +913,12 @@ M.OperationUpdate = {
         Payload = {
             type = "string",
         },
-        Error = {
-            type = "structure",
-        },
-        ContextOptions = {
-            type = "structure",
-        },
-        StepOptions = {
-            type = "structure",
-        },
-        WaitOptions = {
-            type = "structure",
-        },
-        CallbackOptions = {
-            type = "structure",
-        },
-        ChainedInvokeOptions = {
-            type = "structure",
-        },
+        Error = M.ErrorObject,
+        ContextOptions = M.ContextOptions,
+        StepOptions = M.StepOptions,
+        WaitOptions = M.WaitOptions,
+        CallbackOptions = M.CallbackOptions,
+        ChainedInvokeOptions = M.ChainedInvokeOptions,
     },
 }
 
@@ -965,7 +940,7 @@ M.CheckpointDurableExecutionInput = {
         },
         Updates = {
             type = "list",
-            member_type = "structure",
+            member = M.OperationUpdate,
         },
         ClientToken = {
             type = "string",
@@ -982,9 +957,7 @@ M.CallbackDetails = {
         Result = {
             type = "string",
         },
-        Error = {
-            type = "structure",
-        },
+        Error = M.ErrorObject,
     },
 }
 
@@ -994,9 +967,7 @@ M.ChainedInvokeDetails = {
         Result = {
             type = "string",
         },
-        Error = {
-            type = "structure",
-        },
+        Error = M.ErrorObject,
     },
 }
 
@@ -1009,9 +980,7 @@ M.ContextDetails = {
         Result = {
             type = "string",
         },
-        Error = {
-            type = "structure",
-        },
+        Error = M.ErrorObject,
     },
 }
 
@@ -1039,7 +1008,10 @@ M.StepDetails = {
     type = "structure",
     members = {
         Attempt = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         NextAttemptTimestamp = {
             type = "timestamp",
@@ -1047,9 +1019,7 @@ M.StepDetails = {
         Result = {
             type = "string",
         },
-        Error = {
-            type = "structure",
-        },
+        Error = M.ErrorObject,
     },
 }
 
@@ -1101,24 +1071,12 @@ M.Operation = {
                 required = true,
             },
         },
-        ExecutionDetails = {
-            type = "structure",
-        },
-        ContextDetails = {
-            type = "structure",
-        },
-        StepDetails = {
-            type = "structure",
-        },
-        WaitDetails = {
-            type = "structure",
-        },
-        CallbackDetails = {
-            type = "structure",
-        },
-        ChainedInvokeDetails = {
-            type = "structure",
-        },
+        ExecutionDetails = M.ExecutionDetails,
+        ContextDetails = M.ContextDetails,
+        StepDetails = M.StepDetails,
+        WaitDetails = M.WaitDetails,
+        CallbackDetails = M.CallbackDetails,
+        ChainedInvokeDetails = M.ChainedInvokeDetails,
     },
 }
 
@@ -1127,7 +1085,7 @@ M.CheckpointUpdatedExecutionState = {
     members = {
         Operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
         NextMarker = {
             type = "string",
@@ -1141,12 +1099,9 @@ M.CheckpointDurableExecutionOutput = {
         CheckpointToken = {
             type = "string",
         },
-        NewExecutionState = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        NewExecutionState = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CheckpointUpdatedExecutionState }),
     },
 }
 
@@ -1170,19 +1125,14 @@ M.CreateCodeSigningConfigInput = {
         Description = {
             type = "string",
         },
-        AllowedPublishers = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        CodeSigningPolicies = {
-            type = "structure",
-        },
+        AllowedPublishers = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AllowedPublishers }),
+        CodeSigningPolicies = M.CodeSigningPolicies,
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1205,18 +1155,12 @@ M.CodeSigningConfig = {
         Description = {
             type = "string",
         },
-        AllowedPublishers = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        CodeSigningPolicies = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AllowedPublishers = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AllowedPublishers }),
+        CodeSigningPolicies = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CodeSigningPolicies }),
         LastModified = {
             type = "string",
             traits = {
@@ -1229,12 +1173,9 @@ M.CodeSigningConfig = {
 M.CreateCodeSigningConfigOutput = {
     type = "structure",
     members = {
-        CodeSigningConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        CodeSigningConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CodeSigningConfig }),
     },
 }
 
@@ -1271,12 +1212,9 @@ M.GetCodeSigningConfigInput = {
 M.GetCodeSigningConfigOutput = {
     type = "structure",
     members = {
-        CodeSigningConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        CodeSigningConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CodeSigningConfig }),
     },
 }
 
@@ -1290,7 +1228,7 @@ M.ListCodeSigningConfigsInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxItems",
             },
@@ -1306,7 +1244,7 @@ M.ListCodeSigningConfigsOutput = {
         },
         CodeSigningConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.CodeSigningConfig,
         },
     },
 }
@@ -1328,7 +1266,7 @@ M.ListFunctionsByCodeSigningConfigInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxItems",
             },
@@ -1344,7 +1282,7 @@ M.ListFunctionsByCodeSigningConfigOutput = {
         },
         FunctionArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1362,24 +1300,17 @@ M.UpdateCodeSigningConfigInput = {
         Description = {
             type = "string",
         },
-        AllowedPublishers = {
-            type = "structure",
-        },
-        CodeSigningPolicies = {
-            type = "structure",
-        },
+        AllowedPublishers = M.AllowedPublishers,
+        CodeSigningPolicies = M.CodeSigningPolicies,
     },
 }
 
 M.UpdateCodeSigningConfigOutput = {
     type = "structure",
     members = {
-        CodeSigningConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        CodeSigningConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CodeSigningConfig }),
     },
 }
 
@@ -1406,8 +1337,9 @@ M.DeleteFunctionOutput = {
     type = "structure",
     members = {
         StatusCode = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -1458,12 +1390,8 @@ M.OnSuccess = {
 M.DestinationConfig = {
     type = "structure",
     members = {
-        OnSuccess = {
-            type = "structure",
-        },
-        OnFailure = {
-            type = "structure",
-        },
+        OnSuccess = M.OnSuccess,
+        OnFailure = M.OnFailure,
     },
 }
 
@@ -1501,7 +1429,7 @@ M.FilterCriteria = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
     },
 }
@@ -1536,7 +1464,7 @@ M.EventSourceMappingMetricsConfig = {
     members = {
         Metrics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1545,10 +1473,10 @@ M.ProvisionedPollerConfig = {
     type = "structure",
     members = {
         MinimumPollers = {
-            type = "number",
+            type = "integer",
         },
         MaximumPollers = {
-            type = "number",
+            type = "integer",
         },
         PollerGroupName = {
             type = "string",
@@ -1560,7 +1488,7 @@ M.ScalingConfig = {
     type = "structure",
     members = {
         MaximumConcurrency = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1574,8 +1502,8 @@ M.SelfManagedEventSource = {
     members = {
         Endpoints = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
     },
 }
@@ -1586,9 +1514,7 @@ M.SelfManagedKafkaEventSourceConfig = {
         ConsumerGroupId = {
             type = "string",
         },
-        SchemaRegistryConfig = {
-            type = "structure",
-        },
+        SchemaRegistryConfig = M.KafkaSchemaRegistryConfig,
     },
 }
 
@@ -1637,16 +1563,14 @@ M.CreateEventSourceMappingInput = {
             type = "boolean",
         },
         BatchSize = {
-            type = "number",
+            type = "integer",
         },
-        FilterCriteria = {
-            type = "structure",
-        },
+        FilterCriteria = M.FilterCriteria,
         MaximumBatchingWindowInSeconds = {
-            type = "number",
+            type = "integer",
         },
         ParallelizationFactor = {
-            type = "number",
+            type = "integer",
         },
         StartingPosition = {
             type = "string",
@@ -1654,69 +1578,51 @@ M.CreateEventSourceMappingInput = {
         StartingPositionTimestamp = {
             type = "timestamp",
         },
-        DestinationConfig = {
-            type = "structure",
-        },
+        DestinationConfig = M.DestinationConfig,
         MaximumRecordAgeInSeconds = {
-            type = "number",
+            type = "integer",
         },
         BisectBatchOnFunctionError = {
             type = "boolean",
         },
         MaximumRetryAttempts = {
-            type = "number",
+            type = "integer",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         TumblingWindowInSeconds = {
-            type = "number",
+            type = "integer",
         },
         Topics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Queues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SourceAccessConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.SourceAccessConfiguration,
         },
-        SelfManagedEventSource = {
-            type = "structure",
-        },
+        SelfManagedEventSource = M.SelfManagedEventSource,
         FunctionResponseTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        AmazonManagedKafkaEventSourceConfig = {
-            type = "structure",
-        },
-        SelfManagedKafkaEventSourceConfig = {
-            type = "structure",
-        },
-        ScalingConfig = {
-            type = "structure",
-        },
-        DocumentDBEventSourceConfig = {
-            type = "structure",
-        },
+        AmazonManagedKafkaEventSourceConfig = M.AmazonManagedKafkaEventSourceConfig,
+        SelfManagedKafkaEventSourceConfig = M.SelfManagedKafkaEventSourceConfig,
+        ScalingConfig = M.ScalingConfig,
+        DocumentDBEventSourceConfig = M.DocumentDBEventSourceConfig,
         KMSKeyArn = {
             type = "string",
         },
-        MetricsConfig = {
-            type = "structure",
-        },
-        LoggingConfig = {
-            type = "structure",
-        },
-        ProvisionedPollerConfig = {
-            type = "structure",
-        },
+        MetricsConfig = M.EventSourceMappingMetricsConfig,
+        LoggingConfig = M.EventSourceMappingLoggingConfig,
+        ProvisionedPollerConfig = M.ProvisionedPollerConfig,
     },
 }
 
@@ -1745,20 +1651,18 @@ M.CreateEventSourceMappingOutput = {
             type = "timestamp",
         },
         BatchSize = {
-            type = "number",
+            type = "integer",
         },
         MaximumBatchingWindowInSeconds = {
-            type = "number",
+            type = "integer",
         },
         ParallelizationFactor = {
-            type = "number",
+            type = "integer",
         },
         EventSourceArn = {
             type = "string",
         },
-        FilterCriteria = {
-            type = "structure",
-        },
+        FilterCriteria = M.FilterCriteria,
         FunctionArn = {
             type = "string",
         },
@@ -1774,70 +1678,50 @@ M.CreateEventSourceMappingOutput = {
         StateTransitionReason = {
             type = "string",
         },
-        DestinationConfig = {
-            type = "structure",
-        },
+        DestinationConfig = M.DestinationConfig,
         Topics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Queues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SourceAccessConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.SourceAccessConfiguration,
         },
-        SelfManagedEventSource = {
-            type = "structure",
-        },
+        SelfManagedEventSource = M.SelfManagedEventSource,
         MaximumRecordAgeInSeconds = {
-            type = "number",
+            type = "integer",
         },
         BisectBatchOnFunctionError = {
             type = "boolean",
         },
         MaximumRetryAttempts = {
-            type = "number",
+            type = "integer",
         },
         TumblingWindowInSeconds = {
-            type = "number",
+            type = "integer",
         },
         FunctionResponseTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        AmazonManagedKafkaEventSourceConfig = {
-            type = "structure",
-        },
-        SelfManagedKafkaEventSourceConfig = {
-            type = "structure",
-        },
-        ScalingConfig = {
-            type = "structure",
-        },
-        DocumentDBEventSourceConfig = {
-            type = "structure",
-        },
+        AmazonManagedKafkaEventSourceConfig = M.AmazonManagedKafkaEventSourceConfig,
+        SelfManagedKafkaEventSourceConfig = M.SelfManagedKafkaEventSourceConfig,
+        ScalingConfig = M.ScalingConfig,
+        DocumentDBEventSourceConfig = M.DocumentDBEventSourceConfig,
         KMSKeyArn = {
             type = "string",
         },
-        FilterCriteriaError = {
-            type = "structure",
-        },
+        FilterCriteriaError = M.FilterCriteriaError,
         EventSourceMappingArn = {
             type = "string",
         },
-        MetricsConfig = {
-            type = "structure",
-        },
-        LoggingConfig = {
-            type = "structure",
-        },
-        ProvisionedPollerConfig = {
-            type = "structure",
-        },
+        MetricsConfig = M.EventSourceMappingMetricsConfig,
+        LoggingConfig = M.EventSourceMappingLoggingConfig,
+        ProvisionedPollerConfig = M.ProvisionedPollerConfig,
     },
 }
 
@@ -1867,20 +1751,18 @@ M.DeleteEventSourceMappingOutput = {
             type = "timestamp",
         },
         BatchSize = {
-            type = "number",
+            type = "integer",
         },
         MaximumBatchingWindowInSeconds = {
-            type = "number",
+            type = "integer",
         },
         ParallelizationFactor = {
-            type = "number",
+            type = "integer",
         },
         EventSourceArn = {
             type = "string",
         },
-        FilterCriteria = {
-            type = "structure",
-        },
+        FilterCriteria = M.FilterCriteria,
         FunctionArn = {
             type = "string",
         },
@@ -1896,70 +1778,50 @@ M.DeleteEventSourceMappingOutput = {
         StateTransitionReason = {
             type = "string",
         },
-        DestinationConfig = {
-            type = "structure",
-        },
+        DestinationConfig = M.DestinationConfig,
         Topics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Queues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SourceAccessConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.SourceAccessConfiguration,
         },
-        SelfManagedEventSource = {
-            type = "structure",
-        },
+        SelfManagedEventSource = M.SelfManagedEventSource,
         MaximumRecordAgeInSeconds = {
-            type = "number",
+            type = "integer",
         },
         BisectBatchOnFunctionError = {
             type = "boolean",
         },
         MaximumRetryAttempts = {
-            type = "number",
+            type = "integer",
         },
         TumblingWindowInSeconds = {
-            type = "number",
+            type = "integer",
         },
         FunctionResponseTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        AmazonManagedKafkaEventSourceConfig = {
-            type = "structure",
-        },
-        SelfManagedKafkaEventSourceConfig = {
-            type = "structure",
-        },
-        ScalingConfig = {
-            type = "structure",
-        },
-        DocumentDBEventSourceConfig = {
-            type = "structure",
-        },
+        AmazonManagedKafkaEventSourceConfig = M.AmazonManagedKafkaEventSourceConfig,
+        SelfManagedKafkaEventSourceConfig = M.SelfManagedKafkaEventSourceConfig,
+        ScalingConfig = M.ScalingConfig,
+        DocumentDBEventSourceConfig = M.DocumentDBEventSourceConfig,
         KMSKeyArn = {
             type = "string",
         },
-        FilterCriteriaError = {
-            type = "structure",
-        },
+        FilterCriteriaError = M.FilterCriteriaError,
         EventSourceMappingArn = {
             type = "string",
         },
-        MetricsConfig = {
-            type = "structure",
-        },
-        LoggingConfig = {
-            type = "structure",
-        },
-        ProvisionedPollerConfig = {
-            type = "structure",
-        },
+        MetricsConfig = M.EventSourceMappingMetricsConfig,
+        LoggingConfig = M.EventSourceMappingLoggingConfig,
+        ProvisionedPollerConfig = M.ProvisionedPollerConfig,
     },
 }
 
@@ -2002,20 +1864,18 @@ M.GetEventSourceMappingOutput = {
             type = "timestamp",
         },
         BatchSize = {
-            type = "number",
+            type = "integer",
         },
         MaximumBatchingWindowInSeconds = {
-            type = "number",
+            type = "integer",
         },
         ParallelizationFactor = {
-            type = "number",
+            type = "integer",
         },
         EventSourceArn = {
             type = "string",
         },
-        FilterCriteria = {
-            type = "structure",
-        },
+        FilterCriteria = M.FilterCriteria,
         FunctionArn = {
             type = "string",
         },
@@ -2031,70 +1891,50 @@ M.GetEventSourceMappingOutput = {
         StateTransitionReason = {
             type = "string",
         },
-        DestinationConfig = {
-            type = "structure",
-        },
+        DestinationConfig = M.DestinationConfig,
         Topics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Queues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SourceAccessConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.SourceAccessConfiguration,
         },
-        SelfManagedEventSource = {
-            type = "structure",
-        },
+        SelfManagedEventSource = M.SelfManagedEventSource,
         MaximumRecordAgeInSeconds = {
-            type = "number",
+            type = "integer",
         },
         BisectBatchOnFunctionError = {
             type = "boolean",
         },
         MaximumRetryAttempts = {
-            type = "number",
+            type = "integer",
         },
         TumblingWindowInSeconds = {
-            type = "number",
+            type = "integer",
         },
         FunctionResponseTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        AmazonManagedKafkaEventSourceConfig = {
-            type = "structure",
-        },
-        SelfManagedKafkaEventSourceConfig = {
-            type = "structure",
-        },
-        ScalingConfig = {
-            type = "structure",
-        },
-        DocumentDBEventSourceConfig = {
-            type = "structure",
-        },
+        AmazonManagedKafkaEventSourceConfig = M.AmazonManagedKafkaEventSourceConfig,
+        SelfManagedKafkaEventSourceConfig = M.SelfManagedKafkaEventSourceConfig,
+        ScalingConfig = M.ScalingConfig,
+        DocumentDBEventSourceConfig = M.DocumentDBEventSourceConfig,
         KMSKeyArn = {
             type = "string",
         },
-        FilterCriteriaError = {
-            type = "structure",
-        },
+        FilterCriteriaError = M.FilterCriteriaError,
         EventSourceMappingArn = {
             type = "string",
         },
-        MetricsConfig = {
-            type = "structure",
-        },
-        LoggingConfig = {
-            type = "structure",
-        },
-        ProvisionedPollerConfig = {
-            type = "structure",
-        },
+        MetricsConfig = M.EventSourceMappingMetricsConfig,
+        LoggingConfig = M.EventSourceMappingLoggingConfig,
+        ProvisionedPollerConfig = M.ProvisionedPollerConfig,
     },
 }
 
@@ -2120,7 +1960,7 @@ M.ListEventSourceMappingsInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxItems",
             },
@@ -2141,20 +1981,18 @@ M.EventSourceMappingConfiguration = {
             type = "timestamp",
         },
         BatchSize = {
-            type = "number",
+            type = "integer",
         },
         MaximumBatchingWindowInSeconds = {
-            type = "number",
+            type = "integer",
         },
         ParallelizationFactor = {
-            type = "number",
+            type = "integer",
         },
         EventSourceArn = {
             type = "string",
         },
-        FilterCriteria = {
-            type = "structure",
-        },
+        FilterCriteria = M.FilterCriteria,
         FunctionArn = {
             type = "string",
         },
@@ -2170,70 +2008,50 @@ M.EventSourceMappingConfiguration = {
         StateTransitionReason = {
             type = "string",
         },
-        DestinationConfig = {
-            type = "structure",
-        },
+        DestinationConfig = M.DestinationConfig,
         Topics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Queues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SourceAccessConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.SourceAccessConfiguration,
         },
-        SelfManagedEventSource = {
-            type = "structure",
-        },
+        SelfManagedEventSource = M.SelfManagedEventSource,
         MaximumRecordAgeInSeconds = {
-            type = "number",
+            type = "integer",
         },
         BisectBatchOnFunctionError = {
             type = "boolean",
         },
         MaximumRetryAttempts = {
-            type = "number",
+            type = "integer",
         },
         TumblingWindowInSeconds = {
-            type = "number",
+            type = "integer",
         },
         FunctionResponseTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        AmazonManagedKafkaEventSourceConfig = {
-            type = "structure",
-        },
-        SelfManagedKafkaEventSourceConfig = {
-            type = "structure",
-        },
-        ScalingConfig = {
-            type = "structure",
-        },
-        DocumentDBEventSourceConfig = {
-            type = "structure",
-        },
+        AmazonManagedKafkaEventSourceConfig = M.AmazonManagedKafkaEventSourceConfig,
+        SelfManagedKafkaEventSourceConfig = M.SelfManagedKafkaEventSourceConfig,
+        ScalingConfig = M.ScalingConfig,
+        DocumentDBEventSourceConfig = M.DocumentDBEventSourceConfig,
         KMSKeyArn = {
             type = "string",
         },
-        FilterCriteriaError = {
-            type = "structure",
-        },
+        FilterCriteriaError = M.FilterCriteriaError,
         EventSourceMappingArn = {
             type = "string",
         },
-        MetricsConfig = {
-            type = "structure",
-        },
-        LoggingConfig = {
-            type = "structure",
-        },
-        ProvisionedPollerConfig = {
-            type = "structure",
-        },
+        MetricsConfig = M.EventSourceMappingMetricsConfig,
+        LoggingConfig = M.EventSourceMappingLoggingConfig,
+        ProvisionedPollerConfig = M.ProvisionedPollerConfig,
     },
 }
 
@@ -2245,7 +2063,7 @@ M.ListEventSourceMappingsOutput = {
         },
         EventSourceMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.EventSourceMappingConfiguration,
         },
     },
 }
@@ -2267,64 +2085,46 @@ M.UpdateEventSourceMappingInput = {
             type = "boolean",
         },
         BatchSize = {
-            type = "number",
+            type = "integer",
         },
-        FilterCriteria = {
-            type = "structure",
-        },
+        FilterCriteria = M.FilterCriteria,
         MaximumBatchingWindowInSeconds = {
-            type = "number",
+            type = "integer",
         },
-        DestinationConfig = {
-            type = "structure",
-        },
+        DestinationConfig = M.DestinationConfig,
         MaximumRecordAgeInSeconds = {
-            type = "number",
+            type = "integer",
         },
         BisectBatchOnFunctionError = {
             type = "boolean",
         },
         MaximumRetryAttempts = {
-            type = "number",
+            type = "integer",
         },
         ParallelizationFactor = {
-            type = "number",
+            type = "integer",
         },
         SourceAccessConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.SourceAccessConfiguration,
         },
         TumblingWindowInSeconds = {
-            type = "number",
+            type = "integer",
         },
         FunctionResponseTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        ScalingConfig = {
-            type = "structure",
-        },
-        AmazonManagedKafkaEventSourceConfig = {
-            type = "structure",
-        },
-        SelfManagedKafkaEventSourceConfig = {
-            type = "structure",
-        },
-        DocumentDBEventSourceConfig = {
-            type = "structure",
-        },
+        ScalingConfig = M.ScalingConfig,
+        AmazonManagedKafkaEventSourceConfig = M.AmazonManagedKafkaEventSourceConfig,
+        SelfManagedKafkaEventSourceConfig = M.SelfManagedKafkaEventSourceConfig,
+        DocumentDBEventSourceConfig = M.DocumentDBEventSourceConfig,
         KMSKeyArn = {
             type = "string",
         },
-        MetricsConfig = {
-            type = "structure",
-        },
-        LoggingConfig = {
-            type = "structure",
-        },
-        ProvisionedPollerConfig = {
-            type = "structure",
-        },
+        MetricsConfig = M.EventSourceMappingMetricsConfig,
+        LoggingConfig = M.EventSourceMappingLoggingConfig,
+        ProvisionedPollerConfig = M.ProvisionedPollerConfig,
     },
 }
 
@@ -2341,20 +2141,18 @@ M.UpdateEventSourceMappingOutput = {
             type = "timestamp",
         },
         BatchSize = {
-            type = "number",
+            type = "integer",
         },
         MaximumBatchingWindowInSeconds = {
-            type = "number",
+            type = "integer",
         },
         ParallelizationFactor = {
-            type = "number",
+            type = "integer",
         },
         EventSourceArn = {
             type = "string",
         },
-        FilterCriteria = {
-            type = "structure",
-        },
+        FilterCriteria = M.FilterCriteria,
         FunctionArn = {
             type = "string",
         },
@@ -2370,70 +2168,50 @@ M.UpdateEventSourceMappingOutput = {
         StateTransitionReason = {
             type = "string",
         },
-        DestinationConfig = {
-            type = "structure",
-        },
+        DestinationConfig = M.DestinationConfig,
         Topics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Queues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SourceAccessConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.SourceAccessConfiguration,
         },
-        SelfManagedEventSource = {
-            type = "structure",
-        },
+        SelfManagedEventSource = M.SelfManagedEventSource,
         MaximumRecordAgeInSeconds = {
-            type = "number",
+            type = "integer",
         },
         BisectBatchOnFunctionError = {
             type = "boolean",
         },
         MaximumRetryAttempts = {
-            type = "number",
+            type = "integer",
         },
         TumblingWindowInSeconds = {
-            type = "number",
+            type = "integer",
         },
         FunctionResponseTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        AmazonManagedKafkaEventSourceConfig = {
-            type = "structure",
-        },
-        SelfManagedKafkaEventSourceConfig = {
-            type = "structure",
-        },
-        ScalingConfig = {
-            type = "structure",
-        },
-        DocumentDBEventSourceConfig = {
-            type = "structure",
-        },
+        AmazonManagedKafkaEventSourceConfig = M.AmazonManagedKafkaEventSourceConfig,
+        SelfManagedKafkaEventSourceConfig = M.SelfManagedKafkaEventSourceConfig,
+        ScalingConfig = M.ScalingConfig,
+        DocumentDBEventSourceConfig = M.DocumentDBEventSourceConfig,
         KMSKeyArn = {
             type = "string",
         },
-        FilterCriteriaError = {
-            type = "structure",
-        },
+        FilterCriteriaError = M.FilterCriteriaError,
         EventSourceMappingArn = {
             type = "string",
         },
-        MetricsConfig = {
-            type = "structure",
-        },
-        LoggingConfig = {
-            type = "structure",
-        },
-        ProvisionedPollerConfig = {
-            type = "structure",
-        },
+        MetricsConfig = M.EventSourceMappingMetricsConfig,
+        LoggingConfig = M.EventSourceMappingLoggingConfig,
+        ProvisionedPollerConfig = M.ProvisionedPollerConfig,
     },
 }
 
@@ -2486,10 +2264,10 @@ M.LambdaManagedInstancesCapacityProviderConfig = {
             },
         },
         PerExecutionEnvironmentMaxConcurrency = {
-            type = "number",
+            type = "integer",
         },
         ExecutionEnvironmentMemoryGiBPerVCpu = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -2497,12 +2275,9 @@ M.LambdaManagedInstancesCapacityProviderConfig = {
 M.CapacityProviderConfig = {
     type = "structure",
     members = {
-        LambdaManagedInstancesCapacityProviderConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        LambdaManagedInstancesCapacityProviderConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LambdaManagedInstancesCapacityProviderConfig }),
     },
 }
 
@@ -2543,10 +2318,10 @@ M.DurableConfig = {
     type = "structure",
     members = {
         RetentionPeriodInDays = {
-            type = "number",
+            type = "integer",
         },
         ExecutionTimeout = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2556,8 +2331,8 @@ M.Environment = {
     members = {
         Variables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2566,7 +2341,7 @@ M.EphemeralStorage = {
     type = "structure",
     members = {
         Size = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -2597,11 +2372,11 @@ M.ImageConfig = {
     members = {
         EntryPoint = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Command = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         WorkingDirectory = {
             type = "string",
@@ -2745,11 +2520,11 @@ M.VpcConfig = {
     members = {
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Ipv6AllowedForDualStack = {
             type = "boolean",
@@ -2778,86 +2553,64 @@ M.CreateFunctionInput = {
         Handler = {
             type = "string",
         },
-        Code = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Code = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FunctionCode }),
         Description = {
             type = "string",
         },
         Timeout = {
-            type = "number",
+            type = "integer",
         },
         MemorySize = {
-            type = "number",
+            type = "integer",
         },
         Publish = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        VpcConfig = {
-            type = "structure",
-        },
+        VpcConfig = M.VpcConfig,
         PackageType = {
             type = "string",
         },
-        DeadLetterConfig = {
-            type = "structure",
-        },
-        Environment = {
-            type = "structure",
-        },
+        DeadLetterConfig = M.DeadLetterConfig,
+        Environment = M.Environment,
         KMSKeyArn = {
             type = "string",
         },
-        TracingConfig = {
-            type = "structure",
-        },
+        TracingConfig = M.TracingConfig,
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Layers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         FileSystemConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.FileSystemConfig,
         },
-        ImageConfig = {
-            type = "structure",
-        },
+        ImageConfig = M.ImageConfig,
         CodeSigningConfigArn = {
             type = "string",
         },
         Architectures = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        EphemeralStorage = {
-            type = "structure",
-        },
-        SnapStart = {
-            type = "structure",
-        },
-        LoggingConfig = {
-            type = "structure",
-        },
-        CapacityProviderConfig = {
-            type = "structure",
-        },
+        EphemeralStorage = M.EphemeralStorage,
+        SnapStart = M.SnapStart,
+        LoggingConfig = M.LoggingConfig,
+        CapacityProviderConfig = M.CapacityProviderConfig,
         PublishTo = {
             type = "string",
         },
-        DurableConfig = {
-            type = "structure",
-        },
-        TenancyConfig = {
-            type = "structure",
-        },
+        DurableConfig = M.DurableConfig,
+        TenancyConfig = M.TenancyConfig,
     },
 }
 
@@ -2878,12 +2631,10 @@ M.EnvironmentResponse = {
     members = {
         Variables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        Error = {
-            type = "structure",
-        },
+        Error = M.EnvironmentError,
     },
 }
 
@@ -2902,12 +2653,8 @@ M.ImageConfigError = {
 M.ImageConfigResponse = {
     type = "structure",
     members = {
-        ImageConfig = {
-            type = "structure",
-        },
-        Error = {
-            type = "structure",
-        },
+        ImageConfig = M.ImageConfig,
+        Error = M.ImageConfigError,
     },
 }
 
@@ -2961,7 +2708,10 @@ M.Layer = {
             type = "string",
         },
         CodeSize = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         SigningProfileVersionArn = {
             type = "string",
@@ -2990,9 +2740,7 @@ M.RuntimeVersionConfig = {
         RuntimeVersionArn = {
             type = "string",
         },
-        Error = {
-            type = "structure",
-        },
+        Error = M.RuntimeVersionError,
     },
 }
 
@@ -3068,11 +2816,11 @@ M.VpcConfigResponse = {
     members = {
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         VpcId = {
             type = "string",
@@ -3102,16 +2850,19 @@ M.CreateFunctionOutput = {
             type = "string",
         },
         CodeSize = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Description = {
             type = "string",
         },
         Timeout = {
-            type = "number",
+            type = "integer",
         },
         MemorySize = {
-            type = "number",
+            type = "integer",
         },
         LastModified = {
             type = "string",
@@ -3122,21 +2873,13 @@ M.CreateFunctionOutput = {
         Version = {
             type = "string",
         },
-        VpcConfig = {
-            type = "structure",
-        },
-        DeadLetterConfig = {
-            type = "structure",
-        },
-        Environment = {
-            type = "structure",
-        },
+        VpcConfig = M.VpcConfigResponse,
+        DeadLetterConfig = M.DeadLetterConfig,
+        Environment = M.EnvironmentResponse,
         KMSKeyArn = {
             type = "string",
         },
-        TracingConfig = {
-            type = "structure",
-        },
+        TracingConfig = M.TracingConfigResponse,
         MasterArn = {
             type = "string",
         },
@@ -3145,7 +2888,7 @@ M.CreateFunctionOutput = {
         },
         Layers = {
             type = "list",
-            member_type = "structure",
+            member = M.Layer,
         },
         State = {
             type = "string",
@@ -3167,14 +2910,12 @@ M.CreateFunctionOutput = {
         },
         FileSystemConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.FileSystemConfig,
         },
         PackageType = {
             type = "string",
         },
-        ImageConfigResponse = {
-            type = "structure",
-        },
+        ImageConfigResponse = M.ImageConfigResponse,
         SigningProfileVersionArn = {
             type = "string",
         },
@@ -3183,32 +2924,18 @@ M.CreateFunctionOutput = {
         },
         Architectures = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        EphemeralStorage = {
-            type = "structure",
-        },
-        SnapStart = {
-            type = "structure",
-        },
-        RuntimeVersionConfig = {
-            type = "structure",
-        },
-        LoggingConfig = {
-            type = "structure",
-        },
-        CapacityProviderConfig = {
-            type = "structure",
-        },
+        EphemeralStorage = M.EphemeralStorage,
+        SnapStart = M.SnapStartResponse,
+        RuntimeVersionConfig = M.RuntimeVersionConfig,
+        LoggingConfig = M.LoggingConfig,
+        CapacityProviderConfig = M.CapacityProviderConfig,
         ConfigSha256 = {
             type = "string",
         },
-        DurableConfig = {
-            type = "structure",
-        },
-        TenancyConfig = {
-            type = "structure",
-        },
+        DurableConfig = M.DurableConfig,
+        TenancyConfig = M.TenancyConfig,
     },
 }
 
@@ -3246,22 +2973,22 @@ M.Cors = {
         },
         AllowHeaders = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AllowMethods = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AllowOrigins = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ExposeHeaders = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MaxAge = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3293,9 +3020,7 @@ M.CreateFunctionUrlConfigInput = {
                 required = true,
             },
         },
-        Cors = {
-            type = "structure",
-        },
+        Cors = M.Cors,
         InvokeMode = {
             type = "string",
         },
@@ -3323,9 +3048,7 @@ M.CreateFunctionUrlConfigOutput = {
                 required = true,
             },
         },
-        Cors = {
-            type = "structure",
-        },
+        Cors = M.Cors,
         CreationTime = {
             type = "string",
             traits = {
@@ -3439,7 +3162,7 @@ M.Concurrency = {
     type = "structure",
     members = {
         ReservedConcurrentExecutions = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3463,16 +3186,19 @@ M.FunctionConfiguration = {
             type = "string",
         },
         CodeSize = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Description = {
             type = "string",
         },
         Timeout = {
-            type = "number",
+            type = "integer",
         },
         MemorySize = {
-            type = "number",
+            type = "integer",
         },
         LastModified = {
             type = "string",
@@ -3483,21 +3209,13 @@ M.FunctionConfiguration = {
         Version = {
             type = "string",
         },
-        VpcConfig = {
-            type = "structure",
-        },
-        DeadLetterConfig = {
-            type = "structure",
-        },
-        Environment = {
-            type = "structure",
-        },
+        VpcConfig = M.VpcConfigResponse,
+        DeadLetterConfig = M.DeadLetterConfig,
+        Environment = M.EnvironmentResponse,
         KMSKeyArn = {
             type = "string",
         },
-        TracingConfig = {
-            type = "structure",
-        },
+        TracingConfig = M.TracingConfigResponse,
         MasterArn = {
             type = "string",
         },
@@ -3506,7 +3224,7 @@ M.FunctionConfiguration = {
         },
         Layers = {
             type = "list",
-            member_type = "structure",
+            member = M.Layer,
         },
         State = {
             type = "string",
@@ -3528,14 +3246,12 @@ M.FunctionConfiguration = {
         },
         FileSystemConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.FileSystemConfig,
         },
         PackageType = {
             type = "string",
         },
-        ImageConfigResponse = {
-            type = "structure",
-        },
+        ImageConfigResponse = M.ImageConfigResponse,
         SigningProfileVersionArn = {
             type = "string",
         },
@@ -3544,32 +3260,18 @@ M.FunctionConfiguration = {
         },
         Architectures = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        EphemeralStorage = {
-            type = "structure",
-        },
-        SnapStart = {
-            type = "structure",
-        },
-        RuntimeVersionConfig = {
-            type = "structure",
-        },
-        LoggingConfig = {
-            type = "structure",
-        },
-        CapacityProviderConfig = {
-            type = "structure",
-        },
+        EphemeralStorage = M.EphemeralStorage,
+        SnapStart = M.SnapStartResponse,
+        RuntimeVersionConfig = M.RuntimeVersionConfig,
+        LoggingConfig = M.LoggingConfig,
+        CapacityProviderConfig = M.CapacityProviderConfig,
         ConfigSha256 = {
             type = "string",
         },
-        DurableConfig = {
-            type = "structure",
-        },
-        TenancyConfig = {
-            type = "structure",
-        },
+        DurableConfig = M.DurableConfig,
+        TenancyConfig = M.TenancyConfig,
     },
 }
 
@@ -3594,23 +3296,15 @@ M.TagsError = {
 M.GetFunctionOutput = {
     type = "structure",
     members = {
-        Configuration = {
-            type = "structure",
-        },
-        Code = {
-            type = "structure",
-        },
+        Configuration = M.FunctionConfiguration,
+        Code = M.FunctionCodeLocation,
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        TagsError = {
-            type = "structure",
-        },
-        Concurrency = {
-            type = "structure",
-        },
+        TagsError = M.TagsError,
+        Concurrency = M.Concurrency,
     },
 }
 
@@ -3662,7 +3356,7 @@ M.GetFunctionConcurrencyOutput = {
     type = "structure",
     members = {
         ReservedConcurrentExecutions = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3705,16 +3399,19 @@ M.GetFunctionConfigurationOutput = {
             type = "string",
         },
         CodeSize = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Description = {
             type = "string",
         },
         Timeout = {
-            type = "number",
+            type = "integer",
         },
         MemorySize = {
-            type = "number",
+            type = "integer",
         },
         LastModified = {
             type = "string",
@@ -3725,21 +3422,13 @@ M.GetFunctionConfigurationOutput = {
         Version = {
             type = "string",
         },
-        VpcConfig = {
-            type = "structure",
-        },
-        DeadLetterConfig = {
-            type = "structure",
-        },
-        Environment = {
-            type = "structure",
-        },
+        VpcConfig = M.VpcConfigResponse,
+        DeadLetterConfig = M.DeadLetterConfig,
+        Environment = M.EnvironmentResponse,
         KMSKeyArn = {
             type = "string",
         },
-        TracingConfig = {
-            type = "structure",
-        },
+        TracingConfig = M.TracingConfigResponse,
         MasterArn = {
             type = "string",
         },
@@ -3748,7 +3437,7 @@ M.GetFunctionConfigurationOutput = {
         },
         Layers = {
             type = "list",
-            member_type = "structure",
+            member = M.Layer,
         },
         State = {
             type = "string",
@@ -3770,14 +3459,12 @@ M.GetFunctionConfigurationOutput = {
         },
         FileSystemConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.FileSystemConfig,
         },
         PackageType = {
             type = "string",
         },
-        ImageConfigResponse = {
-            type = "structure",
-        },
+        ImageConfigResponse = M.ImageConfigResponse,
         SigningProfileVersionArn = {
             type = "string",
         },
@@ -3786,32 +3473,18 @@ M.GetFunctionConfigurationOutput = {
         },
         Architectures = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        EphemeralStorage = {
-            type = "structure",
-        },
-        SnapStart = {
-            type = "structure",
-        },
-        RuntimeVersionConfig = {
-            type = "structure",
-        },
-        LoggingConfig = {
-            type = "structure",
-        },
-        CapacityProviderConfig = {
-            type = "structure",
-        },
+        EphemeralStorage = M.EphemeralStorage,
+        SnapStart = M.SnapStartResponse,
+        RuntimeVersionConfig = M.RuntimeVersionConfig,
+        LoggingConfig = M.LoggingConfig,
+        CapacityProviderConfig = M.CapacityProviderConfig,
         ConfigSha256 = {
             type = "string",
         },
-        DurableConfig = {
-            type = "structure",
-        },
-        TenancyConfig = {
-            type = "structure",
-        },
+        DurableConfig = M.DurableConfig,
+        TenancyConfig = M.TenancyConfig,
     },
 }
 
@@ -3866,10 +3539,10 @@ M.FunctionScalingConfig = {
     type = "structure",
     members = {
         MinExecutionEnvironments = {
-            type = "number",
+            type = "integer",
         },
         MaxExecutionEnvironments = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3880,12 +3553,8 @@ M.GetFunctionScalingConfigOutput = {
         FunctionArn = {
             type = "string",
         },
-        AppliedFunctionScalingConfig = {
-            type = "structure",
-        },
-        RequestedFunctionScalingConfig = {
-            type = "structure",
-        },
+        AppliedFunctionScalingConfig = M.FunctionScalingConfig,
+        RequestedFunctionScalingConfig = M.FunctionScalingConfig,
     },
 }
 
@@ -3929,9 +3598,7 @@ M.GetFunctionUrlConfigOutput = {
                 required = true,
             },
         },
-        Cors = {
-            type = "structure",
-        },
+        Cors = M.Cors,
         CreationTime = {
             type = "string",
             traits = {
@@ -4276,8 +3943,9 @@ M.InvokeOutput = {
     type = "structure",
     members = {
         StatusCode = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -4559,8 +4227,9 @@ M.InvokeAsyncOutput = {
     type = "structure",
     members = {
         Status = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -4648,12 +4317,8 @@ M.InvokeResponseStreamUpdate = {
 M.InvokeWithResponseStreamResponseEvent = {
     type = "union",
     members = {
-        PayloadChunk = {
-            type = "structure",
-        },
-        InvokeComplete = {
-            type = "structure",
-        },
+        PayloadChunk = M.InvokeResponseStreamUpdate,
+        InvokeComplete = M.InvokeWithResponseStreamCompleteEvent,
     },
 }
 
@@ -4661,8 +4326,9 @@ M.InvokeWithResponseStreamOutput = {
     type = "structure",
     members = {
         StatusCode = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -4672,12 +4338,9 @@ M.InvokeWithResponseStreamOutput = {
                 http_header = "X-Amz-Executed-Version",
             },
         },
-        EventStream = {
-            type = "union",
-            traits = {
-                http_payload = true,
-            },
-        },
+        EventStream = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.InvokeWithResponseStreamResponseEvent }),
         ResponseStreamContentType = {
             type = "string",
             traits = {
@@ -4713,7 +4376,7 @@ M.ListFunctionsInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxItems",
             },
@@ -4729,7 +4392,7 @@ M.ListFunctionsOutput = {
         },
         Functions = {
             type = "list",
-            member_type = "structure",
+            member = M.FunctionConfiguration,
         },
     },
 }
@@ -4751,7 +4414,7 @@ M.ListFunctionUrlConfigsInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxItems",
             },
@@ -4786,9 +4449,7 @@ M.FunctionUrlConfig = {
                 required = true,
             },
         },
-        Cors = {
-            type = "structure",
-        },
+        Cors = M.Cors,
         AuthType = {
             type = "string",
             traits = {
@@ -4806,7 +4467,7 @@ M.ListFunctionUrlConfigsOutput = {
     members = {
         FunctionUrlConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.FunctionUrlConfig,
             traits = {
                 required = true,
             },
@@ -4834,7 +4495,7 @@ M.ListProvisionedConcurrencyConfigsInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxItems",
             },
@@ -4855,13 +4516,13 @@ M.ProvisionedConcurrencyConfigListItem = {
             type = "string",
         },
         RequestedProvisionedConcurrentExecutions = {
-            type = "number",
+            type = "integer",
         },
         AvailableProvisionedConcurrentExecutions = {
-            type = "number",
+            type = "integer",
         },
         AllocatedProvisionedConcurrentExecutions = {
-            type = "number",
+            type = "integer",
         },
         Status = {
             type = "string",
@@ -4880,7 +4541,7 @@ M.ListProvisionedConcurrencyConfigsOutput = {
     members = {
         ProvisionedConcurrencyConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.ProvisionedConcurrencyConfigListItem,
         },
         NextMarker = {
             type = "string",
@@ -4936,7 +4597,7 @@ M.PutFunctionConcurrencyInput = {
             },
         },
         ReservedConcurrentExecutions = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -4948,7 +4609,7 @@ M.PutFunctionConcurrencyOutput = {
     type = "structure",
     members = {
         ReservedConcurrentExecutions = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4998,9 +4659,7 @@ M.PutFunctionScalingConfigInput = {
                 required = true,
             },
         },
-        FunctionScalingConfig = {
-            type = "structure",
-        },
+        FunctionScalingConfig = M.FunctionScalingConfig,
     },
 }
 
@@ -5089,16 +4748,22 @@ M.UpdateFunctionCodeInput = {
         },
         Publish = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         DryRun = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         RevisionId = {
             type = "string",
         },
         Architectures = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SourceKMSKeyArn = {
             type = "string",
@@ -5128,16 +4793,19 @@ M.UpdateFunctionCodeOutput = {
             type = "string",
         },
         CodeSize = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Description = {
             type = "string",
         },
         Timeout = {
-            type = "number",
+            type = "integer",
         },
         MemorySize = {
-            type = "number",
+            type = "integer",
         },
         LastModified = {
             type = "string",
@@ -5148,21 +4816,13 @@ M.UpdateFunctionCodeOutput = {
         Version = {
             type = "string",
         },
-        VpcConfig = {
-            type = "structure",
-        },
-        DeadLetterConfig = {
-            type = "structure",
-        },
-        Environment = {
-            type = "structure",
-        },
+        VpcConfig = M.VpcConfigResponse,
+        DeadLetterConfig = M.DeadLetterConfig,
+        Environment = M.EnvironmentResponse,
         KMSKeyArn = {
             type = "string",
         },
-        TracingConfig = {
-            type = "structure",
-        },
+        TracingConfig = M.TracingConfigResponse,
         MasterArn = {
             type = "string",
         },
@@ -5171,7 +4831,7 @@ M.UpdateFunctionCodeOutput = {
         },
         Layers = {
             type = "list",
-            member_type = "structure",
+            member = M.Layer,
         },
         State = {
             type = "string",
@@ -5193,14 +4853,12 @@ M.UpdateFunctionCodeOutput = {
         },
         FileSystemConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.FileSystemConfig,
         },
         PackageType = {
             type = "string",
         },
-        ImageConfigResponse = {
-            type = "structure",
-        },
+        ImageConfigResponse = M.ImageConfigResponse,
         SigningProfileVersionArn = {
             type = "string",
         },
@@ -5209,32 +4867,18 @@ M.UpdateFunctionCodeOutput = {
         },
         Architectures = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        EphemeralStorage = {
-            type = "structure",
-        },
-        SnapStart = {
-            type = "structure",
-        },
-        RuntimeVersionConfig = {
-            type = "structure",
-        },
-        LoggingConfig = {
-            type = "structure",
-        },
-        CapacityProviderConfig = {
-            type = "structure",
-        },
+        EphemeralStorage = M.EphemeralStorage,
+        SnapStart = M.SnapStartResponse,
+        RuntimeVersionConfig = M.RuntimeVersionConfig,
+        LoggingConfig = M.LoggingConfig,
+        CapacityProviderConfig = M.CapacityProviderConfig,
         ConfigSha256 = {
             type = "string",
         },
-        DurableConfig = {
-            type = "structure",
-        },
-        TenancyConfig = {
-            type = "structure",
-        },
+        DurableConfig = M.DurableConfig,
+        TenancyConfig = M.TenancyConfig,
     },
 }
 
@@ -5258,58 +4902,38 @@ M.UpdateFunctionConfigurationInput = {
             type = "string",
         },
         Timeout = {
-            type = "number",
+            type = "integer",
         },
         MemorySize = {
-            type = "number",
+            type = "integer",
         },
-        VpcConfig = {
-            type = "structure",
-        },
-        Environment = {
-            type = "structure",
-        },
+        VpcConfig = M.VpcConfig,
+        Environment = M.Environment,
         Runtime = {
             type = "string",
         },
-        DeadLetterConfig = {
-            type = "structure",
-        },
+        DeadLetterConfig = M.DeadLetterConfig,
         KMSKeyArn = {
             type = "string",
         },
-        TracingConfig = {
-            type = "structure",
-        },
+        TracingConfig = M.TracingConfig,
         RevisionId = {
             type = "string",
         },
         Layers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         FileSystemConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.FileSystemConfig,
         },
-        ImageConfig = {
-            type = "structure",
-        },
-        EphemeralStorage = {
-            type = "structure",
-        },
-        SnapStart = {
-            type = "structure",
-        },
-        LoggingConfig = {
-            type = "structure",
-        },
-        CapacityProviderConfig = {
-            type = "structure",
-        },
-        DurableConfig = {
-            type = "structure",
-        },
+        ImageConfig = M.ImageConfig,
+        EphemeralStorage = M.EphemeralStorage,
+        SnapStart = M.SnapStart,
+        LoggingConfig = M.LoggingConfig,
+        CapacityProviderConfig = M.CapacityProviderConfig,
+        DurableConfig = M.DurableConfig,
     },
 }
 
@@ -5332,16 +4956,19 @@ M.UpdateFunctionConfigurationOutput = {
             type = "string",
         },
         CodeSize = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Description = {
             type = "string",
         },
         Timeout = {
-            type = "number",
+            type = "integer",
         },
         MemorySize = {
-            type = "number",
+            type = "integer",
         },
         LastModified = {
             type = "string",
@@ -5352,21 +4979,13 @@ M.UpdateFunctionConfigurationOutput = {
         Version = {
             type = "string",
         },
-        VpcConfig = {
-            type = "structure",
-        },
-        DeadLetterConfig = {
-            type = "structure",
-        },
-        Environment = {
-            type = "structure",
-        },
+        VpcConfig = M.VpcConfigResponse,
+        DeadLetterConfig = M.DeadLetterConfig,
+        Environment = M.EnvironmentResponse,
         KMSKeyArn = {
             type = "string",
         },
-        TracingConfig = {
-            type = "structure",
-        },
+        TracingConfig = M.TracingConfigResponse,
         MasterArn = {
             type = "string",
         },
@@ -5375,7 +4994,7 @@ M.UpdateFunctionConfigurationOutput = {
         },
         Layers = {
             type = "list",
-            member_type = "structure",
+            member = M.Layer,
         },
         State = {
             type = "string",
@@ -5397,14 +5016,12 @@ M.UpdateFunctionConfigurationOutput = {
         },
         FileSystemConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.FileSystemConfig,
         },
         PackageType = {
             type = "string",
         },
-        ImageConfigResponse = {
-            type = "structure",
-        },
+        ImageConfigResponse = M.ImageConfigResponse,
         SigningProfileVersionArn = {
             type = "string",
         },
@@ -5413,32 +5030,18 @@ M.UpdateFunctionConfigurationOutput = {
         },
         Architectures = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        EphemeralStorage = {
-            type = "structure",
-        },
-        SnapStart = {
-            type = "structure",
-        },
-        RuntimeVersionConfig = {
-            type = "structure",
-        },
-        LoggingConfig = {
-            type = "structure",
-        },
-        CapacityProviderConfig = {
-            type = "structure",
-        },
+        EphemeralStorage = M.EphemeralStorage,
+        SnapStart = M.SnapStartResponse,
+        RuntimeVersionConfig = M.RuntimeVersionConfig,
+        LoggingConfig = M.LoggingConfig,
+        CapacityProviderConfig = M.CapacityProviderConfig,
         ConfigSha256 = {
             type = "string",
         },
-        DurableConfig = {
-            type = "structure",
-        },
-        TenancyConfig = {
-            type = "structure",
-        },
+        DurableConfig = M.DurableConfig,
+        TenancyConfig = M.TenancyConfig,
     },
 }
 
@@ -5461,9 +5064,7 @@ M.UpdateFunctionUrlConfigInput = {
         AuthType = {
             type = "string",
         },
-        Cors = {
-            type = "structure",
-        },
+        Cors = M.Cors,
         InvokeMode = {
             type = "string",
         },
@@ -5491,9 +5092,7 @@ M.UpdateFunctionUrlConfigOutput = {
                 required = true,
             },
         },
-        Cors = {
-            type = "structure",
-        },
+        Cors = M.Cors,
         CreationTime = {
             type = "string",
             traits = {
@@ -5537,9 +5136,7 @@ M.CreateAliasInput = {
         Description = {
             type = "string",
         },
-        RoutingConfig = {
-            type = "structure",
-        },
+        RoutingConfig = M.AliasRoutingConfiguration,
     },
 }
 
@@ -5558,9 +5155,7 @@ M.CreateAliasOutput = {
         Description = {
             type = "string",
         },
-        RoutingConfig = {
-            type = "structure",
-        },
+        RoutingConfig = M.AliasRoutingConfiguration,
         RevisionId = {
             type = "string",
         },
@@ -5626,9 +5221,7 @@ M.GetAliasOutput = {
         Description = {
             type = "string",
         },
-        RoutingConfig = {
-            type = "structure",
-        },
+        RoutingConfig = M.AliasRoutingConfiguration,
         RevisionId = {
             type = "string",
         },
@@ -5658,7 +5251,7 @@ M.ListAliasesInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxItems",
             },
@@ -5674,7 +5267,7 @@ M.ListAliasesOutput = {
         },
         Aliases = {
             type = "list",
-            member_type = "structure",
+            member = M.AliasConfiguration,
         },
     },
 }
@@ -5702,9 +5295,7 @@ M.UpdateAliasInput = {
         Description = {
             type = "string",
         },
-        RoutingConfig = {
-            type = "structure",
-        },
+        RoutingConfig = M.AliasRoutingConfiguration,
         RevisionId = {
             type = "string",
         },
@@ -5726,9 +5317,7 @@ M.UpdateAliasOutput = {
         Description = {
             type = "string",
         },
-        RoutingConfig = {
-            type = "structure",
-        },
+        RoutingConfig = M.AliasRoutingConfiguration,
         RevisionId = {
             type = "string",
         },
@@ -5752,7 +5341,7 @@ M.ListVersionsByFunctionInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxItems",
             },
@@ -5768,7 +5357,7 @@ M.ListVersionsByFunctionOutput = {
         },
         Versions = {
             type = "list",
-            member_type = "structure",
+            member = M.FunctionConfiguration,
         },
     },
 }
@@ -5817,16 +5406,19 @@ M.PublishVersionOutput = {
             type = "string",
         },
         CodeSize = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Description = {
             type = "string",
         },
         Timeout = {
-            type = "number",
+            type = "integer",
         },
         MemorySize = {
-            type = "number",
+            type = "integer",
         },
         LastModified = {
             type = "string",
@@ -5837,21 +5429,13 @@ M.PublishVersionOutput = {
         Version = {
             type = "string",
         },
-        VpcConfig = {
-            type = "structure",
-        },
-        DeadLetterConfig = {
-            type = "structure",
-        },
-        Environment = {
-            type = "structure",
-        },
+        VpcConfig = M.VpcConfigResponse,
+        DeadLetterConfig = M.DeadLetterConfig,
+        Environment = M.EnvironmentResponse,
         KMSKeyArn = {
             type = "string",
         },
-        TracingConfig = {
-            type = "structure",
-        },
+        TracingConfig = M.TracingConfigResponse,
         MasterArn = {
             type = "string",
         },
@@ -5860,7 +5444,7 @@ M.PublishVersionOutput = {
         },
         Layers = {
             type = "list",
-            member_type = "structure",
+            member = M.Layer,
         },
         State = {
             type = "string",
@@ -5882,14 +5466,12 @@ M.PublishVersionOutput = {
         },
         FileSystemConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.FileSystemConfig,
         },
         PackageType = {
             type = "string",
         },
-        ImageConfigResponse = {
-            type = "structure",
-        },
+        ImageConfigResponse = M.ImageConfigResponse,
         SigningProfileVersionArn = {
             type = "string",
         },
@@ -5898,32 +5480,18 @@ M.PublishVersionOutput = {
         },
         Architectures = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        EphemeralStorage = {
-            type = "structure",
-        },
-        SnapStart = {
-            type = "structure",
-        },
-        RuntimeVersionConfig = {
-            type = "structure",
-        },
-        LoggingConfig = {
-            type = "structure",
-        },
-        CapacityProviderConfig = {
-            type = "structure",
-        },
+        EphemeralStorage = M.EphemeralStorage,
+        SnapStart = M.SnapStartResponse,
+        RuntimeVersionConfig = M.RuntimeVersionConfig,
+        LoggingConfig = M.LoggingConfig,
+        CapacityProviderConfig = M.CapacityProviderConfig,
         ConfigSha256 = {
             type = "string",
         },
-        DurableConfig = {
-            type = "structure",
-        },
-        TenancyConfig = {
-            type = "structure",
-        },
+        DurableConfig = M.DurableConfig,
+        TenancyConfig = M.TenancyConfig,
     },
 }
 
@@ -5934,12 +5502,8 @@ M.GetAccountSettingsInput = {
 M.GetAccountSettingsOutput = {
     type = "structure",
     members = {
-        AccountLimit = {
-            type = "structure",
-        },
-        AccountUsage = {
-            type = "structure",
-        },
+        AccountLimit = M.AccountLimit,
+        AccountUsage = M.AccountUsage,
     },
 }
 
@@ -6000,9 +5564,7 @@ M.GetDurableExecutionOutput = {
         Result = {
             type = "string",
         },
-        Error = {
-            type = "structure",
-        },
+        Error = M.ErrorObject,
         StartTimestamp = {
             type = "timestamp",
             traits = {
@@ -6021,9 +5583,7 @@ M.GetDurableExecutionOutput = {
         Version = {
             type = "string",
         },
-        TraceHeader = {
-            type = "structure",
-        },
+        TraceHeader = M.TraceHeader,
     },
 }
 
@@ -6044,8 +5604,9 @@ M.GetDurableExecutionHistoryInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "MaxItems",
             },
         },
@@ -6067,9 +5628,7 @@ M.GetDurableExecutionHistoryInput = {
 M.EventError = {
     type = "structure",
     members = {
-        Payload = {
-            type = "structure",
-        },
+        Payload = M.ErrorObject,
         Truncated = {
             type = "boolean",
         },
@@ -6079,12 +5638,9 @@ M.EventError = {
 M.CallbackFailedDetails = {
     type = "structure",
     members = {
-        Error = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Error = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EventError }),
     },
 }
 
@@ -6098,10 +5654,10 @@ M.CallbackStartedDetails = {
             },
         },
         HeartbeatTimeout = {
-            type = "number",
+            type = "integer",
         },
         Timeout = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -6121,36 +5677,27 @@ M.EventResult = {
 M.CallbackSucceededDetails = {
     type = "structure",
     members = {
-        Result = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Result = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EventResult }),
     },
 }
 
 M.CallbackTimedOutDetails = {
     type = "structure",
     members = {
-        Error = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Error = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EventError }),
     },
 }
 
 M.ChainedInvokeFailedDetails = {
     type = "structure",
     members = {
-        Error = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Error = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EventError }),
     },
 }
 
@@ -6178,9 +5725,7 @@ M.ChainedInvokeStartedDetails = {
         TenantId = {
             type = "string",
         },
-        Input = {
-            type = "structure",
-        },
+        Input = M.EventInput,
         ExecutedVersion = {
             type = "string",
         },
@@ -6193,48 +5738,36 @@ M.ChainedInvokeStartedDetails = {
 M.ChainedInvokeStoppedDetails = {
     type = "structure",
     members = {
-        Error = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Error = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EventError }),
     },
 }
 
 M.ChainedInvokeSucceededDetails = {
     type = "structure",
     members = {
-        Result = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Result = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EventResult }),
     },
 }
 
 M.ChainedInvokeTimedOutDetails = {
     type = "structure",
     members = {
-        Error = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Error = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EventError }),
     },
 }
 
 M.ContextFailedDetails = {
     type = "structure",
     members = {
-        Error = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Error = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EventError }),
     },
 }
 
@@ -6245,12 +5778,9 @@ M.ContextStartedDetails = {
 M.ContextSucceededDetails = {
     type = "structure",
     members = {
-        Result = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Result = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EventResult }),
     },
 }
 
@@ -6284,26 +5814,20 @@ M.EventType = {
 M.ExecutionFailedDetails = {
     type = "structure",
     members = {
-        Error = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Error = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EventError }),
     },
 }
 
 M.ExecutionStartedDetails = {
     type = "structure",
     members = {
-        Input = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Input = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EventInput }),
         ExecutionTimeout = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -6314,33 +5838,25 @@ M.ExecutionStartedDetails = {
 M.ExecutionStoppedDetails = {
     type = "structure",
     members = {
-        Error = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Error = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EventError }),
     },
 }
 
 M.ExecutionSucceededDetails = {
     type = "structure",
     members = {
-        Result = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Result = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EventResult }),
     },
 }
 
 M.ExecutionTimedOutDetails = {
     type = "structure",
     members = {
-        Error = {
-            type = "structure",
-        },
+        Error = M.EventError,
     },
 }
 
@@ -6365,9 +5881,7 @@ M.InvocationCompletedDetails = {
                 required = true,
             },
         },
-        Error = {
-            type = "structure",
-        },
+        Error = M.EventError,
     },
 }
 
@@ -6375,10 +5889,13 @@ M.RetryDetails = {
     type = "structure",
     members = {
         CurrentAttempt = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         NextAttemptDelaySeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -6386,18 +5903,12 @@ M.RetryDetails = {
 M.StepFailedDetails = {
     type = "structure",
     members = {
-        Error = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        RetryDetails = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Error = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EventError }),
+        RetryDetails = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RetryDetails }),
     },
 }
 
@@ -6408,27 +5919,19 @@ M.StepStartedDetails = {
 M.StepSucceededDetails = {
     type = "structure",
     members = {
-        Result = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        RetryDetails = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Result = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EventResult }),
+        RetryDetails = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RetryDetails }),
     },
 }
 
 M.WaitCancelledDetails = {
     type = "structure",
     members = {
-        Error = {
-            type = "structure",
-        },
+        Error = M.EventError,
     },
 }
 
@@ -6436,7 +5939,7 @@ M.WaitStartedDetails = {
     type = "structure",
     members = {
         Duration = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -6454,7 +5957,7 @@ M.WaitSucceededDetails = {
     type = "structure",
     members = {
         Duration = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -6469,7 +5972,10 @@ M.Event = {
             type = "string",
         },
         EventId = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 1,
+            },
         },
         Id = {
             type = "string",
@@ -6483,78 +5989,30 @@ M.Event = {
         ParentId = {
             type = "string",
         },
-        ExecutionStartedDetails = {
-            type = "structure",
-        },
-        ExecutionSucceededDetails = {
-            type = "structure",
-        },
-        ExecutionFailedDetails = {
-            type = "structure",
-        },
-        ExecutionTimedOutDetails = {
-            type = "structure",
-        },
-        ExecutionStoppedDetails = {
-            type = "structure",
-        },
-        ContextStartedDetails = {
-            type = "structure",
-        },
-        ContextSucceededDetails = {
-            type = "structure",
-        },
-        ContextFailedDetails = {
-            type = "structure",
-        },
-        WaitStartedDetails = {
-            type = "structure",
-        },
-        WaitSucceededDetails = {
-            type = "structure",
-        },
-        WaitCancelledDetails = {
-            type = "structure",
-        },
-        StepStartedDetails = {
-            type = "structure",
-        },
-        StepSucceededDetails = {
-            type = "structure",
-        },
-        StepFailedDetails = {
-            type = "structure",
-        },
-        ChainedInvokeStartedDetails = {
-            type = "structure",
-        },
-        ChainedInvokeSucceededDetails = {
-            type = "structure",
-        },
-        ChainedInvokeFailedDetails = {
-            type = "structure",
-        },
-        ChainedInvokeTimedOutDetails = {
-            type = "structure",
-        },
-        ChainedInvokeStoppedDetails = {
-            type = "structure",
-        },
-        CallbackStartedDetails = {
-            type = "structure",
-        },
-        CallbackSucceededDetails = {
-            type = "structure",
-        },
-        CallbackFailedDetails = {
-            type = "structure",
-        },
-        CallbackTimedOutDetails = {
-            type = "structure",
-        },
-        InvocationCompletedDetails = {
-            type = "structure",
-        },
+        ExecutionStartedDetails = M.ExecutionStartedDetails,
+        ExecutionSucceededDetails = M.ExecutionSucceededDetails,
+        ExecutionFailedDetails = M.ExecutionFailedDetails,
+        ExecutionTimedOutDetails = M.ExecutionTimedOutDetails,
+        ExecutionStoppedDetails = M.ExecutionStoppedDetails,
+        ContextStartedDetails = M.ContextStartedDetails,
+        ContextSucceededDetails = M.ContextSucceededDetails,
+        ContextFailedDetails = M.ContextFailedDetails,
+        WaitStartedDetails = M.WaitStartedDetails,
+        WaitSucceededDetails = M.WaitSucceededDetails,
+        WaitCancelledDetails = M.WaitCancelledDetails,
+        StepStartedDetails = M.StepStartedDetails,
+        StepSucceededDetails = M.StepSucceededDetails,
+        StepFailedDetails = M.StepFailedDetails,
+        ChainedInvokeStartedDetails = M.ChainedInvokeStartedDetails,
+        ChainedInvokeSucceededDetails = M.ChainedInvokeSucceededDetails,
+        ChainedInvokeFailedDetails = M.ChainedInvokeFailedDetails,
+        ChainedInvokeTimedOutDetails = M.ChainedInvokeTimedOutDetails,
+        ChainedInvokeStoppedDetails = M.ChainedInvokeStoppedDetails,
+        CallbackStartedDetails = M.CallbackStartedDetails,
+        CallbackSucceededDetails = M.CallbackSucceededDetails,
+        CallbackFailedDetails = M.CallbackFailedDetails,
+        CallbackTimedOutDetails = M.CallbackTimedOutDetails,
+        InvocationCompletedDetails = M.InvocationCompletedDetails,
     },
 }
 
@@ -6563,7 +6021,7 @@ M.GetDurableExecutionHistoryOutput = {
     members = {
         Events = {
             type = "list",
-            member_type = "structure",
+            member = M.Event,
             traits = {
                 required = true,
             },
@@ -6598,8 +6056,9 @@ M.GetDurableExecutionStateInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "MaxItems",
             },
         },
@@ -6611,7 +6070,7 @@ M.GetDurableExecutionStateOutput = {
     members = {
         Operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
             traits = {
                 required = true,
             },
@@ -6651,14 +6110,12 @@ M.GetFunctionEventInvokeConfigOutput = {
             type = "string",
         },
         MaximumRetryAttempts = {
-            type = "number",
+            type = "integer",
         },
         MaximumEventAgeInSeconds = {
-            type = "number",
+            type = "integer",
         },
-        DestinationConfig = {
-            type = "structure",
-        },
+        DestinationConfig = M.DestinationConfig,
     },
 }
 
@@ -6678,7 +6135,7 @@ M.ListLayersInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxItems",
             },
@@ -6699,7 +6156,10 @@ M.LayerVersionsListItem = {
             type = "string",
         },
         Version = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Description = {
             type = "string",
@@ -6709,14 +6169,14 @@ M.LayerVersionsListItem = {
         },
         CompatibleRuntimes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         LicenseInfo = {
             type = "string",
         },
         CompatibleArchitectures = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -6730,9 +6190,7 @@ M.LayersListItem = {
         LayerArn = {
             type = "string",
         },
-        LatestMatchingVersion = {
-            type = "structure",
-        },
+        LatestMatchingVersion = M.LayerVersionsListItem,
     },
 }
 
@@ -6744,7 +6202,7 @@ M.ListLayersOutput = {
         },
         Layers = {
             type = "list",
-            member_type = "structure",
+            member = M.LayersListItem,
         },
     },
 }
@@ -6760,8 +6218,9 @@ M.DeleteLayerVersionInput = {
             },
         },
         VersionNumber = {
-            type = "number",
+            type = "long",
             traits = {
+                default = nil,
                 http_label = true,
                 required = true,
             },
@@ -6784,8 +6243,9 @@ M.GetLayerVersionInput = {
             },
         },
         VersionNumber = {
-            type = "number",
+            type = "long",
             traits = {
+                default = nil,
                 http_label = true,
                 required = true,
             },
@@ -6803,7 +6263,10 @@ M.LayerVersionContentOutput = {
             type = "string",
         },
         CodeSize = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         SigningProfileVersionArn = {
             type = "string",
@@ -6817,9 +6280,7 @@ M.LayerVersionContentOutput = {
 M.GetLayerVersionOutput = {
     type = "structure",
     members = {
-        Content = {
-            type = "structure",
-        },
+        Content = M.LayerVersionContentOutput,
         LayerArn = {
             type = "string",
         },
@@ -6833,18 +6294,21 @@ M.GetLayerVersionOutput = {
             type = "string",
         },
         Version = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         CompatibleRuntimes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         LicenseInfo = {
             type = "string",
         },
         CompatibleArchitectures = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -6865,9 +6329,7 @@ M.GetLayerVersionByArnInput = {
 M.GetLayerVersionByArnOutput = {
     type = "structure",
     members = {
-        Content = {
-            type = "structure",
-        },
+        Content = M.LayerVersionContentOutput,
         LayerArn = {
             type = "string",
         },
@@ -6881,18 +6343,21 @@ M.GetLayerVersionByArnOutput = {
             type = "string",
         },
         Version = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         CompatibleRuntimes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         LicenseInfo = {
             type = "string",
         },
         CompatibleArchitectures = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -6908,8 +6373,9 @@ M.GetLayerVersionPolicyInput = {
             },
         },
         VersionNumber = {
-            type = "number",
+            type = "long",
             traits = {
+                default = nil,
                 http_label = true,
                 required = true,
             },
@@ -6952,7 +6418,7 @@ M.ListLayerVersionsInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxItems",
             },
@@ -6974,7 +6440,7 @@ M.ListLayerVersionsOutput = {
         },
         LayerVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.LayerVersionsListItem,
         },
     },
 }
@@ -7010,22 +6476,19 @@ M.PublishLayerVersionInput = {
         Description = {
             type = "string",
         },
-        Content = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Content = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LayerVersionContentInput }),
         CompatibleRuntimes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         LicenseInfo = {
             type = "string",
         },
         CompatibleArchitectures = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -7033,9 +6496,7 @@ M.PublishLayerVersionInput = {
 M.PublishLayerVersionOutput = {
     type = "structure",
     members = {
-        Content = {
-            type = "structure",
-        },
+        Content = M.LayerVersionContentOutput,
         LayerArn = {
             type = "string",
         },
@@ -7049,18 +6510,21 @@ M.PublishLayerVersionOutput = {
             type = "string",
         },
         Version = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         CompatibleRuntimes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         LicenseInfo = {
             type = "string",
         },
         CompatibleArchitectures = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -7076,8 +6540,9 @@ M.RemoveLayerVersionPermissionInput = {
             },
         },
         VersionNumber = {
-            type = "number",
+            type = "long",
             traits = {
+                default = nil,
                 http_label = true,
                 required = true,
             },
@@ -7126,7 +6591,7 @@ M.ListDurableExecutionsByFunctionInput = {
         },
         Statuses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "Statuses",
             },
@@ -7156,8 +6621,9 @@ M.ListDurableExecutionsByFunctionInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "MaxItems",
             },
         },
@@ -7208,7 +6674,7 @@ M.ListDurableExecutionsByFunctionOutput = {
     members = {
         DurableExecutions = {
             type = "list",
-            member_type = "structure",
+            member = M.Execution,
         },
         NextMarker = {
             type = "string",
@@ -7233,7 +6699,7 @@ M.ListFunctionEventInvokeConfigsInput = {
             },
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxItems",
             },
@@ -7251,14 +6717,12 @@ M.FunctionEventInvokeConfig = {
             type = "string",
         },
         MaximumRetryAttempts = {
-            type = "number",
+            type = "integer",
         },
         MaximumEventAgeInSeconds = {
-            type = "number",
+            type = "integer",
         },
-        DestinationConfig = {
-            type = "structure",
-        },
+        DestinationConfig = M.DestinationConfig,
     },
 }
 
@@ -7267,7 +6731,7 @@ M.ListFunctionEventInvokeConfigsOutput = {
     members = {
         FunctionEventInvokeConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.FunctionEventInvokeConfig,
         },
         NextMarker = {
             type = "string",
@@ -7293,8 +6757,8 @@ M.ListTagsOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -7383,13 +6847,13 @@ M.GetProvisionedConcurrencyConfigOutput = {
     type = "structure",
     members = {
         RequestedProvisionedConcurrentExecutions = {
-            type = "number",
+            type = "integer",
         },
         AvailableProvisionedConcurrentExecutions = {
-            type = "number",
+            type = "integer",
         },
         AllocatedProvisionedConcurrentExecutions = {
-            type = "number",
+            type = "integer",
         },
         Status = {
             type = "string",
@@ -7434,7 +6898,7 @@ M.PutProvisionedConcurrencyConfigInput = {
             },
         },
         ProvisionedConcurrentExecutions = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -7446,13 +6910,13 @@ M.PutProvisionedConcurrencyConfigOutput = {
     type = "structure",
     members = {
         RequestedProvisionedConcurrentExecutions = {
-            type = "number",
+            type = "integer",
         },
         AvailableProvisionedConcurrentExecutions = {
-            type = "number",
+            type = "integer",
         },
         AllocatedProvisionedConcurrentExecutions = {
-            type = "number",
+            type = "integer",
         },
         Status = {
             type = "string",
@@ -7483,14 +6947,12 @@ M.PutFunctionEventInvokeConfigInput = {
             },
         },
         MaximumRetryAttempts = {
-            type = "number",
+            type = "integer",
         },
         MaximumEventAgeInSeconds = {
-            type = "number",
+            type = "integer",
         },
-        DestinationConfig = {
-            type = "structure",
-        },
+        DestinationConfig = M.DestinationConfig,
     },
 }
 
@@ -7504,14 +6966,12 @@ M.PutFunctionEventInvokeConfigOutput = {
             type = "string",
         },
         MaximumRetryAttempts = {
-            type = "number",
+            type = "integer",
         },
         MaximumEventAgeInSeconds = {
-            type = "number",
+            type = "integer",
         },
-        DestinationConfig = {
-            type = "structure",
-        },
+        DestinationConfig = M.DestinationConfig,
     },
 }
 
@@ -7538,12 +6998,9 @@ M.SendDurableExecutionCallbackFailureInput = {
                 required = true,
             },
         },
-        Error = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        Error = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.ErrorObject }),
     },
 }
 
@@ -7601,12 +7058,9 @@ M.StopDurableExecutionInput = {
                 required = true,
             },
         },
-        Error = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        Error = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.ErrorObject }),
     },
 }
 
@@ -7634,8 +7088,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -7659,7 +7113,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -7689,14 +7143,12 @@ M.UpdateFunctionEventInvokeConfigInput = {
             },
         },
         MaximumRetryAttempts = {
-            type = "number",
+            type = "integer",
         },
         MaximumEventAgeInSeconds = {
-            type = "number",
+            type = "integer",
         },
-        DestinationConfig = {
-            type = "structure",
-        },
+        DestinationConfig = M.DestinationConfig,
     },
 }
 
@@ -7710,14 +7162,12 @@ M.UpdateFunctionEventInvokeConfigOutput = {
             type = "string",
         },
         MaximumRetryAttempts = {
-            type = "number",
+            type = "integer",
         },
         MaximumEventAgeInSeconds = {
-            type = "number",
+            type = "integer",
         },
-        DestinationConfig = {
-            type = "structure",
-        },
+        DestinationConfig = M.DestinationConfig,
     },
 }
 

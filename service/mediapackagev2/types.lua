@@ -245,7 +245,7 @@ M.CdnAuthConfiguration = {
     members = {
         CdnIdentifierSecretArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -397,7 +397,7 @@ M.InputSwitchConfiguration = {
             type = "boolean",
         },
         PreferredInput = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -444,16 +444,12 @@ M.CreateChannelInput = {
         Description = {
             type = "string",
         },
-        InputSwitchConfiguration = {
-            type = "structure",
-        },
-        OutputHeaderConfiguration = {
-            type = "structure",
-        },
+        InputSwitchConfiguration = M.InputSwitchConfiguration,
+        OutputHeaderConfiguration = M.OutputHeaderConfiguration,
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -511,7 +507,7 @@ M.CreateChannelOutput = {
         },
         IngestEndpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.IngestEndpoint,
         },
         InputType = {
             type = "string",
@@ -521,15 +517,11 @@ M.CreateChannelOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        InputSwitchConfiguration = {
-            type = "structure",
-        },
-        OutputHeaderConfiguration = {
-            type = "structure",
-        },
+        InputSwitchConfiguration = M.InputSwitchConfiguration,
+        OutputHeaderConfiguration = M.OutputHeaderConfiguration,
     },
 }
 
@@ -628,7 +620,7 @@ M.GetChannelOutput = {
         },
         IngestEndpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.IngestEndpoint,
         },
         InputType = {
             type = "string",
@@ -638,15 +630,11 @@ M.GetChannelOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        InputSwitchConfiguration = {
-            type = "structure",
-        },
-        OutputHeaderConfiguration = {
-            type = "structure",
-        },
+        InputSwitchConfiguration = M.InputSwitchConfiguration,
+        OutputHeaderConfiguration = M.OutputHeaderConfiguration,
     },
 }
 
@@ -661,8 +649,9 @@ M.ListChannelsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 10,
                 http_query = "maxResults",
             },
         },
@@ -722,7 +711,7 @@ M.ListChannelsOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.ChannelListConfiguration,
         },
         NextToken = {
             type = "string",
@@ -749,10 +738,10 @@ M.DashBaseUrl = {
             type = "string",
         },
         DvbPriority = {
-            type = "number",
+            type = "integer",
         },
         DvbWeight = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -777,7 +766,7 @@ M.DashDvbMetricsReporting = {
             },
         },
         Probability = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -800,12 +789,10 @@ M.DashDvbFontDownload = {
 M.DashDvbSettings = {
     type = "structure",
     members = {
-        FontDownload = {
-            type = "structure",
-        },
+        FontDownload = M.DashDvbFontDownload,
         ErrorMetrics = {
             type = "list",
-            member_type = "structure",
+            member = M.DashDvbMetricsReporting,
         },
     },
 }
@@ -826,7 +813,7 @@ M.FilterConfiguration = {
             type = "timestamp",
         },
         TimeDelaySeconds = {
-            type = "number",
+            type = "integer",
         },
         ClipStartTime = {
             type = "timestamp",
@@ -908,9 +895,7 @@ M.DashTtmlConfiguration = {
 M.DashSubtitleConfiguration = {
     type = "structure",
     members = {
-        TtmlConfiguration = {
-            type = "structure",
-        },
+        TtmlConfiguration = M.DashTtmlConfiguration,
     },
 }
 
@@ -948,56 +933,44 @@ M.CreateDashManifestConfiguration = {
             },
         },
         ManifestWindowSeconds = {
-            type = "number",
+            type = "integer",
         },
-        FilterConfiguration = {
-            type = "structure",
-        },
+        FilterConfiguration = M.FilterConfiguration,
         MinUpdatePeriodSeconds = {
-            type = "number",
+            type = "integer",
         },
         MinBufferTimeSeconds = {
-            type = "number",
+            type = "integer",
         },
         SuggestedPresentationDelaySeconds = {
-            type = "number",
+            type = "integer",
         },
         SegmentTemplateFormat = {
             type = "string",
         },
         PeriodTriggers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        ScteDash = {
-            type = "structure",
-        },
+        ScteDash = M.ScteDash,
         DrmSignaling = {
             type = "string",
         },
-        UtcTiming = {
-            type = "structure",
-        },
+        UtcTiming = M.DashUtcTiming,
         Profiles = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         BaseUrls = {
             type = "list",
-            member_type = "structure",
+            member = M.DashBaseUrl,
         },
-        ProgramInformation = {
-            type = "structure",
-        },
-        DvbSettings = {
-            type = "structure",
-        },
+        ProgramInformation = M.DashProgramInformation,
+        DvbSettings = M.DashDvbSettings,
         Compactness = {
             type = "string",
         },
-        SubtitleConfiguration = {
-            type = "structure",
-        },
+        SubtitleConfiguration = M.DashSubtitleConfiguration,
         UriPathType = {
             type = "string",
         },
@@ -1016,7 +989,7 @@ M.ForceEndpointErrorConfiguration = {
     members = {
         EndpointErrorConditions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1037,7 +1010,7 @@ M.StartTag = {
     type = "structure",
     members = {
         TimeOffset = {
-            type = "number",
+            type = "float",
             traits = {
                 required = true,
             },
@@ -1060,21 +1033,15 @@ M.CreateHlsManifestConfiguration = {
         ChildManifestName = {
             type = "string",
         },
-        ScteHls = {
-            type = "structure",
-        },
-        StartTag = {
-            type = "structure",
-        },
+        ScteHls = M.ScteHls,
+        StartTag = M.StartTag,
         ManifestWindowSeconds = {
-            type = "number",
+            type = "integer",
         },
         ProgramDateTimeIntervalSeconds = {
-            type = "number",
+            type = "integer",
         },
-        FilterConfiguration = {
-            type = "structure",
-        },
+        FilterConfiguration = M.FilterConfiguration,
         UrlEncodeChildManifest = {
             type = "boolean",
         },
@@ -1096,21 +1063,15 @@ M.CreateLowLatencyHlsManifestConfiguration = {
         ChildManifestName = {
             type = "string",
         },
-        ScteHls = {
-            type = "structure",
-        },
-        StartTag = {
-            type = "structure",
-        },
+        ScteHls = M.ScteHls,
+        StartTag = M.StartTag,
         ManifestWindowSeconds = {
-            type = "number",
+            type = "integer",
         },
         ProgramDateTimeIntervalSeconds = {
-            type = "number",
+            type = "integer",
         },
-        FilterConfiguration = {
-            type = "structure",
-        },
+        FilterConfiguration = M.FilterConfiguration,
         UrlEncodeChildManifest = {
             type = "boolean",
         },
@@ -1135,11 +1096,9 @@ M.CreateMssManifestConfiguration = {
             },
         },
         ManifestWindowSeconds = {
-            type = "number",
+            type = "integer",
         },
-        FilterConfiguration = {
-            type = "structure",
-        },
+        FilterConfiguration = M.FilterConfiguration,
         ManifestLayout = {
             type = "string",
         },
@@ -1225,12 +1184,9 @@ M.EncryptionContractConfiguration = {
 M.SpekeKeyProvider = {
     type = "structure",
     members = {
-        EncryptionContractConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        EncryptionContractConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EncryptionContractConfiguration }),
         ResourceId = {
             type = "string",
             traits = {
@@ -1239,7 +1195,7 @@ M.SpekeKeyProvider = {
         },
         DrmSystems = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1268,24 +1224,18 @@ M.Encryption = {
         ConstantInitializationVector = {
             type = "string",
         },
-        EncryptionMethod = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        EncryptionMethod = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EncryptionMethod }),
         KeyRotationIntervalSeconds = {
-            type = "number",
+            type = "integer",
         },
         CmafExcludeSegmentDrmMetadata = {
             type = "boolean",
         },
-        SpekeKeyProvider = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SpekeKeyProvider = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SpekeKeyProvider }),
     },
 }
 
@@ -1328,14 +1278,14 @@ M.Scte = {
     members = {
         ScteFilter = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ScteInSegments = {
             type = "string",
         },
         CustomAdTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1344,7 +1294,7 @@ M.Segment = {
     type = "structure",
     members = {
         SegmentDurationSeconds = {
-            type = "number",
+            type = "integer",
         },
         SegmentName = {
             type = "string",
@@ -1358,12 +1308,8 @@ M.Segment = {
         TsIncludeDvbSubtitles = {
             type = "boolean",
         },
-        Scte = {
-            type = "structure",
-        },
-        Encryption = {
-            type = "structure",
-        },
+        Scte = M.Scte,
+        Encryption = M.Encryption,
     },
 }
 
@@ -1401,9 +1347,7 @@ M.CreateOriginEndpointInput = {
                 required = true,
             },
         },
-        Segment = {
-            type = "structure",
-        },
+        Segment = M.Segment,
         ClientToken = {
             type = "string",
             traits = {
@@ -1414,34 +1358,32 @@ M.CreateOriginEndpointInput = {
             type = "string",
         },
         StartoverWindowSeconds = {
-            type = "number",
+            type = "integer",
         },
         HlsManifests = {
             type = "list",
-            member_type = "structure",
+            member = M.CreateHlsManifestConfiguration,
         },
         LowLatencyHlsManifests = {
             type = "list",
-            member_type = "structure",
+            member = M.CreateLowLatencyHlsManifestConfiguration,
         },
         DashManifests = {
             type = "list",
-            member_type = "structure",
+            member = M.CreateDashManifestConfiguration,
         },
         MssManifests = {
             type = "list",
-            member_type = "structure",
+            member = M.CreateMssManifestConfiguration,
         },
-        ForceEndpointErrorConfiguration = {
-            type = "structure",
-        },
+        ForceEndpointErrorConfiguration = M.ForceEndpointErrorConfiguration,
         UriSeparator = {
             type = "string",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1462,56 +1404,44 @@ M.GetDashManifestConfiguration = {
             },
         },
         ManifestWindowSeconds = {
-            type = "number",
+            type = "integer",
         },
-        FilterConfiguration = {
-            type = "structure",
-        },
+        FilterConfiguration = M.FilterConfiguration,
         MinUpdatePeriodSeconds = {
-            type = "number",
+            type = "integer",
         },
         MinBufferTimeSeconds = {
-            type = "number",
+            type = "integer",
         },
         SuggestedPresentationDelaySeconds = {
-            type = "number",
+            type = "integer",
         },
         SegmentTemplateFormat = {
             type = "string",
         },
         PeriodTriggers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        ScteDash = {
-            type = "structure",
-        },
+        ScteDash = M.ScteDash,
         DrmSignaling = {
             type = "string",
         },
-        UtcTiming = {
-            type = "structure",
-        },
+        UtcTiming = M.DashUtcTiming,
         Profiles = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         BaseUrls = {
             type = "list",
-            member_type = "structure",
+            member = M.DashBaseUrl,
         },
-        ProgramInformation = {
-            type = "structure",
-        },
-        DvbSettings = {
-            type = "structure",
-        },
+        ProgramInformation = M.DashProgramInformation,
+        DvbSettings = M.DashDvbSettings,
         Compactness = {
             type = "string",
         },
-        SubtitleConfiguration = {
-            type = "structure",
-        },
+        SubtitleConfiguration = M.DashSubtitleConfiguration,
         UriPathType = {
             type = "string",
         },
@@ -1537,20 +1467,14 @@ M.GetHlsManifestConfiguration = {
             type = "string",
         },
         ManifestWindowSeconds = {
-            type = "number",
+            type = "integer",
         },
         ProgramDateTimeIntervalSeconds = {
-            type = "number",
+            type = "integer",
         },
-        ScteHls = {
-            type = "structure",
-        },
-        FilterConfiguration = {
-            type = "structure",
-        },
-        StartTag = {
-            type = "structure",
-        },
+        ScteHls = M.ScteHls,
+        FilterConfiguration = M.FilterConfiguration,
+        StartTag = M.StartTag,
         UrlEncodeChildManifest = {
             type = "boolean",
         },
@@ -1579,20 +1503,14 @@ M.GetLowLatencyHlsManifestConfiguration = {
             type = "string",
         },
         ManifestWindowSeconds = {
-            type = "number",
+            type = "integer",
         },
         ProgramDateTimeIntervalSeconds = {
-            type = "number",
+            type = "integer",
         },
-        ScteHls = {
-            type = "structure",
-        },
-        FilterConfiguration = {
-            type = "structure",
-        },
-        StartTag = {
-            type = "structure",
-        },
+        ScteHls = M.ScteHls,
+        FilterConfiguration = M.FilterConfiguration,
+        StartTag = M.StartTag,
         UrlEncodeChildManifest = {
             type = "boolean",
         },
@@ -1617,11 +1535,9 @@ M.GetMssManifestConfiguration = {
                 required = true,
             },
         },
-        FilterConfiguration = {
-            type = "structure",
-        },
+        FilterConfiguration = M.FilterConfiguration,
         ManifestWindowSeconds = {
-            type = "number",
+            type = "integer",
         },
         ManifestLayout = {
             type = "string",
@@ -1662,12 +1578,9 @@ M.CreateOriginEndpointOutput = {
                 required = true,
             },
         },
-        Segment = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Segment = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Segment }),
         CreatedAt = {
             type = "timestamp",
             traits = {
@@ -1684,27 +1597,25 @@ M.CreateOriginEndpointOutput = {
             type = "string",
         },
         StartoverWindowSeconds = {
-            type = "number",
+            type = "integer",
         },
         HlsManifests = {
             type = "list",
-            member_type = "structure",
+            member = M.GetHlsManifestConfiguration,
         },
         LowLatencyHlsManifests = {
             type = "list",
-            member_type = "structure",
+            member = M.GetLowLatencyHlsManifestConfiguration,
         },
         DashManifests = {
             type = "list",
-            member_type = "structure",
+            member = M.GetDashManifestConfiguration,
         },
         MssManifests = {
             type = "list",
-            member_type = "structure",
+            member = M.GetMssManifestConfiguration,
         },
-        ForceEndpointErrorConfiguration = {
-            type = "structure",
-        },
+        ForceEndpointErrorConfiguration = M.ForceEndpointErrorConfiguration,
         UriSeparator = {
             type = "string",
         },
@@ -1713,8 +1624,8 @@ M.CreateOriginEndpointOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1810,12 +1721,9 @@ M.GetOriginEndpointOutput = {
                 required = true,
             },
         },
-        Segment = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Segment = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Segment }),
         CreatedAt = {
             type = "timestamp",
             traits = {
@@ -1835,27 +1743,25 @@ M.GetOriginEndpointOutput = {
             type = "string",
         },
         StartoverWindowSeconds = {
-            type = "number",
+            type = "integer",
         },
         HlsManifests = {
             type = "list",
-            member_type = "structure",
+            member = M.GetHlsManifestConfiguration,
         },
         LowLatencyHlsManifests = {
             type = "list",
-            member_type = "structure",
+            member = M.GetLowLatencyHlsManifestConfiguration,
         },
         DashManifests = {
             type = "list",
-            member_type = "structure",
+            member = M.GetDashManifestConfiguration,
         },
         MssManifests = {
             type = "list",
-            member_type = "structure",
+            member = M.GetMssManifestConfiguration,
         },
-        ForceEndpointErrorConfiguration = {
-            type = "structure",
-        },
+        ForceEndpointErrorConfiguration = M.ForceEndpointErrorConfiguration,
         UriSeparator = {
             type = "string",
         },
@@ -1864,8 +1770,8 @@ M.GetOriginEndpointOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1888,8 +1794,9 @@ M.ListOriginEndpointsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 10,
                 http_query = "maxResults",
             },
         },
@@ -2012,23 +1919,21 @@ M.OriginEndpointListConfiguration = {
         },
         HlsManifests = {
             type = "list",
-            member_type = "structure",
+            member = M.ListHlsManifestConfiguration,
         },
         LowLatencyHlsManifests = {
             type = "list",
-            member_type = "structure",
+            member = M.ListLowLatencyHlsManifestConfiguration,
         },
         DashManifests = {
             type = "list",
-            member_type = "structure",
+            member = M.ListDashManifestConfiguration,
         },
         MssManifests = {
             type = "list",
-            member_type = "structure",
+            member = M.ListMssManifestConfiguration,
         },
-        ForceEndpointErrorConfiguration = {
-            type = "structure",
-        },
+        ForceEndpointErrorConfiguration = M.ForceEndpointErrorConfiguration,
         UriSeparator = {
             type = "string",
         },
@@ -2040,7 +1945,7 @@ M.ListOriginEndpointsOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.OriginEndpointListConfiguration,
         },
         NextToken = {
             type = "string",
@@ -2133,9 +2038,7 @@ M.GetOriginEndpointPolicyOutput = {
                 required = true,
             },
         },
-        CdnAuthConfiguration = {
-            type = "structure",
-        },
+        CdnAuthConfiguration = M.CdnAuthConfiguration,
     },
 }
 
@@ -2169,9 +2072,7 @@ M.PutOriginEndpointPolicyInput = {
                 required = true,
             },
         },
-        CdnAuthConfiguration = {
-            type = "structure",
-        },
+        CdnAuthConfiguration = M.CdnAuthConfiguration,
     },
 }
 
@@ -2272,34 +2173,30 @@ M.UpdateOriginEndpointInput = {
                 required = true,
             },
         },
-        Segment = {
-            type = "structure",
-        },
+        Segment = M.Segment,
         Description = {
             type = "string",
         },
         StartoverWindowSeconds = {
-            type = "number",
+            type = "integer",
         },
         HlsManifests = {
             type = "list",
-            member_type = "structure",
+            member = M.CreateHlsManifestConfiguration,
         },
         LowLatencyHlsManifests = {
             type = "list",
-            member_type = "structure",
+            member = M.CreateLowLatencyHlsManifestConfiguration,
         },
         DashManifests = {
             type = "list",
-            member_type = "structure",
+            member = M.CreateDashManifestConfiguration,
         },
         MssManifests = {
             type = "list",
-            member_type = "structure",
+            member = M.CreateMssManifestConfiguration,
         },
-        ForceEndpointErrorConfiguration = {
-            type = "structure",
-        },
+        ForceEndpointErrorConfiguration = M.ForceEndpointErrorConfiguration,
         UriSeparator = {
             type = "string",
         },
@@ -2345,12 +2242,9 @@ M.UpdateOriginEndpointOutput = {
                 required = true,
             },
         },
-        Segment = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Segment = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Segment }),
         CreatedAt = {
             type = "timestamp",
             traits = {
@@ -2367,23 +2261,21 @@ M.UpdateOriginEndpointOutput = {
             type = "string",
         },
         StartoverWindowSeconds = {
-            type = "number",
+            type = "integer",
         },
         HlsManifests = {
             type = "list",
-            member_type = "structure",
+            member = M.GetHlsManifestConfiguration,
         },
         LowLatencyHlsManifests = {
             type = "list",
-            member_type = "structure",
+            member = M.GetLowLatencyHlsManifestConfiguration,
         },
         MssManifests = {
             type = "list",
-            member_type = "structure",
+            member = M.GetMssManifestConfiguration,
         },
-        ForceEndpointErrorConfiguration = {
-            type = "structure",
-        },
+        ForceEndpointErrorConfiguration = M.ForceEndpointErrorConfiguration,
         UriSeparator = {
             type = "string",
         },
@@ -2392,15 +2284,15 @@ M.UpdateOriginEndpointOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
         },
         DashManifests = {
             type = "list",
-            member_type = "structure",
+            member = M.GetDashManifestConfiguration,
         },
     },
 }
@@ -2481,12 +2373,8 @@ M.UpdateChannelInput = {
         Description = {
             type = "string",
         },
-        InputSwitchConfiguration = {
-            type = "structure",
-        },
-        OutputHeaderConfiguration = {
-            type = "structure",
-        },
+        InputSwitchConfiguration = M.InputSwitchConfiguration,
+        OutputHeaderConfiguration = M.OutputHeaderConfiguration,
     },
 }
 
@@ -2528,7 +2416,7 @@ M.UpdateChannelOutput = {
         },
         IngestEndpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.IngestEndpoint,
         },
         InputType = {
             type = "string",
@@ -2538,18 +2426,14 @@ M.UpdateChannelOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
         },
-        InputSwitchConfiguration = {
-            type = "structure",
-        },
-        OutputHeaderConfiguration = {
-            type = "structure",
-        },
+        InputSwitchConfiguration = M.InputSwitchConfiguration,
+        OutputHeaderConfiguration = M.OutputHeaderConfiguration,
     },
 }
 
@@ -2573,8 +2457,8 @@ M.CreateChannelGroupInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -2623,8 +2507,8 @@ M.CreateChannelGroupOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2700,8 +2584,8 @@ M.GetChannelGroupOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -2730,12 +2614,9 @@ M.S3DestinationConfig = {
 M.Destination = {
     type = "structure",
     members = {
-        S3Destination = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        S3Destination = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3DestinationConfig }),
     },
 }
 
@@ -2780,15 +2661,15 @@ M.HarvestedManifests = {
     members = {
         HlsManifests = {
             type = "list",
-            member_type = "structure",
+            member = M.HarvestedHlsManifest,
         },
         DashManifests = {
             type = "list",
-            member_type = "structure",
+            member = M.HarvestedDashManifest,
         },
         LowLatencyHlsManifests = {
             type = "list",
-            member_type = "structure",
+            member = M.HarvestedLowLatencyHlsManifest,
         },
     },
 }
@@ -2838,24 +2719,15 @@ M.CreateHarvestJobInput = {
         Description = {
             type = "string",
         },
-        HarvestedManifests = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ScheduleConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Destination = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        HarvestedManifests = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HarvestedManifests }),
+        ScheduleConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HarvesterScheduleConfiguration }),
+        Destination = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Destination }),
         ClientToken = {
             type = "string",
             traits = {
@@ -2867,8 +2739,8 @@ M.CreateHarvestJobInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2902,33 +2774,24 @@ M.CreateHarvestJobOutput = {
                 required = true,
             },
         },
-        Destination = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Destination = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Destination }),
         HarvestJobName = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        HarvestedManifests = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        HarvestedManifests = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HarvestedManifests }),
         Description = {
             type = "string",
         },
-        ScheduleConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ScheduleConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HarvesterScheduleConfiguration }),
         Arn = {
             type = "string",
             traits = {
@@ -2961,8 +2824,8 @@ M.CreateHarvestJobOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3022,33 +2885,24 @@ M.GetHarvestJobOutput = {
                 required = true,
             },
         },
-        Destination = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Destination = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Destination }),
         HarvestJobName = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        HarvestedManifests = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        HarvestedManifests = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HarvestedManifests }),
         Description = {
             type = "string",
         },
-        ScheduleConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ScheduleConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HarvesterScheduleConfiguration }),
         Arn = {
             type = "string",
             traits = {
@@ -3081,8 +2935,8 @@ M.GetHarvestJobOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3116,8 +2970,9 @@ M.ListHarvestJobsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 10,
                 http_query = "maxResults",
             },
         },
@@ -3151,33 +3006,24 @@ M.HarvestJob = {
                 required = true,
             },
         },
-        Destination = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Destination = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Destination }),
         HarvestJobName = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        HarvestedManifests = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        HarvestedManifests = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HarvestedManifests }),
         Description = {
             type = "string",
         },
-        ScheduleConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ScheduleConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HarvesterScheduleConfiguration }),
         Arn = {
             type = "string",
             traits = {
@@ -3216,7 +3062,7 @@ M.ListHarvestJobsOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.HarvestJob,
         },
         NextToken = {
             type = "string",
@@ -3228,8 +3074,9 @@ M.ListChannelGroupsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 10,
                 http_query = "maxResults",
             },
         },
@@ -3247,7 +3094,7 @@ M.ListChannelGroupsOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.ChannelGroupListConfiguration,
         },
         NextToken = {
             type = "string",
@@ -3318,8 +3165,8 @@ M.UpdateChannelGroupOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -3345,8 +3192,8 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -3366,8 +3213,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
                 required = true,
@@ -3392,7 +3239,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,

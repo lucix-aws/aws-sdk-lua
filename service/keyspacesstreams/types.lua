@@ -20,7 +20,7 @@ M.GetRecordsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -162,11 +162,9 @@ M.GetStreamInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
-        shardFilter = {
-            type = "structure",
-        },
+        shardFilter = M.ShardFilter,
         nextToken = {
             type = "string",
         },
@@ -191,12 +189,10 @@ M.Shard = {
         shardId = {
             type = "string",
         },
-        sequenceNumberRange = {
-            type = "structure",
-        },
+        sequenceNumberRange = M.SequenceNumberRange,
         parentShardIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -262,7 +258,7 @@ M.GetStreamOutput = {
         },
         shards = {
             type = "list",
-            member_type = "structure",
+            member = M.Shard,
         },
         nextToken = {
             type = "string",
@@ -280,7 +276,7 @@ M.ListStreamsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -323,7 +319,7 @@ M.ListStreamsOutput = {
     members = {
         streams = {
             type = "list",
-            member_type = "structure",
+            member = M.Stream,
         },
         nextToken = {
             type = "string",
@@ -372,15 +368,15 @@ M.KeyspacesCellValue = {
         },
         listT = {
             type = "list",
-            member_type = "structure",
+            member = M.KeyspacesCell,
         },
         mapT = {
             type = "list",
-            member_type = "structure",
+            member = M.KeyspacesCellMapDefinition,
         },
         setT = {
             type = "list",
-            member_type = "structure",
+            member = M.KeyspacesCell,
         },
         smallintT = {
             type = "string",
@@ -402,7 +398,7 @@ M.KeyspacesCellValue = {
         },
         tupleT = {
             type = "list",
-            member_type = "structure",
+            member = M.KeyspacesCell,
         },
         uuidT = {
             type = "string",
@@ -415,8 +411,8 @@ M.KeyspacesCellValue = {
         },
         udtT = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.KeyspacesCell,
         },
     },
 }
@@ -424,27 +420,17 @@ M.KeyspacesCellValue = {
 M.KeyspacesCell = {
     type = "structure",
     members = {
-        value = {
-            type = "union",
-        },
-        metadata = {
-            type = "structure",
-        },
+        value = M.KeyspacesCellValue,
+        metadata = M.KeyspacesMetadata,
     },
 }
 
 M.KeyspacesCellMapDefinition = {
     type = "structure",
     members = {
-        key = {
-            type = "union",
-        },
-        value = {
-            type = "union",
-        },
-        metadata = {
-            type = "structure",
-        },
+        key = M.KeyspacesCellValue,
+        value = M.KeyspacesCellValue,
+        metadata = M.KeyspacesMetadata,
     },
 }
 
@@ -453,17 +439,15 @@ M.KeyspacesRow = {
     members = {
         valueCells = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.KeyspacesCell,
         },
         staticCells = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.KeyspacesCell,
         },
-        rowMetadata = {
-            type = "structure",
-        },
+        rowMetadata = M.KeyspacesMetadata,
     },
 }
 
@@ -481,20 +465,16 @@ M.Record = {
         },
         partitionKeys = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.KeyspacesCellValue,
         },
         clusteringKeys = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.KeyspacesCellValue,
         },
-        newImage = {
-            type = "structure",
-        },
-        oldImage = {
-            type = "structure",
-        },
+        newImage = M.KeyspacesRow,
+        oldImage = M.KeyspacesRow,
         sequenceNumber = {
             type = "string",
         },
@@ -506,7 +486,7 @@ M.GetRecordsOutput = {
     members = {
         changeRecords = {
             type = "list",
-            member_type = "structure",
+            member = M.Record,
         },
         nextShardIterator = {
             type = "string",

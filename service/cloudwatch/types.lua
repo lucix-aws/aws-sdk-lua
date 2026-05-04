@@ -17,8 +17,8 @@ M.AlarmContributor = {
         },
         ContributorAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -74,8 +74,8 @@ M.AlarmHistoryItem = {
         },
         AlarmContributorAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -117,10 +117,10 @@ M.AlarmPromQLCriteria = {
             },
         },
         PendingPeriod = {
-            type = "number",
+            type = "integer",
         },
         RecoveryPeriod = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -148,7 +148,7 @@ M.AnomalyDetectorConfiguration = {
     members = {
         ExcludedTimeRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.Range,
         },
         MetricTimezone = {
             type = "string",
@@ -194,7 +194,7 @@ M.Metric = {
         },
         Dimensions = {
             type = "list",
-            member_type = "structure",
+            member = M.Dimension,
         },
     },
 }
@@ -232,14 +232,11 @@ M.StandardUnit = {
 M.MetricStat = {
     type = "structure",
     members = {
-        Metric = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Metric = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Metric }),
         Period = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -265,9 +262,7 @@ M.MetricDataQuery = {
                 required = true,
             },
         },
-        MetricStat = {
-            type = "structure",
-        },
+        MetricStat = M.MetricStat,
         Expression = {
             type = "string",
         },
@@ -278,7 +273,7 @@ M.MetricDataQuery = {
             type = "boolean",
         },
         Period = {
-            type = "number",
+            type = "integer",
         },
         AccountId = {
             type = "string",
@@ -291,7 +286,7 @@ M.MetricMathAnomalyDetector = {
     members = {
         MetricDataQueries = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricDataQuery,
         },
     },
 }
@@ -310,7 +305,7 @@ M.SingleMetricAnomalyDetector = {
         },
         Dimensions = {
             type = "list",
-            member_type = "structure",
+            member = M.Dimension,
         },
         Stat = {
             type = "string",
@@ -335,26 +330,18 @@ M.AnomalyDetector = {
         },
         Dimensions = {
             type = "list",
-            member_type = "structure",
+            member = M.Dimension,
         },
         Stat = {
             type = "string",
         },
-        Configuration = {
-            type = "structure",
-        },
+        Configuration = M.AnomalyDetectorConfiguration,
         StateValue = {
             type = "string",
         },
-        MetricCharacteristics = {
-            type = "structure",
-        },
-        SingleMetricAnomalyDetector = {
-            type = "structure",
-        },
-        MetricMathAnomalyDetector = {
-            type = "structure",
-        },
+        MetricCharacteristics = M.MetricCharacteristics,
+        SingleMetricAnomalyDetector = M.SingleMetricAnomalyDetector,
+        MetricMathAnomalyDetector = M.MetricMathAnomalyDetector,
     },
 }
 
@@ -405,7 +392,7 @@ M.CompositeAlarm = {
         },
         AlarmActions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AlarmArn = {
             type = "string",
@@ -424,11 +411,11 @@ M.CompositeAlarm = {
         },
         InsufficientDataActions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         OKActions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         StateReason = {
             type = "string",
@@ -455,10 +442,10 @@ M.CompositeAlarm = {
             type = "string",
         },
         ActionsSuppressorWaitPeriod = {
-            type = "number",
+            type = "integer",
         },
         ActionsSuppressorExtensionPeriod = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -496,7 +483,7 @@ M.DashboardEntry = {
             type = "timestamp",
         },
         Size = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -522,7 +509,7 @@ M.DashboardInvalidInputError = {
         },
         dashboardValidationMessages = {
             type = "list",
-            member_type = "structure",
+            member = M.DashboardValidationMessage,
         },
     },
 }
@@ -544,27 +531,27 @@ M.Datapoint = {
             type = "timestamp",
         },
         SampleCount = {
-            type = "number",
+            type = "double",
         },
         Average = {
-            type = "number",
+            type = "double",
         },
         Sum = {
-            type = "number",
+            type = "double",
         },
         Minimum = {
-            type = "number",
+            type = "double",
         },
         Maximum = {
-            type = "number",
+            type = "double",
         },
         Unit = {
             type = "string",
         },
         ExtendedStatistics = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "double" },
         },
     },
 }
@@ -590,7 +577,7 @@ M.DeleteAlarmsInput = {
     members = {
         AlarmNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -623,17 +610,13 @@ M.DeleteAnomalyDetectorInput = {
         },
         Dimensions = {
             type = "list",
-            member_type = "structure",
+            member = M.Dimension,
         },
         Stat = {
             type = "string",
         },
-        SingleMetricAnomalyDetector = {
-            type = "structure",
-        },
-        MetricMathAnomalyDetector = {
-            type = "structure",
-        },
+        SingleMetricAnomalyDetector = M.SingleMetricAnomalyDetector,
+        MetricMathAnomalyDetector = M.MetricMathAnomalyDetector,
     },
 }
 
@@ -702,7 +685,7 @@ M.DeleteDashboardsInput = {
     members = {
         DashboardNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -719,7 +702,7 @@ M.DeleteInsightRulesInput = {
     members = {
         RuleNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -732,7 +715,7 @@ M.DeleteInsightRulesOutput = {
     members = {
         Failures = {
             type = "list",
-            member_type = "structure",
+            member = M.PartialFailure,
         },
     },
 }
@@ -773,7 +756,7 @@ M.DescribeAlarmContributorsOutput = {
     members = {
         AlarmContributors = {
             type = "list",
-            member_type = "structure",
+            member = M.AlarmContributor,
             traits = {
                 required = true,
             },
@@ -810,7 +793,7 @@ M.DescribeAlarmHistoryInput = {
         },
         AlarmTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         HistoryItemType = {
             type = "string",
@@ -822,7 +805,7 @@ M.DescribeAlarmHistoryInput = {
             type = "timestamp",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -838,7 +821,7 @@ M.DescribeAlarmHistoryOutput = {
     members = {
         AlarmHistoryItems = {
             type = "list",
-            member_type = "structure",
+            member = M.AlarmHistoryItem,
         },
         NextToken = {
             type = "string",
@@ -851,14 +834,14 @@ M.DescribeAlarmsInput = {
     members = {
         AlarmNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AlarmNamePrefix = {
             type = "string",
         },
         AlarmTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ChildrenOfAlarmName = {
             type = "string",
@@ -873,7 +856,7 @@ M.DescribeAlarmsInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -884,9 +867,7 @@ M.DescribeAlarmsInput = {
 M.EvaluationCriteria = {
     type = "union",
     members = {
-        PromQLCriteria = {
-            type = "structure",
-        },
+        PromQLCriteria = M.AlarmPromQLCriteria,
     },
 }
 
@@ -924,15 +905,15 @@ M.MetricAlarm = {
         },
         OKActions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AlarmActions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         InsufficientDataActions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         StateValue = {
             type = "string",
@@ -960,22 +941,22 @@ M.MetricAlarm = {
         },
         Dimensions = {
             type = "list",
-            member_type = "structure",
+            member = M.Dimension,
         },
         Period = {
-            type = "number",
+            type = "integer",
         },
         Unit = {
             type = "string",
         },
         EvaluationPeriods = {
-            type = "number",
+            type = "integer",
         },
         DatapointsToAlarm = {
-            type = "number",
+            type = "integer",
         },
         Threshold = {
-            type = "number",
+            type = "double",
         },
         ComparisonOperator = {
             type = "string",
@@ -988,7 +969,7 @@ M.MetricAlarm = {
         },
         Metrics = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricDataQuery,
         },
         ThresholdMetricId = {
             type = "string",
@@ -999,11 +980,9 @@ M.MetricAlarm = {
         StateTransitionedTimestamp = {
             type = "timestamp",
         },
-        EvaluationCriteria = {
-            type = "union",
-        },
+        EvaluationCriteria = M.EvaluationCriteria,
         EvaluationInterval = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1013,11 +992,11 @@ M.DescribeAlarmsOutput = {
     members = {
         CompositeAlarms = {
             type = "list",
-            member_type = "structure",
+            member = M.CompositeAlarm,
         },
         MetricAlarms = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricAlarm,
         },
         NextToken = {
             type = "string",
@@ -1048,10 +1027,10 @@ M.DescribeAlarmsForMetricInput = {
         },
         Dimensions = {
             type = "list",
-            member_type = "structure",
+            member = M.Dimension,
         },
         Period = {
-            type = "number",
+            type = "integer",
         },
         Unit = {
             type = "string",
@@ -1064,7 +1043,7 @@ M.DescribeAlarmsForMetricOutput = {
     members = {
         MetricAlarms = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricAlarm,
         },
     },
 }
@@ -1076,7 +1055,7 @@ M.DescribeAnomalyDetectorsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Namespace = {
             type = "string",
@@ -1086,11 +1065,11 @@ M.DescribeAnomalyDetectorsInput = {
         },
         Dimensions = {
             type = "list",
-            member_type = "structure",
+            member = M.Dimension,
         },
         AnomalyDetectorTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1100,7 +1079,7 @@ M.DescribeAnomalyDetectorsOutput = {
     members = {
         AnomalyDetectors = {
             type = "list",
-            member_type = "structure",
+            member = M.AnomalyDetector,
         },
         NextToken = {
             type = "string",
@@ -1115,7 +1094,7 @@ M.DescribeInsightRulesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1164,7 +1143,7 @@ M.DescribeInsightRulesOutput = {
         },
         InsightRules = {
             type = "list",
-            member_type = "structure",
+            member = M.InsightRule,
         },
     },
 }
@@ -1189,7 +1168,7 @@ M.DisableAlarmActionsInput = {
     members = {
         AlarmNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1206,7 +1185,7 @@ M.DisableInsightRulesInput = {
     members = {
         RuleNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1219,7 +1198,7 @@ M.DisableInsightRulesOutput = {
     members = {
         Failures = {
             type = "list",
-            member_type = "structure",
+            member = M.PartialFailure,
         },
     },
 }
@@ -1229,7 +1208,7 @@ M.EnableAlarmActionsInput = {
     members = {
         AlarmNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1246,7 +1225,7 @@ M.EnableInsightRulesInput = {
     members = {
         RuleNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1259,7 +1238,7 @@ M.EnableInsightRulesOutput = {
     members = {
         Failures = {
             type = "list",
-            member_type = "structure",
+            member = M.PartialFailure,
         },
     },
 }
@@ -1279,13 +1258,13 @@ M.Entity = {
     members = {
         KeyAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1294,25 +1273,25 @@ M.StatisticSet = {
     type = "structure",
     members = {
         SampleCount = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
         Sum = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
         Minimum = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
         Maximum = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -1331,30 +1310,28 @@ M.MetricDatum = {
         },
         Dimensions = {
             type = "list",
-            member_type = "structure",
+            member = M.Dimension,
         },
         Timestamp = {
             type = "timestamp",
         },
         Value = {
-            type = "number",
+            type = "double",
         },
-        StatisticValues = {
-            type = "structure",
-        },
+        StatisticValues = M.StatisticSet,
         Values = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
         Counts = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
         Unit = {
             type = "string",
         },
         StorageResolution = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1362,12 +1339,10 @@ M.MetricDatum = {
 M.EntityMetricData = {
     type = "structure",
     members = {
-        Entity = {
-            type = "structure",
-        },
+        Entity = M.Entity,
         MetricData = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricDatum,
         },
     },
 }
@@ -1389,7 +1364,7 @@ M.MuteTargets = {
     members = {
         AlarmNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1421,12 +1396,9 @@ M.Schedule = {
 M.Rule = {
     type = "structure",
     members = {
-        Schedule = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Schedule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Schedule }),
     },
 }
 
@@ -1442,12 +1414,8 @@ M.GetAlarmMuteRuleOutput = {
         Description = {
             type = "string",
         },
-        Rule = {
-            type = "structure",
-        },
-        MuteTargets = {
-            type = "structure",
-        },
+        Rule = M.Rule,
+        MuteTargets = M.MuteTargets,
         StartDate = {
             type = "timestamp",
         },
@@ -1515,17 +1483,17 @@ M.GetInsightRuleReportInput = {
             },
         },
         Period = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         MaxContributorCount = {
-            type = "number",
+            type = "integer",
         },
         Metrics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         OrderBy = {
             type = "string",
@@ -1543,7 +1511,7 @@ M.InsightRuleContributorDatapoint = {
             },
         },
         ApproximateValue = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -1556,20 +1524,20 @@ M.InsightRuleContributor = {
     members = {
         Keys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         ApproximateAggregateValue = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
         Datapoints = {
             type = "list",
-            member_type = "structure",
+            member = M.InsightRuleContributorDatapoint,
             traits = {
                 required = true,
             },
@@ -1587,25 +1555,25 @@ M.InsightRuleMetricDatapoint = {
             },
         },
         UniqueContributors = {
-            type = "number",
+            type = "double",
         },
         MaxContributorValue = {
-            type = "number",
+            type = "double",
         },
         SampleCount = {
-            type = "number",
+            type = "double",
         },
         Average = {
-            type = "number",
+            type = "double",
         },
         Sum = {
-            type = "number",
+            type = "double",
         },
         Minimum = {
-            type = "number",
+            type = "double",
         },
         Maximum = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -1615,24 +1583,24 @@ M.GetInsightRuleReportOutput = {
     members = {
         KeyLabels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AggregationStatistic = {
             type = "string",
         },
         AggregateValue = {
-            type = "number",
+            type = "double",
         },
         ApproximateUniqueCount = {
-            type = "number",
+            type = "long",
         },
         Contributors = {
             type = "list",
-            member_type = "structure",
+            member = M.InsightRuleContributor,
         },
         MetricDatapoints = {
             type = "list",
-            member_type = "structure",
+            member = M.InsightRuleMetricDatapoint,
         },
     },
 }
@@ -1651,7 +1619,7 @@ M.GetMetricDataInput = {
     members = {
         MetricDataQueries = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricDataQuery,
             traits = {
                 required = true,
             },
@@ -1675,11 +1643,9 @@ M.GetMetricDataInput = {
             type = "string",
         },
         MaxDatapoints = {
-            type = "number",
+            type = "integer",
         },
-        LabelOptions = {
-            type = "structure",
-        },
+        LabelOptions = M.LabelOptions,
     },
 }
 
@@ -1713,18 +1679,18 @@ M.MetricDataResult = {
         },
         Timestamps = {
             type = "list",
-            member_type = "timestamp",
+            member = { type = "timestamp" },
         },
         Values = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
         StatusCode = {
             type = "string",
         },
         Messages = {
             type = "list",
-            member_type = "structure",
+            member = M.MessageData,
         },
     },
 }
@@ -1734,14 +1700,14 @@ M.GetMetricDataOutput = {
     members = {
         MetricDataResults = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricDataResult,
         },
         NextToken = {
             type = "string",
         },
         Messages = {
             type = "list",
-            member_type = "structure",
+            member = M.MessageData,
         },
     },
 }
@@ -1763,7 +1729,7 @@ M.GetMetricStatisticsInput = {
         },
         Dimensions = {
             type = "list",
-            member_type = "structure",
+            member = M.Dimension,
         },
         StartTime = {
             type = "timestamp",
@@ -1778,18 +1744,18 @@ M.GetMetricStatisticsInput = {
             },
         },
         Period = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Statistics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ExtendedStatistics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Unit = {
             type = "string",
@@ -1805,7 +1771,7 @@ M.GetMetricStatisticsOutput = {
         },
         Datapoints = {
             type = "list",
-            member_type = "structure",
+            member = M.Datapoint,
         },
     },
 }
@@ -1830,7 +1796,7 @@ M.MetricStreamFilter = {
         },
         MetricNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1864,14 +1830,14 @@ M.MetricStreamStatisticsConfiguration = {
     members = {
         IncludeMetrics = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricStreamStatisticsMetric,
             traits = {
                 required = true,
             },
         },
         AdditionalStatistics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1890,11 +1856,11 @@ M.GetMetricStreamOutput = {
         },
         IncludeFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricStreamFilter,
         },
         ExcludeFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricStreamFilter,
         },
         FirehoseArn = {
             type = "string",
@@ -1916,7 +1882,7 @@ M.GetMetricStreamOutput = {
         },
         StatisticsConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricStreamStatisticsConfiguration,
         },
         IncludeLinkedAccountsMetrics = {
             type = "boolean",
@@ -1977,10 +1943,10 @@ M.ListAlarmMuteRulesInput = {
         },
         Statuses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1993,7 +1959,7 @@ M.ListAlarmMuteRulesOutput = {
     members = {
         AlarmMuteRuleSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.AlarmMuteRuleSummary,
         },
         NextToken = {
             type = "string",
@@ -2018,7 +1984,7 @@ M.ListDashboardsOutput = {
     members = {
         DashboardEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.DashboardEntry,
         },
         NextToken = {
             type = "string",
@@ -2039,7 +2005,7 @@ M.ListManagedInsightRulesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2071,9 +2037,7 @@ M.ManagedRuleDescription = {
         ResourceARN = {
             type = "string",
         },
-        RuleState = {
-            type = "structure",
-        },
+        RuleState = M.ManagedRuleState,
     },
 }
 
@@ -2082,7 +2046,7 @@ M.ListManagedInsightRulesOutput = {
     members = {
         ManagedRules = {
             type = "list",
-            member_type = "structure",
+            member = M.ManagedRuleDescription,
         },
         NextToken = {
             type = "string",
@@ -2105,7 +2069,7 @@ M.ListMetricsInput = {
         },
         Dimensions = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionFilter,
         },
         NextToken = {
             type = "string",
@@ -2127,14 +2091,14 @@ M.ListMetricsOutput = {
     members = {
         Metrics = {
             type = "list",
-            member_type = "structure",
+            member = M.Metric,
         },
         NextToken = {
             type = "string",
         },
         OwningAccounts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2146,7 +2110,7 @@ M.ListMetricStreamsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2186,7 +2150,7 @@ M.ListMetricStreamsOutput = {
         },
         Entries = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricStreamEntry,
         },
     },
 }
@@ -2226,7 +2190,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2253,18 +2217,13 @@ M.PutAlarmMuteRuleInput = {
         Description = {
             type = "string",
         },
-        Rule = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        MuteTargets = {
-            type = "structure",
-        },
+        Rule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Rule }),
+        MuteTargets = M.MuteTargets,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         StartDate = {
             type = "timestamp",
@@ -2290,23 +2249,15 @@ M.PutAnomalyDetectorInput = {
         },
         Dimensions = {
             type = "list",
-            member_type = "structure",
+            member = M.Dimension,
         },
         Stat = {
             type = "string",
         },
-        Configuration = {
-            type = "structure",
-        },
-        MetricCharacteristics = {
-            type = "structure",
-        },
-        SingleMetricAnomalyDetector = {
-            type = "structure",
-        },
-        MetricMathAnomalyDetector = {
-            type = "structure",
-        },
+        Configuration = M.AnomalyDetectorConfiguration,
+        MetricCharacteristics = M.MetricCharacteristics,
+        SingleMetricAnomalyDetector = M.SingleMetricAnomalyDetector,
+        MetricMathAnomalyDetector = M.MetricMathAnomalyDetector,
     },
 }
 
@@ -2322,7 +2273,7 @@ M.PutCompositeAlarmInput = {
         },
         AlarmActions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AlarmDescription = {
             type = "string",
@@ -2341,24 +2292,24 @@ M.PutCompositeAlarmInput = {
         },
         InsufficientDataActions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         OKActions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ActionsSuppressor = {
             type = "string",
         },
         ActionsSuppressorWaitPeriod = {
-            type = "number",
+            type = "integer",
         },
         ActionsSuppressorExtensionPeriod = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2384,7 +2335,7 @@ M.PutDashboardInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2394,7 +2345,7 @@ M.PutDashboardOutput = {
     members = {
         DashboardValidationMessages = {
             type = "list",
-            member_type = "structure",
+            member = M.DashboardValidationMessage,
         },
     },
 }
@@ -2419,7 +2370,7 @@ M.PutInsightRuleInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ApplyOnTransformedLogs = {
             type = "boolean",
@@ -2448,7 +2399,7 @@ M.ManagedRule = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2458,7 +2409,7 @@ M.PutManagedInsightRulesInput = {
     members = {
         ManagedRules = {
             type = "list",
-            member_type = "structure",
+            member = M.ManagedRule,
             traits = {
                 required = true,
             },
@@ -2471,7 +2422,7 @@ M.PutManagedInsightRulesOutput = {
     members = {
         Failures = {
             type = "list",
-            member_type = "structure",
+            member = M.PartialFailure,
         },
     },
 }
@@ -2493,15 +2444,15 @@ M.PutMetricAlarmInput = {
         },
         OKActions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AlarmActions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         InsufficientDataActions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MetricName = {
             type = "string",
@@ -2517,22 +2468,22 @@ M.PutMetricAlarmInput = {
         },
         Dimensions = {
             type = "list",
-            member_type = "structure",
+            member = M.Dimension,
         },
         Period = {
-            type = "number",
+            type = "integer",
         },
         Unit = {
             type = "string",
         },
         EvaluationPeriods = {
-            type = "number",
+            type = "integer",
         },
         DatapointsToAlarm = {
-            type = "number",
+            type = "integer",
         },
         Threshold = {
-            type = "number",
+            type = "double",
         },
         ComparisonOperator = {
             type = "string",
@@ -2545,20 +2496,18 @@ M.PutMetricAlarmInput = {
         },
         Metrics = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricDataQuery,
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ThresholdMetricId = {
             type = "string",
         },
-        EvaluationCriteria = {
-            type = "union",
-        },
+        EvaluationCriteria = M.EvaluationCriteria,
         EvaluationInterval = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2578,11 +2527,11 @@ M.PutMetricDataInput = {
         },
         MetricData = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricDatum,
         },
         EntityMetricData = {
             type = "list",
-            member_type = "structure",
+            member = M.EntityMetricData,
         },
         StrictEntityValidation = {
             type = "boolean",
@@ -2605,11 +2554,11 @@ M.PutMetricStreamInput = {
         },
         IncludeFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricStreamFilter,
         },
         ExcludeFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricStreamFilter,
         },
         FirehoseArn = {
             type = "string",
@@ -2631,11 +2580,11 @@ M.PutMetricStreamInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         StatisticsConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricStreamStatisticsConfiguration,
         },
         IncludeLinkedAccountsMetrics = {
             type = "boolean",
@@ -2698,7 +2647,7 @@ M.StartMetricStreamsInput = {
     members = {
         Names = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2723,7 +2672,7 @@ M.StopMetricStreamsInput = {
     members = {
         Names = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2754,7 +2703,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -2777,7 +2726,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },

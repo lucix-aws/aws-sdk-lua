@@ -86,12 +86,9 @@ M.S3Configuration = {
 M.LogDeliveryConfiguration = {
     type = "structure",
     members = {
-        s3Configuration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        s3Configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3Configuration }),
     },
 }
 
@@ -140,7 +137,7 @@ M.CreateDbClusterInput = {
             type = "string",
         },
         port = {
-            type = "number",
+            type = "integer",
         },
         dbParameterGroupIdentifier = {
             type = "string",
@@ -155,7 +152,7 @@ M.CreateDbClusterInput = {
             type = "string",
         },
         allocatedStorage = {
-            type = "number",
+            type = "integer",
         },
         networkType = {
             type = "string",
@@ -165,14 +162,14 @@ M.CreateDbClusterInput = {
         },
         vpcSubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         vpcSecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -183,16 +180,12 @@ M.CreateDbClusterInput = {
         failoverMode = {
             type = "string",
         },
-        logDeliveryConfiguration = {
-            type = "structure",
-        },
-        maintenanceSchedule = {
-            type = "structure",
-        },
+        logDeliveryConfiguration = M.LogDeliveryConfiguration,
+        maintenanceSchedule = M.MaintenanceSchedule,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -285,7 +278,7 @@ M.ThrottlingException = {
             },
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -354,10 +347,10 @@ M.ClusterConfiguration = {
     type = "structure",
     members = {
         ingestQueryInstances = {
-            type = "number",
+            type = "integer",
         },
         queryOnlyInstances = {
-            type = "number",
+            type = "integer",
         },
         dedicatedCompactor = {
             type = "boolean",
@@ -402,7 +395,7 @@ M.GetDbClusterOutput = {
             type = "string",
         },
         port = {
-            type = "number",
+            type = "integer",
         },
         deploymentType = {
             type = "string",
@@ -417,7 +410,7 @@ M.GetDbClusterOutput = {
             type = "string",
         },
         allocatedStorage = {
-            type = "number",
+            type = "integer",
         },
         engineType = {
             type = "string",
@@ -428,12 +421,8 @@ M.GetDbClusterOutput = {
         dbParameterGroupIdentifier = {
             type = "string",
         },
-        logDeliveryConfiguration = {
-            type = "structure",
-        },
-        maintenanceSchedule = {
-            type = "structure",
-        },
+        logDeliveryConfiguration = M.LogDeliveryConfiguration,
+        maintenanceSchedule = M.MaintenanceSchedule,
         lastMaintenanceTime = {
             type = "timestamp",
             traits = {
@@ -451,18 +440,16 @@ M.GetDbClusterOutput = {
         },
         vpcSubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         vpcSecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         failoverMode = {
             type = "string",
         },
-        clusterConfiguration = {
-            type = "structure",
-        },
+        clusterConfiguration = M.ClusterConfiguration,
     },
 }
 
@@ -473,7 +460,7 @@ M.ListDbClustersInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -509,7 +496,7 @@ M.DbClusterSummary = {
             type = "string",
         },
         port = {
-            type = "number",
+            type = "integer",
         },
         deploymentType = {
             type = "string",
@@ -524,7 +511,7 @@ M.DbClusterSummary = {
             type = "string",
         },
         allocatedStorage = {
-            type = "number",
+            type = "integer",
         },
         engineType = {
             type = "string",
@@ -537,7 +524,7 @@ M.ListDbClustersOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.DbClusterSummary,
             traits = {
                 required = true,
             },
@@ -561,7 +548,7 @@ M.ListDbInstancesForClusterInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -624,7 +611,7 @@ M.DbInstanceForClusterSummary = {
             type = "string",
         },
         port = {
-            type = "number",
+            type = "integer",
         },
         networkType = {
             type = "string",
@@ -636,7 +623,7 @@ M.DbInstanceForClusterSummary = {
             type = "string",
         },
         allocatedStorage = {
-            type = "number",
+            type = "integer",
         },
         deploymentType = {
             type = "string",
@@ -646,7 +633,7 @@ M.DbInstanceForClusterSummary = {
         },
         instanceModes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -656,7 +643,7 @@ M.ListDbInstancesForClusterOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.DbInstanceForClusterSummary,
             traits = {
                 required = true,
             },
@@ -678,7 +665,7 @@ M.RebootDbClusterInput = {
         },
         instanceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -701,14 +688,12 @@ M.UpdateDbClusterInput = {
                 required = true,
             },
         },
-        logDeliveryConfiguration = {
-            type = "structure",
-        },
+        logDeliveryConfiguration = M.LogDeliveryConfiguration,
         dbParameterGroupIdentifier = {
             type = "string",
         },
         port = {
-            type = "number",
+            type = "integer",
         },
         dbInstanceType = {
             type = "string",
@@ -716,9 +701,7 @@ M.UpdateDbClusterInput = {
         failoverMode = {
             type = "string",
         },
-        maintenanceSchedule = {
-            type = "structure",
-        },
+        maintenanceSchedule = M.MaintenanceSchedule,
     },
 }
 
@@ -763,14 +746,14 @@ M.CreateDbInstanceInput = {
         },
         vpcSubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         vpcSecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -782,7 +765,7 @@ M.CreateDbInstanceInput = {
             type = "string",
         },
         allocatedStorage = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -793,19 +776,18 @@ M.CreateDbInstanceInput = {
         deploymentType = {
             type = "string",
         },
-        logDeliveryConfiguration = {
-            type = "structure",
-        },
-        maintenanceSchedule = {
-            type = "structure",
-        },
+        logDeliveryConfiguration = M.LogDeliveryConfiguration,
+        maintenanceSchedule = M.MaintenanceSchedule,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         port = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 8086,
+            },
         },
         networkType = {
             type = "string",
@@ -841,7 +823,7 @@ M.CreateDbInstanceOutput = {
             type = "string",
         },
         port = {
-            type = "number",
+            type = "integer",
         },
         networkType = {
             type = "string",
@@ -853,14 +835,14 @@ M.CreateDbInstanceOutput = {
             type = "string",
         },
         allocatedStorage = {
-            type = "number",
+            type = "integer",
         },
         deploymentType = {
             type = "string",
         },
         vpcSubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -870,7 +852,7 @@ M.CreateDbInstanceOutput = {
         },
         vpcSecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         dbParameterGroupIdentifier = {
             type = "string",
@@ -881,9 +863,7 @@ M.CreateDbInstanceOutput = {
         secondaryAvailabilityZone = {
             type = "string",
         },
-        logDeliveryConfiguration = {
-            type = "structure",
-        },
+        logDeliveryConfiguration = M.LogDeliveryConfiguration,
         influxAuthParametersSecretArn = {
             type = "string",
         },
@@ -895,11 +875,9 @@ M.CreateDbInstanceOutput = {
         },
         instanceModes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        maintenanceSchedule = {
-            type = "structure",
-        },
+        maintenanceSchedule = M.MaintenanceSchedule,
         lastMaintenanceTime = {
             type = "timestamp",
             traits = {
@@ -955,7 +933,7 @@ M.DeleteDbInstanceOutput = {
             type = "string",
         },
         port = {
-            type = "number",
+            type = "integer",
         },
         networkType = {
             type = "string",
@@ -967,14 +945,14 @@ M.DeleteDbInstanceOutput = {
             type = "string",
         },
         allocatedStorage = {
-            type = "number",
+            type = "integer",
         },
         deploymentType = {
             type = "string",
         },
         vpcSubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -984,7 +962,7 @@ M.DeleteDbInstanceOutput = {
         },
         vpcSecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         dbParameterGroupIdentifier = {
             type = "string",
@@ -995,9 +973,7 @@ M.DeleteDbInstanceOutput = {
         secondaryAvailabilityZone = {
             type = "string",
         },
-        logDeliveryConfiguration = {
-            type = "structure",
-        },
+        logDeliveryConfiguration = M.LogDeliveryConfiguration,
         influxAuthParametersSecretArn = {
             type = "string",
         },
@@ -1009,11 +985,9 @@ M.DeleteDbInstanceOutput = {
         },
         instanceModes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        maintenanceSchedule = {
-            type = "structure",
-        },
+        maintenanceSchedule = M.MaintenanceSchedule,
         lastMaintenanceTime = {
             type = "timestamp",
             traits = {
@@ -1069,7 +1043,7 @@ M.GetDbInstanceOutput = {
             type = "string",
         },
         port = {
-            type = "number",
+            type = "integer",
         },
         networkType = {
             type = "string",
@@ -1081,14 +1055,14 @@ M.GetDbInstanceOutput = {
             type = "string",
         },
         allocatedStorage = {
-            type = "number",
+            type = "integer",
         },
         deploymentType = {
             type = "string",
         },
         vpcSubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1098,7 +1072,7 @@ M.GetDbInstanceOutput = {
         },
         vpcSecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         dbParameterGroupIdentifier = {
             type = "string",
@@ -1109,9 +1083,7 @@ M.GetDbInstanceOutput = {
         secondaryAvailabilityZone = {
             type = "string",
         },
-        logDeliveryConfiguration = {
-            type = "structure",
-        },
+        logDeliveryConfiguration = M.LogDeliveryConfiguration,
         influxAuthParametersSecretArn = {
             type = "string",
         },
@@ -1123,11 +1095,9 @@ M.GetDbInstanceOutput = {
         },
         instanceModes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        maintenanceSchedule = {
-            type = "structure",
-        },
+        maintenanceSchedule = M.MaintenanceSchedule,
         lastMaintenanceTime = {
             type = "timestamp",
             traits = {
@@ -1150,7 +1120,7 @@ M.ListDbInstancesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1183,7 +1153,7 @@ M.DbInstanceSummary = {
             type = "string",
         },
         port = {
-            type = "number",
+            type = "integer",
         },
         networkType = {
             type = "string",
@@ -1195,7 +1165,7 @@ M.DbInstanceSummary = {
             type = "string",
         },
         allocatedStorage = {
-            type = "number",
+            type = "integer",
         },
         deploymentType = {
             type = "string",
@@ -1208,7 +1178,7 @@ M.ListDbInstancesOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.DbInstanceSummary,
             traits = {
                 required = true,
             },
@@ -1259,7 +1229,7 @@ M.RebootDbInstanceOutput = {
             type = "string",
         },
         port = {
-            type = "number",
+            type = "integer",
         },
         networkType = {
             type = "string",
@@ -1271,14 +1241,14 @@ M.RebootDbInstanceOutput = {
             type = "string",
         },
         allocatedStorage = {
-            type = "number",
+            type = "integer",
         },
         deploymentType = {
             type = "string",
         },
         vpcSubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1288,7 +1258,7 @@ M.RebootDbInstanceOutput = {
         },
         vpcSecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         dbParameterGroupIdentifier = {
             type = "string",
@@ -1299,9 +1269,7 @@ M.RebootDbInstanceOutput = {
         secondaryAvailabilityZone = {
             type = "string",
         },
-        logDeliveryConfiguration = {
-            type = "structure",
-        },
+        logDeliveryConfiguration = M.LogDeliveryConfiguration,
         influxAuthParametersSecretArn = {
             type = "string",
         },
@@ -1313,11 +1281,9 @@ M.RebootDbInstanceOutput = {
         },
         instanceModes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        maintenanceSchedule = {
-            type = "structure",
-        },
+        maintenanceSchedule = M.MaintenanceSchedule,
         lastMaintenanceTime = {
             type = "timestamp",
             traits = {
@@ -1342,14 +1308,12 @@ M.UpdateDbInstanceInput = {
                 required = true,
             },
         },
-        logDeliveryConfiguration = {
-            type = "structure",
-        },
+        logDeliveryConfiguration = M.LogDeliveryConfiguration,
         dbParameterGroupIdentifier = {
             type = "string",
         },
         port = {
-            type = "number",
+            type = "integer",
         },
         dbInstanceType = {
             type = "string",
@@ -1361,11 +1325,9 @@ M.UpdateDbInstanceInput = {
             type = "string",
         },
         allocatedStorage = {
-            type = "number",
+            type = "integer",
         },
-        maintenanceSchedule = {
-            type = "structure",
-        },
+        maintenanceSchedule = M.MaintenanceSchedule,
     },
 }
 
@@ -1397,7 +1359,7 @@ M.UpdateDbInstanceOutput = {
             type = "string",
         },
         port = {
-            type = "number",
+            type = "integer",
         },
         networkType = {
             type = "string",
@@ -1409,14 +1371,14 @@ M.UpdateDbInstanceOutput = {
             type = "string",
         },
         allocatedStorage = {
-            type = "number",
+            type = "integer",
         },
         deploymentType = {
             type = "string",
         },
         vpcSubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1426,7 +1388,7 @@ M.UpdateDbInstanceOutput = {
         },
         vpcSecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         dbParameterGroupIdentifier = {
             type = "string",
@@ -1437,9 +1399,7 @@ M.UpdateDbInstanceOutput = {
         secondaryAvailabilityZone = {
             type = "string",
         },
-        logDeliveryConfiguration = {
-            type = "structure",
-        },
+        logDeliveryConfiguration = M.LogDeliveryConfiguration,
         influxAuthParametersSecretArn = {
             type = "string",
         },
@@ -1451,11 +1411,9 @@ M.UpdateDbInstanceOutput = {
         },
         instanceModes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        maintenanceSchedule = {
-            type = "structure",
-        },
+        maintenanceSchedule = M.MaintenanceSchedule,
         lastMaintenanceTime = {
             type = "timestamp",
             traits = {
@@ -1489,7 +1447,7 @@ M.Duration = {
             },
         },
         value = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -1522,10 +1480,10 @@ M.InfluxDBv2Parameters = {
             type = "boolean",
         },
         queryConcurrency = {
-            type = "number",
+            type = "integer",
         },
         queryQueueSize = {
-            type = "number",
+            type = "integer",
         },
         tracingType = {
             type = "string",
@@ -1533,84 +1491,68 @@ M.InfluxDBv2Parameters = {
         metricsDisabled = {
             type = "boolean",
         },
-        httpIdleTimeout = {
-            type = "structure",
-        },
-        httpReadHeaderTimeout = {
-            type = "structure",
-        },
-        httpReadTimeout = {
-            type = "structure",
-        },
-        httpWriteTimeout = {
-            type = "structure",
-        },
+        httpIdleTimeout = M.Duration,
+        httpReadHeaderTimeout = M.Duration,
+        httpReadTimeout = M.Duration,
+        httpWriteTimeout = M.Duration,
         influxqlMaxSelectBuckets = {
-            type = "number",
+            type = "long",
         },
         influxqlMaxSelectPoint = {
-            type = "number",
+            type = "long",
         },
         influxqlMaxSelectSeries = {
-            type = "number",
+            type = "long",
         },
         pprofDisabled = {
             type = "boolean",
         },
         queryInitialMemoryBytes = {
-            type = "number",
+            type = "long",
         },
         queryMaxMemoryBytes = {
-            type = "number",
+            type = "long",
         },
         queryMemoryBytes = {
-            type = "number",
+            type = "long",
         },
         sessionLength = {
-            type = "number",
+            type = "integer",
         },
         sessionRenewDisabled = {
             type = "boolean",
         },
         storageCacheMaxMemorySize = {
-            type = "number",
+            type = "long",
         },
         storageCacheSnapshotMemorySize = {
-            type = "number",
+            type = "long",
         },
-        storageCacheSnapshotWriteColdDuration = {
-            type = "structure",
-        },
-        storageCompactFullWriteColdDuration = {
-            type = "structure",
-        },
+        storageCacheSnapshotWriteColdDuration = M.Duration,
+        storageCompactFullWriteColdDuration = M.Duration,
         storageCompactThroughputBurst = {
-            type = "number",
+            type = "long",
         },
         storageMaxConcurrentCompactions = {
-            type = "number",
+            type = "integer",
         },
         storageMaxIndexLogFileSize = {
-            type = "number",
+            type = "long",
         },
         storageNoValidateFieldSize = {
             type = "boolean",
         },
-        storageRetentionCheckInterval = {
-            type = "structure",
-        },
+        storageRetentionCheckInterval = M.Duration,
         storageSeriesFileMaxConcurrentSnapshotCompactions = {
-            type = "number",
+            type = "integer",
         },
         storageSeriesIdSetCacheSize = {
-            type = "number",
+            type = "long",
         },
         storageWalMaxConcurrentWrites = {
-            type = "number",
+            type = "integer",
         },
-        storageWalMaxWriteDelay = {
-            type = "structure",
-        },
+        storageWalMaxWriteDelay = M.Duration,
         uiDisabled = {
             type = "boolean",
         },
@@ -1629,7 +1571,7 @@ M.PercentOrAbsoluteLong = {
             type = "string",
         },
         absolute = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1642,10 +1584,10 @@ M.InfluxDBv3CoreParameters = {
     type = "structure",
     members = {
         queryFileLimit = {
-            type = "number",
+            type = "integer",
         },
         queryLogSize = {
-            type = "number",
+            type = "integer",
         },
         logFilter = {
             type = "string",
@@ -1654,7 +1596,7 @@ M.InfluxDBv3CoreParameters = {
             type = "string",
         },
         dataFusionNumThreads = {
-            type = "number",
+            type = "integer",
         },
         dataFusionRuntimeType = {
             type = "string",
@@ -1663,25 +1605,23 @@ M.InfluxDBv3CoreParameters = {
             type = "boolean",
         },
         dataFusionRuntimeEventInterval = {
-            type = "number",
+            type = "integer",
         },
         dataFusionRuntimeGlobalQueueInterval = {
-            type = "number",
+            type = "integer",
         },
         dataFusionRuntimeMaxBlockingThreads = {
-            type = "number",
+            type = "integer",
         },
         dataFusionRuntimeMaxIoEventsPerTick = {
-            type = "number",
+            type = "integer",
         },
-        dataFusionRuntimeThreadKeepAlive = {
-            type = "structure",
-        },
+        dataFusionRuntimeThreadKeepAlive = M.Duration,
         dataFusionRuntimeThreadPriority = {
-            type = "number",
+            type = "integer",
         },
         dataFusionMaxParquetFanout = {
-            type = "number",
+            type = "integer",
         },
         dataFusionUseCachedParquetLoader = {
             type = "boolean",
@@ -1690,74 +1630,48 @@ M.InfluxDBv3CoreParameters = {
             type = "string",
         },
         maxHttpRequestSize = {
-            type = "number",
+            type = "long",
         },
-        forceSnapshotMemThreshold = {
-            type = "union",
-        },
+        forceSnapshotMemThreshold = M.PercentOrAbsoluteLong,
         walSnapshotSize = {
-            type = "number",
+            type = "integer",
         },
         walMaxWriteBufferSize = {
-            type = "number",
+            type = "integer",
         },
         snapshottedWalFilesToKeep = {
-            type = "number",
+            type = "integer",
         },
-        preemptiveCacheAge = {
-            type = "structure",
-        },
+        preemptiveCacheAge = M.Duration,
         parquetMemCachePrunePercentage = {
-            type = "number",
+            type = "float",
         },
-        parquetMemCachePruneInterval = {
-            type = "structure",
-        },
+        parquetMemCachePruneInterval = M.Duration,
         disableParquetMemCache = {
             type = "boolean",
         },
-        parquetMemCacheQueryPathDuration = {
-            type = "structure",
-        },
-        lastCacheEvictionInterval = {
-            type = "structure",
-        },
-        distinctCacheEvictionInterval = {
-            type = "structure",
-        },
-        gen1Duration = {
-            type = "structure",
-        },
-        execMemPoolBytes = {
-            type = "union",
-        },
-        parquetMemCacheSize = {
-            type = "union",
-        },
+        parquetMemCacheQueryPathDuration = M.Duration,
+        lastCacheEvictionInterval = M.Duration,
+        distinctCacheEvictionInterval = M.Duration,
+        gen1Duration = M.Duration,
+        execMemPoolBytes = M.PercentOrAbsoluteLong,
+        parquetMemCacheSize = M.PercentOrAbsoluteLong,
         walReplayFailOnError = {
             type = "boolean",
         },
         walReplayConcurrencyLimit = {
-            type = "number",
+            type = "integer",
         },
         tableIndexCacheMaxEntries = {
-            type = "number",
+            type = "integer",
         },
         tableIndexCacheConcurrencyLimit = {
-            type = "number",
+            type = "integer",
         },
-        gen1LookbackDuration = {
-            type = "structure",
-        },
-        retentionCheckInterval = {
-            type = "structure",
-        },
-        deleteGracePeriod = {
-            type = "structure",
-        },
-        hardDeleteDefaultDuration = {
-            type = "structure",
-        },
+        gen1LookbackDuration = M.Duration,
+        retentionCheckInterval = M.Duration,
+        deleteGracePeriod = M.Duration,
+        hardDeleteDefaultDuration = M.Duration,
     },
 }
 
@@ -1765,10 +1679,10 @@ M.InfluxDBv3EnterpriseParameters = {
     type = "structure",
     members = {
         queryFileLimit = {
-            type = "number",
+            type = "integer",
         },
         queryLogSize = {
-            type = "number",
+            type = "integer",
         },
         logFilter = {
             type = "string",
@@ -1777,7 +1691,7 @@ M.InfluxDBv3EnterpriseParameters = {
             type = "string",
         },
         dataFusionNumThreads = {
-            type = "number",
+            type = "integer",
         },
         dataFusionRuntimeType = {
             type = "string",
@@ -1786,25 +1700,23 @@ M.InfluxDBv3EnterpriseParameters = {
             type = "boolean",
         },
         dataFusionRuntimeEventInterval = {
-            type = "number",
+            type = "integer",
         },
         dataFusionRuntimeGlobalQueueInterval = {
-            type = "number",
+            type = "integer",
         },
         dataFusionRuntimeMaxBlockingThreads = {
-            type = "number",
+            type = "integer",
         },
         dataFusionRuntimeMaxIoEventsPerTick = {
-            type = "number",
+            type = "integer",
         },
-        dataFusionRuntimeThreadKeepAlive = {
-            type = "structure",
-        },
+        dataFusionRuntimeThreadKeepAlive = M.Duration,
         dataFusionRuntimeThreadPriority = {
-            type = "number",
+            type = "integer",
         },
         dataFusionMaxParquetFanout = {
-            type = "number",
+            type = "integer",
         },
         dataFusionUseCachedParquetLoader = {
             type = "boolean",
@@ -1813,82 +1725,56 @@ M.InfluxDBv3EnterpriseParameters = {
             type = "string",
         },
         maxHttpRequestSize = {
-            type = "number",
+            type = "long",
         },
-        forceSnapshotMemThreshold = {
-            type = "union",
-        },
+        forceSnapshotMemThreshold = M.PercentOrAbsoluteLong,
         walSnapshotSize = {
-            type = "number",
+            type = "integer",
         },
         walMaxWriteBufferSize = {
-            type = "number",
+            type = "integer",
         },
         snapshottedWalFilesToKeep = {
-            type = "number",
+            type = "integer",
         },
-        preemptiveCacheAge = {
-            type = "structure",
-        },
+        preemptiveCacheAge = M.Duration,
         parquetMemCachePrunePercentage = {
-            type = "number",
+            type = "float",
         },
-        parquetMemCachePruneInterval = {
-            type = "structure",
-        },
+        parquetMemCachePruneInterval = M.Duration,
         disableParquetMemCache = {
             type = "boolean",
         },
-        parquetMemCacheQueryPathDuration = {
-            type = "structure",
-        },
-        lastCacheEvictionInterval = {
-            type = "structure",
-        },
-        distinctCacheEvictionInterval = {
-            type = "structure",
-        },
-        gen1Duration = {
-            type = "structure",
-        },
-        execMemPoolBytes = {
-            type = "union",
-        },
-        parquetMemCacheSize = {
-            type = "union",
-        },
+        parquetMemCacheQueryPathDuration = M.Duration,
+        lastCacheEvictionInterval = M.Duration,
+        distinctCacheEvictionInterval = M.Duration,
+        gen1Duration = M.Duration,
+        execMemPoolBytes = M.PercentOrAbsoluteLong,
+        parquetMemCacheSize = M.PercentOrAbsoluteLong,
         walReplayFailOnError = {
             type = "boolean",
         },
         walReplayConcurrencyLimit = {
-            type = "number",
+            type = "integer",
         },
         tableIndexCacheMaxEntries = {
-            type = "number",
+            type = "integer",
         },
         tableIndexCacheConcurrencyLimit = {
-            type = "number",
+            type = "integer",
         },
-        gen1LookbackDuration = {
-            type = "structure",
-        },
-        retentionCheckInterval = {
-            type = "structure",
-        },
-        deleteGracePeriod = {
-            type = "structure",
-        },
-        hardDeleteDefaultDuration = {
-            type = "structure",
-        },
+        gen1LookbackDuration = M.Duration,
+        retentionCheckInterval = M.Duration,
+        deleteGracePeriod = M.Duration,
+        hardDeleteDefaultDuration = M.Duration,
         ingestQueryInstances = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         queryOnlyInstances = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1900,50 +1786,34 @@ M.InfluxDBv3EnterpriseParameters = {
             },
         },
         compactionRowLimit = {
-            type = "number",
+            type = "integer",
         },
         compactionMaxNumFilesPerPlan = {
-            type = "number",
+            type = "integer",
         },
-        compactionGen2Duration = {
-            type = "structure",
-        },
+        compactionGen2Duration = M.Duration,
         compactionMultipliers = {
             type = "string",
         },
-        compactionCleanupWait = {
-            type = "structure",
-        },
-        compactionCheckInterval = {
-            type = "structure",
-        },
+        compactionCleanupWait = M.Duration,
+        compactionCheckInterval = M.Duration,
         lastValueCacheDisableFromHistory = {
             type = "boolean",
         },
         distinctValueCacheDisableFromHistory = {
             type = "boolean",
         },
-        replicationInterval = {
-            type = "structure",
-        },
-        catalogSyncInterval = {
-            type = "structure",
-        },
+        replicationInterval = M.Duration,
+        catalogSyncInterval = M.Duration,
     },
 }
 
 M.Parameters = {
     type = "union",
     members = {
-        InfluxDBv2 = {
-            type = "structure",
-        },
-        InfluxDBv3Core = {
-            type = "structure",
-        },
-        InfluxDBv3Enterprise = {
-            type = "structure",
-        },
+        InfluxDBv2 = M.InfluxDBv2Parameters,
+        InfluxDBv3Core = M.InfluxDBv3CoreParameters,
+        InfluxDBv3Enterprise = M.InfluxDBv3EnterpriseParameters,
     },
 }
 
@@ -1959,13 +1829,11 @@ M.CreateDbParameterGroupInput = {
         description = {
             type = "string",
         },
-        parameters = {
-            type = "union",
-        },
+        parameters = M.Parameters,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1994,9 +1862,7 @@ M.CreateDbParameterGroupOutput = {
         description = {
             type = "string",
         },
-        parameters = {
-            type = "union",
-        },
+        parameters = M.Parameters,
     },
 }
 
@@ -2036,9 +1902,7 @@ M.GetDbParameterGroupOutput = {
         description = {
             type = "string",
         },
-        parameters = {
-            type = "union",
-        },
+        parameters = M.Parameters,
     },
 }
 
@@ -2049,7 +1913,7 @@ M.ListDbParameterGroupsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2086,7 +1950,7 @@ M.ListDbParameterGroupsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.DbParameterGroupSummary,
             traits = {
                 required = true,
             },
@@ -2114,8 +1978,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2131,8 +1995,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2156,7 +2020,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },

@@ -57,7 +57,7 @@ M.ActivatedRule = {
     type = "structure",
     members = {
         Priority = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -68,18 +68,14 @@ M.ActivatedRule = {
                 required = true,
             },
         },
-        Action = {
-            type = "structure",
-        },
-        OverrideAction = {
-            type = "structure",
-        },
+        Action = M.WafAction,
+        OverrideAction = M.WafOverrideAction,
         Type = {
             type = "string",
         },
         ExcludedRules = {
             type = "list",
-            member_type = "structure",
+            member = M.ExcludedRule,
         },
     },
 }
@@ -147,12 +143,9 @@ M.TextTransformation = {
 M.ByteMatchTuple = {
     type = "structure",
     members = {
-        FieldToMatch = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        FieldToMatch = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FieldToMatch }),
         TargetString = {
             type = "blob",
             traits = {
@@ -188,7 +181,7 @@ M.ByteMatchSet = {
         },
         ByteMatchTuples = {
             type = "list",
-            member_type = "structure",
+            member = M.ByteMatchTuple,
             traits = {
                 required = true,
             },
@@ -199,9 +192,7 @@ M.ByteMatchSet = {
 M.CreateByteMatchSetOutput = {
     type = "structure",
     members = {
-        ByteMatchSet = {
-            type = "structure",
-        },
+        ByteMatchSet = M.ByteMatchSet,
         ChangeToken = {
             type = "string",
         },
@@ -603,7 +594,7 @@ M.GeoMatchSet = {
         },
         GeoMatchConstraints = {
             type = "list",
-            member_type = "structure",
+            member = M.GeoMatchConstraint,
             traits = {
                 required = true,
             },
@@ -614,9 +605,7 @@ M.GeoMatchSet = {
 M.CreateGeoMatchSetOutput = {
     type = "structure",
     members = {
-        GeoMatchSet = {
-            type = "structure",
-        },
+        GeoMatchSet = M.GeoMatchSet,
         ChangeToken = {
             type = "string",
         },
@@ -678,7 +667,7 @@ M.IPSet = {
         },
         IPSetDescriptors = {
             type = "list",
-            member_type = "structure",
+            member = M.IPSetDescriptor,
             traits = {
                 required = true,
             },
@@ -689,9 +678,7 @@ M.IPSet = {
 M.CreateIPSetOutput = {
     type = "structure",
     members = {
-        IPSet = {
-            type = "structure",
-        },
+        IPSet = M.IPSet,
         ChangeToken = {
             type = "string",
         },
@@ -742,7 +729,7 @@ M.CreateRateBasedRuleInput = {
             },
         },
         RateLimit = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -755,7 +742,7 @@ M.CreateRateBasedRuleInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -811,7 +798,7 @@ M.RateBasedRule = {
         },
         MatchPredicates = {
             type = "list",
-            member_type = "structure",
+            member = M.Predicate,
             traits = {
                 required = true,
             },
@@ -823,7 +810,7 @@ M.RateBasedRule = {
             },
         },
         RateLimit = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -834,9 +821,7 @@ M.RateBasedRule = {
 M.CreateRateBasedRuleOutput = {
     type = "structure",
     members = {
-        Rule = {
-            type = "structure",
-        },
+        Rule = M.RateBasedRule,
         ChangeToken = {
             type = "string",
         },
@@ -894,12 +879,9 @@ M.CreateRegexMatchSetInput = {
 M.RegexMatchTuple = {
     type = "structure",
     members = {
-        FieldToMatch = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        FieldToMatch = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FieldToMatch }),
         TextTransformation = {
             type = "string",
             traits = {
@@ -926,7 +908,7 @@ M.RegexMatchSet = {
         },
         RegexMatchTuples = {
             type = "list",
-            member_type = "structure",
+            member = M.RegexMatchTuple,
         },
     },
 }
@@ -934,9 +916,7 @@ M.RegexMatchSet = {
 M.CreateRegexMatchSetOutput = {
     type = "structure",
     members = {
-        RegexMatchSet = {
-            type = "structure",
-        },
+        RegexMatchSet = M.RegexMatchSet,
         ChangeToken = {
             type = "string",
         },
@@ -975,7 +955,7 @@ M.RegexPatternSet = {
         },
         RegexPatternStrings = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -986,9 +966,7 @@ M.RegexPatternSet = {
 M.CreateRegexPatternSetOutput = {
     type = "structure",
     members = {
-        RegexPatternSet = {
-            type = "structure",
-        },
+        RegexPatternSet = M.RegexPatternSet,
         ChangeToken = {
             type = "string",
         },
@@ -1018,7 +996,7 @@ M.CreateRuleInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1040,7 +1018,7 @@ M.Rule = {
         },
         Predicates = {
             type = "list",
-            member_type = "structure",
+            member = M.Predicate,
             traits = {
                 required = true,
             },
@@ -1051,9 +1029,7 @@ M.Rule = {
 M.CreateRuleOutput = {
     type = "structure",
     members = {
-        Rule = {
-            type = "structure",
-        },
+        Rule = M.Rule,
         ChangeToken = {
             type = "string",
         },
@@ -1083,7 +1059,7 @@ M.CreateRuleGroupInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1109,9 +1085,7 @@ M.RuleGroup = {
 M.CreateRuleGroupOutput = {
     type = "structure",
     members = {
-        RuleGroup = {
-            type = "structure",
-        },
+        RuleGroup = M.RuleGroup,
         ChangeToken = {
             type = "string",
         },
@@ -1148,12 +1122,9 @@ M.ComparisonOperator = {
 M.SizeConstraint = {
     type = "structure",
     members = {
-        FieldToMatch = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        FieldToMatch = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FieldToMatch }),
         TextTransformation = {
             type = "string",
             traits = {
@@ -1167,8 +1138,9 @@ M.SizeConstraint = {
             },
         },
         Size = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -1189,7 +1161,7 @@ M.SizeConstraintSet = {
         },
         SizeConstraints = {
             type = "list",
-            member_type = "structure",
+            member = M.SizeConstraint,
             traits = {
                 required = true,
             },
@@ -1200,9 +1172,7 @@ M.SizeConstraintSet = {
 M.CreateSizeConstraintSetOutput = {
     type = "structure",
     members = {
-        SizeConstraintSet = {
-            type = "structure",
-        },
+        SizeConstraintSet = M.SizeConstraintSet,
         ChangeToken = {
             type = "string",
         },
@@ -1230,12 +1200,9 @@ M.CreateSqlInjectionMatchSetInput = {
 M.SqlInjectionMatchTuple = {
     type = "structure",
     members = {
-        FieldToMatch = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        FieldToMatch = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FieldToMatch }),
         TextTransformation = {
             type = "string",
             traits = {
@@ -1259,7 +1226,7 @@ M.SqlInjectionMatchSet = {
         },
         SqlInjectionMatchTuples = {
             type = "list",
-            member_type = "structure",
+            member = M.SqlInjectionMatchTuple,
             traits = {
                 required = true,
             },
@@ -1270,9 +1237,7 @@ M.SqlInjectionMatchSet = {
 M.CreateSqlInjectionMatchSetOutput = {
     type = "structure",
     members = {
-        SqlInjectionMatchSet = {
-            type = "structure",
-        },
+        SqlInjectionMatchSet = M.SqlInjectionMatchSet,
         ChangeToken = {
             type = "string",
         },
@@ -1294,12 +1259,9 @@ M.CreateWebACLInput = {
                 required = true,
             },
         },
-        DefaultAction = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DefaultAction = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WafAction }),
         ChangeToken = {
             type = "string",
             traits = {
@@ -1308,7 +1270,7 @@ M.CreateWebACLInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1328,15 +1290,12 @@ M.WebACL = {
         MetricName = {
             type = "string",
         },
-        DefaultAction = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DefaultAction = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WafAction }),
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.ActivatedRule,
             traits = {
                 required = true,
             },
@@ -1350,9 +1309,7 @@ M.WebACL = {
 M.CreateWebACLOutput = {
     type = "structure",
     members = {
-        WebACL = {
-            type = "structure",
-        },
+        WebACL = M.WebACL,
         ChangeToken = {
             type = "string",
         },
@@ -1462,12 +1419,9 @@ M.CreateXssMatchSetInput = {
 M.XssMatchTuple = {
     type = "structure",
     members = {
-        FieldToMatch = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        FieldToMatch = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FieldToMatch }),
         TextTransformation = {
             type = "string",
             traits = {
@@ -1491,7 +1445,7 @@ M.XssMatchSet = {
         },
         XssMatchTuples = {
             type = "list",
-            member_type = "structure",
+            member = M.XssMatchTuple,
             traits = {
                 required = true,
             },
@@ -1502,9 +1456,7 @@ M.XssMatchSet = {
 M.CreateXssMatchSetOutput = {
     type = "structure",
     members = {
-        XssMatchSet = {
-            type = "structure",
-        },
+        XssMatchSet = M.XssMatchSet,
         ChangeToken = {
             type = "string",
         },
@@ -1902,9 +1854,7 @@ M.GetByteMatchSetInput = {
 M.GetByteMatchSetOutput = {
     type = "structure",
     members = {
-        ByteMatchSet = {
-            type = "structure",
-        },
+        ByteMatchSet = M.ByteMatchSet,
     },
 }
 
@@ -1963,9 +1913,7 @@ M.GetGeoMatchSetInput = {
 M.GetGeoMatchSetOutput = {
     type = "structure",
     members = {
-        GeoMatchSet = {
-            type = "structure",
-        },
+        GeoMatchSet = M.GeoMatchSet,
     },
 }
 
@@ -1984,9 +1932,7 @@ M.GetIPSetInput = {
 M.GetIPSetOutput = {
     type = "structure",
     members = {
-        IPSet = {
-            type = "structure",
-        },
+        IPSet = M.IPSet,
     },
 }
 
@@ -2013,14 +1959,14 @@ M.LoggingConfiguration = {
         },
         LogDestinationConfigs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         RedactedFields = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldToMatch,
         },
     },
 }
@@ -2028,9 +1974,7 @@ M.LoggingConfiguration = {
 M.GetLoggingConfigurationOutput = {
     type = "structure",
     members = {
-        LoggingConfiguration = {
-            type = "structure",
-        },
+        LoggingConfiguration = M.LoggingConfiguration,
     },
 }
 
@@ -2070,9 +2014,7 @@ M.GetRateBasedRuleInput = {
 M.GetRateBasedRuleOutput = {
     type = "structure",
     members = {
-        Rule = {
-            type = "structure",
-        },
+        Rule = M.RateBasedRule,
     },
 }
 
@@ -2096,7 +2038,7 @@ M.GetRateBasedRuleManagedKeysOutput = {
     members = {
         ManagedKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextMarker = {
             type = "string",
@@ -2119,9 +2061,7 @@ M.GetRegexMatchSetInput = {
 M.GetRegexMatchSetOutput = {
     type = "structure",
     members = {
-        RegexMatchSet = {
-            type = "structure",
-        },
+        RegexMatchSet = M.RegexMatchSet,
     },
 }
 
@@ -2140,9 +2080,7 @@ M.GetRegexPatternSetInput = {
 M.GetRegexPatternSetOutput = {
     type = "structure",
     members = {
-        RegexPatternSet = {
-            type = "structure",
-        },
+        RegexPatternSet = M.RegexPatternSet,
     },
 }
 
@@ -2161,9 +2099,7 @@ M.GetRuleInput = {
 M.GetRuleOutput = {
     type = "structure",
     members = {
-        Rule = {
-            type = "structure",
-        },
+        Rule = M.Rule,
     },
 }
 
@@ -2182,9 +2118,7 @@ M.GetRuleGroupInput = {
 M.GetRuleGroupOutput = {
     type = "structure",
     members = {
-        RuleGroup = {
-            type = "structure",
-        },
+        RuleGroup = M.RuleGroup,
     },
 }
 
@@ -2221,14 +2155,11 @@ M.GetSampledRequestsInput = {
                 required = true,
             },
         },
-        TimeWindow = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TimeWindow = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TimeWindow }),
         MaxItems = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -2268,7 +2199,7 @@ M.HTTPRequest = {
         },
         Headers = {
             type = "list",
-            member_type = "structure",
+            member = M.HTTPHeader,
         },
     },
 }
@@ -2276,15 +2207,13 @@ M.HTTPRequest = {
 M.SampledHTTPRequest = {
     type = "structure",
     members = {
-        Request = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Request = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HTTPRequest }),
         Weight = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -2305,14 +2234,15 @@ M.GetSampledRequestsOutput = {
     members = {
         SampledRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.SampledHTTPRequest,
         },
         PopulationSize = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
-        TimeWindow = {
-            type = "structure",
-        },
+        TimeWindow = M.TimeWindow,
     },
 }
 
@@ -2331,9 +2261,7 @@ M.GetSizeConstraintSetInput = {
 M.GetSizeConstraintSetOutput = {
     type = "structure",
     members = {
-        SizeConstraintSet = {
-            type = "structure",
-        },
+        SizeConstraintSet = M.SizeConstraintSet,
     },
 }
 
@@ -2352,9 +2280,7 @@ M.GetSqlInjectionMatchSetInput = {
 M.GetSqlInjectionMatchSetOutput = {
     type = "structure",
     members = {
-        SqlInjectionMatchSet = {
-            type = "structure",
-        },
+        SqlInjectionMatchSet = M.SqlInjectionMatchSet,
     },
 }
 
@@ -2373,9 +2299,7 @@ M.GetWebACLInput = {
 M.GetWebACLOutput = {
     type = "structure",
     members = {
-        WebACL = {
-            type = "structure",
-        },
+        WebACL = M.WebACL,
     },
 }
 
@@ -2394,9 +2318,7 @@ M.GetXssMatchSetInput = {
 M.GetXssMatchSetOutput = {
     type = "structure",
     members = {
-        XssMatchSet = {
-            type = "structure",
-        },
+        XssMatchSet = M.XssMatchSet,
     },
 }
 
@@ -2410,7 +2332,10 @@ M.ListActivatedRulesInRuleGroupInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2423,7 +2348,7 @@ M.ListActivatedRulesInRuleGroupOutput = {
         },
         ActivatedRules = {
             type = "list",
-            member_type = "structure",
+            member = M.ActivatedRule,
         },
     },
 }
@@ -2435,7 +2360,10 @@ M.ListByteMatchSetsInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2466,7 +2394,7 @@ M.ListByteMatchSetsOutput = {
         },
         ByteMatchSets = {
             type = "list",
-            member_type = "structure",
+            member = M.ByteMatchSetSummary,
         },
     },
 }
@@ -2478,7 +2406,10 @@ M.ListGeoMatchSetsInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2509,7 +2440,7 @@ M.ListGeoMatchSetsOutput = {
         },
         GeoMatchSets = {
             type = "list",
-            member_type = "structure",
+            member = M.GeoMatchSetSummary,
         },
     },
 }
@@ -2521,7 +2452,10 @@ M.ListIPSetsInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2552,7 +2486,7 @@ M.ListIPSetsOutput = {
         },
         IPSets = {
             type = "list",
-            member_type = "structure",
+            member = M.IPSetSummary,
         },
     },
 }
@@ -2564,7 +2498,10 @@ M.ListLoggingConfigurationsInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2574,7 +2511,7 @@ M.ListLoggingConfigurationsOutput = {
     members = {
         LoggingConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.LoggingConfiguration,
         },
         NextMarker = {
             type = "string",
@@ -2589,7 +2526,10 @@ M.ListRateBasedRulesInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2620,7 +2560,7 @@ M.ListRateBasedRulesOutput = {
         },
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleSummary,
         },
     },
 }
@@ -2632,7 +2572,10 @@ M.ListRegexMatchSetsInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2663,7 +2606,7 @@ M.ListRegexMatchSetsOutput = {
         },
         RegexMatchSets = {
             type = "list",
-            member_type = "structure",
+            member = M.RegexMatchSetSummary,
         },
     },
 }
@@ -2675,7 +2618,10 @@ M.ListRegexPatternSetsInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2706,7 +2652,7 @@ M.ListRegexPatternSetsOutput = {
         },
         RegexPatternSets = {
             type = "list",
-            member_type = "structure",
+            member = M.RegexPatternSetSummary,
         },
     },
 }
@@ -2718,7 +2664,10 @@ M.ListRuleGroupsInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2749,7 +2698,7 @@ M.ListRuleGroupsOutput = {
         },
         RuleGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleGroupSummary,
         },
     },
 }
@@ -2761,7 +2710,10 @@ M.ListRulesInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2774,7 +2726,7 @@ M.ListRulesOutput = {
         },
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleSummary,
         },
     },
 }
@@ -2786,7 +2738,10 @@ M.ListSizeConstraintSetsInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2817,7 +2772,7 @@ M.ListSizeConstraintSetsOutput = {
         },
         SizeConstraintSets = {
             type = "list",
-            member_type = "structure",
+            member = M.SizeConstraintSetSummary,
         },
     },
 }
@@ -2829,7 +2784,10 @@ M.ListSqlInjectionMatchSetsInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2860,7 +2818,7 @@ M.ListSqlInjectionMatchSetsOutput = {
         },
         SqlInjectionMatchSets = {
             type = "list",
-            member_type = "structure",
+            member = M.SqlInjectionMatchSetSummary,
         },
     },
 }
@@ -2872,7 +2830,10 @@ M.ListSubscribedRuleGroupsInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2909,7 +2870,7 @@ M.ListSubscribedRuleGroupsOutput = {
         },
         RuleGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.SubscribedRuleGroupSummary,
         },
     },
 }
@@ -2921,7 +2882,10 @@ M.ListTagsForResourceInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         ResourceARN = {
             type = "string",
@@ -2940,7 +2904,7 @@ M.TagInfoForResource = {
         },
         TagList = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2951,9 +2915,7 @@ M.ListTagsForResourceOutput = {
         NextMarker = {
             type = "string",
         },
-        TagInfoForResource = {
-            type = "structure",
-        },
+        TagInfoForResource = M.TagInfoForResource,
     },
 }
 
@@ -2964,7 +2926,10 @@ M.ListWebACLsInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2995,7 +2960,7 @@ M.ListWebACLsOutput = {
         },
         WebACLs = {
             type = "list",
-            member_type = "structure",
+            member = M.WebACLSummary,
         },
     },
 }
@@ -3007,7 +2972,10 @@ M.ListXssMatchSetsInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -3038,7 +3006,7 @@ M.ListXssMatchSetsOutput = {
         },
         XssMatchSets = {
             type = "list",
-            member_type = "structure",
+            member = M.XssMatchSetSummary,
         },
     },
 }
@@ -3046,21 +3014,16 @@ M.ListXssMatchSetsOutput = {
 M.PutLoggingConfigurationInput = {
     type = "structure",
     members = {
-        LoggingConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        LoggingConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LoggingConfiguration }),
     },
 }
 
 M.PutLoggingConfigurationOutput = {
     type = "structure",
     members = {
-        LoggingConfiguration = {
-            type = "structure",
-        },
+        LoggingConfiguration = M.LoggingConfiguration,
     },
 }
 
@@ -3117,7 +3080,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -3140,7 +3103,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3166,12 +3129,9 @@ M.ByteMatchSetUpdate = {
                 required = true,
             },
         },
-        ByteMatchTuple = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ByteMatchTuple = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ByteMatchTuple }),
     },
 }
 
@@ -3192,7 +3152,7 @@ M.UpdateByteMatchSetInput = {
         },
         Updates = {
             type = "list",
-            member_type = "structure",
+            member = M.ByteMatchSetUpdate,
             traits = {
                 required = true,
             },
@@ -3228,12 +3188,9 @@ M.GeoMatchSetUpdate = {
                 required = true,
             },
         },
-        GeoMatchConstraint = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        GeoMatchConstraint = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.GeoMatchConstraint }),
     },
 }
 
@@ -3254,7 +3211,7 @@ M.UpdateGeoMatchSetInput = {
         },
         Updates = {
             type = "list",
-            member_type = "structure",
+            member = M.GeoMatchSetUpdate,
             traits = {
                 required = true,
             },
@@ -3280,12 +3237,9 @@ M.IPSetUpdate = {
                 required = true,
             },
         },
-        IPSetDescriptor = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        IPSetDescriptor = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IPSetDescriptor }),
     },
 }
 
@@ -3306,7 +3260,7 @@ M.UpdateIPSetInput = {
         },
         Updates = {
             type = "list",
-            member_type = "structure",
+            member = M.IPSetUpdate,
             traits = {
                 required = true,
             },
@@ -3332,12 +3286,9 @@ M.RuleUpdate = {
                 required = true,
             },
         },
-        Predicate = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Predicate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Predicate }),
     },
 }
 
@@ -3358,13 +3309,13 @@ M.UpdateRateBasedRuleInput = {
         },
         Updates = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleUpdate,
             traits = {
                 required = true,
             },
         },
         RateLimit = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -3390,12 +3341,9 @@ M.RegexMatchSetUpdate = {
                 required = true,
             },
         },
-        RegexMatchTuple = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RegexMatchTuple = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RegexMatchTuple }),
     },
 }
 
@@ -3410,7 +3358,7 @@ M.UpdateRegexMatchSetInput = {
         },
         Updates = {
             type = "list",
-            member_type = "structure",
+            member = M.RegexMatchSetUpdate,
             traits = {
                 required = true,
             },
@@ -3462,7 +3410,7 @@ M.UpdateRegexPatternSetInput = {
         },
         Updates = {
             type = "list",
-            member_type = "structure",
+            member = M.RegexPatternSetUpdate,
             traits = {
                 required = true,
             },
@@ -3512,7 +3460,7 @@ M.UpdateRuleInput = {
         },
         Updates = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleUpdate,
             traits = {
                 required = true,
             },
@@ -3538,12 +3486,9 @@ M.RuleGroupUpdate = {
                 required = true,
             },
         },
-        ActivatedRule = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ActivatedRule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActivatedRule }),
     },
 }
 
@@ -3558,7 +3503,7 @@ M.UpdateRuleGroupInput = {
         },
         Updates = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleGroupUpdate,
             traits = {
                 required = true,
             },
@@ -3590,12 +3535,9 @@ M.SizeConstraintSetUpdate = {
                 required = true,
             },
         },
-        SizeConstraint = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SizeConstraint = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SizeConstraint }),
     },
 }
 
@@ -3616,7 +3558,7 @@ M.UpdateSizeConstraintSetInput = {
         },
         Updates = {
             type = "list",
-            member_type = "structure",
+            member = M.SizeConstraintSetUpdate,
             traits = {
                 required = true,
             },
@@ -3642,12 +3584,9 @@ M.SqlInjectionMatchSetUpdate = {
                 required = true,
             },
         },
-        SqlInjectionMatchTuple = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SqlInjectionMatchTuple = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SqlInjectionMatchTuple }),
     },
 }
 
@@ -3668,7 +3607,7 @@ M.UpdateSqlInjectionMatchSetInput = {
         },
         Updates = {
             type = "list",
-            member_type = "structure",
+            member = M.SqlInjectionMatchSetUpdate,
             traits = {
                 required = true,
             },
@@ -3694,12 +3633,9 @@ M.WebACLUpdate = {
                 required = true,
             },
         },
-        ActivatedRule = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ActivatedRule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActivatedRule }),
     },
 }
 
@@ -3720,11 +3656,9 @@ M.UpdateWebACLInput = {
         },
         Updates = {
             type = "list",
-            member_type = "structure",
+            member = M.WebACLUpdate,
         },
-        DefaultAction = {
-            type = "structure",
-        },
+        DefaultAction = M.WafAction,
     },
 }
 
@@ -3756,12 +3690,9 @@ M.XssMatchSetUpdate = {
                 required = true,
             },
         },
-        XssMatchTuple = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        XssMatchTuple = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.XssMatchTuple }),
     },
 }
 
@@ -3782,7 +3713,7 @@ M.UpdateXssMatchSetInput = {
         },
         Updates = {
             type = "list",
-            member_type = "structure",
+            member = M.XssMatchSetUpdate,
             traits = {
                 required = true,
             },

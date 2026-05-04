@@ -48,7 +48,7 @@ M.Fraudster = {
         },
         WatchlistIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -56,9 +56,7 @@ M.Fraudster = {
 M.AssociateFraudsterOutput = {
     type = "structure",
     members = {
-        Fraudster = {
-            type = "structure",
-        },
+        Fraudster = M.Fraudster,
     },
 }
 
@@ -155,7 +153,7 @@ M.AuthenticationConfiguration = {
     type = "structure",
     members = {
         AcceptanceThreshold = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -195,11 +193,9 @@ M.AuthenticationResult = {
             type = "string",
         },
         Score = {
-            type = "number",
+            type = "integer",
         },
-        Configuration = {
-            type = "structure",
-        },
+        Configuration = M.AuthenticationConfiguration,
     },
 }
 
@@ -245,18 +241,15 @@ M.CreateDomainInput = {
         Description = {
             type = "string",
         },
-        ServerSideEncryptionConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ServerSideEncryptionConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ServerSideEncryptionConfiguration }),
         ClientToken = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -318,30 +311,22 @@ M.Domain = {
         DomainStatus = {
             type = "string",
         },
-        ServerSideEncryptionConfiguration = {
-            type = "structure",
-        },
+        ServerSideEncryptionConfiguration = M.ServerSideEncryptionConfiguration,
         CreatedAt = {
             type = "timestamp",
         },
         UpdatedAt = {
             type = "timestamp",
         },
-        ServerSideEncryptionUpdateDetails = {
-            type = "structure",
-        },
-        WatchlistDetails = {
-            type = "structure",
-        },
+        ServerSideEncryptionUpdateDetails = M.ServerSideEncryptionUpdateDetails,
+        WatchlistDetails = M.WatchlistDetails,
     },
 }
 
 M.CreateDomainOutput = {
     type = "structure",
     members = {
-        Domain = {
-            type = "structure",
-        },
+        Domain = M.Domain,
     },
 }
 
@@ -386,6 +371,9 @@ M.Watchlist = {
         },
         DefaultWatchlist = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         CreatedAt = {
             type = "timestamp",
@@ -399,9 +387,7 @@ M.Watchlist = {
 M.CreateWatchlistOutput = {
     type = "structure",
     members = {
-        Watchlist = {
-            type = "structure",
-        },
+        Watchlist = M.Watchlist,
     },
 }
 
@@ -502,9 +488,7 @@ M.DescribeDomainInput = {
 M.DescribeDomainOutput = {
     type = "structure",
     members = {
-        Domain = {
-            type = "structure",
-        },
+        Domain = M.Domain,
     },
 }
 
@@ -529,9 +513,7 @@ M.DescribeFraudsterInput = {
 M.DescribeFraudsterOutput = {
     type = "structure",
     members = {
-        Fraudster = {
-            type = "structure",
-        },
+        Fraudster = M.Fraudster,
     },
 }
 
@@ -557,7 +539,7 @@ M.FailureDetails = {
     type = "structure",
     members = {
         StatusCode = {
-            type = "number",
+            type = "integer",
         },
         Message = {
             type = "string",
@@ -581,7 +563,7 @@ M.JobProgress = {
     type = "structure",
     members = {
         PercentComplete = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -621,11 +603,11 @@ M.RegistrationConfig = {
             type = "string",
         },
         FraudsterSimilarityThreshold = {
-            type = "number",
+            type = "integer",
         },
         WatchlistIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -648,36 +630,24 @@ M.FraudsterRegistrationJob = {
         DataAccessRoleArn = {
             type = "string",
         },
-        RegistrationConfig = {
-            type = "structure",
-        },
-        InputDataConfig = {
-            type = "structure",
-        },
-        OutputDataConfig = {
-            type = "structure",
-        },
+        RegistrationConfig = M.RegistrationConfig,
+        InputDataConfig = M.InputDataConfig,
+        OutputDataConfig = M.OutputDataConfig,
         CreatedAt = {
             type = "timestamp",
         },
         EndedAt = {
             type = "timestamp",
         },
-        FailureDetails = {
-            type = "structure",
-        },
-        JobProgress = {
-            type = "structure",
-        },
+        FailureDetails = M.FailureDetails,
+        JobProgress = M.JobProgress,
     },
 }
 
 M.DescribeFraudsterRegistrationJobOutput = {
     type = "structure",
     members = {
-        Job = {
-            type = "structure",
-        },
+        Job = M.FraudsterRegistrationJob,
     },
 }
 
@@ -736,9 +706,7 @@ M.Speaker = {
 M.DescribeSpeakerOutput = {
     type = "structure",
     members = {
-        Speaker = {
-            type = "structure",
-        },
+        Speaker = M.Speaker,
     },
 }
 
@@ -777,11 +745,11 @@ M.EnrollmentJobFraudDetectionConfig = {
             type = "string",
         },
         RiskThreshold = {
-            type = "number",
+            type = "integer",
         },
         WatchlistIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -792,9 +760,7 @@ M.EnrollmentConfig = {
         ExistingEnrollmentAction = {
             type = "string",
         },
-        FraudDetectionConfig = {
-            type = "structure",
-        },
+        FraudDetectionConfig = M.EnrollmentJobFraudDetectionConfig,
     },
 }
 
@@ -824,36 +790,24 @@ M.SpeakerEnrollmentJob = {
         DataAccessRoleArn = {
             type = "string",
         },
-        EnrollmentConfig = {
-            type = "structure",
-        },
-        InputDataConfig = {
-            type = "structure",
-        },
-        OutputDataConfig = {
-            type = "structure",
-        },
+        EnrollmentConfig = M.EnrollmentConfig,
+        InputDataConfig = M.InputDataConfig,
+        OutputDataConfig = M.OutputDataConfig,
         CreatedAt = {
             type = "timestamp",
         },
         EndedAt = {
             type = "timestamp",
         },
-        FailureDetails = {
-            type = "structure",
-        },
-        JobProgress = {
-            type = "structure",
-        },
+        FailureDetails = M.FailureDetails,
+        JobProgress = M.JobProgress,
     },
 }
 
 M.DescribeSpeakerEnrollmentJobOutput = {
     type = "structure",
     members = {
-        Job = {
-            type = "structure",
-        },
+        Job = M.SpeakerEnrollmentJob,
     },
 }
 
@@ -878,9 +832,7 @@ M.DescribeWatchlistInput = {
 M.DescribeWatchlistOutput = {
     type = "structure",
     members = {
-        Watchlist = {
-            type = "structure",
-        },
+        Watchlist = M.Watchlist,
     },
 }
 
@@ -911,9 +863,7 @@ M.DisassociateFraudsterInput = {
 M.DisassociateFraudsterOutput = {
     type = "structure",
     members = {
-        Fraudster = {
-            type = "structure",
-        },
+        Fraudster = M.Fraudster,
     },
 }
 
@@ -921,7 +871,7 @@ M.ListDomainsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -947,21 +897,15 @@ M.DomainSummary = {
         DomainStatus = {
             type = "string",
         },
-        ServerSideEncryptionConfiguration = {
-            type = "structure",
-        },
+        ServerSideEncryptionConfiguration = M.ServerSideEncryptionConfiguration,
         CreatedAt = {
             type = "timestamp",
         },
         UpdatedAt = {
             type = "timestamp",
         },
-        ServerSideEncryptionUpdateDetails = {
-            type = "structure",
-        },
-        WatchlistDetails = {
-            type = "structure",
-        },
+        ServerSideEncryptionUpdateDetails = M.ServerSideEncryptionUpdateDetails,
+        WatchlistDetails = M.WatchlistDetails,
     },
 }
 
@@ -970,7 +914,7 @@ M.ListDomainsOutput = {
     members = {
         DomainSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainSummary,
         },
         NextToken = {
             type = "string",
@@ -996,21 +940,16 @@ M.UpdateDomainInput = {
         Description = {
             type = "string",
         },
-        ServerSideEncryptionConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ServerSideEncryptionConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ServerSideEncryptionConfiguration }),
     },
 }
 
 M.UpdateDomainOutput = {
     type = "structure",
     members = {
-        Domain = {
-            type = "structure",
-        },
+        Domain = M.Domain,
     },
 }
 
@@ -1036,7 +975,7 @@ M.FraudDetectionConfiguration = {
     type = "structure",
     members = {
         RiskThreshold = {
-            type = "number",
+            type = "integer",
         },
         WatchlistId = {
             type = "string",
@@ -1059,7 +998,7 @@ M.KnownFraudsterRisk = {
     type = "structure",
     members = {
         RiskScore = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1074,7 +1013,7 @@ M.VoiceSpoofingRisk = {
     type = "structure",
     members = {
         RiskScore = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1085,18 +1024,12 @@ M.VoiceSpoofingRisk = {
 M.FraudRiskDetails = {
     type = "structure",
     members = {
-        KnownFraudsterRisk = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        VoiceSpoofingRisk = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        KnownFraudsterRisk = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.KnownFraudsterRisk }),
+        VoiceSpoofingRisk = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VoiceSpoofingRisk }),
     },
 }
 
@@ -1112,19 +1045,15 @@ M.FraudDetectionResult = {
         AudioAggregationEndedAt = {
             type = "timestamp",
         },
-        Configuration = {
-            type = "structure",
-        },
+        Configuration = M.FraudDetectionConfiguration,
         Decision = {
             type = "string",
         },
         Reasons = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        RiskDetails = {
-            type = "structure",
-        },
+        RiskDetails = M.FraudRiskDetails,
     },
 }
 
@@ -1149,12 +1078,8 @@ M.EvaluateSessionOutput = {
         StreamingStatus = {
             type = "string",
         },
-        AuthenticationResult = {
-            type = "structure",
-        },
-        FraudDetectionResult = {
-            type = "structure",
-        },
+        AuthenticationResult = M.AuthenticationResult,
+        FraudDetectionResult = M.FraudDetectionResult,
     },
 }
 
@@ -1179,12 +1104,8 @@ M.FraudsterRegistrationJobSummary = {
         EndedAt = {
             type = "timestamp",
         },
-        FailureDetails = {
-            type = "structure",
-        },
-        JobProgress = {
-            type = "structure",
-        },
+        FailureDetails = M.FailureDetails,
+        JobProgress = M.JobProgress,
     },
 }
 
@@ -1202,7 +1123,7 @@ M.FraudsterSummary = {
         },
         WatchlistIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1220,7 +1141,7 @@ M.ListFraudsterRegistrationJobsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1233,7 +1154,7 @@ M.ListFraudsterRegistrationJobsOutput = {
     members = {
         JobSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.FraudsterRegistrationJobSummary,
         },
         NextToken = {
             type = "string",
@@ -1254,7 +1175,7 @@ M.ListFraudstersInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1267,7 +1188,7 @@ M.ListFraudstersOutput = {
     members = {
         FraudsterSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.FraudsterSummary,
         },
         NextToken = {
             type = "string",
@@ -1288,7 +1209,7 @@ M.ListSpeakerEnrollmentJobsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1317,12 +1238,8 @@ M.SpeakerEnrollmentJobSummary = {
         EndedAt = {
             type = "timestamp",
         },
-        FailureDetails = {
-            type = "structure",
-        },
-        JobProgress = {
-            type = "structure",
-        },
+        FailureDetails = M.FailureDetails,
+        JobProgress = M.JobProgress,
     },
 }
 
@@ -1331,7 +1248,7 @@ M.ListSpeakerEnrollmentJobsOutput = {
     members = {
         JobSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.SpeakerEnrollmentJobSummary,
         },
         NextToken = {
             type = "string",
@@ -1349,7 +1266,7 @@ M.ListSpeakersInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1389,7 +1306,7 @@ M.ListSpeakersOutput = {
     members = {
         SpeakerSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.SpeakerSummary,
         },
         NextToken = {
             type = "string",
@@ -1414,7 +1331,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1429,7 +1346,7 @@ M.ListWatchlistsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1454,6 +1371,9 @@ M.WatchlistSummary = {
         },
         DefaultWatchlist = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         CreatedAt = {
             type = "timestamp",
@@ -1469,7 +1389,7 @@ M.ListWatchlistsOutput = {
     members = {
         WatchlistSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.WatchlistSummary,
         },
         NextToken = {
             type = "string",
@@ -1498,9 +1418,7 @@ M.OptOutSpeakerInput = {
 M.OptOutSpeakerOutput = {
     type = "structure",
     members = {
-        Speaker = {
-            type = "structure",
-        },
+        Speaker = M.Speaker,
     },
 }
 
@@ -1525,30 +1443,20 @@ M.StartFraudsterRegistrationJobInput = {
                 required = true,
             },
         },
-        RegistrationConfig = {
-            type = "structure",
-        },
-        InputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        OutputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RegistrationConfig = M.RegistrationConfig,
+        InputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InputDataConfig }),
+        OutputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OutputDataConfig }),
     },
 }
 
 M.StartFraudsterRegistrationJobOutput = {
     type = "structure",
     members = {
-        Job = {
-            type = "structure",
-        },
+        Job = M.FraudsterRegistrationJob,
     },
 }
 
@@ -1573,30 +1481,20 @@ M.StartSpeakerEnrollmentJobInput = {
                 required = true,
             },
         },
-        EnrollmentConfig = {
-            type = "structure",
-        },
-        InputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        OutputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        EnrollmentConfig = M.EnrollmentConfig,
+        InputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InputDataConfig }),
+        OutputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OutputDataConfig }),
     },
 }
 
 M.StartSpeakerEnrollmentJobOutput = {
     type = "structure",
     members = {
-        Job = {
-            type = "structure",
-        },
+        Job = M.SpeakerEnrollmentJob,
     },
 }
 
@@ -1611,7 +1509,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -1634,7 +1532,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1673,9 +1571,7 @@ M.UpdateWatchlistInput = {
 M.UpdateWatchlistOutput = {
     type = "structure",
     members = {
-        Watchlist = {
-            type = "structure",
-        },
+        Watchlist = M.Watchlist,
     },
 }
 

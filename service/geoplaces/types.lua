@@ -19,7 +19,7 @@ M.AccessPoint = {
     members = {
         Position = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
     },
 }
@@ -56,7 +56,7 @@ M.AccessRestriction = {
         },
         Categories = {
             type = "list",
-            member_type = "structure",
+            member = M.Category,
         },
     },
 }
@@ -156,15 +156,9 @@ M.Address = {
         Label = {
             type = "string",
         },
-        Country = {
-            type = "structure",
-        },
-        Region = {
-            type = "structure",
-        },
-        SubRegion = {
-            type = "structure",
-        },
+        Country = M.Country,
+        Region = M.Region,
+        SubRegion = M.SubRegion,
         Locality = {
             type = "string",
         },
@@ -185,14 +179,14 @@ M.Address = {
         },
         Intersection = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Street = {
             type = "string",
         },
         StreetComponents = {
             type = "list",
-            member_type = "structure",
+            member = M.StreetComponents,
         },
         AddressNumber = {
             type = "string",
@@ -202,7 +196,7 @@ M.Address = {
         },
         SecondaryAddressComponents = {
             type = "list",
-            member_type = "structure",
+            member = M.SecondaryAddressComponent,
         },
     },
 }
@@ -211,7 +205,10 @@ M.SecondaryAddressComponentMatchScore = {
     type = "structure",
     members = {
         Number = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -220,45 +217,78 @@ M.AddressComponentMatchScores = {
     type = "structure",
     members = {
         Country = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         Region = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         SubRegion = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         Locality = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         District = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         SubDistrict = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         PostalCode = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         Block = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         SubBlock = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         Intersection = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
         AddressNumber = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         Building = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         SecondaryAddressComponents = {
             type = "list",
-            member_type = "structure",
+            member = M.SecondaryAddressComponentMatchScore,
         },
     },
 }
@@ -283,39 +313,39 @@ M.AddressComponentPhonemes = {
     members = {
         Country = {
             type = "list",
-            member_type = "structure",
+            member = M.PhonemeTranscription,
         },
         Region = {
             type = "list",
-            member_type = "structure",
+            member = M.PhonemeTranscription,
         },
         SubRegion = {
             type = "list",
-            member_type = "structure",
+            member = M.PhonemeTranscription,
         },
         Locality = {
             type = "list",
-            member_type = "structure",
+            member = M.PhonemeTranscription,
         },
         District = {
             type = "list",
-            member_type = "structure",
+            member = M.PhonemeTranscription,
         },
         SubDistrict = {
             type = "list",
-            member_type = "structure",
+            member = M.PhonemeTranscription,
         },
         Block = {
             type = "list",
-            member_type = "structure",
+            member = M.PhonemeTranscription,
         },
         SubBlock = {
             type = "list",
-            member_type = "structure",
+            member = M.PhonemeTranscription,
         },
         Street = {
             type = "list",
-            member_type = "structure",
+            member = M.PhonemeTranscription,
         },
     },
 }
@@ -329,14 +359,15 @@ M.FilterCircle = {
     members = {
         Center = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
         },
         Radius = {
-            type = "number",
+            type = "long",
             traits = {
+                default = nil,
                 required = true,
             },
         },
@@ -353,18 +384,16 @@ M.AutocompleteFilter = {
     members = {
         BoundingBox = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
-        Circle = {
-            type = "structure",
-        },
+        Circle = M.FilterCircle,
         IncludeCountries = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IncludePlaceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -388,21 +417,22 @@ M.AutocompleteInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         BiasPosition = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.AutocompleteFilter,
         PostalCodeMode = {
             type = "string",
         },
         AdditionalFeatures = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Language = {
             type = "string",
@@ -426,10 +456,10 @@ M.Highlight = {
     type = "structure",
     members = {
         StartIndex = {
-            type = "number",
+            type = "integer",
         },
         EndIndex = {
-            type = "number",
+            type = "integer",
         },
         Value = {
             type = "string",
@@ -442,11 +472,11 @@ M.CountryHighlights = {
     members = {
         Code = {
             type = "list",
-            member_type = "structure",
+            member = M.Highlight,
         },
         Name = {
             type = "list",
-            member_type = "structure",
+            member = M.Highlight,
         },
     },
 }
@@ -456,11 +486,11 @@ M.RegionHighlights = {
     members = {
         Code = {
             type = "list",
-            member_type = "structure",
+            member = M.Highlight,
         },
         Name = {
             type = "list",
-            member_type = "structure",
+            member = M.Highlight,
         },
     },
 }
@@ -470,11 +500,11 @@ M.SubRegionHighlights = {
     members = {
         Code = {
             type = "list",
-            member_type = "structure",
+            member = M.Highlight,
         },
         Name = {
             type = "list",
-            member_type = "structure",
+            member = M.Highlight,
         },
     },
 }
@@ -484,56 +514,50 @@ M.AutocompleteAddressHighlights = {
     members = {
         Label = {
             type = "list",
-            member_type = "structure",
+            member = M.Highlight,
         },
-        Country = {
-            type = "structure",
-        },
-        Region = {
-            type = "structure",
-        },
-        SubRegion = {
-            type = "structure",
-        },
+        Country = M.CountryHighlights,
+        Region = M.RegionHighlights,
+        SubRegion = M.SubRegionHighlights,
         Locality = {
             type = "list",
-            member_type = "structure",
+            member = M.Highlight,
         },
         District = {
             type = "list",
-            member_type = "structure",
+            member = M.Highlight,
         },
         SubDistrict = {
             type = "list",
-            member_type = "structure",
+            member = M.Highlight,
         },
         Street = {
             type = "list",
-            member_type = "structure",
+            member = M.Highlight,
         },
         Block = {
             type = "list",
-            member_type = "structure",
+            member = M.Highlight,
         },
         SubBlock = {
             type = "list",
-            member_type = "structure",
+            member = M.Highlight,
         },
         Intersection = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
         },
         PostalCode = {
             type = "list",
-            member_type = "structure",
+            member = M.Highlight,
         },
         AddressNumber = {
             type = "list",
-            member_type = "structure",
+            member = M.Highlight,
         },
         Building = {
             type = "list",
-            member_type = "structure",
+            member = M.Highlight,
         },
     },
 }
@@ -543,11 +567,9 @@ M.AutocompleteHighlights = {
     members = {
         Title = {
             type = "list",
-            member_type = "structure",
+            member = M.Highlight,
         },
-        Address = {
-            type = "structure",
-        },
+        Address = M.AutocompleteAddressHighlights,
     },
 }
 
@@ -591,11 +613,12 @@ M.AutocompleteResultItem = {
                 required = true,
             },
         },
-        Address = {
-            type = "structure",
-        },
+        Address = M.Address,
         Distance = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Language = {
             type = "string",
@@ -603,9 +626,7 @@ M.AutocompleteResultItem = {
         PoliticalView = {
             type = "string",
         },
-        Highlights = {
-            type = "structure",
-        },
+        Highlights = M.AutocompleteHighlights,
     },
 }
 
@@ -621,7 +642,7 @@ M.AutocompleteOutput = {
         },
         ResultItems = {
             type = "list",
-            member_type = "structure",
+            member = M.AutocompleteResultItem,
         },
     },
 }
@@ -703,7 +724,7 @@ M.ValidationException = {
         },
         FieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
             traits = {
                 json_name = "fieldList",
                 required = true,
@@ -728,11 +749,12 @@ M.ComponentMatchScores = {
     type = "structure",
     members = {
         Title = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
-        Address = {
-            type = "structure",
-        },
+        Address = M.AddressComponentMatchScores,
     },
 }
 
@@ -747,7 +769,7 @@ M.ContactDetails = {
         },
         Categories = {
             type = "list",
-            member_type = "structure",
+            member = M.Category,
         },
     },
 }
@@ -757,19 +779,19 @@ M.Contacts = {
     members = {
         Phones = {
             type = "list",
-            member_type = "structure",
+            member = M.ContactDetails,
         },
         Faxes = {
             type = "list",
-            member_type = "structure",
+            member = M.ContactDetails,
         },
         Websites = {
             type = "list",
-            member_type = "structure",
+            member = M.ContactDetails,
         },
         Emails = {
             type = "list",
-            member_type = "structure",
+            member = M.ContactDetails,
         },
     },
 }
@@ -813,11 +835,11 @@ M.GeocodeFilter = {
     members = {
         IncludeCountries = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IncludePlaceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -863,22 +885,21 @@ M.GeocodeInput = {
         QueryText = {
             type = "string",
         },
-        QueryComponents = {
-            type = "structure",
-        },
+        QueryComponents = M.GeocodeQueryComponents,
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         BiasPosition = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.GeocodeFilter,
         AdditionalFeatures = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Language = {
             type = "string",
@@ -913,26 +934,30 @@ M.Intersection = {
                 required = true,
             },
         },
-        Address = {
-            type = "structure",
-        },
+        Address = M.Address,
         Position = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
         Distance = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
         RouteDistance = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
         MapView = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
         AccessPoints = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessPoint,
         },
     },
 }
@@ -958,16 +983,14 @@ M.RelatedPlace = {
                 required = true,
             },
         },
-        Address = {
-            type = "structure",
-        },
+        Address = M.Address,
         Position = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
         AccessPoints = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessPoint,
         },
     },
 }
@@ -976,11 +999,12 @@ M.MatchScoreDetails = {
     type = "structure",
     members = {
         Overall = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
-        Components = {
-            type = "structure",
-        },
+        Components = M.ComponentMatchScores,
     },
 }
 
@@ -988,10 +1012,10 @@ M.ParsedQueryComponent = {
     type = "structure",
     members = {
         StartIndex = {
-            type = "number",
+            type = "integer",
         },
         EndIndex = {
-            type = "number",
+            type = "integer",
         },
         Value = {
             type = "string",
@@ -1006,13 +1030,13 @@ M.ParsedQuerySecondaryAddressComponent = {
     type = "structure",
     members = {
         StartIndex = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         EndIndex = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1043,55 +1067,55 @@ M.GeocodeParsedQueryAddressComponents = {
     members = {
         Country = {
             type = "list",
-            member_type = "structure",
+            member = M.ParsedQueryComponent,
         },
         Region = {
             type = "list",
-            member_type = "structure",
+            member = M.ParsedQueryComponent,
         },
         SubRegion = {
             type = "list",
-            member_type = "structure",
+            member = M.ParsedQueryComponent,
         },
         Locality = {
             type = "list",
-            member_type = "structure",
+            member = M.ParsedQueryComponent,
         },
         District = {
             type = "list",
-            member_type = "structure",
+            member = M.ParsedQueryComponent,
         },
         SubDistrict = {
             type = "list",
-            member_type = "structure",
+            member = M.ParsedQueryComponent,
         },
         PostalCode = {
             type = "list",
-            member_type = "structure",
+            member = M.ParsedQueryComponent,
         },
         Block = {
             type = "list",
-            member_type = "structure",
+            member = M.ParsedQueryComponent,
         },
         SubBlock = {
             type = "list",
-            member_type = "structure",
+            member = M.ParsedQueryComponent,
         },
         Street = {
             type = "list",
-            member_type = "structure",
+            member = M.ParsedQueryComponent,
         },
         AddressNumber = {
             type = "list",
-            member_type = "structure",
+            member = M.ParsedQueryComponent,
         },
         Building = {
             type = "list",
-            member_type = "structure",
+            member = M.ParsedQueryComponent,
         },
         SecondaryAddressComponents = {
             type = "list",
-            member_type = "structure",
+            member = M.ParsedQuerySecondaryAddressComponent,
         },
     },
 }
@@ -1101,11 +1125,9 @@ M.GeocodeParsedQuery = {
     members = {
         Title = {
             type = "list",
-            member_type = "structure",
+            member = M.ParsedQueryComponent,
         },
-        Address = {
-            type = "structure",
-        },
+        Address = M.GeocodeParsedQueryAddressComponents,
     },
 }
 
@@ -1163,12 +1185,8 @@ M.PostalCodeDetails = {
         PostalCodeType = {
             type = "string",
         },
-        UspsZip = {
-            type = "structure",
-        },
-        UspsZipPlus4 = {
-            type = "structure",
-        },
+        UspsZip = M.UspsZip,
+        UspsZipPlus4 = M.UspsZipPlus4,
     },
 }
 
@@ -1185,7 +1203,10 @@ M.TimeZone = {
             type = "string",
         },
         OffsetSeconds = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1211,61 +1232,54 @@ M.GeocodeResultItem = {
                 required = true,
             },
         },
-        Address = {
-            type = "structure",
-        },
+        Address = M.Address,
         AddressNumberCorrected = {
             type = "boolean",
         },
         PostalCodeDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.PostalCodeDetails,
         },
         Position = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
         Distance = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         MapView = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
         Categories = {
             type = "list",
-            member_type = "structure",
+            member = M.Category,
         },
         FoodTypes = {
             type = "list",
-            member_type = "structure",
+            member = M.FoodType,
         },
         AccessPoints = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessPoint,
         },
-        TimeZone = {
-            type = "structure",
-        },
+        TimeZone = M.TimeZone,
         PoliticalView = {
             type = "string",
         },
-        MatchScores = {
-            type = "structure",
-        },
-        ParsedQuery = {
-            type = "structure",
-        },
+        MatchScores = M.MatchScoreDetails,
+        ParsedQuery = M.GeocodeParsedQuery,
         Intersections = {
             type = "list",
-            member_type = "structure",
+            member = M.Intersection,
         },
-        MainAddress = {
-            type = "structure",
-        },
+        MainAddress = M.RelatedPlace,
         SecondaryAddresses = {
             type = "list",
-            member_type = "structure",
+            member = M.RelatedPlace,
         },
     },
 }
@@ -1282,7 +1296,7 @@ M.GeocodeOutput = {
         },
         ResultItems = {
             type = "list",
-            member_type = "structure",
+            member = M.GeocodeResultItem,
         },
     },
 }
@@ -1312,7 +1326,7 @@ M.GetPlaceInput = {
         },
         AdditionalFeatures = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "additional-features",
             },
@@ -1364,18 +1378,18 @@ M.OpeningHours = {
     members = {
         Display = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         OpenNow = {
             type = "boolean",
         },
         Components = {
             type = "list",
-            member_type = "structure",
+            member = M.OpeningHoursComponents,
         },
         Categories = {
             type = "list",
-            member_type = "structure",
+            member = M.Category,
         },
     },
 }
@@ -1385,11 +1399,9 @@ M.PhonemeDetails = {
     members = {
         Title = {
             type = "list",
-            member_type = "structure",
+            member = M.PhonemeTranscription,
         },
-        Address = {
-            type = "structure",
-        },
+        Address = M.AddressComponentPhonemes,
     },
 }
 
@@ -1421,66 +1433,56 @@ M.GetPlaceOutput = {
                 required = true,
             },
         },
-        Address = {
-            type = "structure",
-        },
+        Address = M.Address,
         AddressNumberCorrected = {
             type = "boolean",
         },
         PostalCodeDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.PostalCodeDetails,
         },
         Position = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
         MapView = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
         Categories = {
             type = "list",
-            member_type = "structure",
+            member = M.Category,
         },
         FoodTypes = {
             type = "list",
-            member_type = "structure",
+            member = M.FoodType,
         },
         BusinessChains = {
             type = "list",
-            member_type = "structure",
+            member = M.BusinessChain,
         },
-        Contacts = {
-            type = "structure",
-        },
+        Contacts = M.Contacts,
         OpeningHours = {
             type = "list",
-            member_type = "structure",
+            member = M.OpeningHours,
         },
         AccessPoints = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessPoint,
         },
         AccessRestrictions = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessRestriction,
         },
-        TimeZone = {
-            type = "structure",
-        },
+        TimeZone = M.TimeZone,
         PoliticalView = {
             type = "string",
         },
-        Phonemes = {
-            type = "structure",
-        },
-        MainAddress = {
-            type = "structure",
-        },
+        Phonemes = M.PhonemeDetails,
+        MainAddress = M.RelatedPlace,
         SecondaryAddresses = {
             type = "list",
-            member_type = "structure",
+            member = M.RelatedPlace,
         },
     },
 }
@@ -1504,7 +1506,7 @@ M.ReverseGeocodeFilter = {
     members = {
         IncludePlaceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1519,23 +1521,27 @@ M.ReverseGeocodeInput = {
     members = {
         QueryPosition = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
         },
         QueryRadius = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.ReverseGeocodeFilter,
         AdditionalFeatures = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Language = {
             type = "string",
@@ -1553,7 +1559,10 @@ M.ReverseGeocodeInput = {
             },
         },
         Heading = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1579,48 +1588,47 @@ M.ReverseGeocodeResultItem = {
                 required = true,
             },
         },
-        Address = {
-            type = "structure",
-        },
+        Address = M.Address,
         AddressNumberCorrected = {
             type = "boolean",
         },
         PostalCodeDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.PostalCodeDetails,
         },
         Position = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
         Distance = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         MapView = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
         Categories = {
             type = "list",
-            member_type = "structure",
+            member = M.Category,
         },
         FoodTypes = {
             type = "list",
-            member_type = "structure",
+            member = M.FoodType,
         },
         AccessPoints = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessPoint,
         },
-        TimeZone = {
-            type = "structure",
-        },
+        TimeZone = M.TimeZone,
         PoliticalView = {
             type = "string",
         },
         Intersections = {
             type = "list",
-            member_type = "structure",
+            member = M.Intersection,
         },
     },
 }
@@ -1637,7 +1645,7 @@ M.ReverseGeocodeOutput = {
         },
         ResultItems = {
             type = "list",
-            member_type = "structure",
+            member = M.ReverseGeocodeResultItem,
         },
     },
 }
@@ -1654,35 +1662,35 @@ M.SearchNearbyFilter = {
     members = {
         BoundingBox = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
         IncludeCountries = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IncludeCategories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ExcludeCategories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IncludeBusinessChains = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ExcludeBusinessChains = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IncludeFoodTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ExcludeFoodTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1697,23 +1705,27 @@ M.SearchNearbyInput = {
     members = {
         QueryPosition = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
         },
         QueryRadius = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.SearchNearbyFilter,
         AdditionalFeatures = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Language = {
             type = "string",
@@ -1757,59 +1769,54 @@ M.SearchNearbyResultItem = {
                 required = true,
             },
         },
-        Address = {
-            type = "structure",
-        },
+        Address = M.Address,
         AddressNumberCorrected = {
             type = "boolean",
         },
         Position = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
         Distance = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         MapView = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
         Categories = {
             type = "list",
-            member_type = "structure",
+            member = M.Category,
         },
         FoodTypes = {
             type = "list",
-            member_type = "structure",
+            member = M.FoodType,
         },
         BusinessChains = {
             type = "list",
-            member_type = "structure",
+            member = M.BusinessChain,
         },
-        Contacts = {
-            type = "structure",
-        },
+        Contacts = M.Contacts,
         OpeningHours = {
             type = "list",
-            member_type = "structure",
+            member = M.OpeningHours,
         },
         AccessPoints = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessPoint,
         },
         AccessRestrictions = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessRestriction,
         },
-        TimeZone = {
-            type = "structure",
-        },
+        TimeZone = M.TimeZone,
         PoliticalView = {
             type = "string",
         },
-        Phonemes = {
-            type = "structure",
-        },
+        Phonemes = M.PhonemeDetails,
     },
 }
 
@@ -1825,7 +1832,7 @@ M.SearchNearbyOutput = {
         },
         ResultItems = {
             type = "list",
-            member_type = "structure",
+            member = M.SearchNearbyResultItem,
         },
         NextToken = {
             type = "string",
@@ -1845,14 +1852,12 @@ M.SearchTextFilter = {
     members = {
         BoundingBox = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
-        Circle = {
-            type = "structure",
-        },
+        Circle = M.FilterCircle,
         IncludeCountries = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1872,18 +1877,19 @@ M.SearchTextInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         BiasPosition = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.SearchTextFilter,
         AdditionalFeatures = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Language = {
             type = "string",
@@ -1927,59 +1933,54 @@ M.SearchTextResultItem = {
                 required = true,
             },
         },
-        Address = {
-            type = "structure",
-        },
+        Address = M.Address,
         AddressNumberCorrected = {
             type = "boolean",
         },
         Position = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
         Distance = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         MapView = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
         Categories = {
             type = "list",
-            member_type = "structure",
+            member = M.Category,
         },
         FoodTypes = {
             type = "list",
-            member_type = "structure",
+            member = M.FoodType,
         },
         BusinessChains = {
             type = "list",
-            member_type = "structure",
+            member = M.BusinessChain,
         },
-        Contacts = {
-            type = "structure",
-        },
+        Contacts = M.Contacts,
         OpeningHours = {
             type = "list",
-            member_type = "structure",
+            member = M.OpeningHours,
         },
         AccessPoints = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessPoint,
         },
         AccessRestrictions = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessRestriction,
         },
-        TimeZone = {
-            type = "structure",
-        },
+        TimeZone = M.TimeZone,
         PoliticalView = {
             type = "string",
         },
-        Phonemes = {
-            type = "structure",
-        },
+        Phonemes = M.PhonemeDetails,
     },
 }
 
@@ -1995,7 +1996,7 @@ M.SearchTextOutput = {
         },
         ResultItems = {
             type = "list",
-            member_type = "structure",
+            member = M.SearchTextResultItem,
         },
         NextToken = {
             type = "string",
@@ -2015,14 +2016,12 @@ M.SuggestFilter = {
     members = {
         BoundingBox = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
-        Circle = {
-            type = "structure",
-        },
+        Circle = M.FilterCircle,
         IncludeCountries = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2041,21 +2040,25 @@ M.SuggestInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         MaxQueryRefinements = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         BiasPosition = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.SuggestFilter,
         AdditionalFeatures = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Language = {
             type = "string",
@@ -2091,13 +2094,13 @@ M.QueryRefinement = {
             },
         },
         StartIndex = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         EndIndex = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -2110,7 +2113,7 @@ M.SuggestAddressHighlights = {
     members = {
         Label = {
             type = "list",
-            member_type = "structure",
+            member = M.Highlight,
         },
     },
 }
@@ -2120,11 +2123,9 @@ M.SuggestHighlights = {
     members = {
         Title = {
             type = "list",
-            member_type = "structure",
+            member = M.Highlight,
         },
-        Address = {
-            type = "structure",
-        },
+        Address = M.SuggestAddressHighlights,
     },
 }
 
@@ -2137,49 +2138,46 @@ M.SuggestPlaceResult = {
         PlaceType = {
             type = "string",
         },
-        Address = {
-            type = "structure",
-        },
+        Address = M.Address,
         Position = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
         Distance = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         MapView = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
         Categories = {
             type = "list",
-            member_type = "structure",
+            member = M.Category,
         },
         FoodTypes = {
             type = "list",
-            member_type = "structure",
+            member = M.FoodType,
         },
         BusinessChains = {
             type = "list",
-            member_type = "structure",
+            member = M.BusinessChain,
         },
         AccessPoints = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessPoint,
         },
         AccessRestrictions = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessRestriction,
         },
-        TimeZone = {
-            type = "structure",
-        },
+        TimeZone = M.TimeZone,
         PoliticalView = {
             type = "string",
         },
-        Phonemes = {
-            type = "structure",
-        },
+        Phonemes = M.PhonemeDetails,
     },
 }
 
@@ -2220,15 +2218,9 @@ M.SuggestResultItem = {
                 required = true,
             },
         },
-        Place = {
-            type = "structure",
-        },
-        Query = {
-            type = "structure",
-        },
-        Highlights = {
-            type = "structure",
-        },
+        Place = M.SuggestPlaceResult,
+        Query = M.SuggestQueryResult,
+        Highlights = M.SuggestHighlights,
     },
 }
 
@@ -2244,11 +2236,11 @@ M.SuggestOutput = {
         },
         ResultItems = {
             type = "list",
-            member_type = "structure",
+            member = M.SuggestResultItem,
         },
         QueryRefinements = {
             type = "list",
-            member_type = "structure",
+            member = M.QueryRefinement,
         },
     },
 }

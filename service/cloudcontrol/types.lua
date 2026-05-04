@@ -98,9 +98,7 @@ M.ProgressEvent = {
 M.CancelResourceRequestOutput = {
     type = "structure",
     members = {
-        ProgressEvent = {
-            type = "structure",
-        },
+        ProgressEvent = M.ProgressEvent,
     },
 }
 
@@ -174,9 +172,7 @@ M.CreateResourceInput = {
 M.CreateResourceOutput = {
     type = "structure",
     members = {
-        ProgressEvent = {
-            type = "structure",
-        },
+        ProgressEvent = M.ProgressEvent,
     },
 }
 
@@ -370,9 +366,7 @@ M.DeleteResourceInput = {
 M.DeleteResourceOutput = {
     type = "structure",
     members = {
-        ProgressEvent = {
-            type = "structure",
-        },
+        ProgressEvent = M.ProgressEvent,
     },
 }
 
@@ -418,9 +412,7 @@ M.GetResourceOutput = {
         TypeName = {
             type = "string",
         },
-        ResourceDescription = {
-            type = "structure",
-        },
+        ResourceDescription = M.ResourceDescription,
     },
 }
 
@@ -469,12 +461,10 @@ M.HookProgressEvent = {
 M.GetResourceRequestStatusOutput = {
     type = "structure",
     members = {
-        ProgressEvent = {
-            type = "structure",
-        },
+        ProgressEvent = M.ProgressEvent,
         HooksProgressEvent = {
             type = "list",
-            member_type = "structure",
+            member = M.HookProgressEvent,
         },
     },
 }
@@ -484,11 +474,11 @@ M.ResourceRequestStatusFilter = {
     members = {
         Operations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         OperationStatuses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -497,14 +487,12 @@ M.ListResourceRequestsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
-        ResourceRequestStatusFilter = {
-            type = "structure",
-        },
+        ResourceRequestStatusFilter = M.ResourceRequestStatusFilter,
     },
 }
 
@@ -513,7 +501,7 @@ M.ListResourceRequestsOutput = {
     members = {
         ResourceRequestStatusSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ProgressEvent,
         },
         NextToken = {
             type = "string",
@@ -540,7 +528,7 @@ M.ListResourcesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         ResourceModel = {
             type = "string",
@@ -556,7 +544,7 @@ M.ListResourcesOutput = {
         },
         ResourceDescriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceDescription,
         },
         NextToken = {
             type = "string",
@@ -600,9 +588,7 @@ M.UpdateResourceInput = {
 M.UpdateResourceOutput = {
     type = "structure",
     members = {
-        ProgressEvent = {
-            type = "structure",
-        },
+        ProgressEvent = M.ProgressEvent,
     },
 }
 

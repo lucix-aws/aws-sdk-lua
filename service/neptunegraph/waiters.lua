@@ -1,0 +1,403 @@
+local waiter = require("waiter")
+
+local M = {}
+
+--- Wait until ExportTaskCancelled.
+function M.wait_until_export_task_cancelled(client, input, options)
+    return waiter.wait(client, "getExportTask", input, {
+        min_delay = 60,
+        max_delay = 3600,
+        acceptors = {
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "status != 'CANCELLING' && status != 'CANCELLED'",
+                        expected = "true",
+                        comparator = "booleanEquals",
+                    },
+                },
+            },
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "status",
+                        expected = "CANCELLED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until ExportTaskSuccessful.
+function M.wait_until_export_task_successful(client, input, options)
+    return waiter.wait(client, "getExportTask", input, {
+        min_delay = 60,
+        max_delay = 28800,
+        acceptors = {
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "status",
+                        expected = "CANCELLING",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "status",
+                        expected = "CANCELLED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "status",
+                        expected = "FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "status",
+                        expected = "SUCCEEDED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until GraphAvailable.
+function M.wait_until_graph_available(client, input, options)
+    return waiter.wait(client, "getGraph", input, {
+        min_delay = 60,
+        max_delay = 28800,
+        acceptors = {
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "status",
+                        expected = "DELETING",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "status",
+                        expected = "FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "status",
+                        expected = "AVAILABLE",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until GraphDeleted.
+function M.wait_until_graph_deleted(client, input, options)
+    return waiter.wait(client, "getGraph", input, {
+        min_delay = 60,
+        max_delay = 3600,
+        acceptors = {
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "status != 'DELETING'",
+                        expected = "true",
+                        comparator = "booleanEquals",
+                    },
+                },
+            },
+            {
+                state = "success",
+                matcher = {
+                    errorType = "ResourceNotFoundException",
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until GraphSnapshotAvailable.
+function M.wait_until_graph_snapshot_available(client, input, options)
+    return waiter.wait(client, "getGraphSnapshot", input, {
+        min_delay = 60,
+        max_delay = 7200,
+        acceptors = {
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "status",
+                        expected = "DELETING",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "status",
+                        expected = "FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "status",
+                        expected = "AVAILABLE",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until GraphSnapshotDeleted.
+function M.wait_until_graph_snapshot_deleted(client, input, options)
+    return waiter.wait(client, "getGraphSnapshot", input, {
+        min_delay = 60,
+        max_delay = 3600,
+        acceptors = {
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "status != 'DELETING'",
+                        expected = "true",
+                        comparator = "booleanEquals",
+                    },
+                },
+            },
+            {
+                state = "success",
+                matcher = {
+                    errorType = "ResourceNotFoundException",
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until GraphStopped.
+function M.wait_until_graph_stopped(client, input, options)
+    return waiter.wait(client, "getGraph", input, {
+        min_delay = 20,
+        max_delay = 1800,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "status",
+                        expected = "STOPPED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "status != 'STOPPING'",
+                        expected = "true",
+                        comparator = "booleanEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until ImportTaskCancelled.
+function M.wait_until_import_task_cancelled(client, input, options)
+    return waiter.wait(client, "getImportTask", input, {
+        min_delay = 60,
+        max_delay = 3600,
+        acceptors = {
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "status != 'CANCELLING' && status != 'CANCELLED'",
+                        expected = "true",
+                        comparator = "booleanEquals",
+                    },
+                },
+            },
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "status",
+                        expected = "CANCELLED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until ImportTaskSuccessful.
+function M.wait_until_import_task_successful(client, input, options)
+    return waiter.wait(client, "getImportTask", input, {
+        min_delay = 60,
+        max_delay = 28800,
+        acceptors = {
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "status",
+                        expected = "CANCELLING",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "status",
+                        expected = "CANCELLED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "status",
+                        expected = "ROLLING_BACK",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "status",
+                        expected = "FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "status",
+                        expected = "SUCCEEDED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until PrivateGraphEndpointAvailable.
+function M.wait_until_private_graph_endpoint_available(client, input, options)
+    return waiter.wait(client, "getPrivateGraphEndpoint", input, {
+        min_delay = 10,
+        max_delay = 1800,
+        acceptors = {
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "status",
+                        expected = "DELETING",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "status",
+                        expected = "FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "status",
+                        expected = "AVAILABLE",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until PrivateGraphEndpointDeleted.
+function M.wait_until_private_graph_endpoint_deleted(client, input, options)
+    return waiter.wait(client, "getPrivateGraphEndpoint", input, {
+        min_delay = 10,
+        max_delay = 1800,
+        acceptors = {
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "status != 'DELETING'",
+                        expected = "true",
+                        comparator = "booleanEquals",
+                    },
+                },
+            },
+            {
+                state = "success",
+                matcher = {
+                    errorType = "ResourceNotFoundException",
+                },
+            },
+        },
+    }, options)
+end
+
+return M

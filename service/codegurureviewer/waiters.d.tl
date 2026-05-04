@@ -1,0 +1,8 @@
+local types = require("codegurureviewer.types")
+
+local record M
+    wait_until_code_review_completed: function(client: table, input: table, options: table): table, table
+    wait_until_repository_association_succeeded: function(client: table, input: table, options: table): table, table
+end
+
+return M

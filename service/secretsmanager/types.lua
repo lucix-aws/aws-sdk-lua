@@ -45,7 +45,7 @@ M.Filter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -55,14 +55,14 @@ M.BatchGetSecretValueInput = {
     members = {
         SecretIdList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -90,7 +90,7 @@ M.SecretValueEntry = {
         },
         VersionStages = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CreatedDate = {
             type = "timestamp",
@@ -103,14 +103,14 @@ M.BatchGetSecretValueOutput = {
     members = {
         SecretValues = {
             type = "list",
-            member_type = "structure",
+            member = M.SecretValueEntry,
         },
         NextToken = {
             type = "string",
         },
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.APIErrorType,
         },
     },
 }
@@ -240,14 +240,17 @@ M.CreateSecretInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         AddReplicaRegions = {
             type = "list",
-            member_type = "structure",
+            member = M.ReplicaRegionType,
         },
         ForceOverwriteReplicaSecret = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Type = {
             type = "string",
@@ -296,7 +299,7 @@ M.CreateSecretOutput = {
         },
         ReplicationStatus = {
             type = "list",
-            member_type = "structure",
+            member = M.ReplicationStatusType,
         },
     },
 }
@@ -385,10 +388,16 @@ M.DeleteSecretInput = {
             },
         },
         RecoveryWindowInDays = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
         ForceDeleteWithoutRecovery = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -436,7 +445,7 @@ M.RotationRulesType = {
     type = "structure",
     members = {
         AutomaticallyAfterDays = {
-            type = "number",
+            type = "long",
         },
         Duration = {
             type = "string",
@@ -467,16 +476,17 @@ M.DescribeSecretOutput = {
         },
         RotationEnabled = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
         RotationLambdaARN = {
             type = "string",
         },
-        RotationRules = {
-            type = "structure",
-        },
+        RotationRules = M.RotationRulesType,
         ExternalSecretRotationMetadata = {
             type = "list",
-            member_type = "structure",
+            member = M.ExternalSecretRotationMetadataItem,
         },
         ExternalSecretRotationRoleArn = {
             type = "string",
@@ -498,12 +508,12 @@ M.DescribeSecretOutput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         VersionIdsToStages = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         OwningService = {
             type = "string",
@@ -516,7 +526,7 @@ M.DescribeSecretOutput = {
         },
         ReplicationStatus = {
             type = "list",
-            member_type = "structure",
+            member = M.ReplicationStatusType,
         },
     },
 }
@@ -525,28 +535,46 @@ M.GetRandomPasswordInput = {
     type = "structure",
     members = {
         PasswordLength = {
-            type = "number",
+            type = "long",
         },
         ExcludeCharacters = {
             type = "string",
         },
         ExcludeNumbers = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
         ExcludePunctuation = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
         ExcludeUppercase = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
         ExcludeLowercase = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
         IncludeSpace = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
         RequireEachIncludedType = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -625,7 +653,7 @@ M.GetSecretValueOutput = {
         },
         VersionStages = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CreatedDate = {
             type = "timestamp",
@@ -650,16 +678,19 @@ M.ListSecretsInput = {
     members = {
         IncludePlannedDeletion = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         SortOrder = {
             type = "string",
@@ -690,16 +721,17 @@ M.SecretListEntry = {
         },
         RotationEnabled = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
         RotationLambdaARN = {
             type = "string",
         },
-        RotationRules = {
-            type = "structure",
-        },
+        RotationRules = M.RotationRulesType,
         ExternalSecretRotationMetadata = {
             type = "list",
-            member_type = "structure",
+            member = M.ExternalSecretRotationMetadataItem,
         },
         ExternalSecretRotationRoleArn = {
             type = "string",
@@ -721,12 +753,12 @@ M.SecretListEntry = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         SecretVersionsToStages = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         OwningService = {
             type = "string",
@@ -745,7 +777,7 @@ M.ListSecretsOutput = {
     members = {
         SecretList = {
             type = "list",
-            member_type = "structure",
+            member = M.SecretListEntry,
         },
         NextToken = {
             type = "string",
@@ -763,13 +795,16 @@ M.ListSecretVersionIdsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         IncludeDeprecated = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -782,7 +817,7 @@ M.SecretVersionsListEntry = {
         },
         VersionStages = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         LastAccessedDate = {
             type = "timestamp",
@@ -792,7 +827,7 @@ M.SecretVersionsListEntry = {
         },
         KmsKeyIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -802,7 +837,7 @@ M.ListSecretVersionIdsOutput = {
     members = {
         Versions = {
             type = "list",
-            member_type = "structure",
+            member = M.SecretVersionsListEntry,
         },
         NextToken = {
             type = "string",
@@ -843,6 +878,9 @@ M.PutResourcePolicyInput = {
         },
         BlockPublicPolicy = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -879,7 +917,7 @@ M.PutSecretValueInput = {
         },
         VersionStages = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RotationToken = {
             type = "string",
@@ -901,7 +939,7 @@ M.PutSecretValueOutput = {
         },
         VersionStages = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -917,7 +955,7 @@ M.RemoveRegionsFromReplicationInput = {
         },
         RemoveReplicaRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -933,7 +971,7 @@ M.RemoveRegionsFromReplicationOutput = {
         },
         ReplicationStatus = {
             type = "list",
-            member_type = "structure",
+            member = M.ReplicationStatusType,
         },
     },
 }
@@ -949,13 +987,16 @@ M.ReplicateSecretToRegionsInput = {
         },
         AddReplicaRegions = {
             type = "list",
-            member_type = "structure",
+            member = M.ReplicaRegionType,
             traits = {
                 required = true,
             },
         },
         ForceOverwriteReplicaSecret = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -968,7 +1009,7 @@ M.ReplicateSecretToRegionsOutput = {
         },
         ReplicationStatus = {
             type = "list",
-            member_type = "structure",
+            member = M.ReplicationStatusType,
         },
     },
 }
@@ -1012,18 +1053,19 @@ M.RotateSecretInput = {
         RotationLambdaARN = {
             type = "string",
         },
-        RotationRules = {
-            type = "structure",
-        },
+        RotationRules = M.RotationRulesType,
         ExternalSecretRotationMetadata = {
             type = "list",
-            member_type = "structure",
+            member = M.ExternalSecretRotationMetadataItem,
         },
         ExternalSecretRotationRoleArn = {
             type = "string",
         },
         RotateImmediately = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -1075,7 +1117,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -1098,7 +1140,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1223,10 +1265,13 @@ M.ValidateResourcePolicyOutput = {
     members = {
         PolicyValidationPassed = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         ValidationErrors = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationErrorsEntry,
         },
     },
 }

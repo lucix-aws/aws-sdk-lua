@@ -86,7 +86,7 @@ M.BatchUpdateRecommendationResourceExclusionInput = {
     members = {
         recommendationResourceExclusions = {
             type = "list",
-            member_type = "structure",
+            member = M.RecommendationResourceExclusion,
             traits = {
                 required = true,
             },
@@ -114,7 +114,7 @@ M.BatchUpdateRecommendationResourceExclusionOutput = {
     members = {
         batchUpdateRecommendationResourceExclusionErrors = {
             type = "list",
-            member_type = "structure",
+            member = M.UpdateRecommendationResourceExclusionError,
             traits = {
                 required = true,
             },
@@ -229,14 +229,14 @@ M.CheckSummary = {
         },
         pillars = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         awsServices = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -249,8 +249,8 @@ M.CheckSummary = {
         },
         metadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -280,13 +280,13 @@ M.RecommendationCostOptimizingAggregates = {
     type = "structure",
     members = {
         estimatedMonthlySavings = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
         estimatedPercentMonthlySavings = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -297,9 +297,7 @@ M.RecommendationCostOptimizingAggregates = {
 M.RecommendationPillarSpecificAggregates = {
     type = "structure",
     members = {
-        costOptimizing = {
-            type = "structure",
-        },
+        costOptimizing = M.RecommendationCostOptimizingAggregates,
     },
 }
 
@@ -307,25 +305,25 @@ M.RecommendationResourcesAggregates = {
     type = "structure",
     members = {
         okCount = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         warningCount = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         errorCount = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         excludedCount = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -370,7 +368,7 @@ M.OrganizationRecommendation = {
         },
         pillars = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -383,7 +381,7 @@ M.OrganizationRecommendation = {
         },
         awsServices = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         name = {
             type = "string",
@@ -391,15 +389,10 @@ M.OrganizationRecommendation = {
                 required = true,
             },
         },
-        resourcesAggregates = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        pillarSpecificAggregates = {
-            type = "structure",
-        },
+        resourcesAggregates = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RecommendationResourcesAggregates }),
+        pillarSpecificAggregates = M.RecommendationPillarSpecificAggregates,
         createdAt = {
             type = "timestamp",
             traits = {
@@ -451,9 +444,7 @@ M.OrganizationRecommendation = {
 M.GetOrganizationRecommendationOutput = {
     type = "structure",
     members = {
-        organizationRecommendation = {
-            type = "structure",
-        },
+        organizationRecommendation = M.OrganizationRecommendation,
     },
 }
 
@@ -536,7 +527,7 @@ M.Recommendation = {
         },
         pillars = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -549,7 +540,7 @@ M.Recommendation = {
         },
         awsServices = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         name = {
             type = "string",
@@ -557,15 +548,10 @@ M.Recommendation = {
                 required = true,
             },
         },
-        resourcesAggregates = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        pillarSpecificAggregates = {
-            type = "structure",
-        },
+        resourcesAggregates = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RecommendationResourcesAggregates }),
+        pillarSpecificAggregates = M.RecommendationPillarSpecificAggregates,
         createdAt = {
             type = "timestamp",
             traits = {
@@ -620,9 +606,7 @@ M.Recommendation = {
 M.GetRecommendationOutput = {
     type = "structure",
     members = {
-        recommendation = {
-            type = "structure",
-        },
+        recommendation = M.Recommendation,
     },
 }
 
@@ -636,7 +620,7 @@ M.ListChecksInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -676,7 +660,7 @@ M.ListChecksOutput = {
         },
         checkSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.CheckSummary,
             traits = {
                 required = true,
             },
@@ -694,7 +678,7 @@ M.ListOrganizationRecommendationAccountsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -723,7 +707,7 @@ M.ListOrganizationRecommendationAccountsOutput = {
         },
         accountRecommendationLifecycleSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.AccountRecommendationLifecycleSummary,
             traits = {
                 required = true,
             },
@@ -747,7 +731,7 @@ M.ListOrganizationRecommendationResourcesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -821,8 +805,8 @@ M.OrganizationRecommendationResourceSummary = {
         },
         metadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -836,6 +820,9 @@ M.OrganizationRecommendationResourceSummary = {
         },
         exclusionStatus = {
             type = "string",
+            traits = {
+                default = "included",
+            },
         },
         accountId = {
             type = "string",
@@ -857,7 +844,7 @@ M.ListOrganizationRecommendationResourcesOutput = {
         },
         organizationRecommendationResourceSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.OrganizationRecommendationResourceSummary,
             traits = {
                 required = true,
             },
@@ -875,7 +862,7 @@ M.ListOrganizationRecommendationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -960,7 +947,7 @@ M.OrganizationRecommendationSummary = {
         },
         pillars = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -973,7 +960,7 @@ M.OrganizationRecommendationSummary = {
         },
         awsServices = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         name = {
             type = "string",
@@ -981,15 +968,10 @@ M.OrganizationRecommendationSummary = {
                 required = true,
             },
         },
-        resourcesAggregates = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        pillarSpecificAggregates = {
-            type = "structure",
-        },
+        resourcesAggregates = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RecommendationResourcesAggregates }),
+        pillarSpecificAggregates = M.RecommendationPillarSpecificAggregates,
         createdAt = {
             type = "timestamp",
             traits = {
@@ -1019,7 +1001,7 @@ M.ListOrganizationRecommendationsOutput = {
         },
         organizationRecommendationSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.OrganizationRecommendationSummary,
             traits = {
                 required = true,
             },
@@ -1037,7 +1019,7 @@ M.ListRecommendationResourcesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1111,8 +1093,8 @@ M.RecommendationResourceSummary = {
         },
         metadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1126,6 +1108,9 @@ M.RecommendationResourceSummary = {
         },
         exclusionStatus = {
             type = "string",
+            traits = {
+                default = "included",
+            },
         },
         recommendationArn = {
             type = "string",
@@ -1144,7 +1129,7 @@ M.ListRecommendationResourcesOutput = {
         },
         recommendationResourceSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.RecommendationResourceSummary,
             traits = {
                 required = true,
             },
@@ -1162,7 +1147,7 @@ M.ListRecommendationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1253,7 +1238,7 @@ M.RecommendationSummary = {
         },
         pillars = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1266,7 +1251,7 @@ M.RecommendationSummary = {
         },
         awsServices = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         name = {
             type = "string",
@@ -1274,15 +1259,10 @@ M.RecommendationSummary = {
                 required = true,
             },
         },
-        resourcesAggregates = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        pillarSpecificAggregates = {
-            type = "structure",
-        },
+        resourcesAggregates = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RecommendationResourcesAggregates }),
+        pillarSpecificAggregates = M.RecommendationPillarSpecificAggregates,
         createdAt = {
             type = "timestamp",
             traits = {
@@ -1315,7 +1295,7 @@ M.ListRecommendationsOutput = {
         },
         recommendationSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.RecommendationSummary,
             traits = {
                 required = true,
             },

@@ -116,7 +116,7 @@ M.ThrottlingException = {
             },
         },
         RetryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -162,14 +162,14 @@ M.AttributeValue = {
             type = "string",
         },
         N = {
-            type = "number",
+            type = "long",
         },
         BOOL = {
             type = "boolean",
         },
         SS = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -210,8 +210,8 @@ M.CreateGroupInput = {
         },
         OtherAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.AttributeValue,
         },
         ClientToken = {
             type = "string",
@@ -261,8 +261,8 @@ M.CreateUserInput = {
         },
         OtherAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.AttributeValue,
         },
         ClientToken = {
             type = "string",
@@ -358,7 +358,7 @@ M.DescribeGroupInput = {
         },
         OtherAttributes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -389,8 +389,8 @@ M.DescribeGroupOutput = {
         },
         OtherAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.AttributeValue,
         },
     },
 }
@@ -413,7 +413,7 @@ M.DescribeUserInput = {
         },
         OtherAttributes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Realm = {
             type = "string",
@@ -456,8 +456,8 @@ M.DescribeUserOutput = {
         },
         OtherAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.AttributeValue,
         },
     },
 }
@@ -514,7 +514,7 @@ M.ListGroupMembersInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -563,7 +563,7 @@ M.ListGroupMembersOutput = {
         },
         Members = {
             type = "list",
-            member_type = "structure",
+            member = M.Member,
         },
         NextToken = {
             type = "string",
@@ -588,7 +588,7 @@ M.ListGroupsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -634,7 +634,7 @@ M.ListGroupsOutput = {
         },
         Groups = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupSummary,
         },
         NextToken = {
             type = "string",
@@ -668,7 +668,7 @@ M.ListGroupsForMemberInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -687,7 +687,7 @@ M.ListGroupsForMemberOutput = {
         },
         Groups = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupSummary,
         },
         NextToken = {
             type = "string",
@@ -712,7 +712,7 @@ M.ListUsersInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -758,7 +758,7 @@ M.ListUsersOutput = {
         },
         Users = {
             type = "list",
-            member_type = "structure",
+            member = M.UserSummary,
         },
         NextToken = {
             type = "string",
@@ -819,7 +819,7 @@ M.SearchGroupsInput = {
         },
         SearchAttributes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -831,7 +831,7 @@ M.SearchGroupsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -859,8 +859,8 @@ M.Group = {
         },
         OtherAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.AttributeValue,
         },
     },
 }
@@ -876,7 +876,7 @@ M.SearchGroupsOutput = {
         },
         Groups = {
             type = "list",
-            member_type = "structure",
+            member = M.Group,
         },
         NextToken = {
             type = "string",
@@ -905,7 +905,7 @@ M.SearchUsersInput = {
         },
         SearchAttributes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -914,7 +914,7 @@ M.SearchUsersInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -951,8 +951,8 @@ M.User = {
         },
         OtherAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.AttributeValue,
         },
     },
 }
@@ -968,7 +968,7 @@ M.SearchUsersOutput = {
         },
         Users = {
             type = "list",
-            member_type = "structure",
+            member = M.User,
         },
         NextToken = {
             type = "string",
@@ -1006,8 +1006,8 @@ M.UpdateGroupInput = {
         },
         OtherAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.AttributeValue,
         },
         UpdateType = {
             type = "string",
@@ -1049,8 +1049,8 @@ M.UpdateUserInput = {
         },
         OtherAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "union",
+            key = { type = "string" },
+            value = M.AttributeValue,
         },
         UpdateType = {
             type = "string",

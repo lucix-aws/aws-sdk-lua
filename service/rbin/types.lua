@@ -23,7 +23,7 @@ M.UnlockDelay = {
     type = "structure",
     members = {
         UnlockDelayValue = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -40,12 +40,9 @@ M.UnlockDelay = {
 M.LockConfiguration = {
     type = "structure",
     members = {
-        UnlockDelay = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        UnlockDelay = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.UnlockDelay }),
     },
 }
 
@@ -63,7 +60,7 @@ M.RetentionPeriod = {
     type = "structure",
     members = {
         RetentionPeriodValue = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -98,18 +95,15 @@ M.Tag = {
 M.CreateRuleInput = {
     type = "structure",
     members = {
-        RetentionPeriod = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RetentionPeriod = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RetentionPeriod }),
         Description = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ResourceType = {
             type = "string",
@@ -119,14 +113,12 @@ M.CreateRuleInput = {
         },
         ResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
         },
-        LockConfiguration = {
-            type = "structure",
-        },
+        LockConfiguration = M.LockConfiguration,
         ExcludeResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
         },
     },
 }
@@ -148,29 +140,25 @@ M.CreateRuleOutput = {
         Identifier = {
             type = "string",
         },
-        RetentionPeriod = {
-            type = "structure",
-        },
+        RetentionPeriod = M.RetentionPeriod,
         Description = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ResourceType = {
             type = "string",
         },
         ResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
         },
         Status = {
             type = "string",
         },
-        LockConfiguration = {
-            type = "structure",
-        },
+        LockConfiguration = M.LockConfiguration,
         LockState = {
             type = "string",
         },
@@ -179,7 +167,7 @@ M.CreateRuleOutput = {
         },
         ExcludeResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
         },
     },
 }
@@ -305,19 +293,15 @@ M.GetRuleOutput = {
         ResourceType = {
             type = "string",
         },
-        RetentionPeriod = {
-            type = "structure",
-        },
+        RetentionPeriod = M.RetentionPeriod,
         ResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
         },
         Status = {
             type = "string",
         },
-        LockConfiguration = {
-            type = "structure",
-        },
+        LockConfiguration = M.LockConfiguration,
         LockState = {
             type = "string",
         },
@@ -329,7 +313,7 @@ M.GetRuleOutput = {
         },
         ExcludeResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
         },
     },
 }
@@ -338,7 +322,7 @@ M.ListRulesInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -351,14 +335,14 @@ M.ListRulesInput = {
         },
         ResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
         },
         LockState = {
             type = "string",
         },
         ExcludeResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
         },
     },
 }
@@ -372,9 +356,7 @@ M.RuleSummary = {
         Description = {
             type = "string",
         },
-        RetentionPeriod = {
-            type = "structure",
-        },
+        RetentionPeriod = M.RetentionPeriod,
         LockState = {
             type = "string",
         },
@@ -389,7 +371,7 @@ M.ListRulesOutput = {
     members = {
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleSummary,
         },
         NextToken = {
             type = "string",
@@ -415,7 +397,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -430,12 +412,9 @@ M.LockRuleInput = {
                 required = true,
             },
         },
-        LockConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        LockConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LockConfiguration }),
     },
 }
 
@@ -451,19 +430,15 @@ M.LockRuleOutput = {
         ResourceType = {
             type = "string",
         },
-        RetentionPeriod = {
-            type = "structure",
-        },
+        RetentionPeriod = M.RetentionPeriod,
         ResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
         },
         Status = {
             type = "string",
         },
-        LockConfiguration = {
-            type = "structure",
-        },
+        LockConfiguration = M.LockConfiguration,
         LockState = {
             type = "string",
         },
@@ -472,7 +447,7 @@ M.LockRuleOutput = {
         },
         ExcludeResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
         },
     },
 }
@@ -489,7 +464,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -526,19 +501,15 @@ M.UnlockRuleOutput = {
         ResourceType = {
             type = "string",
         },
-        RetentionPeriod = {
-            type = "structure",
-        },
+        RetentionPeriod = M.RetentionPeriod,
         ResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
         },
         Status = {
             type = "string",
         },
-        LockConfiguration = {
-            type = "structure",
-        },
+        LockConfiguration = M.LockConfiguration,
         LockState = {
             type = "string",
         },
@@ -550,7 +521,7 @@ M.UnlockRuleOutput = {
         },
         ExcludeResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
         },
     },
 }
@@ -567,7 +538,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -590,9 +561,7 @@ M.UpdateRuleInput = {
                 required = true,
             },
         },
-        RetentionPeriod = {
-            type = "structure",
-        },
+        RetentionPeriod = M.RetentionPeriod,
         Description = {
             type = "string",
         },
@@ -601,11 +570,11 @@ M.UpdateRuleInput = {
         },
         ResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
         },
         ExcludeResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
         },
     },
 }
@@ -616,9 +585,7 @@ M.UpdateRuleOutput = {
         Identifier = {
             type = "string",
         },
-        RetentionPeriod = {
-            type = "structure",
-        },
+        RetentionPeriod = M.RetentionPeriod,
         Description = {
             type = "string",
         },
@@ -627,7 +594,7 @@ M.UpdateRuleOutput = {
         },
         ResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
         },
         Status = {
             type = "string",
@@ -643,7 +610,7 @@ M.UpdateRuleOutput = {
         },
         ExcludeResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
         },
     },
 }

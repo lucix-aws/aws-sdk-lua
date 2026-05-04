@@ -63,10 +63,10 @@ M.AccessPolicyDetail = {
             type = "document",
         },
         createdDate = {
-            type = "number",
+            type = "long",
         },
         lastModifiedDate = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -74,9 +74,7 @@ M.AccessPolicyDetail = {
 M.CreateAccessPolicyOutput = {
     type = "structure",
     members = {
-        accessPolicyDetail = {
-            type = "structure",
-        },
+        accessPolicyDetail = M.AccessPolicyDetail,
     },
 }
 
@@ -184,9 +182,7 @@ M.GetAccessPolicyInput = {
 M.GetAccessPolicyOutput = {
     type = "structure",
     members = {
-        accessPolicyDetail = {
-            type = "structure",
-        },
+        accessPolicyDetail = M.AccessPolicyDetail,
     },
 }
 
@@ -201,13 +197,13 @@ M.ListAccessPoliciesInput = {
         },
         resource = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -228,10 +224,10 @@ M.AccessPolicySummary = {
             type = "string",
         },
         createdDate = {
-            type = "number",
+            type = "long",
         },
         lastModifiedDate = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -241,7 +237,7 @@ M.ListAccessPoliciesOutput = {
     members = {
         accessPolicySummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessPolicySummary,
         },
         nextToken = {
             type = "string",
@@ -285,9 +281,7 @@ M.UpdateAccessPolicyInput = {
 M.UpdateAccessPolicyOutput = {
     type = "structure",
     members = {
-        accessPolicyDetail = {
-            type = "structure",
-        },
+        accessPolicyDetail = M.AccessPolicyDetail,
     },
 }
 
@@ -295,7 +289,7 @@ M.AccessPolicyStats = {
     type = "structure",
     members = {
         DataPolicyCount = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -304,10 +298,10 @@ M.CapacityLimits = {
     type = "structure",
     members = {
         maxIndexingCapacityInOCU = {
-            type = "number",
+            type = "integer",
         },
         maxSearchCapacityInOCU = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -315,9 +309,7 @@ M.CapacityLimits = {
 M.AccountSettingsDetail = {
     type = "structure",
     members = {
-        capacityLimits = {
-            type = "structure",
-        },
+        capacityLimits = M.CapacityLimits,
     },
 }
 
@@ -326,11 +318,11 @@ M.BatchGetCollectionInput = {
     members = {
         ids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         names = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -412,14 +404,12 @@ M.CollectionDetail = {
         standbyReplicas = {
             type = "string",
         },
-        vectorOptions = {
-            type = "structure",
-        },
+        vectorOptions = M.VectorOptions,
         createdDate = {
-            type = "number",
+            type = "long",
         },
         lastModifiedDate = {
-            type = "number",
+            type = "long",
         },
         collectionEndpoint = {
             type = "string",
@@ -427,9 +417,7 @@ M.CollectionDetail = {
         dashboardEndpoint = {
             type = "string",
         },
-        fipsEndpoints = {
-            type = "structure",
-        },
+        fipsEndpoints = M.FipsEndpoints,
         failureCode = {
             type = "string",
         },
@@ -465,11 +453,11 @@ M.BatchGetCollectionOutput = {
     members = {
         collectionDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.CollectionDetail,
         },
         collectionErrorDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.CollectionErrorDetail,
         },
     },
 }
@@ -479,11 +467,11 @@ M.BatchGetCollectionGroupInput = {
     members = {
         ids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         names = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -492,16 +480,16 @@ M.CollectionGroupCapacityLimits = {
     type = "structure",
     members = {
         maxIndexingCapacityInOCU = {
-            type = "number",
+            type = "float",
         },
         maxSearchCapacityInOCU = {
-            type = "number",
+            type = "float",
         },
         minIndexingCapacityInOCU = {
-            type = "number",
+            type = "float",
         },
         minSearchCapacityInOCU = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -544,16 +532,14 @@ M.CollectionGroupDetail = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         createdDate = {
-            type = "number",
+            type = "long",
         },
-        capacityLimits = {
-            type = "structure",
-        },
+        capacityLimits = M.CollectionGroupCapacityLimits,
         numberOfCollections = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -581,11 +567,11 @@ M.BatchGetCollectionGroupOutput = {
     members = {
         collectionGroupDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.CollectionGroupDetail,
         },
         collectionGroupErrorDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.CollectionGroupErrorDetail,
         },
     },
 }
@@ -617,7 +603,7 @@ M.BatchGetEffectiveLifecyclePolicyInput = {
     members = {
         resourceIdentifiers = {
             type = "list",
-            member_type = "structure",
+            member = M.LifecyclePolicyResourceIdentifier,
             traits = {
                 required = true,
             },
@@ -676,11 +662,11 @@ M.BatchGetEffectiveLifecyclePolicyOutput = {
     members = {
         effectiveLifecyclePolicyDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.EffectiveLifecyclePolicyDetail,
         },
         effectiveLifecyclePolicyErrorDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.EffectiveLifecyclePolicyErrorDetail,
         },
     },
 }
@@ -708,7 +694,7 @@ M.BatchGetLifecyclePolicyInput = {
     members = {
         identifiers = {
             type = "list",
-            member_type = "structure",
+            member = M.LifecyclePolicyIdentifier,
             traits = {
                 required = true,
             },
@@ -735,10 +721,10 @@ M.LifecyclePolicyDetail = {
             type = "document",
         },
         createdDate = {
-            type = "number",
+            type = "long",
         },
         lastModifiedDate = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -766,11 +752,11 @@ M.BatchGetLifecyclePolicyOutput = {
     members = {
         lifecyclePolicyDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.LifecyclePolicyDetail,
         },
         lifecyclePolicyErrorDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.LifecyclePolicyErrorDetail,
         },
     },
 }
@@ -780,7 +766,7 @@ M.BatchGetVpcEndpointInput = {
     members = {
         ids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -809,17 +795,17 @@ M.VpcEndpointDetail = {
         },
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         status = {
             type = "string",
         },
         createdDate = {
-            type = "number",
+            type = "long",
         },
         failureCode = {
             type = "string",
@@ -850,11 +836,11 @@ M.BatchGetVpcEndpointOutput = {
     members = {
         vpcEndpointDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcEndpointDetail,
         },
         vpcEndpointErrorDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcEndpointErrorDetail,
         },
     },
 }
@@ -888,20 +874,16 @@ M.CreateCollectionInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         standbyReplicas = {
             type = "string",
         },
-        vectorOptions = {
-            type = "structure",
-        },
+        vectorOptions = M.VectorOptions,
         collectionGroupName = {
             type = "string",
         },
-        encryptionConfig = {
-            type = "structure",
-        },
+        encryptionConfig = M.EncryptionConfig,
         clientToken = {
             type = "string",
         },
@@ -935,14 +917,12 @@ M.CreateCollectionDetail = {
         standbyReplicas = {
             type = "string",
         },
-        vectorOptions = {
-            type = "structure",
-        },
+        vectorOptions = M.VectorOptions,
         createdDate = {
-            type = "number",
+            type = "long",
         },
         lastModifiedDate = {
-            type = "number",
+            type = "long",
         },
         collectionGroupName = {
             type = "string",
@@ -953,9 +933,7 @@ M.CreateCollectionDetail = {
 M.CreateCollectionOutput = {
     type = "structure",
     members = {
-        createCollectionDetail = {
-            type = "structure",
-        },
+        createCollectionDetail = M.CreateCollectionDetail,
     },
 }
 
@@ -1005,9 +983,7 @@ M.DeleteCollectionDetail = {
 M.DeleteCollectionOutput = {
     type = "structure",
     members = {
-        deleteCollectionDetail = {
-            type = "structure",
-        },
+        deleteCollectionDetail = M.DeleteCollectionDetail,
     },
 }
 
@@ -1029,14 +1005,12 @@ M.CollectionFilters = {
 M.ListCollectionsInput = {
     type = "structure",
     members = {
-        collectionFilters = {
-            type = "structure",
-        },
+        collectionFilters = M.CollectionFilters,
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1070,7 +1044,7 @@ M.ListCollectionsOutput = {
     members = {
         collectionSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.CollectionSummary,
         },
         nextToken = {
             type = "string",
@@ -1090,9 +1064,7 @@ M.UpdateCollectionInput = {
         description = {
             type = "string",
         },
-        vectorOptions = {
-            type = "structure",
-        },
+        vectorOptions = M.VectorOptions,
         clientToken = {
             type = "string",
         },
@@ -1117,17 +1089,15 @@ M.UpdateCollectionDetail = {
         description = {
             type = "string",
         },
-        vectorOptions = {
-            type = "structure",
-        },
+        vectorOptions = M.VectorOptions,
         arn = {
             type = "string",
         },
         createdDate = {
-            type = "number",
+            type = "long",
         },
         lastModifiedDate = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1135,9 +1105,7 @@ M.UpdateCollectionDetail = {
 M.UpdateCollectionOutput = {
     type = "structure",
     members = {
-        updateCollectionDetail = {
-            type = "structure",
-        },
+        updateCollectionDetail = M.UpdateCollectionDetail,
     },
 }
 
@@ -1161,11 +1129,9 @@ M.CreateCollectionGroupInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        capacityLimits = {
-            type = "structure",
-        },
+        capacityLimits = M.CollectionGroupCapacityLimits,
         clientToken = {
             type = "string",
         },
@@ -1192,23 +1158,19 @@ M.CreateCollectionGroupDetail = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         createdDate = {
-            type = "number",
+            type = "long",
         },
-        capacityLimits = {
-            type = "structure",
-        },
+        capacityLimits = M.CollectionGroupCapacityLimits,
     },
 }
 
 M.CreateCollectionGroupOutput = {
     type = "structure",
     members = {
-        createCollectionGroupDetail = {
-            type = "structure",
-        },
+        createCollectionGroupDetail = M.CreateCollectionGroupDetail,
     },
 }
 
@@ -1238,7 +1200,7 @@ M.ListCollectionGroupsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1256,14 +1218,12 @@ M.CollectionGroupSummary = {
             type = "string",
         },
         numberOfCollections = {
-            type = "number",
+            type = "integer",
         },
         createdDate = {
-            type = "number",
+            type = "long",
         },
-        capacityLimits = {
-            type = "structure",
-        },
+        capacityLimits = M.CollectionGroupCapacityLimits,
     },
 }
 
@@ -1272,7 +1232,7 @@ M.ListCollectionGroupsOutput = {
     members = {
         collectionGroupSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.CollectionGroupSummary,
         },
         nextToken = {
             type = "string",
@@ -1292,9 +1252,7 @@ M.UpdateCollectionGroupInput = {
         description = {
             type = "string",
         },
-        capacityLimits = {
-            type = "structure",
-        },
+        capacityLimits = M.CollectionGroupCapacityLimits,
         clientToken = {
             type = "string",
         },
@@ -1316,14 +1274,12 @@ M.UpdateCollectionGroupDetail = {
         description = {
             type = "string",
         },
-        capacityLimits = {
-            type = "structure",
-        },
+        capacityLimits = M.CollectionGroupCapacityLimits,
         createdDate = {
-            type = "number",
+            type = "long",
         },
         lastModifiedDate = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1331,9 +1287,7 @@ M.UpdateCollectionGroupDetail = {
 M.UpdateCollectionGroupOutput = {
     type = "structure",
     members = {
-        updateCollectionGroupDetail = {
-            type = "structure",
-        },
+        updateCollectionGroupDetail = M.UpdateCollectionGroupDetail,
     },
 }
 
@@ -1424,9 +1378,7 @@ M.CreateLifecyclePolicyInput = {
 M.CreateLifecyclePolicyOutput = {
     type = "structure",
     members = {
-        lifecyclePolicyDetail = {
-            type = "structure",
-        },
+        lifecyclePolicyDetail = M.LifecyclePolicyDetail,
     },
 }
 
@@ -1461,7 +1413,7 @@ M.SamlConfigOptions = {
             type = "string",
         },
         sessionTimeout = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1490,15 +1442,9 @@ M.CreateSecurityConfigInput = {
         description = {
             type = "string",
         },
-        samlOptions = {
-            type = "structure",
-        },
-        iamIdentityCenterOptions = {
-            type = "structure",
-        },
-        iamFederationOptions = {
-            type = "structure",
-        },
+        samlOptions = M.SamlConfigOptions,
+        iamIdentityCenterOptions = M.CreateIamIdentityCenterConfigOptions,
+        iamFederationOptions = M.IamFederationConfigOptions,
         clientToken = {
             type = "string",
         },
@@ -1544,20 +1490,14 @@ M.SecurityConfigDetail = {
         description = {
             type = "string",
         },
-        samlOptions = {
-            type = "structure",
-        },
-        iamIdentityCenterOptions = {
-            type = "structure",
-        },
-        iamFederationOptions = {
-            type = "structure",
-        },
+        samlOptions = M.SamlConfigOptions,
+        iamIdentityCenterOptions = M.IamIdentityCenterConfigOptions,
+        iamFederationOptions = M.IamFederationConfigOptions,
         createdDate = {
-            type = "number",
+            type = "long",
         },
         lastModifiedDate = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1565,9 +1505,7 @@ M.SecurityConfigDetail = {
 M.CreateSecurityConfigOutput = {
     type = "structure",
     members = {
-        securityConfigDetail = {
-            type = "structure",
-        },
+        securityConfigDetail = M.SecurityConfigDetail,
     },
 }
 
@@ -1625,10 +1563,10 @@ M.SecurityPolicyDetail = {
             type = "document",
         },
         createdDate = {
-            type = "number",
+            type = "long",
         },
         lastModifiedDate = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1636,9 +1574,7 @@ M.SecurityPolicyDetail = {
 M.CreateSecurityPolicyOutput = {
     type = "structure",
     members = {
-        securityPolicyDetail = {
-            type = "structure",
-        },
+        securityPolicyDetail = M.SecurityPolicyDetail,
     },
 }
 
@@ -1659,14 +1595,14 @@ M.CreateVpcEndpointInput = {
         },
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         clientToken = {
             type = "string",
@@ -1692,9 +1628,7 @@ M.CreateVpcEndpointDetail = {
 M.CreateVpcEndpointOutput = {
     type = "structure",
     members = {
-        createVpcEndpointDetail = {
-            type = "structure",
-        },
+        createVpcEndpointDetail = M.CreateVpcEndpointDetail,
     },
 }
 
@@ -1822,9 +1756,7 @@ M.DeleteVpcEndpointDetail = {
 M.DeleteVpcEndpointOutput = {
     type = "structure",
     members = {
-        deleteVpcEndpointDetail = {
-            type = "structure",
-        },
+        deleteVpcEndpointDetail = M.DeleteVpcEndpointDetail,
     },
 }
 
@@ -1835,9 +1767,7 @@ M.GetAccountSettingsInput = {
 M.GetAccountSettingsOutput = {
     type = "structure",
     members = {
-        accountSettingsDetail = {
-            type = "structure",
-        },
+        accountSettingsDetail = M.AccountSettingsDetail,
     },
 }
 
@@ -1876,7 +1806,7 @@ M.LifecyclePolicyStats = {
     type = "structure",
     members = {
         RetentionPolicyCount = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1885,7 +1815,7 @@ M.SecurityConfigStats = {
     type = "structure",
     members = {
         SamlConfigCount = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1894,10 +1824,10 @@ M.SecurityPolicyStats = {
     type = "structure",
     members = {
         EncryptionPolicyCount = {
-            type = "number",
+            type = "long",
         },
         NetworkPolicyCount = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1905,20 +1835,12 @@ M.SecurityPolicyStats = {
 M.GetPoliciesStatsOutput = {
     type = "structure",
     members = {
-        AccessPolicyStats = {
-            type = "structure",
-        },
-        SecurityPolicyStats = {
-            type = "structure",
-        },
-        SecurityConfigStats = {
-            type = "structure",
-        },
-        LifecyclePolicyStats = {
-            type = "structure",
-        },
+        AccessPolicyStats = M.AccessPolicyStats,
+        SecurityPolicyStats = M.SecurityPolicyStats,
+        SecurityConfigStats = M.SecurityConfigStats,
+        LifecyclePolicyStats = M.LifecyclePolicyStats,
         TotalPolicyCount = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1938,9 +1860,7 @@ M.GetSecurityConfigInput = {
 M.GetSecurityConfigOutput = {
     type = "structure",
     members = {
-        securityConfigDetail = {
-            type = "structure",
-        },
+        securityConfigDetail = M.SecurityConfigDetail,
     },
 }
 
@@ -1965,9 +1885,7 @@ M.GetSecurityPolicyInput = {
 M.GetSecurityPolicyOutput = {
     type = "structure",
     members = {
-        securityPolicyDetail = {
-            type = "structure",
-        },
+        securityPolicyDetail = M.SecurityPolicyDetail,
     },
 }
 
@@ -2007,13 +1925,13 @@ M.ListLifecyclePoliciesInput = {
         },
         resources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2034,10 +1952,10 @@ M.LifecyclePolicySummary = {
             type = "string",
         },
         createdDate = {
-            type = "number",
+            type = "long",
         },
         lastModifiedDate = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -2047,7 +1965,7 @@ M.ListLifecyclePoliciesOutput = {
     members = {
         lifecyclePolicySummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.LifecyclePolicySummary,
         },
         nextToken = {
             type = "string",
@@ -2091,9 +2009,7 @@ M.UpdateLifecyclePolicyInput = {
 M.UpdateLifecyclePolicyOutput = {
     type = "structure",
     members = {
-        lifecyclePolicyDetail = {
-            type = "structure",
-        },
+        lifecyclePolicyDetail = M.LifecyclePolicyDetail,
     },
 }
 
@@ -2110,7 +2026,7 @@ M.ListSecurityConfigsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2131,10 +2047,10 @@ M.SecurityConfigSummary = {
             type = "string",
         },
         createdDate = {
-            type = "number",
+            type = "long",
         },
         lastModifiedDate = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -2144,7 +2060,7 @@ M.ListSecurityConfigsOutput = {
     members = {
         securityConfigSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.SecurityConfigSummary,
         },
         nextToken = {
             type = "string",
@@ -2163,13 +2079,13 @@ M.ListSecurityPoliciesInput = {
         },
         resource = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2190,10 +2106,10 @@ M.SecurityPolicySummary = {
             type = "string",
         },
         createdDate = {
-            type = "number",
+            type = "long",
         },
         lastModifiedDate = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -2203,7 +2119,7 @@ M.ListSecurityPoliciesOutput = {
     members = {
         securityPolicySummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.SecurityPolicySummary,
         },
         nextToken = {
             type = "string",
@@ -2228,7 +2144,7 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2245,14 +2161,12 @@ M.VpcEndpointFilters = {
 M.ListVpcEndpointsInput = {
     type = "structure",
     members = {
-        vpcEndpointFilters = {
-            type = "structure",
-        },
+        vpcEndpointFilters = M.VpcEndpointFilters,
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2277,7 +2191,7 @@ M.ListVpcEndpointsOutput = {
     members = {
         vpcEndpointSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcEndpointSummary,
         },
         nextToken = {
             type = "string",
@@ -2315,15 +2229,9 @@ M.UpdateSecurityConfigInput = {
         description = {
             type = "string",
         },
-        samlOptions = {
-            type = "structure",
-        },
-        iamIdentityCenterOptionsUpdates = {
-            type = "structure",
-        },
-        iamFederationOptions = {
-            type = "structure",
-        },
+        samlOptions = M.SamlConfigOptions,
+        iamIdentityCenterOptionsUpdates = M.UpdateIamIdentityCenterConfigOptions,
+        iamFederationOptions = M.IamFederationConfigOptions,
         clientToken = {
             type = "string",
         },
@@ -2333,9 +2241,7 @@ M.UpdateSecurityConfigInput = {
 M.UpdateSecurityConfigOutput = {
     type = "structure",
     members = {
-        securityConfigDetail = {
-            type = "structure",
-        },
+        securityConfigDetail = M.SecurityConfigDetail,
     },
 }
 
@@ -2375,9 +2281,7 @@ M.UpdateSecurityPolicyInput = {
 M.UpdateSecurityPolicyOutput = {
     type = "structure",
     members = {
-        securityPolicyDetail = {
-            type = "structure",
-        },
+        securityPolicyDetail = M.SecurityPolicyDetail,
     },
 }
 
@@ -2392,7 +2296,7 @@ M.TagResourceInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -2415,7 +2319,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2430,18 +2334,14 @@ M.UntagResourceOutput = {
 M.UpdateAccountSettingsInput = {
     type = "structure",
     members = {
-        capacityLimits = {
-            type = "structure",
-        },
+        capacityLimits = M.CapacityLimits,
     },
 }
 
 M.UpdateAccountSettingsOutput = {
     type = "structure",
     members = {
-        accountSettingsDetail = {
-            type = "structure",
-        },
+        accountSettingsDetail = M.AccountSettingsDetail,
     },
 }
 
@@ -2456,19 +2356,19 @@ M.UpdateVpcEndpointInput = {
         },
         addSubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         removeSubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         addSecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         removeSecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         clientToken = {
             type = "string",
@@ -2490,14 +2390,14 @@ M.UpdateVpcEndpointDetail = {
         },
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         lastModifiedDate = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -2505,9 +2405,7 @@ M.UpdateVpcEndpointDetail = {
 M.UpdateVpcEndpointOutput = {
     type = "structure",
     members = {
-        UpdateVpcEndpointDetail = {
-            type = "structure",
-        },
+        UpdateVpcEndpointDetail = M.UpdateVpcEndpointDetail,
     },
 }
 

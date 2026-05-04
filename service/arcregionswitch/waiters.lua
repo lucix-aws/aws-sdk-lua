@@ -1,0 +1,105 @@
+local waiter = require("waiter")
+
+local M = {}
+
+--- Wait until PlanEvaluationStatusPassed.
+function M.wait_until_plan_evaluation_status_passed(client, input, options)
+    return waiter.wait(client, "getPlanEvaluationStatus", input, {
+        min_delay = 30,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "evaluationState",
+                        expected = "passed",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "evaluationState",
+                        expected = "actionRequired",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "evaluationState",
+                        expected = "pendingEvaluation",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until PlanExecutionCompleted.
+function M.wait_until_plan_execution_completed(client, input, options)
+    return waiter.wait(client, "getPlanExecution", input, {
+        min_delay = 30,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "executionState",
+                        expected = "completed",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "executionState",
+                        expected = "completedWithExceptions",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "executionState",
+                        expected = "failed",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "executionState",
+                        expected = "canceled",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "executionState",
+                        expected = "planExecutionTimedOut",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+return M

@@ -800,21 +800,21 @@ local record ResourceNotFoundException
     code: number
 end
 
-local type MLModelType = "REGRESSION" | "BINARY" | "MULTICLASS"
-
 local type TaggableResourceType = "BatchPrediction" | "DataSource" | "Evaluation" | "MLModel"
 
 local type EntityStatus = "PENDING" | "INPROGRESS" | "FAILED" | "COMPLETED" | "DELETED"
 
-local type MLModelFilterVariable = "CreatedAt" | "LastUpdatedAt" | "Status" | "Name" | "IAMUser" | "TrainingDataSourceId" | "RealtimeEndpointStatus" | "MLModelType" | "Algorithm" | "TrainingDataURI"
+local type MLModelType = "REGRESSION" | "BINARY" | "MULTICLASS"
 
 local type DataSourceFilterVariable = "CreatedAt" | "LastUpdatedAt" | "Status" | "Name" | "DataLocationS3" | "IAMUser"
 
 local type SortOrder = "asc" | "dsc"
 
-local type BatchPredictionFilterVariable = "CreatedAt" | "LastUpdatedAt" | "Status" | "Name" | "IAMUser" | "MLModelId" | "DataSourceId" | "DataURI"
+local type MLModelFilterVariable = "CreatedAt" | "LastUpdatedAt" | "Status" | "Name" | "IAMUser" | "TrainingDataSourceId" | "RealtimeEndpointStatus" | "MLModelType" | "Algorithm" | "TrainingDataURI"
 
 local type EvaluationFilterVariable = "CreatedAt" | "LastUpdatedAt" | "Status" | "Name" | "IAMUser" | "MLModelId" | "DataSourceId" | "DataURI"
+
+local type BatchPredictionFilterVariable = "CreatedAt" | "LastUpdatedAt" | "Status" | "Name" | "IAMUser" | "MLModelId" | "DataSourceId" | "DataURI"
 
 local record M
     AddTagsInput: AddTagsInput

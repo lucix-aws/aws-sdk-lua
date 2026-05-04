@@ -1,0 +1,24 @@
+local types = require("omics.types")
+
+local record M
+    wait_until_annotation_import_job_created: function(client: table, input: table, options: table): table, table
+    wait_until_annotation_store_created: function(client: table, input: table, options: table): table, table
+    wait_until_annotation_store_deleted: function(client: table, input: table, options: table): table, table
+    wait_until_annotation_store_version_created: function(client: table, input: table, options: table): table, table
+    wait_until_annotation_store_version_deleted: function(client: table, input: table, options: table): table, table
+    wait_until_read_set_activation_job_completed: function(client: table, input: table, options: table): table, table
+    wait_until_read_set_export_job_completed: function(client: table, input: table, options: table): table, table
+    wait_until_read_set_import_job_completed: function(client: table, input: table, options: table): table, table
+    wait_until_reference_import_job_completed: function(client: table, input: table, options: table): table, table
+    wait_until_run_completed: function(client: table, input: table, options: table): table, table
+    wait_until_run_running: function(client: table, input: table, options: table): table, table
+    wait_until_task_completed: function(client: table, input: table, options: table): table, table
+    wait_until_task_running: function(client: table, input: table, options: table): table, table
+    wait_until_variant_import_job_created: function(client: table, input: table, options: table): table, table
+    wait_until_variant_store_created: function(client: table, input: table, options: table): table, table
+    wait_until_variant_store_deleted: function(client: table, input: table, options: table): table, table
+    wait_until_workflow_active: function(client: table, input: table, options: table): table, table
+    wait_until_workflow_version_active: function(client: table, input: table, options: table): table, table
+end
+
+return M

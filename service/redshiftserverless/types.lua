@@ -93,11 +93,11 @@ M.ConvertRecoveryPointToSnapshotInput = {
             },
         },
         retentionPeriod = {
-            type = "number",
+            type = "integer",
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -142,28 +142,28 @@ M.Snapshot = {
             type = "string",
         },
         totalBackupSizeInMegaBytes = {
-            type = "number",
+            type = "double",
         },
         actualIncrementalBackupSizeInMegaBytes = {
-            type = "number",
+            type = "double",
         },
         backupProgressInMegaBytes = {
-            type = "number",
+            type = "double",
         },
         currentBackupRateInMegaBytesPerSecond = {
-            type = "number",
+            type = "double",
         },
         estimatedSecondsToCompletion = {
-            type = "number",
+            type = "long",
         },
         elapsedTimeInSeconds = {
-            type = "number",
+            type = "long",
         },
         snapshotRetentionPeriod = {
-            type = "number",
+            type = "integer",
         },
         snapshotRemainingDays = {
-            type = "number",
+            type = "integer",
         },
         snapshotRetentionStartTime = {
             type = "timestamp",
@@ -176,11 +176,11 @@ M.Snapshot = {
         },
         accountsWithRestoreAccess = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         accountsWithProvisionedRestoreAccess = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         adminPasswordSecretArn = {
             type = "string",
@@ -194,9 +194,7 @@ M.Snapshot = {
 M.ConvertRecoveryPointToSnapshotOutput = {
     type = "structure",
     members = {
-        snapshot = {
-            type = "structure",
-        },
+        snapshot = M.Snapshot,
     },
 }
 
@@ -337,7 +335,7 @@ M.CreateEndpointAccessInput = {
         },
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -350,7 +348,7 @@ M.CreateEndpointAccessInput = {
         },
         vpcSecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ownerAccount = {
             type = "string",
@@ -390,7 +388,7 @@ M.VpcEndpoint = {
         },
         networkInterfaces = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkInterface,
         },
     },
 }
@@ -426,22 +424,20 @@ M.EndpointAccess = {
             },
         },
         port = {
-            type = "number",
+            type = "integer",
         },
         address = {
             type = "string",
         },
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         vpcSecurityGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcSecurityGroupMembership,
         },
-        vpcEndpoint = {
-            type = "structure",
-        },
+        vpcEndpoint = M.VpcEndpoint,
         endpointArn = {
             type = "string",
         },
@@ -451,9 +447,7 @@ M.EndpointAccess = {
 M.CreateEndpointAccessOutput = {
     type = "structure",
     members = {
-        endpoint = {
-            type = "structure",
-        },
+        endpoint = M.EndpointAccess,
     },
 }
 
@@ -489,15 +483,15 @@ M.CreateNamespaceInput = {
         },
         iamRoles = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         logExports = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         manageAdminPassword = {
             type = "boolean",
@@ -543,11 +537,11 @@ M.Namespace = {
         },
         iamRoles = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         logExports = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         status = {
             type = "string",
@@ -576,9 +570,7 @@ M.Namespace = {
 M.CreateNamespaceOutput = {
     type = "structure",
     members = {
-        namespace = {
-            type = "structure",
-        },
+        namespace = M.Namespace,
     },
 }
 
@@ -586,8 +578,9 @@ M.CreateReservationInput = {
     type = "structure",
     members = {
         capacity = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -615,13 +608,22 @@ M.ReservationOffering = {
             type = "string",
         },
         duration = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         upfrontCharge = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         hourlyCharge = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         currencyCode = {
             type = "string",
@@ -654,11 +656,12 @@ M.Reservation = {
             },
         },
         capacity = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
-        offering = {
-            type = "structure",
-        },
+        offering = M.ReservationOffering,
         status = {
             type = "string",
         },
@@ -668,9 +671,7 @@ M.Reservation = {
 M.CreateReservationOutput = {
     type = "structure",
     members = {
-        reservation = {
-            type = "structure",
-        },
+        reservation = M.Reservation,
     },
 }
 
@@ -702,11 +703,11 @@ M.CreateSnapshotScheduleActionParameters = {
             },
         },
         retentionPeriod = {
-            type = "number",
+            type = "integer",
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -714,9 +715,7 @@ M.CreateSnapshotScheduleActionParameters = {
 M.TargetAction = {
     type = "union",
     members = {
-        createSnapshot = {
-            type = "structure",
-        },
+        createSnapshot = M.CreateSnapshotScheduleActionParameters,
     },
 }
 
@@ -729,18 +728,12 @@ M.CreateScheduledActionInput = {
                 required = true,
             },
         },
-        targetAction = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        schedule = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        targetAction = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TargetAction }),
+        schedule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Schedule }),
         roleArn = {
             type = "string",
             traits = {
@@ -779,15 +772,13 @@ M.ScheduledActionResponse = {
         scheduledActionName = {
             type = "string",
         },
-        schedule = {
-            type = "union",
-        },
+        schedule = M.Schedule,
         scheduledActionDescription = {
             type = "string",
         },
         nextInvocations = {
             type = "list",
-            member_type = "timestamp",
+            member = { type = "timestamp" },
         },
         roleArn = {
             type = "string",
@@ -801,9 +792,7 @@ M.ScheduledActionResponse = {
         endTime = {
             type = "timestamp",
         },
-        targetAction = {
-            type = "union",
-        },
+        targetAction = M.TargetAction,
         namespaceName = {
             type = "string",
         },
@@ -816,9 +805,7 @@ M.ScheduledActionResponse = {
 M.CreateScheduledActionOutput = {
     type = "structure",
     members = {
-        scheduledAction = {
-            type = "structure",
-        },
+        scheduledAction = M.ScheduledActionResponse,
     },
 }
 
@@ -838,11 +825,11 @@ M.CreateSnapshotInput = {
             },
         },
         retentionPeriod = {
-            type = "number",
+            type = "integer",
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -850,9 +837,7 @@ M.CreateSnapshotInput = {
 M.CreateSnapshotOutput = {
     type = "structure",
     members = {
-        snapshot = {
-            type = "structure",
-        },
+        snapshot = M.Snapshot,
     },
 }
 
@@ -872,7 +857,7 @@ M.CreateSnapshotCopyConfigurationInput = {
             },
         },
         snapshotRetentionPeriod = {
-            type = "number",
+            type = "integer",
         },
         destinationKmsKeyId = {
             type = "string",
@@ -896,7 +881,7 @@ M.SnapshotCopyConfiguration = {
             type = "string",
         },
         snapshotRetentionPeriod = {
-            type = "number",
+            type = "integer",
         },
         destinationKmsKeyId = {
             type = "string",
@@ -907,12 +892,9 @@ M.SnapshotCopyConfiguration = {
 M.CreateSnapshotCopyConfigurationOutput = {
     type = "structure",
     members = {
-        snapshotCopyConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        snapshotCopyConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SnapshotCopyConfiguration }),
     },
 }
 
@@ -949,7 +931,7 @@ M.CreateUsageLimitInput = {
             },
         },
         amount = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -979,7 +961,7 @@ M.UsageLimit = {
             type = "string",
         },
         amount = {
-            type = "number",
+            type = "long",
         },
         period = {
             type = "string",
@@ -993,9 +975,7 @@ M.UsageLimit = {
 M.CreateUsageLimitOutput = {
     type = "structure",
     members = {
-        usageLimit = {
-            type = "structure",
-        },
+        usageLimit = M.UsageLimit,
     },
 }
 
@@ -1011,7 +991,7 @@ M.PerformanceTarget = {
             type = "string",
         },
         level = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1032,39 +1012,37 @@ M.CreateWorkgroupInput = {
             },
         },
         baseCapacity = {
-            type = "number",
+            type = "integer",
         },
         enhancedVpcRouting = {
             type = "boolean",
         },
         configParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigParameter,
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         publiclyAccessible = {
             type = "boolean",
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         port = {
-            type = "number",
+            type = "integer",
         },
         maxCapacity = {
-            type = "number",
+            type = "integer",
         },
-        pricePerformanceTarget = {
-            type = "structure",
-        },
+        pricePerformanceTarget = M.PerformanceTarget,
         ipAddressType = {
             type = "string",
         },
@@ -1084,11 +1062,11 @@ M.Endpoint = {
             type = "string",
         },
         port = {
-            type = "number",
+            type = "integer",
         },
         vpcEndpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcEndpoint,
         },
     },
 }
@@ -1116,29 +1094,27 @@ M.Workgroup = {
             type = "string",
         },
         baseCapacity = {
-            type = "number",
+            type = "integer",
         },
         enhancedVpcRouting = {
             type = "boolean",
         },
         configParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigParameter,
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         status = {
             type = "string",
         },
-        endpoint = {
-            type = "structure",
-        },
+        endpoint = M.Endpoint,
         publiclyAccessible = {
             type = "boolean",
         },
@@ -1149,7 +1125,7 @@ M.Workgroup = {
             },
         },
         port = {
-            type = "number",
+            type = "integer",
         },
         customDomainName = {
             type = "string",
@@ -1170,18 +1146,16 @@ M.Workgroup = {
             type = "string",
         },
         maxCapacity = {
-            type = "number",
+            type = "integer",
         },
         crossAccountVpcs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ipAddressType = {
             type = "string",
         },
-        pricePerformanceTarget = {
-            type = "structure",
-        },
+        pricePerformanceTarget = M.PerformanceTarget,
         trackName = {
             type = "string",
         },
@@ -1197,9 +1171,7 @@ M.Workgroup = {
 M.CreateWorkgroupOutput = {
     type = "structure",
     members = {
-        workgroup = {
-            type = "structure",
-        },
+        workgroup = M.Workgroup,
     },
 }
 
@@ -1244,9 +1216,7 @@ M.DeleteEndpointAccessInput = {
 M.DeleteEndpointAccessOutput = {
     type = "structure",
     members = {
-        endpoint = {
-            type = "structure",
-        },
+        endpoint = M.EndpointAccess,
     },
 }
 
@@ -1265,9 +1235,7 @@ M.GetEndpointAccessInput = {
 M.GetEndpointAccessOutput = {
     type = "structure",
     members = {
-        endpoint = {
-            type = "structure",
-        },
+        endpoint = M.EndpointAccess,
     },
 }
 
@@ -1281,8 +1249,9 @@ M.ListEndpointAccessInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_query = "maxResults",
             },
         },
@@ -1306,7 +1275,7 @@ M.ListEndpointAccessOutput = {
         },
         endpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.EndpointAccess,
             traits = {
                 required = true,
             },
@@ -1325,7 +1294,7 @@ M.UpdateEndpointAccessInput = {
         },
         vpcSecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1333,9 +1302,7 @@ M.UpdateEndpointAccessInput = {
 M.UpdateEndpointAccessOutput = {
     type = "structure",
     members = {
-        endpoint = {
-            type = "structure",
-        },
+        endpoint = M.EndpointAccess,
     },
 }
 
@@ -1374,7 +1341,7 @@ M.DeleteNamespaceInput = {
             type = "string",
         },
         finalSnapshotRetentionPeriod = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1382,12 +1349,9 @@ M.DeleteNamespaceInput = {
 M.DeleteNamespaceOutput = {
     type = "structure",
     members = {
-        namespace = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        namespace = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Namespace }),
     },
 }
 
@@ -1422,9 +1386,7 @@ M.DeleteScheduledActionInput = {
 M.DeleteScheduledActionOutput = {
     type = "structure",
     members = {
-        scheduledAction = {
-            type = "structure",
-        },
+        scheduledAction = M.ScheduledActionResponse,
     },
 }
 
@@ -1443,9 +1405,7 @@ M.DeleteSnapshotInput = {
 M.DeleteSnapshotOutput = {
     type = "structure",
     members = {
-        snapshot = {
-            type = "structure",
-        },
+        snapshot = M.Snapshot,
     },
 }
 
@@ -1464,12 +1424,9 @@ M.DeleteSnapshotCopyConfigurationInput = {
 M.DeleteSnapshotCopyConfigurationOutput = {
     type = "structure",
     members = {
-        snapshotCopyConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        snapshotCopyConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SnapshotCopyConfiguration }),
     },
 }
 
@@ -1488,9 +1445,7 @@ M.DeleteUsageLimitInput = {
 M.DeleteUsageLimitOutput = {
     type = "structure",
     members = {
-        usageLimit = {
-            type = "structure",
-        },
+        usageLimit = M.UsageLimit,
     },
 }
 
@@ -1509,12 +1464,9 @@ M.DeleteWorkgroupInput = {
 M.DeleteWorkgroupOutput = {
     type = "structure",
     members = {
-        workgroup = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        workgroup = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Workgroup }),
     },
 }
 
@@ -1538,7 +1490,7 @@ M.GetCredentialsInput = {
             type = "string",
         },
         durationSeconds = {
-            type = "number",
+            type = "integer",
         },
         workgroupName = {
             type = "string",
@@ -1611,7 +1563,7 @@ M.GetIdentityCenterAuthTokenInput = {
     members = {
         workgroupNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1653,12 +1605,9 @@ M.GetNamespaceInput = {
 M.GetNamespaceOutput = {
     type = "structure",
     members = {
-        namespace = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        namespace = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Namespace }),
     },
 }
 
@@ -1687,7 +1636,7 @@ M.RecoveryPoint = {
             },
         },
         totalSizeInMegaBytes = {
-            type = "number",
+            type = "double",
         },
         namespaceName = {
             type = "string",
@@ -1704,9 +1653,7 @@ M.RecoveryPoint = {
 M.GetRecoveryPointOutput = {
     type = "structure",
     members = {
-        recoveryPoint = {
-            type = "structure",
-        },
+        recoveryPoint = M.RecoveryPoint,
     },
 }
 
@@ -1725,12 +1672,9 @@ M.GetReservationInput = {
 M.GetReservationOutput = {
     type = "structure",
     members = {
-        reservation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        reservation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Reservation }),
     },
 }
 
@@ -1749,12 +1693,9 @@ M.GetReservationOfferingInput = {
 M.GetReservationOfferingOutput = {
     type = "structure",
     members = {
-        reservationOffering = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        reservationOffering = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ReservationOffering }),
     },
 }
 
@@ -1785,9 +1726,7 @@ M.ResourcePolicy = {
 M.GetResourcePolicyOutput = {
     type = "structure",
     members = {
-        resourcePolicy = {
-            type = "structure",
-        },
+        resourcePolicy = M.ResourcePolicy,
     },
 }
 
@@ -1806,9 +1745,7 @@ M.GetScheduledActionInput = {
 M.GetScheduledActionOutput = {
     type = "structure",
     members = {
-        scheduledAction = {
-            type = "structure",
-        },
+        scheduledAction = M.ScheduledActionResponse,
     },
 }
 
@@ -1830,9 +1767,7 @@ M.GetSnapshotInput = {
 M.GetSnapshotOutput = {
     type = "structure",
     members = {
-        snapshot = {
-            type = "structure",
-        },
+        snapshot = M.Snapshot,
     },
 }
 
@@ -1873,10 +1808,10 @@ M.TableRestoreStatus = {
             type = "string",
         },
         progressInMegaBytes = {
-            type = "number",
+            type = "long",
         },
         totalDataInMegaBytes = {
-            type = "number",
+            type = "long",
         },
         sourceDatabaseName = {
             type = "string",
@@ -1905,9 +1840,7 @@ M.TableRestoreStatus = {
 M.GetTableRestoreStatusOutput = {
     type = "structure",
     members = {
-        tableRestoreStatus = {
-            type = "structure",
-        },
+        tableRestoreStatus = M.TableRestoreStatus,
     },
 }
 
@@ -1946,7 +1879,7 @@ M.ServerlessTrack = {
         },
         updateTargets = {
             type = "list",
-            member_type = "structure",
+            member = M.UpdateTarget,
         },
     },
 }
@@ -1954,9 +1887,7 @@ M.ServerlessTrack = {
 M.GetTrackOutput = {
     type = "structure",
     members = {
-        track = {
-            type = "structure",
-        },
+        track = M.ServerlessTrack,
     },
 }
 
@@ -1975,9 +1906,7 @@ M.GetUsageLimitInput = {
 M.GetUsageLimitOutput = {
     type = "structure",
     members = {
-        usageLimit = {
-            type = "structure",
-        },
+        usageLimit = M.UsageLimit,
     },
 }
 
@@ -1996,12 +1925,9 @@ M.GetWorkgroupInput = {
 M.GetWorkgroupOutput = {
     type = "structure",
     members = {
-        workgroup = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        workgroup = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Workgroup }),
     },
 }
 
@@ -2038,8 +1964,9 @@ M.ListCustomDomainAssociationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_query = "maxResults",
             },
         },
@@ -2060,7 +1987,7 @@ M.ListCustomDomainAssociationsOutput = {
         },
         associations = {
             type = "list",
-            member_type = "structure",
+            member = M.Association,
         },
     },
 }
@@ -2078,7 +2005,7 @@ M.ListManagedWorkgroupsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2126,7 +2053,7 @@ M.ListManagedWorkgroupsOutput = {
         },
         managedWorkgroups = {
             type = "list",
-            member_type = "structure",
+            member = M.ManagedWorkgroupListItem,
         },
     },
 }
@@ -2141,8 +2068,9 @@ M.ListNamespacesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_query = "maxResults",
             },
         },
@@ -2157,7 +2085,7 @@ M.ListNamespacesOutput = {
         },
         namespaces = {
             type = "list",
-            member_type = "structure",
+            member = M.Namespace,
             traits = {
                 required = true,
             },
@@ -2175,8 +2103,9 @@ M.ListRecoveryPointsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_query = "maxResults",
             },
         },
@@ -2200,7 +2129,7 @@ M.ListRecoveryPointsOutput = {
     members = {
         recoveryPoints = {
             type = "list",
-            member_type = "structure",
+            member = M.RecoveryPoint,
         },
         nextToken = {
             type = "string",
@@ -2218,8 +2147,9 @@ M.ListReservationOfferingsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_query = "maxResults",
             },
         },
@@ -2231,7 +2161,7 @@ M.ListReservationOfferingsOutput = {
     members = {
         reservationOfferingsList = {
             type = "list",
-            member_type = "structure",
+            member = M.ReservationOffering,
             traits = {
                 required = true,
             },
@@ -2252,8 +2182,9 @@ M.ListReservationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_query = "maxResults",
             },
         },
@@ -2265,7 +2196,7 @@ M.ListReservationsOutput = {
     members = {
         reservationsList = {
             type = "list",
-            member_type = "structure",
+            member = M.Reservation,
             traits = {
                 required = true,
             },
@@ -2286,8 +2217,9 @@ M.ListScheduledActionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_query = "maxResults",
             },
         },
@@ -2317,7 +2249,7 @@ M.ListScheduledActionsOutput = {
         },
         scheduledActions = {
             type = "list",
-            member_type = "structure",
+            member = M.ScheduledActionAssociation,
         },
     },
 }
@@ -2335,8 +2267,9 @@ M.ListSnapshotCopyConfigurationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_query = "maxResults",
             },
         },
@@ -2351,7 +2284,7 @@ M.ListSnapshotCopyConfigurationsOutput = {
         },
         snapshotCopyConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.SnapshotCopyConfiguration,
             traits = {
                 required = true,
             },
@@ -2369,8 +2302,9 @@ M.ListSnapshotsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_query = "maxResults",
             },
         },
@@ -2400,7 +2334,7 @@ M.ListSnapshotsOutput = {
         },
         snapshots = {
             type = "list",
-            member_type = "structure",
+            member = M.Snapshot,
         },
     },
 }
@@ -2415,8 +2349,9 @@ M.ListTableRestoreStatusInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_query = "maxResults",
             },
         },
@@ -2437,7 +2372,7 @@ M.ListTableRestoreStatusOutput = {
         },
         tableRestoreStatuses = {
             type = "list",
-            member_type = "structure",
+            member = M.TableRestoreStatus,
         },
     },
 }
@@ -2459,7 +2394,7 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2474,8 +2409,9 @@ M.ListTracksInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_query = "maxResults",
             },
         },
@@ -2487,7 +2423,7 @@ M.ListTracksOutput = {
     members = {
         tracks = {
             type = "list",
-            member_type = "structure",
+            member = M.ServerlessTrack,
         },
         nextToken = {
             type = "string",
@@ -2511,8 +2447,9 @@ M.ListUsageLimitsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_query = "maxResults",
             },
         },
@@ -2524,7 +2461,7 @@ M.ListUsageLimitsOutput = {
     members = {
         usageLimits = {
             type = "list",
-            member_type = "structure",
+            member = M.UsageLimit,
         },
         nextToken = {
             type = "string",
@@ -2542,8 +2479,9 @@ M.ListWorkgroupsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_query = "maxResults",
             },
         },
@@ -2561,7 +2499,7 @@ M.ListWorkgroupsOutput = {
         },
         workgroups = {
             type = "list",
-            member_type = "structure",
+            member = M.Workgroup,
             traits = {
                 required = true,
             },
@@ -2637,11 +2575,11 @@ M.UpdateNamespaceInput = {
         },
         iamRoles = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         logExports = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         manageAdminPassword = {
             type = "boolean",
@@ -2655,12 +2593,9 @@ M.UpdateNamespaceInput = {
 M.UpdateNamespaceOutput = {
     type = "structure",
     members = {
-        namespace = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        namespace = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Namespace }),
     },
 }
 
@@ -2685,9 +2620,7 @@ M.PutResourcePolicyInput = {
 M.PutResourcePolicyOutput = {
     type = "structure",
     members = {
-        resourcePolicy = {
-            type = "structure",
-        },
+        resourcePolicy = M.ResourcePolicy,
     },
 }
 
@@ -2721,9 +2654,7 @@ M.RestoreFromRecoveryPointOutput = {
         recoveryPointId = {
             type = "string",
         },
-        namespace = {
-            type = "structure",
-        },
+        namespace = M.Namespace,
     },
 }
 
@@ -2784,9 +2715,7 @@ M.RestoreTableFromRecoveryPointInput = {
 M.RestoreTableFromRecoveryPointOutput = {
     type = "structure",
     members = {
-        tableRestoreStatus = {
-            type = "structure",
-        },
+        tableRestoreStatus = M.TableRestoreStatus,
     },
 }
 
@@ -2799,12 +2728,8 @@ M.UpdateScheduledActionInput = {
                 required = true,
             },
         },
-        targetAction = {
-            type = "union",
-        },
-        schedule = {
-            type = "union",
-        },
+        targetAction = M.TargetAction,
+        schedule = M.Schedule,
         roleArn = {
             type = "string",
         },
@@ -2826,9 +2751,7 @@ M.UpdateScheduledActionInput = {
 M.UpdateScheduledActionOutput = {
     type = "structure",
     members = {
-        scheduledAction = {
-            type = "structure",
-        },
+        scheduledAction = M.ScheduledActionResponse,
     },
 }
 
@@ -2874,9 +2797,7 @@ M.RestoreFromSnapshotOutput = {
         ownerAccount = {
             type = "string",
         },
-        namespace = {
-            type = "structure",
-        },
+        namespace = M.Namespace,
     },
 }
 
@@ -2937,9 +2858,7 @@ M.RestoreTableFromSnapshotInput = {
 M.RestoreTableFromSnapshotOutput = {
     type = "structure",
     members = {
-        tableRestoreStatus = {
-            type = "structure",
-        },
+        tableRestoreStatus = M.TableRestoreStatus,
     },
 }
 
@@ -2953,7 +2872,7 @@ M.UpdateSnapshotInput = {
             },
         },
         retentionPeriod = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2961,9 +2880,7 @@ M.UpdateSnapshotInput = {
 M.UpdateSnapshotOutput = {
     type = "structure",
     members = {
-        snapshot = {
-            type = "structure",
-        },
+        snapshot = M.Snapshot,
     },
 }
 
@@ -2977,7 +2894,7 @@ M.UpdateSnapshotCopyConfigurationInput = {
             },
         },
         snapshotRetentionPeriod = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2985,12 +2902,9 @@ M.UpdateSnapshotCopyConfigurationInput = {
 M.UpdateSnapshotCopyConfigurationOutput = {
     type = "structure",
     members = {
-        snapshotCopyConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        snapshotCopyConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SnapshotCopyConfiguration }),
     },
 }
 
@@ -3005,7 +2919,7 @@ M.TagResourceInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -3028,7 +2942,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3095,7 +3009,7 @@ M.UpdateUsageLimitInput = {
             },
         },
         amount = {
-            type = "number",
+            type = "long",
         },
         breachAction = {
             type = "string",
@@ -3106,9 +3020,7 @@ M.UpdateUsageLimitInput = {
 M.UpdateUsageLimitOutput = {
     type = "structure",
     members = {
-        usageLimit = {
-            type = "structure",
-        },
+        usageLimit = M.UsageLimit,
     },
 }
 
@@ -3122,38 +3034,36 @@ M.UpdateWorkgroupInput = {
             },
         },
         baseCapacity = {
-            type = "number",
+            type = "integer",
         },
         enhancedVpcRouting = {
             type = "boolean",
         },
         configParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigParameter,
         },
         publiclyAccessible = {
             type = "boolean",
         },
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         port = {
-            type = "number",
+            type = "integer",
         },
         maxCapacity = {
-            type = "number",
+            type = "integer",
         },
         ipAddressType = {
             type = "string",
         },
-        pricePerformanceTarget = {
-            type = "structure",
-        },
+        pricePerformanceTarget = M.PerformanceTarget,
         trackName = {
             type = "string",
         },
@@ -3166,12 +3076,9 @@ M.UpdateWorkgroupInput = {
 M.UpdateWorkgroupOutput = {
     type = "structure",
     members = {
-        workgroup = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        workgroup = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Workgroup }),
     },
 }
 

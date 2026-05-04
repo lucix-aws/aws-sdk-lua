@@ -68,13 +68,13 @@ M.Actuator = {
         },
         allowedValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         min = {
-            type = "number",
+            type = "double",
         },
         max = {
-            type = "number",
+            type = "double",
         },
         assignedValue = {
             type = "string",
@@ -125,8 +125,9 @@ M.InternalServerException = {
             },
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_header = "Retry-After",
             },
         },
@@ -200,8 +201,9 @@ M.ThrottlingException = {
             type = "string",
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_header = "Retry-After",
             },
         },
@@ -248,7 +250,7 @@ M.ValidationException = {
         },
         fieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -276,13 +278,13 @@ M.Attribute = {
         },
         allowedValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         min = {
-            type = "number",
+            type = "double",
         },
         max = {
-            type = "number",
+            type = "double",
         },
         assignedValue = {
             type = "string",
@@ -325,7 +327,7 @@ M.TimePeriod = {
             },
         },
         value = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -336,24 +338,17 @@ M.TimePeriod = {
 M.PeriodicStateTemplateUpdateStrategy = {
     type = "structure",
     members = {
-        stateTemplateUpdateRate = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        stateTemplateUpdateRate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TimePeriod }),
     },
 }
 
 M.StateTemplateUpdateStrategy = {
     type = "union",
     members = {
-        periodic = {
-            type = "structure",
-        },
-        onChange = {
-            type = "structure",
-        },
+        periodic = M.PeriodicStateTemplateUpdateStrategy,
+        onChange = M.OnChangeStateTemplateUpdateStrategy,
     },
 }
 
@@ -366,12 +361,9 @@ M.StateTemplateAssociation = {
                 required = true,
             },
         },
-        stateTemplateUpdateStrategy = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        stateTemplateUpdateStrategy = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.StateTemplateUpdateStrategy }),
     },
 }
 
@@ -416,19 +408,19 @@ M.CreateVehicleRequestItem = {
         },
         attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         associationBehavior = {
             type = "string",
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         stateTemplates = {
             type = "list",
-            member_type = "structure",
+            member = M.StateTemplateAssociation,
         },
     },
 }
@@ -438,7 +430,7 @@ M.BatchCreateVehicleInput = {
     members = {
         vehicles = {
             type = "list",
-            member_type = "structure",
+            member = M.CreateVehicleRequestItem,
             traits = {
                 required = true,
             },
@@ -481,11 +473,11 @@ M.BatchCreateVehicleOutput = {
     members = {
         vehicles = {
             type = "list",
-            member_type = "structure",
+            member = M.CreateVehicleResponseItem,
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.CreateVehicleError,
         },
     },
 }
@@ -512,23 +504,23 @@ M.UpdateVehicleRequestItem = {
         },
         attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         attributeUpdateMode = {
             type = "string",
         },
         stateTemplatesToAdd = {
             type = "list",
-            member_type = "structure",
+            member = M.StateTemplateAssociation,
         },
         stateTemplatesToRemove = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         stateTemplatesToUpdate = {
             type = "list",
-            member_type = "structure",
+            member = M.StateTemplateAssociation,
         },
     },
 }
@@ -538,7 +530,7 @@ M.BatchUpdateVehicleInput = {
     members = {
         vehicles = {
             type = "list",
-            member_type = "structure",
+            member = M.UpdateVehicleRequestItem,
             traits = {
                 required = true,
             },
@@ -553,7 +545,10 @@ M.UpdateVehicleError = {
             type = "string",
         },
         code = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         message = {
             type = "string",
@@ -578,11 +573,11 @@ M.BatchUpdateVehicleOutput = {
     members = {
         vehicles = {
             type = "list",
-            member_type = "structure",
+            member = M.UpdateVehicleResponseItem,
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.UpdateVehicleError,
         },
     },
 }
@@ -648,13 +643,13 @@ M.ConditionBasedCollectionScheme = {
             },
         },
         minimumTriggerIntervalMs = {
-            type = "number",
+            type = "long",
         },
         triggerMode = {
             type = "string",
         },
         conditionLanguageVersion = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -663,7 +658,7 @@ M.TimeBasedCollectionScheme = {
     type = "structure",
     members = {
         periodMs = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -674,12 +669,8 @@ M.TimeBasedCollectionScheme = {
 M.CollectionScheme = {
     type = "union",
     members = {
-        timeBasedCollectionScheme = {
-            type = "structure",
-        },
-        conditionBasedCollectionScheme = {
-            type = "structure",
-        },
+        timeBasedCollectionScheme = M.TimeBasedCollectionScheme,
+        conditionBasedCollectionScheme = M.ConditionBasedCollectionScheme,
     },
 }
 
@@ -758,15 +749,9 @@ M.TimestreamConfig = {
 M.DataDestinationConfig = {
     type = "union",
     members = {
-        s3Config = {
-            type = "structure",
-        },
-        timestreamConfig = {
-            type = "structure",
-        },
-        mqttTopicConfig = {
-            type = "structure",
-        },
+        s3Config = M.S3Config,
+        timestreamConfig = M.TimestreamConfig,
+        mqttTopicConfig = M.MqttTopicConfig,
     },
 }
 
@@ -786,7 +771,7 @@ M.StorageMaximumSize = {
             },
         },
         value = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -810,7 +795,7 @@ M.StorageMinimumTimeToLive = {
             },
         },
         value = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -821,24 +806,18 @@ M.StorageMinimumTimeToLive = {
 M.DataPartitionStorageOptions = {
     type = "structure",
     members = {
-        maximumSize = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        maximumSize = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.StorageMaximumSize }),
         storageLocation = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        minimumTimeToLive = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        minimumTimeToLive = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.StorageMinimumTimeToLive }),
     },
 }
 
@@ -852,7 +831,7 @@ M.DataPartitionUploadOptions = {
             },
         },
         conditionLanguageVersion = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -866,15 +845,10 @@ M.DataPartition = {
                 required = true,
             },
         },
-        storageOptions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        uploadOptions = {
-            type = "structure",
-        },
+        storageOptions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataPartitionStorageOptions }),
+        uploadOptions = M.DataPartitionUploadOptions,
     },
 }
 
@@ -893,10 +867,10 @@ M.SignalInformation = {
             },
         },
         maxSampleCount = {
-            type = "number",
+            type = "long",
         },
         minimumSamplingIntervalMs = {
-            type = "number",
+            type = "long",
         },
         dataPartitionId = {
             type = "string",
@@ -926,7 +900,7 @@ M.TimeBasedSignalFetchConfig = {
     type = "structure",
     members = {
         executionFrequencyMs = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -937,12 +911,8 @@ M.TimeBasedSignalFetchConfig = {
 M.SignalFetchConfig = {
     type = "union",
     members = {
-        timeBased = {
-            type = "structure",
-        },
-        conditionBased = {
-            type = "structure",
-        },
+        timeBased = M.TimeBasedSignalFetchConfig,
+        conditionBased = M.ConditionBasedSignalFetchConfig,
     },
 }
 
@@ -955,18 +925,15 @@ M.SignalFetchInformation = {
                 required = true,
             },
         },
-        signalFetchConfig = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        signalFetchConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SignalFetchConfig }),
         conditionLanguageVersion = {
-            type = "number",
+            type = "integer",
         },
         actions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1011,7 +978,7 @@ M.CreateCampaignInput = {
             type = "timestamp",
         },
         postTriggerCollectionDuration = {
-            type = "number",
+            type = "long",
         },
         diagnosticsMode = {
             type = "string",
@@ -1023,37 +990,34 @@ M.CreateCampaignInput = {
             type = "string",
         },
         priority = {
-            type = "number",
+            type = "integer",
         },
         signalsToCollect = {
             type = "list",
-            member_type = "structure",
+            member = M.SignalInformation,
         },
-        collectionScheme = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        collectionScheme = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CollectionScheme }),
         dataExtraDimensions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         dataDestinationConfigs = {
             type = "list",
-            member_type = "union",
+            member = M.DataDestinationConfig,
         },
         dataPartitions = {
             type = "list",
-            member_type = "structure",
+            member = M.DataPartition,
         },
         signalsToFetch = {
             type = "list",
-            member_type = "structure",
+            member = M.SignalFetchInformation,
         },
     },
 }
@@ -1143,7 +1107,7 @@ M.GetCampaignOutput = {
             type = "timestamp",
         },
         postTriggerCollectionDuration = {
-            type = "number",
+            type = "long",
         },
         diagnosticsMode = {
             type = "string",
@@ -1155,18 +1119,16 @@ M.GetCampaignOutput = {
             type = "string",
         },
         priority = {
-            type = "number",
+            type = "integer",
         },
         signalsToCollect = {
             type = "list",
-            member_type = "structure",
+            member = M.SignalInformation,
         },
-        collectionScheme = {
-            type = "union",
-        },
+        collectionScheme = M.CollectionScheme,
         dataExtraDimensions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         creationTime = {
             type = "timestamp",
@@ -1176,15 +1138,15 @@ M.GetCampaignOutput = {
         },
         dataDestinationConfigs = {
             type = "list",
-            member_type = "union",
+            member = M.DataDestinationConfig,
         },
         dataPartitions = {
             type = "list",
-            member_type = "structure",
+            member = M.DataPartition,
         },
         signalsToFetch = {
             type = "list",
-            member_type = "structure",
+            member = M.SignalFetchInformation,
         },
     },
 }
@@ -1203,7 +1165,7 @@ M.ListCampaignsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1264,7 +1226,7 @@ M.ListCampaignsOutput = {
     members = {
         campaignSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.CampaignSummary,
         },
         nextToken = {
             type = "string",
@@ -1294,7 +1256,7 @@ M.UpdateCampaignInput = {
         },
         dataExtraDimensions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         action = {
             type = "string",
@@ -1331,15 +1293,15 @@ M.CanDbcDefinition = {
         },
         canDbcFiles = {
             type = "list",
-            member_type = "blob",
+            member = { type = "blob" },
             traits = {
                 required = true,
             },
         },
         signalsMap = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1371,44 +1333,49 @@ M.CanSignal = {
     type = "structure",
     members = {
         messageId = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         isBigEndian = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
         isSigned = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
         startBit = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         offset = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
         factor = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
         length = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -1467,8 +1434,9 @@ M.ObdInterface = {
             },
         },
         requestMessageId = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -1476,16 +1444,28 @@ M.ObdInterface = {
             type = "string",
         },
         pidRequestIntervalSeconds = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         dtcRequestIntervalSeconds = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         useExtendedIds = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         hasTransmissionEcu = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1534,18 +1514,10 @@ M.NetworkInterface = {
                 required = true,
             },
         },
-        canInterface = {
-            type = "structure",
-        },
-        obdInterface = {
-            type = "structure",
-        },
-        vehicleMiddleware = {
-            type = "structure",
-        },
-        customDecodingInterface = {
-            type = "structure",
-        },
+        canInterface = M.CanInterface,
+        obdInterface = M.ObdInterface,
+        vehicleMiddleware = M.VehicleMiddleware,
+        customDecodingInterface = M.CustomDecodingInterface,
     },
 }
 
@@ -1589,13 +1561,13 @@ M.ROS2PrimitiveMessageDefinition = {
             },
         },
         offset = {
-            type = "number",
+            type = "double",
         },
         scaling = {
-            type = "number",
+            type = "double",
         },
         upperBound = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1603,9 +1575,7 @@ M.ROS2PrimitiveMessageDefinition = {
 M.PrimitiveMessageDefinition = {
     type = "union",
     members = {
-        ros2PrimitiveMessageDefinition = {
-            type = "structure",
-        },
+        ros2PrimitiveMessageDefinition = M.ROS2PrimitiveMessageDefinition,
     },
 }
 
@@ -1619,55 +1589,64 @@ M.ObdSignal = {
     type = "structure",
     members = {
         pidResponseLength = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         serviceMode = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         pid = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         scaling = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
         offset = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
         startByte = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         byteLength = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         bitRightShift = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         bitMaskLength = {
-            type = "number",
+            type = "integer",
         },
         isSigned = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
         signalValueType = {
             type = "string",
@@ -1763,11 +1742,11 @@ M.DecoderManifestValidationException = {
     members = {
         invalidSignals = {
             type = "list",
-            member_type = "structure",
+            member = M.InvalidSignalDecoder,
         },
         invalidNetworkInterfaces = {
             type = "list",
-            member_type = "structure",
+            member = M.InvalidNetworkInterface,
         },
         message = {
             type = "string",
@@ -1796,7 +1775,7 @@ M.CreateFleetInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1834,7 +1813,7 @@ M.CreateModelManifestInput = {
         },
         nodes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1847,7 +1826,7 @@ M.CreateModelManifestInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1891,7 +1870,7 @@ M.InvalidSignalsException = {
         },
         invalidSignals = {
             type = "list",
-            member_type = "structure",
+            member = M.InvalidSignal,
         },
     },
 }
@@ -1957,13 +1936,13 @@ M.Sensor = {
         },
         allowedValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         min = {
-            type = "number",
+            type = "double",
         },
         max = {
-            type = "number",
+            type = "double",
         },
         deprecationMessage = {
             type = "string",
@@ -2001,24 +1980,12 @@ M.CustomStruct = {
 M.Node = {
     type = "union",
     members = {
-        branch = {
-            type = "structure",
-        },
-        sensor = {
-            type = "structure",
-        },
-        actuator = {
-            type = "structure",
-        },
-        attribute = {
-            type = "structure",
-        },
-        struct = {
-            type = "structure",
-        },
-        property = {
-            type = "structure",
-        },
+        branch = M.Branch,
+        sensor = M.Sensor,
+        actuator = M.Actuator,
+        attribute = M.Attribute,
+        struct = M.CustomStruct,
+        property = M.CustomProperty,
     },
 }
 
@@ -2037,11 +2004,11 @@ M.CreateSignalCatalogInput = {
         },
         nodes = {
             type = "list",
-            member_type = "union",
+            member = M.Node,
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2070,7 +2037,7 @@ M.InvalidNodeException = {
     members = {
         invalidNodes = {
             type = "list",
-            member_type = "union",
+            member = M.Node,
         },
         reason = {
             type = "string",
@@ -2102,22 +2069,22 @@ M.CreateStateTemplateInput = {
         },
         stateTemplateProperties = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         dataExtraDimensions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         metadataExtraDimensions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2161,19 +2128,19 @@ M.CreateVehicleInput = {
         },
         attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         associationBehavior = {
             type = "string",
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         stateTemplates = {
             type = "list",
-            member_type = "structure",
+            member = M.StateTemplateAssociation,
         },
     },
 }
@@ -2289,9 +2256,7 @@ M.GetDecoderManifestOutput = {
 M.NetworkFileDefinition = {
     type = "union",
     members = {
-        canDbc = {
-            type = "structure",
-        },
+        canDbc = M.CanDbcDefinition,
     },
 }
 
@@ -2307,7 +2272,7 @@ M.ImportDecoderManifestInput = {
         },
         networkFileDefinitions = {
             type = "list",
-            member_type = "union",
+            member = M.NetworkFileDefinition,
             traits = {
                 required = true,
             },
@@ -2350,7 +2315,7 @@ M.ListDecoderManifestNetworkInterfacesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2363,7 +2328,7 @@ M.ListDecoderManifestNetworkInterfacesOutput = {
     members = {
         networkInterfaces = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkInterface,
         },
         nextToken = {
             type = "string",
@@ -2387,7 +2352,7 @@ M.ListDecoderManifestsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2442,7 +2407,7 @@ M.ListDecoderManifestsOutput = {
     members = {
         summaries = {
             type = "list",
-            member_type = "structure",
+            member = M.DecoderManifestSummary,
         },
         nextToken = {
             type = "string",
@@ -2467,7 +2432,7 @@ M.ListDecoderManifestSignalsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2690,7 +2655,7 @@ M.ListFleetsForVehicleInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2703,7 +2668,7 @@ M.ListFleetsForVehicleOutput = {
     members = {
         fleets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -2773,7 +2738,7 @@ M.ListFleetsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2828,7 +2793,7 @@ M.ListFleetsOutput = {
     members = {
         fleetSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.FleetSummary,
         },
         nextToken = {
             type = "string",
@@ -2881,7 +2846,7 @@ M.ListVehiclesInFleetInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2894,7 +2859,7 @@ M.ListVehiclesInFleetOutput = {
     members = {
         vehicles = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -2952,12 +2917,9 @@ M.GetLoggingOptionsInput = {
 M.GetLoggingOptionsOutput = {
     type = "structure",
     members = {
-        cloudWatchLogDelivery = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        cloudWatchLogDelivery = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CloudWatchLogDeliveryOptions }),
     },
 }
 
@@ -3092,15 +3054,10 @@ M.GetRegisterAccountStatusOutput = {
                 required = true,
             },
         },
-        timestreamRegistrationResponse = {
-            type = "structure",
-        },
-        iamRegistrationResponse = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        timestreamRegistrationResponse = M.TimestreamRegistrationResponse,
+        iamRegistrationResponse = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IamRegistrationResponse }),
         creationTime = {
             type = "timestamp",
             traits = {
@@ -3133,25 +3090,46 @@ M.NodeCounts = {
     type = "structure",
     members = {
         totalNodes = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         totalBranches = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         totalSensors = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         totalAttributes = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         totalActuators = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         totalStructs = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         totalProperties = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -3174,9 +3152,7 @@ M.GetSignalCatalogOutput = {
         description = {
             type = "string",
         },
-        nodeCounts = {
-            type = "structure",
-        },
+        nodeCounts = M.NodeCounts,
         creationTime = {
             type = "timestamp",
             traits = {
@@ -3222,15 +3198,15 @@ M.GetStateTemplateOutput = {
         },
         stateTemplateProperties = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         dataExtraDimensions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         metadataExtraDimensions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         creationTime = {
             type = "timestamp",
@@ -3274,12 +3250,12 @@ M.GetVehicleOutput = {
         },
         attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         stateTemplates = {
             type = "list",
-            member_type = "structure",
+            member = M.StateTemplateAssociation,
         },
         creationTime = {
             type = "timestamp",
@@ -3300,7 +3276,7 @@ M.GetVehicleStatusInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3344,7 +3320,7 @@ M.GetVehicleStatusOutput = {
     members = {
         campaigns = {
             type = "list",
-            member_type = "structure",
+            member = M.VehicleStatus,
         },
         nextToken = {
             type = "string",
@@ -3377,12 +3353,10 @@ M.ImportSignalCatalogInput = {
         description = {
             type = "string",
         },
-        vss = {
-            type = "union",
-        },
+        vss = M.FormattedVss,
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3423,7 +3397,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3445,7 +3419,7 @@ M.ListModelManifestNodesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3458,7 +3432,7 @@ M.ListModelManifestNodesOutput = {
     members = {
         nodes = {
             type = "list",
-            member_type = "union",
+            member = M.Node,
         },
         nextToken = {
             type = "string",
@@ -3482,7 +3456,7 @@ M.ListModelManifestsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3534,7 +3508,7 @@ M.ListModelManifestsOutput = {
     members = {
         summaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ModelManifestSummary,
         },
         nextToken = {
             type = "string",
@@ -3557,11 +3531,11 @@ M.UpdateModelManifestInput = {
         },
         nodesToAdd = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nodesToRemove = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         status = {
             type = "string",
@@ -3626,12 +3600,9 @@ M.PutEncryptionConfigurationOutput = {
 M.PutLoggingOptionsInput = {
     type = "structure",
     members = {
-        cloudWatchLogDelivery = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        cloudWatchLogDelivery = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CloudWatchLogDeliveryOptions }),
     },
 }
 
@@ -3660,12 +3631,8 @@ M.TimestreamResources = {
 M.RegisterAccountInput = {
     type = "structure",
     members = {
-        timestreamResources = {
-            type = "structure",
-        },
-        iamResources = {
-            type = "structure",
-        },
+        timestreamResources = M.TimestreamResources,
+        iamResources = M.IamResources,
     },
 }
 
@@ -3678,15 +3645,10 @@ M.RegisterAccountOutput = {
                 required = true,
             },
         },
-        timestreamResources = {
-            type = "structure",
-        },
-        iamResources = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        timestreamResources = M.TimestreamResources,
+        iamResources = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IamResources }),
         creationTime = {
             type = "timestamp",
             traits = {
@@ -3728,7 +3690,7 @@ M.ListSignalCatalogNodesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3747,7 +3709,7 @@ M.ListSignalCatalogNodesOutput = {
     members = {
         nodes = {
             type = "list",
-            member_type = "union",
+            member = M.Node,
         },
         nextToken = {
             type = "string",
@@ -3765,7 +3727,7 @@ M.ListSignalCatalogsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3796,7 +3758,7 @@ M.ListSignalCatalogsOutput = {
     members = {
         summaries = {
             type = "list",
-            member_type = "structure",
+            member = M.SignalCatalogSummary,
         },
         nextToken = {
             type = "string",
@@ -3819,15 +3781,15 @@ M.UpdateSignalCatalogInput = {
         },
         nodesToAdd = {
             type = "list",
-            member_type = "union",
+            member = M.Node,
         },
         nodesToUpdate = {
             type = "list",
-            member_type = "union",
+            member = M.Node,
         },
         nodesToRemove = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3860,7 +3822,7 @@ M.ListStateTemplatesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3906,7 +3868,7 @@ M.ListStateTemplatesOutput = {
     members = {
         summaries = {
             type = "list",
-            member_type = "structure",
+            member = M.StateTemplateSummary,
         },
         nextToken = {
             type = "string",
@@ -3929,19 +3891,19 @@ M.UpdateStateTemplateInput = {
         },
         stateTemplatePropertiesToAdd = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         stateTemplatePropertiesToRemove = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         dataExtraDimensions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         metadataExtraDimensions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3973,7 +3935,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -3997,7 +3959,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -4021,14 +3983,14 @@ M.ListVehiclesInput = {
         },
         attributeNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "attributeNames",
             },
         },
         attributeValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "attributeValues",
             },
@@ -4040,7 +4002,7 @@ M.ListVehiclesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4095,8 +4057,8 @@ M.VehicleSummary = {
         },
         attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -4106,7 +4068,7 @@ M.ListVehiclesOutput = {
     members = {
         vehicleSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.VehicleSummary,
         },
         nextToken = {
             type = "string",
@@ -4132,23 +4094,23 @@ M.UpdateVehicleInput = {
         },
         attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         attributeUpdateMode = {
             type = "string",
         },
         stateTemplatesToAdd = {
             type = "list",
-            member_type = "structure",
+            member = M.StateTemplateAssociation,
         },
         stateTemplatesToRemove = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         stateTemplatesToUpdate = {
             type = "list",
-            member_type = "structure",
+            member = M.StateTemplateAssociation,
         },
     },
 }
@@ -4168,15 +4130,11 @@ M.UpdateVehicleOutput = {
 M.StructuredMessage = {
     type = "union",
     members = {
-        primitiveMessageDefinition = {
-            type = "union",
-        },
-        structuredMessageListDefinition = {
-            type = "structure",
-        },
+        primitiveMessageDefinition = M.PrimitiveMessageDefinition,
+        structuredMessageListDefinition = M.StructuredMessageListDefinition,
         structuredMessageDefinition = {
             type = "list",
-            member_type = "structure",
+            member = M.StructuredMessageFieldNameAndDataTypePair,
         },
     },
 }
@@ -4190,12 +4148,9 @@ M.StructuredMessageFieldNameAndDataTypePair = {
                 required = true,
             },
         },
-        dataType = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        dataType = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.StructuredMessage }),
     },
 }
 
@@ -4208,12 +4163,9 @@ M.StructuredMessageListDefinition = {
                 required = true,
             },
         },
-        memberType = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        memberType = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.StructuredMessage }),
         listType = {
             type = "string",
             traits = {
@@ -4221,7 +4173,10 @@ M.StructuredMessageListDefinition = {
             },
         },
         capacity = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -4235,12 +4190,9 @@ M.MessageSignal = {
                 required = true,
             },
         },
-        structuredMessage = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        structuredMessage = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.StructuredMessage }),
     },
 }
 
@@ -4265,18 +4217,10 @@ M.SignalDecoder = {
                 required = true,
             },
         },
-        canSignal = {
-            type = "structure",
-        },
-        obdSignal = {
-            type = "structure",
-        },
-        messageSignal = {
-            type = "structure",
-        },
-        customDecodingSignal = {
-            type = "structure",
-        },
+        canSignal = M.CanSignal,
+        obdSignal = M.ObdSignal,
+        messageSignal = M.MessageSignal,
+        customDecodingSignal = M.CustomDecodingSignal,
     },
 }
 
@@ -4301,18 +4245,18 @@ M.CreateDecoderManifestInput = {
         },
         signalDecoders = {
             type = "list",
-            member_type = "structure",
+            member = M.SignalDecoder,
         },
         networkInterfaces = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkInterface,
         },
         defaultForUnmappedSignals = {
             type = "string",
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -4322,7 +4266,7 @@ M.ListDecoderManifestSignalsOutput = {
     members = {
         signalDecoders = {
             type = "list",
-            member_type = "structure",
+            member = M.SignalDecoder,
         },
         nextToken = {
             type = "string",
@@ -4345,27 +4289,27 @@ M.UpdateDecoderManifestInput = {
         },
         signalDecodersToAdd = {
             type = "list",
-            member_type = "structure",
+            member = M.SignalDecoder,
         },
         signalDecodersToUpdate = {
             type = "list",
-            member_type = "structure",
+            member = M.SignalDecoder,
         },
         signalDecodersToRemove = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         networkInterfacesToAdd = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkInterface,
         },
         networkInterfacesToUpdate = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkInterface,
         },
         networkInterfacesToRemove = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         status = {
             type = "string",

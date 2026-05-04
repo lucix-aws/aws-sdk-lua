@@ -28,17 +28,14 @@ M.AddApplicationCloudWatchLoggingOptionInput = {
             },
         },
         CurrentApplicationVersionId = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
-        CloudWatchLoggingOption = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        CloudWatchLoggingOption = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CloudWatchLoggingOption }),
     },
 }
 
@@ -100,7 +97,7 @@ M.InputParallelism = {
     type = "structure",
     members = {
         Count = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -126,12 +123,9 @@ M.InputLambdaProcessor = {
 M.InputProcessingConfiguration = {
     type = "structure",
     members = {
-        InputLambdaProcessor = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InputLambdaProcessor = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InputLambdaProcessor }),
     },
 }
 
@@ -189,12 +183,8 @@ M.JSONMappingParameters = {
 M.MappingParameters = {
     type = "structure",
     members = {
-        JSONMappingParameters = {
-            type = "structure",
-        },
-        CSVMappingParameters = {
-            type = "structure",
-        },
+        JSONMappingParameters = M.JSONMappingParameters,
+        CSVMappingParameters = M.CSVMappingParameters,
     },
 }
 
@@ -212,27 +202,22 @@ M.RecordFormat = {
                 required = true,
             },
         },
-        MappingParameters = {
-            type = "structure",
-        },
+        MappingParameters = M.MappingParameters,
     },
 }
 
 M.SourceSchema = {
     type = "structure",
     members = {
-        RecordFormat = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RecordFormat = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RecordFormat }),
         RecordEncoding = {
             type = "string",
         },
         RecordColumns = {
             type = "list",
-            member_type = "structure",
+            member = M.RecordColumn,
             traits = {
                 required = true,
             },
@@ -285,24 +270,13 @@ M.Input = {
                 required = true,
             },
         },
-        InputProcessingConfiguration = {
-            type = "structure",
-        },
-        KinesisStreamsInput = {
-            type = "structure",
-        },
-        KinesisFirehoseInput = {
-            type = "structure",
-        },
-        InputParallelism = {
-            type = "structure",
-        },
-        InputSchema = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InputProcessingConfiguration = M.InputProcessingConfiguration,
+        KinesisStreamsInput = M.KinesisStreamsInput,
+        KinesisFirehoseInput = M.KinesisFirehoseInput,
+        InputParallelism = M.InputParallelism,
+        InputSchema = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SourceSchema }),
     },
 }
 
@@ -316,17 +290,14 @@ M.AddApplicationInputInput = {
             },
         },
         CurrentApplicationVersionId = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
-        Input = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Input = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Input }),
     },
 }
 
@@ -354,7 +325,7 @@ M.AddApplicationInputProcessingConfigurationInput = {
             },
         },
         CurrentApplicationVersionId = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -365,12 +336,9 @@ M.AddApplicationInputProcessingConfigurationInput = {
                 required = true,
             },
         },
-        InputProcessingConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InputProcessingConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InputProcessingConfiguration }),
     },
 }
 
@@ -453,21 +421,12 @@ M.Output = {
                 required = true,
             },
         },
-        KinesisStreamsOutput = {
-            type = "structure",
-        },
-        KinesisFirehoseOutput = {
-            type = "structure",
-        },
-        LambdaOutput = {
-            type = "structure",
-        },
-        DestinationSchema = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        KinesisStreamsOutput = M.KinesisStreamsOutput,
+        KinesisFirehoseOutput = M.KinesisFirehoseOutput,
+        LambdaOutput = M.LambdaOutput,
+        DestinationSchema = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DestinationSchema }),
     },
 }
 
@@ -481,17 +440,14 @@ M.AddApplicationOutputInput = {
             },
         },
         CurrentApplicationVersionId = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
-        Output = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Output = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Output }),
     },
 }
 
@@ -532,15 +488,10 @@ M.ReferenceDataSource = {
                 required = true,
             },
         },
-        S3ReferenceDataSource = {
-            type = "structure",
-        },
-        ReferenceSchema = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        S3ReferenceDataSource = M.S3ReferenceDataSource,
+        ReferenceSchema = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SourceSchema }),
     },
 }
 
@@ -554,17 +505,14 @@ M.AddApplicationReferenceDataSourceInput = {
             },
         },
         CurrentApplicationVersionId = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
-        ReferenceDataSource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ReferenceDataSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ReferenceDataSource }),
     },
 }
 
@@ -617,9 +565,7 @@ M.InputLambdaProcessorDescription = {
 M.InputProcessingConfigurationDescription = {
     type = "structure",
     members = {
-        InputLambdaProcessorDescription = {
-            type = "structure",
-        },
+        InputLambdaProcessorDescription = M.InputLambdaProcessorDescription,
     },
 }
 
@@ -673,26 +619,14 @@ M.InputDescription = {
         },
         InAppStreamNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        InputProcessingConfigurationDescription = {
-            type = "structure",
-        },
-        KinesisStreamsInputDescription = {
-            type = "structure",
-        },
-        KinesisFirehoseInputDescription = {
-            type = "structure",
-        },
-        InputSchema = {
-            type = "structure",
-        },
-        InputParallelism = {
-            type = "structure",
-        },
-        InputStartingPositionConfiguration = {
-            type = "structure",
-        },
+        InputProcessingConfigurationDescription = M.InputProcessingConfigurationDescription,
+        KinesisStreamsInputDescription = M.KinesisStreamsInputDescription,
+        KinesisFirehoseInputDescription = M.KinesisFirehoseInputDescription,
+        InputSchema = M.SourceSchema,
+        InputParallelism = M.InputParallelism,
+        InputStartingPositionConfiguration = M.InputStartingPositionConfiguration,
     },
 }
 
@@ -741,18 +675,10 @@ M.OutputDescription = {
         Name = {
             type = "string",
         },
-        KinesisStreamsOutputDescription = {
-            type = "structure",
-        },
-        KinesisFirehoseOutputDescription = {
-            type = "structure",
-        },
-        LambdaOutputDescription = {
-            type = "structure",
-        },
-        DestinationSchema = {
-            type = "structure",
-        },
+        KinesisStreamsOutputDescription = M.KinesisStreamsOutputDescription,
+        KinesisFirehoseOutputDescription = M.KinesisFirehoseOutputDescription,
+        LambdaOutputDescription = M.LambdaOutputDescription,
+        DestinationSchema = M.DestinationSchema,
     },
 }
 
@@ -795,15 +721,10 @@ M.ReferenceDataSourceDescription = {
                 required = true,
             },
         },
-        S3ReferenceDataSourceDescription = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ReferenceSchema = {
-            type = "structure",
-        },
+        S3ReferenceDataSourceDescription = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3ReferenceDataSourceDescription }),
+        ReferenceSchema = M.SourceSchema,
     },
 }
 
@@ -839,25 +760,25 @@ M.ApplicationDetail = {
         },
         InputDescriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.InputDescription,
         },
         OutputDescriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputDescription,
         },
         ReferenceDataSourceDescriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.ReferenceDataSourceDescription,
         },
         CloudWatchLoggingOptionDescriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.CloudWatchLoggingOptionDescription,
         },
         ApplicationCode = {
             type = "string",
         },
         ApplicationVersionId = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -911,7 +832,7 @@ M.InputParallelismUpdate = {
     type = "structure",
     members = {
         CountUpdate = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -931,27 +852,22 @@ M.InputLambdaProcessorUpdate = {
 M.InputProcessingConfigurationUpdate = {
     type = "structure",
     members = {
-        InputLambdaProcessorUpdate = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InputLambdaProcessorUpdate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InputLambdaProcessorUpdate }),
     },
 }
 
 M.InputSchemaUpdate = {
     type = "structure",
     members = {
-        RecordFormatUpdate = {
-            type = "structure",
-        },
+        RecordFormatUpdate = M.RecordFormat,
         RecordEncodingUpdate = {
             type = "string",
         },
         RecordColumnUpdates = {
             type = "list",
-            member_type = "structure",
+            member = M.RecordColumn,
         },
     },
 }
@@ -992,21 +908,11 @@ M.InputUpdate = {
         NamePrefixUpdate = {
             type = "string",
         },
-        InputProcessingConfigurationUpdate = {
-            type = "structure",
-        },
-        KinesisStreamsInputUpdate = {
-            type = "structure",
-        },
-        KinesisFirehoseInputUpdate = {
-            type = "structure",
-        },
-        InputSchemaUpdate = {
-            type = "structure",
-        },
-        InputParallelismUpdate = {
-            type = "structure",
-        },
+        InputProcessingConfigurationUpdate = M.InputProcessingConfigurationUpdate,
+        KinesisStreamsInputUpdate = M.KinesisStreamsInputUpdate,
+        KinesisFirehoseInputUpdate = M.KinesisFirehoseInputUpdate,
+        InputSchemaUpdate = M.InputSchemaUpdate,
+        InputParallelismUpdate = M.InputParallelismUpdate,
     },
 }
 
@@ -1058,18 +964,10 @@ M.OutputUpdate = {
         NameUpdate = {
             type = "string",
         },
-        KinesisStreamsOutputUpdate = {
-            type = "structure",
-        },
-        KinesisFirehoseOutputUpdate = {
-            type = "structure",
-        },
-        LambdaOutputUpdate = {
-            type = "structure",
-        },
-        DestinationSchemaUpdate = {
-            type = "structure",
-        },
+        KinesisStreamsOutputUpdate = M.KinesisStreamsOutputUpdate,
+        KinesisFirehoseOutputUpdate = M.KinesisFirehoseOutputUpdate,
+        LambdaOutputUpdate = M.LambdaOutputUpdate,
+        DestinationSchemaUpdate = M.DestinationSchema,
     },
 }
 
@@ -1100,12 +998,8 @@ M.ReferenceDataSourceUpdate = {
         TableNameUpdate = {
             type = "string",
         },
-        S3ReferenceDataSourceUpdate = {
-            type = "structure",
-        },
-        ReferenceSchemaUpdate = {
-            type = "structure",
-        },
+        S3ReferenceDataSourceUpdate = M.S3ReferenceDataSourceUpdate,
+        ReferenceSchemaUpdate = M.SourceSchema,
     },
 }
 
@@ -1114,22 +1008,22 @@ M.ApplicationUpdate = {
     members = {
         InputUpdates = {
             type = "list",
-            member_type = "structure",
+            member = M.InputUpdate,
         },
         ApplicationCodeUpdate = {
             type = "string",
         },
         OutputUpdates = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputUpdate,
         },
         ReferenceDataSourceUpdates = {
             type = "list",
-            member_type = "structure",
+            member = M.ReferenceDataSourceUpdate,
         },
         CloudWatchLoggingOptionUpdates = {
             type = "list",
-            member_type = "structure",
+            member = M.CloudWatchLoggingOptionUpdate,
         },
     },
 }
@@ -1163,22 +1057,22 @@ M.CreateApplicationInput = {
         },
         Inputs = {
             type = "list",
-            member_type = "structure",
+            member = M.Input,
         },
         Outputs = {
             type = "list",
-            member_type = "structure",
+            member = M.Output,
         },
         CloudWatchLoggingOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.CloudWatchLoggingOption,
         },
         ApplicationCode = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1186,12 +1080,9 @@ M.CreateApplicationInput = {
 M.CreateApplicationOutput = {
     type = "structure",
     members = {
-        ApplicationSummary = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ApplicationSummary = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ApplicationSummary }),
     },
 }
 
@@ -1247,7 +1138,7 @@ M.DeleteApplicationCloudWatchLoggingOptionInput = {
             },
         },
         CurrentApplicationVersionId = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -1275,7 +1166,7 @@ M.DeleteApplicationInputProcessingConfigurationInput = {
             },
         },
         CurrentApplicationVersionId = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -1303,7 +1194,7 @@ M.DeleteApplicationOutputInput = {
             },
         },
         CurrentApplicationVersionId = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -1331,7 +1222,7 @@ M.DeleteApplicationReferenceDataSourceInput = {
             },
         },
         CurrentApplicationVersionId = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -1364,12 +1255,9 @@ M.DescribeApplicationInput = {
 M.DescribeApplicationOutput = {
     type = "structure",
     members = {
-        ApplicationDetail = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ApplicationDetail = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ApplicationDetail }),
     },
 }
 
@@ -1406,35 +1294,27 @@ M.DiscoverInputSchemaInput = {
         RoleARN = {
             type = "string",
         },
-        InputStartingPositionConfiguration = {
-            type = "structure",
-        },
-        S3Configuration = {
-            type = "structure",
-        },
-        InputProcessingConfiguration = {
-            type = "structure",
-        },
+        InputStartingPositionConfiguration = M.InputStartingPositionConfiguration,
+        S3Configuration = M.S3Configuration,
+        InputProcessingConfiguration = M.InputProcessingConfiguration,
     },
 }
 
 M.DiscoverInputSchemaOutput = {
     type = "structure",
     members = {
-        InputSchema = {
-            type = "structure",
-        },
+        InputSchema = M.SourceSchema,
         ParsedInputRecords = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
         },
         ProcessedInputRecords = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RawInputRecords = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1468,11 +1348,11 @@ M.UnableToDetectSchemaException = {
         },
         RawInputRecords = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ProcessedInputRecords = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1486,12 +1366,9 @@ M.InputConfiguration = {
                 required = true,
             },
         },
-        InputStartingPositionConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InputStartingPositionConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InputStartingPositionConfiguration }),
     },
 }
 
@@ -1509,7 +1386,7 @@ M.ListApplicationsInput = {
     type = "structure",
     members = {
         Limit = {
-            type = "number",
+            type = "integer",
         },
         ExclusiveStartApplicationName = {
             type = "string",
@@ -1522,7 +1399,7 @@ M.ListApplicationsOutput = {
     members = {
         ApplicationSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ApplicationSummary,
             traits = {
                 required = true,
             },
@@ -1553,7 +1430,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1569,7 +1446,7 @@ M.StartApplicationInput = {
         },
         InputConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.InputConfiguration,
             traits = {
                 required = true,
             },
@@ -1608,7 +1485,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -1631,7 +1508,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1653,17 +1530,14 @@ M.UpdateApplicationInput = {
             },
         },
         CurrentApplicationVersionId = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
-        ApplicationUpdate = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ApplicationUpdate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ApplicationUpdate }),
     },
 }
 

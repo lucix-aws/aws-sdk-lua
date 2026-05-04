@@ -19,7 +19,7 @@ M.CellOutput = {
         },
         Cells = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "cells",
                 required = true,
@@ -27,7 +27,7 @@ M.CellOutput = {
         },
         ParentReadinessScopes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "parentReadinessScopes",
                 required = true,
@@ -35,8 +35,8 @@ M.CellOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -108,8 +108,8 @@ M.ReadinessCheckOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -160,7 +160,7 @@ M.RecoveryGroupOutput = {
     members = {
         Cells = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "cells",
                 required = true,
@@ -182,8 +182,8 @@ M.RecoveryGroupOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -224,18 +224,12 @@ M.R53ResourceRecord = {
 M.TargetResource = {
     type = "structure",
     members = {
-        NLBResource = {
-            type = "structure",
-            traits = {
-                json_name = "nLBResource",
-            },
-        },
-        R53Resource = {
-            type = "structure",
-            traits = {
-                json_name = "r53Resource",
-            },
-        },
+        NLBResource = setmetatable({ traits = {
+            json_name = "nLBResource",
+        } }, { __index = M.NLBResource }),
+        R53Resource = setmetatable({ traits = {
+            json_name = "r53Resource",
+        } }, { __index = M.R53ResourceRecord }),
     },
 }
 
@@ -266,12 +260,9 @@ M.DNSTargetResource = {
                 json_name = "recordType",
             },
         },
-        TargetResource = {
-            type = "structure",
-            traits = {
-                json_name = "targetResource",
-            },
-        },
+        TargetResource = setmetatable({ traits = {
+            json_name = "targetResource",
+        } }, { __index = M.TargetResource }),
     },
 }
 
@@ -284,15 +275,12 @@ M.Resource = {
                 json_name = "componentId",
             },
         },
-        DnsTargetResource = {
-            type = "structure",
-            traits = {
-                json_name = "dnsTargetResource",
-            },
-        },
+        DnsTargetResource = setmetatable({ traits = {
+            json_name = "dnsTargetResource",
+        } }, { __index = M.DNSTargetResource }),
         ReadinessScopes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "readinessScopes",
             },
@@ -364,7 +352,7 @@ M.ResourceSetOutput = {
         },
         Resources = {
             type = "list",
-            member_type = "structure",
+            member = M.Resource,
             traits = {
                 json_name = "resources",
                 required = true,
@@ -372,8 +360,8 @@ M.ResourceSetOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -393,7 +381,7 @@ M.RuleResult = {
         },
         Messages = {
             type = "list",
-            member_type = "structure",
+            member = M.Message,
             traits = {
                 json_name = "messages",
                 required = true,
@@ -454,15 +442,15 @@ M.CreateCellInput = {
         },
         Cells = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "cells",
             },
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -487,22 +475,22 @@ M.CreateCellOutput = {
         },
         Cells = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "cells",
             },
         },
         ParentReadinessScopes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "parentReadinessScopes",
             },
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -593,8 +581,8 @@ M.CreateReadinessCheckInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -625,8 +613,8 @@ M.CreateReadinessCheckOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -639,7 +627,7 @@ M.CreateRecoveryGroupInput = {
     members = {
         Cells = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "cells",
             },
@@ -653,8 +641,8 @@ M.CreateRecoveryGroupInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -667,7 +655,7 @@ M.CreateRecoveryGroupOutput = {
     members = {
         Cells = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "cells",
             },
@@ -686,8 +674,8 @@ M.CreateRecoveryGroupOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -714,7 +702,7 @@ M.CreateResourceSetInput = {
         },
         Resources = {
             type = "list",
-            member_type = "structure",
+            member = M.Resource,
             traits = {
                 json_name = "resources",
                 required = true,
@@ -722,8 +710,8 @@ M.CreateResourceSetInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -754,15 +742,15 @@ M.CreateResourceSetOutput = {
         },
         Resources = {
             type = "list",
-            member_type = "structure",
+            member = M.Resource,
             traits = {
                 json_name = "resources",
             },
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -872,7 +860,7 @@ M.GetArchitectureRecommendationsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -910,7 +898,7 @@ M.GetArchitectureRecommendationsOutput = {
         },
         Recommendations = {
             type = "list",
-            member_type = "structure",
+            member = M.Recommendation,
             traits = {
                 json_name = "recommendations",
             },
@@ -948,22 +936,22 @@ M.GetCellOutput = {
         },
         Cells = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "cells",
             },
         },
         ParentReadinessScopes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "parentReadinessScopes",
             },
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -982,7 +970,7 @@ M.GetCellReadinessSummaryInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1013,7 +1001,7 @@ M.GetCellReadinessSummaryOutput = {
         },
         ReadinessChecks = {
             type = "list",
-            member_type = "structure",
+            member = M.ReadinessCheckSummary,
             traits = {
                 json_name = "readinessChecks",
             },
@@ -1057,8 +1045,8 @@ M.GetReadinessCheckOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -1070,7 +1058,7 @@ M.GetReadinessCheckResourceStatusInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1115,7 +1103,7 @@ M.GetReadinessCheckResourceStatusOutput = {
         },
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleResult,
             traits = {
                 json_name = "rules",
             },
@@ -1127,7 +1115,7 @@ M.GetReadinessCheckStatusInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1153,7 +1141,7 @@ M.GetReadinessCheckStatusOutput = {
     members = {
         Messages = {
             type = "list",
-            member_type = "structure",
+            member = M.Message,
             traits = {
                 json_name = "messages",
             },
@@ -1172,7 +1160,7 @@ M.GetReadinessCheckStatusOutput = {
         },
         Resources = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceResult,
             traits = {
                 json_name = "resources",
             },
@@ -1198,7 +1186,7 @@ M.GetRecoveryGroupOutput = {
     members = {
         Cells = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "cells",
             },
@@ -1217,8 +1205,8 @@ M.GetRecoveryGroupOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -1230,7 +1218,7 @@ M.GetRecoveryGroupReadinessSummaryInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1268,7 +1256,7 @@ M.GetRecoveryGroupReadinessSummaryOutput = {
         },
         ReadinessChecks = {
             type = "list",
-            member_type = "structure",
+            member = M.ReadinessCheckSummary,
             traits = {
                 json_name = "readinessChecks",
             },
@@ -1312,15 +1300,15 @@ M.GetResourceSetOutput = {
         },
         Resources = {
             type = "list",
-            member_type = "structure",
+            member = M.Resource,
             traits = {
                 json_name = "resources",
             },
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -1332,7 +1320,7 @@ M.ListCellsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1351,7 +1339,7 @@ M.ListCellsOutput = {
     members = {
         Cells = {
             type = "list",
-            member_type = "structure",
+            member = M.CellOutput,
             traits = {
                 json_name = "cells",
             },
@@ -1369,7 +1357,7 @@ M.ListCrossAccountAuthorizationsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1388,7 +1376,7 @@ M.ListCrossAccountAuthorizationsOutput = {
     members = {
         CrossAccountAuthorizations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "crossAccountAuthorizations",
             },
@@ -1406,7 +1394,7 @@ M.ListReadinessChecksInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1431,7 +1419,7 @@ M.ListReadinessChecksOutput = {
         },
         ReadinessChecks = {
             type = "list",
-            member_type = "structure",
+            member = M.ReadinessCheckOutput,
             traits = {
                 json_name = "readinessChecks",
             },
@@ -1443,7 +1431,7 @@ M.ListRecoveryGroupsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1468,7 +1456,7 @@ M.ListRecoveryGroupsOutput = {
         },
         RecoveryGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.RecoveryGroupOutput,
             traits = {
                 json_name = "recoveryGroups",
             },
@@ -1480,7 +1468,7 @@ M.ListResourceSetsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1505,7 +1493,7 @@ M.ListResourceSetsOutput = {
         },
         ResourceSets = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceSetOutput,
             traits = {
                 json_name = "resourceSets",
             },
@@ -1517,7 +1505,7 @@ M.ListRulesInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1548,7 +1536,7 @@ M.ListRulesOperationOutput = {
         },
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.ListRulesOutput,
             traits = {
                 json_name = "rules",
             },
@@ -1574,8 +1562,8 @@ M.ListTagsForResourcesOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -1595,8 +1583,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
                 required = true,
@@ -1621,7 +1609,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -1646,7 +1634,7 @@ M.UpdateCellInput = {
         },
         Cells = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "cells",
                 required = true,
@@ -1672,22 +1660,22 @@ M.UpdateCellOutput = {
         },
         Cells = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "cells",
             },
         },
         ParentReadinessScopes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "parentReadinessScopes",
             },
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -1738,8 +1726,8 @@ M.UpdateReadinessCheckOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -1752,7 +1740,7 @@ M.UpdateRecoveryGroupInput = {
     members = {
         Cells = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "cells",
                 required = true,
@@ -1773,7 +1761,7 @@ M.UpdateRecoveryGroupOutput = {
     members = {
         Cells = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "cells",
             },
@@ -1792,8 +1780,8 @@ M.UpdateRecoveryGroupOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -1820,7 +1808,7 @@ M.UpdateResourceSetInput = {
         },
         Resources = {
             type = "list",
-            member_type = "structure",
+            member = M.Resource,
             traits = {
                 json_name = "resources",
                 required = true,
@@ -1852,15 +1840,15 @@ M.UpdateResourceSetOutput = {
         },
         Resources = {
             type = "list",
-            member_type = "structure",
+            member = M.Resource,
             traits = {
                 json_name = "resources",
             },
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },

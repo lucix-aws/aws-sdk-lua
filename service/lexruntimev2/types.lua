@@ -17,13 +17,13 @@ M.ActiveContextTimeToLive = {
     type = "structure",
     members = {
         timeToLiveInSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         turnsToLive = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -40,16 +40,13 @@ M.ActiveContext = {
                 required = true,
             },
         },
-        timeToLive = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        timeToLive = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActiveContextTimeToLive }),
         contextAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -73,7 +70,10 @@ M.AudioInputEvent = {
             type = "string",
         },
         clientTimestampMillis = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -270,7 +270,7 @@ M.Value = {
         },
         resolvedValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -293,7 +293,10 @@ M.ConfidenceScore = {
     type = "structure",
     members = {
         score = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -309,16 +312,28 @@ M.SentimentScore = {
     type = "structure",
     members = {
         positive = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         negative = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         neutral = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         mixed = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -329,9 +344,7 @@ M.SentimentResponse = {
         sentiment = {
             type = "string",
         },
-        sentimentScore = {
-            type = "structure",
-        },
+        sentimentScore = M.SentimentScore,
     },
 }
 
@@ -377,7 +390,7 @@ M.ImageResponseCard = {
         },
         buttons = {
             type = "list",
-            member_type = "structure",
+            member = M.Button,
         },
     },
 }
@@ -394,9 +407,7 @@ M.Message = {
                 required = true,
             },
         },
-        imageResponseCard = {
-            type = "structure",
-        },
+        imageResponseCard = M.ImageResponseCard,
     },
 }
 
@@ -489,6 +500,7 @@ M.PutSessionOutput = {
         audioStream = {
             type = "blob",
             traits = {
+                default = "",
                 http_payload = true,
             },
         },
@@ -569,6 +581,7 @@ M.RecognizeUtteranceInput = {
         inputStream = {
             type = "blob",
             traits = {
+                default = "",
                 http_payload = true,
             },
         },
@@ -629,6 +642,7 @@ M.RecognizeUtteranceOutput = {
         audioStream = {
             type = "blob",
             traits = {
+                default = "",
                 http_payload = true,
             },
         },
@@ -653,7 +667,10 @@ M.DisconnectionEvent = {
             type = "string",
         },
         clientTimestampMillis = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -671,7 +688,10 @@ M.DTMFInputEvent = {
             type = "string",
         },
         clientTimestampMillis = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -683,7 +703,10 @@ M.PlaybackCompletionEvent = {
             type = "string",
         },
         clientTimestampMillis = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -701,7 +724,10 @@ M.TextInputEvent = {
             type = "string",
         },
         clientTimestampMillis = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -747,7 +773,7 @@ M.TextResponseEvent = {
     members = {
         messages = {
             type = "list",
-            member_type = "structure",
+            member = M.Message,
         },
         eventId = {
             type = "string",
@@ -776,9 +802,7 @@ M.ElicitSubSlot = {
                 required = true,
             },
         },
-        subSlotToElicit = {
-            type = "structure",
-        },
+        subSlotToElicit = M.ElicitSubSlot,
     },
 }
 
@@ -797,9 +821,7 @@ M.DialogAction = {
         slotElicitationStyle = {
             type = "string",
         },
-        subSlotToElicit = {
-            type = "structure",
-        },
+        subSlotToElicit = M.ElicitSubSlot,
     },
 }
 
@@ -808,12 +830,12 @@ M.RuntimeHintDetails = {
     members = {
         runtimeHintValues = {
             type = "list",
-            member_type = "structure",
+            member = M.RuntimeHintValue,
         },
         subSlotHints = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.RuntimeHintDetails,
         },
     },
 }
@@ -823,8 +845,8 @@ M.RuntimeHints = {
     members = {
         slotHints = {
             type = "map",
-            key_type = "string",
-            value_type = "map",
+            key = { type = "string" },
+            value = { type = "map" },
         },
     },
 }
@@ -832,20 +854,18 @@ M.RuntimeHints = {
 M.Slot = {
     type = "structure",
     members = {
-        value = {
-            type = "structure",
-        },
+        value = M.Value,
         shape = {
             type = "string",
         },
         values = {
             type = "list",
-            member_type = "structure",
+            member = M.Slot,
         },
         subSlots = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.Slot,
         },
     },
 }
@@ -861,8 +881,8 @@ M.Intent = {
         },
         slots = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.Slot,
         },
         state = {
             type = "string",
@@ -876,15 +896,9 @@ M.Intent = {
 M.Interpretation = {
     type = "structure",
     members = {
-        nluConfidence = {
-            type = "structure",
-        },
-        sentimentResponse = {
-            type = "structure",
-        },
-        intent = {
-            type = "structure",
-        },
+        nluConfidence = M.ConfidenceScore,
+        sentimentResponse = M.SentimentResponse,
+        intent = M.Intent,
         interpretationSource = {
             type = "string",
         },
@@ -894,27 +908,21 @@ M.Interpretation = {
 M.SessionState = {
     type = "structure",
     members = {
-        dialogAction = {
-            type = "structure",
-        },
-        intent = {
-            type = "structure",
-        },
+        dialogAction = M.DialogAction,
+        intent = M.Intent,
         activeContexts = {
             type = "list",
-            member_type = "structure",
+            member = M.ActiveContext,
         },
         sessionAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         originatingRequestId = {
             type = "string",
         },
-        runtimeHints = {
-            type = "structure",
-        },
+        runtimeHints = M.RuntimeHints,
     },
 }
 
@@ -923,8 +931,8 @@ M.ConfigurationEvent = {
     members = {
         requestAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         responseContentType = {
             type = "string",
@@ -932,21 +940,25 @@ M.ConfigurationEvent = {
                 required = true,
             },
         },
-        sessionState = {
-            type = "structure",
-        },
+        sessionState = M.SessionState,
         welcomeMessages = {
             type = "list",
-            member_type = "structure",
+            member = M.Message,
         },
         disablePlayback = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         eventId = {
             type = "string",
         },
         clientTimestampMillis = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -984,18 +996,15 @@ M.PutSessionInput = {
         },
         messages = {
             type = "list",
-            member_type = "structure",
+            member = M.Message,
         },
-        sessionState = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        sessionState = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SessionState }),
         requestAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         responseContentType = {
             type = "string",
@@ -1043,13 +1052,11 @@ M.RecognizeTextInput = {
                 required = true,
             },
         },
-        sessionState = {
-            type = "structure",
-        },
+        sessionState = M.SessionState,
         requestAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1057,24 +1064,12 @@ M.RecognizeTextInput = {
 M.StartConversationRequestEventStream = {
     type = "union",
     members = {
-        ConfigurationEvent = {
-            type = "structure",
-        },
-        AudioInputEvent = {
-            type = "structure",
-        },
-        DTMFInputEvent = {
-            type = "structure",
-        },
-        TextInputEvent = {
-            type = "structure",
-        },
-        PlaybackCompletionEvent = {
-            type = "structure",
-        },
-        DisconnectionEvent = {
-            type = "structure",
-        },
+        ConfigurationEvent = M.ConfigurationEvent,
+        AudioInputEvent = M.AudioInputEvent,
+        DTMFInputEvent = M.DTMFInputEvent,
+        TextInputEvent = M.TextInputEvent,
+        PlaybackCompletionEvent = M.PlaybackCompletionEvent,
+        DisconnectionEvent = M.DisconnectionEvent,
     },
 }
 
@@ -1115,13 +1110,10 @@ M.StartConversationInput = {
                 http_header = "x-amz-lex-conversation-mode",
             },
         },
-        requestEventStream = {
-            type = "union",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        requestEventStream = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.StartConversationRequestEventStream }),
     },
 }
 
@@ -1133,15 +1125,13 @@ M.GetSessionOutput = {
         },
         messages = {
             type = "list",
-            member_type = "structure",
+            member = M.Message,
         },
         interpretations = {
             type = "list",
-            member_type = "structure",
+            member = M.Interpretation,
         },
-        sessionState = {
-            type = "structure",
-        },
+        sessionState = M.SessionState,
     },
 }
 
@@ -1153,15 +1143,13 @@ M.IntentResultEvent = {
         },
         interpretations = {
             type = "list",
-            member_type = "structure",
+            member = M.Interpretation,
         },
-        sessionState = {
-            type = "structure",
-        },
+        sessionState = M.SessionState,
         requestAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         sessionId = {
             type = "string",
@@ -1169,9 +1157,7 @@ M.IntentResultEvent = {
         eventId = {
             type = "string",
         },
-        recognizedBotMember = {
-            type = "structure",
-        },
+        recognizedBotMember = M.RecognizedBotMember,
     },
 }
 
@@ -1180,86 +1166,51 @@ M.RecognizeTextOutput = {
     members = {
         messages = {
             type = "list",
-            member_type = "structure",
+            member = M.Message,
         },
-        sessionState = {
-            type = "structure",
-        },
+        sessionState = M.SessionState,
         interpretations = {
             type = "list",
-            member_type = "structure",
+            member = M.Interpretation,
         },
         requestAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         sessionId = {
             type = "string",
         },
-        recognizedBotMember = {
-            type = "structure",
-        },
+        recognizedBotMember = M.RecognizedBotMember,
     },
 }
 
 M.StartConversationResponseEventStream = {
     type = "union",
     members = {
-        PlaybackInterruptionEvent = {
-            type = "structure",
-        },
-        TranscriptEvent = {
-            type = "structure",
-        },
-        IntentResultEvent = {
-            type = "structure",
-        },
-        TextResponseEvent = {
-            type = "structure",
-        },
-        AudioResponseEvent = {
-            type = "structure",
-        },
-        HeartbeatEvent = {
-            type = "structure",
-        },
-        AccessDeniedException = {
-            type = "structure",
-        },
-        ResourceNotFoundException = {
-            type = "structure",
-        },
-        ValidationException = {
-            type = "structure",
-        },
-        ThrottlingException = {
-            type = "structure",
-        },
-        InternalServerException = {
-            type = "structure",
-        },
-        ConflictException = {
-            type = "structure",
-        },
-        DependencyFailedException = {
-            type = "structure",
-        },
-        BadGatewayException = {
-            type = "structure",
-        },
+        PlaybackInterruptionEvent = M.PlaybackInterruptionEvent,
+        TranscriptEvent = M.TranscriptEvent,
+        IntentResultEvent = M.IntentResultEvent,
+        TextResponseEvent = M.TextResponseEvent,
+        AudioResponseEvent = M.AudioResponseEvent,
+        HeartbeatEvent = M.HeartbeatEvent,
+        AccessDeniedException = M.AccessDeniedException,
+        ResourceNotFoundException = M.ResourceNotFoundException,
+        ValidationException = M.ValidationException,
+        ThrottlingException = M.ThrottlingException,
+        InternalServerException = M.InternalServerException,
+        ConflictException = M.ConflictException,
+        DependencyFailedException = M.DependencyFailedException,
+        BadGatewayException = M.BadGatewayException,
     },
 }
 
 M.StartConversationOutput = {
     type = "structure",
     members = {
-        responseEventStream = {
-            type = "union",
-            traits = {
-                http_payload = true,
-            },
-        },
+        responseEventStream = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.StartConversationResponseEventStream }),
     },
 }
 

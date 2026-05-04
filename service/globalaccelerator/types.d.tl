@@ -1541,9 +1541,9 @@ local record InvalidArgumentException
     Message: string
 end
 
-local type IpAddressType = "IPV4" | "DUAL_STACK"
-
 local type HealthCheckProtocol = "TCP" | "HTTP" | "HTTPS"
+
+local type IpAddressType = "IPV4" | "DUAL_STACK"
 
 local type Protocol = "TCP" | "UDP"
 

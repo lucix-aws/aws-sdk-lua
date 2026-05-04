@@ -16,9 +16,9 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "ResourceGroupsTaggingAPI_20170126"
-    cfg.signing_name = "resourcegroupstaggingapi_20170126"
+    cfg.signing_name = "tagging"
     if not cfg.protocol then
-        cfg.protocol = awsjson_protocol.new("1.1")
+        cfg.protocol = awsjson_protocol.new({ version = "1.1", service_id = cfg.service_id })
     end
     if not cfg.endpoint_provider then
         cfg.endpoint_provider = function(params)

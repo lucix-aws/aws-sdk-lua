@@ -87,9 +87,9 @@ local record NumberExportsLimitExceeded
     message: string
 end
 
-local type S3SseAlgorithm = "AES256" | "KMS"
-
 local type ExportStatus = "PENDING" | "IN_PROGRESS" | "SUCCEEDED" | "FAILED"
+
+local type S3SseAlgorithm = "AES256" | "KMS"
 
 local record M
     GetExportInput: GetExportInput

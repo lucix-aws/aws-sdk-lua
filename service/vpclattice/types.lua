@@ -66,8 +66,8 @@ M.CreateAccessLogSubscriptionInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -122,7 +122,7 @@ M.InternalServerException = {
             },
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -172,7 +172,7 @@ M.ThrottlingException = {
             type = "string",
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -223,7 +223,7 @@ M.ValidationException = {
         },
         fieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -320,7 +320,7 @@ M.ListAccessLogSubscriptionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -390,7 +390,7 @@ M.ListAccessLogSubscriptionsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessLogSubscriptionSummary,
             traits = {
                 required = true,
             },
@@ -479,7 +479,7 @@ M.FixedResponseAction = {
     type = "structure",
     members = {
         statusCode = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -497,7 +497,7 @@ M.WeightedTargetGroup = {
             },
         },
         weight = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -507,7 +507,7 @@ M.ForwardAction = {
     members = {
         targetGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.WeightedTargetGroup,
             traits = {
                 required = true,
             },
@@ -518,12 +518,8 @@ M.ForwardAction = {
 M.RuleAction = {
     type = "union",
     members = {
-        forward = {
-            type = "structure",
-        },
-        fixedResponse = {
-            type = "structure",
-        },
+        forward = M.ForwardAction,
+        fixedResponse = M.FixedResponseAction,
     },
 }
 
@@ -551,12 +547,9 @@ M.HeaderMatch = {
                 required = true,
             },
         },
-        match = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        match = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HeaderMatchType }),
         caseSensitive = {
             type = "boolean",
         },
@@ -578,12 +571,9 @@ M.PathMatchType = {
 M.PathMatch = {
     type = "structure",
     members = {
-        match = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        match = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PathMatchType }),
         caseSensitive = {
             type = "boolean",
         },
@@ -596,12 +586,10 @@ M.HttpMatch = {
         method = {
             type = "string",
         },
-        pathMatch = {
-            type = "structure",
-        },
+        pathMatch = M.PathMatch,
         headerMatches = {
             type = "list",
-            member_type = "structure",
+            member = M.HeaderMatch,
         },
     },
 }
@@ -609,9 +597,7 @@ M.HttpMatch = {
 M.RuleMatch = {
     type = "union",
     members = {
-        httpMatch = {
-            type = "structure",
-        },
+        httpMatch = M.HttpMatch,
     },
 }
 
@@ -624,15 +610,11 @@ M.RuleUpdate = {
                 required = true,
             },
         },
-        match = {
-            type = "union",
-        },
+        match = M.RuleMatch,
         priority = {
-            type = "number",
+            type = "integer",
         },
-        action = {
-            type = "union",
-        },
+        action = M.RuleAction,
     },
 }
 
@@ -655,7 +637,7 @@ M.BatchUpdateRuleInput = {
         },
         rules = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleUpdate,
             traits = {
                 required = true,
             },
@@ -678,15 +660,11 @@ M.RuleUpdateSuccess = {
         isDefault = {
             type = "boolean",
         },
-        match = {
-            type = "union",
-        },
+        match = M.RuleMatch,
         priority = {
-            type = "number",
+            type = "integer",
         },
-        action = {
-            type = "union",
-        },
+        action = M.RuleAction,
     },
 }
 
@@ -710,11 +688,11 @@ M.BatchUpdateRuleOutput = {
     members = {
         successful = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleUpdateSuccess,
         },
         unsuccessful = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleUpdateFailure,
         },
     },
 }
@@ -748,21 +726,18 @@ M.CreateListenerInput = {
             },
         },
         port = {
-            type = "number",
+            type = "integer",
         },
-        defaultAction = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        defaultAction = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RuleAction }),
         clientToken = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -783,7 +758,7 @@ M.CreateListenerOutput = {
             type = "string",
         },
         port = {
-            type = "number",
+            type = "integer",
         },
         serviceArn = {
             type = "string",
@@ -791,9 +766,7 @@ M.CreateListenerOutput = {
         serviceId = {
             type = "string",
         },
-        defaultAction = {
-            type = "union",
-        },
+        defaultAction = M.RuleAction,
     },
 }
 
@@ -865,15 +838,9 @@ M.IpResource = {
 M.ResourceConfigurationDefinition = {
     type = "union",
     members = {
-        dnsResource = {
-            type = "structure",
-        },
-        ipResource = {
-            type = "structure",
-        },
-        arnResource = {
-            type = "structure",
-        },
+        dnsResource = M.DnsResource,
+        ipResource = M.IpResource,
+        arnResource = M.ArnResource,
     },
 }
 
@@ -901,7 +868,7 @@ M.CreateResourceConfigurationInput = {
         },
         portRanges = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         protocol = {
             type = "string",
@@ -912,9 +879,7 @@ M.CreateResourceConfigurationInput = {
         resourceConfigurationGroupIdentifier = {
             type = "string",
         },
-        resourceConfigurationDefinition = {
-            type = "union",
-        },
+        resourceConfigurationDefinition = M.ResourceConfigurationDefinition,
         allowAssociationToShareableServiceNetwork = {
             type = "boolean",
         },
@@ -932,8 +897,8 @@ M.CreateResourceConfigurationInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -971,7 +936,7 @@ M.CreateResourceConfigurationOutput = {
         },
         portRanges = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         protocol = {
             type = "string",
@@ -979,9 +944,7 @@ M.CreateResourceConfigurationOutput = {
         status = {
             type = "string",
         },
-        resourceConfigurationDefinition = {
-            type = "union",
-        },
+        resourceConfigurationDefinition = M.ResourceConfigurationDefinition,
         allowAssociationToShareableServiceNetwork = {
             type = "boolean",
         },
@@ -1029,22 +992,22 @@ M.CreateResourceGatewayInput = {
         },
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ipAddressType = {
             type = "string",
         },
         ipv4AddressesPerEni = {
-            type = "number",
+            type = "integer",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1079,17 +1042,17 @@ M.CreateResourceGatewayOutput = {
         },
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ipAddressType = {
             type = "string",
         },
         ipv4AddressesPerEni = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1117,31 +1080,25 @@ M.CreateRuleInput = {
                 required = true,
             },
         },
-        match = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        match = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RuleMatch }),
         priority = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
-        action = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        action = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RuleAction }),
         clientToken = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1158,15 +1115,11 @@ M.CreateRuleOutput = {
         name = {
             type = "string",
         },
-        match = {
-            type = "union",
-        },
+        match = M.RuleMatch,
         priority = {
-            type = "number",
+            type = "integer",
         },
-        action = {
-            type = "union",
-        },
+        action = M.RuleAction,
     },
 }
 
@@ -1184,8 +1137,8 @@ M.CreateServiceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         customDomainName = {
             type = "string",
@@ -1243,9 +1196,7 @@ M.CreateServiceOutput = {
         authType = {
             type = "string",
         },
-        dnsEntry = {
-            type = "structure",
-        },
+        dnsEntry = M.DnsEntry,
     },
 }
 
@@ -1275,12 +1226,10 @@ M.CreateServiceNetworkInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        sharingConfig = {
-            type = "structure",
-        },
+        sharingConfig = M.SharingConfig,
     },
 }
 
@@ -1296,9 +1245,7 @@ M.CreateServiceNetworkOutput = {
         arn = {
             type = "string",
         },
-        sharingConfig = {
-            type = "structure",
-        },
+        sharingConfig = M.SharingConfig,
         authType = {
             type = "string",
         },
@@ -1328,8 +1275,8 @@ M.CreateServiceNetworkResourceAssociationInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1384,8 +1331,8 @@ M.CreateServiceNetworkServiceAssociationInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1416,9 +1363,7 @@ M.CreateServiceNetworkServiceAssociationOutput = {
         customDomainName = {
             type = "string",
         },
-        dnsEntry = {
-            type = "structure",
-        },
+        dnsEntry = M.DnsEntry,
     },
 }
 
@@ -1437,7 +1382,7 @@ M.DnsOptions = {
         },
         privateDnsSpecifiedDomains = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1465,16 +1410,14 @@ M.CreateServiceNetworkVpcAssociationInput = {
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        dnsOptions = {
-            type = "structure",
-        },
+        dnsOptions = M.DnsOptions,
     },
 }
 
@@ -1505,14 +1448,12 @@ M.CreateServiceNetworkVpcAssociationOutput = {
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         privateDnsEnabled = {
             type = "boolean",
         },
-        dnsOptions = {
-            type = "structure",
-        },
+        dnsOptions = M.DnsOptions,
     },
 }
 
@@ -1549,26 +1490,24 @@ M.HealthCheckConfig = {
             type = "string",
         },
         port = {
-            type = "number",
+            type = "integer",
         },
         path = {
             type = "string",
         },
         healthCheckIntervalSeconds = {
-            type = "number",
+            type = "integer",
         },
         healthCheckTimeoutSeconds = {
-            type = "number",
+            type = "integer",
         },
         healthyThresholdCount = {
-            type = "number",
+            type = "integer",
         },
         unhealthyThresholdCount = {
-            type = "number",
+            type = "integer",
         },
-        matcher = {
-            type = "union",
-        },
+        matcher = M.Matcher,
     },
 }
 
@@ -1592,7 +1531,7 @@ M.TargetGroupConfig = {
     type = "structure",
     members = {
         port = {
-            type = "number",
+            type = "integer",
         },
         protocol = {
             type = "string",
@@ -1606,9 +1545,7 @@ M.TargetGroupConfig = {
         vpcIdentifier = {
             type = "string",
         },
-        healthCheck = {
-            type = "structure",
-        },
+        healthCheck = M.HealthCheckConfig,
         lambdaEventStructureVersion = {
             type = "string",
         },
@@ -1637,16 +1574,14 @@ M.CreateTargetGroupInput = {
                 required = true,
             },
         },
-        config = {
-            type = "structure",
-        },
+        config = M.TargetGroupConfig,
         clientToken = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1674,9 +1609,7 @@ M.CreateTargetGroupOutput = {
         type = {
             type = "string",
         },
-        config = {
-            type = "structure",
-        },
+        config = M.TargetGroupConfig,
         status = {
             type = "string",
         },
@@ -2041,7 +1974,7 @@ M.Target = {
             },
         },
         port = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2058,7 +1991,7 @@ M.DeregisterTargetsInput = {
         },
         targets = {
             type = "list",
-            member_type = "structure",
+            member = M.Target,
             traits = {
                 required = true,
             },
@@ -2073,7 +2006,7 @@ M.TargetFailure = {
             type = "string",
         },
         port = {
-            type = "number",
+            type = "integer",
         },
         failureCode = {
             type = "string",
@@ -2089,11 +2022,11 @@ M.DeregisterTargetsOutput = {
     members = {
         successful = {
             type = "list",
-            member_type = "structure",
+            member = M.Target,
         },
         unsuccessful = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetFailure,
         },
     },
 }
@@ -2162,9 +2095,7 @@ M.GetDomainVerificationOutput = {
                 required = true,
             },
         },
-        txtMethodConfig = {
-            type = "structure",
-        },
+        txtMethodConfig = M.TxtMethodConfig,
         createdAt = {
             type = "timestamp",
             traits = {
@@ -2176,8 +2107,8 @@ M.GetDomainVerificationOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2186,7 +2117,7 @@ M.ListDomainVerificationsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2227,9 +2158,7 @@ M.DomainVerificationSummary = {
                 required = true,
             },
         },
-        txtMethodConfig = {
-            type = "structure",
-        },
+        txtMethodConfig = M.TxtMethodConfig,
         createdAt = {
             type = "timestamp",
             traits = {
@@ -2241,8 +2170,8 @@ M.DomainVerificationSummary = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2252,7 +2181,7 @@ M.ListDomainVerificationsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainVerificationSummary,
             traits = {
                 required = true,
             },
@@ -2277,8 +2206,8 @@ M.StartDomainVerificationInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2310,9 +2239,7 @@ M.StartDomainVerificationOutput = {
                 required = true,
             },
         },
-        txtMethodConfig = {
-            type = "structure",
-        },
+        txtMethodConfig = M.TxtMethodConfig,
     },
 }
 
@@ -2383,7 +2310,7 @@ M.GetListenerOutput = {
             type = "string",
         },
         port = {
-            type = "number",
+            type = "integer",
         },
         serviceArn = {
             type = "string",
@@ -2391,9 +2318,7 @@ M.GetListenerOutput = {
         serviceId = {
             type = "string",
         },
-        defaultAction = {
-            type = "union",
-        },
+        defaultAction = M.RuleAction,
         createdAt = {
             type = "timestamp",
         },
@@ -2442,7 +2367,7 @@ M.GetResourceConfigurationOutput = {
         },
         portRanges = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         protocol = {
             type = "string",
@@ -2453,9 +2378,7 @@ M.GetResourceConfigurationOutput = {
         status = {
             type = "string",
         },
-        resourceConfigurationDefinition = {
-            type = "union",
-        },
+        resourceConfigurationDefinition = M.ResourceConfigurationDefinition,
         createdAt = {
             type = "timestamp",
         },
@@ -2516,17 +2439,17 @@ M.GetResourceGatewayOutput = {
         },
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ipAddressType = {
             type = "string",
         },
         ipv4AddressesPerEni = {
-            type = "number",
+            type = "integer",
         },
         createdAt = {
             type = "timestamp",
@@ -2601,15 +2524,11 @@ M.GetRuleOutput = {
         isDefault = {
             type = "boolean",
         },
-        match = {
-            type = "union",
-        },
+        match = M.RuleMatch,
         priority = {
-            type = "number",
+            type = "integer",
         },
-        action = {
-            type = "union",
-        },
+        action = M.RuleAction,
         createdAt = {
             type = "timestamp",
         },
@@ -2650,9 +2569,7 @@ M.GetServiceOutput = {
         lastUpdatedAt = {
             type = "timestamp",
         },
-        dnsEntry = {
-            type = "structure",
-        },
+        dnsEntry = M.DnsEntry,
         customDomainName = {
             type = "string",
         },
@@ -2708,14 +2625,12 @@ M.GetServiceNetworkOutput = {
         authType = {
             type = "string",
         },
-        sharingConfig = {
-            type = "structure",
-        },
+        sharingConfig = M.SharingConfig,
         numberOfAssociatedVPCs = {
-            type = "number",
+            type = "long",
         },
         numberOfAssociatedServices = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -2778,15 +2693,11 @@ M.GetServiceNetworkResourceAssociationOutput = {
         lastUpdatedAt = {
             type = "timestamp",
         },
-        privateDnsEntry = {
-            type = "structure",
-        },
+        privateDnsEntry = M.DnsEntry,
         privateDnsEnabled = {
             type = "boolean",
         },
-        dnsEntry = {
-            type = "structure",
-        },
+        dnsEntry = M.DnsEntry,
         isManagedAssociation = {
             type = "boolean",
         },
@@ -2845,9 +2756,7 @@ M.GetServiceNetworkServiceAssociationOutput = {
         serviceNetworkArn = {
             type = "string",
         },
-        dnsEntry = {
-            type = "structure",
-        },
+        dnsEntry = M.DnsEntry,
         customDomainName = {
             type = "string",
         },
@@ -2905,7 +2814,7 @@ M.GetServiceNetworkVpcAssociationOutput = {
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         privateDnsEnabled = {
             type = "boolean",
@@ -2919,9 +2828,7 @@ M.GetServiceNetworkVpcAssociationOutput = {
         lastUpdatedAt = {
             type = "timestamp",
         },
-        dnsOptions = {
-            type = "structure",
-        },
+        dnsOptions = M.DnsOptions,
     },
 }
 
@@ -2953,9 +2860,7 @@ M.GetTargetGroupOutput = {
         type = {
             type = "string",
         },
-        config = {
-            type = "structure",
-        },
+        config = M.TargetGroupConfig,
         createdAt = {
             type = "timestamp",
         },
@@ -2967,7 +2872,7 @@ M.GetTargetGroupOutput = {
         },
         serviceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         failureMessage = {
             type = "string",
@@ -2989,7 +2894,7 @@ M.ListListenersInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3019,7 +2924,7 @@ M.ListenerSummary = {
             type = "string",
         },
         port = {
-            type = "number",
+            type = "integer",
         },
         createdAt = {
             type = "timestamp",
@@ -3035,7 +2940,7 @@ M.ListListenersOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.ListenerSummary,
             traits = {
                 required = true,
             },
@@ -3063,12 +2968,9 @@ M.UpdateListenerInput = {
                 required = true,
             },
         },
-        defaultAction = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        defaultAction = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RuleAction }),
     },
 }
 
@@ -3088,7 +2990,7 @@ M.UpdateListenerOutput = {
             type = "string",
         },
         port = {
-            type = "number",
+            type = "integer",
         },
         serviceArn = {
             type = "string",
@@ -3096,9 +2998,7 @@ M.UpdateListenerOutput = {
         serviceId = {
             type = "string",
         },
-        defaultAction = {
-            type = "union",
-        },
+        defaultAction = M.RuleAction,
     },
 }
 
@@ -3124,7 +3024,7 @@ M.ListResourceConfigurationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3188,7 +3088,7 @@ M.ListResourceConfigurationsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceConfigurationSummary,
         },
         nextToken = {
             type = "string",
@@ -3225,7 +3125,7 @@ M.ListResourceEndpointAssociationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3277,7 +3177,7 @@ M.ListResourceEndpointAssociationsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceEndpointAssociationSummary,
             traits = {
                 required = true,
             },
@@ -3292,7 +3192,7 @@ M.ListResourceGatewaysInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3326,17 +3226,17 @@ M.ResourceGatewaySummary = {
         },
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ipAddressType = {
             type = "string",
         },
         ipv4AddressesPerEni = {
-            type = "number",
+            type = "integer",
         },
         createdAt = {
             type = "timestamp",
@@ -3352,7 +3252,7 @@ M.ListResourceGatewaysOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceGatewaySummary,
         },
         nextToken = {
             type = "string",
@@ -3378,7 +3278,7 @@ M.ListRulesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3408,7 +3308,7 @@ M.RuleSummary = {
             type = "boolean",
         },
         priority = {
-            type = "number",
+            type = "integer",
         },
         createdAt = {
             type = "timestamp",
@@ -3424,7 +3324,7 @@ M.ListRulesOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleSummary,
             traits = {
                 required = true,
             },
@@ -3451,7 +3351,7 @@ M.ListServiceNetworkResourceAssociationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3507,12 +3407,8 @@ M.ServiceNetworkResourceAssociationSummary = {
         serviceNetworkName = {
             type = "string",
         },
-        dnsEntry = {
-            type = "structure",
-        },
-        privateDnsEntry = {
-            type = "structure",
-        },
+        dnsEntry = M.DnsEntry,
+        privateDnsEntry = M.DnsEntry,
         isManagedAssociation = {
             type = "boolean",
         },
@@ -3530,7 +3426,7 @@ M.ListServiceNetworkResourceAssociationsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceNetworkResourceAssociationSummary,
             traits = {
                 required = true,
             },
@@ -3545,7 +3441,7 @@ M.ListServiceNetworksInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3578,13 +3474,13 @@ M.ServiceNetworkSummary = {
             type = "timestamp",
         },
         numberOfAssociatedVPCs = {
-            type = "number",
+            type = "long",
         },
         numberOfAssociatedServices = {
-            type = "number",
+            type = "long",
         },
         numberOfAssociatedResourceConfigurations = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -3594,7 +3490,7 @@ M.ListServiceNetworksOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceNetworkSummary,
             traits = {
                 required = true,
             },
@@ -3621,7 +3517,7 @@ M.ListServiceNetworkServiceAssociationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3671,9 +3567,7 @@ M.ServiceNetworkServiceAssociationSummary = {
         serviceNetworkArn = {
             type = "string",
         },
-        dnsEntry = {
-            type = "structure",
-        },
+        dnsEntry = M.DnsEntry,
         customDomainName = {
             type = "string",
         },
@@ -3685,7 +3579,7 @@ M.ListServiceNetworkServiceAssociationsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceNetworkServiceAssociationSummary,
             traits = {
                 required = true,
             },
@@ -3712,7 +3606,7 @@ M.ListServiceNetworkVpcAssociationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3756,9 +3650,7 @@ M.ServiceNetworkVpcAssociationSummary = {
         privateDnsEnabled = {
             type = "boolean",
         },
-        dnsOptions = {
-            type = "structure",
-        },
+        dnsOptions = M.DnsOptions,
         vpcId = {
             type = "string",
         },
@@ -3773,7 +3665,7 @@ M.ListServiceNetworkVpcAssociationsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceNetworkVpcAssociationSummary,
             traits = {
                 required = true,
             },
@@ -3795,7 +3687,7 @@ M.ListServiceNetworkVpcEndpointAssociationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3841,7 +3733,7 @@ M.ListServiceNetworkVpcEndpointAssociationsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceNetworkEndpointAssociation,
             traits = {
                 required = true,
             },
@@ -3856,7 +3748,7 @@ M.ListServicesInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3888,9 +3780,7 @@ M.ServiceSummary = {
         lastUpdatedAt = {
             type = "timestamp",
         },
-        dnsEntry = {
-            type = "structure",
-        },
+        dnsEntry = M.DnsEntry,
         customDomainName = {
             type = "string",
         },
@@ -3905,7 +3795,7 @@ M.ListServicesOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceSummary,
         },
         nextToken = {
             type = "string",
@@ -3931,8 +3821,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3941,7 +3831,7 @@ M.ListTargetGroupsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3986,7 +3876,7 @@ M.TargetGroupSummary = {
             type = "timestamp",
         },
         port = {
-            type = "number",
+            type = "integer",
         },
         protocol = {
             type = "string",
@@ -4005,7 +3895,7 @@ M.TargetGroupSummary = {
         },
         serviceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         lambdaEventStructureVersion = {
             type = "string",
@@ -4018,7 +3908,7 @@ M.ListTargetGroupsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetGroupSummary,
         },
         nextToken = {
             type = "string",
@@ -4037,7 +3927,7 @@ M.ListTargetsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4050,7 +3940,7 @@ M.ListTargetsInput = {
         },
         targets = {
             type = "list",
-            member_type = "structure",
+            member = M.Target,
         },
     },
 }
@@ -4071,7 +3961,7 @@ M.TargetSummary = {
             type = "string",
         },
         port = {
-            type = "number",
+            type = "integer",
         },
         status = {
             type = "string",
@@ -4087,7 +3977,7 @@ M.ListTargetsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetSummary,
             traits = {
                 required = true,
             },
@@ -4162,15 +4052,13 @@ M.UpdateResourceConfigurationInput = {
                 required = true,
             },
         },
-        resourceConfigurationDefinition = {
-            type = "union",
-        },
+        resourceConfigurationDefinition = M.ResourceConfigurationDefinition,
         allowAssociationToShareableServiceNetwork = {
             type = "boolean",
         },
         portRanges = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4198,7 +4086,7 @@ M.UpdateResourceConfigurationOutput = {
         },
         portRanges = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         allowAssociationToShareableServiceNetwork = {
             type = "boolean",
@@ -4209,9 +4097,7 @@ M.UpdateResourceConfigurationOutput = {
         status = {
             type = "string",
         },
-        resourceConfigurationDefinition = {
-            type = "union",
-        },
+        resourceConfigurationDefinition = M.ResourceConfigurationDefinition,
     },
 }
 
@@ -4227,7 +4113,7 @@ M.UpdateResourceGatewayInput = {
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4252,11 +4138,11 @@ M.UpdateResourceGatewayOutput = {
         },
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ipAddressType = {
             type = "string",
@@ -4288,15 +4174,11 @@ M.UpdateRuleInput = {
                 required = true,
             },
         },
-        match = {
-            type = "union",
-        },
+        match = M.RuleMatch,
         priority = {
-            type = "number",
+            type = "integer",
         },
-        action = {
-            type = "union",
-        },
+        action = M.RuleAction,
     },
 }
 
@@ -4315,15 +4197,11 @@ M.UpdateRuleOutput = {
         isDefault = {
             type = "boolean",
         },
-        match = {
-            type = "union",
-        },
+        match = M.RuleMatch,
         priority = {
-            type = "number",
+            type = "integer",
         },
-        action = {
-            type = "union",
-        },
+        action = M.RuleAction,
     },
 }
 
@@ -4419,7 +4297,7 @@ M.UpdateServiceNetworkVpcAssociationInput = {
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4444,7 +4322,7 @@ M.UpdateServiceNetworkVpcAssociationOutput = {
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4461,8 +4339,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4486,7 +4364,7 @@ M.RegisterTargetsInput = {
         },
         targets = {
             type = "list",
-            member_type = "structure",
+            member = M.Target,
             traits = {
                 required = true,
             },
@@ -4499,11 +4377,11 @@ M.RegisterTargetsOutput = {
     members = {
         successful = {
             type = "list",
-            member_type = "structure",
+            member = M.Target,
         },
         unsuccessful = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetFailure,
         },
     },
 }
@@ -4518,12 +4396,9 @@ M.UpdateTargetGroupInput = {
                 required = true,
             },
         },
-        healthCheck = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        healthCheck = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HealthCheckConfig }),
     },
 }
 
@@ -4542,9 +4417,7 @@ M.UpdateTargetGroupOutput = {
         type = {
             type = "string",
         },
-        config = {
-            type = "structure",
-        },
+        config = M.TargetGroupConfig,
         status = {
             type = "string",
         },
@@ -4563,7 +4436,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,

@@ -19,6 +19,7 @@ M.CloseTunnelInput = {
         delete = {
             type = "boolean",
             traits = {
+                default = nil,
                 http_query = "delete",
             },
         },
@@ -77,7 +78,7 @@ M.DestinationConfig = {
         },
         services = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -112,7 +113,7 @@ M.TimeoutConfig = {
     type = "structure",
     members = {
         maxLifetimeTimeoutMinutes = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -129,24 +130,16 @@ M.Tunnel = {
         status = {
             type = "string",
         },
-        sourceConnectionState = {
-            type = "structure",
-        },
-        destinationConnectionState = {
-            type = "structure",
-        },
+        sourceConnectionState = M.ConnectionState,
+        destinationConnectionState = M.ConnectionState,
         description = {
             type = "string",
         },
-        destinationConfig = {
-            type = "structure",
-        },
-        timeoutConfig = {
-            type = "structure",
-        },
+        destinationConfig = M.DestinationConfig,
+        timeoutConfig = M.TimeoutConfig,
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         createdAt = {
             type = "timestamp",
@@ -160,9 +153,7 @@ M.Tunnel = {
 M.DescribeTunnelOutput = {
     type = "structure",
     members = {
-        tunnel = {
-            type = "structure",
-        },
+        tunnel = M.Tunnel,
     },
 }
 
@@ -184,7 +175,7 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -199,7 +190,7 @@ M.ListTunnelsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -242,7 +233,7 @@ M.ListTunnelsOutput = {
     members = {
         tunnelSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.TunnelSummary,
         },
         nextToken = {
             type = "string",
@@ -268,14 +259,10 @@ M.OpenTunnelInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        destinationConfig = {
-            type = "structure",
-        },
-        timeoutConfig = {
-            type = "structure",
-        },
+        destinationConfig = M.DestinationConfig,
+        timeoutConfig = M.TimeoutConfig,
     },
 }
 
@@ -313,9 +300,7 @@ M.RotateTunnelAccessTokenInput = {
                 required = true,
             },
         },
-        destinationConfig = {
-            type = "structure",
-        },
+        destinationConfig = M.DestinationConfig,
     },
 }
 
@@ -345,7 +330,7 @@ M.TagResourceInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -368,7 +353,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },

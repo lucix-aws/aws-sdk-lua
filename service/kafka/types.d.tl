@@ -2452,21 +2452,21 @@ local record UnknownTopicOrPartitionException
     Message: string
 end
 
-local type VpcConnectionState = "CREATING" | "AVAILABLE" | "INACTIVE" | "DEACTIVATING" | "DELETING" | "FAILED" | "REJECTED" | "REJECTING"
+local type EnhancedMonitoring = "DEFAULT" | "PER_BROKER" | "PER_TOPIC_PER_BROKER" | "PER_TOPIC_PER_PARTITION"
 
 local type ClusterState = "ACTIVE" | "CREATING" | "DELETING" | "FAILED" | "HEALING" | "MAINTENANCE" | "REBOOTING_BROKER" | "UPDATING"
 
-local type EnhancedMonitoring = "DEFAULT" | "PER_BROKER" | "PER_TOPIC_PER_BROKER" | "PER_TOPIC_PER_PARTITION"
-
 local type TopicState = "CREATING" | "UPDATING" | "DELETING" | "ACTIVE"
 
-local type ConfigurationState = "ACTIVE" | "DELETING" | "DELETE_FAILED"
-
-local type StorageMode = "LOCAL" | "TIERED"
+local type VpcConnectionState = "CREATING" | "AVAILABLE" | "INACTIVE" | "DEACTIVATING" | "DELETING" | "FAILED" | "REJECTED" | "REJECTING"
 
 local type ReplicatorState = "RUNNING" | "CREATING" | "UPDATING" | "DELETING" | "FAILED"
 
 local type ClusterType = "PROVISIONED" | "SERVERLESS"
+
+local type StorageMode = "LOCAL" | "TIERED"
+
+local type ConfigurationState = "ACTIVE" | "DELETING" | "DELETE_FAILED"
 
 local record M
     BatchAssociateScramSecretInput: BatchAssociateScramSecretInput

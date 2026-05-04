@@ -20,7 +20,7 @@ M.AddAttachmentsToSetInput = {
         },
         attachments = {
             type = "list",
-            member_type = "structure",
+            member = M.Attachment,
             traits = {
                 required = true,
             },
@@ -104,7 +104,7 @@ M.AddCommunicationToCaseInput = {
         },
         ccEmailAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         attachmentSetId = {
             type = "string",
@@ -117,6 +117,9 @@ M.AddCommunicationToCaseOutput = {
     members = {
         result = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -189,7 +192,7 @@ M.CreateCaseInput = {
         },
         ccEmailAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         language = {
             type = "string",
@@ -237,9 +240,7 @@ M.DescribeAttachmentLimitExceeded = {
 M.DescribeAttachmentOutput = {
     type = "structure",
     members = {
-        attachment = {
-            type = "structure",
-        },
+        attachment = M.Attachment,
     },
 }
 
@@ -248,7 +249,7 @@ M.DescribeCasesInput = {
     members = {
         caseIdList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         displayId = {
             type = "string",
@@ -261,12 +262,15 @@ M.DescribeCasesInput = {
         },
         includeResolvedCases = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         language = {
             type = "string",
@@ -294,7 +298,7 @@ M.Communication = {
         },
         attachmentSet = {
             type = "list",
-            member_type = "structure",
+            member = M.AttachmentDetails,
         },
     },
 }
@@ -304,7 +308,7 @@ M.RecentCaseCommunications = {
     members = {
         communications = {
             type = "list",
-            member_type = "structure",
+            member = M.Communication,
         },
         nextToken = {
             type = "string",
@@ -342,12 +346,10 @@ M.CaseDetails = {
         timeCreated = {
             type = "string",
         },
-        recentCommunications = {
-            type = "structure",
-        },
+        recentCommunications = M.RecentCaseCommunications,
         ccEmailAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         language = {
             type = "string",
@@ -360,7 +362,7 @@ M.DescribeCasesOutput = {
     members = {
         cases = {
             type = "list",
-            member_type = "structure",
+            member = M.CaseDetails,
         },
         nextToken = {
             type = "string",
@@ -387,7 +389,7 @@ M.DescribeCommunicationsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -397,7 +399,7 @@ M.DescribeCommunicationsOutput = {
     members = {
         communications = {
             type = "list",
-            member_type = "structure",
+            member = M.Communication,
         },
         nextToken = {
             type = "string",
@@ -467,11 +469,11 @@ M.CommunicationTypeOptions = {
         },
         supportedHours = {
             type = "list",
-            member_type = "structure",
+            member = M.SupportedHour,
         },
         datesWithoutSupport = {
             type = "list",
-            member_type = "structure",
+            member = M.DateInterval,
         },
     },
 }
@@ -484,7 +486,7 @@ M.DescribeCreateCaseOptionsOutput = {
         },
         communicationTypes = {
             type = "list",
-            member_type = "structure",
+            member = M.CommunicationTypeOptions,
         },
     },
 }
@@ -504,7 +506,7 @@ M.DescribeServicesInput = {
     members = {
         serviceCodeList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         language = {
             type = "string",
@@ -535,7 +537,7 @@ M.Service = {
         },
         categories = {
             type = "list",
-            member_type = "structure",
+            member = M.Category,
         },
     },
 }
@@ -545,7 +547,7 @@ M.DescribeServicesOutput = {
     members = {
         services = {
             type = "list",
-            member_type = "structure",
+            member = M.Service,
         },
     },
 }
@@ -576,7 +578,7 @@ M.DescribeSeverityLevelsOutput = {
     members = {
         severityLevels = {
             type = "list",
-            member_type = "structure",
+            member = M.SeverityLevel,
         },
     },
 }
@@ -625,7 +627,7 @@ M.DescribeSupportedLanguagesOutput = {
     members = {
         supportedLanguages = {
             type = "list",
-            member_type = "structure",
+            member = M.SupportedLanguage,
         },
     },
 }
@@ -635,7 +637,7 @@ M.DescribeTrustedAdvisorCheckRefreshStatusesInput = {
     members = {
         checkIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -659,8 +661,9 @@ M.TrustedAdvisorCheckRefreshStatus = {
             },
         },
         millisUntilNextRefreshable = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -672,7 +675,7 @@ M.DescribeTrustedAdvisorCheckRefreshStatusesOutput = {
     members = {
         statuses = {
             type = "list",
-            member_type = "structure",
+            member = M.TrustedAdvisorCheckRefreshStatus,
             traits = {
                 required = true,
             },
@@ -699,14 +702,16 @@ M.TrustedAdvisorCostOptimizingSummary = {
     type = "structure",
     members = {
         estimatedMonthlySavings = {
-            type = "number",
+            type = "double",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         estimatedPercentMonthlySavings = {
-            type = "number",
+            type = "double",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -716,9 +721,7 @@ M.TrustedAdvisorCostOptimizingSummary = {
 M.TrustedAdvisorCategorySpecificSummary = {
     type = "structure",
     members = {
-        costOptimizing = {
-            type = "structure",
-        },
+        costOptimizing = M.TrustedAdvisorCostOptimizingSummary,
     },
 }
 
@@ -742,10 +745,13 @@ M.TrustedAdvisorResourceDetail = {
         },
         isSuppressed = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         metadata = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -757,26 +763,30 @@ M.TrustedAdvisorResourcesSummary = {
     type = "structure",
     members = {
         resourcesProcessed = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         resourcesFlagged = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         resourcesIgnored = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         resourcesSuppressed = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -804,21 +814,15 @@ M.TrustedAdvisorCheckResult = {
                 required = true,
             },
         },
-        resourcesSummary = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        categorySpecificSummary = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        resourcesSummary = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TrustedAdvisorResourcesSummary }),
+        categorySpecificSummary = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TrustedAdvisorCategorySpecificSummary }),
         flaggedResources = {
             type = "list",
-            member_type = "structure",
+            member = M.TrustedAdvisorResourceDetail,
             traits = {
                 required = true,
             },
@@ -829,9 +833,7 @@ M.TrustedAdvisorCheckResult = {
 M.DescribeTrustedAdvisorCheckResultOutput = {
     type = "structure",
     members = {
-        result = {
-            type = "structure",
-        },
+        result = M.TrustedAdvisorCheckResult,
     },
 }
 
@@ -876,7 +878,7 @@ M.TrustedAdvisorCheckDescription = {
         },
         metadata = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -889,7 +891,7 @@ M.DescribeTrustedAdvisorChecksOutput = {
     members = {
         checks = {
             type = "list",
-            member_type = "structure",
+            member = M.TrustedAdvisorCheckDescription,
             traits = {
                 required = true,
             },
@@ -902,7 +904,7 @@ M.DescribeTrustedAdvisorCheckSummariesInput = {
     members = {
         checkIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -933,19 +935,16 @@ M.TrustedAdvisorCheckSummary = {
         },
         hasFlaggedResources = {
             type = "boolean",
-        },
-        resourcesSummary = {
-            type = "structure",
             traits = {
-                required = true,
+                default = false,
             },
         },
-        categorySpecificSummary = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        resourcesSummary = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TrustedAdvisorResourcesSummary }),
+        categorySpecificSummary = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TrustedAdvisorCategorySpecificSummary }),
     },
 }
 
@@ -954,7 +953,7 @@ M.DescribeTrustedAdvisorCheckSummariesOutput = {
     members = {
         summaries = {
             type = "list",
-            member_type = "structure",
+            member = M.TrustedAdvisorCheckSummary,
             traits = {
                 required = true,
             },
@@ -977,12 +976,9 @@ M.RefreshTrustedAdvisorCheckInput = {
 M.RefreshTrustedAdvisorCheckOutput = {
     type = "structure",
     members = {
-        status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TrustedAdvisorCheckRefreshStatus }),
     },
 }
 

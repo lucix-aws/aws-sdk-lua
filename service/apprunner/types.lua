@@ -72,7 +72,7 @@ M.CustomDomain = {
         },
         CertificateValidationRecords = {
             type = "list",
-            member_type = "structure",
+            member = M.CertificateValidationRecord,
         },
         Status = {
             type = "string",
@@ -113,15 +113,12 @@ M.AssociateCustomDomainOutput = {
                 required = true,
             },
         },
-        CustomDomain = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        CustomDomain = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CustomDomain }),
         VpcDNSTargets = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcDNSTarget,
             traits = {
                 required = true,
             },
@@ -181,17 +178,17 @@ M.CreateAutoScalingConfigurationInput = {
             },
         },
         MaxConcurrency = {
-            type = "number",
+            type = "integer",
         },
         MinSize = {
-            type = "number",
+            type = "integer",
         },
         MaxSize = {
-            type = "number",
+            type = "integer",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -211,7 +208,7 @@ M.AutoScalingConfiguration = {
             type = "string",
         },
         AutoScalingConfigurationRevision = {
-            type = "number",
+            type = "integer",
         },
         Latest = {
             type = "boolean",
@@ -220,13 +217,13 @@ M.AutoScalingConfiguration = {
             type = "string",
         },
         MaxConcurrency = {
-            type = "number",
+            type = "integer",
         },
         MinSize = {
-            type = "number",
+            type = "integer",
         },
         MaxSize = {
-            type = "number",
+            type = "integer",
         },
         CreatedAt = {
             type = "timestamp",
@@ -246,12 +243,9 @@ M.AutoScalingConfiguration = {
 M.CreateAutoScalingConfigurationOutput = {
     type = "structure",
     members = {
-        AutoScalingConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AutoScalingConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AutoScalingConfiguration }),
     },
 }
 
@@ -287,7 +281,7 @@ M.CreateConnectionInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -323,12 +317,9 @@ M.Connection = {
 M.CreateConnectionOutput = {
     type = "structure",
     members = {
-        Connection = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Connection = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Connection }),
     },
 }
 
@@ -357,12 +348,10 @@ M.CreateObservabilityConfigurationInput = {
                 required = true,
             },
         },
-        TraceConfiguration = {
-            type = "structure",
-        },
+        TraceConfiguration = M.TraceConfiguration,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -381,14 +370,18 @@ M.ObservabilityConfiguration = {
         ObservabilityConfigurationName = {
             type = "string",
         },
-        TraceConfiguration = {
-            type = "structure",
-        },
+        TraceConfiguration = M.TraceConfiguration,
         ObservabilityConfigurationRevision = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         Latest = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Status = {
             type = "string",
@@ -405,12 +398,9 @@ M.ObservabilityConfiguration = {
 M.CreateObservabilityConfigurationOutput = {
     type = "structure",
     members = {
-        ObservabilityConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ObservabilityConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObservabilityConfiguration }),
     },
 }
 
@@ -441,16 +431,16 @@ M.HealthCheckConfiguration = {
             type = "string",
         },
         Interval = {
-            type = "number",
+            type = "integer",
         },
         Timeout = {
-            type = "number",
+            type = "integer",
         },
         HealthyThreshold = {
-            type = "number",
+            type = "integer",
         },
         UnhealthyThreshold = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -492,6 +482,9 @@ M.IngressConfiguration = {
     members = {
         IsPubliclyAccessible = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -504,12 +497,8 @@ M.IpAddressType = {
 M.NetworkConfiguration = {
     type = "structure",
     members = {
-        EgressConfiguration = {
-            type = "structure",
-        },
-        IngressConfiguration = {
-            type = "structure",
-        },
+        EgressConfiguration = M.EgressConfiguration,
+        IngressConfiguration = M.IngressConfiguration,
         IpAddressType = {
             type = "string",
         },
@@ -522,6 +511,7 @@ M.ServiceObservabilityConfiguration = {
         ObservabilityEnabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -579,13 +569,13 @@ M.CodeConfigurationValues = {
         },
         RuntimeEnvironmentVariables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         RuntimeEnvironmentSecrets = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -604,9 +594,7 @@ M.CodeConfiguration = {
                 required = true,
             },
         },
-        CodeConfigurationValues = {
-            type = "structure",
-        },
+        CodeConfigurationValues = M.CodeConfigurationValues,
     },
 }
 
@@ -641,15 +629,10 @@ M.CodeRepository = {
                 required = true,
             },
         },
-        SourceCodeVersion = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        CodeConfiguration = {
-            type = "structure",
-        },
+        SourceCodeVersion = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SourceCodeVersion }),
+        CodeConfiguration = M.CodeConfiguration,
         SourceDirectory = {
             type = "string",
         },
@@ -661,8 +644,8 @@ M.ImageConfiguration = {
     members = {
         RuntimeEnvironmentVariables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         StartCommand = {
             type = "string",
@@ -672,8 +655,8 @@ M.ImageConfiguration = {
         },
         RuntimeEnvironmentSecrets = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -692,9 +675,7 @@ M.ImageRepository = {
                 required = true,
             },
         },
-        ImageConfiguration = {
-            type = "structure",
-        },
+        ImageConfiguration = M.ImageConfiguration,
         ImageRepositoryType = {
             type = "string",
             traits = {
@@ -707,18 +688,12 @@ M.ImageRepository = {
 M.SourceConfiguration = {
     type = "structure",
     members = {
-        CodeRepository = {
-            type = "structure",
-        },
-        ImageRepository = {
-            type = "structure",
-        },
+        CodeRepository = M.CodeRepository,
+        ImageRepository = M.ImageRepository,
         AutoDeploymentsEnabled = {
             type = "boolean",
         },
-        AuthenticationConfiguration = {
-            type = "structure",
-        },
+        AuthenticationConfiguration = M.AuthenticationConfiguration,
     },
 }
 
@@ -731,34 +706,21 @@ M.CreateServiceInput = {
                 required = true,
             },
         },
-        SourceConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        InstanceConfiguration = {
-            type = "structure",
-        },
+        SourceConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SourceConfiguration }),
+        InstanceConfiguration = M.InstanceConfiguration,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        EncryptionConfiguration = {
-            type = "structure",
-        },
-        HealthCheckConfiguration = {
-            type = "structure",
-        },
+        EncryptionConfiguration = M.EncryptionConfiguration,
+        HealthCheckConfiguration = M.HealthCheckConfiguration,
         AutoScalingConfigurationArn = {
             type = "string",
         },
-        NetworkConfiguration = {
-            type = "structure",
-        },
-        ObservabilityConfiguration = {
-            type = "structure",
-        },
+        NetworkConfiguration = M.NetworkConfiguration,
+        ObservabilityConfiguration = M.ServiceObservabilityConfiguration,
     },
 }
 
@@ -772,7 +734,10 @@ M.AutoScalingConfigurationSummary = {
             type = "string",
         },
         AutoScalingConfigurationRevision = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         Status = {
             type = "string",
@@ -843,51 +808,30 @@ M.Service = {
                 required = true,
             },
         },
-        SourceConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        InstanceConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        EncryptionConfiguration = {
-            type = "structure",
-        },
-        HealthCheckConfiguration = {
-            type = "structure",
-        },
-        AutoScalingConfigurationSummary = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        NetworkConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ObservabilityConfiguration = {
-            type = "structure",
-        },
+        SourceConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SourceConfiguration }),
+        InstanceConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InstanceConfiguration }),
+        EncryptionConfiguration = M.EncryptionConfiguration,
+        HealthCheckConfiguration = M.HealthCheckConfiguration,
+        AutoScalingConfigurationSummary = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AutoScalingConfigurationSummary }),
+        NetworkConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.NetworkConfiguration }),
+        ObservabilityConfiguration = M.ServiceObservabilityConfiguration,
     },
 }
 
 M.CreateServiceOutput = {
     type = "structure",
     members = {
-        Service = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Service = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Service }),
         OperationId = {
             type = "string",
             traits = {
@@ -908,18 +852,18 @@ M.CreateVpcConnectorInput = {
         },
         Subnets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         SecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -939,15 +883,18 @@ M.VpcConnector = {
             type = "string",
         },
         VpcConnectorRevision = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         Subnets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Status = {
             type = "string",
@@ -964,12 +911,9 @@ M.VpcConnector = {
 M.CreateVpcConnectorOutput = {
     type = "structure",
     members = {
-        VpcConnector = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        VpcConnector = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VpcConnector }),
     },
 }
 
@@ -1000,15 +944,12 @@ M.CreateVpcIngressConnectionInput = {
                 required = true,
             },
         },
-        IngressVpcConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        IngressVpcConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IngressVpcConfiguration }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1045,9 +986,7 @@ M.VpcIngressConnection = {
         DomainName = {
             type = "string",
         },
-        IngressVpcConfiguration = {
-            type = "structure",
-        },
+        IngressVpcConfiguration = M.IngressVpcConfiguration,
         CreatedAt = {
             type = "timestamp",
         },
@@ -1060,12 +999,9 @@ M.VpcIngressConnection = {
 M.CreateVpcIngressConnectionOutput = {
     type = "structure",
     members = {
-        VpcIngressConnection = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        VpcIngressConnection = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VpcIngressConnection }),
     },
 }
 
@@ -1080,6 +1016,9 @@ M.DeleteAutoScalingConfigurationInput = {
         },
         DeleteAllRevisions = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1087,12 +1026,9 @@ M.DeleteAutoScalingConfigurationInput = {
 M.DeleteAutoScalingConfigurationOutput = {
     type = "structure",
     members = {
-        AutoScalingConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AutoScalingConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AutoScalingConfiguration }),
     },
 }
 
@@ -1121,9 +1057,7 @@ M.DeleteConnectionInput = {
 M.DeleteConnectionOutput = {
     type = "structure",
     members = {
-        Connection = {
-            type = "structure",
-        },
+        Connection = M.Connection,
     },
 }
 
@@ -1142,12 +1076,9 @@ M.DeleteObservabilityConfigurationInput = {
 M.DeleteObservabilityConfigurationOutput = {
     type = "structure",
     members = {
-        ObservabilityConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ObservabilityConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObservabilityConfiguration }),
     },
 }
 
@@ -1166,12 +1097,9 @@ M.DeleteServiceInput = {
 M.DeleteServiceOutput = {
     type = "structure",
     members = {
-        Service = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Service = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Service }),
         OperationId = {
             type = "string",
             traits = {
@@ -1196,12 +1124,9 @@ M.DeleteVpcConnectorInput = {
 M.DeleteVpcConnectorOutput = {
     type = "structure",
     members = {
-        VpcConnector = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        VpcConnector = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VpcConnector }),
     },
 }
 
@@ -1220,12 +1145,9 @@ M.DeleteVpcIngressConnectionInput = {
 M.DeleteVpcIngressConnectionOutput = {
     type = "structure",
     members = {
-        VpcIngressConnection = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        VpcIngressConnection = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VpcIngressConnection }),
     },
 }
 
@@ -1244,12 +1166,9 @@ M.DescribeAutoScalingConfigurationInput = {
 M.DescribeAutoScalingConfigurationOutput = {
     type = "structure",
     members = {
-        AutoScalingConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AutoScalingConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AutoScalingConfiguration }),
     },
 }
 
@@ -1266,7 +1185,7 @@ M.DescribeCustomDomainsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1288,14 +1207,14 @@ M.DescribeCustomDomainsOutput = {
         },
         CustomDomains = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomDomain,
             traits = {
                 required = true,
             },
         },
         VpcDNSTargets = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcDNSTarget,
             traits = {
                 required = true,
             },
@@ -1321,12 +1240,9 @@ M.DescribeObservabilityConfigurationInput = {
 M.DescribeObservabilityConfigurationOutput = {
     type = "structure",
     members = {
-        ObservabilityConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ObservabilityConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObservabilityConfiguration }),
     },
 }
 
@@ -1345,12 +1261,9 @@ M.DescribeServiceInput = {
 M.DescribeServiceOutput = {
     type = "structure",
     members = {
-        Service = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Service = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Service }),
     },
 }
 
@@ -1369,12 +1282,9 @@ M.DescribeVpcConnectorInput = {
 M.DescribeVpcConnectorOutput = {
     type = "structure",
     members = {
-        VpcConnector = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        VpcConnector = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VpcConnector }),
     },
 }
 
@@ -1393,12 +1303,9 @@ M.DescribeVpcIngressConnectionInput = {
 M.DescribeVpcIngressConnectionOutput = {
     type = "structure",
     members = {
-        VpcIngressConnection = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        VpcIngressConnection = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VpcIngressConnection }),
     },
 }
 
@@ -1435,15 +1342,12 @@ M.DisassociateCustomDomainOutput = {
                 required = true,
             },
         },
-        CustomDomain = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        CustomDomain = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CustomDomain }),
         VpcDNSTargets = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcDNSTarget,
             traits = {
                 required = true,
             },
@@ -1459,9 +1363,12 @@ M.ListAutoScalingConfigurationsInput = {
         },
         LatestOnly = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1474,7 +1381,7 @@ M.ListAutoScalingConfigurationsOutput = {
     members = {
         AutoScalingConfigurationSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.AutoScalingConfigurationSummary,
             traits = {
                 required = true,
             },
@@ -1492,7 +1399,7 @@ M.ListConnectionsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1526,7 +1433,7 @@ M.ListConnectionsOutput = {
     members = {
         ConnectionSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.ConnectionSummary,
             traits = {
                 required = true,
             },
@@ -1545,9 +1452,12 @@ M.ListObservabilityConfigurationsInput = {
         },
         LatestOnly = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1565,7 +1475,10 @@ M.ObservabilityConfigurationSummary = {
             type = "string",
         },
         ObservabilityConfigurationRevision = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1575,7 +1488,7 @@ M.ListObservabilityConfigurationsOutput = {
     members = {
         ObservabilityConfigurationSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.ObservabilityConfigurationSummary,
             traits = {
                 required = true,
             },
@@ -1599,7 +1512,7 @@ M.ListOperationsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1655,7 +1568,7 @@ M.ListOperationsOutput = {
     members = {
         OperationSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.OperationSummary,
         },
         NextToken = {
             type = "string",
@@ -1670,7 +1583,7 @@ M.ListServicesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1707,7 +1620,7 @@ M.ListServicesOutput = {
     members = {
         ServiceSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceSummary,
             traits = {
                 required = true,
             },
@@ -1728,7 +1641,7 @@ M.ListServicesForAutoScalingConfigurationInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1741,7 +1654,7 @@ M.ListServicesForAutoScalingConfigurationOutput = {
     members = {
         ServiceArnList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1769,7 +1682,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1778,7 +1691,7 @@ M.ListVpcConnectorsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1791,7 +1704,7 @@ M.ListVpcConnectorsOutput = {
     members = {
         VpcConnectors = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcConnector,
             traits = {
                 required = true,
             },
@@ -1817,11 +1730,9 @@ M.ListVpcIngressConnectionsFilter = {
 M.ListVpcIngressConnectionsInput = {
     type = "structure",
     members = {
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.ListVpcIngressConnectionsFilter,
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1846,7 +1757,7 @@ M.ListVpcIngressConnectionsOutput = {
     members = {
         VpcIngressConnectionSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcIngressConnectionSummary,
             traits = {
                 required = true,
             },
@@ -1872,12 +1783,9 @@ M.PauseServiceInput = {
 M.PauseServiceOutput = {
     type = "structure",
     members = {
-        Service = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Service = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Service }),
         OperationId = {
             type = "string",
         },
@@ -1899,12 +1807,9 @@ M.ResumeServiceInput = {
 M.ResumeServiceOutput = {
     type = "structure",
     members = {
-        Service = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Service = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Service }),
         OperationId = {
             type = "string",
         },
@@ -1946,7 +1851,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -1969,7 +1874,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1996,12 +1901,9 @@ M.UpdateDefaultAutoScalingConfigurationInput = {
 M.UpdateDefaultAutoScalingConfigurationOutput = {
     type = "structure",
     members = {
-        AutoScalingConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AutoScalingConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AutoScalingConfiguration }),
     },
 }
 
@@ -2014,36 +1916,23 @@ M.UpdateServiceInput = {
                 required = true,
             },
         },
-        SourceConfiguration = {
-            type = "structure",
-        },
-        InstanceConfiguration = {
-            type = "structure",
-        },
+        SourceConfiguration = M.SourceConfiguration,
+        InstanceConfiguration = M.InstanceConfiguration,
         AutoScalingConfigurationArn = {
             type = "string",
         },
-        HealthCheckConfiguration = {
-            type = "structure",
-        },
-        NetworkConfiguration = {
-            type = "structure",
-        },
-        ObservabilityConfiguration = {
-            type = "structure",
-        },
+        HealthCheckConfiguration = M.HealthCheckConfiguration,
+        NetworkConfiguration = M.NetworkConfiguration,
+        ObservabilityConfiguration = M.ServiceObservabilityConfiguration,
     },
 }
 
 M.UpdateServiceOutput = {
     type = "structure",
     members = {
-        Service = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Service = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Service }),
         OperationId = {
             type = "string",
             traits = {
@@ -2062,24 +1951,18 @@ M.UpdateVpcIngressConnectionInput = {
                 required = true,
             },
         },
-        IngressVpcConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        IngressVpcConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IngressVpcConfiguration }),
     },
 }
 
 M.UpdateVpcIngressConnectionOutput = {
     type = "structure",
     members = {
-        VpcIngressConnection = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        VpcIngressConnection = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VpcIngressConnection }),
     },
 }
 

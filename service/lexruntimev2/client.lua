@@ -16,7 +16,7 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AWSDeepSenseRunTimeServiceApi2_0"
-    cfg.signing_name = "awsdeepsenseruntimeserviceapi2_0"
+    cfg.signing_name = "lex"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end

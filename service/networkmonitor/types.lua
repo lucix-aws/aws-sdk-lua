@@ -46,7 +46,7 @@ M.CreateMonitorProbeInput = {
             },
         },
         destinationPort = {
-            type = "number",
+            type = "integer",
         },
         protocol = {
             type = "string",
@@ -55,12 +55,12 @@ M.CreateMonitorProbeInput = {
             },
         },
         packetSize = {
-            type = "number",
+            type = "integer",
         },
         probeTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -76,18 +76,18 @@ M.CreateMonitorInput = {
         },
         probes = {
             type = "list",
-            member_type = "structure",
+            member = M.CreateMonitorProbeInput,
         },
         aggregationPeriod = {
-            type = "number",
+            type = "long",
         },
         clientToken = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -122,12 +122,12 @@ M.CreateMonitorOutput = {
             },
         },
         aggregationPeriod = {
-            type = "number",
+            type = "long",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -188,7 +188,7 @@ M.ProbeInput = {
             },
         },
         destinationPort = {
-            type = "number",
+            type = "integer",
         },
         protocol = {
             type = "string",
@@ -197,12 +197,12 @@ M.ProbeInput = {
             },
         },
         packetSize = {
-            type = "number",
+            type = "integer",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -217,19 +217,16 @@ M.CreateProbeInput = {
                 required = true,
             },
         },
-        probe = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        probe = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProbeInput }),
         clientToken = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -265,7 +262,7 @@ M.CreateProbeOutput = {
             },
         },
         destinationPort = {
-            type = "number",
+            type = "integer",
         },
         protocol = {
             type = "string",
@@ -274,7 +271,7 @@ M.CreateProbeOutput = {
             },
         },
         packetSize = {
-            type = "number",
+            type = "integer",
         },
         addressFamily = {
             type = "string",
@@ -293,8 +290,8 @@ M.CreateProbeOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -385,7 +382,7 @@ M.Probe = {
             },
         },
         destinationPort = {
-            type = "number",
+            type = "integer",
         },
         protocol = {
             type = "string",
@@ -394,7 +391,7 @@ M.Probe = {
             },
         },
         packetSize = {
-            type = "number",
+            type = "integer",
         },
         addressFamily = {
             type = "string",
@@ -413,8 +410,8 @@ M.Probe = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -441,19 +438,19 @@ M.GetMonitorOutput = {
             },
         },
         aggregationPeriod = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         probes = {
             type = "list",
-            member_type = "structure",
+            member = M.Probe,
         },
         createdAt = {
             type = "timestamp",
@@ -512,7 +509,7 @@ M.GetProbeOutput = {
             },
         },
         destinationPort = {
-            type = "number",
+            type = "integer",
         },
         protocol = {
             type = "string",
@@ -521,7 +518,7 @@ M.GetProbeOutput = {
             },
         },
         packetSize = {
-            type = "number",
+            type = "integer",
         },
         addressFamily = {
             type = "string",
@@ -540,8 +537,8 @@ M.GetProbeOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -556,7 +553,7 @@ M.ListMonitorsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -592,12 +589,12 @@ M.MonitorSummary = {
             },
         },
         aggregationPeriod = {
-            type = "number",
+            type = "long",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -607,7 +604,7 @@ M.ListMonitorsOutput = {
     members = {
         monitors = {
             type = "list",
-            member_type = "structure",
+            member = M.MonitorSummary,
             traits = {
                 required = true,
             },
@@ -636,8 +633,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -653,7 +650,7 @@ M.UpdateMonitorInput = {
             },
         },
         aggregationPeriod = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -683,12 +680,12 @@ M.UpdateMonitorOutput = {
             },
         },
         aggregationPeriod = {
-            type = "number",
+            type = "long",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -717,13 +714,13 @@ M.UpdateProbeInput = {
             type = "string",
         },
         destinationPort = {
-            type = "number",
+            type = "integer",
         },
         protocol = {
             type = "string",
         },
         packetSize = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -750,7 +747,7 @@ M.UpdateProbeOutput = {
             },
         },
         destinationPort = {
-            type = "number",
+            type = "integer",
         },
         protocol = {
             type = "string",
@@ -759,7 +756,7 @@ M.UpdateProbeOutput = {
             },
         },
         packetSize = {
-            type = "number",
+            type = "integer",
         },
         addressFamily = {
             type = "string",
@@ -778,8 +775,8 @@ M.UpdateProbeOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -796,8 +793,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -821,7 +818,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,

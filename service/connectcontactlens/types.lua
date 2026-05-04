@@ -49,7 +49,7 @@ M.ListRealtimeContactAnalysisSegmentsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -61,13 +61,13 @@ M.PointOfInterest = {
     type = "structure",
     members = {
         BeginOffsetMillis = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         EndOffsetMillis = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -80,7 +80,7 @@ M.CategoryDetails = {
     members = {
         PointsOfInterest = {
             type = "list",
-            member_type = "structure",
+            member = M.PointOfInterest,
             traits = {
                 required = true,
             },
@@ -93,15 +93,15 @@ M.Categories = {
     members = {
         MatchedCategories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         MatchedDetails = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.CategoryDetails,
             traits = {
                 required = true,
             },
@@ -144,13 +144,13 @@ M.CharacterOffsets = {
     type = "structure",
     members = {
         BeginOffsetChar = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         EndOffsetChar = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -161,12 +161,9 @@ M.CharacterOffsets = {
 M.IssueDetected = {
     type = "structure",
     members = {
-        CharacterOffsets = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        CharacterOffsets = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CharacterOffsets }),
     },
 }
 
@@ -204,13 +201,13 @@ M.Transcript = {
             },
         },
         BeginOffsetMillis = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         EndOffsetMillis = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -220,7 +217,7 @@ M.Transcript = {
         },
         IssuesDetected = {
             type = "list",
-            member_type = "structure",
+            member = M.IssueDetected,
         },
     },
 }
@@ -228,15 +225,9 @@ M.Transcript = {
 M.RealtimeContactAnalysisSegment = {
     type = "structure",
     members = {
-        Transcript = {
-            type = "structure",
-        },
-        Categories = {
-            type = "structure",
-        },
-        PostContactSummary = {
-            type = "structure",
-        },
+        Transcript = M.Transcript,
+        Categories = M.Categories,
+        PostContactSummary = M.PostContactSummary,
     },
 }
 
@@ -245,7 +236,7 @@ M.ListRealtimeContactAnalysisSegmentsOutput = {
     members = {
         Segments = {
             type = "list",
-            member_type = "structure",
+            member = M.RealtimeContactAnalysisSegment,
             traits = {
                 required = true,
             },

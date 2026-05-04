@@ -16,7 +16,7 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AmazonRecycleBin"
-    cfg.signing_name = "amazonrecyclebin"
+    cfg.signing_name = "rbin"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end

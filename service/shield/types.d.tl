@@ -940,11 +940,11 @@ end
 
 local type ProtectionGroupPattern = "ALL" | "ARBITRARY" | "BY_RESOURCE_TYPE"
 
-local type SubscriptionState = "ACTIVE" | "INACTIVE"
-
 local type ProtectedResourceType = "CLOUDFRONT_DISTRIBUTION" | "ROUTE_53_HOSTED_ZONE" | "ELASTIC_IP_ALLOCATION" | "CLASSIC_LOAD_BALANCER" | "APPLICATION_LOAD_BALANCER" | "GLOBAL_ACCELERATOR"
 
 local type AutoRenew = "ENABLED" | "DISABLED"
+
+local type SubscriptionState = "ACTIVE" | "INACTIVE"
 
 local type ProtectionGroupAggregation = "SUM" | "MEAN" | "MAX"
 

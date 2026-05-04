@@ -48,7 +48,7 @@ M.CommonControlFilter = {
     members = {
         Objectives = {
             type = "list",
-            member_type = "structure",
+            member = M.ObjectiveResourceFilter,
         },
     },
 }
@@ -79,7 +79,7 @@ M.ListCommonControlsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -90,9 +90,7 @@ M.ListCommonControlsInput = {
                 http_query = "nextToken",
             },
         },
-        CommonControlFilter = {
-            type = "structure",
-        },
+        CommonControlFilter = M.CommonControlFilter,
     },
 }
 
@@ -117,18 +115,12 @@ M.CommonControlSummary = {
                 required = true,
             },
         },
-        Domain = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Objective = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Domain = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AssociatedDomainSummary }),
+        Objective = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AssociatedObjectiveSummary }),
         CreateTime = {
             type = "timestamp",
             traits = {
@@ -149,7 +141,7 @@ M.ListCommonControlsOutput = {
     members = {
         CommonControls = {
             type = "list",
-            member_type = "structure",
+            member = M.CommonControlSummary,
             traits = {
                 required = true,
             },
@@ -241,7 +233,7 @@ M.RegionConfiguration = {
         },
         DeployableRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -264,7 +256,7 @@ M.GetControlOutput = {
         },
         Aliases = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Name = {
             type = "string",
@@ -287,25 +279,20 @@ M.GetControlOutput = {
         Severity = {
             type = "string",
         },
-        RegionConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Implementation = {
-            type = "structure",
-        },
+        RegionConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RegionConfiguration }),
+        Implementation = M.ImplementationDetails,
         Parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.ControlParameter,
         },
         CreateTime = {
             type = "timestamp",
         },
         GovernedResources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -325,11 +312,11 @@ M.ImplementationFilter = {
     members = {
         Types = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Identifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -337,9 +324,7 @@ M.ImplementationFilter = {
 M.ControlFilter = {
     type = "structure",
     members = {
-        Implementations = {
-            type = "structure",
-        },
+        Implementations = M.ImplementationFilter,
     },
 }
 
@@ -353,14 +338,12 @@ M.ListControlsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
         },
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.ControlFilter,
     },
 }
 
@@ -390,7 +373,7 @@ M.ControlSummary = {
         },
         Aliases = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Name = {
             type = "string",
@@ -410,15 +393,13 @@ M.ControlSummary = {
         Severity = {
             type = "string",
         },
-        Implementation = {
-            type = "structure",
-        },
+        Implementation = M.ImplementationSummary,
         CreateTime = {
             type = "timestamp",
         },
         GovernedResources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -428,7 +409,7 @@ M.ListControlsOutput = {
     members = {
         Controls = {
             type = "list",
-            member_type = "structure",
+            member = M.ControlSummary,
             traits = {
                 required = true,
             },
@@ -443,7 +424,7 @@ M.ListDomainsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -498,7 +479,7 @@ M.ListDomainsOutput = {
     members = {
         Domains = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainSummary,
             traits = {
                 required = true,
             },
@@ -520,15 +501,15 @@ M.ControlMappingFilter = {
     members = {
         ControlArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CommonControlArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MappingTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -543,14 +524,12 @@ M.ListControlMappingsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
         },
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.ControlMappingFilter,
     },
 }
 
@@ -596,15 +575,9 @@ M.RelatedControlMappingDetails = {
 M.Mapping = {
     type = "union",
     members = {
-        Framework = {
-            type = "structure",
-        },
-        CommonControl = {
-            type = "structure",
-        },
-        RelatedControl = {
-            type = "structure",
-        },
+        Framework = M.FrameworkMappingDetails,
+        CommonControl = M.CommonControlMappingDetails,
+        RelatedControl = M.RelatedControlMappingDetails,
     },
 }
 
@@ -623,12 +596,9 @@ M.ControlMapping = {
                 required = true,
             },
         },
-        Mapping = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        Mapping = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Mapping }),
     },
 }
 
@@ -637,7 +607,7 @@ M.ListControlMappingsOutput = {
     members = {
         ControlMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.ControlMapping,
             traits = {
                 required = true,
             },
@@ -662,7 +632,7 @@ M.ObjectiveFilter = {
     members = {
         Domains = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainResourceFilter,
         },
     },
 }
@@ -671,7 +641,7 @@ M.ListObjectivesInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -682,9 +652,7 @@ M.ListObjectivesInput = {
                 http_query = "nextToken",
             },
         },
-        ObjectiveFilter = {
-            type = "structure",
-        },
+        ObjectiveFilter = M.ObjectiveFilter,
     },
 }
 
@@ -709,12 +677,9 @@ M.ObjectiveSummary = {
                 required = true,
             },
         },
-        Domain = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Domain = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AssociatedDomainSummary }),
         CreateTime = {
             type = "timestamp",
             traits = {
@@ -735,7 +700,7 @@ M.ListObjectivesOutput = {
     members = {
         Objectives = {
             type = "list",
-            member_type = "structure",
+            member = M.ObjectiveSummary,
             traits = {
                 required = true,
             },

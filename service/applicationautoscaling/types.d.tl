@@ -379,11 +379,11 @@ local record ValidationException
     Message: string
 end
 
+local type ScalableDimension = "ecs:service:DesiredCount" | "ec2:spot-fleet-request:TargetCapacity" | "elasticmapreduce:instancegroup:InstanceCount" | "appstream:fleet:DesiredCapacity" | "dynamodb:table:ReadCapacityUnits" | "dynamodb:table:WriteCapacityUnits" | "dynamodb:index:ReadCapacityUnits" | "dynamodb:index:WriteCapacityUnits" | "rds:cluster:ReadReplicaCount" | "sagemaker:variant:DesiredInstanceCount" | "custom-resource:ResourceType:Property" | "comprehend:document-classifier-endpoint:DesiredInferenceUnits" | "comprehend:entity-recognizer-endpoint:DesiredInferenceUnits" | "lambda:function:ProvisionedConcurrency" | "cassandra:table:ReadCapacityUnits" | "cassandra:table:WriteCapacityUnits" | "kafka:broker-storage:VolumeSize" | "elasticache:cache-cluster:Nodes" | "elasticache:replication-group:NodeGroups" | "elasticache:replication-group:Replicas" | "neptune:cluster:ReadReplicaCount" | "sagemaker:variant:DesiredProvisionedConcurrency" | "sagemaker:inference-component:DesiredCopyCount" | "workspaces:workspacespool:DesiredUserSessions"
+
 local type ServiceNamespace = "ecs" | "elasticmapreduce" | "ec2" | "appstream" | "dynamodb" | "rds" | "sagemaker" | "custom-resource" | "comprehend" | "lambda" | "cassandra" | "kafka" | "elasticache" | "neptune" | "workspaces"
 
 local type PolicyType = "StepScaling" | "TargetTrackingScaling" | "PredictiveScaling"
-
-local type ScalableDimension = "ecs:service:DesiredCount" | "ec2:spot-fleet-request:TargetCapacity" | "elasticmapreduce:instancegroup:InstanceCount" | "appstream:fleet:DesiredCapacity" | "dynamodb:table:ReadCapacityUnits" | "dynamodb:table:WriteCapacityUnits" | "dynamodb:index:ReadCapacityUnits" | "dynamodb:index:WriteCapacityUnits" | "rds:cluster:ReadReplicaCount" | "sagemaker:variant:DesiredInstanceCount" | "custom-resource:ResourceType:Property" | "comprehend:document-classifier-endpoint:DesiredInferenceUnits" | "comprehend:entity-recognizer-endpoint:DesiredInferenceUnits" | "lambda:function:ProvisionedConcurrency" | "cassandra:table:ReadCapacityUnits" | "cassandra:table:WriteCapacityUnits" | "kafka:broker-storage:VolumeSize" | "elasticache:cache-cluster:Nodes" | "elasticache:replication-group:NodeGroups" | "elasticache:replication-group:Replicas" | "neptune:cluster:ReadReplicaCount" | "sagemaker:variant:DesiredProvisionedConcurrency" | "sagemaker:inference-component:DesiredCopyCount" | "workspaces:workspacespool:DesiredUserSessions"
 
 local record M
     DeleteScalingPolicyInput: DeleteScalingPolicyInput

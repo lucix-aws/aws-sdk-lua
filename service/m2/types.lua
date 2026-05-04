@@ -20,19 +20,24 @@ M.AlternateKey = {
             type = "string",
         },
         offset = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         length = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         allowDuplicates = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -94,8 +99,9 @@ M.InternalServerException = {
             },
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_header = "Retry-After",
             },
         },
@@ -138,8 +144,9 @@ M.ThrottlingException = {
             type = "string",
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_header = "Retry-After",
             },
         },
@@ -188,7 +195,7 @@ M.ValidationException = {
         },
         fieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -228,16 +235,13 @@ M.CreateApplicationInput = {
                 required = true,
             },
         },
-        definition = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        definition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Definition }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         clientToken = {
             type = "string",
@@ -267,7 +271,7 @@ M.CreateApplicationOutput = {
             },
         },
         applicationVersion = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -318,12 +322,9 @@ M.DataSetExportItem = {
                 required = true,
             },
         },
-        externalLocation = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        externalLocation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ExternalLocation }),
     },
 }
 
@@ -335,7 +336,7 @@ M.DataSetExportConfig = {
         },
         dataSets = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSetExportItem,
         },
     },
 }
@@ -350,12 +351,9 @@ M.CreateDataSetExportTaskInput = {
                 required = true,
             },
         },
-        exportConfig = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        exportConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataSetExportConfig }),
         clientToken = {
             type = "string",
         },
@@ -381,7 +379,10 @@ M.GdgAttributes = {
     type = "structure",
     members = {
         limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         rollDisposition = {
             type = "string",
@@ -403,7 +404,7 @@ M.PoAttributes = {
         },
         memberFileExtensions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -433,14 +434,16 @@ M.PrimaryKey = {
             type = "string",
         },
         offset = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         length = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -461,13 +464,14 @@ M.VsamAttributes = {
         },
         compressed = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        primaryKey = {
-            type = "structure",
-        },
+        primaryKey = M.PrimaryKey,
         alternateKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.AlternateKey,
         },
     },
 }
@@ -475,18 +479,10 @@ M.VsamAttributes = {
 M.DatasetOrgAttributes = {
     type = "union",
     members = {
-        vsam = {
-            type = "structure",
-        },
-        gdg = {
-            type = "structure",
-        },
-        po = {
-            type = "structure",
-        },
-        ps = {
-            type = "structure",
-        },
+        vsam = M.VsamAttributes,
+        gdg = M.GdgAttributes,
+        po = M.PoAttributes,
+        ps = M.PsAttributes,
     },
 }
 
@@ -494,14 +490,16 @@ M.RecordLength = {
     type = "structure",
     members = {
         min = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         max = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -520,39 +518,27 @@ M.DataSet = {
                 required = true,
             },
         },
-        datasetOrg = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        datasetOrg = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DatasetOrgAttributes }),
         relativePath = {
             type = "string",
         },
-        recordLength = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        recordLength = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RecordLength }),
     },
 }
 
 M.DataSetImportItem = {
     type = "structure",
     members = {
-        dataSet = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        externalLocation = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        dataSet = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataSet }),
+        externalLocation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ExternalLocation }),
     },
 }
 
@@ -564,7 +550,7 @@ M.DataSetImportConfig = {
         },
         dataSets = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSetImportItem,
         },
     },
 }
@@ -579,12 +565,9 @@ M.CreateDataSetImportTaskInput = {
                 required = true,
             },
         },
-        importConfig = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        importConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataSetImportConfig }),
         clientToken = {
             type = "string",
         },
@@ -620,7 +603,7 @@ M.CreateDeploymentInput = {
             },
         },
         applicationVersion = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -708,7 +691,7 @@ M.DeployedVersionSummary = {
     type = "structure",
     members = {
         applicationVersion = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -735,7 +718,7 @@ M.ApplicationVersionSummary = {
     type = "structure",
     members = {
         applicationVersion = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -820,15 +803,10 @@ M.GetApplicationOutput = {
                 required = true,
             },
         },
-        latestVersion = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        deployedVersion = {
-            type = "structure",
-        },
+        latestVersion = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ApplicationVersionSummary }),
+        deployedVersion = M.DeployedVersionSummary,
         engineType = {
             type = "string",
             traits = {
@@ -837,7 +815,7 @@ M.GetApplicationOutput = {
         },
         logGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.LogGroupSummary,
         },
         creationTime = {
             type = "timestamp",
@@ -850,23 +828,23 @@ M.GetApplicationOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         environmentId = {
             type = "string",
         },
         targetGroupArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         listenerArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         listenerPorts = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
         },
         loadBalancerDnsName = {
             type = "string",
@@ -894,7 +872,7 @@ M.GetApplicationVersionInput = {
             },
         },
         applicationVersion = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_label = true,
                 required = true,
@@ -913,7 +891,7 @@ M.GetApplicationVersionOutput = {
             },
         },
         applicationVersion = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -999,10 +977,16 @@ M.JobStepRestartMarker = {
             type = "string",
         },
         stepCheckpoint = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         skip = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -1016,12 +1000,9 @@ M.RestartBatchJobIdentifier = {
                 required = true,
             },
         },
-        jobStepRestartMarker = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        jobStepRestartMarker = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.JobStepRestartMarker }),
     },
 }
 
@@ -1049,12 +1030,9 @@ M.S3BatchJobIdentifier = {
         keyPrefix = {
             type = "string",
         },
-        identifier = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        identifier = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.JobIdentifier }),
     },
 }
 
@@ -1073,18 +1051,10 @@ M.ScriptBatchJobIdentifier = {
 M.BatchJobIdentifier = {
     type = "union",
     members = {
-        fileBatchJobIdentifier = {
-            type = "structure",
-        },
-        scriptBatchJobIdentifier = {
-            type = "structure",
-        },
-        s3BatchJobIdentifier = {
-            type = "structure",
-        },
-        restartBatchJobIdentifier = {
-            type = "structure",
-        },
+        fileBatchJobIdentifier = M.FileBatchJobIdentifier,
+        scriptBatchJobIdentifier = M.ScriptBatchJobIdentifier,
+        s3BatchJobIdentifier = M.S3BatchJobIdentifier,
+        restartBatchJobIdentifier = M.RestartBatchJobIdentifier,
     },
 }
 
@@ -1155,12 +1125,8 @@ M.GetBatchJobExecutionOutput = {
         returnCode = {
             type = "string",
         },
-        batchJobIdentifier = {
-            type = "union",
-        },
-        jobStepRestartMarker = {
-            type = "structure",
-        },
+        batchJobIdentifier = M.BatchJobIdentifier,
+        jobStepRestartMarker = M.JobStepRestartMarker,
     },
 }
 
@@ -1201,7 +1167,10 @@ M.GdgDetailAttributes = {
     type = "structure",
     members = {
         limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         rollDisposition = {
             type = "string",
@@ -1256,16 +1225,20 @@ M.VsamDetailAttributes = {
         },
         compressed = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
         cacheAtStartup = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
-        primaryKey = {
-            type = "structure",
-        },
+        primaryKey = M.PrimaryKey,
         alternateKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.AlternateKey,
         },
     },
 }
@@ -1273,18 +1246,10 @@ M.VsamDetailAttributes = {
 M.DatasetDetailOrgAttributes = {
     type = "union",
     members = {
-        vsam = {
-            type = "structure",
-        },
-        gdg = {
-            type = "structure",
-        },
-        po = {
-            type = "structure",
-        },
-        ps = {
-            type = "structure",
-        },
+        vsam = M.VsamDetailAttributes,
+        gdg = M.GdgDetailAttributes,
+        po = M.PoDetailAttributes,
+        ps = M.PsDetailAttributes,
     },
 }
 
@@ -1297,17 +1262,21 @@ M.GetDataSetDetailsOutput = {
                 required = true,
             },
         },
-        dataSetOrg = {
-            type = "union",
-        },
+        dataSetOrg = M.DatasetDetailOrgAttributes,
         recordLength = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         location = {
             type = "string",
         },
         blocksize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         creationTime = {
             type = "timestamp",
@@ -1319,7 +1288,10 @@ M.GetDataSetDetailsOutput = {
             type = "timestamp",
         },
         fileSize = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -1368,32 +1340,37 @@ M.DataSetExportSummary = {
     type = "structure",
     members = {
         total = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         succeeded = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         failed = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         pending = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         inProgress = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -1415,9 +1392,7 @@ M.GetDataSetExportTaskOutput = {
                 required = true,
             },
         },
-        summary = {
-            type = "structure",
-        },
+        summary = M.DataSetExportSummary,
         statusReason = {
             type = "string",
         },
@@ -1451,32 +1426,37 @@ M.DataSetImportSummary = {
     type = "structure",
     members = {
         total = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         succeeded = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         failed = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         pending = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         inProgress = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -1498,9 +1478,7 @@ M.GetDataSetImportTaskOutput = {
                 required = true,
             },
         },
-        summary = {
-            type = "structure",
-        },
+        summary = M.DataSetImportSummary,
     },
 }
 
@@ -1546,7 +1524,7 @@ M.GetDeploymentOutput = {
             },
         },
         applicationVersion = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1579,14 +1557,15 @@ M.ListApplicationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_query = "maxResults",
             },
         },
         names = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "names",
             },
@@ -1630,7 +1609,7 @@ M.ApplicationSummary = {
             },
         },
         applicationVersion = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1676,7 +1655,7 @@ M.ListApplicationsOutput = {
     members = {
         applications = {
             type = "list",
-            member_type = "structure",
+            member = M.ApplicationSummary,
             traits = {
                 required = true,
             },
@@ -1697,8 +1676,9 @@ M.ListApplicationVersionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_query = "maxResults",
             },
         },
@@ -1717,7 +1697,7 @@ M.ListApplicationVersionsOutput = {
     members = {
         applicationVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.ApplicationVersionSummary,
             traits = {
                 required = true,
             },
@@ -1738,8 +1718,9 @@ M.ListBatchJobDefinitionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_query = "maxResults",
             },
         },
@@ -1789,12 +1770,8 @@ M.ScriptBatchJobDefinition = {
 M.BatchJobDefinition = {
     type = "union",
     members = {
-        fileBatchJobDefinition = {
-            type = "structure",
-        },
-        scriptBatchJobDefinition = {
-            type = "structure",
-        },
+        fileBatchJobDefinition = M.FileBatchJobDefinition,
+        scriptBatchJobDefinition = M.ScriptBatchJobDefinition,
     },
 }
 
@@ -1803,7 +1780,7 @@ M.ListBatchJobDefinitionsOutput = {
     members = {
         batchJobDefinitions = {
             type = "list",
-            member_type = "union",
+            member = M.BatchJobDefinition,
             traits = {
                 required = true,
             },
@@ -1824,8 +1801,9 @@ M.ListBatchJobExecutionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_query = "maxResults",
             },
         },
@@ -1838,7 +1816,7 @@ M.ListBatchJobExecutionsInput = {
         },
         executionIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "executionIds",
             },
@@ -1912,9 +1890,7 @@ M.BatchJobExecutionSummary = {
         returnCode = {
             type = "string",
         },
-        batchJobIdentifier = {
-            type = "union",
-        },
+        batchJobIdentifier = M.BatchJobIdentifier,
     },
 }
 
@@ -1923,7 +1899,7 @@ M.ListBatchJobExecutionsOutput = {
     members = {
         batchJobExecutions = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchJobExecutionSummary,
             traits = {
                 required = true,
             },
@@ -1964,13 +1940,19 @@ M.JobStep = {
     type = "structure",
     members = {
         stepNumber = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         stepName = {
             type = "string",
         },
         procStepNumber = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         procStepName = {
             type = "string",
@@ -1980,9 +1962,15 @@ M.JobStep = {
         },
         stepRestartable = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         stepCheckpoint = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         stepCheckpointStatus = {
             type = "string",
@@ -1998,7 +1986,7 @@ M.ListBatchJobRestartPointsOutput = {
     members = {
         batchJobSteps = {
             type = "list",
-            member_type = "structure",
+            member = M.JobStep,
         },
     },
 }
@@ -2013,8 +2001,9 @@ M.ListDataSetExportHistoryInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_query = "maxResults",
             },
         },
@@ -2043,12 +2032,9 @@ M.DataSetExportTask = {
                 required = true,
             },
         },
-        summary = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        summary = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataSetExportSummary }),
         statusReason = {
             type = "string",
         },
@@ -2060,7 +2046,7 @@ M.ListDataSetExportHistoryOutput = {
     members = {
         dataSetExportTasks = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSetExportTask,
             traits = {
                 required = true,
             },
@@ -2081,8 +2067,9 @@ M.ListDataSetImportHistoryInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_query = "maxResults",
             },
         },
@@ -2111,12 +2098,9 @@ M.DataSetImportTask = {
                 required = true,
             },
         },
-        summary = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        summary = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataSetImportSummary }),
         statusReason = {
             type = "string",
         },
@@ -2128,7 +2112,7 @@ M.ListDataSetImportHistoryOutput = {
     members = {
         dataSetImportTasks = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSetImportTask,
             traits = {
                 required = true,
             },
@@ -2156,8 +2140,9 @@ M.ListDataSetsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_query = "maxResults",
             },
         },
@@ -2208,7 +2193,7 @@ M.ListDataSetsOutput = {
     members = {
         dataSets = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSetSummary,
             traits = {
                 required = true,
             },
@@ -2229,8 +2214,9 @@ M.ListDeploymentsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_query = "maxResults",
             },
         },
@@ -2266,7 +2252,7 @@ M.DeploymentSummary = {
             },
         },
         applicationVersion = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -2294,7 +2280,7 @@ M.ListDeploymentsOutput = {
     members = {
         deployments = {
             type = "list",
-            member_type = "structure",
+            member = M.DeploymentSummary,
             traits = {
                 required = true,
             },
@@ -2332,16 +2318,13 @@ M.StartBatchJobInput = {
                 required = true,
             },
         },
-        batchJobIdentifier = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        batchJobIdentifier = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BatchJobIdentifier }),
         jobParams = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         authSecretsManagerArn = {
             type = "string",
@@ -2373,6 +2356,9 @@ M.StopApplicationInput = {
         },
         forceStop = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -2395,14 +2381,12 @@ M.UpdateApplicationInput = {
             type = "string",
         },
         currentApplicationVersion = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
-        definition = {
-            type = "union",
-        },
+        definition = M.Definition,
     },
 }
 
@@ -2410,7 +2394,7 @@ M.UpdateApplicationOutput = {
     type = "structure",
     members = {
         applicationVersion = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -2422,7 +2406,7 @@ M.HighAvailabilityConfig = {
     type = "structure",
     members = {
         desiredCapacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -2478,12 +2462,8 @@ M.FsxStorageConfiguration = {
 M.StorageConfiguration = {
     type = "union",
     members = {
-        efs = {
-            type = "structure",
-        },
-        fsx = {
-            type = "structure",
-        },
+        efs = M.EfsStorageConfiguration,
+        fsx = M.FsxStorageConfiguration,
     },
 }
 
@@ -2516,26 +2496,27 @@ M.CreateEnvironmentInput = {
         },
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         storageConfigurations = {
             type = "list",
-            member_type = "union",
+            member = M.StorageConfiguration,
         },
         publiclyAccessible = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        highAvailabilityConfig = {
-            type = "structure",
-        },
+        highAvailabilityConfig = M.HighAvailabilityConfig,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         preferredMaintenanceWindow = {
             type = "string",
@@ -2609,9 +2590,7 @@ M.MaintenanceSchedule = {
 M.PendingMaintenance = {
     type = "structure",
     members = {
-        schedule = {
-            type = "structure",
-        },
+        schedule = M.MaintenanceSchedule,
         engineVersion = {
             type = "string",
         },
@@ -2683,14 +2662,14 @@ M.GetEnvironmentOutput = {
         },
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2703,21 +2682,22 @@ M.GetEnvironmentOutput = {
         },
         storageConfigurations = {
             type = "list",
-            member_type = "union",
+            member = M.StorageConfiguration,
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        highAvailabilityConfig = {
-            type = "structure",
-        },
+        highAvailabilityConfig = M.HighAvailabilityConfig,
         publiclyAccessible = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         actualCapacity = {
-            type = "number",
+            type = "integer",
         },
         loadBalancerArn = {
             type = "string",
@@ -2728,9 +2708,7 @@ M.GetEnvironmentOutput = {
         preferredMaintenanceWindow = {
             type = "string",
         },
-        pendingMaintenance = {
-            type = "structure",
-        },
+        pendingMaintenance = M.PendingMaintenance,
         kmsKeyId = {
             type = "string",
         },
@@ -2750,14 +2728,15 @@ M.ListEnvironmentsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_query = "maxResults",
             },
         },
         names = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "names",
             },
@@ -2833,7 +2812,7 @@ M.ListEnvironmentsOutput = {
     members = {
         environments = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentSummary,
             traits = {
                 required = true,
             },
@@ -2855,7 +2834,10 @@ M.UpdateEnvironmentInput = {
             },
         },
         desiredCapacity = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         instanceType = {
             type = "string",
@@ -2868,9 +2850,15 @@ M.UpdateEnvironmentInput = {
         },
         applyDuringMaintenanceWindow = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         forceUpdate = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -2919,8 +2907,9 @@ M.ListEngineVersionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_query = "maxResults",
             },
         },
@@ -2950,7 +2939,7 @@ M.ListEngineVersionsOutput = {
     members = {
         engineVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.EngineVersionsSummary,
             traits = {
                 required = true,
             },
@@ -2979,8 +2968,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3000,8 +2989,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3025,7 +3014,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,

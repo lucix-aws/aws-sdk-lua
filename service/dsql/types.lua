@@ -53,7 +53,7 @@ M.MultiRegionProperties = {
         },
         clusters = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -63,26 +63,30 @@ M.CreateClusterInput = {
     members = {
         deletionProtectionEnabled = {
             type = "boolean",
+            traits = {
+                default = true,
+            },
         },
         kmsEncryptionKey = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         clientToken = {
             type = "string",
         },
-        multiRegionProperties = {
-            type = "structure",
-        },
+        multiRegionProperties = M.MultiRegionProperties,
         policy = {
             type = "string",
         },
         bypassPolicyLockoutSafetyCheck = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -147,12 +151,8 @@ M.CreateClusterOutput = {
                 required = true,
             },
         },
-        multiRegionProperties = {
-            type = "structure",
-        },
-        encryptionDetails = {
-            type = "structure",
-        },
+        multiRegionProperties = M.MultiRegionProperties,
+        encryptionDetails = M.EncryptionDetails,
         deletionProtectionEnabled = {
             type = "boolean",
             traits = {
@@ -176,7 +176,7 @@ M.InternalServerException = {
             },
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -238,7 +238,7 @@ M.ThrottlingException = {
             type = "string",
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -290,7 +290,7 @@ M.ValidationException = {
         },
         fieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -452,17 +452,13 @@ M.GetClusterOutput = {
                 required = true,
             },
         },
-        multiRegionProperties = {
-            type = "structure",
-        },
+        multiRegionProperties = M.MultiRegionProperties,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        encryptionDetails = {
-            type = "structure",
-        },
+        encryptionDetails = M.EncryptionDetails,
         endpoint = {
             type = "string",
         },
@@ -532,8 +528,9 @@ M.ListClustersInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 20,
                 http_query = "max-results",
             },
         },
@@ -572,7 +569,7 @@ M.ListClustersOutput = {
         },
         clusters = {
             type = "list",
-            member_type = "structure",
+            member = M.ClusterSummary,
             traits = {
                 required = true,
             },
@@ -598,6 +595,9 @@ M.PutClusterPolicyInput = {
         },
         bypassPolicyLockoutSafetyCheck = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         expectedPolicyVersion = {
             type = "string",
@@ -639,9 +639,7 @@ M.UpdateClusterInput = {
         clientToken = {
             type = "string",
         },
-        multiRegionProperties = {
-            type = "structure",
-        },
+        multiRegionProperties = M.MultiRegionProperties,
     },
 }
 
@@ -693,8 +691,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -711,8 +709,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -736,7 +734,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,

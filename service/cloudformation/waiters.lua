@@ -1,0 +1,615 @@
+local waiter = require("waiter")
+
+local M = {}
+
+--- Wait until ChangeSetCreateComplete.
+function M.wait_until_change_set_create_complete(client, input, options)
+    return waiter.wait(client, "describeChangeSet", input, {
+        min_delay = 30,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "Status",
+                        expected = "CREATE_COMPLETE",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Status",
+                        expected = "FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    errorType = "ValidationError",
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until StackCreateComplete.
+function M.wait_until_stack_create_complete(client, input, options)
+    return waiter.wait(client, "describeStacks", input, {
+        min_delay = 30,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "Stacks[].StackStatus",
+                        expected = "CREATE_COMPLETE",
+                        comparator = "allStringEquals",
+                    },
+                },
+            },
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "Stacks[].StackStatus",
+                        expected = "UPDATE_COMPLETE",
+                        comparator = "allStringEquals",
+                    },
+                },
+            },
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "Stacks[].StackStatus",
+                        expected = "UPDATE_IN_PROGRESS",
+                        comparator = "allStringEquals",
+                    },
+                },
+            },
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "Stacks[].StackStatus",
+                        expected = "UPDATE_COMPLETE_CLEANUP_IN_PROGRESS",
+                        comparator = "allStringEquals",
+                    },
+                },
+            },
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "Stacks[].StackStatus",
+                        expected = "UPDATE_FAILED",
+                        comparator = "allStringEquals",
+                    },
+                },
+            },
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "Stacks[].StackStatus",
+                        expected = "UPDATE_ROLLBACK_IN_PROGRESS",
+                        comparator = "allStringEquals",
+                    },
+                },
+            },
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "Stacks[].StackStatus",
+                        expected = "UPDATE_ROLLBACK_FAILED",
+                        comparator = "allStringEquals",
+                    },
+                },
+            },
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "Stacks[].StackStatus",
+                        expected = "UPDATE_ROLLBACK_COMPLETE_CLEANUP_IN_PROGRESS",
+                        comparator = "allStringEquals",
+                    },
+                },
+            },
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "Stacks[].StackStatus",
+                        expected = "UPDATE_ROLLBACK_COMPLETE",
+                        comparator = "allStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Stacks[].StackStatus",
+                        expected = "CREATE_FAILED",
+                        comparator = "anyStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Stacks[].StackStatus",
+                        expected = "DELETE_COMPLETE",
+                        comparator = "anyStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Stacks[].StackStatus",
+                        expected = "DELETE_FAILED",
+                        comparator = "anyStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Stacks[].StackStatus",
+                        expected = "ROLLBACK_FAILED",
+                        comparator = "anyStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Stacks[].StackStatus",
+                        expected = "ROLLBACK_COMPLETE",
+                        comparator = "anyStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    errorType = "ValidationError",
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until StackDeleteComplete.
+function M.wait_until_stack_delete_complete(client, input, options)
+    return waiter.wait(client, "describeStacks", input, {
+        min_delay = 30,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "Stacks[].StackStatus",
+                        expected = "DELETE_COMPLETE",
+                        comparator = "allStringEquals",
+                    },
+                },
+            },
+            {
+                state = "success",
+                matcher = {
+                    errorType = "ValidationError",
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Stacks[].StackStatus",
+                        expected = "DELETE_FAILED",
+                        comparator = "anyStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Stacks[].StackStatus",
+                        expected = "CREATE_FAILED",
+                        comparator = "anyStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Stacks[].StackStatus",
+                        expected = "ROLLBACK_FAILED",
+                        comparator = "anyStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Stacks[].StackStatus",
+                        expected = "UPDATE_ROLLBACK_IN_PROGRESS",
+                        comparator = "anyStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Stacks[].StackStatus",
+                        expected = "UPDATE_ROLLBACK_FAILED",
+                        comparator = "anyStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Stacks[].StackStatus",
+                        expected = "UPDATE_ROLLBACK_COMPLETE",
+                        comparator = "anyStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Stacks[].StackStatus",
+                        expected = "UPDATE_COMPLETE",
+                        comparator = "anyStringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until StackExists.
+function M.wait_until_stack_exists(client, input, options)
+    return waiter.wait(client, "describeStacks", input, {
+        min_delay = 5,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    success = true,
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "ValidationError",
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until StackImportComplete.
+function M.wait_until_stack_import_complete(client, input, options)
+    return waiter.wait(client, "describeStacks", input, {
+        min_delay = 30,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "Stacks[].StackStatus",
+                        expected = "IMPORT_COMPLETE",
+                        comparator = "allStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Stacks[].StackStatus",
+                        expected = "ROLLBACK_COMPLETE",
+                        comparator = "anyStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Stacks[].StackStatus",
+                        expected = "ROLLBACK_FAILED",
+                        comparator = "anyStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Stacks[].StackStatus",
+                        expected = "IMPORT_ROLLBACK_IN_PROGRESS",
+                        comparator = "anyStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Stacks[].StackStatus",
+                        expected = "IMPORT_ROLLBACK_FAILED",
+                        comparator = "anyStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Stacks[].StackStatus",
+                        expected = "IMPORT_ROLLBACK_COMPLETE",
+                        comparator = "anyStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    errorType = "ValidationError",
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until StackRefactorCreateComplete.
+function M.wait_until_stack_refactor_create_complete(client, input, options)
+    return waiter.wait(client, "describeStackRefactor", input, {
+        min_delay = 5,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "Status",
+                        expected = "CREATE_COMPLETE",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Status",
+                        expected = "CREATE_FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    errorType = "ValidationError",
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until StackRefactorExecuteComplete.
+function M.wait_until_stack_refactor_execute_complete(client, input, options)
+    return waiter.wait(client, "describeStackRefactor", input, {
+        min_delay = 15,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "ExecutionStatus",
+                        expected = "EXECUTE_COMPLETE",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "ExecutionStatus",
+                        expected = "EXECUTE_FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "ExecutionStatus",
+                        expected = "ROLLBACK_COMPLETE",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    errorType = "ValidationError",
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until StackRollbackComplete.
+function M.wait_until_stack_rollback_complete(client, input, options)
+    return waiter.wait(client, "describeStacks", input, {
+        min_delay = 30,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "Stacks[].StackStatus",
+                        expected = "UPDATE_ROLLBACK_COMPLETE",
+                        comparator = "allStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Stacks[].StackStatus",
+                        expected = "UPDATE_FAILED",
+                        comparator = "anyStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Stacks[].StackStatus",
+                        expected = "UPDATE_ROLLBACK_FAILED",
+                        comparator = "anyStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Stacks[].StackStatus",
+                        expected = "DELETE_FAILED",
+                        comparator = "anyStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    errorType = "ValidationError",
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until StackUpdateComplete.
+function M.wait_until_stack_update_complete(client, input, options)
+    return waiter.wait(client, "describeStacks", input, {
+        min_delay = 30,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "Stacks[].StackStatus",
+                        expected = "UPDATE_COMPLETE",
+                        comparator = "allStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Stacks[].StackStatus",
+                        expected = "UPDATE_FAILED",
+                        comparator = "anyStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Stacks[].StackStatus",
+                        expected = "UPDATE_ROLLBACK_FAILED",
+                        comparator = "anyStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Stacks[].StackStatus",
+                        expected = "UPDATE_ROLLBACK_COMPLETE",
+                        comparator = "anyStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    errorType = "ValidationError",
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until TypeRegistrationComplete.
+function M.wait_until_type_registration_complete(client, input, options)
+    return waiter.wait(client, "describeTypeRegistration", input, {
+        min_delay = 30,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "ProgressStatus",
+                        expected = "COMPLETE",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "ProgressStatus",
+                        expected = "FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+return M

@@ -76,7 +76,7 @@ M.AddTagsInput = {
         },
         TagsList = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -259,27 +259,27 @@ M.AdvancedFieldSelector = {
         },
         Equals = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         StartsWith = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         EndsWith = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NotEquals = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NotStartsWith = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NotEndsWith = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -292,7 +292,7 @@ M.AdvancedEventSelector = {
         },
         FieldSelectors = {
             type = "list",
-            member_type = "structure",
+            member = M.AdvancedFieldSelector,
             traits = {
                 required = true,
             },
@@ -315,7 +315,7 @@ M.AggregationConfiguration = {
     members = {
         Templates = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -504,14 +504,14 @@ M.CreateChannelInput = {
         },
         Destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.Destination,
             traits = {
                 required = true,
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -530,11 +530,11 @@ M.CreateChannelOutput = {
         },
         Destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.Destination,
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -571,7 +571,7 @@ M.RefreshScheduleFrequency = {
             type = "string",
         },
         Value = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -584,9 +584,7 @@ M.RefreshScheduleStatus = {
 M.RefreshSchedule = {
     type = "structure",
     members = {
-        Frequency = {
-            type = "structure",
-        },
+        Frequency = M.RefreshScheduleFrequency,
         Status = {
             type = "string",
         },
@@ -607,12 +605,12 @@ M.RequestWidget = {
         },
         QueryParameters = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ViewProperties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -629,19 +627,17 @@ M.CreateDashboardInput = {
                 required = true,
             },
         },
-        RefreshSchedule = {
-            type = "structure",
-        },
+        RefreshSchedule = M.RefreshSchedule,
         TagsList = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         TerminationProtectionEnabled = {
             type = "boolean",
         },
         Widgets = {
             type = "list",
-            member_type = "structure",
+            member = M.RequestWidget,
         },
     },
 }
@@ -662,12 +658,12 @@ M.Widget = {
         },
         QueryParameters = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ViewProperties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -686,15 +682,13 @@ M.CreateDashboardOutput = {
         },
         Widgets = {
             type = "list",
-            member_type = "structure",
+            member = M.Widget,
         },
         TagsList = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        RefreshSchedule = {
-            type = "structure",
-        },
+        RefreshSchedule = M.RefreshSchedule,
         TerminationProtectionEnabled = {
             type = "boolean",
         },
@@ -752,7 +746,7 @@ M.CreateEventDataStoreInput = {
         },
         AdvancedEventSelectors = {
             type = "list",
-            member_type = "structure",
+            member = M.AdvancedEventSelector,
         },
         MultiRegionEnabled = {
             type = "boolean",
@@ -761,14 +755,14 @@ M.CreateEventDataStoreInput = {
             type = "boolean",
         },
         RetentionPeriod = {
-            type = "number",
+            type = "integer",
         },
         TerminationProtectionEnabled = {
             type = "boolean",
         },
         TagsList = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         KmsKeyId = {
             type = "string",
@@ -805,7 +799,7 @@ M.CreateEventDataStoreOutput = {
         },
         AdvancedEventSelectors = {
             type = "list",
-            member_type = "structure",
+            member = M.AdvancedEventSelector,
         },
         MultiRegionEnabled = {
             type = "boolean",
@@ -814,14 +808,14 @@ M.CreateEventDataStoreOutput = {
             type = "boolean",
         },
         RetentionPeriod = {
-            type = "number",
+            type = "integer",
         },
         TerminationProtectionEnabled = {
             type = "boolean",
         },
         TagsList = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         CreatedTimestamp = {
             type = "timestamp",
@@ -1002,7 +996,7 @@ M.CreateTrailInput = {
         },
         TagsList = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1395,16 +1389,16 @@ M.QueryStatisticsForDescribeQuery = {
     type = "structure",
     members = {
         EventsMatched = {
-            type = "number",
+            type = "long",
         },
         EventsScanned = {
-            type = "number",
+            type = "long",
         },
         BytesScanned = {
-            type = "number",
+            type = "long",
         },
         ExecutionTimeInMillis = {
-            type = "number",
+            type = "integer",
         },
         CreationTime = {
             type = "timestamp",
@@ -1424,9 +1418,7 @@ M.DescribeQueryOutput = {
         QueryStatus = {
             type = "string",
         },
-        QueryStatistics = {
-            type = "structure",
-        },
+        QueryStatistics = M.QueryStatisticsForDescribeQuery,
         ErrorMessage = {
             type = "string",
         },
@@ -1450,7 +1442,7 @@ M.DescribeTrailsInput = {
     members = {
         trailNameList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         includeShadowTrails = {
             type = "boolean",
@@ -1517,7 +1509,7 @@ M.DescribeTrailsOutput = {
     members = {
         trailList = {
             type = "list",
-            member_type = "structure",
+            member = M.Trail,
         },
     },
 }
@@ -1601,7 +1593,7 @@ M.GenerateQueryInput = {
     members = {
         EventDataStores = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1681,7 +1673,7 @@ M.SourceConfig = {
         },
         AdvancedEventSelectors = {
             type = "list",
-            member_type = "structure",
+            member = M.AdvancedEventSelector,
         },
     },
 }
@@ -1698,16 +1690,12 @@ M.GetChannelOutput = {
         Source = {
             type = "string",
         },
-        SourceConfig = {
-            type = "structure",
-        },
+        SourceConfig = M.SourceConfig,
         Destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.Destination,
         },
-        IngestionStatus = {
-            type = "structure",
-        },
+        IngestionStatus = M.IngestionStatus,
     },
 }
 
@@ -1745,11 +1733,9 @@ M.GetDashboardOutput = {
         },
         Widgets = {
             type = "list",
-            member_type = "structure",
+            member = M.Widget,
         },
-        RefreshSchedule = {
-            type = "structure",
-        },
+        RefreshSchedule = M.RefreshSchedule,
         CreatedTimestamp = {
             type = "timestamp",
         },
@@ -1796,7 +1782,7 @@ M.ContextKeySelector = {
         },
         Equals = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1823,11 +1809,11 @@ M.GetEventConfigurationOutput = {
         },
         ContextKeySelectors = {
             type = "list",
-            member_type = "structure",
+            member = M.ContextKeySelector,
         },
         AggregationConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.AggregationConfiguration,
         },
     },
 }
@@ -1886,7 +1872,7 @@ M.GetEventDataStoreOutput = {
         },
         AdvancedEventSelectors = {
             type = "list",
-            member_type = "structure",
+            member = M.AdvancedEventSelector,
         },
         MultiRegionEnabled = {
             type = "boolean",
@@ -1895,7 +1881,7 @@ M.GetEventDataStoreOutput = {
             type = "boolean",
         },
         RetentionPeriod = {
-            type = "number",
+            type = "integer",
         },
         TerminationProtectionEnabled = {
             type = "boolean",
@@ -1920,7 +1906,7 @@ M.GetEventDataStoreOutput = {
         },
         PartitionKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.PartitionKey,
         },
     },
 }
@@ -1945,7 +1931,7 @@ M.DataResource = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1967,11 +1953,11 @@ M.EventSelector = {
         },
         DataResources = {
             type = "list",
-            member_type = "structure",
+            member = M.DataResource,
         },
         ExcludeManagementEventSources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1984,11 +1970,11 @@ M.GetEventSelectorsOutput = {
         },
         EventSelectors = {
             type = "list",
-            member_type = "structure",
+            member = M.EventSelector,
         },
         AdvancedEventSelectors = {
             type = "list",
-            member_type = "structure",
+            member = M.AdvancedEventSelector,
         },
     },
 }
@@ -2032,12 +2018,9 @@ M.S3ImportSource = {
 M.ImportSource = {
     type = "structure",
     members = {
-        S3 = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        S3 = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3ImportSource }),
     },
 }
 
@@ -2045,19 +2028,19 @@ M.ImportStatistics = {
     type = "structure",
     members = {
         PrefixesFound = {
-            type = "number",
+            type = "long",
         },
         PrefixesCompleted = {
-            type = "number",
+            type = "long",
         },
         FilesCompleted = {
-            type = "number",
+            type = "long",
         },
         EventsCompleted = {
-            type = "number",
+            type = "long",
         },
         FailedEntries = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -2078,11 +2061,9 @@ M.GetImportOutput = {
         },
         Destinations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        ImportSource = {
-            type = "structure",
-        },
+        ImportSource = M.ImportSource,
         StartEventTime = {
             type = "timestamp",
         },
@@ -2098,9 +2079,7 @@ M.GetImportOutput = {
         UpdatedTimestamp = {
             type = "timestamp",
         },
-        ImportStatistics = {
-            type = "structure",
-        },
+        ImportStatistics = M.ImportStatistics,
     },
 }
 
@@ -2144,7 +2123,7 @@ M.InsightSelector = {
         },
         EventCategories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2157,7 +2136,7 @@ M.GetInsightSelectorsOutput = {
         },
         InsightSelectors = {
             type = "list",
-            member_type = "structure",
+            member = M.InsightSelector,
         },
         EventDataStoreArn = {
             type = "string",
@@ -2194,7 +2173,7 @@ M.GetQueryResultsInput = {
             type = "string",
         },
         MaxQueryResults = {
-            type = "number",
+            type = "integer",
         },
         EventDataStoreOwnerAccountId = {
             type = "string",
@@ -2206,13 +2185,13 @@ M.QueryStatistics = {
     type = "structure",
     members = {
         ResultsCount = {
-            type = "number",
+            type = "integer",
         },
         TotalResultsCount = {
-            type = "number",
+            type = "integer",
         },
         BytesScanned = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -2223,12 +2202,10 @@ M.GetQueryResultsOutput = {
         QueryStatus = {
             type = "string",
         },
-        QueryStatistics = {
-            type = "structure",
-        },
+        QueryStatistics = M.QueryStatistics,
         QueryResultRows = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
         },
         NextToken = {
             type = "string",
@@ -2301,9 +2278,7 @@ M.GetTrailInput = {
 M.GetTrailOutput = {
     type = "structure",
     members = {
-        Trail = {
-            type = "structure",
-        },
+        Trail = M.Trail,
     },
 }
 
@@ -2380,7 +2355,7 @@ M.ListChannelsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2393,7 +2368,7 @@ M.ListChannelsOutput = {
     members = {
         Channels = {
             type = "list",
-            member_type = "structure",
+            member = M.Channel,
         },
         NextToken = {
             type = "string",
@@ -2414,7 +2389,7 @@ M.ListDashboardsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2436,7 +2411,7 @@ M.ListDashboardsOutput = {
     members = {
         Dashboards = {
             type = "list",
-            member_type = "structure",
+            member = M.DashboardDetail,
         },
         NextToken = {
             type = "string",
@@ -2451,7 +2426,7 @@ M.ListEventDataStoresInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2473,7 +2448,7 @@ M.EventDataStore = {
         },
         AdvancedEventSelectors = {
             type = "list",
-            member_type = "structure",
+            member = M.AdvancedEventSelector,
         },
         MultiRegionEnabled = {
             type = "boolean",
@@ -2482,7 +2457,7 @@ M.EventDataStore = {
             type = "boolean",
         },
         RetentionPeriod = {
-            type = "number",
+            type = "integer",
         },
         CreatedTimestamp = {
             type = "timestamp",
@@ -2498,7 +2473,7 @@ M.ListEventDataStoresOutput = {
     members = {
         EventDataStores = {
             type = "list",
-            member_type = "structure",
+            member = M.EventDataStore,
         },
         NextToken = {
             type = "string",
@@ -2516,7 +2491,7 @@ M.ListImportFailuresInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2556,7 +2531,7 @@ M.ListImportFailuresOutput = {
     members = {
         Failures = {
             type = "list",
-            member_type = "structure",
+            member = M.ImportFailureListItem,
         },
         NextToken = {
             type = "string",
@@ -2568,7 +2543,7 @@ M.ListImportsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Destination = {
             type = "string",
@@ -2593,7 +2568,7 @@ M.ImportsListItem = {
         },
         Destinations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CreatedTimestamp = {
             type = "timestamp",
@@ -2609,7 +2584,7 @@ M.ListImportsOutput = {
     members = {
         Imports = {
             type = "list",
-            member_type = "structure",
+            member = M.ImportsListItem,
         },
         NextToken = {
             type = "string",
@@ -2644,8 +2619,8 @@ M.ListInsightsDataInput = {
         },
         Dimensions = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         StartTime = {
             type = "timestamp",
@@ -2654,7 +2629,7 @@ M.ListInsightsDataInput = {
             type = "timestamp",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2700,7 +2675,7 @@ M.Event = {
         },
         Resources = {
             type = "list",
-            member_type = "structure",
+            member = M.Resource,
         },
         CloudTrailEvent = {
             type = "string",
@@ -2713,7 +2688,7 @@ M.ListInsightsDataOutput = {
     members = {
         Events = {
             type = "list",
-            member_type = "structure",
+            member = M.Event,
         },
         NextToken = {
             type = "string",
@@ -2760,13 +2735,13 @@ M.ListInsightsMetricDataInput = {
             type = "timestamp",
         },
         Period = {
-            type = "number",
+            type = "integer",
         },
         DataType = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2794,11 +2769,11 @@ M.ListInsightsMetricDataOutput = {
         },
         Timestamps = {
             type = "list",
-            member_type = "timestamp",
+            member = { type = "timestamp" },
         },
         Values = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
         NextToken = {
             type = "string",
@@ -2864,7 +2839,7 @@ M.ListPublicKeysOutput = {
     members = {
         PublicKeyList = {
             type = "list",
-            member_type = "structure",
+            member = M.PublicKey,
         },
         NextToken = {
             type = "string",
@@ -2905,7 +2880,7 @@ M.ListQueriesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         StartTime = {
             type = "timestamp",
@@ -2939,7 +2914,7 @@ M.ListQueriesOutput = {
     members = {
         Queries = {
             type = "list",
-            member_type = "structure",
+            member = M.Query,
         },
         NextToken = {
             type = "string",
@@ -2952,7 +2927,7 @@ M.ListTagsInput = {
     members = {
         ResourceIdList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2971,7 +2946,7 @@ M.ResourceTag = {
         },
         TagsList = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2981,7 +2956,7 @@ M.ListTagsOutput = {
     members = {
         ResourceTagList = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
         },
         NextToken = {
             type = "string",
@@ -3018,7 +2993,7 @@ M.ListTrailsOutput = {
     members = {
         Trails = {
             type = "list",
-            member_type = "structure",
+            member = M.TrailInfo,
         },
         NextToken = {
             type = "string",
@@ -3084,7 +3059,7 @@ M.LookupEventsInput = {
     members = {
         LookupAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.LookupAttribute,
         },
         StartTime = {
             type = "timestamp",
@@ -3096,7 +3071,7 @@ M.LookupEventsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3109,7 +3084,7 @@ M.LookupEventsOutput = {
     members = {
         Events = {
             type = "list",
-            member_type = "structure",
+            member = M.Event,
         },
         NextToken = {
             type = "string",
@@ -3141,11 +3116,11 @@ M.PutEventConfigurationInput = {
         },
         ContextKeySelectors = {
             type = "list",
-            member_type = "structure",
+            member = M.ContextKeySelector,
         },
         AggregationConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.AggregationConfiguration,
         },
     },
 }
@@ -3164,11 +3139,11 @@ M.PutEventConfigurationOutput = {
         },
         ContextKeySelectors = {
             type = "list",
-            member_type = "structure",
+            member = M.ContextKeySelector,
         },
         AggregationConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.AggregationConfiguration,
         },
     },
 }
@@ -3184,11 +3159,11 @@ M.PutEventSelectorsInput = {
         },
         EventSelectors = {
             type = "list",
-            member_type = "structure",
+            member = M.EventSelector,
         },
         AdvancedEventSelectors = {
             type = "list",
-            member_type = "structure",
+            member = M.AdvancedEventSelector,
         },
     },
 }
@@ -3201,11 +3176,11 @@ M.PutEventSelectorsOutput = {
         },
         EventSelectors = {
             type = "list",
-            member_type = "structure",
+            member = M.EventSelector,
         },
         AdvancedEventSelectors = {
             type = "list",
-            member_type = "structure",
+            member = M.AdvancedEventSelector,
         },
     },
 }
@@ -3228,7 +3203,7 @@ M.PutInsightSelectorsInput = {
         },
         InsightSelectors = {
             type = "list",
-            member_type = "structure",
+            member = M.InsightSelector,
             traits = {
                 required = true,
             },
@@ -3250,7 +3225,7 @@ M.PutInsightSelectorsOutput = {
         },
         InsightSelectors = {
             type = "list",
-            member_type = "structure",
+            member = M.InsightSelector,
         },
         EventDataStoreArn = {
             type = "string",
@@ -3341,7 +3316,7 @@ M.RemoveTagsInput = {
         },
         TagsList = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -3379,7 +3354,7 @@ M.RestoreEventDataStoreOutput = {
         },
         AdvancedEventSelectors = {
             type = "list",
-            member_type = "structure",
+            member = M.AdvancedEventSelector,
         },
         MultiRegionEnabled = {
             type = "boolean",
@@ -3388,7 +3363,7 @@ M.RestoreEventDataStoreOutput = {
             type = "boolean",
         },
         RetentionPeriod = {
-            type = "number",
+            type = "integer",
         },
         TerminationProtectionEnabled = {
             type = "boolean",
@@ -3418,7 +3393,7 @@ M.SearchSampleQueriesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3439,7 +3414,10 @@ M.SearchSampleQueriesSearchResult = {
             type = "string",
         },
         Relevance = {
-            type = "number",
+            type = "float",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -3449,7 +3427,7 @@ M.SearchSampleQueriesOutput = {
     members = {
         SearchResults = {
             type = "list",
-            member_type = "structure",
+            member = M.SearchSampleQueriesSearchResult,
         },
         NextToken = {
             type = "string",
@@ -3468,8 +3446,8 @@ M.StartDashboardRefreshInput = {
         },
         QueryParameterValues = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3514,11 +3492,9 @@ M.StartImportInput = {
     members = {
         Destinations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        ImportSource = {
-            type = "structure",
-        },
+        ImportSource = M.ImportSource,
         StartEventTime = {
             type = "timestamp",
         },
@@ -3539,11 +3515,9 @@ M.StartImportOutput = {
         },
         Destinations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        ImportSource = {
-            type = "structure",
-        },
+        ImportSource = M.ImportSource,
         StartEventTime = {
             type = "timestamp",
         },
@@ -3602,7 +3576,7 @@ M.StartQueryInput = {
         },
         QueryParameters = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         EventDataStoreOwnerAccountId = {
             type = "string",
@@ -3656,12 +3630,10 @@ M.StopImportOutput = {
         ImportId = {
             type = "string",
         },
-        ImportSource = {
-            type = "structure",
-        },
+        ImportSource = M.ImportSource,
         Destinations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ImportStatus = {
             type = "string",
@@ -3678,9 +3650,7 @@ M.StopImportOutput = {
         EndEventTime = {
             type = "timestamp",
         },
-        ImportStatistics = {
-            type = "structure",
-        },
+        ImportStatistics = M.ImportStatistics,
     },
 }
 
@@ -3711,7 +3681,7 @@ M.UpdateChannelInput = {
         },
         Destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.Destination,
         },
         Name = {
             type = "string",
@@ -3733,7 +3703,7 @@ M.UpdateChannelOutput = {
         },
         Destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.Destination,
         },
     },
 }
@@ -3749,11 +3719,9 @@ M.UpdateDashboardInput = {
         },
         Widgets = {
             type = "list",
-            member_type = "structure",
+            member = M.RequestWidget,
         },
-        RefreshSchedule = {
-            type = "structure",
-        },
+        RefreshSchedule = M.RefreshSchedule,
         TerminationProtectionEnabled = {
             type = "boolean",
         },
@@ -3774,11 +3742,9 @@ M.UpdateDashboardOutput = {
         },
         Widgets = {
             type = "list",
-            member_type = "structure",
+            member = M.Widget,
         },
-        RefreshSchedule = {
-            type = "structure",
-        },
+        RefreshSchedule = M.RefreshSchedule,
         TerminationProtectionEnabled = {
             type = "boolean",
         },
@@ -3805,7 +3771,7 @@ M.UpdateEventDataStoreInput = {
         },
         AdvancedEventSelectors = {
             type = "list",
-            member_type = "structure",
+            member = M.AdvancedEventSelector,
         },
         MultiRegionEnabled = {
             type = "boolean",
@@ -3814,7 +3780,7 @@ M.UpdateEventDataStoreInput = {
             type = "boolean",
         },
         RetentionPeriod = {
-            type = "number",
+            type = "integer",
         },
         TerminationProtectionEnabled = {
             type = "boolean",
@@ -3842,7 +3808,7 @@ M.UpdateEventDataStoreOutput = {
         },
         AdvancedEventSelectors = {
             type = "list",
-            member_type = "structure",
+            member = M.AdvancedEventSelector,
         },
         MultiRegionEnabled = {
             type = "boolean",
@@ -3851,7 +3817,7 @@ M.UpdateEventDataStoreOutput = {
             type = "boolean",
         },
         RetentionPeriod = {
-            type = "number",
+            type = "integer",
         },
         TerminationProtectionEnabled = {
             type = "boolean",

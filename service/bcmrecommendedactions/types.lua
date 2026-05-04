@@ -41,7 +41,7 @@ M.ActionFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -90,7 +90,7 @@ M.RequestFilter = {
     members = {
         actions = {
             type = "list",
-            member_type = "structure",
+            member = M.ActionFilter,
         },
     },
 }
@@ -98,11 +98,9 @@ M.RequestFilter = {
 M.ListRecommendedActionsInput = {
     type = "structure",
     members = {
-        filter = {
-            type = "structure",
-        },
+        filter = M.RequestFilter,
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -149,12 +147,12 @@ M.RecommendedAction = {
         },
         context = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         nextSteps = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         lastUpdatedTimeStamp = {
             type = "string",
@@ -167,7 +165,7 @@ M.ListRecommendedActionsOutput = {
     members = {
         recommendedActions = {
             type = "list",
-            member_type = "structure",
+            member = M.RecommendedAction,
             traits = {
                 required = true,
             },
@@ -234,7 +232,7 @@ M.ValidationException = {
         },
         fieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }

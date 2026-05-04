@@ -61,7 +61,7 @@ M.AssociateFirewallRuleGroupInput = {
             },
         },
         Priority = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -77,7 +77,7 @@ M.AssociateFirewallRuleGroupInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -107,7 +107,7 @@ M.FirewallRuleGroupAssociation = {
             type = "string",
         },
         Priority = {
-            type = "number",
+            type = "integer",
         },
         MutationProtection = {
             type = "string",
@@ -136,9 +136,7 @@ M.FirewallRuleGroupAssociation = {
 M.AssociateFirewallRuleGroupOutput = {
     type = "structure",
     members = {
-        FirewallRuleGroupAssociation = {
-            type = "structure",
-        },
+        FirewallRuleGroupAssociation = M.FirewallRuleGroupAssociation,
     },
 }
 
@@ -235,12 +233,9 @@ M.AssociateResolverEndpointIpAddressInput = {
                 required = true,
             },
         },
-        IpAddress = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        IpAddress = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IpAddressUpdate }),
     },
 }
 
@@ -288,13 +283,13 @@ M.ResolverEndpoint = {
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Direction = {
             type = "string",
         },
         IpAddressCount = {
-            type = "number",
+            type = "integer",
         },
         HostVPCId = {
             type = "string",
@@ -322,7 +317,7 @@ M.ResolverEndpoint = {
         },
         Protocols = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RniEnhancedMetricsEnabled = {
             type = "boolean",
@@ -336,9 +331,7 @@ M.ResolverEndpoint = {
 M.AssociateResolverEndpointIpAddressOutput = {
     type = "structure",
     members = {
-        ResolverEndpoint = {
-            type = "structure",
-        },
+        ResolverEndpoint = M.ResolverEndpoint,
     },
 }
 
@@ -444,9 +437,7 @@ M.ResolverQueryLogConfigAssociation = {
 M.AssociateResolverQueryLogConfigOutput = {
     type = "structure",
     members = {
-        ResolverQueryLogConfigAssociation = {
-            type = "structure",
-        },
+        ResolverQueryLogConfigAssociation = M.ResolverQueryLogConfigAssociation,
     },
 }
 
@@ -506,9 +497,7 @@ M.ResolverRuleAssociation = {
 M.AssociateResolverRuleOutput = {
     type = "structure",
     members = {
-        ResolverRuleAssociation = {
-            type = "structure",
-        },
+        ResolverRuleAssociation = M.ResolverRuleAssociation,
     },
 }
 
@@ -564,7 +553,7 @@ M.CreateFirewallDomainListInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -590,7 +579,7 @@ M.FirewallDomainList = {
             type = "string",
         },
         DomainCount = {
-            type = "number",
+            type = "integer",
         },
         Status = {
             type = "string",
@@ -616,9 +605,7 @@ M.FirewallDomainList = {
 M.CreateFirewallDomainListOutput = {
     type = "structure",
     members = {
-        FirewallDomainList = {
-            type = "structure",
-        },
+        FirewallDomainList = M.FirewallDomainList,
     },
 }
 
@@ -652,7 +639,7 @@ M.CreateFirewallRuleInput = {
             type = "string",
         },
         Priority = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -673,7 +660,7 @@ M.CreateFirewallRuleInput = {
             type = "string",
         },
         BlockOverrideTtl = {
-            type = "number",
+            type = "integer",
         },
         Name = {
             type = "string",
@@ -712,7 +699,7 @@ M.FirewallRule = {
             type = "string",
         },
         Priority = {
-            type = "number",
+            type = "integer",
         },
         Action = {
             type = "string",
@@ -727,7 +714,7 @@ M.FirewallRule = {
             type = "string",
         },
         BlockOverrideTtl = {
-            type = "number",
+            type = "integer",
         },
         CreatorRequestId = {
             type = "string",
@@ -756,9 +743,7 @@ M.FirewallRule = {
 M.CreateFirewallRuleOutput = {
     type = "structure",
     members = {
-        FirewallRule = {
-            type = "structure",
-        },
+        FirewallRule = M.FirewallRule,
     },
 }
 
@@ -779,7 +764,7 @@ M.CreateFirewallRuleGroupInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -809,7 +794,7 @@ M.FirewallRuleGroup = {
             type = "string",
         },
         RuleCount = {
-            type = "number",
+            type = "integer",
         },
         Status = {
             type = "string",
@@ -838,9 +823,7 @@ M.FirewallRuleGroup = {
 M.CreateFirewallRuleGroupOutput = {
     type = "structure",
     members = {
-        FirewallRuleGroup = {
-            type = "structure",
-        },
+        FirewallRuleGroup = M.FirewallRuleGroup,
     },
 }
 
@@ -860,7 +843,7 @@ M.CreateOutpostResolverInput = {
             },
         },
         InstanceCount = {
-            type = "number",
+            type = "integer",
         },
         PreferredInstanceType = {
             type = "string",
@@ -876,7 +859,7 @@ M.CreateOutpostResolverInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -910,7 +893,7 @@ M.OutpostResolver = {
             type = "string",
         },
         InstanceCount = {
-            type = "number",
+            type = "integer",
         },
         PreferredInstanceType = {
             type = "string",
@@ -933,9 +916,7 @@ M.OutpostResolver = {
 M.CreateOutpostResolverOutput = {
     type = "structure",
     members = {
-        OutpostResolver = {
-            type = "structure",
-        },
+        OutpostResolver = M.OutpostResolver,
     },
 }
 
@@ -981,7 +962,7 @@ M.CreateResolverEndpointInput = {
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -994,7 +975,7 @@ M.CreateResolverEndpointInput = {
         },
         IpAddresses = {
             type = "list",
-            member_type = "structure",
+            member = M.IpAddressRequest,
             traits = {
                 required = true,
             },
@@ -1007,14 +988,14 @@ M.CreateResolverEndpointInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ResolverEndpointType = {
             type = "string",
         },
         Protocols = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RniEnhancedMetricsEnabled = {
             type = "boolean",
@@ -1028,9 +1009,7 @@ M.CreateResolverEndpointInput = {
 M.CreateResolverEndpointOutput = {
     type = "structure",
     members = {
-        ResolverEndpoint = {
-            type = "structure",
-        },
+        ResolverEndpoint = M.ResolverEndpoint,
     },
 }
 
@@ -1057,7 +1036,7 @@ M.CreateResolverQueryLogConfigInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1085,7 +1064,10 @@ M.ResolverQueryLogConfig = {
             type = "string",
         },
         AssociationCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         Arn = {
             type = "string",
@@ -1108,9 +1090,7 @@ M.ResolverQueryLogConfig = {
 M.CreateResolverQueryLogConfigOutput = {
     type = "structure",
     members = {
-        ResolverQueryLogConfig = {
-            type = "structure",
-        },
+        ResolverQueryLogConfig = M.ResolverQueryLogConfig,
     },
 }
 
@@ -1128,7 +1108,7 @@ M.TargetAddress = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         Ipv6 = {
             type = "string",
@@ -1165,14 +1145,14 @@ M.CreateResolverRuleInput = {
         },
         TargetIps = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetAddress,
         },
         ResolverEndpointId = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         DelegationRecord = {
             type = "string",
@@ -1216,7 +1196,7 @@ M.ResolverRule = {
         },
         TargetIps = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetAddress,
         },
         ResolverEndpointId = {
             type = "string",
@@ -1242,9 +1222,7 @@ M.ResolverRule = {
 M.CreateResolverRuleOutput = {
     type = "structure",
     members = {
-        ResolverRule = {
-            type = "structure",
-        },
+        ResolverRule = M.ResolverRule,
     },
 }
 
@@ -1263,9 +1241,7 @@ M.DeleteFirewallDomainListInput = {
 M.DeleteFirewallDomainListOutput = {
     type = "structure",
     members = {
-        FirewallDomainList = {
-            type = "structure",
-        },
+        FirewallDomainList = M.FirewallDomainList,
     },
 }
 
@@ -1293,9 +1269,7 @@ M.DeleteFirewallRuleInput = {
 M.DeleteFirewallRuleOutput = {
     type = "structure",
     members = {
-        FirewallRule = {
-            type = "structure",
-        },
+        FirewallRule = M.FirewallRule,
     },
 }
 
@@ -1314,9 +1288,7 @@ M.DeleteFirewallRuleGroupInput = {
 M.DeleteFirewallRuleGroupOutput = {
     type = "structure",
     members = {
-        FirewallRuleGroup = {
-            type = "structure",
-        },
+        FirewallRuleGroup = M.FirewallRuleGroup,
     },
 }
 
@@ -1335,9 +1307,7 @@ M.DeleteOutpostResolverInput = {
 M.DeleteOutpostResolverOutput = {
     type = "structure",
     members = {
-        OutpostResolver = {
-            type = "structure",
-        },
+        OutpostResolver = M.OutpostResolver,
     },
 }
 
@@ -1356,9 +1326,7 @@ M.DeleteResolverEndpointInput = {
 M.DeleteResolverEndpointOutput = {
     type = "structure",
     members = {
-        ResolverEndpoint = {
-            type = "structure",
-        },
+        ResolverEndpoint = M.ResolverEndpoint,
     },
 }
 
@@ -1377,9 +1345,7 @@ M.DeleteResolverQueryLogConfigInput = {
 M.DeleteResolverQueryLogConfigOutput = {
     type = "structure",
     members = {
-        ResolverQueryLogConfig = {
-            type = "structure",
-        },
+        ResolverQueryLogConfig = M.ResolverQueryLogConfig,
     },
 }
 
@@ -1398,9 +1364,7 @@ M.DeleteResolverRuleInput = {
 M.DeleteResolverRuleOutput = {
     type = "structure",
     members = {
-        ResolverRule = {
-            type = "structure",
-        },
+        ResolverRule = M.ResolverRule,
     },
 }
 
@@ -1432,9 +1396,7 @@ M.DisassociateFirewallRuleGroupInput = {
 M.DisassociateFirewallRuleGroupOutput = {
     type = "structure",
     members = {
-        FirewallRuleGroupAssociation = {
-            type = "structure",
-        },
+        FirewallRuleGroupAssociation = M.FirewallRuleGroupAssociation,
     },
 }
 
@@ -1447,21 +1409,16 @@ M.DisassociateResolverEndpointIpAddressInput = {
                 required = true,
             },
         },
-        IpAddress = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        IpAddress = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IpAddressUpdate }),
     },
 }
 
 M.DisassociateResolverEndpointIpAddressOutput = {
     type = "structure",
     members = {
-        ResolverEndpoint = {
-            type = "structure",
-        },
+        ResolverEndpoint = M.ResolverEndpoint,
     },
 }
 
@@ -1486,9 +1443,7 @@ M.DisassociateResolverQueryLogConfigInput = {
 M.DisassociateResolverQueryLogConfigOutput = {
     type = "structure",
     members = {
-        ResolverQueryLogConfigAssociation = {
-            type = "structure",
-        },
+        ResolverQueryLogConfigAssociation = M.ResolverQueryLogConfigAssociation,
     },
 }
 
@@ -1513,9 +1468,7 @@ M.DisassociateResolverRuleInput = {
 M.DisassociateResolverRuleOutput = {
     type = "structure",
     members = {
-        ResolverRuleAssociation = {
-            type = "structure",
-        },
+        ResolverRuleAssociation = M.ResolverRuleAssociation,
     },
 }
 
@@ -1527,7 +1480,7 @@ M.Filter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1626,9 +1579,7 @@ M.GetFirewallConfigInput = {
 M.GetFirewallConfigOutput = {
     type = "structure",
     members = {
-        FirewallConfig = {
-            type = "structure",
-        },
+        FirewallConfig = M.FirewallConfig,
     },
 }
 
@@ -1647,9 +1598,7 @@ M.GetFirewallDomainListInput = {
 M.GetFirewallDomainListOutput = {
     type = "structure",
     members = {
-        FirewallDomainList = {
-            type = "structure",
-        },
+        FirewallDomainList = M.FirewallDomainList,
     },
 }
 
@@ -1668,9 +1617,7 @@ M.GetFirewallRuleGroupInput = {
 M.GetFirewallRuleGroupOutput = {
     type = "structure",
     members = {
-        FirewallRuleGroup = {
-            type = "structure",
-        },
+        FirewallRuleGroup = M.FirewallRuleGroup,
     },
 }
 
@@ -1689,9 +1636,7 @@ M.GetFirewallRuleGroupAssociationInput = {
 M.GetFirewallRuleGroupAssociationOutput = {
     type = "structure",
     members = {
-        FirewallRuleGroupAssociation = {
-            type = "structure",
-        },
+        FirewallRuleGroupAssociation = M.FirewallRuleGroupAssociation,
     },
 }
 
@@ -1731,9 +1676,7 @@ M.GetOutpostResolverInput = {
 M.GetOutpostResolverOutput = {
     type = "structure",
     members = {
-        OutpostResolver = {
-            type = "structure",
-        },
+        OutpostResolver = M.OutpostResolver,
     },
 }
 
@@ -1779,9 +1722,7 @@ M.ResolverConfig = {
 M.GetResolverConfigOutput = {
     type = "structure",
     members = {
-        ResolverConfig = {
-            type = "structure",
-        },
+        ResolverConfig = M.ResolverConfig,
     },
 }
 
@@ -1827,9 +1768,7 @@ M.ResolverDnssecConfig = {
 M.GetResolverDnssecConfigOutput = {
     type = "structure",
     members = {
-        ResolverDNSSECConfig = {
-            type = "structure",
-        },
+        ResolverDNSSECConfig = M.ResolverDnssecConfig,
     },
 }
 
@@ -1848,9 +1787,7 @@ M.GetResolverEndpointInput = {
 M.GetResolverEndpointOutput = {
     type = "structure",
     members = {
-        ResolverEndpoint = {
-            type = "structure",
-        },
+        ResolverEndpoint = M.ResolverEndpoint,
     },
 }
 
@@ -1869,9 +1806,7 @@ M.GetResolverQueryLogConfigInput = {
 M.GetResolverQueryLogConfigOutput = {
     type = "structure",
     members = {
-        ResolverQueryLogConfig = {
-            type = "structure",
-        },
+        ResolverQueryLogConfig = M.ResolverQueryLogConfig,
     },
 }
 
@@ -1890,9 +1825,7 @@ M.GetResolverQueryLogConfigAssociationInput = {
 M.GetResolverQueryLogConfigAssociationOutput = {
     type = "structure",
     members = {
-        ResolverQueryLogConfigAssociation = {
-            type = "structure",
-        },
+        ResolverQueryLogConfigAssociation = M.ResolverQueryLogConfigAssociation,
     },
 }
 
@@ -1942,9 +1875,7 @@ M.GetResolverRuleInput = {
 M.GetResolverRuleOutput = {
     type = "structure",
     members = {
-        ResolverRule = {
-            type = "structure",
-        },
+        ResolverRule = M.ResolverRule,
     },
 }
 
@@ -1963,9 +1894,7 @@ M.GetResolverRuleAssociationInput = {
 M.GetResolverRuleAssociationOutput = {
     type = "structure",
     members = {
-        ResolverRuleAssociation = {
-            type = "structure",
-        },
+        ResolverRuleAssociation = M.ResolverRuleAssociation,
     },
 }
 
@@ -2112,7 +2041,7 @@ M.ListFirewallConfigsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2128,7 +2057,7 @@ M.ListFirewallConfigsOutput = {
         },
         FirewallConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.FirewallConfig,
         },
     },
 }
@@ -2137,7 +2066,7 @@ M.ListFirewallDomainListsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2153,7 +2082,7 @@ M.ListFirewallDomainListsOutput = {
         },
         FirewallDomainLists = {
             type = "list",
-            member_type = "structure",
+            member = M.FirewallDomainListMetadata,
         },
     },
 }
@@ -2168,7 +2097,7 @@ M.ListFirewallDomainsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2184,7 +2113,7 @@ M.ListFirewallDomainsOutput = {
         },
         Domains = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2199,13 +2128,13 @@ M.ListFirewallRuleGroupAssociationsInput = {
             type = "string",
         },
         Priority = {
-            type = "number",
+            type = "integer",
         },
         Status = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2221,7 +2150,7 @@ M.ListFirewallRuleGroupAssociationsOutput = {
         },
         FirewallRuleGroupAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.FirewallRuleGroupAssociation,
         },
     },
 }
@@ -2230,7 +2159,7 @@ M.ListFirewallRuleGroupsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2246,7 +2175,7 @@ M.ListFirewallRuleGroupsOutput = {
         },
         FirewallRuleGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.FirewallRuleGroupMetadata,
         },
     },
 }
@@ -2261,13 +2190,13 @@ M.ListFirewallRulesInput = {
             },
         },
         Priority = {
-            type = "number",
+            type = "integer",
         },
         Action = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2283,7 +2212,7 @@ M.ListFirewallRulesOutput = {
         },
         FirewallRules = {
             type = "list",
-            member_type = "structure",
+            member = M.FirewallRule,
         },
     },
 }
@@ -2295,7 +2224,7 @@ M.ListOutpostResolversInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2308,7 +2237,7 @@ M.ListOutpostResolversOutput = {
     members = {
         OutpostResolvers = {
             type = "list",
-            member_type = "structure",
+            member = M.OutpostResolver,
         },
         NextToken = {
             type = "string",
@@ -2320,7 +2249,7 @@ M.ListResolverConfigsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2336,7 +2265,7 @@ M.ListResolverConfigsOutput = {
         },
         ResolverConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.ResolverConfig,
         },
     },
 }
@@ -2345,14 +2274,14 @@ M.ListResolverDnssecConfigsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
     },
 }
@@ -2365,7 +2294,7 @@ M.ListResolverDnssecConfigsOutput = {
         },
         ResolverDnssecConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.ResolverDnssecConfig,
         },
     },
 }
@@ -2380,7 +2309,7 @@ M.ListResolverEndpointIpAddressesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2395,11 +2324,11 @@ M.ListResolverEndpointIpAddressesOutput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         IpAddresses = {
             type = "list",
-            member_type = "structure",
+            member = M.IpAddressResponse,
         },
     },
 }
@@ -2408,14 +2337,14 @@ M.ListResolverEndpointsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
     },
 }
@@ -2427,11 +2356,11 @@ M.ListResolverEndpointsOutput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         ResolverEndpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.ResolverEndpoint,
         },
     },
 }
@@ -2445,14 +2374,14 @@ M.ListResolverQueryLogConfigAssociationsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         SortBy = {
             type = "string",
@@ -2470,14 +2399,20 @@ M.ListResolverQueryLogConfigAssociationsOutput = {
             type = "string",
         },
         TotalCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         TotalFilteredCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         ResolverQueryLogConfigAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.ResolverQueryLogConfigAssociation,
         },
     },
 }
@@ -2486,14 +2421,14 @@ M.ListResolverQueryLogConfigsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         SortBy = {
             type = "string",
@@ -2511,14 +2446,20 @@ M.ListResolverQueryLogConfigsOutput = {
             type = "string",
         },
         TotalCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         TotalFilteredCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         ResolverQueryLogConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.ResolverQueryLogConfig,
         },
     },
 }
@@ -2527,14 +2468,14 @@ M.ListResolverRuleAssociationsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
     },
 }
@@ -2546,11 +2487,11 @@ M.ListResolverRuleAssociationsOutput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         ResolverRuleAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.ResolverRuleAssociation,
         },
     },
 }
@@ -2559,14 +2500,14 @@ M.ListResolverRulesInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
     },
 }
@@ -2578,11 +2519,11 @@ M.ListResolverRulesOutput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         ResolverRules = {
             type = "list",
-            member_type = "structure",
+            member = M.ResolverRule,
         },
     },
 }
@@ -2597,7 +2538,7 @@ M.ListTagsForResourceInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2610,7 +2551,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         NextToken = {
             type = "string",
@@ -2641,6 +2582,9 @@ M.PutFirewallRuleGroupPolicyOutput = {
     members = {
         ReturnValue = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -2668,6 +2612,9 @@ M.PutResolverQueryLogConfigPolicyOutput = {
     members = {
         ReturnValue = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -2695,6 +2642,9 @@ M.PutResolverRulePolicyOutput = {
     members = {
         ReturnValue = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -2707,7 +2657,7 @@ M.ResolverRuleConfig = {
         },
         TargetIps = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetAddress,
         },
         ResolverEndpointId = {
             type = "string",
@@ -2726,7 +2676,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -2749,7 +2699,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2782,9 +2732,7 @@ M.UpdateFirewallConfigInput = {
 M.UpdateFirewallConfigOutput = {
     type = "structure",
     members = {
-        FirewallConfig = {
-            type = "structure",
-        },
+        FirewallConfig = M.FirewallConfig,
     },
 }
 
@@ -2805,7 +2753,7 @@ M.UpdateFirewallDomainsInput = {
         },
         Domains = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2847,7 +2795,7 @@ M.UpdateFirewallRuleInput = {
             type = "string",
         },
         Priority = {
-            type = "number",
+            type = "integer",
         },
         Action = {
             type = "string",
@@ -2862,7 +2810,7 @@ M.UpdateFirewallRuleInput = {
             type = "string",
         },
         BlockOverrideTtl = {
-            type = "number",
+            type = "integer",
         },
         Name = {
             type = "string",
@@ -2885,9 +2833,7 @@ M.UpdateFirewallRuleInput = {
 M.UpdateFirewallRuleOutput = {
     type = "structure",
     members = {
-        FirewallRule = {
-            type = "structure",
-        },
+        FirewallRule = M.FirewallRule,
     },
 }
 
@@ -2901,7 +2847,7 @@ M.UpdateFirewallRuleGroupAssociationInput = {
             },
         },
         Priority = {
-            type = "number",
+            type = "integer",
         },
         MutationProtection = {
             type = "string",
@@ -2915,9 +2861,7 @@ M.UpdateFirewallRuleGroupAssociationInput = {
 M.UpdateFirewallRuleGroupAssociationOutput = {
     type = "structure",
     members = {
-        FirewallRuleGroupAssociation = {
-            type = "structure",
-        },
+        FirewallRuleGroupAssociation = M.FirewallRuleGroupAssociation,
     },
 }
 
@@ -2934,7 +2878,7 @@ M.UpdateOutpostResolverInput = {
             type = "string",
         },
         InstanceCount = {
-            type = "number",
+            type = "integer",
         },
         PreferredInstanceType = {
             type = "string",
@@ -2945,9 +2889,7 @@ M.UpdateOutpostResolverInput = {
 M.UpdateOutpostResolverOutput = {
     type = "structure",
     members = {
-        OutpostResolver = {
-            type = "structure",
-        },
+        OutpostResolver = M.OutpostResolver,
     },
 }
 
@@ -2972,9 +2914,7 @@ M.UpdateResolverConfigInput = {
 M.UpdateResolverConfigOutput = {
     type = "structure",
     members = {
-        ResolverConfig = {
-            type = "structure",
-        },
+        ResolverConfig = M.ResolverConfig,
     },
 }
 
@@ -3005,9 +2945,7 @@ M.UpdateResolverDnssecConfigInput = {
 M.UpdateResolverDnssecConfigOutput = {
     type = "structure",
     members = {
-        ResolverDNSSECConfig = {
-            type = "structure",
-        },
+        ResolverDNSSECConfig = M.ResolverDnssecConfig,
     },
 }
 
@@ -3046,11 +2984,11 @@ M.UpdateResolverEndpointInput = {
         },
         UpdateIpAddresses = {
             type = "list",
-            member_type = "structure",
+            member = M.UpdateIpAddress,
         },
         Protocols = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RniEnhancedMetricsEnabled = {
             type = "boolean",
@@ -3064,9 +3002,7 @@ M.UpdateResolverEndpointInput = {
 M.UpdateResolverEndpointOutput = {
     type = "structure",
     members = {
-        ResolverEndpoint = {
-            type = "structure",
-        },
+        ResolverEndpoint = M.ResolverEndpoint,
     },
 }
 
@@ -3079,21 +3015,16 @@ M.UpdateResolverRuleInput = {
                 required = true,
             },
         },
-        Config = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Config = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResolverRuleConfig }),
     },
 }
 
 M.UpdateResolverRuleOutput = {
     type = "structure",
     members = {
-        ResolverRule = {
-            type = "structure",
-        },
+        ResolverRule = M.ResolverRule,
     },
 }
 

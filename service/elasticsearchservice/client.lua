@@ -16,7 +16,7 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AmazonElasticsearchService2015"
-    cfg.signing_name = "amazonelasticsearchservice2015"
+    cfg.signing_name = "es"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end

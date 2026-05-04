@@ -17,10 +17,16 @@ M.AccountQuota = {
             type = "string",
         },
         Used = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Max = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -51,7 +57,7 @@ M.AddTagsToResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -139,7 +145,7 @@ M.ResourcePendingMaintenanceActions = {
         },
         PendingMaintenanceActionDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.PendingMaintenanceAction,
         },
     },
 }
@@ -147,9 +153,7 @@ M.ResourcePendingMaintenanceActions = {
 M.ApplyPendingMaintenanceActionOutput = {
     type = "structure",
     members = {
-        ResourcePendingMaintenanceActions = {
-            type = "structure",
-        },
+        ResourcePendingMaintenanceActions = M.ResourcePendingMaintenanceActions,
     },
 }
 
@@ -180,12 +184,9 @@ M.StartRecommendationsRequestEntry = {
                 required = true,
             },
         },
-        Settings = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Settings = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RecommendationSettings }),
     },
 }
 
@@ -194,7 +195,7 @@ M.BatchStartRecommendationsInput = {
     members = {
         Data = {
             type = "list",
-            member_type = "structure",
+            member = M.StartRecommendationsRequestEntry,
         },
     },
 }
@@ -219,7 +220,7 @@ M.BatchStartRecommendationsOutput = {
     members = {
         ErrorEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchStartRecommendationsErrorEntry,
         },
     },
 }
@@ -254,9 +255,7 @@ M.DefaultErrorDetails = {
 M.ErrorDetails = {
     type = "union",
     members = {
-        defaultErrorDetails = {
-            type = "structure",
-        },
+        defaultErrorDetails = M.DefaultErrorDetails,
     },
 }
 
@@ -291,17 +290,18 @@ M.Progress = {
     type = "structure",
     members = {
         ProgressPercent = {
-            type = "number",
+            type = "double",
         },
         TotalObjects = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         ProgressStep = {
             type = "string",
         },
-        ProcessedObject = {
-            type = "structure",
-        },
+        ProcessedObject = M.ProcessedObject,
     },
 }
 
@@ -317,24 +317,16 @@ M.SchemaConversionRequest = {
         MigrationProjectArn = {
             type = "string",
         },
-        Error = {
-            type = "union",
-        },
-        ExportSqlDetails = {
-            type = "structure",
-        },
-        Progress = {
-            type = "structure",
-        },
+        Error = M.ErrorDetails,
+        ExportSqlDetails = M.ExportSqlDetails,
+        Progress = M.Progress,
     },
 }
 
 M.CancelMetadataModelConversionOutput = {
     type = "structure",
     members = {
-        Request = {
-            type = "structure",
-        },
+        Request = M.SchemaConversionRequest,
     },
 }
 
@@ -359,9 +351,7 @@ M.CancelMetadataModelCreationInput = {
 M.CancelMetadataModelCreationOutput = {
     type = "structure",
     members = {
-        Request = {
-            type = "structure",
-        },
+        Request = M.SchemaConversionRequest,
     },
 }
 
@@ -381,10 +371,16 @@ M.ReplicationTaskAssessmentRunProgress = {
     type = "structure",
     members = {
         IndividualAssessmentCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         IndividualAssessmentCompletedCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -393,22 +389,40 @@ M.ReplicationTaskAssessmentRunResultStatistic = {
     type = "structure",
     members = {
         Passed = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         Failed = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         Error = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         Warning = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         Cancelled = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         Skipped = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -428,9 +442,7 @@ M.ReplicationTaskAssessmentRun = {
         ReplicationTaskAssessmentRunCreationDate = {
             type = "timestamp",
         },
-        AssessmentProgress = {
-            type = "structure",
-        },
+        AssessmentProgress = M.ReplicationTaskAssessmentRunProgress,
         LastFailureMessage = {
             type = "string",
         },
@@ -454,19 +466,18 @@ M.ReplicationTaskAssessmentRun = {
         },
         IsLatestTaskAssessmentRun = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        ResultStatistic = {
-            type = "structure",
-        },
+        ResultStatistic = M.ReplicationTaskAssessmentRunResultStatistic,
     },
 }
 
 M.CancelReplicationTaskAssessmentRunOutput = {
     type = "structure",
     members = {
-        ReplicationTaskAssessmentRun = {
-            type = "structure",
-        },
+        ReplicationTaskAssessmentRun = M.ReplicationTaskAssessmentRun,
     },
 }
 
@@ -538,18 +549,18 @@ M.CreateDataMigrationInput = {
         },
         SourceDataSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.SourceDataSetting,
         },
         TargetDataSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetDataSetting,
         },
         NumberOfJobs = {
-            type = "number",
+            type = "integer",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         SelectionRules = {
             type = "string",
@@ -561,7 +572,7 @@ M.DataMigrationSettings = {
     type = "structure",
     members = {
         NumberOfJobs = {
-            type = "number",
+            type = "integer",
         },
         CloudwatchLogsEnabled = {
             type = "boolean",
@@ -576,25 +587,46 @@ M.DataMigrationStatistics = {
     type = "structure",
     members = {
         TablesLoaded = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         ElapsedTimeMillis = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         TablesLoading = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         FullLoadPercentage = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         CDCLatency = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         TablesQueued = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         TablesErrored = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         StartTime = {
             type = "timestamp",
@@ -632,30 +664,26 @@ M.DataMigration = {
         DataMigrationType = {
             type = "string",
         },
-        DataMigrationSettings = {
-            type = "structure",
-        },
+        DataMigrationSettings = M.DataMigrationSettings,
         SourceDataSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.SourceDataSetting,
         },
         TargetDataSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetDataSetting,
         },
-        DataMigrationStatistics = {
-            type = "structure",
-        },
+        DataMigrationStatistics = M.DataMigrationStatistics,
         DataMigrationStatus = {
             type = "string",
         },
         PublicIpAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DataMigrationCidrBlocks = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         LastFailureMessage = {
             type = "string",
@@ -669,9 +697,7 @@ M.DataMigration = {
 M.CreateDataMigrationOutput = {
     type = "structure",
     members = {
-        DataMigration = {
-            type = "structure",
-        },
+        DataMigration = M.DataMigration,
     },
 }
 
@@ -732,7 +758,7 @@ M.DocDbDataProviderSettings = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         DatabaseName = {
             type = "string",
@@ -753,7 +779,7 @@ M.IbmDb2LuwDataProviderSettings = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         DatabaseName = {
             type = "string",
@@ -765,10 +791,10 @@ M.IbmDb2LuwDataProviderSettings = {
             type = "string",
         },
         EncryptionAlgorithm = {
-            type = "number",
+            type = "integer",
         },
         SecurityMechanism = {
-            type = "number",
+            type = "integer",
         },
         S3Path = {
             type = "string",
@@ -786,7 +812,7 @@ M.IbmDb2zOsDataProviderSettings = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         DatabaseName = {
             type = "string",
@@ -813,7 +839,7 @@ M.MariaDbDataProviderSettings = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         SslMode = {
             type = "string",
@@ -837,7 +863,7 @@ M.MicrosoftSqlServerDataProviderSettings = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         DatabaseName = {
             type = "string",
@@ -875,7 +901,7 @@ M.MongoDbDataProviderSettings = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         DatabaseName = {
             type = "string",
@@ -905,7 +931,7 @@ M.MySqlDataProviderSettings = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         SslMode = {
             type = "string",
@@ -929,7 +955,7 @@ M.OracleDataProviderSettings = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         DatabaseName = {
             type = "string",
@@ -971,7 +997,7 @@ M.PostgreSqlDataProviderSettings = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         DatabaseName = {
             type = "string",
@@ -998,7 +1024,7 @@ M.RedshiftDataProviderSettings = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         DatabaseName = {
             type = "string",
@@ -1019,7 +1045,7 @@ M.SybaseAseDataProviderSettings = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         DatabaseName = {
             type = "string",
@@ -1039,39 +1065,17 @@ M.SybaseAseDataProviderSettings = {
 M.DataProviderSettings = {
     type = "union",
     members = {
-        RedshiftSettings = {
-            type = "structure",
-        },
-        PostgreSqlSettings = {
-            type = "structure",
-        },
-        MySqlSettings = {
-            type = "structure",
-        },
-        OracleSettings = {
-            type = "structure",
-        },
-        SybaseAseSettings = {
-            type = "structure",
-        },
-        MicrosoftSqlServerSettings = {
-            type = "structure",
-        },
-        DocDbSettings = {
-            type = "structure",
-        },
-        MariaDbSettings = {
-            type = "structure",
-        },
-        IbmDb2LuwSettings = {
-            type = "structure",
-        },
-        IbmDb2zOsSettings = {
-            type = "structure",
-        },
-        MongoDbSettings = {
-            type = "structure",
-        },
+        RedshiftSettings = M.RedshiftDataProviderSettings,
+        PostgreSqlSettings = M.PostgreSqlDataProviderSettings,
+        MySqlSettings = M.MySqlDataProviderSettings,
+        OracleSettings = M.OracleDataProviderSettings,
+        SybaseAseSettings = M.SybaseAseDataProviderSettings,
+        MicrosoftSqlServerSettings = M.MicrosoftSqlServerDataProviderSettings,
+        DocDbSettings = M.DocDbDataProviderSettings,
+        MariaDbSettings = M.MariaDbDataProviderSettings,
+        IbmDb2LuwSettings = M.IbmDb2LuwDataProviderSettings,
+        IbmDb2zOsSettings = M.IbmDb2zOsDataProviderSettings,
+        MongoDbSettings = M.MongoDbDataProviderSettings,
     },
 }
 
@@ -1093,15 +1097,12 @@ M.CreateDataProviderInput = {
         Virtual = {
             type = "boolean",
         },
-        Settings = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        Settings = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataProviderSettings }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1127,18 +1128,14 @@ M.DataProvider = {
         Virtual = {
             type = "boolean",
         },
-        Settings = {
-            type = "union",
-        },
+        Settings = M.DataProviderSettings,
     },
 }
 
 M.CreateDataProviderOutput = {
     type = "structure",
     members = {
-        DataProvider = {
-            type = "structure",
-        },
+        DataProvider = M.DataProvider,
     },
 }
 
@@ -1172,7 +1169,7 @@ M.DocDbSettings = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         DatabaseName = {
             type = "string",
@@ -1184,7 +1181,7 @@ M.DocDbSettings = {
             type = "boolean",
         },
         DocsToInvestigate = {
-            type = "number",
+            type = "integer",
         },
         KmsKeyId = {
             type = "string",
@@ -1232,10 +1229,10 @@ M.ElasticsearchSettings = {
             },
         },
         FullLoadErrorPercentage = {
-            type = "number",
+            type = "integer",
         },
         ErrorRetryDuration = {
-            type = "number",
+            type = "integer",
         },
         UseNewMappingType = {
             type = "boolean",
@@ -1266,22 +1263,22 @@ M.GcpMySQLSettings = {
             type = "string",
         },
         EventsPollInterval = {
-            type = "number",
+            type = "integer",
         },
         TargetDbType = {
             type = "string",
         },
         MaxFileSize = {
-            type = "number",
+            type = "integer",
         },
         ParallelLoadThreads = {
-            type = "number",
+            type = "integer",
         },
         Password = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         ServerName = {
             type = "string",
@@ -1311,7 +1308,7 @@ M.IBMDb2Settings = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         ServerName = {
             type = "string",
@@ -1323,7 +1320,7 @@ M.IBMDb2Settings = {
             type = "string",
         },
         MaxKBytesPerRead = {
-            type = "number",
+            type = "integer",
         },
         Username = {
             type = "string",
@@ -1335,13 +1332,13 @@ M.IBMDb2Settings = {
             type = "string",
         },
         LoadTimeout = {
-            type = "number",
+            type = "integer",
         },
         WriteBufferSize = {
-            type = "number",
+            type = "integer",
         },
         MaxFileSize = {
-            type = "number",
+            type = "integer",
         },
         KeepCsvFiles = {
             type = "boolean",
@@ -1399,7 +1396,7 @@ M.KafkaSettings = {
             type = "boolean",
         },
         MessageMaxBytes = {
-            type = "number",
+            type = "integer",
         },
         IncludeNullAndEmpty = {
             type = "boolean",
@@ -1501,10 +1498,10 @@ M.MicrosoftSQLServerSettings = {
     type = "structure",
     members = {
         Port = {
-            type = "number",
+            type = "integer",
         },
         BcpPacketSize = {
-            type = "number",
+            type = "integer",
         },
         DatabaseName = {
             type = "string",
@@ -1570,7 +1567,7 @@ M.MongoDbSettings = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         DatabaseName = {
             type = "string",
@@ -1629,22 +1626,22 @@ M.MySQLSettings = {
             type = "string",
         },
         EventsPollInterval = {
-            type = "number",
+            type = "integer",
         },
         TargetDbType = {
             type = "string",
         },
         MaxFileSize = {
-            type = "number",
+            type = "integer",
         },
         ParallelLoadThreads = {
-            type = "number",
+            type = "integer",
         },
         Password = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         ServerName = {
             type = "string",
@@ -1662,7 +1659,7 @@ M.MySQLSettings = {
             type = "string",
         },
         ExecuteTimeout = {
-            type = "number",
+            type = "integer",
         },
         ServiceAccessRoleArn = {
             type = "string",
@@ -1692,13 +1689,13 @@ M.NeptuneSettings = {
             },
         },
         ErrorRetryDuration = {
-            type = "number",
+            type = "integer",
         },
         MaxFileSize = {
-            type = "number",
+            type = "integer",
         },
         MaxRetryCount = {
-            type = "number",
+            type = "integer",
         },
         IamAuthEnabled = {
             type = "boolean",
@@ -1724,23 +1721,23 @@ M.OracleSettings = {
             type = "boolean",
         },
         ArchivedLogDestId = {
-            type = "number",
+            type = "integer",
         },
         AdditionalArchivedLogDestId = {
-            type = "number",
+            type = "integer",
         },
         ExtraArchivedLogDestIds = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
         },
         AllowSelectNestedTables = {
             type = "boolean",
         },
         ParallelAsmReadThreads = {
-            type = "number",
+            type = "integer",
         },
         ReadAheadBlocks = {
-            type = "number",
+            type = "integer",
         },
         AccessAlternateDirectly = {
             type = "boolean",
@@ -1788,19 +1785,19 @@ M.OracleSettings = {
             type = "boolean",
         },
         NumberDatatypeScale = {
-            type = "number",
+            type = "integer",
         },
         Password = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         ReadTableSpaceName = {
             type = "boolean",
         },
         RetryInterval = {
-            type = "number",
+            type = "integer",
         },
         SecurityDbEncryption = {
             type = "string",
@@ -1815,7 +1812,7 @@ M.OracleSettings = {
             type = "string",
         },
         StandbyDelayTime = {
-            type = "number",
+            type = "integer",
         },
         Username = {
             type = "string",
@@ -1848,7 +1845,7 @@ M.OracleSettings = {
             type = "boolean",
         },
         OpenTransactionWindow = {
-            type = "number",
+            type = "integer",
         },
         AuthenticationMethod = {
             type = "string",
@@ -1888,7 +1885,7 @@ M.PostgreSQLSettings = {
             type = "boolean",
         },
         MaxFileSize = {
-            type = "number",
+            type = "integer",
         },
         DatabaseName = {
             type = "string",
@@ -1897,7 +1894,7 @@ M.PostgreSQLSettings = {
             type = "string",
         },
         ExecuteTimeout = {
-            type = "number",
+            type = "integer",
         },
         FailTasksOnLobTruncation = {
             type = "boolean",
@@ -1909,13 +1906,13 @@ M.PostgreSQLSettings = {
             type = "string",
         },
         HeartbeatFrequency = {
-            type = "number",
+            type = "integer",
         },
         Password = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         ServerName = {
             type = "string",
@@ -1986,8 +1983,9 @@ M.RedisSettings = {
             },
         },
         Port = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -2036,7 +2034,7 @@ M.RedshiftSettings = {
             type = "boolean",
         },
         ConnectionTimeout = {
-            type = "number",
+            type = "integer",
         },
         DatabaseName = {
             type = "string",
@@ -2054,19 +2052,19 @@ M.RedshiftSettings = {
             type = "boolean",
         },
         FileTransferUploadStreams = {
-            type = "number",
+            type = "integer",
         },
         LoadTimeout = {
-            type = "number",
+            type = "integer",
         },
         MaxFileSize = {
-            type = "number",
+            type = "integer",
         },
         Password = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         RemoveQuotes = {
             type = "boolean",
@@ -2099,7 +2097,7 @@ M.RedshiftSettings = {
             type = "string",
         },
         WriteBufferSize = {
-            type = "number",
+            type = "integer",
         },
         SecretsManagerAccessRoleArn = {
             type = "string",
@@ -2197,13 +2195,13 @@ M.S3Settings = {
             type = "string",
         },
         DictPageSizeLimit = {
-            type = "number",
+            type = "integer",
         },
         RowGroupLength = {
-            type = "number",
+            type = "integer",
         },
         DataPageSize = {
-            type = "number",
+            type = "integer",
         },
         ParquetVersion = {
             type = "string",
@@ -2257,19 +2255,19 @@ M.S3Settings = {
             type = "boolean",
         },
         CdcMaxBatchInterval = {
-            type = "number",
+            type = "integer",
         },
         CdcMinFileSize = {
-            type = "number",
+            type = "integer",
         },
         CsvNullValue = {
             type = "string",
         },
         IgnoreHeaderRows = {
-            type = "number",
+            type = "integer",
         },
         MaxFileSize = {
-            type = "number",
+            type = "integer",
         },
         Rfc4180 = {
             type = "boolean",
@@ -2299,7 +2297,7 @@ M.SybaseSettings = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         ServerName = {
             type = "string",
@@ -2326,13 +2324,13 @@ M.TimestreamSettings = {
             },
         },
         MemoryDuration = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         MagneticDuration = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -2377,7 +2375,7 @@ M.CreateEndpointInput = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         DatabaseName = {
             type = "string",
@@ -2390,7 +2388,7 @@ M.CreateEndpointInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         CertificateArn = {
             type = "string",
@@ -2404,66 +2402,28 @@ M.CreateEndpointInput = {
         ExternalTableDefinition = {
             type = "string",
         },
-        DynamoDbSettings = {
-            type = "structure",
-        },
-        S3Settings = {
-            type = "structure",
-        },
-        DmsTransferSettings = {
-            type = "structure",
-        },
-        MongoDbSettings = {
-            type = "structure",
-        },
-        KinesisSettings = {
-            type = "structure",
-        },
-        KafkaSettings = {
-            type = "structure",
-        },
-        ElasticsearchSettings = {
-            type = "structure",
-        },
-        NeptuneSettings = {
-            type = "structure",
-        },
-        RedshiftSettings = {
-            type = "structure",
-        },
-        PostgreSQLSettings = {
-            type = "structure",
-        },
-        MySQLSettings = {
-            type = "structure",
-        },
-        OracleSettings = {
-            type = "structure",
-        },
-        SybaseSettings = {
-            type = "structure",
-        },
-        MicrosoftSQLServerSettings = {
-            type = "structure",
-        },
-        IBMDb2Settings = {
-            type = "structure",
-        },
+        DynamoDbSettings = M.DynamoDbSettings,
+        S3Settings = M.S3Settings,
+        DmsTransferSettings = M.DmsTransferSettings,
+        MongoDbSettings = M.MongoDbSettings,
+        KinesisSettings = M.KinesisSettings,
+        KafkaSettings = M.KafkaSettings,
+        ElasticsearchSettings = M.ElasticsearchSettings,
+        NeptuneSettings = M.NeptuneSettings,
+        RedshiftSettings = M.RedshiftSettings,
+        PostgreSQLSettings = M.PostgreSQLSettings,
+        MySQLSettings = M.MySQLSettings,
+        OracleSettings = M.OracleSettings,
+        SybaseSettings = M.SybaseSettings,
+        MicrosoftSQLServerSettings = M.MicrosoftSQLServerSettings,
+        IBMDb2Settings = M.IBMDb2Settings,
         ResourceIdentifier = {
             type = "string",
         },
-        DocDbSettings = {
-            type = "structure",
-        },
-        RedisSettings = {
-            type = "structure",
-        },
-        GcpMySQLSettings = {
-            type = "structure",
-        },
-        TimestreamSettings = {
-            type = "structure",
-        },
+        DocDbSettings = M.DocDbSettings,
+        RedisSettings = M.RedisSettings,
+        GcpMySQLSettings = M.GcpMySQLSettings,
+        TimestreamSettings = M.TimestreamSettings,
     },
 }
 
@@ -2501,7 +2461,7 @@ M.Endpoint = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         DatabaseName = {
             type = "string",
@@ -2536,75 +2496,33 @@ M.Endpoint = {
         IsReadOnly = {
             type = "boolean",
         },
-        DynamoDbSettings = {
-            type = "structure",
-        },
-        S3Settings = {
-            type = "structure",
-        },
-        DmsTransferSettings = {
-            type = "structure",
-        },
-        MongoDbSettings = {
-            type = "structure",
-        },
-        KinesisSettings = {
-            type = "structure",
-        },
-        KafkaSettings = {
-            type = "structure",
-        },
-        ElasticsearchSettings = {
-            type = "structure",
-        },
-        NeptuneSettings = {
-            type = "structure",
-        },
-        RedshiftSettings = {
-            type = "structure",
-        },
-        PostgreSQLSettings = {
-            type = "structure",
-        },
-        MySQLSettings = {
-            type = "structure",
-        },
-        OracleSettings = {
-            type = "structure",
-        },
-        SybaseSettings = {
-            type = "structure",
-        },
-        MicrosoftSQLServerSettings = {
-            type = "structure",
-        },
-        IBMDb2Settings = {
-            type = "structure",
-        },
-        DocDbSettings = {
-            type = "structure",
-        },
-        RedisSettings = {
-            type = "structure",
-        },
-        GcpMySQLSettings = {
-            type = "structure",
-        },
-        TimestreamSettings = {
-            type = "structure",
-        },
-        LakehouseSettings = {
-            type = "structure",
-        },
+        DynamoDbSettings = M.DynamoDbSettings,
+        S3Settings = M.S3Settings,
+        DmsTransferSettings = M.DmsTransferSettings,
+        MongoDbSettings = M.MongoDbSettings,
+        KinesisSettings = M.KinesisSettings,
+        KafkaSettings = M.KafkaSettings,
+        ElasticsearchSettings = M.ElasticsearchSettings,
+        NeptuneSettings = M.NeptuneSettings,
+        RedshiftSettings = M.RedshiftSettings,
+        PostgreSQLSettings = M.PostgreSQLSettings,
+        MySQLSettings = M.MySQLSettings,
+        OracleSettings = M.OracleSettings,
+        SybaseSettings = M.SybaseSettings,
+        MicrosoftSQLServerSettings = M.MicrosoftSQLServerSettings,
+        IBMDb2Settings = M.IBMDb2Settings,
+        DocDbSettings = M.DocDbSettings,
+        RedisSettings = M.RedisSettings,
+        GcpMySQLSettings = M.GcpMySQLSettings,
+        TimestreamSettings = M.TimestreamSettings,
+        LakehouseSettings = M.LakehouseSettings,
     },
 }
 
 M.CreateEndpointOutput = {
     type = "structure",
     members = {
-        Endpoint = {
-            type = "structure",
-        },
+        Endpoint = M.Endpoint,
     },
 }
 
@@ -2648,18 +2566,18 @@ M.CreateEventSubscriptionInput = {
         },
         EventCategories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SourceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Enabled = {
             type = "boolean",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2687,14 +2605,17 @@ M.EventSubscription = {
         },
         SourceIdsList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         EventCategoriesList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Enabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -2702,9 +2623,7 @@ M.EventSubscription = {
 M.CreateEventSubscriptionOutput = {
     type = "structure",
     members = {
-        EventSubscription = {
-            type = "structure",
-        },
+        EventSubscription = M.EventSubscription,
     },
 }
 
@@ -2850,7 +2769,7 @@ M.CreateInstanceProfileInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         NetworkType = {
             type = "string",
@@ -2866,7 +2785,7 @@ M.CreateInstanceProfileInput = {
         },
         VpcSecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2903,7 +2822,7 @@ M.InstanceProfile = {
         },
         VpcSecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2911,9 +2830,7 @@ M.InstanceProfile = {
 M.CreateInstanceProfileOutput = {
     type = "structure",
     members = {
-        InstanceProfile = {
-            type = "structure",
-        },
+        InstanceProfile = M.InstanceProfile,
     },
 }
 
@@ -2955,14 +2872,14 @@ M.CreateMigrationProjectInput = {
         },
         SourceDataProviderDescriptors = {
             type = "list",
-            member_type = "structure",
+            member = M.DataProviderDescriptorDefinition,
             traits = {
                 required = true,
             },
         },
         TargetDataProviderDescriptors = {
             type = "list",
-            member_type = "structure",
+            member = M.DataProviderDescriptorDefinition,
             traits = {
                 required = true,
             },
@@ -2981,11 +2898,9 @@ M.CreateMigrationProjectInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        SchemaConversionApplicationAttributes = {
-            type = "structure",
-        },
+        SchemaConversionApplicationAttributes = M.SCApplicationAttributes,
     },
 }
 
@@ -3021,11 +2936,11 @@ M.MigrationProject = {
         },
         SourceDataProviderDescriptors = {
             type = "list",
-            member_type = "structure",
+            member = M.DataProviderDescriptor,
         },
         TargetDataProviderDescriptors = {
             type = "list",
-            member_type = "structure",
+            member = M.DataProviderDescriptor,
         },
         InstanceProfileArn = {
             type = "string",
@@ -3039,18 +2954,14 @@ M.MigrationProject = {
         Description = {
             type = "string",
         },
-        SchemaConversionApplicationAttributes = {
-            type = "structure",
-        },
+        SchemaConversionApplicationAttributes = M.SCApplicationAttributes,
     },
 }
 
 M.CreateMigrationProjectOutput = {
     type = "structure",
     members = {
-        MigrationProject = {
-            type = "structure",
-        },
+        MigrationProject = M.MigrationProject,
     },
 }
 
@@ -3067,10 +2978,10 @@ M.ComputeConfig = {
             type = "string",
         },
         MaxCapacityUnits = {
-            type = "number",
+            type = "integer",
         },
         MinCapacityUnits = {
-            type = "number",
+            type = "integer",
         },
         MultiAZ = {
             type = "boolean",
@@ -3083,7 +2994,7 @@ M.ComputeConfig = {
         },
         VpcSecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3109,12 +3020,9 @@ M.CreateReplicationConfigInput = {
                 required = true,
             },
         },
-        ComputeConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ComputeConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ComputeConfig }),
         ReplicationType = {
             type = "string",
             traits = {
@@ -3138,7 +3046,7 @@ M.CreateReplicationConfigInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3161,9 +3069,7 @@ M.ReplicationConfig = {
         ReplicationType = {
             type = "string",
         },
-        ComputeConfig = {
-            type = "structure",
-        },
+        ComputeConfig = M.ComputeConfig,
         ReplicationSettings = {
             type = "string",
         },
@@ -3188,9 +3094,7 @@ M.ReplicationConfig = {
 M.CreateReplicationConfigOutput = {
     type = "structure",
     members = {
-        ReplicationConfig = {
-            type = "structure",
-        },
+        ReplicationConfig = M.ReplicationConfig,
     },
 }
 
@@ -3239,7 +3143,7 @@ M.CreateReplicationInstanceInput = {
             },
         },
         AllocatedStorage = {
-            type = "number",
+            type = "integer",
         },
         ReplicationInstanceClass = {
             type = "string",
@@ -3249,7 +3153,7 @@ M.CreateReplicationInstanceInput = {
         },
         VpcSecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AvailabilityZone = {
             type = "string",
@@ -3271,7 +3175,7 @@ M.CreateReplicationInstanceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         KmsKeyId = {
             type = "string",
@@ -3288,9 +3192,7 @@ M.CreateReplicationInstanceInput = {
         NetworkType = {
             type = "string",
         },
-        KerberosAuthenticationSettings = {
-            type = "structure",
-        },
+        KerberosAuthenticationSettings = M.KerberosAuthenticationSettings,
     },
 }
 
@@ -3301,7 +3203,7 @@ M.ReplicationPendingModifiedValues = {
             type = "string",
         },
         AllocatedStorage = {
-            type = "number",
+            type = "integer",
         },
         MultiAZ = {
             type = "boolean",
@@ -3330,9 +3232,7 @@ M.Subnet = {
         SubnetIdentifier = {
             type = "string",
         },
-        SubnetAvailabilityZone = {
-            type = "structure",
-        },
+        SubnetAvailabilityZone = M.AvailabilityZone,
         SubnetStatus = {
             type = "string",
         },
@@ -3356,11 +3256,11 @@ M.ReplicationSubnetGroup = {
         },
         Subnets = {
             type = "list",
-            member_type = "structure",
+            member = M.Subnet,
         },
         SupportedNetworkTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IsReadOnly = {
             type = "boolean",
@@ -3393,35 +3293,40 @@ M.ReplicationInstance = {
             type = "string",
         },
         AllocatedStorage = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         InstanceCreateTime = {
             type = "timestamp",
         },
         VpcSecurityGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcSecurityGroupMembership,
         },
         AvailabilityZone = {
             type = "string",
         },
-        ReplicationSubnetGroup = {
-            type = "structure",
-        },
+        ReplicationSubnetGroup = M.ReplicationSubnetGroup,
         PreferredMaintenanceWindow = {
             type = "string",
         },
-        PendingModifiedValues = {
-            type = "structure",
-        },
+        PendingModifiedValues = M.ReplicationPendingModifiedValues,
         MultiAZ = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         EngineVersion = {
             type = "string",
         },
         AutoMinorVersionUpgrade = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         KmsKeyId = {
             type = "string",
@@ -3437,18 +3342,21 @@ M.ReplicationInstance = {
         },
         ReplicationInstancePublicIpAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ReplicationInstancePrivateIpAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ReplicationInstanceIpv6Addresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         PubliclyAccessible = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         SecondaryAvailabilityZone = {
             type = "string",
@@ -3462,18 +3370,14 @@ M.ReplicationInstance = {
         NetworkType = {
             type = "string",
         },
-        KerberosAuthenticationSettings = {
-            type = "structure",
-        },
+        KerberosAuthenticationSettings = M.KerberosAuthenticationSettings,
     },
 }
 
 M.CreateReplicationInstanceOutput = {
     type = "structure",
     members = {
-        ReplicationInstance = {
-            type = "structure",
-        },
+        ReplicationInstance = M.ReplicationInstance,
     },
 }
 
@@ -3514,14 +3418,14 @@ M.CreateReplicationSubnetGroupInput = {
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3529,9 +3433,7 @@ M.CreateReplicationSubnetGroupInput = {
 M.CreateReplicationSubnetGroupOutput = {
     type = "structure",
     members = {
-        ReplicationSubnetGroup = {
-            type = "structure",
-        },
+        ReplicationSubnetGroup = M.ReplicationSubnetGroup,
     },
 }
 
@@ -3588,7 +3490,7 @@ M.CreateReplicationTaskInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         TaskData = {
             type = "string",
@@ -3603,22 +3505,40 @@ M.ReplicationTaskStats = {
     type = "structure",
     members = {
         FullLoadProgressPercent = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         ElapsedTimeMillis = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         TablesLoaded = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         TablesLoading = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         TablesQueued = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         TablesErrored = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         FreshStartDate = {
             type = "timestamp",
@@ -3689,9 +3609,7 @@ M.ReplicationTask = {
         ReplicationTaskArn = {
             type = "string",
         },
-        ReplicationTaskStats = {
-            type = "structure",
-        },
+        ReplicationTaskStats = M.ReplicationTaskStats,
         TaskData = {
             type = "string",
         },
@@ -3704,9 +3622,7 @@ M.ReplicationTask = {
 M.CreateReplicationTaskOutput = {
     type = "structure",
     members = {
-        ReplicationTask = {
-            type = "structure",
-        },
+        ReplicationTask = M.ReplicationTask,
     },
 }
 
@@ -3753,7 +3669,7 @@ M.Certificate = {
             type = "string",
         },
         KeyLength = {
-            type = "number",
+            type = "integer",
         },
         KmsKeyId = {
             type = "string",
@@ -3764,9 +3680,7 @@ M.Certificate = {
 M.DeleteCertificateOutput = {
     type = "structure",
     members = {
-        Certificate = {
-            type = "structure",
-        },
+        Certificate = M.Certificate,
     },
 }
 
@@ -3815,9 +3729,7 @@ M.Connection = {
 M.DeleteConnectionOutput = {
     type = "structure",
     members = {
-        Connection = {
-            type = "structure",
-        },
+        Connection = M.Connection,
     },
 }
 
@@ -3836,9 +3748,7 @@ M.DeleteDataMigrationInput = {
 M.DeleteDataMigrationOutput = {
     type = "structure",
     members = {
-        DataMigration = {
-            type = "structure",
-        },
+        DataMigration = M.DataMigration,
     },
 }
 
@@ -3857,9 +3767,7 @@ M.DeleteDataProviderInput = {
 M.DeleteDataProviderOutput = {
     type = "structure",
     members = {
-        DataProvider = {
-            type = "structure",
-        },
+        DataProvider = M.DataProvider,
     },
 }
 
@@ -3878,9 +3786,7 @@ M.DeleteEndpointInput = {
 M.DeleteEndpointOutput = {
     type = "structure",
     members = {
-        Endpoint = {
-            type = "structure",
-        },
+        Endpoint = M.Endpoint,
     },
 }
 
@@ -3899,9 +3805,7 @@ M.DeleteEventSubscriptionInput = {
 M.DeleteEventSubscriptionOutput = {
     type = "structure",
     members = {
-        EventSubscription = {
-            type = "structure",
-        },
+        EventSubscription = M.EventSubscription,
     },
 }
 
@@ -3936,7 +3840,7 @@ M.DeleteFleetAdvisorDatabasesInput = {
     members = {
         DatabaseIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3949,7 +3853,7 @@ M.DeleteFleetAdvisorDatabasesOutput = {
     members = {
         DatabaseIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3969,9 +3873,7 @@ M.DeleteInstanceProfileInput = {
 M.DeleteInstanceProfileOutput = {
     type = "structure",
     members = {
-        InstanceProfile = {
-            type = "structure",
-        },
+        InstanceProfile = M.InstanceProfile,
     },
 }
 
@@ -3990,9 +3892,7 @@ M.DeleteMigrationProjectInput = {
 M.DeleteMigrationProjectOutput = {
     type = "structure",
     members = {
-        MigrationProject = {
-            type = "structure",
-        },
+        MigrationProject = M.MigrationProject,
     },
 }
 
@@ -4011,9 +3911,7 @@ M.DeleteReplicationConfigInput = {
 M.DeleteReplicationConfigOutput = {
     type = "structure",
     members = {
-        ReplicationConfig = {
-            type = "structure",
-        },
+        ReplicationConfig = M.ReplicationConfig,
     },
 }
 
@@ -4032,9 +3930,7 @@ M.DeleteReplicationInstanceInput = {
 M.DeleteReplicationInstanceOutput = {
     type = "structure",
     members = {
-        ReplicationInstance = {
-            type = "structure",
-        },
+        ReplicationInstance = M.ReplicationInstance,
     },
 }
 
@@ -4069,9 +3965,7 @@ M.DeleteReplicationTaskInput = {
 M.DeleteReplicationTaskOutput = {
     type = "structure",
     members = {
-        ReplicationTask = {
-            type = "structure",
-        },
+        ReplicationTask = M.ReplicationTask,
     },
 }
 
@@ -4090,9 +3984,7 @@ M.DeleteReplicationTaskAssessmentRunInput = {
 M.DeleteReplicationTaskAssessmentRunOutput = {
     type = "structure",
     members = {
-        ReplicationTaskAssessmentRun = {
-            type = "structure",
-        },
+        ReplicationTaskAssessmentRun = M.ReplicationTaskAssessmentRun,
     },
 }
 
@@ -4105,7 +3997,7 @@ M.DescribeAccountAttributesOutput = {
     members = {
         AccountQuotas = {
             type = "list",
-            member_type = "structure",
+            member = M.AccountQuota,
         },
         UniqueAccountIdentifier = {
             type = "string",
@@ -4135,7 +4027,7 @@ M.DescribeApplicableIndividualAssessmentsInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -4148,7 +4040,7 @@ M.DescribeApplicableIndividualAssessmentsOutput = {
     members = {
         IndividualAssessmentNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Marker = {
             type = "string",
@@ -4167,7 +4059,7 @@ M.Filter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4180,10 +4072,10 @@ M.DescribeCertificatesInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -4199,7 +4091,7 @@ M.DescribeCertificatesOutput = {
         },
         Certificates = {
             type = "list",
-            member_type = "structure",
+            member = M.Certificate,
         },
     },
 }
@@ -4209,10 +4101,10 @@ M.DescribeConnectionsInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -4228,7 +4120,7 @@ M.DescribeConnectionsOutput = {
         },
         Connections = {
             type = "list",
-            member_type = "structure",
+            member = M.Connection,
         },
     },
 }
@@ -4262,10 +4154,10 @@ M.DescribeDataMigrationsInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -4284,7 +4176,7 @@ M.DescribeDataMigrationsOutput = {
     members = {
         DataMigrations = {
             type = "list",
-            member_type = "structure",
+            member = M.DataMigration,
         },
         Marker = {
             type = "string",
@@ -4297,10 +4189,10 @@ M.DescribeDataProvidersInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -4316,7 +4208,7 @@ M.DescribeDataProvidersOutput = {
         },
         DataProviders = {
             type = "list",
-            member_type = "structure",
+            member = M.DataProvider,
         },
     },
 }
@@ -4326,10 +4218,10 @@ M.DescribeEndpointsInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -4345,7 +4237,7 @@ M.DescribeEndpointsOutput = {
         },
         Endpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.Endpoint,
         },
     },
 }
@@ -4360,7 +4252,7 @@ M.DescribeEndpointSettingsInput = {
             },
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -4386,7 +4278,7 @@ M.EndpointSetting = {
         },
         EnumValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Sensitive = {
             type = "boolean",
@@ -4398,10 +4290,10 @@ M.EndpointSetting = {
             type = "string",
         },
         IntValueMin = {
-            type = "number",
+            type = "integer",
         },
         IntValueMax = {
-            type = "number",
+            type = "integer",
         },
         DefaultValue = {
             type = "string",
@@ -4417,7 +4309,7 @@ M.DescribeEndpointSettingsOutput = {
         },
         EndpointSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.EndpointSetting,
         },
     },
 }
@@ -4427,10 +4319,10 @@ M.DescribeEndpointTypesInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -4446,6 +4338,9 @@ M.SupportedEndpointType = {
         },
         SupportsCDC = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         EndpointType = {
             type = "string",
@@ -4467,7 +4362,7 @@ M.DescribeEndpointTypesOutput = {
         },
         SupportedEndpointTypes = {
             type = "list",
-            member_type = "structure",
+            member = M.SupportedEndpointType,
         },
     },
 }
@@ -4476,7 +4371,7 @@ M.DescribeEngineVersionsInput = {
     type = "structure",
     members = {
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -4515,7 +4410,7 @@ M.EngineVersion = {
         },
         AvailableUpgrades = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4525,7 +4420,7 @@ M.DescribeEngineVersionsOutput = {
     members = {
         EngineVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.EngineVersion,
         },
         Marker = {
             type = "string",
@@ -4541,7 +4436,7 @@ M.DescribeEventCategoriesInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
     },
 }
@@ -4554,7 +4449,7 @@ M.EventCategoryGroup = {
         },
         EventCategories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4564,7 +4459,7 @@ M.DescribeEventCategoriesOutput = {
     members = {
         EventCategoryGroupList = {
             type = "list",
-            member_type = "structure",
+            member = M.EventCategoryGroup,
         },
     },
 }
@@ -4589,18 +4484,18 @@ M.DescribeEventsInput = {
             type = "timestamp",
         },
         Duration = {
-            type = "number",
+            type = "integer",
         },
         EventCategories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -4622,7 +4517,7 @@ M.Event = {
         },
         EventCategories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Date = {
             type = "timestamp",
@@ -4638,7 +4533,7 @@ M.DescribeEventsOutput = {
         },
         Events = {
             type = "list",
-            member_type = "structure",
+            member = M.Event,
         },
     },
 }
@@ -4651,10 +4546,10 @@ M.DescribeEventSubscriptionsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -4670,7 +4565,7 @@ M.DescribeEventSubscriptionsOutput = {
         },
         EventSubscriptionsList = {
             type = "list",
-            member_type = "structure",
+            member = M.EventSubscription,
         },
     },
 }
@@ -4686,13 +4581,13 @@ M.DescribeExtensionPackAssociationsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         Marker = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4705,7 +4600,7 @@ M.DescribeExtensionPackAssociationsOutput = {
         },
         Requests = {
             type = "list",
-            member_type = "structure",
+            member = M.SchemaConversionRequest,
         },
     },
 }
@@ -4715,10 +4610,10 @@ M.DescribeFleetAdvisorCollectorsInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -4753,10 +4648,10 @@ M.InventoryData = {
     type = "structure",
     members = {
         NumberOfDatabases = {
-            type = "number",
+            type = "integer",
         },
         NumberOfSchemas = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4791,9 +4686,7 @@ M.CollectorResponse = {
         ServiceAccessRoleArn = {
             type = "string",
         },
-        CollectorHealthCheck = {
-            type = "structure",
-        },
+        CollectorHealthCheck = M.CollectorHealthCheck,
         LastDataReceived = {
             type = "string",
         },
@@ -4806,9 +4699,7 @@ M.CollectorResponse = {
         ModifiedDate = {
             type = "string",
         },
-        InventoryData = {
-            type = "structure",
-        },
+        InventoryData = M.InventoryData,
     },
 }
 
@@ -4817,7 +4708,7 @@ M.DescribeFleetAdvisorCollectorsOutput = {
     members = {
         Collectors = {
             type = "list",
-            member_type = "structure",
+            member = M.CollectorResponse,
         },
         NextToken = {
             type = "string",
@@ -4830,10 +4721,10 @@ M.DescribeFleetAdvisorDatabasesInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -4887,7 +4778,7 @@ M.DatabaseInstanceSoftwareDetailsResponse = {
             type = "string",
         },
         OsArchitecture = {
-            type = "number",
+            type = "integer",
         },
         Tooltip = {
             type = "string",
@@ -4908,17 +4799,13 @@ M.DatabaseResponse = {
             type = "string",
         },
         NumberOfSchemas = {
-            type = "number",
+            type = "long",
         },
-        Server = {
-            type = "structure",
-        },
-        SoftwareDetails = {
-            type = "structure",
-        },
+        Server = M.ServerShortInfoResponse,
+        SoftwareDetails = M.DatabaseInstanceSoftwareDetailsResponse,
         Collectors = {
             type = "list",
-            member_type = "structure",
+            member = M.CollectorShortInfoResponse,
         },
     },
 }
@@ -4928,7 +4815,7 @@ M.DescribeFleetAdvisorDatabasesOutput = {
     members = {
         Databases = {
             type = "list",
-            member_type = "structure",
+            member = M.DatabaseResponse,
         },
         NextToken = {
             type = "string",
@@ -4940,7 +4827,7 @@ M.DescribeFleetAdvisorLsaAnalysisInput = {
     type = "structure",
     members = {
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -4965,7 +4852,7 @@ M.DescribeFleetAdvisorLsaAnalysisOutput = {
     members = {
         Analysis = {
             type = "list",
-            member_type = "structure",
+            member = M.FleetAdvisorLsaAnalysisResponse,
         },
         NextToken = {
             type = "string",
@@ -4978,10 +4865,10 @@ M.DescribeFleetAdvisorSchemaObjectSummaryInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -4999,13 +4886,13 @@ M.FleetAdvisorSchemaObjectResponse = {
             type = "string",
         },
         NumberOfObjects = {
-            type = "number",
+            type = "long",
         },
         CodeLineCount = {
-            type = "number",
+            type = "long",
         },
         CodeSize = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -5015,7 +4902,7 @@ M.DescribeFleetAdvisorSchemaObjectSummaryOutput = {
     members = {
         FleetAdvisorSchemaObjects = {
             type = "list",
-            member_type = "structure",
+            member = M.FleetAdvisorSchemaObjectResponse,
         },
         NextToken = {
             type = "string",
@@ -5028,10 +4915,10 @@ M.DescribeFleetAdvisorSchemasInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -5082,31 +4969,25 @@ M.SchemaResponse = {
     type = "structure",
     members = {
         CodeLineCount = {
-            type = "number",
+            type = "long",
         },
         CodeSize = {
-            type = "number",
+            type = "long",
         },
         Complexity = {
             type = "string",
         },
-        Server = {
-            type = "structure",
-        },
-        DatabaseInstance = {
-            type = "structure",
-        },
+        Server = M.ServerShortInfoResponse,
+        DatabaseInstance = M.DatabaseShortInfoResponse,
         SchemaId = {
             type = "string",
         },
         SchemaName = {
             type = "string",
         },
-        OriginalSchema = {
-            type = "structure",
-        },
+        OriginalSchema = M.SchemaShortInfoResponse,
         Similarity = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -5116,7 +4997,7 @@ M.DescribeFleetAdvisorSchemasOutput = {
     members = {
         FleetAdvisorSchemas = {
             type = "list",
-            member_type = "structure",
+            member = M.SchemaResponse,
         },
         NextToken = {
             type = "string",
@@ -5129,10 +5010,10 @@ M.DescribeInstanceProfilesInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -5148,7 +5029,7 @@ M.DescribeInstanceProfilesOutput = {
         },
         InstanceProfiles = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceProfile,
         },
     },
 }
@@ -5205,7 +5086,7 @@ M.DescribeMetadataModelOutput = {
         },
         TargetMetadataModels = {
             type = "list",
-            member_type = "structure",
+            member = M.MetadataModelReference,
         },
         Definition = {
             type = "string",
@@ -5224,13 +5105,13 @@ M.DescribeMetadataModelAssessmentsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         Marker = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5243,7 +5124,7 @@ M.DescribeMetadataModelAssessmentsOutput = {
         },
         Requests = {
             type = "list",
-            member_type = "structure",
+            member = M.SchemaConversionRequest,
         },
     },
 }
@@ -5273,7 +5154,7 @@ M.DescribeMetadataModelChildrenInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5286,7 +5167,7 @@ M.DescribeMetadataModelChildrenOutput = {
         },
         MetadataModelChildren = {
             type = "list",
-            member_type = "structure",
+            member = M.MetadataModelReference,
         },
     },
 }
@@ -5302,13 +5183,13 @@ M.DescribeMetadataModelConversionsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         Marker = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5321,7 +5202,7 @@ M.DescribeMetadataModelConversionsOutput = {
         },
         Requests = {
             type = "list",
-            member_type = "structure",
+            member = M.SchemaConversionRequest,
         },
     },
 }
@@ -5331,13 +5212,13 @@ M.DescribeMetadataModelCreationsInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         Marker = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         MigrationProjectIdentifier = {
             type = "string",
@@ -5356,7 +5237,7 @@ M.DescribeMetadataModelCreationsOutput = {
         },
         Requests = {
             type = "list",
-            member_type = "structure",
+            member = M.SchemaConversionRequest,
         },
     },
 }
@@ -5372,13 +5253,13 @@ M.DescribeMetadataModelExportsAsScriptInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         Marker = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5391,7 +5272,7 @@ M.DescribeMetadataModelExportsAsScriptOutput = {
         },
         Requests = {
             type = "list",
-            member_type = "structure",
+            member = M.SchemaConversionRequest,
         },
     },
 }
@@ -5407,13 +5288,13 @@ M.DescribeMetadataModelExportsToTargetInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         Marker = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5426,7 +5307,7 @@ M.DescribeMetadataModelExportsToTargetOutput = {
         },
         Requests = {
             type = "list",
-            member_type = "structure",
+            member = M.SchemaConversionRequest,
         },
     },
 }
@@ -5442,13 +5323,13 @@ M.DescribeMetadataModelImportsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         Marker = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5461,7 +5342,7 @@ M.DescribeMetadataModelImportsOutput = {
         },
         Requests = {
             type = "list",
-            member_type = "structure",
+            member = M.SchemaConversionRequest,
         },
     },
 }
@@ -5471,10 +5352,10 @@ M.DescribeMigrationProjectsInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -5490,7 +5371,7 @@ M.DescribeMigrationProjectsOutput = {
         },
         MigrationProjects = {
             type = "list",
-            member_type = "structure",
+            member = M.MigrationProject,
         },
     },
 }
@@ -5499,7 +5380,7 @@ M.DescribeOrderableReplicationInstancesInput = {
     type = "structure",
     members = {
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -5520,20 +5401,32 @@ M.OrderableReplicationInstance = {
             type = "string",
         },
         MinAllocatedStorage = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         MaxAllocatedStorage = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         DefaultAllocatedStorage = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         IncludedAllocatedStorage = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         AvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ReleaseStatus = {
             type = "string",
@@ -5546,7 +5439,7 @@ M.DescribeOrderableReplicationInstancesOutput = {
     members = {
         OrderableReplicationInstances = {
             type = "list",
-            member_type = "structure",
+            member = M.OrderableReplicationInstance,
         },
         Marker = {
             type = "string",
@@ -5562,13 +5455,13 @@ M.DescribePendingMaintenanceActionsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         Marker = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5578,7 +5471,7 @@ M.DescribePendingMaintenanceActionsOutput = {
     members = {
         PendingMaintenanceActions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePendingMaintenanceActions,
         },
         Marker = {
             type = "string",
@@ -5591,10 +5484,10 @@ M.DescribeRecommendationLimitationsInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -5634,7 +5527,7 @@ M.DescribeRecommendationLimitationsOutput = {
         },
         Limitations = {
             type = "list",
-            member_type = "structure",
+            member = M.Limitation,
         },
     },
 }
@@ -5644,10 +5537,10 @@ M.DescribeRecommendationsInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -5662,16 +5555,16 @@ M.RdsRequirements = {
             type = "string",
         },
         InstanceVcpu = {
-            type = "number",
+            type = "double",
         },
         InstanceMemory = {
-            type = "number",
+            type = "double",
         },
         StorageSize = {
-            type = "number",
+            type = "integer",
         },
         StorageIops = {
-            type = "number",
+            type = "integer",
         },
         DeploymentOption = {
             type = "string",
@@ -5692,19 +5585,19 @@ M.RdsConfiguration = {
             type = "string",
         },
         InstanceVcpu = {
-            type = "number",
+            type = "double",
         },
         InstanceMemory = {
-            type = "number",
+            type = "double",
         },
         StorageType = {
             type = "string",
         },
         StorageSize = {
-            type = "number",
+            type = "integer",
         },
         StorageIops = {
-            type = "number",
+            type = "integer",
         },
         DeploymentOption = {
             type = "string",
@@ -5718,21 +5611,15 @@ M.RdsConfiguration = {
 M.RdsRecommendation = {
     type = "structure",
     members = {
-        RequirementsToTarget = {
-            type = "structure",
-        },
-        TargetConfiguration = {
-            type = "structure",
-        },
+        RequirementsToTarget = M.RdsRequirements,
+        TargetConfiguration = M.RdsConfiguration,
     },
 }
 
 M.RecommendationData = {
     type = "structure",
     members = {
-        RdsEngine = {
-            type = "structure",
-        },
+        RdsEngine = M.RdsRecommendation,
     },
 }
 
@@ -5754,12 +5641,8 @@ M.Recommendation = {
         Preferred = {
             type = "boolean",
         },
-        Settings = {
-            type = "structure",
-        },
-        Data = {
-            type = "structure",
-        },
+        Settings = M.RecommendationSettings,
+        Data = M.RecommendationData,
     },
 }
 
@@ -5771,7 +5654,7 @@ M.DescribeRecommendationsOutput = {
         },
         Recommendations = {
             type = "list",
-            member_type = "structure",
+            member = M.Recommendation,
         },
     },
 }
@@ -5818,9 +5701,7 @@ M.RefreshSchemasStatus = {
 M.DescribeRefreshSchemasStatusOutput = {
     type = "structure",
     members = {
-        RefreshSchemasStatus = {
-            type = "structure",
-        },
+        RefreshSchemasStatus = M.RefreshSchemasStatus,
     },
 }
 
@@ -5829,10 +5710,10 @@ M.DescribeReplicationConfigsInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -5848,7 +5729,7 @@ M.DescribeReplicationConfigsOutput = {
         },
         ReplicationConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.ReplicationConfig,
         },
     },
 }
@@ -5858,10 +5739,10 @@ M.DescribeReplicationInstancesInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -5877,7 +5758,7 @@ M.DescribeReplicationInstancesOutput = {
         },
         ReplicationInstances = {
             type = "list",
-            member_type = "structure",
+            member = M.ReplicationInstance,
         },
     },
 }
@@ -5892,7 +5773,7 @@ M.DescribeReplicationInstanceTaskLogsInput = {
             },
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -5910,7 +5791,10 @@ M.ReplicationInstanceTaskLog = {
             type = "string",
         },
         ReplicationInstanceTaskLogSize = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -5923,7 +5807,7 @@ M.DescribeReplicationInstanceTaskLogsOutput = {
         },
         ReplicationInstanceTaskLogs = {
             type = "list",
-            member_type = "structure",
+            member = M.ReplicationInstanceTaskLog,
         },
         Marker = {
             type = "string",
@@ -5936,10 +5820,10 @@ M.DescribeReplicationsInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -5955,6 +5839,9 @@ M.PremigrationAssessmentStatus = {
         },
         FailOnAssessmentFailure = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Status = {
             type = "string",
@@ -5962,9 +5849,7 @@ M.PremigrationAssessmentStatus = {
         PremigrationAssessmentRunCreationDate = {
             type = "timestamp",
         },
-        AssessmentProgress = {
-            type = "structure",
-        },
+        AssessmentProgress = M.ReplicationTaskAssessmentRunProgress,
         LastFailureMessage = {
             type = "string",
         },
@@ -5980,9 +5865,7 @@ M.PremigrationAssessmentStatus = {
         ResultKmsKeyArn = {
             type = "string",
         },
-        ResultStatistic = {
-            type = "structure",
-        },
+        ResultStatistic = M.ReplicationTaskAssessmentRunResultStatistic,
     },
 }
 
@@ -5993,13 +5876,19 @@ M.ProvisionData = {
             type = "string",
         },
         ProvisionedCapacityUnits = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         DateProvisioned = {
             type = "timestamp",
         },
         IsNewProvisioningAvailable = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         DateNewProvisioningDataAvailable = {
             type = "timestamp",
@@ -6014,22 +5903,40 @@ M.ReplicationStats = {
     type = "structure",
     members = {
         FullLoadProgressPercent = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         ElapsedTimeMillis = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         TablesLoaded = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         TablesLoading = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         TablesQueued = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         TablesErrored = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         FreshStartDate = {
             type = "timestamp",
@@ -6070,23 +5977,19 @@ M.Replication = {
         Status = {
             type = "string",
         },
-        ProvisionData = {
-            type = "structure",
-        },
+        ProvisionData = M.ProvisionData,
         PremigrationAssessmentStatuses = {
             type = "list",
-            member_type = "structure",
+            member = M.PremigrationAssessmentStatus,
         },
         StopReason = {
             type = "string",
         },
         FailureMessages = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        ReplicationStats = {
-            type = "structure",
-        },
+        ReplicationStats = M.ReplicationStats,
         StartReplicationType = {
             type = "string",
         },
@@ -6128,7 +6031,7 @@ M.DescribeReplicationsOutput = {
         },
         Replications = {
             type = "list",
-            member_type = "structure",
+            member = M.Replication,
         },
     },
 }
@@ -6138,10 +6041,10 @@ M.DescribeReplicationSubnetGroupsInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -6157,7 +6060,7 @@ M.DescribeReplicationSubnetGroupsOutput = {
         },
         ReplicationSubnetGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.ReplicationSubnetGroup,
         },
     },
 }
@@ -6172,14 +6075,14 @@ M.DescribeReplicationTableStatisticsInput = {
             },
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
     },
 }
@@ -6194,37 +6097,58 @@ M.TableStatistics = {
             type = "string",
         },
         Inserts = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Deletes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Updates = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Ddls = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         AppliedInserts = {
-            type = "number",
+            type = "long",
         },
         AppliedDeletes = {
-            type = "number",
+            type = "long",
         },
         AppliedUpdates = {
-            type = "number",
+            type = "long",
         },
         AppliedDdls = {
-            type = "number",
+            type = "long",
         },
         FullLoadRows = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         FullLoadCondtnlChkFailedRows = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         FullLoadErrorRows = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         FullLoadStartTime = {
             type = "timestamp",
@@ -6242,13 +6166,22 @@ M.TableStatistics = {
             type = "string",
         },
         ValidationPendingRecords = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         ValidationFailedRecords = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         ValidationSuspendedRecords = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         ValidationState = {
             type = "string",
@@ -6260,16 +6193,16 @@ M.TableStatistics = {
             type = "string",
         },
         ResyncRowsAttempted = {
-            type = "number",
+            type = "long",
         },
         ResyncRowsSucceeded = {
-            type = "number",
+            type = "long",
         },
         ResyncRowsFailed = {
-            type = "number",
+            type = "long",
         },
         ResyncProgress = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -6285,7 +6218,7 @@ M.DescribeReplicationTableStatisticsOutput = {
         },
         ReplicationTableStatistics = {
             type = "list",
-            member_type = "structure",
+            member = M.TableStatistics,
         },
     },
 }
@@ -6297,7 +6230,7 @@ M.DescribeReplicationTaskAssessmentResultsInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -6343,7 +6276,7 @@ M.DescribeReplicationTaskAssessmentResultsOutput = {
         },
         ReplicationTaskAssessmentResults = {
             type = "list",
-            member_type = "structure",
+            member = M.ReplicationTaskAssessmentResult,
         },
     },
 }
@@ -6353,10 +6286,10 @@ M.DescribeReplicationTaskAssessmentRunsInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -6372,7 +6305,7 @@ M.DescribeReplicationTaskAssessmentRunsOutput = {
         },
         ReplicationTaskAssessmentRuns = {
             type = "list",
-            member_type = "structure",
+            member = M.ReplicationTaskAssessmentRun,
         },
     },
 }
@@ -6382,10 +6315,10 @@ M.DescribeReplicationTaskIndividualAssessmentsInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -6422,7 +6355,7 @@ M.DescribeReplicationTaskIndividualAssessmentsOutput = {
         },
         ReplicationTaskIndividualAssessments = {
             type = "list",
-            member_type = "structure",
+            member = M.ReplicationTaskIndividualAssessment,
         },
     },
 }
@@ -6432,10 +6365,10 @@ M.DescribeReplicationTasksInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -6454,7 +6387,7 @@ M.DescribeReplicationTasksOutput = {
         },
         ReplicationTasks = {
             type = "list",
-            member_type = "structure",
+            member = M.ReplicationTask,
         },
     },
 }
@@ -6469,7 +6402,7 @@ M.DescribeSchemasInput = {
             },
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -6485,7 +6418,7 @@ M.DescribeSchemasOutput = {
         },
         Schemas = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -6500,14 +6433,14 @@ M.DescribeTableStatisticsInput = {
             },
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
     },
 }
@@ -6520,7 +6453,7 @@ M.DescribeTableStatisticsOutput = {
         },
         TableStatistics = {
             type = "list",
-            member_type = "structure",
+            member = M.TableStatistics,
         },
         Marker = {
             type = "string",
@@ -6553,7 +6486,7 @@ M.ExportMetadataModelAssessmentInput = {
         },
         AssessmentReportTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -6573,12 +6506,8 @@ M.ExportMetadataModelAssessmentResultEntry = {
 M.ExportMetadataModelAssessmentOutput = {
     type = "structure",
     members = {
-        PdfReport = {
-            type = "structure",
-        },
-        CsvReport = {
-            type = "structure",
-        },
+        PdfReport = M.ExportMetadataModelAssessmentResultEntry,
+        CsvReport = M.ExportMetadataModelAssessmentResultEntry,
     },
 }
 
@@ -6626,7 +6555,7 @@ M.ImportCertificateInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         KmsKeyId = {
             type = "string",
@@ -6637,9 +6566,7 @@ M.ImportCertificateInput = {
 M.ImportCertificateOutput = {
     type = "structure",
     members = {
-        Certificate = {
-            type = "structure",
-        },
+        Certificate = M.Certificate,
     },
 }
 
@@ -6661,7 +6588,7 @@ M.ListTagsForResourceInput = {
         },
         ResourceArnList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -6671,7 +6598,7 @@ M.ListTagsForResourceOutput = {
     members = {
         TagList = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -6726,14 +6653,14 @@ M.ModifyDataMigrationInput = {
         },
         SourceDataSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.SourceDataSetting,
         },
         TargetDataSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetDataSetting,
         },
         NumberOfJobs = {
-            type = "number",
+            type = "integer",
         },
         SelectionRules = {
             type = "string",
@@ -6744,9 +6671,7 @@ M.ModifyDataMigrationInput = {
 M.ModifyDataMigrationOutput = {
     type = "structure",
     members = {
-        DataMigration = {
-            type = "structure",
-        },
+        DataMigration = M.DataMigration,
     },
 }
 
@@ -6774,18 +6699,14 @@ M.ModifyDataProviderInput = {
         ExactSettings = {
             type = "boolean",
         },
-        Settings = {
-            type = "union",
-        },
+        Settings = M.DataProviderSettings,
     },
 }
 
 M.ModifyDataProviderOutput = {
     type = "structure",
     members = {
-        DataProvider = {
-            type = "structure",
-        },
+        DataProvider = M.DataProvider,
     },
 }
 
@@ -6817,7 +6738,7 @@ M.ModifyEndpointInput = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         DatabaseName = {
             type = "string",
@@ -6837,75 +6758,35 @@ M.ModifyEndpointInput = {
         ExternalTableDefinition = {
             type = "string",
         },
-        DynamoDbSettings = {
-            type = "structure",
-        },
-        S3Settings = {
-            type = "structure",
-        },
-        DmsTransferSettings = {
-            type = "structure",
-        },
-        MongoDbSettings = {
-            type = "structure",
-        },
-        KinesisSettings = {
-            type = "structure",
-        },
-        KafkaSettings = {
-            type = "structure",
-        },
-        ElasticsearchSettings = {
-            type = "structure",
-        },
-        NeptuneSettings = {
-            type = "structure",
-        },
-        RedshiftSettings = {
-            type = "structure",
-        },
-        PostgreSQLSettings = {
-            type = "structure",
-        },
-        MySQLSettings = {
-            type = "structure",
-        },
-        OracleSettings = {
-            type = "structure",
-        },
-        SybaseSettings = {
-            type = "structure",
-        },
-        MicrosoftSQLServerSettings = {
-            type = "structure",
-        },
-        IBMDb2Settings = {
-            type = "structure",
-        },
-        DocDbSettings = {
-            type = "structure",
-        },
-        RedisSettings = {
-            type = "structure",
-        },
+        DynamoDbSettings = M.DynamoDbSettings,
+        S3Settings = M.S3Settings,
+        DmsTransferSettings = M.DmsTransferSettings,
+        MongoDbSettings = M.MongoDbSettings,
+        KinesisSettings = M.KinesisSettings,
+        KafkaSettings = M.KafkaSettings,
+        ElasticsearchSettings = M.ElasticsearchSettings,
+        NeptuneSettings = M.NeptuneSettings,
+        RedshiftSettings = M.RedshiftSettings,
+        PostgreSQLSettings = M.PostgreSQLSettings,
+        MySQLSettings = M.MySQLSettings,
+        OracleSettings = M.OracleSettings,
+        SybaseSettings = M.SybaseSettings,
+        MicrosoftSQLServerSettings = M.MicrosoftSQLServerSettings,
+        IBMDb2Settings = M.IBMDb2Settings,
+        DocDbSettings = M.DocDbSettings,
+        RedisSettings = M.RedisSettings,
         ExactSettings = {
             type = "boolean",
         },
-        GcpMySQLSettings = {
-            type = "structure",
-        },
-        TimestreamSettings = {
-            type = "structure",
-        },
+        GcpMySQLSettings = M.GcpMySQLSettings,
+        TimestreamSettings = M.TimestreamSettings,
     },
 }
 
 M.ModifyEndpointOutput = {
     type = "structure",
     members = {
-        Endpoint = {
-            type = "structure",
-        },
+        Endpoint = M.Endpoint,
     },
 }
 
@@ -6926,7 +6807,7 @@ M.ModifyEventSubscriptionInput = {
         },
         EventCategories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Enabled = {
             type = "boolean",
@@ -6937,9 +6818,7 @@ M.ModifyEventSubscriptionInput = {
 M.ModifyEventSubscriptionOutput = {
     type = "structure",
     members = {
-        EventSubscription = {
-            type = "structure",
-        },
+        EventSubscription = M.EventSubscription,
     },
 }
 
@@ -6975,7 +6854,7 @@ M.ModifyInstanceProfileInput = {
         },
         VpcSecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -6983,9 +6862,7 @@ M.ModifyInstanceProfileInput = {
 M.ModifyInstanceProfileOutput = {
     type = "structure",
     members = {
-        InstanceProfile = {
-            type = "structure",
-        },
+        InstanceProfile = M.InstanceProfile,
     },
 }
 
@@ -7003,11 +6880,11 @@ M.ModifyMigrationProjectInput = {
         },
         SourceDataProviderDescriptors = {
             type = "list",
-            member_type = "structure",
+            member = M.DataProviderDescriptorDefinition,
         },
         TargetDataProviderDescriptors = {
             type = "list",
-            member_type = "structure",
+            member = M.DataProviderDescriptorDefinition,
         },
         InstanceProfileIdentifier = {
             type = "string",
@@ -7018,18 +6895,14 @@ M.ModifyMigrationProjectInput = {
         Description = {
             type = "string",
         },
-        SchemaConversionApplicationAttributes = {
-            type = "structure",
-        },
+        SchemaConversionApplicationAttributes = M.SCApplicationAttributes,
     },
 }
 
 M.ModifyMigrationProjectOutput = {
     type = "structure",
     members = {
-        MigrationProject = {
-            type = "structure",
-        },
+        MigrationProject = M.MigrationProject,
     },
 }
 
@@ -7057,9 +6930,7 @@ M.ModifyReplicationConfigInput = {
         SupplementalSettings = {
             type = "string",
         },
-        ComputeConfig = {
-            type = "structure",
-        },
+        ComputeConfig = M.ComputeConfig,
         SourceEndpointArn = {
             type = "string",
         },
@@ -7072,9 +6943,7 @@ M.ModifyReplicationConfigInput = {
 M.ModifyReplicationConfigOutput = {
     type = "structure",
     members = {
-        ReplicationConfig = {
-            type = "structure",
-        },
+        ReplicationConfig = M.ReplicationConfig,
     },
 }
 
@@ -7088,17 +6957,20 @@ M.ModifyReplicationInstanceInput = {
             },
         },
         AllocatedStorage = {
-            type = "number",
+            type = "integer",
         },
         ApplyImmediately = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         ReplicationInstanceClass = {
             type = "string",
         },
         VpcSecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         PreferredMaintenanceWindow = {
             type = "string",
@@ -7111,6 +6983,9 @@ M.ModifyReplicationInstanceInput = {
         },
         AllowMajorVersionUpgrade = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         AutoMinorVersionUpgrade = {
             type = "boolean",
@@ -7121,18 +6996,14 @@ M.ModifyReplicationInstanceInput = {
         NetworkType = {
             type = "string",
         },
-        KerberosAuthenticationSettings = {
-            type = "structure",
-        },
+        KerberosAuthenticationSettings = M.KerberosAuthenticationSettings,
     },
 }
 
 M.ModifyReplicationInstanceOutput = {
     type = "structure",
     members = {
-        ReplicationInstance = {
-            type = "structure",
-        },
+        ReplicationInstance = M.ReplicationInstance,
     },
 }
 
@@ -7160,7 +7031,7 @@ M.ModifyReplicationSubnetGroupInput = {
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -7171,9 +7042,7 @@ M.ModifyReplicationSubnetGroupInput = {
 M.ModifyReplicationSubnetGroupOutput = {
     type = "structure",
     members = {
-        ReplicationSubnetGroup = {
-            type = "structure",
-        },
+        ReplicationSubnetGroup = M.ReplicationSubnetGroup,
     },
 }
 
@@ -7226,9 +7095,7 @@ M.ModifyReplicationTaskInput = {
 M.ModifyReplicationTaskOutput = {
     type = "structure",
     members = {
-        ReplicationTask = {
-            type = "structure",
-        },
+        ReplicationTask = M.ReplicationTask,
     },
 }
 
@@ -7253,9 +7120,7 @@ M.MoveReplicationTaskInput = {
 M.MoveReplicationTaskOutput = {
     type = "structure",
     members = {
-        ReplicationTask = {
-            type = "structure",
-        },
+        ReplicationTask = M.ReplicationTask,
     },
 }
 
@@ -7280,9 +7145,7 @@ M.RebootReplicationInstanceInput = {
 M.RebootReplicationInstanceOutput = {
     type = "structure",
     members = {
-        ReplicationInstance = {
-            type = "structure",
-        },
+        ReplicationInstance = M.ReplicationInstance,
     },
 }
 
@@ -7307,9 +7170,7 @@ M.RefreshSchemasInput = {
 M.RefreshSchemasOutput = {
     type = "structure",
     members = {
-        RefreshSchemasStatus = {
-            type = "structure",
-        },
+        RefreshSchemasStatus = M.RefreshSchemasStatus,
     },
 }
 
@@ -7347,7 +7208,7 @@ M.ReloadReplicationTablesInput = {
         },
         TablesToReload = {
             type = "list",
-            member_type = "structure",
+            member = M.TableToReload,
             traits = {
                 required = true,
             },
@@ -7378,7 +7239,7 @@ M.ReloadTablesInput = {
         },
         TablesToReload = {
             type = "list",
-            member_type = "structure",
+            member = M.TableToReload,
             traits = {
                 required = true,
             },
@@ -7409,7 +7270,7 @@ M.RemoveTagsFromResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -7464,9 +7325,7 @@ M.StartDataMigrationInput = {
 M.StartDataMigrationOutput = {
     type = "structure",
     members = {
-        DataMigration = {
-            type = "structure",
-        },
+        DataMigration = M.DataMigration,
     },
 }
 
@@ -7560,9 +7419,7 @@ M.StatementProperties = {
 M.MetadataModelProperties = {
     type = "union",
     members = {
-        StatementProperties = {
-            type = "structure",
-        },
+        StatementProperties = M.StatementProperties,
     },
 }
 
@@ -7587,12 +7444,9 @@ M.StartMetadataModelCreationInput = {
                 required = true,
             },
         },
-        Properties = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        Properties = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MetadataModelProperties }),
     },
 }
 
@@ -7694,6 +7548,9 @@ M.StartMetadataModelImportInput = {
         },
         Refresh = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -7716,12 +7573,9 @@ M.StartRecommendationsInput = {
                 required = true,
             },
         },
-        Settings = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Settings = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RecommendationSettings }),
     },
 }
 
@@ -7762,9 +7616,7 @@ M.StartReplicationInput = {
 M.StartReplicationOutput = {
     type = "structure",
     members = {
-        Replication = {
-            type = "structure",
-        },
+        Replication = M.Replication,
     },
 }
 
@@ -7804,9 +7656,7 @@ M.StartReplicationTaskInput = {
 M.StartReplicationTaskOutput = {
     type = "structure",
     members = {
-        ReplicationTask = {
-            type = "structure",
-        },
+        ReplicationTask = M.ReplicationTask,
     },
 }
 
@@ -7825,9 +7675,7 @@ M.StartReplicationTaskAssessmentInput = {
 M.StartReplicationTaskAssessmentOutput = {
     type = "structure",
     members = {
-        ReplicationTask = {
-            type = "structure",
-        },
+        ReplicationTask = M.ReplicationTask,
     },
 }
 
@@ -7879,15 +7727,15 @@ M.StartReplicationTaskAssessmentRunInput = {
         },
         IncludeOnly = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Exclude = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -7895,9 +7743,7 @@ M.StartReplicationTaskAssessmentRunInput = {
 M.StartReplicationTaskAssessmentRunOutput = {
     type = "structure",
     members = {
-        ReplicationTaskAssessmentRun = {
-            type = "structure",
-        },
+        ReplicationTaskAssessmentRun = M.ReplicationTaskAssessmentRun,
     },
 }
 
@@ -7916,9 +7762,7 @@ M.StopDataMigrationInput = {
 M.StopDataMigrationOutput = {
     type = "structure",
     members = {
-        DataMigration = {
-            type = "structure",
-        },
+        DataMigration = M.DataMigration,
     },
 }
 
@@ -7937,9 +7781,7 @@ M.StopReplicationInput = {
 M.StopReplicationOutput = {
     type = "structure",
     members = {
-        Replication = {
-            type = "structure",
-        },
+        Replication = M.Replication,
     },
 }
 
@@ -7958,9 +7800,7 @@ M.StopReplicationTaskInput = {
 M.StopReplicationTaskOutput = {
     type = "structure",
     members = {
-        ReplicationTask = {
-            type = "structure",
-        },
+        ReplicationTask = M.ReplicationTask,
     },
 }
 
@@ -7985,9 +7825,7 @@ M.TestConnectionInput = {
 M.TestConnectionOutput = {
     type = "structure",
     members = {
-        Connection = {
-            type = "structure",
-        },
+        Connection = M.Connection,
     },
 }
 

@@ -52,8 +52,9 @@ M.AssociateUserToPermissionGroupOutput = {
     type = "structure",
     members = {
         statusCode = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -127,7 +128,10 @@ M.AwsCredentials = {
             type = "string",
         },
         expiration = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -159,16 +163,16 @@ M.CreateChangesetInput = {
         },
         sourceParams = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
         },
         formatParams = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -235,7 +239,7 @@ M.PermissionGroupParams = {
         },
         datasetPermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePermission,
         },
     },
 }
@@ -275,11 +279,11 @@ M.SchemaDefinition = {
     members = {
         columns = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnDefinition,
         },
         primaryKeyColumns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -287,9 +291,7 @@ M.SchemaDefinition = {
 M.SchemaUnion = {
     type = "structure",
     members = {
-        tabularSchemaConfig = {
-            type = "structure",
-        },
+        tabularSchemaConfig = M.SchemaDefinition,
     },
 }
 
@@ -314,21 +316,14 @@ M.CreateDatasetInput = {
         datasetDescription = {
             type = "string",
         },
-        ownerInfo = {
-            type = "structure",
-        },
-        permissionGroupParams = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ownerInfo = M.DatasetOwnerInfo,
+        permissionGroupParams = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PermissionGroupParams }),
         alias = {
             type = "string",
         },
-        schemaDefinition = {
-            type = "structure",
-        },
+        schemaDefinition = M.SchemaUnion,
     },
 }
 
@@ -360,8 +355,8 @@ M.DataViewDestinationTypeParams = {
         },
         s3DestinationExportFileFormatOptions = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -381,24 +376,27 @@ M.CreateDataViewInput = {
         },
         autoUpdate = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         sortColumns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         partitionColumns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         asOfTimestamp = {
-            type = "number",
-        },
-        destinationTypeParams = {
-            type = "structure",
+            type = "long",
             traits = {
-                required = true,
+                default = nil,
             },
         },
+        destinationTypeParams = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataViewDestinationTypeParams }),
     },
 }
 
@@ -428,7 +426,7 @@ M.CreatePermissionGroupInput = {
         },
         applicationPermissions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -606,8 +604,9 @@ M.DisassociateUserFromPermissionGroupOutput = {
     type = "structure",
     members = {
         statusCode = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -707,28 +706,35 @@ M.GetChangesetOutput = {
         },
         sourceParams = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         formatParams = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         createTime = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         status = {
             type = "string",
         },
-        errorInfo = {
-            type = "structure",
-        },
+        errorInfo = M.ChangesetErrorInfo,
         activeUntilTimestamp = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
         activeFromTimestamp = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
         updatesChangesetId = {
             type = "string",
@@ -778,14 +784,18 @@ M.GetDatasetOutput = {
             type = "string",
         },
         createTime = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         lastModifiedTime = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
-        schemaDefinition = {
-            type = "structure",
-        },
+        schemaDefinition = M.SchemaUnion,
         alias = {
             type = "string",
         },
@@ -843,29 +853,39 @@ M.GetDataViewOutput = {
     members = {
         autoUpdate = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         partitionColumns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         datasetId = {
             type = "string",
         },
         asOfTimestamp = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
-        errorInfo = {
-            type = "structure",
-        },
+        errorInfo = M.DataViewErrorInfo,
         lastModifiedTime = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         createTime = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         sortColumns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         dataViewId = {
             type = "string",
@@ -873,9 +893,7 @@ M.GetDataViewOutput = {
         dataViewArn = {
             type = "string",
         },
-        destinationTypeParams = {
-            type = "structure",
-        },
+        destinationTypeParams = M.DataViewDestinationTypeParams,
         status = {
             type = "string",
         },
@@ -923,12 +941,8 @@ M.S3Location = {
 M.GetExternalDataViewAccessDetailsOutput = {
     type = "structure",
     members = {
-        credentials = {
-            type = "structure",
-        },
-        s3Location = {
-            type = "structure",
-        },
+        credentials = M.AwsCredentials,
+        s3Location = M.S3Location,
     },
 }
 
@@ -965,13 +979,19 @@ M.PermissionGroup = {
         },
         applicationPermissions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         createTime = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         lastModifiedTime = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         membershipStatus = {
             type = "string",
@@ -982,9 +1002,7 @@ M.PermissionGroup = {
 M.GetPermissionGroupOutput = {
     type = "structure",
     members = {
-        permissionGroup = {
-            type = "structure",
-        },
+        permissionGroup = M.PermissionGroup,
     },
 }
 
@@ -992,7 +1010,7 @@ M.GetProgrammaticAccessCredentialsInput = {
     type = "structure",
     members = {
         durationInMinutes = {
-            type = "number",
+            type = "long",
             traits = {
                 http_query = "durationInMinutes",
             },
@@ -1025,11 +1043,9 @@ M.Credentials = {
 M.GetProgrammaticAccessCredentialsOutput = {
     type = "structure",
     members = {
-        credentials = {
-            type = "structure",
-        },
+        credentials = M.Credentials,
         durationInMinutes = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1081,19 +1097,34 @@ M.GetUserOutput = {
             type = "string",
         },
         createTime = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         lastEnabledTime = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         lastDisabledTime = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         lastModifiedTime = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         lastLoginTime = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1138,7 +1169,7 @@ M.ListChangesetsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1169,28 +1200,35 @@ M.ChangesetSummary = {
         },
         sourceParams = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         formatParams = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         createTime = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         status = {
             type = "string",
         },
-        errorInfo = {
-            type = "structure",
-        },
+        errorInfo = M.ChangesetErrorInfo,
         activeUntilTimestamp = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
         activeFromTimestamp = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
         updatesChangesetId = {
             type = "string",
@@ -1206,7 +1244,7 @@ M.ListChangesetsOutput = {
     members = {
         changesets = {
             type = "list",
-            member_type = "structure",
+            member = M.ChangesetSummary,
         },
         nextToken = {
             type = "string",
@@ -1224,7 +1262,7 @@ M.ListDatasetsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1250,18 +1288,20 @@ M.Dataset = {
         datasetDescription = {
             type = "string",
         },
-        ownerInfo = {
-            type = "structure",
-        },
+        ownerInfo = M.DatasetOwnerInfo,
         createTime = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         lastModifiedTime = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
-        schemaDefinition = {
-            type = "structure",
-        },
+        schemaDefinition = M.SchemaUnion,
         alias = {
             type = "string",
         },
@@ -1273,7 +1313,7 @@ M.ListDatasetsOutput = {
     members = {
         datasets = {
             type = "list",
-            member_type = "structure",
+            member = M.Dataset,
         },
         nextToken = {
             type = "string",
@@ -1298,7 +1338,7 @@ M.ListDataViewsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1319,33 +1359,41 @@ M.DataViewSummary = {
             type = "string",
         },
         asOfTimestamp = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
         partitionColumns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         sortColumns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         status = {
             type = "string",
         },
-        errorInfo = {
-            type = "structure",
-        },
-        destinationTypeProperties = {
-            type = "structure",
-        },
+        errorInfo = M.DataViewErrorInfo,
+        destinationTypeProperties = M.DataViewDestinationTypeParams,
         autoUpdate = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         createTime = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         lastModifiedTime = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1358,7 +1406,7 @@ M.ListDataViewsOutput = {
         },
         dataViews = {
             type = "list",
-            member_type = "structure",
+            member = M.DataViewSummary,
         },
     },
 }
@@ -1373,7 +1421,7 @@ M.ListPermissionGroupsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
                 required = true,
@@ -1387,7 +1435,7 @@ M.ListPermissionGroupsOutput = {
     members = {
         permissionGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.PermissionGroup,
         },
         nextToken = {
             type = "string",
@@ -1412,7 +1460,7 @@ M.ListPermissionGroupsByUserInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
                 required = true,
@@ -1441,7 +1489,7 @@ M.ListPermissionGroupsByUserOutput = {
     members = {
         permissionGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.PermissionGroupByUser,
         },
         nextToken = {
             type = "string",
@@ -1459,7 +1507,7 @@ M.ListUsersInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
                 required = true,
@@ -1496,19 +1544,34 @@ M.User = {
             type = "string",
         },
         createTime = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         lastEnabledTime = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         lastDisabledTime = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         lastModifiedTime = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         lastLoginTime = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1518,7 +1581,7 @@ M.ListUsersOutput = {
     members = {
         users = {
             type = "list",
-            member_type = "structure",
+            member = M.User,
         },
         nextToken = {
             type = "string",
@@ -1543,7 +1606,7 @@ M.ListUsersByPermissionGroupInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
                 required = true,
@@ -1590,7 +1653,7 @@ M.ListUsersByPermissionGroupOutput = {
     members = {
         users = {
             type = "list",
-            member_type = "structure",
+            member = M.UserByPermissionGroup,
         },
         nextToken = {
             type = "string",
@@ -1648,16 +1711,16 @@ M.UpdateChangesetInput = {
         },
         sourceParams = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
         },
         formatParams = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1708,9 +1771,7 @@ M.UpdateDatasetInput = {
         alias = {
             type = "string",
         },
-        schemaDefinition = {
-            type = "structure",
-        },
+        schemaDefinition = M.SchemaUnion,
     },
 }
 
@@ -1741,7 +1802,7 @@ M.UpdatePermissionGroupInput = {
         },
         applicationPermissions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         clientToken = {
             type = "string",

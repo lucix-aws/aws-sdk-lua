@@ -149,8 +149,8 @@ M.ErrorResponse = {
         },
         AdditionalDetails = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -186,20 +186,16 @@ M.ApplicationSummary = {
         ProxyType = {
             type = "string",
         },
-        ApiGatewayProxy = {
-            type = "structure",
-        },
+        ApiGatewayProxy = M.ApiGatewayProxySummary,
         State = {
             type = "string",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        Error = {
-            type = "structure",
-        },
+        Error = M.ErrorResponse,
         LastUpdatedTime = {
             type = "timestamp",
         },
@@ -262,13 +258,11 @@ M.CreateApplicationInput = {
                 required = true,
             },
         },
-        ApiGatewayProxy = {
-            type = "structure",
-        },
+        ApiGatewayProxy = M.ApiGatewayProxyInput,
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ClientToken = {
             type = "string",
@@ -303,16 +297,14 @@ M.CreateApplicationOutput = {
         ProxyType = {
             type = "string",
         },
-        ApiGatewayProxy = {
-            type = "structure",
-        },
+        ApiGatewayProxy = M.ApiGatewayProxyInput,
         State = {
             type = "string",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         LastUpdatedTime = {
             type = "timestamp",
@@ -412,8 +404,9 @@ M.ThrottlingException = {
             type = "string",
         },
         RetryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_header = "Retry-After",
             },
         },
@@ -458,8 +451,8 @@ M.CreateEnvironmentInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ClientToken = {
             type = "string",
@@ -500,8 +493,8 @@ M.CreateEnvironmentOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         LastUpdatedTime = {
             type = "timestamp",
@@ -558,7 +551,7 @@ M.UriPathRouteInput = {
         },
         Methods = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IncludeChildPaths = {
             type = "boolean",
@@ -598,16 +591,12 @@ M.CreateRouteInput = {
                 required = true,
             },
         },
-        DefaultRoute = {
-            type = "structure",
-        },
-        UriPathRoute = {
-            type = "structure",
-        },
+        DefaultRoute = M.DefaultRouteInput,
+        UriPathRoute = M.UriPathRouteInput,
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ClientToken = {
             type = "string",
@@ -648,16 +637,14 @@ M.CreateRouteOutput = {
         ApplicationId = {
             type = "string",
         },
-        UriPathRoute = {
-            type = "structure",
-        },
+        UriPathRoute = M.UriPathRouteInput,
         State = {
             type = "string",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         LastUpdatedTime = {
             type = "timestamp",
@@ -735,16 +722,12 @@ M.CreateServiceInput = {
                 required = true,
             },
         },
-        UrlEndpoint = {
-            type = "structure",
-        },
-        LambdaEndpoint = {
-            type = "structure",
-        },
+        UrlEndpoint = M.UrlEndpointInput,
+        LambdaEndpoint = M.LambdaEndpointInput,
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ClientToken = {
             type = "string",
@@ -792,19 +775,15 @@ M.CreateServiceOutput = {
         EndpointType = {
             type = "string",
         },
-        UrlEndpoint = {
-            type = "structure",
-        },
-        LambdaEndpoint = {
-            type = "structure",
-        },
+        UrlEndpoint = M.UrlEndpointInput,
+        LambdaEndpoint = M.LambdaEndpointInput,
         State = {
             type = "string",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         LastUpdatedTime = {
             type = "timestamp",
@@ -1044,12 +1023,10 @@ M.EnvironmentSummary = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        Error = {
-            type = "structure",
-        },
+        Error = M.ErrorResponse,
         LastUpdatedTime = {
             type = "timestamp",
         },
@@ -1073,7 +1050,7 @@ M.EnvironmentVpc = {
         },
         CidrBlocks = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         VpcName = {
             type = "string",
@@ -1134,20 +1111,16 @@ M.GetApplicationOutput = {
         ProxyType = {
             type = "string",
         },
-        ApiGatewayProxy = {
-            type = "structure",
-        },
+        ApiGatewayProxy = M.ApiGatewayProxyConfig,
         State = {
             type = "string",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        Error = {
-            type = "structure",
-        },
+        Error = M.ErrorResponse,
         LastUpdatedTime = {
             type = "timestamp",
         },
@@ -1199,12 +1172,10 @@ M.GetEnvironmentOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        Error = {
-            type = "structure",
-        },
+        Error = M.ErrorResponse,
         LastUpdatedTime = {
             type = "timestamp",
         },
@@ -1295,27 +1266,25 @@ M.GetRouteOutput = {
         },
         Methods = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IncludeChildPaths = {
             type = "boolean",
         },
         PathResourceToId = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         State = {
             type = "string",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        Error = {
-            type = "structure",
-        },
+        Error = M.ErrorResponse,
         LastUpdatedTime = {
             type = "timestamp",
         },
@@ -1409,23 +1378,17 @@ M.GetServiceOutput = {
         EndpointType = {
             type = "string",
         },
-        UrlEndpoint = {
-            type = "structure",
-        },
-        LambdaEndpoint = {
-            type = "structure",
-        },
+        UrlEndpoint = M.UrlEndpointConfig,
+        LambdaEndpoint = M.LambdaEndpointConfig,
         State = {
             type = "string",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        Error = {
-            type = "structure",
-        },
+        Error = M.ErrorResponse,
         LastUpdatedTime = {
             type = "timestamp",
         },
@@ -1474,7 +1437,7 @@ M.ListApplicationsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1487,7 +1450,7 @@ M.ListApplicationsOutput = {
     members = {
         ApplicationSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.ApplicationSummary,
         },
         NextToken = {
             type = "string",
@@ -1505,7 +1468,7 @@ M.ListEnvironmentsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1518,7 +1481,7 @@ M.ListEnvironmentsOutput = {
     members = {
         EnvironmentSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentSummary,
         },
         NextToken = {
             type = "string",
@@ -1543,7 +1506,7 @@ M.ListEnvironmentVpcsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1556,7 +1519,7 @@ M.ListEnvironmentVpcsOutput = {
     members = {
         EnvironmentVpcList = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentVpc,
         },
         NextToken = {
             type = "string",
@@ -1588,7 +1551,7 @@ M.ListRoutesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1628,27 +1591,25 @@ M.RouteSummary = {
         },
         Methods = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IncludeChildPaths = {
             type = "boolean",
         },
         PathResourceToId = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         State = {
             type = "string",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        Error = {
-            type = "structure",
-        },
+        Error = M.ErrorResponse,
         LastUpdatedTime = {
             type = "timestamp",
         },
@@ -1666,7 +1627,7 @@ M.ListRoutesOutput = {
     members = {
         RouteSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteSummary,
         },
         NextToken = {
             type = "string",
@@ -1698,7 +1659,7 @@ M.ListServicesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1751,23 +1712,17 @@ M.ServiceSummary = {
         EndpointType = {
             type = "string",
         },
-        UrlEndpoint = {
-            type = "structure",
-        },
-        LambdaEndpoint = {
-            type = "structure",
-        },
+        UrlEndpoint = M.UrlEndpointSummary,
+        LambdaEndpoint = M.LambdaEndpointSummary,
         State = {
             type = "string",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        Error = {
-            type = "structure",
-        },
+        Error = M.ErrorResponse,
         LastUpdatedTime = {
             type = "timestamp",
         },
@@ -1782,7 +1737,7 @@ M.ListServicesOutput = {
     members = {
         ServiceSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceSummary,
         },
         NextToken = {
             type = "string",
@@ -1808,8 +1763,8 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1848,8 +1803,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1873,7 +1828,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,

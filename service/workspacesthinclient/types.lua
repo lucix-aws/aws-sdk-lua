@@ -56,20 +56,20 @@ M.MaintenanceWindow = {
             },
         },
         startTimeHour = {
-            type = "number",
+            type = "integer",
         },
         startTimeMinute = {
-            type = "number",
+            type = "integer",
         },
         endTimeHour = {
-            type = "number",
+            type = "integer",
         },
         endTimeMinute = {
-            type = "number",
+            type = "integer",
         },
         daysOfTheWeek = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         applyTimeOf = {
             type = "string",
@@ -105,9 +105,7 @@ M.CreateEnvironmentInput = {
         softwareSetUpdateSchedule = {
             type = "string",
         },
-        maintenanceWindow = {
-            type = "structure",
-        },
+        maintenanceWindow = M.MaintenanceWindow,
         softwareSetUpdateMode = {
             type = "string",
         },
@@ -122,13 +120,13 @@ M.CreateEnvironmentInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         deviceCreationTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -163,9 +161,7 @@ M.EnvironmentSummary = {
         softwareSetUpdateSchedule = {
             type = "string",
         },
-        maintenanceWindow = {
-            type = "structure",
-        },
+        maintenanceWindow = M.MaintenanceWindow,
         softwareSetUpdateMode = {
             type = "string",
         },
@@ -190,9 +186,7 @@ M.EnvironmentSummary = {
 M.CreateEnvironmentOutput = {
     type = "structure",
     members = {
-        environment = {
-            type = "structure",
-        },
+        environment = M.EnvironmentSummary,
     },
 }
 
@@ -204,7 +198,7 @@ M.InternalServerException = {
             type = "string",
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -264,7 +258,7 @@ M.ThrottlingException = {
             type = "string",
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -309,7 +303,7 @@ M.ValidationException = {
         },
         fieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -558,14 +552,12 @@ M.Environment = {
             type = "string",
         },
         registeredDevicesCount = {
-            type = "number",
+            type = "integer",
         },
         softwareSetUpdateSchedule = {
             type = "string",
         },
-        maintenanceWindow = {
-            type = "structure",
-        },
+        maintenanceWindow = M.MaintenanceWindow,
         softwareSetUpdateMode = {
             type = "string",
         },
@@ -595,8 +587,8 @@ M.Environment = {
         },
         deviceCreationTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -617,9 +609,7 @@ M.GetDeviceInput = {
 M.GetDeviceOutput = {
     type = "structure",
     members = {
-        device = {
-            type = "structure",
-        },
+        device = M.Device,
     },
 }
 
@@ -639,9 +629,7 @@ M.GetEnvironmentInput = {
 M.GetEnvironmentOutput = {
     type = "structure",
     members = {
-        environment = {
-            type = "structure",
-        },
+        environment = M.Environment,
     },
 }
 
@@ -695,7 +683,7 @@ M.SoftwareSet = {
         },
         software = {
             type = "list",
-            member_type = "structure",
+            member = M.Software,
         },
         arn = {
             type = "string",
@@ -706,9 +694,7 @@ M.SoftwareSet = {
 M.GetSoftwareSetOutput = {
     type = "structure",
     members = {
-        softwareSet = {
-            type = "structure",
-        },
+        softwareSet = M.SoftwareSet,
     },
 }
 
@@ -722,7 +708,7 @@ M.ListDevicesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -735,7 +721,7 @@ M.ListDevicesOutput = {
     members = {
         devices = {
             type = "list",
-            member_type = "structure",
+            member = M.DeviceSummary,
         },
         nextToken = {
             type = "string",
@@ -753,7 +739,7 @@ M.ListEnvironmentsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -766,7 +752,7 @@ M.ListEnvironmentsOutput = {
     members = {
         environments = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentSummary,
         },
         nextToken = {
             type = "string",
@@ -784,7 +770,7 @@ M.ListSoftwareSetsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -821,7 +807,7 @@ M.ListSoftwareSetsOutput = {
     members = {
         softwareSets = {
             type = "list",
-            member_type = "structure",
+            member = M.SoftwareSetSummary,
         },
         nextToken = {
             type = "string",
@@ -847,8 +833,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -865,8 +851,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -890,7 +876,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -928,9 +914,7 @@ M.UpdateDeviceInput = {
 M.UpdateDeviceOutput = {
     type = "structure",
     members = {
-        device = {
-            type = "structure",
-        },
+        device = M.DeviceSummary,
     },
 }
 
@@ -956,9 +940,7 @@ M.UpdateEnvironmentInput = {
         softwareSetUpdateSchedule = {
             type = "string",
         },
-        maintenanceWindow = {
-            type = "structure",
-        },
+        maintenanceWindow = M.MaintenanceWindow,
         softwareSetUpdateMode = {
             type = "string",
         },
@@ -967,8 +949,8 @@ M.UpdateEnvironmentInput = {
         },
         deviceCreationTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -976,9 +958,7 @@ M.UpdateEnvironmentInput = {
 M.UpdateEnvironmentOutput = {
     type = "structure",
     members = {
-        environment = {
-            type = "structure",
-        },
+        environment = M.EnvironmentSummary,
     },
 }
 

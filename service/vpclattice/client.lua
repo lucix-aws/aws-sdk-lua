@@ -16,7 +16,7 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "MercuryControlPlane"
-    cfg.signing_name = "mercurycontrolplane"
+    cfg.signing_name = "vpc-lattice"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end

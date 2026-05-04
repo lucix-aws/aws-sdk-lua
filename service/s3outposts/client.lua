@@ -16,7 +16,7 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "S3Outposts"
-    cfg.signing_name = "s3outposts"
+    cfg.signing_name = "s3-outposts"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end

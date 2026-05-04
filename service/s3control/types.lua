@@ -4,7 +4,10 @@ M.AbortIncompleteMultipartUpload = {
     type = "structure",
     members = {
         DaysAfterInitiation = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -94,18 +97,14 @@ M.ListAccessGrantEntry = {
         AccessGrantArn = {
             type = "string",
         },
-        Grantee = {
-            type = "structure",
-        },
+        Grantee = M.Grantee,
         Permission = {
             type = "string",
         },
         AccessGrantsLocationId = {
             type = "string",
         },
-        AccessGrantsLocationConfiguration = {
-            type = "structure",
-        },
+        AccessGrantsLocationConfiguration = M.AccessGrantsLocationConfiguration,
         GrantScope = {
             type = "string",
         },
@@ -168,9 +167,7 @@ M.AccessPoint = {
                 required = true,
             },
         },
-        VpcConfiguration = {
-            type = "structure",
-        },
+        VpcConfiguration = M.VpcConfiguration,
         Bucket = {
             type = "string",
             traits = {
@@ -200,6 +197,9 @@ M.ActivityMetrics = {
     members = {
         IsEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -209,6 +209,9 @@ M.AdvancedCostOptimizationMetrics = {
     members = {
         IsEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -218,6 +221,9 @@ M.AdvancedDataProtectionMetrics = {
     members = {
         IsEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -227,6 +233,9 @@ M.AdvancedPerformanceMetrics = {
     members = {
         IsEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -236,6 +245,9 @@ M.DetailedStatusCodesMetrics = {
     members = {
         IsEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -247,10 +259,10 @@ M.SelectionCriteria = {
             type = "string",
         },
         MaxDepth = {
-            type = "number",
+            type = "integer",
         },
         MinStorageBytesPercentage = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -260,46 +272,32 @@ M.PrefixLevelStorageMetrics = {
     members = {
         IsEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        SelectionCriteria = {
-            type = "structure",
-        },
+        SelectionCriteria = M.SelectionCriteria,
     },
 }
 
 M.PrefixLevel = {
     type = "structure",
     members = {
-        StorageMetrics = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        StorageMetrics = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PrefixLevelStorageMetrics }),
     },
 }
 
 M.BucketLevel = {
     type = "structure",
     members = {
-        ActivityMetrics = {
-            type = "structure",
-        },
-        PrefixLevel = {
-            type = "structure",
-        },
-        AdvancedCostOptimizationMetrics = {
-            type = "structure",
-        },
-        AdvancedDataProtectionMetrics = {
-            type = "structure",
-        },
-        DetailedStatusCodesMetrics = {
-            type = "structure",
-        },
-        AdvancedPerformanceMetrics = {
-            type = "structure",
-        },
+        ActivityMetrics = M.ActivityMetrics,
+        PrefixLevel = M.PrefixLevel,
+        AdvancedCostOptimizationMetrics = M.AdvancedCostOptimizationMetrics,
+        AdvancedDataProtectionMetrics = M.AdvancedDataProtectionMetrics,
+        DetailedStatusCodesMetrics = M.DetailedStatusCodesMetrics,
+        AdvancedPerformanceMetrics = M.AdvancedPerformanceMetrics,
     },
 }
 
@@ -308,11 +306,11 @@ M.StorageLensGroupLevelSelectionCriteria = {
     members = {
         Include = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Exclude = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -320,39 +318,22 @@ M.StorageLensGroupLevelSelectionCriteria = {
 M.StorageLensGroupLevel = {
     type = "structure",
     members = {
-        SelectionCriteria = {
-            type = "structure",
-        },
+        SelectionCriteria = M.StorageLensGroupLevelSelectionCriteria,
     },
 }
 
 M.AccountLevel = {
     type = "structure",
     members = {
-        ActivityMetrics = {
-            type = "structure",
-        },
-        BucketLevel = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        AdvancedCostOptimizationMetrics = {
-            type = "structure",
-        },
-        AdvancedDataProtectionMetrics = {
-            type = "structure",
-        },
-        DetailedStatusCodesMetrics = {
-            type = "structure",
-        },
-        AdvancedPerformanceMetrics = {
-            type = "structure",
-        },
-        StorageLensGroupLevel = {
-            type = "structure",
-        },
+        ActivityMetrics = M.ActivityMetrics,
+        BucketLevel = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BucketLevel }),
+        AdvancedCostOptimizationMetrics = M.AdvancedCostOptimizationMetrics,
+        AdvancedDataProtectionMetrics = M.AdvancedDataProtectionMetrics,
+        DetailedStatusCodesMetrics = M.DetailedStatusCodesMetrics,
+        AdvancedPerformanceMetrics = M.AdvancedPerformanceMetrics,
+        StorageLensGroupLevel = M.StorageLensGroupLevel,
     },
 }
 
@@ -409,24 +390,28 @@ M.PublicAccessBlockConfiguration = {
         BlockPublicAcls = {
             type = "boolean",
             traits = {
+                default = false,
                 xml_name = "BlockPublicAcls",
             },
         },
         IgnorePublicAcls = {
             type = "boolean",
             traits = {
+                default = false,
                 xml_name = "IgnorePublicAcls",
             },
         },
         BlockPublicPolicy = {
             type = "boolean",
             traits = {
+                default = false,
                 xml_name = "BlockPublicPolicy",
             },
         },
         RestrictPublicBuckets = {
             type = "boolean",
             traits = {
+                default = false,
                 xml_name = "RestrictPublicBuckets",
             },
         },
@@ -457,12 +442,10 @@ M.CreateMultiRegionAccessPointInput = {
                 required = true,
             },
         },
-        PublicAccessBlock = {
-            type = "structure",
-        },
+        PublicAccessBlock = M.PublicAccessBlockConfiguration,
         Regions = {
             type = "list",
-            member_type = "structure",
+            member = M.Region,
             traits = {
                 required = true,
             },
@@ -503,15 +486,9 @@ M.PutMultiRegionAccessPointPolicyInput = {
 M.AsyncRequestParameters = {
     type = "structure",
     members = {
-        CreateMultiRegionAccessPointRequest = {
-            type = "structure",
-        },
-        DeleteMultiRegionAccessPointRequest = {
-            type = "structure",
-        },
-        PutMultiRegionAccessPointPolicyRequest = {
-            type = "structure",
-        },
+        CreateMultiRegionAccessPointRequest = M.CreateMultiRegionAccessPointInput,
+        DeleteMultiRegionAccessPointRequest = M.DeleteMultiRegionAccessPointInput,
+        PutMultiRegionAccessPointPolicyRequest = M.PutMultiRegionAccessPointPolicyInput,
     },
 }
 
@@ -532,7 +509,7 @@ M.MultiRegionAccessPointsAsyncResponse = {
     members = {
         Regions = {
             type = "list",
-            member_type = "structure",
+            member = M.MultiRegionAccessPointRegionalResponse,
         },
     },
 }
@@ -540,12 +517,8 @@ M.MultiRegionAccessPointsAsyncResponse = {
 M.AsyncResponseDetails = {
     type = "structure",
     members = {
-        MultiRegionAccessPointDetails = {
-            type = "structure",
-        },
-        ErrorDetails = {
-            type = "structure",
-        },
+        MultiRegionAccessPointDetails = M.MultiRegionAccessPointsAsyncResponse,
+        ErrorDetails = M.AsyncErrorDetails,
     },
 }
 
@@ -561,15 +534,11 @@ M.AsyncOperation = {
         RequestTokenARN = {
             type = "string",
         },
-        RequestParameters = {
-            type = "structure",
-        },
+        RequestParameters = M.AsyncRequestParameters,
         RequestStatus = {
             type = "string",
         },
-        ResponseDetails = {
-            type = "structure",
-        },
+        ResponseDetails = M.AsyncResponseDetails,
     },
 }
 
@@ -626,15 +595,10 @@ M.CreateAccessGrantInput = {
                 required = true,
             },
         },
-        AccessGrantsLocationConfiguration = {
-            type = "structure",
-        },
-        Grantee = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AccessGrantsLocationConfiguration = M.AccessGrantsLocationConfiguration,
+        Grantee = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Grantee }),
         Permission = {
             type = "string",
             traits = {
@@ -649,7 +613,7 @@ M.CreateAccessGrantInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -666,15 +630,11 @@ M.CreateAccessGrantOutput = {
         AccessGrantArn = {
             type = "string",
         },
-        Grantee = {
-            type = "structure",
-        },
+        Grantee = M.Grantee,
         AccessGrantsLocationId = {
             type = "string",
         },
-        AccessGrantsLocationConfiguration = {
-            type = "structure",
-        },
+        AccessGrantsLocationConfiguration = M.AccessGrantsLocationConfiguration,
         Permission = {
             type = "string",
         },
@@ -702,7 +662,7 @@ M.CreateAccessGrantsInstanceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -755,7 +715,7 @@ M.CreateAccessGrantsLocationInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -797,14 +757,14 @@ M.Scope = {
     members = {
         Prefixes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "Prefixes",
             },
         },
         Permissions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "Permissions",
             },
@@ -835,21 +795,15 @@ M.CreateAccessPointInput = {
                 required = true,
             },
         },
-        VpcConfiguration = {
-            type = "structure",
-        },
-        PublicAccessBlockConfiguration = {
-            type = "structure",
-        },
+        VpcConfiguration = M.VpcConfiguration,
+        PublicAccessBlockConfiguration = M.PublicAccessBlockConfiguration,
         BucketAccountId = {
             type = "string",
         },
-        Scope = {
-            type = "structure",
-        },
+        Scope = M.Scope,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -883,9 +837,7 @@ M.ObjectLambdaTransformationConfigurationAction = {
 M.ObjectLambdaContentTransformation = {
     type = "union",
     members = {
-        AwsLambda = {
-            type = "structure",
-        },
+        AwsLambda = M.AwsLambdaTransformation,
     },
 }
 
@@ -894,17 +846,14 @@ M.ObjectLambdaTransformationConfiguration = {
     members = {
         Actions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        ContentTransformation = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        ContentTransformation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectLambdaContentTransformation }),
     },
 }
 
@@ -919,14 +868,17 @@ M.ObjectLambdaConfiguration = {
         },
         CloudWatchMetricsEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         AllowedFeatures = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TransformationConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.ObjectLambdaTransformationConfiguration,
             traits = {
                 required = true,
             },
@@ -951,12 +903,9 @@ M.CreateAccessPointForObjectLambdaInput = {
                 required = true,
             },
         },
-        Configuration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectLambdaConfiguration }),
     },
 }
 
@@ -983,9 +932,7 @@ M.CreateAccessPointForObjectLambdaOutput = {
         ObjectLambdaAccessPointArn = {
             type = "string",
         },
-        Alias = {
-            type = "structure",
-        },
+        Alias = M.ObjectLambdaAccessPointAlias,
     },
 }
 
@@ -1045,13 +992,10 @@ M.CreateBucketInput = {
                 required = true,
             },
         },
-        CreateBucketConfiguration = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                xml_name = "CreateBucketConfiguration",
-            },
-        },
+        CreateBucketConfiguration = setmetatable({ traits = {
+            http_payload = true,
+            xml_name = "CreateBucketConfiguration",
+        } }, { __index = M.CreateBucketConfiguration }),
         GrantFullControl = {
             type = "string",
             traits = {
@@ -1085,6 +1029,7 @@ M.CreateBucketInput = {
         ObjectLockEnabledForBucket = {
             type = "boolean",
             traits = {
+                default = false,
                 http_header = "x-amz-bucket-object-lock-enabled",
             },
         },
@@ -1166,7 +1111,7 @@ M.JobManifestSpec = {
         },
         Fields = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1174,18 +1119,12 @@ M.JobManifestSpec = {
 M.JobManifest = {
     type = "structure",
     members = {
-        Spec = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Location = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Spec = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.JobManifestSpec }),
+        Location = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.JobManifestLocation }),
     },
 }
 
@@ -1194,15 +1133,15 @@ M.KeyNameConstraint = {
     members = {
         MatchAnyPrefix = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MatchAnySuffix = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MatchAnySubstring = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1232,6 +1171,9 @@ M.SSEKMSFilter = {
         },
         BucketKeyEnabled = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -1243,36 +1185,21 @@ M.SSES3Filter = {
 M.ObjectEncryptionFilter = {
     type = "union",
     members = {
-        SSES3 = {
-            type = "structure",
-            traits = {
-                xml_name = "SSE-S3",
-            },
-        },
-        SSEKMS = {
-            type = "structure",
-            traits = {
-                xml_name = "SSE-KMS",
-            },
-        },
-        DSSEKMS = {
-            type = "structure",
-            traits = {
-                xml_name = "DSSE-KMS",
-            },
-        },
-        SSEC = {
-            type = "structure",
-            traits = {
-                xml_name = "SSE-C",
-            },
-        },
-        NOTSSE = {
-            type = "structure",
-            traits = {
-                xml_name = "NOT-SSE",
-            },
-        },
+        SSES3 = setmetatable({ traits = {
+            xml_name = "SSE-S3",
+        } }, { __index = M.SSES3Filter }),
+        SSEKMS = setmetatable({ traits = {
+            xml_name = "SSE-KMS",
+        } }, { __index = M.SSEKMSFilter }),
+        DSSEKMS = setmetatable({ traits = {
+            xml_name = "DSSE-KMS",
+        } }, { __index = M.DSSEKMSFilter }),
+        SSEC = setmetatable({ traits = {
+            xml_name = "SSE-C",
+        } }, { __index = M.SSECFilter }),
+        NOTSSE = setmetatable({ traits = {
+            xml_name = "NOT-SSE",
+        } }, { __index = M.NotSSEFilter }),
     },
 }
 
@@ -1298,6 +1225,9 @@ M.JobManifestGeneratorFilter = {
     members = {
         EligibleForReplication = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
         CreatedAfter = {
             type = "timestamp",
@@ -1307,24 +1237,28 @@ M.JobManifestGeneratorFilter = {
         },
         ObjectReplicationStatuses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        KeyNameConstraint = {
-            type = "structure",
-        },
+        KeyNameConstraint = M.KeyNameConstraint,
         ObjectSizeGreaterThanBytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
         ObjectSizeLessThanBytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
         MatchAnyStorageClass = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MatchAnyObjectEncryption = {
             type = "list",
-            member_type = "union",
+            member = M.ObjectEncryptionFilter,
         },
     },
 }
@@ -1348,18 +1282,12 @@ M.SSES3Encryption = {
 M.GeneratedManifestEncryption = {
     type = "structure",
     members = {
-        SSES3 = {
-            type = "structure",
-            traits = {
-                xml_name = "SSE-S3",
-            },
-        },
-        SSEKMS = {
-            type = "structure",
-            traits = {
-                xml_name = "SSE-KMS",
-            },
-        },
+        SSES3 = setmetatable({ traits = {
+            xml_name = "SSE-S3",
+        } }, { __index = M.SSES3Encryption }),
+        SSEKMS = setmetatable({ traits = {
+            xml_name = "SSE-KMS",
+        } }, { __index = M.SSEKMSEncryption }),
     },
 }
 
@@ -1382,9 +1310,7 @@ M.S3ManifestOutputLocation = {
         ManifestPrefix = {
             type = "string",
         },
-        ManifestEncryption = {
-            type = "structure",
-        },
+        ManifestEncryption = M.GeneratedManifestEncryption,
         ManifestFormat = {
             type = "string",
             traits = {
@@ -1406,15 +1332,12 @@ M.S3JobManifestGenerator = {
                 required = true,
             },
         },
-        ManifestOutputLocation = {
-            type = "structure",
-        },
-        Filter = {
-            type = "structure",
-        },
+        ManifestOutputLocation = M.S3ManifestOutputLocation,
+        Filter = M.JobManifestGeneratorFilter,
         EnableManifestOutput = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -1424,9 +1347,7 @@ M.S3JobManifestGenerator = {
 M.JobManifestGenerator = {
     type = "union",
     members = {
-        S3JobManifestGenerator = {
-            type = "structure",
-        },
+        S3JobManifestGenerator = M.S3JobManifestGenerator,
     },
 }
 
@@ -1441,8 +1362,8 @@ M.LambdaInvokeOperation = {
         },
         UserArguments = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1490,7 +1411,10 @@ M.S3InitiateRestoreObjectOperation = {
     type = "structure",
     members = {
         ExpirationInDays = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         GlacierJobTier = {
             type = "string",
@@ -1530,9 +1454,7 @@ M.S3Permission = {
 M.S3Grant = {
     type = "structure",
     members = {
-        Grantee = {
-            type = "structure",
-        },
+        Grantee = M.S3Grantee,
         Permission = {
             type = "string",
         },
@@ -1554,15 +1476,12 @@ M.S3ObjectOwner = {
 M.S3AccessControlList = {
     type = "structure",
     members = {
-        Owner = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Owner = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3ObjectOwner }),
         Grants = {
             type = "list",
-            member_type = "structure",
+            member = M.S3Grant,
         },
     },
 }
@@ -1580,9 +1499,7 @@ M.S3CannedAccessControlList = {
 M.S3AccessControlPolicy = {
     type = "structure",
     members = {
-        AccessControlList = {
-            type = "structure",
-        },
+        AccessControlList = M.S3AccessControlList,
         CannedAccessControlList = {
             type = "string",
         },
@@ -1592,9 +1509,7 @@ M.S3AccessControlPolicy = {
 M.S3SetObjectAclOperation = {
     type = "structure",
     members = {
-        AccessControlPolicy = {
-            type = "structure",
-        },
+        AccessControlPolicy = M.S3AccessControlPolicy,
     },
 }
 
@@ -1638,11 +1553,14 @@ M.S3ObjectMetadata = {
         },
         UserMetadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ContentLength = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
         ContentMD5 = {
             type = "string",
@@ -1655,6 +1573,9 @@ M.S3ObjectMetadata = {
         },
         RequesterCharged = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         SSEAlgorithm = {
             type = "string",
@@ -1701,7 +1622,7 @@ M.S3CopyObjectOperation = {
         },
         AccessControlGrants = {
             type = "list",
-            member_type = "structure",
+            member = M.S3Grant,
         },
         MetadataDirective = {
             type = "string",
@@ -1709,18 +1630,19 @@ M.S3CopyObjectOperation = {
         ModifiedSinceConstraint = {
             type = "timestamp",
         },
-        NewObjectMetadata = {
-            type = "structure",
-        },
+        NewObjectMetadata = M.S3ObjectMetadata,
         NewObjectTagging = {
             type = "list",
-            member_type = "structure",
+            member = M.S3Tag,
         },
         RedirectLocation = {
             type = "string",
         },
         RequesterPays = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         StorageClass = {
             type = "string",
@@ -1745,6 +1667,9 @@ M.S3CopyObjectOperation = {
         },
         BucketKeyEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         ChecksumAlgorithm = {
             type = "string",
@@ -1767,12 +1692,9 @@ M.S3ObjectLockLegalHold = {
 M.S3SetObjectLegalHoldOperation = {
     type = "structure",
     members = {
-        LegalHold = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        LegalHold = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3ObjectLockLegalHold }),
     },
 }
 
@@ -1798,13 +1720,13 @@ M.S3SetObjectRetentionOperation = {
     members = {
         BypassGovernanceRetention = {
             type = "boolean",
-        },
-        Retention = {
-            type = "structure",
             traits = {
-                required = true,
+                default = nil,
             },
         },
+        Retention = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3Retention }),
     },
 }
 
@@ -1813,7 +1735,7 @@ M.S3SetObjectTaggingOperation = {
     members = {
         TagSet = {
             type = "list",
-            member_type = "structure",
+            member = M.S3Tag,
         },
     },
 }
@@ -1833,6 +1755,9 @@ M.S3UpdateObjectEncryptionSSEKMS = {
         },
         BucketKeyEnabled = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -1840,60 +1765,33 @@ M.S3UpdateObjectEncryptionSSEKMS = {
 M.ObjectEncryption = {
     type = "structure",
     members = {
-        SSEKMS = {
-            type = "structure",
-            traits = {
-                xml_name = "SSE-KMS",
-            },
-        },
+        SSEKMS = setmetatable({ traits = {
+            xml_name = "SSE-KMS",
+        } }, { __index = M.S3UpdateObjectEncryptionSSEKMS }),
     },
 }
 
 M.S3UpdateObjectEncryptionOperation = {
     type = "structure",
     members = {
-        ObjectEncryption = {
-            type = "structure",
-        },
+        ObjectEncryption = M.ObjectEncryption,
     },
 }
 
 M.JobOperation = {
     type = "structure",
     members = {
-        LambdaInvoke = {
-            type = "structure",
-        },
-        S3PutObjectCopy = {
-            type = "structure",
-        },
-        S3PutObjectAcl = {
-            type = "structure",
-        },
-        S3PutObjectTagging = {
-            type = "structure",
-        },
-        S3DeleteObjectTagging = {
-            type = "structure",
-        },
-        S3InitiateRestoreObject = {
-            type = "structure",
-        },
-        S3PutObjectLegalHold = {
-            type = "structure",
-        },
-        S3PutObjectRetention = {
-            type = "structure",
-        },
-        S3ReplicateObject = {
-            type = "structure",
-        },
-        S3ComputeObjectChecksum = {
-            type = "structure",
-        },
-        S3UpdateObjectEncryption = {
-            type = "structure",
-        },
+        LambdaInvoke = M.LambdaInvokeOperation,
+        S3PutObjectCopy = M.S3CopyObjectOperation,
+        S3PutObjectAcl = M.S3SetObjectAclOperation,
+        S3PutObjectTagging = M.S3SetObjectTaggingOperation,
+        S3DeleteObjectTagging = M.S3DeleteObjectTaggingOperation,
+        S3InitiateRestoreObject = M.S3InitiateRestoreObjectOperation,
+        S3PutObjectLegalHold = M.S3SetObjectLegalHoldOperation,
+        S3PutObjectRetention = M.S3SetObjectRetentionOperation,
+        S3ReplicateObject = M.S3ReplicateObjectOperation,
+        S3ComputeObjectChecksum = M.S3ComputeObjectChecksumOperation,
+        S3UpdateObjectEncryption = M.S3UpdateObjectEncryptionOperation,
     },
 }
 
@@ -1918,6 +1816,7 @@ M.JobReport = {
         Enabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -1945,34 +1844,30 @@ M.CreateJobInput = {
         },
         ConfirmationRequired = {
             type = "boolean",
-        },
-        Operation = {
-            type = "structure",
             traits = {
-                required = true,
+                default = nil,
             },
         },
-        Report = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Operation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.JobOperation }),
+        Report = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.JobReport }),
         ClientRequestToken = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        Manifest = {
-            type = "structure",
-        },
+        Manifest = M.JobManifest,
         Description = {
             type = "string",
         },
         Priority = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 required = true,
             },
         },
@@ -1984,11 +1879,9 @@ M.CreateJobInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.S3Tag,
         },
-        ManifestGenerator = {
-            type = "union",
-        },
+        ManifestGenerator = M.JobManifestGenerator,
     },
 }
 
@@ -2047,12 +1940,9 @@ M.CreateMultiRegionAccessPointOperationInput = {
                 required = true,
             },
         },
-        Details = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Details = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CreateMultiRegionAccessPointInput }),
     },
 }
 
@@ -2069,10 +1959,16 @@ M.MatchObjectAge = {
     type = "structure",
     members = {
         DaysGreaterThan = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         DaysLessThan = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2081,10 +1977,16 @@ M.MatchObjectSize = {
     type = "structure",
     members = {
         BytesGreaterThan = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         BytesLessThan = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2094,22 +1996,18 @@ M.StorageLensGroupAndOperator = {
     members = {
         MatchAnyPrefix = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MatchAnySuffix = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MatchAnyTag = {
             type = "list",
-            member_type = "structure",
+            member = M.S3Tag,
         },
-        MatchObjectAge = {
-            type = "structure",
-        },
-        MatchObjectSize = {
-            type = "structure",
-        },
+        MatchObjectAge = M.MatchObjectAge,
+        MatchObjectSize = M.MatchObjectSize,
     },
 }
 
@@ -2118,22 +2016,18 @@ M.StorageLensGroupOrOperator = {
     members = {
         MatchAnyPrefix = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MatchAnySuffix = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MatchAnyTag = {
             type = "list",
-            member_type = "structure",
+            member = M.S3Tag,
         },
-        MatchObjectAge = {
-            type = "structure",
-        },
-        MatchObjectSize = {
-            type = "structure",
-        },
+        MatchObjectAge = M.MatchObjectAge,
+        MatchObjectSize = M.MatchObjectSize,
     },
 }
 
@@ -2142,28 +2036,20 @@ M.StorageLensGroupFilter = {
     members = {
         MatchAnyPrefix = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MatchAnySuffix = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MatchAnyTag = {
             type = "list",
-            member_type = "structure",
+            member = M.S3Tag,
         },
-        MatchObjectAge = {
-            type = "structure",
-        },
-        MatchObjectSize = {
-            type = "structure",
-        },
-        And = {
-            type = "structure",
-        },
-        Or = {
-            type = "structure",
-        },
+        MatchObjectAge = M.MatchObjectAge,
+        MatchObjectSize = M.MatchObjectSize,
+        And = M.StorageLensGroupAndOperator,
+        Or = M.StorageLensGroupOrOperator,
     },
 }
 
@@ -2176,12 +2062,9 @@ M.StorageLensGroup = {
                 required = true,
             },
         },
-        Filter = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Filter = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.StorageLensGroupFilter }),
         StorageLensGroupArn = {
             type = "string",
         },
@@ -2198,15 +2081,12 @@ M.CreateStorageLensGroupInput = {
                 required = true,
             },
         },
-        StorageLensGroup = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        StorageLensGroup = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.StorageLensGroup }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2587,12 +2467,9 @@ M.DeleteMultiRegionAccessPointOperationInput = {
                 required = true,
             },
         },
-        Details = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Details = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DeleteMultiRegionAccessPointInput }),
     },
 }
 
@@ -2732,9 +2609,7 @@ M.S3GeneratedManifestDescriptor = {
         Format = {
             type = "string",
         },
-        Location = {
-            type = "structure",
-        },
+        Location = M.JobManifestLocation,
     },
 }
 
@@ -2742,7 +2617,10 @@ M.JobTimers = {
     type = "structure",
     members = {
         ElapsedTimeInActiveSeconds = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -2751,17 +2629,24 @@ M.JobProgressSummary = {
     type = "structure",
     members = {
         TotalNumberOfTasks = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
         NumberOfTasksSucceeded = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
         NumberOfTasksFailed = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
-        Timers = {
-            type = "structure",
-        },
+        Timers = M.JobTimers,
     },
 }
 
@@ -2789,6 +2674,9 @@ M.JobDescriptor = {
         },
         ConfirmationRequired = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
         Description = {
             type = "string",
@@ -2799,28 +2687,23 @@ M.JobDescriptor = {
         Status = {
             type = "string",
         },
-        Manifest = {
-            type = "structure",
-        },
-        Operation = {
-            type = "structure",
-        },
+        Manifest = M.JobManifest,
+        Operation = M.JobOperation,
         Priority = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
-        ProgressSummary = {
-            type = "structure",
-        },
+        ProgressSummary = M.JobProgressSummary,
         StatusUpdateReason = {
             type = "string",
         },
         FailureReasons = {
             type = "list",
-            member_type = "structure",
+            member = M.JobFailure,
         },
-        Report = {
-            type = "structure",
-        },
+        Report = M.JobReport,
         CreationTime = {
             type = "timestamp",
         },
@@ -2836,21 +2719,15 @@ M.JobDescriptor = {
         SuspendedCause = {
             type = "string",
         },
-        ManifestGenerator = {
-            type = "union",
-        },
-        GeneratedManifestDescriptor = {
-            type = "structure",
-        },
+        ManifestGenerator = M.JobManifestGenerator,
+        GeneratedManifestDescriptor = M.S3GeneratedManifestDescriptor,
     },
 }
 
 M.DescribeJobOutput = {
     type = "structure",
     members = {
-        Job = {
-            type = "structure",
-        },
+        Job = M.JobDescriptor,
     },
 }
 
@@ -2877,9 +2754,7 @@ M.DescribeMultiRegionAccessPointOperationInput = {
 M.DescribeMultiRegionAccessPointOperationOutput = {
     type = "structure",
     members = {
-        AsyncOperation = {
-            type = "structure",
-        },
+        AsyncOperation = M.AsyncOperation,
     },
 }
 
@@ -2932,18 +2807,14 @@ M.GetAccessGrantOutput = {
         AccessGrantArn = {
             type = "string",
         },
-        Grantee = {
-            type = "structure",
-        },
+        Grantee = M.Grantee,
         Permission = {
             type = "string",
         },
         AccessGrantsLocationId = {
             type = "string",
         },
-        AccessGrantsLocationConfiguration = {
-            type = "structure",
-        },
+        AccessGrantsLocationConfiguration = M.AccessGrantsLocationConfiguration,
         GrantScope = {
             type = "string",
         },
@@ -3123,12 +2994,8 @@ M.GetAccessPointOutput = {
         NetworkOrigin = {
             type = "string",
         },
-        VpcConfiguration = {
-            type = "structure",
-        },
-        PublicAccessBlockConfiguration = {
-            type = "structure",
-        },
+        VpcConfiguration = M.VpcConfiguration,
+        PublicAccessBlockConfiguration = M.PublicAccessBlockConfiguration,
         CreationDate = {
             type = "timestamp",
         },
@@ -3140,8 +3007,8 @@ M.GetAccessPointOutput = {
         },
         Endpoints = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         BucketAccountId = {
             type = "string",
@@ -3178,9 +3045,7 @@ M.GetAccessPointConfigurationForObjectLambdaInput = {
 M.GetAccessPointConfigurationForObjectLambdaOutput = {
     type = "structure",
     members = {
-        Configuration = {
-            type = "structure",
-        },
+        Configuration = M.ObjectLambdaConfiguration,
     },
 }
 
@@ -3210,15 +3075,11 @@ M.GetAccessPointForObjectLambdaOutput = {
         Name = {
             type = "string",
         },
-        PublicAccessBlockConfiguration = {
-            type = "structure",
-        },
+        PublicAccessBlockConfiguration = M.PublicAccessBlockConfiguration,
         CreationDate = {
             type = "timestamp",
         },
-        Alias = {
-            type = "structure",
-        },
+        Alias = M.ObjectLambdaAccessPointAlias,
     },
 }
 
@@ -3306,6 +3167,7 @@ M.PolicyStatus = {
         IsPublic = {
             type = "boolean",
             traits = {
+                default = false,
                 xml_name = "IsPublic",
             },
         },
@@ -3315,9 +3177,7 @@ M.PolicyStatus = {
 M.GetAccessPointPolicyStatusOutput = {
     type = "structure",
     members = {
-        PolicyStatus = {
-            type = "structure",
-        },
+        PolicyStatus = M.PolicyStatus,
     },
 }
 
@@ -3344,9 +3204,7 @@ M.GetAccessPointPolicyStatusForObjectLambdaInput = {
 M.GetAccessPointPolicyStatusForObjectLambdaOutput = {
     type = "structure",
     members = {
-        PolicyStatus = {
-            type = "structure",
-        },
+        PolicyStatus = M.PolicyStatus,
     },
 }
 
@@ -3373,9 +3231,7 @@ M.GetAccessPointScopeInput = {
 M.GetAccessPointScopeOutput = {
     type = "structure",
     members = {
-        Scope = {
-            type = "structure",
-        },
+        Scope = M.Scope,
     },
 }
 
@@ -3407,6 +3263,9 @@ M.GetBucketOutput = {
         },
         PublicAccessBlockEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         CreationDate = {
             type = "timestamp",
@@ -3441,10 +3300,16 @@ M.LifecycleExpiration = {
             type = "timestamp",
         },
         Days = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         ExpiredObjectDeleteMarker = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -3457,13 +3322,19 @@ M.LifecycleRuleAndOperator = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.S3Tag,
         },
         ObjectSizeGreaterThan = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
         ObjectSizeLessThan = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -3474,17 +3345,19 @@ M.LifecycleRuleFilter = {
         Prefix = {
             type = "string",
         },
-        Tag = {
-            type = "structure",
-        },
-        And = {
-            type = "structure",
-        },
+        Tag = M.S3Tag,
+        And = M.LifecycleRuleAndOperator,
         ObjectSizeGreaterThan = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
         ObjectSizeLessThan = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -3493,10 +3366,16 @@ M.NoncurrentVersionExpiration = {
     type = "structure",
     members = {
         NoncurrentDays = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         NewerNoncurrentVersions = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -3513,7 +3392,10 @@ M.NoncurrentVersionTransition = {
     type = "structure",
     members = {
         NoncurrentDays = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         StorageClass = {
             type = "string",
@@ -3533,7 +3415,10 @@ M.Transition = {
             type = "timestamp",
         },
         Days = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         StorageClass = {
             type = "string",
@@ -3544,15 +3429,11 @@ M.Transition = {
 M.LifecycleRule = {
     type = "structure",
     members = {
-        Expiration = {
-            type = "structure",
-        },
+        Expiration = M.LifecycleExpiration,
         ID = {
             type = "string",
         },
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.LifecycleRuleFilter,
         Status = {
             type = "string",
             traits = {
@@ -3561,18 +3442,14 @@ M.LifecycleRule = {
         },
         Transitions = {
             type = "list",
-            member_type = "structure",
+            member = M.Transition,
         },
         NoncurrentVersionTransitions = {
             type = "list",
-            member_type = "structure",
+            member = M.NoncurrentVersionTransition,
         },
-        NoncurrentVersionExpiration = {
-            type = "structure",
-        },
-        AbortIncompleteMultipartUpload = {
-            type = "structure",
-        },
+        NoncurrentVersionExpiration = M.NoncurrentVersionExpiration,
+        AbortIncompleteMultipartUpload = M.AbortIncompleteMultipartUpload,
     },
 }
 
@@ -3581,7 +3458,7 @@ M.GetBucketLifecycleConfigurationOutput = {
     members = {
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.LifecycleRule,
         },
     },
 }
@@ -3665,7 +3542,10 @@ M.ReplicationTimeValue = {
     type = "structure",
     members = {
         Minutes = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -3684,9 +3564,7 @@ M.Metrics = {
                 required = true,
             },
         },
-        EventThreshold = {
-            type = "structure",
-        },
+        EventThreshold = M.ReplicationTimeValue,
     },
 }
 
@@ -3704,12 +3582,9 @@ M.ReplicationTime = {
                 required = true,
             },
         },
-        Time = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Time = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ReplicationTimeValue }),
     },
 }
 
@@ -3737,18 +3612,10 @@ M.Destination = {
                 required = true,
             },
         },
-        ReplicationTime = {
-            type = "structure",
-        },
-        AccessControlTranslation = {
-            type = "structure",
-        },
-        EncryptionConfiguration = {
-            type = "structure",
-        },
-        Metrics = {
-            type = "structure",
-        },
+        ReplicationTime = M.ReplicationTime,
+        AccessControlTranslation = M.AccessControlTranslation,
+        EncryptionConfiguration = M.EncryptionConfiguration,
+        Metrics = M.Metrics,
         StorageClass = {
             type = "string",
         },
@@ -3780,7 +3647,7 @@ M.ReplicationRuleAndOperator = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.S3Tag,
         },
     },
 }
@@ -3791,12 +3658,8 @@ M.ReplicationRuleFilter = {
         Prefix = {
             type = "string",
         },
-        Tag = {
-            type = "structure",
-        },
-        And = {
-            type = "structure",
-        },
+        Tag = M.S3Tag,
+        And = M.ReplicationRuleAndOperator,
     },
 }
 
@@ -3837,12 +3700,8 @@ M.SseKmsEncryptedObjects = {
 M.SourceSelectionCriteria = {
     type = "structure",
     members = {
-        SseKmsEncryptedObjects = {
-            type = "structure",
-        },
-        ReplicaModifications = {
-            type = "structure",
-        },
+        SseKmsEncryptedObjects = M.SseKmsEncryptedObjects,
+        ReplicaModifications = M.ReplicaModifications,
     },
 }
 
@@ -3858,35 +3717,27 @@ M.ReplicationRule = {
             type = "string",
         },
         Priority = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         Prefix = {
             type = "string",
         },
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.ReplicationRuleFilter,
         Status = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        SourceSelectionCriteria = {
-            type = "structure",
-        },
-        ExistingObjectReplication = {
-            type = "structure",
-        },
-        Destination = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        DeleteMarkerReplication = {
-            type = "structure",
-        },
+        SourceSelectionCriteria = M.SourceSelectionCriteria,
+        ExistingObjectReplication = M.ExistingObjectReplication,
+        Destination = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Destination }),
+        DeleteMarkerReplication = M.DeleteMarkerReplication,
         Bucket = {
             type = "string",
             traits = {
@@ -3907,7 +3758,7 @@ M.ReplicationConfiguration = {
         },
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.ReplicationRule,
             traits = {
                 required = true,
             },
@@ -3918,9 +3769,7 @@ M.ReplicationConfiguration = {
 M.GetBucketReplicationOutput = {
     type = "structure",
     members = {
-        ReplicationConfiguration = {
-            type = "structure",
-        },
+        ReplicationConfiguration = M.ReplicationConfiguration,
     },
 }
 
@@ -3949,7 +3798,7 @@ M.GetBucketTaggingOutput = {
     members = {
         TagSet = {
             type = "list",
-            member_type = "structure",
+            member = M.S3Tag,
             traits = {
                 required = true,
             },
@@ -4032,7 +3881,7 @@ M.GetDataAccessInput = {
             },
         },
         DurationSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "durationSeconds",
             },
@@ -4079,15 +3928,11 @@ M.Credentials = {
 M.GetDataAccessOutput = {
     type = "structure",
     members = {
-        Credentials = {
-            type = "structure",
-        },
+        Credentials = M.Credentials,
         MatchedGrantTarget = {
             type = "string",
         },
-        Grantee = {
-            type = "structure",
-        },
+        Grantee = M.Grantee,
     },
 }
 
@@ -4116,7 +3961,7 @@ M.GetJobTaggingOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.S3Tag,
         },
     },
 }
@@ -4177,15 +4022,13 @@ M.MultiRegionAccessPointReport = {
         CreatedAt = {
             type = "timestamp",
         },
-        PublicAccessBlock = {
-            type = "structure",
-        },
+        PublicAccessBlock = M.PublicAccessBlockConfiguration,
         Status = {
             type = "string",
         },
         Regions = {
             type = "list",
-            member_type = "structure",
+            member = M.RegionReport,
         },
     },
 }
@@ -4193,9 +4036,7 @@ M.MultiRegionAccessPointReport = {
 M.GetMultiRegionAccessPointOutput = {
     type = "structure",
     members = {
-        AccessPoint = {
-            type = "structure",
-        },
+        AccessPoint = M.MultiRegionAccessPointReport,
     },
 }
 
@@ -4240,21 +4081,15 @@ M.ProposedMultiRegionAccessPointPolicy = {
 M.MultiRegionAccessPointPolicyDocument = {
     type = "structure",
     members = {
-        Established = {
-            type = "structure",
-        },
-        Proposed = {
-            type = "structure",
-        },
+        Established = M.EstablishedMultiRegionAccessPointPolicy,
+        Proposed = M.ProposedMultiRegionAccessPointPolicy,
     },
 }
 
 M.GetMultiRegionAccessPointPolicyOutput = {
     type = "structure",
     members = {
-        Policy = {
-            type = "structure",
-        },
+        Policy = M.MultiRegionAccessPointPolicyDocument,
     },
 }
 
@@ -4281,9 +4116,7 @@ M.GetMultiRegionAccessPointPolicyStatusInput = {
 M.GetMultiRegionAccessPointPolicyStatusOutput = {
     type = "structure",
     members = {
-        Established = {
-            type = "structure",
-        },
+        Established = M.PolicyStatus,
     },
 }
 
@@ -4317,7 +4150,7 @@ M.MultiRegionAccessPointRoute = {
             type = "string",
         },
         TrafficDialPercentage = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -4333,7 +4166,7 @@ M.GetMultiRegionAccessPointRoutesOutput = {
         },
         Routes = {
             type = "list",
-            member_type = "structure",
+            member = M.MultiRegionAccessPointRoute,
         },
     },
 }
@@ -4354,12 +4187,9 @@ M.GetPublicAccessBlockInput = {
 M.GetPublicAccessBlockOutput = {
     type = "structure",
     members = {
-        PublicAccessBlockConfiguration = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        PublicAccessBlockConfiguration = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.PublicAccessBlockConfiguration }),
     },
 }
 
@@ -4411,6 +4241,7 @@ M.CloudWatchMetrics = {
         IsEnabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -4436,18 +4267,12 @@ M.SSES3 = {
 M.StorageLensDataExportEncryption = {
     type = "structure",
     members = {
-        SSES3 = {
-            type = "structure",
-            traits = {
-                xml_name = "SSE-S3",
-            },
-        },
-        SSEKMS = {
-            type = "structure",
-            traits = {
-                xml_name = "SSE-KMS",
-            },
-        },
+        SSES3 = setmetatable({ traits = {
+            xml_name = "SSE-S3",
+        } }, { __index = M.SSES3 }),
+        SSEKMS = setmetatable({ traits = {
+            xml_name = "SSE-KMS",
+        } }, { __index = M.SSEKMS }),
     },
 }
 
@@ -4490,9 +4315,7 @@ M.S3BucketDestination = {
         Prefix = {
             type = "string",
         },
-        Encryption = {
-            type = "structure",
-        },
+        Encryption = M.StorageLensDataExportEncryption,
     },
 }
 
@@ -4502,27 +4325,20 @@ M.StorageLensTableDestination = {
         IsEnabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
-        Encryption = {
-            type = "structure",
-        },
+        Encryption = M.StorageLensDataExportEncryption,
     },
 }
 
 M.StorageLensDataExport = {
     type = "structure",
     members = {
-        S3BucketDestination = {
-            type = "structure",
-        },
-        CloudWatchMetrics = {
-            type = "structure",
-        },
-        StorageLensTableDestination = {
-            type = "structure",
-        },
+        S3BucketDestination = M.S3BucketDestination,
+        CloudWatchMetrics = M.CloudWatchMetrics,
+        StorageLensTableDestination = M.StorageLensTableDestination,
     },
 }
 
@@ -4531,11 +4347,11 @@ M.Exclude = {
     members = {
         Buckets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Regions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4543,12 +4359,8 @@ M.Exclude = {
 M.StorageLensExpandedPrefixesDataExport = {
     type = "structure",
     members = {
-        S3BucketDestination = {
-            type = "structure",
-        },
-        StorageLensTableDestination = {
-            type = "structure",
-        },
+        S3BucketDestination = M.S3BucketDestination,
+        StorageLensTableDestination = M.StorageLensTableDestination,
     },
 }
 
@@ -4557,11 +4369,11 @@ M.Include = {
     members = {
         Buckets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Regions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4575,33 +4387,21 @@ M.StorageLensConfiguration = {
                 required = true,
             },
         },
-        AccountLevel = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Include = {
-            type = "structure",
-        },
-        Exclude = {
-            type = "structure",
-        },
-        DataExport = {
-            type = "structure",
-        },
-        ExpandedPrefixesDataExport = {
-            type = "structure",
-        },
+        AccountLevel = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AccountLevel }),
+        Include = M.Include,
+        Exclude = M.Exclude,
+        DataExport = M.StorageLensDataExport,
+        ExpandedPrefixesDataExport = M.StorageLensExpandedPrefixesDataExport,
         IsEnabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
-        AwsOrg = {
-            type = "structure",
-        },
+        AwsOrg = M.StorageLensAwsOrg,
         StorageLensArn = {
             type = "string",
         },
@@ -4614,12 +4414,9 @@ M.StorageLensConfiguration = {
 M.GetStorageLensConfigurationOutput = {
     type = "structure",
     members = {
-        StorageLensConfiguration = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        StorageLensConfiguration = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.StorageLensConfiguration }),
     },
 }
 
@@ -4666,7 +4463,7 @@ M.GetStorageLensConfigurationTaggingOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.StorageLensTag,
         },
     },
 }
@@ -4694,12 +4491,9 @@ M.GetStorageLensGroupInput = {
 M.GetStorageLensGroupOutput = {
     type = "structure",
     members = {
-        StorageLensGroup = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        StorageLensGroup = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.StorageLensGroup }),
     },
 }
 
@@ -4720,8 +4514,9 @@ M.ListAccessGrantsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -4766,7 +4561,7 @@ M.ListAccessGrantsOutput = {
         },
         AccessGrantsList = {
             type = "list",
-            member_type = "structure",
+            member = M.ListAccessGrantEntry,
         },
     },
 }
@@ -4788,8 +4583,9 @@ M.ListAccessGrantsInstancesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -4804,7 +4600,7 @@ M.ListAccessGrantsInstancesOutput = {
         },
         AccessGrantsInstancesList = {
             type = "list",
-            member_type = "structure",
+            member = M.ListAccessGrantsInstanceEntry,
         },
     },
 }
@@ -4826,8 +4622,9 @@ M.ListAccessGrantsLocationsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -4848,7 +4645,7 @@ M.ListAccessGrantsLocationsOutput = {
         },
         AccessGrantsLocationsList = {
             type = "list",
-            member_type = "structure",
+            member = M.ListAccessGrantsLocationsEntry,
         },
     },
 }
@@ -4876,8 +4673,9 @@ M.ListAccessPointsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -4901,7 +4699,7 @@ M.ListAccessPointsOutput = {
     members = {
         AccessPointList = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessPoint,
         },
         NextToken = {
             type = "string",
@@ -4932,8 +4730,9 @@ M.ListAccessPointsForDirectoryBucketsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -4945,7 +4744,7 @@ M.ListAccessPointsForDirectoryBucketsOutput = {
     members = {
         AccessPointList = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessPoint,
         },
         NextToken = {
             type = "string",
@@ -4970,8 +4769,9 @@ M.ListAccessPointsForObjectLambdaInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -4990,9 +4790,7 @@ M.ObjectLambdaAccessPoint = {
         ObjectLambdaAccessPointArn = {
             type = "string",
         },
-        Alias = {
-            type = "structure",
-        },
+        Alias = M.ObjectLambdaAccessPointAlias,
     },
 }
 
@@ -5001,7 +4799,7 @@ M.ListAccessPointsForObjectLambdaOutput = {
     members = {
         ObjectLambdaAccessPointList = {
             type = "list",
-            member_type = "structure",
+            member = M.ObjectLambdaAccessPoint,
         },
         NextToken = {
             type = "string",
@@ -5032,14 +4830,16 @@ M.ListCallerAccessGrantsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
         AllowedByApplication = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "allowedByApplication",
             },
         },
@@ -5069,7 +4869,7 @@ M.ListCallerAccessGrantsOutput = {
         },
         CallerAccessGrantsList = {
             type = "list",
-            member_type = "structure",
+            member = M.ListCallerAccessGrantsEntry,
         },
     },
 }
@@ -5106,7 +4906,7 @@ M.ListJobsInput = {
         },
         JobStatuses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "jobStatuses",
             },
@@ -5118,8 +4918,9 @@ M.ListJobsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_query = "maxResults",
             },
         },
@@ -5153,7 +4954,10 @@ M.JobListDescriptor = {
             type = "string",
         },
         Priority = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         Status = {
             type = "string",
@@ -5164,9 +4968,7 @@ M.JobListDescriptor = {
         TerminationDate = {
             type = "timestamp",
         },
-        ProgressSummary = {
-            type = "structure",
-        },
+        ProgressSummary = M.JobProgressSummary,
     },
 }
 
@@ -5178,7 +4980,7 @@ M.ListJobsOutput = {
         },
         Jobs = {
             type = "list",
-            member_type = "structure",
+            member = M.JobListDescriptor,
         },
     },
 }
@@ -5200,8 +5002,9 @@ M.ListMultiRegionAccessPointsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -5213,7 +5016,7 @@ M.ListMultiRegionAccessPointsOutput = {
     members = {
         AccessPoints = {
             type = "list",
-            member_type = "structure",
+            member = M.MultiRegionAccessPointReport,
         },
         NextToken = {
             type = "string",
@@ -5238,8 +5041,9 @@ M.ListRegionalBucketsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -5267,6 +5071,7 @@ M.RegionalBucket = {
         PublicAccessBlockEnabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -5287,7 +5092,7 @@ M.ListRegionalBucketsOutput = {
     members = {
         RegionalBucketList = {
             type = "list",
-            member_type = "structure",
+            member = M.RegionalBucket,
         },
         NextToken = {
             type = "string",
@@ -5337,6 +5142,9 @@ M.ListStorageLensConfigurationEntry = {
         },
         IsEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -5349,7 +5157,7 @@ M.ListStorageLensConfigurationsOutput = {
         },
         StorageLensConfigurationList = {
             type = "list",
-            member_type = "structure",
+            member = M.ListStorageLensConfigurationEntry,
             traits = {
                 xml_name = "StorageLensConfiguration",
             },
@@ -5408,7 +5216,7 @@ M.ListStorageLensGroupsOutput = {
         },
         StorageLensGroupList = {
             type = "list",
-            member_type = "structure",
+            member = M.ListStorageLensGroupEntry,
             traits = {
                 xml_name = "StorageLensGroup",
             },
@@ -5441,7 +5249,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -5500,12 +5308,9 @@ M.PutAccessPointConfigurationForObjectLambdaInput = {
                 required = true,
             },
         },
-        Configuration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Configuration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectLambdaConfiguration }),
     },
 }
 
@@ -5590,12 +5395,9 @@ M.PutAccessPointScopeInput = {
                 required = true,
             },
         },
-        Scope = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Scope = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Scope }),
     },
 }
 
@@ -5608,7 +5410,7 @@ M.LifecycleConfiguration = {
     members = {
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.LifecycleRule,
         },
     },
 }
@@ -5630,13 +5432,10 @@ M.PutBucketLifecycleConfigurationInput = {
                 required = true,
             },
         },
-        LifecycleConfiguration = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                xml_name = "LifecycleConfiguration",
-            },
-        },
+        LifecycleConfiguration = setmetatable({ traits = {
+            http_payload = true,
+            xml_name = "LifecycleConfiguration",
+        } }, { __index = M.LifecycleConfiguration }),
     },
 }
 
@@ -5664,6 +5463,7 @@ M.PutBucketPolicyInput = {
         ConfirmRemoveSelfBucketAccess = {
             type = "boolean",
             traits = {
+                default = false,
                 http_header = "x-amz-confirm-remove-self-bucket-access",
             },
         },
@@ -5697,14 +5497,11 @@ M.PutBucketReplicationInput = {
                 required = true,
             },
         },
-        ReplicationConfiguration = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-                xml_name = "ReplicationConfiguration",
-            },
-        },
+        ReplicationConfiguration = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+            xml_name = "ReplicationConfiguration",
+        } }, { __index = M.ReplicationConfiguration }),
     },
 }
 
@@ -5717,7 +5514,7 @@ M.Tagging = {
     members = {
         TagSet = {
             type = "list",
-            member_type = "structure",
+            member = M.S3Tag,
             traits = {
                 required = true,
             },
@@ -5742,14 +5539,11 @@ M.PutBucketTaggingInput = {
                 required = true,
             },
         },
-        Tagging = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-                xml_name = "Tagging",
-            },
-        },
+        Tagging = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+            xml_name = "Tagging",
+        } }, { __index = M.Tagging }),
     },
 }
 
@@ -5800,14 +5594,11 @@ M.PutBucketVersioningInput = {
                 http_header = "x-amz-mfa",
             },
         },
-        VersioningConfiguration = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-                xml_name = "VersioningConfiguration",
-            },
-        },
+        VersioningConfiguration = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+            xml_name = "VersioningConfiguration",
+        } }, { __index = M.VersioningConfiguration }),
     },
 }
 
@@ -5834,7 +5625,7 @@ M.PutJobTaggingInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.S3Tag,
             traits = {
                 required = true,
             },
@@ -5872,12 +5663,9 @@ M.PutMultiRegionAccessPointPolicyOperationInput = {
                 required = true,
             },
         },
-        Details = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Details = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PutMultiRegionAccessPointPolicyInput }),
     },
 }
 
@@ -5893,14 +5681,11 @@ M.PutMultiRegionAccessPointPolicyOutput = {
 M.PutPublicAccessBlockInput = {
     type = "structure",
     members = {
-        PublicAccessBlockConfiguration = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-                xml_name = "PublicAccessBlockConfiguration",
-            },
-        },
+        PublicAccessBlockConfiguration = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+            xml_name = "PublicAccessBlockConfiguration",
+        } }, { __index = M.PublicAccessBlockConfiguration }),
         AccountId = {
             type = "string",
             traits = {
@@ -5932,15 +5717,12 @@ M.PutStorageLensConfigurationInput = {
                 required = true,
             },
         },
-        StorageLensConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        StorageLensConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.StorageLensConfiguration }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.StorageLensTag,
         },
     },
 }
@@ -5968,7 +5750,7 @@ M.PutStorageLensConfigurationTaggingInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.StorageLensTag,
             traits = {
                 required = true,
             },
@@ -5999,7 +5781,7 @@ M.SubmitMultiRegionAccessPointRoutesInput = {
         },
         RouteUpdates = {
             type = "list",
-            member_type = "structure",
+            member = M.MultiRegionAccessPointRoute,
             traits = {
                 required = true,
             },
@@ -6030,7 +5812,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -6061,7 +5843,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -6139,8 +5921,9 @@ M.UpdateJobPriorityInput = {
             },
         },
         Priority = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "priority",
                 required = true,
             },
@@ -6158,8 +5941,9 @@ M.UpdateJobPriorityOutput = {
             },
         },
         Priority = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -6246,12 +6030,9 @@ M.UpdateStorageLensGroupInput = {
                 required = true,
             },
         },
-        StorageLensGroup = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        StorageLensGroup = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.StorageLensGroup }),
     },
 }
 

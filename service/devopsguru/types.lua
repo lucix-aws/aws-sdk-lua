@@ -17,10 +17,16 @@ M.AccountInsightHealth = {
     type = "structure",
     members = {
         OpenProactiveInsights = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         OpenReactiveInsights = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -31,9 +37,7 @@ M.AccountHealth = {
         AccountId = {
             type = "string",
         },
-        Insight = {
-            type = "structure",
-        },
+        Insight = M.AccountInsightHealth,
     },
 }
 
@@ -56,11 +60,11 @@ M.NotificationFilterConfig = {
     members = {
         Severities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MessageTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -77,27 +81,19 @@ M.SnsChannelConfig = {
 M.NotificationChannelConfig = {
     type = "structure",
     members = {
-        Sns = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Filters = {
-            type = "structure",
-        },
+        Sns = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SnsChannelConfig }),
+        Filters = M.NotificationFilterConfig,
     },
 }
 
 M.AddNotificationChannelInput = {
     type = "structure",
     members = {
-        Config = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Config = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.NotificationChannelConfig }),
     },
 }
 
@@ -149,8 +145,9 @@ M.InternalServerException = {
             },
         },
         RetryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_header = "Retry-After",
             },
         },
@@ -209,8 +206,9 @@ M.ThrottlingException = {
             type = "string",
         },
         RetryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_header = "Retry-After",
             },
         },
@@ -259,7 +257,7 @@ M.ValidationException = {
         },
         Fields = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -308,7 +306,10 @@ M.LogAnomalyClass = {
             type = "string",
         },
         NumberOfLogLinesOccurrences = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         LogEventTimestamp = {
             type = "timestamp",
@@ -321,7 +322,7 @@ M.LogAnomalyShowcase = {
     members = {
         LogAnomalyClasses = {
             type = "list",
-            member_type = "structure",
+            member = M.LogAnomalyClass,
         },
     },
 }
@@ -339,11 +340,14 @@ M.AnomalousLogGroup = {
             type = "timestamp",
         },
         NumberOfLogLinesScanned = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         LogAnomalyShowcases = {
             type = "list",
-            member_type = "structure",
+            member = M.LogAnomalyShowcase,
         },
     },
 }
@@ -406,7 +410,7 @@ M.TimestampMetricValuePair = {
             type = "timestamp",
         },
         MetricValue = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -416,7 +420,7 @@ M.CloudWatchMetricsDataSummary = {
     members = {
         TimestampMetricValuePairList = {
             type = "list",
-            member_type = "structure",
+            member = M.TimestampMetricValuePair,
         },
         StatusCode = {
             type = "string",
@@ -446,7 +450,7 @@ M.CloudWatchMetricsDetail = {
         },
         Dimensions = {
             type = "list",
-            member_type = "structure",
+            member = M.CloudWatchMetricsDimension,
         },
         Stat = {
             type = "string",
@@ -455,11 +459,12 @@ M.CloudWatchMetricsDetail = {
             type = "string",
         },
         Period = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
-        MetricDataSummary = {
-            type = "structure",
-        },
+        MetricDataSummary = M.CloudWatchMetricsDataSummary,
     },
 }
 
@@ -471,10 +476,10 @@ M.PerformanceInsightsMetricDimensionGroup = {
         },
         Dimensions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -485,13 +490,11 @@ M.PerformanceInsightsMetricQuery = {
         Metric = {
             type = "string",
         },
-        GroupBy = {
-            type = "structure",
-        },
+        GroupBy = M.PerformanceInsightsMetricDimensionGroup,
         Filter = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -499,9 +502,7 @@ M.PerformanceInsightsMetricQuery = {
 M.PerformanceInsightsReferenceMetric = {
     type = "structure",
     members = {
-        MetricQuery = {
-            type = "structure",
-        },
+        MetricQuery = M.PerformanceInsightsMetricQuery,
     },
 }
 
@@ -509,7 +510,7 @@ M.PerformanceInsightsReferenceScalar = {
     type = "structure",
     members = {
         Value = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -517,12 +518,8 @@ M.PerformanceInsightsReferenceScalar = {
 M.PerformanceInsightsReferenceComparisonValues = {
     type = "structure",
     members = {
-        ReferenceScalar = {
-            type = "structure",
-        },
-        ReferenceMetric = {
-            type = "structure",
-        },
+        ReferenceScalar = M.PerformanceInsightsReferenceScalar,
+        ReferenceMetric = M.PerformanceInsightsReferenceMetric,
     },
 }
 
@@ -532,9 +529,7 @@ M.PerformanceInsightsReferenceData = {
         Name = {
             type = "string",
         },
-        ComparisonValues = {
-            type = "structure",
-        },
+        ComparisonValues = M.PerformanceInsightsReferenceComparisonValues,
     },
 }
 
@@ -545,7 +540,7 @@ M.PerformanceInsightsStat = {
             type = "string",
         },
         Value = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -559,20 +554,18 @@ M.PerformanceInsightsMetricsDetail = {
         Unit = {
             type = "string",
         },
-        MetricQuery = {
-            type = "structure",
-        },
+        MetricQuery = M.PerformanceInsightsMetricQuery,
         ReferenceData = {
             type = "list",
-            member_type = "structure",
+            member = M.PerformanceInsightsReferenceData,
         },
         StatsAtAnomaly = {
             type = "list",
-            member_type = "structure",
+            member = M.PerformanceInsightsStat,
         },
         StatsAtBaseline = {
             type = "list",
-            member_type = "structure",
+            member = M.PerformanceInsightsStat,
         },
     },
 }
@@ -582,11 +575,11 @@ M.AnomalySourceDetails = {
     members = {
         CloudWatchMetrics = {
             type = "list",
-            member_type = "structure",
+            member = M.CloudWatchMetricsDetail,
         },
         PerformanceInsightsMetrics = {
             type = "list",
-            member_type = "structure",
+            member = M.PerformanceInsightsMetricsDetail,
         },
     },
 }
@@ -656,31 +649,34 @@ M.DescribeAccountHealthOutput = {
     type = "structure",
     members = {
         OpenReactiveInsights = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         OpenProactiveInsights = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         MetricsAnalyzed = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         ResourceHours = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         AnalyzedResourceCount = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -704,19 +700,21 @@ M.DescribeAccountOverviewOutput = {
     type = "structure",
     members = {
         ReactiveInsights = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         ProactiveInsights = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         MeanTimeToRecoverInMilliseconds = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -763,7 +761,7 @@ M.CloudFormationCollection = {
     members = {
         StackNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -779,7 +777,7 @@ M.TagCollection = {
         },
         TagValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -790,12 +788,10 @@ M.TagCollection = {
 M.ResourceCollection = {
     type = "structure",
     members = {
-        CloudFormation = {
-            type = "structure",
-        },
+        CloudFormation = M.CloudFormationCollection,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.TagCollection,
         },
     },
 }
@@ -815,33 +811,21 @@ M.ProactiveAnomaly = {
         UpdateTime = {
             type = "timestamp",
         },
-        AnomalyTimeRange = {
-            type = "structure",
-        },
-        AnomalyReportedTimeRange = {
-            type = "structure",
-        },
-        PredictionTimeRange = {
-            type = "structure",
-        },
-        SourceDetails = {
-            type = "structure",
-        },
+        AnomalyTimeRange = M.AnomalyTimeRange,
+        AnomalyReportedTimeRange = M.AnomalyReportedTimeRange,
+        PredictionTimeRange = M.PredictionTimeRange,
+        SourceDetails = M.AnomalySourceDetails,
         AssociatedInsightId = {
             type = "string",
         },
-        ResourceCollection = {
-            type = "structure",
-        },
+        ResourceCollection = M.ResourceCollection,
         Limit = {
-            type = "number",
+            type = "double",
         },
-        SourceMetadata = {
-            type = "structure",
-        },
+        SourceMetadata = M.AnomalySourceMetadata,
         AnomalyResources = {
             type = "list",
-            member_type = "structure",
+            member = M.AnomalyResource,
         },
         Description = {
             type = "string",
@@ -861,21 +845,13 @@ M.ReactiveAnomaly = {
         Status = {
             type = "string",
         },
-        AnomalyTimeRange = {
-            type = "structure",
-        },
-        AnomalyReportedTimeRange = {
-            type = "structure",
-        },
-        SourceDetails = {
-            type = "structure",
-        },
+        AnomalyTimeRange = M.AnomalyTimeRange,
+        AnomalyReportedTimeRange = M.AnomalyReportedTimeRange,
+        SourceDetails = M.AnomalySourceDetails,
         AssociatedInsightId = {
             type = "string",
         },
-        ResourceCollection = {
-            type = "structure",
-        },
+        ResourceCollection = M.ResourceCollection,
         Type = {
             type = "string",
         },
@@ -890,7 +866,7 @@ M.ReactiveAnomaly = {
         },
         AnomalyResources = {
             type = "list",
-            member_type = "structure",
+            member = M.AnomalyResource,
         },
     },
 }
@@ -898,12 +874,8 @@ M.ReactiveAnomaly = {
 M.DescribeAnomalyOutput = {
     type = "structure",
     members = {
-        ProactiveAnomaly = {
-            type = "structure",
-        },
-        ReactiveAnomaly = {
-            type = "structure",
-        },
+        ProactiveAnomaly = M.ProactiveAnomaly,
+        ReactiveAnomaly = M.ReactiveAnomaly,
     },
 }
 
@@ -914,18 +886,14 @@ M.DescribeEventSourcesConfigInput = {
 M.EventSourcesConfig = {
     type = "structure",
     members = {
-        AmazonCodeGuruProfiler = {
-            type = "structure",
-        },
+        AmazonCodeGuruProfiler = M.AmazonCodeGuruProfilerIntegration,
     },
 }
 
 M.DescribeEventSourcesConfigOutput = {
     type = "structure",
     members = {
-        EventSources = {
-            type = "structure",
-        },
+        EventSources = M.EventSourcesConfig,
     },
 }
 
@@ -961,9 +929,7 @@ M.InsightFeedback = {
 M.DescribeFeedbackOutput = {
     type = "structure",
     members = {
-        InsightFeedback = {
-            type = "structure",
-        },
+        InsightFeedback = M.InsightFeedback,
     },
 }
 
@@ -1021,15 +987,9 @@ M.ProactiveInsight = {
         Status = {
             type = "string",
         },
-        InsightTimeRange = {
-            type = "structure",
-        },
-        PredictionTimeRange = {
-            type = "structure",
-        },
-        ResourceCollection = {
-            type = "structure",
-        },
+        InsightTimeRange = M.InsightTimeRange,
+        PredictionTimeRange = M.PredictionTimeRange,
+        ResourceCollection = M.ResourceCollection,
         SsmOpsItemId = {
             type = "string",
         },
@@ -1054,12 +1014,8 @@ M.ReactiveInsight = {
         Status = {
             type = "string",
         },
-        InsightTimeRange = {
-            type = "structure",
-        },
-        ResourceCollection = {
-            type = "structure",
-        },
+        InsightTimeRange = M.InsightTimeRange,
+        ResourceCollection = M.ResourceCollection,
         SsmOpsItemId = {
             type = "string",
         },
@@ -1072,12 +1028,8 @@ M.ReactiveInsight = {
 M.DescribeInsightOutput = {
     type = "structure",
     members = {
-        ProactiveInsight = {
-            type = "structure",
-        },
-        ReactiveInsight = {
-            type = "structure",
-        },
+        ProactiveInsight = M.ProactiveInsight,
+        ReactiveInsight = M.ReactiveInsight,
     },
 }
 
@@ -1086,11 +1038,11 @@ M.DescribeOrganizationHealthInput = {
     members = {
         AccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         OrganizationalUnitIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1099,25 +1051,28 @@ M.DescribeOrganizationHealthOutput = {
     type = "structure",
     members = {
         OpenReactiveInsights = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         OpenProactiveInsights = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         MetricsAnalyzed = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         ResourceHours = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -1139,11 +1094,11 @@ M.DescribeOrganizationOverviewInput = {
         },
         AccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         OrganizationalUnitIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1152,14 +1107,16 @@ M.DescribeOrganizationOverviewOutput = {
     type = "structure",
     members = {
         ReactiveInsights = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         ProactiveInsights = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -1184,17 +1141,17 @@ M.DescribeOrganizationResourceCollectionHealthInput = {
         },
         AccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         OrganizationalUnitIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1203,13 +1160,19 @@ M.InsightHealth = {
     type = "structure",
     members = {
         OpenProactiveInsights = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         OpenReactiveInsights = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         MeanTimeToRecoverInMilliseconds = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1220,11 +1183,9 @@ M.CloudFormationHealth = {
         StackName = {
             type = "string",
         },
-        Insight = {
-            type = "structure",
-        },
+        Insight = M.InsightHealth,
         AnalyzedResourceCount = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1233,10 +1194,16 @@ M.ServiceInsightHealth = {
     type = "structure",
     members = {
         OpenProactiveInsights = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         OpenReactiveInsights = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1275,11 +1242,9 @@ M.ServiceHealth = {
         ServiceName = {
             type = "string",
         },
-        Insight = {
-            type = "structure",
-        },
+        Insight = M.ServiceInsightHealth,
         AnalyzedResourceCount = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1293,11 +1258,9 @@ M.TagHealth = {
         TagValue = {
             type = "string",
         },
-        Insight = {
-            type = "structure",
-        },
+        Insight = M.InsightHealth,
         AnalyzedResourceCount = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1307,22 +1270,22 @@ M.DescribeOrganizationResourceCollectionHealthOutput = {
     members = {
         CloudFormation = {
             type = "list",
-            member_type = "structure",
+            member = M.CloudFormationHealth,
         },
         Service = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceHealth,
         },
         Account = {
             type = "list",
-            member_type = "structure",
+            member = M.AccountHealth,
         },
         NextToken = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.TagHealth,
         },
     },
 }
@@ -1357,18 +1320,18 @@ M.DescribeResourceCollectionHealthOutput = {
     members = {
         CloudFormation = {
             type = "list",
-            member_type = "structure",
+            member = M.CloudFormationHealth,
         },
         Service = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceHealth,
         },
         NextToken = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.TagHealth,
         },
     },
 }
@@ -1423,24 +1386,16 @@ M.OpsCenterIntegration = {
 M.ServiceIntegrationConfig = {
     type = "structure",
     members = {
-        OpsCenter = {
-            type = "structure",
-        },
-        LogsAnomalyDetection = {
-            type = "structure",
-        },
-        KMSServerSideEncryption = {
-            type = "structure",
-        },
+        OpsCenter = M.OpsCenterIntegration,
+        LogsAnomalyDetection = M.LogsAnomalyDetectionIntegration,
+        KMSServerSideEncryption = M.KMSServerSideEncryptionIntegration,
     },
 }
 
 M.DescribeServiceIntegrationOutput = {
     type = "structure",
     members = {
-        ServiceIntegration = {
-            type = "structure",
-        },
+        ServiceIntegration = M.ServiceIntegrationConfig,
     },
 }
 
@@ -1471,13 +1426,22 @@ M.ServiceResourceCost = {
             type = "string",
         },
         Count = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         UnitCost = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         Cost = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1487,7 +1451,7 @@ M.CloudFormationCostEstimationResourceCollectionFilter = {
     members = {
         StackNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1503,7 +1467,7 @@ M.TagCostEstimationResourceCollectionFilter = {
         },
         TagValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1514,12 +1478,10 @@ M.TagCostEstimationResourceCollectionFilter = {
 M.CostEstimationResourceCollectionFilter = {
     type = "structure",
     members = {
-        CloudFormation = {
-            type = "structure",
-        },
+        CloudFormation = M.CloudFormationCostEstimationResourceCollectionFilter,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.TagCostEstimationResourceCollectionFilter,
         },
     },
 }
@@ -1544,21 +1506,20 @@ M.CostEstimationTimeRange = {
 M.GetCostEstimationOutput = {
     type = "structure",
     members = {
-        ResourceCollection = {
-            type = "structure",
-        },
+        ResourceCollection = M.CostEstimationResourceCollectionFilter,
         Status = {
             type = "string",
         },
         Costs = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceResourceCost,
         },
-        TimeRange = {
-            type = "structure",
-        },
+        TimeRange = M.CostEstimationTimeRange,
         TotalCost = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         NextToken = {
             type = "string",
@@ -1590,7 +1551,7 @@ M.CloudFormationCollectionFilter = {
     members = {
         StackNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1606,7 +1567,7 @@ M.TagCollectionFilter = {
         },
         TagValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1617,12 +1578,10 @@ M.TagCollectionFilter = {
 M.ResourceCollectionFilter = {
     type = "structure",
     members = {
-        CloudFormation = {
-            type = "structure",
-        },
+        CloudFormation = M.CloudFormationCollectionFilter,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.TagCollectionFilter,
         },
     },
 }
@@ -1630,9 +1589,7 @@ M.ResourceCollectionFilter = {
 M.GetResourceCollectionOutput = {
     type = "structure",
     members = {
-        ResourceCollection = {
-            type = "structure",
-        },
+        ResourceCollection = M.ResourceCollectionFilter,
         NextToken = {
             type = "string",
         },
@@ -1644,7 +1601,7 @@ M.ServiceCollection = {
     members = {
         ServiceNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1652,9 +1609,7 @@ M.ServiceCollection = {
 M.ListAnomaliesForInsightFilters = {
     type = "structure",
     members = {
-        ServiceCollection = {
-            type = "structure",
-        },
+        ServiceCollection = M.ServiceCollection,
     },
 }
 
@@ -1680,11 +1635,9 @@ M.ListAnomaliesForInsightInput = {
                 required = true,
             },
         },
-        StartTimeRange = {
-            type = "structure",
-        },
+        StartTimeRange = M.StartTimeRange,
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1692,9 +1645,7 @@ M.ListAnomaliesForInsightInput = {
         AccountId = {
             type = "string",
         },
-        Filters = {
-            type = "structure",
-        },
+        Filters = M.ListAnomaliesForInsightFilters,
     },
 }
 
@@ -1713,33 +1664,21 @@ M.ProactiveAnomalySummary = {
         UpdateTime = {
             type = "timestamp",
         },
-        AnomalyTimeRange = {
-            type = "structure",
-        },
-        AnomalyReportedTimeRange = {
-            type = "structure",
-        },
-        PredictionTimeRange = {
-            type = "structure",
-        },
-        SourceDetails = {
-            type = "structure",
-        },
+        AnomalyTimeRange = M.AnomalyTimeRange,
+        AnomalyReportedTimeRange = M.AnomalyReportedTimeRange,
+        PredictionTimeRange = M.PredictionTimeRange,
+        SourceDetails = M.AnomalySourceDetails,
         AssociatedInsightId = {
             type = "string",
         },
-        ResourceCollection = {
-            type = "structure",
-        },
+        ResourceCollection = M.ResourceCollection,
         Limit = {
-            type = "number",
+            type = "double",
         },
-        SourceMetadata = {
-            type = "structure",
-        },
+        SourceMetadata = M.AnomalySourceMetadata,
         AnomalyResources = {
             type = "list",
-            member_type = "structure",
+            member = M.AnomalyResource,
         },
         Description = {
             type = "string",
@@ -1759,21 +1698,13 @@ M.ReactiveAnomalySummary = {
         Status = {
             type = "string",
         },
-        AnomalyTimeRange = {
-            type = "structure",
-        },
-        AnomalyReportedTimeRange = {
-            type = "structure",
-        },
-        SourceDetails = {
-            type = "structure",
-        },
+        AnomalyTimeRange = M.AnomalyTimeRange,
+        AnomalyReportedTimeRange = M.AnomalyReportedTimeRange,
+        SourceDetails = M.AnomalySourceDetails,
         AssociatedInsightId = {
             type = "string",
         },
-        ResourceCollection = {
-            type = "structure",
-        },
+        ResourceCollection = M.ResourceCollection,
         Type = {
             type = "string",
         },
@@ -1788,7 +1719,7 @@ M.ReactiveAnomalySummary = {
         },
         AnomalyResources = {
             type = "list",
-            member_type = "structure",
+            member = M.AnomalyResource,
         },
     },
 }
@@ -1798,11 +1729,11 @@ M.ListAnomaliesForInsightOutput = {
     members = {
         ProactiveAnomalies = {
             type = "list",
-            member_type = "structure",
+            member = M.ProactiveAnomalySummary,
         },
         ReactiveAnomalies = {
             type = "list",
-            member_type = "structure",
+            member = M.ReactiveAnomalySummary,
         },
         NextToken = {
             type = "string",
@@ -1820,7 +1751,7 @@ M.ListAnomalousLogGroupsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1839,7 +1770,7 @@ M.ListAnomalousLogGroupsOutput = {
         },
         AnomalousLogGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.AnomalousLogGroup,
             traits = {
                 required = true,
             },
@@ -1887,9 +1818,7 @@ M.ListEventsFilters = {
         InsightId = {
             type = "string",
         },
-        EventTimeRange = {
-            type = "structure",
-        },
+        EventTimeRange = M.EventTimeRange,
         EventClass = {
             type = "string",
         },
@@ -1899,23 +1828,18 @@ M.ListEventsFilters = {
         DataSource = {
             type = "string",
         },
-        ResourceCollection = {
-            type = "structure",
-        },
+        ResourceCollection = M.ResourceCollection,
     },
 }
 
 M.ListEventsInput = {
     type = "structure",
     members = {
-        Filters = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Filters = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ListEventsFilters }),
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1944,9 +1868,7 @@ M.EventResource = {
 M.Event = {
     type = "structure",
     members = {
-        ResourceCollection = {
-            type = "structure",
-        },
+        ResourceCollection = M.ResourceCollection,
         Id = {
             type = "string",
         },
@@ -1967,7 +1889,7 @@ M.Event = {
         },
         Resources = {
             type = "list",
-            member_type = "structure",
+            member = M.EventResource,
         },
     },
 }
@@ -1977,7 +1899,7 @@ M.ListEventsOutput = {
     members = {
         Events = {
             type = "list",
-            member_type = "structure",
+            member = M.Event,
             traits = {
                 required = true,
             },
@@ -2002,12 +1924,9 @@ M.ListInsightsAnyStatusFilter = {
                 required = true,
             },
         },
-        StartTimeRange = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        StartTimeRange = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.StartTimeRange }),
     },
 }
 
@@ -2032,12 +1951,9 @@ M.ListInsightsClosedStatusFilter = {
                 required = true,
             },
         },
-        EndTimeRange = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        EndTimeRange = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EndTimeRange }),
     },
 }
 
@@ -2056,29 +1972,20 @@ M.ListInsightsOngoingStatusFilter = {
 M.ListInsightsStatusFilter = {
     type = "structure",
     members = {
-        Ongoing = {
-            type = "structure",
-        },
-        Closed = {
-            type = "structure",
-        },
-        Any = {
-            type = "structure",
-        },
+        Ongoing = M.ListInsightsOngoingStatusFilter,
+        Closed = M.ListInsightsClosedStatusFilter,
+        Any = M.ListInsightsAnyStatusFilter,
     },
 }
 
 M.ListInsightsInput = {
     type = "structure",
     members = {
-        StatusFilter = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        StatusFilter = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ListInsightsStatusFilter }),
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2101,21 +2008,13 @@ M.ProactiveInsightSummary = {
         Status = {
             type = "string",
         },
-        InsightTimeRange = {
-            type = "structure",
-        },
-        PredictionTimeRange = {
-            type = "structure",
-        },
-        ResourceCollection = {
-            type = "structure",
-        },
-        ServiceCollection = {
-            type = "structure",
-        },
+        InsightTimeRange = M.InsightTimeRange,
+        PredictionTimeRange = M.PredictionTimeRange,
+        ResourceCollection = M.ResourceCollection,
+        ServiceCollection = M.ServiceCollection,
         AssociatedResourceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2135,18 +2034,12 @@ M.ReactiveInsightSummary = {
         Status = {
             type = "string",
         },
-        InsightTimeRange = {
-            type = "structure",
-        },
-        ResourceCollection = {
-            type = "structure",
-        },
-        ServiceCollection = {
-            type = "structure",
-        },
+        InsightTimeRange = M.InsightTimeRange,
+        ResourceCollection = M.ResourceCollection,
+        ServiceCollection = M.ServiceCollection,
         AssociatedResourceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2156,11 +2049,11 @@ M.ListInsightsOutput = {
     members = {
         ProactiveInsights = {
             type = "list",
-            member_type = "structure",
+            member = M.ProactiveInsightSummary,
         },
         ReactiveInsights = {
             type = "list",
-            member_type = "structure",
+            member = M.ReactiveInsightSummary,
         },
         NextToken = {
             type = "string",
@@ -2214,7 +2107,7 @@ M.ListMonitoredResourcesFilters = {
         },
         ResourceTypeFilters = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2225,11 +2118,9 @@ M.ListMonitoredResourcesFilters = {
 M.ListMonitoredResourcesInput = {
     type = "structure",
     members = {
-        Filters = {
-            type = "structure",
-        },
+        Filters = M.ListMonitoredResourcesFilters,
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2252,9 +2143,7 @@ M.MonitoredResourceIdentifier = {
         LastUpdated = {
             type = "timestamp",
         },
-        ResourceCollection = {
-            type = "structure",
-        },
+        ResourceCollection = M.ResourceCollection,
     },
 }
 
@@ -2263,7 +2152,7 @@ M.ListMonitoredResourcesOutput = {
     members = {
         MonitoredResourceIdentifiers = {
             type = "list",
-            member_type = "structure",
+            member = M.MonitoredResourceIdentifier,
             traits = {
                 required = true,
             },
@@ -2289,9 +2178,7 @@ M.NotificationChannel = {
         Id = {
             type = "string",
         },
-        Config = {
-            type = "structure",
-        },
+        Config = M.NotificationChannelConfig,
     },
 }
 
@@ -2300,7 +2187,7 @@ M.ListNotificationChannelsOutput = {
     members = {
         Channels = {
             type = "list",
-            member_type = "structure",
+            member = M.NotificationChannel,
         },
         NextToken = {
             type = "string",
@@ -2311,22 +2198,19 @@ M.ListNotificationChannelsOutput = {
 M.ListOrganizationInsightsInput = {
     type = "structure",
     members = {
-        StatusFilter = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        StatusFilter = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ListInsightsStatusFilter }),
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         AccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         OrganizationalUnitIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -2355,18 +2239,10 @@ M.ProactiveOrganizationInsightSummary = {
         Status = {
             type = "string",
         },
-        InsightTimeRange = {
-            type = "structure",
-        },
-        PredictionTimeRange = {
-            type = "structure",
-        },
-        ResourceCollection = {
-            type = "structure",
-        },
-        ServiceCollection = {
-            type = "structure",
-        },
+        InsightTimeRange = M.InsightTimeRange,
+        PredictionTimeRange = M.PredictionTimeRange,
+        ResourceCollection = M.ResourceCollection,
+        ServiceCollection = M.ServiceCollection,
     },
 }
 
@@ -2391,15 +2267,9 @@ M.ReactiveOrganizationInsightSummary = {
         Status = {
             type = "string",
         },
-        InsightTimeRange = {
-            type = "structure",
-        },
-        ResourceCollection = {
-            type = "structure",
-        },
-        ServiceCollection = {
-            type = "structure",
-        },
+        InsightTimeRange = M.InsightTimeRange,
+        ResourceCollection = M.ResourceCollection,
+        ServiceCollection = M.ServiceCollection,
     },
 }
 
@@ -2408,11 +2278,11 @@ M.ListOrganizationInsightsOutput = {
     members = {
         ProactiveInsights = {
             type = "list",
-            member_type = "structure",
+            member = M.ProactiveOrganizationInsightSummary,
         },
         ReactiveInsights = {
             type = "list",
-            member_type = "structure",
+            member = M.ReactiveOrganizationInsightSummary,
         },
         NextToken = {
             type = "string",
@@ -2484,7 +2354,7 @@ M.RecommendationRelatedAnomalySourceDetail = {
     members = {
         CloudWatchMetrics = {
             type = "list",
-            member_type = "structure",
+            member = M.RecommendationRelatedCloudWatchMetricsSourceDetail,
         },
     },
 }
@@ -2494,11 +2364,11 @@ M.RecommendationRelatedAnomaly = {
     members = {
         Resources = {
             type = "list",
-            member_type = "structure",
+            member = M.RecommendationRelatedAnomalyResource,
         },
         SourceDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.RecommendationRelatedAnomalySourceDetail,
         },
         AnomalyId = {
             type = "string",
@@ -2526,7 +2396,7 @@ M.RecommendationRelatedEvent = {
         },
         Resources = {
             type = "list",
-            member_type = "structure",
+            member = M.RecommendationRelatedEventResource,
         },
     },
 }
@@ -2548,11 +2418,11 @@ M.Recommendation = {
         },
         RelatedEvents = {
             type = "list",
-            member_type = "structure",
+            member = M.RecommendationRelatedEvent,
         },
         RelatedAnomalies = {
             type = "list",
-            member_type = "structure",
+            member = M.RecommendationRelatedAnomaly,
         },
         Category = {
             type = "string",
@@ -2565,7 +2435,7 @@ M.ListRecommendationsOutput = {
     members = {
         Recommendations = {
             type = "list",
-            member_type = "structure",
+            member = M.Recommendation,
         },
         NextToken = {
             type = "string",
@@ -2576,9 +2446,7 @@ M.ListRecommendationsOutput = {
 M.PutFeedbackInput = {
     type = "structure",
     members = {
-        InsightFeedback = {
-            type = "structure",
-        },
+        InsightFeedback = M.InsightFeedback,
     },
 }
 
@@ -2608,35 +2476,26 @@ M.SearchInsightsFilters = {
     members = {
         Severities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Statuses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        ResourceCollection = {
-            type = "structure",
-        },
-        ServiceCollection = {
-            type = "structure",
-        },
+        ResourceCollection = M.ResourceCollection,
+        ServiceCollection = M.ServiceCollection,
     },
 }
 
 M.SearchInsightsInput = {
     type = "structure",
     members = {
-        StartTimeRange = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Filters = {
-            type = "structure",
-        },
+        StartTimeRange = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.StartTimeRange }),
+        Filters = M.SearchInsightsFilters,
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2655,11 +2514,11 @@ M.SearchInsightsOutput = {
     members = {
         ProactiveInsights = {
             type = "list",
-            member_type = "structure",
+            member = M.ProactiveInsightSummary,
         },
         ReactiveInsights = {
             type = "list",
-            member_type = "structure",
+            member = M.ReactiveInsightSummary,
         },
         NextToken = {
             type = "string",
@@ -2672,18 +2531,14 @@ M.SearchOrganizationInsightsFilters = {
     members = {
         Severities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Statuses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        ResourceCollection = {
-            type = "structure",
-        },
-        ServiceCollection = {
-            type = "structure",
-        },
+        ResourceCollection = M.ResourceCollection,
+        ServiceCollection = M.ServiceCollection,
     },
 }
 
@@ -2692,22 +2547,17 @@ M.SearchOrganizationInsightsInput = {
     members = {
         AccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        StartTimeRange = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Filters = {
-            type = "structure",
-        },
+        StartTimeRange = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.StartTimeRange }),
+        Filters = M.SearchOrganizationInsightsFilters,
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2726,11 +2576,11 @@ M.SearchOrganizationInsightsOutput = {
     members = {
         ProactiveInsights = {
             type = "list",
-            member_type = "structure",
+            member = M.ProactiveInsightSummary,
         },
         ReactiveInsights = {
             type = "list",
-            member_type = "structure",
+            member = M.ReactiveInsightSummary,
         },
         NextToken = {
             type = "string",
@@ -2741,12 +2591,9 @@ M.SearchOrganizationInsightsOutput = {
 M.StartCostEstimationInput = {
     type = "structure",
     members = {
-        ResourceCollection = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ResourceCollection = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CostEstimationResourceCollectionFilter }),
         ClientToken = {
             type = "string",
         },
@@ -2760,9 +2607,7 @@ M.StartCostEstimationOutput = {
 M.UpdateEventSourcesConfigInput = {
     type = "structure",
     members = {
-        EventSources = {
-            type = "structure",
-        },
+        EventSources = M.EventSourcesConfig,
     },
 }
 
@@ -2780,7 +2625,7 @@ M.UpdateCloudFormationCollectionFilter = {
     members = {
         StackNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2796,7 +2641,7 @@ M.UpdateTagCollectionFilter = {
         },
         TagValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2807,12 +2652,10 @@ M.UpdateTagCollectionFilter = {
 M.UpdateResourceCollectionFilter = {
     type = "structure",
     members = {
-        CloudFormation = {
-            type = "structure",
-        },
+        CloudFormation = M.UpdateCloudFormationCollectionFilter,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.UpdateTagCollectionFilter,
         },
     },
 }
@@ -2826,12 +2669,9 @@ M.UpdateResourceCollectionInput = {
                 required = true,
             },
         },
-        ResourceCollection = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ResourceCollection = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.UpdateResourceCollectionFilter }),
     },
 }
 
@@ -2875,27 +2715,18 @@ M.OpsCenterIntegrationConfig = {
 M.UpdateServiceIntegrationConfig = {
     type = "structure",
     members = {
-        OpsCenter = {
-            type = "structure",
-        },
-        LogsAnomalyDetection = {
-            type = "structure",
-        },
-        KMSServerSideEncryption = {
-            type = "structure",
-        },
+        OpsCenter = M.OpsCenterIntegrationConfig,
+        LogsAnomalyDetection = M.LogsAnomalyDetectionIntegrationConfig,
+        KMSServerSideEncryption = M.KMSServerSideEncryptionIntegrationConfig,
     },
 }
 
 M.UpdateServiceIntegrationInput = {
     type = "structure",
     members = {
-        ServiceIntegration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ServiceIntegration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.UpdateServiceIntegrationConfig }),
     },
 }
 

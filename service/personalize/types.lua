@@ -23,10 +23,13 @@ M.DefaultCategoricalHyperParameterRange = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         isTunable = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -38,13 +41,22 @@ M.DefaultContinuousHyperParameterRange = {
             type = "string",
         },
         minValue = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         maxValue = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         isTunable = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -56,13 +68,22 @@ M.DefaultIntegerHyperParameterRange = {
             type = "string",
         },
         minValue = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         maxValue = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         isTunable = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -72,15 +93,15 @@ M.DefaultHyperParameterRanges = {
     members = {
         integerHyperParameterRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.DefaultIntegerHyperParameterRange,
         },
         continuousHyperParameterRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.DefaultContinuousHyperParameterRange,
         },
         categoricalHyperParameterRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.DefaultCategoricalHyperParameterRange,
         },
     },
 }
@@ -94,21 +115,17 @@ M.Algorithm = {
         algorithmArn = {
             type = "string",
         },
-        algorithmImage = {
-            type = "structure",
-        },
+        algorithmImage = M.AlgorithmImage,
         defaultHyperParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        defaultHyperParameterRanges = {
-            type = "structure",
-        },
+        defaultHyperParameterRanges = M.DefaultHyperParameterRanges,
         defaultResourceConfig = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         trainingInputMode = {
             type = "string",
@@ -135,13 +152,13 @@ M.BatchInferenceJobConfig = {
     members = {
         itemExplorationConfig = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         rankingInfluence = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "double" },
         },
     },
 }
@@ -169,24 +186,18 @@ M.S3DataConfig = {
 M.BatchInferenceJobInput = {
     type = "structure",
     members = {
-        s3DataSource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        s3DataSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3DataConfig }),
     },
 }
 
 M.BatchInferenceJobOutput = {
     type = "structure",
     members = {
-        s3DataDestination = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        s3DataDestination = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3DataConfig }),
     },
 }
 
@@ -223,12 +234,9 @@ M.FieldsForThemeGeneration = {
 M.ThemeGenerationConfig = {
     type = "structure",
     members = {
-        fieldsForThemeGeneration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        fieldsForThemeGeneration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FieldsForThemeGeneration }),
     },
 }
 
@@ -251,39 +259,29 @@ M.CreateBatchInferenceJobInput = {
             type = "string",
         },
         numResults = {
-            type = "number",
+            type = "integer",
         },
-        jobInput = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        jobOutput = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        jobInput = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BatchInferenceJobInput }),
+        jobOutput = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BatchInferenceJobOutput }),
         roleArn = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        batchInferenceJobConfig = {
-            type = "structure",
-        },
+        batchInferenceJobConfig = M.BatchInferenceJobConfig,
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         batchInferenceJobMode = {
             type = "string",
         },
-        themeGenerationConfig = {
-            type = "structure",
-        },
+        themeGenerationConfig = M.ThemeGenerationConfig,
     },
 }
 
@@ -359,24 +357,18 @@ M.TooManyTagsException = {
 M.BatchSegmentJobInput = {
     type = "structure",
     members = {
-        s3DataSource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        s3DataSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3DataConfig }),
     },
 }
 
 M.BatchSegmentJobOutput = {
     type = "structure",
     members = {
-        s3DataDestination = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        s3DataDestination = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3DataConfig }),
     },
 }
 
@@ -399,20 +391,14 @@ M.CreateBatchSegmentJobInput = {
             type = "string",
         },
         numResults = {
-            type = "number",
+            type = "integer",
         },
-        jobInput = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        jobOutput = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        jobInput = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BatchSegmentJobInput }),
+        jobOutput = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BatchSegmentJobOutput }),
         roleArn = {
             type = "string",
             traits = {
@@ -421,7 +407,7 @@ M.CreateBatchSegmentJobInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -440,8 +426,8 @@ M.CampaignConfig = {
     members = {
         itemExplorationConfig = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         enableMetadataWithRecommendations = {
             type = "boolean",
@@ -451,8 +437,8 @@ M.CampaignConfig = {
         },
         rankingInfluence = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "double" },
         },
     },
 }
@@ -473,14 +459,12 @@ M.CreateCampaignInput = {
             },
         },
         minProvisionedTPS = {
-            type = "number",
+            type = "integer",
         },
-        campaignConfig = {
-            type = "structure",
-        },
+        campaignConfig = M.CampaignConfig,
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -518,12 +502,9 @@ M.CreateDataDeletionJobInput = {
                 required = true,
             },
         },
-        dataSource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        dataSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataSource }),
         roleArn = {
             type = "string",
             traits = {
@@ -532,7 +513,7 @@ M.CreateDataDeletionJobInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -575,7 +556,7 @@ M.CreateDatasetInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -598,12 +579,9 @@ M.IngestionMode = {
 M.DatasetExportJobOutput = {
     type = "structure",
     members = {
-        s3DataDestination = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        s3DataDestination = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3DataConfig }),
     },
 }
 
@@ -631,15 +609,12 @@ M.CreateDatasetExportJobInput = {
                 required = true,
             },
         },
-        jobOutput = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        jobOutput = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DatasetExportJobOutput }),
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -678,7 +653,7 @@ M.CreateDatasetGroupInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -715,18 +690,15 @@ M.CreateDatasetImportJobInput = {
                 required = true,
             },
         },
-        dataSource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        dataSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataSource }),
         roleArn = {
             type = "string",
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         importMode = {
             type = "string",
@@ -763,7 +735,7 @@ M.CreateEventTrackerInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -803,7 +775,7 @@ M.CreateFilterInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -844,9 +816,7 @@ M.MetricAttribute = {
 M.MetricAttributionOutput = {
     type = "structure",
     members = {
-        s3DataDestination = {
-            type = "structure",
-        },
+        s3DataDestination = M.S3DataConfig,
         roleArn = {
             type = "string",
             traits = {
@@ -873,17 +843,14 @@ M.CreateMetricAttributionInput = {
         },
         metrics = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricAttribute,
             traits = {
                 required = true,
             },
         },
-        metricsOutputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        metricsOutputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MetricAttributionOutput }),
     },
 }
 
@@ -901,13 +868,13 @@ M.TrainingDataConfig = {
     members = {
         excludedDatasetColumns = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         includedDatasetColumns = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
     },
 }
@@ -917,15 +884,13 @@ M.RecommenderConfig = {
     members = {
         itemExplorationConfig = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         minRecommendationRequestsPerSecond = {
-            type = "number",
+            type = "integer",
         },
-        trainingDataConfig = {
-            type = "structure",
-        },
+        trainingDataConfig = M.TrainingDataConfig,
         enableMetadataWithRecommendations = {
             type = "boolean",
         },
@@ -953,12 +918,10 @@ M.CreateRecommenderInput = {
                 required = true,
             },
         },
-        recommenderConfig = {
-            type = "structure",
-        },
+        recommenderConfig = M.RecommenderConfig,
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1010,7 +973,7 @@ M.AutoMLConfig = {
         },
         recipeList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1031,10 +994,10 @@ M.EventParameters = {
             type = "string",
         },
         eventValueThreshold = {
-            type = "number",
+            type = "double",
         },
         weight = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -1044,7 +1007,7 @@ M.EventsConfig = {
     members = {
         eventParametersList = {
             type = "list",
-            member_type = "structure",
+            member = M.EventParameters,
         },
     },
 }
@@ -1057,7 +1020,7 @@ M.CategoricalHyperParameterRange = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1069,10 +1032,16 @@ M.ContinuousHyperParameterRange = {
             type = "string",
         },
         minValue = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         maxValue = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1084,10 +1053,16 @@ M.IntegerHyperParameterRange = {
             type = "string",
         },
         minValue = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         maxValue = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1097,15 +1072,15 @@ M.HyperParameterRanges = {
     members = {
         integerHyperParameterRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.IntegerHyperParameterRange,
         },
         continuousHyperParameterRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.ContinuousHyperParameterRange,
         },
         categoricalHyperParameterRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.CategoricalHyperParameterRange,
         },
     },
 }
@@ -1140,15 +1115,9 @@ M.HPOResourceConfig = {
 M.HPOConfig = {
     type = "structure",
     members = {
-        hpoObjective = {
-            type = "structure",
-        },
-        hpoResourceConfig = {
-            type = "structure",
-        },
-        algorithmHyperParameterRanges = {
-            type = "structure",
-        },
+        hpoObjective = M.HPOObjective,
+        hpoResourceConfig = M.HPOResourceConfig,
+        algorithmHyperParameterRanges = M.HyperParameterRanges,
     },
 }
 
@@ -1177,34 +1146,22 @@ M.SolutionConfig = {
         eventValueThreshold = {
             type = "string",
         },
-        hpoConfig = {
-            type = "structure",
-        },
+        hpoConfig = M.HPOConfig,
         algorithmHyperParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         featureTransformationParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        autoMLConfig = {
-            type = "structure",
-        },
-        eventsConfig = {
-            type = "structure",
-        },
-        optimizationObjective = {
-            type = "structure",
-        },
-        trainingDataConfig = {
-            type = "structure",
-        },
-        autoTrainingConfig = {
-            type = "structure",
-        },
+        autoMLConfig = M.AutoMLConfig,
+        eventsConfig = M.EventsConfig,
+        optimizationObjective = M.OptimizationObjective,
+        trainingDataConfig = M.TrainingDataConfig,
+        autoTrainingConfig = M.AutoTrainingConfig,
     },
 }
 
@@ -1222,6 +1179,9 @@ M.CreateSolutionInput = {
         },
         performAutoML = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         performAutoTraining = {
             type = "boolean",
@@ -1241,12 +1201,10 @@ M.CreateSolutionInput = {
         eventType = {
             type = "string",
         },
-        solutionConfig = {
-            type = "structure",
-        },
+        solutionConfig = M.SolutionConfig,
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1283,7 +1241,7 @@ M.CreateSolutionVersionInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1456,9 +1414,7 @@ M.DescribeAlgorithmInput = {
 M.DescribeAlgorithmOutput = {
     type = "structure",
     members = {
-        algorithm = {
-            type = "structure",
-        },
+        algorithm = M.Algorithm,
     },
 }
 
@@ -1493,26 +1449,18 @@ M.BatchInferenceJob = {
             type = "string",
         },
         numResults = {
-            type = "number",
+            type = "integer",
         },
-        jobInput = {
-            type = "structure",
-        },
-        jobOutput = {
-            type = "structure",
-        },
-        batchInferenceJobConfig = {
-            type = "structure",
-        },
+        jobInput = M.BatchInferenceJobInput,
+        jobOutput = M.BatchInferenceJobOutput,
+        batchInferenceJobConfig = M.BatchInferenceJobConfig,
         roleArn = {
             type = "string",
         },
         batchInferenceJobMode = {
             type = "string",
         },
-        themeGenerationConfig = {
-            type = "structure",
-        },
+        themeGenerationConfig = M.ThemeGenerationConfig,
         status = {
             type = "string",
         },
@@ -1528,9 +1476,7 @@ M.BatchInferenceJob = {
 M.DescribeBatchInferenceJobOutput = {
     type = "structure",
     members = {
-        batchInferenceJob = {
-            type = "structure",
-        },
+        batchInferenceJob = M.BatchInferenceJob,
     },
 }
 
@@ -1565,14 +1511,10 @@ M.BatchSegmentJob = {
             type = "string",
         },
         numResults = {
-            type = "number",
+            type = "integer",
         },
-        jobInput = {
-            type = "structure",
-        },
-        jobOutput = {
-            type = "structure",
-        },
+        jobInput = M.BatchSegmentJobInput,
+        jobOutput = M.BatchSegmentJobOutput,
         roleArn = {
             type = "string",
         },
@@ -1591,9 +1533,7 @@ M.BatchSegmentJob = {
 M.DescribeBatchSegmentJobOutput = {
     type = "structure",
     members = {
-        batchSegmentJob = {
-            type = "structure",
-        },
+        batchSegmentJob = M.BatchSegmentJob,
     },
 }
 
@@ -1616,11 +1556,9 @@ M.CampaignUpdateSummary = {
             type = "string",
         },
         minProvisionedTPS = {
-            type = "number",
+            type = "integer",
         },
-        campaignConfig = {
-            type = "structure",
-        },
+        campaignConfig = M.CampaignConfig,
         status = {
             type = "string",
         },
@@ -1649,11 +1587,9 @@ M.Campaign = {
             type = "string",
         },
         minProvisionedTPS = {
-            type = "number",
+            type = "integer",
         },
-        campaignConfig = {
-            type = "structure",
-        },
+        campaignConfig = M.CampaignConfig,
         status = {
             type = "string",
         },
@@ -1666,18 +1602,14 @@ M.Campaign = {
         lastUpdatedDateTime = {
             type = "timestamp",
         },
-        latestCampaignUpdate = {
-            type = "structure",
-        },
+        latestCampaignUpdate = M.CampaignUpdateSummary,
     },
 }
 
 M.DescribeCampaignOutput = {
     type = "structure",
     members = {
-        campaign = {
-            type = "structure",
-        },
+        campaign = M.Campaign,
     },
 }
 
@@ -1705,9 +1637,7 @@ M.DataDeletionJob = {
         datasetGroupArn = {
             type = "string",
         },
-        dataSource = {
-            type = "structure",
-        },
+        dataSource = M.DataSource,
         roleArn = {
             type = "string",
         },
@@ -1715,7 +1645,7 @@ M.DataDeletionJob = {
             type = "string",
         },
         numDeleted = {
-            type = "number",
+            type = "integer",
         },
         creationDateTime = {
             type = "timestamp",
@@ -1732,9 +1662,7 @@ M.DataDeletionJob = {
 M.DescribeDataDeletionJobOutput = {
     type = "structure",
     members = {
-        dataDeletionJob = {
-            type = "structure",
-        },
+        dataDeletionJob = M.DataDeletionJob,
     },
 }
 
@@ -1798,9 +1726,7 @@ M.Dataset = {
         lastUpdatedDateTime = {
             type = "timestamp",
         },
-        latestDatasetUpdate = {
-            type = "structure",
-        },
+        latestDatasetUpdate = M.DatasetUpdateSummary,
         trackingId = {
             type = "string",
         },
@@ -1810,9 +1736,7 @@ M.Dataset = {
 M.DescribeDatasetOutput = {
     type = "structure",
     members = {
-        dataset = {
-            type = "structure",
-        },
+        dataset = M.Dataset,
     },
 }
 
@@ -1849,9 +1773,7 @@ M.DatasetExportJob = {
         status = {
             type = "string",
         },
-        jobOutput = {
-            type = "structure",
-        },
+        jobOutput = M.DatasetExportJobOutput,
         creationDateTime = {
             type = "timestamp",
         },
@@ -1867,9 +1789,7 @@ M.DatasetExportJob = {
 M.DescribeDatasetExportJobOutput = {
     type = "structure",
     members = {
-        datasetExportJob = {
-            type = "structure",
-        },
+        datasetExportJob = M.DatasetExportJob,
     },
 }
 
@@ -1921,9 +1841,7 @@ M.DatasetGroup = {
 M.DescribeDatasetGroupOutput = {
     type = "structure",
     members = {
-        datasetGroup = {
-            type = "structure",
-        },
+        datasetGroup = M.DatasetGroup,
     },
 }
 
@@ -1951,9 +1869,7 @@ M.DatasetImportJob = {
         datasetArn = {
             type = "string",
         },
-        dataSource = {
-            type = "structure",
-        },
+        dataSource = M.DataSource,
         roleArn = {
             type = "string",
         },
@@ -1981,9 +1897,7 @@ M.DatasetImportJob = {
 M.DescribeDatasetImportJobOutput = {
     type = "structure",
     members = {
-        datasetImportJob = {
-            type = "structure",
-        },
+        datasetImportJob = M.DatasetImportJob,
     },
 }
 
@@ -2032,9 +1946,7 @@ M.EventTracker = {
 M.DescribeEventTrackerOutput = {
     type = "structure",
     members = {
-        eventTracker = {
-            type = "structure",
-        },
+        eventTracker = M.EventTracker,
     },
 }
 
@@ -2061,8 +1973,8 @@ M.FeatureTransformation = {
         },
         defaultParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         creationDateTime = {
             type = "timestamp",
@@ -2079,9 +1991,7 @@ M.FeatureTransformation = {
 M.DescribeFeatureTransformationOutput = {
     type = "structure",
     members = {
-        featureTransformation = {
-            type = "structure",
-        },
+        featureTransformation = M.FeatureTransformation,
     },
 }
 
@@ -2130,9 +2040,7 @@ M.Filter = {
 M.DescribeFilterOutput = {
     type = "structure",
     members = {
-        filter = {
-            type = "structure",
-        },
+        filter = M.Filter,
     },
 }
 
@@ -2160,9 +2068,7 @@ M.MetricAttribution = {
         datasetGroupArn = {
             type = "string",
         },
-        metricsOutputConfig = {
-            type = "structure",
-        },
+        metricsOutputConfig = M.MetricAttributionOutput,
         status = {
             type = "string",
         },
@@ -2181,9 +2087,7 @@ M.MetricAttribution = {
 M.DescribeMetricAttributionOutput = {
     type = "structure",
     members = {
-        metricAttribution = {
-            type = "structure",
-        },
+        metricAttribution = M.MetricAttribution,
     },
 }
 
@@ -2235,9 +2139,7 @@ M.Recipe = {
 M.DescribeRecipeOutput = {
     type = "structure",
     members = {
-        recipe = {
-            type = "structure",
-        },
+        recipe = M.Recipe,
     },
 }
 
@@ -2256,9 +2158,7 @@ M.DescribeRecommenderInput = {
 M.RecommenderUpdateSummary = {
     type = "structure",
     members = {
-        recommenderConfig = {
-            type = "structure",
-        },
+        recommenderConfig = M.RecommenderConfig,
         creationDateTime = {
             type = "timestamp",
         },
@@ -2289,9 +2189,7 @@ M.Recommender = {
         recipeArn = {
             type = "string",
         },
-        recommenderConfig = {
-            type = "structure",
-        },
+        recommenderConfig = M.RecommenderConfig,
         creationDateTime = {
             type = "timestamp",
         },
@@ -2304,13 +2202,11 @@ M.Recommender = {
         failureReason = {
             type = "string",
         },
-        latestRecommenderUpdate = {
-            type = "structure",
-        },
+        latestRecommenderUpdate = M.RecommenderUpdateSummary,
         modelMetrics = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "double" },
         },
     },
 }
@@ -2318,9 +2214,7 @@ M.Recommender = {
 M.DescribeRecommenderOutput = {
     type = "structure",
     members = {
-        recommender = {
-            type = "structure",
-        },
+        recommender = M.Recommender,
     },
 }
 
@@ -2363,9 +2257,7 @@ M.DatasetSchema = {
 M.DescribeSchemaOutput = {
     type = "structure",
     members = {
-        schema = {
-            type = "structure",
-        },
+        schema = M.DatasetSchema,
     },
 }
 
@@ -2393,21 +2285,15 @@ M.AutoMLResult = {
 M.SolutionUpdateConfig = {
     type = "structure",
     members = {
-        autoTrainingConfig = {
-            type = "structure",
-        },
-        eventsConfig = {
-            type = "structure",
-        },
+        autoTrainingConfig = M.AutoTrainingConfig,
+        eventsConfig = M.EventsConfig,
     },
 }
 
 M.SolutionUpdateSummary = {
     type = "structure",
     members = {
-        solutionUpdateConfig = {
-            type = "structure",
-        },
+        solutionUpdateConfig = M.SolutionUpdateConfig,
         status = {
             type = "string",
         },
@@ -2472,9 +2358,15 @@ M.Solution = {
         },
         performHPO = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         performAutoML = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         performAutoTraining = {
             type = "boolean",
@@ -2491,12 +2383,8 @@ M.Solution = {
         eventType = {
             type = "string",
         },
-        solutionConfig = {
-            type = "structure",
-        },
-        autoMLResult = {
-            type = "structure",
-        },
+        solutionConfig = M.SolutionConfig,
+        autoMLResult = M.AutoMLResult,
         status = {
             type = "string",
         },
@@ -2506,21 +2394,15 @@ M.Solution = {
         lastUpdatedDateTime = {
             type = "timestamp",
         },
-        latestSolutionVersion = {
-            type = "structure",
-        },
-        latestSolutionUpdate = {
-            type = "structure",
-        },
+        latestSolutionVersion = M.SolutionVersionSummary,
+        latestSolutionUpdate = M.SolutionUpdateSummary,
     },
 }
 
 M.DescribeSolutionOutput = {
     type = "structure",
     members = {
-        solution = {
-            type = "structure",
-        },
+        solution = M.Solution,
     },
 }
 
@@ -2541,8 +2423,8 @@ M.TunedHPOParams = {
     members = {
         algorithmHyperParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2561,9 +2443,15 @@ M.SolutionVersion = {
         },
         performHPO = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         performAutoML = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         performIncrementalUpdate = {
             type = "boolean",
@@ -2577,18 +2465,14 @@ M.SolutionVersion = {
         datasetGroupArn = {
             type = "string",
         },
-        solutionConfig = {
-            type = "structure",
-        },
+        solutionConfig = M.SolutionConfig,
         trainingHours = {
-            type = "number",
+            type = "double",
         },
         trainingMode = {
             type = "string",
         },
-        tunedHPOParams = {
-            type = "structure",
-        },
+        tunedHPOParams = M.TunedHPOParams,
         status = {
             type = "string",
         },
@@ -2610,9 +2494,7 @@ M.SolutionVersion = {
 M.DescribeSolutionVersionOutput = {
     type = "structure",
     members = {
-        solutionVersion = {
-            type = "structure",
-        },
+        solutionVersion = M.SolutionVersion,
     },
 }
 
@@ -2636,8 +2518,8 @@ M.GetSolutionMetricsOutput = {
         },
         metrics = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "double" },
         },
     },
 }
@@ -2662,7 +2544,7 @@ M.ListBatchInferenceJobsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2702,7 +2584,7 @@ M.ListBatchInferenceJobsOutput = {
     members = {
         batchInferenceJobs = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchInferenceJobSummary,
         },
         nextToken = {
             type = "string",
@@ -2720,7 +2602,7 @@ M.ListBatchSegmentJobsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2757,7 +2639,7 @@ M.ListBatchSegmentJobsOutput = {
     members = {
         batchSegmentJobs = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchSegmentJobSummary,
         },
         nextToken = {
             type = "string",
@@ -2775,7 +2657,7 @@ M.ListCampaignsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2809,7 +2691,7 @@ M.ListCampaignsOutput = {
     members = {
         campaigns = {
             type = "list",
-            member_type = "structure",
+            member = M.CampaignSummary,
         },
         nextToken = {
             type = "string",
@@ -2827,7 +2709,7 @@ M.ListDataDeletionJobsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2864,7 +2746,7 @@ M.ListDataDeletionJobsOutput = {
     members = {
         dataDeletionJobs = {
             type = "list",
-            member_type = "structure",
+            member = M.DataDeletionJobSummary,
         },
         nextToken = {
             type = "string",
@@ -2882,7 +2764,7 @@ M.ListDatasetExportJobsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2916,7 +2798,7 @@ M.ListDatasetExportJobsOutput = {
     members = {
         datasetExportJobs = {
             type = "list",
-            member_type = "structure",
+            member = M.DatasetExportJobSummary,
         },
         nextToken = {
             type = "string",
@@ -2931,7 +2813,7 @@ M.ListDatasetGroupsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2968,7 +2850,7 @@ M.ListDatasetGroupsOutput = {
     members = {
         datasetGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.DatasetGroupSummary,
         },
         nextToken = {
             type = "string",
@@ -2986,7 +2868,7 @@ M.ListDatasetImportJobsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3023,7 +2905,7 @@ M.ListDatasetImportJobsOutput = {
     members = {
         datasetImportJobs = {
             type = "list",
-            member_type = "structure",
+            member = M.DatasetImportJobSummary,
         },
         nextToken = {
             type = "string",
@@ -3041,7 +2923,7 @@ M.ListDatasetsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3075,7 +2957,7 @@ M.ListDatasetsOutput = {
     members = {
         datasets = {
             type = "list",
-            member_type = "structure",
+            member = M.DatasetSummary,
         },
         nextToken = {
             type = "string",
@@ -3093,7 +2975,7 @@ M.ListEventTrackersInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3124,7 +3006,7 @@ M.ListEventTrackersOutput = {
     members = {
         eventTrackers = {
             type = "list",
-            member_type = "structure",
+            member = M.EventTrackerSummary,
         },
         nextToken = {
             type = "string",
@@ -3142,7 +3024,7 @@ M.ListFiltersInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3179,7 +3061,7 @@ M.ListFiltersOutput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.FilterSummary,
         },
         nextToken = {
             type = "string",
@@ -3197,7 +3079,7 @@ M.ListMetricAttributionMetricsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3207,7 +3089,7 @@ M.ListMetricAttributionMetricsOutput = {
     members = {
         metrics = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricAttribute,
         },
         nextToken = {
             type = "string",
@@ -3225,7 +3107,7 @@ M.ListMetricAttributionsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3259,7 +3141,7 @@ M.ListMetricAttributionsOutput = {
     members = {
         metricAttributions = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricAttributionSummary,
         },
         nextToken = {
             type = "string",
@@ -3281,7 +3163,7 @@ M.ListRecipesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         domain = {
             type = "string",
@@ -3318,7 +3200,7 @@ M.ListRecipesOutput = {
     members = {
         recipes = {
             type = "list",
-            member_type = "structure",
+            member = M.RecipeSummary,
         },
         nextToken = {
             type = "string",
@@ -3336,7 +3218,7 @@ M.ListRecommendersInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3356,9 +3238,7 @@ M.RecommenderSummary = {
         recipeArn = {
             type = "string",
         },
-        recommenderConfig = {
-            type = "structure",
-        },
+        recommenderConfig = M.RecommenderConfig,
         status = {
             type = "string",
         },
@@ -3376,7 +3256,7 @@ M.ListRecommendersOutput = {
     members = {
         recommenders = {
             type = "list",
-            member_type = "structure",
+            member = M.RecommenderSummary,
         },
         nextToken = {
             type = "string",
@@ -3391,7 +3271,7 @@ M.ListSchemasInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3422,7 +3302,7 @@ M.ListSchemasOutput = {
     members = {
         schemas = {
             type = "list",
-            member_type = "structure",
+            member = M.DatasetSchemaSummary,
         },
         nextToken = {
             type = "string",
@@ -3440,7 +3320,7 @@ M.ListSolutionsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3474,7 +3354,7 @@ M.ListSolutionsOutput = {
     members = {
         solutions = {
             type = "list",
-            member_type = "structure",
+            member = M.SolutionSummary,
         },
         nextToken = {
             type = "string",
@@ -3492,7 +3372,7 @@ M.ListSolutionVersionsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3502,7 +3382,7 @@ M.ListSolutionVersionsOutput = {
     members = {
         solutionVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.SolutionVersionSummary,
         },
         nextToken = {
             type = "string",
@@ -3527,7 +3407,7 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3601,7 +3481,7 @@ M.TagResourceInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -3634,7 +3514,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3659,11 +3539,9 @@ M.UpdateCampaignInput = {
             type = "string",
         },
         minProvisionedTPS = {
-            type = "number",
+            type = "integer",
         },
-        campaignConfig = {
-            type = "structure",
-        },
+        campaignConfig = M.CampaignConfig,
     },
 }
 
@@ -3708,15 +3586,13 @@ M.UpdateMetricAttributionInput = {
     members = {
         addMetrics = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricAttribute,
         },
         removeMetrics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        metricsOutputConfig = {
-            type = "structure",
-        },
+        metricsOutputConfig = M.MetricAttributionOutput,
         metricAttributionArn = {
             type = "string",
         },
@@ -3741,12 +3617,9 @@ M.UpdateRecommenderInput = {
                 required = true,
             },
         },
-        recommenderConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        recommenderConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RecommenderConfig }),
     },
 }
 
@@ -3774,9 +3647,7 @@ M.UpdateSolutionInput = {
         performIncrementalUpdate = {
             type = "boolean",
         },
-        solutionUpdateConfig = {
-            type = "structure",
-        },
+        solutionUpdateConfig = M.SolutionUpdateConfig,
     },
 }
 

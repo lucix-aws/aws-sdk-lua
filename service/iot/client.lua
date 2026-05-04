@@ -16,7 +16,7 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AWSIotService"
-    cfg.signing_name = "awsiotservice"
+    cfg.signing_name = "iot"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end

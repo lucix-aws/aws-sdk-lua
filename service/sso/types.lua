@@ -55,7 +55,10 @@ M.RoleCredentials = {
             type = "string",
         },
         expiration = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -63,9 +66,7 @@ M.RoleCredentials = {
 M.GetRoleCredentialsOutput = {
     type = "structure",
     members = {
-        roleCredentials = {
-            type = "structure",
-        },
+        roleCredentials = M.RoleCredentials,
     },
 }
 
@@ -119,7 +120,7 @@ M.ListAccountRolesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max_result",
             },
@@ -161,7 +162,7 @@ M.ListAccountRolesOutput = {
         },
         roleList = {
             type = "list",
-            member_type = "structure",
+            member = M.RoleInfo,
         },
     },
 }
@@ -176,7 +177,7 @@ M.ListAccountsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max_result",
             },
@@ -199,7 +200,7 @@ M.ListAccountsOutput = {
         },
         accountList = {
             type = "list",
-            member_type = "structure",
+            member = M.AccountInfo,
         },
     },
 }

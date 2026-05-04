@@ -1,0 +1,53 @@
+local waiter = require("waiter")
+
+local M = {}
+
+--- Wait until FeedDeleted.
+function M.wait_until_feed_deleted(client, input, options)
+    return waiter.wait(client, "getFeed", input, {
+        min_delay = 3,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    errorType = "ResourceNotFoundException",
+                },
+            },
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "status",
+                        expected = "DELETED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "status",
+                        expected = "DELETING",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "InternalServerErrorException",
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "TooManyRequestException",
+                },
+            },
+        },
+    }, options)
+end
+
+return M

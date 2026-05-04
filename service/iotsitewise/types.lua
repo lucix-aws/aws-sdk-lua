@@ -61,18 +61,10 @@ M.UserIdentity = {
 M.Identity = {
     type = "structure",
     members = {
-        user = {
-            type = "structure",
-        },
-        group = {
-            type = "structure",
-        },
-        iamUser = {
-            type = "structure",
-        },
-        iamRole = {
-            type = "structure",
-        },
+        user = M.UserIdentity,
+        group = M.GroupIdentity,
+        iamUser = M.IAMUserIdentity,
+        iamRole = M.IAMRoleIdentity,
     },
 }
 
@@ -108,12 +100,8 @@ M.ProjectResource = {
 M.Resource = {
     type = "structure",
     members = {
-        portal = {
-            type = "structure",
-        },
-        project = {
-            type = "structure",
-        },
+        portal = M.PortalResource,
+        project = M.ProjectResource,
     },
 }
 
@@ -126,18 +114,12 @@ M.AccessPolicySummary = {
                 required = true,
             },
         },
-        identity = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        resource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        identity = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Identity }),
+        resource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Resource }),
         permission = {
             type = "string",
             traits = {
@@ -222,12 +204,8 @@ M.ActionSummary = {
         actionDefinitionId = {
             type = "string",
         },
-        targetResource = {
-            type = "structure",
-        },
-        resolveTo = {
-            type = "structure",
-        },
+        targetResource = M.TargetResource,
+        resolveTo = M.ResolveTo,
     },
 }
 
@@ -241,22 +219,22 @@ M.Aggregates = {
     type = "structure",
     members = {
         average = {
-            type = "number",
+            type = "double",
         },
         count = {
-            type = "number",
+            type = "double",
         },
         maximum = {
-            type = "number",
+            type = "double",
         },
         minimum = {
-            type = "number",
+            type = "double",
         },
         sum = {
-            type = "number",
+            type = "double",
         },
         standardDeviation = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -273,12 +251,9 @@ M.AggregatedValue = {
         quality = {
             type = "string",
         },
-        value = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        value = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Aggregates }),
     },
 }
 
@@ -382,9 +357,7 @@ M.AssetProperty = {
         alias = {
             type = "string",
         },
-        notification = {
-            type = "structure",
-        },
+        notification = M.PropertyNotification,
         dataType = {
             type = "string",
             traits = {
@@ -399,7 +372,7 @@ M.AssetProperty = {
         },
         path = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetPropertyPathSegment,
         },
     },
 }
@@ -424,7 +397,7 @@ M.AssetCompositeModel = {
         },
         properties = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetProperty,
             traits = {
                 required = true,
             },
@@ -482,7 +455,7 @@ M.AssetCompositeModelSummary = {
         },
         path = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetCompositeModelPathSegment,
             traits = {
                 required = true,
             },
@@ -601,21 +574,16 @@ M.ForwardingConfig = {
 M.MeasurementProcessingConfig = {
     type = "structure",
     members = {
-        forwardingConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        forwardingConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ForwardingConfig }),
     },
 }
 
 M.Measurement = {
     type = "structure",
     members = {
-        processingConfig = {
-            type = "structure",
-        },
+        processingConfig = M.MeasurementProcessingConfig,
     },
 }
 
@@ -647,7 +615,7 @@ M.VariableValue = {
         },
         propertyPath = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetModelPropertyPathSegment,
         },
     },
 }
@@ -661,12 +629,9 @@ M.ExpressionVariable = {
                 required = true,
             },
         },
-        value = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        value = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VariableValue }),
     },
 }
 
@@ -688,9 +653,7 @@ M.TumblingWindow = {
 M.MetricWindow = {
     type = "structure",
     members = {
-        tumbling = {
-            type = "structure",
-        },
+        tumbling = M.TumblingWindow,
     },
 }
 
@@ -699,20 +662,21 @@ M.Metric = {
     members = {
         expression = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
         variables = {
             type = "list",
-            member_type = "structure",
-        },
-        window = {
-            type = "structure",
+            member = M.ExpressionVariable,
             traits = {
-                required = true,
+                default = {},
             },
         },
-        processingConfig = {
-            type = "structure",
-        },
+        window = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MetricWindow }),
+        processingConfig = M.MetricProcessingConfig,
     },
 }
 
@@ -725,9 +689,7 @@ M.TransformProcessingConfig = {
                 required = true,
             },
         },
-        forwardingConfig = {
-            type = "structure",
-        },
+        forwardingConfig = M.ForwardingConfig,
     },
 }
 
@@ -742,32 +704,22 @@ M.Transform = {
         },
         variables = {
             type = "list",
-            member_type = "structure",
+            member = M.ExpressionVariable,
             traits = {
                 required = true,
             },
         },
-        processingConfig = {
-            type = "structure",
-        },
+        processingConfig = M.TransformProcessingConfig,
     },
 }
 
 M.PropertyType = {
     type = "structure",
     members = {
-        attribute = {
-            type = "structure",
-        },
-        measurement = {
-            type = "structure",
-        },
-        transform = {
-            type = "structure",
-        },
-        metric = {
-            type = "structure",
-        },
+        attribute = M.Attribute,
+        measurement = M.Measurement,
+        transform = M.Transform,
+        metric = M.Metric,
     },
 }
 
@@ -798,15 +750,12 @@ M.AssetModelProperty = {
         unit = {
             type = "string",
         },
-        type = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        type = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PropertyType }),
         path = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetModelPropertyPathSegment,
         },
     },
 }
@@ -831,7 +780,7 @@ M.AssetModelCompositeModel = {
         },
         properties = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetModelProperty,
         },
         id = {
             type = "string",
@@ -869,12 +818,9 @@ M.AssetModelPropertyDefinition = {
         unit = {
             type = "string",
         },
-        type = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        type = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PropertyType }),
     },
 }
 
@@ -904,7 +850,7 @@ M.AssetModelCompositeModelDefinition = {
         },
         properties = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetModelPropertyDefinition,
         },
     },
 }
@@ -950,7 +896,7 @@ M.AssetModelCompositeModelSummary = {
         },
         path = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetModelCompositeModelPathSegment,
         },
     },
 }
@@ -1084,22 +1030,19 @@ M.AssetModelPropertySummary = {
         unit = {
             type = "string",
         },
-        type = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        type = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PropertyType }),
         assetModelCompositeModelId = {
             type = "string",
         },
         path = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetModelPropertyPathSegment,
         },
         interfaceSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.InterfaceSummary,
         },
     },
 }
@@ -1158,7 +1101,7 @@ M.ErrorDetails = {
         },
         details = {
             type = "list",
-            member_type = "structure",
+            member = M.DetailedError,
         },
     },
 }
@@ -1172,9 +1115,7 @@ M.AssetModelStatus = {
                 required = true,
             },
         },
-        error = {
-            type = "structure",
-        },
+        error = M.ErrorDetails,
     },
 }
 
@@ -1229,12 +1170,9 @@ M.AssetModelSummary = {
                 required = true,
             },
         },
-        status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AssetModelStatus }),
         version = {
             type = "string",
         },
@@ -1300,15 +1238,13 @@ M.AssetPropertySummary = {
         unit = {
             type = "string",
         },
-        notification = {
-            type = "structure",
-        },
+        notification = M.PropertyNotification,
         assetCompositeModelId = {
             type = "string",
         },
         path = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetPropertyPathSegment,
         },
     },
 }
@@ -1317,13 +1253,13 @@ M.TimeInNanos = {
     type = "structure",
     members = {
         timeInSeconds = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         offsetInNanos = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1355,35 +1291,27 @@ M.Variant = {
             type = "string",
         },
         integerValue = {
-            type = "number",
+            type = "integer",
         },
         doubleValue = {
-            type = "number",
+            type = "double",
         },
         booleanValue = {
             type = "boolean",
         },
-        nullValue = {
-            type = "structure",
-        },
+        nullValue = M.PropertyValueNullValue,
     },
 }
 
 M.AssetPropertyValue = {
     type = "structure",
     members = {
-        value = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        timestamp = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        value = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Variant }),
+        timestamp = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TimeInNanos }),
         quality = {
             type = "string",
         },
@@ -1397,9 +1325,7 @@ M.AssetRelationshipType = {
 M.AssetRelationshipSummary = {
     type = "structure",
     members = {
-        hierarchyInfo = {
-            type = "structure",
-        },
+        hierarchyInfo = M.AssetHierarchyInfo,
         relationshipType = {
             type = "string",
             traits = {
@@ -1426,9 +1352,7 @@ M.AssetStatus = {
                 required = true,
             },
         },
-        error = {
-            type = "structure",
-        },
+        error = M.ErrorDetails,
     },
 }
 
@@ -1474,15 +1398,12 @@ M.AssetSummary = {
                 required = true,
             },
         },
-        status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AssetStatus }),
         hierarchies = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetHierarchy,
             traits = {
                 required = true,
             },
@@ -1682,15 +1603,12 @@ M.AssociatedAssetsSummary = {
                 required = true,
             },
         },
-        status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AssetStatus }),
         hierarchies = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetHierarchy,
             traits = {
                 required = true,
             },
@@ -1752,7 +1670,7 @@ M.BatchAssociateProjectAssetsInput = {
         },
         assetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1768,7 +1686,7 @@ M.BatchAssociateProjectAssetsOutput = {
     members = {
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetErrorDetails,
         },
     },
 }
@@ -1785,7 +1703,7 @@ M.BatchDisassociateProjectAssetsInput = {
         },
         assetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1801,7 +1719,7 @@ M.BatchDisassociateProjectAssetsOutput = {
     members = {
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetErrorDetails,
         },
     },
 }
@@ -1831,7 +1749,7 @@ M.BatchGetAssetPropertyAggregatesEntry = {
         },
         aggregateTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1856,7 +1774,7 @@ M.BatchGetAssetPropertyAggregatesEntry = {
         },
         qualities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         timeOrdering = {
             type = "string",
@@ -1869,7 +1787,7 @@ M.BatchGetAssetPropertyAggregatesInput = {
     members = {
         entries = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetAssetPropertyAggregatesEntry,
             traits = {
                 required = true,
             },
@@ -1878,7 +1796,7 @@ M.BatchGetAssetPropertyAggregatesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1951,9 +1869,7 @@ M.BatchGetAssetPropertyAggregatesSkippedEntry = {
                 required = true,
             },
         },
-        errorInfo = {
-            type = "structure",
-        },
+        errorInfo = M.BatchGetAssetPropertyAggregatesErrorInfo,
     },
 }
 
@@ -1968,7 +1884,7 @@ M.BatchGetAssetPropertyAggregatesSuccessEntry = {
         },
         aggregatedValues = {
             type = "list",
-            member_type = "structure",
+            member = M.AggregatedValue,
             traits = {
                 required = true,
             },
@@ -1981,21 +1897,21 @@ M.BatchGetAssetPropertyAggregatesOutput = {
     members = {
         errorEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetAssetPropertyAggregatesErrorEntry,
             traits = {
                 required = true,
             },
         },
         successEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetAssetPropertyAggregatesSuccessEntry,
             traits = {
                 required = true,
             },
         },
         skippedEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetAssetPropertyAggregatesSkippedEntry,
             traits = {
                 required = true,
             },
@@ -2045,7 +1961,7 @@ M.BatchGetAssetPropertyValueInput = {
     members = {
         entries = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetAssetPropertyValueEntry,
             traits = {
                 required = true,
             },
@@ -2119,9 +2035,7 @@ M.BatchGetAssetPropertyValueSkippedEntry = {
                 required = true,
             },
         },
-        errorInfo = {
-            type = "structure",
-        },
+        errorInfo = M.BatchGetAssetPropertyValueErrorInfo,
     },
 }
 
@@ -2134,9 +2048,7 @@ M.BatchGetAssetPropertyValueSuccessEntry = {
                 required = true,
             },
         },
-        assetPropertyValue = {
-            type = "structure",
-        },
+        assetPropertyValue = M.AssetPropertyValue,
     },
 }
 
@@ -2145,21 +2057,21 @@ M.BatchGetAssetPropertyValueOutput = {
     members = {
         errorEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetAssetPropertyValueErrorEntry,
             traits = {
                 required = true,
             },
         },
         successEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetAssetPropertyValueSuccessEntry,
             traits = {
                 required = true,
             },
         },
         skippedEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetAssetPropertyValueSkippedEntry,
             traits = {
                 required = true,
             },
@@ -2196,7 +2108,7 @@ M.BatchGetAssetPropertyValueHistoryEntry = {
         },
         qualities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         timeOrdering = {
             type = "string",
@@ -2209,7 +2121,7 @@ M.BatchGetAssetPropertyValueHistoryInput = {
     members = {
         entries = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetAssetPropertyValueHistoryEntry,
             traits = {
                 required = true,
             },
@@ -2218,7 +2130,7 @@ M.BatchGetAssetPropertyValueHistoryInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2286,9 +2198,7 @@ M.BatchGetAssetPropertyValueHistorySkippedEntry = {
                 required = true,
             },
         },
-        errorInfo = {
-            type = "structure",
-        },
+        errorInfo = M.BatchGetAssetPropertyValueHistoryErrorInfo,
     },
 }
 
@@ -2303,7 +2213,7 @@ M.BatchGetAssetPropertyValueHistorySuccessEntry = {
         },
         assetPropertyValueHistory = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetPropertyValue,
             traits = {
                 required = true,
             },
@@ -2316,21 +2226,21 @@ M.BatchGetAssetPropertyValueHistoryOutput = {
     members = {
         errorEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetAssetPropertyValueHistoryErrorEntry,
             traits = {
                 required = true,
             },
         },
         successEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetAssetPropertyValueHistorySuccessEntry,
             traits = {
                 required = true,
             },
         },
         skippedEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchGetAssetPropertyValueHistorySkippedEntry,
             traits = {
                 required = true,
             },
@@ -2361,7 +2271,7 @@ M.PutAssetPropertyValueEntry = {
         },
         propertyValues = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetPropertyValue,
             traits = {
                 required = true,
             },
@@ -2377,7 +2287,7 @@ M.BatchPutAssetPropertyValueInput = {
         },
         entries = {
             type = "list",
-            member_type = "structure",
+            member = M.PutAssetPropertyValueEntry,
             traits = {
                 required = true,
             },
@@ -2414,7 +2324,7 @@ M.BatchPutAssetPropertyError = {
         },
         timestamps = {
             type = "list",
-            member_type = "structure",
+            member = M.TimeInNanos,
             traits = {
                 required = true,
             },
@@ -2433,7 +2343,7 @@ M.BatchPutAssetPropertyErrorEntry = {
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchPutAssetPropertyError,
             traits = {
                 required = true,
             },
@@ -2446,7 +2356,7 @@ M.BatchPutAssetPropertyValueOutput = {
     members = {
         errorEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchPutAssetPropertyErrorEntry,
             traits = {
                 required = true,
             },
@@ -2457,18 +2367,12 @@ M.BatchPutAssetPropertyValueOutput = {
 M.CreateAccessPolicyInput = {
     type = "structure",
     members = {
-        accessPolicyIdentity = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        accessPolicyResource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        accessPolicyIdentity = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Identity }),
+        accessPolicyResource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Resource }),
         accessPolicyPermission = {
             type = "string",
             traits = {
@@ -2480,8 +2384,8 @@ M.CreateAccessPolicyInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2530,8 +2434,8 @@ M.CreateAssetInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         assetDescription = {
             type = "string",
@@ -2554,12 +2458,9 @@ M.CreateAssetOutput = {
                 required = true,
             },
         },
-        assetStatus = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        assetStatus = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AssetStatus }),
     },
 }
 
@@ -2586,23 +2487,23 @@ M.CreateAssetModelInput = {
         },
         assetModelProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetModelPropertyDefinition,
         },
         assetModelHierarchies = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetModelHierarchyDefinition,
         },
         assetModelCompositeModels = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetModelCompositeModelDefinition,
         },
         clientToken = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2622,12 +2523,9 @@ M.CreateAssetModelOutput = {
                 required = true,
             },
         },
-        assetModelStatus = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        assetModelStatus = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AssetModelStatus }),
     },
 }
 
@@ -2673,7 +2571,7 @@ M.CreateAssetModelCompositeModelInput = {
         },
         assetModelCompositeModelProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetModelPropertyDefinition,
         },
         ifMatch = {
             type = "string",
@@ -2707,17 +2605,14 @@ M.CreateAssetModelCompositeModelOutput = {
         },
         assetModelCompositeModelPath = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetModelCompositeModelPathSegment,
             traits = {
                 required = true,
             },
         },
-        assetModelStatus = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        assetModelStatus = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AssetModelStatus }),
     },
 }
 
@@ -2801,7 +2696,7 @@ M.Csv = {
     members = {
         columnNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2816,24 +2711,17 @@ M.Parquet = {
 M.FileFormat = {
     type = "structure",
     members = {
-        csv = {
-            type = "structure",
-        },
-        parquet = {
-            type = "structure",
-        },
+        csv = M.Csv,
+        parquet = M.Parquet,
     },
 }
 
 M.JobConfiguration = {
     type = "structure",
     members = {
-        fileFormat = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        fileFormat = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FileFormat }),
     },
 }
 
@@ -2854,23 +2742,17 @@ M.CreateBulkImportJobInput = {
         },
         files = {
             type = "list",
-            member_type = "structure",
+            member = M.File,
             traits = {
                 required = true,
             },
         },
-        errorReportLocation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        jobConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        errorReportLocation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ErrorReportLocation }),
+        jobConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.JobConfiguration }),
         adaptiveIngestion = {
             type = "boolean",
         },
@@ -2934,9 +2816,7 @@ M.ComputationModelAnomalyDetectionConfiguration = {
 M.ComputationModelConfiguration = {
     type = "structure",
     members = {
-        anomalyDetection = {
-            type = "structure",
-        },
+        anomalyDetection = M.ComputationModelAnomalyDetectionConfiguration,
     },
 }
 
@@ -2957,9 +2837,7 @@ M.ComputationModelStatus = {
                 required = true,
             },
         },
-        error = {
-            type = "structure",
-        },
+        error = M.ErrorDetails,
     },
 }
 
@@ -2978,12 +2856,9 @@ M.CreateComputationModelOutput = {
                 required = true,
             },
         },
-        computationModelStatus = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        computationModelStatus = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ComputationModelStatus }),
     },
 }
 
@@ -3016,8 +2891,8 @@ M.CreateDashboardInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3061,9 +2936,7 @@ M.KendraSourceDetail = {
 M.SourceDetail = {
     type = "structure",
     members = {
-        kendra = {
-            type = "structure",
-        },
+        kendra = M.KendraSourceDetail,
     },
 }
 
@@ -3090,9 +2963,7 @@ M.DatasetSource = {
                 required = true,
             },
         },
-        sourceDetail = {
-            type = "structure",
-        },
+        sourceDetail = M.SourceDetail,
     },
 }
 
@@ -3111,19 +2982,16 @@ M.CreateDatasetInput = {
         datasetDescription = {
             type = "string",
         },
-        datasetSource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        datasetSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DatasetSource }),
         clientToken = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3145,9 +3013,7 @@ M.DatasetStatus = {
                 required = true,
             },
         },
-        error = {
-            type = "structure",
-        },
+        error = M.ErrorDetails,
     },
 }
 
@@ -3166,12 +3032,9 @@ M.CreateDatasetOutput = {
                 required = true,
             },
         },
-        datasetStatus = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        datasetStatus = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DatasetStatus }),
     },
 }
 
@@ -3223,15 +3086,9 @@ M.SiemensIE = {
 M.GatewayPlatform = {
     type = "structure",
     members = {
-        greengrass = {
-            type = "structure",
-        },
-        greengrassV2 = {
-            type = "structure",
-        },
-        siemensIE = {
-            type = "structure",
-        },
+        greengrass = M.Greengrass,
+        greengrassV2 = M.GreengrassV2,
+        siemensIE = M.SiemensIE,
     },
 }
 
@@ -3244,19 +3101,16 @@ M.CreateGatewayInput = {
                 required = true,
             },
         },
-        gatewayPlatform = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        gatewayPlatform = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.GatewayPlatform }),
         gatewayVersion = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3311,7 +3165,7 @@ M.PortalTypeEntry = {
     members = {
         portalTools = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3337,9 +3191,7 @@ M.CreatePortalInput = {
         clientToken = {
             type = "string",
         },
-        portalLogoImageFile = {
-            type = "structure",
-        },
+        portalLogoImageFile = M.ImageFile,
         roleArn = {
             type = "string",
             traits = {
@@ -3348,8 +3200,8 @@ M.CreatePortalInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         portalAuthMode = {
             type = "string",
@@ -3357,16 +3209,14 @@ M.CreatePortalInput = {
         notificationSenderEmail = {
             type = "string",
         },
-        alarms = {
-            type = "structure",
-        },
+        alarms = M.Alarms,
         portalType = {
             type = "string",
         },
         portalTypeConfiguration = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.PortalTypeEntry,
         },
     },
 }
@@ -3407,9 +3257,7 @@ M.PortalStatus = {
                 required = true,
             },
         },
-        error = {
-            type = "structure",
-        },
+        error = M.MonitorErrorDetails,
     },
 }
 
@@ -3434,12 +3282,9 @@ M.CreatePortalOutput = {
                 required = true,
             },
         },
-        portalStatus = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        portalStatus = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PortalStatus }),
         ssoApplicationId = {
             type = "string",
             traits = {
@@ -3472,8 +3317,8 @@ M.CreateProjectInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3541,12 +3386,9 @@ M.DeleteAssetInput = {
 M.DeleteAssetOutput = {
     type = "structure",
     members = {
-        assetStatus = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        assetStatus = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AssetStatus }),
     },
 }
 
@@ -3590,12 +3432,9 @@ M.DeleteAssetModelInput = {
 M.DeleteAssetModelOutput = {
     type = "structure",
     members = {
-        assetModelStatus = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        assetModelStatus = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AssetModelStatus }),
     },
 }
 
@@ -3646,12 +3485,9 @@ M.DeleteAssetModelCompositeModelInput = {
 M.DeleteAssetModelCompositeModelOutput = {
     type = "structure",
     members = {
-        assetModelStatus = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        assetModelStatus = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AssetModelStatus }),
     },
 }
 
@@ -3702,12 +3538,9 @@ M.DeleteAssetModelInterfaceRelationshipOutput = {
                 required = true,
             },
         },
-        assetModelStatus = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        assetModelStatus = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AssetModelStatus }),
     },
 }
 
@@ -3733,12 +3566,9 @@ M.DeleteComputationModelInput = {
 M.DeleteComputationModelOutput = {
     type = "structure",
     members = {
-        computationModelStatus = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        computationModelStatus = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ComputationModelStatus }),
     },
 }
 
@@ -3787,12 +3617,9 @@ M.DeleteDatasetInput = {
 M.DeleteDatasetOutput = {
     type = "structure",
     members = {
-        datasetStatus = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        datasetStatus = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DatasetStatus }),
     },
 }
 
@@ -3835,12 +3662,9 @@ M.DeletePortalInput = {
 M.DeletePortalOutput = {
     type = "structure",
     members = {
-        portalStatus = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        portalStatus = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PortalStatus }),
     },
 }
 
@@ -3926,18 +3750,12 @@ M.DescribeAccessPolicyOutput = {
                 required = true,
             },
         },
-        accessPolicyIdentity = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        accessPolicyResource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        accessPolicyIdentity = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Identity }),
+        accessPolicyResource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Resource }),
         accessPolicyPermission = {
             type = "string",
             traits = {
@@ -3981,33 +3799,25 @@ M.DescribeActionOutput = {
                 required = true,
             },
         },
-        targetResource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        targetResource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TargetResource }),
         actionDefinitionId = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        actionPayload = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        actionPayload = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActionPayload }),
         executionTime = {
             type = "timestamp",
             traits = {
                 required = true,
             },
         },
-        resolveTo = {
-            type = "structure",
-        },
+        resolveTo = M.ResolveTo,
     },
 }
 
@@ -4024,6 +3834,7 @@ M.DescribeAssetInput = {
         excludeProperties = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "excludeProperties",
             },
         },
@@ -4062,21 +3873,21 @@ M.DescribeAssetOutput = {
         },
         assetProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetProperty,
             traits = {
                 required = true,
             },
         },
         assetHierarchies = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetHierarchy,
             traits = {
                 required = true,
             },
         },
         assetCompositeModels = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetCompositeModel,
         },
         assetCreationDate = {
             type = "timestamp",
@@ -4090,18 +3901,15 @@ M.DescribeAssetOutput = {
                 required = true,
             },
         },
-        assetStatus = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        assetStatus = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AssetStatus }),
         assetDescription = {
             type = "string",
         },
         assetCompositeModelSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetCompositeModelSummary,
         },
     },
 }
@@ -4146,7 +3954,7 @@ M.DescribeAssetCompositeModelOutput = {
         },
         assetCompositeModelPath = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetCompositeModelPathSegment,
             traits = {
                 required = true,
             },
@@ -4171,21 +3979,21 @@ M.DescribeAssetCompositeModelOutput = {
         },
         assetCompositeModelProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetProperty,
             traits = {
                 required = true,
             },
         },
         assetCompositeModelSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetCompositeModelSummary,
             traits = {
                 required = true,
             },
         },
         actionDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.ActionDefinition,
         },
     },
 }
@@ -4203,6 +4011,7 @@ M.DescribeAssetModelInput = {
         excludeProperties = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "excludeProperties",
             },
         },
@@ -4262,25 +4071,25 @@ M.DescribeAssetModelOutput = {
         },
         assetModelProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetModelProperty,
             traits = {
                 required = true,
             },
         },
         assetModelHierarchies = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetModelHierarchy,
             traits = {
                 required = true,
             },
         },
         assetModelCompositeModels = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetModelCompositeModel,
         },
         assetModelCompositeModelSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetModelCompositeModelSummary,
         },
         assetModelCreationDate = {
             type = "timestamp",
@@ -4294,18 +4103,15 @@ M.DescribeAssetModelOutput = {
                 required = true,
             },
         },
-        assetModelStatus = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        assetModelStatus = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AssetModelStatus }),
         assetModelVersion = {
             type = "string",
         },
         interfaceDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.InterfaceRelationship,
         },
         eTag = {
             type = "string",
@@ -4356,7 +4162,7 @@ M.CompositionDetails = {
     members = {
         compositionRelationship = {
             type = "list",
-            member_type = "structure",
+            member = M.CompositionRelationshipItem,
         },
     },
 }
@@ -4381,7 +4187,7 @@ M.DescribeAssetModelCompositeModelOutput = {
         },
         assetModelCompositeModelPath = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetModelCompositeModelPathSegment,
             traits = {
                 required = true,
             },
@@ -4406,24 +4212,22 @@ M.DescribeAssetModelCompositeModelOutput = {
         },
         assetModelCompositeModelProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetModelProperty,
             traits = {
                 required = true,
             },
         },
-        compositionDetails = {
-            type = "structure",
-        },
+        compositionDetails = M.CompositionDetails,
         assetModelCompositeModelSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetModelCompositeModelSummary,
             traits = {
                 required = true,
             },
         },
         actionDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.ActionDefinition,
         },
     },
 }
@@ -4501,14 +4305,14 @@ M.DescribeAssetModelInterfaceRelationshipOutput = {
         },
         propertyMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.PropertyMapping,
             traits = {
                 required = true,
             },
         },
         hierarchyMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.HierarchyMapping,
             traits = {
                 required = true,
             },
@@ -4557,9 +4361,7 @@ M.Property = {
         alias = {
             type = "string",
         },
-        notification = {
-            type = "structure",
-        },
+        notification = M.PropertyNotification,
         dataType = {
             type = "string",
             traits = {
@@ -4569,12 +4371,10 @@ M.Property = {
         unit = {
             type = "string",
         },
-        type = {
-            type = "structure",
-        },
+        type = M.PropertyType,
         path = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetPropertyPathSegment,
         },
     },
 }
@@ -4594,12 +4394,9 @@ M.CompositeModelProperty = {
                 required = true,
             },
         },
-        assetProperty = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        assetProperty = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Property }),
         id = {
             type = "string",
         },
@@ -4633,12 +4430,8 @@ M.DescribeAssetPropertyOutput = {
                 required = true,
             },
         },
-        assetProperty = {
-            type = "structure",
-        },
-        compositeModel = {
-            type = "structure",
-        },
+        assetProperty = M.Property,
+        compositeModel = M.CompositeModelProperty,
     },
 }
 
@@ -4684,23 +4477,17 @@ M.DescribeBulkImportJobOutput = {
         },
         files = {
             type = "list",
-            member_type = "structure",
+            member = M.File,
             traits = {
                 required = true,
             },
         },
-        errorReportLocation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        jobConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        errorReportLocation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ErrorReportLocation }),
+        jobConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.JobConfiguration }),
         jobCreationDate = {
             type = "timestamp",
             traits = {
@@ -4779,13 +4566,11 @@ M.DescribeComputationModelExecutionSummaryOutput = {
                 required = true,
             },
         },
-        resolveTo = {
-            type = "structure",
-        },
+        resolveTo = M.ResolveTo,
         computationModelExecutionSummary = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4897,18 +4682,12 @@ M.DescribeDatasetOutput = {
                 required = true,
             },
         },
-        datasetSource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        datasetStatus = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        datasetSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DatasetSource }),
+        datasetStatus = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DatasetStatus }),
         datasetCreationDate = {
             type = "timestamp",
             traits = {
@@ -4964,9 +4743,7 @@ M.ConfigurationStatus = {
                 required = true,
             },
         },
-        error = {
-            type = "structure",
-        },
+        error = M.ConfigurationErrorDetails,
     },
 }
 
@@ -4987,12 +4764,9 @@ M.DescribeDefaultEncryptionConfigurationOutput = {
         kmsKeyArn = {
             type = "string",
         },
-        configurationStatus = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        configurationStatus = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConfigurationStatus }),
     },
 }
 
@@ -5039,21 +4813,16 @@ M.DescribeExecutionOutput = {
         actionType = {
             type = "string",
         },
-        targetResource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        targetResource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TargetResource }),
         targetResourceVersion = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        resolveTo = {
-            type = "structure",
-        },
+        resolveTo = M.ResolveTo,
         executionStartTime = {
             type = "timestamp",
             traits = {
@@ -5063,21 +4832,18 @@ M.DescribeExecutionOutput = {
         executionEndTime = {
             type = "timestamp",
         },
-        executionStatus = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        executionStatus = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ExecutionStatus }),
         executionResult = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         executionDetails = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         executionEntityVersion = {
             type = "string",
@@ -5145,15 +4911,13 @@ M.DescribeGatewayOutput = {
                 required = true,
             },
         },
-        gatewayPlatform = {
-            type = "structure",
-        },
+        gatewayPlatform = M.GatewayPlatform,
         gatewayVersion = {
             type = "string",
         },
         gatewayCapabilitySummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.GatewayCapabilitySummary,
             traits = {
                 required = true,
             },
@@ -5248,12 +5012,9 @@ M.LoggingOptions = {
 M.DescribeLoggingOptionsOutput = {
     type = "structure",
     members = {
-        loggingOptions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        loggingOptions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LoggingOptions }),
     },
 }
 
@@ -5330,12 +5091,9 @@ M.DescribePortalOutput = {
                 required = true,
             },
         },
-        portalStatus = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        portalStatus = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PortalStatus }),
         portalCreationDate = {
             type = "timestamp",
             traits = {
@@ -5348,9 +5106,7 @@ M.DescribePortalOutput = {
                 required = true,
             },
         },
-        portalLogoImageLocation = {
-            type = "structure",
-        },
+        portalLogoImageLocation = M.ImageLocation,
         roleArn = {
             type = "string",
         },
@@ -5360,16 +5116,14 @@ M.DescribePortalOutput = {
         notificationSenderEmail = {
             type = "string",
         },
-        alarms = {
-            type = "structure",
-        },
+        alarms = M.Alarms,
         portalType = {
             type = "string",
         },
         portalTypeConfiguration = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.PortalTypeEntry,
         },
     },
 }
@@ -5462,12 +5216,9 @@ M.CustomerManagedS3Storage = {
 M.MultiLayerStorage = {
     type = "structure",
     members = {
-        customerManagedS3Storage = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        customerManagedS3Storage = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CustomerManagedS3Storage }),
     },
 }
 
@@ -5475,7 +5226,7 @@ M.RetentionPeriod = {
     type = "structure",
     members = {
         numberOfDays = {
-            type = "number",
+            type = "integer",
         },
         unlimited = {
             type = "boolean",
@@ -5497,7 +5248,7 @@ M.WarmTierRetentionPeriod = {
     type = "structure",
     members = {
         numberOfDays = {
-            type = "number",
+            type = "integer",
         },
         unlimited = {
             type = "boolean",
@@ -5514,30 +5265,21 @@ M.DescribeStorageConfigurationOutput = {
                 required = true,
             },
         },
-        multiLayerStorage = {
-            type = "structure",
-        },
+        multiLayerStorage = M.MultiLayerStorage,
         disassociatedDataStorage = {
             type = "string",
         },
-        retentionPeriod = {
-            type = "structure",
-        },
-        configurationStatus = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        retentionPeriod = M.RetentionPeriod,
+        configurationStatus = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConfigurationStatus }),
         lastUpdateDate = {
             type = "timestamp",
         },
         warmTier = {
             type = "string",
         },
-        warmTierRetentionPeriod = {
-            type = "structure",
-        },
+        warmTierRetentionPeriod = M.WarmTierRetentionPeriod,
         disallowIngestNullNaN = {
             type = "boolean",
         },
@@ -5685,30 +5427,22 @@ M.DisassociateTimeSeriesFromAssetPropertyOutput = {
 M.ExecuteActionInput = {
     type = "structure",
     members = {
-        targetResource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        targetResource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TargetResource }),
         actionDefinitionId = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        actionPayload = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        actionPayload = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActionPayload }),
         clientToken = {
             type = "string",
         },
-        resolveTo = {
-            type = "structure",
-        },
+        resolveTo = M.ResolveTo,
     },
 }
 
@@ -5737,7 +5471,7 @@ M.ExecuteQueryInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         clientToken = {
             type = "string",
@@ -5768,9 +5502,7 @@ M.ColumnInfo = {
         name = {
             type = "string",
         },
-        type = {
-            type = "structure",
-        },
+        type = M.ColumnType,
     },
 }
 
@@ -5817,7 +5549,7 @@ M.GetAssetPropertyAggregatesInput = {
         },
         aggregateTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "aggregateTypes",
                 required = true,
@@ -5832,7 +5564,7 @@ M.GetAssetPropertyAggregatesInput = {
         },
         qualities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "qualities",
             },
@@ -5864,7 +5596,7 @@ M.GetAssetPropertyAggregatesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -5877,7 +5609,7 @@ M.GetAssetPropertyAggregatesOutput = {
     members = {
         aggregatedValues = {
             type = "list",
-            member_type = "structure",
+            member = M.AggregatedValue,
             traits = {
                 required = true,
             },
@@ -5915,9 +5647,7 @@ M.GetAssetPropertyValueInput = {
 M.GetAssetPropertyValueOutput = {
     type = "structure",
     members = {
-        propertyValue = {
-            type = "structure",
-        },
+        propertyValue = M.AssetPropertyValue,
     },
 }
 
@@ -5956,7 +5686,7 @@ M.GetAssetPropertyValueHistoryInput = {
         },
         qualities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "qualities",
             },
@@ -5974,7 +5704,7 @@ M.GetAssetPropertyValueHistoryInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -5987,7 +5717,7 @@ M.GetAssetPropertyValueHistoryOutput = {
     members = {
         assetPropertyValueHistory = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetPropertyValue,
             traits = {
                 required = true,
             },
@@ -6020,27 +5750,27 @@ M.GetInterpolatedAssetPropertyValuesInput = {
             },
         },
         startTimeInSeconds = {
-            type = "number",
+            type = "long",
             traits = {
                 http_query = "startTimeInSeconds",
                 required = true,
             },
         },
         startTimeOffsetInNanos = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "startTimeOffsetInNanos",
             },
         },
         endTimeInSeconds = {
-            type = "number",
+            type = "long",
             traits = {
                 http_query = "endTimeInSeconds",
                 required = true,
             },
         },
         endTimeOffsetInNanos = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "endTimeOffsetInNanos",
             },
@@ -6053,7 +5783,7 @@ M.GetInterpolatedAssetPropertyValuesInput = {
             },
         },
         intervalInSeconds = {
-            type = "number",
+            type = "long",
             traits = {
                 http_query = "intervalInSeconds",
                 required = true,
@@ -6066,7 +5796,7 @@ M.GetInterpolatedAssetPropertyValuesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -6079,7 +5809,7 @@ M.GetInterpolatedAssetPropertyValuesInput = {
             },
         },
         intervalWindowInSeconds = {
-            type = "number",
+            type = "long",
             traits = {
                 http_query = "intervalWindowInSeconds",
             },
@@ -6090,18 +5820,12 @@ M.GetInterpolatedAssetPropertyValuesInput = {
 M.InterpolatedAssetPropertyValue = {
     type = "structure",
     members = {
-        timestamp = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        value = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        timestamp = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TimeInNanos }),
+        value = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Variant }),
     },
 }
 
@@ -6110,7 +5834,7 @@ M.GetInterpolatedAssetPropertyValuesOutput = {
     members = {
         interpolatedAssetPropertyValues = {
             type = "list",
-            member_type = "structure",
+            member = M.InterpolatedAssetPropertyValue,
             traits = {
                 required = true,
             },
@@ -6135,6 +5859,9 @@ M.InvokeAssistantInput = {
         },
         enableTrace = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -6163,9 +5890,7 @@ M.Source = {
         arn = {
             type = "string",
         },
-        location = {
-            type = "structure",
-        },
+        location = M.Location,
     },
 }
 
@@ -6175,30 +5900,22 @@ M.DataSetReference = {
         datasetArn = {
             type = "string",
         },
-        source = {
-            type = "structure",
-        },
+        source = M.Source,
     },
 }
 
 M.Reference = {
     type = "structure",
     members = {
-        dataset = {
-            type = "structure",
-        },
+        dataset = M.DataSetReference,
     },
 }
 
 M.Citation = {
     type = "structure",
     members = {
-        reference = {
-            type = "structure",
-        },
-        content = {
-            type = "structure",
-        },
+        reference = M.Reference,
+        content = M.Content,
     },
 }
 
@@ -6210,7 +5927,7 @@ M.InvocationOutput = {
         },
         citations = {
             type = "list",
-            member_type = "structure",
+            member = M.Citation,
         },
     },
 }
@@ -6227,46 +5944,25 @@ M.Trace = {
 M.ResponseStream = {
     type = "union",
     members = {
-        trace = {
-            type = "structure",
-        },
-        output = {
-            type = "structure",
-        },
-        accessDeniedException = {
-            type = "structure",
-        },
-        conflictingOperationException = {
-            type = "structure",
-        },
-        internalFailureException = {
-            type = "structure",
-        },
-        invalidRequestException = {
-            type = "structure",
-        },
-        limitExceededException = {
-            type = "structure",
-        },
-        resourceNotFoundException = {
-            type = "structure",
-        },
-        throttlingException = {
-            type = "structure",
-        },
+        trace = M.Trace,
+        output = M.InvocationOutput,
+        accessDeniedException = M.AccessDeniedException,
+        conflictingOperationException = M.ConflictingOperationException,
+        internalFailureException = M.InternalFailureException,
+        invalidRequestException = M.InvalidRequestException,
+        limitExceededException = M.LimitExceededException,
+        resourceNotFoundException = M.ResourceNotFoundException,
+        throttlingException = M.ThrottlingException,
     },
 }
 
 M.InvokeAssistantOutput = {
     type = "structure",
     members = {
-        body = {
-            type = "union",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        body = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.ResponseStream }),
         conversationId = {
             type = "string",
             traits = {
@@ -6328,7 +6024,7 @@ M.ListAccessPoliciesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -6341,7 +6037,7 @@ M.ListAccessPoliciesOutput = {
     members = {
         accessPolicySummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessPolicySummary,
             traits = {
                 required = true,
             },
@@ -6381,7 +6077,7 @@ M.ListActionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -6406,7 +6102,7 @@ M.ListActionsOutput = {
     members = {
         actionSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ActionSummary,
             traits = {
                 required = true,
             },
@@ -6437,7 +6133,7 @@ M.ListAssetModelCompositeModelsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -6456,7 +6152,7 @@ M.ListAssetModelCompositeModelsOutput = {
     members = {
         assetModelCompositeModelSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetModelCompositeModelSummary,
             traits = {
                 required = true,
             },
@@ -6489,7 +6185,7 @@ M.ListAssetModelPropertiesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -6514,7 +6210,7 @@ M.ListAssetModelPropertiesOutput = {
     members = {
         assetModelPropertySummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetModelPropertySummary,
             traits = {
                 required = true,
             },
@@ -6530,7 +6226,7 @@ M.ListAssetModelsInput = {
     members = {
         assetModelTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "assetModelTypes",
             },
@@ -6542,7 +6238,7 @@ M.ListAssetModelsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -6561,7 +6257,7 @@ M.ListAssetModelsOutput = {
     members = {
         assetModelSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetModelSummary,
             traits = {
                 required = true,
             },
@@ -6594,7 +6290,7 @@ M.ListAssetPropertiesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -6613,7 +6309,7 @@ M.ListAssetPropertiesOutput = {
     members = {
         assetPropertySummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetPropertySummary,
             traits = {
                 required = true,
             },
@@ -6652,7 +6348,7 @@ M.ListAssetRelationshipsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -6665,7 +6361,7 @@ M.ListAssetRelationshipsOutput = {
     members = {
         assetRelationshipSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetRelationshipSummary,
             traits = {
                 required = true,
             },
@@ -6691,7 +6387,7 @@ M.ListAssetsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -6716,7 +6412,7 @@ M.ListAssetsOutput = {
     members = {
         assetSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetSummary,
             traits = {
                 required = true,
             },
@@ -6761,7 +6457,7 @@ M.ListAssociatedAssetsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -6774,7 +6470,7 @@ M.ListAssociatedAssetsOutput = {
     members = {
         assetSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.AssociatedAssetsSummary,
             traits = {
                 required = true,
             },
@@ -6805,7 +6501,7 @@ M.ListBulkImportJobsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -6848,7 +6544,7 @@ M.ListBulkImportJobsOutput = {
     members = {
         jobSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.JobSummary,
             traits = {
                 required = true,
             },
@@ -6876,7 +6572,7 @@ M.ListCompositionRelationshipsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -6913,7 +6609,7 @@ M.ListCompositionRelationshipsOutput = {
     members = {
         compositionRelationshipSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.CompositionRelationshipSummary,
             traits = {
                 required = true,
             },
@@ -6927,35 +6623,24 @@ M.ListCompositionRelationshipsOutput = {
 M.DataBindingValueFilter = {
     type = "structure",
     members = {
-        asset = {
-            type = "structure",
-        },
-        assetModel = {
-            type = "structure",
-        },
-        assetProperty = {
-            type = "structure",
-        },
-        assetModelProperty = {
-            type = "structure",
-        },
+        asset = M.AssetBindingValueFilter,
+        assetModel = M.AssetModelBindingValueFilter,
+        assetProperty = M.AssetPropertyBindingValueFilter,
+        assetModelProperty = M.AssetModelPropertyBindingValueFilter,
     },
 }
 
 M.ListComputationModelDataBindingUsagesInput = {
     type = "structure",
     members = {
-        dataBindingValueFilter = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        dataBindingValueFilter = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataBindingValueFilter }),
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -6963,24 +6648,17 @@ M.ListComputationModelDataBindingUsagesInput = {
 M.DataBindingValue = {
     type = "structure",
     members = {
-        assetModelProperty = {
-            type = "structure",
-        },
-        assetProperty = {
-            type = "structure",
-        },
+        assetModelProperty = M.AssetModelPropertyBindingValue,
+        assetProperty = M.AssetPropertyBindingValue,
     },
 }
 
 M.MatchedDataBinding = {
     type = "structure",
     members = {
-        value = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        value = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataBindingValue }),
     },
 }
 
@@ -6989,17 +6667,14 @@ M.ComputationModelDataBindingUsageSummary = {
     members = {
         computationModelIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        matchedDataBinding = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        matchedDataBinding = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MatchedDataBinding }),
     },
 }
 
@@ -7008,7 +6683,7 @@ M.ListComputationModelDataBindingUsagesOutput = {
     members = {
         dataBindingUsageSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ComputationModelDataBindingUsageSummary,
             traits = {
                 required = true,
             },
@@ -7036,7 +6711,7 @@ M.ListComputationModelResolveToResourcesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -7047,9 +6722,7 @@ M.ListComputationModelResolveToResourcesInput = {
 M.ComputationModelResolveToResourceSummary = {
     type = "structure",
     members = {
-        resolveTo = {
-            type = "structure",
-        },
+        resolveTo = M.ResolveTo,
     },
 }
 
@@ -7058,7 +6731,7 @@ M.ListComputationModelResolveToResourcesOutput = {
     members = {
         computationModelResolveToResourceSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ComputationModelResolveToResourceSummary,
             traits = {
                 required = true,
             },
@@ -7089,7 +6762,7 @@ M.ListComputationModelsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -7139,12 +6812,9 @@ M.ComputationModelSummary = {
                 required = true,
             },
         },
-        status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ComputationModelStatus }),
         version = {
             type = "string",
             traits = {
@@ -7159,7 +6829,7 @@ M.ListComputationModelsOutput = {
     members = {
         computationModelSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ComputationModelSummary,
             traits = {
                 required = true,
             },
@@ -7187,7 +6857,7 @@ M.ListDashboardsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -7227,7 +6897,7 @@ M.ListDashboardsOutput = {
     members = {
         dashboardSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.DashboardSummary,
             traits = {
                 required = true,
             },
@@ -7255,7 +6925,7 @@ M.ListDatasetsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -7302,12 +6972,9 @@ M.DatasetSummary = {
                 required = true,
             },
         },
-        status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DatasetStatus }),
     },
 }
 
@@ -7316,7 +6983,7 @@ M.ListDatasetsOutput = {
     members = {
         datasetSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.DatasetSummary,
             traits = {
                 required = true,
             },
@@ -7363,7 +7030,7 @@ M.ListExecutionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -7389,21 +7056,16 @@ M.ExecutionSummary = {
         actionType = {
             type = "string",
         },
-        targetResource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        targetResource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TargetResource }),
         targetResourceVersion = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        resolveTo = {
-            type = "structure",
-        },
+        resolveTo = M.ResolveTo,
         executionStartTime = {
             type = "timestamp",
             traits = {
@@ -7413,12 +7075,9 @@ M.ExecutionSummary = {
         executionEndTime = {
             type = "timestamp",
         },
-        executionStatus = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        executionStatus = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ExecutionStatus }),
         executionEntityVersion = {
             type = "string",
         },
@@ -7430,7 +7089,7 @@ M.ListExecutionsOutput = {
     members = {
         executionSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ExecutionSummary,
             traits = {
                 required = true,
             },
@@ -7451,7 +7110,7 @@ M.ListGatewaysInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -7474,15 +7133,13 @@ M.GatewaySummary = {
                 required = true,
             },
         },
-        gatewayPlatform = {
-            type = "structure",
-        },
+        gatewayPlatform = M.GatewayPlatform,
         gatewayVersion = {
             type = "string",
         },
         gatewayCapabilitySummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.GatewayCapabilitySummary,
         },
         creationDate = {
             type = "timestamp",
@@ -7504,7 +7161,7 @@ M.ListGatewaysOutput = {
     members = {
         gatewaySummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.GatewaySummary,
             traits = {
                 required = true,
             },
@@ -7532,7 +7189,7 @@ M.ListInterfaceRelationshipsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -7557,7 +7214,7 @@ M.ListInterfaceRelationshipsOutput = {
     members = {
         interfaceRelationshipSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.InterfaceRelationshipSummary,
             traits = {
                 required = true,
             },
@@ -7578,7 +7235,7 @@ M.ListPortalsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -7619,12 +7276,9 @@ M.PortalSummary = {
         roleArn = {
             type = "string",
         },
-        status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PortalStatus }),
         portalType = {
             type = "string",
         },
@@ -7636,7 +7290,7 @@ M.ListPortalsOutput = {
     members = {
         portalSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.PortalSummary,
         },
         nextToken = {
             type = "string",
@@ -7661,7 +7315,7 @@ M.ListProjectAssetsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -7674,7 +7328,7 @@ M.ListProjectAssetsOutput = {
     members = {
         assetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -7702,7 +7356,7 @@ M.ListProjectsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -7742,7 +7396,7 @@ M.ListProjectsOutput = {
     members = {
         projectSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ProjectSummary,
             traits = {
                 required = true,
             },
@@ -7771,8 +7425,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -7805,7 +7459,7 @@ M.ListTimeSeriesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -7884,7 +7538,7 @@ M.ListTimeSeriesOutput = {
     members = {
         TimeSeriesSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.TimeSeriesSummary,
             traits = {
                 required = true,
             },
@@ -7900,13 +7554,19 @@ M.PropertyMappingConfiguration = {
     members = {
         matchByPropertyName = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         createMissingProperty = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         overrides = {
             type = "list",
-            member_type = "structure",
+            member = M.PropertyMapping,
         },
     },
 }
@@ -7928,12 +7588,9 @@ M.PutAssetModelInterfaceRelationshipInput = {
                 required = true,
             },
         },
-        propertyMappingConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        propertyMappingConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PropertyMappingConfiguration }),
         clientToken = {
             type = "string",
         },
@@ -7961,12 +7618,9 @@ M.PutAssetModelInterfaceRelationshipOutput = {
                 required = true,
             },
         },
-        assetModelStatus = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        assetModelStatus = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AssetModelStatus }),
     },
 }
 
@@ -7997,24 +7651,18 @@ M.PutDefaultEncryptionConfigurationOutput = {
         kmsKeyArn = {
             type = "string",
         },
-        configurationStatus = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        configurationStatus = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConfigurationStatus }),
     },
 }
 
 M.PutLoggingOptionsInput = {
     type = "structure",
     members = {
-        loggingOptions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        loggingOptions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LoggingOptions }),
     },
 }
 
@@ -8031,21 +7679,15 @@ M.PutStorageConfigurationInput = {
                 required = true,
             },
         },
-        multiLayerStorage = {
-            type = "structure",
-        },
+        multiLayerStorage = M.MultiLayerStorage,
         disassociatedDataStorage = {
             type = "string",
         },
-        retentionPeriod = {
-            type = "structure",
-        },
+        retentionPeriod = M.RetentionPeriod,
         warmTier = {
             type = "string",
         },
-        warmTierRetentionPeriod = {
-            type = "structure",
-        },
+        warmTierRetentionPeriod = M.WarmTierRetentionPeriod,
         disallowIngestNullNaN = {
             type = "boolean",
         },
@@ -8061,27 +7703,18 @@ M.PutStorageConfigurationOutput = {
                 required = true,
             },
         },
-        multiLayerStorage = {
-            type = "structure",
-        },
+        multiLayerStorage = M.MultiLayerStorage,
         disassociatedDataStorage = {
             type = "string",
         },
-        retentionPeriod = {
-            type = "structure",
-        },
-        configurationStatus = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        retentionPeriod = M.RetentionPeriod,
+        configurationStatus = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConfigurationStatus }),
         warmTier = {
             type = "string",
         },
-        warmTierRetentionPeriod = {
-            type = "structure",
-        },
+        warmTierRetentionPeriod = M.WarmTierRetentionPeriod,
         disallowIngestNullNaN = {
             type = "boolean",
         },
@@ -8100,8 +7733,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -8138,7 +7771,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -8161,18 +7794,12 @@ M.UpdateAccessPolicyInput = {
                 required = true,
             },
         },
-        accessPolicyIdentity = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        accessPolicyResource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        accessPolicyIdentity = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Identity }),
+        accessPolicyResource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Resource }),
         accessPolicyPermission = {
             type = "string",
             traits = {
@@ -8220,12 +7847,9 @@ M.UpdateAssetInput = {
 M.UpdateAssetOutput = {
     type = "structure",
     members = {
-        assetStatus = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        assetStatus = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AssetStatus }),
     },
 }
 
@@ -8253,15 +7877,15 @@ M.UpdateAssetModelInput = {
         },
         assetModelProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetModelProperty,
         },
         assetModelHierarchies = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetModelHierarchy,
         },
         assetModelCompositeModels = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetModelCompositeModel,
         },
         clientToken = {
             type = "string",
@@ -8290,12 +7914,9 @@ M.UpdateAssetModelInput = {
 M.UpdateAssetModelOutput = {
     type = "structure",
     members = {
-        assetModelStatus = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        assetModelStatus = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AssetModelStatus }),
     },
 }
 
@@ -8333,7 +7954,7 @@ M.UpdateAssetModelCompositeModelInput = {
         },
         assetModelCompositeModelProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetModelProperty,
         },
         ifMatch = {
             type = "string",
@@ -8361,17 +7982,14 @@ M.UpdateAssetModelCompositeModelOutput = {
     members = {
         assetModelCompositeModelPath = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetModelCompositeModelPathSegment,
             traits = {
                 required = true,
             },
         },
-        assetModelStatus = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        assetModelStatus = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AssetModelStatus }),
     },
 }
 
@@ -8414,12 +8032,9 @@ M.UpdateAssetPropertyOutput = {
 M.UpdateComputationModelOutput = {
     type = "structure",
     members = {
-        computationModelStatus = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        computationModelStatus = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ComputationModelStatus }),
     },
 }
 
@@ -8477,12 +8092,9 @@ M.UpdateDatasetInput = {
         datasetDescription = {
             type = "string",
         },
-        datasetSource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        datasetSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DatasetSource }),
         clientToken = {
             type = "string",
         },
@@ -8498,9 +8110,7 @@ M.UpdateDatasetOutput = {
         datasetArn = {
             type = "string",
         },
-        datasetStatus = {
-            type = "structure",
-        },
+        datasetStatus = M.DatasetStatus,
     },
 }
 
@@ -8576,9 +8186,7 @@ M.Image = {
         id = {
             type = "string",
         },
-        file = {
-            type = "structure",
-        },
+        file = M.ImageFile,
     },
 }
 
@@ -8607,9 +8215,7 @@ M.UpdatePortalInput = {
                 required = true,
             },
         },
-        portalLogoImage = {
-            type = "structure",
-        },
+        portalLogoImage = M.Image,
         roleArn = {
             type = "string",
             traits = {
@@ -8622,16 +8228,14 @@ M.UpdatePortalInput = {
         notificationSenderEmail = {
             type = "string",
         },
-        alarms = {
-            type = "structure",
-        },
+        alarms = M.Alarms,
         portalType = {
             type = "string",
         },
         portalTypeConfiguration = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.PortalTypeEntry,
         },
     },
 }
@@ -8639,12 +8243,9 @@ M.UpdatePortalInput = {
 M.UpdatePortalOutput = {
     type = "structure",
     members = {
-        portalStatus = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        portalStatus = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PortalStatus }),
     },
 }
 
@@ -8680,15 +8281,11 @@ M.UpdateProjectOutput = {
 M.ComputationModelDataBindingValue = {
     type = "structure",
     members = {
-        assetModelProperty = {
-            type = "structure",
-        },
-        assetProperty = {
-            type = "structure",
-        },
+        assetModelProperty = M.AssetModelPropertyBindingValue,
+        assetProperty = M.AssetPropertyBindingValue,
         list = {
             type = "list",
-            member_type = "structure",
+            member = M.ComputationModelDataBindingValue,
         },
     },
 }
@@ -8705,16 +8302,13 @@ M.CreateComputationModelInput = {
         computationModelDescription = {
             type = "string",
         },
-        computationModelConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        computationModelConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ComputationModelConfiguration }),
         computationModelDataBinding = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ComputationModelDataBindingValue,
             traits = {
                 required = true,
             },
@@ -8724,8 +8318,8 @@ M.CreateComputationModelInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -8754,16 +8348,13 @@ M.DescribeComputationModelOutput = {
         computationModelDescription = {
             type = "string",
         },
-        computationModelConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        computationModelConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ComputationModelConfiguration }),
         computationModelDataBinding = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ComputationModelDataBindingValue,
             traits = {
                 required = true,
             },
@@ -8780,12 +8371,9 @@ M.DescribeComputationModelOutput = {
                 required = true,
             },
         },
-        computationModelStatus = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        computationModelStatus = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ComputationModelStatus }),
         computationModelVersion = {
             type = "string",
             traits = {
@@ -8794,7 +8382,7 @@ M.DescribeComputationModelOutput = {
         },
         actionDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.ActionDefinition,
             traits = {
                 required = true,
             },
@@ -8821,16 +8409,13 @@ M.UpdateComputationModelInput = {
         computationModelDescription = {
             type = "string",
         },
-        computationModelConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        computationModelConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ComputationModelConfiguration }),
         computationModelDataBinding = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ComputationModelDataBindingValue,
             traits = {
                 required = true,
             },
@@ -8849,11 +8434,9 @@ M.Datum = {
         },
         arrayValue = {
             type = "list",
-            member_type = "structure",
+            member = M.Datum,
         },
-        rowValue = {
-            type = "structure",
-        },
+        rowValue = M.Row,
         nullValue = {
             type = "boolean",
         },
@@ -8865,7 +8448,7 @@ M.Row = {
     members = {
         data = {
             type = "list",
-            member_type = "structure",
+            member = M.Datum,
             traits = {
                 required = true,
             },
@@ -8878,11 +8461,11 @@ M.ExecuteQueryOutput = {
     members = {
         columns = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnInfo,
         },
         rows = {
             type = "list",
-            member_type = "structure",
+            member = M.Row,
         },
         nextToken = {
             type = "string",

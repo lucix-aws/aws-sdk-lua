@@ -16,7 +16,7 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "ResourceExplorer"
-    cfg.signing_name = "resourceexplorer"
+    cfg.signing_name = "resource-explorer-2"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end

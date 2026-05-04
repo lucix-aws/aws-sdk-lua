@@ -4,10 +4,10 @@ M.AcceleratorCountRequest = {
     type = "structure",
     members = {
         Min = {
-            type = "number",
+            type = "integer",
         },
         Max = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -33,10 +33,10 @@ M.AcceleratorTotalMemoryMiBRequest = {
     type = "structure",
     members = {
         Min = {
-            type = "number",
+            type = "integer",
         },
         Max = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -119,7 +119,7 @@ M.Activity = {
             type = "string",
         },
         Progress = {
-            type = "number",
+            type = "integer",
         },
         Details = {
             type = "string",
@@ -159,7 +159,7 @@ M.AlarmSpecification = {
     members = {
         Alarms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -179,7 +179,7 @@ M.AttachInstancesInput = {
     members = {
         InstanceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AutoScalingGroupName = {
             type = "string",
@@ -225,7 +225,7 @@ M.AttachLoadBalancersInput = {
         },
         LoadBalancerNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -258,7 +258,7 @@ M.AttachLoadBalancerTargetGroupsInput = {
         },
         TargetGroupARNs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -296,7 +296,7 @@ M.AttachTrafficSourcesInput = {
         },
         TrafficSources = {
             type = "list",
-            member_type = "structure",
+            member = M.TrafficSourceIdentifier,
             traits = {
                 required = true,
             },
@@ -322,7 +322,7 @@ M.BatchDeleteScheduledActionInput = {
         },
         ScheduledActionNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -353,7 +353,7 @@ M.BatchDeleteScheduledActionOutput = {
     members = {
         FailedScheduledActions = {
             type = "list",
-            member_type = "structure",
+            member = M.FailedScheduledUpdateGroupActionRequest,
         },
     },
 }
@@ -377,13 +377,13 @@ M.ScheduledUpdateGroupActionRequest = {
             type = "string",
         },
         MinSize = {
-            type = "number",
+            type = "integer",
         },
         MaxSize = {
-            type = "number",
+            type = "integer",
         },
         DesiredCapacity = {
-            type = "number",
+            type = "integer",
         },
         TimeZone = {
             type = "string",
@@ -402,7 +402,7 @@ M.BatchPutScheduledUpdateGroupActionInput = {
         },
         ScheduledUpdateGroupActions = {
             type = "list",
-            member_type = "structure",
+            member = M.ScheduledUpdateGroupActionRequest,
             traits = {
                 required = true,
             },
@@ -415,7 +415,7 @@ M.BatchPutScheduledUpdateGroupActionOutput = {
     members = {
         FailedScheduledUpdateGroupActions = {
             type = "list",
-            member_type = "structure",
+            member = M.FailedScheduledUpdateGroupActionRequest,
         },
     },
 }
@@ -531,11 +531,11 @@ M.CapacityReservationTarget = {
     members = {
         CapacityReservationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CapacityReservationResourceGroupArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -546,9 +546,7 @@ M.CapacityReservationSpecification = {
         CapacityReservationPreference = {
             type = "string",
         },
-        CapacityReservationTarget = {
-            type = "structure",
-        },
+        CapacityReservationTarget = M.CapacityReservationTarget,
     },
 }
 
@@ -575,9 +573,7 @@ M.RetentionTriggers = {
 M.InstanceLifecyclePolicy = {
     type = "structure",
     members = {
-        RetentionTriggers = {
-            type = "structure",
-        },
+        RetentionTriggers = M.RetentionTriggers,
     },
 }
 
@@ -585,10 +581,10 @@ M.InstanceMaintenancePolicy = {
     type = "structure",
     members = {
         MinHealthyPercentage = {
-            type = "number",
+            type = "integer",
         },
         MaxHealthyPercentage = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -627,7 +623,7 @@ M.LifecycleHookSpecification = {
             type = "string",
         },
         HeartbeatTimeout = {
-            type = "number",
+            type = "integer",
         },
         DefaultResult = {
             type = "string",
@@ -648,16 +644,16 @@ M.InstancesDistribution = {
             type = "string",
         },
         OnDemandBaseCapacity = {
-            type = "number",
+            type = "integer",
         },
         OnDemandPercentageAboveBaseCapacity = {
-            type = "number",
+            type = "integer",
         },
         SpotAllocationStrategy = {
             type = "string",
         },
         SpotInstancePools = {
-            type = "number",
+            type = "integer",
         },
         SpotMaxPrice = {
             type = "string",
@@ -675,10 +671,10 @@ M.BaselineEbsBandwidthMbpsRequest = {
     type = "structure",
     members = {
         Min = {
-            type = "number",
+            type = "integer",
         },
         Max = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -697,7 +693,7 @@ M.CpuPerformanceFactorRequest = {
     members = {
         References = {
             type = "list",
-            member_type = "structure",
+            member = M.PerformanceFactorReferenceRequest,
             traits = {
                 xml_name = "Reference",
             },
@@ -708,9 +704,7 @@ M.CpuPerformanceFactorRequest = {
 M.BaselinePerformanceFactorsRequest = {
     type = "structure",
     members = {
-        Cpu = {
-            type = "structure",
-        },
+        Cpu = M.CpuPerformanceFactorRequest,
     },
 }
 
@@ -747,10 +741,10 @@ M.MemoryGiBPerVCpuRequest = {
     type = "structure",
     members = {
         Min = {
-            type = "number",
+            type = "double",
         },
         Max = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -759,13 +753,13 @@ M.MemoryMiBRequest = {
     type = "structure",
     members = {
         Min = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Max = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -774,10 +768,10 @@ M.NetworkBandwidthGbpsRequest = {
     type = "structure",
     members = {
         Min = {
-            type = "number",
+            type = "double",
         },
         Max = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -786,10 +780,10 @@ M.NetworkInterfaceCountRequest = {
     type = "structure",
     members = {
         Min = {
-            type = "number",
+            type = "integer",
         },
         Max = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -798,10 +792,10 @@ M.TotalLocalStorageGBRequest = {
     type = "structure",
     members = {
         Min = {
-            type = "number",
+            type = "double",
         },
         Max = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -810,13 +804,13 @@ M.VCpuCountRequest = {
     type = "structure",
     members = {
         Min = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Max = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -824,41 +818,33 @@ M.VCpuCountRequest = {
 M.InstanceRequirements = {
     type = "structure",
     members = {
-        VCpuCount = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        MemoryMiB = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        VCpuCount = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VCpuCountRequest }),
+        MemoryMiB = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MemoryMiBRequest }),
         CpuManufacturers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        MemoryGiBPerVCpu = {
-            type = "structure",
-        },
+        MemoryGiBPerVCpu = M.MemoryGiBPerVCpuRequest,
         ExcludedInstanceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         InstanceGenerations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SpotMaxPricePercentageOverLowestPrice = {
-            type = "number",
+            type = "integer",
         },
         MaxSpotPriceAsPercentageOfOptimalOnDemandPrice = {
-            type = "number",
+            type = "integer",
         },
         OnDemandMaxPricePercentageOverLowestPrice = {
-            type = "number",
+            type = "integer",
         },
         BareMetal = {
             type = "string",
@@ -869,50 +855,36 @@ M.InstanceRequirements = {
         RequireHibernateSupport = {
             type = "boolean",
         },
-        NetworkInterfaceCount = {
-            type = "structure",
-        },
+        NetworkInterfaceCount = M.NetworkInterfaceCountRequest,
         LocalStorage = {
             type = "string",
         },
         LocalStorageTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        TotalLocalStorageGB = {
-            type = "structure",
-        },
-        BaselineEbsBandwidthMbps = {
-            type = "structure",
-        },
+        TotalLocalStorageGB = M.TotalLocalStorageGBRequest,
+        BaselineEbsBandwidthMbps = M.BaselineEbsBandwidthMbpsRequest,
         AcceleratorTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        AcceleratorCount = {
-            type = "structure",
-        },
+        AcceleratorCount = M.AcceleratorCountRequest,
         AcceleratorManufacturers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AcceleratorNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        AcceleratorTotalMemoryMiB = {
-            type = "structure",
-        },
-        NetworkBandwidthGbps = {
-            type = "structure",
-        },
+        AcceleratorTotalMemoryMiB = M.AcceleratorTotalMemoryMiBRequest,
+        NetworkBandwidthGbps = M.NetworkBandwidthGbpsRequest,
         AllowedInstanceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        BaselinePerformanceFactors = {
-            type = "structure",
-        },
+        BaselinePerformanceFactors = M.BaselinePerformanceFactorsRequest,
     },
 }
 
@@ -925,12 +897,8 @@ M.LaunchTemplateOverrides = {
         WeightedCapacity = {
             type = "string",
         },
-        LaunchTemplateSpecification = {
-            type = "structure",
-        },
-        InstanceRequirements = {
-            type = "structure",
-        },
+        LaunchTemplateSpecification = M.LaunchTemplateSpecification,
+        InstanceRequirements = M.InstanceRequirements,
         ImageId = {
             type = "string",
         },
@@ -940,12 +908,10 @@ M.LaunchTemplateOverrides = {
 M.LaunchTemplate = {
     type = "structure",
     members = {
-        LaunchTemplateSpecification = {
-            type = "structure",
-        },
+        LaunchTemplateSpecification = M.LaunchTemplateSpecification,
         Overrides = {
             type = "list",
-            member_type = "structure",
+            member = M.LaunchTemplateOverrides,
         },
     },
 }
@@ -953,12 +919,8 @@ M.LaunchTemplate = {
 M.MixedInstancesPolicy = {
     type = "structure",
     members = {
-        LaunchTemplate = {
-            type = "structure",
-        },
-        InstancesDistribution = {
-            type = "structure",
-        },
+        LaunchTemplate = M.LaunchTemplate,
+        InstancesDistribution = M.InstancesDistribution,
     },
 }
 
@@ -998,54 +960,50 @@ M.CreateAutoScalingGroupInput = {
         LaunchConfigurationName = {
             type = "string",
         },
-        LaunchTemplate = {
-            type = "structure",
-        },
-        MixedInstancesPolicy = {
-            type = "structure",
-        },
+        LaunchTemplate = M.LaunchTemplateSpecification,
+        MixedInstancesPolicy = M.MixedInstancesPolicy,
         InstanceId = {
             type = "string",
         },
         MinSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         MaxSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         DesiredCapacity = {
-            type = "number",
+            type = "integer",
         },
         DefaultCooldown = {
-            type = "number",
+            type = "integer",
         },
         AvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AvailabilityZoneIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         LoadBalancerNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TargetGroupARNs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         HealthCheckType = {
             type = "string",
         },
         HealthCheckGracePeriod = {
-            type = "number",
+            type = "integer",
         },
         PlacementGroup = {
             type = "string",
@@ -1055,7 +1013,7 @@ M.CreateAutoScalingGroupInput = {
         },
         TerminationPolicies = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NewInstancesProtectedFromScaleIn = {
             type = "boolean",
@@ -1065,20 +1023,20 @@ M.CreateAutoScalingGroupInput = {
         },
         LifecycleHookSpecificationList = {
             type = "list",
-            member_type = "structure",
+            member = M.LifecycleHookSpecification,
         },
         DeletionProtection = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ServiceLinkedRoleARN = {
             type = "string",
         },
         MaxInstanceLifetime = {
-            type = "number",
+            type = "integer",
         },
         Context = {
             type = "string",
@@ -1087,30 +1045,20 @@ M.CreateAutoScalingGroupInput = {
             type = "string",
         },
         DefaultInstanceWarmup = {
-            type = "number",
+            type = "integer",
         },
         TrafficSources = {
             type = "list",
-            member_type = "structure",
+            member = M.TrafficSourceIdentifier,
         },
-        InstanceMaintenancePolicy = {
-            type = "structure",
-        },
-        AvailabilityZoneDistribution = {
-            type = "structure",
-        },
-        AvailabilityZoneImpairmentPolicy = {
-            type = "structure",
-        },
+        InstanceMaintenancePolicy = M.InstanceMaintenancePolicy,
+        AvailabilityZoneDistribution = M.AvailabilityZoneDistribution,
+        AvailabilityZoneImpairmentPolicy = M.AvailabilityZoneImpairmentPolicy,
         SkipZonalShiftValidation = {
             type = "boolean",
         },
-        CapacityReservationSpecification = {
-            type = "structure",
-        },
-        InstanceLifecyclePolicy = {
-            type = "structure",
-        },
+        CapacityReservationSpecification = M.CapacityReservationSpecification,
+        InstanceLifecyclePolicy = M.InstanceLifecyclePolicy,
     },
 }
 
@@ -1125,7 +1073,7 @@ M.Ebs = {
             type = "string",
         },
         VolumeSize = {
-            type = "number",
+            type = "integer",
         },
         VolumeType = {
             type = "string",
@@ -1134,13 +1082,13 @@ M.Ebs = {
             type = "boolean",
         },
         Iops = {
-            type = "number",
+            type = "integer",
         },
         Encrypted = {
             type = "boolean",
         },
         Throughput = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1157,9 +1105,7 @@ M.BlockDeviceMapping = {
                 required = true,
             },
         },
-        Ebs = {
-            type = "structure",
-        },
+        Ebs = M.Ebs,
         NoDevice = {
             type = "boolean",
         },
@@ -1192,7 +1138,7 @@ M.InstanceMetadataOptions = {
             type = "string",
         },
         HttpPutResponseHopLimit = {
-            type = "number",
+            type = "integer",
         },
         HttpEndpoint = {
             type = "string",
@@ -1217,14 +1163,14 @@ M.CreateLaunchConfigurationInput = {
         },
         SecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ClassicLinkVPCId = {
             type = "string",
         },
         ClassicLinkVPCSecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         UserData = {
             type = "string",
@@ -1243,11 +1189,9 @@ M.CreateLaunchConfigurationInput = {
         },
         BlockDeviceMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.BlockDeviceMapping,
         },
-        InstanceMonitoring = {
-            type = "structure",
-        },
+        InstanceMonitoring = M.InstanceMonitoring,
         SpotPrice = {
             type = "string",
         },
@@ -1263,9 +1207,7 @@ M.CreateLaunchConfigurationInput = {
         PlacementTenancy = {
             type = "string",
         },
-        MetadataOptions = {
-            type = "structure",
-        },
+        MetadataOptions = M.InstanceMetadataOptions,
     },
 }
 
@@ -1278,7 +1220,7 @@ M.CreateOrUpdateTagsInput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -1435,7 +1377,7 @@ M.DeleteTagsInput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -1474,16 +1416,16 @@ M.DescribeAccountLimitsOutput = {
     type = "structure",
     members = {
         MaxNumberOfAutoScalingGroups = {
-            type = "number",
+            type = "integer",
         },
         MaxNumberOfLaunchConfigurations = {
-            type = "number",
+            type = "integer",
         },
         NumberOfAutoScalingGroups = {
-            type = "number",
+            type = "integer",
         },
         NumberOfLaunchConfigurations = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1497,7 +1439,7 @@ M.DescribeAdjustmentTypesOutput = {
     members = {
         AdjustmentTypes = {
             type = "list",
-            member_type = "structure",
+            member = M.AdjustmentType,
         },
     },
 }
@@ -1510,7 +1452,7 @@ M.Filter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1520,7 +1462,7 @@ M.DescribeAutoScalingGroupsInput = {
     members = {
         AutoScalingGroupNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IncludeInstances = {
             type = "boolean",
@@ -1529,11 +1471,11 @@ M.DescribeAutoScalingGroupsInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
     },
 }
@@ -1619,9 +1561,7 @@ M.Instance = {
         LaunchConfigurationName = {
             type = "string",
         },
-        LaunchTemplate = {
-            type = "structure",
-        },
+        LaunchTemplate = M.LaunchTemplateSpecification,
         ImageId = {
             type = "string",
         },
@@ -1693,10 +1633,10 @@ M.WarmPoolConfiguration = {
     type = "structure",
     members = {
         MaxGroupPreparedCapacity = {
-            type = "number",
+            type = "integer",
         },
         MinSize = {
-            type = "number",
+            type = "integer",
         },
         PoolState = {
             type = "string",
@@ -1704,9 +1644,7 @@ M.WarmPoolConfiguration = {
         Status = {
             type = "string",
         },
-        InstanceReusePolicy = {
-            type = "structure",
-        },
+        InstanceReusePolicy = M.InstanceReusePolicy,
     },
 }
 
@@ -1725,57 +1663,53 @@ M.AutoScalingGroup = {
         LaunchConfigurationName = {
             type = "string",
         },
-        LaunchTemplate = {
-            type = "structure",
-        },
-        MixedInstancesPolicy = {
-            type = "structure",
-        },
+        LaunchTemplate = M.LaunchTemplateSpecification,
+        MixedInstancesPolicy = M.MixedInstancesPolicy,
         MinSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         MaxSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         DesiredCapacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         PredictedCapacity = {
-            type = "number",
+            type = "integer",
         },
         DefaultCooldown = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         AvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         AvailabilityZoneIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         LoadBalancerNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TargetGroupARNs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         HealthCheckType = {
             type = "string",
@@ -1784,11 +1718,11 @@ M.AutoScalingGroup = {
             },
         },
         HealthCheckGracePeriod = {
-            type = "number",
+            type = "integer",
         },
         Instances = {
             type = "list",
-            member_type = "structure",
+            member = M.Instance,
         },
         CreatedTime = {
             type = "timestamp",
@@ -1798,7 +1732,7 @@ M.AutoScalingGroup = {
         },
         SuspendedProcesses = {
             type = "list",
-            member_type = "structure",
+            member = M.SuspendedProcess,
         },
         PlacementGroup = {
             type = "string",
@@ -1808,18 +1742,18 @@ M.AutoScalingGroup = {
         },
         EnabledMetrics = {
             type = "list",
-            member_type = "structure",
+            member = M.EnabledMetric,
         },
         Status = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.TagDescription,
         },
         TerminationPolicies = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NewInstancesProtectedFromScaleIn = {
             type = "boolean",
@@ -1828,16 +1762,14 @@ M.AutoScalingGroup = {
             type = "string",
         },
         MaxInstanceLifetime = {
-            type = "number",
+            type = "integer",
         },
         CapacityRebalance = {
             type = "boolean",
         },
-        WarmPoolConfiguration = {
-            type = "structure",
-        },
+        WarmPoolConfiguration = M.WarmPoolConfiguration,
         WarmPoolSize = {
-            type = "number",
+            type = "integer",
         },
         Context = {
             type = "string",
@@ -1846,30 +1778,20 @@ M.AutoScalingGroup = {
             type = "string",
         },
         DefaultInstanceWarmup = {
-            type = "number",
+            type = "integer",
         },
         TrafficSources = {
             type = "list",
-            member_type = "structure",
+            member = M.TrafficSourceIdentifier,
         },
-        InstanceMaintenancePolicy = {
-            type = "structure",
-        },
+        InstanceMaintenancePolicy = M.InstanceMaintenancePolicy,
         DeletionProtection = {
             type = "string",
         },
-        AvailabilityZoneDistribution = {
-            type = "structure",
-        },
-        AvailabilityZoneImpairmentPolicy = {
-            type = "structure",
-        },
-        CapacityReservationSpecification = {
-            type = "structure",
-        },
-        InstanceLifecyclePolicy = {
-            type = "structure",
-        },
+        AvailabilityZoneDistribution = M.AvailabilityZoneDistribution,
+        AvailabilityZoneImpairmentPolicy = M.AvailabilityZoneImpairmentPolicy,
+        CapacityReservationSpecification = M.CapacityReservationSpecification,
+        InstanceLifecyclePolicy = M.InstanceLifecyclePolicy,
     },
 }
 
@@ -1878,7 +1800,7 @@ M.DescribeAutoScalingGroupsOutput = {
     members = {
         AutoScalingGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.AutoScalingGroup,
             traits = {
                 required = true,
             },
@@ -1904,10 +1826,10 @@ M.DescribeAutoScalingInstancesInput = {
     members = {
         InstanceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1957,9 +1879,7 @@ M.AutoScalingInstanceDetails = {
         LaunchConfigurationName = {
             type = "string",
         },
-        LaunchTemplate = {
-            type = "structure",
-        },
+        LaunchTemplate = M.LaunchTemplateSpecification,
         ImageId = {
             type = "string",
         },
@@ -1980,7 +1900,7 @@ M.DescribeAutoScalingInstancesOutput = {
     members = {
         AutoScalingInstances = {
             type = "list",
-            member_type = "structure",
+            member = M.AutoScalingInstanceDetails,
         },
         NextToken = {
             type = "string",
@@ -1997,7 +1917,7 @@ M.DescribeAutoScalingNotificationTypesOutput = {
     members = {
         AutoScalingNotificationTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2013,13 +1933,13 @@ M.DescribeInstanceRefreshesInput = {
         },
         InstanceRefreshIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2027,12 +1947,8 @@ M.DescribeInstanceRefreshesInput = {
 M.DesiredConfiguration = {
     type = "structure",
     members = {
-        LaunchTemplate = {
-            type = "structure",
-        },
-        MixedInstancesPolicy = {
-            type = "structure",
-        },
+        LaunchTemplate = M.LaunchTemplateSpecification,
+        MixedInstancesPolicy = M.MixedInstancesPolicy,
     },
 }
 
@@ -2052,17 +1968,17 @@ M.RefreshPreferences = {
     type = "structure",
     members = {
         MinHealthyPercentage = {
-            type = "number",
+            type = "integer",
         },
         InstanceWarmup = {
-            type = "number",
+            type = "integer",
         },
         CheckpointPercentages = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
         },
         CheckpointDelay = {
-            type = "number",
+            type = "integer",
         },
         SkipMatching = {
             type = "boolean",
@@ -2076,14 +1992,12 @@ M.RefreshPreferences = {
         StandbyInstances = {
             type = "string",
         },
-        AlarmSpecification = {
-            type = "structure",
-        },
+        AlarmSpecification = M.AlarmSpecification,
         MaxHealthyPercentage = {
-            type = "number",
+            type = "integer",
         },
         BakeTime = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2092,10 +2006,10 @@ M.InstanceRefreshLivePoolProgress = {
     type = "structure",
     members = {
         PercentageComplete = {
-            type = "number",
+            type = "integer",
         },
         InstancesToUpdate = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2104,10 +2018,10 @@ M.InstanceRefreshWarmPoolProgress = {
     type = "structure",
     members = {
         PercentageComplete = {
-            type = "number",
+            type = "integer",
         },
         InstancesToUpdate = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2115,12 +2029,8 @@ M.InstanceRefreshWarmPoolProgress = {
 M.InstanceRefreshProgressDetails = {
     type = "structure",
     members = {
-        LivePoolProgress = {
-            type = "structure",
-        },
-        WarmPoolProgress = {
-            type = "structure",
-        },
+        LivePoolProgress = M.InstanceRefreshLivePoolProgress,
+        WarmPoolProgress = M.InstanceRefreshWarmPoolProgress,
     },
 }
 
@@ -2134,14 +2044,12 @@ M.RollbackDetails = {
             type = "timestamp",
         },
         PercentageCompleteOnRollback = {
-            type = "number",
+            type = "integer",
         },
         InstancesToUpdateOnRollback = {
-            type = "number",
+            type = "integer",
         },
-        ProgressDetailsOnRollback = {
-            type = "structure",
-        },
+        ProgressDetailsOnRollback = M.InstanceRefreshProgressDetails,
     },
 }
 
@@ -2185,23 +2093,15 @@ M.InstanceRefresh = {
             type = "timestamp",
         },
         PercentageComplete = {
-            type = "number",
+            type = "integer",
         },
         InstancesToUpdate = {
-            type = "number",
+            type = "integer",
         },
-        ProgressDetails = {
-            type = "structure",
-        },
-        Preferences = {
-            type = "structure",
-        },
-        DesiredConfiguration = {
-            type = "structure",
-        },
-        RollbackDetails = {
-            type = "structure",
-        },
+        ProgressDetails = M.InstanceRefreshProgressDetails,
+        Preferences = M.RefreshPreferences,
+        DesiredConfiguration = M.DesiredConfiguration,
+        RollbackDetails = M.RollbackDetails,
         Strategy = {
             type = "string",
         },
@@ -2213,7 +2113,7 @@ M.DescribeInstanceRefreshesOutput = {
     members = {
         InstanceRefreshes = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceRefresh,
         },
         NextToken = {
             type = "string",
@@ -2226,13 +2126,13 @@ M.DescribeLaunchConfigurationsInput = {
     members = {
         LaunchConfigurationNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2260,14 +2160,14 @@ M.LaunchConfiguration = {
         },
         SecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ClassicLinkVPCId = {
             type = "string",
         },
         ClassicLinkVPCSecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         UserData = {
             type = "string",
@@ -2286,11 +2186,9 @@ M.LaunchConfiguration = {
         },
         BlockDeviceMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.BlockDeviceMapping,
         },
-        InstanceMonitoring = {
-            type = "structure",
-        },
+        InstanceMonitoring = M.InstanceMonitoring,
         SpotPrice = {
             type = "string",
         },
@@ -2312,9 +2210,7 @@ M.LaunchConfiguration = {
         PlacementTenancy = {
             type = "string",
         },
-        MetadataOptions = {
-            type = "structure",
-        },
+        MetadataOptions = M.InstanceMetadataOptions,
     },
 }
 
@@ -2323,7 +2219,7 @@ M.DescribeLaunchConfigurationsOutput = {
     members = {
         LaunchConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.LaunchConfiguration,
             traits = {
                 required = true,
             },
@@ -2345,7 +2241,7 @@ M.DescribeLifecycleHooksInput = {
         },
         LifecycleHookNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2372,10 +2268,10 @@ M.LifecycleHook = {
             type = "string",
         },
         HeartbeatTimeout = {
-            type = "number",
+            type = "integer",
         },
         GlobalTimeout = {
-            type = "number",
+            type = "integer",
         },
         DefaultResult = {
             type = "string",
@@ -2388,7 +2284,7 @@ M.DescribeLifecycleHooksOutput = {
     members = {
         LifecycleHooks = {
             type = "list",
-            member_type = "structure",
+            member = M.LifecycleHook,
         },
     },
 }
@@ -2402,7 +2298,7 @@ M.DescribeLifecycleHookTypesOutput = {
     members = {
         LifecycleHookTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2420,7 +2316,7 @@ M.DescribeLoadBalancersInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2442,7 +2338,7 @@ M.DescribeLoadBalancersOutput = {
     members = {
         LoadBalancers = {
             type = "list",
-            member_type = "structure",
+            member = M.LoadBalancerState,
         },
         NextToken = {
             type = "string",
@@ -2463,7 +2359,7 @@ M.DescribeLoadBalancerTargetGroupsInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2485,7 +2381,7 @@ M.DescribeLoadBalancerTargetGroupsOutput = {
     members = {
         LoadBalancerTargetGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.LoadBalancerTargetGroupState,
         },
         NextToken = {
             type = "string",
@@ -2520,11 +2416,11 @@ M.DescribeMetricCollectionTypesOutput = {
     members = {
         Metrics = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricCollectionType,
         },
         Granularities = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricGranularityType,
         },
     },
 }
@@ -2534,13 +2430,13 @@ M.DescribeNotificationConfigurationsInput = {
     members = {
         AutoScalingGroupNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2565,7 +2461,7 @@ M.DescribeNotificationConfigurationsOutput = {
     members = {
         NotificationConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.NotificationConfiguration,
             traits = {
                 required = true,
             },
@@ -2584,17 +2480,17 @@ M.DescribePoliciesInput = {
         },
         PolicyNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         PolicyTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2639,7 +2535,7 @@ M.Metric = {
         },
         Dimensions = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricDimension,
         },
     },
 }
@@ -2647,12 +2543,9 @@ M.Metric = {
 M.MetricStat = {
     type = "structure",
     members = {
-        Metric = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Metric = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Metric }),
         Stat = {
             type = "string",
             traits = {
@@ -2677,9 +2570,7 @@ M.MetricDataQuery = {
         Expression = {
             type = "string",
         },
-        MetricStat = {
-            type = "structure",
-        },
+        MetricStat = M.MetricStat,
         Label = {
             type = "string",
         },
@@ -2694,7 +2585,7 @@ M.PredictiveScalingCustomizedCapacityMetric = {
     members = {
         MetricDataQueries = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricDataQuery,
             traits = {
                 required = true,
             },
@@ -2707,7 +2598,7 @@ M.PredictiveScalingCustomizedLoadMetric = {
     members = {
         MetricDataQueries = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricDataQuery,
             traits = {
                 required = true,
             },
@@ -2720,7 +2611,7 @@ M.PredictiveScalingCustomizedScalingMetric = {
     members = {
         MetricDataQueries = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricDataQuery,
             traits = {
                 required = true,
             },
@@ -2798,29 +2689,17 @@ M.PredictiveScalingMetricSpecification = {
     type = "structure",
     members = {
         TargetValue = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
-        PredefinedMetricPairSpecification = {
-            type = "structure",
-        },
-        PredefinedScalingMetricSpecification = {
-            type = "structure",
-        },
-        PredefinedLoadMetricSpecification = {
-            type = "structure",
-        },
-        CustomizedScalingMetricSpecification = {
-            type = "structure",
-        },
-        CustomizedLoadMetricSpecification = {
-            type = "structure",
-        },
-        CustomizedCapacityMetricSpecification = {
-            type = "structure",
-        },
+        PredefinedMetricPairSpecification = M.PredictiveScalingPredefinedMetricPair,
+        PredefinedScalingMetricSpecification = M.PredictiveScalingPredefinedScalingMetric,
+        PredefinedLoadMetricSpecification = M.PredictiveScalingPredefinedLoadMetric,
+        CustomizedScalingMetricSpecification = M.PredictiveScalingCustomizedScalingMetric,
+        CustomizedLoadMetricSpecification = M.PredictiveScalingCustomizedLoadMetric,
+        CustomizedCapacityMetricSpecification = M.PredictiveScalingCustomizedCapacityMetric,
     },
 }
 
@@ -2834,7 +2713,7 @@ M.PredictiveScalingConfiguration = {
     members = {
         MetricSpecifications = {
             type = "list",
-            member_type = "structure",
+            member = M.PredictiveScalingMetricSpecification,
             traits = {
                 required = true,
             },
@@ -2843,13 +2722,13 @@ M.PredictiveScalingConfiguration = {
             type = "string",
         },
         SchedulingBufferTime = {
-            type = "number",
+            type = "integer",
         },
         MaxCapacityBreachBehavior = {
             type = "string",
         },
         MaxCapacityBuffer = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2858,13 +2737,13 @@ M.StepAdjustment = {
     type = "structure",
     members = {
         MetricIntervalLowerBound = {
-            type = "number",
+            type = "double",
         },
         MetricIntervalUpperBound = {
-            type = "number",
+            type = "double",
         },
         ScalingAdjustment = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -2875,12 +2754,9 @@ M.StepAdjustment = {
 M.TargetTrackingMetricStat = {
     type = "structure",
     members = {
-        Metric = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Metric = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Metric }),
         Stat = {
             type = "string",
             traits = {
@@ -2891,7 +2767,7 @@ M.TargetTrackingMetricStat = {
             type = "string",
         },
         Period = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2908,14 +2784,12 @@ M.TargetTrackingMetricDataQuery = {
         Expression = {
             type = "string",
         },
-        MetricStat = {
-            type = "structure",
-        },
+        MetricStat = M.TargetTrackingMetricStat,
         Label = {
             type = "string",
         },
         Period = {
-            type = "number",
+            type = "integer",
         },
         ReturnData = {
             type = "boolean",
@@ -2942,7 +2816,7 @@ M.CustomizedMetricSpecification = {
         },
         Dimensions = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricDimension,
         },
         Statistic = {
             type = "string",
@@ -2951,11 +2825,11 @@ M.CustomizedMetricSpecification = {
             type = "string",
         },
         Period = {
-            type = "number",
+            type = "integer",
         },
         Metrics = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetTrackingMetricDataQuery,
         },
     },
 }
@@ -2985,14 +2859,10 @@ M.PredefinedMetricSpecification = {
 M.TargetTrackingConfiguration = {
     type = "structure",
     members = {
-        PredefinedMetricSpecification = {
-            type = "structure",
-        },
-        CustomizedMetricSpecification = {
-            type = "structure",
-        },
+        PredefinedMetricSpecification = M.PredefinedMetricSpecification,
+        CustomizedMetricSpecification = M.CustomizedMetricSpecification,
         TargetValue = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -3022,40 +2892,36 @@ M.ScalingPolicy = {
             type = "string",
         },
         MinAdjustmentStep = {
-            type = "number",
+            type = "integer",
         },
         MinAdjustmentMagnitude = {
-            type = "number",
+            type = "integer",
         },
         ScalingAdjustment = {
-            type = "number",
+            type = "integer",
         },
         Cooldown = {
-            type = "number",
+            type = "integer",
         },
         StepAdjustments = {
             type = "list",
-            member_type = "structure",
+            member = M.StepAdjustment,
         },
         MetricAggregationType = {
             type = "string",
         },
         EstimatedInstanceWarmup = {
-            type = "number",
+            type = "integer",
         },
         Alarms = {
             type = "list",
-            member_type = "structure",
+            member = M.Alarm,
         },
-        TargetTrackingConfiguration = {
-            type = "structure",
-        },
+        TargetTrackingConfiguration = M.TargetTrackingConfiguration,
         Enabled = {
             type = "boolean",
         },
-        PredictiveScalingConfiguration = {
-            type = "structure",
-        },
+        PredictiveScalingConfiguration = M.PredictiveScalingConfiguration,
     },
 }
 
@@ -3064,7 +2930,7 @@ M.DescribePoliciesOutput = {
     members = {
         ScalingPolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.ScalingPolicy,
         },
         NextToken = {
             type = "string",
@@ -3077,7 +2943,7 @@ M.DescribeScalingActivitiesInput = {
     members = {
         ActivityIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AutoScalingGroupName = {
             type = "string",
@@ -3086,14 +2952,14 @@ M.DescribeScalingActivitiesInput = {
             type = "boolean",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
     },
 }
@@ -3103,7 +2969,7 @@ M.DescribeScalingActivitiesOutput = {
     members = {
         Activities = {
             type = "list",
-            member_type = "structure",
+            member = M.Activity,
             traits = {
                 required = true,
             },
@@ -3135,7 +3001,7 @@ M.DescribeScalingProcessTypesOutput = {
     members = {
         Processes = {
             type = "list",
-            member_type = "structure",
+            member = M.ProcessType,
         },
     },
 }
@@ -3148,7 +3014,7 @@ M.DescribeScheduledActionsInput = {
         },
         ScheduledActionNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         StartTime = {
             type = "timestamp",
@@ -3160,7 +3026,7 @@ M.DescribeScheduledActionsInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3190,13 +3056,13 @@ M.ScheduledUpdateGroupAction = {
             type = "string",
         },
         MinSize = {
-            type = "number",
+            type = "integer",
         },
         MaxSize = {
-            type = "number",
+            type = "integer",
         },
         DesiredCapacity = {
-            type = "number",
+            type = "integer",
         },
         TimeZone = {
             type = "string",
@@ -3209,7 +3075,7 @@ M.DescribeScheduledActionsOutput = {
     members = {
         ScheduledUpdateGroupActions = {
             type = "list",
-            member_type = "structure",
+            member = M.ScheduledUpdateGroupAction,
         },
         NextToken = {
             type = "string",
@@ -3222,13 +3088,13 @@ M.DescribeTagsInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         NextToken = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3238,7 +3104,7 @@ M.DescribeTagsOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.TagDescription,
         },
         NextToken = {
             type = "string",
@@ -3255,7 +3121,7 @@ M.DescribeTerminationPolicyTypesOutput = {
     members = {
         TerminationPolicyTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3276,7 +3142,7 @@ M.DescribeTrafficSourcesInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3304,7 +3170,7 @@ M.DescribeTrafficSourcesOutput = {
     members = {
         TrafficSources = {
             type = "list",
-            member_type = "structure",
+            member = M.TrafficSourceState,
         },
         NextToken = {
             type = "string",
@@ -3322,7 +3188,7 @@ M.DescribeWarmPoolInput = {
             },
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3333,12 +3199,10 @@ M.DescribeWarmPoolInput = {
 M.DescribeWarmPoolOutput = {
     type = "structure",
     members = {
-        WarmPoolConfiguration = {
-            type = "structure",
-        },
+        WarmPoolConfiguration = M.WarmPoolConfiguration,
         Instances = {
             type = "list",
-            member_type = "structure",
+            member = M.Instance,
         },
         NextToken = {
             type = "string",
@@ -3351,7 +3215,7 @@ M.DetachInstancesInput = {
     members = {
         InstanceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AutoScalingGroupName = {
             type = "string",
@@ -3373,7 +3237,7 @@ M.DetachInstancesOutput = {
     members = {
         Activities = {
             type = "list",
-            member_type = "structure",
+            member = M.Activity,
         },
     },
 }
@@ -3389,7 +3253,7 @@ M.DetachLoadBalancersInput = {
         },
         LoadBalancerNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3412,7 +3276,7 @@ M.DetachLoadBalancerTargetGroupsInput = {
         },
         TargetGroupARNs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3435,7 +3299,7 @@ M.DetachTrafficSourcesInput = {
         },
         TrafficSources = {
             type = "list",
-            member_type = "structure",
+            member = M.TrafficSourceIdentifier,
             traits = {
                 required = true,
             },
@@ -3458,7 +3322,7 @@ M.DisableMetricsCollectionInput = {
         },
         Metrics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3478,7 +3342,7 @@ M.EnableMetricsCollectionInput = {
         },
         Metrics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Granularity = {
             type = "string",
@@ -3498,7 +3362,7 @@ M.EnterStandbyInput = {
     members = {
         InstanceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AutoScalingGroupName = {
             type = "string",
@@ -3520,7 +3384,7 @@ M.EnterStandbyOutput = {
     members = {
         Activities = {
             type = "list",
-            member_type = "structure",
+            member = M.Activity,
         },
     },
 }
@@ -3541,10 +3405,10 @@ M.ExecutePolicyInput = {
             type = "boolean",
         },
         MetricValue = {
-            type = "number",
+            type = "double",
         },
         BreachThreshold = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -3558,7 +3422,7 @@ M.ExitStandbyInput = {
     members = {
         InstanceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AutoScalingGroupName = {
             type = "string",
@@ -3574,7 +3438,7 @@ M.ExitStandbyOutput = {
     members = {
         Activities = {
             type = "list",
-            member_type = "structure",
+            member = M.Activity,
         },
     },
 }
@@ -3614,14 +3478,14 @@ M.CapacityForecast = {
     members = {
         Timestamps = {
             type = "list",
-            member_type = "timestamp",
+            member = { type = "timestamp" },
             traits = {
                 required = true,
             },
         },
         Values = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
@@ -3634,24 +3498,21 @@ M.LoadForecast = {
     members = {
         Timestamps = {
             type = "list",
-            member_type = "timestamp",
+            member = { type = "timestamp" },
             traits = {
                 required = true,
             },
         },
         Values = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
         },
-        MetricSpecification = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        MetricSpecification = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PredictiveScalingMetricSpecification }),
     },
 }
 
@@ -3660,17 +3521,14 @@ M.GetPredictiveScalingForecastOutput = {
     members = {
         LoadForecast = {
             type = "list",
-            member_type = "structure",
+            member = M.LoadForecast,
             traits = {
                 required = true,
             },
         },
-        CapacityForecast = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        CapacityForecast = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CapacityForecast }),
         UpdateTime = {
             type = "timestamp",
             traits = {
@@ -3705,7 +3563,7 @@ M.LaunchInstancesInput = {
             },
         },
         RequestedCapacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -3718,15 +3576,15 @@ M.LaunchInstancesInput = {
         },
         AvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AvailabilityZoneIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RetryStrategy = {
             type = "string",
@@ -3781,7 +3639,7 @@ M.InstanceCollection = {
         },
         InstanceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3797,11 +3655,11 @@ M.LaunchInstancesOutput = {
         },
         Instances = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceCollection,
         },
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.LaunchInstancesError,
         },
     },
 }
@@ -3834,7 +3692,7 @@ M.PutLifecycleHookInput = {
             type = "string",
         },
         HeartbeatTimeout = {
-            type = "number",
+            type = "integer",
         },
         DefaultResult = {
             type = "string",
@@ -3863,7 +3721,7 @@ M.PutNotificationConfigurationInput = {
         },
         NotificationTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3897,36 +3755,32 @@ M.PutScalingPolicyInput = {
             type = "string",
         },
         MinAdjustmentStep = {
-            type = "number",
+            type = "integer",
         },
         MinAdjustmentMagnitude = {
-            type = "number",
+            type = "integer",
         },
         ScalingAdjustment = {
-            type = "number",
+            type = "integer",
         },
         Cooldown = {
-            type = "number",
+            type = "integer",
         },
         MetricAggregationType = {
             type = "string",
         },
         StepAdjustments = {
             type = "list",
-            member_type = "structure",
+            member = M.StepAdjustment,
         },
         EstimatedInstanceWarmup = {
-            type = "number",
+            type = "integer",
         },
-        TargetTrackingConfiguration = {
-            type = "structure",
-        },
+        TargetTrackingConfiguration = M.TargetTrackingConfiguration,
         Enabled = {
             type = "boolean",
         },
-        PredictiveScalingConfiguration = {
-            type = "structure",
-        },
+        PredictiveScalingConfiguration = M.PredictiveScalingConfiguration,
     },
 }
 
@@ -3938,7 +3792,7 @@ M.PutScalingPolicyOutput = {
         },
         Alarms = {
             type = "list",
-            member_type = "structure",
+            member = M.Alarm,
         },
     },
 }
@@ -3971,13 +3825,13 @@ M.PutScheduledUpdateGroupActionInput = {
             type = "string",
         },
         MinSize = {
-            type = "number",
+            type = "integer",
         },
         MaxSize = {
-            type = "number",
+            type = "integer",
         },
         DesiredCapacity = {
-            type = "number",
+            type = "integer",
         },
         TimeZone = {
             type = "string",
@@ -3999,17 +3853,15 @@ M.PutWarmPoolInput = {
             },
         },
         MaxGroupPreparedCapacity = {
-            type = "number",
+            type = "integer",
         },
         MinSize = {
-            type = "number",
+            type = "integer",
         },
         PoolState = {
             type = "string",
         },
-        InstanceReusePolicy = {
-            type = "structure",
-        },
+        InstanceReusePolicy = M.InstanceReusePolicy,
     },
 }
 
@@ -4056,7 +3908,7 @@ M.ResumeProcessesInput = {
         },
         ScalingProcesses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4106,7 +3958,7 @@ M.SetDesiredCapacityInput = {
             },
         },
         DesiredCapacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -4151,7 +4003,7 @@ M.SetInstanceProtectionInput = {
     members = {
         InstanceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4187,12 +4039,8 @@ M.StartInstanceRefreshInput = {
         Strategy = {
             type = "string",
         },
-        DesiredConfiguration = {
-            type = "structure",
-        },
-        Preferences = {
-            type = "structure",
-        },
+        DesiredConfiguration = M.DesiredConfiguration,
+        Preferences = M.RefreshPreferences,
     },
 }
 
@@ -4216,7 +4064,7 @@ M.SuspendProcessesInput = {
         },
         ScalingProcesses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4246,9 +4094,7 @@ M.TerminateInstanceInAutoScalingGroupInput = {
 M.TerminateInstanceInAutoScalingGroupOutput = {
     type = "structure",
     members = {
-        Activity = {
-            type = "structure",
-        },
+        Activity = M.Activity,
     },
 }
 
@@ -4264,37 +4110,33 @@ M.UpdateAutoScalingGroupInput = {
         LaunchConfigurationName = {
             type = "string",
         },
-        LaunchTemplate = {
-            type = "structure",
-        },
-        MixedInstancesPolicy = {
-            type = "structure",
-        },
+        LaunchTemplate = M.LaunchTemplateSpecification,
+        MixedInstancesPolicy = M.MixedInstancesPolicy,
         MinSize = {
-            type = "number",
+            type = "integer",
         },
         MaxSize = {
-            type = "number",
+            type = "integer",
         },
         DesiredCapacity = {
-            type = "number",
+            type = "integer",
         },
         DefaultCooldown = {
-            type = "number",
+            type = "integer",
         },
         AvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AvailabilityZoneIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         HealthCheckType = {
             type = "string",
         },
         HealthCheckGracePeriod = {
-            type = "number",
+            type = "integer",
         },
         PlacementGroup = {
             type = "string",
@@ -4304,7 +4146,7 @@ M.UpdateAutoScalingGroupInput = {
         },
         TerminationPolicies = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NewInstancesProtectedFromScaleIn = {
             type = "boolean",
@@ -4313,7 +4155,7 @@ M.UpdateAutoScalingGroupInput = {
             type = "string",
         },
         MaxInstanceLifetime = {
-            type = "number",
+            type = "integer",
         },
         CapacityRebalance = {
             type = "boolean",
@@ -4325,26 +4167,16 @@ M.UpdateAutoScalingGroupInput = {
             type = "string",
         },
         DefaultInstanceWarmup = {
-            type = "number",
+            type = "integer",
         },
-        InstanceMaintenancePolicy = {
-            type = "structure",
-        },
-        AvailabilityZoneDistribution = {
-            type = "structure",
-        },
-        AvailabilityZoneImpairmentPolicy = {
-            type = "structure",
-        },
+        InstanceMaintenancePolicy = M.InstanceMaintenancePolicy,
+        AvailabilityZoneDistribution = M.AvailabilityZoneDistribution,
+        AvailabilityZoneImpairmentPolicy = M.AvailabilityZoneImpairmentPolicy,
         SkipZonalShiftValidation = {
             type = "boolean",
         },
-        CapacityReservationSpecification = {
-            type = "structure",
-        },
-        InstanceLifecyclePolicy = {
-            type = "structure",
-        },
+        CapacityReservationSpecification = M.CapacityReservationSpecification,
+        InstanceLifecyclePolicy = M.InstanceLifecyclePolicy,
         DeletionProtection = {
             type = "string",
         },

@@ -9,7 +9,7 @@ M.AllowedRenditionSize = {
     type = "structure",
     members = {
         Height = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "height",
             },
@@ -21,7 +21,7 @@ M.AllowedRenditionSize = {
             },
         },
         Width = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "width",
             },
@@ -71,7 +71,7 @@ M.AudioChannelTaggingSettings = {
         },
         ChannelTags = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "channelTags",
             },
@@ -117,7 +117,7 @@ M.AudioNormalizationSettings = {
             },
         },
         CorrectionGateLevel = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "correctionGateLevel",
             },
@@ -135,13 +135,13 @@ M.AudioNormalizationSettings = {
             },
         },
         TargetLkfs = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "targetLkfs",
             },
         },
         TruePeakLimiterThreshold = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "truePeakLimiterThreshold",
             },
@@ -229,7 +229,7 @@ M.AacSettings = {
             },
         },
         Bitrate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "bitrate",
             },
@@ -253,7 +253,7 @@ M.AacSettings = {
             },
         },
         RapInterval = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "rapInterval",
             },
@@ -271,7 +271,7 @@ M.AacSettings = {
             },
         },
         SampleRate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "sampleRate",
             },
@@ -283,7 +283,7 @@ M.AacSettings = {
             },
         },
         TargetLoudnessRange = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "targetLoudnessRange",
             },
@@ -353,7 +353,7 @@ M.Ac3Settings = {
     type = "structure",
     members = {
         Bitrate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "bitrate",
             },
@@ -371,7 +371,7 @@ M.Ac3Settings = {
             },
         },
         Dialnorm = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "dialnorm",
             },
@@ -407,7 +407,7 @@ M.Ac3Settings = {
             },
         },
         SampleRate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "sampleRate",
             },
@@ -446,7 +446,7 @@ M.Ac4Settings = {
     type = "structure",
     members = {
         Bitrate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "bitrate",
             },
@@ -488,31 +488,31 @@ M.Ac4Settings = {
             },
         },
         LoRoCenterMixLevel = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "loRoCenterMixLevel",
             },
         },
         LoRoSurroundMixLevel = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "loRoSurroundMixLevel",
             },
         },
         LtRtCenterMixLevel = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "ltRtCenterMixLevel",
             },
         },
         LtRtSurroundMixLevel = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "ltRtSurroundMixLevel",
             },
         },
         SampleRate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "sampleRate",
             },
@@ -530,19 +530,19 @@ M.AiffSettings = {
     type = "structure",
     members = {
         BitDepth = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "bitDepth",
             },
         },
         Channels = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "channels",
             },
         },
         SampleRate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "sampleRate",
             },
@@ -635,7 +635,7 @@ M.Eac3AtmosSettings = {
     type = "structure",
     members = {
         Bitrate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "bitrate",
             },
@@ -683,25 +683,25 @@ M.Eac3AtmosSettings = {
             },
         },
         LoRoCenterMixLevel = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "loRoCenterMixLevel",
             },
         },
         LoRoSurroundMixLevel = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "loRoSurroundMixLevel",
             },
         },
         LtRtCenterMixLevel = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "ltRtCenterMixLevel",
             },
         },
         LtRtSurroundMixLevel = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "ltRtSurroundMixLevel",
             },
@@ -713,13 +713,13 @@ M.Eac3AtmosSettings = {
             },
         },
         SampleRate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "sampleRate",
             },
         },
         SpeechThreshold = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "speechThreshold",
             },
@@ -836,7 +836,7 @@ M.Eac3Settings = {
             },
         },
         Bitrate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "bitrate",
             },
@@ -860,7 +860,7 @@ M.Eac3Settings = {
             },
         },
         Dialnorm = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "dialnorm",
             },
@@ -890,25 +890,25 @@ M.Eac3Settings = {
             },
         },
         LoRoCenterMixLevel = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "loRoCenterMixLevel",
             },
         },
         LoRoSurroundMixLevel = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "loRoSurroundMixLevel",
             },
         },
         LtRtCenterMixLevel = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "ltRtCenterMixLevel",
             },
         },
         LtRtSurroundMixLevel = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "ltRtSurroundMixLevel",
             },
@@ -932,7 +932,7 @@ M.Eac3Settings = {
             },
         },
         SampleRate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "sampleRate",
             },
@@ -962,19 +962,19 @@ M.FlacSettings = {
     type = "structure",
     members = {
         BitDepth = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "bitDepth",
             },
         },
         Channels = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "channels",
             },
         },
         SampleRate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "sampleRate",
             },
@@ -997,19 +997,19 @@ M.Mp2Settings = {
             },
         },
         Bitrate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "bitrate",
             },
         },
         Channels = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "channels",
             },
         },
         SampleRate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "sampleRate",
             },
@@ -1026,13 +1026,13 @@ M.Mp3Settings = {
     type = "structure",
     members = {
         Bitrate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "bitrate",
             },
         },
         Channels = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "channels",
             },
@@ -1044,13 +1044,13 @@ M.Mp3Settings = {
             },
         },
         SampleRate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "sampleRate",
             },
         },
         VbrQuality = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "vbrQuality",
             },
@@ -1062,19 +1062,19 @@ M.OpusSettings = {
     type = "structure",
     members = {
         Bitrate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "bitrate",
             },
         },
         Channels = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "channels",
             },
         },
         SampleRate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "sampleRate",
             },
@@ -1086,19 +1086,19 @@ M.VorbisSettings = {
     type = "structure",
     members = {
         Channels = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "channels",
             },
         },
         SampleRate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "sampleRate",
             },
         },
         VbrQuality = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "vbrQuality",
             },
@@ -1116,13 +1116,13 @@ M.WavSettings = {
     type = "structure",
     members = {
         BitDepth = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "bitDepth",
             },
         },
         Channels = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "channels",
             },
@@ -1134,7 +1134,7 @@ M.WavSettings = {
             },
         },
         SampleRate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "sampleRate",
             },
@@ -1145,84 +1145,48 @@ M.WavSettings = {
 M.AudioCodecSettings = {
     type = "structure",
     members = {
-        AacSettings = {
-            type = "structure",
-            traits = {
-                json_name = "aacSettings",
-            },
-        },
-        Ac3Settings = {
-            type = "structure",
-            traits = {
-                json_name = "ac3Settings",
-            },
-        },
-        Ac4Settings = {
-            type = "structure",
-            traits = {
-                json_name = "ac4Settings",
-            },
-        },
-        AiffSettings = {
-            type = "structure",
-            traits = {
-                json_name = "aiffSettings",
-            },
-        },
+        AacSettings = setmetatable({ traits = {
+            json_name = "aacSettings",
+        } }, { __index = M.AacSettings }),
+        Ac3Settings = setmetatable({ traits = {
+            json_name = "ac3Settings",
+        } }, { __index = M.Ac3Settings }),
+        Ac4Settings = setmetatable({ traits = {
+            json_name = "ac4Settings",
+        } }, { __index = M.Ac4Settings }),
+        AiffSettings = setmetatable({ traits = {
+            json_name = "aiffSettings",
+        } }, { __index = M.AiffSettings }),
         Codec = {
             type = "string",
             traits = {
                 json_name = "codec",
             },
         },
-        Eac3AtmosSettings = {
-            type = "structure",
-            traits = {
-                json_name = "eac3AtmosSettings",
-            },
-        },
-        Eac3Settings = {
-            type = "structure",
-            traits = {
-                json_name = "eac3Settings",
-            },
-        },
-        FlacSettings = {
-            type = "structure",
-            traits = {
-                json_name = "flacSettings",
-            },
-        },
-        Mp2Settings = {
-            type = "structure",
-            traits = {
-                json_name = "mp2Settings",
-            },
-        },
-        Mp3Settings = {
-            type = "structure",
-            traits = {
-                json_name = "mp3Settings",
-            },
-        },
-        OpusSettings = {
-            type = "structure",
-            traits = {
-                json_name = "opusSettings",
-            },
-        },
-        VorbisSettings = {
-            type = "structure",
-            traits = {
-                json_name = "vorbisSettings",
-            },
-        },
-        WavSettings = {
-            type = "structure",
-            traits = {
-                json_name = "wavSettings",
-            },
-        },
+        Eac3AtmosSettings = setmetatable({ traits = {
+            json_name = "eac3AtmosSettings",
+        } }, { __index = M.Eac3AtmosSettings }),
+        Eac3Settings = setmetatable({ traits = {
+            json_name = "eac3Settings",
+        } }, { __index = M.Eac3Settings }),
+        FlacSettings = setmetatable({ traits = {
+            json_name = "flacSettings",
+        } }, { __index = M.FlacSettings }),
+        Mp2Settings = setmetatable({ traits = {
+            json_name = "mp2Settings",
+        } }, { __index = M.Mp2Settings }),
+        Mp3Settings = setmetatable({ traits = {
+            json_name = "mp3Settings",
+        } }, { __index = M.Mp3Settings }),
+        OpusSettings = setmetatable({ traits = {
+            json_name = "opusSettings",
+        } }, { __index = M.OpusSettings }),
+        VorbisSettings = setmetatable({ traits = {
+            json_name = "vorbisSettings",
+        } }, { __index = M.VorbisSettings }),
+        WavSettings = setmetatable({ traits = {
+            json_name = "wavSettings",
+        } }, { __index = M.WavSettings }),
     },
 }
 
@@ -1431,14 +1395,14 @@ M.OutputChannelMapping = {
     members = {
         InputChannels = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
             traits = {
                 json_name = "inputChannels",
             },
         },
         InputChannelsFineTune = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 json_name = "inputChannelsFineTune",
             },
@@ -1451,7 +1415,7 @@ M.ChannelMapping = {
     members = {
         OutputChannels = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputChannelMapping,
             traits = {
                 json_name = "outputChannels",
             },
@@ -1463,31 +1427,28 @@ M.RemixSettings = {
     type = "structure",
     members = {
         AudioDescriptionAudioChannel = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "audioDescriptionAudioChannel",
             },
         },
         AudioDescriptionDataChannel = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "audioDescriptionDataChannel",
             },
         },
-        ChannelMapping = {
-            type = "structure",
-            traits = {
-                json_name = "channelMapping",
-            },
-        },
+        ChannelMapping = setmetatable({ traits = {
+            json_name = "channelMapping",
+        } }, { __index = M.ChannelMapping }),
         ChannelsIn = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "channelsIn",
             },
         },
         ChannelsOut = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "channelsOut",
             },
@@ -1498,24 +1459,15 @@ M.RemixSettings = {
 M.AudioDescription = {
     type = "structure",
     members = {
-        AudioChannelTaggingSettings = {
-            type = "structure",
-            traits = {
-                json_name = "audioChannelTaggingSettings",
-            },
-        },
-        AudioNormalizationSettings = {
-            type = "structure",
-            traits = {
-                json_name = "audioNormalizationSettings",
-            },
-        },
-        AudioPitchCorrectionSettings = {
-            type = "structure",
-            traits = {
-                json_name = "audioPitchCorrectionSettings",
-            },
-        },
+        AudioChannelTaggingSettings = setmetatable({ traits = {
+            json_name = "audioChannelTaggingSettings",
+        } }, { __index = M.AudioChannelTaggingSettings }),
+        AudioNormalizationSettings = setmetatable({ traits = {
+            json_name = "audioNormalizationSettings",
+        } }, { __index = M.AudioNormalizationSettings }),
+        AudioPitchCorrectionSettings = setmetatable({ traits = {
+            json_name = "audioPitchCorrectionSettings",
+        } }, { __index = M.AudioPitchCorrectionSettings }),
         AudioSourceName = {
             type = "string",
             traits = {
@@ -1523,7 +1475,7 @@ M.AudioDescription = {
             },
         },
         AudioType = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "audioType",
             },
@@ -1534,12 +1486,9 @@ M.AudioDescription = {
                 json_name = "audioTypeControl",
             },
         },
-        CodecSettings = {
-            type = "structure",
-            traits = {
-                json_name = "codecSettings",
-            },
-        },
+        CodecSettings = setmetatable({ traits = {
+            json_name = "codecSettings",
+        } }, { __index = M.AudioCodecSettings }),
         CustomLanguageCode = {
             type = "string",
             traits = {
@@ -1558,12 +1507,9 @@ M.AudioDescription = {
                 json_name = "languageCodeControl",
             },
         },
-        RemixSettings = {
-            type = "structure",
-            traits = {
-                json_name = "remixSettings",
-            },
-        },
+        RemixSettings = setmetatable({ traits = {
+            json_name = "remixSettings",
+        } }, { __index = M.RemixSettings }),
         StreamName = {
             type = "string",
             traits = {
@@ -1577,13 +1523,13 @@ M.ForceIncludeRenditionSize = {
     type = "structure",
     members = {
         Height = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "height",
             },
         },
         Width = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "width",
             },
@@ -1595,13 +1541,13 @@ M.MinBottomRenditionSize = {
     type = "structure",
     members = {
         Height = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "height",
             },
         },
         Width = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "width",
             },
@@ -1613,13 +1559,13 @@ M.MinTopRenditionSize = {
     type = "structure",
     members = {
         Height = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "height",
             },
         },
         Width = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "width",
             },
@@ -1639,30 +1585,24 @@ M.AutomatedAbrRule = {
     members = {
         AllowedRenditions = {
             type = "list",
-            member_type = "structure",
+            member = M.AllowedRenditionSize,
             traits = {
                 json_name = "allowedRenditions",
             },
         },
         ForceIncludeRenditions = {
             type = "list",
-            member_type = "structure",
+            member = M.ForceIncludeRenditionSize,
             traits = {
                 json_name = "forceIncludeRenditions",
             },
         },
-        MinBottomRenditionSize = {
-            type = "structure",
-            traits = {
-                json_name = "minBottomRenditionSize",
-            },
-        },
-        MinTopRenditionSize = {
-            type = "structure",
-            traits = {
-                json_name = "minTopRenditionSize",
-            },
-        },
+        MinBottomRenditionSize = setmetatable({ traits = {
+            json_name = "minBottomRenditionSize",
+        } }, { __index = M.MinBottomRenditionSize }),
+        MinTopRenditionSize = setmetatable({ traits = {
+            json_name = "minTopRenditionSize",
+        } }, { __index = M.MinTopRenditionSize }),
         Type = {
             type = "string",
             traits = {
@@ -1770,7 +1710,7 @@ M.BurninDestinationSettings = {
             },
         },
         BackgroundOpacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "backgroundOpacity",
             },
@@ -1812,13 +1752,13 @@ M.BurninDestinationSettings = {
             },
         },
         FontOpacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "fontOpacity",
             },
         },
         FontResolution = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "fontResolution",
             },
@@ -1830,7 +1770,7 @@ M.BurninDestinationSettings = {
             },
         },
         FontSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "fontSize",
             },
@@ -1848,7 +1788,7 @@ M.BurninDestinationSettings = {
             },
         },
         OutlineSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "outlineSize",
             },
@@ -1866,19 +1806,19 @@ M.BurninDestinationSettings = {
             },
         },
         ShadowOpacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "shadowOpacity",
             },
         },
         ShadowXOffset = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "shadowXOffset",
             },
         },
         ShadowYOffset = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "shadowYOffset",
             },
@@ -1896,13 +1836,13 @@ M.BurninDestinationSettings = {
             },
         },
         XPosition = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "xPosition",
             },
         },
         YPosition = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "yPosition",
             },
@@ -2024,7 +1964,7 @@ M.DvbSubDestinationSettings = {
             },
         },
         BackgroundOpacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "backgroundOpacity",
             },
@@ -2036,13 +1976,13 @@ M.DvbSubDestinationSettings = {
             },
         },
         DdsXCoordinate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "ddsXCoordinate",
             },
         },
         DdsYCoordinate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "ddsYCoordinate",
             },
@@ -2084,13 +2024,13 @@ M.DvbSubDestinationSettings = {
             },
         },
         FontOpacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "fontOpacity",
             },
         },
         FontResolution = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "fontResolution",
             },
@@ -2102,13 +2042,13 @@ M.DvbSubDestinationSettings = {
             },
         },
         FontSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "fontSize",
             },
         },
         Height = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "height",
             },
@@ -2126,7 +2066,7 @@ M.DvbSubDestinationSettings = {
             },
         },
         OutlineSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "outlineSize",
             },
@@ -2138,19 +2078,19 @@ M.DvbSubDestinationSettings = {
             },
         },
         ShadowOpacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "shadowOpacity",
             },
         },
         ShadowXOffset = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "shadowXOffset",
             },
         },
         ShadowYOffset = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "shadowYOffset",
             },
@@ -2174,19 +2114,19 @@ M.DvbSubDestinationSettings = {
             },
         },
         Width = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "width",
             },
         },
         XPosition = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "xPosition",
             },
         },
         YPosition = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "yPosition",
             },
@@ -2198,13 +2138,13 @@ M.EmbeddedDestinationSettings = {
     type = "structure",
     members = {
         Destination608ChannelNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "destination608ChannelNumber",
             },
         },
         Destination708ServiceNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "destination708ServiceNumber",
             },
@@ -2296,7 +2236,7 @@ M.TeletextDestinationSettings = {
         },
         PageTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "pageTypes",
             },
@@ -2354,66 +2294,39 @@ M.WebvttDestinationSettings = {
 M.CaptionDestinationSettings = {
     type = "structure",
     members = {
-        BurninDestinationSettings = {
-            type = "structure",
-            traits = {
-                json_name = "burninDestinationSettings",
-            },
-        },
+        BurninDestinationSettings = setmetatable({ traits = {
+            json_name = "burninDestinationSettings",
+        } }, { __index = M.BurninDestinationSettings }),
         DestinationType = {
             type = "string",
             traits = {
                 json_name = "destinationType",
             },
         },
-        DvbSubDestinationSettings = {
-            type = "structure",
-            traits = {
-                json_name = "dvbSubDestinationSettings",
-            },
-        },
-        EmbeddedDestinationSettings = {
-            type = "structure",
-            traits = {
-                json_name = "embeddedDestinationSettings",
-            },
-        },
-        ImscDestinationSettings = {
-            type = "structure",
-            traits = {
-                json_name = "imscDestinationSettings",
-            },
-        },
-        SccDestinationSettings = {
-            type = "structure",
-            traits = {
-                json_name = "sccDestinationSettings",
-            },
-        },
-        SrtDestinationSettings = {
-            type = "structure",
-            traits = {
-                json_name = "srtDestinationSettings",
-            },
-        },
-        TeletextDestinationSettings = {
-            type = "structure",
-            traits = {
-                json_name = "teletextDestinationSettings",
-            },
-        },
-        TtmlDestinationSettings = {
-            type = "structure",
-            traits = {
-                json_name = "ttmlDestinationSettings",
-            },
-        },
-        WebvttDestinationSettings = {
-            type = "structure",
-            traits = {
-                json_name = "webvttDestinationSettings",
-            },
-        },
+        DvbSubDestinationSettings = setmetatable({ traits = {
+            json_name = "dvbSubDestinationSettings",
+        } }, { __index = M.DvbSubDestinationSettings }),
+        EmbeddedDestinationSettings = setmetatable({ traits = {
+            json_name = "embeddedDestinationSettings",
+        } }, { __index = M.EmbeddedDestinationSettings }),
+        ImscDestinationSettings = setmetatable({ traits = {
+            json_name = "imscDestinationSettings",
+        } }, { __index = M.ImscDestinationSettings }),
+        SccDestinationSettings = setmetatable({ traits = {
+            json_name = "sccDestinationSettings",
+        } }, { __index = M.SccDestinationSettings }),
+        SrtDestinationSettings = setmetatable({ traits = {
+            json_name = "srtDestinationSettings",
+        } }, { __index = M.SrtDestinationSettings }),
+        TeletextDestinationSettings = setmetatable({ traits = {
+            json_name = "teletextDestinationSettings",
+        } }, { __index = M.TeletextDestinationSettings }),
+        TtmlDestinationSettings = setmetatable({ traits = {
+            json_name = "ttmlDestinationSettings",
+        } }, { __index = M.TtmlDestinationSettings }),
+        WebvttDestinationSettings = setmetatable({ traits = {
+            json_name = "webvttDestinationSettings",
+        } }, { __index = M.WebvttDestinationSettings }),
     },
 }
 
@@ -2432,12 +2345,9 @@ M.CaptionDescription = {
                 json_name = "customLanguageCode",
             },
         },
-        DestinationSettings = {
-            type = "structure",
-            traits = {
-                json_name = "destinationSettings",
-            },
-        },
+        DestinationSettings = setmetatable({ traits = {
+            json_name = "destinationSettings",
+        } }, { __index = M.CaptionDestinationSettings }),
         LanguageCode = {
             type = "string",
             traits = {
@@ -2462,12 +2372,9 @@ M.CaptionDescriptionPreset = {
                 json_name = "customLanguageCode",
             },
         },
-        DestinationSettings = {
-            type = "structure",
-            traits = {
-                json_name = "destinationSettings",
-            },
-        },
+        DestinationSettings = setmetatable({ traits = {
+            json_name = "destinationSettings",
+        } }, { __index = M.CaptionDestinationSettings }),
         LanguageCode = {
             type = "string",
             traits = {
@@ -2494,7 +2401,7 @@ M.CmafAdditionalManifest = {
         },
         SelectedOutputs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "selectedOutputs",
             },
@@ -2529,7 +2436,7 @@ M.ColorConversion3DLUTSetting = {
             },
         },
         InputMasteringLuminance = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "inputMasteringLuminance",
             },
@@ -2541,7 +2448,7 @@ M.ColorConversion3DLUTSetting = {
             },
         },
         OutputMasteringLuminance = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "outputMasteringLuminance",
             },
@@ -2560,7 +2467,7 @@ M.DashAdditionalManifest = {
         },
         SelectedOutputs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "selectedOutputs",
             },
@@ -2630,7 +2537,7 @@ M.HlsAdditionalManifest = {
         },
         SelectedOutputs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "selectedOutputs",
             },
@@ -2647,7 +2554,7 @@ M.HlsCaptionLanguageMapping = {
     type = "structure",
     members = {
         CaptionChannel = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "captionChannel",
             },
@@ -2677,7 +2584,7 @@ M.HopDestination = {
     type = "structure",
     members = {
         Priority = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "priority",
             },
@@ -2689,7 +2596,7 @@ M.HopDestination = {
             },
         },
         WaitMinutes = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "waitMinutes",
             },
@@ -2754,7 +2661,7 @@ M.AudioSelectorGroup = {
     members = {
         AudioSelectorNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "audioSelectorNames",
             },
@@ -2835,12 +2742,9 @@ M.AudioSelector = {
                 json_name = "externalAudioFileInput",
             },
         },
-        HlsRenditionGroupSettings = {
-            type = "structure",
-            traits = {
-                json_name = "hlsRenditionGroupSettings",
-            },
-        },
+        HlsRenditionGroupSettings = setmetatable({ traits = {
+            json_name = "hlsRenditionGroupSettings",
+        } }, { __index = M.HlsRenditionGroupSettings }),
         LanguageCode = {
             type = "string",
             traits = {
@@ -2848,30 +2752,27 @@ M.AudioSelector = {
             },
         },
         Offset = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "offset",
             },
         },
         Pids = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
             traits = {
                 json_name = "pids",
             },
         },
         ProgramSelection = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "programSelection",
             },
         },
-        RemixSettings = {
-            type = "structure",
-            traits = {
-                json_name = "remixSettings",
-            },
-        },
+        RemixSettings = setmetatable({ traits = {
+            json_name = "remixSettings",
+        } }, { __index = M.RemixSettings }),
         SelectorType = {
             type = "string",
             traits = {
@@ -2880,14 +2781,14 @@ M.AudioSelector = {
         },
         Streams = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
             traits = {
                 json_name = "streams",
             },
         },
         Tracks = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
             traits = {
                 json_name = "tracks",
             },
@@ -2915,7 +2816,7 @@ M.AncillarySourceSettings = {
             },
         },
         SourceAncillaryChannelNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "sourceAncillaryChannelNumber",
             },
@@ -2933,7 +2834,7 @@ M.DvbSubSourceSettings = {
     type = "structure",
     members = {
         Pid = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "pid",
             },
@@ -2961,13 +2862,13 @@ M.EmbeddedSourceSettings = {
             },
         },
         Source608ChannelNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "source608ChannelNumber",
             },
         },
         Source608TrackNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "source608TrackNumber",
             },
@@ -3000,13 +2901,13 @@ M.CaptionSourceFramerate = {
     type = "structure",
     members = {
         FramerateDenominator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "framerateDenominator",
             },
         },
         FramerateNumerator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "framerateNumerator",
             },
@@ -3045,12 +2946,9 @@ M.FileSourceSettings = {
                 json_name = "convertPaintToPop",
             },
         },
-        Framerate = {
-            type = "structure",
-            traits = {
-                json_name = "framerate",
-            },
-        },
+        Framerate = setmetatable({ traits = {
+            json_name = "framerate",
+        } }, { __index = M.CaptionSourceFramerate }),
         SourceFile = {
             type = "string",
             traits = {
@@ -3058,7 +2956,7 @@ M.FileSourceSettings = {
             },
         },
         TimeDelta = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "timeDelta",
             },
@@ -3112,13 +3010,13 @@ M.TrackSourceSettings = {
     type = "structure",
     members = {
         StreamNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "streamNumber",
             },
         },
         TrackNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "trackNumber",
             },
@@ -3153,54 +3051,33 @@ M.WebvttHlsSourceSettings = {
 M.CaptionSourceSettings = {
     type = "structure",
     members = {
-        AncillarySourceSettings = {
-            type = "structure",
-            traits = {
-                json_name = "ancillarySourceSettings",
-            },
-        },
-        DvbSubSourceSettings = {
-            type = "structure",
-            traits = {
-                json_name = "dvbSubSourceSettings",
-            },
-        },
-        EmbeddedSourceSettings = {
-            type = "structure",
-            traits = {
-                json_name = "embeddedSourceSettings",
-            },
-        },
-        FileSourceSettings = {
-            type = "structure",
-            traits = {
-                json_name = "fileSourceSettings",
-            },
-        },
+        AncillarySourceSettings = setmetatable({ traits = {
+            json_name = "ancillarySourceSettings",
+        } }, { __index = M.AncillarySourceSettings }),
+        DvbSubSourceSettings = setmetatable({ traits = {
+            json_name = "dvbSubSourceSettings",
+        } }, { __index = M.DvbSubSourceSettings }),
+        EmbeddedSourceSettings = setmetatable({ traits = {
+            json_name = "embeddedSourceSettings",
+        } }, { __index = M.EmbeddedSourceSettings }),
+        FileSourceSettings = setmetatable({ traits = {
+            json_name = "fileSourceSettings",
+        } }, { __index = M.FileSourceSettings }),
         SourceType = {
             type = "string",
             traits = {
                 json_name = "sourceType",
             },
         },
-        TeletextSourceSettings = {
-            type = "structure",
-            traits = {
-                json_name = "teletextSourceSettings",
-            },
-        },
-        TrackSourceSettings = {
-            type = "structure",
-            traits = {
-                json_name = "trackSourceSettings",
-            },
-        },
-        WebvttHlsSourceSettings = {
-            type = "structure",
-            traits = {
-                json_name = "webvttHlsSourceSettings",
-            },
-        },
+        TeletextSourceSettings = setmetatable({ traits = {
+            json_name = "teletextSourceSettings",
+        } }, { __index = M.TeletextSourceSettings }),
+        TrackSourceSettings = setmetatable({ traits = {
+            json_name = "trackSourceSettings",
+        } }, { __index = M.TrackSourceSettings }),
+        WebvttHlsSourceSettings = setmetatable({ traits = {
+            json_name = "webvttHlsSourceSettings",
+        } }, { __index = M.WebvttHlsSourceSettings }),
     },
 }
 
@@ -3219,12 +3096,9 @@ M.CaptionSelector = {
                 json_name = "languageCode",
             },
         },
-        SourceSettings = {
-            type = "structure",
-            traits = {
-                json_name = "sourceSettings",
-            },
-        },
+        SourceSettings = setmetatable({ traits = {
+            json_name = "sourceSettings",
+        } }, { __index = M.CaptionSourceSettings }),
     },
 }
 
@@ -3232,25 +3106,25 @@ M.Rectangle = {
     type = "structure",
     members = {
         Height = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "height",
             },
         },
         Width = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "width",
             },
         },
         X = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "x",
             },
         },
         Y = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "y",
             },
@@ -3331,7 +3205,7 @@ M.DynamicAudioSelector = {
             },
         },
         Offset = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "offset",
             },
@@ -3355,25 +3229,25 @@ M.InsertableImage = {
     type = "structure",
     members = {
         Duration = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "duration",
             },
         },
         FadeIn = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "fadeIn",
             },
         },
         FadeOut = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "fadeOut",
             },
         },
         Height = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "height",
             },
@@ -3385,25 +3259,25 @@ M.InsertableImage = {
             },
         },
         ImageX = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "imageX",
             },
         },
         ImageY = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "imageY",
             },
         },
         Layer = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "layer",
             },
         },
         Opacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "opacity",
             },
@@ -3415,7 +3289,7 @@ M.InsertableImage = {
             },
         },
         Width = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "width",
             },
@@ -3428,13 +3302,13 @@ M.ImageInserter = {
     members = {
         InsertableImages = {
             type = "list",
-            member_type = "structure",
+            member = M.InsertableImage,
             traits = {
                 json_name = "insertableImages",
             },
         },
         SdrReferenceWhiteLevel = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "sdrReferenceWhiteLevel",
             },
@@ -3480,12 +3354,9 @@ M.MultiViewInput = {
 M.MultiViewSettings = {
     type = "structure",
     members = {
-        Input = {
-            type = "structure",
-            traits = {
-                json_name = "input",
-            },
-        },
+        Input = setmetatable({ traits = {
+            json_name = "input",
+        } }, { __index = M.MultiViewInput }),
     },
 }
 
@@ -3540,31 +3411,31 @@ M.InputVideoGenerator = {
     type = "structure",
     members = {
         Channels = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "channels",
             },
         },
         Duration = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "duration",
             },
         },
         FramerateDenominator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "framerateDenominator",
             },
         },
         FramerateNumerator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "framerateNumerator",
             },
         },
         Height = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "height",
             },
@@ -3576,13 +3447,13 @@ M.InputVideoGenerator = {
             },
         },
         SampleRate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "sampleRate",
             },
         },
         Width = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "width",
             },
@@ -3599,7 +3470,7 @@ M.VideoOverlayCrop = {
     type = "structure",
     members = {
         Height = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "height",
             },
@@ -3611,19 +3482,19 @@ M.VideoOverlayCrop = {
             },
         },
         Width = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "width",
             },
         },
         X = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "x",
             },
         },
         Y = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "y",
             },
@@ -3635,13 +3506,13 @@ M.VideoOverlayPosition = {
     type = "structure",
     members = {
         Height = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "height",
             },
         },
         Opacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "opacity",
             },
@@ -3653,19 +3524,19 @@ M.VideoOverlayPosition = {
             },
         },
         Width = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "width",
             },
         },
         XPosition = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "xPosition",
             },
         },
         YPosition = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "yPosition",
             },
@@ -3696,8 +3567,8 @@ M.VideoOverlayInput = {
     members = {
         AudioSelectors = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.AudioSelector,
             traits = {
                 json_name = "audioSelectors",
             },
@@ -3710,7 +3581,7 @@ M.VideoOverlayInput = {
         },
         InputClippings = {
             type = "list",
-            member_type = "structure",
+            member = M.VideoOverlayInputClipping,
             traits = {
                 json_name = "inputClippings",
             },
@@ -3738,12 +3609,9 @@ M.VideoOverlayPlayBackMode = {
 M.VideoOverlayTransition = {
     type = "structure",
     members = {
-        EndPosition = {
-            type = "structure",
-            traits = {
-                json_name = "endPosition",
-            },
-        },
+        EndPosition = setmetatable({ traits = {
+            json_name = "endPosition",
+        } }, { __index = M.VideoOverlayPosition }),
         EndTimecode = {
             type = "string",
             traits = {
@@ -3762,30 +3630,21 @@ M.VideoOverlayTransition = {
 M.VideoOverlay = {
     type = "structure",
     members = {
-        Crop = {
-            type = "structure",
-            traits = {
-                json_name = "crop",
-            },
-        },
+        Crop = setmetatable({ traits = {
+            json_name = "crop",
+        } }, { __index = M.VideoOverlayCrop }),
         EndTimecode = {
             type = "string",
             traits = {
                 json_name = "endTimecode",
             },
         },
-        InitialPosition = {
-            type = "structure",
-            traits = {
-                json_name = "initialPosition",
-            },
-        },
-        Input = {
-            type = "structure",
-            traits = {
-                json_name = "input",
-            },
-        },
+        InitialPosition = setmetatable({ traits = {
+            json_name = "initialPosition",
+        } }, { __index = M.VideoOverlayPosition }),
+        Input = setmetatable({ traits = {
+            json_name = "input",
+        } }, { __index = M.VideoOverlayInput }),
         Playback = {
             type = "string",
             traits = {
@@ -3800,7 +3659,7 @@ M.VideoOverlay = {
         },
         Transitions = {
             type = "list",
-            member_type = "structure",
+            member = M.VideoOverlayTransition,
             traits = {
                 json_name = "transitions",
             },
@@ -3827,73 +3686,73 @@ M.Hdr10Metadata = {
     type = "structure",
     members = {
         BluePrimaryX = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "bluePrimaryX",
             },
         },
         BluePrimaryY = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "bluePrimaryY",
             },
         },
         GreenPrimaryX = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "greenPrimaryX",
             },
         },
         GreenPrimaryY = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "greenPrimaryY",
             },
         },
         MaxContentLightLevel = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxContentLightLevel",
             },
         },
         MaxFrameAverageLightLevel = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxFrameAverageLightLevel",
             },
         },
         MaxLuminance = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxLuminance",
             },
         },
         MinLuminance = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "minLuminance",
             },
         },
         RedPrimaryX = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "redPrimaryX",
             },
         },
         RedPrimaryY = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "redPrimaryY",
             },
         },
         WhitePointX = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "whitePointX",
             },
         },
         WhitePointY = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "whitePointY",
             },
@@ -3952,14 +3811,11 @@ M.VideoSelector = {
                 json_name = "embeddedTimecodeOverride",
             },
         },
-        Hdr10Metadata = {
-            type = "structure",
-            traits = {
-                json_name = "hdr10Metadata",
-            },
-        },
+        Hdr10Metadata = setmetatable({ traits = {
+            json_name = "hdr10Metadata",
+        } }, { __index = M.Hdr10Metadata }),
         MaxLuminance = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxLuminance",
             },
@@ -3971,13 +3827,13 @@ M.VideoSelector = {
             },
         },
         Pid = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "pid",
             },
         },
         ProgramNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "programNumber",
             },
@@ -4002,7 +3858,7 @@ M.VideoSelector = {
         },
         Streams = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
             traits = {
                 json_name = "streams",
             },
@@ -4019,54 +3875,45 @@ M.Input = {
                 json_name = "advancedInputFilter",
             },
         },
-        AdvancedInputFilterSettings = {
-            type = "structure",
-            traits = {
-                json_name = "advancedInputFilterSettings",
-            },
-        },
+        AdvancedInputFilterSettings = setmetatable({ traits = {
+            json_name = "advancedInputFilterSettings",
+        } }, { __index = M.AdvancedInputFilterSettings }),
         AudioSelectorGroups = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.AudioSelectorGroup,
             traits = {
                 json_name = "audioSelectorGroups",
             },
         },
         AudioSelectors = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.AudioSelector,
             traits = {
                 json_name = "audioSelectors",
             },
         },
         CaptionSelectors = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.CaptionSelector,
             traits = {
                 json_name = "captionSelectors",
             },
         },
-        Crop = {
-            type = "structure",
-            traits = {
-                json_name = "crop",
-            },
-        },
+        Crop = setmetatable({ traits = {
+            json_name = "crop",
+        } }, { __index = M.Rectangle }),
         DeblockFilter = {
             type = "string",
             traits = {
                 json_name = "deblockFilter",
             },
         },
-        DecryptionSettings = {
-            type = "structure",
-            traits = {
-                json_name = "decryptionSettings",
-            },
-        },
+        DecryptionSettings = setmetatable({ traits = {
+            json_name = "decryptionSettings",
+        } }, { __index = M.InputDecryptionSettings }),
         DenoiseFilter = {
             type = "string",
             traits = {
@@ -4081,8 +3928,8 @@ M.Input = {
         },
         DynamicAudioSelectors = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.DynamicAudioSelector,
             traits = {
                 json_name = "dynamicAudioSelectors",
             },
@@ -4100,20 +3947,17 @@ M.Input = {
             },
         },
         FilterStrength = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "filterStrength",
             },
         },
-        ImageInserter = {
-            type = "structure",
-            traits = {
-                json_name = "imageInserter",
-            },
-        },
+        ImageInserter = setmetatable({ traits = {
+            json_name = "imageInserter",
+        } }, { __index = M.ImageInserter }),
         InputClippings = {
             type = "list",
-            member_type = "structure",
+            member = M.InputClipping,
             traits = {
                 json_name = "inputClippings",
             },
@@ -4126,19 +3970,16 @@ M.Input = {
         },
         MultiViewSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.MultiViewSettings,
             traits = {
                 json_name = "multiViewSettings",
             },
         },
-        Position = {
-            type = "structure",
-            traits = {
-                json_name = "position",
-            },
-        },
+        Position = setmetatable({ traits = {
+            json_name = "position",
+        } }, { __index = M.Rectangle }),
         ProgramNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "programNumber",
             },
@@ -4151,17 +3992,14 @@ M.Input = {
         },
         SupplementalImps = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "supplementalImps",
             },
         },
-        TamsSettings = {
-            type = "structure",
-            traits = {
-                json_name = "tamsSettings",
-            },
-        },
+        TamsSettings = setmetatable({ traits = {
+            json_name = "tamsSettings",
+        } }, { __index = M.InputTamsSettings }),
         TimecodeSource = {
             type = "string",
             traits = {
@@ -4174,25 +4012,19 @@ M.Input = {
                 json_name = "timecodeStart",
             },
         },
-        VideoGenerator = {
-            type = "structure",
-            traits = {
-                json_name = "videoGenerator",
-            },
-        },
+        VideoGenerator = setmetatable({ traits = {
+            json_name = "videoGenerator",
+        } }, { __index = M.InputVideoGenerator }),
         VideoOverlays = {
             type = "list",
-            member_type = "structure",
+            member = M.VideoOverlay,
             traits = {
                 json_name = "videoOverlays",
             },
         },
-        VideoSelector = {
-            type = "structure",
-            traits = {
-                json_name = "videoSelector",
-            },
-        },
+        VideoSelector = setmetatable({ traits = {
+            json_name = "videoSelector",
+        } }, { __index = M.VideoSelector }),
     },
 }
 
@@ -4205,42 +4037,36 @@ M.InputTemplate = {
                 json_name = "advancedInputFilter",
             },
         },
-        AdvancedInputFilterSettings = {
-            type = "structure",
-            traits = {
-                json_name = "advancedInputFilterSettings",
-            },
-        },
+        AdvancedInputFilterSettings = setmetatable({ traits = {
+            json_name = "advancedInputFilterSettings",
+        } }, { __index = M.AdvancedInputFilterSettings }),
         AudioSelectorGroups = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.AudioSelectorGroup,
             traits = {
                 json_name = "audioSelectorGroups",
             },
         },
         AudioSelectors = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.AudioSelector,
             traits = {
                 json_name = "audioSelectors",
             },
         },
         CaptionSelectors = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.CaptionSelector,
             traits = {
                 json_name = "captionSelectors",
             },
         },
-        Crop = {
-            type = "structure",
-            traits = {
-                json_name = "crop",
-            },
-        },
+        Crop = setmetatable({ traits = {
+            json_name = "crop",
+        } }, { __index = M.Rectangle }),
         DeblockFilter = {
             type = "string",
             traits = {
@@ -4261,8 +4087,8 @@ M.InputTemplate = {
         },
         DynamicAudioSelectors = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.DynamicAudioSelector,
             traits = {
                 json_name = "dynamicAudioSelectors",
             },
@@ -4274,20 +4100,17 @@ M.InputTemplate = {
             },
         },
         FilterStrength = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "filterStrength",
             },
         },
-        ImageInserter = {
-            type = "structure",
-            traits = {
-                json_name = "imageInserter",
-            },
-        },
+        ImageInserter = setmetatable({ traits = {
+            json_name = "imageInserter",
+        } }, { __index = M.ImageInserter }),
         InputClippings = {
             type = "list",
-            member_type = "structure",
+            member = M.InputClipping,
             traits = {
                 json_name = "inputClippings",
             },
@@ -4300,19 +4123,16 @@ M.InputTemplate = {
         },
         MultiViewSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.MultiViewSettings,
             traits = {
                 json_name = "multiViewSettings",
             },
         },
-        Position = {
-            type = "structure",
-            traits = {
-                json_name = "position",
-            },
-        },
+        Position = setmetatable({ traits = {
+            json_name = "position",
+        } }, { __index = M.Rectangle }),
         ProgramNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "programNumber",
             },
@@ -4337,17 +4157,14 @@ M.InputTemplate = {
         },
         VideoOverlays = {
             type = "list",
-            member_type = "structure",
+            member = M.VideoOverlay,
             traits = {
                 json_name = "videoOverlays",
             },
         },
-        VideoSelector = {
-            type = "structure",
-            traits = {
-                json_name = "videoSelector",
-            },
-        },
+        VideoSelector = setmetatable({ traits = {
+            json_name = "videoSelector",
+        } }, { __index = M.VideoSelector }),
     },
 }
 
@@ -4395,14 +4212,14 @@ M.ElementalInferenceConfiguration = {
     members = {
         Features = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "features",
             },
         },
         Feeds = {
             type = "list",
-            member_type = "structure",
+            member = M.ElementalInferenceFeed,
             traits = {
                 json_name = "feeds",
             },
@@ -4415,14 +4232,14 @@ M.JobMessages = {
     members = {
         Info = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "info",
             },
         },
         Warning = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "warning",
             },
@@ -4434,13 +4251,13 @@ M.VideoDetail = {
     type = "structure",
     members = {
         HeightInPx = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "heightInPx",
             },
         },
         WidthInPx = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "widthInPx",
             },
@@ -4452,17 +4269,14 @@ M.OutputDetail = {
     type = "structure",
     members = {
         DurationInMs = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "durationInMs",
             },
         },
-        VideoDetails = {
-            type = "structure",
-            traits = {
-                json_name = "videoDetails",
-            },
-        },
+        VideoDetails = setmetatable({ traits = {
+            json_name = "videoDetails",
+        } }, { __index = M.VideoDetail }),
     },
 }
 
@@ -4471,7 +4285,7 @@ M.OutputGroupDetail = {
     members = {
         OutputDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputDetail,
             traits = {
                 json_name = "outputDetails",
             },
@@ -4542,24 +4356,18 @@ M.EsamSignalProcessingNotification = {
 M.EsamSettings = {
     type = "structure",
     members = {
-        ManifestConfirmConditionNotification = {
-            type = "structure",
-            traits = {
-                json_name = "manifestConfirmConditionNotification",
-            },
-        },
+        ManifestConfirmConditionNotification = setmetatable({ traits = {
+            json_name = "manifestConfirmConditionNotification",
+        } }, { __index = M.EsamManifestConfirmConditionNotification }),
         ResponseSignalPreroll = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "responseSignalPreroll",
             },
         },
-        SignalProcessingNotification = {
-            type = "structure",
-            traits = {
-                json_name = "signalProcessingNotification",
-            },
-        },
+        SignalProcessingNotification = setmetatable({ traits = {
+            json_name = "signalProcessingNotification",
+        } }, { __index = M.EsamSignalProcessingNotification }),
     },
 }
 
@@ -4613,13 +4421,13 @@ M.KantarWatermarkSettings = {
             },
         },
         FileOffset = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "fileOffset",
             },
         },
         KantarLicenseId = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "kantarLicenseId",
             },
@@ -4679,13 +4487,13 @@ M.MotionImageInsertionFramerate = {
     type = "structure",
     members = {
         FramerateDenominator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "framerateDenominator",
             },
         },
         FramerateNumerator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "framerateNumerator",
             },
@@ -4702,13 +4510,13 @@ M.MotionImageInsertionOffset = {
     type = "structure",
     members = {
         ImageX = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "imageX",
             },
         },
         ImageY = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "imageY",
             },
@@ -4724,12 +4532,9 @@ M.MotionImagePlayback = {
 M.MotionImageInserter = {
     type = "structure",
     members = {
-        Framerate = {
-            type = "structure",
-            traits = {
-                json_name = "framerate",
-            },
-        },
+        Framerate = setmetatable({ traits = {
+            json_name = "framerate",
+        } }, { __index = M.MotionImageInsertionFramerate }),
         Input = {
             type = "string",
             traits = {
@@ -4742,12 +4547,9 @@ M.MotionImageInserter = {
                 json_name = "insertionMode",
             },
         },
-        Offset = {
-            type = "structure",
-            traits = {
-                json_name = "offset",
-            },
-        },
+        Offset = setmetatable({ traits = {
+            json_name = "offset",
+        } }, { __index = M.MotionImageInsertionOffset }),
         Playback = {
             type = "string",
             traits = {
@@ -4767,7 +4569,7 @@ M.NielsenConfiguration = {
     type = "structure",
     members = {
         BreakoutCode = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "breakoutCode",
             },
@@ -4843,7 +4645,7 @@ M.NielsenNonLinearWatermarkSettings = {
             },
         },
         SourceId = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "sourceId",
             },
@@ -4873,32 +4675,32 @@ M.AutomatedAbrSettings = {
     type = "structure",
     members = {
         MaxAbrBitrate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxAbrBitrate",
             },
         },
         MaxQualityLevel = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "maxQualityLevel",
             },
         },
         MaxRenditions = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxRenditions",
             },
         },
         MinAbrBitrate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "minAbrBitrate",
             },
         },
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomatedAbrRule,
             traits = {
                 json_name = "rules",
             },
@@ -4909,12 +4711,9 @@ M.AutomatedAbrSettings = {
 M.AutomatedEncodingSettings = {
     type = "structure",
     members = {
-        AbrSettings = {
-            type = "structure",
-            traits = {
-                json_name = "abrSettings",
-            },
-        },
+        AbrSettings = setmetatable({ traits = {
+            json_name = "abrSettings",
+        } }, { __index = M.AutomatedAbrSettings }),
     },
 }
 
@@ -4996,18 +4795,12 @@ M.S3StorageClass = {
 M.S3DestinationSettings = {
     type = "structure",
     members = {
-        AccessControl = {
-            type = "structure",
-            traits = {
-                json_name = "accessControl",
-            },
-        },
-        Encryption = {
-            type = "structure",
-            traits = {
-                json_name = "encryption",
-            },
-        },
+        AccessControl = setmetatable({ traits = {
+            json_name = "accessControl",
+        } }, { __index = M.S3DestinationAccessControl }),
+        Encryption = setmetatable({ traits = {
+            json_name = "encryption",
+        } }, { __index = M.S3EncryptionSettings }),
         StorageClass = {
             type = "string",
             traits = {
@@ -5020,12 +4813,9 @@ M.S3DestinationSettings = {
 M.DestinationSettings = {
     type = "structure",
     members = {
-        S3Settings = {
-            type = "structure",
-            traits = {
-                json_name = "s3Settings",
-            },
-        },
+        S3Settings = setmetatable({ traits = {
+            json_name = "s3Settings",
+        } }, { __index = M.S3DestinationSettings }),
     },
 }
 
@@ -5094,20 +4884,17 @@ M.SpekeKeyProviderCmaf = {
         },
         DashSignaledSystemIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "dashSignaledSystemIds",
             },
         },
-        EncryptionContractConfiguration = {
-            type = "structure",
-            traits = {
-                json_name = "encryptionContractConfiguration",
-            },
-        },
+        EncryptionContractConfiguration = setmetatable({ traits = {
+            json_name = "encryptionContractConfiguration",
+        } }, { __index = M.EncryptionContractConfiguration }),
         HlsSignaledSystemIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "hlsSignaledSystemIds",
             },
@@ -5189,18 +4976,12 @@ M.CmafEncryptionSettings = {
                 json_name = "initializationVectorInManifest",
             },
         },
-        SpekeKeyProvider = {
-            type = "structure",
-            traits = {
-                json_name = "spekeKeyProvider",
-            },
-        },
-        StaticKeyProvider = {
-            type = "structure",
-            traits = {
-                json_name = "staticKeyProvider",
-            },
-        },
+        SpekeKeyProvider = setmetatable({ traits = {
+            json_name = "spekeKeyProvider",
+        } }, { __index = M.SpekeKeyProviderCmaf }),
+        StaticKeyProvider = setmetatable({ traits = {
+            json_name = "staticKeyProvider",
+        } }, { __index = M.StaticKeyProvider }),
         Type = {
             type = "string",
             traits = {
@@ -5233,31 +5014,31 @@ M.CmafImageBasedTrickPlaySettings = {
             },
         },
         ThumbnailHeight = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "thumbnailHeight",
             },
         },
         ThumbnailInterval = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "thumbnailInterval",
             },
         },
         ThumbnailWidth = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "thumbnailWidth",
             },
         },
         TileHeight = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "tileHeight",
             },
         },
         TileWidth = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "tileWidth",
             },
@@ -5336,7 +5117,7 @@ M.CmafGroupSettings = {
     members = {
         AdditionalManifests = {
             type = "list",
-            member_type = "structure",
+            member = M.CmafAdditionalManifest,
             traits = {
                 json_name = "additionalManifests",
             },
@@ -5377,20 +5158,14 @@ M.CmafGroupSettings = {
                 json_name = "destination",
             },
         },
-        DestinationSettings = {
-            type = "structure",
-            traits = {
-                json_name = "destinationSettings",
-            },
-        },
-        Encryption = {
-            type = "structure",
-            traits = {
-                json_name = "encryption",
-            },
-        },
+        DestinationSettings = setmetatable({ traits = {
+            json_name = "destinationSettings",
+        } }, { __index = M.DestinationSettings }),
+        Encryption = setmetatable({ traits = {
+            json_name = "encryption",
+        } }, { __index = M.CmafEncryptionSettings }),
         FragmentLength = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "fragmentLength",
             },
@@ -5401,12 +5176,9 @@ M.CmafGroupSettings = {
                 json_name = "imageBasedTrickPlay",
             },
         },
-        ImageBasedTrickPlaySettings = {
-            type = "structure",
-            traits = {
-                json_name = "imageBasedTrickPlaySettings",
-            },
-        },
+        ImageBasedTrickPlaySettings = setmetatable({ traits = {
+            json_name = "imageBasedTrickPlaySettings",
+        } }, { __index = M.CmafImageBasedTrickPlaySettings }),
         ManifestCompression = {
             type = "string",
             traits = {
@@ -5420,13 +5192,13 @@ M.CmafGroupSettings = {
             },
         },
         MinBufferTime = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "minBufferTime",
             },
         },
         MinFinalSegmentLength = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "minFinalSegmentLength",
             },
@@ -5456,7 +5228,7 @@ M.CmafGroupSettings = {
             },
         },
         SegmentLength = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "segmentLength",
             },
@@ -5525,12 +5297,9 @@ M.SpekeKeyProvider = {
                 json_name = "certificateArn",
             },
         },
-        EncryptionContractConfiguration = {
-            type = "structure",
-            traits = {
-                json_name = "encryptionContractConfiguration",
-            },
-        },
+        EncryptionContractConfiguration = setmetatable({ traits = {
+            json_name = "encryptionContractConfiguration",
+        } }, { __index = M.EncryptionContractConfiguration }),
         ResourceId = {
             type = "string",
             traits = {
@@ -5539,7 +5308,7 @@ M.SpekeKeyProvider = {
         },
         SystemIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "systemIds",
             },
@@ -5562,12 +5331,9 @@ M.DashIsoEncryptionSettings = {
                 json_name = "playbackDeviceCompatibility",
             },
         },
-        SpekeKeyProvider = {
-            type = "structure",
-            traits = {
-                json_name = "spekeKeyProvider",
-            },
-        },
+        SpekeKeyProvider = setmetatable({ traits = {
+            json_name = "spekeKeyProvider",
+        } }, { __index = M.SpekeKeyProvider }),
     },
 }
 
@@ -5599,31 +5365,31 @@ M.DashIsoImageBasedTrickPlaySettings = {
             },
         },
         ThumbnailHeight = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "thumbnailHeight",
             },
         },
         ThumbnailInterval = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "thumbnailInterval",
             },
         },
         ThumbnailWidth = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "thumbnailWidth",
             },
         },
         TileHeight = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "tileHeight",
             },
         },
         TileWidth = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "tileWidth",
             },
@@ -5672,7 +5438,7 @@ M.DashIsoGroupSettings = {
     members = {
         AdditionalManifests = {
             type = "list",
-            member_type = "structure",
+            member = M.DashAdditionalManifest,
             traits = {
                 json_name = "additionalManifests",
             },
@@ -5707,20 +5473,14 @@ M.DashIsoGroupSettings = {
                 json_name = "destination",
             },
         },
-        DestinationSettings = {
-            type = "structure",
-            traits = {
-                json_name = "destinationSettings",
-            },
-        },
-        Encryption = {
-            type = "structure",
-            traits = {
-                json_name = "encryption",
-            },
-        },
+        DestinationSettings = setmetatable({ traits = {
+            json_name = "destinationSettings",
+        } }, { __index = M.DestinationSettings }),
+        Encryption = setmetatable({ traits = {
+            json_name = "encryption",
+        } }, { __index = M.DashIsoEncryptionSettings }),
         FragmentLength = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "fragmentLength",
             },
@@ -5737,20 +5497,17 @@ M.DashIsoGroupSettings = {
                 json_name = "imageBasedTrickPlay",
             },
         },
-        ImageBasedTrickPlaySettings = {
-            type = "structure",
-            traits = {
-                json_name = "imageBasedTrickPlaySettings",
-            },
-        },
+        ImageBasedTrickPlaySettings = setmetatable({ traits = {
+            json_name = "imageBasedTrickPlaySettings",
+        } }, { __index = M.DashIsoImageBasedTrickPlaySettings }),
         MinBufferTime = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "minBufferTime",
             },
         },
         MinFinalSegmentLength = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "minFinalSegmentLength",
             },
@@ -5780,7 +5537,7 @@ M.DashIsoGroupSettings = {
             },
         },
         SegmentLength = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "segmentLength",
             },
@@ -5815,12 +5572,9 @@ M.FileGroupSettings = {
                 json_name = "destination",
             },
         },
-        DestinationSettings = {
-            type = "structure",
-            traits = {
-                json_name = "destinationSettings",
-            },
-        },
+        DestinationSettings = setmetatable({ traits = {
+            json_name = "destinationSettings",
+        } }, { __index = M.DestinationSettings }),
     },
 }
 
@@ -5902,18 +5656,12 @@ M.HlsEncryptionSettings = {
                 json_name = "offlineEncrypted",
             },
         },
-        SpekeKeyProvider = {
-            type = "structure",
-            traits = {
-                json_name = "spekeKeyProvider",
-            },
-        },
-        StaticKeyProvider = {
-            type = "structure",
-            traits = {
-                json_name = "staticKeyProvider",
-            },
-        },
+        SpekeKeyProvider = setmetatable({ traits = {
+            json_name = "spekeKeyProvider",
+        } }, { __index = M.SpekeKeyProvider }),
+        StaticKeyProvider = setmetatable({ traits = {
+            json_name = "staticKeyProvider",
+        } }, { __index = M.StaticKeyProvider }),
         Type = {
             type = "string",
             traits = {
@@ -5946,31 +5694,31 @@ M.HlsImageBasedTrickPlaySettings = {
             },
         },
         ThumbnailHeight = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "thumbnailHeight",
             },
         },
         ThumbnailInterval = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "thumbnailInterval",
             },
         },
         ThumbnailWidth = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "thumbnailWidth",
             },
         },
         TileHeight = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "tileHeight",
             },
         },
         TileWidth = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "tileWidth",
             },
@@ -6035,14 +5783,14 @@ M.HlsGroupSettings = {
     members = {
         AdMarkers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "adMarkers",
             },
         },
         AdditionalManifests = {
             type = "list",
-            member_type = "structure",
+            member = M.HlsAdditionalManifest,
             traits = {
                 json_name = "additionalManifests",
             },
@@ -6061,7 +5809,7 @@ M.HlsGroupSettings = {
         },
         CaptionLanguageMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.HlsCaptionLanguageMapping,
             traits = {
                 json_name = "captionLanguageMappings",
             },
@@ -6096,36 +5844,27 @@ M.HlsGroupSettings = {
                 json_name = "destination",
             },
         },
-        DestinationSettings = {
-            type = "structure",
-            traits = {
-                json_name = "destinationSettings",
-            },
-        },
+        DestinationSettings = setmetatable({ traits = {
+            json_name = "destinationSettings",
+        } }, { __index = M.DestinationSettings }),
         DirectoryStructure = {
             type = "string",
             traits = {
                 json_name = "directoryStructure",
             },
         },
-        Encryption = {
-            type = "structure",
-            traits = {
-                json_name = "encryption",
-            },
-        },
+        Encryption = setmetatable({ traits = {
+            json_name = "encryption",
+        } }, { __index = M.HlsEncryptionSettings }),
         ImageBasedTrickPlay = {
             type = "string",
             traits = {
                 json_name = "imageBasedTrickPlay",
             },
         },
-        ImageBasedTrickPlaySettings = {
-            type = "structure",
-            traits = {
-                json_name = "imageBasedTrickPlaySettings",
-            },
-        },
+        ImageBasedTrickPlaySettings = setmetatable({ traits = {
+            json_name = "imageBasedTrickPlaySettings",
+        } }, { __index = M.HlsImageBasedTrickPlaySettings }),
         ManifestCompression = {
             type = "string",
             traits = {
@@ -6139,13 +5878,13 @@ M.HlsGroupSettings = {
             },
         },
         MinFinalSegmentLength = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "minFinalSegmentLength",
             },
         },
         MinSegmentLength = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "minSegmentLength",
             },
@@ -6163,7 +5902,7 @@ M.HlsGroupSettings = {
             },
         },
         ProgramDateTimePeriod = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "programDateTimePeriod",
             },
@@ -6181,7 +5920,7 @@ M.HlsGroupSettings = {
             },
         },
         SegmentLength = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "segmentLength",
             },
@@ -6193,7 +5932,7 @@ M.HlsGroupSettings = {
             },
         },
         SegmentsPerSubdirectory = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "segmentsPerSubdirectory",
             },
@@ -6217,13 +5956,13 @@ M.HlsGroupSettings = {
             },
         },
         TimedMetadataId3Period = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "timedMetadataId3Period",
             },
         },
         TimestampDeltaMilliseconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "timestampDeltaMilliseconds",
             },
@@ -6242,7 +5981,7 @@ M.MsSmoothAdditionalManifest = {
         },
         SelectedOutputs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "selectedOutputs",
             },
@@ -6258,12 +5997,9 @@ M.MsSmoothAudioDeduplication = {
 M.MsSmoothEncryptionSettings = {
     type = "structure",
     members = {
-        SpekeKeyProvider = {
-            type = "structure",
-            traits = {
-                json_name = "spekeKeyProvider",
-            },
-        },
+        SpekeKeyProvider = setmetatable({ traits = {
+            json_name = "spekeKeyProvider",
+        } }, { __index = M.SpekeKeyProvider }),
     },
 }
 
@@ -6282,7 +6018,7 @@ M.MsSmoothGroupSettings = {
     members = {
         AdditionalManifests = {
             type = "list",
-            member_type = "structure",
+            member = M.MsSmoothAdditionalManifest,
             traits = {
                 json_name = "additionalManifests",
             },
@@ -6299,20 +6035,14 @@ M.MsSmoothGroupSettings = {
                 json_name = "destination",
             },
         },
-        DestinationSettings = {
-            type = "structure",
-            traits = {
-                json_name = "destinationSettings",
-            },
-        },
-        Encryption = {
-            type = "structure",
-            traits = {
-                json_name = "encryption",
-            },
-        },
+        DestinationSettings = setmetatable({ traits = {
+            json_name = "destinationSettings",
+        } }, { __index = M.DestinationSettings }),
+        Encryption = setmetatable({ traits = {
+            json_name = "encryption",
+        } }, { __index = M.MsSmoothEncryptionSettings }),
         FragmentLength = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "fragmentLength",
             },
@@ -6343,39 +6073,24 @@ M.OutputGroupType = {
 M.OutputGroupSettings = {
     type = "structure",
     members = {
-        CmafGroupSettings = {
-            type = "structure",
-            traits = {
-                json_name = "cmafGroupSettings",
-            },
-        },
-        DashIsoGroupSettings = {
-            type = "structure",
-            traits = {
-                json_name = "dashIsoGroupSettings",
-            },
-        },
-        FileGroupSettings = {
-            type = "structure",
-            traits = {
-                json_name = "fileGroupSettings",
-            },
-        },
-        HlsGroupSettings = {
-            type = "structure",
-            traits = {
-                json_name = "hlsGroupSettings",
-            },
-        },
-        MsSmoothGroupSettings = {
-            type = "structure",
-            traits = {
-                json_name = "msSmoothGroupSettings",
-            },
-        },
+        CmafGroupSettings = setmetatable({ traits = {
+            json_name = "cmafGroupSettings",
+        } }, { __index = M.CmafGroupSettings }),
+        DashIsoGroupSettings = setmetatable({ traits = {
+            json_name = "dashIsoGroupSettings",
+        } }, { __index = M.DashIsoGroupSettings }),
+        FileGroupSettings = setmetatable({ traits = {
+            json_name = "fileGroupSettings",
+        } }, { __index = M.FileGroupSettings }),
+        HlsGroupSettings = setmetatable({ traits = {
+            json_name = "hlsGroupSettings",
+        } }, { __index = M.HlsGroupSettings }),
+        MsSmoothGroupSettings = setmetatable({ traits = {
+            json_name = "msSmoothGroupSettings",
+        } }, { __index = M.MsSmoothGroupSettings }),
         PerFrameMetrics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "perFrameMetrics",
             },
@@ -6612,7 +6327,7 @@ M.DvbNitSettings = {
     type = "structure",
     members = {
         NetworkId = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "networkId",
             },
@@ -6624,7 +6339,7 @@ M.DvbNitSettings = {
             },
         },
         NitInterval = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "nitInterval",
             },
@@ -6649,7 +6364,7 @@ M.DvbSdtSettings = {
             },
         },
         SdtInterval = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "sdtInterval",
             },
@@ -6673,7 +6388,7 @@ M.DvbTdtSettings = {
     type = "structure",
     members = {
         TdtInterval = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "tdtInterval",
             },
@@ -6736,7 +6451,7 @@ M.M2tsScte35Esam = {
     type = "structure",
     members = {
         Scte35EsamPid = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "scte35EsamPid",
             },
@@ -6779,26 +6494,26 @@ M.M2tsSettings = {
             },
         },
         AudioFramesPerPes = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "audioFramesPerPes",
             },
         },
         AudioPids = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
             traits = {
                 json_name = "audioPids",
             },
         },
         AudioPtsOffsetDelta = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "audioPtsOffsetDelta",
             },
         },
         Bitrate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "bitrate",
             },
@@ -6815,33 +6530,24 @@ M.M2tsSettings = {
                 json_name = "dataPTSControl",
             },
         },
-        DvbNitSettings = {
-            type = "structure",
-            traits = {
-                json_name = "dvbNitSettings",
-            },
-        },
-        DvbSdtSettings = {
-            type = "structure",
-            traits = {
-                json_name = "dvbSdtSettings",
-            },
-        },
+        DvbNitSettings = setmetatable({ traits = {
+            json_name = "dvbNitSettings",
+        } }, { __index = M.DvbNitSettings }),
+        DvbSdtSettings = setmetatable({ traits = {
+            json_name = "dvbSdtSettings",
+        } }, { __index = M.DvbSdtSettings }),
         DvbSubPids = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
             traits = {
                 json_name = "dvbSubPids",
             },
         },
-        DvbTdtSettings = {
-            type = "structure",
-            traits = {
-                json_name = "dvbTdtSettings",
-            },
-        },
+        DvbTdtSettings = setmetatable({ traits = {
+            json_name = "dvbTdtSettings",
+        } }, { __index = M.DvbTdtSettings }),
         DvbTeletextPid = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "dvbTeletextPid",
             },
@@ -6871,7 +6577,7 @@ M.M2tsSettings = {
             },
         },
         FragmentTime = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "fragmentTime",
             },
@@ -6883,13 +6589,13 @@ M.M2tsSettings = {
             },
         },
         MaxPcrInterval = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxPcrInterval",
             },
         },
         MinEbpInterval = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "minEbpInterval",
             },
@@ -6901,13 +6607,13 @@ M.M2tsSettings = {
             },
         },
         NullPacketBitrate = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "nullPacketBitrate",
             },
         },
         PatInterval = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "patInterval",
             },
@@ -6919,19 +6625,19 @@ M.M2tsSettings = {
             },
         },
         PcrPid = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "pcrPid",
             },
         },
         PmtInterval = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "pmtInterval",
             },
         },
         PmtPid = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "pmtPid",
             },
@@ -6943,19 +6649,19 @@ M.M2tsSettings = {
             },
         },
         PrivateMetadataPid = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "privateMetadataPid",
             },
         },
         ProgramNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "programNumber",
             },
         },
         PtsOffset = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "ptsOffset",
             },
@@ -6972,14 +6678,11 @@ M.M2tsSettings = {
                 json_name = "rateMode",
             },
         },
-        Scte35Esam = {
-            type = "structure",
-            traits = {
-                json_name = "scte35Esam",
-            },
-        },
+        Scte35Esam = setmetatable({ traits = {
+            json_name = "scte35Esam",
+        } }, { __index = M.M2tsScte35Esam }),
         Scte35Pid = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "scte35Pid",
             },
@@ -7003,25 +6706,25 @@ M.M2tsSettings = {
             },
         },
         SegmentationTime = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "segmentationTime",
             },
         },
         TimedMetadataPid = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "timedMetadataPid",
             },
         },
         TransportStreamId = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "transportStreamId",
             },
         },
         VideoPid = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "videoPid",
             },
@@ -7069,20 +6772,20 @@ M.M3u8Settings = {
             },
         },
         AudioFramesPerPes = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "audioFramesPerPes",
             },
         },
         AudioPids = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
             traits = {
                 json_name = "audioPids",
             },
         },
         AudioPtsOffsetDelta = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "audioPtsOffsetDelta",
             },
@@ -7094,7 +6797,7 @@ M.M3u8Settings = {
             },
         },
         MaxPcrInterval = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxPcrInterval",
             },
@@ -7106,7 +6809,7 @@ M.M3u8Settings = {
             },
         },
         PatInterval = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "patInterval",
             },
@@ -7118,37 +6821,37 @@ M.M3u8Settings = {
             },
         },
         PcrPid = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "pcrPid",
             },
         },
         PmtInterval = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "pmtInterval",
             },
         },
         PmtPid = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "pmtPid",
             },
         },
         PrivateMetadataPid = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "privateMetadataPid",
             },
         },
         ProgramNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "programNumber",
             },
         },
         PtsOffset = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "ptsOffset",
             },
@@ -7160,7 +6863,7 @@ M.M3u8Settings = {
             },
         },
         Scte35Pid = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "scte35Pid",
             },
@@ -7178,19 +6881,19 @@ M.M3u8Settings = {
             },
         },
         TimedMetadataPid = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "timedMetadataPid",
             },
         },
         TransportStreamId = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "transportStreamId",
             },
         },
         VideoPid = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "videoPid",
             },
@@ -7307,7 +7010,7 @@ M.Mp4Settings = {
             },
         },
         CttsVersion = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "cttsVersion",
             },
@@ -7512,7 +7215,7 @@ M.MxfXavcProfileSettings = {
             },
         },
         MaxAncDataSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxAncDataSize",
             },
@@ -7541,72 +7244,45 @@ M.MxfSettings = {
                 json_name = "uncompressedAudioWrapping",
             },
         },
-        XavcProfileSettings = {
-            type = "structure",
-            traits = {
-                json_name = "xavcProfileSettings",
-            },
-        },
+        XavcProfileSettings = setmetatable({ traits = {
+            json_name = "xavcProfileSettings",
+        } }, { __index = M.MxfXavcProfileSettings }),
     },
 }
 
 M.ContainerSettings = {
     type = "structure",
     members = {
-        CmfcSettings = {
-            type = "structure",
-            traits = {
-                json_name = "cmfcSettings",
-            },
-        },
+        CmfcSettings = setmetatable({ traits = {
+            json_name = "cmfcSettings",
+        } }, { __index = M.CmfcSettings }),
         Container = {
             type = "string",
             traits = {
                 json_name = "container",
             },
         },
-        F4vSettings = {
-            type = "structure",
-            traits = {
-                json_name = "f4vSettings",
-            },
-        },
-        M2tsSettings = {
-            type = "structure",
-            traits = {
-                json_name = "m2tsSettings",
-            },
-        },
-        M3u8Settings = {
-            type = "structure",
-            traits = {
-                json_name = "m3u8Settings",
-            },
-        },
-        MovSettings = {
-            type = "structure",
-            traits = {
-                json_name = "movSettings",
-            },
-        },
-        Mp4Settings = {
-            type = "structure",
-            traits = {
-                json_name = "mp4Settings",
-            },
-        },
-        MpdSettings = {
-            type = "structure",
-            traits = {
-                json_name = "mpdSettings",
-            },
-        },
-        MxfSettings = {
-            type = "structure",
-            traits = {
-                json_name = "mxfSettings",
-            },
-        },
+        F4vSettings = setmetatable({ traits = {
+            json_name = "f4vSettings",
+        } }, { __index = M.F4vSettings }),
+        M2tsSettings = setmetatable({ traits = {
+            json_name = "m2tsSettings",
+        } }, { __index = M.M2tsSettings }),
+        M3u8Settings = setmetatable({ traits = {
+            json_name = "m3u8Settings",
+        } }, { __index = M.M3u8Settings }),
+        MovSettings = setmetatable({ traits = {
+            json_name = "movSettings",
+        } }, { __index = M.MovSettings }),
+        Mp4Settings = setmetatable({ traits = {
+            json_name = "mp4Settings",
+        } }, { __index = M.Mp4Settings }),
+        MpdSettings = setmetatable({ traits = {
+            json_name = "mpdSettings",
+        } }, { __index = M.MpdSettings }),
+        MxfSettings = setmetatable({ traits = {
+            json_name = "mxfSettings",
+        } }, { __index = M.MxfSettings }),
     },
 }
 
@@ -7684,12 +7360,9 @@ M.HlsSettings = {
 M.OutputSettings = {
     type = "structure",
     members = {
-        HlsSettings = {
-            type = "structure",
-            traits = {
-                json_name = "hlsSettings",
-            },
-        },
+        HlsSettings = setmetatable({ traits = {
+            json_name = "hlsSettings",
+        } }, { __index = M.HlsSettings }),
     },
 }
 
@@ -7745,13 +7418,13 @@ M.Av1QvbrSettings = {
     type = "structure",
     members = {
         QvbrQualityLevel = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "qvbrQualityLevel",
             },
         },
         QvbrQualityLevelFineTune = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "qvbrQualityLevelFineTune",
             },
@@ -7802,48 +7475,45 @@ M.Av1Settings = {
             },
         },
         FramerateDenominator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "framerateDenominator",
             },
         },
         FramerateNumerator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "framerateNumerator",
             },
         },
         GopSize = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "gopSize",
             },
         },
         MaxBitrate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxBitrate",
             },
         },
         NumberBFramesBetweenReferenceFrames = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "numberBFramesBetweenReferenceFrames",
             },
         },
         PerFrameMetrics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "perFrameMetrics",
             },
         },
-        QvbrSettings = {
-            type = "structure",
-            traits = {
-                json_name = "qvbrSettings",
-            },
-        },
+        QvbrSettings = setmetatable({ traits = {
+            json_name = "qvbrSettings",
+        } }, { __index = M.Av1QvbrSettings }),
         RateControlMode = {
             type = "string",
             traits = {
@@ -7851,7 +7521,7 @@ M.Av1Settings = {
             },
         },
         Slices = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "slices",
             },
@@ -7933,12 +7603,9 @@ M.AvcIntraSettings = {
                 json_name = "avcIntraClass",
             },
         },
-        AvcIntraUhdSettings = {
-            type = "structure",
-            traits = {
-                json_name = "avcIntraUhdSettings",
-            },
-        },
+        AvcIntraUhdSettings = setmetatable({ traits = {
+            json_name = "avcIntraUhdSettings",
+        } }, { __index = M.AvcIntraUhdSettings }),
         FramerateControl = {
             type = "string",
             traits = {
@@ -7952,13 +7619,13 @@ M.AvcIntraSettings = {
             },
         },
         FramerateDenominator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "framerateDenominator",
             },
         },
         FramerateNumerator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "framerateNumerator",
             },
@@ -7971,7 +7638,7 @@ M.AvcIntraSettings = {
         },
         PerFrameMetrics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "perFrameMetrics",
             },
@@ -8018,25 +7685,25 @@ M.FrameCaptureSettings = {
     type = "structure",
     members = {
         FramerateDenominator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "framerateDenominator",
             },
         },
         FramerateNumerator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "framerateNumerator",
             },
         },
         MaxCaptures = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxCaptures",
             },
         },
         Quality = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "quality",
             },
@@ -8070,13 +7737,13 @@ M.GifSettings = {
             },
         },
         FramerateDenominator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "framerateDenominator",
             },
         },
         FramerateNumerator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "framerateNumerator",
             },
@@ -8228,19 +7895,19 @@ M.H264QvbrSettings = {
     type = "structure",
     members = {
         MaxAverageBitrate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxAverageBitrate",
             },
         },
         QvbrQualityLevel = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "qvbrQualityLevel",
             },
         },
         QvbrQualityLevelFineTune = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "qvbrQualityLevelFineTune",
             },
@@ -8320,14 +7987,11 @@ M.H264Settings = {
                 json_name = "adaptiveQuantization",
             },
         },
-        BandwidthReductionFilter = {
-            type = "structure",
-            traits = {
-                json_name = "bandwidthReductionFilter",
-            },
-        },
+        BandwidthReductionFilter = setmetatable({ traits = {
+            json_name = "bandwidthReductionFilter",
+        } }, { __index = M.BandwidthReductionFilter }),
         Bitrate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "bitrate",
             },
@@ -8387,13 +8051,13 @@ M.H264Settings = {
             },
         },
         FramerateDenominator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "framerateDenominator",
             },
         },
         FramerateNumerator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "framerateNumerator",
             },
@@ -8405,13 +8069,13 @@ M.H264Settings = {
             },
         },
         GopClosedCadence = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "gopClosedCadence",
             },
         },
         GopSize = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "gopSize",
             },
@@ -8423,19 +8087,19 @@ M.H264Settings = {
             },
         },
         HrdBufferFinalFillPercentage = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "hrdBufferFinalFillPercentage",
             },
         },
         HrdBufferInitialFillPercentage = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "hrdBufferInitialFillPercentage",
             },
         },
         HrdBufferSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "hrdBufferSize",
             },
@@ -8447,25 +8111,25 @@ M.H264Settings = {
             },
         },
         MaxBitrate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxBitrate",
             },
         },
         MinIInterval = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "minIInterval",
             },
         },
         NumberBFramesBetweenReferenceFrames = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "numberBFramesBetweenReferenceFrames",
             },
         },
         NumberReferenceFrames = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "numberReferenceFrames",
             },
@@ -8477,20 +8141,20 @@ M.H264Settings = {
             },
         },
         ParDenominator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "parDenominator",
             },
         },
         ParNumerator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "parNumerator",
             },
         },
         PerFrameMetrics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "perFrameMetrics",
             },
@@ -8501,12 +8165,9 @@ M.H264Settings = {
                 json_name = "qualityTuningLevel",
             },
         },
-        QvbrSettings = {
-            type = "structure",
-            traits = {
-                json_name = "qvbrSettings",
-            },
-        },
+        QvbrSettings = setmetatable({ traits = {
+            json_name = "qvbrSettings",
+        } }, { __index = M.H264QvbrSettings }),
         RateControlMode = {
             type = "string",
             traits = {
@@ -8538,7 +8199,7 @@ M.H264Settings = {
             },
         },
         Slices = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "slices",
             },
@@ -8550,7 +8211,7 @@ M.H264Settings = {
             },
         },
         Softness = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "softness",
             },
@@ -8713,19 +8374,19 @@ M.H265QvbrSettings = {
     type = "structure",
     members = {
         MaxAverageBitrate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxAverageBitrate",
             },
         },
         QvbrQualityLevel = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "qvbrQualityLevel",
             },
         },
         QvbrQualityLevelFineTune = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "qvbrQualityLevelFineTune",
             },
@@ -8822,14 +8483,11 @@ M.H265Settings = {
                 json_name = "alternateTransferFunctionSei",
             },
         },
-        BandwidthReductionFilter = {
-            type = "structure",
-            traits = {
-                json_name = "bandwidthReductionFilter",
-            },
-        },
+        BandwidthReductionFilter = setmetatable({ traits = {
+            json_name = "bandwidthReductionFilter",
+        } }, { __index = M.BandwidthReductionFilter }),
         Bitrate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "bitrate",
             },
@@ -8883,13 +8541,13 @@ M.H265Settings = {
             },
         },
         FramerateDenominator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "framerateDenominator",
             },
         },
         FramerateNumerator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "framerateNumerator",
             },
@@ -8901,13 +8559,13 @@ M.H265Settings = {
             },
         },
         GopClosedCadence = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "gopClosedCadence",
             },
         },
         GopSize = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "gopSize",
             },
@@ -8919,19 +8577,19 @@ M.H265Settings = {
             },
         },
         HrdBufferFinalFillPercentage = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "hrdBufferFinalFillPercentage",
             },
         },
         HrdBufferInitialFillPercentage = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "hrdBufferInitialFillPercentage",
             },
         },
         HrdBufferSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "hrdBufferSize",
             },
@@ -8943,13 +8601,13 @@ M.H265Settings = {
             },
         },
         MaxBitrate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxBitrate",
             },
         },
         MinIInterval = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "minIInterval",
             },
@@ -8967,13 +8625,13 @@ M.H265Settings = {
             },
         },
         NumberBFramesBetweenReferenceFrames = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "numberBFramesBetweenReferenceFrames",
             },
         },
         NumberReferenceFrames = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "numberReferenceFrames",
             },
@@ -8985,20 +8643,20 @@ M.H265Settings = {
             },
         },
         ParDenominator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "parDenominator",
             },
         },
         ParNumerator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "parNumerator",
             },
         },
         PerFrameMetrics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "perFrameMetrics",
             },
@@ -9009,12 +8667,9 @@ M.H265Settings = {
                 json_name = "qualityTuningLevel",
             },
         },
-        QvbrSettings = {
-            type = "structure",
-            traits = {
-                json_name = "qvbrSettings",
-            },
-        },
+        QvbrSettings = setmetatable({ traits = {
+            json_name = "qvbrSettings",
+        } }, { __index = M.H265QvbrSettings }),
         RateControlMode = {
             type = "string",
             traits = {
@@ -9040,7 +8695,7 @@ M.H265Settings = {
             },
         },
         Slices = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "slices",
             },
@@ -9076,7 +8731,7 @@ M.H265Settings = {
             },
         },
         TileHeight = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "tileHeight",
             },
@@ -9088,7 +8743,7 @@ M.H265Settings = {
             },
         },
         TileWidth = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "tileWidth",
             },
@@ -9239,7 +8894,7 @@ M.Mpeg2Settings = {
             },
         },
         Bitrate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "bitrate",
             },
@@ -9275,25 +8930,25 @@ M.Mpeg2Settings = {
             },
         },
         FramerateDenominator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "framerateDenominator",
             },
         },
         FramerateNumerator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "framerateNumerator",
             },
         },
         GopClosedCadence = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "gopClosedCadence",
             },
         },
         GopSize = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "gopSize",
             },
@@ -9305,19 +8960,19 @@ M.Mpeg2Settings = {
             },
         },
         HrdBufferFinalFillPercentage = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "hrdBufferFinalFillPercentage",
             },
         },
         HrdBufferInitialFillPercentage = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "hrdBufferInitialFillPercentage",
             },
         },
         HrdBufferSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "hrdBufferSize",
             },
@@ -9335,19 +8990,19 @@ M.Mpeg2Settings = {
             },
         },
         MaxBitrate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxBitrate",
             },
         },
         MinIInterval = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "minIInterval",
             },
         },
         NumberBFramesBetweenReferenceFrames = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "numberBFramesBetweenReferenceFrames",
             },
@@ -9359,20 +9014,20 @@ M.Mpeg2Settings = {
             },
         },
         ParDenominator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "parDenominator",
             },
         },
         ParNumerator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "parNumerator",
             },
         },
         PerFrameMetrics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "perFrameMetrics",
             },
@@ -9408,7 +9063,7 @@ M.Mpeg2Settings = {
             },
         },
         Softness = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "softness",
             },
@@ -9550,13 +9205,13 @@ M.ProresSettings = {
             },
         },
         FramerateDenominator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "framerateDenominator",
             },
         },
         FramerateNumerator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "framerateNumerator",
             },
@@ -9574,20 +9229,20 @@ M.ProresSettings = {
             },
         },
         ParDenominator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "parDenominator",
             },
         },
         ParNumerator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "parNumerator",
             },
         },
         PerFrameMetrics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "perFrameMetrics",
             },
@@ -9673,13 +9328,13 @@ M.UncompressedSettings = {
             },
         },
         FramerateDenominator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "framerateDenominator",
             },
         },
         FramerateNumerator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "framerateNumerator",
             },
@@ -9765,13 +9420,13 @@ M.Vc3Settings = {
             },
         },
         FramerateDenominator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "framerateDenominator",
             },
         },
         FramerateNumerator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "framerateNumerator",
             },
@@ -9839,7 +9494,7 @@ M.Vp8Settings = {
     type = "structure",
     members = {
         Bitrate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "bitrate",
             },
@@ -9857,31 +9512,31 @@ M.Vp8Settings = {
             },
         },
         FramerateDenominator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "framerateDenominator",
             },
         },
         FramerateNumerator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "framerateNumerator",
             },
         },
         GopSize = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "gopSize",
             },
         },
         HrdBufferSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "hrdBufferSize",
             },
         },
         MaxBitrate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxBitrate",
             },
@@ -9893,13 +9548,13 @@ M.Vp8Settings = {
             },
         },
         ParDenominator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "parDenominator",
             },
         },
         ParNumerator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "parNumerator",
             },
@@ -9949,7 +9604,7 @@ M.Vp9Settings = {
     type = "structure",
     members = {
         Bitrate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "bitrate",
             },
@@ -9967,31 +9622,31 @@ M.Vp9Settings = {
             },
         },
         FramerateDenominator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "framerateDenominator",
             },
         },
         FramerateNumerator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "framerateNumerator",
             },
         },
         GopSize = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "gopSize",
             },
         },
         HrdBufferSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "hrdBufferSize",
             },
         },
         MaxBitrate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxBitrate",
             },
@@ -10003,13 +9658,13 @@ M.Vp9Settings = {
             },
         },
         ParDenominator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "parDenominator",
             },
         },
         ParNumerator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "parNumerator",
             },
@@ -10171,13 +9826,13 @@ M.Xavc4kProfileSettings = {
             },
         },
         GopClosedCadence = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "gopClosedCadence",
             },
         },
         HrdBufferSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "hrdBufferSize",
             },
@@ -10189,7 +9844,7 @@ M.Xavc4kProfileSettings = {
             },
         },
         Slices = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "slices",
             },
@@ -10262,13 +9917,13 @@ M.XavcHdProfileSettings = {
             },
         },
         GopClosedCadence = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "gopClosedCadence",
             },
         },
         HrdBufferSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "hrdBufferSize",
             },
@@ -10286,7 +9941,7 @@ M.XavcHdProfileSettings = {
             },
         },
         Slices = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "slices",
             },
@@ -10328,20 +9983,20 @@ M.XavcSettings = {
             },
         },
         FramerateDenominator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "framerateDenominator",
             },
         },
         FramerateNumerator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "framerateNumerator",
             },
         },
         PerFrameMetrics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "perFrameMetrics",
             },
@@ -10359,7 +10014,7 @@ M.XavcSettings = {
             },
         },
         Softness = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "softness",
             },
@@ -10376,132 +10031,75 @@ M.XavcSettings = {
                 json_name = "temporalAdaptiveQuantization",
             },
         },
-        Xavc4kIntraCbgProfileSettings = {
-            type = "structure",
-            traits = {
-                json_name = "xavc4kIntraCbgProfileSettings",
-            },
-        },
-        Xavc4kIntraVbrProfileSettings = {
-            type = "structure",
-            traits = {
-                json_name = "xavc4kIntraVbrProfileSettings",
-            },
-        },
-        Xavc4kProfileSettings = {
-            type = "structure",
-            traits = {
-                json_name = "xavc4kProfileSettings",
-            },
-        },
-        XavcHdIntraCbgProfileSettings = {
-            type = "structure",
-            traits = {
-                json_name = "xavcHdIntraCbgProfileSettings",
-            },
-        },
-        XavcHdProfileSettings = {
-            type = "structure",
-            traits = {
-                json_name = "xavcHdProfileSettings",
-            },
-        },
+        Xavc4kIntraCbgProfileSettings = setmetatable({ traits = {
+            json_name = "xavc4kIntraCbgProfileSettings",
+        } }, { __index = M.Xavc4kIntraCbgProfileSettings }),
+        Xavc4kIntraVbrProfileSettings = setmetatable({ traits = {
+            json_name = "xavc4kIntraVbrProfileSettings",
+        } }, { __index = M.Xavc4kIntraVbrProfileSettings }),
+        Xavc4kProfileSettings = setmetatable({ traits = {
+            json_name = "xavc4kProfileSettings",
+        } }, { __index = M.Xavc4kProfileSettings }),
+        XavcHdIntraCbgProfileSettings = setmetatable({ traits = {
+            json_name = "xavcHdIntraCbgProfileSettings",
+        } }, { __index = M.XavcHdIntraCbgProfileSettings }),
+        XavcHdProfileSettings = setmetatable({ traits = {
+            json_name = "xavcHdProfileSettings",
+        } }, { __index = M.XavcHdProfileSettings }),
     },
 }
 
 M.VideoCodecSettings = {
     type = "structure",
     members = {
-        Av1Settings = {
-            type = "structure",
-            traits = {
-                json_name = "av1Settings",
-            },
-        },
-        AvcIntraSettings = {
-            type = "structure",
-            traits = {
-                json_name = "avcIntraSettings",
-            },
-        },
+        Av1Settings = setmetatable({ traits = {
+            json_name = "av1Settings",
+        } }, { __index = M.Av1Settings }),
+        AvcIntraSettings = setmetatable({ traits = {
+            json_name = "avcIntraSettings",
+        } }, { __index = M.AvcIntraSettings }),
         Codec = {
             type = "string",
             traits = {
                 json_name = "codec",
             },
         },
-        FrameCaptureSettings = {
-            type = "structure",
-            traits = {
-                json_name = "frameCaptureSettings",
-            },
-        },
-        GifSettings = {
-            type = "structure",
-            traits = {
-                json_name = "gifSettings",
-            },
-        },
-        H264Settings = {
-            type = "structure",
-            traits = {
-                json_name = "h264Settings",
-            },
-        },
-        H265Settings = {
-            type = "structure",
-            traits = {
-                json_name = "h265Settings",
-            },
-        },
-        Mpeg2Settings = {
-            type = "structure",
-            traits = {
-                json_name = "mpeg2Settings",
-            },
-        },
-        PassthroughSettings = {
-            type = "structure",
-            traits = {
-                json_name = "passthroughSettings",
-            },
-        },
-        ProresSettings = {
-            type = "structure",
-            traits = {
-                json_name = "proresSettings",
-            },
-        },
-        UncompressedSettings = {
-            type = "structure",
-            traits = {
-                json_name = "uncompressedSettings",
-            },
-        },
-        Vc3Settings = {
-            type = "structure",
-            traits = {
-                json_name = "vc3Settings",
-            },
-        },
-        Vp8Settings = {
-            type = "structure",
-            traits = {
-                json_name = "vp8Settings",
-            },
-        },
-        Vp9Settings = {
-            type = "structure",
-            traits = {
-                json_name = "vp9Settings",
-            },
-        },
-        XavcSettings = {
-            type = "structure",
-            traits = {
-                json_name = "xavcSettings",
-            },
-        },
+        FrameCaptureSettings = setmetatable({ traits = {
+            json_name = "frameCaptureSettings",
+        } }, { __index = M.FrameCaptureSettings }),
+        GifSettings = setmetatable({ traits = {
+            json_name = "gifSettings",
+        } }, { __index = M.GifSettings }),
+        H264Settings = setmetatable({ traits = {
+            json_name = "h264Settings",
+        } }, { __index = M.H264Settings }),
+        H265Settings = setmetatable({ traits = {
+            json_name = "h265Settings",
+        } }, { __index = M.H265Settings }),
+        Mpeg2Settings = setmetatable({ traits = {
+            json_name = "mpeg2Settings",
+        } }, { __index = M.Mpeg2Settings }),
+        PassthroughSettings = setmetatable({ traits = {
+            json_name = "passthroughSettings",
+        } }, { __index = M.PassthroughSettings }),
+        ProresSettings = setmetatable({ traits = {
+            json_name = "proresSettings",
+        } }, { __index = M.ProresSettings }),
+        UncompressedSettings = setmetatable({ traits = {
+            json_name = "uncompressedSettings",
+        } }, { __index = M.UncompressedSettings }),
+        Vc3Settings = setmetatable({ traits = {
+            json_name = "vc3Settings",
+        } }, { __index = M.Vc3Settings }),
+        Vp8Settings = setmetatable({ traits = {
+            json_name = "vp8Settings",
+        } }, { __index = M.Vp8Settings }),
+        Vp9Settings = setmetatable({ traits = {
+            json_name = "vp9Settings",
+        } }, { __index = M.Vp9Settings }),
+        XavcSettings = setmetatable({ traits = {
+            json_name = "xavcSettings",
+        } }, { __index = M.XavcSettings }),
     },
 }
 
@@ -10544,25 +10142,25 @@ M.ClipLimits = {
     type = "structure",
     members = {
         MaximumRGBTolerance = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maximumRGBTolerance",
             },
         },
         MaximumYUV = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maximumYUV",
             },
         },
         MinimumRGBTolerance = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "minimumRGBTolerance",
             },
         },
         MinimumYUV = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "minimumYUV",
             },
@@ -10596,17 +10194,14 @@ M.ColorCorrector = {
     type = "structure",
     members = {
         Brightness = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "brightness",
             },
         },
-        ClipLimits = {
-            type = "structure",
-            traits = {
-                json_name = "clipLimits",
-            },
-        },
+        ClipLimits = setmetatable({ traits = {
+            json_name = "clipLimits",
+        } }, { __index = M.ClipLimits }),
         ColorSpaceConversion = {
             type = "string",
             traits = {
@@ -10614,17 +10209,14 @@ M.ColorCorrector = {
             },
         },
         Contrast = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "contrast",
             },
         },
-        Hdr10Metadata = {
-            type = "structure",
-            traits = {
-                json_name = "hdr10Metadata",
-            },
-        },
+        Hdr10Metadata = setmetatable({ traits = {
+            json_name = "hdr10Metadata",
+        } }, { __index = M.Hdr10Metadata }),
         HdrToSdrToneMapper = {
             type = "string",
             traits = {
@@ -10632,13 +10224,13 @@ M.ColorCorrector = {
             },
         },
         Hue = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "hue",
             },
         },
         MaxLuminance = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxLuminance",
             },
@@ -10650,13 +10242,13 @@ M.ColorCorrector = {
             },
         },
         Saturation = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "saturation",
             },
         },
         SdrReferenceWhiteLevel = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "sdrReferenceWhiteLevel",
             },
@@ -10716,13 +10308,13 @@ M.DolbyVisionLevel6Metadata = {
     type = "structure",
     members = {
         MaxCll = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxCll",
             },
         },
         MaxFall = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxFall",
             },
@@ -10755,12 +10347,9 @@ M.DolbyVision = {
                 json_name = "compatibility",
             },
         },
-        L6Metadata = {
-            type = "structure",
-            traits = {
-                json_name = "l6Metadata",
-            },
-        },
+        L6Metadata = setmetatable({ traits = {
+            json_name = "l6Metadata",
+        } }, { __index = M.DolbyVisionLevel6Metadata }),
         L6Mode = {
             type = "string",
             traits = {
@@ -10786,13 +10375,13 @@ M.Hdr10Plus = {
     type = "structure",
     members = {
         MasteringMonitorNits = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "masteringMonitorNits",
             },
         },
         TargetMonitorNits = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "targetMonitorNits",
             },
@@ -10815,7 +10404,7 @@ M.NoiseReducerFilterSettings = {
     type = "structure",
     members = {
         Strength = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "strength",
             },
@@ -10827,19 +10416,19 @@ M.NoiseReducerSpatialFilterSettings = {
     type = "structure",
     members = {
         PostFilterSharpenStrength = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "postFilterSharpenStrength",
             },
         },
         Speed = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "speed",
             },
         },
         Strength = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "strength",
             },
@@ -10863,7 +10452,7 @@ M.NoiseReducerTemporalFilterSettings = {
     type = "structure",
     members = {
         AggressiveMode = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "aggressiveMode",
             },
@@ -10881,13 +10470,13 @@ M.NoiseReducerTemporalFilterSettings = {
             },
         },
         Speed = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "speed",
             },
         },
         Strength = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "strength",
             },
@@ -10904,24 +10493,15 @@ M.NoiseReducer = {
                 json_name = "filter",
             },
         },
-        FilterSettings = {
-            type = "structure",
-            traits = {
-                json_name = "filterSettings",
-            },
-        },
-        SpatialFilterSettings = {
-            type = "structure",
-            traits = {
-                json_name = "spatialFilterSettings",
-            },
-        },
-        TemporalFilterSettings = {
-            type = "structure",
-            traits = {
-                json_name = "temporalFilterSettings",
-            },
-        },
+        FilterSettings = setmetatable({ traits = {
+            json_name = "filterSettings",
+        } }, { __index = M.NoiseReducerFilterSettings }),
+        SpatialFilterSettings = setmetatable({ traits = {
+            json_name = "spatialFilterSettings",
+        } }, { __index = M.NoiseReducerSpatialFilterSettings }),
+        TemporalFilterSettings = setmetatable({ traits = {
+            json_name = "temporalFilterSettings",
+        } }, { __index = M.NoiseReducerTemporalFilterSettings }),
     },
 }
 
@@ -10943,7 +10523,7 @@ M.NexGuardFileMarkerSettings = {
             },
         },
         Payload = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "payload",
             },
@@ -10966,12 +10546,9 @@ M.NexGuardFileMarkerSettings = {
 M.PartnerWatermarking = {
     type = "structure",
     members = {
-        NexguardFileMarkerSettings = {
-            type = "structure",
-            traits = {
-                json_name = "nexguardFileMarkerSettings",
-            },
-        },
+        NexguardFileMarkerSettings = setmetatable({ traits = {
+            json_name = "nexguardFileMarkerSettings",
+        } }, { __index = M.NexGuardFileMarkerSettings }),
     },
 }
 
@@ -10991,7 +10568,7 @@ M.TimecodeBurnin = {
     type = "structure",
     members = {
         FontSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "fontSize",
             },
@@ -11014,54 +10591,30 @@ M.TimecodeBurnin = {
 M.VideoPreprocessor = {
     type = "structure",
     members = {
-        ColorCorrector = {
-            type = "structure",
-            traits = {
-                json_name = "colorCorrector",
-            },
-        },
-        Deinterlacer = {
-            type = "structure",
-            traits = {
-                json_name = "deinterlacer",
-            },
-        },
-        DolbyVision = {
-            type = "structure",
-            traits = {
-                json_name = "dolbyVision",
-            },
-        },
-        Hdr10Plus = {
-            type = "structure",
-            traits = {
-                json_name = "hdr10Plus",
-            },
-        },
-        ImageInserter = {
-            type = "structure",
-            traits = {
-                json_name = "imageInserter",
-            },
-        },
-        NoiseReducer = {
-            type = "structure",
-            traits = {
-                json_name = "noiseReducer",
-            },
-        },
-        PartnerWatermarking = {
-            type = "structure",
-            traits = {
-                json_name = "partnerWatermarking",
-            },
-        },
-        TimecodeBurnin = {
-            type = "structure",
-            traits = {
-                json_name = "timecodeBurnin",
-            },
-        },
+        ColorCorrector = setmetatable({ traits = {
+            json_name = "colorCorrector",
+        } }, { __index = M.ColorCorrector }),
+        Deinterlacer = setmetatable({ traits = {
+            json_name = "deinterlacer",
+        } }, { __index = M.Deinterlacer }),
+        DolbyVision = setmetatable({ traits = {
+            json_name = "dolbyVision",
+        } }, { __index = M.DolbyVision }),
+        Hdr10Plus = setmetatable({ traits = {
+            json_name = "hdr10Plus",
+        } }, { __index = M.Hdr10Plus }),
+        ImageInserter = setmetatable({ traits = {
+            json_name = "imageInserter",
+        } }, { __index = M.ImageInserter }),
+        NoiseReducer = setmetatable({ traits = {
+            json_name = "noiseReducer",
+        } }, { __index = M.NoiseReducer }),
+        PartnerWatermarking = setmetatable({ traits = {
+            json_name = "partnerWatermarking",
+        } }, { __index = M.PartnerWatermarking }),
+        TimecodeBurnin = setmetatable({ traits = {
+            json_name = "timecodeBurnin",
+        } }, { __index = M.TimecodeBurnin }),
     },
 }
 
@@ -11086,24 +10639,18 @@ M.VideoDescription = {
                 json_name = "chromaPositionMode",
             },
         },
-        CodecSettings = {
-            type = "structure",
-            traits = {
-                json_name = "codecSettings",
-            },
-        },
+        CodecSettings = setmetatable({ traits = {
+            json_name = "codecSettings",
+        } }, { __index = M.VideoCodecSettings }),
         ColorMetadata = {
             type = "string",
             traits = {
                 json_name = "colorMetadata",
             },
         },
-        Crop = {
-            type = "structure",
-            traits = {
-                json_name = "crop",
-            },
-        },
+        Crop = setmetatable({ traits = {
+            json_name = "crop",
+        } }, { __index = M.Rectangle }),
         DropFrameTimecode = {
             type = "string",
             traits = {
@@ -11111,23 +10658,20 @@ M.VideoDescription = {
             },
         },
         FixedAfd = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "fixedAfd",
             },
         },
         Height = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "height",
             },
         },
-        Position = {
-            type = "structure",
-            traits = {
-                json_name = "position",
-            },
-        },
+        Position = setmetatable({ traits = {
+            json_name = "position",
+        } }, { __index = M.Rectangle }),
         RespondToAfd = {
             type = "string",
             traits = {
@@ -11141,7 +10685,7 @@ M.VideoDescription = {
             },
         },
         Sharpness = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "sharpness",
             },
@@ -11158,14 +10702,11 @@ M.VideoDescription = {
                 json_name = "timecodeTrack",
             },
         },
-        VideoPreprocessors = {
-            type = "structure",
-            traits = {
-                json_name = "videoPreprocessors",
-            },
-        },
+        VideoPreprocessors = setmetatable({ traits = {
+            json_name = "videoPreprocessors",
+        } }, { __index = M.VideoPreprocessor }),
         Width = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "width",
             },
@@ -11178,24 +10719,21 @@ M.Output = {
     members = {
         AudioDescriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.AudioDescription,
             traits = {
                 json_name = "audioDescriptions",
             },
         },
         CaptionDescriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.CaptionDescription,
             traits = {
                 json_name = "captionDescriptions",
             },
         },
-        ContainerSettings = {
-            type = "structure",
-            traits = {
-                json_name = "containerSettings",
-            },
-        },
+        ContainerSettings = setmetatable({ traits = {
+            json_name = "containerSettings",
+        } }, { __index = M.ContainerSettings }),
         Extension = {
             type = "string",
             traits = {
@@ -11208,36 +10746,27 @@ M.Output = {
                 json_name = "nameModifier",
             },
         },
-        OutputSettings = {
-            type = "structure",
-            traits = {
-                json_name = "outputSettings",
-            },
-        },
+        OutputSettings = setmetatable({ traits = {
+            json_name = "outputSettings",
+        } }, { __index = M.OutputSettings }),
         Preset = {
             type = "string",
             traits = {
                 json_name = "preset",
             },
         },
-        VideoDescription = {
-            type = "structure",
-            traits = {
-                json_name = "videoDescription",
-            },
-        },
+        VideoDescription = setmetatable({ traits = {
+            json_name = "videoDescription",
+        } }, { __index = M.VideoDescription }),
     },
 }
 
 M.OutputGroup = {
     type = "structure",
     members = {
-        AutomatedEncodingSettings = {
-            type = "structure",
-            traits = {
-                json_name = "automatedEncodingSettings",
-            },
-        },
+        AutomatedEncodingSettings = setmetatable({ traits = {
+            json_name = "automatedEncodingSettings",
+        } }, { __index = M.AutomatedEncodingSettings }),
         CustomName = {
             type = "string",
             traits = {
@@ -11250,15 +10779,12 @@ M.OutputGroup = {
                 json_name = "name",
             },
         },
-        OutputGroupSettings = {
-            type = "structure",
-            traits = {
-                json_name = "outputGroupSettings",
-            },
-        },
+        OutputGroupSettings = setmetatable({ traits = {
+            json_name = "outputGroupSettings",
+        } }, { __index = M.OutputGroupSettings }),
         Outputs = {
             type = "list",
-            member_type = "structure",
+            member = M.Output,
             traits = {
                 json_name = "outputs",
             },
@@ -11307,7 +10833,7 @@ M.TimedMetadataInsertion = {
     members = {
         Id3Insertions = {
             type = "list",
-            member_type = "structure",
+            member = M.Id3Insertion,
             traits = {
                 json_name = "id3Insertions",
             },
@@ -11319,92 +10845,65 @@ M.JobSettings = {
     type = "structure",
     members = {
         AdAvailOffset = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "adAvailOffset",
             },
         },
-        AvailBlanking = {
-            type = "structure",
-            traits = {
-                json_name = "availBlanking",
-            },
-        },
+        AvailBlanking = setmetatable({ traits = {
+            json_name = "availBlanking",
+        } }, { __index = M.AvailBlanking }),
         ColorConversion3DLUTSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.ColorConversion3DLUTSetting,
             traits = {
                 json_name = "colorConversion3DLUTSettings",
             },
         },
-        Esam = {
-            type = "structure",
-            traits = {
-                json_name = "esam",
-            },
-        },
-        ExtendedDataServices = {
-            type = "structure",
-            traits = {
-                json_name = "extendedDataServices",
-            },
-        },
+        Esam = setmetatable({ traits = {
+            json_name = "esam",
+        } }, { __index = M.EsamSettings }),
+        ExtendedDataServices = setmetatable({ traits = {
+            json_name = "extendedDataServices",
+        } }, { __index = M.ExtendedDataServices }),
         FollowSource = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "followSource",
             },
         },
         Inputs = {
             type = "list",
-            member_type = "structure",
+            member = M.Input,
             traits = {
                 json_name = "inputs",
             },
         },
-        KantarWatermark = {
-            type = "structure",
-            traits = {
-                json_name = "kantarWatermark",
-            },
-        },
-        MotionImageInserter = {
-            type = "structure",
-            traits = {
-                json_name = "motionImageInserter",
-            },
-        },
-        NielsenConfiguration = {
-            type = "structure",
-            traits = {
-                json_name = "nielsenConfiguration",
-            },
-        },
-        NielsenNonLinearWatermark = {
-            type = "structure",
-            traits = {
-                json_name = "nielsenNonLinearWatermark",
-            },
-        },
+        KantarWatermark = setmetatable({ traits = {
+            json_name = "kantarWatermark",
+        } }, { __index = M.KantarWatermarkSettings }),
+        MotionImageInserter = setmetatable({ traits = {
+            json_name = "motionImageInserter",
+        } }, { __index = M.MotionImageInserter }),
+        NielsenConfiguration = setmetatable({ traits = {
+            json_name = "nielsenConfiguration",
+        } }, { __index = M.NielsenConfiguration }),
+        NielsenNonLinearWatermark = setmetatable({ traits = {
+            json_name = "nielsenNonLinearWatermark",
+        } }, { __index = M.NielsenNonLinearWatermarkSettings }),
         OutputGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputGroup,
             traits = {
                 json_name = "outputGroups",
             },
         },
-        TimecodeConfig = {
-            type = "structure",
-            traits = {
-                json_name = "timecodeConfig",
-            },
-        },
-        TimedMetadataInsertion = {
-            type = "structure",
-            traits = {
-                json_name = "timedMetadataInsertion",
-            },
-        },
+        TimecodeConfig = setmetatable({ traits = {
+            json_name = "timecodeConfig",
+        } }, { __index = M.TimecodeConfig }),
+        TimedMetadataInsertion = setmetatable({ traits = {
+            json_name = "timedMetadataInsertion",
+        } }, { __index = M.TimedMetadataInsertion }),
     },
 }
 
@@ -11473,14 +10972,14 @@ M.WarningGroup = {
     type = "structure",
     members = {
         Code = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "code",
                 required = true,
             },
         },
         Count = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "count",
                 required = true,
@@ -11492,12 +10991,9 @@ M.WarningGroup = {
 M.Job = {
     type = "structure",
     members = {
-        AccelerationSettings = {
-            type = "structure",
-            traits = {
-                json_name = "accelerationSettings",
-            },
-        },
+        AccelerationSettings = setmetatable({ traits = {
+            json_name = "accelerationSettings",
+        } }, { __index = M.AccelerationSettings }),
         AccelerationStatus = {
             type = "string",
             traits = {
@@ -11534,14 +11030,11 @@ M.Job = {
                 json_name = "currentPhase",
             },
         },
-        ElementalInferenceConfiguration = {
-            type = "structure",
-            traits = {
-                json_name = "elementalInferenceConfiguration",
-            },
-        },
+        ElementalInferenceConfiguration = setmetatable({ traits = {
+            json_name = "elementalInferenceConfiguration",
+        } }, { __index = M.ElementalInferenceConfiguration }),
         ErrorCode = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "errorCode",
             },
@@ -11554,7 +11047,7 @@ M.Job = {
         },
         HopDestinations = {
             type = "list",
-            member_type = "structure",
+            member = M.HopDestination,
             traits = {
                 json_name = "hopDestinations",
             },
@@ -11578,7 +11071,7 @@ M.Job = {
             },
         },
         JobPercentComplete = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "jobPercentComplete",
             },
@@ -11595,21 +11088,18 @@ M.Job = {
                 json_name = "lastShareDetails",
             },
         },
-        Messages = {
-            type = "structure",
-            traits = {
-                json_name = "messages",
-            },
-        },
+        Messages = setmetatable({ traits = {
+            json_name = "messages",
+        } }, { __index = M.JobMessages }),
         OutputGroupDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputGroupDetail,
             traits = {
                 json_name = "outputGroupDetails",
             },
         },
         Priority = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "priority",
             },
@@ -11622,13 +11112,13 @@ M.Job = {
         },
         QueueTransitions = {
             type = "list",
-            member_type = "structure",
+            member = M.QueueTransition,
             traits = {
                 json_name = "queueTransitions",
             },
         },
         RetryCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "retryCount",
             },
@@ -11640,13 +11130,10 @@ M.Job = {
                 required = true,
             },
         },
-        Settings = {
-            type = "structure",
-            traits = {
-                json_name = "settings",
-                required = true,
-            },
-        },
+        Settings = setmetatable({ traits = {
+            json_name = "settings",
+            required = true,
+        } }, { __index = M.JobSettings }),
         ShareStatus = {
             type = "string",
             traits = {
@@ -11671,23 +11158,20 @@ M.Job = {
                 json_name = "statusUpdateInterval",
             },
         },
-        Timing = {
-            type = "structure",
-            traits = {
-                json_name = "timing",
-            },
-        },
+        Timing = setmetatable({ traits = {
+            json_name = "timing",
+        } }, { __index = M.Timing }),
         UserMetadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "userMetadata",
             },
         },
         Warnings = {
             type = "list",
-            member_type = "structure",
+            member = M.WarningGroup,
             traits = {
                 json_name = "warnings",
             },
@@ -11734,7 +11218,7 @@ M.JobsQueryFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "values",
             },
@@ -11746,92 +11230,65 @@ M.JobTemplateSettings = {
     type = "structure",
     members = {
         AdAvailOffset = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "adAvailOffset",
             },
         },
-        AvailBlanking = {
-            type = "structure",
-            traits = {
-                json_name = "availBlanking",
-            },
-        },
+        AvailBlanking = setmetatable({ traits = {
+            json_name = "availBlanking",
+        } }, { __index = M.AvailBlanking }),
         ColorConversion3DLUTSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.ColorConversion3DLUTSetting,
             traits = {
                 json_name = "colorConversion3DLUTSettings",
             },
         },
-        Esam = {
-            type = "structure",
-            traits = {
-                json_name = "esam",
-            },
-        },
-        ExtendedDataServices = {
-            type = "structure",
-            traits = {
-                json_name = "extendedDataServices",
-            },
-        },
+        Esam = setmetatable({ traits = {
+            json_name = "esam",
+        } }, { __index = M.EsamSettings }),
+        ExtendedDataServices = setmetatable({ traits = {
+            json_name = "extendedDataServices",
+        } }, { __index = M.ExtendedDataServices }),
         FollowSource = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "followSource",
             },
         },
         Inputs = {
             type = "list",
-            member_type = "structure",
+            member = M.InputTemplate,
             traits = {
                 json_name = "inputs",
             },
         },
-        KantarWatermark = {
-            type = "structure",
-            traits = {
-                json_name = "kantarWatermark",
-            },
-        },
-        MotionImageInserter = {
-            type = "structure",
-            traits = {
-                json_name = "motionImageInserter",
-            },
-        },
-        NielsenConfiguration = {
-            type = "structure",
-            traits = {
-                json_name = "nielsenConfiguration",
-            },
-        },
-        NielsenNonLinearWatermark = {
-            type = "structure",
-            traits = {
-                json_name = "nielsenNonLinearWatermark",
-            },
-        },
+        KantarWatermark = setmetatable({ traits = {
+            json_name = "kantarWatermark",
+        } }, { __index = M.KantarWatermarkSettings }),
+        MotionImageInserter = setmetatable({ traits = {
+            json_name = "motionImageInserter",
+        } }, { __index = M.MotionImageInserter }),
+        NielsenConfiguration = setmetatable({ traits = {
+            json_name = "nielsenConfiguration",
+        } }, { __index = M.NielsenConfiguration }),
+        NielsenNonLinearWatermark = setmetatable({ traits = {
+            json_name = "nielsenNonLinearWatermark",
+        } }, { __index = M.NielsenNonLinearWatermarkSettings }),
         OutputGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputGroup,
             traits = {
                 json_name = "outputGroups",
             },
         },
-        TimecodeConfig = {
-            type = "structure",
-            traits = {
-                json_name = "timecodeConfig",
-            },
-        },
-        TimedMetadataInsertion = {
-            type = "structure",
-            traits = {
-                json_name = "timedMetadataInsertion",
-            },
-        },
+        TimecodeConfig = setmetatable({ traits = {
+            json_name = "timecodeConfig",
+        } }, { __index = M.TimecodeConfig }),
+        TimedMetadataInsertion = setmetatable({ traits = {
+            json_name = "timedMetadataInsertion",
+        } }, { __index = M.TimedMetadataInsertion }),
     },
 }
 
@@ -11843,12 +11300,9 @@ M.Type = {
 M.JobTemplate = {
     type = "structure",
     members = {
-        AccelerationSettings = {
-            type = "structure",
-            traits = {
-                json_name = "accelerationSettings",
-            },
-        },
+        AccelerationSettings = setmetatable({ traits = {
+            json_name = "accelerationSettings",
+        } }, { __index = M.AccelerationSettings }),
         Arn = {
             type = "string",
             traits = {
@@ -11875,7 +11329,7 @@ M.JobTemplate = {
         },
         HopDestinations = {
             type = "list",
-            member_type = "structure",
+            member = M.HopDestination,
             traits = {
                 json_name = "hopDestinations",
             },
@@ -11894,7 +11348,7 @@ M.JobTemplate = {
             },
         },
         Priority = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "priority",
             },
@@ -11905,13 +11359,10 @@ M.JobTemplate = {
                 json_name = "queue",
             },
         },
-        Settings = {
-            type = "structure",
-            traits = {
-                json_name = "settings",
-                required = true,
-            },
-        },
+        Settings = setmetatable({ traits = {
+            json_name = "settings",
+            required = true,
+        } }, { __index = M.JobTemplateSettings }),
         StatusUpdateInterval = {
             type = "string",
             traits = {
@@ -11932,30 +11383,24 @@ M.PresetSettings = {
     members = {
         AudioDescriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.AudioDescription,
             traits = {
                 json_name = "audioDescriptions",
             },
         },
         CaptionDescriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.CaptionDescriptionPreset,
             traits = {
                 json_name = "captionDescriptions",
             },
         },
-        ContainerSettings = {
-            type = "structure",
-            traits = {
-                json_name = "containerSettings",
-            },
-        },
-        VideoDescription = {
-            type = "structure",
-            traits = {
-                json_name = "videoDescription",
-            },
-        },
+        ContainerSettings = setmetatable({ traits = {
+            json_name = "containerSettings",
+        } }, { __index = M.ContainerSettings }),
+        VideoDescription = setmetatable({ traits = {
+            json_name = "videoDescription",
+        } }, { __index = M.VideoDescription }),
     },
 }
 
@@ -11999,13 +11444,10 @@ M.Preset = {
                 required = true,
             },
         },
-        Settings = {
-            type = "structure",
-            traits = {
-                json_name = "settings",
-                required = true,
-            },
-        },
+        Settings = setmetatable({ traits = {
+            json_name = "settings",
+            required = true,
+        } }, { __index = M.PresetSettings }),
         Type = {
             type = "string",
             traits = {
@@ -12042,13 +11484,13 @@ M.FrameRate = {
     type = "structure",
     members = {
         Denominator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "denominator",
             },
         },
         Numerator = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "numerator",
             },
@@ -12060,29 +11502,26 @@ M.AudioProperties = {
     type = "structure",
     members = {
         BitDepth = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "bitDepth",
             },
         },
         BitRate = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "bitRate",
             },
         },
         Channels = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "channels",
             },
         },
-        FrameRate = {
-            type = "structure",
-            traits = {
-                json_name = "frameRate",
-            },
-        },
+        FrameRate = setmetatable({ traits = {
+            json_name = "frameRate",
+        } }, { __index = M.FrameRate }),
         LanguageCode = {
             type = "string",
             traits = {
@@ -12090,7 +11529,7 @@ M.AudioProperties = {
             },
         },
         SampleRate = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "sampleRate",
             },
@@ -12212,7 +11651,7 @@ M.CodecMetadata = {
     type = "structure",
     members = {
         BitDepth = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "bitDepth",
             },
@@ -12223,12 +11662,9 @@ M.CodecMetadata = {
                 json_name = "chromaSubsampling",
             },
         },
-        CodedFrameRate = {
-            type = "structure",
-            traits = {
-                json_name = "codedFrameRate",
-            },
-        },
+        CodedFrameRate = setmetatable({ traits = {
+            json_name = "codedFrameRate",
+        } }, { __index = M.FrameRate }),
         ColorPrimaries = {
             type = "string",
             traits = {
@@ -12236,7 +11672,7 @@ M.CodecMetadata = {
             },
         },
         Height = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "height",
             },
@@ -12272,7 +11708,7 @@ M.CodecMetadata = {
             },
         },
         Width = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "width",
             },
@@ -12284,37 +11720,31 @@ M.VideoProperties = {
     type = "structure",
     members = {
         BitDepth = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "bitDepth",
             },
         },
         BitRate = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "bitRate",
             },
         },
-        CodecMetadata = {
-            type = "structure",
-            traits = {
-                json_name = "codecMetadata",
-            },
-        },
+        CodecMetadata = setmetatable({ traits = {
+            json_name = "codecMetadata",
+        } }, { __index = M.CodecMetadata }),
         ColorPrimaries = {
             type = "string",
             traits = {
                 json_name = "colorPrimaries",
             },
         },
-        FrameRate = {
-            type = "structure",
-            traits = {
-                json_name = "frameRate",
-            },
-        },
+        FrameRate = setmetatable({ traits = {
+            json_name = "frameRate",
+        } }, { __index = M.FrameRate }),
         Height = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "height",
             },
@@ -12332,7 +11762,7 @@ M.VideoProperties = {
             },
         },
         Width = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "width",
             },
@@ -12343,32 +11773,26 @@ M.VideoProperties = {
 M.Track = {
     type = "structure",
     members = {
-        AudioProperties = {
-            type = "structure",
-            traits = {
-                json_name = "audioProperties",
-            },
-        },
+        AudioProperties = setmetatable({ traits = {
+            json_name = "audioProperties",
+        } }, { __index = M.AudioProperties }),
         Codec = {
             type = "string",
             traits = {
                 json_name = "codec",
             },
         },
-        DataProperties = {
-            type = "structure",
-            traits = {
-                json_name = "dataProperties",
-            },
-        },
+        DataProperties = setmetatable({ traits = {
+            json_name = "dataProperties",
+        } }, { __index = M.DataProperties }),
         Duration = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "duration",
             },
         },
         Index = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "index",
             },
@@ -12379,12 +11803,9 @@ M.Track = {
                 json_name = "trackType",
             },
         },
-        VideoProperties = {
-            type = "structure",
-            traits = {
-                json_name = "videoProperties",
-            },
-        },
+        VideoProperties = setmetatable({ traits = {
+            json_name = "videoProperties",
+        } }, { __index = M.VideoProperties }),
     },
 }
 
@@ -12392,7 +11813,7 @@ M.Container = {
     type = "structure",
     members = {
         Duration = {
-            type = "number",
+            type = "double",
             traits = {
                 json_name = "duration",
             },
@@ -12411,7 +11832,7 @@ M.Container = {
         },
         Tracks = {
             type = "list",
-            member_type = "structure",
+            member = M.Track,
             traits = {
                 json_name = "tracks",
             },
@@ -12429,7 +11850,7 @@ M.Metadata = {
             },
         },
         FileSize = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "fileSize",
             },
@@ -12454,21 +11875,21 @@ M.TrackMapping = {
     members = {
         AudioTrackIndexes = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
             traits = {
                 json_name = "audioTrackIndexes",
             },
         },
         DataTrackIndexes = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
             traits = {
                 json_name = "dataTrackIndexes",
             },
         },
         VideoTrackIndexes = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
             traits = {
                 json_name = "videoTrackIndexes",
             },
@@ -12479,21 +11900,15 @@ M.TrackMapping = {
 M.ProbeResult = {
     type = "structure",
     members = {
-        Container = {
-            type = "structure",
-            traits = {
-                json_name = "container",
-            },
-        },
-        Metadata = {
-            type = "structure",
-            traits = {
-                json_name = "metadata",
-            },
-        },
+        Container = setmetatable({ traits = {
+            json_name = "container",
+        } }, { __index = M.Container }),
+        Metadata = setmetatable({ traits = {
+            json_name = "metadata",
+        } }, { __index = M.Metadata }),
         TrackMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.TrackMapping,
             traits = {
                 json_name = "trackMappings",
             },
@@ -12548,7 +11963,7 @@ M.ReservationPlan = {
             },
         },
         ReservedSlots = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "reservedSlots",
             },
@@ -12607,7 +12022,7 @@ M.Queue = {
             },
         },
         ConcurrentJobs = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "concurrentJobs",
             },
@@ -12631,7 +12046,7 @@ M.Queue = {
             },
         },
         MaximumConcurrentFeeds = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maximumConcurrentFeeds",
             },
@@ -12650,20 +12065,17 @@ M.Queue = {
             },
         },
         ProgressingJobsCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "progressingJobsCount",
             },
         },
-        ReservationPlan = {
-            type = "structure",
-            traits = {
-                json_name = "reservationPlan",
-            },
-        },
+        ReservationPlan = setmetatable({ traits = {
+            json_name = "reservationPlan",
+        } }, { __index = M.ReservationPlan }),
         ServiceOverrides = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceOverride,
             traits = {
                 json_name = "serviceOverrides",
             },
@@ -12675,7 +12087,7 @@ M.Queue = {
             },
         },
         SubmittedJobsCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "submittedJobsCount",
             },
@@ -12817,12 +12229,9 @@ M.CancelJobOutput = {
 M.CreateJobInput = {
     type = "structure",
     members = {
-        AccelerationSettings = {
-            type = "structure",
-            traits = {
-                json_name = "accelerationSettings",
-            },
-        },
+        AccelerationSettings = setmetatable({ traits = {
+            json_name = "accelerationSettings",
+        } }, { __index = M.AccelerationSettings }),
         BillingTagsSource = {
             type = "string",
             traits = {
@@ -12837,7 +12246,7 @@ M.CreateJobInput = {
         },
         HopDestinations = {
             type = "list",
-            member_type = "structure",
+            member = M.HopDestination,
             traits = {
                 json_name = "hopDestinations",
             },
@@ -12855,7 +12264,7 @@ M.CreateJobInput = {
             },
         },
         Priority = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "priority",
             },
@@ -12873,13 +12282,10 @@ M.CreateJobInput = {
                 required = true,
             },
         },
-        Settings = {
-            type = "structure",
-            traits = {
-                json_name = "settings",
-                required = true,
-            },
-        },
+        Settings = setmetatable({ traits = {
+            json_name = "settings",
+            required = true,
+        } }, { __index = M.JobSettings }),
         SimulateReservedQueue = {
             type = "string",
             traits = {
@@ -12894,16 +12300,16 @@ M.CreateJobInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
         },
         UserMetadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "userMetadata",
             },
@@ -12914,24 +12320,18 @@ M.CreateJobInput = {
 M.CreateJobOutput = {
     type = "structure",
     members = {
-        Job = {
-            type = "structure",
-            traits = {
-                json_name = "job",
-            },
-        },
+        Job = setmetatable({ traits = {
+            json_name = "job",
+        } }, { __index = M.Job }),
     },
 }
 
 M.CreateJobTemplateInput = {
     type = "structure",
     members = {
-        AccelerationSettings = {
-            type = "structure",
-            traits = {
-                json_name = "accelerationSettings",
-            },
-        },
+        AccelerationSettings = setmetatable({ traits = {
+            json_name = "accelerationSettings",
+        } }, { __index = M.AccelerationSettings }),
         Category = {
             type = "string",
             traits = {
@@ -12946,7 +12346,7 @@ M.CreateJobTemplateInput = {
         },
         HopDestinations = {
             type = "list",
-            member_type = "structure",
+            member = M.HopDestination,
             traits = {
                 json_name = "hopDestinations",
             },
@@ -12959,7 +12359,7 @@ M.CreateJobTemplateInput = {
             },
         },
         Priority = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "priority",
             },
@@ -12970,13 +12370,10 @@ M.CreateJobTemplateInput = {
                 json_name = "queue",
             },
         },
-        Settings = {
-            type = "structure",
-            traits = {
-                json_name = "settings",
-                required = true,
-            },
-        },
+        Settings = setmetatable({ traits = {
+            json_name = "settings",
+            required = true,
+        } }, { __index = M.JobTemplateSettings }),
         StatusUpdateInterval = {
             type = "string",
             traits = {
@@ -12985,8 +12382,8 @@ M.CreateJobTemplateInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -12997,12 +12394,9 @@ M.CreateJobTemplateInput = {
 M.CreateJobTemplateOutput = {
     type = "structure",
     members = {
-        JobTemplate = {
-            type = "structure",
-            traits = {
-                json_name = "jobTemplate",
-            },
-        },
+        JobTemplate = setmetatable({ traits = {
+            json_name = "jobTemplate",
+        } }, { __index = M.JobTemplate }),
     },
 }
 
@@ -13028,17 +12422,14 @@ M.CreatePresetInput = {
                 required = true,
             },
         },
-        Settings = {
-            type = "structure",
-            traits = {
-                json_name = "settings",
-                required = true,
-            },
-        },
+        Settings = setmetatable({ traits = {
+            json_name = "settings",
+            required = true,
+        } }, { __index = M.PresetSettings }),
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -13049,12 +12440,9 @@ M.CreatePresetInput = {
 M.CreatePresetOutput = {
     type = "structure",
     members = {
-        Preset = {
-            type = "structure",
-            traits = {
-                json_name = "preset",
-            },
-        },
+        Preset = setmetatable({ traits = {
+            json_name = "preset",
+        } }, { __index = M.Preset }),
     },
 }
 
@@ -13076,7 +12464,7 @@ M.ReservationPlanSettings = {
             },
         },
         ReservedSlots = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "reservedSlots",
                 required = true,
@@ -13089,7 +12477,7 @@ M.CreateQueueInput = {
     type = "structure",
     members = {
         ConcurrentJobs = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "concurrentJobs",
             },
@@ -13101,7 +12489,7 @@ M.CreateQueueInput = {
             },
         },
         MaximumConcurrentFeeds = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maximumConcurrentFeeds",
             },
@@ -13119,12 +12507,9 @@ M.CreateQueueInput = {
                 json_name = "pricingPlan",
             },
         },
-        ReservationPlanSettings = {
-            type = "structure",
-            traits = {
-                json_name = "reservationPlanSettings",
-            },
-        },
+        ReservationPlanSettings = setmetatable({ traits = {
+            json_name = "reservationPlanSettings",
+        } }, { __index = M.ReservationPlanSettings }),
         Status = {
             type = "string",
             traits = {
@@ -13133,8 +12518,8 @@ M.CreateQueueInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -13145,12 +12530,9 @@ M.CreateQueueInput = {
 M.CreateQueueOutput = {
     type = "structure",
     members = {
-        Queue = {
-            type = "structure",
-            traits = {
-                json_name = "queue",
-            },
-        },
+        Queue = setmetatable({ traits = {
+            json_name = "queue",
+        } }, { __index = M.Queue }),
     },
 }
 
@@ -13246,7 +12628,7 @@ M.DescribeEndpointsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxResults",
             },
@@ -13271,7 +12653,7 @@ M.DescribeEndpointsOutput = {
     members = {
         Endpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.Endpoint,
             traits = {
                 json_name = "endpoints",
             },
@@ -13318,12 +12700,9 @@ M.GetJobInput = {
 M.GetJobOutput = {
     type = "structure",
     members = {
-        Job = {
-            type = "structure",
-            traits = {
-                json_name = "job",
-            },
-        },
+        Job = setmetatable({ traits = {
+            json_name = "job",
+        } }, { __index = M.Job }),
     },
 }
 
@@ -13352,7 +12731,7 @@ M.GetJobsQueryResultsOutput = {
     members = {
         Jobs = {
             type = "list",
-            member_type = "structure",
+            member = M.Job,
             traits = {
                 json_name = "jobs",
             },
@@ -13388,12 +12767,9 @@ M.GetJobTemplateInput = {
 M.GetJobTemplateOutput = {
     type = "structure",
     members = {
-        JobTemplate = {
-            type = "structure",
-            traits = {
-                json_name = "jobTemplate",
-            },
-        },
+        JobTemplate = setmetatable({ traits = {
+            json_name = "jobTemplate",
+        } }, { __index = M.JobTemplate }),
     },
 }
 
@@ -13433,12 +12809,9 @@ M.Policy = {
 M.GetPolicyOutput = {
     type = "structure",
     members = {
-        Policy = {
-            type = "structure",
-            traits = {
-                json_name = "policy",
-            },
-        },
+        Policy = setmetatable({ traits = {
+            json_name = "policy",
+        } }, { __index = M.Policy }),
     },
 }
 
@@ -13458,12 +12831,9 @@ M.GetPresetInput = {
 M.GetPresetOutput = {
     type = "structure",
     members = {
-        Preset = {
-            type = "structure",
-            traits = {
-                json_name = "preset",
-            },
-        },
+        Preset = setmetatable({ traits = {
+            json_name = "preset",
+        } }, { __index = M.Preset }),
     },
 }
 
@@ -13483,12 +12853,9 @@ M.GetQueueInput = {
 M.GetQueueOutput = {
     type = "structure",
     members = {
-        Queue = {
-            type = "structure",
-            traits = {
-                json_name = "queue",
-            },
-        },
+        Queue = setmetatable({ traits = {
+            json_name = "queue",
+        } }, { __index = M.Queue }),
     },
 }
 
@@ -13507,7 +12874,7 @@ M.ListJobsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -13544,7 +12911,7 @@ M.ListJobsOutput = {
     members = {
         Jobs = {
             type = "list",
-            member_type = "structure",
+            member = M.Job,
             traits = {
                 json_name = "jobs",
             },
@@ -13574,7 +12941,7 @@ M.ListJobTemplatesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -13599,7 +12966,7 @@ M.ListJobTemplatesOutput = {
     members = {
         JobTemplates = {
             type = "list",
-            member_type = "structure",
+            member = M.JobTemplate,
             traits = {
                 json_name = "jobTemplates",
             },
@@ -13635,7 +13002,7 @@ M.ListPresetsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -13666,7 +13033,7 @@ M.ListPresetsOutput = {
         },
         Presets = {
             type = "list",
-            member_type = "structure",
+            member = M.Preset,
             traits = {
                 json_name = "presets",
             },
@@ -13689,7 +13056,7 @@ M.ListQueuesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -13720,19 +13087,19 @@ M.ListQueuesOutput = {
         },
         Queues = {
             type = "list",
-            member_type = "structure",
+            member = M.Queue,
             traits = {
                 json_name = "queues",
             },
         },
         TotalConcurrentJobs = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "totalConcurrentJobs",
             },
         },
         UnallocatedConcurrentJobs = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "unallocatedConcurrentJobs",
             },
@@ -13764,8 +13131,8 @@ M.ResourceTags = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -13776,12 +13143,9 @@ M.ResourceTags = {
 M.ListTagsForResourceOutput = {
     type = "structure",
     members = {
-        ResourceTags = {
-            type = "structure",
-            traits = {
-                json_name = "resourceTags",
-            },
-        },
+        ResourceTags = setmetatable({ traits = {
+            json_name = "resourceTags",
+        } }, { __index = M.ResourceTags }),
     },
 }
 
@@ -13789,7 +13153,7 @@ M.ListVersionsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -13814,7 +13178,7 @@ M.ListVersionsOutput = {
         },
         Versions = {
             type = "list",
-            member_type = "structure",
+            member = M.JobEngineVersion,
             traits = {
                 json_name = "versions",
             },
@@ -13827,7 +13191,7 @@ M.ProbeInput = {
     members = {
         InputFiles = {
             type = "list",
-            member_type = "structure",
+            member = M.ProbeInputFile,
             traits = {
                 json_name = "inputFiles",
             },
@@ -13840,7 +13204,7 @@ M.ProbeOutput = {
     members = {
         ProbeResults = {
             type = "list",
-            member_type = "structure",
+            member = M.ProbeResult,
             traits = {
                 json_name = "probeResults",
             },
@@ -13851,25 +13215,19 @@ M.ProbeOutput = {
 M.PutPolicyInput = {
     type = "structure",
     members = {
-        Policy = {
-            type = "structure",
-            traits = {
-                json_name = "policy",
-                required = true,
-            },
-        },
+        Policy = setmetatable({ traits = {
+            json_name = "policy",
+            required = true,
+        } }, { __index = M.Policy }),
     },
 }
 
 M.PutPolicyOutput = {
     type = "structure",
     members = {
-        Policy = {
-            type = "structure",
-            traits = {
-                json_name = "policy",
-            },
-        },
+        Policy = setmetatable({ traits = {
+            json_name = "policy",
+        } }, { __index = M.Policy }),
     },
 }
 
@@ -13883,7 +13241,7 @@ M.SearchJobsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -13920,7 +13278,7 @@ M.SearchJobsOutput = {
     members = {
         Jobs = {
             type = "list",
-            member_type = "structure",
+            member = M.Job,
             traits = {
                 json_name = "jobs",
             },
@@ -13939,13 +13297,13 @@ M.StartJobsQueryInput = {
     members = {
         FilterList = {
             type = "list",
-            member_type = "structure",
+            member = M.JobsQueryFilter,
             traits = {
                 json_name = "filterList",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxResults",
             },
@@ -13989,8 +13347,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
                 required = true,
@@ -14015,7 +13373,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "tagKeys",
             },
@@ -14030,12 +13388,9 @@ M.UntagResourceOutput = {
 M.UpdateJobTemplateInput = {
     type = "structure",
     members = {
-        AccelerationSettings = {
-            type = "structure",
-            traits = {
-                json_name = "accelerationSettings",
-            },
-        },
+        AccelerationSettings = setmetatable({ traits = {
+            json_name = "accelerationSettings",
+        } }, { __index = M.AccelerationSettings }),
         Category = {
             type = "string",
             traits = {
@@ -14050,7 +13405,7 @@ M.UpdateJobTemplateInput = {
         },
         HopDestinations = {
             type = "list",
-            member_type = "structure",
+            member = M.HopDestination,
             traits = {
                 json_name = "hopDestinations",
             },
@@ -14063,7 +13418,7 @@ M.UpdateJobTemplateInput = {
             },
         },
         Priority = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "priority",
             },
@@ -14074,12 +13429,9 @@ M.UpdateJobTemplateInput = {
                 json_name = "queue",
             },
         },
-        Settings = {
-            type = "structure",
-            traits = {
-                json_name = "settings",
-            },
-        },
+        Settings = setmetatable({ traits = {
+            json_name = "settings",
+        } }, { __index = M.JobTemplateSettings }),
         StatusUpdateInterval = {
             type = "string",
             traits = {
@@ -14092,12 +13444,9 @@ M.UpdateJobTemplateInput = {
 M.UpdateJobTemplateOutput = {
     type = "structure",
     members = {
-        JobTemplate = {
-            type = "structure",
-            traits = {
-                json_name = "jobTemplate",
-            },
-        },
+        JobTemplate = setmetatable({ traits = {
+            json_name = "jobTemplate",
+        } }, { __index = M.JobTemplate }),
     },
 }
 
@@ -14123,24 +13472,18 @@ M.UpdatePresetInput = {
                 required = true,
             },
         },
-        Settings = {
-            type = "structure",
-            traits = {
-                json_name = "settings",
-            },
-        },
+        Settings = setmetatable({ traits = {
+            json_name = "settings",
+        } }, { __index = M.PresetSettings }),
     },
 }
 
 M.UpdatePresetOutput = {
     type = "structure",
     members = {
-        Preset = {
-            type = "structure",
-            traits = {
-                json_name = "preset",
-            },
-        },
+        Preset = setmetatable({ traits = {
+            json_name = "preset",
+        } }, { __index = M.Preset }),
     },
 }
 
@@ -14148,7 +13491,7 @@ M.UpdateQueueInput = {
     type = "structure",
     members = {
         ConcurrentJobs = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "concurrentJobs",
             },
@@ -14160,7 +13503,7 @@ M.UpdateQueueInput = {
             },
         },
         MaximumConcurrentFeeds = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maximumConcurrentFeeds",
             },
@@ -14172,12 +13515,9 @@ M.UpdateQueueInput = {
                 required = true,
             },
         },
-        ReservationPlanSettings = {
-            type = "structure",
-            traits = {
-                json_name = "reservationPlanSettings",
-            },
-        },
+        ReservationPlanSettings = setmetatable({ traits = {
+            json_name = "reservationPlanSettings",
+        } }, { __index = M.ReservationPlanSettings }),
         Status = {
             type = "string",
             traits = {
@@ -14190,12 +13530,9 @@ M.UpdateQueueInput = {
 M.UpdateQueueOutput = {
     type = "structure",
     members = {
-        Queue = {
-            type = "structure",
-            traits = {
-                json_name = "queue",
-            },
-        },
+        Queue = setmetatable({ traits = {
+            json_name = "queue",
+        } }, { __index = M.Queue }),
     },
 }
 

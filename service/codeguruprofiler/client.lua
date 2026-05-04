@@ -16,7 +16,7 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "CodeGuruProfiler"
-    cfg.signing_name = "codeguruprofiler"
+    cfg.signing_name = "codeguru-profiler"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end

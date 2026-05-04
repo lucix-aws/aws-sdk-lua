@@ -46,7 +46,7 @@ M.GetRevocationStatusInput = {
         },
         certificateHashes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "certificateHashes",
                 required = true,
@@ -60,7 +60,7 @@ M.GetRevocationStatusOutput = {
     members = {
         revokedEntities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }

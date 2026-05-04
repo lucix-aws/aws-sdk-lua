@@ -51,8 +51,8 @@ M.AssetShallow = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -85,13 +85,13 @@ M.StreamSelection = {
     type = "structure",
     members = {
         MaxVideoBitsPerSecond = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "maxVideoBitsPerSecond",
             },
         },
         MinVideoBitsPerSecond = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "minVideoBitsPerSecond",
             },
@@ -121,7 +121,7 @@ M.DashManifest = {
             },
         },
         MinBufferTimeSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "minBufferTimeSeconds",
             },
@@ -138,12 +138,9 @@ M.DashManifest = {
                 json_name = "scteMarkersSource",
             },
         },
-        StreamSelection = {
-            type = "structure",
-            traits = {
-                json_name = "streamSelection",
-            },
-        },
+        StreamSelection = setmetatable({ traits = {
+            json_name = "streamSelection",
+        } }, { __index = M.StreamSelection }),
     },
 }
 
@@ -199,7 +196,7 @@ M.HlsManifest = {
             },
         },
         ProgramDateTimeIntervalSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "programDateTimeIntervalSeconds",
             },
@@ -210,12 +207,9 @@ M.HlsManifest = {
                 json_name = "repeatExtXKey",
             },
         },
-        StreamSelection = {
-            type = "structure",
-            traits = {
-                json_name = "streamSelection",
-            },
-        },
+        StreamSelection = setmetatable({ traits = {
+            json_name = "streamSelection",
+        } }, { __index = M.StreamSelection }),
     },
 }
 
@@ -228,12 +222,9 @@ M.MssManifest = {
                 json_name = "manifestName",
             },
         },
-        StreamSelection = {
-            type = "structure",
-            traits = {
-                json_name = "streamSelection",
-            },
-        },
+        StreamSelection = setmetatable({ traits = {
+            json_name = "streamSelection",
+        } }, { __index = M.StreamSelection }),
     },
 }
 
@@ -281,12 +272,9 @@ M.EncryptionContractConfiguration = {
 M.SpekeKeyProvider = {
     type = "structure",
     members = {
-        EncryptionContractConfiguration = {
-            type = "structure",
-            traits = {
-                json_name = "encryptionContractConfiguration",
-            },
-        },
+        EncryptionContractConfiguration = setmetatable({ traits = {
+            json_name = "encryptionContractConfiguration",
+        } }, { __index = M.EncryptionContractConfiguration }),
         RoleArn = {
             type = "string",
             traits = {
@@ -296,7 +284,7 @@ M.SpekeKeyProvider = {
         },
         SystemIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "systemIds",
                 required = true,
@@ -321,28 +309,22 @@ M.CmafEncryption = {
                 json_name = "constantInitializationVector",
             },
         },
-        SpekeKeyProvider = {
-            type = "structure",
-            traits = {
-                json_name = "spekeKeyProvider",
-                required = true,
-            },
-        },
+        SpekeKeyProvider = setmetatable({ traits = {
+            json_name = "spekeKeyProvider",
+            required = true,
+        } }, { __index = M.SpekeKeyProvider }),
     },
 }
 
 M.CmafPackage = {
     type = "structure",
     members = {
-        Encryption = {
-            type = "structure",
-            traits = {
-                json_name = "encryption",
-            },
-        },
+        Encryption = setmetatable({ traits = {
+            json_name = "encryption",
+        } }, { __index = M.CmafEncryption }),
         HlsManifests = {
             type = "list",
-            member_type = "structure",
+            member = M.HlsManifest,
             traits = {
                 json_name = "hlsManifests",
                 required = true,
@@ -355,7 +337,7 @@ M.CmafPackage = {
             },
         },
         SegmentDurationSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "segmentDurationSeconds",
             },
@@ -366,13 +348,10 @@ M.CmafPackage = {
 M.DashEncryption = {
     type = "structure",
     members = {
-        SpekeKeyProvider = {
-            type = "structure",
-            traits = {
-                json_name = "spekeKeyProvider",
-                required = true,
-            },
-        },
+        SpekeKeyProvider = setmetatable({ traits = {
+            json_name = "spekeKeyProvider",
+            required = true,
+        } }, { __index = M.SpekeKeyProvider }),
     },
 }
 
@@ -387,18 +366,15 @@ M.DashPackage = {
     members = {
         DashManifests = {
             type = "list",
-            member_type = "structure",
+            member = M.DashManifest,
             traits = {
                 json_name = "dashManifests",
                 required = true,
             },
         },
-        Encryption = {
-            type = "structure",
-            traits = {
-                json_name = "encryption",
-            },
-        },
+        Encryption = setmetatable({ traits = {
+            json_name = "encryption",
+        } }, { __index = M.DashEncryption }),
         IncludeEncoderConfigurationInSegments = {
             type = "boolean",
             traits = {
@@ -413,13 +389,13 @@ M.DashPackage = {
         },
         PeriodTriggers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 json_name = "periodTriggers",
             },
         },
         SegmentDurationSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "segmentDurationSeconds",
             },
@@ -453,28 +429,22 @@ M.HlsEncryption = {
                 json_name = "encryptionMethod",
             },
         },
-        SpekeKeyProvider = {
-            type = "structure",
-            traits = {
-                json_name = "spekeKeyProvider",
-                required = true,
-            },
-        },
+        SpekeKeyProvider = setmetatable({ traits = {
+            json_name = "spekeKeyProvider",
+            required = true,
+        } }, { __index = M.SpekeKeyProvider }),
     },
 }
 
 M.HlsPackage = {
     type = "structure",
     members = {
-        Encryption = {
-            type = "structure",
-            traits = {
-                json_name = "encryption",
-            },
-        },
+        Encryption = setmetatable({ traits = {
+            json_name = "encryption",
+        } }, { __index = M.HlsEncryption }),
         HlsManifests = {
             type = "list",
-            member_type = "structure",
+            member = M.HlsManifest,
             traits = {
                 json_name = "hlsManifests",
                 required = true,
@@ -487,7 +457,7 @@ M.HlsPackage = {
             },
         },
         SegmentDurationSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "segmentDurationSeconds",
             },
@@ -504,35 +474,29 @@ M.HlsPackage = {
 M.MssEncryption = {
     type = "structure",
     members = {
-        SpekeKeyProvider = {
-            type = "structure",
-            traits = {
-                json_name = "spekeKeyProvider",
-                required = true,
-            },
-        },
+        SpekeKeyProvider = setmetatable({ traits = {
+            json_name = "spekeKeyProvider",
+            required = true,
+        } }, { __index = M.SpekeKeyProvider }),
     },
 }
 
 M.MssPackage = {
     type = "structure",
     members = {
-        Encryption = {
-            type = "structure",
-            traits = {
-                json_name = "encryption",
-            },
-        },
+        Encryption = setmetatable({ traits = {
+            json_name = "encryption",
+        } }, { __index = M.MssEncryption }),
         MssManifests = {
             type = "list",
-            member_type = "structure",
+            member = M.MssManifest,
             traits = {
                 json_name = "mssManifests",
                 required = true,
             },
         },
         SegmentDurationSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "segmentDurationSeconds",
             },
@@ -549,42 +513,30 @@ M.PackagingConfiguration = {
                 json_name = "arn",
             },
         },
-        CmafPackage = {
-            type = "structure",
-            traits = {
-                json_name = "cmafPackage",
-            },
-        },
+        CmafPackage = setmetatable({ traits = {
+            json_name = "cmafPackage",
+        } }, { __index = M.CmafPackage }),
         CreatedAt = {
             type = "string",
             traits = {
                 json_name = "createdAt",
             },
         },
-        DashPackage = {
-            type = "structure",
-            traits = {
-                json_name = "dashPackage",
-            },
-        },
-        HlsPackage = {
-            type = "structure",
-            traits = {
-                json_name = "hlsPackage",
-            },
-        },
+        DashPackage = setmetatable({ traits = {
+            json_name = "dashPackage",
+        } }, { __index = M.DashPackage }),
+        HlsPackage = setmetatable({ traits = {
+            json_name = "hlsPackage",
+        } }, { __index = M.HlsPackage }),
         Id = {
             type = "string",
             traits = {
                 json_name = "id",
             },
         },
-        MssPackage = {
-            type = "structure",
-            traits = {
-                json_name = "mssPackage",
-            },
-        },
+        MssPackage = setmetatable({ traits = {
+            json_name = "mssPackage",
+        } }, { __index = M.MssPackage }),
         PackagingGroupId = {
             type = "string",
             traits = {
@@ -593,8 +545,8 @@ M.PackagingConfiguration = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -638,7 +590,7 @@ M.PackagingGroup = {
     type = "structure",
     members = {
         ApproximateAssetCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "approximateAssetCount",
             },
@@ -649,12 +601,9 @@ M.PackagingGroup = {
                 json_name = "arn",
             },
         },
-        Authorization = {
-            type = "structure",
-            traits = {
-                json_name = "authorization",
-            },
-        },
+        Authorization = setmetatable({ traits = {
+            json_name = "authorization",
+        } }, { __index = M.Authorization }),
         CreatedAt = {
             type = "string",
             traits = {
@@ -667,12 +616,9 @@ M.PackagingGroup = {
                 json_name = "domainName",
             },
         },
-        EgressAccessLogs = {
-            type = "structure",
-            traits = {
-                json_name = "egressAccessLogs",
-            },
-        },
+        EgressAccessLogs = setmetatable({ traits = {
+            json_name = "egressAccessLogs",
+        } }, { __index = M.EgressAccessLogs }),
         Id = {
             type = "string",
             traits = {
@@ -681,8 +627,8 @@ M.PackagingGroup = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -693,12 +639,9 @@ M.PackagingGroup = {
 M.ConfigureLogsInput = {
     type = "structure",
     members = {
-        EgressAccessLogs = {
-            type = "structure",
-            traits = {
-                json_name = "egressAccessLogs",
-            },
-        },
+        EgressAccessLogs = setmetatable({ traits = {
+            json_name = "egressAccessLogs",
+        } }, { __index = M.EgressAccessLogs }),
         Id = {
             type = "string",
             traits = {
@@ -718,12 +661,9 @@ M.ConfigureLogsOutput = {
                 json_name = "arn",
             },
         },
-        Authorization = {
-            type = "structure",
-            traits = {
-                json_name = "authorization",
-            },
-        },
+        Authorization = setmetatable({ traits = {
+            json_name = "authorization",
+        } }, { __index = M.Authorization }),
         CreatedAt = {
             type = "string",
             traits = {
@@ -736,12 +676,9 @@ M.ConfigureLogsOutput = {
                 json_name = "domainName",
             },
         },
-        EgressAccessLogs = {
-            type = "structure",
-            traits = {
-                json_name = "egressAccessLogs",
-            },
-        },
+        EgressAccessLogs = setmetatable({ traits = {
+            json_name = "egressAccessLogs",
+        } }, { __index = M.EgressAccessLogs }),
         Id = {
             type = "string",
             traits = {
@@ -750,8 +687,8 @@ M.ConfigureLogsOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -876,8 +813,8 @@ M.CreateAssetInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -902,7 +839,7 @@ M.CreateAssetOutput = {
         },
         EgressEndpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.EgressEndpoint,
             traits = {
                 json_name = "egressEndpoints",
             },
@@ -939,8 +876,8 @@ M.CreateAssetOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -951,24 +888,15 @@ M.CreateAssetOutput = {
 M.CreatePackagingConfigurationInput = {
     type = "structure",
     members = {
-        CmafPackage = {
-            type = "structure",
-            traits = {
-                json_name = "cmafPackage",
-            },
-        },
-        DashPackage = {
-            type = "structure",
-            traits = {
-                json_name = "dashPackage",
-            },
-        },
-        HlsPackage = {
-            type = "structure",
-            traits = {
-                json_name = "hlsPackage",
-            },
-        },
+        CmafPackage = setmetatable({ traits = {
+            json_name = "cmafPackage",
+        } }, { __index = M.CmafPackage }),
+        DashPackage = setmetatable({ traits = {
+            json_name = "dashPackage",
+        } }, { __index = M.DashPackage }),
+        HlsPackage = setmetatable({ traits = {
+            json_name = "hlsPackage",
+        } }, { __index = M.HlsPackage }),
         Id = {
             type = "string",
             traits = {
@@ -976,12 +904,9 @@ M.CreatePackagingConfigurationInput = {
                 required = true,
             },
         },
-        MssPackage = {
-            type = "structure",
-            traits = {
-                json_name = "mssPackage",
-            },
-        },
+        MssPackage = setmetatable({ traits = {
+            json_name = "mssPackage",
+        } }, { __index = M.MssPackage }),
         PackagingGroupId = {
             type = "string",
             traits = {
@@ -991,8 +916,8 @@ M.CreatePackagingConfigurationInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -1009,42 +934,30 @@ M.CreatePackagingConfigurationOutput = {
                 json_name = "arn",
             },
         },
-        CmafPackage = {
-            type = "structure",
-            traits = {
-                json_name = "cmafPackage",
-            },
-        },
+        CmafPackage = setmetatable({ traits = {
+            json_name = "cmafPackage",
+        } }, { __index = M.CmafPackage }),
         CreatedAt = {
             type = "string",
             traits = {
                 json_name = "createdAt",
             },
         },
-        DashPackage = {
-            type = "structure",
-            traits = {
-                json_name = "dashPackage",
-            },
-        },
-        HlsPackage = {
-            type = "structure",
-            traits = {
-                json_name = "hlsPackage",
-            },
-        },
+        DashPackage = setmetatable({ traits = {
+            json_name = "dashPackage",
+        } }, { __index = M.DashPackage }),
+        HlsPackage = setmetatable({ traits = {
+            json_name = "hlsPackage",
+        } }, { __index = M.HlsPackage }),
         Id = {
             type = "string",
             traits = {
                 json_name = "id",
             },
         },
-        MssPackage = {
-            type = "structure",
-            traits = {
-                json_name = "mssPackage",
-            },
-        },
+        MssPackage = setmetatable({ traits = {
+            json_name = "mssPackage",
+        } }, { __index = M.MssPackage }),
         PackagingGroupId = {
             type = "string",
             traits = {
@@ -1053,8 +966,8 @@ M.CreatePackagingConfigurationOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -1065,18 +978,12 @@ M.CreatePackagingConfigurationOutput = {
 M.CreatePackagingGroupInput = {
     type = "structure",
     members = {
-        Authorization = {
-            type = "structure",
-            traits = {
-                json_name = "authorization",
-            },
-        },
-        EgressAccessLogs = {
-            type = "structure",
-            traits = {
-                json_name = "egressAccessLogs",
-            },
-        },
+        Authorization = setmetatable({ traits = {
+            json_name = "authorization",
+        } }, { __index = M.Authorization }),
+        EgressAccessLogs = setmetatable({ traits = {
+            json_name = "egressAccessLogs",
+        } }, { __index = M.EgressAccessLogs }),
         Id = {
             type = "string",
             traits = {
@@ -1086,8 +993,8 @@ M.CreatePackagingGroupInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -1104,12 +1011,9 @@ M.CreatePackagingGroupOutput = {
                 json_name = "arn",
             },
         },
-        Authorization = {
-            type = "structure",
-            traits = {
-                json_name = "authorization",
-            },
-        },
+        Authorization = setmetatable({ traits = {
+            json_name = "authorization",
+        } }, { __index = M.Authorization }),
         CreatedAt = {
             type = "string",
             traits = {
@@ -1122,12 +1026,9 @@ M.CreatePackagingGroupOutput = {
                 json_name = "domainName",
             },
         },
-        EgressAccessLogs = {
-            type = "structure",
-            traits = {
-                json_name = "egressAccessLogs",
-            },
-        },
+        EgressAccessLogs = setmetatable({ traits = {
+            json_name = "egressAccessLogs",
+        } }, { __index = M.EgressAccessLogs }),
         Id = {
             type = "string",
             traits = {
@@ -1136,8 +1037,8 @@ M.CreatePackagingGroupOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -1226,7 +1127,7 @@ M.DescribeAssetOutput = {
         },
         EgressEndpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.EgressEndpoint,
             traits = {
                 json_name = "egressEndpoints",
             },
@@ -1263,8 +1164,8 @@ M.DescribeAssetOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -1294,42 +1195,30 @@ M.DescribePackagingConfigurationOutput = {
                 json_name = "arn",
             },
         },
-        CmafPackage = {
-            type = "structure",
-            traits = {
-                json_name = "cmafPackage",
-            },
-        },
+        CmafPackage = setmetatable({ traits = {
+            json_name = "cmafPackage",
+        } }, { __index = M.CmafPackage }),
         CreatedAt = {
             type = "string",
             traits = {
                 json_name = "createdAt",
             },
         },
-        DashPackage = {
-            type = "structure",
-            traits = {
-                json_name = "dashPackage",
-            },
-        },
-        HlsPackage = {
-            type = "structure",
-            traits = {
-                json_name = "hlsPackage",
-            },
-        },
+        DashPackage = setmetatable({ traits = {
+            json_name = "dashPackage",
+        } }, { __index = M.DashPackage }),
+        HlsPackage = setmetatable({ traits = {
+            json_name = "hlsPackage",
+        } }, { __index = M.HlsPackage }),
         Id = {
             type = "string",
             traits = {
                 json_name = "id",
             },
         },
-        MssPackage = {
-            type = "structure",
-            traits = {
-                json_name = "mssPackage",
-            },
-        },
+        MssPackage = setmetatable({ traits = {
+            json_name = "mssPackage",
+        } }, { __index = M.MssPackage }),
         PackagingGroupId = {
             type = "string",
             traits = {
@@ -1338,8 +1227,8 @@ M.DescribePackagingConfigurationOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -1364,7 +1253,7 @@ M.DescribePackagingGroupOutput = {
     type = "structure",
     members = {
         ApproximateAssetCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "approximateAssetCount",
             },
@@ -1375,12 +1264,9 @@ M.DescribePackagingGroupOutput = {
                 json_name = "arn",
             },
         },
-        Authorization = {
-            type = "structure",
-            traits = {
-                json_name = "authorization",
-            },
-        },
+        Authorization = setmetatable({ traits = {
+            json_name = "authorization",
+        } }, { __index = M.Authorization }),
         CreatedAt = {
             type = "string",
             traits = {
@@ -1393,12 +1279,9 @@ M.DescribePackagingGroupOutput = {
                 json_name = "domainName",
             },
         },
-        EgressAccessLogs = {
-            type = "structure",
-            traits = {
-                json_name = "egressAccessLogs",
-            },
-        },
+        EgressAccessLogs = setmetatable({ traits = {
+            json_name = "egressAccessLogs",
+        } }, { __index = M.EgressAccessLogs }),
         Id = {
             type = "string",
             traits = {
@@ -1407,8 +1290,8 @@ M.DescribePackagingGroupOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -1420,7 +1303,7 @@ M.ListAssetsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1445,7 +1328,7 @@ M.ListAssetsOutput = {
     members = {
         Assets = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetShallow,
             traits = {
                 json_name = "assets",
             },
@@ -1463,7 +1346,7 @@ M.ListPackagingConfigurationsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1494,7 +1377,7 @@ M.ListPackagingConfigurationsOutput = {
         },
         PackagingConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.PackagingConfiguration,
             traits = {
                 json_name = "packagingConfigurations",
             },
@@ -1506,7 +1389,7 @@ M.ListPackagingGroupsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1531,7 +1414,7 @@ M.ListPackagingGroupsOutput = {
         },
         PackagingGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.PackagingGroup,
             traits = {
                 json_name = "packagingGroups",
             },
@@ -1557,8 +1440,8 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -1578,8 +1461,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
                 required = true,
@@ -1604,7 +1487,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -1620,12 +1503,9 @@ M.UntagResourceOutput = {
 M.UpdatePackagingGroupInput = {
     type = "structure",
     members = {
-        Authorization = {
-            type = "structure",
-            traits = {
-                json_name = "authorization",
-            },
-        },
+        Authorization = setmetatable({ traits = {
+            json_name = "authorization",
+        } }, { __index = M.Authorization }),
         Id = {
             type = "string",
             traits = {
@@ -1640,7 +1520,7 @@ M.UpdatePackagingGroupOutput = {
     type = "structure",
     members = {
         ApproximateAssetCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "approximateAssetCount",
             },
@@ -1651,12 +1531,9 @@ M.UpdatePackagingGroupOutput = {
                 json_name = "arn",
             },
         },
-        Authorization = {
-            type = "structure",
-            traits = {
-                json_name = "authorization",
-            },
-        },
+        Authorization = setmetatable({ traits = {
+            json_name = "authorization",
+        } }, { __index = M.Authorization }),
         CreatedAt = {
             type = "string",
             traits = {
@@ -1669,12 +1546,9 @@ M.UpdatePackagingGroupOutput = {
                 json_name = "domainName",
             },
         },
-        EgressAccessLogs = {
-            type = "structure",
-            traits = {
-                json_name = "egressAccessLogs",
-            },
-        },
+        EgressAccessLogs = setmetatable({ traits = {
+            json_name = "egressAccessLogs",
+        } }, { __index = M.EgressAccessLogs }),
         Id = {
             type = "string",
             traits = {
@@ -1683,8 +1557,8 @@ M.UpdatePackagingGroupOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },

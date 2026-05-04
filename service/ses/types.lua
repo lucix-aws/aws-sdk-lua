@@ -64,12 +64,8 @@ M.Content = {
 M.Body = {
     type = "structure",
     members = {
-        Text = {
-            type = "structure",
-        },
-        Html = {
-            type = "structure",
-        },
+        Text = M.Content,
+        Html = M.Content,
     },
 }
 
@@ -167,7 +163,7 @@ M.RecipientDsnFields = {
         },
         ExtensionFields = {
             type = "list",
-            member_type = "structure",
+            member = M.ExtensionField,
         },
     },
 }
@@ -187,9 +183,7 @@ M.BouncedRecipientInfo = {
         BounceType = {
             type = "string",
         },
-        RecipientDsnFields = {
-            type = "structure",
-        },
+        RecipientDsnFields = M.RecipientDsnFields,
     },
 }
 
@@ -198,15 +192,15 @@ M.Destination = {
     members = {
         ToAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CcAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         BccAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -232,15 +226,12 @@ M.MessageTag = {
 M.BulkEmailDestination = {
     type = "structure",
     members = {
-        Destination = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Destination = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Destination }),
         ReplacementTags = {
             type = "list",
-            member_type = "structure",
+            member = M.MessageTag,
         },
         ReplacementTemplateData = {
             type = "string",
@@ -373,7 +364,7 @@ M.CloudWatchDestination = {
     members = {
         DimensionConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.CloudWatchDimensionConfiguration,
             traits = {
                 required = true,
             },
@@ -460,12 +451,9 @@ M.ConnectAction = {
 M.CreateConfigurationSetInput = {
     type = "structure",
     members = {
-        ConfigurationSet = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ConfigurationSet = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConfigurationSet }),
     },
 }
 
@@ -535,23 +523,20 @@ M.EventDestination = {
         },
         Enabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         MatchingEventTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        KinesisFirehoseDestination = {
-            type = "structure",
-        },
-        CloudWatchDestination = {
-            type = "structure",
-        },
-        SNSDestination = {
-            type = "structure",
-        },
+        KinesisFirehoseDestination = M.KinesisFirehoseDestination,
+        CloudWatchDestination = M.CloudWatchDestination,
+        SNSDestination = M.SNSDestination,
     },
 }
 
@@ -564,12 +549,9 @@ M.CreateConfigurationSetEventDestinationInput = {
                 required = true,
             },
         },
-        EventDestination = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        EventDestination = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EventDestination }),
     },
 }
 
@@ -659,12 +641,9 @@ M.CreateConfigurationSetTrackingOptionsInput = {
                 required = true,
             },
         },
-        TrackingOptions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TrackingOptions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TrackingOptions }),
     },
 }
 
@@ -809,24 +788,18 @@ M.ReceiptFilter = {
                 required = true,
             },
         },
-        IpFilter = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        IpFilter = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ReceiptIpFilter }),
     },
 }
 
 M.CreateReceiptFilterInput = {
     type = "structure",
     members = {
-        Filter = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Filter = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ReceiptFilter }),
     },
 }
 
@@ -938,30 +911,14 @@ M.WorkmailAction = {
 M.ReceiptAction = {
     type = "structure",
     members = {
-        S3Action = {
-            type = "structure",
-        },
-        BounceAction = {
-            type = "structure",
-        },
-        WorkmailAction = {
-            type = "structure",
-        },
-        LambdaAction = {
-            type = "structure",
-        },
-        StopAction = {
-            type = "structure",
-        },
-        AddHeaderAction = {
-            type = "structure",
-        },
-        SNSAction = {
-            type = "structure",
-        },
-        ConnectAction = {
-            type = "structure",
-        },
+        S3Action = M.S3Action,
+        BounceAction = M.BounceAction,
+        WorkmailAction = M.WorkmailAction,
+        LambdaAction = M.LambdaAction,
+        StopAction = M.StopAction,
+        AddHeaderAction = M.AddHeaderAction,
+        SNSAction = M.SNSAction,
+        ConnectAction = M.ConnectAction,
     },
 }
 
@@ -981,20 +938,26 @@ M.ReceiptRule = {
         },
         Enabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         TlsPolicy = {
             type = "string",
         },
         Recipients = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Actions = {
             type = "list",
-            member_type = "structure",
+            member = M.ReceiptAction,
         },
         ScanEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1011,12 +974,9 @@ M.CreateReceiptRuleInput = {
         After = {
             type = "string",
         },
-        Rule = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Rule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ReceiptRule }),
     },
 }
 
@@ -1116,12 +1076,9 @@ M.Template = {
 M.CreateTemplateInput = {
     type = "structure",
     members = {
-        Template = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Template = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Template }),
     },
 }
 
@@ -1434,12 +1391,10 @@ M.ReceiptRuleSetMetadata = {
 M.DescribeActiveReceiptRuleSetOutput = {
     type = "structure",
     members = {
-        Metadata = {
-            type = "structure",
-        },
+        Metadata = M.ReceiptRuleSetMetadata,
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.ReceiptRule,
         },
     },
 }
@@ -1455,7 +1410,7 @@ M.DescribeConfigurationSetInput = {
         },
         ConfigurationSetAttributeNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1465,9 +1420,15 @@ M.ReputationOptions = {
     members = {
         SendingEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         ReputationMetricsEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         LastFreshStart = {
             type = "timestamp",
@@ -1478,22 +1439,14 @@ M.ReputationOptions = {
 M.DescribeConfigurationSetOutput = {
     type = "structure",
     members = {
-        ConfigurationSet = {
-            type = "structure",
-        },
+        ConfigurationSet = M.ConfigurationSet,
         EventDestinations = {
             type = "list",
-            member_type = "structure",
+            member = M.EventDestination,
         },
-        TrackingOptions = {
-            type = "structure",
-        },
-        DeliveryOptions = {
-            type = "structure",
-        },
-        ReputationOptions = {
-            type = "structure",
-        },
+        TrackingOptions = M.TrackingOptions,
+        DeliveryOptions = M.DeliveryOptions,
+        ReputationOptions = M.ReputationOptions,
     },
 }
 
@@ -1518,9 +1471,7 @@ M.DescribeReceiptRuleInput = {
 M.DescribeReceiptRuleOutput = {
     type = "structure",
     members = {
-        Rule = {
-            type = "structure",
-        },
+        Rule = M.ReceiptRule,
     },
 }
 
@@ -1539,12 +1490,10 @@ M.DescribeReceiptRuleSetInput = {
 M.DescribeReceiptRuleSetOutput = {
     type = "structure",
     members = {
-        Metadata = {
-            type = "structure",
-        },
+        Metadata = M.ReceiptRuleSetMetadata,
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.ReceiptRule,
         },
     },
 }
@@ -1563,6 +1512,7 @@ M.IdentityDkimAttributes = {
         DkimEnabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -1574,7 +1524,7 @@ M.IdentityDkimAttributes = {
         },
         DkimTokens = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1588,6 +1538,9 @@ M.GetAccountSendingEnabledOutput = {
     members = {
         Enabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1633,7 +1586,7 @@ M.GetIdentityDkimAttributesInput = {
     members = {
         Identities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1646,8 +1599,8 @@ M.GetIdentityDkimAttributesOutput = {
     members = {
         DkimAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.IdentityDkimAttributes,
             traits = {
                 required = true,
             },
@@ -1660,7 +1613,7 @@ M.GetIdentityMailFromDomainAttributesInput = {
     members = {
         Identities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1697,8 +1650,8 @@ M.GetIdentityMailFromDomainAttributesOutput = {
     members = {
         MailFromDomainAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.IdentityMailFromDomainAttributes,
             traits = {
                 required = true,
             },
@@ -1711,7 +1664,7 @@ M.GetIdentityNotificationAttributesInput = {
     members = {
         Identities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1743,17 +1696,27 @@ M.IdentityNotificationAttributes = {
         ForwardingEnabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
         HeadersInBounceNotificationsEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         HeadersInComplaintNotificationsEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         HeadersInDeliveryNotificationsEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1763,8 +1726,8 @@ M.GetIdentityNotificationAttributesOutput = {
     members = {
         NotificationAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.IdentityNotificationAttributes,
             traits = {
                 required = true,
             },
@@ -1783,7 +1746,7 @@ M.GetIdentityPoliciesInput = {
         },
         PolicyNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1796,8 +1759,8 @@ M.GetIdentityPoliciesOutput = {
     members = {
         Policies = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1810,7 +1773,7 @@ M.GetIdentityVerificationAttributesInput = {
     members = {
         Identities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1838,8 +1801,8 @@ M.GetIdentityVerificationAttributesOutput = {
     members = {
         VerificationAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.IdentityVerificationAttributes,
             traits = {
                 required = true,
             },
@@ -1855,13 +1818,22 @@ M.GetSendQuotaOutput = {
     type = "structure",
     members = {
         Max24HourSend = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         MaxSendRate = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         SentLast24Hours = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1877,16 +1849,28 @@ M.SendDataPoint = {
             type = "timestamp",
         },
         DeliveryAttempts = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Bounces = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Complaints = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Rejects = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1896,7 +1880,7 @@ M.GetSendStatisticsOutput = {
     members = {
         SendDataPoints = {
             type = "list",
-            member_type = "structure",
+            member = M.SendDataPoint,
         },
     },
 }
@@ -1916,9 +1900,7 @@ M.GetTemplateInput = {
 M.GetTemplateOutput = {
     type = "structure",
     members = {
-        Template = {
-            type = "structure",
-        },
+        Template = M.Template,
     },
 }
 
@@ -1980,7 +1962,7 @@ M.ListConfigurationSetsInput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1990,7 +1972,7 @@ M.ListConfigurationSetsOutput = {
     members = {
         ConfigurationSets = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigurationSet,
         },
         NextToken = {
             type = "string",
@@ -2005,7 +1987,7 @@ M.ListCustomVerificationEmailTemplatesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2015,7 +1997,7 @@ M.ListCustomVerificationEmailTemplatesOutput = {
     members = {
         CustomVerificationEmailTemplates = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomVerificationEmailTemplate,
         },
         NextToken = {
             type = "string",
@@ -2033,7 +2015,7 @@ M.ListIdentitiesInput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2043,7 +2025,7 @@ M.ListIdentitiesOutput = {
     members = {
         Identities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2071,7 +2053,7 @@ M.ListIdentityPoliciesOutput = {
     members = {
         PolicyNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2088,7 +2070,7 @@ M.ListReceiptFiltersOutput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.ReceiptFilter,
         },
     },
 }
@@ -2107,7 +2089,7 @@ M.ListReceiptRuleSetsOutput = {
     members = {
         RuleSets = {
             type = "list",
-            member_type = "structure",
+            member = M.ReceiptRuleSetMetadata,
         },
         NextToken = {
             type = "string",
@@ -2122,7 +2104,7 @@ M.ListTemplatesInput = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2144,7 +2126,7 @@ M.ListTemplatesOutput = {
     members = {
         TemplatesMetadata = {
             type = "list",
-            member_type = "structure",
+            member = M.TemplateMetadata,
         },
         NextToken = {
             type = "string",
@@ -2161,7 +2143,7 @@ M.ListVerifiedEmailAddressesOutput = {
     members = {
         VerifiedEmailAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2179,18 +2161,12 @@ M.MailFromDomainNotVerifiedException = {
 M.Message = {
     type = "structure",
     members = {
-        Subject = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Body = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Subject = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Content }),
+        Body = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Body }),
     },
 }
 
@@ -2208,7 +2184,7 @@ M.MessageDsn = {
         },
         ExtensionFields = {
             type = "list",
-            member_type = "structure",
+            member = M.ExtensionField,
         },
     },
 }
@@ -2261,9 +2237,7 @@ M.PutConfigurationSetDeliveryOptionsInput = {
                 required = true,
             },
         },
-        DeliveryOptions = {
-            type = "structure",
-        },
+        DeliveryOptions = M.DeliveryOptions,
     },
 }
 
@@ -2322,7 +2296,7 @@ M.ReorderReceiptRuleSetInput = {
         },
         RuleNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2352,12 +2326,10 @@ M.SendBounceInput = {
         Explanation = {
             type = "string",
         },
-        MessageDsn = {
-            type = "structure",
-        },
+        MessageDsn = M.MessageDsn,
         BouncedRecipientInfoList = {
             type = "list",
-            member_type = "structure",
+            member = M.BouncedRecipientInfo,
             traits = {
                 required = true,
             },
@@ -2391,7 +2363,7 @@ M.SendBulkTemplatedEmailInput = {
         },
         ReplyToAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ReturnPath = {
             type = "string",
@@ -2404,7 +2376,7 @@ M.SendBulkTemplatedEmailInput = {
         },
         DefaultTags = {
             type = "list",
-            member_type = "structure",
+            member = M.MessageTag,
         },
         Template = {
             type = "string",
@@ -2423,7 +2395,7 @@ M.SendBulkTemplatedEmailInput = {
         },
         Destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.BulkEmailDestination,
             traits = {
                 required = true,
             },
@@ -2436,7 +2408,7 @@ M.SendBulkTemplatedEmailOutput = {
     members = {
         Status = {
             type = "list",
-            member_type = "structure",
+            member = M.BulkEmailDestinationStatus,
             traits = {
                 required = true,
             },
@@ -2483,21 +2455,15 @@ M.SendEmailInput = {
                 required = true,
             },
         },
-        Destination = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Message = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Destination = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Destination }),
+        Message = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Message }),
         ReplyToAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ReturnPath = {
             type = "string",
@@ -2510,7 +2476,7 @@ M.SendEmailInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.MessageTag,
         },
         ConfigurationSetName = {
             type = "string",
@@ -2538,14 +2504,11 @@ M.SendRawEmailInput = {
         },
         Destinations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        RawMessage = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RawMessage = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RawMessage }),
         FromArn = {
             type = "string",
         },
@@ -2557,7 +2520,7 @@ M.SendRawEmailInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.MessageTag,
         },
         ConfigurationSetName = {
             type = "string",
@@ -2586,15 +2549,12 @@ M.SendTemplatedEmailInput = {
                 required = true,
             },
         },
-        Destination = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Destination = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Destination }),
         ReplyToAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ReturnPath = {
             type = "string",
@@ -2607,7 +2567,7 @@ M.SendTemplatedEmailInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.MessageTag,
         },
         ConfigurationSetName = {
             type = "string",
@@ -2667,6 +2627,7 @@ M.SetIdentityDkimEnabledInput = {
         DkimEnabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -2689,6 +2650,7 @@ M.SetIdentityFeedbackForwardingEnabledInput = {
         ForwardingEnabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -2717,6 +2679,7 @@ M.SetIdentityHeadersInNotificationsEnabledInput = {
         Enabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -2831,6 +2794,9 @@ M.UpdateAccountSendingEnabledInput = {
     members = {
         Enabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -2848,12 +2814,9 @@ M.UpdateConfigurationSetEventDestinationInput = {
                 required = true,
             },
         },
-        EventDestination = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        EventDestination = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EventDestination }),
     },
 }
 
@@ -2873,6 +2836,7 @@ M.UpdateConfigurationSetReputationMetricsEnabledInput = {
         Enabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -2895,6 +2859,7 @@ M.UpdateConfigurationSetSendingEnabledInput = {
         Enabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -2914,12 +2879,9 @@ M.UpdateConfigurationSetTrackingOptionsInput = {
                 required = true,
             },
         },
-        TrackingOptions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TrackingOptions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TrackingOptions }),
     },
 }
 
@@ -2967,12 +2929,9 @@ M.UpdateReceiptRuleInput = {
                 required = true,
             },
         },
-        Rule = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Rule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ReceiptRule }),
     },
 }
 
@@ -2983,12 +2942,9 @@ M.UpdateReceiptRuleOutput = {
 M.UpdateTemplateInput = {
     type = "structure",
     members = {
-        Template = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Template = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Template }),
     },
 }
 
@@ -3013,7 +2969,7 @@ M.VerifyDomainDkimOutput = {
     members = {
         DkimTokens = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },

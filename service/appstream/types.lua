@@ -120,7 +120,7 @@ M.AgentAccessConfig = {
     members = {
         Settings = {
             type = "list",
-            member_type = "structure",
+            member = M.AgentAccessSetting,
             traits = {
                 required = true,
             },
@@ -151,7 +151,7 @@ M.AgentAccessConfigForUpdate = {
     members = {
         Settings = {
             type = "list",
-            member_type = "structure",
+            member = M.AgentAccessSetting,
         },
         S3BucketArn = {
             type = "string",
@@ -208,12 +208,9 @@ M.S3Location = {
 M.ScriptDetails = {
     type = "structure",
     members = {
-        ScriptS3Location = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ScriptS3Location = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3Location }),
         ExecutablePath = {
             type = "string",
             traits = {
@@ -224,7 +221,7 @@ M.ScriptDetails = {
             type = "string",
         },
         TimeoutInSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -258,18 +255,12 @@ M.AppBlock = {
         DisplayName = {
             type = "string",
         },
-        SourceS3Location = {
-            type = "structure",
-        },
-        SetupScriptDetails = {
-            type = "structure",
-        },
+        SourceS3Location = M.S3Location,
+        SetupScriptDetails = M.ScriptDetails,
         CreatedTime = {
             type = "timestamp",
         },
-        PostSetupScriptDetails = {
-            type = "structure",
-        },
+        PostSetupScriptDetails = M.ScriptDetails,
         PackagingType = {
             type = "string",
         },
@@ -278,7 +269,7 @@ M.AppBlock = {
         },
         AppBlockErrors = {
             type = "list",
-            member_type = "structure",
+            member = M.ErrorDetails,
         },
     },
 }
@@ -364,11 +355,11 @@ M.VpcConfig = {
     members = {
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -412,12 +403,9 @@ M.AppBlockBuilder = {
         IamRoleArn = {
             type = "string",
         },
-        VpcConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        VpcConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VpcConfig }),
         State = {
             type = "string",
             traits = {
@@ -429,14 +417,12 @@ M.AppBlockBuilder = {
         },
         AppBlockBuilderErrors = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceError,
         },
-        StateChangeReason = {
-            type = "structure",
-        },
+        StateChangeReason = M.AppBlockBuilderStateChangeReason,
         AccessEndpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessEndpoint,
         },
         DisableIMDSV1 = {
             type = "boolean",
@@ -536,8 +522,8 @@ M.Application = {
         },
         Metadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         WorkingDirectory = {
             type = "string",
@@ -551,16 +537,14 @@ M.Application = {
         AppBlockArn = {
             type = "string",
         },
-        IconS3Location = {
-            type = "structure",
-        },
+        IconS3Location = M.S3Location,
         Platforms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         InstanceFamilies = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CreatedTime = {
             type = "timestamp",
@@ -647,9 +631,7 @@ M.AssociateAppBlockBuilderAppBlockInput = {
 M.AssociateAppBlockBuilderAppBlockOutput = {
     type = "structure",
     members = {
-        AppBlockBuilderAppBlockAssociation = {
-            type = "structure",
-        },
+        AppBlockBuilderAppBlockAssociation = M.AppBlockBuilderAppBlockAssociation,
     },
 }
 
@@ -724,9 +706,7 @@ M.AssociateApplicationFleetInput = {
 M.AssociateApplicationFleetOutput = {
     type = "structure",
     members = {
-        ApplicationFleetAssociation = {
-            type = "structure",
-        },
+        ApplicationFleetAssociation = M.ApplicationFleetAssociation,
     },
 }
 
@@ -821,7 +801,7 @@ M.AssociateSoftwareToImageBuilderInput = {
         },
         SoftwareNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -872,7 +852,7 @@ M.BatchAssociateUserStackInput = {
     members = {
         UserStackAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.UserStackAssociation,
             traits = {
                 required = true,
             },
@@ -890,9 +870,7 @@ M.UserStackAssociationErrorCode = {
 M.UserStackAssociationError = {
     type = "structure",
     members = {
-        UserStackAssociation = {
-            type = "structure",
-        },
+        UserStackAssociation = M.UserStackAssociation,
         ErrorCode = {
             type = "string",
         },
@@ -907,7 +885,7 @@ M.BatchAssociateUserStackOutput = {
     members = {
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.UserStackAssociationError,
         },
     },
 }
@@ -917,7 +895,7 @@ M.BatchDisassociateUserStackInput = {
     members = {
         UserStackAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.UserStackAssociation,
             traits = {
                 required = true,
             },
@@ -930,7 +908,7 @@ M.BatchDisassociateUserStackOutput = {
     members = {
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.UserStackAssociationError,
         },
     },
 }
@@ -957,10 +935,10 @@ M.ComputeCapacity = {
     type = "structure",
     members = {
         DesiredInstances = {
-            type = "number",
+            type = "integer",
         },
         DesiredSessions = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -969,40 +947,40 @@ M.ComputeCapacityStatus = {
     type = "structure",
     members = {
         Desired = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Running = {
-            type = "number",
+            type = "integer",
         },
         InUse = {
-            type = "number",
+            type = "integer",
         },
         Available = {
-            type = "number",
+            type = "integer",
         },
         DesiredUserSessions = {
-            type = "number",
+            type = "integer",
         },
         AvailableUserSessions = {
-            type = "number",
+            type = "integer",
         },
         ActiveUserSessions = {
-            type = "number",
+            type = "integer",
         },
         ActualUserSessions = {
-            type = "number",
+            type = "integer",
         },
         Draining = {
-            type = "number",
+            type = "integer",
         },
         DrainModeActiveUserSessions = {
-            type = "number",
+            type = "integer",
         },
         DrainModeUnusedUserSessions = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1018,11 +996,11 @@ M.UrlRedirectionConfig = {
         },
         AllowedUrls = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DeniedUrls = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1030,9 +1008,7 @@ M.UrlRedirectionConfig = {
 M.ContentRedirection = {
     type = "structure",
     members = {
-        HostToClient = {
-            type = "structure",
-        },
+        HostToClient = M.UrlRedirectionConfig,
     },
 }
 
@@ -1107,23 +1083,16 @@ M.CreateAppBlockInput = {
         DisplayName = {
             type = "string",
         },
-        SourceS3Location = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        SetupScriptDetails = {
-            type = "structure",
-        },
+        SourceS3Location = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3Location }),
+        SetupScriptDetails = M.ScriptDetails,
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        PostSetupScriptDetails = {
-            type = "structure",
-        },
+        PostSetupScriptDetails = M.ScriptDetails,
         PackagingType = {
             type = "string",
         },
@@ -1133,9 +1102,7 @@ M.CreateAppBlockInput = {
 M.CreateAppBlockOutput = {
     type = "structure",
     members = {
-        AppBlock = {
-            type = "structure",
-        },
+        AppBlock = M.AppBlock,
     },
 }
 
@@ -1156,8 +1123,8 @@ M.CreateAppBlockBuilderInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Platform = {
             type = "string",
@@ -1171,12 +1138,9 @@ M.CreateAppBlockBuilderInput = {
                 required = true,
             },
         },
-        VpcConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        VpcConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VpcConfig }),
         EnableDefaultInternetAccess = {
             type = "boolean",
         },
@@ -1185,7 +1149,7 @@ M.CreateAppBlockBuilderInput = {
         },
         AccessEndpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessEndpoint,
         },
         DisableIMDSV1 = {
             type = "boolean",
@@ -1196,9 +1160,7 @@ M.CreateAppBlockBuilderInput = {
 M.CreateAppBlockBuilderOutput = {
     type = "structure",
     members = {
-        AppBlockBuilder = {
-            type = "structure",
-        },
+        AppBlockBuilder = M.AppBlockBuilder,
     },
 }
 
@@ -1232,7 +1194,7 @@ M.CreateAppBlockBuilderStreamingURLInput = {
             },
         },
         Validity = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1264,12 +1226,9 @@ M.CreateApplicationInput = {
         Description = {
             type = "string",
         },
-        IconS3Location = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        IconS3Location = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3Location }),
         LaunchPath = {
             type = "string",
             traits = {
@@ -1284,14 +1243,14 @@ M.CreateApplicationInput = {
         },
         Platforms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         InstanceFamilies = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1304,8 +1263,8 @@ M.CreateApplicationInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1313,9 +1272,7 @@ M.CreateApplicationInput = {
 M.CreateApplicationOutput = {
     type = "structure",
     members = {
-        Application = {
-            type = "structure",
-        },
+        Application = M.Application,
     },
 }
 
@@ -1348,17 +1305,13 @@ M.CreateDirectoryConfigInput = {
         },
         OrganizationalUnitDistinguishedNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        ServiceAccountCredentials = {
-            type = "structure",
-        },
-        CertificateBasedAuthProperties = {
-            type = "structure",
-        },
+        ServiceAccountCredentials = M.ServiceAccountCredentials,
+        CertificateBasedAuthProperties = M.CertificateBasedAuthProperties,
     },
 }
 
@@ -1373,26 +1326,20 @@ M.DirectoryConfig = {
         },
         OrganizationalUnitDistinguishedNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        ServiceAccountCredentials = {
-            type = "structure",
-        },
+        ServiceAccountCredentials = M.ServiceAccountCredentials,
         CreatedTime = {
             type = "timestamp",
         },
-        CertificateBasedAuthProperties = {
-            type = "structure",
-        },
+        CertificateBasedAuthProperties = M.CertificateBasedAuthProperties,
     },
 }
 
 M.CreateDirectoryConfigOutput = {
     type = "structure",
     members = {
-        DirectoryConfig = {
-            type = "structure",
-        },
+        DirectoryConfig = M.DirectoryConfig,
     },
 }
 
@@ -1440,7 +1387,7 @@ M.CreateEntitlementInput = {
         },
         Attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.EntitlementAttribute,
             traits = {
                 required = true,
             },
@@ -1474,7 +1421,7 @@ M.Entitlement = {
         },
         Attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.EntitlementAttribute,
             traits = {
                 required = true,
             },
@@ -1491,9 +1438,7 @@ M.Entitlement = {
 M.CreateEntitlementOutput = {
     type = "structure",
     members = {
-        Entitlement = {
-            type = "structure",
-        },
+        Entitlement = M.Entitlement,
     },
 }
 
@@ -1530,8 +1475,8 @@ M.CreateExportImageTaskInput = {
         },
         TagSpecifications = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         AmiDescription = {
             type = "string",
@@ -1583,12 +1528,12 @@ M.ExportImageTask = {
         },
         TagSpecifications = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ErrorDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.ErrorDetails,
         },
     },
 }
@@ -1596,9 +1541,7 @@ M.ExportImageTask = {
 M.CreateExportImageTaskOutput = {
     type = "structure",
     members = {
-        ExportImageTask = {
-            type = "structure",
-        },
+        ExportImageTask = M.ExportImageTask,
     },
 }
 
@@ -1624,7 +1567,7 @@ M.VolumeConfig = {
     type = "structure",
     members = {
         VolumeSizeInGb = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1658,17 +1601,13 @@ M.CreateFleetInput = {
         FleetType = {
             type = "string",
         },
-        ComputeCapacity = {
-            type = "structure",
-        },
-        VpcConfig = {
-            type = "structure",
-        },
+        ComputeCapacity = M.ComputeCapacity,
+        VpcConfig = M.VpcConfig,
         MaxUserDurationInSeconds = {
-            type = "number",
+            type = "integer",
         },
         DisconnectTimeoutInSeconds = {
-            type = "number",
+            type = "integer",
         },
         Description = {
             type = "string",
@@ -1679,16 +1618,14 @@ M.CreateFleetInput = {
         EnableDefaultInternetAccess = {
             type = "boolean",
         },
-        DomainJoinInfo = {
-            type = "structure",
-        },
+        DomainJoinInfo = M.DomainJoinInfo,
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         IdleDisconnectTimeoutInSeconds = {
-            type = "number",
+            type = "integer",
         },
         IamRoleArn = {
             type = "string",
@@ -1700,21 +1637,17 @@ M.CreateFleetInput = {
             type = "string",
         },
         MaxConcurrentSessions = {
-            type = "number",
+            type = "integer",
         },
         UsbDeviceFilterStrings = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        SessionScriptS3Location = {
-            type = "structure",
-        },
+        SessionScriptS3Location = M.S3Location,
         MaxSessionsPerInstance = {
-            type = "number",
+            type = "integer",
         },
-        RootVolumeConfig = {
-            type = "structure",
-        },
+        RootVolumeConfig = M.VolumeConfig,
         DisableIMDSV1 = {
             type = "boolean",
         },
@@ -1776,17 +1709,14 @@ M.Fleet = {
         FleetType = {
             type = "string",
         },
-        ComputeCapacityStatus = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ComputeCapacityStatus = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ComputeCapacityStatus }),
         MaxUserDurationInSeconds = {
-            type = "number",
+            type = "integer",
         },
         DisconnectTimeoutInSeconds = {
-            type = "number",
+            type = "integer",
         },
         State = {
             type = "string",
@@ -1794,24 +1724,20 @@ M.Fleet = {
                 required = true,
             },
         },
-        VpcConfig = {
-            type = "structure",
-        },
+        VpcConfig = M.VpcConfig,
         CreatedTime = {
             type = "timestamp",
         },
         FleetErrors = {
             type = "list",
-            member_type = "structure",
+            member = M.FleetError,
         },
         EnableDefaultInternetAccess = {
             type = "boolean",
         },
-        DomainJoinInfo = {
-            type = "structure",
-        },
+        DomainJoinInfo = M.DomainJoinInfo,
         IdleDisconnectTimeoutInSeconds = {
-            type = "number",
+            type = "integer",
         },
         IamRoleArn = {
             type = "string",
@@ -1823,21 +1749,17 @@ M.Fleet = {
             type = "string",
         },
         MaxConcurrentSessions = {
-            type = "number",
+            type = "integer",
         },
         UsbDeviceFilterStrings = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        SessionScriptS3Location = {
-            type = "structure",
-        },
+        SessionScriptS3Location = M.S3Location,
         MaxSessionsPerInstance = {
-            type = "number",
+            type = "integer",
         },
-        RootVolumeConfig = {
-            type = "structure",
-        },
+        RootVolumeConfig = M.VolumeConfig,
         DisableIMDSV1 = {
             type = "boolean",
         },
@@ -1847,9 +1769,7 @@ M.Fleet = {
 M.CreateFleetOutput = {
     type = "structure",
     members = {
-        Fleet = {
-            type = "structure",
-        },
+        Fleet = M.Fleet,
     },
 }
 
@@ -1880,40 +1800,34 @@ M.CreateImageBuilderInput = {
         DisplayName = {
             type = "string",
         },
-        VpcConfig = {
-            type = "structure",
-        },
+        VpcConfig = M.VpcConfig,
         IamRoleArn = {
             type = "string",
         },
         EnableDefaultInternetAccess = {
             type = "boolean",
         },
-        DomainJoinInfo = {
-            type = "structure",
-        },
+        DomainJoinInfo = M.DomainJoinInfo,
         AppstreamAgentVersion = {
             type = "string",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         AccessEndpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessEndpoint,
         },
-        RootVolumeConfig = {
-            type = "structure",
-        },
+        RootVolumeConfig = M.VolumeConfig,
         SoftwaresToInstall = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SoftwaresToUninstall = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DisableIMDSV1 = {
             type = "boolean",
@@ -1934,7 +1848,7 @@ M.NetworkAccessConfiguration = {
         },
         EniIpv6Addresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         EniId = {
             type = "string",
@@ -1997,9 +1911,7 @@ M.ImageBuilder = {
         DisplayName = {
             type = "string",
         },
-        VpcConfig = {
-            type = "structure",
-        },
+        VpcConfig = M.VpcConfig,
         InstanceType = {
             type = "string",
         },
@@ -2012,35 +1924,27 @@ M.ImageBuilder = {
         State = {
             type = "string",
         },
-        StateChangeReason = {
-            type = "structure",
-        },
+        StateChangeReason = M.ImageBuilderStateChangeReason,
         CreatedTime = {
             type = "timestamp",
         },
         EnableDefaultInternetAccess = {
             type = "boolean",
         },
-        DomainJoinInfo = {
-            type = "structure",
-        },
-        NetworkAccessConfiguration = {
-            type = "structure",
-        },
+        DomainJoinInfo = M.DomainJoinInfo,
+        NetworkAccessConfiguration = M.NetworkAccessConfiguration,
         ImageBuilderErrors = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceError,
         },
         AppstreamAgentVersion = {
             type = "string",
         },
         AccessEndpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessEndpoint,
         },
-        RootVolumeConfig = {
-            type = "structure",
-        },
+        RootVolumeConfig = M.VolumeConfig,
         LatestAppstreamAgentVersion = {
             type = "string",
         },
@@ -2053,9 +1957,7 @@ M.ImageBuilder = {
 M.CreateImageBuilderOutput = {
     type = "structure",
     members = {
-        ImageBuilder = {
-            type = "structure",
-        },
+        ImageBuilder = M.ImageBuilder,
     },
 }
 
@@ -2069,7 +1971,7 @@ M.CreateImageBuilderStreamingURLInput = {
             },
         },
         Validity = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -2124,18 +2026,16 @@ M.CreateImportedImageInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        RuntimeValidationConfig = {
-            type = "structure",
-        },
+        RuntimeValidationConfig = M.RuntimeValidationConfig,
         AgentSoftwareVersion = {
             type = "string",
         },
         AppCatalogConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.ApplicationConfig,
         },
         DryRun = {
             type = "boolean",
@@ -2243,12 +2143,10 @@ M.Image = {
         Description = {
             type = "string",
         },
-        StateChangeReason = {
-            type = "structure",
-        },
+        StateChangeReason = M.ImageStateChangeReason,
         Applications = {
             type = "list",
-            member_type = "structure",
+            member = M.Application,
         },
         CreatedTime = {
             type = "timestamp",
@@ -2259,19 +2157,17 @@ M.Image = {
         AppstreamAgentVersion = {
             type = "string",
         },
-        ImagePermissions = {
-            type = "structure",
-        },
+        ImagePermissions = M.ImagePermissions,
         ImageErrors = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceError,
         },
         LatestAppstreamAgentVersion = {
             type = "string",
         },
         SupportedInstanceFamilies = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DynamicAppProvidersEnabled = {
             type = "string",
@@ -2291,9 +2187,7 @@ M.Image = {
 M.CreateImportedImageOutput = {
     type = "structure",
     members = {
-        Image = {
-            type = "structure",
-        },
+        Image = M.Image,
     },
 }
 
@@ -2327,11 +2221,11 @@ M.StorageConnector = {
         },
         Domains = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DomainsRequireAdminConsent = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2366,7 +2260,7 @@ M.UserSetting = {
             },
         },
         MaximumLength = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2388,7 +2282,7 @@ M.CreateStackInput = {
         },
         StorageConnectors = {
             type = "list",
-            member_type = "structure",
+            member = M.StorageConnector,
         },
         RedirectURL = {
             type = "string",
@@ -2398,33 +2292,25 @@ M.CreateStackInput = {
         },
         UserSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.UserSetting,
         },
-        ApplicationSettings = {
-            type = "structure",
-        },
+        ApplicationSettings = M.ApplicationSettings,
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         AccessEndpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessEndpoint,
         },
         EmbedHostDomains = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        StreamingExperienceSettings = {
-            type = "structure",
-        },
-        ContentRedirection = {
-            type = "structure",
-        },
-        AgentAccessConfig = {
-            type = "structure",
-        },
+        StreamingExperienceSettings = M.StreamingExperienceSettings,
+        ContentRedirection = M.ContentRedirection,
+        AgentAccessConfig = M.AgentAccessConfig,
     },
 }
 
@@ -2468,7 +2354,7 @@ M.Stack = {
         },
         StorageConnectors = {
             type = "list",
-            member_type = "structure",
+            member = M.StorageConnector,
         },
         RedirectURL = {
             type = "string",
@@ -2478,41 +2364,31 @@ M.Stack = {
         },
         StackErrors = {
             type = "list",
-            member_type = "structure",
+            member = M.StackError,
         },
         UserSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.UserSetting,
         },
-        ApplicationSettings = {
-            type = "structure",
-        },
+        ApplicationSettings = M.ApplicationSettingsResponse,
         AccessEndpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessEndpoint,
         },
         EmbedHostDomains = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        StreamingExperienceSettings = {
-            type = "structure",
-        },
-        ContentRedirection = {
-            type = "structure",
-        },
-        AgentAccessConfig = {
-            type = "structure",
-        },
+        StreamingExperienceSettings = M.StreamingExperienceSettings,
+        ContentRedirection = M.ContentRedirection,
+        AgentAccessConfig = M.AgentAccessConfig,
     },
 }
 
 M.CreateStackOutput = {
     type = "structure",
     members = {
-        Stack = {
-            type = "structure",
-        },
+        Stack = M.Stack,
     },
 }
 
@@ -2541,7 +2417,7 @@ M.CreateStreamingURLInput = {
             type = "string",
         },
         Validity = {
-            type = "number",
+            type = "long",
         },
         SessionContext = {
             type = "string",
@@ -2591,7 +2467,7 @@ M.CreateThemeForStackInput = {
         },
         FooterLinks = {
             type = "list",
-            member_type = "structure",
+            member = M.ThemeFooterLink,
         },
         TitleText = {
             type = "string",
@@ -2605,18 +2481,12 @@ M.CreateThemeForStackInput = {
                 required = true,
             },
         },
-        OrganizationLogoS3Location = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        FaviconS3Location = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        OrganizationLogoS3Location = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3Location }),
+        FaviconS3Location = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3Location }),
     },
 }
 
@@ -2642,7 +2512,7 @@ M.Theme = {
         },
         ThemeFooterLinks = {
             type = "list",
-            member_type = "structure",
+            member = M.ThemeFooterLink,
         },
         ThemeOrganizationLogoURL = {
             type = "string",
@@ -2659,9 +2529,7 @@ M.Theme = {
 M.CreateThemeForStackOutput = {
     type = "structure",
     members = {
-        Theme = {
-            type = "structure",
-        },
+        Theme = M.Theme,
     },
 }
 
@@ -2688,8 +2556,8 @@ M.CreateUpdatedImageInput = {
         },
         newImageTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         dryRun = {
             type = "boolean",
@@ -2700,9 +2568,7 @@ M.CreateUpdatedImageInput = {
 M.CreateUpdatedImageOutput = {
     type = "structure",
     members = {
-        image = {
-            type = "structure",
-        },
+        image = M.Image,
         canUpdateImage = {
             type = "boolean",
         },
@@ -2892,9 +2758,7 @@ M.DeleteImageInput = {
 M.DeleteImageOutput = {
     type = "structure",
     members = {
-        Image = {
-            type = "structure",
-        },
+        Image = M.Image,
     },
 }
 
@@ -2913,9 +2777,7 @@ M.DeleteImageBuilderInput = {
 M.DeleteImageBuilderOutput = {
     type = "structure",
     members = {
-        ImageBuilder = {
-            type = "structure",
-        },
+        ImageBuilder = M.ImageBuilder,
     },
 }
 
@@ -3013,7 +2875,7 @@ M.DescribeAppBlockBuilderAppBlockAssociationsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3026,7 +2888,7 @@ M.DescribeAppBlockBuilderAppBlockAssociationsOutput = {
     members = {
         AppBlockBuilderAppBlockAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.AppBlockBuilderAppBlockAssociation,
         },
         NextToken = {
             type = "string",
@@ -3039,13 +2901,13 @@ M.DescribeAppBlockBuildersInput = {
     members = {
         Names = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3055,7 +2917,7 @@ M.DescribeAppBlockBuildersOutput = {
     members = {
         AppBlockBuilders = {
             type = "list",
-            member_type = "structure",
+            member = M.AppBlockBuilder,
         },
         NextToken = {
             type = "string",
@@ -3068,13 +2930,13 @@ M.DescribeAppBlocksInput = {
     members = {
         Arns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3084,7 +2946,7 @@ M.DescribeAppBlocksOutput = {
     members = {
         AppBlocks = {
             type = "list",
-            member_type = "structure",
+            member = M.AppBlock,
         },
         NextToken = {
             type = "string",
@@ -3102,7 +2964,7 @@ M.DescribeApplicationFleetAssociationsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3115,7 +2977,7 @@ M.DescribeApplicationFleetAssociationsOutput = {
     members = {
         ApplicationFleetAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.ApplicationFleetAssociation,
         },
         NextToken = {
             type = "string",
@@ -3128,13 +2990,13 @@ M.DescribeApplicationsInput = {
     members = {
         Arns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3144,7 +3006,7 @@ M.DescribeApplicationsOutput = {
     members = {
         Applications = {
             type = "list",
-            member_type = "structure",
+            member = M.Application,
         },
         NextToken = {
             type = "string",
@@ -3162,7 +3024,7 @@ M.DescribeAppLicenseUsageInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3175,7 +3037,7 @@ M.DescribeAppLicenseUsageOutput = {
     members = {
         AppLicenseUsages = {
             type = "list",
-            member_type = "structure",
+            member = M.AdminAppLicenseUsageRecord,
         },
         NextToken = {
             type = "string",
@@ -3188,10 +3050,10 @@ M.DescribeDirectoryConfigsInput = {
     members = {
         DirectoryNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3204,7 +3066,7 @@ M.DescribeDirectoryConfigsOutput = {
     members = {
         DirectoryConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.DirectoryConfig,
         },
         NextToken = {
             type = "string",
@@ -3228,7 +3090,7 @@ M.DescribeEntitlementsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3238,7 +3100,7 @@ M.DescribeEntitlementsOutput = {
     members = {
         Entitlements = {
             type = "list",
-            member_type = "structure",
+            member = M.Entitlement,
         },
         NextToken = {
             type = "string",
@@ -3251,7 +3113,7 @@ M.DescribeFleetsInput = {
     members = {
         Names = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -3264,7 +3126,7 @@ M.DescribeFleetsOutput = {
     members = {
         Fleets = {
             type = "list",
-            member_type = "structure",
+            member = M.Fleet,
         },
         NextToken = {
             type = "string",
@@ -3277,10 +3139,10 @@ M.DescribeImageBuildersInput = {
     members = {
         Names = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3293,7 +3155,7 @@ M.DescribeImageBuildersOutput = {
     members = {
         ImageBuilders = {
             type = "list",
-            member_type = "structure",
+            member = M.ImageBuilder,
         },
         NextToken = {
             type = "string",
@@ -3311,11 +3173,11 @@ M.DescribeImagePermissionsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         SharedAwsAccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -3332,12 +3194,9 @@ M.SharedImagePermissions = {
                 required = true,
             },
         },
-        imagePermissions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        imagePermissions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ImagePermissions }),
     },
 }
 
@@ -3349,7 +3208,7 @@ M.DescribeImagePermissionsOutput = {
         },
         SharedImagePermissionsList = {
             type = "list",
-            member_type = "structure",
+            member = M.SharedImagePermissions,
         },
         NextToken = {
             type = "string",
@@ -3362,11 +3221,11 @@ M.DescribeImagesInput = {
     members = {
         Names = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Arns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Type = {
             type = "string",
@@ -3375,7 +3234,7 @@ M.DescribeImagesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3385,7 +3244,7 @@ M.DescribeImagesOutput = {
     members = {
         Images = {
             type = "list",
-            member_type = "structure",
+            member = M.Image,
         },
         NextToken = {
             type = "string",
@@ -3415,7 +3274,7 @@ M.DescribeSessionsInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
         },
         AuthenticationType = {
             type = "string",
@@ -3488,9 +3347,7 @@ M.Session = {
         AuthenticationType = {
             type = "string",
         },
-        NetworkAccessConfiguration = {
-            type = "structure",
-        },
+        NetworkAccessConfiguration = M.NetworkAccessConfiguration,
         InstanceId = {
             type = "string",
         },
@@ -3505,7 +3362,7 @@ M.DescribeSessionsOutput = {
     members = {
         Sessions = {
             type = "list",
-            member_type = "structure",
+            member = M.Session,
         },
         NextToken = {
             type = "string",
@@ -3523,7 +3380,7 @@ M.DescribeSoftwareAssociationsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3552,7 +3409,7 @@ M.SoftwareAssociations = {
         },
         DeploymentError = {
             type = "list",
-            member_type = "structure",
+            member = M.ErrorDetails,
         },
     },
 }
@@ -3565,7 +3422,7 @@ M.DescribeSoftwareAssociationsOutput = {
         },
         SoftwareAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.SoftwareAssociations,
         },
         NextToken = {
             type = "string",
@@ -3578,7 +3435,7 @@ M.DescribeStacksInput = {
     members = {
         Names = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -3591,7 +3448,7 @@ M.DescribeStacksOutput = {
     members = {
         Stacks = {
             type = "list",
-            member_type = "structure",
+            member = M.Stack,
         },
         NextToken = {
             type = "string",
@@ -3614,9 +3471,7 @@ M.DescribeThemeForStackInput = {
 M.DescribeThemeForStackOutput = {
     type = "structure",
     members = {
-        Theme = {
-            type = "structure",
-        },
+        Theme = M.Theme,
     },
 }
 
@@ -3624,7 +3479,7 @@ M.DescribeUsageReportSubscriptionsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3664,7 +3519,7 @@ M.UsageReportSubscription = {
         },
         SubscriptionErrors = {
             type = "list",
-            member_type = "structure",
+            member = M.LastReportGenerationExecutionError,
         },
     },
 }
@@ -3674,7 +3529,7 @@ M.DescribeUsageReportSubscriptionsOutput = {
     members = {
         UsageReportSubscriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.UsageReportSubscription,
         },
         NextToken = {
             type = "string",
@@ -3692,7 +3547,7 @@ M.DescribeUsersInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3738,7 +3593,7 @@ M.DescribeUsersOutput = {
     members = {
         Users = {
             type = "list",
-            member_type = "structure",
+            member = M.User,
         },
         NextToken = {
             type = "string",
@@ -3759,7 +3614,7 @@ M.DescribeUserStackAssociationsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3772,7 +3627,7 @@ M.DescribeUserStackAssociationsOutput = {
     members = {
         UserStackAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.UserStackAssociation,
         },
         NextToken = {
             type = "string",
@@ -3907,7 +3762,7 @@ M.DisassociateSoftwareFromImageBuilderInput = {
         },
         SoftwareNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3996,7 +3851,7 @@ M.Filter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4027,9 +3882,7 @@ M.GetExportImageTaskInput = {
 M.GetExportImageTaskOutput = {
     type = "structure",
     members = {
-        ExportImageTask = {
-            type = "structure",
-        },
+        ExportImageTask = M.ExportImageTask,
     },
 }
 
@@ -4053,7 +3906,7 @@ M.ListAssociatedFleetsOutput = {
     members = {
         Names = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -4081,7 +3934,7 @@ M.ListAssociatedStacksOutput = {
     members = {
         Names = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -4108,7 +3961,7 @@ M.ListEntitledApplicationsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4118,7 +3971,7 @@ M.ListEntitledApplicationsOutput = {
     members = {
         EntitledApplications = {
             type = "list",
-            member_type = "structure",
+            member = M.EntitledApplication,
         },
         NextToken = {
             type = "string",
@@ -4131,10 +3984,10 @@ M.ListExportImageTasksInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -4147,7 +4000,7 @@ M.ListExportImageTasksOutput = {
     members = {
         ExportImageTasks = {
             type = "list",
-            member_type = "structure",
+            member = M.ExportImageTask,
         },
         NextToken = {
             type = "string",
@@ -4172,8 +4025,8 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -4193,9 +4046,7 @@ M.StartAppBlockBuilderInput = {
 M.StartAppBlockBuilderOutput = {
     type = "structure",
     members = {
-        AppBlockBuilder = {
-            type = "structure",
-        },
+        AppBlockBuilder = M.AppBlockBuilder,
     },
 }
 
@@ -4233,9 +4084,7 @@ M.StartImageBuilderInput = {
 M.StartImageBuilderOutput = {
     type = "structure",
     members = {
-        ImageBuilder = {
-            type = "structure",
-        },
+        ImageBuilder = M.ImageBuilder,
     },
 }
 
@@ -4273,9 +4122,7 @@ M.StopAppBlockBuilderInput = {
 M.StopAppBlockBuilderOutput = {
     type = "structure",
     members = {
-        AppBlockBuilder = {
-            type = "structure",
-        },
+        AppBlockBuilder = M.AppBlockBuilder,
     },
 }
 
@@ -4310,9 +4157,7 @@ M.StopImageBuilderInput = {
 M.StopImageBuilderOutput = {
     type = "structure",
     members = {
-        ImageBuilder = {
-            type = "structure",
-        },
+        ImageBuilder = M.ImageBuilder,
     },
 }
 
@@ -4327,8 +4172,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4351,7 +4196,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4384,9 +4229,7 @@ M.UpdateAppBlockBuilderInput = {
         InstanceType = {
             type = "string",
         },
-        VpcConfig = {
-            type = "structure",
-        },
+        VpcConfig = M.VpcConfig,
         EnableDefaultInternetAccess = {
             type = "boolean",
         },
@@ -4395,11 +4238,11 @@ M.UpdateAppBlockBuilderInput = {
         },
         AccessEndpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessEndpoint,
         },
         AttributesToDelete = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DisableIMDSV1 = {
             type = "boolean",
@@ -4410,9 +4253,7 @@ M.UpdateAppBlockBuilderInput = {
 M.UpdateAppBlockBuilderOutput = {
     type = "structure",
     members = {
-        AppBlockBuilder = {
-            type = "structure",
-        },
+        AppBlockBuilder = M.AppBlockBuilder,
     },
 }
 
@@ -4431,9 +4272,7 @@ M.UpdateApplicationInput = {
         Description = {
             type = "string",
         },
-        IconS3Location = {
-            type = "structure",
-        },
+        IconS3Location = M.S3Location,
         LaunchPath = {
             type = "string",
         },
@@ -4448,7 +4287,7 @@ M.UpdateApplicationInput = {
         },
         AttributesToDelete = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4456,9 +4295,7 @@ M.UpdateApplicationInput = {
 M.UpdateApplicationOutput = {
     type = "structure",
     members = {
-        Application = {
-            type = "structure",
-        },
+        Application = M.Application,
     },
 }
 
@@ -4473,23 +4310,17 @@ M.UpdateDirectoryConfigInput = {
         },
         OrganizationalUnitDistinguishedNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        ServiceAccountCredentials = {
-            type = "structure",
-        },
-        CertificateBasedAuthProperties = {
-            type = "structure",
-        },
+        ServiceAccountCredentials = M.ServiceAccountCredentials,
+        CertificateBasedAuthProperties = M.CertificateBasedAuthProperties,
     },
 }
 
 M.UpdateDirectoryConfigOutput = {
     type = "structure",
     members = {
-        DirectoryConfig = {
-            type = "structure",
-        },
+        DirectoryConfig = M.DirectoryConfig,
     },
 }
 
@@ -4516,7 +4347,7 @@ M.UpdateEntitlementInput = {
         },
         Attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.EntitlementAttribute,
         },
     },
 }
@@ -4524,9 +4355,7 @@ M.UpdateEntitlementInput = {
 M.UpdateEntitlementOutput = {
     type = "structure",
     members = {
-        Entitlement = {
-            type = "structure",
-        },
+        Entitlement = M.Entitlement,
     },
 }
 
@@ -4545,17 +4374,13 @@ M.UpdateFleetInput = {
         InstanceType = {
             type = "string",
         },
-        ComputeCapacity = {
-            type = "structure",
-        },
-        VpcConfig = {
-            type = "structure",
-        },
+        ComputeCapacity = M.ComputeCapacity,
+        VpcConfig = M.VpcConfig,
         MaxUserDurationInSeconds = {
-            type = "number",
+            type = "integer",
         },
         DisconnectTimeoutInSeconds = {
-            type = "number",
+            type = "integer",
         },
         DeleteVpcConfig = {
             type = "boolean",
@@ -4569,15 +4394,13 @@ M.UpdateFleetInput = {
         EnableDefaultInternetAccess = {
             type = "boolean",
         },
-        DomainJoinInfo = {
-            type = "structure",
-        },
+        DomainJoinInfo = M.DomainJoinInfo,
         IdleDisconnectTimeoutInSeconds = {
-            type = "number",
+            type = "integer",
         },
         AttributesToDelete = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IamRoleArn = {
             type = "string",
@@ -4589,21 +4412,17 @@ M.UpdateFleetInput = {
             type = "string",
         },
         MaxConcurrentSessions = {
-            type = "number",
+            type = "integer",
         },
         UsbDeviceFilterStrings = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        SessionScriptS3Location = {
-            type = "structure",
-        },
+        SessionScriptS3Location = M.S3Location,
         MaxSessionsPerInstance = {
-            type = "number",
+            type = "integer",
         },
-        RootVolumeConfig = {
-            type = "structure",
-        },
+        RootVolumeConfig = M.VolumeConfig,
         DisableIMDSV1 = {
             type = "boolean",
         },
@@ -4613,9 +4432,7 @@ M.UpdateFleetInput = {
 M.UpdateFleetOutput = {
     type = "structure",
     members = {
-        Fleet = {
-            type = "structure",
-        },
+        Fleet = M.Fleet,
     },
 }
 
@@ -4634,12 +4451,9 @@ M.UpdateImagePermissionsInput = {
                 required = true,
             },
         },
-        ImagePermissions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ImagePermissions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ImagePermissions }),
     },
 }
 
@@ -4681,7 +4495,7 @@ M.UpdateStackInput = {
         },
         StorageConnectors = {
             type = "list",
-            member_type = "structure",
+            member = M.StorageConnector,
         },
         DeleteStorageConnectors = {
             type = "boolean",
@@ -4694,41 +4508,31 @@ M.UpdateStackInput = {
         },
         AttributesToDelete = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         UserSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.UserSetting,
         },
-        ApplicationSettings = {
-            type = "structure",
-        },
+        ApplicationSettings = M.ApplicationSettings,
         AccessEndpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessEndpoint,
         },
         EmbedHostDomains = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        StreamingExperienceSettings = {
-            type = "structure",
-        },
-        ContentRedirection = {
-            type = "structure",
-        },
-        AgentAccessConfig = {
-            type = "structure",
-        },
+        StreamingExperienceSettings = M.StreamingExperienceSettings,
+        ContentRedirection = M.ContentRedirection,
+        AgentAccessConfig = M.AgentAccessConfigForUpdate,
     },
 }
 
 M.UpdateStackOutput = {
     type = "structure",
     members = {
-        Stack = {
-            type = "structure",
-        },
+        Stack = M.Stack,
     },
 }
 
@@ -4747,7 +4551,7 @@ M.UpdateThemeForStackInput = {
         },
         FooterLinks = {
             type = "list",
-            member_type = "structure",
+            member = M.ThemeFooterLink,
         },
         TitleText = {
             type = "string",
@@ -4755,18 +4559,14 @@ M.UpdateThemeForStackInput = {
         ThemeStyling = {
             type = "string",
         },
-        OrganizationLogoS3Location = {
-            type = "structure",
-        },
-        FaviconS3Location = {
-            type = "structure",
-        },
+        OrganizationLogoS3Location = M.S3Location,
+        FaviconS3Location = M.S3Location,
         State = {
             type = "string",
         },
         AttributesToDelete = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4774,9 +4574,7 @@ M.UpdateThemeForStackInput = {
 M.UpdateThemeForStackOutput = {
     type = "structure",
     members = {
-        Theme = {
-            type = "structure",
-        },
+        Theme = M.Theme,
     },
 }
 

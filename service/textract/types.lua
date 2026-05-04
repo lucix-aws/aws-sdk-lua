@@ -24,7 +24,7 @@ M.Adapter = {
         },
         Pages = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Version = {
             type = "string",
@@ -57,7 +57,7 @@ M.AdapterOverview = {
         },
         FeatureTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -67,7 +67,7 @@ M.AdaptersConfig = {
     members = {
         Adapters = {
             type = "list",
-            member_type = "structure",
+            member = M.Adapter,
             traits = {
                 required = true,
             },
@@ -93,9 +93,7 @@ M.S3Object = {
 M.AdapterVersionDatasetConfig = {
     type = "structure",
     members = {
-        ManifestS3Object = {
-            type = "structure",
-        },
+        ManifestS3Object = M.S3Object,
     },
 }
 
@@ -103,13 +101,22 @@ M.EvaluationMetric = {
     type = "structure",
     members = {
         F1Score = {
-            type = "number",
+            type = "float",
+            traits = {
+                default = 0,
+            },
         },
         Precision = {
-            type = "number",
+            type = "float",
+            traits = {
+                default = 0,
+            },
         },
         Recall = {
-            type = "number",
+            type = "float",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -117,12 +124,8 @@ M.EvaluationMetric = {
 M.AdapterVersionEvaluationMetric = {
     type = "structure",
     members = {
-        Baseline = {
-            type = "structure",
-        },
-        AdapterVersion = {
-            type = "structure",
-        },
+        Baseline = M.EvaluationMetric,
+        AdapterVersion = M.EvaluationMetric,
         FeatureType = {
             type = "string",
         },
@@ -151,7 +154,7 @@ M.AdapterVersionOverview = {
         },
         FeatureTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Status = {
             type = "string",
@@ -168,9 +171,7 @@ M.Document = {
         Bytes = {
             type = "blob",
         },
-        S3Object = {
-            type = "structure",
-        },
+        S3Object = M.S3Object,
     },
 }
 
@@ -184,7 +185,7 @@ M.HumanLoopDataAttributes = {
     members = {
         ContentClassifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -204,9 +205,7 @@ M.HumanLoopConfig = {
                 required = true,
             },
         },
-        DataAttributes = {
-            type = "structure",
-        },
+        DataAttributes = M.HumanLoopDataAttributes,
     },
 }
 
@@ -224,7 +223,7 @@ M.Query = {
         },
         Pages = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -234,7 +233,7 @@ M.QueriesConfig = {
     members = {
         Queries = {
             type = "list",
-            member_type = "structure",
+            member = M.Query,
             traits = {
                 required = true,
             },
@@ -245,28 +244,19 @@ M.QueriesConfig = {
 M.AnalyzeDocumentInput = {
     type = "structure",
     members = {
-        Document = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Document = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Document }),
         FeatureTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        HumanLoopConfig = {
-            type = "structure",
-        },
-        QueriesConfig = {
-            type = "structure",
-        },
-        AdaptersConfig = {
-            type = "structure",
-        },
+        HumanLoopConfig = M.HumanLoopConfig,
+        QueriesConfig = M.QueriesConfig,
+        AdaptersConfig = M.AdaptersConfig,
     },
 }
 
@@ -313,16 +303,28 @@ M.BoundingBox = {
     type = "structure",
     members = {
         Width = {
-            type = "number",
+            type = "float",
+            traits = {
+                default = 0,
+            },
         },
         Height = {
-            type = "number",
+            type = "float",
+            traits = {
+                default = 0,
+            },
         },
         Left = {
-            type = "number",
+            type = "float",
+            traits = {
+                default = 0,
+            },
         },
         Top = {
-            type = "number",
+            type = "float",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -331,10 +333,16 @@ M.Point = {
     type = "structure",
     members = {
         X = {
-            type = "number",
+            type = "float",
+            traits = {
+                default = 0,
+            },
         },
         Y = {
-            type = "number",
+            type = "float",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -342,15 +350,13 @@ M.Point = {
 M.Geometry = {
     type = "structure",
     members = {
-        BoundingBox = {
-            type = "structure",
-        },
+        BoundingBox = M.BoundingBox,
         Polygon = {
             type = "list",
-            member_type = "structure",
+            member = M.Point,
         },
         RotationAngle = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -375,7 +381,7 @@ M.Relationship = {
         },
         Ids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -397,7 +403,7 @@ M.Block = {
             type = "string",
         },
         Confidence = {
-            type = "number",
+            type = "float",
         },
         Text = {
             type = "string",
@@ -406,40 +412,36 @@ M.Block = {
             type = "string",
         },
         RowIndex = {
-            type = "number",
+            type = "integer",
         },
         ColumnIndex = {
-            type = "number",
+            type = "integer",
         },
         RowSpan = {
-            type = "number",
+            type = "integer",
         },
         ColumnSpan = {
-            type = "number",
+            type = "integer",
         },
-        Geometry = {
-            type = "structure",
-        },
+        Geometry = M.Geometry,
         Id = {
             type = "string",
         },
         Relationships = {
             type = "list",
-            member_type = "structure",
+            member = M.Relationship,
         },
         EntityTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SelectionStatus = {
             type = "string",
         },
         Page = {
-            type = "number",
+            type = "integer",
         },
-        Query = {
-            type = "structure",
-        },
+        Query = M.Query,
     },
 }
 
@@ -447,7 +449,7 @@ M.DocumentMetadata = {
     type = "structure",
     members = {
         Pages = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -460,7 +462,7 @@ M.HumanLoopActivationOutput = {
         },
         HumanLoopActivationReasons = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         HumanLoopActivationConditionsEvaluationResults = {
             type = "string",
@@ -471,16 +473,12 @@ M.HumanLoopActivationOutput = {
 M.AnalyzeDocumentOutput = {
     type = "structure",
     members = {
-        DocumentMetadata = {
-            type = "structure",
-        },
+        DocumentMetadata = M.DocumentMetadata,
         Blocks = {
             type = "list",
-            member_type = "structure",
+            member = M.Block,
         },
-        HumanLoopActivationOutput = {
-            type = "structure",
-        },
+        HumanLoopActivationOutput = M.HumanLoopActivationOutput,
         AnalyzeDocumentModelVersion = {
             type = "string",
         },
@@ -616,12 +614,9 @@ M.UnsupportedDocumentException = {
 M.AnalyzeExpenseInput = {
     type = "structure",
     members = {
-        Document = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Document = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Document }),
     },
 }
 
@@ -632,7 +627,7 @@ M.ExpenseCurrency = {
             type = "string",
         },
         Confidence = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -642,7 +637,7 @@ M.ExpenseGroupProperty = {
     members = {
         Types = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Id = {
             type = "string",
@@ -656,11 +651,9 @@ M.ExpenseDetection = {
         Text = {
             type = "string",
         },
-        Geometry = {
-            type = "structure",
-        },
+        Geometry = M.Geometry,
         Confidence = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -672,7 +665,7 @@ M.ExpenseType = {
             type = "string",
         },
         Confidence = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -680,24 +673,16 @@ M.ExpenseType = {
 M.ExpenseField = {
     type = "structure",
     members = {
-        Type = {
-            type = "structure",
-        },
-        LabelDetection = {
-            type = "structure",
-        },
-        ValueDetection = {
-            type = "structure",
-        },
+        Type = M.ExpenseType,
+        LabelDetection = M.ExpenseDetection,
+        ValueDetection = M.ExpenseDetection,
         PageNumber = {
-            type = "number",
+            type = "integer",
         },
-        Currency = {
-            type = "structure",
-        },
+        Currency = M.ExpenseCurrency,
         GroupProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.ExpenseGroupProperty,
         },
     },
 }
@@ -707,7 +692,7 @@ M.LineItemFields = {
     members = {
         LineItemExpenseFields = {
             type = "list",
-            member_type = "structure",
+            member = M.ExpenseField,
         },
     },
 }
@@ -716,11 +701,11 @@ M.LineItemGroup = {
     type = "structure",
     members = {
         LineItemGroupIndex = {
-            type = "number",
+            type = "integer",
         },
         LineItems = {
             type = "list",
-            member_type = "structure",
+            member = M.LineItemFields,
         },
     },
 }
@@ -729,19 +714,19 @@ M.ExpenseDocument = {
     type = "structure",
     members = {
         ExpenseIndex = {
-            type = "number",
+            type = "integer",
         },
         SummaryFields = {
             type = "list",
-            member_type = "structure",
+            member = M.ExpenseField,
         },
         LineItemGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.LineItemGroup,
         },
         Blocks = {
             type = "list",
-            member_type = "structure",
+            member = M.Block,
         },
     },
 }
@@ -749,12 +734,10 @@ M.ExpenseDocument = {
 M.AnalyzeExpenseOutput = {
     type = "structure",
     members = {
-        DocumentMetadata = {
-            type = "structure",
-        },
+        DocumentMetadata = M.DocumentMetadata,
         ExpenseDocuments = {
             type = "list",
-            member_type = "structure",
+            member = M.ExpenseDocument,
         },
     },
 }
@@ -764,7 +747,7 @@ M.AnalyzeIDInput = {
     members = {
         DocumentPages = {
             type = "list",
-            member_type = "structure",
+            member = M.Document,
             traits = {
                 required = true,
             },
@@ -797,11 +780,9 @@ M.AnalyzeIDDetections = {
                 required = true,
             },
         },
-        NormalizedValue = {
-            type = "structure",
-        },
+        NormalizedValue = M.NormalizedValue,
         Confidence = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -809,12 +790,8 @@ M.AnalyzeIDDetections = {
 M.IdentityDocumentField = {
     type = "structure",
     members = {
-        Type = {
-            type = "structure",
-        },
-        ValueDetection = {
-            type = "structure",
-        },
+        Type = M.AnalyzeIDDetections,
+        ValueDetection = M.AnalyzeIDDetections,
     },
 }
 
@@ -822,15 +799,15 @@ M.IdentityDocument = {
     type = "structure",
     members = {
         DocumentIndex = {
-            type = "number",
+            type = "integer",
         },
         IdentityDocumentFields = {
             type = "list",
-            member_type = "structure",
+            member = M.IdentityDocumentField,
         },
         Blocks = {
             type = "list",
-            member_type = "structure",
+            member = M.Block,
         },
     },
 }
@@ -840,11 +817,9 @@ M.AnalyzeIDOutput = {
     members = {
         IdentityDocuments = {
             type = "list",
-            member_type = "structure",
+            member = M.IdentityDocument,
         },
-        DocumentMetadata = {
-            type = "structure",
-        },
+        DocumentMetadata = M.DocumentMetadata,
         AnalyzeIDModelVersion = {
             type = "string",
         },
@@ -886,7 +861,7 @@ M.CreateAdapterInput = {
         },
         FeatureTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -896,8 +871,8 @@ M.CreateAdapterInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -990,25 +965,19 @@ M.CreateAdapterVersionInput = {
         ClientRequestToken = {
             type = "string",
         },
-        DatasetConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DatasetConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AdapterVersionDatasetConfig }),
         KMSKeyId = {
             type = "string",
         },
-        OutputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        OutputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OutputConfig }),
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1092,24 +1061,19 @@ M.DeleteAdapterVersionOutput = {
 M.DetectDocumentTextInput = {
     type = "structure",
     members = {
-        Document = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Document = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Document }),
     },
 }
 
 M.DetectDocumentTextOutput = {
     type = "structure",
     members = {
-        DocumentMetadata = {
-            type = "structure",
-        },
+        DocumentMetadata = M.DocumentMetadata,
         Blocks = {
             type = "list",
-            member_type = "structure",
+            member = M.Block,
         },
         DetectDocumentTextModelVersion = {
             type = "string",
@@ -1121,7 +1085,7 @@ M.DetectedSignature = {
     type = "structure",
     members = {
         Page = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1130,11 +1094,11 @@ M.SplitDocument = {
     type = "structure",
     members = {
         Index = {
-            type = "number",
+            type = "integer",
         },
         Pages = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
         },
     },
 }
@@ -1143,7 +1107,7 @@ M.UndetectedSignature = {
     type = "structure",
     members = {
         Page = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1156,15 +1120,15 @@ M.DocumentGroup = {
         },
         SplitDocuments = {
             type = "list",
-            member_type = "structure",
+            member = M.SplitDocument,
         },
         DetectedSignatures = {
             type = "list",
-            member_type = "structure",
+            member = M.DetectedSignature,
         },
         UndetectedSignatures = {
             type = "list",
-            member_type = "structure",
+            member = M.UndetectedSignature,
         },
     },
 }
@@ -1172,9 +1136,7 @@ M.DocumentGroup = {
 M.DocumentLocation = {
     type = "structure",
     members = {
-        S3Object = {
-            type = "structure",
-        },
+        S3Object = M.S3Object,
     },
 }
 
@@ -1187,11 +1149,9 @@ M.LendingDetection = {
         SelectionStatus = {
             type = "string",
         },
-        Geometry = {
-            type = "structure",
-        },
+        Geometry = M.Geometry,
         Confidence = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -1202,12 +1162,10 @@ M.LendingField = {
         Type = {
             type = "string",
         },
-        KeyDetection = {
-            type = "structure",
-        },
+        KeyDetection = M.LendingDetection,
         ValueDetections = {
             type = "list",
-            member_type = "structure",
+            member = M.LendingDetection,
         },
     },
 }
@@ -1216,11 +1174,9 @@ M.SignatureDetection = {
     type = "structure",
     members = {
         Confidence = {
-            type = "number",
+            type = "float",
         },
-        Geometry = {
-            type = "structure",
-        },
+        Geometry = M.Geometry,
     },
 }
 
@@ -1229,11 +1185,11 @@ M.LendingDocument = {
     members = {
         LendingFields = {
             type = "list",
-            member_type = "structure",
+            member = M.LendingField,
         },
         SignatureDetections = {
             type = "list",
-            member_type = "structure",
+            member = M.SignatureDetection,
         },
     },
 }
@@ -1241,15 +1197,9 @@ M.LendingDocument = {
 M.Extraction = {
     type = "structure",
     members = {
-        LendingDocument = {
-            type = "structure",
-        },
-        ExpenseDocument = {
-            type = "structure",
-        },
-        IdentityDocument = {
-            type = "structure",
-        },
+        LendingDocument = M.LendingDocument,
+        ExpenseDocument = M.ExpenseDocument,
+        IdentityDocument = M.IdentityDocument,
     },
 }
 
@@ -1282,15 +1232,15 @@ M.GetAdapterOutput = {
         },
         FeatureTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AutoUpdate = {
             type = "string",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1327,7 +1277,7 @@ M.GetAdapterVersionOutput = {
         },
         FeatureTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Status = {
             type = "string",
@@ -1335,23 +1285,19 @@ M.GetAdapterVersionOutput = {
         StatusMessage = {
             type = "string",
         },
-        DatasetConfig = {
-            type = "structure",
-        },
+        DatasetConfig = M.AdapterVersionDatasetConfig,
         KMSKeyId = {
             type = "string",
         },
-        OutputConfig = {
-            type = "structure",
-        },
+        OutputConfig = M.OutputConfig,
         EvaluationMetrics = {
             type = "list",
-            member_type = "structure",
+            member = M.AdapterVersionEvaluationMetric,
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1366,7 +1312,7 @@ M.GetDocumentAnalysisInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1389,7 +1335,7 @@ M.Warning = {
         },
         Pages = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
         },
     },
 }
@@ -1397,9 +1343,7 @@ M.Warning = {
 M.GetDocumentAnalysisOutput = {
     type = "structure",
     members = {
-        DocumentMetadata = {
-            type = "structure",
-        },
+        DocumentMetadata = M.DocumentMetadata,
         JobStatus = {
             type = "string",
         },
@@ -1408,11 +1352,11 @@ M.GetDocumentAnalysisOutput = {
         },
         Blocks = {
             type = "list",
-            member_type = "structure",
+            member = M.Block,
         },
         Warnings = {
             type = "list",
-            member_type = "structure",
+            member = M.Warning,
         },
         StatusMessage = {
             type = "string",
@@ -1446,7 +1390,7 @@ M.GetDocumentTextDetectionInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1457,9 +1401,7 @@ M.GetDocumentTextDetectionInput = {
 M.GetDocumentTextDetectionOutput = {
     type = "structure",
     members = {
-        DocumentMetadata = {
-            type = "structure",
-        },
+        DocumentMetadata = M.DocumentMetadata,
         JobStatus = {
             type = "string",
         },
@@ -1468,11 +1410,11 @@ M.GetDocumentTextDetectionOutput = {
         },
         Blocks = {
             type = "list",
-            member_type = "structure",
+            member = M.Block,
         },
         Warnings = {
             type = "list",
-            member_type = "structure",
+            member = M.Warning,
         },
         StatusMessage = {
             type = "string",
@@ -1493,7 +1435,7 @@ M.GetExpenseAnalysisInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1504,9 +1446,7 @@ M.GetExpenseAnalysisInput = {
 M.GetExpenseAnalysisOutput = {
     type = "structure",
     members = {
-        DocumentMetadata = {
-            type = "structure",
-        },
+        DocumentMetadata = M.DocumentMetadata,
         JobStatus = {
             type = "string",
         },
@@ -1515,11 +1455,11 @@ M.GetExpenseAnalysisOutput = {
         },
         ExpenseDocuments = {
             type = "list",
-            member_type = "structure",
+            member = M.ExpenseDocument,
         },
         Warnings = {
             type = "list",
-            member_type = "structure",
+            member = M.Warning,
         },
         StatusMessage = {
             type = "string",
@@ -1540,7 +1480,7 @@ M.GetLendingAnalysisInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1555,7 +1495,7 @@ M.Prediction = {
             type = "string",
         },
         Confidence = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -1565,14 +1505,14 @@ M.PageClassification = {
     members = {
         PageType = {
             type = "list",
-            member_type = "structure",
+            member = M.Prediction,
             traits = {
                 required = true,
             },
         },
         PageNumber = {
             type = "list",
-            member_type = "structure",
+            member = M.Prediction,
             traits = {
                 required = true,
             },
@@ -1584,14 +1524,12 @@ M.LendingResult = {
     type = "structure",
     members = {
         Page = {
-            type = "number",
+            type = "integer",
         },
-        PageClassification = {
-            type = "structure",
-        },
+        PageClassification = M.PageClassification,
         Extractions = {
             type = "list",
-            member_type = "structure",
+            member = M.Extraction,
         },
     },
 }
@@ -1599,9 +1537,7 @@ M.LendingResult = {
 M.GetLendingAnalysisOutput = {
     type = "structure",
     members = {
-        DocumentMetadata = {
-            type = "structure",
-        },
+        DocumentMetadata = M.DocumentMetadata,
         JobStatus = {
             type = "string",
         },
@@ -1610,11 +1546,11 @@ M.GetLendingAnalysisOutput = {
         },
         Results = {
             type = "list",
-            member_type = "structure",
+            member = M.LendingResult,
         },
         Warnings = {
             type = "list",
-            member_type = "structure",
+            member = M.Warning,
         },
         StatusMessage = {
             type = "string",
@@ -1642,11 +1578,11 @@ M.LendingSummary = {
     members = {
         DocumentGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.DocumentGroup,
         },
         UndetectedDocumentTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1654,18 +1590,14 @@ M.LendingSummary = {
 M.GetLendingAnalysisSummaryOutput = {
     type = "structure",
     members = {
-        DocumentMetadata = {
-            type = "structure",
-        },
+        DocumentMetadata = M.DocumentMetadata,
         JobStatus = {
             type = "string",
         },
-        Summary = {
-            type = "structure",
-        },
+        Summary = M.LendingSummary,
         Warnings = {
             type = "list",
-            member_type = "structure",
+            member = M.Warning,
         },
         StatusMessage = {
             type = "string",
@@ -1686,7 +1618,7 @@ M.ListAdaptersInput = {
             type = "timestamp",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1699,7 +1631,7 @@ M.ListAdaptersOutput = {
     members = {
         Adapters = {
             type = "list",
-            member_type = "structure",
+            member = M.AdapterOverview,
         },
         NextToken = {
             type = "string",
@@ -1720,7 +1652,7 @@ M.ListAdapterVersionsInput = {
             type = "timestamp",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1733,7 +1665,7 @@ M.ListAdapterVersionsOutput = {
     members = {
         AdapterVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.AdapterVersionOverview,
         },
         NextToken = {
             type = "string",
@@ -1758,8 +1690,8 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1785,15 +1717,12 @@ M.NotificationChannel = {
 M.StartDocumentAnalysisInput = {
     type = "structure",
     members = {
-        DocumentLocation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DocumentLocation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DocumentLocation }),
         FeatureTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1804,21 +1733,13 @@ M.StartDocumentAnalysisInput = {
         JobTag = {
             type = "string",
         },
-        NotificationChannel = {
-            type = "structure",
-        },
-        OutputConfig = {
-            type = "structure",
-        },
+        NotificationChannel = M.NotificationChannel,
+        OutputConfig = M.OutputConfig,
         KMSKeyId = {
             type = "string",
         },
-        QueriesConfig = {
-            type = "structure",
-        },
-        AdaptersConfig = {
-            type = "structure",
-        },
+        QueriesConfig = M.QueriesConfig,
+        AdaptersConfig = M.AdaptersConfig,
     },
 }
 
@@ -1834,24 +1755,17 @@ M.StartDocumentAnalysisOutput = {
 M.StartDocumentTextDetectionInput = {
     type = "structure",
     members = {
-        DocumentLocation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DocumentLocation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DocumentLocation }),
         ClientRequestToken = {
             type = "string",
         },
         JobTag = {
             type = "string",
         },
-        NotificationChannel = {
-            type = "structure",
-        },
-        OutputConfig = {
-            type = "structure",
-        },
+        NotificationChannel = M.NotificationChannel,
+        OutputConfig = M.OutputConfig,
         KMSKeyId = {
             type = "string",
         },
@@ -1870,24 +1784,17 @@ M.StartDocumentTextDetectionOutput = {
 M.StartExpenseAnalysisInput = {
     type = "structure",
     members = {
-        DocumentLocation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DocumentLocation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DocumentLocation }),
         ClientRequestToken = {
             type = "string",
         },
         JobTag = {
             type = "string",
         },
-        NotificationChannel = {
-            type = "structure",
-        },
-        OutputConfig = {
-            type = "structure",
-        },
+        NotificationChannel = M.NotificationChannel,
+        OutputConfig = M.OutputConfig,
         KMSKeyId = {
             type = "string",
         },
@@ -1906,24 +1813,17 @@ M.StartExpenseAnalysisOutput = {
 M.StartLendingAnalysisInput = {
     type = "structure",
     members = {
-        DocumentLocation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DocumentLocation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DocumentLocation }),
         ClientRequestToken = {
             type = "string",
         },
         JobTag = {
             type = "string",
         },
-        NotificationChannel = {
-            type = "structure",
-        },
-        OutputConfig = {
-            type = "structure",
-        },
+        NotificationChannel = M.NotificationChannel,
+        OutputConfig = M.OutputConfig,
         KMSKeyId = {
             type = "string",
         },
@@ -1950,8 +1850,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1974,7 +1874,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2024,7 +1924,7 @@ M.UpdateAdapterOutput = {
         },
         FeatureTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AutoUpdate = {
             type = "string",

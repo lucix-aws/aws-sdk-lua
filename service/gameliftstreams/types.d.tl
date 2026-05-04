@@ -854,23 +854,23 @@ local record ValidationException
     Message: string
 end
 
-local type StreamClass = "gen4n_high" | "gen4n_ultra" | "gen4n_win2022" | "gen5n_high" | "gen5n_ultra" | "gen5n_win2022" | "gen6n_small" | "gen6n_medium" | "gen6n_high" | "gen6n_ultra" | "gen6n_ultra_win2022" | "gen6n_pro" | "gen6n_pro_win2022" | "gen6n_small_win2022" | "gen6n_medium_win2022" | "gen6e_pro" | "gen6e_pro_win2022"
-
 local type ApplicationStatus = "INITIALIZED" | "PROCESSING" | "READY" | "DELETING" | "ERROR"
+
+local type StreamClass = "gen4n_high" | "gen4n_ultra" | "gen4n_win2022" | "gen5n_high" | "gen5n_ultra" | "gen5n_win2022" | "gen6n_small" | "gen6n_medium" | "gen6n_high" | "gen6n_ultra" | "gen6n_ultra_win2022" | "gen6n_pro" | "gen6n_pro_win2022" | "gen6n_small_win2022" | "gen6n_medium_win2022" | "gen6e_pro" | "gen6e_pro_win2022"
 
 local type Protocol = "WebRTC"
 
-local type ApplicationStatusReason = "internalError" | "accessDenied" | "sourceModified"
-
 local type StreamSessionStatus = "ACTIVATING" | "ACTIVE" | "CONNECTED" | "PENDING_CLIENT_RECONNECTION" | "RECONNECTING" | "TERMINATING" | "TERMINATED" | "ERROR"
 
-local type StreamGroupStatusReason = "internalError" | "noAvailableInstances"
+local type ApplicationStatusReason = "internalError" | "accessDenied" | "sourceModified"
 
 local type StreamGroupStatus = "ACTIVATING" | "UPDATING_LOCATIONS" | "ACTIVE" | "ACTIVE_WITH_ERRORS" | "ERROR" | "DELETING" | "EXPIRED"
 
-local type ExportFilesStatus = "SUCCEEDED" | "FAILED" | "PENDING"
+local type StreamGroupStatusReason = "internalError" | "noAvailableInstances"
 
 local type StreamSessionStatusReason = "internalError" | "invalidSignalRequest" | "placementTimeout" | "applicationLogS3DestinationError" | "applicationExit" | "connectionTimeout" | "reconnectionTimeout" | "maxSessionLengthTimeout" | "idleTimeout" | "apiTerminated"
+
+local type ExportFilesStatus = "SUCCEEDED" | "FAILED" | "PENDING"
 
 local record M
     AddStreamGroupLocationsInput: AddStreamGroupLocationsInput

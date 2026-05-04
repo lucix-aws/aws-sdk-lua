@@ -1850,11 +1850,11 @@ local record ValidationError
     message: string
 end
 
+local type DataRetentionActionType = "ENABLE" | "DISABLE" | "PUBKEY_MSG_ACK"
+
 local type AccessLevel = "STANDARD" | "PREMIUM"
 
 local type SortDirection = "ASC" | "DESC"
-
-local type DataRetentionActionType = "ENABLE" | "DISABLE" | "PUBKEY_MSG_ACK"
 
 local type UserStatus = 1 | 2
 

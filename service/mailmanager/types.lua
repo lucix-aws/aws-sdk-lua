@@ -101,7 +101,7 @@ M.CreateAddonInstanceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -201,7 +201,7 @@ M.ListAddonInstancesInput = {
             type = "string",
         },
         PageSize = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -211,7 +211,7 @@ M.ListAddonInstancesOutput = {
     members = {
         AddonInstances = {
             type = "list",
-            member_type = "structure",
+            member = M.AddonInstance,
         },
         NextToken = {
             type = "string",
@@ -251,7 +251,7 @@ M.CreateAddonSubscriptionInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -328,7 +328,7 @@ M.ListAddonSubscriptionsInput = {
             type = "string",
         },
         PageSize = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -338,7 +338,7 @@ M.ListAddonSubscriptionsOutput = {
     members = {
         AddonSubscriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.AddonSubscription,
         },
         NextToken = {
             type = "string",
@@ -405,7 +405,7 @@ M.CreateAddressListInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -493,7 +493,7 @@ M.ListAddressListsInput = {
             type = "string",
         },
         PageSize = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -503,7 +503,7 @@ M.ListAddressListsOutput = {
     members = {
         AddressLists = {
             type = "list",
-            member_type = "structure",
+            member = M.AddressList,
             traits = {
                 required = true,
             },
@@ -594,12 +594,9 @@ M.ArchiveBooleanOperator = {
 M.ArchiveBooleanExpression = {
     type = "structure",
     members = {
-        Evaluate = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        Evaluate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ArchiveBooleanToEvaluate }),
         Operator = {
             type = "string",
             traits = {
@@ -634,12 +631,9 @@ M.ArchiveStringOperator = {
 M.ArchiveStringExpression = {
     type = "structure",
     members = {
-        Evaluate = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        Evaluate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ArchiveStringToEvaluate }),
         Operator = {
             type = "string",
             traits = {
@@ -648,7 +642,7 @@ M.ArchiveStringExpression = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -659,12 +653,8 @@ M.ArchiveStringExpression = {
 M.ArchiveFilterCondition = {
     type = "union",
     members = {
-        StringExpression = {
-            type = "structure",
-        },
-        BooleanExpression = {
-            type = "structure",
-        },
+        StringExpression = M.ArchiveStringExpression,
+        BooleanExpression = M.ArchiveBooleanExpression,
     },
 }
 
@@ -673,11 +663,11 @@ M.ArchiveFilters = {
     members = {
         Include = {
             type = "list",
-            member_type = "union",
+            member = M.ArchiveFilterCondition,
         },
         Unless = {
             type = "list",
-            member_type = "union",
+            member = M.ArchiveFilterCondition,
         },
     },
 }
@@ -722,15 +712,13 @@ M.CreateArchiveInput = {
                 required = true,
             },
         },
-        Retention = {
-            type = "union",
-        },
+        Retention = M.ArchiveRetention,
         KmsKeyArn = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -802,12 +790,9 @@ M.GetArchiveOutput = {
                 required = true,
             },
         },
-        Retention = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        Retention = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ArchiveRetention }),
         CreatedTimestamp = {
             type = "timestamp",
         },
@@ -827,7 +812,7 @@ M.ListArchivesInput = {
             type = "string",
         },
         PageSize = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -837,7 +822,7 @@ M.ListArchivesOutput = {
     members = {
         Archives = {
             type = "list",
-            member_type = "structure",
+            member = M.Archive,
             traits = {
                 required = true,
             },
@@ -860,9 +845,7 @@ M.UpdateArchiveInput = {
         ArchiveName = {
             type = "string",
         },
-        Retention = {
-            type = "union",
-        },
+        Retention = M.ArchiveRetention,
     },
 }
 
@@ -947,12 +930,9 @@ M.CreateAddressListImportJobInput = {
                 required = true,
             },
         },
-        ImportDataFormat = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ImportDataFormat = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ImportDataFormat }),
     },
 }
 
@@ -995,9 +975,7 @@ M.TrustStore = {
 M.TlsAuthConfiguration = {
     type = "structure",
     members = {
-        TrustStore = {
-            type = "structure",
-        },
+        TrustStore = M.TrustStore,
     },
 }
 
@@ -1010,9 +988,7 @@ M.IngressPointConfiguration = {
         SecretArn = {
             type = "string",
         },
-        TlsAuthConfiguration = {
-            type = "structure",
-        },
+        TlsAuthConfiguration = M.TlsAuthConfiguration,
     },
 }
 
@@ -1039,6 +1015,7 @@ M.PublicNetworkConfiguration = {
         IpType = {
             type = "string",
             traits = {
+                default = "IPV4",
                 required = true,
             },
         },
@@ -1048,12 +1025,8 @@ M.PublicNetworkConfiguration = {
 M.NetworkConfiguration = {
     type = "union",
     members = {
-        PublicNetworkConfiguration = {
-            type = "structure",
-        },
-        PrivateNetworkConfiguration = {
-            type = "structure",
-        },
+        PublicNetworkConfiguration = M.PublicNetworkConfiguration,
+        PrivateNetworkConfiguration = M.PrivateNetworkConfiguration,
     },
 }
 
@@ -1099,18 +1072,14 @@ M.CreateIngressPointInput = {
                 required = true,
             },
         },
-        IngressPointConfiguration = {
-            type = "union",
-        },
-        NetworkConfiguration = {
-            type = "union",
-        },
+        IngressPointConfiguration = M.IngressPointConfiguration,
+        NetworkConfiguration = M.NetworkConfiguration,
         TlsPolicy = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1137,9 +1106,7 @@ M.RelayAuthentication = {
         SecretArn = {
             type = "string",
         },
-        NoAuthentication = {
-            type = "structure",
-        },
+        NoAuthentication = M.NoAuthentication,
     },
 }
 
@@ -1162,20 +1129,17 @@ M.CreateRelayInput = {
             },
         },
         ServerPort = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
-        Authentication = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        Authentication = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RelayAuthentication }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1274,7 +1238,7 @@ M.InvokeLambdaAction = {
             },
         },
         RetryTimeMinutes = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1309,9 +1273,15 @@ M.SnsAction = {
         },
         Encoding = {
             type = "string",
+            traits = {
+                default = "UTF-8",
+            },
         },
         PayloadType = {
             type = "string",
+            traits = {
+                default = "CONTENT",
+            },
         },
     },
 }
@@ -1344,7 +1314,7 @@ M.ReplaceRecipientAction = {
     members = {
         ReplaceWith = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1394,42 +1364,18 @@ M.S3Action = {
 M.RuleAction = {
     type = "union",
     members = {
-        Drop = {
-            type = "structure",
-        },
-        Relay = {
-            type = "structure",
-        },
-        Archive = {
-            type = "structure",
-        },
-        WriteToS3 = {
-            type = "structure",
-        },
-        Send = {
-            type = "structure",
-        },
-        AddHeader = {
-            type = "structure",
-        },
-        ReplaceRecipient = {
-            type = "structure",
-        },
-        DeliverToMailbox = {
-            type = "structure",
-        },
-        DeliverToQBusiness = {
-            type = "structure",
-        },
-        PublishToSns = {
-            type = "structure",
-        },
-        Bounce = {
-            type = "structure",
-        },
-        InvokeLambda = {
-            type = "structure",
-        },
+        Drop = M.DropAction,
+        Relay = M.RelayAction,
+        Archive = M.ArchiveAction,
+        WriteToS3 = M.S3Action,
+        Send = M.SendAction,
+        AddHeader = M.AddHeaderAction,
+        ReplaceRecipient = M.ReplaceRecipientAction,
+        DeliverToMailbox = M.DeliverToMailboxAction,
+        DeliverToQBusiness = M.DeliverToQBusinessAction,
+        PublishToSns = M.SnsAction,
+        Bounce = M.BounceAction,
+        InvokeLambda = M.InvokeLambdaAction,
     },
 }
 
@@ -1459,7 +1405,7 @@ M.RuleIsInAddressList = {
         },
         AddressLists = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1473,12 +1419,8 @@ M.RuleBooleanToEvaluate = {
         Attribute = {
             type = "string",
         },
-        Analysis = {
-            type = "structure",
-        },
-        IsInAddressList = {
-            type = "structure",
-        },
+        Analysis = M.Analysis,
+        IsInAddressList = M.RuleIsInAddressList,
     },
 }
 
@@ -1490,12 +1432,9 @@ M.RuleBooleanOperator = {
 M.RuleBooleanExpression = {
     type = "structure",
     members = {
-        Evaluate = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        Evaluate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RuleBooleanToEvaluate }),
         Operator = {
             type = "string",
             traits = {
@@ -1527,7 +1466,7 @@ M.RuleDmarcExpression = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1556,12 +1495,9 @@ M.RuleIpOperator = {
 M.RuleIpExpression = {
     type = "structure",
     members = {
-        Evaluate = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        Evaluate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RuleIpToEvaluate }),
         Operator = {
             type = "string",
             traits = {
@@ -1570,7 +1506,7 @@ M.RuleIpExpression = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1603,12 +1539,9 @@ M.RuleNumberOperator = {
 M.RuleNumberExpression = {
     type = "structure",
     members = {
-        Evaluate = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        Evaluate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RuleNumberToEvaluate }),
         Operator = {
             type = "string",
             traits = {
@@ -1616,7 +1549,7 @@ M.RuleNumberExpression = {
             },
         },
         Value = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -1655,9 +1588,7 @@ M.RuleStringToEvaluate = {
         MimeHeaderAttribute = {
             type = "string",
         },
-        Analysis = {
-            type = "structure",
-        },
+        Analysis = M.Analysis,
         ClientCertificateAttribute = {
             type = "string",
         },
@@ -1675,12 +1606,9 @@ M.RuleStringOperator = {
 M.RuleStringExpression = {
     type = "structure",
     members = {
-        Evaluate = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        Evaluate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RuleStringToEvaluate }),
         Operator = {
             type = "string",
             traits = {
@@ -1689,7 +1617,7 @@ M.RuleStringExpression = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1708,9 +1636,7 @@ M.RuleVerdictToEvaluate = {
         Attribute = {
             type = "string",
         },
-        Analysis = {
-            type = "structure",
-        },
+        Analysis = M.Analysis,
     },
 }
 
@@ -1729,12 +1655,9 @@ M.RuleVerdict = {
 M.RuleVerdictExpression = {
     type = "structure",
     members = {
-        Evaluate = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        Evaluate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RuleVerdictToEvaluate }),
         Operator = {
             type = "string",
             traits = {
@@ -1743,7 +1666,7 @@ M.RuleVerdictExpression = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1754,24 +1677,12 @@ M.RuleVerdictExpression = {
 M.RuleCondition = {
     type = "union",
     members = {
-        BooleanExpression = {
-            type = "structure",
-        },
-        StringExpression = {
-            type = "structure",
-        },
-        NumberExpression = {
-            type = "structure",
-        },
-        IpExpression = {
-            type = "structure",
-        },
-        VerdictExpression = {
-            type = "structure",
-        },
-        DmarcExpression = {
-            type = "structure",
-        },
+        BooleanExpression = M.RuleBooleanExpression,
+        StringExpression = M.RuleStringExpression,
+        NumberExpression = M.RuleNumberExpression,
+        IpExpression = M.RuleIpExpression,
+        VerdictExpression = M.RuleVerdictExpression,
+        DmarcExpression = M.RuleDmarcExpression,
     },
 }
 
@@ -1783,15 +1694,15 @@ M.Rule = {
         },
         Conditions = {
             type = "list",
-            member_type = "union",
+            member = M.RuleCondition,
         },
         Unless = {
             type = "list",
-            member_type = "union",
+            member = M.RuleCondition,
         },
         Actions = {
             type = "list",
-            member_type = "union",
+            member = M.RuleAction,
             traits = {
                 required = true,
             },
@@ -1813,14 +1724,14 @@ M.CreateRuleSetInput = {
         },
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.Rule,
             traits = {
                 required = true,
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1870,7 +1781,7 @@ M.IngressIsInAddressList = {
         },
         AddressLists = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1881,12 +1792,8 @@ M.IngressIsInAddressList = {
 M.IngressBooleanToEvaluate = {
     type = "union",
     members = {
-        Analysis = {
-            type = "structure",
-        },
-        IsInAddressList = {
-            type = "structure",
-        },
+        Analysis = M.IngressAnalysis,
+        IsInAddressList = M.IngressIsInAddressList,
     },
 }
 
@@ -1898,12 +1805,9 @@ M.IngressBooleanOperator = {
 M.IngressBooleanExpression = {
     type = "structure",
     members = {
-        Evaluate = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        Evaluate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IngressBooleanToEvaluate }),
         Operator = {
             type = "string",
             traits = {
@@ -1934,12 +1838,9 @@ M.IngressIpOperator = {
 M.IngressIpv4Expression = {
     type = "structure",
     members = {
-        Evaluate = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        Evaluate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IngressIpToEvaluate }),
         Operator = {
             type = "string",
             traits = {
@@ -1948,7 +1849,7 @@ M.IngressIpv4Expression = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1972,12 +1873,9 @@ M.IngressIpv6ToEvaluate = {
 M.IngressIpv6Expression = {
     type = "structure",
     members = {
-        Evaluate = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        Evaluate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IngressIpv6ToEvaluate }),
         Operator = {
             type = "string",
             traits = {
@@ -1986,7 +1884,7 @@ M.IngressIpv6Expression = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2004,9 +1902,7 @@ M.IngressStringToEvaluate = {
         Attribute = {
             type = "string",
         },
-        Analysis = {
-            type = "structure",
-        },
+        Analysis = M.IngressAnalysis,
     },
 }
 
@@ -2021,12 +1917,9 @@ M.IngressStringOperator = {
 M.IngressStringExpression = {
     type = "structure",
     members = {
-        Evaluate = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        Evaluate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IngressStringToEvaluate }),
         Operator = {
             type = "string",
             traits = {
@@ -2035,7 +1928,7 @@ M.IngressStringExpression = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2069,12 +1962,9 @@ M.IngressTlsProtocolAttribute = {
 M.IngressTlsProtocolExpression = {
     type = "structure",
     members = {
-        Evaluate = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        Evaluate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IngressTlsProtocolToEvaluate }),
         Operator = {
             type = "string",
             traits = {
@@ -2093,21 +1983,11 @@ M.IngressTlsProtocolExpression = {
 M.PolicyCondition = {
     type = "union",
     members = {
-        StringExpression = {
-            type = "structure",
-        },
-        IpExpression = {
-            type = "structure",
-        },
-        Ipv6Expression = {
-            type = "structure",
-        },
-        TlsExpression = {
-            type = "structure",
-        },
-        BooleanExpression = {
-            type = "structure",
-        },
+        StringExpression = M.IngressStringExpression,
+        IpExpression = M.IngressIpv4Expression,
+        Ipv6Expression = M.IngressIpv6Expression,
+        TlsExpression = M.IngressTlsProtocolExpression,
+        BooleanExpression = M.IngressBooleanExpression,
     },
 }
 
@@ -2116,7 +1996,7 @@ M.PolicyStatement = {
     members = {
         Conditions = {
             type = "list",
-            member_type = "union",
+            member = M.PolicyCondition,
             traits = {
                 required = true,
             },
@@ -2144,7 +2024,7 @@ M.CreateTrafficPolicyInput = {
         },
         PolicyStatements = {
             type = "list",
-            member_type = "structure",
+            member = M.PolicyStatement,
             traits = {
                 required = true,
             },
@@ -2156,11 +2036,11 @@ M.CreateTrafficPolicyInput = {
             },
         },
         MaxMessageSizeBytes = {
-            type = "number",
+            type = "integer",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2274,7 +2154,7 @@ M.Envelope = {
         },
         To = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2291,9 +2171,7 @@ M.S3ExportDestinationConfiguration = {
 M.ExportDestinationConfiguration = {
     type = "union",
     members = {
-        S3 = {
-            type = "structure",
-        },
+        S3 = M.S3ExportDestinationConfiguration,
     },
 }
 
@@ -2330,9 +2208,7 @@ M.ExportSummary = {
         ExportId = {
             type = "string",
         },
-        Status = {
-            type = "structure",
-        },
+        Status = M.ExportStatus,
     },
 }
 
@@ -2384,17 +2260,14 @@ M.GetAddressListImportJobOutput = {
             },
         },
         ImportedItemsCount = {
-            type = "number",
+            type = "integer",
         },
         FailedItemsCount = {
-            type = "number",
+            type = "integer",
         },
-        ImportDataFormat = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ImportDataFormat = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ImportDataFormat }),
         AddressListId = {
             type = "string",
             traits = {
@@ -2437,9 +2310,7 @@ M.GetArchiveExportOutput = {
         ArchiveId = {
             type = "string",
         },
-        Filters = {
-            type = "structure",
-        },
+        Filters = M.ArchiveFilters,
         FromTimestamp = {
             type = "timestamp",
         },
@@ -2447,14 +2318,10 @@ M.GetArchiveExportOutput = {
             type = "timestamp",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
-        ExportDestinationConfiguration = {
-            type = "union",
-        },
-        Status = {
-            type = "structure",
-        },
+        ExportDestinationConfiguration = M.ExportDestinationConfiguration,
+        Status = M.ExportStatus,
     },
 }
 
@@ -2521,12 +2388,8 @@ M.GetArchiveMessageOutput = {
         MessageDownloadLink = {
             type = "string",
         },
-        Metadata = {
-            type = "structure",
-        },
-        Envelope = {
-            type = "structure",
-        },
+        Metadata = M.Metadata,
+        Envelope = M.Envelope,
     },
 }
 
@@ -2560,9 +2423,7 @@ M.MessageBody = {
 M.GetArchiveMessageContentOutput = {
     type = "structure",
     members = {
-        Body = {
-            type = "structure",
-        },
+        Body = M.MessageBody,
     },
 }
 
@@ -2610,9 +2471,7 @@ M.GetArchiveSearchOutput = {
         ArchiveId = {
             type = "string",
         },
-        Filters = {
-            type = "structure",
-        },
+        Filters = M.ArchiveFilters,
         FromTimestamp = {
             type = "timestamp",
         },
@@ -2620,11 +2479,9 @@ M.GetArchiveSearchOutput = {
             type = "timestamp",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
-        Status = {
-            type = "structure",
-        },
+        Status = M.SearchStatus,
     },
 }
 
@@ -2672,7 +2529,7 @@ M.Row = {
         },
         ReceivedHeaders = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         InReplyTo = {
             type = "string",
@@ -2695,9 +2552,7 @@ M.Row = {
         SenderIpAddress = {
             type = "string",
         },
-        Envelope = {
-            type = "structure",
-        },
+        Envelope = M.Envelope,
         SourceArn = {
             type = "string",
         },
@@ -2709,7 +2564,7 @@ M.GetArchiveSearchResultsOutput = {
     members = {
         Rows = {
             type = "list",
-            member_type = "structure",
+            member = M.Row,
         },
     },
 }
@@ -2752,15 +2607,11 @@ M.IngressPointPasswordConfiguration = {
 M.IngressPointAuthConfiguration = {
     type = "structure",
     members = {
-        IngressPointPasswordConfiguration = {
-            type = "structure",
-        },
+        IngressPointPasswordConfiguration = M.IngressPointPasswordConfiguration,
         SecretArn = {
             type = "string",
         },
-        TlsAuthConfiguration = {
-            type = "structure",
-        },
+        TlsAuthConfiguration = M.TlsAuthConfiguration,
     },
 }
 
@@ -2807,12 +2658,8 @@ M.GetIngressPointOutput = {
         TrafficPolicyId = {
             type = "string",
         },
-        IngressPointAuthConfiguration = {
-            type = "structure",
-        },
-        NetworkConfiguration = {
-            type = "union",
-        },
+        IngressPointAuthConfiguration = M.IngressPointAuthConfiguration,
+        NetworkConfiguration = M.NetworkConfiguration,
         TlsPolicy = {
             type = "string",
         },
@@ -2892,11 +2739,9 @@ M.GetRelayOutput = {
             type = "string",
         },
         ServerPort = {
-            type = "number",
+            type = "integer",
         },
-        Authentication = {
-            type = "union",
-        },
+        Authentication = M.RelayAuthentication,
         CreatedTimestamp = {
             type = "timestamp",
         },
@@ -2953,7 +2798,7 @@ M.GetRuleSetOutput = {
         },
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.Rule,
             traits = {
                 required = true,
             },
@@ -2993,10 +2838,10 @@ M.GetTrafficPolicyOutput = {
         },
         PolicyStatements = {
             type = "list",
-            member_type = "structure",
+            member = M.PolicyStatement,
         },
         MaxMessageSizeBytes = {
-            type = "number",
+            type = "integer",
         },
         DefaultAction = {
             type = "string",
@@ -3038,17 +2883,14 @@ M.ImportJob = {
             },
         },
         ImportedItemsCount = {
-            type = "number",
+            type = "integer",
         },
         FailedItemsCount = {
-            type = "number",
+            type = "integer",
         },
-        ImportDataFormat = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ImportDataFormat = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ImportDataFormat }),
         AddressListId = {
             type = "string",
             traits = {
@@ -3110,7 +2952,7 @@ M.ListIngressPointsInput = {
     type = "structure",
     members = {
         PageSize = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3123,7 +2965,7 @@ M.ListIngressPointsOutput = {
     members = {
         IngressPoints = {
             type = "list",
-            member_type = "structure",
+            member = M.IngressPoint,
         },
         NextToken = {
             type = "string",
@@ -3157,9 +2999,7 @@ M.UpdateIngressPointInput = {
         TrafficPolicyId = {
             type = "string",
         },
-        IngressPointConfiguration = {
-            type = "union",
-        },
+        IngressPointConfiguration = M.IngressPointConfiguration,
         TlsPolicy = {
             type = "string",
         },
@@ -3183,7 +3023,7 @@ M.ListAddressListImportJobsInput = {
             type = "string",
         },
         PageSize = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3193,7 +3033,7 @@ M.ListAddressListImportJobsOutput = {
     members = {
         ImportJobs = {
             type = "list",
-            member_type = "structure",
+            member = M.ImportJob,
             traits = {
                 required = true,
             },
@@ -3217,7 +3057,7 @@ M.ListArchiveExportsInput = {
             type = "string",
         },
         PageSize = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3227,7 +3067,7 @@ M.ListArchiveExportsOutput = {
     members = {
         Exports = {
             type = "list",
-            member_type = "structure",
+            member = M.ExportSummary,
         },
         NextToken = {
             type = "string",
@@ -3248,7 +3088,7 @@ M.ListArchiveSearchesInput = {
             type = "string",
         },
         PageSize = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3259,9 +3099,7 @@ M.SearchSummary = {
         SearchId = {
             type = "string",
         },
-        Status = {
-            type = "structure",
-        },
+        Status = M.SearchStatus,
     },
 }
 
@@ -3270,7 +3108,7 @@ M.ListArchiveSearchesOutput = {
     members = {
         Searches = {
             type = "list",
-            member_type = "structure",
+            member = M.SearchSummary,
         },
         NextToken = {
             type = "string",
@@ -3287,14 +3125,12 @@ M.ListMembersOfAddressListInput = {
                 required = true,
             },
         },
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.AddressFilter,
         NextToken = {
             type = "string",
         },
         PageSize = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3322,7 +3158,7 @@ M.ListMembersOfAddressListOutput = {
     members = {
         Addresses = {
             type = "list",
-            member_type = "structure",
+            member = M.SavedAddress,
             traits = {
                 required = true,
             },
@@ -3337,7 +3173,7 @@ M.ListRelaysInput = {
     type = "structure",
     members = {
         PageSize = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3365,7 +3201,7 @@ M.ListRelaysOutput = {
     members = {
         Relays = {
             type = "list",
-            member_type = "structure",
+            member = M.Relay,
             traits = {
                 required = true,
             },
@@ -3383,7 +3219,7 @@ M.ListRuleSetsInput = {
             type = "string",
         },
         PageSize = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3408,7 +3244,7 @@ M.ListRuleSetsOutput = {
     members = {
         RuleSets = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleSet,
             traits = {
                 required = true,
             },
@@ -3436,7 +3272,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -3448,7 +3284,7 @@ M.ListTrafficPoliciesInput = {
     type = "structure",
     members = {
         PageSize = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3485,7 +3321,7 @@ M.ListTrafficPoliciesOutput = {
     members = {
         TrafficPolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.TrafficPolicy,
         },
         NextToken = {
             type = "string",
@@ -3531,11 +3367,9 @@ M.UpdateRelayInput = {
             type = "string",
         },
         ServerPort = {
-            type = "number",
+            type = "integer",
         },
-        Authentication = {
-            type = "union",
-        },
+        Authentication = M.RelayAuthentication,
     },
 }
 
@@ -3557,7 +3391,7 @@ M.UpdateRuleSetInput = {
         },
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.Rule,
         },
     },
 }
@@ -3591,9 +3425,7 @@ M.StartArchiveExportInput = {
                 required = true,
             },
         },
-        Filters = {
-            type = "structure",
-        },
+        Filters = M.ArchiveFilters,
         FromTimestamp = {
             type = "timestamp",
             traits = {
@@ -3607,14 +3439,11 @@ M.StartArchiveExportInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
-        ExportDestinationConfiguration = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        ExportDestinationConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ExportDestinationConfiguration }),
         IncludeMetadata = {
             type = "boolean",
         },
@@ -3639,9 +3468,7 @@ M.StartArchiveSearchInput = {
                 required = true,
             },
         },
-        Filters = {
-            type = "structure",
-        },
+        Filters = M.ArchiveFilters,
         FromTimestamp = {
             type = "timestamp",
             traits = {
@@ -3655,7 +3482,7 @@ M.StartArchiveSearchInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -3731,7 +3558,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -3757,13 +3584,13 @@ M.UpdateTrafficPolicyInput = {
         },
         PolicyStatements = {
             type = "list",
-            member_type = "structure",
+            member = M.PolicyStatement,
         },
         DefaultAction = {
             type = "string",
         },
         MaxMessageSizeBytes = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3783,7 +3610,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },

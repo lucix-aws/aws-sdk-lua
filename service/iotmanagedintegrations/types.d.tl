@@ -3034,51 +3034,17 @@ local record ValidationException
     Message: string
 end
 
-local type DisconnectReasonValue = "AUTH_ERROR" | "CLIENT_INITIATED_DISCONNECT" | "CLIENT_ERROR" | "CONNECTION_LOST" | "DUPLICATE_CLIENTID" | "FORBIDDEN_ACCESS" | "MQTT_KEEP_ALIVE_TIMEOUT" | "SERVER_ERROR" | "SERVER_INITIATED_DISCONNECT" | "THROTTLED" | "WEBSOCKET_TTL_EXPIRATION" | "CUSTOMAUTH_TTL_EXPIRATION" | "UNKNOWN" | "NONE"
-
-local type DeviceDiscoveryStatus = "RUNNING" | "SUCCEEDED" | "FAILED" | "TIMED_OUT"
-
-local type ProvisioningStatus = "UNASSOCIATED" | "PRE_ASSOCIATED" | "DISCOVERED" | "ACTIVATED" | "DELETION_FAILED" | "DELETE_IN_PROGRESS" | "ISOLATED" | "DELETED"
-
-local type DeliveryDestinationType = "KINESIS"
-
-local type ProvisioningProfileStatus = "CREATE_IN_PROGRESS" | "CREATE_FAILED" | "CREATED" | "DELETE_IN_PROGRESS" | "DELETE_FAILED"
-
-local type AssociationState = "ASSOCIATION_IN_PROGRESS" | "ASSOCIATION_FAILED" | "ASSOCIATION_SUCCEEDED" | "ASSOCIATION_DELETING" | "REFRESH_TOKEN_EXPIRED"
-
-local type EncryptionType = "MANAGED_INTEGRATIONS_DEFAULT_ENCRYPTION" | "CUSTOMER_KEY_ENCRYPTION"
-
-local type OtaType = "ONE_TIME" | "CONTINUOUS"
-
-local type EventType = "DEVICE_COMMAND" | "DEVICE_COMMAND_REQUEST" | "DEVICE_DISCOVERY_STATUS" | "DEVICE_EVENT" | "DEVICE_LIFE_CYCLE" | "DEVICE_STATE" | "DEVICE_OTA" | "DEVICE_WSS" | "CONNECTOR_ASSOCIATION" | "ACCOUNT_ASSOCIATION" | "CONNECTOR_ERROR_REPORT"
-
-local type AuthMaterialType = "CUSTOM_PROTOCOL_QR_BAR_CODE" | "WIFI_SETUP_QR_BAR_CODE" | "ZWAVE_QR_BAR_CODE" | "ZIGBEE_QR_BAR_CODE" | "DISCOVERED_DEVICE" | "PRE_ONBOARDED_CLOUD"
-
-local type HubNetworkMode = "STANDARD" | "NETWORK_WIDE_EXCLUSION"
-
-local type EndpointType = "LAMBDA"
-
-local type SchemaVersionVisibility = "PUBLIC" | "PRIVATE"
-
-local type AuthType = "OAUTH"
-
-local type Role = "CONTROLLER" | "DEVICE"
-
-local type ProtocolType = "ZWAVE" | "ZIGBEE" | "CUSTOM"
+local type LogLevel = "DEBUG" | "ERROR" | "INFO" | "WARN"
 
 local type OtaStatus = "IN_PROGRESS" | "CANCELED" | "COMPLETED" | "DELETION_IN_PROGRESS" | "SCHEDULED"
 
-local type ProvisioningType = "FLEET_PROVISIONING" | "JITR"
-
-local type LogLevel = "DEBUG" | "ERROR" | "INFO" | "WARN"
-
 local type CloudConnectorType = "LISTED" | "UNLISTED"
 
-local type OtaProtocol = "HTTP"
+local type ConnectorEventOperation = "DEVICE_COMMAND_RESPONSE" | "DEVICE_DISCOVERY" | "DEVICE_EVENT" | "DEVICE_COMMAND_REQUEST"
 
 local type DiscoveryAuthMaterialType = "ZWAVE_INSTALL_CODE"
 
-local type ConnectorEventOperation = "DEVICE_COMMAND_RESPONSE" | "DEVICE_DISCOVERY" | "DEVICE_EVENT" | "DEVICE_COMMAND_REQUEST"
+local type ProtocolType = "ZWAVE" | "ZIGBEE" | "CUSTOM"
 
 local type OtaMechanism = "PUSH"
 
@@ -3087,6 +3053,40 @@ local type DiscoveryType = "ZWAVE" | "ZIGBEE" | "CLOUD" | "CUSTOM" | "CONTROLLER
 local type SchemaVersionFormat = "AWS" | "ZCL" | "CONNECTOR"
 
 local type SchemaVersionType = "capability" | "definition"
+
+local type ProvisioningType = "FLEET_PROVISIONING" | "JITR"
+
+local type DisconnectReasonValue = "AUTH_ERROR" | "CLIENT_INITIATED_DISCONNECT" | "CLIENT_ERROR" | "CONNECTION_LOST" | "DUPLICATE_CLIENTID" | "FORBIDDEN_ACCESS" | "MQTT_KEEP_ALIVE_TIMEOUT" | "SERVER_ERROR" | "SERVER_INITIATED_DISCONNECT" | "THROTTLED" | "WEBSOCKET_TTL_EXPIRATION" | "CUSTOMAUTH_TTL_EXPIRATION" | "UNKNOWN" | "NONE"
+
+local type AssociationState = "ASSOCIATION_IN_PROGRESS" | "ASSOCIATION_FAILED" | "ASSOCIATION_SUCCEEDED" | "ASSOCIATION_DELETING" | "REFRESH_TOKEN_EXPIRED"
+
+local type DeliveryDestinationType = "KINESIS"
+
+local type ProvisioningProfileStatus = "CREATE_IN_PROGRESS" | "CREATE_FAILED" | "CREATED" | "DELETE_IN_PROGRESS" | "DELETE_FAILED"
+
+local type ProvisioningStatus = "UNASSOCIATED" | "PRE_ASSOCIATED" | "DISCOVERED" | "ACTIVATED" | "DELETION_FAILED" | "DELETE_IN_PROGRESS" | "ISOLATED" | "DELETED"
+
+local type DeviceDiscoveryStatus = "RUNNING" | "SUCCEEDED" | "FAILED" | "TIMED_OUT"
+
+local type EncryptionType = "MANAGED_INTEGRATIONS_DEFAULT_ENCRYPTION" | "CUSTOMER_KEY_ENCRYPTION"
+
+local type EventType = "DEVICE_COMMAND" | "DEVICE_COMMAND_REQUEST" | "DEVICE_DISCOVERY_STATUS" | "DEVICE_EVENT" | "DEVICE_LIFE_CYCLE" | "DEVICE_STATE" | "DEVICE_OTA" | "DEVICE_WSS" | "CONNECTOR_ASSOCIATION" | "ACCOUNT_ASSOCIATION" | "CONNECTOR_ERROR_REPORT"
+
+local type OtaProtocol = "HTTP"
+
+local type AuthType = "OAUTH"
+
+local type EndpointType = "LAMBDA"
+
+local type AuthMaterialType = "CUSTOM_PROTOCOL_QR_BAR_CODE" | "WIFI_SETUP_QR_BAR_CODE" | "ZWAVE_QR_BAR_CODE" | "ZIGBEE_QR_BAR_CODE" | "DISCOVERED_DEVICE" | "PRE_ONBOARDED_CLOUD"
+
+local type Role = "CONTROLLER" | "DEVICE"
+
+local type SchemaVersionVisibility = "PUBLIC" | "PRIVATE"
+
+local type OtaType = "ONE_TIME" | "CONTINUOUS"
+
+local type HubNetworkMode = "STANDARD" | "NETWORK_WIDE_EXCLUSION"
 
 local record M
     CreateAccountAssociationInput: CreateAccountAssociationInput

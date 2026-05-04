@@ -70,7 +70,10 @@ M.SendSerialConsoleSSHPublicKeyInput = {
             },
         },
         SerialPort = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         SSHPublicKey = {
             type = "string",
@@ -89,6 +92,9 @@ M.SendSerialConsoleSSHPublicKeyOutput = {
         },
         Success = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -188,6 +194,9 @@ M.SendSSHPublicKeyOutput = {
         },
         Success = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }

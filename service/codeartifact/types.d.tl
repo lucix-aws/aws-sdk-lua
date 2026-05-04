@@ -1964,21 +1964,21 @@ end
 
 local type PackageGroupOriginRestrictionType = "EXTERNAL_UPSTREAM" | "INTERNAL_UPSTREAM" | "PUBLISH"
 
-local type PackageVersionSortType = "PUBLISHED_TIME"
-
-local type PackageGroupAssociationType = "STRONG" | "WEAK"
-
-local type PackageVersionStatus = "Published" | "Unfinished" | "Unlisted" | "Archived" | "Disposed" | "Deleted"
+local type PackageFormat = "npm" | "pypi" | "maven" | "nuget" | "generic" | "ruby" | "swift" | "cargo"
 
 local type EndpointType = "dualstack" | "ipv4"
 
 local type AllowUpstream = "ALLOW" | "BLOCK"
 
-local type PackageFormat = "npm" | "pypi" | "maven" | "nuget" | "generic" | "ruby" | "swift" | "cargo"
+local type PackageVersionSortType = "PUBLISHED_TIME"
+
+local type PackageVersionStatus = "Published" | "Unfinished" | "Unlisted" | "Archived" | "Disposed" | "Deleted"
 
 local type AllowPublish = "ALLOW" | "BLOCK"
 
 local type PackageVersionOriginType = "INTERNAL" | "EXTERNAL" | "UNKNOWN"
+
+local type PackageGroupAssociationType = "STRONG" | "WEAK"
 
 local record M
     AssociateExternalConnectionInput: AssociateExternalConnectionInput

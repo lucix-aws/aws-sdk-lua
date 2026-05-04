@@ -27,13 +27,13 @@ M.AbortCriteria = {
             },
         },
         thresholdPercentage = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
         minNumberOfExecutedThings = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -46,7 +46,7 @@ M.AbortConfig = {
     members = {
         criteriaList = {
             type = "list",
-            member_type = "structure",
+            member = M.AbortCriteria,
             traits = {
                 required = true,
             },
@@ -67,6 +67,7 @@ M.AcceptCertificateTransferInput = {
         setAsActive = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "setAsActive",
             },
         },
@@ -311,12 +312,9 @@ M.DynamoDBv2Action = {
                 required = true,
             },
         },
-        putItem = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        putItem = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PutItemInput }),
     },
 }
 
@@ -407,9 +405,7 @@ M.SigV4Authorization = {
 M.HttpAuthorization = {
     type = "structure",
     members = {
-        sigv4 = {
-            type = "structure",
-        },
+        sigv4 = M.SigV4Authorization,
     },
 }
 
@@ -417,16 +413,19 @@ M.BatchConfig = {
     type = "structure",
     members = {
         maxBatchOpenMs = {
-            type = "number",
+            type = "integer",
         },
         maxBatchSize = {
-            type = "number",
+            type = "integer",
         },
         maxBatchSizeBytes = {
-            type = "number",
+            type = "integer",
         },
         batchAcrossTopics = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -463,17 +462,13 @@ M.HttpAction = {
         },
         headers = {
             type = "list",
-            member_type = "structure",
+            member = M.HttpActionHeader,
         },
-        auth = {
-            type = "structure",
-        },
+        auth = M.HttpAuthorization,
         enableBatching = {
             type = "boolean",
         },
-        batchConfig = {
-            type = "structure",
-        },
+        batchConfig = M.BatchConfig,
     },
 }
 
@@ -555,18 +550,12 @@ M.AssetPropertyVariant = {
 M.AssetPropertyValue = {
     type = "structure",
     members = {
-        value = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        timestamp = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        value = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AssetPropertyVariant }),
+        timestamp = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AssetPropertyTimestamp }),
         quality = {
             type = "string",
         },
@@ -590,7 +579,7 @@ M.PutAssetPropertyValueEntry = {
         },
         propertyValues = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetPropertyValue,
             traits = {
                 required = true,
             },
@@ -603,7 +592,7 @@ M.IotSiteWiseAction = {
     members = {
         putAssetPropertyValueEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.PutAssetPropertyValueEntry,
             traits = {
                 required = true,
             },
@@ -658,15 +647,15 @@ M.KafkaAction = {
         },
         clientProperties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
         },
         headers = {
             type = "list",
-            member_type = "structure",
+            member = M.KafkaActionHeader,
         },
     },
 }
@@ -740,9 +729,7 @@ M.LocationAction = {
                 required = true,
             },
         },
-        timestamp = {
-            type = "structure",
-        },
+        timestamp = M.LocationTimestamp,
         latitude = {
             type = "string",
             traits = {
@@ -832,7 +819,7 @@ M.MqttHeaders = {
         },
         userProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.UserProperty,
         },
     },
 }
@@ -853,11 +840,9 @@ M.RepublishAction = {
             },
         },
         qos = {
-            type = "number",
+            type = "integer",
         },
-        headers = {
-            type = "structure",
-        },
+        headers = M.MqttHeaders,
     },
 }
 
@@ -1044,89 +1029,41 @@ M.TimestreamAction = {
         },
         dimensions = {
             type = "list",
-            member_type = "structure",
+            member = M.TimestreamDimension,
             traits = {
                 required = true,
             },
         },
-        timestamp = {
-            type = "structure",
-        },
+        timestamp = M.TimestreamTimestamp,
     },
 }
 
 M.Action = {
     type = "structure",
     members = {
-        dynamoDB = {
-            type = "structure",
-        },
-        dynamoDBv2 = {
-            type = "structure",
-        },
-        lambda = {
-            type = "structure",
-        },
-        sns = {
-            type = "structure",
-        },
-        sqs = {
-            type = "structure",
-        },
-        kinesis = {
-            type = "structure",
-        },
-        republish = {
-            type = "structure",
-        },
-        s3 = {
-            type = "structure",
-        },
-        firehose = {
-            type = "structure",
-        },
-        cloudwatchMetric = {
-            type = "structure",
-        },
-        cloudwatchAlarm = {
-            type = "structure",
-        },
-        cloudwatchLogs = {
-            type = "structure",
-        },
-        elasticsearch = {
-            type = "structure",
-        },
-        salesforce = {
-            type = "structure",
-        },
-        iotAnalytics = {
-            type = "structure",
-        },
-        iotEvents = {
-            type = "structure",
-        },
-        iotSiteWise = {
-            type = "structure",
-        },
-        stepFunctions = {
-            type = "structure",
-        },
-        timestream = {
-            type = "structure",
-        },
-        http = {
-            type = "structure",
-        },
-        kafka = {
-            type = "structure",
-        },
-        openSearch = {
-            type = "structure",
-        },
-        location = {
-            type = "structure",
-        },
+        dynamoDB = M.DynamoDBAction,
+        dynamoDBv2 = M.DynamoDBv2Action,
+        lambda = M.LambdaAction,
+        sns = M.SnsAction,
+        sqs = M.SqsAction,
+        kinesis = M.KinesisAction,
+        republish = M.RepublishAction,
+        s3 = M.S3Action,
+        firehose = M.FirehoseAction,
+        cloudwatchMetric = M.CloudwatchMetricAction,
+        cloudwatchAlarm = M.CloudwatchAlarmAction,
+        cloudwatchLogs = M.CloudwatchLogsAction,
+        elasticsearch = M.ElasticsearchAction,
+        salesforce = M.SalesforceAction,
+        iotAnalytics = M.IotAnalyticsAction,
+        iotEvents = M.IotEventsAction,
+        iotSiteWise = M.IotSiteWiseAction,
+        stepFunctions = M.StepFunctionsAction,
+        timestream = M.TimestreamAction,
+        http = M.HttpAction,
+        kafka = M.KafkaAction,
+        openSearch = M.OpenSearchAction,
+        location = M.LocationAction,
     },
 }
 
@@ -1181,26 +1118,26 @@ M.MetricValue = {
     type = "structure",
     members = {
         count = {
-            type = "number",
+            type = "long",
         },
         cidrs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ports = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
         },
         number = {
-            type = "number",
+            type = "double",
         },
         numbers = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
         strings = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1211,24 +1148,18 @@ M.BehaviorCriteria = {
         comparisonOperator = {
             type = "string",
         },
-        value = {
-            type = "structure",
-        },
+        value = M.MetricValue,
         durationSeconds = {
-            type = "number",
+            type = "integer",
         },
         consecutiveDatapointsToAlarm = {
-            type = "number",
+            type = "integer",
         },
         consecutiveDatapointsToClear = {
-            type = "number",
+            type = "integer",
         },
-        statisticalThreshold = {
-            type = "structure",
-        },
-        mlDetectionConfig = {
-            type = "structure",
-        },
+        statisticalThreshold = M.StatisticalThreshold,
+        mlDetectionConfig = M.MachineLearningDetectionConfig,
     },
 }
 
@@ -1264,12 +1195,8 @@ M.Behavior = {
         metric = {
             type = "string",
         },
-        metricDimension = {
-            type = "structure",
-        },
-        criteria = {
-            type = "structure",
-        },
+        metricDimension = M.MetricDimension,
+        criteria = M.BehaviorCriteria,
         suppressAlerts = {
             type = "boolean",
         },
@@ -1307,15 +1234,9 @@ M.ActiveViolation = {
         securityProfileName = {
             type = "string",
         },
-        behavior = {
-            type = "structure",
-        },
-        lastViolationValue = {
-            type = "structure",
-        },
-        violationEventAdditionalInfo = {
-            type = "structure",
-        },
+        behavior = M.Behavior,
+        lastViolationValue = M.MetricValue,
+        violationEventAdditionalInfo = M.ViolationEventAdditionalInfo,
         verificationState = {
             type = "string",
         },
@@ -1340,9 +1261,7 @@ M.MetricToRetain = {
                 required = true,
             },
         },
-        metricDimension = {
-            type = "structure",
-        },
+        metricDimension = M.MetricDimension,
         exportMetric = {
             type = "boolean",
         },
@@ -1354,7 +1273,7 @@ M.AddThingsToThingGroupParams = {
     members = {
         thingGroupNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1404,6 +1323,9 @@ M.AddThingToThingGroupInput = {
         },
         overrideDynamicGroups = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1429,7 +1351,7 @@ M.AggregationType = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1473,7 +1395,7 @@ M.Allowed = {
     members = {
         policies = {
             type = "list",
-            member_type = "structure",
+            member = M.Policy,
         },
     },
 }
@@ -1503,9 +1425,7 @@ M.S3Location = {
 M.Sbom = {
     type = "structure",
     members = {
-        s3Location = {
-            type = "structure",
-        },
+        s3Location = M.S3Location,
     },
 }
 
@@ -1526,12 +1446,9 @@ M.AssociateSbomWithPackageVersionInput = {
                 required = true,
             },
         },
-        sbom = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        sbom = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Sbom }),
         clientToken = {
             type = "string",
             traits = {
@@ -1556,9 +1473,7 @@ M.AssociateSbomWithPackageVersionOutput = {
         versionName = {
             type = "string",
         },
-        sbom = {
-            type = "structure",
-        },
+        sbom = M.Sbom,
         sbomValidationStatus = {
             type = "string",
         },
@@ -1613,7 +1528,7 @@ M.AssociateTargetsWithJobInput = {
     members = {
         targets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1783,11 +1698,14 @@ M.AttributePayload = {
     members = {
         attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         merge = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1802,11 +1720,14 @@ M.AuditCheckConfiguration = {
     members = {
         enabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         configuration = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1830,13 +1751,13 @@ M.AuditCheckDetails = {
             type = "boolean",
         },
         totalResourcesCount = {
-            type = "number",
+            type = "long",
         },
         nonCompliantResourcesCount = {
-            type = "number",
+            type = "long",
         },
         suppressedNonCompliantResourcesCount = {
-            type = "number",
+            type = "long",
         },
         errorCode = {
             type = "string",
@@ -1889,9 +1810,7 @@ M.ResourceIdentifier = {
         clientId = {
             type = "string",
         },
-        policyVersionIdentifier = {
-            type = "structure",
-        },
+        policyVersionIdentifier = M.PolicyVersionIdentifier,
         account = {
             type = "string",
         },
@@ -1901,9 +1820,7 @@ M.ResourceIdentifier = {
         roleAliasArn = {
             type = "string",
         },
-        issuerCertificateIdentifier = {
-            type = "structure",
-        },
+        issuerCertificateIdentifier = M.IssuerCertificateIdentifier,
         deviceCertificateArn = {
             type = "string",
         },
@@ -1928,13 +1845,11 @@ M.NonCompliantResource = {
         resourceType = {
             type = "string",
         },
-        resourceIdentifier = {
-            type = "structure",
-        },
+        resourceIdentifier = M.ResourceIdentifier,
         additionalInfo = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1945,13 +1860,11 @@ M.RelatedResource = {
         resourceType = {
             type = "string",
         },
-        resourceIdentifier = {
-            type = "structure",
-        },
+        resourceIdentifier = M.ResourceIdentifier,
         additionalInfo = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1984,12 +1897,10 @@ M.AuditFinding = {
         severity = {
             type = "string",
         },
-        nonCompliantResource = {
-            type = "structure",
-        },
+        nonCompliantResource = M.NonCompliantResource,
         relatedResources = {
             type = "list",
-            member_type = "structure",
+            member = M.RelatedResource,
         },
         reasonForNonCompliance = {
             type = "string",
@@ -2078,19 +1989,19 @@ M.TaskStatisticsForAuditCheck = {
     type = "structure",
     members = {
         totalFindingsCount = {
-            type = "number",
+            type = "long",
         },
         failedFindingsCount = {
-            type = "number",
+            type = "long",
         },
         succeededFindingsCount = {
-            type = "number",
+            type = "long",
         },
         skippedFindingsCount = {
-            type = "number",
+            type = "long",
         },
         canceledFindingsCount = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -2103,12 +2014,12 @@ M.AuditMitigationActionsTaskTarget = {
         },
         findingIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         auditCheckToReasonCodeFilter = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
     },
 }
@@ -2124,6 +2035,9 @@ M.AuditNotificationTarget = {
         },
         enabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -2141,12 +2055,9 @@ M.AuditSuppression = {
                 required = true,
             },
         },
-        resourceIdentifier = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        resourceIdentifier = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResourceIdentifier }),
         expirationDate = {
             type = "timestamp",
         },
@@ -2208,7 +2119,7 @@ M.AuthInfo = {
         },
         resources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2224,6 +2135,9 @@ M.AuthorizerConfig = {
         },
         allowAuthorizerOverride = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -2250,8 +2164,8 @@ M.AuthorizerDescription = {
         },
         tokenSigningPublicKeys = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         status = {
             type = "string",
@@ -2288,7 +2202,7 @@ M.ExplicitDeny = {
     members = {
         policies = {
             type = "list",
-            member_type = "structure",
+            member = M.Policy,
         },
     },
 }
@@ -2298,7 +2212,7 @@ M.ImplicitDeny = {
     members = {
         policies = {
             type = "list",
-            member_type = "structure",
+            member = M.Policy,
         },
     },
 }
@@ -2306,33 +2220,23 @@ M.ImplicitDeny = {
 M.Denied = {
     type = "structure",
     members = {
-        implicitDeny = {
-            type = "structure",
-        },
-        explicitDeny = {
-            type = "structure",
-        },
+        implicitDeny = M.ImplicitDeny,
+        explicitDeny = M.ExplicitDeny,
     },
 }
 
 M.AuthResult = {
     type = "structure",
     members = {
-        authInfo = {
-            type = "structure",
-        },
-        allowed = {
-            type = "structure",
-        },
-        denied = {
-            type = "structure",
-        },
+        authInfo = M.AuthInfo,
+        allowed = M.Allowed,
+        denied = M.Denied,
         authDecision = {
             type = "string",
         },
         missingContextValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2429,6 +2333,7 @@ M.CancelJobInput = {
         force = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "force",
             },
         },
@@ -2470,16 +2375,17 @@ M.CancelJobExecutionInput = {
         force = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "force",
             },
         },
         expectedVersion = {
-            type = "number",
+            type = "long",
         },
         statusDetails = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2552,12 +2458,9 @@ M.CreateAuditSuppressionInput = {
                 required = true,
             },
         },
-        resourceIdentifier = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        resourceIdentifier = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResourceIdentifier }),
         expirationDate = {
             type = "timestamp",
         },
@@ -2632,15 +2535,15 @@ M.CreateAuthorizerInput = {
         },
         tokenSigningPublicKeys = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         status = {
             type = "string",
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         signingDisabled = {
             type = "boolean",
@@ -2682,12 +2585,10 @@ M.CreateBillingGroupInput = {
                 required = true,
             },
         },
-        billingGroupProperties = {
-            type = "structure",
-        },
+        billingGroupProperties = M.BillingGroupProperties,
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2719,6 +2620,7 @@ M.CreateCertificateFromCsrInput = {
         setAsActive = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "setAsActive",
             },
         },
@@ -2762,7 +2664,7 @@ M.CreateCertificateProviderInput = {
         },
         accountDefaultForOperations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2772,7 +2674,7 @@ M.CreateCertificateProviderInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2799,13 +2701,13 @@ M.CommandParameterValue = {
             type = "boolean",
         },
         I = {
-            type = "number",
+            type = "integer",
         },
         L = {
-            type = "number",
+            type = "long",
         },
         D = {
-            type = "number",
+            type = "double",
         },
         BIN = {
             type = "blob",
@@ -2865,18 +2767,16 @@ M.CommandParameterValueComparisonOperand = {
         },
         numbers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         string = {
             type = "string",
         },
         strings = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        numberRange = {
-            type = "structure",
-        },
+        numberRange = M.CommandParameterValueNumberRange,
     },
 }
 
@@ -2889,12 +2789,9 @@ M.CommandParameterValueCondition = {
                 required = true,
             },
         },
-        operand = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        operand = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CommandParameterValueComparisonOperand }),
     },
 }
 
@@ -2910,15 +2807,11 @@ M.CommandParameter = {
         type = {
             type = "string",
         },
-        value = {
-            type = "structure",
-        },
-        defaultValue = {
-            type = "structure",
-        },
+        value = M.CommandParameterValue,
+        defaultValue = M.CommandParameterValue,
         valueConditions = {
             type = "list",
-            member_type = "structure",
+            member = M.CommandParameterValueCondition,
         },
         description = {
             type = "string",
@@ -2963,9 +2856,7 @@ M.AwsJsonSubstitutionCommandPreprocessorConfig = {
 M.CommandPreprocessor = {
     type = "structure",
     members = {
-        awsJsonSubstitution = {
-            type = "structure",
-        },
+        awsJsonSubstitution = M.AwsJsonSubstitutionCommandPreprocessorConfig,
     },
 }
 
@@ -2988,25 +2879,21 @@ M.CreateCommandInput = {
         description = {
             type = "string",
         },
-        payload = {
-            type = "structure",
-        },
+        payload = M.CommandPayload,
         payloadTemplate = {
             type = "string",
         },
-        preprocessor = {
-            type = "structure",
-        },
+        preprocessor = M.CommandPreprocessor,
         mandatoryParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.CommandParameter,
         },
         roleArn = {
             type = "string",
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3051,7 +2938,7 @@ M.CreateCustomMetricInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         clientRequestToken = {
             type = "string",
@@ -3096,14 +2983,14 @@ M.CreateDimensionInput = {
         },
         stringValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         clientRequestToken = {
             type = "string",
@@ -3190,36 +3077,28 @@ M.CreateDomainConfigurationInput = {
         },
         serverCertificateArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         validationCertificateArn = {
             type = "string",
         },
-        authorizerConfig = {
-            type = "structure",
-        },
+        authorizerConfig = M.AuthorizerConfig,
         serviceType = {
             type = "string",
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        tlsConfig = {
-            type = "structure",
-        },
-        serverCertificateConfig = {
-            type = "structure",
-        },
+        tlsConfig = M.TlsConfig,
+        serverCertificateConfig = M.ServerCertificateConfig,
         authenticationType = {
             type = "string",
         },
         applicationProtocol = {
             type = "string",
         },
-        clientCertificateConfig = {
-            type = "structure",
-        },
+        clientCertificateConfig = M.ClientCertificateConfig,
     },
 }
 
@@ -3241,9 +3120,7 @@ M.ThingGroupProperties = {
         thingGroupDescription = {
             type = "string",
         },
-        attributePayload = {
-            type = "structure",
-        },
+        attributePayload = M.AttributePayload,
     },
 }
 
@@ -3257,9 +3134,7 @@ M.CreateDynamicThingGroupInput = {
                 required = true,
             },
         },
-        thingGroupProperties = {
-            type = "structure",
-        },
+        thingGroupProperties = M.ThingGroupProperties,
         indexName = {
             type = "string",
         },
@@ -3274,7 +3149,7 @@ M.CreateDynamicThingGroupInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3359,14 +3234,11 @@ M.CreateFleetMetricInput = {
                 required = true,
             },
         },
-        aggregationType = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        aggregationType = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AggregationType }),
         period = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -3391,7 +3263,7 @@ M.CreateFleetMetricInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3444,7 +3316,7 @@ M.RetryCriteria = {
             },
         },
         numberOfRetries = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -3457,7 +3329,7 @@ M.JobExecutionsRetryConfig = {
     members = {
         criteriaList = {
             type = "list",
-            member_type = "structure",
+            member = M.RetryCriteria,
             traits = {
                 required = true,
             },
@@ -3469,10 +3341,10 @@ M.RateIncreaseCriteria = {
     type = "structure",
     members = {
         numberOfNotifiedThings = {
-            type = "number",
+            type = "integer",
         },
         numberOfSucceededThings = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3481,23 +3353,20 @@ M.ExponentialRolloutRate = {
     type = "structure",
     members = {
         baseRatePerMinute = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         incrementFactor = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
-        rateIncreaseCriteria = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        rateIncreaseCriteria = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RateIncreaseCriteria }),
     },
 }
 
@@ -3505,11 +3374,9 @@ M.JobExecutionsRolloutConfig = {
     type = "structure",
     members = {
         maximumPerMinute = {
-            type = "number",
+            type = "integer",
         },
-        exponentialRate = {
-            type = "structure",
-        },
+        exponentialRate = M.ExponentialRolloutRate,
     },
 }
 
@@ -3520,7 +3387,7 @@ M.PresignedUrlConfig = {
             type = "string",
         },
         expiresInSec = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -3541,7 +3408,7 @@ M.MaintenanceWindow = {
             },
         },
         durationInMinutes = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -3563,7 +3430,7 @@ M.SchedulingConfig = {
         },
         maintenanceWindows = {
             type = "list",
-            member_type = "structure",
+            member = M.MaintenanceWindow,
         },
     },
 }
@@ -3577,7 +3444,7 @@ M.TimeoutConfig = {
     type = "structure",
     members = {
         inProgressTimeoutInMinutes = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -3594,7 +3461,7 @@ M.CreateJobInput = {
         },
         targets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3608,24 +3475,16 @@ M.CreateJobInput = {
         description = {
             type = "string",
         },
-        presignedUrlConfig = {
-            type = "structure",
-        },
+        presignedUrlConfig = M.PresignedUrlConfig,
         targetSelection = {
             type = "string",
         },
-        jobExecutionsRolloutConfig = {
-            type = "structure",
-        },
-        abortConfig = {
-            type = "structure",
-        },
-        timeoutConfig = {
-            type = "structure",
-        },
+        jobExecutionsRolloutConfig = M.JobExecutionsRolloutConfig,
+        abortConfig = M.AbortConfig,
+        timeoutConfig = M.TimeoutConfig,
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         namespaceId = {
             type = "string",
@@ -3633,20 +3492,16 @@ M.CreateJobInput = {
         jobTemplateArn = {
             type = "string",
         },
-        jobExecutionsRetryConfig = {
-            type = "structure",
-        },
+        jobExecutionsRetryConfig = M.JobExecutionsRetryConfig,
         documentParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        schedulingConfig = {
-            type = "structure",
-        },
+        schedulingConfig = M.SchedulingConfig,
         destinationPackageVersions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3691,32 +3546,22 @@ M.CreateJobTemplateInput = {
                 required = true,
             },
         },
-        presignedUrlConfig = {
-            type = "structure",
-        },
-        jobExecutionsRolloutConfig = {
-            type = "structure",
-        },
-        abortConfig = {
-            type = "structure",
-        },
-        timeoutConfig = {
-            type = "structure",
-        },
+        presignedUrlConfig = M.PresignedUrlConfig,
+        jobExecutionsRolloutConfig = M.JobExecutionsRolloutConfig,
+        abortConfig = M.AbortConfig,
+        timeoutConfig = M.TimeoutConfig,
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        jobExecutionsRetryConfig = {
-            type = "structure",
-        },
+        jobExecutionsRetryConfig = M.JobExecutionsRetryConfig,
         maintenanceWindows = {
             type = "list",
-            member_type = "structure",
+            member = M.MaintenanceWindow,
         },
         destinationPackageVersions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3739,6 +3584,7 @@ M.CreateKeysAndCertificateInput = {
         setAsActive = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "setAsActive",
             },
         },
@@ -3769,9 +3615,7 @@ M.CreateKeysAndCertificateOutput = {
         certificatePem = {
             type = "string",
         },
-        keyPair = {
-            type = "structure",
-        },
+        keyPair = M.KeyPair,
     },
 }
 
@@ -3864,24 +3708,12 @@ M.UpdateDeviceCertificateParams = {
 M.MitigationActionParams = {
     type = "structure",
     members = {
-        updateDeviceCertificateParams = {
-            type = "structure",
-        },
-        updateCACertificateParams = {
-            type = "structure",
-        },
-        addThingsToThingGroupParams = {
-            type = "structure",
-        },
-        replaceDefaultPolicyVersionParams = {
-            type = "structure",
-        },
-        enableIoTLoggingParams = {
-            type = "structure",
-        },
-        publishFindingToSnsParams = {
-            type = "structure",
-        },
+        updateDeviceCertificateParams = M.UpdateDeviceCertificateParams,
+        updateCACertificateParams = M.UpdateCACertificateParams,
+        addThingsToThingGroupParams = M.AddThingsToThingGroupParams,
+        replaceDefaultPolicyVersionParams = M.ReplaceDefaultPolicyVersionParams,
+        enableIoTLoggingParams = M.EnableIoTLoggingParams,
+        publishFindingToSnsParams = M.PublishFindingToSnsParams,
     },
 }
 
@@ -3901,15 +3733,12 @@ M.CreateMitigationActionInput = {
                 required = true,
             },
         },
-        actionParams = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        actionParams = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MitigationActionParams }),
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3953,13 +3782,13 @@ M.AwsJobAbortCriteria = {
             },
         },
         thresholdPercentage = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
         minNumberOfExecutedThings = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -3972,7 +3801,7 @@ M.AwsJobAbortConfig = {
     members = {
         abortCriteriaList = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsJobAbortCriteria,
             traits = {
                 required = true,
             },
@@ -3984,10 +3813,10 @@ M.AwsJobRateIncreaseCriteria = {
     type = "structure",
     members = {
         numberOfNotifiedThings = {
-            type = "number",
+            type = "integer",
         },
         numberOfSucceededThings = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3996,23 +3825,21 @@ M.AwsJobExponentialRolloutRate = {
     type = "structure",
     members = {
         baseRatePerMinute = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         incrementFactor = {
-            type = "number",
+            type = "double",
             traits = {
+                default = 0,
                 required = true,
             },
         },
-        rateIncreaseCriteria = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        rateIncreaseCriteria = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AwsJobRateIncreaseCriteria }),
     },
 }
 
@@ -4020,11 +3847,9 @@ M.AwsJobExecutionsRolloutConfig = {
     type = "structure",
     members = {
         maximumPerMinute = {
-            type = "number",
+            type = "integer",
         },
-        exponentialRate = {
-            type = "structure",
-        },
+        exponentialRate = M.AwsJobExponentialRolloutRate,
     },
 }
 
@@ -4032,7 +3857,7 @@ M.AwsJobPresignedUrlConfig = {
     type = "structure",
     members = {
         expiresInSec = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -4041,7 +3866,7 @@ M.AwsJobTimeoutConfig = {
     type = "structure",
     members = {
         inProgressTimeoutInMinutes = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -4070,12 +3895,8 @@ M.CodeSigningSignature = {
 M.CustomCodeSigning = {
     type = "structure",
     members = {
-        signature = {
-            type = "structure",
-        },
-        certificateChain = {
-            type = "structure",
-        },
+        signature = M.CodeSigningSignature,
+        certificateChain = M.CodeSigningCertificateChain,
         hashAlgorithm = {
             type = "string",
         },
@@ -4100,9 +3921,7 @@ M.S3Destination = {
 M.Destination = {
     type = "structure",
     members = {
-        s3Destination = {
-            type = "structure",
-        },
+        s3Destination = M.S3Destination,
     },
 }
 
@@ -4124,15 +3943,11 @@ M.SigningProfileParameter = {
 M.StartSigningJobParameter = {
     type = "structure",
     members = {
-        signingProfileParameter = {
-            type = "structure",
-        },
+        signingProfileParameter = M.SigningProfileParameter,
         signingProfileName = {
             type = "string",
         },
-        destination = {
-            type = "structure",
-        },
+        destination = M.Destination,
     },
 }
 
@@ -4142,12 +3957,8 @@ M.CodeSigning = {
         awsSignerJobId = {
             type = "string",
         },
-        startSigningJobParameter = {
-            type = "structure",
-        },
-        customCodeSigning = {
-            type = "structure",
-        },
+        startSigningJobParameter = M.StartSigningJobParameter,
+        customCodeSigning = M.CustomCodeSigning,
     },
 }
 
@@ -4158,7 +3969,7 @@ M.Stream = {
             type = "string",
         },
         fileId = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4166,12 +3977,8 @@ M.Stream = {
 M.FileLocation = {
     type = "structure",
     members = {
-        stream = {
-            type = "structure",
-        },
-        s3Location = {
-            type = "structure",
-        },
+        stream = M.Stream,
+        s3Location = M.S3Location,
     },
 }
 
@@ -4182,21 +3989,17 @@ M.OTAUpdateFile = {
             type = "string",
         },
         fileType = {
-            type = "number",
+            type = "integer",
         },
         fileVersion = {
             type = "string",
         },
-        fileLocation = {
-            type = "structure",
-        },
-        codeSigning = {
-            type = "structure",
-        },
+        fileLocation = M.FileLocation,
+        codeSigning = M.CodeSigning,
         attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -4221,33 +4024,25 @@ M.CreateOTAUpdateInput = {
         },
         targets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         protocols = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         targetSelection = {
             type = "string",
         },
-        awsJobExecutionsRolloutConfig = {
-            type = "structure",
-        },
-        awsJobPresignedUrlConfig = {
-            type = "structure",
-        },
-        awsJobAbortConfig = {
-            type = "structure",
-        },
-        awsJobTimeoutConfig = {
-            type = "structure",
-        },
+        awsJobExecutionsRolloutConfig = M.AwsJobExecutionsRolloutConfig,
+        awsJobPresignedUrlConfig = M.AwsJobPresignedUrlConfig,
+        awsJobAbortConfig = M.AwsJobAbortConfig,
+        awsJobTimeoutConfig = M.AwsJobTimeoutConfig,
         files = {
             type = "list",
-            member_type = "structure",
+            member = M.OTAUpdateFile,
             traits = {
                 required = true,
             },
@@ -4260,12 +4055,12 @@ M.CreateOTAUpdateInput = {
         },
         additionalParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -4315,8 +4110,8 @@ M.CreatePackageInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         clientToken = {
             type = "string",
@@ -4345,9 +4140,7 @@ M.CreatePackageOutput = {
 M.PackageVersionArtifact = {
     type = "structure",
     members = {
-        s3Location = {
-            type = "structure",
-        },
+        s3Location = M.S3Location,
     },
 }
 
@@ -4373,19 +4166,17 @@ M.CreatePackageVersionInput = {
         },
         attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        artifact = {
-            type = "structure",
-        },
+        artifact = M.PackageVersionArtifact,
         recipe = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         clientToken = {
             type = "string",
@@ -4419,8 +4210,8 @@ M.CreatePackageVersionOutput = {
         },
         attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         status = {
             type = "string",
@@ -4449,7 +4240,7 @@ M.CreatePolicyInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -4501,6 +4292,7 @@ M.CreatePolicyVersionInput = {
         setAsDefault = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "setAsDefault",
             },
         },
@@ -4521,6 +4313,9 @@ M.CreatePolicyVersionOutput = {
         },
         isDefaultVersion = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -4557,9 +4352,7 @@ M.CreateProvisioningClaimOutput = {
         certificatePem = {
             type = "string",
         },
-        keyPair = {
-            type = "structure",
-        },
+        keyPair = M.KeyPair,
         expiration = {
             type = "timestamp",
         },
@@ -4613,12 +4406,10 @@ M.CreateProvisioningTemplateInput = {
                 required = true,
             },
         },
-        preProvisioningHook = {
-            type = "structure",
-        },
+        preProvisioningHook = M.ProvisioningHook,
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         type = {
             type = "string",
@@ -4636,7 +4427,7 @@ M.CreateProvisioningTemplateOutput = {
             type = "string",
         },
         defaultVersionId = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4660,6 +4451,7 @@ M.CreateProvisioningTemplateVersionInput = {
         setAsDefault = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "setAsDefault",
             },
         },
@@ -4676,10 +4468,13 @@ M.CreateProvisioningTemplateVersionOutput = {
             type = "string",
         },
         versionId = {
-            type = "number",
+            type = "integer",
         },
         isDefaultVersion = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -4701,11 +4496,11 @@ M.CreateRoleAliasInput = {
             },
         },
         credentialDurationSeconds = {
-            type = "number",
+            type = "integer",
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -4749,7 +4544,7 @@ M.CreateScheduledAuditInput = {
         },
         targetCheckNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4763,7 +4558,7 @@ M.CreateScheduledAuditInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -4810,28 +4605,26 @@ M.CreateSecurityProfileInput = {
         },
         behaviors = {
             type = "list",
-            member_type = "structure",
+            member = M.Behavior,
         },
         alertTargets = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.AlertTarget,
         },
         additionalMetricsToRetain = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         additionalMetricsToRetainV2 = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricToRetain,
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        metricsExportConfig = {
-            type = "structure",
-        },
+        metricsExportConfig = M.MetricsExportConfig,
     },
 }
 
@@ -4851,11 +4644,9 @@ M.StreamFile = {
     type = "structure",
     members = {
         fileId = {
-            type = "number",
+            type = "integer",
         },
-        s3Location = {
-            type = "structure",
-        },
+        s3Location = M.S3Location,
     },
 }
 
@@ -4874,7 +4665,7 @@ M.CreateStreamInput = {
         },
         files = {
             type = "list",
-            member_type = "structure",
+            member = M.StreamFile,
             traits = {
                 required = true,
             },
@@ -4887,7 +4678,7 @@ M.CreateStreamInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -4905,7 +4696,7 @@ M.CreateStreamOutput = {
             type = "string",
         },
         streamVersion = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4923,9 +4714,7 @@ M.CreateThingInput = {
         thingTypeName = {
             type = "string",
         },
-        attributePayload = {
-            type = "structure",
-        },
+        attributePayload = M.AttributePayload,
         billingGroupName = {
             type = "string",
         },
@@ -4960,12 +4749,10 @@ M.CreateThingGroupInput = {
         parentGroupName = {
             type = "string",
         },
-        thingGroupProperties = {
-            type = "structure",
-        },
+        thingGroupProperties = M.ThingGroupProperties,
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -5005,7 +4792,7 @@ M.Mqtt5Configuration = {
     members = {
         propagatingAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.PropagatingAttribute,
         },
     },
 }
@@ -5018,11 +4805,9 @@ M.ThingTypeProperties = {
         },
         searchableAttributes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        mqtt5Configuration = {
-            type = "structure",
-        },
+        mqtt5Configuration = M.Mqtt5Configuration,
     },
 }
 
@@ -5036,12 +4821,10 @@ M.CreateThingTypeInput = {
                 required = true,
             },
         },
-        thingTypeProperties = {
-            type = "structure",
-        },
+        thingTypeProperties = M.ThingTypeProperties,
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -5075,7 +4858,7 @@ M.TopicRulePayload = {
         },
         actions = {
             type = "list",
-            member_type = "structure",
+            member = M.Action,
             traits = {
                 required = true,
             },
@@ -5086,9 +4869,7 @@ M.TopicRulePayload = {
         awsIotSqlVersion = {
             type = "string",
         },
-        errorAction = {
-            type = "structure",
-        },
+        errorAction = M.Action,
     },
 }
 
@@ -5102,13 +4883,10 @@ M.CreateTopicRuleInput = {
                 required = true,
             },
         },
-        topicRulePayload = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        topicRulePayload = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.TopicRulePayload }),
         tags = {
             type = "string",
             traits = {
@@ -5149,14 +4927,14 @@ M.VpcDestinationConfiguration = {
     members = {
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         securityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         vpcId = {
             type = "string",
@@ -5176,24 +4954,17 @@ M.VpcDestinationConfiguration = {
 M.TopicRuleDestinationConfiguration = {
     type = "structure",
     members = {
-        httpUrlConfiguration = {
-            type = "structure",
-        },
-        vpcConfiguration = {
-            type = "structure",
-        },
+        httpUrlConfiguration = M.HttpUrlDestinationConfiguration,
+        vpcConfiguration = M.VpcDestinationConfiguration,
     },
 }
 
 M.CreateTopicRuleDestinationInput = {
     type = "structure",
     members = {
-        destinationConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        destinationConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TopicRuleDestinationConfiguration }),
     },
 }
 
@@ -5219,11 +4990,11 @@ M.VpcDestinationProperties = {
     members = {
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         securityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         vpcId = {
             type = "string",
@@ -5252,21 +5023,15 @@ M.TopicRuleDestination = {
         statusReason = {
             type = "string",
         },
-        httpUrlProperties = {
-            type = "structure",
-        },
-        vpcProperties = {
-            type = "structure",
-        },
+        httpUrlProperties = M.HttpUrlDestinationProperties,
+        vpcProperties = M.VpcDestinationProperties,
     },
 }
 
 M.CreateTopicRuleDestinationOutput = {
     type = "structure",
     members = {
-        topicRuleDestination = {
-            type = "structure",
-        },
+        topicRuleDestination = M.TopicRuleDestination,
     },
 }
 
@@ -5276,6 +5041,7 @@ M.DeleteAccountAuditConfigurationInput = {
         deleteScheduledAudits = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "deleteScheduledAudits",
             },
         },
@@ -5295,12 +5061,9 @@ M.DeleteAuditSuppressionInput = {
                 required = true,
             },
         },
-        resourceIdentifier = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        resourceIdentifier = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResourceIdentifier }),
     },
 }
 
@@ -5346,7 +5109,7 @@ M.DeleteBillingGroupInput = {
             },
         },
         expectedVersion = {
-            type = "number",
+            type = "long",
             traits = {
                 http_query = "expectedVersion",
             },
@@ -5398,6 +5161,7 @@ M.DeleteCertificateInput = {
         forceDelete = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "forceDelete",
             },
         },
@@ -5442,8 +5206,9 @@ M.DeleteCommandOutput = {
     type = "structure",
     members = {
         statusCode = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_response_code = true,
             },
         },
@@ -5536,7 +5301,7 @@ M.DeleteDynamicThingGroupInput = {
             },
         },
         expectedVersion = {
-            type = "number",
+            type = "long",
             traits = {
                 http_query = "expectedVersion",
             },
@@ -5559,7 +5324,7 @@ M.DeleteFleetMetricInput = {
             },
         },
         expectedVersion = {
-            type = "number",
+            type = "long",
             traits = {
                 http_query = "expectedVersion",
             },
@@ -5584,6 +5349,7 @@ M.DeleteJobInput = {
         force = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "force",
             },
         },
@@ -5618,7 +5384,7 @@ M.DeleteJobExecutionInput = {
             },
         },
         executionNumber = {
-            type = "number",
+            type = "long",
             traits = {
                 http_label = true,
                 required = true,
@@ -5627,6 +5393,7 @@ M.DeleteJobExecutionInput = {
         force = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "force",
             },
         },
@@ -5690,12 +5457,14 @@ M.DeleteOTAUpdateInput = {
         deleteStream = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "deleteStream",
             },
         },
         forceDeleteAWSJob = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "forceDeleteAWSJob",
             },
         },
@@ -5828,7 +5597,7 @@ M.DeleteProvisioningTemplateVersionInput = {
             },
         },
         versionId = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_label = true,
                 required = true,
@@ -5894,7 +5663,7 @@ M.DeleteSecurityProfileInput = {
             },
         },
         expectedVersion = {
-            type = "number",
+            type = "long",
             traits = {
                 http_query = "expectedVersion",
             },
@@ -5934,7 +5703,7 @@ M.DeleteThingInput = {
             },
         },
         expectedVersion = {
-            type = "number",
+            type = "long",
             traits = {
                 http_query = "expectedVersion",
             },
@@ -5957,7 +5726,7 @@ M.DeleteThingGroupInput = {
             },
         },
         expectedVersion = {
-            type = "number",
+            type = "long",
             traits = {
                 http_query = "expectedVersion",
             },
@@ -6064,6 +5833,9 @@ M.DeprecateThingTypeInput = {
         },
         undoDeprecate = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -6084,13 +5856,13 @@ M.DescribeAccountAuditConfigurationOutput = {
         },
         auditNotificationTargetConfigurations = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.AuditNotificationTarget,
         },
         auditCheckConfigurations = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.AuditCheckConfiguration,
         },
     },
 }
@@ -6111,9 +5883,7 @@ M.DescribeAuditFindingInput = {
 M.DescribeAuditFindingOutput = {
     type = "structure",
     members = {
-        finding = {
-            type = "structure",
-        },
+        finding = M.AuditFinding,
     },
 }
 
@@ -6142,9 +5912,7 @@ M.MitigationAction = {
         roleArn = {
             type = "string",
         },
-        actionParams = {
-            type = "structure",
-        },
+        actionParams = M.MitigationActionParams,
     },
 }
 
@@ -6162,20 +5930,18 @@ M.DescribeAuditMitigationActionsTaskOutput = {
         },
         taskStatistics = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.TaskStatisticsForAuditCheck,
         },
-        target = {
-            type = "structure",
-        },
+        target = M.AuditMitigationActionsTaskTarget,
         auditCheckToActionsMapping = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         actionsDefinition = {
             type = "list",
-            member_type = "structure",
+            member = M.MitigationAction,
         },
     },
 }
@@ -6189,12 +5955,9 @@ M.DescribeAuditSuppressionInput = {
                 required = true,
             },
         },
-        resourceIdentifier = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        resourceIdentifier = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResourceIdentifier }),
     },
 }
 
@@ -6204,9 +5967,7 @@ M.DescribeAuditSuppressionOutput = {
         checkName = {
             type = "string",
         },
-        resourceIdentifier = {
-            type = "structure",
-        },
+        resourceIdentifier = M.ResourceIdentifier,
         expirationDate = {
             type = "timestamp",
         },
@@ -6236,25 +5997,25 @@ M.TaskStatistics = {
     type = "structure",
     members = {
         totalChecks = {
-            type = "number",
+            type = "integer",
         },
         inProgressChecks = {
-            type = "number",
+            type = "integer",
         },
         waitingForDataCollectionChecks = {
-            type = "number",
+            type = "integer",
         },
         compliantChecks = {
-            type = "number",
+            type = "integer",
         },
         nonCompliantChecks = {
-            type = "number",
+            type = "integer",
         },
         failedChecks = {
-            type = "number",
+            type = "integer",
         },
         canceledChecks = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -6271,16 +6032,14 @@ M.DescribeAuditTaskOutput = {
         taskStartTime = {
             type = "timestamp",
         },
-        taskStatistics = {
-            type = "structure",
-        },
+        taskStatistics = M.TaskStatistics,
         scheduledAuditName = {
             type = "string",
         },
         auditDetails = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.AuditCheckDetails,
         },
     },
 }
@@ -6301,9 +6060,7 @@ M.DescribeAuthorizerInput = {
 M.DescribeAuthorizerOutput = {
     type = "structure",
     members = {
-        authorizerDescription = {
-            type = "structure",
-        },
+        authorizerDescription = M.AuthorizerDescription,
     },
 }
 
@@ -6342,14 +6099,13 @@ M.DescribeBillingGroupOutput = {
             type = "string",
         },
         version = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
-        billingGroupProperties = {
-            type = "structure",
-        },
-        billingGroupMetadata = {
-            type = "structure",
-        },
+        billingGroupProperties = M.BillingGroupProperties,
+        billingGroupMetadata = M.BillingGroupMetadata,
     },
 }
 
@@ -6416,14 +6172,12 @@ M.CACertificateDescription = {
             type = "timestamp",
         },
         customerVersion = {
-            type = "number",
+            type = "integer",
         },
         generationId = {
             type = "string",
         },
-        validity = {
-            type = "structure",
-        },
+        validity = M.CertificateValidity,
         certificateMode = {
             type = "string",
         },
@@ -6448,12 +6202,8 @@ M.RegistrationConfig = {
 M.DescribeCACertificateOutput = {
     type = "structure",
     members = {
-        certificateDescription = {
-            type = "structure",
-        },
-        registrationConfig = {
-            type = "structure",
-        },
+        certificateDescription = M.CACertificateDescription,
+        registrationConfig = M.RegistrationConfig,
     },
 }
 
@@ -6531,17 +6281,13 @@ M.CertificateDescription = {
             type = "timestamp",
         },
         customerVersion = {
-            type = "number",
+            type = "integer",
         },
-        transferData = {
-            type = "structure",
-        },
+        transferData = M.TransferData,
         generationId = {
             type = "string",
         },
-        validity = {
-            type = "structure",
-        },
+        validity = M.CertificateValidity,
         certificateMode = {
             type = "string",
         },
@@ -6551,9 +6297,7 @@ M.CertificateDescription = {
 M.DescribeCertificateOutput = {
     type = "structure",
     members = {
-        certificateDescription = {
-            type = "structure",
-        },
+        certificateDescription = M.CertificateDescription,
     },
 }
 
@@ -6584,7 +6328,7 @@ M.DescribeCertificateProviderOutput = {
         },
         accountDefaultForOperations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         creationDate = {
             type = "timestamp",
@@ -6639,9 +6383,7 @@ M.DescribeDefaultAuthorizerInput = {
 M.DescribeDefaultAuthorizerOutput = {
     type = "structure",
     members = {
-        authorizerDescription = {
-            type = "structure",
-        },
+        authorizerDescription = M.AuthorizerDescription,
     },
 }
 
@@ -6663,7 +6405,7 @@ M.DetectMitigationActionsTaskTarget = {
     members = {
         violationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         securityProfileName = {
             type = "string",
@@ -6678,13 +6420,13 @@ M.DetectMitigationActionsTaskStatistics = {
     type = "structure",
     members = {
         actionsExecuted = {
-            type = "number",
+            type = "long",
         },
         actionsSkipped = {
-            type = "number",
+            type = "long",
         },
         actionsFailed = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -6729,34 +6471,32 @@ M.DetectMitigationActionsTaskSummary = {
         taskEndTime = {
             type = "timestamp",
         },
-        target = {
-            type = "structure",
-        },
-        violationEventOccurrenceRange = {
-            type = "structure",
-        },
+        target = M.DetectMitigationActionsTaskTarget,
+        violationEventOccurrenceRange = M.ViolationEventOccurrenceRange,
         onlyActiveViolationsIncluded = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         suppressedAlertsIncluded = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         actionsDefinition = {
             type = "list",
-            member_type = "structure",
+            member = M.MitigationAction,
         },
-        taskStatistics = {
-            type = "structure",
-        },
+        taskStatistics = M.DetectMitigationActionsTaskStatistics,
     },
 }
 
 M.DescribeDetectMitigationActionsTaskOutput = {
     type = "structure",
     members = {
-        taskSummary = {
-            type = "structure",
-        },
+        taskSummary = M.DetectMitigationActionsTaskSummary,
     },
 }
 
@@ -6787,7 +6527,7 @@ M.DescribeDimensionOutput = {
         },
         stringValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         creationDate = {
             type = "timestamp",
@@ -6856,11 +6596,9 @@ M.DescribeDomainConfigurationOutput = {
         },
         serverCertificates = {
             type = "list",
-            member_type = "structure",
+            member = M.ServerCertificateSummary,
         },
-        authorizerConfig = {
-            type = "structure",
-        },
+        authorizerConfig = M.AuthorizerConfig,
         domainConfigurationStatus = {
             type = "string",
         },
@@ -6873,21 +6611,15 @@ M.DescribeDomainConfigurationOutput = {
         lastStatusChangeDate = {
             type = "timestamp",
         },
-        tlsConfig = {
-            type = "structure",
-        },
-        serverCertificateConfig = {
-            type = "structure",
-        },
+        tlsConfig = M.TlsConfig,
+        serverCertificateConfig = M.ServerCertificateConfig,
         authenticationType = {
             type = "string",
         },
         applicationProtocol = {
             type = "string",
         },
-        clientCertificateConfig = {
-            type = "structure",
-        },
+        clientCertificateConfig = M.ClientCertificateConfig,
     },
 }
 
@@ -6932,9 +6664,7 @@ M.DescribeEncryptionConfigurationOutput = {
         kmsAccessRoleArn = {
             type = "string",
         },
-        configurationDetails = {
-            type = "structure",
-        },
+        configurationDetails = M.ConfigurationDetails,
         lastModifiedDate = {
             type = "timestamp",
         },
@@ -6985,6 +6715,9 @@ M.Configuration = {
     members = {
         Enabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -6994,8 +6727,8 @@ M.DescribeEventConfigurationsOutput = {
     members = {
         eventConfigurations = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.Configuration,
         },
         creationDate = {
             type = "timestamp",
@@ -7028,11 +6761,9 @@ M.DescribeFleetMetricOutput = {
         queryString = {
             type = "string",
         },
-        aggregationType = {
-            type = "structure",
-        },
+        aggregationType = M.AggregationType,
         period = {
-            type = "number",
+            type = "integer",
         },
         aggregationField = {
             type = "string",
@@ -7056,7 +6787,10 @@ M.DescribeFleetMetricOutput = {
             type = "string",
         },
         version = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         metricArn = {
             type = "string",
@@ -7111,6 +6845,7 @@ M.DescribeJobInput = {
         beforeSubstitution = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "beforeSubstitution",
             },
         },
@@ -7122,31 +6857,31 @@ M.JobProcessDetails = {
     members = {
         processingTargets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         numberOfCanceledThings = {
-            type = "number",
+            type = "integer",
         },
         numberOfSucceededThings = {
-            type = "number",
+            type = "integer",
         },
         numberOfFailedThings = {
-            type = "number",
+            type = "integer",
         },
         numberOfRejectedThings = {
-            type = "number",
+            type = "integer",
         },
         numberOfQueuedThings = {
-            type = "number",
+            type = "integer",
         },
         numberOfInProgressThings = {
-            type = "number",
+            type = "integer",
         },
         numberOfRemovedThings = {
-            type = "number",
+            type = "integer",
         },
         numberOfTimedOutThings = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -7194,20 +6929,14 @@ M.Job = {
         },
         targets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         description = {
             type = "string",
         },
-        presignedUrlConfig = {
-            type = "structure",
-        },
-        jobExecutionsRolloutConfig = {
-            type = "structure",
-        },
-        abortConfig = {
-            type = "structure",
-        },
+        presignedUrlConfig = M.PresignedUrlConfig,
+        jobExecutionsRolloutConfig = M.JobExecutionsRolloutConfig,
+        abortConfig = M.AbortConfig,
         createdAt = {
             type = "timestamp",
         },
@@ -7217,39 +6946,31 @@ M.Job = {
         completedAt = {
             type = "timestamp",
         },
-        jobProcessDetails = {
-            type = "structure",
-        },
-        timeoutConfig = {
-            type = "structure",
-        },
+        jobProcessDetails = M.JobProcessDetails,
+        timeoutConfig = M.TimeoutConfig,
         namespaceId = {
             type = "string",
         },
         jobTemplateArn = {
             type = "string",
         },
-        jobExecutionsRetryConfig = {
-            type = "structure",
-        },
+        jobExecutionsRetryConfig = M.JobExecutionsRetryConfig,
         documentParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         isConcurrent = {
             type = "boolean",
         },
-        schedulingConfig = {
-            type = "structure",
-        },
+        schedulingConfig = M.SchedulingConfig,
         scheduledJobRollouts = {
             type = "list",
-            member_type = "structure",
+            member = M.ScheduledJobRollout,
         },
         destinationPackageVersions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -7260,9 +6981,7 @@ M.DescribeJobOutput = {
         documentSource = {
             type = "string",
         },
-        job = {
-            type = "structure",
-        },
+        job = M.Job,
     },
 }
 
@@ -7284,7 +7003,7 @@ M.DescribeJobExecutionInput = {
             },
         },
         executionNumber = {
-            type = "number",
+            type = "long",
             traits = {
                 http_query = "executionNumber",
             },
@@ -7308,8 +7027,8 @@ M.JobExecutionStatusDetails = {
     members = {
         detailsMap = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -7326,9 +7045,7 @@ M.JobExecution = {
         forceCanceled = {
             type = "boolean",
         },
-        statusDetails = {
-            type = "structure",
-        },
+        statusDetails = M.JobExecutionStatusDetails,
         thingArn = {
             type = "string",
         },
@@ -7342,13 +7059,16 @@ M.JobExecution = {
             type = "timestamp",
         },
         executionNumber = {
-            type = "number",
+            type = "long",
         },
         versionNumber = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         approximateSecondsBeforeTimedOut = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -7356,9 +7076,7 @@ M.JobExecution = {
 M.DescribeJobExecutionOutput = {
     type = "structure",
     members = {
-        execution = {
-            type = "structure",
-        },
+        execution = M.JobExecution,
     },
 }
 
@@ -7396,28 +7114,18 @@ M.DescribeJobTemplateOutput = {
         createdAt = {
             type = "timestamp",
         },
-        presignedUrlConfig = {
-            type = "structure",
-        },
-        jobExecutionsRolloutConfig = {
-            type = "structure",
-        },
-        abortConfig = {
-            type = "structure",
-        },
-        timeoutConfig = {
-            type = "structure",
-        },
-        jobExecutionsRetryConfig = {
-            type = "structure",
-        },
+        presignedUrlConfig = M.PresignedUrlConfig,
+        jobExecutionsRolloutConfig = M.JobExecutionsRolloutConfig,
+        abortConfig = M.AbortConfig,
+        timeoutConfig = M.TimeoutConfig,
+        jobExecutionsRetryConfig = M.JobExecutionsRetryConfig,
         maintenanceWindows = {
             type = "list",
-            member_type = "structure",
+            member = M.MaintenanceWindow,
         },
         destinationPackageVersions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -7458,6 +7166,9 @@ M.DocumentParameter = {
         },
         optional = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -7479,11 +7190,11 @@ M.DescribeManagedJobTemplateOutput = {
         },
         environments = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         documentParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.DocumentParameter,
         },
         document = {
             type = "string",
@@ -7531,9 +7242,7 @@ M.DescribeMitigationActionOutput = {
         roleArn = {
             type = "string",
         },
-        actionParams = {
-            type = "structure",
-        },
+        actionParams = M.MitigationActionParams,
         creationDate = {
             type = "timestamp",
         },
@@ -7575,7 +7284,7 @@ M.DescribeProvisioningTemplateOutput = {
             type = "timestamp",
         },
         defaultVersionId = {
-            type = "number",
+            type = "integer",
         },
         templateBody = {
             type = "string",
@@ -7586,9 +7295,7 @@ M.DescribeProvisioningTemplateOutput = {
         provisioningRoleArn = {
             type = "string",
         },
-        preProvisioningHook = {
-            type = "structure",
-        },
+        preProvisioningHook = M.ProvisioningHook,
         type = {
             type = "string",
         },
@@ -7606,7 +7313,7 @@ M.DescribeProvisioningTemplateVersionInput = {
             },
         },
         versionId = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_label = true,
                 required = true,
@@ -7619,7 +7326,7 @@ M.DescribeProvisioningTemplateVersionOutput = {
     type = "structure",
     members = {
         versionId = {
-            type = "number",
+            type = "integer",
         },
         creationDate = {
             type = "timestamp",
@@ -7629,6 +7336,9 @@ M.DescribeProvisioningTemplateVersionOutput = {
         },
         isDefaultVersion = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -7662,7 +7372,7 @@ M.RoleAliasDescription = {
             type = "string",
         },
         credentialDurationSeconds = {
-            type = "number",
+            type = "integer",
         },
         creationDate = {
             type = "timestamp",
@@ -7676,9 +7386,7 @@ M.RoleAliasDescription = {
 M.DescribeRoleAliasOutput = {
     type = "structure",
     members = {
-        roleAliasDescription = {
-            type = "structure",
-        },
+        roleAliasDescription = M.RoleAliasDescription,
     },
 }
 
@@ -7709,7 +7417,7 @@ M.DescribeScheduledAuditOutput = {
         },
         targetCheckNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         scheduledAuditName = {
             type = "string",
@@ -7747,23 +7455,26 @@ M.DescribeSecurityProfileOutput = {
         },
         behaviors = {
             type = "list",
-            member_type = "structure",
+            member = M.Behavior,
         },
         alertTargets = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.AlertTarget,
         },
         additionalMetricsToRetain = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         additionalMetricsToRetainV2 = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricToRetain,
         },
         version = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         creationDate = {
             type = "timestamp",
@@ -7771,9 +7482,7 @@ M.DescribeSecurityProfileOutput = {
         lastModifiedDate = {
             type = "timestamp",
         },
-        metricsExportConfig = {
-            type = "structure",
-        },
+        metricsExportConfig = M.MetricsExportConfig,
     },
 }
 
@@ -7800,14 +7509,14 @@ M.StreamInfo = {
             type = "string",
         },
         streamVersion = {
-            type = "number",
+            type = "integer",
         },
         description = {
             type = "string",
         },
         files = {
             type = "list",
-            member_type = "structure",
+            member = M.StreamFile,
         },
         createdAt = {
             type = "timestamp",
@@ -7824,9 +7533,7 @@ M.StreamInfo = {
 M.DescribeStreamOutput = {
     type = "structure",
     members = {
-        streamInfo = {
-            type = "structure",
-        },
+        streamInfo = M.StreamInfo,
     },
 }
 
@@ -7863,11 +7570,14 @@ M.DescribeThingOutput = {
         },
         attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         version = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         billingGroupName = {
             type = "string",
@@ -7914,7 +7624,7 @@ M.ThingGroupMetadata = {
         },
         rootToParentThingGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupNameAndArn,
         },
         creationDate = {
             type = "timestamp",
@@ -7935,14 +7645,13 @@ M.DescribeThingGroupOutput = {
             type = "string",
         },
         version = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
-        thingGroupProperties = {
-            type = "structure",
-        },
-        thingGroupMetadata = {
-            type = "structure",
-        },
+        thingGroupProperties = M.ThingGroupProperties,
+        thingGroupMetadata = M.ThingGroupMetadata,
         indexName = {
             type = "string",
         },
@@ -8010,13 +7719,22 @@ M.DescribeThingRegistrationTaskOutput = {
             type = "string",
         },
         successCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         failureCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         percentageProgress = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -8039,6 +7757,9 @@ M.ThingTypeMetadata = {
     members = {
         deprecated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         deprecationDate = {
             type = "timestamp",
@@ -8061,12 +7782,8 @@ M.DescribeThingTypeOutput = {
         thingTypeArn = {
             type = "string",
         },
-        thingTypeProperties = {
-            type = "structure",
-        },
-        thingTypeMetadata = {
-            type = "structure",
-        },
+        thingTypeProperties = M.ThingTypeProperties,
+        thingTypeMetadata = M.ThingTypeMetadata,
     },
 }
 
@@ -8239,7 +7956,7 @@ M.GetBehaviorModelTrainingSummariesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -8275,7 +7992,7 @@ M.BehaviorModelTrainingSummary = {
             type = "string",
         },
         datapointsCollectionPercentage = {
-            type = "number",
+            type = "double",
         },
         lastModelRefreshDate = {
             type = "timestamp",
@@ -8288,7 +8005,7 @@ M.GetBehaviorModelTrainingSummariesOutput = {
     members = {
         summaries = {
             type = "list",
-            member_type = "structure",
+            member = M.BehaviorModelTrainingSummary,
         },
         nextToken = {
             type = "string",
@@ -8300,7 +8017,7 @@ M.TermsAggregation = {
     type = "structure",
     members = {
         maxBuckets = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -8308,9 +8025,7 @@ M.TermsAggregation = {
 M.BucketsAggregationType = {
     type = "structure",
     members = {
-        termsAggregation = {
-            type = "structure",
-        },
+        termsAggregation = M.TermsAggregation,
     },
 }
 
@@ -8335,12 +8050,9 @@ M.GetBucketsAggregationInput = {
         queryVersion = {
             type = "string",
         },
-        bucketsAggregationType = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        bucketsAggregationType = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BucketsAggregationType }),
     },
 }
 
@@ -8351,7 +8063,10 @@ M.Bucket = {
             type = "string",
         },
         count = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -8360,11 +8075,14 @@ M.GetBucketsAggregationOutput = {
     type = "structure",
     members = {
         totalCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         buckets = {
             type = "list",
-            member_type = "structure",
+            member = M.Bucket,
         },
     },
 }
@@ -8394,7 +8112,10 @@ M.GetCardinalityOutput = {
     type = "structure",
     members = {
         cardinality = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -8432,17 +8153,13 @@ M.GetCommandOutput = {
         },
         mandatoryParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.CommandParameter,
         },
-        payload = {
-            type = "structure",
-        },
+        payload = M.CommandPayload,
         payloadTemplate = {
             type = "string",
         },
-        preprocessor = {
-            type = "structure",
-        },
+        preprocessor = M.CommandPreprocessor,
         roleArn = {
             type = "string",
         },
@@ -8541,21 +8258,19 @@ M.GetCommandExecutionOutput = {
         status = {
             type = "string",
         },
-        statusReason = {
-            type = "structure",
-        },
+        statusReason = M.StatusReason,
         result = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.CommandExecutionResult,
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.CommandParameterValue,
         },
         executionTimeoutSeconds = {
-            type = "number",
+            type = "long",
         },
         createdAt = {
             type = "timestamp",
@@ -8613,7 +8328,7 @@ M.GetEffectivePoliciesOutput = {
     members = {
         effectivePolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.EffectivePolicy,
         },
     },
 }
@@ -8656,11 +8371,11 @@ M.ThingGroupIndexingConfiguration = {
         },
         managedFields = {
             type = "list",
-            member_type = "structure",
+            member = M.Field,
         },
         customFields = {
             type = "list",
-            member_type = "structure",
+            member = M.Field,
         },
     },
 }
@@ -8692,11 +8407,11 @@ M.IndexingFilter = {
     members = {
         namedShadowNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         geoLocations = {
             type = "list",
-            member_type = "structure",
+            member = M.GeoLocationTarget,
         },
     },
 }
@@ -8737,27 +8452,21 @@ M.ThingIndexingConfiguration = {
         },
         managedFields = {
             type = "list",
-            member_type = "structure",
+            member = M.Field,
         },
         customFields = {
             type = "list",
-            member_type = "structure",
+            member = M.Field,
         },
-        filter = {
-            type = "structure",
-        },
+        filter = M.IndexingFilter,
     },
 }
 
 M.GetIndexingConfigurationOutput = {
     type = "structure",
     members = {
-        thingIndexingConfiguration = {
-            type = "structure",
-        },
-        thingGroupIndexingConfiguration = {
-            type = "structure",
-        },
+        thingIndexingConfiguration = M.ThingIndexingConfiguration,
+        thingGroupIndexingConfiguration = M.ThingGroupIndexingConfiguration,
     },
 }
 
@@ -8774,6 +8483,7 @@ M.GetJobDocumentInput = {
         beforeSubstitution = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "beforeSubstitution",
             },
         },
@@ -8850,24 +8560,20 @@ M.OTAUpdateInfo = {
         },
         targets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         protocols = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        awsJobExecutionsRolloutConfig = {
-            type = "structure",
-        },
-        awsJobPresignedUrlConfig = {
-            type = "structure",
-        },
+        awsJobExecutionsRolloutConfig = M.AwsJobExecutionsRolloutConfig,
+        awsJobPresignedUrlConfig = M.AwsJobPresignedUrlConfig,
         targetSelection = {
             type = "string",
         },
         otaUpdateFiles = {
             type = "list",
-            member_type = "structure",
+            member = M.OTAUpdateFile,
         },
         otaUpdateStatus = {
             type = "string",
@@ -8878,13 +8584,11 @@ M.OTAUpdateInfo = {
         awsIotJobArn = {
             type = "string",
         },
-        errorInfo = {
-            type = "structure",
-        },
+        errorInfo = M.ErrorInfo,
         additionalParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -8892,9 +8596,7 @@ M.OTAUpdateInfo = {
 M.GetOTAUpdateOutput = {
     type = "structure",
     members = {
-        otaUpdateInfo = {
-            type = "structure",
-        },
+        otaUpdateInfo = M.OTAUpdateInfo,
     },
 }
 
@@ -8954,9 +8656,7 @@ M.VersionUpdateByJobsConfig = {
 M.GetPackageConfigurationOutput = {
     type = "structure",
     members = {
-        versionUpdateByJobsConfig = {
-            type = "structure",
-        },
+        versionUpdateByJobsConfig = M.VersionUpdateByJobsConfig,
     },
 }
 
@@ -8997,12 +8697,10 @@ M.GetPackageVersionOutput = {
         },
         attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        artifact = {
-            type = "structure",
-        },
+        artifact = M.PackageVersionArtifact,
         status = {
             type = "string",
         },
@@ -9015,9 +8713,7 @@ M.GetPackageVersionOutput = {
         lastModifiedDate = {
             type = "timestamp",
         },
-        sbom = {
-            type = "structure",
-        },
+        sbom = M.Sbom,
         sbomValidationStatus = {
             type = "string",
         },
@@ -9047,7 +8743,7 @@ M.GetPercentilesInput = {
         },
         percents = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
     },
 }
@@ -9056,10 +8752,16 @@ M.PercentPair = {
     type = "structure",
     members = {
         percent = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         value = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -9069,7 +8771,7 @@ M.GetPercentilesOutput = {
     members = {
         percentiles = {
             type = "list",
-            member_type = "structure",
+            member = M.PercentPair,
         },
     },
 }
@@ -9151,6 +8853,9 @@ M.GetPolicyVersionOutput = {
         },
         isDefaultVersion = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         creationDate = {
             type = "timestamp",
@@ -9202,28 +8907,52 @@ M.Statistics = {
     type = "structure",
     members = {
         count = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         average = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = nil,
+            },
         },
         sum = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = nil,
+            },
         },
         minimum = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = nil,
+            },
         },
         maximum = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = nil,
+            },
         },
         sumOfSquares = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = nil,
+            },
         },
         variance = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = nil,
+            },
         },
         stdDeviation = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -9231,9 +8960,7 @@ M.Statistics = {
 M.GetStatisticsOutput = {
     type = "structure",
     members = {
-        statistics = {
-            type = "structure",
-        },
+        statistics = M.Statistics,
     },
 }
 
@@ -9315,7 +9042,7 @@ M.TopicRule = {
         },
         actions = {
             type = "list",
-            member_type = "structure",
+            member = M.Action,
         },
         ruleDisabled = {
             type = "boolean",
@@ -9323,9 +9050,7 @@ M.TopicRule = {
         awsIotSqlVersion = {
             type = "string",
         },
-        errorAction = {
-            type = "structure",
-        },
+        errorAction = M.Action,
     },
 }
 
@@ -9335,9 +9060,7 @@ M.GetTopicRuleOutput = {
         ruleArn = {
             type = "string",
         },
-        rule = {
-            type = "structure",
-        },
+        rule = M.TopicRule,
     },
 }
 
@@ -9357,9 +9080,7 @@ M.GetTopicRuleDestinationInput = {
 M.GetTopicRuleDestinationOutput = {
     type = "structure",
     members = {
-        topicRuleDestination = {
-            type = "structure",
-        },
+        topicRuleDestination = M.TopicRuleDestination,
     },
 }
 
@@ -9369,6 +9090,7 @@ M.GetV2LoggingOptionsInput = {
         verbose = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "verbose",
             },
         },
@@ -9404,10 +9126,13 @@ M.GetV2LoggingOptionsOutput = {
         },
         disableAllLogs = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         eventConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.LogEventConfiguration,
         },
     },
 }
@@ -9468,7 +9193,7 @@ M.ListActiveViolationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -9481,7 +9206,7 @@ M.ListActiveViolationsOutput = {
     members = {
         activeViolations = {
             type = "list",
-            member_type = "structure",
+            member = M.ActiveViolation,
         },
         nextToken = {
             type = "string",
@@ -9502,6 +9227,7 @@ M.ListAttachedPoliciesInput = {
         recursive = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "recursive",
             },
         },
@@ -9512,7 +9238,7 @@ M.ListAttachedPoliciesInput = {
             },
         },
         pageSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "pageSize",
             },
@@ -9525,7 +9251,7 @@ M.ListAttachedPoliciesOutput = {
     members = {
         policies = {
             type = "list",
-            member_type = "structure",
+            member = M.Policy,
         },
         nextMarker = {
             type = "string",
@@ -9542,11 +9268,9 @@ M.ListAuditFindingsInput = {
         checkName = {
             type = "string",
         },
-        resourceIdentifier = {
-            type = "structure",
-        },
+        resourceIdentifier = M.ResourceIdentifier,
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -9559,6 +9283,9 @@ M.ListAuditFindingsInput = {
         },
         listSuppressedFindings = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -9568,7 +9295,7 @@ M.ListAuditFindingsOutput = {
     members = {
         findings = {
             type = "list",
-            member_type = "structure",
+            member = M.AuditFinding,
         },
         nextToken = {
             type = "string",
@@ -9600,7 +9327,7 @@ M.ListAuditMitigationActionsExecutionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -9619,7 +9346,7 @@ M.ListAuditMitigationActionsExecutionsOutput = {
     members = {
         actionsExecutions = {
             type = "list",
-            member_type = "structure",
+            member = M.AuditMitigationActionExecutionMetadata,
         },
         nextToken = {
             type = "string",
@@ -9649,7 +9376,7 @@ M.ListAuditMitigationActionsTasksInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -9682,7 +9409,7 @@ M.ListAuditMitigationActionsTasksOutput = {
     members = {
         tasks = {
             type = "list",
-            member_type = "structure",
+            member = M.AuditMitigationActionsTaskMetadata,
         },
         nextToken = {
             type = "string",
@@ -9696,17 +9423,18 @@ M.ListAuditSuppressionsInput = {
         checkName = {
             type = "string",
         },
-        resourceIdentifier = {
-            type = "structure",
-        },
+        resourceIdentifier = M.ResourceIdentifier,
         ascendingOrder = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -9716,7 +9444,7 @@ M.ListAuditSuppressionsOutput = {
     members = {
         suppressions = {
             type = "list",
-            member_type = "structure",
+            member = M.AuditSuppression,
         },
         nextToken = {
             type = "string",
@@ -9760,7 +9488,7 @@ M.ListAuditTasksInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -9773,7 +9501,7 @@ M.ListAuditTasksOutput = {
     members = {
         tasks = {
             type = "list",
-            member_type = "structure",
+            member = M.AuditTaskMetadata,
         },
         nextToken = {
             type = "string",
@@ -9785,7 +9513,7 @@ M.ListAuthorizersInput = {
     type = "structure",
     members = {
         pageSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "pageSize",
             },
@@ -9799,6 +9527,7 @@ M.ListAuthorizersInput = {
         ascendingOrder = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "isAscendingOrder",
             },
         },
@@ -9816,7 +9545,7 @@ M.ListAuthorizersOutput = {
     members = {
         authorizers = {
             type = "list",
-            member_type = "structure",
+            member = M.AuthorizerSummary,
         },
         nextMarker = {
             type = "string",
@@ -9834,7 +9563,7 @@ M.ListBillingGroupsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -9853,7 +9582,7 @@ M.ListBillingGroupsOutput = {
     members = {
         billingGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupNameAndArn,
         },
         nextToken = {
             type = "string",
@@ -9865,7 +9594,7 @@ M.ListCACertificatesInput = {
     type = "structure",
     members = {
         pageSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "pageSize",
             },
@@ -9879,6 +9608,7 @@ M.ListCACertificatesInput = {
         ascendingOrder = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "isAscendingOrder",
             },
         },
@@ -9914,7 +9644,7 @@ M.ListCACertificatesOutput = {
     members = {
         certificates = {
             type = "list",
-            member_type = "structure",
+            member = M.CACertificate,
         },
         nextMarker = {
             type = "string",
@@ -9934,6 +9664,7 @@ M.ListCertificateProvidersInput = {
         ascendingOrder = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "isAscendingOrder",
             },
         },
@@ -9957,7 +9688,7 @@ M.ListCertificateProvidersOutput = {
     members = {
         certificateProviders = {
             type = "list",
-            member_type = "structure",
+            member = M.CertificateProviderSummary,
         },
         nextToken = {
             type = "string",
@@ -9969,7 +9700,7 @@ M.ListCertificatesInput = {
     type = "structure",
     members = {
         pageSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "pageSize",
             },
@@ -9983,6 +9714,7 @@ M.ListCertificatesInput = {
         ascendingOrder = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "isAscendingOrder",
             },
         },
@@ -10015,7 +9747,7 @@ M.ListCertificatesOutput = {
     members = {
         certificates = {
             type = "list",
-            member_type = "structure",
+            member = M.Certificate,
         },
         nextMarker = {
             type = "string",
@@ -10034,7 +9766,7 @@ M.ListCertificatesByCAInput = {
             },
         },
         pageSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "pageSize",
             },
@@ -10048,6 +9780,7 @@ M.ListCertificatesByCAInput = {
         ascendingOrder = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "isAscendingOrder",
             },
         },
@@ -10059,7 +9792,7 @@ M.ListCertificatesByCAOutput = {
     members = {
         certificates = {
             type = "list",
-            member_type = "structure",
+            member = M.Certificate,
         },
         nextMarker = {
             type = "string",
@@ -10088,7 +9821,7 @@ M.ListCommandExecutionsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -10108,12 +9841,8 @@ M.ListCommandExecutionsInput = {
         sortOrder = {
             type = "string",
         },
-        startedTimeFilter = {
-            type = "structure",
-        },
-        completedTimeFilter = {
-            type = "structure",
-        },
+        startedTimeFilter = M.TimeFilter,
+        completedTimeFilter = M.TimeFilter,
         targetArn = {
             type = "string",
         },
@@ -10155,7 +9884,7 @@ M.ListCommandExecutionsOutput = {
     members = {
         commandExecutions = {
             type = "list",
-            member_type = "structure",
+            member = M.CommandExecutionSummary,
         },
         nextToken = {
             type = "string",
@@ -10167,7 +9896,7 @@ M.ListCommandsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -10231,7 +9960,7 @@ M.ListCommandsOutput = {
     members = {
         commands = {
             type = "list",
-            member_type = "structure",
+            member = M.CommandSummary,
         },
         nextToken = {
             type = "string",
@@ -10249,7 +9978,7 @@ M.ListCustomMetricsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -10262,7 +9991,7 @@ M.ListCustomMetricsOutput = {
     members = {
         metricNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -10304,7 +10033,7 @@ M.ListDetectMitigationActionsExecutionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -10363,7 +10092,7 @@ M.ListDetectMitigationActionsExecutionsOutput = {
     members = {
         actionsExecutions = {
             type = "list",
-            member_type = "structure",
+            member = M.DetectMitigationActionExecution,
         },
         nextToken = {
             type = "string",
@@ -10375,7 +10104,7 @@ M.ListDetectMitigationActionsTasksInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -10408,7 +10137,7 @@ M.ListDetectMitigationActionsTasksOutput = {
     members = {
         tasks = {
             type = "list",
-            member_type = "structure",
+            member = M.DetectMitigationActionsTaskSummary,
         },
         nextToken = {
             type = "string",
@@ -10426,7 +10155,7 @@ M.ListDimensionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -10439,7 +10168,7 @@ M.ListDimensionsOutput = {
     members = {
         dimensionNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -10457,7 +10186,7 @@ M.ListDomainConfigurationsInput = {
             },
         },
         pageSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "pageSize",
             },
@@ -10491,7 +10220,7 @@ M.ListDomainConfigurationsOutput = {
     members = {
         domainConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainConfigurationSummary,
         },
         nextMarker = {
             type = "string",
@@ -10509,7 +10238,7 @@ M.ListFleetMetricsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -10534,7 +10263,7 @@ M.ListFleetMetricsOutput = {
     members = {
         fleetMetrics = {
             type = "list",
-            member_type = "structure",
+            member = M.FleetMetricNameAndArn,
         },
         nextToken = {
             type = "string",
@@ -10552,7 +10281,7 @@ M.ListIndicesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -10565,7 +10294,7 @@ M.ListIndicesOutput = {
     members = {
         indexNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -10590,7 +10319,7 @@ M.ListJobExecutionsForJobInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -10620,10 +10349,10 @@ M.JobExecutionSummary = {
             type = "timestamp",
         },
         executionNumber = {
-            type = "number",
+            type = "long",
         },
         retryAttempt = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -10634,9 +10363,7 @@ M.JobExecutionSummaryForJob = {
         thingArn = {
             type = "string",
         },
-        jobExecutionSummary = {
-            type = "structure",
-        },
+        jobExecutionSummary = M.JobExecutionSummary,
     },
 }
 
@@ -10645,7 +10372,7 @@ M.ListJobExecutionsForJobOutput = {
     members = {
         executionSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.JobExecutionSummaryForJob,
         },
         nextToken = {
             type = "string",
@@ -10676,7 +10403,7 @@ M.ListJobExecutionsForThingInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -10702,9 +10429,7 @@ M.JobExecutionSummaryForThing = {
         jobId = {
             type = "string",
         },
-        jobExecutionSummary = {
-            type = "structure",
-        },
+        jobExecutionSummary = M.JobExecutionSummary,
     },
 }
 
@@ -10713,7 +10438,7 @@ M.ListJobExecutionsForThingOutput = {
     members = {
         executionSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.JobExecutionSummaryForThing,
         },
         nextToken = {
             type = "string",
@@ -10737,7 +10462,7 @@ M.ListJobsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -10807,7 +10532,7 @@ M.ListJobsOutput = {
     members = {
         jobs = {
             type = "list",
-            member_type = "structure",
+            member = M.JobSummary,
         },
         nextToken = {
             type = "string",
@@ -10819,7 +10544,7 @@ M.ListJobTemplatesInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -10856,7 +10581,7 @@ M.ListJobTemplatesOutput = {
     members = {
         jobTemplates = {
             type = "list",
-            member_type = "structure",
+            member = M.JobTemplateSummary,
         },
         nextToken = {
             type = "string",
@@ -10874,7 +10599,7 @@ M.ListManagedJobTemplatesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -10902,7 +10627,7 @@ M.ManagedJobTemplateSummary = {
         },
         environments = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         templateVersion = {
             type = "string",
@@ -10915,7 +10640,7 @@ M.ListManagedJobTemplatesOutput = {
     members = {
         managedJobTemplates = {
             type = "list",
-            member_type = "structure",
+            member = M.ManagedJobTemplateSummary,
         },
         nextToken = {
             type = "string",
@@ -10967,7 +10692,7 @@ M.ListMetricValuesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -10987,9 +10712,7 @@ M.MetricDatum = {
         timestamp = {
             type = "timestamp",
         },
-        value = {
-            type = "structure",
-        },
+        value = M.MetricValue,
     },
 }
 
@@ -10998,7 +10721,7 @@ M.ListMetricValuesOutput = {
     members = {
         metricDatumList = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricDatum,
         },
         nextToken = {
             type = "string",
@@ -11016,7 +10739,7 @@ M.ListMitigationActionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -11050,7 +10773,7 @@ M.ListMitigationActionsOutput = {
     members = {
         actionIdentifiers = {
             type = "list",
-            member_type = "structure",
+            member = M.MitigationActionIdentifier,
         },
         nextToken = {
             type = "string",
@@ -11062,7 +10785,7 @@ M.ListOTAUpdatesInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -11102,7 +10825,7 @@ M.ListOTAUpdatesOutput = {
     members = {
         otaUpdates = {
             type = "list",
-            member_type = "structure",
+            member = M.OTAUpdateSummary,
         },
         nextToken = {
             type = "string",
@@ -11114,7 +10837,7 @@ M.ListOutgoingCertificatesInput = {
     type = "structure",
     members = {
         pageSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "pageSize",
             },
@@ -11128,6 +10851,7 @@ M.ListOutgoingCertificatesInput = {
         ascendingOrder = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "isAscendingOrder",
             },
         },
@@ -11163,7 +10887,7 @@ M.ListOutgoingCertificatesOutput = {
     members = {
         outgoingCertificates = {
             type = "list",
-            member_type = "structure",
+            member = M.OutgoingCertificate,
         },
         nextMarker = {
             type = "string",
@@ -11175,7 +10899,7 @@ M.ListPackagesInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -11212,7 +10936,7 @@ M.ListPackagesOutput = {
     members = {
         packageSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.PackageSummary,
         },
         nextToken = {
             type = "string",
@@ -11237,7 +10961,7 @@ M.ListPackageVersionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -11277,7 +11001,7 @@ M.ListPackageVersionsOutput = {
     members = {
         packageVersionSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.PackageVersionSummary,
         },
         nextToken = {
             type = "string",
@@ -11295,7 +11019,7 @@ M.ListPoliciesInput = {
             },
         },
         pageSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "pageSize",
             },
@@ -11303,6 +11027,7 @@ M.ListPoliciesInput = {
         ascendingOrder = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "isAscendingOrder",
             },
         },
@@ -11314,7 +11039,7 @@ M.ListPoliciesOutput = {
     members = {
         policies = {
             type = "list",
-            member_type = "structure",
+            member = M.Policy,
         },
         nextMarker = {
             type = "string",
@@ -11339,7 +11064,7 @@ M.ListPolicyPrincipalsInput = {
             },
         },
         pageSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "pageSize",
             },
@@ -11347,6 +11072,7 @@ M.ListPolicyPrincipalsInput = {
         ascendingOrder = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "isAscendingOrder",
             },
         },
@@ -11358,7 +11084,7 @@ M.ListPolicyPrincipalsOutput = {
     members = {
         principals = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextMarker = {
             type = "string",
@@ -11387,6 +11113,9 @@ M.PolicyVersion = {
         },
         isDefaultVersion = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         createDate = {
             type = "timestamp",
@@ -11399,7 +11128,7 @@ M.ListPolicyVersionsOutput = {
     members = {
         policyVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.PolicyVersion,
         },
     },
 }
@@ -11421,7 +11150,7 @@ M.ListPrincipalPoliciesInput = {
             },
         },
         pageSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "pageSize",
             },
@@ -11429,6 +11158,7 @@ M.ListPrincipalPoliciesInput = {
         ascendingOrder = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "isAscendingOrder",
             },
         },
@@ -11440,7 +11170,7 @@ M.ListPrincipalPoliciesOutput = {
     members = {
         policies = {
             type = "list",
-            member_type = "structure",
+            member = M.Policy,
         },
         nextMarker = {
             type = "string",
@@ -11458,7 +11188,7 @@ M.ListPrincipalThingsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -11478,7 +11208,7 @@ M.ListPrincipalThingsOutput = {
     members = {
         things = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -11496,7 +11226,7 @@ M.ListPrincipalThingsV2Input = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -11537,7 +11267,7 @@ M.ListPrincipalThingsV2Output = {
     members = {
         principalThingObjects = {
             type = "list",
-            member_type = "structure",
+            member = M.PrincipalThingObject,
         },
         nextToken = {
             type = "string",
@@ -11549,7 +11279,7 @@ M.ListProvisioningTemplatesInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -11595,7 +11325,7 @@ M.ListProvisioningTemplatesOutput = {
     members = {
         templates = {
             type = "list",
-            member_type = "structure",
+            member = M.ProvisioningTemplateSummary,
         },
         nextToken = {
             type = "string",
@@ -11614,7 +11344,7 @@ M.ListProvisioningTemplateVersionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -11632,13 +11362,16 @@ M.ProvisioningTemplateVersionSummary = {
     type = "structure",
     members = {
         versionId = {
-            type = "number",
+            type = "integer",
         },
         creationDate = {
             type = "timestamp",
         },
         isDefaultVersion = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -11648,7 +11381,7 @@ M.ListProvisioningTemplateVersionsOutput = {
     members = {
         versions = {
             type = "list",
-            member_type = "structure",
+            member = M.ProvisioningTemplateVersionSummary,
         },
         nextToken = {
             type = "string",
@@ -11673,7 +11406,7 @@ M.ListRelatedResourcesForAuditFindingInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -11686,7 +11419,7 @@ M.ListRelatedResourcesForAuditFindingOutput = {
     members = {
         relatedResources = {
             type = "list",
-            member_type = "structure",
+            member = M.RelatedResource,
         },
         nextToken = {
             type = "string",
@@ -11698,7 +11431,7 @@ M.ListRoleAliasesInput = {
     type = "structure",
     members = {
         pageSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "pageSize",
             },
@@ -11712,6 +11445,7 @@ M.ListRoleAliasesInput = {
         ascendingOrder = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "isAscendingOrder",
             },
         },
@@ -11723,7 +11457,7 @@ M.ListRoleAliasesOutput = {
     members = {
         roleAliases = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextMarker = {
             type = "string",
@@ -11760,7 +11494,7 @@ M.ListSbomValidationResultsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -11802,7 +11536,7 @@ M.ListSbomValidationResultsOutput = {
     members = {
         validationResultSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.SbomValidationResultSummary,
         },
         nextToken = {
             type = "string",
@@ -11820,7 +11554,7 @@ M.ListScheduledAuditsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -11854,7 +11588,7 @@ M.ListScheduledAuditsOutput = {
     members = {
         scheduledAudits = {
             type = "list",
-            member_type = "structure",
+            member = M.ScheduledAuditMetadata,
         },
         nextToken = {
             type = "string",
@@ -11872,7 +11606,7 @@ M.ListSecurityProfilesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -11915,7 +11649,7 @@ M.ListSecurityProfilesOutput = {
     members = {
         securityProfileIdentifiers = {
             type = "list",
-            member_type = "structure",
+            member = M.SecurityProfileIdentifier,
         },
         nextToken = {
             type = "string",
@@ -11933,7 +11667,7 @@ M.ListSecurityProfilesForTargetInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -11941,6 +11675,7 @@ M.ListSecurityProfilesForTargetInput = {
         recursive = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "recursive",
             },
         },
@@ -11969,12 +11704,8 @@ M.SecurityProfileTarget = {
 M.SecurityProfileTargetMapping = {
     type = "structure",
     members = {
-        securityProfileIdentifier = {
-            type = "structure",
-        },
-        target = {
-            type = "structure",
-        },
+        securityProfileIdentifier = M.SecurityProfileIdentifier,
+        target = M.SecurityProfileTarget,
     },
 }
 
@@ -11983,7 +11714,7 @@ M.ListSecurityProfilesForTargetOutput = {
     members = {
         securityProfileTargetMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.SecurityProfileTargetMapping,
         },
         nextToken = {
             type = "string",
@@ -11995,7 +11726,7 @@ M.ListStreamsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -12009,6 +11740,7 @@ M.ListStreamsInput = {
         ascendingOrder = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "isAscendingOrder",
             },
         },
@@ -12025,7 +11757,7 @@ M.StreamSummary = {
             type = "string",
         },
         streamVersion = {
-            type = "number",
+            type = "integer",
         },
         description = {
             type = "string",
@@ -12038,7 +11770,7 @@ M.ListStreamsOutput = {
     members = {
         streams = {
             type = "list",
-            member_type = "structure",
+            member = M.StreamSummary,
         },
         nextToken = {
             type = "string",
@@ -12070,7 +11802,7 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         nextToken = {
             type = "string",
@@ -12095,7 +11827,7 @@ M.ListTargetsForPolicyInput = {
             },
         },
         pageSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "pageSize",
             },
@@ -12108,7 +11840,7 @@ M.ListTargetsForPolicyOutput = {
     members = {
         targets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextMarker = {
             type = "string",
@@ -12133,7 +11865,7 @@ M.ListTargetsForSecurityProfileInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -12146,7 +11878,7 @@ M.ListTargetsForSecurityProfileOutput = {
     members = {
         securityProfileTargets = {
             type = "list",
-            member_type = "structure",
+            member = M.SecurityProfileTarget,
         },
         nextToken = {
             type = "string",
@@ -12164,7 +11896,7 @@ M.ListThingGroupsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -12195,7 +11927,7 @@ M.ListThingGroupsOutput = {
     members = {
         thingGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupNameAndArn,
         },
         nextToken = {
             type = "string",
@@ -12220,7 +11952,7 @@ M.ListThingGroupsForThingInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -12233,7 +11965,7 @@ M.ListThingGroupsForThingOutput = {
     members = {
         thingGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupNameAndArn,
         },
         nextToken = {
             type = "string",
@@ -12251,7 +11983,7 @@ M.ListThingPrincipalsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -12271,7 +12003,7 @@ M.ListThingPrincipalsOutput = {
     members = {
         principals = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -12289,7 +12021,7 @@ M.ListThingPrincipalsV2Input = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -12330,7 +12062,7 @@ M.ListThingPrincipalsV2Output = {
     members = {
         thingPrincipalObjects = {
             type = "list",
-            member_type = "structure",
+            member = M.ThingPrincipalObject,
         },
         nextToken = {
             type = "string",
@@ -12367,7 +12099,7 @@ M.ListThingRegistrationTaskReportsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -12380,7 +12112,7 @@ M.ListThingRegistrationTaskReportsOutput = {
     members = {
         resourceLinks = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         reportType = {
             type = "string",
@@ -12401,7 +12133,7 @@ M.ListThingRegistrationTasksInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -12420,7 +12152,7 @@ M.ListThingRegistrationTasksOutput = {
     members = {
         taskIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -12438,7 +12170,7 @@ M.ListThingsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -12464,6 +12196,7 @@ M.ListThingsInput = {
         usePrefixAttributeValue = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "usePrefixAttributeValue",
             },
         },
@@ -12484,11 +12217,14 @@ M.ThingAttribute = {
         },
         attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         version = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -12498,7 +12234,7 @@ M.ListThingsOutput = {
     members = {
         things = {
             type = "list",
-            member_type = "structure",
+            member = M.ThingAttribute,
         },
         nextToken = {
             type = "string",
@@ -12523,7 +12259,7 @@ M.ListThingsInBillingGroupInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -12536,7 +12272,7 @@ M.ListThingsInBillingGroupOutput = {
     members = {
         things = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -12557,6 +12293,7 @@ M.ListThingsInThingGroupInput = {
         recursive = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "recursive",
             },
         },
@@ -12567,7 +12304,7 @@ M.ListThingsInThingGroupInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -12580,7 +12317,7 @@ M.ListThingsInThingGroupOutput = {
     members = {
         things = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -12598,7 +12335,7 @@ M.ListThingTypesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -12621,12 +12358,8 @@ M.ThingTypeDefinition = {
         thingTypeArn = {
             type = "string",
         },
-        thingTypeProperties = {
-            type = "structure",
-        },
-        thingTypeMetadata = {
-            type = "structure",
-        },
+        thingTypeProperties = M.ThingTypeProperties,
+        thingTypeMetadata = M.ThingTypeMetadata,
     },
 }
 
@@ -12635,7 +12368,7 @@ M.ListThingTypesOutput = {
     members = {
         thingTypes = {
             type = "list",
-            member_type = "structure",
+            member = M.ThingTypeDefinition,
         },
         nextToken = {
             type = "string",
@@ -12647,7 +12380,7 @@ M.ListTopicRuleDestinationsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -12675,11 +12408,11 @@ M.VpcDestinationSummary = {
     members = {
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         securityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         vpcId = {
             type = "string",
@@ -12708,12 +12441,8 @@ M.TopicRuleDestinationSummary = {
         statusReason = {
             type = "string",
         },
-        httpUrlSummary = {
-            type = "structure",
-        },
-        vpcDestinationSummary = {
-            type = "structure",
-        },
+        httpUrlSummary = M.HttpUrlDestinationSummary,
+        vpcDestinationSummary = M.VpcDestinationSummary,
     },
 }
 
@@ -12722,7 +12451,7 @@ M.ListTopicRuleDestinationsOutput = {
     members = {
         destinationSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.TopicRuleDestinationSummary,
         },
         nextToken = {
             type = "string",
@@ -12740,7 +12469,7 @@ M.ListTopicRulesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -12786,7 +12515,7 @@ M.ListTopicRulesOutput = {
     members = {
         rules = {
             type = "list",
-            member_type = "structure",
+            member = M.TopicRuleListItem,
         },
         nextToken = {
             type = "string",
@@ -12810,7 +12539,7 @@ M.ListV2LoggingLevelsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -12836,9 +12565,7 @@ M.LogTarget = {
 M.LogTargetConfiguration = {
     type = "structure",
     members = {
-        logTarget = {
-            type = "structure",
-        },
+        logTarget = M.LogTarget,
         logLevel = {
             type = "string",
         },
@@ -12850,7 +12577,7 @@ M.ListV2LoggingLevelsOutput = {
     members = {
         logTargetConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.LogTargetConfiguration,
         },
         nextToken = {
             type = "string",
@@ -12912,7 +12639,7 @@ M.ListViolationEventsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -12938,15 +12665,9 @@ M.ViolationEvent = {
         securityProfileName = {
             type = "string",
         },
-        behavior = {
-            type = "structure",
-        },
-        metricValue = {
-            type = "structure",
-        },
-        violationEventAdditionalInfo = {
-            type = "structure",
-        },
+        behavior = M.Behavior,
+        metricValue = M.MetricValue,
+        violationEventAdditionalInfo = M.ViolationEventAdditionalInfo,
         violationEventType = {
             type = "string",
         },
@@ -12967,7 +12688,7 @@ M.ListViolationEventsOutput = {
     members = {
         violationEvents = {
             type = "list",
-            member_type = "structure",
+            member = M.ViolationEvent,
         },
         nextToken = {
             type = "string",
@@ -13016,21 +12737,21 @@ M.RegisterCACertificateInput = {
         setAsActive = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "setAsActive",
             },
         },
         allowAutoRegistration = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "allowAutoRegistration",
             },
         },
-        registrationConfig = {
-            type = "structure",
-        },
+        registrationConfig = M.RegistrationConfig,
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         certificateMode = {
             type = "string",
@@ -13144,8 +12865,8 @@ M.RegisterThingInput = {
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -13158,8 +12879,8 @@ M.RegisterThingOutput = {
         },
         resourceArns = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -13248,13 +12969,10 @@ M.ReplaceTopicRuleInput = {
                 required = true,
             },
         },
-        topicRulePayload = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        topicRulePayload = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.TopicRulePayload }),
     },
 }
 
@@ -13278,7 +12996,7 @@ M.SearchIndexInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         queryVersion = {
             type = "string",
@@ -13300,12 +13018,12 @@ M.ThingGroupDocument = {
         },
         attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         parentGroupNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -13317,7 +13035,7 @@ M.ThingConnectivity = {
             type = "boolean",
         },
         timestamp = {
-            type = "number",
+            type = "long",
         },
         disconnectReason = {
             type = "string",
@@ -13339,12 +13057,12 @@ M.ThingDocument = {
         },
         thingGroupNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         shadow = {
             type = "string",
@@ -13352,9 +13070,7 @@ M.ThingDocument = {
         deviceDefender = {
             type = "string",
         },
-        connectivity = {
-            type = "structure",
-        },
+        connectivity = M.ThingConnectivity,
     },
 }
 
@@ -13366,11 +13082,11 @@ M.SearchIndexOutput = {
         },
         things = {
             type = "list",
-            member_type = "structure",
+            member = M.ThingDocument,
         },
         thingGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.ThingGroupDocument,
         },
     },
 }
@@ -13441,13 +13157,10 @@ M.LoggingOptionsPayload = {
 M.SetLoggingOptionsInput = {
     type = "structure",
     members = {
-        loggingOptionsPayload = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        loggingOptionsPayload = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.LoggingOptionsPayload }),
     },
 }
 
@@ -13458,12 +13171,9 @@ M.SetLoggingOptionsOutput = {
 M.SetV2LoggingLevelInput = {
     type = "structure",
     members = {
-        logTarget = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        logTarget = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LogTarget }),
         logLevel = {
             type = "string",
             traits = {
@@ -13488,10 +13198,13 @@ M.SetV2LoggingOptionsInput = {
         },
         disableAllLogs = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         eventConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.LogEventConfiguration,
         },
     },
 }
@@ -13510,16 +13223,13 @@ M.StartAuditMitigationActionsTaskInput = {
                 required = true,
             },
         },
-        target = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        target = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AuditMitigationActionsTaskTarget }),
         auditCheckToActionsMapping = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
             traits = {
                 required = true,
             },
@@ -13562,22 +13272,17 @@ M.StartDetectMitigationActionsTaskInput = {
                 required = true,
             },
         },
-        target = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        target = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DetectMitigationActionsTaskTarget }),
         actions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        violationEventOccurrenceRange = {
-            type = "structure",
-        },
+        violationEventOccurrenceRange = M.ViolationEventOccurrenceRange,
         includeOnlyActiveViolations = {
             type = "boolean",
         },
@@ -13607,7 +13312,7 @@ M.StartOnDemandAuditTaskInput = {
     members = {
         targetCheckNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -13691,7 +13396,7 @@ M.TagResourceInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -13714,7 +13419,7 @@ M.TestAuthorizationInput = {
         },
         authInfos = {
             type = "list",
-            member_type = "structure",
+            member = M.AuthInfo,
             traits = {
                 required = true,
             },
@@ -13727,11 +13432,11 @@ M.TestAuthorizationInput = {
         },
         policyNamesToAdd = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         policyNamesToSkip = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -13741,7 +13446,7 @@ M.TestAuthorizationOutput = {
     members = {
         authResults = {
             type = "list",
-            member_type = "structure",
+            member = M.AuthResult,
         },
     },
 }
@@ -13761,8 +13466,8 @@ M.HttpContext = {
     members = {
         headers = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         queryString = {
             type = "string",
@@ -13810,15 +13515,9 @@ M.TestInvokeAuthorizerInput = {
         tokenSignature = {
             type = "string",
         },
-        httpContext = {
-            type = "structure",
-        },
-        mqttContext = {
-            type = "structure",
-        },
-        tlsContext = {
-            type = "structure",
-        },
+        httpContext = M.HttpContext,
+        mqttContext = M.MqttContext,
+        tlsContext = M.TlsContext,
     },
 }
 
@@ -13833,13 +13532,13 @@ M.TestInvokeAuthorizerOutput = {
         },
         policyDocuments = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         refreshAfterInSeconds = {
-            type = "number",
+            type = "integer",
         },
         disconnectAfterInSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -13897,7 +13596,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -13917,13 +13616,13 @@ M.UpdateAccountAuditConfigurationInput = {
         },
         auditNotificationTargetConfigurations = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.AuditNotificationTarget,
         },
         auditCheckConfigurations = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.AuditCheckConfiguration,
         },
     },
 }
@@ -13941,12 +13640,9 @@ M.UpdateAuditSuppressionInput = {
                 required = true,
             },
         },
-        resourceIdentifier = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        resourceIdentifier = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResourceIdentifier }),
         expirationDate = {
             type = "timestamp",
         },
@@ -13981,8 +13677,8 @@ M.UpdateAuthorizerInput = {
         },
         tokenSigningPublicKeys = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         status = {
             type = "string",
@@ -14015,14 +13711,11 @@ M.UpdateBillingGroupInput = {
                 required = true,
             },
         },
-        billingGroupProperties = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        billingGroupProperties = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BillingGroupProperties }),
         expectedVersion = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -14031,7 +13724,10 @@ M.UpdateBillingGroupOutput = {
     type = "structure",
     members = {
         version = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -14058,11 +13754,12 @@ M.UpdateCACertificateInput = {
                 http_query = "newAutoRegistrationStatus",
             },
         },
-        registrationConfig = {
-            type = "structure",
-        },
+        registrationConfig = M.RegistrationConfig,
         removeAutoRegistration = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -14110,7 +13807,7 @@ M.UpdateCertificateProviderInput = {
         },
         accountDefaultForOperations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -14225,7 +13922,7 @@ M.UpdateDimensionInput = {
         },
         stringValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -14247,7 +13944,7 @@ M.UpdateDimensionOutput = {
         },
         stringValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         creationDate = {
             type = "timestamp",
@@ -14268,30 +13965,25 @@ M.UpdateDomainConfigurationInput = {
                 required = true,
             },
         },
-        authorizerConfig = {
-            type = "structure",
-        },
+        authorizerConfig = M.AuthorizerConfig,
         domainConfigurationStatus = {
             type = "string",
         },
         removeAuthorizerConfig = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        tlsConfig = {
-            type = "structure",
-        },
-        serverCertificateConfig = {
-            type = "structure",
-        },
+        tlsConfig = M.TlsConfig,
+        serverCertificateConfig = M.ServerCertificateConfig,
         authenticationType = {
             type = "string",
         },
         applicationProtocol = {
             type = "string",
         },
-        clientCertificateConfig = {
-            type = "structure",
-        },
+        clientCertificateConfig = M.ClientCertificateConfig,
     },
 }
 
@@ -14317,14 +14009,11 @@ M.UpdateDynamicThingGroupInput = {
                 required = true,
             },
         },
-        thingGroupProperties = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        thingGroupProperties = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ThingGroupProperties }),
         expectedVersion = {
-            type = "number",
+            type = "long",
         },
         indexName = {
             type = "string",
@@ -14342,7 +14031,10 @@ M.UpdateDynamicThingGroupOutput = {
     type = "structure",
     members = {
         version = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -14374,8 +14066,8 @@ M.UpdateEventConfigurationsInput = {
     members = {
         eventConfigurations = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.Configuration,
         },
     },
 }
@@ -14397,11 +14089,9 @@ M.UpdateFleetMetricInput = {
         queryString = {
             type = "string",
         },
-        aggregationType = {
-            type = "structure",
-        },
+        aggregationType = M.AggregationType,
         period = {
-            type = "number",
+            type = "integer",
         },
         aggregationField = {
             type = "string",
@@ -14422,7 +14112,7 @@ M.UpdateFleetMetricInput = {
             type = "string",
         },
         expectedVersion = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -14434,12 +14124,8 @@ M.UpdateFleetMetricOutput = {
 M.UpdateIndexingConfigurationInput = {
     type = "structure",
     members = {
-        thingIndexingConfiguration = {
-            type = "structure",
-        },
-        thingGroupIndexingConfiguration = {
-            type = "structure",
-        },
+        thingIndexingConfiguration = M.ThingIndexingConfiguration,
+        thingGroupIndexingConfiguration = M.ThingGroupIndexingConfiguration,
     },
 }
 
@@ -14460,27 +14146,17 @@ M.UpdateJobInput = {
         description = {
             type = "string",
         },
-        presignedUrlConfig = {
-            type = "structure",
-        },
-        jobExecutionsRolloutConfig = {
-            type = "structure",
-        },
-        abortConfig = {
-            type = "structure",
-        },
-        timeoutConfig = {
-            type = "structure",
-        },
+        presignedUrlConfig = M.PresignedUrlConfig,
+        jobExecutionsRolloutConfig = M.JobExecutionsRolloutConfig,
+        abortConfig = M.AbortConfig,
+        timeoutConfig = M.TimeoutConfig,
         namespaceId = {
             type = "string",
             traits = {
                 http_query = "namespaceId",
             },
         },
-        jobExecutionsRetryConfig = {
-            type = "structure",
-        },
+        jobExecutionsRetryConfig = M.JobExecutionsRetryConfig,
     },
 }
 
@@ -14501,9 +14177,7 @@ M.UpdateMitigationActionInput = {
         roleArn = {
             type = "string",
         },
-        actionParams = {
-            type = "structure",
-        },
+        actionParams = M.MitigationActionParams,
     },
 }
 
@@ -14554,9 +14228,7 @@ M.UpdatePackageOutput = {
 M.UpdatePackageConfigurationInput = {
     type = "structure",
     members = {
-        versionUpdateByJobsConfig = {
-            type = "structure",
-        },
+        versionUpdateByJobsConfig = M.VersionUpdateByJobsConfig,
         clientToken = {
             type = "string",
             traits = {
@@ -14597,12 +14269,10 @@ M.UpdatePackageVersionInput = {
         },
         attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        artifact = {
-            type = "structure",
-        },
+        artifact = M.PackageVersionArtifact,
         action = {
             type = "string",
         },
@@ -14639,14 +14309,12 @@ M.UpdateProvisioningTemplateInput = {
             type = "boolean",
         },
         defaultVersionId = {
-            type = "number",
+            type = "integer",
         },
         provisioningRoleArn = {
             type = "string",
         },
-        preProvisioningHook = {
-            type = "structure",
-        },
+        preProvisioningHook = M.ProvisioningHook,
         removePreProvisioningHook = {
             type = "boolean",
         },
@@ -14671,7 +14339,7 @@ M.UpdateRoleAliasInput = {
             type = "string",
         },
         credentialDurationSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -14702,7 +14370,7 @@ M.UpdateScheduledAuditInput = {
         },
         targetCheckNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         scheduledAuditName = {
             type = "string",
@@ -14738,41 +14406,51 @@ M.UpdateSecurityProfileInput = {
         },
         behaviors = {
             type = "list",
-            member_type = "structure",
+            member = M.Behavior,
         },
         alertTargets = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.AlertTarget,
         },
         additionalMetricsToRetain = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         additionalMetricsToRetainV2 = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricToRetain,
         },
         deleteBehaviors = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         deleteAlertTargets = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         deleteAdditionalMetricsToRetain = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         expectedVersion = {
-            type = "number",
+            type = "long",
             traits = {
                 http_query = "expectedVersion",
             },
         },
-        metricsExportConfig = {
-            type = "structure",
-        },
+        metricsExportConfig = M.MetricsExportConfig,
         deleteMetricsExportConfig = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -14791,23 +14469,26 @@ M.UpdateSecurityProfileOutput = {
         },
         behaviors = {
             type = "list",
-            member_type = "structure",
+            member = M.Behavior,
         },
         alertTargets = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.AlertTarget,
         },
         additionalMetricsToRetain = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         additionalMetricsToRetainV2 = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricToRetain,
         },
         version = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         creationDate = {
             type = "timestamp",
@@ -14815,9 +14496,7 @@ M.UpdateSecurityProfileOutput = {
         lastModifiedDate = {
             type = "timestamp",
         },
-        metricsExportConfig = {
-            type = "structure",
-        },
+        metricsExportConfig = M.MetricsExportConfig,
     },
 }
 
@@ -14836,7 +14515,7 @@ M.UpdateStreamInput = {
         },
         files = {
             type = "list",
-            member_type = "structure",
+            member = M.StreamFile,
         },
         roleArn = {
             type = "string",
@@ -14857,7 +14536,7 @@ M.UpdateStreamOutput = {
             type = "string",
         },
         streamVersion = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -14875,14 +14554,15 @@ M.UpdateThingInput = {
         thingTypeName = {
             type = "string",
         },
-        attributePayload = {
-            type = "structure",
-        },
+        attributePayload = M.AttributePayload,
         expectedVersion = {
-            type = "number",
+            type = "long",
         },
         removeThingType = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -14901,14 +14581,11 @@ M.UpdateThingGroupInput = {
                 required = true,
             },
         },
-        thingGroupProperties = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        thingGroupProperties = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ThingGroupProperties }),
         expectedVersion = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -14917,7 +14594,10 @@ M.UpdateThingGroupOutput = {
     type = "structure",
     members = {
         version = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -14930,14 +14610,17 @@ M.UpdateThingGroupsForThingInput = {
         },
         thingGroupsToAdd = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         thingGroupsToRemove = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         overrideDynamicGroups = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -14956,9 +14639,7 @@ M.UpdateThingTypeInput = {
                 required = true,
             },
         },
-        thingTypeProperties = {
-            type = "structure",
-        },
+        thingTypeProperties = M.ThingTypeProperties,
     },
 }
 
@@ -14993,7 +14674,7 @@ M.ValidateSecurityProfileBehaviorsInput = {
     members = {
         behaviors = {
             type = "list",
-            member_type = "structure",
+            member = M.Behavior,
             traits = {
                 required = true,
             },
@@ -15015,10 +14696,13 @@ M.ValidateSecurityProfileBehaviorsOutput = {
     members = {
         valid = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         validationErrors = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationError,
         },
     },
 }

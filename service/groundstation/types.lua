@@ -72,7 +72,7 @@ M.ComponentVersion = {
         },
         versions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -103,15 +103,15 @@ M.AgentDetails = {
         },
         reservedCpuCores = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
         },
         agentCpuCores = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
         },
         componentVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.ComponentVersion,
             traits = {
                 required = true,
             },
@@ -124,21 +124,21 @@ M.DiscoveryData = {
     members = {
         publicIpAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         privateIpAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         capabilityArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -149,22 +149,16 @@ M.DiscoveryData = {
 M.RegisterAgentInput = {
     type = "structure",
     members = {
-        discoveryData = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        agentDetails = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        discoveryData = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DiscoveryData }),
+        agentDetails = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AgentDetails }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -196,8 +190,8 @@ M.AggregateStatus = {
         },
         signatureMap = {
             type = "map",
-            key_type = "string",
-            value_type = "boolean",
+            key = { type = "string" },
+            value = { type = "boolean" },
         },
     },
 }
@@ -224,13 +218,13 @@ M.ComponentStatusData = {
             },
         },
         bytesSent = {
-            type = "number",
+            type = "long",
         },
         bytesReceived = {
-            type = "number",
+            type = "long",
         },
         packetsDropped = {
-            type = "number",
+            type = "long",
         },
         dataflowId = {
             type = "string",
@@ -257,15 +251,12 @@ M.UpdateAgentStatusInput = {
                 required = true,
             },
         },
-        aggregateStatus = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        aggregateStatus = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AggregateStatus }),
         componentStatuses = {
             type = "list",
-            member_type = "structure",
+            member = M.ComponentStatusData,
             traits = {
                 required = true,
             },
@@ -309,7 +300,7 @@ M.FrequencyBandwidth = {
     type = "structure",
     members = {
         value = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -333,7 +324,7 @@ M.Frequency = {
     type = "structure",
     members = {
         value = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -356,18 +347,12 @@ M.Polarization = {
 M.SpectrumConfig = {
     type = "structure",
     members = {
-        centerFrequency = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        bandwidth = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        centerFrequency = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Frequency }),
+        bandwidth = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FrequencyBandwidth }),
         polarization = {
             type = "string",
         },
@@ -377,12 +362,9 @@ M.SpectrumConfig = {
 M.AntennaDownlinkConfig = {
     type = "structure",
     members = {
-        spectrumConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        spectrumConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SpectrumConfig }),
     },
 }
 
@@ -413,24 +395,15 @@ M.DemodulationConfig = {
 M.AntennaDownlinkDemodDecodeConfig = {
     type = "structure",
     members = {
-        spectrumConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        demodulationConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        decodeConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        spectrumConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SpectrumConfig }),
+        demodulationConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DemodulationConfig }),
+        decodeConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DecodeConfig }),
     },
 }
 
@@ -461,12 +434,9 @@ M.AntennaListItem = {
 M.UplinkSpectrumConfig = {
     type = "structure",
     members = {
-        centerFrequency = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        centerFrequency = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Frequency }),
         polarization = {
             type = "string",
         },
@@ -481,7 +451,7 @@ M.Eirp = {
     type = "structure",
     members = {
         value = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -501,18 +471,12 @@ M.AntennaUplinkConfig = {
         transmitDisabled = {
             type = "boolean",
         },
-        spectrumConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        targetEirp = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        spectrumConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.UplinkSpectrumConfig }),
+        targetEirp = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Eirp }),
     },
 }
 
@@ -531,7 +495,7 @@ M.SocketAddress = {
             },
         },
         port = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -542,14 +506,11 @@ M.SocketAddress = {
 M.ConnectionDetails = {
     type = "structure",
     members = {
-        socketAddress = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        socketAddress = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SocketAddress }),
         mtu = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -558,13 +519,13 @@ M.IntegerRange = {
     type = "structure",
     members = {
         minimum = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         maximum = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -581,26 +542,20 @@ M.RangedSocketAddress = {
                 required = true,
             },
         },
-        portRange = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        portRange = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IntegerRange }),
     },
 }
 
 M.RangedConnectionDetails = {
     type = "structure",
     members = {
-        socketAddress = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        socketAddress = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RangedSocketAddress }),
         mtu = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -614,18 +569,12 @@ M.AwsGroundStationAgentEndpoint = {
                 required = true,
             },
         },
-        egressAddress = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ingressAddress = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        egressAddress = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConnectionDetails }),
+        ingressAddress = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RangedConnectionDetails }),
         agentStatus = {
             type = "string",
         },
@@ -639,19 +588,19 @@ M.TimeAzEl = {
     type = "structure",
     members = {
         dt = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
         az = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
         el = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -689,15 +638,12 @@ M.AzElSegment = {
                 timestamp_format = "date-time",
             },
         },
-        validTimeRange = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        validTimeRange = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ISO8601TimeRange }),
         azElList = {
             type = "list",
-            member_type = "structure",
+            member = M.TimeAzEl,
             traits = {
                 required = true,
             },
@@ -716,7 +662,7 @@ M.AzElSegments = {
         },
         azElSegmentList = {
             type = "list",
-            member_type = "structure",
+            member = M.AzElSegment,
             traits = {
                 required = true,
             },
@@ -742,12 +688,8 @@ M.S3Object = {
 M.AzElSegmentsData = {
     type = "union",
     members = {
-        s3Object = {
-            type = "structure",
-        },
-        azElData = {
-            type = "structure",
-        },
+        s3Object = M.S3Object,
+        azElData = M.AzElSegments,
     },
 }
 
@@ -760,12 +702,9 @@ M.AzElEphemeris = {
                 required = true,
             },
         },
-        data = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        data = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AzElSegmentsData }),
     },
 }
 
@@ -813,7 +752,7 @@ M.CancelContactOutput = {
             type = "string",
         },
         versionId = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -901,9 +840,7 @@ M.KinesisDataStreamData = {
 M.TelemetrySinkData = {
     type = "union",
     members = {
-        kinesisDataStreamData = {
-            type = "structure",
-        },
+        kinesisDataStreamData = M.KinesisDataStreamData,
     },
 }
 
@@ -920,12 +857,9 @@ M.TelemetrySinkConfig = {
                 required = true,
             },
         },
-        telemetrySinkData = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        telemetrySinkData = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TelemetrySinkData }),
     },
 }
 
@@ -968,30 +902,14 @@ M.UplinkEchoConfig = {
 M.ConfigTypeData = {
     type = "union",
     members = {
-        antennaDownlinkConfig = {
-            type = "structure",
-        },
-        trackingConfig = {
-            type = "structure",
-        },
-        dataflowEndpointConfig = {
-            type = "structure",
-        },
-        antennaDownlinkDemodDecodeConfig = {
-            type = "structure",
-        },
-        antennaUplinkConfig = {
-            type = "structure",
-        },
-        uplinkEchoConfig = {
-            type = "structure",
-        },
-        s3RecordingConfig = {
-            type = "structure",
-        },
-        telemetrySinkConfig = {
-            type = "structure",
-        },
+        antennaDownlinkConfig = M.AntennaDownlinkConfig,
+        trackingConfig = M.TrackingConfig,
+        dataflowEndpointConfig = M.DataflowEndpointConfig,
+        antennaDownlinkDemodDecodeConfig = M.AntennaDownlinkDemodDecodeConfig,
+        antennaUplinkConfig = M.AntennaUplinkConfig,
+        uplinkEchoConfig = M.UplinkEchoConfig,
+        s3RecordingConfig = M.S3RecordingConfig,
+        telemetrySinkConfig = M.TelemetrySinkConfig,
     },
 }
 
@@ -1004,16 +922,13 @@ M.CreateConfigInput = {
                 required = true,
             },
         },
-        configData = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        configData = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConfigTypeData }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1125,16 +1040,13 @@ M.GetConfigOutput = {
         configType = {
             type = "string",
         },
-        configData = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        configData = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConfigTypeData }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1143,7 +1055,7 @@ M.ListConfigsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1183,7 +1095,7 @@ M.ListConfigsOutput = {
         },
         configList = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigListItem,
         },
     },
 }
@@ -1211,12 +1123,9 @@ M.UpdateConfigInput = {
                 required = true,
             },
         },
-        configData = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        configData = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConfigTypeData }),
     },
 }
 
@@ -1238,27 +1147,19 @@ M.UpdateConfigOutput = {
 M.DownlinkConnectionDetails = {
     type = "structure",
     members = {
-        agentIpAndPortAddress = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        egressAddressAndPort = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        agentIpAndPortAddress = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RangedConnectionDetails }),
+        egressAddressAndPort = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConnectionDetails }),
     },
 }
 
 M.DownlinkDataflowDetails = {
     type = "union",
     members = {
-        agentConnectionDetails = {
-            type = "structure",
-        },
+        agentConnectionDetails = M.DownlinkConnectionDetails,
     },
 }
 
@@ -1271,12 +1172,9 @@ M.DownlinkAwsGroundStationAgentEndpointDetails = {
                 required = true,
             },
         },
-        dataflowDetails = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        dataflowDetails = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DownlinkDataflowDetails }),
         agentStatus = {
             type = "string",
         },
@@ -1300,14 +1198,12 @@ M.DataflowEndpoint = {
         name = {
             type = "string",
         },
-        address = {
-            type = "structure",
-        },
+        address = M.SocketAddress,
         status = {
             type = "string",
         },
         mtu = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1317,14 +1213,14 @@ M.SecurityDetails = {
     members = {
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1341,27 +1237,19 @@ M.SecurityDetails = {
 M.UplinkConnectionDetails = {
     type = "structure",
     members = {
-        ingressAddressAndPort = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        agentIpAndPortAddress = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ingressAddressAndPort = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConnectionDetails }),
+        agentIpAndPortAddress = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RangedConnectionDetails }),
     },
 }
 
 M.UplinkDataflowDetails = {
     type = "union",
     members = {
-        agentConnectionDetails = {
-            type = "structure",
-        },
+        agentConnectionDetails = M.UplinkConnectionDetails,
     },
 }
 
@@ -1374,12 +1262,9 @@ M.UplinkAwsGroundStationAgentEndpointDetails = {
                 required = true,
             },
         },
-        dataflowDetails = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        dataflowDetails = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.UplinkDataflowDetails }),
         agentStatus = {
             type = "string",
         },
@@ -1392,27 +1277,17 @@ M.UplinkAwsGroundStationAgentEndpointDetails = {
 M.EndpointDetails = {
     type = "structure",
     members = {
-        securityDetails = {
-            type = "structure",
-        },
-        endpoint = {
-            type = "structure",
-        },
-        awsGroundStationAgentEndpoint = {
-            type = "structure",
-        },
-        uplinkAwsGroundStationAgentEndpoint = {
-            type = "structure",
-        },
-        downlinkAwsGroundStationAgentEndpoint = {
-            type = "structure",
-        },
+        securityDetails = M.SecurityDetails,
+        endpoint = M.DataflowEndpoint,
+        awsGroundStationAgentEndpoint = M.AwsGroundStationAgentEndpoint,
+        uplinkAwsGroundStationAgentEndpoint = M.UplinkAwsGroundStationAgentEndpointDetails,
+        downlinkAwsGroundStationAgentEndpoint = M.DownlinkAwsGroundStationAgentEndpointDetails,
         healthStatus = {
             type = "string",
         },
         healthReasons = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1432,15 +1307,9 @@ M.S3RecordingDetails = {
 M.ConfigDetails = {
     type = "union",
     members = {
-        endpointDetails = {
-            type = "structure",
-        },
-        antennaDemodDecodeDetails = {
-            type = "structure",
-        },
-        s3RecordingDetails = {
-            type = "structure",
-        },
+        endpointDetails = M.EndpointDetails,
+        antennaDemodDecodeDetails = M.AntennaDemodDecodeDetails,
+        s3RecordingDetails = M.S3RecordingDetails,
     },
 }
 
@@ -1482,9 +1351,7 @@ M.Destination = {
         configId = {
             type = "string",
         },
-        configDetails = {
-            type = "union",
-        },
+        configDetails = M.ConfigDetails,
         dataflowDestinationRegion = {
             type = "string",
         },
@@ -1500,9 +1367,7 @@ M.Source = {
         configId = {
             type = "string",
         },
-        configDetails = {
-            type = "union",
-        },
+        configDetails = M.ConfigDetails,
         dataflowSourceRegion = {
             type = "string",
         },
@@ -1512,12 +1377,8 @@ M.Source = {
 M.DataflowDetail = {
     type = "structure",
     members = {
-        source = {
-            type = "structure",
-        },
-        destination = {
-            type = "structure",
-        },
+        source = M.Source,
+        destination = M.Destination,
         errorMessage = {
             type = "string",
         },
@@ -1550,7 +1411,7 @@ M.Elevation = {
     type = "structure",
     members = {
         value = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -1591,24 +1452,16 @@ M.TleProgramTrackSettings = {
 M.ProgramTrackSettings = {
     type = "union",
     members = {
-        azEl = {
-            type = "structure",
-        },
-        oem = {
-            type = "structure",
-        },
-        tle = {
-            type = "structure",
-        },
+        azEl = M.AzElProgramTrackSettings,
+        oem = M.OemProgramTrackSettings,
+        tle = M.TleProgramTrackSettings,
     },
 }
 
 M.TrackingOverrides = {
     type = "structure",
     members = {
-        programTrackSettings = {
-            type = "union",
-        },
+        programTrackSettings = M.ProgramTrackSettings,
     },
 }
 
@@ -1638,7 +1491,7 @@ M.ContactVersion = {
     type = "structure",
     members = {
         versionId = {
-            type = "number",
+            type = "integer",
         },
         created = {
             type = "timestamp",
@@ -1657,7 +1510,7 @@ M.ContactVersion = {
         },
         failureCodes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         failureMessage = {
             type = "string",
@@ -1698,20 +1551,18 @@ M.DescribeContactOutput = {
         errorMessage = {
             type = "string",
         },
-        maximumElevation = {
-            type = "structure",
-        },
+        maximumElevation = M.Elevation,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         region = {
             type = "string",
         },
         dataflowList = {
             type = "list",
-            member_type = "structure",
+            member = M.DataflowDetail,
         },
         visibilityStartTime = {
             type = "timestamp",
@@ -1719,15 +1570,9 @@ M.DescribeContactOutput = {
         visibilityEndTime = {
             type = "timestamp",
         },
-        trackingOverrides = {
-            type = "structure",
-        },
-        ephemeris = {
-            type = "structure",
-        },
-        version = {
-            type = "structure",
-        },
+        trackingOverrides = M.TrackingOverrides,
+        ephemeris = M.EphemerisResponseData,
+        version = M.ContactVersion,
     },
 }
 
@@ -1742,7 +1587,7 @@ M.DescribeContactVersionInput = {
             },
         },
         versionId = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_label = true,
                 required = true,
@@ -1784,20 +1629,18 @@ M.DescribeContactVersionOutput = {
         errorMessage = {
             type = "string",
         },
-        maximumElevation = {
-            type = "structure",
-        },
+        maximumElevation = M.Elevation,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         region = {
             type = "string",
         },
         dataflowList = {
             type = "list",
-            member_type = "structure",
+            member = M.DataflowDetail,
         },
         visibilityStartTime = {
             type = "timestamp",
@@ -1805,24 +1648,16 @@ M.DescribeContactVersionOutput = {
         visibilityEndTime = {
             type = "timestamp",
         },
-        trackingOverrides = {
-            type = "structure",
-        },
-        ephemeris = {
-            type = "structure",
-        },
-        version = {
-            type = "structure",
-        },
+        trackingOverrides = M.TrackingOverrides,
+        ephemeris = M.EphemerisResponseData,
+        version = M.ContactVersion,
     },
 }
 
 M.EphemerisFilter = {
     type = "union",
     members = {
-        azEl = {
-            type = "structure",
-        },
+        azEl = M.AzElEphemerisFilter,
     },
 }
 
@@ -1830,14 +1665,14 @@ M.ListContactsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
         },
         statusList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1863,9 +1698,7 @@ M.ListContactsInput = {
         missionProfileArn = {
             type = "string",
         },
-        ephemeris = {
-            type = "union",
-        },
+        ephemeris = M.EphemerisFilter,
     },
 }
 
@@ -1902,16 +1735,14 @@ M.ContactData = {
         errorMessage = {
             type = "string",
         },
-        maximumElevation = {
-            type = "structure",
-        },
+        maximumElevation = M.Elevation,
         region = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         visibilityStartTime = {
             type = "timestamp",
@@ -1919,12 +1750,8 @@ M.ContactData = {
         visibilityEndTime = {
             type = "timestamp",
         },
-        ephemeris = {
-            type = "structure",
-        },
-        version = {
-            type = "structure",
-        },
+        ephemeris = M.EphemerisResponseData,
+        version = M.ContactVersion,
     },
 }
 
@@ -1936,7 +1763,7 @@ M.ListContactsOutput = {
         },
         contactList = {
             type = "list",
-            member_type = "structure",
+            member = M.ContactData,
         },
     },
 }
@@ -1952,7 +1779,7 @@ M.ListContactVersionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1974,7 +1801,7 @@ M.ListContactVersionsOutput = {
         },
         contactVersionsList = {
             type = "list",
-            member_type = "structure",
+            member = M.ContactVersion,
         },
     },
 }
@@ -2011,12 +1838,10 @@ M.ReserveContactInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        trackingOverrides = {
-            type = "structure",
-        },
+        trackingOverrides = M.TrackingOverrides,
     },
 }
 
@@ -2027,7 +1852,7 @@ M.ReserveContactOutput = {
             type = "string",
         },
         versionId = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2045,9 +1870,7 @@ M.UpdateContactInput = {
         clientToken = {
             type = "string",
         },
-        trackingOverrides = {
-            type = "structure",
-        },
+        trackingOverrides = M.TrackingOverrides,
         satelliteArn = {
             type = "string",
         },
@@ -2061,7 +1884,7 @@ M.UpdateContactOutput = {
             type = "string",
         },
         versionId = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2080,21 +1903,21 @@ M.CreateDataflowEndpointGroupInput = {
     members = {
         endpointDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.EndpointDetails,
             traits = {
                 required = true,
             },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         contactPrePassDurationSeconds = {
-            type = "number",
+            type = "integer",
         },
         contactPostPassDurationSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2117,12 +1940,9 @@ M.DownlinkAwsGroundStationAgentEndpoint = {
                 required = true,
             },
         },
-        dataflowDetails = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        dataflowDetails = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DownlinkDataflowDetails }),
     },
 }
 
@@ -2135,24 +1955,17 @@ M.UplinkAwsGroundStationAgentEndpoint = {
                 required = true,
             },
         },
-        dataflowDetails = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        dataflowDetails = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.UplinkDataflowDetails }),
     },
 }
 
 M.CreateEndpointDetails = {
     type = "union",
     members = {
-        uplinkAwsGroundStationAgentEndpoint = {
-            type = "structure",
-        },
-        downlinkAwsGroundStationAgentEndpoint = {
-            type = "structure",
-        },
+        uplinkAwsGroundStationAgentEndpoint = M.UplinkAwsGroundStationAgentEndpoint,
+        downlinkAwsGroundStationAgentEndpoint = M.DownlinkAwsGroundStationAgentEndpoint,
     },
 }
 
@@ -2161,21 +1974,21 @@ M.CreateDataflowEndpointGroupV2Input = {
     members = {
         endpoints = {
             type = "list",
-            member_type = "union",
+            member = M.CreateEndpointDetails,
             traits = {
                 required = true,
             },
         },
         contactPrePassDurationSeconds = {
-            type = "number",
+            type = "integer",
         },
         contactPostPassDurationSeconds = {
-            type = "number",
+            type = "integer",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2205,9 +2018,7 @@ M.ServiceQuotaExceededException = {
 M.OEMEphemeris = {
     type = "structure",
     members = {
-        s3Object = {
-            type = "structure",
-        },
+        s3Object = M.S3Object,
         oemData = {
             type = "string",
         },
@@ -2247,24 +2058,19 @@ M.TLEData = {
                 required = true,
             },
         },
-        validTimeRange = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        validTimeRange = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TimeRange }),
     },
 }
 
 M.TLEEphemeris = {
     type = "structure",
     members = {
-        s3Object = {
-            type = "structure",
-        },
+        s3Object = M.S3Object,
         tleData = {
             type = "list",
-            member_type = "structure",
+            member = M.TLEData,
         },
     },
 }
@@ -2272,15 +2078,9 @@ M.TLEEphemeris = {
 M.EphemerisData = {
     type = "union",
     members = {
-        tle = {
-            type = "structure",
-        },
-        oem = {
-            type = "structure",
-        },
-        azEl = {
-            type = "structure",
-        },
+        tle = M.TLEEphemeris,
+        oem = M.OEMEphemeris,
+        azEl = M.AzElEphemeris,
     },
 }
 
@@ -2294,7 +2094,7 @@ M.CreateEphemerisInput = {
             type = "boolean",
         },
         priority = {
-            type = "number",
+            type = "integer",
         },
         expirationTime = {
             type = "timestamp",
@@ -2308,13 +2108,11 @@ M.CreateEphemerisInput = {
         kmsKeyArn = {
             type = "string",
         },
-        ephemeris = {
-            type = "union",
-        },
+        ephemeris = M.EphemerisData,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2353,20 +2151,20 @@ M.CreateMissionProfileInput = {
             },
         },
         contactPrePassDurationSeconds = {
-            type = "number",
+            type = "integer",
         },
         contactPostPassDurationSeconds = {
-            type = "number",
+            type = "integer",
         },
         minimumViableContactDurationSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         dataflowEdges = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
             traits = {
                 required = true,
             },
@@ -2382,12 +2180,10 @@ M.CreateMissionProfileInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        streamsKmsKey = {
-            type = "union",
-        },
+        streamsKmsKey = M.KmsKey,
         streamsKmsRole = {
             type = "string",
         },
@@ -2449,18 +2245,18 @@ M.GetDataflowEndpointGroupOutput = {
         },
         endpointsDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.EndpointDetails,
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         contactPrePassDurationSeconds = {
-            type = "number",
+            type = "integer",
         },
         contactPostPassDurationSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2469,7 +2265,7 @@ M.ListDataflowEndpointGroupsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2503,7 +2299,7 @@ M.ListDataflowEndpointGroupsOutput = {
         },
         dataflowEndpointGroupList = {
             type = "list",
-            member_type = "structure",
+            member = M.DataflowEndpointListItem,
         },
     },
 }
@@ -2654,9 +2450,7 @@ M.EphemerisStatus = {
 M.EphemerisDescription = {
     type = "structure",
     members = {
-        sourceS3Object = {
-            type = "structure",
-        },
+        sourceS3Object = M.S3Object,
         ephemerisData = {
             type = "string",
         },
@@ -2666,15 +2460,9 @@ M.EphemerisDescription = {
 M.EphemerisTypeDescription = {
     type = "union",
     members = {
-        tle = {
-            type = "structure",
-        },
-        oem = {
-            type = "structure",
-        },
-        azEl = {
-            type = "structure",
-        },
+        tle = M.EphemerisDescription,
+        oem = M.EphemerisDescription,
+        azEl = M.EphemerisDescription,
     },
 }
 
@@ -2691,7 +2479,7 @@ M.DescribeEphemerisOutput = {
             type = "string",
         },
         priority = {
-            type = "number",
+            type = "integer",
         },
         creationTime = {
             type = "timestamp",
@@ -2704,18 +2492,16 @@ M.DescribeEphemerisOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        suppliedData = {
-            type = "union",
-        },
+        suppliedData = M.EphemerisTypeDescription,
         invalidReason = {
             type = "string",
         },
         errorReasons = {
             type = "list",
-            member_type = "structure",
+            member = M.EphemerisErrorReason,
         },
     },
 }
@@ -2733,7 +2519,7 @@ M.EphemerisItem = {
             type = "string",
         },
         priority = {
-            type = "number",
+            type = "integer",
         },
         enabled = {
             type = "boolean",
@@ -2744,9 +2530,7 @@ M.EphemerisItem = {
         name = {
             type = "string",
         },
-        sourceS3Object = {
-            type = "structure",
-        },
+        sourceS3Object = M.S3Object,
     },
 }
 
@@ -2773,10 +2557,10 @@ M.ListEphemeridesInput = {
         },
         statusList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2798,7 +2582,7 @@ M.ListEphemeridesOutput = {
         },
         ephemerides = {
             type = "list",
-            member_type = "structure",
+            member = M.EphemerisItem,
         },
     },
 }
@@ -2823,7 +2607,7 @@ M.UpdateEphemerisInput = {
             type = "string",
         },
         priority = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2911,13 +2695,13 @@ M.GetMinuteUsageInput = {
     type = "structure",
     members = {
         month = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         year = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -2932,16 +2716,16 @@ M.GetMinuteUsageOutput = {
             type = "boolean",
         },
         totalReservedMinuteAllocation = {
-            type = "number",
+            type = "integer",
         },
         upcomingMinutesScheduled = {
-            type = "number",
+            type = "integer",
         },
         totalScheduledMinutes = {
-            type = "number",
+            type = "integer",
         },
         estimatedMinutesRemaining = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2975,17 +2759,17 @@ M.GetMissionProfileOutput = {
             type = "string",
         },
         contactPrePassDurationSeconds = {
-            type = "number",
+            type = "integer",
         },
         contactPostPassDurationSeconds = {
-            type = "number",
+            type = "integer",
         },
         minimumViableContactDurationSeconds = {
-            type = "number",
+            type = "integer",
         },
         dataflowEdges = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
         },
         trackingConfigArn = {
             type = "string",
@@ -2995,12 +2779,10 @@ M.GetMissionProfileOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        streamsKmsKey = {
-            type = "union",
-        },
+        streamsKmsKey = M.KmsKey,
         streamsKmsRole = {
             type = "string",
         },
@@ -3030,15 +2812,16 @@ M.GetSatelliteOutput = {
             type = "string",
         },
         noradSatelliteID = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         groundStations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        currentEphemeris = {
-            type = "structure",
-        },
+        currentEphemeris = M.EphemerisMetaData,
     },
 }
 
@@ -3053,7 +2836,7 @@ M.ListAntennasInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3072,7 +2855,7 @@ M.ListAntennasOutput = {
     members = {
         antennaList = {
             type = "list",
-            member_type = "structure",
+            member = M.AntennaListItem,
             traits = {
                 required = true,
             },
@@ -3116,13 +2899,13 @@ M.ListGroundStationReservationsInput = {
         },
         reservationTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "reservationTypes",
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3156,12 +2939,8 @@ M.MaintenanceReservationDetails = {
 M.ReservationDetails = {
     type = "union",
     members = {
-        maintenance = {
-            type = "structure",
-        },
-        contact = {
-            type = "structure",
-        },
+        maintenance = M.MaintenanceReservationDetails,
+        contact = M.ContactReservationDetails,
     },
 }
 
@@ -3198,12 +2977,9 @@ M.GroundStationReservationListItem = {
                 required = true,
             },
         },
-        reservationDetails = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        reservationDetails = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ReservationDetails }),
     },
 }
 
@@ -3212,7 +2988,7 @@ M.ListGroundStationReservationsOutput = {
     members = {
         reservationList = {
             type = "list",
-            member_type = "structure",
+            member = M.GroundStationReservationListItem,
             traits = {
                 required = true,
             },
@@ -3233,7 +3009,7 @@ M.ListGroundStationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3270,7 +3046,7 @@ M.ListGroundStationsOutput = {
         },
         groundStationList = {
             type = "list",
-            member_type = "structure",
+            member = M.GroundStationData,
         },
     },
 }
@@ -3293,8 +3069,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3303,7 +3079,7 @@ M.ListMissionProfilesInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3343,7 +3119,7 @@ M.ListMissionProfilesOutput = {
         },
         missionProfileList = {
             type = "list",
-            member_type = "structure",
+            member = M.MissionProfileListItem,
         },
     },
 }
@@ -3362,17 +3138,17 @@ M.UpdateMissionProfileInput = {
             type = "string",
         },
         contactPrePassDurationSeconds = {
-            type = "number",
+            type = "integer",
         },
         contactPostPassDurationSeconds = {
-            type = "number",
+            type = "integer",
         },
         minimumViableContactDurationSeconds = {
-            type = "number",
+            type = "integer",
         },
         dataflowEdges = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
         },
         trackingConfigArn = {
             type = "string",
@@ -3380,9 +3156,7 @@ M.UpdateMissionProfileInput = {
         telemetrySinkConfigArn = {
             type = "string",
         },
-        streamsKmsKey = {
-            type = "union",
-        },
+        streamsKmsKey = M.KmsKey,
         streamsKmsRole = {
             type = "string",
         },
@@ -3402,7 +3176,7 @@ M.ListSatellitesInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3426,15 +3200,16 @@ M.SatelliteListItem = {
             type = "string",
         },
         noradSatelliteID = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         groundStations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        currentEphemeris = {
-            type = "structure",
-        },
+        currentEphemeris = M.EphemerisMetaData,
     },
 }
 
@@ -3446,7 +3221,7 @@ M.ListSatellitesOutput = {
         },
         satellites = {
             type = "list",
-            member_type = "structure",
+            member = M.SatelliteListItem,
         },
     },
 }
@@ -3463,8 +3238,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3488,7 +3263,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,

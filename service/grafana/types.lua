@@ -59,7 +59,7 @@ M.CreateWorkspaceApiKeyInput = {
             },
         },
         secondsToLive = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -109,7 +109,7 @@ M.InternalServerException = {
             },
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -196,7 +196,7 @@ M.ThrottlingException = {
             type = "string",
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -247,7 +247,7 @@ M.ValidationException = {
         },
         fieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -360,7 +360,7 @@ M.AuthenticationSummary = {
     members = {
         providers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -388,14 +388,14 @@ M.NetworkAccessConfiguration = {
     members = {
         prefixListIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         vpceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -433,14 +433,14 @@ M.VpcConfiguration = {
     members = {
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -462,7 +462,7 @@ M.WorkspaceDescription = {
         },
         dataSources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -502,11 +502,11 @@ M.WorkspaceDescription = {
         },
         notificationDestinations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         organizationalUnits = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         permissionType = {
             type = "string",
@@ -535,23 +535,16 @@ M.WorkspaceDescription = {
         freeTrialExpiration = {
             type = "timestamp",
         },
-        authentication = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        authentication = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AuthenticationSummary }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        vpcConfiguration = {
-            type = "structure",
-        },
-        networkAccessControl = {
-            type = "structure",
-        },
+        vpcConfiguration = M.VpcConfiguration,
+        networkAccessControl = M.NetworkAccessConfiguration,
         grafanaToken = {
             type = "string",
         },
@@ -564,12 +557,9 @@ M.WorkspaceDescription = {
 M.AssociateLicenseOutput = {
     type = "structure",
     members = {
-        workspace = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        workspace = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkspaceDescription }),
     },
 }
 
@@ -612,11 +602,11 @@ M.RoleValues = {
     members = {
         editor = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         admin = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -624,24 +614,20 @@ M.RoleValues = {
 M.SamlConfiguration = {
     type = "structure",
     members = {
-        idpMetadata = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        assertionAttributes = {
-            type = "structure",
-        },
-        roleValues = {
-            type = "structure",
-        },
+        idpMetadata = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IdpMetadata }),
+        assertionAttributes = M.AssertionAttributes,
+        roleValues = M.RoleValues,
         allowedOrganizations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         loginValidityDuration = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -655,9 +641,7 @@ M.SamlAuthentication = {
                 required = true,
             },
         },
-        configuration = {
-            type = "structure",
-        },
+        configuration = M.SamlConfiguration,
     },
 }
 
@@ -666,29 +650,22 @@ M.AuthenticationDescription = {
     members = {
         providers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        saml = {
-            type = "structure",
-        },
-        awsSso = {
-            type = "structure",
-        },
+        saml = M.SamlAuthentication,
+        awsSso = M.AwsSsoAuthentication,
     },
 }
 
 M.DescribeWorkspaceAuthenticationOutput = {
     type = "structure",
     members = {
-        authentication = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        authentication = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AuthenticationDescription }),
     },
 }
 
@@ -704,26 +681,21 @@ M.UpdateWorkspaceAuthenticationInput = {
         },
         authenticationProviders = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        samlConfiguration = {
-            type = "structure",
-        },
+        samlConfiguration = M.SamlConfiguration,
     },
 }
 
 M.UpdateWorkspaceAuthenticationOutput = {
     type = "structure",
     members = {
-        authentication = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        authentication = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AuthenticationDescription }),
     },
 }
 
@@ -804,12 +776,9 @@ M.DisassociateLicenseInput = {
 M.DisassociateLicenseOutput = {
     type = "structure",
     members = {
-        workspace = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        workspace = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkspaceDescription }),
     },
 }
 
@@ -831,8 +800,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -841,7 +810,7 @@ M.ListVersionsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -869,7 +838,7 @@ M.ListVersionsOutput = {
         },
         grafanaVersions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -883,7 +852,7 @@ M.ListPermissionsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -949,12 +918,9 @@ M.User = {
 M.PermissionEntry = {
     type = "structure",
     members = {
-        user = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        user = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.User }),
         role = {
             type = "string",
             traits = {
@@ -972,7 +938,7 @@ M.ListPermissionsOutput = {
         },
         permissions = {
             type = "list",
-            member_type = "structure",
+            member = M.PermissionEntry,
             traits = {
                 required = true,
             },
@@ -1002,7 +968,7 @@ M.UpdateInstruction = {
         },
         users = {
             type = "list",
-            member_type = "structure",
+            member = M.User,
             traits = {
                 required = true,
             },
@@ -1015,7 +981,7 @@ M.UpdatePermissionsInput = {
     members = {
         updateInstructionBatch = {
             type = "list",
-            member_type = "structure",
+            member = M.UpdateInstruction,
             traits = {
                 required = true,
             },
@@ -1034,7 +1000,7 @@ M.UpdateError = {
     type = "structure",
     members = {
         code = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1045,12 +1011,9 @@ M.UpdateError = {
                 required = true,
             },
         },
-        causedBy = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        causedBy = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.UpdateInstruction }),
     },
 }
 
@@ -1059,7 +1022,7 @@ M.UpdatePermissionsOutput = {
     members = {
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.UpdateError,
             traits = {
                 required = true,
             },
@@ -1164,7 +1127,7 @@ M.ListWorkspaceServiceAccountsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1223,7 +1186,7 @@ M.ListWorkspaceServiceAccountsOutput = {
         },
         serviceAccounts = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceAccountSummary,
             traits = {
                 required = true,
             },
@@ -1247,7 +1210,7 @@ M.CreateWorkspaceServiceAccountTokenInput = {
             },
         },
         secondsToLive = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1296,12 +1259,9 @@ M.ServiceAccountTokenSummaryWithKey = {
 M.CreateWorkspaceServiceAccountTokenOutput = {
     type = "structure",
     members = {
-        serviceAccountToken = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        serviceAccountToken = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ServiceAccountTokenSummaryWithKey }),
         serviceAccountId = {
             type = "string",
             traits = {
@@ -1372,7 +1332,7 @@ M.ListWorkspaceServiceAccountTokensInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1441,7 +1401,7 @@ M.ListWorkspaceServiceAccountTokensOutput = {
         },
         serviceAccountTokens = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceAccountTokenSummary,
             traits = {
                 required = true,
             },
@@ -1473,8 +1433,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1498,7 +1458,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -1537,7 +1497,7 @@ M.CreateWorkspaceInput = {
         },
         workspaceDataSources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         workspaceDescription = {
             type = "string",
@@ -1547,36 +1507,32 @@ M.CreateWorkspaceInput = {
         },
         workspaceNotificationDestinations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         workspaceOrganizationalUnits = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         workspaceRoleArn = {
             type = "string",
         },
         authenticationProviders = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        vpcConfiguration = {
-            type = "structure",
-        },
+        vpcConfiguration = M.VpcConfiguration,
         configuration = {
             type = "string",
         },
-        networkAccessControl = {
-            type = "structure",
-        },
+        networkAccessControl = M.NetworkAccessConfiguration,
         grafanaVersion = {
             type = "string",
         },
@@ -1589,12 +1545,9 @@ M.CreateWorkspaceInput = {
 M.CreateWorkspaceOutput = {
     type = "structure",
     members = {
-        workspace = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        workspace = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkspaceDescription }),
     },
 }
 
@@ -1614,12 +1567,9 @@ M.DeleteWorkspaceInput = {
 M.DeleteWorkspaceOutput = {
     type = "structure",
     members = {
-        workspace = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        workspace = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkspaceDescription }),
     },
 }
 
@@ -1639,12 +1589,9 @@ M.DescribeWorkspaceInput = {
 M.DescribeWorkspaceOutput = {
     type = "structure",
     members = {
-        workspace = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        workspace = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkspaceDescription }),
     },
 }
 
@@ -1652,7 +1599,7 @@ M.ListWorkspacesInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1707,7 +1654,7 @@ M.WorkspaceSummary = {
         },
         notificationDestinations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         status = {
             type = "string",
@@ -1715,16 +1662,13 @@ M.WorkspaceSummary = {
                 required = true,
             },
         },
-        authentication = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        authentication = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AuthenticationSummary }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         licenseType = {
             type = "string",
@@ -1740,7 +1684,7 @@ M.ListWorkspacesOutput = {
     members = {
         workspaces = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkspaceSummary,
             traits = {
                 required = true,
             },
@@ -1768,7 +1712,7 @@ M.UpdateWorkspaceInput = {
         },
         workspaceDataSources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         workspaceDescription = {
             type = "string",
@@ -1785,24 +1729,20 @@ M.UpdateWorkspaceInput = {
         },
         workspaceNotificationDestinations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         workspaceOrganizationalUnits = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         workspaceRoleArn = {
             type = "string",
         },
-        vpcConfiguration = {
-            type = "structure",
-        },
+        vpcConfiguration = M.VpcConfiguration,
         removeVpcConfiguration = {
             type = "boolean",
         },
-        networkAccessControl = {
-            type = "structure",
-        },
+        networkAccessControl = M.NetworkAccessConfiguration,
         removeNetworkAccessConfiguration = {
             type = "boolean",
         },
@@ -1812,12 +1752,9 @@ M.UpdateWorkspaceInput = {
 M.UpdateWorkspaceOutput = {
     type = "structure",
     members = {
-        workspace = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        workspace = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkspaceDescription }),
     },
 }
 

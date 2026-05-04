@@ -24,8 +24,8 @@ M.DataQuery = {
         },
         TableConfigurations = {
             type = "map",
-            key_type = "string",
-            value_type = "map",
+            key = { type = "string" },
+            value = { type = "map" },
         },
     },
 }
@@ -103,24 +103,18 @@ M.S3Destination = {
                 required = true,
             },
         },
-        S3OutputConfigurations = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        S3OutputConfigurations = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3OutputConfigurations }),
     },
 }
 
 M.DestinationConfigurations = {
     type = "structure",
     members = {
-        S3Destination = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        S3Destination = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3Destination }),
     },
 }
 
@@ -155,24 +149,15 @@ M.Export = {
         Description = {
             type = "string",
         },
-        DataQuery = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        DestinationConfigurations = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        RefreshCadence = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DataQuery = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataQuery }),
+        DestinationConfigurations = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DestinationConfigurations }),
+        RefreshCadence = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RefreshCadence }),
     },
 }
 
@@ -197,15 +182,12 @@ M.ResourceTag = {
 M.CreateExportInput = {
     type = "structure",
     members = {
-        Export = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Export = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Export }),
         ResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
         },
     },
 }
@@ -322,7 +304,7 @@ M.ValidationException = {
         },
         Fields = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -429,12 +411,8 @@ M.ExportStatus = {
 M.GetExportOutput = {
     type = "structure",
     members = {
-        Export = {
-            type = "structure",
-        },
-        ExportStatus = {
-            type = "structure",
-        },
+        Export = M.Export,
+        ExportStatus = M.ExportStatus,
     },
 }
 
@@ -442,7 +420,10 @@ M.ListExportsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         NextToken = {
             type = "string",
@@ -465,12 +446,9 @@ M.ExportReference = {
                 required = true,
             },
         },
-        ExportStatus = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ExportStatus = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ExportStatus }),
     },
 }
 
@@ -479,7 +457,7 @@ M.ListExportsOutput = {
     members = {
         Exports = {
             type = "list",
-            member_type = "structure",
+            member = M.ExportReference,
         },
         NextToken = {
             type = "string",
@@ -496,12 +474,9 @@ M.UpdateExportInput = {
                 required = true,
             },
         },
-        Export = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Export = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Export }),
     },
 }
 
@@ -578,12 +553,8 @@ M.GetExecutionOutput = {
         ExecutionId = {
             type = "string",
         },
-        Export = {
-            type = "structure",
-        },
-        ExecutionStatus = {
-            type = "structure",
-        },
+        Export = M.Export,
+        ExecutionStatus = M.ExecutionStatus,
     },
 }
 
@@ -598,8 +569,8 @@ M.GetTableInput = {
         },
         TableProperties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -630,12 +601,12 @@ M.GetTableOutput = {
         },
         TableProperties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Schema = {
             type = "list",
-            member_type = "structure",
+            member = M.Column,
         },
     },
 }
@@ -650,7 +621,10 @@ M.ListExecutionsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         NextToken = {
             type = "string",
@@ -667,12 +641,9 @@ M.ExecutionReference = {
                 required = true,
             },
         },
-        ExecutionStatus = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ExecutionStatus = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ExecutionStatus }),
     },
 }
 
@@ -681,7 +652,7 @@ M.ListExecutionsOutput = {
     members = {
         Executions = {
             type = "list",
-            member_type = "structure",
+            member = M.ExecutionReference,
         },
         NextToken = {
             type = "string",
@@ -696,7 +667,10 @@ M.ListTablesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -709,7 +683,7 @@ M.TablePropertyDescription = {
         },
         ValidValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DefaultValue = {
             type = "string",
@@ -731,7 +705,7 @@ M.Table = {
         },
         TableProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.TablePropertyDescription,
         },
     },
 }
@@ -741,7 +715,7 @@ M.ListTablesOutput = {
     members = {
         Tables = {
             type = "list",
-            member_type = "structure",
+            member = M.Table,
         },
         NextToken = {
             type = "string",
@@ -759,7 +733,10 @@ M.ListTagsForResourceInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         NextToken = {
             type = "string",
@@ -772,7 +749,7 @@ M.ListTagsForResourceOutput = {
     members = {
         ResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
         },
         NextToken = {
             type = "string",
@@ -791,7 +768,7 @@ M.TagResourceInput = {
         },
         ResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
             traits = {
                 required = true,
             },
@@ -814,7 +791,7 @@ M.UntagResourceInput = {
         },
         ResourceTagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },

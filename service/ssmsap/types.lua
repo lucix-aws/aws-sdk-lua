@@ -54,7 +54,7 @@ M.Application = {
         },
         Components = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         LastUpdated = {
             type = "timestamp",
@@ -64,7 +64,7 @@ M.Application = {
         },
         AssociatedApplicationArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -114,8 +114,8 @@ M.ApplicationSummary = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -146,7 +146,7 @@ M.AssociatedHost = {
         },
         IpAddresses = {
             type = "list",
-            member_type = "structure",
+            member = M.IpAddressMember,
         },
         OsVersion = {
             type = "string",
@@ -310,7 +310,7 @@ M.Component = {
         },
         ChildComponents = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ApplicationId = {
             type = "string",
@@ -333,26 +333,20 @@ M.Component = {
         HdbVersion = {
             type = "string",
         },
-        Resilience = {
-            type = "structure",
-        },
-        AssociatedHost = {
-            type = "structure",
-        },
+        Resilience = M.Resilience,
+        AssociatedHost = M.AssociatedHost,
         Databases = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Hosts = {
             type = "list",
-            member_type = "structure",
+            member = M.Host,
         },
         PrimaryHost = {
             type = "string",
         },
-        DatabaseConnection = {
-            type = "structure",
-        },
+        DatabaseConnection = M.DatabaseConnection,
         LastUpdated = {
             type = "timestamp",
         },
@@ -400,8 +394,8 @@ M.ComponentSummary = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Arn = {
             type = "string",
@@ -429,7 +423,7 @@ M.ConfigurationCheckDefinition = {
         },
         ApplicableApplicationTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -438,19 +432,19 @@ M.RuleStatusCounts = {
     type = "structure",
     members = {
         Failed = {
-            type = "number",
+            type = "integer",
         },
         Warning = {
-            type = "number",
+            type = "integer",
         },
         Info = {
-            type = "number",
+            type = "integer",
         },
         Passed = {
-            type = "number",
+            type = "integer",
         },
         Unknown = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -491,9 +485,7 @@ M.ConfigurationCheckOperation = {
         EndTime = {
             type = "timestamp",
         },
-        RuleStatusCounts = {
-            type = "structure",
-        },
+        RuleStatusCounts = M.RuleStatusCounts,
     },
 }
 
@@ -542,7 +534,7 @@ M.Database = {
         },
         Credentials = {
             type = "list",
-            member_type = "structure",
+            member = M.ApplicationCredential,
         },
         DatabaseId = {
             type = "string",
@@ -563,14 +555,14 @@ M.Database = {
             type = "string",
         },
         SQLPort = {
-            type = "number",
+            type = "integer",
         },
         LastUpdated = {
             type = "timestamp",
         },
         ConnectedComponentArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -595,8 +587,8 @@ M.DatabaseSummary = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -736,13 +728,11 @@ M.GetApplicationInput = {
 M.GetApplicationOutput = {
     type = "structure",
     members = {
-        Application = {
-            type = "structure",
-        },
+        Application = M.Application,
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -768,13 +758,11 @@ M.GetComponentInput = {
 M.GetComponentOutput = {
     type = "structure",
     members = {
-        Component = {
-            type = "structure",
-        },
+        Component = M.Component,
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -794,9 +782,7 @@ M.GetConfigurationCheckOperationInput = {
 M.GetConfigurationCheckOperationOutput = {
     type = "structure",
     members = {
-        ConfigurationCheckOperation = {
-            type = "structure",
-        },
+        ConfigurationCheckOperation = M.ConfigurationCheckOperation,
     },
 }
 
@@ -821,13 +807,11 @@ M.GetDatabaseInput = {
 M.GetDatabaseOutput = {
     type = "structure",
     members = {
-        Database = {
-            type = "structure",
-        },
+        Database = M.Database,
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -861,8 +845,8 @@ M.Operation = {
         },
         Properties = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ResourceType = {
             type = "string",
@@ -888,9 +872,7 @@ M.Operation = {
 M.GetOperationOutput = {
     type = "structure",
     members = {
-        Operation = {
-            type = "structure",
-        },
+        Operation = M.Operation,
     },
 }
 
@@ -925,11 +907,14 @@ M.ListApplicationsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
     },
 }
@@ -939,7 +924,7 @@ M.ListApplicationsOutput = {
     members = {
         Applications = {
             type = "list",
-            member_type = "structure",
+            member = M.ApplicationSummary,
         },
         NextToken = {
             type = "string",
@@ -957,7 +942,10 @@ M.ListComponentsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -967,7 +955,7 @@ M.ListComponentsOutput = {
     members = {
         Components = {
             type = "list",
-            member_type = "structure",
+            member = M.ComponentSummary,
         },
         NextToken = {
             type = "string",
@@ -979,7 +967,10 @@ M.ListConfigurationCheckDefinitionsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         NextToken = {
             type = "string",
@@ -992,7 +983,7 @@ M.ListConfigurationCheckDefinitionsOutput = {
     members = {
         ConfigurationChecks = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigurationCheckDefinition,
         },
         NextToken = {
             type = "string",
@@ -1011,16 +1002,22 @@ M.ListConfigurationCheckOperationsInput = {
         },
         ListMode = {
             type = "string",
+            traits = {
+                default = "LATEST_PER_CHECK",
+            },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         NextToken = {
             type = "string",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
     },
 }
@@ -1030,7 +1027,7 @@ M.ListConfigurationCheckOperationsOutput = {
     members = {
         ConfigurationCheckOperations = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigurationCheckOperation,
         },
         NextToken = {
             type = "string",
@@ -1051,7 +1048,10 @@ M.ListDatabasesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -1061,7 +1061,7 @@ M.ListDatabasesOutput = {
     members = {
         Databases = {
             type = "list",
-            member_type = "structure",
+            member = M.DatabaseSummary,
         },
         NextToken = {
             type = "string",
@@ -1079,14 +1079,17 @@ M.ListOperationEventsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         NextToken = {
             type = "string",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
     },
 }
@@ -1115,9 +1118,7 @@ M.OperationEvent = {
         Description = {
             type = "string",
         },
-        Resource = {
-            type = "structure",
-        },
+        Resource = M.Resource,
         Status = {
             type = "string",
         },
@@ -1135,7 +1136,7 @@ M.ListOperationEventsOutput = {
     members = {
         OperationEvents = {
             type = "list",
-            member_type = "structure",
+            member = M.OperationEvent,
         },
         NextToken = {
             type = "string",
@@ -1153,14 +1154,17 @@ M.ListOperationsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         NextToken = {
             type = "string",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
     },
 }
@@ -1170,7 +1174,7 @@ M.ListOperationsOutput = {
     members = {
         Operations = {
             type = "list",
-            member_type = "structure",
+            member = M.Operation,
         },
         NextToken = {
             type = "string",
@@ -1188,7 +1192,10 @@ M.ListSubCheckResultsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         NextToken = {
             type = "string",
@@ -1210,7 +1217,7 @@ M.SubCheckResult = {
         },
         References = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1220,7 +1227,7 @@ M.ListSubCheckResultsOutput = {
     members = {
         SubCheckResults = {
             type = "list",
-            member_type = "structure",
+            member = M.SubCheckResult,
         },
         NextToken = {
             type = "string",
@@ -1238,7 +1245,10 @@ M.ListSubCheckRuleResultsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         NextToken = {
             type = "string",
@@ -1271,8 +1281,8 @@ M.RuleResult = {
         },
         Metadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1282,7 +1292,7 @@ M.ListSubCheckRuleResultsOutput = {
     members = {
         RuleResults = {
             type = "list",
-            member_type = "structure",
+            member = M.RuleResult,
         },
         NextToken = {
             type = "string",
@@ -1308,8 +1318,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1364,7 +1374,7 @@ M.RegisterApplicationInput = {
         },
         Instances = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1377,19 +1387,22 @@ M.RegisterApplicationInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Credentials = {
             type = "list",
-            member_type = "structure",
+            member = M.ApplicationCredential,
+            traits = {
+                default = {},
+            },
         },
         DatabaseArn = {
             type = "string",
         },
         ComponentsInfo = {
             type = "list",
-            member_type = "structure",
+            member = M.ComponentInfo,
         },
     },
 }
@@ -1397,9 +1410,7 @@ M.RegisterApplicationInput = {
 M.RegisterApplicationOutput = {
     type = "structure",
     members = {
-        Application = {
-            type = "structure",
-        },
+        Application = M.Application,
         OperationId = {
             type = "string",
         },
@@ -1459,7 +1470,7 @@ M.StartConfigurationChecksInput = {
         },
         ConfigurationCheckIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1469,7 +1480,7 @@ M.StartConfigurationChecksOutput = {
     members = {
         ConfigurationCheckOperations = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigurationCheckOperation,
         },
     },
 }
@@ -1513,8 +1524,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1538,7 +1549,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -1562,15 +1573,13 @@ M.UpdateApplicationSettingsInput = {
         },
         CredentialsToAddOrUpdate = {
             type = "list",
-            member_type = "structure",
+            member = M.ApplicationCredential,
         },
         CredentialsToRemove = {
             type = "list",
-            member_type = "structure",
+            member = M.ApplicationCredential,
         },
-        Backint = {
-            type = "structure",
-        },
+        Backint = M.BackintConfig,
         DatabaseArn = {
             type = "string",
         },
@@ -1585,7 +1594,7 @@ M.UpdateApplicationSettingsOutput = {
         },
         OperationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }

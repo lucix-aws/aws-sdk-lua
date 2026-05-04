@@ -134,7 +134,7 @@ M.BatchGetGraphMemberDatasourcesInput = {
         },
         AccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -174,8 +174,8 @@ M.MembershipDatasources = {
         },
         DatasourcePackageIngestHistory = {
             type = "map",
-            key_type = "string",
-            value_type = "map",
+            key = { type = "string" },
+            value = { type = "map" },
         },
     },
 }
@@ -197,11 +197,11 @@ M.BatchGetGraphMemberDatasourcesOutput = {
     members = {
         MemberDatasources = {
             type = "list",
-            member_type = "structure",
+            member = M.MembershipDatasources,
         },
         UnprocessedAccounts = {
             type = "list",
-            member_type = "structure",
+            member = M.UnprocessedAccount,
         },
     },
 }
@@ -211,7 +211,7 @@ M.BatchGetMembershipDatasourcesInput = {
     members = {
         GraphArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -236,11 +236,11 @@ M.BatchGetMembershipDatasourcesOutput = {
     members = {
         MembershipDatasources = {
             type = "list",
-            member_type = "structure",
+            member = M.MembershipDatasources,
         },
         UnprocessedGraphs = {
             type = "list",
-            member_type = "structure",
+            member = M.UnprocessedGraph,
         },
     },
 }
@@ -250,8 +250,8 @@ M.CreateGraphInput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -274,7 +274,7 @@ M.ServiceQuotaExceededException = {
         },
         Resources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -293,10 +293,13 @@ M.CreateMembersInput = {
         },
         DisableEmailNotification = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Accounts = {
             type = "list",
-            member_type = "structure",
+            member = M.Account,
             traits = {
                 required = true,
             },
@@ -326,7 +329,7 @@ M.DatasourcePackageUsageInfo = {
     type = "structure",
     members = {
         VolumeUsageInBytes = {
-            type = "number",
+            type = "long",
         },
         VolumeUsageUpdateTime = {
             type = "timestamp",
@@ -365,13 +368,13 @@ M.MemberDetail = {
             type = "timestamp",
         },
         VolumeUsageInBytes = {
-            type = "number",
+            type = "long",
         },
         VolumeUsageUpdatedTime = {
             type = "timestamp",
         },
         PercentOfGraphUtilization = {
-            type = "number",
+            type = "double",
         },
         PercentOfGraphUtilizationUpdatedTime = {
             type = "timestamp",
@@ -381,13 +384,13 @@ M.MemberDetail = {
         },
         VolumeUsageByDatasourcePackage = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.DatasourcePackageUsageInfo,
         },
         DatasourcePackageIngestStates = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -397,11 +400,11 @@ M.CreateMembersOutput = {
     members = {
         Members = {
             type = "list",
-            member_type = "structure",
+            member = M.MemberDetail,
         },
         UnprocessedAccounts = {
             type = "list",
-            member_type = "structure",
+            member = M.UnprocessedAccount,
         },
     },
 }
@@ -433,7 +436,7 @@ M.DeleteMembersInput = {
         },
         AccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -446,11 +449,11 @@ M.DeleteMembersOutput = {
     members = {
         AccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         UnprocessedAccounts = {
             type = "list",
-            member_type = "structure",
+            member = M.UnprocessedAccount,
         },
     },
 }
@@ -472,6 +475,9 @@ M.DescribeOrganizationConfigurationOutput = {
     members = {
         AutoEnable = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -615,7 +621,7 @@ M.GetMembersInput = {
         },
         AccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -628,11 +634,11 @@ M.GetMembersOutput = {
     members = {
         MemberDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.MemberDetail,
         },
         UnprocessedAccounts = {
             type = "list",
-            member_type = "structure",
+            member = M.UnprocessedAccount,
         },
     },
 }
@@ -650,7 +656,7 @@ M.ListDatasourcePackagesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -663,8 +669,8 @@ M.DatasourcePackageIngestDetail = {
         },
         LastIngestStateChange = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.TimestampForCollection,
         },
     },
 }
@@ -674,8 +680,8 @@ M.ListDatasourcePackagesOutput = {
     members = {
         DatasourcePackages = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.DatasourcePackageIngestDetail,
         },
         NextToken = {
             type = "string",
@@ -690,7 +696,7 @@ M.ListGraphsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -712,7 +718,7 @@ M.ListGraphsOutput = {
     members = {
         GraphList = {
             type = "list",
-            member_type = "structure",
+            member = M.Graph,
         },
         NextToken = {
             type = "string",
@@ -753,7 +759,7 @@ M.ListIndicatorsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -790,7 +796,7 @@ M.ImpossibleTravelDetail = {
             type = "string",
         },
         HourlyTimeDelta = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -803,6 +809,9 @@ M.NewAsoDetail = {
         },
         IsNewForEntireAccount = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -818,6 +827,9 @@ M.NewGeolocationDetail = {
         },
         IsNewForEntireAccount = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -830,6 +842,9 @@ M.NewUserAgentDetail = {
         },
         IsNewForEntireAccount = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -877,10 +892,16 @@ M.TTPsObservedDetail = {
             type = "string",
         },
         APISuccessCount = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         APIFailureCount = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -888,30 +909,14 @@ M.TTPsObservedDetail = {
 M.IndicatorDetail = {
     type = "structure",
     members = {
-        TTPsObservedDetail = {
-            type = "structure",
-        },
-        ImpossibleTravelDetail = {
-            type = "structure",
-        },
-        FlaggedIpAddressDetail = {
-            type = "structure",
-        },
-        NewGeolocationDetail = {
-            type = "structure",
-        },
-        NewAsoDetail = {
-            type = "structure",
-        },
-        NewUserAgentDetail = {
-            type = "structure",
-        },
-        RelatedFindingDetail = {
-            type = "structure",
-        },
-        RelatedFindingGroupDetail = {
-            type = "structure",
-        },
+        TTPsObservedDetail = M.TTPsObservedDetail,
+        ImpossibleTravelDetail = M.ImpossibleTravelDetail,
+        FlaggedIpAddressDetail = M.FlaggedIpAddressDetail,
+        NewGeolocationDetail = M.NewGeolocationDetail,
+        NewAsoDetail = M.NewAsoDetail,
+        NewUserAgentDetail = M.NewUserAgentDetail,
+        RelatedFindingDetail = M.RelatedFindingDetail,
+        RelatedFindingGroupDetail = M.RelatedFindingGroupDetail,
     },
 }
 
@@ -921,9 +926,7 @@ M.Indicator = {
         IndicatorType = {
             type = "string",
         },
-        IndicatorDetail = {
-            type = "structure",
-        },
+        IndicatorDetail = M.IndicatorDetail,
     },
 }
 
@@ -941,7 +944,7 @@ M.ListIndicatorsOutput = {
         },
         Indicators = {
             type = "list",
-            member_type = "structure",
+            member = M.Indicator,
         },
     },
 }
@@ -979,21 +982,11 @@ M.StringFilter = {
 M.FilterCriteria = {
     type = "structure",
     members = {
-        Severity = {
-            type = "structure",
-        },
-        Status = {
-            type = "structure",
-        },
-        State = {
-            type = "structure",
-        },
-        EntityArn = {
-            type = "structure",
-        },
-        CreatedTime = {
-            type = "structure",
-        },
+        Severity = M.StringFilter,
+        Status = M.StringFilter,
+        State = M.StringFilter,
+        EntityArn = M.StringFilter,
+        CreatedTime = M.DateFilter,
     },
 }
 
@@ -1033,14 +1026,10 @@ M.ListInvestigationsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
-        FilterCriteria = {
-            type = "structure",
-        },
-        SortCriteria = {
-            type = "structure",
-        },
+        FilterCriteria = M.FilterCriteria,
+        SortCriteria = M.SortCriteria,
     },
 }
 
@@ -1076,7 +1065,7 @@ M.ListInvestigationsOutput = {
     members = {
         InvestigationDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.InvestigationDetail,
         },
         NextToken = {
             type = "string",
@@ -1091,7 +1080,7 @@ M.ListInvitationsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1101,7 +1090,7 @@ M.ListInvitationsOutput = {
     members = {
         Invitations = {
             type = "list",
-            member_type = "structure",
+            member = M.MemberDetail,
         },
         NextToken = {
             type = "string",
@@ -1122,7 +1111,7 @@ M.ListMembersInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1132,7 +1121,7 @@ M.ListMembersOutput = {
     members = {
         MemberDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.MemberDetail,
         },
         NextToken = {
             type = "string",
@@ -1147,7 +1136,7 @@ M.ListOrganizationAdminAccountsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1157,7 +1146,7 @@ M.ListOrganizationAdminAccountsOutput = {
     members = {
         Administrators = {
             type = "list",
-            member_type = "structure",
+            member = M.Administrator,
         },
         NextToken = {
             type = "string",
@@ -1183,8 +1172,8 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1278,8 +1267,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1303,7 +1292,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -1327,7 +1316,7 @@ M.UpdateDatasourcePackagesInput = {
         },
         DatasourcePackages = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1378,6 +1367,9 @@ M.UpdateOrganizationConfigurationInput = {
         },
         AutoEnable = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }

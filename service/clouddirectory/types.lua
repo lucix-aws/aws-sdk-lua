@@ -58,18 +58,12 @@ M.TypedAttributeValue = {
 M.AttributeKeyAndValue = {
     type = "structure",
     members = {
-        Key = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Value = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        Key = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AttributeKey }),
+        Value = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TypedAttributeValue }),
     },
 }
 
@@ -104,22 +98,16 @@ M.AddFacetToObjectInput = {
                 required = true,
             },
         },
-        SchemaFacet = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SchemaFacet = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SchemaFacet }),
         ObjectAttributeList = {
             type = "list",
-            member_type = "structure",
+            member = M.AttributeKeyAndValue,
         },
-        ObjectReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ObjectReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
     },
 }
 
@@ -268,18 +256,12 @@ M.AttachObjectInput = {
                 required = true,
             },
         },
-        ParentReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ChildReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ParentReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
+        ChildReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
         LinkName = {
             type = "string",
             traits = {
@@ -318,18 +300,12 @@ M.AttachPolicyInput = {
                 required = true,
             },
         },
-        PolicyReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ObjectReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        PolicyReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
+        ObjectReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
     },
 }
 
@@ -357,18 +333,12 @@ M.AttachToIndexInput = {
                 required = true,
             },
         },
-        IndexReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        TargetReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        IndexReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
+        TargetReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
     },
 }
 
@@ -410,12 +380,9 @@ M.AttributeNameAndValue = {
                 required = true,
             },
         },
-        Value = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        Value = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TypedAttributeValue }),
     },
 }
 
@@ -447,27 +414,18 @@ M.AttachTypedLinkInput = {
                 required = true,
             },
         },
-        SourceObjectReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        TargetObjectReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        TypedLinkFacet = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SourceObjectReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
+        TargetObjectReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
+        TypedLinkFacet = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TypedLinkSchemaAndFacetName }),
         Attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.AttributeNameAndValue,
             traits = {
                 required = true,
             },
@@ -478,27 +436,18 @@ M.AttachTypedLinkInput = {
 M.TypedLinkSpecifier = {
     type = "structure",
     members = {
-        TypedLinkFacet = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        SourceObjectReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        TargetObjectReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TypedLinkFacet = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TypedLinkSchemaAndFacetName }),
+        SourceObjectReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
+        TargetObjectReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
         IdentityAttributeValues = {
             type = "list",
-            member_type = "structure",
+            member = M.AttributeNameAndValue,
             traits = {
                 required = true,
             },
@@ -509,9 +458,7 @@ M.TypedLinkSpecifier = {
 M.AttachTypedLinkOutput = {
     type = "structure",
     members = {
-        TypedLinkSpecifier = {
-            type = "structure",
-        },
+        TypedLinkSpecifier = M.TypedLinkSpecifier,
     },
 }
 
@@ -523,15 +470,12 @@ M.ConsistencyLevel = {
 M.BatchGetLinkAttributes = {
     type = "structure",
     members = {
-        TypedLinkSpecifier = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TypedLinkSpecifier = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TypedLinkSpecifier }),
         AttributeNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -542,21 +486,15 @@ M.BatchGetLinkAttributes = {
 M.BatchGetObjectAttributes = {
     type = "structure",
     members = {
-        ObjectReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        SchemaFacet = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ObjectReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
+        SchemaFacet = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SchemaFacet }),
         AttributeNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -567,29 +505,23 @@ M.BatchGetObjectAttributes = {
 M.BatchGetObjectInformation = {
     type = "structure",
     members = {
-        ObjectReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ObjectReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
     },
 }
 
 M.BatchListAttachedIndices = {
     type = "structure",
     members = {
-        TargetReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TargetReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -611,18 +543,14 @@ M.TypedAttributeValueRange = {
                 required = true,
             },
         },
-        StartValue = {
-            type = "union",
-        },
+        StartValue = M.TypedAttributeValue,
         EndMode = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        EndValue = {
-            type = "union",
-        },
+        EndValue = M.TypedAttributeValue,
     },
 }
 
@@ -632,36 +560,28 @@ M.TypedLinkAttributeRange = {
         AttributeName = {
             type = "string",
         },
-        Range = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Range = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TypedAttributeValueRange }),
     },
 }
 
 M.BatchListIncomingTypedLinks = {
     type = "structure",
     members = {
-        ObjectReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ObjectReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
         FilterAttributeRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.TypedLinkAttributeRange,
         },
-        FilterTypedLink = {
-            type = "structure",
-        },
+        FilterTypedLink = M.TypedLinkSchemaAndFacetName,
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -669,12 +589,8 @@ M.BatchListIncomingTypedLinks = {
 M.ObjectAttributeRange = {
     type = "structure",
     members = {
-        AttributeKey = {
-            type = "structure",
-        },
-        Range = {
-            type = "structure",
-        },
+        AttributeKey = M.AttributeKey,
+        Range = M.TypedAttributeValueRange,
     },
 }
 
@@ -683,16 +599,13 @@ M.BatchListIndex = {
     members = {
         RangesOnIndexedValues = {
             type = "list",
-            member_type = "structure",
+            member = M.ObjectAttributeRange,
         },
-        IndexReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        IndexReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -703,38 +616,30 @@ M.BatchListIndex = {
 M.BatchListObjectAttributes = {
     type = "structure",
     members = {
-        ObjectReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ObjectReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
-        FacetFilter = {
-            type = "structure",
-        },
+        FacetFilter = M.SchemaFacet,
     },
 }
 
 M.BatchListObjectChildren = {
     type = "structure",
     members = {
-        ObjectReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ObjectReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -742,17 +647,14 @@ M.BatchListObjectChildren = {
 M.BatchListObjectParentPaths = {
     type = "structure",
     members = {
-        ObjectReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ObjectReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -760,17 +662,14 @@ M.BatchListObjectParentPaths = {
 M.BatchListObjectParents = {
     type = "structure",
     members = {
-        ObjectReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ObjectReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -778,17 +677,14 @@ M.BatchListObjectParents = {
 M.BatchListObjectPolicies = {
     type = "structure",
     members = {
-        ObjectReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ObjectReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -796,24 +692,19 @@ M.BatchListObjectPolicies = {
 M.BatchListOutgoingTypedLinks = {
     type = "structure",
     members = {
-        ObjectReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ObjectReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
         FilterAttributeRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.TypedLinkAttributeRange,
         },
-        FilterTypedLink = {
-            type = "structure",
-        },
+        FilterTypedLink = M.TypedLinkSchemaAndFacetName,
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -821,17 +712,14 @@ M.BatchListOutgoingTypedLinks = {
 M.BatchListPolicyAttachments = {
     type = "structure",
     members = {
-        PolicyReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        PolicyReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -839,17 +727,14 @@ M.BatchListPolicyAttachments = {
 M.BatchLookupPolicy = {
     type = "structure",
     members = {
-        ObjectReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ObjectReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -857,48 +742,20 @@ M.BatchLookupPolicy = {
 M.BatchReadOperation = {
     type = "structure",
     members = {
-        ListObjectAttributes = {
-            type = "structure",
-        },
-        ListObjectChildren = {
-            type = "structure",
-        },
-        ListAttachedIndices = {
-            type = "structure",
-        },
-        ListObjectParentPaths = {
-            type = "structure",
-        },
-        GetObjectInformation = {
-            type = "structure",
-        },
-        GetObjectAttributes = {
-            type = "structure",
-        },
-        ListObjectParents = {
-            type = "structure",
-        },
-        ListObjectPolicies = {
-            type = "structure",
-        },
-        ListPolicyAttachments = {
-            type = "structure",
-        },
-        LookupPolicy = {
-            type = "structure",
-        },
-        ListIndex = {
-            type = "structure",
-        },
-        ListOutgoingTypedLinks = {
-            type = "structure",
-        },
-        ListIncomingTypedLinks = {
-            type = "structure",
-        },
-        GetLinkAttributes = {
-            type = "structure",
-        },
+        ListObjectAttributes = M.BatchListObjectAttributes,
+        ListObjectChildren = M.BatchListObjectChildren,
+        ListAttachedIndices = M.BatchListAttachedIndices,
+        ListObjectParentPaths = M.BatchListObjectParentPaths,
+        GetObjectInformation = M.BatchGetObjectInformation,
+        GetObjectAttributes = M.BatchGetObjectAttributes,
+        ListObjectParents = M.BatchListObjectParents,
+        ListObjectPolicies = M.BatchListObjectPolicies,
+        ListPolicyAttachments = M.BatchListPolicyAttachments,
+        LookupPolicy = M.BatchLookupPolicy,
+        ListIndex = M.BatchListIndex,
+        ListOutgoingTypedLinks = M.BatchListOutgoingTypedLinks,
+        ListIncomingTypedLinks = M.BatchListIncomingTypedLinks,
+        GetLinkAttributes = M.BatchGetLinkAttributes,
     },
 }
 
@@ -914,7 +771,7 @@ M.BatchReadInput = {
         },
         Operations = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchReadOperation,
             traits = {
                 required = true,
             },
@@ -961,7 +818,7 @@ M.BatchGetLinkAttributesResponse = {
     members = {
         Attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.AttributeKeyAndValue,
         },
     },
 }
@@ -971,7 +828,7 @@ M.BatchGetObjectAttributesResponse = {
     members = {
         Attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.AttributeKeyAndValue,
         },
     },
 }
@@ -981,7 +838,7 @@ M.BatchGetObjectInformationResponse = {
     members = {
         SchemaFacets = {
             type = "list",
-            member_type = "structure",
+            member = M.SchemaFacet,
         },
         ObjectIdentifier = {
             type = "string",
@@ -994,7 +851,7 @@ M.IndexAttachment = {
     members = {
         IndexedAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.AttributeKeyAndValue,
         },
         ObjectIdentifier = {
             type = "string",
@@ -1007,7 +864,7 @@ M.BatchListAttachedIndicesResponse = {
     members = {
         IndexAttachments = {
             type = "list",
-            member_type = "structure",
+            member = M.IndexAttachment,
         },
         NextToken = {
             type = "string",
@@ -1020,7 +877,7 @@ M.BatchListIncomingTypedLinksResponse = {
     members = {
         LinkSpecifiers = {
             type = "list",
-            member_type = "structure",
+            member = M.TypedLinkSpecifier,
         },
         NextToken = {
             type = "string",
@@ -1033,7 +890,7 @@ M.BatchListIndexResponse = {
     members = {
         IndexAttachments = {
             type = "list",
-            member_type = "structure",
+            member = M.IndexAttachment,
         },
         NextToken = {
             type = "string",
@@ -1046,7 +903,7 @@ M.BatchListObjectAttributesResponse = {
     members = {
         Attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.AttributeKeyAndValue,
         },
         NextToken = {
             type = "string",
@@ -1059,8 +916,8 @@ M.BatchListObjectChildrenResponse = {
     members = {
         Children = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -1076,7 +933,7 @@ M.PathToObjectIdentifiers = {
         },
         ObjectIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1086,7 +943,7 @@ M.BatchListObjectParentPathsResponse = {
     members = {
         PathToObjectIdentifiersList = {
             type = "list",
-            member_type = "structure",
+            member = M.PathToObjectIdentifiers,
         },
         NextToken = {
             type = "string",
@@ -1111,7 +968,7 @@ M.BatchListObjectParentsResponse = {
     members = {
         ParentLinks = {
             type = "list",
-            member_type = "structure",
+            member = M.ObjectIdentifierAndLinkNameTuple,
         },
         NextToken = {
             type = "string",
@@ -1124,7 +981,7 @@ M.BatchListObjectPoliciesResponse = {
     members = {
         AttachedPolicyIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -1137,7 +994,7 @@ M.BatchListOutgoingTypedLinksResponse = {
     members = {
         TypedLinkSpecifiers = {
             type = "list",
-            member_type = "structure",
+            member = M.TypedLinkSpecifier,
         },
         NextToken = {
             type = "string",
@@ -1150,7 +1007,7 @@ M.BatchListPolicyAttachmentsResponse = {
     members = {
         ObjectIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -1181,7 +1038,7 @@ M.PolicyToPath = {
         },
         Policies = {
             type = "list",
-            member_type = "structure",
+            member = M.PolicyAttachment,
         },
     },
 }
@@ -1191,7 +1048,7 @@ M.BatchLookupPolicyResponse = {
     members = {
         PolicyToPathList = {
             type = "list",
-            member_type = "structure",
+            member = M.PolicyToPath,
         },
         NextToken = {
             type = "string",
@@ -1202,60 +1059,28 @@ M.BatchLookupPolicyResponse = {
 M.BatchReadSuccessfulResponse = {
     type = "structure",
     members = {
-        ListObjectAttributes = {
-            type = "structure",
-        },
-        ListObjectChildren = {
-            type = "structure",
-        },
-        GetObjectInformation = {
-            type = "structure",
-        },
-        GetObjectAttributes = {
-            type = "structure",
-        },
-        ListAttachedIndices = {
-            type = "structure",
-        },
-        ListObjectParentPaths = {
-            type = "structure",
-        },
-        ListObjectPolicies = {
-            type = "structure",
-        },
-        ListPolicyAttachments = {
-            type = "structure",
-        },
-        LookupPolicy = {
-            type = "structure",
-        },
-        ListIndex = {
-            type = "structure",
-        },
-        ListOutgoingTypedLinks = {
-            type = "structure",
-        },
-        ListIncomingTypedLinks = {
-            type = "structure",
-        },
-        GetLinkAttributes = {
-            type = "structure",
-        },
-        ListObjectParents = {
-            type = "structure",
-        },
+        ListObjectAttributes = M.BatchListObjectAttributesResponse,
+        ListObjectChildren = M.BatchListObjectChildrenResponse,
+        GetObjectInformation = M.BatchGetObjectInformationResponse,
+        GetObjectAttributes = M.BatchGetObjectAttributesResponse,
+        ListAttachedIndices = M.BatchListAttachedIndicesResponse,
+        ListObjectParentPaths = M.BatchListObjectParentPathsResponse,
+        ListObjectPolicies = M.BatchListObjectPoliciesResponse,
+        ListPolicyAttachments = M.BatchListPolicyAttachmentsResponse,
+        LookupPolicy = M.BatchLookupPolicyResponse,
+        ListIndex = M.BatchListIndexResponse,
+        ListOutgoingTypedLinks = M.BatchListOutgoingTypedLinksResponse,
+        ListIncomingTypedLinks = M.BatchListIncomingTypedLinksResponse,
+        GetLinkAttributes = M.BatchGetLinkAttributesResponse,
+        ListObjectParents = M.BatchListObjectParentsResponse,
     },
 }
 
 M.BatchReadOperationResponse = {
     type = "structure",
     members = {
-        SuccessfulResponse = {
-            type = "structure",
-        },
-        ExceptionResponse = {
-            type = "structure",
-        },
+        SuccessfulResponse = M.BatchReadSuccessfulResponse,
+        ExceptionResponse = M.BatchReadException,
     },
 }
 
@@ -1264,7 +1089,7 @@ M.BatchReadOutput = {
     members = {
         Responses = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchReadOperationResponse,
         },
     },
 }
@@ -1295,7 +1120,10 @@ M.BatchWriteException = {
     error = "client",
     members = {
         Index = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         Type = {
             type = "string",
@@ -1309,43 +1137,31 @@ M.BatchWriteException = {
 M.BatchAddFacetToObject = {
     type = "structure",
     members = {
-        SchemaFacet = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SchemaFacet = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SchemaFacet }),
         ObjectAttributeList = {
             type = "list",
-            member_type = "structure",
+            member = M.AttributeKeyAndValue,
             traits = {
                 required = true,
             },
         },
-        ObjectReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ObjectReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
     },
 }
 
 M.BatchAttachObject = {
     type = "structure",
     members = {
-        ParentReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ChildReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ParentReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
+        ChildReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
         LinkName = {
             type = "string",
             traits = {
@@ -1358,63 +1174,42 @@ M.BatchAttachObject = {
 M.BatchAttachPolicy = {
     type = "structure",
     members = {
-        PolicyReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ObjectReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        PolicyReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
+        ObjectReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
     },
 }
 
 M.BatchAttachToIndex = {
     type = "structure",
     members = {
-        IndexReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        TargetReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        IndexReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
+        TargetReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
     },
 }
 
 M.BatchAttachTypedLink = {
     type = "structure",
     members = {
-        SourceObjectReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        TargetObjectReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        TypedLinkFacet = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SourceObjectReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
+        TargetObjectReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
+        TypedLinkFacet = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TypedLinkSchemaAndFacetName }),
         Attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.AttributeNameAndValue,
             traits = {
                 required = true,
             },
@@ -1427,7 +1222,7 @@ M.BatchCreateIndex = {
     members = {
         OrderedIndexedAttributeList = {
             type = "list",
-            member_type = "structure",
+            member = M.AttributeKey,
             traits = {
                 required = true,
             },
@@ -1435,12 +1230,11 @@ M.BatchCreateIndex = {
         IsUnique = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
-        ParentReference = {
-            type = "structure",
-        },
+        ParentReference = M.ObjectReference,
         LinkName = {
             type = "string",
         },
@@ -1455,21 +1249,19 @@ M.BatchCreateObject = {
     members = {
         SchemaFacet = {
             type = "list",
-            member_type = "structure",
+            member = M.SchemaFacet,
             traits = {
                 required = true,
             },
         },
         ObjectAttributeList = {
             type = "list",
-            member_type = "structure",
+            member = M.AttributeKeyAndValue,
             traits = {
                 required = true,
             },
         },
-        ParentReference = {
-            type = "structure",
-        },
+        ParentReference = M.ObjectReference,
         LinkName = {
             type = "string",
         },
@@ -1482,42 +1274,30 @@ M.BatchCreateObject = {
 M.BatchDeleteObject = {
     type = "structure",
     members = {
-        ObjectReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ObjectReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
     },
 }
 
 M.BatchDetachFromIndex = {
     type = "structure",
     members = {
-        IndexReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        TargetReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        IndexReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
+        TargetReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
     },
 }
 
 M.BatchDetachObject = {
     type = "structure",
     members = {
-        ParentReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ParentReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
         LinkName = {
             type = "string",
             traits = {
@@ -1533,48 +1313,33 @@ M.BatchDetachObject = {
 M.BatchDetachPolicy = {
     type = "structure",
     members = {
-        PolicyReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ObjectReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        PolicyReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
+        ObjectReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
     },
 }
 
 M.BatchDetachTypedLink = {
     type = "structure",
     members = {
-        TypedLinkSpecifier = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TypedLinkSpecifier = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TypedLinkSpecifier }),
     },
 }
 
 M.BatchRemoveFacetFromObject = {
     type = "structure",
     members = {
-        SchemaFacet = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ObjectReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SchemaFacet = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SchemaFacet }),
+        ObjectReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
     },
 }
 
@@ -1589,36 +1354,27 @@ M.LinkAttributeAction = {
         AttributeActionType = {
             type = "string",
         },
-        AttributeUpdateValue = {
-            type = "union",
-        },
+        AttributeUpdateValue = M.TypedAttributeValue,
     },
 }
 
 M.LinkAttributeUpdate = {
     type = "structure",
     members = {
-        AttributeKey = {
-            type = "structure",
-        },
-        AttributeAction = {
-            type = "structure",
-        },
+        AttributeKey = M.AttributeKey,
+        AttributeAction = M.LinkAttributeAction,
     },
 }
 
 M.BatchUpdateLinkAttributes = {
     type = "structure",
     members = {
-        TypedLinkSpecifier = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TypedLinkSpecifier = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TypedLinkSpecifier }),
         AttributeUpdates = {
             type = "list",
-            member_type = "structure",
+            member = M.LinkAttributeUpdate,
             traits = {
                 required = true,
             },
@@ -1632,36 +1388,27 @@ M.ObjectAttributeAction = {
         ObjectAttributeActionType = {
             type = "string",
         },
-        ObjectAttributeUpdateValue = {
-            type = "union",
-        },
+        ObjectAttributeUpdateValue = M.TypedAttributeValue,
     },
 }
 
 M.ObjectAttributeUpdate = {
     type = "structure",
     members = {
-        ObjectAttributeKey = {
-            type = "structure",
-        },
-        ObjectAttributeAction = {
-            type = "structure",
-        },
+        ObjectAttributeKey = M.AttributeKey,
+        ObjectAttributeAction = M.ObjectAttributeAction,
     },
 }
 
 M.BatchUpdateObjectAttributes = {
     type = "structure",
     members = {
-        ObjectReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ObjectReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
         AttributeUpdates = {
             type = "list",
-            member_type = "structure",
+            member = M.ObjectAttributeUpdate,
             traits = {
                 required = true,
             },
@@ -1672,51 +1419,21 @@ M.BatchUpdateObjectAttributes = {
 M.BatchWriteOperation = {
     type = "structure",
     members = {
-        CreateObject = {
-            type = "structure",
-        },
-        AttachObject = {
-            type = "structure",
-        },
-        DetachObject = {
-            type = "structure",
-        },
-        UpdateObjectAttributes = {
-            type = "structure",
-        },
-        DeleteObject = {
-            type = "structure",
-        },
-        AddFacetToObject = {
-            type = "structure",
-        },
-        RemoveFacetFromObject = {
-            type = "structure",
-        },
-        AttachPolicy = {
-            type = "structure",
-        },
-        DetachPolicy = {
-            type = "structure",
-        },
-        CreateIndex = {
-            type = "structure",
-        },
-        AttachToIndex = {
-            type = "structure",
-        },
-        DetachFromIndex = {
-            type = "structure",
-        },
-        AttachTypedLink = {
-            type = "structure",
-        },
-        DetachTypedLink = {
-            type = "structure",
-        },
-        UpdateLinkAttributes = {
-            type = "structure",
-        },
+        CreateObject = M.BatchCreateObject,
+        AttachObject = M.BatchAttachObject,
+        DetachObject = M.BatchDetachObject,
+        UpdateObjectAttributes = M.BatchUpdateObjectAttributes,
+        DeleteObject = M.BatchDeleteObject,
+        AddFacetToObject = M.BatchAddFacetToObject,
+        RemoveFacetFromObject = M.BatchRemoveFacetFromObject,
+        AttachPolicy = M.BatchAttachPolicy,
+        DetachPolicy = M.BatchDetachPolicy,
+        CreateIndex = M.BatchCreateIndex,
+        AttachToIndex = M.BatchAttachToIndex,
+        DetachFromIndex = M.BatchDetachFromIndex,
+        AttachTypedLink = M.BatchAttachTypedLink,
+        DetachTypedLink = M.BatchDetachTypedLink,
+        UpdateLinkAttributes = M.BatchUpdateLinkAttributes,
     },
 }
 
@@ -1732,7 +1449,7 @@ M.BatchWriteInput = {
         },
         Operations = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchWriteOperation,
             traits = {
                 required = true,
             },
@@ -1769,9 +1486,7 @@ M.BatchAttachToIndexResponse = {
 M.BatchAttachTypedLinkResponse = {
     type = "structure",
     members = {
-        TypedLinkSpecifier = {
-            type = "structure",
-        },
+        TypedLinkSpecifier = M.TypedLinkSpecifier,
     },
 }
 
@@ -1843,51 +1558,21 @@ M.BatchUpdateObjectAttributesResponse = {
 M.BatchWriteOperationResponse = {
     type = "structure",
     members = {
-        CreateObject = {
-            type = "structure",
-        },
-        AttachObject = {
-            type = "structure",
-        },
-        DetachObject = {
-            type = "structure",
-        },
-        UpdateObjectAttributes = {
-            type = "structure",
-        },
-        DeleteObject = {
-            type = "structure",
-        },
-        AddFacetToObject = {
-            type = "structure",
-        },
-        RemoveFacetFromObject = {
-            type = "structure",
-        },
-        AttachPolicy = {
-            type = "structure",
-        },
-        DetachPolicy = {
-            type = "structure",
-        },
-        CreateIndex = {
-            type = "structure",
-        },
-        AttachToIndex = {
-            type = "structure",
-        },
-        DetachFromIndex = {
-            type = "structure",
-        },
-        AttachTypedLink = {
-            type = "structure",
-        },
-        DetachTypedLink = {
-            type = "structure",
-        },
-        UpdateLinkAttributes = {
-            type = "structure",
-        },
+        CreateObject = M.BatchCreateObjectResponse,
+        AttachObject = M.BatchAttachObjectResponse,
+        DetachObject = M.BatchDetachObjectResponse,
+        UpdateObjectAttributes = M.BatchUpdateObjectAttributesResponse,
+        DeleteObject = M.BatchDeleteObjectResponse,
+        AddFacetToObject = M.BatchAddFacetToObjectResponse,
+        RemoveFacetFromObject = M.BatchRemoveFacetFromObjectResponse,
+        AttachPolicy = M.BatchAttachPolicyResponse,
+        DetachPolicy = M.BatchDetachPolicyResponse,
+        CreateIndex = M.BatchCreateIndexResponse,
+        AttachToIndex = M.BatchAttachToIndexResponse,
+        DetachFromIndex = M.BatchDetachFromIndexResponse,
+        AttachTypedLink = M.BatchAttachTypedLinkResponse,
+        DetachTypedLink = M.BatchDetachTypedLinkResponse,
+        UpdateLinkAttributes = M.BatchUpdateLinkAttributesResponse,
     },
 }
 
@@ -1896,7 +1581,7 @@ M.BatchWriteOutput = {
     members = {
         Responses = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchWriteOperationResponse,
         },
     },
 }
@@ -1975,8 +1660,8 @@ M.Rule = {
         },
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1999,16 +1684,17 @@ M.FacetAttributeDefinition = {
                 required = true,
             },
         },
-        DefaultValue = {
-            type = "union",
-        },
+        DefaultValue = M.TypedAttributeValue,
         IsImmutable = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Rules = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.Rule,
         },
     },
 }
@@ -2045,12 +1731,8 @@ M.FacetAttribute = {
                 required = true,
             },
         },
-        AttributeDefinition = {
-            type = "structure",
-        },
-        AttributeReference = {
-            type = "structure",
-        },
+        AttributeDefinition = M.FacetAttributeDefinition,
+        AttributeReference = M.FacetAttributeReference,
         RequiredBehavior = {
             type = "string",
         },
@@ -2087,7 +1769,7 @@ M.CreateFacetInput = {
         },
         Attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.FacetAttribute,
         },
         ObjectType = {
             type = "string",
@@ -2134,7 +1816,7 @@ M.CreateIndexInput = {
         },
         OrderedIndexedAttributeList = {
             type = "list",
-            member_type = "structure",
+            member = M.AttributeKey,
             traits = {
                 required = true,
             },
@@ -2142,12 +1824,11 @@ M.CreateIndexInput = {
         IsUnique = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
-        ParentReference = {
-            type = "structure",
-        },
+        ParentReference = M.ObjectReference,
         LinkName = {
             type = "string",
         },
@@ -2185,18 +1866,16 @@ M.CreateObjectInput = {
         },
         SchemaFacets = {
             type = "list",
-            member_type = "structure",
+            member = M.SchemaFacet,
             traits = {
                 required = true,
             },
         },
         ObjectAttributeList = {
             type = "list",
-            member_type = "structure",
+            member = M.AttributeKeyAndValue,
         },
-        ParentReference = {
-            type = "structure",
-        },
+        ParentReference = M.ObjectReference,
         LinkName = {
             type = "string",
         },
@@ -2248,16 +1927,17 @@ M.TypedLinkAttributeDefinition = {
                 required = true,
             },
         },
-        DefaultValue = {
-            type = "union",
-        },
+        DefaultValue = M.TypedAttributeValue,
         IsImmutable = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Rules = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.Rule,
         },
         RequiredBehavior = {
             type = "string",
@@ -2279,14 +1959,14 @@ M.TypedLinkFacet = {
         },
         Attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.TypedLinkAttributeDefinition,
             traits = {
                 required = true,
             },
         },
         IdentityAttributeOrder = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2304,12 +1984,9 @@ M.CreateTypedLinkFacetInput = {
                 required = true,
             },
         },
-        Facet = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Facet = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TypedLinkFacet }),
     },
 }
 
@@ -2415,12 +2092,9 @@ M.DeleteObjectInput = {
                 required = true,
             },
         },
-        ObjectReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ObjectReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
     },
 }
 
@@ -2503,18 +2177,12 @@ M.DetachFromIndexInput = {
                 required = true,
             },
         },
-        IndexReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        TargetReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        IndexReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
+        TargetReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
     },
 }
 
@@ -2547,12 +2215,9 @@ M.DetachObjectInput = {
                 required = true,
             },
         },
-        ParentReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ParentReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
         LinkName = {
             type = "string",
             traits = {
@@ -2591,18 +2256,12 @@ M.DetachPolicyInput = {
                 required = true,
             },
         },
-        PolicyReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ObjectReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        PolicyReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
+        ObjectReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
     },
 }
 
@@ -2620,12 +2279,9 @@ M.DetachTypedLinkInput = {
                 required = true,
             },
         },
-        TypedLinkSpecifier = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TypedLinkSpecifier = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TypedLinkSpecifier }),
     },
 }
 
@@ -2744,12 +2400,9 @@ M.Directory = {
 M.GetDirectoryOutput = {
     type = "structure",
     members = {
-        Directory = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Directory = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Directory }),
     },
 }
 
@@ -2790,9 +2443,7 @@ M.Facet = {
 M.GetFacetOutput = {
     type = "structure",
     members = {
-        Facet = {
-            type = "structure",
-        },
+        Facet = M.Facet,
     },
 }
 
@@ -2806,15 +2457,12 @@ M.GetLinkAttributesInput = {
                 required = true,
             },
         },
-        TypedLinkSpecifier = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TypedLinkSpecifier = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TypedLinkSpecifier }),
         AttributeNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2830,7 +2478,7 @@ M.GetLinkAttributesOutput = {
     members = {
         Attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.AttributeKeyAndValue,
         },
     },
 }
@@ -2845,27 +2493,21 @@ M.GetObjectAttributesInput = {
                 required = true,
             },
         },
-        ObjectReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ObjectReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
         ConsistencyLevel = {
             type = "string",
             traits = {
                 http_header = "x-amz-consistency-level",
             },
         },
-        SchemaFacet = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SchemaFacet = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SchemaFacet }),
         AttributeNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2878,7 +2520,7 @@ M.GetObjectAttributesOutput = {
     members = {
         Attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.AttributeKeyAndValue,
         },
     },
 }
@@ -2893,12 +2535,9 @@ M.GetObjectInformationInput = {
                 required = true,
             },
         },
-        ObjectReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ObjectReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
         ConsistencyLevel = {
             type = "string",
             traits = {
@@ -2913,7 +2552,7 @@ M.GetObjectInformationOutput = {
     members = {
         SchemaFacets = {
             type = "list",
-            member_type = "structure",
+            member = M.SchemaFacet,
         },
         ObjectIdentifier = {
             type = "string",
@@ -2970,7 +2609,7 @@ M.GetTypedLinkFacetInformationOutput = {
     members = {
         IdentityAttributeOrder = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3001,7 +2640,7 @@ M.ListAppliedSchemaArnsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3011,7 +2650,7 @@ M.ListAppliedSchemaArnsOutput = {
     members = {
         SchemaArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -3029,17 +2668,14 @@ M.ListAttachedIndicesInput = {
                 required = true,
             },
         },
-        TargetReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TargetReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         ConsistencyLevel = {
             type = "string",
@@ -3055,7 +2691,7 @@ M.ListAttachedIndicesOutput = {
     members = {
         IndexAttachments = {
             type = "list",
-            member_type = "structure",
+            member = M.IndexAttachment,
         },
         NextToken = {
             type = "string",
@@ -3070,7 +2706,7 @@ M.ListDevelopmentSchemaArnsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3080,7 +2716,7 @@ M.ListDevelopmentSchemaArnsOutput = {
     members = {
         SchemaArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -3095,7 +2731,7 @@ M.ListDirectoriesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         state = {
             type = "string",
@@ -3108,7 +2744,7 @@ M.ListDirectoriesOutput = {
     members = {
         Directories = {
             type = "list",
-            member_type = "structure",
+            member = M.Directory,
             traits = {
                 required = true,
             },
@@ -3139,7 +2775,7 @@ M.ListFacetAttributesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3149,7 +2785,7 @@ M.ListFacetAttributesOutput = {
     members = {
         Attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.FacetAttribute,
         },
         NextToken = {
             type = "string",
@@ -3171,7 +2807,7 @@ M.ListFacetNamesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3181,7 +2817,7 @@ M.ListFacetNamesOutput = {
     members = {
         FacetNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -3199,24 +2835,19 @@ M.ListIncomingTypedLinksInput = {
                 required = true,
             },
         },
-        ObjectReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ObjectReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
         FilterAttributeRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.TypedLinkAttributeRange,
         },
-        FilterTypedLink = {
-            type = "structure",
-        },
+        FilterTypedLink = M.TypedLinkSchemaAndFacetName,
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         ConsistencyLevel = {
             type = "string",
@@ -3229,7 +2860,7 @@ M.ListIncomingTypedLinksOutput = {
     members = {
         LinkSpecifiers = {
             type = "list",
-            member_type = "structure",
+            member = M.TypedLinkSpecifier,
         },
         NextToken = {
             type = "string",
@@ -3249,16 +2880,13 @@ M.ListIndexInput = {
         },
         RangesOnIndexedValues = {
             type = "list",
-            member_type = "structure",
+            member = M.ObjectAttributeRange,
         },
-        IndexReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        IndexReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3277,7 +2905,7 @@ M.ListIndexOutput = {
     members = {
         IndexAttachments = {
             type = "list",
-            member_type = "structure",
+            member = M.IndexAttachment,
         },
         NextToken = {
             type = "string",
@@ -3295,7 +2923,7 @@ M.ListManagedSchemaArnsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3305,7 +2933,7 @@ M.ListManagedSchemaArnsOutput = {
     members = {
         SchemaArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -3323,17 +2951,14 @@ M.ListObjectAttributesInput = {
                 required = true,
             },
         },
-        ObjectReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ObjectReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         ConsistencyLevel = {
             type = "string",
@@ -3341,9 +2966,7 @@ M.ListObjectAttributesInput = {
                 http_header = "x-amz-consistency-level",
             },
         },
-        FacetFilter = {
-            type = "structure",
-        },
+        FacetFilter = M.SchemaFacet,
     },
 }
 
@@ -3352,7 +2975,7 @@ M.ListObjectAttributesOutput = {
     members = {
         Attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.AttributeKeyAndValue,
         },
         NextToken = {
             type = "string",
@@ -3370,17 +2993,14 @@ M.ListObjectChildrenInput = {
                 required = true,
             },
         },
-        ObjectReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ObjectReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         ConsistencyLevel = {
             type = "string",
@@ -3396,8 +3016,8 @@ M.ListObjectChildrenOutput = {
     members = {
         Children = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -3415,17 +3035,14 @@ M.ListObjectParentPathsInput = {
                 required = true,
             },
         },
-        ObjectReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ObjectReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3435,7 +3052,7 @@ M.ListObjectParentPathsOutput = {
     members = {
         PathToObjectIdentifiersList = {
             type = "list",
-            member_type = "structure",
+            member = M.PathToObjectIdentifiers,
         },
         NextToken = {
             type = "string",
@@ -3463,17 +3080,14 @@ M.ListObjectParentsInput = {
                 required = true,
             },
         },
-        ObjectReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ObjectReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         ConsistencyLevel = {
             type = "string",
@@ -3483,6 +3097,9 @@ M.ListObjectParentsInput = {
         },
         IncludeAllLinksToEachParent = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -3492,15 +3109,15 @@ M.ListObjectParentsOutput = {
     members = {
         Parents = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         NextToken = {
             type = "string",
         },
         ParentLinks = {
             type = "list",
-            member_type = "structure",
+            member = M.ObjectIdentifierAndLinkNameTuple,
         },
     },
 }
@@ -3515,17 +3132,14 @@ M.ListObjectPoliciesInput = {
                 required = true,
             },
         },
-        ObjectReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ObjectReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         ConsistencyLevel = {
             type = "string",
@@ -3541,7 +3155,7 @@ M.ListObjectPoliciesOutput = {
     members = {
         AttachedPolicyIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -3559,24 +3173,19 @@ M.ListOutgoingTypedLinksInput = {
                 required = true,
             },
         },
-        ObjectReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ObjectReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
         FilterAttributeRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.TypedLinkAttributeRange,
         },
-        FilterTypedLink = {
-            type = "structure",
-        },
+        FilterTypedLink = M.TypedLinkSchemaAndFacetName,
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         ConsistencyLevel = {
             type = "string",
@@ -3589,7 +3198,7 @@ M.ListOutgoingTypedLinksOutput = {
     members = {
         TypedLinkSpecifiers = {
             type = "list",
-            member_type = "structure",
+            member = M.TypedLinkSpecifier,
         },
         NextToken = {
             type = "string",
@@ -3607,17 +3216,14 @@ M.ListPolicyAttachmentsInput = {
                 required = true,
             },
         },
-        PolicyReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        PolicyReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         ConsistencyLevel = {
             type = "string",
@@ -3633,7 +3239,7 @@ M.ListPolicyAttachmentsOutput = {
     members = {
         ObjectIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -3651,7 +3257,7 @@ M.ListPublishedSchemaArnsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3661,7 +3267,7 @@ M.ListPublishedSchemaArnsOutput = {
     members = {
         SchemaArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -3692,7 +3298,7 @@ M.ListTagsForResourceInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3714,7 +3320,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         NextToken = {
             type = "string",
@@ -3742,7 +3348,7 @@ M.ListTypedLinkFacetAttributesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3752,7 +3358,7 @@ M.ListTypedLinkFacetAttributesOutput = {
     members = {
         Attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.TypedLinkAttributeDefinition,
         },
         NextToken = {
             type = "string",
@@ -3774,7 +3380,7 @@ M.ListTypedLinkFacetNamesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3784,7 +3390,7 @@ M.ListTypedLinkFacetNamesOutput = {
     members = {
         FacetNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -3802,17 +3408,14 @@ M.LookupPolicyInput = {
                 required = true,
             },
         },
-        ObjectReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ObjectReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3822,7 +3425,7 @@ M.LookupPolicyOutput = {
     members = {
         PolicyToPathList = {
             type = "list",
-            member_type = "structure",
+            member = M.PolicyToPath,
         },
         NextToken = {
             type = "string",
@@ -3922,18 +3525,12 @@ M.RemoveFacetFromObjectInput = {
                 required = true,
             },
         },
-        SchemaFacet = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ObjectReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SchemaFacet = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SchemaFacet }),
+        ObjectReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
     },
 }
 
@@ -3952,7 +3549,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -3975,7 +3572,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4000,9 +3597,7 @@ M.InvalidFacetUpdateException = {
 M.FacetAttributeUpdate = {
     type = "structure",
     members = {
-        Attribute = {
-            type = "structure",
-        },
+        Attribute = M.FacetAttribute,
         Action = {
             type = "string",
         },
@@ -4027,7 +3622,7 @@ M.UpdateFacetInput = {
         },
         AttributeUpdates = {
             type = "list",
-            member_type = "structure",
+            member = M.FacetAttributeUpdate,
         },
         ObjectType = {
             type = "string",
@@ -4049,15 +3644,12 @@ M.UpdateLinkAttributesInput = {
                 required = true,
             },
         },
-        TypedLinkSpecifier = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TypedLinkSpecifier = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TypedLinkSpecifier }),
         AttributeUpdates = {
             type = "list",
-            member_type = "structure",
+            member = M.LinkAttributeUpdate,
             traits = {
                 required = true,
             },
@@ -4079,15 +3671,12 @@ M.UpdateObjectAttributesInput = {
                 required = true,
             },
         },
-        ObjectReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ObjectReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ObjectReference }),
         AttributeUpdates = {
             type = "list",
-            member_type = "structure",
+            member = M.ObjectAttributeUpdate,
             traits = {
                 required = true,
             },
@@ -4135,12 +3724,9 @@ M.UpdateSchemaOutput = {
 M.TypedLinkFacetAttributeUpdate = {
     type = "structure",
     members = {
-        Attribute = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Attribute = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TypedLinkAttributeDefinition }),
         Action = {
             type = "string",
             traits = {
@@ -4168,14 +3754,14 @@ M.UpdateTypedLinkFacetInput = {
         },
         AttributeUpdates = {
             type = "list",
-            member_type = "structure",
+            member = M.TypedLinkFacetAttributeUpdate,
             traits = {
                 required = true,
             },
         },
         IdentityAttributeOrder = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4214,6 +3800,9 @@ M.UpgradeAppliedSchemaInput = {
         },
         DryRun = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -4253,6 +3842,9 @@ M.UpgradePublishedSchemaInput = {
         },
         DryRun = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }

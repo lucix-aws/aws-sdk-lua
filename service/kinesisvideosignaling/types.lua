@@ -40,7 +40,7 @@ M.IceServer = {
     members = {
         Uris = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Username = {
             type = "string",
@@ -49,7 +49,7 @@ M.IceServer = {
             type = "string",
         },
         Ttl = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -59,7 +59,7 @@ M.GetIceServerConfigOutput = {
     members = {
         IceServerList = {
             type = "list",
-            member_type = "structure",
+            member = M.IceServer,
         },
     },
 }

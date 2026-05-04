@@ -74,7 +74,7 @@ M.CreateTokenInput = {
         },
         scope = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         redirectUri = {
             type = "string",
@@ -95,7 +95,10 @@ M.CreateTokenOutput = {
             type = "string",
         },
         expiresIn = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         refreshToken = {
             type = "string",
@@ -259,7 +262,7 @@ M.CreateTokenWithIAMInput = {
         },
         scope = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         redirectUri = {
             type = "string",
@@ -289,7 +292,10 @@ M.CreateTokenWithIAMOutput = {
             type = "string",
         },
         expiresIn = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         refreshToken = {
             type = "string",
@@ -302,11 +308,9 @@ M.CreateTokenWithIAMOutput = {
         },
         scope = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        awsAdditionalDetails = {
-            type = "structure",
-        },
+        awsAdditionalDetails = M.AwsAdditionalDetails,
     },
 }
 
@@ -372,15 +376,15 @@ M.RegisterClientInput = {
         },
         scopes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         redirectUris = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         grantTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         issuerUrl = {
             type = "string",
@@ -401,10 +405,16 @@ M.RegisterClientOutput = {
             type = "string",
         },
         clientIdIssuedAt = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         clientSecretExpiresAt = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         authorizationEndpoint = {
             type = "string",
@@ -455,10 +465,16 @@ M.StartDeviceAuthorizationOutput = {
             type = "string",
         },
         expiresIn = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         interval = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }

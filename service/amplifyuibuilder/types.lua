@@ -108,7 +108,7 @@ M.CodegenGenericDataEnum = {
     members = {
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -159,7 +159,7 @@ M.CodegenGenericDataRelationshipType = {
         },
         relatedModelFields = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         canUnlinkAssociatedModel = {
             type = "boolean",
@@ -175,7 +175,7 @@ M.CodegenGenericDataRelationshipType = {
         },
         associatedFields = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         isHasManyIndex = {
             type = "boolean",
@@ -216,9 +216,7 @@ M.CodegenGenericDataField = {
                 required = true,
             },
         },
-        relationship = {
-            type = "structure",
-        },
+        relationship = M.CodegenGenericDataRelationshipType,
     },
 }
 
@@ -227,8 +225,8 @@ M.CodegenGenericDataModel = {
     members = {
         fields = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.CodegenGenericDataField,
             traits = {
                 required = true,
             },
@@ -238,7 +236,7 @@ M.CodegenGenericDataModel = {
         },
         primaryKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -251,8 +249,8 @@ M.CodegenGenericDataNonModel = {
     members = {
         fields = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.CodegenGenericDataField,
             traits = {
                 required = true,
             },
@@ -271,24 +269,24 @@ M.CodegenJobGenericDataSchema = {
         },
         models = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.CodegenGenericDataModel,
             traits = {
                 required = true,
             },
         },
         enums = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.CodegenGenericDataEnum,
             traits = {
                 required = true,
             },
         },
         nonModels = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.CodegenGenericDataNonModel,
             traits = {
                 required = true,
             },
@@ -343,15 +341,9 @@ M.NoApiRenderConfig = {
 M.ApiConfiguration = {
     type = "union",
     members = {
-        graphQLConfig = {
-            type = "structure",
-        },
-        dataStoreConfig = {
-            type = "structure",
-        },
-        noApiConfig = {
-            type = "structure",
-        },
+        graphQLConfig = M.GraphQLRenderConfig,
+        dataStoreConfig = M.DataStoreRenderConfig,
+        noApiConfig = M.NoApiRenderConfig,
     },
 }
 
@@ -385,17 +377,21 @@ M.ReactStartCodegenJobData = {
         },
         renderTypeDeclarations = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         inlineSourceMap = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        apiConfiguration = {
-            type = "union",
-        },
+        apiConfiguration = M.ApiConfiguration,
         dependencies = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -403,9 +399,7 @@ M.ReactStartCodegenJobData = {
 M.CodegenJobRenderConfig = {
     type = "union",
     members = {
-        react = {
-            type = "structure",
-        },
+        react = M.ReactStartCodegenJobData,
     },
 }
 
@@ -436,31 +430,23 @@ M.CodegenJob = {
                 required = true,
             },
         },
-        renderConfig = {
-            type = "union",
-        },
-        genericDataSchema = {
-            type = "structure",
-        },
+        renderConfig = M.CodegenJobRenderConfig,
+        genericDataSchema = M.CodegenJobGenericDataSchema,
         autoGenerateForms = {
             type = "boolean",
         },
-        features = {
-            type = "structure",
-        },
+        features = M.CodegenFeatureFlags,
         status = {
             type = "string",
         },
         statusMessage = {
             type = "string",
         },
-        asset = {
-            type = "structure",
-        },
+        asset = M.CodegenJobAsset,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         createdAt = {
             type = "timestamp",
@@ -476,7 +462,7 @@ M.CodegenJob = {
         },
         dependencies = {
             type = "list",
-            member_type = "structure",
+            member = M.CodegenDependency,
         },
     },
 }
@@ -484,12 +470,9 @@ M.CodegenJob = {
 M.GetCodegenJobOutput = {
     type = "structure",
     members = {
-        job = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        job = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.CodegenJob }),
     },
 }
 
@@ -557,8 +540,9 @@ M.ListCodegenJobsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 100,
                 http_query = "maxResults",
             },
         },
@@ -606,7 +590,7 @@ M.ListCodegenJobsOutput = {
     members = {
         entities = {
             type = "list",
-            member_type = "structure",
+            member = M.CodegenJobSummary,
             traits = {
                 required = true,
             },
@@ -620,25 +604,18 @@ M.ListCodegenJobsOutput = {
 M.StartCodegenJobData = {
     type = "structure",
     members = {
-        renderConfig = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        genericDataSchema = {
-            type = "structure",
-        },
+        renderConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CodegenJobRenderConfig }),
+        genericDataSchema = M.CodegenJobGenericDataSchema,
         autoGenerateForms = {
             type = "boolean",
         },
-        features = {
-            type = "structure",
-        },
+        features = M.CodegenFeatureFlags,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -666,25 +643,19 @@ M.StartCodegenJobInput = {
                 http_query = "clientToken",
             },
         },
-        codegenJobToCreate = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        codegenJobToCreate = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.StartCodegenJobData }),
     },
 }
 
 M.StartCodegenJobOutput = {
     type = "structure",
     members = {
-        entity = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        entity = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.CodegenJob }),
     },
 }
 
@@ -716,13 +687,13 @@ M.ComponentVariant = {
     members = {
         variantValues = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         overrides = {
             type = "map",
-            key_type = "string",
-            value_type = "map",
+            key = { type = "string" },
+            value = { type = "map" },
         },
     },
 }
@@ -855,8 +826,9 @@ M.ListComponentsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_query = "maxResults",
             },
         },
@@ -904,7 +876,7 @@ M.ListComponentsOutput = {
     members = {
         entities = {
             type = "list",
-            member_type = "structure",
+            member = M.ComponentSummary,
             traits = {
                 required = true,
             },
@@ -950,13 +922,10 @@ M.ExchangeCodeForTokenInput = {
                 required = true,
             },
         },
-        request = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        request = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.ExchangeCodeForTokenRequestBody }),
     },
 }
 
@@ -970,7 +939,7 @@ M.ExchangeCodeForTokenOutput = {
             },
         },
         expiresIn = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1012,9 +981,7 @@ M.FormButton = {
         children = {
             type = "string",
         },
-        position = {
-            type = "union",
-        },
+        position = M.FieldPosition,
     },
 }
 
@@ -1030,15 +997,9 @@ M.FormCTA = {
         position = {
             type = "string",
         },
-        clear = {
-            type = "structure",
-        },
-        cancel = {
-            type = "structure",
-        },
-        submit = {
-            type = "structure",
-        },
+        clear = M.FormButton,
+        cancel = M.FormButton,
+        submit = M.FormButton,
     },
 }
 
@@ -1082,7 +1043,7 @@ M.FileUploaderFieldConfig = {
         },
         acceptedFileTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1094,10 +1055,10 @@ M.FileUploaderFieldConfig = {
             type = "boolean",
         },
         maxFileCount = {
-            type = "number",
+            type = "integer",
         },
         maxSize = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1117,9 +1078,7 @@ M.FormInputBindingPropertiesValue = {
         type = {
             type = "string",
         },
-        bindingProperties = {
-            type = "structure",
-        },
+        bindingProperties = M.FormInputBindingPropertiesValueProperties,
     },
 }
 
@@ -1149,11 +1108,11 @@ M.FieldValidationConfiguration = {
         },
         strValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         numValues = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
         },
         validationMessage = {
             type = "string",
@@ -1181,14 +1140,12 @@ M.SectionalElement = {
                 required = true,
             },
         },
-        position = {
-            type = "union",
-        },
+        position = M.FieldPosition,
         text = {
             type = "string",
         },
         level = {
-            type = "number",
+            type = "integer",
         },
         orientation = {
             type = "string",
@@ -1214,15 +1171,9 @@ M.FormStyleConfig = {
 M.FormStyle = {
     type = "structure",
     members = {
-        horizontalGap = {
-            type = "union",
-        },
-        verticalGap = {
-            type = "union",
-        },
-        outerPadding = {
-            type = "union",
-        },
+        horizontalGap = M.FormStyleConfig,
+        verticalGap = M.FormStyleConfig,
+        outerPadding = M.FormStyleConfig,
     },
 }
 
@@ -1334,8 +1285,9 @@ M.ListFormsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_query = "maxResults",
             },
         },
@@ -1351,12 +1303,9 @@ M.FormSummary = {
                 required = true,
             },
         },
-        dataType = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        dataType = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FormDataTypeConfig }),
         environmentName = {
             type = "string",
             traits = {
@@ -1389,7 +1338,7 @@ M.ListFormsOutput = {
     members = {
         entities = {
             type = "list",
-            member_type = "structure",
+            member = M.FormSummary,
             traits = {
                 required = true,
             },
@@ -1425,8 +1374,8 @@ M.GetMetadataOutput = {
     members = {
         features = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1462,8 +1411,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1507,13 +1456,10 @@ M.PutMetadataFlagInput = {
                 required = true,
             },
         },
-        body = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        body = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.PutMetadataFlagBody }),
     },
 }
 
@@ -1546,13 +1492,10 @@ M.RefreshTokenInput = {
                 required = true,
             },
         },
-        refreshTokenBody = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        refreshTokenBody = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.RefreshTokenRequestBody }),
     },
 }
 
@@ -1566,7 +1509,7 @@ M.RefreshTokenOutput = {
             },
         },
         expiresIn = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1586,8 +1529,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1707,8 +1650,9 @@ M.ListThemesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_query = "maxResults",
             },
         },
@@ -1750,7 +1694,7 @@ M.ListThemesOutput = {
     members = {
         entities = {
             type = "list",
-            member_type = "structure",
+            member = M.ThemeSummary,
             traits = {
                 required = true,
             },
@@ -1773,7 +1717,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -1792,12 +1736,10 @@ M.FormInputValueProperty = {
         value = {
             type = "string",
         },
-        bindingProperties = {
-            type = "structure",
-        },
+        bindingProperties = M.FormInputValuePropertyBindingProperties,
         concat = {
             type = "list",
-            member_type = "structure",
+            member = M.FormInputValueProperty,
         },
     },
 }
@@ -1810,7 +1752,7 @@ M.ThemeValue = {
         },
         children = {
             type = "list",
-            member_type = "structure",
+            member = M.ThemeValues,
         },
     },
 }
@@ -1821,9 +1763,7 @@ M.ThemeValues = {
         key = {
             type = "string",
         },
-        value = {
-            type = "structure",
-        },
+        value = M.ThemeValue,
     },
 }
 
@@ -1832,11 +1772,11 @@ M.Predicate = {
     members = {
         or = {
             type = "list",
-            member_type = "structure",
+            member = M.Predicate,
         },
         and = {
             type = "list",
-            member_type = "structure",
+            member = M.Predicate,
         },
         field = {
             type = "string",
@@ -1864,7 +1804,7 @@ M.ComponentBindingPropertiesValueProperties = {
         },
         predicates = {
             type = "list",
-            member_type = "structure",
+            member = M.Predicate,
         },
         userAttribute = {
             type = "string",
@@ -1895,14 +1835,12 @@ M.ComponentDataConfiguration = {
         },
         sort = {
             type = "list",
-            member_type = "structure",
+            member = M.SortProperty,
         },
-        predicate = {
-            type = "structure",
-        },
+        predicate = M.Predicate,
         identifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1913,12 +1851,8 @@ M.ComponentProperty = {
         value = {
             type = "string",
         },
-        bindingProperties = {
-            type = "structure",
-        },
-        collectionBindingProperties = {
-            type = "structure",
-        },
+        bindingProperties = M.ComponentPropertyBindingProperties,
+        collectionBindingProperties = M.ComponentPropertyBindingProperties,
         defaultValue = {
             type = "string",
         },
@@ -1927,8 +1861,8 @@ M.ComponentProperty = {
         },
         bindings = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.FormBindingElement,
         },
         event = {
             type = "string",
@@ -1938,11 +1872,9 @@ M.ComponentProperty = {
         },
         concat = {
             type = "list",
-            member_type = "structure",
+            member = M.ComponentProperty,
         },
-        condition = {
-            type = "structure",
-        },
+        condition = M.ComponentConditionProperty,
         configured = {
             type = "boolean",
         },
@@ -1964,15 +1896,10 @@ M.ComponentProperty = {
 M.ValueMapping = {
     type = "structure",
     members = {
-        displayValue = {
-            type = "structure",
-        },
-        value = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        displayValue = M.FormInputValueProperty,
+        value = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FormInputValueProperty }),
     },
 }
 
@@ -1982,9 +1909,7 @@ M.ComponentBindingPropertiesValue = {
         type = {
             type = "string",
         },
-        bindingProperties = {
-            type = "structure",
-        },
+        bindingProperties = M.ComponentBindingPropertiesValueProperties,
         defaultValue = {
             type = "string",
         },
@@ -2002,19 +1927,19 @@ M.CreateThemeData = {
         },
         values = {
             type = "list",
-            member_type = "structure",
+            member = M.ThemeValues,
             traits = {
                 required = true,
             },
         },
         overrides = {
             type = "list",
-            member_type = "structure",
+            member = M.ThemeValues,
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2061,19 +1986,19 @@ M.Theme = {
         },
         values = {
             type = "list",
-            member_type = "structure",
+            member = M.ThemeValues,
             traits = {
                 required = true,
             },
         },
         overrides = {
             type = "list",
-            member_type = "structure",
+            member = M.ThemeValues,
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2089,14 +2014,14 @@ M.UpdateThemeData = {
         },
         values = {
             type = "list",
-            member_type = "structure",
+            member = M.ThemeValues,
             traits = {
                 required = true,
             },
         },
         overrides = {
             type = "list",
-            member_type = "structure",
+            member = M.ThemeValues,
         },
     },
 }
@@ -2116,12 +2041,9 @@ M.MutationActionSetStateParameter = {
                 required = true,
             },
         },
-        set = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        set = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ComponentProperty }),
     },
 }
 
@@ -2140,12 +2062,8 @@ M.ComponentConditionProperty = {
         operand = {
             type = "string",
         },
-        then = {
-            type = "structure",
-        },
-        else = {
-            type = "structure",
-        },
+        then = M.ComponentProperty,
+        else = M.ComponentProperty,
         operandType = {
             type = "string",
         },
@@ -2175,37 +2093,28 @@ M.CreateThemeInput = {
                 http_query = "clientToken",
             },
         },
-        themeToCreate = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        themeToCreate = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.CreateThemeData }),
     },
 }
 
 M.CreateThemeOutput = {
     type = "structure",
     members = {
-        entity = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        entity = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.Theme }),
     },
 }
 
 M.GetThemeOutput = {
     type = "structure",
     members = {
-        theme = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        theme = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.Theme }),
     },
 }
 
@@ -2239,25 +2148,19 @@ M.UpdateThemeInput = {
                 http_query = "clientToken",
             },
         },
-        updatedTheme = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        updatedTheme = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.UpdateThemeData }),
     },
 }
 
 M.UpdateThemeOutput = {
     type = "structure",
     members = {
-        entity = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        entity = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.Theme }),
     },
 }
 
@@ -2266,15 +2169,15 @@ M.ValueMappings = {
     members = {
         values = {
             type = "list",
-            member_type = "structure",
+            member = M.ValueMapping,
             traits = {
                 required = true,
             },
         },
         bindingProperties = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.FormInputBindingPropertiesValue,
         },
     },
 }
@@ -2284,7 +2187,7 @@ M.ExportThemesOutput = {
     members = {
         entities = {
             type = "list",
-            member_type = "structure",
+            member = M.Theme,
             traits = {
                 required = true,
             },
@@ -2325,20 +2228,18 @@ M.FieldInputConfig = {
         defaultCountryCode = {
             type = "string",
         },
-        valueMappings = {
-            type = "structure",
-        },
+        valueMappings = M.ValueMappings,
         name = {
             type = "string",
         },
         minValue = {
-            type = "number",
+            type = "float",
         },
         maxValue = {
-            type = "number",
+            type = "float",
         },
         step = {
-            type = "number",
+            type = "float",
         },
         value = {
             type = "string",
@@ -2346,9 +2247,7 @@ M.FieldInputConfig = {
         isArray = {
             type = "boolean",
         },
-        fileUploaderConfig = {
-            type = "structure",
-        },
+        fileUploaderConfig = M.FileUploaderFieldConfig,
     },
 }
 
@@ -2358,18 +2257,14 @@ M.FieldConfig = {
         label = {
             type = "string",
         },
-        position = {
-            type = "union",
-        },
+        position = M.FieldPosition,
         excluded = {
             type = "boolean",
         },
-        inputType = {
-            type = "structure",
-        },
+        inputType = M.FieldInputConfig,
         validations = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldValidationConfiguration,
         },
     },
 }
@@ -2383,12 +2278,9 @@ M.CreateFormData = {
                 required = true,
             },
         },
-        dataType = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        dataType = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FormDataTypeConfig }),
         formActionType = {
             type = "string",
             traits = {
@@ -2397,22 +2289,19 @@ M.CreateFormData = {
         },
         fields = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.FieldConfig,
             traits = {
                 required = true,
             },
         },
-        style = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        style = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FormStyle }),
         sectionalElements = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.SectionalElement,
             traits = {
                 required = true,
             },
@@ -2423,13 +2312,11 @@ M.CreateFormData = {
                 required = true,
             },
         },
-        cta = {
-            type = "structure",
-        },
+        cta = M.FormCTA,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         labelDecorator = {
             type = "string",
@@ -2470,30 +2357,24 @@ M.Form = {
                 required = true,
             },
         },
-        style = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        dataType = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        style = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FormStyle }),
+        dataType = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FormDataTypeConfig }),
         fields = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.FieldConfig,
             traits = {
                 required = true,
             },
         },
         sectionalElements = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.SectionalElement,
             traits = {
                 required = true,
             },
@@ -2506,12 +2387,10 @@ M.Form = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        cta = {
-            type = "structure",
-        },
+        cta = M.FormCTA,
         labelDecorator = {
             type = "string",
         },
@@ -2524,31 +2403,25 @@ M.UpdateFormData = {
         name = {
             type = "string",
         },
-        dataType = {
-            type = "structure",
-        },
+        dataType = M.FormDataTypeConfig,
         formActionType = {
             type = "string",
         },
         fields = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.FieldConfig,
         },
-        style = {
-            type = "structure",
-        },
+        style = M.FormStyle,
         sectionalElements = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.SectionalElement,
         },
         schemaVersion = {
             type = "string",
         },
-        cta = {
-            type = "structure",
-        },
+        cta = M.FormCTA,
         labelDecorator = {
             type = "string",
         },
@@ -2578,37 +2451,28 @@ M.CreateFormInput = {
                 http_query = "clientToken",
             },
         },
-        formToCreate = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        formToCreate = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.CreateFormData }),
     },
 }
 
 M.CreateFormOutput = {
     type = "structure",
     members = {
-        entity = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        entity = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.Form }),
     },
 }
 
 M.GetFormOutput = {
     type = "structure",
     members = {
-        form = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        form = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.Form }),
     },
 }
 
@@ -2642,25 +2506,19 @@ M.UpdateFormInput = {
                 http_query = "clientToken",
             },
         },
-        updatedForm = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        updatedForm = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.UpdateFormData }),
     },
 }
 
 M.UpdateFormOutput = {
     type = "structure",
     members = {
-        entity = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        entity = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.Form }),
     },
 }
 
@@ -2669,7 +2527,7 @@ M.ExportFormsOutput = {
     members = {
         entities = {
             type = "list",
-            member_type = "structure",
+            member = M.Form,
             traits = {
                 required = true,
             },
@@ -2683,35 +2541,21 @@ M.ExportFormsOutput = {
 M.ActionParameters = {
     type = "structure",
     members = {
-        type = {
-            type = "structure",
-        },
-        url = {
-            type = "structure",
-        },
-        anchor = {
-            type = "structure",
-        },
-        target = {
-            type = "structure",
-        },
-        global = {
-            type = "structure",
-        },
+        type = M.ComponentProperty,
+        url = M.ComponentProperty,
+        anchor = M.ComponentProperty,
+        target = M.ComponentProperty,
+        global = M.ComponentProperty,
         model = {
             type = "string",
         },
-        id = {
-            type = "structure",
-        },
+        id = M.ComponentProperty,
         fields = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ComponentProperty,
         },
-        state = {
-            type = "structure",
-        },
+        state = M.MutationActionSetStateParameter,
     },
 }
 
@@ -2721,9 +2565,7 @@ M.ComponentEvent = {
         action = {
             type = "string",
         },
-        parameters = {
-            type = "structure",
-        },
+        parameters = M.ActionParameters,
         bindingEvent = {
             type = "string",
         },
@@ -2747,20 +2589,20 @@ M.ComponentChild = {
         },
         properties = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ComponentProperty,
             traits = {
                 required = true,
             },
         },
         children = {
             type = "list",
-            member_type = "structure",
+            member = M.ComponentChild,
         },
         events = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ComponentEvent,
         },
         sourceId = {
             type = "string",
@@ -2806,43 +2648,43 @@ M.Component = {
         },
         properties = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ComponentProperty,
             traits = {
                 required = true,
             },
         },
         children = {
             type = "list",
-            member_type = "structure",
+            member = M.ComponentChild,
         },
         variants = {
             type = "list",
-            member_type = "structure",
+            member = M.ComponentVariant,
             traits = {
                 required = true,
             },
         },
         overrides = {
             type = "map",
-            key_type = "string",
-            value_type = "map",
+            key = { type = "string" },
+            value = { type = "map" },
             traits = {
                 required = true,
             },
         },
         bindingProperties = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ComponentBindingPropertiesValue,
             traits = {
                 required = true,
             },
         },
         collectionProperties = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ComponentDataConfiguration,
         },
         createdAt = {
             type = "timestamp",
@@ -2859,13 +2701,13 @@ M.Component = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         events = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ComponentEvent,
         },
         schemaVersion = {
             type = "string",
@@ -2893,53 +2735,53 @@ M.CreateComponentData = {
         },
         properties = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ComponentProperty,
             traits = {
                 required = true,
             },
         },
         children = {
             type = "list",
-            member_type = "structure",
+            member = M.ComponentChild,
         },
         variants = {
             type = "list",
-            member_type = "structure",
+            member = M.ComponentVariant,
             traits = {
                 required = true,
             },
         },
         overrides = {
             type = "map",
-            key_type = "string",
-            value_type = "map",
+            key = { type = "string" },
+            value = { type = "map" },
             traits = {
                 required = true,
             },
         },
         bindingProperties = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ComponentBindingPropertiesValue,
             traits = {
                 required = true,
             },
         },
         collectionProperties = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ComponentDataConfiguration,
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         events = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ComponentEvent,
         },
         schemaVersion = {
             type = "string",
@@ -2964,36 +2806,36 @@ M.UpdateComponentData = {
         },
         properties = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ComponentProperty,
         },
         children = {
             type = "list",
-            member_type = "structure",
+            member = M.ComponentChild,
         },
         variants = {
             type = "list",
-            member_type = "structure",
+            member = M.ComponentVariant,
         },
         overrides = {
             type = "map",
-            key_type = "string",
-            value_type = "map",
+            key = { type = "string" },
+            value = { type = "map" },
         },
         bindingProperties = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ComponentBindingPropertiesValue,
         },
         collectionProperties = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ComponentDataConfiguration,
         },
         events = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ComponentEvent,
         },
         schemaVersion = {
             type = "string",
@@ -3024,37 +2866,28 @@ M.CreateComponentInput = {
                 http_query = "clientToken",
             },
         },
-        componentToCreate = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        componentToCreate = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.CreateComponentData }),
     },
 }
 
 M.CreateComponentOutput = {
     type = "structure",
     members = {
-        entity = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        entity = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.Component }),
     },
 }
 
 M.GetComponentOutput = {
     type = "structure",
     members = {
-        component = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        component = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.Component }),
     },
 }
 
@@ -3088,25 +2921,19 @@ M.UpdateComponentInput = {
                 http_query = "clientToken",
             },
         },
-        updatedComponent = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        updatedComponent = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.UpdateComponentData }),
     },
 }
 
 M.UpdateComponentOutput = {
     type = "structure",
     members = {
-        entity = {
-            type = "structure",
-            traits = {
-                http_payload = true,
-            },
-        },
+        entity = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.Component }),
     },
 }
 
@@ -3115,7 +2942,7 @@ M.ExportComponentsOutput = {
     members = {
         entities = {
             type = "list",
-            member_type = "structure",
+            member = M.Component,
             traits = {
                 required = true,
             },

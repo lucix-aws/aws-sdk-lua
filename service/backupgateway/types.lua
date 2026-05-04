@@ -117,35 +117,35 @@ M.BandwidthRateLimitInterval = {
     type = "structure",
     members = {
         AverageUploadRateLimitInBitsPerSec = {
-            type = "number",
+            type = "long",
         },
         StartHourOfDay = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         EndHourOfDay = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         StartMinuteOfHour = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         EndMinuteOfHour = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         DaysOfWeek = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
             traits = {
                 required = true,
             },
@@ -161,7 +161,7 @@ M.GetBandwidthRateLimitScheduleOutput = {
         },
         BandwidthRateLimitIntervals = {
             type = "list",
-            member_type = "structure",
+            member = M.BandwidthRateLimitInterval,
         },
     },
 }
@@ -190,7 +190,7 @@ M.PutBandwidthRateLimitScheduleInput = {
         },
         BandwidthRateLimitIntervals = {
             type = "list",
-            member_type = "structure",
+            member = M.BandwidthRateLimitInterval,
             traits = {
                 required = true,
             },
@@ -252,7 +252,7 @@ M.CreateGatewayInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -324,19 +324,19 @@ M.MaintenanceStartTime = {
     type = "structure",
     members = {
         DayOfMonth = {
-            type = "number",
+            type = "integer",
         },
         DayOfWeek = {
-            type = "number",
+            type = "integer",
         },
         HourOfDay = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         MinuteOfHour = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -362,9 +362,7 @@ M.GatewayDetails = {
         LastSeenTime = {
             type = "timestamp",
         },
-        MaintenanceStartTime = {
-            type = "structure",
-        },
+        MaintenanceStartTime = M.MaintenanceStartTime,
         NextUpdateAvailabilityTime = {
             type = "timestamp",
         },
@@ -383,9 +381,7 @@ M.GatewayDetails = {
 M.GetGatewayOutput = {
     type = "structure",
     members = {
-        Gateway = {
-            type = "structure",
-        },
+        Gateway = M.GatewayDetails,
     },
 }
 
@@ -393,7 +389,7 @@ M.ListGatewaysInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -427,7 +423,7 @@ M.ListGatewaysOutput = {
     members = {
         Gateways = {
             type = "list",
-            member_type = "structure",
+            member = M.Gateway,
         },
         NextToken = {
             type = "string",
@@ -445,22 +441,22 @@ M.PutMaintenanceStartTimeInput = {
             },
         },
         HourOfDay = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         MinuteOfHour = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         DayOfWeek = {
-            type = "number",
+            type = "integer",
         },
         DayOfMonth = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -631,9 +627,7 @@ M.HypervisorDetails = {
 M.GetHypervisorOutput = {
     type = "structure",
     members = {
-        Hypervisor = {
-            type = "structure",
-        },
+        Hypervisor = M.HypervisorDetails,
     },
 }
 
@@ -687,7 +681,7 @@ M.GetHypervisorPropertyMappingsOutput = {
         },
         VmwareToAwsTagMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.VmwareToAwsTagMapping,
         },
         IamRoleArn = {
             type = "string",
@@ -706,7 +700,7 @@ M.PutHypervisorPropertyMappingsInput = {
         },
         VmwareToAwsTagMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.VmwareToAwsTagMapping,
             traits = {
                 required = true,
             },
@@ -755,7 +749,7 @@ M.ImportHypervisorConfigurationInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -773,7 +767,7 @@ M.ListHypervisorsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -807,7 +801,7 @@ M.ListHypervisorsOutput = {
     members = {
         Hypervisors = {
             type = "list",
-            member_type = "structure",
+            member = M.Hypervisor,
         },
         NextToken = {
             type = "string",
@@ -892,7 +886,7 @@ M.ListTagsForResourceOutput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -908,7 +902,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -936,7 +930,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1003,7 +997,7 @@ M.VirtualMachineDetails = {
         },
         VmwareTags = {
             type = "list",
-            member_type = "structure",
+            member = M.VmwareTag,
         },
     },
 }
@@ -1011,9 +1005,7 @@ M.VirtualMachineDetails = {
 M.GetVirtualMachineOutput = {
     type = "structure",
     members = {
-        VirtualMachine = {
-            type = "structure",
-        },
+        VirtualMachine = M.VirtualMachineDetails,
     },
 }
 
@@ -1024,7 +1016,7 @@ M.ListVirtualMachinesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1061,7 +1053,7 @@ M.ListVirtualMachinesOutput = {
     members = {
         VirtualMachines = {
             type = "list",
-            member_type = "structure",
+            member = M.VirtualMachine,
         },
         NextToken = {
             type = "string",

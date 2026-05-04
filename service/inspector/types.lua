@@ -56,14 +56,14 @@ M.AddAttributesToFindingsInput = {
     members = {
         findingArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.Attribute,
             traits = {
                 required = true,
             },
@@ -103,8 +103,8 @@ M.AddAttributesToFindingsOutput = {
     members = {
         failedItems = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.FailedItemDetails,
             traits = {
                 required = true,
             },
@@ -306,14 +306,14 @@ M.AgentFilter = {
     members = {
         agentHealths = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         agentHealthCodes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -366,7 +366,7 @@ M.AgentsAlreadyRunningAssessmentException = {
         },
         agents = {
             type = "list",
-            member_type = "structure",
+            member = M.AgentAlreadyRunningAssessment,
             traits = {
                 required = true,
             },
@@ -504,21 +504,21 @@ M.AssessmentRun = {
             },
         },
         durationInSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         rulesPackageArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         userAttributesForFindings = {
             type = "list",
-            member_type = "structure",
+            member = M.Attribute,
             traits = {
                 required = true,
             },
@@ -549,22 +549,22 @@ M.AssessmentRun = {
         },
         stateChanges = {
             type = "list",
-            member_type = "structure",
+            member = M.AssessmentRunStateChange,
             traits = {
                 required = true,
             },
         },
         notifications = {
             type = "list",
-            member_type = "structure",
+            member = M.AssessmentRunNotification,
             traits = {
                 required = true,
             },
         },
         findingCounts = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
             traits = {
                 required = true,
             },
@@ -582,13 +582,13 @@ M.TelemetryMetadata = {
             },
         },
         count = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         dataSize = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -628,7 +628,7 @@ M.AssessmentRunAgent = {
         },
         telemetryMetadata = {
             type = "list",
-            member_type = "structure",
+            member = M.TelemetryMetadata,
             traits = {
                 required = true,
             },
@@ -652,10 +652,10 @@ M.DurationRange = {
     type = "structure",
     members = {
         minSeconds = {
-            type = "number",
+            type = "integer",
         },
         maxSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -668,24 +668,16 @@ M.AssessmentRunFilter = {
         },
         states = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        durationRange = {
-            type = "structure",
-        },
+        durationRange = M.DurationRange,
         rulesPackageArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        startTimeRange = {
-            type = "structure",
-        },
-        completionTimeRange = {
-            type = "structure",
-        },
-        stateChangeTimeRange = {
-            type = "structure",
-        },
+        startTimeRange = M.TimestampRange,
+        completionTimeRange = M.TimestampRange,
+        stateChangeTimeRange = M.TimestampRange,
     },
 }
 
@@ -701,7 +693,7 @@ M.AssessmentRunInProgressException = {
         },
         assessmentRunArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -785,21 +777,21 @@ M.AssessmentTemplate = {
             },
         },
         durationInSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         rulesPackageArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         userAttributesForFindings = {
             type = "list",
-            member_type = "structure",
+            member = M.Attribute,
             traits = {
                 required = true,
             },
@@ -808,7 +800,7 @@ M.AssessmentTemplate = {
             type = "string",
         },
         assessmentRunCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -828,12 +820,10 @@ M.AssessmentTemplateFilter = {
         namePattern = {
             type = "string",
         },
-        durationRange = {
-            type = "structure",
-        },
+        durationRange = M.DurationRange,
         rulesPackageArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -882,7 +872,7 @@ M.NetworkInterface = {
         },
         privateIpAddresses = {
             type = "list",
-            member_type = "structure",
+            member = M.PrivateIp,
         },
         publicDnsName = {
             type = "string",
@@ -892,11 +882,11 @@ M.NetworkInterface = {
         },
         ipv6Addresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         securityGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.SecurityGroup,
         },
     },
 }
@@ -920,8 +910,9 @@ M.AssetAttributes = {
     type = "structure",
     members = {
         schemaVersion = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -939,15 +930,15 @@ M.AssetAttributes = {
         },
         ipv4Addresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         networkInterfaces = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkInterface,
         },
     },
 }
@@ -1062,21 +1053,21 @@ M.CreateAssessmentTemplateInput = {
             },
         },
         durationInSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         rulesPackageArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         userAttributesForFindings = {
             type = "list",
-            member_type = "structure",
+            member = M.Attribute,
         },
     },
 }
@@ -1150,7 +1141,7 @@ M.CreateResourceGroupInput = {
     members = {
         resourceGroupTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceGroupTag,
             traits = {
                 required = true,
             },
@@ -1223,7 +1214,7 @@ M.DescribeAssessmentRunsInput = {
     members = {
         assessmentRunArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1236,15 +1227,15 @@ M.DescribeAssessmentRunsOutput = {
     members = {
         assessmentRuns = {
             type = "list",
-            member_type = "structure",
+            member = M.AssessmentRun,
             traits = {
                 required = true,
             },
         },
         failedItems = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.FailedItemDetails,
             traits = {
                 required = true,
             },
@@ -1257,7 +1248,7 @@ M.DescribeAssessmentTargetsInput = {
     members = {
         assessmentTargetArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1270,15 +1261,15 @@ M.DescribeAssessmentTargetsOutput = {
     members = {
         assessmentTargets = {
             type = "list",
-            member_type = "structure",
+            member = M.AssessmentTarget,
             traits = {
                 required = true,
             },
         },
         failedItems = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.FailedItemDetails,
             traits = {
                 required = true,
             },
@@ -1291,7 +1282,7 @@ M.DescribeAssessmentTemplatesInput = {
     members = {
         assessmentTemplateArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1304,15 +1295,15 @@ M.DescribeAssessmentTemplatesOutput = {
     members = {
         assessmentTemplates = {
             type = "list",
-            member_type = "structure",
+            member = M.AssessmentTemplate,
             traits = {
                 required = true,
             },
         },
         failedItems = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.FailedItemDetails,
             traits = {
                 required = true,
             },
@@ -1357,7 +1348,7 @@ M.DescribeExclusionsInput = {
     members = {
         exclusionArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1414,14 +1405,14 @@ M.Exclusion = {
         },
         scopes = {
             type = "list",
-            member_type = "structure",
+            member = M.Scope,
             traits = {
                 required = true,
             },
         },
         attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.Attribute,
         },
     },
 }
@@ -1431,16 +1422,16 @@ M.DescribeExclusionsOutput = {
     members = {
         exclusions = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.Exclusion,
             traits = {
                 required = true,
             },
         },
         failedItems = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.FailedItemDetails,
             traits = {
                 required = true,
             },
@@ -1453,7 +1444,7 @@ M.DescribeFindingsInput = {
     members = {
         findingArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1468,8 +1459,9 @@ M.InspectorServiceAttributes = {
     type = "structure",
     members = {
         schemaVersion = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -1492,20 +1484,19 @@ M.Finding = {
             },
         },
         schemaVersion = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         service = {
             type = "string",
         },
-        serviceAttributes = {
-            type = "structure",
-        },
+        serviceAttributes = M.InspectorServiceAttributes,
         assetType = {
             type = "string",
         },
-        assetAttributes = {
-            type = "structure",
-        },
+        assetAttributes = M.AssetAttributes,
         id = {
             type = "string",
         },
@@ -1522,24 +1513,30 @@ M.Finding = {
             type = "string",
         },
         numericSeverity = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         confidence = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         indicatorOfCompromise = {
             type = "boolean",
         },
         attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.Attribute,
             traits = {
                 required = true,
             },
         },
         userAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.Attribute,
             traits = {
                 required = true,
             },
@@ -1564,15 +1561,15 @@ M.DescribeFindingsOutput = {
     members = {
         findings = {
             type = "list",
-            member_type = "structure",
+            member = M.Finding,
             traits = {
                 required = true,
             },
         },
         failedItems = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.FailedItemDetails,
             traits = {
                 required = true,
             },
@@ -1585,7 +1582,7 @@ M.DescribeResourceGroupsInput = {
     members = {
         resourceGroupArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1604,7 +1601,7 @@ M.ResourceGroup = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceGroupTag,
             traits = {
                 required = true,
             },
@@ -1623,15 +1620,15 @@ M.DescribeResourceGroupsOutput = {
     members = {
         resourceGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceGroup,
             traits = {
                 required = true,
             },
         },
         failedItems = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.FailedItemDetails,
             traits = {
                 required = true,
             },
@@ -1644,7 +1641,7 @@ M.DescribeRulesPackagesInput = {
     members = {
         rulesPackageArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1693,15 +1690,15 @@ M.DescribeRulesPackagesOutput = {
     members = {
         rulesPackages = {
             type = "list",
-            member_type = "structure",
+            member = M.RulesPackage,
             traits = {
                 required = true,
             },
         },
         failedItems = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.FailedItemDetails,
             traits = {
                 required = true,
             },
@@ -1750,14 +1747,14 @@ M.ExclusionPreview = {
         },
         scopes = {
             type = "list",
-            member_type = "structure",
+            member = M.Scope,
             traits = {
                 required = true,
             },
         },
         attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.Attribute,
         },
     },
 }
@@ -1767,35 +1764,33 @@ M.FindingFilter = {
     members = {
         agentIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         autoScalingGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ruleNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         severities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         rulesPackageArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.Attribute,
         },
         userAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.Attribute,
         },
-        creationTimeRange = {
-            type = "structure",
-        },
+        creationTimeRange = M.TimestampRange,
     },
 }
 
@@ -1892,7 +1887,7 @@ M.GetExclusionsPreviewInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         locale = {
             type = "string",
@@ -1916,7 +1911,7 @@ M.GetExclusionsPreviewOutput = {
         },
         exclusionPreviews = {
             type = "list",
-            member_type = "structure",
+            member = M.ExclusionPreview,
         },
         nextToken = {
             type = "string",
@@ -1941,7 +1936,7 @@ M.GetTelemetryMetadataOutput = {
     members = {
         telemetryMetadata = {
             type = "list",
-            member_type = "structure",
+            member = M.TelemetryMetadata,
             traits = {
                 required = true,
             },
@@ -1958,14 +1953,12 @@ M.ListAssessmentRunAgentsInput = {
                 required = true,
             },
         },
-        filter = {
-            type = "structure",
-        },
+        filter = M.AgentFilter,
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1975,7 +1968,7 @@ M.ListAssessmentRunAgentsOutput = {
     members = {
         assessmentRunAgents = {
             type = "list",
-            member_type = "structure",
+            member = M.AssessmentRunAgent,
             traits = {
                 required = true,
             },
@@ -1991,16 +1984,14 @@ M.ListAssessmentRunsInput = {
     members = {
         assessmentTemplateArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        filter = {
-            type = "structure",
-        },
+        filter = M.AssessmentRunFilter,
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2010,7 +2001,7 @@ M.ListAssessmentRunsOutput = {
     members = {
         assessmentRunArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2024,14 +2015,12 @@ M.ListAssessmentRunsOutput = {
 M.ListAssessmentTargetsInput = {
     type = "structure",
     members = {
-        filter = {
-            type = "structure",
-        },
+        filter = M.AssessmentTargetFilter,
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2041,7 +2030,7 @@ M.ListAssessmentTargetsOutput = {
     members = {
         assessmentTargetArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2057,16 +2046,14 @@ M.ListAssessmentTemplatesInput = {
     members = {
         assessmentTargetArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        filter = {
-            type = "structure",
-        },
+        filter = M.AssessmentTemplateFilter,
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2076,7 +2063,7 @@ M.ListAssessmentTemplatesOutput = {
     members = {
         assessmentTemplateArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2097,7 +2084,7 @@ M.ListEventSubscriptionsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2119,7 +2106,7 @@ M.Subscription = {
         },
         eventSubscriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.EventSubscription,
             traits = {
                 required = true,
             },
@@ -2132,7 +2119,7 @@ M.ListEventSubscriptionsOutput = {
     members = {
         subscriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.Subscription,
             traits = {
                 required = true,
             },
@@ -2156,7 +2143,7 @@ M.ListExclusionsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2166,7 +2153,7 @@ M.ListExclusionsOutput = {
     members = {
         exclusionArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2182,16 +2169,14 @@ M.ListFindingsInput = {
     members = {
         assessmentRunArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        filter = {
-            type = "structure",
-        },
+        filter = M.FindingFilter,
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2201,7 +2186,7 @@ M.ListFindingsOutput = {
     members = {
         findingArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2219,7 +2204,7 @@ M.ListRulesPackagesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2229,7 +2214,7 @@ M.ListRulesPackagesOutput = {
     members = {
         rulesPackageArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2257,7 +2242,7 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -2278,7 +2263,7 @@ M.PreviewAgentsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2288,7 +2273,7 @@ M.PreviewAgentsOutput = {
     members = {
         agentPreviews = {
             type = "list",
-            member_type = "structure",
+            member = M.AgentPreview,
             traits = {
                 required = true,
             },
@@ -2320,14 +2305,14 @@ M.RemoveAttributesFromFindingsInput = {
     members = {
         findingArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         attributeKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2340,8 +2325,8 @@ M.RemoveAttributesFromFindingsOutput = {
     members = {
         failedItems = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.FailedItemDetails,
             traits = {
                 required = true,
             },
@@ -2360,7 +2345,7 @@ M.SetTagsForResourceInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }

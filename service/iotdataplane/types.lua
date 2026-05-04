@@ -23,12 +23,14 @@ M.DeleteConnectionInput = {
         cleanSession = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "cleanSession",
             },
         },
         preventWillMessage = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "preventWillMessage",
             },
         },
@@ -184,10 +186,16 @@ M.GetRetainedMessageOutput = {
             type = "blob",
         },
         qos = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         lastModifiedTime = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         userProperties = {
             type = "blob",
@@ -243,7 +251,7 @@ M.ListNamedShadowsForThingInput = {
             },
         },
         pageSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "pageSize",
             },
@@ -256,13 +264,16 @@ M.ListNamedShadowsForThingOutput = {
     members = {
         results = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
         },
         timestamp = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -277,7 +288,7 @@ M.ListRetainedMessagesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -292,13 +303,22 @@ M.RetainedMessageSummary = {
             type = "string",
         },
         payloadSize = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         qos = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         lastModifiedTime = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -308,7 +328,7 @@ M.ListRetainedMessagesOutput = {
     members = {
         retainedTopics = {
             type = "list",
-            member_type = "structure",
+            member = M.RetainedMessageSummary,
         },
         nextToken = {
             type = "string",
@@ -332,14 +352,16 @@ M.PublishInput = {
             },
         },
         qos = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "qos",
             },
         },
         retain = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "retain",
             },
         },
@@ -380,8 +402,9 @@ M.PublishInput = {
             },
         },
         messageExpiry = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 http_query = "messageExpiry",
             },
         },

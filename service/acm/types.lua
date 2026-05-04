@@ -154,7 +154,7 @@ M.AddTagsToCertificateInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -237,7 +237,7 @@ M.ThrottlingException = {
         },
         throttlingReasons = {
             type = "list",
-            member_type = "structure",
+            member = M.ThrottlingReason,
         },
     },
 }
@@ -309,7 +309,7 @@ M.DomainValidation = {
         },
         ValidationEmails = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ValidationDomain = {
             type = "string",
@@ -317,12 +317,8 @@ M.DomainValidation = {
         ValidationStatus = {
             type = "string",
         },
-        ResourceRecord = {
-            type = "structure",
-        },
-        HttpRedirect = {
-            type = "structure",
-        },
+        ResourceRecord = M.ResourceRecord,
+        HttpRedirect = M.HttpRedirect,
         ValidationMethod = {
             type = "string",
         },
@@ -437,7 +433,7 @@ M.RenewalSummary = {
         },
         DomainValidationOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainValidation,
             traits = {
                 required = true,
             },
@@ -479,14 +475,14 @@ M.CertificateDetail = {
         },
         SubjectAlternativeNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ManagedBy = {
             type = "string",
         },
         DomainValidationOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainValidation,
         },
         Serial = {
             type = "string",
@@ -529,7 +525,7 @@ M.CertificateDetail = {
         },
         InUseBy = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         FailureReason = {
             type = "string",
@@ -537,16 +533,14 @@ M.CertificateDetail = {
         Type = {
             type = "string",
         },
-        RenewalSummary = {
-            type = "structure",
-        },
+        RenewalSummary = M.RenewalSummary,
         KeyUsages = {
             type = "list",
-            member_type = "structure",
+            member = M.KeyUsage,
         },
         ExtendedKeyUsages = {
             type = "list",
-            member_type = "structure",
+            member = M.ExtendedKeyUsage,
         },
         CertificateAuthorityArn = {
             type = "string",
@@ -554,9 +548,7 @@ M.CertificateDetail = {
         RenewalEligibility = {
             type = "string",
         },
-        Options = {
-            type = "structure",
-        },
+        Options = M.CertificateOptions,
     },
 }
 
@@ -598,9 +590,7 @@ M.CommonNameFilter = {
 M.SubjectFilter = {
     type = "union",
     members = {
-        CommonName = {
-            type = "structure",
-        },
+        CommonName = M.CommonNameFilter,
     },
 }
 
@@ -625,21 +615,15 @@ M.DnsNameFilter = {
 M.SubjectAlternativeNameFilter = {
     type = "union",
     members = {
-        DnsName = {
-            type = "structure",
-        },
+        DnsName = M.DnsNameFilter,
     },
 }
 
 M.X509AttributeFilter = {
     type = "union",
     members = {
-        Subject = {
-            type = "union",
-        },
-        SubjectAlternativeName = {
-            type = "union",
-        },
+        Subject = M.SubjectFilter,
+        SubjectAlternativeName = M.SubjectAlternativeNameFilter,
         ExtendedKeyUsage = {
             type = "string",
         },
@@ -652,12 +636,8 @@ M.X509AttributeFilter = {
         SerialNumber = {
             type = "string",
         },
-        NotAfter = {
-            type = "structure",
-        },
-        NotBefore = {
-            type = "structure",
-        },
+        NotAfter = M.TimestampRange,
+        NotBefore = M.TimestampRange,
     },
 }
 
@@ -667,12 +647,8 @@ M.CertificateFilter = {
         CertificateArn = {
             type = "string",
         },
-        X509AttributeFilter = {
-            type = "union",
-        },
-        AcmCertificateMetadataFilter = {
-            type = "union",
-        },
+        X509AttributeFilter = M.X509AttributeFilter,
+        AcmCertificateMetadataFilter = M.AcmCertificateMetadataFilter,
     },
 }
 
@@ -727,9 +703,7 @@ M.DescribeCertificateInput = {
 M.DescribeCertificateOutput = {
     type = "structure",
     members = {
-        Certificate = {
-            type = "structure",
-        },
+        Certificate = M.CertificateDetail,
     },
 }
 
@@ -784,7 +758,7 @@ M.ExpiryEventsConfiguration = {
     type = "structure",
     members = {
         DaysBeforeExpiry = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -792,9 +766,7 @@ M.ExpiryEventsConfiguration = {
 M.GetAccountConfigurationOutput = {
     type = "structure",
     members = {
-        ExpiryEvents = {
-            type = "structure",
-        },
+        ExpiryEvents = M.ExpiryEventsConfiguration,
     },
 }
 
@@ -845,7 +817,7 @@ M.ImportCertificateInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -884,15 +856,15 @@ M.Filters = {
     members = {
         extendedKeyUsage = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         keyUsage = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         keyTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         exportOption = {
             type = "string",
@@ -917,16 +889,14 @@ M.ListCertificatesInput = {
     members = {
         CertificateStatuses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        Includes = {
-            type = "structure",
-        },
+        Includes = M.Filters,
         NextToken = {
             type = "string",
         },
         MaxItems = {
-            type = "number",
+            type = "integer",
         },
         SortBy = {
             type = "string",
@@ -948,7 +918,7 @@ M.CertificateSummary = {
         },
         SubjectAlternativeNameSummaries = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         HasAdditionalSubjectAlternativeNames = {
             type = "boolean",
@@ -964,11 +934,11 @@ M.CertificateSummary = {
         },
         KeyUsages = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ExtendedKeyUsages = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ExportOption = {
             type = "string",
@@ -1014,7 +984,7 @@ M.ListCertificatesOutput = {
         },
         CertificateSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.CertificateSummary,
         },
     },
 }
@@ -1046,7 +1016,7 @@ M.ListTagsForCertificateOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1054,9 +1024,7 @@ M.ListTagsForCertificateOutput = {
 M.PutAccountConfigurationInput = {
     type = "structure",
     members = {
-        ExpiryEvents = {
-            type = "structure",
-        },
+        ExpiryEvents = M.ExpiryEventsConfiguration,
         IdempotencyToken = {
             type = "string",
             traits = {
@@ -1081,7 +1049,7 @@ M.RemoveTagsFromCertificateInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -1151,24 +1119,22 @@ M.RequestCertificateInput = {
         },
         SubjectAlternativeNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IdempotencyToken = {
             type = "string",
         },
         DomainValidationOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainValidationOption,
         },
-        Options = {
-            type = "structure",
-        },
+        Options = M.CertificateOptions,
         CertificateAuthorityArn = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         KeyAlgorithm = {
             type = "string",
@@ -1282,9 +1248,7 @@ M.SearchCertificatesSortOrder = {
 M.CertificateMetadata = {
     type = "union",
     members = {
-        AcmCertificateMetadata = {
-            type = "structure",
-        },
+        AcmCertificateMetadata = M.AcmCertificateMetadata,
     },
 }
 
@@ -1308,14 +1272,14 @@ M.DistinguishedName = {
         },
         DomainComponents = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Country = {
             type = "string",
         },
         CustomAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomAttribute,
         },
         DistinguishedNameQualifier = {
             type = "string",
@@ -1371,18 +1335,14 @@ M.OtherName = {
 M.GeneralName = {
     type = "union",
     members = {
-        DirectoryName = {
-            type = "structure",
-        },
+        DirectoryName = M.DistinguishedName,
         DnsName = {
             type = "string",
         },
         IpAddress = {
             type = "string",
         },
-        OtherName = {
-            type = "structure",
-        },
+        OtherName = M.OtherName,
         RegisteredId = {
             type = "string",
         },
@@ -1398,26 +1358,22 @@ M.GeneralName = {
 M.X509Attributes = {
     type = "structure",
     members = {
-        Issuer = {
-            type = "structure",
-        },
-        Subject = {
-            type = "structure",
-        },
+        Issuer = M.DistinguishedName,
+        Subject = M.DistinguishedName,
         SubjectAlternativeNames = {
             type = "list",
-            member_type = "union",
+            member = M.GeneralName,
         },
         ExtendedKeyUsages = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         KeyAlgorithm = {
             type = "string",
         },
         KeyUsages = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SerialNumber = {
             type = "string",
@@ -1437,12 +1393,8 @@ M.CertificateSearchResult = {
         CertificateArn = {
             type = "string",
         },
-        X509Attributes = {
-            type = "structure",
-        },
-        CertificateMetadata = {
-            type = "union",
-        },
+        X509Attributes = M.X509Attributes,
+        CertificateMetadata = M.CertificateMetadata,
     },
 }
 
@@ -1451,7 +1403,7 @@ M.SearchCertificatesOutput = {
     members = {
         Results = {
             type = "list",
-            member_type = "structure",
+            member = M.CertificateSearchResult,
         },
         NextToken = {
             type = "string",
@@ -1468,12 +1420,9 @@ M.UpdateCertificateOptionsInput = {
                 required = true,
             },
         },
-        Options = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Options = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CertificateOptions }),
     },
 }
 
@@ -1486,38 +1435,41 @@ M.CertificateFilterStatement = {
     members = {
         And = {
             type = "list",
-            member_type = "union",
+            member = M.CertificateFilterStatement,
         },
         Or = {
             type = "list",
-            member_type = "union",
+            member = M.CertificateFilterStatement,
         },
-        Not = {
-            type = "union",
-        },
-        Filter = {
-            type = "union",
-        },
+        Not = M.CertificateFilterStatement,
+        Filter = M.CertificateFilter,
     },
 }
 
 M.SearchCertificatesInput = {
     type = "structure",
     members = {
-        FilterStatement = {
-            type = "union",
-        },
+        FilterStatement = M.CertificateFilterStatement,
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 100,
+            },
         },
         NextToken = {
             type = "string",
         },
         SortBy = {
             type = "string",
+            traits = {
+                default = "CREATED_AT",
+            },
         },
         SortOrder = {
             type = "string",
+            traits = {
+                default = "ASCENDING",
+            },
         },
     },
 }

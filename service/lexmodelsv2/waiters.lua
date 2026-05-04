@@ -1,0 +1,391 @@
+local waiter = require("waiter")
+
+local M = {}
+
+--- Wait until BotAliasAvailable.
+function M.wait_until_bot_alias_available(client, input, options)
+    return waiter.wait(client, "describeBotAlias", input, {
+        min_delay = 10,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "botAliasStatus",
+                        expected = "Available",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "botAliasStatus",
+                        expected = "Failed",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "botAliasStatus",
+                        expected = "Deleting",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until BotAvailable.
+function M.wait_until_bot_available(client, input, options)
+    return waiter.wait(client, "describeBot", input, {
+        min_delay = 10,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "botStatus",
+                        expected = "Available",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "botStatus",
+                        expected = "Deleting",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "botStatus",
+                        expected = "Failed",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "botStatus",
+                        expected = "Inactive",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until BotExportCompleted.
+function M.wait_until_bot_export_completed(client, input, options)
+    return waiter.wait(client, "describeExport", input, {
+        min_delay = 10,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "exportStatus",
+                        expected = "Completed",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "exportStatus",
+                        expected = "Deleting",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "exportStatus",
+                        expected = "Failed",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until BotImportCompleted.
+function M.wait_until_bot_import_completed(client, input, options)
+    return waiter.wait(client, "describeImport", input, {
+        min_delay = 10,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "importStatus",
+                        expected = "Completed",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "importStatus",
+                        expected = "Deleting",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "importStatus",
+                        expected = "Failed",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until BotLocaleBuilt.
+function M.wait_until_bot_locale_built(client, input, options)
+    return waiter.wait(client, "describeBotLocale", input, {
+        min_delay = 10,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "botLocaleStatus",
+                        expected = "Built",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "botLocaleStatus",
+                        expected = "Deleting",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "botLocaleStatus",
+                        expected = "Failed",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "botLocaleStatus",
+                        expected = "NotBuilt",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until BotLocaleCreated.
+function M.wait_until_bot_locale_created(client, input, options)
+    return waiter.wait(client, "describeBotLocale", input, {
+        min_delay = 10,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "botLocaleStatus",
+                        expected = "Built",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "botLocaleStatus",
+                        expected = "ReadyExpressTesting",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "botLocaleStatus",
+                        expected = "NotBuilt",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "botLocaleStatus",
+                        expected = "Deleting",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "botLocaleStatus",
+                        expected = "Failed",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until BotLocaleExpressTestingAvailable.
+function M.wait_until_bot_locale_express_testing_available(client, input, options)
+    return waiter.wait(client, "describeBotLocale", input, {
+        min_delay = 10,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "botLocaleStatus",
+                        expected = "Built",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "botLocaleStatus",
+                        expected = "ReadyExpressTesting",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "botLocaleStatus",
+                        expected = "Deleting",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "botLocaleStatus",
+                        expected = "Failed",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "botLocaleStatus",
+                        expected = "NotBuilt",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until BotVersionAvailable.
+function M.wait_until_bot_version_available(client, input, options)
+    return waiter.wait(client, "describeBotVersion", input, {
+        min_delay = 10,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "botStatus",
+                        expected = "Available",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "botStatus",
+                        expected = "Deleting",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "botStatus",
+                        expected = "Failed",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "ResourceNotFoundException",
+                },
+            },
+        },
+    }, options)
+end
+
+return M

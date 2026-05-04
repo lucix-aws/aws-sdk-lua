@@ -23,7 +23,7 @@ M.AcceptResourceGroupingRecommendationsInput = {
         },
         entries = {
             type = "list",
-            member_type = "structure",
+            member = M.AcceptGroupingRecommendationEntry,
             traits = {
                 required = true,
             },
@@ -60,7 +60,7 @@ M.AcceptResourceGroupingRecommendationsOutput = {
         },
         failedEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.FailedGroupingRecommendationEntry,
             traits = {
                 required = true,
             },
@@ -112,7 +112,7 @@ M.ThrottlingException = {
             type = "string",
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -186,12 +186,9 @@ M.ResourceMapping = {
                 required = true,
             },
         },
-        physicalResourceId = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        physicalResourceId = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PhysicalResourceId }),
         terraformSourceName = {
             type = "string",
         },
@@ -212,7 +209,7 @@ M.AddDraftAppVersionResourceMappingsInput = {
         },
         resourceMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceMapping,
             traits = {
                 required = true,
             },
@@ -237,7 +234,7 @@ M.AddDraftAppVersionResourceMappingsOutput = {
         },
         resourceMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceMapping,
             traits = {
                 required = true,
             },
@@ -322,12 +319,8 @@ M.RecommendationItem = {
         excludeReason = {
             type = "string",
         },
-        latestDiscoveredExperiment = {
-            type = "structure",
-        },
-        discoveredAlarm = {
-            type = "structure",
-        },
+        latestDiscoveredExperiment = M.Experiment,
+        discoveredAlarm = M.Alarm,
     },
 }
 
@@ -381,14 +374,14 @@ M.AlarmRecommendation = {
         },
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.RecommendationItem,
         },
         prerequisite = {
             type = "string",
         },
         appComponentNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         recommendationStatus = {
             type = "string",
@@ -461,7 +454,7 @@ M.PermissionModel = {
         },
         crossAccountRoleArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -508,25 +501,26 @@ M.App = {
             type = "timestamp",
         },
         resiliencyScore = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         lastResiliencyScoreEvaluationTime = {
             type = "timestamp",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         assessmentSchedule = {
             type = "string",
         },
-        permissionModel = {
-            type = "structure",
-        },
+        permissionModel = M.PermissionModel,
         eventSubscriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.EventSubscription,
         },
         driftStatus = {
             type = "string",
@@ -535,10 +529,10 @@ M.App = {
             type = "timestamp",
         },
         rtoInSecs = {
-            type = "number",
+            type = "integer",
         },
         rpoInSecs = {
-            type = "number",
+            type = "integer",
         },
         awsApplicationArn = {
             type = "string",
@@ -571,10 +565,16 @@ M.DisruptionCompliance = {
     type = "structure",
     members = {
         achievableRtoInSecs = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         currentRtoInSecs = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         rtoReferenceId = {
             type = "string",
@@ -583,7 +583,10 @@ M.DisruptionCompliance = {
             type = "string",
         },
         currentRpoInSecs = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         rpoReferenceId = {
             type = "string",
@@ -598,7 +601,10 @@ M.DisruptionCompliance = {
             },
         },
         achievableRpoInSecs = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         message = {
             type = "string",
@@ -617,8 +623,9 @@ M.Cost = {
     type = "structure",
     members = {
         amount = {
-            type = "number",
+            type = "double",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -665,14 +672,16 @@ M.FailurePolicy = {
     type = "structure",
     members = {
         rtoInSecs = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         rpoInSecs = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -711,16 +720,16 @@ M.ResiliencyPolicy = {
         },
         policy = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.FailurePolicy,
         },
         creationTime = {
             type = "timestamp",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -736,16 +745,28 @@ M.ScoringComponentResiliencyScore = {
     type = "structure",
     members = {
         score = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         possibleScore = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         outstandingCount = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         excludedCount = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -754,23 +775,24 @@ M.ResiliencyScore = {
     type = "structure",
     members = {
         score = {
-            type = "number",
+            type = "double",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         disruptionScore = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "double" },
             traits = {
                 required = true,
             },
         },
         componentScore = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ScoringComponentResiliencyScore,
         },
     },
 }
@@ -795,7 +817,7 @@ M.ResourceErrorsDetails = {
     members = {
         resourceErrors = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceError,
         },
         hasMoreErrors = {
             type = "boolean",
@@ -814,7 +836,7 @@ M.AssessmentRiskRecommendation = {
         },
         appComponents = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -827,7 +849,7 @@ M.AssessmentSummary = {
         },
         riskRecommendations = {
             type = "list",
-            member_type = "structure",
+            member = M.AssessmentRiskRecommendation,
         },
     },
 }
@@ -847,16 +869,12 @@ M.AppAssessment = {
                 required = true,
             },
         },
-        cost = {
-            type = "structure",
-        },
-        resiliencyScore = {
-            type = "structure",
-        },
+        cost = M.Cost,
+        resiliencyScore = M.ResiliencyScore,
         compliance = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.DisruptionCompliance,
         },
         complianceStatus = {
             type = "string",
@@ -885,26 +903,20 @@ M.AppAssessment = {
                 required = true,
             },
         },
-        policy = {
-            type = "structure",
-        },
+        policy = M.ResiliencyPolicy,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        resourceErrorsDetails = {
-            type = "structure",
-        },
+        resourceErrorsDetails = M.ResourceErrorsDetails,
         versionName = {
             type = "string",
         },
         driftStatus = {
             type = "string",
         },
-        summary = {
-            type = "structure",
-        },
+        summary = M.AssessmentSummary,
     },
 }
 
@@ -947,11 +959,12 @@ M.AppAssessmentSummary = {
         complianceStatus = {
             type = "string",
         },
-        cost = {
-            type = "structure",
-        },
+        cost = M.Cost,
         resiliencyScore = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         versionName = {
             type = "string",
@@ -982,8 +995,8 @@ M.AppComponent = {
         },
         additionalInfo = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
     },
 }
@@ -991,16 +1004,14 @@ M.AppComponent = {
 M.AppComponentCompliance = {
     type = "structure",
     members = {
-        cost = {
-            type = "structure",
-        },
+        cost = M.Cost,
         appComponentName = {
             type = "string",
         },
         compliance = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.DisruptionCompliance,
         },
         message = {
             type = "string",
@@ -1008,9 +1019,7 @@ M.AppComponentCompliance = {
         status = {
             type = "string",
         },
-        resiliencyScore = {
-            type = "structure",
-        },
+        resiliencyScore = M.ResiliencyScore,
     },
 }
 
@@ -1059,15 +1068,14 @@ M.AppInputSource = {
         sourceArn = {
             type = "string",
         },
-        terraformSource = {
-            type = "structure",
-        },
+        terraformSource = M.TerraformSource,
         resourceCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
-        eksSourceClusterNamespace = {
-            type = "structure",
-        },
+        eksSourceClusterNamespace = M.EksSourceClusterNamespace,
     },
 }
 
@@ -1099,7 +1107,10 @@ M.AppSummary = {
             type = "string",
         },
         resiliencyScore = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         assessmentSchedule = {
             type = "string",
@@ -1114,10 +1125,10 @@ M.AppSummary = {
             type = "timestamp",
         },
         rtoInSecs = {
-            type = "number",
+            type = "integer",
         },
         rpoInSecs = {
-            type = "number",
+            type = "integer",
         },
         awsApplicationArn = {
             type = "string",
@@ -1135,7 +1146,7 @@ M.AppVersionSummary = {
             },
         },
         identifier = {
-            type = "number",
+            type = "long",
         },
         creationTime = {
             type = "timestamp",
@@ -1176,9 +1187,7 @@ M.UpdateRecommendationStatusRequestEntry = {
                 required = true,
             },
         },
-        item = {
-            type = "structure",
-        },
+        item = M.UpdateRecommendationStatusItem,
         excluded = {
             type = "boolean",
             traits = {
@@ -1205,7 +1214,7 @@ M.BatchUpdateRecommendationStatusInput = {
         },
         requestEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.UpdateRecommendationStatusRequestEntry,
             traits = {
                 required = true,
             },
@@ -1246,9 +1255,7 @@ M.BatchUpdateRecommendationStatusSuccessfulEntry = {
                 required = true,
             },
         },
-        item = {
-            type = "structure",
-        },
+        item = M.UpdateRecommendationStatusItem,
         excluded = {
             type = "boolean",
             traits = {
@@ -1275,14 +1282,14 @@ M.BatchUpdateRecommendationStatusOutput = {
         },
         successfulEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchUpdateRecommendationStatusSuccessfulEntry,
             traits = {
                 required = true,
             },
         },
         failedEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchUpdateRecommendationStatusFailedEntry,
             traits = {
                 required = true,
             },
@@ -1307,8 +1314,8 @@ M.CreateAppInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         clientToken = {
             type = "string",
@@ -1316,12 +1323,10 @@ M.CreateAppInput = {
         assessmentSchedule = {
             type = "string",
         },
-        permissionModel = {
-            type = "structure",
-        },
+        permissionModel = M.PermissionModel,
         eventSubscriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.EventSubscription,
         },
         awsApplicationArn = {
             type = "string",
@@ -1332,12 +1337,9 @@ M.CreateAppInput = {
 M.CreateAppOutput = {
     type = "structure",
     members = {
-        app = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        app = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.App }),
     },
 }
 
@@ -1367,8 +1369,8 @@ M.CreateAppVersionAppComponentInput = {
         },
         additionalInfo = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         clientToken = {
             type = "string",
@@ -1391,9 +1393,7 @@ M.CreateAppVersionAppComponentOutput = {
                 required = true,
             },
         },
-        appComponent = {
-            type = "structure",
-        },
+        appComponent = M.AppComponent,
     },
 }
 
@@ -1433,12 +1433,9 @@ M.CreateAppVersionResourceInput = {
         resourceName = {
             type = "string",
         },
-        logicalResourceId = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        logicalResourceId = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LogicalResourceId }),
         physicalResourceId = {
             type = "string",
             traits = {
@@ -1459,15 +1456,15 @@ M.CreateAppVersionResourceInput = {
         },
         appComponents = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         additionalInfo = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         clientToken = {
             type = "string",
@@ -1486,18 +1483,12 @@ M.PhysicalResource = {
         resourceName = {
             type = "string",
         },
-        logicalResourceId = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        physicalResourceId = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        logicalResourceId = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LogicalResourceId }),
+        physicalResourceId = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PhysicalResourceId }),
         resourceType = {
             type = "string",
             traits = {
@@ -1506,12 +1497,12 @@ M.PhysicalResource = {
         },
         appComponents = {
             type = "list",
-            member_type = "structure",
+            member = M.AppComponent,
         },
         additionalInfo = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         excluded = {
             type = "boolean",
@@ -1540,9 +1531,7 @@ M.CreateAppVersionResourceOutput = {
                 required = true,
             },
         },
-        physicalResource = {
-            type = "structure",
-        },
+        physicalResource = M.PhysicalResource,
     },
 }
 
@@ -1562,14 +1551,14 @@ M.CreateRecommendationTemplateInput = {
     members = {
         recommendationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         format = {
             type = "string",
         },
         recommendationTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         assessmentArn = {
             type = "string",
@@ -1588,8 +1577,8 @@ M.CreateRecommendationTemplateInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         bucketName = {
             type = "string",
@@ -1619,9 +1608,7 @@ M.S3Location = {
 M.RecommendationTemplate = {
     type = "structure",
     members = {
-        templatesLocation = {
-            type = "structure",
-        },
+        templatesLocation = M.S3Location,
         assessmentArn = {
             type = "string",
             traits = {
@@ -1633,11 +1620,11 @@ M.RecommendationTemplate = {
         },
         recommendationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         recommendationTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1677,8 +1664,8 @@ M.RecommendationTemplate = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         needsReplacements = {
             type = "boolean",
@@ -1689,9 +1676,7 @@ M.RecommendationTemplate = {
 M.CreateRecommendationTemplateOutput = {
     type = "structure",
     members = {
-        recommendationTemplate = {
-            type = "structure",
-        },
+        recommendationTemplate = M.RecommendationTemplate,
     },
 }
 
@@ -1718,8 +1703,8 @@ M.CreateResiliencyPolicyInput = {
         },
         policy = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.FailurePolicy,
             traits = {
                 required = true,
             },
@@ -1729,8 +1714,8 @@ M.CreateResiliencyPolicyInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1738,12 +1723,9 @@ M.CreateResiliencyPolicyInput = {
 M.CreateResiliencyPolicyOutput = {
     type = "structure",
     members = {
-        policy = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        policy = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResiliencyPolicy }),
     },
 }
 
@@ -1822,15 +1804,11 @@ M.DeleteAppInputSourceInput = {
         sourceArn = {
             type = "string",
         },
-        terraformSource = {
-            type = "structure",
-        },
+        terraformSource = M.TerraformSource,
         clientToken = {
             type = "string",
         },
-        eksSourceClusterNamespace = {
-            type = "structure",
-        },
+        eksSourceClusterNamespace = M.EksSourceClusterNamespace,
     },
 }
 
@@ -1840,9 +1818,7 @@ M.DeleteAppInputSourceOutput = {
         appArn = {
             type = "string",
         },
-        appInputSource = {
-            type = "structure",
-        },
+        appInputSource = M.AppInputSource,
     },
 }
 
@@ -1882,9 +1858,7 @@ M.DeleteAppVersionAppComponentOutput = {
                 required = true,
             },
         },
-        appComponent = {
-            type = "structure",
-        },
+        appComponent = M.AppComponent,
     },
 }
 
@@ -1900,9 +1874,7 @@ M.DeleteAppVersionResourceInput = {
         resourceName = {
             type = "string",
         },
-        logicalResourceId = {
-            type = "structure",
-        },
+        logicalResourceId = M.LogicalResourceId,
         physicalResourceId = {
             type = "string",
         },
@@ -1933,9 +1905,7 @@ M.DeleteAppVersionResourceOutput = {
                 required = true,
             },
         },
-        physicalResource = {
-            type = "structure",
-        },
+        physicalResource = M.PhysicalResource,
     },
 }
 
@@ -2014,12 +1984,9 @@ M.DescribeAppInput = {
 M.DescribeAppOutput = {
     type = "structure",
     members = {
-        app = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        app = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.App }),
     },
 }
 
@@ -2038,12 +2005,9 @@ M.DescribeAppAssessmentInput = {
 M.DescribeAppAssessmentOutput = {
     type = "structure",
     members = {
-        assessment = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        assessment = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AppAssessment }),
     },
 }
 
@@ -2082,8 +2046,8 @@ M.DescribeAppVersionOutput = {
         },
         additionalInfo = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
     },
 }
@@ -2127,9 +2091,7 @@ M.DescribeAppVersionAppComponentOutput = {
                 required = true,
             },
         },
-        appComponent = {
-            type = "structure",
-        },
+        appComponent = M.AppComponent,
     },
 }
 
@@ -2151,9 +2113,7 @@ M.DescribeAppVersionResourceInput = {
         resourceName = {
             type = "string",
         },
-        logicalResourceId = {
-            type = "structure",
-        },
+        logicalResourceId = M.LogicalResourceId,
         physicalResourceId = {
             type = "string",
         },
@@ -2181,9 +2141,7 @@ M.DescribeAppVersionResourceOutput = {
                 required = true,
             },
         },
-        physicalResource = {
-            type = "structure",
-        },
+        physicalResource = M.PhysicalResource,
     },
 }
 
@@ -2350,7 +2308,7 @@ M.DescribeDraftAppVersionResourcesImportStatusOutput = {
         },
         errorDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.ErrorDetail,
         },
     },
 }
@@ -2389,9 +2347,7 @@ M.DescribeMetricsExportOutput = {
                 required = true,
             },
         },
-        exportLocation = {
-            type = "structure",
-        },
+        exportLocation = M.S3Location,
         errorMessage = {
             type = "string",
         },
@@ -2413,12 +2369,9 @@ M.DescribeResiliencyPolicyInput = {
 M.DescribeResiliencyPolicyOutput = {
     type = "structure",
     members = {
-        policy = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        policy = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResiliencyPolicy }),
     },
 }
 
@@ -2476,7 +2429,7 @@ M.EksSource = {
         },
         namespaces = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2500,18 +2453,18 @@ M.ImportResourcesToDraftAppVersionInput = {
         },
         sourceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         terraformSources = {
             type = "list",
-            member_type = "structure",
+            member = M.TerraformSource,
         },
         importStrategy = {
             type = "string",
         },
         eksSources = {
             type = "list",
-            member_type = "structure",
+            member = M.EksSource,
         },
     },
 }
@@ -2533,7 +2486,7 @@ M.ImportResourcesToDraftAppVersionOutput = {
         },
         sourceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         status = {
             type = "string",
@@ -2543,11 +2496,11 @@ M.ImportResourcesToDraftAppVersionOutput = {
         },
         terraformSources = {
             type = "list",
-            member_type = "structure",
+            member = M.TerraformSource,
         },
         eksSources = {
             type = "list",
-            member_type = "structure",
+            member = M.EksSource,
         },
     },
 }
@@ -2565,7 +2518,7 @@ M.ListAlarmRecommendationsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2575,7 +2528,7 @@ M.ListAlarmRecommendationsOutput = {
     members = {
         alarmRecommendations = {
             type = "list",
-            member_type = "structure",
+            member = M.AlarmRecommendation,
             traits = {
                 required = true,
             },
@@ -2599,7 +2552,7 @@ M.ListAppAssessmentComplianceDriftsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2638,16 +2591,16 @@ M.ComplianceDrift = {
         },
         expectedValue = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.DisruptionCompliance,
         },
         actualReferenceId = {
             type = "string",
         },
         actualValue = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.DisruptionCompliance,
         },
         diffType = {
             type = "string",
@@ -2660,7 +2613,7 @@ M.ListAppAssessmentComplianceDriftsOutput = {
     members = {
         complianceDrifts = {
             type = "list",
-            member_type = "structure",
+            member = M.ComplianceDrift,
             traits = {
                 required = true,
             },
@@ -2684,7 +2637,7 @@ M.ListAppAssessmentResourceDriftsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2692,9 +2645,7 @@ M.ListAppAssessmentResourceDriftsInput = {
 M.ResourceIdentifier = {
     type = "structure",
     members = {
-        logicalResourceId = {
-            type = "structure",
-        },
+        logicalResourceId = M.LogicalResourceId,
         resourceType = {
             type = "string",
         },
@@ -2713,9 +2664,7 @@ M.ResourceDrift = {
         referenceId = {
             type = "string",
         },
-        resourceIdentifier = {
-            type = "structure",
-        },
+        resourceIdentifier = M.ResourceIdentifier,
         diffType = {
             type = "string",
         },
@@ -2727,7 +2676,7 @@ M.ListAppAssessmentResourceDriftsOutput = {
     members = {
         resourceDrifts = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceDrift,
             traits = {
                 required = true,
             },
@@ -2755,7 +2704,7 @@ M.ListAppAssessmentsInput = {
         },
         assessmentStatus = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "assessmentStatus",
             },
@@ -2785,7 +2734,7 @@ M.ListAppAssessmentsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2801,7 +2750,7 @@ M.ListAppAssessmentsOutput = {
         },
         assessmentSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.AppAssessmentSummary,
             traits = {
                 required = true,
             },
@@ -2816,7 +2765,7 @@ M.ListAppComponentCompliancesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         assessmentArn = {
             type = "string",
@@ -2832,7 +2781,7 @@ M.ListAppComponentCompliancesOutput = {
     members = {
         componentCompliances = {
             type = "list",
-            member_type = "structure",
+            member = M.AppComponentCompliance,
             traits = {
                 required = true,
             },
@@ -2856,7 +2805,7 @@ M.ListAppComponentRecommendationsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2888,13 +2837,19 @@ M.RecommendationDisruptionCompliance = {
             },
         },
         expectedRtoInSecs = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         expectedRtoDescription = {
             type = "string",
         },
         expectedRpoInSecs = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         expectedRpoDescription = {
             type = "string",
@@ -2905,21 +2860,19 @@ M.RecommendationDisruptionCompliance = {
 M.ConfigRecommendation = {
     type = "structure",
     members = {
-        cost = {
-            type = "structure",
-        },
+        cost = M.Cost,
         appComponentName = {
             type = "string",
         },
         compliance = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.DisruptionCompliance,
         },
         recommendationCompliance = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.RecommendationDisruptionCompliance,
         },
         optimizationType = {
             type = "string",
@@ -2938,7 +2891,7 @@ M.ConfigRecommendation = {
         },
         suggestedChanges = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         haArchitecture = {
             type = "string",
@@ -2976,7 +2929,7 @@ M.ComponentRecommendation = {
         },
         configRecommendations = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigRecommendation,
             traits = {
                 required = true,
             },
@@ -2989,7 +2942,7 @@ M.ListAppComponentRecommendationsOutput = {
     members = {
         componentRecommendations = {
             type = "list",
-            member_type = "structure",
+            member = M.ComponentRecommendation,
             traits = {
                 required = true,
             },
@@ -3019,7 +2972,7 @@ M.ListAppInputSourcesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3029,7 +2982,7 @@ M.ListAppInputSourcesOutput = {
     members = {
         appInputSources = {
             type = "list",
-            member_type = "structure",
+            member = M.AppInputSource,
             traits = {
                 required = true,
             },
@@ -3050,7 +3003,7 @@ M.ListAppsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3099,7 +3052,7 @@ M.ListAppsOutput = {
     members = {
         appSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.AppSummary,
             traits = {
                 required = true,
             },
@@ -3129,7 +3082,7 @@ M.ListAppVersionAppComponentsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3151,7 +3104,7 @@ M.ListAppVersionAppComponentsOutput = {
         },
         appComponents = {
             type = "list",
-            member_type = "structure",
+            member = M.AppComponent,
         },
         nextToken = {
             type = "string",
@@ -3178,7 +3131,7 @@ M.ListAppVersionResourceMappingsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3188,7 +3141,7 @@ M.ListAppVersionResourceMappingsOutput = {
     members = {
         resourceMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceMapping,
             traits = {
                 required = true,
             },
@@ -3221,7 +3174,7 @@ M.ListAppVersionResourcesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3231,7 +3184,7 @@ M.ListAppVersionResourcesOutput = {
     members = {
         physicalResources = {
             type = "list",
-            member_type = "structure",
+            member = M.PhysicalResource,
             traits = {
                 required = true,
             },
@@ -3261,7 +3214,7 @@ M.ListAppVersionsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         startTime = {
             type = "timestamp",
@@ -3277,7 +3230,7 @@ M.ListAppVersionsOutput = {
     members = {
         appVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.AppVersionSummary,
             traits = {
                 required = true,
             },
@@ -3363,22 +3316,22 @@ M.ListMetricsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         fields = {
             type = "list",
-            member_type = "structure",
+            member = M.Field,
         },
         dataSource = {
             type = "string",
         },
         conditions = {
             type = "list",
-            member_type = "structure",
+            member = M.Condition,
         },
         sorts = {
             type = "list",
-            member_type = "structure",
+            member = M.Sort,
         },
     },
 }
@@ -3388,7 +3341,7 @@ M.ListMetricsOutput = {
     members = {
         rows = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
             traits = {
                 required = true,
             },
@@ -3416,7 +3369,7 @@ M.ListRecommendationTemplatesInput = {
         },
         status = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "status",
             },
@@ -3440,7 +3393,7 @@ M.ListRecommendationTemplatesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3456,7 +3409,7 @@ M.ListRecommendationTemplatesOutput = {
         },
         recommendationTemplates = {
             type = "list",
-            member_type = "structure",
+            member = M.RecommendationTemplate,
         },
     },
 }
@@ -3477,7 +3430,7 @@ M.ListResiliencyPoliciesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3490,7 +3443,7 @@ M.ListResiliencyPoliciesOutput = {
     members = {
         resiliencyPolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.ResiliencyPolicy,
             traits = {
                 required = true,
             },
@@ -3517,7 +3470,7 @@ M.ListResourceGroupingRecommendationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3576,21 +3529,15 @@ M.GroupingResource = {
                 required = true,
             },
         },
-        physicalResourceId = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        logicalResourceId = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        physicalResourceId = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PhysicalResourceId }),
+        logicalResourceId = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LogicalResourceId }),
         sourceAppComponentIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3613,28 +3560,26 @@ M.GroupingRecommendation = {
                 required = true,
             },
         },
-        groupingAppComponent = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        groupingAppComponent = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.GroupingAppComponent }),
         resources = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupingResource,
             traits = {
                 required = true,
             },
         },
         score = {
-            type = "number",
+            type = "double",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         recommendationReasons = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3668,7 +3613,7 @@ M.ListResourceGroupingRecommendationsOutput = {
     members = {
         groupingRecommendations = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupingRecommendation,
             traits = {
                 required = true,
             },
@@ -3686,7 +3631,7 @@ M.ListSopRecommendationsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         assessmentArn = {
             type = "string",
@@ -3727,7 +3672,7 @@ M.SopRecommendation = {
         },
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.RecommendationItem,
         },
         referenceId = {
             type = "string",
@@ -3752,7 +3697,7 @@ M.ListSopRecommendationsOutput = {
         },
         sopRecommendations = {
             type = "list",
-            member_type = "structure",
+            member = M.SopRecommendation,
             traits = {
                 required = true,
             },
@@ -3770,7 +3715,7 @@ M.ListSuggestedResiliencyPoliciesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3783,7 +3728,7 @@ M.ListSuggestedResiliencyPoliciesOutput = {
     members = {
         resiliencyPolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.ResiliencyPolicy,
             traits = {
                 required = true,
             },
@@ -3812,8 +3757,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3825,7 +3770,7 @@ M.ListTestRecommendationsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         assessmentArn = {
             type = "string",
@@ -3884,14 +3829,14 @@ M.TestRecommendation = {
         },
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.RecommendationItem,
         },
         prerequisite = {
             type = "string",
         },
         dependsOnAlarms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         recommendationStatus = {
             type = "string",
@@ -3907,7 +3852,7 @@ M.ListTestRecommendationsOutput = {
         },
         testRecommendations = {
             type = "list",
-            member_type = "structure",
+            member = M.TestRecommendation,
             traits = {
                 required = true,
             },
@@ -3937,7 +3882,7 @@ M.ListUnsupportedAppVersionResourcesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3945,18 +3890,12 @@ M.ListUnsupportedAppVersionResourcesInput = {
 M.UnsupportedResource = {
     type = "structure",
     members = {
-        logicalResourceId = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        physicalResourceId = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        logicalResourceId = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LogicalResourceId }),
+        physicalResourceId = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PhysicalResourceId }),
         resourceType = {
             type = "string",
             traits = {
@@ -3974,7 +3913,7 @@ M.ListUnsupportedAppVersionResourcesOutput = {
     members = {
         unsupportedResources = {
             type = "list",
-            member_type = "structure",
+            member = M.UnsupportedResource,
             traits = {
                 required = true,
             },
@@ -4019,7 +3958,7 @@ M.PublishAppVersionOutput = {
             type = "string",
         },
         identifier = {
-            type = "number",
+            type = "long",
         },
         versionName = {
             type = "string",
@@ -4083,7 +4022,7 @@ M.RejectResourceGroupingRecommendationsInput = {
         },
         entries = {
             type = "list",
-            member_type = "structure",
+            member = M.RejectGroupingRecommendationEntry,
             traits = {
                 required = true,
             },
@@ -4102,7 +4041,7 @@ M.RejectResourceGroupingRecommendationsOutput = {
         },
         failedEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.FailedGroupingRecommendationEntry,
             traits = {
                 required = true,
             },
@@ -4121,27 +4060,27 @@ M.RemoveDraftAppVersionResourceMappingsInput = {
         },
         resourceNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         logicalStackNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         appRegistryAppNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         resourceGroupNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         terraformSourceNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         eksSourceNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4232,8 +4171,8 @@ M.StartAppAssessmentInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -4241,12 +4180,9 @@ M.StartAppAssessmentInput = {
 M.StartAppAssessmentOutput = {
     type = "structure",
     members = {
-        assessment = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        assessment = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AppAssessment }),
     },
 }
 
@@ -4331,8 +4267,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4356,7 +4292,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -4390,12 +4326,10 @@ M.UpdateAppInput = {
         assessmentSchedule = {
             type = "string",
         },
-        permissionModel = {
-            type = "structure",
-        },
+        permissionModel = M.PermissionModel,
         eventSubscriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.EventSubscription,
         },
     },
 }
@@ -4403,12 +4337,9 @@ M.UpdateAppInput = {
 M.UpdateAppOutput = {
     type = "structure",
     members = {
-        app = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        app = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.App }),
     },
 }
 
@@ -4423,8 +4354,8 @@ M.UpdateAppVersionInput = {
         },
         additionalInfo = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
     },
 }
@@ -4446,8 +4377,8 @@ M.UpdateAppVersionOutput = {
         },
         additionalInfo = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
     },
 }
@@ -4475,8 +4406,8 @@ M.UpdateAppVersionAppComponentInput = {
         },
         additionalInfo = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
     },
 }
@@ -4496,9 +4427,7 @@ M.UpdateAppVersionAppComponentOutput = {
                 required = true,
             },
         },
-        appComponent = {
-            type = "structure",
-        },
+        appComponent = M.AppComponent,
     },
 }
 
@@ -4514,9 +4443,7 @@ M.UpdateAppVersionResourceInput = {
         resourceName = {
             type = "string",
         },
-        logicalResourceId = {
-            type = "structure",
-        },
+        logicalResourceId = M.LogicalResourceId,
         physicalResourceId = {
             type = "string",
         },
@@ -4531,12 +4458,12 @@ M.UpdateAppVersionResourceInput = {
         },
         appComponents = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         additionalInfo = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         excluded = {
             type = "boolean",
@@ -4559,9 +4486,7 @@ M.UpdateAppVersionResourceOutput = {
                 required = true,
             },
         },
-        physicalResource = {
-            type = "structure",
-        },
+        physicalResource = M.PhysicalResource,
     },
 }
 
@@ -4588,8 +4513,8 @@ M.UpdateResiliencyPolicyInput = {
         },
         policy = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.FailurePolicy,
         },
     },
 }
@@ -4597,12 +4522,9 @@ M.UpdateResiliencyPolicyInput = {
 M.UpdateResiliencyPolicyOutput = {
     type = "structure",
     members = {
-        policy = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        policy = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResiliencyPolicy }),
     },
 }
 

@@ -80,7 +80,7 @@ M.CompleteAttachmentUploadInput = {
     members = {
         AttachmentIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -142,7 +142,7 @@ M.CreateParticipantConnectionInput = {
     members = {
         Type = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ParticipantToken = {
             type = "string",
@@ -216,21 +216,15 @@ M.AudioFeatures = {
 M.MeetingFeaturesConfiguration = {
     type = "structure",
     members = {
-        Audio = {
-            type = "structure",
-        },
+        Audio = M.AudioFeatures,
     },
 }
 
 M.WebRTCMeeting = {
     type = "structure",
     members = {
-        MediaPlacement = {
-            type = "structure",
-        },
-        MeetingFeatures = {
-            type = "structure",
-        },
+        MediaPlacement = M.WebRTCMediaPlacement,
+        MeetingFeatures = M.MeetingFeaturesConfiguration,
         MeetingId = {
             type = "string",
         },
@@ -240,12 +234,8 @@ M.WebRTCMeeting = {
 M.WebRTCConnection = {
     type = "structure",
     members = {
-        Attendee = {
-            type = "structure",
-        },
-        Meeting = {
-            type = "structure",
-        },
+        Attendee = M.Attendee,
+        Meeting = M.WebRTCMeeting,
     },
 }
 
@@ -264,15 +254,9 @@ M.Websocket = {
 M.CreateParticipantConnectionOutput = {
     type = "structure",
     members = {
-        Websocket = {
-            type = "structure",
-        },
-        ConnectionCredentials = {
-            type = "structure",
-        },
-        WebRTCConnection = {
-            type = "structure",
-        },
+        Websocket = M.Websocket,
+        ConnectionCredentials = M.ConnectionCredentials,
+        WebRTCConnection = M.WebRTCConnection,
     },
 }
 
@@ -307,7 +291,7 @@ M.ViewContent = {
         },
         Actions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -325,20 +309,16 @@ M.View = {
             type = "string",
         },
         Version = {
-            type = "number",
+            type = "integer",
         },
-        Content = {
-            type = "structure",
-        },
+        Content = M.ViewContent,
     },
 }
 
 M.DescribeViewOutput = {
     type = "structure",
     members = {
-        View = {
-            type = "structure",
-        },
+        View = M.View,
     },
 }
 
@@ -406,7 +386,7 @@ M.GetAttachmentInput = {
             },
         },
         UrlExpiryInSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -421,8 +401,9 @@ M.GetAttachmentOutput = {
             type = "string",
         },
         AttachmentSizeInBytes = {
-            type = "number",
+            type = "long",
             traits = {
+                default = nil,
                 required = true,
             },
         },
@@ -483,7 +464,10 @@ M.StartPosition = {
             type = "string",
         },
         MostRecent = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -495,7 +479,10 @@ M.GetTranscriptInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         NextToken = {
             type = "string",
@@ -506,9 +493,7 @@ M.GetTranscriptInput = {
         SortOrder = {
             type = "string",
         },
-        StartPosition = {
-            type = "structure",
-        },
+        StartPosition = M.StartPosition,
         ConnectionToken = {
             type = "string",
             traits = {
@@ -572,7 +557,7 @@ M.MessageMetadata = {
         },
         Receipts = {
             type = "list",
-            member_type = "structure",
+            member = M.Receipt,
         },
         MessageProcessingStatus = {
             type = "string",
@@ -632,11 +617,9 @@ M.Item = {
         },
         Attachments = {
             type = "list",
-            member_type = "structure",
+            member = M.AttachmentItem,
         },
-        MessageMetadata = {
-            type = "structure",
-        },
+        MessageMetadata = M.MessageMetadata,
         RelatedContactId = {
             type = "string",
         },
@@ -654,7 +637,7 @@ M.GetTranscriptOutput = {
         },
         Transcript = {
             type = "list",
-            member_type = "structure",
+            member = M.Item,
         },
         NextToken = {
             type = "string",
@@ -745,9 +728,7 @@ M.SendMessageOutput = {
         AbsoluteTime = {
             type = "string",
         },
-        MessageMetadata = {
-            type = "structure",
-        },
+        MessageMetadata = M.MessageProcessingMetadata,
     },
 }
 
@@ -761,8 +742,9 @@ M.StartAttachmentUploadInput = {
             },
         },
         AttachmentSizeInBytes = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -799,8 +781,8 @@ M.UploadMetadata = {
         },
         HeadersToInclude = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -811,9 +793,7 @@ M.StartAttachmentUploadOutput = {
         AttachmentId = {
             type = "string",
         },
-        UploadMetadata = {
-            type = "structure",
-        },
+        UploadMetadata = M.UploadMetadata,
     },
 }
 

@@ -32,8 +32,9 @@ M.MonetaryAmount = {
     type = "structure",
     members = {
         amount = {
-            type = "number",
+            type = "double",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -49,9 +50,7 @@ M.MonetaryAmount = {
 M.ActivityReward = {
     type = "union",
     members = {
-        credit = {
-            type = "structure",
-        },
+        credit = M.MonetaryAmount,
     },
 }
 
@@ -77,12 +76,9 @@ M.ActivitySummary = {
                 required = true,
             },
         },
-        reward = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        reward = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActivityReward }),
         status = {
             type = "string",
             traits = {
@@ -156,14 +152,11 @@ M.GetAccountActivityOutput = {
                 required = true,
             },
         },
-        reward = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        reward = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ActivityReward }),
         estimatedTimeToCompleteInMinutes = {
-            type = "number",
+            type = "integer",
         },
         expiresAt = {
             type = "timestamp",
@@ -263,9 +256,7 @@ M.GetAccountPlanStateOutput = {
                 required = true,
             },
         },
-        accountPlanRemainingCredits = {
-            type = "structure",
-        },
+        accountPlanRemainingCredits = M.MonetaryAmount,
         accountPlanExpirationDate = {
             type = "timestamp",
             traits = {
@@ -304,14 +295,14 @@ M.DimensionValues = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         MatchOptions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -335,13 +326,22 @@ M.FreeTierUsage = {
             type = "string",
         },
         actualUsageAmount = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         forecastedUsageAmount = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         limit = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         unit = {
             type = "string",
@@ -360,7 +360,7 @@ M.GetFreeTierUsageOutput = {
     members = {
         freeTierUsages = {
             type = "list",
-            member_type = "structure",
+            member = M.FreeTierUsage,
             traits = {
                 required = true,
             },
@@ -376,13 +376,16 @@ M.ListAccountActivitiesInput = {
     members = {
         filterActivityStatuses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 10,
+            },
         },
         languageCode = {
             type = "string",
@@ -395,7 +398,7 @@ M.ListAccountActivitiesOutput = {
     members = {
         activities = {
             type = "list",
-            member_type = "structure",
+            member = M.ActivitySummary,
             traits = {
                 required = true,
             },
@@ -447,29 +450,26 @@ M.Expression = {
     members = {
         Or = {
             type = "list",
-            member_type = "structure",
+            member = M.Expression,
         },
         And = {
             type = "list",
-            member_type = "structure",
+            member = M.Expression,
         },
-        Not = {
-            type = "structure",
-        },
-        Dimensions = {
-            type = "structure",
-        },
+        Not = M.Expression,
+        Dimensions = M.DimensionValues,
     },
 }
 
 M.GetFreeTierUsageInput = {
     type = "structure",
     members = {
-        filter = {
-            type = "structure",
-        },
+        filter = M.Expression,
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 10,
+            },
         },
         nextToken = {
             type = "string",

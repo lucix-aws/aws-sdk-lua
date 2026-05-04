@@ -4,10 +4,10 @@ M.TrialMinutes = {
     type = "structure",
     members = {
         total = {
-            type = "number",
+            type = "double",
         },
         remaining = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -25,27 +25,25 @@ M.AccountSettings = {
         },
         unmeteredDevices = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
         },
         unmeteredRemoteAccessDevices = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
         },
         maxJobTimeoutMinutes = {
-            type = "number",
+            type = "integer",
         },
-        trialMinutes = {
-            type = "structure",
-        },
+        trialMinutes = M.TrialMinutes,
         maxSlots = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
         },
         defaultJobTimeoutMinutes = {
-            type = "number",
+            type = "integer",
         },
         skipAppResign = {
             type = "boolean",
@@ -140,25 +138,25 @@ M.Counters = {
     type = "structure",
     members = {
         total = {
-            type = "number",
+            type = "integer",
         },
         passed = {
-            type = "number",
+            type = "integer",
         },
         failed = {
-            type = "number",
+            type = "integer",
         },
         warned = {
-            type = "number",
+            type = "integer",
         },
         errored = {
-            type = "number",
+            type = "integer",
         },
         stopped = {
-            type = "number",
+            type = "integer",
         },
         skipped = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -173,7 +171,7 @@ M.CPU = {
             type = "string",
         },
         clock = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -240,13 +238,13 @@ M.CreateDevicePoolInput = {
         },
         rules = {
             type = "list",
-            member_type = "structure",
+            member = M.Rule,
             traits = {
                 required = true,
             },
         },
         maxDevices = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -273,10 +271,10 @@ M.DevicePool = {
         },
         rules = {
             type = "list",
-            member_type = "structure",
+            member = M.Rule,
         },
         maxDevices = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -284,9 +282,7 @@ M.DevicePool = {
 M.CreateDevicePoolOutput = {
     type = "structure",
     members = {
-        devicePool = {
-            type = "structure",
-        },
+        devicePool = M.DevicePool,
     },
 }
 
@@ -337,7 +333,7 @@ M.CreateInstanceProfileInput = {
         },
         excludeAppPackagesFromCleanup = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         rebootAfterUse = {
             type = "boolean",
@@ -356,7 +352,7 @@ M.InstanceProfile = {
         },
         excludeAppPackagesFromCleanup = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         rebootAfterUse = {
             type = "boolean",
@@ -373,9 +369,7 @@ M.InstanceProfile = {
 M.CreateInstanceProfileOutput = {
     type = "structure",
     members = {
-        instanceProfile = {
-            type = "structure",
-        },
+        instanceProfile = M.InstanceProfile,
     },
 }
 
@@ -406,28 +400,34 @@ M.CreateNetworkProfileInput = {
             type = "string",
         },
         uplinkBandwidthBits = {
-            type = "number",
+            type = "long",
         },
         downlinkBandwidthBits = {
-            type = "number",
+            type = "long",
         },
         uplinkDelayMs = {
-            type = "number",
+            type = "long",
         },
         downlinkDelayMs = {
-            type = "number",
+            type = "long",
         },
         uplinkJitterMs = {
-            type = "number",
+            type = "long",
         },
         downlinkJitterMs = {
-            type = "number",
+            type = "long",
         },
         uplinkLossPercent = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         downlinkLossPercent = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -448,28 +448,34 @@ M.NetworkProfile = {
             type = "string",
         },
         uplinkBandwidthBits = {
-            type = "number",
+            type = "long",
         },
         downlinkBandwidthBits = {
-            type = "number",
+            type = "long",
         },
         uplinkDelayMs = {
-            type = "number",
+            type = "long",
         },
         downlinkDelayMs = {
-            type = "number",
+            type = "long",
         },
         uplinkJitterMs = {
-            type = "number",
+            type = "long",
         },
         downlinkJitterMs = {
-            type = "number",
+            type = "long",
         },
         uplinkLossPercent = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         downlinkLossPercent = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -477,9 +483,7 @@ M.NetworkProfile = {
 M.CreateNetworkProfileOutput = {
     type = "structure",
     members = {
-        networkProfile = {
-            type = "structure",
-        },
+        networkProfile = M.NetworkProfile,
     },
 }
 
@@ -506,14 +510,14 @@ M.VpcConfig = {
     members = {
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -537,14 +541,12 @@ M.CreateProjectInput = {
             },
         },
         defaultJobTimeoutMinutes = {
-            type = "number",
+            type = "integer",
         },
-        vpcConfig = {
-            type = "structure",
-        },
+        vpcConfig = M.VpcConfig,
         environmentVariables = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentVariable,
         },
         executionRoleArn = {
             type = "string",
@@ -562,17 +564,15 @@ M.Project = {
             type = "string",
         },
         defaultJobTimeoutMinutes = {
-            type = "number",
+            type = "integer",
         },
         created = {
             type = "timestamp",
         },
-        vpcConfig = {
-            type = "structure",
-        },
+        vpcConfig = M.VpcConfig,
         environmentVariables = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentVariable,
         },
         executionRoleArn = {
             type = "string",
@@ -583,9 +583,7 @@ M.Project = {
 M.CreateProjectOutput = {
     type = "structure",
     members = {
-        project = {
-            type = "structure",
-        },
+        project = M.Project,
     },
 }
 
@@ -612,8 +610,9 @@ M.DeviceProxy = {
             },
         },
         port = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 3128,
                 required = true,
             },
         },
@@ -625,18 +624,16 @@ M.CreateRemoteAccessSessionConfiguration = {
     members = {
         auxiliaryApps = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         billingMethod = {
             type = "string",
         },
         vpceConfigurationArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        deviceProxy = {
-            type = "structure",
-        },
+        deviceProxy = M.DeviceProxy,
     },
 }
 
@@ -670,9 +667,7 @@ M.CreateRemoteAccessSessionInput = {
         name = {
             type = "string",
         },
-        configuration = {
-            type = "structure",
-        },
+        configuration = M.CreateRemoteAccessSessionConfiguration,
         interactionMode = {
             type = "string",
         },
@@ -712,7 +707,7 @@ M.DeviceInstance = {
         },
         labels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         status = {
             type = "string",
@@ -720,9 +715,7 @@ M.DeviceInstance = {
         udid = {
             type = "string",
         },
-        instanceProfile = {
-            type = "structure",
-        },
+        instanceProfile = M.InstanceProfile,
     },
 }
 
@@ -730,10 +723,10 @@ M.Resolution = {
     type = "structure",
     members = {
         width = {
-            type = "number",
+            type = "integer",
         },
         height = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -765,17 +758,13 @@ M.Device = {
         os = {
             type = "string",
         },
-        cpu = {
-            type = "structure",
-        },
-        resolution = {
-            type = "structure",
-        },
+        cpu = M.CPU,
+        resolution = M.Resolution,
         heapSize = {
-            type = "number",
+            type = "long",
         },
         memory = {
-            type = "number",
+            type = "long",
         },
         image = {
             type = "string",
@@ -800,7 +789,7 @@ M.Device = {
         },
         instances = {
             type = "list",
-            member_type = "structure",
+            member = M.DeviceInstance,
         },
         availability = {
             type = "string",
@@ -812,13 +801,13 @@ M.DeviceMinutes = {
     type = "structure",
     members = {
         total = {
-            type = "number",
+            type = "double",
         },
         metered = {
-            type = "number",
+            type = "double",
         },
         unmetered = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -884,18 +873,14 @@ M.RemoteAccessSession = {
         stopped = {
             type = "timestamp",
         },
-        device = {
-            type = "structure",
-        },
+        device = M.Device,
         instanceArn = {
             type = "string",
         },
         billingMethod = {
             type = "string",
         },
-        deviceMinutes = {
-            type = "structure",
-        },
+        deviceMinutes = M.DeviceMinutes,
         endpoint = {
             type = "string",
         },
@@ -908,27 +893,19 @@ M.RemoteAccessSession = {
         skipAppResign = {
             type = "boolean",
         },
-        vpcConfig = {
-            type = "structure",
-        },
-        deviceProxy = {
-            type = "structure",
-        },
+        vpcConfig = M.VpcConfig,
+        deviceProxy = M.DeviceProxy,
         appUpload = {
             type = "string",
         },
-        endpoints = {
-            type = "structure",
-        },
+        endpoints = M.RemoteAccessEndpoints,
     },
 }
 
 M.CreateRemoteAccessSessionOutput = {
     type = "structure",
     members = {
-        remoteAccessSession = {
-            type = "structure",
-        },
+        remoteAccessSession = M.RemoteAccessSession,
     },
 }
 
@@ -937,14 +914,14 @@ M.TestGridVpcConfig = {
     members = {
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -970,9 +947,7 @@ M.CreateTestGridProjectInput = {
         description = {
             type = "string",
         },
-        vpcConfig = {
-            type = "structure",
-        },
+        vpcConfig = M.TestGridVpcConfig,
     },
 }
 
@@ -988,9 +963,7 @@ M.TestGridProject = {
         description = {
             type = "string",
         },
-        vpcConfig = {
-            type = "structure",
-        },
+        vpcConfig = M.TestGridVpcConfig,
         created = {
             type = "timestamp",
         },
@@ -1000,9 +973,7 @@ M.TestGridProject = {
 M.CreateTestGridProjectOutput = {
     type = "structure",
     members = {
-        testGridProject = {
-            type = "structure",
-        },
+        testGridProject = M.TestGridProject,
     },
 }
 
@@ -1026,7 +997,7 @@ M.CreateTestGridUrlInput = {
             },
         },
         expiresInSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1159,9 +1130,7 @@ M.Upload = {
 M.CreateUploadOutput = {
     type = "structure",
     members = {
-        upload = {
-            type = "structure",
-        },
+        upload = M.Upload,
     },
 }
 
@@ -1216,9 +1185,7 @@ M.VPCEConfiguration = {
 M.CreateVPCEConfigurationOutput = {
     type = "structure",
     members = {
-        vpceConfiguration = {
-            type = "structure",
-        },
+        vpceConfiguration = M.VPCEConfiguration,
     },
 }
 
@@ -1231,15 +1198,15 @@ M.CustomerArtifactPaths = {
     members = {
         iosPaths = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         androidPaths = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         deviceHostPaths = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1405,9 +1372,7 @@ M.GetAccountSettingsInput = {
 M.GetAccountSettingsOutput = {
     type = "structure",
     members = {
-        accountSettings = {
-            type = "structure",
-        },
+        accountSettings = M.AccountSettings,
     },
 }
 
@@ -1426,9 +1391,7 @@ M.GetDeviceInput = {
 M.GetDeviceOutput = {
     type = "structure",
     members = {
-        device = {
-            type = "structure",
-        },
+        device = M.Device,
     },
 }
 
@@ -1447,9 +1410,7 @@ M.GetDeviceInstanceInput = {
 M.GetDeviceInstanceOutput = {
     type = "structure",
     members = {
-        deviceInstance = {
-            type = "structure",
-        },
+        deviceInstance = M.DeviceInstance,
     },
 }
 
@@ -1468,9 +1429,7 @@ M.GetDevicePoolInput = {
 M.GetDevicePoolOutput = {
     type = "structure",
     members = {
-        devicePool = {
-            type = "structure",
-        },
+        devicePool = M.DevicePool,
     },
 }
 
@@ -1478,13 +1437,13 @@ M.Location = {
     type = "structure",
     members = {
         latitude = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
         longitude = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -1522,32 +1481,24 @@ M.ScheduleRunConfiguration = {
         locale = {
             type = "string",
         },
-        location = {
-            type = "structure",
-        },
+        location = M.Location,
         vpceConfigurationArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        deviceProxy = {
-            type = "structure",
-        },
-        customerArtifactPaths = {
-            type = "structure",
-        },
-        radios = {
-            type = "structure",
-        },
+        deviceProxy = M.DeviceProxy,
+        customerArtifactPaths = M.CustomerArtifactPaths,
+        radios = M.Radios,
         auxiliaryApps = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         billingMethod = {
             type = "string",
         },
         environmentVariables = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentVariable,
         },
         executionRoleArn = {
             type = "string",
@@ -1592,8 +1543,8 @@ M.ScheduleRunTest = {
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1613,12 +1564,8 @@ M.GetDevicePoolCompatibilityInput = {
         testType = {
             type = "string",
         },
-        test = {
-            type = "structure",
-        },
-        configuration = {
-            type = "structure",
-        },
+        test = M.ScheduleRunTest,
+        configuration = M.ScheduleRunConfiguration,
         projectArn = {
             type = "string",
         },
@@ -1640,15 +1587,13 @@ M.IncompatibilityMessage = {
 M.DevicePoolCompatibilityResult = {
     type = "structure",
     members = {
-        device = {
-            type = "structure",
-        },
+        device = M.Device,
         compatible = {
             type = "boolean",
         },
         incompatibilityMessages = {
             type = "list",
-            member_type = "structure",
+            member = M.IncompatibilityMessage,
         },
     },
 }
@@ -1658,11 +1603,11 @@ M.GetDevicePoolCompatibilityOutput = {
     members = {
         compatibleDevices = {
             type = "list",
-            member_type = "structure",
+            member = M.DevicePoolCompatibilityResult,
         },
         incompatibleDevices = {
             type = "list",
-            member_type = "structure",
+            member = M.DevicePoolCompatibilityResult,
         },
     },
 }
@@ -1682,9 +1627,7 @@ M.GetInstanceProfileInput = {
 M.GetInstanceProfileOutput = {
     type = "structure",
     members = {
-        instanceProfile = {
-            type = "structure",
-        },
+        instanceProfile = M.InstanceProfile,
     },
 }
 
@@ -1727,21 +1670,15 @@ M.Job = {
         stopped = {
             type = "timestamp",
         },
-        counters = {
-            type = "structure",
-        },
+        counters = M.Counters,
         message = {
             type = "string",
         },
-        device = {
-            type = "structure",
-        },
+        device = M.Device,
         instanceArn = {
             type = "string",
         },
-        deviceMinutes = {
-            type = "structure",
-        },
+        deviceMinutes = M.DeviceMinutes,
         videoEndpoint = {
             type = "string",
         },
@@ -1754,9 +1691,7 @@ M.Job = {
 M.GetJobOutput = {
     type = "structure",
     members = {
-        job = {
-            type = "structure",
-        },
+        job = M.Job,
     },
 }
 
@@ -1775,9 +1710,7 @@ M.GetNetworkProfileInput = {
 M.GetNetworkProfileOutput = {
     type = "structure",
     members = {
-        networkProfile = {
-            type = "structure",
-        },
+        networkProfile = M.NetworkProfile,
     },
 }
 
@@ -1794,7 +1727,7 @@ M.MonetaryAmount = {
     type = "structure",
     members = {
         amount = {
-            type = "number",
+            type = "double",
         },
         currencyCode = {
             type = "string",
@@ -1809,9 +1742,7 @@ M.RecurringChargeFrequency = {
 M.RecurringCharge = {
     type = "structure",
     members = {
-        cost = {
-            type = "structure",
-        },
+        cost = M.MonetaryAmount,
         frequency = {
             type = "string",
         },
@@ -1839,7 +1770,7 @@ M.Offering = {
         },
         recurringCharges = {
             type = "list",
-            member_type = "structure",
+            member = M.RecurringCharge,
         },
     },
 }
@@ -1856,11 +1787,9 @@ M.OfferingStatus = {
         type = {
             type = "string",
         },
-        offering = {
-            type = "structure",
-        },
+        offering = M.Offering,
         quantity = {
-            type = "number",
+            type = "integer",
         },
         effectiveOn = {
             type = "timestamp",
@@ -1873,13 +1802,13 @@ M.GetOfferingStatusOutput = {
     members = {
         current = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.OfferingStatus,
         },
         nextPeriod = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.OfferingStatus,
         },
         nextToken = {
             type = "string",
@@ -1912,9 +1841,7 @@ M.GetProjectInput = {
 M.GetProjectOutput = {
     type = "structure",
     members = {
-        project = {
-            type = "structure",
-        },
+        project = M.Project,
     },
 }
 
@@ -1933,9 +1860,7 @@ M.GetRemoteAccessSessionInput = {
 M.GetRemoteAccessSessionOutput = {
     type = "structure",
     members = {
-        remoteAccessSession = {
-            type = "structure",
-        },
+        remoteAccessSession = M.RemoteAccessSession,
     },
 }
 
@@ -1983,7 +1908,7 @@ M.DeviceFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1996,13 +1921,13 @@ M.DeviceSelectionResult = {
     members = {
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.DeviceFilter,
         },
         matchedDevicesCount = {
-            type = "number",
+            type = "integer",
         },
         maxDevices = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2042,30 +1967,22 @@ M.Run = {
         stopped = {
             type = "timestamp",
         },
-        counters = {
-            type = "structure",
-        },
+        counters = M.Counters,
         message = {
             type = "string",
         },
         totalJobs = {
-            type = "number",
+            type = "integer",
         },
         completedJobs = {
-            type = "number",
+            type = "integer",
         },
         billingMethod = {
             type = "string",
         },
-        deviceMinutes = {
-            type = "structure",
-        },
-        networkProfile = {
-            type = "structure",
-        },
-        deviceProxy = {
-            type = "structure",
-        },
+        deviceMinutes = M.DeviceMinutes,
+        networkProfile = M.NetworkProfile,
+        deviceProxy = M.DeviceProxy,
         parsingResultUrl = {
             type = "string",
         },
@@ -2073,16 +1990,16 @@ M.Run = {
             type = "string",
         },
         seed = {
-            type = "number",
+            type = "integer",
         },
         appUpload = {
             type = "string",
         },
         eventCount = {
-            type = "number",
+            type = "integer",
         },
         jobTimeoutMinutes = {
-            type = "number",
+            type = "integer",
         },
         devicePoolArn = {
             type = "string",
@@ -2090,15 +2007,9 @@ M.Run = {
         locale = {
             type = "string",
         },
-        radios = {
-            type = "structure",
-        },
-        location = {
-            type = "structure",
-        },
-        customerArtifactPaths = {
-            type = "structure",
-        },
+        radios = M.Radios,
+        location = M.Location,
+        customerArtifactPaths = M.CustomerArtifactPaths,
         webUrl = {
             type = "string",
         },
@@ -2108,18 +2019,14 @@ M.Run = {
         testSpecArn = {
             type = "string",
         },
-        deviceSelectionResult = {
-            type = "structure",
-        },
-        vpcConfig = {
-            type = "structure",
-        },
+        deviceSelectionResult = M.DeviceSelectionResult,
+        vpcConfig = M.VpcConfig,
         executionRoleArn = {
             type = "string",
         },
         environmentVariables = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentVariable,
         },
     },
 }
@@ -2127,9 +2034,7 @@ M.Run = {
 M.GetRunOutput = {
     type = "structure",
     members = {
-        run = {
-            type = "structure",
-        },
+        run = M.Run,
     },
 }
 
@@ -2172,24 +2077,18 @@ M.Suite = {
         stopped = {
             type = "timestamp",
         },
-        counters = {
-            type = "structure",
-        },
+        counters = M.Counters,
         message = {
             type = "string",
         },
-        deviceMinutes = {
-            type = "structure",
-        },
+        deviceMinutes = M.DeviceMinutes,
     },
 }
 
 M.GetSuiteOutput = {
     type = "structure",
     members = {
-        suite = {
-            type = "structure",
-        },
+        suite = M.Suite,
     },
 }
 
@@ -2232,24 +2131,18 @@ M.Test = {
         stopped = {
             type = "timestamp",
         },
-        counters = {
-            type = "structure",
-        },
+        counters = M.Counters,
         message = {
             type = "string",
         },
-        deviceMinutes = {
-            type = "structure",
-        },
+        deviceMinutes = M.DeviceMinutes,
     },
 }
 
 M.GetTestOutput = {
     type = "structure",
     members = {
-        test = {
-            type = "structure",
-        },
+        test = M.Test,
     },
 }
 
@@ -2268,9 +2161,7 @@ M.GetTestGridProjectInput = {
 M.GetTestGridProjectOutput = {
     type = "structure",
     members = {
-        testGridProject = {
-            type = "structure",
-        },
+        testGridProject = M.TestGridProject,
     },
 }
 
@@ -2311,7 +2202,7 @@ M.TestGridSession = {
             type = "timestamp",
         },
         billingMinutes = {
-            type = "number",
+            type = "double",
         },
         seleniumProperties = {
             type = "string",
@@ -2322,9 +2213,7 @@ M.TestGridSession = {
 M.GetTestGridSessionOutput = {
     type = "structure",
     members = {
-        testGridSession = {
-            type = "structure",
-        },
+        testGridSession = M.TestGridSession,
     },
 }
 
@@ -2343,9 +2232,7 @@ M.GetUploadInput = {
 M.GetUploadOutput = {
     type = "structure",
     members = {
-        upload = {
-            type = "structure",
-        },
+        upload = M.Upload,
     },
 }
 
@@ -2364,9 +2251,7 @@ M.GetVPCEConfigurationInput = {
 M.GetVPCEConfigurationOutput = {
     type = "structure",
     members = {
-        vpceConfiguration = {
-            type = "structure",
-        },
+        vpceConfiguration = M.VPCEConfiguration,
     },
 }
 
@@ -2391,9 +2276,7 @@ M.InstallToRemoteAccessSessionInput = {
 M.InstallToRemoteAccessSessionOutput = {
     type = "structure",
     members = {
-        appUpload = {
-            type = "structure",
-        },
+        appUpload = M.Upload,
     },
 }
 
@@ -2423,7 +2306,7 @@ M.ListArtifactsOutput = {
     members = {
         artifacts = {
             type = "list",
-            member_type = "structure",
+            member = M.Artifact,
         },
         nextToken = {
             type = "string",
@@ -2435,7 +2318,7 @@ M.ListDeviceInstancesInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -2448,7 +2331,7 @@ M.ListDeviceInstancesOutput = {
     members = {
         deviceInstances = {
             type = "list",
-            member_type = "structure",
+            member = M.DeviceInstance,
         },
         nextToken = {
             type = "string",
@@ -2479,7 +2362,7 @@ M.ListDevicePoolsOutput = {
     members = {
         devicePools = {
             type = "list",
-            member_type = "structure",
+            member = M.DevicePool,
         },
         nextToken = {
             type = "string",
@@ -2498,7 +2381,7 @@ M.ListDevicesInput = {
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.DeviceFilter,
         },
     },
 }
@@ -2508,7 +2391,7 @@ M.ListDevicesOutput = {
     members = {
         devices = {
             type = "list",
-            member_type = "structure",
+            member = M.Device,
         },
         nextToken = {
             type = "string",
@@ -2520,7 +2403,7 @@ M.ListInstanceProfilesInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -2533,7 +2416,7 @@ M.ListInstanceProfilesOutput = {
     members = {
         instanceProfiles = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceProfile,
         },
         nextToken = {
             type = "string",
@@ -2561,7 +2444,7 @@ M.ListJobsOutput = {
     members = {
         jobs = {
             type = "list",
-            member_type = "structure",
+            member = M.Job,
         },
         nextToken = {
             type = "string",
@@ -2592,7 +2475,7 @@ M.ListNetworkProfilesOutput = {
     members = {
         networkProfiles = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkProfile,
         },
         nextToken = {
             type = "string",
@@ -2626,7 +2509,7 @@ M.ListOfferingPromotionsOutput = {
     members = {
         offeringPromotions = {
             type = "list",
-            member_type = "structure",
+            member = M.OfferingPromotion,
         },
         nextToken = {
             type = "string",
@@ -2648,7 +2531,7 @@ M.ListOfferingsOutput = {
     members = {
         offerings = {
             type = "list",
-            member_type = "structure",
+            member = M.Offering,
         },
         nextToken = {
             type = "string",
@@ -2668,9 +2551,7 @@ M.ListOfferingTransactionsInput = {
 M.OfferingTransaction = {
     type = "structure",
     members = {
-        offeringStatus = {
-            type = "structure",
-        },
+        offeringStatus = M.OfferingStatus,
         transactionId = {
             type = "string",
         },
@@ -2680,9 +2561,7 @@ M.OfferingTransaction = {
         createdOn = {
             type = "timestamp",
         },
-        cost = {
-            type = "structure",
-        },
+        cost = M.MonetaryAmount,
     },
 }
 
@@ -2691,7 +2570,7 @@ M.ListOfferingTransactionsOutput = {
     members = {
         offeringTransactions = {
             type = "list",
-            member_type = "structure",
+            member = M.OfferingTransaction,
         },
         nextToken = {
             type = "string",
@@ -2716,7 +2595,7 @@ M.ListProjectsOutput = {
     members = {
         projects = {
             type = "list",
-            member_type = "structure",
+            member = M.Project,
         },
         nextToken = {
             type = "string",
@@ -2744,7 +2623,7 @@ M.ListRemoteAccessSessionsOutput = {
     members = {
         remoteAccessSessions = {
             type = "list",
-            member_type = "structure",
+            member = M.RemoteAccessSession,
         },
         nextToken = {
             type = "string",
@@ -2772,7 +2651,7 @@ M.ListRunsOutput = {
     members = {
         runs = {
             type = "list",
-            member_type = "structure",
+            member = M.Run,
         },
         nextToken = {
             type = "string",
@@ -2835,7 +2714,7 @@ M.ListSamplesOutput = {
     members = {
         samples = {
             type = "list",
-            member_type = "structure",
+            member = M.Sample,
         },
         nextToken = {
             type = "string",
@@ -2863,7 +2742,7 @@ M.ListSuitesOutput = {
     members = {
         suites = {
             type = "list",
-            member_type = "structure",
+            member = M.Suite,
         },
         nextToken = {
             type = "string",
@@ -2906,7 +2785,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2915,7 +2794,7 @@ M.ListTestGridProjectsInput = {
     type = "structure",
     members = {
         maxResult = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -2928,7 +2807,7 @@ M.ListTestGridProjectsOutput = {
     members = {
         testGridProjects = {
             type = "list",
-            member_type = "structure",
+            member = M.TestGridProject,
         },
         nextToken = {
             type = "string",
@@ -2946,7 +2825,7 @@ M.ListTestGridSessionActionsInput = {
             },
         },
         maxResult = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -2964,7 +2843,7 @@ M.TestGridSessionAction = {
             type = "timestamp",
         },
         duration = {
-            type = "number",
+            type = "long",
         },
         statusCode = {
             type = "string",
@@ -2980,7 +2859,7 @@ M.ListTestGridSessionActionsOutput = {
     members = {
         actions = {
             type = "list",
-            member_type = "structure",
+            member = M.TestGridSessionAction,
         },
         nextToken = {
             type = "string",
@@ -3006,7 +2885,7 @@ M.ListTestGridSessionArtifactsInput = {
             type = "string",
         },
         maxResult = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -3040,7 +2919,7 @@ M.ListTestGridSessionArtifactsOutput = {
     members = {
         artifacts = {
             type = "list",
-            member_type = "structure",
+            member = M.TestGridSessionArtifact,
         },
         nextToken = {
             type = "string",
@@ -3073,7 +2952,7 @@ M.ListTestGridSessionsInput = {
             type = "timestamp",
         },
         maxResult = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -3086,7 +2965,7 @@ M.ListTestGridSessionsOutput = {
     members = {
         testGridSessions = {
             type = "list",
-            member_type = "structure",
+            member = M.TestGridSession,
         },
         nextToken = {
             type = "string",
@@ -3114,7 +2993,7 @@ M.ListTestsOutput = {
     members = {
         tests = {
             type = "list",
-            member_type = "structure",
+            member = M.Test,
         },
         nextToken = {
             type = "string",
@@ -3152,21 +3031,11 @@ M.ProblemDetail = {
 M.Problem = {
     type = "structure",
     members = {
-        run = {
-            type = "structure",
-        },
-        job = {
-            type = "structure",
-        },
-        suite = {
-            type = "structure",
-        },
-        test = {
-            type = "structure",
-        },
-        device = {
-            type = "structure",
-        },
+        run = M.ProblemDetail,
+        job = M.ProblemDetail,
+        suite = M.ProblemDetail,
+        test = M.ProblemDetail,
+        device = M.Device,
         result = {
             type = "string",
         },
@@ -3184,7 +3053,7 @@ M.UniqueProblem = {
         },
         problems = {
             type = "list",
-            member_type = "structure",
+            member = M.Problem,
         },
     },
 }
@@ -3194,8 +3063,8 @@ M.ListUniqueProblemsOutput = {
     members = {
         uniqueProblems = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         nextToken = {
             type = "string",
@@ -3226,7 +3095,7 @@ M.ListUploadsOutput = {
     members = {
         uploads = {
             type = "list",
-            member_type = "structure",
+            member = M.Upload,
         },
         nextToken = {
             type = "string",
@@ -3238,7 +3107,7 @@ M.ListVPCEConfigurationsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -3251,7 +3120,7 @@ M.ListVPCEConfigurationsOutput = {
     members = {
         vpceConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.VPCEConfiguration,
         },
         nextToken = {
             type = "string",
@@ -3269,7 +3138,7 @@ M.PurchaseOfferingInput = {
             },
         },
         quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -3283,9 +3152,7 @@ M.PurchaseOfferingInput = {
 M.PurchaseOfferingOutput = {
     type = "structure",
     members = {
-        offeringTransaction = {
-            type = "structure",
-        },
+        offeringTransaction = M.OfferingTransaction,
     },
 }
 
@@ -3299,7 +3166,7 @@ M.RenewOfferingInput = {
             },
         },
         quantity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -3310,9 +3177,7 @@ M.RenewOfferingInput = {
 M.RenewOfferingOutput = {
     type = "structure",
     members = {
-        offeringTransaction = {
-            type = "structure",
-        },
+        offeringTransaction = M.OfferingTransaction,
     },
 }
 
@@ -3331,13 +3196,13 @@ M.DeviceSelectionConfiguration = {
     members = {
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.DeviceFilter,
             traits = {
                 required = true,
             },
         },
         maxDevices = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -3349,7 +3214,7 @@ M.ExecutionConfiguration = {
     type = "structure",
     members = {
         jobTimeoutMinutes = {
-            type = "number",
+            type = "integer",
         },
         accountsCleanup = {
             type = "boolean",
@@ -3381,33 +3246,22 @@ M.ScheduleRunInput = {
         devicePoolArn = {
             type = "string",
         },
-        deviceSelectionConfiguration = {
-            type = "structure",
-        },
+        deviceSelectionConfiguration = M.DeviceSelectionConfiguration,
         name = {
             type = "string",
         },
-        test = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        configuration = {
-            type = "structure",
-        },
-        executionConfiguration = {
-            type = "structure",
-        },
+        test = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ScheduleRunTest }),
+        configuration = M.ScheduleRunConfiguration,
+        executionConfiguration = M.ExecutionConfiguration,
     },
 }
 
 M.ScheduleRunOutput = {
     type = "structure",
     members = {
-        run = {
-            type = "structure",
-        },
+        run = M.Run,
     },
 }
 
@@ -3426,9 +3280,7 @@ M.StopJobInput = {
 M.StopJobOutput = {
     type = "structure",
     members = {
-        job = {
-            type = "structure",
-        },
+        job = M.Job,
     },
 }
 
@@ -3447,9 +3299,7 @@ M.StopRemoteAccessSessionInput = {
 M.StopRemoteAccessSessionOutput = {
     type = "structure",
     members = {
-        remoteAccessSession = {
-            type = "structure",
-        },
+        remoteAccessSession = M.RemoteAccessSession,
     },
 }
 
@@ -3468,9 +3318,7 @@ M.StopRunInput = {
 M.StopRunOutput = {
     type = "structure",
     members = {
-        run = {
-            type = "structure",
-        },
+        run = M.Run,
     },
 }
 
@@ -3498,7 +3346,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -3534,7 +3382,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3560,7 +3408,7 @@ M.UpdateDeviceInstanceInput = {
         },
         labels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3568,9 +3416,7 @@ M.UpdateDeviceInstanceInput = {
 M.UpdateDeviceInstanceOutput = {
     type = "structure",
     members = {
-        deviceInstance = {
-            type = "structure",
-        },
+        deviceInstance = M.DeviceInstance,
     },
 }
 
@@ -3591,10 +3437,10 @@ M.UpdateDevicePoolInput = {
         },
         rules = {
             type = "list",
-            member_type = "structure",
+            member = M.Rule,
         },
         maxDevices = {
-            type = "number",
+            type = "integer",
         },
         clearMaxDevices = {
             type = "boolean",
@@ -3605,9 +3451,7 @@ M.UpdateDevicePoolInput = {
 M.UpdateDevicePoolOutput = {
     type = "structure",
     members = {
-        devicePool = {
-            type = "structure",
-        },
+        devicePool = M.DevicePool,
     },
 }
 
@@ -3631,7 +3475,7 @@ M.UpdateInstanceProfileInput = {
         },
         excludeAppPackagesFromCleanup = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         rebootAfterUse = {
             type = "boolean",
@@ -3642,9 +3486,7 @@ M.UpdateInstanceProfileInput = {
 M.UpdateInstanceProfileOutput = {
     type = "structure",
     members = {
-        instanceProfile = {
-            type = "structure",
-        },
+        instanceProfile = M.InstanceProfile,
     },
 }
 
@@ -3667,28 +3509,34 @@ M.UpdateNetworkProfileInput = {
             type = "string",
         },
         uplinkBandwidthBits = {
-            type = "number",
+            type = "long",
         },
         downlinkBandwidthBits = {
-            type = "number",
+            type = "long",
         },
         uplinkDelayMs = {
-            type = "number",
+            type = "long",
         },
         downlinkDelayMs = {
-            type = "number",
+            type = "long",
         },
         uplinkJitterMs = {
-            type = "number",
+            type = "long",
         },
         downlinkJitterMs = {
-            type = "number",
+            type = "long",
         },
         uplinkLossPercent = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         downlinkLossPercent = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -3696,9 +3544,7 @@ M.UpdateNetworkProfileInput = {
 M.UpdateNetworkProfileOutput = {
     type = "structure",
     members = {
-        networkProfile = {
-            type = "structure",
-        },
+        networkProfile = M.NetworkProfile,
     },
 }
 
@@ -3715,14 +3561,12 @@ M.UpdateProjectInput = {
             type = "string",
         },
         defaultJobTimeoutMinutes = {
-            type = "number",
+            type = "integer",
         },
-        vpcConfig = {
-            type = "structure",
-        },
+        vpcConfig = M.VpcConfig,
         environmentVariables = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentVariable,
         },
         executionRoleArn = {
             type = "string",
@@ -3733,9 +3577,7 @@ M.UpdateProjectInput = {
 M.UpdateProjectOutput = {
     type = "structure",
     members = {
-        project = {
-            type = "structure",
-        },
+        project = M.Project,
     },
 }
 
@@ -3754,18 +3596,14 @@ M.UpdateTestGridProjectInput = {
         description = {
             type = "string",
         },
-        vpcConfig = {
-            type = "structure",
-        },
+        vpcConfig = M.TestGridVpcConfig,
     },
 }
 
 M.UpdateTestGridProjectOutput = {
     type = "structure",
     members = {
-        testGridProject = {
-            type = "structure",
-        },
+        testGridProject = M.TestGridProject,
     },
 }
 
@@ -3793,9 +3631,7 @@ M.UpdateUploadInput = {
 M.UpdateUploadOutput = {
     type = "structure",
     members = {
-        upload = {
-            type = "structure",
-        },
+        upload = M.Upload,
     },
 }
 
@@ -3826,9 +3662,7 @@ M.UpdateVPCEConfigurationInput = {
 M.UpdateVPCEConfigurationOutput = {
     type = "structure",
     members = {
-        vpceConfiguration = {
-            type = "structure",
-        },
+        vpceConfiguration = M.VPCEConfiguration,
     },
 }
 

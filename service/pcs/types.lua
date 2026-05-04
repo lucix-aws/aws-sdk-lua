@@ -22,7 +22,7 @@ M.Accounting = {
     type = "structure",
     members = {
         defaultPurgeTimeInDays = {
-            type = "number",
+            type = "integer",
         },
         mode = {
             type = "string",
@@ -37,7 +37,7 @@ M.AccountingRequest = {
     type = "structure",
     members = {
         defaultPurgeTimeInDays = {
-            type = "number",
+            type = "integer",
         },
         mode = {
             type = "string",
@@ -110,14 +110,16 @@ M.ScalingConfigurationRequest = {
     type = "structure",
     members = {
         minInstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         maxInstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -147,7 +149,7 @@ M.ComputeNodeGroupSlurmConfigurationRequest = {
     members = {
         slurmCustomSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.SlurmCustomSetting,
         },
     },
 }
@@ -187,7 +189,7 @@ M.CreateComputeNodeGroupInput = {
         },
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -195,44 +197,34 @@ M.CreateComputeNodeGroupInput = {
         purchaseOption = {
             type = "string",
         },
-        customLaunchTemplate = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        customLaunchTemplate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CustomLaunchTemplate }),
         iamInstanceProfileArn = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        scalingConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        scalingConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ScalingConfigurationRequest }),
         instanceConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceConfig,
             traits = {
                 required = true,
             },
         },
-        spotOptions = {
-            type = "structure",
-        },
-        slurmConfiguration = {
-            type = "structure",
-        },
+        spotOptions = M.SpotOptions,
+        slurmConfiguration = M.ComputeNodeGroupSlurmConfigurationRequest,
         clientToken = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -253,14 +245,16 @@ M.ScalingConfiguration = {
     type = "structure",
     members = {
         minInstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         maxInstanceCount = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -272,7 +266,7 @@ M.ComputeNodeGroupSlurmConfiguration = {
     members = {
         slurmCustomSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.SlurmCustomSetting,
         },
     },
 }
@@ -343,7 +337,7 @@ M.ComputeNodeGroup = {
         },
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -351,40 +345,30 @@ M.ComputeNodeGroup = {
         purchaseOption = {
             type = "string",
         },
-        customLaunchTemplate = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        customLaunchTemplate = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CustomLaunchTemplate }),
         iamInstanceProfileArn = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        scalingConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        scalingConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ScalingConfiguration }),
         instanceConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceConfig,
             traits = {
                 required = true,
             },
         },
-        spotOptions = {
-            type = "structure",
-        },
-        slurmConfiguration = {
-            type = "structure",
-        },
+        spotOptions = M.SpotOptions,
+        slurmConfiguration = M.ComputeNodeGroupSlurmConfiguration,
         errorInfo = {
             type = "list",
-            member_type = "structure",
+            member = M.ErrorInfo,
         },
     },
 }
@@ -392,9 +376,7 @@ M.ComputeNodeGroup = {
 M.CreateComputeNodeGroupOutput = {
     type = "structure",
     members = {
-        computeNodeGroup = {
-            type = "structure",
-        },
+        computeNodeGroup = M.ComputeNodeGroup,
     },
 }
 
@@ -475,7 +457,7 @@ M.ThrottlingException = {
             },
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -526,7 +508,7 @@ M.ValidationException = {
         },
         fieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -577,9 +559,7 @@ M.GetComputeNodeGroupInput = {
 M.GetComputeNodeGroupOutput = {
     type = "structure",
     members = {
-        computeNodeGroup = {
-            type = "structure",
-        },
+        computeNodeGroup = M.ComputeNodeGroup,
     },
 }
 
@@ -596,7 +576,10 @@ M.ListComputeNodeGroupsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 10,
+            },
         },
     },
 }
@@ -656,7 +639,7 @@ M.ListComputeNodeGroupsOutput = {
     members = {
         computeNodeGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.ComputeNodeGroupSummary,
             traits = {
                 required = true,
             },
@@ -672,7 +655,7 @@ M.UpdateComputeNodeGroupSlurmConfigurationRequest = {
     members = {
         slurmCustomSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.SlurmCustomSetting,
         },
     },
 }
@@ -697,26 +680,18 @@ M.UpdateComputeNodeGroupInput = {
         },
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        customLaunchTemplate = {
-            type = "structure",
-        },
+        customLaunchTemplate = M.CustomLaunchTemplate,
         purchaseOption = {
             type = "string",
         },
-        spotOptions = {
-            type = "structure",
-        },
-        scalingConfiguration = {
-            type = "structure",
-        },
+        spotOptions = M.SpotOptions,
+        scalingConfiguration = M.ScalingConfigurationRequest,
         iamInstanceProfileArn = {
             type = "string",
         },
-        slurmConfiguration = {
-            type = "structure",
-        },
+        slurmConfiguration = M.UpdateComputeNodeGroupSlurmConfigurationRequest,
         clientToken = {
             type = "string",
         },
@@ -726,9 +701,7 @@ M.UpdateComputeNodeGroupInput = {
 M.UpdateComputeNodeGroupOutput = {
     type = "structure",
     members = {
-        computeNodeGroup = {
-            type = "structure",
-        },
+        computeNodeGroup = M.ComputeNodeGroup,
     },
 }
 
@@ -742,11 +715,11 @@ M.NetworkingRequest = {
     members = {
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         networkType = {
             type = "string",
@@ -839,26 +812,22 @@ M.ClusterSlurmConfigurationRequest = {
     type = "structure",
     members = {
         scaleDownIdleTimeInSeconds = {
-            type = "number",
+            type = "integer",
         },
         slurmCustomSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.SlurmCustomSetting,
         },
         slurmdbdCustomSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.SlurmdbdCustomSetting,
         },
         cgroupCustomSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.CgroupCustomSetting,
         },
-        accounting = {
-            type = "structure",
-        },
-        slurmRest = {
-            type = "structure",
-        },
+        accounting = M.AccountingRequest,
+        slurmRest = M.SlurmRestRequest,
     },
 }
 
@@ -871,34 +840,26 @@ M.CreateClusterInput = {
                 required = true,
             },
         },
-        scheduler = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        scheduler = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SchedulerRequest }),
         size = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        networking = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        slurmConfiguration = {
-            type = "structure",
-        },
+        networking = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.NetworkingRequest }),
+        slurmConfiguration = M.ClusterSlurmConfigurationRequest,
         clientToken = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -944,11 +905,11 @@ M.Networking = {
     members = {
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         networkType = {
             type = "string",
@@ -1013,9 +974,7 @@ M.JwtKey = {
 M.JwtAuth = {
     type = "structure",
     members = {
-        jwtKey = {
-            type = "structure",
-        },
+        jwtKey = M.JwtKey,
     },
 }
 
@@ -1035,32 +994,24 @@ M.ClusterSlurmConfiguration = {
     type = "structure",
     members = {
         scaleDownIdleTimeInSeconds = {
-            type = "number",
+            type = "integer",
         },
         slurmCustomSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.SlurmCustomSetting,
         },
         slurmdbdCustomSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.SlurmdbdCustomSetting,
         },
         cgroupCustomSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.CgroupCustomSetting,
         },
-        authKey = {
-            type = "structure",
-        },
-        jwtAuth = {
-            type = "structure",
-        },
-        accounting = {
-            type = "structure",
-        },
-        slurmRest = {
-            type = "structure",
-        },
+        authKey = M.SlurmAuthKey,
+        jwtAuth = M.JwtAuth,
+        accounting = M.Accounting,
+        slurmRest = M.SlurmRest,
     },
 }
 
@@ -1118,34 +1069,26 @@ M.Cluster = {
                 timestamp_format = "date-time",
             },
         },
-        scheduler = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        scheduler = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Scheduler }),
         size = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        slurmConfiguration = {
-            type = "structure",
-        },
-        networking = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        slurmConfiguration = M.ClusterSlurmConfiguration,
+        networking = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Networking }),
         endpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.Endpoint,
         },
         errorInfo = {
             type = "list",
-            member_type = "structure",
+            member = M.ErrorInfo,
         },
     },
 }
@@ -1153,9 +1096,7 @@ M.Cluster = {
 M.CreateClusterOutput = {
     type = "structure",
     members = {
-        cluster = {
-            type = "structure",
-        },
+        cluster = M.Cluster,
     },
 }
 
@@ -1193,9 +1134,7 @@ M.GetClusterInput = {
 M.GetClusterOutput = {
     type = "structure",
     members = {
-        cluster = {
-            type = "structure",
-        },
+        cluster = M.Cluster,
     },
 }
 
@@ -1209,8 +1148,9 @@ M.ListClustersInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 10,
                 http_query = "maxResults",
             },
         },
@@ -1266,7 +1206,7 @@ M.ListClustersOutput = {
     members = {
         clusters = {
             type = "list",
-            member_type = "structure",
+            member = M.ClusterSummary,
             traits = {
                 required = true,
             },
@@ -1291,7 +1231,7 @@ M.QueueSlurmConfigurationRequest = {
     members = {
         slurmCustomSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.SlurmCustomSetting,
         },
     },
 }
@@ -1313,18 +1253,16 @@ M.CreateQueueInput = {
         },
         computeNodeGroupConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.ComputeNodeGroupConfiguration,
         },
-        slurmConfiguration = {
-            type = "structure",
-        },
+        slurmConfiguration = M.QueueSlurmConfigurationRequest,
         clientToken = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1334,7 +1272,7 @@ M.QueueSlurmConfiguration = {
     members = {
         slurmCustomSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.SlurmCustomSetting,
         },
     },
 }
@@ -1401,17 +1339,15 @@ M.Queue = {
         },
         computeNodeGroupConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.ComputeNodeGroupConfiguration,
             traits = {
                 required = true,
             },
         },
-        slurmConfiguration = {
-            type = "structure",
-        },
+        slurmConfiguration = M.QueueSlurmConfiguration,
         errorInfo = {
             type = "list",
-            member_type = "structure",
+            member = M.ErrorInfo,
         },
     },
 }
@@ -1419,9 +1355,7 @@ M.Queue = {
 M.CreateQueueOutput = {
     type = "structure",
     members = {
-        queue = {
-            type = "structure",
-        },
+        queue = M.Queue,
     },
 }
 
@@ -1471,9 +1405,7 @@ M.GetQueueInput = {
 M.GetQueueOutput = {
     type = "structure",
     members = {
-        queue = {
-            type = "structure",
-        },
+        queue = M.Queue,
     },
 }
 
@@ -1490,7 +1422,10 @@ M.ListQueuesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 10,
+            },
         },
     },
 }
@@ -1550,7 +1485,7 @@ M.ListQueuesOutput = {
     members = {
         queues = {
             type = "list",
-            member_type = "structure",
+            member = M.QueueSummary,
             traits = {
                 required = true,
             },
@@ -1566,7 +1501,7 @@ M.UpdateQueueSlurmConfigurationRequest = {
     members = {
         slurmCustomSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.SlurmCustomSetting,
         },
     },
 }
@@ -1588,11 +1523,9 @@ M.UpdateQueueInput = {
         },
         computeNodeGroupConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.ComputeNodeGroupConfiguration,
         },
-        slurmConfiguration = {
-            type = "structure",
-        },
+        slurmConfiguration = M.UpdateQueueSlurmConfigurationRequest,
         clientToken = {
             type = "string",
         },
@@ -1602,9 +1535,7 @@ M.UpdateQueueInput = {
 M.UpdateQueueOutput = {
     type = "structure",
     members = {
-        queue = {
-            type = "structure",
-        },
+        queue = M.Queue,
     },
 }
 
@@ -1643,7 +1574,7 @@ M.RegisterComputeNodeGroupInstanceOutput = {
         },
         endpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.Endpoint,
             traits = {
                 required = true,
             },
@@ -1655,7 +1586,7 @@ M.UpdateAccountingRequest = {
     type = "structure",
     members = {
         defaultPurgeTimeInDays = {
-            type = "number",
+            type = "integer",
         },
         mode = {
             type = "string",
@@ -1676,26 +1607,22 @@ M.UpdateClusterSlurmConfigurationRequest = {
     type = "structure",
     members = {
         scaleDownIdleTimeInSeconds = {
-            type = "number",
+            type = "integer",
         },
         slurmCustomSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.SlurmCustomSetting,
         },
         slurmdbdCustomSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.SlurmdbdCustomSetting,
         },
         cgroupCustomSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.CgroupCustomSetting,
         },
-        accounting = {
-            type = "structure",
-        },
-        slurmRest = {
-            type = "structure",
-        },
+        accounting = M.UpdateAccountingRequest,
+        slurmRest = M.UpdateSlurmRestRequest,
     },
 }
 
@@ -1711,18 +1638,14 @@ M.UpdateClusterInput = {
         clientToken = {
             type = "string",
         },
-        slurmConfiguration = {
-            type = "structure",
-        },
+        slurmConfiguration = M.UpdateClusterSlurmConfigurationRequest,
     },
 }
 
 M.UpdateClusterOutput = {
     type = "structure",
     members = {
-        cluster = {
-            type = "structure",
-        },
+        cluster = M.Cluster,
     },
 }
 
@@ -1743,8 +1666,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1760,8 +1683,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1785,7 +1708,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },

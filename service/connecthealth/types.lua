@@ -87,9 +87,7 @@ M.SubscriptionDescription = {
 M.ActivateSubscriptionOutput = {
     type = "structure",
     members = {
-        subscription = {
-            type = "structure",
-        },
+        subscription = M.SubscriptionDescription,
     },
 }
 
@@ -147,15 +145,9 @@ M.ArtifactDetails = {
 M.ClinicalNoteGenerationResult = {
     type = "structure",
     members = {
-        noteResult = {
-            type = "structure",
-        },
-        transcriptResult = {
-            type = "structure",
-        },
-        afterVisitSummaryResult = {
-            type = "structure",
-        },
+        noteResult = M.ArtifactDetails,
+        transcriptResult = M.ArtifactDetails,
+        afterVisitSummaryResult = M.ArtifactDetails,
     },
 }
 
@@ -197,7 +189,7 @@ M.CustomTemplate = {
         },
         templateInstructions = {
             type = "list",
-            member_type = "structure",
+            member = M.TemplateSectionInstruction,
             traits = {
                 required = true,
             },
@@ -230,24 +222,17 @@ M.ManagedTemplate = {
 M.NoteTemplateSettings = {
     type = "union",
     members = {
-        managedTemplate = {
-            type = "structure",
-        },
-        customTemplate = {
-            type = "structure",
-        },
+        managedTemplate = M.ManagedTemplate,
+        customTemplate = M.CustomTemplate,
     },
 }
 
 M.ClinicalNoteGenerationSettings = {
     type = "structure",
     members = {
-        noteTemplateSettings = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        noteTemplateSettings = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.NoteTemplateSettings }),
     },
 }
 
@@ -272,21 +257,15 @@ M.ManagedTemplateResponse = {
 M.NoteTemplateSettingsResponse = {
     type = "union",
     members = {
-        managedTemplate = {
-            type = "structure",
-        },
-        customTemplate = {
-            type = "structure",
-        },
+        managedTemplate = M.ManagedTemplateResponse,
+        customTemplate = M.CustomTemplateResponse,
     },
 }
 
 M.ClinicalNoteGenerationSettingsResponse = {
     type = "structure",
     members = {
-        noteTemplateSettings = {
-            type = "union",
-        },
+        noteTemplateSettings = M.NoteTemplateSettingsResponse,
     },
 }
 
@@ -336,13 +315,11 @@ M.CreateDomainInput = {
         kmsKeyArn = {
             type = "string",
         },
-        webAppSetupConfiguration = {
-            type = "structure",
-        },
+        webAppSetupConfiguration = M.CreateWebAppConfiguration,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -421,9 +398,7 @@ M.CreateDomainOutput = {
         kmsKeyArn = {
             type = "string",
         },
-        encryptionContext = {
-            type = "structure",
-        },
+        encryptionContext = M.EncryptionContext,
         status = {
             type = "string",
             traits = {
@@ -433,9 +408,7 @@ M.CreateDomainOutput = {
         webAppUrl = {
             type = "string",
         },
-        webAppConfiguration = {
-            type = "structure",
-        },
+        webAppConfiguration = M.WebAppConfiguration,
         createdAt = {
             type = "timestamp",
             traits = {
@@ -539,9 +512,7 @@ M.DeactivateSubscriptionInput = {
 M.DeactivateSubscriptionOutput = {
     type = "structure",
     members = {
-        subscription = {
-            type = "structure",
-        },
+        subscription = M.SubscriptionDescription,
     },
 }
 
@@ -619,9 +590,7 @@ M.GetDomainOutput = {
         kmsKeyArn = {
             type = "string",
         },
-        encryptionContext = {
-            type = "structure",
-        },
+        encryptionContext = M.EncryptionContext,
         status = {
             type = "string",
             traits = {
@@ -631,9 +600,7 @@ M.GetDomainOutput = {
         webAppUrl = {
             type = "string",
         },
-        webAppConfiguration = {
-            type = "structure",
-        },
+        webAppConfiguration = M.WebAppConfiguration,
         createdAt = {
             type = "timestamp",
             traits = {
@@ -642,8 +609,8 @@ M.GetDomainOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -684,7 +651,7 @@ M.MedicalScribeChannelDefinition = {
     type = "structure",
     members = {
         channelId = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -710,9 +677,7 @@ M.MedicalScribeMediaEncoding = {
 M.MedicalScribePostStreamActionsResult = {
     type = "structure",
     members = {
-        clinicalNoteGenerationResult = {
-            type = "structure",
-        },
+        clinicalNoteGenerationResult = M.ClinicalNoteGenerationResult,
     },
 }
 
@@ -725,12 +690,9 @@ M.MedicalScribePostStreamActionSettingsResponse = {
                 required = true,
             },
         },
-        clinicalNoteGenerationSettings = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        clinicalNoteGenerationSettings = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ClinicalNoteGenerationSettingsResponse }),
     },
 }
 
@@ -757,21 +719,17 @@ M.MedicalScribeListeningSessionDetails = {
             type = "string",
         },
         mediaSampleRateHertz = {
-            type = "number",
+            type = "integer",
         },
         mediaEncoding = {
             type = "string",
         },
         channelDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.MedicalScribeChannelDefinition,
         },
-        postStreamActionSettings = {
-            type = "structure",
-        },
-        postStreamActionResult = {
-            type = "structure",
-        },
+        postStreamActionSettings = M.MedicalScribePostStreamActionSettingsResponse,
+        postStreamActionResult = M.MedicalScribePostStreamActionsResult,
         encounterContextProvided = {
             type = "boolean",
         },
@@ -790,9 +748,7 @@ M.MedicalScribeListeningSessionDetails = {
 M.GetMedicalScribeListeningSessionOutput = {
     type = "structure",
     members = {
-        medicalScribeListeningSessionDetails = {
-            type = "structure",
-        },
+        medicalScribeListeningSessionDetails = M.MedicalScribeListeningSessionDetails,
     },
 }
 
@@ -868,12 +824,10 @@ M.S3Source = {
 M.InputDataConfig = {
     type = "structure",
     members = {
-        fhirServer = {
-            type = "structure",
-        },
+        fhirServer = M.FHIRServer,
         s3Sources = {
             type = "list",
-            member_type = "structure",
+            member = M.S3Source,
         },
     },
 }
@@ -1011,48 +965,28 @@ M.GetPatientInsightsJobOutput = {
                 timestamp_format = "date-time",
             },
         },
-        insightsOutput = {
-            type = "structure",
-        },
+        insightsOutput = M.InsightsOutput,
         statusDetails = {
             type = "string",
         },
-        patientContext = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        insightsContext = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        encounterContext = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        userContext = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        inputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        outputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        patientContext = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PatientInsightsPatientContext }),
+        insightsContext = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InsightsContext }),
+        encounterContext = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PatientInsightsEncounterContext }),
+        userContext = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.UserContext }),
+        inputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InputDataConfig }),
+        outputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OutputDataConfig }),
     },
 }
 
@@ -1079,9 +1013,7 @@ M.GetSubscriptionInput = {
 M.GetSubscriptionOutput = {
     type = "structure",
     members = {
-        subscription = {
-            type = "structure",
-        },
+        subscription = M.SubscriptionDescription,
     },
 }
 
@@ -1095,7 +1027,7 @@ M.ListDomainsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1150,7 +1082,7 @@ M.ListDomainsOutput = {
     members = {
         domains = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainSummary,
             traits = {
                 required = true,
             },
@@ -1172,7 +1104,7 @@ M.ListSubscriptionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1191,7 +1123,7 @@ M.ListSubscriptionsOutput = {
     members = {
         subscriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.SubscriptionDescription,
             traits = {
                 required = true,
             },
@@ -1220,8 +1152,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1256,31 +1188,23 @@ M.MedicalScribePostStreamActionSettings = {
                 required = true,
             },
         },
-        clinicalNoteGenerationSettings = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        clinicalNoteGenerationSettings = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ClinicalNoteGenerationSettings }),
     },
 }
 
 M.MedicalScribeConfigurationEvent = {
     type = "structure",
     members = {
-        postStreamActionSettings = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        postStreamActionSettings = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MedicalScribePostStreamActionSettings }),
         channelDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.MedicalScribeChannelDefinition,
         },
-        encounterContext = {
-            type = "structure",
-        },
+        encounterContext = M.EncounterContext,
     },
 }
 
@@ -1300,15 +1224,9 @@ M.MedicalScribeSessionControlEvent = {
 M.MedicalScribeInputStream = {
     type = "union",
     members = {
-        audioEvent = {
-            type = "structure",
-        },
-        sessionControlEvent = {
-            type = "structure",
-        },
-        configurationEvent = {
-            type = "structure",
-        },
+        audioEvent = M.MedicalScribeAudioEvent,
+        sessionControlEvent = M.MedicalScribeSessionControlEvent,
+        configurationEvent = M.MedicalScribeConfigurationEvent,
     },
 }
 
@@ -1344,7 +1262,7 @@ M.StartMedicalScribeListeningSessionInput = {
             },
         },
         mediaSampleRateHertz = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "x-amzn-medscribe-sample-rate",
                 required = true,
@@ -1357,12 +1275,9 @@ M.StartMedicalScribeListeningSessionInput = {
                 required = true,
             },
         },
-        inputStream = {
-            type = "union",
-            traits = {
-                http_payload = true,
-            },
-        },
+        inputStream = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.MedicalScribeInputStream }),
     },
 }
 
@@ -1373,10 +1288,10 @@ M.MedicalScribeTranscriptSegment = {
             type = "string",
         },
         audioBeginOffset = {
-            type = "number",
+            type = "double",
         },
         audioEndOffset = {
-            type = "number",
+            type = "double",
         },
         isPartial = {
             type = "boolean",
@@ -1393,24 +1308,16 @@ M.MedicalScribeTranscriptSegment = {
 M.MedicalScribeTranscriptEvent = {
     type = "structure",
     members = {
-        transcriptSegment = {
-            type = "structure",
-        },
+        transcriptSegment = M.MedicalScribeTranscriptSegment,
     },
 }
 
 M.MedicalScribeOutputStream = {
     type = "union",
     members = {
-        transcriptEvent = {
-            type = "structure",
-        },
-        internalFailureException = {
-            type = "structure",
-        },
-        validationException = {
-            type = "structure",
-        },
+        transcriptEvent = M.MedicalScribeTranscriptEvent,
+        internalFailureException = M.InternalServerException,
+        validationException = M.ValidationException,
     },
 }
 
@@ -1448,7 +1355,7 @@ M.StartMedicalScribeListeningSessionOutput = {
             },
         },
         mediaSampleRateHertz = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "x-amzn-medscribe-sample-rate",
             },
@@ -1459,12 +1366,9 @@ M.StartMedicalScribeListeningSessionOutput = {
                 http_header = "x-amzn-medscribe-media-encoding",
             },
         },
-        responseStream = {
-            type = "union",
-            traits = {
-                http_payload = true,
-            },
-        },
+        responseStream = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.MedicalScribeOutputStream }),
     },
 }
 
@@ -1478,42 +1382,24 @@ M.StartPatientInsightsJobInput = {
                 required = true,
             },
         },
-        patientContext = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        insightsContext = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        encounterContext = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        userContext = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        inputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        outputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        patientContext = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PatientInsightsPatientContext }),
+        insightsContext = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InsightsContext }),
+        encounterContext = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PatientInsightsEncounterContext }),
+        userContext = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.UserContext }),
+        inputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InputDataConfig }),
+        outputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OutputDataConfig }),
         clientToken = {
             type = "string",
         },
@@ -1556,8 +1442,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1581,7 +1467,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,

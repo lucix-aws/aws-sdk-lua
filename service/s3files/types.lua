@@ -4,20 +4,20 @@ M.PosixUser = {
     type = "structure",
     members = {
         uid = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         gid = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         secondaryGids = {
             type = "list",
-            member_type = "number",
+            member = { type = "long" },
         },
     },
 }
@@ -26,13 +26,13 @@ M.CreationPermissions = {
     type = "structure",
     members = {
         ownerUid = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         ownerGid = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -52,9 +52,7 @@ M.RootDirectory = {
         path = {
             type = "string",
         },
-        creationPermissions = {
-            type = "structure",
-        },
+        creationPermissions = M.CreationPermissions,
     },
 }
 
@@ -100,12 +98,8 @@ M.ListAccessPointsDescription = {
                 required = true,
             },
         },
-        posixUser = {
-            type = "structure",
-        },
-        rootDirectory = {
-            type = "structure",
-        },
+        posixUser = M.PosixUser,
+        rootDirectory = M.RootDirectory,
         name = {
             type = "string",
         },
@@ -160,7 +154,7 @@ M.CreateAccessPointInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         fileSystemId = {
             type = "string",
@@ -168,12 +162,8 @@ M.CreateAccessPointInput = {
                 required = true,
             },
         },
-        posixUser = {
-            type = "structure",
-        },
-        rootDirectory = {
-            type = "structure",
-        },
+        posixUser = M.PosixUser,
+        rootDirectory = M.RootDirectory,
     },
 }
 
@@ -216,15 +206,11 @@ M.CreateAccessPointOutput = {
                 required = true,
             },
         },
-        posixUser = {
-            type = "structure",
-        },
-        rootDirectory = {
-            type = "structure",
-        },
+        posixUser = M.PosixUser,
+        rootDirectory = M.RootDirectory,
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         name = {
             type = "string",
@@ -338,7 +324,7 @@ M.CreateFileSystemInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         acceptBucketWarning = {
             type = "boolean",
@@ -363,6 +349,9 @@ M.CreateFileSystemOutput = {
         },
         prefix = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
         clientToken = {
             type = "string",
@@ -384,7 +373,7 @@ M.CreateFileSystemOutput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         name = {
             type = "string",
@@ -424,7 +413,7 @@ M.CreateMountTargetInput = {
         },
         securityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -470,7 +459,7 @@ M.CreateMountTargetOutput = {
         },
         securityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         status = {
             type = "string",
@@ -559,7 +548,7 @@ M.ExpirationDataRule = {
     type = "structure",
     members = {
         daysAfterLastAccess = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "daysAfterLastAccess",
                 required = true,
@@ -674,15 +663,11 @@ M.GetAccessPointOutput = {
                 required = true,
             },
         },
-        posixUser = {
-            type = "structure",
-        },
-        rootDirectory = {
-            type = "structure",
-        },
+        posixUser = M.PosixUser,
+        rootDirectory = M.RootDirectory,
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         name = {
             type = "string",
@@ -720,6 +705,9 @@ M.GetFileSystemOutput = {
         },
         prefix = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
         clientToken = {
             type = "string",
@@ -741,7 +729,7 @@ M.GetFileSystemOutput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         name = {
             type = "string",
@@ -835,7 +823,7 @@ M.GetMountTargetOutput = {
         },
         securityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         status = {
             type = "string",
@@ -882,7 +870,7 @@ M.ImportDataRule = {
             },
         },
         sizeLessThan = {
-            type = "number",
+            type = "long",
             traits = {
                 json_name = "sizeLessThan",
                 required = true,
@@ -895,14 +883,14 @@ M.GetSynchronizationConfigurationOutput = {
     type = "structure",
     members = {
         latestVersionNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "latestVersionNumber",
             },
         },
         importDataRules = {
             type = "list",
-            member_type = "structure",
+            member = M.ImportDataRule,
             traits = {
                 json_name = "importDataRules",
                 required = true,
@@ -910,7 +898,7 @@ M.GetSynchronizationConfigurationOutput = {
         },
         expirationDataRules = {
             type = "list",
-            member_type = "structure",
+            member = M.ExpirationDataRule,
             traits = {
                 json_name = "expirationDataRules",
                 required = true,
@@ -930,8 +918,9 @@ M.ListAccessPointsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 100,
                 http_query = "maxResults",
             },
         },
@@ -952,7 +941,7 @@ M.ListAccessPointsOutput = {
         },
         accessPoints = {
             type = "list",
-            member_type = "structure",
+            member = M.ListAccessPointsDescription,
             traits = {
                 required = true,
             },
@@ -970,8 +959,9 @@ M.ListFileSystemsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 100,
                 http_query = "maxResults",
             },
         },
@@ -992,7 +982,7 @@ M.ListFileSystemsOutput = {
         },
         fileSystems = {
             type = "list",
-            member_type = "structure",
+            member = M.ListFileSystemsDescription,
             traits = {
                 required = true,
             },
@@ -1016,8 +1006,9 @@ M.ListMountTargetsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 100,
                 http_query = "maxResults",
             },
         },
@@ -1086,7 +1077,7 @@ M.ListMountTargetsOutput = {
         },
         mountTargets = {
             type = "list",
-            member_type = "structure",
+            member = M.ListMountTargetsDescription,
             traits = {
                 required = true,
             },
@@ -1105,7 +1096,7 @@ M.ListTagsForResourceInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -1124,7 +1115,7 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         nextToken = {
             type = "string",
@@ -1167,14 +1158,14 @@ M.PutSynchronizationConfigurationInput = {
             },
         },
         latestVersionNumber = {
-            type = "number",
+            type = "integer",
             traits = {
                 json_name = "latestVersionNumber",
             },
         },
         importDataRules = {
             type = "list",
-            member_type = "structure",
+            member = M.ImportDataRule,
             traits = {
                 json_name = "importDataRules",
                 required = true,
@@ -1182,7 +1173,7 @@ M.PutSynchronizationConfigurationInput = {
         },
         expirationDataRules = {
             type = "list",
-            member_type = "structure",
+            member = M.ExpirationDataRule,
             traits = {
                 json_name = "expirationDataRules",
                 required = true,
@@ -1207,7 +1198,7 @@ M.TagResourceInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -1231,7 +1222,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -1256,7 +1247,7 @@ M.UpdateMountTargetInput = {
         },
         securityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1305,7 +1296,7 @@ M.UpdateMountTargetOutput = {
         },
         securityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         status = {
             type = "string",

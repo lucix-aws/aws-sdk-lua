@@ -67,28 +67,31 @@ M.CorsRule = {
     members = {
         AllowedOrigins = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         AllowedMethods = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AllowedHeaders = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         MaxAgeSeconds = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         ExposeHeaders = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -129,7 +132,7 @@ M.CreateContainerInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -137,12 +140,9 @@ M.CreateContainerInput = {
 M.CreateContainerOutput = {
     type = "structure",
     members = {
-        Container = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Container = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Container }),
     },
 }
 
@@ -268,9 +268,7 @@ M.DescribeContainerInput = {
 M.DescribeContainerOutput = {
     type = "structure",
     members = {
-        Container = {
-            type = "structure",
-        },
+        Container = M.Container,
     },
 }
 
@@ -315,7 +313,7 @@ M.GetCorsPolicyOutput = {
     members = {
         CorsPolicy = {
             type = "list",
-            member_type = "structure",
+            member = M.CorsRule,
             traits = {
                 required = true,
             },
@@ -388,7 +386,7 @@ M.MetricPolicy = {
         },
         MetricPolicyRules = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricPolicyRule,
         },
     },
 }
@@ -396,12 +394,9 @@ M.MetricPolicy = {
 M.GetMetricPolicyOutput = {
     type = "structure",
     members = {
-        MetricPolicy = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        MetricPolicy = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MetricPolicy }),
     },
 }
 
@@ -412,7 +407,7 @@ M.ListContainersInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -422,7 +417,7 @@ M.ListContainersOutput = {
     members = {
         Containers = {
             type = "list",
-            member_type = "structure",
+            member = M.Container,
             traits = {
                 required = true,
             },
@@ -450,7 +445,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -488,7 +483,7 @@ M.PutCorsPolicyInput = {
         },
         CorsPolicy = {
             type = "list",
-            member_type = "structure",
+            member = M.CorsRule,
             traits = {
                 required = true,
             },
@@ -531,12 +526,9 @@ M.PutMetricPolicyInput = {
                 required = true,
             },
         },
-        MetricPolicy = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        MetricPolicy = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MetricPolicy }),
     },
 }
 
@@ -587,7 +579,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -610,7 +602,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },

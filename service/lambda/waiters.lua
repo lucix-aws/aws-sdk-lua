@@ -1,0 +1,227 @@
+local waiter = require("waiter")
+
+local M = {}
+
+--- Wait until FunctionActive.
+function M.wait_until_function_active(client, input, options)
+    return waiter.wait(client, "getFunctionConfiguration", input, {
+        min_delay = 5,
+        max_delay = 300,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "Active",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "Failed",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "Pending",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until FunctionActiveV2.
+function M.wait_until_function_active_v2(client, input, options)
+    return waiter.wait(client, "getFunction", input, {
+        min_delay = 1,
+        max_delay = 300,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "Configuration.State",
+                        expected = "Active",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Configuration.State",
+                        expected = "Failed",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "Configuration.State",
+                        expected = "Pending",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until FunctionExists.
+function M.wait_until_function_exists(client, input, options)
+    return waiter.wait(client, "getFunction", input, {
+        min_delay = 1,
+        max_delay = 20,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    success = true,
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "ResourceNotFoundException",
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until FunctionUpdated.
+function M.wait_until_function_updated(client, input, options)
+    return waiter.wait(client, "getFunctionConfiguration", input, {
+        min_delay = 5,
+        max_delay = 300,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "LastUpdateStatus",
+                        expected = "Successful",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "LastUpdateStatus",
+                        expected = "Failed",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "LastUpdateStatus",
+                        expected = "InProgress",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until FunctionUpdatedV2.
+function M.wait_until_function_updated_v2(client, input, options)
+    return waiter.wait(client, "getFunction", input, {
+        min_delay = 1,
+        max_delay = 300,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "Configuration.LastUpdateStatus",
+                        expected = "Successful",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Configuration.LastUpdateStatus",
+                        expected = "Failed",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "Configuration.LastUpdateStatus",
+                        expected = "InProgress",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until PublishedVersionActive.
+function M.wait_until_published_version_active(client, input, options)
+    return waiter.wait(client, "getFunctionConfiguration", input, {
+        min_delay = 5,
+        max_delay = 1560,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "Active",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "Failed",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "State",
+                        expected = "Pending",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+return M

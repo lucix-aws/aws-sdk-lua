@@ -70,7 +70,7 @@ M.BatchGetMemberAccountDetailsInput = {
         },
         accountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -133,11 +133,11 @@ M.BatchGetMemberAccountDetailsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.GetMembershipAccountDetailItem,
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.GetMembershipAccountDetailError,
         },
     },
 }
@@ -178,7 +178,7 @@ M.InternalServerException = {
             },
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -279,7 +279,7 @@ M.ThrottlingException = {
             type = "string",
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -330,7 +330,7 @@ M.ValidationException = {
         },
         fieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -488,34 +488,34 @@ M.CreateCaseInput = {
         },
         impactedAccounts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         watchers = {
             type = "list",
-            member_type = "structure",
+            member = M.Watcher,
             traits = {
                 required = true,
             },
         },
         threatActorIpAddresses = {
             type = "list",
-            member_type = "structure",
+            member = M.ThreatActorIp,
         },
         impactedServices = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         impactedAwsRegions = {
             type = "list",
-            member_type = "structure",
+            member = M.ImpactedAwsRegion,
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -677,22 +677,22 @@ M.GetCaseOutput = {
         },
         impactedAwsRegions = {
             type = "list",
-            member_type = "structure",
+            member = M.ImpactedAwsRegion,
         },
         threatActorIpAddresses = {
             type = "list",
-            member_type = "structure",
+            member = M.ThreatActorIp,
         },
         pendingAction = {
             type = "string",
         },
         impactedAccounts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         watchers = {
             type = "list",
-            member_type = "structure",
+            member = M.Watcher,
         },
         createdDate = {
             type = "timestamp",
@@ -708,18 +708,18 @@ M.GetCaseOutput = {
         },
         impactedServices = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         caseAttachments = {
             type = "list",
-            member_type = "structure",
+            member = M.CaseAttachmentAttributes,
         },
         closedDate = {
             type = "timestamp",
         },
         caseMetadata = {
             type = "list",
-            member_type = "structure",
+            member = M.CaseMetadataEntry,
         },
     },
 }
@@ -773,7 +773,7 @@ M.GetCaseAttachmentUploadUrlInput = {
             },
         },
         contentLength = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -803,7 +803,7 @@ M.ListCaseEditsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         caseId = {
             type = "string",
@@ -841,10 +841,10 @@ M.ListCaseEditsOutput = {
         },
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.CaseEditItem,
         },
         total = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -856,7 +856,7 @@ M.ListCasesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -908,10 +908,10 @@ M.ListCasesOutput = {
         },
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.ListCasesItem,
         },
         total = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -923,7 +923,7 @@ M.ListCommentsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         caseId = {
             type = "string",
@@ -970,10 +970,10 @@ M.ListCommentsOutput = {
         },
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.ListCommentsItem,
         },
         total = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -988,7 +988,7 @@ M.ListInvestigationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1071,9 +1071,7 @@ M.InvestigationAction = {
                 required = true,
             },
         },
-        feedback = {
-            type = "structure",
-        },
+        feedback = M.InvestigationFeedback,
     },
 }
 
@@ -1085,7 +1083,7 @@ M.ListInvestigationsOutput = {
         },
         investigationActions = {
             type = "list",
-            member_type = "structure",
+            member = M.InvestigationAction,
             traits = {
                 required = true,
             },
@@ -1153,47 +1151,47 @@ M.UpdateCaseInput = {
         },
         watchersToAdd = {
             type = "list",
-            member_type = "structure",
+            member = M.Watcher,
         },
         watchersToDelete = {
             type = "list",
-            member_type = "structure",
+            member = M.Watcher,
         },
         threatActorIpAddressesToAdd = {
             type = "list",
-            member_type = "structure",
+            member = M.ThreatActorIp,
         },
         threatActorIpAddressesToDelete = {
             type = "list",
-            member_type = "structure",
+            member = M.ThreatActorIp,
         },
         impactedServicesToAdd = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         impactedServicesToDelete = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         impactedAwsRegionsToAdd = {
             type = "list",
-            member_type = "structure",
+            member = M.ImpactedAwsRegion,
         },
         impactedAwsRegionsToDelete = {
             type = "list",
-            member_type = "structure",
+            member = M.ImpactedAwsRegion,
         },
         impactedAccountsToAdd = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         impactedAccountsToDelete = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         caseMetadata = {
             type = "list",
-            member_type = "structure",
+            member = M.CaseMetadataEntry,
         },
     },
 }
@@ -1357,7 +1355,7 @@ M.IncidentResponder = {
         },
         communicationPreferences = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1398,22 +1396,25 @@ M.CreateMembershipInput = {
         },
         incidentResponseTeam = {
             type = "list",
-            member_type = "structure",
+            member = M.IncidentResponder,
             traits = {
                 required = true,
             },
         },
         optInFeatures = {
             type = "list",
-            member_type = "structure",
+            member = M.OptInFeature,
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         coverEntireOrganization = {
             type = "boolean",
+            traits = {
+                default = true,
+            },
         },
     },
 }
@@ -1456,7 +1457,7 @@ M.MembershipAccountsConfigurations = {
         },
         organizationalUnits = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1501,19 +1502,17 @@ M.GetMembershipOutput = {
             type = "string",
         },
         numberOfAccountsCovered = {
-            type = "number",
+            type = "long",
         },
         incidentResponseTeam = {
             type = "list",
-            member_type = "structure",
+            member = M.IncidentResponder,
         },
         optInFeatures = {
             type = "list",
-            member_type = "structure",
+            member = M.OptInFeature,
         },
-        membershipAccountsConfigurations = {
-            type = "structure",
-        },
+        membershipAccountsConfigurations = M.MembershipAccountsConfigurations,
     },
 }
 
@@ -1548,7 +1547,7 @@ M.ListMembershipsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1561,7 +1560,7 @@ M.ListMembershipsOutput = {
         },
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.ListMembershipItem,
         },
     },
 }
@@ -1584,8 +1583,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1601,11 +1600,11 @@ M.MembershipAccountsConfigurationsUpdate = {
         },
         organizationalUnitsToAdd = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         organizationalUnitsToRemove = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1625,15 +1624,13 @@ M.UpdateMembershipInput = {
         },
         incidentResponseTeam = {
             type = "list",
-            member_type = "structure",
+            member = M.IncidentResponder,
         },
         optInFeatures = {
             type = "list",
-            member_type = "structure",
+            member = M.OptInFeature,
         },
-        membershipAccountsConfigurationsUpdate = {
-            type = "structure",
-        },
+        membershipAccountsConfigurationsUpdate = M.MembershipAccountsConfigurationsUpdate,
         undoMembershipCancellation = {
             type = "boolean",
         },
@@ -1656,8 +1653,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1681,7 +1678,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,

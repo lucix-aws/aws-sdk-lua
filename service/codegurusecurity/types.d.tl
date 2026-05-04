@@ -556,11 +556,11 @@ end
 
 local type AnalysisType = "Security" | "All"
 
+local type Status = "Closed" | "Open" | "All"
+
 local type ScanType = "Standard" | "Express"
 
 local type ScanState = "InProgress" | "Successful" | "Failed"
-
-local type Status = "Closed" | "Open" | "All"
 
 local record M
     BatchGetFindingsInput: BatchGetFindingsInput

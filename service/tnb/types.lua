@@ -87,8 +87,8 @@ M.CreateSolFunctionPackageInput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -144,8 +144,8 @@ M.CreateSolFunctionPackageOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -183,8 +183,8 @@ M.CreateSolNetworkInstanceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -218,8 +218,8 @@ M.CreateSolNetworkInstanceOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -229,8 +229,8 @@ M.CreateSolNetworkPackageInput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -286,8 +286,8 @@ M.CreateSolNetworkPackageOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -376,7 +376,7 @@ M.FunctionArtifactMeta = {
     members = {
         overrides = {
             type = "list",
-            member_type = "structure",
+            member = M.ToscaOverride,
         },
     },
 }
@@ -412,9 +412,7 @@ M.GetSolVnfcResourceInfoMetadata = {
 M.GetSolVnfcResourceInfo = {
     type = "structure",
     members = {
-        metadata = {
-            type = "structure",
-        },
+        metadata = M.GetSolVnfcResourceInfoMetadata,
     },
 }
 
@@ -431,7 +429,7 @@ M.GetSolVnfInfo = {
         },
         vnfcResourceInfo = {
             type = "list",
-            member_type = "structure",
+            member = M.GetSolVnfcResourceInfo,
         },
     },
 }
@@ -509,19 +507,14 @@ M.GetSolFunctionInstanceOutput = {
                 required = true,
             },
         },
-        instantiatedVnfInfo = {
-            type = "structure",
-        },
-        metadata = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        instantiatedVnfInfo = M.GetSolVnfInfo,
+        metadata = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.GetSolFunctionInstanceMetadata }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -542,9 +535,7 @@ M.GetSolFunctionPackageInput = {
 M.GetSolFunctionPackageMetadata = {
     type = "structure",
     members = {
-        vnfd = {
-            type = "structure",
-        },
+        vnfd = M.FunctionArtifactMeta,
         createdAt = {
             type = "timestamp",
             traits = {
@@ -607,13 +598,11 @@ M.GetSolFunctionPackageOutput = {
         vnfdVersion = {
             type = "string",
         },
-        metadata = {
-            type = "structure",
-        },
+        metadata = M.GetSolFunctionPackageMetadata,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -808,19 +797,14 @@ M.GetSolNetworkInstanceOutput = {
         nsState = {
             type = "string",
         },
-        lcmOpInfo = {
-            type = "structure",
-        },
-        metadata = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        lcmOpInfo = M.LcmOperationInfo,
+        metadata = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.GetSolNetworkInstanceMetadata }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -910,15 +894,9 @@ M.UpdateNsMetadata = {
 M.GetSolNetworkOperationMetadata = {
     type = "structure",
     members = {
-        updateNsMetadata = {
-            type = "structure",
-        },
-        modifyVnfInfoMetadata = {
-            type = "structure",
-        },
-        instantiateMetadata = {
-            type = "structure",
-        },
+        updateNsMetadata = M.UpdateNsMetadata,
+        modifyVnfInfoMetadata = M.ModifyVnfInfoMetadata,
+        instantiateMetadata = M.InstantiateMetadata,
         createdAt = {
             type = "timestamp",
             traits = {
@@ -962,12 +940,10 @@ M.GetSolNetworkOperationTaskDetails = {
         },
         taskContext = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        taskErrorDetails = {
-            type = "structure",
-        },
+        taskErrorDetails = M.ErrorInfo,
         taskStatus = {
             type = "string",
         },
@@ -1015,20 +991,16 @@ M.GetSolNetworkOperationOutput = {
         updateType = {
             type = "string",
         },
-        error = {
-            type = "structure",
-        },
-        metadata = {
-            type = "structure",
-        },
+        error = M.ProblemDetails,
+        metadata = M.GetSolNetworkOperationMetadata,
         tasks = {
             type = "list",
-            member_type = "structure",
+            member = M.GetSolNetworkOperationTaskDetails,
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1051,7 +1023,7 @@ M.NetworkArtifactMeta = {
     members = {
         overrides = {
             type = "list",
-            member_type = "structure",
+            member = M.ToscaOverride,
         },
     },
 }
@@ -1059,9 +1031,7 @@ M.NetworkArtifactMeta = {
 M.GetSolNetworkPackageMetadata = {
     type = "structure",
     members = {
-        nsd = {
-            type = "structure",
-        },
+        nsd = M.NetworkArtifactMeta,
         createdAt = {
             type = "timestamp",
             traits = {
@@ -1132,21 +1102,18 @@ M.GetSolNetworkPackageOutput = {
         },
         vnfPkgIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        metadata = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        metadata = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.GetSolNetworkPackageMetadata }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1241,8 +1208,8 @@ M.InstantiateSolNetworkInstanceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1258,8 +1225,8 @@ M.InstantiateSolNetworkInstanceOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1320,15 +1287,10 @@ M.ListSolFunctionInstanceInfo = {
                 required = true,
             },
         },
-        instantiatedVnfInfo = {
-            type = "structure",
-        },
-        metadata = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        instantiatedVnfInfo = M.GetSolInstantiatedVnfInfo,
+        metadata = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ListSolFunctionInstanceMetadata }),
     },
 }
 
@@ -1336,7 +1298,7 @@ M.ListSolFunctionInstancesInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max_results",
             },
@@ -1358,7 +1320,7 @@ M.ListSolFunctionInstancesOutput = {
         },
         functionInstances = {
             type = "list",
-            member_type = "structure",
+            member = M.ListSolFunctionInstanceInfo,
         },
     },
 }
@@ -1428,9 +1390,7 @@ M.ListSolFunctionPackageInfo = {
         vnfdVersion = {
             type = "string",
         },
-        metadata = {
-            type = "structure",
-        },
+        metadata = M.ListSolFunctionPackageMetadata,
     },
 }
 
@@ -1438,7 +1398,7 @@ M.ListSolFunctionPackagesInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max_results",
             },
@@ -1460,7 +1420,7 @@ M.ListSolFunctionPackagesOutput = {
         },
         functionPackages = {
             type = "list",
-            member_type = "structure",
+            member = M.ListSolFunctionPackageInfo,
             traits = {
                 required = true,
             },
@@ -1533,12 +1493,9 @@ M.ListSolNetworkInstanceInfo = {
                 required = true,
             },
         },
-        metadata = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        metadata = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ListSolNetworkInstanceMetadata }),
     },
 }
 
@@ -1546,7 +1503,7 @@ M.ListSolNetworkInstancesInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max_results",
             },
@@ -1568,7 +1525,7 @@ M.ListSolNetworkInstancesOutput = {
         },
         networkInstances = {
             type = "list",
-            member_type = "structure",
+            member = M.ListSolNetworkInstanceInfo,
         },
     },
 }
@@ -1583,7 +1540,7 @@ M.ListSolNetworkOperationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max_results",
             },
@@ -1659,12 +1616,8 @@ M.ListSolNetworkOperationsInfo = {
         updateType = {
             type = "string",
         },
-        error = {
-            type = "structure",
-        },
-        metadata = {
-            type = "structure",
-        },
+        error = M.ProblemDetails,
+        metadata = M.ListSolNetworkOperationsMetadata,
     },
 }
 
@@ -1676,7 +1629,7 @@ M.ListSolNetworkOperationsOutput = {
         },
         networkOperations = {
             type = "list",
-            member_type = "structure",
+            member = M.ListSolNetworkOperationsInfo,
         },
     },
 }
@@ -1751,14 +1704,11 @@ M.ListSolNetworkPackageInfo = {
         },
         vnfPkgIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        metadata = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        metadata = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ListSolNetworkPackageMetadata }),
     },
 }
 
@@ -1766,7 +1716,7 @@ M.ListSolNetworkPackagesInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max_results",
             },
@@ -1788,7 +1738,7 @@ M.ListSolNetworkPackagesOutput = {
         },
         networkPackages = {
             type = "list",
-            member_type = "structure",
+            member = M.ListSolNetworkPackageInfo,
             traits = {
                 required = true,
             },
@@ -1814,8 +1764,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1852,9 +1802,7 @@ M.PutSolFunctionPackageContentInput = {
 M.PutSolFunctionPackageContentMetadata = {
     type = "structure",
     members = {
-        vnfd = {
-            type = "structure",
-        },
+        vnfd = M.FunctionArtifactMeta,
     },
 }
 
@@ -1891,12 +1839,9 @@ M.PutSolFunctionPackageContentOutput = {
                 required = true,
             },
         },
-        metadata = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        metadata = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PutSolFunctionPackageContentMetadata }),
     },
 }
 
@@ -1929,9 +1874,7 @@ M.PutSolNetworkPackageContentInput = {
 M.PutSolNetworkPackageContentMetadata = {
     type = "structure",
     members = {
-        nsd = {
-            type = "structure",
-        },
+        nsd = M.NetworkArtifactMeta,
     },
 }
 
@@ -1970,17 +1913,14 @@ M.PutSolNetworkPackageContentOutput = {
         },
         vnfPkgIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        metadata = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        metadata = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PutSolNetworkPackageContentMetadata }),
     },
 }
 
@@ -1996,8 +1936,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2021,8 +1961,8 @@ M.TerminateSolNetworkInstanceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2035,8 +1975,8 @@ M.TerminateSolNetworkInstanceOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2053,7 +1993,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -2146,16 +2086,12 @@ M.UpdateSolNetworkInstanceInput = {
                 required = true,
             },
         },
-        modifyVnfInfoData = {
-            type = "structure",
-        },
-        updateNs = {
-            type = "structure",
-        },
+        modifyVnfInfoData = M.UpdateSolNetworkModify,
+        updateNs = M.UpdateSolNetworkServiceData,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2168,8 +2104,8 @@ M.UpdateSolNetworkInstanceOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2234,9 +2170,7 @@ M.ValidateSolFunctionPackageContentInput = {
 M.ValidateSolFunctionPackageContentMetadata = {
     type = "structure",
     members = {
-        vnfd = {
-            type = "structure",
-        },
+        vnfd = M.FunctionArtifactMeta,
     },
 }
 
@@ -2273,12 +2207,9 @@ M.ValidateSolFunctionPackageContentOutput = {
                 required = true,
             },
         },
-        metadata = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        metadata = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ValidateSolFunctionPackageContentMetadata }),
     },
 }
 
@@ -2311,9 +2242,7 @@ M.ValidateSolNetworkPackageContentInput = {
 M.ValidateSolNetworkPackageContentMetadata = {
     type = "structure",
     members = {
-        nsd = {
-            type = "structure",
-        },
+        nsd = M.NetworkArtifactMeta,
     },
 }
 
@@ -2352,17 +2281,14 @@ M.ValidateSolNetworkPackageContentOutput = {
         },
         vnfPkgIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        metadata = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        metadata = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ValidateSolNetworkPackageContentMetadata }),
     },
 }
 

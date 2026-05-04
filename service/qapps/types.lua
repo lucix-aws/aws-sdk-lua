@@ -43,7 +43,7 @@ M.FileUploadCard = {
         },
         dependencies = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -100,7 +100,7 @@ M.FormInputCard = {
         },
         dependencies = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -111,12 +111,9 @@ M.FormInputCard = {
                 required = true,
             },
         },
-        metadata = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        metadata = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FormInputCardMetadata }),
         computeMode = {
             type = "string",
         },
@@ -159,7 +156,7 @@ M.QPluginCard = {
         },
         dependencies = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -202,10 +199,10 @@ M.DocumentAttributeValue = {
         },
         stringListValue = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         longValue = {
-            type = "number",
+            type = "long",
         },
         dateValue = {
             type = "timestamp",
@@ -222,12 +219,9 @@ M.DocumentAttribute = {
                 required = true,
             },
         },
-        value = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        value = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DocumentAttributeValue }),
     },
 }
 
@@ -253,7 +247,7 @@ M.TextInputCard = {
         },
         dependencies = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -291,6 +285,7 @@ M.FileUploadCardInput = {
         type = {
             type = "string",
             traits = {
+                default = "file-upload",
                 required = true,
             },
         },
@@ -324,15 +319,13 @@ M.FormInputCardInput = {
         type = {
             type = "string",
             traits = {
+                default = "form-input",
                 required = true,
             },
         },
-        metadata = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        metadata = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FormInputCardMetadata }),
         computeMode = {
             type = "string",
         },
@@ -357,6 +350,7 @@ M.QPluginCardInput = {
         type = {
             type = "string",
             traits = {
+                default = "q-plugin",
                 required = true,
             },
         },
@@ -396,6 +390,7 @@ M.TextInputCardInput = {
         type = {
             type = "string",
             traits = {
+                default = "text-input",
                 required = true,
             },
         },
@@ -480,7 +475,7 @@ M.InternalServerException = {
             },
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -573,7 +568,7 @@ M.ThrottlingException = {
             },
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -660,7 +655,7 @@ M.BatchCreateCategoryInput = {
         },
         categories = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchCreateCategoryInputCategory,
             traits = {
                 required = true,
             },
@@ -684,7 +679,7 @@ M.BatchDeleteCategoryInput = {
         },
         categories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -729,7 +724,7 @@ M.BatchUpdateCategoryInput = {
         },
         categories = {
             type = "list",
-            member_type = "structure",
+            member = M.CategoryInput,
             traits = {
                 required = true,
             },
@@ -780,7 +775,7 @@ M.CardStatus = {
         },
         submissions = {
             type = "list",
-            member_type = "structure",
+            member = M.Submission,
         },
     },
 }
@@ -824,9 +819,7 @@ M.CardValue = {
                 required = true,
             },
         },
-        submissionMutation = {
-            type = "structure",
-        },
+        submissionMutation = M.SubmissionMutation,
     },
 }
 
@@ -849,7 +842,7 @@ M.Category = {
             type = "string",
         },
         appCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -919,14 +912,14 @@ M.CreateLibraryItemInput = {
             },
         },
         appVersion = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         categories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -968,7 +961,7 @@ M.CreateLibraryItemOutput = {
             type = "string",
         },
         ratingCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1047,8 +1040,8 @@ M.CreatePresignedUrlOutput = {
         },
         presignedUrlFields = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1090,7 +1083,7 @@ M.CreateQAppOutput = {
             type = "string",
         },
         appVersion = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1127,7 +1120,7 @@ M.CreateQAppOutput = {
         },
         requiredCapabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1227,12 +1220,9 @@ M.PermissionOutput = {
                 required = true,
             },
         },
-        principal = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        principal = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PrincipalOutput }),
     },
 }
 
@@ -1247,7 +1237,7 @@ M.DescribeQAppPermissionsOutput = {
         },
         permissions = {
             type = "list",
-            member_type = "structure",
+            member = M.PermissionOutput,
         },
     },
 }
@@ -1383,14 +1373,14 @@ M.GetLibraryItemOutput = {
             },
         },
         appVersion = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         categories = {
             type = "list",
-            member_type = "structure",
+            member = M.Category,
             traits = {
                 required = true,
             },
@@ -1420,7 +1410,7 @@ M.GetLibraryItemOutput = {
             type = "string",
         },
         ratingCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1429,7 +1419,7 @@ M.GetLibraryItemOutput = {
             type = "boolean",
         },
         userCount = {
-            type = "number",
+            type = "integer",
         },
         isVerified = {
             type = "boolean",
@@ -1455,7 +1445,7 @@ M.GetQAppInput = {
             },
         },
         appVersion = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "appVersion",
             },
@@ -1502,10 +1492,10 @@ M.GetQAppSessionOutput = {
             type = "string",
         },
         appVersion = {
-            type = "number",
+            type = "integer",
         },
         latestPublishedAppVersion = {
-            type = "number",
+            type = "integer",
         },
         status = {
             type = "string",
@@ -1515,8 +1505,8 @@ M.GetQAppSessionOutput = {
         },
         cardStatus = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.CardStatus,
             traits = {
                 required = true,
             },
@@ -1583,12 +1573,9 @@ M.GetQAppSessionMetadataOutput = {
         sessionName = {
             type = "string",
         },
-        sharingConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        sharingConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SessionSharingConfiguration }),
         sessionOwner = {
             type = "boolean",
         },
@@ -1666,14 +1653,14 @@ M.LibraryItemMember = {
             },
         },
         appVersion = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         categories = {
             type = "list",
-            member_type = "structure",
+            member = M.Category,
             traits = {
                 required = true,
             },
@@ -1703,7 +1690,7 @@ M.LibraryItemMember = {
             type = "string",
         },
         ratingCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1712,7 +1699,7 @@ M.LibraryItemMember = {
             type = "boolean",
         },
         userCount = {
-            type = "number",
+            type = "integer",
         },
         isVerified = {
             type = "boolean",
@@ -1743,7 +1730,7 @@ M.ListCategoriesOutput = {
     members = {
         categories = {
             type = "list",
-            member_type = "structure",
+            member = M.Category,
         },
     },
 }
@@ -1759,7 +1746,7 @@ M.ListLibraryItemsInput = {
             },
         },
         limit = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "limit",
             },
@@ -1784,7 +1771,7 @@ M.ListLibraryItemsOutput = {
     members = {
         libraryItems = {
             type = "list",
-            member_type = "structure",
+            member = M.LibraryItemMember,
         },
         nextToken = {
             type = "string",
@@ -1803,7 +1790,7 @@ M.ListQAppsInput = {
             },
         },
         limit = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "limit",
             },
@@ -1855,6 +1842,9 @@ M.UserAppItem = {
         },
         isVerified = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1864,7 +1854,7 @@ M.ListQAppsOutput = {
     members = {
         apps = {
             type = "list",
-            member_type = "structure",
+            member = M.UserAppItem,
             traits = {
                 required = true,
             },
@@ -1916,12 +1906,9 @@ M.QAppSessionData = {
         value = {
             type = "document",
         },
-        user = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        user = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.User }),
         submissionId = {
             type = "string",
         },
@@ -1948,7 +1935,7 @@ M.ListQAppSessionDataOutput = {
         },
         sessionData = {
             type = "list",
-            member_type = "structure",
+            member = M.QAppSessionData,
         },
         nextToken = {
             type = "string",
@@ -1974,8 +1961,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2003,7 +1990,7 @@ M.PredictQAppInputOptions = {
     members = {
         conversation = {
             type = "list",
-            member_type = "structure",
+            member = M.ConversationMessage,
         },
         problemStatement = {
             type = "string",
@@ -2021,9 +2008,7 @@ M.PredictQAppInput = {
                 required = true,
             },
         },
-        options = {
-            type = "union",
-        },
+        options = M.PredictQAppInputOptions,
     },
 }
 
@@ -2044,22 +2029,22 @@ M.StartQAppSessionInput = {
             },
         },
         appVersion = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         initialValues = {
             type = "list",
-            member_type = "structure",
+            member = M.CardValue,
         },
         sessionId = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2117,8 +2102,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2142,7 +2127,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -2176,7 +2161,7 @@ M.UpdateLibraryItemInput = {
         },
         categories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2197,14 +2182,14 @@ M.UpdateLibraryItemOutput = {
             },
         },
         appVersion = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         categories = {
             type = "list",
-            member_type = "structure",
+            member = M.Category,
             traits = {
                 required = true,
             },
@@ -2234,7 +2219,7 @@ M.UpdateLibraryItemOutput = {
             type = "string",
         },
         ratingCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -2243,7 +2228,7 @@ M.UpdateLibraryItemOutput = {
             type = "boolean",
         },
         userCount = {
-            type = "number",
+            type = "integer",
         },
         isVerified = {
             type = "boolean",
@@ -2305,7 +2290,7 @@ M.UpdateQAppOutput = {
             type = "string",
         },
         appVersion = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -2342,7 +2327,7 @@ M.UpdateQAppOutput = {
         },
         requiredCapabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2365,11 +2350,11 @@ M.UpdateQAppPermissionsInput = {
         },
         grantPermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.PermissionInput,
         },
         revokePermissions = {
             type = "list",
-            member_type = "structure",
+            member = M.PermissionInput,
         },
     },
 }
@@ -2385,7 +2370,7 @@ M.UpdateQAppPermissionsOutput = {
         },
         permissions = {
             type = "list",
-            member_type = "structure",
+            member = M.PermissionOutput,
         },
     },
 }
@@ -2408,7 +2393,7 @@ M.UpdateQAppSessionInput = {
         },
         values = {
             type = "list",
-            member_type = "structure",
+            member = M.CardValue,
         },
     },
 }
@@ -2450,12 +2435,9 @@ M.UpdateQAppSessionMetadataInput = {
         sessionName = {
             type = "string",
         },
-        sharingConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        sharingConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SessionSharingConfiguration }),
     },
 }
 
@@ -2477,12 +2459,9 @@ M.UpdateQAppSessionMetadataOutput = {
         sessionName = {
             type = "string",
         },
-        sharingConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        sharingConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SessionSharingConfiguration }),
     },
 }
 
@@ -2491,36 +2470,20 @@ M.AttributeFilter = {
     members = {
         andAllFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.AttributeFilter,
         },
         orAllFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.AttributeFilter,
         },
-        notFilter = {
-            type = "structure",
-        },
-        equalsTo = {
-            type = "structure",
-        },
-        containsAll = {
-            type = "structure",
-        },
-        containsAny = {
-            type = "structure",
-        },
-        greaterThan = {
-            type = "structure",
-        },
-        greaterThanOrEquals = {
-            type = "structure",
-        },
-        lessThan = {
-            type = "structure",
-        },
-        lessThanOrEquals = {
-            type = "structure",
-        },
+        notFilter = M.AttributeFilter,
+        equalsTo = M.DocumentAttribute,
+        containsAll = M.DocumentAttribute,
+        containsAny = M.DocumentAttribute,
+        greaterThan = M.DocumentAttribute,
+        greaterThanOrEquals = M.DocumentAttribute,
+        lessThan = M.DocumentAttribute,
+        lessThanOrEquals = M.DocumentAttribute,
     },
 }
 
@@ -2541,7 +2504,7 @@ M.QQueryCard = {
         },
         dependencies = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2564,12 +2527,10 @@ M.QQueryCard = {
                 required = true,
             },
         },
-        attributeFilter = {
-            type = "structure",
-        },
+        attributeFilter = M.AttributeFilter,
         memoryReferences = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2592,6 +2553,7 @@ M.QQueryCardInput = {
         type = {
             type = "string",
             traits = {
+                default = "q-query",
                 required = true,
             },
         },
@@ -2603,52 +2565,33 @@ M.QQueryCardInput = {
         },
         outputSource = {
             type = "string",
+            traits = {
+                default = "approved-sources",
+            },
         },
-        attributeFilter = {
-            type = "structure",
-        },
+        attributeFilter = M.AttributeFilter,
     },
 }
 
 M.Card = {
     type = "union",
     members = {
-        textInput = {
-            type = "structure",
-        },
-        qQuery = {
-            type = "structure",
-        },
-        qPlugin = {
-            type = "structure",
-        },
-        fileUpload = {
-            type = "structure",
-        },
-        formInput = {
-            type = "structure",
-        },
+        textInput = M.TextInputCard,
+        qQuery = M.QQueryCard,
+        qPlugin = M.QPluginCard,
+        fileUpload = M.FileUploadCard,
+        formInput = M.FormInputCard,
     },
 }
 
 M.CardInput = {
     type = "union",
     members = {
-        textInput = {
-            type = "structure",
-        },
-        qQuery = {
-            type = "structure",
-        },
-        qPlugin = {
-            type = "structure",
-        },
-        fileUpload = {
-            type = "structure",
-        },
-        formInput = {
-            type = "structure",
-        },
+        textInput = M.TextInputCardInput,
+        qQuery = M.QQueryCardInput,
+        qPlugin = M.QPluginCardInput,
+        fileUpload = M.FileUploadCardInput,
+        formInput = M.FormInputCardInput,
     },
 }
 
@@ -2663,7 +2606,7 @@ M.AppDefinition = {
         },
         cards = {
             type = "list",
-            member_type = "union",
+            member = M.Card,
             traits = {
                 required = true,
             },
@@ -2679,7 +2622,7 @@ M.AppDefinitionInput = {
     members = {
         cards = {
             type = "list",
-            member_type = "union",
+            member = M.CardInput,
             traits = {
                 required = true,
             },
@@ -2709,16 +2652,13 @@ M.CreateQAppInput = {
         description = {
             type = "string",
         },
-        appDefinition = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        appDefinition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AppDefinitionInput }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2751,7 +2691,7 @@ M.GetQAppOutput = {
             type = "string",
         },
         appVersion = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -2788,14 +2728,11 @@ M.GetQAppOutput = {
         },
         requiredCapabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        appDefinition = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        appDefinition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AppDefinition }),
     },
 }
 
@@ -2811,12 +2748,9 @@ M.PredictAppDefinition = {
         description = {
             type = "string",
         },
-        appDefinition = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        appDefinition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AppDefinitionInput }),
     },
 }
 
@@ -2842,21 +2776,16 @@ M.UpdateQAppInput = {
         description = {
             type = "string",
         },
-        appDefinition = {
-            type = "structure",
-        },
+        appDefinition = M.AppDefinitionInput,
     },
 }
 
 M.PredictQAppOutput = {
     type = "structure",
     members = {
-        app = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        app = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PredictAppDefinition }),
         problemStatement = {
             type = "string",
             traits = {

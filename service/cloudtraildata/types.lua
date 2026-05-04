@@ -94,7 +94,7 @@ M.PutAuditEventsInput = {
     members = {
         auditEvents = {
             type = "list",
-            member_type = "structure",
+            member = M.AuditEvent,
             traits = {
                 required = true,
             },
@@ -144,14 +144,14 @@ M.PutAuditEventsOutput = {
     members = {
         successful = {
             type = "list",
-            member_type = "structure",
+            member = M.AuditEventResultEntry,
             traits = {
                 required = true,
             },
         },
         failed = {
             type = "list",
-            member_type = "structure",
+            member = M.ResultErrorEntry,
             traits = {
                 required = true,
             },

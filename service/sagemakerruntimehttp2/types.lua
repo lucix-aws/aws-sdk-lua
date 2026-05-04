@@ -57,9 +57,7 @@ M.RequestPayloadPart = {
 M.RequestStreamEvent = {
     type = "union",
     members = {
-        PayloadPart = {
-            type = "structure",
-        },
+        PayloadPart = M.RequestPayloadPart,
     },
 }
 
@@ -73,13 +71,10 @@ M.InvokeEndpointWithBidirectionalStreamInput = {
                 required = true,
             },
         },
-        Body = {
-            type = "union",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        Body = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.RequestStreamEvent }),
         TargetVariant = {
             type = "string",
             traits = {
@@ -135,28 +130,19 @@ M.ResponsePayloadPart = {
 M.ResponseStreamEvent = {
     type = "union",
     members = {
-        PayloadPart = {
-            type = "structure",
-        },
-        ModelStreamError = {
-            type = "structure",
-        },
-        InternalStreamFailure = {
-            type = "structure",
-        },
+        PayloadPart = M.ResponsePayloadPart,
+        ModelStreamError = M.ModelStreamError,
+        InternalStreamFailure = M.InternalStreamFailure,
     },
 }
 
 M.InvokeEndpointWithBidirectionalStreamOutput = {
     type = "structure",
     members = {
-        Body = {
-            type = "union",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        Body = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.ResponseStreamEvent }),
         InvokedProductionVariant = {
             type = "string",
             traits = {
@@ -174,7 +160,7 @@ M.ModelError = {
             type = "string",
         },
         OriginalStatusCode = {
-            type = "number",
+            type = "integer",
         },
         OriginalMessage = {
             type = "string",

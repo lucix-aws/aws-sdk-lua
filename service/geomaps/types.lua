@@ -222,7 +222,7 @@ M.GetStaticMapInput = {
             },
         },
         Height = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "height",
                 required = true,
@@ -247,7 +247,7 @@ M.GetStaticMapInput = {
             },
         },
         Padding = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "padding",
             },
@@ -265,8 +265,9 @@ M.GetStaticMapInput = {
             },
         },
         Radius = {
-            type = "number",
+            type = "long",
             traits = {
+                default = nil,
                 http_query = "radius",
             },
         },
@@ -290,15 +291,16 @@ M.GetStaticMapInput = {
             },
         },
         Width = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "width",
                 required = true,
             },
         },
         Zoom = {
-            type = "number",
+            type = "float",
             traits = {
+                default = nil,
                 http_query = "zoom",
             },
         },
@@ -419,7 +421,7 @@ M.ValidationException = {
         },
         FieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
             traits = {
                 json_name = "fieldList",
                 required = true,
@@ -485,7 +487,7 @@ M.GetStyleDescriptorInput = {
         },
         TravelModes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "travel-modes",
             },
@@ -547,7 +549,7 @@ M.GetTileInput = {
     members = {
         AdditionalFeatures = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "additional-features",
             },

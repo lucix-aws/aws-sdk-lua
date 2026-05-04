@@ -83,14 +83,14 @@ M.CreateMonitorInput = {
         },
         localResources = {
             type = "list",
-            member_type = "structure",
+            member = M.MonitorLocalResource,
             traits = {
                 required = true,
             },
         },
         remoteResources = {
             type = "list",
-            member_type = "structure",
+            member = M.MonitorRemoteResource,
         },
         scopeArn = {
             type = "string",
@@ -103,8 +103,8 @@ M.CreateMonitorInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -140,14 +140,14 @@ M.CreateMonitorOutput = {
         },
         localResources = {
             type = "list",
-            member_type = "structure",
+            member = M.MonitorLocalResource,
             traits = {
                 required = true,
             },
         },
         remoteResources = {
             type = "list",
-            member_type = "structure",
+            member = M.MonitorRemoteResource,
             traits = {
                 required = true,
             },
@@ -166,8 +166,8 @@ M.CreateMonitorOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -228,12 +228,9 @@ M.TargetType = {
 M.TargetIdentifier = {
     type = "structure",
     members = {
-        targetId = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        targetId = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TargetId }),
         targetType = {
             type = "string",
             traits = {
@@ -246,12 +243,9 @@ M.TargetIdentifier = {
 M.TargetResource = {
     type = "structure",
     members = {
-        targetIdentifier = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        targetIdentifier = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TargetIdentifier }),
         region = {
             type = "string",
             traits = {
@@ -266,7 +260,7 @@ M.CreateScopeInput = {
     members = {
         targets = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetResource,
             traits = {
                 required = true,
             },
@@ -276,8 +270,8 @@ M.CreateScopeInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -313,8 +307,8 @@ M.CreateScopeOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -409,14 +403,14 @@ M.GetMonitorOutput = {
         },
         localResources = {
             type = "list",
-            member_type = "structure",
+            member = M.MonitorLocalResource,
             traits = {
                 required = true,
             },
         },
         remoteResources = {
             type = "list",
-            member_type = "structure",
+            member = M.MonitorRemoteResource,
             traits = {
                 required = true,
             },
@@ -435,8 +429,8 @@ M.GetMonitorOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -465,7 +459,7 @@ M.GetQueryResultsMonitorTopContributorsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -540,7 +534,7 @@ M.MonitorTopContributorsRow = {
             type = "string",
         },
         targetPort = {
-            type = "number",
+            type = "integer",
         },
         destinationCategory = {
             type = "string",
@@ -567,15 +561,13 @@ M.MonitorTopContributorsRow = {
             type = "string",
         },
         value = {
-            type = "number",
+            type = "long",
         },
         traversedConstructs = {
             type = "list",
-            member_type = "structure",
+            member = M.TraversedComponent,
         },
-        kubernetesMetadata = {
-            type = "structure",
-        },
+        kubernetesMetadata = M.KubernetesMetadata,
         localInstanceArn = {
             type = "string",
         },
@@ -635,7 +627,7 @@ M.GetQueryResultsMonitorTopContributorsOutput = {
         },
         topContributors = {
             type = "list",
-            member_type = "structure",
+            member = M.MonitorTopContributorsRow,
         },
         nextToken = {
             type = "string",
@@ -667,7 +659,7 @@ M.GetQueryResultsWorkloadInsightsTopContributorsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -697,7 +689,7 @@ M.WorkloadInsightsTopContributorsRow = {
             type = "string",
         },
         value = {
-            type = "number",
+            type = "long",
         },
         localSubnetArn = {
             type = "string",
@@ -713,7 +705,7 @@ M.GetQueryResultsWorkloadInsightsTopContributorsOutput = {
     members = {
         topContributors = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkloadInsightsTopContributorsRow,
         },
         nextToken = {
             type = "string",
@@ -745,7 +737,7 @@ M.GetQueryResultsWorkloadInsightsTopContributorsDataInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -758,14 +750,14 @@ M.WorkloadInsightsTopContributorsDataPoint = {
     members = {
         timestamps = {
             type = "list",
-            member_type = "timestamp",
+            member = { type = "timestamp" },
             traits = {
                 required = true,
             },
         },
         values = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
             traits = {
                 required = true,
             },
@@ -790,7 +782,7 @@ M.GetQueryResultsWorkloadInsightsTopContributorsDataOutput = {
         },
         datapoints = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkloadInsightsTopContributorsDataPoint,
             traits = {
                 required = true,
             },
@@ -941,15 +933,15 @@ M.GetScopeOutput = {
         },
         targets = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetResource,
             traits = {
                 required = true,
             },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -964,7 +956,7 @@ M.ListMonitorsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1007,7 +999,7 @@ M.ListMonitorsOutput = {
     members = {
         monitors = {
             type = "list",
-            member_type = "structure",
+            member = M.MonitorSummary,
             traits = {
                 required = true,
             },
@@ -1028,7 +1020,7 @@ M.ListScopesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1065,7 +1057,7 @@ M.ListScopesOutput = {
     members = {
         scopes = {
             type = "list",
-            member_type = "structure",
+            member = M.ScopeSummary,
             traits = {
                 required = true,
             },
@@ -1094,8 +1086,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1144,7 +1136,7 @@ M.StartQueryMonitorTopContributorsInput = {
             },
         },
         limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1197,19 +1189,19 @@ M.UpdateMonitorInput = {
         },
         localResourcesToAdd = {
             type = "list",
-            member_type = "structure",
+            member = M.MonitorLocalResource,
         },
         localResourcesToRemove = {
             type = "list",
-            member_type = "structure",
+            member = M.MonitorLocalResource,
         },
         remoteResourcesToAdd = {
             type = "list",
-            member_type = "structure",
+            member = M.MonitorRemoteResource,
         },
         remoteResourcesToRemove = {
             type = "list",
-            member_type = "structure",
+            member = M.MonitorRemoteResource,
         },
         clientToken = {
             type = "string",
@@ -1240,14 +1232,14 @@ M.UpdateMonitorOutput = {
         },
         localResources = {
             type = "list",
-            member_type = "structure",
+            member = M.MonitorLocalResource,
             traits = {
                 required = true,
             },
         },
         remoteResources = {
             type = "list",
-            member_type = "structure",
+            member = M.MonitorRemoteResource,
             traits = {
                 required = true,
             },
@@ -1266,8 +1258,8 @@ M.UpdateMonitorOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1315,7 +1307,7 @@ M.StartQueryWorkloadInsightsTopContributorsInput = {
             },
         },
         limit = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1443,11 +1435,11 @@ M.UpdateScopeInput = {
         },
         resourcesToAdd = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetResource,
         },
         resourcesToDelete = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetResource,
         },
     },
 }
@@ -1475,8 +1467,8 @@ M.UpdateScopeOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1493,8 +1485,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1518,7 +1510,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,

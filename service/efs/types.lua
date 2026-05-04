@@ -35,20 +35,20 @@ M.PosixUser = {
     type = "structure",
     members = {
         Uid = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         Gid = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         SecondaryGids = {
             type = "list",
-            member_type = "number",
+            member = { type = "long" },
         },
     },
 }
@@ -57,13 +57,13 @@ M.CreationInfo = {
     type = "structure",
     members = {
         OwnerUid = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         OwnerGid = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -83,9 +83,7 @@ M.RootDirectory = {
         Path = {
             type = "string",
         },
-        CreationInfo = {
-            type = "structure",
-        },
+        CreationInfo = M.CreationInfo,
     },
 }
 
@@ -118,7 +116,7 @@ M.AccessPointDescription = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         AccessPointId = {
             type = "string",
@@ -129,12 +127,8 @@ M.AccessPointDescription = {
         FileSystemId = {
             type = "string",
         },
-        PosixUser = {
-            type = "structure",
-        },
-        RootDirectory = {
-            type = "structure",
-        },
+        PosixUser = M.PosixUser,
+        RootDirectory = M.RootDirectory,
         OwnerId = {
             type = "string",
         },
@@ -248,7 +242,7 @@ M.CreateAccessPointInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         FileSystemId = {
             type = "string",
@@ -256,12 +250,8 @@ M.CreateAccessPointInput = {
                 required = true,
             },
         },
-        PosixUser = {
-            type = "structure",
-        },
-        RootDirectory = {
-            type = "structure",
-        },
+        PosixUser = M.PosixUser,
+        RootDirectory = M.RootDirectory,
     },
 }
 
@@ -276,7 +266,7 @@ M.CreateAccessPointOutput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         AccessPointId = {
             type = "string",
@@ -287,12 +277,8 @@ M.CreateAccessPointOutput = {
         FileSystemId = {
             type = "string",
         },
-        PosixUser = {
-            type = "structure",
-        },
-        RootDirectory = {
-            type = "structure",
-        },
+        PosixUser = M.PosixUser,
+        RootDirectory = M.RootDirectory,
         OwnerId = {
             type = "string",
         },
@@ -396,7 +382,7 @@ M.CreateFileSystemInput = {
             type = "string",
         },
         ProvisionedThroughputInMibps = {
-            type = "number",
+            type = "double",
         },
         AvailabilityZoneName = {
             type = "string",
@@ -406,7 +392,7 @@ M.CreateFileSystemInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -430,8 +416,9 @@ M.FileSystemSize = {
     type = "structure",
     members = {
         Value = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -439,13 +426,13 @@ M.FileSystemSize = {
             type = "timestamp",
         },
         ValueInIA = {
-            type = "number",
+            type = "long",
         },
         ValueInStandard = {
-            type = "number",
+            type = "long",
         },
         ValueInArchive = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -490,17 +477,15 @@ M.CreateFileSystemOutput = {
             type = "string",
         },
         NumberOfMountTargets = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
-        SizeInBytes = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SizeInBytes = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FileSystemSize }),
         PerformanceMode = {
             type = "string",
             traits = {
@@ -517,7 +502,7 @@ M.CreateFileSystemOutput = {
             type = "string",
         },
         ProvisionedThroughputInMibps = {
-            type = "number",
+            type = "double",
         },
         AvailabilityZoneName = {
             type = "string",
@@ -527,14 +512,12 @@ M.CreateFileSystemOutput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
         },
-        FileSystemProtection = {
-            type = "structure",
-        },
+        FileSystemProtection = M.FileSystemProtectionDescription,
     },
 }
 
@@ -656,7 +639,7 @@ M.CreateMountTargetInput = {
         },
         SecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -857,7 +840,7 @@ M.CreateReplicationConfigurationInput = {
         },
         Destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.DestinationToCreate,
             traits = {
                 required = true,
             },
@@ -945,7 +928,7 @@ M.CreateReplicationConfigurationOutput = {
         },
         Destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.Destination,
             traits = {
                 required = true,
             },
@@ -997,7 +980,7 @@ M.CreateTagsInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -1165,7 +1148,7 @@ M.DeleteTagsInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1181,7 +1164,7 @@ M.DescribeAccessPointsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -1212,7 +1195,7 @@ M.DescribeAccessPointsOutput = {
     members = {
         AccessPoints = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessPointDescription,
         },
         NextToken = {
             type = "string",
@@ -1227,7 +1210,7 @@ M.DescribeAccountPreferencesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1250,7 +1233,7 @@ M.ResourceIdPreference = {
         },
         Resources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1258,9 +1241,7 @@ M.ResourceIdPreference = {
 M.DescribeAccountPreferencesOutput = {
     type = "structure",
     members = {
-        ResourceIdPreference = {
-            type = "structure",
-        },
+        ResourceIdPreference = M.ResourceIdPreference,
         NextToken = {
             type = "string",
         },
@@ -1283,9 +1264,7 @@ M.DescribeBackupPolicyInput = {
 M.DescribeBackupPolicyOutput = {
     type = "structure",
     members = {
-        BackupPolicy = {
-            type = "structure",
-        },
+        BackupPolicy = M.BackupPolicy,
     },
 }
 
@@ -1331,7 +1310,7 @@ M.DescribeFileSystemsInput = {
     type = "structure",
     members = {
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxItems",
             },
@@ -1397,17 +1376,15 @@ M.FileSystemDescription = {
             type = "string",
         },
         NumberOfMountTargets = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
-        SizeInBytes = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SizeInBytes = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FileSystemSize }),
         PerformanceMode = {
             type = "string",
             traits = {
@@ -1424,7 +1401,7 @@ M.FileSystemDescription = {
             type = "string",
         },
         ProvisionedThroughputInMibps = {
-            type = "number",
+            type = "double",
         },
         AvailabilityZoneName = {
             type = "string",
@@ -1434,14 +1411,12 @@ M.FileSystemDescription = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
         },
-        FileSystemProtection = {
-            type = "structure",
-        },
+        FileSystemProtection = M.FileSystemProtectionDescription,
     },
 }
 
@@ -1453,7 +1428,7 @@ M.DescribeFileSystemsOutput = {
         },
         FileSystems = {
             type = "list",
-            member_type = "structure",
+            member = M.FileSystemDescription,
         },
         NextMarker = {
             type = "string",
@@ -1522,7 +1497,7 @@ M.DescribeLifecycleConfigurationOutput = {
     members = {
         LifecyclePolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.LifecyclePolicy,
         },
     },
 }
@@ -1531,7 +1506,7 @@ M.DescribeMountTargetsInput = {
     type = "structure",
     members = {
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxItems",
             },
@@ -1622,7 +1597,7 @@ M.DescribeMountTargetsOutput = {
         },
         MountTargets = {
             type = "list",
-            member_type = "structure",
+            member = M.MountTargetDescription,
         },
         NextMarker = {
             type = "string",
@@ -1648,7 +1623,7 @@ M.DescribeMountTargetSecurityGroupsOutput = {
     members = {
         SecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1688,7 +1663,7 @@ M.DescribeReplicationConfigurationsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -1731,7 +1706,7 @@ M.ReplicationConfigurationDescription = {
         },
         Destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.Destination,
             traits = {
                 required = true,
             },
@@ -1747,7 +1722,7 @@ M.DescribeReplicationConfigurationsOutput = {
     members = {
         Replications = {
             type = "list",
-            member_type = "structure",
+            member = M.ReplicationConfigurationDescription,
         },
         NextToken = {
             type = "string",
@@ -1759,7 +1734,7 @@ M.DescribeTagsInput = {
     type = "structure",
     members = {
         MaxItems = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxItems",
             },
@@ -1788,7 +1763,7 @@ M.DescribeTagsOutput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -1823,7 +1798,7 @@ M.ListTagsForResourceInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -1842,7 +1817,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         NextToken = {
             type = "string",
@@ -1862,7 +1837,7 @@ M.ModifyMountTargetSecurityGroupsInput = {
         },
         SecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1886,9 +1861,7 @@ M.PutAccountPreferencesInput = {
 M.PutAccountPreferencesOutput = {
     type = "structure",
     members = {
-        ResourceIdPreference = {
-            type = "structure",
-        },
+        ResourceIdPreference = M.ResourceIdPreference,
     },
 }
 
@@ -1902,21 +1875,16 @@ M.PutBackupPolicyInput = {
                 required = true,
             },
         },
-        BackupPolicy = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        BackupPolicy = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BackupPolicy }),
     },
 }
 
 M.PutBackupPolicyOutput = {
     type = "structure",
     members = {
-        BackupPolicy = {
-            type = "structure",
-        },
+        BackupPolicy = M.BackupPolicy,
     },
 }
 
@@ -1938,6 +1906,9 @@ M.PutFileSystemPolicyInput = {
         },
         BypassPolicyLockoutSafetyCheck = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1966,7 +1937,7 @@ M.PutLifecycleConfigurationInput = {
         },
         LifecyclePolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.LifecyclePolicy,
             traits = {
                 required = true,
             },
@@ -1979,7 +1950,7 @@ M.PutLifecycleConfigurationOutput = {
     members = {
         LifecyclePolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.LifecyclePolicy,
         },
     },
 }
@@ -1996,7 +1967,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -2020,7 +1991,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -2063,7 +2034,7 @@ M.UpdateFileSystemInput = {
             type = "string",
         },
         ProvisionedThroughputInMibps = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -2108,17 +2079,15 @@ M.UpdateFileSystemOutput = {
             type = "string",
         },
         NumberOfMountTargets = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
-        SizeInBytes = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SizeInBytes = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FileSystemSize }),
         PerformanceMode = {
             type = "string",
             traits = {
@@ -2135,7 +2104,7 @@ M.UpdateFileSystemOutput = {
             type = "string",
         },
         ProvisionedThroughputInMibps = {
-            type = "number",
+            type = "double",
         },
         AvailabilityZoneName = {
             type = "string",
@@ -2145,14 +2114,12 @@ M.UpdateFileSystemOutput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
         },
-        FileSystemProtection = {
-            type = "structure",
-        },
+        FileSystemProtection = M.FileSystemProtectionDescription,
     },
 }
 

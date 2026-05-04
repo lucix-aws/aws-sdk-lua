@@ -57,7 +57,7 @@ M.SingleMasterConfiguration = {
     type = "structure",
     members = {
         MessageTtlSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -80,9 +80,7 @@ M.ChannelInfo = {
         CreationTime = {
             type = "timestamp",
         },
-        SingleMasterConfiguration = {
-            type = "structure",
-        },
+        SingleMasterConfiguration = M.SingleMasterConfiguration,
         Version = {
             type = "string",
         },
@@ -161,12 +159,10 @@ M.CreateSignalingChannelInput = {
         ChannelType = {
             type = "string",
         },
-        SingleMasterConfiguration = {
-            type = "structure",
-        },
+        SingleMasterConfiguration = M.SingleMasterConfiguration,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -246,16 +242,14 @@ M.CreateStreamInput = {
             type = "string",
         },
         DataRetentionInHours = {
-            type = "number",
+            type = "integer",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        StreamStorageConfiguration = {
-            type = "structure",
-        },
+        StreamStorageConfiguration = M.StreamStorageConfiguration,
     },
 }
 
@@ -391,7 +385,7 @@ M.LocalSizeConfig = {
     type = "structure",
     members = {
         MaxLocalMediaSizeInMB = {
-            type = "number",
+            type = "integer",
         },
         StrategyOnFullSize = {
             type = "string",
@@ -403,11 +397,9 @@ M.DeletionConfig = {
     type = "structure",
     members = {
         EdgeRetentionInHours = {
-            type = "number",
+            type = "integer",
         },
-        LocalSizeConfig = {
-            type = "structure",
-        },
+        LocalSizeConfig = M.LocalSizeConfig,
         DeleteAfterUpload = {
             type = "boolean",
         },
@@ -477,12 +469,8 @@ M.LastUploaderStatus = {
 M.EdgeAgentStatus = {
     type = "structure",
     members = {
-        LastRecorderStatus = {
-            type = "structure",
-        },
-        LastUploaderStatus = {
-            type = "structure",
-        },
+        LastRecorderStatus = M.LastRecorderStatus,
+        LastUploaderStatus = M.LastUploaderStatus,
     },
 }
 
@@ -519,7 +507,7 @@ M.ScheduleConfig = {
             },
         },
         DurationInSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -530,27 +518,19 @@ M.ScheduleConfig = {
 M.RecorderConfig = {
     type = "structure",
     members = {
-        MediaSourceConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ScheduleConfig = {
-            type = "structure",
-        },
+        MediaSourceConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MediaSourceConfig }),
+        ScheduleConfig = M.ScheduleConfig,
     },
 }
 
 M.UploaderConfig = {
     type = "structure",
     members = {
-        ScheduleConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ScheduleConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ScheduleConfig }),
     },
 }
 
@@ -563,18 +543,11 @@ M.EdgeConfig = {
                 required = true,
             },
         },
-        RecorderConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        UploaderConfig = {
-            type = "structure",
-        },
-        DeletionConfig = {
-            type = "structure",
-        },
+        RecorderConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RecorderConfig }),
+        UploaderConfig = M.UploaderConfig,
+        DeletionConfig = M.DeletionConfig,
     },
 }
 
@@ -609,12 +582,8 @@ M.DescribeEdgeConfigurationOutput = {
         FailedStatusDetails = {
             type = "string",
         },
-        EdgeConfig = {
-            type = "structure",
-        },
-        EdgeAgentStatus = {
-            type = "structure",
-        },
+        EdgeConfig = M.EdgeConfig,
+        EdgeAgentStatus = M.EdgeAgentStatus,
     },
 }
 
@@ -677,14 +646,11 @@ M.ImageGenerationConfiguration = {
                 required = true,
             },
         },
-        DestinationConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DestinationConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ImageGenerationDestinationConfig }),
         SamplingInterval = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -697,14 +663,14 @@ M.ImageGenerationConfiguration = {
         },
         FormatConfig = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         WidthPixels = {
-            type = "number",
+            type = "integer",
         },
         HeightPixels = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -712,9 +678,7 @@ M.ImageGenerationConfiguration = {
 M.DescribeImageGenerationConfigurationOutput = {
     type = "structure",
     members = {
-        ImageGenerationConfiguration = {
-            type = "structure",
-        },
+        ImageGenerationConfiguration = M.ImageGenerationConfiguration,
     },
 }
 
@@ -728,7 +692,7 @@ M.DescribeMappedResourceConfigurationInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -753,7 +717,7 @@ M.DescribeMappedResourceConfigurationOutput = {
     members = {
         MappedResourceConfigurationList = {
             type = "list",
-            member_type = "structure",
+            member = M.MappedResourceConfigurationListItem,
         },
         NextToken = {
             type = "string",
@@ -796,9 +760,7 @@ M.MediaStorageConfiguration = {
 M.DescribeMediaStorageConfigurationOutput = {
     type = "structure",
     members = {
-        MediaStorageConfiguration = {
-            type = "structure",
-        },
+        MediaStorageConfiguration = M.MediaStorageConfiguration,
     },
 }
 
@@ -835,21 +797,16 @@ M.NotificationConfiguration = {
                 required = true,
             },
         },
-        DestinationConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DestinationConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.NotificationDestinationConfig }),
     },
 }
 
 M.DescribeNotificationConfigurationOutput = {
     type = "structure",
     members = {
-        NotificationConfiguration = {
-            type = "structure",
-        },
+        NotificationConfiguration = M.NotificationConfiguration,
     },
 }
 
@@ -868,9 +825,7 @@ M.DescribeSignalingChannelInput = {
 M.DescribeSignalingChannelOutput = {
     type = "structure",
     members = {
-        ChannelInfo = {
-            type = "structure",
-        },
+        ChannelInfo = M.ChannelInfo,
     },
 }
 
@@ -914,7 +869,7 @@ M.StreamInfo = {
             type = "timestamp",
         },
         DataRetentionInHours = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -922,9 +877,7 @@ M.StreamInfo = {
 M.DescribeStreamOutput = {
     type = "structure",
     members = {
-        StreamInfo = {
-            type = "structure",
-        },
+        StreamInfo = M.StreamInfo,
     },
 }
 
@@ -949,9 +902,7 @@ M.DescribeStreamStorageConfigurationOutput = {
         StreamARN = {
             type = "string",
         },
-        StreamStorageConfiguration = {
-            type = "structure",
-        },
+        StreamStorageConfiguration = M.StreamStorageConfiguration,
     },
 }
 
@@ -987,7 +938,7 @@ M.SingleMasterChannelEndpointConfiguration = {
     members = {
         Protocols = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Role = {
             type = "string",
@@ -1004,9 +955,7 @@ M.GetSignalingChannelEndpointInput = {
                 required = true,
             },
         },
-        SingleMasterChannelEndpointConfiguration = {
-            type = "structure",
-        },
+        SingleMasterChannelEndpointConfiguration = M.SingleMasterChannelEndpointConfiguration,
     },
 }
 
@@ -1027,7 +976,7 @@ M.GetSignalingChannelEndpointOutput = {
     members = {
         ResourceEndpointList = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceEndpointListItem,
         },
     },
 }
@@ -1052,7 +1001,7 @@ M.ListEdgeAgentConfigurationsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1081,9 +1030,7 @@ M.ListEdgeAgentConfigurationsEdgeConfig = {
         FailedStatusDetails = {
             type = "string",
         },
-        EdgeConfig = {
-            type = "structure",
-        },
+        EdgeConfig = M.EdgeConfig,
     },
 }
 
@@ -1092,7 +1039,7 @@ M.ListEdgeAgentConfigurationsOutput = {
     members = {
         EdgeConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.ListEdgeAgentConfigurationsEdgeConfig,
         },
         NextToken = {
             type = "string",
@@ -1104,14 +1051,12 @@ M.ListSignalingChannelsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
-        ChannelNameCondition = {
-            type = "structure",
-        },
+        ChannelNameCondition = M.ChannelNameCondition,
     },
 }
 
@@ -1120,7 +1065,7 @@ M.ListSignalingChannelsOutput = {
     members = {
         ChannelInfoList = {
             type = "list",
-            member_type = "structure",
+            member = M.ChannelInfo,
         },
         NextToken = {
             type = "string",
@@ -1144,14 +1089,12 @@ M.ListStreamsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
-        StreamNameCondition = {
-            type = "structure",
-        },
+        StreamNameCondition = M.StreamNameCondition,
     },
 }
 
@@ -1160,7 +1103,7 @@ M.ListStreamsOutput = {
     members = {
         StreamInfoList = {
             type = "list",
-            member_type = "structure",
+            member = M.StreamInfo,
         },
         NextToken = {
             type = "string",
@@ -1191,8 +1134,8 @@ M.ListTagsForResourceOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1220,8 +1163,8 @@ M.ListTagsForStreamOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1245,12 +1188,9 @@ M.StartEdgeConfigurationUpdateInput = {
         StreamARN = {
             type = "string",
         },
-        EdgeConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        EdgeConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EdgeConfig }),
     },
 }
 
@@ -1275,9 +1215,7 @@ M.StartEdgeConfigurationUpdateOutput = {
         FailedStatusDetails = {
             type = "string",
         },
-        EdgeConfig = {
-            type = "structure",
-        },
+        EdgeConfig = M.EdgeConfig,
     },
 }
 
@@ -1292,7 +1230,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -1315,8 +1253,8 @@ M.TagStreamInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1339,7 +1277,7 @@ M.UntagResourceInput = {
         },
         TagKeyList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1362,7 +1300,7 @@ M.UntagStreamInput = {
         },
         TagKeyList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1401,7 +1339,7 @@ M.UpdateDataRetentionInput = {
             },
         },
         DataRetentionChangeInHours = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1422,9 +1360,7 @@ M.UpdateImageGenerationConfigurationInput = {
         StreamARN = {
             type = "string",
         },
-        ImageGenerationConfiguration = {
-            type = "structure",
-        },
+        ImageGenerationConfiguration = M.ImageGenerationConfiguration,
     },
 }
 
@@ -1441,12 +1377,9 @@ M.UpdateMediaStorageConfigurationInput = {
                 required = true,
             },
         },
-        MediaStorageConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        MediaStorageConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MediaStorageConfiguration }),
     },
 }
 
@@ -1463,9 +1396,7 @@ M.UpdateNotificationConfigurationInput = {
         StreamARN = {
             type = "string",
         },
-        NotificationConfiguration = {
-            type = "structure",
-        },
+        NotificationConfiguration = M.NotificationConfiguration,
     },
 }
 
@@ -1488,9 +1419,7 @@ M.UpdateSignalingChannelInput = {
                 required = true,
             },
         },
-        SingleMasterConfiguration = {
-            type = "structure",
-        },
+        SingleMasterConfiguration = M.SingleMasterConfiguration,
     },
 }
 
@@ -1541,12 +1470,9 @@ M.UpdateStreamStorageConfigurationInput = {
                 required = true,
             },
         },
-        StreamStorageConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        StreamStorageConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.StreamStorageConfiguration }),
     },
 }
 

@@ -16,7 +16,7 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "PcaConnectorAd"
-    cfg.signing_name = "pcaconnectorad"
+    cfg.signing_name = "pca-connector-ad"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end

@@ -123,12 +123,8 @@ M.AntipatternReportStatus = {
 M.AntipatternReportResult = {
     type = "structure",
     members = {
-        analyzerName = {
-            type = "union",
-        },
-        antiPatternReportS3Object = {
-            type = "structure",
-        },
+        analyzerName = M.AnalyzerNameUnion,
+        antiPatternReportS3Object = M.S3Object,
         antipatternReportStatus = {
             type = "string",
         },
@@ -151,7 +147,7 @@ M.AntipatternSeveritySummary = {
             type = "string",
         },
         count = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -281,9 +277,7 @@ M.TransformationTool = {
 M.RecommendationSet = {
     type = "structure",
     members = {
-        transformationTool = {
-            type = "structure",
-        },
+        transformationTool = M.TransformationTool,
         targetDestination = {
             type = "string",
         },
@@ -305,15 +299,13 @@ M.Result = {
         analysisType = {
             type = "string",
         },
-        analysisStatus = {
-            type = "union",
-        },
+        analysisStatus = M.AnalysisStatusUnion,
         statusMessage = {
             type = "string",
         },
         antipatternReportResultList = {
             type = "list",
-            member_type = "structure",
+            member = M.AntipatternReportResult,
         },
     },
 }
@@ -345,9 +337,7 @@ M.ApplicationComponentDetail = {
         name = {
             type = "string",
         },
-        recommendationSet = {
-            type = "structure",
-        },
+        recommendationSet = M.RecommendationSet,
         analysisStatus = {
             type = "string",
         },
@@ -356,14 +346,12 @@ M.ApplicationComponentDetail = {
         },
         listAntipatternSeveritySummary = {
             type = "list",
-            member_type = "structure",
+            member = M.AntipatternSeveritySummary,
         },
-        databaseConfigDetail = {
-            type = "structure",
-        },
+        databaseConfigDetail = M.DatabaseConfigDetail,
         sourceCodeRepositories = {
             type = "list",
-            member_type = "structure",
+            member = M.SourceCodeRepository,
         },
         appType = {
             type = "string",
@@ -374,9 +362,7 @@ M.ApplicationComponentDetail = {
         inclusionStatus = {
             type = "string",
         },
-        antipatternReportS3Object = {
-            type = "structure",
-        },
+        antipatternReportS3Object = M.S3Object,
         antipatternReportStatus = {
             type = "string",
         },
@@ -404,12 +390,10 @@ M.ApplicationComponentDetail = {
         runtimeStatusMessage = {
             type = "string",
         },
-        appUnitError = {
-            type = "structure",
-        },
+        appUnitError = M.AppUnitError,
         resultList = {
             type = "list",
-            member_type = "structure",
+            member = M.Result,
         },
     },
 }
@@ -421,7 +405,7 @@ M.ApplicationComponentStatusSummary = {
             type = "string",
         },
         count = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -436,9 +420,7 @@ M.StrategyRecommendation = {
 M.ApplicationComponentStrategy = {
     type = "structure",
     members = {
-        recommendation = {
-            type = "structure",
-        },
+        recommendation = M.RecommendationSet,
         status = {
             type = "string",
         },
@@ -455,7 +437,7 @@ M.ApplicationComponentSummary = {
             type = "string",
         },
         count = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -477,7 +459,7 @@ M.AwsManagedResources = {
     members = {
         targetDestination = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -499,7 +481,7 @@ M.NoManagementPreference = {
     members = {
         targetDestination = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -519,7 +501,7 @@ M.SelfManageResources = {
     members = {
         targetDestination = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -530,24 +512,16 @@ M.SelfManageResources = {
 M.ManagementPreference = {
     type = "union",
     members = {
-        awsManagedResources = {
-            type = "structure",
-        },
-        selfManageResources = {
-            type = "structure",
-        },
-        noPreference = {
-            type = "structure",
-        },
+        awsManagedResources = M.AwsManagedResources,
+        selfManageResources = M.SelfManageResources,
+        noPreference = M.NoManagementPreference,
     },
 }
 
 M.ApplicationPreferences = {
     type = "structure",
     members = {
-        managementPreference = {
-            type = "union",
-        },
+        managementPreference = M.ManagementPreference,
     },
 }
 
@@ -571,7 +545,7 @@ M.StrategySummary = {
             type = "string",
         },
         count = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -593,7 +567,7 @@ M.ServerStatusSummary = {
             type = "string",
         },
         count = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -613,7 +587,7 @@ M.ServerSummary = {
             type = "string",
         },
         count = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -623,27 +597,25 @@ M.AssessmentSummary = {
     members = {
         listServerStrategySummary = {
             type = "list",
-            member_type = "structure",
+            member = M.StrategySummary,
         },
         listApplicationComponentStrategySummary = {
             type = "list",
-            member_type = "structure",
+            member = M.StrategySummary,
         },
         listAntipatternSeveritySummary = {
             type = "list",
-            member_type = "structure",
+            member = M.AntipatternSeveritySummary,
         },
         listApplicationComponentSummary = {
             type = "list",
-            member_type = "structure",
+            member = M.ApplicationComponentSummary,
         },
         listServerSummary = {
             type = "list",
-            member_type = "structure",
+            member = M.ServerSummary,
         },
-        antipatternReportS3Object = {
-            type = "structure",
-        },
+        antipatternReportS3Object = M.S3Object,
         antipatternReportStatus = {
             type = "string",
         },
@@ -655,11 +627,11 @@ M.AssessmentSummary = {
         },
         listApplicationComponentStatusSummary = {
             type = "list",
-            member_type = "structure",
+            member = M.ApplicationComponentStatusSummary,
         },
         listServerStatusSummary = {
             type = "list",
-            member_type = "structure",
+            member = M.ServerStatusSummary,
         },
     },
 }
@@ -688,7 +660,7 @@ M.AssessmentTarget = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -730,19 +702,17 @@ M.GetApplicationComponentDetailsInput = {
 M.GetApplicationComponentDetailsOutput = {
     type = "structure",
     members = {
-        applicationComponentDetail = {
-            type = "structure",
-        },
+        applicationComponentDetail = M.ApplicationComponentDetail,
         associatedApplications = {
             type = "list",
-            member_type = "structure",
+            member = M.AssociatedApplication,
         },
         moreApplicationResource = {
             type = "boolean",
         },
         associatedServerIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -795,7 +765,7 @@ M.GetApplicationComponentStrategiesOutput = {
     members = {
         applicationComponentStrategies = {
             type = "list",
-            member_type = "structure",
+            member = M.ApplicationComponentStrategy,
         },
     },
 }
@@ -820,16 +790,16 @@ M.DataCollectionDetails = {
             type = "string",
         },
         servers = {
-            type = "number",
+            type = "integer",
         },
         failed = {
-            type = "number",
+            type = "integer",
         },
         success = {
-            type = "number",
+            type = "integer",
         },
         inProgress = {
-            type = "number",
+            type = "integer",
         },
         startTime = {
             type = "timestamp",
@@ -849,12 +819,10 @@ M.GetAssessmentOutput = {
         id = {
             type = "string",
         },
-        dataCollectionDetails = {
-            type = "structure",
-        },
+        dataCollectionDetails = M.DataCollectionDetails,
         assessmentTargets = {
             type = "list",
-            member_type = "structure",
+            member = M.AssessmentTarget,
         },
     },
 }
@@ -911,10 +879,10 @@ M.GetImportFileTaskOutput = {
             type = "timestamp",
         },
         numberOfRecordsSuccess = {
-            type = "number",
+            type = "integer",
         },
         numberOfRecordsFailed = {
-            type = "number",
+            type = "integer",
         },
         importName = {
             type = "string",
@@ -983,7 +951,7 @@ M.Heterogeneous = {
     members = {
         targetDatabaseEngine = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1000,7 +968,7 @@ M.Homogeneous = {
     members = {
         targetDatabaseEngine = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1023,7 +991,7 @@ M.NoDatabaseMigrationPreference = {
     members = {
         targetDatabaseEngine = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1034,15 +1002,9 @@ M.NoDatabaseMigrationPreference = {
 M.DatabaseMigrationPreference = {
     type = "union",
     members = {
-        heterogeneous = {
-            type = "structure",
-        },
-        homogeneous = {
-            type = "structure",
-        },
-        noPreference = {
-            type = "structure",
-        },
+        heterogeneous = M.Heterogeneous,
+        homogeneous = M.Homogeneous,
+        noPreference = M.NoDatabaseMigrationPreference,
     },
 }
 
@@ -1052,9 +1014,7 @@ M.DatabasePreferences = {
         databaseManagementPreference = {
             type = "string",
         },
-        databaseMigrationPreference = {
-            type = "union",
-        },
+        databaseMigrationPreference = M.DatabaseMigrationPreference,
     },
 }
 
@@ -1062,16 +1022,16 @@ M.BusinessGoals = {
     type = "structure",
     members = {
         speedOfMigration = {
-            type = "number",
+            type = "integer",
         },
         reduceOperationalOverheadWithManagedServices = {
-            type = "number",
+            type = "integer",
         },
         modernizeInfrastructureWithCloudNativeTechnologies = {
-            type = "number",
+            type = "integer",
         },
         licenseCostReduction = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1079,24 +1039,16 @@ M.BusinessGoals = {
 M.PrioritizeBusinessGoals = {
     type = "structure",
     members = {
-        businessGoals = {
-            type = "structure",
-        },
+        businessGoals = M.BusinessGoals,
     },
 }
 
 M.GetPortfolioPreferencesOutput = {
     type = "structure",
     members = {
-        prioritizeBusinessGoals = {
-            type = "structure",
-        },
-        applicationPreferences = {
-            type = "structure",
-        },
-        databasePreferences = {
-            type = "structure",
-        },
+        prioritizeBusinessGoals = M.PrioritizeBusinessGoals,
+        applicationPreferences = M.ApplicationPreferences,
+        databasePreferences = M.DatabasePreferences,
         applicationMode = {
             type = "string",
         },
@@ -1110,9 +1062,7 @@ M.GetPortfolioSummaryInput = {
 M.GetPortfolioSummaryOutput = {
     type = "structure",
     members = {
-        assessmentSummary = {
-            type = "structure",
-        },
+        assessmentSummary = M.AssessmentSummary,
     },
 }
 
@@ -1155,7 +1105,7 @@ M.RecommendationReportDetails = {
         },
         s3Keys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1166,9 +1116,7 @@ M.GetRecommendationReportDetailsOutput = {
         id = {
             type = "string",
         },
-        recommendationReportDetails = {
-            type = "structure",
-        },
+        recommendationReportDetails = M.RecommendationReportDetails,
     },
 }
 
@@ -1189,7 +1137,7 @@ M.GetServerDetailsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1264,15 +1212,13 @@ M.OSInfo = {
 M.SystemInfo = {
     type = "structure",
     members = {
-        osInfo = {
-            type = "structure",
-        },
+        osInfo = M.OSInfo,
         fileSystemType = {
             type = "string",
         },
         networkInfoList = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkInfo,
         },
         cpuArchitecture = {
             type = "string",
@@ -1289,9 +1235,7 @@ M.ServerDetail = {
         name = {
             type = "string",
         },
-        recommendationSet = {
-            type = "structure",
-        },
+        recommendationSet = M.RecommendationSet,
         dataCollectionStatus = {
             type = "string",
         },
@@ -1300,18 +1244,14 @@ M.ServerDetail = {
         },
         listAntipatternSeveritySummary = {
             type = "list",
-            member_type = "structure",
+            member = M.AntipatternSeveritySummary,
         },
-        systemInfo = {
-            type = "structure",
-        },
+        systemInfo = M.SystemInfo,
         applicationComponentStrategySummary = {
             type = "list",
-            member_type = "structure",
+            member = M.StrategySummary,
         },
-        antipatternReportS3Object = {
-            type = "structure",
-        },
+        antipatternReportS3Object = M.S3Object,
         antipatternReportStatus = {
             type = "string",
         },
@@ -1324,9 +1264,7 @@ M.ServerDetail = {
         lastAnalyzedTimestamp = {
             type = "timestamp",
         },
-        serverError = {
-            type = "structure",
-        },
+        serverError = M.ServerError,
     },
 }
 
@@ -1336,12 +1274,10 @@ M.GetServerDetailsOutput = {
         nextToken = {
             type = "string",
         },
-        serverDetail = {
-            type = "structure",
-        },
+        serverDetail = M.ServerDetail,
         associatedApplications = {
             type = "list",
-            member_type = "structure",
+            member = M.AssociatedApplication,
         },
     },
 }
@@ -1362,14 +1298,12 @@ M.GetServerStrategiesInput = {
 M.ServerStrategy = {
     type = "structure",
     members = {
-        recommendation = {
-            type = "structure",
-        },
+        recommendation = M.RecommendationSet,
         status = {
             type = "string",
         },
         numberOfApplicationComponents = {
-            type = "number",
+            type = "integer",
         },
         isPreferred = {
             type = "boolean",
@@ -1382,7 +1316,7 @@ M.GetServerStrategiesOutput = {
     members = {
         serverStrategies = {
             type = "list",
-            member_type = "structure",
+            member = M.ServerStrategy,
         },
     },
 }
@@ -1402,7 +1336,7 @@ M.ListAnalyzableServersInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1412,7 +1346,7 @@ M.ListAnalyzableServersOutput = {
     members = {
         analyzableServers = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalyzableServerSummary,
         },
         nextToken = {
             type = "string",
@@ -1451,13 +1385,13 @@ M.ListApplicationComponentsInput = {
         },
         groupIdFilter = {
             type = "list",
-            member_type = "structure",
+            member = M.Group,
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1467,7 +1401,7 @@ M.ListApplicationComponentsOutput = {
     members = {
         applicationComponentInfos = {
             type = "list",
-            member_type = "structure",
+            member = M.ApplicationComponentDetail,
         },
         nextToken = {
             type = "string",
@@ -1495,7 +1429,7 @@ M.ListCollectorsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1583,23 +1517,21 @@ M.ConfigurationSummary = {
     members = {
         vcenterBasedRemoteInfoList = {
             type = "list",
-            member_type = "structure",
+            member = M.VcenterBasedRemoteInfo,
         },
         ipAddressBasedRemoteInfoList = {
             type = "list",
-            member_type = "structure",
+            member = M.IPAddressBasedRemoteInfo,
         },
         versionControlInfoList = {
             type = "list",
-            member_type = "structure",
+            member = M.VersionControlInfo,
         },
         pipelineInfoList = {
             type = "list",
-            member_type = "structure",
+            member = M.PipelineInfo,
         },
-        remoteSourceCodeAnalysisServerInfo = {
-            type = "structure",
-        },
+        remoteSourceCodeAnalysisServerInfo = M.RemoteSourceCodeAnalysisServerInfo,
     },
 }
 
@@ -1627,9 +1559,7 @@ M.Collector = {
         lastActivityTimeStamp = {
             type = "string",
         },
-        configurationSummary = {
-            type = "structure",
-        },
+        configurationSummary = M.ConfigurationSummary,
     },
 }
 
@@ -1638,7 +1568,7 @@ M.ListCollectorsOutput = {
     members = {
         Collectors = {
             type = "list",
-            member_type = "structure",
+            member = M.Collector,
         },
         nextToken = {
             type = "string",
@@ -1656,7 +1586,7 @@ M.ListImportFileTaskInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1692,10 +1622,10 @@ M.ImportFileTaskInformation = {
             type = "timestamp",
         },
         numberOfRecordsSuccess = {
-            type = "number",
+            type = "integer",
         },
         numberOfRecordsFailed = {
-            type = "number",
+            type = "integer",
         },
         importName = {
             type = "string",
@@ -1708,7 +1638,7 @@ M.ListImportFileTaskOutput = {
     members = {
         taskInfos = {
             type = "list",
-            member_type = "structure",
+            member = M.ImportFileTaskInformation,
         },
         nextToken = {
             type = "string",
@@ -1740,13 +1670,13 @@ M.ListServersInput = {
         },
         groupIdFilter = {
             type = "list",
-            member_type = "structure",
+            member = M.Group,
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1756,7 +1686,7 @@ M.ListServersOutput = {
     members = {
         serverInfos = {
             type = "list",
-            member_type = "structure",
+            member = M.ServerDetail,
         },
         nextToken = {
             type = "string",
@@ -1780,15 +1710,9 @@ M.ConflictException = {
 M.PutPortfolioPreferencesInput = {
     type = "structure",
     members = {
-        prioritizeBusinessGoals = {
-            type = "structure",
-        },
-        applicationPreferences = {
-            type = "structure",
-        },
-        databasePreferences = {
-            type = "structure",
-        },
+        prioritizeBusinessGoals = M.PrioritizeBusinessGoals,
+        applicationPreferences = M.ApplicationPreferences,
+        databasePreferences = M.DatabasePreferences,
         applicationMode = {
             type = "string",
         },
@@ -1823,7 +1747,7 @@ M.StartAssessmentInput = {
         },
         assessmentTargets = {
             type = "list",
-            member_type = "structure",
+            member = M.AssessmentTarget,
         },
         assessmentDataSourceType = {
             type = "string",
@@ -1873,7 +1797,7 @@ M.StartImportFileTaskInput = {
         },
         groupId = {
             type = "list",
-            member_type = "structure",
+            member = M.Group,
         },
         s3bucketForReportData = {
             type = "string",
@@ -1903,7 +1827,7 @@ M.StartRecommendationReportGenerationInput = {
         },
         groupIdFilter = {
             type = "list",
-            member_type = "structure",
+            member = M.Group,
         },
     },
 }
@@ -1987,12 +1911,10 @@ M.UpdateApplicationComponentConfigInput = {
         inclusionStatus = {
             type = "string",
         },
-        strategyOption = {
-            type = "structure",
-        },
+        strategyOption = M.StrategyOption,
         sourceCodeList = {
             type = "list",
-            member_type = "structure",
+            member = M.SourceCode,
         },
         secretsManagerKey = {
             type = "string",
@@ -2019,9 +1941,7 @@ M.UpdateServerConfigInput = {
                 required = true,
             },
         },
-        strategyOption = {
-            type = "structure",
-        },
+        strategyOption = M.StrategyOption,
     },
 }
 

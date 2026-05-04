@@ -3954,8 +3954,6 @@ end
 
 local type OpenCypherExplainMode = "static" | "dynamic" | "details"
 
-local type Action = "initiateDatabaseReset" | "performDatabaseReset"
-
 local type StatisticsAutoGenerationMode = "disableAutoCompute" | "enableAutoCompute" | "refresh"
 
 local type IteratorType = "AT_SEQUENCE_NUMBER" | "AFTER_SEQUENCE_NUMBER" | "TRIM_HORIZON" | "LATEST"
@@ -3966,11 +3964,13 @@ local type Mode = "RESUME" | "NEW" | "AUTO"
 
 local type GraphSummaryType = "basic" | "detailed"
 
-local type Format = "csv" | "opencypher" | "ntriples" | "nquads" | "rdfxml" | "turtle"
+local type Action = "initiateDatabaseReset" | "performDatabaseReset"
 
 local type Encoding = "gzip"
 
 local type Parallelism = "LOW" | "MEDIUM" | "HIGH" | "OVERSUBSCRIBE"
+
+local type Format = "csv" | "opencypher" | "ntriples" | "nquads" | "rdfxml" | "turtle"
 
 local record M
     CancelGremlinQueryInput: CancelGremlinQueryInput

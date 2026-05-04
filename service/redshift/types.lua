@@ -22,7 +22,7 @@ M.RecurringCharge = {
     type = "structure",
     members = {
         RecurringChargeAmount = {
-            type = "number",
+            type = "double",
         },
         RecurringChargeFrequency = {
             type = "string",
@@ -51,19 +51,19 @@ M.ReservedNode = {
             type = "timestamp",
         },
         Duration = {
-            type = "number",
+            type = "integer",
         },
         FixedPrice = {
-            type = "number",
+            type = "double",
         },
         UsagePrice = {
-            type = "number",
+            type = "double",
         },
         CurrencyCode = {
             type = "string",
         },
         NodeCount = {
-            type = "number",
+            type = "integer",
         },
         State = {
             type = "string",
@@ -73,7 +73,7 @@ M.ReservedNode = {
         },
         RecurringCharges = {
             type = "list",
-            member_type = "structure",
+            member = M.RecurringCharge,
         },
         ReservedNodeOfferingType = {
             type = "string",
@@ -84,9 +84,7 @@ M.ReservedNode = {
 M.AcceptReservedNodeExchangeOutput = {
     type = "structure",
     members = {
-        ExchangedReservedNode = {
-            type = "structure",
-        },
+        ExchangedReservedNode = M.ReservedNode,
     },
 }
 
@@ -197,7 +195,7 @@ M.AccountAttribute = {
         },
         AttributeValues = {
             type = "list",
-            member_type = "structure",
+            member = M.AttributeValueTarget,
         },
     },
 }
@@ -399,7 +397,7 @@ M.AssociateDataShareConsumerOutput = {
         },
         DataShareAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.DataShareAssociation,
         },
         ManagedBy = {
             type = "string",
@@ -471,7 +469,7 @@ M.Association = {
         },
         CertificateAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.CertificateAssociation,
         },
     },
 }
@@ -600,7 +598,7 @@ M.EC2SecurityGroup = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -616,7 +614,7 @@ M.IPRange = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -632,15 +630,15 @@ M.ClusterSecurityGroup = {
         },
         EC2SecurityGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.EC2SecurityGroup,
         },
         IPRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.IPRange,
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -648,9 +646,7 @@ M.ClusterSecurityGroup = {
 M.AuthorizeClusterSecurityGroupIngressOutput = {
     type = "structure",
     members = {
-        ClusterSecurityGroup = {
-            type = "structure",
-        },
+        ClusterSecurityGroup = M.ClusterSecurityGroup,
     },
 }
 
@@ -709,7 +705,7 @@ M.AuthorizeDataShareOutput = {
         },
         DataShareAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.DataShareAssociation,
         },
         ManagedBy = {
             type = "string",
@@ -728,7 +724,7 @@ M.AuthorizedTokenIssuer = {
         },
         AuthorizedAudiencesList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -747,7 +743,7 @@ M.AuthorizeEndpointAccessInput = {
         },
         VpcIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -778,10 +774,10 @@ M.AuthorizeEndpointAccessOutput = {
         },
         AllowedVPCs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         EndpointCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -863,7 +859,7 @@ M.Snapshot = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         AvailabilityZone = {
             type = "string",
@@ -887,7 +883,7 @@ M.Snapshot = {
             type = "string",
         },
         NumberOfNodes = {
-            type = "number",
+            type = "integer",
         },
         DBName = {
             type = "string",
@@ -906,39 +902,39 @@ M.Snapshot = {
         },
         AccountsWithRestoreAccess = {
             type = "list",
-            member_type = "structure",
+            member = M.AccountWithRestoreAccess,
         },
         OwnerAccount = {
             type = "string",
         },
         TotalBackupSizeInMegaBytes = {
-            type = "number",
+            type = "double",
         },
         ActualIncrementalBackupSizeInMegaBytes = {
-            type = "number",
+            type = "double",
         },
         BackupProgressInMegaBytes = {
-            type = "number",
+            type = "double",
         },
         CurrentBackupRateInMegaBytesPerSecond = {
-            type = "number",
+            type = "double",
         },
         EstimatedSecondsToCompletion = {
-            type = "number",
+            type = "long",
         },
         ElapsedTimeInSeconds = {
-            type = "number",
+            type = "long",
         },
         SourceRegion = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         RestorableNodeTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         EnhancedVpcRouting = {
             type = "boolean",
@@ -947,10 +943,10 @@ M.Snapshot = {
             type = "string",
         },
         ManualSnapshotRetentionPeriod = {
-            type = "number",
+            type = "integer",
         },
         ManualSnapshotRemainingDays = {
-            type = "number",
+            type = "integer",
         },
         SnapshotRetentionStartTime = {
             type = "timestamp",
@@ -970,9 +966,7 @@ M.Snapshot = {
 M.AuthorizeSnapshotAccessOutput = {
     type = "structure",
     members = {
-        Snapshot = {
-            type = "structure",
-        },
+        Snapshot = M.Snapshot,
     },
 }
 
@@ -1033,7 +1027,7 @@ M.AvailabilityZone = {
         },
         SupportedPlatforms = {
             type = "list",
-            member_type = "structure",
+            member = M.SupportedPlatform,
         },
     },
 }
@@ -1058,7 +1052,7 @@ M.BatchDeleteClusterSnapshotsInput = {
     members = {
         Identifiers = {
             type = "list",
-            member_type = "structure",
+            member = M.DeleteClusterSnapshotMessage,
             traits = {
                 required = true,
             },
@@ -1089,11 +1083,11 @@ M.BatchDeleteClusterSnapshotsOutput = {
     members = {
         Resources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.SnapshotErrorMessage,
         },
     },
 }
@@ -1113,13 +1107,13 @@ M.BatchModifyClusterSnapshotsInput = {
     members = {
         SnapshotIdentifierList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         ManualSnapshotRetentionPeriod = {
-            type = "number",
+            type = "integer",
         },
         Force = {
             type = "boolean",
@@ -1142,11 +1136,11 @@ M.BatchModifyClusterSnapshotsOutput = {
     members = {
         Resources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.SnapshotErrorMessage,
         },
     },
 }
@@ -1190,7 +1184,7 @@ M.CancelResizeOutput = {
             type = "string",
         },
         TargetNumberOfNodes = {
-            type = "number",
+            type = "integer",
         },
         TargetClusterType = {
             type = "string",
@@ -1200,30 +1194,30 @@ M.CancelResizeOutput = {
         },
         ImportTablesCompleted = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ImportTablesInProgress = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ImportTablesNotStarted = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AvgResizeRateInMegaBytesPerSecond = {
-            type = "number",
+            type = "double",
         },
         TotalResizeDataInMegaBytes = {
-            type = "number",
+            type = "long",
         },
         ProgressInMegaBytes = {
-            type = "number",
+            type = "long",
         },
         ElapsedTimeInSeconds = {
-            type = "number",
+            type = "long",
         },
         EstimatedTimeToCompletionInSeconds = {
-            type = "number",
+            type = "long",
         },
         ResizeType = {
             type = "string",
@@ -1235,7 +1229,7 @@ M.CancelResizeOutput = {
             type = "string",
         },
         DataTransferProgressPercent = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -1291,7 +1285,7 @@ M.ClusterParameterGroupStatus = {
         },
         ClusterParameterStatusList = {
             type = "list",
-            member_type = "structure",
+            member = M.ClusterParameterStatus,
         },
     },
 }
@@ -1315,10 +1309,10 @@ M.ClusterSnapshotCopyStatus = {
             type = "string",
         },
         RetentionPeriod = {
-            type = "number",
+            type = "long",
         },
         ManualSnapshotRetentionPeriod = {
-            type = "number",
+            type = "integer",
         },
         SnapshotCopyGrantName = {
             type = "string",
@@ -1333,19 +1327,19 @@ M.DataTransferProgress = {
             type = "string",
         },
         CurrentRateInMegaBytesPerSecond = {
-            type = "number",
+            type = "double",
         },
         TotalDataInMegaBytes = {
-            type = "number",
+            type = "long",
         },
         DataTransferredInMegaBytes = {
-            type = "number",
+            type = "long",
         },
         EstimatedTimeToCompletionInSeconds = {
-            type = "number",
+            type = "long",
         },
         ElapsedTimeInSeconds = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1409,7 +1403,7 @@ M.VpcEndpoint = {
         },
         NetworkInterfaces = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkInterface,
         },
     },
 }
@@ -1421,11 +1415,11 @@ M.Endpoint = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         VpcEndpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcEndpoint,
         },
     },
 }
@@ -1465,7 +1459,7 @@ M.SecondaryClusterInfo = {
         },
         ClusterNodes = {
             type = "list",
-            member_type = "structure",
+            member = M.ClusterNode,
         },
     },
 }
@@ -1480,7 +1474,7 @@ M.PendingModifiedValues = {
             type = "string",
         },
         NumberOfNodes = {
-            type = "number",
+            type = "integer",
         },
         ClusterType = {
             type = "string",
@@ -1489,7 +1483,7 @@ M.PendingModifiedValues = {
             type = "string",
         },
         AutomatedSnapshotRetentionPeriod = {
-            type = "number",
+            type = "integer",
         },
         ClusterIdentifier = {
             type = "string",
@@ -1537,7 +1531,7 @@ M.ReservedNodeExchangeStatus = {
             type = "string",
         },
         SourceReservedNodeCount = {
-            type = "number",
+            type = "integer",
         },
         TargetReservedNodeOfferingId = {
             type = "string",
@@ -1546,7 +1540,7 @@ M.ReservedNodeExchangeStatus = {
             type = "string",
         },
         TargetReservedNodeCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1570,19 +1564,19 @@ M.RestoreStatus = {
             type = "string",
         },
         CurrentRestoreRateInMegaBytesPerSecond = {
-            type = "number",
+            type = "double",
         },
         SnapshotSizeInMegaBytes = {
-            type = "number",
+            type = "long",
         },
         ProgressInMegaBytes = {
-            type = "number",
+            type = "long",
         },
         ElapsedTimeInSeconds = {
-            type = "number",
+            type = "long",
         },
         EstimatedTimeToCompletionInSeconds = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1623,29 +1617,27 @@ M.Cluster = {
         DBName = {
             type = "string",
         },
-        Endpoint = {
-            type = "structure",
-        },
+        Endpoint = M.Endpoint,
         ClusterCreateTime = {
             type = "timestamp",
         },
         AutomatedSnapshotRetentionPeriod = {
-            type = "number",
+            type = "integer",
         },
         ManualSnapshotRetentionPeriod = {
-            type = "number",
+            type = "integer",
         },
         ClusterSecurityGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.ClusterSecurityGroupMembership,
         },
         VpcSecurityGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcSecurityGroupMembership,
         },
         ClusterParameterGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.ClusterParameterGroupStatus,
         },
         ClusterSubnetGroupName = {
             type = "string",
@@ -1659,9 +1651,7 @@ M.Cluster = {
         PreferredMaintenanceWindow = {
             type = "string",
         },
-        PendingModifiedValues = {
-            type = "structure",
-        },
+        PendingModifiedValues = M.PendingModifiedValues,
         ClusterVersion = {
             type = "string",
         },
@@ -1669,7 +1659,7 @@ M.Cluster = {
             type = "boolean",
         },
         NumberOfNodes = {
-            type = "number",
+            type = "integer",
         },
         PubliclyAccessible = {
             type = "boolean",
@@ -1677,34 +1667,24 @@ M.Cluster = {
         Encrypted = {
             type = "boolean",
         },
-        RestoreStatus = {
-            type = "structure",
-        },
-        DataTransferProgress = {
-            type = "structure",
-        },
-        HsmStatus = {
-            type = "structure",
-        },
-        ClusterSnapshotCopyStatus = {
-            type = "structure",
-        },
+        RestoreStatus = M.RestoreStatus,
+        DataTransferProgress = M.DataTransferProgress,
+        HsmStatus = M.HsmStatus,
+        ClusterSnapshotCopyStatus = M.ClusterSnapshotCopyStatus,
         ClusterPublicKey = {
             type = "string",
         },
         ClusterNodes = {
             type = "list",
-            member_type = "structure",
+            member = M.ClusterNode,
         },
-        ElasticIpStatus = {
-            type = "structure",
-        },
+        ElasticIpStatus = M.ElasticIpStatus,
         ClusterRevisionNumber = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         KmsKeyId = {
             type = "string",
@@ -1714,11 +1694,11 @@ M.Cluster = {
         },
         IamRoles = {
             type = "list",
-            member_type = "structure",
+            member = M.ClusterIamRole,
         },
         PendingActions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MaintenanceTrackName = {
             type = "string",
@@ -1728,7 +1708,7 @@ M.Cluster = {
         },
         DeferredMaintenanceWindows = {
             type = "list",
-            member_type = "structure",
+            member = M.DeferredMaintenanceWindow,
         },
         SnapshotScheduleIdentifier = {
             type = "string",
@@ -1745,9 +1725,7 @@ M.Cluster = {
         NextMaintenanceWindowStartTime = {
             type = "timestamp",
         },
-        ResizeInfo = {
-            type = "structure",
-        },
+        ResizeInfo = M.ResizeInfo,
         AvailabilityZoneRelocationStatus = {
             type = "string",
         },
@@ -1755,17 +1733,13 @@ M.Cluster = {
             type = "string",
         },
         TotalStorageCapacityInMegaBytes = {
-            type = "number",
+            type = "long",
         },
-        AquaConfiguration = {
-            type = "structure",
-        },
+        AquaConfiguration = M.AquaConfiguration,
         DefaultIamRoleArn = {
             type = "string",
         },
-        ReservedNodeExchangeStatus = {
-            type = "structure",
-        },
+        ReservedNodeExchangeStatus = M.ReservedNodeExchangeStatus,
         CustomDomainName = {
             type = "string",
         },
@@ -1787,9 +1761,7 @@ M.Cluster = {
         MultiAZ = {
             type = "string",
         },
-        MultiAZSecondary = {
-            type = "structure",
-        },
+        MultiAZSecondary = M.SecondaryClusterInfo,
         LakehouseRegistrationStatus = {
             type = "string",
         },
@@ -1841,7 +1813,7 @@ M.ClusterDbRevision = {
         },
         RevisionTargets = {
             type = "list",
-            member_type = "structure",
+            member = M.RevisionTarget,
         },
     },
 }
@@ -1870,7 +1842,7 @@ M.ClusterParameterGroup = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1961,9 +1933,7 @@ M.Subnet = {
         SubnetIdentifier = {
             type = "string",
         },
-        SubnetAvailabilityZone = {
-            type = "structure",
-        },
+        SubnetAvailabilityZone = M.AvailabilityZone,
         SubnetStatus = {
             type = "string",
         },
@@ -1987,15 +1957,15 @@ M.ClusterSubnetGroup = {
         },
         Subnets = {
             type = "list",
-            member_type = "structure",
+            member = M.Subnet,
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         SupportedClusterIpAddressTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2101,7 +2071,7 @@ M.CopyClusterSnapshotInput = {
             },
         },
         ManualSnapshotRetentionPeriod = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2109,9 +2079,7 @@ M.CopyClusterSnapshotInput = {
 M.CopyClusterSnapshotOutput = {
     type = "structure",
     members = {
-        Snapshot = {
-            type = "structure",
-        },
+        Snapshot = M.Snapshot,
     },
 }
 
@@ -2197,11 +2165,11 @@ M.CreateClusterInput = {
         },
         ClusterSecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         VpcSecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ClusterSubnetGroupName = {
             type = "string",
@@ -2216,13 +2184,13 @@ M.CreateClusterInput = {
             type = "string",
         },
         AutomatedSnapshotRetentionPeriod = {
-            type = "number",
+            type = "integer",
         },
         ManualSnapshotRetentionPeriod = {
-            type = "number",
+            type = "integer",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         ClusterVersion = {
             type = "string",
@@ -2231,7 +2199,7 @@ M.CreateClusterInput = {
             type = "boolean",
         },
         NumberOfNodes = {
-            type = "number",
+            type = "integer",
         },
         PubliclyAccessible = {
             type = "boolean",
@@ -2250,7 +2218,7 @@ M.CreateClusterInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         KmsKeyId = {
             type = "string",
@@ -2263,7 +2231,7 @@ M.CreateClusterInput = {
         },
         IamRoles = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MaintenanceTrackName = {
             type = "string",
@@ -2310,9 +2278,7 @@ M.CreateClusterInput = {
 M.CreateClusterOutput = {
     type = "structure",
     members = {
-        Cluster = {
-            type = "structure",
-        },
+        Cluster = M.Cluster,
     },
 }
 
@@ -2509,7 +2475,7 @@ M.CreateClusterParameterGroupInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2517,9 +2483,7 @@ M.CreateClusterParameterGroupInput = {
 M.CreateClusterParameterGroupOutput = {
     type = "structure",
     members = {
-        ClusterParameterGroup = {
-            type = "structure",
-        },
+        ClusterParameterGroup = M.ClusterParameterGroup,
     },
 }
 
@@ -2540,7 +2504,7 @@ M.CreateClusterSecurityGroupInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2548,9 +2512,7 @@ M.CreateClusterSecurityGroupInput = {
 M.CreateClusterSecurityGroupOutput = {
     type = "structure",
     members = {
-        ClusterSecurityGroup = {
-            type = "structure",
-        },
+        ClusterSecurityGroup = M.ClusterSecurityGroup,
     },
 }
 
@@ -2570,11 +2532,11 @@ M.CreateClusterSnapshotInput = {
             },
         },
         ManualSnapshotRetentionPeriod = {
-            type = "number",
+            type = "integer",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2582,9 +2544,7 @@ M.CreateClusterSnapshotInput = {
 M.CreateClusterSnapshotOutput = {
     type = "structure",
     members = {
-        Snapshot = {
-            type = "structure",
-        },
+        Snapshot = M.Snapshot,
     },
 }
 
@@ -2605,14 +2565,14 @@ M.CreateClusterSubnetGroupInput = {
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2620,9 +2580,7 @@ M.CreateClusterSubnetGroupInput = {
 M.CreateClusterSubnetGroupOutput = {
     type = "structure",
     members = {
-        ClusterSubnetGroup = {
-            type = "structure",
-        },
+        ClusterSubnetGroup = M.ClusterSubnetGroup,
     },
 }
 
@@ -2701,7 +2659,7 @@ M.CreateEndpointAccessInput = {
         },
         VpcSecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2728,18 +2686,16 @@ M.CreateEndpointAccessOutput = {
             type = "timestamp",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         Address = {
             type = "string",
         },
         VpcSecurityGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcSecurityGroupMembership,
         },
-        VpcEndpoint = {
-            type = "structure",
-        },
+        VpcEndpoint = M.VpcEndpoint,
     },
 }
 
@@ -2793,11 +2749,11 @@ M.CreateEventSubscriptionInput = {
         },
         SourceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         EventCategories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Severity = {
             type = "string",
@@ -2807,7 +2763,7 @@ M.CreateEventSubscriptionInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2835,11 +2791,11 @@ M.EventSubscription = {
         },
         SourceIdsList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         EventCategoriesList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Severity = {
             type = "string",
@@ -2849,7 +2805,7 @@ M.EventSubscription = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2857,9 +2813,7 @@ M.EventSubscription = {
 M.CreateEventSubscriptionOutput = {
     type = "structure",
     members = {
-        EventSubscription = {
-            type = "structure",
-        },
+        EventSubscription = M.EventSubscription,
     },
 }
 
@@ -2964,7 +2918,7 @@ M.CreateHsmClientCertificateInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2980,7 +2934,7 @@ M.HsmClientCertificate = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2988,9 +2942,7 @@ M.HsmClientCertificate = {
 M.CreateHsmClientCertificateOutput = {
     type = "structure",
     members = {
-        HsmClientCertificate = {
-            type = "structure",
-        },
+        HsmClientCertificate = M.HsmClientCertificate,
     },
 }
 
@@ -3055,7 +3007,7 @@ M.CreateHsmConfigurationInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3077,7 +3029,7 @@ M.HsmConfiguration = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3085,9 +3037,7 @@ M.HsmConfiguration = {
 M.CreateHsmConfigurationOutput = {
     type = "structure",
     members = {
-        HsmConfiguration = {
-            type = "structure",
-        },
+        HsmConfiguration = M.HsmConfiguration,
     },
 }
 
@@ -3137,12 +3087,12 @@ M.CreateIntegrationInput = {
         },
         TagList = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         AdditionalEncryptionContext = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Description = {
             type = "string",
@@ -3195,7 +3145,7 @@ M.CreateIntegrationOutput = {
         },
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.IntegrationError,
         },
         CreateTime = {
             type = "timestamp",
@@ -3208,12 +3158,12 @@ M.CreateIntegrationOutput = {
         },
         AdditionalEncryptionContext = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3283,18 +3233,14 @@ M.LakeFormationQuery = {
 M.LakeFormationScopeUnion = {
     type = "union",
     members = {
-        LakeFormationQuery = {
-            type = "structure",
-        },
+        LakeFormationQuery = M.LakeFormationQuery,
     },
 }
 
 M.RedshiftScopeUnion = {
     type = "union",
     members = {
-        Connect = {
-            type = "structure",
-        },
+        Connect = M.Connect,
     },
 }
 
@@ -3313,9 +3259,7 @@ M.ReadWriteAccess = {
 M.S3AccessGrantsScopeUnion = {
     type = "union",
     members = {
-        ReadWriteAccess = {
-            type = "structure",
-        },
+        ReadWriteAccess = M.ReadWriteAccess,
     },
 }
 
@@ -3324,15 +3268,15 @@ M.ServiceIntegrationsUnion = {
     members = {
         LakeFormation = {
             type = "list",
-            member_type = "union",
+            member = M.LakeFormationScopeUnion,
         },
         S3AccessGrants = {
             type = "list",
-            member_type = "union",
+            member = M.S3AccessGrantsScopeUnion,
         },
         Redshift = {
             type = "list",
-            member_type = "union",
+            member = M.RedshiftScopeUnion,
         },
     },
 }
@@ -3369,22 +3313,22 @@ M.CreateRedshiftIdcApplicationInput = {
         },
         AuthorizedTokenIssuerList = {
             type = "list",
-            member_type = "structure",
+            member = M.AuthorizedTokenIssuer,
         },
         ServiceIntegrations = {
             type = "list",
-            member_type = "union",
+            member = M.ServiceIntegrationsUnion,
         },
         ApplicationType = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         SsoTagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3418,22 +3362,22 @@ M.RedshiftIdcApplication = {
         },
         AuthorizedTokenIssuerList = {
             type = "list",
-            member_type = "structure",
+            member = M.AuthorizedTokenIssuer,
         },
         ServiceIntegrations = {
             type = "list",
-            member_type = "union",
+            member = M.ServiceIntegrationsUnion,
         },
         ApplicationType = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         SsoTagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3441,9 +3385,7 @@ M.RedshiftIdcApplication = {
 M.CreateRedshiftIdcApplicationOutput = {
     type = "structure",
     members = {
-        RedshiftIdcApplication = {
-            type = "structure",
-        },
+        RedshiftIdcApplication = M.RedshiftIdcApplication,
     },
 }
 
@@ -3495,7 +3437,7 @@ M.ResizeClusterMessage = {
             type = "string",
         },
         NumberOfNodes = {
-            type = "number",
+            type = "integer",
         },
         Classic = {
             type = "boolean",
@@ -3524,15 +3466,9 @@ M.ResumeClusterMessage = {
 M.ScheduledActionType = {
     type = "structure",
     members = {
-        ResizeCluster = {
-            type = "structure",
-        },
-        PauseCluster = {
-            type = "structure",
-        },
-        ResumeCluster = {
-            type = "structure",
-        },
+        ResizeCluster = M.ResizeClusterMessage,
+        PauseCluster = M.PauseClusterMessage,
+        ResumeCluster = M.ResumeClusterMessage,
     },
 }
 
@@ -3545,12 +3481,9 @@ M.CreateScheduledActionInput = {
                 required = true,
             },
         },
-        TargetAction = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TargetAction = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ScheduledActionType }),
         Schedule = {
             type = "string",
             traits = {
@@ -3589,9 +3522,7 @@ M.CreateScheduledActionOutput = {
         ScheduledActionName = {
             type = "string",
         },
-        TargetAction = {
-            type = "structure",
-        },
+        TargetAction = M.ScheduledActionType,
         Schedule = {
             type = "string",
         },
@@ -3606,7 +3537,7 @@ M.CreateScheduledActionOutput = {
         },
         NextInvocations = {
             type = "list",
-            member_type = "timestamp",
+            member = { type = "timestamp" },
         },
         StartTime = {
             type = "timestamp",
@@ -3681,7 +3612,7 @@ M.CreateSnapshotCopyGrantInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3697,7 +3628,7 @@ M.SnapshotCopyGrant = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3705,9 +3636,7 @@ M.SnapshotCopyGrant = {
 M.CreateSnapshotCopyGrantOutput = {
     type = "structure",
     members = {
-        SnapshotCopyGrant = {
-            type = "structure",
-        },
+        SnapshotCopyGrant = M.SnapshotCopyGrant,
     },
 }
 
@@ -3736,7 +3665,7 @@ M.CreateSnapshotScheduleInput = {
     members = {
         ScheduleDefinitions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ScheduleIdentifier = {
             type = "string",
@@ -3746,13 +3675,13 @@ M.CreateSnapshotScheduleInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         DryRun = {
             type = "boolean",
         },
         NextInvocations = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3762,7 +3691,7 @@ M.CreateSnapshotScheduleOutput = {
     members = {
         ScheduleDefinitions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ScheduleIdentifier = {
             type = "string",
@@ -3772,18 +3701,18 @@ M.CreateSnapshotScheduleOutput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         NextInvocations = {
             type = "list",
-            member_type = "timestamp",
+            member = { type = "timestamp" },
         },
         AssociatedClusterCount = {
-            type = "number",
+            type = "integer",
         },
         AssociatedClusters = {
             type = "list",
-            member_type = "structure",
+            member = M.ClusterAssociatedToSchedule,
         },
     },
 }
@@ -3829,7 +3758,7 @@ M.CreateTagsInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -3897,7 +3826,7 @@ M.CreateUsageLimitInput = {
             },
         },
         Amount = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -3910,7 +3839,7 @@ M.CreateUsageLimitInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3931,7 +3860,7 @@ M.CreateUsageLimitOutput = {
             type = "string",
         },
         Amount = {
-            type = "number",
+            type = "long",
         },
         Period = {
             type = "string",
@@ -3941,7 +3870,7 @@ M.CreateUsageLimitOutput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3990,7 +3919,7 @@ M.DataShare = {
         },
         DataShareAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.DataShareAssociation,
         },
         ManagedBy = {
             type = "string",
@@ -4046,7 +3975,7 @@ M.DeauthorizeDataShareOutput = {
         },
         DataShareAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.DataShareAssociation,
         },
         ManagedBy = {
             type = "string",
@@ -4106,7 +4035,7 @@ M.DefaultClusterParameters = {
         },
         Parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.Parameter,
         },
     },
 }
@@ -4148,7 +4077,7 @@ M.DeleteClusterInput = {
             type = "string",
         },
         FinalClusterSnapshotRetentionPeriod = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4156,9 +4085,7 @@ M.DeleteClusterInput = {
 M.DeleteClusterOutput = {
     type = "structure",
     members = {
-        Cluster = {
-            type = "structure",
-        },
+        Cluster = M.Cluster,
     },
 }
 
@@ -4222,9 +4149,7 @@ M.DeleteClusterSnapshotInput = {
 M.DeleteClusterSnapshotOutput = {
     type = "structure",
     members = {
-        Snapshot = {
-            type = "structure",
-        },
+        Snapshot = M.Snapshot,
     },
 }
 
@@ -4310,18 +4235,16 @@ M.DeleteEndpointAccessOutput = {
             type = "timestamp",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         Address = {
             type = "string",
         },
         VpcSecurityGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcSecurityGroupMembership,
         },
-        VpcEndpoint = {
-            type = "structure",
-        },
+        VpcEndpoint = M.VpcEndpoint,
     },
 }
 
@@ -4465,7 +4388,7 @@ M.DeleteIntegrationOutput = {
         },
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.IntegrationError,
         },
         CreateTime = {
             type = "timestamp",
@@ -4478,12 +4401,12 @@ M.DeleteIntegrationOutput = {
         },
         AdditionalEncryptionContext = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -4681,7 +4604,7 @@ M.DeleteTagsInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4752,27 +4675,20 @@ M.ServerlessIdentifier = {
 M.NamespaceIdentifierUnion = {
     type = "union",
     members = {
-        ServerlessIdentifier = {
-            type = "structure",
-        },
-        ProvisionedIdentifier = {
-            type = "structure",
-        },
+        ServerlessIdentifier = M.ServerlessIdentifier,
+        ProvisionedIdentifier = M.ProvisionedIdentifier,
     },
 }
 
 M.DeregisterNamespaceInput = {
     type = "structure",
     members = {
-        NamespaceIdentifier = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        NamespaceIdentifier = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.NamespaceIdentifierUnion }),
         ConsumerIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4799,7 +4715,7 @@ M.DescribeAccountAttributesInput = {
     members = {
         AttributeNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4809,7 +4725,7 @@ M.DescribeAccountAttributesOutput = {
     members = {
         AccountAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.AccountAttribute,
         },
     },
 }
@@ -4828,7 +4744,7 @@ M.DescribeAuthenticationProfilesOutput = {
     members = {
         AuthenticationProfiles = {
             type = "list",
-            member_type = "structure",
+            member = M.AuthenticationProfile,
         },
     },
 }
@@ -4840,7 +4756,7 @@ M.DescribeClusterDbRevisionsInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -4856,7 +4772,7 @@ M.DescribeClusterDbRevisionsOutput = {
         },
         ClusterDbRevisions = {
             type = "list",
-            member_type = "structure",
+            member = M.ClusterDbRevision,
         },
     },
 }
@@ -4868,18 +4784,18 @@ M.DescribeClusterParameterGroupsInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TagValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4892,7 +4808,7 @@ M.DescribeClusterParameterGroupsOutput = {
         },
         ParameterGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.ClusterParameterGroup,
         },
     },
 }
@@ -4910,7 +4826,7 @@ M.DescribeClusterParametersInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -4923,7 +4839,7 @@ M.DescribeClusterParametersOutput = {
     members = {
         Parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.Parameter,
         },
         Marker = {
             type = "string",
@@ -4938,18 +4854,18 @@ M.DescribeClustersInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TagValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4962,7 +4878,7 @@ M.DescribeClustersOutput = {
         },
         Clusters = {
             type = "list",
-            member_type = "structure",
+            member = M.Cluster,
         },
     },
 }
@@ -4974,18 +4890,18 @@ M.DescribeClusterSecurityGroupsInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TagValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4998,7 +4914,7 @@ M.DescribeClusterSecurityGroupsOutput = {
         },
         ClusterSecurityGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.ClusterSecurityGroup,
         },
     },
 }
@@ -5051,7 +4967,7 @@ M.DescribeClusterSnapshotsInput = {
             type = "timestamp",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -5061,18 +4977,18 @@ M.DescribeClusterSnapshotsInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TagValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ClusterExists = {
             type = "boolean",
         },
         SortingEntities = {
             type = "list",
-            member_type = "structure",
+            member = M.SnapshotSortingEntity,
         },
     },
 }
@@ -5085,7 +5001,7 @@ M.DescribeClusterSnapshotsOutput = {
         },
         Snapshots = {
             type = "list",
-            member_type = "structure",
+            member = M.Snapshot,
         },
     },
 }
@@ -5097,18 +5013,18 @@ M.DescribeClusterSubnetGroupsInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TagValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -5121,7 +5037,7 @@ M.DescribeClusterSubnetGroupsOutput = {
         },
         ClusterSubnetGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.ClusterSubnetGroup,
         },
     },
 }
@@ -5133,7 +5049,7 @@ M.DescribeClusterTracksInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -5161,7 +5077,7 @@ M.UpdateTarget = {
         },
         SupportedOperations = {
             type = "list",
-            member_type = "structure",
+            member = M.SupportedOperation,
         },
     },
 }
@@ -5177,7 +5093,7 @@ M.MaintenanceTrack = {
         },
         UpdateTargets = {
             type = "list",
-            member_type = "structure",
+            member = M.UpdateTarget,
         },
     },
 }
@@ -5187,7 +5103,7 @@ M.DescribeClusterTracksOutput = {
     members = {
         MaintenanceTracks = {
             type = "list",
-            member_type = "structure",
+            member = M.MaintenanceTrack,
         },
         Marker = {
             type = "string",
@@ -5205,7 +5121,7 @@ M.DescribeClusterVersionsInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -5221,7 +5137,7 @@ M.DescribeClusterVersionsOutput = {
         },
         ClusterVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.ClusterVersion,
         },
     },
 }
@@ -5236,7 +5152,7 @@ M.DescribeCustomDomainAssociationsInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -5252,7 +5168,7 @@ M.DescribeCustomDomainAssociationsOutput = {
         },
         Associations = {
             type = "list",
-            member_type = "structure",
+            member = M.Association,
         },
     },
 }
@@ -5264,7 +5180,7 @@ M.DescribeDataSharesInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -5277,7 +5193,7 @@ M.DescribeDataSharesOutput = {
     members = {
         DataShares = {
             type = "list",
-            member_type = "structure",
+            member = M.DataShare,
         },
         Marker = {
             type = "string",
@@ -5295,7 +5211,7 @@ M.DescribeDataSharesForConsumerInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -5308,7 +5224,7 @@ M.DescribeDataSharesForConsumerOutput = {
     members = {
         DataShares = {
             type = "list",
-            member_type = "structure",
+            member = M.DataShare,
         },
         Marker = {
             type = "string",
@@ -5326,7 +5242,7 @@ M.DescribeDataSharesForProducerInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -5339,7 +5255,7 @@ M.DescribeDataSharesForProducerOutput = {
     members = {
         DataShares = {
             type = "list",
-            member_type = "structure",
+            member = M.DataShare,
         },
         Marker = {
             type = "string",
@@ -5357,7 +5273,7 @@ M.DescribeDefaultClusterParametersInput = {
             },
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -5368,9 +5284,7 @@ M.DescribeDefaultClusterParametersInput = {
 M.DescribeDefaultClusterParametersOutput = {
     type = "structure",
     members = {
-        DefaultClusterParameters = {
-            type = "structure",
-        },
+        DefaultClusterParameters = M.DefaultClusterParameters,
     },
 }
 
@@ -5390,7 +5304,7 @@ M.DescribeEndpointAccessInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -5420,18 +5334,16 @@ M.EndpointAccess = {
             type = "timestamp",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         Address = {
             type = "string",
         },
         VpcSecurityGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcSecurityGroupMembership,
         },
-        VpcEndpoint = {
-            type = "structure",
-        },
+        VpcEndpoint = M.VpcEndpoint,
     },
 }
 
@@ -5440,7 +5352,7 @@ M.DescribeEndpointAccessOutput = {
     members = {
         EndpointAccessList = {
             type = "list",
-            member_type = "structure",
+            member = M.EndpointAccess,
         },
         Marker = {
             type = "string",
@@ -5461,7 +5373,7 @@ M.DescribeEndpointAuthorizationInput = {
             type = "boolean",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -5495,10 +5407,10 @@ M.EndpointAuthorization = {
         },
         AllowedVPCs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         EndpointCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5508,7 +5420,7 @@ M.DescribeEndpointAuthorizationOutput = {
     members = {
         EndpointAuthorizationList = {
             type = "list",
-            member_type = "structure",
+            member = M.EndpointAuthorization,
         },
         Marker = {
             type = "string",
@@ -5533,7 +5445,7 @@ M.EventInfoMap = {
         },
         EventCategories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         EventDescription = {
             type = "string",
@@ -5552,7 +5464,7 @@ M.EventCategoriesMap = {
         },
         Events = {
             type = "list",
-            member_type = "structure",
+            member = M.EventInfoMap,
         },
     },
 }
@@ -5562,7 +5474,7 @@ M.DescribeEventCategoriesOutput = {
     members = {
         EventCategoriesMapList = {
             type = "list",
-            member_type = "structure",
+            member = M.EventCategoriesMap,
         },
     },
 }
@@ -5591,10 +5503,10 @@ M.DescribeEventsInput = {
             type = "timestamp",
         },
         Duration = {
-            type = "number",
+            type = "integer",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -5616,7 +5528,7 @@ M.Event = {
         },
         EventCategories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Severity = {
             type = "string",
@@ -5638,7 +5550,7 @@ M.DescribeEventsOutput = {
         },
         Events = {
             type = "list",
-            member_type = "structure",
+            member = M.Event,
         },
     },
 }
@@ -5650,18 +5562,18 @@ M.DescribeEventSubscriptionsInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TagValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -5674,7 +5586,7 @@ M.DescribeEventSubscriptionsOutput = {
         },
         EventSubscriptionsList = {
             type = "list",
-            member_type = "structure",
+            member = M.EventSubscription,
         },
     },
 }
@@ -5686,18 +5598,18 @@ M.DescribeHsmClientCertificatesInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TagValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -5710,7 +5622,7 @@ M.DescribeHsmClientCertificatesOutput = {
         },
         HsmClientCertificates = {
             type = "list",
-            member_type = "structure",
+            member = M.HsmClientCertificate,
         },
     },
 }
@@ -5722,18 +5634,18 @@ M.DescribeHsmConfigurationsInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TagValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -5746,7 +5658,7 @@ M.DescribeHsmConfigurationsOutput = {
         },
         HsmConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.HsmConfiguration,
         },
     },
 }
@@ -5761,7 +5673,7 @@ M.DescribeInboundIntegrationsInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -5786,7 +5698,7 @@ M.InboundIntegration = {
         },
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.IntegrationError,
         },
         CreateTime = {
             type = "timestamp",
@@ -5802,7 +5714,7 @@ M.DescribeInboundIntegrationsOutput = {
         },
         InboundIntegrations = {
             type = "list",
-            member_type = "structure",
+            member = M.InboundIntegration,
         },
     },
 }
@@ -5825,7 +5737,7 @@ M.DescribeIntegrationsFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -5840,14 +5752,14 @@ M.DescribeIntegrationsInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.DescribeIntegrationsFilter,
         },
     },
 }
@@ -5872,7 +5784,7 @@ M.Integration = {
         },
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.IntegrationError,
         },
         CreateTime = {
             type = "timestamp",
@@ -5885,12 +5797,12 @@ M.Integration = {
         },
         AdditionalEncryptionContext = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -5903,7 +5815,7 @@ M.DescribeIntegrationsOutput = {
         },
         Integrations = {
             type = "list",
-            member_type = "structure",
+            member = M.Integration,
         },
     },
 }
@@ -5951,7 +5863,7 @@ M.DescribeLoggingStatusOutput = {
         },
         LogExports = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -5984,7 +5896,7 @@ M.NodeConfigurationOptionsFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 xml_name = "Value",
             },
@@ -6015,7 +5927,7 @@ M.DescribeNodeConfigurationOptionsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.NodeConfigurationOptionsFilter,
             traits = {
                 xml_name = "Filter",
             },
@@ -6024,7 +5936,7 @@ M.DescribeNodeConfigurationOptionsInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -6041,10 +5953,10 @@ M.NodeConfigurationOption = {
             type = "string",
         },
         NumberOfNodes = {
-            type = "number",
+            type = "integer",
         },
         EstimatedDiskUtilizationPercent = {
-            type = "number",
+            type = "double",
         },
         Mode = {
             type = "string",
@@ -6057,7 +5969,7 @@ M.DescribeNodeConfigurationOptionsOutput = {
     members = {
         NodeConfigurationOptionList = {
             type = "list",
-            member_type = "structure",
+            member = M.NodeConfigurationOption,
         },
         Marker = {
             type = "string",
@@ -6075,7 +5987,7 @@ M.DescribeOrderableClusterOptionsInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -6097,7 +6009,7 @@ M.OrderableClusterOption = {
         },
         AvailabilityZones = {
             type = "list",
-            member_type = "structure",
+            member = M.AvailabilityZone,
         },
     },
 }
@@ -6107,7 +6019,7 @@ M.DescribeOrderableClusterOptionsOutput = {
     members = {
         OrderableClusterOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.OrderableClusterOption,
         },
         Marker = {
             type = "string",
@@ -6175,7 +6087,7 @@ M.DescribePartnersOutput = {
     members = {
         PartnerIntegrationInfoList = {
             type = "list",
-            member_type = "structure",
+            member = M.PartnerIntegrationInfo,
         },
     },
 }
@@ -6187,7 +6099,7 @@ M.DescribeRedshiftIdcApplicationsInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -6200,7 +6112,7 @@ M.DescribeRedshiftIdcApplicationsOutput = {
     members = {
         RedshiftIdcApplications = {
             type = "list",
-            member_type = "structure",
+            member = M.RedshiftIdcApplication,
         },
         Marker = {
             type = "string",
@@ -6218,7 +6130,7 @@ M.DescribeReservedNodeExchangeStatusInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -6231,7 +6143,7 @@ M.DescribeReservedNodeExchangeStatusOutput = {
     members = {
         ReservedNodeExchangeStatusDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.ReservedNodeExchangeStatus,
         },
         Marker = {
             type = "string",
@@ -6256,7 +6168,7 @@ M.DescribeReservedNodeOfferingsInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -6274,13 +6186,13 @@ M.ReservedNodeOffering = {
             type = "string",
         },
         Duration = {
-            type = "number",
+            type = "integer",
         },
         FixedPrice = {
-            type = "number",
+            type = "double",
         },
         UsagePrice = {
-            type = "number",
+            type = "double",
         },
         CurrencyCode = {
             type = "string",
@@ -6290,7 +6202,7 @@ M.ReservedNodeOffering = {
         },
         RecurringCharges = {
             type = "list",
-            member_type = "structure",
+            member = M.RecurringCharge,
         },
         ReservedNodeOfferingType = {
             type = "string",
@@ -6306,7 +6218,7 @@ M.DescribeReservedNodeOfferingsOutput = {
         },
         ReservedNodeOfferings = {
             type = "list",
-            member_type = "structure",
+            member = M.ReservedNodeOffering,
         },
     },
 }
@@ -6318,7 +6230,7 @@ M.DescribeReservedNodesInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -6334,7 +6246,7 @@ M.DescribeReservedNodesOutput = {
         },
         ReservedNodes = {
             type = "list",
-            member_type = "structure",
+            member = M.ReservedNode,
         },
     },
 }
@@ -6358,7 +6270,7 @@ M.DescribeResizeOutput = {
             type = "string",
         },
         TargetNumberOfNodes = {
-            type = "number",
+            type = "integer",
         },
         TargetClusterType = {
             type = "string",
@@ -6368,30 +6280,30 @@ M.DescribeResizeOutput = {
         },
         ImportTablesCompleted = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ImportTablesInProgress = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ImportTablesNotStarted = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AvgResizeRateInMegaBytesPerSecond = {
-            type = "number",
+            type = "double",
         },
         TotalResizeDataInMegaBytes = {
-            type = "number",
+            type = "long",
         },
         ProgressInMegaBytes = {
-            type = "number",
+            type = "long",
         },
         ElapsedTimeInSeconds = {
-            type = "number",
+            type = "long",
         },
         EstimatedTimeToCompletionInSeconds = {
-            type = "number",
+            type = "long",
         },
         ResizeType = {
             type = "string",
@@ -6403,7 +6315,7 @@ M.DescribeResizeOutput = {
             type = "string",
         },
         DataTransferProgressPercent = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -6424,7 +6336,7 @@ M.ScheduledActionFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -6458,13 +6370,13 @@ M.DescribeScheduledActionsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.ScheduledActionFilter,
         },
         Marker = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -6475,9 +6387,7 @@ M.ScheduledAction = {
         ScheduledActionName = {
             type = "string",
         },
-        TargetAction = {
-            type = "structure",
-        },
+        TargetAction = M.ScheduledActionType,
         Schedule = {
             type = "string",
         },
@@ -6492,7 +6402,7 @@ M.ScheduledAction = {
         },
         NextInvocations = {
             type = "list",
-            member_type = "timestamp",
+            member = { type = "timestamp" },
         },
         StartTime = {
             type = "timestamp",
@@ -6511,7 +6421,7 @@ M.DescribeScheduledActionsOutput = {
         },
         ScheduledActions = {
             type = "list",
-            member_type = "structure",
+            member = M.ScheduledAction,
         },
     },
 }
@@ -6523,18 +6433,18 @@ M.DescribeSnapshotCopyGrantsInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TagValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -6547,7 +6457,7 @@ M.DescribeSnapshotCopyGrantsOutput = {
         },
         SnapshotCopyGrants = {
             type = "list",
-            member_type = "structure",
+            member = M.SnapshotCopyGrant,
         },
     },
 }
@@ -6563,17 +6473,17 @@ M.DescribeSnapshotSchedulesInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TagValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Marker = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -6583,7 +6493,7 @@ M.SnapshotSchedule = {
     members = {
         ScheduleDefinitions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ScheduleIdentifier = {
             type = "string",
@@ -6593,18 +6503,18 @@ M.SnapshotSchedule = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         NextInvocations = {
             type = "list",
-            member_type = "timestamp",
+            member = { type = "timestamp" },
         },
         AssociatedClusterCount = {
-            type = "number",
+            type = "integer",
         },
         AssociatedClusters = {
             type = "list",
-            member_type = "structure",
+            member = M.ClusterAssociatedToSchedule,
         },
     },
 }
@@ -6614,7 +6524,7 @@ M.DescribeSnapshotSchedulesOutput = {
     members = {
         SnapshotSchedules = {
             type = "list",
-            member_type = "structure",
+            member = M.SnapshotSchedule,
         },
         Marker = {
             type = "string",
@@ -6630,10 +6540,10 @@ M.DescribeStorageOutput = {
     type = "structure",
     members = {
         TotalBackupSizeInMegaBytes = {
-            type = "number",
+            type = "double",
         },
         TotalProvisionedStorageInMegaBytes = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -6648,7 +6558,7 @@ M.DescribeTableRestoreStatusInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -6680,10 +6590,10 @@ M.TableRestoreStatus = {
             type = "timestamp",
         },
         ProgressInMegaBytes = {
-            type = "number",
+            type = "long",
         },
         TotalDataInMegaBytes = {
-            type = "number",
+            type = "long",
         },
         ClusterIdentifier = {
             type = "string",
@@ -6717,7 +6627,7 @@ M.DescribeTableRestoreStatusOutput = {
     members = {
         TableRestoreStatusDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.TableRestoreStatus,
         },
         Marker = {
             type = "string",
@@ -6745,18 +6655,18 @@ M.DescribeTagsInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TagValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -6764,9 +6674,7 @@ M.DescribeTagsInput = {
 M.TaggedResource = {
     type = "structure",
     members = {
-        Tag = {
-            type = "structure",
-        },
+        Tag = M.Tag,
         ResourceName = {
             type = "string",
         },
@@ -6781,7 +6689,7 @@ M.DescribeTagsOutput = {
     members = {
         TaggedResources = {
             type = "list",
-            member_type = "structure",
+            member = M.TaggedResource,
         },
         Marker = {
             type = "string",
@@ -6802,18 +6710,18 @@ M.DescribeUsageLimitsInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TagValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -6834,7 +6742,7 @@ M.UsageLimit = {
             type = "string",
         },
         Amount = {
-            type = "number",
+            type = "long",
         },
         Period = {
             type = "string",
@@ -6844,7 +6752,7 @@ M.UsageLimit = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -6854,7 +6762,7 @@ M.DescribeUsageLimitsOutput = {
     members = {
         UsageLimits = {
             type = "list",
-            member_type = "structure",
+            member = M.UsageLimit,
         },
         Marker = {
             type = "string",
@@ -6900,7 +6808,7 @@ M.DisableLoggingOutput = {
         },
         LogExports = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -6920,9 +6828,7 @@ M.DisableSnapshotCopyInput = {
 M.DisableSnapshotCopyOutput = {
     type = "structure",
     members = {
-        Cluster = {
-            type = "structure",
-        },
+        Cluster = M.Cluster,
     },
 }
 
@@ -6971,7 +6877,7 @@ M.DisassociateDataShareConsumerOutput = {
         },
         DataShareAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.DataShareAssociation,
         },
         ManagedBy = {
             type = "string",
@@ -7002,7 +6908,7 @@ M.EnableLoggingInput = {
         },
         LogExports = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -7033,7 +6939,7 @@ M.EnableLoggingOutput = {
         },
         LogExports = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -7084,13 +6990,13 @@ M.EnableSnapshotCopyInput = {
             },
         },
         RetentionPeriod = {
-            type = "number",
+            type = "integer",
         },
         SnapshotCopyGrantName = {
             type = "string",
         },
         ManualSnapshotRetentionPeriod = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -7098,9 +7004,7 @@ M.EnableSnapshotCopyInput = {
 M.EnableSnapshotCopyOutput = {
     type = "structure",
     members = {
-        Cluster = {
-            type = "structure",
-        },
+        Cluster = M.Cluster,
     },
 }
 
@@ -7159,9 +7063,7 @@ M.FailoverPrimaryComputeInput = {
 M.FailoverPrimaryComputeOutput = {
     type = "structure",
     members = {
-        Cluster = {
-            type = "structure",
-        },
+        Cluster = M.Cluster,
     },
 }
 
@@ -7181,14 +7083,14 @@ M.GetClusterCredentialsInput = {
             type = "string",
         },
         DurationSeconds = {
-            type = "number",
+            type = "integer",
         },
         AutoCreate = {
             type = "boolean",
         },
         DbGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CustomDomainName = {
             type = "string",
@@ -7221,7 +7123,7 @@ M.GetClusterCredentialsWithIAMInput = {
             type = "string",
         },
         DurationSeconds = {
-            type = "number",
+            type = "integer",
         },
         CustomDomainName = {
             type = "string",
@@ -7252,7 +7154,7 @@ M.GetIdentityCenterAuthTokenInput = {
     members = {
         ClusterIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -7303,7 +7205,7 @@ M.GetReservedNodeExchangeConfigurationOptionsInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -7314,15 +7216,11 @@ M.GetReservedNodeExchangeConfigurationOptionsInput = {
 M.ReservedNodeConfigurationOption = {
     type = "structure",
     members = {
-        SourceReservedNode = {
-            type = "structure",
-        },
+        SourceReservedNode = M.ReservedNode,
         TargetReservedNodeCount = {
-            type = "number",
+            type = "integer",
         },
-        TargetReservedNodeOffering = {
-            type = "structure",
-        },
+        TargetReservedNodeOffering = M.ReservedNodeOffering,
     },
 }
 
@@ -7334,7 +7232,7 @@ M.GetReservedNodeExchangeConfigurationOptionsOutput = {
         },
         ReservedNodeConfigurationOptionList = {
             type = "list",
-            member_type = "structure",
+            member = M.ReservedNodeConfigurationOption,
         },
     },
 }
@@ -7349,7 +7247,7 @@ M.GetReservedNodeExchangeOfferingsInput = {
             },
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -7365,7 +7263,7 @@ M.GetReservedNodeExchangeOfferingsOutput = {
         },
         ReservedNodeOfferings = {
             type = "list",
-            member_type = "structure",
+            member = M.ReservedNodeOffering,
         },
     },
 }
@@ -7397,9 +7295,7 @@ M.ResourcePolicy = {
 M.GetResourcePolicyOutput = {
     type = "structure",
     members = {
-        ResourcePolicy = {
-            type = "structure",
-        },
+        ResourcePolicy = M.ResourcePolicy,
     },
 }
 
@@ -7469,7 +7365,7 @@ M.ListRecommendationsInput = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -7547,11 +7443,11 @@ M.Recommendation = {
         },
         RecommendedActions = {
             type = "list",
-            member_type = "structure",
+            member = M.RecommendedAction,
         },
         ReferenceLinks = {
             type = "list",
-            member_type = "structure",
+            member = M.ReferenceLink,
         },
     },
 }
@@ -7561,7 +7457,7 @@ M.ListRecommendationsOutput = {
     members = {
         Recommendations = {
             type = "list",
-            member_type = "structure",
+            member = M.Recommendation,
         },
         Marker = {
             type = "string",
@@ -7587,9 +7483,7 @@ M.ModifyAquaConfigurationInput = {
 M.ModifyAquaConfigurationOutput = {
     type = "structure",
     members = {
-        AquaConfiguration = {
-            type = "structure",
-        },
+        AquaConfiguration = M.AquaConfiguration,
     },
 }
 
@@ -7639,15 +7533,15 @@ M.ModifyClusterInput = {
             type = "string",
         },
         NumberOfNodes = {
-            type = "number",
+            type = "integer",
         },
         ClusterSecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         VpcSecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MasterUserPassword = {
             type = "string",
@@ -7656,10 +7550,10 @@ M.ModifyClusterInput = {
             type = "string",
         },
         AutomatedSnapshotRetentionPeriod = {
-            type = "number",
+            type = "integer",
         },
         ManualSnapshotRetentionPeriod = {
-            type = "number",
+            type = "integer",
         },
         PreferredMaintenanceWindow = {
             type = "string",
@@ -7704,7 +7598,7 @@ M.ModifyClusterInput = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         ManageMasterPassword = {
             type = "boolean",
@@ -7727,9 +7621,7 @@ M.ModifyClusterInput = {
 M.ModifyClusterOutput = {
     type = "structure",
     members = {
-        Cluster = {
-            type = "structure",
-        },
+        Cluster = M.Cluster,
     },
 }
 
@@ -7774,9 +7666,7 @@ M.ModifyClusterDbRevisionInput = {
 M.ModifyClusterDbRevisionOutput = {
     type = "structure",
     members = {
-        Cluster = {
-            type = "structure",
-        },
+        Cluster = M.Cluster,
     },
 }
 
@@ -7791,11 +7681,11 @@ M.ModifyClusterIamRolesInput = {
         },
         AddIamRoles = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RemoveIamRoles = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DefaultIamRoleArn = {
             type = "string",
@@ -7806,9 +7696,7 @@ M.ModifyClusterIamRolesInput = {
 M.ModifyClusterIamRolesOutput = {
     type = "structure",
     members = {
-        Cluster = {
-            type = "structure",
-        },
+        Cluster = M.Cluster,
     },
 }
 
@@ -7834,7 +7722,7 @@ M.ModifyClusterMaintenanceInput = {
             type = "timestamp",
         },
         DeferMaintenanceDuration = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -7842,9 +7730,7 @@ M.ModifyClusterMaintenanceInput = {
 M.ModifyClusterMaintenanceOutput = {
     type = "structure",
     members = {
-        Cluster = {
-            type = "structure",
-        },
+        Cluster = M.Cluster,
     },
 }
 
@@ -7859,7 +7745,7 @@ M.ModifyClusterParameterGroupInput = {
         },
         Parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.Parameter,
             traits = {
                 required = true,
             },
@@ -7889,7 +7775,7 @@ M.ModifyClusterSnapshotInput = {
             },
         },
         ManualSnapshotRetentionPeriod = {
-            type = "number",
+            type = "integer",
         },
         Force = {
             type = "boolean",
@@ -7900,9 +7786,7 @@ M.ModifyClusterSnapshotInput = {
 M.ModifyClusterSnapshotOutput = {
     type = "structure",
     members = {
-        Snapshot = {
-            type = "structure",
-        },
+        Snapshot = M.Snapshot,
     },
 }
 
@@ -7942,7 +7826,7 @@ M.ModifyClusterSubnetGroupInput = {
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -7953,9 +7837,7 @@ M.ModifyClusterSubnetGroupInput = {
 M.ModifyClusterSubnetGroupOutput = {
     type = "structure",
     members = {
-        ClusterSubnetGroup = {
-            type = "structure",
-        },
+        ClusterSubnetGroup = M.ClusterSubnetGroup,
     },
 }
 
@@ -8022,7 +7904,7 @@ M.ModifyEndpointAccessInput = {
         },
         VpcSecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -8049,18 +7931,16 @@ M.ModifyEndpointAccessOutput = {
             type = "timestamp",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         Address = {
             type = "string",
         },
         VpcSecurityGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcSecurityGroupMembership,
         },
-        VpcEndpoint = {
-            type = "structure",
-        },
+        VpcEndpoint = M.VpcEndpoint,
     },
 }
 
@@ -8081,11 +7961,11 @@ M.ModifyEventSubscriptionInput = {
         },
         SourceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         EventCategories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Severity = {
             type = "string",
@@ -8099,9 +7979,7 @@ M.ModifyEventSubscriptionInput = {
 M.ModifyEventSubscriptionOutput = {
     type = "structure",
     members = {
-        EventSubscription = {
-            type = "structure",
-        },
+        EventSubscription = M.EventSubscription,
     },
 }
 
@@ -8143,7 +8021,7 @@ M.ModifyIntegrationOutput = {
         },
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.IntegrationError,
         },
         CreateTime = {
             type = "timestamp",
@@ -8156,12 +8034,12 @@ M.ModifyIntegrationOutput = {
         },
         AdditionalEncryptionContext = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -8231,11 +8109,11 @@ M.ModifyRedshiftIdcApplicationInput = {
         },
         AuthorizedTokenIssuerList = {
             type = "list",
-            member_type = "structure",
+            member = M.AuthorizedTokenIssuer,
         },
         ServiceIntegrations = {
             type = "list",
-            member_type = "union",
+            member = M.ServiceIntegrationsUnion,
         },
     },
 }
@@ -8243,9 +8121,7 @@ M.ModifyRedshiftIdcApplicationInput = {
 M.ModifyRedshiftIdcApplicationOutput = {
     type = "structure",
     members = {
-        RedshiftIdcApplication = {
-            type = "structure",
-        },
+        RedshiftIdcApplication = M.RedshiftIdcApplication,
     },
 }
 
@@ -8258,9 +8134,7 @@ M.ModifyScheduledActionInput = {
                 required = true,
             },
         },
-        TargetAction = {
-            type = "structure",
-        },
+        TargetAction = M.ScheduledActionType,
         Schedule = {
             type = "string",
         },
@@ -8288,9 +8162,7 @@ M.ModifyScheduledActionOutput = {
         ScheduledActionName = {
             type = "string",
         },
-        TargetAction = {
-            type = "structure",
-        },
+        TargetAction = M.ScheduledActionType,
         Schedule = {
             type = "string",
         },
@@ -8305,7 +8177,7 @@ M.ModifyScheduledActionOutput = {
         },
         NextInvocations = {
             type = "list",
-            member_type = "timestamp",
+            member = { type = "timestamp" },
         },
         StartTime = {
             type = "timestamp",
@@ -8326,7 +8198,7 @@ M.ModifySnapshotCopyRetentionPeriodInput = {
             },
         },
         RetentionPeriod = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -8340,9 +8212,7 @@ M.ModifySnapshotCopyRetentionPeriodInput = {
 M.ModifySnapshotCopyRetentionPeriodOutput = {
     type = "structure",
     members = {
-        Cluster = {
-            type = "structure",
-        },
+        Cluster = M.Cluster,
     },
 }
 
@@ -8367,7 +8237,7 @@ M.ModifySnapshotScheduleInput = {
         },
         ScheduleDefinitions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -8380,7 +8250,7 @@ M.ModifySnapshotScheduleOutput = {
     members = {
         ScheduleDefinitions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ScheduleIdentifier = {
             type = "string",
@@ -8390,18 +8260,18 @@ M.ModifySnapshotScheduleOutput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         NextInvocations = {
             type = "list",
-            member_type = "timestamp",
+            member = { type = "timestamp" },
         },
         AssociatedClusterCount = {
-            type = "number",
+            type = "integer",
         },
         AssociatedClusters = {
             type = "list",
-            member_type = "structure",
+            member = M.ClusterAssociatedToSchedule,
         },
     },
 }
@@ -8426,7 +8296,7 @@ M.ModifyUsageLimitInput = {
             },
         },
         Amount = {
-            type = "number",
+            type = "long",
         },
         BreachAction = {
             type = "string",
@@ -8450,7 +8320,7 @@ M.ModifyUsageLimitOutput = {
             type = "string",
         },
         Amount = {
-            type = "number",
+            type = "long",
         },
         Period = {
             type = "string",
@@ -8460,7 +8330,7 @@ M.ModifyUsageLimitOutput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -8480,9 +8350,7 @@ M.PauseClusterInput = {
 M.PauseClusterOutput = {
     type = "structure",
     members = {
-        Cluster = {
-            type = "structure",
-        },
+        Cluster = M.Cluster,
     },
 }
 
@@ -8496,7 +8364,7 @@ M.PurchaseReservedNodeOfferingInput = {
             },
         },
         NodeCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -8504,9 +8372,7 @@ M.PurchaseReservedNodeOfferingInput = {
 M.PurchaseReservedNodeOfferingOutput = {
     type = "structure",
     members = {
-        ReservedNode = {
-            type = "structure",
-        },
+        ReservedNode = M.ReservedNode,
     },
 }
 
@@ -8541,9 +8407,7 @@ M.PutResourcePolicyInput = {
 M.PutResourcePolicyOutput = {
     type = "structure",
     members = {
-        ResourcePolicy = {
-            type = "structure",
-        },
+        ResourcePolicy = M.ResourcePolicy,
     },
 }
 
@@ -8562,24 +8426,19 @@ M.RebootClusterInput = {
 M.RebootClusterOutput = {
     type = "structure",
     members = {
-        Cluster = {
-            type = "structure",
-        },
+        Cluster = M.Cluster,
     },
 }
 
 M.RegisterNamespaceInput = {
     type = "structure",
     members = {
-        NamespaceIdentifier = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        NamespaceIdentifier = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.NamespaceIdentifierUnion }),
         ConsumerIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -8622,7 +8481,7 @@ M.RejectDataShareOutput = {
         },
         DataShareAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.DataShareAssociation,
         },
         ManagedBy = {
             type = "string",
@@ -8647,7 +8506,7 @@ M.ResetClusterParameterGroupInput = {
         },
         Parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.Parameter,
         },
     },
 }
@@ -8680,7 +8539,7 @@ M.ResizeClusterInput = {
             type = "string",
         },
         NumberOfNodes = {
-            type = "number",
+            type = "integer",
         },
         Classic = {
             type = "boolean",
@@ -8697,9 +8556,7 @@ M.ResizeClusterInput = {
 M.ResizeClusterOutput = {
     type = "structure",
     members = {
-        Cluster = {
-            type = "structure",
-        },
+        Cluster = M.Cluster,
     },
 }
 
@@ -8722,7 +8579,7 @@ M.RestoreFromClusterSnapshotInput = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         AvailabilityZone = {
             type = "string",
@@ -8753,20 +8610,20 @@ M.RestoreFromClusterSnapshotInput = {
         },
         ClusterSecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         VpcSecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         PreferredMaintenanceWindow = {
             type = "string",
         },
         AutomatedSnapshotRetentionPeriod = {
-            type = "number",
+            type = "integer",
         },
         ManualSnapshotRetentionPeriod = {
-            type = "number",
+            type = "integer",
         },
         KmsKeyId = {
             type = "string",
@@ -8782,7 +8639,7 @@ M.RestoreFromClusterSnapshotInput = {
         },
         IamRoles = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MaintenanceTrackName = {
             type = "string",
@@ -8791,7 +8648,7 @@ M.RestoreFromClusterSnapshotInput = {
             type = "string",
         },
         NumberOfNodes = {
-            type = "number",
+            type = "integer",
         },
         AvailabilityZoneRelocation = {
             type = "boolean",
@@ -8835,9 +8692,7 @@ M.RestoreFromClusterSnapshotInput = {
 M.RestoreFromClusterSnapshotOutput = {
     type = "structure",
     members = {
-        Cluster = {
-            type = "structure",
-        },
+        Cluster = M.Cluster,
     },
 }
 
@@ -8892,9 +8747,7 @@ M.RestoreTableFromClusterSnapshotInput = {
 M.RestoreTableFromClusterSnapshotOutput = {
     type = "structure",
     members = {
-        TableRestoreStatus = {
-            type = "structure",
-        },
+        TableRestoreStatus = M.TableRestoreStatus,
     },
 }
 
@@ -8913,9 +8766,7 @@ M.ResumeClusterInput = {
 M.ResumeClusterOutput = {
     type = "structure",
     members = {
-        Cluster = {
-            type = "structure",
-        },
+        Cluster = M.Cluster,
     },
 }
 
@@ -8943,9 +8794,7 @@ M.RevokeClusterSecurityGroupIngressInput = {
 M.RevokeClusterSecurityGroupIngressOutput = {
     type = "structure",
     members = {
-        ClusterSecurityGroup = {
-            type = "structure",
-        },
+        ClusterSecurityGroup = M.ClusterSecurityGroup,
     },
 }
 
@@ -8960,7 +8809,7 @@ M.RevokeEndpointAccessInput = {
         },
         VpcIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Force = {
             type = "boolean",
@@ -8994,10 +8843,10 @@ M.RevokeEndpointAccessOutput = {
         },
         AllowedVPCs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         EndpointCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -9026,9 +8875,7 @@ M.RevokeSnapshotAccessInput = {
 M.RevokeSnapshotAccessOutput = {
     type = "structure",
     members = {
-        Snapshot = {
-            type = "structure",
-        },
+        Snapshot = M.Snapshot,
     },
 }
 
@@ -9047,9 +8894,7 @@ M.RotateEncryptionKeyInput = {
 M.RotateEncryptionKeyOutput = {
     type = "structure",
     members = {
-        Cluster = {
-            type = "structure",
-        },
+        Cluster = M.Cluster,
     },
 }
 

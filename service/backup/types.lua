@@ -8,8 +8,8 @@ M.AdvancedBackupSetting = {
         },
         BackupOptions = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -26,7 +26,7 @@ M.AggregatedScanResult = {
         },
         Findings = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         LastComputed = {
             type = "timestamp",
@@ -224,10 +224,10 @@ M.Lifecycle = {
     type = "structure",
     members = {
         MoveToColdStorageAfterDays = {
-            type = "number",
+            type = "long",
         },
         DeleteAfterDays = {
-            type = "number",
+            type = "long",
         },
         OptInToArchiveForSupportedResources = {
             type = "boolean",
@@ -274,14 +274,15 @@ M.BackupJob = {
         RecoveryPointArn = {
             type = "string",
         },
-        RecoveryPointLifecycle = {
-            type = "structure",
-        },
+        RecoveryPointLifecycle = M.Lifecycle,
         EncryptionKeyArn = {
             type = "string",
         },
         IsEncrypted = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         ResourceArn = {
             type = "string",
@@ -302,14 +303,12 @@ M.BackupJob = {
             type = "string",
         },
         BackupSizeInBytes = {
-            type = "number",
+            type = "long",
         },
         IamRoleArn = {
             type = "string",
         },
-        CreatedBy = {
-            type = "structure",
-        },
+        CreatedBy = M.RecoveryPointCreator,
         ExpectedCompletionDate = {
             type = "timestamp",
         },
@@ -320,12 +319,12 @@ M.BackupJob = {
             type = "string",
         },
         BytesTransferred = {
-            type = "number",
+            type = "long",
         },
         BackupOptions = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         BackupType = {
             type = "string",
@@ -335,6 +334,9 @@ M.BackupJob = {
         },
         IsParent = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         ResourceName = {
             type = "string",
@@ -381,7 +383,10 @@ M.BackupJobSummary = {
             type = "string",
         },
         Count = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         StartTime = {
             type = "timestamp",
@@ -395,9 +400,7 @@ M.BackupJobSummary = {
 M.CopyAction = {
     type = "structure",
     members = {
-        Lifecycle = {
-            type = "structure",
-        },
+        Lifecycle = M.Lifecycle,
         DestinationBackupVaultArn = {
             type = "string",
             traits = {
@@ -412,7 +415,7 @@ M.IndexAction = {
     members = {
         ResourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -460,25 +463,23 @@ M.BackupRule = {
             type = "string",
         },
         StartWindowMinutes = {
-            type = "number",
+            type = "long",
         },
         CompletionWindowMinutes = {
-            type = "number",
+            type = "long",
         },
-        Lifecycle = {
-            type = "structure",
-        },
+        Lifecycle = M.Lifecycle,
         RecoveryPointTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         RuleId = {
             type = "string",
         },
         CopyActions = {
             type = "list",
-            member_type = "structure",
+            member = M.CopyAction,
         },
         EnableContinuousBackup = {
             type = "boolean",
@@ -488,11 +489,11 @@ M.BackupRule = {
         },
         IndexActions = {
             type = "list",
-            member_type = "structure",
+            member = M.IndexAction,
         },
         ScanActions = {
             type = "list",
-            member_type = "structure",
+            member = M.ScanAction,
         },
     },
 }
@@ -505,7 +506,7 @@ M.ScanSetting = {
         },
         ResourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ScannerRoleArn = {
             type = "string",
@@ -524,18 +525,18 @@ M.BackupPlan = {
         },
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.BackupRule,
             traits = {
                 required = true,
             },
         },
         AdvancedBackupSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.AdvancedBackupSetting,
         },
         ScanSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.ScanSetting,
         },
     },
 }
@@ -562,22 +563,20 @@ M.BackupRuleInput = {
             type = "string",
         },
         StartWindowMinutes = {
-            type = "number",
+            type = "long",
         },
         CompletionWindowMinutes = {
-            type = "number",
+            type = "long",
         },
-        Lifecycle = {
-            type = "structure",
-        },
+        Lifecycle = M.Lifecycle,
         RecoveryPointTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         CopyActions = {
             type = "list",
-            member_type = "structure",
+            member = M.CopyAction,
         },
         EnableContinuousBackup = {
             type = "boolean",
@@ -587,11 +586,11 @@ M.BackupRuleInput = {
         },
         IndexActions = {
             type = "list",
-            member_type = "structure",
+            member = M.IndexAction,
         },
         ScanActions = {
             type = "list",
-            member_type = "structure",
+            member = M.ScanAction,
         },
     },
 }
@@ -607,18 +606,18 @@ M.BackupPlanInput = {
         },
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.BackupRuleInput,
             traits = {
                 required = true,
             },
         },
         AdvancedBackupSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.AdvancedBackupSetting,
         },
         ScanSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.ScanSetting,
         },
     },
 }
@@ -652,7 +651,7 @@ M.BackupPlansListMember = {
         },
         AdvancedBackupSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.AdvancedBackupSetting,
         },
     },
 }
@@ -686,19 +685,19 @@ M.Conditions = {
     members = {
         StringEquals = {
             type = "list",
-            member_type = "structure",
+            member = M.ConditionParameter,
         },
         StringNotEquals = {
             type = "list",
-            member_type = "structure",
+            member = M.ConditionParameter,
         },
         StringLike = {
             type = "list",
-            member_type = "structure",
+            member = M.ConditionParameter,
         },
         StringNotLike = {
             type = "list",
-            member_type = "structure",
+            member = M.ConditionParameter,
         },
     },
 }
@@ -748,19 +747,17 @@ M.BackupSelection = {
         },
         Resources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ListOfTags = {
             type = "list",
-            member_type = "structure",
+            member = M.Condition,
         },
         NotResources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        Conditions = {
-            type = "structure",
-        },
+        Conditions = M.Conditions,
     },
 }
 
@@ -857,16 +854,19 @@ M.BackupVaultListMember = {
             type = "string",
         },
         NumberOfRecoveryPoints = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Locked = {
             type = "boolean",
         },
         MinRetentionDays = {
-            type = "number",
+            type = "long",
         },
         MaxRetentionDays = {
-            type = "number",
+            type = "long",
         },
         LockDate = {
             type = "timestamp",
@@ -907,7 +907,7 @@ M.CancelLegalHoldInput = {
             },
         },
         RetainRecordInDays = {
-            type = "number",
+            type = "long",
             traits = {
                 http_query = "retainRecordInDays",
             },
@@ -974,16 +974,16 @@ M.ControlScope = {
     members = {
         ComplianceResourceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ComplianceResourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1026,9 +1026,7 @@ M.CopyJob = {
         DestinationEncryptionKeyArn = {
             type = "string",
         },
-        DestinationRecoveryPointLifecycle = {
-            type = "structure",
-        },
+        DestinationRecoveryPointLifecycle = M.Lifecycle,
         ResourceArn = {
             type = "string",
         },
@@ -1045,14 +1043,12 @@ M.CopyJob = {
             type = "string",
         },
         BackupSizeInBytes = {
-            type = "number",
+            type = "long",
         },
         IamRoleArn = {
             type = "string",
         },
-        CreatedBy = {
-            type = "structure",
-        },
+        CreatedBy = M.RecoveryPointCreator,
         CreatedByBackupJobId = {
             type = "string",
         },
@@ -1064,17 +1060,20 @@ M.CopyJob = {
         },
         IsParent = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         CompositeMemberIdentifier = {
             type = "string",
         },
         NumberOfChildJobs = {
-            type = "number",
+            type = "long",
         },
         ChildJobsInState = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "long" },
         },
         ResourceName = {
             type = "string",
@@ -1118,7 +1117,10 @@ M.CopyJobSummary = {
             type = "string",
         },
         Count = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         StartTime = {
             type = "timestamp",
@@ -1132,16 +1134,13 @@ M.CopyJobSummary = {
 M.CreateBackupPlanInput = {
     type = "structure",
     members = {
-        BackupPlan = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        BackupPlan = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BackupPlanInput }),
         BackupPlanTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         CreatorRequestId = {
             type = "string",
@@ -1166,7 +1165,7 @@ M.CreateBackupPlanOutput = {
         },
         AdvancedBackupSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.AdvancedBackupSetting,
         },
     },
 }
@@ -1200,12 +1199,9 @@ M.CreateBackupSelectionInput = {
                 required = true,
             },
         },
-        BackupSelection = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        BackupSelection = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BackupSelection }),
         CreatorRequestId = {
             type = "string",
         },
@@ -1239,8 +1235,8 @@ M.CreateBackupVaultInput = {
         },
         BackupVaultTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         EncryptionKeyArn = {
             type = "string",
@@ -1277,11 +1273,9 @@ M.FrameworkControl = {
         },
         ControlInputParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.ControlInputParameter,
         },
-        ControlScope = {
-            type = "structure",
-        },
+        ControlScope = M.ControlScope,
     },
 }
 
@@ -1299,7 +1293,7 @@ M.CreateFrameworkInput = {
         },
         FrameworkControls = {
             type = "list",
-            member_type = "structure",
+            member = M.FrameworkControl,
             traits = {
                 required = true,
             },
@@ -1309,8 +1303,8 @@ M.CreateFrameworkInput = {
         },
         FrameworkTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1350,15 +1344,13 @@ M.RecoveryPointSelection = {
     members = {
         VaultNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ResourceIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        DateRange = {
-            type = "structure",
-        },
+        DateRange = M.DateRange,
     },
 }
 
@@ -1380,13 +1372,11 @@ M.CreateLegalHoldInput = {
         IdempotencyToken = {
             type = "string",
         },
-        RecoveryPointSelection = {
-            type = "structure",
-        },
+        RecoveryPointSelection = M.RecoveryPointSelection,
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1419,9 +1409,7 @@ M.CreateLegalHoldOutput = {
         CreationDate = {
             type = "timestamp",
         },
-        RecoveryPointSelection = {
-            type = "structure",
-        },
+        RecoveryPointSelection = M.RecoveryPointSelection,
     },
 }
 
@@ -1437,20 +1425,20 @@ M.CreateLogicallyAirGappedBackupVaultInput = {
         },
         BackupVaultTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         CreatorRequestId = {
             type = "string",
         },
         MinRetentionDays = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         MaxRetentionDays = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -1493,7 +1481,7 @@ M.ReportDeliveryChannel = {
         },
         Formats = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1509,22 +1497,25 @@ M.ReportSetting = {
         },
         FrameworkArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NumberOfFrameworks = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         Accounts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         OrganizationUnits = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Regions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1541,22 +1532,16 @@ M.CreateReportPlanInput = {
         ReportPlanDescription = {
             type = "string",
         },
-        ReportDeliveryChannel = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ReportSetting = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ReportDeliveryChannel = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ReportDeliveryChannel }),
+        ReportSetting = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ReportSetting }),
         ReportPlanTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         IdempotencyToken = {
             type = "string",
@@ -1593,8 +1578,8 @@ M.CreateRestoreAccessBackupVaultInput = {
         },
         BackupVaultTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         CreatorRequestId = {
             type = "string",
@@ -1641,18 +1626,21 @@ M.RestoreTestingRecoveryPointSelection = {
         },
         ExcludeVaults = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IncludeVaults = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RecoveryPointTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SelectionWindowDays = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1660,12 +1648,9 @@ M.RestoreTestingRecoveryPointSelection = {
 M.RestoreTestingPlanForCreate = {
     type = "structure",
     members = {
-        RecoveryPointSelection = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RecoveryPointSelection = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RestoreTestingRecoveryPointSelection }),
         RestoreTestingPlanName = {
             type = "string",
             traits = {
@@ -1682,7 +1667,10 @@ M.RestoreTestingPlanForCreate = {
             type = "string",
         },
         StartWindowHours = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1693,16 +1681,13 @@ M.CreateRestoreTestingPlanInput = {
         CreatorRequestId = {
             type = "string",
         },
-        RestoreTestingPlan = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RestoreTestingPlan = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RestoreTestingPlanForCreate }),
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1754,11 +1739,11 @@ M.ProtectedResourceConditions = {
     members = {
         StringEquals = {
             type = "list",
-            member_type = "structure",
+            member = M.KeyValue,
         },
         StringNotEquals = {
             type = "list",
-            member_type = "structure",
+            member = M.KeyValue,
         },
     },
 }
@@ -1774,11 +1759,9 @@ M.RestoreTestingSelectionForCreate = {
         },
         ProtectedResourceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        ProtectedResourceConditions = {
-            type = "structure",
-        },
+        ProtectedResourceConditions = M.ProtectedResourceConditions,
         ProtectedResourceType = {
             type = "string",
             traits = {
@@ -1787,8 +1770,8 @@ M.RestoreTestingSelectionForCreate = {
         },
         RestoreMetadataOverrides = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         RestoreTestingSelectionName = {
             type = "string",
@@ -1797,7 +1780,10 @@ M.RestoreTestingSelectionForCreate = {
             },
         },
         ValidationWindowHours = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1815,12 +1801,9 @@ M.CreateRestoreTestingSelectionInput = {
                 required = true,
             },
         },
-        RestoreTestingSelection = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RestoreTestingSelection = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RestoreTestingSelectionForCreate }),
     },
 }
 
@@ -1859,13 +1842,13 @@ M.ResourceSelection = {
     members = {
         Resources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         TieringDownSettingsInDays = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1896,7 +1879,7 @@ M.TieringConfigurationInputForCreate = {
         },
         ResourceSelection = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceSelection,
             traits = {
                 required = true,
             },
@@ -1907,16 +1890,13 @@ M.TieringConfigurationInputForCreate = {
 M.CreateTieringConfigurationInput = {
     type = "structure",
     members = {
-        TieringConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TieringConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TieringConfigurationInputForCreate }),
         TieringConfigurationTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         CreatorRequestId = {
             type = "string",
@@ -2222,9 +2202,7 @@ M.DescribeBackupJobOutput = {
         BackupVaultName = {
             type = "string",
         },
-        RecoveryPointLifecycle = {
-            type = "structure",
-        },
+        RecoveryPointLifecycle = M.Lifecycle,
         BackupVaultArn = {
             type = "string",
         },
@@ -2242,6 +2220,9 @@ M.DescribeBackupJobOutput = {
         },
         IsEncrypted = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         ResourceArn = {
             type = "string",
@@ -2262,19 +2243,17 @@ M.DescribeBackupJobOutput = {
             type = "string",
         },
         BackupSizeInBytes = {
-            type = "number",
+            type = "long",
         },
         IamRoleArn = {
             type = "string",
         },
-        CreatedBy = {
-            type = "structure",
-        },
+        CreatedBy = M.RecoveryPointCreator,
         ResourceType = {
             type = "string",
         },
         BytesTransferred = {
-            type = "number",
+            type = "long",
         },
         ExpectedCompletionDate = {
             type = "timestamp",
@@ -2284,8 +2263,8 @@ M.DescribeBackupJobOutput = {
         },
         BackupOptions = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         BackupType = {
             type = "string",
@@ -2295,14 +2274,17 @@ M.DescribeBackupJobOutput = {
         },
         IsParent = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         NumberOfChildJobs = {
-            type = "number",
+            type = "long",
         },
         ChildJobsInState = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "long" },
         },
         ResourceName = {
             type = "string",
@@ -2387,16 +2369,19 @@ M.DescribeBackupVaultOutput = {
             type = "string",
         },
         NumberOfRecoveryPoints = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Locked = {
             type = "boolean",
         },
         MinRetentionDays = {
-            type = "number",
+            type = "long",
         },
         MaxRetentionDays = {
-            type = "number",
+            type = "long",
         },
         LockDate = {
             type = "timestamp",
@@ -2410,9 +2395,7 @@ M.DescribeBackupVaultOutput = {
         MpaSessionArn = {
             type = "string",
         },
-        LatestMpaApprovalTeamUpdate = {
-            type = "structure",
-        },
+        LatestMpaApprovalTeamUpdate = M.LatestMpaApprovalTeamUpdate,
         EncryptionKeyType = {
             type = "string",
         },
@@ -2435,9 +2418,7 @@ M.DescribeCopyJobInput = {
 M.DescribeCopyJobOutput = {
     type = "structure",
     members = {
-        CopyJob = {
-            type = "structure",
-        },
+        CopyJob = M.CopyJob,
     },
 }
 
@@ -2468,7 +2449,7 @@ M.DescribeFrameworkOutput = {
         },
         FrameworkControls = {
             type = "list",
-            member_type = "structure",
+            member = M.FrameworkControl,
         },
         CreationTime = {
             type = "timestamp",
@@ -2494,8 +2475,8 @@ M.DescribeGlobalSettingsOutput = {
     members = {
         GlobalSettings = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         LastUpdateTime = {
             type = "timestamp",
@@ -2538,7 +2519,7 @@ M.DescribeProtectedResourceOutput = {
             type = "string",
         },
         LatestRestoreExecutionTimeMinutes = {
-            type = "number",
+            type = "long",
         },
         LatestRestoreJobCreationDate = {
             type = "timestamp",
@@ -2603,7 +2584,7 @@ M.ScanResult = {
         },
         Findings = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2645,9 +2626,7 @@ M.DescribeRecoveryPointOutput = {
         ResourceType = {
             type = "string",
         },
-        CreatedBy = {
-            type = "structure",
-        },
+        CreatedBy = M.RecoveryPointCreator,
         IamRoleArn = {
             type = "string",
         },
@@ -2667,19 +2646,18 @@ M.DescribeRecoveryPointOutput = {
             type = "timestamp",
         },
         BackupSizeInBytes = {
-            type = "number",
+            type = "long",
         },
-        CalculatedLifecycle = {
-            type = "structure",
-        },
-        Lifecycle = {
-            type = "structure",
-        },
+        CalculatedLifecycle = M.CalculatedLifecycle,
+        Lifecycle = M.Lifecycle,
         EncryptionKeyArn = {
             type = "string",
         },
         IsEncrypted = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         StorageClass = {
             type = "string",
@@ -2695,6 +2673,9 @@ M.DescribeRecoveryPointOutput = {
         },
         IsParent = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         ResourceName = {
             type = "string",
@@ -2713,7 +2694,7 @@ M.DescribeRecoveryPointOutput = {
         },
         ScanResults = {
             type = "list",
-            member_type = "structure",
+            member = M.ScanResult,
         },
     },
 }
@@ -2727,13 +2708,13 @@ M.DescribeRegionSettingsOutput = {
     members = {
         ResourceTypeOptInPreference = {
             type = "map",
-            key_type = "string",
-            value_type = "boolean",
+            key = { type = "string" },
+            value = { type = "boolean" },
         },
         ResourceTypeManagementPreference = {
             type = "map",
-            key_type = "string",
-            value_type = "boolean",
+            key = { type = "string" },
+            value = { type = "boolean" },
         },
     },
 }
@@ -2759,7 +2740,7 @@ M.ReportDestination = {
         },
         S3Keys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2788,18 +2769,14 @@ M.ReportJob = {
         StatusMessage = {
             type = "string",
         },
-        ReportDestination = {
-            type = "structure",
-        },
+        ReportDestination = M.ReportDestination,
     },
 }
 
 M.DescribeReportJobOutput = {
     type = "structure",
     members = {
-        ReportJob = {
-            type = "structure",
-        },
+        ReportJob = M.ReportJob,
     },
 }
 
@@ -2828,12 +2805,8 @@ M.ReportPlan = {
         ReportPlanDescription = {
             type = "string",
         },
-        ReportSetting = {
-            type = "structure",
-        },
-        ReportDeliveryChannel = {
-            type = "structure",
-        },
+        ReportSetting = M.ReportSetting,
+        ReportDeliveryChannel = M.ReportDeliveryChannel,
         DeploymentStatus = {
             type = "string",
         },
@@ -2852,9 +2825,7 @@ M.ReportPlan = {
 M.DescribeReportPlanOutput = {
     type = "structure",
     members = {
-        ReportPlan = {
-            type = "structure",
-        },
+        ReportPlan = M.ReportPlan,
     },
 }
 
@@ -2935,13 +2906,13 @@ M.DescribeRestoreJobOutput = {
             type = "string",
         },
         BackupSizeInBytes = {
-            type = "number",
+            type = "long",
         },
         IamRoleArn = {
             type = "string",
         },
         ExpectedCompletionTimeMinutes = {
-            type = "number",
+            type = "long",
         },
         CreatedResourceArn = {
             type = "string",
@@ -2952,9 +2923,7 @@ M.DescribeRestoreJobOutput = {
         RecoveryPointCreationDate = {
             type = "timestamp",
         },
-        CreatedBy = {
-            type = "structure",
-        },
+        CreatedBy = M.RestoreJobCreator,
         ValidationStatus = {
             type = "string",
         },
@@ -2969,6 +2938,9 @@ M.DescribeRestoreJobOutput = {
         },
         IsParent = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         ParentJobId = {
             type = "string",
@@ -3075,12 +3047,9 @@ M.DescribeScanJobOutput = {
         CompletionDate = {
             type = "timestamp",
         },
-        CreatedBy = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        CreatedBy = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ScanJobCreator }),
         CreationDate = {
             type = "timestamp",
             traits = {
@@ -3141,9 +3110,7 @@ M.DescribeScanJobOutput = {
                 required = true,
             },
         },
-        ScanResult = {
-            type = "structure",
-        },
+        ScanResult = M.ScanResultInfo,
         ScannerRoleArn = {
             type = "string",
             traits = {
@@ -3269,8 +3236,9 @@ M.GetBackupPlanInput = {
             },
         },
         MaxScheduledRunsPreview = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "MaxScheduledRunsPreview",
             },
         },
@@ -3301,9 +3269,7 @@ M.ScheduledPlanExecutionMember = {
 M.GetBackupPlanOutput = {
     type = "structure",
     members = {
-        BackupPlan = {
-            type = "structure",
-        },
+        BackupPlan = M.BackupPlan,
         BackupPlanId = {
             type = "string",
         },
@@ -3327,11 +3293,11 @@ M.GetBackupPlanOutput = {
         },
         AdvancedBackupSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.AdvancedBackupSetting,
         },
         ScheduledRunsPreview = {
             type = "list",
-            member_type = "structure",
+            member = M.ScheduledPlanExecutionMember,
         },
     },
 }
@@ -3351,9 +3317,7 @@ M.GetBackupPlanFromJSONInput = {
 M.GetBackupPlanFromJSONOutput = {
     type = "structure",
     members = {
-        BackupPlan = {
-            type = "structure",
-        },
+        BackupPlan = M.BackupPlan,
     },
 }
 
@@ -3373,9 +3337,7 @@ M.GetBackupPlanFromTemplateInput = {
 M.GetBackupPlanFromTemplateOutput = {
     type = "structure",
     members = {
-        BackupPlanDocument = {
-            type = "structure",
-        },
+        BackupPlanDocument = M.BackupPlan,
     },
 }
 
@@ -3402,9 +3364,7 @@ M.GetBackupSelectionInput = {
 M.GetBackupSelectionOutput = {
     type = "structure",
     members = {
-        BackupSelection = {
-            type = "structure",
-        },
+        BackupSelection = M.BackupSelection,
         SelectionId = {
             type = "string",
         },
@@ -3475,7 +3435,7 @@ M.GetBackupVaultNotificationsOutput = {
         },
         BackupVaultEvents = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3523,9 +3483,7 @@ M.GetLegalHoldOutput = {
         RetainRecordUntil = {
             type = "timestamp",
         },
-        RecoveryPointSelection = {
-            type = "structure",
-        },
+        RecoveryPointSelection = M.RecoveryPointSelection,
     },
 }
 
@@ -3577,7 +3535,7 @@ M.GetRecoveryPointIndexDetailsOutput = {
             type = "string",
         },
         TotalItemsIndexed = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -3619,8 +3577,8 @@ M.GetRecoveryPointRestoreMetadataOutput = {
         },
         RestoreMetadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ResourceType = {
             type = "string",
@@ -3649,8 +3607,8 @@ M.GetRestoreJobMetadataOutput = {
         },
         Metadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3686,8 +3644,8 @@ M.GetRestoreTestingInferredMetadataOutput = {
     members = {
         InferredMetadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3726,12 +3684,9 @@ M.RestoreTestingPlanForGet = {
         LastUpdateTime = {
             type = "timestamp",
         },
-        RecoveryPointSelection = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RecoveryPointSelection = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RestoreTestingRecoveryPointSelection }),
         RestoreTestingPlanArn = {
             type = "string",
             traits = {
@@ -3754,7 +3709,10 @@ M.RestoreTestingPlanForGet = {
             type = "string",
         },
         StartWindowHours = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -3762,12 +3720,9 @@ M.RestoreTestingPlanForGet = {
 M.GetRestoreTestingPlanOutput = {
     type = "structure",
     members = {
-        RestoreTestingPlan = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RestoreTestingPlan = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RestoreTestingPlanForGet }),
     },
 }
 
@@ -3811,11 +3766,9 @@ M.RestoreTestingSelectionForGet = {
         },
         ProtectedResourceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        ProtectedResourceConditions = {
-            type = "structure",
-        },
+        ProtectedResourceConditions = M.ProtectedResourceConditions,
         ProtectedResourceType = {
             type = "string",
             traits = {
@@ -3824,8 +3777,8 @@ M.RestoreTestingSelectionForGet = {
         },
         RestoreMetadataOverrides = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         RestoreTestingPlanName = {
             type = "string",
@@ -3840,7 +3793,10 @@ M.RestoreTestingSelectionForGet = {
             },
         },
         ValidationWindowHours = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -3848,12 +3804,9 @@ M.RestoreTestingSelectionForGet = {
 M.GetRestoreTestingSelectionOutput = {
     type = "structure",
     members = {
-        RestoreTestingSelection = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RestoreTestingSelection = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RestoreTestingSelectionForGet }),
     },
 }
 
@@ -3866,7 +3819,7 @@ M.GetSupportedResourceTypesOutput = {
     members = {
         ResourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3904,7 +3857,7 @@ M.TieringConfiguration = {
         },
         ResourceSelection = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceSelection,
             traits = {
                 required = true,
             },
@@ -3924,9 +3877,7 @@ M.TieringConfiguration = {
 M.GetTieringConfigurationOutput = {
     type = "structure",
     members = {
-        TieringConfiguration = {
-            type = "structure",
-        },
+        TieringConfiguration = M.TieringConfiguration,
     },
 }
 
@@ -3940,7 +3891,7 @@ M.ListBackupJobsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4019,7 +3970,7 @@ M.ListBackupJobsOutput = {
     members = {
         BackupJobs = {
             type = "list",
-            member_type = "structure",
+            member = M.BackupJob,
         },
         NextToken = {
             type = "string",
@@ -4061,7 +4012,7 @@ M.ListBackupJobSummariesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -4080,7 +4031,7 @@ M.ListBackupJobSummariesOutput = {
     members = {
         BackupJobSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.BackupJobSummary,
         },
         AggregationPeriod = {
             type = "string",
@@ -4101,7 +4052,7 @@ M.ListBackupPlansInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4123,7 +4074,7 @@ M.ListBackupPlansOutput = {
         },
         BackupPlansList = {
             type = "list",
-            member_type = "structure",
+            member = M.BackupPlansListMember,
         },
     },
 }
@@ -4138,7 +4089,7 @@ M.ListBackupPlanTemplatesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4154,7 +4105,7 @@ M.ListBackupPlanTemplatesOutput = {
         },
         BackupPlanTemplatesList = {
             type = "list",
-            member_type = "structure",
+            member = M.BackupPlanTemplatesListMember,
         },
     },
 }
@@ -4176,7 +4127,7 @@ M.ListBackupPlanVersionsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4192,7 +4143,7 @@ M.ListBackupPlanVersionsOutput = {
         },
         BackupPlanVersionsList = {
             type = "list",
-            member_type = "structure",
+            member = M.BackupPlansListMember,
         },
     },
 }
@@ -4214,7 +4165,7 @@ M.ListBackupSelectionsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4230,7 +4181,7 @@ M.ListBackupSelectionsOutput = {
         },
         BackupSelectionsList = {
             type = "list",
-            member_type = "structure",
+            member = M.BackupSelectionsListMember,
         },
     },
 }
@@ -4247,6 +4198,7 @@ M.ListBackupVaultsInput = {
         ByShared = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "shared",
             },
         },
@@ -4257,7 +4209,7 @@ M.ListBackupVaultsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4270,7 +4222,7 @@ M.ListBackupVaultsOutput = {
     members = {
         BackupVaultList = {
             type = "list",
-            member_type = "structure",
+            member = M.BackupVaultListMember,
         },
         NextToken = {
             type = "string",
@@ -4288,7 +4240,7 @@ M.ListCopyJobsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4373,7 +4325,7 @@ M.ListCopyJobsOutput = {
     members = {
         CopyJobs = {
             type = "list",
-            member_type = "structure",
+            member = M.CopyJob,
         },
         NextToken = {
             type = "string",
@@ -4415,7 +4367,7 @@ M.ListCopyJobSummariesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -4434,7 +4386,7 @@ M.ListCopyJobSummariesOutput = {
     members = {
         CopyJobSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.CopyJobSummary,
         },
         AggregationPeriod = {
             type = "string",
@@ -4449,7 +4401,7 @@ M.ListFrameworksInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -4476,7 +4428,10 @@ M.Framework = {
             type = "string",
         },
         NumberOfControls = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         CreationTime = {
             type = "timestamp",
@@ -4492,7 +4447,7 @@ M.ListFrameworksOutput = {
     members = {
         Frameworks = {
             type = "list",
-            member_type = "structure",
+            member = M.Framework,
         },
         NextToken = {
             type = "string",
@@ -4510,7 +4465,7 @@ M.ListIndexedRecoveryPointsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4586,7 +4541,7 @@ M.ListIndexedRecoveryPointsOutput = {
     members = {
         IndexedRecoveryPoints = {
             type = "list",
-            member_type = "structure",
+            member = M.IndexedRecoveryPoint,
         },
         NextToken = {
             type = "string",
@@ -4604,7 +4559,7 @@ M.ListLegalHoldsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4647,7 +4602,7 @@ M.ListLegalHoldsOutput = {
         },
         LegalHolds = {
             type = "list",
-            member_type = "structure",
+            member = M.LegalHold,
         },
     },
 }
@@ -4662,7 +4617,7 @@ M.ListProtectedResourcesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4699,7 +4654,7 @@ M.ListProtectedResourcesOutput = {
     members = {
         Results = {
             type = "list",
-            member_type = "structure",
+            member = M.ProtectedResource,
         },
         NextToken = {
             type = "string",
@@ -4730,7 +4685,7 @@ M.ListProtectedResourcesByBackupVaultInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4743,7 +4698,7 @@ M.ListProtectedResourcesByBackupVaultOutput = {
     members = {
         Results = {
             type = "list",
-            member_type = "structure",
+            member = M.ProtectedResource,
         },
         NextToken = {
             type = "string",
@@ -4774,7 +4729,7 @@ M.ListRecoveryPointsByBackupVaultInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4839,9 +4794,7 @@ M.RecoveryPointByBackupVault = {
         ResourceType = {
             type = "string",
         },
-        CreatedBy = {
-            type = "structure",
-        },
+        CreatedBy = M.RecoveryPointCreator,
         IamRoleArn = {
             type = "string",
         },
@@ -4861,19 +4814,18 @@ M.RecoveryPointByBackupVault = {
             type = "timestamp",
         },
         BackupSizeInBytes = {
-            type = "number",
+            type = "long",
         },
-        CalculatedLifecycle = {
-            type = "structure",
-        },
-        Lifecycle = {
-            type = "structure",
-        },
+        CalculatedLifecycle = M.CalculatedLifecycle,
+        Lifecycle = M.Lifecycle,
         EncryptionKeyArn = {
             type = "string",
         },
         IsEncrypted = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         LastRestoreTime = {
             type = "timestamp",
@@ -4886,6 +4838,9 @@ M.RecoveryPointByBackupVault = {
         },
         IsParent = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         ResourceName = {
             type = "string",
@@ -4902,9 +4857,7 @@ M.RecoveryPointByBackupVault = {
         EncryptionKeyType = {
             type = "string",
         },
-        AggregatedScanResult = {
-            type = "structure",
-        },
+        AggregatedScanResult = M.AggregatedScanResult,
     },
 }
 
@@ -4916,7 +4869,7 @@ M.ListRecoveryPointsByBackupVaultOutput = {
         },
         RecoveryPoints = {
             type = "list",
-            member_type = "structure",
+            member = M.RecoveryPointByBackupVault,
         },
     },
 }
@@ -4938,7 +4891,7 @@ M.ListRecoveryPointsByLegalHoldInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4969,7 +4922,7 @@ M.ListRecoveryPointsByLegalHoldOutput = {
     members = {
         RecoveryPoints = {
             type = "list",
-            member_type = "structure",
+            member = M.RecoveryPointMember,
         },
         NextToken = {
             type = "string",
@@ -4994,7 +4947,7 @@ M.ListRecoveryPointsByResourceInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -5002,6 +4955,7 @@ M.ListRecoveryPointsByResourceInput = {
         ManagedByAWSBackupOnly = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "managedByAWSBackupOnly",
             },
         },
@@ -5027,13 +4981,16 @@ M.RecoveryPointByResource = {
             type = "string",
         },
         BackupSizeBytes = {
-            type = "number",
+            type = "long",
         },
         BackupVaultName = {
             type = "string",
         },
         IsParent = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         ParentRecoveryPointArn = {
             type = "string",
@@ -5053,9 +5010,7 @@ M.RecoveryPointByResource = {
         EncryptionKeyType = {
             type = "string",
         },
-        AggregatedScanResult = {
-            type = "structure",
-        },
+        AggregatedScanResult = M.AggregatedScanResult,
     },
 }
 
@@ -5067,7 +5022,7 @@ M.ListRecoveryPointsByResourceOutput = {
         },
         RecoveryPoints = {
             type = "list",
-            member_type = "structure",
+            member = M.RecoveryPointByResource,
         },
     },
 }
@@ -5100,7 +5055,7 @@ M.ListReportJobsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -5119,7 +5074,7 @@ M.ListReportJobsOutput = {
     members = {
         ReportJobs = {
             type = "list",
-            member_type = "structure",
+            member = M.ReportJob,
         },
         NextToken = {
             type = "string",
@@ -5131,7 +5086,7 @@ M.ListReportPlansInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -5150,7 +5105,7 @@ M.ListReportPlansOutput = {
     members = {
         ReportPlans = {
             type = "list",
-            member_type = "structure",
+            member = M.ReportPlan,
         },
         NextToken = {
             type = "string",
@@ -5175,7 +5130,7 @@ M.ListRestoreAccessBackupVaultsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -5224,9 +5179,7 @@ M.RestoreAccessBackupVaultListMember = {
         VaultState = {
             type = "string",
         },
-        LatestRevokeRequest = {
-            type = "structure",
-        },
+        LatestRevokeRequest = M.LatestRevokeRequest,
     },
 }
 
@@ -5238,7 +5191,7 @@ M.ListRestoreAccessBackupVaultsOutput = {
         },
         RestoreAccessBackupVaults = {
             type = "list",
-            member_type = "structure",
+            member = M.RestoreAccessBackupVaultListMember,
         },
     },
 }
@@ -5253,7 +5206,7 @@ M.ListRestoreJobsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -5349,13 +5302,13 @@ M.RestoreJobsListMember = {
             type = "string",
         },
         BackupSizeInBytes = {
-            type = "number",
+            type = "long",
         },
         IamRoleArn = {
             type = "string",
         },
         ExpectedCompletionTimeMinutes = {
-            type = "number",
+            type = "long",
         },
         CreatedResourceArn = {
             type = "string",
@@ -5368,13 +5321,14 @@ M.RestoreJobsListMember = {
         },
         IsParent = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         ParentJobId = {
             type = "string",
         },
-        CreatedBy = {
-            type = "structure",
-        },
+        CreatedBy = M.RestoreJobCreator,
         ValidationStatus = {
             type = "string",
         },
@@ -5395,7 +5349,7 @@ M.ListRestoreJobsOutput = {
     members = {
         RestoreJobs = {
             type = "list",
-            member_type = "structure",
+            member = M.RestoreJobsListMember,
         },
         NextToken = {
             type = "string",
@@ -5438,7 +5392,7 @@ M.ListRestoreJobsByProtectedResourceInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -5451,7 +5405,7 @@ M.ListRestoreJobsByProtectedResourceOutput = {
     members = {
         RestoreJobs = {
             type = "list",
-            member_type = "structure",
+            member = M.RestoreJobsListMember,
         },
         NextToken = {
             type = "string",
@@ -5498,7 +5452,7 @@ M.ListRestoreJobSummariesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -5528,7 +5482,10 @@ M.RestoreJobSummary = {
             type = "string",
         },
         Count = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         StartTime = {
             type = "timestamp",
@@ -5544,7 +5501,7 @@ M.ListRestoreJobSummariesOutput = {
     members = {
         RestoreJobSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.RestoreJobSummary,
         },
         AggregationPeriod = {
             type = "string",
@@ -5559,7 +5516,7 @@ M.ListRestoreTestingPlansInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -5610,7 +5567,10 @@ M.RestoreTestingPlanForList = {
             type = "string",
         },
         StartWindowHours = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -5623,7 +5583,7 @@ M.ListRestoreTestingPlansOutput = {
         },
         RestoreTestingPlans = {
             type = "list",
-            member_type = "structure",
+            member = M.RestoreTestingPlanForList,
             traits = {
                 required = true,
             },
@@ -5635,7 +5595,7 @@ M.ListRestoreTestingSelectionsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -5690,7 +5650,10 @@ M.RestoreTestingSelectionForList = {
             },
         },
         ValidationWindowHours = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -5703,7 +5666,7 @@ M.ListRestoreTestingSelectionsOutput = {
         },
         RestoreTestingSelections = {
             type = "list",
-            member_type = "structure",
+            member = M.RestoreTestingSelectionForList,
             traits = {
                 required = true,
             },
@@ -5775,7 +5738,7 @@ M.ListScanJobsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -5813,12 +5776,9 @@ M.ScanJob = {
         CompletionDate = {
             type = "timestamp",
         },
-        CreatedBy = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        CreatedBy = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ScanJobCreator }),
         CreationDate = {
             type = "timestamp",
             traits = {
@@ -5879,9 +5839,7 @@ M.ScanJob = {
                 required = true,
             },
         },
-        ScanResult = {
-            type = "structure",
-        },
+        ScanResult = M.ScanResultInfo,
         ScannerRoleArn = {
             type = "string",
             traits = {
@@ -5905,7 +5863,7 @@ M.ListScanJobsOutput = {
         },
         ScanJobs = {
             type = "list",
-            member_type = "structure",
+            member = M.ScanJob,
             traits = {
                 required = true,
             },
@@ -5964,7 +5922,7 @@ M.ListScanJobSummariesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -5994,7 +5952,10 @@ M.ScanJobSummary = {
             type = "string",
         },
         Count = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         StartTime = {
             type = "timestamp",
@@ -6016,7 +5977,7 @@ M.ListScanJobSummariesOutput = {
     members = {
         ScanJobSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ScanJobSummary,
         },
         AggregationPeriod = {
             type = "string",
@@ -6044,7 +6005,7 @@ M.ListTagsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -6060,8 +6021,8 @@ M.ListTagsOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -6070,7 +6031,7 @@ M.ListTieringConfigurationsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -6110,7 +6071,7 @@ M.ListTieringConfigurationsOutput = {
     members = {
         TieringConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.TieringConfigurationsListMember,
         },
         NextToken = {
             type = "string",
@@ -6149,13 +6110,13 @@ M.PutBackupVaultLockConfigurationInput = {
             },
         },
         MinRetentionDays = {
-            type = "number",
+            type = "long",
         },
         MaxRetentionDays = {
-            type = "number",
+            type = "long",
         },
         ChangeableForDays = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -6182,7 +6143,7 @@ M.PutBackupVaultNotificationsInput = {
         },
         BackupVaultEvents = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -6283,23 +6244,21 @@ M.StartBackupJobInput = {
             type = "string",
         },
         StartWindowMinutes = {
-            type = "number",
+            type = "long",
         },
         CompleteWindowMinutes = {
-            type = "number",
+            type = "long",
         },
-        Lifecycle = {
-            type = "structure",
-        },
+        Lifecycle = M.Lifecycle,
         RecoveryPointTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         BackupOptions = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Index = {
             type = "string",
@@ -6321,6 +6280,9 @@ M.StartBackupJobOutput = {
         },
         IsParent = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -6355,9 +6317,7 @@ M.StartCopyJobInput = {
         IdempotencyToken = {
             type = "string",
         },
-        Lifecycle = {
-            type = "structure",
-        },
+        Lifecycle = M.Lifecycle,
     },
 }
 
@@ -6372,6 +6332,9 @@ M.StartCopyJobOutput = {
         },
         IsParent = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -6412,8 +6375,8 @@ M.StartRestoreJobInput = {
         },
         Metadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -6429,6 +6392,9 @@ M.StartRestoreJobInput = {
         },
         CopySourceTagsToRestoredResource = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -6537,8 +6503,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -6562,7 +6528,7 @@ M.UntagResourceInput = {
         },
         TagKeyList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -6584,12 +6550,9 @@ M.UpdateBackupPlanInput = {
                 required = true,
             },
         },
-        BackupPlan = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        BackupPlan = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BackupPlanInput }),
     },
 }
 
@@ -6610,11 +6573,11 @@ M.UpdateBackupPlanOutput = {
         },
         AdvancedBackupSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.AdvancedBackupSetting,
         },
         ScanSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.ScanSetting,
         },
     },
 }
@@ -6634,7 +6597,7 @@ M.UpdateFrameworkInput = {
         },
         FrameworkControls = {
             type = "list",
-            member_type = "structure",
+            member = M.FrameworkControl,
         },
         IdempotencyToken = {
             type = "string",
@@ -6662,8 +6625,8 @@ M.UpdateGlobalSettingsInput = {
     members = {
         GlobalSettings = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -6736,9 +6699,7 @@ M.UpdateRecoveryPointLifecycleInput = {
                 required = true,
             },
         },
-        Lifecycle = {
-            type = "structure",
-        },
+        Lifecycle = M.Lifecycle,
     },
 }
 
@@ -6751,12 +6712,8 @@ M.UpdateRecoveryPointLifecycleOutput = {
         RecoveryPointArn = {
             type = "string",
         },
-        Lifecycle = {
-            type = "structure",
-        },
-        CalculatedLifecycle = {
-            type = "structure",
-        },
+        Lifecycle = M.Lifecycle,
+        CalculatedLifecycle = M.CalculatedLifecycle,
     },
 }
 
@@ -6765,13 +6722,13 @@ M.UpdateRegionSettingsInput = {
     members = {
         ResourceTypeOptInPreference = {
             type = "map",
-            key_type = "string",
-            value_type = "boolean",
+            key = { type = "string" },
+            value = { type = "boolean" },
         },
         ResourceTypeManagementPreference = {
             type = "map",
-            key_type = "string",
-            value_type = "boolean",
+            key = { type = "string" },
+            value = { type = "boolean" },
         },
     },
 }
@@ -6793,12 +6750,8 @@ M.UpdateReportPlanInput = {
         ReportPlanDescription = {
             type = "string",
         },
-        ReportDeliveryChannel = {
-            type = "structure",
-        },
-        ReportSetting = {
-            type = "structure",
-        },
+        ReportDeliveryChannel = M.ReportDeliveryChannel,
+        ReportSetting = M.ReportSetting,
         IdempotencyToken = {
             type = "string",
         },
@@ -6823,9 +6776,7 @@ M.UpdateReportPlanOutput = {
 M.RestoreTestingPlanForUpdate = {
     type = "structure",
     members = {
-        RecoveryPointSelection = {
-            type = "structure",
-        },
+        RecoveryPointSelection = M.RestoreTestingRecoveryPointSelection,
         ScheduleExpression = {
             type = "string",
         },
@@ -6833,7 +6784,10 @@ M.RestoreTestingPlanForUpdate = {
             type = "string",
         },
         StartWindowHours = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -6841,12 +6795,9 @@ M.RestoreTestingPlanForUpdate = {
 M.UpdateRestoreTestingPlanInput = {
     type = "structure",
     members = {
-        RestoreTestingPlan = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RestoreTestingPlan = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RestoreTestingPlanForUpdate }),
         RestoreTestingPlanName = {
             type = "string",
             traits = {
@@ -6895,18 +6846,19 @@ M.RestoreTestingSelectionForUpdate = {
         },
         ProtectedResourceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        ProtectedResourceConditions = {
-            type = "structure",
-        },
+        ProtectedResourceConditions = M.ProtectedResourceConditions,
         RestoreMetadataOverrides = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ValidationWindowHours = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -6921,12 +6873,9 @@ M.UpdateRestoreTestingSelectionInput = {
                 required = true,
             },
         },
-        RestoreTestingSelection = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RestoreTestingSelection = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RestoreTestingSelectionForUpdate }),
         RestoreTestingSelectionName = {
             type = "string",
             traits = {
@@ -6978,7 +6927,7 @@ M.TieringConfigurationInputForUpdate = {
     members = {
         ResourceSelection = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceSelection,
             traits = {
                 required = true,
             },
@@ -7002,12 +6951,9 @@ M.UpdateTieringConfigurationInput = {
                 required = true,
             },
         },
-        TieringConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TieringConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TieringConfigurationInputForUpdate }),
     },
 }
 

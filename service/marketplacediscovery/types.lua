@@ -90,14 +90,12 @@ M.AmazonMachineImageFulfillmentOption = {
         },
         operatingSystems = {
             type = "list",
-            member_type = "structure",
+            member = M.AmazonMachineImageOperatingSystem,
             traits = {
                 required = true,
             },
         },
-        recommendation = {
-            type = "structure",
-        },
+        recommendation = M.AmazonMachineImageRecommendation,
         releaseNotes = {
             type = "string",
         },
@@ -157,7 +155,7 @@ M.ApiFulfillmentOption = {
         },
         awsSupportedServices = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsSupportedService,
             traits = {
                 required = true,
             },
@@ -207,12 +205,9 @@ M.OfferInformation = {
         offerName = {
             type = "string",
         },
-        sellerOfRecord = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        sellerOfRecord = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SellerInformation }),
     },
 }
 
@@ -231,24 +226,17 @@ M.ProductInformation = {
                 required = true,
             },
         },
-        manufacturer = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        manufacturer = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SellerInformation }),
     },
 }
 
 M.ListingAssociatedEntity = {
     type = "structure",
     members = {
-        product = {
-            type = "structure",
-        },
-        offer = {
-            type = "structure",
-        },
+        product = M.ProductInformation,
+        offer = M.OfferInformation,
     },
 }
 
@@ -424,12 +412,8 @@ M.PromotionalEmbeddedVideo = {
 M.PromotionalMedia = {
     type = "union",
     members = {
-        embeddedImage = {
-            type = "structure",
-        },
-        embeddedVideo = {
-            type = "structure",
-        },
+        embeddedImage = M.PromotionalEmbeddedImage,
+        embeddedVideo = M.PromotionalEmbeddedVideo,
     },
 }
 
@@ -501,7 +485,7 @@ M.ReviewSourceSummary = {
             },
         },
         totalReviews = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -514,7 +498,7 @@ M.ReviewSummary = {
     members = {
         reviewSourceSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ReviewSourceSummary,
             traits = {
                 required = true,
             },
@@ -582,12 +566,9 @@ M.UseCase = {
 M.UseCaseEntry = {
     type = "structure",
     members = {
-        useCase = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        useCase = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.UseCase }),
     },
 }
 
@@ -596,14 +577,14 @@ M.GetListingOutput = {
     members = {
         associatedEntities = {
             type = "list",
-            member_type = "structure",
+            member = M.ListingAssociatedEntity,
             traits = {
                 required = true,
             },
         },
         badges = {
             type = "list",
-            member_type = "structure",
+            member = M.ListingBadge,
             traits = {
                 required = true,
             },
@@ -616,21 +597,21 @@ M.GetListingOutput = {
         },
         categories = {
             type = "list",
-            member_type = "structure",
+            member = M.Category,
             traits = {
                 required = true,
             },
         },
         fulfillmentOptionSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.FulfillmentOptionSummary,
             traits = {
                 required = true,
             },
         },
         highlights = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -664,44 +645,39 @@ M.GetListingOutput = {
         },
         pricingModels = {
             type = "list",
-            member_type = "structure",
+            member = M.PricingModel,
             traits = {
                 required = true,
             },
         },
         pricingUnits = {
             type = "list",
-            member_type = "structure",
+            member = M.PricingUnit,
             traits = {
                 required = true,
             },
         },
         promotionalMedia = {
             type = "list",
-            member_type = "union",
+            member = M.PromotionalMedia,
             traits = {
                 required = true,
             },
         },
-        publisher = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        publisher = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SellerInformation }),
         resources = {
             type = "list",
-            member_type = "structure",
+            member = M.Resource,
             traits = {
                 required = true,
             },
         },
-        reviewSummary = {
-            type = "structure",
-        },
+        reviewSummary = M.ReviewSummary,
         sellerEngagements = {
             type = "list",
-            member_type = "structure",
+            member = M.SellerEngagement,
             traits = {
                 required = true,
             },
@@ -714,7 +690,7 @@ M.GetListingOutput = {
         },
         useCases = {
             type = "list",
-            member_type = "structure",
+            member = M.UseCaseEntry,
             traits = {
                 required = true,
             },
@@ -792,27 +768,19 @@ M.OfferSetInformation = {
                 required = true,
             },
         },
-        sellerOfRecord = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        sellerOfRecord = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SellerInformation }),
     },
 }
 
 M.OfferAssociatedEntity = {
     type = "structure",
     members = {
-        product = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        offerSet = {
-            type = "structure",
-        },
+        product = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProductInformation }),
+        offerSet = M.OfferSetInformation,
     },
 }
 
@@ -870,31 +838,25 @@ M.GetOfferOutput = {
         availableFromTime = {
             type = "timestamp",
         },
-        sellerOfRecord = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        sellerOfRecord = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SellerInformation }),
         replacementAgreementId = {
             type = "string",
         },
-        pricingModel = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        pricingModel = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PricingModel }),
         badges = {
             type = "list",
-            member_type = "structure",
+            member = M.PurchaseOptionBadge,
             traits = {
                 required = true,
             },
         },
         associatedEntities = {
             type = "list",
-            member_type = "structure",
+            member = M.OfferAssociatedEntity,
             traits = {
                 required = true,
             },
@@ -917,18 +879,12 @@ M.GetOfferSetInput = {
 M.OfferSetAssociatedEntity = {
     type = "structure",
     members = {
-        product = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        offer = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        product = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProductInformation }),
+        offer = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OfferInformation }),
     },
 }
 
@@ -959,22 +915,19 @@ M.GetOfferSetOutput = {
         buyerNotes = {
             type = "string",
         },
-        sellerOfRecord = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        sellerOfRecord = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SellerInformation }),
         badges = {
             type = "list",
-            member_type = "structure",
+            member = M.PurchaseOptionBadge,
             traits = {
                 required = true,
             },
         },
         associatedEntities = {
             type = "list",
-            member_type = "structure",
+            member = M.OfferSetAssociatedEntity,
             traits = {
                 required = true,
             },
@@ -992,7 +945,10 @@ M.GetOfferTermsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 10,
+            },
         },
         nextToken = {
             type = "string",
@@ -1102,7 +1058,7 @@ M.RateCardItem = {
         },
         dimensionLabels = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionLabel,
         },
         unit = {
             type = "string",
@@ -1144,21 +1100,15 @@ M.Selector = {
 M.ConfigurableUpfrontRateCardItem = {
     type = "structure",
     members = {
-        selector = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        constraints = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        selector = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Selector }),
+        constraints = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Constraints }),
         rateCard = {
             type = "list",
-            member_type = "structure",
+            member = M.RateCardItem,
             traits = {
                 required = true,
             },
@@ -1189,7 +1139,7 @@ M.ConfigurableUpfrontPricingTerm = {
         },
         rateCards = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigurableUpfrontRateCardItem,
         },
     },
 }
@@ -1214,7 +1164,7 @@ M.GrantItem = {
         },
         dimensionLabels = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionLabel,
         },
         unit = {
             type = "string",
@@ -1223,7 +1173,7 @@ M.GrantItem = {
             },
         },
         maxQuantity = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1260,7 +1210,7 @@ M.FixedUpfrontPricingTerm = {
         },
         grants = {
             type = "list",
-            member_type = "structure",
+            member = M.GrantItem,
             traits = {
                 required = true,
             },
@@ -1288,7 +1238,7 @@ M.FreeTrialPricingTerm = {
         },
         grants = {
             type = "list",
-            member_type = "structure",
+            member = M.GrantItem,
             traits = {
                 required = true,
             },
@@ -1342,7 +1292,7 @@ M.LegalTerm = {
         },
         documents = {
             type = "list",
-            member_type = "structure",
+            member = M.DocumentItem,
             traits = {
                 required = true,
             },
@@ -1391,7 +1341,7 @@ M.PaymentScheduleTerm = {
         },
         schedule = {
             type = "list",
-            member_type = "structure",
+            member = M.ScheduleItem,
             traits = {
                 required = true,
             },
@@ -1486,7 +1436,7 @@ M.UsageBasedRateCardItem = {
     members = {
         rateCard = {
             type = "list",
-            member_type = "structure",
+            member = M.RateCardItem,
             traits = {
                 required = true,
             },
@@ -1517,7 +1467,7 @@ M.UsageBasedPricingTerm = {
         },
         rateCards = {
             type = "list",
-            member_type = "structure",
+            member = M.UsageBasedRateCardItem,
             traits = {
                 required = true,
             },
@@ -1585,42 +1535,18 @@ M.VariablePaymentTerm = {
 M.OfferTerm = {
     type = "union",
     members = {
-        byolPricingTerm = {
-            type = "structure",
-        },
-        configurableUpfrontPricingTerm = {
-            type = "structure",
-        },
-        fixedUpfrontPricingTerm = {
-            type = "structure",
-        },
-        freeTrialPricingTerm = {
-            type = "structure",
-        },
-        legalTerm = {
-            type = "structure",
-        },
-        paymentScheduleTerm = {
-            type = "structure",
-        },
-        recurringPaymentTerm = {
-            type = "structure",
-        },
-        renewalTerm = {
-            type = "structure",
-        },
-        supportTerm = {
-            type = "structure",
-        },
-        usageBasedPricingTerm = {
-            type = "structure",
-        },
-        validityTerm = {
-            type = "structure",
-        },
-        variablePaymentTerm = {
-            type = "structure",
-        },
+        byolPricingTerm = M.ByolPricingTerm,
+        configurableUpfrontPricingTerm = M.ConfigurableUpfrontPricingTerm,
+        fixedUpfrontPricingTerm = M.FixedUpfrontPricingTerm,
+        freeTrialPricingTerm = M.FreeTrialPricingTerm,
+        legalTerm = M.LegalTerm,
+        paymentScheduleTerm = M.PaymentScheduleTerm,
+        recurringPaymentTerm = M.RecurringPaymentTerm,
+        renewalTerm = M.RenewalTerm,
+        supportTerm = M.SupportTerm,
+        usageBasedPricingTerm = M.UsageBasedPricingTerm,
+        validityTerm = M.ValidityTerm,
+        variablePaymentTerm = M.VariablePaymentTerm,
     },
 }
 
@@ -1629,7 +1555,7 @@ M.GetOfferTermsOutput = {
     members = {
         offerTerms = {
             type = "list",
-            member_type = "union",
+            member = M.OfferTerm,
             traits = {
                 required = true,
             },
@@ -1697,12 +1623,9 @@ M.GetProductOutput = {
                 required = true,
             },
         },
-        manufacturer = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        manufacturer = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SellerInformation }),
         logoThumbnailUrl = {
             type = "string",
             traits = {
@@ -1711,42 +1634,42 @@ M.GetProductOutput = {
         },
         fulfillmentOptionSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.FulfillmentOptionSummary,
             traits = {
                 required = true,
             },
         },
         categories = {
             type = "list",
-            member_type = "structure",
+            member = M.Category,
             traits = {
                 required = true,
             },
         },
         highlights = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         promotionalMedia = {
             type = "list",
-            member_type = "union",
+            member = M.PromotionalMedia,
             traits = {
                 required = true,
             },
         },
         resources = {
             type = "list",
-            member_type = "structure",
+            member = M.Resource,
             traits = {
                 required = true,
             },
         },
         sellerEngagements = {
             type = "list",
-            member_type = "structure",
+            member = M.SellerEngagement,
             traits = {
                 required = true,
             },
@@ -1764,7 +1687,10 @@ M.ListFulfillmentOptionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 25,
+            },
         },
         nextToken = {
             type = "string",
@@ -1861,11 +1787,11 @@ M.ContainerFulfillmentOption = {
         },
         operatingSystems = {
             type = "list",
-            member_type = "structure",
+            member = M.ContainerOperatingSystem,
         },
         awsSupportedServices = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsSupportedService,
         },
         releaseNotes = {
             type = "string",
@@ -1923,7 +1849,7 @@ M.DataExchangeFulfillmentOption = {
         },
         dataArtifacts = {
             type = "list",
-            member_type = "structure",
+            member = M.DataArtifact,
         },
     },
 }
@@ -1960,11 +1886,11 @@ M.Ec2ImageBuilderComponentFulfillmentOption = {
         },
         operatingSystems = {
             type = "list",
-            member_type = "structure",
+            member = M.ContainerOperatingSystem,
         },
         awsSupportedServices = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsSupportedService,
         },
         releaseNotes = {
             type = "string",
@@ -2025,7 +1951,7 @@ M.EksAddOnFulfillmentOption = {
         },
         operatingSystems = {
             type = "list",
-            member_type = "structure",
+            member = M.EksAddOnOperatingSystem,
         },
         releaseNotes = {
             type = "string",
@@ -2035,7 +1961,7 @@ M.EksAddOnFulfillmentOption = {
         },
         awsSupportedServices = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsSupportedService,
         },
     },
 }
@@ -2090,14 +2016,14 @@ M.HelmFulfillmentOption = {
         },
         operatingSystems = {
             type = "list",
-            member_type = "structure",
+            member = M.HelmOperatingSystem,
         },
         releaseNotes = {
             type = "string",
         },
         awsSupportedServices = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsSupportedService,
         },
         usageInstructions = {
             type = "string",
@@ -2210,9 +2136,7 @@ M.SageMakerAlgorithmFulfillmentOption = {
         usageInstructions = {
             type = "string",
         },
-        recommendation = {
-            type = "structure",
-        },
+        recommendation = M.SageMakerAlgorithmRecommendation,
     },
 }
 
@@ -2261,51 +2185,25 @@ M.SageMakerModelFulfillmentOption = {
         usageInstructions = {
             type = "string",
         },
-        recommendation = {
-            type = "structure",
-        },
+        recommendation = M.SageMakerModelRecommendation,
     },
 }
 
 M.FulfillmentOption = {
     type = "union",
     members = {
-        amazonMachineImageFulfillmentOption = {
-            type = "structure",
-        },
-        apiFulfillmentOption = {
-            type = "structure",
-        },
-        cloudFormationFulfillmentOption = {
-            type = "structure",
-        },
-        containerFulfillmentOption = {
-            type = "structure",
-        },
-        helmFulfillmentOption = {
-            type = "structure",
-        },
-        eksAddOnFulfillmentOption = {
-            type = "structure",
-        },
-        ec2ImageBuilderComponentFulfillmentOption = {
-            type = "structure",
-        },
-        dataExchangeFulfillmentOption = {
-            type = "structure",
-        },
-        professionalServicesFulfillmentOption = {
-            type = "structure",
-        },
-        saasFulfillmentOption = {
-            type = "structure",
-        },
-        sageMakerAlgorithmFulfillmentOption = {
-            type = "structure",
-        },
-        sageMakerModelFulfillmentOption = {
-            type = "structure",
-        },
+        amazonMachineImageFulfillmentOption = M.AmazonMachineImageFulfillmentOption,
+        apiFulfillmentOption = M.ApiFulfillmentOption,
+        cloudFormationFulfillmentOption = M.CloudFormationFulfillmentOption,
+        containerFulfillmentOption = M.ContainerFulfillmentOption,
+        helmFulfillmentOption = M.HelmFulfillmentOption,
+        eksAddOnFulfillmentOption = M.EksAddOnFulfillmentOption,
+        ec2ImageBuilderComponentFulfillmentOption = M.Ec2ImageBuilderComponentFulfillmentOption,
+        dataExchangeFulfillmentOption = M.DataExchangeFulfillmentOption,
+        professionalServicesFulfillmentOption = M.ProfessionalServicesFulfillmentOption,
+        saasFulfillmentOption = M.SaasFulfillmentOption,
+        sageMakerAlgorithmFulfillmentOption = M.SageMakerAlgorithmFulfillmentOption,
+        sageMakerModelFulfillmentOption = M.SageMakerModelFulfillmentOption,
     },
 }
 
@@ -2314,7 +2212,7 @@ M.ListFulfillmentOptionsOutput = {
     members = {
         fulfillmentOptions = {
             type = "list",
-            member_type = "union",
+            member = M.FulfillmentOption,
             traits = {
                 required = true,
             },
@@ -2344,7 +2242,7 @@ M.PurchaseOptionFilter = {
         },
         filterValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2357,10 +2255,13 @@ M.ListPurchaseOptionsInput = {
     members = {
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.PurchaseOptionFilter,
         },
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 25,
+            },
         },
         nextToken = {
             type = "string",
@@ -2371,21 +2272,13 @@ M.ListPurchaseOptionsInput = {
 M.PurchaseOptionAssociatedEntity = {
     type = "structure",
     members = {
-        product = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        offer = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        offerSet = {
-            type = "structure",
-        },
+        product = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProductInformation }),
+        offer = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OfferInformation }),
+        offerSet = M.OfferSetInformation,
     },
 }
 
@@ -2424,19 +2317,16 @@ M.PurchaseOptionSummary = {
         expirationTime = {
             type = "timestamp",
         },
-        sellerOfRecord = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        sellerOfRecord = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SellerInformation }),
         badges = {
             type = "list",
-            member_type = "structure",
+            member = M.PurchaseOptionBadge,
         },
         associatedEntities = {
             type = "list",
-            member_type = "structure",
+            member = M.PurchaseOptionAssociatedEntity,
             traits = {
                 required = true,
             },
@@ -2449,7 +2339,7 @@ M.ListPurchaseOptionsOutput = {
     members = {
         purchaseOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.PurchaseOptionSummary,
         },
         nextToken = {
             type = "string",
@@ -2491,7 +2381,7 @@ M.SearchFilter = {
         },
         filterValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2507,11 +2397,11 @@ M.SearchFacetsInput = {
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.SearchFilter,
         },
         facetTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -2538,7 +2428,7 @@ M.ListingFacet = {
             type = "string",
         },
         count = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -2550,15 +2440,15 @@ M.SearchFacetsOutput = {
     type = "structure",
     members = {
         totalResults = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         listingFacets = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
             traits = {
                 required = true,
             },
@@ -2587,16 +2477,25 @@ M.SearchListingsInput = {
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.SearchFilter,
         },
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 25,
+            },
         },
         sortBy = {
             type = "string",
+            traits = {
+                default = "RELEVANCE",
+            },
         },
         sortOrder = {
             type = "string",
+            traits = {
+                default = "DESCENDING",
+            },
         },
         nextToken = {
             type = "string",
@@ -2607,9 +2506,7 @@ M.SearchListingsInput = {
 M.ListingSummaryAssociatedEntity = {
     type = "structure",
     members = {
-        product = {
-            type = "structure",
-        },
+        product = M.ProductInformation,
     },
 }
 
@@ -2628,12 +2525,9 @@ M.ListingSummary = {
                 required = true,
             },
         },
-        publisher = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        publisher = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SellerInformation }),
         catalog = {
             type = "string",
             traits = {
@@ -2654,48 +2548,45 @@ M.ListingSummary = {
         },
         categories = {
             type = "list",
-            member_type = "structure",
+            member = M.Category,
             traits = {
                 required = true,
             },
         },
         fulfillmentOptionSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.FulfillmentOptionSummary,
             traits = {
                 required = true,
             },
         },
         badges = {
             type = "list",
-            member_type = "structure",
+            member = M.ListingBadge,
             traits = {
                 required = true,
             },
         },
-        reviewSummary = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        reviewSummary = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ReviewSummary }),
         pricingModels = {
             type = "list",
-            member_type = "structure",
+            member = M.PricingModel,
             traits = {
                 required = true,
             },
         },
         pricingUnits = {
             type = "list",
-            member_type = "structure",
+            member = M.PricingUnit,
             traits = {
                 required = true,
             },
         },
         associatedEntities = {
             type = "list",
-            member_type = "structure",
+            member = M.ListingSummaryAssociatedEntity,
             traits = {
                 required = true,
             },
@@ -2707,14 +2598,14 @@ M.SearchListingsOutput = {
     type = "structure",
     members = {
         totalResults = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         listingSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ListingSummary,
             traits = {
                 required = true,
             },

@@ -68,7 +68,7 @@ M.Message = {
             },
         },
         groupNumber = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -78,7 +78,7 @@ M.Statement = {
     members = {
         messages = {
             type = "list",
-            member_type = "structure",
+            member = M.Message,
             traits = {
                 required = true,
             },
@@ -94,13 +94,13 @@ M.Prompt = {
     members = {
         messages = {
             type = "list",
-            member_type = "structure",
+            member = M.Message,
             traits = {
                 required = true,
             },
         },
         maxAttempts = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -164,14 +164,10 @@ M.CreateBotVersionOutput = {
         },
         intents = {
             type = "list",
-            member_type = "structure",
+            member = M.Intent,
         },
-        clarificationPrompt = {
-            type = "structure",
-        },
-        abortStatement = {
-            type = "structure",
-        },
+        clarificationPrompt = M.Prompt,
+        abortStatement = M.Statement,
         status = {
             type = "string",
         },
@@ -185,7 +181,7 @@ M.CreateBotVersionOutput = {
             type = "timestamp",
         },
         idleSessionTTLInSeconds = {
-            type = "number",
+            type = "integer",
         },
         voiceId = {
             type = "string",
@@ -294,18 +290,12 @@ M.CodeHook = {
 M.FollowUpPrompt = {
     type = "structure",
     members = {
-        prompt = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        rejectionStatement = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        prompt = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Prompt }),
+        rejectionStatement = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Statement }),
     },
 }
 
@@ -323,9 +313,7 @@ M.FulfillmentActivity = {
                 required = true,
             },
         },
-        codeHook = {
-            type = "structure",
-        },
+        codeHook = M.CodeHook,
     },
 }
 
@@ -372,13 +360,13 @@ M.OutputContext = {
             },
         },
         timeToLiveInSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         turnsToLive = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -403,7 +391,7 @@ M.SlotDefaultValueSpec = {
     members = {
         defaultValueList = {
             type = "list",
-            member_type = "structure",
+            member = M.SlotDefaultValue,
             traits = {
                 required = true,
             },
@@ -445,15 +433,13 @@ M.Slot = {
         slotTypeVersion = {
             type = "string",
         },
-        valueElicitationPrompt = {
-            type = "structure",
-        },
+        valueElicitationPrompt = M.Prompt,
         priority = {
-            type = "number",
+            type = "integer",
         },
         sampleUtterances = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         responseCard = {
             type = "string",
@@ -461,9 +447,7 @@ M.Slot = {
         obfuscationSetting = {
             type = "string",
         },
-        defaultValueSpec = {
-            type = "structure",
-        },
+        defaultValueSpec = M.SlotDefaultValueSpec,
     },
 }
 
@@ -478,30 +462,18 @@ M.CreateIntentVersionOutput = {
         },
         slots = {
             type = "list",
-            member_type = "structure",
+            member = M.Slot,
         },
         sampleUtterances = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        confirmationPrompt = {
-            type = "structure",
-        },
-        rejectionStatement = {
-            type = "structure",
-        },
-        followUpPrompt = {
-            type = "structure",
-        },
-        conclusionStatement = {
-            type = "structure",
-        },
-        dialogCodeHook = {
-            type = "structure",
-        },
-        fulfillmentActivity = {
-            type = "structure",
-        },
+        confirmationPrompt = M.Prompt,
+        rejectionStatement = M.Statement,
+        followUpPrompt = M.FollowUpPrompt,
+        conclusionStatement = M.Statement,
+        dialogCodeHook = M.CodeHook,
+        fulfillmentActivity = M.FulfillmentActivity,
         parentIntentSignature = {
             type = "string",
         },
@@ -517,16 +489,14 @@ M.CreateIntentVersionOutput = {
         checksum = {
             type = "string",
         },
-        kendraConfiguration = {
-            type = "structure",
-        },
+        kendraConfiguration = M.KendraConfiguration,
         inputContexts = {
             type = "list",
-            member_type = "structure",
+            member = M.InputContext,
         },
         outputContexts = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputContext,
         },
     },
 }
@@ -558,7 +528,7 @@ M.EnumerationValue = {
         },
         synonyms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -578,9 +548,7 @@ M.SlotTypeRegexConfiguration = {
 M.SlotTypeConfiguration = {
     type = "structure",
     members = {
-        regexConfiguration = {
-            type = "structure",
-        },
+        regexConfiguration = M.SlotTypeRegexConfiguration,
     },
 }
 
@@ -600,7 +568,7 @@ M.CreateSlotTypeVersionOutput = {
         },
         enumerationValues = {
             type = "list",
-            member_type = "structure",
+            member = M.EnumerationValue,
         },
         lastUpdatedDate = {
             type = "timestamp",
@@ -622,7 +590,7 @@ M.CreateSlotTypeVersionOutput = {
         },
         slotTypeConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.SlotTypeConfiguration,
         },
     },
 }
@@ -670,9 +638,7 @@ M.ResourceInUseException = {
         referenceType = {
             type = "string",
         },
-        exampleReference = {
-            type = "structure",
-        },
+        exampleReference = M.ResourceReference,
     },
 }
 
@@ -892,20 +858,16 @@ M.GetBotOutput = {
         },
         intents = {
             type = "list",
-            member_type = "structure",
+            member = M.Intent,
         },
         enableModelImprovements = {
             type = "boolean",
         },
         nluIntentConfidenceThreshold = {
-            type = "number",
+            type = "double",
         },
-        clarificationPrompt = {
-            type = "structure",
-        },
-        abortStatement = {
-            type = "structure",
-        },
+        clarificationPrompt = M.Prompt,
+        abortStatement = M.Statement,
         status = {
             type = "string",
         },
@@ -919,7 +881,7 @@ M.GetBotOutput = {
             type = "timestamp",
         },
         idleSessionTTLInSeconds = {
-            type = "number",
+            type = "integer",
         },
         voiceId = {
             type = "string",
@@ -998,7 +960,7 @@ M.ConversationLogsResponse = {
     members = {
         logSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.LogSettingsResponse,
         },
         iamRoleArn = {
             type = "string",
@@ -1030,9 +992,7 @@ M.GetBotAliasOutput = {
         checksum = {
             type = "string",
         },
-        conversationLogs = {
-            type = "structure",
-        },
+        conversationLogs = M.ConversationLogsResponse,
     },
 }
 
@@ -1053,7 +1013,7 @@ M.GetBotAliasesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1091,9 +1051,7 @@ M.BotAliasMetadata = {
         checksum = {
             type = "string",
         },
-        conversationLogs = {
-            type = "structure",
-        },
+        conversationLogs = M.ConversationLogsResponse,
     },
 }
 
@@ -1102,7 +1060,7 @@ M.GetBotAliasesOutput = {
     members = {
         BotAliases = {
             type = "list",
-            member_type = "structure",
+            member = M.BotAliasMetadata,
         },
         nextToken = {
             type = "string",
@@ -1173,8 +1131,8 @@ M.GetBotChannelAssociationOutput = {
         },
         botConfiguration = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         status = {
             type = "string",
@@ -1209,7 +1167,7 @@ M.GetBotChannelAssociationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1246,8 +1204,8 @@ M.BotChannelAssociation = {
         },
         botConfiguration = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         status = {
             type = "string",
@@ -1263,7 +1221,7 @@ M.GetBotChannelAssociationsOutput = {
     members = {
         botChannelAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.BotChannelAssociation,
         },
         nextToken = {
             type = "string",
@@ -1281,7 +1239,7 @@ M.GetBotsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1324,7 +1282,7 @@ M.GetBotsOutput = {
     members = {
         bots = {
             type = "list",
-            member_type = "structure",
+            member = M.BotMetadata,
         },
         nextToken = {
             type = "string",
@@ -1349,7 +1307,7 @@ M.GetBotVersionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1362,7 +1320,7 @@ M.GetBotVersionsOutput = {
     members = {
         bots = {
             type = "list",
-            member_type = "structure",
+            member = M.BotMetadata,
         },
         nextToken = {
             type = "string",
@@ -1400,11 +1358,11 @@ M.GetBuiltinIntentOutput = {
         },
         supportedLocales = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         slots = {
             type = "list",
-            member_type = "structure",
+            member = M.BuiltinIntentSlot,
         },
     },
 }
@@ -1431,7 +1389,7 @@ M.GetBuiltinIntentsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1447,7 +1405,7 @@ M.BuiltinIntentMetadata = {
         },
         supportedLocales = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1457,7 +1415,7 @@ M.GetBuiltinIntentsOutput = {
     members = {
         intents = {
             type = "list",
-            member_type = "structure",
+            member = M.BuiltinIntentMetadata,
         },
         nextToken = {
             type = "string",
@@ -1487,7 +1445,7 @@ M.GetBuiltinSlotTypesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1503,7 +1461,7 @@ M.BuiltinSlotTypeMetadata = {
         },
         supportedLocales = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1513,7 +1471,7 @@ M.GetBuiltinSlotTypesOutput = {
     members = {
         slotTypes = {
             type = "list",
-            member_type = "structure",
+            member = M.BuiltinSlotTypeMetadata,
         },
         nextToken = {
             type = "string",
@@ -1643,7 +1601,7 @@ M.GetImportOutput = {
         },
         failureReason = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         createdDate = {
             type = "timestamp",
@@ -1682,30 +1640,18 @@ M.GetIntentOutput = {
         },
         slots = {
             type = "list",
-            member_type = "structure",
+            member = M.Slot,
         },
         sampleUtterances = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        confirmationPrompt = {
-            type = "structure",
-        },
-        rejectionStatement = {
-            type = "structure",
-        },
-        followUpPrompt = {
-            type = "structure",
-        },
-        conclusionStatement = {
-            type = "structure",
-        },
-        dialogCodeHook = {
-            type = "structure",
-        },
-        fulfillmentActivity = {
-            type = "structure",
-        },
+        confirmationPrompt = M.Prompt,
+        rejectionStatement = M.Statement,
+        followUpPrompt = M.FollowUpPrompt,
+        conclusionStatement = M.Statement,
+        dialogCodeHook = M.CodeHook,
+        fulfillmentActivity = M.FulfillmentActivity,
         parentIntentSignature = {
             type = "string",
         },
@@ -1721,16 +1667,14 @@ M.GetIntentOutput = {
         checksum = {
             type = "string",
         },
-        kendraConfiguration = {
-            type = "structure",
-        },
+        kendraConfiguration = M.KendraConfiguration,
         inputContexts = {
             type = "list",
-            member_type = "structure",
+            member = M.InputContext,
         },
         outputContexts = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputContext,
         },
     },
 }
@@ -1745,7 +1689,7 @@ M.GetIntentsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1785,7 +1729,7 @@ M.GetIntentsOutput = {
     members = {
         intents = {
             type = "list",
-            member_type = "structure",
+            member = M.IntentMetadata,
         },
         nextToken = {
             type = "string",
@@ -1810,7 +1754,7 @@ M.GetIntentVersionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1823,7 +1767,7 @@ M.GetIntentVersionsOutput = {
     members = {
         intents = {
             type = "list",
-            member_type = "structure",
+            member = M.IntentMetadata,
         },
         nextToken = {
             type = "string",
@@ -1860,11 +1804,11 @@ M.MigrationAlert = {
         },
         details = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         referenceURLs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1912,7 +1856,7 @@ M.GetMigrationOutput = {
         },
         alerts = {
             type = "list",
-            member_type = "structure",
+            member = M.MigrationAlert,
         },
     },
 }
@@ -1955,7 +1899,7 @@ M.GetMigrationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2007,7 +1951,7 @@ M.GetMigrationsOutput = {
     members = {
         migrationSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.MigrationSummary,
         },
         nextToken = {
             type = "string",
@@ -2046,7 +1990,7 @@ M.GetSlotTypeOutput = {
         },
         enumerationValues = {
             type = "list",
-            member_type = "structure",
+            member = M.EnumerationValue,
         },
         lastUpdatedDate = {
             type = "timestamp",
@@ -2068,7 +2012,7 @@ M.GetSlotTypeOutput = {
         },
         slotTypeConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.SlotTypeConfiguration,
         },
     },
 }
@@ -2083,7 +2027,7 @@ M.GetSlotTypesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2123,7 +2067,7 @@ M.GetSlotTypesOutput = {
     members = {
         slotTypes = {
             type = "list",
-            member_type = "structure",
+            member = M.SlotTypeMetadata,
         },
         nextToken = {
             type = "string",
@@ -2148,7 +2092,7 @@ M.GetSlotTypeVersionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2161,7 +2105,7 @@ M.GetSlotTypeVersionsOutput = {
     members = {
         slotTypes = {
             type = "list",
-            member_type = "structure",
+            member = M.SlotTypeMetadata,
         },
         nextToken = {
             type = "string",
@@ -2186,7 +2130,7 @@ M.GetUtterancesViewInput = {
         },
         botVersions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "bot_versions",
                 required = true,
@@ -2209,10 +2153,10 @@ M.UtteranceData = {
             type = "string",
         },
         count = {
-            type = "number",
+            type = "integer",
         },
         distinctUsers = {
-            type = "number",
+            type = "integer",
         },
         firstUtteredDate = {
             type = "timestamp",
@@ -2231,7 +2175,7 @@ M.UtteranceList = {
         },
         utterances = {
             type = "list",
-            member_type = "structure",
+            member = M.UtteranceData,
         },
     },
 }
@@ -2244,7 +2188,7 @@ M.GetUtterancesViewOutput = {
         },
         utterances = {
             type = "list",
-            member_type = "structure",
+            member = M.UtteranceList,
         },
     },
 }
@@ -2285,7 +2229,7 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2310,22 +2254,18 @@ M.PutBotInput = {
         },
         intents = {
             type = "list",
-            member_type = "structure",
+            member = M.Intent,
         },
         enableModelImprovements = {
             type = "boolean",
         },
         nluIntentConfidenceThreshold = {
-            type = "number",
+            type = "double",
         },
-        clarificationPrompt = {
-            type = "structure",
-        },
-        abortStatement = {
-            type = "structure",
-        },
+        clarificationPrompt = M.Prompt,
+        abortStatement = M.Statement,
         idleSessionTTLInSeconds = {
-            type = "number",
+            type = "integer",
         },
         voiceId = {
             type = "string",
@@ -2356,7 +2296,7 @@ M.PutBotInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2372,20 +2312,16 @@ M.PutBotOutput = {
         },
         intents = {
             type = "list",
-            member_type = "structure",
+            member = M.Intent,
         },
         enableModelImprovements = {
             type = "boolean",
         },
         nluIntentConfidenceThreshold = {
-            type = "number",
+            type = "double",
         },
-        clarificationPrompt = {
-            type = "structure",
-        },
-        abortStatement = {
-            type = "structure",
-        },
+        clarificationPrompt = M.Prompt,
+        abortStatement = M.Statement,
         status = {
             type = "string",
         },
@@ -2399,7 +2335,7 @@ M.PutBotOutput = {
             type = "timestamp",
         },
         idleSessionTTLInSeconds = {
-            type = "number",
+            type = "integer",
         },
         voiceId = {
             type = "string",
@@ -2424,7 +2360,7 @@ M.PutBotOutput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2461,7 +2397,7 @@ M.ConversationLogsRequest = {
     members = {
         logSettings = {
             type = "list",
-            member_type = "structure",
+            member = M.LogSettingsRequest,
             traits = {
                 required = true,
             },
@@ -2504,12 +2440,10 @@ M.PutBotAliasInput = {
         checksum = {
             type = "string",
         },
-        conversationLogs = {
-            type = "structure",
-        },
+        conversationLogs = M.ConversationLogsRequest,
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2538,12 +2472,10 @@ M.PutBotAliasOutput = {
         checksum = {
             type = "string",
         },
-        conversationLogs = {
-            type = "structure",
-        },
+        conversationLogs = M.ConversationLogsResponse,
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2563,30 +2495,18 @@ M.PutIntentInput = {
         },
         slots = {
             type = "list",
-            member_type = "structure",
+            member = M.Slot,
         },
         sampleUtterances = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        confirmationPrompt = {
-            type = "structure",
-        },
-        rejectionStatement = {
-            type = "structure",
-        },
-        followUpPrompt = {
-            type = "structure",
-        },
-        conclusionStatement = {
-            type = "structure",
-        },
-        dialogCodeHook = {
-            type = "structure",
-        },
-        fulfillmentActivity = {
-            type = "structure",
-        },
+        confirmationPrompt = M.Prompt,
+        rejectionStatement = M.Statement,
+        followUpPrompt = M.FollowUpPrompt,
+        conclusionStatement = M.Statement,
+        dialogCodeHook = M.CodeHook,
+        fulfillmentActivity = M.FulfillmentActivity,
         parentIntentSignature = {
             type = "string",
         },
@@ -2596,16 +2516,14 @@ M.PutIntentInput = {
         createVersion = {
             type = "boolean",
         },
-        kendraConfiguration = {
-            type = "structure",
-        },
+        kendraConfiguration = M.KendraConfiguration,
         inputContexts = {
             type = "list",
-            member_type = "structure",
+            member = M.InputContext,
         },
         outputContexts = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputContext,
         },
     },
 }
@@ -2621,30 +2539,18 @@ M.PutIntentOutput = {
         },
         slots = {
             type = "list",
-            member_type = "structure",
+            member = M.Slot,
         },
         sampleUtterances = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        confirmationPrompt = {
-            type = "structure",
-        },
-        rejectionStatement = {
-            type = "structure",
-        },
-        followUpPrompt = {
-            type = "structure",
-        },
-        conclusionStatement = {
-            type = "structure",
-        },
-        dialogCodeHook = {
-            type = "structure",
-        },
-        fulfillmentActivity = {
-            type = "structure",
-        },
+        confirmationPrompt = M.Prompt,
+        rejectionStatement = M.Statement,
+        followUpPrompt = M.FollowUpPrompt,
+        conclusionStatement = M.Statement,
+        dialogCodeHook = M.CodeHook,
+        fulfillmentActivity = M.FulfillmentActivity,
         parentIntentSignature = {
             type = "string",
         },
@@ -2663,16 +2569,14 @@ M.PutIntentOutput = {
         createVersion = {
             type = "boolean",
         },
-        kendraConfiguration = {
-            type = "structure",
-        },
+        kendraConfiguration = M.KendraConfiguration,
         inputContexts = {
             type = "list",
-            member_type = "structure",
+            member = M.InputContext,
         },
         outputContexts = {
             type = "list",
-            member_type = "structure",
+            member = M.OutputContext,
         },
     },
 }
@@ -2692,7 +2596,7 @@ M.PutSlotTypeInput = {
         },
         enumerationValues = {
             type = "list",
-            member_type = "structure",
+            member = M.EnumerationValue,
         },
         checksum = {
             type = "string",
@@ -2708,7 +2612,7 @@ M.PutSlotTypeInput = {
         },
         slotTypeConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.SlotTypeConfiguration,
         },
     },
 }
@@ -2724,7 +2628,7 @@ M.PutSlotTypeOutput = {
         },
         enumerationValues = {
             type = "list",
-            member_type = "structure",
+            member = M.EnumerationValue,
         },
         lastUpdatedDate = {
             type = "timestamp",
@@ -2749,7 +2653,7 @@ M.PutSlotTypeOutput = {
         },
         slotTypeConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.SlotTypeConfiguration,
         },
     },
 }
@@ -2777,7 +2681,7 @@ M.StartImportInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2802,7 +2706,7 @@ M.StartImportOutput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         createdDate = {
             type = "timestamp",
@@ -2888,7 +2792,7 @@ M.TagResourceInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -2912,7 +2816,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,

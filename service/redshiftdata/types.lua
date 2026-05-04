@@ -67,7 +67,7 @@ M.BatchExecuteStatementInput = {
     members = {
         Sqls = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -92,7 +92,7 @@ M.BatchExecuteStatementInput = {
         },
         Parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.SqlParameter,
         },
         WorkgroupName = {
             type = "string",
@@ -104,7 +104,7 @@ M.BatchExecuteStatementInput = {
             type = "string",
         },
         SessionKeepAliveSeconds = {
-            type = "number",
+            type = "integer",
         },
         SessionId = {
             type = "string",
@@ -129,7 +129,7 @@ M.BatchExecuteStatementOutput = {
         },
         DbGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Database = {
             type = "string",
@@ -237,12 +237,21 @@ M.ColumnMetadata = {
     members = {
         isCaseSensitive = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         isCurrency = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         isSigned = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         label = {
             type = "string",
@@ -251,13 +260,22 @@ M.ColumnMetadata = {
             type = "string",
         },
         nullable = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         precision = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         scale = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         schemaName = {
             type = "string",
@@ -269,7 +287,10 @@ M.ColumnMetadata = {
             type = "string",
         },
         length = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         columnDefault = {
             type = "string",
@@ -318,7 +339,10 @@ M.SubStatementData = {
             },
         },
         Duration = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Error = {
             type = "string",
@@ -336,13 +360,22 @@ M.SubStatementData = {
             type = "string",
         },
         ResultRows = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         ResultSize = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         RedshiftQueryId = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         HasResultSet = {
             type = "boolean",
@@ -372,7 +405,10 @@ M.DescribeStatementOutput = {
             type = "string",
         },
         Duration = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         Error = {
             type = "string",
@@ -387,7 +423,10 @@ M.DescribeStatementOutput = {
             type = "timestamp",
         },
         RedshiftPid = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         HasResultSet = {
             type = "boolean",
@@ -396,21 +435,30 @@ M.DescribeStatementOutput = {
             type = "string",
         },
         ResultRows = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         ResultSize = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         RedshiftQueryId = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         QueryParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.SqlParameter,
         },
         SubStatements = {
             type = "list",
-            member_type = "structure",
+            member = M.SubStatementData,
         },
         WorkgroupName = {
             type = "string",
@@ -455,7 +503,10 @@ M.DescribeTableInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         WorkgroupName = {
             type = "string",
@@ -471,7 +522,7 @@ M.DescribeTableOutput = {
         },
         ColumnList = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnMetadata,
         },
         NextToken = {
             type = "string",
@@ -527,7 +578,7 @@ M.ExecuteStatementInput = {
         },
         Parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.SqlParameter,
         },
         WorkgroupName = {
             type = "string",
@@ -539,7 +590,7 @@ M.ExecuteStatementInput = {
             type = "string",
         },
         SessionKeepAliveSeconds = {
-            type = "number",
+            type = "integer",
         },
         SessionId = {
             type = "string",
@@ -564,7 +615,7 @@ M.ExecuteStatementOutput = {
         },
         DbGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Database = {
             type = "string",
@@ -591,10 +642,10 @@ M.Field = {
             type = "boolean",
         },
         longValue = {
-            type = "number",
+            type = "long",
         },
         doubleValue = {
-            type = "number",
+            type = "double",
         },
         stringValue = {
             type = "string",
@@ -634,17 +685,20 @@ M.GetStatementResultOutput = {
     members = {
         Records = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
             traits = {
                 required = true,
             },
         },
         ColumnMetadata = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnMetadata,
         },
         TotalNumRows = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         NextToken = {
             type = "string",
@@ -672,17 +726,20 @@ M.GetStatementResultV2Output = {
     members = {
         Records = {
             type = "list",
-            member_type = "union",
+            member = M.QueryRecords,
             traits = {
                 required = true,
             },
         },
         ColumnMetadata = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnMetadata,
         },
         TotalNumRows = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         ResultFormat = {
             type = "string",
@@ -715,7 +772,10 @@ M.ListDatabasesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         WorkgroupName = {
             type = "string",
@@ -728,7 +788,7 @@ M.ListDatabasesOutput = {
     members = {
         Databases = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -764,7 +824,10 @@ M.ListSchemasInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         WorkgroupName = {
             type = "string",
@@ -777,7 +840,7 @@ M.ListSchemasOutput = {
     members = {
         Schemas = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -792,7 +855,10 @@ M.ListStatementsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         StatementName = {
             type = "string",
@@ -829,7 +895,7 @@ M.StatementData = {
         },
         QueryStrings = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SecretArn = {
             type = "string",
@@ -848,7 +914,7 @@ M.StatementData = {
         },
         QueryParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.SqlParameter,
         },
         IsBatchStatement = {
             type = "boolean",
@@ -867,7 +933,7 @@ M.ListStatementsOutput = {
     members = {
         Statements = {
             type = "list",
-            member_type = "structure",
+            member = M.StatementData,
             traits = {
                 required = true,
             },
@@ -909,7 +975,10 @@ M.ListTablesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         WorkgroupName = {
             type = "string",
@@ -937,7 +1006,7 @@ M.ListTablesOutput = {
     members = {
         Tables = {
             type = "list",
-            member_type = "structure",
+            member = M.TableMember,
         },
         NextToken = {
             type = "string",

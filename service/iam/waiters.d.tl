@@ -1,0 +1,10 @@
+local types = require("iam.types")
+
+local record M
+    wait_until_instance_profile_exists: function(client: table, input: table, options: table): table, table
+    wait_until_policy_exists: function(client: table, input: table, options: table): table, table
+    wait_until_role_exists: function(client: table, input: table, options: table): table, table
+    wait_until_user_exists: function(client: table, input: table, options: table): table, table
+end
+
+return M

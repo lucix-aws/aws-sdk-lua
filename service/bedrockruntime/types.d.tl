@@ -491,6 +491,18 @@ local record ValidationException
     message: string
 end
 
+local type ServiceTierType = "priority" | "default" | "flex" | "reserved"
+
+local type AsyncInvokeStatus = "InProgress" | "Completed" | "Failed"
+
+local type GuardrailOutputScope = "INTERVENTIONS" | "FULL"
+
+local type StopReason = "end_turn" | "tool_use" | "max_tokens" | "stop_sequence" | "guardrail_intervened" | "content_filtered" | "malformed_model_output" | "malformed_tool_use" | "model_context_window_exceeded"
+
+local type GuardrailContentSource = "INPUT" | "OUTPUT"
+
+local type SortOrder = "Ascending" | "Descending"
+
 local type SortAsyncInvocationBy = "SubmissionTime"
 
 local type Trace = "ENABLED" | "DISABLED" | "ENABLED_FULL"
@@ -498,18 +510,6 @@ local type Trace = "ENABLED" | "DISABLED" | "ENABLED_FULL"
 local type PerformanceConfigLatency = "standard" | "optimized"
 
 local type GuardrailAction = "NONE" | "GUARDRAIL_INTERVENED"
-
-local type SortOrder = "Ascending" | "Descending"
-
-local type AsyncInvokeStatus = "InProgress" | "Completed" | "Failed"
-
-local type ServiceTierType = "priority" | "default" | "flex" | "reserved"
-
-local type GuardrailContentSource = "INPUT" | "OUTPUT"
-
-local type StopReason = "end_turn" | "tool_use" | "max_tokens" | "stop_sequence" | "guardrail_intervened" | "content_filtered" | "malformed_model_output" | "malformed_tool_use" | "model_context_window_exceeded"
-
-local type GuardrailOutputScope = "INTERVENTIONS" | "FULL"
 
 local record M
     ApplyGuardrailInput: ApplyGuardrailInput

@@ -51,7 +51,7 @@ M.AssociateProfileInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -101,9 +101,7 @@ M.ProfileAssociation = {
 M.AssociateProfileOutput = {
     type = "structure",
     members = {
-        ProfileAssociation = {
-            type = "structure",
-        },
+        ProfileAssociation = M.ProfileAssociation,
     },
 }
 
@@ -261,9 +259,7 @@ M.ProfileResourceAssociation = {
 M.AssociateResourceToProfileOutput = {
     type = "structure",
     members = {
-        ProfileResourceAssociation = {
-            type = "structure",
-        },
+        ProfileResourceAssociation = M.ProfileResourceAssociation,
     },
 }
 
@@ -294,7 +290,7 @@ M.CreateProfileInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -344,9 +340,7 @@ M.Profile = {
 M.CreateProfileOutput = {
     type = "structure",
     members = {
-        Profile = {
-            type = "structure",
-        },
+        Profile = M.Profile,
     },
 }
 
@@ -366,9 +360,7 @@ M.DeleteProfileInput = {
 M.DeleteProfileOutput = {
     type = "structure",
     members = {
-        Profile = {
-            type = "structure",
-        },
+        Profile = M.Profile,
     },
 }
 
@@ -395,9 +387,7 @@ M.DisassociateProfileInput = {
 M.DisassociateProfileOutput = {
     type = "structure",
     members = {
-        ProfileAssociation = {
-            type = "structure",
-        },
+        ProfileAssociation = M.ProfileAssociation,
     },
 }
 
@@ -424,9 +414,7 @@ M.DisassociateResourceFromProfileInput = {
 M.DisassociateResourceFromProfileOutput = {
     type = "structure",
     members = {
-        ProfileResourceAssociation = {
-            type = "structure",
-        },
+        ProfileResourceAssociation = M.ProfileResourceAssociation,
     },
 }
 
@@ -446,9 +434,7 @@ M.GetProfileInput = {
 M.GetProfileOutput = {
     type = "structure",
     members = {
-        Profile = {
-            type = "structure",
-        },
+        Profile = M.Profile,
     },
 }
 
@@ -468,9 +454,7 @@ M.GetProfileAssociationInput = {
 M.GetProfileAssociationOutput = {
     type = "structure",
     members = {
-        ProfileAssociation = {
-            type = "structure",
-        },
+        ProfileAssociation = M.ProfileAssociation,
     },
 }
 
@@ -490,9 +474,7 @@ M.GetProfileResourceAssociationInput = {
 M.GetProfileResourceAssociationOutput = {
     type = "structure",
     members = {
-        ProfileResourceAssociation = {
-            type = "structure",
-        },
+        ProfileResourceAssociation = M.ProfileResourceAssociation,
     },
 }
 
@@ -522,7 +504,7 @@ M.ListProfileAssociationsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -541,7 +523,7 @@ M.ListProfileAssociationsOutput = {
     members = {
         ProfileAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.ProfileAssociation,
         },
         NextToken = {
             type = "string",
@@ -566,7 +548,7 @@ M.ListProfileResourceAssociationsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -585,7 +567,7 @@ M.ListProfileResourceAssociationsOutput = {
     members = {
         ProfileResourceAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.ProfileResourceAssociation,
         },
         NextToken = {
             type = "string",
@@ -597,7 +579,7 @@ M.ListProfilesInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -634,7 +616,7 @@ M.ListProfilesOutput = {
     members = {
         ProfileSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ProfileSummary,
         },
         NextToken = {
             type = "string",
@@ -660,8 +642,8 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -681,8 +663,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -706,7 +688,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -741,9 +723,7 @@ M.UpdateProfileResourceAssociationInput = {
 M.UpdateProfileResourceAssociationOutput = {
     type = "structure",
     members = {
-        ProfileResourceAssociation = {
-            type = "structure",
-        },
+        ProfileResourceAssociation = M.ProfileResourceAssociation,
     },
 }
 

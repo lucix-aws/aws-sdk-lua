@@ -4,10 +4,16 @@ M.Entity = {
     type = "structure",
     members = {
         StartTime = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         EndTime = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         Category = {
             type = "string",
@@ -19,7 +25,7 @@ M.Entity = {
             type = "string",
         },
         Confidence = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -33,10 +39,16 @@ M.Item = {
     type = "structure",
     members = {
         StartTime = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         EndTime = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         Type = {
             type = "string",
@@ -46,12 +58,15 @@ M.Item = {
         },
         VocabularyFilterMatch = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Speaker = {
             type = "string",
         },
         Confidence = {
-            type = "number",
+            type = "double",
         },
         Stable = {
             type = "boolean",
@@ -67,11 +82,11 @@ M.Alternative = {
         },
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.Item,
         },
         Entities = {
             type = "list",
-            member_type = "structure",
+            member = M.Entity,
         },
     },
 }
@@ -94,8 +109,9 @@ M.ChannelDefinition = {
     type = "structure",
     members = {
         ChannelId = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -142,23 +158,17 @@ M.ConfigurationEvent = {
     members = {
         ChannelDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.ChannelDefinition,
         },
-        PostCallAnalyticsSettings = {
-            type = "structure",
-        },
+        PostCallAnalyticsSettings = M.PostCallAnalyticsSettings,
     },
 }
 
 M.AudioStream = {
     type = "union",
     members = {
-        AudioEvent = {
-            type = "structure",
-        },
-        ConfigurationEvent = {
-            type = "structure",
-        },
+        AudioEvent = M.AudioEvent,
+        ConfigurationEvent = M.ConfigurationEvent,
     },
 }
 
@@ -176,10 +186,10 @@ M.CallAnalyticsEntity = {
     type = "structure",
     members = {
         BeginOffsetMillis = {
-            type = "number",
+            type = "long",
         },
         EndOffsetMillis = {
-            type = "number",
+            type = "long",
         },
         Category = {
             type = "string",
@@ -191,7 +201,7 @@ M.CallAnalyticsEntity = {
             type = "string",
         },
         Confidence = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -200,10 +210,10 @@ M.CallAnalyticsItem = {
     type = "structure",
     members = {
         BeginOffsetMillis = {
-            type = "number",
+            type = "long",
         },
         EndOffsetMillis = {
-            type = "number",
+            type = "long",
         },
         Type = {
             type = "string",
@@ -212,10 +222,13 @@ M.CallAnalyticsItem = {
             type = "string",
         },
         Confidence = {
-            type = "number",
+            type = "double",
         },
         VocabularyFilterMatch = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Stable = {
             type = "boolean",
@@ -242,7 +255,10 @@ M.CallAnalyticsLanguageWithScore = {
             type = "string",
         },
         Score = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -251,10 +267,10 @@ M.TimestampRange = {
     type = "structure",
     members = {
         BeginOffsetMillis = {
-            type = "number",
+            type = "long",
         },
         EndOffsetMillis = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -264,7 +280,7 @@ M.PointsOfInterest = {
     members = {
         TimestampRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.TimestampRange,
         },
     },
 }
@@ -274,12 +290,12 @@ M.CategoryEvent = {
     members = {
         MatchedCategories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MatchedDetails = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.PointsOfInterest,
         },
     },
 }
@@ -328,10 +344,10 @@ M.CharacterOffsets = {
     type = "structure",
     members = {
         Begin = {
-            type = "number",
+            type = "integer",
         },
         End = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -339,9 +355,7 @@ M.CharacterOffsets = {
 M.IssueDetected = {
     type = "structure",
     members = {
-        CharacterOffsets = {
-            type = "structure",
-        },
+        CharacterOffsets = M.CharacterOffsets,
     },
 }
 
@@ -360,40 +374,43 @@ M.UtteranceEvent = {
         },
         IsPartial = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         ParticipantRole = {
             type = "string",
         },
         BeginOffsetMillis = {
-            type = "number",
+            type = "long",
         },
         EndOffsetMillis = {
-            type = "number",
+            type = "long",
         },
         Transcript = {
             type = "string",
         },
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.CallAnalyticsItem,
         },
         Entities = {
             type = "list",
-            member_type = "structure",
+            member = M.CallAnalyticsEntity,
         },
         Sentiment = {
             type = "string",
         },
         IssuesDetected = {
             type = "list",
-            member_type = "structure",
+            member = M.IssueDetected,
         },
         LanguageCode = {
             type = "string",
         },
         LanguageIdentification = {
             type = "list",
-            member_type = "structure",
+            member = M.CallAnalyticsLanguageWithScore,
         },
     },
 }
@@ -401,27 +418,13 @@ M.UtteranceEvent = {
 M.CallAnalyticsTranscriptResultStream = {
     type = "union",
     members = {
-        UtteranceEvent = {
-            type = "structure",
-        },
-        CategoryEvent = {
-            type = "structure",
-        },
-        BadRequestException = {
-            type = "structure",
-        },
-        LimitExceededException = {
-            type = "structure",
-        },
-        InternalFailureException = {
-            type = "structure",
-        },
-        ConflictException = {
-            type = "structure",
-        },
-        ServiceUnavailableException = {
-            type = "structure",
-        },
+        UtteranceEvent = M.UtteranceEvent,
+        CategoryEvent = M.CategoryEvent,
+        BadRequestException = M.BadRequestException,
+        LimitExceededException = M.LimitExceededException,
+        InternalFailureException = M.InternalFailureException,
+        ConflictException = M.ConflictException,
+        ServiceUnavailableException = M.ServiceUnavailableException,
     },
 }
 
@@ -504,8 +507,9 @@ M.MedicalScribeChannelDefinition = {
     type = "structure",
     members = {
         ChannelId = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -523,8 +527,8 @@ M.MedicalScribeEncryptionSettings = {
     members = {
         KmsEncryptionContext = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         KmsKeyId = {
             type = "string",
@@ -548,21 +552,16 @@ M.MedicalScribeMediaEncoding = {
 M.MedicalScribePostStreamAnalyticsResult = {
     type = "structure",
     members = {
-        ClinicalNoteGenerationResult = {
-            type = "structure",
-        },
+        ClinicalNoteGenerationResult = M.ClinicalNoteGenerationResult,
     },
 }
 
 M.MedicalScribePostStreamAnalyticsSettings = {
     type = "structure",
     members = {
-        ClinicalNoteGenerationSettings = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ClinicalNoteGenerationSettings = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ClinicalNoteGenerationSettings }),
     },
 }
 
@@ -595,7 +594,7 @@ M.MedicalScribeStreamDetails = {
             type = "string",
         },
         MediaSampleRateHertz = {
-            type = "number",
+            type = "integer",
         },
         MediaEncoding = {
             type = "string",
@@ -614,20 +613,14 @@ M.MedicalScribeStreamDetails = {
         },
         ChannelDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.MedicalScribeChannelDefinition,
         },
-        EncryptionSettings = {
-            type = "structure",
-        },
+        EncryptionSettings = M.MedicalScribeEncryptionSettings,
         StreamStatus = {
             type = "string",
         },
-        PostStreamAnalyticsSettings = {
-            type = "structure",
-        },
-        PostStreamAnalyticsResult = {
-            type = "structure",
-        },
+        PostStreamAnalyticsSettings = M.MedicalScribePostStreamAnalyticsSettings,
+        PostStreamAnalyticsResult = M.MedicalScribePostStreamAnalyticsResult,
         MedicalScribeContextProvided = {
             type = "boolean",
         },
@@ -637,9 +630,7 @@ M.MedicalScribeStreamDetails = {
 M.GetMedicalScribeStreamOutput = {
     type = "structure",
     members = {
-        MedicalScribeStreamDetails = {
-            type = "structure",
-        },
+        MedicalScribeStreamDetails = M.MedicalScribeStreamDetails,
     },
 }
 
@@ -762,7 +753,10 @@ M.LanguageWithScore = {
             type = "string",
         },
         Score = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -777,10 +771,16 @@ M.MedicalEntity = {
     type = "structure",
     members = {
         StartTime = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         EndTime = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         Category = {
             type = "string",
@@ -789,7 +789,7 @@ M.MedicalEntity = {
             type = "string",
         },
         Confidence = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -798,10 +798,16 @@ M.MedicalItem = {
     type = "structure",
     members = {
         StartTime = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         EndTime = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         Type = {
             type = "string",
@@ -810,7 +816,7 @@ M.MedicalItem = {
             type = "string",
         },
         Confidence = {
-            type = "number",
+            type = "double",
         },
         Speaker = {
             type = "string",
@@ -826,11 +832,11 @@ M.MedicalAlternative = {
         },
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.MedicalItem,
         },
         Entities = {
             type = "list",
-            member_type = "structure",
+            member = M.MedicalEntity,
         },
     },
 }
@@ -846,17 +852,26 @@ M.MedicalResult = {
             type = "string",
         },
         StartTime = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         EndTime = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         IsPartial = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Alternatives = {
             type = "list",
-            member_type = "structure",
+            member = M.MedicalAlternative,
         },
         ChannelId = {
             type = "string",
@@ -894,9 +909,7 @@ M.MedicalScribePatientContext = {
 M.MedicalScribeContext = {
     type = "structure",
     members = {
-        PatientContext = {
-            type = "structure",
-        },
+        PatientContext = M.MedicalScribePatientContext,
     },
 }
 
@@ -920,20 +933,13 @@ M.MedicalScribeConfigurationEvent = {
         },
         ChannelDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.MedicalScribeChannelDefinition,
         },
-        EncryptionSettings = {
-            type = "structure",
-        },
-        PostStreamAnalyticsSettings = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        MedicalScribeContext = {
-            type = "structure",
-        },
+        EncryptionSettings = M.MedicalScribeEncryptionSettings,
+        PostStreamAnalyticsSettings = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MedicalScribePostStreamAnalyticsSettings }),
+        MedicalScribeContext = M.MedicalScribeContext,
     },
 }
 
@@ -956,15 +962,9 @@ M.MedicalScribeSessionControlEvent = {
 M.MedicalScribeInputStream = {
     type = "union",
     members = {
-        AudioEvent = {
-            type = "structure",
-        },
-        SessionControlEvent = {
-            type = "structure",
-        },
-        ConfigurationEvent = {
-            type = "structure",
-        },
+        AudioEvent = M.MedicalScribeAudioEvent,
+        SessionControlEvent = M.MedicalScribeSessionControlEvent,
+        ConfigurationEvent = M.MedicalScribeConfigurationEvent,
     },
 }
 
@@ -977,16 +977,22 @@ M.MedicalScribeTranscriptItem = {
     type = "structure",
     members = {
         BeginAudioTime = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         EndAudioTime = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         Type = {
             type = "string",
         },
         Confidence = {
-            type = "number",
+            type = "double",
         },
         Content = {
             type = "string",
@@ -1004,20 +1010,29 @@ M.MedicalScribeTranscriptSegment = {
             type = "string",
         },
         BeginAudioTime = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         EndAudioTime = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         Content = {
             type = "string",
         },
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.MedicalScribeTranscriptItem,
         },
         IsPartial = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         ChannelId = {
             type = "string",
@@ -1028,33 +1043,19 @@ M.MedicalScribeTranscriptSegment = {
 M.MedicalScribeTranscriptEvent = {
     type = "structure",
     members = {
-        TranscriptSegment = {
-            type = "structure",
-        },
+        TranscriptSegment = M.MedicalScribeTranscriptSegment,
     },
 }
 
 M.MedicalScribeResultStream = {
     type = "union",
     members = {
-        TranscriptEvent = {
-            type = "structure",
-        },
-        BadRequestException = {
-            type = "structure",
-        },
-        LimitExceededException = {
-            type = "structure",
-        },
-        InternalFailureException = {
-            type = "structure",
-        },
-        ConflictException = {
-            type = "structure",
-        },
-        ServiceUnavailableException = {
-            type = "structure",
-        },
+        TranscriptEvent = M.MedicalScribeTranscriptEvent,
+        BadRequestException = M.BadRequestException,
+        LimitExceededException = M.LimitExceededException,
+        InternalFailureException = M.InternalFailureException,
+        ConflictException = M.ConflictException,
+        ServiceUnavailableException = M.ServiceUnavailableException,
     },
 }
 
@@ -1063,7 +1064,7 @@ M.MedicalTranscript = {
     members = {
         Results = {
             type = "list",
-            member_type = "structure",
+            member = M.MedicalResult,
         },
     },
 }
@@ -1071,33 +1072,19 @@ M.MedicalTranscript = {
 M.MedicalTranscriptEvent = {
     type = "structure",
     members = {
-        Transcript = {
-            type = "structure",
-        },
+        Transcript = M.MedicalTranscript,
     },
 }
 
 M.MedicalTranscriptResultStream = {
     type = "union",
     members = {
-        TranscriptEvent = {
-            type = "structure",
-        },
-        BadRequestException = {
-            type = "structure",
-        },
-        LimitExceededException = {
-            type = "structure",
-        },
-        InternalFailureException = {
-            type = "structure",
-        },
-        ConflictException = {
-            type = "structure",
-        },
-        ServiceUnavailableException = {
-            type = "structure",
-        },
+        TranscriptEvent = M.MedicalTranscriptEvent,
+        BadRequestException = M.BadRequestException,
+        LimitExceededException = M.LimitExceededException,
+        InternalFailureException = M.InternalFailureException,
+        ConflictException = M.ConflictException,
+        ServiceUnavailableException = M.ServiceUnavailableException,
     },
 }
 
@@ -1114,17 +1101,26 @@ M.Result = {
             type = "string",
         },
         StartTime = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         EndTime = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         IsPartial = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Alternatives = {
             type = "list",
-            member_type = "structure",
+            member = M.Alternative,
         },
         ChannelId = {
             type = "string",
@@ -1134,7 +1130,7 @@ M.Result = {
         },
         LanguageIdentification = {
             type = "list",
-            member_type = "structure",
+            member = M.LanguageWithScore,
         },
     },
 }
@@ -1164,7 +1160,7 @@ M.StartCallAnalyticsStreamTranscriptionInput = {
             },
         },
         MediaSampleRateHertz = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "x-amzn-transcribe-sample-rate",
                 required = true,
@@ -1189,13 +1185,10 @@ M.StartCallAnalyticsStreamTranscriptionInput = {
                 http_header = "x-amzn-transcribe-session-id",
             },
         },
-        AudioStream = {
-            type = "union",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        AudioStream = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.AudioStream }),
         VocabularyFilterName = {
             type = "string",
             traits = {
@@ -1217,6 +1210,7 @@ M.StartCallAnalyticsStreamTranscriptionInput = {
         IdentifyLanguage = {
             type = "boolean",
             traits = {
+                default = false,
                 http_header = "x-amzn-transcribe-identify-language",
             },
         },
@@ -1247,6 +1241,7 @@ M.StartCallAnalyticsStreamTranscriptionInput = {
         EnablePartialResultsStabilization = {
             type = "boolean",
             traits = {
+                default = false,
                 http_header = "x-amzn-transcribe-enable-partial-results-stabilization",
             },
         },
@@ -1293,7 +1288,7 @@ M.StartCallAnalyticsStreamTranscriptionOutput = {
             },
         },
         MediaSampleRateHertz = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "x-amzn-transcribe-sample-rate",
             },
@@ -1316,12 +1311,9 @@ M.StartCallAnalyticsStreamTranscriptionOutput = {
                 http_header = "x-amzn-transcribe-session-id",
             },
         },
-        CallAnalyticsTranscriptResultStream = {
-            type = "union",
-            traits = {
-                http_payload = true,
-            },
-        },
+        CallAnalyticsTranscriptResultStream = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.CallAnalyticsTranscriptResultStream }),
         VocabularyFilterName = {
             type = "string",
             traits = {
@@ -1343,6 +1335,7 @@ M.StartCallAnalyticsStreamTranscriptionOutput = {
         IdentifyLanguage = {
             type = "boolean",
             traits = {
+                default = false,
                 http_header = "x-amzn-transcribe-identify-language",
             },
         },
@@ -1373,6 +1366,7 @@ M.StartCallAnalyticsStreamTranscriptionOutput = {
         EnablePartialResultsStabilization = {
             type = "boolean",
             traits = {
+                default = false,
                 http_header = "x-amzn-transcribe-enable-partial-results-stabilization",
             },
         },
@@ -1420,7 +1414,7 @@ M.StartMedicalScribeStreamInput = {
             },
         },
         MediaSampleRateHertz = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "x-amzn-transcribe-sample-rate",
                 required = true,
@@ -1433,13 +1427,10 @@ M.StartMedicalScribeStreamInput = {
                 required = true,
             },
         },
-        InputStream = {
-            type = "union",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        InputStream = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.MedicalScribeInputStream }),
     },
 }
 
@@ -1465,7 +1456,7 @@ M.StartMedicalScribeStreamOutput = {
             },
         },
         MediaSampleRateHertz = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "x-amzn-transcribe-sample-rate",
             },
@@ -1476,12 +1467,9 @@ M.StartMedicalScribeStreamOutput = {
                 http_header = "x-amzn-transcribe-media-encoding",
             },
         },
-        ResultStream = {
-            type = "union",
-            traits = {
-                http_payload = true,
-            },
-        },
+        ResultStream = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.MedicalScribeResultStream }),
     },
 }
 
@@ -1501,7 +1489,7 @@ M.StartMedicalStreamTranscriptionInput = {
             },
         },
         MediaSampleRateHertz = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "x-amzn-transcribe-sample-rate",
                 required = true,
@@ -1537,6 +1525,7 @@ M.StartMedicalStreamTranscriptionInput = {
         ShowSpeakerLabel = {
             type = "boolean",
             traits = {
+                default = false,
                 http_header = "x-amzn-transcribe-show-speaker-label",
             },
         },
@@ -1546,21 +1535,19 @@ M.StartMedicalStreamTranscriptionInput = {
                 http_header = "x-amzn-transcribe-session-id",
             },
         },
-        AudioStream = {
-            type = "union",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        AudioStream = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.AudioStream }),
         EnableChannelIdentification = {
             type = "boolean",
             traits = {
+                default = false,
                 http_header = "x-amzn-transcribe-enable-channel-identification",
             },
         },
         NumberOfChannels = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "x-amzn-transcribe-number-of-channels",
             },
@@ -1590,7 +1577,7 @@ M.StartMedicalStreamTranscriptionOutput = {
             },
         },
         MediaSampleRateHertz = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "x-amzn-transcribe-sample-rate",
             },
@@ -1622,6 +1609,7 @@ M.StartMedicalStreamTranscriptionOutput = {
         ShowSpeakerLabel = {
             type = "boolean",
             traits = {
+                default = false,
                 http_header = "x-amzn-transcribe-show-speaker-label",
             },
         },
@@ -1631,20 +1619,18 @@ M.StartMedicalStreamTranscriptionOutput = {
                 http_header = "x-amzn-transcribe-session-id",
             },
         },
-        TranscriptResultStream = {
-            type = "union",
-            traits = {
-                http_payload = true,
-            },
-        },
+        TranscriptResultStream = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.MedicalTranscriptResultStream }),
         EnableChannelIdentification = {
             type = "boolean",
             traits = {
+                default = false,
                 http_header = "x-amzn-transcribe-enable-channel-identification",
             },
         },
         NumberOfChannels = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "x-amzn-transcribe-number-of-channels",
             },
@@ -1668,7 +1654,7 @@ M.StartStreamTranscriptionInput = {
             },
         },
         MediaSampleRateHertz = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "x-amzn-transcribe-sample-rate",
                 required = true,
@@ -1693,13 +1679,10 @@ M.StartStreamTranscriptionInput = {
                 http_header = "x-amzn-transcribe-session-id",
             },
         },
-        AudioStream = {
-            type = "union",
-            traits = {
-                http_payload = true,
-                required = true,
-            },
-        },
+        AudioStream = setmetatable({ traits = {
+            http_payload = true,
+            required = true,
+        } }, { __index = M.AudioStream }),
         VocabularyFilterName = {
             type = "string",
             traits = {
@@ -1715,17 +1698,19 @@ M.StartStreamTranscriptionInput = {
         ShowSpeakerLabel = {
             type = "boolean",
             traits = {
+                default = false,
                 http_header = "x-amzn-transcribe-show-speaker-label",
             },
         },
         EnableChannelIdentification = {
             type = "boolean",
             traits = {
+                default = false,
                 http_header = "x-amzn-transcribe-enable-channel-identification",
             },
         },
         NumberOfChannels = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "x-amzn-transcribe-number-of-channels",
             },
@@ -1733,6 +1718,7 @@ M.StartStreamTranscriptionInput = {
         EnablePartialResultsStabilization = {
             type = "boolean",
             traits = {
+                default = false,
                 http_header = "x-amzn-transcribe-enable-partial-results-stabilization",
             },
         },
@@ -1769,6 +1755,7 @@ M.StartStreamTranscriptionInput = {
         IdentifyLanguage = {
             type = "boolean",
             traits = {
+                default = false,
                 http_header = "x-amzn-transcribe-identify-language",
             },
         },
@@ -1787,6 +1774,7 @@ M.StartStreamTranscriptionInput = {
         IdentifyMultipleLanguages = {
             type = "boolean",
             traits = {
+                default = false,
                 http_header = "x-amzn-transcribe-identify-multiple-languages",
             },
         },
@@ -1803,7 +1791,7 @@ M.StartStreamTranscriptionInput = {
             },
         },
         SessionResumeWindow = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "x-amzn-transcribe-session-resume-window",
             },
@@ -1816,7 +1804,7 @@ M.Transcript = {
     members = {
         Results = {
             type = "list",
-            member_type = "structure",
+            member = M.Result,
         },
     },
 }
@@ -1824,33 +1812,19 @@ M.Transcript = {
 M.TranscriptEvent = {
     type = "structure",
     members = {
-        Transcript = {
-            type = "structure",
-        },
+        Transcript = M.Transcript,
     },
 }
 
 M.TranscriptResultStream = {
     type = "union",
     members = {
-        TranscriptEvent = {
-            type = "structure",
-        },
-        BadRequestException = {
-            type = "structure",
-        },
-        LimitExceededException = {
-            type = "structure",
-        },
-        InternalFailureException = {
-            type = "structure",
-        },
-        ConflictException = {
-            type = "structure",
-        },
-        ServiceUnavailableException = {
-            type = "structure",
-        },
+        TranscriptEvent = M.TranscriptEvent,
+        BadRequestException = M.BadRequestException,
+        LimitExceededException = M.LimitExceededException,
+        InternalFailureException = M.InternalFailureException,
+        ConflictException = M.ConflictException,
+        ServiceUnavailableException = M.ServiceUnavailableException,
     },
 }
 
@@ -1870,7 +1844,7 @@ M.StartStreamTranscriptionOutput = {
             },
         },
         MediaSampleRateHertz = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "x-amzn-transcribe-sample-rate",
             },
@@ -1893,12 +1867,9 @@ M.StartStreamTranscriptionOutput = {
                 http_header = "x-amzn-transcribe-session-id",
             },
         },
-        TranscriptResultStream = {
-            type = "union",
-            traits = {
-                http_payload = true,
-            },
-        },
+        TranscriptResultStream = setmetatable({ traits = {
+            http_payload = true,
+        } }, { __index = M.TranscriptResultStream }),
         VocabularyFilterName = {
             type = "string",
             traits = {
@@ -1914,17 +1885,19 @@ M.StartStreamTranscriptionOutput = {
         ShowSpeakerLabel = {
             type = "boolean",
             traits = {
+                default = false,
                 http_header = "x-amzn-transcribe-show-speaker-label",
             },
         },
         EnableChannelIdentification = {
             type = "boolean",
             traits = {
+                default = false,
                 http_header = "x-amzn-transcribe-enable-channel-identification",
             },
         },
         NumberOfChannels = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "x-amzn-transcribe-number-of-channels",
             },
@@ -1932,6 +1905,7 @@ M.StartStreamTranscriptionOutput = {
         EnablePartialResultsStabilization = {
             type = "boolean",
             traits = {
+                default = false,
                 http_header = "x-amzn-transcribe-enable-partial-results-stabilization",
             },
         },
@@ -1968,6 +1942,7 @@ M.StartStreamTranscriptionOutput = {
         IdentifyLanguage = {
             type = "boolean",
             traits = {
+                default = false,
                 http_header = "x-amzn-transcribe-identify-language",
             },
         },
@@ -1986,6 +1961,7 @@ M.StartStreamTranscriptionOutput = {
         IdentifyMultipleLanguages = {
             type = "boolean",
             traits = {
+                default = false,
                 http_header = "x-amzn-transcribe-identify-multiple-languages",
             },
         },
@@ -2002,7 +1978,7 @@ M.StartStreamTranscriptionOutput = {
             },
         },
         SessionResumeWindow = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "x-amzn-transcribe-session-resume-window",
             },

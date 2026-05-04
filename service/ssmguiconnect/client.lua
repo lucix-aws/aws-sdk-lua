@@ -16,7 +16,7 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "SSMGuiConnect"
-    cfg.signing_name = "ssmguiconnect"
+    cfg.signing_name = "ssm-guiconnect"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end

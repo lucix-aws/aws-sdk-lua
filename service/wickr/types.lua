@@ -50,7 +50,7 @@ M.BatchCreateUserRequestItem = {
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -65,7 +65,7 @@ M.BatchCreateUserRequestItem = {
             type = "string",
         },
         inviteCodeTtl = {
-            type = "number",
+            type = "integer",
         },
         codeValidation = {
             type = "boolean",
@@ -85,7 +85,7 @@ M.BatchCreateUserInput = {
         },
         users = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchCreateUserRequestItem,
             traits = {
                 required = true,
             },
@@ -134,7 +134,7 @@ M.User = {
         },
         securityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         isAdmin = {
             type = "boolean",
@@ -143,7 +143,7 @@ M.User = {
             type = "boolean",
         },
         status = {
-            type = "number",
+            type = "integer",
         },
         otpEnabled = {
             type = "boolean",
@@ -161,7 +161,7 @@ M.User = {
             type = "string",
         },
         challengeFailures = {
-            type = "number",
+            type = "integer",
         },
         isInviteExpired = {
             type = "boolean",
@@ -189,11 +189,11 @@ M.BatchCreateUserOutput = {
         },
         successful = {
             type = "list",
-            member_type = "structure",
+            member = M.User,
         },
         failed = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchUserErrorResponseItem,
         },
     },
 }
@@ -227,6 +227,9 @@ M.RateLimitError = {
     members = {
         message = {
             type = "string",
+            traits = {
+                default = "Too many requests sent",
+            },
         },
     },
 }
@@ -269,7 +272,7 @@ M.ValidationError = {
     members = {
         reasons = {
             type = "list",
-            member_type = "structure",
+            member = M.ErrorDetail,
         },
         message = {
             type = "string",
@@ -289,7 +292,7 @@ M.BatchDeleteUserInput = {
         },
         userIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -323,11 +326,11 @@ M.BatchDeleteUserOutput = {
         },
         successful = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchUserSuccessResponseItem,
         },
         failed = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchUserErrorResponseItem,
         },
     },
 }
@@ -374,7 +377,7 @@ M.BatchLookupUserUnameInput = {
         },
         unames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -432,11 +435,11 @@ M.BatchLookupUserUnameOutput = {
         },
         successful = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchUnameSuccessResponseItem,
         },
         failed = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchUnameErrorResponseItem,
         },
     },
 }
@@ -453,7 +456,7 @@ M.BatchReinviteUserInput = {
         },
         userIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -475,11 +478,11 @@ M.BatchReinviteUserOutput = {
         },
         successful = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchUserSuccessResponseItem,
         },
         failed = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchUserErrorResponseItem,
         },
     },
 }
@@ -503,7 +506,7 @@ M.BatchResetDevicesForUserInput = {
         },
         appIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -525,11 +528,11 @@ M.BatchResetDevicesForUserOutput = {
         },
         successful = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchDeviceSuccessResponseItem,
         },
         failed = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchDeviceErrorResponseItem,
         },
     },
 }
@@ -553,7 +556,7 @@ M.BatchToggleUserSuspendStatusInput = {
         },
         userIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -575,11 +578,11 @@ M.BatchToggleUserSuspendStatusOutput = {
         },
         successful = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchUserSuccessResponseItem,
         },
         failed = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchUserErrorResponseItem,
         },
     },
 }
@@ -857,11 +860,11 @@ M.SecurityGroupSettingsRequest = {
     type = "structure",
     members = {
         lockoutThreshold = {
-            type = "number",
+            type = "integer",
         },
         permittedNetworks = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         enableGuestFederation = {
             type = "boolean",
@@ -870,18 +873,18 @@ M.SecurityGroupSettingsRequest = {
             type = "boolean",
         },
         federationMode = {
-            type = "number",
+            type = "integer",
         },
         enableRestrictedGlobalFederation = {
             type = "boolean",
         },
         permittedWickrAwsNetworks = {
             type = "list",
-            member_type = "structure",
+            member = M.WickrAwsNetworks,
         },
         permittedWickrEnterpriseNetworks = {
             type = "list",
-            member_type = "structure",
+            member = M.PermittedWickrEnterpriseNetwork,
         },
     },
 }
@@ -902,12 +905,9 @@ M.CreateSecurityGroupInput = {
                 required = true,
             },
         },
-        securityGroupSettings = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        securityGroupSettings = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SecurityGroupSettingsRequest }),
         clientToken = {
             type = "string",
             traits = {
@@ -921,19 +921,19 @@ M.PasswordRequirements = {
     type = "structure",
     members = {
         lowercase = {
-            type = "number",
+            type = "integer",
         },
         minLength = {
-            type = "number",
+            type = "integer",
         },
         numbers = {
-            type = "number",
+            type = "integer",
         },
         symbols = {
-            type = "number",
+            type = "integer",
         },
         uppercase = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -945,7 +945,7 @@ M.ShredderSettings = {
             type = "boolean",
         },
         intensity = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -958,11 +958,9 @@ M.SecurityGroupSettings = {
         },
         atakPackageValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        calling = {
-            type = "structure",
-        },
+        calling = M.CallingSettings,
         checkForUpdates = {
             type = "boolean",
         },
@@ -991,7 +989,7 @@ M.SecurityGroupSettings = {
             type = "boolean",
         },
         forceDeviceLockout = {
-            type = "number",
+            type = "integer",
         },
         forceOpenAccess = {
             type = "boolean",
@@ -1015,53 +1013,49 @@ M.SecurityGroupSettings = {
             type = "boolean",
         },
         maxAutoDownloadSize = {
-            type = "number",
+            type = "long",
         },
         maxBor = {
-            type = "number",
+            type = "integer",
         },
         maxTtl = {
-            type = "number",
+            type = "long",
         },
         messageForwardingEnabled = {
             type = "boolean",
         },
-        passwordRequirements = {
-            type = "structure",
-        },
+        passwordRequirements = M.PasswordRequirements,
         presenceEnabled = {
             type = "boolean",
         },
         quickResponses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         showMasterRecoveryKey = {
             type = "boolean",
         },
-        shredder = {
-            type = "structure",
-        },
+        shredder = M.ShredderSettings,
         ssoMaxIdleMinutes = {
-            type = "number",
+            type = "integer",
         },
         federationMode = {
-            type = "number",
+            type = "integer",
         },
         lockoutThreshold = {
-            type = "number",
+            type = "integer",
         },
         permittedNetworks = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         permittedWickrAwsNetworks = {
             type = "list",
-            member_type = "structure",
+            member = M.WickrAwsNetworks,
         },
         permittedWickrEnterpriseNetworks = {
             type = "list",
-            member_type = "structure",
+            member = M.PermittedWickrEnterpriseNetwork,
         },
     },
 }
@@ -1070,13 +1064,13 @@ M.SecurityGroup = {
     type = "structure",
     members = {
         activeMembers = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         botMembers = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1103,29 +1097,23 @@ M.SecurityGroup = {
             },
         },
         modified = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
-        securityGroupSettings = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        securityGroupSettings = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SecurityGroupSettings }),
     },
 }
 
 M.CreateSecurityGroupOutput = {
     type = "structure",
     members = {
-        securityGroup = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        securityGroup = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SecurityGroup }),
     },
 }
 
@@ -1322,19 +1310,19 @@ M.GetBotsCountOutput = {
     type = "structure",
     members = {
         pending = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         active = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         total = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1415,7 +1403,7 @@ M.GetGuestUserHistoryCountOutput = {
     members = {
         history = {
             type = "list",
-            member_type = "structure",
+            member = M.GuestUserHistoryCount,
             traits = {
                 required = true,
             },
@@ -1470,13 +1458,13 @@ M.GetNetworkOutput = {
             },
         },
         standing = {
-            type = "number",
+            type = "integer",
         },
         freeTrialExpiration = {
             type = "string",
         },
         migrationState = {
-            type = "number",
+            type = "integer",
         },
         encryptionKeyArn = {
             type = "string",
@@ -1526,7 +1514,7 @@ M.GetNetworkSettingsOutput = {
     members = {
         settings = {
             type = "list",
-            member_type = "structure",
+            member = M.Setting,
             traits = {
                 required = true,
             },
@@ -1641,10 +1629,10 @@ M.OidcConfigInfo = {
             type = "string",
         },
         applicationId = {
-            type = "number",
+            type = "integer",
         },
         ssoTokenBufferMinutes = {
-            type = "number",
+            type = "integer",
         },
         extraAuthParams = {
             type = "string",
@@ -1674,7 +1662,7 @@ M.OidcTokenInfo = {
             type = "string",
         },
         expiresIn = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1682,12 +1670,8 @@ M.OidcTokenInfo = {
 M.GetOidcInfoOutput = {
     type = "structure",
     members = {
-        openidConnectInfo = {
-            type = "structure",
-        },
-        tokenInfo = {
-            type = "structure",
-        },
+        openidConnectInfo = M.OidcConfigInfo,
+        tokenInfo = M.OidcTokenInfo,
     },
 }
 
@@ -1757,12 +1741,9 @@ M.GetSecurityGroupInput = {
 M.GetSecurityGroupOutput = {
     type = "structure",
     members = {
-        securityGroup = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        securityGroup = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SecurityGroup }),
     },
 }
 
@@ -1825,17 +1806,17 @@ M.GetUserOutput = {
             type = "boolean",
         },
         status = {
-            type = "number",
+            type = "integer",
         },
         lastActivity = {
-            type = "number",
+            type = "integer",
         },
         lastLogin = {
-            type = "number",
+            type = "integer",
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1857,31 +1838,31 @@ M.GetUsersCountOutput = {
     type = "structure",
     members = {
         pending = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         active = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         rejected = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         remaining = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         total = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1929,7 +1910,7 @@ M.ListBlockedGuestUsersInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1975,7 +1956,7 @@ M.ListBlockedGuestUsersOutput = {
         },
         blocklist = {
             type = "list",
-            member_type = "structure",
+            member = M.BlockedGuestUser,
             traits = {
                 required = true,
             },
@@ -2000,7 +1981,7 @@ M.ListBotsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2049,7 +2030,7 @@ M.ListBotsOutput = {
     members = {
         bots = {
             type = "list",
-            member_type = "structure",
+            member = M.Bot,
             traits = {
                 required = true,
             },
@@ -2084,7 +2065,7 @@ M.ListDevicesForUserInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2112,7 +2093,7 @@ M.ListDevicesForUserOutput = {
         },
         devices = {
             type = "list",
-            member_type = "structure",
+            member = M.BasicDeviceObject,
             traits = {
                 required = true,
             },
@@ -2131,7 +2112,7 @@ M.ListGuestUsersInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2177,7 +2158,7 @@ M.ListGuestUsersOutput = {
         },
         guestlist = {
             type = "list",
-            member_type = "structure",
+            member = M.GuestUser,
             traits = {
                 required = true,
             },
@@ -2189,7 +2170,7 @@ M.ListNetworksInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2249,13 +2230,13 @@ M.Network = {
             },
         },
         standing = {
-            type = "number",
+            type = "integer",
         },
         freeTrialExpiration = {
             type = "string",
         },
         migrationState = {
-            type = "number",
+            type = "integer",
         },
         encryptionKeyArn = {
             type = "string",
@@ -2268,7 +2249,7 @@ M.ListNetworksOutput = {
     members = {
         networks = {
             type = "list",
-            member_type = "structure",
+            member = M.Network,
             traits = {
                 required = true,
             },
@@ -2296,7 +2277,7 @@ M.ListSecurityGroupsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2321,7 +2302,7 @@ M.ListSecurityGroupsOutput = {
     members = {
         securityGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.SecurityGroup,
         },
         nextToken = {
             type = "string",
@@ -2353,7 +2334,7 @@ M.ListSecurityGroupUsersInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2378,7 +2359,7 @@ M.ListSecurityGroupUsersOutput = {
     members = {
         users = {
             type = "list",
-            member_type = "structure",
+            member = M.User,
             traits = {
                 required = true,
             },
@@ -2411,7 +2392,7 @@ M.ListUsersInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2469,7 +2450,7 @@ M.ListUsersOutput = {
         },
         users = {
             type = "list",
-            member_type = "structure",
+            member = M.User,
         },
     },
 }
@@ -2495,9 +2476,7 @@ M.NetworkSettings = {
         enableClientMetrics = {
             type = "boolean",
         },
-        readReceiptConfig = {
-            type = "structure",
-        },
+        readReceiptConfig = M.ReadReceiptConfig,
         dataRetention = {
             type = "boolean",
         },
@@ -2545,7 +2524,7 @@ M.RegisterOidcConfigInput = {
             type = "string",
         },
         ssoTokenBufferMinutes = {
-            type = "number",
+            type = "integer",
         },
         userId = {
             type = "string",
@@ -2599,10 +2578,10 @@ M.RegisterOidcConfigOutput = {
             type = "string",
         },
         applicationId = {
-            type = "number",
+            type = "integer",
         },
         ssoTokenBufferMinutes = {
-            type = "number",
+            type = "integer",
         },
         extraAuthParams = {
             type = "string",
@@ -2652,11 +2631,11 @@ M.RegisterOidcConfigTestOutput = {
         },
         responseTypesSupported = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         scopesSupported = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         issuer = {
             type = "string",
@@ -2672,14 +2651,14 @@ M.RegisterOidcConfigTestOutput = {
         },
         grantTypesSupported = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         revocationEndpoint = {
             type = "string",
         },
         tokenEndpointAuthMethodsSupported = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         microsoftMultiRefreshToken = {
             type = "boolean",
@@ -2911,12 +2890,9 @@ M.UpdateNetworkSettingsInput = {
                 required = true,
             },
         },
-        settings = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        settings = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.NetworkSettings }),
     },
 }
 
@@ -2925,7 +2901,7 @@ M.UpdateNetworkSettingsOutput = {
     members = {
         settings = {
             type = "list",
-            member_type = "structure",
+            member = M.Setting,
             traits = {
                 required = true,
             },
@@ -2953,21 +2929,16 @@ M.UpdateSecurityGroupInput = {
         name = {
             type = "string",
         },
-        securityGroupSettings = {
-            type = "structure",
-        },
+        securityGroupSettings = M.SecurityGroupSettings,
     },
 }
 
 M.UpdateSecurityGroupOutput = {
     type = "structure",
     members = {
-        securityGroup = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        securityGroup = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SecurityGroup }),
     },
 }
 
@@ -2985,13 +2956,13 @@ M.UpdateUserDetails = {
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         inviteCode = {
             type = "string",
         },
         inviteCodeTtl = {
-            type = "number",
+            type = "integer",
         },
         codeValidation = {
             type = "boolean",
@@ -3015,9 +2986,7 @@ M.UpdateUserInput = {
                 required = true,
             },
         },
-        userDetails = {
-            type = "structure",
-        },
+        userDetails = M.UpdateUserDetails,
     },
 }
 
@@ -3038,7 +3007,7 @@ M.UpdateUserOutput = {
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         firstName = {
             type = "string",
@@ -3056,16 +3025,16 @@ M.UpdateUserOutput = {
             },
         },
         modified = {
-            type = "number",
+            type = "integer",
         },
         status = {
-            type = "number",
+            type = "integer",
         },
         inviteCode = {
             type = "string",
         },
         inviteExpiration = {
-            type = "number",
+            type = "integer",
         },
         codeValidation = {
             type = "boolean",

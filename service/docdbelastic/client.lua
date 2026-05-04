@@ -16,7 +16,7 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "ChimeraDbLionfishServiceLambda"
-    cfg.signing_name = "chimeradblionfishservicelambda"
+    cfg.signing_name = "docdb-elastic"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end

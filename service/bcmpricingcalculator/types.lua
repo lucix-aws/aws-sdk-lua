@@ -20,7 +20,7 @@ M.AddReservedInstanceAction = {
             type = "string",
         },
         instanceCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -32,7 +32,7 @@ M.AddSavingsPlanAction = {
             type = "string",
         },
         commitment = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -61,7 +61,7 @@ M.InternalServerException = {
             },
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -82,7 +82,7 @@ M.ListBillEstimateCommitmentsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -95,7 +95,7 @@ M.CostAmount = {
     type = "structure",
     members = {
         amount = {
-            type = "number",
+            type = "double",
         },
         currency = {
             type = "string",
@@ -132,12 +132,8 @@ M.BillEstimateCommitmentSummary = {
         paymentOption = {
             type = "string",
         },
-        upfrontPayment = {
-            type = "structure",
-        },
-        monthlyPayment = {
-            type = "structure",
-        },
+        upfrontPayment = M.CostAmount,
+        monthlyPayment = M.CostAmount,
     },
 }
 
@@ -146,7 +142,7 @@ M.ListBillEstimateCommitmentsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.BillEstimateCommitmentSummary,
         },
         nextToken = {
             type = "string",
@@ -196,7 +192,7 @@ M.ThrottlingException = {
             type = "string",
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -246,7 +242,7 @@ M.ValidationException = {
         },
         fieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -254,25 +250,19 @@ M.ValidationException = {
 M.CostDifference = {
     type = "structure",
     members = {
-        historicalCost = {
-            type = "structure",
-        },
-        estimatedCost = {
-            type = "structure",
-        },
+        historicalCost = M.CostAmount,
+        estimatedCost = M.CostAmount,
     },
 }
 
 M.BillEstimateCostSummary = {
     type = "structure",
     members = {
-        totalCostDifference = {
-            type = "structure",
-        },
+        totalCostDifference = M.CostDifference,
         serviceCostDifferences = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.CostDifference,
         },
     },
 }
@@ -290,7 +280,7 @@ M.ListBillEstimateInputCommitmentModificationsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -316,18 +306,10 @@ M.NegateSavingsPlanAction = {
 M.BillScenarioCommitmentModificationAction = {
     type = "union",
     members = {
-        addReservedInstanceAction = {
-            type = "structure",
-        },
-        addSavingsPlanAction = {
-            type = "structure",
-        },
-        negateReservedInstanceAction = {
-            type = "structure",
-        },
-        negateSavingsPlanAction = {
-            type = "structure",
-        },
+        addReservedInstanceAction = M.AddReservedInstanceAction,
+        addSavingsPlanAction = M.AddSavingsPlanAction,
+        negateReservedInstanceAction = M.NegateReservedInstanceAction,
+        negateSavingsPlanAction = M.NegateSavingsPlanAction,
     },
 }
 
@@ -343,9 +325,7 @@ M.BillEstimateInputCommitmentModificationSummary = {
         usageAccountId = {
             type = "string",
         },
-        commitmentAction = {
-            type = "union",
-        },
+        commitmentAction = M.BillScenarioCommitmentModificationAction,
     },
 }
 
@@ -354,7 +334,7 @@ M.ListBillEstimateInputCommitmentModificationsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.BillEstimateInputCommitmentModificationSummary,
         },
         nextToken = {
             type = "string",
@@ -393,7 +373,7 @@ M.ListUsageFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -415,13 +395,13 @@ M.ListBillEstimateInputUsageModificationsInput = {
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.ListUsageFilter,
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -446,11 +426,11 @@ M.ExpressionFilter = {
         },
         matchOptions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -465,7 +445,7 @@ M.UsageQuantity = {
             type = "string",
         },
         amount = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -490,7 +470,7 @@ M.ListBillEstimateLineItemsFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -512,13 +492,13 @@ M.ListBillEstimateLineItemsInput = {
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.ListBillEstimateLineItemsFilter,
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -527,7 +507,7 @@ M.UsageQuantityResult = {
     type = "structure",
     members = {
         amount = {
-            type = "number",
+            type = "double",
         },
         unit = {
             type = "string",
@@ -577,21 +557,13 @@ M.BillEstimateLineItemSummary = {
         usageAccountId = {
             type = "string",
         },
-        estimatedUsageQuantity = {
-            type = "structure",
-        },
-        estimatedCost = {
-            type = "structure",
-        },
-        historicalUsageQuantity = {
-            type = "structure",
-        },
-        historicalCost = {
-            type = "structure",
-        },
+        estimatedUsageQuantity = M.UsageQuantityResult,
+        estimatedCost = M.CostAmount,
+        historicalUsageQuantity = M.UsageQuantityResult,
+        historicalCost = M.CostAmount,
         savingsPlanArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -601,7 +573,7 @@ M.ListBillEstimateLineItemsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.BillEstimateLineItemSummary,
         },
         nextToken = {
             type = "string",
@@ -663,8 +635,8 @@ M.CreateBillEstimateInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -693,12 +665,8 @@ M.CreateBillEstimateOutput = {
         failureMessage = {
             type = "string",
         },
-        billInterval = {
-            type = "structure",
-        },
-        costSummary = {
-            type = "structure",
-        },
+        billInterval = M.BillInterval,
+        costSummary = M.BillEstimateCostSummary,
         createdAt = {
             type = "timestamp",
         },
@@ -763,12 +731,8 @@ M.GetBillEstimateOutput = {
         failureMessage = {
             type = "string",
         },
-        billInterval = {
-            type = "structure",
-        },
-        costSummary = {
-            type = "structure",
-        },
+        billInterval = M.BillInterval,
+        costSummary = M.BillEstimateCostSummary,
         createdAt = {
             type = "timestamp",
         },
@@ -815,7 +779,7 @@ M.ListBillEstimatesFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -831,19 +795,15 @@ M.ListBillEstimatesInput = {
     members = {
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.ListBillEstimatesFilter,
         },
-        createdAtFilter = {
-            type = "structure",
-        },
-        expiresAtFilter = {
-            type = "structure",
-        },
+        createdAtFilter = M.FilterTimestamp,
+        expiresAtFilter = M.FilterTimestamp,
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -863,9 +823,7 @@ M.BillEstimateSummary = {
         status = {
             type = "string",
         },
-        billInterval = {
-            type = "structure",
-        },
+        billInterval = M.BillInterval,
         createdAt = {
             type = "timestamp",
         },
@@ -880,7 +838,7 @@ M.ListBillEstimatesOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.BillEstimateSummary,
         },
         nextToken = {
             type = "string",
@@ -924,12 +882,8 @@ M.UpdateBillEstimateOutput = {
         failureMessage = {
             type = "string",
         },
-        billInterval = {
-            type = "structure",
-        },
-        costSummary = {
-            type = "structure",
-        },
+        billInterval = M.BillInterval,
+        costSummary = M.BillEstimateCostSummary,
         createdAt = {
             type = "timestamp",
         },
@@ -966,12 +920,9 @@ M.BatchCreateBillScenarioCommitmentModificationEntry = {
                 required = true,
             },
         },
-        commitmentAction = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        commitmentAction = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BillScenarioCommitmentModificationAction }),
     },
 }
 
@@ -986,7 +937,7 @@ M.BatchCreateBillScenarioCommitmentModificationInput = {
         },
         commitmentModifications = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchCreateBillScenarioCommitmentModificationEntry,
             traits = {
                 required = true,
             },
@@ -1036,9 +987,7 @@ M.BatchCreateBillScenarioCommitmentModificationItem = {
         usageAccountId = {
             type = "string",
         },
-        commitmentAction = {
-            type = "union",
-        },
+        commitmentAction = M.BillScenarioCommitmentModificationAction,
     },
 }
 
@@ -1047,11 +996,11 @@ M.BatchCreateBillScenarioCommitmentModificationOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchCreateBillScenarioCommitmentModificationItem,
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchCreateBillScenarioCommitmentModificationError,
         },
     },
 }
@@ -1067,7 +1016,7 @@ M.BatchDeleteBillScenarioCommitmentModificationInput = {
         },
         ids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1101,7 +1050,7 @@ M.BatchDeleteBillScenarioCommitmentModificationOutput = {
     members = {
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchDeleteBillScenarioCommitmentModificationError,
         },
     },
 }
@@ -1132,7 +1081,7 @@ M.BatchUpdateBillScenarioCommitmentModificationInput = {
         },
         commitmentModifications = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchUpdateBillScenarioCommitmentModificationEntry,
             traits = {
                 required = true,
             },
@@ -1174,9 +1123,7 @@ M.BillScenarioCommitmentModificationItem = {
         group = {
             type = "string",
         },
-        commitmentAction = {
-            type = "union",
-        },
+        commitmentAction = M.BillScenarioCommitmentModificationAction,
     },
 }
 
@@ -1185,11 +1132,11 @@ M.BatchUpdateBillScenarioCommitmentModificationOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.BillScenarioCommitmentModificationItem,
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchUpdateBillScenarioCommitmentModificationError,
         },
     },
 }
@@ -1207,7 +1154,7 @@ M.ListBillScenarioCommitmentModificationsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1217,7 +1164,7 @@ M.ListBillScenarioCommitmentModificationsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.BillScenarioCommitmentModificationItem,
         },
         nextToken = {
             type = "string",
@@ -1242,7 +1189,7 @@ M.UsageAmount = {
             },
         },
         amount = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -1314,7 +1261,7 @@ M.BatchDeleteBillScenarioUsageModificationInput = {
         },
         ids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1348,7 +1295,7 @@ M.BatchDeleteBillScenarioUsageModificationOutput = {
     members = {
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchDeleteBillScenarioUsageModificationError,
         },
     },
 }
@@ -1367,7 +1314,7 @@ M.BatchUpdateBillScenarioUsageModificationEntry = {
         },
         amounts = {
             type = "list",
-            member_type = "structure",
+            member = M.UsageAmount,
         },
     },
 }
@@ -1383,7 +1330,7 @@ M.BatchUpdateBillScenarioUsageModificationInput = {
         },
         usageModifications = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchUpdateBillScenarioUsageModificationEntry,
             traits = {
                 required = true,
             },
@@ -1424,13 +1371,13 @@ M.ListBillScenarioUsageModificationsInput = {
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.ListUsageFilter,
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1452,8 +1399,8 @@ M.CreateBillScenarioInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         groupSharingPreference = {
             type = "string",
@@ -1476,9 +1423,7 @@ M.CreateBillScenarioOutput = {
         name = {
             type = "string",
         },
-        billInterval = {
-            type = "structure",
-        },
+        billInterval = M.BillInterval,
         status = {
             type = "string",
         },
@@ -1540,9 +1485,7 @@ M.GetBillScenarioOutput = {
         name = {
             type = "string",
         },
-        billInterval = {
-            type = "structure",
-        },
+        billInterval = M.BillInterval,
         status = {
             type = "string",
         },
@@ -1582,7 +1525,7 @@ M.ListBillScenariosFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1598,19 +1541,15 @@ M.ListBillScenariosInput = {
     members = {
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.ListBillScenariosFilter,
         },
-        createdAtFilter = {
-            type = "structure",
-        },
-        expiresAtFilter = {
-            type = "structure",
-        },
+        createdAtFilter = M.FilterTimestamp,
+        expiresAtFilter = M.FilterTimestamp,
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1627,9 +1566,7 @@ M.BillScenarioSummary = {
         name = {
             type = "string",
         },
-        billInterval = {
-            type = "structure",
-        },
+        billInterval = M.BillInterval,
         status = {
             type = "string",
         },
@@ -1656,7 +1593,7 @@ M.ListBillScenariosOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.BillScenarioSummary,
         },
         nextToken = {
             type = "string",
@@ -1700,9 +1637,7 @@ M.UpdateBillScenarioOutput = {
         name = {
             type = "string",
         },
-        billInterval = {
-            type = "structure",
-        },
+        billInterval = M.BillInterval,
         status = {
             type = "string",
         },
@@ -1739,15 +1674,15 @@ M.GetPreferencesOutput = {
     members = {
         managementAccountRateTypeSelections = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         memberAccountRateTypeSelections = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         standaloneAccountRateTypeSelections = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1769,8 +1704,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1786,8 +1721,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1810,7 +1745,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1827,15 +1762,15 @@ M.UpdatePreferencesInput = {
     members = {
         managementAccountRateTypeSelections = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         memberAccountRateTypeSelections = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         standaloneAccountRateTypeSelections = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1845,15 +1780,15 @@ M.UpdatePreferencesOutput = {
     members = {
         managementAccountRateTypeSelections = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         memberAccountRateTypeSelections = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         standaloneAccountRateTypeSelections = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1884,8 +1819,8 @@ M.CreateWorkloadEstimateInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1925,7 +1860,7 @@ M.CreateWorkloadEstimateOutput = {
             type = "string",
         },
         totalCost = {
-            type = "number",
+            type = "double",
         },
         costCurrency = {
             type = "string",
@@ -1992,7 +1927,7 @@ M.GetWorkloadEstimateOutput = {
             type = "string",
         },
         totalCost = {
-            type = "number",
+            type = "double",
         },
         costCurrency = {
             type = "string",
@@ -2019,7 +1954,7 @@ M.ListWorkloadEstimatesFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2033,21 +1968,17 @@ M.ListWorkloadEstimatesFilter = {
 M.ListWorkloadEstimatesInput = {
     type = "structure",
     members = {
-        createdAtFilter = {
-            type = "structure",
-        },
-        expiresAtFilter = {
-            type = "structure",
-        },
+        createdAtFilter = M.FilterTimestamp,
+        expiresAtFilter = M.FilterTimestamp,
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.ListWorkloadEstimatesFilter,
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2080,7 +2011,7 @@ M.WorkloadEstimateSummary = {
             type = "string",
         },
         totalCost = {
-            type = "number",
+            type = "double",
         },
         costCurrency = {
             type = "string",
@@ -2096,7 +2027,7 @@ M.ListWorkloadEstimatesOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkloadEstimateSummary,
         },
         nextToken = {
             type = "string",
@@ -2150,7 +2081,7 @@ M.UpdateWorkloadEstimateOutput = {
             type = "string",
         },
         totalCost = {
-            type = "number",
+            type = "double",
         },
         costCurrency = {
             type = "string",
@@ -2190,7 +2121,7 @@ M.WorkloadEstimateUsageQuantity = {
             type = "string",
         },
         amount = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -2212,7 +2143,7 @@ M.BatchDeleteWorkloadEstimateUsageInput = {
         },
         ids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2247,7 +2178,7 @@ M.BatchDeleteWorkloadEstimateUsageOutput = {
     members = {
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchDeleteWorkloadEstimateUsageError,
         },
     },
 }
@@ -2265,7 +2196,7 @@ M.BatchUpdateWorkloadEstimateUsageEntry = {
             type = "string",
         },
         amount = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -2281,7 +2212,7 @@ M.BatchUpdateWorkloadEstimateUsageInput = {
         },
         usage = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchUpdateWorkloadEstimateUsageEntry,
             traits = {
                 required = true,
             },
@@ -2315,13 +2246,13 @@ M.ListWorkloadEstimateUsageInput = {
         },
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.ListUsageFilter,
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2331,24 +2262,16 @@ M.Expression = {
     members = {
         and = {
             type = "list",
-            member_type = "structure",
+            member = M.Expression,
         },
         or = {
             type = "list",
-            member_type = "structure",
+            member = M.Expression,
         },
-        not = {
-            type = "structure",
-        },
-        costCategories = {
-            type = "structure",
-        },
-        dimensions = {
-            type = "structure",
-        },
-        tags = {
-            type = "structure",
-        },
+        not = M.Expression,
+        costCategories = M.ExpressionFilter,
+        dimensions = M.ExpressionFilter,
+        tags = M.ExpressionFilter,
     },
 }
 
@@ -2382,18 +2305,12 @@ M.HistoricalUsageEntity = {
                 required = true,
             },
         },
-        billInterval = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        filterExpression = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        billInterval = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BillInterval }),
+        filterExpression = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Expression }),
     },
 }
 
@@ -2438,11 +2355,9 @@ M.BatchCreateBillScenarioUsageModificationEntry = {
         },
         amounts = {
             type = "list",
-            member_type = "structure",
+            member = M.UsageAmount,
         },
-        historicalUsage = {
-            type = "structure",
-        },
+        historicalUsage = M.HistoricalUsageEntity,
     },
 }
 
@@ -2484,11 +2399,9 @@ M.BatchCreateBillScenarioUsageModificationItem = {
         },
         quantities = {
             type = "list",
-            member_type = "structure",
+            member = M.UsageQuantity,
         },
-        historicalUsage = {
-            type = "structure",
-        },
+        historicalUsage = M.HistoricalUsageEntity,
         key = {
             type = "string",
         },
@@ -2532,14 +2445,12 @@ M.BatchCreateWorkloadEstimateUsageEntry = {
             },
         },
         amount = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
-        historicalUsage = {
-            type = "structure",
-        },
+        historicalUsage = M.HistoricalUsageEntity,
     },
 }
 
@@ -2576,11 +2487,9 @@ M.BatchCreateWorkloadEstimateUsageItem = {
         group = {
             type = "string",
         },
-        quantity = {
-            type = "structure",
-        },
+        quantity = M.WorkloadEstimateUsageQuantity,
         cost = {
-            type = "number",
+            type = "double",
         },
         currency = {
             type = "string",
@@ -2588,9 +2497,7 @@ M.BatchCreateWorkloadEstimateUsageItem = {
         status = {
             type = "string",
         },
-        historicalUsage = {
-            type = "structure",
-        },
+        historicalUsage = M.HistoricalUsageEntity,
         key = {
             type = "string",
         },
@@ -2635,11 +2542,9 @@ M.BillEstimateInputUsageModificationSummary = {
         },
         quantities = {
             type = "list",
-            member_type = "structure",
+            member = M.UsageQuantity,
         },
-        historicalUsage = {
-            type = "structure",
-        },
+        historicalUsage = M.HistoricalUsageEntity,
     },
 }
 
@@ -2681,11 +2586,9 @@ M.BillScenarioUsageModificationItem = {
         },
         quantities = {
             type = "list",
-            member_type = "structure",
+            member = M.UsageQuantity,
         },
-        historicalUsage = {
-            type = "structure",
-        },
+        historicalUsage = M.HistoricalUsageEntity,
     },
 }
 
@@ -2722,11 +2625,9 @@ M.WorkloadEstimateUsageItem = {
         group = {
             type = "string",
         },
-        quantity = {
-            type = "structure",
-        },
+        quantity = M.WorkloadEstimateUsageQuantity,
         cost = {
-            type = "number",
+            type = "double",
         },
         currency = {
             type = "string",
@@ -2734,9 +2635,7 @@ M.WorkloadEstimateUsageItem = {
         status = {
             type = "string",
         },
-        historicalUsage = {
-            type = "structure",
-        },
+        historicalUsage = M.HistoricalUsageEntity,
     },
 }
 
@@ -2751,7 +2650,7 @@ M.BatchCreateBillScenarioUsageModificationInput = {
         },
         usageModifications = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchCreateBillScenarioUsageModificationEntry,
             traits = {
                 required = true,
             },
@@ -2770,11 +2669,11 @@ M.BatchCreateBillScenarioUsageModificationOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchCreateBillScenarioUsageModificationItem,
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchCreateBillScenarioUsageModificationError,
         },
     },
 }
@@ -2790,7 +2689,7 @@ M.BatchCreateWorkloadEstimateUsageInput = {
         },
         usage = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchCreateWorkloadEstimateUsageEntry,
             traits = {
                 required = true,
             },
@@ -2809,11 +2708,11 @@ M.BatchCreateWorkloadEstimateUsageOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchCreateWorkloadEstimateUsageItem,
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchCreateWorkloadEstimateUsageError,
         },
     },
 }
@@ -2823,11 +2722,11 @@ M.BatchUpdateBillScenarioUsageModificationOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.BillScenarioUsageModificationItem,
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchUpdateBillScenarioUsageModificationError,
         },
     },
 }
@@ -2837,11 +2736,11 @@ M.BatchUpdateWorkloadEstimateUsageOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkloadEstimateUsageItem,
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchUpdateWorkloadEstimateUsageError,
         },
     },
 }
@@ -2851,7 +2750,7 @@ M.ListBillEstimateInputUsageModificationsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.BillEstimateInputUsageModificationSummary,
         },
         nextToken = {
             type = "string",
@@ -2864,7 +2763,7 @@ M.ListBillScenarioUsageModificationsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.BillScenarioUsageModificationItem,
         },
         nextToken = {
             type = "string",
@@ -2877,7 +2776,7 @@ M.ListWorkloadEstimateUsageOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkloadEstimateUsageItem,
         },
         nextToken = {
             type = "string",

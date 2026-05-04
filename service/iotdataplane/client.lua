@@ -16,7 +16,7 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "IotMoonrakerService"
-    cfg.signing_name = "iotmoonrakerservice"
+    cfg.signing_name = "iotdata"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end

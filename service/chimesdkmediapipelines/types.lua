@@ -96,6 +96,9 @@ M.AmazonTranscribeCallAnalyticsProcessorConfiguration = {
         },
         EnablePartialResultsStabilization = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         PartialResultsStability = {
             type = "string",
@@ -111,13 +114,14 @@ M.AmazonTranscribeCallAnalyticsProcessorConfiguration = {
         },
         FilterPartialResults = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        PostCallAnalyticsSettings = {
-            type = "structure",
-        },
+        PostCallAnalyticsSettings = M.PostCallAnalyticsSettings,
         CallAnalyticsStreamCategories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -139,9 +143,15 @@ M.AmazonTranscribeProcessorConfiguration = {
         },
         ShowSpeakerLabel = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         EnablePartialResultsStabilization = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         PartialResultsStability = {
             type = "string",
@@ -160,12 +170,21 @@ M.AmazonTranscribeProcessorConfiguration = {
         },
         FilterPartialResults = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         IdentifyLanguage = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         IdentifyMultipleLanguages = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         LanguageOptions = {
             type = "string",
@@ -278,48 +297,27 @@ M.VideoConcatenationConfiguration = {
 M.ArtifactsConcatenationConfiguration = {
     type = "structure",
     members = {
-        Audio = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Video = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Content = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        DataChannel = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        TranscriptionMessages = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        MeetingEvents = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        CompositedVideo = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Audio = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AudioConcatenationConfiguration }),
+        Video = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VideoConcatenationConfiguration }),
+        Content = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ContentConcatenationConfiguration }),
+        DataChannel = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataChannelConcatenationConfiguration }),
+        TranscriptionMessages = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TranscriptionMessagesConcatenationConfiguration }),
+        MeetingEvents = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MeetingEventsConcatenationConfiguration }),
+        CompositedVideo = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CompositedVideoConcatenationConfiguration }),
     },
 }
 
@@ -373,7 +371,7 @@ M.HorizontalLayoutConfiguration = {
             type = "string",
         },
         TileCount = {
-            type = "number",
+            type = "integer",
         },
         TileAspectRatio = {
             type = "string",
@@ -412,7 +410,7 @@ M.VerticalLayoutConfiguration = {
             type = "string",
         },
         TileCount = {
-            type = "number",
+            type = "integer",
         },
         TileAspectRatio = {
             type = "string",
@@ -442,7 +440,7 @@ M.VideoAttribute = {
     type = "structure",
     members = {
         CornerRadius = {
-            type = "number",
+            type = "integer",
         },
         BorderColor = {
             type = "string",
@@ -451,7 +449,7 @@ M.VideoAttribute = {
             type = "string",
         },
         BorderThickness = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -465,21 +463,11 @@ M.GridViewConfiguration = {
                 required = true,
             },
         },
-        PresenterOnlyConfiguration = {
-            type = "structure",
-        },
-        ActiveSpeakerOnlyConfiguration = {
-            type = "structure",
-        },
-        HorizontalLayoutConfiguration = {
-            type = "structure",
-        },
-        VerticalLayoutConfiguration = {
-            type = "structure",
-        },
-        VideoAttribute = {
-            type = "structure",
-        },
+        PresenterOnlyConfiguration = M.PresenterOnlyConfiguration,
+        ActiveSpeakerOnlyConfiguration = M.ActiveSpeakerOnlyConfiguration,
+        HorizontalLayoutConfiguration = M.HorizontalLayoutConfiguration,
+        VerticalLayoutConfiguration = M.VerticalLayoutConfiguration,
+        VideoAttribute = M.VideoAttribute,
         CanvasOrientation = {
             type = "string",
         },
@@ -504,12 +492,9 @@ M.CompositedVideoArtifactsConfiguration = {
         Resolution = {
             type = "string",
         },
-        GridViewConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        GridViewConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.GridViewConfiguration }),
     },
 }
 
@@ -559,27 +544,16 @@ M.VideoArtifactsConfiguration = {
 M.ArtifactsConfiguration = {
     type = "structure",
     members = {
-        Audio = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Video = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Content = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        CompositedVideo = {
-            type = "structure",
-        },
+        Audio = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AudioArtifactsConfiguration }),
+        Video = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VideoArtifactsConfiguration }),
+        Content = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ContentArtifactsConfiguration }),
+        CompositedVideo = M.CompositedVideoArtifactsConfiguration,
     },
 }
 
@@ -623,8 +597,9 @@ M.ChannelDefinition = {
     type = "structure",
     members = {
         ChannelId = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -639,11 +614,11 @@ M.SelectedVideoStreams = {
     members = {
         AttendeeIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ExternalUserIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -651,21 +626,15 @@ M.SelectedVideoStreams = {
 M.SourceConfiguration = {
     type = "structure",
     members = {
-        SelectedVideoStreams = {
-            type = "structure",
-        },
+        SelectedVideoStreams = M.SelectedVideoStreams,
     },
 }
 
 M.ChimeSdkMeetingConfiguration = {
     type = "structure",
     members = {
-        SourceConfiguration = {
-            type = "structure",
-        },
-        ArtifactsConfiguration = {
-            type = "structure",
-        },
+        SourceConfiguration = M.SourceConfiguration,
+        ArtifactsConfiguration = M.ArtifactsConfiguration,
     },
 }
 
@@ -740,18 +709,14 @@ M.CreateMediaCapturePipelineInput = {
         ClientRequestToken = {
             type = "string",
         },
-        ChimeSdkMeetingConfiguration = {
-            type = "structure",
-        },
-        SseAwsKeyManagementParams = {
-            type = "structure",
-        },
+        ChimeSdkMeetingConfiguration = M.ChimeSdkMeetingConfiguration,
+        SseAwsKeyManagementParams = M.SseAwsKeyManagementParams,
         SinkIamRoleArn = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -796,12 +761,8 @@ M.MediaCapturePipeline = {
         UpdatedTimestamp = {
             type = "timestamp",
         },
-        ChimeSdkMeetingConfiguration = {
-            type = "structure",
-        },
-        SseAwsKeyManagementParams = {
-            type = "structure",
-        },
+        ChimeSdkMeetingConfiguration = M.ChimeSdkMeetingConfiguration,
+        SseAwsKeyManagementParams = M.SseAwsKeyManagementParams,
         SinkIamRoleArn = {
             type = "string",
         },
@@ -811,9 +772,7 @@ M.MediaCapturePipeline = {
 M.CreateMediaCapturePipelineOutput = {
     type = "structure",
     members = {
-        MediaCapturePipeline = {
-            type = "structure",
-        },
+        MediaCapturePipeline = M.MediaCapturePipeline,
     },
 }
 
@@ -938,24 +897,18 @@ M.ConcatenationSink = {
                 required = true,
             },
         },
-        S3BucketSinkConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        S3BucketSinkConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3BucketSinkConfiguration }),
     },
 }
 
 M.ChimeSdkMeetingConcatenationConfiguration = {
     type = "structure",
     members = {
-        ArtifactsConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ArtifactsConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ArtifactsConcatenationConfiguration }),
     },
 }
 
@@ -968,12 +921,9 @@ M.MediaCapturePipelineSourceConfiguration = {
                 required = true,
             },
         },
-        ChimeSdkMeetingConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ChimeSdkMeetingConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ChimeSdkMeetingConcatenationConfiguration }),
     },
 }
 
@@ -990,12 +940,9 @@ M.ConcatenationSource = {
                 required = true,
             },
         },
-        MediaCapturePipelineSourceConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        MediaCapturePipelineSourceConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MediaCapturePipelineSourceConfiguration }),
     },
 }
 
@@ -1004,14 +951,14 @@ M.CreateMediaConcatenationPipelineInput = {
     members = {
         Sources = {
             type = "list",
-            member_type = "structure",
+            member = M.ConcatenationSource,
             traits = {
                 required = true,
             },
         },
         Sinks = {
             type = "list",
-            member_type = "structure",
+            member = M.ConcatenationSink,
             traits = {
                 required = true,
             },
@@ -1021,7 +968,7 @@ M.CreateMediaConcatenationPipelineInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1037,11 +984,11 @@ M.MediaConcatenationPipeline = {
         },
         Sources = {
             type = "list",
-            member_type = "structure",
+            member = M.ConcatenationSource,
         },
         Sinks = {
             type = "list",
-            member_type = "structure",
+            member = M.ConcatenationSink,
         },
         Status = {
             type = "string",
@@ -1058,9 +1005,7 @@ M.MediaConcatenationPipeline = {
 M.CreateMediaConcatenationPipelineOutput = {
     type = "structure",
     members = {
-        MediaConcatenationPipeline = {
-            type = "structure",
-        },
+        MediaConcatenationPipeline = M.MediaConcatenationPipeline,
     },
 }
 
@@ -1096,12 +1041,9 @@ M.FragmentSelector = {
                 required = true,
             },
         },
-        TimestampRange = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TimestampRange = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TimestampRange }),
     },
 }
 
@@ -1119,17 +1061,14 @@ M.KinesisVideoStreamRecordingSourceRuntimeConfiguration = {
     members = {
         Streams = {
             type = "list",
-            member_type = "structure",
+            member = M.RecordingStreamConfiguration,
             traits = {
                 required = true,
             },
         },
-        FragmentSelector = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        FragmentSelector = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FragmentSelector }),
     },
 }
 
@@ -1141,14 +1080,14 @@ M.StreamChannelDefinition = {
     type = "structure",
     members = {
         NumberOfChannels = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         ChannelDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.ChannelDefinition,
         },
     },
 }
@@ -1165,12 +1104,9 @@ M.StreamConfiguration = {
         FragmentNumber = {
             type = "string",
         },
-        StreamChannelDefinition = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        StreamChannelDefinition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.StreamChannelDefinition }),
     },
 }
 
@@ -1179,7 +1115,7 @@ M.KinesisVideoStreamSourceRuntimeConfiguration = {
     members = {
         Streams = {
             type = "list",
-            member_type = "structure",
+            member = M.StreamConfiguration,
             traits = {
                 required = true,
             },
@@ -1191,7 +1127,7 @@ M.KinesisVideoStreamSourceRuntimeConfiguration = {
             },
         },
         MediaSampleRate = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1231,23 +1167,17 @@ M.CreateMediaInsightsPipelineInput = {
                 required = true,
             },
         },
-        KinesisVideoStreamSourceRuntimeConfiguration = {
-            type = "structure",
-        },
+        KinesisVideoStreamSourceRuntimeConfiguration = M.KinesisVideoStreamSourceRuntimeConfiguration,
         MediaInsightsRuntimeMetadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        KinesisVideoStreamRecordingSourceRuntimeConfiguration = {
-            type = "structure",
-        },
-        S3RecordingSinkRuntimeConfiguration = {
-            type = "structure",
-        },
+        KinesisVideoStreamRecordingSourceRuntimeConfiguration = M.KinesisVideoStreamRecordingSourceRuntimeConfiguration,
+        S3RecordingSinkRuntimeConfiguration = M.S3RecordingSinkRuntimeConfiguration,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ClientRequestToken = {
             type = "string",
@@ -1305,26 +1235,20 @@ M.MediaInsightsPipeline = {
         Status = {
             type = "string",
         },
-        KinesisVideoStreamSourceRuntimeConfiguration = {
-            type = "structure",
-        },
+        KinesisVideoStreamSourceRuntimeConfiguration = M.KinesisVideoStreamSourceRuntimeConfiguration,
         MediaInsightsRuntimeMetadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        KinesisVideoStreamRecordingSourceRuntimeConfiguration = {
-            type = "structure",
-        },
-        S3RecordingSinkRuntimeConfiguration = {
-            type = "structure",
-        },
+        KinesisVideoStreamRecordingSourceRuntimeConfiguration = M.KinesisVideoStreamRecordingSourceRuntimeConfiguration,
+        S3RecordingSinkRuntimeConfiguration = M.S3RecordingSinkRuntimeConfiguration,
         CreatedTimestamp = {
             type = "timestamp",
         },
         ElementStatuses = {
             type = "list",
-            member_type = "structure",
+            member = M.MediaInsightsPipelineElementStatus,
         },
     },
 }
@@ -1332,12 +1256,9 @@ M.MediaInsightsPipeline = {
 M.CreateMediaInsightsPipelineOutput = {
     type = "structure",
     members = {
-        MediaInsightsPipeline = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        MediaInsightsPipeline = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MediaInsightsPipeline }),
     },
 }
 
@@ -1427,6 +1348,9 @@ M.VoiceEnhancementSinkConfiguration = {
     members = {
         Disabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1440,33 +1364,15 @@ M.MediaInsightsPipelineConfigurationElement = {
                 required = true,
             },
         },
-        AmazonTranscribeCallAnalyticsProcessorConfiguration = {
-            type = "structure",
-        },
-        AmazonTranscribeProcessorConfiguration = {
-            type = "structure",
-        },
-        KinesisDataStreamSinkConfiguration = {
-            type = "structure",
-        },
-        S3RecordingSinkConfiguration = {
-            type = "structure",
-        },
-        VoiceAnalyticsProcessorConfiguration = {
-            type = "structure",
-        },
-        LambdaFunctionSinkConfiguration = {
-            type = "structure",
-        },
-        SqsQueueSinkConfiguration = {
-            type = "structure",
-        },
-        SnsTopicSinkConfiguration = {
-            type = "structure",
-        },
-        VoiceEnhancementSinkConfiguration = {
-            type = "structure",
-        },
+        AmazonTranscribeCallAnalyticsProcessorConfiguration = M.AmazonTranscribeCallAnalyticsProcessorConfiguration,
+        AmazonTranscribeProcessorConfiguration = M.AmazonTranscribeProcessorConfiguration,
+        KinesisDataStreamSinkConfiguration = M.KinesisDataStreamSinkConfiguration,
+        S3RecordingSinkConfiguration = M.S3RecordingSinkConfiguration,
+        VoiceAnalyticsProcessorConfiguration = M.VoiceAnalyticsProcessorConfiguration,
+        LambdaFunctionSinkConfiguration = M.LambdaFunctionSinkConfiguration,
+        SqsQueueSinkConfiguration = M.SqsQueueSinkConfiguration,
+        SnsTopicSinkConfiguration = M.SnsTopicSinkConfiguration,
+        VoiceEnhancementSinkConfiguration = M.VoiceEnhancementSinkConfiguration,
     },
 }
 
@@ -1493,13 +1399,16 @@ M.KeywordMatchConfiguration = {
         },
         Keywords = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         Negate = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1524,7 +1433,7 @@ M.SentimentConfiguration = {
             },
         },
         TimePeriod = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1547,15 +1456,9 @@ M.RealTimeAlertRule = {
                 required = true,
             },
         },
-        KeywordMatchConfiguration = {
-            type = "structure",
-        },
-        SentimentConfiguration = {
-            type = "structure",
-        },
-        IssueDetectionConfiguration = {
-            type = "structure",
-        },
+        KeywordMatchConfiguration = M.KeywordMatchConfiguration,
+        SentimentConfiguration = M.SentimentConfiguration,
+        IssueDetectionConfiguration = M.IssueDetectionConfiguration,
     },
 }
 
@@ -1564,10 +1467,13 @@ M.RealTimeAlertConfiguration = {
     members = {
         Disabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.RealTimeAlertRule,
         },
     },
 }
@@ -1587,19 +1493,17 @@ M.CreateMediaInsightsPipelineConfigurationInput = {
                 required = true,
             },
         },
-        RealTimeAlertConfiguration = {
-            type = "structure",
-        },
+        RealTimeAlertConfiguration = M.RealTimeAlertConfiguration,
         Elements = {
             type = "list",
-            member_type = "structure",
+            member = M.MediaInsightsPipelineConfigurationElement,
             traits = {
                 required = true,
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         ClientRequestToken = {
             type = "string",
@@ -1619,12 +1523,10 @@ M.MediaInsightsPipelineConfiguration = {
         ResourceAccessRoleArn = {
             type = "string",
         },
-        RealTimeAlertConfiguration = {
-            type = "structure",
-        },
+        RealTimeAlertConfiguration = M.RealTimeAlertConfiguration,
         Elements = {
             type = "list",
-            member_type = "structure",
+            member = M.MediaInsightsPipelineConfigurationElement,
         },
         MediaInsightsPipelineConfigurationId = {
             type = "string",
@@ -1641,9 +1543,7 @@ M.MediaInsightsPipelineConfiguration = {
 M.CreateMediaInsightsPipelineConfigurationOutput = {
     type = "structure",
     members = {
-        MediaInsightsPipelineConfiguration = {
-            type = "structure",
-        },
+        MediaInsightsPipelineConfiguration = M.MediaInsightsPipelineConfiguration,
     },
 }
 
@@ -1678,12 +1578,9 @@ M.LiveConnectorSinkConfiguration = {
                 required = true,
             },
         },
-        RTMPConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RTMPConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LiveConnectorRTMPConfiguration }),
     },
 }
 
@@ -1707,12 +1604,8 @@ M.ChimeSdkMeetingLiveConnectorConfiguration = {
                 required = true,
             },
         },
-        CompositedVideo = {
-            type = "structure",
-        },
-        SourceConfiguration = {
-            type = "structure",
-        },
+        CompositedVideo = M.CompositedVideoArtifactsConfiguration,
+        SourceConfiguration = M.SourceConfiguration,
     },
 }
 
@@ -1729,12 +1622,9 @@ M.LiveConnectorSourceConfiguration = {
                 required = true,
             },
         },
-        ChimeSdkMeetingLiveConnectorConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ChimeSdkMeetingLiveConnectorConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ChimeSdkMeetingLiveConnectorConfiguration }),
     },
 }
 
@@ -1743,14 +1633,14 @@ M.CreateMediaLiveConnectorPipelineInput = {
     members = {
         Sources = {
             type = "list",
-            member_type = "structure",
+            member = M.LiveConnectorSourceConfiguration,
             traits = {
                 required = true,
             },
         },
         Sinks = {
             type = "list",
-            member_type = "structure",
+            member = M.LiveConnectorSinkConfiguration,
             traits = {
                 required = true,
             },
@@ -1760,7 +1650,7 @@ M.CreateMediaLiveConnectorPipelineInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1770,11 +1660,11 @@ M.MediaLiveConnectorPipeline = {
     members = {
         Sources = {
             type = "list",
-            member_type = "structure",
+            member = M.LiveConnectorSourceConfiguration,
         },
         Sinks = {
             type = "list",
-            member_type = "structure",
+            member = M.LiveConnectorSinkConfiguration,
         },
         MediaPipelineId = {
             type = "string",
@@ -1797,9 +1687,7 @@ M.MediaLiveConnectorPipeline = {
 M.CreateMediaLiveConnectorPipelineOutput = {
     type = "structure",
     members = {
-        MediaLiveConnectorPipeline = {
-            type = "structure",
-        },
+        MediaLiveConnectorPipeline = M.MediaLiveConnectorPipeline,
     },
 }
 
@@ -1829,7 +1717,7 @@ M.KinesisVideoStreamConfiguration = {
             },
         },
         DataRetentionInHours = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1837,12 +1725,9 @@ M.KinesisVideoStreamConfiguration = {
 M.CreateMediaPipelineKinesisVideoStreamPoolInput = {
     type = "structure",
     members = {
-        StreamConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        StreamConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.KinesisVideoStreamConfiguration }),
         PoolName = {
             type = "string",
             traits = {
@@ -1854,7 +1739,7 @@ M.CreateMediaPipelineKinesisVideoStreamPoolInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1883,11 +1768,9 @@ M.KinesisVideoStreamPoolConfiguration = {
             type = "string",
         },
         PoolSize = {
-            type = "number",
+            type = "integer",
         },
-        StreamConfiguration = {
-            type = "structure",
-        },
+        StreamConfiguration = M.KinesisVideoStreamConfiguration,
         CreatedTimestamp = {
             type = "timestamp",
         },
@@ -1900,9 +1783,7 @@ M.KinesisVideoStreamPoolConfiguration = {
 M.CreateMediaPipelineKinesisVideoStreamPoolOutput = {
     type = "structure",
     members = {
-        KinesisVideoStreamPoolConfiguration = {
-            type = "structure",
-        },
+        KinesisVideoStreamPoolConfiguration = M.KinesisVideoStreamPoolConfiguration,
     },
 }
 
@@ -1931,7 +1812,7 @@ M.MediaStreamSink = {
             },
         },
         ReservedStreamCapacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1968,14 +1849,14 @@ M.CreateMediaStreamPipelineInput = {
     members = {
         Sources = {
             type = "list",
-            member_type = "structure",
+            member = M.MediaStreamSource,
             traits = {
                 required = true,
             },
         },
         Sinks = {
             type = "list",
-            member_type = "structure",
+            member = M.MediaStreamSink,
             traits = {
                 required = true,
             },
@@ -1985,7 +1866,7 @@ M.CreateMediaStreamPipelineInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2010,11 +1891,11 @@ M.MediaStreamPipeline = {
         },
         Sources = {
             type = "list",
-            member_type = "structure",
+            member = M.MediaStreamSource,
         },
         Sinks = {
             type = "list",
-            member_type = "structure",
+            member = M.MediaStreamSink,
         },
     },
 }
@@ -2022,9 +1903,7 @@ M.MediaStreamPipeline = {
 M.CreateMediaStreamPipelineOutput = {
     type = "structure",
     members = {
-        MediaStreamPipeline = {
-            type = "structure",
-        },
+        MediaStreamPipeline = M.MediaStreamPipeline,
     },
 }
 
@@ -2112,9 +1991,7 @@ M.GetMediaCapturePipelineInput = {
 M.GetMediaCapturePipelineOutput = {
     type = "structure",
     members = {
-        MediaCapturePipeline = {
-            type = "structure",
-        },
+        MediaCapturePipeline = M.MediaCapturePipeline,
     },
 }
 
@@ -2134,9 +2011,7 @@ M.GetMediaInsightsPipelineConfigurationInput = {
 M.GetMediaInsightsPipelineConfigurationOutput = {
     type = "structure",
     members = {
-        MediaInsightsPipelineConfiguration = {
-            type = "structure",
-        },
+        MediaInsightsPipelineConfiguration = M.MediaInsightsPipelineConfiguration,
     },
 }
 
@@ -2156,30 +2031,18 @@ M.GetMediaPipelineInput = {
 M.MediaPipeline = {
     type = "structure",
     members = {
-        MediaCapturePipeline = {
-            type = "structure",
-        },
-        MediaLiveConnectorPipeline = {
-            type = "structure",
-        },
-        MediaConcatenationPipeline = {
-            type = "structure",
-        },
-        MediaInsightsPipeline = {
-            type = "structure",
-        },
-        MediaStreamPipeline = {
-            type = "structure",
-        },
+        MediaCapturePipeline = M.MediaCapturePipeline,
+        MediaLiveConnectorPipeline = M.MediaLiveConnectorPipeline,
+        MediaConcatenationPipeline = M.MediaConcatenationPipeline,
+        MediaInsightsPipeline = M.MediaInsightsPipeline,
+        MediaStreamPipeline = M.MediaStreamPipeline,
     },
 }
 
 M.GetMediaPipelineOutput = {
     type = "structure",
     members = {
-        MediaPipeline = {
-            type = "structure",
-        },
+        MediaPipeline = M.MediaPipeline,
     },
 }
 
@@ -2199,9 +2062,7 @@ M.GetMediaPipelineKinesisVideoStreamPoolInput = {
 M.GetMediaPipelineKinesisVideoStreamPoolOutput = {
     type = "structure",
     members = {
-        KinesisVideoStreamPoolConfiguration = {
-            type = "structure",
-        },
+        KinesisVideoStreamPoolConfiguration = M.KinesisVideoStreamPoolConfiguration,
     },
 }
 
@@ -2255,9 +2116,7 @@ M.SpeakerSearchTask = {
 M.GetSpeakerSearchTaskOutput = {
     type = "structure",
     members = {
-        SpeakerSearchTask = {
-            type = "structure",
-        },
+        SpeakerSearchTask = M.SpeakerSearchTask,
     },
 }
 
@@ -2302,9 +2161,7 @@ M.VoiceToneAnalysisTask = {
 M.GetVoiceToneAnalysisTaskOutput = {
     type = "structure",
     members = {
-        VoiceToneAnalysisTask = {
-            type = "structure",
-        },
+        VoiceToneAnalysisTask = M.VoiceToneAnalysisTask,
     },
 }
 
@@ -2318,7 +2175,7 @@ M.ListMediaCapturePipelinesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -2343,7 +2200,7 @@ M.ListMediaCapturePipelinesOutput = {
     members = {
         MediaCapturePipelines = {
             type = "list",
-            member_type = "structure",
+            member = M.MediaCapturePipelineSummary,
         },
         NextToken = {
             type = "string",
@@ -2361,7 +2218,7 @@ M.ListMediaInsightsPipelineConfigurationsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -2389,7 +2246,7 @@ M.ListMediaInsightsPipelineConfigurationsOutput = {
     members = {
         MediaInsightsPipelineConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.MediaInsightsPipelineConfigurationSummary,
         },
         NextToken = {
             type = "string",
@@ -2407,7 +2264,7 @@ M.ListMediaPipelineKinesisVideoStreamPoolsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -2435,7 +2292,7 @@ M.ListMediaPipelineKinesisVideoStreamPoolsOutput = {
     members = {
         KinesisVideoStreamPools = {
             type = "list",
-            member_type = "structure",
+            member = M.KinesisVideoStreamPoolSummary,
         },
         NextToken = {
             type = "string",
@@ -2453,7 +2310,7 @@ M.ListMediaPipelinesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max-results",
             },
@@ -2478,7 +2335,7 @@ M.ListMediaPipelinesOutput = {
     members = {
         MediaPipelines = {
             type = "list",
-            member_type = "structure",
+            member = M.MediaPipelineSummary,
         },
         NextToken = {
             type = "string",
@@ -2504,7 +2361,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2519,8 +2376,9 @@ M.KinesisVideoStreamSourceTaskConfiguration = {
             },
         },
         ChannelId = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -2546,9 +2404,7 @@ M.StartSpeakerSearchTaskInput = {
                 required = true,
             },
         },
-        KinesisVideoStreamSourceTaskConfiguration = {
-            type = "structure",
-        },
+        KinesisVideoStreamSourceTaskConfiguration = M.KinesisVideoStreamSourceTaskConfiguration,
         ClientRequestToken = {
             type = "string",
         },
@@ -2558,9 +2414,7 @@ M.StartSpeakerSearchTaskInput = {
 M.StartSpeakerSearchTaskOutput = {
     type = "structure",
     members = {
-        SpeakerSearchTask = {
-            type = "structure",
-        },
+        SpeakerSearchTask = M.SpeakerSearchTask,
     },
 }
 
@@ -2584,9 +2438,7 @@ M.StartVoiceToneAnalysisTaskInput = {
                 required = true,
             },
         },
-        KinesisVideoStreamSourceTaskConfiguration = {
-            type = "structure",
-        },
+        KinesisVideoStreamSourceTaskConfiguration = M.KinesisVideoStreamSourceTaskConfiguration,
         ClientRequestToken = {
             type = "string",
         },
@@ -2596,9 +2448,7 @@ M.StartVoiceToneAnalysisTaskInput = {
 M.StartVoiceToneAnalysisTaskOutput = {
     type = "structure",
     members = {
-        VoiceToneAnalysisTask = {
-            type = "structure",
-        },
+        VoiceToneAnalysisTask = M.VoiceToneAnalysisTask,
     },
 }
 
@@ -2661,7 +2511,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -2684,7 +2534,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2712,12 +2562,10 @@ M.UpdateMediaInsightsPipelineConfigurationInput = {
                 required = true,
             },
         },
-        RealTimeAlertConfiguration = {
-            type = "structure",
-        },
+        RealTimeAlertConfiguration = M.RealTimeAlertConfiguration,
         Elements = {
             type = "list",
-            member_type = "structure",
+            member = M.MediaInsightsPipelineConfigurationElement,
             traits = {
                 required = true,
             },
@@ -2728,9 +2576,7 @@ M.UpdateMediaInsightsPipelineConfigurationInput = {
 M.UpdateMediaInsightsPipelineConfigurationOutput = {
     type = "structure",
     members = {
-        MediaInsightsPipelineConfiguration = {
-            type = "structure",
-        },
+        MediaInsightsPipelineConfiguration = M.MediaInsightsPipelineConfiguration,
     },
 }
 
@@ -2766,7 +2612,7 @@ M.KinesisVideoStreamConfigurationUpdate = {
     type = "structure",
     members = {
         DataRetentionInHours = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2781,18 +2627,14 @@ M.UpdateMediaPipelineKinesisVideoStreamPoolInput = {
                 required = true,
             },
         },
-        StreamConfiguration = {
-            type = "structure",
-        },
+        StreamConfiguration = M.KinesisVideoStreamConfigurationUpdate,
     },
 }
 
 M.UpdateMediaPipelineKinesisVideoStreamPoolOutput = {
     type = "structure",
     members = {
-        KinesisVideoStreamPoolConfiguration = {
-            type = "structure",
-        },
+        KinesisVideoStreamPoolConfiguration = M.KinesisVideoStreamPoolConfiguration,
     },
 }
 

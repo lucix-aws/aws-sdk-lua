@@ -932,13 +932,13 @@ local type RequestStatus = "PENDING" | "CASE_OPENED" | "APPROVED" | "DENIED" | "
 
 local type OptInLevel = "ACCOUNT"
 
-local type AppliedLevelEnum = "ACCOUNT" | "RESOURCE" | "ALL"
-
-local type OptInType = "NotifyOnly" | "NotifyAndAdjust"
-
 local type ServiceQuotaTemplateAssociationStatus = "ASSOCIATED" | "DISASSOCIATED"
 
+local type AppliedLevelEnum = "ACCOUNT" | "RESOURCE" | "ALL"
+
 local type ReportStatus = "PENDING" | "IN_PROGRESS" | "COMPLETED" | "FAILED"
+
+local type OptInType = "NotifyOnly" | "NotifyAndAdjust"
 
 local type OptInStatus = "ENABLED" | "DISABLED"
 

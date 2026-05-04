@@ -60,6 +60,9 @@ M.CreateAccessSourceInput = {
         },
         ipAddressType = {
             type = "string",
+            traits = {
+                default = "IPV4",
+            },
         },
         name = {
             type = "string",
@@ -78,8 +81,8 @@ M.CreateAccessSourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -165,7 +168,7 @@ M.InternalServerException = {
             },
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -240,7 +243,7 @@ M.ThrottlingException = {
             type = "string",
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -291,7 +294,7 @@ M.ValidationException = {
         },
         fieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -452,7 +455,7 @@ M.ListAccessSourcesInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max_results",
             },
@@ -465,8 +468,8 @@ M.ListAccessSourcesInput = {
         },
         filters = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
             traits = {
                 http_query_params = true,
             },
@@ -545,7 +548,7 @@ M.ListAccessSourcesOutput = {
         },
         accessSources = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessSourcesItem,
             traits = {
                 required = true,
             },
@@ -662,8 +665,8 @@ M.CreateAccessTokenInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -848,7 +851,7 @@ M.ListAccessTokensInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max_results",
             },
@@ -868,8 +871,8 @@ M.ListAccessTokensInput = {
         },
         filters = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
             traits = {
                 http_query_params = true,
             },
@@ -942,7 +945,7 @@ M.ListAccessTokensOutput = {
         },
         accessTokens = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessTokenItem,
         },
     },
 }
@@ -1113,7 +1116,7 @@ M.BatchCreateFirewallRuleInputItem = {
             type = "string",
         },
         blockOverrideTtl = {
-            type = "number",
+            type = "integer",
         },
         blockResponse = {
             type = "string",
@@ -1143,7 +1146,7 @@ M.BatchCreateFirewallRuleInputItem = {
             },
         },
         priority = {
-            type = "number",
+            type = "long",
         },
         dnsViewId = {
             type = "string",
@@ -1162,7 +1165,7 @@ M.BatchCreateFirewallRuleInput = {
     members = {
         firewallRules = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchCreateFirewallRuleInputItem,
             traits = {
                 required = true,
             },
@@ -1186,7 +1189,7 @@ M.BatchCreateFirewallRuleResult = {
             type = "string",
         },
         blockOverrideTtl = {
-            type = "number",
+            type = "integer",
         },
         blockResponse = {
             type = "string",
@@ -1225,7 +1228,7 @@ M.BatchCreateFirewallRuleResult = {
             },
         },
         priority = {
-            type = "number",
+            type = "long",
         },
         dnsViewId = {
             type = "string",
@@ -1248,14 +1251,11 @@ M.BatchCreateFirewallRuleResult = {
 M.BatchCreateFirewallRuleOutputItem = {
     type = "structure",
     members = {
-        firewallRule = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        firewallRule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BatchCreateFirewallRuleResult }),
         code = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1271,14 +1271,14 @@ M.BatchCreateFirewallRuleOutput = {
     members = {
         failures = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchCreateFirewallRuleOutputItem,
             traits = {
                 required = true,
             },
         },
         successes = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchCreateFirewallRuleOutputItem,
             traits = {
                 required = true,
             },
@@ -1303,7 +1303,7 @@ M.BatchDeleteFirewallRuleInput = {
     members = {
         firewallRules = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchDeleteFirewallRuleInputItem,
             traits = {
                 required = true,
             },
@@ -1335,14 +1335,11 @@ M.BatchDeleteFirewallRuleResult = {
 M.BatchDeleteFirewallRuleOutputItem = {
     type = "structure",
     members = {
-        firewallRule = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        firewallRule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BatchDeleteFirewallRuleResult }),
         code = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1358,14 +1355,14 @@ M.BatchDeleteFirewallRuleOutput = {
     members = {
         failures = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchDeleteFirewallRuleOutputItem,
             traits = {
                 required = true,
             },
         },
         successes = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchDeleteFirewallRuleOutputItem,
             traits = {
                 required = true,
             },
@@ -1386,7 +1383,7 @@ M.BatchUpdateFirewallRuleInputItem = {
             type = "string",
         },
         blockOverrideTtl = {
-            type = "number",
+            type = "integer",
         },
         blockResponse = {
             type = "string",
@@ -1410,7 +1407,7 @@ M.BatchUpdateFirewallRuleInputItem = {
             type = "string",
         },
         priority = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1420,7 +1417,7 @@ M.BatchUpdateFirewallRuleInput = {
     members = {
         firewallRules = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchUpdateFirewallRuleInputItem,
             traits = {
                 required = true,
             },
@@ -1441,7 +1438,7 @@ M.BatchUpdateFirewallRuleResult = {
             type = "string",
         },
         blockOverrideTtl = {
-            type = "number",
+            type = "integer",
         },
         blockResponse = {
             type = "string",
@@ -1474,7 +1471,7 @@ M.BatchUpdateFirewallRuleResult = {
             type = "string",
         },
         priority = {
-            type = "number",
+            type = "long",
         },
         dnsViewId = {
             type = "string",
@@ -1494,14 +1491,11 @@ M.BatchUpdateFirewallRuleResult = {
 M.BatchUpdateFirewallRuleOutputItem = {
     type = "structure",
     members = {
-        firewallRule = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        firewallRule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BatchUpdateFirewallRuleResult }),
         code = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1517,14 +1511,14 @@ M.BatchUpdateFirewallRuleOutput = {
     members = {
         failures = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchUpdateFirewallRuleOutputItem,
             traits = {
                 required = true,
             },
         },
         successes = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchUpdateFirewallRuleOutputItem,
             traits = {
                 required = true,
             },
@@ -1568,20 +1562,29 @@ M.CreateDNSViewInput = {
         },
         dnssecValidation = {
             type = "string",
+            traits = {
+                default = "DISABLED",
+            },
         },
         ednsClientSubnet = {
             type = "string",
+            traits = {
+                default = "DISABLED",
+            },
         },
         firewallRulesFailOpen = {
             type = "string",
+            traits = {
+                default = "DISABLED",
+            },
         },
         description = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1692,8 +1695,8 @@ M.CreateFirewallDomainListInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1723,7 +1726,7 @@ M.CreateFirewallDomainListOutput = {
             type = "string",
         },
         domainCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1771,7 +1774,7 @@ M.CreateFirewallRuleInput = {
             type = "string",
         },
         blockOverrideTtl = {
-            type = "number",
+            type = "integer",
         },
         blockResponse = {
             type = "string",
@@ -1798,7 +1801,7 @@ M.CreateFirewallRuleInput = {
             },
         },
         priority = {
-            type = "number",
+            type = "long",
         },
         dnsViewId = {
             type = "string",
@@ -1828,7 +1831,7 @@ M.CreateFirewallRuleOutput = {
             type = "string",
         },
         blockOverrideTtl = {
-            type = "number",
+            type = "integer",
         },
         blockResponse = {
             type = "string",
@@ -1864,7 +1867,7 @@ M.CreateFirewallRuleOutput = {
             },
         },
         priority = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -1921,15 +1924,15 @@ M.CreateGlobalResolverInput = {
         },
         regions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1975,14 +1978,14 @@ M.CreateGlobalResolverOutput = {
         },
         ipv4Addresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         ipv6Addresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         name = {
             type = "string",
@@ -1995,7 +1998,7 @@ M.CreateGlobalResolverOutput = {
         },
         regions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2172,7 +2175,7 @@ M.DeleteFirewallRuleOutput = {
             type = "string",
         },
         blockOverrideTtl = {
-            type = "number",
+            type = "integer",
         },
         blockResponse = {
             type = "string",
@@ -2208,7 +2211,7 @@ M.DeleteFirewallRuleOutput = {
             },
         },
         priority = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -2291,7 +2294,7 @@ M.DeleteGlobalResolverOutput = {
         },
         regions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2316,14 +2319,14 @@ M.DeleteGlobalResolverOutput = {
         },
         ipv4Addresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         ipv6Addresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ipAddressType = {
             type = "string",
@@ -2664,7 +2667,7 @@ M.ListDNSViewsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max_results",
             },
@@ -2768,7 +2771,7 @@ M.ListDNSViewsOutput = {
         },
         dnsViews = {
             type = "list",
-            member_type = "structure",
+            member = M.DNSViewSummary,
             traits = {
                 required = true,
             },
@@ -2917,7 +2920,7 @@ M.GetFirewallDomainListOutput = {
             type = "string",
         },
         domainCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -3005,7 +3008,7 @@ M.ListFirewallDomainListsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max_results",
             },
@@ -3084,7 +3087,7 @@ M.ListFirewallDomainListsOutput = {
         },
         firewallDomainLists = {
             type = "list",
-            member_type = "structure",
+            member = M.FirewallDomainListsItem,
             traits = {
                 required = true,
             },
@@ -3096,7 +3099,7 @@ M.ListFirewallDomainsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max_results",
             },
@@ -3125,7 +3128,7 @@ M.ListFirewallDomainsOutput = {
         },
         domains = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3138,7 +3141,7 @@ M.UpdateFirewallDomainsInput = {
     members = {
         domains = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3212,7 +3215,7 @@ M.GetFirewallRuleOutput = {
             type = "string",
         },
         blockOverrideTtl = {
-            type = "number",
+            type = "integer",
         },
         blockResponse = {
             type = "string",
@@ -3248,7 +3251,7 @@ M.GetFirewallRuleOutput = {
             },
         },
         priority = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -3281,7 +3284,7 @@ M.ListFirewallRulesInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max_results",
             },
@@ -3301,8 +3304,8 @@ M.ListFirewallRulesInput = {
         },
         filters = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
             traits = {
                 http_query_params = true,
             },
@@ -3326,7 +3329,7 @@ M.FirewallRulesItem = {
             type = "string",
         },
         blockOverrideTtl = {
-            type = "number",
+            type = "integer",
         },
         blockResponse = {
             type = "string",
@@ -3362,7 +3365,7 @@ M.FirewallRulesItem = {
             },
         },
         priority = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -3399,7 +3402,7 @@ M.ListFirewallRulesOutput = {
         },
         firewallRules = {
             type = "list",
-            member_type = "structure",
+            member = M.FirewallRulesItem,
             traits = {
                 required = true,
             },
@@ -3420,7 +3423,7 @@ M.UpdateFirewallRuleInput = {
             type = "string",
         },
         blockOverrideTtl = {
-            type = "number",
+            type = "integer",
         },
         blockResponse = {
             type = "string",
@@ -3451,7 +3454,7 @@ M.UpdateFirewallRuleInput = {
             type = "string",
         },
         priority = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -3472,7 +3475,7 @@ M.UpdateFirewallRuleOutput = {
             type = "string",
         },
         blockOverrideTtl = {
-            type = "number",
+            type = "integer",
         },
         blockResponse = {
             type = "string",
@@ -3508,7 +3511,7 @@ M.UpdateFirewallRuleOutput = {
             },
         },
         priority = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -3591,7 +3594,7 @@ M.GetGlobalResolverOutput = {
         },
         regions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3616,14 +3619,14 @@ M.GetGlobalResolverOutput = {
         },
         ipv4Addresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         ipv6Addresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ipAddressType = {
             type = "string",
@@ -3635,7 +3638,7 @@ M.ListGlobalResolversInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max_results",
             },
@@ -3690,7 +3693,7 @@ M.GlobalResolversItem = {
         },
         regions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3715,14 +3718,14 @@ M.GlobalResolversItem = {
         },
         ipv4Addresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         ipv6Addresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ipAddressType = {
             type = "string",
@@ -3738,7 +3741,7 @@ M.ListGlobalResolversOutput = {
         },
         globalResolvers = {
             type = "list",
-            member_type = "structure",
+            member = M.GlobalResolversItem,
             traits = {
                 required = true,
             },
@@ -3770,7 +3773,7 @@ M.UpdateGlobalResolverInput = {
         },
         regions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3816,7 +3819,7 @@ M.UpdateGlobalResolverOutput = {
         },
         regions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3841,14 +3844,14 @@ M.UpdateGlobalResolverOutput = {
         },
         ipv4Addresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         ipv6Addresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ipAddressType = {
             type = "string",
@@ -3927,7 +3930,7 @@ M.ListHostedZoneAssociationsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max_results",
             },
@@ -4010,7 +4013,7 @@ M.ListHostedZoneAssociationsOutput = {
         },
         hostedZoneAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.HostedZoneAssociationSummary,
             traits = {
                 required = true,
             },
@@ -4105,8 +4108,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -4155,7 +4158,7 @@ M.ListManagedFirewallDomainListsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "max_results",
             },
@@ -4211,7 +4214,7 @@ M.ListManagedFirewallDomainListsOutput = {
         },
         managedFirewallDomainLists = {
             type = "list",
-            member_type = "structure",
+            member = M.ManagedFirewallDomainListsItem,
             traits = {
                 required = true,
             },
@@ -4230,8 +4233,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4254,7 +4257,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },

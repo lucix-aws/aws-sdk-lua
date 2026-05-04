@@ -1,0 +1,12 @@
+local types = require("bedrockagentcorecontrol.types")
+
+local record M
+    wait_until_memory_created: function(client: table, input: table, options: table): table, table
+    wait_until_policy_active: function(client: table, input: table, options: table): table, table
+    wait_until_policy_deleted: function(client: table, input: table, options: table): table, table
+    wait_until_policy_engine_active: function(client: table, input: table, options: table): table, table
+    wait_until_policy_engine_deleted: function(client: table, input: table, options: table): table, table
+    wait_until_policy_generation_completed: function(client: table, input: table, options: table): table, table
+end
+
+return M

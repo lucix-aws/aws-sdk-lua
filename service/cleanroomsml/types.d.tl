@@ -1692,16 +1692,6 @@ local record ValidationException
     message: string
 end
 
-local type LogsStatus = "PUBLISH_SUCCEEDED" | "PUBLISH_FAILED"
-
-local type TrainingDatasetStatus = "ACTIVE"
-
-local type MetricsStatus = "PUBLISH_SUCCEEDED" | "PUBLISH_FAILED"
-
-local type ConfiguredAudienceModelStatus = "ACTIVE"
-
-local type TrainedModelStatus = "CREATE_PENDING" | "CREATE_IN_PROGRESS" | "CREATE_FAILED" | "ACTIVE" | "DELETE_PENDING" | "DELETE_IN_PROGRESS" | "DELETE_FAILED" | "INACTIVE" | "CANCEL_PENDING" | "CANCEL_IN_PROGRESS" | "CANCEL_FAILED"
-
 local type MLInputChannelStatus = "CREATE_PENDING" | "CREATE_IN_PROGRESS" | "CREATE_FAILED" | "ACTIVE" | "DELETE_PENDING" | "DELETE_IN_PROGRESS" | "DELETE_FAILED" | "INACTIVE"
 
 local type AudienceGenerationJobStatus = "CREATE_PENDING" | "CREATE_IN_PROGRESS" | "CREATE_FAILED" | "ACTIVE" | "DELETE_PENDING" | "DELETE_IN_PROGRESS" | "DELETE_FAILED"
@@ -1712,9 +1702,19 @@ local type TrainedModelInferenceJobStatus = "CREATE_PENDING" | "CREATE_IN_PROGRE
 
 local type TagOnCreatePolicy = "FROM_PARENT_RESOURCE" | "NONE"
 
+local type AudienceModelStatus = "CREATE_PENDING" | "CREATE_IN_PROGRESS" | "CREATE_FAILED" | "ACTIVE" | "DELETE_PENDING" | "DELETE_IN_PROGRESS" | "DELETE_FAILED"
+
 local type PolicyExistenceCondition = "POLICY_MUST_EXIST" | "POLICY_MUST_NOT_EXIST"
 
-local type AudienceModelStatus = "CREATE_PENDING" | "CREATE_IN_PROGRESS" | "CREATE_FAILED" | "ACTIVE" | "DELETE_PENDING" | "DELETE_IN_PROGRESS" | "DELETE_FAILED"
+local type LogsStatus = "PUBLISH_SUCCEEDED" | "PUBLISH_FAILED"
+
+local type TrainingDatasetStatus = "ACTIVE"
+
+local type TrainedModelStatus = "CREATE_PENDING" | "CREATE_IN_PROGRESS" | "CREATE_FAILED" | "ACTIVE" | "DELETE_PENDING" | "DELETE_IN_PROGRESS" | "DELETE_FAILED" | "INACTIVE" | "CANCEL_PENDING" | "CANCEL_IN_PROGRESS" | "CANCEL_FAILED"
+
+local type MetricsStatus = "PUBLISH_SUCCEEDED" | "PUBLISH_FAILED"
+
+local type ConfiguredAudienceModelStatus = "ACTIVE"
 
 local record M
     CancelTrainedModelInput: CancelTrainedModelInput

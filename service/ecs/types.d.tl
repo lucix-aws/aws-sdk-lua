@@ -2842,45 +2842,45 @@ local record UnsupportedFeatureException
     message: string
 end
 
-local type DaemonStatus = "ACTIVE" | "DELETE_IN_PROGRESS"
-
-local type DaemonPropagateTags = "DAEMON" | "NONE"
-
-local type TaskDefinitionStatus = "ACTIVE" | "INACTIVE" | "DELETE_IN_PROGRESS"
-
-local type LaunchType = "EC2" | "FARGATE" | "EXTERNAL" | "MANAGED_INSTANCES"
-
-local type SortOrder = "ASC" | "DESC"
-
-local type SchedulingStrategy = "REPLICA" | "DAEMON"
-
 local type DaemonTaskDefinitionStatusFilter = "ACTIVE" | "DELETE_IN_PROGRESS" | "ALL"
-
-local type ResourceManagementType = "CUSTOMER" | "ECS"
-
-local type PropagateTags = "TASK_DEFINITION" | "SERVICE" | "NONE"
-
-local type ContainerInstanceStatus = "ACTIVE" | "DRAINING" | "REGISTERING" | "DEREGISTERING" | "REGISTRATION_FAILED"
-
-local type IpcMode = "host" | "task" | "none"
-
-local type NetworkMode = "bridge" | "host" | "awsvpc" | "none"
-
-local type SettingName = "serviceLongArnFormat" | "taskLongArnFormat" | "containerInstanceLongArnFormat" | "awsvpcTrunking" | "containerInsights" | "fargateFIPSMode" | "tagResourceAuthorization" | "fargateTaskRetirementWaitPeriod" | "guardDutyActivate" | "defaultLogDriverMode" | "fargateEventWindows"
-
-local type AvailabilityZoneRebalancing = "ENABLED" | "DISABLED"
-
-local type PidMode = "host" | "task"
-
-local type DesiredStatus = "RUNNING" | "PENDING" | "STOPPED"
-
-local type DaemonTaskDefinitionRevisionFilter = "LAST_REGISTERED"
 
 local type TaskDefinitionFamilyStatus = "ACTIVE" | "INACTIVE" | "ALL"
 
 local type TargetType = "container-instance"
 
+local type ResourceManagementType = "CUSTOMER" | "ECS"
+
+local type SchedulingStrategy = "REPLICA" | "DAEMON"
+
+local type SettingName = "serviceLongArnFormat" | "taskLongArnFormat" | "containerInstanceLongArnFormat" | "awsvpcTrunking" | "containerInsights" | "fargateFIPSMode" | "tagResourceAuthorization" | "fargateTaskRetirementWaitPeriod" | "guardDutyActivate" | "defaultLogDriverMode" | "fargateEventWindows"
+
+local type AvailabilityZoneRebalancing = "ENABLED" | "DISABLED"
+
+local type SortOrder = "ASC" | "DESC"
+
+local type PidMode = "host" | "task"
+
+local type DaemonPropagateTags = "DAEMON" | "NONE"
+
+local type PropagateTags = "TASK_DEFINITION" | "SERVICE" | "NONE"
+
 local type StopServiceDeploymentStopType = "ABORT" | "ROLLBACK"
+
+local type IpcMode = "host" | "task" | "none"
+
+local type ContainerInstanceStatus = "ACTIVE" | "DRAINING" | "REGISTERING" | "DEREGISTERING" | "REGISTRATION_FAILED"
+
+local type DaemonStatus = "ACTIVE" | "DELETE_IN_PROGRESS"
+
+local type NetworkMode = "bridge" | "host" | "awsvpc" | "none"
+
+local type DesiredStatus = "RUNNING" | "PENDING" | "STOPPED"
+
+local type TaskDefinitionStatus = "ACTIVE" | "INACTIVE" | "DELETE_IN_PROGRESS"
+
+local type DaemonTaskDefinitionRevisionFilter = "LAST_REGISTERED"
+
+local type LaunchType = "EC2" | "FARGATE" | "EXTERNAL" | "MANAGED_INSTANCES"
 
 local record M
     CreateCapacityProviderInput: CreateCapacityProviderInput

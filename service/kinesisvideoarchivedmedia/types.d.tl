@@ -242,11 +242,11 @@ local type HLSPlaybackMode = "LIVE" | "LIVE_REPLAY" | "ON_DEMAND"
 
 local type DASHPlaybackMode = "LIVE" | "LIVE_REPLAY" | "ON_DEMAND"
 
-local type HLSDiscontinuityMode = "ALWAYS" | "NEVER" | "ON_DISCONTINUITY"
+local type DASHDisplayFragmentTimestamp = "ALWAYS" | "NEVER"
 
 local type HLSDisplayFragmentTimestamp = "ALWAYS" | "NEVER"
 
-local type DASHDisplayFragmentTimestamp = "ALWAYS" | "NEVER"
+local type HLSDiscontinuityMode = "ALWAYS" | "NEVER" | "ON_DISCONTINUITY"
 
 local type DASHDisplayFragmentNumber = "ALWAYS" | "NEVER"
 

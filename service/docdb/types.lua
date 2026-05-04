@@ -41,11 +41,11 @@ M.EventSubscription = {
         },
         SourceIdsList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         EventCategoriesList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Enabled = {
             type = "boolean",
@@ -59,9 +59,7 @@ M.EventSubscription = {
 M.AddSourceIdentifierToSubscriptionOutput = {
     type = "structure",
     members = {
-        EventSubscription = {
-            type = "structure",
-        },
+        EventSubscription = M.EventSubscription,
     },
 }
 
@@ -108,7 +106,7 @@ M.AddTagsToResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -206,7 +204,7 @@ M.ResourcePendingMaintenanceActions = {
         },
         PendingMaintenanceActionDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.PendingMaintenanceAction,
         },
     },
 }
@@ -214,9 +212,7 @@ M.ResourcePendingMaintenanceActions = {
 M.ApplyPendingMaintenanceActionOutput = {
     type = "structure",
     members = {
-        ResourcePendingMaintenanceActions = {
-            type = "structure",
-        },
+        ResourcePendingMaintenanceActions = M.ResourcePendingMaintenanceActions,
     },
 }
 
@@ -273,7 +269,7 @@ M.CopyDBClusterParameterGroupInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -299,9 +295,7 @@ M.DBClusterParameterGroup = {
 M.CopyDBClusterParameterGroupOutput = {
     type = "structure",
     members = {
-        DBClusterParameterGroup = {
-            type = "structure",
-        },
+        DBClusterParameterGroup = M.DBClusterParameterGroup,
     },
 }
 
@@ -361,7 +355,7 @@ M.CopyDBClusterSnapshotInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -371,7 +365,7 @@ M.DBClusterSnapshot = {
     members = {
         AvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DBClusterSnapshotIdentifier = {
             type = "string",
@@ -389,7 +383,7 @@ M.DBClusterSnapshot = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         VpcId = {
             type = "string",
@@ -407,7 +401,7 @@ M.DBClusterSnapshot = {
             type = "string",
         },
         PercentProgress = {
-            type = "number",
+            type = "integer",
         },
         StorageEncrypted = {
             type = "boolean",
@@ -430,9 +424,7 @@ M.DBClusterSnapshot = {
 M.CopyDBClusterSnapshotOutput = {
     type = "structure",
     members = {
-        DBClusterSnapshot = {
-            type = "structure",
-        },
+        DBClusterSnapshot = M.DBClusterSnapshot,
     },
 }
 
@@ -490,10 +482,10 @@ M.ServerlessV2ScalingConfiguration = {
     type = "structure",
     members = {
         MinCapacity = {
-            type = "number",
+            type = "double",
         },
         MaxCapacity = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -503,10 +495,10 @@ M.CreateDBClusterInput = {
     members = {
         AvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         BackupRetentionPeriod = {
-            type = "number",
+            type = "integer",
         },
         DBClusterIdentifier = {
             type = "string",
@@ -519,7 +511,7 @@ M.CreateDBClusterInput = {
         },
         VpcSecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DBSubnetGroupName = {
             type = "string",
@@ -534,7 +526,7 @@ M.CreateDBClusterInput = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         MasterUsername = {
             type = "string",
@@ -550,7 +542,7 @@ M.CreateDBClusterInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         StorageEncrypted = {
             type = "boolean",
@@ -563,7 +555,7 @@ M.CreateDBClusterInput = {
         },
         EnableCloudwatchLogsExports = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DeletionProtection = {
             type = "boolean",
@@ -574,9 +566,7 @@ M.CreateDBClusterInput = {
         StorageType = {
             type = "string",
         },
-        ServerlessV2ScalingConfiguration = {
-            type = "structure",
-        },
+        ServerlessV2ScalingConfiguration = M.ServerlessV2ScalingConfiguration,
         ManageMasterUserPassword = {
             type = "boolean",
         },
@@ -614,7 +604,7 @@ M.DBClusterMember = {
             type = "string",
         },
         PromotionTier = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -638,10 +628,10 @@ M.ServerlessV2ScalingConfigurationInfo = {
     type = "structure",
     members = {
         MinCapacity = {
-            type = "number",
+            type = "double",
         },
         MaxCapacity = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -663,10 +653,10 @@ M.DBCluster = {
     members = {
         AvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         BackupRetentionPeriod = {
-            type = "number",
+            type = "integer",
         },
         DBClusterIdentifier = {
             type = "string",
@@ -705,7 +695,7 @@ M.DBCluster = {
             type = "timestamp",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         MasterUsername = {
             type = "string",
@@ -721,15 +711,15 @@ M.DBCluster = {
         },
         ReadReplicaIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DBClusterMembers = {
             type = "list",
-            member_type = "structure",
+            member = M.DBClusterMember,
         },
         VpcSecurityGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcSecurityGroupMembership,
         },
         HostedZoneId = {
             type = "string",
@@ -748,7 +738,7 @@ M.DBCluster = {
         },
         AssociatedRoles = {
             type = "list",
-            member_type = "structure",
+            member = M.DBClusterRole,
         },
         CloneGroupId = {
             type = "string",
@@ -758,7 +748,7 @@ M.DBCluster = {
         },
         EnabledCloudwatchLogsExports = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DeletionProtection = {
             type = "boolean",
@@ -769,12 +759,8 @@ M.DBCluster = {
         StorageType = {
             type = "string",
         },
-        ServerlessV2ScalingConfiguration = {
-            type = "structure",
-        },
-        MasterUserSecret = {
-            type = "structure",
-        },
+        ServerlessV2ScalingConfiguration = M.ServerlessV2ScalingConfigurationInfo,
+        MasterUserSecret = M.ClusterMasterUserSecret,
         NetworkType = {
             type = "string",
         },
@@ -784,9 +770,7 @@ M.DBCluster = {
 M.CreateDBClusterOutput = {
     type = "structure",
     members = {
-        DBCluster = {
-            type = "structure",
-        },
+        DBCluster = M.DBCluster,
     },
 }
 
@@ -943,7 +927,7 @@ M.CreateDBClusterParameterGroupInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -951,9 +935,7 @@ M.CreateDBClusterParameterGroupInput = {
 M.CreateDBClusterParameterGroupOutput = {
     type = "structure",
     members = {
-        DBClusterParameterGroup = {
-            type = "structure",
-        },
+        DBClusterParameterGroup = M.DBClusterParameterGroup,
     },
 }
 
@@ -974,7 +956,7 @@ M.CreateDBClusterSnapshotInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -982,9 +964,7 @@ M.CreateDBClusterSnapshotInput = {
 M.CreateDBClusterSnapshotOutput = {
     type = "structure",
     members = {
-        DBClusterSnapshot = {
-            type = "structure",
-        },
+        DBClusterSnapshot = M.DBClusterSnapshot,
     },
 }
 
@@ -1030,7 +1010,7 @@ M.CreateDBInstanceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         DBClusterIdentifier = {
             type = "string",
@@ -1042,7 +1022,7 @@ M.CreateDBInstanceInput = {
             type = "boolean",
         },
         PromotionTier = {
-            type = "number",
+            type = "integer",
         },
         EnablePerformanceInsights = {
             type = "boolean",
@@ -1083,9 +1063,7 @@ M.Subnet = {
         SubnetIdentifier = {
             type = "string",
         },
-        SubnetAvailabilityZone = {
-            type = "structure",
-        },
+        SubnetAvailabilityZone = M.AvailabilityZone,
         SubnetStatus = {
             type = "string",
         },
@@ -1109,14 +1087,14 @@ M.DBSubnetGroup = {
         },
         Subnets = {
             type = "list",
-            member_type = "structure",
+            member = M.Subnet,
         },
         DBSubnetGroupArn = {
             type = "string",
         },
         SupportedNetworkTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1128,7 +1106,7 @@ M.Endpoint = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         HostedZoneId = {
             type = "string",
@@ -1141,11 +1119,11 @@ M.PendingCloudwatchLogsExports = {
     members = {
         LogTypesToEnable = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         LogTypesToDisable = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1157,16 +1135,16 @@ M.PendingModifiedValues = {
             type = "string",
         },
         AllocatedStorage = {
-            type = "number",
+            type = "integer",
         },
         MasterUserPassword = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         BackupRetentionPeriod = {
-            type = "number",
+            type = "integer",
         },
         MultiAZ = {
             type = "boolean",
@@ -1178,7 +1156,7 @@ M.PendingModifiedValues = {
             type = "string",
         },
         Iops = {
-            type = "number",
+            type = "integer",
         },
         DBInstanceIdentifier = {
             type = "string",
@@ -1192,9 +1170,7 @@ M.PendingModifiedValues = {
         DBSubnetGroupName = {
             type = "string",
         },
-        PendingCloudwatchLogsExports = {
-            type = "structure",
-        },
+        PendingCloudwatchLogsExports = M.PendingCloudwatchLogsExports,
     },
 }
 
@@ -1231,9 +1207,7 @@ M.DBInstance = {
         DBInstanceStatus = {
             type = "string",
         },
-        Endpoint = {
-            type = "structure",
-        },
+        Endpoint = M.Endpoint,
         InstanceCreateTime = {
             type = "timestamp",
         },
@@ -1241,24 +1215,20 @@ M.DBInstance = {
             type = "string",
         },
         BackupRetentionPeriod = {
-            type = "number",
+            type = "integer",
         },
         VpcSecurityGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcSecurityGroupMembership,
         },
         AvailabilityZone = {
             type = "string",
         },
-        DBSubnetGroup = {
-            type = "structure",
-        },
+        DBSubnetGroup = M.DBSubnetGroup,
         PreferredMaintenanceWindow = {
             type = "string",
         },
-        PendingModifiedValues = {
-            type = "structure",
-        },
+        PendingModifiedValues = M.PendingModifiedValues,
         LatestRestorableTime = {
             type = "timestamp",
         },
@@ -1273,7 +1243,7 @@ M.DBInstance = {
         },
         StatusInfos = {
             type = "list",
-            member_type = "structure",
+            member = M.DBInstanceStatusInfo,
         },
         DBClusterIdentifier = {
             type = "string",
@@ -1294,18 +1264,16 @@ M.DBInstance = {
             type = "boolean",
         },
         PromotionTier = {
-            type = "number",
+            type = "integer",
         },
         DBInstanceArn = {
             type = "string",
         },
         EnabledCloudwatchLogsExports = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        CertificateDetails = {
-            type = "structure",
-        },
+        CertificateDetails = M.CertificateDetails,
         PerformanceInsightsEnabled = {
             type = "boolean",
         },
@@ -1318,9 +1286,7 @@ M.DBInstance = {
 M.CreateDBInstanceOutput = {
     type = "structure",
     members = {
-        DBInstance = {
-            type = "structure",
-        },
+        DBInstance = M.DBInstance,
     },
 }
 
@@ -1391,14 +1357,14 @@ M.CreateDBSubnetGroupInput = {
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1406,9 +1372,7 @@ M.CreateDBSubnetGroupInput = {
 M.CreateDBSubnetGroupOutput = {
     type = "structure",
     members = {
-        DBSubnetGroup = {
-            type = "structure",
-        },
+        DBSubnetGroup = M.DBSubnetGroup,
     },
 }
 
@@ -1462,18 +1426,18 @@ M.CreateEventSubscriptionInput = {
         },
         EventCategories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SourceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Enabled = {
             type = "boolean",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1481,9 +1445,7 @@ M.CreateEventSubscriptionInput = {
 M.CreateEventSubscriptionOutput = {
     type = "structure",
     members = {
-        EventSubscription = {
-            type = "structure",
-        },
+        EventSubscription = M.EventSubscription,
     },
 }
 
@@ -1614,7 +1576,7 @@ M.GlobalClusterMember = {
         },
         Readers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IsWriter = {
             type = "boolean",
@@ -1657,14 +1619,12 @@ M.GlobalCluster = {
         },
         GlobalClusterMembers = {
             type = "list",
-            member_type = "structure",
+            member = M.GlobalClusterMember,
         },
-        FailoverState = {
-            type = "structure",
-        },
+        FailoverState = M.FailoverState,
         TagList = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1672,9 +1632,7 @@ M.GlobalCluster = {
 M.CreateGlobalClusterOutput = {
     type = "structure",
     members = {
-        GlobalCluster = {
-            type = "structure",
-        },
+        GlobalCluster = M.GlobalCluster,
     },
 }
 
@@ -1719,9 +1677,7 @@ M.DeleteDBClusterInput = {
 M.DeleteDBClusterOutput = {
     type = "structure",
     members = {
-        DBCluster = {
-            type = "structure",
-        },
+        DBCluster = M.DBCluster,
     },
 }
 
@@ -1766,9 +1722,7 @@ M.DeleteDBClusterSnapshotInput = {
 M.DeleteDBClusterSnapshotOutput = {
     type = "structure",
     members = {
-        DBClusterSnapshot = {
-            type = "structure",
-        },
+        DBClusterSnapshot = M.DBClusterSnapshot,
     },
 }
 
@@ -1797,9 +1751,7 @@ M.DeleteDBInstanceInput = {
 M.DeleteDBInstanceOutput = {
     type = "structure",
     members = {
-        DBInstance = {
-            type = "structure",
-        },
+        DBInstance = M.DBInstance,
     },
 }
 
@@ -1844,9 +1796,7 @@ M.DeleteEventSubscriptionInput = {
 M.DeleteEventSubscriptionOutput = {
     type = "structure",
     members = {
-        EventSubscription = {
-            type = "structure",
-        },
+        EventSubscription = M.EventSubscription,
     },
 }
 
@@ -1875,9 +1825,7 @@ M.DeleteGlobalClusterInput = {
 M.DeleteGlobalClusterOutput = {
     type = "structure",
     members = {
-        GlobalCluster = {
-            type = "structure",
-        },
+        GlobalCluster = M.GlobalCluster,
     },
 }
 
@@ -1902,7 +1850,7 @@ M.Filter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1918,10 +1866,10 @@ M.DescribeCertificatesInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -1958,7 +1906,7 @@ M.DescribeCertificatesOutput = {
     members = {
         Certificates = {
             type = "list",
-            member_type = "structure",
+            member = M.Certificate,
         },
         Marker = {
             type = "string",
@@ -1974,10 +1922,10 @@ M.DescribeDBClusterParameterGroupsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -1993,7 +1941,7 @@ M.DescribeDBClusterParameterGroupsOutput = {
         },
         DBClusterParameterGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.DBClusterParameterGroup,
         },
     },
 }
@@ -2012,10 +1960,10 @@ M.DescribeDBClusterParametersInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -2069,7 +2017,7 @@ M.DescribeDBClusterParametersOutput = {
     members = {
         Parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.Parameter,
         },
         Marker = {
             type = "string",
@@ -2085,10 +2033,10 @@ M.DescribeDBClustersInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -2104,7 +2052,7 @@ M.DescribeDBClustersOutput = {
         },
         DBClusters = {
             type = "list",
-            member_type = "structure",
+            member = M.DBCluster,
         },
     },
 }
@@ -2129,7 +2077,7 @@ M.DBClusterSnapshotAttribute = {
         },
         AttributeValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2142,7 +2090,7 @@ M.DBClusterSnapshotAttributesResult = {
         },
         DBClusterSnapshotAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.DBClusterSnapshotAttribute,
         },
     },
 }
@@ -2150,9 +2098,7 @@ M.DBClusterSnapshotAttributesResult = {
 M.DescribeDBClusterSnapshotAttributesOutput = {
     type = "structure",
     members = {
-        DBClusterSnapshotAttributesResult = {
-            type = "structure",
-        },
+        DBClusterSnapshotAttributesResult = M.DBClusterSnapshotAttributesResult,
     },
 }
 
@@ -2170,10 +2116,10 @@ M.DescribeDBClusterSnapshotsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -2195,7 +2141,7 @@ M.DescribeDBClusterSnapshotsOutput = {
         },
         DBClusterSnapshots = {
             type = "list",
-            member_type = "structure",
+            member = M.DBClusterSnapshot,
         },
     },
 }
@@ -2214,10 +2160,10 @@ M.DescribeDBEngineVersionsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -2238,10 +2184,10 @@ M.ServerlessV2FeaturesSupport = {
     type = "structure",
     members = {
         MinCapacity = {
-            type = "number",
+            type = "double",
         },
         MaxCapacity = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -2287,25 +2233,23 @@ M.DBEngineVersion = {
         },
         ValidUpgradeTarget = {
             type = "list",
-            member_type = "structure",
+            member = M.UpgradeTarget,
         },
         ExportableLogTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SupportsLogExportsToCloudwatchLogs = {
             type = "boolean",
         },
         SupportedCACertificateIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SupportsCertificateRotationWithoutRestart = {
             type = "boolean",
         },
-        ServerlessV2FeaturesSupport = {
-            type = "structure",
-        },
+        ServerlessV2FeaturesSupport = M.ServerlessV2FeaturesSupport,
     },
 }
 
@@ -2317,7 +2261,7 @@ M.DescribeDBEngineVersionsOutput = {
         },
         DBEngineVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.DBEngineVersion,
         },
     },
 }
@@ -2330,10 +2274,10 @@ M.DescribeDBInstancesInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -2349,7 +2293,7 @@ M.DescribeDBInstancesOutput = {
         },
         DBInstances = {
             type = "list",
-            member_type = "structure",
+            member = M.DBInstance,
         },
     },
 }
@@ -2362,10 +2306,10 @@ M.DescribeDBSubnetGroupsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -2381,7 +2325,7 @@ M.DescribeDBSubnetGroupsOutput = {
         },
         DBSubnetGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.DBSubnetGroup,
         },
     },
 }
@@ -2397,10 +2341,10 @@ M.DescribeEngineDefaultClusterParametersInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -2419,7 +2363,7 @@ M.EngineDefaults = {
         },
         Parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.Parameter,
         },
     },
 }
@@ -2427,9 +2371,7 @@ M.EngineDefaults = {
 M.DescribeEngineDefaultClusterParametersOutput = {
     type = "structure",
     members = {
-        EngineDefaults = {
-            type = "structure",
-        },
+        EngineDefaults = M.EngineDefaults,
     },
 }
 
@@ -2441,7 +2383,7 @@ M.DescribeEventCategoriesInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
     },
 }
@@ -2454,7 +2396,7 @@ M.EventCategoriesMap = {
         },
         EventCategories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2464,7 +2406,7 @@ M.DescribeEventCategoriesOutput = {
     members = {
         EventCategoriesMapList = {
             type = "list",
-            member_type = "structure",
+            member = M.EventCategoriesMap,
         },
     },
 }
@@ -2494,18 +2436,18 @@ M.DescribeEventsInput = {
             type = "timestamp",
         },
         Duration = {
-            type = "number",
+            type = "integer",
         },
         EventCategories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -2527,7 +2469,7 @@ M.Event = {
         },
         EventCategories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Date = {
             type = "timestamp",
@@ -2546,7 +2488,7 @@ M.DescribeEventsOutput = {
         },
         Events = {
             type = "list",
-            member_type = "structure",
+            member = M.Event,
         },
     },
 }
@@ -2559,10 +2501,10 @@ M.DescribeEventSubscriptionsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -2578,7 +2520,7 @@ M.DescribeEventSubscriptionsOutput = {
         },
         EventSubscriptionsList = {
             type = "list",
-            member_type = "structure",
+            member = M.EventSubscription,
         },
     },
 }
@@ -2591,10 +2533,10 @@ M.DescribeGlobalClustersInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -2610,7 +2552,7 @@ M.DescribeGlobalClustersOutput = {
         },
         GlobalClusters = {
             type = "list",
-            member_type = "structure",
+            member = M.GlobalCluster,
         },
     },
 }
@@ -2638,10 +2580,10 @@ M.DescribeOrderableDBInstanceOptionsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
         Marker = {
             type = "string",
@@ -2666,7 +2608,7 @@ M.OrderableDBInstanceOption = {
         },
         AvailabilityZones = {
             type = "list",
-            member_type = "structure",
+            member = M.AvailabilityZone,
         },
         Vpc = {
             type = "boolean",
@@ -2682,7 +2624,7 @@ M.DescribeOrderableDBInstanceOptionsOutput = {
     members = {
         OrderableDBInstanceOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.OrderableDBInstanceOption,
         },
         Marker = {
             type = "string",
@@ -2698,13 +2640,13 @@ M.DescribePendingMaintenanceActionsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         Marker = {
             type = "string",
         },
         MaxRecords = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2714,7 +2656,7 @@ M.DescribePendingMaintenanceActionsOutput = {
     members = {
         PendingMaintenanceActions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePendingMaintenanceActions,
         },
         Marker = {
             type = "string",
@@ -2737,9 +2679,7 @@ M.FailoverDBClusterInput = {
 M.FailoverDBClusterOutput = {
     type = "structure",
     members = {
-        DBCluster = {
-            type = "structure",
-        },
+        DBCluster = M.DBCluster,
     },
 }
 
@@ -2770,9 +2710,7 @@ M.FailoverGlobalClusterInput = {
 M.FailoverGlobalClusterOutput = {
     type = "structure",
     members = {
-        GlobalCluster = {
-            type = "structure",
-        },
+        GlobalCluster = M.GlobalCluster,
     },
 }
 
@@ -2787,7 +2725,7 @@ M.ListTagsForResourceInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
     },
 }
@@ -2797,7 +2735,7 @@ M.ListTagsForResourceOutput = {
     members = {
         TagList = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2817,11 +2755,11 @@ M.CloudwatchLogsExportConfiguration = {
     members = {
         EnableLogTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DisableLogTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2842,17 +2780,17 @@ M.ModifyDBClusterInput = {
             type = "boolean",
         },
         BackupRetentionPeriod = {
-            type = "number",
+            type = "integer",
         },
         DBClusterParameterGroupName = {
             type = "string",
         },
         VpcSecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         MasterUserPassword = {
             type = "string",
@@ -2863,9 +2801,7 @@ M.ModifyDBClusterInput = {
         PreferredMaintenanceWindow = {
             type = "string",
         },
-        CloudwatchLogsExportConfiguration = {
-            type = "structure",
-        },
+        CloudwatchLogsExportConfiguration = M.CloudwatchLogsExportConfiguration,
         EngineVersion = {
             type = "string",
         },
@@ -2878,9 +2814,7 @@ M.ModifyDBClusterInput = {
         StorageType = {
             type = "string",
         },
-        ServerlessV2ScalingConfiguration = {
-            type = "structure",
-        },
+        ServerlessV2ScalingConfiguration = M.ServerlessV2ScalingConfiguration,
         ManageMasterUserPassword = {
             type = "boolean",
         },
@@ -2899,9 +2833,7 @@ M.ModifyDBClusterInput = {
 M.ModifyDBClusterOutput = {
     type = "structure",
     members = {
-        DBCluster = {
-            type = "structure",
-        },
+        DBCluster = M.DBCluster,
     },
 }
 
@@ -2916,7 +2848,7 @@ M.ModifyDBClusterParameterGroupInput = {
         },
         Parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.Parameter,
             traits = {
                 required = true,
             },
@@ -2950,11 +2882,11 @@ M.ModifyDBClusterSnapshotAttributeInput = {
         },
         ValuesToAdd = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ValuesToRemove = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2962,9 +2894,7 @@ M.ModifyDBClusterSnapshotAttributeInput = {
 M.ModifyDBClusterSnapshotAttributeOutput = {
     type = "structure",
     members = {
-        DBClusterSnapshotAttributesResult = {
-            type = "structure",
-        },
+        DBClusterSnapshotAttributesResult = M.DBClusterSnapshotAttributesResult,
     },
 }
 
@@ -3019,7 +2949,7 @@ M.ModifyDBInstanceInput = {
             type = "boolean",
         },
         PromotionTier = {
-            type = "number",
+            type = "integer",
         },
         EnablePerformanceInsights = {
             type = "boolean",
@@ -3036,9 +2966,7 @@ M.ModifyDBInstanceInput = {
 M.ModifyDBInstanceOutput = {
     type = "structure",
     members = {
-        DBInstance = {
-            type = "structure",
-        },
+        DBInstance = M.DBInstance,
     },
 }
 
@@ -3056,7 +2984,7 @@ M.ModifyDBSubnetGroupInput = {
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3067,9 +2995,7 @@ M.ModifyDBSubnetGroupInput = {
 M.ModifyDBSubnetGroupOutput = {
     type = "structure",
     members = {
-        DBSubnetGroup = {
-            type = "structure",
-        },
+        DBSubnetGroup = M.DBSubnetGroup,
     },
 }
 
@@ -3100,7 +3026,7 @@ M.ModifyEventSubscriptionInput = {
         },
         EventCategories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Enabled = {
             type = "boolean",
@@ -3111,9 +3037,7 @@ M.ModifyEventSubscriptionInput = {
 M.ModifyEventSubscriptionOutput = {
     type = "structure",
     members = {
-        EventSubscription = {
-            type = "structure",
-        },
+        EventSubscription = M.EventSubscription,
     },
 }
 
@@ -3138,9 +3062,7 @@ M.ModifyGlobalClusterInput = {
 M.ModifyGlobalClusterOutput = {
     type = "structure",
     members = {
-        GlobalCluster = {
-            type = "structure",
-        },
+        GlobalCluster = M.GlobalCluster,
     },
 }
 
@@ -3162,9 +3084,7 @@ M.RebootDBInstanceInput = {
 M.RebootDBInstanceOutput = {
     type = "structure",
     members = {
-        DBInstance = {
-            type = "structure",
-        },
+        DBInstance = M.DBInstance,
     },
 }
 
@@ -3189,9 +3109,7 @@ M.RemoveFromGlobalClusterInput = {
 M.RemoveFromGlobalClusterOutput = {
     type = "structure",
     members = {
-        GlobalCluster = {
-            type = "structure",
-        },
+        GlobalCluster = M.GlobalCluster,
     },
 }
 
@@ -3216,9 +3134,7 @@ M.RemoveSourceIdentifierFromSubscriptionInput = {
 M.RemoveSourceIdentifierFromSubscriptionOutput = {
     type = "structure",
     members = {
-        EventSubscription = {
-            type = "structure",
-        },
+        EventSubscription = M.EventSubscription,
     },
 }
 
@@ -3233,7 +3149,7 @@ M.RemoveTagsFromResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3259,7 +3175,7 @@ M.ResetDBClusterParameterGroupInput = {
         },
         Parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.Parameter,
         },
     },
 }
@@ -3308,7 +3224,7 @@ M.RestoreDBClusterFromSnapshotInput = {
     members = {
         AvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DBClusterIdentifier = {
             type = "string",
@@ -3332,25 +3248,25 @@ M.RestoreDBClusterFromSnapshotInput = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         DBSubnetGroupName = {
             type = "string",
         },
         VpcSecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         KmsKeyId = {
             type = "string",
         },
         EnableCloudwatchLogsExports = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DeletionProtection = {
             type = "boolean",
@@ -3358,9 +3274,7 @@ M.RestoreDBClusterFromSnapshotInput = {
         DBClusterParameterGroupName = {
             type = "string",
         },
-        ServerlessV2ScalingConfiguration = {
-            type = "structure",
-        },
+        ServerlessV2ScalingConfiguration = M.ServerlessV2ScalingConfiguration,
         StorageType = {
             type = "string",
         },
@@ -3373,9 +3287,7 @@ M.RestoreDBClusterFromSnapshotInput = {
 M.RestoreDBClusterFromSnapshotOutput = {
     type = "structure",
     members = {
-        DBCluster = {
-            type = "structure",
-        },
+        DBCluster = M.DBCluster,
     },
 }
 
@@ -3404,32 +3316,30 @@ M.RestoreDBClusterToPointInTimeInput = {
             type = "boolean",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
         DBSubnetGroupName = {
             type = "string",
         },
         VpcSecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         KmsKeyId = {
             type = "string",
         },
         EnableCloudwatchLogsExports = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DeletionProtection = {
             type = "boolean",
         },
-        ServerlessV2ScalingConfiguration = {
-            type = "structure",
-        },
+        ServerlessV2ScalingConfiguration = M.ServerlessV2ScalingConfiguration,
         StorageType = {
             type = "string",
         },
@@ -3442,9 +3352,7 @@ M.RestoreDBClusterToPointInTimeInput = {
 M.RestoreDBClusterToPointInTimeOutput = {
     type = "structure",
     members = {
-        DBCluster = {
-            type = "structure",
-        },
+        DBCluster = M.DBCluster,
     },
 }
 
@@ -3463,9 +3371,7 @@ M.StartDBClusterInput = {
 M.StartDBClusterOutput = {
     type = "structure",
     members = {
-        DBCluster = {
-            type = "structure",
-        },
+        DBCluster = M.DBCluster,
     },
 }
 
@@ -3484,9 +3390,7 @@ M.StopDBClusterInput = {
 M.StopDBClusterOutput = {
     type = "structure",
     members = {
-        DBCluster = {
-            type = "structure",
-        },
+        DBCluster = M.DBCluster,
     },
 }
 
@@ -3511,9 +3415,7 @@ M.SwitchoverGlobalClusterInput = {
 M.SwitchoverGlobalClusterOutput = {
     type = "structure",
     members = {
-        GlobalCluster = {
-            type = "structure",
-        },
+        GlobalCluster = M.GlobalCluster,
     },
 }
 

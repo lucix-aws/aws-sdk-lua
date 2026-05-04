@@ -88,16 +88,16 @@ M.SpliceInsertMessage = {
     type = "structure",
     members = {
         AvailNum = {
-            type = "number",
+            type = "integer",
         },
         AvailsExpected = {
-            type = "number",
+            type = "integer",
         },
         SpliceEventId = {
-            type = "number",
+            type = "integer",
         },
         UniqueProgramId = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -106,28 +106,28 @@ M.SegmentationDescriptor = {
     type = "structure",
     members = {
         SegmentationEventId = {
-            type = "number",
+            type = "integer",
         },
         SegmentationUpidType = {
-            type = "number",
+            type = "integer",
         },
         SegmentationUpid = {
             type = "string",
         },
         SegmentationTypeId = {
-            type = "number",
+            type = "integer",
         },
         SegmentNum = {
-            type = "number",
+            type = "integer",
         },
         SegmentsExpected = {
-            type = "number",
+            type = "integer",
         },
         SubSegmentNum = {
-            type = "number",
+            type = "integer",
         },
         SubSegmentsExpected = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -137,7 +137,7 @@ M.TimeSignalMessage = {
     members = {
         SegmentationDescriptors = {
             type = "list",
-            member_type = "structure",
+            member = M.SegmentationDescriptor,
         },
     },
 }
@@ -149,23 +149,18 @@ M.AdBreak = {
             type = "string",
         },
         OffsetMillis = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
-        Slate = {
-            type = "structure",
-        },
-        SpliceInsertMessage = {
-            type = "structure",
-        },
-        TimeSignalMessage = {
-            type = "structure",
-        },
+        Slate = M.SlateSource,
+        SpliceInsertMessage = M.SpliceInsertMessage,
+        TimeSignalMessage = M.TimeSignalMessage,
         AdBreakMetadata = {
             type = "list",
-            member_type = "structure",
+            member = M.KeyValuePair,
         },
     },
 }
@@ -199,7 +194,7 @@ M.Alert = {
         },
         RelatedResourceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -220,10 +215,13 @@ M.ClipRange = {
     type = "structure",
     members = {
         EndOffsetMillis = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         StartOffsetMillis = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -240,18 +238,16 @@ M.AlternateMedia = {
         VodSourceName = {
             type = "string",
         },
-        ClipRange = {
-            type = "structure",
-        },
+        ClipRange = M.ClipRange,
         ScheduledStartTimeMillis = {
-            type = "number",
+            type = "long",
         },
         AdBreaks = {
             type = "list",
-            member_type = "structure",
+            member = M.AdBreak,
         },
         DurationMillis = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -264,7 +260,7 @@ M.AudienceMedia = {
         },
         AlternateMedia = {
             type = "list",
-            member_type = "structure",
+            member = M.AlternateMedia,
         },
     },
 }
@@ -300,7 +296,7 @@ M.LogConfigurationForChannel = {
     members = {
         LogTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -309,16 +305,16 @@ M.DashPlaylistSettings = {
     type = "structure",
     members = {
         ManifestWindowSeconds = {
-            type = "number",
+            type = "integer",
         },
         MinBufferTimeSeconds = {
-            type = "number",
+            type = "integer",
         },
         MinUpdatePeriodSeconds = {
-            type = "number",
+            type = "integer",
         },
         SuggestedPresentationDelaySeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -332,11 +328,11 @@ M.HlsPlaylistSettings = {
     type = "structure",
     members = {
         ManifestWindowSeconds = {
-            type = "number",
+            type = "integer",
         },
         AdMarkupType = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -344,12 +340,8 @@ M.HlsPlaylistSettings = {
 M.ResponseOutputItem = {
     type = "structure",
     members = {
-        DashPlaylistSettings = {
-            type = "structure",
-        },
-        HlsPlaylistSettings = {
-            type = "structure",
-        },
+        DashPlaylistSettings = M.DashPlaylistSettings,
+        HlsPlaylistSettings = M.HlsPlaylistSettings,
         ManifestName = {
             type = "string",
             traits = {
@@ -395,15 +387,13 @@ M.Channel = {
         CreationTime = {
             type = "timestamp",
         },
-        FillerSlate = {
-            type = "structure",
-        },
+        FillerSlate = M.SlateSource,
         LastModifiedTime = {
             type = "timestamp",
         },
         Outputs = {
             type = "list",
-            member_type = "structure",
+            member = M.ResponseOutputItem,
             traits = {
                 required = true,
             },
@@ -416,8 +406,8 @@ M.Channel = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -428,15 +418,12 @@ M.Channel = {
                 required = true,
             },
         },
-        LogConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        LogConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LogConfigurationForChannel }),
         Audiences = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -484,7 +471,7 @@ M.LiveSource = {
         },
         HttpPackageConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.HttpPackageConfiguration,
             traits = {
                 required = true,
             },
@@ -506,8 +493,8 @@ M.LiveSource = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -558,8 +545,8 @@ M.HttpRequest = {
         },
         Headers = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         CompressRequest = {
             type = "string",
@@ -570,9 +557,7 @@ M.HttpRequest = {
 M.AdDecisionServerConfiguration = {
     type = "structure",
     members = {
-        HttpRequest = {
-            type = "structure",
-        },
+        HttpRequest = M.HttpRequest,
     },
 }
 
@@ -667,7 +652,7 @@ M.LivePreRollConfiguration = {
             type = "string",
         },
         MaxDurationSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -677,11 +662,11 @@ M.AdsInteractionLog = {
     members = {
         PublishOptInEventTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ExcludeEventTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -726,7 +711,7 @@ M.ManifestServiceInteractionLog = {
     members = {
         ExcludeEventTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -735,24 +720,21 @@ M.LogConfiguration = {
     type = "structure",
     members = {
         PercentEnabled = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         EnabledLoggingStrategies = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        AdsInteractionLog = {
-            type = "structure",
-        },
-        ManifestServiceInteractionLog = {
-            type = "structure",
-        },
+        AdsInteractionLog = M.AdsInteractionLog,
+        ManifestServiceInteractionLog = M.ManifestServiceInteractionLog,
     },
 }
 
@@ -761,6 +743,9 @@ M.AdMarkerPassthrough = {
     members = {
         Enabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -768,9 +753,7 @@ M.AdMarkerPassthrough = {
 M.ManifestProcessingRules = {
     type = "structure",
     members = {
-        AdMarkerPassthrough = {
-            type = "structure",
-        },
+        AdMarkerPassthrough = M.AdMarkerPassthrough,
     },
 }
 
@@ -780,43 +763,30 @@ M.PlaybackConfiguration = {
         AdDecisionServerUrl = {
             type = "string",
         },
-        AvailSuppression = {
-            type = "structure",
-        },
-        Bumper = {
-            type = "structure",
-        },
-        CdnConfiguration = {
-            type = "structure",
-        },
+        AvailSuppression = M.AvailSuppression,
+        Bumper = M.Bumper,
+        CdnConfiguration = M.CdnConfiguration,
         ConfigurationAliases = {
             type = "map",
-            key_type = "string",
-            value_type = "map",
+            key = { type = "string" },
+            value = { type = "map" },
         },
-        DashConfiguration = {
-            type = "structure",
-        },
-        HlsConfiguration = {
-            type = "structure",
-        },
+        DashConfiguration = M.DashConfiguration,
+        HlsConfiguration = M.HlsConfiguration,
         InsertionMode = {
             type = "string",
+            traits = {
+                default = "STITCHED_ONLY",
+            },
         },
-        LivePreRollConfiguration = {
-            type = "structure",
-        },
-        LogConfiguration = {
-            type = "structure",
-        },
-        ManifestProcessingRules = {
-            type = "structure",
-        },
+        LivePreRollConfiguration = M.LivePreRollConfiguration,
+        LogConfiguration = M.LogConfiguration,
+        ManifestProcessingRules = M.ManifestProcessingRules,
         Name = {
             type = "string",
         },
         PersonalizationThresholdSeconds = {
-            type = "number",
+            type = "integer",
         },
         PlaybackConfigurationArn = {
             type = "string",
@@ -832,8 +802,8 @@ M.PlaybackConfiguration = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -844,12 +814,8 @@ M.PlaybackConfiguration = {
         VideoContentSourceUrl = {
             type = "string",
         },
-        AdConditioningConfiguration = {
-            type = "structure",
-        },
-        AdDecisionServerConfiguration = {
-            type = "structure",
-        },
+        AdConditioningConfiguration = M.AdConditioningConfiguration,
+        AdDecisionServerConfiguration = M.AdDecisionServerConfiguration,
     },
 }
 
@@ -858,7 +824,7 @@ M.PrefetchConsumption = {
     members = {
         AvailMatchingCriteria = {
             type = "list",
-            member_type = "structure",
+            member = M.AvailMatchingCriteria,
         },
         EndTime = {
             type = "timestamp",
@@ -876,11 +842,11 @@ M.RecurringConsumption = {
     type = "structure",
     members = {
         RetrievedAdExpirationSeconds = {
-            type = "number",
+            type = "integer",
         },
         AvailMatchingCriteria = {
             type = "list",
-            member_type = "structure",
+            member = M.AvailMatchingCriteria,
         },
     },
 }
@@ -889,7 +855,7 @@ M.TrafficShapingRetrievalWindow = {
     type = "structure",
     members = {
         RetrievalWindowDurationSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -898,10 +864,10 @@ M.TrafficShapingTpsConfiguration = {
     type = "structure",
     members = {
         PeakTps = {
-            type = "number",
+            type = "integer",
         },
         PeakConcurrentUsers = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -916,21 +882,17 @@ M.RecurringRetrieval = {
     members = {
         DynamicVariables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         DelayAfterAvailEndSeconds = {
-            type = "number",
+            type = "integer",
         },
         TrafficShapingType = {
             type = "string",
         },
-        TrafficShapingRetrievalWindow = {
-            type = "structure",
-        },
-        TrafficShapingTpsConfiguration = {
-            type = "structure",
-        },
+        TrafficShapingRetrievalWindow = M.TrafficShapingRetrievalWindow,
+        TrafficShapingTpsConfiguration = M.TrafficShapingTpsConfiguration,
     },
 }
 
@@ -946,18 +908,12 @@ M.RecurringPrefetchConfiguration = {
                 required = true,
             },
         },
-        RecurringConsumption = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        RecurringRetrieval = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RecurringConsumption = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RecurringConsumption }),
+        RecurringRetrieval = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RecurringRetrieval }),
     },
 }
 
@@ -966,8 +922,8 @@ M.PrefetchRetrieval = {
     members = {
         DynamicVariables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         EndTime = {
             type = "timestamp",
@@ -981,12 +937,8 @@ M.PrefetchRetrieval = {
         TrafficShapingType = {
             type = "string",
         },
-        TrafficShapingRetrievalWindow = {
-            type = "structure",
-        },
-        TrafficShapingTpsConfiguration = {
-            type = "structure",
-        },
+        TrafficShapingRetrievalWindow = M.TrafficShapingRetrievalWindow,
+        TrafficShapingTpsConfiguration = M.TrafficShapingTpsConfiguration,
     },
 }
 
@@ -1004,9 +956,7 @@ M.PrefetchSchedule = {
                 required = true,
             },
         },
-        Consumption = {
-            type = "structure",
-        },
+        Consumption = M.PrefetchConsumption,
         Name = {
             type = "string",
             traits = {
@@ -1019,22 +969,18 @@ M.PrefetchSchedule = {
                 required = true,
             },
         },
-        Retrieval = {
-            type = "structure",
-        },
+        Retrieval = M.PrefetchRetrieval,
         ScheduleType = {
             type = "string",
         },
-        RecurringPrefetchConfiguration = {
-            type = "structure",
-        },
+        RecurringPrefetchConfiguration = M.RecurringPrefetchConfiguration,
         StreamId = {
             type = "string",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -1046,7 +992,7 @@ M.ScheduleAdBreak = {
     type = "structure",
     members = {
         ApproximateDurationSeconds = {
-            type = "number",
+            type = "long",
         },
         ApproximateStartTime = {
             type = "timestamp",
@@ -1070,7 +1016,7 @@ M.ScheduleEntry = {
     type = "structure",
     members = {
         ApproximateDurationSeconds = {
-            type = "number",
+            type = "long",
         },
         ApproximateStartTime = {
             type = "timestamp",
@@ -1098,7 +1044,7 @@ M.ScheduleEntry = {
         },
         ScheduleAdBreaks = {
             type = "list",
-            member_type = "structure",
+            member = M.ScheduleAdBreak,
         },
         ScheduleEntryType = {
             type = "string",
@@ -1114,7 +1060,7 @@ M.ScheduleEntry = {
         },
         Audiences = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1158,9 +1104,7 @@ M.AccessConfiguration = {
         AccessType = {
             type = "string",
         },
-        SecretsManagerAccessTokenConfiguration = {
-            type = "structure",
-        },
+        SecretsManagerAccessTokenConfiguration = M.SecretsManagerAccessTokenConfiguration,
     },
 }
 
@@ -1188,9 +1132,7 @@ M.HttpConfiguration = {
 M.SourceLocation = {
     type = "structure",
     members = {
-        AccessConfiguration = {
-            type = "structure",
-        },
+        AccessConfiguration = M.AccessConfiguration,
         Arn = {
             type = "string",
             traits = {
@@ -1200,21 +1142,16 @@ M.SourceLocation = {
         CreationTime = {
             type = "timestamp",
         },
-        DefaultSegmentDeliveryConfiguration = {
-            type = "structure",
-        },
-        HttpConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DefaultSegmentDeliveryConfiguration = M.DefaultSegmentDeliveryConfiguration,
+        HttpConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HttpConfiguration }),
         LastModifiedTime = {
             type = "timestamp",
         },
         SegmentDeliveryConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.SegmentDeliveryConfiguration,
         },
         SourceLocationName = {
             type = "string",
@@ -1224,8 +1161,8 @@ M.SourceLocation = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -1247,7 +1184,7 @@ M.VodSource = {
         },
         HttpPackageConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.HttpPackageConfiguration,
             traits = {
                 required = true,
             },
@@ -1263,8 +1200,8 @@ M.VodSource = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -1282,8 +1219,9 @@ M.AdBreakOpportunity = {
     type = "structure",
     members = {
         OffsetMillis = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -1373,7 +1311,7 @@ M.ConfigureLogsForChannelInput = {
         },
         LogTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1389,7 +1327,7 @@ M.ConfigureLogsForChannelOutput = {
         },
         LogTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1397,12 +1335,8 @@ M.ConfigureLogsForChannelOutput = {
 M.RequestOutputItem = {
     type = "structure",
     members = {
-        DashPlaylistSettings = {
-            type = "structure",
-        },
-        HlsPlaylistSettings = {
-            type = "structure",
-        },
+        DashPlaylistSettings = M.DashPlaylistSettings,
+        HlsPlaylistSettings = M.HlsPlaylistSettings,
         ManifestName = {
             type = "string",
             traits = {
@@ -1432,7 +1366,7 @@ M.TimeShiftConfiguration = {
     type = "structure",
     members = {
         MaxTimeDelaySeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1450,12 +1384,10 @@ M.CreateChannelInput = {
                 required = true,
             },
         },
-        FillerSlate = {
-            type = "structure",
-        },
+        FillerSlate = M.SlateSource,
         Outputs = {
             type = "list",
-            member_type = "structure",
+            member = M.RequestOutputItem,
             traits = {
                 required = true,
             },
@@ -1468,8 +1400,8 @@ M.CreateChannelInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -1477,12 +1409,10 @@ M.CreateChannelInput = {
         Tier = {
             type = "string",
         },
-        TimeShiftConfiguration = {
-            type = "structure",
-        },
+        TimeShiftConfiguration = M.TimeShiftConfiguration,
         Audiences = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1507,23 +1437,21 @@ M.CreateChannelOutput = {
         CreationTime = {
             type = "timestamp",
         },
-        FillerSlate = {
-            type = "structure",
-        },
+        FillerSlate = M.SlateSource,
         LastModifiedTime = {
             type = "timestamp",
         },
         Outputs = {
             type = "list",
-            member_type = "structure",
+            member = M.ResponseOutputItem,
         },
         PlaybackMode = {
             type = "string",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -1531,12 +1459,10 @@ M.CreateChannelOutput = {
         Tier = {
             type = "string",
         },
-        TimeShiftConfiguration = {
-            type = "structure",
-        },
+        TimeShiftConfiguration = M.TimeShiftConfiguration,
         Audiences = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1586,23 +1512,21 @@ M.DescribeChannelOutput = {
         CreationTime = {
             type = "timestamp",
         },
-        FillerSlate = {
-            type = "structure",
-        },
+        FillerSlate = M.SlateSource,
         LastModifiedTime = {
             type = "timestamp",
         },
         Outputs = {
             type = "list",
-            member_type = "structure",
+            member = M.ResponseOutputItem,
         },
         PlaybackMode = {
             type = "string",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -1610,18 +1534,13 @@ M.DescribeChannelOutput = {
         Tier = {
             type = "string",
         },
-        LogConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        TimeShiftConfiguration = {
-            type = "structure",
-        },
+        LogConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LogConfigurationForChannel }),
+        TimeShiftConfiguration = M.TimeShiftConfiguration,
         Audiences = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1643,7 +1562,7 @@ M.GetChannelScheduleInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1668,7 +1587,7 @@ M.GetChannelScheduleOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.ScheduleEntry,
         },
         NextToken = {
             type = "string",
@@ -1680,7 +1599,7 @@ M.ListChannelsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1699,7 +1618,7 @@ M.ListChannelsOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.Channel,
         },
         NextToken = {
             type = "string",
@@ -1716,7 +1635,7 @@ M.Transition = {
     type = "structure",
     members = {
         DurationMillis = {
-            type = "number",
+            type = "long",
         },
         RelativePosition = {
             type = "string",
@@ -1728,7 +1647,7 @@ M.Transition = {
             type = "string",
         },
         ScheduledStartTimeMillis = {
-            type = "number",
+            type = "long",
         },
         Type = {
             type = "string",
@@ -1742,15 +1661,10 @@ M.Transition = {
 M.ScheduleConfiguration = {
     type = "structure",
     members = {
-        Transition = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ClipRange = {
-            type = "structure",
-        },
+        Transition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Transition }),
+        ClipRange = M.ClipRange,
     },
 }
 
@@ -1759,7 +1673,7 @@ M.CreateProgramInput = {
     members = {
         AdBreaks = {
             type = "list",
-            member_type = "structure",
+            member = M.AdBreak,
         },
         ChannelName = {
             type = "string",
@@ -1778,12 +1692,9 @@ M.CreateProgramInput = {
                 required = true,
             },
         },
-        ScheduleConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ScheduleConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ScheduleConfiguration }),
         SourceLocationName = {
             type = "string",
             traits = {
@@ -1795,12 +1706,12 @@ M.CreateProgramInput = {
         },
         AudienceMedia = {
             type = "list",
-            member_type = "structure",
+            member = M.AudienceMedia,
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -1813,7 +1724,7 @@ M.CreateProgramOutput = {
     members = {
         AdBreaks = {
             type = "list",
-            member_type = "structure",
+            member = M.AdBreak,
         },
         Arn = {
             type = "string",
@@ -1839,20 +1750,18 @@ M.CreateProgramOutput = {
         VodSourceName = {
             type = "string",
         },
-        ClipRange = {
-            type = "structure",
-        },
+        ClipRange = M.ClipRange,
         DurationMillis = {
-            type = "number",
+            type = "long",
         },
         AudienceMedia = {
             type = "list",
-            member_type = "structure",
+            member = M.AudienceMedia,
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -1909,7 +1818,7 @@ M.DescribeProgramOutput = {
     members = {
         AdBreaks = {
             type = "list",
-            member_type = "structure",
+            member = M.AdBreak,
         },
         Arn = {
             type = "string",
@@ -1935,20 +1844,18 @@ M.DescribeProgramOutput = {
         VodSourceName = {
             type = "string",
         },
-        ClipRange = {
-            type = "structure",
-        },
+        ClipRange = M.ClipRange,
         DurationMillis = {
-            type = "number",
+            type = "long",
         },
         AudienceMedia = {
             type = "list",
-            member_type = "structure",
+            member = M.AudienceMedia,
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -1960,10 +1867,10 @@ M.UpdateProgramTransition = {
     type = "structure",
     members = {
         ScheduledStartTimeMillis = {
-            type = "number",
+            type = "long",
         },
         DurationMillis = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1971,12 +1878,8 @@ M.UpdateProgramTransition = {
 M.UpdateProgramScheduleConfiguration = {
     type = "structure",
     members = {
-        Transition = {
-            type = "structure",
-        },
-        ClipRange = {
-            type = "structure",
-        },
+        Transition = M.UpdateProgramTransition,
+        ClipRange = M.ClipRange,
     },
 }
 
@@ -1985,7 +1888,7 @@ M.UpdateProgramInput = {
     members = {
         AdBreaks = {
             type = "list",
-            member_type = "structure",
+            member = M.AdBreak,
         },
         ChannelName = {
             type = "string",
@@ -2001,15 +1904,12 @@ M.UpdateProgramInput = {
                 required = true,
             },
         },
-        ScheduleConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ScheduleConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.UpdateProgramScheduleConfiguration }),
         AudienceMedia = {
             type = "list",
-            member_type = "structure",
+            member = M.AudienceMedia,
         },
     },
 }
@@ -2019,7 +1919,7 @@ M.UpdateProgramOutput = {
     members = {
         AdBreaks = {
             type = "list",
-            member_type = "structure",
+            member = M.AdBreak,
         },
         Arn = {
             type = "string",
@@ -2042,23 +1942,21 @@ M.UpdateProgramOutput = {
         LiveSourceName = {
             type = "string",
         },
-        ClipRange = {
-            type = "structure",
-        },
+        ClipRange = M.ClipRange,
         DurationMillis = {
-            type = "number",
+            type = "long",
         },
         ScheduledStartTime = {
             type = "timestamp",
         },
         AudienceMedia = {
             type = "list",
-            member_type = "structure",
+            member = M.AudienceMedia,
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -2110,22 +2008,18 @@ M.UpdateChannelInput = {
                 required = true,
             },
         },
-        FillerSlate = {
-            type = "structure",
-        },
+        FillerSlate = M.SlateSource,
         Outputs = {
             type = "list",
-            member_type = "structure",
+            member = M.RequestOutputItem,
             traits = {
                 required = true,
             },
         },
-        TimeShiftConfiguration = {
-            type = "structure",
-        },
+        TimeShiftConfiguration = M.TimeShiftConfiguration,
         Audiences = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2145,23 +2039,21 @@ M.UpdateChannelOutput = {
         CreationTime = {
             type = "timestamp",
         },
-        FillerSlate = {
-            type = "structure",
-        },
+        FillerSlate = M.SlateSource,
         LastModifiedTime = {
             type = "timestamp",
         },
         Outputs = {
             type = "list",
-            member_type = "structure",
+            member = M.ResponseOutputItem,
         },
         PlaybackMode = {
             type = "string",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -2169,12 +2061,10 @@ M.UpdateChannelOutput = {
         Tier = {
             type = "string",
         },
-        TimeShiftConfiguration = {
-            type = "structure",
-        },
+        TimeShiftConfiguration = M.TimeShiftConfiguration,
         Audiences = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2183,8 +2073,9 @@ M.ConfigureLogsForPlaybackConfigurationInput = {
     type = "structure",
     members = {
         PercentEnabled = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -2196,14 +2087,10 @@ M.ConfigureLogsForPlaybackConfigurationInput = {
         },
         EnabledLoggingStrategies = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        AdsInteractionLog = {
-            type = "structure",
-        },
-        ManifestServiceInteractionLog = {
-            type = "structure",
-        },
+        AdsInteractionLog = M.AdsInteractionLog,
+        ManifestServiceInteractionLog = M.ManifestServiceInteractionLog,
     },
 }
 
@@ -2211,8 +2098,9 @@ M.ConfigureLogsForPlaybackConfigurationOutput = {
     type = "structure",
     members = {
         PercentEnabled = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -2221,14 +2109,10 @@ M.ConfigureLogsForPlaybackConfigurationOutput = {
         },
         EnabledLoggingStrategies = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        AdsInteractionLog = {
-            type = "structure",
-        },
-        ManifestServiceInteractionLog = {
-            type = "structure",
-        },
+        AdsInteractionLog = M.AdsInteractionLog,
+        ManifestServiceInteractionLog = M.ManifestServiceInteractionLog,
     },
 }
 
@@ -2237,7 +2121,7 @@ M.CreateLiveSourceInput = {
     members = {
         HttpPackageConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.HttpPackageConfiguration,
             traits = {
                 required = true,
             },
@@ -2258,8 +2142,8 @@ M.CreateLiveSourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -2278,7 +2162,7 @@ M.CreateLiveSourceOutput = {
         },
         HttpPackageConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.HttpPackageConfiguration,
         },
         LastModifiedTime = {
             type = "timestamp",
@@ -2291,8 +2175,8 @@ M.CreateLiveSourceOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -2303,9 +2187,7 @@ M.CreateLiveSourceOutput = {
 M.CreatePrefetchScheduleInput = {
     type = "structure",
     members = {
-        Consumption = {
-            type = "structure",
-        },
+        Consumption = M.PrefetchConsumption,
         Name = {
             type = "string",
             traits = {
@@ -2320,12 +2202,8 @@ M.CreatePrefetchScheduleInput = {
                 required = true,
             },
         },
-        Retrieval = {
-            type = "structure",
-        },
-        RecurringPrefetchConfiguration = {
-            type = "structure",
-        },
+        Retrieval = M.PrefetchRetrieval,
+        RecurringPrefetchConfiguration = M.RecurringPrefetchConfiguration,
         ScheduleType = {
             type = "string",
         },
@@ -2334,8 +2212,8 @@ M.CreatePrefetchScheduleInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -2349,21 +2227,15 @@ M.CreatePrefetchScheduleOutput = {
         Arn = {
             type = "string",
         },
-        Consumption = {
-            type = "structure",
-        },
+        Consumption = M.PrefetchConsumption,
         Name = {
             type = "string",
         },
         PlaybackConfigurationName = {
             type = "string",
         },
-        Retrieval = {
-            type = "structure",
-        },
-        RecurringPrefetchConfiguration = {
-            type = "structure",
-        },
+        Retrieval = M.PrefetchRetrieval,
+        RecurringPrefetchConfiguration = M.RecurringPrefetchConfiguration,
         ScheduleType = {
             type = "string",
         },
@@ -2372,8 +2244,8 @@ M.CreatePrefetchScheduleOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -2384,21 +2256,14 @@ M.CreatePrefetchScheduleOutput = {
 M.CreateSourceLocationInput = {
     type = "structure",
     members = {
-        AccessConfiguration = {
-            type = "structure",
-        },
-        DefaultSegmentDeliveryConfiguration = {
-            type = "structure",
-        },
-        HttpConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AccessConfiguration = M.AccessConfiguration,
+        DefaultSegmentDeliveryConfiguration = M.DefaultSegmentDeliveryConfiguration,
+        HttpConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HttpConfiguration }),
         SegmentDeliveryConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.SegmentDeliveryConfiguration,
         },
         SourceLocationName = {
             type = "string",
@@ -2409,8 +2274,8 @@ M.CreateSourceLocationInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -2421,35 +2286,29 @@ M.CreateSourceLocationInput = {
 M.CreateSourceLocationOutput = {
     type = "structure",
     members = {
-        AccessConfiguration = {
-            type = "structure",
-        },
+        AccessConfiguration = M.AccessConfiguration,
         Arn = {
             type = "string",
         },
         CreationTime = {
             type = "timestamp",
         },
-        DefaultSegmentDeliveryConfiguration = {
-            type = "structure",
-        },
-        HttpConfiguration = {
-            type = "structure",
-        },
+        DefaultSegmentDeliveryConfiguration = M.DefaultSegmentDeliveryConfiguration,
+        HttpConfiguration = M.HttpConfiguration,
         LastModifiedTime = {
             type = "timestamp",
         },
         SegmentDeliveryConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.SegmentDeliveryConfiguration,
         },
         SourceLocationName = {
             type = "string",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -2462,7 +2321,7 @@ M.CreateVodSourceInput = {
     members = {
         HttpPackageConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.HttpPackageConfiguration,
             traits = {
                 required = true,
             },
@@ -2476,8 +2335,8 @@ M.CreateVodSourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -2503,7 +2362,7 @@ M.CreateVodSourceOutput = {
         },
         HttpPackageConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.HttpPackageConfiguration,
         },
         LastModifiedTime = {
             type = "timestamp",
@@ -2513,8 +2372,8 @@ M.CreateVodSourceOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -2674,7 +2533,7 @@ M.DescribeLiveSourceOutput = {
         },
         HttpPackageConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.HttpPackageConfiguration,
         },
         LastModifiedTime = {
             type = "timestamp",
@@ -2687,8 +2546,8 @@ M.DescribeLiveSourceOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -2712,35 +2571,29 @@ M.DescribeSourceLocationInput = {
 M.DescribeSourceLocationOutput = {
     type = "structure",
     members = {
-        AccessConfiguration = {
-            type = "structure",
-        },
+        AccessConfiguration = M.AccessConfiguration,
         Arn = {
             type = "string",
         },
         CreationTime = {
             type = "timestamp",
         },
-        DefaultSegmentDeliveryConfiguration = {
-            type = "structure",
-        },
-        HttpConfiguration = {
-            type = "structure",
-        },
+        DefaultSegmentDeliveryConfiguration = M.DefaultSegmentDeliveryConfiguration,
+        HttpConfiguration = M.HttpConfiguration,
         LastModifiedTime = {
             type = "timestamp",
         },
         SegmentDeliveryConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.SegmentDeliveryConfiguration,
         },
         SourceLocationName = {
             type = "string",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -2773,7 +2626,7 @@ M.DescribeVodSourceOutput = {
     members = {
         AdBreakOpportunities = {
             type = "list",
-            member_type = "structure",
+            member = M.AdBreakOpportunity,
         },
         Arn = {
             type = "string",
@@ -2783,7 +2636,7 @@ M.DescribeVodSourceOutput = {
         },
         HttpPackageConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.HttpPackageConfiguration,
         },
         LastModifiedTime = {
             type = "timestamp",
@@ -2793,8 +2646,8 @@ M.DescribeVodSourceOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -2824,43 +2677,30 @@ M.GetPlaybackConfigurationOutput = {
         AdDecisionServerUrl = {
             type = "string",
         },
-        AvailSuppression = {
-            type = "structure",
-        },
-        Bumper = {
-            type = "structure",
-        },
-        CdnConfiguration = {
-            type = "structure",
-        },
+        AvailSuppression = M.AvailSuppression,
+        Bumper = M.Bumper,
+        CdnConfiguration = M.CdnConfiguration,
         ConfigurationAliases = {
             type = "map",
-            key_type = "string",
-            value_type = "map",
+            key = { type = "string" },
+            value = { type = "map" },
         },
-        DashConfiguration = {
-            type = "structure",
-        },
-        HlsConfiguration = {
-            type = "structure",
-        },
+        DashConfiguration = M.DashConfiguration,
+        HlsConfiguration = M.HlsConfiguration,
         InsertionMode = {
             type = "string",
+            traits = {
+                default = "STITCHED_ONLY",
+            },
         },
-        LivePreRollConfiguration = {
-            type = "structure",
-        },
-        LogConfiguration = {
-            type = "structure",
-        },
-        ManifestProcessingRules = {
-            type = "structure",
-        },
+        LivePreRollConfiguration = M.LivePreRollConfiguration,
+        LogConfiguration = M.LogConfiguration,
+        ManifestProcessingRules = M.ManifestProcessingRules,
         Name = {
             type = "string",
         },
         PersonalizationThresholdSeconds = {
-            type = "number",
+            type = "integer",
         },
         PlaybackConfigurationArn = {
             type = "string",
@@ -2876,8 +2716,8 @@ M.GetPlaybackConfigurationOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -2888,12 +2728,8 @@ M.GetPlaybackConfigurationOutput = {
         VideoContentSourceUrl = {
             type = "string",
         },
-        AdConditioningConfiguration = {
-            type = "structure",
-        },
-        AdDecisionServerConfiguration = {
-            type = "structure",
-        },
+        AdConditioningConfiguration = M.AdConditioningConfiguration,
+        AdDecisionServerConfiguration = M.AdDecisionServerConfiguration,
     },
 }
 
@@ -2923,31 +2759,25 @@ M.GetPrefetchScheduleOutput = {
         Arn = {
             type = "string",
         },
-        Consumption = {
-            type = "structure",
-        },
+        Consumption = M.PrefetchConsumption,
         Name = {
             type = "string",
         },
         PlaybackConfigurationName = {
             type = "string",
         },
-        Retrieval = {
-            type = "structure",
-        },
+        Retrieval = M.PrefetchRetrieval,
         ScheduleType = {
             type = "string",
         },
-        RecurringPrefetchConfiguration = {
-            type = "structure",
-        },
+        RecurringPrefetchConfiguration = M.RecurringPrefetchConfiguration,
         StreamId = {
             type = "string",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -2959,7 +2789,7 @@ M.ListAlertsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2985,7 +2815,7 @@ M.ListAlertsOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.Alert,
         },
         NextToken = {
             type = "string",
@@ -2997,7 +2827,7 @@ M.ListLiveSourcesInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3023,7 +2853,7 @@ M.ListLiveSourcesOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.LiveSource,
         },
         NextToken = {
             type = "string",
@@ -3035,7 +2865,7 @@ M.ListPlaybackConfigurationsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -3054,7 +2884,7 @@ M.ListPlaybackConfigurationsOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.PlaybackConfiguration,
         },
         NextToken = {
             type = "string",
@@ -3072,7 +2902,7 @@ M.ListPrefetchSchedulesInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3098,7 +2928,7 @@ M.ListPrefetchSchedulesOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.PrefetchSchedule,
         },
         NextToken = {
             type = "string",
@@ -3110,7 +2940,7 @@ M.ListSourceLocationsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3129,7 +2959,7 @@ M.ListSourceLocationsOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.SourceLocation,
         },
         NextToken = {
             type = "string",
@@ -3155,8 +2985,8 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -3168,7 +2998,7 @@ M.ListVodSourcesInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3194,7 +3024,7 @@ M.ListVodSourcesOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.VodSource,
         },
         NextToken = {
             type = "string",
@@ -3207,7 +3037,7 @@ M.UpdateLiveSourceInput = {
     members = {
         HttpPackageConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.HttpPackageConfiguration,
             traits = {
                 required = true,
             },
@@ -3240,7 +3070,7 @@ M.UpdateLiveSourceOutput = {
         },
         HttpPackageConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.HttpPackageConfiguration,
         },
         LastModifiedTime = {
             type = "timestamp",
@@ -3253,8 +3083,8 @@ M.UpdateLiveSourceOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -3268,32 +3098,23 @@ M.PutPlaybackConfigurationInput = {
         AdDecisionServerUrl = {
             type = "string",
         },
-        AvailSuppression = {
-            type = "structure",
-        },
-        Bumper = {
-            type = "structure",
-        },
-        CdnConfiguration = {
-            type = "structure",
-        },
+        AvailSuppression = M.AvailSuppression,
+        Bumper = M.Bumper,
+        CdnConfiguration = M.CdnConfiguration,
         ConfigurationAliases = {
             type = "map",
-            key_type = "string",
-            value_type = "map",
+            key = { type = "string" },
+            value = { type = "map" },
         },
-        DashConfiguration = {
-            type = "structure",
-        },
+        DashConfiguration = M.DashConfigurationForPut,
         InsertionMode = {
             type = "string",
+            traits = {
+                default = "STITCHED_ONLY",
+            },
         },
-        LivePreRollConfiguration = {
-            type = "structure",
-        },
-        ManifestProcessingRules = {
-            type = "structure",
-        },
+        LivePreRollConfiguration = M.LivePreRollConfiguration,
+        ManifestProcessingRules = M.ManifestProcessingRules,
         Name = {
             type = "string",
             traits = {
@@ -3301,15 +3122,15 @@ M.PutPlaybackConfigurationInput = {
             },
         },
         PersonalizationThresholdSeconds = {
-            type = "number",
+            type = "integer",
         },
         SlateAdUrl = {
             type = "string",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -3320,12 +3141,8 @@ M.PutPlaybackConfigurationInput = {
         VideoContentSourceUrl = {
             type = "string",
         },
-        AdConditioningConfiguration = {
-            type = "structure",
-        },
-        AdDecisionServerConfiguration = {
-            type = "structure",
-        },
+        AdConditioningConfiguration = M.AdConditioningConfiguration,
+        AdDecisionServerConfiguration = M.AdDecisionServerConfiguration,
     },
 }
 
@@ -3335,43 +3152,30 @@ M.PutPlaybackConfigurationOutput = {
         AdDecisionServerUrl = {
             type = "string",
         },
-        AvailSuppression = {
-            type = "structure",
-        },
-        Bumper = {
-            type = "structure",
-        },
-        CdnConfiguration = {
-            type = "structure",
-        },
+        AvailSuppression = M.AvailSuppression,
+        Bumper = M.Bumper,
+        CdnConfiguration = M.CdnConfiguration,
         ConfigurationAliases = {
             type = "map",
-            key_type = "string",
-            value_type = "map",
+            key = { type = "string" },
+            value = { type = "map" },
         },
-        DashConfiguration = {
-            type = "structure",
-        },
-        HlsConfiguration = {
-            type = "structure",
-        },
+        DashConfiguration = M.DashConfiguration,
+        HlsConfiguration = M.HlsConfiguration,
         InsertionMode = {
             type = "string",
+            traits = {
+                default = "STITCHED_ONLY",
+            },
         },
-        LivePreRollConfiguration = {
-            type = "structure",
-        },
-        LogConfiguration = {
-            type = "structure",
-        },
-        ManifestProcessingRules = {
-            type = "structure",
-        },
+        LivePreRollConfiguration = M.LivePreRollConfiguration,
+        LogConfiguration = M.LogConfiguration,
+        ManifestProcessingRules = M.ManifestProcessingRules,
         Name = {
             type = "string",
         },
         PersonalizationThresholdSeconds = {
-            type = "number",
+            type = "integer",
         },
         PlaybackConfigurationArn = {
             type = "string",
@@ -3387,8 +3191,8 @@ M.PutPlaybackConfigurationOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -3399,33 +3203,22 @@ M.PutPlaybackConfigurationOutput = {
         VideoContentSourceUrl = {
             type = "string",
         },
-        AdConditioningConfiguration = {
-            type = "structure",
-        },
-        AdDecisionServerConfiguration = {
-            type = "structure",
-        },
+        AdConditioningConfiguration = M.AdConditioningConfiguration,
+        AdDecisionServerConfiguration = M.AdDecisionServerConfiguration,
     },
 }
 
 M.UpdateSourceLocationInput = {
     type = "structure",
     members = {
-        AccessConfiguration = {
-            type = "structure",
-        },
-        DefaultSegmentDeliveryConfiguration = {
-            type = "structure",
-        },
-        HttpConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AccessConfiguration = M.AccessConfiguration,
+        DefaultSegmentDeliveryConfiguration = M.DefaultSegmentDeliveryConfiguration,
+        HttpConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HttpConfiguration }),
         SegmentDeliveryConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.SegmentDeliveryConfiguration,
         },
         SourceLocationName = {
             type = "string",
@@ -3440,35 +3233,29 @@ M.UpdateSourceLocationInput = {
 M.UpdateSourceLocationOutput = {
     type = "structure",
     members = {
-        AccessConfiguration = {
-            type = "structure",
-        },
+        AccessConfiguration = M.AccessConfiguration,
         Arn = {
             type = "string",
         },
         CreationTime = {
             type = "timestamp",
         },
-        DefaultSegmentDeliveryConfiguration = {
-            type = "structure",
-        },
-        HttpConfiguration = {
-            type = "structure",
-        },
+        DefaultSegmentDeliveryConfiguration = M.DefaultSegmentDeliveryConfiguration,
+        HttpConfiguration = M.HttpConfiguration,
         LastModifiedTime = {
             type = "timestamp",
         },
         SegmentDeliveryConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.SegmentDeliveryConfiguration,
         },
         SourceLocationName = {
             type = "string",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -3488,8 +3275,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
                 required = true,
@@ -3514,7 +3301,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -3532,7 +3319,7 @@ M.UpdateVodSourceInput = {
     members = {
         HttpPackageConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.HttpPackageConfiguration,
             traits = {
                 required = true,
             },
@@ -3565,7 +3352,7 @@ M.UpdateVodSourceOutput = {
         },
         HttpPackageConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.HttpPackageConfiguration,
         },
         LastModifiedTime = {
             type = "timestamp",
@@ -3575,8 +3362,8 @@ M.UpdateVodSourceOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },

@@ -77,12 +77,9 @@ M.ToolSpec = {
                 required = true,
             },
         },
-        inputSchema = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        inputSchema = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ToolInputSchema }),
     },
 }
 
@@ -118,7 +115,7 @@ M.CreateActInput = {
         },
         toolSpecs = {
             type = "list",
-            member_type = "structure",
+            member = M.ToolSpec,
         },
         clientToken = {
             type = "string",
@@ -169,7 +166,7 @@ M.InternalServerException = {
             },
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -259,7 +256,7 @@ M.ThrottlingException = {
             type = "string",
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -309,7 +306,7 @@ M.ValidationException = {
         },
         fieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -331,7 +328,7 @@ M.CallResult = {
         },
         content = {
             type = "list",
-            member_type = "union",
+            member = M.CallResultContent,
             traits = {
                 required = true,
             },
@@ -372,7 +369,7 @@ M.InvokeActStepInput = {
         },
         callResults = {
             type = "list",
-            member_type = "structure",
+            member = M.CallResult,
             traits = {
                 required = true,
             },
@@ -412,7 +409,7 @@ M.InvokeActStepOutput = {
     members = {
         calls = {
             type = "list",
-            member_type = "structure",
+            member = M.Call,
             traits = {
                 required = true,
             },
@@ -454,7 +451,7 @@ M.ListActsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -529,9 +526,7 @@ M.ActSummary = {
         endedAt = {
             type = "timestamp",
         },
-        traceLocation = {
-            type = "structure",
-        },
+        traceLocation = M.TraceLocation,
     },
 }
 
@@ -540,7 +535,7 @@ M.ListActsOutput = {
     members = {
         actSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ActSummary,
             traits = {
                 required = true,
             },
@@ -588,9 +583,7 @@ M.UpdateActInput = {
                 required = true,
             },
         },
-        error = {
-            type = "structure",
-        },
+        error = M.ActError,
     },
 }
 
@@ -602,7 +595,7 @@ M.ListModelsInput = {
     type = "structure",
     members = {
         clientCompatibilityVersion = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "clientCompatibilityVersion",
                 required = true,
@@ -615,14 +608,14 @@ M.CompatibilityInformation = {
     type = "structure",
     members = {
         clientCompatibilityVersion = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         supportedModelIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -682,14 +675,11 @@ M.ModelSummary = {
                 required = true,
             },
         },
-        modelLifecycle = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        modelLifecycle = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ModelLifecycle }),
         minimumCompatibilityVersion = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -702,24 +692,21 @@ M.ListModelsOutput = {
     members = {
         modelSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ModelSummary,
             traits = {
                 required = true,
             },
         },
         modelAliases = {
             type = "list",
-            member_type = "structure",
+            member = M.ModelAlias,
             traits = {
                 required = true,
             },
         },
-        compatibilityInformation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        compatibilityInformation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CompatibilityInformation }),
     },
 }
 
@@ -776,7 +763,7 @@ M.ListSessionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -810,7 +797,7 @@ M.ListSessionsOutput = {
     members = {
         sessionSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.SessionSummary,
             traits = {
                 required = true,
             },
@@ -848,9 +835,7 @@ M.CreateWorkflowDefinitionInput = {
         description = {
             type = "string",
         },
-        exportConfig = {
-            type = "structure",
-        },
+        exportConfig = M.WorkflowExportConfig,
         clientToken = {
             type = "string",
         },
@@ -936,9 +921,7 @@ M.GetWorkflowDefinitionOutput = {
         description = {
             type = "string",
         },
-        exportConfig = {
-            type = "structure",
-        },
+        exportConfig = M.WorkflowExportConfig,
         status = {
             type = "string",
             traits = {
@@ -952,7 +935,7 @@ M.ListWorkflowDefinitionsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1004,7 +987,7 @@ M.ListWorkflowDefinitionsOutput = {
     members = {
         workflowDefinitionSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkflowDefinitionSummary,
             traits = {
                 required = true,
             },
@@ -1019,7 +1002,7 @@ M.ClientInfo = {
     type = "structure",
     members = {
         compatibilityVersion = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1052,12 +1035,9 @@ M.CreateWorkflowRunInput = {
         logGroupName = {
             type = "string",
         },
-        clientInfo = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        clientInfo = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ClientInfo }),
     },
 }
 
@@ -1192,7 +1172,7 @@ M.ListWorkflowRunsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1239,9 +1219,7 @@ M.WorkflowRunSummary = {
         endedAt = {
             type = "timestamp",
         },
-        traceLocation = {
-            type = "structure",
-        },
+        traceLocation = M.TraceLocation,
     },
 }
 
@@ -1250,7 +1228,7 @@ M.ListWorkflowRunsOutput = {
     members = {
         workflowRunSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkflowRunSummary,
             traits = {
                 required = true,
             },

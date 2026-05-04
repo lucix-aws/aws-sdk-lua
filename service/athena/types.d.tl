@@ -1520,8 +1520,6 @@ local record InvalidRequestException
     Message: string
 end
 
-local type NotebookType = "IPYNB"
-
 local type WorkGroupState = "ENABLED" | "DISABLED"
 
 local type CalculationExecutionState = "CREATING" | "CREATED" | "QUEUED" | "RUNNING" | "CANCELING" | "CANCELED" | "COMPLETED" | "FAILED"
@@ -1529,6 +1527,8 @@ local type CalculationExecutionState = "CREATING" | "CREATED" | "QUEUED" | "RUNN
 local type ExecutorState = "CREATING" | "CREATED" | "REGISTERED" | "TERMINATING" | "TERMINATED" | "FAILED"
 
 local type DataCatalogType = "LAMBDA" | "GLUE" | "HIVE" | "FEDERATED"
+
+local type NotebookType = "IPYNB"
 
 local type SessionState = "CREATING" | "CREATED" | "IDLE" | "BUSY" | "TERMINATING" | "TERMINATED" | "DEGRADED" | "FAILED"
 

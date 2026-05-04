@@ -23,7 +23,7 @@ M.Action = {
             },
         },
         Value = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -42,8 +42,8 @@ M.AdditionalDataset = {
         },
         Configuration = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
     },
 }
@@ -59,8 +59,8 @@ M.AttributeConfig = {
         },
         Transformations = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -79,11 +79,11 @@ M.DataConfig = {
         },
         AttributeConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.AttributeConfig,
         },
         AdditionalDatasets = {
             type = "list",
-            member_type = "structure",
+            member = M.AdditionalDataset,
         },
     },
 }
@@ -176,13 +176,13 @@ M.TimeAlignmentBoundary = {
             type = "string",
         },
         DayOfMonth = {
-            type = "number",
+            type = "integer",
         },
         DayOfWeek = {
             type = "string",
         },
         Hour = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -197,25 +197,21 @@ M.CreateAutoPredictorInput = {
             },
         },
         ForecastHorizon = {
-            type = "number",
+            type = "integer",
         },
         ForecastTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ForecastDimensions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ForecastFrequency = {
             type = "string",
         },
-        DataConfig = {
-            type = "structure",
-        },
-        EncryptionConfig = {
-            type = "structure",
-        },
+        DataConfig = M.DataConfig,
+        EncryptionConfig = M.EncryptionConfig,
         ReferencePredictorArn = {
             type = "string",
         },
@@ -227,14 +223,10 @@ M.CreateAutoPredictorInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        MonitorConfig = {
-            type = "structure",
-        },
-        TimeAlignmentBoundary = {
-            type = "structure",
-        },
+        MonitorConfig = M.MonitorConfig,
+        TimeAlignmentBoundary = M.TimeAlignmentBoundary,
     },
 }
 
@@ -338,7 +330,7 @@ M.Schema = {
     members = {
         Attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.SchemaAttribute,
         },
     },
 }
@@ -367,18 +359,13 @@ M.CreateDatasetInput = {
         DataFrequency = {
             type = "string",
         },
-        Schema = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        EncryptionConfig = {
-            type = "structure",
-        },
+        Schema = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Schema }),
+        EncryptionConfig = M.EncryptionConfig,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -409,11 +396,11 @@ M.CreateDatasetGroupInput = {
         },
         DatasetArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -451,12 +438,9 @@ M.S3Config = {
 M.DataSource = {
     type = "structure",
     members = {
-        S3Config = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        S3Config = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3Config }),
     },
 }
 
@@ -480,12 +464,9 @@ M.CreateDatasetImportJobInput = {
                 required = true,
             },
         },
-        DataSource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DataSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataSource }),
         TimestampFormat = {
             type = "string",
         },
@@ -494,13 +475,16 @@ M.CreateDatasetImportJobInput = {
         },
         UseGeolocationForTimeZone = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         GeolocationFormat = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         Format = {
             type = "string",
@@ -563,18 +547,11 @@ M.CreateExplainabilityInput = {
                 required = true,
             },
         },
-        ExplainabilityConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        DataSource = {
-            type = "structure",
-        },
-        Schema = {
-            type = "structure",
-        },
+        ExplainabilityConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ExplainabilityConfig }),
+        DataSource = M.DataSource,
+        Schema = M.Schema,
         EnableVisualization = {
             type = "boolean",
         },
@@ -586,7 +563,7 @@ M.CreateExplainabilityInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -603,12 +580,9 @@ M.CreateExplainabilityOutput = {
 M.DataDestination = {
     type = "structure",
     members = {
-        S3Config = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        S3Config = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3Config }),
     },
 }
 
@@ -627,15 +601,12 @@ M.CreateExplainabilityExportInput = {
                 required = true,
             },
         },
-        Destination = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Destination = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataDestination }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         Format = {
             type = "string",
@@ -655,12 +626,8 @@ M.CreateExplainabilityExportOutput = {
 M.TimeSeriesIdentifiers = {
     type = "structure",
     members = {
-        DataSource = {
-            type = "structure",
-        },
-        Schema = {
-            type = "structure",
-        },
+        DataSource = M.DataSource,
+        Schema = M.Schema,
         Format = {
             type = "string",
         },
@@ -670,9 +637,7 @@ M.TimeSeriesIdentifiers = {
 M.TimeSeriesSelector = {
     type = "structure",
     members = {
-        TimeSeriesIdentifiers = {
-            type = "structure",
-        },
+        TimeSeriesIdentifiers = M.TimeSeriesIdentifiers,
     },
 }
 
@@ -693,15 +658,13 @@ M.CreateForecastInput = {
         },
         ForecastTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        TimeSeriesSelector = {
-            type = "structure",
-        },
+        TimeSeriesSelector = M.TimeSeriesSelector,
     },
 }
 
@@ -729,15 +692,12 @@ M.CreateForecastExportJobInput = {
                 required = true,
             },
         },
-        Destination = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Destination = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataDestination }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         Format = {
             type = "string",
@@ -771,7 +731,7 @@ M.CreateMonitorInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -794,10 +754,10 @@ M.EvaluationParameters = {
     type = "structure",
     members = {
         NumberOfBacktestWindows = {
-            type = "number",
+            type = "integer",
         },
         BackTestWindowOffset = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -817,8 +777,8 @@ M.FeaturizationMethod = {
         },
         FeaturizationMethodParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -834,7 +794,7 @@ M.Featurization = {
         },
         FeaturizationPipeline = {
             type = "list",
-            member_type = "structure",
+            member = M.FeaturizationMethod,
         },
     },
 }
@@ -850,11 +810,11 @@ M.FeaturizationConfig = {
         },
         ForecastDimensions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Featurizations = {
             type = "list",
-            member_type = "structure",
+            member = M.Featurization,
         },
     },
 }
@@ -870,7 +830,7 @@ M.CategoricalParameterRange = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -895,13 +855,13 @@ M.ContinuousParameterRange = {
             },
         },
         MaxValue = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
         MinValue = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -922,13 +882,13 @@ M.IntegerParameterRange = {
             },
         },
         MaxValue = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         MinValue = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -944,15 +904,15 @@ M.ParameterRanges = {
     members = {
         CategoricalParameterRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.CategoricalParameterRange,
         },
         ContinuousParameterRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.ContinuousParameterRange,
         },
         IntegerParameterRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.IntegerParameterRange,
         },
     },
 }
@@ -960,9 +920,7 @@ M.ParameterRanges = {
 M.HyperParameterTuningJobConfig = {
     type = "structure",
     members = {
-        ParameterRanges = {
-            type = "structure",
-        },
+        ParameterRanges = M.ParameterRanges,
     },
 }
 
@@ -995,7 +953,7 @@ M.InputDataConfig = {
         },
         SupplementaryFeatures = {
             type = "list",
-            member_type = "structure",
+            member = M.SupplementaryFeature,
         },
     },
 }
@@ -1013,14 +971,14 @@ M.CreatePredictorInput = {
             type = "string",
         },
         ForecastHorizon = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         ForecastTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         PerformAutoML = {
             type = "boolean",
@@ -1033,33 +991,21 @@ M.CreatePredictorInput = {
         },
         TrainingParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        EvaluationParameters = {
-            type = "structure",
-        },
-        HPOConfig = {
-            type = "structure",
-        },
-        InputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        FeaturizationConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        EncryptionConfig = {
-            type = "structure",
-        },
+        EvaluationParameters = M.EvaluationParameters,
+        HPOConfig = M.HyperParameterTuningJobConfig,
+        InputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InputDataConfig }),
+        FeaturizationConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FeaturizationConfig }),
+        EncryptionConfig = M.EncryptionConfig,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         OptimizationMetric = {
             type = "string",
@@ -1091,15 +1037,12 @@ M.CreatePredictorBacktestExportJobInput = {
                 required = true,
             },
         },
-        Destination = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Destination = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataDestination }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         Format = {
             type = "string",
@@ -1131,12 +1074,10 @@ M.CreateWhatIfAnalysisInput = {
                 required = true,
             },
         },
-        TimeSeriesSelector = {
-            type = "structure",
-        },
+        TimeSeriesSelector = M.TimeSeriesSelector,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1153,18 +1094,12 @@ M.CreateWhatIfAnalysisOutput = {
 M.TimeSeriesReplacementsDataSource = {
     type = "structure",
     members = {
-        S3Config = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Schema = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        S3Config = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3Config }),
+        Schema = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Schema }),
         Format = {
             type = "string",
         },
@@ -1208,12 +1143,10 @@ M.TimeSeriesCondition = {
 M.TimeSeriesTransformation = {
     type = "structure",
     members = {
-        Action = {
-            type = "structure",
-        },
+        Action = M.Action,
         TimeSeriesConditions = {
             type = "list",
-            member_type = "structure",
+            member = M.TimeSeriesCondition,
         },
     },
 }
@@ -1235,14 +1168,12 @@ M.CreateWhatIfForecastInput = {
         },
         TimeSeriesTransformations = {
             type = "list",
-            member_type = "structure",
+            member = M.TimeSeriesTransformation,
         },
-        TimeSeriesReplacementsDataSource = {
-            type = "structure",
-        },
+        TimeSeriesReplacementsDataSource = M.TimeSeriesReplacementsDataSource,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1267,20 +1198,17 @@ M.CreateWhatIfForecastExportInput = {
         },
         WhatIfForecastArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        Destination = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Destination = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataDestination }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         Format = {
             type = "string",
@@ -1584,34 +1512,28 @@ M.DescribeAutoPredictorOutput = {
             type = "string",
         },
         ForecastHorizon = {
-            type = "number",
+            type = "integer",
         },
         ForecastTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ForecastFrequency = {
             type = "string",
         },
         ForecastDimensions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DatasetImportJobArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        DataConfig = {
-            type = "structure",
-        },
-        EncryptionConfig = {
-            type = "structure",
-        },
-        ReferencePredictorSummary = {
-            type = "structure",
-        },
+        DataConfig = M.DataConfig,
+        EncryptionConfig = M.EncryptionConfig,
+        ReferencePredictorSummary = M.ReferencePredictorSummary,
         EstimatedTimeRemainingInMinutes = {
-            type = "number",
+            type = "long",
         },
         Status = {
             type = "string",
@@ -1628,15 +1550,9 @@ M.DescribeAutoPredictorOutput = {
         OptimizationMetric = {
             type = "string",
         },
-        ExplainabilityInfo = {
-            type = "structure",
-        },
-        MonitorInfo = {
-            type = "structure",
-        },
-        TimeAlignmentBoundary = {
-            type = "structure",
-        },
+        ExplainabilityInfo = M.ExplainabilityInfo,
+        MonitorInfo = M.MonitorInfo,
+        TimeAlignmentBoundary = M.TimeAlignmentBoundary,
     },
 }
 
@@ -1670,12 +1586,8 @@ M.DescribeDatasetOutput = {
         DataFrequency = {
             type = "string",
         },
-        Schema = {
-            type = "structure",
-        },
-        EncryptionConfig = {
-            type = "structure",
-        },
+        Schema = M.Schema,
+        EncryptionConfig = M.EncryptionConfig,
         Status = {
             type = "string",
         },
@@ -1711,7 +1623,7 @@ M.DescribeDatasetGroupOutput = {
         },
         DatasetArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Domain = {
             type = "string",
@@ -1744,16 +1656,16 @@ M.Statistics = {
     type = "structure",
     members = {
         Count = {
-            type = "number",
+            type = "integer",
         },
         CountDistinct = {
-            type = "number",
+            type = "integer",
         },
         CountNull = {
-            type = "number",
+            type = "integer",
         },
         CountNan = {
-            type = "number",
+            type = "integer",
         },
         Min = {
             type = "string",
@@ -1762,22 +1674,22 @@ M.Statistics = {
             type = "string",
         },
         Avg = {
-            type = "number",
+            type = "double",
         },
         Stddev = {
-            type = "number",
+            type = "double",
         },
         CountLong = {
-            type = "number",
+            type = "long",
         },
         CountDistinctLong = {
-            type = "number",
+            type = "long",
         },
         CountNullLong = {
-            type = "number",
+            type = "long",
         },
         CountNanLong = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1802,23 +1714,24 @@ M.DescribeDatasetImportJobOutput = {
         },
         UseGeolocationForTimeZone = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         GeolocationFormat = {
             type = "string",
         },
-        DataSource = {
-            type = "structure",
-        },
+        DataSource = M.DataSource,
         EstimatedTimeRemainingInMinutes = {
-            type = "number",
+            type = "long",
         },
         FieldStatistics = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.Statistics,
         },
         DataSize = {
-            type = "number",
+            type = "double",
         },
         Status = {
             type = "string",
@@ -1865,18 +1778,12 @@ M.DescribeExplainabilityOutput = {
         ResourceArn = {
             type = "string",
         },
-        ExplainabilityConfig = {
-            type = "structure",
-        },
+        ExplainabilityConfig = M.ExplainabilityConfig,
         EnableVisualization = {
             type = "boolean",
         },
-        DataSource = {
-            type = "structure",
-        },
-        Schema = {
-            type = "structure",
-        },
+        DataSource = M.DataSource,
+        Schema = M.Schema,
         StartDateTime = {
             type = "string",
         },
@@ -1884,7 +1791,7 @@ M.DescribeExplainabilityOutput = {
             type = "string",
         },
         EstimatedTimeRemainingInMinutes = {
-            type = "number",
+            type = "long",
         },
         Message = {
             type = "string",
@@ -1925,9 +1832,7 @@ M.DescribeExplainabilityExportOutput = {
         ExplainabilityArn = {
             type = "string",
         },
-        Destination = {
-            type = "structure",
-        },
+        Destination = M.DataDestination,
         Message = {
             type = "string",
         },
@@ -1969,7 +1874,7 @@ M.DescribeForecastOutput = {
         },
         ForecastTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         PredictorArn = {
             type = "string",
@@ -1978,7 +1883,7 @@ M.DescribeForecastOutput = {
             type = "string",
         },
         EstimatedTimeRemainingInMinutes = {
-            type = "number",
+            type = "long",
         },
         Status = {
             type = "string",
@@ -1992,9 +1897,7 @@ M.DescribeForecastOutput = {
         LastModificationTime = {
             type = "timestamp",
         },
-        TimeSeriesSelector = {
-            type = "structure",
-        },
+        TimeSeriesSelector = M.TimeSeriesSelector,
     },
 }
 
@@ -2022,9 +1925,7 @@ M.DescribeForecastExportJobOutput = {
         ForecastArn = {
             type = "string",
         },
-        Destination = {
-            type = "structure",
-        },
+        Destination = M.DataDestination,
         Message = {
             type = "string",
         },
@@ -2062,7 +1963,7 @@ M.BaselineMetric = {
             type = "string",
         },
         Value = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -2072,7 +1973,7 @@ M.PredictorBaseline = {
     members = {
         BaselineMetrics = {
             type = "list",
-            member_type = "structure",
+            member = M.BaselineMetric,
         },
     },
 }
@@ -2080,9 +1981,7 @@ M.PredictorBaseline = {
 M.Baseline = {
     type = "structure",
     members = {
-        PredictorBaseline = {
-            type = "structure",
-        },
+        PredictorBaseline = M.PredictorBaseline,
     },
 }
 
@@ -2107,9 +2006,7 @@ M.DescribeMonitorOutput = {
         LastEvaluationState = {
             type = "string",
         },
-        Baseline = {
-            type = "structure",
-        },
+        Baseline = M.Baseline,
         Message = {
             type = "string",
         },
@@ -2120,7 +2017,7 @@ M.DescribeMonitorOutput = {
             type = "timestamp",
         },
         EstimatedEvaluationTimeRemainingInMinutes = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -2163,7 +2060,7 @@ M.PredictorExecution = {
         },
         TestWindows = {
             type = "list",
-            member_type = "structure",
+            member = M.TestWindowSummary,
         },
     },
 }
@@ -2173,7 +2070,7 @@ M.PredictorExecutionDetails = {
     members = {
         PredictorExecutions = {
             type = "list",
-            member_type = "structure",
+            member = M.PredictorExecution,
         },
     },
 }
@@ -2192,14 +2089,14 @@ M.DescribePredictorOutput = {
         },
         AutoMLAlgorithmArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ForecastHorizon = {
-            type = "number",
+            type = "integer",
         },
         ForecastTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         PerformAutoML = {
             type = "boolean",
@@ -2212,36 +2109,24 @@ M.DescribePredictorOutput = {
         },
         TrainingParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        EvaluationParameters = {
-            type = "structure",
-        },
-        HPOConfig = {
-            type = "structure",
-        },
-        InputDataConfig = {
-            type = "structure",
-        },
-        FeaturizationConfig = {
-            type = "structure",
-        },
-        EncryptionConfig = {
-            type = "structure",
-        },
-        PredictorExecutionDetails = {
-            type = "structure",
-        },
+        EvaluationParameters = M.EvaluationParameters,
+        HPOConfig = M.HyperParameterTuningJobConfig,
+        InputDataConfig = M.InputDataConfig,
+        FeaturizationConfig = M.FeaturizationConfig,
+        EncryptionConfig = M.EncryptionConfig,
+        PredictorExecutionDetails = M.PredictorExecutionDetails,
         EstimatedTimeRemainingInMinutes = {
-            type = "number",
+            type = "long",
         },
         IsAutoPredictor = {
             type = "boolean",
         },
         DatasetImportJobArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Status = {
             type = "string",
@@ -2285,9 +2170,7 @@ M.DescribePredictorBacktestExportJobOutput = {
         PredictorArn = {
             type = "string",
         },
-        Destination = {
-            type = "structure",
-        },
+        Destination = M.DataDestination,
         Message = {
             type = "string",
         },
@@ -2331,7 +2214,7 @@ M.DescribeWhatIfAnalysisOutput = {
             type = "string",
         },
         EstimatedTimeRemainingInMinutes = {
-            type = "number",
+            type = "long",
         },
         Status = {
             type = "string",
@@ -2345,9 +2228,7 @@ M.DescribeWhatIfAnalysisOutput = {
         LastModificationTime = {
             type = "timestamp",
         },
-        TimeSeriesSelector = {
-            type = "structure",
-        },
+        TimeSeriesSelector = M.TimeSeriesSelector,
     },
 }
 
@@ -2376,7 +2257,7 @@ M.DescribeWhatIfForecastOutput = {
             type = "string",
         },
         EstimatedTimeRemainingInMinutes = {
-            type = "number",
+            type = "long",
         },
         Status = {
             type = "string",
@@ -2392,14 +2273,12 @@ M.DescribeWhatIfForecastOutput = {
         },
         TimeSeriesTransformations = {
             type = "list",
-            member_type = "structure",
+            member = M.TimeSeriesTransformation,
         },
-        TimeSeriesReplacementsDataSource = {
-            type = "structure",
-        },
+        TimeSeriesReplacementsDataSource = M.TimeSeriesReplacementsDataSource,
         ForecastTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2427,11 +2306,9 @@ M.DescribeWhatIfForecastExportOutput = {
         },
         WhatIfForecastArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        Destination = {
-            type = "structure",
-        },
+        Destination = M.DataDestination,
         Message = {
             type = "string",
         },
@@ -2442,7 +2319,7 @@ M.DescribeWhatIfForecastExportOutput = {
             type = "timestamp",
         },
         EstimatedTimeRemainingInMinutes = {
-            type = "number",
+            type = "long",
         },
         LastModificationTime = {
             type = "timestamp",
@@ -2477,16 +2354,16 @@ M.ErrorMetric = {
             type = "string",
         },
         WAPE = {
-            type = "number",
+            type = "double",
         },
         RMSE = {
-            type = "number",
+            type = "double",
         },
         MASE = {
-            type = "number",
+            type = "double",
         },
         MAPE = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -2495,10 +2372,10 @@ M.WeightedQuantileLoss = {
     type = "structure",
     members = {
         Quantile = {
-            type = "number",
+            type = "double",
         },
         LossValue = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -2507,18 +2384,18 @@ M.Metrics = {
     type = "structure",
     members = {
         RMSE = {
-            type = "number",
+            type = "double",
         },
         WeightedQuantileLosses = {
             type = "list",
-            member_type = "structure",
+            member = M.WeightedQuantileLoss,
         },
         ErrorMetrics = {
             type = "list",
-            member_type = "structure",
+            member = M.ErrorMetric,
         },
         AverageWeightedQuantileLoss = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -2533,14 +2410,12 @@ M.WindowSummary = {
             type = "timestamp",
         },
         ItemCount = {
-            type = "number",
+            type = "integer",
         },
         EvaluationType = {
             type = "string",
         },
-        Metrics = {
-            type = "structure",
-        },
+        Metrics = M.Metrics,
     },
 }
 
@@ -2552,7 +2427,7 @@ M.EvaluationResult = {
         },
         TestWindows = {
             type = "list",
-            member_type = "structure",
+            member = M.WindowSummary,
         },
     },
 }
@@ -2562,7 +2437,7 @@ M.GetAccuracyMetricsOutput = {
     members = {
         PredictorEvaluationResults = {
             type = "list",
-            member_type = "structure",
+            member = M.EvaluationResult,
         },
         IsAutoPredictor = {
             type = "boolean",
@@ -2593,7 +2468,7 @@ M.ListDatasetGroupsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2621,7 +2496,7 @@ M.ListDatasetGroupsOutput = {
     members = {
         DatasetGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.DatasetGroupSummary,
         },
         NextToken = {
             type = "string",
@@ -2665,11 +2540,11 @@ M.ListDatasetImportJobsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
     },
 }
@@ -2683,9 +2558,7 @@ M.DatasetImportJobSummary = {
         DatasetImportJobName = {
             type = "string",
         },
-        DataSource = {
-            type = "structure",
-        },
+        DataSource = M.DataSource,
         Status = {
             type = "string",
         },
@@ -2709,7 +2582,7 @@ M.ListDatasetImportJobsOutput = {
     members = {
         DatasetImportJobs = {
             type = "list",
-            member_type = "structure",
+            member = M.DatasetImportJobSummary,
         },
         NextToken = {
             type = "string",
@@ -2724,7 +2597,7 @@ M.ListDatasetsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2758,7 +2631,7 @@ M.ListDatasetsOutput = {
     members = {
         Datasets = {
             type = "list",
-            member_type = "structure",
+            member = M.DatasetSummary,
         },
         NextToken = {
             type = "string",
@@ -2773,11 +2646,11 @@ M.ListExplainabilitiesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
     },
 }
@@ -2794,9 +2667,7 @@ M.ExplainabilitySummary = {
         ResourceArn = {
             type = "string",
         },
-        ExplainabilityConfig = {
-            type = "structure",
-        },
+        ExplainabilityConfig = M.ExplainabilityConfig,
         Status = {
             type = "string",
         },
@@ -2817,7 +2688,7 @@ M.ListExplainabilitiesOutput = {
     members = {
         Explainabilities = {
             type = "list",
-            member_type = "structure",
+            member = M.ExplainabilitySummary,
         },
         NextToken = {
             type = "string",
@@ -2832,11 +2703,11 @@ M.ListExplainabilityExportsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
     },
 }
@@ -2850,9 +2721,7 @@ M.ExplainabilityExportSummary = {
         ExplainabilityExportName = {
             type = "string",
         },
-        Destination = {
-            type = "structure",
-        },
+        Destination = M.DataDestination,
         Status = {
             type = "string",
         },
@@ -2873,7 +2742,7 @@ M.ListExplainabilityExportsOutput = {
     members = {
         ExplainabilityExports = {
             type = "list",
-            member_type = "structure",
+            member = M.ExplainabilityExportSummary,
         },
         NextToken = {
             type = "string",
@@ -2888,11 +2757,11 @@ M.ListForecastExportJobsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
     },
 }
@@ -2906,9 +2775,7 @@ M.ForecastExportJobSummary = {
         ForecastExportJobName = {
             type = "string",
         },
-        Destination = {
-            type = "structure",
-        },
+        Destination = M.DataDestination,
         Status = {
             type = "string",
         },
@@ -2929,7 +2796,7 @@ M.ListForecastExportJobsOutput = {
     members = {
         ForecastExportJobs = {
             type = "list",
-            member_type = "structure",
+            member = M.ForecastExportJobSummary,
         },
         NextToken = {
             type = "string",
@@ -2944,11 +2811,11 @@ M.ListForecastsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
     },
 }
@@ -2991,7 +2858,7 @@ M.ListForecastsOutput = {
     members = {
         Forecasts = {
             type = "list",
-            member_type = "structure",
+            member = M.ForecastSummary,
         },
         NextToken = {
             type = "string",
@@ -3006,7 +2873,7 @@ M.ListMonitorEvaluationsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         MonitorArn = {
             type = "string",
@@ -3016,7 +2883,7 @@ M.ListMonitorEvaluationsInput = {
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
     },
 }
@@ -3028,7 +2895,7 @@ M.MetricResult = {
             type = "string",
         },
         MetricValue = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -3081,18 +2948,14 @@ M.PredictorMonitorEvaluation = {
         WindowEndDatetime = {
             type = "timestamp",
         },
-        PredictorEvent = {
-            type = "structure",
-        },
-        MonitorDataSource = {
-            type = "structure",
-        },
+        PredictorEvent = M.PredictorEvent,
+        MonitorDataSource = M.MonitorDataSource,
         MetricResults = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricResult,
         },
         NumItemsEvaluated = {
-            type = "number",
+            type = "long",
         },
         Message = {
             type = "string",
@@ -3108,7 +2971,7 @@ M.ListMonitorEvaluationsOutput = {
         },
         PredictorMonitorEvaluations = {
             type = "list",
-            member_type = "structure",
+            member = M.PredictorMonitorEvaluation,
         },
     },
 }
@@ -3120,11 +2983,11 @@ M.ListMonitorsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
     },
 }
@@ -3158,7 +3021,7 @@ M.ListMonitorsOutput = {
     members = {
         Monitors = {
             type = "list",
-            member_type = "structure",
+            member = M.MonitorSummary,
         },
         NextToken = {
             type = "string",
@@ -3173,11 +3036,11 @@ M.ListPredictorBacktestExportJobsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
     },
 }
@@ -3191,9 +3054,7 @@ M.PredictorBacktestExportJobSummary = {
         PredictorBacktestExportJobName = {
             type = "string",
         },
-        Destination = {
-            type = "structure",
-        },
+        Destination = M.DataDestination,
         Status = {
             type = "string",
         },
@@ -3214,7 +3075,7 @@ M.ListPredictorBacktestExportJobsOutput = {
     members = {
         PredictorBacktestExportJobs = {
             type = "list",
-            member_type = "structure",
+            member = M.PredictorBacktestExportJobSummary,
         },
         NextToken = {
             type = "string",
@@ -3229,11 +3090,11 @@ M.ListPredictorsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
     },
 }
@@ -3253,9 +3114,7 @@ M.PredictorSummary = {
         IsAutoPredictor = {
             type = "boolean",
         },
-        ReferencePredictorSummary = {
-            type = "structure",
-        },
+        ReferencePredictorSummary = M.ReferencePredictorSummary,
         Status = {
             type = "string",
         },
@@ -3276,7 +3135,7 @@ M.ListPredictorsOutput = {
     members = {
         Predictors = {
             type = "list",
-            member_type = "structure",
+            member = M.PredictorSummary,
         },
         NextToken = {
             type = "string",
@@ -3301,7 +3160,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3313,11 +3172,11 @@ M.ListWhatIfAnalysesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
     },
 }
@@ -3354,7 +3213,7 @@ M.ListWhatIfAnalysesOutput = {
     members = {
         WhatIfAnalyses = {
             type = "list",
-            member_type = "structure",
+            member = M.WhatIfAnalysisSummary,
         },
         NextToken = {
             type = "string",
@@ -3369,11 +3228,11 @@ M.ListWhatIfForecastExportsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
     },
 }
@@ -3386,14 +3245,12 @@ M.WhatIfForecastExportSummary = {
         },
         WhatIfForecastArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         WhatIfForecastExportName = {
             type = "string",
         },
-        Destination = {
-            type = "structure",
-        },
+        Destination = M.DataDestination,
         Status = {
             type = "string",
         },
@@ -3414,7 +3271,7 @@ M.ListWhatIfForecastExportsOutput = {
     members = {
         WhatIfForecastExports = {
             type = "list",
-            member_type = "structure",
+            member = M.WhatIfForecastExportSummary,
         },
         NextToken = {
             type = "string",
@@ -3429,11 +3286,11 @@ M.ListWhatIfForecastsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
     },
 }
@@ -3470,7 +3327,7 @@ M.ListWhatIfForecastsOutput = {
     members = {
         WhatIfForecasts = {
             type = "list",
-            member_type = "structure",
+            member = M.WhatIfForecastSummary,
         },
         NextToken = {
             type = "string",
@@ -3521,7 +3378,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -3544,7 +3401,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3567,7 +3424,7 @@ M.UpdateDatasetGroupInput = {
         },
         DatasetArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },

@@ -16,7 +16,7 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AWSHabaneroPublicAPI"
-    cfg.signing_name = "awshabaneropublicapi"
+    cfg.signing_name = "finspace-api"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end

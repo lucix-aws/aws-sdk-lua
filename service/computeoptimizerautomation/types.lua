@@ -60,7 +60,7 @@ M.AssociateAccountsInput = {
     members = {
         accountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -76,11 +76,11 @@ M.AssociateAccountsOutput = {
     members = {
         accountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         errors = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -190,13 +190,13 @@ M.EstimatedMonthlySavings = {
             },
         },
         beforeDiscountSavings = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
         afterDiscountSavings = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -276,9 +276,7 @@ M.AutomationEvent = {
         completedTimestamp = {
             type = "timestamp",
         },
-        estimatedMonthlySavings = {
-            type = "structure",
-        },
+        estimatedMonthlySavings = M.EstimatedMonthlySavings,
     },
 }
 
@@ -300,7 +298,7 @@ M.AutomationEventFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -346,9 +344,7 @@ M.AutomationEventStep = {
         completedTimestamp = {
             type = "timestamp",
         },
-        estimatedMonthlySavings = {
-            type = "structure",
-        },
+        estimatedMonthlySavings = M.EstimatedMonthlySavings,
     },
 }
 
@@ -390,11 +386,9 @@ M.SummaryTotals = {
     type = "structure",
     members = {
         automationEventCount = {
-            type = "number",
+            type = "integer",
         },
-        estimatedMonthlySavings = {
-            type = "structure",
-        },
+        estimatedMonthlySavings = M.EstimatedMonthlySavings,
     },
 }
 
@@ -406,14 +400,10 @@ M.AutomationEventSummary = {
         },
         dimensions = {
             type = "list",
-            member_type = "structure",
+            member = M.SummaryDimension,
         },
-        timePeriod = {
-            type = "structure",
-        },
-        total = {
-            type = "structure",
-        },
+        timePeriod = M.TimePeriod,
+        total = M.SummaryTotals,
     },
 }
 
@@ -430,7 +420,7 @@ M.OrganizationConfiguration = {
         },
         accountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -455,7 +445,7 @@ M.Schedule = {
             type = "string",
         },
         executionWindowInMinutes = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -484,24 +474,20 @@ M.AutomationRule = {
             type = "string",
         },
         ruleRevision = {
-            type = "number",
+            type = "long",
         },
         accountId = {
             type = "string",
         },
-        organizationConfiguration = {
-            type = "structure",
-        },
+        organizationConfiguration = M.OrganizationConfiguration,
         priority = {
             type = "string",
         },
         recommendedActionTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        schedule = {
-            type = "structure",
-        },
+        schedule = M.Schedule,
         status = {
             type = "string",
         },
@@ -546,7 +532,7 @@ M.IntegerCriteriaCondition = {
         },
         values = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
         },
     },
 }
@@ -559,7 +545,7 @@ M.StringCriteriaCondition = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -572,7 +558,7 @@ M.DoubleCriteriaCondition = {
         },
         values = {
             type = "list",
-            member_type = "number",
+            member = { type = "double" },
         },
     },
 }
@@ -588,7 +574,7 @@ M.ResourceTagsCriteriaCondition = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -598,35 +584,35 @@ M.Criteria = {
     members = {
         region = {
             type = "list",
-            member_type = "structure",
+            member = M.StringCriteriaCondition,
         },
         resourceArn = {
             type = "list",
-            member_type = "structure",
+            member = M.StringCriteriaCondition,
         },
         ebsVolumeType = {
             type = "list",
-            member_type = "structure",
+            member = M.StringCriteriaCondition,
         },
         ebsVolumeSizeInGib = {
             type = "list",
-            member_type = "structure",
+            member = M.IntegerCriteriaCondition,
         },
         estimatedMonthlySavings = {
             type = "list",
-            member_type = "structure",
+            member = M.DoubleCriteriaCondition,
         },
         resourceTag = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTagsCriteriaCondition,
         },
         lookBackPeriodInDays = {
             type = "list",
-            member_type = "structure",
+            member = M.IntegerCriteriaCondition,
         },
         restartNeeded = {
             type = "list",
-            member_type = "structure",
+            member = M.StringCriteriaCondition,
         },
     },
 }
@@ -667,28 +653,21 @@ M.CreateAutomationRuleInput = {
                 required = true,
             },
         },
-        organizationConfiguration = {
-            type = "structure",
-        },
+        organizationConfiguration = M.OrganizationConfiguration,
         priority = {
             type = "string",
         },
         recommendedActionTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        criteria = {
-            type = "structure",
-        },
-        schedule = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        criteria = M.Criteria,
+        schedule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Schedule }),
         status = {
             type = "string",
             traits = {
@@ -697,7 +676,7 @@ M.CreateAutomationRuleInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         clientToken = {
             type = "string",
@@ -724,30 +703,24 @@ M.CreateAutomationRuleOutput = {
             type = "string",
         },
         ruleRevision = {
-            type = "number",
+            type = "long",
         },
-        organizationConfiguration = {
-            type = "structure",
-        },
+        organizationConfiguration = M.OrganizationConfiguration,
         priority = {
             type = "string",
         },
         recommendedActionTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        criteria = {
-            type = "structure",
-        },
-        schedule = {
-            type = "structure",
-        },
+        criteria = M.Criteria,
+        schedule = M.Schedule,
         status = {
             type = "string",
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         createdTimestamp = {
             type = "timestamp",
@@ -785,7 +758,7 @@ M.DeleteAutomationRuleInput = {
             },
         },
         ruleRevision = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -805,7 +778,7 @@ M.DisassociateAccountsInput = {
     members = {
         accountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -821,11 +794,11 @@ M.DisassociateAccountsOutput = {
     members = {
         accountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         errors = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -887,9 +860,7 @@ M.GetAutomationEventOutput = {
         completedTimestamp = {
             type = "timestamp",
         },
-        estimatedMonthlySavings = {
-            type = "structure",
-        },
+        estimatedMonthlySavings = M.EstimatedMonthlySavings,
     },
 }
 
@@ -924,33 +895,27 @@ M.GetAutomationRuleOutput = {
             type = "string",
         },
         ruleRevision = {
-            type = "number",
+            type = "long",
         },
         accountId = {
             type = "string",
         },
-        organizationConfiguration = {
-            type = "structure",
-        },
+        organizationConfiguration = M.OrganizationConfiguration,
         priority = {
             type = "string",
         },
         recommendedActionTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        criteria = {
-            type = "structure",
-        },
-        schedule = {
-            type = "structure",
-        },
+        criteria = M.Criteria,
+        schedule = M.Schedule,
         status = {
             type = "string",
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         createdTimestamp = {
             type = "timestamp",
@@ -990,7 +955,7 @@ M.ListAccountsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -1003,7 +968,7 @@ M.ListAccountsOutput = {
     members = {
         accounts = {
             type = "list",
-            member_type = "structure",
+            member = M.AccountInfo,
             traits = {
                 required = true,
             },
@@ -1019,7 +984,7 @@ M.ListAutomationEventsInput = {
     members = {
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomationEventFilter,
         },
         startTimeInclusive = {
             type = "timestamp",
@@ -1028,7 +993,7 @@ M.ListAutomationEventsInput = {
             type = "timestamp",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -1041,7 +1006,7 @@ M.ListAutomationEventsOutput = {
     members = {
         automationEvents = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomationEvent,
         },
         nextToken = {
             type = "string",
@@ -1059,7 +1024,7 @@ M.ListAutomationEventStepsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -1072,7 +1037,7 @@ M.ListAutomationEventStepsOutput = {
     members = {
         automationEventSteps = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomationEventStep,
         },
         nextToken = {
             type = "string",
@@ -1085,7 +1050,7 @@ M.ListAutomationEventSummariesInput = {
     members = {
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomationEventFilter,
         },
         startDateInclusive = {
             type = "string",
@@ -1094,7 +1059,7 @@ M.ListAutomationEventSummariesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -1107,7 +1072,7 @@ M.ListAutomationEventSummariesOutput = {
     members = {
         automationEventSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomationEventSummary,
         },
         nextToken = {
             type = "string",
@@ -1120,7 +1085,7 @@ M.OrganizationScope = {
     members = {
         accountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1134,21 +1099,17 @@ M.ListAutomationRulePreviewInput = {
                 required = true,
             },
         },
-        organizationScope = {
-            type = "structure",
-        },
+        organizationScope = M.OrganizationScope,
         recommendedActionTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        criteria = {
-            type = "structure",
-        },
+        criteria = M.Criteria,
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -1163,13 +1124,13 @@ M.EbsVolumeConfiguration = {
             type = "string",
         },
         sizeInGib = {
-            type = "number",
+            type = "integer",
         },
         iops = {
-            type = "number",
+            type = "integer",
         },
         throughput = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1177,18 +1138,14 @@ M.EbsVolumeConfiguration = {
 M.EbsVolume = {
     type = "structure",
     members = {
-        configuration = {
-            type = "structure",
-        },
+        configuration = M.EbsVolumeConfiguration,
     },
 }
 
 M.ResourceDetails = {
     type = "union",
     members = {
-        ebsVolume = {
-            type = "structure",
-        },
+        ebsVolume = M.EbsVolume,
     },
 }
 
@@ -1214,7 +1171,7 @@ M.PreviewResult = {
             type = "string",
         },
         lookBackPeriodInDays = {
-            type = "number",
+            type = "integer",
         },
         recommendedActionType = {
             type = "string",
@@ -1222,24 +1179,18 @@ M.PreviewResult = {
         currentResourceSummary = {
             type = "string",
         },
-        currentResourceDetails = {
-            type = "union",
-        },
+        currentResourceDetails = M.ResourceDetails,
         recommendedResourceSummary = {
             type = "string",
         },
-        recommendedResourceDetails = {
-            type = "union",
-        },
+        recommendedResourceDetails = M.ResourceDetails,
         restartNeeded = {
             type = "boolean",
         },
-        estimatedMonthlySavings = {
-            type = "structure",
-        },
+        estimatedMonthlySavings = M.EstimatedMonthlySavings,
         resourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1249,7 +1200,7 @@ M.ListAutomationRulePreviewOutput = {
     members = {
         previewResults = {
             type = "list",
-            member_type = "structure",
+            member = M.PreviewResult,
         },
         nextToken = {
             type = "string",
@@ -1266,21 +1217,17 @@ M.ListAutomationRulePreviewSummariesInput = {
                 required = true,
             },
         },
-        organizationScope = {
-            type = "structure",
-        },
+        organizationScope = M.OrganizationScope,
         recommendedActionTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        criteria = {
-            type = "structure",
-        },
+        criteria = M.Criteria,
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -1292,17 +1239,14 @@ M.RulePreviewTotal = {
     type = "structure",
     members = {
         recommendedActionCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
-        estimatedMonthlySavings = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        estimatedMonthlySavings = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EstimatedMonthlySavings }),
     },
 }
 
@@ -1315,12 +1259,9 @@ M.PreviewResultSummary = {
                 required = true,
             },
         },
-        total = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        total = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RulePreviewTotal }),
     },
 }
 
@@ -1329,7 +1270,7 @@ M.ListAutomationRulePreviewSummariesOutput = {
     members = {
         previewResultSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.PreviewResultSummary,
         },
         nextToken = {
             type = "string",
@@ -1348,7 +1289,7 @@ M.Filter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1361,10 +1302,10 @@ M.ListAutomationRulesInput = {
     members = {
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -1377,7 +1318,7 @@ M.ListAutomationRulesOutput = {
     members = {
         automationRules = {
             type = "list",
-            member_type = "structure",
+            member = M.AutomationRule,
         },
         nextToken = {
             type = "string",
@@ -1408,7 +1349,7 @@ M.RecommendedActionFilter = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1421,10 +1362,10 @@ M.ListRecommendedActionsInput = {
     members = {
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.RecommendedActionFilter,
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -1454,7 +1395,7 @@ M.RecommendedAction = {
             type = "string",
         },
         lookBackPeriodInDays = {
-            type = "number",
+            type = "integer",
         },
         recommendedActionType = {
             type = "string",
@@ -1462,24 +1403,18 @@ M.RecommendedAction = {
         currentResourceSummary = {
             type = "string",
         },
-        currentResourceDetails = {
-            type = "union",
-        },
+        currentResourceDetails = M.ResourceDetails,
         recommendedResourceSummary = {
             type = "string",
         },
-        recommendedResourceDetails = {
-            type = "union",
-        },
+        recommendedResourceDetails = M.ResourceDetails,
         restartNeeded = {
             type = "boolean",
         },
-        estimatedMonthlySavings = {
-            type = "structure",
-        },
+        estimatedMonthlySavings = M.EstimatedMonthlySavings,
         resourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1489,7 +1424,7 @@ M.ListRecommendedActionsOutput = {
     members = {
         recommendedActions = {
             type = "list",
-            member_type = "structure",
+            member = M.RecommendedAction,
         },
         nextToken = {
             type = "string",
@@ -1502,10 +1437,10 @@ M.ListRecommendedActionSummariesInput = {
     members = {
         filters = {
             type = "list",
-            member_type = "structure",
+            member = M.RecommendedActionFilter,
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -1517,17 +1452,14 @@ M.RecommendedActionTotal = {
     type = "structure",
     members = {
         recommendedActionCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
-        estimatedMonthlySavings = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        estimatedMonthlySavings = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EstimatedMonthlySavings }),
     },
 }
 
@@ -1540,12 +1472,9 @@ M.RecommendedActionSummary = {
                 required = true,
             },
         },
-        total = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        total = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RecommendedActionTotal }),
     },
 }
 
@@ -1554,7 +1483,7 @@ M.ListRecommendedActionSummariesOutput = {
     members = {
         recommendedActionSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.RecommendedActionSummary,
         },
         nextToken = {
             type = "string",
@@ -1579,7 +1508,7 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1651,14 +1580,14 @@ M.TagResourceInput = {
             },
         },
         ruleRevision = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -1683,14 +1612,14 @@ M.UntagResourceInput = {
             },
         },
         ruleRevision = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1715,7 +1644,7 @@ M.UpdateAutomationRuleInput = {
             },
         },
         ruleRevision = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -1729,22 +1658,16 @@ M.UpdateAutomationRuleInput = {
         ruleType = {
             type = "string",
         },
-        organizationConfiguration = {
-            type = "structure",
-        },
+        organizationConfiguration = M.OrganizationConfiguration,
         priority = {
             type = "string",
         },
         recommendedActionTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        criteria = {
-            type = "structure",
-        },
-        schedule = {
-            type = "structure",
-        },
+        criteria = M.Criteria,
+        schedule = M.Schedule,
         status = {
             type = "string",
         },
@@ -1761,7 +1684,7 @@ M.UpdateAutomationRuleOutput = {
             type = "string",
         },
         ruleRevision = {
-            type = "number",
+            type = "long",
         },
         name = {
             type = "string",
@@ -1772,22 +1695,16 @@ M.UpdateAutomationRuleOutput = {
         ruleType = {
             type = "string",
         },
-        organizationConfiguration = {
-            type = "structure",
-        },
+        organizationConfiguration = M.OrganizationConfiguration,
         priority = {
             type = "string",
         },
         recommendedActionTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        criteria = {
-            type = "structure",
-        },
-        schedule = {
-            type = "structure",
-        },
+        criteria = M.Criteria,
+        schedule = M.Schedule,
         status = {
             type = "string",
         },

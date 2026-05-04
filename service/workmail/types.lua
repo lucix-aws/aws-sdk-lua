@@ -19,27 +19,27 @@ M.AccessControlRule = {
         },
         IpRanges = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NotIpRanges = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Actions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NotActions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         UserIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NotUserIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DateCreated = {
             type = "timestamp",
@@ -49,11 +49,11 @@ M.AccessControlRule = {
         },
         ImpersonationRoleIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NotImpersonationRoleIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -224,7 +224,7 @@ M.AssumeImpersonationRoleOutput = {
             type = "string",
         },
         ExpiresIn = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -277,12 +277,8 @@ M.AvailabilityConfiguration = {
         ProviderType = {
             type = "string",
         },
-        EwsProvider = {
-            type = "structure",
-        },
-        LambdaProvider = {
-            type = "structure",
-        },
+        EwsProvider = M.RedactedEwsAvailabilityProvider,
+        LambdaProvider = M.LambdaAvailabilityProvider,
         DateCreated = {
             type = "timestamp",
         },
@@ -297,12 +293,21 @@ M.BookingOptions = {
     members = {
         AutoAcceptRequests = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         AutoDeclineRecurringRequests = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         AutoDeclineConflictingRequests = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -445,12 +450,8 @@ M.CreateAvailabilityConfigurationInput = {
                 required = true,
             },
         },
-        EwsProvider = {
-            type = "structure",
-        },
-        LambdaProvider = {
-            type = "structure",
-        },
+        EwsProvider = M.EwsAvailabilityProvider,
+        LambdaProvider = M.LambdaAvailabilityProvider,
     },
 }
 
@@ -485,6 +486,9 @@ M.CreateGroupInput = {
         },
         HiddenFromGlobalAddressList = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -561,11 +565,11 @@ M.ImpersonationRule = {
         },
         TargetUsers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NotTargetUsers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -604,7 +608,7 @@ M.CreateImpersonationRoleInput = {
         },
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.ImpersonationRule,
             traits = {
                 required = true,
             },
@@ -655,35 +659,35 @@ M.CreateMobileDeviceAccessRuleInput = {
         },
         DeviceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NotDeviceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DeviceModels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NotDeviceModels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DeviceOperatingSystems = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NotDeviceOperatingSystems = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DeviceUserAgents = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NotDeviceUserAgents = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -729,13 +733,16 @@ M.CreateOrganizationInput = {
         },
         Domains = {
             type = "list",
-            member_type = "structure",
+            member = M.Domain,
         },
         KmsKeyArn = {
             type = "string",
         },
         EnableInteroperability = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -790,6 +797,9 @@ M.CreateResourceInput = {
         },
         HiddenFromGlobalAddressList = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -845,6 +855,9 @@ M.CreateUserInput = {
         },
         HiddenFromGlobalAddressList = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         IdentityProviderUserId = {
             type = "string",
@@ -1151,14 +1164,21 @@ M.DeleteOrganizationInput = {
         DeleteDirectory = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
         ForceDelete = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         DeleteIdentityCenterApplication = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1437,6 +1457,9 @@ M.DescribeGroupOutput = {
         },
         HiddenFromGlobalAddressList = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1491,7 +1514,7 @@ M.PersonalAccessTokenConfiguration = {
             },
         },
         LifetimeInDays = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1502,12 +1525,8 @@ M.DescribeIdentityProviderConfigurationOutput = {
         AuthenticationMode = {
             type = "string",
         },
-        IdentityCenterConfiguration = {
-            type = "structure",
-        },
-        PersonalAccessTokenConfiguration = {
-            type = "structure",
-        },
+        IdentityCenterConfiguration = M.IdentityCenterConfiguration,
+        PersonalAccessTokenConfiguration = M.PersonalAccessTokenConfiguration,
     },
 }
 
@@ -1528,6 +1547,9 @@ M.DescribeInboundDmarcSettingsOutput = {
     members = {
         Enforced = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1582,7 +1604,10 @@ M.DescribeMailboxExportJobOutput = {
             type = "string",
         },
         EstimatedProgress = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         State = {
             type = "string",
@@ -1646,6 +1671,9 @@ M.DescribeOrganizationOutput = {
         },
         InteroperabilityEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1683,9 +1711,7 @@ M.DescribeResourceOutput = {
         Type = {
             type = "string",
         },
-        BookingOptions = {
-            type = "structure",
-        },
+        BookingOptions = M.BookingOptions,
         State = {
             type = "string",
         },
@@ -1700,6 +1726,9 @@ M.DescribeResourceOutput = {
         },
         HiddenFromGlobalAddressList = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1763,6 +1792,9 @@ M.DescribeUserOutput = {
         },
         HiddenFromGlobalAddressList = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Initials = {
             type = "string",
@@ -1920,7 +1952,7 @@ M.FolderConfiguration = {
             },
         },
         Period = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1963,7 +1995,7 @@ M.GetAccessControlEffectOutput = {
         },
         MatchedRules = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1994,7 +2026,7 @@ M.GetDefaultRetentionPolicyOutput = {
         },
         FolderConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.FolderConfiguration,
         },
     },
 }
@@ -2034,7 +2066,7 @@ M.GetImpersonationRoleOutput = {
         },
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.ImpersonationRule,
         },
         DateCreated = {
             type = "timestamp",
@@ -2092,7 +2124,7 @@ M.GetImpersonationRoleEffectOutput = {
         },
         MatchedRules = {
             type = "list",
-            member_type = "structure",
+            member = M.ImpersonationMatchedRule,
         },
     },
 }
@@ -2119,10 +2151,13 @@ M.GetMailboxDetailsOutput = {
     type = "structure",
     members = {
         MailboxQuota = {
-            type = "number",
+            type = "integer",
         },
         MailboxSize = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2150,13 +2185,19 @@ M.GetMailDomainOutput = {
     members = {
         Records = {
             type = "list",
-            member_type = "structure",
+            member = M.DnsRecord,
         },
         IsTestDomain = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         IsDefault = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         OwnershipVerificationStatus = {
             type = "string",
@@ -2211,7 +2252,7 @@ M.GetMobileDeviceAccessEffectOutput = {
         },
         MatchedRules = {
             type = "list",
-            member_type = "structure",
+            member = M.MobileDeviceAccessMatchedRule,
         },
     },
 }
@@ -2305,7 +2346,7 @@ M.GetPersonalAccessTokenMetadataOutput = {
         },
         Scopes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2396,7 +2437,10 @@ M.MailboxExportJob = {
             type = "string",
         },
         EstimatedProgress = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         State = {
             type = "string",
@@ -2427,7 +2471,7 @@ M.ListAccessControlRulesOutput = {
     members = {
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessControlRule,
         },
     },
 }
@@ -2451,7 +2495,7 @@ M.ListAliasesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2461,7 +2505,7 @@ M.ListAliasesOutput = {
     members = {
         Aliases = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -2479,7 +2523,7 @@ M.ListAvailabilityConfigurationsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2492,7 +2536,7 @@ M.ListAvailabilityConfigurationsOutput = {
     members = {
         AvailabilityConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.AvailabilityConfiguration,
         },
         NextToken = {
             type = "string",
@@ -2519,7 +2563,7 @@ M.ListGroupMembersInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2553,7 +2597,7 @@ M.ListGroupMembersOutput = {
     members = {
         Members = {
             type = "list",
-            member_type = "structure",
+            member = M.Member,
         },
         NextToken = {
             type = "string",
@@ -2589,11 +2633,9 @@ M.ListGroupsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
-        Filters = {
-            type = "structure",
-        },
+        Filters = M.ListGroupsFilters,
     },
 }
 
@@ -2602,7 +2644,7 @@ M.ListGroupsOutput = {
     members = {
         Groups = {
             type = "list",
-            member_type = "structure",
+            member = M.Group,
         },
         NextToken = {
             type = "string",
@@ -2634,14 +2676,12 @@ M.ListGroupsForEntityInput = {
                 required = true,
             },
         },
-        Filters = {
-            type = "structure",
-        },
+        Filters = M.ListGroupsForEntityFilters,
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2651,7 +2691,7 @@ M.ListGroupsForEntityOutput = {
     members = {
         Groups = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupIdentifier,
         },
         NextToken = {
             type = "string",
@@ -2672,7 +2712,7 @@ M.ListImpersonationRolesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2682,7 +2722,7 @@ M.ListImpersonationRolesOutput = {
     members = {
         Roles = {
             type = "list",
-            member_type = "structure",
+            member = M.ImpersonationRole,
         },
         NextToken = {
             type = "string",
@@ -2703,7 +2743,7 @@ M.ListMailboxExportJobsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2713,7 +2753,7 @@ M.ListMailboxExportJobsOutput = {
     members = {
         Jobs = {
             type = "list",
-            member_type = "structure",
+            member = M.MailboxExportJob,
         },
         NextToken = {
             type = "string",
@@ -2740,7 +2780,7 @@ M.ListMailboxPermissionsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2768,7 +2808,7 @@ M.Permission = {
         },
         PermissionValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2781,7 +2821,7 @@ M.ListMailboxPermissionsOutput = {
     members = {
         Permissions = {
             type = "list",
-            member_type = "structure",
+            member = M.Permission,
         },
         NextToken = {
             type = "string",
@@ -2799,7 +2839,7 @@ M.ListMailDomainsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2815,6 +2855,9 @@ M.MailDomainSummary = {
         },
         DefaultDomain = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -2824,7 +2867,7 @@ M.ListMailDomainsOutput = {
     members = {
         MailDomains = {
             type = "list",
-            member_type = "structure",
+            member = M.MailDomainSummary,
         },
         NextToken = {
             type = "string",
@@ -2851,7 +2894,7 @@ M.ListMobileDeviceAccessOverridesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2885,7 +2928,7 @@ M.ListMobileDeviceAccessOverridesOutput = {
     members = {
         Overrides = {
             type = "list",
-            member_type = "structure",
+            member = M.MobileDeviceAccessOverride,
         },
         NextToken = {
             type = "string",
@@ -2922,35 +2965,35 @@ M.MobileDeviceAccessRule = {
         },
         DeviceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NotDeviceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DeviceModels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NotDeviceModels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DeviceOperatingSystems = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NotDeviceOperatingSystems = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DeviceUserAgents = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NotDeviceUserAgents = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DateCreated = {
             type = "timestamp",
@@ -2966,7 +3009,7 @@ M.ListMobileDeviceAccessRulesOutput = {
     members = {
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.MobileDeviceAccessRule,
         },
     },
 }
@@ -2978,7 +3021,7 @@ M.ListOrganizationsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3009,7 +3052,7 @@ M.ListOrganizationsOutput = {
     members = {
         OrganizationSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.OrganizationSummary,
         },
         NextToken = {
             type = "string",
@@ -3033,7 +3076,7 @@ M.ListPersonalAccessTokensInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3061,7 +3104,7 @@ M.PersonalAccessTokenSummary = {
         },
         Scopes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3074,7 +3117,7 @@ M.ListPersonalAccessTokensOutput = {
         },
         PersonalAccessTokenSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.PersonalAccessTokenSummary,
         },
     },
 }
@@ -3098,7 +3141,7 @@ M.ListResourceDelegatesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3108,7 +3151,7 @@ M.ListResourceDelegatesOutput = {
     members = {
         Delegates = {
             type = "list",
-            member_type = "structure",
+            member = M.Delegate,
         },
         NextToken = {
             type = "string",
@@ -3144,11 +3187,9 @@ M.ListResourcesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
-        Filters = {
-            type = "structure",
-        },
+        Filters = M.ListResourcesFilters,
     },
 }
 
@@ -3187,7 +3228,7 @@ M.ListResourcesOutput = {
     members = {
         Resources = {
             type = "list",
-            member_type = "structure",
+            member = M.Resource,
         },
         NextToken = {
             type = "string",
@@ -3230,7 +3271,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3269,11 +3310,9 @@ M.ListUsersInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
-        Filters = {
-            type = "structure",
-        },
+        Filters = M.ListUsersFilters,
     },
 }
 
@@ -3318,7 +3357,7 @@ M.ListUsersOutput = {
     members = {
         Users = {
             type = "list",
-            member_type = "structure",
+            member = M.User,
         },
         NextToken = {
             type = "string",
@@ -3349,27 +3388,27 @@ M.PutAccessControlRuleInput = {
         },
         IpRanges = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NotIpRanges = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Actions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NotActions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         UserIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NotUserIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         OrganizationId = {
             type = "string",
@@ -3379,11 +3418,11 @@ M.PutAccessControlRuleInput = {
         },
         ImpersonationRoleIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NotImpersonationRoleIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3432,18 +3471,12 @@ M.PutIdentityProviderConfigurationInput = {
                 required = true,
             },
         },
-        IdentityCenterConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        PersonalAccessTokenConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        IdentityCenterConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IdentityCenterConfiguration }),
+        PersonalAccessTokenConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PersonalAccessTokenConfiguration }),
     },
 }
 
@@ -3496,7 +3529,7 @@ M.PutMailboxPermissionsInput = {
         },
         PermissionValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3568,7 +3601,7 @@ M.PutRetentionPolicyInput = {
         },
         FolderConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.FolderConfiguration,
             traits = {
                 required = true,
             },
@@ -3732,7 +3765,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -3766,12 +3799,8 @@ M.TestAvailabilityConfigurationInput = {
         DomainName = {
             type = "string",
         },
-        EwsProvider = {
-            type = "structure",
-        },
-        LambdaProvider = {
-            type = "structure",
-        },
+        EwsProvider = M.EwsAvailabilityProvider,
+        LambdaProvider = M.LambdaAvailabilityProvider,
     },
 }
 
@@ -3780,6 +3809,9 @@ M.TestAvailabilityConfigurationOutput = {
     members = {
         TestPassed = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         FailureReason = {
             type = "string",
@@ -3798,7 +3830,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3825,12 +3857,8 @@ M.UpdateAvailabilityConfigurationInput = {
                 required = true,
             },
         },
-        EwsProvider = {
-            type = "structure",
-        },
-        LambdaProvider = {
-            type = "structure",
-        },
+        EwsProvider = M.EwsAvailabilityProvider,
+        LambdaProvider = M.LambdaAvailabilityProvider,
     },
 }
 
@@ -3917,7 +3945,7 @@ M.UpdateImpersonationRoleInput = {
         },
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.ImpersonationRule,
             traits = {
                 required = true,
             },
@@ -3945,7 +3973,7 @@ M.UpdateMailboxQuotaInput = {
             },
         },
         MailboxQuota = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -3989,35 +4017,35 @@ M.UpdateMobileDeviceAccessRuleInput = {
         },
         DeviceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NotDeviceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DeviceModels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NotDeviceModels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DeviceOperatingSystems = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NotDeviceOperatingSystems = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DeviceUserAgents = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NotDeviceUserAgents = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4072,9 +4100,7 @@ M.UpdateResourceInput = {
         Name = {
             type = "string",
         },
-        BookingOptions = {
-            type = "structure",
-        },
+        BookingOptions = M.BookingOptions,
         Description = {
             type = "string",
         },

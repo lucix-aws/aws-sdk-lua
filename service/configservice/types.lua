@@ -5,17 +5,20 @@ M.AccountAggregationSource = {
     members = {
         AccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         AllAwsRegions = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         AwsRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -24,10 +27,16 @@ M.ComplianceContributorCount = {
     type = "structure",
     members = {
         CappedCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         CapExceeded = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -45,9 +54,7 @@ M.Compliance = {
         ComplianceType = {
             type = "string",
         },
-        ComplianceContributorCount = {
-            type = "structure",
-        },
+        ComplianceContributorCount = M.ComplianceContributorCount,
     },
 }
 
@@ -57,9 +64,7 @@ M.AggregateComplianceByConfigRule = {
         ConfigRuleName = {
             type = "string",
         },
-        Compliance = {
-            type = "structure",
-        },
+        Compliance = M.Compliance,
         AccountId = {
             type = "string",
         },
@@ -82,13 +87,22 @@ M.AggregateConformancePackCompliance = {
             type = "string",
         },
         CompliantRuleCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         NonCompliantRuleCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         TotalRuleCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -99,9 +113,7 @@ M.AggregateComplianceByConformancePack = {
         ConformancePackName = {
             type = "string",
         },
-        Compliance = {
-            type = "structure",
-        },
+        Compliance = M.AggregateConformancePackCompliance,
         AccountId = {
             type = "string",
         },
@@ -114,12 +126,8 @@ M.AggregateComplianceByConformancePack = {
 M.ComplianceSummary = {
     type = "structure",
     members = {
-        CompliantResourceCount = {
-            type = "structure",
-        },
-        NonCompliantResourceCount = {
-            type = "structure",
-        },
+        CompliantResourceCount = M.ComplianceContributorCount,
+        NonCompliantResourceCount = M.ComplianceContributorCount,
         ComplianceSummaryTimestamp = {
             type = "timestamp",
         },
@@ -132,9 +140,7 @@ M.AggregateComplianceCount = {
         GroupName = {
             type = "string",
         },
-        ComplianceSummary = {
-            type = "structure",
-        },
+        ComplianceSummary = M.ComplianceSummary,
     },
 }
 
@@ -142,10 +148,16 @@ M.AggregateConformancePackComplianceCount = {
     type = "structure",
     members = {
         CompliantConformancePackCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         NonCompliantConformancePackCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -171,9 +183,7 @@ M.AggregateConformancePackComplianceFilters = {
 M.AggregateConformancePackComplianceSummary = {
     type = "structure",
     members = {
-        ComplianceSummary = {
-            type = "structure",
-        },
+        ComplianceSummary = M.AggregateConformancePackComplianceCount,
         GroupName = {
             type = "string",
         },
@@ -261,9 +271,7 @@ M.EvaluationResultQualifier = {
 M.EvaluationResultIdentifier = {
     type = "structure",
     members = {
-        EvaluationResultQualifier = {
-            type = "structure",
-        },
+        EvaluationResultQualifier = M.EvaluationResultQualifier,
         OrderingTimestamp = {
             type = "timestamp",
         },
@@ -276,9 +284,7 @@ M.EvaluationResultIdentifier = {
 M.AggregateEvaluationResult = {
     type = "structure",
     members = {
-        EvaluationResultIdentifier = {
-            type = "structure",
-        },
+        EvaluationResultIdentifier = M.EvaluationResultIdentifier,
         ComplianceType = {
             type = "string",
         },
@@ -899,7 +905,7 @@ M.AggregatorFilterResourceType = {
         },
         Value = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -912,7 +918,7 @@ M.AggregatorFilterServicePrincipal = {
         },
         Value = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -920,12 +926,8 @@ M.AggregatorFilterServicePrincipal = {
 M.AggregatorFilters = {
     type = "structure",
     members = {
-        ResourceType = {
-            type = "structure",
-        },
-        ServicePrincipal = {
-            type = "structure",
-        },
+        ResourceType = M.AggregatorFilterResourceType,
+        ServicePrincipal = M.AggregatorFilterServicePrincipal,
     },
 }
 
@@ -940,7 +942,7 @@ M.AssociateResourceTypesInput = {
         },
         ResourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -953,7 +955,7 @@ M.ExclusionByResourceTypes = {
     members = {
         resourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -978,20 +980,22 @@ M.RecordingGroup = {
     members = {
         allSupported = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         includeGlobalResourceTypes = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         resourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        exclusionByResourceTypes = {
-            type = "structure",
-        },
-        recordingStrategy = {
-            type = "structure",
-        },
+        exclusionByResourceTypes = M.ExclusionByResourceTypes,
+        recordingStrategy = M.RecordingStrategy,
     },
 }
 
@@ -1008,7 +1012,7 @@ M.RecordingModeOverride = {
         },
         resourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1033,7 +1037,7 @@ M.RecordingMode = {
         },
         recordingModeOverrides = {
             type = "list",
-            member_type = "structure",
+            member = M.RecordingModeOverride,
         },
     },
 }
@@ -1055,12 +1059,8 @@ M.ConfigurationRecorder = {
         roleARN = {
             type = "string",
         },
-        recordingGroup = {
-            type = "structure",
-        },
-        recordingMode = {
-            type = "structure",
-        },
+        recordingGroup = M.RecordingGroup,
+        recordingMode = M.RecordingMode,
         recordingScope = {
             type = "string",
         },
@@ -1073,12 +1073,9 @@ M.ConfigurationRecorder = {
 M.AssociateResourceTypesOutput = {
     type = "structure",
     members = {
-        ConfigurationRecorder = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ConfigurationRecorder = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConfigurationRecorder }),
     },
 }
 
@@ -1164,8 +1161,8 @@ M.BaseConfigurationItem = {
         },
         supplementaryConfiguration = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         recordingFrequency = {
             type = "string",
@@ -1187,7 +1184,7 @@ M.BatchGetAggregateResourceConfigInput = {
         },
         ResourceIdentifiers = {
             type = "list",
-            member_type = "structure",
+            member = M.AggregateResourceIdentifier,
             traits = {
                 required = true,
             },
@@ -1200,11 +1197,11 @@ M.BatchGetAggregateResourceConfigOutput = {
     members = {
         BaseConfigurationItems = {
             type = "list",
-            member_type = "structure",
+            member = M.BaseConfigurationItem,
         },
         UnprocessedResourceIdentifiers = {
             type = "list",
-            member_type = "structure",
+            member = M.AggregateResourceIdentifier,
         },
     },
 }
@@ -1242,7 +1239,7 @@ M.BatchGetResourceConfigInput = {
     members = {
         resourceKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceKey,
             traits = {
                 required = true,
             },
@@ -1255,11 +1252,11 @@ M.BatchGetResourceConfigOutput = {
     members = {
         baseConfigurationItems = {
             type = "list",
-            member_type = "structure",
+            member = M.BaseConfigurationItem,
         },
         unprocessedResourceKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceKey,
         },
     },
 }
@@ -1285,9 +1282,7 @@ M.ComplianceByConfigRule = {
         ConfigRuleName = {
             type = "string",
         },
-        Compliance = {
-            type = "structure",
-        },
+        Compliance = M.Compliance,
     },
 }
 
@@ -1300,9 +1295,7 @@ M.ComplianceByResource = {
         ResourceId = {
             type = "string",
         },
-        Compliance = {
-            type = "structure",
-        },
+        Compliance = M.Compliance,
     },
 }
 
@@ -1312,9 +1305,7 @@ M.ComplianceSummaryByResourceType = {
         ResourceType = {
             type = "string",
         },
-        ComplianceSummary = {
-            type = "structure",
-        },
+        ComplianceSummary = M.ComplianceSummary,
     },
 }
 
@@ -1377,7 +1368,7 @@ M.Scope = {
     members = {
         ComplianceResourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TagKey = {
             type = "string",
@@ -1408,6 +1399,9 @@ M.CustomPolicyDetails = {
         },
         EnableDebugLogDelivery = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1458,11 +1452,9 @@ M.Source = {
         },
         SourceDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.SourceDetail,
         },
-        CustomPolicyDetails = {
-            type = "structure",
-        },
+        CustomPolicyDetails = M.CustomPolicyDetails,
     },
 }
 
@@ -1481,15 +1473,10 @@ M.ConfigRule = {
         Description = {
             type = "string",
         },
-        Scope = {
-            type = "structure",
-        },
-        Source = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Scope = M.Scope,
+        Source = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Source }),
         InputParameters = {
             type = "string",
         },
@@ -1504,7 +1491,7 @@ M.ConfigRule = {
         },
         EvaluationModes = {
             type = "list",
-            member_type = "structure",
+            member = M.EvaluationModeConfiguration,
         },
     },
 }
@@ -1582,6 +1569,9 @@ M.ConfigRuleEvaluationStatus = {
         },
         FirstEvaluationStarted = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         LastDebugLogDeliveryStatus = {
             type = "string",
@@ -1633,10 +1623,13 @@ M.OrganizationAggregationSource = {
         },
         AwsRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AllAwsRegions = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1652,11 +1645,9 @@ M.ConfigurationAggregator = {
         },
         AccountAggregationSources = {
             type = "list",
-            member_type = "structure",
+            member = M.AccountAggregationSource,
         },
-        OrganizationAggregationSource = {
-            type = "structure",
-        },
+        OrganizationAggregationSource = M.OrganizationAggregationSource,
         CreationTime = {
             type = "timestamp",
         },
@@ -1666,9 +1657,7 @@ M.ConfigurationAggregator = {
         CreatedBy = {
             type = "string",
         },
-        AggregatorFilters = {
-            type = "structure",
-        },
+        AggregatorFilters = M.AggregatorFilters,
     },
 }
 
@@ -1734,24 +1723,24 @@ M.ConfigurationItem = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         relatedEvents = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         relationships = {
             type = "list",
-            member_type = "structure",
+            member = M.Relationship,
         },
         configuration = {
             type = "string",
         },
         supplementaryConfiguration = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         recordingFrequency = {
             type = "string",
@@ -1774,7 +1763,7 @@ M.ConfigurationRecorderFilter = {
         },
         filterValue = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1803,6 +1792,9 @@ M.ConfigurationRecorderStatus = {
         },
         recording = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         lastStatus = {
             type = "string",
@@ -1854,7 +1846,7 @@ M.ConformancePackComplianceFilters = {
     members = {
         ConfigRuleNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ComplianceType = {
             type = "string",
@@ -1882,7 +1874,7 @@ M.ConformancePackComplianceScoresFilters = {
     members = {
         ConformancePackNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1970,7 +1962,7 @@ M.ConformancePackDetail = {
         },
         ConformancePackInputParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.ConformancePackInputParameter,
         },
         LastUpdateRequestedTime = {
             type = "timestamp",
@@ -1978,9 +1970,7 @@ M.ConformancePackDetail = {
         CreatedBy = {
             type = "string",
         },
-        TemplateSSMDocumentDetails = {
-            type = "structure",
-        },
+        TemplateSSMDocumentDetails = M.TemplateSSMDocumentDetails,
     },
 }
 
@@ -1989,7 +1979,7 @@ M.ConformancePackEvaluationFilters = {
     members = {
         ConfigRuleNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ComplianceType = {
             type = "string",
@@ -1999,7 +1989,7 @@ M.ConformancePackEvaluationFilters = {
         },
         ResourceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2013,12 +2003,9 @@ M.ConformancePackEvaluationResult = {
                 required = true,
             },
         },
-        EvaluationResultIdentifier = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        EvaluationResultIdentifier = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EvaluationResultIdentifier }),
         ConfigRuleInvokedTime = {
             type = "timestamp",
             traits = {
@@ -2048,7 +2035,7 @@ M.ConformancePackRuleCompliance = {
         },
         Controls = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2463,7 +2450,7 @@ M.DeleteRemediationExceptionsInput = {
         },
         ResourceKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.RemediationExceptionResourceKey,
             traits = {
                 required = true,
             },
@@ -2479,7 +2466,7 @@ M.FailedDeleteRemediationExceptionsBatch = {
         },
         FailedItems = {
             type = "list",
-            member_type = "structure",
+            member = M.RemediationExceptionResourceKey,
         },
     },
 }
@@ -2489,7 +2476,7 @@ M.DeleteRemediationExceptionsOutput = {
     members = {
         FailedBatches = {
             type = "list",
-            member_type = "structure",
+            member = M.FailedDeleteRemediationExceptionsBatch,
         },
     },
 }
@@ -2657,9 +2644,7 @@ M.DeliveryChannel = {
         snsTopicARN = {
             type = "string",
         },
-        configSnapshotDeliveryProperties = {
-            type = "structure",
-        },
+        configSnapshotDeliveryProperties = M.ConfigSnapshotDeliveryProperties,
     },
 }
 
@@ -2669,15 +2654,9 @@ M.DeliveryChannelStatus = {
         name = {
             type = "string",
         },
-        configSnapshotDeliveryInfo = {
-            type = "structure",
-        },
-        configHistoryDeliveryInfo = {
-            type = "structure",
-        },
-        configStreamDeliveryInfo = {
-            type = "structure",
-        },
+        configSnapshotDeliveryInfo = M.ConfigExportDeliveryInfo,
+        configHistoryDeliveryInfo = M.ConfigExportDeliveryInfo,
+        configStreamDeliveryInfo = M.ConfigStreamDeliveryInfo,
     },
 }
 
@@ -2690,11 +2669,12 @@ M.DescribeAggregateComplianceByConfigRulesInput = {
                 required = true,
             },
         },
-        Filters = {
-            type = "structure",
-        },
+        Filters = M.ConfigRuleComplianceFilters,
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         NextToken = {
             type = "string",
@@ -2707,7 +2687,7 @@ M.DescribeAggregateComplianceByConfigRulesOutput = {
     members = {
         AggregateComplianceByConfigRules = {
             type = "list",
-            member_type = "structure",
+            member = M.AggregateComplianceByConfigRule,
         },
         NextToken = {
             type = "string",
@@ -2744,11 +2724,12 @@ M.DescribeAggregateComplianceByConformancePacksInput = {
                 required = true,
             },
         },
-        Filters = {
-            type = "structure",
-        },
+        Filters = M.AggregateConformancePackComplianceFilters,
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         NextToken = {
             type = "string",
@@ -2761,7 +2742,7 @@ M.DescribeAggregateComplianceByConformancePacksOutput = {
     members = {
         AggregateComplianceByConformancePacks = {
             type = "list",
-            member_type = "structure",
+            member = M.AggregateComplianceByConformancePack,
         },
         NextToken = {
             type = "string",
@@ -2773,7 +2754,10 @@ M.DescribeAggregationAuthorizationsInput = {
     type = "structure",
     members = {
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         NextToken = {
             type = "string",
@@ -2786,7 +2770,7 @@ M.DescribeAggregationAuthorizationsOutput = {
     members = {
         AggregationAuthorizations = {
             type = "list",
-            member_type = "structure",
+            member = M.AggregationAuthorization,
         },
         NextToken = {
             type = "string",
@@ -2799,11 +2783,11 @@ M.DescribeComplianceByConfigRuleInput = {
     members = {
         ConfigRuleNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ComplianceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -2816,7 +2800,7 @@ M.DescribeComplianceByConfigRuleOutput = {
     members = {
         ComplianceByConfigRules = {
             type = "list",
-            member_type = "structure",
+            member = M.ComplianceByConfigRule,
         },
         NextToken = {
             type = "string",
@@ -2835,10 +2819,13 @@ M.DescribeComplianceByResourceInput = {
         },
         ComplianceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         NextToken = {
             type = "string",
@@ -2851,7 +2838,7 @@ M.DescribeComplianceByResourceOutput = {
     members = {
         ComplianceByResources = {
             type = "list",
-            member_type = "structure",
+            member = M.ComplianceByResource,
         },
         NextToken = {
             type = "string",
@@ -2864,13 +2851,16 @@ M.DescribeConfigRuleEvaluationStatusInput = {
     members = {
         ConfigRuleNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2880,7 +2870,7 @@ M.DescribeConfigRuleEvaluationStatusOutput = {
     members = {
         ConfigRulesEvaluationStatus = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigRuleEvaluationStatus,
         },
         NextToken = {
             type = "string",
@@ -2902,14 +2892,12 @@ M.DescribeConfigRulesInput = {
     members = {
         ConfigRuleNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
         },
-        Filters = {
-            type = "structure",
-        },
+        Filters = M.DescribeConfigRulesFilters,
     },
 }
 
@@ -2918,7 +2906,7 @@ M.DescribeConfigRulesOutput = {
     members = {
         ConfigRules = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigRule,
         },
         NextToken = {
             type = "string",
@@ -2931,13 +2919,16 @@ M.DescribeConfigurationAggregatorsInput = {
     members = {
         ConfigurationAggregatorNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2947,7 +2938,7 @@ M.DescribeConfigurationAggregatorsOutput = {
     members = {
         ConfigurationAggregators = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigurationAggregator,
         },
         NextToken = {
             type = "string",
@@ -2966,13 +2957,16 @@ M.DescribeConfigurationAggregatorSourcesStatusInput = {
         },
         UpdateStatus = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2982,7 +2976,7 @@ M.DescribeConfigurationAggregatorSourcesStatusOutput = {
     members = {
         AggregatedSourceStatusList = {
             type = "list",
-            member_type = "structure",
+            member = M.AggregatedSourceStatus,
         },
         NextToken = {
             type = "string",
@@ -2995,7 +2989,7 @@ M.DescribeConfigurationRecordersInput = {
     members = {
         ConfigurationRecorderNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ServicePrincipal = {
             type = "string",
@@ -3011,7 +3005,7 @@ M.DescribeConfigurationRecordersOutput = {
     members = {
         ConfigurationRecorders = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigurationRecorder,
         },
     },
 }
@@ -3021,7 +3015,7 @@ M.DescribeConfigurationRecorderStatusInput = {
     members = {
         ConfigurationRecorderNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ServicePrincipal = {
             type = "string",
@@ -3037,7 +3031,7 @@ M.DescribeConfigurationRecorderStatusOutput = {
     members = {
         ConfigurationRecordersStatus = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigurationRecorderStatus,
         },
     },
 }
@@ -3051,11 +3045,12 @@ M.DescribeConformancePackComplianceInput = {
                 required = true,
             },
         },
-        Filters = {
-            type = "structure",
-        },
+        Filters = M.ConformancePackComplianceFilters,
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         NextToken = {
             type = "string",
@@ -3074,7 +3069,7 @@ M.DescribeConformancePackComplianceOutput = {
         },
         ConformancePackRuleComplianceList = {
             type = "list",
-            member_type = "structure",
+            member = M.ConformancePackRuleCompliance,
             traits = {
                 required = true,
             },
@@ -3100,10 +3095,13 @@ M.DescribeConformancePacksInput = {
     members = {
         ConformancePackNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         NextToken = {
             type = "string",
@@ -3116,7 +3114,7 @@ M.DescribeConformancePacksOutput = {
     members = {
         ConformancePackDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.ConformancePackDetail,
         },
         NextToken = {
             type = "string",
@@ -3129,10 +3127,13 @@ M.DescribeConformancePackStatusInput = {
     members = {
         ConformancePackNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         NextToken = {
             type = "string",
@@ -3145,7 +3146,7 @@ M.DescribeConformancePackStatusOutput = {
     members = {
         ConformancePackStatusDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.ConformancePackStatusDetail,
         },
         NextToken = {
             type = "string",
@@ -3158,7 +3159,7 @@ M.DescribeDeliveryChannelsInput = {
     members = {
         DeliveryChannelNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3168,7 +3169,7 @@ M.DescribeDeliveryChannelsOutput = {
     members = {
         DeliveryChannels = {
             type = "list",
-            member_type = "structure",
+            member = M.DeliveryChannel,
         },
     },
 }
@@ -3178,7 +3179,7 @@ M.DescribeDeliveryChannelStatusInput = {
     members = {
         DeliveryChannelNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3188,7 +3189,7 @@ M.DescribeDeliveryChannelStatusOutput = {
     members = {
         DeliveryChannelsStatus = {
             type = "list",
-            member_type = "structure",
+            member = M.DeliveryChannelStatus,
         },
     },
 }
@@ -3198,10 +3199,13 @@ M.DescribeOrganizationConfigRulesInput = {
     members = {
         OrganizationConfigRuleNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         NextToken = {
             type = "string",
@@ -3222,7 +3226,7 @@ M.OrganizationCustomPolicyRuleMetadataNoPolicy = {
         },
         OrganizationConfigRuleTriggerTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         InputParameters = {
             type = "string",
@@ -3232,7 +3236,7 @@ M.OrganizationCustomPolicyRuleMetadataNoPolicy = {
         },
         ResourceTypesScope = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ResourceIdScope = {
             type = "string",
@@ -3248,7 +3252,7 @@ M.OrganizationCustomPolicyRuleMetadataNoPolicy = {
         },
         DebugLogDeliveryAccounts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3273,7 +3277,7 @@ M.OrganizationCustomRuleMetadata = {
         },
         OrganizationConfigRuleTriggerTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3286,7 +3290,7 @@ M.OrganizationCustomRuleMetadata = {
         },
         ResourceTypesScope = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ResourceIdScope = {
             type = "string",
@@ -3320,7 +3324,7 @@ M.OrganizationManagedRuleMetadata = {
         },
         ResourceTypesScope = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ResourceIdScope = {
             type = "string",
@@ -3349,22 +3353,16 @@ M.OrganizationConfigRule = {
                 required = true,
             },
         },
-        OrganizationManagedRuleMetadata = {
-            type = "structure",
-        },
-        OrganizationCustomRuleMetadata = {
-            type = "structure",
-        },
+        OrganizationManagedRuleMetadata = M.OrganizationManagedRuleMetadata,
+        OrganizationCustomRuleMetadata = M.OrganizationCustomRuleMetadata,
         ExcludedAccounts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         LastUpdateTime = {
             type = "timestamp",
         },
-        OrganizationCustomPolicyRuleMetadata = {
-            type = "structure",
-        },
+        OrganizationCustomPolicyRuleMetadata = M.OrganizationCustomPolicyRuleMetadataNoPolicy,
     },
 }
 
@@ -3373,7 +3371,7 @@ M.DescribeOrganizationConfigRulesOutput = {
     members = {
         OrganizationConfigRules = {
             type = "list",
-            member_type = "structure",
+            member = M.OrganizationConfigRule,
         },
         NextToken = {
             type = "string",
@@ -3386,10 +3384,13 @@ M.DescribeOrganizationConfigRuleStatusesInput = {
     members = {
         OrganizationConfigRuleNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         NextToken = {
             type = "string",
@@ -3441,7 +3442,7 @@ M.DescribeOrganizationConfigRuleStatusesOutput = {
     members = {
         OrganizationConfigRuleStatuses = {
             type = "list",
-            member_type = "structure",
+            member = M.OrganizationConfigRuleStatus,
         },
         NextToken = {
             type = "string",
@@ -3454,10 +3455,13 @@ M.DescribeOrganizationConformancePacksInput = {
     members = {
         OrganizationConformancePackNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         NextToken = {
             type = "string",
@@ -3488,11 +3492,11 @@ M.OrganizationConformancePack = {
         },
         ConformancePackInputParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.ConformancePackInputParameter,
         },
         ExcludedAccounts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         LastUpdateTime = {
             type = "timestamp",
@@ -3508,7 +3512,7 @@ M.DescribeOrganizationConformancePacksOutput = {
     members = {
         OrganizationConformancePacks = {
             type = "list",
-            member_type = "structure",
+            member = M.OrganizationConformancePack,
         },
         NextToken = {
             type = "string",
@@ -3521,10 +3525,13 @@ M.DescribeOrganizationConformancePackStatusesInput = {
     members = {
         OrganizationConformancePackNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         NextToken = {
             type = "string",
@@ -3576,7 +3583,7 @@ M.DescribeOrganizationConformancePackStatusesOutput = {
     members = {
         OrganizationConformancePackStatuses = {
             type = "list",
-            member_type = "structure",
+            member = M.OrganizationConformancePackStatus,
         },
         NextToken = {
             type = "string",
@@ -3588,7 +3595,10 @@ M.DescribePendingAggregationRequestsInput = {
     type = "structure",
     members = {
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         NextToken = {
             type = "string",
@@ -3613,7 +3623,7 @@ M.DescribePendingAggregationRequestsOutput = {
     members = {
         PendingAggregationRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.PendingAggregationRequest,
         },
         NextToken = {
             type = "string",
@@ -3626,7 +3636,7 @@ M.DescribeRemediationConfigurationsInput = {
     members = {
         ConfigRuleNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3638,10 +3648,10 @@ M.SsmControls = {
     type = "structure",
     members = {
         ConcurrentExecutionRatePercentage = {
-            type = "number",
+            type = "integer",
         },
         ErrorPercentage = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3649,9 +3659,7 @@ M.SsmControls = {
 M.ExecutionControls = {
     type = "structure",
     members = {
-        SsmControls = {
-            type = "structure",
-        },
+        SsmControls = M.SsmControls,
     },
 }
 
@@ -3676,7 +3684,7 @@ M.StaticValue = {
     members = {
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3687,12 +3695,8 @@ M.StaticValue = {
 M.RemediationParameterValue = {
     type = "structure",
     members = {
-        ResourceValue = {
-            type = "structure",
-        },
-        StaticValue = {
-            type = "structure",
-        },
+        ResourceValue = M.ResourceValue,
+        StaticValue = M.StaticValue,
     },
 }
 
@@ -3726,23 +3730,24 @@ M.RemediationConfiguration = {
         },
         Parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.RemediationParameterValue,
         },
         ResourceType = {
             type = "string",
         },
         Automatic = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        ExecutionControls = {
-            type = "structure",
-        },
+        ExecutionControls = M.ExecutionControls,
         MaximumAutomaticAttempts = {
-            type = "number",
+            type = "integer",
         },
         RetryAttemptSeconds = {
-            type = "number",
+            type = "long",
         },
         Arn = {
             type = "string",
@@ -3758,7 +3763,7 @@ M.DescribeRemediationConfigurationsOutput = {
     members = {
         RemediationConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.RemediationConfiguration,
         },
     },
 }
@@ -3774,10 +3779,13 @@ M.DescribeRemediationExceptionsInput = {
         },
         ResourceKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.RemediationExceptionResourceKey,
         },
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         NextToken = {
             type = "string",
@@ -3820,7 +3828,7 @@ M.DescribeRemediationExceptionsOutput = {
     members = {
         RemediationExceptions = {
             type = "list",
-            member_type = "structure",
+            member = M.RemediationException,
         },
         NextToken = {
             type = "string",
@@ -3839,10 +3847,13 @@ M.DescribeRemediationExecutionStatusInput = {
         },
         ResourceKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceKey,
         },
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         NextToken = {
             type = "string",
@@ -3891,15 +3902,13 @@ M.RemediationExecutionStep = {
 M.RemediationExecutionStatus = {
     type = "structure",
     members = {
-        ResourceKey = {
-            type = "structure",
-        },
+        ResourceKey = M.ResourceKey,
         State = {
             type = "string",
         },
         StepDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.RemediationExecutionStep,
         },
         InvocationTime = {
             type = "timestamp",
@@ -3915,7 +3924,7 @@ M.DescribeRemediationExecutionStatusOutput = {
     members = {
         RemediationExecutionStatuses = {
             type = "list",
-            member_type = "structure",
+            member = M.RemediationExecutionStatus,
         },
         NextToken = {
             type = "string",
@@ -3928,7 +3937,7 @@ M.DescribeRetentionConfigurationsInput = {
     members = {
         RetentionConfigurationNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -3946,7 +3955,7 @@ M.RetentionConfiguration = {
             },
         },
         RetentionPeriodInDays = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -3959,7 +3968,7 @@ M.DescribeRetentionConfigurationsOutput = {
     members = {
         RetentionConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.RetentionConfiguration,
         },
         NextToken = {
             type = "string",
@@ -3978,7 +3987,7 @@ M.DisassociateResourceTypesInput = {
         },
         ResourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3989,12 +3998,9 @@ M.DisassociateResourceTypesInput = {
 M.DisassociateResourceTypesOutput = {
     type = "structure",
     members = {
-        ConfigurationRecorder = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ConfigurationRecorder = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConfigurationRecorder }),
     },
 }
 
@@ -4043,9 +4049,7 @@ M.EvaluationContext = {
 M.EvaluationResult = {
     type = "structure",
     members = {
-        EvaluationResultIdentifier = {
-            type = "structure",
-        },
+        EvaluationResultIdentifier = M.EvaluationResultIdentifier,
         ComplianceType = {
             type = "string",
         },
@@ -4126,7 +4130,7 @@ M.FailedRemediationBatch = {
         },
         FailedItems = {
             type = "list",
-            member_type = "structure",
+            member = M.RemediationConfiguration,
         },
     },
 }
@@ -4139,7 +4143,7 @@ M.FailedRemediationExceptionBatch = {
         },
         FailedItems = {
             type = "list",
-            member_type = "structure",
+            member = M.RemediationException,
         },
     },
 }
@@ -4184,7 +4188,10 @@ M.GetAggregateComplianceDetailsByConfigRuleInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         NextToken = {
             type = "string",
@@ -4197,7 +4204,7 @@ M.GetAggregateComplianceDetailsByConfigRuleOutput = {
     members = {
         AggregateEvaluationResults = {
             type = "list",
-            member_type = "structure",
+            member = M.AggregateEvaluationResult,
         },
         NextToken = {
             type = "string",
@@ -4214,14 +4221,15 @@ M.GetAggregateConfigRuleComplianceSummaryInput = {
                 required = true,
             },
         },
-        Filters = {
-            type = "structure",
-        },
+        Filters = M.ConfigRuleComplianceSummaryFilters,
         GroupByKey = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         NextToken = {
             type = "string",
@@ -4237,7 +4245,7 @@ M.GetAggregateConfigRuleComplianceSummaryOutput = {
         },
         AggregateComplianceCounts = {
             type = "list",
-            member_type = "structure",
+            member = M.AggregateComplianceCount,
         },
         NextToken = {
             type = "string",
@@ -4254,14 +4262,15 @@ M.GetAggregateConformancePackComplianceSummaryInput = {
                 required = true,
             },
         },
-        Filters = {
-            type = "structure",
-        },
+        Filters = M.AggregateConformancePackComplianceSummaryFilters,
         GroupByKey = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         NextToken = {
             type = "string",
@@ -4274,7 +4283,7 @@ M.GetAggregateConformancePackComplianceSummaryOutput = {
     members = {
         AggregateConformancePackComplianceSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.AggregateConformancePackComplianceSummary,
         },
         GroupByKey = {
             type = "string",
@@ -4315,14 +4324,15 @@ M.GetAggregateDiscoveredResourceCountsInput = {
                 required = true,
             },
         },
-        Filters = {
-            type = "structure",
-        },
+        Filters = M.ResourceCountFilters,
         GroupByKey = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         NextToken = {
             type = "string",
@@ -4340,8 +4350,9 @@ M.GroupedResourceCount = {
             },
         },
         ResourceCount = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -4352,8 +4363,9 @@ M.GetAggregateDiscoveredResourceCountsOutput = {
     type = "structure",
     members = {
         TotalDiscoveredResources = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -4362,7 +4374,7 @@ M.GetAggregateDiscoveredResourceCountsOutput = {
         },
         GroupedResourceCounts = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupedResourceCount,
         },
         NextToken = {
             type = "string",
@@ -4379,21 +4391,16 @@ M.GetAggregateResourceConfigInput = {
                 required = true,
             },
         },
-        ResourceIdentifier = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ResourceIdentifier = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AggregateResourceIdentifier }),
     },
 }
 
 M.GetAggregateResourceConfigOutput = {
     type = "structure",
     members = {
-        ConfigurationItem = {
-            type = "structure",
-        },
+        ConfigurationItem = M.ConfigurationItem,
     },
 }
 
@@ -4428,10 +4435,13 @@ M.GetComplianceDetailsByConfigRuleInput = {
         },
         ComplianceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         NextToken = {
             type = "string",
@@ -4444,7 +4454,7 @@ M.GetComplianceDetailsByConfigRuleOutput = {
     members = {
         EvaluationResults = {
             type = "list",
-            member_type = "structure",
+            member = M.EvaluationResult,
         },
         NextToken = {
             type = "string",
@@ -4463,7 +4473,7 @@ M.GetComplianceDetailsByResourceInput = {
         },
         ComplianceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -4479,7 +4489,7 @@ M.GetComplianceDetailsByResourceOutput = {
     members = {
         EvaluationResults = {
             type = "list",
-            member_type = "structure",
+            member = M.EvaluationResult,
         },
         NextToken = {
             type = "string",
@@ -4494,9 +4504,7 @@ M.GetComplianceSummaryByConfigRuleInput = {
 M.GetComplianceSummaryByConfigRuleOutput = {
     type = "structure",
     members = {
-        ComplianceSummary = {
-            type = "structure",
-        },
+        ComplianceSummary = M.ComplianceSummary,
     },
 }
 
@@ -4505,7 +4513,7 @@ M.GetComplianceSummaryByResourceTypeInput = {
     members = {
         ResourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4515,7 +4523,7 @@ M.GetComplianceSummaryByResourceTypeOutput = {
     members = {
         ComplianceSummariesByResourceType = {
             type = "list",
-            member_type = "structure",
+            member = M.ComplianceSummaryByResourceType,
         },
     },
 }
@@ -4529,11 +4537,12 @@ M.GetConformancePackComplianceDetailsInput = {
                 required = true,
             },
         },
-        Filters = {
-            type = "structure",
-        },
+        Filters = M.ConformancePackEvaluationFilters,
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         NextToken = {
             type = "string",
@@ -4552,7 +4561,7 @@ M.GetConformancePackComplianceDetailsOutput = {
         },
         ConformancePackRuleEvaluationResults = {
             type = "list",
-            member_type = "structure",
+            member = M.ConformancePackEvaluationResult,
         },
         NextToken = {
             type = "string",
@@ -4565,13 +4574,16 @@ M.GetConformancePackComplianceSummaryInput = {
     members = {
         ConformancePackNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         NextToken = {
             type = "string",
@@ -4584,7 +4596,7 @@ M.GetConformancePackComplianceSummaryOutput = {
     members = {
         ConformancePackComplianceSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.ConformancePackComplianceSummary,
         },
         NextToken = {
             type = "string",
@@ -4615,10 +4627,13 @@ M.GetDiscoveredResourceCountsInput = {
     members = {
         resourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         nextToken = {
             type = "string",
@@ -4633,7 +4648,10 @@ M.ResourceCount = {
             type = "string",
         },
         count = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -4642,11 +4660,14 @@ M.GetDiscoveredResourceCountsOutput = {
     type = "structure",
     members = {
         totalDiscoveredResources = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         resourceCounts = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceCount,
         },
         nextToken = {
             type = "string",
@@ -4687,11 +4708,12 @@ M.GetOrganizationConfigRuleDetailedStatusInput = {
                 required = true,
             },
         },
-        Filters = {
-            type = "structure",
-        },
+        Filters = M.StatusDetailFilters,
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         NextToken = {
             type = "string",
@@ -4737,7 +4759,7 @@ M.GetOrganizationConfigRuleDetailedStatusOutput = {
     members = {
         OrganizationConfigRuleDetailedStatus = {
             type = "list",
-            member_type = "structure",
+            member = M.MemberAccountStatus,
         },
         NextToken = {
             type = "string",
@@ -4778,11 +4800,12 @@ M.GetOrganizationConformancePackDetailedStatusInput = {
                 required = true,
             },
         },
-        Filters = {
-            type = "structure",
-        },
+        Filters = M.OrganizationResourceDetailedStatusFilters,
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         NextToken = {
             type = "string",
@@ -4828,7 +4851,7 @@ M.GetOrganizationConformancePackDetailedStatusOutput = {
     members = {
         OrganizationConformancePackDetailedStatuses = {
             type = "list",
-            member_type = "structure",
+            member = M.OrganizationConformancePackDetailedStatus,
         },
         NextToken = {
             type = "string",
@@ -4882,7 +4905,10 @@ M.GetResourceConfigHistoryInput = {
             type = "string",
         },
         limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         nextToken = {
             type = "string",
@@ -4895,7 +4921,7 @@ M.GetResourceConfigHistoryOutput = {
     members = {
         configurationItems = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigurationItem,
         },
         nextToken = {
             type = "string",
@@ -4965,21 +4991,15 @@ M.GetResourceEvaluationSummaryOutput = {
         EvaluationMode = {
             type = "string",
         },
-        EvaluationStatus = {
-            type = "structure",
-        },
+        EvaluationStatus = M.EvaluationStatus,
         EvaluationStartTimestamp = {
             type = "timestamp",
         },
         Compliance = {
             type = "string",
         },
-        EvaluationContext = {
-            type = "structure",
-        },
-        ResourceDetails = {
-            type = "structure",
-        },
+        EvaluationContext = M.EvaluationContext,
+        ResourceDetails = M.ResourceDetails,
     },
 }
 
@@ -5022,9 +5042,7 @@ M.StoredQuery = {
 M.GetStoredQueryOutput = {
     type = "structure",
     members = {
-        StoredQuery = {
-            type = "structure",
-        },
+        StoredQuery = M.StoredQuery,
     },
 }
 
@@ -5181,11 +5199,12 @@ M.ListAggregateDiscoveredResourcesInput = {
                 required = true,
             },
         },
-        Filters = {
-            type = "structure",
-        },
+        Filters = M.ResourceFilters,
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         NextToken = {
             type = "string",
@@ -5198,7 +5217,7 @@ M.ListAggregateDiscoveredResourcesOutput = {
     members = {
         ResourceIdentifiers = {
             type = "list",
-            member_type = "structure",
+            member = M.AggregateResourceIdentifier,
         },
         NextToken = {
             type = "string",
@@ -5211,10 +5230,13 @@ M.ListConfigurationRecordersInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigurationRecorderFilter,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         NextToken = {
             type = "string",
@@ -5227,7 +5249,7 @@ M.ListConfigurationRecordersOutput = {
     members = {
         ConfigurationRecorderSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigurationRecorderSummary,
             traits = {
                 required = true,
             },
@@ -5250,9 +5272,7 @@ M.SortOrder = {
 M.ListConformancePackComplianceScoresInput = {
     type = "structure",
     members = {
-        Filters = {
-            type = "structure",
-        },
+        Filters = M.ConformancePackComplianceScoresFilters,
         SortOrder = {
             type = "string",
         },
@@ -5260,7 +5280,10 @@ M.ListConformancePackComplianceScoresInput = {
             type = "string",
         },
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         NextToken = {
             type = "string",
@@ -5276,7 +5299,7 @@ M.ListConformancePackComplianceScoresOutput = {
         },
         ConformancePackComplianceScores = {
             type = "list",
-            member_type = "structure",
+            member = M.ConformancePackComplianceScore,
             traits = {
                 required = true,
             },
@@ -5295,16 +5318,22 @@ M.ListDiscoveredResourcesInput = {
         },
         resourceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         resourceName = {
             type = "string",
         },
         limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         includeDeletedResources = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         nextToken = {
             type = "string",
@@ -5335,7 +5364,7 @@ M.ListDiscoveredResourcesOutput = {
     members = {
         resourceIdentifiers = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceIdentifier,
         },
         nextToken = {
             type = "string",
@@ -5361,9 +5390,7 @@ M.ResourceEvaluationFilters = {
         EvaluationMode = {
             type = "string",
         },
-        TimeWindow = {
-            type = "structure",
-        },
+        TimeWindow = M.TimeWindow,
         EvaluationContextIdentifier = {
             type = "string",
         },
@@ -5373,11 +5400,12 @@ M.ResourceEvaluationFilters = {
 M.ListResourceEvaluationsInput = {
     type = "structure",
     members = {
-        Filters = {
-            type = "structure",
-        },
+        Filters = M.ResourceEvaluationFilters,
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         NextToken = {
             type = "string",
@@ -5405,7 +5433,7 @@ M.ListResourceEvaluationsOutput = {
     members = {
         ResourceEvaluations = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceEvaluation,
         },
         NextToken = {
             type = "string",
@@ -5420,7 +5448,10 @@ M.ListStoredQueriesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -5457,7 +5488,7 @@ M.ListStoredQueriesOutput = {
     members = {
         StoredQueryMetadata = {
             type = "list",
-            member_type = "structure",
+            member = M.StoredQueryMetadata,
         },
         NextToken = {
             type = "string",
@@ -5475,7 +5506,10 @@ M.ListTagsForResourceInput = {
             },
         },
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         NextToken = {
             type = "string",
@@ -5500,7 +5534,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         NextToken = {
             type = "string",
@@ -5646,7 +5680,7 @@ M.OrganizationCustomPolicyRuleMetadata = {
         },
         OrganizationConfigRuleTriggerTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         InputParameters = {
             type = "string",
@@ -5656,7 +5690,7 @@ M.OrganizationCustomPolicyRuleMetadata = {
         },
         ResourceTypesScope = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ResourceIdScope = {
             type = "string",
@@ -5681,7 +5715,7 @@ M.OrganizationCustomPolicyRuleMetadata = {
         },
         DebugLogDeliveryAccounts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -5703,7 +5737,7 @@ M.PutAggregationAuthorizationInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -5711,24 +5745,19 @@ M.PutAggregationAuthorizationInput = {
 M.PutAggregationAuthorizationOutput = {
     type = "structure",
     members = {
-        AggregationAuthorization = {
-            type = "structure",
-        },
+        AggregationAuthorization = M.AggregationAuthorization,
     },
 }
 
 M.PutConfigRuleInput = {
     type = "structure",
     members = {
-        ConfigRule = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ConfigRule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConfigRule }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -5748,42 +5777,33 @@ M.PutConfigurationAggregatorInput = {
         },
         AccountAggregationSources = {
             type = "list",
-            member_type = "structure",
+            member = M.AccountAggregationSource,
         },
-        OrganizationAggregationSource = {
-            type = "structure",
-        },
+        OrganizationAggregationSource = M.OrganizationAggregationSource,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        AggregatorFilters = {
-            type = "structure",
-        },
+        AggregatorFilters = M.AggregatorFilters,
     },
 }
 
 M.PutConfigurationAggregatorOutput = {
     type = "structure",
     members = {
-        ConfigurationAggregator = {
-            type = "structure",
-        },
+        ConfigurationAggregator = M.ConfigurationAggregator,
     },
 }
 
 M.PutConfigurationRecorderInput = {
     type = "structure",
     members = {
-        ConfigurationRecorder = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ConfigurationRecorder = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConfigurationRecorder }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -5815,14 +5835,12 @@ M.PutConformancePackInput = {
         },
         ConformancePackInputParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.ConformancePackInputParameter,
         },
-        TemplateSSMDocumentDetails = {
-            type = "structure",
-        },
+        TemplateSSMDocumentDetails = M.TemplateSSMDocumentDetails,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -5839,12 +5857,9 @@ M.PutConformancePackOutput = {
 M.PutDeliveryChannelInput = {
     type = "structure",
     members = {
-        DeliveryChannel = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DeliveryChannel = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DeliveryChannel }),
     },
 }
 
@@ -5857,7 +5872,7 @@ M.PutEvaluationsInput = {
     members = {
         Evaluations = {
             type = "list",
-            member_type = "structure",
+            member = M.Evaluation,
         },
         ResultToken = {
             type = "string",
@@ -5867,6 +5882,9 @@ M.PutEvaluationsInput = {
         },
         TestMode = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -5876,7 +5894,7 @@ M.PutEvaluationsOutput = {
     members = {
         FailedEvaluations = {
             type = "list",
-            member_type = "structure",
+            member = M.Evaluation,
         },
     },
 }
@@ -5890,12 +5908,9 @@ M.PutExternalEvaluationInput = {
                 required = true,
             },
         },
-        ExternalEvaluation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ExternalEvaluation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ExternalEvaluation }),
     },
 }
 
@@ -5912,19 +5927,13 @@ M.PutOrganizationConfigRuleInput = {
                 required = true,
             },
         },
-        OrganizationManagedRuleMetadata = {
-            type = "structure",
-        },
-        OrganizationCustomRuleMetadata = {
-            type = "structure",
-        },
+        OrganizationManagedRuleMetadata = M.OrganizationManagedRuleMetadata,
+        OrganizationCustomRuleMetadata = M.OrganizationCustomRuleMetadata,
         ExcludedAccounts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        OrganizationCustomPolicyRuleMetadata = {
-            type = "structure",
-        },
+        OrganizationCustomPolicyRuleMetadata = M.OrganizationCustomPolicyRuleMetadata,
     },
 }
 
@@ -5960,11 +5969,11 @@ M.PutOrganizationConformancePackInput = {
         },
         ConformancePackInputParameters = {
             type = "list",
-            member_type = "structure",
+            member = M.ConformancePackInputParameter,
         },
         ExcludedAccounts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -5983,7 +5992,7 @@ M.PutRemediationConfigurationsInput = {
     members = {
         RemediationConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.RemediationConfiguration,
             traits = {
                 required = true,
             },
@@ -5996,7 +6005,7 @@ M.PutRemediationConfigurationsOutput = {
     members = {
         FailedBatches = {
             type = "list",
-            member_type = "structure",
+            member = M.FailedRemediationBatch,
         },
     },
 }
@@ -6012,7 +6021,7 @@ M.PutRemediationExceptionsInput = {
         },
         ResourceKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.RemediationExceptionResourceKey,
             traits = {
                 required = true,
             },
@@ -6031,7 +6040,7 @@ M.PutRemediationExceptionsOutput = {
     members = {
         FailedBatches = {
             type = "list",
-            member_type = "structure",
+            member = M.FailedRemediationExceptionBatch,
         },
     },
 }
@@ -6068,8 +6077,8 @@ M.PutResourceConfigInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -6082,7 +6091,7 @@ M.PutRetentionConfigurationInput = {
     type = "structure",
     members = {
         RetentionPeriodInDays = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -6093,9 +6102,7 @@ M.PutRetentionConfigurationInput = {
 M.PutRetentionConfigurationOutput = {
     type = "structure",
     members = {
-        RetentionConfiguration = {
-            type = "structure",
-        },
+        RetentionConfiguration = M.RetentionConfiguration,
     },
 }
 
@@ -6110,7 +6117,7 @@ M.PutServiceLinkedConfigurationRecorderInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -6130,15 +6137,12 @@ M.PutServiceLinkedConfigurationRecorderOutput = {
 M.PutStoredQueryInput = {
     type = "structure",
     members = {
-        StoredQuery = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        StoredQuery = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.StoredQuery }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -6177,7 +6181,7 @@ M.QueryInfo = {
     members = {
         SelectFields = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldInfo,
         },
     },
 }
@@ -6198,10 +6202,16 @@ M.SelectAggregateResourceConfigInput = {
             },
         },
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         NextToken = {
             type = "string",
@@ -6214,11 +6224,9 @@ M.SelectAggregateResourceConfigOutput = {
     members = {
         Results = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        QueryInfo = {
-            type = "structure",
-        },
+        QueryInfo = M.QueryInfo,
         NextToken = {
             type = "string",
         },
@@ -6235,7 +6243,10 @@ M.SelectResourceConfigInput = {
             },
         },
         Limit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         NextToken = {
             type = "string",
@@ -6248,11 +6259,9 @@ M.SelectResourceConfigOutput = {
     members = {
         Results = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        QueryInfo = {
-            type = "structure",
-        },
+        QueryInfo = M.QueryInfo,
         NextToken = {
             type = "string",
         },
@@ -6264,7 +6273,7 @@ M.StartConfigRulesEvaluationInput = {
     members = {
         ConfigRuleNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -6300,7 +6309,7 @@ M.StartRemediationExecutionInput = {
         },
         ResourceKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceKey,
             traits = {
                 required = true,
             },
@@ -6316,7 +6325,7 @@ M.StartRemediationExecutionOutput = {
         },
         FailedItems = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceKey,
         },
     },
 }
@@ -6324,15 +6333,10 @@ M.StartRemediationExecutionOutput = {
 M.StartResourceEvaluationInput = {
     type = "structure",
     members = {
-        ResourceDetails = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        EvaluationContext = {
-            type = "structure",
-        },
+        ResourceDetails = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResourceDetails }),
+        EvaluationContext = M.EvaluationContext,
         EvaluationMode = {
             type = "string",
             traits = {
@@ -6340,7 +6344,10 @@ M.StartResourceEvaluationInput = {
             },
         },
         EvaluationTimeout = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         ClientToken = {
             type = "string",
@@ -6384,7 +6391,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -6407,7 +6414,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },

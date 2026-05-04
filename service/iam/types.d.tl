@@ -4040,19 +4040,15 @@ local record UnrecognizedPublicKeyEncodingException
     message: string
 end
 
-local type PolicyUsageType = "PermissionsPolicy" | "PermissionsBoundary"
+local type permissionCheckResultType = "ALLOWED" | "DENIED" | "UNSURE"
 
-local type policyScopeType = "All" | "AWS" | "Local"
+local type PolicyUsageType = "PermissionsPolicy" | "PermissionsBoundary"
 
 local type assertionEncryptionModeType = "Required" | "Allowed"
 
 local type globalEndpointTokenVersion = "v1Token" | "v2Token"
 
 local type ReportStateType = "STARTED" | "INPROGRESS" | "COMPLETE"
-
-local type permissionCheckResultType = "ALLOWED" | "DENIED" | "UNSURE"
-
-local type DeletionTaskStatusType = "SUCCEEDED" | "IN_PROGRESS" | "FAILED" | "NOT_STARTED"
 
 local type jobStatusType = "IN_PROGRESS" | "COMPLETED" | "FAILED"
 
@@ -4064,9 +4060,13 @@ local type permissionCheckStatusType = "COMPLETE" | "IN_PROGRESS" | "FAILED"
 
 local type statusType = "Active" | "Inactive" | "Expired"
 
+local type DeletionTaskStatusType = "SUCCEEDED" | "IN_PROGRESS" | "FAILED" | "NOT_STARTED"
+
 local type encodingType = "SSH" | "PEM"
 
 local type assignmentStatusType = "Assigned" | "Unassigned" | "Any"
+
+local type policyScopeType = "All" | "AWS" | "Local"
 
 local type sortKeyType = "SERVICE_NAMESPACE_ASCENDING" | "SERVICE_NAMESPACE_DESCENDING" | "LAST_AUTHENTICATED_TIME_ASCENDING" | "LAST_AUTHENTICATED_TIME_DESCENDING"
 

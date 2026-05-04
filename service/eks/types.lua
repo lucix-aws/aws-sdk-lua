@@ -39,7 +39,7 @@ M.AccessEntry = {
         },
         kubernetesGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         accessEntryArn = {
             type = "string",
@@ -52,8 +52,8 @@ M.AccessEntry = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         username = {
             type = "string",
@@ -89,7 +89,7 @@ M.AccessScope = {
         },
         namespaces = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -118,7 +118,7 @@ M.AddonIssue = {
         },
         resourceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -128,7 +128,7 @@ M.AddonHealth = {
     members = {
         issues = {
             type = "list",
-            member_type = "structure",
+            member = M.AddonIssue,
         },
     },
 }
@@ -180,9 +180,7 @@ M.Addon = {
         addonVersion = {
             type = "string",
         },
-        health = {
-            type = "structure",
-        },
+        health = M.AddonHealth,
         addonArn = {
             type = "string",
         },
@@ -197,8 +195,8 @@ M.Addon = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         publisher = {
             type = "string",
@@ -206,19 +204,15 @@ M.Addon = {
         owner = {
             type = "string",
         },
-        marketplaceInformation = {
-            type = "structure",
-        },
+        marketplaceInformation = M.MarketplaceInformation,
         configurationValues = {
             type = "string",
         },
         podIdentityAssociations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        namespaceConfig = {
-            type = "structure",
-        },
+        namespaceConfig = M.AddonNamespaceConfigResponse,
     },
 }
 
@@ -230,7 +224,7 @@ M.AddonCompatibilityDetail = {
         },
         compatibleVersions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -243,10 +237,13 @@ M.Compatibility = {
         },
         platformVersions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         defaultVersion = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -259,21 +256,27 @@ M.AddonVersionInfo = {
         },
         architecture = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         computeTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         compatibilities = {
             type = "list",
-            member_type = "structure",
+            member = M.Compatibility,
         },
         requiresConfiguration = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         requiresIamPermissions = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -289,7 +292,7 @@ M.AddonInfo = {
         },
         addonVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.AddonVersionInfo,
         },
         publisher = {
             type = "string",
@@ -297,9 +300,7 @@ M.AddonInfo = {
         owner = {
             type = "string",
         },
-        marketplaceInformation = {
-            type = "structure",
-        },
+        marketplaceInformation = M.MarketplaceInformation,
         defaultNamespace = {
             type = "string",
         },
@@ -341,7 +342,7 @@ M.AddonPodIdentityConfiguration = {
         },
         recommendedManagedPolicies = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -407,7 +408,7 @@ M.ArgoCdNetworkAccessConfigRequest = {
     members = {
         vpceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -452,7 +453,7 @@ M.ArgoCdRoleMapping = {
         },
         identities = {
             type = "list",
-            member_type = "structure",
+            member = M.SsoIdentity,
             traits = {
                 required = true,
             },
@@ -466,19 +467,14 @@ M.ArgoCdConfigRequest = {
         namespace = {
             type = "string",
         },
-        awsIdc = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        awsIdc = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ArgoCdAwsIdcConfigRequest }),
         rbacRoleMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.ArgoCdRoleMapping,
         },
-        networkAccess = {
-            type = "structure",
-        },
+        networkAccess = M.ArgoCdNetworkAccessConfigRequest,
     },
 }
 
@@ -487,7 +483,7 @@ M.ArgoCdNetworkAccessConfigResponse = {
     members = {
         vpceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -498,16 +494,12 @@ M.ArgoCdConfigResponse = {
         namespace = {
             type = "string",
         },
-        awsIdc = {
-            type = "structure",
-        },
+        awsIdc = M.ArgoCdAwsIdcConfigResponse,
         rbacRoleMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.ArgoCdRoleMapping,
         },
-        networkAccess = {
-            type = "structure",
-        },
+        networkAccess = M.ArgoCdNetworkAccessConfigResponse,
         serverUrl = {
             type = "string",
         },
@@ -537,12 +529,9 @@ M.AssociateAccessPolicyInput = {
                 required = true,
             },
         },
-        accessScope = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        accessScope = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AccessScope }),
     },
 }
 
@@ -552,9 +541,7 @@ M.AssociatedAccessPolicy = {
         policyArn = {
             type = "string",
         },
-        accessScope = {
-            type = "structure",
-        },
+        accessScope = M.AccessScope,
         associatedAt = {
             type = "timestamp",
         },
@@ -573,9 +560,7 @@ M.AssociateAccessPolicyOutput = {
         principalArn = {
             type = "string",
         },
-        associatedAccessPolicy = {
-            type = "structure",
-        },
+        associatedAccessPolicy = M.AssociatedAccessPolicy,
     },
 }
 
@@ -687,11 +672,9 @@ M.EncryptionConfig = {
     members = {
         resources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        provider = {
-            type = "structure",
-        },
+        provider = M.Provider,
     },
 }
 
@@ -707,7 +690,7 @@ M.AssociateEncryptionConfigInput = {
         },
         encryptionConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.EncryptionConfig,
             traits = {
                 required = true,
             },
@@ -749,7 +732,7 @@ M.ErrorDetail = {
         },
         resourceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -856,14 +839,14 @@ M.Update = {
         },
         params = {
             type = "list",
-            member_type = "structure",
+            member = M.UpdateParam,
         },
         createdAt = {
             type = "timestamp",
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.ErrorDetail,
         },
     },
 }
@@ -871,9 +854,7 @@ M.Update = {
 M.AssociateEncryptionConfigOutput = {
     type = "structure",
     members = {
-        update = {
-            type = "structure",
-        },
+        update = M.Update,
     },
 }
 
@@ -966,8 +947,8 @@ M.OidcIdentityProviderConfigRequest = {
         },
         requiredClaims = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -982,16 +963,13 @@ M.AssociateIdentityProviderConfigInput = {
                 required = true,
             },
         },
-        oidc = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        oidc = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OidcIdentityProviderConfigRequest }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         clientRequestToken = {
             type = "string",
@@ -1002,13 +980,11 @@ M.AssociateIdentityProviderConfigInput = {
 M.AssociateIdentityProviderConfigOutput = {
     type = "structure",
     members = {
-        update = {
-            type = "structure",
-        },
+        update = M.Update,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1040,12 +1016,12 @@ M.CreateAccessEntryInput = {
         },
         kubernetesGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         clientRequestToken = {
             type = "string",
@@ -1062,9 +1038,7 @@ M.CreateAccessEntryInput = {
 M.CreateAccessEntryOutput = {
     type = "structure",
     members = {
-        accessEntry = {
-            type = "structure",
-        },
+        accessEntry = M.AccessEntry,
     },
 }
 
@@ -1123,37 +1097,31 @@ M.CreateAddonInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         configurationValues = {
             type = "string",
         },
         podIdentityAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.AddonPodIdentityAssociations,
         },
-        namespaceConfig = {
-            type = "structure",
-        },
+        namespaceConfig = M.AddonNamespaceConfigRequest,
     },
 }
 
 M.CreateAddonOutput = {
     type = "structure",
     members = {
-        addon = {
-            type = "structure",
-        },
+        addon = M.Addon,
     },
 }
 
 M.CapabilityConfigurationRequest = {
     type = "structure",
     members = {
-        argoCd = {
-            type = "structure",
-        },
+        argoCd = M.ArgoCdConfigRequest,
     },
 }
 
@@ -1198,13 +1166,11 @@ M.CreateCapabilityInput = {
                 required = true,
             },
         },
-        configuration = {
-            type = "structure",
-        },
+        configuration = M.CapabilityConfigurationRequest,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         deletePropagationPolicy = {
             type = "string",
@@ -1218,9 +1184,7 @@ M.CreateCapabilityInput = {
 M.CapabilityConfigurationResponse = {
     type = "structure",
     members = {
-        argoCd = {
-            type = "structure",
-        },
+        argoCd = M.ArgoCdConfigResponse,
     },
 }
 
@@ -1246,7 +1210,7 @@ M.CapabilityHealth = {
     members = {
         issues = {
             type = "list",
-            member_type = "structure",
+            member = M.CapabilityIssue,
         },
     },
 }
@@ -1285,17 +1249,13 @@ M.Capability = {
         version = {
             type = "string",
         },
-        configuration = {
-            type = "structure",
-        },
+        configuration = M.CapabilityConfigurationResponse,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        health = {
-            type = "structure",
-        },
+        health = M.CapabilityHealth,
         createdAt = {
             type = "timestamp",
         },
@@ -1311,9 +1271,7 @@ M.Capability = {
 M.CreateCapabilityOutput = {
     type = "structure",
     members = {
-        capability = {
-            type = "structure",
-        },
+        capability = M.Capability,
     },
 }
 
@@ -1337,7 +1295,7 @@ M.ComputeConfigRequest = {
         },
         nodePools = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nodeRoleArn = {
             type = "string",
@@ -1385,9 +1343,7 @@ M.KubernetesNetworkConfigRequest = {
         ipFamily = {
             type = "string",
         },
-        elasticLoadBalancing = {
-            type = "structure",
-        },
+        elasticLoadBalancing = M.ElasticLoadBalancing,
     },
 }
 
@@ -1404,7 +1360,7 @@ M.LogSetup = {
     members = {
         types = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         enabled = {
             type = "boolean",
@@ -1417,7 +1373,7 @@ M.Logging = {
     members = {
         clusterLogging = {
             type = "list",
-            member_type = "structure",
+            member = M.LogSetup,
         },
     },
 }
@@ -1436,7 +1392,7 @@ M.OutpostConfigRequest = {
     members = {
         outpostArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1447,9 +1403,7 @@ M.OutpostConfigRequest = {
                 required = true,
             },
         },
-        controlPlanePlacement = {
-            type = "structure",
-        },
+        controlPlanePlacement = M.ControlPlanePlacementRequest,
     },
 }
 
@@ -1458,7 +1412,7 @@ M.RemoteNodeNetwork = {
     members = {
         cidrs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1468,7 +1422,7 @@ M.RemotePodNetwork = {
     members = {
         cidrs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1478,11 +1432,11 @@ M.RemoteNetworkConfigRequest = {
     members = {
         remoteNodeNetworks = {
             type = "list",
-            member_type = "structure",
+            member = M.RemoteNodeNetwork,
         },
         remotePodNetworks = {
             type = "list",
-            member_type = "structure",
+            member = M.RemotePodNetwork,
         },
     },
 }
@@ -1492,11 +1446,11 @@ M.VpcConfigRequest = {
     members = {
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         endpointPublicAccess = {
             type = "boolean",
@@ -1506,7 +1460,7 @@ M.VpcConfigRequest = {
         },
         publicAccessCidrs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1523,9 +1477,7 @@ M.BlockStorage = {
 M.StorageConfigRequest = {
     type = "structure",
     members = {
-        blockStorage = {
-            type = "structure",
-        },
+        blockStorage = M.BlockStorage,
     },
 }
 
@@ -1570,60 +1522,37 @@ M.CreateClusterInput = {
                 required = true,
             },
         },
-        resourcesVpcConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        kubernetesNetworkConfig = {
-            type = "structure",
-        },
-        logging = {
-            type = "structure",
-        },
+        resourcesVpcConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VpcConfigRequest }),
+        kubernetesNetworkConfig = M.KubernetesNetworkConfigRequest,
+        logging = M.Logging,
         clientRequestToken = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         encryptionConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.EncryptionConfig,
         },
-        outpostConfig = {
-            type = "structure",
-        },
-        accessConfig = {
-            type = "structure",
-        },
+        outpostConfig = M.OutpostConfigRequest,
+        accessConfig = M.CreateAccessConfigRequest,
         bootstrapSelfManagedAddons = {
             type = "boolean",
         },
-        upgradePolicy = {
-            type = "structure",
-        },
-        zonalShiftConfig = {
-            type = "structure",
-        },
-        remoteNetworkConfig = {
-            type = "structure",
-        },
-        computeConfig = {
-            type = "structure",
-        },
-        storageConfig = {
-            type = "structure",
-        },
+        upgradePolicy = M.UpgradePolicyRequest,
+        zonalShiftConfig = M.ZonalShiftConfigRequest,
+        remoteNetworkConfig = M.RemoteNetworkConfigRequest,
+        computeConfig = M.ComputeConfigRequest,
+        storageConfig = M.StorageConfigRequest,
         deletionProtection = {
             type = "boolean",
         },
-        controlPlaneScalingConfig = {
-            type = "structure",
-        },
+        controlPlaneScalingConfig = M.ControlPlaneScalingConfig,
     },
 }
 
@@ -1644,7 +1573,7 @@ M.ComputeConfigResponse = {
         },
         nodePools = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nodeRoleArn = {
             type = "string",
@@ -1706,7 +1635,7 @@ M.ClusterIssue = {
         },
         resourceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1716,7 +1645,7 @@ M.ClusterHealth = {
     members = {
         issues = {
             type = "list",
-            member_type = "structure",
+            member = M.ClusterIssue,
         },
     },
 }
@@ -1733,9 +1662,7 @@ M.OIDC = {
 M.Identity = {
     type = "structure",
     members = {
-        oidc = {
-            type = "structure",
-        },
+        oidc = M.OIDC,
     },
 }
 
@@ -1751,9 +1678,7 @@ M.KubernetesNetworkConfigResponse = {
         ipFamily = {
             type = "string",
         },
-        elasticLoadBalancing = {
-            type = "structure",
-        },
+        elasticLoadBalancing = M.ElasticLoadBalancing,
     },
 }
 
@@ -1771,7 +1696,7 @@ M.OutpostConfigResponse = {
     members = {
         outpostArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1782,9 +1707,7 @@ M.OutpostConfigResponse = {
                 required = true,
             },
         },
-        controlPlanePlacement = {
-            type = "structure",
-        },
+        controlPlanePlacement = M.ControlPlanePlacementResponse,
     },
 }
 
@@ -1793,11 +1716,11 @@ M.RemoteNetworkConfigResponse = {
     members = {
         remoteNodeNetworks = {
             type = "list",
-            member_type = "structure",
+            member = M.RemoteNodeNetwork,
         },
         remotePodNetworks = {
             type = "list",
-            member_type = "structure",
+            member = M.RemotePodNetwork,
         },
     },
 }
@@ -1807,11 +1730,11 @@ M.VpcConfigResponse = {
     members = {
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         securityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         clusterSecurityGroupId = {
             type = "string",
@@ -1821,13 +1744,19 @@ M.VpcConfigResponse = {
         },
         endpointPublicAccess = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         endpointPrivateAccess = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         publicAccessCidrs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1844,9 +1773,7 @@ M.ClusterStatus = {
 M.StorageConfigResponse = {
     type = "structure",
     members = {
-        blockStorage = {
-            type = "structure",
-        },
+        blockStorage = M.BlockStorage,
     },
 }
 
@@ -1889,24 +1816,14 @@ M.Cluster = {
         roleArn = {
             type = "string",
         },
-        resourcesVpcConfig = {
-            type = "structure",
-        },
-        kubernetesNetworkConfig = {
-            type = "structure",
-        },
-        logging = {
-            type = "structure",
-        },
-        identity = {
-            type = "structure",
-        },
+        resourcesVpcConfig = M.VpcConfigResponse,
+        kubernetesNetworkConfig = M.KubernetesNetworkConfigResponse,
+        logging = M.Logging,
+        identity = M.Identity,
         status = {
             type = "string",
         },
-        certificateAuthority = {
-            type = "structure",
-        },
+        certificateAuthority = M.Certificate,
         clientRequestToken = {
             type = "string",
         },
@@ -1915,58 +1832,36 @@ M.Cluster = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         encryptionConfig = {
             type = "list",
-            member_type = "structure",
+            member = M.EncryptionConfig,
         },
-        connectorConfig = {
-            type = "structure",
-        },
+        connectorConfig = M.ConnectorConfigResponse,
         id = {
             type = "string",
         },
-        health = {
-            type = "structure",
-        },
-        outpostConfig = {
-            type = "structure",
-        },
-        accessConfig = {
-            type = "structure",
-        },
-        upgradePolicy = {
-            type = "structure",
-        },
-        zonalShiftConfig = {
-            type = "structure",
-        },
-        remoteNetworkConfig = {
-            type = "structure",
-        },
-        computeConfig = {
-            type = "structure",
-        },
-        storageConfig = {
-            type = "structure",
-        },
+        health = M.ClusterHealth,
+        outpostConfig = M.OutpostConfigResponse,
+        accessConfig = M.AccessConfigResponse,
+        upgradePolicy = M.UpgradePolicyResponse,
+        zonalShiftConfig = M.ZonalShiftConfigResponse,
+        remoteNetworkConfig = M.RemoteNetworkConfigResponse,
+        computeConfig = M.ComputeConfigResponse,
+        storageConfig = M.StorageConfigResponse,
         deletionProtection = {
             type = "boolean",
         },
-        controlPlaneScalingConfig = {
-            type = "structure",
-        },
+        controlPlaneScalingConfig = M.ControlPlaneScalingConfig,
     },
 }
 
 M.CreateClusterOutput = {
     type = "structure",
     members = {
-        cluster = {
-            type = "structure",
-        },
+        cluster = M.Cluster,
     },
 }
 
@@ -1995,7 +1890,7 @@ M.UnsupportedAvailabilityZoneException = {
         },
         validZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2012,7 +1907,10 @@ M.EksAnywhereSubscriptionTerm = {
     type = "structure",
     members = {
         duration = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         unit = {
             type = "string",
@@ -2029,28 +1927,31 @@ M.CreateEksAnywhereSubscriptionInput = {
                 required = true,
             },
         },
-        term = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        term = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EksAnywhereSubscriptionTerm }),
         licenseQuantity = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         licenseType = {
             type = "string",
         },
         autoRenew = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         clientRequestToken = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2086,32 +1987,36 @@ M.EksAnywhereSubscription = {
             type = "timestamp",
         },
         licenseQuantity = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         licenseType = {
             type = "string",
         },
-        term = {
-            type = "structure",
-        },
+        term = M.EksAnywhereSubscriptionTerm,
         status = {
             type = "string",
         },
         autoRenew = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         licenseArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         licenses = {
             type = "list",
-            member_type = "structure",
+            member = M.License,
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2119,9 +2024,7 @@ M.EksAnywhereSubscription = {
 M.CreateEksAnywhereSubscriptionOutput = {
     type = "structure",
     members = {
-        subscription = {
-            type = "structure",
-        },
+        subscription = M.EksAnywhereSubscription,
     },
 }
 
@@ -2133,8 +2036,8 @@ M.FargateProfileSelector = {
         },
         labels = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2163,19 +2066,19 @@ M.CreateFargateProfileInput = {
         },
         subnets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         selectors = {
             type = "list",
-            member_type = "structure",
+            member = M.FargateProfileSelector,
         },
         clientRequestToken = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2198,7 +2101,7 @@ M.FargateProfileIssue = {
         },
         resourceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2208,7 +2111,7 @@ M.FargateProfileHealth = {
     members = {
         issues = {
             type = "list",
-            member_type = "structure",
+            member = M.FargateProfileIssue,
         },
     },
 }
@@ -2241,32 +2144,28 @@ M.FargateProfile = {
         },
         subnets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         selectors = {
             type = "list",
-            member_type = "structure",
+            member = M.FargateProfileSelector,
         },
         status = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        health = {
-            type = "structure",
-        },
+        health = M.FargateProfileHealth,
     },
 }
 
 M.CreateFargateProfileOutput = {
     type = "structure",
     members = {
-        fargateProfile = {
-            type = "structure",
-        },
+        fargateProfile = M.FargateProfile,
     },
 }
 
@@ -2307,7 +2206,7 @@ M.NodeRepairConfigOverrides = {
             type = "string",
         },
         minRepairWaitTimeMins = {
-            type = "number",
+            type = "integer",
         },
         repairAction = {
             type = "string",
@@ -2322,20 +2221,20 @@ M.NodeRepairConfig = {
             type = "boolean",
         },
         maxUnhealthyNodeThresholdCount = {
-            type = "number",
+            type = "integer",
         },
         maxUnhealthyNodeThresholdPercentage = {
-            type = "number",
+            type = "integer",
         },
         maxParallelNodesRepairedCount = {
-            type = "number",
+            type = "integer",
         },
         maxParallelNodesRepairedPercentage = {
-            type = "number",
+            type = "integer",
         },
         nodeRepairConfigOverrides = {
             type = "list",
-            member_type = "structure",
+            member = M.NodeRepairConfigOverrides,
         },
     },
 }
@@ -2348,7 +2247,7 @@ M.RemoteAccessConfig = {
         },
         sourceSecurityGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2357,13 +2256,13 @@ M.NodegroupScalingConfig = {
     type = "structure",
     members = {
         minSize = {
-            type = "number",
+            type = "integer",
         },
         maxSize = {
-            type = "number",
+            type = "integer",
         },
         desiredSize = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2398,10 +2297,10 @@ M.NodegroupUpdateConfig = {
     type = "structure",
     members = {
         maxUnavailable = {
-            type = "number",
+            type = "integer",
         },
         maxUnavailablePercentage = {
-            type = "number",
+            type = "integer",
         },
         updateStrategy = {
             type = "string",
@@ -2422,10 +2321,10 @@ M.WarmPoolConfig = {
             type = "boolean",
         },
         minSize = {
-            type = "number",
+            type = "integer",
         },
         maxGroupPreparedCapacity = {
-            type = "number",
+            type = "integer",
         },
         poolState = {
             type = "string",
@@ -2452,29 +2351,25 @@ M.CreateNodegroupInput = {
                 required = true,
             },
         },
-        scalingConfig = {
-            type = "structure",
-        },
+        scalingConfig = M.NodegroupScalingConfig,
         diskSize = {
-            type = "number",
+            type = "integer",
         },
         subnets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         instanceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         amiType = {
             type = "string",
         },
-        remoteAccess = {
-            type = "structure",
-        },
+        remoteAccess = M.RemoteAccessConfig,
         nodeRole = {
             type = "string",
             traits = {
@@ -2483,30 +2378,24 @@ M.CreateNodegroupInput = {
         },
         labels = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         taints = {
             type = "list",
-            member_type = "structure",
+            member = M.Taint,
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         clientRequestToken = {
             type = "string",
         },
-        launchTemplate = {
-            type = "structure",
-        },
-        updateConfig = {
-            type = "structure",
-        },
-        nodeRepairConfig = {
-            type = "structure",
-        },
+        launchTemplate = M.LaunchTemplateSpecification,
+        updateConfig = M.NodegroupUpdateConfig,
+        nodeRepairConfig = M.NodeRepairConfig,
         capacityType = {
             type = "string",
         },
@@ -2516,9 +2405,7 @@ M.CreateNodegroupInput = {
         releaseVersion = {
             type = "string",
         },
-        warmPoolConfig = {
-            type = "structure",
-        },
+        warmPoolConfig = M.WarmPoolConfig,
     },
 }
 
@@ -2572,7 +2459,7 @@ M.Issue = {
         },
         resourceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2582,7 +2469,7 @@ M.NodegroupHealth = {
     members = {
         issues = {
             type = "list",
-            member_type = "structure",
+            member = M.Issue,
         },
     },
 }
@@ -2592,7 +2479,7 @@ M.NodegroupResources = {
     members = {
         autoScalingGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.AutoScalingGroup,
         },
         remoteAccessSecurityGroup = {
             type = "string",
@@ -2640,20 +2527,16 @@ M.Nodegroup = {
         capacityType = {
             type = "string",
         },
-        scalingConfig = {
-            type = "structure",
-        },
+        scalingConfig = M.NodegroupScalingConfig,
         instanceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         subnets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        remoteAccess = {
-            type = "structure",
-        },
+        remoteAccess = M.RemoteAccessConfig,
         amiType = {
             type = "string",
         },
@@ -2662,48 +2545,34 @@ M.Nodegroup = {
         },
         labels = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         taints = {
             type = "list",
-            member_type = "structure",
+            member = M.Taint,
         },
-        resources = {
-            type = "structure",
-        },
+        resources = M.NodegroupResources,
         diskSize = {
-            type = "number",
+            type = "integer",
         },
-        health = {
-            type = "structure",
-        },
-        updateConfig = {
-            type = "structure",
-        },
-        nodeRepairConfig = {
-            type = "structure",
-        },
-        launchTemplate = {
-            type = "structure",
-        },
+        health = M.NodegroupHealth,
+        updateConfig = M.NodegroupUpdateConfig,
+        nodeRepairConfig = M.NodeRepairConfig,
+        launchTemplate = M.LaunchTemplateSpecification,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        warmPoolConfig = {
-            type = "structure",
-        },
+        warmPoolConfig = M.WarmPoolConfig,
     },
 }
 
 M.CreateNodegroupOutput = {
     type = "structure",
     members = {
-        nodegroup = {
-            type = "structure",
-        },
+        nodegroup = M.Nodegroup,
     },
 }
 
@@ -2740,8 +2609,8 @@ M.CreatePodIdentityAssociationInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         disableSessionTags = {
             type = "boolean",
@@ -2778,8 +2647,8 @@ M.PodIdentityAssociation = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         createdAt = {
             type = "timestamp",
@@ -2808,9 +2677,7 @@ M.PodIdentityAssociation = {
 M.CreatePodIdentityAssociationOutput = {
     type = "structure",
     members = {
-        association = {
-            type = "structure",
-        },
+        association = M.PodIdentityAssociation,
     },
 }
 
@@ -2858,6 +2725,7 @@ M.DeleteAddonInput = {
         preserve = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "preserve",
             },
         },
@@ -2867,9 +2735,7 @@ M.DeleteAddonInput = {
 M.DeleteAddonOutput = {
     type = "structure",
     members = {
-        addon = {
-            type = "structure",
-        },
+        addon = M.Addon,
     },
 }
 
@@ -2896,9 +2762,7 @@ M.DeleteCapabilityInput = {
 M.DeleteCapabilityOutput = {
     type = "structure",
     members = {
-        capability = {
-            type = "structure",
-        },
+        capability = M.Capability,
     },
 }
 
@@ -2918,9 +2782,7 @@ M.DeleteClusterInput = {
 M.DeleteClusterOutput = {
     type = "structure",
     members = {
-        cluster = {
-            type = "structure",
-        },
+        cluster = M.Cluster,
     },
 }
 
@@ -2940,9 +2802,7 @@ M.DeleteEksAnywhereSubscriptionInput = {
 M.DeleteEksAnywhereSubscriptionOutput = {
     type = "structure",
     members = {
-        subscription = {
-            type = "structure",
-        },
+        subscription = M.EksAnywhereSubscription,
     },
 }
 
@@ -2969,9 +2829,7 @@ M.DeleteFargateProfileInput = {
 M.DeleteFargateProfileOutput = {
     type = "structure",
     members = {
-        fargateProfile = {
-            type = "structure",
-        },
+        fargateProfile = M.FargateProfile,
     },
 }
 
@@ -2998,9 +2856,7 @@ M.DeleteNodegroupInput = {
 M.DeleteNodegroupOutput = {
     type = "structure",
     members = {
-        nodegroup = {
-            type = "structure",
-        },
+        nodegroup = M.Nodegroup,
     },
 }
 
@@ -3027,9 +2883,7 @@ M.DeletePodIdentityAssociationInput = {
 M.DeletePodIdentityAssociationOutput = {
     type = "structure",
     members = {
-        association = {
-            type = "structure",
-        },
+        association = M.PodIdentityAssociation,
     },
 }
 
@@ -3049,9 +2903,7 @@ M.DeregisterClusterInput = {
 M.DeregisterClusterOutput = {
     type = "structure",
     members = {
-        cluster = {
-            type = "structure",
-        },
+        cluster = M.Cluster,
     },
 }
 
@@ -3078,9 +2930,7 @@ M.DescribeAccessEntryInput = {
 M.DescribeAccessEntryOutput = {
     type = "structure",
     members = {
-        accessEntry = {
-            type = "structure",
-        },
+        accessEntry = M.AccessEntry,
     },
 }
 
@@ -3107,9 +2957,7 @@ M.DescribeAddonInput = {
 M.DescribeAddonOutput = {
     type = "structure",
     members = {
-        addon = {
-            type = "structure",
-        },
+        addon = M.Addon,
     },
 }
 
@@ -3147,7 +2995,7 @@ M.DescribeAddonConfigurationOutput = {
         },
         podIdentityConfiguration = {
             type = "list",
-            member_type = "structure",
+            member = M.AddonPodIdentityConfiguration,
         },
     },
 }
@@ -3162,7 +3010,7 @@ M.DescribeAddonVersionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3181,21 +3029,21 @@ M.DescribeAddonVersionsInput = {
         },
         types = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "types",
             },
         },
         publishers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "publishers",
             },
         },
         owners = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "owners",
             },
@@ -3208,7 +3056,7 @@ M.DescribeAddonVersionsOutput = {
     members = {
         addons = {
             type = "list",
-            member_type = "structure",
+            member = M.AddonInfo,
         },
         nextToken = {
             type = "string",
@@ -3239,9 +3087,7 @@ M.DescribeCapabilityInput = {
 M.DescribeCapabilityOutput = {
     type = "structure",
     members = {
-        capability = {
-            type = "structure",
-        },
+        capability = M.Capability,
     },
 }
 
@@ -3261,9 +3107,7 @@ M.DescribeClusterInput = {
 M.DescribeClusterOutput = {
     type = "structure",
     members = {
-        cluster = {
-            type = "structure",
-        },
+        cluster = M.Cluster,
     },
 }
 
@@ -3289,7 +3133,7 @@ M.DescribeClusterVersionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3314,7 +3158,7 @@ M.DescribeClusterVersionsInput = {
         },
         clusterVersions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "clusterVersions",
             },
@@ -3348,6 +3192,9 @@ M.ClusterVersionInformation = {
         },
         defaultVersion = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         releaseDate = {
             type = "timestamp",
@@ -3378,7 +3225,7 @@ M.DescribeClusterVersionsOutput = {
         },
         clusterVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.ClusterVersionInformation,
         },
     },
 }
@@ -3399,9 +3246,7 @@ M.DescribeEksAnywhereSubscriptionInput = {
 M.DescribeEksAnywhereSubscriptionOutput = {
     type = "structure",
     members = {
-        subscription = {
-            type = "structure",
-        },
+        subscription = M.EksAnywhereSubscription,
     },
 }
 
@@ -3428,9 +3273,7 @@ M.DescribeFargateProfileInput = {
 M.DescribeFargateProfileOutput = {
     type = "structure",
     members = {
-        fargateProfile = {
-            type = "structure",
-        },
+        fargateProfile = M.FargateProfile,
     },
 }
 
@@ -3462,12 +3305,9 @@ M.DescribeIdentityProviderConfigInput = {
                 required = true,
             },
         },
-        identityProviderConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        identityProviderConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IdentityProviderConfig }),
     },
 }
 
@@ -3509,13 +3349,13 @@ M.OidcIdentityProviderConfig = {
         },
         requiredClaims = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         status = {
             type = "string",
@@ -3526,18 +3366,14 @@ M.OidcIdentityProviderConfig = {
 M.IdentityProviderConfigResponse = {
     type = "structure",
     members = {
-        oidc = {
-            type = "structure",
-        },
+        oidc = M.OidcIdentityProviderConfig,
     },
 }
 
 M.DescribeIdentityProviderConfigOutput = {
     type = "structure",
     members = {
-        identityProviderConfig = {
-            type = "structure",
-        },
+        identityProviderConfig = M.IdentityProviderConfigResponse,
     },
 }
 
@@ -3573,7 +3409,10 @@ M.ClientStat = {
             type = "string",
         },
         numberOfRequestsLast30Days = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         lastRequestTime = {
             type = "timestamp",
@@ -3598,7 +3437,7 @@ M.DeprecationDetail = {
         },
         clientStats = {
             type = "list",
-            member_type = "structure",
+            member = M.ClientStat,
         },
     },
 }
@@ -3608,11 +3447,11 @@ M.InsightCategorySpecificSummary = {
     members = {
         deprecationDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.DeprecationDetail,
         },
         addonCompatibilityDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.AddonCompatibilityDetail,
         },
     },
 }
@@ -3639,9 +3478,7 @@ M.InsightStatus = {
 M.InsightResourceDetail = {
     type = "structure",
     members = {
-        insightStatus = {
-            type = "structure",
-        },
+        insightStatus = M.InsightStatus,
         kubernetesResourceUri = {
             type = "string",
         },
@@ -3675,33 +3512,27 @@ M.Insight = {
         description = {
             type = "string",
         },
-        insightStatus = {
-            type = "structure",
-        },
+        insightStatus = M.InsightStatus,
         recommendation = {
             type = "string",
         },
         additionalInfo = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         resources = {
             type = "list",
-            member_type = "structure",
+            member = M.InsightResourceDetail,
         },
-        categorySpecificSummary = {
-            type = "structure",
-        },
+        categorySpecificSummary = M.InsightCategorySpecificSummary,
     },
 }
 
 M.DescribeInsightOutput = {
     type = "structure",
     members = {
-        insight = {
-            type = "structure",
-        },
+        insight = M.Insight,
     },
 }
 
@@ -3765,9 +3596,7 @@ M.DescribeNodegroupInput = {
 M.DescribeNodegroupOutput = {
     type = "structure",
     members = {
-        nodegroup = {
-            type = "structure",
-        },
+        nodegroup = M.Nodegroup,
     },
 }
 
@@ -3794,9 +3623,7 @@ M.DescribePodIdentityAssociationInput = {
 M.DescribePodIdentityAssociationOutput = {
     type = "structure",
     members = {
-        association = {
-            type = "structure",
-        },
+        association = M.PodIdentityAssociation,
     },
 }
 
@@ -3841,9 +3668,7 @@ M.DescribeUpdateInput = {
 M.DescribeUpdateOutput = {
     type = "structure",
     members = {
-        update = {
-            type = "structure",
-        },
+        update = M.Update,
     },
 }
 
@@ -3888,12 +3713,9 @@ M.DisassociateIdentityProviderConfigInput = {
                 required = true,
             },
         },
-        identityProviderConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        identityProviderConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IdentityProviderConfig }),
         clientRequestToken = {
             type = "string",
         },
@@ -3903,9 +3725,7 @@ M.DisassociateIdentityProviderConfigInput = {
 M.DisassociateIdentityProviderConfigOutput = {
     type = "structure",
     members = {
-        update = {
-            type = "structure",
-        },
+        update = M.Update,
     },
 }
 
@@ -3926,7 +3746,7 @@ M.ListAccessEntriesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3945,7 +3765,7 @@ M.ListAccessEntriesOutput = {
     members = {
         accessEntries = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -3957,7 +3777,7 @@ M.ListAccessPoliciesInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3976,7 +3796,7 @@ M.ListAccessPoliciesOutput = {
     members = {
         accessPolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessPolicy,
         },
         nextToken = {
             type = "string",
@@ -3995,7 +3815,7 @@ M.ListAddonsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4014,7 +3834,7 @@ M.ListAddonsOutput = {
     members = {
         addons = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -4040,7 +3860,7 @@ M.ListAssociatedAccessPoliciesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4068,7 +3888,7 @@ M.ListAssociatedAccessPoliciesOutput = {
         },
         associatedAccessPolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.AssociatedAccessPolicy,
         },
     },
 }
@@ -4090,7 +3910,7 @@ M.ListCapabilitiesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4130,7 +3950,7 @@ M.ListCapabilitiesOutput = {
     members = {
         capabilities = {
             type = "list",
-            member_type = "structure",
+            member = M.CapabilitySummary,
         },
         nextToken = {
             type = "string",
@@ -4142,7 +3962,7 @@ M.ListClustersInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4155,7 +3975,7 @@ M.ListClustersInput = {
         },
         include = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "include",
             },
@@ -4168,7 +3988,7 @@ M.ListClustersOutput = {
     members = {
         clusters = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -4189,7 +4009,7 @@ M.ListEksAnywhereSubscriptionsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4202,7 +4022,7 @@ M.ListEksAnywhereSubscriptionsInput = {
         },
         includeStatus = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "includeStatus",
             },
@@ -4215,7 +4035,7 @@ M.ListEksAnywhereSubscriptionsOutput = {
     members = {
         subscriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.EksAnywhereSubscription,
         },
         nextToken = {
             type = "string",
@@ -4234,7 +4054,7 @@ M.ListFargateProfilesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4253,7 +4073,7 @@ M.ListFargateProfilesOutput = {
     members = {
         fargateProfileNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -4272,7 +4092,7 @@ M.ListIdentityProviderConfigsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4291,7 +4111,7 @@ M.ListIdentityProviderConfigsOutput = {
     members = {
         identityProviderConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.IdentityProviderConfig,
         },
         nextToken = {
             type = "string",
@@ -4304,15 +4124,15 @@ M.InsightsFilter = {
     members = {
         categories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         kubernetesVersions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         statuses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4327,11 +4147,9 @@ M.ListInsightsInput = {
                 required = true,
             },
         },
-        filter = {
-            type = "structure",
-        },
+        filter = M.InsightsFilter,
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -4363,9 +4181,7 @@ M.InsightSummary = {
         description = {
             type = "string",
         },
-        insightStatus = {
-            type = "structure",
-        },
+        insightStatus = M.InsightStatus,
     },
 }
 
@@ -4374,7 +4190,7 @@ M.ListInsightsOutput = {
     members = {
         insights = {
             type = "list",
-            member_type = "structure",
+            member = M.InsightSummary,
         },
         nextToken = {
             type = "string",
@@ -4393,7 +4209,7 @@ M.ListNodegroupsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4412,7 +4228,7 @@ M.ListNodegroupsOutput = {
     members = {
         nodegroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -4443,7 +4259,7 @@ M.ListPodIdentityAssociationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4486,7 +4302,7 @@ M.ListPodIdentityAssociationsOutput = {
     members = {
         associations = {
             type = "list",
-            member_type = "structure",
+            member = M.PodIdentityAssociationSummary,
         },
         nextToken = {
             type = "string",
@@ -4522,8 +4338,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -4573,7 +4389,7 @@ M.ListUpdatesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4586,7 +4402,7 @@ M.ListUpdatesOutput = {
     members = {
         updateIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -4633,19 +4449,16 @@ M.RegisterClusterInput = {
                 required = true,
             },
         },
-        connectorConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        connectorConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConnectorConfigRequest }),
         clientRequestToken = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -4653,9 +4466,7 @@ M.RegisterClusterInput = {
 M.RegisterClusterOutput = {
     type = "structure",
     members = {
-        cluster = {
-            type = "structure",
-        },
+        cluster = M.Cluster,
     },
 }
 
@@ -4706,8 +4517,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4731,7 +4542,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -4763,7 +4574,7 @@ M.UpdateAccessEntryInput = {
         },
         kubernetesGroups = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         clientRequestToken = {
             type = "string",
@@ -4777,9 +4588,7 @@ M.UpdateAccessEntryInput = {
 M.UpdateAccessEntryOutput = {
     type = "structure",
     members = {
-        accessEntry = {
-            type = "structure",
-        },
+        accessEntry = M.AccessEntry,
     },
 }
 
@@ -4817,7 +4626,7 @@ M.UpdateAddonInput = {
         },
         podIdentityAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.AddonPodIdentityAssociations,
         },
     },
 }
@@ -4825,9 +4634,7 @@ M.UpdateAddonInput = {
 M.UpdateAddonOutput = {
     type = "structure",
     members = {
-        update = {
-            type = "structure",
-        },
+        update = M.Update,
     },
 }
 
@@ -4836,11 +4643,11 @@ M.UpdateRoleMappings = {
     members = {
         addOrUpdateRoleMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.ArgoCdRoleMapping,
         },
         removeRoleMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.ArgoCdRoleMapping,
         },
     },
 }
@@ -4848,21 +4655,15 @@ M.UpdateRoleMappings = {
 M.UpdateArgoCdConfig = {
     type = "structure",
     members = {
-        rbacRoleMappings = {
-            type = "structure",
-        },
-        networkAccess = {
-            type = "structure",
-        },
+        rbacRoleMappings = M.UpdateRoleMappings,
+        networkAccess = M.ArgoCdNetworkAccessConfigRequest,
     },
 }
 
 M.UpdateCapabilityConfiguration = {
     type = "structure",
     members = {
-        argoCd = {
-            type = "structure",
-        },
+        argoCd = M.UpdateArgoCdConfig,
     },
 }
 
@@ -4886,9 +4687,7 @@ M.UpdateCapabilityInput = {
         roleArn = {
             type = "string",
         },
-        configuration = {
-            type = "structure",
-        },
+        configuration = M.UpdateCapabilityConfiguration,
         clientRequestToken = {
             type = "string",
         },
@@ -4901,9 +4700,7 @@ M.UpdateCapabilityInput = {
 M.UpdateCapabilityOutput = {
     type = "structure",
     members = {
-        update = {
-            type = "structure",
-        },
+        update = M.Update,
     },
 }
 
@@ -4926,51 +4723,29 @@ M.UpdateClusterConfigInput = {
                 required = true,
             },
         },
-        resourcesVpcConfig = {
-            type = "structure",
-        },
-        logging = {
-            type = "structure",
-        },
+        resourcesVpcConfig = M.VpcConfigRequest,
+        logging = M.Logging,
         clientRequestToken = {
             type = "string",
         },
-        accessConfig = {
-            type = "structure",
-        },
-        upgradePolicy = {
-            type = "structure",
-        },
-        zonalShiftConfig = {
-            type = "structure",
-        },
-        computeConfig = {
-            type = "structure",
-        },
-        kubernetesNetworkConfig = {
-            type = "structure",
-        },
-        storageConfig = {
-            type = "structure",
-        },
-        remoteNetworkConfig = {
-            type = "structure",
-        },
+        accessConfig = M.UpdateAccessConfigRequest,
+        upgradePolicy = M.UpgradePolicyRequest,
+        zonalShiftConfig = M.ZonalShiftConfigRequest,
+        computeConfig = M.ComputeConfigRequest,
+        kubernetesNetworkConfig = M.KubernetesNetworkConfigRequest,
+        storageConfig = M.StorageConfigRequest,
+        remoteNetworkConfig = M.RemoteNetworkConfigRequest,
         deletionProtection = {
             type = "boolean",
         },
-        controlPlaneScalingConfig = {
-            type = "structure",
-        },
+        controlPlaneScalingConfig = M.ControlPlaneScalingConfig,
     },
 }
 
 M.UpdateClusterConfigOutput = {
     type = "structure",
     members = {
-        update = {
-            type = "structure",
-        },
+        update = M.Update,
     },
 }
 
@@ -5008,6 +4783,9 @@ M.UpdateClusterVersionInput = {
         },
         force = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -5015,9 +4793,7 @@ M.UpdateClusterVersionInput = {
 M.UpdateClusterVersionOutput = {
     type = "structure",
     members = {
-        update = {
-            type = "structure",
-        },
+        update = M.Update,
     },
 }
 
@@ -5034,6 +4810,7 @@ M.UpdateEksAnywhereSubscriptionInput = {
         autoRenew = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -5046,9 +4823,7 @@ M.UpdateEksAnywhereSubscriptionInput = {
 M.UpdateEksAnywhereSubscriptionOutput = {
     type = "structure",
     members = {
-        subscription = {
-            type = "structure",
-        },
+        subscription = M.EksAnywhereSubscription,
     },
 }
 
@@ -5057,12 +4832,12 @@ M.UpdateLabelsPayload = {
     members = {
         addOrUpdateLabels = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         removeLabels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -5072,11 +4847,11 @@ M.UpdateTaintsPayload = {
     members = {
         addOrUpdateTaints = {
             type = "list",
-            member_type = "structure",
+            member = M.Taint,
         },
         removeTaints = {
             type = "list",
-            member_type = "structure",
+            member = M.Taint,
         },
     },
 }
@@ -5098,24 +4873,12 @@ M.UpdateNodegroupConfigInput = {
                 required = true,
             },
         },
-        labels = {
-            type = "structure",
-        },
-        taints = {
-            type = "structure",
-        },
-        scalingConfig = {
-            type = "structure",
-        },
-        updateConfig = {
-            type = "structure",
-        },
-        nodeRepairConfig = {
-            type = "structure",
-        },
-        warmPoolConfig = {
-            type = "structure",
-        },
+        labels = M.UpdateLabelsPayload,
+        taints = M.UpdateTaintsPayload,
+        scalingConfig = M.NodegroupScalingConfig,
+        updateConfig = M.NodegroupUpdateConfig,
+        nodeRepairConfig = M.NodeRepairConfig,
+        warmPoolConfig = M.WarmPoolConfig,
         clientRequestToken = {
             type = "string",
         },
@@ -5125,9 +4888,7 @@ M.UpdateNodegroupConfigInput = {
 M.UpdateNodegroupConfigOutput = {
     type = "structure",
     members = {
-        update = {
-            type = "structure",
-        },
+        update = M.Update,
     },
 }
 
@@ -5154,11 +4915,12 @@ M.UpdateNodegroupVersionInput = {
         releaseVersion = {
             type = "string",
         },
-        launchTemplate = {
-            type = "structure",
-        },
+        launchTemplate = M.LaunchTemplateSpecification,
         force = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         clientRequestToken = {
             type = "string",
@@ -5169,9 +4931,7 @@ M.UpdateNodegroupVersionInput = {
 M.UpdateNodegroupVersionOutput = {
     type = "structure",
     members = {
-        update = {
-            type = "structure",
-        },
+        update = M.Update,
     },
 }
 
@@ -5213,9 +4973,7 @@ M.UpdatePodIdentityAssociationInput = {
 M.UpdatePodIdentityAssociationOutput = {
     type = "structure",
     members = {
-        association = {
-            type = "structure",
-        },
+        association = M.PodIdentityAssociation,
     },
 }
 

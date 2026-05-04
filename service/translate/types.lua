@@ -20,7 +20,7 @@ M.AppliedTerminology = {
         },
         Terms = {
             type = "list",
-            member_type = "structure",
+            member = M.Term,
         },
     },
 }
@@ -115,15 +115,10 @@ M.CreateParallelDataInput = {
         Description = {
             type = "string",
         },
-        ParallelDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        EncryptionKey = {
-            type = "structure",
-        },
+        ParallelDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ParallelDataConfig }),
+        EncryptionKey = M.EncryptionKey,
         ClientToken = {
             type = "string",
             traits = {
@@ -132,7 +127,7 @@ M.CreateParallelDataInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -304,13 +299,13 @@ M.JobDetails = {
     type = "structure",
     members = {
         TranslatedDocumentsCount = {
-            type = "number",
+            type = "integer",
         },
         DocumentsWithErrorsCount = {
-            type = "number",
+            type = "integer",
         },
         InputDocumentsCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -334,9 +329,7 @@ M.OutputDataConfig = {
                 required = true,
             },
         },
-        EncryptionKey = {
-            type = "structure",
-        },
+        EncryptionKey = M.EncryptionKey,
     },
 }
 
@@ -380,23 +373,21 @@ M.TextTranslationJobProperties = {
         JobStatus = {
             type = "string",
         },
-        JobDetails = {
-            type = "structure",
-        },
+        JobDetails = M.JobDetails,
         SourceLanguageCode = {
             type = "string",
         },
         TargetLanguageCodes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TerminologyNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ParallelDataNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Message = {
             type = "string",
@@ -407,27 +398,19 @@ M.TextTranslationJobProperties = {
         EndTime = {
             type = "timestamp",
         },
-        InputDataConfig = {
-            type = "structure",
-        },
-        OutputDataConfig = {
-            type = "structure",
-        },
+        InputDataConfig = M.InputDataConfig,
+        OutputDataConfig = M.OutputDataConfig,
         DataAccessRoleArn = {
             type = "string",
         },
-        Settings = {
-            type = "structure",
-        },
+        Settings = M.TranslationSettings,
     },
 }
 
 M.DescribeTextTranslationJobOutput = {
     type = "structure",
     members = {
-        TextTranslationJobProperties = {
-            type = "structure",
-        },
+        TextTranslationJobProperties = M.TextTranslationJobProperties,
     },
 }
 
@@ -481,29 +464,25 @@ M.ParallelDataProperties = {
         },
         TargetLanguageCodes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        ParallelDataConfig = {
-            type = "structure",
-        },
+        ParallelDataConfig = M.ParallelDataConfig,
         Message = {
             type = "string",
         },
         ImportedDataSize = {
-            type = "number",
+            type = "long",
         },
         ImportedRecordCount = {
-            type = "number",
+            type = "long",
         },
         FailedRecordCount = {
-            type = "number",
+            type = "long",
         },
         SkippedRecordCount = {
-            type = "number",
+            type = "long",
         },
-        EncryptionKey = {
-            type = "structure",
-        },
+        EncryptionKey = M.EncryptionKey,
         CreatedAt = {
             type = "timestamp",
         },
@@ -522,18 +501,10 @@ M.ParallelDataProperties = {
 M.GetParallelDataOutput = {
     type = "structure",
     members = {
-        ParallelDataProperties = {
-            type = "structure",
-        },
-        DataLocation = {
-            type = "structure",
-        },
-        AuxiliaryDataLocation = {
-            type = "structure",
-        },
-        LatestUpdateAttemptAuxiliaryDataLocation = {
-            type = "structure",
-        },
+        ParallelDataProperties = M.ParallelDataProperties,
+        DataLocation = M.ParallelDataDataLocation,
+        AuxiliaryDataLocation = M.ParallelDataDataLocation,
+        LatestUpdateAttemptAuxiliaryDataLocation = M.ParallelDataDataLocation,
     },
 }
 
@@ -598,16 +569,14 @@ M.TerminologyProperties = {
         },
         TargetLanguageCodes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        EncryptionKey = {
-            type = "structure",
-        },
+        EncryptionKey = M.EncryptionKey,
         SizeBytes = {
-            type = "number",
+            type = "integer",
         },
         TermCount = {
-            type = "number",
+            type = "integer",
         },
         CreatedAt = {
             type = "timestamp",
@@ -622,7 +591,7 @@ M.TerminologyProperties = {
             type = "string",
         },
         SkippedTermCount = {
-            type = "number",
+            type = "integer",
         },
         Format = {
             type = "string",
@@ -633,15 +602,9 @@ M.TerminologyProperties = {
 M.GetTerminologyOutput = {
     type = "structure",
     members = {
-        TerminologyProperties = {
-            type = "structure",
-        },
-        TerminologyDataLocation = {
-            type = "structure",
-        },
-        AuxiliaryDataLocation = {
-            type = "structure",
-        },
+        TerminologyProperties = M.TerminologyProperties,
+        TerminologyDataLocation = M.TerminologyDataLocation,
+        AuxiliaryDataLocation = M.TerminologyDataLocation,
     },
 }
 
@@ -688,18 +651,13 @@ M.ImportTerminologyInput = {
         Description = {
             type = "string",
         },
-        TerminologyData = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        EncryptionKey = {
-            type = "structure",
-        },
+        TerminologyData = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TerminologyData }),
+        EncryptionKey = M.EncryptionKey,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -707,12 +665,8 @@ M.ImportTerminologyInput = {
 M.ImportTerminologyOutput = {
     type = "structure",
     members = {
-        TerminologyProperties = {
-            type = "structure",
-        },
-        AuxiliaryDataLocation = {
-            type = "structure",
-        },
+        TerminologyProperties = M.TerminologyProperties,
+        AuxiliaryDataLocation = M.TerminologyDataLocation,
     },
 }
 
@@ -739,7 +693,7 @@ M.ListLanguagesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -767,7 +721,7 @@ M.ListLanguagesOutput = {
     members = {
         Languages = {
             type = "list",
-            member_type = "structure",
+            member = M.Language,
         },
         DisplayLanguageCode = {
             type = "string",
@@ -798,7 +752,7 @@ M.ListParallelDataInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -808,7 +762,7 @@ M.ListParallelDataOutput = {
     members = {
         ParallelDataPropertiesList = {
             type = "list",
-            member_type = "structure",
+            member = M.ParallelDataProperties,
         },
         NextToken = {
             type = "string",
@@ -833,7 +787,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -845,7 +799,7 @@ M.ListTerminologiesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -855,7 +809,7 @@ M.ListTerminologiesOutput = {
     members = {
         TerminologyPropertiesList = {
             type = "list",
-            member_type = "structure",
+            member = M.TerminologyProperties,
         },
         NextToken = {
             type = "string",
@@ -894,14 +848,12 @@ M.TextTranslationJobFilter = {
 M.ListTextTranslationJobsInput = {
     type = "structure",
     members = {
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.TextTranslationJobFilter,
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -911,7 +863,7 @@ M.ListTextTranslationJobsOutput = {
     members = {
         TextTranslationJobPropertiesList = {
             type = "list",
-            member_type = "structure",
+            member = M.TextTranslationJobProperties,
         },
         NextToken = {
             type = "string",
@@ -925,18 +877,12 @@ M.StartTextTranslationJobInput = {
         JobName = {
             type = "string",
         },
-        InputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        OutputDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InputDataConfig }),
+        OutputDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OutputDataConfig }),
         DataAccessRoleArn = {
             type = "string",
             traits = {
@@ -951,18 +897,18 @@ M.StartTextTranslationJobInput = {
         },
         TargetLanguageCodes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         TerminologyNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ParallelDataNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ClientToken = {
             type = "string",
@@ -970,9 +916,7 @@ M.StartTextTranslationJobInput = {
                 required = true,
             },
         },
-        Settings = {
-            type = "structure",
-        },
+        Settings = M.TranslationSettings,
     },
 }
 
@@ -1039,7 +983,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -1082,15 +1026,12 @@ M.Document = {
 M.TranslateDocumentInput = {
     type = "structure",
     members = {
-        Document = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Document = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Document }),
         TerminologyNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SourceLanguageCode = {
             type = "string",
@@ -1104,9 +1045,7 @@ M.TranslateDocumentInput = {
                 required = true,
             },
         },
-        Settings = {
-            type = "structure",
-        },
+        Settings = M.TranslationSettings,
     },
 }
 
@@ -1125,12 +1064,9 @@ M.TranslatedDocument = {
 M.TranslateDocumentOutput = {
     type = "structure",
     members = {
-        TranslatedDocument = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TranslatedDocument = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TranslatedDocument }),
         SourceLanguageCode = {
             type = "string",
             traits = {
@@ -1145,11 +1081,9 @@ M.TranslateDocumentOutput = {
         },
         AppliedTerminologies = {
             type = "list",
-            member_type = "structure",
+            member = M.AppliedTerminology,
         },
-        AppliedSettings = {
-            type = "structure",
-        },
+        AppliedSettings = M.TranslationSettings,
     },
 }
 
@@ -1187,7 +1121,7 @@ M.TranslateTextInput = {
         },
         TerminologyNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SourceLanguageCode = {
             type = "string",
@@ -1201,9 +1135,7 @@ M.TranslateTextInput = {
                 required = true,
             },
         },
-        Settings = {
-            type = "structure",
-        },
+        Settings = M.TranslationSettings,
     },
 }
 
@@ -1230,11 +1162,9 @@ M.TranslateTextOutput = {
         },
         AppliedTerminologies = {
             type = "list",
-            member_type = "structure",
+            member = M.AppliedTerminology,
         },
-        AppliedSettings = {
-            type = "structure",
-        },
+        AppliedSettings = M.TranslationSettings,
     },
 }
 
@@ -1249,7 +1179,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1273,12 +1203,9 @@ M.UpdateParallelDataInput = {
         Description = {
             type = "string",
         },
-        ParallelDataConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ParallelDataConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ParallelDataConfig }),
         ClientToken = {
             type = "string",
             traits = {

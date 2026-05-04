@@ -72,7 +72,7 @@ M.SnoozeActionConfiguration = {
     type = "structure",
     members = {
         snoozeDuration = {
-            type = "number",
+            type = "integer",
         },
         note = {
             type = "string",
@@ -86,21 +86,11 @@ M.CustomerAction = {
         actionName = {
             type = "string",
         },
-        snoozeActionConfiguration = {
-            type = "structure",
-        },
-        enableActionConfiguration = {
-            type = "structure",
-        },
-        disableActionConfiguration = {
-            type = "structure",
-        },
-        acknowledgeActionConfiguration = {
-            type = "structure",
-        },
-        resetActionConfiguration = {
-            type = "structure",
-        },
+        snoozeActionConfiguration = M.SnoozeActionConfiguration,
+        enableActionConfiguration = M.EnableActionConfiguration,
+        disableActionConfiguration = M.DisableActionConfiguration,
+        acknowledgeActionConfiguration = M.AcknowledgeActionConfiguration,
+        resetActionConfiguration = M.ResetActionConfiguration,
     },
 }
 
@@ -131,9 +121,7 @@ M.SimpleRuleEvaluation = {
 M.RuleEvaluation = {
     type = "structure",
     members = {
-        simpleRuleEvaluation = {
-            type = "structure",
-        },
+        simpleRuleEvaluation = M.SimpleRuleEvaluation,
     },
 }
 
@@ -169,9 +157,7 @@ M.SystemEvent = {
         eventType = {
             type = "string",
         },
-        stateChangeConfiguration = {
-            type = "structure",
-        },
+        stateChangeConfiguration = M.StateChangeConfiguration,
     },
 }
 
@@ -181,15 +167,9 @@ M.AlarmState = {
         stateName = {
             type = "string",
         },
-        ruleEvaluation = {
-            type = "structure",
-        },
-        customerAction = {
-            type = "structure",
-        },
-        systemEvent = {
-            type = "structure",
-        },
+        ruleEvaluation = M.RuleEvaluation,
+        customerAction = M.CustomerAction,
+        systemEvent = M.SystemEvent,
     },
 }
 
@@ -205,11 +185,9 @@ M.Alarm = {
         keyValue = {
             type = "string",
         },
-        alarmState = {
-            type = "structure",
-        },
+        alarmState = M.AlarmState,
         severity = {
-            type = "number",
+            type = "integer",
         },
         creationTime = {
             type = "timestamp",
@@ -249,7 +227,7 @@ M.BatchAcknowledgeAlarmInput = {
     members = {
         acknowledgeActionRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.AcknowledgeAlarmActionRequest,
             traits = {
                 required = true,
             },
@@ -285,7 +263,7 @@ M.BatchAcknowledgeAlarmOutput = {
     members = {
         errorEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchAlarmActionErrorEntry,
         },
     },
 }
@@ -356,7 +334,7 @@ M.BatchDeleteDetectorInput = {
     members = {
         detectors = {
             type = "list",
-            member_type = "structure",
+            member = M.DeleteDetectorRequest,
             traits = {
                 required = true,
             },
@@ -384,7 +362,7 @@ M.BatchDeleteDetectorOutput = {
     members = {
         batchDeleteDetectorErrorEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchDeleteDetectorErrorEntry,
         },
     },
 }
@@ -418,7 +396,7 @@ M.BatchDisableAlarmInput = {
     members = {
         disableActionRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.DisableAlarmActionRequest,
             traits = {
                 required = true,
             },
@@ -431,7 +409,7 @@ M.BatchDisableAlarmOutput = {
     members = {
         errorEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchAlarmActionErrorEntry,
         },
     },
 }
@@ -465,7 +443,7 @@ M.BatchEnableAlarmInput = {
     members = {
         enableActionRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.EnableAlarmActionRequest,
             traits = {
                 required = true,
             },
@@ -478,7 +456,7 @@ M.BatchEnableAlarmOutput = {
     members = {
         errorEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchAlarmActionErrorEntry,
         },
     },
 }
@@ -487,7 +465,7 @@ M.TimestampValue = {
     type = "structure",
     members = {
         timeInMillis = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -513,9 +491,7 @@ M.Message = {
                 required = true,
             },
         },
-        timestamp = {
-            type = "structure",
-        },
+        timestamp = M.TimestampValue,
     },
 }
 
@@ -524,7 +500,7 @@ M.BatchPutMessageInput = {
     members = {
         messages = {
             type = "list",
-            member_type = "structure",
+            member = M.Message,
             traits = {
                 required = true,
             },
@@ -552,7 +528,7 @@ M.BatchPutMessageOutput = {
     members = {
         BatchPutMessageErrorEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchPutMessageErrorEntry,
         },
     },
 }
@@ -586,7 +562,7 @@ M.BatchResetAlarmInput = {
     members = {
         resetActionRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.ResetAlarmActionRequest,
             traits = {
                 required = true,
             },
@@ -599,7 +575,7 @@ M.BatchResetAlarmOutput = {
     members = {
         errorEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchAlarmActionErrorEntry,
         },
     },
 }
@@ -626,7 +602,7 @@ M.SnoozeAlarmActionRequest = {
             type = "string",
         },
         snoozeDuration = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -639,7 +615,7 @@ M.BatchSnoozeAlarmInput = {
     members = {
         snoozeActionRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.SnoozeAlarmActionRequest,
             traits = {
                 required = true,
             },
@@ -652,7 +628,7 @@ M.BatchSnoozeAlarmOutput = {
     members = {
         errorEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchAlarmActionErrorEntry,
         },
     },
 }
@@ -667,7 +643,7 @@ M.TimerDefinition = {
             },
         },
         seconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -704,14 +680,14 @@ M.DetectorStateDefinition = {
         },
         variables = {
             type = "list",
-            member_type = "structure",
+            member = M.VariableDefinition,
             traits = {
                 required = true,
             },
         },
         timers = {
             type = "list",
-            member_type = "structure",
+            member = M.TimerDefinition,
             traits = {
                 required = true,
             },
@@ -737,12 +713,9 @@ M.UpdateDetectorRequest = {
         keyValue = {
             type = "string",
         },
-        state = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        state = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DetectorStateDefinition }),
     },
 }
 
@@ -751,7 +724,7 @@ M.BatchUpdateDetectorInput = {
     members = {
         detectors = {
             type = "list",
-            member_type = "structure",
+            member = M.UpdateDetectorRequest,
             traits = {
                 required = true,
             },
@@ -779,7 +752,7 @@ M.BatchUpdateDetectorOutput = {
     members = {
         batchUpdateDetectorErrorEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchUpdateDetectorErrorEntry,
         },
     },
 }
@@ -806,9 +779,7 @@ M.DescribeAlarmInput = {
 M.DescribeAlarmOutput = {
     type = "structure",
     members = {
-        alarm = {
-            type = "structure",
-        },
+        alarm = M.Alarm,
     },
 }
 
@@ -888,14 +859,14 @@ M.DetectorState = {
         },
         variables = {
             type = "list",
-            member_type = "structure",
+            member = M.Variable,
             traits = {
                 required = true,
             },
         },
         timers = {
             type = "list",
-            member_type = "structure",
+            member = M.Timer,
             traits = {
                 required = true,
             },
@@ -915,9 +886,7 @@ M.Detector = {
         detectorModelVersion = {
             type = "string",
         },
-        state = {
-            type = "structure",
-        },
+        state = M.DetectorState,
         creationTime = {
             type = "timestamp",
         },
@@ -930,9 +899,7 @@ M.Detector = {
 M.DescribeDetectorOutput = {
     type = "structure",
     members = {
-        detector = {
-            type = "structure",
-        },
+        detector = M.Detector,
     },
 }
 
@@ -957,9 +924,7 @@ M.DetectorSummary = {
         detectorModelVersion = {
             type = "string",
         },
-        state = {
-            type = "structure",
-        },
+        state = M.DetectorStateSummary,
         creationTime = {
             type = "timestamp",
         },
@@ -986,7 +951,7 @@ M.ListAlarmsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -999,7 +964,7 @@ M.ListAlarmsOutput = {
     members = {
         alarmSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.AlarmSummary,
         },
         nextToken = {
             type = "string",
@@ -1030,7 +995,7 @@ M.ListDetectorsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1043,7 +1008,7 @@ M.ListDetectorsOutput = {
     members = {
         detectorSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.DetectorSummary,
         },
         nextToken = {
             type = "string",

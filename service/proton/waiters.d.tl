@@ -1,0 +1,16 @@
+local types = require("proton.types")
+
+local record M
+    wait_until_component_deleted: function(client: table, input: table, options: table): table, table
+    wait_until_component_deployed: function(client: table, input: table, options: table): table, table
+    wait_until_environment_deployed: function(client: table, input: table, options: table): table, table
+    wait_until_environment_template_version_registered: function(client: table, input: table, options: table): table, table
+    wait_until_service_created: function(client: table, input: table, options: table): table, table
+    wait_until_service_deleted: function(client: table, input: table, options: table): table, table
+    wait_until_service_instance_deployed: function(client: table, input: table, options: table): table, table
+    wait_until_service_pipeline_deployed: function(client: table, input: table, options: table): table, table
+    wait_until_service_template_version_registered: function(client: table, input: table, options: table): table, table
+    wait_until_service_updated: function(client: table, input: table, options: table): table, table
+end
+
+return M

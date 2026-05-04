@@ -1032,19 +1032,19 @@ end
 
 local type IotEndpointType = "fips" | "standard"
 
-local type InstalledComponentTopologyFilter = "ALL" | "ROOT"
-
 local type CoreDeviceStatus = "HEALTHY" | "UNHEALTHY"
 
 local type DeploymentStatus = "ACTIVE" | "COMPLETED" | "CANCELED" | "FAILED" | "INACTIVE"
 
-local type DeploymentHistoryFilter = "ALL" | "LATEST_ONLY"
+local type InstalledComponentTopologyFilter = "ALL" | "ROOT"
 
 local type RecipeOutputFormat = "JSON" | "YAML"
 
 local type S3EndpointType = "REGIONAL" | "GLOBAL"
 
 local type ComponentVisibilityScope = "PRIVATE" | "PUBLIC"
+
+local type DeploymentHistoryFilter = "ALL" | "LATEST_ONLY"
 
 local record M
     AssociateServiceRoleToAccountInput: AssociateServiceRoleToAccountInput

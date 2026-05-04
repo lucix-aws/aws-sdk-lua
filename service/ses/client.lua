@@ -16,7 +16,7 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "SimpleEmailService"
-    cfg.signing_name = "simpleemailservice"
+    cfg.signing_name = "ses"
     if not cfg.protocol then
         cfg.protocol = query_protocol.new("awsQuery")
     end

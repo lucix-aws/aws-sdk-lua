@@ -16,7 +16,7 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "A9SearchCloudConfigService2013"
-    cfg.signing_name = "a9searchcloudconfigservice2013"
+    cfg.signing_name = "cloudsearch"
     if not cfg.protocol then
         cfg.protocol = query_protocol.new("awsQuery")
     end

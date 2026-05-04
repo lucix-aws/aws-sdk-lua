@@ -1,0 +1,10 @@
+local types = require("s3.types")
+
+local record M
+    wait_until_bucket_exists: function(client: table, input: table, options: table): table, table
+    wait_until_bucket_not_exists: function(client: table, input: table, options: table): table, table
+    wait_until_object_exists: function(client: table, input: table, options: table): table, table
+    wait_until_object_not_exists: function(client: table, input: table, options: table): table, table
+end
+
+return M

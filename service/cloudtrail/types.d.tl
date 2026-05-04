@@ -3126,29 +3126,29 @@ end
 
 local type InsightType = "ApiCallRateInsight" | "ApiErrorRateInsight"
 
-local type ListInsightsDataType = "InsightsEvents"
-
 local type InsightsMetricDataType = "FillWithZeros" | "NonZeroData"
 
 local type MaxEventSize = "Standard" | "Large"
 
 local type EventCategory = "insight"
 
-local type DashboardStatus = "CREATING" | "CREATED" | "UPDATING" | "UPDATED" | "DELETING"
+local type ListInsightsDataType = "InsightsEvents"
 
-local type DeliveryStatus = "SUCCESS" | "FAILED" | "FAILED_SIGNING_FILE" | "PENDING" | "RESOURCE_NOT_FOUND" | "ACCESS_DENIED" | "ACCESS_DENIED_SIGNING_FILE" | "CANCELLED" | "UNKNOWN"
+local type DashboardStatus = "CREATING" | "CREATED" | "UPDATING" | "UPDATED" | "DELETING"
 
 local type EventDataStoreStatus = "CREATED" | "ENABLED" | "PENDING_DELETION" | "STARTING_INGESTION" | "STOPPING_INGESTION" | "STOPPED_INGESTION"
 
-local type DashboardType = "MANAGED" | "CUSTOM"
+local type DeliveryStatus = "SUCCESS" | "FAILED" | "FAILED_SIGNING_FILE" | "PENDING" | "RESOURCE_NOT_FOUND" | "ACCESS_DENIED" | "ACCESS_DENIED_SIGNING_FILE" | "CANCELLED" | "UNKNOWN"
 
 local type ImportStatus = "INITIALIZING" | "IN_PROGRESS" | "FAILED" | "STOPPED" | "COMPLETED"
 
 local type QueryStatus = "QUEUED" | "RUNNING" | "FINISHED" | "FAILED" | "CANCELLED" | "TIMED_OUT"
 
-local type BillingMode = "EXTENDABLE_RETENTION_PRICING" | "FIXED_RETENTION_PRICING"
+local type DashboardType = "MANAGED" | "CUSTOM"
 
 local type FederationStatus = "ENABLING" | "ENABLED" | "DISABLING" | "DISABLED"
+
+local type BillingMode = "EXTENDABLE_RETENTION_PRICING" | "FIXED_RETENTION_PRICING"
 
 local record M
     AddTagsInput: AddTagsInput

@@ -146,10 +146,10 @@ M.Dataset = {
             type = "string",
         },
         DataStorage = {
-            type = "number",
+            type = "long",
         },
         NumRecords = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -157,9 +157,7 @@ M.Dataset = {
 M.DeleteDatasetOutput = {
     type = "structure",
     members = {
-        Dataset = {
-            type = "structure",
-        },
+        Dataset = M.Dataset,
     },
 }
 
@@ -219,9 +217,7 @@ M.DescribeDatasetInput = {
 M.DescribeDatasetOutput = {
     type = "structure",
     members = {
-        Dataset = {
-            type = "structure",
-        },
+        Dataset = M.Dataset,
     },
 }
 
@@ -245,10 +241,10 @@ M.IdentityPoolUsage = {
             type = "string",
         },
         SyncSessionsCount = {
-            type = "number",
+            type = "long",
         },
         DataStorage = {
-            type = "number",
+            type = "long",
         },
         LastModifiedDate = {
             type = "timestamp",
@@ -259,9 +255,7 @@ M.IdentityPoolUsage = {
 M.DescribeIdentityPoolUsageOutput = {
     type = "structure",
     members = {
-        IdentityPoolUsage = {
-            type = "structure",
-        },
+        IdentityPoolUsage = M.IdentityPoolUsage,
     },
 }
 
@@ -298,10 +292,13 @@ M.IdentityUsage = {
             type = "timestamp",
         },
         DatasetCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         DataStorage = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -309,9 +306,7 @@ M.IdentityUsage = {
 M.DescribeIdentityUsageOutput = {
     type = "structure",
     members = {
-        IdentityUsage = {
-            type = "structure",
-        },
+        IdentityUsage = M.IdentityUsage,
     },
 }
 
@@ -374,8 +369,8 @@ M.GetCognitoEventsOutput = {
     members = {
         Events = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -418,7 +413,7 @@ M.PushSync = {
     members = {
         ApplicationArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RoleArn = {
             type = "string",
@@ -432,12 +427,8 @@ M.GetIdentityPoolConfigurationOutput = {
         IdentityPoolId = {
             type = "string",
         },
-        PushSync = {
-            type = "structure",
-        },
-        CognitoStreams = {
-            type = "structure",
-        },
+        PushSync = M.PushSync,
+        CognitoStreams = M.CognitoStreams,
     },
 }
 
@@ -465,7 +456,7 @@ M.ListDatasetsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -478,10 +469,13 @@ M.ListDatasetsOutput = {
     members = {
         Datasets = {
             type = "list",
-            member_type = "structure",
+            member = M.Dataset,
         },
         Count = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         NextToken = {
             type = "string",
@@ -499,7 +493,7 @@ M.ListIdentityPoolUsageInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -512,13 +506,19 @@ M.ListIdentityPoolUsageOutput = {
     members = {
         IdentityPoolUsages = {
             type = "list",
-            member_type = "structure",
+            member = M.IdentityPoolUsage,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         Count = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         NextToken = {
             type = "string",
@@ -551,7 +551,7 @@ M.ListRecordsInput = {
             },
         },
         LastSyncCount = {
-            type = "number",
+            type = "long",
             traits = {
                 http_query = "lastSyncCount",
             },
@@ -563,7 +563,7 @@ M.ListRecordsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -587,7 +587,7 @@ M.Record = {
             type = "string",
         },
         SyncCount = {
-            type = "number",
+            type = "long",
         },
         LastModifiedDate = {
             type = "timestamp",
@@ -606,29 +606,38 @@ M.ListRecordsOutput = {
     members = {
         Records = {
             type = "list",
-            member_type = "structure",
+            member = M.Record,
         },
         NextToken = {
             type = "string",
         },
         Count = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         DatasetSyncCount = {
-            type = "number",
+            type = "long",
         },
         LastModifiedBy = {
             type = "string",
         },
         MergedDatasetNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DatasetExists = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         DatasetDeletedAfterRequestedSyncCount = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         SyncSessionToken = {
             type = "string",
@@ -709,8 +718,8 @@ M.SetCognitoEventsInput = {
         },
         Events = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -745,12 +754,8 @@ M.SetIdentityPoolConfigurationInput = {
                 required = true,
             },
         },
-        PushSync = {
-            type = "structure",
-        },
-        CognitoStreams = {
-            type = "structure",
-        },
+        PushSync = M.PushSync,
+        CognitoStreams = M.CognitoStreams,
     },
 }
 
@@ -760,12 +765,8 @@ M.SetIdentityPoolConfigurationOutput = {
         IdentityPoolId = {
             type = "string",
         },
-        PushSync = {
-            type = "structure",
-        },
-        CognitoStreams = {
-            type = "structure",
-        },
+        PushSync = M.PushSync,
+        CognitoStreams = M.CognitoStreams,
     },
 }
 
@@ -908,7 +909,7 @@ M.RecordPatch = {
             type = "string",
         },
         SyncCount = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -948,7 +949,7 @@ M.UpdateRecordsInput = {
         },
         RecordPatches = {
             type = "list",
-            member_type = "structure",
+            member = M.RecordPatch,
         },
         SyncSessionToken = {
             type = "string",
@@ -970,7 +971,7 @@ M.UpdateRecordsOutput = {
     members = {
         Records = {
             type = "list",
-            member_type = "structure",
+            member = M.Record,
         },
     },
 }

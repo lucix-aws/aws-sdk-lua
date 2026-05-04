@@ -245,24 +245,17 @@ M.AutoExportRevisionDestinationEntry = {
 M.AutoExportRevisionToS3RequestDetails = {
     type = "structure",
     members = {
-        Encryption = {
-            type = "structure",
-        },
-        RevisionDestination = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Encryption = M.ExportServerSideEncryption,
+        RevisionDestination = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AutoExportRevisionDestinationEntry }),
     },
 }
 
 M.Action = {
     type = "structure",
     members = {
-        ExportRevisionToS3 = {
-            type = "structure",
-        },
+        ExportRevisionToS3 = M.AutoExportRevisionToS3RequestDetails,
     },
 }
 
@@ -326,7 +319,7 @@ M.AssetConfiguration = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -363,7 +356,7 @@ M.LFTag = {
         },
         TagValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -376,7 +369,7 @@ M.DatabaseLFTagPolicy = {
     members = {
         Expression = {
             type = "list",
-            member_type = "structure",
+            member = M.LFTag,
             traits = {
                 required = true,
             },
@@ -389,7 +382,7 @@ M.TableLFTagPolicy = {
     members = {
         Expression = {
             type = "list",
-            member_type = "structure",
+            member = M.LFTag,
             traits = {
                 required = true,
             },
@@ -400,12 +393,8 @@ M.TableLFTagPolicy = {
 M.LFResourceDetails = {
     type = "structure",
     members = {
-        Database = {
-            type = "structure",
-        },
-        Table = {
-            type = "structure",
-        },
+        Database = M.DatabaseLFTagPolicy,
+        Table = M.TableLFTagPolicy,
     },
 }
 
@@ -429,21 +418,16 @@ M.LFTagPolicyDetails = {
                 required = true,
             },
         },
-        ResourceDetails = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ResourceDetails = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LFResourceDetails }),
     },
 }
 
 M.LakeFormationDataPermissionDetails = {
     type = "structure",
     members = {
-        LFTagPolicy = {
-            type = "structure",
-        },
+        LFTagPolicy = M.LFTagPolicyDetails,
     },
 }
 
@@ -459,12 +443,9 @@ M.LFPermission = {
 M.LakeFormationDataPermissionAsset = {
     type = "structure",
     members = {
-        LakeFormationDataPermissionDetails = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        LakeFormationDataPermissionDetails = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LakeFormationDataPermissionDetails }),
         LakeFormationDataPermissionType = {
             type = "string",
             traits = {
@@ -473,7 +454,7 @@ M.LakeFormationDataPermissionAsset = {
         },
         Permissions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -519,11 +500,11 @@ M.S3DataAccessAsset = {
         },
         KeyPrefixes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Keys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         S3AccessPointAlias = {
             type = "string",
@@ -533,7 +514,7 @@ M.S3DataAccessAsset = {
         },
         KmsKeysToGrant = {
             type = "list",
-            member_type = "structure",
+            member = M.KmsKeyToGrant,
         },
     },
 }
@@ -542,8 +523,9 @@ M.S3SnapshotAsset = {
     type = "structure",
     members = {
         Size = {
-            type = "number",
+            type = "double",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -553,21 +535,11 @@ M.S3SnapshotAsset = {
 M.AssetDetails = {
     type = "structure",
     members = {
-        S3SnapshotAsset = {
-            type = "structure",
-        },
-        RedshiftDataShareAsset = {
-            type = "structure",
-        },
-        ApiGatewayApiAsset = {
-            type = "structure",
-        },
-        S3DataAccessAsset = {
-            type = "structure",
-        },
-        LakeFormationDataPermissionAsset = {
-            type = "structure",
-        },
+        S3SnapshotAsset = M.S3SnapshotAsset,
+        RedshiftDataShareAsset = M.RedshiftDataShareAsset,
+        ApiGatewayApiAsset = M.ApiGatewayApiAsset,
+        S3DataAccessAsset = M.S3DataAccessAsset,
+        LakeFormationDataPermissionAsset = M.LakeFormationDataPermissionAsset,
     },
 }
 
@@ -588,12 +560,9 @@ M.AssetEntry = {
                 required = true,
             },
         },
-        AssetDetails = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AssetDetails = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AssetDetails }),
         AssetType = {
             type = "string",
             traits = {
@@ -722,8 +691,8 @@ M.CreateDataGrantInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -808,8 +777,8 @@ M.CreateDataGrantOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -855,7 +824,10 @@ M.ServiceLimitExceededException = {
             type = "string",
         },
         LimitValue = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         Message = {
             type = "string",
@@ -889,8 +861,8 @@ M.CreateDataSetInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -936,16 +908,14 @@ M.CreateDataSetOutput = {
         Origin = {
             type = "string",
         },
-        OriginDetails = {
-            type = "structure",
-        },
+        OriginDetails = M.OriginDetails,
         SourceId = {
             type = "string",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         UpdatedAt = {
             type = "timestamp",
@@ -968,31 +938,23 @@ M.RevisionPublished = {
 M.Event = {
     type = "structure",
     members = {
-        RevisionPublished = {
-            type = "structure",
-        },
+        RevisionPublished = M.RevisionPublished,
     },
 }
 
 M.CreateEventActionInput = {
     type = "structure",
     members = {
-        Action = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Event = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Action = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Action }),
+        Event = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Event }),
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1000,25 +962,21 @@ M.CreateEventActionInput = {
 M.CreateEventActionOutput = {
     type = "structure",
     members = {
-        Action = {
-            type = "structure",
-        },
+        Action = M.Action,
         Arn = {
             type = "string",
         },
         CreatedAt = {
             type = "timestamp",
         },
-        Event = {
-            type = "structure",
-        },
+        Event = M.Event,
         Id = {
             type = "string",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         UpdatedAt = {
             type = "timestamp",
@@ -1037,15 +995,15 @@ M.S3DataAccessAssetSourceEntry = {
         },
         KeyPrefixes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Keys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         KmsKeysToGrant = {
             type = "list",
-            member_type = "structure",
+            member = M.KmsKeyToGrant,
         },
     },
 }
@@ -1053,12 +1011,9 @@ M.S3DataAccessAssetSourceEntry = {
 M.CreateS3DataAccessFromS3BucketRequestDetails = {
     type = "structure",
     members = {
-        AssetSource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AssetSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3DataAccessAssetSourceEntry }),
         DataSetId = {
             type = "string",
             traits = {
@@ -1079,7 +1034,7 @@ M.ExportAssetsToS3RequestDetails = {
     members = {
         AssetDestinations = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetDestinationEntry,
             traits = {
                 required = true,
             },
@@ -1090,9 +1045,7 @@ M.ExportAssetsToS3RequestDetails = {
                 required = true,
             },
         },
-        Encryption = {
-            type = "structure",
-        },
+        Encryption = M.ExportServerSideEncryption,
         RevisionId = {
             type = "string",
             traits = {
@@ -1156,12 +1109,10 @@ M.ExportRevisionsToS3RequestDetails = {
                 required = true,
             },
         },
-        Encryption = {
-            type = "structure",
-        },
+        Encryption = M.ExportServerSideEncryption,
         RevisionDestinations = {
             type = "list",
-            member_type = "structure",
+            member = M.RevisionDestinationEntry,
             traits = {
                 required = true,
             },
@@ -1262,14 +1213,14 @@ M.DatabaseLFTagPolicyAndPermissions = {
     members = {
         Expression = {
             type = "list",
-            member_type = "structure",
+            member = M.LFTag,
             traits = {
                 required = true,
             },
         },
         Permissions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1287,14 +1238,14 @@ M.TableLFTagPolicyAndPermissions = {
     members = {
         Expression = {
             type = "list",
-            member_type = "structure",
+            member = M.LFTag,
             traits = {
                 required = true,
             },
         },
         Permissions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1311,12 +1262,8 @@ M.ImportAssetsFromLakeFormationTagPolicyRequestDetails = {
                 required = true,
             },
         },
-        Database = {
-            type = "structure",
-        },
-        Table = {
-            type = "structure",
-        },
+        Database = M.DatabaseLFTagPolicyAndPermissions,
+        Table = M.TableLFTagPolicyAndPermissions,
         RoleArn = {
             type = "string",
             traits = {
@@ -1355,7 +1302,7 @@ M.ImportAssetsFromRedshiftDataSharesRequestDetails = {
     members = {
         AssetSources = {
             type = "list",
-            member_type = "structure",
+            member = M.RedshiftDataShareAssetSourceEntry,
             traits = {
                 required = true,
             },
@@ -1380,7 +1327,7 @@ M.ImportAssetsFromS3RequestDetails = {
     members = {
         AssetSources = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetSourceEntry,
             traits = {
                 required = true,
             },
@@ -1403,33 +1350,15 @@ M.ImportAssetsFromS3RequestDetails = {
 M.RequestDetails = {
     type = "structure",
     members = {
-        ExportAssetToSignedUrl = {
-            type = "structure",
-        },
-        ExportAssetsToS3 = {
-            type = "structure",
-        },
-        ExportRevisionsToS3 = {
-            type = "structure",
-        },
-        ImportAssetFromSignedUrl = {
-            type = "structure",
-        },
-        ImportAssetsFromS3 = {
-            type = "structure",
-        },
-        ImportAssetsFromRedshiftDataShares = {
-            type = "structure",
-        },
-        ImportAssetFromApiGatewayApi = {
-            type = "structure",
-        },
-        CreateS3DataAccessFromS3Bucket = {
-            type = "structure",
-        },
-        ImportAssetsFromLakeFormationTagPolicy = {
-            type = "structure",
-        },
+        ExportAssetToSignedUrl = M.ExportAssetToSignedUrlRequestDetails,
+        ExportAssetsToS3 = M.ExportAssetsToS3RequestDetails,
+        ExportRevisionsToS3 = M.ExportRevisionsToS3RequestDetails,
+        ImportAssetFromSignedUrl = M.ImportAssetFromSignedUrlRequestDetails,
+        ImportAssetsFromS3 = M.ImportAssetsFromS3RequestDetails,
+        ImportAssetsFromRedshiftDataShares = M.ImportAssetsFromRedshiftDataSharesRequestDetails,
+        ImportAssetFromApiGatewayApi = M.ImportAssetFromApiGatewayApiRequestDetails,
+        CreateS3DataAccessFromS3Bucket = M.CreateS3DataAccessFromS3BucketRequestDetails,
+        ImportAssetsFromLakeFormationTagPolicy = M.ImportAssetsFromLakeFormationTagPolicyRequestDetails,
     },
 }
 
@@ -1448,15 +1377,10 @@ M.Type = {
 M.CreateJobInput = {
     type = "structure",
     members = {
-        AssetConfiguration = {
-            type = "structure",
-        },
-        Details = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AssetConfiguration = M.AssetConfiguration,
+        Details = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RequestDetails }),
         Type = {
             type = "string",
             traits = {
@@ -1469,12 +1393,9 @@ M.CreateJobInput = {
 M.CreateS3DataAccessFromS3BucketResponseDetails = {
     type = "structure",
     members = {
-        AssetSource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AssetSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3DataAccessAssetSourceEntry }),
         DataSetId = {
             type = "string",
             traits = {
@@ -1495,7 +1416,7 @@ M.ExportAssetsToS3ResponseDetails = {
     members = {
         AssetDestinations = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetDestinationEntry,
             traits = {
                 required = true,
             },
@@ -1506,9 +1427,7 @@ M.ExportAssetsToS3ResponseDetails = {
                 required = true,
             },
         },
-        Encryption = {
-            type = "structure",
-        },
+        Encryption = M.ExportServerSideEncryption,
         RevisionId = {
             type = "string",
             traits = {
@@ -1557,12 +1476,10 @@ M.ExportRevisionsToS3ResponseDetails = {
                 required = true,
             },
         },
-        Encryption = {
-            type = "structure",
-        },
+        Encryption = M.ExportServerSideEncryption,
         RevisionDestinations = {
             type = "list",
-            member_type = "structure",
+            member = M.RevisionDestinationEntry,
             traits = {
                 required = true,
             },
@@ -1681,12 +1598,8 @@ M.ImportAssetsFromLakeFormationTagPolicyResponseDetails = {
                 required = true,
             },
         },
-        Database = {
-            type = "structure",
-        },
-        Table = {
-            type = "structure",
-        },
+        Database = M.DatabaseLFTagPolicyAndPermissions,
+        Table = M.TableLFTagPolicyAndPermissions,
         RoleArn = {
             type = "string",
             traits = {
@@ -1713,7 +1626,7 @@ M.ImportAssetsFromRedshiftDataSharesResponseDetails = {
     members = {
         AssetSources = {
             type = "list",
-            member_type = "structure",
+            member = M.RedshiftDataShareAssetSourceEntry,
             traits = {
                 required = true,
             },
@@ -1738,7 +1651,7 @@ M.ImportAssetsFromS3ResponseDetails = {
     members = {
         AssetSources = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetSourceEntry,
             traits = {
                 required = true,
             },
@@ -1761,33 +1674,15 @@ M.ImportAssetsFromS3ResponseDetails = {
 M.ResponseDetails = {
     type = "structure",
     members = {
-        ExportAssetToSignedUrl = {
-            type = "structure",
-        },
-        ExportAssetsToS3 = {
-            type = "structure",
-        },
-        ExportRevisionsToS3 = {
-            type = "structure",
-        },
-        ImportAssetFromSignedUrl = {
-            type = "structure",
-        },
-        ImportAssetsFromS3 = {
-            type = "structure",
-        },
-        ImportAssetsFromRedshiftDataShares = {
-            type = "structure",
-        },
-        ImportAssetFromApiGatewayApi = {
-            type = "structure",
-        },
-        CreateS3DataAccessFromS3Bucket = {
-            type = "structure",
-        },
-        ImportAssetsFromLakeFormationTagPolicy = {
-            type = "structure",
-        },
+        ExportAssetToSignedUrl = M.ExportAssetToSignedUrlResponseDetails,
+        ExportAssetsToS3 = M.ExportAssetsToS3ResponseDetails,
+        ExportRevisionsToS3 = M.ExportRevisionsToS3ResponseDetails,
+        ImportAssetFromSignedUrl = M.ImportAssetFromSignedUrlResponseDetails,
+        ImportAssetsFromS3 = M.ImportAssetsFromS3ResponseDetails,
+        ImportAssetsFromRedshiftDataShares = M.ImportAssetsFromRedshiftDataSharesResponseDetails,
+        ImportAssetFromApiGatewayApi = M.ImportAssetFromApiGatewayApiResponseDetails,
+        CreateS3DataAccessFromS3Bucket = M.CreateS3DataAccessFromS3BucketResponseDetails,
+        ImportAssetsFromLakeFormationTagPolicy = M.ImportAssetsFromLakeFormationTagPolicyResponseDetails,
     },
 }
 
@@ -1806,12 +1701,10 @@ M.ImportAssetFromSignedUrlJobErrorDetails = {
 M.Details = {
     type = "structure",
     members = {
-        ImportAssetFromSignedUrlJobErrorDetails = {
-            type = "structure",
-        },
+        ImportAssetFromSignedUrlJobErrorDetails = M.ImportAssetFromSignedUrlJobErrorDetails,
         ImportAssetsFromS3JobErrorDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetSourceEntry,
         },
     },
 }
@@ -1839,14 +1732,15 @@ M.JobError = {
                 required = true,
             },
         },
-        Details = {
-            type = "structure",
-        },
+        Details = M.Details,
         LimitName = {
             type = "string",
         },
         LimitValue = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         Message = {
             type = "string",
@@ -1878,18 +1772,14 @@ M.CreateJobOutput = {
         Arn = {
             type = "string",
         },
-        AssetConfiguration = {
-            type = "structure",
-        },
+        AssetConfiguration = M.AssetConfiguration,
         CreatedAt = {
             type = "timestamp",
         },
-        Details = {
-            type = "structure",
-        },
+        Details = M.ResponseDetails,
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.JobError,
         },
         Id = {
             type = "string",
@@ -1921,8 +1811,8 @@ M.CreateRevisionInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1944,6 +1834,9 @@ M.CreateRevisionOutput = {
         },
         Finalized = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Id = {
             type = "string",
@@ -1953,8 +1846,8 @@ M.CreateRevisionOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         UpdatedAt = {
             type = "timestamp",
@@ -1964,6 +1857,9 @@ M.CreateRevisionOutput = {
         },
         Revoked = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         RevokedAt = {
             type = "timestamp",
@@ -2110,9 +2006,7 @@ M.GetAssetOutput = {
         Arn = {
             type = "string",
         },
-        AssetDetails = {
-            type = "structure",
-        },
+        AssetDetails = M.AssetDetails,
         AssetType = {
             type = "string",
         },
@@ -2136,8 +2030,8 @@ M.GetAssetOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         UpdatedAt = {
             type = "timestamp",
@@ -2238,8 +2132,8 @@ M.GetDataGrantOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2281,16 +2175,14 @@ M.GetDataSetOutput = {
         Origin = {
             type = "string",
         },
-        OriginDetails = {
-            type = "structure",
-        },
+        OriginDetails = M.OriginDetails,
         SourceId = {
             type = "string",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         UpdatedAt = {
             type = "timestamp",
@@ -2314,25 +2206,21 @@ M.GetEventActionInput = {
 M.GetEventActionOutput = {
     type = "structure",
     members = {
-        Action = {
-            type = "structure",
-        },
+        Action = M.Action,
         Arn = {
             type = "string",
         },
         CreatedAt = {
             type = "timestamp",
         },
-        Event = {
-            type = "structure",
-        },
+        Event = M.Event,
         Id = {
             type = "string",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         UpdatedAt = {
             type = "timestamp",
@@ -2359,18 +2247,14 @@ M.GetJobOutput = {
         Arn = {
             type = "string",
         },
-        AssetConfiguration = {
-            type = "structure",
-        },
+        AssetConfiguration = M.AssetConfiguration,
         CreatedAt = {
             type = "timestamp",
         },
-        Details = {
-            type = "structure",
-        },
+        Details = M.ResponseDetails,
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.JobError,
         },
         Id = {
             type = "string",
@@ -2509,6 +2393,9 @@ M.GetRevisionOutput = {
         },
         Finalized = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Id = {
             type = "string",
@@ -2518,8 +2405,8 @@ M.GetRevisionOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         UpdatedAt = {
             type = "timestamp",
@@ -2529,6 +2416,9 @@ M.GetRevisionOutput = {
         },
         Revoked = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         RevokedAt = {
             type = "timestamp",
@@ -2540,8 +2430,9 @@ M.ListDataGrantsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_query = "maxResults",
             },
         },
@@ -2631,7 +2522,7 @@ M.ListDataGrantsOutput = {
     members = {
         DataGrantSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.DataGrantSummaryEntry,
         },
         NextToken = {
             type = "string",
@@ -2650,8 +2541,9 @@ M.ListDataSetRevisionsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -2690,6 +2582,9 @@ M.RevisionEntry = {
         },
         Finalized = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Id = {
             type = "string",
@@ -2711,6 +2606,9 @@ M.RevisionEntry = {
         },
         Revoked = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         RevokedAt = {
             type = "timestamp",
@@ -2726,7 +2624,7 @@ M.ListDataSetRevisionsOutput = {
         },
         Revisions = {
             type = "list",
-            member_type = "structure",
+            member = M.RevisionEntry,
         },
     },
 }
@@ -2735,8 +2633,9 @@ M.ListDataSetsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -2800,9 +2699,7 @@ M.DataSetEntry = {
                 required = true,
             },
         },
-        OriginDetails = {
-            type = "structure",
-        },
+        OriginDetails = M.OriginDetails,
         SourceId = {
             type = "string",
         },
@@ -2820,7 +2717,7 @@ M.ListDataSetsOutput = {
     members = {
         DataSets = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSetEntry,
         },
         NextToken = {
             type = "string",
@@ -2838,8 +2735,9 @@ M.ListEventActionsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -2855,12 +2753,9 @@ M.ListEventActionsInput = {
 M.EventActionEntry = {
     type = "structure",
     members = {
-        Action = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Action = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Action }),
         Arn = {
             type = "string",
             traits = {
@@ -2873,12 +2768,9 @@ M.EventActionEntry = {
                 required = true,
             },
         },
-        Event = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Event = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Event }),
         Id = {
             type = "string",
             traits = {
@@ -2899,7 +2791,7 @@ M.ListEventActionsOutput = {
     members = {
         EventActions = {
             type = "list",
-            member_type = "structure",
+            member = M.EventActionEntry,
         },
         NextToken = {
             type = "string",
@@ -2917,8 +2809,9 @@ M.ListJobsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -2946,24 +2839,19 @@ M.JobEntry = {
                 required = true,
             },
         },
-        AssetConfiguration = {
-            type = "structure",
-        },
+        AssetConfiguration = M.AssetConfiguration,
         CreatedAt = {
             type = "timestamp",
             traits = {
                 required = true,
             },
         },
-        Details = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Details = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResponseDetails }),
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.JobError,
         },
         Id = {
             type = "string",
@@ -2997,7 +2885,7 @@ M.ListJobsOutput = {
     members = {
         Jobs = {
             type = "list",
-            member_type = "structure",
+            member = M.JobEntry,
         },
         NextToken = {
             type = "string",
@@ -3009,8 +2897,9 @@ M.ListReceivedDataGrantsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_query = "maxResults",
             },
         },
@@ -3022,7 +2911,7 @@ M.ListReceivedDataGrantsInput = {
         },
         AcceptanceState = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "acceptanceState",
             },
@@ -3101,7 +2990,7 @@ M.ListReceivedDataGrantsOutput = {
     members = {
         DataGrantSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ReceivedDataGrantSummariesEntry,
         },
         NextToken = {
             type = "string",
@@ -3120,8 +3009,9 @@ M.ListRevisionAssetsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -3146,7 +3036,7 @@ M.ListRevisionAssetsOutput = {
     members = {
         Assets = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetEntry,
         },
         NextToken = {
             type = "string",
@@ -3172,8 +3062,8 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
             },
@@ -3224,6 +3114,9 @@ M.RevokeRevisionOutput = {
         },
         Finalized = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Id = {
             type = "string",
@@ -3239,6 +3132,9 @@ M.RevokeRevisionOutput = {
         },
         Revoked = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         RevokedAt = {
             type = "timestamp",
@@ -3257,8 +3153,8 @@ M.SendApiAssetInput = {
         },
         QueryStringParameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 http_query_params = true,
             },
@@ -3279,8 +3175,8 @@ M.SendApiAssetInput = {
         },
         RequestHeaders = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 http_prefix_headers = "x-amzn-dataexchange-header-",
             },
@@ -3318,8 +3214,8 @@ M.SendApiAssetOutput = {
         },
         ResponseHeaders = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 http_prefix_headers = "",
             },
@@ -3380,7 +3276,7 @@ M.SchemaChangeRequestDetails = {
     members = {
         Changes = {
             type = "list",
-            member_type = "structure",
+            member = M.SchemaChangeDetails,
         },
         SchemaChangeAt = {
             type = "timestamp",
@@ -3394,15 +3290,9 @@ M.SchemaChangeRequestDetails = {
 M.NotificationDetails = {
     type = "structure",
     members = {
-        DataUpdate = {
-            type = "structure",
-        },
-        Deprecation = {
-            type = "structure",
-        },
-        SchemaChange = {
-            type = "structure",
-        },
+        DataUpdate = M.DataUpdateRequestDetails,
+        Deprecation = M.DeprecationRequestDetails,
+        SchemaChange = M.SchemaChangeRequestDetails,
     },
 }
 
@@ -3453,11 +3343,11 @@ M.S3DataAccessDetails = {
     members = {
         KeyPrefixes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Keys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3467,15 +3357,15 @@ M.ScopeDetails = {
     members = {
         LakeFormationTagPolicies = {
             type = "list",
-            member_type = "structure",
+            member = M.LakeFormationTagPolicyDetails,
         },
         RedshiftDataShares = {
             type = "list",
-            member_type = "structure",
+            member = M.RedshiftDataShareDetails,
         },
         S3DataAccesses = {
             type = "list",
-            member_type = "structure",
+            member = M.S3DataAccessDetails,
         },
     },
 }
@@ -3490,9 +3380,7 @@ M.NotificationType = {
 M.SendDataSetNotificationInput = {
     type = "structure",
     members = {
-        Scope = {
-            type = "structure",
-        },
+        Scope = M.ScopeDetails,
         ClientToken = {
             type = "string",
         },
@@ -3506,9 +3394,7 @@ M.SendDataSetNotificationInput = {
                 required = true,
             },
         },
-        Details = {
-            type = "structure",
-        },
+        Details = M.NotificationDetails,
         Type = {
             type = "string",
             traits = {
@@ -3551,8 +3437,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 json_name = "tags",
                 required = true,
@@ -3577,7 +3463,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -3629,9 +3515,7 @@ M.UpdateAssetOutput = {
         Arn = {
             type = "string",
         },
-        AssetDetails = {
-            type = "structure",
-        },
+        AssetDetails = M.AssetDetails,
         AssetType = {
             type = "string",
         },
@@ -3702,9 +3586,7 @@ M.UpdateDataSetOutput = {
         Origin = {
             type = "string",
         },
-        OriginDetails = {
-            type = "structure",
-        },
+        OriginDetails = M.OriginDetails,
         SourceId = {
             type = "string",
         },
@@ -3717,9 +3599,7 @@ M.UpdateDataSetOutput = {
 M.UpdateEventActionInput = {
     type = "structure",
     members = {
-        Action = {
-            type = "structure",
-        },
+        Action = M.Action,
         EventActionId = {
             type = "string",
             traits = {
@@ -3733,18 +3613,14 @@ M.UpdateEventActionInput = {
 M.UpdateEventActionOutput = {
     type = "structure",
     members = {
-        Action = {
-            type = "structure",
-        },
+        Action = M.Action,
         Arn = {
             type = "string",
         },
         CreatedAt = {
             type = "timestamp",
         },
-        Event = {
-            type = "structure",
-        },
+        Event = M.Event,
         Id = {
             type = "string",
         },
@@ -3769,6 +3645,9 @@ M.UpdateRevisionInput = {
         },
         Finalized = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         RevisionId = {
             type = "string",
@@ -3797,6 +3676,9 @@ M.UpdateRevisionOutput = {
         },
         Finalized = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         Id = {
             type = "string",
@@ -3812,6 +3694,9 @@ M.UpdateRevisionOutput = {
         },
         Revoked = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         RevokedAt = {
             type = "timestamp",

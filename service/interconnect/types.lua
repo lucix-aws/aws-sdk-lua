@@ -15,12 +15,9 @@ M.AttachPoint = {
 M.AcceptConnectionProposalInput = {
     type = "structure",
     members = {
-        attachPoint = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        attachPoint = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AttachPoint }),
         activationKey = {
             type = "string",
             traits = {
@@ -32,8 +29,8 @@ M.AcceptConnectionProposalInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         clientToken = {
             type = "string",
@@ -91,24 +88,18 @@ M.Connection = {
                 required = true,
             },
         },
-        attachPoint = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        attachPoint = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AttachPoint }),
         environmentId = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        provider = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        provider = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Provider }),
         location = {
             type = "string",
             traits = {
@@ -134,7 +125,7 @@ M.Connection = {
             },
         },
         billingTier = {
-            type = "number",
+            type = "integer",
         },
         ownerAccount = {
             type = "string",
@@ -150,8 +141,8 @@ M.Connection = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -159,9 +150,7 @@ M.Connection = {
 M.AcceptConnectionProposalOutput = {
     type = "structure",
     members = {
-        connection = {
-            type = "structure",
-        },
+        connection = M.Connection,
     },
 }
 
@@ -277,11 +266,11 @@ M.Bandwidths = {
     members = {
         available = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         supported = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -307,25 +296,20 @@ M.CreateConnectionInput = {
                 required = true,
             },
         },
-        attachPoint = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        attachPoint = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AttachPoint }),
         environmentId = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        remoteAccount = {
-            type = "union",
-        },
+        remoteAccount = M.RemoteAccountIdentifier,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         clientToken = {
             type = "string",
@@ -336,9 +320,7 @@ M.CreateConnectionInput = {
 M.CreateConnectionOutput = {
     type = "structure",
     members = {
-        connection = {
-            type = "structure",
-        },
+        connection = M.Connection,
     },
 }
 
@@ -360,12 +342,9 @@ M.DeleteConnectionInput = {
 M.DeleteConnectionOutput = {
     type = "structure",
     members = {
-        connection = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        connection = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Connection }),
     },
 }
 
@@ -384,9 +363,7 @@ M.GetConnectionInput = {
 M.GetConnectionOutput = {
     type = "structure",
     members = {
-        connection = {
-            type = "structure",
-        },
+        connection = M.Connection,
     },
 }
 
@@ -394,7 +371,7 @@ M.ListConnectionsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -405,12 +382,8 @@ M.ListConnectionsInput = {
         environmentId = {
             type = "string",
         },
-        provider = {
-            type = "union",
-        },
-        attachPoint = {
-            type = "union",
-        },
+        provider = M.Provider,
+        attachPoint = M.AttachPoint,
     },
 }
 
@@ -441,24 +414,18 @@ M.ConnectionSummary = {
                 required = true,
             },
         },
-        attachPoint = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        attachPoint = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AttachPoint }),
         environmentId = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        provider = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        provider = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Provider }),
         location = {
             type = "string",
             traits = {
@@ -484,7 +451,7 @@ M.ConnectionSummary = {
             },
         },
         billingTier = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -494,7 +461,7 @@ M.ListConnectionsOutput = {
     members = {
         connections = {
             type = "list",
-            member_type = "structure",
+            member = M.ConnectionSummary,
         },
         nextToken = {
             type = "string",
@@ -526,9 +493,7 @@ M.UpdateConnectionInput = {
 M.UpdateConnectionOutput = {
     type = "structure",
     members = {
-        connection = {
-            type = "structure",
-        },
+        connection = M.Connection,
     },
 }
 
@@ -559,12 +524,9 @@ M.DescribeConnectionProposalOutput = {
                 required = true,
             },
         },
-        provider = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        provider = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Provider }),
         location = {
             type = "string",
             traits = {
@@ -588,12 +550,9 @@ M.EnvironmentState = {
 M.Environment = {
     type = "structure",
     members = {
-        provider = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        provider = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Provider }),
         location = {
             type = "string",
             traits = {
@@ -612,12 +571,9 @@ M.Environment = {
                 required = true,
             },
         },
-        bandwidths = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        bandwidths = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Bandwidths }),
         type = {
             type = "string",
             traits = {
@@ -648,12 +604,9 @@ M.GetEnvironmentInput = {
 M.GetEnvironmentOutput = {
     type = "structure",
     members = {
-        environment = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        environment = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Environment }),
     },
 }
 
@@ -661,14 +614,12 @@ M.ListEnvironmentsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
         },
-        provider = {
-            type = "union",
-        },
+        provider = M.Provider,
         location = {
             type = "string",
         },
@@ -680,7 +631,7 @@ M.ListEnvironmentsOutput = {
     members = {
         environments = {
             type = "list",
-            member_type = "structure",
+            member = M.Environment,
             traits = {
                 required = true,
             },
@@ -701,7 +652,7 @@ M.ListAttachPointsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -714,7 +665,7 @@ M.ListAttachPointsOutput = {
     members = {
         attachPoints = {
             type = "list",
-            member_type = "structure",
+            member = M.AttachPointDescriptor,
             traits = {
                 required = true,
             },
@@ -742,8 +693,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -759,8 +710,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -783,7 +734,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },

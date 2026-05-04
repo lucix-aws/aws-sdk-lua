@@ -21,7 +21,7 @@ M.BatchGetServiceLevelObjectiveBudgetReportInput = {
         },
         SloIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -94,7 +94,7 @@ M.CalendarInterval = {
             },
         },
         Duration = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -112,7 +112,7 @@ M.RollingInterval = {
             },
         },
         Duration = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -123,26 +123,20 @@ M.RollingInterval = {
 M.Interval = {
     type = "union",
     members = {
-        RollingInterval = {
-            type = "structure",
-        },
-        CalendarInterval = {
-            type = "structure",
-        },
+        RollingInterval = M.RollingInterval,
+        CalendarInterval = M.CalendarInterval,
     },
 }
 
 M.Goal = {
     type = "structure",
     members = {
-        Interval = {
-            type = "union",
-        },
+        Interval = M.Interval,
         AttainmentGoal = {
-            type = "number",
+            type = "double",
         },
         WarningThreshold = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -187,15 +181,12 @@ M.SelectionConfig = {
 M.CompositeSliConfig = {
     type = "structure",
     members = {
-        SelectionConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SelectionConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SelectionConfig }),
         Components = {
             type = "list",
-            member_type = "union",
+            member = M.CompositeSliComponent,
         },
     },
 }
@@ -205,8 +196,8 @@ M.DependencyConfig = {
     members = {
         DependencyKeyAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -225,16 +216,16 @@ M.MetricSource = {
     members = {
         MetricSourceKeyAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
         },
         MetricSourceAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -273,7 +264,7 @@ M.Metric = {
         },
         Dimensions = {
             type = "list",
-            member_type = "structure",
+            member = M.Dimension,
         },
     },
 }
@@ -311,14 +302,11 @@ M.StandardUnit = {
 M.MetricStat = {
     type = "structure",
     members = {
-        Metric = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Metric = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Metric }),
         Period = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -344,9 +332,7 @@ M.MetricDataQuery = {
                 required = true,
             },
         },
-        MetricStat = {
-            type = "structure",
-        },
+        MetricStat = M.MetricStat,
         Expression = {
             type = "string",
         },
@@ -355,9 +341,15 @@ M.MetricDataQuery = {
         },
         ReturnData = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
         Period = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         AccountId = {
             type = "string",
@@ -370,11 +362,11 @@ M.MonitoredRequestCountMetricDataQueries = {
     members = {
         GoodCountMetric = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricDataQuery,
         },
         BadCountMetric = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricDataQuery,
         },
     },
 }
@@ -384,8 +376,8 @@ M.RequestBasedServiceLevelIndicatorMetric = {
     members = {
         KeyAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         OperationName = {
             type = "string",
@@ -395,40 +387,28 @@ M.RequestBasedServiceLevelIndicatorMetric = {
         },
         TotalRequestCountMetric = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricDataQuery,
             traits = {
                 required = true,
             },
         },
-        MonitoredRequestCountMetric = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        DependencyConfig = {
-            type = "structure",
-        },
-        MetricSource = {
-            type = "structure",
-        },
-        CompositeSliConfig = {
-            type = "structure",
-        },
+        MonitoredRequestCountMetric = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MonitoredRequestCountMetricDataQueries }),
+        DependencyConfig = M.DependencyConfig,
+        MetricSource = M.MetricSource,
+        CompositeSliConfig = M.CompositeSliConfig,
     },
 }
 
 M.RequestBasedServiceLevelIndicator = {
     type = "structure",
     members = {
-        RequestBasedSliMetric = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RequestBasedSliMetric = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RequestBasedServiceLevelIndicatorMetric }),
         MetricThreshold = {
-            type = "number",
+            type = "double",
         },
         ComparisonOperator = {
             type = "string",
@@ -441,8 +421,8 @@ M.ServiceLevelIndicatorMetric = {
     members = {
         KeyAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         OperationName = {
             type = "string",
@@ -452,34 +432,25 @@ M.ServiceLevelIndicatorMetric = {
         },
         MetricDataQueries = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricDataQuery,
             traits = {
                 required = true,
             },
         },
-        DependencyConfig = {
-            type = "structure",
-        },
-        MetricSource = {
-            type = "structure",
-        },
-        CompositeSliConfig = {
-            type = "structure",
-        },
+        DependencyConfig = M.DependencyConfig,
+        MetricSource = M.MetricSource,
+        CompositeSliConfig = M.CompositeSliConfig,
     },
 }
 
 M.ServiceLevelIndicator = {
     type = "structure",
     members = {
-        SliMetric = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SliMetric = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ServiceLevelIndicatorMetric }),
         MetricThreshold = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -518,29 +489,23 @@ M.ServiceLevelObjectiveBudgetReport = {
             },
         },
         Attainment = {
-            type = "number",
+            type = "double",
         },
         TotalBudgetSeconds = {
-            type = "number",
+            type = "integer",
         },
         BudgetSecondsRemaining = {
-            type = "number",
+            type = "integer",
         },
         TotalBudgetRequests = {
-            type = "number",
+            type = "integer",
         },
         BudgetRequestsRemaining = {
-            type = "number",
+            type = "integer",
         },
-        Sli = {
-            type = "structure",
-        },
-        RequestBasedSli = {
-            type = "structure",
-        },
-        Goal = {
-            type = "structure",
-        },
+        Sli = M.ServiceLevelIndicator,
+        RequestBasedSli = M.RequestBasedServiceLevelIndicator,
+        Goal = M.Goal,
     },
 }
 
@@ -555,14 +520,14 @@ M.BatchGetServiceLevelObjectiveBudgetReportOutput = {
         },
         Reports = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceLevelObjectiveBudgetReport,
             traits = {
                 required = true,
             },
         },
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceLevelObjectiveBudgetReportError,
             traits = {
                 required = true,
             },
@@ -615,7 +580,7 @@ M.Window = {
             },
         },
         Duration = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -626,18 +591,13 @@ M.Window = {
 M.ExclusionWindow = {
     type = "structure",
     members = {
-        Window = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Window = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Window }),
         StartTime = {
             type = "timestamp",
         },
-        RecurrenceRule = {
-            type = "structure",
-        },
+        RecurrenceRule = M.RecurrenceRule,
         Reason = {
             type = "string",
         },
@@ -649,18 +609,18 @@ M.BatchUpdateExclusionWindowsInput = {
     members = {
         SloIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         AddExclusionWindows = {
             type = "list",
-            member_type = "structure",
+            member = M.ExclusionWindow,
         },
         RemoveExclusionWindows = {
             type = "list",
-            member_type = "structure",
+            member = M.ExclusionWindow,
         },
     },
 }
@@ -694,14 +654,14 @@ M.BatchUpdateExclusionWindowsOutput = {
     members = {
         SloIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchUpdateExclusionWindowsError,
             traits = {
                 required = true,
             },
@@ -761,8 +721,8 @@ M.GetServiceInput = {
         },
         KeyAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -787,7 +747,7 @@ M.MetricReference = {
         },
         Dimensions = {
             type = "list",
-            member_type = "structure",
+            member = M.Dimension,
         },
         MetricName = {
             type = "string",
@@ -836,30 +796,30 @@ M.Service = {
     members = {
         KeyAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
         },
         AttributeMaps = {
             type = "list",
-            member_type = "map",
+            member = { type = "map" },
         },
         ServiceGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceGroup,
         },
         MetricReferences = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricReference,
             traits = {
                 required = true,
             },
         },
         LogGroupReferences = {
             type = "list",
-            member_type = "map",
+            member = { type = "map" },
         },
     },
 }
@@ -867,12 +827,9 @@ M.Service = {
 M.GetServiceOutput = {
     type = "structure",
     members = {
-        Service = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Service = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Service }),
         StartTime = {
             type = "timestamp",
             traits = {
@@ -887,7 +844,7 @@ M.GetServiceOutput = {
         },
         LogGroupReferences = {
             type = "list",
-            member_type = "map",
+            member = { type = "map" },
         },
     },
 }
@@ -925,9 +882,7 @@ M.ServiceEntity = {
 M.ServiceOperationEntity = {
     type = "structure",
     members = {
-        Service = {
-            type = "structure",
-        },
+        Service = M.ServiceEntity,
         Operation = {
             type = "string",
         },
@@ -952,18 +907,10 @@ M.ServiceLevelObjectiveEntity = {
 M.AuditTargetEntity = {
     type = "union",
     members = {
-        Service = {
-            type = "structure",
-        },
-        Slo = {
-            type = "structure",
-        },
-        ServiceOperation = {
-            type = "structure",
-        },
-        Canary = {
-            type = "structure",
-        },
+        Service = M.ServiceEntity,
+        Slo = M.ServiceLevelObjectiveEntity,
+        ServiceOperation = M.ServiceOperationEntity,
+        Canary = M.CanaryEntity,
     },
 }
 
@@ -976,12 +923,9 @@ M.AuditTarget = {
                 required = true,
             },
         },
-        Data = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        Data = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AuditTargetEntity }),
     },
 }
 
@@ -1009,11 +953,11 @@ M.ListAuditFindingsInput = {
         },
         Auditors = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AuditTargets = {
             type = "list",
-            member_type = "structure",
+            member = M.AuditTarget,
             traits = {
                 required = true,
             },
@@ -1025,7 +969,7 @@ M.ListAuditFindingsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1049,8 +993,8 @@ M.AuditorResult = {
         },
         Data = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Severity = {
             type = "string",
@@ -1073,7 +1017,7 @@ M.Edge = {
             type = "string",
         },
         Duration = {
-            type = "number",
+            type = "double",
         },
         ConnectionType = {
             type = "string",
@@ -1086,8 +1030,8 @@ M.Node = {
     members = {
         KeyAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1111,7 +1055,7 @@ M.Node = {
             type = "string",
         },
         Duration = {
-            type = "number",
+            type = "double",
         },
         Status = {
             type = "string",
@@ -1124,11 +1068,11 @@ M.DependencyGraph = {
     members = {
         Nodes = {
             type = "list",
-            member_type = "structure",
+            member = M.Node,
         },
         Edges = {
             type = "list",
-            member_type = "structure",
+            member = M.Edge,
         },
     },
 }
@@ -1138,7 +1082,7 @@ M.MetricGraph = {
     members = {
         MetricDataQueries = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricDataQuery,
         },
         StartTime = {
             type = "timestamp",
@@ -1154,25 +1098,21 @@ M.AuditFinding = {
     members = {
         KeyAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
         },
         AuditorResults = {
             type = "list",
-            member_type = "structure",
+            member = M.AuditorResult,
         },
         Operation = {
             type = "string",
         },
-        MetricGraph = {
-            type = "structure",
-        },
-        DependencyGraph = {
-            type = "structure",
-        },
+        MetricGraph = M.MetricGraph,
+        DependencyGraph = M.DependencyGraph,
         Type = {
             type = "string",
         },
@@ -1190,7 +1130,7 @@ M.ListAuditFindingsOutput = {
         },
         AuditFindings = {
             type = "list",
-            member_type = "structure",
+            member = M.AuditFinding,
             traits = {
                 required = true,
             },
@@ -1206,8 +1146,8 @@ M.ListEntityEventsInput = {
     members = {
         Entity = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1225,8 +1165,9 @@ M.ListEntityEventsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 20,
                 http_query = "MaxResults",
             },
         },
@@ -1267,8 +1208,8 @@ M.ChangeEvent = {
         },
         Entity = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1311,7 +1252,7 @@ M.ListEntityEventsOutput = {
         },
         ChangeEvents = {
             type = "list",
-            member_type = "structure",
+            member = M.ChangeEvent,
             traits = {
                 required = true,
             },
@@ -1340,6 +1281,7 @@ M.ListGroupingAttributeDefinitionsInput = {
         IncludeLinkedAccounts = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "IncludeLinkedAccounts",
             },
         },
@@ -1357,7 +1299,7 @@ M.GroupingAttributeDefinition = {
         },
         GroupingSourceKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DefaultGroupingValue = {
             type = "string",
@@ -1370,7 +1312,7 @@ M.ListGroupingAttributeDefinitionsOutput = {
     members = {
         GroupingAttributeDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupingAttributeDefinition,
             traits = {
                 required = true,
             },
@@ -1403,15 +1345,16 @@ M.ListServiceDependenciesInput = {
         },
         KeyAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 20,
                 http_query = "MaxResults",
             },
         },
@@ -1435,8 +1378,8 @@ M.ServiceDependency = {
         },
         DependencyKeyAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1449,7 +1392,7 @@ M.ServiceDependency = {
         },
         MetricReferences = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricReference,
             traits = {
                 required = true,
             },
@@ -1474,7 +1417,7 @@ M.ListServiceDependenciesOutput = {
         },
         ServiceDependencies = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceDependency,
             traits = {
                 required = true,
             },
@@ -1504,15 +1447,16 @@ M.ListServiceDependentsInput = {
         },
         KeyAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 20,
                 http_query = "MaxResults",
             },
         },
@@ -1533,8 +1477,8 @@ M.ServiceDependent = {
         },
         DependentKeyAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1544,7 +1488,7 @@ M.ServiceDependent = {
         },
         MetricReferences = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricReference,
             traits = {
                 required = true,
             },
@@ -1569,7 +1513,7 @@ M.ListServiceDependentsOutput = {
         },
         ServiceDependents = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceDependent,
             traits = {
                 required = true,
             },
@@ -1591,8 +1535,9 @@ M.ListServiceLevelObjectiveExclusionWindowsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_query = "MaxResults",
             },
         },
@@ -1610,7 +1555,7 @@ M.ListServiceLevelObjectiveExclusionWindowsOutput = {
     members = {
         ExclusionWindows = {
             type = "list",
-            member_type = "structure",
+            member = M.ExclusionWindow,
             traits = {
                 required = true,
             },
@@ -1640,15 +1585,16 @@ M.ListServiceOperationsInput = {
         },
         KeyAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 20,
                 http_query = "MaxResults",
             },
         },
@@ -1672,7 +1618,7 @@ M.ServiceOperation = {
         },
         MetricReferences = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricReference,
             traits = {
                 required = true,
             },
@@ -1697,7 +1643,7 @@ M.ListServiceOperationsOutput = {
         },
         ServiceOperations = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceOperation,
             traits = {
                 required = true,
             },
@@ -1726,8 +1672,9 @@ M.ListServicesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 50,
                 http_query = "MaxResults",
             },
         },
@@ -1740,6 +1687,7 @@ M.ListServicesInput = {
         IncludeLinkedAccounts = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "IncludeLinkedAccounts",
             },
         },
@@ -1757,26 +1705,26 @@ M.ServiceSummary = {
     members = {
         KeyAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
         },
         AttributeMaps = {
             type = "list",
-            member_type = "map",
+            member = { type = "map" },
         },
         MetricReferences = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricReference,
             traits = {
                 required = true,
             },
         },
         ServiceGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceGroup,
         },
     },
 }
@@ -1798,7 +1746,7 @@ M.ListServicesOutput = {
         },
         ServiceSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceSummary,
             traits = {
                 required = true,
             },
@@ -1820,7 +1768,7 @@ M.AttributeFilter = {
         },
         AttributeFilterValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1844,20 +1792,26 @@ M.ListServiceStatesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 20,
+            },
         },
         NextToken = {
             type = "string",
         },
         IncludeLinkedAccounts = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         AwsAccountId = {
             type = "string",
         },
         AttributeFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.AttributeFilter,
         },
     },
 }
@@ -1867,19 +1821,19 @@ M.ServiceState = {
     members = {
         AttributeFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.AttributeFilter,
         },
         Service = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
         },
         LatestChangeEvents = {
             type = "list",
-            member_type = "structure",
+            member = M.ChangeEvent,
             traits = {
                 required = true,
             },
@@ -1904,7 +1858,7 @@ M.ListServiceStatesOutput = {
         },
         ServiceStates = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceState,
             traits = {
                 required = true,
             },
@@ -1951,7 +1905,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1961,7 +1915,7 @@ M.PutGroupingConfigurationInput = {
     members = {
         GroupingAttributeDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupingAttributeDefinition,
             traits = {
                 required = true,
             },
@@ -1974,7 +1928,7 @@ M.GroupingConfiguration = {
     members = {
         GroupingAttributeDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupingAttributeDefinition,
             traits = {
                 required = true,
             },
@@ -1991,12 +1945,9 @@ M.GroupingConfiguration = {
 M.PutGroupingConfigurationOutput = {
     type = "structure",
     members = {
-        GroupingConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        GroupingConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.GroupingConfiguration }),
     },
 }
 
@@ -2017,7 +1968,7 @@ M.BurnRateConfiguration = {
     type = "structure",
     members = {
         LookBackWindowMinutes = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -2030,8 +1981,8 @@ M.RequestBasedServiceLevelIndicatorMetricConfig = {
     members = {
         KeyAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         OperationName = {
             type = "string",
@@ -2041,37 +1992,26 @@ M.RequestBasedServiceLevelIndicatorMetricConfig = {
         },
         TotalRequestCountMetric = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricDataQuery,
         },
-        MonitoredRequestCountMetric = {
-            type = "union",
-        },
-        DependencyConfig = {
-            type = "structure",
-        },
-        MetricSource = {
-            type = "structure",
-        },
+        MonitoredRequestCountMetric = M.MonitoredRequestCountMetricDataQueries,
+        DependencyConfig = M.DependencyConfig,
+        MetricSource = M.MetricSource,
         MetricName = {
             type = "string",
         },
-        CompositeSliConfig = {
-            type = "structure",
-        },
+        CompositeSliConfig = M.CompositeSliConfig,
     },
 }
 
 M.RequestBasedServiceLevelIndicatorConfig = {
     type = "structure",
     members = {
-        RequestBasedSliMetricConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RequestBasedSliMetricConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RequestBasedServiceLevelIndicatorMetricConfig }),
         MetricThreshold = {
-            type = "number",
+            type = "double",
         },
         ComparisonOperator = {
             type = "string",
@@ -2084,8 +2024,8 @@ M.ServiceLevelIndicatorMetricConfig = {
     members = {
         KeyAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         OperationName = {
             type = "string",
@@ -2100,38 +2040,35 @@ M.ServiceLevelIndicatorMetricConfig = {
             type = "string",
         },
         PeriodSeconds = {
-            type = "number",
+            type = "integer",
         },
-        MetricSource = {
-            type = "structure",
-        },
+        MetricSource = M.MetricSource,
         MetricDataQueries = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricDataQuery,
         },
-        DependencyConfig = {
-            type = "structure",
-        },
-        CompositeSliConfig = {
-            type = "structure",
-        },
+        DependencyConfig = M.DependencyConfig,
+        CompositeSliConfig = M.CompositeSliConfig,
     },
 }
 
 M.ServiceLevelIndicatorConfig = {
     type = "structure",
     members = {
-        SliMetricConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SliMetricConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ServiceLevelIndicatorMetricConfig }),
         MetricThreshold = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         ComparisonOperator = {
             type = "string",
+            traits = {
+                default = "LessThan",
+            },
         },
     },
 }
@@ -2148,25 +2085,22 @@ M.CreateServiceLevelObjectiveInput = {
         Description = {
             type = "string",
         },
-        SliConfig = {
-            type = "structure",
-        },
-        RequestBasedSliConfig = {
-            type = "structure",
-        },
-        Goal = {
-            type = "structure",
-        },
+        SliConfig = M.ServiceLevelIndicatorConfig,
+        RequestBasedSliConfig = M.RequestBasedServiceLevelIndicatorConfig,
+        Goal = M.Goal,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         BurnRateConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.BurnRateConfiguration,
         },
         CreateRecommendedSlo = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         AutoInvestigationEnabled = {
             type = "boolean",
@@ -2213,24 +2147,17 @@ M.ServiceLevelObjective = {
                 required = true,
             },
         },
-        Sli = {
-            type = "structure",
-        },
-        RequestBasedSli = {
-            type = "structure",
-        },
+        Sli = M.ServiceLevelIndicator,
+        RequestBasedSli = M.RequestBasedServiceLevelIndicator,
         EvaluationType = {
             type = "string",
         },
-        Goal = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Goal = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Goal }),
         BurnRateConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.BurnRateConfiguration,
         },
         MetricSourceType = {
             type = "string",
@@ -2244,12 +2171,9 @@ M.ServiceLevelObjective = {
 M.CreateServiceLevelObjectiveOutput = {
     type = "structure",
     members = {
-        Slo = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Slo = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ServiceLevelObjective }),
     },
 }
 
@@ -2299,12 +2223,9 @@ M.GetServiceLevelObjectiveInput = {
 M.GetServiceLevelObjectiveOutput = {
     type = "structure",
     members = {
-        Slo = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Slo = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ServiceLevelObjective }),
     },
 }
 
@@ -2313,8 +2234,8 @@ M.ListServiceLevelObjectivesInput = {
     members = {
         KeyAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         OperationName = {
             type = "string",
@@ -2322,12 +2243,11 @@ M.ListServiceLevelObjectivesInput = {
                 http_query = "OperationName",
             },
         },
-        DependencyConfig = {
-            type = "structure",
-        },
+        DependencyConfig = M.DependencyConfig,
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_query = "MaxResults",
             },
         },
@@ -2339,11 +2259,12 @@ M.ListServiceLevelObjectivesInput = {
         },
         MetricSourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IncludeLinkedAccounts = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "IncludeLinkedAccounts",
             },
         },
@@ -2353,9 +2274,7 @@ M.ListServiceLevelObjectivesInput = {
                 http_query = "SloOwnerAwsAccountId",
             },
         },
-        MetricSource = {
-            type = "structure",
-        },
+        MetricSource = M.MetricSource,
     },
 }
 
@@ -2376,15 +2295,13 @@ M.ServiceLevelObjectiveSummary = {
         },
         KeyAttributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         OperationName = {
             type = "string",
         },
-        DependencyConfig = {
-            type = "structure",
-        },
+        DependencyConfig = M.DependencyConfig,
         CreatedTime = {
             type = "timestamp",
         },
@@ -2394,12 +2311,8 @@ M.ServiceLevelObjectiveSummary = {
         MetricSourceType = {
             type = "string",
         },
-        MetricSource = {
-            type = "structure",
-        },
-        CompositeSliConfig = {
-            type = "structure",
-        },
+        MetricSource = M.MetricSource,
+        CompositeSliConfig = M.CompositeSliConfig,
     },
 }
 
@@ -2408,7 +2321,7 @@ M.ListServiceLevelObjectivesOutput = {
     members = {
         SloSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceLevelObjectiveSummary,
         },
         NextToken = {
             type = "string",
@@ -2429,18 +2342,12 @@ M.UpdateServiceLevelObjectiveInput = {
         Description = {
             type = "string",
         },
-        SliConfig = {
-            type = "structure",
-        },
-        RequestBasedSliConfig = {
-            type = "structure",
-        },
-        Goal = {
-            type = "structure",
-        },
+        SliConfig = M.ServiceLevelIndicatorConfig,
+        RequestBasedSliConfig = M.RequestBasedServiceLevelIndicatorConfig,
+        Goal = M.Goal,
         BurnRateConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.BurnRateConfiguration,
         },
         AutoInvestigationEnabled = {
             type = "boolean",
@@ -2451,12 +2358,9 @@ M.UpdateServiceLevelObjectiveInput = {
 M.UpdateServiceLevelObjectiveOutput = {
     type = "structure",
     members = {
-        Slo = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Slo = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ServiceLevelObjective }),
     },
 }
 
@@ -2479,7 +2383,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -2502,7 +2406,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },

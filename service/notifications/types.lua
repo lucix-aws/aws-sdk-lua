@@ -50,7 +50,7 @@ M.AggregationDetail = {
     members = {
         summarizationDimensions = {
             type = "list",
-            member_type = "structure",
+            member = M.SummarizationDimensionDetail,
         },
     },
 }
@@ -95,14 +95,14 @@ M.SummarizationDimensionOverview = {
             },
         },
         count = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         sampleValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -111,36 +111,28 @@ M.AggregationSummary = {
     type = "structure",
     members = {
         eventCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         aggregatedBy = {
             type = "list",
-            member_type = "structure",
+            member = M.AggregationKey,
             traits = {
                 required = true,
             },
         },
-        aggregatedAccounts = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        aggregatedRegions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        aggregatedOrganizationalUnits = {
-            type = "structure",
-        },
+        aggregatedAccounts = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SummarizationDimensionOverview }),
+        aggregatedRegions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SummarizationDimensionOverview }),
+        aggregatedOrganizationalUnits = M.SummarizationDimensionOverview,
         additionalSummarizationDimensions = {
             type = "list",
-            member_type = "structure",
+            member = M.SummarizationDimensionOverview,
         },
     },
 }
@@ -264,7 +256,7 @@ M.ThrottlingException = {
             type = "string",
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -310,7 +302,7 @@ M.ValidationException = {
         },
         fieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -418,7 +410,7 @@ M.ListChannelsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -440,7 +432,7 @@ M.ListChannelsOutput = {
         },
         channels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -486,7 +478,7 @@ M.CreateEventRuleInput = {
         },
         regions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -537,8 +529,8 @@ M.CreateEventRuleOutput = {
         },
         statusSummaryByRegion = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.EventRuleStatusSummary,
             traits = {
                 required = true,
             },
@@ -566,8 +558,8 @@ M.CreateNotificationConfigurationInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -678,12 +670,9 @@ M.DeregisterNotificationHubOutput = {
                 required = true,
             },
         },
-        statusSummary = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        statusSummary = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.NotificationHubStatusSummary }),
     },
 }
 
@@ -844,22 +833,22 @@ M.GetEventRuleOutput = {
         },
         regions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         managedRules = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         statusSummaryByRegion = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.EventRuleStatusSummary,
             traits = {
                 required = true,
             },
@@ -878,7 +867,7 @@ M.ListEventRulesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -933,22 +922,22 @@ M.EventRuleStructure = {
         },
         regions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         managedRules = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         statusSummaryByRegion = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.EventRuleStatusSummary,
             traits = {
                 required = true,
             },
@@ -964,7 +953,7 @@ M.ListEventRulesOutput = {
         },
         eventRules = {
             type = "list",
-            member_type = "structure",
+            member = M.EventRuleStructure,
             traits = {
                 required = true,
             },
@@ -987,7 +976,7 @@ M.UpdateEventRuleInput = {
         },
         regions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1009,8 +998,8 @@ M.UpdateEventRuleOutput = {
         },
         statusSummaryByRegion = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.EventRuleStatusSummary,
             traits = {
                 required = true,
             },
@@ -1074,7 +1063,7 @@ M.MessageComponents = {
         },
         dimensions = {
             type = "list",
-            member_type = "structure",
+            member = M.Dimension,
         },
     },
 }
@@ -1110,8 +1099,8 @@ M.TextPartValue = {
         },
         textByLocale = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         url = {
             type = "string",
@@ -1134,12 +1123,9 @@ M.ManagedNotificationChildEvent = {
                 required = true,
             },
         },
-        messageComponents = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        messageComponents = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MessageComponents }),
         sourceEventDetailUrl = {
             type = "string",
         },
@@ -1175,8 +1161,8 @@ M.ManagedNotificationChildEvent = {
         },
         textParts = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.TextPartValue,
             traits = {
                 required = true,
             },
@@ -1184,9 +1170,7 @@ M.ManagedNotificationChildEvent = {
         organizationalUnitId = {
             type = "string",
         },
-        aggregationDetail = {
-            type = "structure",
-        },
+        aggregationDetail = M.AggregationDetail,
     },
 }
 
@@ -1211,12 +1195,9 @@ M.GetManagedNotificationChildEventOutput = {
                 required = true,
             },
         },
-        content = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        content = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ManagedNotificationChildEvent }),
     },
 }
 
@@ -1303,12 +1284,9 @@ M.ManagedNotificationEvent = {
                 required = true,
             },
         },
-        messageComponents = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        messageComponents = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MessageComponents }),
         sourceEventDetailUrl = {
             type = "string",
         },
@@ -1327,9 +1305,7 @@ M.ManagedNotificationEvent = {
         aggregationEventType = {
             type = "string",
         },
-        aggregationSummary = {
-            type = "structure",
-        },
+        aggregationSummary = M.AggregationSummary,
         startTime = {
             type = "timestamp",
             traits = {
@@ -1344,8 +1320,8 @@ M.ManagedNotificationEvent = {
         },
         textParts = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.TextPartValue,
             traits = {
                 required = true,
             },
@@ -1377,12 +1353,9 @@ M.GetManagedNotificationEventOutput = {
                 required = true,
             },
         },
-        content = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        content = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ManagedNotificationEvent }),
     },
 }
 
@@ -1513,7 +1486,7 @@ M.Resource = {
         },
         tags = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1563,7 +1536,7 @@ M.SourceEventMetadata = {
         },
         relatedResources = {
             type = "list",
-            member_type = "structure",
+            member = M.Resource,
             traits = {
                 required = true,
             },
@@ -1586,18 +1559,12 @@ M.NotificationEventSchema = {
                 required = true,
             },
         },
-        sourceEventMetadata = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        messageComponents = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        sourceEventMetadata = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SourceEventMetadata }),
+        messageComponents = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MessageComponents }),
         sourceEventDetailUrl = {
             type = "string",
         },
@@ -1619,9 +1586,7 @@ M.NotificationEventSchema = {
         aggregateNotificationEventArn = {
             type = "string",
         },
-        aggregationSummary = {
-            type = "structure",
-        },
+        aggregationSummary = M.AggregationSummary,
         startTime = {
             type = "timestamp",
             traits = {
@@ -1636,15 +1601,15 @@ M.NotificationEventSchema = {
         },
         textParts = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.TextPartValue,
             traits = {
                 required = true,
             },
         },
         media = {
             type = "list",
-            member_type = "structure",
+            member = M.MediaElement,
             traits = {
                 required = true,
             },
@@ -1676,12 +1641,9 @@ M.GetNotificationEventOutput = {
                 required = true,
             },
         },
-        content = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        content = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.NotificationEventSchema }),
     },
 }
 
@@ -1704,12 +1666,9 @@ M.NotificationsAccessForOrganization = {
 M.GetNotificationsAccessForOrganizationOutput = {
     type = "structure",
     members = {
-        notificationsAccessForOrganization = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        notificationsAccessForOrganization = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.NotificationsAccessForOrganization }),
     },
 }
 
@@ -1724,7 +1683,7 @@ M.ListManagedNotificationChannelAssociationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1767,7 +1726,7 @@ M.ListManagedNotificationChannelAssociationsOutput = {
         },
         channelAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.ManagedNotificationChannelAssociationSummary,
             traits = {
                 required = true,
             },
@@ -1806,7 +1765,7 @@ M.ListManagedNotificationChildEventsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1874,24 +1833,15 @@ M.ManagedNotificationChildEventSummary = {
                 required = true,
             },
         },
-        sourceEventMetadata = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        messageComponents = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        aggregationDetail = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        sourceEventMetadata = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ManagedSourceEventMetadataSummary }),
+        messageComponents = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MessageComponentsSummary }),
+        aggregationDetail = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AggregationDetail }),
         eventStatus = {
             type = "string",
             traits = {
@@ -1934,12 +1884,9 @@ M.ManagedNotificationChildEventOverview = {
                 required = true,
             },
         },
-        childEvent = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        childEvent = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ManagedNotificationChildEventSummary }),
         aggregateManagedNotificationEventArn = {
             type = "string",
             traits = {
@@ -1960,7 +1907,7 @@ M.ListManagedNotificationChildEventsOutput = {
         },
         managedNotificationChildEvents = {
             type = "list",
-            member_type = "structure",
+            member = M.ManagedNotificationChildEventOverview,
             traits = {
                 required = true,
             },
@@ -1978,7 +1925,7 @@ M.ListManagedNotificationConfigurationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2024,7 +1971,7 @@ M.ListManagedNotificationConfigurationsOutput = {
         },
         managedNotificationConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.ManagedNotificationConfigurationStructure,
             traits = {
                 required = true,
             },
@@ -2062,7 +2009,7 @@ M.ListManagedNotificationEventsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2097,18 +2044,12 @@ M.ManagedNotificationEventSummary = {
                 required = true,
             },
         },
-        sourceEventMetadata = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        messageComponents = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        sourceEventMetadata = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ManagedSourceEventMetadataSummary }),
+        messageComponents = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MessageComponentsSummary }),
         eventStatus = {
             type = "string",
             traits = {
@@ -2151,24 +2092,19 @@ M.ManagedNotificationEventOverview = {
                 required = true,
             },
         },
-        notificationEvent = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        notificationEvent = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ManagedNotificationEventSummary }),
         aggregationEventType = {
             type = "string",
         },
         organizationalUnitId = {
             type = "string",
         },
-        aggregationSummary = {
-            type = "structure",
-        },
+        aggregationSummary = M.AggregationSummary,
         aggregatedNotificationRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2181,7 +2117,7 @@ M.ListManagedNotificationEventsOutput = {
         },
         managedNotificationEvents = {
             type = "list",
-            member_type = "structure",
+            member = M.ManagedNotificationEventOverview,
             traits = {
                 required = true,
             },
@@ -2208,7 +2144,7 @@ M.ListMemberAccountsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2278,7 +2214,7 @@ M.ListMemberAccountsOutput = {
     members = {
         memberAccounts = {
             type = "list",
-            member_type = "structure",
+            member = M.MemberAccount,
             traits = {
                 required = true,
             },
@@ -2317,7 +2253,7 @@ M.ListNotificationConfigurationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2381,7 +2317,7 @@ M.ListNotificationConfigurationsOutput = {
         },
         notificationConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.NotificationConfigurationStructure,
             traits = {
                 required = true,
             },
@@ -2431,7 +2367,7 @@ M.ListNotificationEventsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2481,18 +2417,12 @@ M.NotificationEventSummary = {
                 required = true,
             },
         },
-        sourceEventMetadata = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        messageComponents = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        sourceEventMetadata = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SourceEventMetadataSummary }),
+        messageComponents = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MessageComponentsSummary }),
         eventStatus = {
             type = "string",
             traits = {
@@ -2535,21 +2465,16 @@ M.NotificationEventOverview = {
                 required = true,
             },
         },
-        notificationEvent = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        notificationEvent = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.NotificationEventSummary }),
         aggregationEventType = {
             type = "string",
         },
         aggregateNotificationEventArn = {
             type = "string",
         },
-        aggregationSummary = {
-            type = "structure",
-        },
+        aggregationSummary = M.AggregationSummary,
         organizationalUnitId = {
             type = "string",
         },
@@ -2564,7 +2489,7 @@ M.ListNotificationEventsOutput = {
         },
         notificationEvents = {
             type = "list",
-            member_type = "structure",
+            member = M.NotificationEventOverview,
             traits = {
                 required = true,
             },
@@ -2576,7 +2501,7 @@ M.ListNotificationHubsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2599,12 +2524,9 @@ M.NotificationHubOverview = {
                 required = true,
             },
         },
-        statusSummary = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        statusSummary = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.NotificationHubStatusSummary }),
         creationTime = {
             type = "timestamp",
             traits = {
@@ -2622,7 +2544,7 @@ M.ListNotificationHubsOutput = {
     members = {
         notificationHubs = {
             type = "list",
-            member_type = "structure",
+            member = M.NotificationHubOverview,
             traits = {
                 required = true,
             },
@@ -2644,7 +2566,7 @@ M.ListOrganizationalUnitsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2663,7 +2585,7 @@ M.ListOrganizationalUnitsOutput = {
     members = {
         organizationalUnits = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2692,8 +2614,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2753,12 +2675,9 @@ M.RegisterNotificationHubOutput = {
                 required = true,
             },
         },
-        statusSummary = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        statusSummary = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.NotificationHubStatusSummary }),
         creationTime = {
             type = "timestamp",
             traits = {
@@ -2783,8 +2702,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2808,7 +2727,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,

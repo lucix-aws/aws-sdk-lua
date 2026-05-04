@@ -117,7 +117,7 @@ M.ThrottlingException = {
             type = "string",
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -166,7 +166,7 @@ M.ValidationException = {
         },
         fieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -188,8 +188,8 @@ M.CreateEmailContactInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -323,12 +323,9 @@ M.GetEmailContactInput = {
 M.GetEmailContactOutput = {
     type = "structure",
     members = {
-        emailContact = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        emailContact = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EmailContact }),
     },
 }
 
@@ -336,7 +333,7 @@ M.ListEmailContactsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -358,7 +355,7 @@ M.ListEmailContactsOutput = {
         },
         emailContacts = {
             type = "list",
-            member_type = "structure",
+            member = M.EmailContact,
             traits = {
                 required = true,
             },
@@ -401,8 +398,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -419,8 +416,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -444,7 +441,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,

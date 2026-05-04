@@ -66,12 +66,9 @@ M.AddWorkloadInput = {
                 required = true,
             },
         },
-        WorkloadConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        WorkloadConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkloadConfiguration }),
     },
 }
 
@@ -81,9 +78,7 @@ M.AddWorkloadOutput = {
         WorkloadId = {
             type = "string",
         },
-        WorkloadConfiguration = {
-            type = "structure",
-        },
+        WorkloadConfiguration = M.WorkloadConfiguration,
     },
 }
 
@@ -155,8 +150,8 @@ M.ApplicationComponent = {
         },
         DetectedWorkload = {
             type = "map",
-            key_type = "string",
-            value_type = "map",
+            key = { type = "string" },
+            value = { type = "map" },
         },
     },
 }
@@ -307,7 +302,7 @@ M.CreateApplicationInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         AutoConfigEnabled = {
             type = "boolean",
@@ -327,9 +322,7 @@ M.CreateApplicationInput = {
 M.CreateApplicationOutput = {
     type = "structure",
     members = {
-        ApplicationInfo = {
-            type = "structure",
-        },
+        ApplicationInfo = M.ApplicationInfo,
     },
 }
 
@@ -360,7 +353,7 @@ M.CreateComponentInput = {
         },
         ResourceList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -400,8 +393,9 @@ M.CreateLogPatternInput = {
             },
         },
         Rank = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -421,7 +415,10 @@ M.LogPattern = {
             type = "string",
         },
         Rank = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -429,9 +426,7 @@ M.LogPattern = {
 M.CreateLogPatternOutput = {
     type = "structure",
     members = {
-        LogPattern = {
-            type = "structure",
-        },
+        LogPattern = M.LogPattern,
         ResourceGroupName = {
             type = "string",
         },
@@ -522,9 +517,7 @@ M.DescribeApplicationInput = {
 M.DescribeApplicationOutput = {
     type = "structure",
     members = {
-        ApplicationInfo = {
-            type = "structure",
-        },
+        ApplicationInfo = M.ApplicationInfo,
     },
 }
 
@@ -552,12 +545,10 @@ M.DescribeComponentInput = {
 M.DescribeComponentOutput = {
     type = "structure",
     members = {
-        ApplicationComponent = {
-            type = "structure",
-        },
+        ApplicationComponent = M.ApplicationComponent,
         ResourceList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -679,9 +670,7 @@ M.DescribeLogPatternOutput = {
         AccountId = {
             type = "string",
         },
-        LogPattern = {
-            type = "structure",
-        },
+        LogPattern = M.LogPattern,
     },
 }
 
@@ -746,7 +735,7 @@ M.Observation = {
             type = "string",
         },
         Value = {
-            type = "number",
+            type = "double",
         },
         CloudWatchEventId = {
             type = "string",
@@ -824,19 +813,19 @@ M.Observation = {
             type = "string",
         },
         XRayFaultPercent = {
-            type = "number",
+            type = "integer",
         },
         XRayThrottlePercent = {
-            type = "number",
+            type = "integer",
         },
         XRayErrorPercent = {
-            type = "number",
+            type = "integer",
         },
         XRayRequestCount = {
-            type = "number",
+            type = "integer",
         },
         XRayRequestAverageLatency = {
-            type = "number",
+            type = "long",
         },
         XRayNodeName = {
             type = "string",
@@ -850,9 +839,7 @@ M.Observation = {
 M.DescribeObservationOutput = {
     type = "structure",
     members = {
-        Observation = {
-            type = "structure",
-        },
+        Observation = M.Observation,
     },
 }
 
@@ -945,11 +932,11 @@ M.Problem = {
         },
         Feedback = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         RecurringCount = {
-            type = "number",
+            type = "long",
         },
         LastRecurrenceTime = {
             type = "timestamp",
@@ -966,9 +953,7 @@ M.Problem = {
 M.DescribeProblemOutput = {
     type = "structure",
     members = {
-        Problem = {
-            type = "structure",
-        },
+        Problem = M.Problem,
         SNSNotificationArn = {
             type = "string",
         },
@@ -995,7 +980,7 @@ M.RelatedObservations = {
     members = {
         ObservationList = {
             type = "list",
-            member_type = "structure",
+            member = M.Observation,
         },
     },
 }
@@ -1003,9 +988,7 @@ M.RelatedObservations = {
 M.DescribeProblemObservationsOutput = {
     type = "structure",
     members = {
-        RelatedObservations = {
-            type = "structure",
-        },
+        RelatedObservations = M.RelatedObservations,
     },
 }
 
@@ -1045,9 +1028,7 @@ M.DescribeWorkloadOutput = {
         WorkloadRemarks = {
             type = "string",
         },
-        WorkloadConfiguration = {
-            type = "structure",
-        },
+        WorkloadConfiguration = M.WorkloadConfiguration,
     },
 }
 
@@ -1055,7 +1036,7 @@ M.ListApplicationsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1071,7 +1052,7 @@ M.ListApplicationsOutput = {
     members = {
         ApplicationInfoList = {
             type = "list",
-            member_type = "structure",
+            member = M.ApplicationInfo,
         },
         NextToken = {
             type = "string",
@@ -1089,7 +1070,7 @@ M.ListComponentsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1105,7 +1086,7 @@ M.ListComponentsOutput = {
     members = {
         ApplicationComponentList = {
             type = "list",
-            member_type = "structure",
+            member = M.ApplicationComponent,
         },
         NextToken = {
             type = "string",
@@ -1129,7 +1110,7 @@ M.ListConfigurationHistoryInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1145,7 +1126,7 @@ M.ListConfigurationHistoryOutput = {
     members = {
         EventList = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfigurationEvent,
         },
         NextToken = {
             type = "string",
@@ -1166,7 +1147,7 @@ M.ListLogPatternsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1188,7 +1169,7 @@ M.ListLogPatternsOutput = {
         },
         LogPatterns = {
             type = "list",
-            member_type = "structure",
+            member = M.LogPattern,
         },
         NextToken = {
             type = "string",
@@ -1206,7 +1187,7 @@ M.ListLogPatternSetsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1228,7 +1209,7 @@ M.ListLogPatternSetsOutput = {
         },
         LogPatternSets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -1252,7 +1233,7 @@ M.ListProblemsInput = {
             type = "timestamp",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1271,7 +1252,7 @@ M.ListProblemsOutput = {
     members = {
         ProblemList = {
             type = "list",
-            member_type = "structure",
+            member = M.Problem,
         },
         NextToken = {
             type = "string",
@@ -1302,7 +1283,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1323,7 +1304,7 @@ M.ListWorkloadsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1363,7 +1344,7 @@ M.ListWorkloadsOutput = {
     members = {
         WorkloadList = {
             type = "list",
-            member_type = "structure",
+            member = M.Workload,
         },
         NextToken = {
             type = "string",
@@ -1410,7 +1391,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -1446,7 +1427,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1494,9 +1475,7 @@ M.UpdateApplicationInput = {
 M.UpdateApplicationOutput = {
     type = "structure",
     members = {
-        ApplicationInfo = {
-            type = "structure",
-        },
+        ApplicationInfo = M.ApplicationInfo,
     },
 }
 
@@ -1520,7 +1499,7 @@ M.UpdateComponentInput = {
         },
         ResourceList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1588,7 +1567,10 @@ M.UpdateLogPatternInput = {
             type = "string",
         },
         Rank = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1599,9 +1581,7 @@ M.UpdateLogPatternOutput = {
         ResourceGroupName = {
             type = "string",
         },
-        LogPattern = {
-            type = "structure",
-        },
+        LogPattern = M.LogPattern,
     },
 }
 
@@ -1649,12 +1629,9 @@ M.UpdateWorkloadInput = {
         WorkloadId = {
             type = "string",
         },
-        WorkloadConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        WorkloadConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.WorkloadConfiguration }),
     },
 }
 
@@ -1664,9 +1641,7 @@ M.UpdateWorkloadOutput = {
         WorkloadId = {
             type = "string",
         },
-        WorkloadConfiguration = {
-            type = "structure",
-        },
+        WorkloadConfiguration = M.WorkloadConfiguration,
     },
 }
 

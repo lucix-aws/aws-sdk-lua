@@ -71,6 +71,9 @@ M.HistoryEventExecutionDataDetails = {
     members = {
         truncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -87,14 +90,18 @@ M.ActivityScheduledEventDetails = {
         input = {
             type = "string",
         },
-        inputDetails = {
-            type = "structure",
-        },
+        inputDetails = M.HistoryEventExecutionDataDetails,
         timeoutInSeconds = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
         heartbeatInSeconds = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -126,9 +133,7 @@ M.ActivitySucceededEventDetails = {
         output = {
             type = "string",
         },
-        outputDetails = {
-            type = "structure",
-        },
+        outputDetails = M.HistoryEventExecutionDataDetails,
     },
 }
 
@@ -159,6 +164,9 @@ M.AssignedVariablesDetails = {
     members = {
         truncated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -175,7 +183,7 @@ M.EncryptionConfiguration = {
             type = "string",
         },
         kmsDataKeyReusePeriodSeconds = {
-            type = "number",
+            type = "integer",
         },
         type = {
             type = "string",
@@ -209,11 +217,9 @@ M.CreateActivityInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        encryptionConfiguration = {
-            type = "structure",
-        },
+        encryptionConfiguration = M.EncryptionConfiguration,
     },
 }
 
@@ -310,9 +316,7 @@ M.CloudWatchLogsLogGroup = {
 M.LogDestination = {
     type = "structure",
     members = {
-        cloudWatchLogsLogGroup = {
-            type = "structure",
-        },
+        cloudWatchLogsLogGroup = M.CloudWatchLogsLogGroup,
     },
 }
 
@@ -331,10 +335,13 @@ M.LoggingConfiguration = {
         },
         includeExecutionData = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.LogDestination,
         },
     },
 }
@@ -344,6 +351,9 @@ M.TracingConfiguration = {
     members = {
         enabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -377,25 +387,22 @@ M.CreateStateMachineInput = {
         type = {
             type = "string",
         },
-        loggingConfiguration = {
-            type = "structure",
-        },
+        loggingConfiguration = M.LoggingConfiguration,
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        tracingConfiguration = {
-            type = "structure",
-        },
+        tracingConfiguration = M.TracingConfiguration,
         publish = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         versionDescription = {
             type = "string",
         },
-        encryptionConfiguration = {
-            type = "structure",
-        },
+        encryptionConfiguration = M.EncryptionConfiguration,
     },
 }
 
@@ -530,8 +537,9 @@ M.RoutingConfigurationListItem = {
             },
         },
         weight = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -552,7 +560,7 @@ M.CreateStateMachineAliasInput = {
         },
         routingConfiguration = {
             type = "list",
-            member_type = "structure",
+            member = M.RoutingConfigurationListItem,
             traits = {
                 required = true,
             },
@@ -698,9 +706,7 @@ M.DescribeActivityOutput = {
                 required = true,
             },
         },
-        encryptionConfiguration = {
-            type = "structure",
-        },
+        encryptionConfiguration = M.EncryptionConfiguration,
     },
 }
 
@@ -729,6 +735,9 @@ M.CloudWatchEventsExecutionDataDetails = {
     members = {
         included = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -784,15 +793,11 @@ M.DescribeExecutionOutput = {
         input = {
             type = "string",
         },
-        inputDetails = {
-            type = "structure",
-        },
+        inputDetails = M.CloudWatchEventsExecutionDataDetails,
         output = {
             type = "string",
         },
-        outputDetails = {
-            type = "structure",
-        },
+        outputDetails = M.CloudWatchEventsExecutionDataDetails,
         traceHeader = {
             type = "string",
         },
@@ -812,7 +817,7 @@ M.DescribeExecutionOutput = {
             type = "string",
         },
         redriveCount = {
-            type = "number",
+            type = "integer",
         },
         redriveDate = {
             type = "timestamp",
@@ -873,58 +878,66 @@ M.MapRunExecutionCounts = {
     type = "structure",
     members = {
         pending = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         running = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         succeeded = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         failed = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         timedOut = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         aborted = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         total = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         resultsWritten = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         failuresNotRedrivable = {
-            type = "number",
+            type = "long",
         },
         pendingRedrive = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -933,58 +946,66 @@ M.MapRunItemCounts = {
     type = "structure",
     members = {
         pending = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         running = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         succeeded = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         failed = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         timedOut = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         aborted = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         total = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         resultsWritten = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         failuresNotRedrivable = {
-            type = "number",
+            type = "long",
         },
         pendingRedrive = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1027,37 +1048,34 @@ M.DescribeMapRunOutput = {
             type = "timestamp",
         },
         maxConcurrency = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         toleratedFailurePercentage = {
-            type = "number",
+            type = "float",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         toleratedFailureCount = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
-        itemCounts = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        executionCounts = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        itemCounts = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MapRunItemCounts }),
+        executionCounts = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MapRunExecutionCounts }),
         redriveCount = {
-            type = "number",
+            type = "integer",
         },
         redriveDate = {
             type = "timestamp",
@@ -1127,12 +1145,8 @@ M.DescribeStateMachineOutput = {
                 required = true,
             },
         },
-        loggingConfiguration = {
-            type = "structure",
-        },
-        tracingConfiguration = {
-            type = "structure",
-        },
+        loggingConfiguration = M.LoggingConfiguration,
+        tracingConfiguration = M.TracingConfiguration,
         label = {
             type = "string",
         },
@@ -1142,13 +1156,11 @@ M.DescribeStateMachineOutput = {
         description = {
             type = "string",
         },
-        encryptionConfiguration = {
-            type = "structure",
-        },
+        encryptionConfiguration = M.EncryptionConfiguration,
         variableReferences = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
     },
 }
@@ -1189,7 +1201,7 @@ M.DescribeStateMachineAliasOutput = {
         },
         routingConfiguration = {
             type = "list",
-            member_type = "structure",
+            member = M.RoutingConfigurationListItem,
         },
         creationDate = {
             type = "timestamp",
@@ -1248,12 +1260,8 @@ M.DescribeStateMachineForExecutionOutput = {
                 required = true,
             },
         },
-        loggingConfiguration = {
-            type = "structure",
-        },
-        tracingConfiguration = {
-            type = "structure",
-        },
+        loggingConfiguration = M.LoggingConfiguration,
+        tracingConfiguration = M.TracingConfiguration,
         mapRunArn = {
             type = "string",
         },
@@ -1263,13 +1271,11 @@ M.DescribeStateMachineForExecutionOutput = {
         revisionId = {
             type = "string",
         },
-        encryptionConfiguration = {
-            type = "structure",
-        },
+        encryptionConfiguration = M.EncryptionConfiguration,
         variableReferences = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
     },
 }
@@ -1311,10 +1317,16 @@ M.GetExecutionHistoryInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         reverseOrder = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         nextToken = {
             type = "string",
@@ -1374,7 +1386,7 @@ M.ExecutionRedrivenEventDetails = {
     type = "structure",
     members = {
         redriveCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1385,9 +1397,7 @@ M.ExecutionStartedEventDetails = {
         input = {
             type = "string",
         },
-        inputDetails = {
-            type = "structure",
-        },
+        inputDetails = M.HistoryEventExecutionDataDetails,
         roleArn = {
             type = "string",
         },
@@ -1406,9 +1416,7 @@ M.ExecutionSucceededEventDetails = {
         output = {
             type = "string",
         },
-        outputDetails = {
-            type = "structure",
-        },
+        outputDetails = M.HistoryEventExecutionDataDetails,
     },
 }
 
@@ -1457,15 +1465,14 @@ M.LambdaFunctionScheduledEventDetails = {
         input = {
             type = "string",
         },
-        inputDetails = {
-            type = "structure",
-        },
+        inputDetails = M.HistoryEventExecutionDataDetails,
         timeoutInSeconds = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
-        taskCredentials = {
-            type = "structure",
-        },
+        taskCredentials = M.TaskCredentials,
     },
 }
 
@@ -1499,9 +1506,7 @@ M.LambdaFunctionSucceededEventDetails = {
         output = {
             type = "string",
         },
-        outputDetails = {
-            type = "structure",
-        },
+        outputDetails = M.HistoryEventExecutionDataDetails,
     },
 }
 
@@ -1524,7 +1529,10 @@ M.MapIterationEventDetails = {
             type = "string",
         },
         index = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1548,7 +1556,7 @@ M.MapRunRedrivenEventDetails = {
             type = "string",
         },
         redriveCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1566,7 +1574,10 @@ M.MapStateStartedEventDetails = {
     type = "structure",
     members = {
         length = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1583,9 +1594,7 @@ M.StateEnteredEventDetails = {
         input = {
             type = "string",
         },
-        inputDetails = {
-            type = "structure",
-        },
+        inputDetails = M.HistoryEventExecutionDataDetails,
     },
 }
 
@@ -1601,17 +1610,13 @@ M.StateExitedEventDetails = {
         output = {
             type = "string",
         },
-        outputDetails = {
-            type = "structure",
-        },
+        outputDetails = M.HistoryEventExecutionDataDetails,
         assignedVariables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        assignedVariablesDetails = {
-            type = "structure",
-        },
+        assignedVariablesDetails = M.AssignedVariablesDetails,
     },
 }
 
@@ -1667,14 +1672,18 @@ M.TaskScheduledEventDetails = {
             },
         },
         timeoutInSeconds = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
         heartbeatInSeconds = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
-        taskCredentials = {
-            type = "structure",
-        },
+        taskCredentials = M.TaskCredentials,
     },
 }
 
@@ -1762,9 +1771,7 @@ M.TaskSubmittedEventDetails = {
         output = {
             type = "string",
         },
-        outputDetails = {
-            type = "structure",
-        },
+        outputDetails = M.HistoryEventExecutionDataDetails,
     },
 }
 
@@ -1786,9 +1793,7 @@ M.TaskSucceededEventDetails = {
         output = {
             type = "string",
         },
-        outputDetails = {
-            type = "structure",
-        },
+        outputDetails = M.HistoryEventExecutionDataDetails,
     },
 }
 
@@ -1897,125 +1902,55 @@ M.HistoryEvent = {
             },
         },
         id = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         previousEventId = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
-        activityFailedEventDetails = {
-            type = "structure",
-        },
-        activityScheduleFailedEventDetails = {
-            type = "structure",
-        },
-        activityScheduledEventDetails = {
-            type = "structure",
-        },
-        activityStartedEventDetails = {
-            type = "structure",
-        },
-        activitySucceededEventDetails = {
-            type = "structure",
-        },
-        activityTimedOutEventDetails = {
-            type = "structure",
-        },
-        taskFailedEventDetails = {
-            type = "structure",
-        },
-        taskScheduledEventDetails = {
-            type = "structure",
-        },
-        taskStartFailedEventDetails = {
-            type = "structure",
-        },
-        taskStartedEventDetails = {
-            type = "structure",
-        },
-        taskSubmitFailedEventDetails = {
-            type = "structure",
-        },
-        taskSubmittedEventDetails = {
-            type = "structure",
-        },
-        taskSucceededEventDetails = {
-            type = "structure",
-        },
-        taskTimedOutEventDetails = {
-            type = "structure",
-        },
-        executionFailedEventDetails = {
-            type = "structure",
-        },
-        executionStartedEventDetails = {
-            type = "structure",
-        },
-        executionSucceededEventDetails = {
-            type = "structure",
-        },
-        executionAbortedEventDetails = {
-            type = "structure",
-        },
-        executionTimedOutEventDetails = {
-            type = "structure",
-        },
-        executionRedrivenEventDetails = {
-            type = "structure",
-        },
-        mapStateStartedEventDetails = {
-            type = "structure",
-        },
-        mapIterationStartedEventDetails = {
-            type = "structure",
-        },
-        mapIterationSucceededEventDetails = {
-            type = "structure",
-        },
-        mapIterationFailedEventDetails = {
-            type = "structure",
-        },
-        mapIterationAbortedEventDetails = {
-            type = "structure",
-        },
-        lambdaFunctionFailedEventDetails = {
-            type = "structure",
-        },
-        lambdaFunctionScheduleFailedEventDetails = {
-            type = "structure",
-        },
-        lambdaFunctionScheduledEventDetails = {
-            type = "structure",
-        },
-        lambdaFunctionStartFailedEventDetails = {
-            type = "structure",
-        },
-        lambdaFunctionSucceededEventDetails = {
-            type = "structure",
-        },
-        lambdaFunctionTimedOutEventDetails = {
-            type = "structure",
-        },
-        stateEnteredEventDetails = {
-            type = "structure",
-        },
-        stateExitedEventDetails = {
-            type = "structure",
-        },
-        mapRunStartedEventDetails = {
-            type = "structure",
-        },
-        mapRunFailedEventDetails = {
-            type = "structure",
-        },
-        mapRunRedrivenEventDetails = {
-            type = "structure",
-        },
-        evaluationFailedEventDetails = {
-            type = "structure",
-        },
+        activityFailedEventDetails = M.ActivityFailedEventDetails,
+        activityScheduleFailedEventDetails = M.ActivityScheduleFailedEventDetails,
+        activityScheduledEventDetails = M.ActivityScheduledEventDetails,
+        activityStartedEventDetails = M.ActivityStartedEventDetails,
+        activitySucceededEventDetails = M.ActivitySucceededEventDetails,
+        activityTimedOutEventDetails = M.ActivityTimedOutEventDetails,
+        taskFailedEventDetails = M.TaskFailedEventDetails,
+        taskScheduledEventDetails = M.TaskScheduledEventDetails,
+        taskStartFailedEventDetails = M.TaskStartFailedEventDetails,
+        taskStartedEventDetails = M.TaskStartedEventDetails,
+        taskSubmitFailedEventDetails = M.TaskSubmitFailedEventDetails,
+        taskSubmittedEventDetails = M.TaskSubmittedEventDetails,
+        taskSucceededEventDetails = M.TaskSucceededEventDetails,
+        taskTimedOutEventDetails = M.TaskTimedOutEventDetails,
+        executionFailedEventDetails = M.ExecutionFailedEventDetails,
+        executionStartedEventDetails = M.ExecutionStartedEventDetails,
+        executionSucceededEventDetails = M.ExecutionSucceededEventDetails,
+        executionAbortedEventDetails = M.ExecutionAbortedEventDetails,
+        executionTimedOutEventDetails = M.ExecutionTimedOutEventDetails,
+        executionRedrivenEventDetails = M.ExecutionRedrivenEventDetails,
+        mapStateStartedEventDetails = M.MapStateStartedEventDetails,
+        mapIterationStartedEventDetails = M.MapIterationEventDetails,
+        mapIterationSucceededEventDetails = M.MapIterationEventDetails,
+        mapIterationFailedEventDetails = M.MapIterationEventDetails,
+        mapIterationAbortedEventDetails = M.MapIterationEventDetails,
+        lambdaFunctionFailedEventDetails = M.LambdaFunctionFailedEventDetails,
+        lambdaFunctionScheduleFailedEventDetails = M.LambdaFunctionScheduleFailedEventDetails,
+        lambdaFunctionScheduledEventDetails = M.LambdaFunctionScheduledEventDetails,
+        lambdaFunctionStartFailedEventDetails = M.LambdaFunctionStartFailedEventDetails,
+        lambdaFunctionSucceededEventDetails = M.LambdaFunctionSucceededEventDetails,
+        lambdaFunctionTimedOutEventDetails = M.LambdaFunctionTimedOutEventDetails,
+        stateEnteredEventDetails = M.StateEnteredEventDetails,
+        stateExitedEventDetails = M.StateExitedEventDetails,
+        mapRunStartedEventDetails = M.MapRunStartedEventDetails,
+        mapRunFailedEventDetails = M.MapRunFailedEventDetails,
+        mapRunRedrivenEventDetails = M.MapRunRedrivenEventDetails,
+        evaluationFailedEventDetails = M.EvaluationFailedEventDetails,
     },
 }
 
@@ -2024,7 +1959,7 @@ M.GetExecutionHistoryOutput = {
     members = {
         events = {
             type = "list",
-            member_type = "structure",
+            member = M.HistoryEvent,
             traits = {
                 required = true,
             },
@@ -2049,7 +1984,10 @@ M.ListActivitiesInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         nextToken = {
             type = "string",
@@ -2062,7 +2000,7 @@ M.ListActivitiesOutput = {
     members = {
         activities = {
             type = "list",
-            member_type = "structure",
+            member = M.ActivityListItem,
             traits = {
                 required = true,
             },
@@ -2088,7 +2026,10 @@ M.ListExecutionsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         nextToken = {
             type = "string",
@@ -2142,7 +2083,10 @@ M.ExecutionListItem = {
             type = "string",
         },
         itemCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         stateMachineVersionArn = {
             type = "string",
@@ -2151,7 +2095,7 @@ M.ExecutionListItem = {
             type = "string",
         },
         redriveCount = {
-            type = "number",
+            type = "integer",
         },
         redriveDate = {
             type = "timestamp",
@@ -2164,7 +2108,7 @@ M.ListExecutionsOutput = {
     members = {
         executions = {
             type = "list",
-            member_type = "structure",
+            member = M.ExecutionListItem,
             traits = {
                 required = true,
             },
@@ -2185,7 +2129,10 @@ M.ListMapRunsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         nextToken = {
             type = "string",
@@ -2231,7 +2178,7 @@ M.ListMapRunsOutput = {
     members = {
         mapRuns = {
             type = "list",
-            member_type = "structure",
+            member = M.MapRunListItem,
             traits = {
                 required = true,
             },
@@ -2255,7 +2202,10 @@ M.ListStateMachineAliasesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2283,7 +2233,7 @@ M.ListStateMachineAliasesOutput = {
     members = {
         stateMachineAliases = {
             type = "list",
-            member_type = "structure",
+            member = M.StateMachineAliasListItem,
             traits = {
                 required = true,
             },
@@ -2298,7 +2248,10 @@ M.ListStateMachinesInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         nextToken = {
             type = "string",
@@ -2341,7 +2294,7 @@ M.ListStateMachinesOutput = {
     members = {
         stateMachines = {
             type = "list",
-            member_type = "structure",
+            member = M.StateMachineListItem,
             traits = {
                 required = true,
             },
@@ -2365,7 +2318,10 @@ M.ListStateMachineVersionsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2393,7 +2349,7 @@ M.ListStateMachineVersionsOutput = {
     members = {
         stateMachineVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.StateMachineVersionListItem,
             traits = {
                 required = true,
             },
@@ -2421,7 +2377,7 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2686,10 +2642,16 @@ M.BillingDetails = {
     type = "structure",
     members = {
         billedMemoryUsedInMB = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         billedDurationInMilliseconds = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -2742,21 +2704,15 @@ M.StartSyncExecutionOutput = {
         input = {
             type = "string",
         },
-        inputDetails = {
-            type = "structure",
-        },
+        inputDetails = M.CloudWatchEventsExecutionDataDetails,
         output = {
             type = "string",
         },
-        outputDetails = {
-            type = "structure",
-        },
+        outputDetails = M.CloudWatchEventsExecutionDataDetails,
         traceHeader = {
             type = "string",
         },
-        billingDetails = {
-            type = "structure",
-        },
+        billingDetails = M.BillingDetails,
     },
 }
 
@@ -2801,7 +2757,7 @@ M.TagResourceInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -2843,9 +2799,7 @@ M.MockInput = {
         result = {
             type = "string",
         },
-        errorOutput = {
-            type = "structure",
-        },
+        errorOutput = M.MockErrorOutput,
         fieldValidationMode = {
             type = "string",
         },
@@ -2856,13 +2810,13 @@ M.TestStateConfiguration = {
     type = "structure",
     members = {
         retrierRetryCount = {
-            type = "number",
+            type = "integer",
         },
         errorCausedByState = {
             type = "string",
         },
         mapIterationFailureCount = {
-            type = "number",
+            type = "integer",
         },
         mapItemReaderData = {
             type = "string",
@@ -2890,6 +2844,9 @@ M.TestStateInput = {
         },
         revealSecrets = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         variables = {
             type = "string",
@@ -2897,15 +2854,11 @@ M.TestStateInput = {
         stateName = {
             type = "string",
         },
-        mock = {
-            type = "structure",
-        },
+        mock = M.MockInput,
         context = {
             type = "string",
         },
-        stateConfiguration = {
-            type = "structure",
-        },
+        stateConfiguration = M.TestStateConfiguration,
     },
 }
 
@@ -2913,13 +2866,13 @@ M.InspectionErrorDetails = {
     type = "structure",
     members = {
         catchIndex = {
-            type = "number",
+            type = "integer",
         },
         retryIndex = {
-            type = "number",
+            type = "integer",
         },
         retryBackoffIntervalSeconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2990,18 +2943,12 @@ M.InspectionData = {
         afterResultPath = {
             type = "string",
         },
-        request = {
-            type = "structure",
-        },
-        response = {
-            type = "structure",
-        },
+        request = M.InspectionDataRequest,
+        response = M.InspectionDataResponse,
         variables = {
             type = "string",
         },
-        errorDetails = {
-            type = "structure",
-        },
+        errorDetails = M.InspectionErrorDetails,
         afterItemsPath = {
             type = "string",
         },
@@ -3015,13 +2962,13 @@ M.InspectionData = {
             type = "string",
         },
         toleratedFailureCount = {
-            type = "number",
+            type = "integer",
         },
         toleratedFailurePercentage = {
-            type = "number",
+            type = "float",
         },
         maxConcurrency = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3045,9 +2992,7 @@ M.TestStateOutput = {
         cause = {
             type = "string",
         },
-        inspectionData = {
-            type = "structure",
-        },
+        inspectionData = M.InspectionData,
         nextState = {
             type = "string",
         },
@@ -3068,7 +3013,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3090,13 +3035,22 @@ M.UpdateMapRunInput = {
             },
         },
         maxConcurrency = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         toleratedFailurePercentage = {
-            type = "number",
+            type = "float",
+            traits = {
+                default = nil,
+            },
         },
         toleratedFailureCount = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -3130,21 +3084,18 @@ M.UpdateStateMachineInput = {
         roleArn = {
             type = "string",
         },
-        loggingConfiguration = {
-            type = "structure",
-        },
-        tracingConfiguration = {
-            type = "structure",
-        },
+        loggingConfiguration = M.LoggingConfiguration,
+        tracingConfiguration = M.TracingConfiguration,
         publish = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         versionDescription = {
             type = "string",
         },
-        encryptionConfiguration = {
-            type = "structure",
-        },
+        encryptionConfiguration = M.EncryptionConfiguration,
     },
 }
 
@@ -3180,7 +3131,7 @@ M.UpdateStateMachineAliasInput = {
         },
         routingConfiguration = {
             type = "list",
-            member_type = "structure",
+            member = M.RoutingConfigurationListItem,
         },
     },
 }
@@ -3218,7 +3169,10 @@ M.ValidateStateMachineDefinitionInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -3266,7 +3220,7 @@ M.ValidateStateMachineDefinitionOutput = {
         },
         diagnostics = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidateStateMachineDefinitionDiagnostic,
             traits = {
                 required = true,
             },

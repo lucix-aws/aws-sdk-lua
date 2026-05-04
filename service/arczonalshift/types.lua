@@ -46,7 +46,7 @@ M.ListAutoshiftsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -86,7 +86,7 @@ M.ListAutoshiftsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.AutoshiftSummary,
         },
         nextToken = {
             type = "string",
@@ -426,23 +426,23 @@ M.CreatePracticeRunConfigurationInput = {
         },
         blockedWindows = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         blockedDates = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         blockingAlarms = {
             type = "list",
-            member_type = "structure",
+            member = M.ControlCondition,
         },
         allowedWindows = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         outcomeAlarms = {
             type = "list",
-            member_type = "structure",
+            member = M.ControlCondition,
             traits = {
                 required = true,
             },
@@ -455,26 +455,29 @@ M.PracticeRunConfiguration = {
     members = {
         blockingAlarms = {
             type = "list",
-            member_type = "structure",
+            member = M.ControlCondition,
         },
         outcomeAlarms = {
             type = "list",
-            member_type = "structure",
+            member = M.ControlCondition,
             traits = {
                 required = true,
             },
         },
         blockedWindows = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         allowedWindows = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         blockedDates = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
+            traits = {
+                default = {},
+            },
         },
     },
 }
@@ -505,12 +508,9 @@ M.CreatePracticeRunConfigurationOutput = {
                 required = true,
             },
         },
-        practiceRunConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        practiceRunConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PracticeRunConfiguration }),
     },
 }
 
@@ -644,26 +644,24 @@ M.GetManagedResourceOutput = {
         },
         appliedWeights = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "float" },
             traits = {
                 required = true,
             },
         },
         zonalShifts = {
             type = "list",
-            member_type = "structure",
+            member = M.ZonalShiftInResource,
             traits = {
                 required = true,
             },
         },
         autoshifts = {
             type = "list",
-            member_type = "structure",
+            member = M.AutoshiftInResource,
         },
-        practiceRunConfiguration = {
-            type = "structure",
-        },
+        practiceRunConfiguration = M.PracticeRunConfiguration,
         zonalAutoshiftStatus = {
             type = "string",
         },
@@ -680,7 +678,7 @@ M.ListManagedResourcesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -699,23 +697,23 @@ M.ManagedResourceSummary = {
         },
         availabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         appliedWeights = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "float" },
         },
         zonalShifts = {
             type = "list",
-            member_type = "structure",
+            member = M.ZonalShiftInResource,
         },
         autoshifts = {
             type = "list",
-            member_type = "structure",
+            member = M.AutoshiftInResource,
         },
         zonalAutoshiftStatus = {
             type = "string",
@@ -731,7 +729,7 @@ M.ListManagedResourcesOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.ManagedResourceSummary,
             traits = {
                 required = true,
             },
@@ -758,7 +756,7 @@ M.ListZonalShiftsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -831,7 +829,7 @@ M.ListZonalShiftsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.ZonalShiftSummary,
         },
         nextToken = {
             type = "string",
@@ -888,23 +886,23 @@ M.UpdatePracticeRunConfigurationInput = {
         },
         blockedWindows = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         blockedDates = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         blockingAlarms = {
             type = "list",
-            member_type = "structure",
+            member = M.ControlCondition,
         },
         allowedWindows = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         outcomeAlarms = {
             type = "list",
-            member_type = "structure",
+            member = M.ControlCondition,
         },
     },
 }
@@ -930,12 +928,9 @@ M.UpdatePracticeRunConfigurationOutput = {
                 required = true,
             },
         },
-        practiceRunConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        practiceRunConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PracticeRunConfiguration }),
     },
 }
 

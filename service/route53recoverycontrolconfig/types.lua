@@ -31,7 +31,7 @@ M.Cluster = {
         },
         ClusterEndpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.ClusterEndpoint,
         },
         Name = {
             type = "string",
@@ -64,7 +64,7 @@ M.ControlPanel = {
             type = "string",
         },
         RoutingControlCount = {
-            type = "number",
+            type = "integer",
         },
         Status = {
             type = "string",
@@ -112,7 +112,7 @@ M.RuleConfig = {
             },
         },
         Threshold = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -131,7 +131,7 @@ M.AssertionRule = {
     members = {
         AssertedControls = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -148,12 +148,9 @@ M.AssertionRule = {
                 required = true,
             },
         },
-        RuleConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RuleConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RuleConfig }),
         SafetyRuleArn = {
             type = "string",
             traits = {
@@ -167,7 +164,7 @@ M.AssertionRule = {
             },
         },
         WaitPeriodMs = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -189,7 +186,7 @@ M.GatingRule = {
         },
         GatingControls = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -200,12 +197,9 @@ M.GatingRule = {
                 required = true,
             },
         },
-        RuleConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RuleConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RuleConfig }),
         SafetyRuleArn = {
             type = "string",
             traits = {
@@ -220,13 +214,13 @@ M.GatingRule = {
         },
         TargetControls = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         WaitPeriodMs = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -240,12 +234,8 @@ M.GatingRule = {
 M.Rule = {
     type = "structure",
     members = {
-        ASSERTION = {
-            type = "structure",
-        },
-        GATING = {
-            type = "structure",
-        },
+        ASSERTION = M.AssertionRule,
+        GATING = M.GatingRule,
     },
 }
 
@@ -279,7 +269,7 @@ M.AssertionRuleUpdate = {
             },
         },
         WaitPeriodMs = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -315,8 +305,8 @@ M.CreateClusterInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         NetworkType = {
             type = "string",
@@ -327,9 +317,7 @@ M.CreateClusterInput = {
 M.CreateClusterOutput = {
     type = "structure",
     members = {
-        Cluster = {
-            type = "structure",
-        },
+        Cluster = M.Cluster,
     },
 }
 
@@ -423,8 +411,8 @@ M.CreateControlPanelInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -432,9 +420,7 @@ M.CreateControlPanelInput = {
 M.CreateControlPanelOutput = {
     type = "structure",
     members = {
-        ControlPanel = {
-            type = "structure",
-        },
+        ControlPanel = M.ControlPanel,
     },
 }
 
@@ -465,9 +451,7 @@ M.CreateRoutingControlInput = {
 M.CreateRoutingControlOutput = {
     type = "structure",
     members = {
-        RoutingControl = {
-            type = "structure",
-        },
+        RoutingControl = M.RoutingControl,
     },
 }
 
@@ -476,7 +460,7 @@ M.NewAssertionRule = {
     members = {
         AssertedControls = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -493,14 +477,11 @@ M.NewAssertionRule = {
                 required = true,
             },
         },
-        RuleConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RuleConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RuleConfig }),
         WaitPeriodMs = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -519,7 +500,7 @@ M.NewGatingRule = {
         },
         GatingControls = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -530,21 +511,18 @@ M.NewGatingRule = {
                 required = true,
             },
         },
-        RuleConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RuleConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RuleConfig }),
         TargetControls = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         WaitPeriodMs = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -555,19 +533,15 @@ M.NewGatingRule = {
 M.CreateSafetyRuleInput = {
     type = "structure",
     members = {
-        AssertionRule = {
-            type = "structure",
-        },
+        AssertionRule = M.NewAssertionRule,
         ClientToken = {
             type = "string",
         },
-        GatingRule = {
-            type = "structure",
-        },
+        GatingRule = M.NewGatingRule,
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -575,12 +549,8 @@ M.CreateSafetyRuleInput = {
 M.CreateSafetyRuleOutput = {
     type = "structure",
     members = {
-        AssertionRule = {
-            type = "structure",
-        },
-        GatingRule = {
-            type = "structure",
-        },
+        AssertionRule = M.AssertionRule,
+        GatingRule = M.GatingRule,
     },
 }
 
@@ -668,9 +638,7 @@ M.DescribeClusterInput = {
 M.DescribeClusterOutput = {
     type = "structure",
     members = {
-        Cluster = {
-            type = "structure",
-        },
+        Cluster = M.Cluster,
     },
 }
 
@@ -690,9 +658,7 @@ M.DescribeControlPanelInput = {
 M.DescribeControlPanelOutput = {
     type = "structure",
     members = {
-        ControlPanel = {
-            type = "structure",
-        },
+        ControlPanel = M.ControlPanel,
     },
 }
 
@@ -712,9 +678,7 @@ M.DescribeRoutingControlInput = {
 M.DescribeRoutingControlOutput = {
     type = "structure",
     members = {
-        RoutingControl = {
-            type = "structure",
-        },
+        RoutingControl = M.RoutingControl,
     },
 }
 
@@ -734,12 +698,8 @@ M.DescribeSafetyRuleInput = {
 M.DescribeSafetyRuleOutput = {
     type = "structure",
     members = {
-        AssertionRule = {
-            type = "structure",
-        },
-        GatingRule = {
-            type = "structure",
-        },
+        AssertionRule = M.AssertionRule,
+        GatingRule = M.GatingRule,
     },
 }
 
@@ -759,7 +719,7 @@ M.GatingRuleUpdate = {
             },
         },
         WaitPeriodMs = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -793,7 +753,7 @@ M.ListAssociatedRoute53HealthChecksInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -819,7 +779,7 @@ M.ListAssociatedRoute53HealthChecksOutput = {
     members = {
         HealthCheckIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -831,7 +791,7 @@ M.ListClustersInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -850,7 +810,7 @@ M.ListClustersOutput = {
     members = {
         Clusters = {
             type = "list",
-            member_type = "structure",
+            member = M.Cluster,
         },
         NextToken = {
             type = "string",
@@ -868,7 +828,7 @@ M.ListControlPanelsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -887,7 +847,7 @@ M.ListControlPanelsOutput = {
     members = {
         ControlPanels = {
             type = "list",
-            member_type = "structure",
+            member = M.ControlPanel,
         },
         NextToken = {
             type = "string",
@@ -906,7 +866,7 @@ M.ListRoutingControlsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -928,7 +888,7 @@ M.ListRoutingControlsOutput = {
         },
         RoutingControls = {
             type = "list",
-            member_type = "structure",
+            member = M.RoutingControl,
         },
     },
 }
@@ -944,7 +904,7 @@ M.ListSafetyRulesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -966,7 +926,7 @@ M.ListSafetyRulesOutput = {
         },
         SafetyRules = {
             type = "list",
-            member_type = "structure",
+            member = M.Rule,
         },
     },
 }
@@ -989,8 +949,8 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1007,8 +967,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1032,7 +992,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "TagKeys",
                 required = true,
@@ -1066,9 +1026,7 @@ M.UpdateClusterInput = {
 M.UpdateClusterOutput = {
     type = "structure",
     members = {
-        Cluster = {
-            type = "structure",
-        },
+        Cluster = M.Cluster,
     },
 }
 
@@ -1093,9 +1051,7 @@ M.UpdateControlPanelInput = {
 M.UpdateControlPanelOutput = {
     type = "structure",
     members = {
-        ControlPanel = {
-            type = "structure",
-        },
+        ControlPanel = M.ControlPanel,
     },
 }
 
@@ -1120,33 +1076,23 @@ M.UpdateRoutingControlInput = {
 M.UpdateRoutingControlOutput = {
     type = "structure",
     members = {
-        RoutingControl = {
-            type = "structure",
-        },
+        RoutingControl = M.RoutingControl,
     },
 }
 
 M.UpdateSafetyRuleInput = {
     type = "structure",
     members = {
-        AssertionRuleUpdate = {
-            type = "structure",
-        },
-        GatingRuleUpdate = {
-            type = "structure",
-        },
+        AssertionRuleUpdate = M.AssertionRuleUpdate,
+        GatingRuleUpdate = M.GatingRuleUpdate,
     },
 }
 
 M.UpdateSafetyRuleOutput = {
     type = "structure",
     members = {
-        AssertionRule = {
-            type = "structure",
-        },
-        GatingRule = {
-            type = "structure",
-        },
+        AssertionRule = M.AssertionRule,
+        GatingRule = M.GatingRule,
     },
 }
 

@@ -1,0 +1,49 @@
+local waiter = require("waiter")
+
+local M = {}
+
+--- Wait until VaultExists.
+function M.wait_until_vault_exists(client, input, options)
+    return waiter.wait(client, "describeVault", input, {
+        min_delay = 3,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    success = true,
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    errorType = "ResourceNotFoundException",
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until VaultNotExists.
+function M.wait_until_vault_not_exists(client, input, options)
+    return waiter.wait(client, "describeVault", input, {
+        min_delay = 3,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "retry",
+                matcher = {
+                    success = true,
+                },
+            },
+            {
+                state = "success",
+                matcher = {
+                    errorType = "ResourceNotFoundException",
+                },
+            },
+        },
+    }, options)
+end
+
+return M

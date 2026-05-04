@@ -136,7 +136,7 @@ M.ValidationException = {
         },
         ErrorList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionError,
         },
     },
 }
@@ -466,9 +466,7 @@ M.Account = {
         AwsAccountId = {
             type = "string",
         },
-        Address = {
-            type = "structure",
-        },
+        Address = M.Address,
         Duns = {
             type = "string",
         },
@@ -526,9 +524,7 @@ M.AccountSummary = {
         WebsiteUrl = {
             type = "string",
         },
-        Address = {
-            type = "structure",
-        },
+        Address = M.AddressSummary,
     },
 }
 
@@ -580,12 +576,9 @@ M.AssignOpportunityInput = {
                 required = true,
             },
         },
-        Assignee = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Assignee = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AssigneeContact }),
     },
 }
 
@@ -725,7 +718,7 @@ M.AwsOpportunityCustomer = {
     members = {
         Contacts = {
             type = "list",
-            member_type = "structure",
+            member = M.Contact,
         },
     },
 }
@@ -762,7 +755,7 @@ M.AwsProductDetails = {
         },
         Categories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -778,7 +771,7 @@ M.AwsProductDetails = {
         },
         Optimizations = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsProductOptimization,
             traits = {
                 required = true,
             },
@@ -987,15 +980,15 @@ M.AwsProductInsights = {
         },
         TotalAmountByCategory = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
         },
         AwsProducts = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsProductDetails,
             traits = {
                 required = true,
             },
@@ -1006,12 +999,8 @@ M.AwsProductInsights = {
 M.AwsProductsSpendInsightsBySource = {
     type = "structure",
     members = {
-        Partner = {
-            type = "structure",
-        },
-        AWS = {
-            type = "structure",
-        },
+        Partner = M.AwsProductInsights,
+        AWS = M.AwsProductInsights,
     },
 }
 
@@ -1030,9 +1019,7 @@ M.AwsOpportunityInsights = {
         EngagementScore = {
             type = "string",
         },
-        AwsProductsSpendInsightsBySource = {
-            type = "structure",
-        },
+        AwsProductsSpendInsightsBySource = M.AwsProductsSpendInsightsBySource,
     },
 }
 
@@ -1098,7 +1085,7 @@ M.AwsOpportunityLifeCycle = {
         },
         NextStepsHistory = {
             type = "list",
-            member_type = "structure",
+            member = M.ProfileNextStepsHistory,
         },
     },
 }
@@ -1112,6 +1099,9 @@ M.ExpectedCustomerSpend = {
     members = {
         Amount = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
         CurrencyCode = {
             type = "string",
@@ -1142,7 +1132,7 @@ M.AwsOpportunityProject = {
     members = {
         ExpectedCustomerSpend = {
             type = "list",
-            member_type = "structure",
+            member = M.ExpectedCustomerSpend,
         },
         AwsPartition = {
             type = "string",
@@ -1155,11 +1145,11 @@ M.AwsOpportunityRelatedEntities = {
     members = {
         AwsProducts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Solutions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1220,28 +1210,18 @@ M.AwsOpportunitySummaryFullView = {
         Visibility = {
             type = "string",
         },
-        LifeCycle = {
-            type = "structure",
-        },
+        LifeCycle = M.AwsOpportunityLifeCycle,
         OpportunityTeam = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsTeamMember,
         },
-        Insights = {
-            type = "structure",
-        },
+        Insights = M.AwsOpportunityInsights,
         InvolvementTypeChangeReason = {
             type = "string",
         },
-        RelatedEntityIds = {
-            type = "structure",
-        },
-        Customer = {
-            type = "structure",
-        },
-        Project = {
-            type = "structure",
-        },
+        RelatedEntityIds = M.AwsOpportunityRelatedEntities,
+        Customer = M.AwsOpportunityCustomer,
+        Project = M.AwsOpportunityProject,
     },
 }
 
@@ -1302,12 +1282,8 @@ M.EngagementCustomerProjectDetails = {
 M.CustomerProjectsContext = {
     type = "structure",
     members = {
-        Customer = {
-            type = "structure",
-        },
-        Project = {
-            type = "structure",
-        },
+        Customer = M.EngagementCustomer,
+        Project = M.EngagementCustomerProjectDetails,
     },
 }
 
@@ -1334,12 +1310,9 @@ M.LeadCustomer = {
         WebsiteUrl = {
             type = "string",
         },
-        Address = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Address = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AddressSummary }),
         AwsMaturity = {
             type = "string",
         },
@@ -1418,12 +1391,9 @@ M.LeadInteraction = {
         BusinessProblem = {
             type = "string",
         },
-        Contact = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Contact = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LeadContact }),
     },
 }
 
@@ -1432,16 +1402,16 @@ M.LeadContext = {
     members = {
         QualificationStatus = {
             type = "string",
-        },
-        Customer = {
-            type = "structure",
             traits = {
-                required = true,
+                default = "Unqualified",
             },
         },
+        Customer = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LeadCustomer }),
         Interactions = {
             type = "list",
-            member_type = "structure",
+            member = M.LeadInteraction,
             traits = {
                 required = true,
             },
@@ -1452,12 +1422,8 @@ M.LeadContext = {
 M.EngagementContextPayload = {
     type = "union",
     members = {
-        CustomerProject = {
-            type = "structure",
-        },
-        Lead = {
-            type = "structure",
-        },
+        CustomerProject = M.CustomerProjectsContext,
+        Lead = M.LeadContext,
     },
 }
 
@@ -1493,12 +1459,9 @@ M.CreateEngagementContextInput = {
                 required = true,
             },
         },
-        Payload = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        Payload = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EngagementContextPayload }),
     },
 }
 
@@ -1542,9 +1505,7 @@ M.EngagementContextDetails = {
                 required = true,
             },
         },
-        Payload = {
-            type = "union",
-        },
+        Payload = M.EngagementContextPayload,
     },
 }
 
@@ -1577,7 +1538,7 @@ M.CreateEngagementInput = {
         },
         Contexts = {
             type = "list",
-            member_type = "structure",
+            member = M.EngagementContextDetails,
         },
     },
 }
@@ -1637,7 +1598,7 @@ M.GetEngagementOutput = {
             type = "string",
         },
         MemberCount = {
-            type = "number",
+            type = "integer",
         },
         ModifiedAt = {
             type = "timestamp",
@@ -1647,7 +1608,7 @@ M.GetEngagementOutput = {
         },
         Contexts = {
             type = "list",
-            member_type = "structure",
+            member = M.EngagementContextDetails,
         },
     },
 }
@@ -1668,7 +1629,10 @@ M.ListEngagementMembersInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 5,
+            },
         },
         NextToken = {
             type = "string",
@@ -1696,7 +1660,7 @@ M.ListEngagementMembersOutput = {
     members = {
         EngagementMemberList = {
             type = "list",
-            member_type = "structure",
+            member = M.EngagementMember,
             traits = {
                 required = true,
             },
@@ -1745,32 +1709,33 @@ M.ListEngagementsInput = {
         },
         CreatedBy = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ExcludeCreatedBy = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ContextTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ExcludeContextTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        Sort = {
-            type = "structure",
-        },
+        Sort = M.EngagementSort,
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 20,
+            },
         },
         NextToken = {
             type = "string",
         },
         EngagementIdentifier = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1794,7 +1759,7 @@ M.EngagementSummary = {
             type = "string",
         },
         MemberCount = {
-            type = "number",
+            type = "integer",
         },
         ModifiedAt = {
             type = "timestamp",
@@ -1804,7 +1769,7 @@ M.EngagementSummary = {
         },
         ContextTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1814,7 +1779,7 @@ M.ListEngagementsOutput = {
     members = {
         EngagementSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.EngagementSummary,
             traits = {
                 required = true,
             },
@@ -1857,14 +1822,12 @@ M.ListEngagementByAcceptingInvitationTasksInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
-        Sort = {
-            type = "structure",
-        },
+        Sort = M.ListTasksSortBase,
         Catalog = {
             type = "string",
             traits = {
@@ -1873,19 +1836,19 @@ M.ListEngagementByAcceptingInvitationTasksInput = {
         },
         TaskStatus = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         OpportunityIdentifier = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         EngagementInvitationIdentifier = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TaskIdentifier = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1953,7 +1916,7 @@ M.ListEngagementByAcceptingInvitationTasksOutput = {
     members = {
         TaskSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ListEngagementByAcceptingInvitationTaskSummary,
         },
         NextToken = {
             type = "string",
@@ -2002,7 +1965,7 @@ M.StartEngagementByAcceptingInvitationTaskInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2044,14 +2007,12 @@ M.ListEngagementFromOpportunityTasksInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
-        Sort = {
-            type = "structure",
-        },
+        Sort = M.ListTasksSortBase,
         Catalog = {
             type = "string",
             traits = {
@@ -2060,19 +2021,19 @@ M.ListEngagementFromOpportunityTasksInput = {
         },
         TaskStatus = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TaskIdentifier = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         OpportunityIdentifier = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         EngagementIdentifier = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2118,7 +2079,7 @@ M.ListEngagementFromOpportunityTasksOutput = {
     members = {
         TaskSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ListEngagementFromOpportunityTaskSummary,
         },
         NextToken = {
             type = "string",
@@ -2162,15 +2123,12 @@ M.StartEngagementFromOpportunityTaskInput = {
                 required = true,
             },
         },
-        AwsSubmission = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AwsSubmission = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AwsSubmission }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2277,18 +2235,12 @@ M.LeadInvitationInteraction = {
 M.LeadInvitationPayload = {
     type = "structure",
     members = {
-        Customer = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Interaction = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Customer = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LeadInvitationCustomer }),
+        Interaction = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LeadInvitationInteraction }),
     },
 }
 
@@ -2315,7 +2267,7 @@ M.ProjectDetails = {
         },
         ExpectedCustomerSpend = {
             type = "list",
-            member_type = "structure",
+            member = M.ExpectedCustomerSpend,
             traits = {
                 required = true,
             },
@@ -2364,48 +2316,36 @@ M.OpportunityInvitationPayload = {
     members = {
         SenderContacts = {
             type = "list",
-            member_type = "structure",
+            member = M.SenderContact,
         },
         ReceiverResponsibilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        Customer = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Project = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Customer = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EngagementCustomer }),
+        Project = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProjectDetails }),
     },
 }
 
 M.Payload = {
     type = "union",
     members = {
-        OpportunityInvitation = {
-            type = "structure",
-        },
-        LeadInvitation = {
-            type = "structure",
-        },
+        OpportunityInvitation = M.OpportunityInvitationPayload,
+        LeadInvitation = M.LeadInvitationPayload,
     },
 }
 
 M.Receiver = {
     type = "union",
     members = {
-        Account = {
-            type = "structure",
-        },
+        Account = M.AccountReceiver,
     },
 }
 
@@ -2418,18 +2358,12 @@ M.Invitation = {
                 required = true,
             },
         },
-        Receiver = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        Payload = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        Receiver = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Receiver }),
+        Payload = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Payload }),
     },
 }
 
@@ -2454,12 +2388,9 @@ M.CreateEngagementInvitationInput = {
                 required = true,
             },
         },
-        Invitation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Invitation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Invitation }),
     },
 }
 
@@ -2559,9 +2490,7 @@ M.GetEngagementInvitationOutput = {
         SenderCompanyName = {
             type = "string",
         },
-        Receiver = {
-            type = "union",
-        },
+        Receiver = M.Receiver,
         Catalog = {
             type = "string",
             traits = {
@@ -2571,9 +2500,7 @@ M.GetEngagementInvitationOutput = {
         RejectionReason = {
             type = "string",
         },
-        Payload = {
-            type = "union",
-        },
+        Payload = M.Payload,
         InvitationMessage = {
             type = "string",
         },
@@ -2582,7 +2509,7 @@ M.GetEngagementInvitationOutput = {
         },
         ExistingMembers = {
             type = "list",
-            member_type = "structure",
+            member = M.EngagementMemberSummary,
         },
     },
 }
@@ -2624,17 +2551,15 @@ M.ListEngagementInvitationsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
-        Sort = {
-            type = "structure",
-        },
+        Sort = M.OpportunityEngagementInvitationSort,
         PayloadType = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ParticipantType = {
             type = "string",
@@ -2644,15 +2569,15 @@ M.ListEngagementInvitationsInput = {
         },
         Status = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         EngagementIdentifier = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SenderAwsAccountId = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2693,9 +2618,7 @@ M.EngagementInvitationSummary = {
         SenderCompanyName = {
             type = "string",
         },
-        Receiver = {
-            type = "union",
-        },
+        Receiver = M.Receiver,
         Catalog = {
             type = "string",
             traits = {
@@ -2713,7 +2636,7 @@ M.ListEngagementInvitationsOutput = {
     members = {
         EngagementInvitationSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.EngagementInvitationSummary,
         },
         NextToken = {
             type = "string",
@@ -2790,7 +2713,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -2801,12 +2724,10 @@ M.ListTagsForResourceOutput = {
 M.Customer = {
     type = "structure",
     members = {
-        Account = {
-            type = "structure",
-        },
+        Account = M.Account,
         Contacts = {
             type = "list",
-            member_type = "structure",
+            member = M.Contact,
         },
     },
 }
@@ -2896,7 +2817,7 @@ M.LifeCycle = {
         },
         NextStepsHistory = {
             type = "list",
-            member_type = "structure",
+            member = M.NextStepsHistory,
         },
     },
 }
@@ -2933,11 +2854,11 @@ M.Marketing = {
         },
         UseCases = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Channels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AwsFundingUsed = {
             type = "string",
@@ -3006,18 +2927,18 @@ M.Project = {
     members = {
         DeliveryModels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ExpectedCustomerSpend = {
             type = "list",
-            member_type = "structure",
+            member = M.ExpectedCustomerSpend,
         },
         Title = {
             type = "string",
         },
         ApnPrograms = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CustomerBusinessProblem = {
             type = "string",
@@ -3030,7 +2951,7 @@ M.Project = {
         },
         SalesActivities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CompetitorName = {
             type = "string",
@@ -3080,9 +3001,7 @@ M.SoftwareRevenue = {
         DeliveryModel = {
             type = "string",
         },
-        Value = {
-            type = "structure",
-        },
+        Value = M.MonetaryValue,
         EffectiveDate = {
             type = "string",
         },
@@ -3103,7 +3022,7 @@ M.CreateOpportunityInput = {
         },
         PrimaryNeedsFromAws = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NationalSecurity = {
             type = "string",
@@ -3111,40 +3030,30 @@ M.CreateOpportunityInput = {
         PartnerOpportunityIdentifier = {
             type = "string",
         },
-        Customer = {
-            type = "structure",
-        },
-        Project = {
-            type = "structure",
-        },
+        Customer = M.Customer,
+        Project = M.Project,
         OpportunityType = {
             type = "string",
         },
-        Marketing = {
-            type = "structure",
-        },
-        SoftwareRevenue = {
-            type = "structure",
-        },
+        Marketing = M.Marketing,
+        SoftwareRevenue = M.SoftwareRevenue,
         ClientToken = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        LifeCycle = {
-            type = "structure",
-        },
+        LifeCycle = M.LifeCycle,
         Origin = {
             type = "string",
         },
         OpportunityTeam = {
             type = "list",
-            member_type = "structure",
+            member = M.Contact,
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3234,28 +3143,18 @@ M.GetAwsOpportunitySummaryOutput = {
         Visibility = {
             type = "string",
         },
-        LifeCycle = {
-            type = "structure",
-        },
+        LifeCycle = M.AwsOpportunityLifeCycle,
         OpportunityTeam = {
             type = "list",
-            member_type = "structure",
+            member = M.AwsTeamMember,
         },
-        Insights = {
-            type = "structure",
-        },
+        Insights = M.AwsOpportunityInsights,
         InvolvementTypeChangeReason = {
             type = "string",
         },
-        RelatedEntityIds = {
-            type = "structure",
-        },
-        Customer = {
-            type = "structure",
-        },
-        Project = {
-            type = "structure",
-        },
+        RelatedEntityIds = M.AwsOpportunityRelatedEntities,
+        Customer = M.AwsOpportunityCustomer,
+        Project = M.AwsOpportunityProject,
         Catalog = {
             type = "string",
             traits = {
@@ -3288,19 +3187,19 @@ M.RelatedEntityIdentifiers = {
     members = {
         AwsMarketplaceOffers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AwsMarketplaceOfferSets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Solutions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AwsProducts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3316,7 +3215,7 @@ M.GetOpportunityOutput = {
         },
         PrimaryNeedsFromAws = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NationalSecurity = {
             type = "string",
@@ -3324,21 +3223,13 @@ M.GetOpportunityOutput = {
         PartnerOpportunityIdentifier = {
             type = "string",
         },
-        Customer = {
-            type = "structure",
-        },
-        Project = {
-            type = "structure",
-        },
+        Customer = M.Customer,
+        Project = M.Project,
         OpportunityType = {
             type = "string",
         },
-        Marketing = {
-            type = "structure",
-        },
-        SoftwareRevenue = {
-            type = "structure",
-        },
+        Marketing = M.Marketing,
+        SoftwareRevenue = M.SoftwareRevenue,
         Id = {
             type = "string",
             traits = {
@@ -3360,18 +3251,13 @@ M.GetOpportunityOutput = {
                 required = true,
             },
         },
-        RelatedEntityIdentifiers = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        LifeCycle = {
-            type = "structure",
-        },
+        RelatedEntityIdentifiers = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RelatedEntityIdentifiers }),
+        LifeCycle = M.LifeCycle,
         OpportunityTeam = {
             type = "list",
-            member_type = "structure",
+            member = M.Contact,
         },
     },
 }
@@ -3448,48 +3334,38 @@ M.ListOpportunitiesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
-        Sort = {
-            type = "structure",
-        },
-        LastModifiedDate = {
-            type = "structure",
-        },
+        Sort = M.OpportunitySort,
+        LastModifiedDate = M.LastModifiedDate,
         Identifier = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         LifeCycleStage = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         LifeCycleReviewStatus = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CustomerCompanyName = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        CreatedDate = {
-            type = "structure",
-        },
-        TargetCloseDate = {
-            type = "structure",
-        },
+        CreatedDate = M.CreatedDateFilter,
+        TargetCloseDate = M.TargetCloseDateFilter,
     },
 }
 
 M.CustomerSummary = {
     type = "structure",
     members = {
-        Account = {
-            type = "structure",
-        },
+        Account = M.AccountSummary,
     },
 }
 
@@ -3525,11 +3401,11 @@ M.ProjectSummary = {
     members = {
         DeliveryModels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ExpectedCustomerSpend = {
             type = "list",
-            member_type = "structure",
+            member = M.ExpectedCustomerSpend,
         },
     },
 }
@@ -3561,15 +3437,9 @@ M.OpportunitySummary = {
         CreatedDate = {
             type = "timestamp",
         },
-        LifeCycle = {
-            type = "structure",
-        },
-        Customer = {
-            type = "structure",
-        },
-        Project = {
-            type = "structure",
-        },
+        LifeCycle = M.LifeCycleSummary,
+        Customer = M.CustomerSummary,
+        Project = M.ProjectSummary,
     },
 }
 
@@ -3578,7 +3448,7 @@ M.ListOpportunitiesOutput = {
     members = {
         OpportunitySummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.OpportunitySummary,
             traits = {
                 required = true,
             },
@@ -3631,7 +3501,7 @@ M.UpdateOpportunityInput = {
         },
         PrimaryNeedsFromAws = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NationalSecurity = {
             type = "string",
@@ -3639,21 +3509,13 @@ M.UpdateOpportunityInput = {
         PartnerOpportunityIdentifier = {
             type = "string",
         },
-        Customer = {
-            type = "structure",
-        },
-        Project = {
-            type = "structure",
-        },
+        Customer = M.Customer,
+        Project = M.Project,
         OpportunityType = {
             type = "string",
         },
-        Marketing = {
-            type = "structure",
-        },
-        SoftwareRevenue = {
-            type = "structure",
-        },
+        Marketing = M.Marketing,
+        SoftwareRevenue = M.SoftwareRevenue,
         LastModifiedDate = {
             type = "timestamp",
             traits = {
@@ -3666,9 +3528,7 @@ M.UpdateOpportunityInput = {
                 required = true,
             },
         },
-        LifeCycle = {
-            type = "structure",
-        },
+        LifeCycle = M.LifeCycle,
     },
 }
 
@@ -3694,14 +3554,12 @@ M.ListOpportunityFromEngagementTasksInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
-        Sort = {
-            type = "structure",
-        },
+        Sort = M.ListTasksSortBase,
         Catalog = {
             type = "string",
             traits = {
@@ -3710,23 +3568,23 @@ M.ListOpportunityFromEngagementTasksInput = {
         },
         TaskStatus = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TaskIdentifier = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         OpportunityIdentifier = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         EngagementIdentifier = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ContextIdentifier = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3772,7 +3630,7 @@ M.ListOpportunityFromEngagementTasksOutput = {
     members = {
         TaskSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ListOpportunityFromEngagementTaskSummary,
         },
         NextToken = {
             type = "string",
@@ -3809,7 +3667,7 @@ M.StartOpportunityFromEngagementTaskInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3933,7 +3791,7 @@ M.CreateResourceSnapshotOutput = {
             type = "string",
         },
         Revision = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3972,7 +3830,7 @@ M.GetResourceSnapshotInput = {
             },
         },
         Revision = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4000,18 +3858,18 @@ M.ProjectView = {
     members = {
         DeliveryModels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ExpectedCustomerSpend = {
             type = "list",
-            member_type = "structure",
+            member = M.ExpectedCustomerSpend,
         },
         CustomerUseCase = {
             type = "string",
         },
         SalesActivities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         OtherSolutionDescription = {
             type = "string",
@@ -4025,38 +3883,26 @@ M.OpportunitySummaryView = {
         OpportunityType = {
             type = "string",
         },
-        Lifecycle = {
-            type = "structure",
-        },
+        Lifecycle = M.LifeCycleForView,
         OpportunityTeam = {
             type = "list",
-            member_type = "structure",
+            member = M.Contact,
         },
         PrimaryNeedsFromAws = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        Customer = {
-            type = "structure",
-        },
-        Project = {
-            type = "structure",
-        },
-        RelatedEntityIdentifiers = {
-            type = "structure",
-        },
+        Customer = M.Customer,
+        Project = M.ProjectView,
+        RelatedEntityIdentifiers = M.RelatedEntityIdentifiers,
     },
 }
 
 M.ResourceSnapshotPayload = {
     type = "union",
     members = {
-        OpportunitySummary = {
-            type = "structure",
-        },
-        AwsOpportunitySummaryFullView = {
-            type = "structure",
-        },
+        OpportunitySummary = M.OpportunitySummaryView,
+        AwsOpportunitySummaryFullView = M.AwsOpportunitySummaryFullView,
     },
 }
 
@@ -4091,14 +3937,12 @@ M.GetResourceSnapshotOutput = {
             type = "string",
         },
         Revision = {
-            type = "number",
+            type = "integer",
         },
-        Payload = {
-            type = "union",
-        },
+        Payload = M.ResourceSnapshotPayload,
         TargetMemberAccounts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4113,7 +3957,10 @@ M.ListEngagementResourceAssociationsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 100,
+            },
         },
         NextToken = {
             type = "string",
@@ -4162,7 +4009,7 @@ M.ListEngagementResourceAssociationsOutput = {
     members = {
         EngagementResourceAssociationSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.EngagementResourceAssociationSummary,
             traits = {
                 required = true,
             },
@@ -4183,7 +4030,10 @@ M.ListResourceSnapshotsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 100,
+            },
         },
         NextToken = {
             type = "string",
@@ -4216,7 +4066,7 @@ M.ResourceSnapshotSummary = {
             type = "string",
         },
         Revision = {
-            type = "number",
+            type = "integer",
         },
         ResourceType = {
             type = "string",
@@ -4238,7 +4088,7 @@ M.ListResourceSnapshotsOutput = {
     members = {
         ResourceSnapshotSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceSnapshotSummary,
             traits = {
                 required = true,
             },
@@ -4290,7 +4140,7 @@ M.CreateResourceSnapshotJobInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -4423,7 +4273,10 @@ M.ListResourceSnapshotJobsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 100,
+            },
         },
         NextToken = {
             type = "string",
@@ -4434,9 +4287,7 @@ M.ListResourceSnapshotJobsInput = {
         Status = {
             type = "string",
         },
-        Sort = {
-            type = "structure",
-        },
+        Sort = M.SortObject,
     },
 }
 
@@ -4463,7 +4314,7 @@ M.ListResourceSnapshotJobsOutput = {
     members = {
         ResourceSnapshotJobSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceSnapshotJobSummary,
             traits = {
                 required = true,
             },
@@ -4560,25 +4411,23 @@ M.ListSolutionsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
         },
-        Sort = {
-            type = "structure",
-        },
+        Sort = M.SolutionSort,
         Status = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Identifier = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Category = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4633,7 +4482,7 @@ M.ListSolutionsOutput = {
     members = {
         SolutionSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.SolutionBase,
             traits = {
                 required = true,
             },
@@ -4655,7 +4504,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -4678,7 +4527,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4695,28 +4544,22 @@ M.UpdateLeadContext = {
     members = {
         QualificationStatus = {
             type = "string",
-        },
-        Customer = {
-            type = "structure",
             traits = {
-                required = true,
+                default = "Unqualified",
             },
         },
-        Interaction = {
-            type = "structure",
-        },
+        Customer = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LeadCustomer }),
+        Interaction = M.LeadInteraction,
     },
 }
 
 M.UpdateEngagementContextPayload = {
     type = "union",
     members = {
-        Lead = {
-            type = "structure",
-        },
-        CustomerProject = {
-            type = "structure",
-        },
+        Lead = M.UpdateLeadContext,
+        CustomerProject = M.CustomerProjectsContext,
     },
 }
 
@@ -4753,12 +4596,9 @@ M.UpdateEngagementContextInput = {
                 required = true,
             },
         },
-        Payload = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        Payload = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.UpdateEngagementContextPayload }),
     },
 }
 

@@ -70,9 +70,7 @@ M.CreateDatasetInput = {
                 required = true,
             },
         },
-        DatasetSchema = {
-            type = "structure",
-        },
+        DatasetSchema = M.DatasetSchema,
         ServerSideKmsKeyId = {
             type = "string",
         },
@@ -84,7 +82,7 @@ M.CreateDatasetInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -193,15 +191,11 @@ M.InferenceS3InputConfiguration = {
 M.InferenceInputConfiguration = {
     type = "structure",
     members = {
-        S3InputConfiguration = {
-            type = "structure",
-        },
+        S3InputConfiguration = M.InferenceS3InputConfiguration,
         InputTimeZoneOffset = {
             type = "string",
         },
-        InferenceInputNameConfiguration = {
-            type = "structure",
-        },
+        InferenceInputNameConfiguration = M.InferenceInputNameConfiguration,
     },
 }
 
@@ -223,12 +217,9 @@ M.InferenceS3OutputConfiguration = {
 M.InferenceOutputConfiguration = {
     type = "structure",
     members = {
-        S3OutputConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        S3OutputConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InferenceS3OutputConfiguration }),
         KmsKeyId = {
             type = "string",
         },
@@ -259,7 +250,7 @@ M.CreateInferenceSchedulerInput = {
             },
         },
         DataDelayOffsetInMinutes = {
-            type = "number",
+            type = "long",
         },
         DataUploadFrequency = {
             type = "string",
@@ -267,18 +258,12 @@ M.CreateInferenceSchedulerInput = {
                 required = true,
             },
         },
-        DataInputConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        DataOutputConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DataInputConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InferenceInputConfiguration }),
+        DataOutputConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InferenceOutputConfiguration }),
         RoleArn = {
             type = "string",
             traits = {
@@ -296,7 +281,7 @@ M.CreateInferenceSchedulerInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -416,7 +401,7 @@ M.CreateLabelGroupInput = {
         },
         FaultCodes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ClientToken = {
             type = "string",
@@ -426,7 +411,7 @@ M.CreateLabelGroupInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -484,9 +469,7 @@ M.LabelsS3InputConfiguration = {
 M.LabelsInputConfiguration = {
     type = "structure",
     members = {
-        S3InputConfiguration = {
-            type = "structure",
-        },
+        S3InputConfiguration = M.LabelsS3InputConfiguration,
         LabelGroupName = {
             type = "string",
         },
@@ -511,12 +494,9 @@ M.ModelDiagnosticsS3OutputConfiguration = {
 M.ModelDiagnosticsOutputConfiguration = {
     type = "structure",
     members = {
-        S3OutputConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        S3OutputConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ModelDiagnosticsS3OutputConfiguration }),
         KmsKeyId = {
             type = "string",
         },
@@ -538,12 +518,8 @@ M.CreateModelInput = {
                 required = true,
             },
         },
-        DatasetSchema = {
-            type = "structure",
-        },
-        LabelsInputConfiguration = {
-            type = "structure",
-        },
+        DatasetSchema = M.DatasetSchema,
+        LabelsInputConfiguration = M.LabelsInputConfiguration,
         ClientToken = {
             type = "string",
             traits = {
@@ -565,22 +541,18 @@ M.CreateModelInput = {
         RoleArn = {
             type = "string",
         },
-        DataPreProcessingConfiguration = {
-            type = "structure",
-        },
+        DataPreProcessingConfiguration = M.DataPreProcessingConfiguration,
         ServerSideKmsKeyId = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         OffCondition = {
             type = "string",
         },
-        ModelDiagnosticsOutputConfiguration = {
-            type = "structure",
-        },
+        ModelDiagnosticsOutputConfiguration = M.ModelDiagnosticsOutputConfiguration,
     },
 }
 
@@ -800,7 +772,7 @@ M.DuplicateTimestamps = {
     type = "structure",
     members = {
         TotalNumberOfDuplicateTimestamps = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -812,7 +784,7 @@ M.MissingCompleteSensorData = {
     type = "structure",
     members = {
         AffectedSensorCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -824,7 +796,7 @@ M.SensorsWithShortDateRange = {
     type = "structure",
     members = {
         AffectedSensorCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -835,18 +807,12 @@ M.SensorsWithShortDateRange = {
 M.InsufficientSensorData = {
     type = "structure",
     members = {
-        MissingCompleteSensorData = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        SensorsWithShortDateRange = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        MissingCompleteSensorData = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MissingCompleteSensorData }),
+        SensorsWithShortDateRange = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SensorsWithShortDateRange }),
     },
 }
 
@@ -854,13 +820,13 @@ M.InvalidSensorData = {
     type = "structure",
     members = {
         AffectedSensorCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         TotalNumberOfInvalidValues = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -872,13 +838,13 @@ M.MissingSensorData = {
     type = "structure",
     members = {
         AffectedSensorCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         TotalNumberOfMissingValues = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -890,7 +856,7 @@ M.UnsupportedTimestamps = {
     type = "structure",
     members = {
         TotalNumberOfUnsupportedTimestamps = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -901,36 +867,21 @@ M.UnsupportedTimestamps = {
 M.DataQualitySummary = {
     type = "structure",
     members = {
-        InsufficientSensorData = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        MissingSensorData = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        InvalidSensorData = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        UnsupportedTimestamps = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        DuplicateTimestamps = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        InsufficientSensorData = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InsufficientSensorData }),
+        MissingSensorData = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MissingSensorData }),
+        InvalidSensorData = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InvalidSensorData }),
+        UnsupportedTimestamps = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.UnsupportedTimestamps }),
+        DuplicateTimestamps = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DuplicateTimestamps }),
     },
 }
 
@@ -956,20 +907,20 @@ M.IngestedFilesSummary = {
     type = "structure",
     members = {
         TotalNumberOfFiles = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         IngestedNumberOfFiles = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         DiscardedFiles = {
             type = "list",
-            member_type = "structure",
+            member = M.S3Object,
         },
     },
 }
@@ -995,12 +946,9 @@ M.IngestionS3InputConfiguration = {
 M.IngestionInputConfiguration = {
     type = "structure",
     members = {
-        S3InputConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        S3InputConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IngestionS3InputConfiguration }),
     },
 }
 
@@ -1020,9 +968,7 @@ M.DescribeDataIngestionJobOutput = {
         DatasetArn = {
             type = "string",
         },
-        IngestionInputConfiguration = {
-            type = "structure",
-        },
+        IngestionInputConfiguration = M.IngestionInputConfiguration,
         RoleArn = {
             type = "string",
         },
@@ -1035,17 +981,13 @@ M.DescribeDataIngestionJobOutput = {
         FailedReason = {
             type = "string",
         },
-        DataQualitySummary = {
-            type = "structure",
-        },
-        IngestedFilesSummary = {
-            type = "structure",
-        },
+        DataQualitySummary = M.DataQualitySummary,
+        IngestedFilesSummary = M.IngestedFilesSummary,
         StatusDetail = {
             type = "string",
         },
         IngestedDataSize = {
-            type = "number",
+            type = "long",
         },
         DataStartTime = {
             type = "timestamp",
@@ -1095,15 +1037,9 @@ M.DescribeDatasetOutput = {
         ServerSideKmsKeyId = {
             type = "string",
         },
-        IngestionInputConfiguration = {
-            type = "structure",
-        },
-        DataQualitySummary = {
-            type = "structure",
-        },
-        IngestedFilesSummary = {
-            type = "structure",
-        },
+        IngestionInputConfiguration = M.IngestionInputConfiguration,
+        DataQualitySummary = M.DataQualitySummary,
+        IngestedFilesSummary = M.IngestedFilesSummary,
         RoleArn = {
             type = "string",
         },
@@ -1155,7 +1091,7 @@ M.DescribeInferenceSchedulerOutput = {
             type = "string",
         },
         DataDelayOffsetInMinutes = {
-            type = "number",
+            type = "long",
         },
         DataUploadFrequency = {
             type = "string",
@@ -1166,12 +1102,8 @@ M.DescribeInferenceSchedulerOutput = {
         UpdatedAt = {
             type = "timestamp",
         },
-        DataInputConfiguration = {
-            type = "structure",
-        },
-        DataOutputConfiguration = {
-            type = "structure",
-        },
+        DataInputConfiguration = M.InferenceInputConfiguration,
+        DataOutputConfiguration = M.InferenceOutputConfiguration,
         RoleArn = {
             type = "string",
         },
@@ -1261,7 +1193,7 @@ M.DescribeLabelGroupOutput = {
         },
         FaultCodes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CreatedAt = {
             type = "timestamp",
@@ -1310,9 +1242,7 @@ M.DescribeModelOutput = {
         Schema = {
             type = "string",
         },
-        LabelsInputConfiguration = {
-            type = "structure",
-        },
+        LabelsInputConfiguration = M.LabelsInputConfiguration,
         TrainingDataStartTime = {
             type = "timestamp",
         },
@@ -1328,9 +1258,7 @@ M.DescribeModelOutput = {
         RoleArn = {
             type = "string",
         },
-        DataPreProcessingConfiguration = {
-            type = "structure",
-        },
+        DataPreProcessingConfiguration = M.DataPreProcessingConfiguration,
         Status = {
             type = "string",
         },
@@ -1368,7 +1296,7 @@ M.DescribeModelOutput = {
             type = "timestamp",
         },
         ActiveModelVersion = {
-            type = "number",
+            type = "long",
         },
         ActiveModelVersionArn = {
             type = "string",
@@ -1377,7 +1305,7 @@ M.DescribeModelOutput = {
             type = "timestamp",
         },
         PreviousActiveModelVersion = {
-            type = "number",
+            type = "long",
         },
         PreviousActiveModelVersionArn = {
             type = "string",
@@ -1395,13 +1323,13 @@ M.DescribeModelOutput = {
             type = "string",
         },
         LatestScheduledRetrainingModelVersion = {
-            type = "number",
+            type = "long",
         },
         LatestScheduledRetrainingStartTime = {
             type = "timestamp",
         },
         LatestScheduledRetrainingAvailableDataInDays = {
-            type = "number",
+            type = "integer",
         },
         NextScheduledRetrainingStartDate = {
             type = "timestamp",
@@ -1415,9 +1343,7 @@ M.DescribeModelOutput = {
         RetrainingSchedulerStatus = {
             type = "string",
         },
-        ModelDiagnosticsOutputConfiguration = {
-            type = "structure",
-        },
+        ModelDiagnosticsOutputConfiguration = M.ModelDiagnosticsOutputConfiguration,
         ModelQuality = {
             type = "string",
         },
@@ -1434,7 +1360,7 @@ M.DescribeModelVersionInput = {
             },
         },
         ModelVersion = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -1458,7 +1384,7 @@ M.DescribeModelVersionOutput = {
             type = "string",
         },
         ModelVersion = {
-            type = "number",
+            type = "long",
         },
         ModelVersionArn = {
             type = "string",
@@ -1478,9 +1404,7 @@ M.DescribeModelVersionOutput = {
         Schema = {
             type = "string",
         },
-        LabelsInputConfiguration = {
-            type = "structure",
-        },
+        LabelsInputConfiguration = M.LabelsInputConfiguration,
         TrainingDataStartTime = {
             type = "timestamp",
         },
@@ -1496,9 +1420,7 @@ M.DescribeModelVersionOutput = {
         RoleArn = {
             type = "string",
         },
-        DataPreProcessingConfiguration = {
-            type = "structure",
-        },
+        DataPreProcessingConfiguration = M.DataPreProcessingConfiguration,
         TrainingExecutionStartTime = {
             type = "timestamp",
         },
@@ -1533,13 +1455,13 @@ M.DescribeModelVersionOutput = {
             type = "timestamp",
         },
         ImportedDataSizeInBytes = {
-            type = "number",
+            type = "long",
         },
         PriorModelMetrics = {
             type = "string",
         },
         RetrainingAvailableDataInDays = {
-            type = "number",
+            type = "integer",
         },
         AutoPromotionResult = {
             type = "string",
@@ -1547,12 +1469,8 @@ M.DescribeModelVersionOutput = {
         AutoPromotionResultReason = {
             type = "string",
         },
-        ModelDiagnosticsOutputConfiguration = {
-            type = "structure",
-        },
-        ModelDiagnosticsResultsObject = {
-            type = "structure",
-        },
+        ModelDiagnosticsOutputConfiguration = M.ModelDiagnosticsOutputConfiguration,
+        ModelDiagnosticsResultsObject = M.S3Object,
         ModelQuality = {
             type = "string",
         },
@@ -1657,7 +1575,7 @@ M.ImportDatasetInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1704,9 +1622,7 @@ M.ImportModelVersionInput = {
                 required = true,
             },
         },
-        LabelsInputConfiguration = {
-            type = "structure",
-        },
+        LabelsInputConfiguration = M.LabelsInputConfiguration,
         ClientToken = {
             type = "string",
             traits = {
@@ -1721,7 +1637,7 @@ M.ImportModelVersionInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         InferenceDataImportStrategy = {
             type = "string",
@@ -1742,7 +1658,7 @@ M.ImportModelVersionOutput = {
             type = "string",
         },
         ModelVersion = {
-            type = "number",
+            type = "long",
         },
         Status = {
             type = "string",
@@ -1760,7 +1676,7 @@ M.ListDataIngestionJobsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Status = {
             type = "string",
@@ -1780,9 +1696,7 @@ M.DataIngestionJobSummary = {
         DatasetArn = {
             type = "string",
         },
-        IngestionInputConfiguration = {
-            type = "structure",
-        },
+        IngestionInputConfiguration = M.IngestionInputConfiguration,
         Status = {
             type = "string",
         },
@@ -1797,7 +1711,7 @@ M.ListDataIngestionJobsOutput = {
         },
         DataIngestionJobSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.DataIngestionJobSummary,
         },
     },
 }
@@ -1809,7 +1723,7 @@ M.ListDatasetsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         DatasetNameBeginsWith = {
             type = "string",
@@ -1843,7 +1757,7 @@ M.ListDatasetsOutput = {
         },
         DatasetSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.DatasetSummary,
         },
     },
 }
@@ -1855,7 +1769,7 @@ M.ListInferenceEventsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         InferenceSchedulerName = {
             type = "string",
@@ -1897,7 +1811,7 @@ M.InferenceEventSummary = {
             type = "string",
         },
         EventDurationInSeconds = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1910,7 +1824,7 @@ M.ListInferenceEventsOutput = {
         },
         InferenceEventSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.InferenceEventSummary,
         },
     },
 }
@@ -1928,7 +1842,7 @@ M.ListInferenceExecutionsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         InferenceSchedulerName = {
             type = "string",
@@ -1972,15 +1886,9 @@ M.InferenceExecutionSummary = {
         DataEndTime = {
             type = "timestamp",
         },
-        DataInputConfiguration = {
-            type = "structure",
-        },
-        DataOutputConfiguration = {
-            type = "structure",
-        },
-        CustomerResultObject = {
-            type = "structure",
-        },
+        DataInputConfiguration = M.InferenceInputConfiguration,
+        DataOutputConfiguration = M.InferenceOutputConfiguration,
+        CustomerResultObject = M.S3Object,
         Status = {
             type = "string",
         },
@@ -1988,7 +1896,7 @@ M.InferenceExecutionSummary = {
             type = "string",
         },
         ModelVersion = {
-            type = "number",
+            type = "long",
         },
         ModelVersionArn = {
             type = "string",
@@ -2004,7 +1912,7 @@ M.ListInferenceExecutionsOutput = {
         },
         InferenceExecutionSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.InferenceExecutionSummary,
         },
     },
 }
@@ -2016,7 +1924,7 @@ M.ListInferenceSchedulersInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         InferenceSchedulerNameBeginsWith = {
             type = "string",
@@ -2049,7 +1957,7 @@ M.InferenceSchedulerSummary = {
             type = "string",
         },
         DataDelayOffsetInMinutes = {
-            type = "number",
+            type = "long",
         },
         DataUploadFrequency = {
             type = "string",
@@ -2068,7 +1976,7 @@ M.ListInferenceSchedulersOutput = {
         },
         InferenceSchedulerSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.InferenceSchedulerSummary,
         },
     },
 }
@@ -2083,7 +1991,7 @@ M.ListLabelGroupsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2114,7 +2022,7 @@ M.ListLabelGroupsOutput = {
         },
         LabelGroupSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.LabelGroupSummary,
         },
     },
 }
@@ -2144,7 +2052,7 @@ M.ListLabelsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2190,7 +2098,7 @@ M.ListLabelsOutput = {
         },
         LabelSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.LabelSummary,
         },
     },
 }
@@ -2202,7 +2110,7 @@ M.ListModelsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Status = {
             type = "string",
@@ -2238,7 +2146,7 @@ M.ModelSummary = {
             type = "timestamp",
         },
         ActiveModelVersion = {
-            type = "number",
+            type = "long",
         },
         ActiveModelVersionArn = {
             type = "string",
@@ -2247,7 +2155,7 @@ M.ModelSummary = {
             type = "string",
         },
         LatestScheduledRetrainingModelVersion = {
-            type = "number",
+            type = "long",
         },
         LatestScheduledRetrainingStartTime = {
             type = "timestamp",
@@ -2258,9 +2166,7 @@ M.ModelSummary = {
         RetrainingSchedulerStatus = {
             type = "string",
         },
-        ModelDiagnosticsOutputConfiguration = {
-            type = "structure",
-        },
+        ModelDiagnosticsOutputConfiguration = M.ModelDiagnosticsOutputConfiguration,
         ModelQuality = {
             type = "string",
         },
@@ -2275,7 +2181,7 @@ M.ListModelsOutput = {
         },
         ModelSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ModelSummary,
         },
     },
 }
@@ -2293,7 +2199,7 @@ M.ListModelVersionsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         Status = {
             type = "string",
@@ -2308,10 +2214,10 @@ M.ListModelVersionsInput = {
             type = "timestamp",
         },
         MaxModelVersion = {
-            type = "number",
+            type = "long",
         },
         MinModelVersion = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -2326,7 +2232,7 @@ M.ModelVersionSummary = {
             type = "string",
         },
         ModelVersion = {
-            type = "number",
+            type = "long",
         },
         ModelVersionArn = {
             type = "string",
@@ -2354,7 +2260,7 @@ M.ListModelVersionsOutput = {
         },
         ModelVersionSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ModelVersionSummary,
         },
     },
 }
@@ -2372,7 +2278,7 @@ M.ListRetrainingSchedulersInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2406,7 +2312,7 @@ M.ListRetrainingSchedulersOutput = {
     members = {
         RetrainingSchedulerSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.RetrainingSchedulerSummary,
         },
         NextToken = {
             type = "string",
@@ -2427,7 +2333,7 @@ M.ListSensorStatisticsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -2450,7 +2356,7 @@ M.CategoricalValues = {
             },
         },
         NumberOfCategory = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2459,14 +2365,15 @@ M.CountPercent = {
     type = "structure",
     members = {
         Count = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Percentage = {
-            type = "number",
+            type = "float",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -2483,10 +2390,10 @@ M.LargeTimestampGaps = {
             },
         },
         NumberOfLargeTimestampGaps = {
-            type = "number",
+            type = "integer",
         },
         MaxTimestampGapInDays = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2535,31 +2442,18 @@ M.SensorStatisticsSummary = {
         },
         DataExists = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        MissingValues = {
-            type = "structure",
-        },
-        InvalidValues = {
-            type = "structure",
-        },
-        InvalidDateEntries = {
-            type = "structure",
-        },
-        DuplicateTimestamps = {
-            type = "structure",
-        },
-        CategoricalValues = {
-            type = "structure",
-        },
-        MultipleOperatingModes = {
-            type = "structure",
-        },
-        LargeTimestampGaps = {
-            type = "structure",
-        },
-        MonotonicValues = {
-            type = "structure",
-        },
+        MissingValues = M.CountPercent,
+        InvalidValues = M.CountPercent,
+        InvalidDateEntries = M.CountPercent,
+        DuplicateTimestamps = M.CountPercent,
+        CategoricalValues = M.CategoricalValues,
+        MultipleOperatingModes = M.MultipleOperatingModes,
+        LargeTimestampGaps = M.LargeTimestampGaps,
+        MonotonicValues = M.MonotonicValues,
         DataStartTime = {
             type = "timestamp",
         },
@@ -2574,7 +2468,7 @@ M.ListSensorStatisticsOutput = {
     members = {
         SensorStatisticsSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.SensorStatisticsSummary,
         },
         NextToken = {
             type = "string",
@@ -2599,7 +2493,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2652,12 +2546,9 @@ M.StartDataIngestionJobInput = {
                 required = true,
             },
         },
-        IngestionInputConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        IngestionInputConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IngestionInputConfiguration }),
         RoleArn = {
             type = "string",
             traits = {
@@ -2816,7 +2707,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -2839,7 +2730,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2861,7 +2752,7 @@ M.UpdateActiveModelVersionInput = {
             },
         },
         ModelVersion = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -2879,10 +2770,10 @@ M.UpdateActiveModelVersionOutput = {
             type = "string",
         },
         CurrentActiveVersion = {
-            type = "number",
+            type = "long",
         },
         PreviousActiveVersion = {
-            type = "number",
+            type = "long",
         },
         CurrentActiveVersionArn = {
             type = "string",
@@ -2903,17 +2794,13 @@ M.UpdateInferenceSchedulerInput = {
             },
         },
         DataDelayOffsetInMinutes = {
-            type = "number",
+            type = "long",
         },
         DataUploadFrequency = {
             type = "string",
         },
-        DataInputConfiguration = {
-            type = "structure",
-        },
-        DataOutputConfiguration = {
-            type = "structure",
-        },
+        DataInputConfiguration = M.InferenceInputConfiguration,
+        DataOutputConfiguration = M.InferenceOutputConfiguration,
         RoleArn = {
             type = "string",
         },
@@ -2935,7 +2822,7 @@ M.UpdateLabelGroupInput = {
         },
         FaultCodes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2953,15 +2840,11 @@ M.UpdateModelInput = {
                 required = true,
             },
         },
-        LabelsInputConfiguration = {
-            type = "structure",
-        },
+        LabelsInputConfiguration = M.LabelsInputConfiguration,
         RoleArn = {
             type = "string",
         },
-        ModelDiagnosticsOutputConfiguration = {
-            type = "structure",
-        },
+        ModelDiagnosticsOutputConfiguration = M.ModelDiagnosticsOutputConfiguration,
     },
 }
 

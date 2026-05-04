@@ -2707,9 +2707,9 @@ local record ReplicationGroupNotFoundFault
     message: string
 end
 
-local type OutpostMode = "single-outpost" | "cross-outpost"
-
 local type TransitEncryptionMode = "preferred" | "required"
+
+local type OutpostMode = "single-outpost" | "cross-outpost"
 
 local type AZMode = "single-az" | "cross-az"
 

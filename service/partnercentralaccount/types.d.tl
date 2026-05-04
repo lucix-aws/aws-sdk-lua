@@ -1230,17 +1230,17 @@ end
 
 local type ConnectionType = "OPPORTUNITY_COLLABORATION" | "SUBSIDIARY"
 
+local type ProfileVisibility = "PRIVATE" | "PUBLIC"
+
 local type VerificationStatus = "PENDING_CUSTOMER_ACTION" | "IN_PROGRESS" | "FAILED" | "SUCCEEDED" | "REJECTED"
 
-local type ParticipantType = "SENDER" | "RECEIVER"
-
 local type VerificationType = "BUSINESS_VERIFICATION" | "REGISTRANT_VERIFICATION"
+
+local type ParticipantType = "SENDER" | "RECEIVER"
 
 local type InvitationStatus = "PENDING" | "ACCEPTED" | "REJECTED" | "CANCELED" | "EXPIRED"
 
 local type AccessType = "ALLOW_ALL" | "DENY_ALL" | "ALLOW_BY_DEFAULT_DENY_SOME"
-
-local type ProfileVisibility = "PRIVATE" | "PUBLIC"
 
 local type ProfileTaskStatus = "IN_PROGRESS" | "CANCELED" | "SUCCEEDED" | "FAILED"
 

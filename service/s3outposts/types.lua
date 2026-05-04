@@ -187,7 +187,7 @@ M.Endpoint = {
         },
         NetworkInterfaces = {
             type = "list",
-            member_type = "structure",
+            member = M.NetworkInterface,
         },
         VpcId = {
             type = "string",
@@ -204,9 +204,7 @@ M.Endpoint = {
         CustomerOwnedIpv4Pool = {
             type = "string",
         },
-        FailedReason = {
-            type = "structure",
-        },
+        FailedReason = M.FailedReason,
     },
 }
 
@@ -220,8 +218,9 @@ M.ListEndpointsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -233,7 +232,7 @@ M.ListEndpointsOutput = {
     members = {
         Endpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.Endpoint,
         },
         NextToken = {
             type = "string",
@@ -251,8 +250,9 @@ M.ListOutpostsWithS3Input = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -275,7 +275,10 @@ M.Outpost = {
             type = "string",
         },
         CapacityInBytes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -285,7 +288,7 @@ M.ListOutpostsWithS3Output = {
     members = {
         Outposts = {
             type = "list",
-            member_type = "structure",
+            member = M.Outpost,
         },
         NextToken = {
             type = "string",
@@ -303,8 +306,9 @@ M.ListSharedEndpointsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -323,7 +327,7 @@ M.ListSharedEndpointsOutput = {
     members = {
         Endpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.Endpoint,
         },
         NextToken = {
             type = "string",

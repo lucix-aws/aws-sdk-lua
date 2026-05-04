@@ -1448,11 +1448,11 @@ local type UsefulnessRating = "USEFUL" | "NOT_USEFUL"
 
 local type SelfManagedCaseStatus = "Submitted" | "Detection and Analysis" | "Containment, Eradication and Recovery" | "Post-incident Activities"
 
-local type CustomerType = "Standalone" | "Organization"
+local type EngagementType = "Security Incident" | "Investigation"
 
 local type ClosureCode = "Investigation Completed" | "Not Resolved" | "False Positive" | "Duplicate"
 
-local type EngagementType = "Security Incident" | "Investigation"
+local type CustomerType = "Standalone" | "Organization"
 
 local type PendingAction = "Customer" | "None"
 

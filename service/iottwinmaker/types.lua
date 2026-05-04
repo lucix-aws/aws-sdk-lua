@@ -21,8 +21,8 @@ M.EntityPropertyReference = {
         },
         externalIdProperty = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         entityId = {
             type = "string",
@@ -105,16 +105,16 @@ M.MetadataTransferJobProgress = {
     type = "structure",
     members = {
         totalCount = {
-            type = "number",
+            type = "integer",
         },
         succeededCount = {
-            type = "number",
+            type = "integer",
         },
         skippedCount = {
-            type = "number",
+            type = "integer",
         },
         failedCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -158,11 +158,9 @@ M.MetadataTransferJobStatus = {
         state = {
             type = "string",
         },
-        error = {
-            type = "structure",
-        },
+        error = M.ErrorDetails,
         queuedPosition = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -188,15 +186,10 @@ M.CancelMetadataTransferJobOutput = {
                 required = true,
             },
         },
-        status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        progress = {
-            type = "structure",
-        },
+        status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MetadataTransferJobStatus }),
+        progress = M.MetadataTransferJobProgress,
     },
 }
 
@@ -234,9 +227,7 @@ M.LambdaFunction = {
 M.DataConnector = {
     type = "structure",
     members = {
-        lambda = {
-            type = "structure",
-        },
+        lambda = M.LambdaFunction,
         isNative = {
             type = "boolean",
         },
@@ -253,14 +244,12 @@ M.FunctionRequest = {
     members = {
         requiredProperties = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         scope = {
             type = "string",
         },
-        implementedBy = {
-            type = "structure",
-        },
+        implementedBy = M.DataConnector,
     },
 }
 
@@ -299,7 +288,7 @@ M.PropertyGroupRequest = {
         },
         propertyNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -367,7 +356,7 @@ M.ComponentPropertyGroupRequest = {
         },
         propertyNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         updateType = {
             type = "string",
@@ -444,12 +433,8 @@ M.DestinationConfiguration = {
                 required = true,
             },
         },
-        s3Configuration = {
-            type = "structure",
-        },
-        iotTwinMakerConfiguration = {
-            type = "structure",
-        },
+        s3Configuration = M.S3DestinationConfiguration,
+        iotTwinMakerConfiguration = M.IotTwinMakerDestinationConfiguration,
     },
 }
 
@@ -492,12 +477,8 @@ M.FilterByAssetModel = {
 M.IotSiteWiseSourceConfigurationFilter = {
     type = "union",
     members = {
-        filterByAssetModel = {
-            type = "structure",
-        },
-        filterByAsset = {
-            type = "structure",
-        },
+        filterByAssetModel = M.FilterByAssetModel,
+        filterByAsset = M.FilterByAsset,
     },
 }
 
@@ -506,7 +487,7 @@ M.IotSiteWiseSourceConfiguration = {
     members = {
         filters = {
             type = "list",
-            member_type = "union",
+            member = M.IotSiteWiseSourceConfigurationFilter,
         },
     },
 }
@@ -538,12 +519,8 @@ M.FilterByEntity = {
 M.IotTwinMakerSourceConfigurationFilter = {
     type = "union",
     members = {
-        filterByComponentType = {
-            type = "structure",
-        },
-        filterByEntity = {
-            type = "structure",
-        },
+        filterByComponentType = M.FilterByComponentType,
+        filterByEntity = M.FilterByEntity,
     },
 }
 
@@ -558,7 +535,7 @@ M.IotTwinMakerSourceConfiguration = {
         },
         filters = {
             type = "list",
-            member_type = "union",
+            member = M.IotTwinMakerSourceConfigurationFilter,
         },
     },
 }
@@ -590,15 +567,9 @@ M.SourceConfiguration = {
                 required = true,
             },
         },
-        s3Configuration = {
-            type = "structure",
-        },
-        iotSiteWiseConfiguration = {
-            type = "structure",
-        },
-        iotTwinMakerConfiguration = {
-            type = "structure",
-        },
+        s3Configuration = M.S3SourceConfiguration,
+        iotSiteWiseConfiguration = M.IotSiteWiseSourceConfiguration,
+        iotTwinMakerConfiguration = M.IotTwinMakerSourceConfiguration,
     },
 }
 
@@ -613,17 +584,14 @@ M.CreateMetadataTransferJobInput = {
         },
         sources = {
             type = "list",
-            member_type = "structure",
+            member = M.SourceConfiguration,
             traits = {
                 required = true,
             },
         },
-        destination = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        destination = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DestinationConfiguration }),
     },
 }
 
@@ -648,12 +616,9 @@ M.CreateMetadataTransferJobOutput = {
                 required = true,
             },
         },
-        status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MetadataTransferJobStatus }),
     },
 }
 
@@ -684,17 +649,17 @@ M.CreateSceneInput = {
         },
         capabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         sceneMetadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -742,8 +707,8 @@ M.CreateSyncJobInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -801,8 +766,8 @@ M.CreateWorkspaceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -989,7 +954,7 @@ M.ExecuteQueryInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -1020,7 +985,7 @@ M.Row = {
     members = {
         rowData = {
             type = "list",
-            member_type = "document",
+            member = { type = "document" },
         },
     },
 }
@@ -1030,11 +995,11 @@ M.ExecuteQueryOutput = {
     members = {
         columnDescriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnDescription,
         },
         rows = {
             type = "list",
-            member_type = "structure",
+            member = M.Row,
         },
         nextToken = {
             type = "string",
@@ -1089,14 +1054,12 @@ M.FunctionResponse = {
     members = {
         requiredProperties = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         scope = {
             type = "string",
         },
-        implementedBy = {
-            type = "structure",
-        },
+        implementedBy = M.DataConnector,
         isInherited = {
             type = "boolean",
         },
@@ -1114,7 +1077,7 @@ M.PropertyGroupResponse = {
         },
         propertyNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1134,9 +1097,7 @@ M.Status = {
         state = {
             type = "string",
         },
-        error = {
-            type = "structure",
-        },
+        error = M.ErrorDetails,
     },
 }
 
@@ -1171,7 +1132,7 @@ M.ComponentPropertyGroupResponse = {
         },
         propertyNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1208,15 +1169,12 @@ M.ComponentSummary = {
         },
         propertyGroups = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ComponentPropertyGroupResponse,
         },
-        status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Status }),
         syncSource = {
             type = "string",
         },
@@ -1259,17 +1217,14 @@ M.GetMetadataTransferJobOutput = {
         },
         sources = {
             type = "list",
-            member_type = "structure",
+            member = M.SourceConfiguration,
             traits = {
                 required = true,
             },
         },
-        destination = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        destination = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DestinationConfiguration }),
         metadataTransferJobRole = {
             type = "string",
             traits = {
@@ -1291,15 +1246,10 @@ M.GetMetadataTransferJobOutput = {
                 required = true,
             },
         },
-        status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        progress = {
-            type = "structure",
-        },
+        status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MetadataTransferJobStatus }),
+        progress = M.MetadataTransferJobProgress,
     },
 }
 
@@ -1319,7 +1269,7 @@ M.BundleInformation = {
     members = {
         bundleNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1348,11 +1298,9 @@ M.PricingPlan = {
     type = "structure",
     members = {
         billableEntityCount = {
-            type = "number",
+            type = "long",
         },
-        bundleInformation = {
-            type = "structure",
-        },
+        bundleInformation = M.BundleInformation,
         effectiveDateTime = {
             type = "timestamp",
             traits = {
@@ -1383,15 +1331,10 @@ M.PricingPlan = {
 M.GetPricingPlanOutput = {
     type = "structure",
     members = {
-        currentPricingPlan = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        pendingPricingPlan = {
-            type = "structure",
-        },
+        currentPricingPlan = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PricingPlan }),
+        pendingPricingPlan = M.PricingPlan,
     },
 }
 
@@ -1446,7 +1389,7 @@ M.InterpolationParameters = {
             type = "string",
         },
         intervalInSeconds = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1536,21 +1479,19 @@ M.GetSceneOutput = {
         },
         capabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         sceneMetadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         generatedSceneMetadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        error = {
-            type = "structure",
-        },
+        error = M.SceneError,
     },
 }
 
@@ -1579,9 +1520,7 @@ M.SyncJobStatus = {
         state = {
             type = "string",
         },
-        error = {
-            type = "structure",
-        },
+        error = M.ErrorDetails,
     },
 }
 
@@ -1612,12 +1551,9 @@ M.GetSyncJobOutput = {
                 required = true,
             },
         },
-        status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SyncJobStatus }),
         creationDateTime = {
             type = "timestamp",
             traits = {
@@ -1666,7 +1602,7 @@ M.GetWorkspaceOutput = {
         },
         linkedServices = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         s3Location = {
             type = "string",
@@ -1710,7 +1646,7 @@ M.ListComponentsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -1723,7 +1659,7 @@ M.ListComponentsOutput = {
     members = {
         componentSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ComponentSummary,
             traits = {
                 required = true,
             },
@@ -1761,13 +1697,13 @@ M.ListComponentTypesInput = {
         },
         filters = {
             type = "list",
-            member_type = "union",
+            member = M.ListComponentTypesFilter,
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1802,9 +1738,7 @@ M.ComponentTypeSummary = {
         description = {
             type = "string",
         },
-        status = {
-            type = "structure",
-        },
+        status = M.Status,
         componentTypeName = {
             type = "string",
         },
@@ -1822,7 +1756,7 @@ M.ListComponentTypesOutput = {
         },
         componentTypeSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ComponentTypeSummary,
             traits = {
                 required = true,
             },
@@ -1831,7 +1765,7 @@ M.ListComponentTypesOutput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1863,10 +1797,10 @@ M.ListEntitiesInput = {
         },
         filters = {
             type = "list",
-            member_type = "union",
+            member = M.ListEntitiesFilter,
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -1898,12 +1832,9 @@ M.EntitySummary = {
         parentEntityId = {
             type = "string",
         },
-        status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Status }),
         description = {
             type = "string",
         },
@@ -1930,7 +1861,7 @@ M.ListEntitiesOutput = {
     members = {
         entitySummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.EntitySummary,
         },
         nextToken = {
             type = "string",
@@ -1967,13 +1898,13 @@ M.ListMetadataTransferJobsInput = {
         },
         filters = {
             type = "list",
-            member_type = "union",
+            member = M.ListMetadataTransferJobsFilter,
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2005,15 +1936,10 @@ M.MetadataTransferJobSummary = {
                 required = true,
             },
         },
-        status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        progress = {
-            type = "structure",
-        },
+        status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MetadataTransferJobStatus }),
+        progress = M.MetadataTransferJobProgress,
     },
 }
 
@@ -2022,7 +1948,7 @@ M.ListMetadataTransferJobsOutput = {
     members = {
         metadataTransferJobSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.MetadataTransferJobSummary,
             traits = {
                 required = true,
             },
@@ -2056,7 +1982,7 @@ M.ListPropertiesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -2075,7 +2001,7 @@ M.ListScenesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -2127,7 +2053,7 @@ M.ListScenesOutput = {
     members = {
         sceneSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.SceneSummary,
         },
         nextToken = {
             type = "string",
@@ -2146,7 +2072,7 @@ M.ListSyncJobsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -2166,9 +2092,7 @@ M.SyncJobSummary = {
         syncSource = {
             type = "string",
         },
-        status = {
-            type = "structure",
-        },
+        status = M.SyncJobStatus,
         creationDateTime = {
             type = "timestamp",
         },
@@ -2183,7 +2107,7 @@ M.ListSyncJobsOutput = {
     members = {
         syncJobSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.SyncJobSummary,
         },
         nextToken = {
             type = "string",
@@ -2241,10 +2165,10 @@ M.ListSyncResourcesInput = {
         },
         filters = {
             type = "list",
-            member_type = "union",
+            member = M.SyncResourceFilter,
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -2258,9 +2182,7 @@ M.SyncResourceStatus = {
         state = {
             type = "string",
         },
-        error = {
-            type = "structure",
-        },
+        error = M.ErrorDetails,
     },
 }
 
@@ -2276,9 +2198,7 @@ M.SyncResourceSummary = {
         resourceId = {
             type = "string",
         },
-        status = {
-            type = "structure",
-        },
+        status = M.SyncResourceStatus,
         updateDateTime = {
             type = "timestamp",
         },
@@ -2290,7 +2210,7 @@ M.ListSyncResourcesOutput = {
     members = {
         syncResources = {
             type = "list",
-            member_type = "structure",
+            member = M.SyncResourceSummary,
         },
         nextToken = {
             type = "string",
@@ -2308,7 +2228,7 @@ M.ListTagsForResourceInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -2321,8 +2241,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         nextToken = {
             type = "string",
@@ -2334,7 +2254,7 @@ M.ListWorkspacesInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -2362,7 +2282,7 @@ M.WorkspaceSummary = {
         },
         linkedServices = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         creationDateTime = {
             type = "timestamp",
@@ -2384,7 +2304,7 @@ M.ListWorkspacesOutput = {
     members = {
         workspaceSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.WorkspaceSummary,
         },
         nextToken = {
             type = "string",
@@ -2403,8 +2323,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2438,7 +2358,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -2536,7 +2456,7 @@ M.UpdatePricingPlanInput = {
         },
         bundleNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2544,15 +2464,10 @@ M.UpdatePricingPlanInput = {
 M.UpdatePricingPlanOutput = {
     type = "structure",
     members = {
-        currentPricingPlan = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        pendingPricingPlan = {
-            type = "structure",
-        },
+        currentPricingPlan = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PricingPlan }),
+        pendingPricingPlan = M.PricingPlan,
     },
 }
 
@@ -2581,12 +2496,12 @@ M.UpdateSceneInput = {
         },
         capabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         sceneMetadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2644,29 +2559,27 @@ M.DataValue = {
             type = "boolean",
         },
         doubleValue = {
-            type = "number",
+            type = "double",
         },
         integerValue = {
-            type = "number",
+            type = "integer",
         },
         longValue = {
-            type = "number",
+            type = "long",
         },
         stringValue = {
             type = "string",
         },
         listValue = {
             type = "list",
-            member_type = "structure",
+            member = M.DataValue,
         },
         mapValue = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.DataValue,
         },
-        relationshipValue = {
-            type = "structure",
-        },
+        relationshipValue = M.RelationshipValue,
         expression = {
             type = "string",
         },
@@ -2682,24 +2595,17 @@ M.PropertyFilter = {
         operator = {
             type = "string",
         },
-        value = {
-            type = "structure",
-        },
+        value = M.DataValue,
     },
 }
 
 M.PropertyLatestValue = {
     type = "structure",
     members = {
-        propertyReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        propertyValue = {
-            type = "structure",
-        },
+        propertyReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EntityPropertyReference }),
+        propertyValue = M.DataValue,
     },
 }
 
@@ -2709,12 +2615,9 @@ M.PropertyValue = {
         timestamp = {
             type = "timestamp",
         },
-        value = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        value = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataValue }),
         time = {
             type = "string",
         },
@@ -2730,19 +2633,15 @@ M.DataType = {
                 required = true,
             },
         },
-        nestedType = {
-            type = "structure",
-        },
+        nestedType = M.DataType,
         allowedValues = {
             type = "list",
-            member_type = "structure",
+            member = M.DataValue,
         },
         unitOfMeasure = {
             type = "string",
         },
-        relationship = {
-            type = "structure",
-        },
+        relationship = M.Relationship,
     },
 }
 
@@ -2770,14 +2669,14 @@ M.GetPropertyValueHistoryInput = {
         },
         selectedProperties = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         propertyFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.PropertyFilter,
         },
         startDateTime = {
             type = "timestamp",
@@ -2785,14 +2684,12 @@ M.GetPropertyValueHistoryInput = {
         endDateTime = {
             type = "timestamp",
         },
-        interpolation = {
-            type = "structure",
-        },
+        interpolation = M.InterpolationParameters,
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         orderByTime = {
             type = "string",
@@ -2809,15 +2706,12 @@ M.GetPropertyValueHistoryInput = {
 M.PropertyValueEntry = {
     type = "structure",
     members = {
-        entityPropertyReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        entityPropertyReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EntityPropertyReference }),
         propertyValues = {
             type = "list",
-            member_type = "structure",
+            member = M.PropertyValue,
         },
     },
 }
@@ -2825,15 +2719,12 @@ M.PropertyValueEntry = {
 M.PropertyValueHistory = {
     type = "structure",
     members = {
-        entityPropertyReference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        entityPropertyReference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EntityPropertyReference }),
         values = {
             type = "list",
-            member_type = "structure",
+            member = M.PropertyValue,
         },
     },
 }
@@ -2843,11 +2734,11 @@ M.TabularConditions = {
     members = {
         orderBy = {
             type = "list",
-            member_type = "structure",
+            member = M.OrderBy,
         },
         propertyFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.PropertyFilter,
         },
     },
 }
@@ -2867,12 +2758,9 @@ M.BatchPutPropertyError = {
                 required = true,
             },
         },
-        entry = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        entry = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PropertyValueEntry }),
     },
 }
 
@@ -2893,7 +2781,7 @@ M.GetPropertyValueInput = {
         },
         selectedProperties = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2906,7 +2794,7 @@ M.GetPropertyValueInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -2914,9 +2802,7 @@ M.GetPropertyValueInput = {
         propertyGroupName = {
             type = "string",
         },
-        tabularConditions = {
-            type = "structure",
-        },
+        tabularConditions = M.TabularConditions,
     },
 }
 
@@ -2932,7 +2818,7 @@ M.BatchPutPropertyValuesInput = {
         },
         entries = {
             type = "list",
-            member_type = "structure",
+            member = M.PropertyValueEntry,
             traits = {
                 required = true,
             },
@@ -2945,7 +2831,7 @@ M.GetPropertyValueHistoryOutput = {
     members = {
         propertyValues = {
             type = "list",
-            member_type = "structure",
+            member = M.PropertyValueHistory,
             traits = {
                 required = true,
             },
@@ -2961,7 +2847,7 @@ M.BatchPutPropertyErrorEntry = {
     members = {
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchPutPropertyError,
             traits = {
                 required = true,
             },
@@ -2972,9 +2858,7 @@ M.BatchPutPropertyErrorEntry = {
 M.PropertyDefinitionRequest = {
     type = "structure",
     members = {
-        dataType = {
-            type = "structure",
-        },
+        dataType = M.DataType,
         isRequiredInEntity = {
             type = "boolean",
         },
@@ -2987,13 +2871,11 @@ M.PropertyDefinitionRequest = {
         isTimeSeries = {
             type = "boolean",
         },
-        defaultValue = {
-            type = "structure",
-        },
+        defaultValue = M.DataValue,
         configuration = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         displayName = {
             type = "string",
@@ -3004,12 +2886,9 @@ M.PropertyDefinitionRequest = {
 M.PropertyDefinitionResponse = {
     type = "structure",
     members = {
-        dataType = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        dataType = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataType }),
         isTimeSeries = {
             type = "boolean",
             traits = {
@@ -3052,13 +2931,11 @@ M.PropertyDefinitionResponse = {
                 required = true,
             },
         },
-        defaultValue = {
-            type = "structure",
-        },
+        defaultValue = M.DataValue,
         configuration = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         displayName = {
             type = "string",
@@ -3071,7 +2948,7 @@ M.BatchPutPropertyValuesOutput = {
     members = {
         errorEntries = {
             type = "list",
-            member_type = "structure",
+            member = M.BatchPutPropertyErrorEntry,
             traits = {
                 required = true,
             },
@@ -3084,15 +2961,15 @@ M.GetPropertyValueOutput = {
     members = {
         propertyValues = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.PropertyLatestValue,
         },
         nextToken = {
             type = "string",
         },
         tabularPropertyValues = {
             type = "list",
-            member_type = "list",
+            member = { type = "list" },
         },
     },
 }
@@ -3122,35 +2999,35 @@ M.CreateComponentTypeInput = {
         },
         propertyDefinitions = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.PropertyDefinitionRequest,
         },
         extendsFrom = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         functions = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.FunctionRequest,
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         propertyGroups = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.PropertyGroupRequest,
         },
         componentTypeName = {
             type = "string",
         },
         compositeComponentTypes = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.CompositeComponentTypeRequest,
         },
     },
 }
@@ -3178,17 +3055,17 @@ M.GetComponentTypeOutput = {
         },
         propertyDefinitions = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.PropertyDefinitionResponse,
         },
         extendsFrom = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         functions = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.FunctionResponse,
         },
         creationDateTime = {
             type = "timestamp",
@@ -3214,13 +3091,11 @@ M.GetComponentTypeOutput = {
         isSchemaInitialized = {
             type = "boolean",
         },
-        status = {
-            type = "structure",
-        },
+        status = M.Status,
         propertyGroups = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.PropertyGroupResponse,
         },
         syncSource = {
             type = "string",
@@ -3230,8 +3105,8 @@ M.GetComponentTypeOutput = {
         },
         compositeComponentTypes = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.CompositeComponentTypeResponse,
         },
     },
 }
@@ -3261,30 +3136,30 @@ M.UpdateComponentTypeInput = {
         },
         propertyDefinitions = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.PropertyDefinitionRequest,
         },
         extendsFrom = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         functions = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.FunctionRequest,
         },
         propertyGroups = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.PropertyGroupRequest,
         },
         componentTypeName = {
             type = "string",
         },
         compositeComponentTypes = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.CompositeComponentTypeRequest,
         },
     },
 }
@@ -3292,12 +3167,8 @@ M.UpdateComponentTypeInput = {
 M.PropertyRequest = {
     type = "structure",
     members = {
-        definition = {
-            type = "structure",
-        },
-        value = {
-            type = "structure",
-        },
+        definition = M.PropertyDefinitionRequest,
+        value = M.DataValue,
         updateType = {
             type = "string",
         },
@@ -3307,12 +3178,8 @@ M.PropertyRequest = {
 M.PropertyResponse = {
     type = "structure",
     members = {
-        definition = {
-            type = "structure",
-        },
-        value = {
-            type = "structure",
-        },
+        definition = M.PropertyDefinitionResponse,
+        value = M.DataValue,
         areAllPropertyValuesReturned = {
             type = "boolean",
         },
@@ -3322,18 +3189,14 @@ M.PropertyResponse = {
 M.PropertySummary = {
     type = "structure",
     members = {
-        definition = {
-            type = "structure",
-        },
+        definition = M.PropertyDefinitionResponse,
         propertyName = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        value = {
-            type = "structure",
-        },
+        value = M.DataValue,
         areAllPropertyValuesReturned = {
             type = "boolean",
         },
@@ -3351,13 +3214,13 @@ M.ComponentRequest = {
         },
         properties = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.PropertyRequest,
         },
         propertyGroups = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ComponentPropertyGroupRequest,
         },
     },
 }
@@ -3374,21 +3237,19 @@ M.ComponentResponse = {
         componentTypeId = {
             type = "string",
         },
-        status = {
-            type = "structure",
-        },
+        status = M.Status,
         definedIn = {
             type = "string",
         },
         properties = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.PropertyResponse,
         },
         propertyGroups = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ComponentPropertyGroupResponse,
         },
         syncSource = {
             type = "string",
@@ -3398,8 +3259,8 @@ M.ComponentResponse = {
         },
         compositeComponents = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ComponentSummary,
         },
         areAllCompositeComponentsReturned = {
             type = "boolean",
@@ -3421,13 +3282,13 @@ M.ComponentUpdateRequest = {
         },
         propertyUpdates = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.PropertyRequest,
         },
         propertyGroupUpdates = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ComponentPropertyGroupRequest,
         },
     },
 }
@@ -3440,13 +3301,13 @@ M.CompositeComponentRequest = {
         },
         properties = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.PropertyRequest,
         },
         propertyGroups = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ComponentPropertyGroupRequest,
         },
     },
 }
@@ -3462,13 +3323,13 @@ M.CompositeComponentUpdateRequest = {
         },
         propertyUpdates = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.PropertyRequest,
         },
         propertyGroupUpdates = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ComponentPropertyGroupRequest,
         },
     },
 }
@@ -3478,7 +3339,7 @@ M.ListPropertiesOutput = {
     members = {
         propertySummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.PropertySummary,
             traits = {
                 required = true,
             },
@@ -3510,12 +3371,9 @@ M.GetEntityOutput = {
                 required = true,
             },
         },
-        status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Status }),
         workspaceId = {
             type = "string",
             traits = {
@@ -3527,8 +3385,8 @@ M.GetEntityOutput = {
         },
         components = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ComponentResponse,
         },
         parentEntityId = {
             type = "string",
@@ -3587,21 +3445,21 @@ M.CreateEntityInput = {
         },
         components = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ComponentRequest,
         },
         compositeComponents = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.CompositeComponentRequest,
         },
         parentEntityId = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3631,17 +3489,15 @@ M.UpdateEntityInput = {
         },
         componentUpdates = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ComponentUpdateRequest,
         },
         compositeComponentUpdates = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.CompositeComponentUpdateRequest,
         },
-        parentEntityUpdate = {
-            type = "structure",
-        },
+        parentEntityUpdate = M.ParentEntityUpdateRequest,
     },
 }
 

@@ -1,0 +1,165 @@
+local waiter = require("waiter")
+
+local M = {}
+
+--- Wait until FHIRDatastoreActive.
+function M.wait_until_f_h_i_r_datastore_active(client, input, options)
+    return waiter.wait(client, "describeFHIRDatastore", input, {
+        min_delay = 60,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "DatastoreProperties.DatastoreStatus",
+                        expected = "ACTIVE",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "DatastoreProperties.DatastoreStatus",
+                        expected = "CREATE_FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "DatastoreProperties.DatastoreStatus",
+                        expected = "DELETED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until FHIRDatastoreDeleted.
+function M.wait_until_f_h_i_r_datastore_deleted(client, input, options)
+    return waiter.wait(client, "describeFHIRDatastore", input, {
+        min_delay = 120,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "DatastoreProperties.DatastoreStatus",
+                        expected = "DELETED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until FHIRExportJobCompleted.
+function M.wait_until_f_h_i_r_export_job_completed(client, input, options)
+    return waiter.wait(client, "describeFHIRExportJob", input, {
+        min_delay = 120,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "ExportJobProperties.JobStatus",
+                        expected = "COMPLETED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "ExportJobProperties.JobStatus",
+                        expected = "COMPLETED_WITH_ERRORS",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "ExportJobProperties.JobStatus",
+                        expected = "CANCEL_COMPLETED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "ExportJobProperties.JobStatus",
+                        expected = "FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "ExportJobProperties.JobStatus",
+                        expected = "CANCEL_FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until FHIRImportJobCompleted.
+function M.wait_until_f_h_i_r_import_job_completed(client, input, options)
+    return waiter.wait(client, "describeFHIRImportJob", input, {
+        min_delay = 120,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "ImportJobProperties.JobStatus",
+                        expected = "COMPLETED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "ImportJobProperties.JobStatus",
+                        expected = "COMPLETED_WITH_ERRORS",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "ImportJobProperties.JobStatus",
+                        expected = "FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+return M

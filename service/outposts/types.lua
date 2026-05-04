@@ -79,7 +79,7 @@ M.AssetLocation = {
     type = "structure",
     members = {
         RackElevation = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -102,8 +102,9 @@ M.AssetInstanceTypeCapacity = {
             },
         },
         Count = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -128,14 +129,14 @@ M.ComputeAttributes = {
         },
         InstanceFamilies = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         InstanceTypeCapacities = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetInstanceTypeCapacity,
         },
         MaxVcpus = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -152,12 +153,8 @@ M.AssetInfo = {
         AssetType = {
             type = "string",
         },
-        ComputeAttributes = {
-            type = "structure",
-        },
-        AssetLocation = {
-            type = "structure",
-        },
+        ComputeAttributes = M.ComputeAttributes,
+        AssetLocation = M.AssetLocation,
     },
 }
 
@@ -414,21 +411,21 @@ M.CatalogItem = {
         },
         EC2Capacities = {
             type = "list",
-            member_type = "structure",
+            member = M.EC2Capacity,
         },
         PowerKva = {
-            type = "number",
+            type = "float",
         },
         WeightLbs = {
-            type = "number",
+            type = "integer",
         },
         SupportedUplinkGbps = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
         },
         SupportedStorage = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -458,7 +455,7 @@ M.ConnectionDetails = {
         },
         AllowedIps = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -470,7 +467,7 @@ M.LineItemRequest = {
             type = "string",
         },
         Quantity = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -498,7 +495,7 @@ M.CreateOrderInput = {
         },
         LineItems = {
             type = "list",
-            member_type = "structure",
+            member = M.LineItemRequest,
         },
         PaymentOption = {
             type = "string",
@@ -520,7 +517,7 @@ M.LineItemAssetInformation = {
         },
         MacAddressList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -567,17 +564,15 @@ M.LineItem = {
             type = "string",
         },
         Quantity = {
-            type = "number",
+            type = "integer",
         },
         Status = {
             type = "string",
         },
-        ShipmentInformation = {
-            type = "structure",
-        },
+        ShipmentInformation = M.ShipmentInformation,
         AssetInformationList = {
             type = "list",
-            member_type = "structure",
+            member = M.LineItemAssetInformation,
         },
         PreviousLineItemId = {
             type = "string",
@@ -621,7 +616,7 @@ M.Order = {
         },
         LineItems = {
             type = "list",
-            member_type = "structure",
+            member = M.LineItem,
         },
         PaymentOption = {
             type = "string",
@@ -644,9 +639,7 @@ M.Order = {
 M.CreateOrderOutput = {
     type = "structure",
     members = {
-        Order = {
-            type = "structure",
-        },
+        Order = M.Order,
     },
 }
 
@@ -691,8 +684,8 @@ M.CreateOutpostInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         SupportedHardwareType = {
             type = "string",
@@ -732,8 +725,8 @@ M.Outpost = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         SiteArn = {
             type = "string",
@@ -747,9 +740,7 @@ M.Outpost = {
 M.CreateOutpostOutput = {
     type = "structure",
     members = {
-        Outpost = {
-            type = "structure",
-        },
+        Outpost = M.Outpost,
     },
 }
 
@@ -793,10 +784,10 @@ M.CreateRenewalOutput = {
             type = "string",
         },
         UpfrontPrice = {
-            type = "number",
+            type = "float",
         },
         MonthlyRecurringPrice = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -925,18 +916,12 @@ M.CreateSiteInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        OperatingAddress = {
-            type = "structure",
-        },
-        ShippingAddress = {
-            type = "structure",
-        },
-        RackPhysicalProperties = {
-            type = "structure",
-        },
+        OperatingAddress = M.Address,
+        ShippingAddress = M.Address,
+        RackPhysicalProperties = M.RackPhysicalProperties,
     },
 }
 
@@ -957,8 +942,8 @@ M.Site = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         SiteArn = {
             type = "string",
@@ -975,18 +960,14 @@ M.Site = {
         OperatingAddressCity = {
             type = "string",
         },
-        RackPhysicalProperties = {
-            type = "structure",
-        },
+        RackPhysicalProperties = M.RackPhysicalProperties,
     },
 }
 
 M.CreateSiteOutput = {
     type = "structure",
     members = {
-        Site = {
-            type = "structure",
-        },
+        Site = M.Site,
     },
 }
 
@@ -1055,15 +1036,15 @@ M.InstancesToExclude = {
     members = {
         Instances = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Services = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1078,8 +1059,9 @@ M.InstanceTypeCapacity = {
             },
         },
         Count = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -1108,20 +1090,19 @@ M.GetCapacityTaskOutput = {
         },
         RequestedInstancePools = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceTypeCapacity,
         },
-        InstancesToExclude = {
-            type = "structure",
-        },
+        InstancesToExclude = M.InstancesToExclude,
         DryRun = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         CapacityTaskStatus = {
             type = "string",
         },
-        Failed = {
-            type = "structure",
-        },
+        Failed = M.CapacityTaskFailure,
         CreationDate = {
             type = "timestamp",
         },
@@ -1153,9 +1134,7 @@ M.GetCatalogItemInput = {
 M.GetCatalogItemOutput = {
     type = "structure",
     members = {
-        CatalogItem = {
-            type = "structure",
-        },
+        CatalogItem = M.CatalogItem,
     },
 }
 
@@ -1178,9 +1157,7 @@ M.GetConnectionOutput = {
         ConnectionId = {
             type = "string",
         },
-        ConnectionDetails = {
-            type = "structure",
-        },
+        ConnectionDetails = M.ConnectionDetails,
     },
 }
 
@@ -1200,9 +1177,7 @@ M.GetOrderInput = {
 M.GetOrderOutput = {
     type = "structure",
     members = {
-        Order = {
-            type = "structure",
-        },
+        Order = M.Order,
     },
 }
 
@@ -1222,9 +1197,7 @@ M.GetOutpostInput = {
 M.GetOutpostOutput = {
     type = "structure",
     members = {
-        Outpost = {
-            type = "structure",
-        },
+        Outpost = M.Outpost,
     },
 }
 
@@ -1238,7 +1211,7 @@ M.GetOutpostBillingInformationInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -1280,7 +1253,7 @@ M.Subscription = {
         },
         OrderIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         BeginDate = {
             type = "timestamp",
@@ -1289,10 +1262,10 @@ M.Subscription = {
             type = "timestamp",
         },
         MonthlyRecurringPrice = {
-            type = "number",
+            type = "double",
         },
         UpfrontPrice = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -1305,7 +1278,7 @@ M.GetOutpostBillingInformationOutput = {
         },
         Subscriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.Subscription,
         },
         ContractEndDate = {
             type = "string",
@@ -1336,7 +1309,7 @@ M.GetOutpostInstanceTypesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -1351,7 +1324,7 @@ M.InstanceTypeItem = {
             type = "string",
         },
         VCPUs = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1361,7 +1334,7 @@ M.GetOutpostInstanceTypesOutput = {
     members = {
         InstanceTypes = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceTypeItem,
         },
         NextToken = {
             type = "string",
@@ -1398,7 +1371,7 @@ M.GetOutpostSupportedInstanceTypesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -1417,7 +1390,7 @@ M.GetOutpostSupportedInstanceTypesOutput = {
     members = {
         InstanceTypes = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceTypeItem,
         },
         NextToken = {
             type = "string",
@@ -1452,10 +1425,10 @@ M.SubscriptionPricingDetails = {
             type = "string",
         },
         UpfrontPrice = {
-            type = "number",
+            type = "float",
         },
         MonthlyRecurringPrice = {
-            type = "number",
+            type = "float",
         },
     },
 }
@@ -1466,9 +1439,7 @@ M.PricingOption = {
         PricingType = {
             type = "string",
         },
-        SubscriptionPricingDetails = {
-            type = "structure",
-        },
+        SubscriptionPricingDetails = M.SubscriptionPricingDetails,
     },
 }
 
@@ -1485,7 +1456,7 @@ M.GetRenewalPricingOutput = {
         },
         PricingOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.PricingOption,
         },
     },
 }
@@ -1506,9 +1477,7 @@ M.GetSiteInput = {
 M.GetSiteOutput = {
     type = "structure",
     members = {
-        Site = {
-            type = "structure",
-        },
+        Site = M.Site,
     },
 }
 
@@ -1541,9 +1510,7 @@ M.GetSiteAddressOutput = {
         AddressType = {
             type = "string",
         },
-        Address = {
-            type = "structure",
-        },
+        Address = M.Address,
     },
 }
 
@@ -1559,34 +1526,34 @@ M.ListAssetInstancesInput = {
         },
         AssetIdFilter = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "AssetIdFilter",
             },
         },
         InstanceTypeFilter = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "InstanceTypeFilter",
             },
         },
         AccountIdFilter = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "AccountIdFilter",
             },
         },
         AwsServiceFilter = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "AwsServiceFilter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -1605,7 +1572,7 @@ M.ListAssetInstancesOutput = {
     members = {
         AssetInstances = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetInstance,
         },
         NextToken = {
             type = "string",
@@ -1625,13 +1592,13 @@ M.ListAssetsInput = {
         },
         HostIdFilter = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "HostIdFilter",
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -1644,14 +1611,14 @@ M.ListAssetsInput = {
         },
         StatusFilter = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "StatusFilter",
             },
         },
         AssetTypeFilter = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "AssetTypeFilter",
             },
@@ -1664,7 +1631,7 @@ M.ListAssetsOutput = {
     members = {
         Assets = {
             type = "list",
-            member_type = "structure",
+            member = M.AssetInfo,
         },
         NextToken = {
             type = "string",
@@ -1690,7 +1657,7 @@ M.ListBlockingInstancesForCapacityTaskInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -1709,7 +1676,7 @@ M.ListBlockingInstancesForCapacityTaskOutput = {
     members = {
         BlockingInstances = {
             type = "list",
-            member_type = "structure",
+            member = M.BlockingInstance,
         },
         NextToken = {
             type = "string",
@@ -1727,7 +1694,7 @@ M.ListCapacityTasksInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -1740,7 +1707,7 @@ M.ListCapacityTasksInput = {
         },
         CapacityTaskStatusFilter = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "CapacityTaskStatusFilter",
             },
@@ -1753,7 +1720,7 @@ M.ListCapacityTasksOutput = {
     members = {
         CapacityTasks = {
             type = "list",
-            member_type = "structure",
+            member = M.CapacityTaskSummary,
         },
         NextToken = {
             type = "string",
@@ -1771,28 +1738,28 @@ M.ListCatalogItemsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
         },
         ItemClassFilter = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "ItemClassFilter",
             },
         },
         SupportedStorageFilter = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "SupportedStorageFilter",
             },
         },
         EC2FamilyFilter = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "EC2FamilyFilter",
             },
@@ -1805,7 +1772,7 @@ M.ListCatalogItemsOutput = {
     members = {
         CatalogItems = {
             type = "list",
-            member_type = "structure",
+            member = M.CatalogItem,
         },
         NextToken = {
             type = "string",
@@ -1829,7 +1796,7 @@ M.ListOrdersInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -1854,8 +1821,8 @@ M.OrderSummary = {
         },
         LineItemCountsByStatus = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
         },
         OrderSubmissionDate = {
             type = "timestamp",
@@ -1871,7 +1838,7 @@ M.ListOrdersOutput = {
     members = {
         Orders = {
             type = "list",
-            member_type = "structure",
+            member = M.OrderSummary,
         },
         NextToken = {
             type = "string",
@@ -1889,28 +1856,28 @@ M.ListOutpostsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
         },
         LifeCycleStatusFilter = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "LifeCycleStatusFilter",
             },
         },
         AvailabilityZoneFilter = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "AvailabilityZoneFilter",
             },
         },
         AvailabilityZoneIdFilter = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "AvailabilityZoneIdFilter",
             },
@@ -1923,7 +1890,7 @@ M.ListOutpostsOutput = {
     members = {
         Outposts = {
             type = "list",
-            member_type = "structure",
+            member = M.Outpost,
         },
         NextToken = {
             type = "string",
@@ -1941,28 +1908,28 @@ M.ListSitesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
         },
         OperatingAddressCountryCodeFilter = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "OperatingAddressCountryCodeFilter",
             },
         },
         OperatingAddressStateOrRegionFilter = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "OperatingAddressStateOrRegionFilter",
             },
         },
         OperatingAddressCityFilter = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "OperatingAddressCityFilter",
             },
@@ -1975,7 +1942,7 @@ M.ListSitesOutput = {
     members = {
         Sites = {
             type = "list",
-            member_type = "structure",
+            member = M.Site,
         },
         NextToken = {
             type = "string",
@@ -2001,8 +1968,8 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2025,16 +1992,17 @@ M.StartCapacityTaskInput = {
         },
         InstancePools = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceTypeCapacity,
             traits = {
                 required = true,
             },
         },
-        InstancesToExclude = {
-            type = "structure",
-        },
+        InstancesToExclude = M.InstancesToExclude,
         DryRun = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         TaskActionOnBlockingInstances = {
             type = "string",
@@ -2059,20 +2027,19 @@ M.StartCapacityTaskOutput = {
         },
         RequestedInstancePools = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceTypeCapacity,
         },
-        InstancesToExclude = {
-            type = "structure",
-        },
+        InstancesToExclude = M.InstancesToExclude,
         DryRun = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         CapacityTaskStatus = {
             type = "string",
         },
-        Failed = {
-            type = "structure",
-        },
+        Failed = M.CapacityTaskFailure,
         CreationDate = {
             type = "timestamp",
         },
@@ -2107,8 +2074,9 @@ M.StartConnectionInput = {
             },
         },
         NetworkInterfaceDeviceIndex = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -2139,6 +2107,9 @@ M.StartOutpostDecommissionInput = {
         },
         ValidateOnly = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -2151,7 +2122,7 @@ M.StartOutpostDecommissionOutput = {
         },
         BlockingResourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2168,8 +2139,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2193,7 +2164,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -2231,9 +2202,7 @@ M.UpdateOutpostInput = {
 M.UpdateOutpostOutput = {
     type = "structure",
     members = {
-        Outpost = {
-            type = "structure",
-        },
+        Outpost = M.Outpost,
     },
 }
 
@@ -2262,9 +2231,7 @@ M.UpdateSiteInput = {
 M.UpdateSiteOutput = {
     type = "structure",
     members = {
-        Site = {
-            type = "structure",
-        },
+        Site = M.Site,
     },
 }
 
@@ -2284,12 +2251,9 @@ M.UpdateSiteAddressInput = {
                 required = true,
             },
         },
-        Address = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Address = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Address }),
     },
 }
 
@@ -2299,9 +2263,7 @@ M.UpdateSiteAddressOutput = {
         AddressType = {
             type = "string",
         },
-        Address = {
-            type = "structure",
-        },
+        Address = M.Address,
     },
 }
 
@@ -2348,9 +2310,7 @@ M.UpdateSiteRackPhysicalPropertiesInput = {
 M.UpdateSiteRackPhysicalPropertiesOutput = {
     type = "structure",
     members = {
-        Site = {
-            type = "structure",
-        },
+        Site = M.Site,
     },
 }
 

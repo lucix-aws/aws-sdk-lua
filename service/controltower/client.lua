@@ -16,7 +16,7 @@ Client.invokeOperation = base_client.invokeOperation
 function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AWSControlTowerApis"
-    cfg.signing_name = "awscontroltowerapis"
+    cfg.signing_name = "controltower"
     if not cfg.protocol then
         cfg.protocol = restjson_protocol.new()
     end

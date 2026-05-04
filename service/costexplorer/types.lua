@@ -94,7 +94,7 @@ M.SavingsPlansPurchaseAnalysisDetails = {
         },
         MetricsOverLookbackPeriod = {
             type = "list",
-            member_type = "structure",
+            member = M.RecommendationDetailHourlyMetrics,
         },
     },
 }
@@ -102,9 +102,7 @@ M.SavingsPlansPurchaseAnalysisDetails = {
 M.AnalysisDetails = {
     type = "structure",
     members = {
-        SavingsPlansPurchaseAnalysisDetails = {
-            type = "structure",
-        },
+        SavingsPlansPurchaseAnalysisDetails = M.SavingsPlansPurchaseAnalysisDetails,
     },
 }
 
@@ -187,7 +185,7 @@ M.SavingsPlans = {
             type = "string",
         },
         SavingsPlansCommitment = {
-            type = "number",
+            type = "double",
         },
         OfferingId = {
             type = "string",
@@ -212,30 +210,25 @@ M.SavingsPlansPurchaseAnalysisConfiguration = {
         },
         SavingsPlansToAdd = {
             type = "list",
-            member_type = "structure",
+            member = M.SavingsPlans,
             traits = {
                 required = true,
             },
         },
         SavingsPlansToExclude = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        LookBackTimePeriod = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        LookBackTimePeriod = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DateInterval }),
     },
 }
 
 M.CommitmentPurchaseAnalysisConfiguration = {
     type = "structure",
     members = {
-        SavingsPlansPurchaseAnalysisConfiguration = {
-            type = "structure",
-        },
+        SavingsPlansPurchaseAnalysisConfiguration = M.SavingsPlansPurchaseAnalysisConfiguration,
     },
 }
 
@@ -268,9 +261,7 @@ M.AnalysisSummary = {
         AnalysisId = {
             type = "string",
         },
-        CommitmentPurchaseAnalysisConfiguration = {
-            type = "structure",
-        },
+        CommitmentPurchaseAnalysisConfiguration = M.CommitmentPurchaseAnalysisConfiguration,
     },
 }
 
@@ -278,14 +269,16 @@ M.AnomalyScore = {
     type = "structure",
     members = {
         MaxScore = {
-            type = "number",
+            type = "double",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         CurrentScore = {
-            type = "number",
+            type = "double",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -302,22 +295,26 @@ M.Impact = {
     type = "structure",
     members = {
         MaxImpact = {
-            type = "number",
+            type = "double",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         TotalImpact = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
         TotalActualSpend = {
-            type = "number",
+            type = "double",
         },
         TotalExpectedSpend = {
-            type = "number",
+            type = "double",
         },
         TotalImpactPercentage = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -326,8 +323,9 @@ M.RootCauseImpact = {
     type = "structure",
     members = {
         Contribution = {
-            type = "number",
+            type = "double",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -352,9 +350,7 @@ M.RootCause = {
         UsageType = {
             type = "string",
         },
-        Impact = {
-            type = "structure",
-        },
+        Impact = M.RootCauseImpact,
     },
 }
 
@@ -378,20 +374,14 @@ M.Anomaly = {
         },
         RootCauses = {
             type = "list",
-            member_type = "structure",
+            member = M.RootCause,
         },
-        AnomalyScore = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Impact = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AnomalyScore = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AnomalyScore }),
+        Impact = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Impact }),
         MonitorArn = {
             type = "string",
             traits = {
@@ -445,11 +435,11 @@ M.CostCategoryValues = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MatchOptions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -500,11 +490,11 @@ M.DimensionValues = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MatchOptions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -517,11 +507,11 @@ M.TagValues = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MatchOptions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -676,7 +666,7 @@ M.CostCategorySplitChargeRuleParameter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -695,7 +685,7 @@ M.CostCategorySplitChargeRule = {
         },
         Targets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -708,7 +698,7 @@ M.CostCategorySplitChargeRule = {
         },
         Parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.CostCategorySplitChargeRuleParameter,
         },
     },
 }
@@ -869,13 +859,17 @@ M.TotalImpactFilter = {
             },
         },
         StartValue = {
-            type = "number",
+            type = "double",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         EndValue = {
-            type = "number",
+            type = "double",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -886,23 +880,18 @@ M.GetAnomaliesInput = {
         MonitorArn = {
             type = "string",
         },
-        DateInterval = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DateInterval = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AnomalyDateInterval }),
         Feedback = {
             type = "string",
         },
-        TotalImpact = {
-            type = "structure",
-        },
+        TotalImpact = M.TotalImpactFilter,
         NextPageToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -912,7 +901,7 @@ M.GetAnomaliesOutput = {
     members = {
         Anomalies = {
             type = "list",
-            member_type = "structure",
+            member = M.Anomaly,
             traits = {
                 required = true,
             },
@@ -938,13 +927,13 @@ M.GetAnomalyMonitorsInput = {
     members = {
         MonitorArnList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextPageToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -954,7 +943,7 @@ M.GetAnomalySubscriptionsInput = {
     members = {
         SubscriptionArnList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MonitorArn = {
             type = "string",
@@ -963,7 +952,7 @@ M.GetAnomalySubscriptionsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -995,7 +984,7 @@ M.GetApproximateUsageRecordsInput = {
         },
         Services = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ApproximationDimension = {
             type = "string",
@@ -1011,15 +1000,16 @@ M.GetApproximateUsageRecordsOutput = {
     members = {
         Services = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "long" },
         },
         TotalRecords = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
-        LookbackPeriod = {
-            type = "structure",
-        },
+        LookbackPeriod = M.DateInterval,
     },
 }
 
@@ -1068,15 +1058,10 @@ M.GetCommitmentPurchaseAnalysisOutput = {
         ErrorCode = {
             type = "string",
         },
-        AnalysisDetails = {
-            type = "structure",
-        },
-        CommitmentPurchaseAnalysisConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AnalysisDetails = M.AnalysisDetails,
+        CommitmentPurchaseAnalysisConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CommitmentPurchaseAnalysisConfiguration }),
     },
 }
 
@@ -1126,8 +1111,8 @@ M.DimensionValuesWithAttributes = {
         },
         Attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1149,12 +1134,12 @@ M.Group = {
     members = {
         Keys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Metrics = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.MetricValue,
         },
     },
 }
@@ -1162,20 +1147,21 @@ M.Group = {
 M.ResultByTime = {
     type = "structure",
     members = {
-        TimePeriod = {
-            type = "structure",
-        },
+        TimePeriod = M.DateInterval,
         Total = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.MetricValue,
         },
         Groups = {
             type = "list",
-            member_type = "structure",
+            member = M.Group,
         },
         Estimated = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1188,15 +1174,15 @@ M.GetCostAndUsageOutput = {
         },
         GroupDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupDefinition,
         },
         ResultsByTime = {
             type = "list",
-            member_type = "structure",
+            member = M.ResultByTime,
         },
         DimensionValueAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionValuesWithAttributes,
         },
     },
 }
@@ -1237,15 +1223,15 @@ M.GetCostAndUsageWithResourcesOutput = {
         },
         GroupDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupDefinition,
         },
         ResultsByTime = {
             type = "list",
-            member_type = "structure",
+            member = M.ResultByTime,
         },
         DimensionValueAttributes = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionValuesWithAttributes,
         },
     },
 }
@@ -1278,20 +1264,20 @@ M.GetCostCategoriesOutput = {
         },
         CostCategoryNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CostCategoryValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ReturnSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         TotalSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1310,8 +1296,8 @@ M.CostDriver = {
         },
         Metrics = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ComparisonMetricValue,
         },
     },
 }
@@ -1329,9 +1315,7 @@ M.Metric = {
 M.ForecastResult = {
     type = "structure",
     members = {
-        TimePeriod = {
-            type = "structure",
-        },
+        TimePeriod = M.DateInterval,
         MeanValue = {
             type = "string",
         },
@@ -1347,12 +1331,10 @@ M.ForecastResult = {
 M.GetCostForecastOutput = {
     type = "structure",
     members = {
-        Total = {
-            type = "structure",
-        },
+        Total = M.MetricValue,
         ForecastResultsByTime = {
             type = "list",
-            member_type = "structure",
+            member = M.ForecastResult,
         },
     },
 }
@@ -1368,19 +1350,19 @@ M.GetDimensionValuesOutput = {
     members = {
         DimensionValues = {
             type = "list",
-            member_type = "structure",
+            member = M.DimensionValuesWithAttributes,
             traits = {
                 required = true,
             },
         },
         ReturnSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         TotalSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1439,15 +1421,9 @@ M.CoverageNormalizedUnits = {
 M.Coverage = {
     type = "structure",
     members = {
-        CoverageHours = {
-            type = "structure",
-        },
-        CoverageNormalizedUnits = {
-            type = "structure",
-        },
-        CoverageCost = {
-            type = "structure",
-        },
+        CoverageHours = M.CoverageHours,
+        CoverageNormalizedUnits = M.CoverageNormalizedUnits,
+        CoverageCost = M.CoverageCost,
     },
 }
 
@@ -1456,28 +1432,22 @@ M.ReservationCoverageGroup = {
     members = {
         Attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        Coverage = {
-            type = "structure",
-        },
+        Coverage = M.Coverage,
     },
 }
 
 M.CoverageByTime = {
     type = "structure",
     members = {
-        TimePeriod = {
-            type = "structure",
-        },
+        TimePeriod = M.DateInterval,
         Groups = {
             type = "list",
-            member_type = "structure",
+            member = M.ReservationCoverageGroup,
         },
-        Total = {
-            type = "structure",
-        },
+        Total = M.Coverage,
     },
 }
 
@@ -1486,14 +1456,12 @@ M.GetReservationCoverageOutput = {
     members = {
         CoveragesByTime = {
             type = "list",
-            member_type = "structure",
+            member = M.CoverageByTime,
             traits = {
                 required = true,
             },
         },
-        Total = {
-            type = "structure",
-        },
+        Total = M.Coverage,
         NextPageToken = {
             type = "string",
         },
@@ -1523,9 +1491,7 @@ M.EC2Specification = {
 M.ServiceSpecification = {
     type = "structure",
     members = {
-        EC2Specification = {
-            type = "structure",
-        },
+        EC2Specification = M.EC2Specification,
     },
 }
 
@@ -1567,9 +1533,15 @@ M.EC2InstanceDetails = {
         },
         CurrentGeneration = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         SizeFlexEligible = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1591,9 +1563,15 @@ M.ElastiCacheInstanceDetails = {
         },
         CurrentGeneration = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         SizeFlexEligible = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1612,9 +1590,15 @@ M.ESInstanceDetails = {
         },
         CurrentGeneration = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         SizeFlexEligible = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1633,9 +1617,15 @@ M.MemoryDBInstanceDetails = {
         },
         CurrentGeneration = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         SizeFlexEligible = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1666,9 +1656,15 @@ M.RDSInstanceDetails = {
         },
         CurrentGeneration = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         SizeFlexEligible = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         DeploymentModel = {
             type = "string",
@@ -1690,9 +1686,15 @@ M.RedshiftInstanceDetails = {
         },
         CurrentGeneration = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         SizeFlexEligible = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1700,24 +1702,12 @@ M.RedshiftInstanceDetails = {
 M.InstanceDetails = {
     type = "structure",
     members = {
-        EC2InstanceDetails = {
-            type = "structure",
-        },
-        RDSInstanceDetails = {
-            type = "structure",
-        },
-        RedshiftInstanceDetails = {
-            type = "structure",
-        },
-        ElastiCacheInstanceDetails = {
-            type = "structure",
-        },
-        ESInstanceDetails = {
-            type = "structure",
-        },
-        MemoryDBInstanceDetails = {
-            type = "structure",
-        },
+        EC2InstanceDetails = M.EC2InstanceDetails,
+        RDSInstanceDetails = M.RDSInstanceDetails,
+        RedshiftInstanceDetails = M.RedshiftInstanceDetails,
+        ElastiCacheInstanceDetails = M.ElastiCacheInstanceDetails,
+        ESInstanceDetails = M.ESInstanceDetails,
+        MemoryDBInstanceDetails = M.MemoryDBInstanceDetails,
     },
 }
 
@@ -1736,9 +1726,7 @@ M.DynamoDBCapacityDetails = {
 M.ReservedCapacityDetails = {
     type = "structure",
     members = {
-        DynamoDBCapacityDetails = {
-            type = "structure",
-        },
+        DynamoDBCapacityDetails = M.DynamoDBCapacityDetails,
     },
 }
 
@@ -1748,9 +1736,7 @@ M.ReservationPurchaseRecommendationDetail = {
         AccountId = {
             type = "string",
         },
-        InstanceDetails = {
-            type = "structure",
-        },
+        InstanceDetails = M.InstanceDetails,
         RecommendedNumberOfInstancesToPurchase = {
             type = "string",
         },
@@ -1802,9 +1788,7 @@ M.ReservationPurchaseRecommendationDetail = {
         RecurringStandardMonthlyCost = {
             type = "string",
         },
-        ReservedCapacityDetails = {
-            type = "structure",
-        },
+        ReservedCapacityDetails = M.ReservedCapacityDetails,
         RecommendedNumberOfCapacityUnitsToPurchase = {
             type = "string",
         },
@@ -1850,28 +1834,22 @@ M.ReservationPurchaseRecommendation = {
         PaymentOption = {
             type = "string",
         },
-        ServiceSpecification = {
-            type = "structure",
-        },
+        ServiceSpecification = M.ServiceSpecification,
         RecommendationDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.ReservationPurchaseRecommendationDetail,
         },
-        RecommendationSummary = {
-            type = "structure",
-        },
+        RecommendationSummary = M.ReservationPurchaseRecommendationSummary,
     },
 }
 
 M.GetReservationPurchaseRecommendationOutput = {
     type = "structure",
     members = {
-        Metadata = {
-            type = "structure",
-        },
+        Metadata = M.ReservationPurchaseRecommendationMetadata,
         Recommendations = {
             type = "list",
-            member_type = "structure",
+            member = M.ReservationPurchaseRecommendation,
         },
         NextPageToken = {
             type = "string",
@@ -1947,28 +1925,22 @@ M.ReservationUtilizationGroup = {
         },
         Attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        Utilization = {
-            type = "structure",
-        },
+        Utilization = M.ReservationAggregates,
     },
 }
 
 M.UtilizationByTime = {
     type = "structure",
     members = {
-        TimePeriod = {
-            type = "structure",
-        },
+        TimePeriod = M.DateInterval,
         Groups = {
             type = "list",
-            member_type = "structure",
+            member = M.ReservationUtilizationGroup,
         },
-        Total = {
-            type = "structure",
-        },
+        Total = M.ReservationAggregates,
     },
 }
 
@@ -1977,14 +1949,12 @@ M.GetReservationUtilizationOutput = {
     members = {
         UtilizationsByTime = {
             type = "list",
-            member_type = "structure",
+            member = M.UtilizationByTime,
             traits = {
                 required = true,
             },
         },
-        Total = {
-            type = "structure",
-        },
+        Total = M.ReservationAggregates,
         NextPageToken = {
             type = "string",
         },
@@ -2008,6 +1978,7 @@ M.RightsizingRecommendationConfiguration = {
         BenefitsConsidered = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -2068,9 +2039,7 @@ M.EC2ResourceDetails = {
 M.ResourceDetails = {
     type = "structure",
     members = {
-        EC2ResourceDetails = {
-            type = "structure",
-        },
+        EC2ResourceDetails = M.EC2ResourceDetails,
     },
 }
 
@@ -2140,24 +2109,16 @@ M.EC2ResourceUtilization = {
         MaxStorageUtilizationPercentage = {
             type = "string",
         },
-        EBSResourceUtilization = {
-            type = "structure",
-        },
-        DiskResourceUtilization = {
-            type = "structure",
-        },
-        NetworkResourceUtilization = {
-            type = "structure",
-        },
+        EBSResourceUtilization = M.EBSResourceUtilization,
+        DiskResourceUtilization = M.DiskResourceUtilization,
+        NetworkResourceUtilization = M.NetworkResourceUtilization,
     },
 }
 
 M.ResourceUtilization = {
     type = "structure",
     members = {
-        EC2ResourceUtilization = {
-            type = "structure",
-        },
+        EC2ResourceUtilization = M.EC2ResourceUtilization,
     },
 }
 
@@ -2172,14 +2133,10 @@ M.CurrentInstance = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.TagValues,
         },
-        ResourceDetails = {
-            type = "structure",
-        },
-        ResourceUtilization = {
-            type = "structure",
-        },
+        ResourceDetails = M.ResourceDetails,
+        ResourceUtilization = M.ResourceUtilization,
         ReservationCoveredHoursInLookbackPeriod = {
             type = "string",
         },
@@ -2242,16 +2199,15 @@ M.TargetInstance = {
         },
         DefaultTargetInstance = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        ResourceDetails = {
-            type = "structure",
-        },
-        ExpectedResourceUtilization = {
-            type = "structure",
-        },
+        ResourceDetails = M.ResourceDetails,
+        ExpectedResourceUtilization = M.ResourceUtilization,
         PlatformDifferences = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2261,7 +2217,7 @@ M.ModifyRecommendationDetail = {
     members = {
         TargetInstances = {
             type = "list",
-            member_type = "structure",
+            member = M.TargetInstance,
         },
     },
 }
@@ -2289,21 +2245,15 @@ M.RightsizingRecommendation = {
         AccountId = {
             type = "string",
         },
-        CurrentInstance = {
-            type = "structure",
-        },
+        CurrentInstance = M.CurrentInstance,
         RightsizingType = {
             type = "string",
         },
-        ModifyRecommendationDetail = {
-            type = "structure",
-        },
-        TerminateRecommendationDetail = {
-            type = "structure",
-        },
+        ModifyRecommendationDetail = M.ModifyRecommendationDetail,
+        TerminateRecommendationDetail = M.TerminateRecommendationDetail,
         FindingReasonCodes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2329,22 +2279,16 @@ M.RightsizingRecommendationSummary = {
 M.GetRightsizingRecommendationOutput = {
     type = "structure",
     members = {
-        Metadata = {
-            type = "structure",
-        },
-        Summary = {
-            type = "structure",
-        },
+        Metadata = M.RightsizingRecommendationMetadata,
+        Summary = M.RightsizingRecommendationSummary,
         RightsizingRecommendations = {
             type = "list",
-            member_type = "structure",
+            member = M.RightsizingRecommendation,
         },
         NextPageToken = {
             type = "string",
         },
-        Configuration = {
-            type = "structure",
-        },
+        Configuration = M.RightsizingRecommendationConfiguration,
     },
 }
 
@@ -2449,7 +2393,7 @@ M.RecommendationDetailData = {
         },
         MetricsOverLookbackPeriod = {
             type = "list",
-            member_type = "structure",
+            member = M.RecommendationDetailHourlyMetrics,
         },
     },
 }
@@ -2460,9 +2404,7 @@ M.GetSavingsPlanPurchaseRecommendationDetailsOutput = {
         RecommendationDetailId = {
             type = "string",
         },
-        RecommendationDetailData = {
-            type = "structure",
-        },
+        RecommendationDetailData = M.RecommendationDetailData,
     },
 }
 
@@ -2489,15 +2431,11 @@ M.SavingsPlansCoverage = {
     members = {
         Attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        Coverage = {
-            type = "structure",
-        },
-        TimePeriod = {
-            type = "structure",
-        },
+        Coverage = M.SavingsPlansCoverageData,
+        TimePeriod = M.DateInterval,
     },
 }
 
@@ -2506,7 +2444,7 @@ M.GetSavingsPlansCoverageOutput = {
     members = {
         SavingsPlansCoverages = {
             type = "list",
-            member_type = "structure",
+            member = M.SavingsPlansCoverage,
             traits = {
                 required = true,
             },
@@ -2550,9 +2488,7 @@ M.SavingsPlansDetails = {
 M.SavingsPlansPurchaseRecommendationDetail = {
     type = "structure",
     members = {
-        SavingsPlansDetails = {
-            type = "structure",
-        },
+        SavingsPlansDetails = M.SavingsPlansDetails,
         AccountId = {
             type = "string",
         },
@@ -2663,23 +2599,17 @@ M.SavingsPlansPurchaseRecommendation = {
         },
         SavingsPlansPurchaseRecommendationDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.SavingsPlansPurchaseRecommendationDetail,
         },
-        SavingsPlansPurchaseRecommendationSummary = {
-            type = "structure",
-        },
+        SavingsPlansPurchaseRecommendationSummary = M.SavingsPlansPurchaseRecommendationSummary,
     },
 }
 
 M.GetSavingsPlansPurchaseRecommendationOutput = {
     type = "structure",
     members = {
-        Metadata = {
-            type = "structure",
-        },
-        SavingsPlansPurchaseRecommendation = {
-            type = "structure",
-        },
+        Metadata = M.SavingsPlansPurchaseRecommendationMetadata,
+        SavingsPlansPurchaseRecommendation = M.SavingsPlansPurchaseRecommendation,
         NextPageToken = {
             type = "string",
         },
@@ -2734,42 +2664,25 @@ M.SavingsPlansUtilization = {
 M.SavingsPlansUtilizationByTime = {
     type = "structure",
     members = {
-        TimePeriod = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Utilization = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Savings = {
-            type = "structure",
-        },
-        AmortizedCommitment = {
-            type = "structure",
-        },
+        TimePeriod = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DateInterval }),
+        Utilization = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SavingsPlansUtilization }),
+        Savings = M.SavingsPlansSavings,
+        AmortizedCommitment = M.SavingsPlansAmortizedCommitment,
     },
 }
 
 M.SavingsPlansUtilizationAggregates = {
     type = "structure",
     members = {
-        Utilization = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Savings = {
-            type = "structure",
-        },
-        AmortizedCommitment = {
-            type = "structure",
-        },
+        Utilization = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SavingsPlansUtilization }),
+        Savings = M.SavingsPlansSavings,
+        AmortizedCommitment = M.SavingsPlansAmortizedCommitment,
     },
 }
 
@@ -2778,14 +2691,11 @@ M.GetSavingsPlansUtilizationOutput = {
     members = {
         SavingsPlansUtilizationsByTime = {
             type = "list",
-            member_type = "structure",
+            member = M.SavingsPlansUtilizationByTime,
         },
-        Total = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Total = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SavingsPlansUtilizationAggregates }),
     },
 }
 
@@ -2804,18 +2714,12 @@ M.SavingsPlansUtilizationDetail = {
         },
         Attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        Utilization = {
-            type = "structure",
-        },
-        Savings = {
-            type = "structure",
-        },
-        AmortizedCommitment = {
-            type = "structure",
-        },
+        Utilization = M.SavingsPlansUtilization,
+        Savings = M.SavingsPlansSavings,
+        AmortizedCommitment = M.SavingsPlansAmortizedCommitment,
     },
 }
 
@@ -2824,20 +2728,15 @@ M.GetSavingsPlansUtilizationDetailsOutput = {
     members = {
         SavingsPlansUtilizationDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.SavingsPlansUtilizationDetail,
             traits = {
                 required = true,
             },
         },
-        Total = {
-            type = "structure",
-        },
-        TimePeriod = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Total = M.SavingsPlansUtilizationAggregates,
+        TimePeriod = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DateInterval }),
         NextToken = {
             type = "string",
         },
@@ -2852,19 +2751,19 @@ M.GetTagsOutput = {
         },
         Tags = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         ReturnSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         TotalSize = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -2875,12 +2774,10 @@ M.GetTagsOutput = {
 M.GetUsageForecastOutput = {
     type = "structure",
     members = {
-        Total = {
-            type = "structure",
-        },
+        Total = M.MetricValue,
         ForecastResultsByTime = {
             type = "list",
-            member_type = "structure",
+            member = M.ForecastResult,
         },
     },
 }
@@ -2905,11 +2802,14 @@ M.ListCommitmentPurchaseAnalysesInput = {
             type = "string",
         },
         PageSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         AnalysisIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2919,7 +2819,7 @@ M.ListCommitmentPurchaseAnalysesOutput = {
     members = {
         AnalysisSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.AnalysisSummary,
         },
         NextPageToken = {
             type = "string",
@@ -2934,7 +2834,7 @@ M.ListCostAllocationTagBackfillHistoryInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2971,7 +2871,7 @@ M.ListCostAllocationTagBackfillHistoryOutput = {
     members = {
         BackfillRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.CostAllocationTagBackfillRequest,
         },
         NextToken = {
             type = "string",
@@ -2997,7 +2897,7 @@ M.ListCostAllocationTagsInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Type = {
             type = "string",
@@ -3006,7 +2906,7 @@ M.ListCostAllocationTagsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3046,7 +2946,7 @@ M.ListCostAllocationTagsOutput = {
     members = {
         CostAllocationTags = {
             type = "list",
-            member_type = "structure",
+            member = M.CostAllocationTag,
         },
         NextToken = {
             type = "string",
@@ -3064,11 +2964,11 @@ M.ListCostCategoryDefinitionsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         SupportedResourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3089,22 +2989,25 @@ M.CostCategoryReference = {
             type = "string",
         },
         NumberOfRules = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         ProcessingStatus = {
             type = "list",
-            member_type = "structure",
+            member = M.CostCategoryProcessingStatus,
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DefaultValue = {
             type = "string",
         },
         SupportedResourceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3114,7 +3017,7 @@ M.ListCostCategoryDefinitionsOutput = {
     members = {
         CostCategoryReferences = {
             type = "list",
-            member_type = "structure",
+            member = M.CostCategoryReference,
         },
         NextToken = {
             type = "string",
@@ -3132,7 +3035,7 @@ M.ListCostCategoryResourceAssociationsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3157,7 +3060,7 @@ M.ListCostCategoryResourceAssociationsOutput = {
     members = {
         CostCategoryResourceAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.CostCategoryResourceAssociation,
         },
         NextToken = {
             type = "string",
@@ -3179,10 +3082,13 @@ M.ListSavingsPlansPurchaseRecommendationGenerationInput = {
         },
         RecommendationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         PageSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         NextPageToken = {
             type = "string",
@@ -3216,7 +3122,7 @@ M.ListSavingsPlansPurchaseRecommendationGenerationOutput = {
     members = {
         GenerationSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.GenerationSummary,
         },
         NextPageToken = {
             type = "string",
@@ -3241,7 +3147,7 @@ M.ListTagsForResourceOutput = {
     members = {
         ResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
         },
     },
 }
@@ -3289,12 +3195,9 @@ M.GenerationExistsException = {
 M.StartCommitmentPurchaseAnalysisInput = {
     type = "structure",
     members = {
-        CommitmentPurchaseAnalysisConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        CommitmentPurchaseAnalysisConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CommitmentPurchaseAnalysisConfiguration }),
     },
 }
 
@@ -3347,9 +3250,7 @@ M.StartCostAllocationTagBackfillInput = {
 M.StartCostAllocationTagBackfillOutput = {
     type = "structure",
     members = {
-        BackfillRequest = {
-            type = "structure",
-        },
+        BackfillRequest = M.CostAllocationTagBackfillRequest,
     },
 }
 
@@ -3383,7 +3284,7 @@ M.TagResourceInput = {
         },
         ResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
             traits = {
                 required = true,
             },
@@ -3419,7 +3320,7 @@ M.UntagResourceInput = {
         },
         ResourceTagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3493,7 +3394,7 @@ M.UpdateCostAllocationTagsStatusInput = {
     members = {
         CostAllocationTagsStatus = {
             type = "list",
-            member_type = "structure",
+            member = M.CostAllocationTagStatusEntry,
             traits = {
                 required = true,
             },
@@ -3521,7 +3422,7 @@ M.UpdateCostAllocationTagsStatusOutput = {
     members = {
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.UpdateCostAllocationTagsStatusError,
         },
     },
 }
@@ -3543,24 +3444,16 @@ M.Expression = {
     members = {
         Or = {
             type = "list",
-            member_type = "structure",
+            member = M.Expression,
         },
         And = {
             type = "list",
-            member_type = "structure",
+            member = M.Expression,
         },
-        Not = {
-            type = "structure",
-        },
-        Dimensions = {
-            type = "structure",
-        },
-        Tags = {
-            type = "structure",
-        },
-        CostCategories = {
-            type = "structure",
-        },
+        Not = M.Expression,
+        Dimensions = M.DimensionValues,
+        Tags = M.TagValues,
+        CostCategories = M.CostCategoryValues,
     },
 }
 
@@ -3594,11 +3487,12 @@ M.AnomalyMonitor = {
         MonitorDimension = {
             type = "string",
         },
-        MonitorSpecification = {
-            type = "structure",
-        },
+        MonitorSpecification = M.Expression,
         DimensionalValueCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -3614,20 +3508,20 @@ M.AnomalySubscription = {
         },
         MonitorArnList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         Subscribers = {
             type = "list",
-            member_type = "structure",
+            member = M.Subscriber,
             traits = {
                 required = true,
             },
         },
         Threshold = {
-            type = "number",
+            type = "double",
         },
         Frequency = {
             type = "string",
@@ -3641,22 +3535,18 @@ M.AnomalySubscription = {
                 required = true,
             },
         },
-        ThresholdExpression = {
-            type = "structure",
-        },
+        ThresholdExpression = M.Expression,
     },
 }
 
 M.CostAndUsageComparison = {
     type = "structure",
     members = {
-        CostAndUsageSelector = {
-            type = "structure",
-        },
+        CostAndUsageSelector = M.Expression,
         Metrics = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ComparisonMetricValue,
         },
     },
 }
@@ -3667,12 +3557,8 @@ M.CostCategoryRule = {
         Value = {
             type = "string",
         },
-        Rule = {
-            type = "structure",
-        },
-        InheritedValue = {
-            type = "structure",
-        },
+        Rule = M.Expression,
+        InheritedValue = M.CostCategoryInheritedValueDimension,
         Type = {
             type = "string",
         },
@@ -3682,17 +3568,15 @@ M.CostCategoryRule = {
 M.CostComparisonDriver = {
     type = "structure",
     members = {
-        CostSelector = {
-            type = "structure",
-        },
+        CostSelector = M.Expression,
         Metrics = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ComparisonMetricValue,
         },
         CostDrivers = {
             type = "list",
-            member_type = "structure",
+            member = M.CostDriver,
         },
     },
 }
@@ -3703,33 +3587,25 @@ M.GetCostAndUsageComparisonsInput = {
         BillingViewArn = {
             type = "string",
         },
-        BaselineTimePeriod = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ComparisonTimePeriod = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        BaselineTimePeriod = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DateInterval }),
+        ComparisonTimePeriod = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DateInterval }),
         MetricForComparison = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.Expression,
         GroupBy = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupDefinition,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextPageToken = {
             type = "string",
@@ -3740,31 +3616,26 @@ M.GetCostAndUsageComparisonsInput = {
 M.GetCostAndUsageInput = {
     type = "structure",
     members = {
-        TimePeriod = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TimePeriod = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DateInterval }),
         Granularity = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.Expression,
         Metrics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         GroupBy = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupDefinition,
         },
         BillingViewArn = {
             type = "string",
@@ -3778,31 +3649,25 @@ M.GetCostAndUsageInput = {
 M.GetCostAndUsageWithResourcesInput = {
     type = "structure",
     members = {
-        TimePeriod = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TimePeriod = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DateInterval }),
         Granularity = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        Filter = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Filter = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Expression }),
         Metrics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         GroupBy = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupDefinition,
         },
         BillingViewArn = {
             type = "string",
@@ -3819,27 +3684,22 @@ M.GetCostCategoriesInput = {
         SearchString = {
             type = "string",
         },
-        TimePeriod = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TimePeriod = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DateInterval }),
         CostCategoryName = {
             type = "string",
         },
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.Expression,
         SortBy = {
             type = "list",
-            member_type = "structure",
+            member = M.SortDefinition,
         },
         BillingViewArn = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextPageToken = {
             type = "string",
@@ -3853,33 +3713,25 @@ M.GetCostComparisonDriversInput = {
         BillingViewArn = {
             type = "string",
         },
-        BaselineTimePeriod = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        ComparisonTimePeriod = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        BaselineTimePeriod = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DateInterval }),
+        ComparisonTimePeriod = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DateInterval }),
         MetricForComparison = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.Expression,
         GroupBy = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupDefinition,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextPageToken = {
             type = "string",
@@ -3890,12 +3742,9 @@ M.GetCostComparisonDriversInput = {
 M.GetCostForecastInput = {
     type = "structure",
     members = {
-        TimePeriod = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TimePeriod = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DateInterval }),
         Metric = {
             type = "string",
             traits = {
@@ -3908,14 +3757,12 @@ M.GetCostForecastInput = {
                 required = true,
             },
         },
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.Expression,
         BillingViewArn = {
             type = "string",
         },
         PredictionIntervalLevel = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3926,12 +3773,9 @@ M.GetDimensionValuesInput = {
         SearchString = {
             type = "string",
         },
-        TimePeriod = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TimePeriod = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DateInterval }),
         Dimension = {
             type = "string",
             traits = {
@@ -3941,18 +3785,16 @@ M.GetDimensionValuesInput = {
         Context = {
             type = "string",
         },
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.Expression,
         SortBy = {
             type = "list",
-            member_type = "structure",
+            member = M.SortDefinition,
         },
         BillingViewArn = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextPageToken = {
             type = "string",
@@ -3963,34 +3805,27 @@ M.GetDimensionValuesInput = {
 M.GetReservationCoverageInput = {
     type = "structure",
     members = {
-        TimePeriod = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TimePeriod = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DateInterval }),
         GroupBy = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupDefinition,
         },
         Granularity = {
             type = "string",
         },
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.Expression,
         Metrics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextPageToken = {
             type = "string",
         },
-        SortBy = {
-            type = "structure",
-        },
+        SortBy = M.SortDefinition,
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4007,9 +3842,7 @@ M.GetReservationPurchaseRecommendationInput = {
                 required = true,
             },
         },
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.Expression,
         AccountScope = {
             type = "string",
         },
@@ -4022,11 +3855,12 @@ M.GetReservationPurchaseRecommendationInput = {
         PaymentOption = {
             type = "string",
         },
-        ServiceSpecification = {
-            type = "structure",
-        },
+        ServiceSpecification = M.ServiceSpecification,
         PageSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         NextPageToken = {
             type = "string",
@@ -4037,30 +3871,23 @@ M.GetReservationPurchaseRecommendationInput = {
 M.GetReservationUtilizationInput = {
     type = "structure",
     members = {
-        TimePeriod = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TimePeriod = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DateInterval }),
         GroupBy = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupDefinition,
         },
         Granularity = {
             type = "string",
         },
-        Filter = {
-            type = "structure",
-        },
-        SortBy = {
-            type = "structure",
-        },
+        Filter = M.Expression,
+        SortBy = M.SortDefinition,
         NextPageToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4068,12 +3895,8 @@ M.GetReservationUtilizationInput = {
 M.GetRightsizingRecommendationInput = {
     type = "structure",
     members = {
-        Filter = {
-            type = "structure",
-        },
-        Configuration = {
-            type = "structure",
-        },
+        Filter = M.Expression,
+        Configuration = M.RightsizingRecommendationConfiguration,
         Service = {
             type = "string",
             traits = {
@@ -4081,7 +3904,10 @@ M.GetRightsizingRecommendationInput = {
             },
         },
         PageSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         NextPageToken = {
             type = "string",
@@ -4092,35 +3918,28 @@ M.GetRightsizingRecommendationInput = {
 M.GetSavingsPlansCoverageInput = {
     type = "structure",
     members = {
-        TimePeriod = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TimePeriod = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DateInterval }),
         GroupBy = {
             type = "list",
-            member_type = "structure",
+            member = M.GroupDefinition,
         },
         Granularity = {
             type = "string",
         },
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.Expression,
         Metrics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
-        SortBy = {
-            type = "structure",
-        },
+        SortBy = M.SortDefinition,
     },
 }
 
@@ -4152,7 +3971,10 @@ M.GetSavingsPlansPurchaseRecommendationInput = {
             type = "string",
         },
         PageSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         LookbackPeriodInDays = {
             type = "string",
@@ -4160,58 +3982,42 @@ M.GetSavingsPlansPurchaseRecommendationInput = {
                 required = true,
             },
         },
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.Expression,
     },
 }
 
 M.GetSavingsPlansUtilizationDetailsInput = {
     type = "structure",
     members = {
-        TimePeriod = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Filter = {
-            type = "structure",
-        },
+        TimePeriod = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DateInterval }),
+        Filter = M.Expression,
         DataType = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
-        SortBy = {
-            type = "structure",
-        },
+        SortBy = M.SortDefinition,
     },
 }
 
 M.GetSavingsPlansUtilizationInput = {
     type = "structure",
     members = {
-        TimePeriod = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TimePeriod = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DateInterval }),
         Granularity = {
             type = "string",
         },
-        Filter = {
-            type = "structure",
-        },
-        SortBy = {
-            type = "structure",
-        },
+        Filter = M.Expression,
+        SortBy = M.SortDefinition,
     },
 }
 
@@ -4221,27 +4027,22 @@ M.GetTagsInput = {
         SearchString = {
             type = "string",
         },
-        TimePeriod = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TimePeriod = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DateInterval }),
         TagKey = {
             type = "string",
         },
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.Expression,
         SortBy = {
             type = "list",
-            member_type = "structure",
+            member = M.SortDefinition,
         },
         BillingViewArn = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextPageToken = {
             type = "string",
@@ -4252,12 +4053,9 @@ M.GetTagsInput = {
 M.GetUsageForecastInput = {
     type = "structure",
     members = {
-        TimePeriod = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        TimePeriod = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DateInterval }),
         Metric = {
             type = "string",
             traits = {
@@ -4270,14 +4068,12 @@ M.GetUsageForecastInput = {
                 required = true,
             },
         },
-        Filter = {
-            type = "structure",
-        },
+        Filter = M.Expression,
         BillingViewArn = {
             type = "string",
         },
         PredictionIntervalLevel = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4292,40 +4088,35 @@ M.UpdateAnomalySubscriptionInput = {
             },
         },
         Threshold = {
-            type = "number",
+            type = "double",
         },
         Frequency = {
             type = "string",
         },
         MonitorArnList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Subscribers = {
             type = "list",
-            member_type = "structure",
+            member = M.Subscriber,
         },
         SubscriptionName = {
             type = "string",
         },
-        ThresholdExpression = {
-            type = "structure",
-        },
+        ThresholdExpression = M.Expression,
     },
 }
 
 M.CreateAnomalyMonitorInput = {
     type = "structure",
     members = {
-        AnomalyMonitor = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AnomalyMonitor = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AnomalyMonitor }),
         ResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
         },
     },
 }
@@ -4333,15 +4124,12 @@ M.CreateAnomalyMonitorInput = {
 M.CreateAnomalySubscriptionInput = {
     type = "structure",
     members = {
-        AnomalySubscription = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AnomalySubscription = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AnomalySubscription }),
         ResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
         },
     },
 }
@@ -4378,18 +4166,18 @@ M.CostCategory = {
         },
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.CostCategoryRule,
             traits = {
                 required = true,
             },
         },
         SplitChargeRules = {
             type = "list",
-            member_type = "structure",
+            member = M.CostCategorySplitChargeRule,
         },
         ProcessingStatus = {
             type = "list",
-            member_type = "structure",
+            member = M.CostCategoryProcessingStatus,
         },
         DefaultValue = {
             type = "string",
@@ -4417,7 +4205,7 @@ M.CreateCostCategoryDefinitionInput = {
         },
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.CostCategoryRule,
             traits = {
                 required = true,
             },
@@ -4427,11 +4215,11 @@ M.CreateCostCategoryDefinitionInput = {
         },
         SplitChargeRules = {
             type = "list",
-            member_type = "structure",
+            member = M.CostCategorySplitChargeRule,
         },
         ResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
         },
     },
 }
@@ -4441,7 +4229,7 @@ M.GetAnomalyMonitorsOutput = {
     members = {
         AnomalyMonitors = {
             type = "list",
-            member_type = "structure",
+            member = M.AnomalyMonitor,
             traits = {
                 required = true,
             },
@@ -4457,7 +4245,7 @@ M.GetAnomalySubscriptionsOutput = {
     members = {
         AnomalySubscriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.AnomalySubscription,
             traits = {
                 required = true,
             },
@@ -4473,12 +4261,12 @@ M.GetCostAndUsageComparisonsOutput = {
     members = {
         CostAndUsageComparisons = {
             type = "list",
-            member_type = "structure",
+            member = M.CostAndUsageComparison,
         },
         TotalCostAndUsage = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ComparisonMetricValue,
         },
         NextPageToken = {
             type = "string",
@@ -4491,7 +4279,7 @@ M.GetCostComparisonDriversOutput = {
     members = {
         CostComparisonDrivers = {
             type = "list",
-            member_type = "structure",
+            member = M.CostComparisonDriver,
         },
         NextPageToken = {
             type = "string",
@@ -4519,7 +4307,7 @@ M.UpdateCostCategoryDefinitionInput = {
         },
         Rules = {
             type = "list",
-            member_type = "structure",
+            member = M.CostCategoryRule,
             traits = {
                 required = true,
             },
@@ -4529,7 +4317,7 @@ M.UpdateCostCategoryDefinitionInput = {
         },
         SplitChargeRules = {
             type = "list",
-            member_type = "structure",
+            member = M.CostCategorySplitChargeRule,
         },
     },
 }
@@ -4537,9 +4325,7 @@ M.UpdateCostCategoryDefinitionInput = {
 M.DescribeCostCategoryDefinitionOutput = {
     type = "structure",
     members = {
-        CostCategory = {
-            type = "structure",
-        },
+        CostCategory = M.CostCategory,
     },
 }
 

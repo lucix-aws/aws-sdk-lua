@@ -1,0 +1,8 @@
+local types = require("groundstation.types")
+
+local record M
+    wait_until_contact_scheduled: function(client: table, input: table, options: table): table, table
+    wait_until_contact_updated: function(client: table, input: table, options: table): table, table
+end
+
+return M

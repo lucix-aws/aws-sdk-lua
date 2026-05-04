@@ -33,7 +33,7 @@ M.DiscountsBreakdown = {
     members = {
         Breakdown = {
             type = "list",
-            member_type = "structure",
+            member = M.DiscountsBreakdownAmount,
         },
         TotalAmount = {
             type = "string",
@@ -61,7 +61,7 @@ M.FeesBreakdown = {
     members = {
         Breakdown = {
             type = "list",
-            member_type = "structure",
+            member = M.FeesBreakdownAmount,
         },
         TotalAmount = {
             type = "string",
@@ -89,7 +89,7 @@ M.TaxesBreakdown = {
     members = {
         Breakdown = {
             type = "list",
-            member_type = "structure",
+            member = M.TaxesBreakdownAmount,
         },
         TotalAmount = {
             type = "string",
@@ -103,15 +103,9 @@ M.AmountBreakdown = {
         SubTotalAmount = {
             type = "string",
         },
-        Discounts = {
-            type = "structure",
-        },
-        Taxes = {
-            type = "structure",
-        },
-        Fees = {
-            type = "structure",
-        },
+        Discounts = M.DiscountsBreakdown,
+        Taxes = M.TaxesBreakdown,
+        Fees = M.FeesBreakdown,
     },
 }
 
@@ -120,7 +114,7 @@ M.BatchGetInvoiceProfileInput = {
     members = {
         AccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -170,9 +164,7 @@ M.InvoiceProfile = {
         ReceiverName = {
             type = "string",
         },
-        ReceiverAddress = {
-            type = "structure",
-        },
+        ReceiverAddress = M.ReceiverAddress,
         ReceiverEmail = {
             type = "string",
         },
@@ -190,7 +182,7 @@ M.BatchGetInvoiceProfileOutput = {
     members = {
         Profiles = {
             type = "list",
-            member_type = "structure",
+            member = M.InvoiceProfile,
         },
     },
 }
@@ -200,7 +192,7 @@ M.InternalServerException = {
     error = "server",
     members = {
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -284,7 +276,7 @@ M.ValidationException = {
         },
         fieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -293,13 +285,13 @@ M.BillingPeriod = {
     type = "structure",
     members = {
         Month = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Year = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -367,11 +359,11 @@ M.InvoiceUnitRule = {
     members = {
         LinkedAccounts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         BillSourceAccounts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -396,16 +388,16 @@ M.CreateInvoiceUnitInput = {
         },
         TaxInheritanceDisabled = {
             type = "boolean",
-        },
-        Rule = {
-            type = "structure",
             traits = {
-                required = true,
+                default = false,
             },
         },
+        Rule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InvoiceUnitRule }),
         ResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
         },
     },
 }
@@ -458,14 +450,14 @@ M.EinvoiceDeliveryPreference = {
     members = {
         EinvoiceDeliveryDocumentTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         EinvoiceDeliveryAttachmentTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Protocol = {
             type = "string",
@@ -475,7 +467,7 @@ M.EinvoiceDeliveryPreference = {
         },
         PurchaseOrderDataSources = {
             type = "list",
-            member_type = "structure",
+            member = M.PurchaseOrderDataSource,
             traits = {
                 required = true,
             },
@@ -505,11 +497,11 @@ M.ProcurementPortalPreferenceSelector = {
     members = {
         InvoiceUnitArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SellerOfRecords = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -587,27 +579,21 @@ M.CreateProcurementPortalPreferenceInput = {
                 required = true,
             },
         },
-        Selector = {
-            type = "structure",
-        },
+        Selector = M.ProcurementPortalPreferenceSelector,
         ProcurementPortalSharedSecret = {
             type = "string",
         },
         ProcurementPortalInstanceEndpoint = {
             type = "string",
         },
-        TestEnvPreference = {
-            type = "structure",
-        },
+        TestEnvPreference = M.TestEnvPreferenceInput,
         EinvoiceDeliveryEnabled = {
             type = "boolean",
             traits = {
                 required = true,
             },
         },
-        EinvoiceDeliveryPreference = {
-            type = "structure",
-        },
+        EinvoiceDeliveryPreference = M.EinvoiceDeliveryPreference,
         PurchaseOrderRetrievalEnabled = {
             type = "boolean",
             traits = {
@@ -616,14 +602,14 @@ M.CreateProcurementPortalPreferenceInput = {
         },
         Contacts = {
             type = "list",
-            member_type = "structure",
+            member = M.Contact,
             traits = {
                 required = true,
             },
         },
         ResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
         },
         ClientToken = {
             type = "string",
@@ -748,19 +734,19 @@ M.Filters = {
     members = {
         Names = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         InvoiceReceivers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Accounts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         BillSourceAccounts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -803,7 +789,7 @@ M.InvoicePDF = {
         },
         SupplementalDocuments = {
             type = "list",
-            member_type = "structure",
+            member = M.SupplementalDocument,
         },
     },
 }
@@ -811,9 +797,7 @@ M.InvoicePDF = {
 M.GetInvoicePDFOutput = {
     type = "structure",
     members = {
-        InvoicePDF = {
-            type = "structure",
-        },
+        InvoicePDF = M.InvoicePDF,
     },
 }
 
@@ -849,10 +833,11 @@ M.GetInvoiceUnitOutput = {
         },
         TaxInheritanceDisabled = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
-        Rule = {
-            type = "structure",
-        },
+        Rule = M.InvoiceUnitRule,
         LastModified = {
             type = "timestamp",
         },
@@ -964,9 +949,7 @@ M.ProcurementPortalPreference = {
                 required = true,
             },
         },
-        Selector = {
-            type = "structure",
-        },
+        Selector = M.ProcurementPortalPreferenceSelector,
         ProcurementPortalSharedSecret = {
             type = "string",
         },
@@ -976,18 +959,14 @@ M.ProcurementPortalPreference = {
         PurchaseOrderRetrievalEndpoint = {
             type = "string",
         },
-        TestEnvPreference = {
-            type = "structure",
-        },
+        TestEnvPreference = M.TestEnvPreference,
         EinvoiceDeliveryEnabled = {
             type = "boolean",
             traits = {
                 required = true,
             },
         },
-        EinvoiceDeliveryPreference = {
-            type = "structure",
-        },
+        EinvoiceDeliveryPreference = M.EinvoiceDeliveryPreference,
         PurchaseOrderRetrievalEnabled = {
             type = "boolean",
             traits = {
@@ -996,7 +975,7 @@ M.ProcurementPortalPreference = {
         },
         Contacts = {
             type = "list",
-            member_type = "structure",
+            member = M.Contact,
         },
         EinvoiceDeliveryPreferenceStatus = {
             type = "string",
@@ -1011,7 +990,7 @@ M.ProcurementPortalPreference = {
             type = "string",
         },
         Version = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -1034,12 +1013,9 @@ M.ProcurementPortalPreference = {
 M.GetProcurementPortalPreferenceOutput = {
     type = "structure",
     members = {
-        ProcurementPortalPreference = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ProcurementPortalPreference = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProcurementPortalPreference }),
     },
 }
 
@@ -1055,12 +1031,8 @@ M.InvoiceCurrencyAmount = {
         CurrencyCode = {
             type = "string",
         },
-        AmountBreakdown = {
-            type = "structure",
-        },
-        CurrencyExchangeDetails = {
-            type = "structure",
-        },
+        AmountBreakdown = M.AmountBreakdown,
+        CurrencyExchangeDetails = M.CurrencyExchangeDetails,
     },
 }
 
@@ -1084,12 +1056,8 @@ M.InvoiceSummary = {
         DueDate = {
             type = "timestamp",
         },
-        Entity = {
-            type = "structure",
-        },
-        BillingPeriod = {
-            type = "structure",
-        },
+        Entity = M.Entity,
+        BillingPeriod = M.BillingPeriod,
         InvoiceType = {
             type = "string",
         },
@@ -1099,27 +1067,17 @@ M.InvoiceSummary = {
         PurchaseOrderNumber = {
             type = "string",
         },
-        BaseCurrencyAmount = {
-            type = "structure",
-        },
-        TaxCurrencyAmount = {
-            type = "structure",
-        },
-        PaymentCurrencyAmount = {
-            type = "structure",
-        },
+        BaseCurrencyAmount = M.InvoiceCurrencyAmount,
+        TaxCurrencyAmount = M.InvoiceCurrencyAmount,
+        PaymentCurrencyAmount = M.InvoiceCurrencyAmount,
     },
 }
 
 M.InvoiceSummariesFilter = {
     type = "structure",
     members = {
-        TimeInterval = {
-            type = "structure",
-        },
-        BillingPeriod = {
-            type = "structure",
-        },
+        TimeInterval = M.DateInterval,
+        BillingPeriod = M.BillingPeriod,
         InvoicingEntity = {
             type = "string",
         },
@@ -1166,10 +1124,11 @@ M.InvoiceUnit = {
         },
         TaxInheritanceDisabled = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
-        Rule = {
-            type = "structure",
-        },
+        Rule = M.InvoiceUnitRule,
         LastModified = {
             type = "timestamp",
         },
@@ -1179,20 +1138,15 @@ M.InvoiceUnit = {
 M.ListInvoiceSummariesInput = {
     type = "structure",
     members = {
-        Selector = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Filter = {
-            type = "structure",
-        },
+        Selector = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InvoiceSummariesSelector }),
+        Filter = M.InvoiceSummariesFilter,
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1202,7 +1156,7 @@ M.ListInvoiceSummariesOutput = {
     members = {
         InvoiceSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.InvoiceSummary,
             traits = {
                 required = true,
             },
@@ -1216,14 +1170,15 @@ M.ListInvoiceSummariesOutput = {
 M.ListInvoiceUnitsInput = {
     type = "structure",
     members = {
-        Filters = {
-            type = "structure",
-        },
+        Filters = M.Filters,
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 500,
+            },
         },
         AsOf = {
             type = "timestamp",
@@ -1236,7 +1191,7 @@ M.ListInvoiceUnitsOutput = {
     members = {
         InvoiceUnits = {
             type = "list",
-            member_type = "structure",
+            member = M.InvoiceUnit,
         },
         NextToken = {
             type = "string",
@@ -1251,7 +1206,10 @@ M.ListProcurementPortalPreferencesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 100,
+            },
         },
     },
 }
@@ -1301,9 +1259,7 @@ M.ProcurementPortalPreferenceSummary = {
                 required = true,
             },
         },
-        Selector = {
-            type = "structure",
-        },
+        Selector = M.ProcurementPortalPreferenceSelector,
         EinvoiceDeliveryEnabled = {
             type = "boolean",
             traits = {
@@ -1329,7 +1285,7 @@ M.ProcurementPortalPreferenceSummary = {
             type = "string",
         },
         Version = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -1354,7 +1310,7 @@ M.ListProcurementPortalPreferencesOutput = {
     members = {
         ProcurementPortalPreferences = {
             type = "list",
-            member_type = "structure",
+            member = M.ProcurementPortalPreferenceSummary,
         },
         NextToken = {
             type = "string",
@@ -1379,7 +1335,7 @@ M.ListTagsForResourceOutput = {
     members = {
         ResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
         },
     },
 }
@@ -1393,27 +1349,21 @@ M.PutProcurementPortalPreferenceInput = {
                 required = true,
             },
         },
-        Selector = {
-            type = "structure",
-        },
+        Selector = M.ProcurementPortalPreferenceSelector,
         ProcurementPortalSharedSecret = {
             type = "string",
         },
         ProcurementPortalInstanceEndpoint = {
             type = "string",
         },
-        TestEnvPreference = {
-            type = "structure",
-        },
+        TestEnvPreference = M.TestEnvPreferenceInput,
         EinvoiceDeliveryEnabled = {
             type = "boolean",
             traits = {
                 required = true,
             },
         },
-        EinvoiceDeliveryPreference = {
-            type = "structure",
-        },
+        EinvoiceDeliveryPreference = M.EinvoiceDeliveryPreference,
         PurchaseOrderRetrievalEnabled = {
             type = "boolean",
             traits = {
@@ -1422,7 +1372,7 @@ M.PutProcurementPortalPreferenceInput = {
         },
         Contacts = {
             type = "list",
-            member_type = "structure",
+            member = M.Contact,
             traits = {
                 required = true,
             },
@@ -1453,7 +1403,7 @@ M.TagResourceInput = {
         },
         ResourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
             traits = {
                 required = true,
             },
@@ -1476,7 +1426,7 @@ M.UntagResourceInput = {
         },
         ResourceTagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1502,10 +1452,11 @@ M.UpdateInvoiceUnitInput = {
         },
         TaxInheritanceDisabled = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
-        Rule = {
-            type = "structure",
-        },
+        Rule = M.InvoiceUnitRule,
     },
 }
 

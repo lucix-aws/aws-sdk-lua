@@ -1,0 +1,25 @@
+local waiter = require("waiter")
+
+local M = {}
+
+--- Wait until ResourceRecordSetsChanged.
+function M.wait_until_resource_record_sets_changed(client, input, options)
+    return waiter.wait(client, "getChange", input, {
+        min_delay = 30,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "ChangeInfo.Status",
+                        expected = "INSYNC",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+return M

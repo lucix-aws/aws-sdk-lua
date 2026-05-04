@@ -266,19 +266,19 @@ end
 
 local type MemberAccountDiscountVisibility = "All" | "None"
 
-local type ImplementationEffort = "VeryLow" | "Low" | "Medium" | "High" | "VeryHigh"
-
 local type Source = "ComputeOptimizer" | "CostExplorer"
 
 local type ActionType = "Rightsize" | "Stop" | "Upgrade" | "PurchaseSavingsPlans" | "PurchaseReservedInstances" | "MigrateToGraviton" | "Delete" | "ScaleIn"
 
+local type SavingsEstimationMode = "BeforeDiscounts" | "AfterDiscounts"
+
 local type ResourceType = "Ec2Instance" | "LambdaFunction" | "EbsVolume" | "EcsService" | "Ec2AutoScalingGroup" | "Ec2InstanceSavingsPlans" | "ComputeSavingsPlans" | "SageMakerSavingsPlans" | "Ec2ReservedInstances" | "RdsReservedInstances" | "OpenSearchReservedInstances" | "RedshiftReservedInstances" | "ElastiCacheReservedInstances" | "RdsDbInstanceStorage" | "RdsDbInstance" | "AuroraDbClusterStorage" | "DynamoDbReservedCapacity" | "MemoryDbReservedInstances" | "NatGateway"
 
-local type SavingsEstimationMode = "BeforeDiscounts" | "AfterDiscounts"
+local type EnrollmentStatus = "Active" | "Inactive"
 
 local type GranularityType = "Daily" | "Monthly"
 
-local type EnrollmentStatus = "Active" | "Inactive"
+local type ImplementationEffort = "VeryLow" | "Low" | "Medium" | "High" | "VeryHigh"
 
 local record M
     GetPreferencesInput: GetPreferencesInput

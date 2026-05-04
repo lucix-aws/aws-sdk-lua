@@ -664,19 +664,19 @@ end
 
 local type KeyStorageSecurityStandard = "FIPS_140_2_LEVEL_2_OR_HIGHER" | "FIPS_140_2_LEVEL_3_OR_HIGHER" | "CCPC_LEVEL_1_OR_HIGHER"
 
-local type AuditReportResponseFormat = "JSON" | "CSV"
-
-local type AuditReportStatus = "CREATING" | "SUCCESS" | "FAILED"
-
 local type CertificateAuthorityUsageMode = "GENERAL_PURPOSE" | "SHORT_LIVED_CERTIFICATE"
 
 local type RevocationReason = "UNSPECIFIED" | "KEY_COMPROMISE" | "CERTIFICATE_AUTHORITY_COMPROMISE" | "AFFILIATION_CHANGED" | "SUPERSEDED" | "CESSATION_OF_OPERATION" | "PRIVILEGE_WITHDRAWN" | "A_A_COMPROMISE"
 
+local type AuditReportResponseFormat = "JSON" | "CSV"
+
+local type AuditReportStatus = "CREATING" | "SUCCESS" | "FAILED"
+
 local type CertificateAuthorityType = "ROOT" | "SUBORDINATE"
 
-local type SigningAlgorithm = "SHA256WITHECDSA" | "SHA384WITHECDSA" | "SHA512WITHECDSA" | "SHA256WITHRSA" | "SHA384WITHRSA" | "SHA512WITHRSA" | "SM3WITHSM2" | "ML_DSA_44" | "ML_DSA_65" | "ML_DSA_87"
-
 local type CertificateAuthorityStatus = "CREATING" | "PENDING_CERTIFICATE" | "ACTIVE" | "DELETED" | "DISABLED" | "EXPIRED" | "FAILED"
+
+local type SigningAlgorithm = "SHA256WITHECDSA" | "SHA384WITHECDSA" | "SHA512WITHECDSA" | "SHA256WITHRSA" | "SHA384WITHRSA" | "SHA512WITHRSA" | "SM3WITHSM2" | "ML_DSA_44" | "ML_DSA_65" | "ML_DSA_87"
 
 local type ResourceOwner = "SELF" | "OTHER_ACCOUNTS"
 

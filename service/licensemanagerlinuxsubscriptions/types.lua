@@ -70,7 +70,7 @@ M.Filter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Operator = {
             type = "string",
@@ -143,7 +143,7 @@ M.LinuxSubscriptionsDiscoverySettings = {
     members = {
         SourceRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -170,20 +170,18 @@ M.GetServiceSettingsOutput = {
         LinuxSubscriptionsDiscovery = {
             type = "string",
         },
-        LinuxSubscriptionsDiscoverySettings = {
-            type = "structure",
-        },
+        LinuxSubscriptionsDiscoverySettings = M.LinuxSubscriptionsDiscoverySettings,
         Status = {
             type = "string",
         },
         StatusMessage = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         HomeRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -214,7 +212,7 @@ M.Instance = {
         },
         ProductCode = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         LastUpdatedTime = {
             type = "string",
@@ -245,10 +243,10 @@ M.ListLinuxSubscriptionInstancesInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -261,7 +259,7 @@ M.ListLinuxSubscriptionInstancesOutput = {
     members = {
         Instances = {
             type = "list",
-            member_type = "structure",
+            member = M.Instance,
         },
         NextToken = {
             type = "string",
@@ -274,10 +272,10 @@ M.ListLinuxSubscriptionsInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -295,7 +293,7 @@ M.Subscription = {
             type = "string",
         },
         InstanceCount = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -305,7 +303,7 @@ M.ListLinuxSubscriptionsOutput = {
     members = {
         Subscriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.Subscription,
         },
         NextToken = {
             type = "string",
@@ -318,10 +316,10 @@ M.ListRegisteredSubscriptionProvidersInput = {
     members = {
         SubscriptionProviderSources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -358,7 +356,7 @@ M.ListRegisteredSubscriptionProvidersOutput = {
     members = {
         RegisteredSubscriptionProviders = {
             type = "list",
-            member_type = "structure",
+            member = M.RegisteredSubscriptionProvider,
         },
         NextToken = {
             type = "string",
@@ -384,8 +382,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -407,8 +405,8 @@ M.RegisterSubscriptionProviderInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -440,8 +438,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -465,7 +463,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -487,12 +485,9 @@ M.UpdateServiceSettingsInput = {
                 required = true,
             },
         },
-        LinuxSubscriptionsDiscoverySettings = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        LinuxSubscriptionsDiscoverySettings = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LinuxSubscriptionsDiscoverySettings }),
         AllowUpdate = {
             type = "boolean",
         },
@@ -505,20 +500,18 @@ M.UpdateServiceSettingsOutput = {
         LinuxSubscriptionsDiscovery = {
             type = "string",
         },
-        LinuxSubscriptionsDiscoverySettings = {
-            type = "structure",
-        },
+        LinuxSubscriptionsDiscoverySettings = M.LinuxSubscriptionsDiscoverySettings,
         Status = {
             type = "string",
         },
         StatusMessage = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         HomeRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }

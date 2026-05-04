@@ -65,12 +65,9 @@ M.BaselineOperation = {
 M.GetBaselineOperationOutput = {
     type = "structure",
     members = {
-        baselineOperation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        baselineOperation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BaselineOperation }),
     },
 }
 
@@ -117,7 +114,7 @@ M.ThrottlingException = {
             type = "string",
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -178,7 +175,7 @@ M.ListBaselinesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -209,7 +206,7 @@ M.ListBaselinesOutput = {
     members = {
         baselines = {
             type = "list",
-            member_type = "structure",
+            member = M.BaselineSummary,
             traits = {
                 required = true,
             },
@@ -287,12 +284,9 @@ M.ControlOperation = {
 M.GetControlOperationOutput = {
     type = "structure",
     members = {
-        controlOperation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        controlOperation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ControlOperation }),
     },
 }
 
@@ -301,23 +295,23 @@ M.ControlOperationFilter = {
     members = {
         controlIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         targetIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         enabledControlIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         statuses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         controlOperationTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -325,14 +319,12 @@ M.ControlOperationFilter = {
 M.ListControlOperationsInput = {
     type = "structure",
     members = {
-        filter = {
-            type = "structure",
-        },
+        filter = M.ControlOperationFilter,
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -381,7 +373,7 @@ M.ListControlOperationsOutput = {
     members = {
         controlOperations = {
             type = "list",
-            member_type = "structure",
+            member = M.ControlOperationSummary,
             traits = {
                 required = true,
             },
@@ -498,7 +490,7 @@ M.EnableBaselineInput = {
         },
         parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.EnabledBaselineParameter,
         },
         baselineIdentifier = {
             type = "string",
@@ -514,8 +506,8 @@ M.EnableBaselineInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -567,18 +559,14 @@ M.EnabledBaselineInheritanceDrift = {
 M.EnabledBaselineDriftTypes = {
     type = "structure",
     members = {
-        inheritance = {
-            type = "structure",
-        },
+        inheritance = M.EnabledBaselineInheritanceDrift,
     },
 }
 
 M.EnabledBaselineDriftStatusSummary = {
     type = "structure",
     members = {
-        types = {
-            type = "structure",
-        },
+        types = M.EnabledBaselineDriftTypes,
     },
 }
 
@@ -636,9 +624,7 @@ M.EnabledBaselineDetails = {
         baselineVersion = {
             type = "string",
         },
-        driftStatusSummary = {
-            type = "structure",
-        },
+        driftStatusSummary = M.EnabledBaselineDriftStatusSummary,
         targetIdentifier = {
             type = "string",
             traits = {
@@ -648,15 +634,12 @@ M.EnabledBaselineDetails = {
         parentIdentifier = {
             type = "string",
         },
-        statusSummary = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        statusSummary = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EnablementStatusSummary }),
         parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.EnabledBaselineParameterSummary,
         },
     },
 }
@@ -664,9 +647,7 @@ M.EnabledBaselineDetails = {
 M.GetEnabledBaselineOutput = {
     type = "structure",
     members = {
-        enabledBaselineDetails = {
-            type = "structure",
-        },
+        enabledBaselineDetails = M.EnabledBaselineDetails,
     },
 }
 
@@ -675,23 +656,23 @@ M.EnabledBaselineFilter = {
     members = {
         targetIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         baselineIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         parentIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         statuses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         inheritanceDriftStatuses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -699,17 +680,18 @@ M.EnabledBaselineFilter = {
 M.ListEnabledBaselinesInput = {
     type = "structure",
     members = {
-        filter = {
-            type = "structure",
-        },
+        filter = M.EnabledBaselineFilter,
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         includeChildren = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -732,9 +714,7 @@ M.EnabledBaselineSummary = {
         baselineVersion = {
             type = "string",
         },
-        driftStatusSummary = {
-            type = "structure",
-        },
+        driftStatusSummary = M.EnabledBaselineDriftStatusSummary,
         targetIdentifier = {
             type = "string",
             traits = {
@@ -744,12 +724,9 @@ M.EnabledBaselineSummary = {
         parentIdentifier = {
             type = "string",
         },
-        statusSummary = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        statusSummary = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EnablementStatusSummary }),
     },
 }
 
@@ -758,7 +735,7 @@ M.ListEnabledBaselinesOutput = {
     members = {
         enabledBaselines = {
             type = "list",
-            member_type = "structure",
+            member = M.EnabledBaselineSummary,
             traits = {
                 required = true,
             },
@@ -804,7 +781,7 @@ M.UpdateEnabledBaselineInput = {
         },
         parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.EnabledBaselineParameter,
         },
         enabledBaselineIdentifier = {
             type = "string",
@@ -862,12 +839,12 @@ M.EnableControlInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.EnabledControlParameter,
         },
     },
 }
@@ -927,12 +904,8 @@ M.EnabledControlResourceDrift = {
 M.EnabledControlDriftTypes = {
     type = "structure",
     members = {
-        inheritance = {
-            type = "structure",
-        },
-        resource = {
-            type = "structure",
-        },
+        inheritance = M.EnabledControlInheritanceDrift,
+        resource = M.EnabledControlResourceDrift,
     },
 }
 
@@ -942,9 +915,7 @@ M.DriftStatusSummary = {
         driftStatus = {
             type = "string",
         },
-        types = {
-            type = "structure",
-        },
+        types = M.EnabledControlDriftTypes,
     },
 }
 
@@ -987,22 +958,18 @@ M.EnabledControlDetails = {
         targetIdentifier = {
             type = "string",
         },
-        statusSummary = {
-            type = "structure",
-        },
-        driftStatusSummary = {
-            type = "structure",
-        },
+        statusSummary = M.EnablementStatusSummary,
+        driftStatusSummary = M.DriftStatusSummary,
         parentIdentifier = {
             type = "string",
         },
         targetRegions = {
             type = "list",
-            member_type = "structure",
+            member = M.Region,
         },
         parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.EnabledControlParameterSummary,
         },
     },
 }
@@ -1010,12 +977,9 @@ M.EnabledControlDetails = {
 M.GetEnabledControlOutput = {
     type = "structure",
     members = {
-        enabledControlDetails = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        enabledControlDetails = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EnabledControlDetails }),
     },
 }
 
@@ -1024,27 +988,27 @@ M.EnabledControlFilter = {
     members = {
         controlIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         statuses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         driftStatuses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         parentIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         inheritanceDriftStatuses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         resourceDriftStatuses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1054,18 +1018,22 @@ M.ListEnabledControlsInput = {
     members = {
         targetIdentifier = {
             type = "string",
+            traits = {
+                default = nil,
+            },
         },
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
-        filter = {
-            type = "structure",
-        },
+        filter = M.EnabledControlFilter,
         includeChildren = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1082,12 +1050,8 @@ M.EnabledControlSummary = {
         targetIdentifier = {
             type = "string",
         },
-        statusSummary = {
-            type = "structure",
-        },
-        driftStatusSummary = {
-            type = "structure",
-        },
+        statusSummary = M.EnablementStatusSummary,
+        driftStatusSummary = M.DriftStatusSummary,
         parentIdentifier = {
             type = "string",
         },
@@ -1099,7 +1063,7 @@ M.ListEnabledControlsOutput = {
     members = {
         enabledControls = {
             type = "list",
-            member_type = "structure",
+            member = M.EnabledControlSummary,
             traits = {
                 required = true,
             },
@@ -1139,7 +1103,7 @@ M.UpdateEnabledControlInput = {
     members = {
         parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.EnabledControlParameter,
             traits = {
                 required = true,
             },
@@ -1217,12 +1181,9 @@ M.LandingZoneOperationDetail = {
 M.GetLandingZoneOperationOutput = {
     type = "structure",
     members = {
-        operationDetails = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        operationDetails = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LandingZoneOperationDetail }),
     },
 }
 
@@ -1231,11 +1192,11 @@ M.LandingZoneOperationFilter = {
     members = {
         types = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         statuses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1243,14 +1204,12 @@ M.LandingZoneOperationFilter = {
 M.ListLandingZoneOperationsInput = {
     type = "structure",
     members = {
-        filter = {
-            type = "structure",
-        },
+        filter = M.LandingZoneOperationFilter,
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1275,7 +1234,7 @@ M.ListLandingZoneOperationsOutput = {
     members = {
         landingZoneOperations = {
             type = "list",
-            member_type = "structure",
+            member = M.LandingZoneOperationSummary,
             traits = {
                 required = true,
             },
@@ -1301,12 +1260,12 @@ M.CreateLandingZoneInput = {
         },
         remediationTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         manifest = {
             type = "document",
@@ -1399,7 +1358,7 @@ M.LandingZoneDetail = {
         },
         remediationTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         arn = {
             type = "string",
@@ -1410,9 +1369,7 @@ M.LandingZoneDetail = {
         latestAvailableVersion = {
             type = "string",
         },
-        driftStatus = {
-            type = "structure",
-        },
+        driftStatus = M.LandingZoneDriftStatusSummary,
         manifest = {
             type = "document",
             traits = {
@@ -1425,12 +1382,9 @@ M.LandingZoneDetail = {
 M.GetLandingZoneOutput = {
     type = "structure",
     members = {
-        landingZone = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        landingZone = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LandingZoneDetail }),
     },
 }
 
@@ -1441,7 +1395,7 @@ M.ListLandingZonesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1460,7 +1414,7 @@ M.ListLandingZonesOutput = {
     members = {
         landingZones = {
             type = "list",
-            member_type = "structure",
+            member = M.LandingZoneSummary,
             traits = {
                 required = true,
             },
@@ -1506,7 +1460,7 @@ M.UpdateLandingZoneInput = {
         },
         remediationTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         landingZoneIdentifier = {
             type = "string",
@@ -1550,8 +1504,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1571,8 +1525,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1596,7 +1550,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,

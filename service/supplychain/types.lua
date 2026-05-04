@@ -168,12 +168,9 @@ M.GetBillOfMaterialsImportJobInput = {
 M.GetBillOfMaterialsImportJobOutput = {
     type = "structure",
     members = {
-        job = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        job = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.BillOfMaterialsImportJob }),
     },
 }
 
@@ -205,7 +202,7 @@ M.DataIntegrationFlowFieldPriorityDedupeStrategyConfiguration = {
     members = {
         fields = {
             type = "list",
-            member_type = "structure",
+            member = M.DataIntegrationFlowFieldPriorityDedupeField,
             traits = {
                 required = true,
             },
@@ -226,9 +223,7 @@ M.DataIntegrationFlowDedupeStrategy = {
                 required = true,
             },
         },
-        fieldPriority = {
-            type = "structure",
-        },
+        fieldPriority = M.DataIntegrationFlowFieldPriorityDedupeStrategyConfiguration,
     },
 }
 
@@ -246,9 +241,7 @@ M.DataIntegrationFlowDatasetOptions = {
         dedupeRecords = {
             type = "boolean",
         },
-        dedupeStrategy = {
-            type = "structure",
-        },
+        dedupeStrategy = M.DataIntegrationFlowDedupeStrategy,
     },
 }
 
@@ -261,9 +254,7 @@ M.DataIntegrationFlowDatasetSourceConfiguration = {
                 required = true,
             },
         },
-        options = {
-            type = "structure",
-        },
+        options = M.DataIntegrationFlowDatasetOptions,
     },
 }
 
@@ -297,9 +288,7 @@ M.DataIntegrationFlowS3SourceConfiguration = {
                 required = true,
             },
         },
-        options = {
-            type = "structure",
-        },
+        options = M.DataIntegrationFlowS3Options,
     },
 }
 
@@ -323,12 +312,8 @@ M.DataIntegrationFlowSource = {
                 required = true,
             },
         },
-        s3Source = {
-            type = "structure",
-        },
-        datasetSource = {
-            type = "structure",
-        },
+        s3Source = M.DataIntegrationFlowS3SourceConfiguration,
+        datasetSource = M.DataIntegrationFlowDatasetSourceConfiguration,
     },
 }
 
@@ -341,9 +326,7 @@ M.DataIntegrationFlowDatasetTargetConfiguration = {
                 required = true,
             },
         },
-        options = {
-            type = "structure",
-        },
+        options = M.DataIntegrationFlowDatasetOptions,
     },
 }
 
@@ -362,9 +345,7 @@ M.DataIntegrationFlowS3TargetConfiguration = {
                 required = true,
             },
         },
-        options = {
-            type = "structure",
-        },
+        options = M.DataIntegrationFlowS3Options,
     },
 }
 
@@ -382,12 +363,8 @@ M.DataIntegrationFlowTarget = {
                 required = true,
             },
         },
-        s3Target = {
-            type = "structure",
-        },
-        datasetTarget = {
-            type = "structure",
-        },
+        s3Target = M.DataIntegrationFlowS3TargetConfiguration,
+        datasetTarget = M.DataIntegrationFlowDatasetTargetConfiguration,
     },
 }
 
@@ -417,9 +394,7 @@ M.DataIntegrationFlowTransformation = {
                 required = true,
             },
         },
-        sqlTransformation = {
-            type = "structure",
-        },
+        sqlTransformation = M.DataIntegrationFlowSQLTransformationConfiguration,
     },
 }
 
@@ -442,27 +417,21 @@ M.CreateDataIntegrationFlowInput = {
         },
         sources = {
             type = "list",
-            member_type = "structure",
+            member = M.DataIntegrationFlowSource,
             traits = {
                 required = true,
             },
         },
-        transformation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        target = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        transformation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataIntegrationFlowTransformation }),
+        target = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataIntegrationFlowTarget }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -514,12 +483,9 @@ M.DataLakeDatasetPartitionField = {
                 required = true,
             },
         },
-        transform = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        transform = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataLakeDatasetPartitionFieldTransform }),
     },
 }
 
@@ -528,7 +494,7 @@ M.DataLakeDatasetPartitionSpec = {
     members = {
         fields = {
             type = "list",
-            member_type = "structure",
+            member = M.DataLakeDatasetPartitionField,
             traits = {
                 required = true,
             },
@@ -591,14 +557,14 @@ M.DataLakeDatasetSchema = {
         },
         fields = {
             type = "list",
-            member_type = "structure",
+            member = M.DataLakeDatasetSchemaField,
             traits = {
                 required = true,
             },
         },
         primaryKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.DataLakeDatasetPrimaryKeyField,
         },
     },
 }
@@ -627,19 +593,15 @@ M.CreateDataLakeDatasetInput = {
                 required = true,
             },
         },
-        schema = {
-            type = "structure",
-        },
+        schema = M.DataLakeDatasetSchema,
         description = {
             type = "string",
         },
-        partitionSpec = {
-            type = "structure",
-        },
+        partitionSpec = M.DataLakeDatasetPartitionSpec,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -671,18 +633,13 @@ M.DataLakeDataset = {
                 required = true,
             },
         },
-        schema = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        schema = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataLakeDatasetSchema }),
         description = {
             type = "string",
         },
-        partitionSpec = {
-            type = "structure",
-        },
+        partitionSpec = M.DataLakeDatasetPartitionSpec,
         createdTime = {
             type = "timestamp",
             traits = {
@@ -701,12 +658,9 @@ M.DataLakeDataset = {
 M.CreateDataLakeDatasetOutput = {
     type = "structure",
     members = {
-        dataset = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        dataset = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataLakeDataset }),
     },
 }
 
@@ -732,8 +686,8 @@ M.CreateDataLakeNamespaceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -780,12 +734,9 @@ M.DataLakeNamespace = {
 M.CreateDataLakeNamespaceOutput = {
     type = "structure",
     members = {
-        namespace = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        namespace = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataLakeNamespace }),
     },
 }
 
@@ -806,8 +757,8 @@ M.CreateInstanceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         clientToken = {
             type = "string",
@@ -867,7 +818,7 @@ M.Instance = {
             type = "string",
         },
         versionNumber = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -875,12 +826,9 @@ M.Instance = {
 M.CreateInstanceOutput = {
     type = "structure",
     members = {
-        instance = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        instance = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Instance }),
     },
 }
 
@@ -926,12 +874,9 @@ M.DataIntegrationEventDatasetTargetDetails = {
                 required = true,
             },
         },
-        datasetLoadExecution = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        datasetLoadExecution = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataIntegrationEventDatasetLoadExecutionDetails }),
     },
 }
 
@@ -987,9 +932,7 @@ M.DataIntegrationEvent = {
                 required = true,
             },
         },
-        datasetTargetDetails = {
-            type = "structure",
-        },
+        datasetTargetDetails = M.DataIntegrationEventDatasetTargetDetails,
     },
 }
 
@@ -1028,23 +971,17 @@ M.DataIntegrationFlow = {
         },
         sources = {
             type = "list",
-            member_type = "structure",
+            member = M.DataIntegrationFlowSource,
             traits = {
                 required = true,
             },
         },
-        transformation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        target = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        transformation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataIntegrationFlowTransformation }),
+        target = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataIntegrationFlowTarget }),
         createdTime = {
             type = "timestamp",
             traits = {
@@ -1108,12 +1045,8 @@ M.DataIntegrationFlowExecutionSourceInfo = {
                 required = true,
             },
         },
-        s3Source = {
-            type = "structure",
-        },
-        datasetSource = {
-            type = "structure",
-        },
+        s3Source = M.DataIntegrationFlowS3Source,
+        datasetSource = M.DataIntegrationFlowDatasetSource,
     },
 }
 
@@ -1147,9 +1080,7 @@ M.DataIntegrationFlowExecution = {
         status = {
             type = "string",
         },
-        sourceInfo = {
-            type = "structure",
-        },
+        sourceInfo = M.DataIntegrationFlowExecutionSourceInfo,
         message = {
             type = "string",
         },
@@ -1159,9 +1090,7 @@ M.DataIntegrationFlowExecution = {
         endTime = {
             type = "timestamp",
         },
-        outputMetadata = {
-            type = "structure",
-        },
+        outputMetadata = M.DataIntegrationFlowExecutionOutputMetadata,
     },
 }
 
@@ -1226,12 +1155,9 @@ M.GetDataIntegrationFlowInput = {
 M.GetDataIntegrationFlowOutput = {
     type = "structure",
     members = {
-        flow = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        flow = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataIntegrationFlow }),
     },
 }
 
@@ -1252,8 +1178,9 @@ M.ListDataIntegrationFlowsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 10,
                 http_query = "maxResults",
             },
         },
@@ -1265,7 +1192,7 @@ M.ListDataIntegrationFlowsOutput = {
     members = {
         flows = {
             type = "list",
-            member_type = "structure",
+            member = M.DataIntegrationFlow,
             traits = {
                 required = true,
             },
@@ -1295,26 +1222,19 @@ M.UpdateDataIntegrationFlowInput = {
         },
         sources = {
             type = "list",
-            member_type = "structure",
+            member = M.DataIntegrationFlowSource,
         },
-        transformation = {
-            type = "structure",
-        },
-        target = {
-            type = "structure",
-        },
+        transformation = M.DataIntegrationFlowTransformation,
+        target = M.DataIntegrationFlowTarget,
     },
 }
 
 M.UpdateDataIntegrationFlowOutput = {
     type = "structure",
     members = {
-        flow = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        flow = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataIntegrationFlow }),
     },
 }
 
@@ -1399,12 +1319,9 @@ M.GetDataLakeDatasetInput = {
 M.GetDataLakeDatasetOutput = {
     type = "structure",
     members = {
-        dataset = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        dataset = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataLakeDataset }),
     },
 }
 
@@ -1432,8 +1349,9 @@ M.ListDataLakeDatasetsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 10,
                 http_query = "maxResults",
             },
         },
@@ -1445,7 +1363,7 @@ M.ListDataLakeDatasetsOutput = {
     members = {
         datasets = {
             type = "list",
-            member_type = "structure",
+            member = M.DataLakeDataset,
             traits = {
                 required = true,
             },
@@ -1489,12 +1407,9 @@ M.UpdateDataLakeDatasetInput = {
 M.UpdateDataLakeDatasetOutput = {
     type = "structure",
     members = {
-        dataset = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        dataset = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataLakeDataset }),
     },
 }
 
@@ -1559,12 +1474,9 @@ M.GetDataLakeNamespaceInput = {
 M.GetDataLakeNamespaceOutput = {
     type = "structure",
     members = {
-        namespace = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        namespace = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataLakeNamespace }),
     },
 }
 
@@ -1585,8 +1497,9 @@ M.ListDataLakeNamespacesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 10,
                 http_query = "maxResults",
             },
         },
@@ -1598,7 +1511,7 @@ M.ListDataLakeNamespacesOutput = {
     members = {
         namespaces = {
             type = "list",
-            member_type = "structure",
+            member = M.DataLakeNamespace,
             traits = {
                 required = true,
             },
@@ -1635,12 +1548,9 @@ M.UpdateDataLakeNamespaceInput = {
 M.UpdateDataLakeNamespaceOutput = {
     type = "structure",
     members = {
-        namespace = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        namespace = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataLakeNamespace }),
     },
 }
 
@@ -1660,12 +1570,9 @@ M.DeleteInstanceInput = {
 M.DeleteInstanceOutput = {
     type = "structure",
     members = {
-        instance = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        instance = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Instance }),
     },
 }
 
@@ -1692,12 +1599,9 @@ M.GetDataIntegrationEventInput = {
 M.GetDataIntegrationEventOutput = {
     type = "structure",
     members = {
-        event = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        event = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataIntegrationEvent }),
     },
 }
 
@@ -1731,12 +1635,9 @@ M.GetDataIntegrationFlowExecutionInput = {
 M.GetDataIntegrationFlowExecutionOutput = {
     type = "structure",
     members = {
-        flowExecution = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        flowExecution = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataIntegrationFlowExecution }),
     },
 }
 
@@ -1756,12 +1657,9 @@ M.GetInstanceInput = {
 M.GetInstanceOutput = {
     type = "structure",
     members = {
-        instance = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        instance = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Instance }),
     },
 }
 
@@ -1775,21 +1673,22 @@ M.ListInstancesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 10,
                 http_query = "maxResults",
             },
         },
         instanceNameFilter = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "instanceNameFilter",
             },
         },
         instanceStateFilter = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "instanceStateFilter",
             },
@@ -1802,7 +1701,7 @@ M.ListInstancesOutput = {
     members = {
         instances = {
             type = "list",
-            member_type = "structure",
+            member = M.Instance,
             traits = {
                 required = true,
             },
@@ -1835,12 +1734,9 @@ M.UpdateInstanceInput = {
 M.UpdateInstanceOutput = {
     type = "structure",
     members = {
-        instance = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        instance = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Instance }),
     },
 }
 
@@ -1867,8 +1763,9 @@ M.ListDataIntegrationEventsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 10,
                 http_query = "maxResults",
             },
         },
@@ -1880,7 +1777,7 @@ M.ListDataIntegrationEventsOutput = {
     members = {
         events = {
             type = "list",
-            member_type = "structure",
+            member = M.DataIntegrationEvent,
             traits = {
                 required = true,
             },
@@ -1915,8 +1812,9 @@ M.ListDataIntegrationFlowExecutionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 10,
                 http_query = "maxResults",
             },
         },
@@ -1928,7 +1826,7 @@ M.ListDataIntegrationFlowExecutionsOutput = {
     members = {
         flowExecutions = {
             type = "list",
-            member_type = "structure",
+            member = M.DataIntegrationFlowExecution,
             traits = {
                 required = true,
             },
@@ -1957,8 +1855,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2003,9 +1901,7 @@ M.SendDataIntegrationEventInput = {
         clientToken = {
             type = "string",
         },
-        datasetTarget = {
-            type = "structure",
-        },
+        datasetTarget = M.DataIntegrationEventDatasetTargetConfiguration,
     },
 }
 
@@ -2033,8 +1929,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2058,7 +1954,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,

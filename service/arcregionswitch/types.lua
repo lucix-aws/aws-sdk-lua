@@ -119,7 +119,7 @@ M.AbbreviatedPlan = {
         },
         regions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -149,7 +149,7 @@ M.AbbreviatedPlan = {
             type = "string",
         },
         recoveryTimeObjectiveMinutes = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -267,7 +267,7 @@ M.GetPlanEvaluationStatusInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -302,9 +302,7 @@ M.MinimalWorkflow = {
 M.ResourceWarning = {
     type = "structure",
     members = {
-        workflow = {
-            type = "structure",
-        },
+        workflow = M.MinimalWorkflow,
         version = {
             type = "string",
             traits = {
@@ -361,7 +359,7 @@ M.GetPlanEvaluationStatusOutput = {
         },
         warnings = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceWarning,
         },
         nextToken = {
             type = "string",
@@ -385,7 +383,10 @@ M.GetPlanExecutionInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 100,
+            },
         },
         nextToken = {
             type = "string",
@@ -423,12 +424,8 @@ M.S3ReportOutput = {
 M.ReportOutput = {
     type = "union",
     members = {
-        s3ReportOutput = {
-            type = "structure",
-        },
-        failedReportOutput = {
-            type = "structure",
-        },
+        s3ReportOutput = M.S3ReportOutput,
+        failedReportOutput = M.FailedReportOutput,
     },
 }
 
@@ -438,9 +435,7 @@ M.GeneratedReport = {
         reportGenerationTime = {
             type = "timestamp",
         },
-        reportOutput = {
-            type = "union",
-        },
+        reportOutput = M.ReportOutput,
     },
 }
 
@@ -483,9 +478,7 @@ M.S3ReportOutputConfiguration = {
 M.ReportOutputConfiguration = {
     type = "union",
     members = {
-        s3Configuration = {
-            type = "structure",
-        },
+        s3Configuration = M.S3ReportOutputConfiguration,
     },
 }
 
@@ -494,7 +487,7 @@ M.ReportConfiguration = {
     members = {
         reportOutput = {
             type = "list",
-            member_type = "union",
+            member = M.ReportOutputConfiguration,
         },
     },
 }
@@ -543,13 +536,13 @@ M.Trigger = {
         },
         conditions = {
             type = "list",
-            member_type = "structure",
+            member = M.TriggerCondition,
             traits = {
                 required = true,
             },
         },
         minDelayMinutesBetweenExecutions = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -584,7 +577,10 @@ M.ArcRoutingControlConfiguration = {
     type = "structure",
     members = {
         timeoutMinutes = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 60,
+            },
         },
         crossAccountRole = {
             type = "string",
@@ -594,8 +590,8 @@ M.ArcRoutingControlConfiguration = {
         },
         regionAndRoutingControls = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
             traits = {
                 required = true,
             },
@@ -634,6 +630,9 @@ M.LambdaUngraceful = {
     members = {
         behavior = {
             type = "string",
+            traits = {
+                default = "skip",
+            },
         },
     },
 }
@@ -642,17 +641,20 @@ M.CustomActionLambdaConfiguration = {
     type = "structure",
     members = {
         timeoutMinutes = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 60,
+            },
         },
         lambdas = {
             type = "list",
-            member_type = "structure",
+            member = M.Lambdas,
             traits = {
                 required = true,
             },
         },
         retryIntervalMinutes = {
-            type = "number",
+            type = "float",
             traits = {
                 required = true,
             },
@@ -663,9 +665,7 @@ M.CustomActionLambdaConfiguration = {
                 required = true,
             },
         },
-        ungraceful = {
-            type = "structure",
-        },
+        ungraceful = M.LambdaUngraceful,
     },
 }
 
@@ -691,7 +691,10 @@ M.DocumentDbConfiguration = {
     type = "structure",
     members = {
         timeoutMinutes = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 60,
+            },
         },
         crossAccountRole = {
             type = "string",
@@ -702,12 +705,11 @@ M.DocumentDbConfiguration = {
         behavior = {
             type = "string",
             traits = {
+                default = "switchoverOnly",
                 required = true,
             },
         },
-        ungraceful = {
-            type = "structure",
-        },
+        ungraceful = M.DocumentDbUngraceful,
         globalClusterIdentifier = {
             type = "string",
             traits = {
@@ -716,7 +718,7 @@ M.DocumentDbConfiguration = {
         },
         databaseClusterArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -748,7 +750,7 @@ M.Ec2Ungraceful = {
     type = "structure",
     members = {
         minimumSuccessPercentage = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -760,23 +762,30 @@ M.Ec2AsgCapacityIncreaseConfiguration = {
     type = "structure",
     members = {
         timeoutMinutes = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 60,
+            },
         },
         asgs = {
             type = "list",
-            member_type = "structure",
+            member = M.Asg,
             traits = {
                 required = true,
             },
         },
-        ungraceful = {
-            type = "structure",
-        },
+        ungraceful = M.Ec2Ungraceful,
         targetPercent = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 100,
+            },
         },
         capacityMonitoringApproach = {
             type = "string",
+            traits = {
+                default = "sampledMaxInLast24Hours",
+            },
         },
     },
 }
@@ -808,7 +817,7 @@ M.EcsUngraceful = {
     type = "structure",
     members = {
         minimumSuccessPercentage = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -820,23 +829,30 @@ M.EcsCapacityIncreaseConfiguration = {
     type = "structure",
     members = {
         timeoutMinutes = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 60,
+            },
         },
         services = {
             type = "list",
-            member_type = "structure",
+            member = M.Service,
             traits = {
                 required = true,
             },
         },
-        ungraceful = {
-            type = "structure",
-        },
+        ungraceful = M.EcsUngraceful,
         targetPercent = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 100,
+            },
         },
         capacityMonitoringApproach = {
             type = "string",
+            traits = {
+                default = "sampledMaxInLast24Hours",
+            },
         },
     },
 }
@@ -906,7 +922,7 @@ M.EksResourceScalingUngraceful = {
     type = "structure",
     members = {
         minimumSuccessPercentage = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -918,30 +934,34 @@ M.EksResourceScalingConfiguration = {
     type = "structure",
     members = {
         timeoutMinutes = {
-            type = "number",
-        },
-        kubernetesResourceType = {
-            type = "structure",
+            type = "integer",
             traits = {
-                required = true,
+                default = 60,
             },
         },
+        kubernetesResourceType = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.KubernetesResourceType }),
         scalingResources = {
             type = "list",
-            member_type = "map",
+            member = { type = "map" },
         },
         eksClusters = {
             type = "list",
-            member_type = "structure",
+            member = M.EksCluster,
         },
-        ungraceful = {
-            type = "structure",
-        },
+        ungraceful = M.EksResourceScalingUngraceful,
         targetPercent = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 100,
+            },
         },
         capacityMonitoringApproach = {
             type = "string",
+            traits = {
+                default = "sampledMaxInLast24Hours",
+            },
         },
     },
 }
@@ -950,7 +970,10 @@ M.ExecutionApprovalConfiguration = {
     type = "structure",
     members = {
         timeoutMinutes = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 60,
+            },
         },
         approvalRole = {
             type = "string",
@@ -983,7 +1006,10 @@ M.GlobalAuroraConfiguration = {
     type = "structure",
     members = {
         timeoutMinutes = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 60,
+            },
         },
         crossAccountRole = {
             type = "string",
@@ -994,12 +1020,11 @@ M.GlobalAuroraConfiguration = {
         behavior = {
             type = "string",
             traits = {
+                default = "switchoverOnly",
                 required = true,
             },
         },
-        ungraceful = {
-            type = "structure",
-        },
+        ungraceful = M.GlobalAuroraUngraceful,
         globalClusterIdentifier = {
             type = "string",
             traits = {
@@ -1008,7 +1033,7 @@ M.GlobalAuroraConfiguration = {
         },
         databaseClusterArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1020,7 +1045,10 @@ M.RdsCreateCrossRegionReplicaConfiguration = {
     type = "structure",
     members = {
         timeoutMinutes = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 60,
+            },
         },
         crossAccountRole = {
             type = "string",
@@ -1030,8 +1058,8 @@ M.RdsCreateCrossRegionReplicaConfiguration = {
         },
         dbInstanceArnMap = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1043,7 +1071,10 @@ M.RdsPromoteReadReplicaConfiguration = {
     type = "structure",
     members = {
         timeoutMinutes = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 60,
+            },
         },
         crossAccountRole = {
             type = "string",
@@ -1053,8 +1084,8 @@ M.RdsPromoteReadReplicaConfiguration = {
         },
         dbInstanceArnMap = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1096,7 +1127,10 @@ M.Route53HealthCheckConfiguration = {
     type = "structure",
     members = {
         timeoutMinutes = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 60,
+            },
         },
         crossAccountRole = {
             type = "string",
@@ -1118,7 +1152,7 @@ M.Route53HealthCheckConfiguration = {
         },
         recordSets = {
             type = "list",
-            member_type = "structure",
+            member = M.Route53ResourceRecordSet,
         },
     },
 }
@@ -1198,7 +1232,10 @@ M.ListPlanExecutionEventsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 100,
+            },
         },
         nextToken = {
             type = "string",
@@ -1255,7 +1292,7 @@ M.ExecutionEvent = {
         },
         resources = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         error = {
             type = "string",
@@ -1280,7 +1317,7 @@ M.ListPlanExecutionEventsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.ExecutionEvent,
         },
         nextToken = {
             type = "string",
@@ -1298,7 +1335,10 @@ M.ListPlanExecutionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 100,
+            },
         },
         nextToken = {
             type = "string",
@@ -1314,7 +1354,7 @@ M.ListPlanExecutionsOutput = {
     members = {
         items = {
             type = "list",
-            member_type = "structure",
+            member = M.AbbreviatedExecution,
         },
         nextToken = {
             type = "string",
@@ -1326,7 +1366,7 @@ M.ListPlansInRegionInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -1339,7 +1379,7 @@ M.ListPlansInRegionOutput = {
     members = {
         plans = {
             type = "list",
-            member_type = "structure",
+            member = M.AbbreviatedPlan,
         },
         nextToken = {
             type = "string",
@@ -1376,7 +1416,7 @@ M.ListRoute53HealthChecksInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -1425,7 +1465,7 @@ M.ListRoute53HealthChecksOutput = {
     members = {
         healthChecks = {
             type = "list",
-            member_type = "structure",
+            member = M.Route53HealthCheck,
         },
         nextToken = {
             type = "string",
@@ -1462,7 +1502,7 @@ M.ListRoute53HealthChecksInRegionInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -1475,7 +1515,7 @@ M.ListRoute53HealthChecksInRegionOutput = {
     members = {
         healthChecks = {
             type = "list",
-            member_type = "structure",
+            member = M.Route53HealthCheck,
         },
         nextToken = {
             type = "string",
@@ -1528,7 +1568,7 @@ M.ListPlansInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -1541,7 +1581,7 @@ M.ListPlansOutput = {
     members = {
         plans = {
             type = "list",
-            member_type = "structure",
+            member = M.AbbreviatedPlan,
         },
         nextToken = {
             type = "string",
@@ -1566,8 +1606,8 @@ M.ListTagsForResourceOutput = {
     members = {
         resourceTags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1583,8 +1623,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1607,7 +1647,7 @@ M.UntagResourceInput = {
         },
         resourceTagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1642,6 +1682,9 @@ M.StartPlanExecutionInput = {
         },
         mode = {
             type = "string",
+            traits = {
+                default = "graceful",
+            },
         },
         comment = {
             type = "string",
@@ -1762,45 +1805,19 @@ M.UpdatePlanExecutionStepOutput = {
 M.ExecutionBlockConfiguration = {
     type = "union",
     members = {
-        customActionLambdaConfig = {
-            type = "structure",
-        },
-        ec2AsgCapacityIncreaseConfig = {
-            type = "structure",
-        },
-        executionApprovalConfig = {
-            type = "structure",
-        },
-        arcRoutingControlConfig = {
-            type = "structure",
-        },
-        globalAuroraConfig = {
-            type = "structure",
-        },
-        parallelConfig = {
-            type = "structure",
-        },
-        regionSwitchPlanConfig = {
-            type = "structure",
-        },
-        ecsCapacityIncreaseConfig = {
-            type = "structure",
-        },
-        eksResourceScalingConfig = {
-            type = "structure",
-        },
-        route53HealthCheckConfig = {
-            type = "structure",
-        },
-        documentDbConfig = {
-            type = "structure",
-        },
-        rdsPromoteReadReplicaConfig = {
-            type = "structure",
-        },
-        rdsCreateCrossRegionReadReplicaConfig = {
-            type = "structure",
-        },
+        customActionLambdaConfig = M.CustomActionLambdaConfiguration,
+        ec2AsgCapacityIncreaseConfig = M.Ec2AsgCapacityIncreaseConfiguration,
+        executionApprovalConfig = M.ExecutionApprovalConfiguration,
+        arcRoutingControlConfig = M.ArcRoutingControlConfiguration,
+        globalAuroraConfig = M.GlobalAuroraConfiguration,
+        parallelConfig = M.ParallelExecutionBlockConfiguration,
+        regionSwitchPlanConfig = M.RegionSwitchPlanConfiguration,
+        ecsCapacityIncreaseConfig = M.EcsCapacityIncreaseConfiguration,
+        eksResourceScalingConfig = M.EksResourceScalingConfiguration,
+        route53HealthCheckConfig = M.Route53HealthCheckConfiguration,
+        documentDbConfig = M.DocumentDbConfiguration,
+        rdsPromoteReadReplicaConfig = M.RdsPromoteReadReplicaConfiguration,
+        rdsCreateCrossRegionReadReplicaConfig = M.RdsCreateCrossRegionReplicaConfiguration,
     },
 }
 
@@ -1809,7 +1826,7 @@ M.ParallelExecutionBlockConfiguration = {
     members = {
         steps = {
             type = "list",
-            member_type = "structure",
+            member = M.Step,
             traits = {
                 required = true,
             },
@@ -1829,12 +1846,9 @@ M.Step = {
         description = {
             type = "string",
         },
-        executionBlockConfiguration = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        executionBlockConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ExecutionBlockConfiguration }),
         executionBlockType = {
             type = "string",
             traits = {
@@ -1849,7 +1863,7 @@ M.Workflow = {
     members = {
         steps = {
             type = "list",
-            member_type = "structure",
+            member = M.Step,
         },
         workflowTargetAction = {
             type = "string",
@@ -1874,7 +1888,7 @@ M.CreatePlanInput = {
         },
         workflows = {
             type = "list",
-            member_type = "structure",
+            member = M.Workflow,
             traits = {
                 required = true,
             },
@@ -1886,20 +1900,18 @@ M.CreatePlanInput = {
             },
         },
         recoveryTimeObjectiveMinutes = {
-            type = "number",
+            type = "integer",
         },
         associatedAlarms = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.AssociatedAlarm,
         },
         triggers = {
             type = "list",
-            member_type = "structure",
+            member = M.Trigger,
         },
-        reportConfiguration = {
-            type = "structure",
-        },
+        reportConfiguration = M.ReportConfiguration,
         name = {
             type = "string",
             traits = {
@@ -1908,7 +1920,7 @@ M.CreatePlanInput = {
         },
         regions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1924,8 +1936,8 @@ M.CreatePlanInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1944,7 +1956,7 @@ M.Plan = {
         },
         workflows = {
             type = "list",
-            member_type = "structure",
+            member = M.Workflow,
             traits = {
                 required = true,
             },
@@ -1956,20 +1968,18 @@ M.Plan = {
             },
         },
         recoveryTimeObjectiveMinutes = {
-            type = "number",
+            type = "integer",
         },
         associatedAlarms = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.AssociatedAlarm,
         },
         triggers = {
             type = "list",
-            member_type = "structure",
+            member = M.Trigger,
         },
-        reportConfiguration = {
-            type = "structure",
-        },
+        reportConfiguration = M.ReportConfiguration,
         name = {
             type = "string",
             traits = {
@@ -1978,7 +1988,7 @@ M.Plan = {
         },
         regions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2021,7 +2031,7 @@ M.UpdatePlanInput = {
         },
         workflows = {
             type = "list",
-            member_type = "structure",
+            member = M.Workflow,
             traits = {
                 required = true,
             },
@@ -2033,29 +2043,25 @@ M.UpdatePlanInput = {
             },
         },
         recoveryTimeObjectiveMinutes = {
-            type = "number",
+            type = "integer",
         },
         associatedAlarms = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.AssociatedAlarm,
         },
         triggers = {
             type = "list",
-            member_type = "structure",
+            member = M.Trigger,
         },
-        reportConfiguration = {
-            type = "structure",
-        },
+        reportConfiguration = M.ReportConfiguration,
     },
 }
 
 M.CreatePlanOutput = {
     type = "structure",
     members = {
-        plan = {
-            type = "structure",
-        },
+        plan = M.Plan,
     },
 }
 
@@ -2121,17 +2127,15 @@ M.GetPlanExecutionOutput = {
         },
         stepStates = {
             type = "list",
-            member_type = "structure",
+            member = M.StepState,
         },
-        plan = {
-            type = "structure",
-        },
+        plan = M.Plan,
         actualRecoveryTime = {
             type = "string",
         },
         generatedReportDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.GeneratedReport,
         },
         nextToken = {
             type = "string",
@@ -2142,27 +2146,21 @@ M.GetPlanExecutionOutput = {
 M.GetPlanInRegionOutput = {
     type = "structure",
     members = {
-        plan = {
-            type = "structure",
-        },
+        plan = M.Plan,
     },
 }
 
 M.GetPlanOutput = {
     type = "structure",
     members = {
-        plan = {
-            type = "structure",
-        },
+        plan = M.Plan,
     },
 }
 
 M.UpdatePlanOutput = {
     type = "structure",
     members = {
-        plan = {
-            type = "structure",
-        },
+        plan = M.Plan,
     },
 }
 

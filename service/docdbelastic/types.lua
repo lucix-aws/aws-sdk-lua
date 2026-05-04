@@ -82,7 +82,7 @@ M.ResourcePendingMaintenanceAction = {
         },
         pendingMaintenanceActionDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.PendingMaintenanceActionDetails,
         },
     },
 }
@@ -90,12 +90,9 @@ M.ResourcePendingMaintenanceAction = {
 M.ApplyPendingMaintenanceActionOutput = {
     type = "structure",
     members = {
-        resourcePendingMaintenanceAction = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        resourcePendingMaintenanceAction = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResourcePendingMaintenanceAction }),
     },
 }
 
@@ -173,7 +170,7 @@ M.ThrottlingException = {
             },
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -224,7 +221,7 @@ M.ValidationException = {
         },
         fieldList = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -255,11 +252,14 @@ M.CopyClusterSnapshotInput = {
         },
         copyTags = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -298,7 +298,7 @@ M.ClusterSnapshot = {
     members = {
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -341,7 +341,7 @@ M.ClusterSnapshot = {
         },
         vpcSecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -367,12 +367,9 @@ M.ClusterSnapshot = {
 M.CopyClusterSnapshotOutput = {
     type = "structure",
     members = {
-        snapshot = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        snapshot = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ClusterSnapshot }),
     },
 }
 
@@ -417,24 +414,24 @@ M.CreateClusterInput = {
             },
         },
         shardCapacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         shardCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         vpcSecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         kmsKeyId = {
             type = "string",
@@ -447,17 +444,17 @@ M.CreateClusterInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         backupRetentionPeriod = {
-            type = "number",
+            type = "integer",
         },
         preferredBackupWindow = {
             type = "string",
         },
         shardInstanceCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -532,27 +529,27 @@ M.Cluster = {
             },
         },
         shardCapacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         shardCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         vpcSecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -571,16 +568,16 @@ M.Cluster = {
         },
         shards = {
             type = "list",
-            member_type = "structure",
+            member = M.Shard,
         },
         backupRetentionPeriod = {
-            type = "number",
+            type = "integer",
         },
         preferredBackupWindow = {
             type = "string",
         },
         shardInstanceCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -588,12 +585,9 @@ M.Cluster = {
 M.CreateClusterOutput = {
     type = "structure",
     members = {
-        cluster = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        cluster = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Cluster }),
     },
 }
 
@@ -614,8 +608,8 @@ M.CreateClusterSnapshotInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -623,12 +617,9 @@ M.CreateClusterSnapshotInput = {
 M.CreateClusterSnapshotOutput = {
     type = "structure",
     members = {
-        snapshot = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        snapshot = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ClusterSnapshot }),
     },
 }
 
@@ -648,12 +639,9 @@ M.DeleteClusterInput = {
 M.DeleteClusterOutput = {
     type = "structure",
     members = {
-        cluster = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        cluster = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Cluster }),
     },
 }
 
@@ -673,12 +661,9 @@ M.DeleteClusterSnapshotInput = {
 M.DeleteClusterSnapshotOutput = {
     type = "structure",
     members = {
-        snapshot = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        snapshot = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ClusterSnapshot }),
     },
 }
 
@@ -698,12 +683,9 @@ M.GetClusterInput = {
 M.GetClusterOutput = {
     type = "structure",
     members = {
-        cluster = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        cluster = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Cluster }),
     },
 }
 
@@ -723,12 +705,9 @@ M.GetClusterSnapshotInput = {
 M.GetClusterSnapshotOutput = {
     type = "structure",
     members = {
-        snapshot = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        snapshot = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ClusterSnapshot }),
     },
 }
 
@@ -748,12 +727,9 @@ M.GetPendingMaintenanceActionInput = {
 M.GetPendingMaintenanceActionOutput = {
     type = "structure",
     members = {
-        resourcePendingMaintenanceAction = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        resourcePendingMaintenanceAction = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResourcePendingMaintenanceAction }),
     },
 }
 
@@ -767,8 +743,9 @@ M.ListClustersInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_query = "maxResults",
             },
         },
@@ -804,7 +781,7 @@ M.ListClustersOutput = {
     members = {
         clusters = {
             type = "list",
-            member_type = "structure",
+            member = M.ClusterInList,
         },
         nextToken = {
             type = "string",
@@ -828,8 +805,9 @@ M.ListClusterSnapshotsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_query = "maxResults",
             },
         },
@@ -883,7 +861,7 @@ M.ListClusterSnapshotsOutput = {
     members = {
         snapshots = {
             type = "list",
-            member_type = "structure",
+            member = M.ClusterSnapshotInList,
         },
         nextToken = {
             type = "string",
@@ -901,8 +879,9 @@ M.ListPendingMaintenanceActionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = nil,
                 http_query = "maxResults",
             },
         },
@@ -914,7 +893,7 @@ M.ListPendingMaintenanceActionsOutput = {
     members = {
         resourcePendingMaintenanceActions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourcePendingMaintenanceAction,
             traits = {
                 required = true,
             },
@@ -943,8 +922,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -967,25 +946,25 @@ M.RestoreClusterFromSnapshotInput = {
         },
         vpcSecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         kmsKeyId = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         shardCapacity = {
-            type = "number",
+            type = "integer",
         },
         shardInstanceCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -993,12 +972,9 @@ M.RestoreClusterFromSnapshotInput = {
 M.RestoreClusterFromSnapshotOutput = {
     type = "structure",
     members = {
-        cluster = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        cluster = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Cluster }),
     },
 }
 
@@ -1018,12 +994,9 @@ M.StartClusterInput = {
 M.StartClusterOutput = {
     type = "structure",
     members = {
-        cluster = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        cluster = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Cluster }),
     },
 }
 
@@ -1043,12 +1016,9 @@ M.StopClusterInput = {
 M.StopClusterOutput = {
     type = "structure",
     members = {
-        cluster = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        cluster = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Cluster }),
     },
 }
 
@@ -1064,8 +1034,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1089,7 +1059,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -1116,18 +1086,18 @@ M.UpdateClusterInput = {
             type = "string",
         },
         shardCapacity = {
-            type = "number",
+            type = "integer",
         },
         shardCount = {
-            type = "number",
+            type = "integer",
         },
         vpcSecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         adminUserPassword = {
             type = "string",
@@ -1139,13 +1109,13 @@ M.UpdateClusterInput = {
             type = "string",
         },
         backupRetentionPeriod = {
-            type = "number",
+            type = "integer",
         },
         preferredBackupWindow = {
             type = "string",
         },
         shardInstanceCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1153,12 +1123,9 @@ M.UpdateClusterInput = {
 M.UpdateClusterOutput = {
     type = "structure",
     members = {
-        cluster = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        cluster = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Cluster }),
     },
 }
 

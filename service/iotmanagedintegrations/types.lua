@@ -21,10 +21,10 @@ M.AbortConfigCriteria = {
             type = "string",
         },
         MinNumberOfExecutedThings = {
-            type = "number",
+            type = "integer",
         },
         ThresholdPercentage = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -119,12 +119,10 @@ M.CreateAccountAssociationInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        GeneralAuthorization = {
-            type = "structure",
-        },
+        GeneralAuthorization = M.GeneralAuthorizationName,
     },
 }
 
@@ -134,6 +132,7 @@ M.CreateAccountAssociationOutput = {
         OAuthAuthorizationUrl = {
             type = "string",
             traits = {
+                default = "",
                 required = true,
             },
         },
@@ -284,17 +283,16 @@ M.GetAccountAssociationOutput = {
         OAuthAuthorizationUrl = {
             type = "string",
             traits = {
+                default = "",
                 required = true,
             },
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        GeneralAuthorization = {
-            type = "structure",
-        },
+        GeneralAuthorization = M.GeneralAuthorizationName,
     },
 }
 
@@ -308,7 +306,7 @@ M.ListAccountAssociationsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -327,7 +325,7 @@ M.ListAccountAssociationsOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.AccountAssociationItem,
         },
         NextToken = {
             type = "string",
@@ -354,6 +352,7 @@ M.StartAccountAssociationRefreshOutput = {
         OAuthAuthorizationUrl = {
             type = "string",
             traits = {
+                default = "",
                 required = true,
             },
         },
@@ -404,12 +403,9 @@ M.SecretsManager = {
 M.AuthMaterial = {
     type = "structure",
     members = {
-        SecretsManager = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        SecretsManager = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SecretsManager }),
         AuthMaterialName = {
             type = "string",
             traits = {
@@ -426,7 +422,7 @@ M.ProactiveRefreshTokenRenewal = {
             type = "boolean",
         },
         DaysBeforeRenewal = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -463,21 +459,17 @@ M.OAuthConfig = {
         oAuthCompleteRedirectUrl = {
             type = "string",
         },
-        proactiveRefreshTokenRenewal = {
-            type = "structure",
-        },
+        proactiveRefreshTokenRenewal = M.ProactiveRefreshTokenRenewal,
     },
 }
 
 M.AuthConfig = {
     type = "structure",
     members = {
-        oAuth = {
-            type = "structure",
-        },
+        oAuth = M.OAuthConfig,
         GeneralAuthorization = {
             type = "list",
-            member_type = "structure",
+            member = M.AuthMaterial,
         },
     },
 }
@@ -487,11 +479,11 @@ M.GeneralAuthorizationUpdate = {
     members = {
         AuthMaterialsToAdd = {
             type = "list",
-            member_type = "structure",
+            member = M.AuthMaterial,
         },
         AuthMaterialsToUpdate = {
             type = "list",
-            member_type = "structure",
+            member = M.AuthMaterial,
         },
     },
 }
@@ -502,21 +494,15 @@ M.OAuthUpdate = {
         oAuthCompleteRedirectUrl = {
             type = "string",
         },
-        proactiveRefreshTokenRenewal = {
-            type = "structure",
-        },
+        proactiveRefreshTokenRenewal = M.ProactiveRefreshTokenRenewal,
     },
 }
 
 M.AuthConfigUpdate = {
     type = "structure",
     members = {
-        oAuthUpdate = {
-            type = "structure",
-        },
-        GeneralAuthorizationUpdate = {
-            type = "structure",
-        },
+        oAuthUpdate = M.OAuthUpdate,
+        GeneralAuthorizationUpdate = M.GeneralAuthorizationUpdate,
     },
 }
 
@@ -577,21 +563,21 @@ M.CapabilityReportCapability = {
         },
         properties = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         actions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         events = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -610,14 +596,14 @@ M.CapabilityReportEndpoint = {
         },
         deviceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         capabilities = {
             type = "list",
-            member_type = "structure",
+            member = M.CapabilityReportCapability,
             traits = {
                 required = true,
             },
@@ -639,7 +625,7 @@ M.CapabilityReport = {
         },
         endpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.CapabilityReportEndpoint,
             traits = {
                 required = true,
             },
@@ -675,7 +661,7 @@ M.CapabilitySchemaItem = {
             },
         },
         ExtrinsicVersion = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -704,9 +690,7 @@ M.LambdaConfig = {
 M.EndpointConfig = {
     type = "structure",
     members = {
-        lambda = {
-            type = "structure",
-        },
+        lambda = M.LambdaConfig,
     },
 }
 
@@ -723,12 +707,9 @@ M.CreateCloudConnectorInput = {
                 required = true,
             },
         },
-        EndpointConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        EndpointConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EndpointConfig }),
         Description = {
             type = "string",
         },
@@ -794,12 +775,9 @@ M.GetCloudConnectorOutput = {
                 required = true,
             },
         },
-        EndpointConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        EndpointConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EndpointConfig }),
         Description = {
             type = "string",
         },
@@ -831,7 +809,7 @@ M.ListCloudConnectorsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -854,12 +832,9 @@ M.ConnectorItem = {
                 required = true,
             },
         },
-        EndpointConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        EndpointConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EndpointConfig }),
         Description = {
             type = "string",
         },
@@ -880,7 +855,7 @@ M.ListCloudConnectorsOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.ConnectorItem,
         },
         NextToken = {
             type = "string",
@@ -934,7 +909,7 @@ M.CommandCapability = {
         },
         actions = {
             type = "list",
-            member_type = "structure",
+            member = M.CapabilityAction,
             traits = {
                 required = true,
             },
@@ -953,7 +928,7 @@ M.CommandEndpoint = {
         },
         capabilities = {
             type = "list",
-            member_type = "structure",
+            member = M.CommandCapability,
             traits = {
                 required = true,
             },
@@ -982,9 +957,7 @@ M.ConfigurationState = {
 M.ConfigurationStatus = {
     type = "structure",
     members = {
-        error = {
-            type = "structure",
-        },
+        error = M.ConfigurationError,
         state = {
             type = "string",
             traits = {
@@ -1030,15 +1003,10 @@ M.CreateConnectorDestinationInput = {
         AuthType = {
             type = "string",
         },
-        AuthConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        SecretsManager = {
-            type = "structure",
-        },
+        AuthConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AuthConfig }),
+        SecretsManager = M.SecretsManager,
         ClientToken = {
             type = "string",
         },
@@ -1102,12 +1070,8 @@ M.GetConnectorDestinationOutput = {
         AuthType = {
             type = "string",
         },
-        AuthConfig = {
-            type = "structure",
-        },
-        SecretsManager = {
-            type = "structure",
-        },
+        AuthConfig = M.AuthConfig,
+        SecretsManager = M.SecretsManager,
         OAuthCompleteRedirectUrl = {
             type = "string",
         },
@@ -1130,7 +1094,7 @@ M.ListConnectorDestinationsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -1143,7 +1107,7 @@ M.ListConnectorDestinationsOutput = {
     members = {
         ConnectorDestinationList = {
             type = "list",
-            member_type = "structure",
+            member = M.ConnectorDestinationSummary,
         },
         NextToken = {
             type = "string",
@@ -1170,12 +1134,8 @@ M.UpdateConnectorDestinationInput = {
         AuthType = {
             type = "string",
         },
-        AuthConfig = {
-            type = "structure",
-        },
-        SecretsManager = {
-            type = "structure",
-        },
+        AuthConfig = M.AuthConfigUpdate,
+        SecretsManager = M.SecretsManager,
     },
 }
 
@@ -1201,8 +1161,8 @@ M.CreateCredentialLockerInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1271,8 +1231,8 @@ M.CreateDestinationInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1341,7 +1301,7 @@ M.WiFiSimpleSetupConfiguration = {
             type = "boolean",
         },
         TimeoutInMinutes = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1373,9 +1333,7 @@ M.CreateManagedThingInput = {
                 required = true,
             },
         },
-        WiFiSimpleSetupConfiguration = {
-            type = "structure",
-        },
+        WiFiSimpleSetupConfiguration = M.WiFiSimpleSetupConfiguration,
         SerialNumber = {
             type = "string",
         },
@@ -1388,12 +1346,10 @@ M.CreateManagedThingInput = {
         Name = {
             type = "string",
         },
-        CapabilityReport = {
-            type = "structure",
-        },
+        CapabilityReport = M.CapabilityReport,
         CapabilitySchemas = {
             type = "list",
-            member_type = "structure",
+            member = M.CapabilitySchemaItem,
         },
         Capabilities = {
             type = "string",
@@ -1406,13 +1362,13 @@ M.CreateManagedThingInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         MetaData = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1466,8 +1422,8 @@ M.CreateNotificationConfigurationInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1495,7 +1451,7 @@ M.ScheduleMaintenanceWindow = {
     type = "structure",
     members = {
         DurationInMinutes = {
-            type = "number",
+            type = "integer",
         },
         StartTime = {
             type = "string",
@@ -1514,7 +1470,7 @@ M.OtaTaskSchedulingConfig = {
         },
         MaintenanceWindows = {
             type = "list",
-            member_type = "structure",
+            member = M.ScheduleMaintenanceWindow,
         },
         StartTime = {
             type = "string",
@@ -1535,7 +1491,7 @@ M.RetryConfigCriteria = {
             type = "string",
         },
         MinNumberOfRetries = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1545,7 +1501,7 @@ M.OtaTaskExecutionRetryConfig = {
     members = {
         RetryConfigCriteria = {
             type = "list",
-            member_type = "structure",
+            member = M.RetryConfigCriteria,
         },
     },
 }
@@ -1576,7 +1532,7 @@ M.CreateOtaTaskInput = {
         },
         Target = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TaskConfigurationId = {
             type = "string",
@@ -1596,16 +1552,12 @@ M.CreateOtaTaskInput = {
         ClientToken = {
             type = "string",
         },
-        OtaSchedulingConfig = {
-            type = "structure",
-        },
-        OtaTaskExecutionRetryConfig = {
-            type = "structure",
-        },
+        OtaSchedulingConfig = M.OtaTaskSchedulingConfig,
+        OtaTaskExecutionRetryConfig = M.OtaTaskExecutionRetryConfig,
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1630,7 +1582,7 @@ M.OtaTaskAbortConfig = {
     members = {
         AbortConfigCriteriaList = {
             type = "list",
-            member_type = "structure",
+            member = M.AbortConfigCriteria,
         },
     },
 }
@@ -1639,10 +1591,10 @@ M.RolloutRateIncreaseCriteria = {
     type = "structure",
     members = {
         numberOfNotifiedThings = {
-            type = "number",
+            type = "integer",
         },
         numberOfSucceededThings = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1651,25 +1603,21 @@ M.ExponentialRolloutRate = {
     type = "structure",
     members = {
         BaseRatePerMinute = {
-            type = "number",
+            type = "integer",
         },
         IncrementFactor = {
-            type = "number",
+            type = "double",
         },
-        RateIncreaseCriteria = {
-            type = "structure",
-        },
+        RateIncreaseCriteria = M.RolloutRateIncreaseCriteria,
     },
 }
 
 M.OtaTaskExecutionRolloutConfig = {
     type = "structure",
     members = {
-        ExponentialRolloutRate = {
-            type = "structure",
-        },
+        ExponentialRolloutRate = M.ExponentialRolloutRate,
         MaximumPerMinute = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1678,7 +1626,7 @@ M.OtaTaskTimeoutConfig = {
     type = "structure",
     members = {
         InProgressTimeoutInMinutes = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1686,15 +1634,9 @@ M.OtaTaskTimeoutConfig = {
 M.PushConfig = {
     type = "structure",
     members = {
-        AbortConfig = {
-            type = "structure",
-        },
-        RolloutConfig = {
-            type = "structure",
-        },
-        TimeoutConfig = {
-            type = "structure",
-        },
+        AbortConfig = M.OtaTaskAbortConfig,
+        RolloutConfig = M.OtaTaskExecutionRolloutConfig,
+        TimeoutConfig = M.OtaTaskTimeoutConfig,
     },
 }
 
@@ -1707,9 +1649,7 @@ M.CreateOtaTaskConfigurationInput = {
         Name = {
             type = "string",
         },
-        PushConfig = {
-            type = "structure",
-        },
+        PushConfig = M.PushConfig,
         ClientToken = {
             type = "string",
         },
@@ -1753,8 +1693,8 @@ M.CreateProvisioningProfileInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1859,8 +1799,8 @@ M.GetCredentialLockerOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1875,7 +1815,7 @@ M.ListCredentialLockersInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -1888,7 +1828,7 @@ M.ListCredentialLockersOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.CredentialLockerSummary,
         },
         NextToken = {
             type = "string",
@@ -2113,8 +2053,8 @@ M.GetDestinationOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2129,7 +2069,7 @@ M.ListDestinationsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -2142,7 +2082,7 @@ M.ListDestinationsOutput = {
     members = {
         DestinationList = {
             type = "list",
-            member_type = "structure",
+            member = M.DestinationSummary,
         },
         NextToken = {
             type = "string",
@@ -2204,7 +2144,7 @@ M.MatterCapabilityReportCluster = {
             },
         },
         revision = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -2220,25 +2160,25 @@ M.MatterCapabilityReportCluster = {
         },
         attributes = {
             type = "list",
-            member_type = "structure",
+            member = M.MatterCapabilityReportAttribute,
         },
         commands = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         events = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         featureMap = {
-            type = "number",
+            type = "long",
         },
         generatedCommands = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         fabricIndex = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -2254,29 +2194,29 @@ M.MatterCapabilityReportEndpoint = {
         },
         deviceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         clusters = {
             type = "list",
-            member_type = "structure",
+            member = M.MatterCapabilityReportCluster,
             traits = {
                 required = true,
             },
         },
         parts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         semanticTags = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         clientClusters = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2295,7 +2235,7 @@ M.MatterCapabilityReport = {
         },
         endpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.MatterCapabilityReportEndpoint,
             traits = {
                 required = true,
             },
@@ -2315,15 +2255,12 @@ M.Device = {
         ConnectorDeviceName = {
             type = "string",
         },
-        CapabilityReport = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        CapabilityReport = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MatterCapabilityReport }),
         CapabilitySchemas = {
             type = "list",
-            member_type = "structure",
+            member = M.CapabilitySchemaItem,
         },
         DeviceMetadata = {
             type = "document",
@@ -2421,8 +2358,8 @@ M.GetDeviceDiscoveryOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2437,7 +2374,7 @@ M.ListDeviceDiscoveriesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -2462,7 +2399,7 @@ M.ListDeviceDiscoveriesOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.DeviceDiscoverySummary,
         },
         NextToken = {
             type = "string",
@@ -2487,7 +2424,7 @@ M.ListDiscoveredDevicesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -2512,7 +2449,7 @@ M.DiscoveredDeviceSummary = {
         },
         DeviceTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ManagedThingId = {
             type = "string",
@@ -2540,7 +2477,7 @@ M.ListDiscoveredDevicesOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.DiscoveredDeviceSummary,
         },
         NextToken = {
             type = "string",
@@ -2569,8 +2506,8 @@ M.StartDeviceDiscoveryInput = {
         },
         CustomProtocolDetail = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ControllerIdentifier = {
             type = "string",
@@ -2592,12 +2529,12 @@ M.StartDeviceDiscoveryInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         ConnectorDeviceIdList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Protocol = {
             type = "string",
@@ -2701,7 +2638,7 @@ M.ListEventLogConfigurationsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -2714,7 +2651,7 @@ M.ListEventLogConfigurationsOutput = {
     members = {
         EventLogConfigurationList = {
             type = "list",
-            member_type = "structure",
+            member = M.EventLogConfigurationSummary,
         },
         NextToken = {
             type = "string",
@@ -2768,12 +2705,9 @@ M.GetDefaultEncryptionConfigurationInput = {
 M.GetDefaultEncryptionConfigurationOutput = {
     type = "structure",
     members = {
-        configurationStatus = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        configurationStatus = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConfigurationStatus }),
         encryptionType = {
             type = "string",
             traits = {
@@ -2804,7 +2738,7 @@ M.GetHubConfigurationOutput = {
     type = "structure",
     members = {
         HubTokenTimerExpirySettingInSeconds = {
-            type = "number",
+            type = "long",
         },
         UpdatedAt = {
             type = "timestamp",
@@ -2918,17 +2852,15 @@ M.GetManagedThingOutput = {
         },
         MetaData = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        WiFiSimpleSetupConfiguration = {
-            type = "structure",
-        },
+        WiFiSimpleSetupConfiguration = M.WiFiSimpleSetupConfiguration,
     },
 }
 
@@ -2954,9 +2886,7 @@ M.GetManagedThingCapabilitiesOutput = {
         Capabilities = {
             type = "string",
         },
-        CapabilityReport = {
-            type = "structure",
-        },
+        CapabilityReport = M.CapabilityReport,
     },
 }
 
@@ -3037,8 +2967,8 @@ M.GetManagedThingMetaDataOutput = {
         },
         MetaData = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3094,7 +3024,7 @@ M.StateEndpoint = {
         },
         capabilities = {
             type = "list",
-            member_type = "structure",
+            member = M.StateCapability,
             traits = {
                 required = true,
             },
@@ -3107,7 +3037,7 @@ M.GetManagedThingStateOutput = {
     members = {
         Endpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.StateEndpoint,
             traits = {
                 required = true,
             },
@@ -3145,8 +3075,8 @@ M.GetNotificationConfigurationOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3176,32 +3106,32 @@ M.TaskProcessingDetails = {
     type = "structure",
     members = {
         NumberOfCanceledThings = {
-            type = "number",
+            type = "integer",
         },
         NumberOfFailedThings = {
-            type = "number",
+            type = "integer",
         },
         NumberOfInProgressThings = {
-            type = "number",
+            type = "integer",
         },
         numberOfQueuedThings = {
-            type = "number",
+            type = "integer",
         },
         numberOfRejectedThings = {
-            type = "number",
+            type = "integer",
         },
         numberOfRemovedThings = {
-            type = "number",
+            type = "integer",
         },
         numberOfSucceededThings = {
-            type = "number",
+            type = "integer",
         },
         numberOfTimedOutThings = {
-            type = "number",
+            type = "integer",
         },
         processingTargets = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3235,7 +3165,7 @@ M.GetOtaTaskOutput = {
         },
         Target = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CreatedAt = {
             type = "timestamp",
@@ -3246,22 +3176,16 @@ M.GetOtaTaskOutput = {
         TaskConfigurationId = {
             type = "string",
         },
-        TaskProcessingDetails = {
-            type = "structure",
-        },
-        OtaSchedulingConfig = {
-            type = "structure",
-        },
-        OtaTaskExecutionRetryConfig = {
-            type = "structure",
-        },
+        TaskProcessingDetails = M.TaskProcessingDetails,
+        OtaSchedulingConfig = M.OtaTaskSchedulingConfig,
+        OtaTaskExecutionRetryConfig = M.OtaTaskExecutionRetryConfig,
         Status = {
             type = "string",
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3288,9 +3212,7 @@ M.GetOtaTaskConfigurationOutput = {
         Name = {
             type = "string",
         },
-        PushConfig = {
-            type = "structure",
-        },
+        PushConfig = M.PushConfig,
         Description = {
             type = "string",
         },
@@ -3336,8 +3258,8 @@ M.GetProvisioningProfileOutput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3368,16 +3290,16 @@ M.RuntimeLogConfigurations = {
             type = "string",
         },
         LocalStoreFileRotationMaxFiles = {
-            type = "number",
+            type = "integer",
         },
         LocalStoreFileRotationMaxBytes = {
-            type = "number",
+            type = "integer",
         },
         UploadLog = {
             type = "boolean",
         },
         UploadPeriodMinutes = {
-            type = "number",
+            type = "integer",
         },
         DeleteLocalStoreAfterUpload = {
             type = "boolean",
@@ -3391,9 +3313,7 @@ M.GetRuntimeLogConfigurationOutput = {
         ManagedThingId = {
             type = "string",
         },
-        RuntimeLogConfigurations = {
-            type = "structure",
-        },
+        RuntimeLogConfigurations = M.RuntimeLogConfigurations,
     },
 }
 
@@ -3464,7 +3384,7 @@ M.PutHubConfigurationInput = {
     type = "structure",
     members = {
         HubTokenTimerExpirySettingInSeconds = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -3476,7 +3396,7 @@ M.PutHubConfigurationOutput = {
     type = "structure",
     members = {
         HubTokenTimerExpirySettingInSeconds = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -3509,12 +3429,9 @@ M.PutDefaultEncryptionConfigurationInput = {
 M.PutDefaultEncryptionConfigurationOutput = {
     type = "structure",
     members = {
-        configurationStatus = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        configurationStatus = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConfigurationStatus }),
         encryptionType = {
             type = "string",
             traits = {
@@ -3545,8 +3462,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3567,7 +3484,7 @@ M.ListManagedThingAccountAssociationsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -3606,7 +3523,7 @@ M.ListManagedThingAccountAssociationsOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.ManagedThingAssociation,
         },
         NextToken = {
             type = "string",
@@ -3665,7 +3582,7 @@ M.SendManagedThingCommandInput = {
         },
         Endpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.CommandEndpoint,
             traits = {
                 required = true,
             },
@@ -3752,7 +3669,7 @@ M.ListManagedThingsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -3828,7 +3745,7 @@ M.ListManagedThingsOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.ManagedThingSummary,
         },
         NextToken = {
             type = "string",
@@ -3865,7 +3782,7 @@ M.ListManagedThingSchemasInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -3893,7 +3810,7 @@ M.ListManagedThingSchemasOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.ManagedThingSchemaListItem,
         },
         NextToken = {
             type = "string",
@@ -3920,9 +3837,7 @@ M.UpdateManagedThingInput = {
         SerialNumber = {
             type = "string",
         },
-        WiFiSimpleSetupConfiguration = {
-            type = "structure",
-        },
+        WiFiSimpleSetupConfiguration = M.WiFiSimpleSetupConfiguration,
         Brand = {
             type = "string",
         },
@@ -3932,12 +3847,10 @@ M.UpdateManagedThingInput = {
         Name = {
             type = "string",
         },
-        CapabilityReport = {
-            type = "structure",
-        },
+        CapabilityReport = M.CapabilityReport,
         CapabilitySchemas = {
             type = "list",
-            member_type = "structure",
+            member = M.CapabilitySchemaItem,
         },
         Capabilities = {
             type = "string",
@@ -3950,8 +3863,8 @@ M.UpdateManagedThingInput = {
         },
         MetaData = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3964,7 +3877,7 @@ M.ListNotificationConfigurationsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -3995,7 +3908,7 @@ M.ListNotificationConfigurationsOutput = {
     members = {
         NotificationConfigurationList = {
             type = "list",
-            member_type = "structure",
+            member = M.NotificationConfigurationSummary,
         },
         NextToken = {
             type = "string",
@@ -4036,7 +3949,7 @@ M.ListOtaTaskConfigurationsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -4064,7 +3977,7 @@ M.ListOtaTaskConfigurationsOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.OtaTaskConfigurationSummary,
         },
         NextToken = {
             type = "string",
@@ -4089,7 +4002,7 @@ M.ListOtaTaskExecutionsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -4112,7 +4025,7 @@ M.OtaTaskExecutionSummary = {
     type = "structure",
     members = {
         ExecutionNumber = {
-            type = "number",
+            type = "long",
         },
         LastUpdatedAt = {
             type = "timestamp",
@@ -4121,7 +4034,7 @@ M.OtaTaskExecutionSummary = {
             type = "timestamp",
         },
         RetryAttempt = {
-            type = "number",
+            type = "integer",
         },
         StartedAt = {
             type = "timestamp",
@@ -4135,9 +4048,7 @@ M.OtaTaskExecutionSummary = {
 M.OtaTaskExecutionSummaries = {
     type = "structure",
     members = {
-        TaskExecutionSummary = {
-            type = "structure",
-        },
+        TaskExecutionSummary = M.OtaTaskExecutionSummary,
         ManagedThingId = {
             type = "string",
         },
@@ -4149,7 +4060,7 @@ M.ListOtaTaskExecutionsOutput = {
     members = {
         ExecutionSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.OtaTaskExecutionSummaries,
         },
         NextToken = {
             type = "string",
@@ -4167,7 +4078,7 @@ M.ListOtaTasksInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -4204,7 +4115,7 @@ M.ListOtaTasksOutput = {
     members = {
         Tasks = {
             type = "list",
-            member_type = "structure",
+            member = M.OtaTaskSummary,
         },
         NextToken = {
             type = "string",
@@ -4245,7 +4156,7 @@ M.ListProvisioningProfilesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -4279,7 +4190,7 @@ M.ListProvisioningProfilesOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.ProvisioningProfileSummary,
         },
         NextToken = {
             type = "string",
@@ -4313,12 +4224,9 @@ M.PutRuntimeLogConfigurationInput = {
                 required = true,
             },
         },
-        RuntimeLogConfigurations = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        RuntimeLogConfigurations = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RuntimeLogConfigurations }),
     },
 }
 
@@ -4354,7 +4262,7 @@ M.ListSchemaVersionsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "MaxResults",
             },
@@ -4421,7 +4329,7 @@ M.ListSchemaVersionsOutput = {
     members = {
         Items = {
             type = "list",
-            member_type = "structure",
+            member = M.SchemaVersionListItem,
         },
         NextToken = {
             type = "string",
@@ -4440,13 +4348,13 @@ M.MatterCluster = {
         },
         commands = {
             type = "map",
-            key_type = "string",
-            value_type = "document",
+            key = { type = "string" },
+            value = { type = "document" },
         },
         events = {
             type = "map",
-            key_type = "string",
-            value_type = "document",
+            key = { type = "string" },
+            value = { type = "document" },
         },
     },
 }
@@ -4459,7 +4367,7 @@ M.MatterEndpoint = {
         },
         clusters = {
             type = "list",
-            member_type = "structure",
+            member = M.MatterCluster,
         },
     },
 }
@@ -4487,7 +4395,7 @@ M.SendConnectorEventInput = {
             type = "string",
         },
         StatusCode = {
-            type = "number",
+            type = "integer",
         },
         Message = {
             type = "string",
@@ -4503,11 +4411,9 @@ M.SendConnectorEventInput = {
         },
         Devices = {
             type = "list",
-            member_type = "structure",
+            member = M.Device,
         },
-        MatterEndpoint = {
-            type = "structure",
-        },
+        MatterEndpoint = M.MatterEndpoint,
     },
 }
 
@@ -4535,8 +4441,8 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4560,7 +4466,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,

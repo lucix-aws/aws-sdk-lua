@@ -22,7 +22,10 @@ M.LambdaAuthorizerConfig = {
     type = "structure",
     members = {
         authorizerResultTtlInSeconds = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         authorizerUri = {
             type = "string",
@@ -49,10 +52,16 @@ M.OpenIDConnectConfig = {
             type = "string",
         },
         iatTTL = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         authTTL = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -84,15 +93,9 @@ M.AdditionalAuthenticationProvider = {
         authenticationType = {
             type = "string",
         },
-        openIDConnectConfig = {
-            type = "structure",
-        },
-        userPoolConfig = {
-            type = "structure",
-        },
-        lambdaAuthorizerConfig = {
-            type = "structure",
-        },
+        openIDConnectConfig = M.OpenIDConnectConfig,
+        userPoolConfig = M.CognitoUserPoolConfig,
+        lambdaAuthorizerConfig = M.LambdaAuthorizerConfig,
     },
 }
 
@@ -126,15 +129,9 @@ M.AuthProvider = {
                 required = true,
             },
         },
-        cognitoConfig = {
-            type = "structure",
-        },
-        openIDConnectConfig = {
-            type = "structure",
-        },
-        lambdaAuthorizerConfig = {
-            type = "structure",
-        },
+        cognitoConfig = M.CognitoConfig,
+        openIDConnectConfig = M.OpenIDConnectConfig,
+        lambdaAuthorizerConfig = M.LambdaAuthorizerConfig,
     },
 }
 
@@ -181,35 +178,33 @@ M.EventConfig = {
     members = {
         authProviders = {
             type = "list",
-            member_type = "structure",
+            member = M.AuthProvider,
             traits = {
                 required = true,
             },
         },
         connectionAuthModes = {
             type = "list",
-            member_type = "structure",
+            member = M.AuthMode,
             traits = {
                 required = true,
             },
         },
         defaultPublishAuthModes = {
             type = "list",
-            member_type = "structure",
+            member = M.AuthMode,
             traits = {
                 required = true,
             },
         },
         defaultSubscribeAuthModes = {
             type = "list",
-            member_type = "structure",
+            member = M.AuthMode,
             traits = {
                 required = true,
             },
         },
-        logConfig = {
-            type = "structure",
-        },
+        logConfig = M.EventLogConfig,
     },
 }
 
@@ -227,13 +222,13 @@ M.Api = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         dns = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         apiArn = {
             type = "string",
@@ -243,13 +238,14 @@ M.Api = {
         },
         xrayEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         wafWebAclArn = {
             type = "string",
         },
-        eventConfig = {
-            type = "structure",
-        },
+        eventConfig = M.EventConfig,
     },
 }
 
@@ -318,16 +314,25 @@ M.ApiCache = {
     type = "structure",
     members = {
         ttl = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         apiCachingBehavior = {
             type = "string",
         },
         transitEncryptionEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         atRestEncryptionEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         type = {
             type = "string",
@@ -351,10 +356,16 @@ M.ApiKey = {
             type = "string",
         },
         expires = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         deletes = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -433,9 +444,7 @@ M.AssociateApiInput = {
 M.AssociateApiOutput = {
     type = "structure",
     members = {
-        apiAssociation = {
-            type = "structure",
-        },
+        apiAssociation = M.ApiAssociation,
     },
 }
 
@@ -443,13 +452,22 @@ M.CodeErrorLocation = {
     type = "structure",
     members = {
         line = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         column = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         span = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -463,9 +481,7 @@ M.CodeError = {
         value = {
             type = "string",
         },
-        location = {
-            type = "structure",
-        },
+        location = M.CodeErrorLocation,
     },
 }
 
@@ -474,7 +490,7 @@ M.BadRequestDetail = {
     members = {
         codeErrors = {
             type = "list",
-            member_type = "structure",
+            member = M.CodeError,
         },
     },
 }
@@ -493,9 +509,7 @@ M.BadRequestException = {
         reason = {
             type = "string",
         },
-        detail = {
-            type = "structure",
-        },
+        detail = M.BadRequestDetail,
     },
 }
 
@@ -552,9 +566,7 @@ M.AssociateMergedGraphqlApiInput = {
         description = {
             type = "string",
         },
-        sourceApiAssociationConfig = {
-            type = "structure",
-        },
+        sourceApiAssociationConfig = M.SourceApiAssociationConfig,
     },
 }
 
@@ -593,9 +605,7 @@ M.SourceApiAssociation = {
         description = {
             type = "string",
         },
-        sourceApiAssociationConfig = {
-            type = "structure",
-        },
+        sourceApiAssociationConfig = M.SourceApiAssociationConfig,
         sourceApiAssociationStatus = {
             type = "string",
         },
@@ -611,9 +621,7 @@ M.SourceApiAssociation = {
 M.AssociateMergedGraphqlApiOutput = {
     type = "structure",
     members = {
-        sourceApiAssociation = {
-            type = "structure",
-        },
+        sourceApiAssociation = M.SourceApiAssociation,
     },
 }
 
@@ -666,18 +674,14 @@ M.AssociateSourceGraphqlApiInput = {
         description = {
             type = "string",
         },
-        sourceApiAssociationConfig = {
-            type = "structure",
-        },
+        sourceApiAssociationConfig = M.SourceApiAssociationConfig,
     },
 }
 
 M.AssociateSourceGraphqlApiOutput = {
     type = "structure",
     members = {
-        sourceApiAssociation = {
-            type = "structure",
-        },
+        sourceApiAssociation = M.SourceApiAssociation,
     },
 }
 
@@ -706,9 +710,7 @@ M.AuthorizationConfig = {
                 required = true,
             },
         },
-        awsIamConfig = {
-            type = "structure",
-        },
+        awsIamConfig = M.AwsIamConfig,
     },
 }
 
@@ -726,24 +728,19 @@ M.CreateApiInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        eventConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        eventConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EventConfig }),
     },
 }
 
 M.CreateApiOutput = {
     type = "structure",
     members = {
-        api = {
-            type = "structure",
-        },
+        api = M.Api,
     },
 }
 
@@ -768,16 +765,23 @@ M.CreateApiCacheInput = {
             },
         },
         ttl = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         transitEncryptionEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         atRestEncryptionEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         apiCachingBehavior = {
             type = "string",
@@ -800,9 +804,7 @@ M.CreateApiCacheInput = {
 M.CreateApiCacheOutput = {
     type = "structure",
     members = {
-        apiCache = {
-            type = "structure",
-        },
+        apiCache = M.ApiCache,
     },
 }
 
@@ -820,7 +822,10 @@ M.CreateApiKeyInput = {
             type = "string",
         },
         expires = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -828,9 +833,7 @@ M.CreateApiKeyInput = {
 M.CreateApiKeyOutput = {
     type = "structure",
     members = {
-        apiKey = {
-            type = "structure",
-        },
+        apiKey = M.ApiKey,
     },
 }
 
@@ -872,9 +875,7 @@ M.Integration = {
                 required = true,
             },
         },
-        lambdaConfig = {
-            type = "structure",
-        },
+        lambdaConfig = M.LambdaConfig,
     },
 }
 
@@ -887,24 +888,17 @@ M.HandlerConfig = {
                 required = true,
             },
         },
-        integration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        integration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Integration }),
     },
 }
 
 M.HandlerConfigs = {
     type = "structure",
     members = {
-        onPublish = {
-            type = "structure",
-        },
-        onSubscribe = {
-            type = "structure",
-        },
+        onPublish = M.HandlerConfig,
+        onSubscribe = M.HandlerConfig,
     },
 }
 
@@ -926,23 +920,21 @@ M.CreateChannelNamespaceInput = {
         },
         subscribeAuthModes = {
             type = "list",
-            member_type = "structure",
+            member = M.AuthMode,
         },
         publishAuthModes = {
             type = "list",
-            member_type = "structure",
+            member = M.AuthMode,
         },
         codeHandlers = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        handlerConfigs = {
-            type = "structure",
-        },
+        handlerConfigs = M.HandlerConfigs,
     },
 }
 
@@ -957,19 +949,19 @@ M.ChannelNamespace = {
         },
         subscribeAuthModes = {
             type = "list",
-            member_type = "structure",
+            member = M.AuthMode,
         },
         publishAuthModes = {
             type = "list",
-            member_type = "structure",
+            member = M.AuthMode,
         },
         codeHandlers = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         channelNamespaceArn = {
             type = "string",
@@ -980,18 +972,14 @@ M.ChannelNamespace = {
         lastModified = {
             type = "timestamp",
         },
-        handlerConfigs = {
-            type = "structure",
-        },
+        handlerConfigs = M.HandlerConfigs,
     },
 }
 
 M.CreateChannelNamespaceOutput = {
     type = "structure",
     members = {
-        channelNamespace = {
-            type = "structure",
-        },
+        channelNamespace = M.ChannelNamespace,
     },
 }
 
@@ -999,13 +987,19 @@ M.DeltaSyncConfig = {
     type = "structure",
     members = {
         baseTableTTL = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         deltaSyncTableName = {
             type = "string",
         },
         deltaSyncTableTTL = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1027,12 +1021,16 @@ M.DynamodbDataSourceConfig = {
         },
         useCallerCredentials = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        deltaSyncConfig = {
-            type = "structure",
-        },
+        deltaSyncConfig = M.DeltaSyncConfig,
         versioned = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1073,9 +1071,7 @@ M.HttpDataSourceConfig = {
         endpoint = {
             type = "string",
         },
-        authorizationConfig = {
-            type = "structure",
-        },
+        authorizationConfig = M.AuthorizationConfig,
     },
 }
 
@@ -1145,9 +1141,7 @@ M.RelationalDatabaseDataSourceConfig = {
         relationalDatabaseSourceType = {
             type = "string",
         },
-        rdsHttpEndpointConfig = {
-            type = "structure",
-        },
+        rdsHttpEndpointConfig = M.RdsHttpEndpointConfig,
     },
 }
 
@@ -1191,27 +1185,13 @@ M.CreateDataSourceInput = {
         serviceRoleArn = {
             type = "string",
         },
-        dynamodbConfig = {
-            type = "structure",
-        },
-        lambdaConfig = {
-            type = "structure",
-        },
-        elasticsearchConfig = {
-            type = "structure",
-        },
-        openSearchServiceConfig = {
-            type = "structure",
-        },
-        httpConfig = {
-            type = "structure",
-        },
-        relationalDatabaseConfig = {
-            type = "structure",
-        },
-        eventBridgeConfig = {
-            type = "structure",
-        },
+        dynamodbConfig = M.DynamodbDataSourceConfig,
+        lambdaConfig = M.LambdaDataSourceConfig,
+        elasticsearchConfig = M.ElasticsearchDataSourceConfig,
+        openSearchServiceConfig = M.OpenSearchServiceDataSourceConfig,
+        httpConfig = M.HttpDataSourceConfig,
+        relationalDatabaseConfig = M.RelationalDatabaseDataSourceConfig,
+        eventBridgeConfig = M.EventBridgeDataSourceConfig,
         metricsConfig = {
             type = "string",
         },
@@ -1236,27 +1216,13 @@ M.DataSource = {
         serviceRoleArn = {
             type = "string",
         },
-        dynamodbConfig = {
-            type = "structure",
-        },
-        lambdaConfig = {
-            type = "structure",
-        },
-        elasticsearchConfig = {
-            type = "structure",
-        },
-        openSearchServiceConfig = {
-            type = "structure",
-        },
-        httpConfig = {
-            type = "structure",
-        },
-        relationalDatabaseConfig = {
-            type = "structure",
-        },
-        eventBridgeConfig = {
-            type = "structure",
-        },
+        dynamodbConfig = M.DynamodbDataSourceConfig,
+        lambdaConfig = M.LambdaDataSourceConfig,
+        elasticsearchConfig = M.ElasticsearchDataSourceConfig,
+        openSearchServiceConfig = M.OpenSearchServiceDataSourceConfig,
+        httpConfig = M.HttpDataSourceConfig,
+        relationalDatabaseConfig = M.RelationalDatabaseDataSourceConfig,
+        eventBridgeConfig = M.EventBridgeDataSourceConfig,
         metricsConfig = {
             type = "string",
         },
@@ -1266,9 +1232,7 @@ M.DataSource = {
 M.CreateDataSourceOutput = {
     type = "structure",
     members = {
-        dataSource = {
-            type = "structure",
-        },
+        dataSource = M.DataSource,
     },
 }
 
@@ -1292,8 +1256,8 @@ M.CreateDomainNameInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1318,8 +1282,8 @@ M.DomainNameConfig = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         domainNameArn = {
             type = "string",
@@ -1330,9 +1294,7 @@ M.DomainNameConfig = {
 M.CreateDomainNameOutput = {
     type = "structure",
     members = {
-        domainNameConfig = {
-            type = "structure",
-        },
+        domainNameConfig = M.DomainNameConfig,
     },
 }
 
@@ -1366,9 +1328,7 @@ M.SyncConfig = {
         conflictDetection = {
             type = "string",
         },
-        lambdaConflictHandlerConfig = {
-            type = "structure",
-        },
+        lambdaConflictHandlerConfig = M.LambdaConflictHandlerConfig,
     },
 }
 
@@ -1406,15 +1366,14 @@ M.CreateFunctionInput = {
         functionVersion = {
             type = "string",
         },
-        syncConfig = {
-            type = "structure",
-        },
+        syncConfig = M.SyncConfig,
         maxBatchSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
-        runtime = {
-            type = "structure",
-        },
+        runtime = M.AppSyncRuntime,
         code = {
             type = "string",
         },
@@ -1448,15 +1407,14 @@ M.FunctionConfiguration = {
         functionVersion = {
             type = "string",
         },
-        syncConfig = {
-            type = "structure",
-        },
+        syncConfig = M.SyncConfig,
         maxBatchSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
-        runtime = {
-            type = "structure",
-        },
+        runtime = M.AppSyncRuntime,
         code = {
             type = "string",
         },
@@ -1466,9 +1424,7 @@ M.FunctionConfiguration = {
 M.CreateFunctionOutput = {
     type = "structure",
     members = {
-        functionConfiguration = {
-            type = "structure",
-        },
+        functionConfiguration = M.FunctionConfiguration,
     },
 }
 
@@ -1546,6 +1502,9 @@ M.LogConfig = {
         },
         excludeVerboseContent = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
     },
 }
@@ -1596,36 +1555,31 @@ M.CreateGraphqlApiInput = {
                 required = true,
             },
         },
-        logConfig = {
-            type = "structure",
-        },
+        logConfig = M.LogConfig,
         authenticationType = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        userPoolConfig = {
-            type = "structure",
-        },
-        openIDConnectConfig = {
-            type = "structure",
-        },
+        userPoolConfig = M.UserPoolConfig,
+        openIDConnectConfig = M.OpenIDConnectConfig,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         additionalAuthenticationProviders = {
             type = "list",
-            member_type = "structure",
+            member = M.AdditionalAuthenticationProvider,
         },
         xrayEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        lambdaAuthorizerConfig = {
-            type = "structure",
-        },
+        lambdaAuthorizerConfig = M.LambdaAuthorizerConfig,
         apiType = {
             type = "string",
         },
@@ -1642,14 +1596,18 @@ M.CreateGraphqlApiInput = {
             type = "string",
         },
         queryDepthLimit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         resolverCountLimit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
-        enhancedMetricsConfig = {
-            type = "structure",
-        },
+        enhancedMetricsConfig = M.EnhancedMetricsConfig,
     },
 }
 
@@ -1665,45 +1623,40 @@ M.GraphqlApi = {
         authenticationType = {
             type = "string",
         },
-        logConfig = {
-            type = "structure",
-        },
-        userPoolConfig = {
-            type = "structure",
-        },
-        openIDConnectConfig = {
-            type = "structure",
-        },
+        logConfig = M.LogConfig,
+        userPoolConfig = M.UserPoolConfig,
+        openIDConnectConfig = M.OpenIDConnectConfig,
         arn = {
             type = "string",
         },
         uris = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         additionalAuthenticationProviders = {
             type = "list",
-            member_type = "structure",
+            member = M.AdditionalAuthenticationProvider,
         },
         xrayEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         wafWebAclArn = {
             type = "string",
         },
-        lambdaAuthorizerConfig = {
-            type = "structure",
-        },
+        lambdaAuthorizerConfig = M.LambdaAuthorizerConfig,
         dns = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         visibility = {
             type = "string",
@@ -1724,23 +1677,25 @@ M.GraphqlApi = {
             type = "string",
         },
         queryDepthLimit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         resolverCountLimit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
-        enhancedMetricsConfig = {
-            type = "structure",
-        },
+        enhancedMetricsConfig = M.EnhancedMetricsConfig,
     },
 }
 
 M.CreateGraphqlApiOutput = {
     type = "structure",
     members = {
-        graphqlApi = {
-            type = "structure",
-        },
+        graphqlApi = M.GraphqlApi,
     },
 }
 
@@ -1748,14 +1703,15 @@ M.CachingConfig = {
     type = "structure",
     members = {
         ttl = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         cachingKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1775,7 +1731,7 @@ M.PipelineConfig = {
     members = {
         functions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1815,21 +1771,16 @@ M.CreateResolverInput = {
         kind = {
             type = "string",
         },
-        pipelineConfig = {
-            type = "structure",
-        },
-        syncConfig = {
-            type = "structure",
-        },
-        cachingConfig = {
-            type = "structure",
-        },
+        pipelineConfig = M.PipelineConfig,
+        syncConfig = M.SyncConfig,
+        cachingConfig = M.CachingConfig,
         maxBatchSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
-        runtime = {
-            type = "structure",
-        },
+        runtime = M.AppSyncRuntime,
         code = {
             type = "string",
         },
@@ -1863,21 +1814,16 @@ M.Resolver = {
         kind = {
             type = "string",
         },
-        pipelineConfig = {
-            type = "structure",
-        },
-        syncConfig = {
-            type = "structure",
-        },
-        cachingConfig = {
-            type = "structure",
-        },
+        pipelineConfig = M.PipelineConfig,
+        syncConfig = M.SyncConfig,
+        cachingConfig = M.CachingConfig,
         maxBatchSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
-        runtime = {
-            type = "structure",
-        },
+        runtime = M.AppSyncRuntime,
         code = {
             type = "string",
         },
@@ -1890,9 +1836,7 @@ M.Resolver = {
 M.CreateResolverOutput = {
     type = "structure",
     members = {
-        resolver = {
-            type = "structure",
-        },
+        resolver = M.Resolver,
     },
 }
 
@@ -1950,9 +1894,7 @@ M.Type = {
 M.CreateTypeOutput = {
     type = "structure",
     members = {
-        type = {
-            type = "structure",
-        },
+        type = M.Type,
     },
 }
 
@@ -2253,12 +2195,9 @@ M.DisassociateSourceGraphqlApiOutput = {
 M.EvaluateCodeInput = {
     type = "structure",
     members = {
-        runtime = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        runtime = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AppSyncRuntime }),
         code = {
             type = "string",
             traits = {
@@ -2285,7 +2224,7 @@ M.EvaluateCodeErrorDetail = {
         },
         codeErrors = {
             type = "list",
-            member_type = "structure",
+            member = M.CodeError,
         },
     },
 }
@@ -2296,12 +2235,10 @@ M.EvaluateCodeOutput = {
         evaluationResult = {
             type = "string",
         },
-        error = {
-            type = "structure",
-        },
+        error = M.EvaluateCodeErrorDetail,
         logs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         stash = {
             type = "string",
@@ -2345,12 +2282,10 @@ M.EvaluateMappingTemplateOutput = {
         evaluationResult = {
             type = "string",
         },
-        error = {
-            type = "structure",
-        },
+        error = M.ErrorDetail,
         logs = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         stash = {
             type = "string",
@@ -2394,9 +2329,7 @@ M.GetApiInput = {
 M.GetApiOutput = {
     type = "structure",
     members = {
-        api = {
-            type = "structure",
-        },
+        api = M.Api,
     },
 }
 
@@ -2416,9 +2349,7 @@ M.GetApiAssociationInput = {
 M.GetApiAssociationOutput = {
     type = "structure",
     members = {
-        apiAssociation = {
-            type = "structure",
-        },
+        apiAssociation = M.ApiAssociation,
     },
 }
 
@@ -2438,9 +2369,7 @@ M.GetApiCacheInput = {
 M.GetApiCacheOutput = {
     type = "structure",
     members = {
-        apiCache = {
-            type = "structure",
-        },
+        apiCache = M.ApiCache,
     },
 }
 
@@ -2467,9 +2396,7 @@ M.GetChannelNamespaceInput = {
 M.GetChannelNamespaceOutput = {
     type = "structure",
     members = {
-        channelNamespace = {
-            type = "structure",
-        },
+        channelNamespace = M.ChannelNamespace,
     },
 }
 
@@ -2496,9 +2423,7 @@ M.GetDataSourceInput = {
 M.GetDataSourceOutput = {
     type = "structure",
     members = {
-        dataSource = {
-            type = "structure",
-        },
+        dataSource = M.DataSource,
     },
 }
 
@@ -2515,6 +2440,7 @@ M.GetDataSourceIntrospectionInput = {
         includeModelsSDL = {
             type = "boolean",
             traits = {
+                default = false,
                 http_query = "includeModelsSDL",
             },
         },
@@ -2525,8 +2451,9 @@ M.GetDataSourceIntrospectionInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -2541,7 +2468,7 @@ M.DataSourceIntrospectionModelIndex = {
         },
         fields = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2568,9 +2495,7 @@ M.GetDomainNameInput = {
 M.GetDomainNameOutput = {
     type = "structure",
     members = {
-        domainNameConfig = {
-            type = "structure",
-        },
+        domainNameConfig = M.DomainNameConfig,
     },
 }
 
@@ -2597,9 +2522,7 @@ M.GetFunctionInput = {
 M.GetFunctionOutput = {
     type = "structure",
     members = {
-        functionConfiguration = {
-            type = "structure",
-        },
+        functionConfiguration = M.FunctionConfiguration,
     },
 }
 
@@ -2619,9 +2542,7 @@ M.GetGraphqlApiInput = {
 M.GetGraphqlApiOutput = {
     type = "structure",
     members = {
-        graphqlApi = {
-            type = "structure",
-        },
+        graphqlApi = M.GraphqlApi,
     },
 }
 
@@ -2643,8 +2564,8 @@ M.GetGraphqlApiEnvironmentVariablesOutput = {
     members = {
         environmentVariables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2732,9 +2653,7 @@ M.GetResolverInput = {
 M.GetResolverOutput = {
     type = "structure",
     members = {
-        resolver = {
-            type = "structure",
-        },
+        resolver = M.Resolver,
     },
 }
 
@@ -2795,9 +2714,7 @@ M.GetSourceApiAssociationInput = {
 M.GetSourceApiAssociationOutput = {
     type = "structure",
     members = {
-        sourceApiAssociation = {
-            type = "structure",
-        },
+        sourceApiAssociation = M.SourceApiAssociation,
     },
 }
 
@@ -2831,9 +2748,7 @@ M.GetTypeInput = {
 M.GetTypeOutput = {
     type = "structure",
     members = {
-        type = {
-            type = "structure",
-        },
+        type = M.Type,
     },
 }
 
@@ -2854,8 +2769,9 @@ M.ListApiKeysInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -2867,7 +2783,7 @@ M.ListApiKeysOutput = {
     members = {
         apiKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.ApiKey,
         },
         nextToken = {
             type = "string",
@@ -2885,8 +2801,9 @@ M.ListApisInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -2898,7 +2815,7 @@ M.ListApisOutput = {
     members = {
         apis = {
             type = "list",
-            member_type = "structure",
+            member = M.Api,
         },
         nextToken = {
             type = "string",
@@ -2923,8 +2840,9 @@ M.ListChannelNamespacesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -2936,7 +2854,7 @@ M.ListChannelNamespacesOutput = {
     members = {
         channelNamespaces = {
             type = "list",
-            member_type = "structure",
+            member = M.ChannelNamespace,
         },
         nextToken = {
             type = "string",
@@ -2961,8 +2879,9 @@ M.ListDataSourcesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -2974,7 +2893,7 @@ M.ListDataSourcesOutput = {
     members = {
         dataSources = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSource,
         },
         nextToken = {
             type = "string",
@@ -2992,8 +2911,9 @@ M.ListDomainNamesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -3005,7 +2925,7 @@ M.ListDomainNamesOutput = {
     members = {
         domainNameConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainNameConfig,
         },
         nextToken = {
             type = "string",
@@ -3030,8 +2950,9 @@ M.ListFunctionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -3043,7 +2964,7 @@ M.ListFunctionsOutput = {
     members = {
         functions = {
             type = "list",
-            member_type = "structure",
+            member = M.FunctionConfiguration,
         },
         nextToken = {
             type = "string",
@@ -3066,8 +2987,9 @@ M.ListGraphqlApisInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -3091,7 +3013,7 @@ M.ListGraphqlApisOutput = {
     members = {
         graphqlApis = {
             type = "list",
-            member_type = "structure",
+            member = M.GraphqlApi,
         },
         nextToken = {
             type = "string",
@@ -3123,8 +3045,9 @@ M.ListResolversInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -3136,7 +3059,7 @@ M.ListResolversOutput = {
     members = {
         resolvers = {
             type = "list",
-            member_type = "structure",
+            member = M.Resolver,
         },
         nextToken = {
             type = "string",
@@ -3168,8 +3091,9 @@ M.ListResolversByFunctionInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -3181,7 +3105,7 @@ M.ListResolversByFunctionOutput = {
     members = {
         resolvers = {
             type = "list",
-            member_type = "structure",
+            member = M.Resolver,
         },
         nextToken = {
             type = "string",
@@ -3206,8 +3130,9 @@ M.ListSourceApiAssociationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -3246,7 +3171,7 @@ M.ListSourceApiAssociationsOutput = {
     members = {
         sourceApiAssociationSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.SourceApiAssociationSummary,
         },
         nextToken = {
             type = "string",
@@ -3272,8 +3197,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3302,8 +3227,9 @@ M.ListTypesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -3315,7 +3241,7 @@ M.ListTypesOutput = {
     members = {
         types = {
             type = "list",
-            member_type = "structure",
+            member = M.Type,
         },
         nextToken = {
             type = "string",
@@ -3354,8 +3280,9 @@ M.ListTypesByAssociationInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -3367,7 +3294,7 @@ M.ListTypesByAssociationOutput = {
     members = {
         types = {
             type = "list",
-            member_type = "structure",
+            member = M.Type,
         },
         nextToken = {
             type = "string",
@@ -3387,8 +3314,8 @@ M.PutGraphqlApiEnvironmentVariablesInput = {
         },
         environmentVariables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3401,8 +3328,8 @@ M.PutGraphqlApiEnvironmentVariablesOutput = {
     members = {
         environmentVariables = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3434,9 +3361,7 @@ M.RdsDataApiConfig = {
 M.StartDataSourceIntrospectionInput = {
     type = "structure",
     members = {
-        rdsDataApiConfig = {
-            type = "structure",
-        },
+        rdsDataApiConfig = M.RdsDataApiConfig,
     },
 }
 
@@ -3524,8 +3449,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3549,7 +3474,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -3581,21 +3506,16 @@ M.UpdateApiInput = {
         ownerContact = {
             type = "string",
         },
-        eventConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        eventConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EventConfig }),
     },
 }
 
 M.UpdateApiOutput = {
     type = "structure",
     members = {
-        api = {
-            type = "structure",
-        },
+        api = M.Api,
     },
 }
 
@@ -3610,8 +3530,9 @@ M.UpdateApiCacheInput = {
             },
         },
         ttl = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -3636,9 +3557,7 @@ M.UpdateApiCacheInput = {
 M.UpdateApiCacheOutput = {
     type = "structure",
     members = {
-        apiCache = {
-            type = "structure",
-        },
+        apiCache = M.ApiCache,
     },
 }
 
@@ -3663,7 +3582,10 @@ M.UpdateApiKeyInput = {
             type = "string",
         },
         expires = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -3671,9 +3593,7 @@ M.UpdateApiKeyInput = {
 M.UpdateApiKeyOutput = {
     type = "structure",
     members = {
-        apiKey = {
-            type = "structure",
-        },
+        apiKey = M.ApiKey,
     },
 }
 
@@ -3696,27 +3616,23 @@ M.UpdateChannelNamespaceInput = {
         },
         subscribeAuthModes = {
             type = "list",
-            member_type = "structure",
+            member = M.AuthMode,
         },
         publishAuthModes = {
             type = "list",
-            member_type = "structure",
+            member = M.AuthMode,
         },
         codeHandlers = {
             type = "string",
         },
-        handlerConfigs = {
-            type = "structure",
-        },
+        handlerConfigs = M.HandlerConfigs,
     },
 }
 
 M.UpdateChannelNamespaceOutput = {
     type = "structure",
     members = {
-        channelNamespace = {
-            type = "structure",
-        },
+        channelNamespace = M.ChannelNamespace,
     },
 }
 
@@ -3749,27 +3665,13 @@ M.UpdateDataSourceInput = {
         serviceRoleArn = {
             type = "string",
         },
-        dynamodbConfig = {
-            type = "structure",
-        },
-        lambdaConfig = {
-            type = "structure",
-        },
-        elasticsearchConfig = {
-            type = "structure",
-        },
-        openSearchServiceConfig = {
-            type = "structure",
-        },
-        httpConfig = {
-            type = "structure",
-        },
-        relationalDatabaseConfig = {
-            type = "structure",
-        },
-        eventBridgeConfig = {
-            type = "structure",
-        },
+        dynamodbConfig = M.DynamodbDataSourceConfig,
+        lambdaConfig = M.LambdaDataSourceConfig,
+        elasticsearchConfig = M.ElasticsearchDataSourceConfig,
+        openSearchServiceConfig = M.OpenSearchServiceDataSourceConfig,
+        httpConfig = M.HttpDataSourceConfig,
+        relationalDatabaseConfig = M.RelationalDatabaseDataSourceConfig,
+        eventBridgeConfig = M.EventBridgeDataSourceConfig,
         metricsConfig = {
             type = "string",
         },
@@ -3779,9 +3681,7 @@ M.UpdateDataSourceInput = {
 M.UpdateDataSourceOutput = {
     type = "structure",
     members = {
-        dataSource = {
-            type = "structure",
-        },
+        dataSource = M.DataSource,
     },
 }
 
@@ -3804,9 +3704,7 @@ M.UpdateDomainNameInput = {
 M.UpdateDomainNameOutput = {
     type = "structure",
     members = {
-        domainNameConfig = {
-            type = "structure",
-        },
+        domainNameConfig = M.DomainNameConfig,
     },
 }
 
@@ -3851,15 +3749,14 @@ M.UpdateFunctionInput = {
         functionVersion = {
             type = "string",
         },
-        syncConfig = {
-            type = "structure",
-        },
+        syncConfig = M.SyncConfig,
         maxBatchSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
-        runtime = {
-            type = "structure",
-        },
+        runtime = M.AppSyncRuntime,
         code = {
             type = "string",
         },
@@ -3869,9 +3766,7 @@ M.UpdateFunctionInput = {
 M.UpdateFunctionOutput = {
     type = "structure",
     members = {
-        functionConfiguration = {
-            type = "structure",
-        },
+        functionConfiguration = M.FunctionConfiguration,
     },
 }
 
@@ -3891,31 +3786,26 @@ M.UpdateGraphqlApiInput = {
                 required = true,
             },
         },
-        logConfig = {
-            type = "structure",
-        },
+        logConfig = M.LogConfig,
         authenticationType = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        userPoolConfig = {
-            type = "structure",
-        },
-        openIDConnectConfig = {
-            type = "structure",
-        },
+        userPoolConfig = M.UserPoolConfig,
+        openIDConnectConfig = M.OpenIDConnectConfig,
         additionalAuthenticationProviders = {
             type = "list",
-            member_type = "structure",
+            member = M.AdditionalAuthenticationProvider,
         },
         xrayEnabled = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
-        lambdaAuthorizerConfig = {
-            type = "structure",
-        },
+        lambdaAuthorizerConfig = M.LambdaAuthorizerConfig,
         mergedApiExecutionRoleArn = {
             type = "string",
         },
@@ -3926,23 +3816,25 @@ M.UpdateGraphqlApiInput = {
             type = "string",
         },
         queryDepthLimit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         resolverCountLimit = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
-        enhancedMetricsConfig = {
-            type = "structure",
-        },
+        enhancedMetricsConfig = M.EnhancedMetricsConfig,
     },
 }
 
 M.UpdateGraphqlApiOutput = {
     type = "structure",
     members = {
-        graphqlApi = {
-            type = "structure",
-        },
+        graphqlApi = M.GraphqlApi,
     },
 }
 
@@ -3982,21 +3874,16 @@ M.UpdateResolverInput = {
         kind = {
             type = "string",
         },
-        pipelineConfig = {
-            type = "structure",
-        },
-        syncConfig = {
-            type = "structure",
-        },
-        cachingConfig = {
-            type = "structure",
-        },
+        pipelineConfig = M.PipelineConfig,
+        syncConfig = M.SyncConfig,
+        cachingConfig = M.CachingConfig,
         maxBatchSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
-        runtime = {
-            type = "structure",
-        },
+        runtime = M.AppSyncRuntime,
         code = {
             type = "string",
         },
@@ -4009,9 +3896,7 @@ M.UpdateResolverInput = {
 M.UpdateResolverOutput = {
     type = "structure",
     members = {
-        resolver = {
-            type = "structure",
-        },
+        resolver = M.Resolver,
     },
 }
 
@@ -4035,18 +3920,14 @@ M.UpdateSourceApiAssociationInput = {
         description = {
             type = "string",
         },
-        sourceApiAssociationConfig = {
-            type = "structure",
-        },
+        sourceApiAssociationConfig = M.SourceApiAssociationConfig,
     },
 }
 
 M.UpdateSourceApiAssociationOutput = {
     type = "structure",
     members = {
-        sourceApiAssociation = {
-            type = "structure",
-        },
+        sourceApiAssociation = M.SourceApiAssociation,
     },
 }
 
@@ -4082,9 +3963,7 @@ M.UpdateTypeInput = {
 M.UpdateTypeOutput = {
     type = "structure",
     members = {
-        type = {
-            type = "structure",
-        },
+        type = M.Type,
     },
 }
 
@@ -4097,12 +3976,10 @@ M.DataSourceIntrospectionModelFieldType = {
         name = {
             type = "string",
         },
-        type = {
-            type = "structure",
-        },
+        type = M.DataSourceIntrospectionModelFieldType,
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4113,11 +3990,12 @@ M.DataSourceIntrospectionModelField = {
         name = {
             type = "string",
         },
-        type = {
-            type = "structure",
-        },
+        type = M.DataSourceIntrospectionModelFieldType,
         length = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -4130,14 +4008,12 @@ M.DataSourceIntrospectionModel = {
         },
         fields = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceIntrospectionModelField,
         },
-        primaryKey = {
-            type = "structure",
-        },
+        primaryKey = M.DataSourceIntrospectionModelIndex,
         indexes = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceIntrospectionModelIndex,
         },
         sdl = {
             type = "string",
@@ -4150,7 +4026,7 @@ M.DataSourceIntrospectionResult = {
     members = {
         models = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceIntrospectionModel,
         },
         nextToken = {
             type = "string",
@@ -4170,9 +4046,7 @@ M.GetDataSourceIntrospectionOutput = {
         introspectionStatusDetail = {
             type = "string",
         },
-        introspectionResult = {
-            type = "structure",
-        },
+        introspectionResult = M.DataSourceIntrospectionResult,
     },
 }
 

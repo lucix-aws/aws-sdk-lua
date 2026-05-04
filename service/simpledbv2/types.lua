@@ -128,7 +128,7 @@ M.GetExportOutput = {
             type = "string",
         },
         itemsCount = {
-            type = "number",
+            type = "long",
         },
         exportDataCutoffTime = {
             type = "timestamp",
@@ -195,7 +195,7 @@ M.ListExportsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -208,7 +208,7 @@ M.ListExportsOutput = {
     members = {
         exportSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ExportSummary,
             traits = {
                 required = true,
             },

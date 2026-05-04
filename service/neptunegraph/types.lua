@@ -162,8 +162,8 @@ M.ExecuteQueryInput = {
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "document",
+            key = { type = "string" },
+            value = { type = "document" },
         },
         planCache = {
             type = "string",
@@ -175,7 +175,7 @@ M.ExecuteQueryInput = {
             },
         },
         queryTimeoutMilliseconds = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -248,11 +248,11 @@ M.EdgeStructure = {
     type = "structure",
     members = {
         count = {
-            type = "number",
+            type = "long",
         },
         edgeProperties = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -261,15 +261,15 @@ M.NodeStructure = {
     type = "structure",
     members = {
         count = {
-            type = "number",
+            type = "long",
         },
         nodeProperties = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         distinctOutgoingEdgeLabels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -278,52 +278,52 @@ M.GraphDataSummary = {
     type = "structure",
     members = {
         numNodes = {
-            type = "number",
+            type = "long",
         },
         numEdges = {
-            type = "number",
+            type = "long",
         },
         numNodeLabels = {
-            type = "number",
+            type = "long",
         },
         numEdgeLabels = {
-            type = "number",
+            type = "long",
         },
         nodeLabels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         edgeLabels = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         numNodeProperties = {
-            type = "number",
+            type = "long",
         },
         numEdgeProperties = {
-            type = "number",
+            type = "long",
         },
         nodeProperties = {
             type = "list",
-            member_type = "map",
+            member = { type = "map" },
         },
         edgeProperties = {
             type = "list",
-            member_type = "map",
+            member = { type = "map" },
         },
         totalNodePropertyValues = {
-            type = "number",
+            type = "long",
         },
         totalEdgePropertyValues = {
-            type = "number",
+            type = "long",
         },
         nodeStructures = {
             type = "list",
-            member_type = "structure",
+            member = M.NodeStructure,
         },
         edgeStructures = {
             type = "list",
-            member_type = "structure",
+            member = M.EdgeStructure,
         },
     },
 }
@@ -340,9 +340,7 @@ M.GetGraphSummaryOutput = {
                 timestamp_format = "date-time",
             },
         },
-        graphSummary = {
-            type = "structure",
-        },
+        graphSummary = M.GraphDataSummary,
     },
 }
 
@@ -382,10 +380,10 @@ M.GetQueryOutput = {
             type = "string",
         },
         waited = {
-            type = "number",
+            type = "integer",
         },
         elapsed = {
-            type = "number",
+            type = "integer",
         },
         state = {
             type = "string",
@@ -397,7 +395,7 @@ M.VectorSearchConfiguration = {
     type = "structure",
     members = {
         dimension = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -416,8 +414,8 @@ M.CreateGraphInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         publicConnectivity = {
             type = "boolean",
@@ -425,17 +423,15 @@ M.CreateGraphInput = {
         kmsKeyIdentifier = {
             type = "string",
         },
-        vectorSearchConfiguration = {
-            type = "structure",
-        },
+        vectorSearchConfiguration = M.VectorSearchConfiguration,
         replicaCount = {
-            type = "number",
+            type = "integer",
         },
         deletionProtection = {
             type = "boolean",
         },
         provisionedMemory = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -488,7 +484,7 @@ M.CreateGraphOutput = {
             type = "timestamp",
         },
         provisionedMemory = {
-            type = "number",
+            type = "integer",
         },
         endpoint = {
             type = "string",
@@ -496,11 +492,9 @@ M.CreateGraphOutput = {
         publicConnectivity = {
             type = "boolean",
         },
-        vectorSearchConfiguration = {
-            type = "structure",
-        },
+        vectorSearchConfiguration = M.VectorSearchConfiguration,
         replicaCount = {
-            type = "number",
+            type = "integer",
         },
         kmsKeyIdentifier = {
             type = "string",
@@ -593,7 +587,7 @@ M.DeleteGraphOutput = {
             type = "timestamp",
         },
         provisionedMemory = {
-            type = "number",
+            type = "integer",
         },
         endpoint = {
             type = "string",
@@ -601,11 +595,9 @@ M.DeleteGraphOutput = {
         publicConnectivity = {
             type = "boolean",
         },
-        vectorSearchConfiguration = {
-            type = "structure",
-        },
+        vectorSearchConfiguration = M.VectorSearchConfiguration,
         replicaCount = {
-            type = "number",
+            type = "integer",
         },
         kmsKeyIdentifier = {
             type = "string",
@@ -666,7 +658,7 @@ M.GetGraphOutput = {
             type = "timestamp",
         },
         provisionedMemory = {
-            type = "number",
+            type = "integer",
         },
         endpoint = {
             type = "string",
@@ -674,11 +666,9 @@ M.GetGraphOutput = {
         publicConnectivity = {
             type = "boolean",
         },
-        vectorSearchConfiguration = {
-            type = "structure",
-        },
+        vectorSearchConfiguration = M.VectorSearchConfiguration,
         replicaCount = {
-            type = "number",
+            type = "integer",
         },
         kmsKeyIdentifier = {
             type = "string",
@@ -705,7 +695,7 @@ M.ListGraphsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -738,7 +728,7 @@ M.GraphSummary = {
             type = "string",
         },
         provisionedMemory = {
-            type = "number",
+            type = "integer",
         },
         publicConnectivity = {
             type = "boolean",
@@ -747,7 +737,7 @@ M.GraphSummary = {
             type = "string",
         },
         replicaCount = {
-            type = "number",
+            type = "integer",
         },
         kmsKeyIdentifier = {
             type = "string",
@@ -763,7 +753,7 @@ M.ListGraphsOutput = {
     members = {
         graphs = {
             type = "list",
-            member_type = "structure",
+            member = M.GraphSummary,
             traits = {
                 required = true,
             },
@@ -824,7 +814,7 @@ M.ResetGraphOutput = {
             type = "timestamp",
         },
         provisionedMemory = {
-            type = "number",
+            type = "integer",
         },
         endpoint = {
             type = "string",
@@ -832,11 +822,9 @@ M.ResetGraphOutput = {
         publicConnectivity = {
             type = "boolean",
         },
-        vectorSearchConfiguration = {
-            type = "structure",
-        },
+        vectorSearchConfiguration = M.VectorSearchConfiguration,
         replicaCount = {
-            type = "number",
+            type = "integer",
         },
         kmsKeyIdentifier = {
             type = "string",
@@ -870,18 +858,18 @@ M.RestoreGraphFromSnapshotInput = {
             },
         },
         provisionedMemory = {
-            type = "number",
+            type = "integer",
         },
         deletionProtection = {
             type = "boolean",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         replicaCount = {
-            type = "number",
+            type = "integer",
         },
         publicConnectivity = {
             type = "boolean",
@@ -920,7 +908,7 @@ M.RestoreGraphFromSnapshotOutput = {
             type = "timestamp",
         },
         provisionedMemory = {
-            type = "number",
+            type = "integer",
         },
         endpoint = {
             type = "string",
@@ -928,11 +916,9 @@ M.RestoreGraphFromSnapshotOutput = {
         publicConnectivity = {
             type = "boolean",
         },
-        vectorSearchConfiguration = {
-            type = "structure",
-        },
+        vectorSearchConfiguration = M.VectorSearchConfiguration,
         replicaCount = {
-            type = "number",
+            type = "integer",
         },
         kmsKeyIdentifier = {
             type = "string",
@@ -993,7 +979,7 @@ M.StartGraphOutput = {
             type = "timestamp",
         },
         provisionedMemory = {
-            type = "number",
+            type = "integer",
         },
         endpoint = {
             type = "string",
@@ -1001,11 +987,9 @@ M.StartGraphOutput = {
         publicConnectivity = {
             type = "boolean",
         },
-        vectorSearchConfiguration = {
-            type = "structure",
-        },
+        vectorSearchConfiguration = M.VectorSearchConfiguration,
         replicaCount = {
-            type = "number",
+            type = "integer",
         },
         kmsKeyIdentifier = {
             type = "string",
@@ -1066,7 +1050,7 @@ M.StopGraphOutput = {
             type = "timestamp",
         },
         provisionedMemory = {
-            type = "number",
+            type = "integer",
         },
         endpoint = {
             type = "string",
@@ -1074,11 +1058,9 @@ M.StopGraphOutput = {
         publicConnectivity = {
             type = "boolean",
         },
-        vectorSearchConfiguration = {
-            type = "structure",
-        },
+        vectorSearchConfiguration = M.VectorSearchConfiguration,
         replicaCount = {
-            type = "number",
+            type = "integer",
         },
         kmsKeyIdentifier = {
             type = "string",
@@ -1109,7 +1091,7 @@ M.UpdateGraphInput = {
             type = "boolean",
         },
         provisionedMemory = {
-            type = "number",
+            type = "integer",
         },
         deletionProtection = {
             type = "boolean",
@@ -1148,7 +1130,7 @@ M.UpdateGraphOutput = {
             type = "timestamp",
         },
         provisionedMemory = {
-            type = "number",
+            type = "integer",
         },
         endpoint = {
             type = "string",
@@ -1156,11 +1138,9 @@ M.UpdateGraphOutput = {
         publicConnectivity = {
             type = "boolean",
         },
-        vectorSearchConfiguration = {
-            type = "structure",
-        },
+        vectorSearchConfiguration = M.VectorSearchConfiguration,
         replicaCount = {
-            type = "number",
+            type = "integer",
         },
         kmsKeyIdentifier = {
             type = "string",
@@ -1195,7 +1175,7 @@ M.ListQueriesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
                 required = true,
@@ -1220,10 +1200,10 @@ M.QuerySummary = {
             type = "string",
         },
         waited = {
-            type = "number",
+            type = "integer",
         },
         elapsed = {
-            type = "number",
+            type = "integer",
         },
         state = {
             type = "string",
@@ -1236,7 +1216,7 @@ M.ListQueriesOutput = {
     members = {
         queries = {
             type = "list",
-            member_type = "structure",
+            member = M.QuerySummary,
             traits = {
                 required = true,
             },
@@ -1262,8 +1242,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1283,11 +1263,11 @@ M.CreatePrivateGraphEndpointInput = {
         },
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         vpcSecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1310,7 +1290,7 @@ M.CreatePrivateGraphEndpointOutput = {
         },
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1358,7 +1338,7 @@ M.DeletePrivateGraphEndpointOutput = {
         },
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1406,7 +1386,7 @@ M.GetPrivateGraphEndpointOutput = {
         },
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1440,7 +1420,7 @@ M.ListPrivateGraphEndpointsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1459,7 +1439,7 @@ M.PrivateGraphEndpointSummary = {
         },
         subnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1481,7 +1461,7 @@ M.ListPrivateGraphEndpointsOutput = {
     members = {
         privateGraphEndpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.PrivateGraphEndpointSummary,
             traits = {
                 required = true,
             },
@@ -1509,8 +1489,8 @@ M.CreateGraphSnapshotInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1672,7 +1652,7 @@ M.ListGraphSnapshotsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1721,7 +1701,7 @@ M.ListGraphSnapshotsOutput = {
     members = {
         graphSnapshots = {
             type = "list",
-            member_type = "structure",
+            member = M.GraphSnapshotSummary,
             traits = {
                 required = true,
             },
@@ -1744,8 +1724,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1947,9 +1927,7 @@ M.NeptuneImportOptions = {
 M.ImportOptions = {
     type = "union",
     members = {
-        neptune = {
-            type = "structure",
-        },
+        neptune = M.NeptuneImportOptions,
     },
 }
 
@@ -1964,8 +1942,8 @@ M.CreateGraphUsingImportTaskInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         publicConnectivity = {
             type = "boolean",
@@ -1973,23 +1951,19 @@ M.CreateGraphUsingImportTaskInput = {
         kmsKeyIdentifier = {
             type = "string",
         },
-        vectorSearchConfiguration = {
-            type = "structure",
-        },
+        vectorSearchConfiguration = M.VectorSearchConfiguration,
         replicaCount = {
-            type = "number",
+            type = "integer",
         },
         deletionProtection = {
             type = "boolean",
         },
-        importOptions = {
-            type = "union",
-        },
+        importOptions = M.ImportOptions,
         maxProvisionedMemory = {
-            type = "number",
+            type = "integer",
         },
         minProvisionedMemory = {
-            type = "number",
+            type = "integer",
         },
         failOnError = {
             type = "boolean",
@@ -2054,9 +2028,7 @@ M.CreateGraphUsingImportTaskOutput = {
                 required = true,
             },
         },
-        importOptions = {
-            type = "union",
-        },
+        importOptions = M.ImportOptions,
     },
 }
 
@@ -2089,6 +2061,9 @@ M.ExportFilterPropertyAttributes = {
         },
         multiValueHandling = {
             type = "string",
+            traits = {
+                default = "PICK_FIRST",
+            },
         },
     },
 }
@@ -2098,8 +2073,8 @@ M.ExportFilterElement = {
     members = {
         properties = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ExportFilterPropertyAttributes,
         },
     },
 }
@@ -2109,13 +2084,13 @@ M.ExportFilter = {
     members = {
         vertexFilter = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ExportFilterElement,
         },
         edgeFilter = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.ExportFilterElement,
         },
     },
 }
@@ -2130,22 +2105,22 @@ M.ExportTaskDetails = {
             },
         },
         timeElapsedSeconds = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         progressPercentage = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         numVerticesWritten = {
-            type = "number",
+            type = "long",
         },
         numEdgesWritten = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -2201,12 +2176,8 @@ M.GetExportTaskOutput = {
         statusReason = {
             type = "string",
         },
-        exportTaskDetails = {
-            type = "structure",
-        },
-        exportFilter = {
-            type = "structure",
-        },
+        exportTaskDetails = M.ExportTaskDetails,
+        exportFilter = M.ExportFilter,
     },
 }
 
@@ -2239,19 +2210,19 @@ M.ImportTaskDetails = {
             },
         },
         timeElapsedSeconds = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         progressPercentage = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         errorCount = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -2260,13 +2231,13 @@ M.ImportTaskDetails = {
             type = "string",
         },
         statementCount = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         dictionaryEntryCount = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -2310,14 +2281,10 @@ M.GetImportTaskOutput = {
                 required = true,
             },
         },
-        importOptions = {
-            type = "union",
-        },
-        importTaskDetails = {
-            type = "structure",
-        },
+        importOptions = M.ImportOptions,
+        importTaskDetails = M.ImportTaskDetails,
         attemptNumber = {
-            type = "number",
+            type = "integer",
         },
         statusReason = {
             type = "string",
@@ -2341,7 +2308,7 @@ M.ListExportTasksInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2408,7 +2375,7 @@ M.ListExportTasksOutput = {
     members = {
         tasks = {
             type = "list",
-            member_type = "structure",
+            member = M.ExportTaskSummary,
             traits = {
                 required = true,
             },
@@ -2429,7 +2396,7 @@ M.ListImportTasksInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2481,7 +2448,7 @@ M.ListImportTasksOutput = {
     members = {
         tasks = {
             type = "list",
-            member_type = "structure",
+            member = M.ImportTaskSummary,
             traits = {
                 required = true,
             },
@@ -2528,13 +2495,11 @@ M.StartExportTaskInput = {
         parquetType = {
             type = "string",
         },
-        exportFilter = {
-            type = "structure",
-        },
+        exportFilter = M.ExportFilter,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2590,18 +2555,14 @@ M.StartExportTaskOutput = {
         statusReason = {
             type = "string",
         },
-        exportFilter = {
-            type = "structure",
-        },
+        exportFilter = M.ExportFilter,
     },
 }
 
 M.StartImportTaskInput = {
     type = "structure",
     members = {
-        importOptions = {
-            type = "union",
-        },
+        importOptions = M.ImportOptions,
         failOnError = {
             type = "boolean",
         },
@@ -2672,9 +2633,7 @@ M.StartImportTaskOutput = {
                 required = true,
             },
         },
-        importOptions = {
-            type = "union",
-        },
+        importOptions = M.ImportOptions,
     },
 }
 
@@ -2690,7 +2649,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,

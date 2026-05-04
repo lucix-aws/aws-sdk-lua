@@ -137,7 +137,7 @@ M.LustreReadCacheConfiguration = {
             type = "string",
         },
         SizeGiB = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -180,14 +180,12 @@ M.DataRepositoryConfiguration = {
             type = "string",
         },
         ImportedFileChunkSize = {
-            type = "number",
+            type = "integer",
         },
         AutoImportPolicy = {
             type = "string",
         },
-        FailureDetails = {
-            type = "structure",
-        },
+        FailureDetails = M.DataRepositoryFailureDetails,
     },
 }
 
@@ -234,7 +232,7 @@ M.FileSystemLustreMetadataConfiguration = {
     type = "structure",
     members = {
         Iops = {
-            type = "number",
+            type = "integer",
         },
         Mode = {
             type = "string",
@@ -253,7 +251,7 @@ M.LustreRootSquashConfiguration = {
         },
         NoSquashNids = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -264,14 +262,12 @@ M.LustreFileSystemConfiguration = {
         WeeklyMaintenanceStartTime = {
             type = "string",
         },
-        DataRepositoryConfiguration = {
-            type = "structure",
-        },
+        DataRepositoryConfiguration = M.DataRepositoryConfiguration,
         DeploymentType = {
             type = "string",
         },
         PerUnitStorageThroughput = {
-            type = "number",
+            type = "integer",
         },
         MountName = {
             type = "string",
@@ -280,7 +276,7 @@ M.LustreFileSystemConfiguration = {
             type = "string",
         },
         AutomaticBackupRetentionDays = {
-            type = "number",
+            type = "integer",
         },
         CopyTagsToBackups = {
             type = "boolean",
@@ -291,24 +287,16 @@ M.LustreFileSystemConfiguration = {
         DataCompressionType = {
             type = "string",
         },
-        LogConfiguration = {
-            type = "structure",
-        },
-        RootSquashConfiguration = {
-            type = "structure",
-        },
-        MetadataConfiguration = {
-            type = "structure",
-        },
+        LogConfiguration = M.LustreLogConfiguration,
+        RootSquashConfiguration = M.LustreRootSquashConfiguration,
+        MetadataConfiguration = M.FileSystemLustreMetadataConfiguration,
         EfaEnabled = {
             type = "boolean",
         },
         ThroughputCapacity = {
-            type = "number",
+            type = "integer",
         },
-        DataReadCacheConfiguration = {
-            type = "structure",
-        },
+        DataReadCacheConfiguration = M.LustreReadCacheConfiguration,
     },
 }
 
@@ -336,7 +324,7 @@ M.DiskIopsConfiguration = {
             type = "string",
         },
         Iops = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -349,11 +337,11 @@ M.FileSystemEndpoint = {
         },
         IpAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Ipv6Addresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -361,12 +349,8 @@ M.FileSystemEndpoint = {
 M.FileSystemEndpoints = {
     type = "structure",
     members = {
-        Intercluster = {
-            type = "structure",
-        },
-        Management = {
-            type = "structure",
-        },
+        Intercluster = M.FileSystemEndpoint,
+        Management = M.FileSystemEndpoint,
     },
 }
 
@@ -374,7 +358,7 @@ M.OntapFileSystemConfiguration = {
     type = "structure",
     members = {
         AutomaticBackupRetentionDays = {
-            type = "number",
+            type = "integer",
         },
         DailyAutomaticBackupStartTime = {
             type = "string",
@@ -385,21 +369,17 @@ M.OntapFileSystemConfiguration = {
         EndpointIpAddressRange = {
             type = "string",
         },
-        Endpoints = {
-            type = "structure",
-        },
-        DiskIopsConfiguration = {
-            type = "structure",
-        },
+        Endpoints = M.FileSystemEndpoints,
+        DiskIopsConfiguration = M.DiskIopsConfiguration,
         PreferredSubnetId = {
             type = "string",
         },
         RouteTableIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ThroughputCapacity = {
-            type = "number",
+            type = "integer",
         },
         WeeklyMaintenanceStartTime = {
             type = "string",
@@ -408,10 +388,10 @@ M.OntapFileSystemConfiguration = {
             type = "string",
         },
         HAPairs = {
-            type = "number",
+            type = "integer",
         },
         ThroughputCapacityPerHAPair = {
-            type = "number",
+            type = "integer",
         },
         EndpointIpv6AddressRange = {
             type = "string",
@@ -440,7 +420,7 @@ M.OpenZFSReadCacheConfiguration = {
             type = "string",
         },
         SizeGiB = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -449,7 +429,7 @@ M.OpenZFSFileSystemConfiguration = {
     type = "structure",
     members = {
         AutomaticBackupRetentionDays = {
-            type = "number",
+            type = "integer",
         },
         CopyTagsToBackups = {
             type = "boolean",
@@ -464,14 +444,12 @@ M.OpenZFSFileSystemConfiguration = {
             type = "string",
         },
         ThroughputCapacity = {
-            type = "number",
+            type = "integer",
         },
         WeeklyMaintenanceStartTime = {
             type = "string",
         },
-        DiskIopsConfiguration = {
-            type = "structure",
-        },
+        DiskIopsConfiguration = M.DiskIopsConfiguration,
         RootVolumeId = {
             type = "string",
         },
@@ -486,7 +464,7 @@ M.OpenZFSFileSystemConfiguration = {
         },
         RouteTableIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         EndpointIpAddress = {
             type = "string",
@@ -494,9 +472,7 @@ M.OpenZFSFileSystemConfiguration = {
         EndpointIpv6Address = {
             type = "string",
         },
-        ReadCacheConfiguration = {
-            type = "structure",
-        },
+        ReadCacheConfiguration = M.OpenZFSReadCacheConfiguration,
     },
 }
 
@@ -615,7 +591,7 @@ M.SelfManagedActiveDirectoryAttributes = {
         },
         DnsIps = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DomainJoinServiceAccountSecret = {
             type = "string",
@@ -629,9 +605,7 @@ M.WindowsFileSystemConfiguration = {
         ActiveDirectoryId = {
             type = "string",
         },
-        SelfManagedActiveDirectoryConfiguration = {
-            type = "structure",
-        },
+        SelfManagedActiveDirectoryConfiguration = M.SelfManagedActiveDirectoryAttributes,
         DeploymentType = {
             type = "string",
         },
@@ -645,11 +619,11 @@ M.WindowsFileSystemConfiguration = {
             type = "string",
         },
         ThroughputCapacity = {
-            type = "number",
+            type = "integer",
         },
         MaintenanceOperationsInProgress = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         WeeklyMaintenanceStartTime = {
             type = "string",
@@ -658,27 +632,21 @@ M.WindowsFileSystemConfiguration = {
             type = "string",
         },
         AutomaticBackupRetentionDays = {
-            type = "number",
+            type = "integer",
         },
         CopyTagsToBackups = {
             type = "boolean",
         },
         Aliases = {
             type = "list",
-            member_type = "structure",
+            member = M.Alias,
         },
-        AuditLogConfiguration = {
-            type = "structure",
-        },
-        DiskIopsConfiguration = {
-            type = "structure",
-        },
+        AuditLogConfiguration = M.WindowsAuditLogConfiguration,
+        DiskIopsConfiguration = M.DiskIopsConfiguration,
         PreferredFileServerIpv6 = {
             type = "string",
         },
-        FsrmConfiguration = {
-            type = "structure",
-        },
+        FsrmConfiguration = M.WindowsFsrmConfiguration,
     },
 }
 
@@ -713,10 +681,10 @@ M.AggregateConfiguration = {
     members = {
         Aggregates = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TotalConstituents = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -758,7 +726,7 @@ M.AutocommitPeriod = {
             },
         },
         Value = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -790,7 +758,7 @@ M.RetentionPeriod = {
             },
         },
         Value = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -798,24 +766,15 @@ M.RetentionPeriod = {
 M.SnaplockRetentionPeriod = {
     type = "structure",
     members = {
-        DefaultRetention = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        MinimumRetention = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        MaximumRetention = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DefaultRetention = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RetentionPeriod }),
+        MinimumRetention = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RetentionPeriod }),
+        MaximumRetention = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RetentionPeriod }),
     },
 }
 
@@ -830,15 +789,11 @@ M.SnaplockConfiguration = {
         AuditLogVolume = {
             type = "boolean",
         },
-        AutocommitPeriod = {
-            type = "structure",
-        },
+        AutocommitPeriod = M.AutocommitPeriod,
         PrivilegedDelete = {
             type = "string",
         },
-        RetentionPeriod = {
-            type = "structure",
-        },
+        RetentionPeriod = M.SnaplockRetentionPeriod,
         SnaplockType = {
             type = "string",
         },
@@ -859,7 +814,7 @@ M.TieringPolicy = {
     type = "structure",
     members = {
         CoolingPeriod = {
-            type = "number",
+            type = "integer",
         },
         Name = {
             type = "string",
@@ -885,7 +840,7 @@ M.OntapVolumeConfiguration = {
             type = "string",
         },
         SizeInMegabytes = {
-            type = "number",
+            type = "integer",
         },
         StorageEfficiencyEnabled = {
             type = "boolean",
@@ -896,9 +851,7 @@ M.OntapVolumeConfiguration = {
         StorageVirtualMachineRoot = {
             type = "boolean",
         },
-        TieringPolicy = {
-            type = "structure",
-        },
+        TieringPolicy = M.TieringPolicy,
         UUID = {
             type = "string",
         },
@@ -911,17 +864,13 @@ M.OntapVolumeConfiguration = {
         CopyTagsToBackups = {
             type = "boolean",
         },
-        SnaplockConfiguration = {
-            type = "structure",
-        },
+        SnaplockConfiguration = M.SnaplockConfiguration,
         VolumeStyle = {
             type = "string",
         },
-        AggregateConfiguration = {
-            type = "structure",
-        },
+        AggregateConfiguration = M.AggregateConfiguration,
         SizeInBytes = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -949,7 +898,7 @@ M.OpenZFSClientConfiguration = {
         },
         Options = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -962,7 +911,7 @@ M.OpenZFSNfsExport = {
     members = {
         ClientConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.OpenZFSClientConfiguration,
             traits = {
                 required = true,
             },
@@ -997,13 +946,13 @@ M.OpenZFSUserOrGroupQuota = {
             },
         },
         Id = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         StorageCapacityQuotaGiB = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -1021,13 +970,13 @@ M.OpenZFSVolumeConfiguration = {
             type = "string",
         },
         StorageCapacityReservationGiB = {
-            type = "number",
+            type = "integer",
         },
         StorageCapacityQuotaGiB = {
-            type = "number",
+            type = "integer",
         },
         RecordSizeKiB = {
-            type = "number",
+            type = "integer",
         },
         DataCompressionType = {
             type = "string",
@@ -1035,19 +984,17 @@ M.OpenZFSVolumeConfiguration = {
         CopyTagsToSnapshots = {
             type = "boolean",
         },
-        OriginSnapshot = {
-            type = "structure",
-        },
+        OriginSnapshot = M.OpenZFSOriginSnapshotConfiguration,
         ReadOnly = {
             type = "boolean",
         },
         NfsExports = {
             type = "list",
-            member_type = "structure",
+            member = M.OpenZFSNfsExport,
         },
         UserAndGroupQuotas = {
             type = "list",
-            member_type = "structure",
+            member = M.OpenZFSUserOrGroupQuota,
         },
         RestoreToSnapshot = {
             type = "string",
@@ -1092,7 +1039,7 @@ M.AssociateFileSystemAliasesInput = {
         },
         Aliases = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1105,7 +1052,7 @@ M.AssociateFileSystemAliasesOutput = {
     members = {
         Aliases = {
             type = "list",
-            member_type = "structure",
+            member = M.Alias,
         },
     },
 }
@@ -1151,7 +1098,7 @@ M.AutoExportPolicy = {
     members = {
         Events = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1161,7 +1108,7 @@ M.AutoImportPolicy = {
     members = {
         Events = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1262,7 +1209,7 @@ M.CopyBackupInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1424,7 +1371,7 @@ M.CopySnapshotAndUpdateVolumeInput = {
         },
         Options = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1467,12 +1414,8 @@ M.OntapFileSystemIdentity = {
                 required = true,
             },
         },
-        UnixUser = {
-            type = "structure",
-        },
-        WindowsUser = {
-            type = "structure",
-        },
+        UnixUser = M.OntapUnixFileSystemUser,
+        WindowsUser = M.OntapWindowsFileSystemUser,
     },
 }
 
@@ -1485,12 +1428,9 @@ M.CreateAndAttachS3AccessPointOntapConfiguration = {
                 required = true,
             },
         },
-        FileSystemIdentity = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        FileSystemIdentity = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OntapFileSystemIdentity }),
     },
 }
 
@@ -1498,20 +1438,20 @@ M.OpenZFSPosixFileSystemUser = {
     type = "structure",
     members = {
         Uid = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         Gid = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         SecondaryGids = {
             type = "list",
-            member_type = "number",
+            member = { type = "long" },
         },
     },
 }
@@ -1529,9 +1469,7 @@ M.OpenZFSFileSystemIdentity = {
                 required = true,
             },
         },
-        PosixUser = {
-            type = "structure",
-        },
+        PosixUser = M.OpenZFSPosixFileSystemUser,
     },
 }
 
@@ -1544,12 +1482,9 @@ M.CreateAndAttachS3AccessPointOpenZFSConfiguration = {
                 required = true,
             },
         },
-        FileSystemIdentity = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        FileSystemIdentity = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OpenZFSFileSystemIdentity }),
     },
 }
 
@@ -1565,9 +1500,7 @@ M.S3AccessPointVpcConfiguration = {
 M.CreateAndAttachS3AccessPointS3Configuration = {
     type = "structure",
     members = {
-        VpcConfiguration = {
-            type = "structure",
-        },
+        VpcConfiguration = M.S3AccessPointVpcConfiguration,
         Policy = {
             type = "string",
         },
@@ -1597,15 +1530,9 @@ M.CreateAndAttachS3AccessPointInput = {
                 required = true,
             },
         },
-        OpenZFSConfiguration = {
-            type = "structure",
-        },
-        OntapConfiguration = {
-            type = "structure",
-        },
-        S3AccessPoint = {
-            type = "structure",
-        },
+        OpenZFSConfiguration = M.CreateAndAttachS3AccessPointOpenZFSConfiguration,
+        OntapConfiguration = M.CreateAndAttachS3AccessPointOntapConfiguration,
+        S3AccessPoint = M.CreateAndAttachS3AccessPointS3Configuration,
     },
 }
 
@@ -1624,9 +1551,7 @@ M.S3AccessPointOntapConfiguration = {
         VolumeId = {
             type = "string",
         },
-        FileSystemIdentity = {
-            type = "structure",
-        },
+        FileSystemIdentity = M.OntapFileSystemIdentity,
     },
 }
 
@@ -1636,9 +1561,7 @@ M.S3AccessPointOpenZFSConfiguration = {
         VolumeId = {
             type = "string",
         },
-        FileSystemIdentity = {
-            type = "structure",
-        },
+        FileSystemIdentity = M.OpenZFSFileSystemIdentity,
     },
 }
 
@@ -1651,9 +1574,7 @@ M.S3AccessPoint = {
         Alias = {
             type = "string",
         },
-        VpcConfiguration = {
-            type = "structure",
-        },
+        VpcConfiguration = M.S3AccessPointVpcConfiguration,
     },
 }
 
@@ -1663,9 +1584,7 @@ M.S3AccessPointAttachment = {
         Lifecycle = {
             type = "string",
         },
-        LifecycleTransitionReason = {
-            type = "structure",
-        },
+        LifecycleTransitionReason = M.LifecycleTransitionReason,
         CreationTime = {
             type = "timestamp",
         },
@@ -1675,24 +1594,16 @@ M.S3AccessPointAttachment = {
         Type = {
             type = "string",
         },
-        OpenZFSConfiguration = {
-            type = "structure",
-        },
-        OntapConfiguration = {
-            type = "structure",
-        },
-        S3AccessPoint = {
-            type = "structure",
-        },
+        OpenZFSConfiguration = M.S3AccessPointOpenZFSConfiguration,
+        OntapConfiguration = M.S3AccessPointOntapConfiguration,
+        S3AccessPoint = M.S3AccessPoint,
     },
 }
 
 M.CreateAndAttachS3AccessPointOutput = {
     type = "structure",
     members = {
-        S3AccessPointAttachment = {
-            type = "structure",
-        },
+        S3AccessPointAttachment = M.S3AccessPointAttachment,
     },
 }
 
@@ -1766,7 +1677,7 @@ M.CreateBackupInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         VolumeId = {
             type = "string",
@@ -1777,12 +1688,8 @@ M.CreateBackupInput = {
 M.S3DataRepositoryConfiguration = {
     type = "structure",
     members = {
-        AutoImportPolicy = {
-            type = "structure",
-        },
-        AutoExportPolicy = {
-            type = "structure",
-        },
+        AutoImportPolicy = M.AutoImportPolicy,
+        AutoExportPolicy = M.AutoExportPolicy,
     },
 }
 
@@ -1808,17 +1715,15 @@ M.CreateDataRepositoryAssociationInput = {
             type = "boolean",
         },
         ImportedFileChunkSize = {
-            type = "number",
+            type = "integer",
         },
-        S3 = {
-            type = "structure",
-        },
+        S3 = M.S3DataRepositoryConfiguration,
         ClientRequestToken = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1838,11 +1743,9 @@ M.NFSDataRepositoryConfiguration = {
         },
         DnsIps = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        AutoExportPolicy = {
-            type = "structure",
-        },
+        AutoExportPolicy = M.AutoExportPolicy,
     },
 }
 
@@ -1861,9 +1764,7 @@ M.DataRepositoryAssociation = {
         Lifecycle = {
             type = "string",
         },
-        FailureDetails = {
-            type = "structure",
-        },
+        FailureDetails = M.DataRepositoryFailureDetails,
         FileSystemPath = {
             type = "string",
         },
@@ -1874,14 +1775,12 @@ M.DataRepositoryAssociation = {
             type = "boolean",
         },
         ImportedFileChunkSize = {
-            type = "number",
+            type = "integer",
         },
-        S3 = {
-            type = "structure",
-        },
+        S3 = M.S3DataRepositoryConfiguration,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         CreationTime = {
             type = "timestamp",
@@ -1894,20 +1793,16 @@ M.DataRepositoryAssociation = {
         },
         DataRepositorySubdirectories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        NFS = {
-            type = "structure",
-        },
+        NFS = M.NFSDataRepositoryConfiguration,
     },
 }
 
 M.CreateDataRepositoryAssociationOutput = {
     type = "structure",
     members = {
-        Association = {
-            type = "structure",
-        },
+        Association = M.DataRepositoryAssociation,
     },
 }
 
@@ -1922,7 +1817,7 @@ M.DurationSinceLastAccess = {
             type = "string",
         },
         Value = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1930,9 +1825,7 @@ M.DurationSinceLastAccess = {
 M.ReleaseConfiguration = {
     type = "structure",
     members = {
-        DurationSinceLastAccess = {
-            type = "structure",
-        },
+        DurationSinceLastAccess = M.DurationSinceLastAccess,
     },
 }
 
@@ -1983,7 +1876,7 @@ M.CreateDataRepositoryTaskInput = {
         },
         Paths = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         FileSystemId = {
             type = "string",
@@ -1991,25 +1884,20 @@ M.CreateDataRepositoryTaskInput = {
                 required = true,
             },
         },
-        Report = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Report = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CompletionReport }),
         ClientRequestToken = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         CapacityToRelease = {
-            type = "number",
+            type = "long",
         },
-        ReleaseConfiguration = {
-            type = "structure",
-        },
+        ReleaseConfiguration = M.ReleaseConfiguration,
     },
 }
 
@@ -2026,19 +1914,19 @@ M.DataRepositoryTaskStatus = {
     type = "structure",
     members = {
         TotalCount = {
-            type = "number",
+            type = "long",
         },
         SucceededCount = {
-            type = "number",
+            type = "long",
         },
         FailedCount = {
-            type = "number",
+            type = "long",
         },
         LastUpdatedTime = {
             type = "timestamp",
         },
         ReleasedCapacity = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -2081,42 +1969,32 @@ M.DataRepositoryTask = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         FileSystemId = {
             type = "string",
         },
         Paths = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        FailureDetails = {
-            type = "structure",
-        },
-        Status = {
-            type = "structure",
-        },
-        Report = {
-            type = "structure",
-        },
+        FailureDetails = M.DataRepositoryTaskFailureDetails,
+        Status = M.DataRepositoryTaskStatus,
+        Report = M.CompletionReport,
         CapacityToRelease = {
-            type = "number",
+            type = "long",
         },
         FileCacheId = {
             type = "string",
         },
-        ReleaseConfiguration = {
-            type = "structure",
-        },
+        ReleaseConfiguration = M.ReleaseConfiguration,
     },
 }
 
 M.CreateDataRepositoryTaskOutput = {
     type = "structure",
     members = {
-        DataRepositoryTask = {
-            type = "structure",
-        },
+        DataRepositoryTask = M.DataRepositoryTask,
     },
 }
 
@@ -2141,7 +2019,7 @@ M.FileCacheNFSConfiguration = {
         },
         DnsIps = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2163,11 +2041,9 @@ M.FileCacheDataRepositoryAssociation = {
         },
         DataRepositorySubdirectories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        NFS = {
-            type = "structure",
-        },
+        NFS = M.FileCacheNFSConfiguration,
     },
 }
 
@@ -2183,7 +2059,7 @@ M.FileCacheLustreMetadataConfiguration = {
     type = "structure",
     members = {
         StorageCapacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -2195,7 +2071,7 @@ M.CreateFileCacheLustreConfiguration = {
     type = "structure",
     members = {
         PerUnitStorageThroughput = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -2209,12 +2085,9 @@ M.CreateFileCacheLustreConfiguration = {
         WeeklyMaintenanceStartTime = {
             type = "string",
         },
-        MetadataConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        MetadataConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FileCacheLustreMetadataConfiguration }),
     },
 }
 
@@ -2237,25 +2110,25 @@ M.CreateFileCacheInput = {
             },
         },
         StorageCapacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         CopyTagsToDataRepositoryAssociations = {
             type = "boolean",
@@ -2263,12 +2136,10 @@ M.CreateFileCacheInput = {
         KmsKeyId = {
             type = "string",
         },
-        LustreConfiguration = {
-            type = "structure",
-        },
+        LustreConfiguration = M.CreateFileCacheLustreConfiguration,
         DataRepositoryAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.FileCacheDataRepositoryAssociation,
         },
     },
 }
@@ -2294,7 +2165,7 @@ M.FileCacheLustreConfiguration = {
     type = "structure",
     members = {
         PerUnitStorageThroughput = {
-            type = "number",
+            type = "integer",
         },
         DeploymentType = {
             type = "string",
@@ -2305,12 +2176,8 @@ M.FileCacheLustreConfiguration = {
         WeeklyMaintenanceStartTime = {
             type = "string",
         },
-        MetadataConfiguration = {
-            type = "structure",
-        },
-        LogConfiguration = {
-            type = "structure",
-        },
+        MetadataConfiguration = M.FileCacheLustreMetadataConfiguration,
+        LogConfiguration = M.LustreLogConfiguration,
     },
 }
 
@@ -2335,22 +2202,20 @@ M.FileCacheCreating = {
         Lifecycle = {
             type = "string",
         },
-        FailureDetails = {
-            type = "structure",
-        },
+        FailureDetails = M.FileCacheFailureDetails,
         StorageCapacity = {
-            type = "number",
+            type = "integer",
         },
         VpcId = {
             type = "string",
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NetworkInterfaceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DNSName = {
             type = "string",
@@ -2363,17 +2228,15 @@ M.FileCacheCreating = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         CopyTagsToDataRepositoryAssociations = {
             type = "boolean",
         },
-        LustreConfiguration = {
-            type = "structure",
-        },
+        LustreConfiguration = M.FileCacheLustreConfiguration,
         DataRepositoryAssociationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2381,9 +2244,7 @@ M.FileCacheCreating = {
 M.CreateFileCacheOutput = {
     type = "structure",
     members = {
-        FileCache = {
-            type = "structure",
-        },
+        FileCache = M.FileCacheCreating,
     },
 }
 
@@ -2445,7 +2306,7 @@ M.CreateFileSystemLustreMetadataConfiguration = {
     type = "structure",
     members = {
         Iops = {
-            type = "number",
+            type = "integer",
         },
         Mode = {
             type = "string",
@@ -2469,7 +2330,7 @@ M.CreateFileSystemLustreConfiguration = {
             type = "string",
         },
         ImportedFileChunkSize = {
-            type = "number",
+            type = "integer",
         },
         DeploymentType = {
             type = "string",
@@ -2478,13 +2339,13 @@ M.CreateFileSystemLustreConfiguration = {
             type = "string",
         },
         PerUnitStorageThroughput = {
-            type = "number",
+            type = "integer",
         },
         DailyAutomaticBackupStartTime = {
             type = "string",
         },
         AutomaticBackupRetentionDays = {
-            type = "number",
+            type = "integer",
         },
         CopyTagsToBackups = {
             type = "boolean",
@@ -2498,21 +2359,13 @@ M.CreateFileSystemLustreConfiguration = {
         EfaEnabled = {
             type = "boolean",
         },
-        LogConfiguration = {
-            type = "structure",
-        },
-        RootSquashConfiguration = {
-            type = "structure",
-        },
-        MetadataConfiguration = {
-            type = "structure",
-        },
+        LogConfiguration = M.LustreLogCreateConfiguration,
+        RootSquashConfiguration = M.LustreRootSquashConfiguration,
+        MetadataConfiguration = M.CreateFileSystemLustreMetadataConfiguration,
         ThroughputCapacity = {
-            type = "number",
+            type = "integer",
         },
-        DataReadCacheConfiguration = {
-            type = "structure",
-        },
+        DataReadCacheConfiguration = M.LustreReadCacheConfiguration,
     },
 }
 
@@ -2520,7 +2373,7 @@ M.CreateFileSystemOntapConfiguration = {
     type = "structure",
     members = {
         AutomaticBackupRetentionDays = {
-            type = "number",
+            type = "integer",
         },
         DailyAutomaticBackupStartTime = {
             type = "string",
@@ -2537,27 +2390,25 @@ M.CreateFileSystemOntapConfiguration = {
         FsxAdminPassword = {
             type = "string",
         },
-        DiskIopsConfiguration = {
-            type = "structure",
-        },
+        DiskIopsConfiguration = M.DiskIopsConfiguration,
         PreferredSubnetId = {
             type = "string",
         },
         RouteTableIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ThroughputCapacity = {
-            type = "number",
+            type = "integer",
         },
         WeeklyMaintenanceStartTime = {
             type = "string",
         },
         HAPairs = {
-            type = "number",
+            type = "integer",
         },
         ThroughputCapacityPerHAPair = {
-            type = "number",
+            type = "integer",
         },
         EndpointIpv6AddressRange = {
             type = "string",
@@ -2569,18 +2420,18 @@ M.OpenZFSCreateRootVolumeConfiguration = {
     type = "structure",
     members = {
         RecordSizeKiB = {
-            type = "number",
+            type = "integer",
         },
         DataCompressionType = {
             type = "string",
         },
         NfsExports = {
             type = "list",
-            member_type = "structure",
+            member = M.OpenZFSNfsExport,
         },
         UserAndGroupQuotas = {
             type = "list",
-            member_type = "structure",
+            member = M.OpenZFSUserOrGroupQuota,
         },
         CopyTagsToSnapshots = {
             type = "boolean",
@@ -2595,7 +2446,7 @@ M.CreateFileSystemOpenZFSConfiguration = {
     type = "structure",
     members = {
         AutomaticBackupRetentionDays = {
-            type = "number",
+            type = "integer",
         },
         CopyTagsToBackups = {
             type = "boolean",
@@ -2613,7 +2464,7 @@ M.CreateFileSystemOpenZFSConfiguration = {
             },
         },
         ThroughputCapacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -2621,12 +2472,8 @@ M.CreateFileSystemOpenZFSConfiguration = {
         WeeklyMaintenanceStartTime = {
             type = "string",
         },
-        DiskIopsConfiguration = {
-            type = "structure",
-        },
-        RootVolumeConfiguration = {
-            type = "structure",
-        },
+        DiskIopsConfiguration = M.DiskIopsConfiguration,
+        RootVolumeConfiguration = M.OpenZFSCreateRootVolumeConfiguration,
         PreferredSubnetId = {
             type = "string",
         },
@@ -2638,11 +2485,9 @@ M.CreateFileSystemOpenZFSConfiguration = {
         },
         RouteTableIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        ReadCacheConfiguration = {
-            type = "structure",
-        },
+        ReadCacheConfiguration = M.OpenZFSReadCacheConfiguration,
     },
 }
 
@@ -2690,7 +2535,7 @@ M.SelfManagedActiveDirectoryConfiguration = {
         },
         DnsIps = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2707,9 +2552,7 @@ M.CreateFileSystemWindowsConfiguration = {
         ActiveDirectoryId = {
             type = "string",
         },
-        SelfManagedActiveDirectoryConfiguration = {
-            type = "structure",
-        },
+        SelfManagedActiveDirectoryConfiguration = M.SelfManagedActiveDirectoryConfiguration,
         DeploymentType = {
             type = "string",
         },
@@ -2717,7 +2560,7 @@ M.CreateFileSystemWindowsConfiguration = {
             type = "string",
         },
         ThroughputCapacity = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -2729,24 +2572,18 @@ M.CreateFileSystemWindowsConfiguration = {
             type = "string",
         },
         AutomaticBackupRetentionDays = {
-            type = "number",
+            type = "integer",
         },
         CopyTagsToBackups = {
             type = "boolean",
         },
         Aliases = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        AuditLogConfiguration = {
-            type = "structure",
-        },
-        DiskIopsConfiguration = {
-            type = "structure",
-        },
-        FsrmConfiguration = {
-            type = "structure",
-        },
+        AuditLogConfiguration = M.WindowsAuditLogCreateConfiguration,
+        DiskIopsConfiguration = M.DiskIopsConfiguration,
+        FsrmConfiguration = M.WindowsFsrmConfiguration,
     },
 }
 
@@ -2763,44 +2600,36 @@ M.CreateFileSystemInput = {
             },
         },
         StorageCapacity = {
-            type = "number",
+            type = "integer",
         },
         StorageType = {
             type = "string",
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         KmsKeyId = {
             type = "string",
         },
-        WindowsConfiguration = {
-            type = "structure",
-        },
-        LustreConfiguration = {
-            type = "structure",
-        },
-        OntapConfiguration = {
-            type = "structure",
-        },
+        WindowsConfiguration = M.CreateFileSystemWindowsConfiguration,
+        LustreConfiguration = M.CreateFileSystemLustreConfiguration,
+        OntapConfiguration = M.CreateFileSystemOntapConfiguration,
         FileSystemTypeVersion = {
             type = "string",
         },
-        OpenZFSConfiguration = {
-            type = "structure",
-        },
+        OpenZFSConfiguration = M.CreateFileSystemOpenZFSConfiguration,
         NetworkType = {
             type = "string",
         },
@@ -2851,25 +2680,21 @@ M.CreateFileSystemFromBackupInput = {
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        WindowsConfiguration = {
-            type = "structure",
-        },
-        LustreConfiguration = {
-            type = "structure",
-        },
+        WindowsConfiguration = M.CreateFileSystemWindowsConfiguration,
+        LustreConfiguration = M.CreateFileSystemLustreConfiguration,
         StorageType = {
             type = "string",
         },
@@ -2879,11 +2704,9 @@ M.CreateFileSystemFromBackupInput = {
         FileSystemTypeVersion = {
             type = "string",
         },
-        OpenZFSConfiguration = {
-            type = "structure",
-        },
+        OpenZFSConfiguration = M.CreateFileSystemOpenZFSConfiguration,
         StorageCapacity = {
-            type = "number",
+            type = "integer",
         },
         NetworkType = {
             type = "string",
@@ -2911,7 +2734,7 @@ M.CreateSnapshotInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2925,9 +2748,7 @@ M.CreateSvmActiveDirectoryConfiguration = {
                 required = true,
             },
         },
-        SelfManagedActiveDirectoryConfiguration = {
-            type = "structure",
-        },
+        SelfManagedActiveDirectoryConfiguration = M.SelfManagedActiveDirectoryConfiguration,
     },
 }
 
@@ -2940,9 +2761,7 @@ M.StorageVirtualMachineRootVolumeSecurityStyle = {
 M.CreateStorageVirtualMachineInput = {
     type = "structure",
     members = {
-        ActiveDirectoryConfiguration = {
-            type = "structure",
-        },
+        ActiveDirectoryConfiguration = M.CreateSvmActiveDirectoryConfiguration,
         ClientRequestToken = {
             type = "string",
         },
@@ -2963,7 +2782,7 @@ M.CreateStorageVirtualMachineInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         RootVolumeSecurityStyle = {
             type = "string",
@@ -2977,9 +2796,7 @@ M.SvmActiveDirectoryConfiguration = {
         NetBiosName = {
             type = "string",
         },
-        SelfManagedActiveDirectoryConfiguration = {
-            type = "structure",
-        },
+        SelfManagedActiveDirectoryConfiguration = M.SelfManagedActiveDirectoryAttributes,
     },
 }
 
@@ -2991,11 +2808,11 @@ M.SvmEndpoint = {
         },
         IpAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Ipv6Addresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3003,18 +2820,10 @@ M.SvmEndpoint = {
 M.SvmEndpoints = {
     type = "structure",
     members = {
-        Iscsi = {
-            type = "structure",
-        },
-        Management = {
-            type = "structure",
-        },
-        Nfs = {
-            type = "structure",
-        },
-        Smb = {
-            type = "structure",
-        },
+        Iscsi = M.SvmEndpoint,
+        Management = M.SvmEndpoint,
+        Nfs = M.SvmEndpoint,
+        Smb = M.SvmEndpoint,
     },
 }
 
@@ -3037,15 +2846,11 @@ M.StorageVirtualMachineSubtype = {
 M.StorageVirtualMachine = {
     type = "structure",
     members = {
-        ActiveDirectoryConfiguration = {
-            type = "structure",
-        },
+        ActiveDirectoryConfiguration = M.SvmActiveDirectoryConfiguration,
         CreationTime = {
             type = "timestamp",
         },
-        Endpoints = {
-            type = "structure",
-        },
+        Endpoints = M.SvmEndpoints,
         FileSystemId = {
             type = "string",
         },
@@ -3069,11 +2874,9 @@ M.StorageVirtualMachine = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        LifecycleTransitionReason = {
-            type = "structure",
-        },
+        LifecycleTransitionReason = M.LifecycleTransitionReason,
         RootVolumeSecurityStyle = {
             type = "string",
         },
@@ -3083,9 +2886,7 @@ M.StorageVirtualMachine = {
 M.CreateStorageVirtualMachineOutput = {
     type = "structure",
     members = {
-        StorageVirtualMachine = {
-            type = "structure",
-        },
+        StorageVirtualMachine = M.StorageVirtualMachine,
     },
 }
 
@@ -3094,10 +2895,10 @@ M.CreateAggregateConfiguration = {
     members = {
         Aggregates = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ConstituentsPerAggregate = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3113,15 +2914,11 @@ M.CreateSnaplockConfiguration = {
         AuditLogVolume = {
             type = "boolean",
         },
-        AutocommitPeriod = {
-            type = "structure",
-        },
+        AutocommitPeriod = M.AutocommitPeriod,
         PrivilegedDelete = {
             type = "string",
         },
-        RetentionPeriod = {
-            type = "structure",
-        },
+        RetentionPeriod = M.SnaplockRetentionPeriod,
         SnaplockType = {
             type = "string",
             traits = {
@@ -3144,7 +2941,7 @@ M.CreateOntapVolumeConfiguration = {
             type = "string",
         },
         SizeInMegabytes = {
-            type = "number",
+            type = "integer",
         },
         StorageEfficiencyEnabled = {
             type = "boolean",
@@ -3155,9 +2952,7 @@ M.CreateOntapVolumeConfiguration = {
                 required = true,
             },
         },
-        TieringPolicy = {
-            type = "structure",
-        },
+        TieringPolicy = M.TieringPolicy,
         OntapVolumeType = {
             type = "string",
         },
@@ -3167,17 +2962,13 @@ M.CreateOntapVolumeConfiguration = {
         CopyTagsToBackups = {
             type = "boolean",
         },
-        SnaplockConfiguration = {
-            type = "structure",
-        },
+        SnaplockConfiguration = M.CreateSnaplockConfiguration,
         VolumeStyle = {
             type = "string",
         },
-        AggregateConfiguration = {
-            type = "structure",
-        },
+        AggregateConfiguration = M.CreateAggregateConfiguration,
         SizeInBytes = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -3210,13 +3001,13 @@ M.CreateOpenZFSVolumeConfiguration = {
             },
         },
         StorageCapacityReservationGiB = {
-            type = "number",
+            type = "integer",
         },
         StorageCapacityQuotaGiB = {
-            type = "number",
+            type = "integer",
         },
         RecordSizeKiB = {
-            type = "number",
+            type = "integer",
         },
         DataCompressionType = {
             type = "string",
@@ -3224,19 +3015,17 @@ M.CreateOpenZFSVolumeConfiguration = {
         CopyTagsToSnapshots = {
             type = "boolean",
         },
-        OriginSnapshot = {
-            type = "structure",
-        },
+        OriginSnapshot = M.CreateOpenZFSOriginSnapshotConfiguration,
         ReadOnly = {
             type = "boolean",
         },
         NfsExports = {
             type = "list",
-            member_type = "structure",
+            member = M.OpenZFSNfsExport,
         },
         UserAndGroupQuotas = {
             type = "list",
-            member_type = "structure",
+            member = M.OpenZFSUserOrGroupQuota,
         },
     },
 }
@@ -3259,16 +3048,12 @@ M.CreateVolumeInput = {
                 required = true,
             },
         },
-        OntapConfiguration = {
-            type = "structure",
-        },
+        OntapConfiguration = M.CreateOntapVolumeConfiguration,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        OpenZFSConfiguration = {
-            type = "structure",
-        },
+        OpenZFSConfiguration = M.CreateOpenZFSVolumeConfiguration,
     },
 }
 
@@ -3310,12 +3095,10 @@ M.CreateVolumeFromBackupInput = {
                 required = true,
             },
         },
-        OntapConfiguration = {
-            type = "structure",
-        },
+        OntapConfiguration = M.CreateOntapVolumeConfiguration,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3461,7 +3244,7 @@ M.DeleteFileSystemLustreConfiguration = {
         },
         FinalBackupTags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3478,11 +3261,11 @@ M.DeleteFileSystemOpenZFSConfiguration = {
         },
         FinalBackupTags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         Options = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3495,7 +3278,7 @@ M.DeleteFileSystemWindowsConfiguration = {
         },
         FinalBackupTags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3512,15 +3295,9 @@ M.DeleteFileSystemInput = {
         ClientRequestToken = {
             type = "string",
         },
-        WindowsConfiguration = {
-            type = "structure",
-        },
-        LustreConfiguration = {
-            type = "structure",
-        },
-        OpenZFSConfiguration = {
-            type = "structure",
-        },
+        WindowsConfiguration = M.DeleteFileSystemWindowsConfiguration,
+        LustreConfiguration = M.DeleteFileSystemLustreConfiguration,
+        OpenZFSConfiguration = M.DeleteFileSystemOpenZFSConfiguration,
     },
 }
 
@@ -3532,7 +3309,7 @@ M.DeleteFileSystemLustreResponse = {
         },
         FinalBackupTags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3545,7 +3322,7 @@ M.DeleteFileSystemOpenZFSResponse = {
         },
         FinalBackupTags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3558,7 +3335,7 @@ M.DeleteFileSystemWindowsResponse = {
         },
         FinalBackupTags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3572,15 +3349,9 @@ M.DeleteFileSystemOutput = {
         Lifecycle = {
             type = "string",
         },
-        WindowsResponse = {
-            type = "structure",
-        },
-        LustreResponse = {
-            type = "structure",
-        },
-        OpenZFSResponse = {
-            type = "structure",
-        },
+        WindowsResponse = M.DeleteFileSystemWindowsResponse,
+        LustreResponse = M.DeleteFileSystemLustreResponse,
+        OpenZFSResponse = M.DeleteFileSystemOpenZFSResponse,
     },
 }
 
@@ -3656,7 +3427,7 @@ M.DeleteVolumeOntapConfiguration = {
         },
         FinalBackupTags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         BypassSnaplockEnterpriseRetention = {
             type = "boolean",
@@ -3673,7 +3444,7 @@ M.DeleteVolumeOpenZFSConfiguration = {
     members = {
         Options = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3690,12 +3461,8 @@ M.DeleteVolumeInput = {
                 required = true,
             },
         },
-        OntapConfiguration = {
-            type = "structure",
-        },
-        OpenZFSConfiguration = {
-            type = "structure",
-        },
+        OntapConfiguration = M.DeleteVolumeOntapConfiguration,
+        OpenZFSConfiguration = M.DeleteVolumeOpenZFSConfiguration,
     },
 }
 
@@ -3707,7 +3474,7 @@ M.DeleteVolumeOntapResponse = {
         },
         FinalBackupTags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3721,9 +3488,7 @@ M.DeleteVolumeOutput = {
         Lifecycle = {
             type = "string",
         },
-        OntapResponse = {
-            type = "structure",
-        },
+        OntapResponse = M.DeleteVolumeOntapResponse,
     },
 }
 
@@ -3745,7 +3510,7 @@ M.Filter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3755,14 +3520,14 @@ M.DescribeBackupsInput = {
     members = {
         BackupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3775,14 +3540,14 @@ M.DescribeDataRepositoryAssociationsInput = {
     members = {
         AssociationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3795,7 +3560,7 @@ M.DescribeDataRepositoryAssociationsOutput = {
     members = {
         Associations = {
             type = "list",
-            member_type = "structure",
+            member = M.DataRepositoryAssociation,
         },
         NextToken = {
             type = "string",
@@ -3828,7 +3593,7 @@ M.DataRepositoryTaskFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3838,14 +3603,14 @@ M.DescribeDataRepositoryTasksInput = {
     members = {
         TaskIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.DataRepositoryTaskFilter,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3858,7 +3623,7 @@ M.DescribeDataRepositoryTasksOutput = {
     members = {
         DataRepositoryTasks = {
             type = "list",
-            member_type = "structure",
+            member = M.DataRepositoryTask,
         },
         NextToken = {
             type = "string",
@@ -3871,10 +3636,10 @@ M.DescribeFileCachesInput = {
     members = {
         FileCacheIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3903,22 +3668,20 @@ M.FileCache = {
         Lifecycle = {
             type = "string",
         },
-        FailureDetails = {
-            type = "structure",
-        },
+        FailureDetails = M.FileCacheFailureDetails,
         StorageCapacity = {
-            type = "number",
+            type = "integer",
         },
         VpcId = {
             type = "string",
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NetworkInterfaceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DNSName = {
             type = "string",
@@ -3929,12 +3692,10 @@ M.FileCache = {
         ResourceARN = {
             type = "string",
         },
-        LustreConfiguration = {
-            type = "structure",
-        },
+        LustreConfiguration = M.FileCacheLustreConfiguration,
         DataRepositoryAssociationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3944,7 +3705,7 @@ M.DescribeFileCachesOutput = {
     members = {
         FileCaches = {
             type = "list",
-            member_type = "structure",
+            member = M.FileCache,
         },
         NextToken = {
             type = "string",
@@ -3965,7 +3726,7 @@ M.DescribeFileSystemAliasesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -3978,7 +3739,7 @@ M.DescribeFileSystemAliasesOutput = {
     members = {
         Aliases = {
             type = "list",
-            member_type = "structure",
+            member = M.Alias,
         },
         NextToken = {
             type = "string",
@@ -3991,10 +3752,10 @@ M.DescribeFileSystemsInput = {
     members = {
         FileSystemIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -4016,7 +3777,7 @@ M.S3AccessPointAttachmentsFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4026,14 +3787,14 @@ M.DescribeS3AccessPointAttachmentsInput = {
     members = {
         Names = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.S3AccessPointAttachmentsFilter,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -4046,7 +3807,7 @@ M.DescribeS3AccessPointAttachmentsOutput = {
     members = {
         S3AccessPointAttachments = {
             type = "list",
-            member_type = "structure",
+            member = M.S3AccessPointAttachment,
         },
         NextToken = {
             type = "string",
@@ -4090,7 +3851,7 @@ M.SnapshotFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4100,14 +3861,14 @@ M.DescribeSnapshotsInput = {
     members = {
         SnapshotIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.SnapshotFilter,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -4130,7 +3891,7 @@ M.StorageVirtualMachineFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4140,14 +3901,14 @@ M.DescribeStorageVirtualMachinesInput = {
     members = {
         StorageVirtualMachineIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.StorageVirtualMachineFilter,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -4160,7 +3921,7 @@ M.DescribeStorageVirtualMachinesOutput = {
     members = {
         StorageVirtualMachines = {
             type = "list",
-            member_type = "structure",
+            member = M.StorageVirtualMachine,
         },
         NextToken = {
             type = "string",
@@ -4181,7 +3942,7 @@ M.VolumeFilter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4191,14 +3952,14 @@ M.DescribeVolumesInput = {
     members = {
         VolumeIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.VolumeFilter,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -4247,7 +4008,7 @@ M.DisassociateFileSystemAliasesInput = {
         },
         Aliases = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4260,7 +4021,7 @@ M.DisassociateFileSystemAliasesOutput = {
     members = {
         Aliases = {
             type = "list",
-            member_type = "structure",
+            member = M.Alias,
         },
     },
 }
@@ -4275,7 +4036,7 @@ M.ListTagsForResourceInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -4288,7 +4049,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         NextToken = {
             type = "string",
@@ -4384,7 +4145,7 @@ M.RestoreVolumeFromSnapshotInput = {
         },
         Options = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4415,7 +4176,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -4438,7 +4199,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4463,20 +4224,16 @@ M.UpdateDataRepositoryAssociationInput = {
             type = "string",
         },
         ImportedFileChunkSize = {
-            type = "number",
+            type = "integer",
         },
-        S3 = {
-            type = "structure",
-        },
+        S3 = M.S3DataRepositoryConfiguration,
     },
 }
 
 M.UpdateDataRepositoryAssociationOutput = {
     type = "structure",
     members = {
-        Association = {
-            type = "structure",
-        },
+        Association = M.DataRepositoryAssociation,
     },
 }
 
@@ -4501,18 +4258,14 @@ M.UpdateFileCacheInput = {
         ClientRequestToken = {
             type = "string",
         },
-        LustreConfiguration = {
-            type = "structure",
-        },
+        LustreConfiguration = M.UpdateFileCacheLustreConfiguration,
     },
 }
 
 M.UpdateFileCacheOutput = {
     type = "structure",
     members = {
-        FileCache = {
-            type = "structure",
-        },
+        FileCache = M.FileCache,
     },
 }
 
@@ -4520,7 +4273,7 @@ M.UpdateFileSystemLustreMetadataConfiguration = {
     type = "structure",
     members = {
         Iops = {
-            type = "number",
+            type = "integer",
         },
         Mode = {
             type = "string",
@@ -4538,7 +4291,7 @@ M.UpdateFileSystemLustreConfiguration = {
             type = "string",
         },
         AutomaticBackupRetentionDays = {
-            type = "number",
+            type = "integer",
         },
         AutoImportPolicy = {
             type = "string",
@@ -4546,24 +4299,16 @@ M.UpdateFileSystemLustreConfiguration = {
         DataCompressionType = {
             type = "string",
         },
-        LogConfiguration = {
-            type = "structure",
-        },
-        RootSquashConfiguration = {
-            type = "structure",
-        },
+        LogConfiguration = M.LustreLogCreateConfiguration,
+        RootSquashConfiguration = M.LustreRootSquashConfiguration,
         PerUnitStorageThroughput = {
-            type = "number",
+            type = "integer",
         },
-        MetadataConfiguration = {
-            type = "structure",
-        },
+        MetadataConfiguration = M.UpdateFileSystemLustreMetadataConfiguration,
         ThroughputCapacity = {
-            type = "number",
+            type = "integer",
         },
-        DataReadCacheConfiguration = {
-            type = "structure",
-        },
+        DataReadCacheConfiguration = M.LustreReadCacheConfiguration,
     },
 }
 
@@ -4571,7 +4316,7 @@ M.UpdateFileSystemOntapConfiguration = {
     type = "structure",
     members = {
         AutomaticBackupRetentionDays = {
-            type = "number",
+            type = "integer",
         },
         DailyAutomaticBackupStartTime = {
             type = "string",
@@ -4582,25 +4327,23 @@ M.UpdateFileSystemOntapConfiguration = {
         WeeklyMaintenanceStartTime = {
             type = "string",
         },
-        DiskIopsConfiguration = {
-            type = "structure",
-        },
+        DiskIopsConfiguration = M.DiskIopsConfiguration,
         ThroughputCapacity = {
-            type = "number",
+            type = "integer",
         },
         AddRouteTableIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RemoveRouteTableIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ThroughputCapacityPerHAPair = {
-            type = "number",
+            type = "integer",
         },
         HAPairs = {
-            type = "number",
+            type = "integer",
         },
         EndpointIpv6AddressRange = {
             type = "string",
@@ -4612,7 +4355,7 @@ M.UpdateFileSystemOpenZFSConfiguration = {
     type = "structure",
     members = {
         AutomaticBackupRetentionDays = {
-            type = "number",
+            type = "integer",
         },
         CopyTagsToBackups = {
             type = "boolean",
@@ -4624,25 +4367,21 @@ M.UpdateFileSystemOpenZFSConfiguration = {
             type = "string",
         },
         ThroughputCapacity = {
-            type = "number",
+            type = "integer",
         },
         WeeklyMaintenanceStartTime = {
             type = "string",
         },
-        DiskIopsConfiguration = {
-            type = "structure",
-        },
+        DiskIopsConfiguration = M.DiskIopsConfiguration,
         AddRouteTableIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RemoveRouteTableIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        ReadCacheConfiguration = {
-            type = "structure",
-        },
+        ReadCacheConfiguration = M.OpenZFSReadCacheConfiguration,
         EndpointIpv6AddressRange = {
             type = "string",
         },
@@ -4660,7 +4399,7 @@ M.SelfManagedActiveDirectoryConfigurationUpdates = {
         },
         DnsIps = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DomainName = {
             type = "string",
@@ -4687,23 +4426,15 @@ M.UpdateFileSystemWindowsConfiguration = {
             type = "string",
         },
         AutomaticBackupRetentionDays = {
-            type = "number",
+            type = "integer",
         },
         ThroughputCapacity = {
-            type = "number",
+            type = "integer",
         },
-        SelfManagedActiveDirectoryConfiguration = {
-            type = "structure",
-        },
-        AuditLogConfiguration = {
-            type = "structure",
-        },
-        DiskIopsConfiguration = {
-            type = "structure",
-        },
-        FsrmConfiguration = {
-            type = "structure",
-        },
+        SelfManagedActiveDirectoryConfiguration = M.SelfManagedActiveDirectoryConfigurationUpdates,
+        AuditLogConfiguration = M.WindowsAuditLogCreateConfiguration,
+        DiskIopsConfiguration = M.DiskIopsConfiguration,
+        FsrmConfiguration = M.WindowsFsrmConfiguration,
     },
 }
 
@@ -4720,20 +4451,12 @@ M.UpdateFileSystemInput = {
             type = "string",
         },
         StorageCapacity = {
-            type = "number",
+            type = "integer",
         },
-        WindowsConfiguration = {
-            type = "structure",
-        },
-        LustreConfiguration = {
-            type = "structure",
-        },
-        OntapConfiguration = {
-            type = "structure",
-        },
-        OpenZFSConfiguration = {
-            type = "structure",
-        },
+        WindowsConfiguration = M.UpdateFileSystemWindowsConfiguration,
+        LustreConfiguration = M.UpdateFileSystemLustreConfiguration,
+        OntapConfiguration = M.UpdateFileSystemOntapConfiguration,
+        OpenZFSConfiguration = M.UpdateFileSystemOpenZFSConfiguration,
         StorageType = {
             type = "string",
         },
@@ -4791,9 +4514,7 @@ M.UpdateSnapshotInput = {
 M.UpdateSvmActiveDirectoryConfiguration = {
     type = "structure",
     members = {
-        SelfManagedActiveDirectoryConfiguration = {
-            type = "structure",
-        },
+        SelfManagedActiveDirectoryConfiguration = M.SelfManagedActiveDirectoryConfigurationUpdates,
         NetBiosName = {
             type = "string",
         },
@@ -4803,9 +4524,7 @@ M.UpdateSvmActiveDirectoryConfiguration = {
 M.UpdateStorageVirtualMachineInput = {
     type = "structure",
     members = {
-        ActiveDirectoryConfiguration = {
-            type = "structure",
-        },
+        ActiveDirectoryConfiguration = M.UpdateSvmActiveDirectoryConfiguration,
         ClientRequestToken = {
             type = "string",
         },
@@ -4824,9 +4543,7 @@ M.UpdateStorageVirtualMachineInput = {
 M.UpdateStorageVirtualMachineOutput = {
     type = "structure",
     members = {
-        StorageVirtualMachine = {
-            type = "structure",
-        },
+        StorageVirtualMachine = M.StorageVirtualMachine,
     },
 }
 
@@ -4836,15 +4553,11 @@ M.UpdateSnaplockConfiguration = {
         AuditLogVolume = {
             type = "boolean",
         },
-        AutocommitPeriod = {
-            type = "structure",
-        },
+        AutocommitPeriod = M.AutocommitPeriod,
         PrivilegedDelete = {
             type = "string",
         },
-        RetentionPeriod = {
-            type = "structure",
-        },
+        RetentionPeriod = M.SnaplockRetentionPeriod,
         VolumeAppendModeEnabled = {
             type = "boolean",
         },
@@ -4861,25 +4574,21 @@ M.UpdateOntapVolumeConfiguration = {
             type = "string",
         },
         SizeInMegabytes = {
-            type = "number",
+            type = "integer",
         },
         StorageEfficiencyEnabled = {
             type = "boolean",
         },
-        TieringPolicy = {
-            type = "structure",
-        },
+        TieringPolicy = M.TieringPolicy,
         SnapshotPolicy = {
             type = "string",
         },
         CopyTagsToBackups = {
             type = "boolean",
         },
-        SnaplockConfiguration = {
-            type = "structure",
-        },
+        SnaplockConfiguration = M.UpdateSnaplockConfiguration,
         SizeInBytes = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -4888,24 +4597,24 @@ M.UpdateOpenZFSVolumeConfiguration = {
     type = "structure",
     members = {
         StorageCapacityReservationGiB = {
-            type = "number",
+            type = "integer",
         },
         StorageCapacityQuotaGiB = {
-            type = "number",
+            type = "integer",
         },
         RecordSizeKiB = {
-            type = "number",
+            type = "integer",
         },
         DataCompressionType = {
             type = "string",
         },
         NfsExports = {
             type = "list",
-            member_type = "structure",
+            member = M.OpenZFSNfsExport,
         },
         UserAndGroupQuotas = {
             type = "list",
-            member_type = "structure",
+            member = M.OpenZFSUserOrGroupQuota,
         },
         ReadOnly = {
             type = "boolean",
@@ -4925,15 +4634,11 @@ M.UpdateVolumeInput = {
                 required = true,
             },
         },
-        OntapConfiguration = {
-            type = "structure",
-        },
+        OntapConfiguration = M.UpdateOntapVolumeConfiguration,
         Name = {
             type = "string",
         },
-        OpenZFSConfiguration = {
-            type = "structure",
-        },
+        OpenZFSConfiguration = M.UpdateOpenZFSVolumeConfiguration,
     },
 }
 
@@ -4944,7 +4649,7 @@ M.AdministrativeAction = {
             type = "string",
         },
         ProgressPercent = {
-            type = "number",
+            type = "integer",
         },
         RequestTime = {
             type = "timestamp",
@@ -4952,23 +4657,15 @@ M.AdministrativeAction = {
         Status = {
             type = "string",
         },
-        TargetFileSystemValues = {
-            type = "structure",
-        },
-        FailureDetails = {
-            type = "structure",
-        },
-        TargetVolumeValues = {
-            type = "structure",
-        },
-        TargetSnapshotValues = {
-            type = "structure",
-        },
+        TargetFileSystemValues = M.FileSystem,
+        FailureDetails = M.AdministrativeActionFailureDetails,
+        TargetVolumeValues = M.Volume,
+        TargetSnapshotValues = M.Snapshot,
         TotalTransferBytes = {
-            type = "number",
+            type = "long",
         },
         RemainingTransferBytes = {
-            type = "number",
+            type = "long",
         },
         Message = {
             type = "string",
@@ -4994,11 +4691,9 @@ M.FileSystem = {
         Lifecycle = {
             type = "string",
         },
-        FailureDetails = {
-            type = "structure",
-        },
+        FailureDetails = M.FileSystemFailureDetails,
         StorageCapacity = {
-            type = "number",
+            type = "integer",
         },
         StorageType = {
             type = "string",
@@ -5008,11 +4703,11 @@ M.FileSystem = {
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NetworkInterfaceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DNSName = {
             type = "string",
@@ -5025,27 +4720,19 @@ M.FileSystem = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        WindowsConfiguration = {
-            type = "structure",
-        },
-        LustreConfiguration = {
-            type = "structure",
-        },
+        WindowsConfiguration = M.WindowsFileSystemConfiguration,
+        LustreConfiguration = M.LustreFileSystemConfiguration,
         AdministrativeActions = {
             type = "list",
-            member_type = "structure",
+            member = M.AdministrativeAction,
         },
-        OntapConfiguration = {
-            type = "structure",
-        },
+        OntapConfiguration = M.OntapFileSystemConfiguration,
         FileSystemTypeVersion = {
             type = "string",
         },
-        OpenZFSConfiguration = {
-            type = "structure",
-        },
+        OpenZFSConfiguration = M.OpenZFSFileSystemConfiguration,
         NetworkType = {
             type = "string",
         },
@@ -5073,16 +4760,14 @@ M.Snapshot = {
         Lifecycle = {
             type = "string",
         },
-        LifecycleTransitionReason = {
-            type = "structure",
-        },
+        LifecycleTransitionReason = M.LifecycleTransitionReason,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         AdministrativeActions = {
             type = "list",
-            member_type = "structure",
+            member = M.AdministrativeAction,
         },
     },
 }
@@ -5102,15 +4787,13 @@ M.Volume = {
         Name = {
             type = "string",
         },
-        OntapConfiguration = {
-            type = "structure",
-        },
+        OntapConfiguration = M.OntapVolumeConfiguration,
         ResourceARN = {
             type = "string",
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         VolumeId = {
             type = "string",
@@ -5118,16 +4801,12 @@ M.Volume = {
         VolumeType = {
             type = "string",
         },
-        LifecycleTransitionReason = {
-            type = "structure",
-        },
+        LifecycleTransitionReason = M.LifecycleTransitionReason,
         AdministrativeActions = {
             type = "list",
-            member_type = "structure",
+            member = M.AdministrativeAction,
         },
-        OpenZFSConfiguration = {
-            type = "structure",
-        },
+        OpenZFSConfiguration = M.OpenZFSVolumeConfiguration,
     },
 }
 
@@ -5142,7 +4821,7 @@ M.CopySnapshotAndUpdateVolumeOutput = {
         },
         AdministrativeActions = {
             type = "list",
-            member_type = "structure",
+            member = M.AdministrativeAction,
         },
     },
 }
@@ -5158,7 +4837,7 @@ M.RestoreVolumeFromSnapshotOutput = {
         },
         AdministrativeActions = {
             type = "list",
-            member_type = "structure",
+            member = M.AdministrativeAction,
         },
     },
 }
@@ -5166,90 +4845,70 @@ M.RestoreVolumeFromSnapshotOutput = {
 M.CreateFileSystemFromBackupOutput = {
     type = "structure",
     members = {
-        FileSystem = {
-            type = "structure",
-        },
+        FileSystem = M.FileSystem,
     },
 }
 
 M.CreateFileSystemOutput = {
     type = "structure",
     members = {
-        FileSystem = {
-            type = "structure",
-        },
+        FileSystem = M.FileSystem,
     },
 }
 
 M.CreateSnapshotOutput = {
     type = "structure",
     members = {
-        Snapshot = {
-            type = "structure",
-        },
+        Snapshot = M.Snapshot,
     },
 }
 
 M.CreateVolumeFromBackupOutput = {
     type = "structure",
     members = {
-        Volume = {
-            type = "structure",
-        },
+        Volume = M.Volume,
     },
 }
 
 M.CreateVolumeOutput = {
     type = "structure",
     members = {
-        Volume = {
-            type = "structure",
-        },
+        Volume = M.Volume,
     },
 }
 
 M.ReleaseFileSystemNfsV3LocksOutput = {
     type = "structure",
     members = {
-        FileSystem = {
-            type = "structure",
-        },
+        FileSystem = M.FileSystem,
     },
 }
 
 M.StartMisconfiguredStateRecoveryOutput = {
     type = "structure",
     members = {
-        FileSystem = {
-            type = "structure",
-        },
+        FileSystem = M.FileSystem,
     },
 }
 
 M.UpdateFileSystemOutput = {
     type = "structure",
     members = {
-        FileSystem = {
-            type = "structure",
-        },
+        FileSystem = M.FileSystem,
     },
 }
 
 M.UpdateSnapshotOutput = {
     type = "structure",
     members = {
-        Snapshot = {
-            type = "structure",
-        },
+        Snapshot = M.Snapshot,
     },
 }
 
 M.UpdateVolumeOutput = {
     type = "structure",
     members = {
-        Volume = {
-            type = "structure",
-        },
+        Volume = M.Volume,
     },
 }
 
@@ -5258,7 +4917,7 @@ M.DescribeFileSystemsOutput = {
     members = {
         FileSystems = {
             type = "list",
-            member_type = "structure",
+            member = M.FileSystem,
         },
         NextToken = {
             type = "string",
@@ -5271,7 +4930,7 @@ M.DescribeSnapshotsOutput = {
     members = {
         Snapshots = {
             type = "list",
-            member_type = "structure",
+            member = M.Snapshot,
         },
         NextToken = {
             type = "string",
@@ -5284,7 +4943,7 @@ M.DescribeVolumesOutput = {
     members = {
         Volumes = {
             type = "list",
-            member_type = "structure",
+            member = M.Volume,
         },
         NextToken = {
             type = "string",
@@ -5307,9 +4966,7 @@ M.Backup = {
                 required = true,
             },
         },
-        FailureDetails = {
-            type = "structure",
-        },
+        FailureDetails = M.BackupFailureDetails,
         Type = {
             type = "string",
             traits = {
@@ -5317,7 +4974,7 @@ M.Backup = {
             },
         },
         ProgressPercent = {
-            type = "number",
+            type = "integer",
         },
         CreationTime = {
             type = "timestamp",
@@ -5333,17 +4990,12 @@ M.Backup = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        FileSystem = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        DirectoryInformation = {
-            type = "structure",
-        },
+        FileSystem = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FileSystem }),
+        DirectoryInformation = M.ActiveDirectoryBackupAttributes,
         OwnerId = {
             type = "string",
         },
@@ -5356,11 +5008,9 @@ M.Backup = {
         ResourceType = {
             type = "string",
         },
-        Volume = {
-            type = "structure",
-        },
+        Volume = M.Volume,
         SizeInBytes = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -5368,18 +5018,14 @@ M.Backup = {
 M.CopyBackupOutput = {
     type = "structure",
     members = {
-        Backup = {
-            type = "structure",
-        },
+        Backup = M.Backup,
     },
 }
 
 M.CreateBackupOutput = {
     type = "structure",
     members = {
-        Backup = {
-            type = "structure",
-        },
+        Backup = M.Backup,
     },
 }
 
@@ -5388,7 +5034,7 @@ M.DescribeBackupsOutput = {
     members = {
         Backups = {
             type = "list",
-            member_type = "structure",
+            member = M.Backup,
         },
         NextToken = {
             type = "string",

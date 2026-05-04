@@ -15,12 +15,15 @@ M.AccountEntityAggregate = {
             type = "string",
         },
         count = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         statuses = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
         },
     },
 }
@@ -51,13 +54,13 @@ M.AffectedEntity = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         entityMetadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -75,7 +78,7 @@ M.DescribeAffectedAccountsForOrganizationInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -91,7 +94,7 @@ M.DescribeAffectedAccountsForOrganizationOutput = {
     members = {
         affectedAccounts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         eventScopeCode = {
             type = "string",
@@ -129,30 +132,30 @@ M.EntityFilter = {
     members = {
         eventArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         entityArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         entityValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         lastUpdatedTimes = {
             type = "list",
-            member_type = "structure",
+            member = M.DateTimeRange,
         },
         tags = {
             type = "list",
-            member_type = "map",
+            member = { type = "map" },
         },
         statusCodes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -160,12 +163,9 @@ M.EntityFilter = {
 M.DescribeAffectedEntitiesInput = {
     type = "structure",
     members = {
-        filter = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        filter = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EntityFilter }),
         locale = {
             type = "string",
         },
@@ -173,7 +173,7 @@ M.DescribeAffectedEntitiesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -183,7 +183,7 @@ M.DescribeAffectedEntitiesOutput = {
     members = {
         entities = {
             type = "list",
-            member_type = "structure",
+            member = M.AffectedEntity,
         },
         nextToken = {
             type = "string",
@@ -215,7 +215,7 @@ M.EntityAccountFilter = {
         },
         statusCodes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -240,7 +240,7 @@ M.DescribeAffectedEntitiesForOrganizationInput = {
     members = {
         organizationEntityFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.EventAccountFilter,
         },
         locale = {
             type = "string",
@@ -249,11 +249,11 @@ M.DescribeAffectedEntitiesForOrganizationInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         organizationEntityAccountFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.EntityAccountFilter,
         },
     },
 }
@@ -281,11 +281,11 @@ M.DescribeAffectedEntitiesForOrganizationOutput = {
     members = {
         entities = {
             type = "list",
-            member_type = "structure",
+            member = M.AffectedEntity,
         },
         failedSet = {
             type = "list",
-            member_type = "structure",
+            member = M.OrganizationAffectedEntitiesErrorItem,
         },
         nextToken = {
             type = "string",
@@ -298,7 +298,7 @@ M.DescribeEntityAggregatesInput = {
     members = {
         eventArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -310,12 +310,15 @@ M.EntityAggregate = {
             type = "string",
         },
         count = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         statuses = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
         },
     },
 }
@@ -325,7 +328,7 @@ M.DescribeEntityAggregatesOutput = {
     members = {
         entityAggregates = {
             type = "list",
-            member_type = "structure",
+            member = M.EntityAggregate,
         },
     },
 }
@@ -335,14 +338,14 @@ M.DescribeEntityAggregatesForOrganizationInput = {
     members = {
         eventArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         awsAccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -354,16 +357,19 @@ M.OrganizationEntityAggregate = {
             type = "string",
         },
         count = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         statuses = {
             type = "map",
-            key_type = "string",
-            value_type = "number",
+            key = { type = "string" },
+            value = { type = "integer" },
         },
         accounts = {
             type = "list",
-            member_type = "structure",
+            member = M.AccountEntityAggregate,
         },
     },
 }
@@ -373,7 +379,7 @@ M.DescribeEntityAggregatesForOrganizationOutput = {
     members = {
         organizationEntityAggregates = {
             type = "list",
-            member_type = "structure",
+            member = M.OrganizationEntityAggregate,
         },
     },
 }
@@ -412,63 +418,63 @@ M.EventFilter = {
     members = {
         actionabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         eventArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         eventTypeCodes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         services = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         regions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         availabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         startTimes = {
             type = "list",
-            member_type = "structure",
+            member = M.DateTimeRange,
         },
         endTimes = {
             type = "list",
-            member_type = "structure",
+            member = M.DateTimeRange,
         },
         lastUpdatedTimes = {
             type = "list",
-            member_type = "structure",
+            member = M.DateTimeRange,
         },
         entityArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         entityValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         eventTypeCategories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         tags = {
             type = "list",
-            member_type = "map",
+            member = { type = "map" },
         },
         eventStatusCodes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         personas = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -476,9 +482,7 @@ M.EventFilter = {
 M.DescribeEventAggregatesInput = {
     type = "structure",
     members = {
-        filter = {
-            type = "structure",
-        },
+        filter = M.EventFilter,
         aggregateField = {
             type = "string",
             traits = {
@@ -486,7 +490,7 @@ M.DescribeEventAggregatesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -501,7 +505,10 @@ M.EventAggregate = {
             type = "string",
         },
         count = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -511,7 +518,7 @@ M.DescribeEventAggregatesOutput = {
     members = {
         eventAggregates = {
             type = "list",
-            member_type = "structure",
+            member = M.EventAggregate,
         },
         nextToken = {
             type = "string",
@@ -524,7 +531,7 @@ M.DescribeEventDetailsInput = {
     members = {
         eventArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -591,7 +598,7 @@ M.Event = {
         },
         personas = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -608,16 +615,12 @@ M.EventDescription = {
 M.EventDetails = {
     type = "structure",
     members = {
-        event = {
-            type = "structure",
-        },
-        eventDescription = {
-            type = "structure",
-        },
+        event = M.Event,
+        eventDescription = M.EventDescription,
         eventMetadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -627,11 +630,11 @@ M.DescribeEventDetailsOutput = {
     members = {
         successfulSet = {
             type = "list",
-            member_type = "structure",
+            member = M.EventDetails,
         },
         failedSet = {
             type = "list",
-            member_type = "structure",
+            member = M.EventDetailsErrorItem,
         },
     },
 }
@@ -641,7 +644,7 @@ M.DescribeEventDetailsForOrganizationInput = {
     members = {
         organizationEventDetailFilters = {
             type = "list",
-            member_type = "structure",
+            member = M.EventAccountFilter,
             traits = {
                 required = true,
             },
@@ -676,16 +679,12 @@ M.OrganizationEventDetails = {
         awsAccountId = {
             type = "string",
         },
-        event = {
-            type = "structure",
-        },
-        eventDescription = {
-            type = "structure",
-        },
+        event = M.Event,
+        eventDescription = M.EventDescription,
         eventMetadata = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -695,11 +694,11 @@ M.DescribeEventDetailsForOrganizationOutput = {
     members = {
         successfulSet = {
             type = "list",
-            member_type = "structure",
+            member = M.OrganizationEventDetails,
         },
         failedSet = {
             type = "list",
-            member_type = "structure",
+            member = M.OrganizationEventDetailsErrorItem,
         },
     },
 }
@@ -707,14 +706,12 @@ M.DescribeEventDetailsForOrganizationOutput = {
 M.DescribeEventsInput = {
     type = "structure",
     members = {
-        filter = {
-            type = "structure",
-        },
+        filter = M.EventFilter,
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         locale = {
             type = "string",
@@ -727,7 +724,7 @@ M.DescribeEventsOutput = {
     members = {
         events = {
             type = "list",
-            member_type = "structure",
+            member = M.Event,
         },
         nextToken = {
             type = "string",
@@ -740,52 +737,46 @@ M.OrganizationEventFilter = {
     members = {
         actionabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         eventTypeCodes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         awsAccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         services = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         regions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        startTime = {
-            type = "structure",
-        },
-        endTime = {
-            type = "structure",
-        },
-        lastUpdatedTime = {
-            type = "structure",
-        },
+        startTime = M.DateTimeRange,
+        endTime = M.DateTimeRange,
+        lastUpdatedTime = M.DateTimeRange,
         entityArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         entityValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         eventTypeCategories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         eventStatusCodes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         personas = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -793,14 +784,12 @@ M.OrganizationEventFilter = {
 M.DescribeEventsForOrganizationInput = {
     type = "structure",
     members = {
-        filter = {
-            type = "structure",
-        },
+        filter = M.OrganizationEventFilter,
         nextToken = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         locale = {
             type = "string",
@@ -846,7 +835,7 @@ M.OrganizationEvent = {
         },
         personas = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -856,7 +845,7 @@ M.DescribeEventsForOrganizationOutput = {
     members = {
         events = {
             type = "list",
-            member_type = "structure",
+            member = M.OrganizationEvent,
         },
         nextToken = {
             type = "string",
@@ -881,23 +870,23 @@ M.EventTypeFilter = {
     members = {
         eventTypeCodes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         services = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         eventTypeCategories = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         actionabilities = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         personas = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -905,9 +894,7 @@ M.EventTypeFilter = {
 M.DescribeEventTypesInput = {
     type = "structure",
     members = {
-        filter = {
-            type = "structure",
-        },
+        filter = M.EventTypeFilter,
         locale = {
             type = "string",
         },
@@ -915,7 +902,7 @@ M.DescribeEventTypesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -937,7 +924,7 @@ M.EventType = {
         },
         personas = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -947,7 +934,7 @@ M.DescribeEventTypesOutput = {
     members = {
         eventTypes = {
             type = "list",
-            member_type = "structure",
+            member = M.EventType,
         },
         nextToken = {
             type = "string",

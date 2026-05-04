@@ -29,13 +29,13 @@ M.AccessBudgetDetails = {
             },
         },
         remainingBudget = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         budget = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -63,13 +63,13 @@ M.AccessBudget = {
         },
         details = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessBudgetDetails,
             traits = {
                 required = true,
             },
         },
         aggregateRemainingBudget = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -105,12 +105,9 @@ M.S3ConfigMap = {
 M.AudienceDestination = {
     type = "structure",
     members = {
-        s3Destination = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        s3Destination = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3ConfigMap }),
     },
 }
 
@@ -124,7 +121,7 @@ M.ListAudienceExportJobsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -153,7 +150,7 @@ M.AudienceSize = {
             },
         },
         value = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -209,12 +206,9 @@ M.AudienceExportJobSummary = {
                 required = true,
             },
         },
-        audienceSize = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        audienceSize = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AudienceSize }),
         description = {
             type = "string",
         },
@@ -224,9 +218,7 @@ M.AudienceExportJobSummary = {
                 required = true,
             },
         },
-        statusDetails = {
-            type = "structure",
-        },
+        statusDetails = M.StatusDetails,
         outputLocation = {
             type = "string",
         },
@@ -241,7 +233,7 @@ M.ListAudienceExportJobsOutput = {
         },
         audienceExportJobs = {
             type = "list",
-            member_type = "structure",
+            member = M.AudienceExportJobSummary,
             traits = {
                 required = true,
             },
@@ -302,7 +294,7 @@ M.ServiceQuotaExceededException = {
             type = "string",
         },
         quotaValue = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -322,12 +314,9 @@ M.StartAudienceExportJobInput = {
                 required = true,
             },
         },
-        audienceSize = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        audienceSize = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AudienceSize }),
         description = {
             type = "string",
         },
@@ -371,14 +360,11 @@ M.GetAudienceGenerationJobInput = {
 M.RelevanceMetric = {
     type = "structure",
     members = {
-        audienceSize = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        audienceSize = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AudienceSize }),
         score = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -388,13 +374,13 @@ M.AudienceQualityMetrics = {
     members = {
         relevanceMetrics = {
             type = "list",
-            member_type = "structure",
+            member = M.RelevanceMetric,
             traits = {
                 required = true,
             },
         },
         recallMetric = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -404,8 +390,8 @@ M.WorkerComputeConfigurationProperties = {
     members = {
         spark = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -420,22 +406,24 @@ M.WorkerComputeConfiguration = {
     members = {
         type = {
             type = "string",
+            traits = {
+                default = "CR.1X",
+            },
         },
         number = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 16,
+            },
         },
-        properties = {
-            type = "union",
-        },
+        properties = M.WorkerComputeConfigurationProperties,
     },
 }
 
 M.ComputeConfiguration = {
     type = "union",
     members = {
-        worker = {
-            type = "structure",
-        },
+        worker = M.WorkerComputeConfiguration,
     },
 }
 
@@ -450,8 +438,8 @@ M.ProtectedQuerySQLParameters = {
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -459,21 +447,15 @@ M.ProtectedQuerySQLParameters = {
 M.AudienceGenerationJobDataSource = {
     type = "structure",
     members = {
-        dataSource = {
-            type = "structure",
-        },
+        dataSource = M.S3ConfigMap,
         roleArn = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        sqlParameters = {
-            type = "structure",
-        },
-        sqlComputeConfiguration = {
-            type = "union",
-        },
+        sqlParameters = M.ProtectedQuerySQLParameters,
+        sqlComputeConfiguration = M.ComputeConfiguration,
     },
 }
 
@@ -525,34 +507,28 @@ M.GetAudienceGenerationJobOutput = {
                 required = true,
             },
         },
-        statusDetails = {
-            type = "structure",
-        },
+        statusDetails = M.StatusDetails,
         configuredAudienceModelArn = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        seedAudience = {
-            type = "structure",
-        },
+        seedAudience = M.AudienceGenerationJobDataSource,
         includeSeedInOutput = {
             type = "boolean",
         },
         collaborationId = {
             type = "string",
         },
-        metrics = {
-            type = "structure",
-        },
+        metrics = M.AudienceQualityMetrics,
         startedBy = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         protectedQueryIdentifier = {
             type = "string",
@@ -570,7 +546,7 @@ M.ListAudienceGenerationJobsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -651,7 +627,7 @@ M.ListAudienceGenerationJobsOutput = {
         },
         audienceGenerationJobs = {
             type = "list",
-            member_type = "structure",
+            member = M.AudienceGenerationJobSummary,
             traits = {
                 required = true,
             },
@@ -674,14 +650,14 @@ M.StartAudienceGenerationJobInput = {
                 required = true,
             },
         },
-        seedAudience = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        seedAudience = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AudienceGenerationJobDataSource }),
         includeSeedInOutput = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         collaborationId = {
             type = "string",
@@ -691,8 +667,8 @@ M.StartAudienceGenerationJobInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -754,8 +730,8 @@ M.CreateAudienceModelInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         description = {
             type = "string",
@@ -868,16 +844,14 @@ M.GetAudienceModelOutput = {
                 required = true,
             },
         },
-        statusDetails = {
-            type = "structure",
-        },
+        statusDetails = M.StatusDetails,
         kmsKeyArn = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         description = {
             type = "string",
@@ -895,7 +869,7 @@ M.ListAudienceModelsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -958,7 +932,7 @@ M.ListAudienceModelsOutput = {
         },
         audienceModels = {
             type = "list",
-            member_type = "structure",
+            member = M.AudienceModelSummary,
             traits = {
                 required = true,
             },
@@ -977,7 +951,7 @@ M.AudienceSizeConfig = {
         },
         audienceSizeBins = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
             traits = {
                 required = true,
             },
@@ -993,12 +967,9 @@ M.TagOnCreatePolicy = {
 M.ConfiguredAudienceModelOutputConfig = {
     type = "structure",
     members = {
-        destination = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        destination = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AudienceDestination }),
         roleArn = {
             type = "string",
             traits = {
@@ -1028,32 +999,30 @@ M.CreateConfiguredAudienceModelInput = {
                 required = true,
             },
         },
-        outputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        outputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConfiguredAudienceModelOutputConfig }),
         description = {
             type = "string",
         },
         sharedAudienceMetrics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         minMatchingSeedSize = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 500,
+            },
         },
-        audienceSizeConfig = {
-            type = "structure",
-        },
+        audienceSizeConfig = M.AudienceSizeConfig,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         childResourceTagOnCreatePolicy = {
             type = "string",
@@ -1142,12 +1111,9 @@ M.GetConfiguredAudienceModelOutput = {
                 required = true,
             },
         },
-        outputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        outputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConfiguredAudienceModelOutputConfig }),
         description = {
             type = "string",
         },
@@ -1159,21 +1125,19 @@ M.GetConfiguredAudienceModelOutput = {
         },
         sharedAudienceMetrics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         minMatchingSeedSize = {
-            type = "number",
+            type = "integer",
         },
-        audienceSizeConfig = {
-            type = "structure",
-        },
+        audienceSizeConfig = M.AudienceSizeConfig,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         childResourceTagOnCreatePolicy = {
             type = "string",
@@ -1191,7 +1155,7 @@ M.ListConfiguredAudienceModelsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1228,12 +1192,9 @@ M.ConfiguredAudienceModelSummary = {
                 required = true,
             },
         },
-        outputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        outputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ConfiguredAudienceModelOutputConfig }),
         description = {
             type = "string",
         },
@@ -1260,7 +1221,7 @@ M.ListConfiguredAudienceModelsOutput = {
         },
         configuredAudienceModels = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfiguredAudienceModelSummary,
             traits = {
                 required = true,
             },
@@ -1278,22 +1239,18 @@ M.UpdateConfiguredAudienceModelInput = {
                 required = true,
             },
         },
-        outputConfig = {
-            type = "structure",
-        },
+        outputConfig = M.ConfiguredAudienceModelOutputConfig,
         audienceModelArn = {
             type = "string",
         },
         sharedAudienceMetrics = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         minMatchingSeedSize = {
-            type = "number",
+            type = "integer",
         },
-        audienceSizeConfig = {
-            type = "structure",
-        },
+        audienceSizeConfig = M.AudienceSizeConfig,
         description = {
             type = "string",
         },
@@ -1455,15 +1412,15 @@ M.ContainerConfig = {
         },
         entrypoint = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         arguments = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         metricDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.MetricDefinition,
         },
     },
 }
@@ -1486,16 +1443,12 @@ M.CreateConfiguredModelAlgorithmInput = {
                 required = true,
             },
         },
-        trainingContainerConfig = {
-            type = "structure",
-        },
-        inferenceContainerConfig = {
-            type = "structure",
-        },
+        trainingContainerConfig = M.ContainerConfig,
+        inferenceContainerConfig = M.InferenceContainerConfig,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         kmsKeyArn = {
             type = "string",
@@ -1574,12 +1527,8 @@ M.GetConfiguredModelAlgorithmOutput = {
                 required = true,
             },
         },
-        trainingContainerConfig = {
-            type = "structure",
-        },
-        inferenceContainerConfig = {
-            type = "structure",
-        },
+        trainingContainerConfig = M.ContainerConfig,
+        inferenceContainerConfig = M.InferenceContainerConfig,
         roleArn = {
             type = "string",
             traits = {
@@ -1591,8 +1540,8 @@ M.GetConfiguredModelAlgorithmOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         kmsKeyArn = {
             type = "string",
@@ -1610,7 +1559,7 @@ M.ListConfiguredModelAlgorithmsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1661,7 +1610,7 @@ M.ListConfiguredModelAlgorithmsOutput = {
         },
         configuredModelAlgorithms = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfiguredModelAlgorithmSummary,
             traits = {
                 required = true,
             },
@@ -1688,7 +1637,7 @@ M.TrainedModelExportsMaxSize = {
             },
         },
         value = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -1699,15 +1648,12 @@ M.TrainedModelExportsMaxSize = {
 M.TrainedModelExportsConfigurationPolicy = {
     type = "structure",
     members = {
-        maxSize = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        maxSize = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TrainedModelExportsMaxSize }),
         filesToExport = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1720,7 +1666,7 @@ M.CustomEntityConfig = {
     members = {
         customDataIdentifiers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1739,14 +1685,12 @@ M.LogRedactionConfiguration = {
     members = {
         entitiesToRedact = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        customEntityConfig = {
-            type = "structure",
-        },
+        customEntityConfig = M.CustomEntityConfig,
     },
 }
 
@@ -1760,7 +1704,7 @@ M.LogsConfigurationPolicy = {
     members = {
         allowedAccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1770,10 +1714,11 @@ M.LogsConfigurationPolicy = {
         },
         logType = {
             type = "string",
+            traits = {
+                default = "ALL",
+            },
         },
-        logRedactionConfiguration = {
-            type = "structure",
-        },
+        logRedactionConfiguration = M.LogRedactionConfiguration,
     },
 }
 
@@ -1791,7 +1736,7 @@ M.TrainedModelInferenceMaxOutputSize = {
             },
         },
         value = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -1804,11 +1749,9 @@ M.TrainedModelInferenceJobsConfigurationPolicy = {
     members = {
         containerLogs = {
             type = "list",
-            member_type = "structure",
+            member = M.LogsConfigurationPolicy,
         },
-        maxOutputSize = {
-            type = "structure",
-        },
+        maxOutputSize = M.TrainedModelInferenceMaxOutputSize,
     },
 }
 
@@ -1845,7 +1788,7 @@ M.TrainedModelArtifactMaxSize = {
             },
         },
         value = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -1858,41 +1801,28 @@ M.TrainedModelsConfigurationPolicy = {
     members = {
         containerLogs = {
             type = "list",
-            member_type = "structure",
+            member = M.LogsConfigurationPolicy,
         },
-        containerMetrics = {
-            type = "structure",
-        },
-        maxArtifactSize = {
-            type = "structure",
-        },
+        containerMetrics = M.MetricsConfigurationPolicy,
+        maxArtifactSize = M.TrainedModelArtifactMaxSize,
     },
 }
 
 M.PrivacyConfigurationPolicies = {
     type = "structure",
     members = {
-        trainedModels = {
-            type = "structure",
-        },
-        trainedModelExports = {
-            type = "structure",
-        },
-        trainedModelInferenceJobs = {
-            type = "structure",
-        },
+        trainedModels = M.TrainedModelsConfigurationPolicy,
+        trainedModelExports = M.TrainedModelExportsConfigurationPolicy,
+        trainedModelInferenceJobs = M.TrainedModelInferenceJobsConfigurationPolicy,
     },
 }
 
 M.PrivacyConfiguration = {
     type = "structure",
     members = {
-        policies = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        policies = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PrivacyConfigurationPolicies }),
     },
 }
 
@@ -1921,13 +1851,11 @@ M.CreateConfiguredModelAlgorithmAssociationInput = {
         description = {
             type = "string",
         },
-        privacyConfiguration = {
-            type = "structure",
-        },
+        privacyConfiguration = M.PrivacyConfiguration,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2044,9 +1972,7 @@ M.GetCollaborationConfiguredModelAlgorithmAssociationOutput = {
                 required = true,
             },
         },
-        privacyConfiguration = {
-            type = "structure",
-        },
+        privacyConfiguration = M.PrivacyConfiguration,
     },
 }
 
@@ -2117,16 +2043,14 @@ M.GetConfiguredModelAlgorithmAssociationOutput = {
                 required = true,
             },
         },
-        privacyConfiguration = {
-            type = "structure",
-        },
+        privacyConfiguration = M.PrivacyConfiguration,
         description = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2141,7 +2065,7 @@ M.ListConfiguredModelAlgorithmAssociationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2217,7 +2141,7 @@ M.ListConfiguredModelAlgorithmAssociationsOutput = {
         },
         configuredModelAlgorithmAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.ConfiguredModelAlgorithmAssociationSummary,
             traits = {
                 required = true,
             },
@@ -2235,7 +2159,7 @@ M.ListCollaborationConfiguredModelAlgorithmAssociationsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2317,7 +2241,7 @@ M.ListCollaborationConfiguredModelAlgorithmAssociationsOutput = {
         },
         collaborationConfiguredModelAlgorithmAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.CollaborationConfiguredModelAlgorithmAssociationSummary,
             traits = {
                 required = true,
             },
@@ -2335,7 +2259,7 @@ M.ListCollaborationMLInputChannelsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2398,7 +2322,7 @@ M.CollaborationMLInputChannelSummary = {
         },
         configuredModelAlgorithmAssociations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2435,7 +2359,7 @@ M.ListCollaborationMLInputChannelsOutput = {
         },
         collaborationMLInputChannelsList = {
             type = "list",
-            member_type = "structure",
+            member = M.CollaborationMLInputChannelSummary,
             traits = {
                 required = true,
             },
@@ -2453,7 +2377,7 @@ M.ListCollaborationTrainedModelExportJobsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2498,7 +2422,7 @@ M.TrainedModelExportOutputConfiguration = {
     members = {
         members = {
             type = "list",
-            member_type = "structure",
+            member = M.TrainedModelExportReceiverMember,
             traits = {
                 required = true,
             },
@@ -2536,21 +2460,16 @@ M.CollaborationTrainedModelExportJobSummary = {
                 required = true,
             },
         },
-        outputConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        outputConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TrainedModelExportOutputConfiguration }),
         status = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        statusDetails = {
-            type = "structure",
-        },
+        statusDetails = M.StatusDetails,
         description = {
             type = "string",
         },
@@ -2592,7 +2511,7 @@ M.ListCollaborationTrainedModelExportJobsOutput = {
         },
         collaborationTrainedModelExportJobs = {
             type = "list",
-            member_type = "structure",
+            member = M.CollaborationTrainedModelExportJobSummary,
             traits = {
                 required = true,
             },
@@ -2610,7 +2529,7 @@ M.ListCollaborationTrainedModelInferenceJobsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2664,10 +2583,13 @@ M.InferenceOutputConfiguration = {
     members = {
         accept = {
             type = "string",
+            traits = {
+                default = "application/json",
+            },
         },
         members = {
             type = "list",
-            member_type = "structure",
+            member = M.InferenceReceiverMember,
             traits = {
                 required = true,
             },
@@ -2725,12 +2647,9 @@ M.CollaborationTrainedModelInferenceJobSummary = {
                 required = true,
             },
         },
-        outputConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        outputConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InferenceOutputConfiguration }),
         name = {
             type = "string",
             traits = {
@@ -2783,7 +2702,7 @@ M.ListCollaborationTrainedModelInferenceJobsOutput = {
         },
         collaborationTrainedModelInferenceJobs = {
             type = "list",
-            member_type = "structure",
+            member = M.CollaborationTrainedModelInferenceJobSummary,
             traits = {
                 required = true,
             },
@@ -2801,7 +2720,7 @@ M.ListCollaborationTrainedModelsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2885,7 +2804,7 @@ M.CollaborationTrainedModelSummary = {
         },
         incrementalTrainingDataChannels = {
             type = "list",
-            member_type = "structure",
+            member = M.IncrementalTrainingDataChannelOutput,
         },
         description = {
             type = "string",
@@ -2931,7 +2850,7 @@ M.ListCollaborationTrainedModelsOutput = {
         },
         collaborationTrainedModels = {
             type = "list",
-            member_type = "structure",
+            member = M.CollaborationTrainedModelSummary,
             traits = {
                 required = true,
             },
@@ -2957,8 +2876,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2999,21 +2918,16 @@ M.GetMLConfigurationInput = {
 M.Destination = {
     type = "structure",
     members = {
-        s3Destination = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        s3Destination = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.S3ConfigMap }),
     },
 }
 
 M.MLOutputConfiguration = {
     type = "structure",
     members = {
-        destination = {
-            type = "structure",
-        },
+        destination = M.Destination,
         roleArn = {
             type = "string",
             traits = {
@@ -3032,12 +2946,9 @@ M.GetMLConfigurationOutput = {
                 required = true,
             },
         },
-        defaultOutputLocation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        defaultOutputLocation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MLOutputConfiguration }),
         createTime = {
             type = "timestamp",
             traits = {
@@ -3065,12 +2976,9 @@ M.PutMLConfigurationInput = {
                 required = true,
             },
         },
-        defaultOutputLocation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        defaultOutputLocation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MLOutputConfiguration }),
     },
 }
 
@@ -3086,17 +2994,15 @@ M.ResultFormat = {
 M.ProtectedQueryInputParameters = {
     type = "structure",
     members = {
-        sqlParameters = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        computeConfiguration = {
-            type = "union",
-        },
+        sqlParameters = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ProtectedQuerySQLParameters }),
+        computeConfiguration = M.ComputeConfiguration,
         resultFormat = {
             type = "string",
+            traits = {
+                default = "CSV",
+            },
         },
     },
 }
@@ -3104,21 +3010,16 @@ M.ProtectedQueryInputParameters = {
 M.InputChannelDataSource = {
     type = "union",
     members = {
-        protectedQueryInputParameters = {
-            type = "structure",
-        },
+        protectedQueryInputParameters = M.ProtectedQueryInputParameters,
     },
 }
 
 M.InputChannel = {
     type = "structure",
     members = {
-        dataSource = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        dataSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InputChannelDataSource }),
         roleArn = {
             type = "string",
             traits = {
@@ -3140,17 +3041,14 @@ M.CreateMLInputChannelInput = {
         },
         configuredModelAlgorithmAssociations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        inputChannel = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        inputChannel = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InputChannel }),
         name = {
             type = "string",
             traits = {
@@ -3158,7 +3056,7 @@ M.CreateMLInputChannelInput = {
             },
         },
         retentionInDays = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -3171,8 +3069,8 @@ M.CreateMLInputChannelInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3238,7 +3136,7 @@ M.PrivacyBudgets = {
     members = {
         accessBudgets = {
             type = "list",
-            member_type = "structure",
+            member = M.AccessBudget,
         },
     },
 }
@@ -3257,7 +3155,7 @@ M.MembershipInferenceAttackScore = {
             },
         },
         score = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
@@ -3270,7 +3168,7 @@ M.DataPrivacyScores = {
     members = {
         membershipInferenceAttackScores = {
             type = "list",
-            member_type = "structure",
+            member = M.MembershipInferenceAttackScore,
             traits = {
                 required = true,
             },
@@ -3281,12 +3179,9 @@ M.DataPrivacyScores = {
 M.SyntheticDataEvaluationScores = {
     type = "structure",
     members = {
-        dataPrivacyScores = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        dataPrivacyScores = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataPrivacyScores }),
     },
 }
 
@@ -3324,7 +3219,7 @@ M.ColumnClassificationDetails = {
     members = {
         columnMapping = {
             type = "list",
-            member_type = "structure",
+            member = M.SyntheticDataColumnProperties,
             traits = {
                 required = true,
             },
@@ -3336,35 +3231,28 @@ M.MLSyntheticDataParameters = {
     type = "structure",
     members = {
         epsilon = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
         maxMembershipInferenceAttackScore = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
-        columnClassification = {
-            type = "structure",
-        },
+        columnClassification = M.ColumnClassificationDetails,
     },
 }
 
 M.SyntheticDataConfiguration = {
     type = "structure",
     members = {
-        syntheticDataParameters = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        syntheticDataEvaluationScores = {
-            type = "structure",
-        },
+        syntheticDataParameters = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.MLSyntheticDataParameters }),
+        syntheticDataEvaluationScores = M.SyntheticDataEvaluationScores,
     },
 }
 
@@ -3397,7 +3285,7 @@ M.GetCollaborationMLInputChannelOutput = {
         },
         configuredModelAlgorithmAssociations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3408,27 +3296,21 @@ M.GetCollaborationMLInputChannelOutput = {
                 required = true,
             },
         },
-        statusDetails = {
-            type = "structure",
-        },
+        statusDetails = M.StatusDetails,
         retentionInDays = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         numberOfRecords = {
-            type = "number",
+            type = "long",
         },
-        privacyBudgets = {
-            type = "union",
-        },
+        privacyBudgets = M.PrivacyBudgets,
         description = {
             type = "string",
         },
-        syntheticDataConfiguration = {
-            type = "structure",
-        },
+        syntheticDataConfiguration = M.SyntheticDataConfiguration,
         createTime = {
             type = "timestamp",
             traits = {
@@ -3501,7 +3383,7 @@ M.GetMLInputChannelOutput = {
         },
         configuredModelAlgorithmAssociations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3512,27 +3394,21 @@ M.GetMLInputChannelOutput = {
                 required = true,
             },
         },
-        statusDetails = {
-            type = "structure",
-        },
+        statusDetails = M.StatusDetails,
         retentionInDays = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         numberOfRecords = {
-            type = "number",
+            type = "long",
         },
-        privacyBudgets = {
-            type = "union",
-        },
+        privacyBudgets = M.PrivacyBudgets,
         description = {
             type = "string",
         },
-        syntheticDataConfiguration = {
-            type = "structure",
-        },
+        syntheticDataConfiguration = M.SyntheticDataConfiguration,
         createTime = {
             type = "timestamp",
             traits = {
@@ -3547,28 +3423,25 @@ M.GetMLInputChannelOutput = {
                 timestamp_format = "date-time",
             },
         },
-        inputChannel = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        inputChannel = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InputChannel }),
         protectedQueryIdentifier = {
             type = "string",
         },
         numberOfFiles = {
-            type = "number",
+            type = "double",
         },
         sizeInGb = {
-            type = "number",
+            type = "double",
         },
         kmsKeyArn = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3583,7 +3456,7 @@ M.ListMLInputChannelsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -3635,7 +3508,7 @@ M.MLInputChannelSummary = {
         },
         configuredModelAlgorithmAssociations = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3669,7 +3542,7 @@ M.ListMLInputChannelsOutput = {
         },
         mlInputChannelsList = {
             type = "list",
-            member_type = "structure",
+            member = M.MLInputChannelSummary,
             traits = {
                 required = true,
             },
@@ -3689,8 +3562,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3754,6 +3627,9 @@ M.ModelTrainingDataChannel = {
         },
         s3DataDistributionType = {
             type = "string",
+            traits = {
+                default = "FullyReplicated",
+            },
         },
     },
 }
@@ -3919,7 +3795,10 @@ M.ResourceConfig = {
     type = "structure",
     members = {
         instanceCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 1,
+            },
         },
         instanceType = {
             type = "string",
@@ -3928,7 +3807,7 @@ M.ResourceConfig = {
             },
         },
         volumeSizeInGB = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -3940,7 +3819,10 @@ M.StoppingCondition = {
     type = "structure",
     members = {
         maxRuntimeInSeconds = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 86400,
+            },
         },
     },
 }
@@ -3975,36 +3857,34 @@ M.CreateTrainedModelInput = {
         },
         hyperparameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         environment = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        resourceConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        stoppingCondition = {
-            type = "structure",
-        },
+        resourceConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ResourceConfig }),
+        stoppingCondition = M.StoppingCondition,
         incrementalTrainingDataChannels = {
             type = "list",
-            member_type = "structure",
+            member = M.IncrementalTrainingDataChannel,
         },
         dataChannels = {
             type = "list",
-            member_type = "structure",
+            member = M.ModelTrainingDataChannel,
             traits = {
                 required = true,
             },
         },
         trainingInputMode = {
             type = "string",
+            traits = {
+                default = "File",
+            },
         },
         description = {
             type = "string",
@@ -4014,8 +3894,8 @@ M.CreateTrainedModelInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -4130,7 +4010,7 @@ M.GetCollaborationTrainedModelOutput = {
         },
         incrementalTrainingDataChannels = {
             type = "list",
-            member_type = "structure",
+            member = M.IncrementalTrainingDataChannelOutput,
         },
         name = {
             type = "string",
@@ -4147,24 +4027,18 @@ M.GetCollaborationTrainedModelOutput = {
                 required = true,
             },
         },
-        statusDetails = {
-            type = "structure",
-        },
+        statusDetails = M.StatusDetails,
         configuredModelAlgorithmAssociationArn = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        resourceConfig = {
-            type = "structure",
-        },
+        resourceConfig = M.ResourceConfig,
         trainingInputMode = {
             type = "string",
         },
-        stoppingCondition = {
-            type = "structure",
-        },
+        stoppingCondition = M.StoppingCondition,
         metricsStatus = {
             type = "string",
         },
@@ -4255,7 +4129,7 @@ M.GetTrainedModelOutput = {
         },
         incrementalTrainingDataChannels = {
             type = "list",
-            member_type = "structure",
+            member = M.IncrementalTrainingDataChannelOutput,
         },
         name = {
             type = "string",
@@ -4272,24 +4146,18 @@ M.GetTrainedModelOutput = {
                 required = true,
             },
         },
-        statusDetails = {
-            type = "structure",
-        },
+        statusDetails = M.StatusDetails,
         configuredModelAlgorithmAssociationArn = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        resourceConfig = {
-            type = "structure",
-        },
+        resourceConfig = M.ResourceConfig,
         trainingInputMode = {
             type = "string",
         },
-        stoppingCondition = {
-            type = "structure",
-        },
+        stoppingCondition = M.StoppingCondition,
         metricsStatus = {
             type = "string",
         },
@@ -4321,25 +4189,25 @@ M.GetTrainedModelOutput = {
         },
         hyperparameters = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         environment = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         kmsKeyArn = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         dataChannels = {
             type = "list",
-            member_type = "structure",
+            member = M.ModelTrainingDataChannel,
             traits = {
                 required = true,
             },
@@ -4357,7 +4225,7 @@ M.ListTrainedModelsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4400,7 +4268,7 @@ M.TrainedModelSummary = {
         },
         incrementalTrainingDataChannels = {
             type = "list",
-            member_type = "structure",
+            member = M.IncrementalTrainingDataChannelOutput,
         },
         name = {
             type = "string",
@@ -4446,7 +4314,7 @@ M.ListTrainedModelsOutput = {
         },
         trainedModels = {
             type = "list",
-            member_type = "structure",
+            member = M.TrainedModelSummary,
             traits = {
                 required = true,
             },
@@ -4464,7 +4332,7 @@ M.ListTrainedModelVersionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4500,7 +4368,7 @@ M.ListTrainedModelVersionsOutput = {
         },
         trainedModels = {
             type = "list",
-            member_type = "structure",
+            member = M.TrainedModelSummary,
             traits = {
                 required = true,
             },
@@ -4534,12 +4402,9 @@ M.StartTrainedModelExportJobInput = {
                 required = true,
             },
         },
-        outputConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        outputConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.TrainedModelExportOutputConfiguration }),
         description = {
             type = "string",
         },
@@ -4598,7 +4463,7 @@ M.InferenceContainerExecutionParameters = {
     type = "structure",
     members = {
         maxPayloadInMB = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -4722,7 +4587,10 @@ M.InferenceResourceConfig = {
             },
         },
         instanceCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 1,
+            },
         },
     },
 }
@@ -4774,36 +4642,23 @@ M.GetTrainedModelInferenceJobOutput = {
         trainedModelVersionIdentifier = {
             type = "string",
         },
-        resourceConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        outputConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        resourceConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InferenceResourceConfig }),
+        outputConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InferenceOutputConfiguration }),
         membershipIdentifier = {
             type = "string",
             traits = {
                 required = true,
             },
         },
-        dataSource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        containerExecutionParameters = {
-            type = "structure",
-        },
-        statusDetails = {
-            type = "structure",
-        },
+        dataSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ModelInferenceDataSource }),
+        containerExecutionParameters = M.InferenceContainerExecutionParameters,
+        statusDetails = M.StatusDetails,
         description = {
             type = "string",
         },
@@ -4812,8 +4667,8 @@ M.GetTrainedModelInferenceJobOutput = {
         },
         environment = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         kmsKeyArn = {
             type = "string",
@@ -4832,8 +4687,8 @@ M.GetTrainedModelInferenceJobOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -4848,7 +4703,7 @@ M.ListTrainedModelInferenceJobsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -4914,12 +4769,9 @@ M.TrainedModelInferenceJobSummary = {
                 required = true,
             },
         },
-        outputConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        outputConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InferenceOutputConfiguration }),
         name = {
             type = "string",
             traits = {
@@ -4966,7 +4818,7 @@ M.ListTrainedModelInferenceJobsOutput = {
         },
         trainedModelInferenceJobs = {
             type = "list",
-            member_type = "structure",
+            member = M.TrainedModelInferenceJobSummary,
             traits = {
                 required = true,
             },
@@ -5002,42 +4854,31 @@ M.StartTrainedModelInferenceJobInput = {
         configuredModelAlgorithmAssociationArn = {
             type = "string",
         },
-        resourceConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        outputConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        dataSource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        resourceConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InferenceResourceConfig }),
+        outputConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InferenceOutputConfiguration }),
+        dataSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ModelInferenceDataSource }),
         description = {
             type = "string",
         },
-        containerExecutionParameters = {
-            type = "structure",
-        },
+        containerExecutionParameters = M.InferenceContainerExecutionParameters,
         environment = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         kmsKeyArn = {
             type = "string",
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -5078,12 +4919,9 @@ M.GlueDataSource = {
 M.DataSource = {
     type = "structure",
     members = {
-        glueDataSource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        glueDataSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.GlueDataSource }),
     },
 }
 
@@ -5106,7 +4944,7 @@ M.ColumnSchema = {
         },
         columnTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -5119,17 +4957,14 @@ M.DatasetInputConfig = {
     members = {
         schema = {
             type = "list",
-            member_type = "structure",
+            member = M.ColumnSchema,
             traits = {
                 required = true,
             },
         },
-        dataSource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        dataSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataSource }),
     },
 }
 
@@ -5146,12 +4981,9 @@ M.Dataset = {
                 required = true,
             },
         },
-        inputConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        inputConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DatasetInputConfig }),
     },
 }
 
@@ -5172,15 +5004,15 @@ M.CreateTrainingDatasetInput = {
         },
         trainingData = {
             type = "list",
-            member_type = "structure",
+            member = M.Dataset,
             traits = {
                 required = true,
             },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         description = {
             type = "string",
@@ -5265,7 +5097,7 @@ M.GetTrainingDatasetOutput = {
         },
         trainingData = {
             type = "list",
-            member_type = "structure",
+            member = M.Dataset,
             traits = {
                 required = true,
             },
@@ -5284,8 +5116,8 @@ M.GetTrainingDatasetOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         description = {
             type = "string",
@@ -5303,7 +5135,7 @@ M.ListTrainingDatasetsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -5360,7 +5192,7 @@ M.ListTrainingDatasetsOutput = {
         },
         trainingDatasets = {
             type = "list",
-            member_type = "structure",
+            member = M.TrainingDatasetSummary,
             traits = {
                 required = true,
             },
@@ -5380,7 +5212,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,

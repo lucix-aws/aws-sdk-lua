@@ -74,21 +74,22 @@ M.CreateClusterInput = {
             type = "string",
         },
         ReplicationFactor = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         AvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SubnetGroupName = {
             type = "string",
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         PreferredMaintenanceWindow = {
             type = "string",
@@ -107,11 +108,9 @@ M.CreateClusterInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        SSESpecification = {
-            type = "structure",
-        },
+        SSESpecification = M.SSESpecification,
         ClusterEndpointEncryptionType = {
             type = "string",
         },
@@ -128,7 +127,10 @@ M.Endpoint = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         URL = {
             type = "string",
@@ -142,9 +144,7 @@ M.Node = {
         NodeId = {
             type = "string",
         },
-        Endpoint = {
-            type = "structure",
-        },
+        Endpoint = M.Endpoint,
         NodeCreateTime = {
             type = "timestamp",
         },
@@ -183,7 +183,7 @@ M.ParameterGroupStatus = {
         },
         NodeIdsToReboot = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -229,10 +229,10 @@ M.Cluster = {
             type = "string",
         },
         TotalNodes = {
-            type = "number",
+            type = "integer",
         },
         ActiveNodes = {
-            type = "number",
+            type = "integer",
         },
         NodeType = {
             type = "string",
@@ -240,39 +240,31 @@ M.Cluster = {
         Status = {
             type = "string",
         },
-        ClusterDiscoveryEndpoint = {
-            type = "structure",
-        },
+        ClusterDiscoveryEndpoint = M.Endpoint,
         NodeIdsToRemove = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Nodes = {
             type = "list",
-            member_type = "structure",
+            member = M.Node,
         },
         PreferredMaintenanceWindow = {
             type = "string",
         },
-        NotificationConfiguration = {
-            type = "structure",
-        },
+        NotificationConfiguration = M.NotificationConfiguration,
         SubnetGroup = {
             type = "string",
         },
         SecurityGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.SecurityGroupMembership,
         },
         IamRoleArn = {
             type = "string",
         },
-        ParameterGroup = {
-            type = "structure",
-        },
-        SSEDescription = {
-            type = "structure",
-        },
+        ParameterGroup = M.ParameterGroupStatus,
+        SSEDescription = M.SSEDescription,
         ClusterEndpointEncryptionType = {
             type = "string",
         },
@@ -285,9 +277,7 @@ M.Cluster = {
 M.CreateClusterOutput = {
     type = "structure",
     members = {
-        Cluster = {
-            type = "structure",
-        },
+        Cluster = M.Cluster,
     },
 }
 
@@ -446,9 +436,7 @@ M.ParameterGroup = {
 M.CreateParameterGroupOutput = {
     type = "structure",
     members = {
-        ParameterGroup = {
-            type = "structure",
-        },
+        ParameterGroup = M.ParameterGroup,
     },
 }
 
@@ -486,7 +474,7 @@ M.CreateSubnetGroupInput = {
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -505,7 +493,7 @@ M.Subnet = {
         },
         SupportedNetworkTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -524,11 +512,11 @@ M.SubnetGroup = {
         },
         Subnets = {
             type = "list",
-            member_type = "structure",
+            member = M.Subnet,
         },
         SupportedNetworkTypes = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -536,9 +524,7 @@ M.SubnetGroup = {
 M.CreateSubnetGroupOutput = {
     type = "structure",
     members = {
-        SubnetGroup = {
-            type = "structure",
-        },
+        SubnetGroup = M.SubnetGroup,
     },
 }
 
@@ -612,18 +598,19 @@ M.DecreaseReplicationFactorInput = {
             },
         },
         NewReplicationFactor = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         AvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NodeIdsToRemove = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -631,9 +618,7 @@ M.DecreaseReplicationFactorInput = {
 M.DecreaseReplicationFactorOutput = {
     type = "structure",
     members = {
-        Cluster = {
-            type = "structure",
-        },
+        Cluster = M.Cluster,
     },
 }
 
@@ -662,9 +647,7 @@ M.DeleteClusterInput = {
 M.DeleteClusterOutput = {
     type = "structure",
     members = {
-        Cluster = {
-            type = "structure",
-        },
+        Cluster = M.Cluster,
     },
 }
 
@@ -725,10 +708,10 @@ M.DescribeClustersInput = {
     members = {
         ClusterNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -744,7 +727,7 @@ M.DescribeClustersOutput = {
         },
         Clusters = {
             type = "list",
-            member_type = "structure",
+            member = M.Cluster,
         },
     },
 }
@@ -753,7 +736,7 @@ M.DescribeDefaultParametersInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -803,7 +786,7 @@ M.Parameter = {
         },
         NodeTypeSpecificValues = {
             type = "list",
-            member_type = "structure",
+            member = M.NodeTypeSpecificValue,
         },
         Description = {
             type = "string",
@@ -834,7 +817,7 @@ M.DescribeDefaultParametersOutput = {
         },
         Parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.Parameter,
         },
     },
 }
@@ -861,10 +844,10 @@ M.DescribeEventsInput = {
             type = "timestamp",
         },
         Duration = {
-            type = "number",
+            type = "integer",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -898,7 +881,7 @@ M.DescribeEventsOutput = {
         },
         Events = {
             type = "list",
-            member_type = "structure",
+            member = M.Event,
         },
     },
 }
@@ -908,10 +891,10 @@ M.DescribeParameterGroupsInput = {
     members = {
         ParameterGroupNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -927,7 +910,7 @@ M.DescribeParameterGroupsOutput = {
         },
         ParameterGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.ParameterGroup,
         },
     },
 }
@@ -945,7 +928,7 @@ M.DescribeParametersInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -961,7 +944,7 @@ M.DescribeParametersOutput = {
         },
         Parameters = {
             type = "list",
-            member_type = "structure",
+            member = M.Parameter,
         },
     },
 }
@@ -971,10 +954,10 @@ M.DescribeSubnetGroupsInput = {
     members = {
         SubnetGroupNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -990,7 +973,7 @@ M.DescribeSubnetGroupsOutput = {
         },
         SubnetGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.SubnetGroup,
         },
     },
 }
@@ -1005,14 +988,15 @@ M.IncreaseReplicationFactorInput = {
             },
         },
         NewReplicationFactor = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         AvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1020,9 +1004,7 @@ M.IncreaseReplicationFactorInput = {
 M.IncreaseReplicationFactorOutput = {
     type = "structure",
     members = {
-        Cluster = {
-            type = "structure",
-        },
+        Cluster = M.Cluster,
     },
 }
 
@@ -1056,7 +1038,7 @@ M.ListTagsOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         NextToken = {
             type = "string",
@@ -1085,9 +1067,7 @@ M.RebootNodeInput = {
 M.RebootNodeOutput = {
     type = "structure",
     members = {
-        Cluster = {
-            type = "structure",
-        },
+        Cluster = M.Cluster,
     },
 }
 
@@ -1102,7 +1082,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -1115,7 +1095,7 @@ M.TagResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1141,7 +1121,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1154,7 +1134,7 @@ M.UntagResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1185,7 +1165,7 @@ M.UpdateClusterInput = {
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1193,9 +1173,7 @@ M.UpdateClusterInput = {
 M.UpdateClusterOutput = {
     type = "structure",
     members = {
-        Cluster = {
-            type = "structure",
-        },
+        Cluster = M.Cluster,
     },
 }
 
@@ -1222,7 +1200,7 @@ M.UpdateParameterGroupInput = {
         },
         ParameterNameValues = {
             type = "list",
-            member_type = "structure",
+            member = M.ParameterNameValue,
             traits = {
                 required = true,
             },
@@ -1233,9 +1211,7 @@ M.UpdateParameterGroupInput = {
 M.UpdateParameterGroupOutput = {
     type = "structure",
     members = {
-        ParameterGroup = {
-            type = "structure",
-        },
+        ParameterGroup = M.ParameterGroup,
     },
 }
 
@@ -1263,7 +1239,7 @@ M.UpdateSubnetGroupInput = {
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1271,9 +1247,7 @@ M.UpdateSubnetGroupInput = {
 M.UpdateSubnetGroupOutput = {
     type = "structure",
     members = {
-        SubnetGroup = {
-            type = "structure",
-        },
+        SubnetGroup = M.SubnetGroup,
     },
 }
 

@@ -1,0 +1,7 @@
+local types = require("directoryservice.types")
+
+local record M
+    wait_until_hybrid_a_d_updated: function(client: table, input: table, options: table): table, table
+end
+
+return M

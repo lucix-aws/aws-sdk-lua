@@ -51,7 +51,7 @@ M.DescribeReportDefinitionsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -165,7 +165,7 @@ M.ReportDefinition = {
         },
         AdditionalSchemaElements = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -190,7 +190,7 @@ M.ReportDefinition = {
         },
         AdditionalArtifacts = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RefreshClosedReports = {
             type = "boolean",
@@ -201,9 +201,7 @@ M.ReportDefinition = {
         BillingViewArn = {
             type = "string",
         },
-        ReportStatus = {
-            type = "structure",
-        },
+        ReportStatus = M.ReportStatus,
     },
 }
 
@@ -212,7 +210,7 @@ M.DescribeReportDefinitionsOutput = {
     members = {
         ReportDefinitions = {
             type = "list",
-            member_type = "structure",
+            member = M.ReportDefinition,
         },
         NextToken = {
             type = "string",
@@ -255,7 +253,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -279,12 +277,9 @@ M.ModifyReportDefinitionInput = {
                 required = true,
             },
         },
-        ReportDefinition = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ReportDefinition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ReportDefinition }),
     },
 }
 
@@ -305,15 +300,12 @@ M.DuplicateReportNameException = {
 M.PutReportDefinitionInput = {
     type = "structure",
     members = {
-        ReportDefinition = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        ReportDefinition = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ReportDefinition }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -343,7 +335,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -366,7 +358,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },

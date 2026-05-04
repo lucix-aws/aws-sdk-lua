@@ -32,7 +32,7 @@ M.AcceptDirectConnectGatewayAssociationProposalInput = {
         },
         overrideAllowedPrefixesToDirectConnectGateway = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteFilterPrefix,
         },
     },
 }
@@ -98,19 +98,15 @@ M.DirectConnectGatewayAssociation = {
         stateChangeError = {
             type = "string",
         },
-        associatedGateway = {
-            type = "structure",
-        },
+        associatedGateway = M.AssociatedGateway,
         associationId = {
             type = "string",
         },
         allowedPrefixesToDirectConnectGateway = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteFilterPrefix,
         },
-        associatedCoreNetwork = {
-            type = "structure",
-        },
+        associatedCoreNetwork = M.AssociatedCoreNetwork,
         virtualGatewayId = {
             type = "string",
         },
@@ -126,9 +122,7 @@ M.DirectConnectGatewayAssociation = {
 M.AcceptDirectConnectGatewayAssociationProposalOutput = {
     type = "structure",
     members = {
-        directConnectGatewayAssociation = {
-            type = "structure",
-        },
+        directConnectGatewayAssociation = M.DirectConnectGatewayAssociation,
     },
 }
 
@@ -197,8 +191,9 @@ M.AllocateConnectionOnInterconnectInput = {
             },
         },
         vlan = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -281,7 +276,10 @@ M.AllocateConnectionOnInterconnectOutput = {
             type = "string",
         },
         vlan = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         partnerName = {
             type = "string",
@@ -309,7 +307,7 @@ M.AllocateConnectionOnInterconnectOutput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         providerName = {
             type = "string",
@@ -325,7 +323,7 @@ M.AllocateConnectionOnInterconnectOutput = {
         },
         macSecKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.MacSecKey,
         },
         partnerInterconnectMacSecCapable = {
             type = "boolean",
@@ -361,14 +359,15 @@ M.AllocateHostedConnectionInput = {
             },
         },
         vlan = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -398,7 +397,10 @@ M.AllocateHostedConnectionOutput = {
             type = "string",
         },
         vlan = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         partnerName = {
             type = "string",
@@ -426,7 +428,7 @@ M.AllocateHostedConnectionOutput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         providerName = {
             type = "string",
@@ -442,7 +444,7 @@ M.AllocateHostedConnectionOutput = {
         },
         macSecKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.MacSecKey,
         },
         partnerInterconnectMacSecCapable = {
             type = "boolean",
@@ -480,19 +482,23 @@ M.NewPrivateVirtualInterfaceAllocation = {
             },
         },
         vlan = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         asn = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         asnLong = {
-            type = "number",
+            type = "long",
         },
         mtu = {
-            type = "number",
+            type = "integer",
         },
         authKey = {
             type = "string",
@@ -508,7 +514,7 @@ M.NewPrivateVirtualInterfaceAllocation = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -528,12 +534,9 @@ M.AllocatePrivateVirtualInterfaceInput = {
                 required = true,
             },
         },
-        newPrivateVirtualInterfaceAllocation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        newPrivateVirtualInterfaceAllocation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.NewPrivateVirtualInterfaceAllocation }),
     },
 }
 
@@ -558,10 +561,13 @@ M.BGPPeer = {
             type = "string",
         },
         asn = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         asnLong = {
-            type = "number",
+            type = "long",
         },
         authKey = {
             type = "string",
@@ -625,16 +631,22 @@ M.AllocatePrivateVirtualInterfaceOutput = {
             type = "string",
         },
         vlan = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         asn = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         asnLong = {
-            type = "number",
+            type = "long",
         },
         amazonSideAsn = {
-            type = "number",
+            type = "long",
         },
         authKey = {
             type = "string",
@@ -655,7 +667,7 @@ M.AllocatePrivateVirtualInterfaceOutput = {
             type = "string",
         },
         mtu = {
-            type = "number",
+            type = "integer",
         },
         jumboFrameCapable = {
             type = "boolean",
@@ -668,11 +680,11 @@ M.AllocatePrivateVirtualInterfaceOutput = {
         },
         routeFilterPrefixes = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteFilterPrefix,
         },
         bgpPeers = {
             type = "list",
-            member_type = "structure",
+            member = M.BGPPeer,
         },
         region = {
             type = "string",
@@ -685,7 +697,7 @@ M.AllocatePrivateVirtualInterfaceOutput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         siteLinkEnabled = {
             type = "boolean",
@@ -703,16 +715,20 @@ M.NewPublicVirtualInterfaceAllocation = {
             },
         },
         vlan = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         asn = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         asnLong = {
-            type = "number",
+            type = "long",
         },
         authKey = {
             type = "string",
@@ -728,11 +744,11 @@ M.NewPublicVirtualInterfaceAllocation = {
         },
         routeFilterPrefixes = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteFilterPrefix,
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -752,12 +768,9 @@ M.AllocatePublicVirtualInterfaceInput = {
                 required = true,
             },
         },
-        newPublicVirtualInterfaceAllocation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        newPublicVirtualInterfaceAllocation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.NewPublicVirtualInterfaceAllocation }),
     },
 }
 
@@ -783,16 +796,22 @@ M.AllocatePublicVirtualInterfaceOutput = {
             type = "string",
         },
         vlan = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         asn = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         asnLong = {
-            type = "number",
+            type = "long",
         },
         amazonSideAsn = {
-            type = "number",
+            type = "long",
         },
         authKey = {
             type = "string",
@@ -813,7 +832,7 @@ M.AllocatePublicVirtualInterfaceOutput = {
             type = "string",
         },
         mtu = {
-            type = "number",
+            type = "integer",
         },
         jumboFrameCapable = {
             type = "boolean",
@@ -826,11 +845,11 @@ M.AllocatePublicVirtualInterfaceOutput = {
         },
         routeFilterPrefixes = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteFilterPrefix,
         },
         bgpPeers = {
             type = "list",
-            member_type = "structure",
+            member = M.BGPPeer,
         },
         region = {
             type = "string",
@@ -843,7 +862,7 @@ M.AllocatePublicVirtualInterfaceOutput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         siteLinkEnabled = {
             type = "boolean",
@@ -858,16 +877,22 @@ M.NewTransitVirtualInterfaceAllocation = {
             type = "string",
         },
         vlan = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         asn = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         asnLong = {
-            type = "number",
+            type = "long",
         },
         mtu = {
-            type = "number",
+            type = "integer",
         },
         authKey = {
             type = "string",
@@ -883,7 +908,7 @@ M.NewTransitVirtualInterfaceAllocation = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -903,12 +928,9 @@ M.AllocateTransitVirtualInterfaceInput = {
                 required = true,
             },
         },
-        newTransitVirtualInterfaceAllocation = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        newTransitVirtualInterfaceAllocation = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.NewTransitVirtualInterfaceAllocation }),
     },
 }
 
@@ -934,16 +956,22 @@ M.VirtualInterface = {
             type = "string",
         },
         vlan = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         asn = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         asnLong = {
-            type = "number",
+            type = "long",
         },
         amazonSideAsn = {
-            type = "number",
+            type = "long",
         },
         authKey = {
             type = "string",
@@ -964,7 +992,7 @@ M.VirtualInterface = {
             type = "string",
         },
         mtu = {
-            type = "number",
+            type = "integer",
         },
         jumboFrameCapable = {
             type = "boolean",
@@ -977,11 +1005,11 @@ M.VirtualInterface = {
         },
         routeFilterPrefixes = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteFilterPrefix,
         },
         bgpPeers = {
             type = "list",
-            member_type = "structure",
+            member = M.BGPPeer,
         },
         region = {
             type = "string",
@@ -994,7 +1022,7 @@ M.VirtualInterface = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         siteLinkEnabled = {
             type = "boolean",
@@ -1005,9 +1033,7 @@ M.VirtualInterface = {
 M.AllocateTransitVirtualInterfaceOutput = {
     type = "structure",
     members = {
-        virtualInterface = {
-            type = "structure",
-        },
+        virtualInterface = M.VirtualInterface,
     },
 }
 
@@ -1054,7 +1080,10 @@ M.AssociateConnectionWithLagOutput = {
             type = "string",
         },
         vlan = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         partnerName = {
             type = "string",
@@ -1082,7 +1111,7 @@ M.AssociateConnectionWithLagOutput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         providerName = {
             type = "string",
@@ -1098,7 +1127,7 @@ M.AssociateConnectionWithLagOutput = {
         },
         macSecKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.MacSecKey,
         },
         partnerInterconnectMacSecCapable = {
             type = "boolean",
@@ -1149,7 +1178,10 @@ M.AssociateHostedConnectionOutput = {
             type = "string",
         },
         vlan = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         partnerName = {
             type = "string",
@@ -1177,7 +1209,7 @@ M.AssociateHostedConnectionOutput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         providerName = {
             type = "string",
@@ -1193,7 +1225,7 @@ M.AssociateHostedConnectionOutput = {
         },
         macSecKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.MacSecKey,
         },
         partnerInterconnectMacSecCapable = {
             type = "boolean",
@@ -1230,7 +1262,7 @@ M.AssociateMacSecKeyOutput = {
         },
         macSecKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.MacSecKey,
         },
     },
 }
@@ -1275,16 +1307,22 @@ M.AssociateVirtualInterfaceOutput = {
             type = "string",
         },
         vlan = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         asn = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         asnLong = {
-            type = "number",
+            type = "long",
         },
         amazonSideAsn = {
-            type = "number",
+            type = "long",
         },
         authKey = {
             type = "string",
@@ -1305,7 +1343,7 @@ M.AssociateVirtualInterfaceOutput = {
             type = "string",
         },
         mtu = {
-            type = "number",
+            type = "integer",
         },
         jumboFrameCapable = {
             type = "boolean",
@@ -1318,11 +1356,11 @@ M.AssociateVirtualInterfaceOutput = {
         },
         routeFilterPrefixes = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteFilterPrefix,
         },
         bgpPeers = {
             type = "list",
-            member_type = "structure",
+            member = M.BGPPeer,
         },
         region = {
             type = "string",
@@ -1335,7 +1373,7 @@ M.AssociateVirtualInterfaceOutput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         siteLinkEnabled = {
             type = "boolean",
@@ -1482,7 +1520,10 @@ M.Connection = {
             type = "string",
         },
         vlan = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         partnerName = {
             type = "string",
@@ -1510,7 +1551,7 @@ M.Connection = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         providerName = {
             type = "string",
@@ -1526,7 +1567,7 @@ M.Connection = {
         },
         macSecKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.MacSecKey,
         },
         partnerInterconnectMacSecCapable = {
             type = "boolean",
@@ -1538,10 +1579,13 @@ M.NewBGPPeer = {
     type = "structure",
     members = {
         asn = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         asnLong = {
-            type = "number",
+            type = "long",
         },
         authKey = {
             type = "string",
@@ -1564,18 +1608,14 @@ M.CreateBGPPeerInput = {
         virtualInterfaceId = {
             type = "string",
         },
-        newBGPPeer = {
-            type = "structure",
-        },
+        newBGPPeer = M.NewBGPPeer,
     },
 }
 
 M.CreateBGPPeerOutput = {
     type = "structure",
     members = {
-        virtualInterface = {
-            type = "structure",
-        },
+        virtualInterface = M.VirtualInterface,
     },
 }
 
@@ -1605,7 +1645,7 @@ M.CreateConnectionInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         providerName = {
             type = "string",
@@ -1641,7 +1681,10 @@ M.CreateConnectionOutput = {
             type = "string",
         },
         vlan = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         partnerName = {
             type = "string",
@@ -1669,7 +1712,7 @@ M.CreateConnectionOutput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         providerName = {
             type = "string",
@@ -1685,7 +1728,7 @@ M.CreateConnectionOutput = {
         },
         macSecKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.MacSecKey,
         },
         partnerInterconnectMacSecCapable = {
             type = "boolean",
@@ -1704,10 +1747,10 @@ M.CreateDirectConnectGatewayInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         amazonSideAsn = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -1729,7 +1772,7 @@ M.DirectConnectGateway = {
             type = "string",
         },
         amazonSideAsn = {
-            type = "number",
+            type = "long",
         },
         ownerAccount = {
             type = "string",
@@ -1742,7 +1785,7 @@ M.DirectConnectGateway = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1750,9 +1793,7 @@ M.DirectConnectGateway = {
 M.CreateDirectConnectGatewayOutput = {
     type = "structure",
     members = {
-        directConnectGateway = {
-            type = "structure",
-        },
+        directConnectGateway = M.DirectConnectGateway,
     },
 }
 
@@ -1770,7 +1811,7 @@ M.CreateDirectConnectGatewayAssociationInput = {
         },
         addAllowedPrefixesToDirectConnectGateway = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteFilterPrefix,
         },
         virtualGatewayId = {
             type = "string",
@@ -1781,9 +1822,7 @@ M.CreateDirectConnectGatewayAssociationInput = {
 M.CreateDirectConnectGatewayAssociationOutput = {
     type = "structure",
     members = {
-        directConnectGatewayAssociation = {
-            type = "structure",
-        },
+        directConnectGatewayAssociation = M.DirectConnectGatewayAssociation,
     },
 }
 
@@ -1810,11 +1849,11 @@ M.CreateDirectConnectGatewayAssociationProposalInput = {
         },
         addAllowedPrefixesToDirectConnectGateway = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteFilterPrefix,
         },
         removeAllowedPrefixesToDirectConnectGateway = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteFilterPrefix,
         },
     },
 }
@@ -1840,16 +1879,14 @@ M.DirectConnectGatewayAssociationProposal = {
         proposalState = {
             type = "string",
         },
-        associatedGateway = {
-            type = "structure",
-        },
+        associatedGateway = M.AssociatedGateway,
         existingAllowedPrefixesToDirectConnectGateway = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteFilterPrefix,
         },
         requestedAllowedPrefixesToDirectConnectGateway = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteFilterPrefix,
         },
     },
 }
@@ -1857,9 +1894,7 @@ M.DirectConnectGatewayAssociationProposal = {
 M.CreateDirectConnectGatewayAssociationProposalOutput = {
     type = "structure",
     members = {
-        directConnectGatewayAssociationProposal = {
-            type = "structure",
-        },
+        directConnectGatewayAssociationProposal = M.DirectConnectGatewayAssociationProposal,
     },
 }
 
@@ -1889,7 +1924,7 @@ M.CreateInterconnectInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         providerName = {
             type = "string",
@@ -1954,7 +1989,7 @@ M.CreateInterconnectOutput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         providerName = {
             type = "string",
@@ -1970,7 +2005,7 @@ M.CreateInterconnectOutput = {
         },
         macSecKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.MacSecKey,
         },
     },
 }
@@ -1979,8 +2014,9 @@ M.CreateLagInput = {
     type = "structure",
     members = {
         numberOfConnections = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -2007,11 +2043,11 @@ M.CreateLagInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         childConnectionTags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         providerName = {
             type = "string",
@@ -2039,7 +2075,10 @@ M.CreateLagOutput = {
             type = "string",
         },
         numberOfConnections = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         lagId = {
             type = "string",
@@ -2060,7 +2099,10 @@ M.CreateLagOutput = {
             type = "string",
         },
         minimumLinks = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         awsDevice = {
             type = "string",
@@ -2073,10 +2115,13 @@ M.CreateLagOutput = {
         },
         connections = {
             type = "list",
-            member_type = "structure",
+            member = M.Connection,
         },
         allowsHostedConnections = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         jumboFrameCapable = {
             type = "boolean",
@@ -2086,7 +2131,7 @@ M.CreateLagOutput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         providerName = {
             type = "string",
@@ -2099,7 +2144,7 @@ M.CreateLagOutput = {
         },
         macSecKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.MacSecKey,
         },
     },
 }
@@ -2114,19 +2159,23 @@ M.NewPrivateVirtualInterface = {
             },
         },
         vlan = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         asn = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         asnLong = {
-            type = "number",
+            type = "long",
         },
         mtu = {
-            type = "number",
+            type = "integer",
         },
         authKey = {
             type = "string",
@@ -2148,7 +2197,7 @@ M.NewPrivateVirtualInterface = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         enableSiteLink = {
             type = "boolean",
@@ -2165,12 +2214,9 @@ M.CreatePrivateVirtualInterfaceInput = {
                 required = true,
             },
         },
-        newPrivateVirtualInterface = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        newPrivateVirtualInterface = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.NewPrivateVirtualInterface }),
     },
 }
 
@@ -2196,16 +2242,22 @@ M.CreatePrivateVirtualInterfaceOutput = {
             type = "string",
         },
         vlan = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         asn = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         asnLong = {
-            type = "number",
+            type = "long",
         },
         amazonSideAsn = {
-            type = "number",
+            type = "long",
         },
         authKey = {
             type = "string",
@@ -2226,7 +2278,7 @@ M.CreatePrivateVirtualInterfaceOutput = {
             type = "string",
         },
         mtu = {
-            type = "number",
+            type = "integer",
         },
         jumboFrameCapable = {
             type = "boolean",
@@ -2239,11 +2291,11 @@ M.CreatePrivateVirtualInterfaceOutput = {
         },
         routeFilterPrefixes = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteFilterPrefix,
         },
         bgpPeers = {
             type = "list",
-            member_type = "structure",
+            member = M.BGPPeer,
         },
         region = {
             type = "string",
@@ -2256,7 +2308,7 @@ M.CreatePrivateVirtualInterfaceOutput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         siteLinkEnabled = {
             type = "boolean",
@@ -2274,16 +2326,20 @@ M.NewPublicVirtualInterface = {
             },
         },
         vlan = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         asn = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         asnLong = {
-            type = "number",
+            type = "long",
         },
         authKey = {
             type = "string",
@@ -2299,11 +2355,11 @@ M.NewPublicVirtualInterface = {
         },
         routeFilterPrefixes = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteFilterPrefix,
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2317,12 +2373,9 @@ M.CreatePublicVirtualInterfaceInput = {
                 required = true,
             },
         },
-        newPublicVirtualInterface = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        newPublicVirtualInterface = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.NewPublicVirtualInterface }),
     },
 }
 
@@ -2348,16 +2401,22 @@ M.CreatePublicVirtualInterfaceOutput = {
             type = "string",
         },
         vlan = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         asn = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         asnLong = {
-            type = "number",
+            type = "long",
         },
         amazonSideAsn = {
-            type = "number",
+            type = "long",
         },
         authKey = {
             type = "string",
@@ -2378,7 +2437,7 @@ M.CreatePublicVirtualInterfaceOutput = {
             type = "string",
         },
         mtu = {
-            type = "number",
+            type = "integer",
         },
         jumboFrameCapable = {
             type = "boolean",
@@ -2391,11 +2450,11 @@ M.CreatePublicVirtualInterfaceOutput = {
         },
         routeFilterPrefixes = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteFilterPrefix,
         },
         bgpPeers = {
             type = "list",
-            member_type = "structure",
+            member = M.BGPPeer,
         },
         region = {
             type = "string",
@@ -2408,7 +2467,7 @@ M.CreatePublicVirtualInterfaceOutput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         siteLinkEnabled = {
             type = "boolean",
@@ -2423,16 +2482,22 @@ M.NewTransitVirtualInterface = {
             type = "string",
         },
         vlan = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         asn = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         asnLong = {
-            type = "number",
+            type = "long",
         },
         mtu = {
-            type = "number",
+            type = "integer",
         },
         authKey = {
             type = "string",
@@ -2451,7 +2516,7 @@ M.NewTransitVirtualInterface = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         enableSiteLink = {
             type = "boolean",
@@ -2468,21 +2533,16 @@ M.CreateTransitVirtualInterfaceInput = {
                 required = true,
             },
         },
-        newTransitVirtualInterface = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        newTransitVirtualInterface = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.NewTransitVirtualInterface }),
     },
 }
 
 M.CreateTransitVirtualInterfaceOutput = {
     type = "structure",
     members = {
-        virtualInterface = {
-            type = "structure",
-        },
+        virtualInterface = M.VirtualInterface,
     },
 }
 
@@ -2493,10 +2553,13 @@ M.DeleteBGPPeerInput = {
             type = "string",
         },
         asn = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         asnLong = {
-            type = "number",
+            type = "long",
         },
         customerAddress = {
             type = "string",
@@ -2510,9 +2573,7 @@ M.DeleteBGPPeerInput = {
 M.DeleteBGPPeerOutput = {
     type = "structure",
     members = {
-        virtualInterface = {
-            type = "structure",
-        },
+        virtualInterface = M.VirtualInterface,
     },
 }
 
@@ -2553,7 +2614,10 @@ M.DeleteConnectionOutput = {
             type = "string",
         },
         vlan = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         partnerName = {
             type = "string",
@@ -2581,7 +2645,7 @@ M.DeleteConnectionOutput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         providerName = {
             type = "string",
@@ -2597,7 +2661,7 @@ M.DeleteConnectionOutput = {
         },
         macSecKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.MacSecKey,
         },
         partnerInterconnectMacSecCapable = {
             type = "boolean",
@@ -2620,9 +2684,7 @@ M.DeleteDirectConnectGatewayInput = {
 M.DeleteDirectConnectGatewayOutput = {
     type = "structure",
     members = {
-        directConnectGateway = {
-            type = "structure",
-        },
+        directConnectGateway = M.DirectConnectGateway,
     },
 }
 
@@ -2644,9 +2706,7 @@ M.DeleteDirectConnectGatewayAssociationInput = {
 M.DeleteDirectConnectGatewayAssociationOutput = {
     type = "structure",
     members = {
-        directConnectGatewayAssociation = {
-            type = "structure",
-        },
+        directConnectGatewayAssociation = M.DirectConnectGatewayAssociation,
     },
 }
 
@@ -2665,9 +2725,7 @@ M.DeleteDirectConnectGatewayAssociationProposalInput = {
 M.DeleteDirectConnectGatewayAssociationProposalOutput = {
     type = "structure",
     members = {
-        directConnectGatewayAssociationProposal = {
-            type = "structure",
-        },
+        directConnectGatewayAssociationProposal = M.DirectConnectGatewayAssociationProposal,
     },
 }
 
@@ -2711,7 +2769,10 @@ M.DeleteLagOutput = {
             type = "string",
         },
         numberOfConnections = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         lagId = {
             type = "string",
@@ -2732,7 +2793,10 @@ M.DeleteLagOutput = {
             type = "string",
         },
         minimumLinks = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         awsDevice = {
             type = "string",
@@ -2745,10 +2809,13 @@ M.DeleteLagOutput = {
         },
         connections = {
             type = "list",
-            member_type = "structure",
+            member = M.Connection,
         },
         allowsHostedConnections = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         jumboFrameCapable = {
             type = "boolean",
@@ -2758,7 +2825,7 @@ M.DeleteLagOutput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         providerName = {
             type = "string",
@@ -2771,7 +2838,7 @@ M.DeleteLagOutput = {
         },
         macSecKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.MacSecKey,
         },
     },
 }
@@ -2834,9 +2901,7 @@ M.Loa = {
 M.DescribeConnectionLoaOutput = {
     type = "structure",
     members = {
-        loa = {
-            type = "structure",
-        },
+        loa = M.Loa,
     },
 }
 
@@ -2847,7 +2912,7 @@ M.DescribeConnectionsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -2860,7 +2925,7 @@ M.DescribeConnectionsOutput = {
     members = {
         connections = {
             type = "list",
-            member_type = "structure",
+            member = M.Connection,
         },
         nextToken = {
             type = "string",
@@ -2885,7 +2950,7 @@ M.DescribeConnectionsOnInterconnectOutput = {
     members = {
         connections = {
             type = "list",
-            member_type = "structure",
+            member = M.Connection,
         },
         nextToken = {
             type = "string",
@@ -2908,7 +2973,7 @@ M.DescribeCustomerMetadataOutput = {
     members = {
         agreements = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomerAgreement,
         },
         nniPartnerType = {
             type = "string",
@@ -2929,7 +2994,7 @@ M.DescribeDirectConnectGatewayAssociationProposalsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -2942,7 +3007,7 @@ M.DescribeDirectConnectGatewayAssociationProposalsOutput = {
     members = {
         directConnectGatewayAssociationProposals = {
             type = "list",
-            member_type = "structure",
+            member = M.DirectConnectGatewayAssociationProposal,
         },
         nextToken = {
             type = "string",
@@ -2963,7 +3028,7 @@ M.DescribeDirectConnectGatewayAssociationsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -2979,7 +3044,7 @@ M.DescribeDirectConnectGatewayAssociationsOutput = {
     members = {
         directConnectGatewayAssociations = {
             type = "list",
-            member_type = "structure",
+            member = M.DirectConnectGatewayAssociation,
         },
         nextToken = {
             type = "string",
@@ -2997,7 +3062,7 @@ M.DescribeDirectConnectGatewayAttachmentsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -3049,7 +3114,7 @@ M.DescribeDirectConnectGatewayAttachmentsOutput = {
     members = {
         directConnectGatewayAttachments = {
             type = "list",
-            member_type = "structure",
+            member = M.DirectConnectGatewayAttachment,
         },
         nextToken = {
             type = "string",
@@ -3064,7 +3129,7 @@ M.DescribeDirectConnectGatewaysInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -3077,7 +3142,7 @@ M.DescribeDirectConnectGatewaysOutput = {
     members = {
         directConnectGateways = {
             type = "list",
-            member_type = "structure",
+            member = M.DirectConnectGateway,
         },
         nextToken = {
             type = "string",
@@ -3095,7 +3160,7 @@ M.DescribeHostedConnectionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -3108,7 +3173,7 @@ M.DescribeHostedConnectionsOutput = {
     members = {
         connections = {
             type = "list",
-            member_type = "structure",
+            member = M.Connection,
         },
         nextToken = {
             type = "string",
@@ -3137,9 +3202,7 @@ M.DescribeInterconnectLoaInput = {
 M.DescribeInterconnectLoaOutput = {
     type = "structure",
     members = {
-        loa = {
-            type = "structure",
-        },
+        loa = M.Loa,
     },
 }
 
@@ -3150,7 +3213,7 @@ M.DescribeInterconnectsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -3202,7 +3265,7 @@ M.Interconnect = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         providerName = {
             type = "string",
@@ -3218,7 +3281,7 @@ M.Interconnect = {
         },
         macSecKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.MacSecKey,
         },
     },
 }
@@ -3228,7 +3291,7 @@ M.DescribeInterconnectsOutput = {
     members = {
         interconnects = {
             type = "list",
-            member_type = "structure",
+            member = M.Interconnect,
         },
         nextToken = {
             type = "string",
@@ -3243,7 +3306,7 @@ M.DescribeLagsInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -3258,7 +3321,10 @@ M.Lag = {
             type = "string",
         },
         numberOfConnections = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         lagId = {
             type = "string",
@@ -3279,7 +3345,10 @@ M.Lag = {
             type = "string",
         },
         minimumLinks = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         awsDevice = {
             type = "string",
@@ -3292,10 +3361,13 @@ M.Lag = {
         },
         connections = {
             type = "list",
-            member_type = "structure",
+            member = M.Connection,
         },
         allowsHostedConnections = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         jumboFrameCapable = {
             type = "boolean",
@@ -3305,7 +3377,7 @@ M.Lag = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         providerName = {
             type = "string",
@@ -3318,7 +3390,7 @@ M.Lag = {
         },
         macSecKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.MacSecKey,
         },
     },
 }
@@ -3328,7 +3400,7 @@ M.DescribeLagsOutput = {
     members = {
         lags = {
             type = "list",
-            member_type = "structure",
+            member = M.Lag,
         },
         nextToken = {
             type = "string",
@@ -3384,15 +3456,15 @@ M.Location = {
         },
         availablePortSpeeds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         availableProviders = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         availableMacSecPortSpeeds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3402,7 +3474,7 @@ M.DescribeLocationsOutput = {
     members = {
         locations = {
             type = "list",
-            member_type = "structure",
+            member = M.Location,
         },
     },
 }
@@ -3452,9 +3524,7 @@ M.DescribeRouterConfigurationOutput = {
         customerRouterConfig = {
             type = "string",
         },
-        router = {
-            type = "structure",
-        },
+        router = M.RouterType,
         virtualInterfaceId = {
             type = "string",
         },
@@ -3469,7 +3539,7 @@ M.DescribeTagsInput = {
     members = {
         resourceArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3485,7 +3555,7 @@ M.ResourceTag = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -3495,7 +3565,7 @@ M.DescribeTagsOutput = {
     members = {
         resourceTags = {
             type = "list",
-            member_type = "structure",
+            member = M.ResourceTag,
         },
     },
 }
@@ -3521,7 +3591,7 @@ M.DescribeVirtualGatewaysOutput = {
     members = {
         virtualGateways = {
             type = "list",
-            member_type = "structure",
+            member = M.VirtualGateway,
         },
     },
 }
@@ -3536,7 +3606,7 @@ M.DescribeVirtualInterfacesInput = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -3549,7 +3619,7 @@ M.DescribeVirtualInterfacesOutput = {
     members = {
         virtualInterfaces = {
             type = "list",
-            member_type = "structure",
+            member = M.VirtualInterface,
         },
         nextToken = {
             type = "string",
@@ -3600,7 +3670,10 @@ M.DisassociateConnectionFromLagOutput = {
             type = "string",
         },
         vlan = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         partnerName = {
             type = "string",
@@ -3628,7 +3701,7 @@ M.DisassociateConnectionFromLagOutput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         providerName = {
             type = "string",
@@ -3644,7 +3717,7 @@ M.DisassociateConnectionFromLagOutput = {
         },
         macSecKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.MacSecKey,
         },
         partnerInterconnectMacSecCapable = {
             type = "boolean",
@@ -3678,7 +3751,7 @@ M.DisassociateMacSecKeyOutput = {
         },
         macSecKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.MacSecKey,
         },
     },
 }
@@ -3694,13 +3767,13 @@ M.ListVirtualInterfaceTestHistoryInput = {
         },
         bgpPeers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         status = {
             type = "string",
         },
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
@@ -3719,7 +3792,7 @@ M.VirtualInterfaceTestHistory = {
         },
         bgpPeers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         status = {
             type = "string",
@@ -3728,7 +3801,7 @@ M.VirtualInterfaceTestHistory = {
             type = "string",
         },
         testDurationInMinutes = {
-            type = "number",
+            type = "integer",
         },
         startTime = {
             type = "timestamp",
@@ -3744,7 +3817,7 @@ M.ListVirtualInterfaceTestHistoryOutput = {
     members = {
         virtualInterfaceTestHistory = {
             type = "list",
-            member_type = "structure",
+            member = M.VirtualInterfaceTestHistory,
         },
         nextToken = {
             type = "string",
@@ -3763,10 +3836,10 @@ M.StartBgpFailoverTestInput = {
         },
         bgpPeers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         testDurationInMinutes = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -3774,9 +3847,7 @@ M.StartBgpFailoverTestInput = {
 M.StartBgpFailoverTestOutput = {
     type = "structure",
     members = {
-        virtualInterfaceTest = {
-            type = "structure",
-        },
+        virtualInterfaceTest = M.VirtualInterfaceTestHistory,
     },
 }
 
@@ -3795,9 +3866,7 @@ M.StopBgpFailoverTestInput = {
 M.StopBgpFailoverTestOutput = {
     type = "structure",
     members = {
-        virtualInterfaceTest = {
-            type = "structure",
-        },
+        virtualInterfaceTest = M.VirtualInterfaceTestHistory,
     },
 }
 
@@ -3812,7 +3881,7 @@ M.TagResourceInput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -3835,7 +3904,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3890,7 +3959,10 @@ M.UpdateConnectionOutput = {
             type = "string",
         },
         vlan = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         partnerName = {
             type = "string",
@@ -3918,7 +3990,7 @@ M.UpdateConnectionOutput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         providerName = {
             type = "string",
@@ -3934,7 +4006,7 @@ M.UpdateConnectionOutput = {
         },
         macSecKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.MacSecKey,
         },
         partnerInterconnectMacSecCapable = {
             type = "boolean",
@@ -3963,9 +4035,7 @@ M.UpdateDirectConnectGatewayInput = {
 M.UpdateDirectConnectGatewayOutput = {
     type = "structure",
     members = {
-        directConnectGateway = {
-            type = "structure",
-        },
+        directConnectGateway = M.DirectConnectGateway,
     },
 }
 
@@ -3977,11 +4047,11 @@ M.UpdateDirectConnectGatewayAssociationInput = {
         },
         addAllowedPrefixesToDirectConnectGateway = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteFilterPrefix,
         },
         removeAllowedPrefixesToDirectConnectGateway = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteFilterPrefix,
         },
     },
 }
@@ -3989,9 +4059,7 @@ M.UpdateDirectConnectGatewayAssociationInput = {
 M.UpdateDirectConnectGatewayAssociationOutput = {
     type = "structure",
     members = {
-        directConnectGatewayAssociation = {
-            type = "structure",
-        },
+        directConnectGatewayAssociation = M.DirectConnectGatewayAssociation,
     },
 }
 
@@ -4008,7 +4076,10 @@ M.UpdateLagInput = {
             type = "string",
         },
         minimumLinks = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         encryptionMode = {
             type = "string",
@@ -4023,7 +4094,10 @@ M.UpdateLagOutput = {
             type = "string",
         },
         numberOfConnections = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         lagId = {
             type = "string",
@@ -4044,7 +4118,10 @@ M.UpdateLagOutput = {
             type = "string",
         },
         minimumLinks = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         awsDevice = {
             type = "string",
@@ -4057,10 +4134,13 @@ M.UpdateLagOutput = {
         },
         connections = {
             type = "list",
-            member_type = "structure",
+            member = M.Connection,
         },
         allowsHostedConnections = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         jumboFrameCapable = {
             type = "boolean",
@@ -4070,7 +4150,7 @@ M.UpdateLagOutput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         providerName = {
             type = "string",
@@ -4083,7 +4163,7 @@ M.UpdateLagOutput = {
         },
         macSecKeys = {
             type = "list",
-            member_type = "structure",
+            member = M.MacSecKey,
         },
     },
 }
@@ -4098,7 +4178,7 @@ M.UpdateVirtualInterfaceAttributesInput = {
             },
         },
         mtu = {
-            type = "number",
+            type = "integer",
         },
         enableSiteLink = {
             type = "boolean",
@@ -4131,16 +4211,22 @@ M.UpdateVirtualInterfaceAttributesOutput = {
             type = "string",
         },
         vlan = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         asn = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         asnLong = {
-            type = "number",
+            type = "long",
         },
         amazonSideAsn = {
-            type = "number",
+            type = "long",
         },
         authKey = {
             type = "string",
@@ -4161,7 +4247,7 @@ M.UpdateVirtualInterfaceAttributesOutput = {
             type = "string",
         },
         mtu = {
-            type = "number",
+            type = "integer",
         },
         jumboFrameCapable = {
             type = "boolean",
@@ -4174,11 +4260,11 @@ M.UpdateVirtualInterfaceAttributesOutput = {
         },
         routeFilterPrefixes = {
             type = "list",
-            member_type = "structure",
+            member = M.RouteFilterPrefix,
         },
         bgpPeers = {
             type = "list",
-            member_type = "structure",
+            member = M.BGPPeer,
         },
         region = {
             type = "string",
@@ -4191,7 +4277,7 @@ M.UpdateVirtualInterfaceAttributesOutput = {
         },
         tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         siteLinkEnabled = {
             type = "boolean",

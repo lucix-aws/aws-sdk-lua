@@ -319,13 +319,13 @@ local record NotAuthorizedException
     Message: string
 end
 
-local type PeriodAlignment = "END_TIME" | "START_TIME"
-
-local type ServiceType = "RDS" | "DOCDB"
+local type AcceptLanguage = "EN_US"
 
 local type TextFormat = "PLAIN_TEXT" | "MARKDOWN"
 
-local type AcceptLanguage = "EN_US"
+local type PeriodAlignment = "END_TIME" | "START_TIME"
+
+local type ServiceType = "RDS" | "DOCDB"
 
 local record M
     CreatePerformanceAnalysisReportInput: CreatePerformanceAnalysisReportInput

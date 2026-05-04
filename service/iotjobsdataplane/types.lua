@@ -20,13 +20,13 @@ M.CommandParameterValue = {
             type = "boolean",
         },
         I = {
-            type = "number",
+            type = "integer",
         },
         L = {
-            type = "number",
+            type = "long",
         },
         D = {
-            type = "number",
+            type = "double",
         },
         BIN = {
             type = "blob",
@@ -74,7 +74,7 @@ M.DescribeJobExecutionInput = {
             },
         },
         executionNumber = {
-            type = "number",
+            type = "long",
             traits = {
                 http_query = "executionNumber",
             },
@@ -107,26 +107,35 @@ M.JobExecution = {
         },
         statusDetails = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         queuedAt = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         startedAt = {
-            type = "number",
+            type = "long",
         },
         lastUpdatedAt = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         approximateSecondsBeforeTimedOut = {
-            type = "number",
+            type = "long",
         },
         versionNumber = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         executionNumber = {
-            type = "number",
+            type = "long",
         },
         jobDocument = {
             type = "string",
@@ -137,9 +146,7 @@ M.JobExecution = {
 M.DescribeJobExecutionOutput = {
     type = "structure",
     members = {
-        execution = {
-            type = "structure",
-        },
+        execution = M.JobExecution,
     },
 }
 
@@ -216,19 +223,28 @@ M.JobExecutionSummary = {
             type = "string",
         },
         queuedAt = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         startedAt = {
-            type = "number",
+            type = "long",
         },
         lastUpdatedAt = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         versionNumber = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
         executionNumber = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -238,11 +254,11 @@ M.GetPendingJobExecutionsOutput = {
     members = {
         inProgressJobs = {
             type = "list",
-            member_type = "structure",
+            member = M.JobExecutionSummary,
         },
         queuedJobs = {
             type = "list",
-            member_type = "structure",
+            member = M.JobExecutionSummary,
         },
     },
 }
@@ -294,11 +310,11 @@ M.StartCommandExecutionInput = {
         },
         parameters = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.CommandParameterValue,
         },
         executionTimeoutSeconds = {
-            type = "number",
+            type = "long",
         },
         clientToken = {
             type = "string",
@@ -337,11 +353,11 @@ M.StartNextPendingJobExecutionInput = {
         },
         statusDetails = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         stepTimeoutInMinutes = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -349,9 +365,7 @@ M.StartNextPendingJobExecutionInput = {
 M.StartNextPendingJobExecutionOutput = {
     type = "structure",
     members = {
-        execution = {
-            type = "structure",
-        },
+        execution = M.JobExecution,
     },
 }
 
@@ -380,14 +394,14 @@ M.UpdateJobExecutionInput = {
         },
         statusDetails = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         stepTimeoutInMinutes = {
-            type = "number",
+            type = "long",
         },
         expectedVersion = {
-            type = "number",
+            type = "long",
         },
         includeJobExecutionState = {
             type = "boolean",
@@ -396,7 +410,7 @@ M.UpdateJobExecutionInput = {
             type = "boolean",
         },
         executionNumber = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -409,11 +423,14 @@ M.JobExecutionState = {
         },
         statusDetails = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         versionNumber = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -421,9 +438,7 @@ M.JobExecutionState = {
 M.UpdateJobExecutionOutput = {
     type = "structure",
     members = {
-        executionState = {
-            type = "structure",
-        },
+        executionState = M.JobExecutionState,
         jobDocument = {
             type = "string",
         },

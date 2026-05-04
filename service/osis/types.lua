@@ -52,9 +52,7 @@ M.LogPublishingOptions = {
         IsLoggingEnabled = {
             type = "boolean",
         },
-        CloudWatchLogDestination = {
-            type = "structure",
-        },
+        CloudWatchLogDestination = M.CloudWatchLogDestination,
     },
 }
 
@@ -101,18 +99,16 @@ M.VpcOptions = {
     members = {
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        VpcAttachmentOptions = {
-            type = "structure",
-        },
+        VpcAttachmentOptions = M.VpcAttachmentOptions,
         VpcEndpointManagement = {
             type = "string",
         },
@@ -129,13 +125,13 @@ M.CreatePipelineInput = {
             },
         },
         MinUnits = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         MaxUnits = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -146,21 +142,13 @@ M.CreatePipelineInput = {
                 required = true,
             },
         },
-        LogPublishingOptions = {
-            type = "structure",
-        },
-        VpcOptions = {
-            type = "structure",
-        },
-        BufferOptions = {
-            type = "structure",
-        },
-        EncryptionAtRestOptions = {
-            type = "structure",
-        },
+        LogPublishingOptions = M.LogPublishingOptions,
+        VpcOptions = M.VpcOptions,
+        BufferOptions = M.BufferOptions,
+        EncryptionAtRestOptions = M.EncryptionAtRestOptions,
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         PipelineRoleArn = {
             type = "string",
@@ -227,9 +215,7 @@ M.VpcEndpoint = {
         VpcId = {
             type = "string",
         },
-        VpcOptions = {
-            type = "structure",
-        },
+        VpcOptions = M.VpcOptions,
     },
 }
 
@@ -243,17 +229,21 @@ M.Pipeline = {
             type = "string",
         },
         MinUnits = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         MaxUnits = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         Status = {
             type = "string",
         },
-        StatusReason = {
-            type = "structure",
-        },
+        StatusReason = M.PipelineStatusReason,
         PipelineConfigurationBody = {
             type = "string",
         },
@@ -265,35 +255,29 @@ M.Pipeline = {
         },
         IngestEndpointUrls = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        LogPublishingOptions = {
-            type = "structure",
-        },
+        LogPublishingOptions = M.LogPublishingOptions,
         VpcEndpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcEndpoint,
         },
-        BufferOptions = {
-            type = "structure",
-        },
-        EncryptionAtRestOptions = {
-            type = "structure",
-        },
+        BufferOptions = M.BufferOptions,
+        EncryptionAtRestOptions = M.EncryptionAtRestOptions,
         VpcEndpointService = {
             type = "string",
         },
         ServiceVpcEndpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.ServiceVpcEndpoint,
         },
         Destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.PipelineDestination,
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         PipelineRoleArn = {
             type = "string",
@@ -304,9 +288,7 @@ M.Pipeline = {
 M.CreatePipelineOutput = {
     type = "structure",
     members = {
-        Pipeline = {
-            type = "structure",
-        },
+        Pipeline = M.Pipeline,
     },
 }
 
@@ -375,11 +357,11 @@ M.PipelineEndpointVpcOptions = {
     members = {
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -393,12 +375,9 @@ M.CreatePipelineEndpointInput = {
                 required = true,
             },
         },
-        VpcOptions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        VpcOptions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PipelineEndpointVpcOptions }),
     },
 }
 
@@ -506,9 +485,7 @@ M.GetPipelineInput = {
 M.GetPipelineOutput = {
     type = "structure",
     members = {
-        Pipeline = {
-            type = "structure",
-        },
+        Pipeline = M.Pipeline,
     },
 }
 
@@ -558,9 +535,7 @@ M.PipelineBlueprint = {
 M.GetPipelineBlueprintOutput = {
     type = "structure",
     members = {
-        Blueprint = {
-            type = "structure",
-        },
+        Blueprint = M.PipelineBlueprint,
         Format = {
             type = "string",
         },
@@ -622,11 +597,14 @@ M.ChangeProgressStatus = {
             type = "string",
         },
         TotalNumberOfStages = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         ChangeProgressStages = {
             type = "list",
-            member_type = "structure",
+            member = M.ChangeProgressStage,
         },
     },
 }
@@ -636,7 +614,7 @@ M.GetPipelineChangeProgressOutput = {
     members = {
         ChangeProgressStatuses = {
             type = "list",
-            member_type = "structure",
+            member = M.ChangeProgressStatus,
         },
     },
 }
@@ -706,7 +684,7 @@ M.ListPipelineBlueprintsOutput = {
     members = {
         Blueprints = {
             type = "list",
-            member_type = "structure",
+            member = M.PipelineBlueprintSummary,
         },
     },
 }
@@ -715,7 +693,7 @@ M.ListPipelineEndpointConnectionsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -755,7 +733,7 @@ M.ListPipelineEndpointConnectionsOutput = {
         },
         PipelineEndpointConnections = {
             type = "list",
-            member_type = "structure",
+            member = M.PipelineEndpointConnection,
         },
     },
 }
@@ -764,7 +742,7 @@ M.ListPipelineEndpointsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -793,9 +771,7 @@ M.PipelineEndpoint = {
         VpcId = {
             type = "string",
         },
-        VpcOptions = {
-            type = "structure",
-        },
+        VpcOptions = M.PipelineEndpointVpcOptions,
         IngestEndpointUrl = {
             type = "string",
         },
@@ -810,7 +786,7 @@ M.ListPipelineEndpointsOutput = {
         },
         PipelineEndpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.PipelineEndpoint,
         },
     },
 }
@@ -819,7 +795,7 @@ M.ListPipelinesInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -839,9 +815,7 @@ M.PipelineSummary = {
         Status = {
             type = "string",
         },
-        StatusReason = {
-            type = "structure",
-        },
+        StatusReason = M.PipelineStatusReason,
         PipelineName = {
             type = "string",
         },
@@ -849,10 +823,10 @@ M.PipelineSummary = {
             type = "string",
         },
         MinUnits = {
-            type = "number",
+            type = "integer",
         },
         MaxUnits = {
-            type = "number",
+            type = "integer",
         },
         CreatedAt = {
             type = "timestamp",
@@ -862,11 +836,11 @@ M.PipelineSummary = {
         },
         Destinations = {
             type = "list",
-            member_type = "structure",
+            member = M.PipelineDestination,
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -879,7 +853,7 @@ M.ListPipelinesOutput = {
         },
         Pipelines = {
             type = "list",
-            member_type = "structure",
+            member = M.PipelineSummary,
         },
     },
 }
@@ -902,7 +876,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -949,7 +923,7 @@ M.RevokePipelineEndpointConnectionsInput = {
         },
         EndpointIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -982,9 +956,7 @@ M.StartPipelineInput = {
 M.StartPipelineOutput = {
     type = "structure",
     members = {
-        Pipeline = {
-            type = "structure",
-        },
+        Pipeline = M.Pipeline,
     },
 }
 
@@ -1004,9 +976,7 @@ M.StopPipelineInput = {
 M.StopPipelineOutput = {
     type = "structure",
     members = {
-        Pipeline = {
-            type = "structure",
-        },
+        Pipeline = M.Pipeline,
     },
 }
 
@@ -1022,7 +992,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -1046,7 +1016,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1069,23 +1039,17 @@ M.UpdatePipelineInput = {
             },
         },
         MinUnits = {
-            type = "number",
+            type = "integer",
         },
         MaxUnits = {
-            type = "number",
+            type = "integer",
         },
         PipelineConfigurationBody = {
             type = "string",
         },
-        LogPublishingOptions = {
-            type = "structure",
-        },
-        BufferOptions = {
-            type = "structure",
-        },
-        EncryptionAtRestOptions = {
-            type = "structure",
-        },
+        LogPublishingOptions = M.LogPublishingOptions,
+        BufferOptions = M.BufferOptions,
+        EncryptionAtRestOptions = M.EncryptionAtRestOptions,
         PipelineRoleArn = {
             type = "string",
         },
@@ -1095,9 +1059,7 @@ M.UpdatePipelineInput = {
 M.UpdatePipelineOutput = {
     type = "structure",
     members = {
-        Pipeline = {
-            type = "structure",
-        },
+        Pipeline = M.Pipeline,
     },
 }
 
@@ -1130,7 +1092,7 @@ M.ValidatePipelineOutput = {
         },
         Errors = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationMessage,
         },
     },
 }

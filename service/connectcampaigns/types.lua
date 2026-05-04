@@ -23,7 +23,7 @@ M.AgentlessDialerConfig = {
     type = "structure",
     members = {
         dialingCapacity = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -51,13 +51,13 @@ M.PredictiveDialerConfig = {
     type = "structure",
     members = {
         bandwidthAllocation = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
         dialingCapacity = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -66,13 +66,13 @@ M.ProgressiveDialerConfig = {
     type = "structure",
     members = {
         bandwidthAllocation = {
-            type = "number",
+            type = "double",
             traits = {
                 required = true,
             },
         },
         dialingCapacity = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -80,15 +80,9 @@ M.ProgressiveDialerConfig = {
 M.DialerConfig = {
     type = "union",
     members = {
-        progressiveDialerConfig = {
-            type = "structure",
-        },
-        predictiveDialerConfig = {
-            type = "structure",
-        },
-        agentlessDialerConfig = {
-            type = "structure",
-        },
+        progressiveDialerConfig = M.ProgressiveDialerConfig,
+        predictiveDialerConfig = M.PredictiveDialerConfig,
+        agentlessDialerConfig = M.AgentlessDialerConfig,
     },
 }
 
@@ -103,6 +97,9 @@ M.AnswerMachineDetectionConfig = {
         },
         awaitAnswerMachinePrompt = {
             type = "boolean",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -122,9 +119,7 @@ M.OutboundCallConfig = {
         connectQueueId = {
             type = "string",
         },
-        answerMachineDetectionConfig = {
-            type = "structure",
-        },
+        answerMachineDetectionConfig = M.AnswerMachineDetectionConfig,
     },
 }
 
@@ -143,22 +138,16 @@ M.CreateCampaignInput = {
                 required = true,
             },
         },
-        dialerConfig = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        outboundCallConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        dialerConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DialerConfig }),
+        outboundCallConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OutboundCallConfig }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -174,8 +163,8 @@ M.CreateCampaignOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -385,22 +374,16 @@ M.Campaign = {
                 required = true,
             },
         },
-        dialerConfig = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        outboundCallConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        dialerConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DialerConfig }),
+        outboundCallConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OutboundCallConfig }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -408,9 +391,7 @@ M.Campaign = {
 M.DescribeCampaignOutput = {
     type = "structure",
     members = {
-        campaign = {
-            type = "structure",
-        },
+        campaign = M.Campaign,
     },
 }
 
@@ -449,7 +430,7 @@ M.GetCampaignStateBatchInput = {
     members = {
         campaignIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -491,11 +472,11 @@ M.GetCampaignStateBatchOutput = {
     members = {
         successfulRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.SuccessfulCampaignStateResponse,
         },
         failedRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.FailedCampaignStateResponse,
         },
     },
 }
@@ -523,6 +504,7 @@ M.EncryptionConfig = {
         enabled = {
             type = "boolean",
             traits = {
+                default = false,
                 required = true,
             },
         },
@@ -550,21 +532,16 @@ M.InstanceConfig = {
                 required = true,
             },
         },
-        encryptionConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        encryptionConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EncryptionConfig }),
     },
 }
 
 M.GetConnectInstanceConfigOutput = {
     type = "structure",
     members = {
-        connectInstanceConfig = {
-            type = "structure",
-        },
+        connectInstanceConfig = M.InstanceConfig,
     },
 }
 
@@ -620,9 +597,7 @@ M.InstanceOnboardingJobStatus = {
 M.GetInstanceOnboardingJobStatusOutput = {
     type = "structure",
     members = {
-        connectInstanceOnboardingJobStatus = {
-            type = "structure",
-        },
+        connectInstanceOnboardingJobStatus = M.InstanceOnboardingJobStatus,
     },
 }
 
@@ -651,9 +626,7 @@ M.InstanceIdFilter = {
 M.CampaignFilters = {
     type = "structure",
     members = {
-        instanceIdFilter = {
-            type = "structure",
-        },
+        instanceIdFilter = M.InstanceIdFilter,
     },
 }
 
@@ -661,14 +634,12 @@ M.ListCampaignsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
         },
         nextToken = {
             type = "string",
         },
-        filters = {
-            type = "structure",
-        },
+        filters = M.CampaignFilters,
     },
 }
 
@@ -710,7 +681,7 @@ M.ListCampaignsOutput = {
         },
         campaignSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.CampaignSummary,
         },
     },
 }
@@ -733,8 +704,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -804,8 +775,8 @@ M.DialRequest = {
         },
         attributes = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -825,7 +796,7 @@ M.PutDialRequestBatchInput = {
         },
         dialRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.DialRequest,
             traits = {
                 required = true,
             },
@@ -871,11 +842,11 @@ M.PutDialRequestBatchOutput = {
     members = {
         successfulRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.SuccessfulRequest,
         },
         failedRequests = {
             type = "list",
-            member_type = "structure",
+            member = M.FailedRequest,
         },
     },
 }
@@ -924,21 +895,16 @@ M.StartInstanceOnboardingJobInput = {
                 required = true,
             },
         },
-        encryptionConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        encryptionConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EncryptionConfig }),
     },
 }
 
 M.StartInstanceOnboardingJobOutput = {
     type = "structure",
     members = {
-        connectInstanceOnboardingJobStatus = {
-            type = "structure",
-        },
+        connectInstanceOnboardingJobStatus = M.InstanceOnboardingJobStatus,
     },
 }
 
@@ -971,8 +937,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -996,7 +962,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -1019,12 +985,9 @@ M.UpdateCampaignDialerConfigInput = {
                 required = true,
             },
         },
-        dialerConfig = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        dialerConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DialerConfig }),
     },
 }
 
@@ -1071,9 +1034,7 @@ M.UpdateCampaignOutboundCallConfigInput = {
         connectSourcePhoneNumber = {
             type = "string",
         },
-        answerMachineDetectionConfig = {
-            type = "structure",
-        },
+        answerMachineDetectionConfig = M.AnswerMachineDetectionConfig,
     },
 }
 

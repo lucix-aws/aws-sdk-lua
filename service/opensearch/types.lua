@@ -62,27 +62,19 @@ M.AWSDomainInformation = {
 M.DomainInformationContainer = {
     type = "structure",
     members = {
-        AWSDomainInformation = {
-            type = "structure",
-        },
+        AWSDomainInformation = M.AWSDomainInformation,
     },
 }
 
 M.InboundConnection = {
     type = "structure",
     members = {
-        LocalDomainInfo = {
-            type = "structure",
-        },
-        RemoteDomainInfo = {
-            type = "structure",
-        },
+        LocalDomainInfo = M.DomainInformationContainer,
+        RemoteDomainInfo = M.DomainInformationContainer,
         ConnectionId = {
             type = "string",
         },
-        ConnectionStatus = {
-            type = "structure",
-        },
+        ConnectionStatus = M.InboundConnectionStatus,
         ConnectionMode = {
             type = "string",
         },
@@ -92,9 +84,7 @@ M.InboundConnection = {
 M.AcceptInboundConnectionOutput = {
     type = "structure",
     members = {
-        Connection = {
-            type = "structure",
-        },
+        Connection = M.InboundConnection,
     },
 }
 
@@ -160,7 +150,10 @@ M.OptionStatus = {
             },
         },
         UpdateVersion = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         State = {
             type = "string",
@@ -183,12 +176,9 @@ M.AccessPoliciesStatus = {
                 required = true,
             },
         },
-        Status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OptionStatus }),
     },
 }
 
@@ -225,9 +215,7 @@ M.S3GlueDataCatalog = {
 M.DataSourceType = {
     type = "union",
     members = {
-        S3GlueDataCatalog = {
-            type = "structure",
-        },
+        S3GlueDataCatalog = M.S3GlueDataCatalog,
     },
 }
 
@@ -247,12 +235,9 @@ M.AddDataSourceInput = {
                 required = true,
             },
         },
-        DataSourceType = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        DataSourceType = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataSourceType }),
         Description = {
             type = "string",
         },
@@ -353,15 +338,9 @@ M.SecurityLakeDirectQueryDataSource = {
 M.DirectQueryDataSourceType = {
     type = "union",
     members = {
-        CloudWatchLog = {
-            type = "structure",
-        },
-        SecurityLake = {
-            type = "structure",
-        },
-        Prometheus = {
-            type = "structure",
-        },
+        CloudWatchLog = M.CloudWatchDirectQueryDataSource,
+        SecurityLake = M.SecurityLakeDirectQueryDataSource,
+        Prometheus = M.PrometheusDirectQueryDataSource,
     },
 }
 
@@ -392,25 +371,22 @@ M.AddDirectQueryDataSourceInput = {
                 required = true,
             },
         },
-        DataSourceType = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        DataSourceType = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DirectQueryDataSourceType }),
         Description = {
             type = "string",
         },
         OpenSearchArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DataSourceAccessPolicy = {
             type = "string",
         },
         TagList = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -432,7 +408,7 @@ M.AdditionalLimit = {
         },
         LimitValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -448,7 +424,7 @@ M.AddTagsInput = {
         },
         TagList = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -465,18 +441,15 @@ M.AdvancedOptionsStatus = {
     members = {
         Options = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
         },
-        Status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OptionStatus }),
     },
 }
 
@@ -540,9 +513,7 @@ M.SAMLOptionsOutput = {
         Enabled = {
             type = "boolean",
         },
-        Idp = {
-            type = "structure",
-        },
+        Idp = M.SAMLIdp,
         SubjectKey = {
             type = "string",
         },
@@ -550,7 +521,7 @@ M.SAMLOptionsOutput = {
             type = "string",
         },
         SessionTimeoutMinutes = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -564,15 +535,9 @@ M.AdvancedSecurityOptions = {
         InternalUserDatabaseEnabled = {
             type = "boolean",
         },
-        SAMLOptions = {
-            type = "structure",
-        },
-        JWTOptions = {
-            type = "structure",
-        },
-        IAMFederationOptions = {
-            type = "structure",
-        },
+        SAMLOptions = M.SAMLOptionsOutput,
+        JWTOptions = M.JWTOptionsOutput,
+        IAMFederationOptions = M.IAMFederationOptionsOutput,
         AnonymousAuthDisableDate = {
             type = "timestamp",
         },
@@ -639,9 +604,7 @@ M.SAMLOptionsInput = {
         Enabled = {
             type = "boolean",
         },
-        Idp = {
-            type = "structure",
-        },
+        Idp = M.SAMLIdp,
         MasterUserName = {
             type = "string",
         },
@@ -655,7 +618,7 @@ M.SAMLOptionsInput = {
             type = "string",
         },
         SessionTimeoutMinutes = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -669,18 +632,10 @@ M.AdvancedSecurityOptionsInput = {
         InternalUserDatabaseEnabled = {
             type = "boolean",
         },
-        MasterUserOptions = {
-            type = "structure",
-        },
-        SAMLOptions = {
-            type = "structure",
-        },
-        JWTOptions = {
-            type = "structure",
-        },
-        IAMFederationOptions = {
-            type = "structure",
-        },
+        MasterUserOptions = M.MasterUserOptions,
+        SAMLOptions = M.SAMLOptionsInput,
+        JWTOptions = M.JWTOptionsInput,
+        IAMFederationOptions = M.IAMFederationOptionsInput,
         AnonymousAuthEnabled = {
             type = "boolean",
         },
@@ -690,18 +645,12 @@ M.AdvancedSecurityOptionsInput = {
 M.AdvancedSecurityOptionsStatus = {
     type = "structure",
     members = {
-        Options = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Options = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AdvancedSecurityOptions }),
+        Status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OptionStatus }),
     },
 }
 
@@ -744,15 +693,9 @@ M.ServerlessVectorAcceleration = {
 M.AIMLOptionsInput = {
     type = "structure",
     members = {
-        NaturalLanguageQueryGenerationOptions = {
-            type = "structure",
-        },
-        S3VectorsEngine = {
-            type = "structure",
-        },
-        ServerlessVectorAcceleration = {
-            type = "structure",
-        },
+        NaturalLanguageQueryGenerationOptions = M.NaturalLanguageQueryGenerationOptionsInput,
+        S3VectorsEngine = M.S3VectorsEngine,
+        ServerlessVectorAcceleration = M.ServerlessVectorAcceleration,
     },
 }
 
@@ -781,27 +724,17 @@ M.NaturalLanguageQueryGenerationOptionsOutput = {
 M.AIMLOptionsOutput = {
     type = "structure",
     members = {
-        NaturalLanguageQueryGenerationOptions = {
-            type = "structure",
-        },
-        S3VectorsEngine = {
-            type = "structure",
-        },
-        ServerlessVectorAcceleration = {
-            type = "structure",
-        },
+        NaturalLanguageQueryGenerationOptions = M.NaturalLanguageQueryGenerationOptionsOutput,
+        S3VectorsEngine = M.S3VectorsEngine,
+        ServerlessVectorAcceleration = M.ServerlessVectorAcceleration,
     },
 }
 
 M.AIMLOptionsStatus = {
     type = "structure",
     members = {
-        Options = {
-            type = "structure",
-        },
-        Status = {
-            type = "structure",
-        },
+        Options = M.AIMLOptionsOutput,
+        Status = M.OptionStatus,
     },
 }
 
@@ -823,9 +756,7 @@ M.KeyStoreAccessOption = {
 M.PackageAssociationConfiguration = {
     type = "structure",
     members = {
-        KeyStoreAccessOption = {
-            type = "structure",
-        },
+        KeyStoreAccessOption = M.KeyStoreAccessOption,
     },
 }
 
@@ -848,11 +779,9 @@ M.AssociatePackageInput = {
         },
         PrerequisitePackageIDList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        AssociationConfiguration = {
-            type = "structure",
-        },
+        AssociationConfiguration = M.PackageAssociationConfiguration,
     },
 }
 
@@ -909,26 +838,20 @@ M.DomainPackageDetails = {
         },
         PrerequisitePackageIDList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ReferencePath = {
             type = "string",
         },
-        ErrorDetails = {
-            type = "structure",
-        },
-        AssociationConfiguration = {
-            type = "structure",
-        },
+        ErrorDetails = M.ErrorDetails,
+        AssociationConfiguration = M.PackageAssociationConfiguration,
     },
 }
 
 M.AssociatePackageOutput = {
     type = "structure",
     members = {
-        DomainPackageDetails = {
-            type = "structure",
-        },
+        DomainPackageDetails = M.DomainPackageDetails,
     },
 }
 
@@ -953,11 +876,9 @@ M.PackageDetailsForAssociation = {
         },
         PrerequisitePackageIDList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
-        AssociationConfiguration = {
-            type = "structure",
-        },
+        AssociationConfiguration = M.PackageAssociationConfiguration,
     },
 }
 
@@ -966,7 +887,7 @@ M.AssociatePackagesInput = {
     members = {
         PackageList = {
             type = "list",
-            member_type = "structure",
+            member = M.PackageDetailsForAssociation,
             traits = {
                 required = true,
             },
@@ -985,7 +906,7 @@ M.AssociatePackagesOutput = {
     members = {
         DomainPackageDetailsList = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainPackageDetails,
         },
     },
 }
@@ -999,7 +920,7 @@ M.ServiceOptions = {
     members = {
         SupportedRegions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1020,9 +941,7 @@ M.AuthorizeVpcEndpointAccessInput = {
         Service = {
             type = "string",
         },
-        ServiceOptions = {
-            type = "structure",
-        },
+        ServiceOptions = M.ServiceOptions,
     },
 }
 
@@ -1040,21 +959,16 @@ M.AuthorizedPrincipal = {
         Principal = {
             type = "string",
         },
-        ServiceOptions = {
-            type = "structure",
-        },
+        ServiceOptions = M.ServiceOptions,
     },
 }
 
 M.AuthorizeVpcEndpointAccessOutput = {
     type = "structure",
     members = {
-        AuthorizedPrincipal = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        AuthorizedPrincipal = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AuthorizedPrincipal }),
     },
 }
 
@@ -1094,11 +1008,11 @@ M.CancelDomainConfigChangeOutput = {
     members = {
         CancelledChangeIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CancelledChangeProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.CancelledChangeProperty,
         },
         DryRun = {
             type = "boolean",
@@ -1159,9 +1073,7 @@ M.ServiceSoftwareOptions = {
 M.CancelServiceSoftwareUpdateOutput = {
     type = "structure",
     members = {
-        ServiceSoftwareOptions = {
-            type = "structure",
-        },
+        ServiceSoftwareOptions = M.ServiceSoftwareOptions,
     },
 }
 
@@ -1226,18 +1138,16 @@ M.CreateApplicationInput = {
         },
         dataSources = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSource,
         },
-        iamIdentityCenterOptions = {
-            type = "structure",
-        },
+        iamIdentityCenterOptions = M.IamIdentityCenterOptionsInput,
         appConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.AppConfig,
         },
         tagList = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         kmsKeyArn = {
             type = "string",
@@ -1277,18 +1187,16 @@ M.CreateApplicationOutput = {
         },
         dataSources = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSource,
         },
-        iamIdentityCenterOptions = {
-            type = "structure",
-        },
+        iamIdentityCenterOptions = M.IamIdentityCenterOptions,
         appConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.AppConfig,
         },
         tagList = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         createdAt = {
             type = "timestamp",
@@ -1312,7 +1220,7 @@ M.Duration = {
     type = "structure",
     members = {
         Value = {
-            type = "number",
+            type = "long",
         },
         Unit = {
             type = "string",
@@ -1326,9 +1234,7 @@ M.AutoTuneMaintenanceSchedule = {
         StartAt = {
             type = "timestamp",
         },
-        Duration = {
-            type = "structure",
-        },
+        Duration = M.Duration,
         CronExpressionForRecurrence = {
             type = "string",
         },
@@ -1343,7 +1249,7 @@ M.AutoTuneOptionsInput = {
         },
         MaintenanceSchedules = {
             type = "list",
-            member_type = "structure",
+            member = M.AutoTuneMaintenanceSchedule,
         },
         UseOffPeakWindow = {
             type = "boolean",
@@ -1479,7 +1385,7 @@ M.NodeConfig = {
             type = "string",
         },
         Count = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1494,9 +1400,7 @@ M.NodeOption = {
         NodeType = {
             type = "string",
         },
-        NodeConfig = {
-            type = "structure",
-        },
+        NodeConfig = M.NodeConfig,
     },
 }
 
@@ -1510,7 +1414,7 @@ M.ZoneAwarenessConfig = {
     type = "structure",
     members = {
         AvailabilityZoneCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1522,7 +1426,7 @@ M.ClusterConfig = {
             type = "string",
         },
         InstanceCount = {
-            type = "number",
+            type = "integer",
         },
         DedicatedMasterEnabled = {
             type = "boolean",
@@ -1530,14 +1434,12 @@ M.ClusterConfig = {
         ZoneAwarenessEnabled = {
             type = "boolean",
         },
-        ZoneAwarenessConfig = {
-            type = "structure",
-        },
+        ZoneAwarenessConfig = M.ZoneAwarenessConfig,
         DedicatedMasterType = {
             type = "string",
         },
         DedicatedMasterCount = {
-            type = "number",
+            type = "integer",
         },
         WarmEnabled = {
             type = "boolean",
@@ -1546,17 +1448,15 @@ M.ClusterConfig = {
             type = "string",
         },
         WarmCount = {
-            type = "number",
+            type = "integer",
         },
-        ColdStorageOptions = {
-            type = "structure",
-        },
+        ColdStorageOptions = M.ColdStorageOptions,
         MultiAZWithStandbyEnabled = {
             type = "boolean",
         },
         NodeOptions = {
             type = "list",
-            member_type = "structure",
+            member = M.NodeOption,
         },
     },
 }
@@ -1641,13 +1541,13 @@ M.EBSOptions = {
             type = "string",
         },
         VolumeSize = {
-            type = "number",
+            type = "integer",
         },
         Iops = {
-            type = "number",
+            type = "integer",
         },
         Throughput = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1733,14 +1633,16 @@ M.WindowStartTime = {
     type = "structure",
     members = {
         Hours = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         Minutes = {
-            type = "number",
+            type = "long",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -1750,9 +1652,7 @@ M.WindowStartTime = {
 M.OffPeakWindow = {
     type = "structure",
     members = {
-        WindowStartTime = {
-            type = "structure",
-        },
+        WindowStartTime = M.WindowStartTime,
     },
 }
 
@@ -1762,9 +1662,7 @@ M.OffPeakWindowOptions = {
         Enabled = {
             type = "boolean",
         },
-        OffPeakWindow = {
-            type = "structure",
-        },
+        OffPeakWindow = M.OffPeakWindow,
     },
 }
 
@@ -1772,7 +1670,7 @@ M.SnapshotOptions = {
     type = "structure",
     members = {
         AutomatedSnapshotStartHour = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1794,11 +1692,11 @@ M.VPCOptions = {
     members = {
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1815,71 +1713,41 @@ M.CreateDomainInput = {
         EngineVersion = {
             type = "string",
         },
-        ClusterConfig = {
-            type = "structure",
-        },
-        EBSOptions = {
-            type = "structure",
-        },
+        ClusterConfig = M.ClusterConfig,
+        EBSOptions = M.EBSOptions,
         AccessPolicies = {
             type = "string",
         },
         IPAddressType = {
             type = "string",
         },
-        SnapshotOptions = {
-            type = "structure",
-        },
-        VPCOptions = {
-            type = "structure",
-        },
-        CognitoOptions = {
-            type = "structure",
-        },
-        EncryptionAtRestOptions = {
-            type = "structure",
-        },
-        NodeToNodeEncryptionOptions = {
-            type = "structure",
-        },
+        SnapshotOptions = M.SnapshotOptions,
+        VPCOptions = M.VPCOptions,
+        CognitoOptions = M.CognitoOptions,
+        EncryptionAtRestOptions = M.EncryptionAtRestOptions,
+        NodeToNodeEncryptionOptions = M.NodeToNodeEncryptionOptions,
         AdvancedOptions = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         LogPublishingOptions = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.LogPublishingOption,
         },
-        DomainEndpointOptions = {
-            type = "structure",
-        },
-        AdvancedSecurityOptions = {
-            type = "structure",
-        },
-        IdentityCenterOptions = {
-            type = "structure",
-        },
+        DomainEndpointOptions = M.DomainEndpointOptions,
+        AdvancedSecurityOptions = M.AdvancedSecurityOptionsInput,
+        IdentityCenterOptions = M.IdentityCenterOptionsInput,
         TagList = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
-        AutoTuneOptions = {
-            type = "structure",
-        },
-        OffPeakWindowOptions = {
-            type = "structure",
-        },
-        SoftwareUpdateOptions = {
-            type = "structure",
-        },
-        AIMLOptions = {
-            type = "structure",
-        },
-        DeploymentStrategyOptions = {
-            type = "structure",
-        },
+        AutoTuneOptions = M.AutoTuneOptionsInput,
+        OffPeakWindowOptions = M.OffPeakWindowOptions,
+        SoftwareUpdateOptions = M.SoftwareUpdateOptions,
+        AIMLOptions = M.AIMLOptionsInput,
+        DeploymentStrategyOptions = M.DeploymentStrategyOptions,
     },
 }
 
@@ -2018,15 +1886,15 @@ M.VPCDerivedInfo = {
         },
         SubnetIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         SecurityGroupIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -2066,8 +1934,8 @@ M.DomainStatus = {
         },
         Endpoints = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         DomainEndpointV2HostedZoneId = {
             type = "string",
@@ -2081,92 +1949,55 @@ M.DomainStatus = {
         EngineVersion = {
             type = "string",
         },
-        ClusterConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        EBSOptions = {
-            type = "structure",
-        },
+        ClusterConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ClusterConfig }),
+        EBSOptions = M.EBSOptions,
         AccessPolicies = {
             type = "string",
         },
         IPAddressType = {
             type = "string",
         },
-        SnapshotOptions = {
-            type = "structure",
-        },
-        VPCOptions = {
-            type = "structure",
-        },
-        CognitoOptions = {
-            type = "structure",
-        },
-        EncryptionAtRestOptions = {
-            type = "structure",
-        },
-        NodeToNodeEncryptionOptions = {
-            type = "structure",
-        },
+        SnapshotOptions = M.SnapshotOptions,
+        VPCOptions = M.VPCDerivedInfo,
+        CognitoOptions = M.CognitoOptions,
+        EncryptionAtRestOptions = M.EncryptionAtRestOptions,
+        NodeToNodeEncryptionOptions = M.NodeToNodeEncryptionOptions,
         AdvancedOptions = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         LogPublishingOptions = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.LogPublishingOption,
         },
-        ServiceSoftwareOptions = {
-            type = "structure",
-        },
-        DomainEndpointOptions = {
-            type = "structure",
-        },
-        AdvancedSecurityOptions = {
-            type = "structure",
-        },
-        IdentityCenterOptions = {
-            type = "structure",
-        },
-        AutoTuneOptions = {
-            type = "structure",
-        },
-        ChangeProgressDetails = {
-            type = "structure",
-        },
-        OffPeakWindowOptions = {
-            type = "structure",
-        },
-        SoftwareUpdateOptions = {
-            type = "structure",
-        },
+        ServiceSoftwareOptions = M.ServiceSoftwareOptions,
+        DomainEndpointOptions = M.DomainEndpointOptions,
+        AdvancedSecurityOptions = M.AdvancedSecurityOptions,
+        IdentityCenterOptions = M.IdentityCenterOptions,
+        AutoTuneOptions = M.AutoTuneOptionsOutput,
+        ChangeProgressDetails = M.ChangeProgressDetails,
+        OffPeakWindowOptions = M.OffPeakWindowOptions,
+        SoftwareUpdateOptions = M.SoftwareUpdateOptions,
         DomainProcessingStatus = {
             type = "string",
         },
         ModifyingProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.ModifyingProperties,
         },
-        AIMLOptions = {
-            type = "structure",
-        },
-        DeploymentStrategyOptions = {
-            type = "structure",
-        },
+        AIMLOptions = M.AIMLOptionsOutput,
+        DeploymentStrategyOptions = M.DeploymentStrategyOptions,
     },
 }
 
 M.CreateDomainOutput = {
     type = "structure",
     members = {
-        DomainStatus = {
-            type = "structure",
-        },
+        DomainStatus = M.DomainStatus,
     },
 }
 
@@ -2263,27 +2094,19 @@ M.ConnectionProperties = {
         Endpoint = {
             type = "string",
         },
-        CrossClusterSearch = {
-            type = "structure",
-        },
+        CrossClusterSearch = M.CrossClusterSearchConnectionProperties,
     },
 }
 
 M.CreateOutboundConnectionInput = {
     type = "structure",
     members = {
-        LocalDomainInfo = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        RemoteDomainInfo = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        LocalDomainInfo = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DomainInformationContainer }),
+        RemoteDomainInfo = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DomainInformationContainer }),
         ConnectionAlias = {
             type = "string",
             traits = {
@@ -2293,9 +2116,7 @@ M.CreateOutboundConnectionInput = {
         ConnectionMode = {
             type = "string",
         },
-        ConnectionProperties = {
-            type = "structure",
-        },
+        ConnectionProperties = M.ConnectionProperties,
     },
 }
 
@@ -2327,27 +2148,19 @@ M.OutboundConnectionStatus = {
 M.CreateOutboundConnectionOutput = {
     type = "structure",
     members = {
-        LocalDomainInfo = {
-            type = "structure",
-        },
-        RemoteDomainInfo = {
-            type = "structure",
-        },
+        LocalDomainInfo = M.DomainInformationContainer,
+        RemoteDomainInfo = M.DomainInformationContainer,
         ConnectionAlias = {
             type = "string",
         },
-        ConnectionStatus = {
-            type = "structure",
-        },
+        ConnectionStatus = M.OutboundConnectionStatus,
         ConnectionId = {
             type = "string",
         },
         ConnectionMode = {
             type = "string",
         },
-        ConnectionProperties = {
-            type = "structure",
-        },
+        ConnectionProperties = M.ConnectionProperties,
     },
 }
 
@@ -2438,24 +2251,15 @@ M.CreatePackageInput = {
         PackageDescription = {
             type = "string",
         },
-        PackageSource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        PackageConfiguration = {
-            type = "structure",
-        },
+        PackageSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PackageSource }),
+        PackageConfiguration = M.PackageConfiguration,
         EngineVersion = {
             type = "string",
         },
-        PackageVendingOptions = {
-            type = "structure",
-        },
-        PackageEncryptionOptions = {
-            type = "structure",
-        },
+        PackageVendingOptions = M.PackageVendingOptions,
+        PackageEncryptionOptions = M.PackageEncryptionOptions,
     },
 }
 
@@ -2475,7 +2279,7 @@ M.PluginProperties = {
             type = "string",
         },
         UncompressedSizeInBytes = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -2518,40 +2322,28 @@ M.PackageDetails = {
         AvailablePackageVersion = {
             type = "string",
         },
-        ErrorDetails = {
-            type = "structure",
-        },
+        ErrorDetails = M.ErrorDetails,
         EngineVersion = {
             type = "string",
         },
-        AvailablePluginProperties = {
-            type = "structure",
-        },
-        AvailablePackageConfiguration = {
-            type = "structure",
-        },
+        AvailablePluginProperties = M.PluginProperties,
+        AvailablePackageConfiguration = M.PackageConfiguration,
         AllowListedUserList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         PackageOwner = {
             type = "string",
         },
-        PackageVendingOptions = {
-            type = "structure",
-        },
-        PackageEncryptionOptions = {
-            type = "structure",
-        },
+        PackageVendingOptions = M.PackageVendingOptions,
+        PackageEncryptionOptions = M.PackageEncryptionOptions,
     },
 }
 
 M.CreatePackageOutput = {
     type = "structure",
     members = {
-        PackageDetails = {
-            type = "structure",
-        },
+        PackageDetails = M.PackageDetails,
     },
 }
 
@@ -2564,12 +2356,9 @@ M.CreateVpcEndpointInput = {
                 required = true,
             },
         },
-        VpcOptions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        VpcOptions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VPCOptions }),
         ClientToken = {
             type = "string",
         },
@@ -2598,9 +2387,7 @@ M.VpcEndpoint = {
         DomainArn = {
             type = "string",
         },
-        VpcOptions = {
-            type = "structure",
-        },
+        VpcOptions = M.VPCDerivedInfo,
         Status = {
             type = "string",
         },
@@ -2613,12 +2400,9 @@ M.VpcEndpoint = {
 M.CreateVpcEndpointOutput = {
     type = "structure",
     members = {
-        VpcEndpoint = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        VpcEndpoint = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VpcEndpoint }),
     },
 }
 
@@ -2701,9 +2485,7 @@ M.DeleteDomainInput = {
 M.DeleteDomainOutput = {
     type = "structure",
     members = {
-        DomainStatus = {
-            type = "structure",
-        },
+        DomainStatus = M.DomainStatus,
     },
 }
 
@@ -2723,9 +2505,7 @@ M.DeleteInboundConnectionInput = {
 M.DeleteInboundConnectionOutput = {
     type = "structure",
     members = {
-        Connection = {
-            type = "structure",
-        },
+        Connection = M.InboundConnection,
     },
 }
 
@@ -2777,36 +2557,26 @@ M.DeleteOutboundConnectionInput = {
 M.OutboundConnection = {
     type = "structure",
     members = {
-        LocalDomainInfo = {
-            type = "structure",
-        },
-        RemoteDomainInfo = {
-            type = "structure",
-        },
+        LocalDomainInfo = M.DomainInformationContainer,
+        RemoteDomainInfo = M.DomainInformationContainer,
         ConnectionId = {
             type = "string",
         },
         ConnectionAlias = {
             type = "string",
         },
-        ConnectionStatus = {
-            type = "structure",
-        },
+        ConnectionStatus = M.OutboundConnectionStatus,
         ConnectionMode = {
             type = "string",
         },
-        ConnectionProperties = {
-            type = "structure",
-        },
+        ConnectionProperties = M.ConnectionProperties,
     },
 }
 
 M.DeleteOutboundConnectionOutput = {
     type = "structure",
     members = {
-        Connection = {
-            type = "structure",
-        },
+        Connection = M.OutboundConnection,
     },
 }
 
@@ -2826,9 +2596,7 @@ M.DeletePackageInput = {
 M.DeletePackageOutput = {
     type = "structure",
     members = {
-        PackageDetails = {
-            type = "structure",
-        },
+        PackageDetails = M.PackageDetails,
     },
 }
 
@@ -2866,12 +2634,9 @@ M.VpcEndpointSummary = {
 M.DeleteVpcEndpointOutput = {
     type = "structure",
     members = {
-        VpcEndpointSummary = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        VpcEndpointSummary = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VpcEndpointSummary }),
     },
 }
 
@@ -2930,12 +2695,9 @@ M.DescribeDomainInput = {
 M.DescribeDomainOutput = {
     type = "structure",
     members = {
-        DomainStatus = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DomainStatus = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DomainStatus }),
     },
 }
 
@@ -2950,8 +2712,9 @@ M.DescribeDomainAutoTunesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -2996,9 +2759,7 @@ M.ScheduledAutoTuneDetails = {
 M.AutoTuneDetails = {
     type = "structure",
     members = {
-        ScheduledAutoTuneDetails = {
-            type = "structure",
-        },
+        ScheduledAutoTuneDetails = M.ScheduledAutoTuneDetails,
     },
 }
 
@@ -3012,9 +2773,7 @@ M.AutoTune = {
         AutoTuneType = {
             type = "string",
         },
-        AutoTuneDetails = {
-            type = "structure",
-        },
+        AutoTuneDetails = M.AutoTuneDetails,
     },
 }
 
@@ -3023,7 +2782,7 @@ M.DescribeDomainAutoTunesOutput = {
     members = {
         AutoTunes = {
             type = "list",
-            member_type = "structure",
+            member = M.AutoTune,
         },
         NextToken = {
             type = "string",
@@ -3089,18 +2848,21 @@ M.ChangeProgressStatusDetails = {
         },
         PendingProperties = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         CompletedProperties = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         TotalNumberOfStages = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         ChangeProgressStages = {
             type = "list",
-            member_type = "structure",
+            member = M.ChangeProgressStage,
         },
         LastUpdatedTime = {
             type = "timestamp",
@@ -3117,9 +2879,7 @@ M.ChangeProgressStatusDetails = {
 M.DescribeDomainChangeProgressOutput = {
     type = "structure",
     members = {
-        ChangeProgressStatus = {
-            type = "structure",
-        },
+        ChangeProgressStatus = M.ChangeProgressStatusDetails,
     },
 }
 
@@ -3152,7 +2912,7 @@ M.AutoTuneOptions = {
         },
         MaintenanceSchedules = {
             type = "list",
-            member_type = "structure",
+            member = M.AutoTuneMaintenanceSchedule,
         },
         UseOffPeakWindow = {
             type = "boolean",
@@ -3176,7 +2936,10 @@ M.AutoTuneStatus = {
             },
         },
         UpdateVersion = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         State = {
             type = "string",
@@ -3196,120 +2959,80 @@ M.AutoTuneStatus = {
 M.AutoTuneOptionsStatus = {
     type = "structure",
     members = {
-        Options = {
-            type = "structure",
-        },
-        Status = {
-            type = "structure",
-        },
+        Options = M.AutoTuneOptions,
+        Status = M.AutoTuneStatus,
     },
 }
 
 M.ClusterConfigStatus = {
     type = "structure",
     members = {
-        Options = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Options = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ClusterConfig }),
+        Status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OptionStatus }),
     },
 }
 
 M.CognitoOptionsStatus = {
     type = "structure",
     members = {
-        Options = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Options = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CognitoOptions }),
+        Status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OptionStatus }),
     },
 }
 
 M.DeploymentStrategyOptionsStatus = {
     type = "structure",
     members = {
-        Options = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Options = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DeploymentStrategyOptions }),
+        Status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OptionStatus }),
     },
 }
 
 M.DomainEndpointOptionsStatus = {
     type = "structure",
     members = {
-        Options = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Options = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DomainEndpointOptions }),
+        Status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OptionStatus }),
     },
 }
 
 M.EBSOptionsStatus = {
     type = "structure",
     members = {
-        Options = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Options = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EBSOptions }),
+        Status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OptionStatus }),
     },
 }
 
 M.EncryptionAtRestOptionsStatus = {
     type = "structure",
     members = {
-        Options = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Options = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EncryptionAtRestOptions }),
+        Status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OptionStatus }),
     },
 }
 
@@ -3322,30 +3045,21 @@ M.VersionStatus = {
                 required = true,
             },
         },
-        Status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OptionStatus }),
     },
 }
 
 M.IdentityCenterOptionsStatus = {
     type = "structure",
     members = {
-        Options = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Options = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.IdentityCenterOptions }),
+        Status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OptionStatus }),
     },
 }
 
@@ -3358,12 +3072,9 @@ M.IPAddressTypeStatus = {
                 required = true,
             },
         },
-        Status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OptionStatus }),
     },
 }
 
@@ -3372,175 +3083,102 @@ M.LogPublishingOptionsStatus = {
     members = {
         Options = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.LogPublishingOption,
         },
-        Status = {
-            type = "structure",
-        },
+        Status = M.OptionStatus,
     },
 }
 
 M.NodeToNodeEncryptionOptionsStatus = {
     type = "structure",
     members = {
-        Options = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Options = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.NodeToNodeEncryptionOptions }),
+        Status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OptionStatus }),
     },
 }
 
 M.OffPeakWindowOptionsStatus = {
     type = "structure",
     members = {
-        Options = {
-            type = "structure",
-        },
-        Status = {
-            type = "structure",
-        },
+        Options = M.OffPeakWindowOptions,
+        Status = M.OptionStatus,
     },
 }
 
 M.SnapshotOptionsStatus = {
     type = "structure",
     members = {
-        Options = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Options = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SnapshotOptions }),
+        Status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OptionStatus }),
     },
 }
 
 M.SoftwareUpdateOptionsStatus = {
     type = "structure",
     members = {
-        Options = {
-            type = "structure",
-        },
-        Status = {
-            type = "structure",
-        },
+        Options = M.SoftwareUpdateOptions,
+        Status = M.OptionStatus,
     },
 }
 
 M.VPCDerivedInfoStatus = {
     type = "structure",
     members = {
-        Options = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        Status = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Options = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VPCDerivedInfo }),
+        Status = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OptionStatus }),
     },
 }
 
 M.DomainConfig = {
     type = "structure",
     members = {
-        EngineVersion = {
-            type = "structure",
-        },
-        ClusterConfig = {
-            type = "structure",
-        },
-        EBSOptions = {
-            type = "structure",
-        },
-        AccessPolicies = {
-            type = "structure",
-        },
-        IPAddressType = {
-            type = "structure",
-        },
-        SnapshotOptions = {
-            type = "structure",
-        },
-        VPCOptions = {
-            type = "structure",
-        },
-        CognitoOptions = {
-            type = "structure",
-        },
-        EncryptionAtRestOptions = {
-            type = "structure",
-        },
-        NodeToNodeEncryptionOptions = {
-            type = "structure",
-        },
-        AdvancedOptions = {
-            type = "structure",
-        },
-        LogPublishingOptions = {
-            type = "structure",
-        },
-        DomainEndpointOptions = {
-            type = "structure",
-        },
-        AdvancedSecurityOptions = {
-            type = "structure",
-        },
-        IdentityCenterOptions = {
-            type = "structure",
-        },
-        AutoTuneOptions = {
-            type = "structure",
-        },
-        ChangeProgressDetails = {
-            type = "structure",
-        },
-        OffPeakWindowOptions = {
-            type = "structure",
-        },
-        SoftwareUpdateOptions = {
-            type = "structure",
-        },
+        EngineVersion = M.VersionStatus,
+        ClusterConfig = M.ClusterConfigStatus,
+        EBSOptions = M.EBSOptionsStatus,
+        AccessPolicies = M.AccessPoliciesStatus,
+        IPAddressType = M.IPAddressTypeStatus,
+        SnapshotOptions = M.SnapshotOptionsStatus,
+        VPCOptions = M.VPCDerivedInfoStatus,
+        CognitoOptions = M.CognitoOptionsStatus,
+        EncryptionAtRestOptions = M.EncryptionAtRestOptionsStatus,
+        NodeToNodeEncryptionOptions = M.NodeToNodeEncryptionOptionsStatus,
+        AdvancedOptions = M.AdvancedOptionsStatus,
+        LogPublishingOptions = M.LogPublishingOptionsStatus,
+        DomainEndpointOptions = M.DomainEndpointOptionsStatus,
+        AdvancedSecurityOptions = M.AdvancedSecurityOptionsStatus,
+        IdentityCenterOptions = M.IdentityCenterOptionsStatus,
+        AutoTuneOptions = M.AutoTuneOptionsStatus,
+        ChangeProgressDetails = M.ChangeProgressDetails,
+        OffPeakWindowOptions = M.OffPeakWindowOptionsStatus,
+        SoftwareUpdateOptions = M.SoftwareUpdateOptionsStatus,
         ModifyingProperties = {
             type = "list",
-            member_type = "structure",
+            member = M.ModifyingProperties,
         },
-        AIMLOptions = {
-            type = "structure",
-        },
-        DeploymentStrategyOptions = {
-            type = "structure",
-        },
+        AIMLOptions = M.AIMLOptionsStatus,
+        DeploymentStrategyOptions = M.DeploymentStrategyOptionsStatus,
     },
 }
 
 M.DescribeDomainConfigOutput = {
     type = "structure",
     members = {
-        DomainConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DomainConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DomainConfig }),
     },
 }
 
@@ -3605,7 +3243,7 @@ M.EnvironmentInfo = {
     members = {
         AvailabilityZoneInformation = {
             type = "list",
-            member_type = "structure",
+            member = M.AvailabilityZoneInfo,
         },
     },
 }
@@ -3656,7 +3294,7 @@ M.DescribeDomainHealthOutput = {
         },
         EnvironmentInformation = {
             type = "list",
-            member_type = "structure",
+            member = M.EnvironmentInfo,
         },
     },
 }
@@ -3722,7 +3360,7 @@ M.DescribeDomainNodesOutput = {
     members = {
         DomainNodesStatusList = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainNodesStatus,
         },
     },
 }
@@ -3732,7 +3370,7 @@ M.DescribeDomainsInput = {
     members = {
         DomainNames = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -3745,7 +3383,7 @@ M.DescribeDomainsOutput = {
     members = {
         DomainStatusList = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainStatus,
             traits = {
                 required = true,
             },
@@ -3819,7 +3457,7 @@ M.DryRunProgressStatus = {
         },
         ValidationFailures = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationFailure,
         },
     },
 }
@@ -3839,15 +3477,9 @@ M.DryRunResults = {
 M.DescribeDryRunProgressOutput = {
     type = "structure",
     members = {
-        DryRunProgressStatus = {
-            type = "structure",
-        },
-        DryRunConfig = {
-            type = "structure",
-        },
-        DryRunResults = {
-            type = "structure",
-        },
+        DryRunProgressStatus = M.DryRunProgressStatus,
+        DryRunConfig = M.DomainStatus,
+        DryRunResults = M.DryRunResults,
     },
 }
 
@@ -3859,7 +3491,7 @@ M.Filter = {
         },
         Values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -3869,10 +3501,13 @@ M.DescribeInboundConnectionsInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         NextToken = {
             type = "string",
@@ -3885,7 +3520,7 @@ M.DescribeInboundConnectionsOutput = {
     members = {
         Connections = {
             type = "list",
-            member_type = "structure",
+            member = M.InboundConnection,
         },
         NextToken = {
             type = "string",
@@ -3926,12 +3561,9 @@ M.InsightEntity = {
 M.DescribeInsightDetailsInput = {
     type = "structure",
     members = {
-        Entity = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Entity = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InsightEntity }),
         InsightId = {
             type = "string",
             traits = {
@@ -3978,7 +3610,7 @@ M.DescribeInsightDetailsOutput = {
     members = {
         Fields = {
             type = "list",
-            member_type = "structure",
+            member = M.InsightField,
             traits = {
                 required = true,
             },
@@ -4016,10 +3648,16 @@ M.InstanceCountLimits = {
     type = "structure",
     members = {
         MinimumInstanceCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         MaximumInstanceCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -4027,9 +3665,7 @@ M.InstanceCountLimits = {
 M.InstanceLimits = {
     type = "structure",
     members = {
-        InstanceCountLimits = {
-            type = "structure",
-        },
+        InstanceCountLimits = M.InstanceCountLimits,
     },
 }
 
@@ -4041,7 +3677,7 @@ M.StorageTypeLimit = {
         },
         LimitValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4057,7 +3693,7 @@ M.StorageType = {
         },
         StorageTypeLimits = {
             type = "list",
-            member_type = "structure",
+            member = M.StorageTypeLimit,
         },
     },
 }
@@ -4067,14 +3703,12 @@ M.Limits = {
     members = {
         StorageTypes = {
             type = "list",
-            member_type = "structure",
+            member = M.StorageType,
         },
-        InstanceLimits = {
-            type = "structure",
-        },
+        InstanceLimits = M.InstanceLimits,
         AdditionalLimits = {
             type = "list",
-            member_type = "structure",
+            member = M.AdditionalLimit,
         },
     },
 }
@@ -4084,8 +3718,8 @@ M.DescribeInstanceTypeLimitsOutput = {
     members = {
         LimitsByRole = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.Limits,
         },
     },
 }
@@ -4095,10 +3729,13 @@ M.DescribeOutboundConnectionsInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.Filter,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         NextToken = {
             type = "string",
@@ -4111,7 +3748,7 @@ M.DescribeOutboundConnectionsOutput = {
     members = {
         Connections = {
             type = "list",
-            member_type = "structure",
+            member = M.OutboundConnection,
         },
         NextToken = {
             type = "string",
@@ -4136,7 +3773,7 @@ M.DescribePackagesFilter = {
         },
         Value = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4146,10 +3783,13 @@ M.DescribePackagesInput = {
     members = {
         Filters = {
             type = "list",
-            member_type = "structure",
+            member = M.DescribePackagesFilter,
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         NextToken = {
             type = "string",
@@ -4162,7 +3802,7 @@ M.DescribePackagesOutput = {
     members = {
         PackageDetailsList = {
             type = "list",
-            member_type = "structure",
+            member = M.PackageDetails,
         },
         NextToken = {
             type = "string",
@@ -4180,8 +3820,9 @@ M.DescribeReservedInstanceOfferingsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -4204,7 +3845,7 @@ M.RecurringCharge = {
     type = "structure",
     members = {
         RecurringChargeAmount = {
-            type = "number",
+            type = "double",
         },
         RecurringChargeFrequency = {
             type = "string",
@@ -4222,13 +3863,16 @@ M.ReservedInstanceOffering = {
             type = "string",
         },
         Duration = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         FixedPrice = {
-            type = "number",
+            type = "double",
         },
         UsagePrice = {
-            type = "number",
+            type = "double",
         },
         CurrencyCode = {
             type = "string",
@@ -4238,7 +3882,7 @@ M.ReservedInstanceOffering = {
         },
         RecurringCharges = {
             type = "list",
-            member_type = "structure",
+            member = M.RecurringCharge,
         },
     },
 }
@@ -4251,7 +3895,7 @@ M.DescribeReservedInstanceOfferingsOutput = {
         },
         ReservedInstanceOfferings = {
             type = "list",
-            member_type = "structure",
+            member = M.ReservedInstanceOffering,
         },
     },
 }
@@ -4266,8 +3910,9 @@ M.DescribeReservedInstancesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -4290,7 +3935,7 @@ M.ReservedInstance = {
             type = "string",
         },
         BillingSubscriptionId = {
-            type = "number",
+            type = "long",
         },
         ReservedInstanceOfferingId = {
             type = "string",
@@ -4302,19 +3947,25 @@ M.ReservedInstance = {
             type = "timestamp",
         },
         Duration = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         FixedPrice = {
-            type = "number",
+            type = "double",
         },
         UsagePrice = {
-            type = "number",
+            type = "double",
         },
         CurrencyCode = {
             type = "string",
         },
         InstanceCount = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = 0,
+            },
         },
         State = {
             type = "string",
@@ -4324,7 +3975,7 @@ M.ReservedInstance = {
         },
         RecurringCharges = {
             type = "list",
-            member_type = "structure",
+            member = M.RecurringCharge,
         },
     },
 }
@@ -4337,7 +3988,7 @@ M.DescribeReservedInstancesOutput = {
         },
         ReservedInstances = {
             type = "list",
-            member_type = "structure",
+            member = M.ReservedInstance,
         },
     },
 }
@@ -4347,7 +3998,7 @@ M.DescribeVpcEndpointsInput = {
     members = {
         VpcEndpointIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4380,14 +4031,14 @@ M.DescribeVpcEndpointsOutput = {
     members = {
         VpcEndpoints = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcEndpoint,
             traits = {
                 required = true,
             },
         },
         VpcEndpointErrors = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcEndpointError,
             traits = {
                 required = true,
             },
@@ -4418,9 +4069,7 @@ M.DissociatePackageInput = {
 M.DissociatePackageOutput = {
     type = "structure",
     members = {
-        DomainPackageDetails = {
-            type = "structure",
-        },
+        DomainPackageDetails = M.DomainPackageDetails,
     },
 }
 
@@ -4429,7 +4078,7 @@ M.DissociatePackagesInput = {
     members = {
         PackageList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -4448,7 +4097,7 @@ M.DissociatePackagesOutput = {
     members = {
         DomainPackageDetailsList = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainPackageDetails,
         },
     },
 }
@@ -4492,16 +4141,14 @@ M.GetApplicationOutput = {
         status = {
             type = "string",
         },
-        iamIdentityCenterOptions = {
-            type = "structure",
-        },
+        iamIdentityCenterOptions = M.IamIdentityCenterOptions,
         dataSources = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSource,
         },
         appConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.AppConfig,
         },
         createdAt = {
             type = "timestamp",
@@ -4538,9 +4185,7 @@ M.GetCapabilityInput = {
 M.CapabilityExtendedResponseConfig = {
     type = "union",
     members = {
-        aiConfig = {
-            type = "structure",
-        },
+        aiConfig = M.AIConfig,
     },
 }
 
@@ -4572,12 +4217,10 @@ M.GetCapabilityOutput = {
         status = {
             type = "string",
         },
-        capabilityConfig = {
-            type = "union",
-        },
+        capabilityConfig = M.CapabilityExtendedResponseConfig,
         failures = {
             type = "list",
-            member_type = "structure",
+            member = M.CapabilityFailure,
         },
     },
 }
@@ -4602,7 +4245,7 @@ M.CompatibleVersionsMap = {
         },
         TargetVersions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -4612,7 +4255,7 @@ M.GetCompatibleVersionsOutput = {
     members = {
         CompatibleVersions = {
             type = "list",
-            member_type = "structure",
+            member = M.CompatibleVersionsMap,
         },
     },
 }
@@ -4645,9 +4288,7 @@ M.DataSourceStatus = {
 M.GetDataSourceOutput = {
     type = "structure",
     members = {
-        DataSourceType = {
-            type = "union",
-        },
+        DataSourceType = M.DataSourceType,
         Name = {
             type = "string",
         },
@@ -4692,15 +4333,13 @@ M.GetDirectQueryDataSourceOutput = {
         DataSourceName = {
             type = "string",
         },
-        DataSourceType = {
-            type = "union",
-        },
+        DataSourceType = M.DirectQueryDataSourceType,
         Description = {
             type = "string",
         },
         OpenSearchArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DataSourceAccessPolicy = {
             type = "string",
@@ -4812,8 +4451,9 @@ M.GetPackageVersionHistoryInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -4838,12 +4478,8 @@ M.PackageVersionHistory = {
         CreatedAt = {
             type = "timestamp",
         },
-        PluginProperties = {
-            type = "structure",
-        },
-        PackageConfiguration = {
-            type = "structure",
-        },
+        PluginProperties = M.PluginProperties,
+        PackageConfiguration = M.PackageConfiguration,
     },
 }
 
@@ -4855,7 +4491,7 @@ M.GetPackageVersionHistoryOutput = {
         },
         PackageVersionHistoryList = {
             type = "list",
-            member_type = "structure",
+            member = M.PackageVersionHistory,
         },
         NextToken = {
             type = "string",
@@ -4874,8 +4510,9 @@ M.GetUpgradeHistoryInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -4912,10 +4549,10 @@ M.UpgradeStepItem = {
         },
         Issues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         ProgressPercent = {
-            type = "number",
+            type = "double",
         },
     },
 }
@@ -4934,7 +4571,7 @@ M.UpgradeHistory = {
         },
         StepsList = {
             type = "list",
-            member_type = "structure",
+            member = M.UpgradeStepItem,
         },
     },
 }
@@ -4944,7 +4581,7 @@ M.GetUpgradeHistoryOutput = {
     members = {
         UpgradeHistories = {
             type = "list",
-            member_type = "structure",
+            member = M.UpgradeHistory,
         },
         NextToken = {
             type = "string",
@@ -4991,14 +4628,15 @@ M.ListApplicationsInput = {
         },
         statuses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "statuses",
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -5037,7 +4675,7 @@ M.ListApplicationsOutput = {
     members = {
         ApplicationSummaries = {
             type = "list",
-            member_type = "structure",
+            member = M.ApplicationSummary,
         },
         nextToken = {
             type = "string",
@@ -5061,9 +4699,7 @@ M.ListDataSourcesInput = {
 M.DataSourceDetails = {
     type = "structure",
     members = {
-        DataSourceType = {
-            type = "union",
-        },
+        DataSourceType = M.DataSourceType,
         Name = {
             type = "string",
         },
@@ -5081,7 +4717,7 @@ M.ListDataSourcesOutput = {
     members = {
         DataSources = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSourceDetails,
         },
     },
 }
@@ -5104,22 +4740,20 @@ M.DirectQueryDataSource = {
         DataSourceName = {
             type = "string",
         },
-        DataSourceType = {
-            type = "union",
-        },
+        DataSourceType = M.DirectQueryDataSourceType,
         Description = {
             type = "string",
         },
         OpenSearchArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DataSourceArn = {
             type = "string",
         },
         TagList = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -5132,7 +4766,7 @@ M.ListDirectQueryDataSourcesOutput = {
         },
         DirectQueryDataSources = {
             type = "list",
-            member_type = "structure",
+            member = M.DirectQueryDataSource,
         },
     },
 }
@@ -5160,8 +4794,9 @@ M.ListDomainMaintenancesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -5209,7 +4844,7 @@ M.ListDomainMaintenancesOutput = {
     members = {
         DomainMaintenances = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainMaintenanceDetails,
         },
         NextToken = {
             type = "string",
@@ -5251,7 +4886,7 @@ M.ListDomainNamesOutput = {
     members = {
         DomainNames = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainInfo,
         },
     },
 }
@@ -5267,8 +4902,9 @@ M.ListDomainsForPackageInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -5286,7 +4922,7 @@ M.ListDomainsForPackageOutput = {
     members = {
         DomainPackageDetailsList = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainPackageDetails,
         },
         NextToken = {
             type = "string",
@@ -5303,13 +4939,13 @@ M.InsightTimeRange = {
     type = "structure",
     members = {
         From = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
         },
         To = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -5320,20 +4956,15 @@ M.InsightTimeRange = {
 M.ListInsightsInput = {
     type = "structure",
     members = {
-        Entity = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        TimeRange = {
-            type = "structure",
-        },
+        Entity = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.InsightEntity }),
+        TimeRange = M.InsightTimeRange,
         SortOrder = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -5394,7 +5025,7 @@ M.ListInsightsOutput = {
     members = {
         Insights = {
             type = "list",
-            member_type = "structure",
+            member = M.Insight,
         },
         NextToken = {
             type = "string",
@@ -5419,8 +5050,9 @@ M.ListInstanceTypeDetailsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -5468,11 +5100,11 @@ M.InstanceTypeDetails = {
         },
         InstanceRole = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AvailabilityZones = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -5482,7 +5114,7 @@ M.ListInstanceTypeDetailsOutput = {
     members = {
         InstanceTypeDetails = {
             type = "list",
-            member_type = "structure",
+            member = M.InstanceTypeDetails,
         },
         NextToken = {
             type = "string",
@@ -5501,8 +5133,9 @@ M.ListPackagesForDomainInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -5520,7 +5153,7 @@ M.ListPackagesForDomainOutput = {
     members = {
         DomainPackageDetailsList = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainPackageDetails,
         },
         NextToken = {
             type = "string",
@@ -5539,8 +5172,9 @@ M.ListScheduledActionsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -5580,7 +5214,7 @@ M.ScheduledAction = {
             },
         },
         ScheduledTime = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -5608,7 +5242,7 @@ M.ListScheduledActionsOutput = {
     members = {
         ScheduledActions = {
             type = "list",
-            member_type = "structure",
+            member = M.ScheduledAction,
         },
         NextToken = {
             type = "string",
@@ -5634,7 +5268,7 @@ M.ListTagsOutput = {
     members = {
         TagList = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -5643,8 +5277,9 @@ M.ListVersionsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_query = "maxResults",
             },
         },
@@ -5662,7 +5297,7 @@ M.ListVersionsOutput = {
     members = {
         Versions = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         NextToken = {
             type = "string",
@@ -5694,7 +5329,7 @@ M.ListVpcEndpointAccessOutput = {
     members = {
         AuthorizedPrincipalList = {
             type = "list",
-            member_type = "structure",
+            member = M.AuthorizedPrincipal,
             traits = {
                 required = true,
             },
@@ -5725,7 +5360,7 @@ M.ListVpcEndpointsOutput = {
     members = {
         VpcEndpointSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcEndpointSummary,
             traits = {
                 required = true,
             },
@@ -5763,7 +5398,7 @@ M.ListVpcEndpointsForDomainOutput = {
     members = {
         VpcEndpointSummaryList = {
             type = "list",
-            member_type = "structure",
+            member = M.VpcEndpointSummary,
             traits = {
                 required = true,
             },
@@ -5793,7 +5428,7 @@ M.PurchaseReservedInstanceOfferingInput = {
             },
         },
         InstanceCount = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -5840,9 +5475,7 @@ M.PutDefaultApplicationSettingOutput = {
 M.CapabilityBaseRequestConfig = {
     type = "union",
     members = {
-        aiConfig = {
-            type = "structure",
-        },
+        aiConfig = M.AIConfig,
     },
 }
 
@@ -5862,21 +5495,16 @@ M.RegisterCapabilityInput = {
                 required = true,
             },
         },
-        capabilityConfig = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        capabilityConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CapabilityBaseRequestConfig }),
     },
 }
 
 M.CapabilityBaseResponseConfig = {
     type = "union",
     members = {
-        aiConfig = {
-            type = "structure",
-        },
+        aiConfig = M.AIConfig,
     },
 }
 
@@ -5892,9 +5520,7 @@ M.RegisterCapabilityOutput = {
         status = {
             type = "string",
         },
-        capabilityConfig = {
-            type = "union",
-        },
+        capabilityConfig = M.CapabilityBaseResponseConfig,
     },
 }
 
@@ -5924,9 +5550,7 @@ M.RejectInboundConnectionInput = {
 M.RejectInboundConnectionOutput = {
     type = "structure",
     members = {
-        Connection = {
-            type = "structure",
-        },
+        Connection = M.InboundConnection,
     },
 }
 
@@ -5941,7 +5565,7 @@ M.RemoveTagsInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -5969,9 +5593,7 @@ M.RevokeVpcEndpointAccessInput = {
         Service = {
             type = "string",
         },
-        ServiceOptions = {
-            type = "structure",
-        },
+        ServiceOptions = M.ServiceOptions,
     },
 }
 
@@ -6012,9 +5634,7 @@ M.RollbackServiceSoftwareOptions = {
 M.RollbackServiceSoftwareUpdateOutput = {
     type = "structure",
     members = {
-        RollbackServiceSoftwareOptions = {
-            type = "structure",
-        },
+        RollbackServiceSoftwareOptions = M.RollbackServiceSoftwareOptions,
     },
 }
 
@@ -6068,7 +5688,7 @@ M.StartServiceSoftwareUpdateInput = {
             type = "string",
         },
         DesiredStartTime = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -6076,9 +5696,7 @@ M.StartServiceSoftwareUpdateInput = {
 M.StartServiceSoftwareUpdateOutput = {
     type = "structure",
     members = {
-        ServiceSoftwareOptions = {
-            type = "structure",
-        },
+        ServiceSoftwareOptions = M.ServiceSoftwareOptions,
     },
 }
 
@@ -6094,11 +5712,11 @@ M.UpdateApplicationInput = {
         },
         dataSources = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSource,
         },
         appConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.AppConfig,
         },
     },
 }
@@ -6117,14 +5735,12 @@ M.UpdateApplicationOutput = {
         },
         dataSources = {
             type = "list",
-            member_type = "structure",
+            member = M.DataSource,
         },
-        iamIdentityCenterOptions = {
-            type = "structure",
-        },
+        iamIdentityCenterOptions = M.IamIdentityCenterOptions,
         appConfigs = {
             type = "list",
-            member_type = "structure",
+            member = M.AppConfig,
         },
         createdAt = {
             type = "timestamp",
@@ -6152,12 +5768,9 @@ M.UpdateDataSourceInput = {
                 required = true,
             },
         },
-        DataSourceType = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        DataSourceType = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DataSourceType }),
         Description = {
             type = "string",
         },
@@ -6186,18 +5799,15 @@ M.UpdateDirectQueryDataSourceInput = {
                 required = true,
             },
         },
-        DataSourceType = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        DataSourceType = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DirectQueryDataSourceType }),
         Description = {
             type = "string",
         },
         OpenSearchArns = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DataSourceAccessPolicy = {
             type = "string",
@@ -6229,25 +5839,15 @@ M.UpdateDomainConfigInput = {
                 required = true,
             },
         },
-        ClusterConfig = {
-            type = "structure",
-        },
-        EBSOptions = {
-            type = "structure",
-        },
-        SnapshotOptions = {
-            type = "structure",
-        },
-        VPCOptions = {
-            type = "structure",
-        },
-        CognitoOptions = {
-            type = "structure",
-        },
+        ClusterConfig = M.ClusterConfig,
+        EBSOptions = M.EBSOptions,
+        SnapshotOptions = M.SnapshotOptions,
+        VPCOptions = M.VPCOptions,
+        CognitoOptions = M.CognitoOptions,
         AdvancedOptions = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         AccessPolicies = {
             type = "string",
@@ -6257,63 +5857,36 @@ M.UpdateDomainConfigInput = {
         },
         LogPublishingOptions = {
             type = "map",
-            key_type = "string",
-            value_type = "structure",
+            key = { type = "string" },
+            value = M.LogPublishingOption,
         },
-        EncryptionAtRestOptions = {
-            type = "structure",
-        },
-        DomainEndpointOptions = {
-            type = "structure",
-        },
-        NodeToNodeEncryptionOptions = {
-            type = "structure",
-        },
-        AdvancedSecurityOptions = {
-            type = "structure",
-        },
-        IdentityCenterOptions = {
-            type = "structure",
-        },
-        AutoTuneOptions = {
-            type = "structure",
-        },
+        EncryptionAtRestOptions = M.EncryptionAtRestOptions,
+        DomainEndpointOptions = M.DomainEndpointOptions,
+        NodeToNodeEncryptionOptions = M.NodeToNodeEncryptionOptions,
+        AdvancedSecurityOptions = M.AdvancedSecurityOptionsInput,
+        IdentityCenterOptions = M.IdentityCenterOptionsInput,
+        AutoTuneOptions = M.AutoTuneOptions,
         DryRun = {
             type = "boolean",
         },
         DryRunMode = {
             type = "string",
         },
-        OffPeakWindowOptions = {
-            type = "structure",
-        },
-        SoftwareUpdateOptions = {
-            type = "structure",
-        },
-        AIMLOptions = {
-            type = "structure",
-        },
-        DeploymentStrategyOptions = {
-            type = "structure",
-        },
+        OffPeakWindowOptions = M.OffPeakWindowOptions,
+        SoftwareUpdateOptions = M.SoftwareUpdateOptions,
+        AIMLOptions = M.AIMLOptionsInput,
+        DeploymentStrategyOptions = M.DeploymentStrategyOptions,
     },
 }
 
 M.UpdateDomainConfigOutput = {
     type = "structure",
     members = {
-        DomainConfig = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
-        DryRunResults = {
-            type = "structure",
-        },
-        DryRunProgressStatus = {
-            type = "structure",
-        },
+        DomainConfig = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.DomainConfig }),
+        DryRunResults = M.DryRunResults,
+        DryRunProgressStatus = M.DryRunProgressStatus,
     },
 }
 
@@ -6364,33 +5937,24 @@ M.UpdatePackageInput = {
                 required = true,
             },
         },
-        PackageSource = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        PackageSource = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.PackageSource }),
         PackageDescription = {
             type = "string",
         },
         CommitMessage = {
             type = "string",
         },
-        PackageConfiguration = {
-            type = "structure",
-        },
-        PackageEncryptionOptions = {
-            type = "structure",
-        },
+        PackageConfiguration = M.PackageConfiguration,
+        PackageEncryptionOptions = M.PackageEncryptionOptions,
     },
 }
 
 M.UpdatePackageOutput = {
     type = "structure",
     members = {
-        PackageDetails = {
-            type = "structure",
-        },
+        PackageDetails = M.PackageDetails,
     },
 }
 
@@ -6417,7 +5981,7 @@ M.UpdatePackageScopeInput = {
         },
         PackageUserList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -6436,7 +6000,7 @@ M.UpdatePackageScopeOutput = {
         },
         PackageUserList = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -6447,7 +6011,7 @@ M.SlotNotAvailableException = {
     members = {
         SlotSuggestions = {
             type = "list",
-            member_type = "number",
+            member = { type = "long" },
         },
         message = {
             type = "string",
@@ -6484,7 +6048,7 @@ M.UpdateScheduledActionInput = {
             },
         },
         DesiredStartTime = {
-            type = "number",
+            type = "long",
         },
     },
 }
@@ -6492,9 +6056,7 @@ M.UpdateScheduledActionInput = {
 M.UpdateScheduledActionOutput = {
     type = "structure",
     members = {
-        ScheduledAction = {
-            type = "structure",
-        },
+        ScheduledAction = M.ScheduledAction,
     },
 }
 
@@ -6507,24 +6069,18 @@ M.UpdateVpcEndpointInput = {
                 required = true,
             },
         },
-        VpcOptions = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        VpcOptions = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VPCOptions }),
     },
 }
 
 M.UpdateVpcEndpointOutput = {
     type = "structure",
     members = {
-        VpcEndpoint = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        VpcEndpoint = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.VpcEndpoint }),
     },
 }
 
@@ -6548,8 +6104,8 @@ M.UpgradeDomainInput = {
         },
         AdvancedOptions = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -6571,12 +6127,10 @@ M.UpgradeDomainOutput = {
         },
         AdvancedOptions = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        ChangeProgressDetails = {
-            type = "structure",
-        },
+        ChangeProgressDetails = M.ChangeProgressDetails,
     },
 }
 

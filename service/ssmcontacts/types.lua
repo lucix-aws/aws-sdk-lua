@@ -71,8 +71,9 @@ M.InternalServerException = {
             },
         },
         RetryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_header = "Retry-After",
             },
         },
@@ -121,8 +122,9 @@ M.ThrottlingException = {
             type = "string",
         },
         RetryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 http_header = "Retry-After",
             },
         },
@@ -169,7 +171,7 @@ M.ValidationException = {
         },
         Fields = {
             type = "list",
-            member_type = "structure",
+            member = M.ValidationExceptionField,
         },
     },
 }
@@ -211,7 +213,7 @@ M.ChannelTargetInfo = {
             },
         },
         RetryIntervalInMinutes = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -233,7 +235,7 @@ M.DependentEntity = {
         },
         DependentResourceIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -265,7 +267,7 @@ M.ConflictException = {
         },
         DependentEntities = {
             type = "list",
-            member_type = "structure",
+            member = M.DependentEntity,
         },
     },
 }
@@ -336,12 +338,9 @@ M.ContactChannel = {
         Type = {
             type = "string",
         },
-        DeliveryAddress = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DeliveryAddress = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ContactChannelAddress }),
         ActivationStatus = {
             type = "string",
             traits = {
@@ -370,14 +369,16 @@ M.HandOffTime = {
     type = "structure",
     members = {
         HourOfDay = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
         MinuteOfHour = {
-            type = "number",
+            type = "integer",
             traits = {
+                default = 0,
                 required = true,
             },
         },
@@ -387,24 +388,16 @@ M.HandOffTime = {
 M.CoverageTime = {
     type = "structure",
     members = {
-        Start = {
-            type = "structure",
-        },
-        End = {
-            type = "structure",
-        },
+        Start = M.HandOffTime,
+        End = M.HandOffTime,
     },
 }
 
 M.Target = {
     type = "structure",
     members = {
-        ChannelTargetInfo = {
-            type = "structure",
-        },
-        ContactTargetInfo = {
-            type = "structure",
-        },
+        ChannelTargetInfo = M.ChannelTargetInfo,
+        ContactTargetInfo = M.ContactTargetInfo,
     },
 }
 
@@ -412,14 +405,14 @@ M.Stage = {
     type = "structure",
     members = {
         DurationInMinutes = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Targets = {
             type = "list",
-            member_type = "structure",
+            member = M.Target,
             traits = {
                 required = true,
             },
@@ -432,11 +425,11 @@ M.Plan = {
     members = {
         Stages = {
             type = "list",
-            member_type = "structure",
+            member = M.Stage,
         },
         RotationIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -471,15 +464,12 @@ M.CreateContactInput = {
                 required = true,
             },
         },
-        Plan = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Plan = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Plan }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         IdempotencyToken = {
             type = "string",
@@ -564,12 +554,9 @@ M.CreateContactChannelInput = {
                 required = true,
             },
         },
-        DeliveryAddress = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DeliveryAddress = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ContactChannelAddress }),
         DeferActivation = {
             type = "boolean",
         },
@@ -595,17 +582,14 @@ M.MonthlySetting = {
     type = "structure",
     members = {
         DayOfMonth = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
-        HandOffTime = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        HandOffTime = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HandOffTime }),
     },
 }
 
@@ -628,12 +612,9 @@ M.WeeklySetting = {
                 required = true,
             },
         },
-        HandOffTime = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        HandOffTime = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.HandOffTime }),
     },
 }
 
@@ -642,29 +623,29 @@ M.RecurrenceSettings = {
     members = {
         MonthlySettings = {
             type = "list",
-            member_type = "structure",
+            member = M.MonthlySetting,
         },
         WeeklySettings = {
             type = "list",
-            member_type = "structure",
+            member = M.WeeklySetting,
         },
         DailySettings = {
             type = "list",
-            member_type = "structure",
+            member = M.HandOffTime,
         },
         NumberOfOnCalls = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         ShiftCoverages = {
             type = "map",
-            key_type = "string",
-            value_type = "list",
+            key = { type = "string" },
+            value = { type = "list" },
         },
         RecurrenceMultiplier = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
@@ -683,7 +664,7 @@ M.CreateRotationInput = {
         },
         ContactIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -697,15 +678,12 @@ M.CreateRotationInput = {
                 required = true,
             },
         },
-        Recurrence = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Recurrence = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RecurrenceSettings }),
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
         IdempotencyToken = {
             type = "string",
@@ -736,7 +714,7 @@ M.CreateRotationOverrideInput = {
         },
         NewContactIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1061,12 +1039,9 @@ M.GetContactOutput = {
                 required = true,
             },
         },
-        Plan = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Plan = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.Plan }),
     },
 }
 
@@ -1109,12 +1084,9 @@ M.GetContactChannelOutput = {
                 required = true,
             },
         },
-        DeliveryAddress = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        DeliveryAddress = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.ContactChannelAddress }),
         ActivationStatus = {
             type = "string",
         },
@@ -1174,7 +1146,7 @@ M.GetRotationOutput = {
         },
         ContactIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1191,12 +1163,9 @@ M.GetRotationOutput = {
                 required = true,
             },
         },
-        Recurrence = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Recurrence = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RecurrenceSettings }),
     },
 }
 
@@ -1229,7 +1198,7 @@ M.GetRotationOverrideOutput = {
         },
         NewContactIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         StartTime = {
             type = "timestamp",
@@ -1256,7 +1225,7 @@ M.ListContactChannelsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1269,7 +1238,7 @@ M.ListContactChannelsOutput = {
         },
         ContactChannels = {
             type = "list",
-            member_type = "structure",
+            member = M.ContactChannel,
             traits = {
                 required = true,
             },
@@ -1284,7 +1253,7 @@ M.ListContactsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         AliasPrefix = {
             type = "string",
@@ -1303,7 +1272,7 @@ M.ListContactsOutput = {
         },
         Contacts = {
             type = "list",
-            member_type = "structure",
+            member = M.Contact,
         },
     },
 }
@@ -1327,14 +1296,12 @@ M.ListEngagementsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         IncidentId = {
             type = "string",
         },
-        TimeRangeValue = {
-            type = "structure",
-        },
+        TimeRangeValue = M.TimeRange,
     },
 }
 
@@ -1346,7 +1313,7 @@ M.ListEngagementsOutput = {
         },
         Engagements = {
             type = "list",
-            member_type = "structure",
+            member = M.Engagement,
             traits = {
                 required = true,
             },
@@ -1367,7 +1334,7 @@ M.ListPageReceiptsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1412,7 +1379,7 @@ M.ListPageReceiptsOutput = {
         },
         Receipts = {
             type = "list",
-            member_type = "structure",
+            member = M.Receipt,
         },
     },
 }
@@ -1448,7 +1415,10 @@ M.ResolutionContact = {
             },
         },
         StageIndex = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
     },
 }
@@ -1461,7 +1431,7 @@ M.ListPageResolutionsOutput = {
         },
         PageResolutions = {
             type = "list",
-            member_type = "structure",
+            member = M.ResolutionContact,
             traits = {
                 required = true,
             },
@@ -1482,7 +1452,7 @@ M.ListPagesByContactInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1537,7 +1507,7 @@ M.ListPagesByContactOutput = {
         },
         Pages = {
             type = "list",
-            member_type = "structure",
+            member = M.Page,
             traits = {
                 required = true,
             },
@@ -1558,7 +1528,7 @@ M.ListPagesByEngagementInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1571,7 +1541,7 @@ M.ListPagesByEngagementOutput = {
         },
         Pages = {
             type = "list",
-            member_type = "structure",
+            member = M.Page,
             traits = {
                 required = true,
             },
@@ -1584,7 +1554,7 @@ M.PreviewOverride = {
     members = {
         NewMembers = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         StartTime = {
             type = "timestamp",
@@ -1612,7 +1582,7 @@ M.ListPreviewRotationShiftsInput = {
         },
         Members = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1623,21 +1593,18 @@ M.ListPreviewRotationShiftsInput = {
                 required = true,
             },
         },
-        Recurrence = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Recurrence = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RecurrenceSettings }),
         Overrides = {
             type = "list",
-            member_type = "structure",
+            member = M.PreviewOverride,
         },
         NextToken = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1647,7 +1614,7 @@ M.ShiftDetails = {
     members = {
         OverriddenContactIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1665,7 +1632,7 @@ M.RotationShift = {
     members = {
         ContactIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         StartTime = {
             type = "timestamp",
@@ -1682,9 +1649,7 @@ M.RotationShift = {
         Type = {
             type = "string",
         },
-        ShiftDetails = {
-            type = "structure",
-        },
+        ShiftDetails = M.ShiftDetails,
     },
 }
 
@@ -1693,7 +1658,7 @@ M.ListPreviewRotationShiftsOutput = {
     members = {
         RotationShifts = {
             type = "list",
-            member_type = "structure",
+            member = M.RotationShift,
         },
         NextToken = {
             type = "string",
@@ -1726,7 +1691,7 @@ M.ListRotationOverridesInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1742,7 +1707,7 @@ M.RotationOverride = {
         },
         NewContactIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1773,7 +1738,7 @@ M.ListRotationOverridesOutput = {
     members = {
         RotationOverrides = {
             type = "list",
-            member_type = "structure",
+            member = M.RotationOverride,
         },
         NextToken = {
             type = "string",
@@ -1791,7 +1756,7 @@ M.ListRotationsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1813,7 +1778,7 @@ M.Rotation = {
         },
         ContactIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         StartTime = {
             type = "timestamp",
@@ -1821,9 +1786,7 @@ M.Rotation = {
         TimeZoneId = {
             type = "string",
         },
-        Recurrence = {
-            type = "structure",
-        },
+        Recurrence = M.RecurrenceSettings,
     },
 }
 
@@ -1835,7 +1798,7 @@ M.ListRotationsOutput = {
         },
         Rotations = {
             type = "list",
-            member_type = "structure",
+            member = M.Rotation,
             traits = {
                 required = true,
             },
@@ -1865,7 +1828,7 @@ M.ListRotationShiftsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1875,7 +1838,7 @@ M.ListRotationShiftsOutput = {
     members = {
         RotationShifts = {
             type = "list",
-            member_type = "structure",
+            member = M.RotationShift,
         },
         NextToken = {
             type = "string",
@@ -1900,7 +1863,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -2027,7 +1990,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -2050,7 +2013,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2074,9 +2037,7 @@ M.UpdateContactInput = {
         DisplayName = {
             type = "string",
         },
-        Plan = {
-            type = "structure",
-        },
+        Plan = M.Plan,
     },
 }
 
@@ -2096,9 +2057,7 @@ M.UpdateContactChannelInput = {
         Name = {
             type = "string",
         },
-        DeliveryAddress = {
-            type = "structure",
-        },
+        DeliveryAddress = M.ContactChannelAddress,
     },
 }
 
@@ -2117,7 +2076,7 @@ M.UpdateRotationInput = {
         },
         ContactIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         StartTime = {
             type = "timestamp",
@@ -2125,12 +2084,9 @@ M.UpdateRotationInput = {
         TimeZoneId = {
             type = "string",
         },
-        Recurrence = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        Recurrence = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RecurrenceSettings }),
     },
 }
 

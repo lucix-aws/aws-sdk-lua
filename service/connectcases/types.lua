@@ -37,14 +37,12 @@ M.FieldValueUnion = {
             type = "string",
         },
         doubleValue = {
-            type = "number",
+            type = "double",
         },
         booleanValue = {
             type = "boolean",
         },
-        emptyValue = {
-            type = "structure",
-        },
+        emptyValue = M.EmptyFieldValue,
         userArnValue = {
             type = "string",
         },
@@ -60,12 +58,9 @@ M.FieldValue = {
                 required = true,
             },
         },
-        value = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        value = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.FieldValueUnion }),
     },
 }
 
@@ -99,7 +94,7 @@ M.CreateCaseInput = {
         },
         fields = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldValue,
             traits = {
                 required = true,
             },
@@ -107,13 +102,11 @@ M.CreateCaseInput = {
         clientToken = {
             type = "string",
         },
-        performedBy = {
-            type = "union",
-        },
+        performedBy = M.UserUnion,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -147,7 +140,7 @@ M.InternalServerException = {
             },
         },
         retryAfterSeconds = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_header = "Retry-After",
             },
@@ -261,7 +254,7 @@ M.GetCaseInput = {
         },
         fields = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldIdentifier,
             traits = {
                 required = true,
             },
@@ -277,7 +270,7 @@ M.GetCaseOutput = {
     members = {
         fields = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldValue,
             traits = {
                 required = true,
             },
@@ -293,8 +286,8 @@ M.GetCaseOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -317,7 +310,10 @@ M.GetCaseAuditEventsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         nextToken = {
             type = "string",
@@ -332,14 +328,12 @@ M.AuditEventFieldValueUnion = {
             type = "string",
         },
         doubleValue = {
-            type = "number",
+            type = "double",
         },
         booleanValue = {
             type = "boolean",
         },
-        emptyValue = {
-            type = "structure",
-        },
+        emptyValue = M.EmptyFieldValue,
         userArnValue = {
             type = "string",
         },
@@ -355,24 +349,17 @@ M.AuditEventField = {
                 required = true,
             },
         },
-        oldValue = {
-            type = "union",
-        },
-        newValue = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        oldValue = M.AuditEventFieldValueUnion,
+        newValue = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.AuditEventFieldValueUnion }),
     },
 }
 
 M.AuditEventPerformedBy = {
     type = "structure",
     members = {
-        user = {
-            type = "union",
-        },
+        user = M.UserUnion,
         iamPrincipalArn = {
             type = "string",
             traits = {
@@ -425,14 +412,12 @@ M.AuditEvent = {
         },
         fields = {
             type = "list",
-            member_type = "structure",
+            member = M.AuditEventField,
             traits = {
                 required = true,
             },
         },
-        performedBy = {
-            type = "structure",
-        },
+        performedBy = M.AuditEventPerformedBy,
     },
 }
 
@@ -444,7 +429,7 @@ M.GetCaseAuditEventsOutput = {
         },
         auditEvents = {
             type = "list",
-            member_type = "structure",
+            member = M.AuditEvent,
             traits = {
                 required = true,
             },
@@ -469,7 +454,10 @@ M.ListCasesForContactInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         nextToken = {
             type = "string",
@@ -500,7 +488,7 @@ M.ListCasesForContactOutput = {
     members = {
         cases = {
             type = "list",
-            member_type = "structure",
+            member = M.CaseSummary,
             traits = {
                 required = true,
             },
@@ -562,7 +550,7 @@ M.CustomInputContent = {
     members = {
         fields = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldValue,
             traits = {
                 required = true,
             },
@@ -606,10 +594,10 @@ M.SlaInputConfiguration = {
         },
         targetFieldValues = {
             type = "list",
-            member_type = "union",
+            member = M.FieldValueUnion,
         },
         targetSlaMinutes = {
-            type = "number",
+            type = "long",
             traits = {
                 required = true,
             },
@@ -620,33 +608,19 @@ M.SlaInputConfiguration = {
 M.SlaInputContent = {
     type = "union",
     members = {
-        slaInputConfiguration = {
-            type = "structure",
-        },
+        slaInputConfiguration = M.SlaInputConfiguration,
     },
 }
 
 M.RelatedItemInputContent = {
     type = "union",
     members = {
-        contact = {
-            type = "structure",
-        },
-        comment = {
-            type = "structure",
-        },
-        file = {
-            type = "structure",
-        },
-        sla = {
-            type = "union",
-        },
-        connectCase = {
-            type = "structure",
-        },
-        custom = {
-            type = "structure",
-        },
+        contact = M.Contact,
+        comment = M.CommentContent,
+        file = M.FileContent,
+        sla = M.SlaInputContent,
+        connectCase = M.ConnectCaseInputContent,
+        custom = M.CustomInputContent,
     },
 }
 
@@ -673,15 +647,10 @@ M.CreateRelatedItemInput = {
                 required = true,
             },
         },
-        content = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        performedBy = {
-            type = "union",
-        },
+        content = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RelatedItemInputContent }),
+        performedBy = M.UserUnion,
     },
 }
 
@@ -765,7 +734,7 @@ M.ContactFilter = {
     members = {
         channel = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         contactArn = {
             type = "string",
@@ -776,24 +745,12 @@ M.ContactFilter = {
 M.FieldFilter = {
     type = "union",
     members = {
-        equalTo = {
-            type = "structure",
-        },
-        contains = {
-            type = "structure",
-        },
-        greaterThan = {
-            type = "structure",
-        },
-        greaterThanOrEqualTo = {
-            type = "structure",
-        },
-        lessThan = {
-            type = "structure",
-        },
-        lessThanOrEqualTo = {
-            type = "structure",
-        },
+        equalTo = M.FieldValue,
+        contains = M.FieldValue,
+        greaterThan = M.FieldValue,
+        greaterThanOrEqualTo = M.FieldValue,
+        lessThan = M.FieldValue,
+        lessThanOrEqualTo = M.FieldValue,
     },
 }
 
@@ -866,7 +823,7 @@ M.CustomContent = {
     members = {
         fields = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldValue,
             traits = {
                 required = true,
             },
@@ -900,7 +857,7 @@ M.SlaConfiguration = {
         },
         targetFieldValues = {
             type = "list",
-            member_type = "union",
+            member = M.FieldValueUnion,
         },
         targetTime = {
             type = "timestamp",
@@ -917,36 +874,21 @@ M.SlaConfiguration = {
 M.SlaContent = {
     type = "structure",
     members = {
-        slaConfiguration = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        slaConfiguration = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.SlaConfiguration }),
     },
 }
 
 M.RelatedItemContent = {
     type = "union",
     members = {
-        contact = {
-            type = "structure",
-        },
-        comment = {
-            type = "structure",
-        },
-        file = {
-            type = "structure",
-        },
-        sla = {
-            type = "structure",
-        },
-        connectCase = {
-            type = "structure",
-        },
-        custom = {
-            type = "structure",
-        },
+        contact = M.ContactContent,
+        comment = M.CommentContent,
+        file = M.FileContent,
+        sla = M.SlaContent,
+        connectCase = M.ConnectCaseContent,
+        custom = M.CustomContent,
     },
 }
 
@@ -971,20 +913,15 @@ M.SearchRelatedItemsResponseItem = {
                 required = true,
             },
         },
-        content = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        content = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RelatedItemContent }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        performedBy = {
-            type = "union",
-        },
+        performedBy = M.UserUnion,
     },
 }
 
@@ -996,7 +933,7 @@ M.SearchRelatedItemsOutput = {
         },
         relatedItems = {
             type = "list",
-            member_type = "structure",
+            member = M.SearchRelatedItemsResponseItem,
             traits = {
                 required = true,
             },
@@ -1027,7 +964,7 @@ M.CustomUpdateContent = {
     members = {
         fields = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldValue,
             traits = {
                 required = true,
             },
@@ -1038,12 +975,8 @@ M.CustomUpdateContent = {
 M.RelatedItemUpdateContent = {
     type = "union",
     members = {
-        comment = {
-            type = "structure",
-        },
-        custom = {
-            type = "structure",
-        },
+        comment = M.CommentUpdateContent,
+        custom = M.CustomUpdateContent,
     },
 }
 
@@ -1071,15 +1004,10 @@ M.UpdateRelatedItemInput = {
                 required = true,
             },
         },
-        content = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        performedBy = {
-            type = "union",
-        },
+        content = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RelatedItemUpdateContent }),
+        performedBy = M.UserUnion,
     },
 }
 
@@ -1104,12 +1032,9 @@ M.UpdateRelatedItemOutput = {
                 required = true,
             },
         },
-        content = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        content = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RelatedItemContent }),
         associationTime = {
             type = "timestamp",
             traits = {
@@ -1118,15 +1043,11 @@ M.UpdateRelatedItemOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
-        lastUpdatedUser = {
-            type = "union",
-        },
-        createdBy = {
-            type = "union",
-        },
+        lastUpdatedUser = M.UserUnion,
+        createdBy = M.UserUnion,
     },
 }
 
@@ -1145,9 +1066,7 @@ M.TagValue = {
 M.TagFilter = {
     type = "union",
     members = {
-        equalTo = {
-            type = "structure",
-        },
+        equalTo = M.TagValue,
     },
 }
 
@@ -1191,15 +1110,15 @@ M.SearchCasesResponseItem = {
         },
         fields = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldValue,
             traits = {
                 required = true,
             },
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1212,13 +1131,16 @@ M.SearchCasesOutput = {
         },
         cases = {
             type = "list",
-            member_type = "structure",
+            member = M.SearchCasesResponseItem,
             traits = {
                 required = true,
             },
         },
         totalCount = {
-            type = "number",
+            type = "long",
+            traits = {
+                default = 0,
+            },
         },
     },
 }
@@ -1242,14 +1164,12 @@ M.UpdateCaseInput = {
         },
         fields = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldValue,
             traits = {
                 required = true,
             },
         },
-        performedBy = {
-            type = "union",
-        },
+        performedBy = M.UserUnion,
     },
 }
 
@@ -1281,7 +1201,7 @@ M.BatchGetCaseRuleInput = {
         },
         caseRules = {
             type = "list",
-            member_type = "structure",
+            member = M.CaseRuleIdentifier,
             traits = {
                 required = true,
             },
@@ -1300,7 +1220,7 @@ M.ParentChildFieldOptionsMapping = {
         },
         childFieldOptionValues = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -1319,7 +1239,7 @@ M.FieldOptionsCaseRule = {
         },
         parentChildFieldOptionsMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.ParentChildFieldOptionsMapping,
             traits = {
                 required = true,
             },
@@ -1350,29 +1270,21 @@ M.OperandTwo = {
             type = "boolean",
         },
         doubleValue = {
-            type = "number",
+            type = "double",
         },
-        emptyValue = {
-            type = "structure",
-        },
+        emptyValue = M.EmptyOperandValue,
     },
 }
 
 M.BooleanOperands = {
     type = "structure",
     members = {
-        operandOne = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        operandTwo = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        operandOne = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OperandOne }),
+        operandTwo = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.OperandTwo }),
         result = {
             type = "boolean",
             traits = {
@@ -1456,7 +1368,7 @@ M.ListCaseRulesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1514,7 +1426,7 @@ M.ListCaseRulesOutput = {
     members = {
         caseRules = {
             type = "list",
-            member_type = "structure",
+            member = M.CaseRuleSummary,
             traits = {
                 required = true,
             },
@@ -1606,7 +1518,7 @@ M.CaseEventIncludedData = {
     members = {
         fields = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldIdentifier,
             traits = {
                 required = true,
             },
@@ -1629,12 +1541,8 @@ M.RelatedItemEventIncludedData = {
 M.EventIncludedData = {
     type = "structure",
     members = {
-        caseData = {
-            type = "structure",
-        },
-        relatedItemData = {
-            type = "structure",
-        },
+        caseData = M.CaseEventIncludedData,
+        relatedItemData = M.RelatedItemEventIncludedData,
     },
 }
 
@@ -1647,21 +1555,16 @@ M.EventBridgeConfiguration = {
                 required = true,
             },
         },
-        includedData = {
-            type = "structure",
-        },
+        includedData = M.EventIncludedData,
     },
 }
 
 M.GetCaseEventConfigurationOutput = {
     type = "structure",
     members = {
-        eventBridge = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        eventBridge = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EventBridgeConfiguration }),
     },
 }
 
@@ -1713,8 +1616,8 @@ M.GetDomainOutput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1723,7 +1626,7 @@ M.ListDomainsInput = {
     type = "structure",
     members = {
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -1766,7 +1669,7 @@ M.ListDomainsOutput = {
     members = {
         domains = {
             type = "list",
-            member_type = "structure",
+            member = M.DomainSummary,
             traits = {
                 required = true,
             },
@@ -1787,12 +1690,9 @@ M.PutCaseEventConfigurationInput = {
                 required = true,
             },
         },
-        eventBridge = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        eventBridge = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.EventBridgeConfiguration }),
     },
 }
 
@@ -1850,19 +1750,14 @@ M.SearchAllRelatedItemsResponseItem = {
                 required = true,
             },
         },
-        content = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
-        performedBy = {
-            type = "union",
-        },
+        content = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.RelatedItemContent }),
+        performedBy = M.UserUnion,
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -1875,7 +1770,7 @@ M.SearchAllRelatedItemsOutput = {
         },
         relatedItems = {
             type = "list",
-            member_type = "structure",
+            member = M.SearchAllRelatedItemsResponseItem,
             traits = {
                 required = true,
             },
@@ -1895,7 +1790,7 @@ M.BatchGetFieldInput = {
         },
         fields = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldIdentifier,
             traits = {
                 required = true,
             },
@@ -1939,9 +1834,7 @@ M.TextAttributes = {
 M.FieldAttributes = {
     type = "union",
     members = {
-        text = {
-            type = "structure",
-        },
+        text = M.TextAttributes,
     },
 }
 
@@ -1998,11 +1891,14 @@ M.GetFieldResponse = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         deleted = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         createdTime = {
             type = "timestamp",
@@ -2010,9 +1906,7 @@ M.GetFieldResponse = {
         lastModifiedTime = {
             type = "timestamp",
         },
-        attributes = {
-            type = "union",
-        },
+        attributes = M.FieldAttributes,
     },
 }
 
@@ -2021,14 +1915,14 @@ M.BatchGetFieldOutput = {
     members = {
         fields = {
             type = "list",
-            member_type = "structure",
+            member = M.GetFieldResponse,
             traits = {
                 required = true,
             },
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldError,
             traits = {
                 required = true,
             },
@@ -2079,7 +1973,7 @@ M.BatchPutFieldOptionsInput = {
         },
         options = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldOption,
             traits = {
                 required = true,
             },
@@ -2116,7 +2010,7 @@ M.BatchPutFieldOptionsOutput = {
     members = {
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldOptionError,
         },
     },
 }
@@ -2146,9 +2040,7 @@ M.CreateFieldInput = {
         description = {
             type = "string",
         },
-        attributes = {
-            type = "union",
-        },
+        attributes = M.FieldAttributes,
     },
 }
 
@@ -2212,7 +2104,7 @@ M.ListFieldOptionsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2225,7 +2117,7 @@ M.ListFieldOptionsInput = {
         },
         values = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "values",
             },
@@ -2238,7 +2130,7 @@ M.ListFieldOptionsOutput = {
     members = {
         options = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldOption,
             traits = {
                 required = true,
             },
@@ -2260,7 +2152,7 @@ M.ListFieldsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2307,9 +2199,7 @@ M.FieldSummary = {
                 required = true,
             },
         },
-        attributes = {
-            type = "union",
-        },
+        attributes = M.FieldAttributes,
     },
 }
 
@@ -2318,7 +2208,7 @@ M.ListFieldsOutput = {
     members = {
         fields = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldSummary,
             traits = {
                 required = true,
             },
@@ -2352,9 +2242,7 @@ M.UpdateFieldInput = {
         description = {
             type = "string",
         },
-        attributes = {
-            type = "union",
-        },
+        attributes = M.FieldAttributes,
     },
 }
 
@@ -2382,7 +2270,7 @@ M.FieldGroup = {
         },
         fields = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldItem,
             traits = {
                 required = true,
             },
@@ -2393,9 +2281,7 @@ M.FieldGroup = {
 M.Section = {
     type = "union",
     members = {
-        fieldGroup = {
-            type = "structure",
-        },
+        fieldGroup = M.FieldGroup,
     },
 }
 
@@ -2404,7 +2290,7 @@ M.LayoutSections = {
     members = {
         sections = {
             type = "list",
-            member_type = "union",
+            member = M.Section,
         },
     },
 }
@@ -2412,21 +2298,15 @@ M.LayoutSections = {
 M.BasicLayout = {
     type = "structure",
     members = {
-        topPanel = {
-            type = "structure",
-        },
-        moreInfo = {
-            type = "structure",
-        },
+        topPanel = M.LayoutSections,
+        moreInfo = M.LayoutSections,
     },
 }
 
 M.LayoutContent = {
     type = "union",
     members = {
-        basic = {
-            type = "structure",
-        },
+        basic = M.BasicLayout,
     },
 }
 
@@ -2446,12 +2326,9 @@ M.CreateLayoutInput = {
                 required = true,
             },
         },
-        content = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        content = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LayoutContent }),
     },
 }
 
@@ -2538,19 +2415,19 @@ M.GetLayoutOutput = {
                 required = true,
             },
         },
-        content = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        content = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.LayoutContent }),
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         deleted = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         createdTime = {
             type = "timestamp",
@@ -2572,7 +2449,7 @@ M.ListLayoutsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2615,7 +2492,7 @@ M.ListLayoutsOutput = {
     members = {
         layouts = {
             type = "list",
-            member_type = "structure",
+            member = M.LayoutSummary,
             traits = {
                 required = true,
             },
@@ -2646,9 +2523,7 @@ M.UpdateLayoutInput = {
         name = {
             type = "string",
         },
-        content = {
-            type = "union",
-        },
+        content = M.LayoutContent,
     },
 }
 
@@ -2674,8 +2549,8 @@ M.ListTagsForResourceOutput = {
     members = {
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -2692,8 +2567,8 @@ M.TagResourceInput = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2737,6 +2612,9 @@ M.TemplateRule = {
         },
         fieldId = {
             type = "string",
+            traits = {
+                default = "NULL",
+            },
         },
     },
 }
@@ -2761,8 +2639,8 @@ M.TagPropagationConfiguration = {
         },
         tagMap = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2789,23 +2667,21 @@ M.CreateTemplateInput = {
         description = {
             type = "string",
         },
-        layoutConfiguration = {
-            type = "structure",
-        },
+        layoutConfiguration = M.LayoutConfiguration,
         requiredFields = {
             type = "list",
-            member_type = "structure",
+            member = M.RequiredField,
         },
         status = {
             type = "string",
         },
         rules = {
             type = "list",
-            member_type = "structure",
+            member = M.TemplateRule,
         },
         tagPropagationConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.TagPropagationConfiguration,
         },
     },
 }
@@ -2896,17 +2772,15 @@ M.GetTemplateOutput = {
         description = {
             type = "string",
         },
-        layoutConfiguration = {
-            type = "structure",
-        },
+        layoutConfiguration = M.LayoutConfiguration,
         requiredFields = {
             type = "list",
-            member_type = "structure",
+            member = M.RequiredField,
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
         status = {
             type = "string",
@@ -2916,6 +2790,9 @@ M.GetTemplateOutput = {
         },
         deleted = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         createdTime = {
             type = "timestamp",
@@ -2925,11 +2802,11 @@ M.GetTemplateOutput = {
         },
         rules = {
             type = "list",
-            member_type = "structure",
+            member = M.TemplateRule,
         },
         tagPropagationConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.TagPropagationConfiguration,
         },
     },
 }
@@ -2945,7 +2822,7 @@ M.ListTemplatesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
             traits = {
                 http_query = "maxResults",
             },
@@ -2958,7 +2835,7 @@ M.ListTemplatesInput = {
         },
         status = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "status",
             },
@@ -2995,7 +2872,7 @@ M.TemplateSummary = {
         },
         tagPropagationConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.TagPropagationConfiguration,
         },
     },
 }
@@ -3005,7 +2882,7 @@ M.ListTemplatesOutput = {
     members = {
         templates = {
             type = "list",
-            member_type = "structure",
+            member = M.TemplateSummary,
             traits = {
                 required = true,
             },
@@ -3039,23 +2916,21 @@ M.UpdateTemplateInput = {
         description = {
             type = "string",
         },
-        layoutConfiguration = {
-            type = "structure",
-        },
+        layoutConfiguration = M.LayoutConfiguration,
         requiredFields = {
             type = "list",
-            member_type = "structure",
+            member = M.RequiredField,
         },
         status = {
             type = "string",
         },
         rules = {
             type = "list",
-            member_type = "structure",
+            member = M.TemplateRule,
         },
         tagPropagationConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.TagPropagationConfiguration,
         },
     },
 }
@@ -3076,7 +2951,7 @@ M.UntagResourceInput = {
         },
         tagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 http_query = "tagKeys",
                 required = true,
@@ -3092,22 +2967,16 @@ M.UntagResourceOutput = {
 M.CaseFilter = {
     type = "union",
     members = {
-        field = {
-            type = "union",
-        },
-        not = {
-            type = "union",
-        },
-        tag = {
-            type = "union",
-        },
+        field = M.FieldFilter,
+        not = M.CaseFilter,
+        tag = M.TagFilter,
         andAll = {
             type = "list",
-            member_type = "union",
+            member = M.CaseFilter,
         },
         orAll = {
             type = "list",
-            member_type = "union",
+            member = M.CaseFilter,
         },
     },
 }
@@ -3115,19 +2984,15 @@ M.CaseFilter = {
 M.CustomFieldsFilter = {
     type = "union",
     members = {
-        field = {
-            type = "union",
-        },
-        not = {
-            type = "union",
-        },
+        field = M.FieldFilter,
+        not = M.CustomFieldsFilter,
         andAll = {
             type = "list",
-            member_type = "union",
+            member = M.CustomFieldsFilter,
         },
         orAll = {
             type = "list",
-            member_type = "union",
+            member = M.CustomFieldsFilter,
         },
     },
 }
@@ -3135,18 +3000,10 @@ M.CustomFieldsFilter = {
 M.BooleanCondition = {
     type = "union",
     members = {
-        equalTo = {
-            type = "structure",
-        },
-        notEqualTo = {
-            type = "structure",
-        },
-        andAll = {
-            type = "structure",
-        },
-        orAll = {
-            type = "structure",
-        },
+        equalTo = M.BooleanOperands,
+        notEqualTo = M.BooleanOperands,
+        andAll = M.CompoundCondition,
+        orAll = M.CompoundCondition,
     },
 }
 
@@ -3155,7 +3012,7 @@ M.CompoundCondition = {
     members = {
         conditions = {
             type = "list",
-            member_type = "union",
+            member = M.BooleanCondition,
             traits = {
                 required = true,
             },
@@ -3166,9 +3023,7 @@ M.CompoundCondition = {
 M.CustomFilter = {
     type = "structure",
     members = {
-        fields = {
-            type = "union",
-        },
+        fields = M.CustomFieldsFilter,
     },
 }
 
@@ -3183,7 +3038,7 @@ M.HiddenCaseRule = {
         },
         conditions = {
             type = "list",
-            member_type = "union",
+            member = M.BooleanCondition,
             traits = {
                 required = true,
             },
@@ -3202,7 +3057,7 @@ M.RequiredCaseRule = {
         },
         conditions = {
             type = "list",
-            member_type = "union",
+            member = M.BooleanCondition,
             traits = {
                 required = true,
             },
@@ -3221,7 +3076,10 @@ M.SearchCasesInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         nextToken = {
             type = "string",
@@ -3229,16 +3087,14 @@ M.SearchCasesInput = {
         searchTerm = {
             type = "string",
         },
-        filter = {
-            type = "union",
-        },
+        filter = M.CaseFilter,
         sorts = {
             type = "list",
-            member_type = "structure",
+            member = M.Sort,
         },
         fields = {
             type = "list",
-            member_type = "structure",
+            member = M.FieldIdentifier,
         },
     },
 }
@@ -3246,24 +3102,12 @@ M.SearchCasesInput = {
 M.RelatedItemTypeFilter = {
     type = "union",
     members = {
-        contact = {
-            type = "structure",
-        },
-        comment = {
-            type = "structure",
-        },
-        file = {
-            type = "structure",
-        },
-        sla = {
-            type = "structure",
-        },
-        connectCase = {
-            type = "structure",
-        },
-        custom = {
-            type = "structure",
-        },
+        contact = M.ContactFilter,
+        comment = M.CommentFilter,
+        file = M.FileFilter,
+        sla = M.SlaFilter,
+        connectCase = M.ConnectCaseFilter,
+        custom = M.CustomFilter,
     },
 }
 
@@ -3278,18 +3122,21 @@ M.SearchAllRelatedItemsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         nextToken = {
             type = "string",
         },
         filters = {
             type = "list",
-            member_type = "union",
+            member = M.RelatedItemTypeFilter,
         },
         sorts = {
             type = "list",
-            member_type = "structure",
+            member = M.SearchAllRelatedItemsSort,
         },
     },
 }
@@ -3312,14 +3159,17 @@ M.SearchRelatedItemsInput = {
             },
         },
         maxResults = {
-            type = "number",
+            type = "integer",
+            traits = {
+                default = nil,
+            },
         },
         nextToken = {
             type = "string",
         },
         filters = {
             type = "list",
-            member_type = "union",
+            member = M.RelatedItemTypeFilter,
         },
     },
 }
@@ -3327,15 +3177,9 @@ M.SearchRelatedItemsInput = {
 M.CaseRuleDetails = {
     type = "union",
     members = {
-        required = {
-            type = "structure",
-        },
-        fieldOptions = {
-            type = "structure",
-        },
-        hidden = {
-            type = "structure",
-        },
+        required = M.RequiredCaseRule,
+        fieldOptions = M.FieldOptionsCaseRule,
+        hidden = M.HiddenCaseRule,
     },
 }
 
@@ -3358,12 +3202,9 @@ M.CreateCaseRuleInput = {
         description = {
             type = "string",
         },
-        rule = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        rule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CaseRuleDetails }),
     },
 }
 
@@ -3388,17 +3229,17 @@ M.GetCaseRuleResponse = {
                 required = true,
             },
         },
-        rule = {
-            type = "union",
-            traits = {
-                required = true,
-            },
-        },
+        rule = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CaseRuleDetails }),
         description = {
             type = "string",
         },
         deleted = {
             type = "boolean",
+            traits = {
+                default = false,
+            },
         },
         createdTime = {
             type = "timestamp",
@@ -3408,8 +3249,8 @@ M.GetCaseRuleResponse = {
         },
         tags = {
             type = "map",
-            key_type = "string",
-            value_type = "string",
+            key = { type = "string" },
+            value = { type = "string" },
         },
     },
 }
@@ -3437,9 +3278,7 @@ M.UpdateCaseRuleInput = {
         description = {
             type = "string",
         },
-        rule = {
-            type = "union",
-        },
+        rule = M.CaseRuleDetails,
     },
 }
 
@@ -3448,21 +3287,21 @@ M.BatchGetCaseRuleOutput = {
     members = {
         caseRules = {
             type = "list",
-            member_type = "structure",
+            member = M.GetCaseRuleResponse,
             traits = {
                 required = true,
             },
         },
         errors = {
             type = "list",
-            member_type = "structure",
+            member = M.CaseRuleError,
             traits = {
                 required = true,
             },
         },
         unprocessedCaseRules = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }

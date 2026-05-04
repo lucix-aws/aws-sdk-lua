@@ -3475,15 +3475,53 @@ local record ThrottlingException
     message: string
 end
 
-local type DisassociatedDataStorageState = "ENABLED" | "DISABLED"
+local type ComputationModelType = "ANOMALY_DETECTION"
 
-local type DatasetSourceType = "KENDRA"
+local type ListAssetModelPropertiesFilter = "ALL" | "BASE"
 
-local type Quality = "GOOD" | "BAD" | "UNCERTAIN"
+local type ListAssetsFilter = "ALL" | "TOP_LEVEL"
+
+local type ResourceType = "PORTAL" | "PROJECT"
+
+local type TargetResourceType = "ASSET" | "COMPUTATION_MODEL"
+
+local type PortalType = "SITEWISE_PORTAL_V1" | "SITEWISE_PORTAL_V2"
+
+local type AssetModelVersionType = "LATEST" | "ACTIVE"
+
+local type IdentityType = "USER" | "GROUP" | "IAM"
 
 local type PropertyDataType = "STRING" | "INTEGER" | "DOUBLE" | "BOOLEAN" | "STRUCT"
 
+local type PropertyNotificationState = "ENABLED" | "DISABLED"
+
+local type AuthMode = "IAM" | "SSO"
+
+local type AssetModelType = "ASSET_MODEL" | "COMPONENT_MODEL" | "INTERFACE"
+
+local type Permission = "ADMINISTRATOR" | "VIEWER"
+
+local type TraversalDirection = "PARENT" | "CHILD"
+
+local type DisassociatedDataStorageState = "ENABLED" | "DISABLED"
+
+local type WarmTierState = "ENABLED" | "DISABLED"
+
+local type TimeOrdering = "ASCENDING" | "DESCENDING"
+
+local type CapabilitySyncStatus = "IN_SYNC" | "OUT_OF_SYNC" | "SYNC_FAILED" | "UNKNOWN" | "NOT_APPLICABLE"
+
+local type TraversalType = "PATH_TO_ROOT"
+
 local type ListBulkImportJobsFilter = "ALL" | "PENDING" | "RUNNING" | "CANCELLED" | "FAILED" | "COMPLETED_WITH_FAILURES" | "COMPLETED"
+
+local type DatasetSourceType = "KENDRA"
+
+local type ListAssetPropertiesFilter = "ALL" | "BASE"
+
+local type Quality = "GOOD" | "BAD" | "UNCERTAIN"
+
+local type ListTimeSeriesType = "ASSOCIATED" | "DISASSOCIATED"
 
 local type JobStatus = "PENDING" | "CANCELLED" | "RUNNING" | "COMPLETED" | "FAILED" | "COMPLETED_WITH_FAILURES"
 
@@ -3492,44 +3530,6 @@ local type ResolveToResourceType = "ASSET"
 local type EncryptionType = "SITEWISE_DEFAULT_ENCRYPTION" | "KMS_BASED_ENCRYPTION"
 
 local type StorageType = "SITEWISE_DEFAULT_STORAGE" | "MULTI_LAYER_STORAGE"
-
-local type ResourceType = "PORTAL" | "PROJECT"
-
-local type ListAssetModelPropertiesFilter = "ALL" | "BASE"
-
-local type ListAssetsFilter = "ALL" | "TOP_LEVEL"
-
-local type ComputationModelType = "ANOMALY_DETECTION"
-
-local type TargetResourceType = "ASSET" | "COMPUTATION_MODEL"
-
-local type IdentityType = "USER" | "GROUP" | "IAM"
-
-local type AssetModelVersionType = "LATEST" | "ACTIVE"
-
-local type PortalType = "SITEWISE_PORTAL_V1" | "SITEWISE_PORTAL_V2"
-
-local type ListTimeSeriesType = "ASSOCIATED" | "DISASSOCIATED"
-
-local type AuthMode = "IAM" | "SSO"
-
-local type AssetModelType = "ASSET_MODEL" | "COMPONENT_MODEL" | "INTERFACE"
-
-local type PropertyNotificationState = "ENABLED" | "DISABLED"
-
-local type WarmTierState = "ENABLED" | "DISABLED"
-
-local type Permission = "ADMINISTRATOR" | "VIEWER"
-
-local type TraversalDirection = "PARENT" | "CHILD"
-
-local type ListAssetPropertiesFilter = "ALL" | "BASE"
-
-local type CapabilitySyncStatus = "IN_SYNC" | "OUT_OF_SYNC" | "SYNC_FAILED" | "UNKNOWN" | "NOT_APPLICABLE"
-
-local type TimeOrdering = "ASCENDING" | "DESCENDING"
-
-local type TraversalType = "PATH_TO_ROOT"
 
 local record M
     AssociateAssetsInput: AssociateAssetsInput

@@ -30,7 +30,7 @@ M.IpSet = {
         },
         IpAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         IpAddressFamily = {
             type = "string",
@@ -60,7 +60,7 @@ M.Accelerator = {
         },
         IpSets = {
             type = "list",
-            member_type = "structure",
+            member = M.IpSet,
         },
         DnsName = {
             type = "string",
@@ -79,7 +79,7 @@ M.Accelerator = {
         },
         Events = {
             type = "list",
-            member_type = "structure",
+            member = M.AcceleratorEvent,
         },
     },
 }
@@ -146,7 +146,7 @@ M.AddCustomRoutingEndpointsInput = {
     members = {
         EndpointConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomRoutingEndpointConfiguration,
             traits = {
                 required = true,
             },
@@ -174,7 +174,7 @@ M.AddCustomRoutingEndpointsOutput = {
     members = {
         EndpointDescriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomRoutingEndpointDescription,
         },
         EndpointGroupArn = {
             type = "string",
@@ -249,7 +249,7 @@ M.EndpointConfiguration = {
             type = "string",
         },
         Weight = {
-            type = "number",
+            type = "integer",
         },
         ClientIPPreservationEnabled = {
             type = "boolean",
@@ -265,7 +265,7 @@ M.AddEndpointsInput = {
     members = {
         EndpointConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.EndpointConfiguration,
             traits = {
                 required = true,
             },
@@ -292,7 +292,7 @@ M.EndpointDescription = {
             type = "string",
         },
         Weight = {
-            type = "number",
+            type = "integer",
         },
         HealthState = {
             type = "string",
@@ -311,7 +311,7 @@ M.AddEndpointsOutput = {
     members = {
         EndpointDescriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.EndpointDescription,
         },
         EndpointGroupArn = {
             type = "string",
@@ -378,7 +378,7 @@ M.ByoipCidr = {
         },
         Events = {
             type = "list",
-            member_type = "structure",
+            member = M.ByoipCidrEvent,
         },
     },
 }
@@ -386,9 +386,7 @@ M.ByoipCidr = {
 M.AdvertiseByoipCidrOutput = {
     type = "structure",
     members = {
-        ByoipCidr = {
-            type = "structure",
-        },
+        ByoipCidr = M.ByoipCidr,
     },
 }
 
@@ -429,11 +427,11 @@ M.AllowCustomRoutingTrafficInput = {
         },
         DestinationAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DestinationPorts = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
         },
         AllowAllTrafficToEndpoint = {
             type = "boolean",
@@ -470,6 +468,9 @@ M.Resource = {
     members = {
         EndpointId = {
             type = "string",
+            traits = {
+                default = "",
+            },
         },
         Cidr = {
             type = "string",
@@ -491,11 +492,11 @@ M.Attachment = {
         },
         Principals = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Resources = {
             type = "list",
-            member_type = "structure",
+            member = M.Resource,
         },
         LastModifiedTime = {
             type = "timestamp",
@@ -571,7 +572,7 @@ M.CreateAcceleratorInput = {
         },
         IpAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Enabled = {
             type = "boolean",
@@ -584,7 +585,7 @@ M.CreateAcceleratorInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -592,9 +593,7 @@ M.CreateAcceleratorInput = {
 M.CreateAcceleratorOutput = {
     type = "structure",
     members = {
-        Accelerator = {
-            type = "structure",
-        },
+        Accelerator = M.Accelerator,
     },
 }
 
@@ -609,11 +608,11 @@ M.CreateCrossAccountAttachmentInput = {
         },
         Principals = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Resources = {
             type = "list",
-            member_type = "structure",
+            member = M.Resource,
         },
         IdempotencyToken = {
             type = "string",
@@ -623,7 +622,7 @@ M.CreateCrossAccountAttachmentInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -631,9 +630,7 @@ M.CreateCrossAccountAttachmentInput = {
 M.CreateCrossAccountAttachmentOutput = {
     type = "structure",
     members = {
-        CrossAccountAttachment = {
-            type = "structure",
-        },
+        CrossAccountAttachment = M.Attachment,
     },
 }
 
@@ -651,7 +648,7 @@ M.CreateCustomRoutingAcceleratorInput = {
         },
         IpAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Enabled = {
             type = "boolean",
@@ -664,7 +661,7 @@ M.CreateCustomRoutingAcceleratorInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -691,7 +688,7 @@ M.CustomRoutingAccelerator = {
         },
         IpSets = {
             type = "list",
-            member_type = "structure",
+            member = M.IpSet,
         },
         DnsName = {
             type = "string",
@@ -711,9 +708,7 @@ M.CustomRoutingAccelerator = {
 M.CreateCustomRoutingAcceleratorOutput = {
     type = "structure",
     members = {
-        Accelerator = {
-            type = "structure",
-        },
+        Accelerator = M.CustomRoutingAccelerator,
     },
 }
 
@@ -726,20 +721,20 @@ M.CustomRoutingDestinationConfiguration = {
     type = "structure",
     members = {
         FromPort = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         ToPort = {
-            type = "number",
+            type = "integer",
             traits = {
                 required = true,
             },
         },
         Protocols = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -764,7 +759,7 @@ M.CreateCustomRoutingEndpointGroupInput = {
         },
         DestinationConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomRoutingDestinationConfiguration,
             traits = {
                 required = true,
             },
@@ -787,14 +782,14 @@ M.CustomRoutingDestinationDescription = {
     type = "structure",
     members = {
         FromPort = {
-            type = "number",
+            type = "integer",
         },
         ToPort = {
-            type = "number",
+            type = "integer",
         },
         Protocols = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -810,11 +805,11 @@ M.CustomRoutingEndpointGroup = {
         },
         DestinationDescriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomRoutingDestinationDescription,
         },
         EndpointDescriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomRoutingEndpointDescription,
         },
     },
 }
@@ -822,9 +817,7 @@ M.CustomRoutingEndpointGroup = {
 M.CreateCustomRoutingEndpointGroupOutput = {
     type = "structure",
     members = {
-        EndpointGroup = {
-            type = "structure",
-        },
+        EndpointGroup = M.CustomRoutingEndpointGroup,
     },
 }
 
@@ -862,10 +855,10 @@ M.PortRange = {
     type = "structure",
     members = {
         FromPort = {
-            type = "number",
+            type = "integer",
         },
         ToPort = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -881,7 +874,7 @@ M.CreateCustomRoutingListenerInput = {
         },
         PortRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.PortRange,
             traits = {
                 required = true,
             },
@@ -903,7 +896,7 @@ M.CustomRoutingListener = {
         },
         PortRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.PortRange,
         },
     },
 }
@@ -911,9 +904,7 @@ M.CustomRoutingListener = {
 M.CreateCustomRoutingListenerOutput = {
     type = "structure",
     members = {
-        Listener = {
-            type = "structure",
-        },
+        Listener = M.CustomRoutingListener,
     },
 }
 
@@ -927,10 +918,10 @@ M.PortOverride = {
     type = "structure",
     members = {
         ListenerPort = {
-            type = "number",
+            type = "integer",
         },
         EndpointPort = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -952,13 +943,13 @@ M.CreateEndpointGroupInput = {
         },
         EndpointConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.EndpointConfiguration,
         },
         TrafficDialPercentage = {
-            type = "number",
+            type = "float",
         },
         HealthCheckPort = {
-            type = "number",
+            type = "integer",
         },
         HealthCheckProtocol = {
             type = "string",
@@ -967,10 +958,10 @@ M.CreateEndpointGroupInput = {
             type = "string",
         },
         HealthCheckIntervalSeconds = {
-            type = "number",
+            type = "integer",
         },
         ThresholdCount = {
-            type = "number",
+            type = "integer",
         },
         IdempotencyToken = {
             type = "string",
@@ -980,7 +971,7 @@ M.CreateEndpointGroupInput = {
         },
         PortOverrides = {
             type = "list",
-            member_type = "structure",
+            member = M.PortOverride,
         },
     },
 }
@@ -996,13 +987,13 @@ M.EndpointGroup = {
         },
         EndpointDescriptions = {
             type = "list",
-            member_type = "structure",
+            member = M.EndpointDescription,
         },
         TrafficDialPercentage = {
-            type = "number",
+            type = "float",
         },
         HealthCheckPort = {
-            type = "number",
+            type = "integer",
         },
         HealthCheckProtocol = {
             type = "string",
@@ -1011,14 +1002,14 @@ M.EndpointGroup = {
             type = "string",
         },
         HealthCheckIntervalSeconds = {
-            type = "number",
+            type = "integer",
         },
         ThresholdCount = {
-            type = "number",
+            type = "integer",
         },
         PortOverrides = {
             type = "list",
-            member_type = "structure",
+            member = M.PortOverride,
         },
     },
 }
@@ -1026,9 +1017,7 @@ M.EndpointGroup = {
 M.CreateEndpointGroupOutput = {
     type = "structure",
     members = {
-        EndpointGroup = {
-            type = "structure",
-        },
+        EndpointGroup = M.EndpointGroup,
     },
 }
 
@@ -1043,7 +1032,7 @@ M.CreateListenerInput = {
         },
         PortRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.PortRange,
             traits = {
                 required = true,
             },
@@ -1074,7 +1063,7 @@ M.Listener = {
         },
         PortRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.PortRange,
         },
         Protocol = {
             type = "string",
@@ -1088,9 +1077,7 @@ M.Listener = {
 M.CreateListenerOutput = {
     type = "structure",
     members = {
-        Listener = {
-            type = "structure",
-        },
+        Listener = M.Listener,
     },
 }
 
@@ -1258,11 +1245,11 @@ M.DenyCustomRoutingTrafficInput = {
         },
         DestinationAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DestinationPorts = {
             type = "list",
-            member_type = "number",
+            member = { type = "integer" },
         },
         DenyAllTrafficToEndpoint = {
             type = "boolean",
@@ -1289,9 +1276,7 @@ M.DeprovisionByoipCidrInput = {
 M.DeprovisionByoipCidrOutput = {
     type = "structure",
     members = {
-        ByoipCidr = {
-            type = "structure",
-        },
+        ByoipCidr = M.ByoipCidr,
     },
 }
 
@@ -1310,9 +1295,7 @@ M.DescribeAcceleratorInput = {
 M.DescribeAcceleratorOutput = {
     type = "structure",
     members = {
-        Accelerator = {
-            type = "structure",
-        },
+        Accelerator = M.Accelerator,
     },
 }
 
@@ -1331,9 +1314,7 @@ M.DescribeAcceleratorAttributesInput = {
 M.DescribeAcceleratorAttributesOutput = {
     type = "structure",
     members = {
-        AcceleratorAttributes = {
-            type = "structure",
-        },
+        AcceleratorAttributes = M.AcceleratorAttributes,
     },
 }
 
@@ -1352,9 +1333,7 @@ M.DescribeCrossAccountAttachmentInput = {
 M.DescribeCrossAccountAttachmentOutput = {
     type = "structure",
     members = {
-        CrossAccountAttachment = {
-            type = "structure",
-        },
+        CrossAccountAttachment = M.Attachment,
     },
 }
 
@@ -1373,9 +1352,7 @@ M.DescribeCustomRoutingAcceleratorInput = {
 M.DescribeCustomRoutingAcceleratorOutput = {
     type = "structure",
     members = {
-        Accelerator = {
-            type = "structure",
-        },
+        Accelerator = M.CustomRoutingAccelerator,
     },
 }
 
@@ -1394,9 +1371,7 @@ M.DescribeCustomRoutingAcceleratorAttributesInput = {
 M.DescribeCustomRoutingAcceleratorAttributesOutput = {
     type = "structure",
     members = {
-        AcceleratorAttributes = {
-            type = "structure",
-        },
+        AcceleratorAttributes = M.CustomRoutingAcceleratorAttributes,
     },
 }
 
@@ -1415,9 +1390,7 @@ M.DescribeCustomRoutingEndpointGroupInput = {
 M.DescribeCustomRoutingEndpointGroupOutput = {
     type = "structure",
     members = {
-        EndpointGroup = {
-            type = "structure",
-        },
+        EndpointGroup = M.CustomRoutingEndpointGroup,
     },
 }
 
@@ -1436,9 +1409,7 @@ M.DescribeCustomRoutingListenerInput = {
 M.DescribeCustomRoutingListenerOutput = {
     type = "structure",
     members = {
-        Listener = {
-            type = "structure",
-        },
+        Listener = M.CustomRoutingListener,
     },
 }
 
@@ -1457,9 +1428,7 @@ M.DescribeEndpointGroupInput = {
 M.DescribeEndpointGroupOutput = {
     type = "structure",
     members = {
-        EndpointGroup = {
-            type = "structure",
-        },
+        EndpointGroup = M.EndpointGroup,
     },
 }
 
@@ -1478,9 +1447,7 @@ M.DescribeListenerInput = {
 M.DescribeListenerOutput = {
     type = "structure",
     members = {
-        Listener = {
-            type = "structure",
-        },
+        Listener = M.Listener,
     },
 }
 
@@ -1491,7 +1458,7 @@ M.SocketAddress = {
             type = "string",
         },
         Port = {
-            type = "number",
+            type = "integer",
         },
     },
 }
@@ -1504,7 +1471,7 @@ M.DestinationPortMapping = {
         },
         AcceleratorSocketAddresses = {
             type = "list",
-            member_type = "structure",
+            member = M.SocketAddress,
         },
         EndpointGroupArn = {
             type = "string",
@@ -1515,9 +1482,7 @@ M.DestinationPortMapping = {
         EndpointGroupRegion = {
             type = "string",
         },
-        DestinationSocketAddress = {
-            type = "structure",
-        },
+        DestinationSocketAddress = M.SocketAddress,
         IpAddressType = {
             type = "string",
         },
@@ -1566,7 +1531,7 @@ M.ListAcceleratorsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1579,7 +1544,7 @@ M.ListAcceleratorsOutput = {
     members = {
         Accelerators = {
             type = "list",
-            member_type = "structure",
+            member = M.Accelerator,
         },
         NextToken = {
             type = "string",
@@ -1591,7 +1556,7 @@ M.ListByoipCidrsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1604,7 +1569,7 @@ M.ListByoipCidrsOutput = {
     members = {
         ByoipCidrs = {
             type = "list",
-            member_type = "structure",
+            member = M.ByoipCidr,
         },
         NextToken = {
             type = "string",
@@ -1616,7 +1581,7 @@ M.ListCrossAccountAttachmentsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1629,7 +1594,7 @@ M.ListCrossAccountAttachmentsOutput = {
     members = {
         CrossAccountAttachments = {
             type = "list",
-            member_type = "structure",
+            member = M.Attachment,
         },
         NextToken = {
             type = "string",
@@ -1646,7 +1611,7 @@ M.ListCrossAccountResourceAccountsOutput = {
     members = {
         ResourceOwnerAwsAccountIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
     },
 }
@@ -1664,7 +1629,7 @@ M.ListCrossAccountResourcesInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1677,7 +1642,7 @@ M.ListCrossAccountResourcesOutput = {
     members = {
         CrossAccountResources = {
             type = "list",
-            member_type = "structure",
+            member = M.CrossAccountResource,
         },
         NextToken = {
             type = "string",
@@ -1689,7 +1654,7 @@ M.ListCustomRoutingAcceleratorsInput = {
     type = "structure",
     members = {
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1702,7 +1667,7 @@ M.ListCustomRoutingAcceleratorsOutput = {
     members = {
         Accelerators = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomRoutingAccelerator,
         },
         NextToken = {
             type = "string",
@@ -1720,7 +1685,7 @@ M.ListCustomRoutingEndpointGroupsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1733,7 +1698,7 @@ M.ListCustomRoutingEndpointGroupsOutput = {
     members = {
         EndpointGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomRoutingEndpointGroup,
         },
         NextToken = {
             type = "string",
@@ -1751,7 +1716,7 @@ M.ListCustomRoutingListenersInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1764,7 +1729,7 @@ M.ListCustomRoutingListenersOutput = {
     members = {
         Listeners = {
             type = "list",
-            member_type = "structure",
+            member = M.CustomRoutingListener,
         },
         NextToken = {
             type = "string",
@@ -1785,7 +1750,7 @@ M.ListCustomRoutingPortMappingsInput = {
             type = "string",
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1797,7 +1762,7 @@ M.PortMapping = {
     type = "structure",
     members = {
         AcceleratorPort = {
-            type = "number",
+            type = "integer",
         },
         EndpointGroupArn = {
             type = "string",
@@ -1805,12 +1770,10 @@ M.PortMapping = {
         EndpointId = {
             type = "string",
         },
-        DestinationSocketAddress = {
-            type = "structure",
-        },
+        DestinationSocketAddress = M.SocketAddress,
         Protocols = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         DestinationTrafficState = {
             type = "string",
@@ -1823,7 +1786,7 @@ M.ListCustomRoutingPortMappingsOutput = {
     members = {
         PortMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.PortMapping,
         },
         NextToken = {
             type = "string",
@@ -1847,7 +1810,7 @@ M.ListCustomRoutingPortMappingsByDestinationInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1860,7 +1823,7 @@ M.ListCustomRoutingPortMappingsByDestinationOutput = {
     members = {
         DestinationPortMappings = {
             type = "list",
-            member_type = "structure",
+            member = M.DestinationPortMapping,
         },
         NextToken = {
             type = "string",
@@ -1878,7 +1841,7 @@ M.ListEndpointGroupsInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1891,7 +1854,7 @@ M.ListEndpointGroupsOutput = {
     members = {
         EndpointGroups = {
             type = "list",
-            member_type = "structure",
+            member = M.EndpointGroup,
         },
         NextToken = {
             type = "string",
@@ -1909,7 +1872,7 @@ M.ListListenersInput = {
             },
         },
         MaxResults = {
-            type = "number",
+            type = "integer",
         },
         NextToken = {
             type = "string",
@@ -1922,7 +1885,7 @@ M.ListListenersOutput = {
     members = {
         Listeners = {
             type = "list",
-            member_type = "structure",
+            member = M.Listener,
         },
         NextToken = {
             type = "string",
@@ -1947,7 +1910,7 @@ M.ListTagsForResourceOutput = {
     members = {
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
         },
     },
 }
@@ -1961,21 +1924,16 @@ M.ProvisionByoipCidrInput = {
                 required = true,
             },
         },
-        CidrAuthorizationContext = {
-            type = "structure",
-            traits = {
-                required = true,
-            },
-        },
+        CidrAuthorizationContext = setmetatable({ traits = {
+            required = true,
+        } }, { __index = M.CidrAuthorizationContext }),
     },
 }
 
 M.ProvisionByoipCidrOutput = {
     type = "structure",
     members = {
-        ByoipCidr = {
-            type = "structure",
-        },
+        ByoipCidr = M.ByoipCidr,
     },
 }
 
@@ -1984,7 +1942,7 @@ M.RemoveCustomRoutingEndpointsInput = {
     members = {
         EndpointIds = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2007,7 +1965,7 @@ M.RemoveEndpointsInput = {
     members = {
         EndpointIdentifiers = {
             type = "list",
-            member_type = "structure",
+            member = M.EndpointIdentifier,
             traits = {
                 required = true,
             },
@@ -2036,7 +1994,7 @@ M.TagResourceInput = {
         },
         Tags = {
             type = "list",
-            member_type = "structure",
+            member = M.Tag,
             traits = {
                 required = true,
             },
@@ -2059,7 +2017,7 @@ M.UntagResourceInput = {
         },
         TagKeys = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
             traits = {
                 required = true,
             },
@@ -2088,7 +2046,7 @@ M.UpdateAcceleratorInput = {
         },
         IpAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Enabled = {
             type = "boolean",
@@ -2099,9 +2057,7 @@ M.UpdateAcceleratorInput = {
 M.UpdateAcceleratorOutput = {
     type = "structure",
     members = {
-        Accelerator = {
-            type = "structure",
-        },
+        Accelerator = M.Accelerator,
     },
 }
 
@@ -2129,9 +2085,7 @@ M.UpdateAcceleratorAttributesInput = {
 M.UpdateAcceleratorAttributesOutput = {
     type = "structure",
     members = {
-        AcceleratorAttributes = {
-            type = "structure",
-        },
+        AcceleratorAttributes = M.AcceleratorAttributes,
     },
 }
 
@@ -2149,19 +2103,19 @@ M.UpdateCrossAccountAttachmentInput = {
         },
         AddPrincipals = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         RemovePrincipals = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         AddResources = {
             type = "list",
-            member_type = "structure",
+            member = M.Resource,
         },
         RemoveResources = {
             type = "list",
-            member_type = "structure",
+            member = M.Resource,
         },
     },
 }
@@ -2169,9 +2123,7 @@ M.UpdateCrossAccountAttachmentInput = {
 M.UpdateCrossAccountAttachmentOutput = {
     type = "structure",
     members = {
-        CrossAccountAttachment = {
-            type = "structure",
-        },
+        CrossAccountAttachment = M.Attachment,
     },
 }
 
@@ -2192,7 +2144,7 @@ M.UpdateCustomRoutingAcceleratorInput = {
         },
         IpAddresses = {
             type = "list",
-            member_type = "string",
+            member = { type = "string" },
         },
         Enabled = {
             type = "boolean",
@@ -2203,9 +2155,7 @@ M.UpdateCustomRoutingAcceleratorInput = {
 M.UpdateCustomRoutingAcceleratorOutput = {
     type = "structure",
     members = {
-        Accelerator = {
-            type = "structure",
-        },
+        Accelerator = M.CustomRoutingAccelerator,
     },
 }
 
@@ -2233,9 +2183,7 @@ M.UpdateCustomRoutingAcceleratorAttributesInput = {
 M.UpdateCustomRoutingAcceleratorAttributesOutput = {
     type = "structure",
     members = {
-        AcceleratorAttributes = {
-            type = "structure",
-        },
+        AcceleratorAttributes = M.CustomRoutingAcceleratorAttributes,
     },
 }
 
@@ -2250,7 +2198,7 @@ M.UpdateCustomRoutingListenerInput = {
         },
         PortRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.PortRange,
             traits = {
                 required = true,
             },
@@ -2261,9 +2209,7 @@ M.UpdateCustomRoutingListenerInput = {
 M.UpdateCustomRoutingListenerOutput = {
     type = "structure",
     members = {
-        Listener = {
-            type = "structure",
-        },
+        Listener = M.CustomRoutingListener,
     },
 }
 
@@ -2278,13 +2224,13 @@ M.UpdateEndpointGroupInput = {
         },
         EndpointConfigurations = {
             type = "list",
-            member_type = "structure",
+            member = M.EndpointConfiguration,
         },
         TrafficDialPercentage = {
-            type = "number",
+            type = "float",
         },
         HealthCheckPort = {
-            type = "number",
+            type = "integer",
         },
         HealthCheckProtocol = {
             type = "string",
@@ -2293,14 +2239,14 @@ M.UpdateEndpointGroupInput = {
             type = "string",
         },
         HealthCheckIntervalSeconds = {
-            type = "number",
+            type = "integer",
         },
         ThresholdCount = {
-            type = "number",
+            type = "integer",
         },
         PortOverrides = {
             type = "list",
-            member_type = "structure",
+            member = M.PortOverride,
         },
     },
 }
@@ -2308,9 +2254,7 @@ M.UpdateEndpointGroupInput = {
 M.UpdateEndpointGroupOutput = {
     type = "structure",
     members = {
-        EndpointGroup = {
-            type = "structure",
-        },
+        EndpointGroup = M.EndpointGroup,
     },
 }
 
@@ -2325,7 +2269,7 @@ M.UpdateListenerInput = {
         },
         PortRanges = {
             type = "list",
-            member_type = "structure",
+            member = M.PortRange,
         },
         Protocol = {
             type = "string",
@@ -2339,9 +2283,7 @@ M.UpdateListenerInput = {
 M.UpdateListenerOutput = {
     type = "structure",
     members = {
-        Listener = {
-            type = "structure",
-        },
+        Listener = M.Listener,
     },
 }
 
@@ -2360,9 +2302,7 @@ M.WithdrawByoipCidrInput = {
 M.WithdrawByoipCidrOutput = {
     type = "structure",
     members = {
-        ByoipCidr = {
-            type = "structure",
-        },
+        ByoipCidr = M.ByoipCidr,
     },
 }
 
